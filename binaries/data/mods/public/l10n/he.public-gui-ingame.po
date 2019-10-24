@@ -6,12 +6,13 @@
 # adin1999 <adin1999@walla.com>, 2014
 # aqua - <aqua194@gmail.com>, 2018
 # itayitayitay4 <itayitayitay4@gmail.com>, 2014
+# tcbr ssa <tcbr10@walla.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-27 07:08+0000\n"
-"PO-Revision-Date: 2019-09-27 15:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-10-16 18:05+0000\n"
+"Last-Translator: tcbr ssa <tcbr10@walla.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/wildfire-games/0ad/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +30,7 @@ msgstr "לשנות את נקודת מבט"
 
 #: gui/session/developer_overlay.js:32
 msgid "Display selection state"
-msgstr ""
+msgstr "הצג מצב בחירה"
 
 #: gui/session/developer_overlay.js:38
 msgid "Pathfinder overlay"
@@ -106,19 +107,19 @@ msgstr "כיסוי המפתחים נפתח."
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "טווח בסיסי: %(range)s מטר"
+msgstr[1] "טווח בסיסי: %(range)s מטרים"
+msgstr[2] "טווח בסיסי: %(range)s מטרים"
+msgstr[3] "טווח בסיסי: %(range)s מטרים"
 
 #: gui/session/input.js:178
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "ממוצע טווח מוסף: %(range)s מטר"
+msgstr[1] "ממוצע טווח מוסף: %(range)s מטרים"
+msgstr[2] "ממוצע טווח מוסף: %(range)s מטרים"
+msgstr[3] "ממוצע טווח מוסף: %(range)s מטרים"
 
 #: gui/session/input.js:689
 msgid "Cannot build wall here!"
@@ -145,7 +146,7 @@ msgstr "כן"
 #: gui/session/menu.js:164
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr ""
+msgstr "אתה בטוח שברצונך לצאת? יציאה תנתק את כל שאר המשתמשים."
 
 #: gui/session/menu.js:168 gui/session/menu.js:172
 msgid "Are you sure you want to quit?"
@@ -153,7 +154,7 @@ msgstr "האם אתה בטוח שאתה רוצה לצאת?"
 
 #: gui/session/menu.js:193
 msgid "Do you want to resign or will you return soon?"
-msgstr ""
+msgstr "ברצונך להיכנע או שתחזור בקרוב?"
 
 #: gui/session/menu.js:195
 msgid "I will return"
@@ -207,7 +208,7 @@ msgstr "x"
 
 #: gui/session/menu.js:549
 msgid "Request your allies to attack this enemy"
-msgstr ""
+msgstr "בקש מבני בריתך להתקיף את האויב"
 
 #: gui/session/menu.js:566
 msgid ""
@@ -222,12 +223,12 @@ msgstr ""
 #: gui/session/menu.js:792
 #, javascript-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "קנה %(resource)s"
 
 #: gui/session/menu.js:793
 #, javascript-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "מכר %(resource)s"
 
 #: gui/session/menu.js:896
 #, javascript-format
@@ -271,7 +272,7 @@ msgstr[3] ""
 
 #: gui/session/menu.js:911
 msgid "There are no land traders."
-msgstr ""
+msgstr "אין סוחרי יבשה"
 
 #: gui/session/menu.js:919
 #, javascript-format
@@ -286,10 +287,10 @@ msgstr[3] ""
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(numberOfLandTraders)s אינו פעיל"
+msgstr[1] "%(numberOfLandTraders)s אינם פעילים"
+msgstr[2] "%(numberOfLandTraders)s אינם פעילים"
+msgstr[3] "%(numberOfLandTraders)s אינם פעילים"
 
 #: gui/session/menu.js:934
 #, javascript-format
@@ -355,7 +356,7 @@ msgstr[3] ""
 
 #: gui/session/menu.js:1232
 msgid "Resume"
-msgstr ""
+msgstr "המשך"
 
 #: gui/session/menu.js:1232 gui/session/menu.xml:(caption):86
 msgid "Pause"
@@ -364,12 +365,12 @@ msgstr "הפסקה"
 #: gui/session/menu.js:1236
 #, javascript-format
 msgid "Paused by %(players)s"
-msgstr ""
+msgstr "נעצר ע\"י %(players)s"
 
 #: gui/session/menu.js:1237 gui/session/messages.js:709
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/menu.js:1261
 #, javascript-format
@@ -393,19 +394,19 @@ msgstr ""
 #: gui/session/messages.js:112
 #, javascript-format
 msgid "%(player)s has left the game."
-msgstr ""
+msgstr "%(player)s עזב את המשחק."
 
 #. Translation: A player that left the game joins again
 #: gui/session/messages.js:119
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr "%(player)s חזר למשחק."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/messages.js:121
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr ""
+msgstr "%(player)s הצטרף למשחק."
 
 #: gui/session/messages.js:127
 #, javascript-format
@@ -431,11 +432,11 @@ msgstr "חיבור לשרת אבד."
 
 #: gui/session/messages.js:154
 msgid "Waiting for players to connect:"
-msgstr ""
+msgstr "ממתין לשחקנים להתחבר:"
 
 #: gui/session/messages.js:155
 msgid "Synchronizing gameplay with other players…"
-msgstr ""
+msgstr "מסנכרן משחק עם שחקנים אחרים..."
 
 #: gui/session/messages.js:164
 #, javascript-format
@@ -463,7 +464,7 @@ msgstr "קבוצה"
 
 #: gui/session/messages.js:177 gui/session/session.js:525
 msgid "Observer"
-msgstr ""
+msgstr "צופה"
 
 #: gui/session/messages.js:178
 msgid "Private"
@@ -472,65 +473,65 @@ msgstr " פרטי "
 #: gui/session/messages.js:214
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr ""
+msgstr "צ'אט עם הודעות"
 
 #: gui/session/messages.js:219
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr ""
+msgstr "הודעות צ'אט"
 
 #: gui/session/messages.js:224
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "צ'אט שחקנים"
 
 #: gui/session/messages.js:231
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr ""
+msgstr "צ'אט בני ברית"
 
 #: gui/session/messages.js:238
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "צ'אט אויבים"
 
 #: gui/session/messages.js:245
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "צ'אט צופים"
 
 #: gui/session/messages.js:252
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr ""
+msgstr "צ'אט פרטי"
 
 #: gui/session/messages.js:257
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr ""
+msgstr "התראות משחק"
 
 #: gui/session/messages.js:262
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr ""
+msgstr "התראות רשת"
 
 #: gui/session/messages.js:269
 msgid "You have won!"
-msgstr ""
+msgstr "ניצחת!"
 
 #: gui/session/messages.js:270
 msgid "You have been defeated!"
-msgstr ""
+msgstr "הובסת!"
 
 #: gui/session/messages.js:278
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr ""
+msgstr "אתה כעת בברית עם %(player)s."
 
 #: gui/session/messages.js:279
 #, javascript-format
 msgid "You are now at war with %(player)s."
-msgstr ""
+msgstr "אתה כעת במלחמה עם %(player)s."
 
 #: gui/session/messages.js:280
 #, javascript-format
@@ -540,12 +541,12 @@ msgstr ""
 #: gui/session/messages.js:283
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr ""
+msgstr "%(player)s בברית אתך."
 
 #: gui/session/messages.js:284
 #, javascript-format
 msgid "%(player)s is now at war with you."
-msgstr ""
+msgstr "%(player)s נמצא במלחמה אתך."
 
 #: gui/session/messages.js:285
 #, javascript-format
@@ -555,12 +556,12 @@ msgstr ""
 #: gui/session/messages.js:288
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr ""
+msgstr "%(player)s נמצא כעת בברית עם %(player2)s."
 
 #: gui/session/messages.js:289
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr ""
+msgstr "%(player)s נמצא כעת במלחמה עם %(player2)s."
 
 #: gui/session/messages.js:290
 #, javascript-format
@@ -569,24 +570,24 @@ msgstr ""
 
 #: gui/session/messages.js:598
 msgid "Click to quit this tutorial."
-msgstr ""
+msgstr "לחץ בשביל לצאת מהדרכה זו."
 
 #: gui/session/messages.js:599
 msgid "Quit"
-msgstr ""
+msgstr "יציאה"
 
 #: gui/session/messages.js:603
 msgid "Click when ready."
-msgstr ""
+msgstr "לחץ כשהנך מוכן."
 
 #: gui/session/messages.js:607
 msgid "Follow the instructions."
-msgstr ""
+msgstr "עקוב אחרי ההוראות."
 
 #: gui/session/messages.js:698
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr ",,"
 
 #: gui/session/messages.js:704 gui/session/messages.js:744
 #, javascript-format
@@ -597,27 +598,27 @@ msgstr ""
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
-msgstr ""
+msgstr "שחקנים: %(players)s."
 
 #: gui/session/messages.js:713
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr ""
+msgstr "מצב המשחק שלך זהה למצב המשחק של המארח."
 
 #: gui/session/messages.js:714
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr ""
+msgstr "מצב המשחק שלך שונה ממצב המשחק של המארח."
 
 #: gui/session/messages.js:720
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr ""
+msgstr "הצטרפות מחדש למשחק רב משתתפים עם בוטים עדיין לא נתמך!"
 
 #: gui/session/messages.js:723
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
-msgstr ""
+msgstr "וודא שכל השחקנים משתמשים באותם מצבי משחק."
 
 #: gui/session/messages.js:724
 msgctxt "Out-Of-Sync"
@@ -688,7 +689,7 @@ msgstr "שחקן לא ידוע"
 #. elements in an enumeration.
 #: gui/session/messages.js:1021
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/messages.js:1053
 #, javascript-format
@@ -853,7 +854,7 @@ msgstr "+"
 #: gui/session/selection_details.js:532
 msgctxt "Separation mark in an enumeration"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/selection_panels.js:63
 msgid "Raise an alert!"
@@ -927,7 +928,7 @@ msgstr ""
 #: gui/session/selection_panels.js:754
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/selection_panels.js:1064
 #, javascript-format

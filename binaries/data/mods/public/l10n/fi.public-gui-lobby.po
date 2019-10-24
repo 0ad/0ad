@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-27 07:08+0000\n"
-"PO-Revision-Date: 2019-09-27 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-10-13 07:53+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -285,7 +285,7 @@ msgstr ""
 #: gui/lobby/lobby.js:1085
 #, javascript-format
 msgid "%(current)s/%(max)s"
-msgstr ""
+msgstr "%(current)s/%(max)s"
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/lobby.js:1143
@@ -403,11 +403,11 @@ msgstr "%(percentage)s%%"
 
 #: gui/prelobby/common/credentials/credentials.js:5
 msgid "Please enter your username"
-msgstr "Ole hyvä, kirjoita käyttäjänimesi"
+msgstr "Kirjoita käyttäjänimesi"
 
 #: gui/prelobby/common/credentials/credentials.js:8
 msgid "Invalid username"
-msgstr "Väärä Käyttäjänimi"
+msgstr "Virheellinen käyttäjänimi"
 
 #: gui/prelobby/common/credentials/credentials.js:19
 msgctxt "register"
@@ -425,11 +425,11 @@ msgstr "Valitse pidempi salasana"
 
 #: gui/prelobby/common/credentials/credentials.js:32
 msgid "Please enter your password again"
-msgstr "Ole hyvä ja kirjoita salasanasi uudelleen"
+msgstr "Kirjoita salasanasi uudelleen"
 
 #: gui/prelobby/common/credentials/credentials.js:36
 msgid "Passwords do not match"
-msgstr "Salasanat ei täsmää"
+msgstr "Salasanat eivät täsmää"
 
 #: gui/prelobby/common/credentials/credentials.js:54
 msgid "Are you sure you want to delete the password after connecting?"

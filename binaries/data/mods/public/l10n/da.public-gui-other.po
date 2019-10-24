@@ -7,12 +7,13 @@
 # Joe Hansen <joedalton2@yahoo.dk>, 2019
 # Mads Dyrmann <madsdyrmannlarsen@gmail.com>, 2016
 # Mads Overgård Henningsen <mads.overgaard@live.dk>, 2015
+# Søren Mølgaard <soren_molgaard@outlook.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-27 07:08+0000\n"
-"PO-Revision-Date: 2019-09-27 14:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-10-06 00:54+0000\n"
+"Last-Translator: Søren Mølgaard <soren_molgaard@outlook.com>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -196,16 +197,16 @@ msgstr "Ukendt Civilisation"
 #: gui/common/gamedescription.js:186
 msgctxt "playerstate"
 msgid "defeated"
-msgstr ""
+msgstr "overvundet"
 
 #: gui/common/gamedescription.js:187
 msgctxt "playerstate"
 msgid "won"
-msgstr ""
+msgstr "vundet"
 
 #: gui/common/gamedescription.js:208
 msgid "No Team"
-msgstr ""
+msgstr "Intet hold"
 
 #: gui/common/gamedescription.js:209
 #, javascript-format
@@ -224,8 +225,8 @@ msgstr ""
 #: gui/common/gamedescription.js:220
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Observatør"
+msgstr[1] "Observatører"
 
 #: gui/common/gamedescription.js:237
 msgctxt "victory condition"
@@ -234,7 +235,7 @@ msgstr "Uendeligt Spil"
 
 #: gui/common/gamedescription.js:238
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr ""
+msgstr "Ingen vinder kåres, selvom alle overvindes."
 
 #: gui/common/gamedescription.js:249
 #, javascript-format
@@ -284,39 +285,39 @@ msgstr ""
 
 #: gui/common/gamedescription.js:303
 msgid "Locked Teams"
-msgstr ""
+msgstr "Låste hold"
 
 #: gui/common/gamedescription.js:304
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "Spillere kan ikke ændre på de oprindelige hold."
 
 #: gui/common/gamedescription.js:308
 msgid "Diplomacy"
-msgstr ""
+msgstr "Diplomati"
 
 #: gui/common/gamedescription.js:309
 msgid "Players can make alliances and declare war on allies."
-msgstr ""
+msgstr "Spillere kan lave alliancer og erklære krig mod allierede. "
 
 #: gui/common/gamedescription.js:314
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Sidste Stående Mand"
 
 #: gui/common/gamedescription.js:315
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr ""
+msgstr "Kun én spiller kan vinde spillet. Hvis de tilbageværende spillere er allierede, vil spillet fortsætte, indtil der kun er én tilbage. "
 
 #: gui/common/gamedescription.js:319
 msgid "Allied Victory"
-msgstr ""
+msgstr "Allieret Sejr"
 
 #: gui/common/gamedescription.js:320
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "Hvis en spiller vinder, vil hans eller hendes allierede også vinde. Hvis én gruppe af allierede er tilbage, vinder de. "
 
 #: gui/common/gamedescription.js:324
 msgid "Ceasefire"
@@ -335,11 +336,11 @@ msgstr[1] ""
 #: gui/common/gamedescription.js:337
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "Tilfældig Bane"
 
 #: gui/common/gamedescription.js:338
 msgid "Randomly select a map from the list."
-msgstr ""
+msgstr "Vælg en tilfældig bane fra listen. "
 
 #: gui/common/gamedescription.js:343
 msgid "Map Name"
@@ -347,15 +348,15 @@ msgstr "Banenavn"
 
 #: gui/common/gamedescription.js:347
 msgid "Map Description"
-msgstr ""
+msgstr "Banebeskrivelse"
 
 #: gui/common/gamedescription.js:355
 msgid "Map Type"
-msgstr ""
+msgstr "Banetype"
 
 #: gui/common/gamedescription.js:361
 msgid "Map Filter"
-msgstr ""
+msgstr "Banefilter"
 
 #: gui/common/gamedescription.js:370
 msgid "Map Size"
@@ -372,7 +373,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:394
 msgid "Nomad Mode"
-msgstr ""
+msgstr "Nomadetilstand"
 
 #: gui/common/gamedescription.js:394
 msgid "Civic Centers"
@@ -382,7 +383,7 @@ msgstr ""
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr ""
+msgstr "Spillere starter med kun få enheder og må finde et passende sted til at bygge deres by. "
 
 #: gui/common/gamedescription.js:398
 msgid "Players start with a Civic Center."
@@ -390,7 +391,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:402
 msgid "Starting Resources"
-msgstr ""
+msgstr "Startressourcer"
 
 #: gui/common/gamedescription.js:403
 #, javascript-format
@@ -399,33 +400,33 @@ msgstr ""
 
 #: gui/common/gamedescription.js:413
 msgid "Population Limit"
-msgstr ""
+msgstr "Befolkningsbegrænsning"
 
 #: gui/common/gamedescription.js:421
 msgid "Treasures"
-msgstr ""
+msgstr "Skatte"
 
 #: gui/common/gamedescription.js:423
 msgctxt "treasures"
 msgid "Disabled"
-msgstr ""
+msgstr "Deaktiveret"
 
 #: gui/common/gamedescription.js:424
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr ""
+msgstr "Som defineret af banen. "
 
 #: gui/common/gamedescription.js:428
 msgid "Revealed Map"
-msgstr ""
+msgstr "Belyst Bane"
 
 #: gui/common/gamedescription.js:433
 msgid "Explored Map"
-msgstr ""
+msgstr "Udforsket Bane"
 
 #: gui/common/gamedescription.js:438
 msgid "Cheats"
-msgstr ""
+msgstr "Snydekoder"
 
 #: gui/common/gamedescription.js:442 gui/common/tooltips.js:136
 #: gui/common/tooltips.js:169 gui/common/tooltips.js:211
@@ -439,16 +440,16 @@ msgstr "%(label)s %(details)s"
 #: gui/common/gamedescription.js:445
 msgctxt "gamesetup option"
 msgid "enabled"
-msgstr ""
+msgstr "Aktiveret"
 
 #: gui/common/gamedescription.js:446
 msgctxt "gamesetup option"
 msgid "disabled"
-msgstr ""
+msgstr "Deaktiveret"
 
 #: gui/common/gamedescription.js:462
 msgid "Victorious"
-msgstr ""
+msgstr "Sejrende"
 
 #: gui/common/gamedescription.js:467
 msgid "Defeated"
@@ -487,7 +488,7 @@ msgstr ""
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "Værten har afsluttet spillet. "
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
@@ -511,19 +512,19 @@ msgstr ""
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Spillernavn i brug. Hvis du blev afkoblet, skal du prøve igen om få sekunder. "
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "Server fuld."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr ""
+msgstr "Sikker lobbygodkendelse mislykkedes. Tilslut via lobby."
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr ""
+msgstr "Fejl: Server mislykkedes i at tildele en unik klientidentifikation."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
@@ -544,7 +545,7 @@ msgstr "Tabte forbindelsen til serveren."
 
 #: gui/common/network.js:96
 msgid "Failed to connect to the server."
-msgstr ""
+msgstr "Mislykkedes i at forbinde til serveren. "
 
 #: gui/common/network.js:98
 msgid "Disconnected"
@@ -552,7 +553,7 @@ msgstr "Forbindelse afbrudt"
 
 #: gui/common/network.js:106
 msgid "Only the host can kick clients!"
-msgstr ""
+msgstr "Kun værten kan smide klienter ud!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
@@ -579,12 +580,12 @@ msgstr "Sandkasse"
 #: gui/common/settings.js:121
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Meget Let"
 
 #: gui/common/settings.js:125
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Let"
 
 #: gui/common/settings.js:129
 msgctxt "aiDiff"
@@ -594,12 +595,12 @@ msgstr "Mellem"
 #: gui/common/settings.js:134
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Svært"
 
 #: gui/common/settings.js:138
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Meget Svært"
 
 #: gui/common/settings.js:148
 msgctxt "aiBehavior"
@@ -609,7 +610,7 @@ msgstr "Tilfældig"
 #: gui/common/settings.js:153
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "Balanceret"
 
 #: gui/common/settings.js:157
 msgctxt "aiBehavior"
@@ -645,7 +646,7 @@ msgstr[1] ""
 #: gui/common/settings.js:220
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Konflikt"
 
 #: gui/common/settings.js:221
 msgid ""
@@ -671,7 +672,7 @@ msgstr "Scenarie"
 
 #: gui/common/settings.js:232
 msgid "A map with a predefined landscape and matchsettings."
-msgstr ""
+msgstr "En bane med prædefinerede landskab- og spilindstillinger."
 
 #: gui/common/settings.js:306
 msgid "Unlimited"
@@ -2209,7 +2210,7 @@ msgstr "Dato/tid"
 #: gui/loadgame/load.xml:(heading):30
 msgctxt "replay"
 msgid "Map Type"
-msgstr ""
+msgstr "Banetype"
 
 #: gui/loadgame/load.xml:(heading):34
 #: gui/replaymenu/replay_menu.xml:(heading):77
@@ -2695,7 +2696,7 @@ msgstr ""
 #: gui/options/options.json[0].options[9].list[2].label
 #: gui/options/options.json[3].options[5].list[2].label
 msgid "Disabled"
-msgstr ""
+msgstr "Deaktiveret"
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid ""
@@ -3050,7 +3051,7 @@ msgstr "Tilfældig"
 
 #: gui/options/options.json[3].options[4].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "Balanceret"
 
 #: gui/options/options.json[3].options[4].list[2].label
 msgid "Aggressive"

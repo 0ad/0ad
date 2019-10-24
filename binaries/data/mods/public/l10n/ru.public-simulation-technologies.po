@@ -48,7 +48,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-10-02 16:10+0000\n"
+"PO-Revision-Date: 2019-10-15 15:16+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -466,7 +466,7 @@ msgstr "Только наиболее прославленные воины им
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
-msgstr "Чемпионы получают +2 к защите от колющих ударов за дополнительные +10 металла к стоимости."
+msgstr "Чемпионы получают +2 к защите от колющих ударов за дополнительные 10 металла стоимости."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
 msgid "Silver Shields"
@@ -508,12 +508,12 @@ msgstr "Гипозомата (обвязка тросами)"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
-msgstr "Деревянные усиливающие балки для корпуса судна."
+msgstr "Деревянные шпангоуты для корабельных корпусов."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid ""
 "Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "Деревянные усиливающие балки дают +2 ко всем типам защиты корабля."
+msgstr "Деревянные шпангоуты дают +2 к защите корабля от любого урона."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -521,16 +521,16 @@ msgstr "Усиленный корпус"
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
-msgstr "Длинное копьё, изготовленное специально для кавалерии."
+msgstr "Длинное копьё, преднозначенное для всадников."
 
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr "Вооружите конницу улучшенным оружием ближнего боя. Конница в ближнем бою получает +2 к урону рубящим оружием."
+msgstr "Вооружите конницу лучшим оружием ближнего боя. Конница в ближнем бою получает +2 к рубящему урону."
 
 #: simulation/data/technologies/attack_cav_lance.jsongenericName
 msgid "Cavalry Lance"
-msgstr "Кавалерийские копья"
+msgstr "Кавалерийское копьё"
 
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.spart
@@ -769,7 +769,7 @@ msgstr "Использование бутового камня сокращае�
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
 msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "Городские стены получают -20% ко времени строительства, но при этом -1 к защите от крушащего урона."
+msgstr "Городские стены строятся на 20% быстрее, но на 1 снижается их защита от раздробляющего урона."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -845,7 +845,7 @@ msgstr "Рабочие используют тачки. Объем перено�
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
-msgstr "Тачки"
+msgstr "Тачка"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -898,7 +898,7 @@ msgstr "Рыболовная сеть"
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsondescription
 msgid "Increases wood gathering rates for trees."
-msgstr "Увеличивает скорость сбора древесины."
+msgstr "Увеличивает скорость добычи древесины."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
@@ -907,7 +907,7 @@ msgstr "Работники добывают древесину на 15% быст
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
-msgstr "Железные лезвия топоров"
+msgstr "Железные топоры"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 msgid "Workers +50% wood gather rate."
@@ -1054,7 +1054,7 @@ msgstr "Целители получают +5 к радиусу исцелени�
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
-msgstr "Радиус исцеления"
+msgstr "Дальность исцеления"
 
 #: simulation/data/technologies/heal_range.jsonspecificName.mace
 #: simulation/data/technologies/heal_range.jsonspecificName.spart
@@ -1064,7 +1064,7 @@ msgstr "Олимпийский пантеон"
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
-msgstr "Радиус исцеления 2"
+msgstr "Дальность исцеления 2"
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_range_2.jsonspecificName.spart
@@ -1075,12 +1075,12 @@ msgstr "Академея"
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
 msgid "Increases the Healing Rate of all healers."
-msgstr "Увеличивает скорость исцеления целителей."
+msgstr "Ускоряет исцеление всеми целителями."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers +25% healing rate."
-msgstr "Целители получают +25% к скорости исцеления."
+msgstr "Целители исцеляют на 25% быстрее."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -1104,11 +1104,11 @@ msgstr "Клятва Гиппократа"
 
 #: simulation/data/technologies/heal_temple.jsondescription
 msgid "Units garrisoned in a temple are healed faster."
-msgstr "Расположенные в храме юниты восстанавливают здоровье быстрее."
+msgstr "Гарнизон храма исцеляется быстрее."
 
 #: simulation/data/technologies/heal_temple.jsontooltip
 msgid "Temples +50% garrisoned healing rate."
-msgstr "Храмы получают +50% к скорости лечения гарнизона."
+msgstr "Храмы исцеляют свои гарнизоны на +50% быстрее."
 
 #: simulation/data/technologies/heal_temple.jsongenericName
 msgid "Divine Offerings"

@@ -30,6 +30,7 @@
 # Nolan Dartois <misterdevil59450@gmail.com>, 2019
 # oiseauroch <tobollive@aol.com>, 2018
 # PierrC <pierre.yves.cudennec@gmail.com>, 2018
+# Pierre Juste <supernovae@hotmail.com>, 2019
 # polien delamarque <m.oleil@laposte.net>, 2016
 # Romain Mesnil <bnb6avekk6@protonmail.com>, 2016
 # Polakrity <sxk-fr@live.fr>, 2017-2018
@@ -39,8 +40,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-09-23 15:57+0000\n"
-"Last-Translator: Cyril Mercier\n"
+"PO-Revision-Date: 2019-10-22 13:45+0000\n"
+"Last-Translator: François O\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,7 +71,7 @@ msgstr "Ferveur religieuse"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr ""
+msgstr "L'infanterie cause 20% de dégâts supplémentaires."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -79,7 +80,7 @@ msgstr "Patriotisme"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr "Vitesse de rassemblement augmentée de +15% pour les travailleurs"
+msgstr "Les ouvriers récoltent les ressources 15% plus rapidement."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -87,7 +88,7 @@ msgstr "Présence Exhortative"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers +10% melee and ranged attack damage."
-msgstr ""
+msgstr "L'infanterie cause 10% de dégâts supplémentaires."
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
@@ -95,7 +96,7 @@ msgstr "Pyramides Méroïtiques"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
 msgid "Civic Centers +10% territory influence radius."
-msgstr ""
+msgstr "Le rayon d'influence du forum augmente de 10%."
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -103,7 +104,7 @@ msgstr "Sacerdoce Puissant"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
-msgstr ""
+msgstr "Les héros perdent 5% de santé."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
@@ -192,7 +193,7 @@ msgstr "Ligue de Délos"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Allied Warships −25% construction time."
-msgstr ""
+msgstr "Navires Alliés -25% du temps construction."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -200,7 +201,7 @@ msgstr "Druides"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allied Healers −20% resource costs."
-msgstr ""
+msgstr "Soigneurs Alliés -20% du coût en ressources"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -208,7 +209,7 @@ msgstr "Maîtres commerçants"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Allied Markets +10% international trade bonus."
-msgstr ""
+msgstr "Marché Alliés +10% Bonus d'échange général"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
@@ -216,7 +217,7 @@ msgstr "Sagesse druidique"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Allied Structures −20% technology research time."
-msgstr ""
+msgstr "Bâtiments Alliés -20% du temps de recherches"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -232,7 +233,7 @@ msgstr "Fournisseur d'éléphants"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
 msgid "Allied Elephants −20% resource costs and training time."
-msgstr ""
+msgstr "-20% coût de ressource et temps de formations pour les Éléphants Alliés"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
@@ -250,7 +251,7 @@ msgstr "Soutien religieux d'Ashoka"
 msgid ""
 "Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
-msgstr ""
+msgstr "-50% du coût en ressources et du temps de constructions pour les Temples Alliés; -50% du coût en ressources et du temps de recherches technologiques du Temple"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
@@ -274,7 +275,7 @@ msgstr "Conscription"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Infantry −20% training time."
-msgstr ""
+msgstr "-20% du temps de recherche pour les Citoyens Armés Alliés"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"

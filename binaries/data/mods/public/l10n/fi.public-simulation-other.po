@@ -4,6 +4,7 @@
 # 
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2015
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019
 # Max Ihalempia, 2016
 # Max Ihalempia, 2016
 # Max Ihalempia, 2015
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-05-24 09:43+0200\n"
-"PO-Revision-Date: 2019-05-24 14:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-10-13 08:04+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -132,7 +133,7 @@ msgstr "Uusi kauppareitti on luotu pelaajan %(_player_)s kanssa. Ota osasi voito
 #: simulation/ai/petra/chatHelper.js:48
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
-msgstr ""
+msgstr "%(_player_)s ja minä olemme nyt liittolaisia."
 
 #: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
@@ -147,7 +148,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
 msgid "I cannot accept your offer to become allies, %(_player_)s."
-msgstr ""
+msgstr "En voi hyväksyä tarjousta ryhtyä liittolaiseksi, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:64
 #, javascript-format
@@ -222,7 +223,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
 msgid "%(_player_)s, consider us allies from now on."
-msgstr ""
+msgstr "%(_player_)s, voit pitää meitä vastedes liittolaisina."
 
 #: simulation/ai/petra/chatHelper.js:83
 #, javascript-format
@@ -880,7 +881,7 @@ msgstr "Jättiläismäinen"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
-msgstr "Petra Bot"
+msgstr "Petra-botti"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""

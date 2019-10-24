@@ -18,6 +18,7 @@
 # Peter Dosh <peter.dosh@hotmail.com>, 2015
 # qwertz, 2015
 # Raymond Vetter, 2014-2018
+# Robert Halbscheffel <robert.halbscheffel@gmail.com>, 2019
 # Vexatos, 2016
 # Tobias Stegemann <tobiasstegemann1@gmail.com>, 2017
 # xtother90, 2015-2017
@@ -25,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-02 07:10+0000\n"
-"PO-Revision-Date: 2019-09-02 14:44+0000\n"
-"Last-Translator: Raymond Vetter\n"
+"PO-Revision-Date: 2019-10-21 19:49+0000\n"
+"Last-Translator: Robert Halbscheffel <robert.halbscheffel@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -185,7 +186,7 @@ msgstr "Berittener Bogenschütze"
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:25
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:30
 msgid "Javelinist"
-msgstr ""
+msgstr "Speerwerfer"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:27
 msgid "Cavalry Skirmisher"
@@ -205,7 +206,7 @@ msgstr "Gardereiter"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:31
 msgid "Champion Cavalry Archer"
-msgstr ""
+msgstr "Berittener Gardebogenschütze"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:31
 msgid "Champion Cavalry Skirmisher"
@@ -302,11 +303,11 @@ msgstr "Kann keine Gebäude angreifen."
 #: simulation/templates/template_unit_fauna_herd.xml:7
 #: simulation/templates/template_unit_fauna_hunt.xml:8
 msgid "Kill to gather meat for food."
-msgstr ""
+msgstr "Töte um Nahrung zu sammeln"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:9
 msgid "Kill to butcher for food."
-msgstr ""
+msgstr "Für Nahrung schlachten"
 
 #: simulation/templates/template_unit_hero.xml:32
 #: simulation/templates/template_unit_hero.xml:33
@@ -504,7 +505,7 @@ msgstr "Rammbock"
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:54
 msgid "StoneThrower"
-msgstr ""
+msgstr "Steinewerfer"
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:55
 msgid "Siege Catapult"
@@ -1497,7 +1498,7 @@ msgstr "rs ‘Imn"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:24
 msgid "Axeman"
-msgstr ""
+msgstr "Axtschwinger"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:25
 msgid "Meroitic Temple Guard"
@@ -1549,7 +1550,7 @@ msgstr "Pdty Nhsyw"
 
 #: simulation/templates/units/kush_infantry_clubman_b.xml:31
 msgid "Clubman"
-msgstr ""
+msgstr "Keulenkämpfer"
 
 #: simulation/templates/units/kush_infantry_clubman_b.xml:33
 msgid "Nuba Clubman"
@@ -1689,7 +1690,7 @@ msgstr "Hypaspistḗs"
 
 #: simulation/templates/units/mace_champion_infantry_crossbowman.xml:22
 msgid "Crossbowman"
-msgstr ""
+msgstr "Armbrustschütze"
 
 #: simulation/templates/units/mace_champion_infantry_crossbowman.xml:24
 msgid "Champion Crossbowman"

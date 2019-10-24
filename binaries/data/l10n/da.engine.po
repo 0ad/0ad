@@ -9,13 +9,14 @@
 # Mads Dyrmann <madsdyrmannlarsen@gmail.com>, 2016
 # Fijure <mathiasik@live.dk>, 2014
 # Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>, 2014-2015
+# Søren Mølgaard <soren_molgaard@outlook.com>, 2019
 # Thomas Madsen <tem91@live.dk>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-13 07:08+0000\n"
-"PO-Revision-Date: 2019-09-13 12:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-10-06 00:29+0000\n"
+"Last-Translator: Søren Mølgaard <soren_molgaard@outlook.com>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,31 +34,31 @@ msgstr "Ukendt undertype (Se logge)"
 
 #: lobby/XmppClient.cpp:1169
 msgid "The certificate is not trusted."
-msgstr ""
+msgstr "Usikkert certifikat."
 
 #: lobby/XmppClient.cpp:1170
 msgid "The certificate hasn't got a known issuer."
-msgstr ""
+msgstr "Certifikatet har en ukendt udgiver."
 
 #: lobby/XmppClient.cpp:1171
 msgid "The certificate has been revoked."
-msgstr ""
+msgstr "Certifikatet er blevet tilbagekaldt."
 
 #: lobby/XmppClient.cpp:1172
 msgid "The certificate has expired."
-msgstr ""
+msgstr "Certifikatet er udløbet."
 
 #: lobby/XmppClient.cpp:1173
 msgid "The certifiacte is not yet active."
-msgstr ""
+msgstr "Certifikatet er ikke aktivt endnu."
 
 #: lobby/XmppClient.cpp:1174
 msgid "The certificate has not been issued for the peer connected to."
-msgstr ""
+msgstr "Certifikatet er ikke blevet udgivet for vedkommende, du er forbundet med. "
 
 #: lobby/XmppClient.cpp:1175
 msgid "The certificate signer is not a certificate authority."
-msgstr ""
+msgstr "Certifikatets underskriver er ikke en certifikatautoritet. "
 
 #: lobby/XmppClient.cpp:1197 lobby/XmppClient.cpp:1241
 #: lobby/XmppClient.cpp:1280

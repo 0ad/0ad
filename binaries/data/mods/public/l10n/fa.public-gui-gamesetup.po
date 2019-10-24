@@ -10,13 +10,14 @@
 # Mohsen Nouri <mohsen.nouri1372@gmail.com>, 2014
 # Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018-2019
 # omidh <omid_h28@hotmail.com>, 2013
+# reza latifi <reza.bubba@gmail.com>, 2019
 # VAHID SOHRABLOO <vahid4134@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-09-16 15:25+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-10-11 20:50+0000\n"
+"Last-Translator: reza latifi <reza.bubba@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -322,7 +323,7 @@ msgstr "انتخاب تیم بازیکن"
 
 #: gui/gamesetup/gamesetup.js:768
 msgid "Choose the civilization for this player."
-msgstr ""
+msgstr " تمدن این بازیکن را انتخاب کنید."
 
 #: gui/gamesetup/gamesetup.js:782
 msgid "Pick a color."
@@ -423,7 +424,7 @@ msgstr "تغییر وضعیت که نتیجه این بازی رتبه بندی 
 #: gui/gamesetup/gamesetup.js:997
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr ""
+msgstr "برای تکمیل خودکار اسم بازیکن ها و یا تنظیمات، کلید %(hotkey)s را بفشارید."
 
 #: gui/gamesetup/gamesetup.js:1045
 msgid "Back"
@@ -449,7 +450,7 @@ msgstr "شروع یک بازی جدید با تنظیمات کنونی."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr ""
+msgstr "یک بازی جدید را با تنظیمات فعلی شروع کنید (تا زمانی که همه‌ی بازیکن ها آماده شوند غیرفعال است)."
 
 #: gui/gamesetup/gamesetup.js:1106
 #, javascript-format
@@ -573,12 +574,12 @@ msgstr "%(name)s بازی"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:114
 msgid "Please enter a valid server name."
-msgstr ""
+msgstr "لطفا یک نام سرور معتبر وارد کنید."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:121
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr ""
+msgstr "پورت سرور باید بین %(min)s و %(max)s باشد."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:138
 msgid "Connecting to server..."
@@ -629,7 +630,7 @@ msgstr " بازی %(playername)s"
 #: gui/loading/loading.js:33
 #, javascript-format
 msgid "• %(tiptext)s"
-msgstr ""
+msgstr "• %(tiptext)s"
 
 #: gui/loading/loading.js:51
 #, javascript-format
@@ -700,7 +701,7 @@ msgstr "تیم"
 
 #: gui/gamesetup/gamesetup.xml:(caption):90
 msgid "Show this message in the future."
-msgstr ""
+msgstr "این پیام را در آینده نمایش بده."
 
 #: gui/gamesetup/gamesetup.xml:(caption):175
 msgid "Send"
@@ -725,7 +726,7 @@ msgstr "ورود به یک بازی موجود."
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "نام بازیکن:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
@@ -742,7 +743,7 @@ msgstr "برای میزبانی سرور خود را برپا کنید."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr ""
+msgstr "نام سرور:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"
@@ -806,7 +807,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:9
 msgid "“Union gives strength.” \\n— Aesop (“The Bundle of Sticks”)"
-msgstr ""
+msgstr "“اتحاد قدرت میدهد.” \\n— Aesop (“The Bundle of Sticks”)"
 
 #: gui/text/quotes.txt:10
 msgid ""
@@ -841,7 +842,7 @@ msgstr ""
 msgid ""
 "“Enemies' promises were made to be broken.” \\n— Aesop (“The Nurse and the "
 "Wolf”)"
-msgstr ""
+msgstr "“عهد های دشمن برای شکسته شدن ساخته شده اند.” \\n— Aesop (“The Nurse and the Wolf”)"
 
 #: gui/text/quotes.txt:16
 msgid "“Any excuse will serve a tyrant.” \\n— Aesop (“The Wolf and the Lamb”)"
