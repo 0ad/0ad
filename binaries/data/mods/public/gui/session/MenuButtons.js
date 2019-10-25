@@ -168,11 +168,8 @@ MenuButtons.prototype.Options = class
 		Engine.PushGuiPage(
 			"page_options.xml",
 			{},
-			callbackFunctionNames => {
-				for (let functionName of callbackFunctionNames)
-					if (global[functionName])
-						global[functionName]();
-
+			changes => {
+				fireConfigChangeHandlers(changes);
 				resumeGame();
 			});
 	}

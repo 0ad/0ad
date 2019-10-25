@@ -4,9 +4,9 @@
 var g_Options;
 
 /**
- * Names of session functions to be called after closing the page.
+ * Names of config keys that have changed, value returned when closing the page.
  */
-var g_CloseCallbacks;
+var g_ChangedKeys;
 
 /**
  * Vertical size of a tab button.
@@ -165,7 +165,7 @@ var g_OptionType = {
 
 function init(data, hotloadData)
 {
-	g_CloseCallbacks = hotloadData ? hotloadData.closeCallbacks : new Set();
+	g_ChangedKeys = hotloadData ? hotloadData.changedKeys : new Set();
 	g_TabCategorySelected = hotloadData ? hotloadData.tabCategorySelected : 0;
 
 	g_Options = Engine.ReadJSONFile("gui/options/options.json");
@@ -184,7 +184,7 @@ function getHotloadData()
 {
 	return {
 		"tabCategorySelected": g_TabCategorySelected,
-		"closeCallbacks": g_CloseCallbacks
+		"changedKeys": g_ChangedKeys
 	};
 }
 
@@ -242,11 +242,10 @@ function displayOptions()
 			Engine.ConfigDB_CreateValue("user", option.config, String(value));
 			Engine.ConfigDB_SetChanges("user", true);
 
+			g_ChangedKeys.add(option.config);
+
 			if (option.function)
 				Engine[option.function](value);
-
-			if (option.callback)
-				g_CloseCallbacks.add(option.callback);
 
 			enableButtons();
 		};
@@ -301,7 +300,10 @@ function reallySetDefaults()
 {
 	for (let category in g_Options)
 		for (let option of g_Options[category].options)
+		{
 			Engine.ConfigDB_RemoveValue("user", option.config);
+			g_ChangedKeys.add(option.config);
+		}
 
 	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 	revertChanges();
@@ -359,7 +361,7 @@ function reallySaveChanges()
 }
 
 /**
- * Close GUI page and call callbacks if they exist.
+ * Close GUI page and inform the parent GUI page which options changed.
  **/
 function closePage()
 {
@@ -376,5 +378,5 @@ function closePage()
 
 function closePageWithoutConfirmation()
 {
-	Engine.PopGuiPage(g_CloseCallbacks);
+	Engine.PopGuiPage(g_ChangedKeys);
 }
