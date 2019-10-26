@@ -22,6 +22,7 @@ var g_PanelEntityManager;
 var g_PauseControl;
 var g_PauseOverlay;
 var g_PlayerViewControl;
+var g_RangeOverlayManager;
 var g_ResearchProgress;
 var g_TradeDialog;
 var g_TopPanel;
@@ -159,6 +160,12 @@ var g_EntitySelectionChangeHandlers = new Set();
 var g_HotkeyChangeHandlers = new Set();
 
 /**
+ * These events are fired when the user has closed the options page.
+ * The handlers are provided a Set storing which config values have changed.
+ */
+var g_ConfigChangeHandlers = new Set();
+
+/**
  * List of additional entities to highlight.
  */
 var g_ShowGuarding = false;
@@ -280,16 +287,17 @@ function init(initData, hotloadData)
 	g_PauseControl = new PauseControl();
 	g_PauseOverlay = new PauseOverlay(g_PauseControl);
 	g_Menu = new Menu(g_PauseControl, g_PlayerViewControl, g_Chat);
+	g_RangeOverlayManager = new RangeOverlayManager(g_Selection);
 	g_ResearchProgress = new ResearchProgress(g_PlayerViewControl, g_Selection);
 	g_TradeDialog = new TradeDialog(g_PlayerViewControl);
 	g_TopPanel = new TopPanel(g_PlayerViewControl, g_DiplomacyDialog, g_TradeDialog, g_ObjectivesDialog, g_GameSpeedControl);
 
+	initBatchTrain();
 	initSelectionPanels();
 	LoadModificationTemplates();
 	updatePlayerData();
 	initializeMusic(); // before changing the perspective
 	Engine.SetBoundingBoxDebugOverlay(false);
-	updateEnabledRangeOverlayTypes();
 
 	for (let handler of g_PlayersInitHandlers)
 		handler();
@@ -345,6 +353,20 @@ function registerHotkeyChangeHandler(handler)
 	g_HotkeyChangeHandlers.add(handler);
 }
 
+function registerConfigChangeHandler(handler)
+{
+	g_ConfigChangeHandlers.add(handler);
+}
+
+/**
+ * @param changes - a Set of config names
+ */
+function fireConfigChangeHandlers(changes)
+{
+	for (let handler of g_ConfigChangeHandlers)
+		handler(changes);
+}
+
 function updatePlayerData()
 {
 	let simState = GetSimState();
@@ -391,15 +413,6 @@ function updatePlayerData()
 	}
 
 	g_Players = playerData;
-}
-
-/**
- * Called when the user changed the diplomacy colors in the options.
- * TODO: Remove this proxy and make the options page agnostic of the session page.
- */
-function updateDisplayedPlayerColors()
-{
-	g_DiplomacyColors.updateDisplayedPlayerColors();
 }
 
 /**
@@ -807,38 +820,6 @@ function toggleConfigBool(configName)
 	let enabled = Engine.ConfigDB_GetValue("user", configName) != "true";
 	Engine.ConfigDB_CreateAndWriteValueToFile("user", configName, String(enabled), "config/user.cfg");
 	return enabled;
-}
-
-/**
- * Toggles the display of range overlays of selected entities for the given range type.
- * @param {string} type - for example "Auras"
- */
-function toggleRangeOverlay(type)
-{
-	let enabled = toggleConfigBool("gui.session." + type.toLowerCase() + "range");
-
-	Engine.GuiInterfaceCall("EnableVisualRangeOverlayType", {
-		"type": type,
-		"enabled": enabled
-	});
-
-	let selected = g_Selection.toList();
-	for (let ent in g_Selection.highlighted)
-		selected.push(g_Selection.highlighted[ent]);
-
-	Engine.GuiInterfaceCall("SetRangeOverlays", {
-		"entities": selected,
-		"enabled": enabled
-	});
-}
-
-function updateEnabledRangeOverlayTypes()
-{
-	for (let type of ["Attack", "Auras", "Heal"])
-		Engine.GuiInterfaceCall("EnableVisualRangeOverlayType", {
-			"type": type,
-			"enabled": Engine.ConfigDB_GetValue("user", "gui.session." + type.toLowerCase() + "range") == "true"
-		});
 }
 
 // Update the additional list of entities to be highlighted.

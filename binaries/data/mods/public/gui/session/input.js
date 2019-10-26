@@ -1327,6 +1327,14 @@ function getBuildingsWhichCanTrainEntity(entitiesToCheck, trainEntType)
 	});
 }
 
+function initBatchTrain()
+{
+	registerConfigChangeHandler(changes => {
+		if (changes.has("gui.session.batchtrainingsize"))
+			updateDefaultBatchSize();
+	});
+}
+
 function getDefaultBatchTrainingSize()
 {
 	let num = +Engine.ConfigDB_GetValue("user", "gui.session.batchtrainingsize");

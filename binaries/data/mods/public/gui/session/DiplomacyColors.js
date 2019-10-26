@@ -16,6 +16,7 @@ class DiplomacyColors
 		this.diplomacyColorsChangeHandlers = [];
 
 		registerPlayersInitHandler(this.onPlayersInit.bind(this));
+		registerConfigChangeHandler(this.onConfigChange.bind(this));
 	}
 
 	registerDiplomacyColorsChangeHandler(handler)
@@ -38,6 +39,16 @@ class DiplomacyColors
 	{
 		if (this.enabled)
 			this.updateDisplayedPlayerColors();
+	}
+
+	onConfigChange(changes)
+	{
+		for (let change of changes)
+			if (change.startsWith("gui.session.diplomacycolors."))
+			{
+				this.updateDisplayedPlayerColors();
+				return;
+			}
 	}
 
 	isEnabled()
