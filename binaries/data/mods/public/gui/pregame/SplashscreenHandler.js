@@ -3,6 +3,9 @@ class SplashScreenHandler
 	constructor(initData, hotloadData)
 	{
 		this.showSplashScreen = hotloadData ? hotloadData.showSplashScreen : initData && initData.isStartup;
+
+		this.mainMenuPage = Engine.GetGUIObjectByName("mainMenuPage");
+		this.mainMenuPage.onTick = this.onFirstTick.bind(this);
 	}
 
 	getHotloadData()
@@ -15,10 +18,13 @@ class SplashScreenHandler
 
 	// Don't call this from the init function in order to not crash when opening the new page on init on hotloading
 	// and not possibly crash when opening the new page on init and throwing a JS error.
-	onTick()
+	onFirstTick()
 	{
 		if (this.showSplashScreen)
 			this.openPage();
+
+		// TODO: support actually deleting the handler
+		this.mainMenuPage.onTick = () => {};
 	}
 
 	openPage()
