@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defensive_tower_artillery">
+  <Footprint>
+    <Square width="10.0" depth="10.0"/>
+    <Height>18.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>ptol</Civ>
+    <SpecificName>mktr-n-ḏw</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="9.0" depth="9.0"/>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>22.0</HeightOffset>
+  </StatusBars>
+  <VisualActor>
+    <Actor>structures/ptolemies/tower_artillery.xml</Actor>
+  </VisualActor>
+</Entity>
