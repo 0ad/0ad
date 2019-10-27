@@ -1,11 +1,12 @@
+/**
+ * This class sets up the main menu buttons, animates submenu that opens when
+ * clicking on category buttons, assigns the defined actions and hotkeys to every button.
+ */
 class MainMenuItemHandler
 {
-	constructor(menuItems, menuSpeed = 1.2, margin = 4, buttonHeight = 28)
+	constructor(menuItems)
 	{
 		this.menuItems = menuItems;
-		this.menuSpeed = menuSpeed;
-		this.margin = margin;
-		this.buttonHeight = buttonHeight;
 		this.lastTickTime = Date.now();
 
 		this.mainMenu = Engine.GetGUIObjectByName("mainMenu");
@@ -17,7 +18,9 @@ class MainMenuItemHandler
 
 		this.setupMenuButtons(this.mainMenuButtons.children, this.menuItems);
 		this.setupHotkeys(this.menuItems);
-		Engine.GetGUIObjectByName("closeMenuButton").onPress = () => { this.closeSubmenu(); };
+
+		this.mainMenu.onTick = this.onTick.bind(this);
+		Engine.GetGUIObjectByName("closeMenuButton").onPress = this.closeSubmenu.bind(this);
 	}
 
 	setupMenuButtons(buttons, menuItems)
@@ -29,8 +32,8 @@ class MainMenuItemHandler
 				return;
 
 			button.size = new GUISize(
-				0, (this.buttonHeight + this.margin) * i,
-				0, (this.buttonHeight + this.margin) * i + this.buttonHeight,
+				0, (this.ButtonHeight + this.Margin) * i,
+				0, (this.ButtonHeight + this.Margin) * i + this.ButtonHeight,
 				0, 0, 100, 0);
 			button.caption = item.caption;
 			button.tooltip = item.tooltip;
@@ -52,17 +55,14 @@ class MainMenuItemHandler
 
 	setupHotkeys(menuItems)
 	{
-		for (let name in menuItems)
+		for (let i in menuItems)
 		{
-			let item = menuItems[name];
-
+			let item = menuItems[i];
 			if (item.onPress && item.hotkey)
-			{
 				Engine.SetGlobalHotkey(item.hotkey, () => {
 					this.closeSubmenu();
 					item.onPress();
 				});
-			}
 
 			if (item.submenu)
 				this.setupHotkeys(item.submenu);
@@ -72,20 +72,39 @@ class MainMenuItemHandler
 	openSubmenu(i)
 	{
 		this.setupMenuButtons(this.submenuButtons.children, this.menuItems[i].submenu);
+
 		let top = this.mainMenuButtons.size.top + this.mainMenuButtons.children[i].size.top;
+
 		this.submenu.size = new GUISize(
-			this.submenu.size.left, top - this.margin,
-			this.submenu.size.right, top + ((this.buttonHeight + this.margin) * this.menuItems[i].submenu.length));
+			this.submenu.size.left, top - this.Margin,
+			this.submenu.size.right, top + (this.ButtonHeight + this.Margin) * this.menuItems[i].submenu.length);
+
 		this.submenu.hidden = false;
-		this.MainMenuPanelRightBorderTop.size = "100%-2 0 100% " + (this.submenu.size.top + this.margin);
-		this.MainMenuPanelRightBorderBottom.size = "100%-2 " + this.submenu.size.bottom + " 100% 100%";
+
+		{
+			let size = this.MainMenuPanelRightBorderTop.size;
+			size.bottom = this.submenu.size.top + this.Margin;
+			size.rbottom = 0;
+			this.MainMenuPanelRightBorderTop.size = size;
+		}
+
+		{
+			let size = this.MainMenuPanelRightBorderBottom.size;
+			size.top = this.submenu.size.bottom;
+			this.MainMenuPanelRightBorderBottom.size = size;
+		}
 	}
 
 	closeSubmenu()
 	{
 		this.submenu.hidden = true;
 		this.submenu.size = this.mainMenu.size;
-		this.MainMenuPanelRightBorderTop.size = "100%-2 0 100% 100%";
+
+		let size = this.MainMenuPanelRightBorderTop.size;
+		size.top = 0;
+		size.bottom = 0;
+		size.rbottom = 100;
+		this.MainMenuPanelRightBorderTop.size = size;
 	}
 
 	onTick()
@@ -93,7 +112,7 @@ class MainMenuItemHandler
 		let now = Date.now();
 
 		let maxOffset = this.mainMenu.size.right - this.submenu.size.left;
-		let offset = Math.min(this.menuSpeed * (now - this.lastTickTime), maxOffset);
+		let offset = Math.min(this.MenuSpeed * (now - this.lastTickTime), maxOffset);
 
 		this.lastTickTime = now;
 
@@ -106,3 +125,18 @@ class MainMenuItemHandler
 		this.submenu.size = size;
 	}
 }
+
+/**
+ * Vertical size per button.
+ */
+MainMenuItemHandler.prototype.ButtonHeight = 28;
+
+/**
+ * Distance between consecutive buttons.
+ */
+MainMenuItemHandler.prototype.Margin = 4;
+
+/**
+ * Collapse / expansion speed in pixels per milliseconds used when animating the button menu size.
+ */
+MainMenuItemHandler.prototype.MenuSpeed = 1.2;

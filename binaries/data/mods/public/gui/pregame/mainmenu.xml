@@ -6,12 +6,10 @@
 	<script directory="gui/pregame/backgrounds/"/>
 	<script directory="gui/pregame/userreport/"/>
 
-	<object>
+	<object name="mainMenuPage">
 		<include file="gui/pregame/backgrounds.xml"/>
 		<include file="gui/pregame/menupanel.xml"/>
 		<include file="gui/pregame/userreport/userreport.xml"/>
-
-		<action on="Tick">onTick();</action>
 	</object>
 
 </objects>

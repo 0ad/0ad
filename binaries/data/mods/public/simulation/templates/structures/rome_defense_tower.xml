@@ -17,4 +17,16 @@
   <VisualActor>
     <Actor>structures/romans/scout_tower.xml</Actor>
   </VisualActor>
+  <Upgrade>
+    <Tower>
+      <Entity>structures/{civ}_tower_artillery</Entity>
+      <Tooltip>Reinforce with stone block, and install small torsion engines to upgrade this defense tower into an artillery tower.</Tooltip>
+      <RequiredTechnology>phase_city</RequiredTechnology>
+      <Cost>
+        <wood>150</wood>
+        <stone>100</stone>
+      </Cost>
+      <Time>200</Time>
+    </Tower>
+  </Upgrade>
 </Entity>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defensive_tower_artillery">
+  <Footprint>
+    <Square width="10.0" depth="10.0"/>
+    <Height>18.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>cart</Civ>
+    <SpecificName>Mijdil</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="9.0" depth="9.0"/>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>20.0</HeightOffset>
+  </StatusBars>
+  <VisualActor>
+    <FoundationActor>structures/carthaginians/fndn_defense_tower.xml</FoundationActor>
+    <Actor>structures/carthaginians/tower_artillery.xml</Actor>
+  </VisualActor>
+</Entity>

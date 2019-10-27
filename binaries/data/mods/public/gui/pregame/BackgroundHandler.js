@@ -2,47 +2,71 @@ class BackgroundHandler
 {
 	constructor(layers)
 	{
-		this.initTime = Date.now();
-		this.layerSet = layers;
+		this.backgroundLayers = layers.map((layer, i) =>
+			new BackgroundLayer(layer, i));
 
-		this.initBackgrounds();
+		this.initTime = Date.now();
+
+		this.backgrounds = Engine.GetGUIObjectByName("backgrounds");
+		this.backgrounds.onTick = this.onTick.bind(this);
+		this.backgrounds.onWindowResized = this.onWindowResized.bind(this);
+		this.onWindowResized();
 	}
 
-	initBackgrounds()
+	onWindowResized()
 	{
-		this.layerSet.forEach((layer, i) => {
-
-			let background = Engine.GetGUIObjectByName("background[" + i + "]");
-			background.sprite = layer.sprite;
-			background.z = i;
-			background.hidden = false;
-		});
+		let size = this.backgrounds.getComputedSize();
+		this.backgroundsSize = deepfreeze(new GUISize(size.top, size.left, size.right, size.bottom));
 	}
 
 	onTick()
 	{
-		let now = Date.now();
-
-		this.layerSet.forEach((layer, i) => {
-
-			let background = Engine.GetGUIObjectByName("background[" + i + "]");
-
-			let screen = background.parent.getComputedSize();
-			let h = screen.bottom - screen.top;
-			let w = h * 16/9;
-			let iw = h * 2;
-
-			let offset = layer.offset((now - this.initTime) / 1000, w);
-
-			if (layer.tiling)
-			{
-				let left = offset % iw;
-				if (left >= 0)
-					left -= iw;
-				background.size = new GUISize(left, screen.top, screen.right, screen.bottom);
-			}
-			else
-				background.size = new GUISize(screen.right/2 - h + offset, screen.top, screen.right/2 + h + offset, screen.bottom);
-		});
+		let time = Date.now() - this.initTime;
+		for (let background of this.backgroundLayers)
+			background.update(time, this.backgroundsSize);
 	}
 }
+
+class BackgroundLayer
+{
+	constructor(layer, i)
+	{
+		this.layer = layer;
+
+		this.background = Engine.GetGUIObjectByName("background[" + i + "]");
+		this.background.sprite = this.layer.sprite;
+		this.background.z = i;
+		this.background.hidden = false;
+	}
+
+	update(time, backgroundsSize)
+	{
+		let height = backgroundsSize.bottom - backgroundsSize.top;
+		let width = height * this.AspectRatio;
+		let offset = this.layer.offset(time / 1000, width);
+
+		if (this.layer.tiling)
+		{
+			let iw = height * 2;
+			let left = offset % iw;
+			if (left >= 0)
+				left -= iw;
+			this.background.size = new GUISize(
+				left,
+				backgroundsSize.top,
+				backgroundsSize.right,
+				backgroundsSize.bottom);
+		}
+		else
+		{
+			let right = backgroundsSize.right / 2 + offset;
+			this.background.size = new GUISize(
+				right - height,
+				backgroundsSize.top,
+				right + height,
+				backgroundsSize.bottom);
+		}
+	}
+}
+
+BackgroundLayer.prototype.AspectRatio = 16 / 9;
