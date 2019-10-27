@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="Base" frequency="1">
+  <animations>
+    <animation file="biped/infantry/pikeman/idle_relax_01.dae" name="Idle" id="idle1" frequency="10" speed="80"/>
+    <animation file="biped/infantry/pikeman/idle_relax_02.dae" name="Idle" id="idle2" frequency="2" speed="80"/>
+    <animation file="biped/infantry/pikeman/idle_relax_03.dae" name="Idle" id="idle3" frequency="2" speed="80"/>
+    <animation file="biped/infantry/pikeman/idle_relax_04.dae" name="Idle" id="idle4" frequency="3" speed="80"/>
+    <animation file="biped/infantry/pikeman/idle_relax_05.dae" name="Idle" id="idle5" frequency="3" speed="80"/>
+    <animation file="biped/infantry/pikeman/idle_relax_long_01.dae" name="Idle" id="idle6" frequency="1" speed="80"/>
+    <animation file="biped/infantry/pikeman/idle_relax_long_02.dae" name="Idle" id="idle7" frequency="1" speed="80"/>
+    <animation file="biped/infantry/pikeman/walk_relax.dae" name="Walk" speed="30"/>
+    <animation file="biped/infantry/pikeman/jog_relax.dae" name="run" speed="10"/>
+    <animation file="biped/infantry/promotion.dae" name="promotion" speed="80"/>
+    <animation event="0.5" file="biped/infantry/pikeman/attack_melee_01.dae" name="attack_melee" id="attack1" speed="120"/>
+    <animation event="0.5" file="biped/infantry/pikeman/attack_melee_02.dae" name="attack_melee" id="attack2" speed="120"/>
+    <animation event="0.5" file="biped/infantry/pikeman/attack_melee_03.dae" name="attack_melee" id="attack3" speed="120"/>
+  </animations>
+</variant>
