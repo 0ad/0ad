@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <variant name="Base" frequency="1">
   <animations>
-    <animation file="biped/infantry/hoplite/idle_relax_a.dae" name="Idle" id="idle1" frequency="8" speed="80"/>
-    <animation file="biped/infantry/hoplite/idle_relax_b.dae" name="Idle" id="idle2" frequency="1" speed="80"/>
-    <animation file="biped/infantry/hoplite/idle_relax_c.dae" name="Idle" id="idle3" frequency="1" speed="80"/>
-    <animation file="biped/infantry/hoplite/idle_relax_d.dae" name="Idle" id="idle4" frequency="3" speed="80"/>
-    <animation file="biped/infantry/hoplite/idle_relax_e.dae" name="Idle" id="idle5" frequency="3" speed="80"/>
-    <animation file="biped/infantry/hoplite/idle_relax_f.dae" name="Idle" id="idle6" frequency="1" speed="80"/>
-    <animation file="biped/infantry/hoplite/idle_relax_g.dae" name="Idle" id="idle7" frequency="1" speed="80"/>
-    <animation file="biped/infantry/hoplite/idle_relax_h.dae" name="Idle" id="idle8" frequency="1" speed="80"/>
+    <animation file="biped/infantry/hoplite/idle_relax_01.dae" name="Idle" id="idle1" frequency="8" speed="80"/>
+    <animation file="biped/infantry/hoplite/idle_relax_02.dae" name="Idle" id="idle2" frequency="1" speed="80"/>
+    <animation file="biped/infantry/hoplite/idle_relax_03.dae" name="Idle" id="idle3" frequency="1" speed="80"/>
+    <animation file="biped/infantry/hoplite/idle_relax_04.dae" name="Idle" id="idle4" frequency="3" speed="80"/>
+    <animation file="biped/infantry/hoplite/idle_relax_05.dae" name="Idle" id="idle5" frequency="3" speed="80"/>
+    <animation file="biped/infantry/hoplite/idle_relax_06.dae" name="Idle" id="idle6" frequency="1" speed="80"/>
+    <animation file="biped/infantry/hoplite/idle_relax_long_01.dae" name="Idle" id="idle7" frequency="1" speed="80"/>
     <animation file="biped/infantry/hoplite/walk_relax.dae" name="Walk" id="walk1" speed="30"/>
     <animation file="biped/infantry/hoplite/walk_relax.dae" name="Walk" id="walk2" speed="32"/>
     <animation file="biped/infantry/hoplite/run_relax.dae" name="Run" id="run1" speed="8"/>
     <animation file="biped/infantry/hoplite/run_relax.dae" name="Run" id="run2" speed="9"/>
     <animation file="biped/infantry/hoplite/run_relax.dae" name="Run" id="run3" speed="10"/>
-    <animation event="0.5" file="biped/infantry/hoplite/attack_melee_a.dae" name="Attack_melee" id="attack1" speed="30"/>
-    <animation event="0.5" file="biped/infantry/hoplite/attack_melee_b.dae" name="Attack_melee" id="attack2" speed="30"/>
-    <animation event="0.5" file="biped/infantry/hoplite/attack_melee_c.dae" name="Attack_melee" id="attack3" speed="30"/>
+    <animation event="0.5" file="biped/infantry/hoplite/attack_melee_01.dae" name="Attack_melee" id="attack1" speed="30"/>
+    <animation event="0.5" file="biped/infantry/hoplite/attack_melee_02.dae" name="Attack_melee" id="attack2" speed="30"/>
+    <animation event="0.5" file="biped/infantry/hoplite/attack_melee_03.dae" name="Attack_melee" id="attack3" speed="30"/>
     <animation file="biped/infantry/promotion.dae" name="promotion" speed="80"/>
     <animation file="biped/infantry/capturing_a.dae" name="attack_capture" speed="100"/>
   </animations>
