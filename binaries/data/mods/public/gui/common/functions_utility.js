@@ -9,6 +9,27 @@ var g_SoundNotifications = {
 };
 
 /**
+ * These events are fired when the user has closed the options page.
+ * The handlers are provided a Set storing which config values have changed.
+ * TODO: This should become a GUI event sent by the engine.
+ */
+var g_ConfigChangeHandlers = new Set();
+
+function registerConfigChangeHandler(handler)
+{
+	g_ConfigChangeHandlers.add(handler);
+}
+
+/**
+ * @param changes - a Set of config names
+ */
+function fireConfigChangeHandlers(changes)
+{
+	for (let handler of g_ConfigChangeHandlers)
+		handler(changes);
+}
+
+/**
  * Returns translated history and gameplay data of all civs, optionally including a mock gaia civ.
  */
 function loadCivData(selectableOnly, gaia)

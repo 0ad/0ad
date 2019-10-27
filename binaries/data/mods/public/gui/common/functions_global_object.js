@@ -1,29 +1,3 @@
-function updateCounters()
-{
-	let counters = [];
-
-	if (Engine.ConfigDB_GetValue("user", "overlay.fps") === "true")
-		// dennis-ignore: *
-		counters.push(sprintf(translate("FPS: %(fps)4s"), { "fps": Engine.GetFPS() }));
-
-	if (Engine.ConfigDB_GetValue("user", "overlay.realtime") === "true")
-		counters.push((new Date()).toLocaleTimeString());
-
-	// If game has been started
-	if (typeof appendSessionCounters != "undefined")
-		appendSessionCounters(counters);
-
-	let dataCounter = Engine.GetGUIObjectByName("dataCounter");
-	dataCounter.caption = counters.join("\n") + "\n";
-	dataCounter.hidden = !counters.length;
-	dataCounter.size = sprintf("%(left)s %(top)s %(right)s %(bottom)s", {
-		"left": "100%%-100",
-		"top": "40",
-		"right": "100%%-5",
-		"bottom": 40 + 14 * counters.length
-	});
-}
-
 /**
  * Update the overlay with the most recent network warning of each client.
  */

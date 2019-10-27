@@ -141,7 +141,10 @@ var g_MainMenuItems = [
 				"caption": translate("Options"),
 				"tooltip": translate("Adjust game settings."),
 				"onPress": () => {
-					Engine.PushGuiPage("page_options.xml");
+					Engine.PushGuiPage(
+						"page_options.xml",
+						{},
+						fireConfigChangeHandlers);
 				}
 			},
 			{

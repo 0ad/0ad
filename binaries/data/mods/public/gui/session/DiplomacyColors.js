@@ -17,6 +17,7 @@ class DiplomacyColors
 
 		registerPlayersInitHandler(this.onPlayersInit.bind(this));
 		registerConfigChangeHandler(this.onConfigChange.bind(this));
+		registerCeasefireEndedHandler(this.onCeasefireEnded.bind(this));
 	}
 
 	registerDiplomacyColorsChangeHandler(handler)
