@@ -27,8 +27,10 @@
 
 JSClass JSI_IGUIObject::JSI_class = {
 	"GUIObject", JSCLASS_HAS_PRIVATE,
-	nullptr, nullptr,
-	JSI_IGUIObject::getProperty, JSI_IGUIObject::setProperty,
+	nullptr,
+	JSI_IGUIObject::deleteProperty,
+	JSI_IGUIObject::getProperty,
+	JSI_IGUIObject::setProperty,
 	nullptr, nullptr, nullptr, nullptr,
 	nullptr, nullptr, nullptr, nullptr
 };
@@ -171,6 +173,33 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		return e->m_Settings[propName]->FromJSVal(cx, vp, true) ? result.succeed() : result.fail(JSMSG_TYPE_ERR_BAD_ARGS);
 
 	JS_ReportError(cx, "Property '%s' does not exist!", propName.c_str());
+	return result.fail(JSMSG_UNDEFINED_PROP);
+}
+
+bool JSI_IGUIObject::deleteProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::ObjectOpResult& result)
+{
+	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, obj, &JSI_IGUIObject::JSI_class);
+	if (!e)
+		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
+
+	JSAutoRequest rq(cx);
+	JS::RootedValue idval(cx);
+	if (!JS_IdToValue(cx, id, &idval))
+		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
+
+	std::string propName;
+	if (!ScriptInterface::FromJSVal(cx, idval, propName))
+		return result.fail(JSMSG_UNDEFINED_PROP);
+
+	// event handlers
+	if (propName.substr(0, 2) == "on")
+	{
+		CStr eventName(CStr(propName.substr(2)).LowerCase());
+		e->UnsetScriptHandler(eventName);
+		return result.succeed();
+	}
+
+	JS_ReportError(cx, "Only event handlers can be deleted from GUI objects!");
 	return result.fail(JSMSG_UNDEFINED_PROP);
 }
 

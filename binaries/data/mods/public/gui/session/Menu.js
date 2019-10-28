@@ -101,8 +101,7 @@ class Menu
 
 		if (maxOffset <= 0)
 		{
-			// TODO: support actually deleting the handler
-			this.menuButtonPanel.onTick = () => {};
+			delete this.menuButtonPanel.onTick;
 			return;
 		}
 

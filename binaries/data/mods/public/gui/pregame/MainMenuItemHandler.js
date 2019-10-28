@@ -19,7 +19,6 @@ class MainMenuItemHandler
 		this.setupMenuButtons(this.mainMenuButtons.children, this.menuItems);
 		this.setupHotkeys(this.menuItems);
 
-		this.mainMenu.onTick = this.onTick.bind(this);
 		Engine.GetGUIObjectByName("closeMenuButton").onPress = this.closeSubmenu.bind(this);
 	}
 
@@ -93,6 +92,10 @@ class MainMenuItemHandler
 			size.top = this.submenu.size.bottom;
 			this.MainMenuPanelRightBorderBottom.size = size;
 		}
+
+		// Start animation
+		this.lastTickTime = Date.now();
+		this.mainMenu.onTick = this.onTick.bind(this);
 	}
 
 	closeSubmenu()
@@ -110,14 +113,19 @@ class MainMenuItemHandler
 	onTick()
 	{
 		let now = Date.now();
+		if (now == this.lastTickTime)
+			return;
 
 		let maxOffset = this.mainMenu.size.right - this.submenu.size.left;
 		let offset = Math.min(this.MenuSpeed * (now - this.lastTickTime), maxOffset);
 
 		this.lastTickTime = now;
 
-		if (this.submenu.hidden || offset <= 0)
+		if (this.submenu.hidden || !offset)
+		{
+			delete this.mainMenu.onTick;
 			return;
+		}
 
 		let size = this.submenu.size;
 		size.left += offset;
