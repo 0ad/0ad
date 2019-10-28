@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-27 07:08+0000\n"
-"PO-Revision-Date: 2019-09-27 14:51+0000\n"
+"POT-Creation-Date: 2019-10-23 13:25+0000\n"
+"PO-Revision-Date: 2019-10-23 15:28+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -455,15 +455,15 @@ msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "desactivat"
 
-#: gui/common/gamedescription.js:462
+#: gui/common/gamedescription.js:458
 msgid "Victorious"
 msgstr "Victoriós"
 
-#: gui/common/gamedescription.js:467
+#: gui/common/gamedescription.js:463
 msgid "Defeated"
 msgstr "Derrotat"
 
-#: gui/common/gamedescription.js:476
+#: gui/common/gamedescription.js:472
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -686,37 +686,37 @@ msgstr "Un mapa amb el paisatge i la configuració del joc predeterminada."
 msgid "Unlimited"
 msgstr "Il·limitat"
 
-#: gui/common/settings.js:359
+#: gui/common/settings.js:354
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: gui/common/settings.js:370
+#: gui/common/settings.js:365
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: gui/common/settings.js:381
+#: gui/common/settings.js:376
 msgctxt "AI behavior"
 msgid "Default"
 msgstr "Per defecte"
 
-#: gui/common/settings.js:393
+#: gui/common/settings.js:388
 msgctxt "map type"
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: gui/common/settings.js:405
+#: gui/common/settings.js:400
 msgctxt "map size"
 msgid "Default"
 msgstr "Per defecte"
 
-#: gui/common/settings.js:417
+#: gui/common/settings.js:412
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: gui/common/settings.js:429
+#: gui/common/settings.js:424
 msgid "Unknown Victory Condition"
 msgstr "Condició de victòria desconeguda"
 
@@ -2147,45 +2147,45 @@ msgstr "Fracassats"
 msgid "Time elapsed"
 msgstr ""
 
-#: gui/summary/summary.js:491
+#: gui/summary/summary.js:490
 msgid "Current Scores"
 msgstr "Puntuacions actuals"
 
-#: gui/summary/summary.js:493
+#: gui/summary/summary.js:492
 msgid "Scores at the end of the game."
 msgstr "Puntuacions al final del joc."
 
-#: gui/summary/summary.js:495
+#: gui/summary/summary.js:494
 msgid "You have been disconnected."
 msgstr "Us heu desconnectat."
 
-#: gui/summary/summary.js:497
+#: gui/summary/summary.js:496
 msgid "You have left the game."
 msgstr "Heu abandonat el joc."
 
-#: gui/summary/summary.js:499
+#: gui/summary/summary.js:498
 msgid "You have won the battle!"
 msgstr "Heu guanyat la batalla!"
 
-#: gui/summary/summary.js:501
+#: gui/summary/summary.js:500
 msgid "You have been defeated…"
 msgstr ""
 
-#: gui/summary/summary.js:502
+#: gui/summary/summary.js:501
 msgid "You have abandoned the game."
 msgstr "Heu abandonat el joc."
 
-#: gui/summary/summary.js:505
+#: gui/summary/summary.js:504
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Temps de joc transcorregut: %(time)s"
 
-#: gui/summary/summary.js:513
+#: gui/summary/summary.js:512
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/summary/summary.js:525
+#: gui/summary/summary.js:524
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr ""
@@ -2348,8 +2348,8 @@ msgid "Main Menu"
 msgstr "Menú principal"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
-msgid "Reload Cache"
-msgstr "Recarrega la memòria cau"
+msgid "Rebuild Cache"
+msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
 #: gui/summary/summary.xml:(caption):34

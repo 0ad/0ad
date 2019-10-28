@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-27 07:09+0000\n"
-"PO-Revision-Date: 2019-09-27 16:10+0000\n"
+"POT-Creation-Date: 2019-10-23 13:26+0000\n"
+"PO-Revision-Date: 2019-10-23 14:51+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Swahili (http://www.transifex.com/wildfire-games/0ad/language/sw/)\n"
 "MIME-Version: 1.0\n"
@@ -90,8 +90,8 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic_temple.xml:34
 msgid ""
-"Train healers. Garrison units to heal them at a quick rate (3 HP per "
-"second). Research healing and religious improvements."
+"Train Healers and research healing technologies. Garrison units to heal them"
+" at a quick rate."
 msgstr ""
 
 #: simulation/templates/template_structure_civic_temple.xml:35
@@ -311,10 +311,8 @@ msgid "Fortress"
 msgstr ""
 
 #: simulation/templates/template_structure_military_fortress.xml:77
-#: simulation/templates/structures/mace_fortress.xml:10
-#: simulation/templates/structures/maur_fortress.xml:6
 msgid ""
-"Train Heroes and Champions and research technologies. Garrison Soldiers for "
+"Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
 msgstr ""
 
@@ -492,7 +490,8 @@ msgid "Gymnásion"
 msgstr ""
 
 #: simulation/templates/structures/athen_gymnasion.xml:26
-msgid "Train champion units."
+#: simulation/templates/structures/pers_hall.xml:32
+msgid "Train Champions."
 msgstr ""
 
 #: simulation/templates/structures/athen_house.xml:5
@@ -529,7 +528,7 @@ msgid "Prytaneîon"
 msgstr ""
 
 #: simulation/templates/structures/athen_prytaneion.xml:27
-msgid "Train heroes. Research special technologies."
+msgid "Train Heroes and research technologies."
 msgstr ""
 
 #: simulation/templates/structures/athen_royal_stoa.xml:5
@@ -893,7 +892,7 @@ msgstr ""
 
 #: simulation/templates/structures/cart_temple.xml:15
 msgid ""
-"Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
+"Train Healers and Champions and research healing technologies. Garrison "
 "units to heal them at a quick rate."
 msgstr ""
 
@@ -906,7 +905,9 @@ msgid "Tophet"
 msgstr ""
 
 #: simulation/templates/structures/cart_tophet.xml:24
-msgid "Train physicians and Sacred Band Cavalrymen."
+msgid ""
+"Train Healers and Champion Cavalry and research healing technologies. "
+"Garrison units to heal them at a quick rate."
 msgstr ""
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
@@ -931,7 +932,7 @@ msgstr ""
 msgid "Coriosedlon"
 msgstr ""
 
-#: simulation/templates/structures/gaul_civil_centre.xml:9
+#: simulation/templates/structures/gaul_civil_centre.xml:12
 msgid "Lissos"
 msgstr ""
 
@@ -1299,6 +1300,10 @@ msgstr ""
 msgid "Harmya"
 msgstr ""
 
+#: simulation/templates/structures/maur_palace.xml:15
+msgid "Train Female Citizens, Champions, and Heroes."
+msgstr ""
+
 #: simulation/templates/structures/maur_pillar_ashoka.xml:9
 msgid "Pillar"
 msgstr ""
@@ -1422,7 +1427,7 @@ msgstr ""
 #: simulation/templates/structures/pers_apadana.xml:33
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
-"resources. Train Persian heroes and their \"Immortals\" bodyguards."
+"resources. Train Champions and Heroes."
 msgstr ""
 
 #: simulation/templates/structures/pers_apartment_block.xml:15
@@ -1483,10 +1488,6 @@ msgstr ""
 
 #: simulation/templates/structures/pers_hall.xml:30
 msgid "Duvarθi Visadahyu"
-msgstr ""
-
-#: simulation/templates/structures/pers_hall.xml:32
-msgid "Train War Elephants and Kardakes mercenaries."
 msgstr ""
 
 #: simulation/templates/structures/pers_house.xml:8
@@ -1924,7 +1925,7 @@ msgid "Gerontía"
 msgstr ""
 
 #: simulation/templates/structures/spart_gerousia.xml:24
-msgid "Train heroes."
+msgid "Train Heroes."
 msgstr ""
 
 #: simulation/templates/structures/spart_syssiton.xml:25
@@ -1936,7 +1937,7 @@ msgid "Syssítion"
 msgstr ""
 
 #: simulation/templates/structures/spart_syssiton.xml:27
-msgid "Train Spartan heroes and Spartiate champion hoplites."
+msgid "Train Champions and Heroes."
 msgstr ""
 
 #: simulation/templates/structures/spart_wonder.xml:16

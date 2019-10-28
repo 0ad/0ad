@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-10-01 16:06+0000\n"
+"PO-Revision-Date: 2019-10-23 17:31+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -931,12 +931,12 @@ msgstr "Doûloi"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
 msgid "Develop shaft mining. Increases metal gathering rates."
-msgstr ""
+msgstr "Tárnás bányászat kifejlesztése. Növeli a fémgyűjtési sebességet."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +15% metal gather rate."
-msgstr ""
+msgstr "+15% fémgyűjtési sebesség a munkásoknak."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -944,11 +944,11 @@ msgstr "Tárnás bányászat"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
-msgstr ""
+msgstr "Egy értékes ezüsthasadék kibányászása. Növeli a fémgyűjtési sebességet."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 msgid "Workers +50% metal gather rate."
-msgstr ""
+msgstr "+50% fémgyűjtési sebesség a munkásoknak."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -966,11 +966,11 @@ msgstr "Laureion bányái"
 msgid ""
 "Buy slaves to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr ""
+msgstr "Rabszolgák vásárlása, hogy segítsenek a munkásoknak követ fejteni. Növeli a kőgyűjtési sebességet."
 
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +50% stone gather rate."
-msgstr ""
+msgstr "+50% kőgyűjtési sebesség a munkásoknak."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -985,7 +985,7 @@ msgstr "Andrápoda"
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid ""
 "Equip your workers with helpful tools. Increases metal gathering rates."
-msgstr ""
+msgstr "Munkások felszerelése hasznos eszközökkel. Növeli a fémgyűjtési sebességet."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -993,11 +993,11 @@ msgstr "Ék és fakalapács"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Equip your foragers with wicker baskets for foraging."
-msgstr ""
+msgstr "A gyűjtögetők felszerelése vesszőkosarakkal."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Workers +50% fruit gather rate."
-msgstr ""
+msgstr "+50% gyümölcsbegyűjtési sebesség a munkásoknál."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
@@ -1267,7 +1267,7 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
 " health. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Nagyvárosi szakasszá fejlődés, amely több épületet és egységet tesz elérhetővé. A városházák terület sugara további +50%-kal növelve. Az „ezüst baglyok” civilizációs bónusz további +10% fémgyűjtési sebességet ad minden munkásnak. +10% életerő a polgári katonáknál. Minden épületnek +9 beszállásolási regeneráció sebesség."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1291,7 +1291,7 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
 "health. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Nagyvárosi szakasszá fejlődés, amely több épületet és egységet tesz elérhetővé. A városházák terület sugara további +50%-kal növelve. +10% életerő a polgári katonáknál. Minden épületnek +9 beszállásolási regeneráció sebesség."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1318,7 +1318,7 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
 "health. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Városi szakasszá fejlődés, amely több épületet és egységet tesz elérhetővé. A városházák terület sugara +30%-kal növelve. Az „ezüst baglyok” civilizációs bónusz további +10% fémgyűjtési sebességet ad minden munkásnak. +20% életerő a polgári katonáknál. Minden épületnek +7 beszállásolási regeneráció sebesség."
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1342,7 +1342,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
 "All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Városi szakasszá fejlődés, amely több épületet és egységet tesz elérhetővé. A városházák terület sugara +30%-kal növelve. +20% életerő a polgári katonáknál. Minden épületnek +7 beszállásolási regeneráció sebesség."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1480,11 +1480,11 @@ msgstr "Amentum"
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege engines."
-msgstr ""
+msgstr "Megnövelt páncél az ostromgépeken."
 
 #: simulation/data/technologies/siege_armor.jsontooltip
 msgid "Siege Engines +2 hack armor."
-msgstr ""
+msgstr "+2 vágás páncél az ostromgépeknél."
 
 #: simulation/data/technologies/siege_armor.jsongenericName
 msgid "Armor plating"
@@ -1492,11 +1492,11 @@ msgstr "Páncélzat"
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
-msgstr ""
+msgstr "A fejlett technológiák tökéletesítik az ostrom hatékonyságát."
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "Siege Engines +25% attack crush damage."
-msgstr ""
+msgstr "+25% zúzás sebzés az ostromgépeknél."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
@@ -1504,11 +1504,11 @@ msgstr "Fejlett ostrom"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy."
-msgstr ""
+msgstr "Fejlesztés a lövedékek pontosságához."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt Shooters −20% ranged attack spread."
-msgstr ""
+msgstr "-20% távolsági szórás a nyílvetőknél."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1516,7 +1516,7 @@ msgstr "Nyílpontosság"
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
 msgid "Siege engines require less metal."
-msgstr ""
+msgstr "Az ostromgépek kevesebb fémbe kerülnek."
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
 msgid "Siege Engines −20% metal cost."
@@ -1528,7 +1528,7 @@ msgstr "Fémmunkás"
 
 #: simulation/data/technologies/siege_cost_wood.jsondescription
 msgid "Siege engines require less wood."
-msgstr ""
+msgstr "Az ostromgépek kevesebb fába kerülnek."
 
 #: simulation/data/technologies/siege_cost_wood.jsontooltip
 msgid "Siege Engines −20% wood cost."
@@ -1540,7 +1540,7 @@ msgstr "Tüzérségi utasítások"
 
 #: simulation/data/technologies/siege_packing.jsondescription
 msgid "Immobile siege engines are assembled and disassembled faster."
-msgstr ""
+msgstr "A rögzített ostromgépeket gyorsabban szerelik össze és szét."
 
 #: simulation/data/technologies/siege_packing.jsontooltip
 msgid "Siege Engines −25% pack and unpack time."
@@ -2291,7 +2291,7 @@ msgstr "A karthágóiak a városfalaikat három koncentrikus körben építetté
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
 "Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
-msgstr ""
+msgstr "+100% építési idő, +100% kő költség és +200% életerő a karthágói falaknál."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -2305,7 +2305,7 @@ msgstr "A kelta épületek többnyire fából készültek, terméskő alapokra."
 msgid ""
 "Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
 " points."
-msgstr ""
+msgstr "-20% építési idő, -20% életerő és -20% foglalási pont a briton és gall épületeknél."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
@@ -2319,7 +2319,7 @@ msgstr "A görögök kőépítményeket használtak a korai mükénei időktől.
 msgid ""
 "Athenian, Macedonian, and Spartan Structures +10% build time, +10% health, "
 "and +10% capture points."
-msgstr ""
+msgstr "+10% építési idő, +10% életerő és +10% foglalási pont az athéni, makedón és spártai épületeknél."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -2337,7 +2337,7 @@ msgstr "A Maurja birodalom több tucat, előzőleg független királyságot fogo
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 msgid "Mauryas +10% maximum population limit."
-msgstr ""
+msgstr "+10%-kal nagyobb maximális népességkorlát a maurjáknál."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -2355,7 +2355,7 @@ msgstr "A maurják a városfalaikat fából építették, amely bőséges nyersa
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "Mauryan City Walls −20% build time and −20% health."
-msgstr ""
+msgstr "-20% építési idő és -20% életerő a maurja városfalaknál."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2373,7 +2373,7 @@ msgstr "A perzsák nagy számú gyalogságot tudtak besorozni háború idején, 
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "Persians +10% maximum population limit."
-msgstr ""
+msgstr "+10%-kal nagyobb maximális népességkorlát a perzsáknál."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2389,7 +2389,7 @@ msgstr "A spártaiak hadserege nem a legnagyobb, de az akkori világ legjobbja v
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
 msgid "Spartans −10% maximum population limit."
-msgstr ""
+msgstr "-10%-kal alacsonyabb maximális népességkorlát a spártaiaknál."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"
@@ -2526,7 +2526,7 @@ msgstr "A korai óperzsa uralkodók az irányba tevékenykedtek, hogy Perzsia le
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry."
-msgstr ""
+msgstr "A föníciai triérészek megkapják a lovasság kiképzésének egyedi képességet."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"
@@ -2617,7 +2617,7 @@ msgstr "Görög metropolisz"
 msgid ""
 "Significantly increase training speed of champions and siege engines at the "
 "fortress when training them in large batches."
-msgstr ""
+msgstr "Jelentősen növeli a bajnokok és az ostromgépek kiképzési sebességét az erődben azáltal, hogy nagy csoportokban képzi ki őket."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."

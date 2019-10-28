@@ -5,15 +5,15 @@
 # Translators:
 # Gontzal M. Pujana <juchuf@gmail.com>, 2015-2016
 # Mielanjel Iraeta <pospolos@gmail.com>, 2017-2019
-# Osoitz <oelkoro@gmail.com>, 2015
+# Osoitz <oelkoro@gmail.com>, 2015,2019
 # Quintana Salazar <quintana.salazar.unai@gmail.com>, 2015
 # Gontzal M. Pujana <juchuf@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-02 07:10+0000\n"
-"PO-Revision-Date: 2019-09-02 14:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-10-27 18:53+0000\n"
+"Last-Translator: Osoitz <oelkoro@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -145,11 +145,11 @@ msgstr "Ezpatadun Zalditeria"
 #: simulation/templates/template_unit_siege_stonethrower.xml:54
 #: simulation/templates/template_unit_siege_tower.xml:59
 msgid "Ranged"
-msgstr "Nagusia"
+msgstr "Urrutirakoa"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:29
 msgid "Ranged Cavalry"
-msgstr "Zalditeri Nagusia"
+msgstr "Urrutirako zalditeria"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:26
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:30
@@ -159,11 +159,11 @@ msgstr "Zalditeri Nagusia"
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:31
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:32
 msgid "Archer"
-msgstr "Gezilaria"
+msgstr "Arkularia"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:27
 msgid "Cavalry Archer"
-msgstr "Gezilari Zalditeria"
+msgstr "Zalditeria arkularia"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:26
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:30
@@ -172,11 +172,11 @@ msgstr "Gezilari Zalditeria"
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:25
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:30
 msgid "Javelinist"
-msgstr ""
+msgstr "Xabalinaria"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:27
 msgid "Cavalry Skirmisher"
-msgstr "Jazarle Zalduna"
+msgstr "Xaxatzaile Zalduna"
 
 #: simulation/templates/template_unit_champion.xml:13
 msgid "Champion"
@@ -192,11 +192,11 @@ msgstr "Zalditeri Aldezkaria"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:31
 msgid "Champion Cavalry Archer"
-msgstr ""
+msgstr "Arkulari zalditeria aldezkaria"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:31
 msgid "Champion Cavalry Skirmisher"
-msgstr "Jazarle Zaldun Aldezkaria"
+msgstr "Xaxatzaile Zaldun Aldezkaria"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:36
 msgid "Champion Cavalry Spearman"
@@ -232,19 +232,19 @@ msgstr "Infanteria Aldezkaria"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:34
 msgid "Champion Archer"
-msgstr "Gezilari Aldezkaria"
+msgstr "Arkulari aldezkaria"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:34
 msgid "Champion Skirmisher"
-msgstr "Jazarle Aldezkaria"
+msgstr "Xaxatzaile Aldezkaria"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:30
 msgid "Maceman"
-msgstr "Maceman"
+msgstr "Mazolaria"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:31
 msgid "Champion Maceman"
-msgstr "Maceman Txapelduna"
+msgstr "Mazolari Aldezkaria"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:36
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:27
@@ -289,11 +289,11 @@ msgstr "Ezin dituzu egiturak eraso."
 #: simulation/templates/template_unit_fauna_herd.xml:7
 #: simulation/templates/template_unit_fauna_hunt.xml:8
 msgid "Kill to gather meat for food."
-msgstr ""
+msgstr "Hil jateko haragia ustiatzeko."
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:9
 msgid "Kill to butcher for food."
-msgstr ""
+msgstr "Hil janaria ustiatzeko"
 
 #: simulation/templates/template_unit_hero.xml:32
 #: simulation/templates/template_unit_hero.xml:33
@@ -307,11 +307,11 @@ msgstr "Zalditeri Heroia"
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:26
 msgid "Hero Cavalry Archer"
-msgstr "Gezilari Zalditeri Heroia"
+msgstr "Zalditeri arkulari heroia"
 
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:36
 msgid "Hero Cavalry Skirmisher"
-msgstr "Jazarle Zalditeria Heroia"
+msgstr "Xaxatzaile Zalditeria Heroia"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:28
 msgid "Hero Cavalry Spearman"
@@ -335,11 +335,11 @@ msgstr "Laguntza"
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:26
 msgid "Hero Archer"
-msgstr "Gezilari Heroia"
+msgstr "Arkulari heroia"
 
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:26
 msgid "Hero Skirmisher"
-msgstr "Jazarle Heroia"
+msgstr "Xaxatzaile Heroia"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:28
 msgid "Hero Pikeman"
@@ -357,7 +357,7 @@ msgstr "Ezpatari Heroia"
 #: simulation/templates/template_unit_support_female_citizen.xml:51
 #: simulation/templates/template_unit_support_slave.xml:39
 msgid "Worker"
-msgstr "Langile"
+msgstr "Langilea"
 
 #: simulation/templates/template_unit_infantry_melee.xml:20
 msgid "Melee Infantry"
@@ -365,7 +365,7 @@ msgstr "Buruz-buruko Infanteria"
 
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:31
 msgid "Skirmisher"
-msgstr "Jazarlea"
+msgstr "Xaxatzailea"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:31
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:32
@@ -418,7 +418,7 @@ msgstr "Etsaien itsasontzien osasuna gutxitzen du. Sugarretan egonda osasuna pix
 
 #: simulation/templates/template_unit_ship_fishing.xml:36
 msgid "FishingBoat"
-msgstr ""
+msgstr "Arrantza ontzia"
 
 #: simulation/templates/template_unit_ship_fishing.xml:38
 #: simulation/templates/units/kush_ship_fishing.xml:5
@@ -427,13 +427,13 @@ msgstr "Arrantzontzia"
 
 #: simulation/templates/template_unit_ship_fishing.xml:39
 msgid "Fish the waters for food."
-msgstr "Elikagaiak ureztatzea."
+msgstr "Arrantzatu uretan janaria eskuratzeko."
 
 #: simulation/templates/template_unit_ship_merchant.xml:28
 #: simulation/templates/template_unit_support_trader.xml:15
 #: simulation/templates/template_unit_support_trader.xml:16
 msgid "Trader"
-msgstr "Saleroslea"
+msgstr "Merkataria"
 
 #: simulation/templates/template_unit_ship_merchant.xml:28
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -448,7 +448,7 @@ msgstr "Merkataria"
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
-msgstr "Kaien artean salerosi. Babestu salatzaile bat barruan irabazi gehigarria lortzeko (%20+ saltzaileko). Itsas altxor baliotsuak jaso."
+msgstr "Kaien artean salerosi. Babestu saltzaile bat barruan irabazi gehigarria lortzeko (%20+ saltzaileko). Itsas altxor baliotsuak jaso."
 
 #: simulation/templates/template_unit_ship_quinquereme.xml:66
 #: simulation/templates/units/cart_ship_quinquereme.xml:5
@@ -475,11 +475,11 @@ msgstr "Setioa"
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:53
 msgid "BoltShooter"
-msgstr "Torloju Jaurtitzailea"
+msgstr "Zagitaria"
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:54
 msgid "Bolt Shooter"
-msgstr "Torloju Jaurtitzailea"
+msgstr "Zagitaria"
 
 #: simulation/templates/template_unit_siege_ram.xml:36
 msgid "Ram"
@@ -491,7 +491,7 @@ msgstr "Arietea"
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:54
 msgid "StoneThrower"
-msgstr ""
+msgstr "Harri jaurtitzailea"
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:55
 msgid "Siege Catapult"
@@ -520,7 +520,7 @@ msgstr "Morroi"
 
 #: simulation/templates/template_unit_support_slave.xml:42
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr "Bizitza mugatuko biltzaileak. Hobaria meatzaritzan eta egur moztean."
+msgstr "Bizitza mugatuko ustiatzaileak. Hobaria meatzaritzan eta egur moztean."
 
 #: simulation/templates/template_unit_support_trader.xml:17
 msgid "Trade resources between your own markets and those of your allies."
@@ -834,7 +834,7 @@ msgstr "Themistoklês"
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:17
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:17
 msgid "Mercenary"
-msgstr "Merzenarioa"
+msgstr "Mertzenarioa"
 
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:22
 msgid "Thracian Peltast"
@@ -848,7 +848,7 @@ msgstr "Peltastḗs Thrâx"
 #: simulation/templates/units/mace_infantry_archer_b.xml:21
 #: simulation/templates/units/ptol_infantry_archer_b.xml:20
 msgid "Cretan Mercenary Archer"
-msgstr "Soldatapeko arkulari kretiarra "
+msgstr "Mertzenario arkulari kretiarra "
 
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:23
 #: simulation/templates/units/mace_infantry_archer_b.xml:22
@@ -1113,7 +1113,7 @@ msgstr "Ḥayyāl Romaḥ Raḫūv"
 
 #: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:13
 msgid "Gallic Mercenary Cavalry"
-msgstr "Soldatapeko Galiarren zalditeria"
+msgstr "Mertzenario Galiarren zalditeria"
 
 #: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:17
 #: simulation/templates/units/cart_cavalry_swordsman_iber_b.xml:17
@@ -1182,7 +1182,7 @@ msgstr "Maharbaʿal"
 
 #: simulation/templates/units/cart_infantry_archer_b.xml:14
 msgid "Mauritanian Archer"
-msgstr "Gezilari Mauritaniarra"
+msgstr "Arkulari Mauritaniarra"
 
 #: simulation/templates/units/cart_infantry_archer_b.xml:15
 msgid "Qešet"
@@ -1190,7 +1190,7 @@ msgstr "Qešet"
 
 #: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:21
 msgid "Iberian Mercenary Skirmisher"
-msgstr "Iberiar Mertzenario Jazarlea"
+msgstr "Iberiar Mertzenario Xaxatzailea"
 
 #: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:25
 msgid "Sǝḫīr Kidōn"
@@ -1215,7 +1215,7 @@ msgstr "Sǝḫīr Ḥanīt"
 #: simulation/templates/units/cart_infantry_swordsman_gaul_b.xml:21
 #: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:21
 msgid "Gallic Mercenary Swordsman"
-msgstr "Soldatapeko Ezpatari Galiarra"
+msgstr "Mertzenario Ezpatari Galiarra"
 
 #: simulation/templates/units/cart_infantry_swordsman_gaul_b.xml:25
 msgid "Seḫīr Ḥerev"
@@ -1248,7 +1248,7 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Carthaginians "
 "have +25% sea trading bonus."
-msgstr "Kaien arteko merkatari bideak egin. Babestu merkatari bat barruan hobari gehigarria lortzeko (\"20+ bakoitzeko). Itsas altxor onuragarriak bildu. Kartagoarrek %25+ hobaria lortzen dute itsas merkataritzan."
+msgstr "Kaien arteko merkatari bideak egin. Babestu merkatari bat barruan hobari gehigarria lortzeko (%20+ bakoitzeko). Aurkitu mozkin handiko itsas altxorrak. Kartagoarrek %25+ hobaria lortzen dute itsas merkataritzan."
 
 #: simulation/templates/units/cart_ship_quinquereme.xml:6
 msgid "Ḥameš-Mašōt"
@@ -1484,7 +1484,7 @@ msgstr "rs ‘Imn"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:24
 msgid "Axeman"
-msgstr ""
+msgstr "Aizkoraduna"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:25
 msgid "Meroitic Temple Guard"
@@ -1496,7 +1496,7 @@ msgstr "rs ‘Iprmk"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:27
 msgid "Armor-piercing Axes: Counters 1.3x vs. Champions and Heroes."
-msgstr "Ardatz zulatzaileak: Kontagailuak 1.3x txapeldun eta heroien aurka.."
+msgstr "Ardatz zulatzaileak: Kontagailuak 1.3x aldezkari eta heroien aurka.."
 
 #: simulation/templates/units/kush_hero_amanirenas.xml:8
 #: simulation/templates/units/kush_hero_amanirenas_chariot.xml:8
@@ -1536,11 +1536,11 @@ msgstr "Pdty Nhsyw"
 
 #: simulation/templates/units/kush_infantry_clubman_b.xml:31
 msgid "Clubman"
-msgstr ""
+msgstr "Borra-gizona"
 
 #: simulation/templates/units/kush_infantry_clubman_b.xml:33
 msgid "Nuba Clubman"
-msgstr "Nuba Clubman"
+msgstr "Nuba borra-gizona"
 
 #: simulation/templates/units/kush_infantry_clubman_b.xml:34
 msgid "nhw Noba"
@@ -1548,7 +1548,7 @@ msgstr "nhw Noba"
 
 #: simulation/templates/units/kush_infantry_javelinist_merc_b.xml:22
 msgid "Nuba Skirmisher"
-msgstr "Nuba Skirmisher"
+msgstr "Nuba Xaxatzailea"
 
 #: simulation/templates/units/kush_infantry_javelinist_merc_b.xml:23
 msgid "nhw ‘h3w Noba"
@@ -1643,7 +1643,7 @@ msgstr "Finantza berrantolaketa: Erromarekin aliatzean Filipok herrialdearen ara
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:14
 msgid "Odrysian Skirmish Cavalry"
-msgstr "Ordrisiar Zalditeri Gerrilaria "
+msgstr "Ordrisiar Zalditeri Xaxatzailea"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:15
 msgid "Hippakontistḕs Odrysós"
@@ -1676,15 +1676,15 @@ msgstr "Hypaspistḗs"
 
 #: simulation/templates/units/mace_champion_infantry_crossbowman.xml:22
 msgid "Crossbowman"
-msgstr ""
+msgstr "Baleztaria"
 
 #: simulation/templates/units/mace_champion_infantry_crossbowman.xml:24
 msgid "Champion Crossbowman"
-msgstr ""
+msgstr "Baleztari aldezkaria"
 
 #: simulation/templates/units/mace_champion_infantry_crossbowman.xml:25
 msgid "Gastraphetophoros"
-msgstr ""
+msgstr "Gastraphetophoros"
 
 #: simulation/templates/units/mace_champion_infantry_e.xml:11
 msgid "Hypaspistḗs Argyraspídi"
@@ -1848,11 +1848,11 @@ msgstr "Visha Kanya"
 
 #: simulation/templates/units/maur_champion_maiden_archer.xml:6
 msgid "Maiden Guard Archer"
-msgstr "Babes Dontzeila Arkuarekin"
+msgstr "Babes Dontzeila Arkularia"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:35
 msgid "Elephant Archer"
-msgstr "Elefanteen Arkularia"
+msgstr "Arkularia elefantean"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:39
 msgid "Vachii Gaja"
@@ -1943,7 +1943,7 @@ msgstr "Karmākara Gaja"
 
 #: simulation/templates/units/maur_support_elephant.xml:31
 msgid "Mobile dropsite. Can also assist in constructing buildings."
-msgstr "Biltegi mugikorra. Eraikinak jasotzean lagundu dezake."
+msgstr "Deskarga puntu mugikorra. Eraikinak eraikitzen ere lagundu dezake."
 
 #: simulation/templates/units/maur_support_female_citizen.xml:5
 msgid "Naari"
@@ -1983,7 +1983,7 @@ msgstr "Thōrakitēs"
 
 #: simulation/templates/units/merc_thureophoros.xml:12
 msgid "Heavy Skirmisher"
-msgstr "Jazarle Astuna"
+msgstr "Xaxatzaile Astuna"
 
 #: simulation/templates/units/merc_thureophoros.xml:13
 msgid "Thyreophóros"
@@ -2003,7 +2003,7 @@ msgstr "Arštibara"
 
 #: simulation/templates/units/pers_catafalque.xml:9
 msgid "Artaxšaçā"
-msgstr ""
+msgstr "Artaxšaçā"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:12
 msgid "Babylonian Scythed Chariot"
@@ -2011,7 +2011,7 @@ msgstr "Igitai itxurako Gurdi Babiloniarra"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:13
 msgid "Raθa Bābiruviya"
-msgstr ""
+msgstr "Raθa Bābiruviya"
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:7
 msgid "Median Light Cavalry"
@@ -2019,7 +2019,7 @@ msgstr "Zalditeria Arin Ertaina"
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:8
 msgid "Asabāra Māda"
-msgstr ""
+msgstr "Asabāra Māda"
 
 #: simulation/templates/units/pers_cavalry_spearman_b.xml:7
 msgid "Cappadocian Cavalry"
@@ -2027,7 +2027,7 @@ msgstr "Kapadoziar Zalditeria"
 
 #: simulation/templates/units/pers_cavalry_spearman_b.xml:8
 msgid "Asabāra Katpatuka"
-msgstr ""
+msgstr "Asabāra Katpatuka"
 
 #: simulation/templates/units/pers_cavalry_swordsman_b.xml:7
 msgid "Hyrcanian Cavalry"
@@ -2035,7 +2035,7 @@ msgstr "Hirkaniar Zalditeria"
 
 #: simulation/templates/units/pers_cavalry_swordsman_b.xml:8
 msgid "Asabāra Varkaniya"
-msgstr ""
+msgstr "Asabāra Varkaniya"
 
 #: simulation/templates/units/pers_champion_cavalry.xml:6
 msgid "Bactrian Heavy Lancer"
@@ -2044,15 +2044,15 @@ msgstr "Baktriar Lantzari Astuna"
 #: simulation/templates/units/pers_champion_cavalry.xml:7
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:7
 msgid "Asabāra Baxtriš"
-msgstr ""
+msgstr "Asabāra Baxtriš"
 
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:6
 msgid "Bactrian Heavy Cavalry Archer"
-msgstr "Baktriar Lantzari Astuna Zaldian"
+msgstr "Baktriar zalditeri astun arkularia"
 
 #: simulation/templates/units/pers_champion_elephant.xml:7
 msgid "Pila Hinduya"
-msgstr ""
+msgstr "Pila Hinduya"
 
 #: simulation/templates/units/pers_champion_infantry.xml:7
 msgid "Persian Immortal"
@@ -2060,7 +2060,7 @@ msgstr "Hilezkor Persiarra"
 
 #: simulation/templates/units/pers_champion_infantry.xml:8
 msgid "Anušiya"
-msgstr ""
+msgstr "Anušiya"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:9
 msgid "Cyrus II The Great"
@@ -2068,15 +2068,15 @@ msgstr "Ciro II Handia"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:10
 msgid "Kuruš"
-msgstr ""
+msgstr "Kuruš"
 
 #: simulation/templates/units/pers_hero_darius.xml:14
 msgid "Darius I the Great"
-msgstr ""
+msgstr "Dario I handia"
 
 #: simulation/templates/units/pers_hero_darius.xml:15
 msgid "Dārayavahuš"
-msgstr ""
+msgstr "Dārayavahuš"
 
 #: simulation/templates/units/pers_hero_xerxes.xml:9
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:14
@@ -2086,7 +2086,7 @@ msgstr "Xerxes I"
 #: simulation/templates/units/pers_hero_xerxes.xml:10
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:15
 msgid "Xšayāršā"
-msgstr ""
+msgstr "Xšayāršā"
 
 #: simulation/templates/units/pers_infantry_archer_b.xml:15
 msgid "Sogdian Archer"
@@ -2094,15 +2094,15 @@ msgstr "Sogdiar Arkularia"
 
 #: simulation/templates/units/pers_infantry_archer_b.xml:16
 msgid "Θanuvaniya Suguda"
-msgstr ""
+msgstr "Θanuvaniya Suguda"
 
 #: simulation/templates/units/pers_infantry_javelinist_b.xml:15
 msgid "Lydian Auxiliary"
-msgstr ""
+msgstr "Indiar laguntzailea"
 
 #: simulation/templates/units/pers_infantry_javelinist_b.xml:16
 msgid "Pastiš Spardiya"
-msgstr ""
+msgstr "Pastiš Spardiya"
 
 #: simulation/templates/units/pers_infantry_spearman_b.xml:15
 msgid "Shield Bearer"
@@ -2122,7 +2122,7 @@ msgstr "Kardake Hoplitak"
 
 #: simulation/templates/units/pers_kardakes_skirmisher.xml:13
 msgid "Cardaces Skirmisher"
-msgstr "Cardaces Gerrilaria "
+msgstr "Cardaces Xaxatzailea"
 
 #: simulation/templates/units/pers_kardakes_skirmisher.xml:14
 msgid "Peltastes Kardakes"
@@ -2146,7 +2146,7 @@ msgstr "Joniar Merkantzia-ontzia"
 
 #: simulation/templates/units/pers_ship_merchant.xml:11
 msgid "Nauš Yauna"
-msgstr ""
+msgstr "Nauš Yauna"
 
 #: simulation/templates/units/pers_ship_trireme.xml:10
 msgid "Phoenician Trireme"
@@ -2154,7 +2154,7 @@ msgstr "Trirreme Feniziarra"
 
 #: simulation/templates/units/pers_ship_trireme.xml:11
 msgid "Hamaraniyanava Vazarka"
-msgstr ""
+msgstr "Hamaraniyanava Vazarka"
 
 #: simulation/templates/units/pers_siege_ram.xml:20
 msgid "Assyrian Siege Ram"
@@ -2162,7 +2162,7 @@ msgstr "Siriar Setio Ahari-burua"
 
 #: simulation/templates/units/pers_siege_ram.xml:21
 msgid "Hamaranakuba Aθuriya"
-msgstr ""
+msgstr "Hamaranakuba Aθuriya"
 
 #: simulation/templates/units/pers_support_female_citizen.xml:6
 msgid "Banu Miyanrudani"
@@ -2178,7 +2178,7 @@ msgstr "Mago Ertaina"
 
 #: simulation/templates/units/pers_support_healer_b.xml:8
 msgid "Maguš Māda"
-msgstr ""
+msgstr "Maguš Māda"
 
 #: simulation/templates/units/pers_support_trader.xml:10
 msgid "Aramaean Merchant"
@@ -2288,7 +2288,7 @@ msgstr "Ptolemaios D' Philopator"
 
 #: simulation/templates/units/ptol_infantry_archer_nubian.xml:6
 msgid "Nubian Mercenary Archer"
-msgstr "Soldatapeko arkulari Nubiarra"
+msgstr "Mertzenario arkulari Nubiarra"
 
 #: simulation/templates/units/ptol_infantry_archer_nubian.xml:7
 msgid "Kousít Misthophóros Toxótēs"
@@ -2296,7 +2296,7 @@ msgstr "Kousít Misthophóros Toxótēs"
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:20
 msgid "Mercenary Thureos Skirmisher"
-msgstr "Tureoforo Gerrillari Mertzenarioa"
+msgstr "Tureoforo Xaxatzaile Mertzenarioa"
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:21
 msgid "Thureophóros Akrobolistḗs"
@@ -2365,7 +2365,7 @@ msgstr "Hiereús Aigýptios"
 
 #: simulation/templates/units/rome_catafalque.xml:9
 msgid "Lūcius Iūnius Brūtus"
-msgstr ""
+msgstr "Lūcius Iūnius Brūtus"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:7
 msgid "Italian Allied Cavalry"
@@ -2381,11 +2381,11 @@ msgstr "Zalditeri Erromatarra"
 
 #: simulation/templates/units/rome_cavalry_spearman_b.xml:8
 msgid "Eques Rōmānus"
-msgstr ""
+msgstr "Eques Rōmānus"
 
 #: simulation/templates/units/rome_champion_cavalry.xml:6
 msgid "Eques Cōnsulāris"
-msgstr ""
+msgstr "Eques Cōnsulāris"
 
 #: simulation/templates/units/rome_champion_cavalry.xml:7
 msgid "Consular Bodyguard"
@@ -2397,17 +2397,17 @@ msgstr "Italiar Infanteria Astuna"
 
 #: simulation/templates/units/rome_champion_infantry.xml:7
 msgid "Extrāōrdinārius"
-msgstr ""
+msgstr "Extrāōrdinārius"
 
 #: simulation/templates/units/rome_champion_infantry_swordsman_02.xml:4
 #: simulation/templates/units/rome_champion_infantry_swordsman_03.xml:11
 msgid "Marian Legionary"
-msgstr ""
+msgstr "Legionario marianoa"
 
 #: simulation/templates/units/rome_champion_infantry_swordsman_02.xml:5
 #: simulation/templates/units/rome_champion_infantry_swordsman_03.xml:12
 msgid "Legiōnārius"
-msgstr ""
+msgstr "Legiōnārius"
 
 #: simulation/templates/units/rome_champion_infantry_swordsman_04.xml:14
 msgid "Roman Centurion"
@@ -2415,29 +2415,29 @@ msgstr "Zenturioi Erromatarra"
 
 #: simulation/templates/units/rome_champion_infantry_swordsman_04.xml:15
 msgid "Centuriō"
-msgstr ""
+msgstr "Centuriō"
 
 #: simulation/templates/units/rome_hero_marcellus.xml:10
 #: simulation/templates/units/rome_hero_marcellus_infantry.xml:10
 msgid "Mārcus Claudius Mārcellus"
-msgstr ""
+msgstr "Mārcus Claudius Mārcellus"
 
 #: simulation/templates/units/rome_hero_maximus.xml:9
 #: simulation/templates/units/rome_hero_maximus_infantry.xml:9
 msgid "Quīntus Fabius Maximus Verrūcōsus Cūnctātor"
-msgstr ""
+msgstr "Quīntus Fabius Maximus Verrūcōsus Cūnctātor"
 
 #: simulation/templates/units/rome_hero_scipio.xml:9
 msgid "Pūblius Cornēlius Scīpiō Āfricānus"
-msgstr ""
+msgstr "Pūblius Cornēlius Scīpiō Āfricānus"
 
 #: simulation/templates/units/rome_infantry_javelinist_b.xml:15
 msgid "Roman Skirmisher"
-msgstr "Erromatar Jazarlea"
+msgstr "Erromatar Xaxatzailea"
 
 #: simulation/templates/units/rome_infantry_javelinist_b.xml:16
 msgid "Vēles"
-msgstr ""
+msgstr "Vēles"
 
 #: simulation/templates/units/rome_infantry_spearman_b.xml:15
 msgid "Veteran Spearman"
@@ -2445,7 +2445,7 @@ msgstr "Lantzari beteranoa"
 
 #: simulation/templates/units/rome_infantry_spearman_b.xml:16
 msgid "Triārius"
-msgstr ""
+msgstr "Triārius"
 
 #: simulation/templates/units/rome_infantry_swordsman_b.xml:15
 msgid "Roman Swordsman"
@@ -2453,7 +2453,7 @@ msgstr "Ezpatari Erromatarra"
 
 #: simulation/templates/units/rome_infantry_swordsman_b.xml:16
 msgid "Hastātus"
-msgstr ""
+msgstr "Hastātus"
 
 #: simulation/templates/units/rome_ship_bireme.xml:5
 msgid "Liburna"
@@ -2461,15 +2461,15 @@ msgstr "Liburna"
 
 #: simulation/templates/units/rome_ship_fishing.xml:5
 msgid "Nāvicula Piscātōria"
-msgstr ""
+msgstr "Nāvicula Piscātōria"
 
 #: simulation/templates/units/rome_ship_merchant.xml:9
 msgid "Corbīta"
-msgstr ""
+msgstr "Corbīta"
 
 #: simulation/templates/units/rome_ship_quinquereme.xml:5
 msgid "Quīnquerēmis Rōmāna"
-msgstr ""
+msgstr "Quīnquerēmis Rōmāna"
 
 #: simulation/templates/units/rome_ship_quinquereme.xml:6
 msgid "Roman Quinquereme"
@@ -2477,7 +2477,7 @@ msgstr "Quinquereme Erromatarra"
 
 #: simulation/templates/units/rome_ship_trireme.xml:8
 msgid "Trirēmis Rōmāna"
-msgstr ""
+msgstr "Trirēmis Rōmāna"
 
 #: simulation/templates/units/rome_ship_trireme.xml:9
 msgid "Roman Trireme"
@@ -2489,15 +2489,15 @@ msgstr "Katapulta"
 
 #: simulation/templates/units/rome_siege_ram.xml:16
 msgid "Ariēs"
-msgstr ""
+msgstr "Ariēs"
 
 #: simulation/templates/units/rome_siege_scorpio_packed.xml:18
 msgid "Scorpiō"
-msgstr ""
+msgstr "Scorpiō"
 
 #: simulation/templates/units/rome_support_female_citizen.xml:6
 msgid "Rōmāna"
-msgstr ""
+msgstr "Rōmāna"
 
 #: simulation/templates/units/rome_support_female_citizen.xml:7
 msgid "Roman Woman"
@@ -2509,7 +2509,7 @@ msgstr "Estatu Apaiza"
 
 #: simulation/templates/units/rome_support_healer_b.xml:8
 msgid "Pontifex"
-msgstr ""
+msgstr "Pontifex"
 
 #: simulation/templates/units/rome_support_trader.xml:10
 msgid "Plebeian Merchant"
@@ -2517,12 +2517,12 @@ msgstr "Merkatari Plebeioa"
 
 #: simulation/templates/units/rome_support_trader.xml:11
 msgid "Mercātor"
-msgstr ""
+msgstr "Mercātor"
 
 #: simulation/templates/units/samnite_skirmisher.xml:5
 #: simulation/templates/units/samnite_skirmisher.xml:6
 msgid "Samnite Skirmisher"
-msgstr "Samnitar Jazarlea"
+msgstr "Samnitar Xaxatzailea"
 
 #: simulation/templates/units/samnite_spearman.xml:5
 #: simulation/templates/units/samnite_spearman.xml:6
@@ -2619,7 +2619,7 @@ msgstr "Seleukos A' Nikator"
 
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:20
 msgid "Syrian Archer"
-msgstr "Gezilari Siriarra"
+msgstr "Arkulari Siriarra"
 
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:21
 msgid "Toxótēs Syrías"
@@ -2651,7 +2651,7 @@ msgstr "Thureophóros Politès"
 
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:20
 msgid "Thracian Mercenary Swordsman"
-msgstr "Soldatapeko Ezpatari Traziarra"
+msgstr "Mertzenario Ezpatari Traziarra"
 
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:21
 msgid "Rhomphaiaphoros Thrakikós"
@@ -2744,7 +2744,7 @@ msgstr "Leōnídēs"
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:15
 msgid "Helot Skirmisher"
-msgstr "Ilotar Jazarlea"
+msgstr "Ilotar Xaxatzailea"
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:16
 msgid "Akontistḗs Heílōs"

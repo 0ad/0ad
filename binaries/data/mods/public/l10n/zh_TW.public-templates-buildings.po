@@ -4,6 +4,7 @@
 # 
 # Translators:
 # AceLan Kao <acelan@gmail.com>, 2018
+# chianyu chen <cagd.lulofun@gmail.com>, 2019
 # DanSnow <dododavid006@gmail.com>, 2014
 # Karinsu Hsu <m80126colin@gmail.com>, 2018
 # Yuan <daan0014119@gmail.com>, 2017
@@ -18,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-27 07:09+0000\n"
-"PO-Revision-Date: 2019-09-27 16:10+0000\n"
-"Last-Translator: 黃柏諺 <s8321414@gmail.com>\n"
+"POT-Creation-Date: 2019-10-23 13:26+0000\n"
+"PO-Revision-Date: 2019-10-25 15:17+0000\n"
+"Last-Translator: chianyu chen <cagd.lulofun@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -102,9 +103,9 @@ msgstr "城鎮"
 
 #: simulation/templates/template_structure_civic_temple.xml:34
 msgid ""
-"Train healers. Garrison units to heal them at a quick rate (3 HP per "
-"second). Research healing and religious improvements."
-msgstr "訓練醫療者。可駐守單位以更快的速率治療他們（每秒3點生命值）。研究醫療及宗教狂熱改進科技。"
+"Train Healers and research healing technologies. Garrison units to heal them"
+" at a quick rate."
+msgstr ""
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -308,7 +309,7 @@ msgstr "城市"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
 msgid "ElephantStable"
-msgstr ""
+msgstr "象殿"
 
 #: simulation/templates/template_structure_military_embassy.xml:38
 #: simulation/templates/template_structure_military_embassy.xml:39
@@ -323,10 +324,8 @@ msgid "Fortress"
 msgstr "堡壘"
 
 #: simulation/templates/template_structure_military_fortress.xml:77
-#: simulation/templates/structures/mace_fortress.xml:10
-#: simulation/templates/structures/maur_fortress.xml:6
 msgid ""
-"Train Heroes and Champions and research technologies. Garrison Soldiers for "
+"Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
 msgstr ""
 
@@ -504,8 +503,9 @@ msgid "Gymnásion"
 msgstr "體育館（ Gymnásion ）"
 
 #: simulation/templates/structures/athen_gymnasion.xml:26
-msgid "Train champion units."
-msgstr "訓練精英單位。"
+#: simulation/templates/structures/pers_hall.xml:32
+msgid "Train Champions."
+msgstr ""
 
 #: simulation/templates/structures/athen_house.xml:5
 #: simulation/templates/structures/mace_house.xml:5
@@ -541,8 +541,8 @@ msgid "Prytaneîon"
 msgstr "會議室"
 
 #: simulation/templates/structures/athen_prytaneion.xml:27
-msgid "Train heroes. Research special technologies."
-msgstr "訓練英雄。研究特殊科技。"
+msgid "Train Heroes and research technologies."
+msgstr ""
 
 #: simulation/templates/structures/athen_royal_stoa.xml:5
 #: simulation/templates/structures/mace_royal_stoa.xml:5
@@ -905,9 +905,9 @@ msgstr "Maqdaš"
 
 #: simulation/templates/structures/cart_temple.xml:15
 msgid ""
-"Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
+"Train Healers and Champions and research healing technologies. Garrison "
 "units to heal them at a quick rate."
-msgstr "訓練女祭司以治療您的軍隊。訓練聖軍團長槍兵。將單位駐守其內以快速治療他們。"
+msgstr ""
 
 #: simulation/templates/structures/cart_tophet.xml:22
 msgid "Sacrificial Temple"
@@ -918,8 +918,10 @@ msgid "Tophet"
 msgstr "托菲特"
 
 #: simulation/templates/structures/cart_tophet.xml:24
-msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr "訓練醫生與聖隊騎兵。"
+msgid ""
+"Train Healers and Champion Cavalry and research healing technologies. "
+"Garrison units to heal them at a quick rate."
+msgstr ""
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -943,7 +945,7 @@ msgstr "Ba'al Hammon 的神廟"
 msgid "Coriosedlon"
 msgstr ""
 
-#: simulation/templates/structures/gaul_civil_centre.xml:9
+#: simulation/templates/structures/gaul_civil_centre.xml:12
 msgid "Lissos"
 msgstr ""
 
@@ -1311,6 +1313,10 @@ msgstr "Uparaksana"
 msgid "Harmya"
 msgstr "Harmya"
 
+#: simulation/templates/structures/maur_palace.xml:15
+msgid "Train Female Citizens, Champions, and Heroes."
+msgstr ""
+
 #: simulation/templates/structures/maur_pillar_ashoka.xml:9
 msgid "Pillar"
 msgstr "柱子"
@@ -1434,8 +1440,8 @@ msgstr ""
 #: simulation/templates/structures/pers_apadana.xml:33
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
-"resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr "「總督進獻」：以緩慢的速度增加食物、木頭、石頭以及金屬資源。訓練波斯英雄及他們的「長生軍」貼身護衛。"
+"resources. Train Champions and Heroes."
+msgstr ""
 
 #: simulation/templates/structures/pers_apartment_block.xml:15
 msgid "Apartment Block"
@@ -1496,10 +1502,6 @@ msgstr ""
 #: simulation/templates/structures/pers_hall.xml:30
 msgid "Duvarθi Visadahyu"
 msgstr ""
-
-#: simulation/templates/structures/pers_hall.xml:32
-msgid "Train War Elephants and Kardakes mercenaries."
-msgstr "訓練戰象或 Kardakes 傭兵。"
 
 #: simulation/templates/structures/pers_house.xml:8
 msgid "Huvādā"
@@ -1936,8 +1938,8 @@ msgid "Gerontía"
 msgstr "Gerontía"
 
 #: simulation/templates/structures/spart_gerousia.xml:24
-msgid "Train heroes."
-msgstr "訓練英雄。"
+msgid "Train Heroes."
+msgstr ""
 
 #: simulation/templates/structures/spart_syssiton.xml:25
 msgid "Military Mess Hall"
@@ -1948,8 +1950,8 @@ msgid "Syssítion"
 msgstr "Syssítion"
 
 #: simulation/templates/structures/spart_syssiton.xml:27
-msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr "訓練斯巴達英雄及斯巴達重裝步兵。"
+msgid "Train Champions and Heroes."
+msgstr ""
 
 #: simulation/templates/structures/spart_wonder.xml:16
 msgid ""

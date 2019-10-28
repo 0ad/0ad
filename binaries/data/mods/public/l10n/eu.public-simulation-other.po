@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-05-24 09:43+0200\n"
-"PO-Revision-Date: 2019-05-30 01:32+0000\n"
+"PO-Revision-Date: 2019-10-27 14:07+0000\n"
 "Last-Translator: Osoitz <oelkoro@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "%(_player_)s birrintzeko asmoz sekulako armada bildu dut. Bat egin eta h
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
-msgstr "%(_player_)s erasotuko dut."
+msgstr "%(_player_)s erasoko dut."
 
 #: simulation/ai/petra/chatHelper.js:11
 #, javascript-format
@@ -60,14 +60,14 @@ msgstr "Prestakuntzekin bukatzen ari naiz eta %(_player_)s erasotzeko."
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
-msgstr "Barkatu baino oraindik ez dut nahikoa soldadurik, baino nire hurrengo erasoa %(_player_)s(r)en kontra izango da."
+msgstr "Barkatu, oraindik ez dut nahikoa soldadurik, baina nire hurrengo erasoa %(_player_)s(r)en kontra izango da."
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
 msgid ""
 "Sorry, I still need to strengthen my army. However, I will attack "
 "%(_player_)s next."
-msgstr "Barkatu baino nire armada hobetu behar dut. Uste dut onena %(_player_)s erasotzea izango dela."
+msgstr "Barkatu, nire armada hobetu behar dut. Hala ere,%(_player_)s erasoko dut hurrengoan."
 
 #: simulation/ai/petra/chatHelper.js:25
 #, javascript-format
@@ -91,7 +91,7 @@ msgstr "Egoera kaskarrean zarela dirudi %(_player_)s, espero honek laguntzea."
 msgid ""
 "I can help you this time, %(_player_)s, but you should manage your resources"
 " more carefully in the future."
-msgstr "Oraingo honetan lagun zaitzaket, %(_player_)s, baino hemendik aurrera baliabide gehiago lortzen saiatu."
+msgstr "Oraingo honetan lagun zaitzaket, %(_player_)s, baina hemendik aurrera baliabide gehiago lortzen saiatu."
 
 #: simulation/ai/petra/chatHelper.js:36
 #, javascript-format
@@ -150,14 +150,14 @@ msgstr "%(_player_)s, ezin dut zure kidetza eskaintza onartu."
 msgid ""
 "I will not be your ally, %(_player_)s. However, I will consider a neutrality"
 " pact."
-msgstr "Ez naiz zurekin elkartuko,%(_player_)s, baino neutraltasun ituna aztertuko dut."
+msgstr "Ez naiz zurekin elkartuko,%(_player_)s, baina neutraltasun ituna aztertuko dut."
 
 #: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
 msgid ""
 "I reject your request for alliance, %(_player_)s, but we could become "
 "neutral."
-msgstr "Ez naiz zurekin elkartuko,%(_player_)s, baino neutralak izan gaitezke."
+msgstr "Ez naiz zurekin elkartuko,%(_player_)s, baina neutralak izan gaitezke."
 
 #: simulation/ai/petra/chatHelper.js:66
 #, javascript-format
@@ -225,7 +225,7 @@ msgstr "Orain %(_player_)s eta biok kideak gara."
 msgid ""
 "I will ally with you, %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
-msgstr "Zurekin bat egingo dut, %(_player_)s, baino soilik %(_amount_)s %(_resource_)sen    zerga jasotzen badut."
+msgstr "Zurekin bat egingo dut, %(_player_)s, baina soilik %(_amount_)s %(_resource_)sen    zerga jasotzen badut."
 
 #: simulation/ai/petra/chatHelper.js:84
 #, javascript-format
@@ -483,7 +483,7 @@ msgstr "etsaia"
 #: simulation/components/CeasefireManager.js:99
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr "%(time)s-(t)an eraso dezakezu"
+msgstr "%(time)s(t)an eraso dezakezu"
 
 #: simulation/components/CeasefireManager.js:112
 msgid "You can attack now!"
@@ -508,7 +508,7 @@ msgstr "%(category)s gehienezko eraikuntzetara iritsi da %(limit)s"
 #: simulation/components/EntityLimits.js:167
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
-msgstr "%(category)s %(limit)sen gehienezko erreklutatzera iritsi da "
+msgstr "%(category)s %(limit)sen gehienezko trebatzera iritsi da "
 
 #: simulation/components/EntityLimits.js:171
 #, javascript-format
@@ -548,7 +548,7 @@ msgstr "Produkzio ilara beterik dago"
 
 #: simulation/components/ProductionQueue.js:769
 msgid "Can't find free space to spawn trained units"
-msgstr "Erreklutatutako unitateak ea daukate agertzeko nahikoa toki"
+msgstr "Trebatutako unitateak ez daukate agertzeko nahikoa toki"
 
 #: simulation/helpers/Cheat.js:53
 #, javascript-format
@@ -557,7 +557,7 @@ msgstr "%(player)s garaitua izan da (amarrua)."
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
-msgstr "Unitateak entrenatzen dituen eraikin bat aukeratu behar da."
+msgstr "Unitateak trebatzen dituen eraikin bat aukeratu behar da."
 
 #: simulation/helpers/Commands.js:124
 msgid "(Cheat - control all units)"
@@ -580,7 +580,7 @@ msgstr "(Amarrua: Unitateak igo)"
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
-msgstr "Ezin duzu hobetu ezin bai dituzu zoruaren distantzia edo traba baldintzak bete."
+msgstr "Ezin duzu hobetu ezin baitituzu zoruaren distantzia edo traba baldintzak bete."
 
 #: simulation/helpers/Commands.js:732
 msgid "Cannot upgrade a garrisoned entity."
@@ -883,4 +883,4 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra 0 A.D.ren berezko bota da. Mesedez, arazoak Wildfire Games-i jakinarazi (esteka menu nagusian dago).\n\n\nAA baliabideak biltzeko tasa eta merkataritzaren irabazia zailtasunaren arabera doa (Sandbox −%58, Oso Erraza −%44, Erraza−%25, Ertaina ± %0, Zaila + %25, Oso Zaila +% 56). Maila errazenak ikerketa, trebatze eta eraikitze tasa motelagoa dute. Horrez gain, Sandbox maila ez da zabaltzen ez eta eraso egin ere."
+msgstr "Petra 0 A.D.ren berezko bota da. Mesedez, arazoak Wildfire Games-i jakinarazi (esteka menu nagusian dago).\n\n\nAA baliabideak ustiatzeko tasa eta merkataritzaren irabazia zailtasunaren arabera doa (Probetarako jokalekua −%58, Oso Erraza −%44, Erraza−%25, Ertaina ± %0, Zaila + %25, Oso Zaila +% 56). Maila errazenak ikerketa, trebatze eta eraikitze tasa motelagoa dute. Horrez gain, probetarako jokalekua maila ez da zabaltzen ez eta eraso egin ere."

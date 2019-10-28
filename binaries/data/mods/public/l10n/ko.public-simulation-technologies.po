@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# 이민학, 2019
 # moolow <copyhyeon@gmail.com>, 2019
 # 이정희 <daemul72@gmail.com>, 2019
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
@@ -12,7 +13,7 @@
 # ks k, 2019
 # ks k, 2019
 # Minhak Lee, 2019
-# Minhak Lee, 2019
+# 이민학, 2019
 # moolow <copyhyeon@gmail.com>, 2019
 # Muk Myung-Hee MyungHee <exploration@ponp.be>, 2018
 # jjj <triplej03@nate.com>, 2014
@@ -20,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-09-22 09:58+0000\n"
+"PO-Revision-Date: 2019-10-24 15:05+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +36,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
-msgstr "고급으로 승진한 유닛은 질적으로 많은것을 얻습니다: +20% 추가 체력, 모든 유형에대한 +1 추가 방어력, +20% 추가 전리품, 근접 유닛 +20% 추가 공격력, 원거리 공격 유닛용 +4 미터 추가 사정거리, 치유사용 더 빠른 이동속도와 회복 속도 그리고 회복범위 증가."
+msgstr "고급으로 승진한 유닛은 질적으로 많은것을 얻습니다: +20% 추가 체력, 모든 유형에 대한 +1 추가 방어력 수준, +20% 추가 전리품, 근접 유닛 +20% 추가 공격력, 원거리 공격 유닛용 +4 미터 추가 사정거리, 치료사용 더 빠른 이동속도와 회복 속도 그리고 회복범위 증가."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -67,14 +68,14 @@ msgstr "마을 단계에서 사용할 수 있습니다."
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
 msgid "Metal armor for a horse's face."
-msgstr "말의 얼굴을 위한 금속 투구."
+msgstr "말의 얼굴을 보호하기 위한 금속 방어구 투구."
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr "군마에 투구를 장착합니다. 모든 기병의 타격과 관통 방어력 수준이 +1 증가합니다."
+msgstr "군마에 방어구 투구를 장착합니다. 모든 기병의 타격과 관통 방어력 수준이 +1 증가합니다."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -232,19 +233,19 @@ msgstr "큰 도시 단계부터 이용가능합니다."
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
-msgstr "당신의 기병 말들에게 갑옷을 채우세요. 모든 기병의 타격 아머 레벨이 +1 증가합니다."
+msgstr "기병 말들에게 갑옷을 입힙니다. 모든 기병의 타격 방어력 수준이 +1 증가합니다."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
 "Body armor fashioned completely of iron, the hardest workable metal known to"
 " the ancients."
-msgstr "고대인들에게 가장 단단한 금속으로 알려진 철로 완전히 만들어진 갑옷입니다."
+msgstr "갑옷은 고대인들에게 알려진 가장 단단한 금속인 철로 완전히 만들어졌습니다."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
 msgid ""
 "All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
 "Metal Cost."
-msgstr "모든 영웅들의 갑옷 타격 수준과 관통 갑옷 수준이 +2 증가하지만 금속 비용이 +50 증가합니다."
+msgstr "모든 영웅들의 타격 방어력 수준과 관통 방어력 수준이 +2 증가합니다. 그러나 금속 비용이 +50 증가합니다."
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -265,17 +266,17 @@ msgstr "로리카 페르레아"
 #: simulation/data/technologies/armor_infantry_01.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
-msgstr "보병용 누비 가공된 아마포 또는 가죽 몸통 갑옷."
+msgstr "보병용 누비 가공된 아마포 또는 가죽 갑옷."
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
 msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "모든 보병의 타격 및 관통 갑옷 수준이 +1 증가합니다."
+msgstr "모든 보병의 타격 및 관통 방어력 수준이 +1 증가합니다."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_01.jsongenericName
 msgid "Quilted Body Armor"
-msgstr "누비 가공된 몸통 갑옷"
+msgstr "누비 가공된 갑옷"
 
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.maur
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.spart
@@ -305,12 +306,12 @@ msgstr "스포라스"
 #: simulation/data/technologies/armor_infantry_02.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_02.jsondescription
 msgid "Laminated linen body armor for infantrymen."
-msgstr "보병용 적층 아마포 몸통 갑옷."
+msgstr "보병용 적층 아마포 갑옷."
 
 #: simulation/data/technologies/armor_infantry_02.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_02.jsongenericName
 msgid "Laminated Linen Body Armor"
-msgstr "적층 아마포 몸통 갑옷"
+msgstr "적층 아마포 갑옷"
 
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.spart
@@ -335,7 +336,7 @@ msgstr "리노토라케스"
 #: simulation/data/technologies/armor_infantry_hack_02.jsontooltip
 #: simulation/data/technologies/armor_infantry_hack_03.jsontooltip
 msgid "All Infantry +1 Hack Armor Level."
-msgstr "모든 보병의 타격에 대한 방어력 레벨이 +1 증가합니다."
+msgstr "모든 보병의 타격 방어력 수준이 +1 증가합니다."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsondescription
 msgid "Body armor reinforced with bronze scales."
@@ -343,7 +344,7 @@ msgstr "청동 비늘로 보강된 갑옷."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
 msgid "Scale Body Armor"
-msgstr "비늘 몸통 갑옷"
+msgstr "비늘 갑옷"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
 msgid "Lorica Squamata"
@@ -354,15 +355,15 @@ msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
 "equipped with such body armor, as it was very expensive and time-consuming "
 "to fabricate."
-msgstr "완전히 청동으로 만들어진 갑옷입니다. 아주 비싸고 가공하는 데 시간이 많이 걸리기 때문에 최고의 병사들만이 갑옷을 입었다. "
+msgstr "완전히 청동으로 만들어진 갑옷입니다. 아주 비싸고 가공하는 데 시간이 많이 걸리기 때문에 최고의 병사들만 이 갑옷을 입었습니다."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr "대표전사들의 갑옷 타격 수준이 +2 증가하지만 금속 비용이 +10 증가합니다"
+msgstr "대표 전사들의 타격 방어력 수준이 +2 증가합니다. 그러나 금속 비용이 +10 증가합니다."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
-msgstr "청동 몸통 갑옷"
+msgstr "청동 흉부 갑옷"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsonspecificName.rome
 msgid "Lorica Musculata"
@@ -370,11 +371,11 @@ msgstr "로리카 무스쿠라타"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsondescription
 msgid "Plywood construction for large shields."
-msgstr "큰 방패를 위한 합판 구조"
+msgstr "큰 방패를 위한 합판 구조."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
 msgid "Infantry Spearmen +2 Pierce Armor Levels."
-msgstr "보병 창병의 관통 갑옷 수준이 +2 증가합니다."
+msgstr "보병 창병의 관통 방어력 수준이 +2 증가합니다."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
 msgid "Plywood Shield Construction"
@@ -392,12 +393,12 @@ msgstr "아스피디스코스"
 msgid ""
 "The best shields have reinforcements either on the corners (Roman scutum) or"
 " around the rim (Greek aspis)."
-msgstr "최고의 방패들은 모서리(Roman scutum)나 테두리 둘레(Greek aspis)에 보강재가 있습니다."
+msgstr "최고의 방패들은 모서리(로마 사각 방패)나 테두리 둘레(그리스 둥근 방패)에 보강재가 있습니다."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr "보병 창병의 관통 갑옷 수준이 +1 증가합니다."
+msgstr "보병 창병의 관통 방어력 수준이 +1 증가합니다."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
@@ -438,7 +439,7 @@ msgstr "알렉산더 대왕의 군대에서 유명한 '은 방패' 연대처럼 
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
-msgstr "대표전사의 관통 갑옷 수준이 +2 증가하지만, 금속 비용이 +10증가합니다."
+msgstr "대표 전사의 관통 방어력 수준이 +2 증가하지만, 금속 비용이 +10증가합니다."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
 msgid "Silver Shields"
@@ -458,7 +459,7 @@ msgstr "납으로 감싸 선체를 보호합니다."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
 msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "납으로 감싸 선체를 보호합니다. 모든 선박 아머 종류에 대해 레벨이 +2 증가합니다."
+msgstr "납으로 감싸 선체를 보호합니다. 모든 선박 유형의 방어력 수준이 +2 증가합니다."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -472,7 +473,7 @@ msgstr "히포조마타는 배의 구조를 보강합니다."
 msgid ""
 "The hypozomata braces the ship's structure. +2 levels to all ship armor "
 "types."
-msgstr "히포조마타는 배의 구조를 보강합니다. 모든 함선 유형의 방어력 수준이 +2 증가합니다."
+msgstr "히포조마타는 배의 구조를 보강합니다. 모든 선박 유형의 방어력 수준이 +2 증가합니다."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
@@ -485,7 +486,7 @@ msgstr "선박 선체용 목재 보강재."
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid ""
 "Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "선박 선체용 목재 보강재. 모든 함선 유형의 방어력 수준이 +2 증가합니다."
+msgstr "선박 선체용 목재 보강재. 모든 선박 유형의 방어력 수준이 +2 증가합니다."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -741,7 +742,7 @@ msgstr "돌무더기 자재를 사용하는 것은 비용을 절감하고 벽을
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
 msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "성벽 건설 시간 -20% 줄어들지만, 충돌 방어력 수준이 -1 감소합니다."
+msgstr "성벽 짓는 시간이 -20% 줄어들지만, 충돌 방어력 수준이 -1 감소합니다."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -753,7 +754,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr "유닛들을 정예 계층으로 승격되면 많은 질적 향상을 얻을 수 있습니다: 20% 추가 체력, 1 모든 유형의 아머 추가 레벨 , 20% 추가 전리품, 20% 근접 유닛들 추가 공격, 원거리 유닛들 4m 추가 범위와 더 나은 정확도, 더 빠른 이동 속도와 힐러들 추가 회복 속도와 범위."
+msgstr "유닛들을 정예 계층으로 승격되면 많은 질적 향상을 얻을 수 있습니다: 20% 추가 체력, 모든 유형의 1 방어력 수준 추가, 20% 추가 전리품, 20% 근접 유닛들 추가 공격, 원거리 유닛들 4 미터 추가 범위와 더 나은 정확도, 더 빠른 이동 속도와 치료사들 추가 회복 속도와 범위."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -1128,7 +1129,7 @@ msgstr "기하학적인 석조를 사용하면 방어벽의 견고성이 증가�
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
 msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "성벽의 충돌 아머 레벨 +2 이지만 건설 시간 +10%."
+msgstr "성벽의 충돌 방어력 수준이 +2 증가합니다. 그러나 건설 시간이 +10% 증가합니다."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
@@ -1136,7 +1137,7 @@ msgstr "기하학적인 석조"
 
 #: simulation/data/technologies/melee_inf_sidearms.jsontooltip
 msgid "Melee infantry +1 hack attack."
-msgstr "근접 보병의 타격 공격력 +1"
+msgstr "근접 보병의 타격 공격력이 +1 증가합니다."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsondescription
 msgid "Using iron instead of bronze gave spears additional piercing power."
@@ -1215,7 +1216,7 @@ msgstr "창 전투 vs. 소규모 접전"
 #: simulation/data/technologies/pair_inf_armor_03.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_04.jsongenericName
 msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr "보병 타격 아머 vs. 창병 관통 갑옷"
+msgstr "보병 타격 방어력 vs. 창병 관통 방어력"
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
@@ -1227,15 +1228,15 @@ msgstr "공격력 vs. 비용"
 
 #: simulation/data/technologies/pair_siege_attack_pack.jsongenericName
 msgid "Attack vs. Packing"
-msgstr "공격 vs. 짐싸기"
+msgstr "공격력 vs. 짐싸기"
 
 #: simulation/data/technologies/pair_siege_cost_armor.jsongenericName
 msgid "Cost vs. Armor"
-msgstr "비용 vs. 갑옷"
+msgstr "비용 vs. 방어력"
 
 #: simulation/data/technologies/pair_tower_01.jsongenericName
 msgid "Night's Watch vs. Crenellations"
-msgstr "밤의 경비원 vs. 성루"
+msgstr "밤의 경비대 vs. 총안"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
 msgid "Walls build time vs. Health"
@@ -1479,15 +1480,15 @@ msgstr "어멘텀ehsms꼬리 모양 꽃차례"
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege engines."
-msgstr "공성 무기의 갑옷이 증가됩니다."
+msgstr "공성 무기의 방어력이 증가합니다."
 
 #: simulation/data/technologies/siege_armor.jsontooltip
 msgid "Siege Engines +2 hack armor."
-msgstr "공성 무기의 갑옷 타격이 +2 증가합니다."
+msgstr "공성 무기의 타격 방어력이 +2 증가합니다."
 
 #: simulation/data/technologies/siege_armor.jsongenericName
 msgid "Armor plating"
-msgstr "갑옷 도금ehsms 판금갑옷"
+msgstr "장갑 갑옷"
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
@@ -1700,7 +1701,7 @@ msgstr "상인의 방어력을 높입니다."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
 msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "상인의 타격 및 관통 갑옷 수준을 +2 높입니다."
+msgstr "상인의 타격 및 관통 방어력 수준을 +2 높입니다."
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName
@@ -2616,7 +2617,7 @@ msgstr "헬레니즘 메트로폴리스"
 msgid ""
 "Significantly increase training speed of champions and siege engines at the "
 "fortress when training them in large batches."
-msgstr "대규모 양성할때 요새에서 대표전사와 공성 무기의 양성 속도를 크게 향상합니다."
+msgstr "대규모 양성할때 요새에서 대표 전사와 공성 무기의 양성 속도를 크게 향상합니다."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
@@ -2635,7 +2636,7 @@ msgstr "지금은 멸종된 니시아 품종의 말은 고대의 가장 크고 �
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."
-msgstr "모든 기병 체력을 +20% 증가합니다."
+msgstr "모든 기병의 체력을 +20% 증가합니다."
 
 #: simulation/data/technologies/successors/special_war_horses.jsongenericName
 msgid "Nisean War Horses"

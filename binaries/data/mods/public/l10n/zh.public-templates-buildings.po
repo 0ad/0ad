@@ -23,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-27 07:09+0000\n"
-"PO-Revision-Date: 2019-09-27 16:10+0000\n"
-"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
+"POT-Creation-Date: 2019-10-23 13:26+0000\n"
+"PO-Revision-Date: 2019-10-23 14:51+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,9 +107,9 @@ msgstr "城镇"
 
 #: simulation/templates/template_structure_civic_temple.xml:34
 msgid ""
-"Train healers. Garrison units to heal them at a quick rate (3 HP per "
-"second). Research healing and religious improvements."
-msgstr "训练医疗者。一个医疗者可以使驻军单位快速恢复生命值(每秒3点生命)。研究改进医疗技术及宗教。"
+"Train Healers and research healing technologies. Garrison units to heal them"
+" at a quick rate."
+msgstr ""
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -328,12 +328,10 @@ msgid "Fortress"
 msgstr "城堡"
 
 #: simulation/templates/template_structure_military_fortress.xml:77
-#: simulation/templates/structures/mace_fortress.xml:10
-#: simulation/templates/structures/maur_fortress.xml:6
 msgid ""
-"Train Heroes and Champions and research technologies. Garrison Soldiers for "
+"Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
-msgstr "训练英雄和冠勇单位、研究科技，以及驻守士兵来增加箭塔数量。"
+msgstr ""
 
 #: simulation/templates/template_structure_military_kennel.xml:38
 msgid "Kennel"
@@ -509,8 +507,9 @@ msgid "Gymnásion"
 msgstr "体育馆"
 
 #: simulation/templates/structures/athen_gymnasion.xml:26
-msgid "Train champion units."
-msgstr "训练精英单位"
+#: simulation/templates/structures/pers_hall.xml:32
+msgid "Train Champions."
+msgstr ""
 
 #: simulation/templates/structures/athen_house.xml:5
 #: simulation/templates/structures/mace_house.xml:5
@@ -546,8 +545,8 @@ msgid "Prytaneîon"
 msgstr "会议室"
 
 #: simulation/templates/structures/athen_prytaneion.xml:27
-msgid "Train heroes. Research special technologies."
-msgstr "训练英雄。研究特别技能。"
+msgid "Train Heroes and research technologies."
+msgstr ""
 
 #: simulation/templates/structures/athen_royal_stoa.xml:5
 #: simulation/templates/structures/mace_royal_stoa.xml:5
@@ -910,9 +909,9 @@ msgstr "神庙"
 
 #: simulation/templates/structures/cart_temple.xml:15
 msgid ""
-"Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
+"Train Healers and Champions and research healing technologies. Garrison "
 "units to heal them at a quick rate."
-msgstr "训练女祭司以治疗您的军队。训练圣队矛兵。驻守单位，并可以以极快的速度治疗。"
+msgstr ""
 
 #: simulation/templates/structures/cart_tophet.xml:22
 msgid "Sacrificial Temple"
@@ -923,8 +922,10 @@ msgid "Tophet"
 msgstr "托非特（古希伯来人在此举行人祭）"
 
 #: simulation/templates/structures/cart_tophet.xml:24
-msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr "训练医生与圣队骑兵。"
+msgid ""
+"Train Healers and Champion Cavalry and research healing technologies. "
+"Garrison units to heal them at a quick rate."
+msgstr ""
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -948,7 +949,7 @@ msgstr "巴耳·哈蒙神庙"
 msgid "Coriosedlon"
 msgstr "科罗塞德隆"
 
-#: simulation/templates/structures/gaul_civil_centre.xml:9
+#: simulation/templates/structures/gaul_civil_centre.xml:12
 msgid "Lissos"
 msgstr "市政中心"
 
@@ -1316,6 +1317,10 @@ msgstr "哨所"
 msgid "Harmya"
 msgstr "印度神庙"
 
+#: simulation/templates/structures/maur_palace.xml:15
+msgid "Train Female Citizens, Champions, and Heroes."
+msgstr ""
+
 #: simulation/templates/structures/maur_pillar_ashoka.xml:9
 msgid "Pillar"
 msgstr "柱"
@@ -1439,8 +1444,8 @@ msgstr ""
 #: simulation/templates/structures/pers_apadana.xml:33
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
-"resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr "“总督进献”：以缓慢的速度增加食物、木头、石头以及金属资源。训练波斯英雄及他们的“长生军”英雄。"
+"resources. Train Champions and Heroes."
+msgstr ""
 
 #: simulation/templates/structures/pers_apartment_block.xml:15
 msgid "Apartment Block"
@@ -1501,10 +1506,6 @@ msgstr ""
 #: simulation/templates/structures/pers_hall.xml:30
 msgid "Duvarθi Visadahyu"
 msgstr "波斯大厅"
-
-#: simulation/templates/structures/pers_hall.xml:32
-msgid "Train War Elephants and Kardakes mercenaries."
-msgstr "训练战象或外国雇佣兵。"
 
 #: simulation/templates/structures/pers_house.xml:8
 msgid "Huvādā"
@@ -1941,8 +1942,8 @@ msgid "Gerontía"
 msgstr "罗地亚岛"
 
 #: simulation/templates/structures/spart_gerousia.xml:24
-msgid "Train heroes."
-msgstr "训练英雄。"
+msgid "Train Heroes."
+msgstr ""
 
 #: simulation/templates/structures/spart_syssiton.xml:25
 msgid "Military Mess Hall"
@@ -1953,8 +1954,8 @@ msgid "Syssítion"
 msgstr "公共食堂"
 
 #: simulation/templates/structures/spart_syssiton.xml:27
-msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr "训练斯巴达英雄及重装步兵。"
+msgid "Train Champions and Heroes."
+msgstr ""
 
 #: simulation/templates/structures/spart_wonder.xml:16
 msgid ""

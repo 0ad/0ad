@@ -6,14 +6,14 @@
 # Gontzal M. Pujana <juchuf@gmail.com>, 2018
 # Gontzal M. Pujana <juchuf@gmail.com>, 2015-2016
 # Mielanjel Iraeta <pospolos@gmail.com>, 2017-2019
-# Osoitz <oelkoro@gmail.com>, 2015
+# Osoitz <oelkoro@gmail.com>, 2015,2019
 # Gontzal M. Pujana <juchuf@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-27 07:08+0000\n"
-"PO-Revision-Date: 2019-10-02 11:25+0000\n"
-"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
+"PO-Revision-Date: 2019-10-27 15:43+0000\n"
+"Last-Translator: Osoitz <oelkoro@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +31,7 @@ msgstr "Kanpoan"
 
 #: gui/lobby/lobby.js:52
 msgid "Busy"
-msgstr "Lanean"
+msgstr "Lanpetuta"
 
 #: gui/lobby/lobby.js:53
 msgid "Offline"
@@ -128,11 +128,11 @@ msgstr "Zure egoera eguneratu «Linean»era."
 
 #: gui/lobby/lobby.js:322
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "Jokalari anitzen gelatik norbait kanporatu. Erabilera: /kick izena arrazoia"
+msgstr "Jokalarien gelatik norbait kanporatu. Erabilera: /kick izena arrazoia"
 
 #: gui/lobby/lobby.js:330
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr "Jokalari anitzen gelatik norbait kanporatu eta sarrera debekatu. Erabilera: /ban izena arrazoia"
+msgstr "Jokalarien gelatik norbait kanporatu eta sarrera debekatu. Erabilera: /ban izena arrazoia"
 
 #: gui/lobby/lobby.js:338
 msgid "Show this help."
@@ -173,7 +173,7 @@ msgstr "Gelatik deskonektatu zara. Berriz konektatu nahi duzu?"
 #: gui/lobby/lobby.js:430 gui/lobby/lobby.js:1209
 #: gui/prelobby/common/credentials/credentials.js:55
 msgid "Confirmation"
-msgstr "Konfirmazioa"
+msgstr "Baieztapena"
 
 #: gui/lobby/lobby.js:431 gui/lobby/lobby.js:1192 gui/lobby/lobby.js:1210
 #: gui/prelobby/common/credentials/credentials.js:56
@@ -224,21 +224,21 @@ msgstr "< %(rating)s"
 
 #: gui/lobby/lobby.js:607
 msgid "You have been banned from the lobby!"
-msgstr "Debekatua izan zara jokalari anitzen gelan!"
+msgstr "Debekatua izan zara jokalarien gelan!"
 
 #: gui/lobby/lobby.js:608
 msgid "You have been kicked from the lobby!"
-msgstr "Bota zaituzte jokalari anitzen gelatik!"
+msgstr "Bota zaituzte jokalarien gelatik!"
 
 #: gui/lobby/lobby.js:610
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr "%(nick)s debekatua izan zara jokalari anitzen gelan."
+msgstr "%(nick)s debekatua izan zara jokalarien gelan."
 
 #: gui/lobby/lobby.js:611
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr "%(nick)s bota zaituzte jokalari anitzen gelatik!"
+msgstr "%(nick)s bota zaituzte jokalarien gelatik!"
 
 #: gui/lobby/lobby.js:614
 #, javascript-format
@@ -256,11 +256,11 @@ msgstr "KANPORATUA"
 
 #: gui/lobby/lobby.js:673
 msgid "Unmark as Buddy"
-msgstr "Laguna bezala ezabatu."
+msgstr "Kendu lagun marka"
 
 #: gui/lobby/lobby.js:673
 msgid "Mark as Buddy"
-msgstr "Laguna bezala markatu"
+msgstr "Markatu lagun gisa"
 
 #: gui/lobby/lobby.js:866 gui/lobby/lobby.js:867 gui/lobby/lobby.js:868
 #: gui/lobby/lobby.js:869 gui/lobby/lobby.js:870 gui/lobby/lobby.js:871
@@ -288,7 +288,7 @@ msgstr "%(current)s/%(max)s"
 #: gui/lobby/lobby.js:1143
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr "Partida %(time)s-(e)tan hasita"
+msgstr "Partida %(time)s(e)tan hasita"
 
 #: gui/lobby/lobby.js:1144 gui/lobby/lobby.js:1526
 msgid "HH:mm"
@@ -485,7 +485,7 @@ msgstr "Erregistratuta"
 #: gui/lobby/lobby.xml:(caption):13
 #: gui/prelobby/entrance/entrance.xml:(caption):14
 msgid "Multiplayer Lobby"
-msgstr "Multiplayer gela"
+msgstr "Hainbat jokalarientzako gela"
 
 #: gui/lobby/lobby_panels.xml:(heading):23
 msgid "Status"
@@ -642,7 +642,7 @@ msgstr "Hasi saioa badagoen kontu batekin"
 
 #: gui/prelobby/login/login.xml:(caption):13
 msgid "Connect to the game lobby"
-msgstr "Jokalari anitzen gelarekin konektatu"
+msgstr "Konektatu jokalarien gelarekin"
 
 #: gui/prelobby/register/register.xml:(caption):13
 msgid "Registration"
@@ -652,7 +652,7 @@ msgstr "Izen ematea"
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy "
 "Policy[/font]"
-msgstr "[font=\"sans-bold-18\"]«0 A.D. Empires Ascendant»en Jokalari Anitzen Gelako Pribatutasun politika[/font]"
+msgstr "[font=\"sans-bold-18\"]«0 A.D. Empires Ascendant»en Hainbat jokalarien gelako pribatutasun politika[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
 #: gui/prelobby/common/terms/Terms_of_Service.txt:3
@@ -718,7 +718,7 @@ msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr "Jokalari batek jokalarien lobbyan partida antolatzen duenean, jokalari horren IP helbidea sarean diren jokalari denei bidaltzen zaie, beste jokalariek parte har izan ahal dezaten."
+msgstr "Jokalari batek hainbat jokalarien gelan partida bat antolatzen duenean, jokalari horren IP helbidea sarean diren jokalari denei bidaltzen zaie, beste jokalariek parte har izan ahal dezaten."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
@@ -762,7 +762,7 @@ msgstr "[font=\"sans-bold-14\"]4. Presentzia linean[/font]"
 msgid ""
 "Which players are currently connected to the Multiplayer Lobby and which "
 "match they joined is shown to all online players."
-msgstr "Orain jokalari anitzen lobbyra konektatuta dauden eta zein partidara elkartu diren erakutsiko zaie linean dauden beste jokalari guztiei."
+msgstr "Orain hainbat jokalarien gela konektatuta dauden eta zein partidara elkartu diren erakutsiko zaie linean dauden beste jokalari guztiei."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
@@ -772,7 +772,7 @@ msgstr "[font=\"sans-bold-14\"]5. Txat mezuak[/font]"
 msgid ""
 "The Multiplayer Lobby features a public chat room that enables players to "
 "discuss the game and organize multiplayer matches."
-msgstr "Jokalari anitzen lobbyak txat publiko gela bat du non jokalariek jokoari buruz aritu daitezeen eta baita ere jokalari anitzen partidak antolatu."
+msgstr "Jokalarien gelak txat gela publiko bat du non jokalariek jokoari buruz aritu daitezkeen eta baita ere hainbat jokalarientzako partidak antolatu."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:28
 msgid ""
@@ -805,7 +805,7 @@ msgstr "[font=\"sans-bold-14\"]6. Partidaren estatistikak[/font]"
 msgid ""
 "Players can gain a rating on the Multiplayer Lobby that reflects their skill"
 " at the game."
-msgstr "Jokalariek jokoan duten gaitasuna erakutsiko duen balorazioa lortu dezakete jokalari anitzen lobbyan."
+msgstr "Jokalariek jokoan duten gaitasuna erakutsiko duen balorazioa lortu dezakete hainbat jokalarien gelan."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:35
 msgid ""
@@ -819,7 +819,7 @@ msgid ""
 "number of units trained, resources gathered and the winner of the match) to "
 "Wildfire Games, so that Wildfire Games can adapt the players ratings based "
 "on these statistics."
-msgstr "Sailkapeneko partida beten bitartean jokalariek jokoari buruzko datuak (trebatutako unitateak, bildutako baliabideak edo partidaren irabazlea, adibidez) bidaltzen dizkiote Wildfire Gamesi eta horrela Wildfire Gamesek datu horiek sailkapenak egokitzeko erabiliko ditu."
+msgstr "Sailkapeneko partida beten bitartean jokalariek jokoari buruzko datuak (trebatutako unitateak, ustiatutako baliabideak edo partidaren irabazlea, adibidez) bidaltzen dizkiote Wildfire Gamesi eta horrela Wildfire Gamesek datu horiek sailkapenak egokitzeko erabiliko ditu."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:37
 msgid "Wildfire Games stores match statistics to:"
@@ -882,14 +882,14 @@ msgid ""
 "Lobby, in the development and improvement of 0 A.D. and the Multiplayer "
 "Lobby, in enforcing the Terms of Use and in the protection against "
 "cyberattacks (GDPR 6.1.f)."
-msgstr "2. Wildfire Gamesek egiazko interesak ditu jokalari anitzen lobbya ematean, 0 A.D. garatzean eta hobetzean, erabilera baldintzak zibererasoren aurreko erabilera baldintzak ezartzean (GDPR 6.1.f)."
+msgstr "2. Wildfire Gamesek egiazko interesak ditu hainbat jokalarien gela eskaintzean, 0 A.D. garatzean eta hobetzean, erabilera baldintzak zibererasoren aurreko erabilera baldintzak ezartzean (GDPR 6.1.f)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:51
 msgid ""
 "3. Wildfire Games does not process any further data for the Multiplayer "
 "Lobby and does not ask for consent to process data (GDPR 6.1.a, GDPR 7, GDPR"
 " 8, GDPR 13.2.c)."
-msgstr "3. Wildfire Gamesek ez du bestelako daturik prozesatzen jokalari anitzen Lobbyrako eta ez du baimenik eskatzen datuak prozesatzeko (GDPR 6.1.a, GDPR 7, GDPR 8, GDPR 13.2.c)."
+msgstr "3. Wildfire Gamesek ez du hainbat jokalarien gelako bestelako daturik prozesatzen eta ez du baimenik eskatzen datuak prozesatzeko (GDPR 6.1.a, GDPR 7, GDPR 8, GDPR 13.2.c)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:53
 msgid "[font=\"sans-bold-16\"]User rights:[/font]"
@@ -1058,7 +1058,7 @@ msgstr "Wildfire Gamesen pribatutasun politikari buruz gehiago jakiteko, ikusi h
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Service[/font]"
-msgstr "[font=\"sans-bold-18\"]«0 A.D. Empires Ascendant»en Jokalari Anitzen Gelako Zerbitzu Baldintzak[/font]"
+msgstr "[font=\"sans-bold-18\"]«0 A.D. Empires Ascendant» hainbat jokalarien gelako zerbitzu baldintzak[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:5
 msgid ""
@@ -1066,25 +1066,25 @@ msgid ""
 " by Wildfire Games that allows players to setup online multiplayer matches, "
 "discuss the game in a public chat room and gain a rating that reflects their"
 " skill."
-msgstr "0 A.D. Empires Ascendanten jokalari anitzen lobbya Wildfire Gamesek eskaintzen duen lineako zerbitzua da jokalariek partidak antolatu, eztabaidatu edo txat ireki baten gelan jolasteko eta bere gaitasuna erakusten duen kalifikazioa irabazteko."
+msgstr "0 A.D. Empires Ascendanten hainbat jokalarien gela Wildfire Gamesek eskaintzen duen lineako zerbitzua da, jokalariek partidak antolatu, eztabaidatu edo txat ireki baten gelan jolasteko, eta bere gaitasuna erakusten duen kalifikazioa irabazteko."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""
 "Due to the subject matter of historic warfare, description and depiction of "
 "violence and the language on the Multiplayer Lobby, 0 A.D. and the "
 "Multiplayer Lobby are not directed to young children (COPPA §312.2)."
-msgstr "Historian zehar gertatutako gerrak direnez gai, 0 A.D. eta jokalari anitzen lobbya eta jokalari anitzen geletako hizkuntza  eta bortxaren erakustea ez da egokia ume txikientzako (COPPA §312.2)."
+msgstr "Historian zehar gertatutako gerrak direnez gai, 0 A.D. eta hainbat jokalarien gela eta jokalarien gelako hizkuntza  eta bortxaren erakustea ez da egokia ume txikientzako (COPPA §312.2)."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid "The minimum age to use the Multiplayer Lobby is 13."
-msgstr "Jokalari anitzen lobbya erabiltzeko gutxieneko adina 13 urte dira."
+msgstr "Hainbat jokalarien gela erabiltzeko gutxieneko adina 13 urte dira."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:10
 #: gui/prelobby/common/terms/Terms_of_Use.txt:5
 msgid ""
 "[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree "
 "to:[/font]"
-msgstr "[font=\"sans-bold-14\"]0 A.D. jokalari anitzen lobbya erabiltzean, honekin bat zatoz:[/font]"
+msgstr "[font=\"sans-bold-14\"]0 A.D. hainbat jokalari gela erabiltzean, honekin bat zatoz:[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:11
 msgid " 1. Follow all usage policies."
@@ -1146,7 +1146,7 @@ msgstr "Baldintzetako zati batzuk legez kanpokoak direla antzematen bada edo eta
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Use[/font]"
-msgstr "[font=\"sans-bold-18\"]«0 A.D. Empires Ascendant»en Jokalari Anitzen Gelako Erabilera Baldintzak[/font]"
+msgstr "[font=\"sans-bold-18\"]«0 A.D. Empires Ascendant»en hainbat jokalarien gelako erabilera baldintzak[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-13"
@@ -1162,7 +1162,7 @@ msgstr " 1. Kontu bat baino gehiago ez sortu zerbitzu bakoitzeko, Wildfire Games
 msgid ""
 " 2. Not impersonate other users of the service and only use your registered "
 "username in multiplayer matches."
-msgstr " 2. Ez hartu zerbitzuko beste batzuen nortasuna eta jokalari anitzen partidetan emandako izena baino ez erabili."
+msgstr " 2. Ez hartu zerbitzuko beste batzuen nortasuna eta hainbat jokalari partidetan emandako izena baino ez erabili."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:8
 msgid " 3. Not post profanity, pejorative terms or pornographic content."
@@ -1200,7 +1200,7 @@ msgid ""
 " 8. Not undermine the intended gameplay or purposefully gain unfair "
 "advantages in multiplayer matches (for example cheating, using exploits or "
 "bugs)."
-msgstr "8. Jokaera desegokia ez izatea edo nahitaezko abantailak irabaztea jokalari anitzeko partidetan (adibidez iruzurra, segurtasun ahultasunak edo akatsak erabiliz)."
+msgstr "8. Jokaera desegokia ez izatea edo nahitaezko abantailak irabaztea hainbat jokalarien partidetan (adibidez iruzurra, segurtasun ahultasunak edo akatsak erabiliz)."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:14
 msgid ""

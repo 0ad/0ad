@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-27 07:09+0000\n"
-"PO-Revision-Date: 2019-09-28 13:16+0000\n"
+"POT-Creation-Date: 2019-10-23 13:26+0000\n"
+"PO-Revision-Date: 2019-10-24 15:02+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -106,9 +106,9 @@ msgstr "작은 도시"
 
 #: simulation/templates/template_structure_civic_temple.xml:34
 msgid ""
-"Train healers. Garrison units to heal them at a quick rate (3 HP per "
-"second). Research healing and religious improvements."
-msgstr "치료사를 양성합니다. 유닛이 주둔하면 치료합니다. (1초당 3체력). 치료 기술과 종교적 향상을 연구합니다."
+"Train Healers and research healing technologies. Garrison units to heal them"
+" at a quick rate."
+msgstr "치료사를 양성하고 치유 기술을 연구합니다. 유닛이 주둔하면 빠르게 치료합니다."
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -174,7 +174,7 @@ msgstr "방어 탑"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot."
-msgstr "화살을 쏩니다. 주둔지에 추가 방어를 제공합니다. 발을 보호하기 위해 근총안 기술이 필요합니다. "
+msgstr "화살을 쏩니다. 주둔지에 추가 방어를 제공합니다. 발을 보호하기 위해 근총안 기술이 필요합니다."
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "StoneTower"
@@ -262,7 +262,7 @@ msgstr "군사 건물"
 
 #: simulation/templates/template_structure_military.xml:25
 msgid "Military"
-msgstr "군사 시설??"
+msgstr "군사 시설"
 
 #: simulation/templates/template_structure_military_barracks.xml:23
 msgid "Train citizen-soldiers. Research training improvements."
@@ -327,12 +327,10 @@ msgid "Fortress"
 msgstr "요새"
 
 #: simulation/templates/template_structure_military_fortress.xml:77
-#: simulation/templates/structures/mace_fortress.xml:10
-#: simulation/templates/structures/maur_fortress.xml:6
 msgid ""
-"Train Heroes and Champions and research technologies. Garrison Soldiers for "
+"Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
-msgstr "영웅과 대표전사를 양성하고 기술을 연구합니다. 군인이 주둔하면 화살 공격이 더 추가됩니다."
+msgstr "영웅과 대표 전사를 양성하고 기술을 연구합니다. 군인이 주둔하면 화살 공격이 더 추가됩니다."
 
 #: simulation/templates/template_structure_military_kennel.xml:38
 msgid "Kennel"
@@ -365,11 +363,11 @@ msgstr "마구간"
 
 #: simulation/templates/template_structure_military_workshop.xml:25
 msgid "Siege Workshop"
-msgstr "공성무기 제작소"
+msgstr "공성 무기 제작소"
 
 #: simulation/templates/template_structure_military_workshop.xml:28
 msgid "Construct Siege Engines and research Siege Engine technologies."
-msgstr "공성 무기를 제작하고 공성무기 기술을 연구합니다."
+msgstr "공성 무기를 제작하고 공성 무기 기술을 연구합니다."
 
 #: simulation/templates/template_structure_military_workshop.xml:29
 msgid "Workshop"
@@ -508,8 +506,9 @@ msgid "Gymnásion"
 msgstr "김나지움"
 
 #: simulation/templates/structures/athen_gymnasion.xml:26
-msgid "Train champion units."
-msgstr "대표전사 유닛 양성합니다."
+#: simulation/templates/structures/pers_hall.xml:32
+msgid "Train Champions."
+msgstr "대표 전사를 양성합니다."
 
 #: simulation/templates/structures/athen_house.xml:5
 #: simulation/templates/structures/mace_house.xml:5
@@ -545,8 +544,8 @@ msgid "Prytaneîon"
 msgstr "프리타네이온"
 
 #: simulation/templates/structures/athen_prytaneion.xml:27
-msgid "Train heroes. Research special technologies."
-msgstr "영웅을 양성합니다. 특수 기술을 연구 합니다."
+msgid "Train Heroes and research technologies."
+msgstr "영웅을 양성하고 특수 기술을 연구 합니다."
 
 #: simulation/templates/structures/athen_royal_stoa.xml:5
 #: simulation/templates/structures/mace_royal_stoa.xml:5
@@ -909,9 +908,9 @@ msgstr "마크다스"
 
 #: simulation/templates/structures/cart_temple.xml:15
 msgid ""
-"Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
+"Train Healers and Champions and research healing technologies. Garrison "
 "units to heal them at a quick rate."
-msgstr "여사제를 훈련시켜 군대를 치료하십시오. 신성 장창 부대를 훈련 시키십시오. 수비대는 빠른 속도로 치료합니다."
+msgstr "치료사와 대표 전사를 훈련하고 치유 기술을 연구합니다. 수비 유닛을 빠른 속도로 치료합니다."
 
 #: simulation/templates/structures/cart_tophet.xml:22
 msgid "Sacrificial Temple"
@@ -922,8 +921,10 @@ msgid "Tophet"
 msgstr "토펫ehsms 지옥"
 
 #: simulation/templates/structures/cart_tophet.xml:24
-msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr "내과의사와 신성 기병대를 훈련하세요."
+msgid ""
+"Train Healers and Champion Cavalry and research healing technologies. "
+"Garrison units to heal them at a quick rate."
+msgstr "치료사와 대표 전사 기병을 영성하고 치유 기술을 연구합니다. 유닛이 주둔하면 빠르게 치유합니다."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -947,7 +948,7 @@ msgstr "바알 함몬의 신전"
 msgid "Coriosedlon"
 msgstr "코리오세드론"
 
-#: simulation/templates/structures/gaul_civil_centre.xml:9
+#: simulation/templates/structures/gaul_civil_centre.xml:12
 msgid "Lissos"
 msgstr "리스소스"
 
@@ -1315,6 +1316,10 @@ msgstr "우파라크사나"
 msgid "Harmya"
 msgstr "하르"
 
+#: simulation/templates/structures/maur_palace.xml:15
+msgid "Train Female Citizens, Champions, and Heroes."
+msgstr "여성 시민, 대표 전사 영웅을 양성합니다."
+
 #: simulation/templates/structures/maur_pillar_ashoka.xml:9
 msgid "Pillar"
 msgstr "기둥"
@@ -1438,8 +1443,8 @@ msgstr "아파다나"
 #: simulation/templates/structures/pers_apadana.xml:33
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
-"resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr "＂사트라피(태수) 부족＂: 식량, 목재, 석재, 금속 자원이 점차 증가합니다. 페르시아의 영웅과 \"불사\"의 호위병을 양성합니다."
+"resources. Train Champions and Heroes."
+msgstr "“사트라피(태수) 부족”: 식량, 목재, 석재, 금속 자원이 점차 증가합니다. 대표 전사와 영웅을 양성합니다."
 
 #: simulation/templates/structures/pers_apartment_block.xml:15
 msgid "Apartment Block"
@@ -1491,7 +1496,7 @@ msgstr "디다"
 msgid ""
 "Train Champions and research technologies. Garrison Soldiers for additional "
 "arrows."
-msgstr "대표전사를 양성하고 기술을 연구합니다. 군인이 주둔하면 화살공격이 더 추가됩니다."
+msgstr "대표 전사를 양성하고 기술을 연구합니다. 군인이 주둔하면 화살공격이 더 추가됩니다."
 
 #: simulation/templates/structures/pers_hall.xml:29
 msgid "Gate of All Nations"
@@ -1500,10 +1505,6 @@ msgstr "모든 민족의 문"
 #: simulation/templates/structures/pers_hall.xml:30
 msgid "Duvarθi Visadahyu"
 msgstr "두바르띠 비사다휴"
-
-#: simulation/templates/structures/pers_hall.xml:32
-msgid "Train War Elephants and Kardakes mercenaries."
-msgstr "전쟁 코끼리와 카르다케스 용병을 훈련 시키십시오."
 
 #: simulation/templates/structures/pers_house.xml:8
 msgid "Huvādā"
@@ -1940,7 +1941,7 @@ msgid "Gerontía"
 msgstr "게론티아"
 
 #: simulation/templates/structures/spart_gerousia.xml:24
-msgid "Train heroes."
+msgid "Train Heroes."
 msgstr "영웅을 양성합니다."
 
 #: simulation/templates/structures/spart_syssiton.xml:25
@@ -1952,8 +1953,8 @@ msgid "Syssítion"
 msgstr "시스시티온"
 
 #: simulation/templates/structures/spart_syssiton.xml:27
-msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr "스파르타 영웅과 스파르타 대표전사 장갑 보병을 양성합니다."
+msgid "Train Champions and Heroes."
+msgstr "대표 전사와 영웅을 양성합니다."
 
 #: simulation/templates/structures/spart_wonder.xml:16
 msgid ""
