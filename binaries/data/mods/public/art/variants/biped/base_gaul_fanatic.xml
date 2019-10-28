@@ -1,8 +1,11 @@
 <variant name="Base" frequency="1">
   <animations>
-    <animation file="biped/infantry/hoplite/idle_relax.dae" name="Idle" id="idle1" speed="30"/>
-    <animation file="biped/infantry/hoplite/idle_relax.dae" name="Idle" id="idle2" speed="31"/>
-    <animation file="biped/infantry/hoplite/idle_relax.dae" name="Idle" id="idle3" speed="32"/>
+    <animation file="biped/infantry/hoplite/idle_relax_01.dae" name="Idle" id="idle1" frequency="8" speed="80"/>
+    <animation file="biped/infantry/hoplite/idle_relax_02.dae" name="Idle" id="idle2" frequency="1" speed="80"/>
+    <animation file="biped/infantry/hoplite/idle_relax_03.dae" name="Idle" id="idle3" frequency="1" speed="80"/>
+    <animation file="biped/infantry/hoplite/idle_relax_04.dae" name="Idle" id="idle4" frequency="3" speed="80"/>
+    <animation file="biped/infantry/hoplite/idle_relax_05.dae" name="Idle" id="idle5" frequency="3" speed="80"/>
+    <animation file="biped/infantry/hoplite/idle_relax_06.dae" name="Idle" id="idle6" frequency="1" speed="80"/>
     <animation file="biped/infantry/spearman/run_relax_shield.dae" name="Walk" id="walk1" speed="7"/>
     <animation file="biped/infantry/spearman/run_relax_shield.dae" name="Walk" id="walk2" speed="8"/>
     <animation file="biped/infantry/spearman/run_relax_shield.dae" name="Walk" id="walk3" speed="9"/>
