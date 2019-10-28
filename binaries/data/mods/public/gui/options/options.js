@@ -243,6 +243,7 @@ function displayOptions()
 			Engine.ConfigDB_SetChanges("user", true);
 
 			g_ChangedKeys.add(option.config);
+			fireConfigChangeHandlers(new Set([option.config]));
 
 			if (option.function)
 				Engine[option.function](value);

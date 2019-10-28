@@ -223,7 +223,9 @@ function determineAction(x, y, fromMinimap)
 		return undefined;
 
 	// If the selection isn't friendly units, no action
-	if (!selection.every(canControlEntity))
+	if (!selection.every(ownsEntity) &&
+	    !(g_SimState.players[g_ViewedPlayer] &&
+	      g_SimState.players[g_ViewedPlayer].controlsAll))
 		return undefined;
 
 	var target = undefined;
@@ -273,17 +275,10 @@ function determineAction(x, y, fromMinimap)
 	return { "type": "none", "cursor": "", "target": target };
 }
 
-function canControlEntity(ent)
+function ownsEntity(ent)
 {
 	let entState = GetEntityState(ent);
-	if (!entState)
-		return false;
-
-	if (entState.player == g_ViewedPlayer)
-		return true;
-
-	let playerState = g_SimState.players[entState.player];
-	return playerState && playerState.controlsAll;
+	return entState && entState.player == g_ViewedPlayer;
 }
 
 function tryPlaceBuilding(queued)

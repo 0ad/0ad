@@ -19,6 +19,11 @@ var g_TutorialNewMessageTags = { "color": "yellow" };
 var g_PlayerAssignmentsChangeHandlers = new Set();
 
 /**
+ * These handlers are called when the ceasefire time has run out.
+ */
+var g_CeasefireEndedHandlers = new Set();
+
+/**
  * Handle all netmessage types that can occur.
  */
 var g_NetMessageTypes = {
@@ -151,7 +156,8 @@ var g_NotificationsTypes =
 	"ceasefire-ended": function(notification, player)
 	{
 		updatePlayerData();
-		g_DiplomacyColors.OnCeasefireEnded();
+		for (let handler of g_CeasefireEndedHandlers)
+			handler();
 	},
 	"tutorial": function(notification, player)
 	{
@@ -289,6 +295,11 @@ var g_NotificationsTypes =
 function registerPlayerAssignmentsChangeHandler(handler)
 {
 	g_PlayerAssignmentsChangeHandlers.add(handler);
+}
+
+function registerCeasefireEndedHandler(handler)
+{
+	g_CeasefireEndedHandlers.add(handler);
 }
 
 /**

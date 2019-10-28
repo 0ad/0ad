@@ -22,7 +22,7 @@ DiplomacyDialogPlayerControl.prototype.DiplomacyPlayerText = class
 	init()
 	{
 		// TODO: Atlas should pass this
-		if (!g_GameAttributes.settings)
+		if (Engine.IsAtlasRunning())
 			return;
 
 		this.diplomacyPlayerCiv.caption = g_CivData[g_Players[this.playerID].civ].Name;

@@ -39,43 +39,15 @@
 			type="text"
 			ghost="true"
 			z="199"
-			size="100%-90 40 100%-5 40"
+			size="100%-100 40 100%-5 54"
 			font="mono-10"
 			textcolor="white"
 			text_align="right"
 			text_valign="top"
 			sprite="color: 0 0 0 100"
-			>
-			<action on="Tick">
-				updateCounters();
-			</action>
-		</object>
-
-		<object name="fpsCounter"
-			type="text"
-			ghost="true"
-			hidden="true"
-			hotkey="fps.toggle"
 		>
-			<action on="Press">
-				Engine.ConfigDB_CreateValue("user", "overlay.fps", ""+(Engine.ConfigDB_GetValue("user", "overlay.fps")!== "true"));
-			</action>
-		</object>
-
-		<!--
-		==========================================
-		- TIME COUNTER
-		==========================================
-		-->
-
-		<object name="timeCounter"
-			type="text"
-			ghost="true"
-			hidden="true"
-			hotkey="realtime.toggle"
-		>
-			<action on="Press">
-				Engine.ConfigDB_CreateValue("user", "overlay.realtime", ""+(Engine.ConfigDB_GetValue("user", "overlay.realtime") !== "true"));
+			<action on="Load">
+				g_OverlayCounterManager = new OverlayCounterManager(this);
 			</action>
 		</object>
 

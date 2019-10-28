@@ -160,12 +160,6 @@ var g_EntitySelectionChangeHandlers = new Set();
 var g_HotkeyChangeHandlers = new Set();
 
 /**
- * These events are fired when the user has closed the options page.
- * The handlers are provided a Set storing which config values have changed.
- */
-var g_ConfigChangeHandlers = new Set();
-
-/**
  * List of additional entities to highlight.
  */
 var g_ShowGuarding = false;
@@ -351,20 +345,6 @@ function unregisterEntitySelectionChangeHandler(handler)
 function registerHotkeyChangeHandler(handler)
 {
 	g_HotkeyChangeHandlers.add(handler);
-}
-
-function registerConfigChangeHandler(handler)
-{
-	g_ConfigChangeHandlers.add(handler);
-}
-
-/**
- * @param changes - a Set of config names
- */
-function fireConfigChangeHandlers(changes)
-{
-	for (let handler of g_ConfigChangeHandlers)
-		handler(changes);
 }
 
 function updatePlayerData()
@@ -869,31 +849,4 @@ function updateAdditionalHighlight()
 function playAmbient()
 {
 	Engine.PlayAmbientSound(pickRandom(g_Ambient), true);
-}
-
-/**
- * Adds the ingame time and ceasefire counter to the global FPS and
- * realtime counters shown in the top right corner.
- */
-function appendSessionCounters(counters)
-{
-	let simState = GetSimState();
-
-	if (Engine.ConfigDB_GetValue("user", "gui.session.timeelapsedcounter") === "true")
-	{
-		let currentSpeed = Engine.GetSimRate();
-		if (currentSpeed != 1.0)
-			// Translation: The "x" means "times", with the mathematical meaning of multiplication.
-			counters.push(sprintf(translate("%(time)s (%(speed)sx)"), {
-				"time": timeToString(simState.timeElapsed),
-				"speed": Engine.FormatDecimalNumberIntoString(currentSpeed)
-			}));
-		else
-			counters.push(timeToString(simState.timeElapsed));
-	}
-
-	if (simState.ceasefireActive && Engine.ConfigDB_GetValue("user", "gui.session.ceasefirecounter") === "true")
-		counters.push(timeToString(simState.ceasefireTimeRemaining));
-
-	g_ResearchProgress.setTopOffset(14 * counters.length);
 }
