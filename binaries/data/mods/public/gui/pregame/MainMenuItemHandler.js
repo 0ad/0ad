@@ -9,6 +9,8 @@ class MainMenuItemHandler
 		this.menuItems = menuItems;
 		this.lastTickTime = Date.now();
 
+		this.lastOpenItem = undefined;
+
 		this.mainMenu = Engine.GetGUIObjectByName("mainMenu");
 		this.mainMenuButtons = Engine.GetGUIObjectByName("mainMenuButtons");
 		this.submenu = Engine.GetGUIObjectByName("submenu");
@@ -37,19 +39,44 @@ class MainMenuItemHandler
 			button.caption = item.caption;
 			button.tooltip = item.tooltip;
 			button.enabled = item.enabled === undefined || item.enabled;
-			button.onPress = () => {
-				this.closeSubmenu();
-
-				if (item.onPress)
-					item.onPress();
-				else
-					this.openSubmenu(i);
-			};
+			button.onPress = this.pressButton.bind(this, item, i);
 			button.hidden = false;
 		});
 
 		if (buttons.length < menuItems.length)
 			error("GUI page has space for " + buttons.length + " menu buttons, but " + menuItems.length + " items are provided!");
+	}
+
+	/**
+	 * Expand selected submenu, or collapse if it already is expanded.
+	 */
+	pressButton(item, i)
+	{
+		if (this.submenu.hidden)
+		{
+			this.performButtonAction(item, i);
+		}
+		else
+		{
+			this.closeSubmenu();
+			if (this.lastOpenItem && this.lastOpenItem != item)
+				this.performButtonAction(item, i);
+			else
+				this.lastOpenItem = undefined;
+		}
+	}
+
+	/**
+	 * Expand submenu or perform action specified by the button object.
+	 */
+	performButtonAction(item, i)
+	{
+		this.lastOpenItem = item;
+
+		if (item.onPress)
+			item.onPress();
+		else
+			this.openSubmenu(i);
 	}
 
 	setupHotkeys(menuItems)
