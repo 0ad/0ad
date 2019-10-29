@@ -23,8 +23,7 @@ class SplashScreenHandler
 		if (this.showSplashScreen)
 			this.openPage();
 
-		// TODO: support actually deleting the handler
-		this.mainMenuPage.onTick = () => {};
+		delete this.mainMenuPage.onTick;
 	}
 
 	openPage()

@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-27 07:08+0000\n"
-"PO-Revision-Date: 2019-09-28 05:07+0000\n"
+"POT-Creation-Date: 2019-10-23 13:25+0000\n"
+"PO-Revision-Date: 2019-10-24 14:42+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -461,15 +461,15 @@ msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "Devre Dışı"
 
-#: gui/common/gamedescription.js:462
+#: gui/common/gamedescription.js:458
 msgid "Victorious"
 msgstr "Zafer"
 
-#: gui/common/gamedescription.js:467
+#: gui/common/gamedescription.js:463
 msgid "Defeated"
 msgstr "Yenilgi"
 
-#: gui/common/gamedescription.js:476
+#: gui/common/gamedescription.js:472
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -692,37 +692,37 @@ msgstr "Önceden tanımlanmış manzara ve maç ayarlarını içeren bir harita.
 msgid "Unlimited"
 msgstr "Sınırsız"
 
-#: gui/common/settings.js:359
+#: gui/common/settings.js:354
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
-#: gui/common/settings.js:370
+#: gui/common/settings.js:365
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
-#: gui/common/settings.js:381
+#: gui/common/settings.js:376
 msgctxt "AI behavior"
 msgid "Default"
 msgstr "Öntanımlı"
 
-#: gui/common/settings.js:393
+#: gui/common/settings.js:388
 msgctxt "map type"
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
-#: gui/common/settings.js:405
+#: gui/common/settings.js:400
 msgctxt "map size"
 msgid "Default"
 msgstr "Öntanımlı"
 
-#: gui/common/settings.js:417
+#: gui/common/settings.js:412
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
-#: gui/common/settings.js:429
+#: gui/common/settings.js:424
 msgid "Unknown Victory Condition"
 msgstr "Bilinmeyen Galibiyet Şartları"
 
@@ -2153,45 +2153,45 @@ msgstr "Başarısız oldu"
 msgid "Time elapsed"
 msgstr "Geçen süre"
 
-#: gui/summary/summary.js:491
+#: gui/summary/summary.js:490
 msgid "Current Scores"
 msgstr "Geçerli Skorlar"
 
-#: gui/summary/summary.js:493
+#: gui/summary/summary.js:492
 msgid "Scores at the end of the game."
 msgstr "Oyunun sonundaki puanlar."
 
-#: gui/summary/summary.js:495
+#: gui/summary/summary.js:494
 msgid "You have been disconnected."
 msgstr "Bağlantı kesildi."
 
-#: gui/summary/summary.js:497
+#: gui/summary/summary.js:496
 msgid "You have left the game."
 msgstr "Oyunu bıraktın."
 
-#: gui/summary/summary.js:499
+#: gui/summary/summary.js:498
 msgid "You have won the battle!"
 msgstr "Savaşı kazandın!"
 
-#: gui/summary/summary.js:501
+#: gui/summary/summary.js:500
 msgid "You have been defeated…"
 msgstr "Yenildin…"
 
-#: gui/summary/summary.js:502
+#: gui/summary/summary.js:501
 msgid "You have abandoned the game."
 msgstr "Oyunu terk ettin."
 
-#: gui/summary/summary.js:505
+#: gui/summary/summary.js:504
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Oyun süresi: %(time)s"
 
-#: gui/summary/summary.js:513
+#: gui/summary/summary.js:512
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/summary/summary.js:525
+#: gui/summary/summary.js:524
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: Çoklu Oyun Salonuna küçük ekranda geçiş yap."
@@ -2354,8 +2354,8 @@ msgid "Main Menu"
 msgstr "Ana Menü"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
-msgid "Reload Cache"
-msgstr "Önbelleği Yeniden Yükle"
+msgid "Rebuild Cache"
+msgstr "Önbelleği Yeniden Oluştur"
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
 #: gui/summary/summary.xml:(caption):34

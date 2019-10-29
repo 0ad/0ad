@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-27 07:09+0000\n"
-"PO-Revision-Date: 2019-09-27 16:10+0000\n"
-"Last-Translator: Rui <xymarior@yandex.com>\n"
+"POT-Creation-Date: 2019-10-23 13:26+0000\n"
+"PO-Revision-Date: 2019-10-23 14:51+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -102,9 +102,9 @@ msgstr "Vila"
 
 #: simulation/templates/template_structure_civic_temple.xml:34
 msgid ""
-"Train healers. Garrison units to heal them at a quick rate (3 HP per "
-"second). Research healing and religious improvements."
-msgstr "Treina curandeiros. Guarnece até 20 unidades no seu interior para as curar a uma velocidade rápida (3 pontos de vida por segundo). Desenvolve melhorias de cura e religião."
+"Train Healers and research healing technologies. Garrison units to heal them"
+" at a quick rate."
+msgstr ""
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -323,10 +323,8 @@ msgid "Fortress"
 msgstr "Fortaleza"
 
 #: simulation/templates/template_structure_military_fortress.xml:77
-#: simulation/templates/structures/mace_fortress.xml:10
-#: simulation/templates/structures/maur_fortress.xml:6
 msgid ""
-"Train Heroes and Champions and research technologies. Garrison Soldiers for "
+"Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
 msgstr ""
 
@@ -504,8 +502,9 @@ msgid "Gymnásion"
 msgstr "Gymnásion"
 
 #: simulation/templates/structures/athen_gymnasion.xml:26
-msgid "Train champion units."
-msgstr "Treina unidades campeãs."
+#: simulation/templates/structures/pers_hall.xml:32
+msgid "Train Champions."
+msgstr ""
 
 #: simulation/templates/structures/athen_house.xml:5
 #: simulation/templates/structures/mace_house.xml:5
@@ -541,8 +540,8 @@ msgid "Prytaneîon"
 msgstr "Pritaneu"
 
 #: simulation/templates/structures/athen_prytaneion.xml:27
-msgid "Train heroes. Research special technologies."
-msgstr "Treina heróis. Desenvolve tecnologias especiais."
+msgid "Train Heroes and research technologies."
+msgstr ""
 
 #: simulation/templates/structures/athen_royal_stoa.xml:5
 #: simulation/templates/structures/mace_royal_stoa.xml:5
@@ -905,9 +904,9 @@ msgstr "Maqdaš"
 
 #: simulation/templates/structures/cart_temple.xml:15
 msgid ""
-"Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
+"Train Healers and Champions and research healing technologies. Garrison "
 "units to heal them at a quick rate."
-msgstr "Treina sacerdotisas para curar as tropas. Treina Piqueiros do Batalhão Sagrado. Guarnece até 15 unidades no seu interior para serem curadas a uma velocidade alta."
+msgstr ""
 
 #: simulation/templates/structures/cart_tophet.xml:22
 msgid "Sacrificial Temple"
@@ -918,8 +917,10 @@ msgid "Tophet"
 msgstr "Tofete"
 
 #: simulation/templates/structures/cart_tophet.xml:24
-msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr "Recruta físicos e cavaleiros do Batalhão Sagrado."
+msgid ""
+"Train Healers and Champion Cavalry and research healing technologies. "
+"Garrison units to heal them at a quick rate."
+msgstr ""
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -943,7 +944,7 @@ msgstr "Templo de Baal Hammon"
 msgid "Coriosedlon"
 msgstr "Coriosedlon"
 
-#: simulation/templates/structures/gaul_civil_centre.xml:9
+#: simulation/templates/structures/gaul_civil_centre.xml:12
 msgid "Lissos"
 msgstr "Lissos"
 
@@ -1311,6 +1312,10 @@ msgstr "Uparaksana"
 msgid "Harmya"
 msgstr "Harmya"
 
+#: simulation/templates/structures/maur_palace.xml:15
+msgid "Train Female Citizens, Champions, and Heroes."
+msgstr ""
+
 #: simulation/templates/structures/maur_pillar_ashoka.xml:9
 msgid "Pillar"
 msgstr "Pilar"
@@ -1434,8 +1439,8 @@ msgstr ""
 #: simulation/templates/structures/pers_apadana.xml:33
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
-"resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr "\"Tributo a Sátrapa\": ganha constantemente alguma comida, madeira, pedra e metal. Treina heróis persas e os seus guarda-costas \"imortais\"."
+"resources. Train Champions and Heroes."
+msgstr ""
 
 #: simulation/templates/structures/pers_apartment_block.xml:15
 msgid "Apartment Block"
@@ -1496,10 +1501,6 @@ msgstr ""
 #: simulation/templates/structures/pers_hall.xml:30
 msgid "Duvarθi Visadahyu"
 msgstr ""
-
-#: simulation/templates/structures/pers_hall.xml:32
-msgid "Train War Elephants and Kardakes mercenaries."
-msgstr "Treina elefantes de guerra e mercenários kárdakes."
 
 #: simulation/templates/structures/pers_house.xml:8
 msgid "Huvādā"
@@ -1936,8 +1937,8 @@ msgid "Gerontía"
 msgstr "Gerontía"
 
 #: simulation/templates/structures/spart_gerousia.xml:24
-msgid "Train heroes."
-msgstr "Treina heróis."
+msgid "Train Heroes."
+msgstr ""
 
 #: simulation/templates/structures/spart_syssiton.xml:25
 msgid "Military Mess Hall"
@@ -1948,8 +1949,8 @@ msgid "Syssítion"
 msgstr "Syssítion"
 
 #: simulation/templates/structures/spart_syssiton.xml:27
-msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr "Treina heróis espartanos e hoplitas campeões espartanos."
+msgid "Train Champions and Heroes."
+msgstr ""
 
 #: simulation/templates/structures/spart_wonder.xml:16
 msgid ""

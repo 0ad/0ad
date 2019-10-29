@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-27 07:08+0000\n"
-"PO-Revision-Date: 2019-09-27 15:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-10-23 13:25+0000\n"
+"PO-Revision-Date: 2019-10-23 17:44+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,1152 +34,585 @@ msgstr ""
 "Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/session/developer_overlay.js:16
-msgid "Control all units"
-msgstr "Összes egység irányítása"
+#: gui/session/Menu.js:41
+#, javascript-format
+msgid "Press %(hotkey)s to toggle this menu."
+msgstr "%(hotkey)s: ezen menü megnyitása."
 
-#: gui/session/developer_overlay.js:26
-msgid "Change perspective"
-msgstr "Nézőpont megváltoztatása"
+#: gui/session/MenuButtons.js:32
+msgid "Chat"
+msgstr "Csevegés"
 
-#: gui/session/developer_overlay.js:32
-msgid "Display selection state"
-msgstr "Kiválasztási állapot megjelenítése"
+#: gui/session/MenuButtons.js:53
+msgid "Save"
+msgstr "Mentés"
 
-#: gui/session/developer_overlay.js:38
-msgid "Pathfinder overlay"
-msgstr "Útvonalkereső réteg"
+#: gui/session/MenuButtons.js:74
+msgid "Summary"
+msgstr "Összefoglaló"
 
-#: gui/session/developer_overlay.js:44
-msgid "Obstruction overlay"
-msgstr "Akadály réteg"
+#: gui/session/MenuButtons.js:87
+#, javascript-format
+msgid "Press %(hotkey)s to open the summary screen."
+msgstr "%(hotkey)s: az összesítő képernyő megnyitása."
 
-#: gui/session/developer_overlay.js:50
-msgid "Unit motion overlay"
-msgstr "Egységmozgás réteg"
+#: gui/session/MenuButtons.js:131
+msgid "Lobby"
+msgstr "Váró"
 
-#: gui/session/developer_overlay.js:56
-msgid "Range overlay"
-msgstr "Hatótávolság réteg"
-
-#: gui/session/developer_overlay.js:62
-msgid "Bounding box overlay"
-msgstr "Határoló doboz réteg"
-
-#: gui/session/developer_overlay.js:68
-msgid "Restrict camera"
-msgstr "Kamera korlátozása"
-
-#: gui/session/developer_overlay.js:75
-msgid "Reveal map"
-msgstr "Térkép felfedése"
-
-#: gui/session/developer_overlay.js:85
-msgid "Enable time warp"
-msgstr "Időhurok engedélyezése"
-
-#: gui/session/developer_overlay.js:91
+#: gui/session/MenuButtons.js:140
+#, javascript-format
 msgid ""
-"Note: time warp mode is a developer option, and not intended for use over "
-"long periods of time. Using it incorrectly may cause the game to run out of "
-"memory or crash."
-msgstr "Megjegyzés: az időhurok mód egy fejlesztői beállítás, és nem hosszú idejű felhasználásra szánt. Nem megfelelő használata a játék összeomlását okozhatja, vagy elfogyhat a memória."
+"Press %(hotkey)s to open the multiplayer lobby page without leaving the "
+"game."
+msgstr "%(hotkey)s: a többjátékos váró megnyitása a játék elhagyása nélkül."
 
-#: gui/session/developer_overlay.js:92
-msgid "Time warp mode"
-msgstr "Időhurok mód"
+#: gui/session/MenuButtons.js:159
+msgid "Options"
+msgstr "Beállítások"
 
-#: gui/session/developer_overlay.js:97
-msgid "Promote selected units"
-msgstr "Kiválasztott egységek előléptetése"
+#: gui/session/MenuButtons.js:199
+msgid "Resume"
+msgstr "Folytatás"
 
-#: gui/session/developer_overlay.js:106
-msgid "Hierarchical pathfinder overlay"
-msgstr "Hierarchikus útvonalkereső réteg"
+#: gui/session/MenuButtons.js:199
+msgid "Pause"
+msgstr "Szüneteltetés"
 
-#: gui/session/developer_overlay.js:112
-msgid "Enable culling"
-msgstr ""
+#: gui/session/MenuButtons.js:200
+#, javascript-format
+msgid "Press %(hotkey)s to pause or resume the game."
+msgstr "%(hotkey)s: a játék szüneteltetése vagy folytatása."
 
-#: gui/session/developer_overlay.js:119
-msgid "Lock cull camera"
-msgstr ""
+#: gui/session/MenuButtons.js:216
+msgid "Resign"
+msgstr "Feladás"
 
-#: gui/session/developer_overlay.js:126
-msgid "Display camera frustum"
-msgstr ""
+#: gui/session/MenuButtons.js:236
+msgid "Are you sure you want to resign?"
+msgstr "Biztosan fel akarod adni?"
 
-#: gui/session/developer_overlay.js:200
-msgid "The Developer Overlay was closed."
-msgstr "A fejlesztői felület bezáródott."
+#: gui/session/MenuButtons.js:237 gui/session/MenuButtons.js:272
+#: gui/session/MenuButtons.js:291
+msgid "Confirmation"
+msgstr "Megerősítés"
 
-#: gui/session/developer_overlay.js:201
-msgid "The Developer Overlay was opened."
-msgstr "A fejlesztői felület megnyílt."
+#: gui/session/MenuButtons.js:238 gui/session/MenuButtons.js:273
+#: gui/session/session.js:667 gui/session/unit_actions.js:1092
+#: gui/session/dialogs/yes_no.xml:(caption):24
+msgid "No"
+msgstr "Nem"
 
-#: gui/session/input.js:177
+#: gui/session/MenuButtons.js:238 gui/session/MenuButtons.js:273
+#: gui/session/session.js:667 gui/session/unit_actions.js:1092
+#: gui/session/dialogs/yes_no.xml:(caption):19
+msgid "Yes"
+msgstr "Igen"
+
+#: gui/session/MenuButtons.js:256 gui/session/session.xml:(caption):66
+msgid "Exit"
+msgstr "Kilépés"
+
+#: gui/session/MenuButtons.js:280
+msgid ""
+"Are you sure you want to quit? Leaving will disconnect all other players."
+msgstr "Biztosan ki akarsz lépni? Ezzel a többi játékost is szétkapcsolod."
+
+#: gui/session/MenuButtons.js:284 gui/session/MenuButtons.js:306
+msgid "Are you sure you want to quit?"
+msgstr "Biztosan ki akarsz lépni?"
+
+#: gui/session/MenuButtons.js:290
+msgid "Do you want to resign or will you return soon?"
+msgstr "Fel akarod adni vagy hamarosan visszatérsz?"
+
+#: gui/session/MenuButtons.js:292
+msgid "I will return"
+msgstr "Még visszatérek"
+
+#: gui/session/MenuButtons.js:292
+msgid "I resign"
+msgstr "Feladom"
+
+#: gui/session/PauseOverlay.js:39 gui/session/messages.js:516
+msgctxt "Separator for a list of players"
+msgid ", "
+msgstr ", "
+
+#: gui/session/PauseOverlay.js:44
+#, javascript-format
+msgid "Paused by %(players)s"
+msgstr "Szüneteltette: %(players)s"
+
+#: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:262
+#: gui/session/selection_details.js:278 gui/session/selection_panels.js:594
+msgctxt "countdown format"
+msgid "m:ss"
+msgstr "m:ss"
+
+#: gui/session/input.js:176
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
 msgstr[0] "Alap hatótávolság: %(range)s méter"
 msgstr[1] "Alap hatótávolság: %(range)s méter"
 
-#: gui/session/input.js:178
+#: gui/session/input.js:177
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Átlagos bónusz hatótávolság: %(range)s méter"
 msgstr[1] "Átlagos bónusz hatótávolság: %(range)s méter"
 
-#: gui/session/input.js:689
+#: gui/session/input.js:696
 msgid "Cannot build wall here!"
 msgstr "Ide nem építhető fal!"
 
-#: gui/session/menu.js:150
-msgid "Are you sure you want to resign?"
-msgstr "Biztosan fel akarod adni?"
-
-#: gui/session/menu.js:151 gui/session/menu.js:183 gui/session/menu.js:194
-msgid "Confirmation"
-msgstr "Megerősítés"
-
-#: gui/session/menu.js:152 gui/session/menu.js:184 gui/session/menu.js:217
-#: gui/session/session.js:909 gui/session/dialogs/yes_no.xml:(caption):24
-msgid "No"
-msgstr "Nem"
-
-#: gui/session/menu.js:152 gui/session/menu.js:184 gui/session/menu.js:217
-#: gui/session/session.js:909 gui/session/dialogs/yes_no.xml:(caption):19
-msgid "Yes"
-msgstr "Igen"
-
-#: gui/session/menu.js:164
-msgid ""
-"Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "Biztosan ki akarsz lépni? Ezzel a többi játékost is szétkapcsolod."
-
-#: gui/session/menu.js:168 gui/session/menu.js:172
-msgid "Are you sure you want to quit?"
-msgstr "Biztosan ki akarsz lépni?"
-
-#: gui/session/menu.js:193
-msgid "Do you want to resign or will you return soon?"
-msgstr "Fel akarod adni vagy hamarosan visszatérsz?"
-
-#: gui/session/menu.js:195
-msgid "I will return"
-msgstr "Még visszatérek"
-
-#: gui/session/menu.js:195
-msgid "I resign"
-msgstr "Feladom"
-
-#: gui/session/menu.js:215
-msgid "Destroy everything currently selected?"
-msgstr "Mindent elpusztítasz, amit kijelöltél?"
-
-#: gui/session/menu.js:216
-msgid "Delete"
-msgstr "Törlés"
-
-#: gui/session/menu.js:349
-#, javascript-format
-msgid "%(time)s %(message)s"
-msgstr "%(time)s %(message)s"
-
-#: gui/session/menu.js:426
-#, javascript-format
-msgctxt "ceasefire"
-msgid "Remaining ceasefire time: %(time)s."
-msgstr "A tűzszünetből hátralévő idő: %(time)s."
-
-#: gui/session/menu.js:453
-msgctxt "team"
-msgid "None"
-msgstr "Nincs"
-
-#: gui/session/menu.js:458 gui/session/messages.js:175
-#: gui/session/diplomacy_window.xml:(tooltip):28
-msgid "Ally"
-msgstr "Szövetséges"
-
-#: gui/session/menu.js:459 gui/session/diplomacy_window.xml:(tooltip):32
-msgid "Neutral"
-msgstr "Semleges"
-
-#: gui/session/menu.js:459 gui/session/messages.js:176
-#: gui/session/diplomacy_window.xml:(tooltip):36
-msgid "Enemy"
-msgstr "Ellenség"
-
-#: gui/session/menu.js:472
-msgid "x"
-msgstr "x"
-
-#: gui/session/menu.js:549
-msgid "Request your allies to attack this enemy"
-msgstr "Szövetségesek kérése, hogy támadják meg ezt az ellenséget"
-
-#: gui/session/menu.js:566
-msgid ""
-"Bribe a random unit from this player and share its vision during a limited "
-"period."
-msgstr "Fizesd le ennek a játékosnak egy véletlenszerű egységét, és korlátozott ideig osztozz a látókörén."
-
-#: gui/session/menu.js:598
-msgid "A failed bribe will cost you:"
-msgstr "A sikertelen megvesztegetés ennyibe fog kerülni:"
-
-#: gui/session/menu.js:792
-#, javascript-format
-msgid "Buy %(resource)s"
-msgstr "%(resource)s vétele"
-
-#: gui/session/menu.js:793
-#, javascript-format
-msgid "Sell %(resource)s"
-msgstr "%(resource)s eladása"
-
-#: gui/session/menu.js:896
-#, javascript-format
-msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr "%(openingTradingString)s és %(garrisonedString)s."
-
-#: gui/session/menu.js:897
-#, javascript-format
-msgid ""
-"%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s, %(garrisonedString)s és %(inactiveString)s."
-
-#: gui/session/menu.js:900 gui/session/menu.js:973
-#, javascript-format
-msgid "%(openingTradingString)s."
-msgstr "%(openingTradingString)s."
-
-#: gui/session/menu.js:901 gui/session/menu.js:972
-#, javascript-format
-msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s és %(inactiveString)s."
-
-#: gui/session/menu.js:906
-#, javascript-format
-msgid "%(openingGarrisonedString)s."
-msgstr "%(openingGarrisonedString)s."
-
-#: gui/session/menu.js:907
-#, javascript-format
-msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr "%(openingGarrisonedString)s és %(inactiveString)s."
-
-#: gui/session/menu.js:910 gui/session/menu.js:976
-#, javascript-format
-msgid "There is %(inactiveString)s."
-msgid_plural "There are %(inactiveString)s."
-msgstr[0] "%(inactiveString)s van."
-msgstr[1] "%(inactiveString)s van."
-
-#: gui/session/menu.js:911
-msgid "There are no land traders."
-msgstr "Nincsenek szárazföldi kereskedők."
-
-#: gui/session/menu.js:919
-#, javascript-format
-msgid "There is %(numberTrading)s land trader trading"
-msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] "%(numberTrading)s szárazföldi kereskedő üzletel."
-msgstr[1] "%(numberTrading)s szárazföldi kereskedő üzletel"
-
-#: gui/session/menu.js:929
-#, javascript-format
-msgid "%(numberOfLandTraders)s inactive"
-msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] "%(numberOfLandTraders)s inaktív"
-msgstr[1] "%(numberOfLandTraders)s inaktív"
-
-#: gui/session/menu.js:934
-#, javascript-format
-msgid "%(numberOfLandTraders)s land trader inactive"
-msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] "%(numberOfLandTraders)s szárazföldi kereskedő inaktív"
-msgstr[1] "%(numberOfLandTraders)s szárazföldi kereskedő inaktív"
-
-#: gui/session/menu.js:944
-#, javascript-format
-msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] "%(numberGarrisoned)s állomásozik egy kereskedőhajón"
-msgstr[1] "%(numberGarrisoned)s állomásozik egy kereskedőhajón"
-
-#: gui/session/menu.js:949
-#, javascript-format
-msgid ""
-"There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
-"ship"
-msgid_plural ""
-"There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
-" ship"
-msgstr[0] "%(numberGarrisoned)s szárazföldi kereskedő állomásozik egy kereskedőhajón"
-msgstr[1] "%(numberGarrisoned)s szárazföldi kereskedő állomásozik egy kereskedőhajón"
-
-#: gui/session/menu.js:977
-msgid "There are no merchant ships."
-msgstr "Nincsenek kereskedőhajók."
-
-#: gui/session/menu.js:984
-#, javascript-format
-msgid "There is %(numberTrading)s merchant ship trading"
-msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] "%(numberTrading)s hajó kereskedik"
-msgstr[1] "%(numberTrading)s hajó kereskedik"
-
-#: gui/session/menu.js:994
-#, javascript-format
-msgid "%(numberOfShipTraders)s inactive"
-msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] "%(numberOfShipTraders)s inaktív"
-msgstr[1] "%(numberOfShipTraders)s inaktív"
-
-#: gui/session/menu.js:999
-#, javascript-format
-msgid "%(numberOfShipTraders)s merchant ship inactive"
-msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] "%(numberOfShipTraders)s kereskedőhajó inaktív."
-msgstr[1] "%(numberOfShipTraders)s kereskedőhajó inaktív"
-
-#: gui/session/menu.js:1232
-msgid "Resume"
-msgstr "Folytatás"
-
-#: gui/session/menu.js:1232 gui/session/menu.xml:(caption):86
-msgid "Pause"
-msgstr "Szüneteltetés"
-
-#: gui/session/menu.js:1236
-#, javascript-format
-msgid "Paused by %(players)s"
-msgstr "Szüneteltette: %(players)s"
-
-#: gui/session/menu.js:1237 gui/session/messages.js:709
-msgctxt "Separator for a list of players"
-msgid ", "
-msgstr ", "
-
-#: gui/session/menu.js:1261
-#, javascript-format
-msgid ""
-"Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
-"to tribute %(greaterAmount)s."
-msgstr "%(resourceAmount)s %(resourceType)s sarc fizetése %(playerName)s részére. Shift-kattintás %(greaterAmount)s sarc fizetéséhez."
-
-#. Translation: A player that left the game joins again
-#: gui/session/messages.js:106
-#, javascript-format
-msgid "%(player)s is starting to rejoin the game."
-msgstr "%(player)s megkezdte az újracsatlakozást a játékhoz."
-
-#. Translation: A player joins the game for the first time
-#: gui/session/messages.js:108
-#, javascript-format
-msgid "%(player)s is starting to join the game."
-msgstr "%(player)s megkezdte az csatlakozást a játékhoz."
-
-#: gui/session/messages.js:112
-#, javascript-format
-msgid "%(player)s has left the game."
-msgstr "%(player)s elhagyta a játékot."
-
-#. Translation: A player that left the game joins again
-#: gui/session/messages.js:119
-#, javascript-format
-msgid "%(player)s has rejoined the game."
-msgstr "%(player)s újracsatlakozott a játékhoz."
-
-#. Translation: A player joins the game for the first time
-#: gui/session/messages.js:121
-#, javascript-format
-msgid "%(player)s has joined the game."
-msgstr "%(player)s csatlakozott a játékhoz."
-
-#: gui/session/messages.js:127
-#, javascript-format
-msgid "%(username)s has been banned"
-msgstr "%(username)s ki lett tiltva"
-
-#: gui/session/messages.js:128
-#, javascript-format
-msgid "%(username)s has been kicked"
-msgstr "%(username)s ki lett rúgva"
-
-#: gui/session/messages.js:150
+#: gui/session/messages.js:79
 msgid "Connection to the server has been authenticated."
 msgstr "A kiszolgálókapcsolat hitelesítve lett."
 
-#: gui/session/messages.js:151
+#: gui/session/messages.js:80
 msgid "Connected to the server."
 msgstr "Kapcsolódva a kiszolgálóhoz."
 
-#: gui/session/messages.js:152
+#: gui/session/messages.js:81
 msgid "Connection to the server has been lost."
 msgstr "A kiszolgálókapcsolat megszakadt."
 
-#: gui/session/messages.js:154
+#: gui/session/messages.js:83
 msgid "Waiting for players to connect:"
 msgstr "Várakozás a játékosok csatlakozására:"
 
-#: gui/session/messages.js:155
+#: gui/session/messages.js:84
 msgid "Synchronizing gameplay with other players…"
 msgstr "Játékmenet szinkronizálása a többi játékossal…"
 
-#: gui/session/messages.js:164
-#, javascript-format
-msgid "(%(context)s) %(userTag)s %(message)s"
-msgstr "(%(context)s) %(userTag)s %(message)s"
-
-#: gui/session/messages.js:165
-#, javascript-format
-msgid "%(userTag)s %(message)s"
-msgstr "%(userTag)s %(message)s"
-
-#: gui/session/messages.js:168
-#, javascript-format
-msgid "(%(context)s) * %(user)s %(message)s"
-msgstr "(%(context)s) * %(user)s %(message)s"
-
-#: gui/session/messages.js:169
-#, javascript-format
-msgid "* %(user)s %(message)s"
-msgstr "* %(user)s %(message)s"
-
-#: gui/session/messages.js:174 gui/session/diplomacy_window.xml:(caption):21
-msgid "Team"
-msgstr "Csapat"
-
-#: gui/session/messages.js:177 gui/session/session.js:525
-msgid "Observer"
-msgstr "Megfigyelő"
-
-#: gui/session/messages.js:178
-msgid "Private"
-msgstr "Személyes"
-
-#: gui/session/messages.js:214
-msgctxt "chat history filter"
-msgid "Chat and notifications"
-msgstr "Csevegés és értesítések"
-
-#: gui/session/messages.js:219
-msgctxt "chat history filter"
-msgid "Chat messages"
-msgstr "Csevegés üzenetek"
-
-#: gui/session/messages.js:224
-msgctxt "chat history filter"
-msgid "Players chat"
-msgstr "Játékos csevegő"
-
-#: gui/session/messages.js:231
-msgctxt "chat history filter"
-msgid "Ally chat"
-msgstr "Szövetséges csevegés"
-
-#: gui/session/messages.js:238
-msgctxt "chat history filter"
-msgid "Enemy chat"
-msgstr "Ellenséges csevegés"
-
-#: gui/session/messages.js:245
-msgctxt "chat history filter"
-msgid "Observer chat"
-msgstr "Megfigyelő csevegés"
-
-#: gui/session/messages.js:252
-msgctxt "chat history filter"
-msgid "Private chat"
-msgstr "Személyes csevegés"
-
-#: gui/session/messages.js:257
-msgctxt "chat history filter"
-msgid "Game notifications"
-msgstr ""
-
-#: gui/session/messages.js:262
-msgctxt "chat history filter"
-msgid "Network notifications"
-msgstr ""
-
-#: gui/session/messages.js:269
+#: gui/session/messages.js:89
 msgid "You have won!"
 msgstr "Győztél!"
 
-#: gui/session/messages.js:270
+#: gui/session/messages.js:90
 msgid "You have been defeated!"
 msgstr "Legyőztek!"
 
-#: gui/session/messages.js:278
-#, javascript-format
-msgid "You are now allied with %(player)s."
-msgstr "Mostantól %(player)s szövetségese vagy."
-
-#: gui/session/messages.js:279
-#, javascript-format
-msgid "You are now at war with %(player)s."
-msgstr "Mostantól háborúban állsz vele: %(player)s."
-
-#: gui/session/messages.js:280
-#, javascript-format
-msgid "You are now neutral with %(player)s."
-msgstr "Mostantól semleges a kapcsolatod vele: %(player)s."
-
-#: gui/session/messages.js:283
-#, javascript-format
-msgid "%(player)s is now allied with you."
-msgstr "%(player)s mostantól a szövetségesed."
-
-#: gui/session/messages.js:284
-#, javascript-format
-msgid "%(player)s is now at war with you."
-msgstr "%(player)s mostantól háborúban áll veled."
-
-#: gui/session/messages.js:285
-#, javascript-format
-msgid "%(player)s is now neutral with you."
-msgstr "%(player)s mostantól semlegesen áll hozzád."
-
-#: gui/session/messages.js:288
-#, javascript-format
-msgid "%(player)s is now allied with %(player2)s."
-msgstr "%(player)s mostantól %(player2)s szövetségese."
-
-#: gui/session/messages.js:289
-#, javascript-format
-msgid "%(player)s is now at war with %(player2)s."
-msgstr "%(player)s mostantól háborúban áll vele: %(player2)s."
-
-#: gui/session/messages.js:290
-#, javascript-format
-msgid "%(player)s is now neutral with %(player2)s."
-msgstr "%(player)s mostantól semlegesen áll hozzá: %(player2)s."
-
-#: gui/session/messages.js:598
+#: gui/session/messages.js:405
 msgid "Click to quit this tutorial."
 msgstr "Kattints az oktatójátékból kilépéshez."
 
-#: gui/session/messages.js:599
+#: gui/session/messages.js:406
 msgid "Quit"
 msgstr "Kilépés"
 
-#: gui/session/messages.js:603
+#: gui/session/messages.js:410
 msgid "Click when ready."
 msgstr "Kattints, ha kész vagy."
 
-#: gui/session/messages.js:607
+#: gui/session/messages.js:414
 msgid "Follow the instructions."
 msgstr "Kövesd az utasításokat."
 
-#: gui/session/messages.js:698
+#: gui/session/messages.js:505
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
 msgstr ", "
 
-#: gui/session/messages.js:704 gui/session/messages.js:744
+#: gui/session/messages.js:511 gui/session/messages.js:551
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
 msgstr "Szinkronizációs hiba a(z) %(turn)s. körben."
 
-#: gui/session/messages.js:708
+#: gui/session/messages.js:515
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
 msgstr "Játékosok: %(players)s"
 
-#: gui/session/messages.js:713
+#: gui/session/messages.js:520
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
 msgstr "A játékállapotod megegyezik a kiszolgáló játékállapotával."
 
-#: gui/session/messages.js:714
+#: gui/session/messages.js:521
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
 msgstr "A játékállapotod eltér a kiszolgáló játékállapotától."
 
-#: gui/session/messages.js:720
+#: gui/session/messages.js:527
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
 msgstr "Többjátékos játékhoz való visszatérés MI-val még nem támogatott!"
 
-#: gui/session/messages.js:723
+#: gui/session/messages.js:530
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
 msgstr "Győződj meg róla, hogy az összes játékos ugyanazt a módosítást használja."
 
-#: gui/session/messages.js:724
+#: gui/session/messages.js:531
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
 msgstr "Kattints a „Hiba jelentése” gombra a főmenüben a megoldásához."
 
-#: gui/session/messages.js:725
+#: gui/session/messages.js:532
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Replay saved to %(filepath)s"
 msgstr "Visszajátszás ide mentve:  %(filepath)s"
 
-#: gui/session/messages.js:728
+#: gui/session/messages.js:535
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
 msgstr "Jelenlegi állapot kiírása ide: %(filepath)s"
 
-#: gui/session/messages.js:736 gui/session/messages.js:749
+#: gui/session/messages.js:543 gui/session/messages.js:556
 msgid "Out of Sync"
 msgstr "Nincs szinkronban"
 
 #. Translation: This is shown if replay is out of sync
-#: gui/session/messages.js:748
+#: gui/session/messages.js:555
 msgctxt "Out-Of-Sync"
 msgid "The current game state is different from the original game state."
 msgstr "A jelenlegi játékállapot különbözik az eredeti játékállapottól."
 
-#: gui/session/messages.js:812
-msgctxt "chat addressee"
-msgid "Everyone"
-msgstr "Mindenki"
-
-#: gui/session/messages.js:820
-msgctxt "chat addressee"
-msgid "Allies"
-msgstr "Szövetségesek"
-
-#: gui/session/messages.js:824
-msgctxt "chat addressee"
-msgid "Enemies"
-msgstr "Ellenségek"
-
-#: gui/session/messages.js:830
-msgctxt "chat addressee"
-msgid "Observers"
-msgstr "Megfigyelők"
-
-#: gui/session/messages.js:859 gui/session/selection_details.js:79
-#, javascript-format
-msgid "\\[OFFLINE] %(player)s"
-msgstr "\\[OFFLINE] %(player)s"
-
-#: gui/session/messages.js:940
-#, javascript-format
-msgid "\\[%(time)s]"
-msgstr "\\[%(time)s]"
-
-#: gui/session/messages.js:941
-msgid "HH:mm"
-msgstr "HH:mm"
-
-#: gui/session/messages.js:996
+#: gui/session/messages.js:641
 msgid "Unknown Player"
 msgstr "Ismeretlen játékos"
-
-#. Translation: This comma is used for separating first to penultimate
-#. elements in an enumeration.
-#: gui/session/messages.js:1021
-msgid ", "
-msgstr ", "
-
-#: gui/session/messages.js:1053
-#, javascript-format
-msgid "%(player)s has sent you %(amounts)s."
-msgstr "%(player)s ennyit küldött neked: %(amounts)s."
-
-#: gui/session/messages.js:1055
-#, javascript-format
-msgid "You have sent %(player2)s %(amounts)s."
-msgstr "%(player2)s játékosnak küldtél ennyit: %(amounts)s."
-
-#: gui/session/messages.js:1060
-#, javascript-format
-msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr "%(player)s %(player2)s játékosnak küldött ennyit: %(amounts)s."
-
-#: gui/session/messages.js:1080
-#, javascript-format
-msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
-msgstr "%(player)s cserélt: %(amountsBought)s erre: %(amountsSold)s."
-
-#: gui/session/messages.js:1093
-#, javascript-format
-msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr "%(attacker)s megtámadta az állataidat!"
-
-#: gui/session/messages.js:1094
-#, javascript-format
-msgid "You have been attacked by %(attacker)s!"
-msgstr "%(attacker)s megtámadott!"
-
-#: gui/session/messages.js:1111
-#, javascript-format
-msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr "%(player)s előrelép a %(phaseName)sba."
-
-#: gui/session/messages.js:1113
-#, javascript-format
-msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr "%(player)s %(phaseName)sba lépése megszakítva."
-
-#: gui/session/messages.js:1116
-#, javascript-format
-msgid "%(player)s has reached the %(phaseName)s."
-msgstr "%(player)s elérte a %(phaseName)st."
-
-#: gui/session/messages.js:1168
-#, javascript-format
-msgid "<%(user)s>"
-msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:68
 #, javascript-format
 msgid "%(genericName)s — Packed"
 msgstr "%(genericName)s — becsomagolva"
 
-#: gui/session/selection_details.js:84
+#: gui/session/selection_details.js:78 gui/session/chat/ChatAddressees.js:74
+#, javascript-format
+msgid "\\[OFFLINE] %(player)s"
+msgstr "\\[OFFLINE] %(player)s"
+
+#: gui/session/selection_details.js:83
 #, javascript-format
 msgid "%(rank)s Rank"
 msgstr "%(rank)s. rang"
 
-#: gui/session/selection_details.js:134
+#: gui/session/selection_details.js:133
 #, javascript-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
 msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
-#: gui/session/selection_details.js:173
+#: gui/session/selection_details.js:172
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
 msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
-#: gui/session/selection_details.js:193
+#: gui/session/selection_details.js:192
 #, javascript-format
 msgid "%(experience)s %(current)s / %(required)s"
 msgstr "%(experience)s %(current)s / %(required)s"
 
-#: gui/session/selection_details.js:194 gui/session/selection_details.js:200
+#: gui/session/selection_details.js:193 gui/session/selection_details.js:199
 msgid "Experience:"
 msgstr "Tapasztalat:"
 
-#: gui/session/selection_details.js:199
+#: gui/session/selection_details.js:198
 #, javascript-format
 msgid "%(experience)s %(current)s"
 msgstr "%(experience)s %(current)s"
 
-#: gui/session/selection_details.js:209
+#: gui/session/selection_details.js:208
 msgid "∞"
 msgstr "∞"
 
-#: gui/session/selection_details.js:210 gui/session/selection_details.js:240
-#: gui/session/selection_details.js:268
+#: gui/session/selection_details.js:209 gui/session/selection_details.js:239
+#: gui/session/selection_details.js:267
 #, javascript-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
 
-#: gui/session/selection_details.js:222
+#: gui/session/selection_details.js:221
 #, javascript-format
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:253 gui/session/unit_actions.js:562
+#: gui/session/selection_details.js:252 gui/session/unit_actions.js:562
 #: gui/session/unit_actions.js:571 gui/session/unit_actions.js:585
 #: gui/session/unit_actions.js:907
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Növekedés: %(gain)s"
 
-#: gui/session/selection_details.js:263 gui/session/selection_details.js:279
-#: gui/session/selection_panels.js:596 gui/session/session.js:1303
-msgctxt "countdown format"
-msgid "m:ss"
-msgstr "m:ss"
-
-#: gui/session/selection_details.js:272
+#: gui/session/selection_details.js:271
 msgid "Current/max gatherers"
 msgstr "Jelenlegi/maximum gyűjtögető"
 
-#: gui/session/selection_details.js:291
+#: gui/session/selection_details.js:293
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:422
+#: gui/session/selection_details.js:424
 msgid "Capture Points:"
 msgstr "Foglalási pontok:"
 
-#: gui/session/selection_details.js:430
+#: gui/session/selection_details.js:432
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:431
+#: gui/session/selection_details.js:433
 msgid "Carrying:"
 msgstr "Szállít:"
 
-#: gui/session/selection_details.js:434 gui/session/selection_details.js:443
+#: gui/session/selection_details.js:436 gui/session/selection_details.js:445
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(amount)s %(type)s"
 
-#: gui/session/selection_details.js:439
+#: gui/session/selection_details.js:441
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:440
+#: gui/session/selection_details.js:442
 msgid "Loot:"
 msgstr "Zsákmány:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:501
+#: gui/session/selection_details.js:503
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:525
+#: gui/session/selection_details.js:527
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:532
+#: gui/session/selection_details.js:534
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:63
+#: gui/session/selection_panels.js:65
 msgid "Raise an alert!"
 msgstr "Riasztás küldése!"
 
-#: gui/session/selection_panels.js:66
+#: gui/session/selection_panels.js:68
 msgid "End of alert."
 msgstr "Riasztás vége."
 
-#: gui/session/selection_panels.js:378
+#: gui/session/selection_panels.js:376
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "%(name)s kirakása"
 
-#: gui/session/selection_panels.js:379
+#: gui/session/selection_panels.js:377
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Egy kattintás 1 kirakásához. Shift-kattintás az összes ilyen típusú kirakásához."
 
-#: gui/session/selection_panels.js:381 gui/session/selection_panels.js:871
+#: gui/session/selection_panels.js:379 gui/session/selection_panels.js:869
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Játékos: %(playername)s"
 
-#: gui/session/selection_panels.js:416
+#: gui/session/selection_panels.js:414
 msgid "Lock Gate"
 msgstr "Kapu bezárása"
 
-#: gui/session/selection_panels.js:422
+#: gui/session/selection_panels.js:420
 msgid "Unlock Gate"
 msgstr "Kapu kinyitása"
 
-#: gui/session/selection_panels.js:472
+#: gui/session/selection_panels.js:470
 msgid "Pack"
 msgstr "Becsomagolás"
 
-#: gui/session/selection_panels.js:480
+#: gui/session/selection_panels.js:478
 msgid "Unpack"
 msgstr "Kibontás"
 
-#: gui/session/selection_panels.js:488
+#: gui/session/selection_panels.js:486
 msgid "Cancel Packing"
 msgstr "Becsomagolás megszakítása"
 
-#: gui/session/selection_panels.js:496
+#: gui/session/selection_panels.js:494
 msgid "Cancel Unpacking"
 msgstr "Kibontás megszakítása"
 
-#: gui/session/selection_panels.js:583
+#: gui/session/selection_panels.js:581
 msgid "Insufficient population capacity:"
 msgstr "Nem elegendő népességkapacitás:"
 
-#: gui/session/selection_panels.js:584
+#: gui/session/selection_panels.js:582
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:747
+#: gui/session/selection_panels.js:745
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s, %(class)s osztályú entitás"
 msgstr[1] "%(number)s, %(class)s osztályú entitás"
 
-#: gui/session/selection_panels.js:753
+#: gui/session/selection_panels.js:751
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Hátralévő: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:754
+#: gui/session/selection_panels.js:752
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:1064
+#: gui/session/selection_panels.js:1062
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "Fejlesztés erre: %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1069
+#: gui/session/selection_panels.js:1067
 #, javascript-format
 msgid "Upgrade to %(name)s."
-msgstr ""
+msgstr "Fejlesztés erre: %(name)s."
 
-#: gui/session/selection_panels.js:1086
+#: gui/session/selection_panels.js:1084
 msgid "Cancel Upgrading"
 msgstr "Fejlesztés megszakítása"
 
-#: gui/session/selection_panels.js:1091
+#: gui/session/selection_panels.js:1089
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "Nem lehet fejleszteni, ha az egység már fejlesztés alatt van."
 
-#: gui/session/selection_panels_helpers.js:56
+#: gui/session/selection_panels_helpers.js:51
 msgctxt "stance"
 msgid "Violent"
 msgstr "Erőszakos"
 
-#: gui/session/selection_panels_helpers.js:58
+#: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
 msgid "Aggressive"
 msgstr "Agresszív"
 
-#: gui/session/selection_panels_helpers.js:60
+#: gui/session/selection_panels_helpers.js:55
 msgctxt "stance"
 msgid "Defensive"
 msgstr "Védekező"
 
-#: gui/session/selection_panels_helpers.js:62
+#: gui/session/selection_panels_helpers.js:57
 msgctxt "stance"
 msgid "Passive"
 msgstr "Passzív"
 
-#: gui/session/selection_panels_helpers.js:64
+#: gui/session/selection_panels_helpers.js:59
 msgctxt "stance"
 msgid "Standground"
 msgstr "Ellenálló"
 
-#: gui/session/selection_panels_helpers.js:76
+#: gui/session/selection_panels_helpers.js:71
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
 msgstr "Közeli ellenfelek támadása a támadókra koncentrálva, és üldözés, amíg láthatóak"
 
-#: gui/session/selection_panels_helpers.js:78
+#: gui/session/selection_panels_helpers.js:73
 msgctxt "stance"
 msgid "Attack nearby opponents"
 msgstr "Közeli ellenfelek támadása"
 
-#: gui/session/selection_panels_helpers.js:80
+#: gui/session/selection_panels_helpers.js:75
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
 msgstr "Közeli ellenfelek támadása, üldözés rövid távon, és visszatérés az eredeti helyre"
 
-#: gui/session/selection_panels_helpers.js:82
+#: gui/session/selection_panels_helpers.js:77
 msgctxt "stance"
 msgid "Flee if attacked"
 msgstr "Menekülés, ha támadják"
 
-#: gui/session/selection_panels_helpers.js:84
+#: gui/session/selection_panels_helpers.js:79
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
 msgstr "Ellenfelek támadása a hatótávolságon belül, de ne mozogjon"
 
-#: gui/session/selection_panels_helpers.js:98
+#: gui/session/selection_panels_helpers.js:93
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
 msgstr "Jelenlegi létszám: %(count)s, határ: %(limit)s."
 
-#: gui/session/selection_panels_helpers.js:112
+#: gui/session/selection_panels_helpers.js:107
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
 msgstr "%(changer)s növeli a határt %(change)s egységgel."
 
-#: gui/session/selection_panels_helpers.js:113
+#: gui/session/selection_panels_helpers.js:108
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
 msgstr "%(changer)s csökkenti a határt %(change)s egységgel."
 
-#: gui/session/selection_panels_helpers.js:144
+#: gui/session/selection_panels_helpers.js:139
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
 msgstr "%(buildings)s*%(batchSize)s"
 
-#: gui/session/selection_panels_helpers.js:158
+#: gui/session/selection_panels_helpers.js:153
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 msgstr "%(action)s %(number)s kiképzéséhez (%(fullBatch)s + %(remainderBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:160
+#: gui/session/selection_panels_helpers.js:155
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
 msgstr "%(action)s %(number)s kiképzéséhez (%(fullBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:162
+#: gui/session/selection_panels_helpers.js:157
 #, javascript-format
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)s %(number)s kiképzéséhez."
 
-#: gui/session/selection_panels_helpers.js:167
+#: gui/session/selection_panels_helpers.js:162
 msgid "Shift-click"
 msgstr "Shift + kattintás"
 
-#: gui/session/session.js:420
-msgctxt "chat input"
-msgid "Type the message to send."
-msgstr "Írd be a küldendő üzenetet."
-
-#: gui/session/session.js:422
-#, javascript-format
-msgid "Press %(hotkey)s to open the public chat."
-msgstr "Nyomd meg a nyilvános csevegés megnyitásához: %(hotkey)s."
-
-#: gui/session/session.js:425
-#, javascript-format
-msgid "Press %(hotkey)s to open the observer chat."
-msgstr "Nyomd meg a megfigyelő csevegés megnyitásához: %(hotkey)s."
-
-#: gui/session/session.js:426
-#, javascript-format
-msgid "Press %(hotkey)s to open the ally chat."
-msgstr "Nyomd meg a szövetséges csevegés megnyitásához: %(hotkey)s."
-
-#: gui/session/session.js:428
-#, javascript-format
-msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr "Nyomd meg a legutóbb kiválasztott privát csevegés megnyitásához: %(hotkey)s."
-
-#: gui/session/session.js:432
-msgid "Find idle worker"
-msgstr "Tétlen munkás keresése"
-
-#: gui/session/session.js:436 gui/session/session.js:440
-#: gui/session/diplomacy_window.xml:(caption):85
-msgid "Toggle Diplomacy Colors"
-msgstr "Diplomáciai színek be/ki"
-
-#: gui/session/session.js:444 gui/session/diplomacy_window.xml:(caption):10
-msgid "Diplomacy"
-msgstr "Diplomácia"
-
-#: gui/session/session.js:448 gui/session/unit_actions.js:1255
-msgid "Barter & Trade"
-msgstr "Csere és kereskedelem"
-
-#: gui/session/session.js:451
-#, javascript-format
-msgid ""
-"Select one type of goods you want to modify by clicking on it, and then use "
-"the arrows of the other types to modify their shares. You can also press "
-"%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "Válassz ki egy árutípust, amit módosítani szeretnél, azzal hogy rákattintasz, aztán használt a nyilakat hogy módosítsd az arányukat. A következő gyorsgombbal az egyik típus arányát azonnal 100%%-ra állíthatod: %(hotkey)s."
-
-#: gui/session/session.js:455
-#, javascript-format
-msgid ""
-"Start by selecting the resource you wish to sell from the upper row. For "
-"each time the lower buttons are pressed, %(quantity)s of the upper resource "
-"will be sold for the displayed quantity of the lower. Press and hold "
-"%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr "Kezdd az eladandó nyersanyag kiválasztásával. A lenti gombok minden egyes megnyomásakor %(quantity)s egység eladásra kerül a fenti nyersanyagból, a lentiből megjelenített mennyiségért. Nyomd meg és tartsd a(z) %(hotkey)s gombot, hogy ideiglenesen %(multiplier)s× mennyiségre növeld a beváltott árut."
-
-#: gui/session/session.js:463 gui/session/objectives_window.xml:(caption):15
-msgid "Objectives"
-msgstr "Célok"
-
-#: gui/session/session.js:655
-#, javascript-format
-msgid ""
-"%(civ)s\n"
-"%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
-"Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Történelem megtekintése / Épületfa\nA legutóbb megnyitott lesz újra megnyitva kattintáskor."
-
-#: gui/session/session.js:901
+#: gui/session/session.js:659
 msgid "Do you want to quit?"
 msgstr "Ki akarsz lépni?"
 
-#: gui/session/session.js:907
+#: gui/session/session.js:665
 msgid "VICTORIOUS!"
 msgstr "GYŐZELEM!"
 
-#: gui/session/session.js:908
+#: gui/session/session.js:666
 msgid "DEFEATED!"
 msgstr "LEGYŐZTEK!"
 
-#: gui/session/session.js:909
+#: gui/session/session.js:667
 msgid "OK"
 msgstr "OK"
 
-#: gui/session/session.js:987
+#: gui/session/session.js:718
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "A visszajátszás befejeződött. Ki akarsz lépni?"
 
-#: gui/session/session.js:988
+#: gui/session/session.js:719
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Megerősítés"
 
-#: gui/session/session.js:989
+#: gui/session/session.js:720
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Nem"
 
-#: gui/session/session.js:989
+#: gui/session/session.js:720
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Igen"
 
-#: gui/session/session.js:1184
-#, javascript-format
-msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
-msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
-
-#: gui/session/session.js:1191
-#, javascript-format
-msgid "%(playername)s: %(statValue)s"
-msgstr "%(playername)s: %(statValue)s"
-
-#: gui/session/session.js:1214
-#, javascript-format
-msgid "%(order)s: %(hotkey)s to change order."
-msgstr "%(order)s: %(hotkey)s a sorrend módosításához."
-
-#: gui/session/session.js:1216
-msgid "Unordered"
-msgstr "Rendezetlen"
-
-#: gui/session/session.js:1216
-msgid "Descending"
-msgstr "Csökkenő"
-
-#: gui/session/session.js:1216
-msgid "Ascending"
-msgstr "Növekvő"
-
-#: gui/session/session.js:1242
-#, javascript-format
-msgid "%(popCount)s/%(popLimit)s"
-msgstr "%(popCount)s/%(popLimit)s"
-
-#: gui/session/session.js:1243
-msgid "Population (current / limit)"
-msgstr "Népesség (jelenlegi / maximális)"
-
-#: gui/session/session.js:1244
-#, javascript-format
-msgid "Maximum population: %(popCap)s"
-msgstr "Legnagyobb népesség: %(popCap)s"
-
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1452
+#: gui/session/session.js:906
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
@@ -1218,7 +651,7 @@ msgstr "Jobb kattintás az új kereskedők alapértelmezett útvonalának megad�
 msgid "Expected gain: %(gain)s"
 msgstr "Elvárt növekedés: %(gain)s"
 
-#: gui/session/unit_actions.js:1030 gui/session/unit_actions.js:1348
+#: gui/session/unit_actions.js:1030 gui/session/unit_actions.js:1373
 msgid "Unload All."
 msgstr "Összes kirakása."
 
@@ -1231,236 +664,791 @@ msgstr "Kijelölt egységek vagy épületek megsemmisítése."
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "%(hotkey)s használata a megerősítő párbeszédek elkerüléséhez."
 
-#: gui/session/unit_actions.js:1087
+#: gui/session/unit_actions.js:1090
+msgid "Destroy everything currently selected?"
+msgstr "Mindent elpusztítasz, amit kijelöltél?"
+
+#: gui/session/unit_actions.js:1091
+msgid "Delete"
+msgstr "Törlés"
+
+#: gui/session/unit_actions.js:1112
 msgid "Abort the current order."
 msgstr "Jelenlegi utasítás megszakítása."
 
-#: gui/session/unit_actions.js:1106
+#: gui/session/unit_actions.js:1131
 msgid "Order the selected units to garrison in a building or unit."
 msgstr "Kijelölt egységek utasítása egy épületbe vagy egységbe történő beszállásolásra."
 
-#: gui/session/unit_actions.js:1129
+#: gui/session/unit_actions.js:1154
 msgid "Unload"
 msgstr "Kirakás"
 
-#: gui/session/unit_actions.js:1147
+#: gui/session/unit_actions.js:1172
 msgid "Order the selected units to repair a building or mechanical unit."
 msgstr "Kijelölt egységek utasítása egy épület vagy mechanikus egység megjavítására."
 
-#: gui/session/unit_actions.js:1166
+#: gui/session/unit_actions.js:1191
 msgid "Focus on Rally Point."
 msgstr "Fókuszálás a gyülekezőhelyre."
 
-#: gui/session/unit_actions.js:1201
+#: gui/session/unit_actions.js:1226
 msgid "Back to Work"
 msgstr "Vissza dolgozni!"
 
-#: gui/session/unit_actions.js:1220
+#: gui/session/unit_actions.js:1245
 msgid "Order the selected units to guard a building or unit."
 msgstr "Kijelölt egységek utasítása egy épület vagy egység védelmére."
 
-#: gui/session/unit_actions.js:1238
+#: gui/session/unit_actions.js:1263
 msgid "Remove guard"
 msgstr "Őr eltávolítása"
 
-#: gui/session/unit_actions.js:1273
+#: gui/session/unit_actions.js:1280
+#: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
+msgid "Barter & Trade"
+msgstr "Csere és kereskedelem"
+
+#: gui/session/unit_actions.js:1298
 msgid "Patrol"
 msgstr "Őrjárat"
 
-#: gui/session/unit_actions.js:1274
+#: gui/session/unit_actions.js:1299
 msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr "A látott ellenséges egységek megtámadása, és az épületek elkerülése."
 
-#: gui/session/unit_actions.js:1300
+#: gui/session/unit_actions.js:1325
 msgid "Press to allow allies to use this dropsite"
 msgstr "Kattints, hogy a szövetségesek használhassák ezt a lerakóhelyet"
 
-#: gui/session/unit_actions.js:1304
+#: gui/session/unit_actions.js:1329
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Kattints, hogy a szövetségesek ne használhassák ezt a lerakóhelyet"
 
-#: gui/session/unit_actions.js:1369
+#: gui/session/unit_actions.js:1394
 msgid "You are allowed to use this dropsite"
 msgstr "Használhatod ezt a lerakóhelyet"
 
-#: gui/session/unit_actions.js:1374
+#: gui/session/unit_actions.js:1399
 msgid "The use of this dropsite is prohibited"
 msgstr "A lerakóhely használata tiltott"
 
-#: gui/session/unit_actions.js:1447
+#: gui/session/unit_actions.js:1473
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Az egységet meg kell ölni, mielőtt gyűjteni lehetne belőle"
 
-#: gui/session/unit_actions.js:1450
+#: gui/session/unit_actions.js:1476
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Nem tudod elpusztítani ezt az egységet, mert a foglalási pontok kevesebb mint fele van a birtokodban."
 
-#: gui/session/unit_actions.js:1453
+#: gui/session/unit_actions.js:1479
 msgid "This entity is undeletable"
 msgstr "Ez az egység nem törölhető"
 
-#: gui/session/chat_window.xml:(caption):19
+#: gui/session/chat/ChatAddressees.js:88
+msgctxt "chat addressee"
+msgid "Everyone"
+msgstr "Mindenki"
+
+#: gui/session/chat/ChatAddressees.js:94
+msgctxt "chat addressee"
+msgid "Allies"
+msgstr "Szövetségesek"
+
+#: gui/session/chat/ChatAddressees.js:95
+msgctxt "chat message context"
+msgid "Ally"
+msgstr "Szövetséges"
+
+#: gui/session/chat/ChatAddressees.js:105
+msgctxt "chat addressee"
+msgid "Enemies"
+msgstr "Ellenségek"
+
+#: gui/session/chat/ChatAddressees.js:106
+msgctxt "chat message context"
+msgid "Enemy"
+msgstr "Ellenség"
+
+#: gui/session/chat/ChatAddressees.js:116
+msgctxt "chat addressee"
+msgid "Observers"
+msgstr "Megfigyelők"
+
+#: gui/session/chat/ChatAddressees.js:117
+msgctxt "chat message context"
+msgid "Observer"
+msgstr "Megfigyelő"
+
+#: gui/session/chat/ChatAddressees.js:124
+msgctxt "chat message context"
+msgid "Private"
+msgstr "Privát"
+
+#: gui/session/chat/ChatHistory.js:49
+#, javascript-format
+msgid "%(time)s %(message)s"
+msgstr "%(time)s %(message)s"
+
+#: gui/session/chat/ChatHistory.js:61
+#, javascript-format
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
+
+#: gui/session/chat/ChatHistory.js:62
+msgid "HH:mm"
+msgstr "HH:mm"
+
+#: gui/session/chat/ChatHistory.js:82
+msgctxt "chat history filter"
+msgid "Chat and notifications"
+msgstr "Csevegés és értesítések"
+
+#: gui/session/chat/ChatHistory.js:87
+msgctxt "chat history filter"
+msgid "Chat messages"
+msgstr "Csevegés üzenetek"
+
+#: gui/session/chat/ChatHistory.js:92
+msgctxt "chat history filter"
+msgid "Players chat"
+msgstr "Játékos csevegő"
+
+#: gui/session/chat/ChatHistory.js:99
+msgctxt "chat history filter"
+msgid "Ally chat"
+msgstr "Szövetséges csevegés"
+
+#: gui/session/chat/ChatHistory.js:106
+msgctxt "chat history filter"
+msgid "Enemy chat"
+msgstr "Ellenséges csevegés"
+
+#: gui/session/chat/ChatHistory.js:113
+msgctxt "chat history filter"
+msgid "Observer chat"
+msgstr "Megfigyelő csevegés"
+
+#: gui/session/chat/ChatHistory.js:120
+msgctxt "chat history filter"
+msgid "Private chat"
+msgstr "Személyes csevegés"
+
+#: gui/session/chat/ChatHistory.js:125
+msgctxt "chat history filter"
+msgid "Game notifications"
+msgstr "Játékértesítések"
+
+#: gui/session/chat/ChatHistory.js:130
+msgctxt "chat history filter"
+msgid "Network notifications"
+msgstr "Hálózati értesítések"
+
+#: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
-msgid "Filter:"
-msgstr "Szűrő:"
+msgid "Type the message to send."
+msgstr "Írd be a küldendő üzenetet."
 
-#: gui/session/chat_window.xml:(caption):47
-msgctxt "chat input"
-msgid "To:"
-msgstr "Címzett:"
+#: gui/session/chat/ChatInput.js:37
+#, javascript-format
+msgid "Press %(hotkey)s to open the public chat."
+msgstr "Nyomd meg a nyilvános csevegés megnyitásához: %(hotkey)s."
 
-#: gui/session/chat_window.xml:(caption):61
-msgctxt "chat input"
-msgid "Text:"
-msgstr "Szöveg:"
+#: gui/session/chat/ChatInput.js:40
+#, javascript-format
+msgid "Press %(hotkey)s to open the observer chat."
+msgstr "Nyomd meg a megfigyelő csevegés megnyitásához: %(hotkey)s."
 
-#: gui/session/chat_window.xml:(caption):80
-msgid "Cancel"
-msgstr "Mégse"
+#: gui/session/chat/ChatInput.js:41
+#, javascript-format
+msgid "Press %(hotkey)s to open the ally chat."
+msgstr "Nyomd meg a szövetséges csevegés megnyitásához: %(hotkey)s."
 
-#: gui/session/chat_window.xml:(caption):97
-msgctxt "chat"
-msgid "History"
-msgstr "Előzmények"
+#: gui/session/chat/ChatInput.js:43
+#, javascript-format
+msgid "Press %(hotkey)s to open the previously selected private chat."
+msgstr "Nyomd meg a legutóbb kiválasztott privát csevegés megnyitásához: %(hotkey)s."
 
-#: gui/session/chat_window.xml:(caption):102
-msgid "Send"
-msgstr "Küldés"
+#. Translation: A player that left the game joins again
+#: gui/session/chat/ChatMessageFormatNetwork.js:23
+#, javascript-format
+msgid "%(player)s is starting to rejoin the game."
+msgstr "%(player)s megkezdte az újracsatlakozást a játékhoz."
 
-#: gui/session/chat_window.xml:(tooltip):29
-msgctxt "chat input"
-msgid "Filter the chat history."
-msgstr "A csevegés előzményeinek szűrése."
+#. Translation: A player joins the game for the first time
+#: gui/session/chat/ChatMessageFormatNetwork.js:25
+#, javascript-format
+msgid "%(player)s is starting to join the game."
+msgstr "%(player)s megkezdte az csatlakozást a játékhoz."
 
-#: gui/session/chat_window.xml:(tooltip):56
-msgctxt "chat input"
-msgid "Select chat addressee."
-msgstr "Válaszd ki a csevegés címzettjét."
+#: gui/session/chat/ChatMessageFormatNetwork.js:34
+#, javascript-format
+msgid "%(player)s has left the game."
+msgstr "%(player)s elhagyta a játékot."
 
-#: gui/session/diplomacy_window.xml:(caption):15
-msgid "Name"
-msgstr "Név"
+#: gui/session/chat/ChatMessageFormatNetwork.js:46
+#, javascript-format
+msgid "%(username)s has been banned"
+msgstr "%(username)s ki lett tiltva"
 
-#: gui/session/diplomacy_window.xml:(caption):18
-msgid "Civilization"
-msgstr "Civilizáció"
+#: gui/session/chat/ChatMessageFormatNetwork.js:47
+#, javascript-format
+msgid "%(username)s has been kicked"
+msgstr "%(username)s ki lett rúgva"
 
-#: gui/session/diplomacy_window.xml:(caption):24
-msgid "Theirs"
-msgstr "Övék"
+#. Translation: A player that left the game joins again
+#: gui/session/chat/ChatMessageFormatNetwork.js:64
+#, javascript-format
+msgid "%(player)s has rejoined the game."
+msgstr "%(player)s újracsatlakozott a játékhoz."
 
-#: gui/session/diplomacy_window.xml:(caption):27
-msgid "A"
-msgstr "Sz"
+#. Translation: A player joins the game for the first time
+#: gui/session/chat/ChatMessageFormatNetwork.js:66
+#, javascript-format
+msgid "%(player)s has joined the game."
+msgstr "%(player)s csatlakozott a játékhoz."
 
-#: gui/session/diplomacy_window.xml:(caption):31
-msgid "N"
-msgstr "S"
+#: gui/session/chat/ChatMessageFormatPlayer.js:57
+msgid "no-context"
+msgstr ""
 
-#: gui/session/diplomacy_window.xml:(caption):35
-msgid "E"
-msgstr "E"
+#: gui/session/chat/ChatMessageFormatPlayer.js:61
+#, javascript-format
+msgid "<%(user)s>"
+msgstr "<%(user)s>"
 
-#: gui/session/diplomacy_window.xml:(caption):39
-msgid "Tribute"
-msgstr "Sarc"
+#: gui/session/chat/ChatMessageFormatPlayer.js:159
+#, javascript-format
+msgid "(%(context)s) %(userTag)s %(message)s"
+msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/diplomacy_window.xml:(caption):90
-#: gui/session/objectives_window.xml:(caption):43
-#: gui/session/trade_window.xml:(caption):108
-msgid "Close"
-msgstr "Bezárás"
+#: gui/session/chat/ChatMessageFormatPlayer.js:160
+#, javascript-format
+msgid "%(userTag)s %(message)s"
+msgstr "%(userTag)s %(message)s"
 
-#: gui/session/menu.xml:(caption):16
-msgid "Manual"
-msgstr "Kézikönyv"
+#: gui/session/chat/ChatMessageFormatPlayer.js:163
+#, javascript-format
+msgid "(%(context)s) * %(user)s %(message)s"
+msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/menu.xml:(caption):27
-msgid "Chat"
-msgstr "Csevegés"
+#: gui/session/chat/ChatMessageFormatPlayer.js:164
+#, javascript-format
+msgid "* %(user)s %(message)s"
+msgstr "* %(user)s %(message)s"
 
-#: gui/session/menu.xml:(caption):38
-msgid "Save"
-msgstr "Mentés"
+#: gui/session/chat/ChatMessageFormatSimulation.js:16
+#, javascript-format
+msgid "Your livestock has been attacked by %(attacker)s!"
+msgstr "%(attacker)s megtámadta az állataidat!"
 
-#: gui/session/menu.xml:(caption):51
-msgid "Summary"
-msgstr "Összefoglaló"
+#: gui/session/chat/ChatMessageFormatSimulation.js:17
+#, javascript-format
+msgid "You have been attacked by %(attacker)s!"
+msgstr "%(attacker)s megtámadott!"
 
-#: gui/session/menu.xml:(caption):63
-msgid "Lobby"
-msgstr "Váró"
+#: gui/session/chat/ChatMessageFormatSimulation.js:38
+#, javascript-format
+msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
+msgstr "%(player)s cserélt: %(amountsBought)s erre: %(amountsSold)s."
 
-#: gui/session/menu.xml:(caption):75
-msgid "Options"
-msgstr "Beállítások"
+#: gui/session/chat/ChatMessageFormatSimulation.js:70
+#, javascript-format
+msgid "You are now allied with %(player)s."
+msgstr "Mostantól %(player)s szövetségese vagy."
 
-#: gui/session/menu.xml:(caption):97
-msgid "Resign"
-msgstr "Feladás"
+#: gui/session/chat/ChatMessageFormatSimulation.js:71
+#, javascript-format
+msgid "You are now at war with %(player)s."
+msgstr "Mostantól háborúban állsz vele: %(player)s."
 
-#: gui/session/menu.xml:(caption):108 gui/session/session.xml:(caption):59
-msgid "Exit"
-msgstr "Kilépés"
+#: gui/session/chat/ChatMessageFormatSimulation.js:72
+#, javascript-format
+msgid "You are now neutral with %(player)s."
+msgstr "Mostantól semleges a kapcsolatod vele: %(player)s."
 
-#: gui/session/menu.xml:(tooltip):64
-msgid "Show the multiplayer lobby in a dialog window."
-msgstr "A többjátékos váró megjelenítése egy párbeszédablakban."
+#: gui/session/chat/ChatMessageFormatSimulation.js:75
+#, javascript-format
+msgid "%(player)s is now allied with you."
+msgstr "%(player)s mostantól a szövetségesed."
 
-#: gui/session/session.xml:(caption):69
+#: gui/session/chat/ChatMessageFormatSimulation.js:76
+#, javascript-format
+msgid "%(player)s is now at war with you."
+msgstr "%(player)s mostantól háborúban áll veled."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:77
+#, javascript-format
+msgid "%(player)s is now neutral with you."
+msgstr "%(player)s mostantól semlegesen áll hozzád."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:80
+#, javascript-format
+msgid "%(player)s is now allied with %(player2)s."
+msgstr "%(player)s mostantól %(player2)s szövetségese."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:81
+#, javascript-format
+msgid "%(player)s is now at war with %(player2)s."
+msgstr "%(player)s mostantól háborúban áll vele: %(player2)s."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:82
+#, javascript-format
+msgid "%(player)s is now neutral with %(player2)s."
+msgstr "%(player)s mostantól semlegesen áll hozzá: %(player2)s."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:98
+#, javascript-format
+msgid "%(player)s is advancing to the %(phaseName)s."
+msgstr "%(player)s előrelép a %(phaseName)sba."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:100
+#, javascript-format
+msgid "The %(phaseName)s of %(player)s has been aborted."
+msgstr "%(player)s %(phaseName)sba lépése megszakítva."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:103
+#, javascript-format
+msgid "%(player)s has reached the %(phaseName)s."
+msgstr "%(player)s elérte a %(phaseName)st."
+
+#. Translation: This comma is used for separating first to penultimate
+#. elements in an enumeration.
+#: gui/session/chat/ChatMessageFormatSimulation.js:126
+msgid ", "
+msgstr ", "
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:142
+#, javascript-format
+msgid "%(player)s has sent you %(amounts)s."
+msgstr "%(player)s ennyit küldött neked: %(amounts)s."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:144
+#, javascript-format
+msgid "You have sent %(player2)s %(amounts)s."
+msgstr "%(player2)s játékosnak küldtél ennyit: %(amounts)s."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:149
+#, javascript-format
+msgid "%(player)s has sent %(player2)s %(amounts)s."
+msgstr "%(player)s %(player2)s játékosnak küldött ennyit: %(amounts)s."
+
+#: gui/session/developer_overlay/DeveloperOverlay.js:67
+msgid "The Developer Overlay was opened."
+msgstr "A fejlesztői felület megnyílt."
+
+#: gui/session/developer_overlay/DeveloperOverlay.js:68
+msgid "The Developer Overlay was closed."
+msgstr "A fejlesztői felület bezáródott."
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:15
+msgid "Control all units"
+msgstr "Összes egység irányítása"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:42
+msgid "Change perspective"
+msgstr "Nézőpont megváltoztatása"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:60
+msgid "Display selection state"
+msgstr "Kiválasztási állapot megjelenítése"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:73
+msgid "Pathfinder overlay"
+msgstr "Útvonalkereső réteg"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:86
+msgid "Hierarchical pathfinder overlay"
+msgstr "Hierarchikus útvonalkereső réteg"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:99
+msgid "Obstruction overlay"
+msgstr "Akadály réteg"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:112
+msgid "Unit motion overlay"
+msgstr "Egységmozgás réteg"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:125
+msgid "Range overlay"
+msgstr "Hatótávolság réteg"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:138
+msgid "Bounding box overlay"
+msgstr "Határoló doboz réteg"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:151
+msgid "Restrict camera"
+msgstr "Kamera korlátozása"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:169
+msgid "Reveal map"
+msgstr "Térkép felfedése"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:195
+msgid "Enable time warp"
+msgstr "Időhurok engedélyezése"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:208
+msgid "Promote selected units"
+msgstr "Kiválasztott egységek előléptetése"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:229
+msgid "Enable culling"
+msgstr "Levágás engedélyezése"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:247
+msgid "Lock cull camera"
+msgstr "Levágási kamera rögzítése"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:265
+msgid "Display camera frustum"
+msgstr "Kamera csonka gúlájának megjelenítése"
+
+#: gui/session/developer_overlay/TimeWarp.js:63
+msgid "Time warp mode"
+msgstr "Időhurok mód"
+
+#: gui/session/developer_overlay/TimeWarp.js:65
+msgid ""
+"Note: time warp mode is a developer option, and not intended for use over "
+"long periods of time. Using it incorrectly may cause the game to run out of "
+"memory or crash."
+msgstr "Megjegyzés: az időhurok mód egy fejlesztői beállítás, és nem hosszú idejű felhasználásra szánt. Nem megfelelő használata a játék összeomlását okozhatja, vagy elfogyhat a memória."
+
+#: gui/session/diplomacy/DiplomacyDialogCeasefireCounter.js:27
+#, javascript-format
+msgctxt "ceasefire"
+msgid "Remaining ceasefire time: %(time)s."
+msgstr "A tűzszünetből hátralévő idő: %(time)s."
+
+#: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
+#: gui/session/minimap/MiniMapDiplomacyColorsButton.js:34
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):85
+msgid "Toggle Diplomacy Colors"
+msgstr "Diplomáciai színek be/ki"
+
+#: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
+msgid "Request your allies to attack this enemy"
+msgstr "Szövetségesek kérése, hogy támadják meg ezt az ellenséget"
+
+#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
+msgctxt "team"
+msgid "None"
+msgstr "Nincs"
+
+#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:78
+#: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):28
+msgid "Ally"
+msgstr "Szövetséges"
+
+#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:81
+#: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):32
+msgid "Neutral"
+msgstr "Semleges"
+
+#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:84
+#: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):36
+msgid "Enemy"
+msgstr "Ellenség"
+
+#: gui/session/diplomacy/playercontrols/SpyRequestButton.js:139
+msgid ""
+"Bribe a random unit from this player and share its vision during a limited "
+"period."
+msgstr "Fizesd le ennek a játékosnak egy véletlenszerű egységét, és korlátozott ideig osztozz a látókörén."
+
+#: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
+msgid "A failed bribe will cost you:"
+msgstr "A sikertelen megvesztegetés ennyibe fog kerülni:"
+
+#: gui/session/diplomacy/playercontrols/StanceButton.js:60
+msgctxt "diplomatic stance selection"
+msgid "x"
+msgstr "x"
+
+#: gui/session/diplomacy/playercontrols/TributeButton.js:112
+#, javascript-format
+msgid ""
+"Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
+"to tribute %(greaterAmount)s."
+msgstr "%(resourceAmount)s %(resourceType)s sarc fizetése %(playerName)s részére. Shift-kattintás %(greaterAmount)s sarc fizetéséhez."
+
+#: gui/session/minimap/MiniMapIdleWorkerButton.js:39
+msgid "Find idle worker"
+msgstr "Tétlen munkás keresése"
+
+#: gui/session/top_panel/CivIcon.js:77
+#, javascript-format
+msgid ""
+"%(civ)s\n"
+"%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
+"Last opened will be reopened on click."
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Történelem megtekintése / Épületfa\nA legutóbb megnyitott lesz újra megnyitva kattintáskor."
+
+#: gui/session/top_panel/CounterManager.js:100
+#, javascript-format
+msgid "%(order)s: %(hotkey)s to change order."
+msgstr "%(order)s: %(hotkey)s a sorrend módosításához."
+
+#: gui/session/top_panel/CounterManager.js:104
+msgid "Unordered"
+msgstr "Rendezetlen"
+
+#: gui/session/top_panel/CounterManager.js:106
+msgid "Descending"
+msgstr "Csökkenő"
+
+#: gui/session/top_panel/CounterManager.js:107
+msgid "Ascending"
+msgstr "Növekvő"
+
+#: gui/session/top_panel/CounterManager.js:132
+#, javascript-format
+msgid "%(playername)s: %(statValue)s"
+msgstr "%(playername)s: %(statValue)s"
+
+#: gui/session/top_panel/CounterPopulation.js:56
+#, javascript-format
+msgid "%(popCount)s/%(popLimit)s"
+msgstr "%(popCount)s/%(popLimit)s"
+
+#: gui/session/top_panel/CounterPopulation.js:58
+msgid "Population (current / limit)"
+msgstr "Népesség (jelenlegi / maximális)"
+
+#: gui/session/top_panel/CounterPopulation.js:60
+#, javascript-format
+msgid "Maximum population: %(popCap)s"
+msgstr "Legnagyobb népesség: %(popCap)s"
+
+#: gui/session/top_panel/CounterPopulation.js:62
+#, javascript-format
+msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
+msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
+
+#: gui/session/top_panel/PlayerViewControl.js:123
+msgid "Observer"
+msgstr "Megfigyelő"
+
+#: gui/session/top_panel/IconButtons/DiplomacyDialogButton.js:29
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):10
+msgid "Diplomacy"
+msgstr "Diplomácia"
+
+#: gui/session/top_panel/IconButtons/ObjectivesDialogButton.js:23
+#: gui/session/objectives/ObjectivesDialog.xml:(caption):15
+msgid "Objectives"
+msgstr "Célok"
+
+#: gui/session/trade/BarterButton.js:100
+#, javascript-format
+msgid "Buy %(resource)s"
+msgstr "%(resource)s vétele"
+
+#: gui/session/trade/BarterButton.js:101
+#, javascript-format
+msgid "Sell %(resource)s"
+msgstr "%(resource)s eladása"
+
+#: gui/session/trade/BarterButton.js:102
+#, javascript-format
+msgctxt "buy action"
+msgid "+%(amount)s"
+msgstr "+%(amount)s"
+
+#: gui/session/trade/BarterButton.js:103
+#, javascript-format
+msgctxt "sell action"
+msgid "-%(amount)s"
+msgstr "-%(amount)s"
+
+#: gui/session/trade/TradeButton.js:56
+#, javascript-format
+msgctxt "trading good ratio"
+msgid "%(amount)s%%"
+msgstr "%(amount)s%%"
+
+#: gui/session/trade/TradeButtonManager.js:76
+#, javascript-format
+msgid ""
+"Select one type of goods you want to modify by clicking on it, and then use "
+"the arrows of the other types to modify their shares. You can also press "
+"%(hotkey)s while selecting one type of goods to bring its share to 100%%."
+msgstr "Válassz ki egy árutípust, amit módosítani szeretnél, azzal hogy rákattintasz, aztán használt a nyilakat hogy módosítsd az arányukat. A következő gyorsgombbal az egyik típus arányát azonnal 100%%-ra állíthatod: %(hotkey)s."
+
+#: gui/session/trade/TradeDialogBarterPanel.js:45
+#, javascript-format
+msgid ""
+"Start by selecting the resource you wish to sell from the upper row. For "
+"each time the lower buttons are pressed, %(quantity)s of the upper resource "
+"will be sold for the displayed quantity of the lower. Press and hold "
+"%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
+msgstr "Kezdd az eladandó nyersanyag kiválasztásával. A lenti gombok minden egyes megnyomásakor %(quantity)s egység eladásra kerül a fenti nyersanyagból, a lentiből megjelenített mennyiségért. Nyomd meg és tartsd a(z) %(hotkey)s gombot, hogy ideiglenesen %(multiplier)s× mennyiségre növeld a beváltott árut."
+
+#: gui/session/trade/TraderStatusTextLand.js:15
+#, javascript-format
+msgid "There is %(numberTrading)s land trader trading"
+msgid_plural "There are %(numberTrading)s land traders trading"
+msgstr[0] "%(numberTrading)s szárazföldi kereskedő üzletel."
+msgstr[1] "%(numberTrading)s szárazföldi kereskedő üzletel"
+
+#: gui/session/trade/TraderStatusTextLand.js:25
+#, javascript-format
+msgid "%(numberOfLandTraders)s inactive"
+msgid_plural "%(numberOfLandTraders)s inactive"
+msgstr[0] "%(numberOfLandTraders)s inaktív"
+msgstr[1] "%(numberOfLandTraders)s inaktív"
+
+#: gui/session/trade/TraderStatusTextLand.js:30
+#, javascript-format
+msgid "%(numberOfLandTraders)s land trader inactive"
+msgid_plural "%(numberOfLandTraders)s land traders inactive"
+msgstr[0] "%(numberOfLandTraders)s szárazföldi kereskedő inaktív"
+msgstr[1] "%(numberOfLandTraders)s szárazföldi kereskedő inaktív"
+
+#: gui/session/trade/TraderStatusTextLand.js:40
+#, javascript-format
+msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
+msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
+msgstr[0] "%(numberGarrisoned)s állomásozik egy kereskedőhajón"
+msgstr[1] "%(numberGarrisoned)s állomásozik egy kereskedőhajón"
+
+#: gui/session/trade/TraderStatusTextLand.js:45
+#, javascript-format
+msgid ""
+"There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
+"ship"
+msgid_plural ""
+"There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
+" ship"
+msgstr[0] "%(numberGarrisoned)s szárazföldi kereskedő állomásozik egy kereskedőhajón"
+msgstr[1] "%(numberGarrisoned)s szárazföldi kereskedő állomásozik egy kereskedőhajón"
+
+#: gui/session/trade/TraderStatusTextLand.js:65
+#, javascript-format
+msgid "%(openingTradingString)s, and %(garrisonedString)s."
+msgstr "%(openingTradingString)s és %(garrisonedString)s."
+
+#: gui/session/trade/TraderStatusTextLand.js:66
+#, javascript-format
+msgid ""
+"%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
+msgstr "%(openingTradingString)s, %(garrisonedString)s és %(inactiveString)s."
+
+#: gui/session/trade/TraderStatusTextLand.js:69
+#: gui/session/trade/TraderStatusTextShip.js:47
+#, javascript-format
+msgid "%(openingTradingString)s."
+msgstr "%(openingTradingString)s."
+
+#: gui/session/trade/TraderStatusTextLand.js:70
+#: gui/session/trade/TraderStatusTextShip.js:46
+#, javascript-format
+msgid "%(openingTradingString)s, and %(inactiveString)s."
+msgstr "%(openingTradingString)s és %(inactiveString)s."
+
+#: gui/session/trade/TraderStatusTextLand.js:75
+#, javascript-format
+msgid "%(openingGarrisonedString)s."
+msgstr "%(openingGarrisonedString)s."
+
+#: gui/session/trade/TraderStatusTextLand.js:76
+#, javascript-format
+msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
+msgstr "%(openingGarrisonedString)s és %(inactiveString)s."
+
+#: gui/session/trade/TraderStatusTextLand.js:79
+#: gui/session/trade/TraderStatusTextShip.js:50
+#, javascript-format
+msgid "There is %(inactiveString)s."
+msgid_plural "There are %(inactiveString)s."
+msgstr[0] "%(inactiveString)s van."
+msgstr[1] "%(inactiveString)s van."
+
+#: gui/session/trade/TraderStatusTextLand.js:80
+msgid "There are no land traders."
+msgstr "Nincsenek szárazföldi kereskedők."
+
+#: gui/session/trade/TraderStatusTextShip.js:14
+#, javascript-format
+msgid "There is %(numberTrading)s merchant ship trading"
+msgid_plural "There are %(numberTrading)s merchant ships trading"
+msgstr[0] "%(numberTrading)s hajó kereskedik"
+msgstr[1] "%(numberTrading)s hajó kereskedik"
+
+#: gui/session/trade/TraderStatusTextShip.js:24
+#, javascript-format
+msgid "%(numberOfShipTraders)s inactive"
+msgid_plural "%(numberOfShipTraders)s inactive"
+msgstr[0] "%(numberOfShipTraders)s inaktív"
+msgstr[1] "%(numberOfShipTraders)s inaktív"
+
+#: gui/session/trade/TraderStatusTextShip.js:29
+#, javascript-format
+msgid "%(numberOfShipTraders)s merchant ship inactive"
+msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
+msgstr[0] "%(numberOfShipTraders)s kereskedőhajó inaktív."
+msgstr[1] "%(numberOfShipTraders)s kereskedőhajó inaktív"
+
+#: gui/session/trade/TraderStatusTextShip.js:51
+msgid "There are no merchant ships."
+msgstr "Nincsenek kereskedőhajók."
+
+#: gui/session/GameSpeedControl.xml:(tooltip):11
+msgid "Choose game speed"
+msgstr "Játéksebesség kiválasztása"
+
+#: gui/session/PauseOverlay.xml:(caption):7
 msgid "Game Paused"
 msgstr "Játék szüneteltetve"
 
-#: gui/session/session.xml:(caption):72
+#: gui/session/PauseOverlay.xml:(caption):11
 msgid "Click to Resume Game"
 msgstr "Kattints a játék folytatásához"
-
-#: gui/session/top_panel.xml:(tooltip):23
-#: gui/session/top_panel.xml:(caption):29
-msgctxt "observer mode"
-msgid "Follow Player"
-msgstr "Játékos követése"
-
-#: gui/session/top_panel.xml:(tooltip):46
-msgid "Choose player to view"
-msgstr "Válassz megfigyelendő játékost"
-
-#: gui/session/top_panel.xml:(caption):54
-msgid "Observer Mode"
-msgstr "Megfigyelő mód"
-
-#: gui/session/trade_window.xml:(caption):9
-msgid "Barter & Trade Goods"
-msgstr "Áruk cseréje és kereskedelme"
-
-#: gui/session/trade_window.xml:(caption):16
-msgid "Barter"
-msgstr "Csere"
-
-#: gui/session/trade_window.xml:(caption):23
-msgid "Sell:"
-msgstr "Eladás:"
-
-#: gui/session/trade_window.xml:(caption):27
-msgid "Buy:"
-msgstr "Vétel:"
-
-#: gui/session/trade_window.xml:(caption):31
-msgid "No Markets Available"
-msgstr "Nincs elérhető piac"
-
-#: gui/session/trade_window.xml:(caption):66
-msgid "Trade"
-msgstr "Árucsere"
-
-#: gui/session/trade_window.xml:(caption):74
-msgid "Goods:"
-msgstr "Áruk:"
 
 #: gui/session/tutorial_panel.xml:(caption):11
 msgid "Ready"
 msgstr "Kész"
+
+#: gui/session/chat/chat_window.xml:(caption):19
+msgctxt "chat input"
+msgid "Filter:"
+msgstr "Szűrő:"
+
+#: gui/session/chat/chat_window.xml:(caption):46
+msgctxt "chat input"
+msgid "To:"
+msgstr "Címzett:"
+
+#: gui/session/chat/chat_window.xml:(caption):60
+msgctxt "chat input"
+msgid "Text:"
+msgstr "Szöveg:"
+
+#: gui/session/chat/chat_window.xml:(caption):71
+msgid "Cancel"
+msgstr "Mégse"
+
+#: gui/session/chat/chat_window.xml:(caption):85
+msgctxt "chat"
+msgid "History"
+msgstr "Előzmények"
+
+#: gui/session/chat/chat_window.xml:(caption):90
+msgid "Send"
+msgstr "Küldés"
+
+#: gui/session/chat/chat_window.xml:(tooltip):29
+msgctxt "chat input"
+msgid "Filter the chat history."
+msgstr "A csevegés előzményeinek szűrése."
+
+#: gui/session/chat/chat_window.xml:(tooltip):55
+msgctxt "chat input"
+msgid "Select chat addressee."
+msgstr "Válaszd ki a csevegés címzettjét."
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -1469,6 +1457,44 @@ msgstr "Kérdés"
 #: gui/session/dialogs/yes_no.xml:(caption):15
 msgid "Yes or no?"
 msgstr "Igen vagy nem?"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):15
+msgid "Name"
+msgstr "Név"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):18
+msgid "Civilization"
+msgstr "Civilizáció"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):21
+msgid "Team"
+msgstr "Csapat"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):24
+msgid "Theirs"
+msgstr "Övék"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):27
+msgid "A"
+msgstr "Sz"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):31
+msgid "N"
+msgstr "S"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):35
+msgid "E"
+msgstr "E"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):39
+msgid "Tribute"
+msgstr "Sarc"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):90
+#: gui/session/objectives/ObjectivesDialog.xml:(caption):43
+#: gui/session/trade/TradeDialog.xml:(caption):22
+msgid "Close"
+msgstr "Bezárás"
 
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):14
 msgid "Hitpoints"
@@ -1504,18 +1530,56 @@ msgid ""
 "right-click to disband the group."
 msgstr "Kattintás a csoportosított egységek kiválasztásához, dupla kattintás a csoportosított egységekre fókuszáláshoz, és jobb kattintás a csoport feloszlatásához."
 
-#: gui/session/top_panel/button_game_speed.xml:(tooltip):10
-msgid "Game Speed"
-msgstr "Játék sebessége"
+#: gui/session/top_panel/BuildLabel.xml:(caption):6
+msgid "ALPHA XXIV"
+msgstr "ALFA XXIV"
 
-#: gui/session/top_panel/button_game_speed.xml:(tooltip):18
-msgid "Choose game speed"
-msgstr "Játéksebesség kiválasztása"
+#: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
+#: gui/session/top_panel/FollowPlayer.xml:(caption):15
+msgctxt "observer mode"
+msgid "Follow Player"
+msgstr "Játékos követése"
 
-#: gui/session/top_panel/button_menu.xml:(caption):14
+#: gui/session/top_panel/MenuButton.xml:(caption):15
 msgid "Menu"
 msgstr "Menü"
 
-#: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XXIV"
-msgstr "ALFA XXIV"
+#: gui/session/top_panel/PlayerViewControl.xml:(tooltip):13
+msgid "Choose player to view"
+msgstr "Válassz megfigyelendő játékost"
+
+#: gui/session/top_panel/PlayerViewControl.xml:(caption):17
+msgid "Observer Mode"
+msgstr "Megfigyelő mód"
+
+#: gui/session/top_panel/IconButtons/GameSpeedButton.xml:(tooltip):9
+msgid "Game Speed"
+msgstr "Játék sebessége"
+
+#: gui/session/trade/BarterPanel.xml:(caption):5
+msgid "Barter"
+msgstr "Csere"
+
+#: gui/session/trade/BarterPanel.xml:(caption):13
+msgid "Sell:"
+msgstr "Eladás:"
+
+#: gui/session/trade/BarterPanel.xml:(caption):17
+msgid "Buy:"
+msgstr "Vétel:"
+
+#: gui/session/trade/BarterPanel.xml:(caption):21
+msgid "No Markets Available"
+msgstr "Nincs elérhető piac"
+
+#: gui/session/trade/TradeDialog.xml:(caption):9
+msgid "Barter & Trade Goods"
+msgstr "Áruk cseréje és kereskedelme"
+
+#: gui/session/trade/TradePanel.xml:(caption):5
+msgid "Trade"
+msgstr "Árucsere"
+
+#: gui/session/trade/TradePanel.xml:(caption):14
+msgid "Goods:"
+msgstr "Áruk:"

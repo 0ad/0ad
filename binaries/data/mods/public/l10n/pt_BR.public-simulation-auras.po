@@ -16,6 +16,7 @@
 # Monstro Socialista <monstrosocialista@gmail.com>, 2016
 # Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2016
 # Rafael Monteiro <rafaelimabsb2@hotmail.com>, 2016
+# Renato Cirino <renatimpirei@gmail.com>, 2019
 # Rui <xymarior@yandex.com>, 2018-2019
 # Tiago, 2018-2019
 # Victor Gregório <vt_marv@hotmail.com>, 2017
@@ -23,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-09-16 17:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-10-27 14:52+0000\n"
+"Last-Translator: Renato Cirino <renatimpirei@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +39,7 @@ msgstr "Reparação do Estaleiro"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr ""
+msgstr "Navios guarnecidos obtém +10 de taxa de regeneração de saúde."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -46,7 +47,7 @@ msgstr "Bênção dos Deuses"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Humans +3 health regeneration rate."
-msgstr ""
+msgstr "Humanos obtém +3 de taxa de regeneração de saúde."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -54,7 +55,7 @@ msgstr "Fervor Religioso"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr ""
+msgstr "Soldados obtém +20% de ataque corpo-a-corpo e de dano à distância."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -176,7 +177,7 @@ msgstr "Liga de Delos"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Allied Warships −25% construction time."
-msgstr ""
+msgstr "Navios de Guerra Aliados -25% tempo de construção"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -184,7 +185,7 @@ msgstr "Druidas"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allied Healers −20% resource costs."
-msgstr ""
+msgstr "Curandeiros Aliados -20% em custo de recursos"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -192,7 +193,7 @@ msgstr "Mestres Mercantes"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Allied Markets +10% international trade bonus."
-msgstr ""
+msgstr "Mercados aliados +10% de bônus em comércio internacional."
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
@@ -200,7 +201,7 @@ msgstr "Sabedoria Druídica"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Allied Structures −20% technology research time."
-msgstr ""
+msgstr "Estruturas Aliadas -20% de tempo para pesquisas tecnológicas"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -208,7 +209,7 @@ msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Javelinists −20% resource costs."
-msgstr ""
+msgstr "Dardeiros Cidadãos Aliados -20% custo de recursos"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -216,7 +217,7 @@ msgstr "Fornecedores de Elefantes"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
 msgid "Allied Elephants −20% resource costs and training time."
-msgstr ""
+msgstr "Elefantes Aliados -20% de custo em recursos e tempo de treino."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
@@ -234,7 +235,7 @@ msgstr "Apoio Religioso de Asoca"
 msgid ""
 "Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
-msgstr ""
+msgstr "Templos Aliados -50% de custos em recursos e tempo de construção; Tecnologias do Templo -50% custos em recursos e tempo de pesquisa."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
@@ -242,7 +243,7 @@ msgstr "A Estrada Real"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Allied Land Traders +15% trade gain."
-msgstr ""
+msgstr "Comerciantes terrestres aliados +15% ganho em comércio"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
@@ -258,7 +259,7 @@ msgstr "Recrutamento"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Infantry −20% training time."
-msgstr ""
+msgstr "Infantaria Civil Aliada -20% tempo de treino."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -266,7 +267,7 @@ msgstr "Tetrápoles Síria"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid "Allied Civil Centers −20% resource costs."
-msgstr ""
+msgstr " Centros Cívicos Aliados -20% de custo em recursos."
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
@@ -274,7 +275,7 @@ msgstr "Liga do Peloponeso"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Infantry Spearmen +10% health."
-msgstr ""
+msgstr "Lanceiros Cidadãos de Infantaria Aliada +10% vida."
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"

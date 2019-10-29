@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-27 07:09+0000\n"
-"PO-Revision-Date: 2019-09-27 15:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-10-23 13:26+0000\n"
+"PO-Revision-Date: 2019-10-24 15:04+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -625,6 +625,11 @@ msgstr "대추야자 열매맺히는 중??"
 msgid "Dead Deciduous Tree"
 msgstr "죽은 낙엽 나무"
 
+#: simulation/templates/gaia/flora_tree_elm.xml:4
+#: simulation/templates/gaia/flora_tree_elm_dead.xml:4
+msgid "Elm Tree"
+msgstr "느릅 나무"
+
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
 msgid "European Beech Tree"
@@ -1019,7 +1024,7 @@ msgstr "전선"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
-msgstr "최소 4명의 병사나 공성무기가 필요합니다."
+msgstr "최소 4명의 병사나 공성 무기가 필요합니다."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1035,7 +1040,7 @@ msgstr "개열진EHSMS산개 종대"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr "최소 8명의 군인이나 공성무기가 필요합니다."
+msgstr "최소 8명의 군인이나 공성 무기가 필요합니다."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"

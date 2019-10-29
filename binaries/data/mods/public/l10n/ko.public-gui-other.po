@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-27 07:08+0000\n"
-"PO-Revision-Date: 2019-10-22 13:48+0000\n"
+"POT-Creation-Date: 2019-10-23 13:25+0000\n"
+"PO-Revision-Date: 2019-10-25 11:02+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -336,7 +336,7 @@ msgstr "비활성화"
 #: gui/common/gamedescription.js:328
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] "처음 1분 동안은 다른 선수들이 중립을 지킬것입니다. "
+msgstr[0] "처음 %(min)s 분 동안은 다른 선수들이 중립을 지킬것입니다."
 
 #: gui/common/gamedescription.js:337
 msgctxt "Map Selection"
@@ -452,15 +452,15 @@ msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "사용안함"
 
-#: gui/common/gamedescription.js:462
+#: gui/common/gamedescription.js:458
 msgid "Victorious"
 msgstr "승리"
 
-#: gui/common/gamedescription.js:467
+#: gui/common/gamedescription.js:463
 msgid "Defeated"
 msgstr "패배"
 
-#: gui/common/gamedescription.js:476
+#: gui/common/gamedescription.js:472
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -681,37 +681,37 @@ msgstr "미리 정의된 풍경과 경기 설정이 있는 지도입니다."
 msgid "Unlimited"
 msgstr "무제한"
 
-#: gui/common/settings.js:359
+#: gui/common/settings.js:354
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "알 수 없음"
 
-#: gui/common/settings.js:370
+#: gui/common/settings.js:365
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "알 수 없음"
 
-#: gui/common/settings.js:381
+#: gui/common/settings.js:376
 msgctxt "AI behavior"
 msgid "Default"
 msgstr "기본값"
 
-#: gui/common/settings.js:393
+#: gui/common/settings.js:388
 msgctxt "map type"
 msgid "Unknown"
 msgstr "알 수 없음"
 
-#: gui/common/settings.js:405
+#: gui/common/settings.js:400
 msgctxt "map size"
 msgid "Default"
 msgstr "기본값"
 
-#: gui/common/settings.js:417
+#: gui/common/settings.js:412
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "알 수 없음"
 
-#: gui/common/settings.js:429
+#: gui/common/settings.js:424
 msgid "Unknown Victory Condition"
 msgstr "알 수 없는 승리 조건"
 
@@ -1415,7 +1415,7 @@ msgstr "설정"
 
 #: gui/pregame/MainMenuItems.js:138
 msgid "Game options and scenario design tools."
-msgstr "게임옵션과 시나리오 디자인 도구"
+msgstr "놀이 선택사항과 시나리오 디자인 도구."
 
 #: gui/pregame/MainMenuItems.js:141
 msgid "Options"
@@ -1948,7 +1948,7 @@ msgstr "기병"
 
 #: gui/summary/layout.js:66
 msgid "Champion"
-msgstr "대표전사"
+msgstr "대표 전사"
 
 #: gui/summary/layout.js:68
 msgid "Siege"
@@ -1973,14 +1973,14 @@ msgstr "자원"
 
 #: gui/summary/layout.js:111
 msgid "Tributes"
-msgstr "공물??"
+msgstr "공물"
 
 #: gui/summary/layout.js:112
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
-msgstr "공물?? \n(%(sent)s / %(received)s)"
+msgstr "공물 \n(%(sent)s / %(received)s)"
 
 #: gui/summary/layout.js:120
 msgid "Treasures collected"
@@ -2015,7 +2015,7 @@ msgstr "거래 효율"
 #: gui/summary/layout.js:160
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
-msgstr "%(resourceFirstWord)s 이(가) 교환됨"
+msgstr "거래된 %(resourceFirstWord)s"
 
 #: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):109
 #: gui/credits/texts/misc.jsonTitle
@@ -2129,45 +2129,45 @@ msgstr "실패함"
 msgid "Time elapsed"
 msgstr "진행된 시간"
 
-#: gui/summary/summary.js:491
+#: gui/summary/summary.js:490
 msgid "Current Scores"
 msgstr "현재 점수"
 
-#: gui/summary/summary.js:493
+#: gui/summary/summary.js:492
 msgid "Scores at the end of the game."
 msgstr "놀이 끝날때의 점수입니다."
 
-#: gui/summary/summary.js:495
+#: gui/summary/summary.js:494
 msgid "You have been disconnected."
 msgstr "연결이 끊어졌습니다."
 
-#: gui/summary/summary.js:497
+#: gui/summary/summary.js:496
 msgid "You have left the game."
 msgstr "놀이를 그만두었다."
 
-#: gui/summary/summary.js:499
+#: gui/summary/summary.js:498
 msgid "You have won the battle!"
 msgstr "전투에서 승리했습니다!"
 
-#: gui/summary/summary.js:501
+#: gui/summary/summary.js:500
 msgid "You have been defeated…"
 msgstr "패배했습니다…"
 
-#: gui/summary/summary.js:502
+#: gui/summary/summary.js:501
 msgid "You have abandoned the game."
 msgstr "놀이를 포기했습니다."
 
-#: gui/summary/summary.js:505
+#: gui/summary/summary.js:504
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "놀이 진행 시간: %(time)s"
 
-#: gui/summary/summary.js:513
+#: gui/summary/summary.js:512
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/summary/summary.js:525
+#: gui/summary/summary.js:524
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: 함께 놀기 앞마당을 대화 상자 창으로 켜고 끕니다."
@@ -2330,8 +2330,8 @@ msgid "Main Menu"
 msgstr "주 차림표"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
-msgid "Reload Cache"
-msgstr "캐시 다시 불러오기"
+msgid "Rebuild Cache"
+msgstr "캐쉬를 다시 구축"
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
 #: gui/summary/summary.xml:(caption):34
@@ -2617,11 +2617,11 @@ msgstr "선수이름 (함께 놀기)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single player games when window loses focus."
-msgstr "창이 초점을 잃으면 혼자놀기를 일시 중지하십시오."
+msgstr "창이 초점을 잃으면 혼자놀기를 일시 정지하십시오."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background Pause"
-msgstr "포커스 밖에서 정지or 배경 일시 중지"
+msgstr "포커스 밖에서 정지or 배경 일시 정지"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
@@ -3576,7 +3576,7 @@ msgstr "모든 파벌에 대한 건축물을 연구합니다."
 
 #: gui/text/tips/blacksmith.txt:3
 msgid "Research weapon and armor upgrades for your units."
-msgstr "당신 유닛의 무기와 방어구를 향상하기위한 연구를 합니다."
+msgstr "당신 유닛의 무기와 방어구를 향상하기 위한 연구를 합니다."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -3855,7 +3855,7 @@ msgstr "장창수"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "Heavily armored and slow. Low attack."
-msgstr "무장하고 느립니다. 공격력이 낮습니다."
+msgstr "무겁게 무장하여 느려집니다. 공격력이 낮습니다."
 
 #: gui/text/tips/pikemen.txt:3
 msgid ""

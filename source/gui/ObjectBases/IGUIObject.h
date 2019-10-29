@@ -57,6 +57,7 @@ class IGUIObject
 	// Allow getProperty to access things like GetParent()
 	friend bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp);
 	friend bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp, JS::ObjectOpResult& result);
+	friend bool JSI_IGUIObject::deleteProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::ObjectOpResult& result);
 	friend bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, JS::Value* vp);
 
 public:
@@ -385,7 +386,15 @@ protected:
 	 */
 	void ScriptEvent(const CStr& Action, const JS::HandleValueArray& paramData);
 
+	/**
+	 * Assigns a JS function to the event name.
+	 */
 	void SetScriptHandler(const CStr& Action, JS::HandleObject Function);
+
+	/**
+	 * Deletes an event handler assigned to the given name, if such a handler exists.
+	 */
+	void UnsetScriptHandler(const CStr& Action);
 
 	/**
 	 * Inputes the object that is currently hovered, this function

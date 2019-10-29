@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-27 07:09+0000\n"
-"PO-Revision-Date: 2019-09-27 15:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-10-23 13:26+0000\n"
+"PO-Revision-Date: 2019-10-27 18:33+0000\n"
+"Last-Translator: Osoitz <oelkoro@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,11 +30,11 @@ msgstr "Arrainkia"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
-msgstr ""
+msgstr "Arrantzatu elikagaiak eskuratzeko."
 
 #: simulation/templates/template_gaia_flora.xml:6
 msgid "Chop trees for wood."
-msgstr ""
+msgstr "Moztu zuhaitzak egurra eskuratzeko."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
@@ -46,7 +46,7 @@ msgstr "Zuhamuxka"
 #: simulation/templates/template_gaia_flora_bush_berry.xml:4
 #: simulation/templates/template_gaia_flora_tree_fruit.xml:8
 msgid "Pick fruit for food."
-msgstr ""
+msgstr "Jaso fruta elikagaiak eskuratzeko."
 
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
@@ -62,7 +62,7 @@ msgstr "Metal meatzea"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
 msgid "Mine ore for metal."
-msgstr ""
+msgstr "Mehatu mea metala eskuratzeko."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
@@ -70,7 +70,7 @@ msgstr "Harrobia"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Quarry rock for stone."
-msgstr ""
+msgstr "Ustiatu arroka harria eskuratzeko."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
@@ -78,7 +78,7 @@ msgstr "Hondakinak"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr ""
+msgstr "Txikitu hondakinak harria eskuratzeko."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
@@ -86,7 +86,7 @@ msgstr "Altxorra"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr ""
+msgstr "Bildu altxorrak baliabideak eskuratzeko."
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
@@ -98,11 +98,11 @@ msgstr "Unitatea"
 
 #: simulation/templates/template_wallset.xml:10
 msgid "City Wall"
-msgstr "Hiri arresia"
+msgstr "Hiri hesia"
 
 #: simulation/templates/template_wallset.xml:13
 msgid "Wall off your town for a stout defense."
-msgstr "Harresiz inguratu zure herria defentsa sendo baterako."
+msgstr "Hesiz inguratu zure herria defentsa sendo baterako."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
@@ -608,6 +608,11 @@ msgstr "Datilen Palmondoa oparoa"
 msgid "Dead Deciduous Tree"
 msgstr "Hildako galkorra"
 
+#: simulation/templates/gaia/flora_tree_elm.xml:4
+#: simulation/templates/gaia/flora_tree_elm_dead.xml:4
+msgid "Elm Tree"
+msgstr "Zumarra"
+
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
 msgid "European Beech Tree"
@@ -632,7 +637,7 @@ msgstr "Izei zuhaitza"
 
 #: simulation/templates/gaia/flora_tree_juniper_prickly.xml:4
 msgid "Prickly Juniper"
-msgstr ""
+msgstr "Ipuru arantzatsua"
 
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
@@ -699,7 +704,7 @@ msgstr "Pinu beltza"
 #: simulation/templates/gaia/flora_tree_pine_maritime.xml:4
 #: simulation/templates/gaia/flora_tree_pine_maritime_short.xml:4
 msgid "Maritime Pine"
-msgstr ""
+msgstr "Itsas pinua"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
@@ -990,7 +995,7 @@ msgstr "Espioia"
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Requires at least 16 Melee Infantry."
-msgstr ""
+msgstr "Gutxienez 16 buruz-buruko infanteria unitate behar ditu."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1002,7 +1007,7 @@ msgstr "Lerroan"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
-msgstr ""
+msgstr "Gutxienez 4 soldadu edo setio makina behar ditu."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1018,7 +1023,7 @@ msgstr "Zutabe Irekia"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr ""
+msgstr "Gutxienez 8 soldadu edo setio makina behar ditu."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1034,11 +1039,11 @@ msgstr "Falange Irekia"
 
 #: simulation/templates/special/formations/null.xml:5
 msgid "None"
-msgstr "Ezer ez"
+msgstr "Bat ere ez"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Requires at least 10 Infantry Hoplites."
-msgstr ""
+msgstr "Gutxienez 10 infanteria hoplita behar ditu."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1050,7 +1055,7 @@ msgstr "Dispertsioa"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Requires a Ranged Soldier."
-msgstr ""
+msgstr "Urrutirako soldadu bat behar du."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -1058,7 +1063,7 @@ msgstr "Liskarra"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Requires at least 16 Infantry Pikemen."
-msgstr ""
+msgstr "Gutxienez 16 infanteria pikari behar ditu."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1070,7 +1075,7 @@ msgstr "Dortoka "
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Requires at least 6 Cavalry."
-msgstr ""
+msgstr "Gutxienez 6 zalditeria unitate behar ditu."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

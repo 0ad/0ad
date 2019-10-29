@@ -2,12 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_gaul_fanatic.xml">
+    <variant>
       <mesh>skeletal/new/m_naked.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/sheath_celt_iron.xml" attachpoint="sheath_01_L"/>
-        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/capes/gaul_infantry_spearman_c.xml" attachpoint="root"/>
       </props>
     </variant>
@@ -49,17 +49,7 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
-    <variant frequency="1" name="Attack_melee">
-      <props>
-        <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Run">
-      <props>
-        <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
-      </props>
-    </variant>
+    <variant file="biped/base_spearman_shield_relax_celt.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/death_infantry.xml">
       <props>

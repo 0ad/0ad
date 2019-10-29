@@ -41,6 +41,7 @@
 # Rui <xymarior@yandex.com>, 2018-2019
 # Sturm <gravador202@yahoo.com.br>, 2014
 # Tiago, 2018-2019
+# Victor Franceschini <vitor_v@hotmail.co.uk>, 2019
 # Vinícius Pereira <lameiravinicius24@gmail.com>, 2018
 # Werther Ramalho <werther23@gmail.com>, 2019
 # yurids, 2014
@@ -48,8 +49,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-30 07:12+0000\n"
-"PO-Revision-Date: 2019-09-30 15:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-10-26 00:29+0000\n"
+"Last-Translator: Victor Franceschini <vitor_v@hotmail.co.uk>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,7 +75,7 @@ msgstr "Corujas de Prata"
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr "As minas de Lavrio, na Ática, proveram a Atenas a prata da qual foi cunhada a famosa e estimada moeda, a Coruja de Atena."
+msgstr "As minas de Lavrio, na Ática, proporcionaram abundância de prata à Atenas, metal do qual foi cunhada a famosa e estimada moeda, A Coruja Ateniense."
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].Description
 #: simulation/data/civs/mace.jsonCivBonuses[2].Description
@@ -100,7 +101,7 @@ msgstr "Os gregos foram bem sucedidos em helenizar diversos estrangeiros. Durant
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Allied Warships −25% construction time."
-msgstr ""
+msgstr "Navios de Guerra Aliados -25% tempo de construção"
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -350,7 +351,7 @@ msgstr "A religião e o druidismo dos celtas inspiraram a mentalidade guerreira 
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "Allied Healers −20% resource costs."
-msgstr ""
+msgstr "Curandeiros Aliados -20% em custo de recursos"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -595,7 +596,7 @@ msgstr "Não muito diferente da Peninsula Ibérica, o norte da África era conhe
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "Allied Markets +10% international trade bonus."
-msgstr ""
+msgstr "Mercados aliados +10% de bônus em comércio internacional."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -802,7 +803,7 @@ msgstr "Gauleses"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Allied Structures −20% technology research time."
-msgstr ""
+msgstr "Estruturas Aliadas -20% de tempo para pesquisas tecnológicas"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -1002,7 +1003,7 @@ msgstr "Não muito diferente da Península Ibérica, o norte da África era conh
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Javelinists −20% resource costs."
-msgstr ""
+msgstr "Dardeiros Cidadãos Aliados -20% custo de recursos"
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1014,7 +1015,7 @@ msgid ""
 "serve as auxiliaries to their armies in foreign wars. Carthage is the most "
 "well known example, and we have evidence of them serving in such a capacity "
 "in Aquitania."
-msgstr ""
+msgstr " Os Ibéricos são há muito tempo conhecidos por proverem mercenários à outras nações para servirem como auxiliares às suas tropas em guerras estrangeiras. Cártago é o exemplo melhor conhecido, e temos evidência deles servindo em tal capacidade em Aquitânia."
 
 #: simulation/data/civs/iber.jsonAINames[0]
 #: simulation/data/civs/iber.jsonAINames[1]
@@ -1201,7 +1202,7 @@ msgstr "Fornecedores de Elefantes"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
 msgid "Allied Elephants −20% resource costs and training time."
-msgstr ""
+msgstr "Elefantes Aliados -20% de custo em recursos e tempo de treino."
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1662,7 +1663,7 @@ msgstr "Kshatriya ou Kashtriya, guerreiro de significado, é um dos quatro varna
 msgid ""
 "Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
-msgstr ""
+msgstr "Templos Aliados -50% de custos em recursos e tempo de construção; Tecnologias do Templo -50% custos em recursos e tempo de pesquisa."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1836,7 +1837,7 @@ msgstr "Os Persas recrutavam um grande número de pessoas para integrarem seus r
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
 msgid "Allied Land Traders +15% trade gain."
-msgstr ""
+msgstr "Comerciantes terrestres aliados +15% ganho em comércio"
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -1902,7 +1903,7 @@ msgstr "Xerxes II"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry."
-msgstr ""
+msgstr " Trirremes Fenícios ganham a habilidade exclusiva de treinar cavalaria."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Name
 msgid "Naval Craftsmanship"
@@ -2043,7 +2044,7 @@ msgstr "Ptolemaico"
 msgid ""
 "The Ptolemies receive the Mercenary Camp, a Barracks that is constructed in "
 "neutral territory and trains mercenaries."
-msgstr ""
+msgstr " Os Ptolemeus recebem o Acampamento de Mercenários, um quartel que é construído em território neutro e treina mercenários."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Mercenary Army"
@@ -2235,7 +2236,7 @@ msgstr "Stratópedo Misthophóron"
 msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains mercenaries."
-msgstr ""
+msgstr " Há de ser construído em território neutro. Não possui efeito radial de território. Treina Mercenários."
 
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
@@ -2303,7 +2304,7 @@ msgstr "Cidadania romana era altamente valorizada no mundo antigo. Direitos bás
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Infantry −20% training time."
-msgstr ""
+msgstr "Infantaria Civil Aliada -20% tempo de treinamento."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2513,7 +2514,7 @@ msgstr "Selêucida e certamente sucessivas guerra evoluíram ao longo dos sécul
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
 msgid "Allied Civil Centers −20% resource costs."
-msgstr ""
+msgstr " Centros Cívicos Aliados -20% de custo em recursos."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2735,7 +2736,7 @@ msgstr "A dinastia Macedônia-grego que governou a parte oriental do antigo Imp�
 
 #: simulation/data/civs/sele.jsonStructures[1].Special
 msgid "Trains all cavalry except citizen-soldier cavalry."
-msgstr ""
+msgstr " Treina todo tipo de cavalaria, exceto cavalaria de soldados-cidadãos."
 
 #: simulation/data/civs/sele.jsonStructures[2].Name
 msgid "Military Colony"
@@ -2803,7 +2804,7 @@ msgstr "No âmbito da Constituição redigida pelo mítico legislador Licurgo, f
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Infantry Spearmen +10% health."
-msgstr ""
+msgstr "Lanceiros Cidadãos de Infantaria Aliada +10% vida."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

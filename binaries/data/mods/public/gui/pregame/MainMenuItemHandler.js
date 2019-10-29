@@ -9,6 +9,8 @@ class MainMenuItemHandler
 		this.menuItems = menuItems;
 		this.lastTickTime = Date.now();
 
+		this.lastOpenItem = undefined;
+
 		this.mainMenu = Engine.GetGUIObjectByName("mainMenu");
 		this.mainMenuButtons = Engine.GetGUIObjectByName("mainMenuButtons");
 		this.submenu = Engine.GetGUIObjectByName("submenu");
@@ -19,7 +21,6 @@ class MainMenuItemHandler
 		this.setupMenuButtons(this.mainMenuButtons.children, this.menuItems);
 		this.setupHotkeys(this.menuItems);
 
-		this.mainMenu.onTick = this.onTick.bind(this);
 		Engine.GetGUIObjectByName("closeMenuButton").onPress = this.closeSubmenu.bind(this);
 	}
 
@@ -38,19 +39,44 @@ class MainMenuItemHandler
 			button.caption = item.caption;
 			button.tooltip = item.tooltip;
 			button.enabled = item.enabled === undefined || item.enabled;
-			button.onPress = () => {
-				this.closeSubmenu();
-
-				if (item.onPress)
-					item.onPress();
-				else
-					this.openSubmenu(i);
-			};
+			button.onPress = this.pressButton.bind(this, item, i);
 			button.hidden = false;
 		});
 
 		if (buttons.length < menuItems.length)
 			error("GUI page has space for " + buttons.length + " menu buttons, but " + menuItems.length + " items are provided!");
+	}
+
+	/**
+	 * Expand selected submenu, or collapse if it already is expanded.
+	 */
+	pressButton(item, i)
+	{
+		if (this.submenu.hidden)
+		{
+			this.performButtonAction(item, i);
+		}
+		else
+		{
+			this.closeSubmenu();
+			if (this.lastOpenItem && this.lastOpenItem != item)
+				this.performButtonAction(item, i);
+			else
+				this.lastOpenItem = undefined;
+		}
+	}
+
+	/**
+	 * Expand submenu or perform action specified by the button object.
+	 */
+	performButtonAction(item, i)
+	{
+		this.lastOpenItem = item;
+
+		if (item.onPress)
+			item.onPress();
+		else
+			this.openSubmenu(i);
 	}
 
 	setupHotkeys(menuItems)
@@ -93,6 +119,10 @@ class MainMenuItemHandler
 			size.top = this.submenu.size.bottom;
 			this.MainMenuPanelRightBorderBottom.size = size;
 		}
+
+		// Start animation
+		this.lastTickTime = Date.now();
+		this.mainMenu.onTick = this.onTick.bind(this);
 	}
 
 	closeSubmenu()
@@ -110,14 +140,19 @@ class MainMenuItemHandler
 	onTick()
 	{
 		let now = Date.now();
+		if (now == this.lastTickTime)
+			return;
 
 		let maxOffset = this.mainMenu.size.right - this.submenu.size.left;
 		let offset = Math.min(this.MenuSpeed * (now - this.lastTickTime), maxOffset);
 
 		this.lastTickTime = now;
 
-		if (this.submenu.hidden || offset <= 0)
+		if (this.submenu.hidden || !offset)
+		{
+			delete this.mainMenu.onTick;
 			return;
+		}
 
 		let size = this.submenu.size;
 		size.left += offset;

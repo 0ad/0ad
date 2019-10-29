@@ -24,6 +24,7 @@
 # Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2014-2015
 # PedroDognani <pedro_dognani_@hotmail.com>, 2015
 # Rafael Monteiro <rafaelimabsb2@hotmail.com>, 2016
+# Renato Cirino <renatimpirei@gmail.com>, 2019
 # Ricardo Siqueira Oliveira Leite <ricardooliveira88@gmail.com>, 2016
 # Rui <xymarior@yandex.com>, 2018-2019
 # Tiago, 2018-2019
@@ -31,9 +32,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-27 07:09+0000\n"
-"PO-Revision-Date: 2019-09-27 16:10+0000\n"
-"Last-Translator: Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>\n"
+"POT-Creation-Date: 2019-10-23 13:26+0000\n"
+"PO-Revision-Date: 2019-10-27 14:46+0000\n"
+"Last-Translator: Renato Cirino <renatimpirei@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,9 +116,9 @@ msgstr "Vila"
 
 #: simulation/templates/template_structure_civic_temple.xml:34
 msgid ""
-"Train healers. Garrison units to heal them at a quick rate (3 HP per "
-"second). Research healing and religious improvements."
-msgstr "Treine curandeiros. Abrigue unidades para curá-las rapidamente (3 pontos de vida por segundo). Pesquise as melhorias de cura e religião."
+"Train Healers and research healing technologies. Garrison units to heal them"
+" at a quick rate."
+msgstr "Treinar Curandeiros e pesquisar tecnologias de cura. Abrigue unidades para curá-las mais rapidamente."
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -336,12 +337,10 @@ msgid "Fortress"
 msgstr "Fortaleza"
 
 #: simulation/templates/template_structure_military_fortress.xml:77
-#: simulation/templates/structures/mace_fortress.xml:10
-#: simulation/templates/structures/maur_fortress.xml:6
 msgid ""
-"Train Heroes and Champions and research technologies. Garrison Soldiers for "
+"Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
-msgstr ""
+msgstr "Treinar Campeões e Heróis e pesquisar tecnologias. Guarnecer soldados para obter flechas adicionais."
 
 #: simulation/templates/template_structure_military_kennel.xml:38
 msgid "Kennel"
@@ -378,7 +377,7 @@ msgstr "Construção de Cerco"
 
 #: simulation/templates/template_structure_military_workshop.xml:28
 msgid "Construct Siege Engines and research Siege Engine technologies."
-msgstr ""
+msgstr "Construir Mecanismos de Cerco e pesquisar por tecnologias de Mecanismo de Cerco."
 
 #: simulation/templates/template_structure_military_workshop.xml:29
 msgid "Workshop"
@@ -506,7 +505,7 @@ msgstr "Epiteíkhisma"
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid "Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Guarnecer soldados para obter flechas adicionais."
 
 #: simulation/templates/structures/athen_gymnasion.xml:24
 msgid "Gymnasium"
@@ -517,8 +516,9 @@ msgid "Gymnásion"
 msgstr "Gymnásion"
 
 #: simulation/templates/structures/athen_gymnasion.xml:26
-msgid "Train champion units."
-msgstr "Treine unidades de elite."
+#: simulation/templates/structures/pers_hall.xml:32
+msgid "Train Champions."
+msgstr "Treinar Campeões."
 
 #: simulation/templates/structures/athen_house.xml:5
 #: simulation/templates/structures/mace_house.xml:5
@@ -554,8 +554,8 @@ msgid "Prytaneîon"
 msgstr "Pritaneu"
 
 #: simulation/templates/structures/athen_prytaneion.xml:27
-msgid "Train heroes. Research special technologies."
-msgstr "Treine heróis. Pesquise tecnologias especiais."
+msgid "Train Heroes and research technologies."
+msgstr "Treinar Heróis e pesquisar suas tecnologias."
 
 #: simulation/templates/structures/athen_royal_stoa.xml:5
 #: simulation/templates/structures/mace_royal_stoa.xml:5
@@ -569,7 +569,7 @@ msgstr "Stoá"
 #: simulation/templates/structures/sele_stable.xml:5
 #: simulation/templates/structures/spart_stable.xml:5
 msgid "Hippṓn"
-msgstr ""
+msgstr "Hippṓn "
 
 #: simulation/templates/structures/athen_storehouse.xml:8
 #: simulation/templates/structures/mace_storehouse.xml:8
@@ -643,7 +643,7 @@ msgstr "Traga glória à sua civilização e agregue grandes extensões de terra
 #: simulation/templates/structures/sele_workshop.xml:5
 #: simulation/templates/structures/spart_workshop.xml:5
 msgid "Hoplothēkē"
-msgstr ""
+msgstr "Hoplothēkē"
 
 #: simulation/templates/structures/baby_defense_tower.xml:5
 #: simulation/templates/structures/pers_defense_tower.xml:5
@@ -776,7 +776,7 @@ msgstr "Não atira nem abriga."
 
 #: simulation/templates/structures/brit_wonder.xml:10
 msgid "Uffington White Horse"
-msgstr ""
+msgstr "Cavalo Branco de Uffington"
 
 #: simulation/templates/structures/brit_workshop.xml:5
 #: simulation/templates/structures/gaul_workshop.xml:5
@@ -918,9 +918,9 @@ msgstr "Maqdaš"
 
 #: simulation/templates/structures/cart_temple.xml:15
 msgid ""
-"Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
+"Train Healers and Champions and research healing technologies. Garrison "
 "units to heal them at a quick rate."
-msgstr "Treine sacerdotisas para curar suas tropas. Treine piqueiros das Legiões Sacras. Abrigue unidades para curá-las rapidamente."
+msgstr "Treinar Curandeiros e Campeões e pesquisar por tecnologias de cura. Guarnecer unidades para curá-las rapidamente."
 
 #: simulation/templates/structures/cart_tophet.xml:22
 msgid "Sacrificial Temple"
@@ -931,8 +931,10 @@ msgid "Tophet"
 msgstr "Tofete"
 
 #: simulation/templates/structures/cart_tophet.xml:24
-msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr "Treine médicos e Cavaleiros da Legião Sagrada."
+msgid ""
+"Train Healers and Champion Cavalry and research healing technologies. "
+"Garrison units to heal them at a quick rate."
+msgstr "Treinar Curandeiros e Campeões de Cavalaria e pesquisar por tecnologias de cura. Guarnecer unidades para curá-las rapidamente."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -956,7 +958,7 @@ msgstr "Templo de Ba'al Hammon"
 msgid "Coriosedlon"
 msgstr "Coriosedlon"
 
-#: simulation/templates/structures/gaul_civil_centre.xml:9
+#: simulation/templates/structures/gaul_civil_centre.xml:12
 msgid "Lissos"
 msgstr "Lissos"
 
@@ -1324,6 +1326,10 @@ msgstr "Uparaksana"
 msgid "Harmya"
 msgstr "Harmya"
 
+#: simulation/templates/structures/maur_palace.xml:15
+msgid "Train Female Citizens, Champions, and Heroes."
+msgstr "Treinar Mulheres Cidadãs, Campeões e Heróis."
+
 #: simulation/templates/structures/maur_pillar_ashoka.xml:9
 msgid "Pillar"
 msgstr "Pilar"
@@ -1438,17 +1444,17 @@ msgstr "Torre de Vigilância"
 
 #: simulation/templates/structures/pers_apadana.xml:29
 msgid "Throne Hall"
-msgstr ""
+msgstr "Corredor do Trono"
 
 #: simulation/templates/structures/pers_apadana.xml:30
 msgid "Apadāna"
-msgstr ""
+msgstr "Apadāna"
 
 #: simulation/templates/structures/pers_apadana.xml:33
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
-"resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr "\"Tributo da Satapria\": ganhe uma quantia de comida, madeira, pedra e metal por segundo. Treine heróis persas e seus guarda-costas \"Imortais\"."
+"resources. Train Champions and Heroes."
+msgstr "\"Tributo da Satapria\": ganhe uma quantia de comida, madeira, pedra e metal. Treinar Campeões e Heróis."
 
 #: simulation/templates/structures/pers_apartment_block.xml:15
 msgid "Apartment Block"
@@ -1460,7 +1466,7 @@ msgstr "Padgan"
 
 #: simulation/templates/structures/pers_barracks.xml:6
 msgid "Levy citizen-soldier infantry."
-msgstr ""
+msgstr "Recrutar infantaria de cidadãos-soldado."
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1500,19 +1506,15 @@ msgstr "Didā"
 msgid ""
 "Train Champions and research technologies. Garrison Soldiers for additional "
 "arrows."
-msgstr ""
+msgstr "Treinar Campeões e pesquisar tecnologias. Guarnecer soldados para obter flechas adicionais."
 
 #: simulation/templates/structures/pers_hall.xml:29
 msgid "Gate of All Nations"
-msgstr ""
+msgstr "Portão de Todas as Nações"
 
 #: simulation/templates/structures/pers_hall.xml:30
 msgid "Duvarθi Visadahyu"
-msgstr ""
-
-#: simulation/templates/structures/pers_hall.xml:32
-msgid "Train War Elephants and Kardakes mercenaries."
-msgstr "Treina Elefantes de Guerra e Mercenários Cárdaces"
+msgstr "Duvarθi Visadahyu"
 
 #: simulation/templates/structures/pers_house.xml:8
 msgid "Huvādā"
@@ -1529,7 +1531,7 @@ msgstr "Construção especial Persa"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:31
 msgid "Ishtar Gate of Babylon"
-msgstr "Porta de Ishtar da Babilônia"
+msgstr "Portão de Ishtar da Babilônia"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:32
 msgid ""
@@ -1563,11 +1565,11 @@ msgstr "Taçara"
 
 #: simulation/templates/structures/pers_temple.xml:12
 msgid "Āyadanam"
-msgstr ""
+msgstr "Āyadanam"
 
 #: simulation/templates/structures/pers_wall_gate.xml:9
 msgid "Duvarθiš"
-msgstr ""
+msgstr "Duvarθiš"
 
 #: simulation/templates/structures/pers_wall_long.xml:29
 #: simulation/templates/structures/pers_wall_medium.xml:23
@@ -1662,7 +1664,7 @@ msgstr "Stratopedeía Misthophórōn"
 msgid ""
 "Cheap Barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr "Estrutura do tipo Quartel, pode ser construída em território neutro, mas não influencia no território. Treina Mercenários."
+msgstr "Estrutura do tipo Quartel, pode ser construída em território neutro, mas não influencia no território. Treinar Mercenários."
 
 #: simulation/templates/structures/ptol_military_colony.xml:9
 #: simulation/templates/structures/sele_military_colony.xml:9
@@ -1709,7 +1711,7 @@ msgstr "Arco do Triunfo"
 
 #: simulation/templates/structures/rome_arch.xml:23
 msgid "Arcus Triumphālis"
-msgstr ""
+msgstr "Arcus Triumphālis"
 
 #: simulation/templates/structures/rome_army_camp.xml:47
 msgid "ArmyCamp"
@@ -1717,17 +1719,17 @@ msgstr "Acampamento Militar"
 
 #: simulation/templates/structures/rome_army_camp.xml:80
 msgid "Army Camp"
-msgstr ""
+msgstr "Acampamento do Exército"
 
 #: simulation/templates/structures/rome_army_camp.xml:81
 msgid "Castra"
-msgstr ""
+msgstr "Castra"
 
 #: simulation/templates/structures/rome_army_camp.xml:84
 msgid ""
 "Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
 "Siege Engines. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Construa em território neutro ou inimigo. Treinar Cidadãos-soldados e construir Mecanismos de Cerco. Guarnecer soldados para obter flechas adicionais."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1735,7 +1737,7 @@ msgstr "Castrum"
 
 #: simulation/templates/structures/rome_blacksmith.xml:5
 msgid "Armāmentārium"
-msgstr ""
+msgstr "Armāmentārium"
 
 #: simulation/templates/structures/rome_civil_centre.xml:12
 msgid "Forum"
@@ -1747,7 +1749,7 @@ msgstr "Saeptum"
 
 #: simulation/templates/structures/rome_defense_tower.xml:9
 msgid "Turris Laterīcia"
-msgstr ""
+msgstr "Turris Laterīcia"
 
 #: simulation/templates/structures/rome_dock.xml:12
 msgid "Portus"
@@ -1755,7 +1757,7 @@ msgstr "Portus"
 
 #: simulation/templates/structures/rome_farmstead.xml:8
 msgid "Vīlla"
-msgstr ""
+msgstr "Vīlla"
 
 #: simulation/templates/structures/rome_field.xml:5
 msgid "Ager"
@@ -1771,15 +1773,15 @@ msgstr "Domus"
 
 #: simulation/templates/structures/rome_market.xml:12
 msgid "Mercātus"
-msgstr ""
+msgstr "Mercātus"
 
 #: simulation/templates/structures/rome_outpost.xml:5
 msgid "Vigilārium"
-msgstr ""
+msgstr "Mercātus"
 
 #: simulation/templates/structures/rome_sentry_tower.xml:5
 msgid "Turris Līgnea"
-msgstr ""
+msgstr "Turris Līgnea"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:25
 msgid "Siege Wall Gate"
@@ -1787,7 +1789,7 @@ msgstr "Portão de Muralha de Cerco"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:26
 msgid "Porta Circummūnītiōnis"
-msgstr ""
+msgstr "Porta Circummūnītiōnis"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:51
 #: simulation/templates/structures/rome_siege_wall_medium.xml:45
@@ -1801,7 +1803,7 @@ msgstr "Muralha de Cerco"
 #: simulation/templates/structures/rome_siege_wall_short.xml:33
 #: simulation/templates/structures/rome_wallset_siege.xml:6
 msgid "Mūrus Circummūnītiōnis"
-msgstr ""
+msgstr "Mūrus Circummūnītiōnis"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:55
 #: simulation/templates/structures/rome_siege_wall_medium.xml:49
@@ -1816,19 +1818,19 @@ msgstr "Torre Muralha de Cerco"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:32
 msgid "Turris Circummūnītiōnis"
-msgstr ""
+msgstr "Turris Circummūnītiōnis"
 
 #: simulation/templates/structures/rome_stable.xml:5
 msgid "Equīle"
-msgstr ""
+msgstr "Equīle"
 
 #: simulation/templates/structures/rome_storehouse.xml:8
 msgid "Receptāculum"
-msgstr ""
+msgstr "Receptāculum"
 
 #: simulation/templates/structures/rome_temple.xml:9
 msgid "Aedēs"
-msgstr ""
+msgstr "Aedēs"
 
 #: simulation/templates/structures/rome_temple_mars.xml:12
 msgid "Temple of Mars"
@@ -1836,7 +1838,7 @@ msgstr "Templo de Marte"
 
 #: simulation/templates/structures/rome_temple_mars.xml:13
 msgid "Aedēs Mārtiālis"
-msgstr ""
+msgstr "Aedēs Mārtiālis"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Temple of Vesta"
@@ -1844,7 +1846,7 @@ msgstr "Templo de Vesta"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:19
 msgid "Aedēs Vestālis"
-msgstr ""
+msgstr "Aedēs Vestālis"
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1875,11 +1877,11 @@ msgstr "Turris Lapidea"
 
 #: simulation/templates/structures/rome_wonder.xml:15
 msgid "Aedēs Iovis Optimi Maximi"
-msgstr ""
+msgstr "Aedēs Iovis Optimi Maximi"
 
 #: simulation/templates/structures/rome_workshop.xml:5
 msgid "Ballistārium"
-msgstr ""
+msgstr "Ballistārium"
 
 #: simulation/templates/structures/sele_barracks.xml:18
 msgid "Stratones"
@@ -1899,7 +1901,7 @@ msgstr "Liménas"
 
 #: simulation/templates/structures/sele_elephant_stables.xml:5
 msgid "Seleucid Elephant Stables"
-msgstr "Estábulo de elefantes salêucidas."
+msgstr "Estábulo para Elefante Selêucida"
 
 #: simulation/templates/structures/sele_farmstead.xml:8
 msgid "Sītobólion"
@@ -1949,8 +1951,8 @@ msgid "Gerontía"
 msgstr "Gerontía"
 
 #: simulation/templates/structures/spart_gerousia.xml:24
-msgid "Train heroes."
-msgstr "Treine Heróis. "
+msgid "Train Heroes."
+msgstr "Treinar Heróis."
 
 #: simulation/templates/structures/spart_syssiton.xml:25
 msgid "Military Mess Hall"
@@ -1961,8 +1963,8 @@ msgid "Syssítion"
 msgstr "Syssítion"
 
 #: simulation/templates/structures/spart_syssiton.xml:27
-msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr "Treine heróis espartanos e Hoplitas Esparciatas de Elite."
+msgid "Train Champions and Heroes."
+msgstr "Treinar Campeões e Heróis."
 
 #: simulation/templates/structures/spart_wonder.xml:16
 msgid ""

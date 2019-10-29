@@ -334,6 +334,19 @@ void IGUIObject::SetScriptHandler(const CStr& Action, JS::HandleObject Function)
 	m_ScriptHandlers[Action] = JS::Heap<JSObject*>(Function);
 }
 
+void IGUIObject::UnsetScriptHandler(const CStr& Action)
+{
+	std::map<CStr, JS::Heap<JSObject*> >::iterator it = m_ScriptHandlers.find(Action);
+
+	if (it == m_ScriptHandlers.end())
+		return;
+
+	m_ScriptHandlers.erase(it);
+
+	if (m_ScriptHandlers.empty())
+		JS_RemoveExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetJSRuntime(), Trace, this);
+}
+
 InReaction IGUIObject::SendEvent(EGUIMessageType type, const CStr& EventName)
 {
 	PROFILE2_EVENT("gui event");

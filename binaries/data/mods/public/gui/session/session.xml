@@ -42,7 +42,7 @@
 	<include directory="gui/session/hotkeys/"/>
 
 	<!-- Network status -->
-	<object name="netStatus" type="text" style="netStatus" hidden="true">
+	<object name="netStatus" type="text" style="netStatus" z="0" hidden="true">
 		<object type="button"
 			name="disconnectedExitButton"
 			style="StoneButton"
@@ -52,18 +52,18 @@
 			<translatableAttribute id="caption">Exit</translatableAttribute>
 			<action on="Press">endGame();</action>
 		</object>
-		<object name="loadingClientsText" size="50%-300 50%+60 50%+300 50%+110" type="text" style="netStatusPlayersText" hidden="true"/>
+		<object name="loadingClientsText" size="50%-300 50%+60 50%+300 50%+110" type="text" style="netStatusPlayersText" hidden="true" z="0"/>
 	</object>
 
 	<include file="gui/session/PauseOverlay.xml"/>
 
 	<!-- Notification Area -->
 	<object name="notificationPanel" type="image" size="50%-300 60 50%+300 120" ghost="true">
-		<object name="notificationText" type="text" style="notificationPanel" ghost="true"/>
+		<object name="notificationText" type="text" style="notificationPanel" ghost="true" z="0"/>
 	</object>
 
 	<!-- Chat messages -->
-	<object name="chatPanel" size="0 130 100% 100%-240" type="image" ghost="true" absolute="true">
+	<object name="chatPanel" size="0 130 100% 100%-240" type="image" ghost="true" z="0" absolute="true">
 		<object name="chatText" size="3 1 100%-1 100%-1" type="text" style="chatPanelOverlay" ghost="true"/>
 	</object>
 

@@ -5,16 +5,16 @@
 # Translators:
 # Gontzal M. Pujana <juchuf@gmail.com>, 2016
 # Mielanjel Iraeta <pospolos@gmail.com>, 2017-2019
-# Osoitz <oelkoro@gmail.com>, 2015
+# Osoitz <oelkoro@gmail.com>, 2015,2019
 # Quintana Salazar <quintana.salazar.unai@gmail.com>, 2015
 # Gontzal M. Pujana <juchuf@gmail.com>, 2016
 # Urtzi Odriozola <urtzi.odriozola@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-27 07:09+0000\n"
-"PO-Revision-Date: 2019-09-27 16:10+0000\n"
-"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2019-10-23 13:26+0000\n"
+"PO-Revision-Date: 2019-10-27 18:56+0000\n"
+"Last-Translator: Osoitz <oelkoro@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +32,7 @@ msgstr "Zibila"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:87
 msgid "Civic Center"
-msgstr "Zentro Zibila"
+msgstr "Gizarte zentroa"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:88
 msgid "Build to acquire large tracts of territory. Train citizens."
@@ -42,7 +42,7 @@ msgstr "Eraiki ezazu lur eremu handiak lortzeko. Erreklutatu hiritarrak."
 #: simulation/templates/template_structure_civic_civil_centre.xml:52
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
-msgstr "ZentroZibila"
+msgstr "GizarteZentroa"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:31
 msgid "Military Colony"
@@ -96,9 +96,9 @@ msgstr "Herria"
 
 #: simulation/templates/template_structure_civic_temple.xml:34
 msgid ""
-"Train healers. Garrison units to heal them at a quick rate (3 HP per "
-"second). Research healing and religious improvements."
-msgstr "Erreklutatu sendagileak. 20 unitate arte babestu azkar sendatzeko (3 PV segundoko). Ikertu erlijioso eta sendatze hobekuntzak."
+"Train Healers and research healing technologies. Garrison units to heal them"
+" at a quick rate."
+msgstr "Trebatu sendalariak eta ikertu sendatze teknologiak. Sartu unitateak bertan azkar sendatzeko."
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -112,12 +112,12 @@ msgstr "Defentsarako Eraikina"
 #: simulation/templates/template_structure_defensive_palisade.xml:21
 #: simulation/templates/structures/wallset_palisade.xml:4
 msgid "Wooden Wall"
-msgstr "Egurrezko Pareta"
+msgstr "Egurrezko hesia"
 
 #: simulation/templates/template_structure_defensive_palisade.xml:22
 #: simulation/templates/template_structure_defensive_wall.xml:17
 msgid "Wall off your town for a stout defense."
-msgstr "Harresiz inguratu zure herria defentsa sendo baterako."
+msgstr "Hesiz inguratu zure herria defentsa sendo baterako."
 
 #: simulation/templates/template_structure_defensive_tower.xml:35
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:38
@@ -136,7 +136,7 @@ msgstr "Lur neutral eta zureetan eraiki maparen inguruak aztertzeko. Lur neutral
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:51
 #: simulation/templates/structures/palisades_outpost.xml:17
 msgid "Outpost"
-msgstr "Aurreralekua"
+msgstr "Postu aurreratua"
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:35
 msgid "Sentry Tower"
@@ -150,7 +150,7 @@ msgstr "Zelatari Dorrea"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot. Upgradeable to stone tower."
-msgstr "Geziak jaurti. Unitateak babestu estaldura gehigarria emateko. Zure basea babesteko kanoi-zuloak erabili behar dira. Harrizko dorrera hobetu daiteke."
+msgstr "Geziak jaurti. Sartu unitateak estaldura gehigarria emateko. Zure basea babesteko kanoi-zuloak erabili behar dira. Harrizko dorrera hobetu daiteke."
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:60
 msgid "Reinforce with stone and upgrade to a defense tower."
@@ -164,7 +164,7 @@ msgstr "Defentsarako Dorretxea"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot."
-msgstr "Geziak jaurti. Unitateak babestu estaldura gehigarria emateko. Zure basea babesteko kanoi-zuloak erabili behar dira."
+msgstr "Geziak jaurti ditzake. Sartu unitateak estaldura gehigarria emateko. Bere basea babesteko kanoi-zuloak teknologia behar du."
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "StoneTower"
@@ -176,7 +176,7 @@ msgstr "Harrizko dorrea"
 #: simulation/templates/structures/cart_s_wall_short.xml:7
 #: simulation/templates/structures/cart_s_wall_tower.xml:7
 msgid "Stone Wall"
-msgstr "Harri horma"
+msgstr "Harresia"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:20
 msgid "City Gate"
@@ -185,11 +185,11 @@ msgstr "Hiri atea"
 #: simulation/templates/template_structure_defensive_wall_gate.xml:22
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
-msgstr "Unitateei harresi baten zehar sartzen uzten die. Itxi egin daiteke sarrera eragozteko."
+msgstr "Unitateei hesi baten zehar sartzen uzten die. Itxi egin daiteke sarrera eragozteko."
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:43
 msgid "Long wall segments can be converted to gates."
-msgstr "Horma segmentu luzeak atetan bihurtu daitezke"
+msgstr "Hesi segmentu luzeak ate bihurtu daitezke."
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:49
 #: simulation/templates/structures/palisades_long.xml:33
@@ -199,11 +199,11 @@ msgstr "Unitateei gotorlekuetan zehar mugitzea ahalbidetzen die."
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:53
 msgid "Wall Turret"
-msgstr "Harresi-dorretxoa"
+msgstr "Hesi-dorretxoa"
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:54
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "Geziak jaurti. Unitateak barruan babestu hiriaren harresiak erasotzaileetatik babesteko."
+msgstr "Geziak jaurtitzen ditu. Sartu unitateak barruan hiriaren hesiak erasotzaileetatik babesteko."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -212,16 +212,16 @@ msgstr "Eraikin ekonomikoa"
 #: simulation/templates/template_structure_economic.xml:15
 #: simulation/templates/template_structure_military_dock.xml:28
 msgid "Economic"
-msgstr "Ekonomikoak"
+msgstr "Ekonomia"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:32
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr "Janaria utzi. Janarien bilketarako hobekuntzetan ikertu."
+msgstr "Elikagaientzako deskarga puntua. Ikertu janari ustiaketa hobekuntzak."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 #: simulation/templates/template_structure_economic_farmstead.xml:30
 msgid "Farmstead"
-msgstr "Baserri"
+msgstr "Baserria"
 
 #: simulation/templates/template_structure_economic_market.xml:31
 msgid ""
@@ -239,7 +239,7 @@ msgstr "Azoka"
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr "Egurra, harria eta metala utzi eraikin honetan. Baliabide hauek biltzeko hobekuntzetan ikertu."
+msgstr "Egurra, harria eta metalarentzako deskarga puntua. Ikertu baliabide hauek ustiatzeko hobekuntzak."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:34
 #: simulation/templates/template_structure_economic_storehouse.xml:31
@@ -252,16 +252,16 @@ msgstr "Eraikin militarra"
 
 #: simulation/templates/template_structure_military.xml:25
 msgid "Military"
-msgstr "Militarrak"
+msgstr "Militarra"
 
 #: simulation/templates/template_structure_military_barracks.xml:23
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr "Erreklutatu hiritar-gudariak. Erreklutatze hobekuntzak ikertu."
+msgstr "Trebatu hiritar-soldaduak. Ikertu trebatze hobekuntzak."
 
 #: simulation/templates/template_structure_military_barracks.xml:24
 #: simulation/templates/template_structure_military_barracks.xml:22
 msgid "Barracks"
-msgstr "Barrakoiak"
+msgstr "Kasernak"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:26
 msgid "Research weapons and armor improvements."
@@ -289,7 +289,7 @@ msgstr "Elefanteentzako ukuiluak"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:29
 msgid "Train elephant units."
-msgstr "Pakidermoak eta zerikusia duten unitateak erreklutatu."
+msgstr "Trebatu elefante-unitateak."
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
 #: simulation/templates/template_structure_military_fortress.xml:74
@@ -317,12 +317,10 @@ msgid "Fortress"
 msgstr "Gotorlekua"
 
 #: simulation/templates/template_structure_military_fortress.xml:77
-#: simulation/templates/structures/mace_fortress.xml:10
-#: simulation/templates/structures/maur_fortress.xml:6
 msgid ""
-"Train Heroes and Champions and research technologies. Garrison Soldiers for "
+"Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
-msgstr ""
+msgstr "Trebatu aldezkariak eta heroiak eta ikertu teknologiak. Sartu soldaduak gezi gehiagorako."
 
 #: simulation/templates/template_structure_military_kennel.xml:38
 msgid "Kennel"
@@ -338,7 +336,7 @@ msgstr "Tiro praktiken zelaia"
 
 #: simulation/templates/template_structure_military_range.xml:23
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
-msgstr "Hiritar gudarien infanteria trebatzen du. Trebatze hobekuntzak ikertu."
+msgstr "Trebatu hiritar-soldaduen urrutirako infanteria. Ikertu trebatze hobekuntzak."
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Range"
@@ -346,7 +344,7 @@ msgstr "Tiro zelaia"
 
 #: simulation/templates/template_structure_military_stable.xml:25
 msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr "Zaldizko hiritar-gudariak trebatzen ditu. Erreklutatze hobekuntzak ikertu."
+msgstr "Trebatu zaldizko hiritar-soldaduak. Ikertu trebatze hobekuntzak."
 
 #: simulation/templates/template_structure_military_stable.xml:26
 #: simulation/templates/template_structure_military_stable.xml:22
@@ -359,7 +357,7 @@ msgstr "Setio Tailerra"
 
 #: simulation/templates/template_structure_military_workshop.xml:28
 msgid "Construct Siege Engines and research Siege Engine technologies."
-msgstr ""
+msgstr "Setio makinak eraiki eta setio teknologietan ikertu."
 
 #: simulation/templates/template_structure_military_workshop.xml:29
 msgid "Workshop"
@@ -487,7 +485,7 @@ msgstr "Epiteíkhisma"
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid "Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Sartu soldaduak gezi gehiagorako."
 
 #: simulation/templates/structures/athen_gymnasion.xml:24
 msgid "Gymnasium"
@@ -498,8 +496,9 @@ msgid "Gymnásion"
 msgstr "Gymnásion"
 
 #: simulation/templates/structures/athen_gymnasion.xml:26
-msgid "Train champion units."
-msgstr "Entrenatu unitate aldezkariak."
+#: simulation/templates/structures/pers_hall.xml:32
+msgid "Train Champions."
+msgstr "Trebatu aldezkariak."
 
 #: simulation/templates/structures/athen_house.xml:5
 #: simulation/templates/structures/mace_house.xml:5
@@ -518,7 +517,7 @@ msgstr "Empórios"
 #: simulation/templates/structures/mace_outpost.xml:5
 #: simulation/templates/structures/spart_outpost.xml:5
 msgid "Greek Outpost"
-msgstr "Aitzindari-talde grekoa"
+msgstr "Postu aurreratu grekoa"
 
 #: simulation/templates/structures/athen_outpost.xml:6
 #: simulation/templates/structures/mace_outpost.xml:6
@@ -535,8 +534,8 @@ msgid "Prytaneîon"
 msgstr "Prytaneîon"
 
 #: simulation/templates/structures/athen_prytaneion.xml:27
-msgid "Train heroes. Research special technologies."
-msgstr "Heroiak erreklutatu. Teknologi berezietan ikertu."
+msgid "Train Heroes and research technologies."
+msgstr "Trebatu heroiak eta ikertu teknologiak."
 
 #: simulation/templates/structures/athen_royal_stoa.xml:5
 #: simulation/templates/structures/mace_royal_stoa.xml:5
@@ -616,7 +615,7 @@ msgstr "Naós Parthenṓn"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
-msgstr "Zure zibilizazioari ospea ekarri eta gehitu lurralde eremu handiak zure inperioari. Babestu unitateak azkar sendatzeko."
+msgstr "Zure zibilizazioari ospea ekarri eta gehitu lurralde eremu handiak zure inperioari. Sartu hemen unitateak azkar sendatzeko."
 
 #: simulation/templates/structures/athen_workshop.xml:5
 #: simulation/templates/structures/mace_workshop.xml:5
@@ -624,7 +623,7 @@ msgstr "Zure zibilizazioari ospea ekarri eta gehitu lurralde eremu handiak zure 
 #: simulation/templates/structures/sele_workshop.xml:5
 #: simulation/templates/structures/spart_workshop.xml:5
 msgid "Hoplothēkē"
-msgstr ""
+msgstr "Hoplothēkē"
 
 #: simulation/templates/structures/baby_defense_tower.xml:5
 #: simulation/templates/structures/pers_defense_tower.xml:5
@@ -748,12 +747,12 @@ msgstr "Duoricos"
 #: simulation/templates/structures/gaul_wall_short.xml:10
 #: simulation/templates/structures/gaul_wallset_stone.xml:5
 msgid "Rate"
-msgstr "tasa"
+msgstr "Tasa"
 
 #: simulation/templates/structures/brit_wall_tower.xml:12
 #: simulation/templates/structures/gaul_wall_tower.xml:12
 msgid "Does not shoot or garrison."
-msgstr "Ez du ez babesik eman ez tirorik egiten."
+msgstr "Ez du tirorik egiten eta ezin dira unitateak sartu."
 
 #: simulation/templates/structures/brit_wonder.xml:10
 msgid "Uffington White Horse"
@@ -776,7 +775,7 @@ msgstr "Maḥanēt"
 msgid ""
 "Train North African citizen-soldiers. Research improvements for North "
 "African units."
-msgstr "Ipar-afrikar hiritar-gudariak erreklutatu. Ipar-afrikar unitateentzako hobekuntzetan ikertu."
+msgstr "Trebatu ipar-afrikar hiritar-soldaduak. Ikertu Ipar-afrikar unitateentzako hobekuntzak."
 
 #: simulation/templates/structures/cart_civil_centre.xml:8
 msgid "Merkāz"
@@ -803,7 +802,7 @@ msgstr "Namel"
 msgid ""
 "Construct fishing boats to gather meat and merchant ships to trade with "
 "other docks."
-msgstr "Arrantza txalupak eraiki haragia lortzeko eta merkatari itsasontziak  beste portu batzuekin salerosteko."
+msgstr "Eraiki arrantzontziak arraina ustiatzeko, eta merkatari itsasontziak beste portu batzuekin salerosteko."
 
 #: simulation/templates/structures/cart_elephant_stables.xml:5
 msgid "Carthaginian Elephant Stables"
@@ -811,7 +810,7 @@ msgstr "Kartagotar elefanteen ukuilua"
 
 #: simulation/templates/structures/cart_embassy.xml:21
 msgid "Hire mercenaries."
-msgstr "Saripekoak alokatu"
+msgstr "Kontratatu mertzenarioak"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:19
 msgid "Celtic Embassy"
@@ -819,7 +818,7 @@ msgstr "Enbaxada zelta"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:20
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
-msgstr "Saripeko Zeltak alokatu. Saripeko hauentzat hobekuntzak ikertu."
+msgstr "Kontratatu mertzenario Zeltak. Ikertu mertzenario hauentzako hobekuntzak."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:12
 msgid "Iberian Embassy"
@@ -827,7 +826,7 @@ msgstr "Iberiar enbaxada"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:13
 msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
-msgstr "Saripeko Iberoak alokatu. Saripeko hauentzat hobekuntzak ikertu."
+msgstr "Kontratatu mertzenario Iberoak. Ikertu mertzenario hauentzako hobekuntzak."
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:19
 msgid "Italian Embassy"
@@ -835,7 +834,7 @@ msgstr "Italiar Enbaxada"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
-msgstr "Saripeko Italiarrak alokatu. Saripeko hauentzat hobekuntzak ikertu."
+msgstr "Kontratatu mertzenario Italiarrak. Ikertu mertzenario hauentzako hobekuntzak."
 
 #: simulation/templates/structures/cart_farmstead.xml:8
 msgid "Aḥuzāh"
@@ -863,7 +862,7 @@ msgstr "Šūq"
 
 #: simulation/templates/structures/cart_outpost.xml:5
 msgid "Carthaginian Outpost"
-msgstr "Cartagindar Aitzindari-taldea"
+msgstr "Postu aurreratu Cartagindarra"
 
 #: simulation/templates/structures/cart_s_wall_long.xml:6
 #: simulation/templates/structures/cart_s_wall_medium.xml:6
@@ -871,7 +870,7 @@ msgstr "Cartagindar Aitzindari-taldea"
 #: simulation/templates/structures/cart_s_wall_tower.xml:6
 #: simulation/templates/structures/cart_wallset_short.xml:5
 msgid "Low Wall"
-msgstr "Arresi Txikia"
+msgstr "Hesi baxua"
 
 #: simulation/templates/structures/cart_storehouse.xml:8
 msgid "Maḥṣabah"
@@ -899,9 +898,9 @@ msgstr "Maqdaš"
 
 #: simulation/templates/structures/cart_temple.xml:15
 msgid ""
-"Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
+"Train Healers and Champions and research healing technologies. Garrison "
 "units to heal them at a quick rate."
-msgstr "Erreklutatu emakume apaizak zure guda taldeak sendatzeko. Batailoi Sakratuko pikarik erreklutatu. Babestu unitateak era azkarragoan sendatzeko.   "
+msgstr "Trebatu sendalariak eta aldezkariak eta ikertu sendatze teknologiak. Sartu unitateak bertan azkar sendatzeko."
 
 #: simulation/templates/structures/cart_tophet.xml:22
 msgid "Sacrificial Temple"
@@ -912,8 +911,10 @@ msgid "Tophet"
 msgstr "Tophet"
 
 #: simulation/templates/structures/cart_tophet.xml:24
-msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr "Batailoi Sagaratuaren Zalditeria eta medikuak erreklutatu."
+msgid ""
+"Train Healers and Champion Cavalry and research healing technologies. "
+"Garrison units to heal them at a quick rate."
+msgstr "Trebatu sendalariak eta zalditeri aldezkaria eta ikertu sendatze teknologiak. Sartu unitateak bertan azkar sendatzeko."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -937,7 +938,7 @@ msgstr "Ba'al Hammonen tenplua"
 msgid "Coriosedlon"
 msgstr "Coriosedlon"
 
-#: simulation/templates/structures/gaul_civil_centre.xml:9
+#: simulation/templates/structures/gaul_civil_centre.xml:12
 msgid "Lissos"
 msgstr "Lissos"
 
@@ -1004,7 +1005,7 @@ msgstr "Soro"
 
 #: simulation/templates/structures/iber_fortress.xml:15
 msgid "Castro"
-msgstr "Gaztelu"
+msgstr "Kastroa"
 
 #: simulation/templates/structures/iber_house.xml:5
 msgid "Etxe"
@@ -1034,7 +1035,7 @@ msgstr "Monumentu honen ikus-eremuko unitateek indar handiagoaz borrokatuko dute
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
-msgstr "Aurrepostu Iberoa"
+msgstr "Postu aurreratu Iberoa"
 
 #: simulation/templates/structures/iber_storehouse.xml:5
 msgid "Ola"
@@ -1123,7 +1124,7 @@ msgstr "Nuba herrixka"
 
 #: simulation/templates/structures/kush_nuba_village.xml:23
 msgid "Train the Nuba Clubman and Nuba Hunter."
-msgstr "Nuba ehiztaria trebatu eta garrote-zorroa."
+msgstr "Trebatu Nuba borra-gizona eta Nuba ehiztaria."
 
 #: simulation/templates/structures/kush_outpost.xml:5
 msgid "trtr"
@@ -1192,7 +1193,7 @@ msgstr "Pr-‘Iprmk"
 msgid ""
 "Train priests to heal your troops. Train Meroitic Temple Guards. Garrison "
 "units to heal them at a quick rate."
-msgstr "Zure tropak trebatu. Trebatu tenplu Meroiticeko zaindariak. Zaindari taldeak azkar bizkortzeko."
+msgstr "Trebatu apaizak zure tropak sendatzeko. Trebatu Meroitic tenpluko zaindariak. Sartu bertan unitateak hauek azkar sendatzeko."
 
 #: simulation/templates/structures/kush_temple_amun.xml:28
 msgid "Grand Temple of Amun"
@@ -1206,7 +1207,7 @@ msgstr "Pr-‘Imn"
 msgid ""
 "Train priests to heal your troops. Train Napatan Temple Guards and research "
 "unique technologies. Garrison units to heal them at a quick rate."
-msgstr "Zure tropak trebatu. Trebatu tenplu Napataneko zaindariak eta teknologia bakarrak bilatu. Zaindari taldeak azkar bizkortzeko."
+msgstr "Trebatu apaizak zure tropak sendatzeko. Trebatu Napatan tenpluaren zaindariak eta ikertu teknologia bakanak. Sartu bertan unitateak hauek azkar sendatzeko."
 
 #: simulation/templates/structures/kush_wall_gate.xml:9
 msgid "’ryt"
@@ -1305,6 +1306,10 @@ msgstr "Uparaksana"
 msgid "Harmya"
 msgstr "Harmya"
 
+#: simulation/templates/structures/maur_palace.xml:15
+msgid "Train Female Citizens, Champions, and Heroes."
+msgstr "Trebatu emakumezko hiritarrak, aldezkariak, eta heroiak."
+
 #: simulation/templates/structures/maur_pillar_ashoka.xml:9
 msgid "Pillar"
 msgstr "Zutabe"
@@ -1365,7 +1370,7 @@ msgstr "Stratópedo Misthophóron Aigyptiakós"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:32
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr "Atzitu egitura hau Egipto heleniarren mertzenarioak erreklutatzeko"
+msgstr "Atzeman egitura hau Egipto heleniarren mertzenarioak trebatzeko."
 
 #: simulation/templates/structures/palisades_curve.xml:14
 msgid "Palisade Curve"
@@ -1419,17 +1424,17 @@ msgstr "Begirale Dorrea"
 
 #: simulation/templates/structures/pers_apadana.xml:29
 msgid "Throne Hall"
-msgstr ""
+msgstr "Tronuaren aretoa"
 
 #: simulation/templates/structures/pers_apadana.xml:30
 msgid "Apadāna"
-msgstr ""
+msgstr "Apadāna"
 
 #: simulation/templates/structures/pers_apadana.xml:33
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
-"resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr "\"Satrapa Ordaina\". Lor ezazu baliabideak tantaka janari, egurra, harria eta metaletan. Erreklutatu heroi pertsiarrak eta beraien bizkartzain \"hilezkorrak\". "
+"resources. Train Champions and Heroes."
+msgstr ""
 
 #: simulation/templates/structures/pers_apartment_block.xml:15
 msgid "Apartment Block"
@@ -1441,7 +1446,7 @@ msgstr "Padgan"
 
 #: simulation/templates/structures/pers_barracks.xml:6
 msgid "Levy citizen-soldier infantry."
-msgstr ""
+msgstr "Hiritar-soldaduen infanteria erreklutatzea."
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1481,19 +1486,15 @@ msgstr "Didā"
 msgid ""
 "Train Champions and research technologies. Garrison Soldiers for additional "
 "arrows."
-msgstr ""
+msgstr "Trebatu aldezkariak eta ikertu teknologiak. Sartu soldaduak gezi gehiagorako."
 
 #: simulation/templates/structures/pers_hall.xml:29
 msgid "Gate of All Nations"
-msgstr ""
+msgstr "Nazio guztien atea"
 
 #: simulation/templates/structures/pers_hall.xml:30
 msgid "Duvarθi Visadahyu"
-msgstr ""
-
-#: simulation/templates/structures/pers_hall.xml:32
-msgid "Train War Elephants and Kardakes mercenaries."
-msgstr "Guda elefanteak eta mertzenario kardakeak erreklutatu."
+msgstr "Duvarθi Visadahyu"
 
 #: simulation/templates/structures/pers_house.xml:8
 msgid "Huvādā"
@@ -1536,7 +1537,7 @@ msgstr "Asiyah"
 
 #: simulation/templates/structures/pers_tacara.xml:26
 msgid "Palace"
-msgstr ""
+msgstr "Palazioa"
 
 #: simulation/templates/structures/pers_tacara.xml:27
 msgid "Taçara"
@@ -1544,11 +1545,11 @@ msgstr "Taçara"
 
 #: simulation/templates/structures/pers_temple.xml:12
 msgid "Āyadanam"
-msgstr ""
+msgstr "Āyadanam"
 
 #: simulation/templates/structures/pers_wall_gate.xml:9
 msgid "Duvarθiš"
-msgstr ""
+msgstr "Duvarθiš"
 
 #: simulation/templates/structures/pers_wall_long.xml:29
 #: simulation/templates/structures/pers_wall_medium.xml:23
@@ -1573,7 +1574,7 @@ msgstr "ḥwt-n-mš'"
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements."
-msgstr "Erreklutatu hiritar-gudari egiptoarrak eta ekialde ertainekoak. Erreklutatze hobekuntzetan ikertu. "
+msgstr "Trebatu hiritar-soldadu egiptoarrak eta ekialde ertainekoak. Ikertu trebatze hobekuntzak."
 
 #: simulation/templates/structures/ptol_civil_centre.xml:9
 msgid "pr-'a"
@@ -1611,7 +1612,7 @@ msgstr "ḥwt"
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
 "houses are free of cost, but are very weak."
-msgstr "Biztanleria muga handitu. Adobez eginak izanik, egiptoar etxeak ez dute apenas kosturik baino oso ahulak dira."
+msgstr "Biztanleria muga handitu. Adobez eginak izanik, egiptoar etxeak ez dute apenas kosturik, baina oso ahulak dira."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
@@ -1643,7 +1644,7 @@ msgstr "Stratopedeía Misthophórōn"
 msgid ""
 "Cheap Barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr "Kaserna eraikin merkea, lur eremu neutralean eraiki ahal dena, nahiz zure influentzi eremua handitu ez. Mertzenarioak erreklutatu."
+msgstr "Kaserna antzeko eraikin merkea, lur eremu neutralean eraiki ahal dena, nahiz zure influentzi eremua handitu ez. Trebatu mertzenarioak."
 
 #: simulation/templates/structures/ptol_military_colony.xml:9
 #: simulation/templates/structures/sele_military_colony.xml:9
@@ -1690,7 +1691,7 @@ msgstr "Garaipenaren Arkua"
 
 #: simulation/templates/structures/rome_arch.xml:23
 msgid "Arcus Triumphālis"
-msgstr ""
+msgstr "Arcus Triumphālis"
 
 #: simulation/templates/structures/rome_army_camp.xml:47
 msgid "ArmyCamp"
@@ -1698,17 +1699,17 @@ msgstr "ArmyCamp"
 
 #: simulation/templates/structures/rome_army_camp.xml:80
 msgid "Army Camp"
-msgstr ""
+msgstr "Armadaren kanpamentua"
 
 #: simulation/templates/structures/rome_army_camp.xml:81
 msgid "Castra"
-msgstr ""
+msgstr "Castra"
 
 #: simulation/templates/structures/rome_army_camp.xml:84
 msgid ""
 "Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
 "Siege Engines. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Jaso etsaien lurraldean edo lurralde neutraletan. Trebatu hiritar-soldaduak eta eraiki setio makinak. Sartu soldaduak gezi gehiagorako."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1716,7 +1717,7 @@ msgstr "Castrum"
 
 #: simulation/templates/structures/rome_blacksmith.xml:5
 msgid "Armāmentārium"
-msgstr ""
+msgstr "Armāmentārium"
 
 #: simulation/templates/structures/rome_civil_centre.xml:12
 msgid "Forum"
@@ -1728,7 +1729,7 @@ msgstr "Saeptum"
 
 #: simulation/templates/structures/rome_defense_tower.xml:9
 msgid "Turris Laterīcia"
-msgstr ""
+msgstr "Turris Laterīcia"
 
 #: simulation/templates/structures/rome_dock.xml:12
 msgid "Portus"
@@ -1736,7 +1737,7 @@ msgstr "Portus"
 
 #: simulation/templates/structures/rome_farmstead.xml:8
 msgid "Vīlla"
-msgstr ""
+msgstr "Vīlla"
 
 #: simulation/templates/structures/rome_field.xml:5
 msgid "Ager"
@@ -1752,64 +1753,64 @@ msgstr "Domus"
 
 #: simulation/templates/structures/rome_market.xml:12
 msgid "Mercātus"
-msgstr ""
+msgstr "Mercātus"
 
 #: simulation/templates/structures/rome_outpost.xml:5
 msgid "Vigilārium"
-msgstr ""
+msgstr "Vigilārium"
 
 #: simulation/templates/structures/rome_sentry_tower.xml:5
 msgid "Turris Līgnea"
-msgstr ""
+msgstr "Turris Līgnea"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:25
 msgid "Siege Wall Gate"
-msgstr "Setioko Harresiko Atea"
+msgstr "Setioko Hesiko Atea"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:26
 msgid "Porta Circummūnītiōnis"
-msgstr ""
+msgstr "Porta Circummūnītiōnis"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:51
 #: simulation/templates/structures/rome_siege_wall_medium.xml:45
 #: simulation/templates/structures/rome_siege_wall_short.xml:32
 #: simulation/templates/structures/rome_wallset_siege.xml:5
 msgid "Siege Wall"
-msgstr "Setioko Harresia"
+msgstr "Setioko Hesia"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:52
 #: simulation/templates/structures/rome_siege_wall_medium.xml:46
 #: simulation/templates/structures/rome_siege_wall_short.xml:33
 #: simulation/templates/structures/rome_wallset_siege.xml:6
 msgid "Mūrus Circummūnītiōnis"
-msgstr ""
+msgstr "Mūrus Circummūnītiōnis"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:55
 #: simulation/templates/structures/rome_siege_wall_medium.xml:49
 #: simulation/templates/structures/rome_siege_wall_short.xml:36
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
-msgstr "Zur eta soropilezko hesi bat, etsaiaren lurraldean eta lurralde neutroan eraiki daitekeena."
+msgstr "Zur eta zohikatzezko hesi bat, etsaiaren lurraldean eta lurralde neutroan eraiki daitekeena."
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
-msgstr "Setioko Harresiko Dorrea"
+msgstr "Setioko Hesiko Dorrea"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:32
 msgid "Turris Circummūnītiōnis"
-msgstr ""
+msgstr "Turris Circummūnītiōnis"
 
 #: simulation/templates/structures/rome_stable.xml:5
 msgid "Equīle"
-msgstr ""
+msgstr "Equīle"
 
 #: simulation/templates/structures/rome_storehouse.xml:8
 msgid "Receptāculum"
-msgstr ""
+msgstr "Receptāculum"
 
 #: simulation/templates/structures/rome_temple.xml:9
 msgid "Aedēs"
-msgstr ""
+msgstr "Aedēs"
 
 #: simulation/templates/structures/rome_temple_mars.xml:12
 msgid "Temple of Mars"
@@ -1817,7 +1818,7 @@ msgstr "Marteko Tenplua "
 
 #: simulation/templates/structures/rome_temple_mars.xml:13
 msgid "Aedēs Mārtiālis"
-msgstr ""
+msgstr "Aedēs Mārtiālis"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Temple of Vesta"
@@ -1825,7 +1826,7 @@ msgstr "Vestaren Templua"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:19
 msgid "Aedēs Vestālis"
-msgstr ""
+msgstr "Aedēs Vestālis"
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1856,11 +1857,11 @@ msgstr "Turris Lapidea"
 
 #: simulation/templates/structures/rome_wonder.xml:15
 msgid "Aedēs Iovis Optimi Maximi"
-msgstr ""
+msgstr "Aedēs Iovis Optimi Maximi"
 
 #: simulation/templates/structures/rome_workshop.xml:5
 msgid "Ballistārium"
-msgstr ""
+msgstr "Ballistārium"
 
 #: simulation/templates/structures/sele_barracks.xml:18
 msgid "Stratones"
@@ -1930,8 +1931,8 @@ msgid "Gerontía"
 msgstr "Gerontía"
 
 #: simulation/templates/structures/spart_gerousia.xml:24
-msgid "Train heroes."
-msgstr "Heroiak erreklutatu."
+msgid "Train Heroes."
+msgstr "Trebatu heroiak."
 
 #: simulation/templates/structures/spart_syssiton.xml:25
 msgid "Military Mess Hall"
@@ -1942,11 +1943,11 @@ msgid "Syssítion"
 msgstr "Syssítion"
 
 #: simulation/templates/structures/spart_syssiton.xml:27
-msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr "Entrenatu Espartako heroiak eta Espartako hoplita aldezkariak."
+msgid "Train Champions and Heroes."
+msgstr "Trebatu aldezkariak eta heroiak."
 
 #: simulation/templates/structures/spart_wonder.xml:16
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
-msgstr "Zure zibilizazioari ospea ekarri eta zure inperioari lur eremu handiak gehitu. Babestu unitateak azkar sendatzeko."
+msgstr "Zure zibilizazioari ospea ekarri eta zure inperioari lur eremu handiak gehitu. Sartu unitateak azkar sendatzeko."
