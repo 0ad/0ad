@@ -13,12 +13,16 @@ class OverlayCounterManager
 		this.counters = [];
 		this.enabledCounters = [];
 		this.lastTick = undefined;
-		this.lastLineCount = 0;
+		this.lastLineCount = undefined;
 		this.resizeHandlers = [];
 
 		for (let name of this.availableCounterNames())
 		{
-			let counter = new OverlayCounterTypes.prototype[name](this);
+			let counterType = OverlayCounterTypes.prototype[name];
+			if (counterType.IsAvailable && !counterType.IsAvailable())
+				continue;
+
+			let counter = new counterType(this);
 			this.counters.push(counter);
 			counter.updateEnabled();
 		}
