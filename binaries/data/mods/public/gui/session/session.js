@@ -11,6 +11,7 @@ const g_VictoryDurations = prepareForDropdown(g_Settings && g_Settings.VictoryDu
 const g_VictoryConditions = g_Settings && g_Settings.VictoryConditions;
 
 var g_Chat;
+var g_Cheats;
 var g_DeveloperOverlay;
 var g_DiplomacyColors;
 var g_DiplomacyDialog;
@@ -262,6 +263,7 @@ function init(initData, hotloadData)
 			restoreSavedGameData(initData.savedGUIData);
 	}
 
+	g_Cheats = new Cheats();
 	g_DiplomacyColors = new DiplomacyColors();
 	g_PlayerViewControl = new PlayerViewControl();
 	g_PlayerViewControl.registerViewedPlayerChangeHandler(g_DiplomacyColors.updateDisplayedPlayerColors.bind(g_DiplomacyColors));
@@ -271,7 +273,7 @@ function init(initData, hotloadData)
 	g_PlayerViewControl.registerPreViewedPlayerChangeHandler(removeStatusBarDisplay);
 	g_PlayerViewControl.registerViewedPlayerChangeHandler(resetTemplates);
 
-	g_Chat = new Chat(g_PlayerViewControl);
+	g_Chat = new Chat(g_PlayerViewControl, g_Cheats);
 	g_DeveloperOverlay = new DeveloperOverlay(g_PlayerViewControl, g_Selection);
 	g_DiplomacyDialog = new DiplomacyDialog(g_PlayerViewControl, g_DiplomacyColors);
 	g_GameSpeedControl = new GameSpeedControl(g_PlayerViewControl);
