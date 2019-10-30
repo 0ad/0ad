@@ -187,11 +187,12 @@ MenuButtons.prototype.Pause = class
 		playerViewControl.registerPlayerIDChangeHandler(this.rebuild.bind(this));
 		pauseControl.registerPauseHandler(this.rebuild.bind(this));
 		registerHotkeyChangeHandler(this.rebuild.bind(this));
+		registerNetworkStatusChangeHandler(this.rebuild.bind(this));
 	}
 
 	rebuild()
 	{
-		this.button.enabled = !g_IsObserver || !g_IsNetworked || g_IsController;
+		this.button.enabled = this.pauseControl.canPause(true);
 		this.button.caption = this.pauseControl.explicitPause ? translate("Resume") : translate("Pause");
 		this.button.tooltip = sprintf(translate("Press %(hotkey)s to pause or resume the game."), {
 			"hotkey": colorizeHotkey("%(hotkey)s", this.button.hotkey),

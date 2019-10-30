@@ -24,6 +24,19 @@ var g_PlayerAssignmentsChangeHandlers = new Set();
 var g_CeasefireEndedHandlers = new Set();
 
 /**
+ * These handlers are fired when the match is networked and
+ * the current client established the connection, authenticated,
+ * finished the loading screen, starts or finished synchronizing after a rejoin.
+ * The messages are constructed in NetClient.cpp.
+ */
+var g_NetworkStatusChangeHandlers = new Set();
+
+/**
+ * These handlers are triggered whenever a client finishes the loading screen.
+ */
+var g_ClientsLoadingHandlers = new Set();
+
+/**
  * These handlers are fired if the server informed the players that the networked game is out of sync.
  */
 var g_NetworkOutOfSyncHandlers = new Set();
@@ -49,7 +62,8 @@ var g_NetMessageTypes = {
 		g_PauseControl.setClientPauseState(msg.guid, msg.pause);
 	},
 	"clients-loading": msg => {
-		handleClientsLoadingMessage(msg.guids);
+		for (let handler of g_ClientsLoadingHandlers)
+			handler(msg.guids);
 	},
 	"rejoined": msg => {
 		addChatMessage({
@@ -81,19 +95,6 @@ var g_NetMessageTypes = {
 	},
 	"gamesetup": msg => {}, // Needed for autostart
 	"start": msg => {}
-};
-
-/**
- * Show a label and grey overlay or hide both on connection change.
- */
-var g_StatusMessageTypes = {
-	"authenticated": msg => translate("Connection to the server has been authenticated."),
-	"connected": msg => translate("Connected to the server."),
-	"disconnected": msg => translate("Connection to the server has been lost.") + "\n" +
-		getDisconnectReason(msg.reason, true),
-	"waiting_for_players": msg => translate("Waiting for players to connect:"),
-	"join_syncing": msg => translate("Synchronizing gameplay with other players…"),
-	"active": msg => ""
 };
 
 var g_PlayerStateMessages = {
@@ -313,6 +314,16 @@ function registerNetworkOutOfSyncHandler(handler)
 	g_NetworkOutOfSyncHandlers.add(handler);
 }
 
+function registerNetworkStatusChangeHandler(handler)
+{
+	g_NetworkStatusChangeHandlers.add(handler);
+}
+
+function registerClientsLoadingHandler(handler)
+{
+	g_ClientsLoadingHandlers.add(handler);
+}
+
 /**
  * Loads all known cheat commands.
  */
@@ -485,46 +496,22 @@ function handleNetMessages()
 	}
 }
 
-/**
- * @param {Object} message
- */
 function handleNetStatusMessage(message)
 {
 	if (g_Disconnected)
 		return;
 
-	if (!g_StatusMessageTypes[message.status])
-	{
-		error("Unrecognised netstatus type '" + message.status + "'");
-		return;
-	}
-
 	g_IsNetworkedActive = message.status == "active";
-
-	let netStatus = Engine.GetGUIObjectByName("netStatus");
-	let statusMessage = g_StatusMessageTypes[message.status](message);
-	netStatus.caption = statusMessage;
-	netStatus.hidden = !statusMessage;
-
-	let loadingClientsText = Engine.GetGUIObjectByName("loadingClientsText");
-	loadingClientsText.hidden = message.status != "waiting_for_players";
 
 	if (message.status == "disconnected")
 	{
-		// Hide the pause overlay, and pause animations.
-		Engine.GetGUIObjectByName("pauseOverlay").hidden = true;
-		Engine.SetPaused(true, false);
-
 		g_Disconnected = true;
 		updateCinemaPath();
 		closeOpenDialogs();
 	}
-}
 
-function handleClientsLoadingMessage(guids)
-{
-	let loadingClientsText = Engine.GetGUIObjectByName("loadingClientsText");
-	loadingClientsText.caption = guids.map(guid => colorizePlayernameByGUID(guid)).join(translateWithContext("Separator for a list of client loading messages", ", "));
+	for (let handler of g_NetworkStatusChangeHandlers)
+		handler(message);
 }
 
 function handlePlayerAssignmentsMessage(message)

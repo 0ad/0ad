@@ -23,6 +23,17 @@ class PauseControl
 		 * Event handlers called when anyone paused.
 		 */
 		this.pauseHandlers = [];
+
+		registerNetworkStatusChangeHandler(this.onNetworkStatusChangeHandler.bind(this));
+	}
+
+	onNetworkStatusChangeHandler()
+	{
+		if (g_Disconnected)
+		{
+			Engine.SetPaused(true, false);
+			this.callPauseHandlers();
+		}
 	}
 
 	registerPauseHandler(handler)
@@ -49,11 +60,19 @@ class PauseControl
 		this.setPaused(false, false);
 	}
 
-	setPaused(pause, explicit)
+	/**
+	 * Returns true if the current player is allowed to pause the game currently.
+	 */
+	canPause(explicit)
 	{
 		// Don't pause the game in multiplayer mode when opening dialogs.
 		// The NetServer only supports pausing after all clients finished loading the game.
-		if (g_IsNetworked && (!explicit || !g_IsNetworkedActive))
+		return !g_IsNetworked || explicit && g_IsNetworkedActive && (!g_IsObserver || g_IsController);
+	}
+
+	setPaused(pause, explicit)
+	{
+		if (!this.canPause(explicit))
 			return;
 
 		if (explicit)
