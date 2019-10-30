@@ -17,8 +17,6 @@ OverlayCounterTypes.prototype.RemainingCeasefire = class extends OverlayCounter
 
 	get()
 	{
-		if (!g_SimState)
-			return "";
 		return timeToString(g_SimState.ceasefireTimeRemaining);
 	}
 };
@@ -26,3 +24,5 @@ OverlayCounterTypes.prototype.RemainingCeasefire = class extends OverlayCounter
 OverlayCounterTypes.prototype.RemainingCeasefire.prototype.Config = "gui.session.ceasefirecounter";
 
 OverlayCounterTypes.prototype.RemainingCeasefire.prototype.Hotkey = "ceasefirecounter.toggle";
+
+OverlayCounterTypes.prototype.RemainingCeasefire.IsAvailable = () => GetSimState().ceasefireActive;
