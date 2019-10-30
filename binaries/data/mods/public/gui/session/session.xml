@@ -36,11 +36,7 @@
 
 	<include file="gui/session/NetworkStatusOverlay.xml"/>
 	<include file="gui/session/PauseOverlay.xml"/>
-
-	<!-- Notification Area -->
-	<object name="notificationPanel" type="image" size="50%-300 60 50%+300 120" ghost="true">
-		<object name="notificationText" type="text" style="notificationPanel" ghost="true" z="0"/>
-	</object>
+	<include file="gui/session/TimeNotificationOverlay.xml"/>
 
 	<!-- Chat messages -->
 	<object name="chatPanel" size="0 130 100% 100%-240" type="image" ghost="true" z="0" absolute="true">

@@ -10,6 +10,7 @@ const g_StartingResources = prepareForDropdown(g_Settings && g_Settings.Starting
 const g_VictoryDurations = prepareForDropdown(g_Settings && g_Settings.VictoryDurations);
 const g_VictoryConditions = g_Settings && g_Settings.VictoryConditions;
 
+var g_Ambient;
 var g_Chat;
 var g_Cheats;
 var g_DeveloperOverlay;
@@ -30,13 +31,9 @@ var g_QuitConfirmationDefeat;
 var g_QuitConfirmationReplay;
 var g_RangeOverlayManager;
 var g_ResearchProgress;
-var g_TradeDialog;
+var g_TimeNotificationOverlay;
 var g_TopPanel;
-
-/**
- * A random file will be played. TODO: more variety
- */
-var g_Ambient = ["audio/ambient/dayscape/day_temperate_gen_03.ogg"];
+var g_TradeDialog;
 
 /**
  * Map, player and match settings set in gamesetup.
@@ -273,6 +270,7 @@ function init(initData, hotloadData)
 	g_PlayerViewControl.registerPreViewedPlayerChangeHandler(removeStatusBarDisplay);
 	g_PlayerViewControl.registerViewedPlayerChangeHandler(resetTemplates);
 
+	g_Ambient = new Ambient();
 	g_Chat = new Chat(g_PlayerViewControl, g_Cheats);
 	g_DeveloperOverlay = new DeveloperOverlay(g_PlayerViewControl, g_Selection);
 	g_DiplomacyDialog = new DiplomacyDialog(g_PlayerViewControl, g_DiplomacyColors);
@@ -291,6 +289,7 @@ function init(initData, hotloadData)
 	g_ResearchProgress = new ResearchProgress(g_PlayerViewControl, g_Selection);
 	g_TradeDialog = new TradeDialog(g_PlayerViewControl);
 	g_TopPanel = new TopPanel(g_PlayerViewControl, g_DiplomacyDialog, g_TradeDialog, g_ObjectivesDialog, g_GameSpeedControl);
+	g_TimeNotificationOverlay = new TimeNotificationOverlay(g_PlayerViewControl);
 
 	initBatchTrain();
 	initSelectionPanels();
@@ -420,7 +419,6 @@ function initializeMusic()
 	if (g_ViewedPlayer != -1 && g_CivData[g_Players[g_ViewedPlayer].civ].Music)
 		global.music.storeTracks(g_CivData[g_Players[g_ViewedPlayer].civ].Music);
 	global.music.setState(global.music.states.PEACE);
-	playAmbient();
 }
 
 function resetTemplates()
@@ -659,7 +657,6 @@ function updateGUIObjects()
 	updateGroups();
 	updateSelectionDetails();
 	updateBuildingPlacementPreview();
-	updateTimeNotifications();
 
 	if (!g_IsObserver)
 	{
@@ -800,9 +797,4 @@ function updateAdditionalHighlight()
 	_setHighlight(entsAdd, g_HighlightedAlpha, true);
 	_setHighlight(entsRemove, 0, false);
 	g_AdditionalHighlight = entsAdd;
-}
-
-function playAmbient()
-{
-	Engine.PlayAmbientSound(pickRandom(g_Ambient), true);
 }

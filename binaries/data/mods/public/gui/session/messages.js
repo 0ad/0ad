@@ -390,32 +390,6 @@ function updateTutorial(notification)
 }
 
 /**
- * Displays all active counters (messages showing the remaining time) for wonder-victory, ceasefire etc.
- */
-function updateTimeNotifications()
-{
-	let notifications = Engine.GuiInterfaceCall("GetTimeNotifications", g_ViewedPlayer);
-	let notificationText = "";
-	for (let n of notifications)
-	{
-		let message = n.message;
-		if (n.translateMessage)
-			message = translate(message);
-
-		let parameters = n.parameters || {};
-		if (n.translateParameters)
-			translateObjectKeys(parameters, n.translateParameters);
-
-		parameters.time = timeToString(n.endTime - GetSimState().timeElapsed);
-
-		colorizePlayernameParameters(parameters);
-
-		notificationText += sprintf(message, parameters) + "\n";
-	}
-	Engine.GetGUIObjectByName("notificationText").caption = notificationText;
-}
-
-/**
  * Process every CNetMessage (see NetMessage.h, NetMessages.h) sent by the CNetServer.
  * Saves the received object to mainlog.html.
  */
