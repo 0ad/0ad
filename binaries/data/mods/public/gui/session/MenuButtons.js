@@ -115,8 +115,7 @@ MenuButtons.prototype.Summary = class
 				},
 				"selectedData": this.selectedData
 			},
-			data =>
-			{
+			data => {
 				this.selectedData = data.summarySelectedData;
 				this.pauseControl.implicitResume();
 			});
@@ -225,23 +224,7 @@ MenuButtons.prototype.Resign = class
 
 	onPress()
 	{
-		closeOpenDialogs();
-		this.pauseControl.implicitPause();
-
-		messageBox(
-			400, 200,
-			translate("Are you sure you want to resign?"),
-			translate("Confirmation"),
-			[translate("No"), translate("Yes")],
-			[
-				resumeGame,
-				() => {
-					Engine.PostNetworkCommand({
-						"type": "resign"
-					});
-					resumeGame();
-				}
-			]);
+		(new ResignConfirmation()).display();
 	}
 };
 
@@ -257,50 +240,11 @@ MenuButtons.prototype.Exit = class
 
 	onPress()
 	{
-		closeOpenDialogs();
-		this.pauseControl.implicitPause();
-
-		let messageType = g_IsNetworked && g_IsController ? "host" :
-			(g_IsNetworked && !g_IsObserver ? "client" : "singleplayer");
-
-		messageBox(
-			400, 200,
-			this.Confirmation[messageType].caption(),
-			translate("Confirmation"),
-			[translate("No"), translate("Yes")],
-			this.Confirmation[messageType].buttons());
-	}
-};
-
-MenuButtons.prototype.Exit.prototype.Confirmation = {
-	"host": {
-		"caption": () => translate("Are you sure you want to quit? Leaving will disconnect all other players."),
-		"buttons": () => [resumeGame, endGame]
-	},
-	"client": {
-		"caption": () => translate("Are you sure you want to quit?"),
-		"buttons": () => [
-			resumeGame,
-			() => {
-				messageBox(
-					400, 200,
-					translate("Do you want to resign or will you return soon?"),
-					translate("Confirmation"),
-					[translate("I will return"), translate("I resign")],
-					[
-						endGame,
-						() => {
-							Engine.PostNetworkCommand({
-								"type": "resign"
-							});
-							resumeGame();
-						}
-					]);
-			}
-		]
-	},
-	"singleplayer": {
-		"caption": () => translate("Are you sure you want to quit?"),
-		"buttons": () => [resumeGame, endGame]
+		for (let name in QuitConfirmationMenu.prototype)
+		{
+			let quitConfirmation = new QuitConfirmationMenu.prototype[name]();
+			if (quitConfirmation.enabled())
+				quitConfirmation.display();
+		}
 	}
 };

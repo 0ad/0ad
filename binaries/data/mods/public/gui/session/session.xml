@@ -10,6 +10,7 @@
 <script directory="gui/session/diplomacy/playercontrols/"/>
 <script directory="gui/session/lobby/"/>
 <script directory="gui/session/lobby/LobbyRatingReport/"/>
+<script directory="gui/session/message_box/"/>
 <script directory="gui/session/minimap/"/>
 <script directory="gui/session/top_panel/"/>
 <script directory="gui/session/top_panel/IconButtons/"/>
@@ -28,14 +29,6 @@
 
 	<action on="SimulationUpdate">
 		onSimulationUpdate();
-	</action>
-
-	<action on="ReplayFinished">
-		onReplayFinished();
-	</action>
-
-	<action on="ReplayOutOfSync">
-		onReplayOutOfSync(arguments[0], arguments[1], arguments[2]);
 	</action>
 
 	<!-- Hotkeys won't work properly unless outside menu -->

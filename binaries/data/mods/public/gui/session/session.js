@@ -18,10 +18,14 @@ var g_GameSpeedControl;
 var g_Menu;
 var g_MiniMapPanel;
 var g_ObjectivesDialog;
+var g_OutOfSyncNetwork;
+var g_OutOfSyncReplay;
 var g_PanelEntityManager;
 var g_PauseControl;
 var g_PauseOverlay;
 var g_PlayerViewControl;
+var g_QuitConfirmationDefeat;
+var g_QuitConfirmationReplay;
 var g_RangeOverlayManager;
 var g_ResearchProgress;
 var g_TradeDialog;
@@ -67,11 +71,6 @@ var g_IsObserver = false;
  * True if the current user has rejoined (or joined the game after it started).
  */
 var g_HasRejoined = false;
-
-/**
- * Shows a message box asking the user to leave if "won" or "defeated".
- */
-var g_ConfirmExit = false;
 
 /**
  * The playerID selected in the change perspective tool.
@@ -263,11 +262,11 @@ function init(initData, hotloadData)
 	}
 
 	g_DiplomacyColors = new DiplomacyColors();
-
 	g_PlayerViewControl = new PlayerViewControl();
 	g_PlayerViewControl.registerViewedPlayerChangeHandler(g_DiplomacyColors.updateDisplayedPlayerColors.bind(g_DiplomacyColors));
 	g_DiplomacyColors.registerDiplomacyColorsChangeHandler(g_PlayerViewControl.rebuild.bind(g_PlayerViewControl));
 	g_DiplomacyColors.registerDiplomacyColorsChangeHandler(updateGUIObjects);
+	g_PauseControl = new PauseControl();
 	g_PlayerViewControl.registerPreViewedPlayerChangeHandler(removeStatusBarDisplay);
 	g_PlayerViewControl.registerViewedPlayerChangeHandler(resetTemplates);
 
@@ -275,12 +274,15 @@ function init(initData, hotloadData)
 	g_DeveloperOverlay = new DeveloperOverlay(g_PlayerViewControl, g_Selection);
 	g_DiplomacyDialog = new DiplomacyDialog(g_PlayerViewControl, g_DiplomacyColors);
 	g_GameSpeedControl = new GameSpeedControl(g_PlayerViewControl);
+	g_Menu = new Menu(g_PauseControl, g_PlayerViewControl, g_Chat);
 	g_MiniMapPanel = new MiniMapPanel(g_PlayerViewControl, g_DiplomacyColors, g_WorkerTypes);
 	g_ObjectivesDialog = new ObjectivesDialog(g_PlayerViewControl);
+	g_OutOfSyncNetwork = new OutOfSyncNetwork();
+	g_OutOfSyncReplay = new OutOfSyncReplay();
 	g_PanelEntityManager = new PanelEntityManager(g_PlayerViewControl, g_Selection, g_PanelEntityOrder);
-	g_PauseControl = new PauseControl();
 	g_PauseOverlay = new PauseOverlay(g_PauseControl);
-	g_Menu = new Menu(g_PauseControl, g_PlayerViewControl, g_Chat);
+	g_QuitConfirmationDefeat = new QuitConfirmationDefeat();
+	g_QuitConfirmationReplay = new QuitConfirmationReplay();
 	g_RangeOverlayManager = new RangeOverlayManager(g_Selection);
 	g_ResearchProgress = new ResearchProgress(g_PlayerViewControl, g_Selection);
 	g_TradeDialog = new TradeDialog(g_PlayerViewControl);
@@ -479,8 +481,6 @@ function playersFinished(players, victoryString, won)
 			global.music.states.VICTORY :
 			global.music.states.DEFEAT
 	);
-
-	g_ConfirmExit = won ? "won" : "defeated";
 }
 
 function resumeGame()
@@ -625,42 +625,6 @@ function onSimulationUpdate()
 	updateCinemaPath();
 	handleNotifications();
 	updateGUIObjects();
-
-	if (g_ConfirmExit)
-		confirmExit();
-}
-
-/**
- * Don't show the message box before all playerstate changes are processed.
- */
-function confirmExit()
-{
-	if (g_IsNetworked && !g_IsNetworkedActive)
-		return;
-
-	closeOpenDialogs();
-	g_PauseControl.implicitPause();
-
-	// Don't ask for exit if other humans are still playing
-	let askExit = !Engine.HasNetServer() || g_Players.every((player, i) =>
-		i == 0 ||
-		player.state != "active" ||
-		g_GameAttributes.settings.PlayerData[i].AI != "");
-
-	let subject = g_PlayerStateMessages[g_ConfirmExit];
-	if (askExit)
-		subject += "\n" + translate("Do you want to quit?");
-
-	messageBox(
-		400, 200,
-		subject,
-		g_ConfirmExit == "won" ?
-			translate("VICTORIOUS!") :
-			translate("DEFEATED!"),
-		askExit ? [translate("No"), translate("Yes")] : [translate("OK")],
-		askExit ? [resumeGame, endGame] : [resumeGame]);
-
-	g_ConfirmExit = false;
 }
 
 function toggleGUI()
@@ -700,18 +664,6 @@ function updateGUIObjects()
 		if (battleState)
 			global.music.setState(global.music.states[battleState]);
 	}
-}
-
-function onReplayFinished()
-{
-	closeOpenDialogs();
-	g_PauseControl.implicitPause();
-
-	messageBox(400, 200,
-		translateWithContext("replayFinished", "The replay has finished. Do you want to quit?"),
-		translateWithContext("replayFinished", "Confirmation"),
-		[translateWithContext("replayFinished", "No"), translateWithContext("replayFinished", "Yes")],
-		[resumeGame, endGame]);
 }
 
 function updateGroups()

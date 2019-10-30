@@ -24,6 +24,11 @@ var g_PlayerAssignmentsChangeHandlers = new Set();
 var g_CeasefireEndedHandlers = new Set();
 
 /**
+ * These handlers are fired if the server informed the players that the networked game is out of sync.
+ */
+var g_NetworkOutOfSyncHandlers = new Set();
+
+/**
  * Handle all netmessage types that can occur.
  */
 var g_NetMessageTypes = {
@@ -34,7 +39,8 @@ var g_NetMessageTypes = {
 		addNetworkWarning(msg);
 	},
 	"out-of-sync": msg => {
-		onNetworkOutOfSync(msg);
+		for (let handler of g_NetworkOutOfSyncHandlers)
+			handler(msg);
 	},
 	"players": msg => {
 		handlePlayerAssignmentsMessage(msg);
@@ -302,6 +308,11 @@ function registerCeasefireEndedHandler(handler)
 	g_CeasefireEndedHandlers.add(handler);
 }
 
+function registerNetworkOutOfSyncHandler(handler)
+{
+	g_NetworkOutOfSyncHandlers.add(handler);
+}
+
 /**
  * Loads all known cheat commands.
  */
@@ -514,58 +525,6 @@ function handleClientsLoadingMessage(guids)
 {
 	let loadingClientsText = Engine.GetGUIObjectByName("loadingClientsText");
 	loadingClientsText.caption = guids.map(guid => colorizePlayernameByGUID(guid)).join(translateWithContext("Separator for a list of client loading messages", ", "));
-}
-
-function onNetworkOutOfSync(msg)
-{
-	let txt = [
-		sprintf(translate("Out-Of-Sync error on turn %(turn)s."), {
-			"turn": msg.turn
-		}),
-
-		sprintf(translateWithContext("Out-Of-Sync", "Players: %(players)s"), {
-			"players": msg.players.join(translateWithContext("Separator for a list of players", ", "))
-		}),
-
-		msg.hash == msg.expectedHash ?
-			translateWithContext("Out-Of-Sync", "Your game state is identical to the hosts game state.") :
-			translateWithContext("Out-Of-Sync", "Your game state differs from the hosts game state."),
-
-		""
-	];
-
-	if (msg.turn > 1 && g_GameAttributes.settings.PlayerData.some(pData => pData && pData.AI))
-		txt.push(translateWithContext("Out-Of-Sync", "Rejoining Multiplayer games with AIs is not supported yet!"));
-	else
-		txt.push(
-			translateWithContext("Out-Of-Sync", "Ensure all players use the same mods."),
-			translateWithContext("Out-Of-Sync", 'Click on "Report a Bug" in the main menu to help fix this.'),
-			sprintf(translateWithContext("Out-Of-Sync", "Replay saved to %(filepath)s"), {
-				"filepath": escapeText(msg.path_replay)
-			}),
-			sprintf(translateWithContext("Out-Of-Sync", "Dumping current state to %(filepath)s"), {
-				"filepath": escapeText(msg.path_oos_dump)
-			})
-		);
-
-	messageBox(
-		600, 280,
-		txt.join("\n"),
-		translate("Out of Sync")
-	);
-}
-
-function onReplayOutOfSync(turn, hash, expectedHash)
-{
-	messageBox(
-		500, 140,
-		sprintf(translate("Out-Of-Sync error on turn %(turn)s."), {
-			"turn": turn
-		}) + "\n" +
-			// Translation: This is shown if replay is out of sync
-			translateWithContext("Out-Of-Sync", "The current game state is different from the original game state."),
-		translate("Out of Sync")
-	);
 }
 
 function handlePlayerAssignmentsMessage(message)
