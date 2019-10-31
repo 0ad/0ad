@@ -10,27 +10,30 @@ const g_StartingResources = prepareForDropdown(g_Settings && g_Settings.Starting
 const g_VictoryDurations = prepareForDropdown(g_Settings && g_Settings.VictoryDurations);
 const g_VictoryConditions = g_Settings && g_Settings.VictoryConditions;
 
+var g_Ambient;
 var g_Chat;
+var g_Cheats;
 var g_DeveloperOverlay;
 var g_DiplomacyColors;
 var g_DiplomacyDialog;
 var g_GameSpeedControl;
 var g_Menu;
 var g_MiniMapPanel;
+var g_NetworkStatusOverlay;
 var g_ObjectivesDialog;
+var g_OutOfSyncNetwork;
+var g_OutOfSyncReplay;
 var g_PanelEntityManager;
 var g_PauseControl;
 var g_PauseOverlay;
 var g_PlayerViewControl;
+var g_QuitConfirmationDefeat;
+var g_QuitConfirmationReplay;
 var g_RangeOverlayManager;
 var g_ResearchProgress;
-var g_TradeDialog;
+var g_TimeNotificationOverlay;
 var g_TopPanel;
-
-/**
- * A random file will be played. TODO: more variety
- */
-var g_Ambient = ["audio/ambient/dayscape/day_temperate_gen_03.ogg"];
+var g_TradeDialog;
 
 /**
  * Map, player and match settings set in gamesetup.
@@ -67,11 +70,6 @@ var g_IsObserver = false;
  * True if the current user has rejoined (or joined the game after it started).
  */
 var g_HasRejoined = false;
-
-/**
- * Shows a message box asking the user to leave if "won" or "defeated".
- */
-var g_ConfirmExit = false;
 
 /**
  * The playerID selected in the change perspective tool.
@@ -262,29 +260,36 @@ function init(initData, hotloadData)
 			restoreSavedGameData(initData.savedGUIData);
 	}
 
+	g_Cheats = new Cheats();
 	g_DiplomacyColors = new DiplomacyColors();
-
 	g_PlayerViewControl = new PlayerViewControl();
 	g_PlayerViewControl.registerViewedPlayerChangeHandler(g_DiplomacyColors.updateDisplayedPlayerColors.bind(g_DiplomacyColors));
 	g_DiplomacyColors.registerDiplomacyColorsChangeHandler(g_PlayerViewControl.rebuild.bind(g_PlayerViewControl));
 	g_DiplomacyColors.registerDiplomacyColorsChangeHandler(updateGUIObjects);
+	g_PauseControl = new PauseControl();
 	g_PlayerViewControl.registerPreViewedPlayerChangeHandler(removeStatusBarDisplay);
 	g_PlayerViewControl.registerViewedPlayerChangeHandler(resetTemplates);
 
-	g_Chat = new Chat(g_PlayerViewControl);
+	g_Ambient = new Ambient();
+	g_Chat = new Chat(g_PlayerViewControl, g_Cheats);
 	g_DeveloperOverlay = new DeveloperOverlay(g_PlayerViewControl, g_Selection);
 	g_DiplomacyDialog = new DiplomacyDialog(g_PlayerViewControl, g_DiplomacyColors);
 	g_GameSpeedControl = new GameSpeedControl(g_PlayerViewControl);
-	g_MiniMapPanel = new MiniMapPanel(g_PlayerViewControl, g_DiplomacyColors, g_WorkerTypes);
-	g_ObjectivesDialog = new ObjectivesDialog(g_PlayerViewControl);
-	g_PanelEntityManager = new PanelEntityManager(g_PlayerViewControl, g_Selection, g_PanelEntityOrder);
-	g_PauseControl = new PauseControl();
-	g_PauseOverlay = new PauseOverlay(g_PauseControl);
 	g_Menu = new Menu(g_PauseControl, g_PlayerViewControl, g_Chat);
+	g_MiniMapPanel = new MiniMapPanel(g_PlayerViewControl, g_DiplomacyColors, g_WorkerTypes);
+	g_NetworkStatusOverlay = new NetworkStatusOverlay();
+	g_ObjectivesDialog = new ObjectivesDialog(g_PlayerViewControl);
+	g_OutOfSyncNetwork = new OutOfSyncNetwork();
+	g_OutOfSyncReplay = new OutOfSyncReplay();
+	g_PanelEntityManager = new PanelEntityManager(g_PlayerViewControl, g_Selection, g_PanelEntityOrder);
+	g_PauseOverlay = new PauseOverlay(g_PauseControl);
+	g_QuitConfirmationDefeat = new QuitConfirmationDefeat();
+	g_QuitConfirmationReplay = new QuitConfirmationReplay();
 	g_RangeOverlayManager = new RangeOverlayManager(g_Selection);
 	g_ResearchProgress = new ResearchProgress(g_PlayerViewControl, g_Selection);
 	g_TradeDialog = new TradeDialog(g_PlayerViewControl);
 	g_TopPanel = new TopPanel(g_PlayerViewControl, g_DiplomacyDialog, g_TradeDialog, g_ObjectivesDialog, g_GameSpeedControl);
+	g_TimeNotificationOverlay = new TimeNotificationOverlay(g_PlayerViewControl);
 
 	initBatchTrain();
 	initSelectionPanels();
@@ -414,7 +419,6 @@ function initializeMusic()
 	if (g_ViewedPlayer != -1 && g_CivData[g_Players[g_ViewedPlayer].civ].Music)
 		global.music.storeTracks(g_CivData[g_Players[g_ViewedPlayer].civ].Music);
 	global.music.setState(global.music.states.PEACE);
-	playAmbient();
 }
 
 function resetTemplates()
@@ -479,8 +483,6 @@ function playersFinished(players, victoryString, won)
 			global.music.states.VICTORY :
 			global.music.states.DEFEAT
 	);
-
-	g_ConfirmExit = won ? "won" : "defeated";
 }
 
 function resumeGame()
@@ -625,42 +627,6 @@ function onSimulationUpdate()
 	updateCinemaPath();
 	handleNotifications();
 	updateGUIObjects();
-
-	if (g_ConfirmExit)
-		confirmExit();
-}
-
-/**
- * Don't show the message box before all playerstate changes are processed.
- */
-function confirmExit()
-{
-	if (g_IsNetworked && !g_IsNetworkedActive)
-		return;
-
-	closeOpenDialogs();
-	g_PauseControl.implicitPause();
-
-	// Don't ask for exit if other humans are still playing
-	let askExit = !Engine.HasNetServer() || g_Players.every((player, i) =>
-		i == 0 ||
-		player.state != "active" ||
-		g_GameAttributes.settings.PlayerData[i].AI != "");
-
-	let subject = g_PlayerStateMessages[g_ConfirmExit];
-	if (askExit)
-		subject += "\n" + translate("Do you want to quit?");
-
-	messageBox(
-		400, 200,
-		subject,
-		g_ConfirmExit == "won" ?
-			translate("VICTORIOUS!") :
-			translate("DEFEATED!"),
-		askExit ? [translate("No"), translate("Yes")] : [translate("OK")],
-		askExit ? [resumeGame, endGame] : [resumeGame]);
-
-	g_ConfirmExit = false;
 }
 
 function toggleGUI()
@@ -691,7 +657,6 @@ function updateGUIObjects()
 	updateGroups();
 	updateSelectionDetails();
 	updateBuildingPlacementPreview();
-	updateTimeNotifications();
 
 	if (!g_IsObserver)
 	{
@@ -700,18 +665,6 @@ function updateGUIObjects()
 		if (battleState)
 			global.music.setState(global.music.states[battleState]);
 	}
-}
-
-function onReplayFinished()
-{
-	closeOpenDialogs();
-	g_PauseControl.implicitPause();
-
-	messageBox(400, 200,
-		translateWithContext("replayFinished", "The replay has finished. Do you want to quit?"),
-		translateWithContext("replayFinished", "Confirmation"),
-		[translateWithContext("replayFinished", "No"), translateWithContext("replayFinished", "Yes")],
-		[resumeGame, endGame]);
 }
 
 function updateGroups()
@@ -844,9 +797,4 @@ function updateAdditionalHighlight()
 	_setHighlight(entsAdd, g_HighlightedAlpha, true);
 	_setHighlight(entsRemove, 0, false);
 	g_AdditionalHighlight = entsAdd;
-}
-
-function playAmbient()
-{
-	Engine.PlayAmbientSound(pickRandom(g_Ambient), true);
 }

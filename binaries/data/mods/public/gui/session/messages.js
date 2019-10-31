@@ -1,9 +1,4 @@
 /**
- * All known cheat commands.
- */
-const g_Cheats = getCheatsData();
-
-/**
  * All tutorial messages received so far.
  */
 var g_TutorialMessages = [];
@@ -24,6 +19,24 @@ var g_PlayerAssignmentsChangeHandlers = new Set();
 var g_CeasefireEndedHandlers = new Set();
 
 /**
+ * These handlers are fired when the match is networked and
+ * the current client established the connection, authenticated,
+ * finished the loading screen, starts or finished synchronizing after a rejoin.
+ * The messages are constructed in NetClient.cpp.
+ */
+var g_NetworkStatusChangeHandlers = new Set();
+
+/**
+ * These handlers are triggered whenever a client finishes the loading screen.
+ */
+var g_ClientsLoadingHandlers = new Set();
+
+/**
+ * These handlers are fired if the server informed the players that the networked game is out of sync.
+ */
+var g_NetworkOutOfSyncHandlers = new Set();
+
+/**
  * Handle all netmessage types that can occur.
  */
 var g_NetMessageTypes = {
@@ -34,7 +47,8 @@ var g_NetMessageTypes = {
 		addNetworkWarning(msg);
 	},
 	"out-of-sync": msg => {
-		onNetworkOutOfSync(msg);
+		for (let handler of g_NetworkOutOfSyncHandlers)
+			handler(msg);
 	},
 	"players": msg => {
 		handlePlayerAssignmentsMessage(msg);
@@ -43,7 +57,8 @@ var g_NetMessageTypes = {
 		g_PauseControl.setClientPauseState(msg.guid, msg.pause);
 	},
 	"clients-loading": msg => {
-		handleClientsLoadingMessage(msg.guids);
+		for (let handler of g_ClientsLoadingHandlers)
+			handler(msg.guids);
 	},
 	"rejoined": msg => {
 		addChatMessage({
@@ -75,19 +90,6 @@ var g_NetMessageTypes = {
 	},
 	"gamesetup": msg => {}, // Needed for autostart
 	"start": msg => {}
-};
-
-/**
- * Show a label and grey overlay or hide both on connection change.
- */
-var g_StatusMessageTypes = {
-	"authenticated": msg => translate("Connection to the server has been authenticated."),
-	"connected": msg => translate("Connected to the server."),
-	"disconnected": msg => translate("Connection to the server has been lost.") + "\n" +
-		getDisconnectReason(msg.reason, true),
-	"waiting_for_players": msg => translate("Waiting for players to connect:"),
-	"join_syncing": msg => translate("Synchronizing gameplay with other players…"),
-	"active": msg => ""
 };
 
 var g_PlayerStateMessages = {
@@ -302,59 +304,19 @@ function registerCeasefireEndedHandler(handler)
 	g_CeasefireEndedHandlers.add(handler);
 }
 
-/**
- * Loads all known cheat commands.
- */
-function getCheatsData()
+function registerNetworkOutOfSyncHandler(handler)
 {
-	let cheats = {};
-	for (let fileName of Engine.ListDirectoryFiles("simulation/data/cheats/", "*.json", false))
-	{
-		let currentCheat = Engine.ReadJSONFile(fileName);
-		if (cheats[currentCheat.Name])
-			warn("Cheat name '" + currentCheat.Name + "' is already present");
-		else
-			cheats[currentCheat.Name] = currentCheat.Data;
-	}
-	return deepfreeze(cheats);
+	g_NetworkOutOfSyncHandlers.add(handler);
 }
 
-/**
- * Reads userinput from the chat and sends a simulation command in case it is a known cheat.
- *
- * @returns {boolean} - True if a cheat was executed.
- */
-function executeCheat(text)
+function registerNetworkStatusChangeHandler(handler)
 {
-	if (!controlsPlayer(Engine.GetPlayerID()) ||
-	    !g_Players[Engine.GetPlayerID()].cheatsEnabled)
-		return false;
+	g_NetworkStatusChangeHandlers.add(handler);
+}
 
-	// Find the cheat code that is a prefix of the user input
-	let cheatCode = Object.keys(g_Cheats).find(code => text.indexOf(code) == 0);
-	if (!cheatCode)
-		return false;
-
-	let cheat = g_Cheats[cheatCode];
-
-	let parameter = text.substr(cheatCode.length + 1);
-	if (cheat.isNumeric)
-		parameter = +parameter;
-
-	if (cheat.DefaultParameter && !parameter)
-		parameter = cheat.DefaultParameter;
-
-	Engine.PostNetworkCommand({
-		"type": "cheat",
-		"action": cheat.Action,
-		"text": cheat.Type,
-		"player": Engine.GetPlayerID(),
-		"parameter": parameter,
-		"templates": cheat.Templates,
-		"selected": g_Selection.toList()
-	});
-
-	return true;
+function registerClientsLoadingHandler(handler)
+{
+	g_ClientsLoadingHandlers.add(handler);
 }
 
 function findGuidForPlayerID(playerID)
@@ -428,32 +390,6 @@ function updateTutorial(notification)
 }
 
 /**
- * Displays all active counters (messages showing the remaining time) for wonder-victory, ceasefire etc.
- */
-function updateTimeNotifications()
-{
-	let notifications = Engine.GuiInterfaceCall("GetTimeNotifications", g_ViewedPlayer);
-	let notificationText = "";
-	for (let n of notifications)
-	{
-		let message = n.message;
-		if (n.translateMessage)
-			message = translate(message);
-
-		let parameters = n.parameters || {};
-		if (n.translateParameters)
-			translateObjectKeys(parameters, n.translateParameters);
-
-		parameters.time = timeToString(n.endTime - GetSimState().timeElapsed);
-
-		colorizePlayernameParameters(parameters);
-
-		notificationText += sprintf(message, parameters) + "\n";
-	}
-	Engine.GetGUIObjectByName("notificationText").caption = notificationText;
-}
-
-/**
  * Process every CNetMessage (see NetMessage.h, NetMessages.h) sent by the CNetServer.
  * Saves the received object to mainlog.html.
  */
@@ -474,98 +410,22 @@ function handleNetMessages()
 	}
 }
 
-/**
- * @param {Object} message
- */
 function handleNetStatusMessage(message)
 {
 	if (g_Disconnected)
 		return;
 
-	if (!g_StatusMessageTypes[message.status])
-	{
-		error("Unrecognised netstatus type '" + message.status + "'");
-		return;
-	}
-
 	g_IsNetworkedActive = message.status == "active";
-
-	let netStatus = Engine.GetGUIObjectByName("netStatus");
-	let statusMessage = g_StatusMessageTypes[message.status](message);
-	netStatus.caption = statusMessage;
-	netStatus.hidden = !statusMessage;
-
-	let loadingClientsText = Engine.GetGUIObjectByName("loadingClientsText");
-	loadingClientsText.hidden = message.status != "waiting_for_players";
 
 	if (message.status == "disconnected")
 	{
-		// Hide the pause overlay, and pause animations.
-		Engine.GetGUIObjectByName("pauseOverlay").hidden = true;
-		Engine.SetPaused(true, false);
-
 		g_Disconnected = true;
 		updateCinemaPath();
 		closeOpenDialogs();
 	}
-}
 
-function handleClientsLoadingMessage(guids)
-{
-	let loadingClientsText = Engine.GetGUIObjectByName("loadingClientsText");
-	loadingClientsText.caption = guids.map(guid => colorizePlayernameByGUID(guid)).join(translateWithContext("Separator for a list of client loading messages", ", "));
-}
-
-function onNetworkOutOfSync(msg)
-{
-	let txt = [
-		sprintf(translate("Out-Of-Sync error on turn %(turn)s."), {
-			"turn": msg.turn
-		}),
-
-		sprintf(translateWithContext("Out-Of-Sync", "Players: %(players)s"), {
-			"players": msg.players.join(translateWithContext("Separator for a list of players", ", "))
-		}),
-
-		msg.hash == msg.expectedHash ?
-			translateWithContext("Out-Of-Sync", "Your game state is identical to the hosts game state.") :
-			translateWithContext("Out-Of-Sync", "Your game state differs from the hosts game state."),
-
-		""
-	];
-
-	if (msg.turn > 1 && g_GameAttributes.settings.PlayerData.some(pData => pData && pData.AI))
-		txt.push(translateWithContext("Out-Of-Sync", "Rejoining Multiplayer games with AIs is not supported yet!"));
-	else
-		txt.push(
-			translateWithContext("Out-Of-Sync", "Ensure all players use the same mods."),
-			translateWithContext("Out-Of-Sync", 'Click on "Report a Bug" in the main menu to help fix this.'),
-			sprintf(translateWithContext("Out-Of-Sync", "Replay saved to %(filepath)s"), {
-				"filepath": escapeText(msg.path_replay)
-			}),
-			sprintf(translateWithContext("Out-Of-Sync", "Dumping current state to %(filepath)s"), {
-				"filepath": escapeText(msg.path_oos_dump)
-			})
-		);
-
-	messageBox(
-		600, 280,
-		txt.join("\n"),
-		translate("Out of Sync")
-	);
-}
-
-function onReplayOutOfSync(turn, hash, expectedHash)
-{
-	messageBox(
-		500, 140,
-		sprintf(translate("Out-Of-Sync error on turn %(turn)s."), {
-			"turn": turn
-		}) + "\n" +
-			// Translation: This is shown if replay is out of sync
-			translateWithContext("Out-Of-Sync", "The current game state is different from the original game state."),
-		translate("Out of Sync")
-	);
+	for (let handler of g_NetworkStatusChangeHandlers)
+		handler(message);
 }
 
 function handlePlayerAssignmentsMessage(message)

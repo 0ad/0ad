@@ -16,7 +16,8 @@ class PauseOverlay
 
 		this.resumeMessage = Engine.GetGUIObjectByName("resumeMessage");
 
-		pauseControl.registerPauseHandler(this.onPauseChange.bind(this));
+		registerNetworkStatusChangeHandler(this.rebuild.bind(this));
+		pauseControl.registerPauseHandler(this.rebuild.bind(this));
 	}
 
 	onPress()
@@ -25,9 +26,9 @@ class PauseOverlay
 			this.pauseControl.setPaused(false, true);
 	}
 
-	onPauseChange()
+	rebuild()
 	{
-		let hidden = !this.pauseControl.explicitPause && !this.pauseControl.pausingClients.length;
+		let hidden = !this.pauseControl.explicitPause && !this.pauseControl.pausingClients.length || g_Disconnected;
 		this.pauseOverlay.hidden = hidden;
 		if (hidden)
 			return;

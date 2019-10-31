@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="netStatus" type="text" style="netStatus" z="0" hidden="true">
+	<object type="button"
+		name="disconnectedExitButton"
+		style="StoneButton"
+		size="50%-84 50%+128 50%+84 50%+160"
+		tooltip_style="sessionToolTip"
+	>
+		<translatableAttribute id="caption">Exit</translatableAttribute>
+	</object>
+	<object name="loadingClientsText" size="50%-300 50%+60 50%+300 50%+110" type="text" style="netStatusPlayersText" hidden="true" z="0"/>
+</object>

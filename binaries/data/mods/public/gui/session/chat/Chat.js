@@ -4,7 +4,7 @@
  */
 class Chat
 {
-	constructor(playerViewControl)
+	constructor(playerViewControl, cheats)
 	{
 		this.ChatWindow = new ChatWindow();
 		this.ChatOverlay = new ChatOverlay();
@@ -14,7 +14,7 @@ class Chat
 
 		this.ChatInput = new ChatInput();
 		this.ChatInput.registerChatSubmitHandler(executeNetworkCommand);
-		this.ChatInput.registerChatSubmitHandler(executeCheat);
+		this.ChatInput.registerChatSubmitHandler(cheats.executeCheat.bind(cheats));
 		this.ChatInput.registerChatSubmitHandler(this.submitChat.bind(this));
 		this.ChatInput.registerChatSubmittedHandler(this.closePage.bind(this));
 

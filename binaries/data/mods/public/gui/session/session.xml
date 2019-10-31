@@ -10,6 +10,7 @@
 <script directory="gui/session/diplomacy/playercontrols/"/>
 <script directory="gui/session/lobby/"/>
 <script directory="gui/session/lobby/LobbyRatingReport/"/>
+<script directory="gui/session/message_box/"/>
 <script directory="gui/session/minimap/"/>
 <script directory="gui/session/top_panel/"/>
 <script directory="gui/session/top_panel/IconButtons/"/>
@@ -30,37 +31,12 @@
 		onSimulationUpdate();
 	</action>
 
-	<action on="ReplayFinished">
-		onReplayFinished();
-	</action>
-
-	<action on="ReplayOutOfSync">
-		onReplayOutOfSync(arguments[0], arguments[1], arguments[2]);
-	</action>
-
 	<!-- Hotkeys won't work properly unless outside menu -->
 	<include directory="gui/session/hotkeys/"/>
 
-	<!-- Network status -->
-	<object name="netStatus" type="text" style="netStatus" z="0" hidden="true">
-		<object type="button"
-			name="disconnectedExitButton"
-			style="StoneButton"
-			size="50%-84 50%+128 50%+84 50%+160"
-			tooltip_style="sessionToolTip"
-		>
-			<translatableAttribute id="caption">Exit</translatableAttribute>
-			<action on="Press">endGame();</action>
-		</object>
-		<object name="loadingClientsText" size="50%-300 50%+60 50%+300 50%+110" type="text" style="netStatusPlayersText" hidden="true" z="0"/>
-	</object>
-
+	<include file="gui/session/NetworkStatusOverlay.xml"/>
 	<include file="gui/session/PauseOverlay.xml"/>
-
-	<!-- Notification Area -->
-	<object name="notificationPanel" type="image" size="50%-300 60 50%+300 120" ghost="true">
-		<object name="notificationText" type="text" style="notificationPanel" ghost="true" z="0"/>
-	</object>
+	<include file="gui/session/TimeNotificationOverlay.xml"/>
 
 	<!-- Chat messages -->
 	<object name="chatPanel" size="0 130 100% 100%-240" type="image" ghost="true" z="0" absolute="true">

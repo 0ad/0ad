@@ -1082,22 +1082,7 @@ var g_EntityCommands =
 			if (Engine.HotkeyIsPressed("session.noconfirmation"))
 				deleteSelection();
 			else
-			{
-				closeOpenDialogs();
-				g_PauseControl.implicitPause();
-				messageBox(
-					400, 200,
-					translate("Destroy everything currently selected?"),
-					translate("Delete"),
-					[translate("No"), translate("Yes")],
-					[
-						resumeGame,
-						() => {
-							deleteSelection();
-							resumeGame();
-						}
-					]);
-			};
+				(new DeleteSelectionConfirmation(deleteSelection)).display();
 		},
 	},
 

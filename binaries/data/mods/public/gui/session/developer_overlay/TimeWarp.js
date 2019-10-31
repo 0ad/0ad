@@ -23,10 +23,7 @@ class TimeWarp
 		this.enabled = enabled;
 
 		if (enabled)
-			messageBox(
-				500, 250,
-				translate(this.Description),
-				translate(this.Title));
+			(new TimeWarpMessageBox()).display();
 
 		Engine.EnableTimeWarpRecording(enabled ? this.NumberTurns : 0);
 	}
@@ -60,7 +57,11 @@ TimeWarp.prototype.NumberTurns = 10;
  */
 TimeWarp.prototype.FastForwardSpeed = 20;
 
-TimeWarp.prototype.Title = markForTranslation("Time warp mode");
-
-TimeWarp.prototype.Description = markForTranslation(
+class TimeWarpMessageBox extends SessionMessageBox
+{
+}
+TimeWarpMessageBox.prototype.Width = 500;
+TimeWarpMessageBox.prototype.Height = 250;
+TimeWarpMessageBox.prototype.Title = translate("Time warp mode");
+TimeWarpMessageBox.prototype.Caption = translate(
 	"Note: time warp mode is a developer option, and not intended for use over long periods of time. Using it incorrectly may cause the game to run out of memory or crash.");

@@ -100,6 +100,8 @@ class OverlayCounterManager
 		if (this.lastLineCount == lineCount)
 			return;
 
+		this.lastLineCount = lineCount;
+
 		let offset = this.lineHeight * lineCount;
 
 		if (lineCount)
