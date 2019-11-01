@@ -34,9 +34,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-10-23 13:26+0000\n"
-"PO-Revision-Date: 2019-10-26 09:57+0000\n"
-"Last-Translator: Jacek Kuźma <jar099@onet.pl>\n"
+"POT-Creation-Date: 2019-10-28 08:16+0000\n"
+"PO-Revision-Date: 2019-10-28 23:10+0000\n"
+"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -142,10 +142,34 @@ msgid "Wall off your town for a stout defense."
 msgstr "Wybuduj mur, aby zwiększyć możliwości obronne miasta."
 
 #: simulation/templates/template_structure_defensive_tower.xml:35
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "DefenseTower"
 msgstr "Wieża obronna"
+
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:56
+msgid "Artillery Tower"
+msgstr "Wieża artyleryjska"
+
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:57
+msgid "Catapults stones. Needs the murder holes tech to protect its foot."
+msgstr "Rzuca głazami. Wymaga wynalezienia mordowni, aby bronić się u podnóża."
+
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
+#: simulation/templates/template_structure_military_elephant_stables.xml:30
+#: simulation/templates/template_structure_military_fortress.xml:74
+#: simulation/templates/template_structure_military_workshop.xml:29
+#: simulation/templates/template_structure_special.xml:45
+#: simulation/templates/template_structure_wonder.xml:53
+#: simulation/templates/structures/kush_temple_amun.xml:33
+msgid "City"
+msgstr "Miasto"
+
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
+msgid "StoneTower"
+msgstr "Kamienna wieża"
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:52
 msgid ""
@@ -187,10 +211,6 @@ msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot."
 msgstr "Strzela. Obsadź, by wzmocnić obronę. Wymaga mordowni, by bronić się u podnóża."
-
-#: simulation/templates/template_structure_defensive_tower_stone.xml:34
-msgid "StoneTower"
-msgstr "Kamienna wieża"
 
 #: simulation/templates/template_structure_defensive_wall.xml:16
 #: simulation/templates/structures/cart_s_wall_long.xml:7
@@ -312,15 +332,6 @@ msgstr "Stajnie dla słoni"
 #: simulation/templates/template_structure_military_elephant_stables.xml:29
 msgid "Train elephant units."
 msgstr "Stwórz słonie i jednostki na słoniach."
-
-#: simulation/templates/template_structure_military_elephant_stables.xml:30
-#: simulation/templates/template_structure_military_fortress.xml:74
-#: simulation/templates/template_structure_military_workshop.xml:29
-#: simulation/templates/template_structure_special.xml:45
-#: simulation/templates/template_structure_wonder.xml:53
-#: simulation/templates/structures/kush_temple_amun.xml:33
-msgid "City"
-msgstr "Miasto"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
 msgid "ElephantStable"
@@ -475,11 +486,24 @@ msgid "Épaulos"
 msgstr "Épaulos"
 
 #: simulation/templates/structures/athen_defense_tower.xml:9
+#: simulation/templates/structures/athen_tower_artillery.xml:9
 #: simulation/templates/structures/mace_defense_tower.xml:9
+#: simulation/templates/structures/mace_tower_artillery.xml:9
 #: simulation/templates/structures/sele_defense_tower.xml:9
+#: simulation/templates/structures/sele_tower_artillery.xml:9
 #: simulation/templates/structures/spart_defense_tower.xml:9
 msgid "Pyrgíon"
 msgstr "Pyrgíon"
+
+#: simulation/templates/structures/athen_defense_tower.xml:23
+#: simulation/templates/structures/cart_defense_tower.xml:24
+#: simulation/templates/structures/ptol_defense_tower.xml:23
+#: simulation/templates/structures/rome_defense_tower.xml:23
+#: simulation/templates/structures/sele_defense_tower.xml:23
+msgid ""
+"Reinforce with stone block, and install small torsion engines to upgrade "
+"this defense tower into an artillery tower."
+msgstr "Wzmocnij blokami kamienia i zamontuj małe silniki skrętne, aby ulepszyć tę wieżę obronną w wieżę artyleryjską."
 
 #: simulation/templates/structures/athen_dock.xml:12
 #: simulation/templates/structures/mace_dock.xml:12
@@ -808,6 +832,7 @@ msgid "Rēfet"
 msgstr "Rēfet"
 
 #: simulation/templates/structures/cart_defense_tower.xml:9
+#: simulation/templates/structures/cart_tower_artillery.xml:9
 #: simulation/templates/structures/cart_wall_tower.xml:12
 msgid "Mijdil"
 msgstr "Mijdil"
@@ -1607,6 +1632,7 @@ msgid "h-n-ssmt.w"
 msgstr "h-n-ssmt.w"
 
 #: simulation/templates/structures/ptol_defense_tower.xml:9
+#: simulation/templates/structures/ptol_tower_artillery.xml:9
 msgid "mktr-n-ḏw"
 msgstr "mktr-n-ḏw"
 
@@ -1750,6 +1776,7 @@ msgid "Saeptum"
 msgstr "Saeptum"
 
 #: simulation/templates/structures/rome_defense_tower.xml:9
+#: simulation/templates/structures/rome_tower_artillery.xml:9
 msgid "Turris Laterīcia"
 msgstr "Turris Laterīcia"
 

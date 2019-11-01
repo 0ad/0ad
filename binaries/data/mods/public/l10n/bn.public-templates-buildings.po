@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-10-23 13:26+0000\n"
-"PO-Revision-Date: 2019-10-23 14:51+0000\n"
+"POT-Creation-Date: 2019-10-28 08:16+0000\n"
+"PO-Revision-Date: 2019-10-28 14:31+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Bengali (http://www.transifex.com/wildfire-games/0ad/language/bn/)\n"
 "MIME-Version: 1.0\n"
@@ -115,10 +115,34 @@ msgid "Wall off your town for a stout defense."
 msgstr "শক্তিশালী প্রতিরক্ষার জন্য আপনার শহরের চারপাশে বেড়া দিন।"
 
 #: simulation/templates/template_structure_defensive_tower.xml:35
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "DefenseTower"
 msgstr "রক্ষী মিনার"
+
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:56
+msgid "Artillery Tower"
+msgstr ""
+
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:57
+msgid "Catapults stones. Needs the murder holes tech to protect its foot."
+msgstr ""
+
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
+#: simulation/templates/template_structure_military_elephant_stables.xml:30
+#: simulation/templates/template_structure_military_fortress.xml:74
+#: simulation/templates/template_structure_military_workshop.xml:29
+#: simulation/templates/template_structure_special.xml:45
+#: simulation/templates/template_structure_wonder.xml:53
+#: simulation/templates/structures/kush_temple_amun.xml:33
+msgid "City"
+msgstr ""
+
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
+msgid "StoneTower"
+msgstr "পাথর মিনার"
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:52
 msgid ""
@@ -160,10 +184,6 @@ msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot."
 msgstr ""
-
-#: simulation/templates/template_structure_defensive_tower_stone.xml:34
-msgid "StoneTower"
-msgstr "পাথর মিনার"
 
 #: simulation/templates/template_structure_defensive_wall.xml:16
 #: simulation/templates/structures/cart_s_wall_long.xml:7
@@ -284,15 +304,6 @@ msgstr ""
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:29
 msgid "Train elephant units."
-msgstr ""
-
-#: simulation/templates/template_structure_military_elephant_stables.xml:30
-#: simulation/templates/template_structure_military_fortress.xml:74
-#: simulation/templates/template_structure_military_workshop.xml:29
-#: simulation/templates/template_structure_special.xml:45
-#: simulation/templates/template_structure_wonder.xml:53
-#: simulation/templates/structures/kush_temple_amun.xml:33
-msgid "City"
 msgstr ""
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
@@ -448,10 +459,23 @@ msgid "Épaulos"
 msgstr ""
 
 #: simulation/templates/structures/athen_defense_tower.xml:9
+#: simulation/templates/structures/athen_tower_artillery.xml:9
 #: simulation/templates/structures/mace_defense_tower.xml:9
+#: simulation/templates/structures/mace_tower_artillery.xml:9
 #: simulation/templates/structures/sele_defense_tower.xml:9
+#: simulation/templates/structures/sele_tower_artillery.xml:9
 #: simulation/templates/structures/spart_defense_tower.xml:9
 msgid "Pyrgíon"
+msgstr ""
+
+#: simulation/templates/structures/athen_defense_tower.xml:23
+#: simulation/templates/structures/cart_defense_tower.xml:24
+#: simulation/templates/structures/ptol_defense_tower.xml:23
+#: simulation/templates/structures/rome_defense_tower.xml:23
+#: simulation/templates/structures/sele_defense_tower.xml:23
+msgid ""
+"Reinforce with stone block, and install small torsion engines to upgrade "
+"this defense tower into an artillery tower."
 msgstr ""
 
 #: simulation/templates/structures/athen_dock.xml:12
@@ -781,6 +805,7 @@ msgid "Rēfet"
 msgstr ""
 
 #: simulation/templates/structures/cart_defense_tower.xml:9
+#: simulation/templates/structures/cart_tower_artillery.xml:9
 #: simulation/templates/structures/cart_wall_tower.xml:12
 msgid "Mijdil"
 msgstr ""
@@ -1580,6 +1605,7 @@ msgid "h-n-ssmt.w"
 msgstr ""
 
 #: simulation/templates/structures/ptol_defense_tower.xml:9
+#: simulation/templates/structures/ptol_tower_artillery.xml:9
 msgid "mktr-n-ḏw"
 msgstr ""
 
@@ -1723,6 +1749,7 @@ msgid "Saeptum"
 msgstr ""
 
 #: simulation/templates/structures/rome_defense_tower.xml:9
+#: simulation/templates/structures/rome_tower_artillery.xml:9
 msgid "Turris Laterīcia"
 msgstr ""
 
