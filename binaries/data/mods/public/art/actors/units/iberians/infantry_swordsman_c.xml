@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_swordsman_shieldsmall_relax.xml">
+    <variant>
       <props>
         <prop actor="props/units/heads/new/head_iber_su1.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
@@ -39,7 +39,7 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="biped/base_swordsman_shield_ready.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>

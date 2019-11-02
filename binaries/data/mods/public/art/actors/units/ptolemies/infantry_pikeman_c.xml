@@ -8,7 +8,7 @@
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/shields/pelte_ptol_p.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/capes/pikeman.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/cape_long_player.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="skeletal/ptol_isp_e_1_spec.png" name="specTex"/>
@@ -60,7 +60,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_pikeman_relax.xml"/>
+    <variant file="biped/base_pikeman_relax.xml" name="Pikeman-Shield-Relax" frequency="1"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>
@@ -78,11 +78,7 @@
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/build.xml"/>
     <variant file="biped/build_farm.xml"/>
-    <variant file="biped/death_infantry.xml">
-      <props>
-        <prop actor="props/units/capes/pikeman.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="biped/death_cape_long.xml"/>
     <variant file="biped/formations/syntagma_front.xml"/>
     <variant file="biped/formations/syntagma_01.xml"/>
     <variant file="biped/formations/syntagma_02.xml"/>

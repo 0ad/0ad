@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-10-23 13:25+0000\n"
-"PO-Revision-Date: 2019-10-23 14:18+0000\n"
+"PO-Revision-Date: 2019-10-29 20:32+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "Calca %(hotkey)s p'activar/desactivar esti menú."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -38,7 +38,7 @@ msgstr "Resume"
 #: gui/session/MenuButtons.js:87
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr ""
+msgstr "Calca %(hotkey)s p'abrir la pantalla de resume."
 
 #: gui/session/MenuButtons.js:131
 msgid "Lobby"
@@ -49,7 +49,7 @@ msgstr "Sala"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr ""
+msgstr "Calca %(hotkey)s p'abrir la páxina de la sala multixugador ensin colar del xuegu."
 
 #: gui/session/MenuButtons.js:159
 msgid "Options"
@@ -66,7 +66,7 @@ msgstr "Posar"
 #: gui/session/MenuButtons.js:200
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr ""
+msgstr "Calca %(hotkey)s pa posar o siguir cola partida."
 
 #: gui/session/MenuButtons.js:216
 msgid "Resign"
@@ -895,7 +895,7 @@ msgstr "%(player)s xunióse a la partida."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:57
 msgid "no-context"
-msgstr ""
+msgstr "ensin contestu"
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:61
 #, javascript-format
@@ -1240,19 +1240,19 @@ msgstr "Vender %(resource)s"
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
-msgstr ""
+msgstr "+%(amount)s"
 
 #: gui/session/trade/BarterButton.js:103
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"
-msgstr ""
+msgstr "-%(amount)s"
 
 #: gui/session/trade/TradeButton.js:56
 #, javascript-format
 msgctxt "trading good ratio"
 msgid "%(amount)s%%"
-msgstr ""
+msgstr "%(amount)s%%"
 
 #: gui/session/trade/TradeButtonManager.js:76
 #, javascript-format

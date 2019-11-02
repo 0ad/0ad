@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_pants.dae</mesh>
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
@@ -28,24 +28,29 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="clothing-01">
+    <variant name="tunic-1a">
       <textures>
-        <texture file="skeletal/celt_isw_b_01.dds" name="baseTex"/>
+        <texture file="skeletal/gaul_tunic_1_a.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="clothing-02">
+    <variant name="tunic-1b">
       <textures>
-        <texture file="skeletal/celt_isw_b_02.dds" name="baseTex"/>
+        <texture file="skeletal/gaul_tunic_1_b.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="clothing-03">
+    <variant name="tunic-1c">
       <textures>
-        <texture file="skeletal/celt_isw_b_03.dds" name="baseTex"/>
+        <texture file="skeletal/gaul_tunic_1_c.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="clothing-04">
+    <variant name="tunic-1d">
       <textures>
-        <texture file="skeletal/celt_isw_b_04.dds" name="baseTex"/>
+        <texture file="skeletal/gaul_tunic_1_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="tunic-1e">
+      <textures>
+        <texture file="skeletal/gaul_tunic_1_e.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>props/new/capes/cape_hd_hoplite.dae</mesh>
+      <textures>
+        <texture file="props/cape_hd_black.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/base_spearman_shield_relax_ptol.xml" name="Spearman-Shield-Relax-Ptol" frequency="1"/>
+    <variant file="biped/base_spearman_shield_ready.xml" name="Spearman-Shield-Ready" frequency="1"/>
+    <variant file="biped/base_spearman_shield_relax.xml" name="Spearman-Shield-Relax" frequency="1"/>
+    <variant file="biped/base_spearman_shield_relax_fast.xml" name="Spearman-Shield-Relax-Fast" frequency="1"/>
+    <variant file="biped/base_swordsman_2hand_ready.xml" name="Swordsman-2h-Ready" frequency="1"/>
+    <variant file="biped/base_swordsman_2hand_relax.xml" name="Swordsman-2h-Relax" frequency="1"/>
+    <variant file="biped/base_swordsman_shield_ready.xml" name="Swordsman-Shield-Ready" frequency="1"/>
+    <variant file="biped/base_swordsman_shield_relax.xml" name="Swordsman-Shield-Relax" frequency="1"/>
+    <variant file="biped/base_swordsman_shieldarm_ready.xml" name="Swordsman-Shieldarm-Ready" frequency="1"/>
+    <variant file="biped/base_swordsman_shieldarm_relax.xml" name="Swordsman-Shieldarm-Relax" frequency="1"/>
+    <variant file="biped/base_swordsman_shield_fast.xml" name="Swordsman-Shield-Relax-Fast" frequency="1"/>
+    <variant file="biped/base_rhomphaia_shield_fast.xml" name="Swordsman-Rhomphaia-Fast" frequency="1"/>
+    <variant file="biped/base_rhomphaia_shield_ready.xml" name="Swordsman-Rhomphaia-Ready" frequency="1"/>
+    <variant file="biped/base_rhomphaia_shield_relax.xml" name="Swordsman-Rhomphaia-Relax" frequency="1"/>
+    <variant file="biped/base_pikeman_ready.xml" name="Pikeman-Shield-Ready" frequency="1"/>
+    <variant file="biped/base_pikeman_relax.xml" name="Pikeman-Shield-Relax" frequency="1"/>
+    <variant file="biped/base_skirmisher.xml" name="Skirmisher-Shield-Relax" frequency="1"/>
+    <variant file="biped/base_skirmisher_fast.xml" name="Skirmisher-Shield-Fast" frequency="1"/>
+    <variant file="biped/base_skirmisher_shieldarm.xml" name="Skirmisher-Shieldarm" frequency="1"/>
+    <variant file="biped/base_hoplite_fast.xml" name="Hoplite-Fast" frequency="1"/>
+    <variant file="biped/base_hoplite.xml" name="Hoplite-Relax" frequency="1"/>
+    <variant file="biped/base_archer_chariot_ready.xml" name="Chariot-Archer-Ready" frequency="1"/>
+    <variant file="biped/base_jav_chariot_ready.xml" name="Chariot-Skirmisher-Ready" frequency="1"/>
+    <variant file="biped/base_driver_chariot.xml" name="Chariot-Driver-Celt" frequency="1"/>
+    <variant file="biped/base_driver_chariot_celt.xml" name="Chariot-Driver" frequency="1"/>
+    <variant file="biped/base_archer_ready.xml" name="Archer-Ready" frequency="1"/>
+    <variant file="biped/base_archer_relax_fem.xml" name="Archer-Relax" frequency="1"/>
+    <variant file="biped/base_citizen_soldier.xml" name="Citizen-Soldier" frequency="1"/>
+    <variant file="biped/base_healer.xml" name="Healer" frequency="1"/>
+    <variant file="biped/base_healer_male.xml" name="Healer-Male" frequency="1"/>
+    <variant file="biped/base_healer_female.xml" name="Healer-Female" frequency="1"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
+    <variant file="biped/formations/phalanx_front.xml"/>
+    <variant file="biped/formations/phalanx_mid.xml"/>
+    <variant file="biped/formations/phalanx_back.xml"/>
+    <variant file="biped/formations/syntagma_front.xml"/>
+    <variant file="biped/formations/syntagma_01.xml"/>
+    <variant file="biped/formations/syntagma_02.xml"/>
+    <variant file="biped/formations/syntagma_03.xml"/>
+    <variant file="biped/formations/syntagma_04.xml"/>
+    <variant file="biped/formations/syntagma_back.xml"/>
+    <variant file="biped/formations/testudo_top.xml"/>
+    <variant file="biped/formations/testudo_front.xml"/>
+    <variant file="biped/formations/testudo_front_left.xml"/>
+    <variant file="biped/formations/testudo_front_right.xml"/>
+    <variant file="biped/formations/testudo_left.xml"/>
+    <variant file="biped/formations/testudo_right.xml"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/attack_ranged_javelinist.xml"/>
+    <variant file="biped/attack_ranged_archer.xml"/>
+    <variant file="biped/attack_ranged_archer_hip.xml"/>
+    <variant file="biped/gather_tree.xml"/>
+    <variant file="biped/gather_grain.xml"/>
+    <variant file="biped/gather_fruit.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/gather_rock.xml"/>
+    <variant file="biped/gather_ore.xml"/>
+    <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/build.xml"/>
+    <variant file="biped/build_farm.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
