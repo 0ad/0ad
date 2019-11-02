@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_swordsman_shield_ready.xml">
+    <variant>
       <mesh>skeletal/new/m_hero_pants_tunic.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_cunobelin.xml" attachpoint="head"/>
@@ -10,7 +10,7 @@
         <prop actor="props/units/shields/brit_shield_spear_oval_a_03.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
         <prop actor="props/temp/l_sheath.xml" attachpoint="sheath_L"/>
-        <prop actor="props/units/capes/swordsman_shield_ready.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/cape_long_player.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="skeletal/celt_cunobelin.dds" name="baseTex"/>
@@ -18,14 +18,10 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="biped/base_swordsman_shield_ready.xml" name="Swordsman-Shield-Ready" frequency="1"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
-    <variant file="biped/death_infantry.xml">
-      <props>
-        <prop actor="props/units/capes/swordsman_shield_ready.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="biped/death_cape_long.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

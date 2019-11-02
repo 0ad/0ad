@@ -8,7 +8,7 @@
         <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/sheath_celt_iron_e.xml" attachpoint="sheath_01_L"/>
         <prop actor="props/units/weapons/spatha.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/capes/swordsman_shield_relax_celt.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/cape_long_gaul.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -52,7 +52,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_swordsman_shield_relax_celt.xml"/>
+    <variant file="biped/base_swordsman_shield_relax_celt.xml" name="Swordsman-Shield-Relax"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>
@@ -73,11 +73,7 @@
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/build.xml"/>
     <variant file="biped/build_farm.xml"/>
-    <variant file="biped/death_infantry.xml">
-      <props>
-        <prop actor="props/units/capes/swordsman_shield_relax_celt.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="biped/death_cape_gaul.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

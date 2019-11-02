@@ -10,7 +10,7 @@
         <prop actor="props/units/weapons/sheath_gladius_e.xml" attachpoint="sheath_01_R"/>
         <prop actor="props/units/weapons/gladus.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/rome_scutum_marian.xml" attachpoint="shield"/>
-        <prop actor="props/units/capes/swordsman_shield_ready_centurion.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/cape_long_player.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="skeletal/imp/infantry_swordsman_c_a.dds" name="baseTex"/>
@@ -19,7 +19,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_swordsman_shield_ready.xml"/>
+    <variant file="biped/base_swordsman_shield_ready.xml" name="Swordsman-Shield-Ready" frequency="1"/>
     <variant file="biped/formations/testudo_top.xml"/>
     <variant file="biped/formations/testudo_front.xml"/>
     <variant file="biped/formations/testudo_front_left.xml"/>
@@ -28,11 +28,7 @@
     <variant file="biped/formations/testudo_right.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
-    <variant file="biped/death_infantry.xml">
-      <props>
-        <prop actor="props/units/capes/swordsman_shield_ready_centurion.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="biped/death_cape_long.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>

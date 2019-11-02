@@ -2,13 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_swordsman_shield_ready.xml">
+    <variant>
       <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/sheath_celt_iron_e.xml" attachpoint="sheath_01_L"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/capes/swordsman_shield_ready_celt.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/cape_long_gaul.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -95,13 +95,9 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="biped/base_swordsman_shield_ready.xml" name="Swordsman-Shield-Ready"/>
     <variant file="biped/attack_capture.xml"/>
-    <variant file="biped/death_infantry.xml">
-      <props>
-        <prop actor="props/units/capes/swordsman_shield_ready_celt.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="biped/death_cape_gaul.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>

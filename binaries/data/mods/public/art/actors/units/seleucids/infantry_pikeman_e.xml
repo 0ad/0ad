@@ -8,7 +8,7 @@
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/shields/pelte_sele_gold.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/capes/pikeman.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/cape_long_player.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -79,7 +79,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_pikeman_relax.xml"/>
+    <variant file="biped/base_pikeman_relax.xml" name="Pikeman-Shield-Relax" frequency="1"/>
     <variant file="biped/formations/syntagma_front.xml"/>
     <variant file="biped/formations/syntagma_01.xml"/>
     <variant file="biped/formations/syntagma_02.xml"/>
@@ -88,7 +88,7 @@
     <variant file="biped/formations/syntagma_back.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
-    <variant file="biped/death_infantry.xml"/>
+    <variant file="biped/death_cape_long.xml"/>
     <variant file="biped/gather_tree.xml"/>
     <variant file="biped/gather_grain.xml"/>
     <variant file="biped/gather_fruit.xml"/>

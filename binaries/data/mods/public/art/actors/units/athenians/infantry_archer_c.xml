@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_archer_ready.xml">
+    <variant>
       <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/helmets/pers_kidaris_loose_all.xml" attachpoint="helmet"/>
@@ -10,7 +10,7 @@
         <prop actor="props/units/weapons/arrow_back.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="weapon_bow"/>
         <prop actor="props/units/quiver_hip.xml" attachpoint="sheath_L"/>
-        <prop actor="props/units/capes/bow_hip.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/cape_med_player.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -75,12 +75,12 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="biped/base_archer_ready.xml" name="Archer-Ready" frequency="1"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_ranged_archer_hip.xml"/>
     <variant file="biped/death_infantry.xml">
       <props>
-        <prop actor="props/units/capes/bow_hip.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/cape_med_player.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
