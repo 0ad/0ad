@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="Base" frequency="1">
+  <animations>
+    <animation file="biped/infantry/swordsman/idle_ready_shieldarm_01.dae" name="Idle" id="idle1" frequency="8" speed="80"/>
+    <animation file="biped/infantry/swordsman/idle_ready_shieldarm_02.dae" name="Idle" id="idle2" frequency="1" speed="80"/>
+    <animation file="biped/infantry/swordsman/idle_ready_shieldarm_03.dae" name="Idle" id="idle3" frequency="1" speed="80"/>
+    <animation file="biped/infantry/swordsman/idle_ready_shieldarm_04.dae" name="Idle" id="idle4" frequency="1" speed="80"/>
+    <animation file="biped/infantry/swordsman/jog_ready_shieldarm.dae" name="Walk" speed="10"/>
+    <animation file="biped/infantry/swordsman/run_ready_shieldarm.dae" name="Run" id="run1" speed="8"/>
+    <animation file="biped/infantry/swordsman/run_ready_shieldarm.dae" name="Run" id="run2" speed="9"/>
+    <animation file="biped/infantry/swordsman/run_ready_shieldarm.dae" name="Run" id="run3" speed="10"/>
+    <animation event="0.5" file="biped/infantry/swordsman/attack_melee_shieldarm_01.dae" name="attack_melee" id="attack1" speed="120"/>
+    <animation event="0.5" file="biped/infantry/swordsman/attack_melee_shieldarm_02.dae" name="attack_melee" id="attack2" speed="100"/>
+    <animation event="0.5" file="biped/infantry/swordsman/attack_melee_shieldarm_03.dae" name="attack_melee" id="attack3" speed="80"/>
+    <animation file="biped/infantry/promotion.dae" name="promotion" speed="80"/>
+  </animations>
+</variant>
