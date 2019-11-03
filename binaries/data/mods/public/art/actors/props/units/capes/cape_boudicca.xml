@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_swordsman_shield_relax.xml">
+    <variant frequency="1" name="Base">
       <mesh>props/new/capes/f_cape_long.dae</mesh>
       <textures>
         <texture file="props/cape_celt_boudicca.dds" name="baseTex"/>
