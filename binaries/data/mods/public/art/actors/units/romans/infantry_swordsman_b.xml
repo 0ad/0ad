@@ -7,9 +7,30 @@
       <props>
         <prop actor="props/units/helmets/rome_helmet_montefortino.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/rome_scutum_b.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/sheath_gladius_e.xml" attachpoint="sheath_01_R"/>
         <prop actor="props/units/weapons/gladus.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Scutum-01">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_01.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-02">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_02.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-03">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_03.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-04">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_04.xml" attachpoint="shield"/>
       </props>
     </variant>
   </group>

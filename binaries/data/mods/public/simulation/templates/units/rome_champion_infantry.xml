@@ -8,6 +8,12 @@
     <SelectionGroupName>units/rome_champion_infantry</SelectionGroupName>
     <Icon>units/rome_champion_infantry.png</Icon>
   </Identity>
+  <Health>
+    <DamageVariants>
+      <lightdamage>0.85</lightdamage>
+      <mediumdamage>0.45</mediumdamage>
+    </DamageVariants>
+  </Health>
   <VisualActor>
     <Actor>units/romans/infantry_swordsman_c.xml</Actor>
   </VisualActor>

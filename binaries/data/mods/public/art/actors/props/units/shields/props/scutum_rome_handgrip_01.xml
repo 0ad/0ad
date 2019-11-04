@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/shield/props/scutum_handgrip_a.dae</mesh>
+      <textures>
+        <texture file="props/shield/scutum_a_wooden_back_01.png" name="baseTex"/>
+        <texture file="props/shield/scutum_a_wooden_back_spec.png" name="specTex"/>
+        <texture file="props/shield/scutum_a_wooden_back_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>
