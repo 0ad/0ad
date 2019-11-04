@@ -54,9 +54,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-10-23 13:25+0000\n"
-"PO-Revision-Date: 2019-10-23 14:18+0000\n"
-"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
+"POT-Creation-Date: 2019-11-01 08:08+0000\n"
+"PO-Revision-Date: 2019-11-01 15:45+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -86,90 +86,82 @@ msgstr "Resumen"
 msgid "Press %(hotkey)s to open the summary screen."
 msgstr ""
 
-#: gui/session/MenuButtons.js:131
+#: gui/session/MenuButtons.js:130
 msgid "Lobby"
 msgstr "Sala multijugador"
 
-#: gui/session/MenuButtons.js:140
+#: gui/session/MenuButtons.js:139
 #, javascript-format
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
 msgstr ""
 
-#: gui/session/MenuButtons.js:159
+#: gui/session/MenuButtons.js:158
 msgid "Options"
 msgstr "Opciones"
 
-#: gui/session/MenuButtons.js:199
+#: gui/session/MenuButtons.js:196
 msgid "Resume"
 msgstr "Reanudar"
 
-#: gui/session/MenuButtons.js:199
+#: gui/session/MenuButtons.js:196
 msgid "Pause"
 msgstr "Pausa"
 
-#: gui/session/MenuButtons.js:200
+#: gui/session/MenuButtons.js:197
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
 msgstr ""
 
-#: gui/session/MenuButtons.js:216
+#: gui/session/MenuButtons.js:213
 msgid "Resign"
 msgstr "Rendirse"
 
-#: gui/session/MenuButtons.js:236
-msgid "Are you sure you want to resign?"
-msgstr "¿Seguro que quieres rendirte?"
-
-#: gui/session/MenuButtons.js:237 gui/session/MenuButtons.js:272
-#: gui/session/MenuButtons.js:291
-msgid "Confirmation"
-msgstr "Confirmar decisión"
-
-#: gui/session/MenuButtons.js:238 gui/session/MenuButtons.js:273
-#: gui/session/session.js:667 gui/session/unit_actions.js:1092
-#: gui/session/dialogs/yes_no.xml:(caption):24
-msgid "No"
-msgstr "No"
-
-#: gui/session/MenuButtons.js:238 gui/session/MenuButtons.js:273
-#: gui/session/session.js:667 gui/session/unit_actions.js:1092
-#: gui/session/dialogs/yes_no.xml:(caption):19
-msgid "Yes"
-msgstr "Sí"
-
-#: gui/session/MenuButtons.js:256 gui/session/session.xml:(caption):66
+#: gui/session/MenuButtons.js:237
+#: gui/session/NetworkStatusOverlay.xml:(caption):9
 msgid "Exit"
 msgstr "Salir"
 
-#: gui/session/MenuButtons.js:280
-msgid ""
-"Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "¿Estás seguro de que quieres salir? Al salir desconectarás a los demás jugadores."
+#: gui/session/NetworkStatusOverlay.js:38
+msgid "Connection to the server has been authenticated."
+msgstr "Se ha autenticado la conexión con el servidor."
 
-#: gui/session/MenuButtons.js:284 gui/session/MenuButtons.js:306
-msgid "Are you sure you want to quit?"
-msgstr "¿Seguro que quieres salir?"
+#: gui/session/NetworkStatusOverlay.js:39
+msgid "Connected to the server."
+msgstr "Conectado al servidor."
 
-#: gui/session/MenuButtons.js:290
-msgid "Do you want to resign or will you return soon?"
-msgstr "¿Quieres abandonar o volverás en breve?"
+#: gui/session/NetworkStatusOverlay.js:40
+msgid "Connection to the server has been lost."
+msgstr "Se ha perdido la conexión con el servidor."
 
-#: gui/session/MenuButtons.js:292
-msgid "I will return"
-msgstr "Volveré"
+#: gui/session/NetworkStatusOverlay.js:42
+msgid "Waiting for players to connect:"
+msgstr "Esperando a que se conecten los jugadores:"
 
-#: gui/session/MenuButtons.js:292
-msgid "I resign"
-msgstr "Abandonar"
+#: gui/session/NetworkStatusOverlay.js:43
+msgid "Synchronizing gameplay with other players…"
+msgstr "sincronizando gameplay con otros jugadores..."
 
-#: gui/session/PauseOverlay.js:39 gui/session/messages.js:516
+#: gui/session/NetworkStatusOverlay.js:47
+msgctxt "Separator for a list of client loading messages"
+msgid ", "
+msgstr ","
+
+#. Translation: The "x" means "times", with the mathematical meaning of
+#. multiplication.
+#: gui/session/OverlayCounterElapsedTime.js:33
+#, javascript-format
+msgid "%(time)s (%(speed)sx)"
+msgstr "%(time)s (x%(speed)s)"
+
+#: gui/session/PauseOverlay.js:40
+#: gui/session/message_box/OutOfSyncNetwork.js:20
 msgctxt "Separator for a list of players"
 msgid ", "
 msgstr ","
 
-#: gui/session/PauseOverlay.js:44
+#: gui/session/PauseOverlay.js:45
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr "Pausado por %(players)s"
@@ -194,118 +186,35 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Bonificación media de tiro: %(range)s metro"
 msgstr[1] "Bonificación media de tiro: %(range)s metros"
 
-#: gui/session/input.js:696
+#: gui/session/input.js:691
 msgid "Cannot build wall here!"
 msgstr "¡No puedes construir murallas aquí!"
 
-#: gui/session/messages.js:79
-msgid "Connection to the server has been authenticated."
-msgstr "Se ha autenticado la conexión con el servidor."
-
-#: gui/session/messages.js:80
-msgid "Connected to the server."
-msgstr "Conectado al servidor."
-
-#: gui/session/messages.js:81
-msgid "Connection to the server has been lost."
-msgstr "Se ha perdido la conexión con el servidor."
-
-#: gui/session/messages.js:83
-msgid "Waiting for players to connect:"
-msgstr "Esperando a que se conecten los jugadores:"
-
-#: gui/session/messages.js:84
-msgid "Synchronizing gameplay with other players…"
-msgstr "sincronizando gameplay con otros jugadores..."
-
-#: gui/session/messages.js:89
+#: gui/session/messages.js:96
 msgid "You have won!"
 msgstr "¡Has ganado!"
 
-#: gui/session/messages.js:90
+#: gui/session/messages.js:97
 msgid "You have been defeated!"
 msgstr "¡Has sido derrotado!"
 
-#: gui/session/messages.js:405
+#: gui/session/messages.js:378
 msgid "Click to quit this tutorial."
 msgstr "Haz clic para salir del turorial."
 
-#: gui/session/messages.js:406
+#: gui/session/messages.js:379
 msgid "Quit"
 msgstr "Salir"
 
-#: gui/session/messages.js:410
+#: gui/session/messages.js:383
 msgid "Click when ready."
 msgstr "Haz clic aquí cuando estés listo."
 
-#: gui/session/messages.js:414
+#: gui/session/messages.js:387
 msgid "Follow the instructions."
 msgstr "Sigue las instrucciones en pantalla."
 
-#: gui/session/messages.js:505
-msgctxt "Separator for a list of client loading messages"
-msgid ", "
-msgstr ","
-
-#: gui/session/messages.js:511 gui/session/messages.js:551
-#, javascript-format
-msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr "Error de sincronización en el turno %(turn)s."
-
-#: gui/session/messages.js:515
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Players: %(players)s"
-msgstr "Jugadores: %(players)s"
-
-#: gui/session/messages.js:520
-msgctxt "Out-Of-Sync"
-msgid "Your game state is identical to the hosts game state."
-msgstr "El estado de tu partida es idéntico al estado de la partida del anfitrión."
-
-#: gui/session/messages.js:521
-msgctxt "Out-Of-Sync"
-msgid "Your game state differs from the hosts game state."
-msgstr "El estado de tu partida es diferente del estado de la partida del anfitrión."
-
-#: gui/session/messages.js:527
-msgctxt "Out-Of-Sync"
-msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr "Todavía no es posible reincorporarse a partidas multijugador con IA."
-
-#: gui/session/messages.js:530
-msgctxt "Out-Of-Sync"
-msgid "Ensure all players use the same mods."
-msgstr "Asegúrate de que todos los jugadores estén usando los mismos mods."
-
-#: gui/session/messages.js:531
-msgctxt "Out-Of-Sync"
-msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr "Haz clic sobre «informar de un fallo» en el menú principal si quieres ayudarnos a arreglar el problema."
-
-#: gui/session/messages.js:532
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Replay saved to %(filepath)s"
-msgstr "Repetición guardada en %(filepath)s"
-
-#: gui/session/messages.js:535
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Dumping current state to %(filepath)s"
-msgstr "Volcando el estado actual en %(filepath)s"
-
-#: gui/session/messages.js:543 gui/session/messages.js:556
-msgid "Out of Sync"
-msgstr "Desincronizado"
-
-#. Translation: This is shown if replay is out of sync
-#: gui/session/messages.js:555
-msgctxt "Out-Of-Sync"
-msgid "The current game state is different from the original game state."
-msgstr "El estado de la partida actual es diferente del estado original de la partida."
-
-#: gui/session/messages.js:641
+#: gui/session/messages.js:512
 msgid "Unknown Player"
 msgstr "Jugador desconocido"
 
@@ -604,49 +513,6 @@ msgstr "%(action)s para reclutar %(number)s."
 msgid "Shift-click"
 msgstr "Mayús + Clic"
 
-#: gui/session/session.js:659
-msgid "Do you want to quit?"
-msgstr "¿Seguro que quieres salir?"
-
-#: gui/session/session.js:665
-msgid "VICTORIOUS!"
-msgstr "¡VICTORIA!"
-
-#: gui/session/session.js:666
-msgid "DEFEATED!"
-msgstr "¡DERROTA!"
-
-#: gui/session/session.js:667
-msgid "OK"
-msgstr "Aceptar"
-
-#: gui/session/session.js:718
-msgctxt "replayFinished"
-msgid "The replay has finished. Do you want to quit?"
-msgstr "La repetición ha terminado ¿Quieres salir?"
-
-#: gui/session/session.js:719
-msgctxt "replayFinished"
-msgid "Confirmation"
-msgstr "Confirmación"
-
-#: gui/session/session.js:720
-msgctxt "replayFinished"
-msgid "No"
-msgstr "No"
-
-#: gui/session/session.js:720
-msgctxt "replayFinished"
-msgid "Yes"
-msgstr "Sí"
-
-#. Translation: The "x" means "times", with the mathematical meaning of
-#. multiplication.
-#: gui/session/session.js:906
-#, javascript-format
-msgid "%(time)s (%(speed)sx)"
-msgstr "%(time)s (x%(speed)s)"
-
 #: gui/session/unit_actions.js:560
 msgid "Origin trade market."
 msgstr "Origen del intercambio comercial."
@@ -681,7 +547,7 @@ msgstr "Clic derecho para establecer una ruta por defecto para nuevos mercaderes
 msgid "Expected gain: %(gain)s"
 msgstr "Ganancia esperada: %(gain)s"
 
-#: gui/session/unit_actions.js:1030 gui/session/unit_actions.js:1373
+#: gui/session/unit_actions.js:1030 gui/session/unit_actions.js:1358
 msgid "Unload All."
 msgstr "Desalojar a todos."
 
@@ -694,85 +560,77 @@ msgstr "Destruye los edificios o unidades seleccionadas."
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Presiona %(hotkey)s para evitar el diálogo de confirmación."
 
-#: gui/session/unit_actions.js:1090
-msgid "Destroy everything currently selected?"
-msgstr "¿Quieres destruir todo lo que está seleccionado?"
-
-#: gui/session/unit_actions.js:1091
-msgid "Delete"
-msgstr "Eliminar"
-
-#: gui/session/unit_actions.js:1112
+#: gui/session/unit_actions.js:1097
 msgid "Abort the current order."
 msgstr "Cancelar la orden actual."
 
-#: gui/session/unit_actions.js:1131
+#: gui/session/unit_actions.js:1116
 msgid "Order the selected units to garrison in a building or unit."
 msgstr "Ordenar a las unidades seleccionadas guarnecerse en un edificio o unidad."
 
-#: gui/session/unit_actions.js:1154
+#: gui/session/unit_actions.js:1139
 msgid "Unload"
 msgstr "Desalojar"
 
-#: gui/session/unit_actions.js:1172
+#: gui/session/unit_actions.js:1157
 msgid "Order the selected units to repair a building or mechanical unit."
 msgstr "Ordenar a las unidades seleccionadas reparar un edificio o unidad mecánica."
 
-#: gui/session/unit_actions.js:1191
+#: gui/session/unit_actions.js:1176
 msgid "Focus on Rally Point."
 msgstr "Ir al punto de encuentro."
 
-#: gui/session/unit_actions.js:1226
+#: gui/session/unit_actions.js:1211
 msgid "Back to Work"
 msgstr "Volver al trabajo"
 
-#: gui/session/unit_actions.js:1245
+#: gui/session/unit_actions.js:1230
 msgid "Order the selected units to guard a building or unit."
 msgstr "Ordenar a las unidades seleccionadas proteger un edificio o unidad."
 
-#: gui/session/unit_actions.js:1263
+#: gui/session/unit_actions.js:1248
 msgid "Remove guard"
 msgstr "Desproteger"
 
-#: gui/session/unit_actions.js:1280
+#: gui/session/unit_actions.js:1265
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 msgid "Barter & Trade"
 msgstr "Comercio e intercambios"
 
-#: gui/session/unit_actions.js:1298
+#: gui/session/unit_actions.js:1283
 msgid "Patrol"
 msgstr "Patrullar"
 
-#: gui/session/unit_actions.js:1299
+#: gui/session/unit_actions.js:1284
 msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr "Ataca a los enemigos que se encuentren por el camino, evitando edificios."
 
-#: gui/session/unit_actions.js:1325
+#: gui/session/unit_actions.js:1310
 msgid "Press to allow allies to use this dropsite"
 msgstr "Pulsa para que los aliados utilicen este punto de descarga"
 
-#: gui/session/unit_actions.js:1329
+#: gui/session/unit_actions.js:1314
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Pulsa para evitar que los aliados utilicen este punto de descarga"
 
-#: gui/session/unit_actions.js:1394
+#: gui/session/unit_actions.js:1379
 msgid "You are allowed to use this dropsite"
 msgstr "Puedes utilizar este punto de descarga"
 
-#: gui/session/unit_actions.js:1399
+#: gui/session/unit_actions.js:1384
 msgid "The use of this dropsite is prohibited"
 msgstr "No puedes utilizar este punto de descarga."
 
-#: gui/session/unit_actions.js:1473
+#: gui/session/unit_actions.js:1458
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Hay que acabar con esta entidad para recolectar sus recursos."
 
-#: gui/session/unit_actions.js:1476
+#: gui/session/unit_actions.js:1461
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "No puedes destruir esta entidad al no controlar más de la mitad de los puntos de captura"
 
-#: gui/session/unit_actions.js:1479
+#: gui/session/unit_actions.js:1464
 msgid "This entity is undeletable"
 msgstr "No se puede borrar esta entidad"
 
@@ -1136,11 +994,11 @@ msgstr "Cámara de bloqueo"
 msgid "Display camera frustum"
 msgstr ""
 
-#: gui/session/developer_overlay/TimeWarp.js:63
+#: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
 msgstr "Distorsión temporal"
 
-#: gui/session/developer_overlay/TimeWarp.js:65
+#: gui/session/developer_overlay/TimeWarp.js:66
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
@@ -1204,6 +1062,152 @@ msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
 msgstr "Dar de tributo %(resourceAmount)s de %(resourceType)s a %(playerName)s. Mayús+clic para dar %(greaterAmount)s de tributo."
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:10
+msgid "Delete"
+msgstr "Eliminar"
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:11
+msgid "Destroy everything currently selected?"
+msgstr "¿Quieres destruir todo lo que está seleccionado?"
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:14
+#: gui/session/message_box/QuitConfirmation.js:14
+#: gui/session/message_box/QuitConfirmationMenu.js:49
+#: gui/session/message_box/ResignConfirmation.js:9
+#: gui/session/dialogs/yes_no.xml:(caption):24
+msgid "No"
+msgstr "No"
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:17
+#: gui/session/message_box/QuitConfirmation.js:17
+#: gui/session/message_box/QuitConfirmationMenu.js:52
+#: gui/session/message_box/ResignConfirmation.js:12
+#: gui/session/dialogs/yes_no.xml:(caption):19
+msgid "Yes"
+msgstr "Sí"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:15
+#: gui/session/message_box/OutOfSyncReplay.js:26
+#, javascript-format
+msgid "Out-Of-Sync error on turn %(turn)s."
+msgstr "Error de sincronización en el turno %(turn)s."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:19
+#, javascript-format
+msgctxt "Out-Of-Sync"
+msgid "Players: %(players)s"
+msgstr "Jugadores: %(players)s"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:24
+msgctxt "Out-Of-Sync"
+msgid "Your game state is identical to the hosts game state."
+msgstr "El estado de tu partida es idéntico al estado de la partida del anfitrión."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:25
+msgctxt "Out-Of-Sync"
+msgid "Your game state differs from the hosts game state."
+msgstr "El estado de tu partida es diferente del estado de la partida del anfitrión."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:31
+msgctxt "Out-Of-Sync"
+msgid "Rejoining Multiplayer games with AIs is not supported yet!"
+msgstr "Todavía no es posible reincorporarse a partidas multijugador con IA."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:34
+msgctxt "Out-Of-Sync"
+msgid "Ensure all players use the same mods."
+msgstr "Asegúrate de que todos los jugadores estén usando los mismos mods."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:35
+msgctxt "Out-Of-Sync"
+msgid "Click on \"Report a Bug\" in the main menu to help fix this."
+msgstr "Haz clic sobre «informar de un fallo» en el menú principal si quieres ayudarnos a arreglar el problema."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:36
+#, javascript-format
+msgctxt "Out-Of-Sync"
+msgid "Replay saved to %(filepath)s"
+msgstr "Repetición guardada en %(filepath)s"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:39
+#, javascript-format
+msgctxt "Out-Of-Sync"
+msgid "Dumping current state to %(filepath)s"
+msgstr "Volcando el estado actual en %(filepath)s"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:51
+#: gui/session/message_box/OutOfSyncReplay.js:23
+msgid "Out of Sync"
+msgstr "Desincronizado"
+
+#. Translation: This is shown if replay is out of sync
+#: gui/session/message_box/OutOfSyncReplay.js:28
+msgid "Out-Of-Sync"
+msgstr ""
+
+#: gui/session/message_box/QuitConfirmation.js:6
+#: gui/session/message_box/QuitConfirmationMenu.js:63
+#: gui/session/message_box/ResignConfirmation.js:5
+msgid "Confirmation"
+msgstr "Confirmar decisión"
+
+#: gui/session/message_box/QuitConfirmation.js:9
+msgid "Are you sure you want to quit?"
+msgstr "¿Seguro que quieres salir?"
+
+#: gui/session/message_box/QuitConfirmationDefeat.js:54
+msgid "VICTORIOUS!"
+msgstr "¡VICTORIA!"
+
+#: gui/session/message_box/QuitConfirmationDefeat.js:55
+msgid "DEFEATED!"
+msgstr "¡DERROTA!"
+
+#: gui/session/message_box/QuitConfirmationDefeat.js:57
+msgid "Do you want to quit?"
+msgstr "¿Seguro que quieres salir?"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:33
+msgid ""
+"Are you sure you want to quit? Leaving will disconnect all other players."
+msgstr "¿Estás seguro de que quieres salir? Al salir desconectarás a los demás jugadores."
+
+#: gui/session/message_box/QuitConfirmationMenu.js:64
+msgid "Do you want to resign or will you return soon?"
+msgstr "¿Quieres abandonar o volverás en breve?"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:67
+msgid "I will return"
+msgstr "Volveré"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:71
+msgid "I resign"
+msgstr "Abandonar"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:14
+msgctxt "replayFinished"
+msgid "Confirmation"
+msgstr "Confirmación"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:17
+msgctxt "replayFinished"
+msgid "The replay has finished. Do you want to quit?"
+msgstr "La repetición ha terminado ¿Quieres salir?"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:22
+msgctxt "replayFinished"
+msgid "No"
+msgstr "No"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:25
+msgctxt "replayFinished"
+msgid "Yes"
+msgstr "Sí"
+
+#: gui/session/message_box/ResignConfirmation.js:6
+msgid "Are you sure you want to resign?"
+msgstr "¿Seguro que quieres rendirte?"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:39
 msgid "Find idle worker"

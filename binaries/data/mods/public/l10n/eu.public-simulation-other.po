@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-05-24 09:43+0200\n"
-"PO-Revision-Date: 2019-10-27 14:07+0000\n"
+"PO-Revision-Date: 2019-11-03 16:02+0000\n"
 "Last-Translator: Osoitz <oelkoro@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -425,7 +425,7 @@ msgstr "etsaian"
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
-msgstr "%(name)s ezin da eraiki %(territoryType)s gunean. Gune onartuak: %(validTerritories)s"
+msgstr "%(name)s ezin da eraiki %(territoryType)s lurrean. Lurralde onartuak: %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:228
 #, javascript-format
@@ -561,11 +561,11 @@ msgstr "Unitateak trebatzen dituen eraikin bat aukeratu behar da."
 
 #: simulation/helpers/Commands.js:124
 msgid "(Cheat - control all units)"
-msgstr "(Amarrua: Kontrolatu unitate guztiak)"
+msgstr "(Amarrua - Kontrolatu unitate guztiak)"
 
 #: simulation/helpers/Commands.js:139
 msgid "(Cheat - reveal map)"
-msgstr "(Amarrua: mapa erakutsi)"
+msgstr "(Amarrua - Erakutsi mapa)"
 
 #: simulation/helpers/Commands.js:466
 #, javascript-format
@@ -574,17 +574,17 @@ msgstr "%(player)s amore eman du."
 
 #: simulation/helpers/Commands.js:608
 msgid "(Cheat - promoted units)"
-msgstr "(Amarrua: Unitateak igo)"
+msgstr "(Amarrua - Unitateak promozionatu)"
 
 #: simulation/helpers/Commands.js:722
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
-msgstr "Ezin duzu hobetu ezin baitituzu zoruaren distantzia edo traba baldintzak bete."
+msgstr "Ezin duzu sustatu ezin baitituzu zoruaren distantzia edo traba baldintzak bete."
 
 #: simulation/helpers/Commands.js:732
 msgid "Cannot upgrade a garrisoned entity."
-msgstr "Ezin duzu babestutako unitatea hobetu."
+msgstr "Ezin duzu guardan sartutako entitatea sustatu."
 
 #: simulation/helpers/Commands.js:775
 #, javascript-format
@@ -597,7 +597,7 @@ msgstr "Ez dago erosi daiteken unitaterik."
 
 #: simulation/helpers/Commands.js:860
 msgid "Unable to ungarrison unit(s)"
-msgstr "Ezin izan dira unitateak azaleratu"
+msgstr "Ezin izan dira unitateak guardatik atera"
 
 #: simulation/helpers/Commands.js:874
 msgid "Some unit(s) can't go back to work"
@@ -691,11 +691,11 @@ msgstr "Denbora azkartu (20x)"
 msgid ""
 "Capture all relics spread across the map and keep them for a certain time to"
 " win the game."
-msgstr "Mapan zabaldutako erlikiak atzeman eta eusten du denbora batez partida irabazteko."
+msgstr "Atzeman mapan zabaldutako erlikiak eta eutsi hauek denbora batez partida irabazteko."
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture the Relic"
-msgstr "Erlikia Atzeman"
+msgstr "Atzeman erlikia"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid ""
@@ -713,7 +713,7 @@ msgstr "Garaitu aurkariak euren egitura guztiak suntsituz."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
-msgstr "Eraikin Lorpena"
+msgstr "Eraikin lorpena"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Defeat opponents by killing all their units."
@@ -721,7 +721,7 @@ msgstr "Garaitu aurkariak euren unitateak hilez."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr "Unitateen Lorpena"
+msgstr "Unitateak garaitzea"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero."
@@ -737,11 +737,11 @@ msgid ""
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
-msgstr "Izan zaitez lehena Mirari bat eraiki edo atzematen eta gorde ezazu denbora bartez jokoa irabazteko. Denbora neurgailua Miraria puskatu edo atzematean berrabiaraziko da. Aliatuen garaipen modua aktibatuta badago, denbora neurgailua berrabiaraziko da jabearen aliantzak aldatzen direnean."
+msgstr "Izan zaitez lehena Miragarri bat eraiki edo atzematen eta eutsi denbora batez jokoa irabazteko. Denbora neurgailua Miragarria suntsitu edo atzematean berrabiaraziko da. Aliatuen garaipen modua aktibatuta badago, denbora neurgailua berrabiaraziko da jabearen aliantzak aldatzen direnean."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr "Miraria"
+msgstr "Miragarria"
 
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"

@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-10-23 13:25+0000\n"
-"PO-Revision-Date: 2019-10-23 14:18+0000\n"
-"Last-Translator: Alket Rexhepi <alketii@gmail.com>\n"
+"POT-Creation-Date: 2019-11-01 08:08+0000\n"
+"PO-Revision-Date: 2019-11-01 15:45+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Albanian (http://www.transifex.com/wildfire-games/0ad/language/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,90 +42,82 @@ msgstr "Përmbledhje"
 msgid "Press %(hotkey)s to open the summary screen."
 msgstr ""
 
-#: gui/session/MenuButtons.js:131
+#: gui/session/MenuButtons.js:130
 msgid "Lobby"
 msgstr "Holl"
 
-#: gui/session/MenuButtons.js:140
+#: gui/session/MenuButtons.js:139
 #, javascript-format
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
 msgstr ""
 
-#: gui/session/MenuButtons.js:159
+#: gui/session/MenuButtons.js:158
 msgid "Options"
 msgstr "Zgjedhjet"
 
-#: gui/session/MenuButtons.js:199
+#: gui/session/MenuButtons.js:196
 msgid "Resume"
 msgstr "Vazhdo"
 
-#: gui/session/MenuButtons.js:199
+#: gui/session/MenuButtons.js:196
 msgid "Pause"
 msgstr "Pusho"
 
-#: gui/session/MenuButtons.js:200
+#: gui/session/MenuButtons.js:197
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
 msgstr ""
 
-#: gui/session/MenuButtons.js:216
+#: gui/session/MenuButtons.js:213
 msgid "Resign"
 msgstr "Hiq dorë"
 
-#: gui/session/MenuButtons.js:236
-msgid "Are you sure you want to resign?"
-msgstr "A jeni të sigurt për dorëheqje ?"
-
-#: gui/session/MenuButtons.js:237 gui/session/MenuButtons.js:272
-#: gui/session/MenuButtons.js:291
-msgid "Confirmation"
-msgstr "Vërteto"
-
-#: gui/session/MenuButtons.js:238 gui/session/MenuButtons.js:273
-#: gui/session/session.js:667 gui/session/unit_actions.js:1092
-#: gui/session/dialogs/yes_no.xml:(caption):24
-msgid "No"
-msgstr "Jo"
-
-#: gui/session/MenuButtons.js:238 gui/session/MenuButtons.js:273
-#: gui/session/session.js:667 gui/session/unit_actions.js:1092
-#: gui/session/dialogs/yes_no.xml:(caption):19
-msgid "Yes"
-msgstr "Po"
-
-#: gui/session/MenuButtons.js:256 gui/session/session.xml:(caption):66
+#: gui/session/MenuButtons.js:237
+#: gui/session/NetworkStatusOverlay.xml:(caption):9
 msgid "Exit"
 msgstr "Dil"
 
-#: gui/session/MenuButtons.js:280
-msgid ""
-"Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "A jeni të sigurt për largim ? Largimi juaj largon dhe lojtarët tjerë."
+#: gui/session/NetworkStatusOverlay.js:38
+msgid "Connection to the server has been authenticated."
+msgstr "Lidhja në server është autorizuar"
 
-#: gui/session/MenuButtons.js:284 gui/session/MenuButtons.js:306
-msgid "Are you sure you want to quit?"
-msgstr "A jeni të sigurt për dalje ?"
+#: gui/session/NetworkStatusOverlay.js:39
+msgid "Connected to the server."
+msgstr "U bashkua në server."
 
-#: gui/session/MenuButtons.js:290
-msgid "Do you want to resign or will you return soon?"
-msgstr "A doni të largoheni apo do të ktheheni së shpejti ?"
+#: gui/session/NetworkStatusOverlay.js:40
+msgid "Connection to the server has been lost."
+msgstr "Lidhja në server është "
 
-#: gui/session/MenuButtons.js:292
-msgid "I will return"
-msgstr "Do të kthehem"
+#: gui/session/NetworkStatusOverlay.js:42
+msgid "Waiting for players to connect:"
+msgstr "Duke pritur për lojtarët që të bashkangjiten."
 
-#: gui/session/MenuButtons.js:292
-msgid "I resign"
-msgstr "Po largohem"
+#: gui/session/NetworkStatusOverlay.js:43
+msgid "Synchronizing gameplay with other players…"
+msgstr "Duke sinkronizuar lojën me lojtarët e tjerë..."
 
-#: gui/session/PauseOverlay.js:39 gui/session/messages.js:516
+#: gui/session/NetworkStatusOverlay.js:47
+msgctxt "Separator for a list of client loading messages"
+msgid ", "
+msgstr ","
+
+#. Translation: The "x" means "times", with the mathematical meaning of
+#. multiplication.
+#: gui/session/OverlayCounterElapsedTime.js:33
+#, javascript-format
+msgid "%(time)s (%(speed)sx)"
+msgstr "%(time)s(%(speed)sx)"
+
+#: gui/session/PauseOverlay.js:40
+#: gui/session/message_box/OutOfSyncNetwork.js:20
 msgctxt "Separator for a list of players"
 msgid ", "
 msgstr ","
 
-#: gui/session/PauseOverlay.js:44
+#: gui/session/PauseOverlay.js:45
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr "Pushuar prej %(players)s'"
@@ -150,118 +142,35 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Vargu i shtesës mesatare: %(range)s metër"
 msgstr[1] "Vargu i shtesës mesatare: %(range)s metra"
 
-#: gui/session/input.js:696
+#: gui/session/input.js:691
 msgid "Cannot build wall here!"
 msgstr "Muri nuk mund të ndërtohet këtu!"
 
-#: gui/session/messages.js:79
-msgid "Connection to the server has been authenticated."
-msgstr "Lidhja në server është autorizuar"
-
-#: gui/session/messages.js:80
-msgid "Connected to the server."
-msgstr "U bashkua në server."
-
-#: gui/session/messages.js:81
-msgid "Connection to the server has been lost."
-msgstr "Lidhja në server është "
-
-#: gui/session/messages.js:83
-msgid "Waiting for players to connect:"
-msgstr "Duke pritur për lojtarët që të bashkangjiten."
-
-#: gui/session/messages.js:84
-msgid "Synchronizing gameplay with other players…"
-msgstr "Duke sinkronizuar lojën me lojtarët e tjerë..."
-
-#: gui/session/messages.js:89
+#: gui/session/messages.js:96
 msgid "You have won!"
 msgstr "Ju fituat!"
 
-#: gui/session/messages.js:90
+#: gui/session/messages.js:97
 msgid "You have been defeated!"
 msgstr "Ju u mundët!"
 
-#: gui/session/messages.js:405
+#: gui/session/messages.js:378
 msgid "Click to quit this tutorial."
 msgstr "Shtyp për të dalë nga kjo praktikë."
 
-#: gui/session/messages.js:406
+#: gui/session/messages.js:379
 msgid "Quit"
 msgstr "Dil"
 
-#: gui/session/messages.js:410
+#: gui/session/messages.js:383
 msgid "Click when ready."
 msgstr "Shtyp kur të jeni gati."
 
-#: gui/session/messages.js:414
+#: gui/session/messages.js:387
 msgid "Follow the instructions."
 msgstr "Ndiq udhëzimet."
 
-#: gui/session/messages.js:505
-msgctxt "Separator for a list of client loading messages"
-msgid ", "
-msgstr ","
-
-#: gui/session/messages.js:511 gui/session/messages.js:551
-#, javascript-format
-msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr "Gabim i Jasht-sinkronizimit ne rradhën %(turn)s"
-
-#: gui/session/messages.js:515
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Players: %(players)s"
-msgstr "Lojtarët: %(players)s"
-
-#: gui/session/messages.js:520
-msgctxt "Out-Of-Sync"
-msgid "Your game state is identical to the hosts game state."
-msgstr "Gjendja e lojës suaj është e njejt me gjendjen e nikoqirit."
-
-#: gui/session/messages.js:521
-msgctxt "Out-Of-Sync"
-msgid "Your game state differs from the hosts game state."
-msgstr "Gjendja e lojës suaj është e ndyrshme prej gjendjës së nikoqirit."
-
-#: gui/session/messages.js:527
-msgctxt "Out-Of-Sync"
-msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr "Ribashkimi i lojës me AI-të nuk përkrahet ende!"
-
-#: gui/session/messages.js:530
-msgctxt "Out-Of-Sync"
-msgid "Ensure all players use the same mods."
-msgstr "Sigurohuni që të gjithë lojtarët e kan të njejtën mod."
-
-#: gui/session/messages.js:531
-msgctxt "Out-Of-Sync"
-msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr "Shtyp në \"Raporto një gabim\" në menyn kryesore për të na ndihmuar rregullimin e kësaj."
-
-#: gui/session/messages.js:532
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Replay saved to %(filepath)s"
-msgstr "Riluajtja u ruajt tek %(filepath)s"
-
-#: gui/session/messages.js:535
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Dumping current state to %(filepath)s"
-msgstr "Duke e dërguar gjendjen e tanishme në %(filepath)s"
-
-#: gui/session/messages.js:543 gui/session/messages.js:556
-msgid "Out of Sync"
-msgstr "Jasht sinkronizimit"
-
-#. Translation: This is shown if replay is out of sync
-#: gui/session/messages.js:555
-msgctxt "Out-Of-Sync"
-msgid "The current game state is different from the original game state."
-msgstr "Gjendja e lojës suaj është e ndryshme prej gjendjes së pergjithshme."
-
-#: gui/session/messages.js:641
+#: gui/session/messages.js:512
 msgid "Unknown Player"
 msgstr "Lojtarë i Panjohur"
 
@@ -560,49 +469,6 @@ msgstr "%(action)s ushtro %(number)s."
 msgid "Shift-click"
 msgstr "Shift-click"
 
-#: gui/session/session.js:659
-msgid "Do you want to quit?"
-msgstr "Dëshiron të largohesh ?"
-
-#: gui/session/session.js:665
-msgid "VICTORIOUS!"
-msgstr "FITIMTARË!"
-
-#: gui/session/session.js:666
-msgid "DEFEATED!"
-msgstr "I MUNDUR!"
-
-#: gui/session/session.js:667
-msgid "OK"
-msgstr "Në rregull"
-
-#: gui/session/session.js:718
-msgctxt "replayFinished"
-msgid "The replay has finished. Do you want to quit?"
-msgstr "Riluajtja ka përfunduar. Dëshironi të largoheni ?"
-
-#: gui/session/session.js:719
-msgctxt "replayFinished"
-msgid "Confirmation"
-msgstr "Vërteto"
-
-#: gui/session/session.js:720
-msgctxt "replayFinished"
-msgid "No"
-msgstr "Jo"
-
-#: gui/session/session.js:720
-msgctxt "replayFinished"
-msgid "Yes"
-msgstr "Po"
-
-#. Translation: The "x" means "times", with the mathematical meaning of
-#. multiplication.
-#: gui/session/session.js:906
-#, javascript-format
-msgid "%(time)s (%(speed)sx)"
-msgstr "%(time)s(%(speed)sx)"
-
 #: gui/session/unit_actions.js:560
 msgid "Origin trade market."
 msgstr "Treg shkëmbimi fillestar."
@@ -637,7 +503,7 @@ msgstr "Kliko dy herë për të vendosur një rrugë të parazgjedhuar për treg
 msgid "Expected gain: %(gain)s"
 msgstr "Fitimi i pritur: %(gain)s"
 
-#: gui/session/unit_actions.js:1030 gui/session/unit_actions.js:1373
+#: gui/session/unit_actions.js:1030 gui/session/unit_actions.js:1358
 msgid "Unload All."
 msgstr "Shkarko të gjitha."
 
@@ -650,85 +516,77 @@ msgstr "Shkatrro njësitet apo ndërtesat e përzgjedhura."
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Përdor %(hotkey)spër të anashkaluar dialogun e konfirmimit."
 
-#: gui/session/unit_actions.js:1090
-msgid "Destroy everything currently selected?"
-msgstr "Të shkatërroj gjithçka të përzgjedhur ?"
-
-#: gui/session/unit_actions.js:1091
-msgid "Delete"
-msgstr "Fshij"
-
-#: gui/session/unit_actions.js:1112
+#: gui/session/unit_actions.js:1097
 msgid "Abort the current order."
 msgstr "Anulo urdhërin e tanishëm."
 
-#: gui/session/unit_actions.js:1131
+#: gui/session/unit_actions.js:1116
 msgid "Order the selected units to garrison in a building or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1154
+#: gui/session/unit_actions.js:1139
 msgid "Unload"
 msgstr "Shkarko"
 
-#: gui/session/unit_actions.js:1172
+#: gui/session/unit_actions.js:1157
 msgid "Order the selected units to repair a building or mechanical unit."
 msgstr "Urdhëro njësitë e zgjedhura që të riparojnë një ndërtesë ose njësi mekanike."
 
-#: gui/session/unit_actions.js:1191
+#: gui/session/unit_actions.js:1176
 msgid "Focus on Rally Point."
 msgstr ""
 
-#: gui/session/unit_actions.js:1226
+#: gui/session/unit_actions.js:1211
 msgid "Back to Work"
 msgstr "Ktheju punës"
 
-#: gui/session/unit_actions.js:1245
+#: gui/session/unit_actions.js:1230
 msgid "Order the selected units to guard a building or unit."
 msgstr "Urdhëro njësitë e zgjedhura që të mbrojnë një ndërtesë ose njësi."
 
-#: gui/session/unit_actions.js:1263
+#: gui/session/unit_actions.js:1248
 msgid "Remove guard"
 msgstr "Hiq rojen"
 
-#: gui/session/unit_actions.js:1280
+#: gui/session/unit_actions.js:1265
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 msgid "Barter & Trade"
 msgstr "Pazar & Tregti"
 
-#: gui/session/unit_actions.js:1298
+#: gui/session/unit_actions.js:1283
 msgid "Patrol"
 msgstr "Patrullë"
 
-#: gui/session/unit_actions.js:1299
+#: gui/session/unit_actions.js:1284
 msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr "Sulmo gjithë njësitë e hasura kundërshtare duke mënjanuar ndërtesat."
 
-#: gui/session/unit_actions.js:1325
+#: gui/session/unit_actions.js:1310
 msgid "Press to allow allies to use this dropsite"
 msgstr "Shtyp për ti lejuar aleatëve përdorimin e këtij vendi-shkarkimi"
 
-#: gui/session/unit_actions.js:1329
+#: gui/session/unit_actions.js:1314
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Shtyp për ti ndaluar aleatëve përdorimin e këtij vendi-shkarkimi"
 
-#: gui/session/unit_actions.js:1394
+#: gui/session/unit_actions.js:1379
 msgid "You are allowed to use this dropsite"
 msgstr "Ju e keni të lejuar përdorimin e këtij vendi-shkarkimi"
 
-#: gui/session/unit_actions.js:1399
+#: gui/session/unit_actions.js:1384
 msgid "The use of this dropsite is prohibited"
 msgstr "Përdorimi i këtij vendi-shkarkimi është i ndaluar"
 
-#: gui/session/unit_actions.js:1473
+#: gui/session/unit_actions.js:1458
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Ky entitet duhet vrarë para se të mund të grumbullohet"
 
-#: gui/session/unit_actions.js:1476
+#: gui/session/unit_actions.js:1461
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Ju nuk mund të shkatërroni këtë qenie meqë ju zotëroni më pak se gjysmën e pikave të pushtimit"
 
-#: gui/session/unit_actions.js:1479
+#: gui/session/unit_actions.js:1464
 msgid "This entity is undeletable"
 msgstr "Ky entitet nuk mund të fshihet"
 
@@ -1092,11 +950,11 @@ msgstr ""
 msgid "Display camera frustum"
 msgstr ""
 
-#: gui/session/developer_overlay/TimeWarp.js:63
+#: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
 msgstr "Mënyra e shtrembërimit të kohës"
 
-#: gui/session/developer_overlay/TimeWarp.js:65
+#: gui/session/developer_overlay/TimeWarp.js:66
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
@@ -1160,6 +1018,152 @@ msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
 msgstr "Haraçi %(resourceAmount)s %(resourceType)s tek %(playerName)s. Shift-click për haraçin %(greaterAmount)s."
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:10
+msgid "Delete"
+msgstr "Fshij"
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:11
+msgid "Destroy everything currently selected?"
+msgstr "Të shkatërroj gjithçka të përzgjedhur ?"
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:14
+#: gui/session/message_box/QuitConfirmation.js:14
+#: gui/session/message_box/QuitConfirmationMenu.js:49
+#: gui/session/message_box/ResignConfirmation.js:9
+#: gui/session/dialogs/yes_no.xml:(caption):24
+msgid "No"
+msgstr "Jo"
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:17
+#: gui/session/message_box/QuitConfirmation.js:17
+#: gui/session/message_box/QuitConfirmationMenu.js:52
+#: gui/session/message_box/ResignConfirmation.js:12
+#: gui/session/dialogs/yes_no.xml:(caption):19
+msgid "Yes"
+msgstr "Po"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:15
+#: gui/session/message_box/OutOfSyncReplay.js:26
+#, javascript-format
+msgid "Out-Of-Sync error on turn %(turn)s."
+msgstr "Gabim i Jasht-sinkronizimit ne rradhën %(turn)s"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:19
+#, javascript-format
+msgctxt "Out-Of-Sync"
+msgid "Players: %(players)s"
+msgstr "Lojtarët: %(players)s"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:24
+msgctxt "Out-Of-Sync"
+msgid "Your game state is identical to the hosts game state."
+msgstr "Gjendja e lojës suaj është e njejt me gjendjen e nikoqirit."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:25
+msgctxt "Out-Of-Sync"
+msgid "Your game state differs from the hosts game state."
+msgstr "Gjendja e lojës suaj është e ndyrshme prej gjendjës së nikoqirit."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:31
+msgctxt "Out-Of-Sync"
+msgid "Rejoining Multiplayer games with AIs is not supported yet!"
+msgstr "Ribashkimi i lojës me AI-të nuk përkrahet ende!"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:34
+msgctxt "Out-Of-Sync"
+msgid "Ensure all players use the same mods."
+msgstr "Sigurohuni që të gjithë lojtarët e kan të njejtën mod."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:35
+msgctxt "Out-Of-Sync"
+msgid "Click on \"Report a Bug\" in the main menu to help fix this."
+msgstr "Shtyp në \"Raporto një gabim\" në menyn kryesore për të na ndihmuar rregullimin e kësaj."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:36
+#, javascript-format
+msgctxt "Out-Of-Sync"
+msgid "Replay saved to %(filepath)s"
+msgstr "Riluajtja u ruajt tek %(filepath)s"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:39
+#, javascript-format
+msgctxt "Out-Of-Sync"
+msgid "Dumping current state to %(filepath)s"
+msgstr "Duke e dërguar gjendjen e tanishme në %(filepath)s"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:51
+#: gui/session/message_box/OutOfSyncReplay.js:23
+msgid "Out of Sync"
+msgstr "Jasht sinkronizimit"
+
+#. Translation: This is shown if replay is out of sync
+#: gui/session/message_box/OutOfSyncReplay.js:28
+msgid "Out-Of-Sync"
+msgstr ""
+
+#: gui/session/message_box/QuitConfirmation.js:6
+#: gui/session/message_box/QuitConfirmationMenu.js:63
+#: gui/session/message_box/ResignConfirmation.js:5
+msgid "Confirmation"
+msgstr "Vërteto"
+
+#: gui/session/message_box/QuitConfirmation.js:9
+msgid "Are you sure you want to quit?"
+msgstr "A jeni të sigurt për dalje ?"
+
+#: gui/session/message_box/QuitConfirmationDefeat.js:54
+msgid "VICTORIOUS!"
+msgstr "FITIMTARË!"
+
+#: gui/session/message_box/QuitConfirmationDefeat.js:55
+msgid "DEFEATED!"
+msgstr "I MUNDUR!"
+
+#: gui/session/message_box/QuitConfirmationDefeat.js:57
+msgid "Do you want to quit?"
+msgstr "Dëshiron të largohesh ?"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:33
+msgid ""
+"Are you sure you want to quit? Leaving will disconnect all other players."
+msgstr "A jeni të sigurt për largim ? Largimi juaj largon dhe lojtarët tjerë."
+
+#: gui/session/message_box/QuitConfirmationMenu.js:64
+msgid "Do you want to resign or will you return soon?"
+msgstr "A doni të largoheni apo do të ktheheni së shpejti ?"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:67
+msgid "I will return"
+msgstr "Do të kthehem"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:71
+msgid "I resign"
+msgstr "Po largohem"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:14
+msgctxt "replayFinished"
+msgid "Confirmation"
+msgstr "Vërteto"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:17
+msgctxt "replayFinished"
+msgid "The replay has finished. Do you want to quit?"
+msgstr "Riluajtja ka përfunduar. Dëshironi të largoheni ?"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:22
+msgctxt "replayFinished"
+msgid "No"
+msgstr "Jo"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:25
+msgctxt "replayFinished"
+msgid "Yes"
+msgstr "Po"
+
+#: gui/session/message_box/ResignConfirmation.js:6
+msgid "Are you sure you want to resign?"
+msgstr "A jeni të sigurt për dorëheqje ?"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:39
 msgid "Find idle worker"

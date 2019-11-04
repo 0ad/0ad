@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-10-24 15:05+0000\n"
+"PO-Revision-Date: 2019-11-01 17:28+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -738,7 +738,7 @@ msgstr "톨레도 철강"
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsondescription
 msgid "Using rubble materials reduces the costs and build times of walls."
-msgstr "돌무더기 자재를 사용하는 것은 비용을 절감하고 벽을 쌓을 수 있습니다."
+msgstr "돌무더기 자재를 사용하는 것은 비용을 절감하고 성벽을 쌓을 수 있습니다."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
 msgid "City walls -20% build time, but -1 crush armor level."
@@ -1125,7 +1125,7 @@ msgstr "전장 의술"
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
 msgid "Using geometric masonry increases the sturdiness of defensive walls."
-msgstr "기하학적인 석조를 사용하면 방어벽의 견고성이 증가합니다."
+msgstr "기하학적인 석조를 사용하면 방어 성벽의 견고성이 증가합니다."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
 msgid "City walls +2 crush armor levels, but +10% build time."
@@ -1240,7 +1240,7 @@ msgstr "밤의 경비대 vs. 총안"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
 msgid "Walls build time vs. Health"
-msgstr "벽 쌓는 시간 vs. 건강"
+msgstr "성벽 쌓는 시간 vs. 건강"
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1272,7 +1272,7 @@ msgstr "더 많은 건축물과 유닛을 열수있는 대도시 단계로 나�
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "4개의 새로운 작은 도시 단계 구조물이 필요합니다(벽과 시민 회관은 제외)."
+msgstr "4개의 새로운 작은 도시 단계 구조물이 필요합니다(성벽과 시민 회관은 제외)."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -2286,16 +2286,16 @@ msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
 "was via the city's harbor, not by storming its walls."
-msgstr "카르타고는 삼중의 성벽을 쌓았습니다. 이 벽은 절때로 뚫리지 않았습니다. 이 도시는 로마에게 점령 당했을때도 성벽을 습격해서가아니라 도시의 항구를 통해서 점령되었습니다."
+msgstr "카르타고는 삼중 성벽을 쌓았습니다. 이 성벽은 절때로 뚫리지 않았습니다. 이 도시는 로마에게 점령 당했을때도 성벽을 습격당해서가 아니라 도시의 항구를 통해서 점령당했기 때문입니다."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
 "Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
-msgstr "카르타고의 벽의 짓는시간이 +100% 증가하고, 석재 비용이 +100% 증가하고, 내구력이 +200% 증가합니다."
+msgstr "카르타고의 성벽의 짓는시간이 +100% 증가하고, 석재 비용이 +100% 증가하고, 내구력이 +200% 증가합니다."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
-msgstr "삼중 방벽"
+msgstr "삼중 성벽"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
@@ -2351,7 +2351,7 @@ msgstr "차크라바르티 삼라트"
 msgid ""
 "The Mauryas built their city walls out of wood, an abundant natural resource"
 " in India."
-msgstr "마우리야는 인도의 풍부한 천연 자원인 나무로 도시 벽을 지었습니다."
+msgstr "마우리야는 인도의 풍부한 천연 자원인 나무로 도시 성벽을 지었습니다."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "Mauryan City Walls −20% build time and −20% health."
@@ -2359,7 +2359,7 @@ msgstr "마우리아 성벽의 짓는 시간이 -20% 단축하고, 내구력이 
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
-msgstr "목조 방벽"
+msgstr "목조 성벽"
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -2385,7 +2385,7 @@ msgid ""
 "the best army in the world for their time. What they didn't have in "
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
-msgstr "스파르타의 육군은 당시 세계 최대는 아니었지만 세계 최강이었습니다. 그들은 양보다 질을 추구했습니다. 스파르타에는 튼튼한 성벽은 필요하지 않다고 합니다.  왜냐면 사람이 곳 성벽이라고 했기때문입니다."
+msgstr "스파르타의 육군은 당시 세계 최대는 아니었지만 세계 최강이었습니다. 그들은 양보다 질을 추구했습니다. 스파르타에는 튼튼한 성벽은 필요하지 않다고 합니다. 왜냐하면 그들은 사람이 곳 성벽이라 믿었기 때문입니다."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
 msgid "Spartans −10% maximum population limit."
@@ -2451,11 +2451,11 @@ msgstr "아테네의 장성은 만만찮은 테미스토클레스의 후원하�
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
 msgid "Build stone walls in neutral territory."
-msgstr "중립 지역에 석벽(돌담)을 쌓습니다."
+msgstr "중립 지역에 돌 성벽을 쌓습니다."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
-msgstr "아테네 장벽"
+msgstr "아테네의 긴 성벽"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
@@ -2568,7 +2568,7 @@ msgstr "로마는 병참(전쟁 물류)의 달인이었습니다."
 
 #: simulation/data/technologies/romans/decay_logistics.jsontooltip
 msgid "Entrenched Camps and Siege Walls decay 50% slower."
-msgstr "참호가있는 군영과 포위 벽의 부패의 진행이 50% 느려집니다. (번역확인??)"
+msgstr "참호가 있는 군영과 공성 성벽의 부패의 진행이 50% 느려집니다."
 
 #: simulation/data/technologies/romans/decay_logistics.jsongenericName
 msgid "Roman Logistics"

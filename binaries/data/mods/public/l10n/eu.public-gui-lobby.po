@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-27 07:08+0000\n"
-"PO-Revision-Date: 2019-10-27 15:43+0000\n"
+"PO-Revision-Date: 2019-11-03 15:46+0000\n"
 "Last-Translator: Osoitz <oelkoro@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -128,7 +128,7 @@ msgstr "Zure egoera eguneratu «Linean»era."
 
 #: gui/lobby/lobby.js:322
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "Jokalarien gelatik norbait kanporatu. Erabilera: /kick izena arrazoia"
+msgstr "Kanporatu norbait jokalarien gelatik. Erabilera: /kick izena arrazoia"
 
 #: gui/lobby/lobby.js:330
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
@@ -228,7 +228,7 @@ msgstr "Debekatua izan zara jokalarien gelan!"
 
 #: gui/lobby/lobby.js:608
 msgid "You have been kicked from the lobby!"
-msgstr "Bota zaituzte jokalarien gelatik!"
+msgstr "Jokalarien gelatik kanporatu zaituzte!"
 
 #: gui/lobby/lobby.js:610
 #, javascript-format
@@ -238,7 +238,7 @@ msgstr "%(nick)s debekatua izan zara jokalarien gelan."
 #: gui/lobby/lobby.js:611
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr "%(nick)s bota zaituzte jokalarien gelatik!"
+msgstr "%(nick)s jokalarien gelatik kanporatua izan da!"
 
 #: gui/lobby/lobby.js:614
 #, javascript-format
@@ -313,7 +313,7 @@ msgstr "Mod bateraezinak"
 
 #: gui/lobby/lobby.js:1208
 msgid "The game has already started. Do you want to join as observer?"
-msgstr "Partida dagoeneko hasi da, ikuskatzaile bezala sartu nahi duzu?"
+msgstr "Partida dagoeneko hasi da, ikusle bezala sartu nahi duzu?"
 
 #: gui/lobby/lobby.js:1242
 #, javascript-format
@@ -440,11 +440,11 @@ msgstr "Akats ezezaguna. Gehienetan hau gertatzen da ez delako IP helbidea onart
 
 #: gui/prelobby/common/terms/termslobby.js:9
 msgid "Terms of Service"
-msgstr "Zerbitzuaren Baldintzak"
+msgstr "Zerbitzuaren baldintzak"
 
 #: gui/prelobby/common/terms/termslobby.js:10
 msgid "Please read and accept the Terms of Service."
-msgstr "Mesedez irakurri eta onartu Zerbitzuaren Baldintzak"
+msgstr "Mesedez irakurri eta onartu zerbitzuaren baldintzak"
 
 #: gui/prelobby/common/terms/termslobby.js:19
 msgid "Terms of Use"
@@ -452,7 +452,7 @@ msgstr "Erabilera baldintzak"
 
 #: gui/prelobby/common/terms/termslobby.js:20
 msgid "Please read and accept the Terms of Use."
-msgstr "Mesedez irakurri eta onartu Zerbitzuaren Baldintzak"
+msgstr "Mesedez irakurri eta onartu zerbitzuaren baldintzak"
 
 #: gui/prelobby/common/terms/termslobby.js:29
 msgid "Privacy Policy"
@@ -505,7 +505,7 @@ msgstr "Puntuazioa"
 
 #: gui/lobby/lobby_panels.xml:(heading):192
 msgid "Map Name"
-msgstr "Maparen Izena"
+msgstr "Maparen izena"
 
 #: gui/lobby/lobby_panels.xml:(heading):195
 msgctxt "map"
@@ -567,7 +567,7 @@ msgstr "Erabiltzaile Bilaketa"
 
 #: gui/lobby/lobby_panels.xml:(caption):119
 msgid "Map Type:"
-msgstr "Mapa Mota:"
+msgstr "Mapa mota:"
 
 #: gui/lobby/lobby_panels.xml:(caption):131
 msgid "Map Size:"
@@ -1200,7 +1200,7 @@ msgid ""
 " 8. Not undermine the intended gameplay or purposefully gain unfair "
 "advantages in multiplayer matches (for example cheating, using exploits or "
 "bugs)."
-msgstr "8. Jokaera desegokia ez izatea edo nahitaezko abantailak irabaztea hainbat jokalarien partidetan (adibidez iruzurra, segurtasun ahultasunak edo akatsak erabiliz)."
+msgstr "8. Jokaera desegokia ez izatea edo nahitaezko abantailak irabaztea hainbat jokalarien partidetan (adibidez amarrua, segurtasun ahultasunak edo akatsak erabiliz)."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:14
 msgid ""

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-10-23 13:25+0000\n"
-"PO-Revision-Date: 2019-10-27 19:12+0000\n"
+"PO-Revision-Date: 2019-11-03 15:49+0000\n"
 "Last-Translator: Osoitz <oelkoro@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -223,8 +223,8 @@ msgstr "%(team)s:\n%(playerDescriptions)s"
 #: gui/common/gamedescription.js:220
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] "Ikuskatzailea "
-msgstr[1] "Ikuskatzaileak "
+msgstr[0] "Ikuslea"
+msgstr[1] "Ikusleak"
 
 #: gui/common/gamedescription.js:237
 msgctxt "victory condition"
@@ -248,20 +248,20 @@ msgstr[1] "Miragarria  (%(min)s minutuak) "
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] "Atzeman Erlikia  (%(min)s minutua) "
-msgstr[1] "Atzeman Erlikia  (%(min)s minutuak) "
+msgstr[0] "Atzeman erlikia  (minutu %(min)s) "
+msgstr[1] "Atzeman Erlikia  (%(min)s minutu) "
 
 #: gui/common/gamedescription.js:277
 msgid "Relic Count"
-msgstr "Erlikia Zenbatekoa"
+msgstr "Erlikia kopurua"
 
 #: gui/common/gamedescription.js:284
 msgid "Hero Garrison"
-msgstr "Heroi Babeslea"
+msgstr "Heroi guarda"
 
 #: gui/common/gamedescription.js:285
 msgid "Heroes can be garrisoned."
-msgstr "Heroiak babestu daitezke."
+msgstr "Heroiak guardan sartu daitezke."
 
 #: gui/common/gamedescription.js:289
 msgid "Exposed Heroes"
@@ -269,7 +269,7 @@ msgstr "Heroiak arriskuan"
 
 #: gui/common/gamedescription.js:290
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr "Heroiak ezin dira babestu eta segadetan ahulak dira."
+msgstr "Heroiak ezin dira guardan sartu eta segadetan ahulak dira."
 
 #: gui/common/gamedescription.js:297
 msgid "Rated game"
@@ -299,7 +299,7 @@ msgstr "Jokalariak euren artean elkar daitezke eta gudan sartu."
 
 #: gui/common/gamedescription.js:314
 msgid "Last Man Standing"
-msgstr "Bizirik Dirauen Azkena"
+msgstr "Bizirik dirauen azkena"
 
 #: gui/common/gamedescription.js:315
 msgid ""
@@ -309,7 +309,7 @@ msgstr "Partida batek baino ezin du irabazi. Gelditzen diren jokalariak aliatuak
 
 #: gui/common/gamedescription.js:319
 msgid "Allied Victory"
-msgstr "Aliatuen Garaipena"
+msgstr "Aliatuen garaipena"
 
 #: gui/common/gamedescription.js:320
 msgid ""
@@ -319,7 +319,7 @@ msgstr "Jokalari batek irabazten badu bere aliatuek ere hala egingo dute. Taldea
 
 #: gui/common/gamedescription.js:324
 msgid "Ceasefire"
-msgstr "Su Etena"
+msgstr "Su etena"
 
 #: gui/common/gamedescription.js:327 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
@@ -342,19 +342,19 @@ msgstr "Zerrendatik mapa bat ausaz aukeratzen du."
 
 #: gui/common/gamedescription.js:343
 msgid "Map Name"
-msgstr "Maparen Izena"
+msgstr "Maparen izena"
 
 #: gui/common/gamedescription.js:347
 msgid "Map Description"
-msgstr "Mapa Deskripzioa"
+msgstr "Maparen deskripzioa"
 
 #: gui/common/gamedescription.js:355
 msgid "Map Type"
-msgstr "Mapa Mota"
+msgstr "Mapa mota"
 
 #: gui/common/gamedescription.js:361
 msgid "Map Filter"
-msgstr "Maparen Iragazkia"
+msgstr "Maparen iragazkia"
 
 #: gui/common/gamedescription.js:370
 msgid "Map Size"
@@ -412,7 +412,7 @@ msgstr "Desgaituta"
 #: gui/common/gamedescription.js:424
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr "Mapak zehaztutakoa bezalakoa."
+msgstr "Mapak zehaztu bezala."
 
 #: gui/common/gamedescription.js:428
 msgid "Revealed Map"
@@ -424,7 +424,7 @@ msgstr "Mapa esploratua"
 
 #: gui/common/gamedescription.js:438
 msgid "Cheats"
-msgstr "Trikimailuak"
+msgstr "Amarruak"
 
 #: gui/common/gamedescription.js:442 gui/common/tooltips.js:136
 #: gui/common/tooltips.js:169 gui/common/tooltips.js:211
@@ -447,7 +447,7 @@ msgstr "desgaituta"
 
 #: gui/common/gamedescription.js:458
 msgid "Victorious"
-msgstr "Garaipena"
+msgstr "Garaile"
 
 #: gui/common/gamedescription.js:463
 msgid "Defeated"
@@ -502,7 +502,7 @@ msgstr "Partida dagoeneko hasi da, ez dira ikusleak onartzen."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr "Partidatik bota zaituzte."
+msgstr "Kanporatu zaituzte."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
@@ -522,15 +522,15 @@ msgstr "Lobby seguruen autentifikazioak huts egin du. Sartu lobby bidez."
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr ""
+msgstr "Errorea: zerbitzariak ezin izan du bezero identifikatzaile bakan bat erreserbatu."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
-msgstr ""
+msgstr "Errorea: Bezeroaren aginduak ustekabeko partidaren txanda baterako zeuden prestatuta."
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
-msgstr ""
+msgstr "Errorea: Bezeroak ustekabeko partidaren txanda bat simulatu du."
 
 #: gui/common/network.js:81
 #, javascript-format
@@ -551,7 +551,7 @@ msgstr "Deskonektatuta"
 
 #: gui/common/network.js:106
 msgid "Only the host can kick clients!"
-msgstr "Anfitrioia da bezeroak bota ditzaken bakarra!"
+msgstr "Anfitrioia da bezeroak kanporatu ditzaken bakarra!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
@@ -764,7 +764,7 @@ msgstr "(%(armorPercentage)s)"
 
 #: gui/common/tooltips.js:192
 msgid "Garrison to fire arrows"
-msgstr "Sartu itxialdian geziak jaurtitzeko"
+msgstr "Sartu guardan geziak jaurtitzeko"
 
 #: gui/common/tooltips.js:195
 msgid "Interval:"
@@ -922,7 +922,7 @@ msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:398
 msgid "Garrison Limit"
-msgstr "Babesaren Muga"
+msgstr "Guarda edukiera"
 
 #: gui/common/tooltips.js:405
 #, javascript-format
@@ -931,7 +931,7 @@ msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
 #: gui/common/tooltips.js:406 gui/common/tooltips.js:760
 msgid "Heal:"
-msgstr "Sendatu:"
+msgstr "Sendatzea:"
 
 #: gui/common/tooltips.js:408
 msgid "Health"
@@ -1058,7 +1058,7 @@ msgstr "%(label)s %(populationBonus)s"
 
 #: gui/common/tooltips.js:697
 msgid "Population Bonus:"
-msgstr "Populazio hobaria:"
+msgstr "Biztanleria hobaria:"
 
 #: gui/common/tooltips.js:718
 msgid "Insufficient resources:"
@@ -1164,12 +1164,12 @@ msgstr "%(nick)s - %(name)s"
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr ""
+msgstr "Ezabatu hautatuta dagoen gordetako partida %(hotkey)s erabiliz."
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:202
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr ""
+msgstr "Mantendu %(hotkey)s baieztapen elkarrizketa saltatzeko ezabatzean."
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
 #, javascript-format
@@ -1489,7 +1489,7 @@ msgstr "Irten"
 
 #: gui/pregame/MainMenuItems.js:190
 msgid "Exits the game."
-msgstr "Partidatik ateratzen da."
+msgstr "Jolasetik ateratzen da."
 
 #: gui/pregame/MainMenuItems.js:194
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -1507,7 +1507,7 @@ msgstr "Alfa XXIV"
 msgid ""
 "Notice: This game is under development and many features have not been added"
 " yet."
-msgstr ""
+msgstr "Oharra: Jolas hau garapenean dago eta ezaugarri asko gehitzeke daude oraindik."
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
@@ -1710,19 +1710,19 @@ msgstr "Eraikia:"
 #. train the unit selected.
 #: gui/reference/viewer/viewer.js:142
 msgid "Trained by:"
-msgstr "Trebatuta:"
+msgstr "Non trebatuta:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
 #: gui/reference/viewer/viewer.js:155
 msgid "Researched at:"
-msgstr "Ikertua:"
+msgstr "Non ikertua:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
 #: gui/reference/viewer/viewer.js:167
 msgid "Builds:"
-msgstr "Eraikitzen:"
+msgstr "Eraiki dezake:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or structure can research.
@@ -1854,7 +1854,7 @@ msgstr "Iragazi errepikapenak jokalari izen bat edo batzuk, edo izen moztuak ida
 #: gui/replaymenu/replay_menu.js:197
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
-msgstr ""
+msgstr "Ezabatu aukeratutako errepikapena %(hotkey)s sakatuz."
 
 #: gui/replaymenu/replay_menu.js:282
 #, javascript-format
@@ -1929,7 +1929,7 @@ msgstr "Giz zentroak"
 
 #: gui/summary/layout.js:31
 msgid "Wonders"
-msgstr "Mirariak"
+msgstr "Miragarriak"
 
 #: gui/summary/layout.js:35
 #, javascript-format
@@ -1996,7 +1996,7 @@ msgstr "Bildutako altxorrak"
 
 #: gui/summary/layout.js:121
 msgid "Loot"
-msgstr "Harrapaketa"
+msgstr "Harrapakina"
 
 #: gui/summary/layout.js:122
 msgid "Livestock bred"
@@ -2208,13 +2208,13 @@ msgstr "Eguna / Ordua"
 #: gui/loadgame/load.xml:(heading):30
 msgctxt "replay"
 msgid "Map Type"
-msgstr "Mapa Mota"
+msgstr "Mapa mota"
 
 #: gui/loadgame/load.xml:(heading):34
 #: gui/replaymenu/replay_menu.xml:(heading):77
 msgctxt "replay"
 msgid "Map Name"
-msgstr "Maparen Izena"
+msgstr "Maparen izena"
 
 #: gui/loadgame/load.xml:(heading):38
 msgctxt "replay"
@@ -2655,7 +2655,7 @@ msgstr "Segundoko fotogramak erakutsi goian eskuin aldeko kantoian."
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS Overlay"
-msgstr "Gainjarri FPS"
+msgstr "FPS geruza"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -2663,7 +2663,7 @@ msgstr "Bistaratu sistemaren ordua goi eskumako ertzean."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Realtime Overlay"
-msgstr "Gainjarri ordu erreala"
+msgstr "Denbora errealeko geruza"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
@@ -2671,7 +2671,7 @@ msgstr "Bistaratu uneko simulazio denbora goi eskumako ertzean."
 
 #: gui/options/options.json[0].options[7].label
 msgid "Gametime Overlay"
-msgstr "Gainjarri partida denbora"
+msgstr "Partida denboraren geruza"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -2679,7 +2679,7 @@ msgstr "Beti bistaratu geratzen den sueten denbora."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire Time Overlay"
-msgstr "Gainjarri sueten denbora"
+msgstr "Su eten denboraren geruza"
 
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
@@ -2700,11 +2700,11 @@ msgstr "Desgaituta"
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
-msgstr "Utzi denak edo lagunak bakarrik hasitako partidetara begirale gisa batu daitezen."
+msgstr "Utzi denak edo lagunak bakarrik hasitako partidetara ikusle gisa batu daitezen."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late Observer Joins"
-msgstr "Ikusle berantiarrak"
+msgstr "Ikusle berantiarrak bat egin du"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
@@ -3164,7 +3164,7 @@ msgstr "Txataren Tributu Jakinarazpenak"
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
-msgstr "Ikusleen txatean  edozein baliabide trukea."
+msgstr "Erakutsi txat jakinarazpen bat ikusleei jokalari batek baliabideak trukatzen dituenean-"
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat Notification Barter"
@@ -3186,7 +3186,7 @@ msgstr "Dena agerian"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr "Zuk edo zure aliatuak hasi, utzi edo aro berri bat osatu baduzue eta begirale moduan dauden jokalari guztien aroak txatean jakinarazpena erakutsi."
+msgstr "Erakutsi txat jakinarazpen bat zuk edo zure aliatuak aro berri bat hasi, ezeztatu edo osatu baduzue eta jokalari guztien aroak ikusle moduan."
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat Notification Phase"
@@ -3548,7 +3548,7 @@ msgstr "Eraiki setio armak eta trebatu hiritar-soldaduak."
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr "Babestu unitateak poliki sendatzeko eta kanpamentua erasoetatik eta utzikeriatik babesteko. "
+msgstr "Sartu unitateak guardan poliki sendatzeko eta kanpamentua erasoetatik eta utzikeriatik babesteko. "
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -3642,7 +3642,7 @@ msgstr "40 unitate arte garraia ditzake."
 
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
-msgstr "Tiro ahalmena handitzen du infanteria babestean."
+msgstr "Tiro ahalmena handitzen du infanteria guardan sartzean."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -3718,11 +3718,11 @@ msgstr "Aldezkariak, Heroiak eta Setiorako armak trebatzen ditu."
 
 #: gui/text/tips/fortress.txt:4
 msgid "Gives a population boost."
-msgstr "Populazio hobekuntza eskaintzen du."
+msgstr "Biztanleria bultzada bat ematen du."
 
 #: gui/text/tips/fortress.txt:5
 msgid "Garrison soldiers inside to add more firepower to its defense."
-msgstr "Soldaduak gordetzen ditu babesari su ahalmen handiagoa emateko."
+msgstr "Sartu soldaduak guardan babesari su ahalmen handiagoa emateko."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -3805,7 +3805,7 @@ msgstr "Azkar eraikitzen dira, baina ahulak dira."
 
 #: gui/text/tips/outposts.txt:5
 msgid "Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr "Babestu unitateren bat egitura eremu neutralean eror ez dedin."
+msgstr "Sartu unitateren bat guardan egitura eremu neutralean desegin ez dadin."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -3872,7 +3872,7 @@ msgstr "Zalditeriaren kontra edo beste buruz-buruko infanteria baten kontra erab
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr "Hauentzat eskuragarri: Kushitarrak, Macedoniarrak, Ptolemiarrak, eta Seleuzidarrak."
+msgstr "Hauentzat eskuragarri: Kuxtarrak, Macedoniarrak, Ptolemiarrak, eta Seleuzidarrak."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
@@ -3890,7 +3890,7 @@ msgstr "50 unitate arte garraia ditzake."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "Increases firepower with garrisoned catapults."
-msgstr "Tiro ahalmena handitzen du katapultak babestean."
+msgstr "Tiro ahalmena handitzen du katapultak guardan sartzean."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -3928,7 +3928,7 @@ msgstr "Gehienetan 100 egurretan eta 100 harrian dute kostua. Iberiarren babes d
 
 #: gui/text/tips/scout_towers.txt:4
 msgid "Has a ranged attack that increases for each garrisoned unit."
-msgstr "Urrutirako erasoa dute, bere barnean babesten den unitate bakoitzarekin hobetzen dena."
+msgstr "Urrutirako erasoa du, bere barnean guardan sartutako unitate bakoitzarekin hobetzen dena."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -3962,13 +3962,13 @@ msgstr "Zalditeriaren kontra erabili bina bikoizteko."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
-msgstr "Mozte min dezentea dute, lerroko talde on bihurtzen dituena. "
+msgstr "Mozte eraso txukunak lehen lerroko topa on egiten ditu."
 
 #: gui/text/tips/spearmen.txt:5
 msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
-msgstr "Urrutirako unitate eta ezpatarien kontra ahulak dira, zure lantzariak honda jaurtitzailez eta zalditeriaz lagundu beharko dituzu."
+msgstr "Urrutirako unitate eta ezpatarien kontra ahulak dira, zure lantzariak habailariez eta zalditeriaz lagundu beharko dituzu."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
@@ -3984,7 +3984,7 @@ msgstr "Trebatu xaxatzaile astunak eta ezpatadun infanteria aldezkariak."
 
 #: gui/text/tips/stoa.txt:4
 msgid "Grants +10 Population."
-msgstr "Populazioan +10 ematen du."
+msgstr "+10 biztanleria ematen du."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
@@ -4022,7 +4022,7 @@ msgstr "Ber \"aura\"k inguruko unitateak sendatzen ditu."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
-msgstr "Zauritutako unitateak barnean babestu sendatze azkarrago baterako."
+msgstr "Sartu zauritutako unitateak guardan sendatze azkarrago baterako."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
@@ -4037,7 +4037,7 @@ msgstr "Dekadentzia ematen da eraikinak ez daudenean aliatuen inongo gizarte zen
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr "Dekadentzia prozesua gelditu edo atzera bueltatu dezakezu unitateak egituran babestuz."
+msgstr "Dekadentzia prozesua gelditu edo atzera bueltatu dezakezu unitateak egituran guardan sartuz."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
@@ -4061,11 +4061,11 @@ msgstr "Ontzi guztiak azkarrago eraikitzen dira bizirik dirauen bitartean."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "The ship he is garrisoned inside sails much faster."
-msgstr "Itsasontzi baten barruan egon ezkero azkarrago doa."
+msgstr "Itsasontzi batean guardan sartuz gero hau azkarrago doa."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
-msgstr "TRIREME"
+msgstr "TRIRREME"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The Medium Warship."
@@ -4077,7 +4077,7 @@ msgstr "Ona garraiorako eta borrokarako."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
-msgstr "Babestu itsasontzi hau zure taldeez bere luzerako su indarra handitzeko."
+msgstr "Sartu tropak guardan su indarra handitzeko."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
@@ -4115,7 +4115,7 @@ msgstr "Metal eta janarietan kostu handia dute, baina oso indartsuak dira."
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr "Hauentzat eskuragarri: Kartagoarrak, Kushitarrak, Mauryarrak, Persiarrak, Ptolemiarrak, eta Seleuzidarrak."
+msgstr "Hauentzat eskuragarri: Kartagotarrak, Kuxtarrak, Mauryarrak, Persiarrak, Ptolemiarrak, eta Seleuzidarrak."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"

@@ -10,14 +10,14 @@
 # George Lungu <lungugeorge88@gmail.com>, 2018
 # Luca Errani <luca.errani1@gmail.com>, 2018
 # Christian Bellagamba <christiandes00@gmail.com>, 2018
-# mattia_b89 <mattia.b89@gmail.com>, 2018
+# Giuseppe D'Addio <giuseppinoino@virgilio.it>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2019-03-22 09:45+0100\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: mattia_b89 <mattia.b89@gmail.com>, 2018\n"
+"Last-Translator: Giuseppe D'Addio <giuseppinoino@virgilio.it>, 2019\n"
 "Language-Team: Italian (https://www.transifex.com/wildfire-games/teams/17418/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +27,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:3
 msgid "Welcome to the 0 A.D. tutorial."
-msgstr "Benvenuti nel tutorial di 0 A.D.."
+msgstr "Benvenuto nel tutorial di 0 A.D.."
 
 #: maps/tutorials/Introductory_Tutorial.js:6
 msgid ""
@@ -177,12 +177,17 @@ msgid ""
 "II icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"Seleziona di nuovo il Centro Civico e avanza alla Fase Cittadina cliccando "
+"sull'icona II (dove prima aver costruito l'avamposto). Questo permetterà la "
+"costruzione delle strutture nella Fase Cittadina."
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
 "While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
+"Mentre attendi l'arrivo della Fase Cittadina, puoi riassegnare i tuoi operai"
+" inattivi a raccogliere le risorse di cui sei a corto."
 
 #: maps/tutorials/Introductory_Tutorial.js:220
 msgid ""
@@ -249,6 +254,8 @@ msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "Barracks."
 msgstr ""
+"Mentre attendi il cambio di fase, puoi addestrare altri soldati nella "
+"Caserma."
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
@@ -285,6 +292,10 @@ msgid ""
 "ultimately, your goal will be to develop and expand your empire, often by "
 "evolving to Town Phase and City Phase afterward.\n"
 msgstr ""
+"Questo tutorial ti insegnerà le basi nello sviluppare la tua economia. "
+"Tipicamente, cominci con un Centro Civico e un paio di unità nella Fase "
+"Villaggio, e il tuo obiettivo finale sarà sviluppare ed espandere il tuo "
+"impero, spesso evolvendo nella Fase Cittadina e poi nella Fase Città."
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -353,6 +364,11 @@ msgid ""
 "that advancing to Town Phase requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
+"I tasti nella fila superiore contengono ritratti di unità addestrabili "
+"nell'edificio, mentre quella/e inferiore/i contengono le tecnologie "
+"ricercabili. Sposta il cursore sull'icona II. Sarai informato che avanzare "
+"nella Fase Cittadina richiederà sia nuove strutture costruite che risorse "
+"aggiuntive di Cibo e Legname."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -473,11 +489,19 @@ msgid ""
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
+"Dobbiamo prima porre un punto di raccolta. Porre un punto di raccolta su una"
+" struttura che addestra unità designerà automaticamente la nuova unità "
+"addestrata a un compito specifico. Dobbiamo ora mandare le nuove unità a "
+"raccogliere legname da un gruppo di alberi a sud del Centro Civico. Per far "
+"ciò, seleziona il Centro Civico cliccandovi sopra e poi facendo clic destro "
+"su uno degli alberi."
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
 "Rally points are indicated by a small flag at the end of the blue line."
 msgstr ""
+"I punti di raccolta sono indicati da una piccola bandiera alla fine di una "
+"linea blu."
 
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
@@ -493,6 +517,8 @@ msgid ""
 "Now that the rally point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
 msgstr ""
+"Ora che il punto di raccolta è assegnato, possiamo produrre unità aggiuntive"
+" che faranno automaticamente il compito a loro assegnato."
 
 #: maps/tutorials/starting_economy_walkthrough.js:98
 msgid ""
@@ -627,6 +653,10 @@ msgid ""
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally point is crossed out)."
 msgstr ""
+"Nel frattempo, sembri avere abbastanza lavoratori che raccolgono il Legname."
+" Dovremmo rimuovere il punto di raccolta del Centro Civico da quel gruppo di"
+" alberi. A tale scopo, fai clic destro sul Centro Civico quando lo selezioni"
+" (e su di esso comparirà la bandierina che indica il punto di raccolta)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
@@ -786,6 +816,8 @@ msgid ""
 "When the field is ready, the builders will automatically start gathering "
 "it.\n"
 msgstr ""
+"Una volta costruito il campo, i costruttori cominceranno a raccogliere del "
+"cibo automaticamente,"
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -808,6 +840,11 @@ msgid ""
 "sent by a rally point will help building it, while they will gather it when "
 "built."
 msgstr ""
+"Un campo può essere lavorato da un massimo di cinque lavoratori. Per "
+"aggiungerne altri, seleziona il Centro Civico e imposta un punto di raccolta"
+" su un campo cliccandovi sopra col destro. Se il campo è ancora in fase di "
+"costruzione, i nuovi lavoratori si aggiungeranno alla sua costruzione, "
+"altrimenti lo sfrutteranno per raccogliere del cibo."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
@@ -859,6 +896,9 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the Town Phase icon to see what is still needed.\n"
 msgstr ""
+"Dovremmo prepararci ad avanzare alla Fase Cittadina, che sbloccherà molte "
+"nuove unità e strutture. Seleziona il Centro Civico e sposta il cursore "
+"sull'icona Fase Cittadina per vedere cos'altro serve ancora."
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -866,6 +906,9 @@ msgid ""
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
 "in case of attack, so let's build Barracks.\n"
 msgstr ""
+"Ora abbiamo abbastanza risorse, ma manca una struttura. Anche se questo è un"
+" tutorial economico, è non dimeno utile per prepararci alla difesa in caso "
+"d'attacco, quindi costruiamo una Caserma."
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
@@ -874,6 +917,10 @@ msgid ""
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
+"Seleziona quattro dei tuoi soldati e ordinagli di costruire una Caserma: "
+"come prima, seleziona i soldati, clicca sull'icona della Caserma nel "
+"pannello di produzione e poi ponine le fondamenta non lontano dal Centro "
+"Civico."
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
@@ -883,12 +930,20 @@ msgid ""
 " on it (you should see a hammer icon). Then produce two more builders by "
 "clicking on the hoplite icon twice."
 msgstr ""
+"Attendiamo la costruzione della Caserma. Data che sarà impegnativa, puoi "
+"aggiungere due soldati per costruirla più in fretta. A tale scopo, seleziona"
+" il tuo Centro Civico e poni un punto di raccolta sulla Caserma in "
+"costruzione cliccandoci sopra col destro (dovresti vedere un'icona del "
+"martello), poi produci altri due costruttori cliccando due volte sull'icona "
+"dell'oplita."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
 "You should now be able to research Town Phase. Select the Civic Center and "
 "click on the technology icon.\n"
 msgstr ""
+"Ora dovresti essere in grado di avanzare alla Fase Cittadina. Scegli il "
+"Centro Civico e clicca sull'icona della tecnologia."
 
 #: maps/tutorials/starting_economy_walkthrough.js:395
 msgid ""

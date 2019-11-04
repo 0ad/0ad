@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-10-27 13:37+0000\n"
+"PO-Revision-Date: 2019-11-03 15:58+0000\n"
 "Last-Translator: Osoitz <oelkoro@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -186,7 +186,7 @@ msgstr "Joko Mota"
 
 #: gui/gamesetup/gamesetup.js:469
 msgid "Map Type"
-msgstr "Mapa Mota"
+msgstr "Mapa mota"
 
 #: gui/gamesetup/gamesetup.js:470
 msgid "Select a map type."
@@ -194,7 +194,7 @@ msgstr "Hautatu mapa mota."
 
 #: gui/gamesetup/gamesetup.js:493
 msgid "Map Filter"
-msgstr "Maparen Iragazkia"
+msgstr "Maparen iragazkia"
 
 #: gui/gamesetup/gamesetup.js:494
 msgid "Select a map filter."
@@ -234,7 +234,7 @@ msgstr "Hautatu jokalari kopurua:"
 
 #: gui/gamesetup/gamesetup.js:576
 msgid "Population Cap"
-msgstr "Biztanleria-Muga"
+msgstr "Biztanleria-muga"
 
 #: gui/gamesetup/gamesetup.js:583
 msgid "Select population limit."
@@ -245,7 +245,7 @@ msgstr "Hautatu biztanleria-muga."
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "Kontuz: errendimendu arazoak egon daitezke baldin eta %(players)s jokalari guztiak %(popCap)s herrira batera iristen badira."
+msgstr "Kontuz: errendimendu arazoak egon daitezke  %(players)s jokalariak %(popCap)s biztanle izatera iristen badira ."
 
 #: gui/gamesetup/gamesetup.js:604
 msgid "Starting Resources"
@@ -262,7 +262,7 @@ msgstr "Hautatu jokoaren hasierako baliabideak."
 
 #: gui/gamesetup/gamesetup.js:625
 msgid "Ceasefire"
-msgstr "Su Etena"
+msgstr "Su etena"
 
 #: gui/gamesetup/gamesetup.js:626
 msgid "Set time where no attacks are possible."
@@ -270,7 +270,7 @@ msgstr "Ezarri erasoak zilegi ez diren denbora tartea."
 
 #: gui/gamesetup/gamesetup.js:639
 msgid "Relic Count"
-msgstr "Erlikia Zenbatekoa"
+msgstr "Erlikia kopurua"
 
 #: gui/gamesetup/gamesetup.js:640
 msgid ""
@@ -281,7 +281,7 @@ msgstr "Mapetan sortutako erlikien zenbatekoa. Erlikia garaipena sinesgarriagoa 
 
 #: gui/gamesetup/gamesetup.js:654
 msgid "Relic Duration"
-msgstr "Erlikiaren Iraupena"
+msgstr "Erlikiaren iraupena"
 
 #: gui/gamesetup/gamesetup.js:655
 msgid "Minutes until the player has achieved Relic Victory."
@@ -297,7 +297,7 @@ msgstr "Miragarriaren Garaipena lortzeko jokalariak behar dituen minutuak."
 
 #: gui/gamesetup/gamesetup.js:684
 msgid "Game Speed"
-msgstr "Jokoaren Abiadura"
+msgstr "Jokoaren abiadura"
 
 #: gui/gamesetup/gamesetup.js:685
 msgid "Select game speed."
@@ -325,15 +325,15 @@ msgstr "Aukeratu zibilizazioa jokalari honentzat"
 
 #: gui/gamesetup/gamesetup.js:782
 msgid "Pick a color."
-msgstr "Kolore bat aukeratu."
+msgstr "Hautatu kolore bat."
 
 #: gui/gamesetup/gamesetup.js:836
 msgid "Hero Garrison"
-msgstr "Heroi Babeslea"
+msgstr "Heroi guarda"
 
 #: gui/gamesetup/gamesetup.js:837
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "Aukeratu heroiak babestu ahal badira."
+msgstr "Txandakatu heroiak guardan sartu ahal diren."
 
 #: gui/gamesetup/gamesetup.js:849
 msgid "Nomad"
@@ -387,7 +387,7 @@ msgstr "Desgaitu espioiak partidan zehar."
 
 #: gui/gamesetup/gamesetup.js:920
 msgid "Teams Locked"
-msgstr "Taldeak Blokeatu"
+msgstr "Taldeak blokeatuta"
 
 #: gui/gamesetup/gamesetup.js:921
 msgid "Toggle locked teams."
@@ -395,7 +395,7 @@ msgstr "Taldeak blokeatu edo ez."
 
 #: gui/gamesetup/gamesetup.js:935
 msgid "Last Man Standing"
-msgstr "Bizirik Dirauen Azkena"
+msgstr "Bizirik dirauen azkena"
 
 #: gui/gamesetup/gamesetup.js:936
 msgid ""
@@ -405,11 +405,11 @@ msgstr "Aukeratu nahi duzun bizirik dirauen azken jokalariak edo zutik gelditzen
 
 #: gui/gamesetup/gamesetup.js:949
 msgid "Cheats"
-msgstr "Trikimailuak"
+msgstr "Amarruak"
 
 #: gui/gamesetup/gamesetup.js:950
 msgid "Toggle the usability of cheats."
-msgstr "Trikimailuak erabiltzea baimendu edo ez."
+msgstr "Txandakatu amarruak erabiltzeko gaitasuna."
 
 #: gui/gamesetup/gamesetup.js:963
 msgid "Rated Game"
@@ -707,7 +707,7 @@ msgstr "Bidali"
 
 #: gui/gamesetup/gamesetup.xml:(caption):192
 msgid "Cheats enabled."
-msgstr "Tranpak aktibatuta."
+msgstr "Amarruak gaituta."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):161
 msgid "Show the multiplayer lobby in a dialog window."
@@ -828,7 +828,7 @@ msgstr "\"Harrokeriak norberaren suntsipena dakar.\" - Esopo (\"Igela eta Idia\"
 #: gui/text/quotes.txt:13
 msgid ""
 "“Slow and steady wins the race.” \\n— Aesop (“The Hare and the Tortoise”)"
-msgstr "\"Hobe da poliki baino ziur joatea.\" - Esopo (\"Erbia eta Dortoka\")"
+msgstr "\"Hobe da poliki baina ziur joatea.\" - Esopo (\"Erbia eta Dortoka\")"
 
 #: gui/text/quotes.txt:14
 msgid ""
@@ -878,7 +878,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?” \\n— Alexander the Great (Plutarch, “Parallel "
 "Lives”, “Alexander”, sec. 40)"
-msgstr "\"Oparotasunean bizitzea oso morrontzakoa da. baino lanerako oso erreala. \\[...] Ea al dakizu konkistaren azkena garaituen bizio eta ahuldadeak ekiditea dela?\" - Alexander Handia (Plutarko, \"Bizi Paraleloak\", \"Alexander\", sek. 40)"
+msgstr "\"Oparotasunean bizitzea oso morrontzakoa da, baina lanerako oso erreala. \\[...] Ea al dakizu konkistaren azkena garaituen bizio eta ahuldadeak ekiditea dela?\" - Alexander Handia (Plutarko, \"Bizi Paraleloak\", \"Alexander\", sek. 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -1061,7 +1061,7 @@ msgid ""
 "adopted it, then persevere in it with firmness.” \\n— Bias of Priene "
 "(Diogenes Laertius, “The Lives and Opinions of Eminent Philosophers”, "
 "“Bias”, sec. 5)"
-msgstr "\"Tentuz egin aukeratzen duzun bidea, baino hartzen duzunean, jarraitu hortan tinko.\" - Pireneko Blas (Diogenes Laertius, \"Filosofo aipagarrien bizitza eta iritziak\", Bias, sek. 5)"
+msgstr "\"Tentuz egin aukeratzen duzun bidea, baina hartzen duzunean, jarraitu horretan tinko.\" - Pireneko Blas (Diogenes Laertius, \"Filosofo aipagarrien bizitza eta iritziak\", Bias, sek. 5)"
 
 #: gui/text/quotes.txt:47
 msgid ""
@@ -1103,7 +1103,7 @@ msgstr "\"Lapurra baino hoberik ez da lapurra harrapatzeko.\" - KalimaKo («Epig
 msgid ""
 "“All mankind rules its women, and we rule all mankind, but our women rule "
 "us.” \\n— Cato the Elder (Plutarch, “Moralia”, “Sayings of Romans”, 198e)"
-msgstr "\"Gizarteak bere emakumeak zuzentzen ditu, eta zuk gizartea, baino gure emazteak gu zuzentzen gaituzte.\" - Katon Zaharra (Plutarko, \"Moralia\", III. \"Erromatarren Esamesak\", 198e)"
+msgstr "\"Gizarteak bere emakumeak zuzentzen ditu, eta guk gizartea, baina gure emazteak gu zuzentzen gaituzte.\" - Katon Zaharra (Plutarko, \"Moralia\", III. \"Erromatarren Esamesak\", 198e)"
 
 #: gui/text/quotes.txt:53
 msgid ""
@@ -1225,7 +1225,7 @@ msgid ""
 "him, he suffered many wounds on the front of his body.” \\n— Diodorus "
 "Siculus, on a brave Spartan at the Battle of Pylos (“The Library of "
 "History”, XXII., sec. 62)"
-msgstr "\"Brasidas, pasabidean bere postua hartuz, bertan bildu ziren Atenastarrez hustu zuen. Eta hasieran asko akabatu zituen ikusten zuten bitartean, baino gutxira, jaurtigai asko iristen zitzaizkion, zauri asko jasan zituen gorputzaren aurrealdean.\" - Diodorus Siculus, Pylosko Borrokako Espartar ausart bati buruz (\"Historiaren Liburutegia\", XXII., sek. 62)"
+msgstr "\"Brasidas, pasabidean bere postua hartuz, bertan bildu ziren Atenastarrez hustu zuen. Eta hasieran asko akabatu zituen ikusten zuten bitartean, baina gutxira, jaurtigai asko iristen zitzaizkion, zauri asko jasan zituen gorputzaren aurrealdean.\" - Diodorus Siculus, Pylosko Borrokako Espartar ausart bati buruz (\"Historiaren Liburutegia\", XXII., sek. 62)"
 
 #: gui/text/quotes.txt:70
 msgid ""
@@ -1279,13 +1279,13 @@ msgstr "\"Koldarrak atzera egiten du, ausartak arriskua aukeratzen du.\" - Eurip
 msgid ""
 "“Brave men are made bolder by ordeals, but cowards achieve nothing.” \\n— "
 "Euripides (“Iphigenia in Tauris”)"
-msgstr "\"Gizon ausartak are ausartagoak dira frogen ondoren, baino koldarrek ez dute ezer lortzen.\" - Euripides (\"Iphigenia Taurisen\")"
+msgstr "\"Gizon ausartak are ausartagoak dira pairabideen ondoren, baina koldarrek ez dute ezer lortzen.\" - Euripides (\"Iphigenia Taurisen\")"
 
 #: gui/text/quotes.txt:78
 msgid ""
 "“Cowards do not count in battle; they are there, but not in it.” \\n— "
 "Euripides (“Meleager”)"
-msgstr "\"Koldarrek ez dute kontatzen borrokan; hor daude, baino ez hortan.\" - Euripides (\"Meleager\")"
+msgstr "\"Koldarrek ez dute kontatzen borrokan; hor daude, baina ez horretan.\" - Euripides (\"Meleager\")"
 
 #: gui/text/quotes.txt:79
 msgid ""
@@ -1719,13 +1719,13 @@ msgid ""
 " certainly dangerous to let it go.” \\n— Pericles, addressing the Athenian "
 "assembly after a plague had weakened the city (Thucydides, “History of the "
 "Peloponnesian War”, II. 63.3)"
-msgstr "\"Zur inperioa tirania bihurtu berri da; beharbada hartzea gaizki egon da; baino joaten uztea arriskutsuegia da.\" - Perikles, Atenasko batzarrari zuzenduz izurrite batek hiria ahuldu ondoren (Thucydides, \"Peloponesoko Gerraren Hiastoria\", II. 63.3)"
+msgstr "\"Zure inperioa tirania bihurtu berri da; beharbada hartzea gaizki egon da; baina joaten uztea arriskutsuegia da.\" - Perikles, Atenasko batzarrari zuzenduz izurrite batek hiria ahuldu ondoren (Thucydides, \"Peloponesoko Gerraren Hiastoria\", II. 63.3)"
 
 #: gui/text/quotes.txt:141
 msgid ""
 "“War is sweet to those who have no experience of it, but the experienced man"
 " fears its approach in his heart.” \\n— Pindar (fragment 110)"
-msgstr "\"Bizi izan ez dutenentzako gerra lasaia da, baino bizi izan dutenen bihotzak bera hurbil dela sentitzen du barnean .\" - Pindar (zatia 110)"
+msgstr "\"Bizi izan ez dutenentzako gerra lasaia da, baina bizi izan dutenen bihotzak bera hurbil dela sentitzen du barnean .\" - Pindar (zatia 110)"
 
 #: gui/text/quotes.txt:142
 msgid ""
@@ -1762,7 +1762,7 @@ msgid ""
 "received many wounds, at last was struck on the neck with a mace, and leaned"
 " against the city wall, his eyes still fixed upon his foes.” \\n— Plutarch "
 "about the Mallian Campaign (“Parallel Lives”, “Alexander”, sec. 63)"
-msgstr "\"Batek \\[...] horrenbesteko indar eta zehaztasunez jaurti zion gezi bat bularrekoa zeharkatu eta saihets artean iltzatuta gelditu zitzaiola. \\[...] Alexander belauniko erori zen. \\[...] Azkenean barbaroa hil zuen, baino zauri asko jasan zituen, Azkenean lepoan jo zuten mazo batez eta hiriko paretaren kontra jarri zen, begiak etsaiean iltzaturik.\" - Plutarko Mallian Kanpainari buruz (\"Bizi Paraleloak\", \"Alexander\", sek. 63)"
+msgstr "\"Batek \\[...] horrenbesteko indar eta zehaztasunez jaurti zion gezi bat bularrekoa zeharkatu eta saihets artean iltzatuta gelditu zitzaiola. \\[...] Alexander belauniko erori zen. \\[...] Azkenean barbaroa hil zuen, baina zauri asko jasan zituen, Azkenean lepoan jo zuten mazo batez eta hiriko paretaren kontra jarri zen, begiak etsaiean iltzaturik.\" - Plutarko Mallian Kanpainari buruz (\"Bizi Paraleloak\", \"Alexander\", sek. 63)"
 
 #: gui/text/quotes.txt:147
 msgid ""
@@ -1910,7 +1910,7 @@ msgid ""
 " if the city is stronger, one may recommend her to go to war, but if weaker "
 "than the enemy, may persuade her to beware.” \\n— Socrates (Xenophon, "
 "“Memorabilia”, 3.6.9)"
-msgstr "\"Beharrezkoa da hiriaren eta etsaiaren indarra zein den jakin, eta, hiria indartsuagoa bada, gerrara joatea aholkatu ahal zaio, baino etsaia baino ahulagoa bada, babesten saia dadila saiatu behar da.\" - Sokrates (Xenophon, \"Memorabilia\", 3.6.9)"
+msgstr "\"Beharrezkoa da hiriaren eta etsaiaren indarra zein den jakin, eta, hiria indartsuagoa bada, gerrara joatea aholkatu ahal zaio, baina etsaia baino ahulagoa bada, erne ibiltzeko limurtu ahal zaio.\" - Sokrates (Xenophon, \"Memorabilia\", 3.6.9)"
 
 #: gui/text/quotes.txt:165
 msgid ""
@@ -1973,7 +1973,7 @@ msgid ""
 " with the Spartan fleet commander who threatened to beat him with his staff,"
 " before the Battle of Salamis (Plutarch, “Parallel Lives”, “Themistocles”, "
 "sec. 11)"
-msgstr "\"Jo, nahi baduzu, baino entzun.\" - Themistocles, Salamisko Borrokaren aurretik Espartako itsas armadaren komandante batek bastoiaz jotzeko mehatxua egin zionean (Plutarko, \"Bizitza Paraleloak\", \"Themistocles\", sec. 11)"
+msgstr "\"Jo, nahi baduzu, baina entzun.\" - Themistocles, Salamisko Borrokaren aurretik Espartako itsas armadaren komandante batek bastoiaz jotzeko mehatxua egin zionean (Plutarko, \"Bizitza Paraleloak\", \"Themistocles\", sec. 11)"
 
 #: gui/text/quotes.txt:174
 msgid ""
@@ -2056,7 +2056,7 @@ msgid ""
 "Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
 " unemployed veterans whose lands had often been bought up why they were on "
 "campaign (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, sec. 9)"
-msgstr "\"Italiako basapiztiak erretiratzen direnean leizeak dituzte, baino euren odola isuri zuten beterano ausartek haizea eta argia baino ez dute, noraezean doaz euren andre eta umeekin.\" - Tiberius Gracchus, nekazaritzaren erreformaren alde beteranoen alde eta gerran zeudelako euren lurrak erosiak izan zirenen alde (Plutarko, \"Bizitza Paraleloak\", \"Tiberius Gracchus\", sek. 9)"
+msgstr "\"Italiako basapiztiak erretiratzen direnean leizeak dituzte, baina euren odola isuri zuten beterano ausartek haizea eta argia baino ez dute, noraezean doaz euren andre eta umeekin.\" - Tiberius Gracchus, nekazaritzaren erreformaren alde beteranoen alde eta gerran zeudelako euren lurrak erosiak izan zirenen alde (Plutarko, \"Bizitza Paraleloak\", \"Tiberius Gracchus\", sek. 9)"
 
 #: gui/text/quotes.txt:184
 msgid ""
