@@ -8,11 +8,32 @@
         <prop actor="props/units/heads/new/rome_head_veteran.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/sheath_gladius_e.xml" attachpoint="sheath_01_R"/>
         <prop actor="props/units/weapons/gladus.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/rome_scutum_legionary.xml" attachpoint="shield"/>
       </props>
       <textures>
         <texture file="skeletal/rome_su4_imperial_legion.dds" name="baseTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Scutum-01">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_imp_rect_01.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-02">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_imp_rect_02.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-03">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_imp_rect_03.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-04">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_imp_rect_04.xml" attachpoint="shield"/>
+      </props>
     </variant>
   </group>
   <group>

@@ -9,6 +9,7 @@
 # Fabrizio Morotti <famorot@tin.it>, 2016-2017
 # cgand <gand61@gmail.com>, 2017
 # George Lungu <lungugeorge88@gmail.com>, 2018
+# Giuseppe D'Addio <giuseppinoino@virgilio.it>, 2019
 # Italang, 2019
 # Lorenzo Frascari <frascarilorenzo@gmail.com>, 2018
 # mattia_b89 <mattia.b89@gmail.com>, 2018
@@ -20,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-09-16 15:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-11-02 18:21+0000\n"
+"Last-Translator: Giuseppe D'Addio <giuseppinoino@virgilio.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,7 +83,7 @@ msgstr "Controlli essenziali:"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr ""
+msgstr "• Clicca col sinistro per selezionare le unità"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
@@ -140,7 +141,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr ""
+msgstr "In una partita multigiocatore solo l'ospitante può alterare le opzioni iniziali della prtita."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -273,7 +274,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:57
 msgid "  Shift + F5 – Quicksave"
-msgstr ""
+msgstr "Shift + F5 - Salvataggio rapido"
 
 #: gui/manual/intro.txt:58
 msgid "  Shift + F8 – Quickload"
@@ -281,7 +282,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:59
 msgid "  F10 – Open/close menu"
-msgstr ""
+msgstr "  F10 – Apri/chiudi menu"
 
 #: gui/manual/intro.txt:60
 msgid "  F12 – Show/hide time elapsed counter"
@@ -305,19 +306,19 @@ msgstr ""
 
 #: gui/manual/intro.txt:65
 msgid "  Pause – Pause/resume the game"
-msgstr ""
+msgstr "Pause - Metti in pausa/torna al gioco"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "  Delete – Delete currently selected unit(s)/building(s), ask for "
 "confirmation"
-msgstr ""
+msgstr "Delete - Cancella intera selezione di unità/strutture, conferma richiesta"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "  Shift + Delete – Immediately delete currently selected "
 "unit(s)/building(s), without asking for confirmation"
-msgstr ""
+msgstr "Shift + Delete – Cancella immediatamente intera selezione di unità e/o strutture senza chiedere conferma"
 
 #: gui/manual/intro.txt:68
 msgid "  / (Slash) – Select idle fighter"
@@ -344,7 +345,7 @@ msgstr ""
 #: gui/manual/intro.txt:73
 msgid ""
 "  Alt + . (Period) – Select all idle workers (including citizen-soldiers)"
-msgstr ""
+msgstr "  Alt + . (Punto) – Seleziona tutti gli operai inattivi (inclusi i soldati cittadini)"
 
 #: gui/manual/intro.txt:74
 msgid "  \\\\ (Backslash) – Select idle unit"
@@ -392,7 +393,7 @@ msgstr ""
 msgid ""
 "  Ctrl + F5 (and so on up to F8) – Mark the current camera position, for "
 "jumping back to later"
-msgstr ""
+msgstr "Ctrl + F5 (e fino a F8) - Imposta l'attuale posizione della telecamera come segnalibro"
 
 #: gui/manual/intro.txt:84
 msgid ""
@@ -425,7 +426,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:89
 msgid "  Ctrl + Tab – Toggle summary window"
-msgstr ""
+msgstr "  Ctrl + Tab – Apri la finestra di riepilogo"
 
 #: gui/manual/intro.txt:90
 msgid "  Alt + L – Show the multiplayer lobby in a dialog window"
@@ -433,7 +434,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:91
 msgid "  Ctrl + H – Toggle in-game diplomacy panel"
-msgstr ""
+msgstr "  Ctrl + H – Apri il pannello di diplomazia"
 
 #: gui/manual/intro.txt:92
 msgid "  Ctrl + B – Toggle in-game barter and trade panel"
@@ -461,7 +462,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:99
 msgid "  Ctrl + Right Click on building – Garrison"
-msgstr ""
+msgstr "Ctrl + Clic destro su un edificio - Presidia"
 
 #: gui/manual/intro.txt:100
 msgid "  J + Right Click on building – Repair"
@@ -514,7 +515,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:110
 msgid "  O + Left Drag over units on map – Only select wounded units"
-msgstr ""
+msgstr "O + Trascina col sinistro sulla mappa - Seleziona solo le unità ferite"
 
 #: gui/manual/intro.txt:111
 msgid ""
@@ -643,7 +644,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:139
 msgid "  Q – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Q - Ruota la telecamera in senso orario intorno al terreno"
 
 #: gui/manual/intro.txt:140
 msgid "  E – Rotate camera counter-clockwise around terrain"

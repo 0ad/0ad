@@ -7,13 +7,44 @@
       <props>
         <prop actor="props/units/helmets/rome_helmet_montefortino.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/rome_scutum_a.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/sheath_gladius_e.xml" attachpoint="sheath_01_R"/>
         <prop actor="props/units/weapons/gladus.xml" attachpoint="weapon_R"/>
       </props>
       <textures>
         <texture file="skeletal/rome_chainmail_1_spec.png" name="specTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Scutum-01">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isw_01.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-02">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isw_02.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-03">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isw_03.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-04">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isw_04.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-05">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isw_05.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-06">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isw_06.xml" attachpoint="shield"/>
+      </props>
     </variant>
   </group>
   <group>

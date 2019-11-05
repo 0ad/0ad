@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-09-16 15:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-11-01 18:47+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,7 +50,7 @@ msgstr "Köszönjük, hogy telepítetted a 0 A.D. játékot! Ez az oldal egy rö
 
 #: gui/manual/intro.txt:4
 msgid "[font=\"sans-bold-16\"]Graphics settings[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Grafikai beállítások[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:5
 msgid ""
@@ -78,7 +78,7 @@ msgstr "Alapvető irányítás:"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr ""
+msgstr "• Bal kattintás az egységek kijelöléséhez"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
@@ -259,7 +259,7 @@ msgstr ""
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "  Alt + Dupla bal klikk \\[az egységen] – Az összes azonos fajtájú egység kijelölése a térképen (akkor is, ha más a rangjuk)"
 
 #: gui/manual/intro.txt:56
 msgid ""
@@ -269,7 +269,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:57
 msgid "  Shift + F5 – Quicksave"
-msgstr ""
+msgstr "  Shift + F5 – Gyorsmentés"
 
 #: gui/manual/intro.txt:58
 msgid "  Shift + F8 – Quickload"
@@ -301,13 +301,13 @@ msgstr ""
 
 #: gui/manual/intro.txt:65
 msgid "  Pause – Pause/resume the game"
-msgstr ""
+msgstr "  Szünet – A játék szüneteltetése/folytatása"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "  Delete – Delete currently selected unit(s)/building(s), ask for "
 "confirmation"
-msgstr ""
+msgstr "  Delete – Kijelölt egységek/épületek törlése, megerősítés kérése"
 
 #: gui/manual/intro.txt:67
 msgid ""
@@ -329,7 +329,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:71
 msgid "  . (Period) – Select idle worker (including citizen-soldiers)"
-msgstr ""
+msgstr ". (Pont) – Tétlen munkás kijelölése (polgári katonákat is beleértve)"
 
 #: gui/manual/intro.txt:72
 msgid ""
@@ -370,7 +370,7 @@ msgstr ""
 msgid ""
 "  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from "
 "the selected unit(s)/building(s)"
-msgstr ""
+msgstr "  Ctrl + 1 (egészen Ctrl + 0-ig) – Ellenőrző csoport 1 (0-ig) készítése a kijelölt egységekből/épületekből"
 
 #: gui/manual/intro.txt:81
 msgid ""
@@ -388,7 +388,7 @@ msgstr ""
 msgid ""
 "  Ctrl + F5 (and so on up to F8) – Mark the current camera position, for "
 "jumping back to later"
-msgstr ""
+msgstr "Ctrl + F5 (egészen F8-ig) – Kamera helyzetének megjelölése a későbbi visszatéréshez"
 
 #: gui/manual/intro.txt:84
 msgid ""
@@ -406,7 +406,7 @@ msgstr ""
 msgid ""
 "  PageUp with units selected – Highlights the units/buildings guarded by the"
 " selection"
-msgstr ""
+msgstr "PageUp kijelölt egységekkel – Kiemeli a kijelölés által őrzött egységeket/épületeket."
 
 #: gui/manual/intro.txt:87
 msgid ""
@@ -421,7 +421,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:89
 msgid "  Ctrl + Tab – Toggle summary window"
-msgstr ""
+msgstr "  Ctrl + Tab – Összefoglaló ablak átváltása"
 
 #: gui/manual/intro.txt:90
 msgid "  Alt + L – Show the multiplayer lobby in a dialog window"
@@ -441,7 +441,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:94
 msgid "  Ctrl + P – Toggle in-game tutorial panel"
-msgstr ""
+msgstr "Ctrl + P – A játékon belüli oktató panel átváltása"
 
 #: gui/manual/intro.txt:95
 msgid "  Alt + Shift + T – Toggle structure tree panel"
@@ -453,11 +453,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Egérművelet módosítása[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
 msgid "  Ctrl + Right Click on building – Garrison"
-msgstr ""
+msgstr "Ctrl + jobb kattintás egy épületen – Beszállásolás"
 
 #: gui/manual/intro.txt:100
 msgid "  J + Right Click on building – Repair"
@@ -493,7 +493,7 @@ msgstr ""
 msgid ""
 "  Ctrl + Left Click or Left Drag over unit on map – Remove unit from "
 "selection"
-msgstr ""
+msgstr "Ctrl + Bal kattintás vagy az egység Bal gombbal való bekerítése a térképen – Egység eltávolítása a kiválasztottak csoportjából"
 
 #: gui/manual/intro.txt:107
 msgid "  Alt + Left Drag over units on map – Only select military units"
@@ -506,11 +506,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:109
 msgid "  I + Left Drag over units on map – Only select idle units"
-msgstr ""
+msgstr "  I + az egységek bal gombbal való bekerítése a térképen – Csak a tétlen egységek kijelölése"
 
 #: gui/manual/intro.txt:110
 msgid "  O + Left Drag over units on map – Only select wounded units"
-msgstr ""
+msgstr "O + az egységek bal gombbal való bekerítése a térképen – Csak a sérült egységek kijelölése"
 
 #: gui/manual/intro.txt:111
 msgid ""
@@ -530,7 +530,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:114
 msgid "    • If the cursor is over an own or allied structure – Garrison"
-msgstr ""
+msgstr "    • Ha a kurzor egy szövetséges épület fölött áll – Beszállásolás"
 
 #: gui/manual/intro.txt:115
 msgid ""
@@ -560,7 +560,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:121
 msgid "  Alt + D – Show/hide developer overlay (with developer options)"
-msgstr ""
+msgstr "  Alt + D – Fejlesztői nézetek megjelenítése/elrejtése (fejlesztői beállításokkal)"
 
 #: gui/manual/intro.txt:122
 msgid ""
@@ -621,7 +621,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:135
 msgid "  Ctrl + W or Ctrl + ↑ (Up) – Rotate camera to look upward"
-msgstr ""
+msgstr "  Ctrl + W vagy Ctrl + ↑ (Fel) – Kamera nézetének felfelé forgatása"
 
 #: gui/manual/intro.txt:136
 msgid "  Ctrl + S or Ctrl + ↓ (Down) – Rotate camera to look downward"
@@ -635,11 +635,11 @@ msgstr ""
 msgid ""
 "  Ctrl + D or Ctrl + → (Right) – Rotate camera counter-clockwise around "
 "terrain"
-msgstr ""
+msgstr "  Ctrl + D vagy Ctrl + → (Jobbra) – Kamera forgatása az óramutató járásával ellentétesen"
 
 #: gui/manual/intro.txt:139
 msgid "  Q – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Q – Kamera forgatása az óramutató járása szerint"
 
 #: gui/manual/intro.txt:140
 msgid "  E – Rotate camera counter-clockwise around terrain"
@@ -676,11 +676,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:147
 msgid "  Middle Mouse Button – Keep pressed and move the mouse to pan"
-msgstr ""
+msgstr "Középső egérgomb – Tartsd lenyomva és mozgasd az egeret a nagyításhoz"
 
 #: gui/manual/intro.txt:149
 msgid "[font=\"sans-bold-14\"]During Building Placement[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Épületlerakás alatt[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:150
 msgid "  \\[ (Left Bracket) – Rotate building 15 degrees counter-clockwise"
@@ -688,7 +688,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:151
 msgid "  ] (Right Bracket) – Rotate building 15 degrees clockwise"
-msgstr ""
+msgstr "  ] (Jobb szögletes zárójel) – Épület elforgatása 15 fokkal óramutató járásával megegyező irányba"
 
 #: gui/manual/intro.txt:152
 msgid ""
@@ -698,7 +698,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:154
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Elmentett játék betöltésekor[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:155
 msgid "  Esc – Cancel"

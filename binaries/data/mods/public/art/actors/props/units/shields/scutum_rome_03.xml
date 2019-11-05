@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <props>
+        <prop actor="props/units/shields/props/scutum_rome_back_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" file="shields/scutum_rome_03.xml" name="Rome-Scutum-ISW-03"/>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant file="shields/scutum_rome_03_light.xml" name="lightdamage"/>
+    <variant file="shields/scutum_rome_03_med.xml" name="mediumdamage"/>
+    <variant file="shields/scutum_rome_03_med.xml" name="death"/>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

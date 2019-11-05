@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-10-23 13:25+0000\n"
-"PO-Revision-Date: 2019-10-23 14:18+0000\n"
-"Last-Translator: Любомир Василев\n"
+"POT-Creation-Date: 2019-11-01 08:08+0000\n"
+"PO-Revision-Date: 2019-11-01 15:45+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,90 +48,82 @@ msgstr "Обобщение"
 msgid "Press %(hotkey)s to open the summary screen."
 msgstr ""
 
-#: gui/session/MenuButtons.js:131
+#: gui/session/MenuButtons.js:130
 msgid "Lobby"
 msgstr "Чакалня"
 
-#: gui/session/MenuButtons.js:140
+#: gui/session/MenuButtons.js:139
 #, javascript-format
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
 msgstr ""
 
-#: gui/session/MenuButtons.js:159
+#: gui/session/MenuButtons.js:158
 msgid "Options"
 msgstr "Настройки"
 
-#: gui/session/MenuButtons.js:199
+#: gui/session/MenuButtons.js:196
 msgid "Resume"
 msgstr "Продължаване"
 
-#: gui/session/MenuButtons.js:199
+#: gui/session/MenuButtons.js:196
 msgid "Pause"
 msgstr "Пауза"
 
-#: gui/session/MenuButtons.js:200
+#: gui/session/MenuButtons.js:197
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
 msgstr ""
 
-#: gui/session/MenuButtons.js:216
+#: gui/session/MenuButtons.js:213
 msgid "Resign"
 msgstr "Предаване"
 
-#: gui/session/MenuButtons.js:236
-msgid "Are you sure you want to resign?"
-msgstr "Наистина ли искате да се предадете?"
-
-#: gui/session/MenuButtons.js:237 gui/session/MenuButtons.js:272
-#: gui/session/MenuButtons.js:291
-msgid "Confirmation"
-msgstr "Потвърждаване"
-
-#: gui/session/MenuButtons.js:238 gui/session/MenuButtons.js:273
-#: gui/session/session.js:667 gui/session/unit_actions.js:1092
-#: gui/session/dialogs/yes_no.xml:(caption):24
-msgid "No"
-msgstr "Не"
-
-#: gui/session/MenuButtons.js:238 gui/session/MenuButtons.js:273
-#: gui/session/session.js:667 gui/session/unit_actions.js:1092
-#: gui/session/dialogs/yes_no.xml:(caption):19
-msgid "Yes"
-msgstr "Да"
-
-#: gui/session/MenuButtons.js:256 gui/session/session.xml:(caption):66
+#: gui/session/MenuButtons.js:237
+#: gui/session/NetworkStatusOverlay.xml:(caption):9
 msgid "Exit"
 msgstr "Изход"
 
-#: gui/session/MenuButtons.js:280
-msgid ""
-"Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "Наистина или искате да излезете? Напускането ви ще разкачи всички останали играчи."
+#: gui/session/NetworkStatusOverlay.js:38
+msgid "Connection to the server has been authenticated."
+msgstr "Връзката към сървъра беше удостоверена."
 
-#: gui/session/MenuButtons.js:284 gui/session/MenuButtons.js:306
-msgid "Are you sure you want to quit?"
-msgstr "Наистина ли искате да излезете?"
+#: gui/session/NetworkStatusOverlay.js:39
+msgid "Connected to the server."
+msgstr "Има връзка със сървъра."
 
-#: gui/session/MenuButtons.js:290
-msgid "Do you want to resign or will you return soon?"
-msgstr "Искате ли да се предадете или ще се върнете скоро?"
+#: gui/session/NetworkStatusOverlay.js:40
+msgid "Connection to the server has been lost."
+msgstr "Връзката към сървъра се разпадна."
 
-#: gui/session/MenuButtons.js:292
-msgid "I will return"
-msgstr "Ще се върна"
+#: gui/session/NetworkStatusOverlay.js:42
+msgid "Waiting for players to connect:"
+msgstr "Изчакване на играчите да се свържат…"
 
-#: gui/session/MenuButtons.js:292
-msgid "I resign"
-msgstr "Предавам се"
+#: gui/session/NetworkStatusOverlay.js:43
+msgid "Synchronizing gameplay with other players…"
+msgstr "Синхронизиране на играта с другите играчи…"
 
-#: gui/session/PauseOverlay.js:39 gui/session/messages.js:516
+#: gui/session/NetworkStatusOverlay.js:47
+msgctxt "Separator for a list of client loading messages"
+msgid ", "
+msgstr ", "
+
+#. Translation: The "x" means "times", with the mathematical meaning of
+#. multiplication.
+#: gui/session/OverlayCounterElapsedTime.js:33
+#, javascript-format
+msgid "%(time)s (%(speed)sx)"
+msgstr "%(time)s (х%(speed)s)"
+
+#: gui/session/PauseOverlay.js:40
+#: gui/session/message_box/OutOfSyncNetwork.js:20
 msgctxt "Separator for a list of players"
 msgid ", "
 msgstr ", "
 
-#: gui/session/PauseOverlay.js:44
+#: gui/session/PauseOverlay.js:45
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr "Играта е спряна на пауза от %(players)s"
@@ -156,118 +148,35 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Среден допълнителен обхват: %(range)s метър"
 msgstr[1] "Среден допълнителен обхват: %(range)s метра"
 
-#: gui/session/input.js:696
+#: gui/session/input.js:691
 msgid "Cannot build wall here!"
 msgstr "Тук не може да се строи стена!"
 
-#: gui/session/messages.js:79
-msgid "Connection to the server has been authenticated."
-msgstr "Връзката към сървъра беше удостоверена."
-
-#: gui/session/messages.js:80
-msgid "Connected to the server."
-msgstr "Има връзка със сървъра."
-
-#: gui/session/messages.js:81
-msgid "Connection to the server has been lost."
-msgstr "Връзката към сървъра се разпадна."
-
-#: gui/session/messages.js:83
-msgid "Waiting for players to connect:"
-msgstr "Изчакване на играчите да се свържат…"
-
-#: gui/session/messages.js:84
-msgid "Synchronizing gameplay with other players…"
-msgstr "Синхронизиране на играта с другите играчи…"
-
-#: gui/session/messages.js:89
+#: gui/session/messages.js:96
 msgid "You have won!"
 msgstr "Вие спечелихте!"
 
-#: gui/session/messages.js:90
+#: gui/session/messages.js:97
 msgid "You have been defeated!"
 msgstr "Вие загубихте!"
 
-#: gui/session/messages.js:405
+#: gui/session/messages.js:378
 msgid "Click to quit this tutorial."
 msgstr "Щракнете, за да излезете от това обучение"
 
-#: gui/session/messages.js:406
+#: gui/session/messages.js:379
 msgid "Quit"
 msgstr "Изход"
 
-#: gui/session/messages.js:410
+#: gui/session/messages.js:383
 msgid "Click when ready."
 msgstr "Щракнете, когато сте готов(а)."
 
-#: gui/session/messages.js:414
+#: gui/session/messages.js:387
 msgid "Follow the instructions."
 msgstr "Следвайте инструкциите."
 
-#: gui/session/messages.js:505
-msgctxt "Separator for a list of client loading messages"
-msgid ", "
-msgstr ", "
-
-#: gui/session/messages.js:511 gui/session/messages.js:551
-#, javascript-format
-msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr "Грешка в синхронизацията на ход %(turn)s."
-
-#: gui/session/messages.js:515
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Players: %(players)s"
-msgstr "Играчи: %(players)s"
-
-#: gui/session/messages.js:520
-msgctxt "Out-Of-Sync"
-msgid "Your game state is identical to the hosts game state."
-msgstr "Състоянието на играта при Вас е същото като състоянието ѝ на сървъра."
-
-#: gui/session/messages.js:521
-msgctxt "Out-Of-Sync"
-msgid "Your game state differs from the hosts game state."
-msgstr "Състоянието на играта при Вас се различава от състоянието ѝ на сървъра."
-
-#: gui/session/messages.js:527
-msgctxt "Out-Of-Sync"
-msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr "Повторното присъединяване към игри с ИИ все още не се поддържа!"
-
-#: gui/session/messages.js:530
-msgctxt "Out-Of-Sync"
-msgid "Ensure all players use the same mods."
-msgstr "Подсигуряване на това, че всички играчи използват едни и същи модификации."
-
-#: gui/session/messages.js:531
-msgctxt "Out-Of-Sync"
-msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr "Натиснете бутона за съобщаване на грешка в главното меню, за да помогнете това да бъде оправено."
-
-#: gui/session/messages.js:532
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Replay saved to %(filepath)s"
-msgstr "Записът е запазен в „%(filepath)s“"
-
-#: gui/session/messages.js:535
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Dumping current state to %(filepath)s"
-msgstr "Запазване на текущото състояние в „%(filepath)s“"
-
-#: gui/session/messages.js:543 gui/session/messages.js:556
-msgid "Out of Sync"
-msgstr "Нарушена синхронизация"
-
-#. Translation: This is shown if replay is out of sync
-#: gui/session/messages.js:555
-msgctxt "Out-Of-Sync"
-msgid "The current game state is different from the original game state."
-msgstr "Текущото състояние на играта е различно от оригиналното."
-
-#: gui/session/messages.js:641
+#: gui/session/messages.js:512
 msgid "Unknown Player"
 msgstr "Неизвестен играч"
 
@@ -566,49 +475,6 @@ msgstr "%(action)s за обучение на %(number)s."
 msgid "Shift-click"
 msgstr "Шифт + ляв бутон"
 
-#: gui/session/session.js:659
-msgid "Do you want to quit?"
-msgstr "Искате ли да излезете?"
-
-#: gui/session/session.js:665
-msgid "VICTORIOUS!"
-msgstr "ПОБЕДИТЕЛ!"
-
-#: gui/session/session.js:666
-msgid "DEFEATED!"
-msgstr "ПОБЕДЕН!"
-
-#: gui/session/session.js:667
-msgid "OK"
-msgstr "Добре"
-
-#: gui/session/session.js:718
-msgctxt "replayFinished"
-msgid "The replay has finished. Do you want to quit?"
-msgstr "Записът свърши. Искате ли да излезете?"
-
-#: gui/session/session.js:719
-msgctxt "replayFinished"
-msgid "Confirmation"
-msgstr "Потвърждаване"
-
-#: gui/session/session.js:720
-msgctxt "replayFinished"
-msgid "No"
-msgstr "Не"
-
-#: gui/session/session.js:720
-msgctxt "replayFinished"
-msgid "Yes"
-msgstr "Да"
-
-#. Translation: The "x" means "times", with the mathematical meaning of
-#. multiplication.
-#: gui/session/session.js:906
-#, javascript-format
-msgid "%(time)s (%(speed)sx)"
-msgstr "%(time)s (х%(speed)s)"
-
 #: gui/session/unit_actions.js:560
 msgid "Origin trade market."
 msgstr "Начален пазар."
@@ -643,7 +509,7 @@ msgstr "Натиснете с десен бутон, за да установи�
 msgid "Expected gain: %(gain)s"
 msgstr "Очаквана печалба: %(gain)s"
 
-#: gui/session/unit_actions.js:1030 gui/session/unit_actions.js:1373
+#: gui/session/unit_actions.js:1030 gui/session/unit_actions.js:1358
 msgid "Unload All."
 msgstr "Премахване всички."
 
@@ -656,85 +522,77 @@ msgstr "Унищожаване на избраните единици или с�
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Използвайте %(hotkey)s, за да не се показва прозорецът за потвърждение."
 
-#: gui/session/unit_actions.js:1090
-msgid "Destroy everything currently selected?"
-msgstr "Унищожи всичко което е избрано в момента?"
-
-#: gui/session/unit_actions.js:1091
-msgid "Delete"
-msgstr "Изтриване"
-
-#: gui/session/unit_actions.js:1112
+#: gui/session/unit_actions.js:1097
 msgid "Abort the current order."
 msgstr "Отмяна на текущата заповед."
 
-#: gui/session/unit_actions.js:1131
+#: gui/session/unit_actions.js:1116
 msgid "Order the selected units to garrison in a building or unit."
 msgstr "Поставяне на избраните единици на гарнизон в сграда или единица."
 
-#: gui/session/unit_actions.js:1154
+#: gui/session/unit_actions.js:1139
 msgid "Unload"
 msgstr "Премахване"
 
-#: gui/session/unit_actions.js:1172
+#: gui/session/unit_actions.js:1157
 msgid "Order the selected units to repair a building or mechanical unit."
 msgstr "Нареждане на избраните единици да поправят сграда или механична единица."
 
-#: gui/session/unit_actions.js:1191
+#: gui/session/unit_actions.js:1176
 msgid "Focus on Rally Point."
 msgstr "Центриране върху сборната точка."
 
-#: gui/session/unit_actions.js:1226
+#: gui/session/unit_actions.js:1211
 msgid "Back to Work"
 msgstr "Обратно на работа"
 
-#: gui/session/unit_actions.js:1245
+#: gui/session/unit_actions.js:1230
 msgid "Order the selected units to guard a building or unit."
 msgstr "Нареждане на избраните единици да пазят сграда или единица."
 
-#: gui/session/unit_actions.js:1263
+#: gui/session/unit_actions.js:1248
 msgid "Remove guard"
 msgstr "Спиране на пазенето"
 
-#: gui/session/unit_actions.js:1280
+#: gui/session/unit_actions.js:1265
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 msgid "Barter & Trade"
 msgstr "Обмен и търговия"
 
-#: gui/session/unit_actions.js:1298
+#: gui/session/unit_actions.js:1283
 msgid "Patrol"
 msgstr "Патрулиране"
 
-#: gui/session/unit_actions.js:1299
+#: gui/session/unit_actions.js:1284
 msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr "Нападане на всички срещнати единици, но не и на сградите."
 
-#: gui/session/unit_actions.js:1325
+#: gui/session/unit_actions.js:1310
 msgid "Press to allow allies to use this dropsite"
 msgstr "Щракнете, за да позволите на съюзниците да използват това място за събиране на ресурси"
 
-#: gui/session/unit_actions.js:1329
+#: gui/session/unit_actions.js:1314
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Щракнете, за да забраните на съюзниците да използват това място за събиране на ресурси"
 
-#: gui/session/unit_actions.js:1394
+#: gui/session/unit_actions.js:1379
 msgid "You are allowed to use this dropsite"
 msgstr "Вие можете да използвате това място за събиране на ресурси"
 
-#: gui/session/unit_actions.js:1399
+#: gui/session/unit_actions.js:1384
 msgid "The use of this dropsite is prohibited"
 msgstr "Използването на това място за събиране на ресурси е забранено."
 
-#: gui/session/unit_actions.js:1473
+#: gui/session/unit_actions.js:1458
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Този обект рябва да бъде убит, преди да може да добивате ресурси от него"
 
-#: gui/session/unit_actions.js:1476
+#: gui/session/unit_actions.js:1461
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Този обект не може да бъде унищожен, защото притежавате по-малко от половината пленителни точки"
 
-#: gui/session/unit_actions.js:1479
+#: gui/session/unit_actions.js:1464
 msgid "This entity is undeletable"
 msgstr "Този обект не може да бъде изтрит"
 
@@ -1098,11 +956,11 @@ msgstr ""
 msgid "Display camera frustum"
 msgstr "Показване на отсечената пирамида на камерата"
 
-#: gui/session/developer_overlay/TimeWarp.js:63
+#: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
 msgstr "Изкривяване на времето"
 
-#: gui/session/developer_overlay/TimeWarp.js:65
+#: gui/session/developer_overlay/TimeWarp.js:66
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
@@ -1166,6 +1024,152 @@ msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
 msgstr "Дайте %(resourceAmount)s %(resourceType)s на %(playerName)s. Натиснете Шифт + ляв бутон, за да дадете %(greaterAmount)s."
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:10
+msgid "Delete"
+msgstr "Изтриване"
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:11
+msgid "Destroy everything currently selected?"
+msgstr "Унищожи всичко което е избрано в момента?"
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:14
+#: gui/session/message_box/QuitConfirmation.js:14
+#: gui/session/message_box/QuitConfirmationMenu.js:49
+#: gui/session/message_box/ResignConfirmation.js:9
+#: gui/session/dialogs/yes_no.xml:(caption):24
+msgid "No"
+msgstr "Не"
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:17
+#: gui/session/message_box/QuitConfirmation.js:17
+#: gui/session/message_box/QuitConfirmationMenu.js:52
+#: gui/session/message_box/ResignConfirmation.js:12
+#: gui/session/dialogs/yes_no.xml:(caption):19
+msgid "Yes"
+msgstr "Да"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:15
+#: gui/session/message_box/OutOfSyncReplay.js:26
+#, javascript-format
+msgid "Out-Of-Sync error on turn %(turn)s."
+msgstr "Грешка в синхронизацията на ход %(turn)s."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:19
+#, javascript-format
+msgctxt "Out-Of-Sync"
+msgid "Players: %(players)s"
+msgstr "Играчи: %(players)s"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:24
+msgctxt "Out-Of-Sync"
+msgid "Your game state is identical to the hosts game state."
+msgstr "Състоянието на играта при Вас е същото като състоянието ѝ на сървъра."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:25
+msgctxt "Out-Of-Sync"
+msgid "Your game state differs from the hosts game state."
+msgstr "Състоянието на играта при Вас се различава от състоянието ѝ на сървъра."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:31
+msgctxt "Out-Of-Sync"
+msgid "Rejoining Multiplayer games with AIs is not supported yet!"
+msgstr "Повторното присъединяване към игри с ИИ все още не се поддържа!"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:34
+msgctxt "Out-Of-Sync"
+msgid "Ensure all players use the same mods."
+msgstr "Подсигуряване на това, че всички играчи използват едни и същи модификации."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:35
+msgctxt "Out-Of-Sync"
+msgid "Click on \"Report a Bug\" in the main menu to help fix this."
+msgstr "Натиснете бутона за съобщаване на грешка в главното меню, за да помогнете това да бъде оправено."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:36
+#, javascript-format
+msgctxt "Out-Of-Sync"
+msgid "Replay saved to %(filepath)s"
+msgstr "Записът е запазен в „%(filepath)s“"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:39
+#, javascript-format
+msgctxt "Out-Of-Sync"
+msgid "Dumping current state to %(filepath)s"
+msgstr "Запазване на текущото състояние в „%(filepath)s“"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:51
+#: gui/session/message_box/OutOfSyncReplay.js:23
+msgid "Out of Sync"
+msgstr "Нарушена синхронизация"
+
+#. Translation: This is shown if replay is out of sync
+#: gui/session/message_box/OutOfSyncReplay.js:28
+msgid "Out-Of-Sync"
+msgstr ""
+
+#: gui/session/message_box/QuitConfirmation.js:6
+#: gui/session/message_box/QuitConfirmationMenu.js:63
+#: gui/session/message_box/ResignConfirmation.js:5
+msgid "Confirmation"
+msgstr "Потвърждаване"
+
+#: gui/session/message_box/QuitConfirmation.js:9
+msgid "Are you sure you want to quit?"
+msgstr "Наистина ли искате да излезете?"
+
+#: gui/session/message_box/QuitConfirmationDefeat.js:54
+msgid "VICTORIOUS!"
+msgstr "ПОБЕДИТЕЛ!"
+
+#: gui/session/message_box/QuitConfirmationDefeat.js:55
+msgid "DEFEATED!"
+msgstr "ПОБЕДЕН!"
+
+#: gui/session/message_box/QuitConfirmationDefeat.js:57
+msgid "Do you want to quit?"
+msgstr "Искате ли да излезете?"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:33
+msgid ""
+"Are you sure you want to quit? Leaving will disconnect all other players."
+msgstr "Наистина или искате да излезете? Напускането ви ще разкачи всички останали играчи."
+
+#: gui/session/message_box/QuitConfirmationMenu.js:64
+msgid "Do you want to resign or will you return soon?"
+msgstr "Искате ли да се предадете или ще се върнете скоро?"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:67
+msgid "I will return"
+msgstr "Ще се върна"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:71
+msgid "I resign"
+msgstr "Предавам се"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:14
+msgctxt "replayFinished"
+msgid "Confirmation"
+msgstr "Потвърждаване"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:17
+msgctxt "replayFinished"
+msgid "The replay has finished. Do you want to quit?"
+msgstr "Записът свърши. Искате ли да излезете?"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:22
+msgctxt "replayFinished"
+msgid "No"
+msgstr "Не"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:25
+msgctxt "replayFinished"
+msgid "Yes"
+msgstr "Да"
+
+#: gui/session/message_box/ResignConfirmation.js:6
+msgid "Are you sure you want to resign?"
+msgstr "Наистина ли искате да се предадете?"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:39
 msgid "Find idle worker"

@@ -8,7 +8,43 @@
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/sheath_gladius_e.xml" attachpoint="sheath_01_R"/>
         <prop actor="props/units/weapons/gladus.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/rome_scutum_e.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Scutum-01">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isw_07.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-02">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isw_08.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-03">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isw_09.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-04">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isw_10.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-05">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isw_11.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-06">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isw_12.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-07">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isw_13.xml" attachpoint="shield"/>
       </props>
     </variant>
   </group>
@@ -92,7 +128,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_swordsman_shield_relax.xml"/>
+    <variant file="biped/base_swordsman_shield_relax_rome.xml"/>
     <variant file="biped/formations/testudo_top.xml"/>
     <variant file="biped/formations/testudo_front.xml"/>
     <variant file="biped/formations/testudo_front_left.xml"/>

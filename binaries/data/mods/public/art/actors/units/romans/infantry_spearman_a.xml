@@ -6,9 +6,42 @@
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/rome_head_veteran.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/rome_scutum_a.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/sheath_gladius.xml" attachpoint="sheath_01_R"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Scutum-01">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isp_04.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-02">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isp_05.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-03">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isp_06.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-04">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isp_07.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Greave-01">
+      <props>
+        <prop actor="props/units/armor/greave_06_bronze_l.xml" attachpoint="leg_L"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-03">
+      <props>
+        <prop actor="props/units/armor/greave_08_bronze_l.xml" attachpoint="leg_L"/>
       </props>
     </variant>
   </group>

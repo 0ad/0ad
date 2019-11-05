@@ -9,12 +9,24 @@
         <prop actor="props/units/helmets/rome_helmet_coolus.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/sheath_gladius_e.xml" attachpoint="sheath_01_R"/>
         <prop actor="props/units/weapons/gladus.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/rome_scutum_marian.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/scutum_rome_imp_01.xml" attachpoint="shield"/>
       </props>
       <textures>
         <texture file="skeletal/rome_su3_marian_legion.dds" name="baseTex"/>
         <texture file="skeletal/rome_su3_marian_legion_spec.png" name="specTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Scutum-01">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_imp_01.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Scutum-02">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_imp_02.xml" attachpoint="shield"/>
+      </props>
     </variant>
   </group>
   <group>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Scutum-B-Boss-01">
+      <mesh>props/shield/props/scutum_boss_a.dae</mesh>
+      <textures>
+        <texture file="props/shield/scutum_rome_boss_01_bronze.png" name="baseTex"/>
+        <texture file="props/shield/scutum_rome_boss_01_bronze_spec.png" name="specTex"/>
+        <texture file="props/shield/scutum_rome_boss_01_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+    <variant name="Scutum-B-Boss-02">
+      <mesh>props/shield/props/scutum_boss_a.dae</mesh>
+      <textures>
+        <texture file="props/shield/scutum_rome_boss_02_bronze.png" name="baseTex"/>
+        <texture file="props/shield/scutum_rome_boss_02_bronze_spec.png" name="specTex"/>
+        <texture file="props/shield/scutum_rome_boss_02_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

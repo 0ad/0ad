@@ -43,8 +43,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-10-23 13:25+0000\n"
-"PO-Revision-Date: 2019-10-24 14:47+0000\n"
+"POT-Creation-Date: 2019-11-01 08:08+0000\n"
+"PO-Revision-Date: 2019-11-01 21:39+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -75,90 +75,82 @@ msgstr "Özet"
 msgid "Press %(hotkey)s to open the summary screen."
 msgstr "Özet ekranını açmak için %(hotkey)s tuşuna basın."
 
-#: gui/session/MenuButtons.js:131
+#: gui/session/MenuButtons.js:130
 msgid "Lobby"
 msgstr "Lobi"
 
-#: gui/session/MenuButtons.js:140
+#: gui/session/MenuButtons.js:139
 #, javascript-format
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
 msgstr "Oyundan çıkmadan çokoyunculu lobisine girmek için %(hotkey)s tuşuna basın."
 
-#: gui/session/MenuButtons.js:159
+#: gui/session/MenuButtons.js:158
 msgid "Options"
 msgstr "Seçenekler"
 
-#: gui/session/MenuButtons.js:199
+#: gui/session/MenuButtons.js:196
 msgid "Resume"
 msgstr "Devam ettir"
 
-#: gui/session/MenuButtons.js:199
+#: gui/session/MenuButtons.js:196
 msgid "Pause"
 msgstr "Duraklat"
 
-#: gui/session/MenuButtons.js:200
+#: gui/session/MenuButtons.js:197
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
 msgstr "Oyunu durdurmak ya da devam etmek için %(hotkey)s tuşuna basın."
 
-#: gui/session/MenuButtons.js:216
+#: gui/session/MenuButtons.js:213
 msgid "Resign"
 msgstr "Teslim Ol"
 
-#: gui/session/MenuButtons.js:236
-msgid "Are you sure you want to resign?"
-msgstr "Teslim olmak istediğinize emin misiniz?"
-
-#: gui/session/MenuButtons.js:237 gui/session/MenuButtons.js:272
-#: gui/session/MenuButtons.js:291
-msgid "Confirmation"
-msgstr "Onay"
-
-#: gui/session/MenuButtons.js:238 gui/session/MenuButtons.js:273
-#: gui/session/session.js:667 gui/session/unit_actions.js:1092
-#: gui/session/dialogs/yes_no.xml:(caption):24
-msgid "No"
-msgstr "Hayır"
-
-#: gui/session/MenuButtons.js:238 gui/session/MenuButtons.js:273
-#: gui/session/session.js:667 gui/session/unit_actions.js:1092
-#: gui/session/dialogs/yes_no.xml:(caption):19
-msgid "Yes"
-msgstr "Evet"
-
-#: gui/session/MenuButtons.js:256 gui/session/session.xml:(caption):66
+#: gui/session/MenuButtons.js:237
+#: gui/session/NetworkStatusOverlay.xml:(caption):9
 msgid "Exit"
 msgstr "Çıkış"
 
-#: gui/session/MenuButtons.js:280
-msgid ""
-"Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "Çıkmak istediğine emin misin? Ayrıldığında diğer tüm oyuncuların bağlantıları kesilecek."
+#: gui/session/NetworkStatusOverlay.js:38
+msgid "Connection to the server has been authenticated."
+msgstr "Sunucu bağlantısı doğrulandı."
 
-#: gui/session/MenuButtons.js:284 gui/session/MenuButtons.js:306
-msgid "Are you sure you want to quit?"
-msgstr "Çıkmak istediğinizden emin misiniz?"
+#: gui/session/NetworkStatusOverlay.js:39
+msgid "Connected to the server."
+msgstr "Sunucuya bağlanıldı."
 
-#: gui/session/MenuButtons.js:290
-msgid "Do you want to resign or will you return soon?"
-msgstr "Ayrılmak mı etmek istiyorsun yoksa yakında dönecek misin?"
+#: gui/session/NetworkStatusOverlay.js:40
+msgid "Connection to the server has been lost."
+msgstr "Sunucu bağlantısı koptu."
 
-#: gui/session/MenuButtons.js:292
-msgid "I will return"
-msgstr "Geri döneceğim"
+#: gui/session/NetworkStatusOverlay.js:42
+msgid "Waiting for players to connect:"
+msgstr "Oyuncuların bağlanması bekleniyor:"
 
-#: gui/session/MenuButtons.js:292
-msgid "I resign"
-msgstr "Ayrılacağım"
+#: gui/session/NetworkStatusOverlay.js:43
+msgid "Synchronizing gameplay with other players…"
+msgstr "Oyun diğer oyuncularla senkronize ediliyor..."
 
-#: gui/session/PauseOverlay.js:39 gui/session/messages.js:516
+#: gui/session/NetworkStatusOverlay.js:47
+msgctxt "Separator for a list of client loading messages"
+msgid ", "
+msgstr ", "
+
+#. Translation: The "x" means "times", with the mathematical meaning of
+#. multiplication.
+#: gui/session/OverlayCounterElapsedTime.js:33
+#, javascript-format
+msgid "%(time)s (%(speed)sx)"
+msgstr "%(time)s (%(speed)sx)"
+
+#: gui/session/PauseOverlay.js:40
+#: gui/session/message_box/OutOfSyncNetwork.js:20
 msgctxt "Separator for a list of players"
 msgid ", "
 msgstr ", "
 
-#: gui/session/PauseOverlay.js:44
+#: gui/session/PauseOverlay.js:45
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr "%(players)s tarafından durduruldu"
@@ -183,118 +175,35 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Ortalama ilave menzil: %(range)s metre"
 msgstr[1] "Ortalama ilave menzil: %(range)s metre"
 
-#: gui/session/input.js:696
+#: gui/session/input.js:691
 msgid "Cannot build wall here!"
 msgstr "Buraya duvar yapılamaz!"
 
-#: gui/session/messages.js:79
-msgid "Connection to the server has been authenticated."
-msgstr "Sunucu bağlantısı doğrulandı."
-
-#: gui/session/messages.js:80
-msgid "Connected to the server."
-msgstr "Sunucuya bağlanıldı."
-
-#: gui/session/messages.js:81
-msgid "Connection to the server has been lost."
-msgstr "Sunucu bağlantısı koptu."
-
-#: gui/session/messages.js:83
-msgid "Waiting for players to connect:"
-msgstr "Oyuncuların bağlanması bekleniyor:"
-
-#: gui/session/messages.js:84
-msgid "Synchronizing gameplay with other players…"
-msgstr "Oyun diğer oyuncularla senkronize ediliyor..."
-
-#: gui/session/messages.js:89
+#: gui/session/messages.js:96
 msgid "You have won!"
 msgstr "Kazandın!"
 
-#: gui/session/messages.js:90
+#: gui/session/messages.js:97
 msgid "You have been defeated!"
 msgstr "Yenildin!"
 
-#: gui/session/messages.js:405
+#: gui/session/messages.js:378
 msgid "Click to quit this tutorial."
 msgstr "Eğitimden çıkmak için tıklayınız"
 
-#: gui/session/messages.js:406
+#: gui/session/messages.js:379
 msgid "Quit"
 msgstr "Çıkış"
 
-#: gui/session/messages.js:410
+#: gui/session/messages.js:383
 msgid "Click when ready."
 msgstr "Hazır olduğunda tıkla."
 
-#: gui/session/messages.js:414
+#: gui/session/messages.js:387
 msgid "Follow the instructions."
 msgstr "Talimatları takip et."
 
-#: gui/session/messages.js:505
-msgctxt "Separator for a list of client loading messages"
-msgid ", "
-msgstr ", "
-
-#: gui/session/messages.js:511 gui/session/messages.js:551
-#, javascript-format
-msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr "%(turn)s. turda Out-Of-Sync hatası!"
-
-#: gui/session/messages.js:515
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Players: %(players)s"
-msgstr "Oyuncular: %(players)s"
-
-#: gui/session/messages.js:520
-msgctxt "Out-Of-Sync"
-msgid "Your game state is identical to the hosts game state."
-msgstr "Oyun durumunuz oyun kurucunun oyun durumuyla aynıdır."
-
-#: gui/session/messages.js:521
-msgctxt "Out-Of-Sync"
-msgid "Your game state differs from the hosts game state."
-msgstr "Oyun durumunuz oyun kurucunun oyun durumundan farklıdır."
-
-#: gui/session/messages.js:527
-msgctxt "Out-Of-Sync"
-msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr "Çok oyunculu oyunlarda YZ'larla tekrar katılmak henüz desteklenmiyor!"
-
-#: gui/session/messages.js:530
-msgctxt "Out-Of-Sync"
-msgid "Ensure all players use the same mods."
-msgstr "Tüm oycuncuların aynı modları kullandığından emin olun."
-
-#: gui/session/messages.js:531
-msgctxt "Out-Of-Sync"
-msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr "Ana menüdeki \"Bug Bildir\" butonuna tıklayarak sorunun giderilmesine yardımcı olabilirsiniz."
-
-#: gui/session/messages.js:532
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Replay saved to %(filepath)s"
-msgstr "Replay dosyası %(filepath)s'e kaydedildi."
-
-#: gui/session/messages.js:535
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Dumping current state to %(filepath)s"
-msgstr "Geçerli durum atılıyor %(filepath)s"
-
-#: gui/session/messages.js:543 gui/session/messages.js:556
-msgid "Out of Sync"
-msgstr "Senkron Değil"
-
-#. Translation: This is shown if replay is out of sync
-#: gui/session/messages.js:555
-msgctxt "Out-Of-Sync"
-msgid "The current game state is different from the original game state."
-msgstr "Mevcut oyun durumu orijinal oyun durumundan farklıdır."
-
-#: gui/session/messages.js:641
+#: gui/session/messages.js:512
 msgid "Unknown Player"
 msgstr "Bilinmeyen Oyuncu"
 
@@ -593,49 +502,6 @@ msgstr "%(number)s tane eğitmek için %(action)s."
 msgid "Shift-click"
 msgstr "Üst karakter-tıklama"
 
-#: gui/session/session.js:659
-msgid "Do you want to quit?"
-msgstr "Çıkmak istiyor musun?"
-
-#: gui/session/session.js:665
-msgid "VICTORIOUS!"
-msgstr "ZAFER!"
-
-#: gui/session/session.js:666
-msgid "DEFEATED!"
-msgstr "YENİLDİN!"
-
-#: gui/session/session.js:667
-msgid "OK"
-msgstr "Tamam"
-
-#: gui/session/session.js:718
-msgctxt "replayFinished"
-msgid "The replay has finished. Do you want to quit?"
-msgstr "Yeniden oynatma tamamladı. Çıkmak istiyor musunuz?"
-
-#: gui/session/session.js:719
-msgctxt "replayFinished"
-msgid "Confirmation"
-msgstr "Onay"
-
-#: gui/session/session.js:720
-msgctxt "replayFinished"
-msgid "No"
-msgstr "Hayır"
-
-#: gui/session/session.js:720
-msgctxt "replayFinished"
-msgid "Yes"
-msgstr "Evet"
-
-#. Translation: The "x" means "times", with the mathematical meaning of
-#. multiplication.
-#: gui/session/session.js:906
-#, javascript-format
-msgid "%(time)s (%(speed)sx)"
-msgstr "%(time)s (%(speed)sx)"
-
 #: gui/session/unit_actions.js:560
 msgid "Origin trade market."
 msgstr "Ticaret başlangıç pazarı."
@@ -670,7 +536,7 @@ msgstr "Yeni tacirlere varsayılan güzergah belirlemek için sağ tıklayın."
 msgid "Expected gain: %(gain)s"
 msgstr "Hedeflenen kazanç: %(gain)s"
 
-#: gui/session/unit_actions.js:1030 gui/session/unit_actions.js:1373
+#: gui/session/unit_actions.js:1030 gui/session/unit_actions.js:1358
 msgid "Unload All."
 msgstr "Hepsini kaldır."
 
@@ -683,85 +549,77 @@ msgstr "Seçili olan bina/birimleri sil"
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Onay iletişim kutularından kaçınmak için kısayol tuşlarını kullanın; %(hotkey)s "
 
-#: gui/session/unit_actions.js:1090
-msgid "Destroy everything currently selected?"
-msgstr "Seçili olan her şey yok edilsin mi?"
-
-#: gui/session/unit_actions.js:1091
-msgid "Delete"
-msgstr "Sil"
-
-#: gui/session/unit_actions.js:1112
+#: gui/session/unit_actions.js:1097
 msgid "Abort the current order."
 msgstr "Mevcut düzeni iptal edin."
 
-#: gui/session/unit_actions.js:1131
+#: gui/session/unit_actions.js:1116
 msgid "Order the selected units to garrison in a building or unit."
 msgstr "Seçilen birimleri bir binadaki veya birimin garnizonuna sipariş edin."
 
-#: gui/session/unit_actions.js:1154
+#: gui/session/unit_actions.js:1139
 msgid "Unload"
 msgstr "Boşalt"
 
-#: gui/session/unit_actions.js:1172
+#: gui/session/unit_actions.js:1157
 msgid "Order the selected units to repair a building or mechanical unit."
 msgstr "Seçilen birimleri bir bina veya mekanik birimi onarmak üzere sipariş edin."
 
-#: gui/session/unit_actions.js:1191
+#: gui/session/unit_actions.js:1176
 msgid "Focus on Rally Point."
 msgstr "Toplanma noktasına git."
 
-#: gui/session/unit_actions.js:1226
+#: gui/session/unit_actions.js:1211
 msgid "Back to Work"
 msgstr "Çalışmaya Dön"
 
-#: gui/session/unit_actions.js:1245
+#: gui/session/unit_actions.js:1230
 msgid "Order the selected units to guard a building or unit."
 msgstr "Seçilen birimleri, bir binayı veya birimi korumak için sipariş edin."
 
-#: gui/session/unit_actions.js:1263
+#: gui/session/unit_actions.js:1248
 msgid "Remove guard"
 msgstr "Korumayı kaldır"
 
-#: gui/session/unit_actions.js:1280
+#: gui/session/unit_actions.js:1265
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 msgid "Barter & Trade"
 msgstr "Takas & Ticaret"
 
-#: gui/session/unit_actions.js:1298
+#: gui/session/unit_actions.js:1283
 msgid "Patrol"
 msgstr "Devriye"
 
-#: gui/session/unit_actions.js:1299
+#: gui/session/unit_actions.js:1284
 msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr "Binadan kaçarken düşman birimlerinin hepsine saldır."
 
-#: gui/session/unit_actions.js:1325
+#: gui/session/unit_actions.js:1310
 msgid "Press to allow allies to use this dropsite"
 msgstr "Müttefiklerin bu açılır listeyi  kullanmalarına izin vermek için tıklayın"
 
-#: gui/session/unit_actions.js:1329
+#: gui/session/unit_actions.js:1314
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Müttefiklerin bu depolama alanını kullanmasını önlemek için tıklayın"
 
-#: gui/session/unit_actions.js:1394
+#: gui/session/unit_actions.js:1379
 msgid "You are allowed to use this dropsite"
 msgstr "Bu açılır listeyi kullanmanıza izniniz var"
 
-#: gui/session/unit_actions.js:1399
+#: gui/session/unit_actions.js:1384
 msgid "The use of this dropsite is prohibited"
 msgstr "Bu depolama alanını kullanamazsınız."
 
-#: gui/session/unit_actions.js:1473
+#: gui/session/unit_actions.js:1458
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "İşletme, toplanmadan önce öldürülmelidir."
 
-#: gui/session/unit_actions.js:1476
+#: gui/session/unit_actions.js:1461
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Bu nesneyi yok edemezsiniz çünkü yarısından azı görürür bir şekilde."
 
-#: gui/session/unit_actions.js:1479
+#: gui/session/unit_actions.js:1464
 msgid "This entity is undeletable"
 msgstr "Bu unite silinemez"
 
@@ -1125,11 +983,11 @@ msgstr "Toplama kamerayı sabitle"
 msgid "Display camera frustum"
 msgstr "Kamera alanını göster"
 
-#: gui/session/developer_overlay/TimeWarp.js:63
+#: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
 msgstr "Zaman tüneli modu"
 
-#: gui/session/developer_overlay/TimeWarp.js:65
+#: gui/session/developer_overlay/TimeWarp.js:66
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
@@ -1193,6 +1051,152 @@ msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
 msgstr "%(playerName)s oyuncusuna %(resourceAmount)s %(resourceType)s kaynakları gönder.  Shift + tıklayarak %(greaterAmount)s gönder."
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:10
+msgid "Delete"
+msgstr "Sil"
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:11
+msgid "Destroy everything currently selected?"
+msgstr "Seçili olan her şey yok edilsin mi?"
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:14
+#: gui/session/message_box/QuitConfirmation.js:14
+#: gui/session/message_box/QuitConfirmationMenu.js:49
+#: gui/session/message_box/ResignConfirmation.js:9
+#: gui/session/dialogs/yes_no.xml:(caption):24
+msgid "No"
+msgstr "Hayır"
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:17
+#: gui/session/message_box/QuitConfirmation.js:17
+#: gui/session/message_box/QuitConfirmationMenu.js:52
+#: gui/session/message_box/ResignConfirmation.js:12
+#: gui/session/dialogs/yes_no.xml:(caption):19
+msgid "Yes"
+msgstr "Evet"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:15
+#: gui/session/message_box/OutOfSyncReplay.js:26
+#, javascript-format
+msgid "Out-Of-Sync error on turn %(turn)s."
+msgstr "%(turn)s. turda Out-Of-Sync hatası!"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:19
+#, javascript-format
+msgctxt "Out-Of-Sync"
+msgid "Players: %(players)s"
+msgstr "Oyuncular: %(players)s"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:24
+msgctxt "Out-Of-Sync"
+msgid "Your game state is identical to the hosts game state."
+msgstr "Oyun durumunuz oyun kurucunun oyun durumuyla aynıdır."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:25
+msgctxt "Out-Of-Sync"
+msgid "Your game state differs from the hosts game state."
+msgstr "Oyun durumunuz oyun kurucunun oyun durumundan farklıdır."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:31
+msgctxt "Out-Of-Sync"
+msgid "Rejoining Multiplayer games with AIs is not supported yet!"
+msgstr "Çok oyunculu oyunlarda YZ'larla tekrar katılmak henüz desteklenmiyor!"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:34
+msgctxt "Out-Of-Sync"
+msgid "Ensure all players use the same mods."
+msgstr "Tüm oycuncuların aynı modları kullandığından emin olun."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:35
+msgctxt "Out-Of-Sync"
+msgid "Click on \"Report a Bug\" in the main menu to help fix this."
+msgstr "Ana menüdeki \"Bug Bildir\" butonuna tıklayarak sorunun giderilmesine yardımcı olabilirsiniz."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:36
+#, javascript-format
+msgctxt "Out-Of-Sync"
+msgid "Replay saved to %(filepath)s"
+msgstr "Replay dosyası %(filepath)s'e kaydedildi."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:39
+#, javascript-format
+msgctxt "Out-Of-Sync"
+msgid "Dumping current state to %(filepath)s"
+msgstr "Geçerli durum atılıyor %(filepath)s"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:51
+#: gui/session/message_box/OutOfSyncReplay.js:23
+msgid "Out of Sync"
+msgstr "Senkron Değil"
+
+#. Translation: This is shown if replay is out of sync
+#: gui/session/message_box/OutOfSyncReplay.js:28
+msgid "Out-Of-Sync"
+msgstr "Senkronizasyon dışı."
+
+#: gui/session/message_box/QuitConfirmation.js:6
+#: gui/session/message_box/QuitConfirmationMenu.js:63
+#: gui/session/message_box/ResignConfirmation.js:5
+msgid "Confirmation"
+msgstr "Onay"
+
+#: gui/session/message_box/QuitConfirmation.js:9
+msgid "Are you sure you want to quit?"
+msgstr "Çıkmak istediğinizden emin misiniz?"
+
+#: gui/session/message_box/QuitConfirmationDefeat.js:54
+msgid "VICTORIOUS!"
+msgstr "ZAFER!"
+
+#: gui/session/message_box/QuitConfirmationDefeat.js:55
+msgid "DEFEATED!"
+msgstr "YENİLDİN!"
+
+#: gui/session/message_box/QuitConfirmationDefeat.js:57
+msgid "Do you want to quit?"
+msgstr "Çıkmak istiyor musun?"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:33
+msgid ""
+"Are you sure you want to quit? Leaving will disconnect all other players."
+msgstr "Çıkmak istediğine emin misin? Ayrıldığında diğer tüm oyuncuların bağlantıları kesilecek."
+
+#: gui/session/message_box/QuitConfirmationMenu.js:64
+msgid "Do you want to resign or will you return soon?"
+msgstr "Ayrılmak mı etmek istiyorsun yoksa yakında dönecek misin?"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:67
+msgid "I will return"
+msgstr "Geri döneceğim"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:71
+msgid "I resign"
+msgstr "Ayrılacağım"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:14
+msgctxt "replayFinished"
+msgid "Confirmation"
+msgstr "Onay"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:17
+msgctxt "replayFinished"
+msgid "The replay has finished. Do you want to quit?"
+msgstr "Yeniden oynatma tamamladı. Çıkmak istiyor musunuz?"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:22
+msgctxt "replayFinished"
+msgid "No"
+msgstr "Hayır"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:25
+msgctxt "replayFinished"
+msgid "Yes"
+msgstr "Evet"
+
+#: gui/session/message_box/ResignConfirmation.js:6
+msgid "Are you sure you want to resign?"
+msgstr "Teslim olmak istediğinize emin misiniz?"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:39
 msgid "Find idle worker"

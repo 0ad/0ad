@@ -21,6 +21,12 @@
       special/formations/anti_cavalry
     </Formations>
   </Identity>
+  <Health>
+    <DamageVariants>
+      <lightdamage>0.85</lightdamage>
+      <mediumdamage>0.45</mediumdamage>
+    </DamageVariants>
+  </Health>
   <Promotion>
     <Entity>units/rome_infantry_spearman_a</Entity>
   </Promotion>

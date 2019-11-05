@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variant file="shields/scutum_rome_imp_dmg_med_base_01.xml" name="Rome-Scutum-ISW-02">
+  <mesh>props/shield/scutum_03_v2_f.dae</mesh>
+  <textures>
+    <texture file="props/shield/scutum_rome_imp_praetorian_dmg_med.png" name="baseTex"/>
+    <texture file="props/shield/scutum_rome_imp_01_gold_spec.png" name="specTex"/>
+    <texture file="props/shield/scutum_rome_imp_01_dmg_med_norm.png" name="normTex"/>
+  </textures>
+  <props>
+    <prop actor="props/units/shields/props/scutum_rome_imp_back_01_gold.xml" attachpoint="root"/>
+  </props>
+</variant>
