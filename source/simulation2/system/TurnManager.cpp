@@ -309,6 +309,7 @@ void CTurnManager::QuickSave(JS::HandleValue GUIMetadata)
 
 	if (JS_StructuredClone(cx, GUIMetadata, &m_QuickSaveMetadata, nullptr, nullptr))
 	{
+		// Freeze state to ensure that consectuvie loads don't modify the state
 		m_Simulation2.GetScriptInterface().FreezeObject(m_QuickSaveMetadata, true);
 	}
 	else
@@ -346,8 +347,16 @@ void CTurnManager::QuickLoad()
 	JSContext* cx = m_Simulation2.GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
 
+	// Provide a copy, so that GUI components don't have to clone to get mutable objects
+	JS::RootedValue quickSaveMetadataClone(cx);
+	if (!JS_StructuredClone(cx, m_QuickSaveMetadata, &quickSaveMetadataClone, nullptr, nullptr))
+	{
+		LOGERROR("Failed to clone quicksave state!");
+		return;
+	}
+
 	JS::AutoValueArray<1> paramData(cx);
-	paramData[0].set(m_QuickSaveMetadata);
+	paramData[0].set(quickSaveMetadataClone);
 	g_GUI->SendEventToAll("SavegameLoaded", paramData);
 
 	LOGMESSAGERENDER("Quickloaded game");
