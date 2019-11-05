@@ -51,16 +51,6 @@ function ProcessCommand(player, cmd)
 }
 
 var g_Commands = {
-	"debug-print": function(player, cmd, data)
-	{
-		print(cmd.message);
-	},
-
-	"chat": function(player, cmd, data)
-	{
-		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGuiInterface.PushNotification({ "type": cmd.type, "players": [player], "message": cmd.message });
-	},
 
 	"aichat": function(player, cmd, data)
 	{
