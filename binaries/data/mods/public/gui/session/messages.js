@@ -80,14 +80,6 @@ var g_NetMessageTypes = {
 			"text": msg.text
 		});
 	},
-	"aichat": msg => {
-		addChatMessage({
-			"type": "message",
-			"guid": msg.guid,
-			"text": msg.text,
-			"translate": true
-		});
-	},
 	"gamesetup": msg => {}, // Needed for autostart
 	"start": msg => {}
 };
@@ -104,18 +96,6 @@ var g_PlayerStateMessages = {
  */
 var g_NotificationsTypes =
 {
-	"chat": function(notification, player)
-	{
-		let message = {
-			"type": "message",
-			"guid": findGuidForPlayerID(player) || -1,
-			"text": notification.message
-		};
-		if (message.guid == -1)
-			message.player = player;
-
-		addChatMessage(message);
-	},
 	"aichat": function(notification, player)
 	{
 		let message = {
