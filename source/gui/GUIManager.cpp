@@ -335,12 +335,21 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 
 void CGUIManager::SendEventToAll(const CStr& eventName) const
 {
-	top()->SendEventToAll(eventName);
+	// Save an immutable copy so iterators aren't invalidated by handlers
+	PageStackType pageStack = m_PageStack;
+
+	for (const SGUIPage& p : pageStack)
+		p.gui->SendEventToAll(eventName);
+
 }
 
 void CGUIManager::SendEventToAll(const CStr& eventName, JS::HandleValueArray paramData) const
 {
-	top()->SendEventToAll(eventName, paramData);
+	// Save an immutable copy so iterators aren't invalidated by handlers
+	PageStackType pageStack = m_PageStack;
+
+	for (const SGUIPage& p : pageStack)
+		p.gui->SendEventToAll(eventName, paramData);
 }
 
 void CGUIManager::TickObjects()

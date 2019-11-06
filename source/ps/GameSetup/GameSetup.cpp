@@ -194,7 +194,7 @@ void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 	scriptInterface.ToJSVal(cx, &valPendingTask, pending_task);
 	paramData.append(valPendingTask);
 
-	g_GUI->GetActiveGUI()->SendEventToAll("GameLoadProgress", paramData);
+	g_GUI->SendEventToAll("GameLoadProgress", paramData);
 }
 
 bool ShouldRender()
