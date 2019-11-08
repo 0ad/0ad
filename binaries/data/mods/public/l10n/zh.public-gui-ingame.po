@@ -46,8 +46,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-01 08:08+0000\n"
-"PO-Revision-Date: 2019-11-01 15:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-11-06 12:03+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,7 +58,7 @@ msgstr ""
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "按 %(hotkey)s 切换此菜单。"
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -75,7 +75,7 @@ msgstr "摘要"
 #: gui/session/MenuButtons.js:87
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr ""
+msgstr "按 %(hotkey)s 打开统计框。"
 
 #: gui/session/MenuButtons.js:130
 msgid "Lobby"
@@ -86,7 +86,7 @@ msgstr "游戏大厅"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr ""
+msgstr "按 %(hotkey)s ，不离开游戏的情况下打开多人游戏大厅。"
 
 #: gui/session/MenuButtons.js:158
 msgid "Options"
@@ -103,7 +103,7 @@ msgstr "暂停"
 #: gui/session/MenuButtons.js:197
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr ""
+msgstr "按 %(hotkey)s 暂停或继续游戏。"
 
 #: gui/session/MenuButtons.js:213
 msgid "Resign"
@@ -714,12 +714,12 @@ msgstr "私人聊天"
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr ""
+msgstr "游戏通知项"
 
 #: gui/session/chat/ChatHistory.js:130
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr ""
+msgstr "网络通知"
 
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
@@ -787,7 +787,7 @@ msgstr "%(player)s 已加入游戏。"
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:57
 msgid "no-context"
-msgstr ""
+msgstr "无内容"
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:61
 #, javascript-format
@@ -1132,7 +1132,7 @@ msgstr "同步错误"
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr ""
+msgstr "同步错误"
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:63
