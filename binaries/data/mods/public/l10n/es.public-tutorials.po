@@ -16,13 +16,14 @@
 # Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018
 # Joseba Uranga <shadowjosebau@gmail.com>, 2019
 # Ignacio Casal <nacho_casal_i@outlook.com>, 2019
+# Fernando Mendez <nandito104@gmail.com>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2019-03-22 09:45+0100\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: Ignacio Casal <nacho_casal_i@outlook.com>, 2019\n"
+"Last-Translator: Fernando Mendez <nandito104@gmail.com>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/wildfire-games/teams/17418/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -191,6 +192,8 @@ msgid ""
 "While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
+"Mientras esperas subir de fase, puedes reasignar tus trabajadores inactivos "
+"para reunir los recursos que te hacen falta."
 
 #: maps/tutorials/Introductory_Tutorial.js:220
 msgid ""
@@ -300,6 +303,11 @@ msgid ""
 "ultimately, your goal will be to develop and expand your empire, often by "
 "evolving to Town Phase and City Phase afterward.\n"
 msgstr ""
+"Este tutorial te enseñará los conceptos básicos para desarrollar tu "
+"economía. Por lo general, comenzarías con un Centro Cívico y varias unidades"
+" en la Fase Inicial y, eventualmente, tu objetivo será desarrollar y "
+"expandir tu imperio, a menudo evolucionando a la Fase Intermedia y luego la "
+"Fase Urbana.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -367,6 +375,11 @@ msgid ""
 "that advancing to Town Phase requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
+"La fila superior de botones contiene retratos de unidades que pueden ser "
+"entrenados en el edificio, mientras que las filas inferiores tendrán "
+"tecnologías que puedes investigar. Coloque el cursor sobre el icono II. La "
+"información sobre herramientas nos dirá que avanzar a la Fase Intermedia "
+"requiere construir más estructuras como más recursos de Alimentos y Madera."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -486,11 +499,20 @@ msgid ""
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
+"Primero, tenemos que establecer un punto de encuentro. Establecer un punto "
+"de encuentro en un edificio que puede entrenar unidades les asignara una "
+"tarea automáticamente a la unidad nueva una vez termine su reclutamiento. "
+"Queremos enviar las unidades recién entrenadas a recolectar Madera en el "
+"grupo de árboles que están en el sur del Centro Cívico. Para ello, "
+"selecciona el Centro Cívico haciendo clic en él y luego clic con el botón "
+"derecho en uno de los árboles.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
 "Rally points are indicated by a small flag at the end of the blue line."
 msgstr ""
+"Los puntos de encuentro están marcados por una bandera pequeña al final de "
+"la línea azul."
 
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
@@ -505,6 +527,8 @@ msgid ""
 "Now that the rally point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
 msgstr ""
+"Ahora que el punto de encuentro está marcado, podemos producir tropas "
+"adicionales y ellas harán su labor asignado automáticamente.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:98
 msgid ""
@@ -636,6 +660,11 @@ msgid ""
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally point is crossed out)."
 msgstr ""
+"Mientras tanto, parece que tenemos suficientes trabajadores recolectando "
+"Madera. Deberíamos remover el punto de encuentro del Centro Cívico de reunir"
+" Madera. Para hacer esto, haga clic con el botón derecho en el Centro Cívico"
+" cuando este seleccionado (y el icono de la bandera indicando el punto de "
+"encuentro este tachado)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
@@ -818,6 +847,12 @@ msgid ""
 "sent by a rally point will help building it, while they will gather it when "
 "built."
 msgstr ""
+"Un campo puede tener hasta cinco granjeros trabajando en él. Para añadir "
+"recolectores adicionales, selecciona el Centro Cívico y crea un punto de "
+"encuentro en un campo al hacer clic con el botón derecho sobre él. Mientras "
+"el campo no se haya terminado de construir, los nuevos trabajadores enviados"
+" por el punto de encuentro comenzaran a construir el edificio, y luego "
+"recolectaran una vez se haya terminado de construir."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
@@ -867,6 +902,10 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the Town Phase icon to see what is still needed.\n"
 msgstr ""
+"Deberíamos empezar a prepararnos para subir a la Fase Intermedia, la cual "
+"desbloqueará muchas más unidades y edificios. Selecciona el Centro Cívico y "
+"coloque el cursor sobre el icono Fase Intermedia para ver los materiales que"
+" todavía se necesita.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""

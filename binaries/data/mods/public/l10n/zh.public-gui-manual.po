@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-09-21 11:15+0000\n"
+"PO-Revision-Date: 2019-11-07 08:12+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -71,7 +71,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr ""
+msgstr "游戏机制类似传统的即时战略游戏(RTS)。许多特性还未实现，游戏平衡可能还未完善，未来版本里可能会逐步修复。"
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls:"
@@ -212,7 +212,7 @@ msgstr "Alt + F: 显示/隐藏 帧率 (FPS)"
 msgid ""
 "  F11 – Enable/disable real-time profiler (toggles through the displays of "
 "information)"
-msgstr ""
+msgstr "F11 -- 启用/禁用 实时性能分析器 (切换显示信息)"
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to \"logs/profile.txt\""
@@ -230,19 +230,19 @@ msgid ""
 "  Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, "
 "location is displayed in the top left of the GUI after the file has been "
 "saved, and can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "Shift + F2 -- 巨型屏幕截图（6400*4800 px , bmp格式，保存位置显示在界面的左上方，也可以在控制台/日志中查看位置）"
 
 #: gui/manual/intro.txt:49
 msgid "  Tab, Alt + S – Switch to the next tab"
-msgstr ""
+msgstr "Tab, Alt + S  – 切换到下一个选项卡"
 
 #: gui/manual/intro.txt:50
 msgid "  Shift + Tab, Alt + W – Switch to the previous tab"
-msgstr ""
+msgstr "Shift + Tab, Alt + W -- 切换到上一个选项卡"
 
 #: gui/manual/intro.txt:52
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]游戏中[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:53
 msgid ""
@@ -270,7 +270,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:57
 msgid "  Shift + F5 – Quicksave"
-msgstr ""
+msgstr "Shift + F5  – 快速保存"
 
 #: gui/manual/intro.txt:58
 msgid "  Shift + F8 – Quickload"
@@ -282,19 +282,19 @@ msgstr "F10 — 打开/关闭 菜单"
 
 #: gui/manual/intro.txt:60
 msgid "  F12 – Show/hide time elapsed counter"
-msgstr ""
+msgstr "F12  –  显示或隐藏游戏时间"
 
 #: gui/manual/intro.txt:61
 msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "ESC  – 关闭所有对话框 (聊天, 菜单) ，或取消选中的单位"
 
 #: gui/manual/intro.txt:62
 msgid "  Enter/Return – Open/send chat"
-msgstr ""
+msgstr "Enter/Return 键 — 打开/发送 聊天信息"
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
-msgstr ""
+msgstr "T — 发团队消息"
 
 #: gui/manual/intro.txt:64
 msgid "  L – Chat with the previously selected private chat partner"
@@ -322,62 +322,62 @@ msgstr ""
 
 #: gui/manual/intro.txt:69
 msgid "  Shift + / (Slash) – Add idle fighter to selection"
-msgstr ""
+msgstr "Shift + /  — 添加空闲的战斗单位以供选择"
 
 #: gui/manual/intro.txt:70
 msgid "  Alt + / (Slash) – Select all idle fighters"
-msgstr ""
+msgstr "Alt + /: 选择所有空闲的单位"
 
 #: gui/manual/intro.txt:71
 msgid "  . (Period) – Select idle worker (including citizen-soldiers)"
-msgstr ""
+msgstr ". (点号): 选择空闲的工人 (包括民兵)"
 
 #: gui/manual/intro.txt:72
 msgid ""
 "  Shift + . (Period) – Add idle worker to selection (including citizen-"
 "soldiers)"
-msgstr ""
+msgstr "Shift + .(点号)：选取空闲的工人单位 (包括民兵) "
 
 #: gui/manual/intro.txt:73
 msgid ""
 "  Alt + . (Period) – Select all idle workers (including citizen-soldiers)"
-msgstr ""
+msgstr "Alt + .: 选择所有空闲的工人 (包括民兵)"
 
 #: gui/manual/intro.txt:74
 msgid "  \\\\ (Backslash) – Select idle unit"
-msgstr ""
+msgstr "\\\\ (反斜杠):选择空闲单位"
 
 #: gui/manual/intro.txt:75
 msgid "  Shift + \\\\ (Backslash) – Add idle unit to selection"
-msgstr ""
+msgstr "Shift + \\\\  — 添加空闲单位"
 
 #: gui/manual/intro.txt:76
 msgid "  Alt + \\\\ (Backslash) – Select all idle units"
-msgstr ""
+msgstr "Alt + \\\\: 选取所有的空闲单位"
 
 #: gui/manual/intro.txt:77
 msgid "  H – Stop (halt) the currently selected units"
-msgstr ""
+msgstr "H: 停止选取当前单位"
 
 #: gui/manual/intro.txt:78
 msgid "  Y – The unit will go back to work"
-msgstr ""
+msgstr "Y：单位将返回工作"
 
 #: gui/manual/intro.txt:79
 msgid "  U – Unload the garrisoned units of the selected buildings"
-msgstr ""
+msgstr "U：撤出所选建筑内的守卫部队"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from "
 "the selected unit(s)/building(s)"
-msgstr ""
+msgstr "选取单位或者建筑，然后按Ctrl+数字(0到9)，进行编队。(Ctrl+1即编号为1的组队，以此类推。)"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  1 (and so on up to 0) – Select the units/buildings in control group 1 (to "
 "0)"
-msgstr ""
+msgstr "按数字键1 (以此类推，包含0到9): 选择相应编号的编队"
 
 #: gui/manual/intro.txt:82
 msgid ""
@@ -707,10 +707,10 @@ msgstr "Esc — 取消"
 
 #: gui/manual/intro.txt:156
 msgid "  Delete – Delete the selected saved game, ask for confirmation"
-msgstr ""
+msgstr "Delete -- 删除已储存游戏，删除前会提示确认"
 
 #: gui/manual/intro.txt:157
 msgid ""
 "  Shift + Delete – Immediately delete the selected saved game, without "
 "asking for confirmation"
-msgstr ""
+msgstr "Shift + Delete — 直接删除选中的单位/建筑，无需确认"

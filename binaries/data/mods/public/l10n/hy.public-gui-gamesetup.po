@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-10-07 13:38+0000\n"
-"Last-Translator: Gagik Papikyan <gagspapikyan@gmail.com>\n"
+"PO-Revision-Date: 2019-11-06 13:23+0000\n"
+"Last-Translator: Vahe Avagyan <vahe-a@outlook.fr>\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgstr "Ոչ մի"
 
 #: gui/aiconfig/aiconfig.js:12
 msgid "AI will be disabled for this player."
-msgstr ""
+msgstr "ԱԻ-ը կանջատվի այս խաղացողի համար։"
 
 #: gui/gamesetup/gamesetup.js:65
 msgctxt "team"
@@ -39,7 +39,7 @@ msgstr "Պատահական"
 
 #: gui/gamesetup/gamesetup.js:82
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "Պատահական քաղաքակրթության ընտրություն խաղի սկզբում։"
 
 #: gui/gamesetup/gamesetup.js:120
 #, javascript-format
@@ -48,56 +48,56 @@ msgstr "* %(username)s պատրաստ չի։"
 
 #: gui/gamesetup/gamesetup.js:121
 msgid "I'm ready"
-msgstr "Պադրաստ եմ"
+msgstr "Պատրաստ եմ"
 
 #: gui/gamesetup/gamesetup.js:122
 msgid "State that you are ready to play."
-msgstr ""
+msgstr "Հաղորդում, որ դուք պատրաստ եք խաղին։"
 
 #: gui/gamesetup/gamesetup.js:126
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr "* %(username)s պադրաստ է"
+msgstr "* %(username)s պատրաստ է!"
 
 #: gui/gamesetup/gamesetup.js:127
 msgid "Stay ready"
-msgstr ""
+msgstr "Մնացեք պատրաստ։"
 
 #: gui/gamesetup/gamesetup.js:128
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "Մնացեք պատրաստ նույնիսկ խաղի կարգավորումների փոփոխության դեպքում։"
 
 #: gui/gamesetup/gamesetup.js:133
 msgid "I'm not ready!"
-msgstr "Պադրաստ չեմ"
+msgstr "Պատրաստ չեմ!"
 
 #: gui/gamesetup/gamesetup.js:134
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "Հաղորդում, որ դուք պատրաստ չեք խաղին։"
 
 #: gui/gamesetup/gamesetup.js:157
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "Խաղի կարգավորումները փոխվել են։"
 
 #: gui/gamesetup/gamesetup.js:158
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr "%(username)s միացել է"
+msgstr "%(username)s միացավ"
 
 #: gui/gamesetup/gamesetup.js:159
 #, javascript-format
 msgid "%(username)s has left"
-msgstr "%(username)s հեռացել է"
+msgstr "%(username)s հեռացավ"
 
 #: gui/gamesetup/gamesetup.js:160
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s հեռացվեց"
 
 #: gui/gamesetup/gamesetup.js:161
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s արգելափակվեց"
 
 #: gui/gamesetup/gamesetup.js:162
 #, javascript-format
@@ -112,7 +112,7 @@ msgstr "<%(username)s>"
 #: gui/gamesetup/gamesetup.js:173
 msgctxt "map filter"
 msgid "Default"
-msgstr ""
+msgstr "Նախնական"
 
 #: gui/gamesetup/gamesetup.js:174
 msgctxt "map filter"
