@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_archer_ready.xml">
+    <variant>
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/helmets/kush_skull_cap.xml" attachpoint="helmet"/>
@@ -53,7 +53,7 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="biped/base_archer_relax.xml" name="Archer-Relax" frequency="1"/>
     <variant file="biped/attack_ranged_archer_hip.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/death_infantry.xml"/>

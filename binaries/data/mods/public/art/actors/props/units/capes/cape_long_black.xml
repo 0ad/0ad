@@ -26,17 +26,10 @@
     <variant file="biped/base_rhomphaia_shield_relax.xml" name="Swordsman-Rhomphaia-Relax" frequency="1"/>
     <variant file="biped/base_pikeman_ready.xml" name="Pikeman-Shield-Ready" frequency="1"/>
     <variant file="biped/base_pikeman_relax.xml" name="Pikeman-Shield-Relax" frequency="1"/>
-    <variant file="biped/base_skirmisher.xml" name="Skirmisher-Shield-Relax" frequency="1"/>
-    <variant file="biped/base_skirmisher_fast.xml" name="Skirmisher-Shield-Fast" frequency="1"/>
-    <variant file="biped/base_skirmisher_shieldarm.xml" name="Skirmisher-Shieldarm" frequency="1"/>
     <variant file="biped/base_hoplite_fast.xml" name="Hoplite-Fast" frequency="1"/>
     <variant file="biped/base_hoplite.xml" name="Hoplite-Relax" frequency="1"/>
-    <variant file="biped/base_archer_chariot_ready.xml" name="Chariot-Archer-Ready" frequency="1"/>
-    <variant file="biped/base_jav_chariot_ready.xml" name="Chariot-Skirmisher-Ready" frequency="1"/>
     <variant file="biped/base_driver_chariot.xml" name="Chariot-Driver-Celt" frequency="1"/>
     <variant file="biped/base_driver_chariot_celt.xml" name="Chariot-Driver" frequency="1"/>
-    <variant file="biped/base_archer_ready.xml" name="Archer-Ready" frequency="1"/>
-    <variant file="biped/base_archer_relax_fem.xml" name="Archer-Relax" frequency="1"/>
     <variant file="biped/base_citizen_soldier.xml" name="Citizen-Soldier" frequency="1"/>
     <variant file="biped/base_healer.xml" name="Healer" frequency="1"/>
     <variant file="biped/base_healer_male.xml" name="Healer-Male" frequency="1"/>
@@ -66,9 +59,6 @@
     <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
-    <variant file="biped/attack_ranged_javelinist.xml"/>
-    <variant file="biped/attack_ranged_archer.xml"/>
-    <variant file="biped/attack_ranged_archer_hip.xml"/>
     <variant file="biped/gather_tree.xml"/>
     <variant file="biped/gather_grain.xml"/>
     <variant file="biped/gather_fruit.xml"/>

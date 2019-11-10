@@ -10,7 +10,7 @@
         <prop actor="props/units/weapons/arrow_back.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="weapon_bow"/>
         <prop actor="props/units/quiver_hip.xml" attachpoint="sheath_L"/>
-        <prop actor="props/units/capes/cape_med_player.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/cape_med_player_archer_hip.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -75,7 +75,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_archer_ready.xml" name="Archer-Ready" frequency="1"/>
+    <variant file="biped/base_archer_relax.xml" name="Archer-Relax" frequency="1"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_ranged_archer_hip.xml"/>
     <variant file="biped/death_infantry.xml">
