@@ -9,6 +9,7 @@
 # cgand <gand61@gmail.com>, 2017
 # George Lungu <lungugeorge88@gmail.com>, 2018
 # giangy <giancarlo.moi@tiscali.it>, 2014
+# Giuseppe D'Addio <giuseppinoino@virgilio.it>, 2019
 # Luca Errani <luca.errani1@gmail.com>, 2018
 # Martin Falanga <iblaim97@hotmail.it>, 2017
 # Me Lazzi, 2015-2017
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-10-23 13:26+0000\n"
-"PO-Revision-Date: 2019-10-23 15:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-11-10 16:10+0000\n"
+"Last-Translator: Giuseppe D'Addio <giuseppinoino@virgilio.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,11 +39,11 @@ msgstr "Pesce"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
-msgstr ""
+msgstr "Raccogli il pesce per ottenere cibo."
 
 #: simulation/templates/template_gaia_flora.xml:6
 msgid "Chop trees for wood."
-msgstr ""
+msgstr "Taglia alberi per ottenere legno."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
@@ -54,7 +55,7 @@ msgstr "Cespuglio"
 #: simulation/templates/template_gaia_flora_bush_berry.xml:4
 #: simulation/templates/template_gaia_flora_tree_fruit.xml:8
 msgid "Pick fruit for food."
-msgstr ""
+msgstr "Raccoglie frutta per ottenere cibo."
 
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
@@ -70,15 +71,15 @@ msgstr "Miniera di Metallo"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
 msgid "Mine ore for metal."
-msgstr ""
+msgstr "Estrai minerali per ottenere Metallo."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
-msgstr ""
+msgstr "Cava di Pietra"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Quarry rock for stone."
-msgstr ""
+msgstr "Scava la roccia per ottenere pietra."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
@@ -86,7 +87,7 @@ msgstr "Rovine"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr ""
+msgstr "Demolisci le rovine per ottenere pietra."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
@@ -94,7 +95,7 @@ msgstr "Tesoro"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr ""
+msgstr "Prendi tesori e ottieni risorse."
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
@@ -187,7 +188,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_bear.xml:19
 msgid "Brown Bear"
-msgstr ""
+msgstr "Orso Bruno"
 
 #: simulation/templates/gaia/fauna_bear.xml:20
 msgid "Ursus arctos"
@@ -203,7 +204,7 @@ msgstr "Scrofa"
 
 #: simulation/templates/gaia/fauna_camel.xml:8
 msgid "Dromedary"
-msgstr ""
+msgstr "Dromedario"
 
 #: simulation/templates/gaia/fauna_camel.xml:9
 msgid "Camelus dromedarius"
@@ -211,7 +212,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:4
 msgid "Bull"
-msgstr ""
+msgstr "Toro"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:5
 #: simulation/templates/gaia/fauna_cattle_cow.xml:5
@@ -220,11 +221,11 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_cattle_cow.xml:4
 msgid "Cow"
-msgstr ""
+msgstr "Bovino"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:4
 msgid "Sanga Cattle"
-msgstr ""
+msgstr "Bovini Sanga"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:5
 msgid "Bos taurus africanus"
@@ -256,7 +257,7 @@ msgstr "Crocodylus niloticus"
 
 #: simulation/templates/gaia/fauna_deer.xml:8
 msgid "Red Deer"
-msgstr ""
+msgstr "Cervo Rosso"
 
 #: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Cervus elaphus"
@@ -264,7 +265,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_donkey.xml:4
 msgid "Donkey"
-msgstr ""
+msgstr "Asino"
 
 #: simulation/templates/gaia/fauna_donkey.xml:5
 msgid "Equus africanus asinus"
@@ -281,7 +282,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:4
 msgid "African Bush Elephant Calf"
-msgstr ""
+msgstr "Cucciolo d'Elefante dei Cespugli Africani"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:11
 msgid "Asian Elephant"
@@ -544,11 +545,11 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_bamboo_dragon.xml:8
 msgid "Dragon Bamboo"
-msgstr ""
+msgstr "Bambù del Drago"
 
 #: simulation/templates/gaia/flora_tree_banana.xml:4
 msgid "Banana"
-msgstr ""
+msgstr "Banana"
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
@@ -606,7 +607,7 @@ msgstr "Palma da Datteri"
 
 #: simulation/templates/gaia/flora_tree_date_palm_dead.xml:4
 msgid "Dead Palm"
-msgstr ""
+msgstr "Palma morta"
 
 #: simulation/templates/gaia/flora_tree_date_palm_fruit.xml:4
 msgid "Fruiting Date Palm"
@@ -614,12 +615,12 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
 msgid "Dead Deciduous Tree"
-msgstr ""
+msgstr "Albero di Decidua morto"
 
 #: simulation/templates/gaia/flora_tree_elm.xml:4
 #: simulation/templates/gaia/flora_tree_elm_dead.xml:4
 msgid "Elm Tree"
-msgstr ""
+msgstr "Olmo"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
@@ -628,7 +629,7 @@ msgstr "Faggio Europeo"
 
 #: simulation/templates/gaia/flora_tree_euro_birch.xml:4
 msgid "Silver Birch"
-msgstr ""
+msgstr "Betulla Bianca"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
@@ -637,23 +638,23 @@ msgstr "Fico"
 #: simulation/templates/gaia/flora_tree_fir.xml:4
 #: simulation/templates/gaia/flora_tree_fir_winter.xml:4
 msgid "Fir Tree"
-msgstr ""
+msgstr "Albero d'Abete"
 
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
-msgstr ""
+msgstr "Alberello d'Abete"
 
 #: simulation/templates/gaia/flora_tree_juniper_prickly.xml:4
 msgid "Prickly Juniper"
-msgstr ""
+msgstr "Ginepro Spinoso"
 
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
-msgstr ""
+msgstr "Mangrovia"
 
 #: simulation/templates/gaia/flora_tree_maple.xml:4
 msgid "Maple"
-msgstr ""
+msgstr "Acero"
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -669,7 +670,7 @@ msgstr "Quercia"
 
 #: simulation/templates/gaia/flora_tree_oak_holly.xml:4
 msgid "Holly Oak"
-msgstr ""
+msgstr "Quercia d'Agrifoglio"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak Tree"
@@ -681,15 +682,15 @@ msgstr "Ulivo"
 
 #: simulation/templates/gaia/flora_tree_palm_areca.xml:4
 msgid "Areca Palm"
-msgstr ""
+msgstr "Palma Areca"
 
 #: simulation/templates/gaia/flora_tree_palm_doum.xml:4
 msgid "Doum Palm"
-msgstr ""
+msgstr "Palma Doum"
 
 #: simulation/templates/gaia/flora_tree_palm_palmyra.xml:4
 msgid "Palmyra Palm"
-msgstr ""
+msgstr "Palma di Palmyra"
 
 #: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
 msgid "Palm"
@@ -707,12 +708,12 @@ msgstr "Pino"
 #: simulation/templates/gaia/flora_tree_pine_black.xml:4
 #: simulation/templates/gaia/flora_tree_pine_black_dead.xml:4
 msgid "Black Pine"
-msgstr ""
+msgstr "Pino Nero"
 
 #: simulation/templates/gaia/flora_tree_pine_maritime.xml:4
 #: simulation/templates/gaia/flora_tree_pine_maritime_short.xml:4
 msgid "Maritime Pine"
-msgstr ""
+msgstr "Pino Marittimo"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
@@ -728,7 +729,7 @@ msgstr "Palma da Datteri Senegalese"
 
 #: simulation/templates/gaia/flora_tree_strangler.xml:8
 msgid "Strangler Fig"
-msgstr ""
+msgstr "Fico Selvatico"
 
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
@@ -736,13 +737,13 @@ msgstr "Albero Tamerice"
 
 #: simulation/templates/gaia/flora_tree_teak.xml:8
 msgid "Teak"
-msgstr ""
+msgstr "Teak"
 
 #: simulation/templates/gaia/flora_tree_temperate.xml:4
 #: simulation/templates/gaia/flora_tree_temperate_autumn.xml:4
 #: simulation/templates/gaia/flora_tree_temperate_winter.xml:4
 msgid "Deciduous Tree"
-msgstr ""
+msgstr "Albero Decidua"
 
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona Tree"
@@ -750,7 +751,7 @@ msgstr "Cedro"
 
 #: simulation/templates/gaia/flora_tree_tropic_rainforest.xml:4
 msgid "Rainforest Tree"
-msgstr ""
+msgstr "Albero da Foresta Pluviale"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
@@ -1003,11 +1004,11 @@ msgstr "Spia"
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Requires at least 16 Melee Infantry."
-msgstr ""
+msgstr "Richiede almeno 16 fanti da mischia."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
-msgstr ""
+msgstr "Anti-Cavalleria"
 
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
@@ -1015,7 +1016,7 @@ msgstr "Linea di battaglia"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
-msgstr ""
+msgstr "Richiede almeno 4 soldati o macchine d'assedio."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1031,7 +1032,7 @@ msgstr "Colonna aperta"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr ""
+msgstr "Richiede almeno 8 soldati o macchine d'assedio."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1051,7 +1052,7 @@ msgstr "Nessuno"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Requires at least 10 Infantry Hoplites."
-msgstr ""
+msgstr "Richiede almeno 10 opliti di fanteria."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1063,7 +1064,7 @@ msgstr "Sparpagliarsi"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Requires a Ranged Soldier."
-msgstr ""
+msgstr "Richiede un soldato da tiro."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -1071,7 +1072,7 @@ msgstr "Schermaglia"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Requires at least 16 Infantry Pikemen."
-msgstr ""
+msgstr "Richiede almeno 16 picchieri di fanteria."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1083,7 +1084,7 @@ msgstr "Testuggine"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Requires at least 6 Cavalry."
-msgstr ""
+msgstr "Richiede almeno 6 unità a cavallo."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

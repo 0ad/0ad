@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-11-06 13:23+0000\n"
+"PO-Revision-Date: 2019-11-09 21:16+0000\n"
 "Last-Translator: Vahe Avagyan <vahe-a@outlook.fr>\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
@@ -117,34 +117,34 @@ msgstr "Նախնական"
 #: gui/gamesetup/gamesetup.js:174
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "Բոլոր քարտեզները՝ բացի ծովային և ցուցադրական քարտեզների։"
 
 #: gui/gamesetup/gamesetup.js:180
 msgid "Naval Maps"
-msgstr ""
+msgstr "Ծովային քարտեզներ"
 
 #: gui/gamesetup/gamesetup.js:181
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr ""
+msgstr "Քարտեզներ, որոնցում հակառակորդին հասնելու համար անհրաժեշտ են նավեր։"
 
 #: gui/gamesetup/gamesetup.js:186
 msgid "Demo Maps"
-msgstr ""
+msgstr "Ցուցադրական քարտեզներ"
 
 #: gui/gamesetup/gamesetup.js:187
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr ""
+msgstr "Այս քարտեզները խաղացվող չեն, նախատեսված են միայն ցուցադրության համար։"
 
 #: gui/gamesetup/gamesetup.js:192
 msgid "New Maps"
-msgstr "Թազա քարտեզներ"
+msgstr "Նոր քարտեզներ"
 
 #: gui/gamesetup/gamesetup.js:193
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr ""
+msgstr "Քարտեզներ, որոնք ավելացվել են խաղի այս տարբերակի հետ։"
 
 #: gui/gamesetup/gamesetup.js:198
 msgid "Trigger Maps"
@@ -153,7 +153,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:199
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr ""
+msgstr "Քարտեզներ, որոնցում կան նախորոշված իրադարձություններ, և որոնցում կարող են հայտնվել հակառակորդ միավորներ։"
 
 #: gui/gamesetup/gamesetup.js:204
 msgid "All Maps"
@@ -162,7 +162,7 @@ msgstr "Բոլոր քարտեզները"
 #: gui/gamesetup/gamesetup.js:205
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
-msgstr ""
+msgstr "Ընտրված տեսակի բոլոր քարտեզները։"
 
 #: gui/gamesetup/gamesetup.js:404
 msgctxt "Match settings tab name"
@@ -177,126 +177,126 @@ msgstr "Խաղացող"
 #: gui/gamesetup/gamesetup.js:429
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Խաղի տեսակ"
 
 #: gui/gamesetup/gamesetup.js:469
 msgid "Map Type"
-msgstr ""
+msgstr "Քարտեզի տեսակ"
 
 #: gui/gamesetup/gamesetup.js:470
 msgid "Select a map type."
-msgstr ""
+msgstr "Ընտրեք քարտեզի տեսակը։"
 
 #: gui/gamesetup/gamesetup.js:493
 msgid "Map Filter"
-msgstr ""
+msgstr "Քարտեզի տեսակավորում"
 
 #: gui/gamesetup/gamesetup.js:494
 msgid "Select a map filter."
-msgstr ""
+msgstr "Ընտրեք քարտեզի տեսակավորումը։"
 
 #: gui/gamesetup/gamesetup.js:509
 msgid "Select Map"
-msgstr ""
+msgstr "Քարտեզի ընտրություն"
 
 #: gui/gamesetup/gamesetup.js:510
 msgid "Select a map to play on."
-msgstr ""
+msgstr "Ընտրեք խաղի քարտեզը։"
 
 #: gui/gamesetup/gamesetup.js:524
 msgid "Map Size"
-msgstr "Քարտեզի Չափը"
+msgstr "Քարտեզի չափ"
 
 #: gui/gamesetup/gamesetup.js:525
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr ""
+msgstr "Ընտրեք քարտեզի չափը: (Մեծ քարտեզները կարող են նվազեցնել արագագործությունը։)"
 
 #: gui/gamesetup/gamesetup.js:539
 msgid "Biome"
-msgstr ""
+msgstr "Բիոմ"
 
 #: gui/gamesetup/gamesetup.js:540
 msgid "Select the flora and fauna."
-msgstr ""
+msgstr "Ընտրեք ֆլորան և ֆաունան։"
 
 #: gui/gamesetup/gamesetup.js:555
 msgid "Number of Players"
-msgstr ""
+msgstr "Խաղացողների քանակ"
 
 #: gui/gamesetup/gamesetup.js:556
 msgid "Select number of players."
-msgstr ""
+msgstr "Ընտրեք խաղացողների քանակը։"
 
 #: gui/gamesetup/gamesetup.js:576
 msgid "Population Cap"
-msgstr ""
+msgstr "Բնակչության սահմանաչափ"
 
 #: gui/gamesetup/gamesetup.js:583
 msgid "Select population limit."
-msgstr ""
+msgstr "Ընտրեք բնակչության սահմանաչափը։"
 
 #: gui/gamesetup/gamesetup.js:586
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr ""
+msgstr "Զգուշացում․ բոլոր %(players)s խաղացողների կողմից %(popCap)s բնակչության հասնելու դեպքում կարող են լինել արագագործության խնդիրներ։"
 
 #: gui/gamesetup/gamesetup.js:604
 msgid "Starting Resources"
-msgstr ""
+msgstr "Սկզբնական ռեսուրսներ"
 
 #: gui/gamesetup/gamesetup.js:607
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr ""
+msgstr "Յուրաքանչյուր ռեսուրսի նախնական քանակը՝ %(resources)s։"
 
 #: gui/gamesetup/gamesetup.js:610
 msgid "Select the game's starting resources."
-msgstr ""
+msgstr "Ընտրեք խաղի ռեսուրսների սկզբնական քանակը։"
 
 #: gui/gamesetup/gamesetup.js:625
 msgid "Ceasefire"
-msgstr ""
+msgstr "Հրադադար"
 
 #: gui/gamesetup/gamesetup.js:626
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "Սահմանեք ժամանակ, որի ընդացքում անհնար են հարձակումները։"
 
 #: gui/gamesetup/gamesetup.js:639
 msgid "Relic Count"
-msgstr ""
+msgstr "Մասունքների քանակ"
 
 #: gui/gamesetup/gamesetup.js:640
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr ""
+msgstr "Քարտեզում հայտնվող մասունքների ընդհանուր քանակը։ Մասունքային հաղթանակն առավել իրատեսական է միայն մեկ կամ երկու մասունքների դեպքում։ Ավելի մեծ քանակության դեպքում մասունքների գրավումը կարևոր է աուրաների բոնուս ստանալու համար։"
 
 #: gui/gamesetup/gamesetup.js:654
 msgid "Relic Duration"
-msgstr ""
+msgstr "Մասունքային հաղթանակի ժամանակ։"
 
 #: gui/gamesetup/gamesetup.js:655
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr ""
+msgstr "Խաղացողի կողմից մասունքային հաղթանակի հասնելուն մնացած րոպեները։"
 
 #: gui/gamesetup/gamesetup.js:669
 msgid "Wonder Duration"
-msgstr ""
+msgstr "Հրաշալիքային հաղթանակի ժամանակ։"
 
 #: gui/gamesetup/gamesetup.js:670
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr ""
+msgstr "Խաղացողի կողմից հրաշալիքային հաղթանակի հասնելուն մնացած րոպեները։"
 
 #: gui/gamesetup/gamesetup.js:684
 msgid "Game Speed"
-msgstr "Խաղի արագության"
+msgstr "Խաղի արագություն"
 
 #: gui/gamesetup/gamesetup.js:685
 msgid "Select game speed."
-msgstr ""
+msgstr "Ընտրեք խաղի արագությունը։"
 
 #: gui/gamesetup/gamesetup.js:699
 msgid "Difficulty"
@@ -304,73 +304,73 @@ msgstr "Դժվարություն"
 
 #: gui/gamesetup/gamesetup.js:701
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Ընտրեք այս խաղի դժվարությունը։"
 
 #: gui/gamesetup/gamesetup.js:721
 msgid "Select player."
-msgstr ""
+msgstr "Ընտրեք խաղացող։"
 
 #: gui/gamesetup/gamesetup.js:756
 msgid "Select player's team."
-msgstr ""
+msgstr "Ընտրեք խաղացողի թիմը։"
 
 #: gui/gamesetup/gamesetup.js:768
 msgid "Choose the civilization for this player."
-msgstr ""
+msgstr "Ընտրեք այս խաղացողի քաղաքակրթությունը։"
 
 #: gui/gamesetup/gamesetup.js:782
 msgid "Pick a color."
-msgstr "Գույն ընտրեք։"
+msgstr "Ընտրեք գույն։"
 
 #: gui/gamesetup/gamesetup.js:836
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Հերոսների կայազորում"
 
 #: gui/gamesetup/gamesetup.js:837
 msgid "Toggle whether heroes can be garrisoned."
-msgstr ""
+msgstr "Փոփոխեք հերոսների կայազորման հնարավորությունը։"
 
 #: gui/gamesetup/gamesetup.js:849
 msgid "Nomad"
-msgstr ""
+msgstr "Քոչվոր"
 
 #: gui/gamesetup/gamesetup.js:850
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "Քոչվոր ռեժիմում խաղացողներն սկսում են միայն մի քանի միավորներով և ստիպված են գտնել հարմար վայր՝ իրենց քաղաքը կառուցելու համար։ Խորհուրդ է տրվում կիրառել հրադադար։"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:863
 msgid "Revealed Map"
-msgstr ""
+msgstr "Բացահայտ քարտեզ"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:866
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Փոփոխեք քարտեզի բացահայտ լինելը (տեսնել ամեն ինչ)։"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:882
 msgid "Explored Map"
-msgstr ""
+msgstr "Հետախուզված քարտեզ"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/gamesetup.js:885
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "Փոփոխեք քարտեզի հետախուզված լինելը (տեսնել նախնական քարտեզը)։"
 
 #: gui/gamesetup/gamesetup.js:896
 msgid "Disable Treasures"
-msgstr ""
+msgstr "Արգելել գանձերը"
 
 #: gui/gamesetup/gamesetup.js:897
 msgid "Do not add treasures to the map."
-msgstr ""
+msgstr "Չավելացնել գանձեր քարտեզում։"
 
 #: gui/gamesetup/gamesetup.js:908
 msgid "Disable Spies"
@@ -378,108 +378,108 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:909
 msgid "Disable spies during the game."
-msgstr ""
+msgstr "Թույլ չտալ լրտեսներ խաղի ընթացքում։"
 
 #: gui/gamesetup/gamesetup.js:920
 msgid "Teams Locked"
-msgstr ""
+msgstr "Հաստատուն թմեր"
 
 #: gui/gamesetup/gamesetup.js:921
 msgid "Toggle locked teams."
-msgstr ""
+msgstr "Փոփոխել թմերի հաստատունությունը։"
 
 #: gui/gamesetup/gamesetup.js:935
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Վերջին մարտիկ"
 
 #: gui/gamesetup/gamesetup.js:936
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr ""
+msgstr "Փոփոխել հաղթանակի շնորհումը վերջին մնացած խաղացողին կամ դաշնությանը։"
 
 #: gui/gamesetup/gamesetup.js:949
 msgid "Cheats"
-msgstr ""
+msgstr "Չիտեր"
 
 #: gui/gamesetup/gamesetup.js:950
 msgid "Toggle the usability of cheats."
-msgstr ""
+msgstr "Փոփոխել չիտերի օգտագործման հնարավորությունը։"
 
 #: gui/gamesetup/gamesetup.js:963
 msgid "Rated Game"
-msgstr ""
+msgstr "Վարկանիշային խաղ"
 
 #: gui/gamesetup/gamesetup.js:964
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr ""
+msgstr "Փոփոխել խաղի ազդեցությունը վարկանիշային աղյուսակի վրա։"
 
 #: gui/gamesetup/gamesetup.js:997
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr ""
+msgstr "Սեղմեք %(hotkey)s՝ խաղացողների անունները կամ կարգավորումներն ավտոմատ կերպով լրացնելու համար։"
 
 #: gui/gamesetup/gamesetup.js:1045
 msgid "Back"
-msgstr "Գաղտնաբառ"
+msgstr "Վերադարձ"
 
 #: gui/gamesetup/gamesetup.js:1048
 msgid "Return to the lobby."
-msgstr ""
+msgstr "Վերադառնալ սենյակ։"
 
 #: gui/gamesetup/gamesetup.js:1049
 msgid "Return to the main menu."
-msgstr ""
+msgstr "Վերադառնալ հիմնական մենյու։"
 
 #: gui/gamesetup/gamesetup.js:1077
 msgid "Start Game!"
-msgstr ""
+msgstr "Սկսել խաղը!"
 
 #: gui/gamesetup/gamesetup.js:1093
 msgid "Start a new game with the current settings."
-msgstr ""
+msgstr "Սկսել նոր խաղ առկա կարգավորումներով։"
 
 #: gui/gamesetup/gamesetup.js:1094
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr ""
+msgstr "Սկսել նոր խաղ առկա կարգավորումներով (արգելափակված մինչև բոլոր խաղացողների պատրաստությունը)։"
 
 #: gui/gamesetup/gamesetup.js:1106
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s․ Ցուցադրել պատմությունը / Տեխնոլոգիական ծառ\nՎերջին բացվածը կվերաբացվի սեղմելու դեպքում։"
 
 #: gui/gamesetup/gamesetup.js:1118
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr ""
+msgstr "Վերականգնել ցանկացած ընտրված քաղաքակրթություն (պատահական)։"
 
 #: gui/gamesetup/gamesetup.js:1128
 msgid "Reset all teams to the default."
-msgstr ""
+msgstr "Վերականգնել բոլոր թմերը (պատահական)։"
 
 #: gui/gamesetup/gamesetup.js:1185
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Կարգաբերեք ԱԻ-ը․ %(description)s"
 
 #: gui/gamesetup/gamesetup.js:1498
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Փոփոխեք կարգավորումների %(name)s ներդիրը։"
 
 #: gui/gamesetup/gamesetup.js:1499
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Օգտագործեք %(hotkey)s՝ կարգավորումների ներդիրն իջեցնելու համար։"
 
 #: gui/gamesetup/gamesetup.js:1500
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Օգտագործեք %(hotkey)s՝ կարգավորումների ներդիրը բարձրացնելու համար։"
 
 #: gui/gamesetup/gamesetup.js:1834
 msgctxt "map selection"
@@ -488,7 +488,7 @@ msgstr "Պատահական"
 
 #: gui/gamesetup/gamesetup.js:1836
 msgid "Pick any of the given maps at random."
-msgstr ""
+msgstr "Ընտրել տրված քարտեզներից պատահական որևէ մեկը։"
 
 #: gui/gamesetup/gamesetup.js:1868
 msgctxt "biome"
@@ -497,13 +497,13 @@ msgstr "Պատահական"
 
 #: gui/gamesetup/gamesetup.js:1869
 msgid "Pick a biome at random."
-msgstr ""
+msgstr "Ընտրել պատահական բիոմ։"
 
 #: gui/gamesetup/gamesetup.js:2210
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr "%(setting)s:"
+msgstr "%(setting)s."
 
 #: gui/gamesetup/gamesetup.js:2215
 msgctxt "settings value"
@@ -531,11 +531,11 @@ msgstr "%(playerName)s %(romanNumber)s"
 #: gui/gamesetup/gamesetup.js:2498
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr ""
+msgstr "ԱԻ․ %(ai)s"
 
 #: gui/gamesetup/gamesetup.js:2506
 msgid "Unassigned"
-msgstr ""
+msgstr "Չնշանակված"
 
 #: gui/gamesetup/gamesetup.js:2577
 #, javascript-format
@@ -558,7 +558,7 @@ msgstr "\\[%(time)s]"
 
 #: gui/gamesetup/gamesetup.js:2625
 msgid "HH:mm"
-msgstr "ՀՀ։մմ"
+msgstr "ԺԺ։րր"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:55
 #, javascript-format
@@ -567,12 +567,12 @@ msgstr "%(name)sի խաղը"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:114
 msgid "Please enter a valid server name."
-msgstr ""
+msgstr "Խնդրում ենք ներմուծել սերվերի վավեր անվանում։"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:121
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr ""
+msgstr "Սերվերի պորտի համարը պետք է լինի %(min)s-ի և %(max)s-ի միջև։"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:138
 msgid "Connecting to server..."
@@ -581,28 +581,28 @@ msgstr "Միացում սերվերին․․․"
 #: gui/gamesetup_mp/gamesetup_mp.js:157
 #, javascript-format
 msgid "Net message: %(message)s"
-msgstr ""
+msgstr "Ցանցային հաղորդագրություն․ %(message)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:221
 msgid "Registering with server..."
-msgstr ""
+msgstr "Գրանցում սերվերում․․․"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:227
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "Խաղն արդեն սկսվել է, միացում․․․"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:298
 msgid "Game name already in use."
-msgstr ""
+msgstr "Խաղի անվանումն արդեն օգտագործվում է։"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:308
 msgid "Failed to host via STUN."
-msgstr ""
+msgstr "STUN-ի օգնությամբ ստեղծումը ձախողվեց։"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:322
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr ""
+msgstr "Անհնար է ստեղծել խաղը․ %(message)s։"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:323 gui/gamesetup_mp/gamesetup_mp.js:352
 msgid "Error"
@@ -611,7 +611,7 @@ msgstr "Սխալ"
 #: gui/gamesetup_mp/gamesetup_mp.js:351
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr ""
+msgstr "Անհնար է միանալ խաղին․ %(message)s:"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:373
 #, javascript-format
@@ -628,28 +628,28 @@ msgstr "• %(tiptext)s"
 #: gui/loading/loading.js:51
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "Բեռնվում է “%(map)s”-ը"
 
 #: gui/loading/loading.js:55
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "Գեներացվում է “1%(map)s”-ը"
 
 #: gui/aiconfig/aiconfig.xml:(caption):14
 msgid "AI Configuration"
-msgstr ""
+msgstr "ԱԻ-ի կարգաբերում"
 
 #: gui/aiconfig/aiconfig.xml:(caption):19
 msgid "AI Player:"
-msgstr ""
+msgstr "ԱԻ խաղացող․"
 
 #: gui/aiconfig/aiconfig.xml:(caption):28
 msgid "AI Difficulty:"
-msgstr ""
+msgstr "ԱԻ-ի բարդություն․"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "ԱԻ-ի պահվածք․"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):127
@@ -658,19 +658,19 @@ msgstr "Չեղարկել"
 
 #: gui/aiconfig/aiconfig.xml:(caption):52
 msgid "OK"
-msgstr "Եղավ"
+msgstr "Լավ"
 
 #: gui/gamesetup/gamesetup.xml:(caption):12
 msgid "Match Setup"
-msgstr ""
+msgstr "Խաղի կարգաբերում"
 
 #: gui/gamesetup/gamesetup.xml:(caption):18
 msgid "Loading"
-msgstr ""
+msgstr "Բեռնում"
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "Բեռնվում են քարտեզի տվյալները։ Խնդրում ենք սպասել․․․"
 
 #: gui/gamesetup/gamesetup.xml:(caption):42
 msgid "Player Name"
@@ -682,7 +682,7 @@ msgstr "Գույն"
 
 #: gui/gamesetup/gamesetup.xml:(caption):50
 msgid "Player Placement"
-msgstr ""
+msgstr "Խաղացողի տեղաբաշխում"
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Civilization"
@@ -690,11 +690,11 @@ msgstr "Քաղաքակրթություն"
 
 #: gui/gamesetup/gamesetup.xml:(caption):61
 msgid "Team"
-msgstr ""
+msgstr "Թիմ"
 
 #: gui/gamesetup/gamesetup.xml:(caption):90
 msgid "Show this message in the future."
-msgstr "Ցուցադրել այս հաղորդագրությունը ավելի ուշ։"
+msgstr "Ցուցադրել այս հաղորդագրությունն ապագայում։"
 
 #: gui/gamesetup/gamesetup.xml:(caption):175
 msgid "Send"
@@ -702,11 +702,11 @@ msgstr "Ուղարկել"
 
 #: gui/gamesetup/gamesetup.xml:(caption):192
 msgid "Cheats enabled."
-msgstr ""
+msgstr "Չիտերը թույլատրվում են։"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):161
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Ցուցադրել ցանցային սենյակը խոսակցական պատուհանում։"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
@@ -714,33 +714,33 @@ msgstr "Ցանցային խաղ"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
-msgstr ""
+msgstr "Միացում գոյություն ունեցող խաղի։"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr "Խաղացողի Անունը․"
+msgstr "Խաղացողի անունը․"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
-msgstr ""
+msgstr "Սերվերի անվանում կամ IP․"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):48
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):95
 msgid "Server Port:"
-msgstr ""
+msgstr "Սերվերի պորտ․"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
 msgid "Set up your server to host."
-msgstr ""
+msgstr "Կարգաբերեք ձեր սերվերը խաղի ստեղծման համար։"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr "Սերվերի Անունը․"
+msgstr "Սերվերի անվանումը․"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"
-msgstr ""
+msgstr "Օգտագործել STUN firewall-ների շրջանցման համար։"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
 msgid "Continue"
@@ -749,42 +749,42 @@ msgstr "Շարունակել"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
-msgstr ""
+msgstr "Թողեք դատարկ՝ նախնական պորտն օգտագործելու համար։"
 
 #: gui/text/quotes.txt:1
 msgid ""
 "“Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.” \\n— Aeschylus (“Agamemnon”, 176–183)"
-msgstr ""
+msgstr "“Զևսը \\[...] հայտարարեց իր օրենքը․ ջանքն է ծնում իմաստություն։ \\[...] Այսպիսով մարդիկ ակամա վարժվում են զսպվածության։ \\[...] Նման տեսարանը դաժան է և դժվար։” \\n— Էսքիլես (“Ագամեմնոն”, 176–183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "“She \\[Helen] brought to Ilium her dowry, destruction.” \\n— Aeschylus "
 "(“Agamemnon”, 406)"
-msgstr ""
+msgstr "“Նա \\[Հեղինեն] իր օժիտի հետ կործանում բերեց Տրոյային։” \\n— Էսքիլես (“Ագամեմնոն”, 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
 "“In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.” \\n— Aeschylus (“Prometheus Bound”, 224–225)"
-msgstr ""
+msgstr "“Թվում է, թե բոլոր բռնապետներին է բնորոշ ընկերներից ոչ մեկին չվստահելու հիվանդությունը։” \\n— Էսքիլես (“Պրոմեթևսը շղթայված”, 224–225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
 "“Time in the long run teaches all things.” \\n— Aeschylus (“Prometheus "
 "Bound”, 981)"
-msgstr ""
+msgstr "“Ժամանակն է ի վերջո սովորեցնում ամեն ինչ։” \\n— Էսքիլես (“Պրոմեթևսը շղթայված”, 981)"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "“His resolve is not to seem, but to be, the best.” \\n— Aeschylus (“Seven "
 "Against Thebes”, 592)"
-msgstr ""
+msgstr "“Նրա վճռականությունը ոչ թե թվացյալ է, այլ իրական։” \\n— Էսքիլես (“Յոթն ընդդեմ Թեբեի”, 592)"
 
 #: gui/text/quotes.txt:6
 msgid "“A prosperous fool is a grievous burden.” \\n— Aeschylus (fragment 383)"
-msgstr ""
+msgstr "“Հաջողակ հիմարը ողբալի բեռ է։” \\n— Էսքիլես (կտոր 383)"
 
 #: gui/text/quotes.txt:7
 msgid ""
