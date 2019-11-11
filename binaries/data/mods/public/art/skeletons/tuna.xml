@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="TunaArmature" title="TunaArmature">
+    <bone name="tuna_spine">
+      <bone name="tuna_fin_top_front" />
+      <bone name="tuna_fin_top_middle" />
+      <bone name="tuna_fin_top_back" />
+      <bone name="tuna_neck">
+        <bone name="tuna_head" />
+      </bone>
+      <bone name="tuna_fin_01_left">
+        <bone name="tuna_fin_02_left" />
+      </bone>
+      <bone name="tuna_fin_01_right">
+        <bone name="tuna_fin_02_right" />
+      </bone>
+    </bone>
+    <bone name="tuna_spine_02">
+      <bone name="tuna_spine_03">
+        <bone name="tuna_tail_01">
+          <bone name="tuna_tail_02">
+            <bone name="tuna_tail_tip" />
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="tuna" />
+  </standard_skeleton>
+  <skeleton target="TunaArmature" title="TunaArmature">
+    <identifier>
+      <root>tuna_spine</root>
+    </identifier>
+    <bone name="tuna_spine">
+      <target>tuna_spine</target>
+      <bone name="tuna_fin_top_front">
+        <target>tuna_fin_top_front</target>
+      </bone>
+      <bone name="tuna_fin_top_middle">
+        <target>tuna_fin_top_middle</target>
+      </bone>
+      <bone name="tuna_fin_top_back">
+        <target>tuna_fin_top_back</target>
+      </bone>
+      <bone name="tuna_neck">
+        <target>tuna_neck</target>
+        <bone name="tuna_head">
+          <target>tuna_head</target>
+        </bone>
+      </bone>
+      <bone name="tuna_fin_01_left">
+        <target>tuna_fin_01_left</target>
+        <bone name="tuna_fin_02_left">
+          <target>tuna_fin_02_left</target>
+        </bone>
+      </bone>
+      <bone name="tuna_fin_01_right">
+        <target>tuna_fin_01_right</target>
+        <bone name="tuna_fin_02_right">
+          <target>tuna_fin_02_right</target>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="tuna_spine_02">
+      <target>tuna_spine_02</target>
+      <bone name="tuna_spine_03">
+        <target>tuna_spine_03</target>
+        <bone name="tuna_tail_01">
+          <target>tuna_tail_01</target>
+          <bone name="tuna_tail_02">
+            <target>tuna_tail_02</target>
+            <bone name="tuna_tail_tip">
+              <target>tuna_tail_tip</target>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="tuna">
+      <target>tuna</target>
+    </bone>
+  </skeleton>
+</skeletons>

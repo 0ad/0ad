@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="fish_shoal_armature" title="fish shoal armature">
+    <bone name="fish_shoal_base">
+      <bone name="fish_shoal_01" />
+      <bone name="fish_shoal_02" />
+      <bone name="fish_shoal_03" />
+      <bone name="fish_shoal_04" />
+      <bone name="fish_shoal_05" />
+      <bone name="fish_shoal_06" />
+      <bone name="fish_shoal_07" />
+      <bone name="fish_shoal_08" />
+      <bone name="fish_shoal_09" />
+      <bone name="fish_shoal_10" />
+      <bone name="fish_shoal_11" />
+      <bone name="fish_shoal_12" />
+      <bone name="fish_shoal_13" />
+      <bone name="fish_shoal_14" />
+      <bone name="fish_shoal_15" />
+      <bone name="fish_shoal_16" />
+      <bone name="fish_shoal_17" />
+      <bone name="fish_shoal_18" />
+      <bone name="fish_shoal_19" />
+      <bone name="fish_shoal_20" />
+    </bone>
+    <bone name="fish_shoal" />
+  </standard_skeleton>
+  <skeleton target="fish_shoal_armature" title="fish shoal armature">
+    <identifier>
+      <root>fish_shoal_base</root>
+    </identifier>
+    <bone name="fish_shoal_base">
+      <target>fish_shoal_base</target>
+      <bone name="fish_shoal_01">
+        <target>fish_shoal_01</target>
+      </bone>
+      <bone name="fish_shoal_02">
+        <target>fish_shoal_02</target>
+      </bone>
+      <bone name="fish_shoal_03">
+        <target>fish_shoal_03</target>
+      </bone>
+      <bone name="fish_shoal_04">
+        <target>fish_shoal_04</target>
+      </bone>
+      <bone name="fish_shoal_05">
+        <target>fish_shoal_05</target>
+      </bone>
+      <bone name="fish_shoal_06">
+        <target>fish_shoal_06</target>
+      </bone>
+      <bone name="fish_shoal_07">
+        <target>fish_shoal_07</target>
+      </bone>
+      <bone name="fish_shoal_08">
+        <target>fish_shoal_08</target>
+      </bone>
+      <bone name="fish_shoal_09">
+        <target>fish_shoal_09</target>
+      </bone>
+      <bone name="fish_shoal_10">
+        <target>fish_shoal_10</target>
+      </bone>
+      <bone name="fish_shoal_11">
+        <target>fish_shoal_11</target>
+      </bone>
+      <bone name="fish_shoal_12">
+        <target>fish_shoal_12</target>
+      </bone>
+      <bone name="fish_shoal_13">
+        <target>fish_shoal_13</target>
+      </bone>
+      <bone name="fish_shoal_14">
+        <target>fish_shoal_14</target>
+      </bone>
+      <bone name="fish_shoal_15">
+        <target>fish_shoal_15</target>
+      </bone>
+      <bone name="fish_shoal_16">
+        <target>fish_shoal_16</target>
+      </bone>
+      <bone name="fish_shoal_17">
+        <target>fish_shoal_17</target>
+      </bone>
+      <bone name="fish_shoal_18">
+        <target>fish_shoal_18</target>
+      </bone>
+      <bone name="fish_shoal_19">
+        <target>fish_shoal_19</target>
+      </bone>
+      <bone name="fish_shoal_20">
+        <target>fish_shoal_20</target>
+      </bone>
+    </bone>
+    <bone name="fish_shoal">
+      <target>fish_shoal</target>
+    </bone>
+  </skeleton>
+</skeletons>

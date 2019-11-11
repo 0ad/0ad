@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="fish mesh">
+      <animations>
+        <animation file="others/fish_shoal_idle_01.dae" name="Idle" speed="100"/>
+      </animations>
+      <mesh>skeletal/animal_fish_shoal.dae</mesh>
+      <props>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_01"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_02"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_03"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_04"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_05"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_06"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_07"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_08"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_09"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_10"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_11"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_12"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_13"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_14"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_15"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_16"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_17"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_18"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_19"/>
+        <prop actor="fauna/tuna.xml" attachpoint="fish_20"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="generic texture">
+      <textures>
+        <texture file="null_white.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>default.xml</material>
+</actor>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="fish mesh">
+      <animations>
+        <animation file="others/tuna_idle_01.dae" name="Idle" speed="100"/>
+      </animations>
+      <mesh>skeletal/animal_tuna.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="generic texture">
+      <textures>
+        <texture file="skeletal/animal_tuna.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_spec.xml</material>
+</actor>
