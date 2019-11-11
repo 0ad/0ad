@@ -39,6 +39,11 @@
       special/formations/testudo
     </Formations>
   </Identity>
+  <Sound>
+    <SoundGroups>
+      <attack_melee>attack/weapon/spear_attack.xml</attack_melee>
+    </SoundGroups>
+  </Sound>
   <UnitMotion>
     <WalkSpeed op="mul">1.3</WalkSpeed>
   </UnitMotion>

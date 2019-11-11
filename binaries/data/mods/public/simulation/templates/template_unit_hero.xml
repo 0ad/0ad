@@ -62,9 +62,9 @@
       <order_gather>voice/{lang}/civ/civ_{phenotype}_gather.xml</order_gather>
       <order_repair>voice/{lang}/civ/civ_{phenotype}_repair.xml</order_repair>
       <order_garrison>voice/{lang}/civ/civ_{phenotype}_garrison.xml</order_garrison>
-      <attack_melee>attack/weapon/sword.xml</attack_melee>
-      <attack_impact_ranged>attack/impact/arrow_metal.xml</attack_impact_ranged>
-      <attack_ranged>attack/weapon/arrowfly.xml</attack_ranged>
+      <attack_melee>attack/weapon/sword_attack.xml</attack_melee>
+      <attack_impact_ranged>attack/impact/arrow_impact.xml</attack_impact_ranged>
+      <attack_ranged>attack/weapon/bow_attack.xml</attack_ranged>
       <walk>actor/human/movement/walk.xml</walk>
       <run>actor/human/movement/walk.xml</run>
       <death>actor/human/death/{phenotype}_death.xml</death>

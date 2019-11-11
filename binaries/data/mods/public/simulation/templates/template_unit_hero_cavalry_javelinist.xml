@@ -15,7 +15,7 @@
       <Projectile>
         <Speed>62.5</Speed>
         <Spread>0.5</Spread>
-        <Gravity>9.81</Gravity>
+        <Gravity>39.81</Gravity>
         <LaunchPoint y="3"/>
       </Projectile>
       <PreferredClasses datatype="tokens">Human</PreferredClasses>
@@ -35,6 +35,12 @@
     </Formations>
     <GenericName>Hero Cavalry Skirmisher</GenericName>
   </Identity>
+  <Sound>
+    <SoundGroups>
+      <attack_ranged>attack/weapon/javelin_attack.xml</attack_ranged>
+      <attack_impact_ranged>attack/impact/javelin_impact.xml</attack_impact_ranged>
+    </SoundGroups>
+  </Sound>
   <UnitMotion>
     <WalkSpeed op="mul">1.05</WalkSpeed>
   </UnitMotion>

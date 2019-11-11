@@ -35,4 +35,9 @@
   <UnitMotion>
     <WalkSpeed op="mul">0.95</WalkSpeed>
   </UnitMotion>
+  <Sound>
+    <SoundGroups>
+      <attack_melee>attack/weapon/spear_attack.xml</attack_melee>
+    </SoundGroups>
+  </Sound>
 </Entity>

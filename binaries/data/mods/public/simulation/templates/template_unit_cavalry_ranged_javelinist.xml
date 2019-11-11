@@ -13,6 +13,7 @@
       <RepeatTime>1250</RepeatTime>
       <Projectile>
         <Speed>62.5</Speed>
+        <Gravity>39.81</Gravity>
         <Spread>4.0</Spread>
       </Projectile>
     </Ranged>
@@ -26,4 +27,10 @@
     <VisibleClasses datatype="tokens">Javelinist</VisibleClasses>
     <GenericName>Cavalry Skirmisher</GenericName>
   </Identity>
+  <Sound>
+    <SoundGroups>
+      <attack_ranged>attack/weapon/javelin_attack.xml</attack_ranged>
+      <attack_impact_ranged>attack/impact/javelin_impact.xml</attack_impact_ranged>
+    </SoundGroups>
+  </Sound>
 </Entity>

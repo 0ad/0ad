@@ -28,6 +28,11 @@
     <GenericName>Hero Cavalry Spearman</GenericName>
     <Tooltip>Counters: 1.5x vs. Cavalry.</Tooltip>
   </Identity>
+  <Sound>
+    <SoundGroups>
+      <attack_melee>attack/weapon/spear_attack.xml</attack_melee>
+    </SoundGroups>
+  </Sound>
   <UnitMotion>
     <WalkSpeed op="mul">1.0</WalkSpeed>
   </UnitMotion>

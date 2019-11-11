@@ -18,6 +18,7 @@
       <Projectile>
         <Speed>62.5</Speed>
         <Spread>3.0</Spread>
+        <Gravity>29.81</Gravity>
       </Projectile>
     </Ranged>
   </Attack>
@@ -37,4 +38,9 @@
   <UnitMotion>
     <WalkSpeed op="mul">1.2</WalkSpeed>
   </UnitMotion>
+  <Sound>
+    <SoundGroups>
+      <attack_ranged>attack/weapon/sling_attack.xml</attack_ranged>
+    </SoundGroups>
+  </Sound>
 </Entity>

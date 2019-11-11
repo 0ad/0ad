@@ -41,6 +41,11 @@
       special/formations/testudo
     </Formations>
   </Identity>
+  <Sound>
+    <SoundGroups>
+      <attack_melee>attack/weapon/pike_attack.xml</attack_melee>
+    </SoundGroups>
+  </Sound>
   <UnitMotion>
     <WalkSpeed op="mul">0.8</WalkSpeed>
   </UnitMotion>
