@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<particles>
+    <texture>art/textures/particles/snowflake_02.png</texture>
+    <blend mode="add"/>
+    <constant name="emissionrate" value="30.0"/>
+    <constant name="lifetime" value="0.15"/>
+    <constant name="size" value="1.0"/>
+    <uniform name="position.y" value="-0.5"/>
+</particles>

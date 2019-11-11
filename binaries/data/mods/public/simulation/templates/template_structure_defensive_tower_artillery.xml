@@ -12,12 +12,13 @@
       <PrepareTime>4500</PrepareTime>
       <RepeatTime>5000</RepeatTime>
       <Projectile>
-        <Speed>30.0</Speed>
+        <Speed>40.0</Speed>
         <Spread>2.5</Spread>
         <Gravity>9.81</Gravity>
-        <LaunchPoint y="3"/>
-        <ImpactActorName>props/units/weapons/rock_explosion.xml</ImpactActorName>
-        <ImpactAnimationLifetime>0.1</ImpactAnimationLifetime>
+        <LaunchPoint y="3.2"/>
+        <ActorName>props/units/weapons/tower_artillery_projectile.xml</ActorName>
+        <ImpactActorName>props/units/weapons/tower_artillery_projectile_impact.xml</ImpactActorName>
+        <ImpactAnimationLifetime>0.3</ImpactAnimationLifetime>
       </Projectile>
       <Splash>
         <Shape>Circular</Shape>
