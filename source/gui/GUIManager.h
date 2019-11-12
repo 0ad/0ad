@@ -83,11 +83,6 @@ public:
 	Status ReloadChangedFile(const VfsPath& path);
 
 	/**
-	 * Sets the default mouse pointer.
-	 */
-	void ResetCursor();
-
-	/**
 	 * Called when we should reload all pages (e.g. translation hotloading update).
 	 */
 	Status ReloadAllPages();
