@@ -46,11 +46,11 @@
     <variant file="biped/base_healer.xml" name="Healer" frequency="1"/>
     <variant file="biped/base_healer_male.xml" name="Healer-Male" frequency="1"/>
     <variant file="biped/base_healer_female.xml" name="Healer-Female" frequency="1"/>
-    <variant file="biped/carry_food.xml"/>
-    <variant file="biped/carry_meat.xml"/>
-    <variant file="biped/carry_wood.xml"/>
-    <variant file="biped/carry_stone.xml"/>
-    <variant file="biped/carry_metal.xml"/>
+    <variant file="biped/cape_carry_food.xml"/>
+    <variant file="biped/cape_carry_meat.xml"/>
+    <variant file="biped/cape_carry_wood.xml"/>
+    <variant file="biped/cape_carry_stone.xml"/>
+    <variant file="biped/cape_carry_metal.xml"/>
     <variant file="biped/formations/phalanx_front.xml"/>
     <variant file="biped/formations/phalanx_mid.xml"/>
     <variant file="biped/formations/phalanx_back.xml"/>
@@ -71,17 +71,17 @@
     <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
-    <variant file="biped/gather_tree.xml"/>
-    <variant file="biped/gather_grain.xml"/>
-    <variant file="biped/gather_fruit.xml"/>
-    <variant file="biped/gather_meat.xml"/>
-    <variant file="biped/gather_rock.xml"/>
-    <variant file="biped/gather_ore.xml"/>
-    <variant file="biped/gather_ruins.xml"/>
-    <variant file="biped/gather_praise.xml"/>
-    <variant file="biped/build.xml"/>
-    <variant file="biped/build_farm.xml"/>
-    <variant file="biped/death_infantry.xml"/>
+    <variant file="biped/cape_gather_tree.xml"/>
+    <variant file="biped/cape_gather_grain.xml"/>
+    <variant file="biped/cape_gather_fruit.xml"/>
+    <variant file="biped/cape_gather_meat.xml"/>
+    <variant file="biped/cape_gather_rock.xml"/>
+    <variant file="biped/cape_gather_ore.xml"/>
+    <variant file="biped/cape_gather_ruins.xml"/>
+    <variant file="biped/cape_gather_praise.xml"/>
+    <variant file="biped/cape_build.xml"/>
+    <variant file="biped/cape_build_farm.xml"/>
+    <variant file="biped/death_cape.xml"/>
   </group>
   <material>basic_trans.xml</material>
 </actor>

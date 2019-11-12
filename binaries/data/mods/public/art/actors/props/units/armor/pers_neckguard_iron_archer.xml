@@ -11,5 +11,13 @@
       </textures>
     </variant>
   </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_ranged_archer_hip.xml"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant name="carry_meat"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
   <material>basic_trans_parallax_spec.xml</material>
 </actor>
