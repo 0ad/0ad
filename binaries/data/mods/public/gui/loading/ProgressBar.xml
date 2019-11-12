@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object type="image" sprite="LoadingProgressBarBackground">
+	<object name="progressbar" type="progressbar" style="LoadingProgressbar" size="56 5 456 100%-5">
+		<object name="progressbar_left" size="-8 0 8 100%" type="image" sprite="LoadingProgressBarLeft"/>
+		<object name="progressbar_right" size="8 0 24 100%" type="image" sprite="LoadingProgressBarRight"/>
+		<object name="progressText" type="text" style="LoadingBarText"/>
+	</object>
+</object>
