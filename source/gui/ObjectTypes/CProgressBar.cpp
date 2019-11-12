@@ -25,11 +25,11 @@ CProgressBar::CProgressBar(CGUI& pGUI)
 	: IGUIObject(pGUI),
 	  m_SpriteBackground(),
 	  m_SpriteBar(),
-	  m_Caption()
+	  m_Progress()
 {
 	RegisterSetting("sprite_background", m_SpriteBackground);
 	RegisterSetting("sprite_bar", m_SpriteBar);
-	RegisterSetting("caption", m_Caption); // aka value from 0 to 100
+	RegisterSetting("progress", m_Progress); // between 0 and 100
 }
 
 CProgressBar::~CProgressBar()
@@ -43,14 +43,12 @@ void CProgressBar::HandleMessage(SGUIMessage& Message)
 	switch (Message.type)
 	{
 	case GUIM_SETTINGS_UPDATED:
-		// Update scroll-bar
-		// TODO Gee: (2004-09-01) Is this really updated each time it should?
-		if (Message.value == "caption")
+		if (Message.value == "progress")
 		{
-			if (m_Caption > 100.f)
-				SetSetting<float>("caption", 100.f, true);
-			else if (m_Caption < 0.f)
-				SetSetting<float>("caption", 0.f, true);
+			if (m_Progress > 100.f)
+				SetSetting<float>("progress", 100.f, true);
+			else if (m_Progress < 0.f)
+				SetSetting<float>("progress", 0.f, true);
 		}
 		break;
 	default:
@@ -61,13 +59,12 @@ void CProgressBar::HandleMessage(SGUIMessage& Message)
 void CProgressBar::Draw()
 {
 	float bz = GetBufferedZ();
-
 	int cell_id = 0;
 
 	m_pGUI.DrawSprite(m_SpriteBackground, cell_id, bz, m_CachedActualSize);
 
 	// Get size of bar (notice it is drawn slightly closer, to appear above the background)
-	CRect bar_size(m_CachedActualSize.left, m_CachedActualSize.top,
-				   m_CachedActualSize.left+m_CachedActualSize.GetWidth()*(m_Caption/100.f), m_CachedActualSize.bottom);
-	m_pGUI.DrawSprite(m_SpriteBar, cell_id, bz+0.01f, bar_size);
+	CRect size = m_CachedActualSize;
+	size.right = size.left + m_CachedActualSize.GetWidth() * (m_Progress / 100.f),
+	m_pGUI.DrawSprite(m_SpriteBar, cell_id, bz + 0.01f, size);
 }

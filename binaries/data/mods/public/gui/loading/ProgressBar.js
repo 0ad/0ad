@@ -26,7 +26,7 @@ class ProgressBar
 
 		// Show 100 when it is really 99
 		let progress = progression + 1;
-		this.progressbar.caption = progress;
+		this.progressbar.progress = progress;
 
 		if (this.showDescription)
 			this.progressText.caption = description;

@@ -312,7 +312,7 @@ function progressDialog(dialogCaption, dialogTitle, showProgressBar, buttonCapti
 function updateProgressBar(progress, totalSize)
 {
 	let progressPercent = Math.ceil(progress * 100);
-	Engine.GetGUIObjectByName("downloadDialog_progressBar").caption = progressPercent;
+	Engine.GetGUIObjectByName("downloadDialog_progressBar").progress = progressPercent;
 
 	let transferredSize = progress * totalSize;
 	let transferredSizeObj = filesizeToObj(transferredSize);
