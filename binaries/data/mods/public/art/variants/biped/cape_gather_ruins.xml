@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="gather_ruins">
+  <animations>
+    <animation event="0.4" file="biped/gatherer/gather_mine.dae" name="gather_ruins" speed="100"/>
+  </animations>
+  <props>
+    <prop attachpoint="weapon_L"/>
+    <prop attachpoint="weapon_R"/>
+    <prop attachpoint="shield"/>
+    <prop attachpoint="shield_arm"/>
+    <prop attachpoint="helmet"/>
+    <prop attachpoint="ammo"/>
+  </props>
+</variant>

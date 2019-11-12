@@ -11,5 +11,10 @@
       </textures>
     </variant>
   </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_ranged_cavalry_archer_back.xml" frequency="100" name="Attack_ranged"/>
+    <variant file="biped/rider/death.xml"/>
+  </group>
   <material>basic_trans_parallax_spec.xml</material>
 </actor>

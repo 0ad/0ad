@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="gather_grain">
+  <animations>
+    <animation file="biped/gatherer/farming.dae" name="gather_grain" speed="100"/>
+  </animations>
+  <props>
+    <prop attachpoint="weapon_R"/>
+    <prop attachpoint="weapon_L"/>
+    <prop attachpoint="shield"/>
+    <prop attachpoint="shield_arm"/>
+    <prop attachpoint="helmet"/>
+    <prop attachpoint="ammo"/>
+  </props>
+</variant>

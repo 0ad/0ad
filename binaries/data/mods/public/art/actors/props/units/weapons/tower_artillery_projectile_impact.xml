@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>skeletal/celt_trader.dae</mesh>
+      <props>
+        <prop actor="particle/tower_artillery_impact_smoke_01.xml" attachpoint="root"/>
+        <prop actor="particle/tower_artillery_impact_smoke_02.xml" attachpoint="root"/>
+        <prop actor="props/special/eyecandy/tower_artillery_impact_decal.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="null_white.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>default.xml</material>
+</actor>
