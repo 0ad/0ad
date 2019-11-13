@@ -105,8 +105,6 @@ void CGUIManager::PushPage(const CStrW& pageName, shared_ptr<ScriptInterface::St
 	// another GUI page on init which should be pushed on top of this new page.
 	m_PageStack.emplace_back(pageName, initData);
 	m_PageStack.back().LoadPage(m_ScriptRuntime);
-
-	ResetCursor();
 }
 
 void CGUIManager::PopPage(shared_ptr<ScriptInterface::StructuredClone> args)
@@ -142,6 +140,7 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptRuntime> scriptRuntime)
 		hotloadData = scriptInterface->WriteStructuredClone(hotloadDataVal);
 	}
 
+	g_CursorName = g_DefaultCursor;
 	inputs.clear();
 	gui.reset(new CGUI(scriptRuntime));
 
@@ -283,11 +282,6 @@ Status CGUIManager::ReloadAllPages()
 		p.LoadPage(m_ScriptRuntime);
 
 	return INFO::OK;
-}
-
-void CGUIManager::ResetCursor()
-{
-	g_CursorName = g_DefaultCursor;
 }
 
 InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)

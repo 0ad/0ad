@@ -82,7 +82,7 @@ std::wstring JSI_GUIManager::SetCursor(ScriptInterface::CxPrivate* UNUSED(pCxPri
 
 void JSI_GUIManager::ResetCursor(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
-	g_GUI->ResetCursor();
+	g_CursorName = g_DefaultCursor;
 }
 
 bool JSI_GUIManager::TemplateExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& templateName)

@@ -38,16 +38,16 @@ protected:
 	 */
 	virtual void Draw();
 
-	// If caption is set, make sure it's within the interval 0-100
 	/**
 	 * @see IGUIObject#HandleMessage()
+	 * If the progress is changed, ensure the interval is between 0 and 100.
 	 */
 	void HandleMessage(SGUIMessage& Message);
 
 	// Settings
 	CGUISpriteInstance m_SpriteBackground;
 	CGUISpriteInstance m_SpriteBar;
-	float m_Caption;
+	float m_Progress;
 };
 
 #endif // INCLUDED_CPROGRESSBAR

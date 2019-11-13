@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-==========================================
-- LOADING SCREEN -
-==========================================
--->
 <objects>
 
 	<script directory="gui/common/"/>
@@ -12,38 +6,22 @@
 
 	<object type="image" style="ModernWindow">
 
-		<!-- LOADING SCREEN progress bar -->
-		<object size="50%-256 4 50%+256 36" type="image" sprite="LoadingProgressBarBackground">
-			<object name="progressbar"
-				type="progressbar"
-				style="LoadingProgressbar"
-				size="56 5 456 100%-5"
-			>
-				<object name="progressbar_left" size="-8 0 8 100%" type="image" sprite="LoadingProgressBarLeft"/>
-				<object name="progressbar_right" size="8 0 24 100%" type="image" sprite="LoadingProgressBarRight"/>
-				<object name="progressText" type="text" style="LoadingBarText"/>
-			</object>
+		<object size="50%-256 4 50%+256 36">
+			<include file="gui/loading/ProgressBar.xml"/>
 		</object>
 
-		<!-- LOADING SCREEN TEXT -->
-		<object name="loadingMapName" size="50%-256 36 50%+256 50%-196" type="text" style="LargeTitleText"/>
-
-		<!-- LOADING SCREEN TIP IMAGE-->
-		<object size="50%-452 50%-196 50%+68 50%+196" type="image" sprite="LoadingTipImage">
-			<object name="tipImage" size="4 4 516 516" type="image">
-				<object name="tipImageCover" type="image" sprite="LoadingTipImageCover"/>
-			</object>
+		<object size="50%-256 36 50%+256 50%-196">
+			<include file="gui/loading/TitleDisplay.xml"/>
 		</object>
 
-		<!-- LOADING SCREEN TIP TEXT-->
-		<object size="50%+128 50%-193 50%+448 50%+193" type="image" sprite="LoadingTipText">
-			<object name="tipTitle" size="30 30 100% 50" type="text" style="LoadingTipTitleText"/>
-			<object name="tipText" size="30 50 100%-30 100%" type="text" style="LoadingTipText"/>
+		<object size="50%-452 50%-196 50%+452 50%+196">
+			<include file="gui/loading/TipDisplay.xml"/>
 		</object>
 
-		<!-- LOADING SCREEN QUOTE (needs increased z value to overcome the transparent area of the tip image above it -->
-		<object size="50%-448 50%+230 50%+448 100%-16" z="20">
-			<object name="quoteText" type="text" style="LoadingText"/>
+		<object size="50%-448 50%+230 50%+448 100%-16">
+			<include file="gui/loading/QuoteDisplay.xml"/>
 		</object>
+
 	</object>
+
 </objects>
