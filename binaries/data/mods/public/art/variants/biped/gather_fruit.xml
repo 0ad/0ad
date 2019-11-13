@@ -5,11 +5,11 @@
   </animations>
   <props>
     <prop actor="props/units/tools/basket_berries.xml" attachpoint="root"/>
-    <prop attachpoint="weapon_R"/>
     <prop attachpoint="weapon_L"/>
+    <prop attachpoint="weapon_R"/>
     <prop attachpoint="shield"/>
     <prop attachpoint="shield_arm"/>
-    <prop attachpoint="helmet"/>
     <prop attachpoint="ammo"/>
+    <prop attachpoint="weapon_bow"/>
   </props>
 </variant>
