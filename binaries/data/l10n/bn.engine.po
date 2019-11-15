@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
+# Fat Man <fat.oyunn@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-13 07:08+0000\n"
-"PO-Revision-Date: 2019-09-13 12:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-11-13 21:36+0000\n"
+"Last-Translator: Fat Man <fat.oyunn@gmail.com>\n"
 "Language-Team: Bengali (http://www.transifex.com/wildfire-games/0ad/language/bn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,112 +19,112 @@ msgstr ""
 
 #: i18n/L10n.cpp:251
 msgid "Long strings"
-msgstr ""
+msgstr "দীর্ঘবাক্য"
 
 #: lobby/XmppClient.cpp:855
 msgid "unknown subtype (see logs)"
-msgstr ""
+msgstr "অজানা উপধরন (লগ দেখুন)"
 
 #: lobby/XmppClient.cpp:1169
 msgid "The certificate is not trusted."
-msgstr ""
+msgstr "সার্টিফিকেট বিশ্বস্ত নয়।"
 
 #: lobby/XmppClient.cpp:1170
 msgid "The certificate hasn't got a known issuer."
-msgstr ""
+msgstr "সার্টিফিকেটের কোন জানা ইস্যু নেই।"
 
 #: lobby/XmppClient.cpp:1171
 msgid "The certificate has been revoked."
-msgstr ""
+msgstr "সার্টিফিকেট বাতিল করা হয়েছে।"
 
 #: lobby/XmppClient.cpp:1172
 msgid "The certificate has expired."
-msgstr ""
+msgstr "সার্টিফিকেটের মেয়াদ শেষ।"
 
 #: lobby/XmppClient.cpp:1173
 msgid "The certifiacte is not yet active."
-msgstr ""
+msgstr "সার্টিফিকেট এখনো চালু হয়নি।"
 
 #: lobby/XmppClient.cpp:1174
 msgid "The certificate has not been issued for the peer connected to."
-msgstr ""
+msgstr "সার্টিফিকেটটি এই পিয়ার কানেকশনের জন্য ইস্যু করা হয়নি।"
 
 #: lobby/XmppClient.cpp:1175
 msgid "The certificate signer is not a certificate authority."
-msgstr ""
+msgstr "সার্টিফিকেট স্বাক্ষরকারী সার্টিফিকেটের স্বত্বাধিকার নয়। "
 
 #: lobby/XmppClient.cpp:1197 lobby/XmppClient.cpp:1241
 #: lobby/XmppClient.cpp:1280
 msgid "Error"
-msgstr ""
+msgstr "সমস্যা"
 
 #: lobby/XmppClient.cpp:1200 lobby/XmppClient.cpp:1244
 msgid "No error"
-msgstr ""
+msgstr "কোন সমস্যা নেই"
 
 #: lobby/XmppClient.cpp:1202
 msgid "Player already logged in"
-msgstr ""
+msgstr "খেলোয়াড় পূর্বেই লগইন করেছে "
 
 #: lobby/XmppClient.cpp:1204
 msgid "Forbidden"
-msgstr ""
+msgstr "নিষিদ্ধ"
 
 #: lobby/XmppClient.cpp:1206
 msgid "Internal server error"
-msgstr ""
+msgstr "ইন্টারনেট সার্ভারে সমস্যা"
 
 #: lobby/XmppClient.cpp:1210
 msgid "Not allowed"
-msgstr ""
+msgstr "অনুমতি নেই"
 
 #: lobby/XmppClient.cpp:1211
 msgid "Not authorized"
-msgstr ""
+msgstr "অনুনোমদিত"
 
 #: lobby/XmppClient.cpp:1214
 msgid "Recipient temporarily unavailable"
-msgstr ""
+msgstr "গ্রহীতা সাময়িকভাবে লভ্য নয়"
 
 #: lobby/XmppClient.cpp:1216
 msgid "Registration required"
-msgstr ""
+msgstr "রেজিস্ট্রেশন প্রয়োজন"
 
 #: lobby/XmppClient.cpp:1220
 msgid "Service unavailable"
-msgstr ""
+msgstr "সার্ভার লভ্য নয়"
 
 #: lobby/XmppClient.cpp:1225 lobby/XmppClient.cpp:1264
 msgid "Unknown error"
-msgstr ""
+msgstr "অজানা সমস্যা"
 
 #: lobby/XmppClient.cpp:1245
 msgid "Stream error"
-msgstr ""
+msgstr "স্টিমে সমস্যা"
 
 #: lobby/XmppClient.cpp:1246
 msgid "The incoming stream version is unsupported"
-msgstr ""
+msgstr "স্টিম ভার্শনটি অসমর্থিত"
 
 #: lobby/XmppClient.cpp:1247
 msgid "The stream has been closed by the server"
-msgstr ""
+msgstr "সার্ভার স্টিমটি বন্ধ করে দিয়েছে"
 
 #: lobby/XmppClient.cpp:1251
 msgid "An I/O error occurred"
-msgstr ""
+msgstr "একটি ইনপুট/আউটপুট সমস্যা হয়েছে"
 
 #: lobby/XmppClient.cpp:1253
 msgid "The connection was refused by the server"
-msgstr ""
+msgstr "সার্ভার কানেকশন প্রত্যাখ্যান করেছে"
 
 #: lobby/XmppClient.cpp:1254
 msgid "Resolving the server's hostname failed"
-msgstr ""
+msgstr "সার্ভারের হোষ্টনাম সমাধান করা অকৃতকার্য হয়েছে"
 
 #: lobby/XmppClient.cpp:1255
 msgid "This system is out of memory"
-msgstr ""
+msgstr "সিস্টেমের মেমরি শেষ"
 
 #: lobby/XmppClient.cpp:1257
 msgid ""
@@ -157,7 +158,7 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1285
 msgid "Username already exists"
-msgstr ""
+msgstr "ইউজারনেম আগেথেকেই আছে "
 
 #: ps/ModIo.cpp:261
 #, c-format
@@ -209,18 +210,18 @@ msgstr ""
 
 #: ps/ModIo.cpp:568
 msgid "Failed to verify signature."
-msgstr ""
+msgstr "সাক্ষর যাচাই অকৃতকার্য হয়েছে"
 
 #: ps/SavedGame.cpp:139
 #, c-format
 msgid "Saved game to '%s'"
-msgstr ""
+msgstr "খেলা %s তে জমা করা হয়েছে"
 
 #: ps/Util.cpp:279 ps/Util.cpp:282 ps/Util.cpp:417 ps/Util.cpp:420
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr ""
+msgstr "স্ক্রিনশট %s তে লিখা হয়েছে"
 
 #: ps/scripting/JSInterface_Debug.cpp:83
 msgid "custom build"
-msgstr ""
+msgstr "নিজস্ব তৈরি"
