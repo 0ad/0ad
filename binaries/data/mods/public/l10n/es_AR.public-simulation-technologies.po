@@ -8,13 +8,14 @@
 # Franco Falleti <ezefran256@gmail.com>, 2016
 # Iván Pstyga <ivanpstyga@gmail.com>, 2017
 # Matías Gaglio <matiasignaciogaglio@gmail.com>, 2018
+# Nicolás Vilurón <viluronnicolas@gmail.com>, 2019
 # PoinoComer <ignacio.torea@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-09-16 14:21+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-11-15 07:54+0000\n"
+"Last-Translator: Nicolás Vilurón <viluronnicolas@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -754,7 +755,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Domestic Animals −25% breeding time."
-msgstr ""
+msgstr "-25% al tiempo de desarrollo de Animales Domesticos"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
@@ -762,12 +763,12 @@ msgstr "Ganadería"
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
 msgid "Workers use baskets. Increases shuttling capacity for all resources."
-msgstr ""
+msgstr "Los trabajadores usan cestas, incrementa la capacidad de carga para todos los recursos"
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers +5 resource capacity."
-msgstr ""
+msgstr "Aumenta +5 la capacidad de recolección de los trabajadores"
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -849,7 +850,7 @@ msgstr "Entrenamiento de recolección"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Use nets to improve the productivity of fishing boats."
-msgstr ""
+msgstr "Usa redes para perfeccionar la productividad de los botes de pesca"
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid "Fishing Boats +30% fish gather rate."
