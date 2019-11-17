@@ -14,6 +14,18 @@
   <StatusBars>
     <HeightOffset>22.0</HeightOffset>
   </StatusBars>
+  <Upgrade>
+    <Tower>
+      <Entity>structures/{civ}_tower_artillery</Entity>
+      <Tooltip>Reinforce with stone block, and install small stone throwers to upgrade this defense tower into a slow, area of effect, and siege resistant artillery tower.</Tooltip>
+      <RequiredTechnology>phase_city</RequiredTechnology>
+      <Cost>
+        <wood>150</wood>
+        <stone>100</stone>
+      </Cost>
+      <Time>200</Time>
+    </Tower>
+  </Upgrade>
   <VisualActor>
     <Actor>structures/hellenes/scout_tower.xml</Actor>
   </VisualActor>
