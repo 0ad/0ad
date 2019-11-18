@@ -2,8 +2,8 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="quadraped/base_elephant_asian.xml">
-      <mesh>skeletal/elephant_asian_male.dae</mesh>
+    <variant file="quadraped/base_elephant_african.xml">
+      <mesh>skeletal/elephant_african_forest.dae</mesh>
       <props>
         <prop actor="units/carthaginians/hero_elephantry_hannibal_r.xml" attachpoint="rider"/>
         <prop actor="props/units/turret_hannibal.xml" attachpoint="turret"/>
