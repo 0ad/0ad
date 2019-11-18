@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defense_tower_stone">
+  <Attack>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>200.0</Crush>
+      <MaxRange>100</MaxRange>
+      <MinRange>50</MinRange>
+      <Spread>3.0</Spread>
+      <PrepareTime>2000</PrepareTime>
+      <RepeatTime>12000</RepeatTime>
+      <ProjectileSpeed>439.0</ProjectileSpeed>
+      <PreferredClasses datatype="tokens">Human</PreferredClasses>
+      <Projectile>
+        <ImpactActorName>particle/destruction_dust_small.xml</ImpactActorName>
+        <ImpactAnimationLifetime>0.1</ImpactAnimationLifetime>
+      </Projectile>
+      <Splash>
+        <Shape>Circular</Shape>
+        <Range>8</Range>
+        <FriendlyFire>true</FriendlyFire>
+        <Hack>0.0</Hack>
+        <Pierce>00.0</Pierce>
+        <Crush>50.0</Crush>
+      </Splash>
+    </Ranged>
+  </Attack>
+  <Auras datatype="tokens">
+    structures/wall_garrisoned
+  </Auras>
+  <Footprint replace="">
+    <Circle radius="6.0"/>
+    <Height>15.0</Height>
+  </Footprint>
+  <BuildingAI>
+    <DefaultArrowCount>0</DefaultArrowCount>
+    <GarrisonArrowMultiplier>0.1</GarrisonArrowMultiplier>
+    <GarrisonArrowClasses>Infantry</GarrisonArrowClasses>
+  </BuildingAI>
+  <GarrisonHolder>
+    <Max>8</Max>
+    <List datatype="tokens">Ranged+Infantry</List>
+    <EjectHealth>0.1</EjectHealth>
+    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
+    <BuffHeal>1</BuffHeal>
+    <LoadingRange>2</LoadingRange>
+    <VisibleGarrisonPoints>
+      <Archer1>
+        <X>3</X><Y>7</Y><Z>3</Z>
+      </Archer1>
+      <Archer2>
+        <X>3</X><Y>7</Y><Z>0</Z>
+      </Archer2>
+      <Archer3>
+        <X>3</X><Y>7</Y><Z>-3</Z>
+      </Archer3>
+      <Archer4>
+        <X>0</X><Y>7</Y><Z>3</Z>
+      </Archer4>
+      <Archer5>
+        <X>0</X><Y>7</Y><Z>-3</Z>
+      </Archer5>
+      <Archer6>
+        <X>-3</X><Y>7</Y><Z>3</Z>
+      </Archer6>
+      <Archer7>
+        <X>-3</X><Y>7</Y><Z>0</Z>
+      </Archer7>
+      <Archer8>
+        <X>-3</X><Y>7</Y><Z>-3</Z>
+      </Archer8>
+    </VisibleGarrisonPoints>
+  </GarrisonHolder>
+  <Identity>
+    <Civ>union</Civ>
+    <SpecificName>Union Blockhouse</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="7.5" depth="7.5"/>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>21.0</HeightOffset>
+  </StatusBars>
+  <VisualActor>
+    <Actor>structures/union/blockhouse.xml</Actor>
+  </VisualActor>
+  <Sound>
+    <SoundGroups>
+      <attack_ranged>attack/siege/ram_attack_order.xml</attack_ranged>
+    </SoundGroups>
+  </Sound>
+</Entity>

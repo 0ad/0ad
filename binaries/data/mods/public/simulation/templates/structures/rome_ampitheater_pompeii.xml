@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special_theatron">
+  <Auras disable=""/>
+  <Footprint replace="">
+    <Square width="66.0" depth="90.0"/>
+    <Height>20.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>rome</Civ>
+    <GenericName>Ampitheater</GenericName>
+    <SpecificName>Ampitheatrum</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="62" depth="86"/>
+  </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_tholos.xml</select>
+      <constructed>interface/complete/building/complete_tholos.xml</constructed>
+    </SoundGroups>
+  </Sound>
+  <VisualActor>
+    <Actor>structures/romans/ampitheater_pompeii.xml</Actor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+  </VisualActor>
+</Entity>
