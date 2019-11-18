@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defensive_tower_bolt">
+  <Footprint>
+    <Square width="10.0" depth="10.0"/>
+    <Height>15.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>mace</Civ>
+    <SpecificName>Pyrgíon</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="7.5" depth="7.5"/>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>19.0</HeightOffset>
+  </StatusBars>
+  <VisualActor>
+    <Actor>structures/hellenes/tower_bolt.xml</Actor>
+  </VisualActor>
+</Entity>

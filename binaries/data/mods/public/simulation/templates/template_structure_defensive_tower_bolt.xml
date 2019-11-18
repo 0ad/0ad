@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defensive_tower">
+  <Attack>
+    <Ranged>
+      <Damage>
+        <Pierce>55</Pierce>
+        <Crush>5</Crush>
+      </Damage>
+      <MaxRange>84</MaxRange>
+      <MinRange>15</MinRange>
+      <ElevationBonus>15</ElevationBonus>
+      <PrepareTime>500</PrepareTime>
+      <RepeatTime>4000</RepeatTime>
+      <Projectile>
+        <Speed>125.0</Speed>
+        <Spread>0.5</Spread>
+        <Gravity>49.81</Gravity>
+        <LaunchPoint y="3.2"/>
+        <ImpactActorName>props/units/weapons/tower_artillery_projectile_impact.xml</ImpactActorName>
+        <ImpactAnimationLifetime>0.1</ImpactAnimationLifetime>
+      </Projectile>
+      <Splash>
+        <Shape>Linear</Shape>
+        <Range>4</Range>
+        <FriendlyFire>false</FriendlyFire>
+        <Damage>
+          <Hack>0.0</Hack>
+          <Pierce>12.0</Pierce>
+          <Crush>0.0</Crush>
+        </Damage>
+      </Splash>
+    </Ranged>
+  </Attack>
+  <BuildingAI>
+    <DefaultArrowCount>1</DefaultArrowCount>
+    <GarrisonArrowMultiplier>0.2</GarrisonArrowMultiplier>
+  </BuildingAI>
+  <Cost>
+    <BuildTime>200</BuildTime>
+    <Resources>
+      <metal>100</metal>
+      <stone>200</stone>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="10.0" depth="10.0"/>
+    <Height>15.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>5</Max>
+  </GarrisonHolder>
+  <Health>
+    <Max>1400</Max>
+  </Health>
+  <Identity>
+    <GenericName>Bolt Tower</GenericName>
+    <Tooltip>Shoots bolts. Faster reaction time against raiding units than the artillery tower, weak to all siege weapons and mass melee. Needs the murder holes tech to protect its foot.</Tooltip>
+    <Classes datatype="tokens">GarrisonTower</Classes>
+    <VisibleClasses datatype="tokens">City DefenseTower StoneTower</VisibleClasses>
+    <Icon>structures/tower_bolt.png</Icon>
+    <RequiredTechnology>phase_city</RequiredTechnology>
+  </Identity>
+  <Loot>
+    <wood>0</wood>
+    <stone>40</stone>
+  </Loot>
+  <Obstruction>
+    <Static width="7.0" depth="7.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Technologies datatype="tokens">
+      tower_watch
+      tower_crenellations
+      tower_range
+      tower_murderholes
+      tower_armour
+    </Technologies>
+  </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <attack_impact_ranged>attack/impact/javelin_impact.xml</attack_impact_ranged>
+      <attack_ranged>attack/weapon/bow_attack.xml</attack_ranged>
+    </SoundGroups>
+  </Sound>
+  <TerritoryInfluence>
+    <Root>false</Root>
+    <Radius>32</Radius>
+    <Weight>30000</Weight>
+  </TerritoryInfluence>
+</Entity>
