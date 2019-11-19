@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-09-16 15:25+0000\n"
+"POT-Creation-Date: 2019-11-15 08:08+0000\n"
+"PO-Revision-Date: 2019-11-15 15:09+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/wildfire-games/0ad/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -504,64 +504,64 @@ msgstr ""
 msgid "Pick a biome at random."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:2210
+#: gui/gamesetup/gamesetup.js:2215
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:2215
+#: gui/gamesetup/gamesetup.js:2220
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "Neznano"
 
-#: gui/gamesetup/gamesetup.js:2245
+#: gui/gamesetup/gamesetup.js:2250
 msgid "Yes"
 msgstr "Da"
 
-#: gui/gamesetup/gamesetup.js:2245
+#: gui/gamesetup/gamesetup.js:2250
 msgid "No"
 msgstr "Ne"
 
-#: gui/gamesetup/gamesetup.js:2252
+#: gui/gamesetup/gamesetup.js:2257
 #, javascript-format
 msgid "%(setting)s:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:2334
+#: gui/gamesetup/gamesetup.js:2339
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2498
+#: gui/gamesetup/gamesetup.js:2503
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "UI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2506
+#: gui/gamesetup/gamesetup.js:2511
 msgid "Unassigned"
 msgstr "Nedodeljeno"
 
-#: gui/gamesetup/gamesetup.js:2577
+#: gui/gamesetup/gamesetup.js:2582
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2584
+#: gui/gamesetup/gamesetup.js:2589
 msgid "Unknown Player"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:2623
+#: gui/gamesetup/gamesetup.js:2628
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2624
+#: gui/gamesetup/gamesetup.js:2629
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:2625
+#: gui/gamesetup/gamesetup.js:2630
 msgid "HH:mm"
 msgstr ""
 
@@ -623,21 +623,27 @@ msgstr ""
 msgid "%(playername)s's game"
 msgstr "Igro je pripravil %(playername)s's"
 
+#: gui/loading/ProgressBar.js:48
+#, javascript-format
+msgctxt "loading screen progress"
+msgid "%(percentage)s%%"
+msgstr ""
+
 #. Translation: A bullet point used before every item of list of tips
 #. displayed on loading screen
-#: gui/loading/loading.js:33
+#: gui/loading/TipDisplay.js:52
 #, javascript-format
 msgid "• %(tiptext)s"
 msgstr ""
 
-#: gui/loading/loading.js:51
-#, javascript-format
-msgid "Loading “%(map)s”"
-msgstr ""
-
-#: gui/loading/loading.js:55
+#: gui/loading/TitleDisplay.js:15
 #, javascript-format
 msgid "Generating “%(map)s”"
+msgstr ""
+
+#: gui/loading/TitleDisplay.js:17
+#, javascript-format
+msgid "Loading “%(map)s”"
 msgstr ""
 
 #: gui/aiconfig/aiconfig.xml:(caption):14

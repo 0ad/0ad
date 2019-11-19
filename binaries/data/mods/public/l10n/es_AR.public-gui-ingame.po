@@ -9,12 +9,13 @@
 # Guillermo Gini <guillermofgini@gmail.com>, 2016
 # Iván Pstyga <ivanpstyga@gmail.com>, 2017
 # Matías Gaglio <matiasignaciogaglio@gmail.com>, 2018
+# Nicolás Vilurón <viluronnicolas@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-01 08:08+0000\n"
-"PO-Revision-Date: 2019-11-01 15:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-11-15 20:27+0000\n"
+"Last-Translator: Nicolás Vilurón <viluronnicolas@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,7 @@ msgstr ""
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "Presiona %(hotkey)s para cambiar este menu"
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -42,18 +43,18 @@ msgstr "Resumen"
 #: gui/session/MenuButtons.js:87
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr ""
+msgstr "Presiona %(hotkey)s para abrir la pantalla de resumen"
 
 #: gui/session/MenuButtons.js:130
 msgid "Lobby"
-msgstr ""
+msgstr "Sala"
 
 #: gui/session/MenuButtons.js:139
 #, javascript-format
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr ""
+msgstr "Presiona %(hotkey)s para abrir la sala multijugador sin salir del juego."
 
 #: gui/session/MenuButtons.js:158
 msgid "Options"
@@ -70,7 +71,7 @@ msgstr "Pausa."
 #: gui/session/MenuButtons.js:197
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr ""
+msgstr "Presiona %(hotkey)s para pausar o reanudar el juego."
 
 #: gui/session/MenuButtons.js:213
 msgid "Resign"
@@ -99,7 +100,7 @@ msgstr "Esperando que los jugadores se conecten:"
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
-msgstr ""
+msgstr "Sincronizando partida con otros jugadores..."
 
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"
@@ -158,15 +159,15 @@ msgstr "¡Perdiste!"
 
 #: gui/session/messages.js:378
 msgid "Click to quit this tutorial."
-msgstr ""
+msgstr "Haz click para saltar este tutorial"
 
 #: gui/session/messages.js:379
 msgid "Quit"
-msgstr ""
+msgstr "Salir"
 
 #: gui/session/messages.js:383
 msgid "Click when ready."
-msgstr ""
+msgstr "Haz click cuando estes preparado."
 
 #: gui/session/messages.js:387
 msgid "Follow the instructions."
@@ -271,7 +272,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:442
 msgid "Loot:"
-msgstr ""
+msgstr "Recibes:"
 
 #. Translation: Used in the trading gain tooltip
 #: gui/session/selection_details.js:503
@@ -355,7 +356,7 @@ msgstr[1] ""
 #: gui/session/selection_panels.js:751
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
-msgstr ""
+msgstr "Restante: %(entityCounts)s"
 
 #: gui/session/selection_panels.js:752
 msgctxt "Separator for a list of entity counts"
@@ -365,12 +366,12 @@ msgstr ""
 #: gui/session/selection_panels.js:1062
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "Mejorar a %(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1067
 #, javascript-format
 msgid "Upgrade to %(name)s."
-msgstr ""
+msgstr "Mejorar a %(name)s."
 
 #: gui/session/selection_panels.js:1084
 msgid "Cancel Upgrading"
@@ -383,7 +384,7 @@ msgstr "No se puede mejorar cuando la entidad ya se encuentra mejorándose."
 #: gui/session/selection_panels_helpers.js:51
 msgctxt "stance"
 msgid "Violent"
-msgstr ""
+msgstr "Violento"
 
 #: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
@@ -435,7 +436,7 @@ msgstr "Atacar oponentes en rango sin moverse"
 #: gui/session/selection_panels_helpers.js:93
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
-msgstr ""
+msgstr "Conteo Actual: %(count)s, Límite: %(limit)s."
 
 #: gui/session/selection_panels_helpers.js:107
 #, javascript-format
@@ -455,21 +456,21 @@ msgstr ""
 #: gui/session/selection_panels_helpers.js:153
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
-msgstr ""
+msgstr "%(action)spara entrenar %(number)s (%(fullBatch)s + %(remainderBatch)s)"
 
 #: gui/session/selection_panels_helpers.js:155
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
-msgstr ""
+msgstr "%(action)s para entrenar %(number)s (%(fullBatch)s)"
 
 #: gui/session/selection_panels_helpers.js:157
 #, javascript-format
 msgid "%(action)s to train %(number)s."
-msgstr ""
+msgstr "%(action)s para entrenar %(number)s."
 
 #: gui/session/selection_panels_helpers.js:162
 msgid "Shift-click"
-msgstr ""
+msgstr "Shift-click"
 
 #: gui/session/unit_actions.js:560
 msgid "Origin trade market."
@@ -557,7 +558,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:1283
 msgid "Patrol"
-msgstr ""
+msgstr "Patrullar"
 
 #: gui/session/unit_actions.js:1284
 msgid "Attack all encountered enemy units while avoiding buildings."
@@ -649,7 +650,7 @@ msgstr "HH:mm"
 #: gui/session/chat/ChatHistory.js:82
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr ""
+msgstr "Chat y notificaciones"
 
 #: gui/session/chat/ChatHistory.js:87
 msgctxt "chat history filter"
@@ -659,37 +660,37 @@ msgstr ""
 #: gui/session/chat/ChatHistory.js:92
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "Chat de jugadores"
 
 #: gui/session/chat/ChatHistory.js:99
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr ""
+msgstr "Chat aliado"
 
 #: gui/session/chat/ChatHistory.js:106
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "Chat enemigo"
 
 #: gui/session/chat/ChatHistory.js:113
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "Chat de observador"
 
 #: gui/session/chat/ChatHistory.js:120
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr ""
+msgstr "Chat privado"
 
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr ""
+msgstr "Notificaciones del juego"
 
 #: gui/session/chat/ChatHistory.js:130
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr ""
+msgstr "Notificaciones de red"
 
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
@@ -699,22 +700,22 @@ msgstr "Escribe el mensaje a enviar."
 #: gui/session/chat/ChatInput.js:37
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr ""
+msgstr "Presiona %(hotkey)s para abrir el chat publico."
 
 #: gui/session/chat/ChatInput.js:40
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "Presiona %(hotkey)s para abrir el chat de observador."
 
 #: gui/session/chat/ChatInput.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr ""
+msgstr "Presiona %(hotkey)s para abrir el chat aliado."
 
 #: gui/session/chat/ChatInput.js:43
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr ""
+msgstr "Presiona %(hotkey)s para abrir el chat privado seleccionado previamente."
 
 #. Translation: A player that left the game joins again
 #: gui/session/chat/ChatMessageFormatNetwork.js:23
@@ -726,7 +727,7 @@ msgstr "%(player)s está reingresando a la partida."
 #: gui/session/chat/ChatMessageFormatNetwork.js:25
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr ""
+msgstr "%(player)s es un nuevo jugador que se une al juego."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:34
 #, javascript-format
@@ -753,7 +754,7 @@ msgstr "%(player)s reingresó a la partida."
 #: gui/session/chat/ChatMessageFormatNetwork.js:66
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr ""
+msgstr "%(player)s se ha unido al juego."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:57
 msgid "no-context"
@@ -797,7 +798,7 @@ msgstr "Fuiste atacado por %(attacker)s!"
 #: gui/session/chat/ChatMessageFormatSimulation.js:38
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
-msgstr ""
+msgstr "%(player)s intercambia %(amountsBought)s por %(amountsSold)s"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:70
 #, javascript-format
@@ -847,17 +848,17 @@ msgstr "%(player)s ahora es neutral hacia %(player2)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:98
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr ""
+msgstr "%(player)s esta avanzando a %(phaseName)s"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:100
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr ""
+msgstr "El avance a %(phaseName)s de %(player)s fue cancelado."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:103
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
-msgstr ""
+msgstr "%(player)s a alcanzado la %(phaseName)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -873,7 +874,7 @@ msgstr "%(player)s te envió %(amounts)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:144
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "Has enviado %(amounts)s a %(player2)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:149
 #, javascript-format

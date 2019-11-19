@@ -1,0 +1,25 @@
+<skeletons>
+	<standard_skeleton title="Bow_Armature" id="Bow_Armature">
+		<bone name="Bow_String"></bone>
+		<bone name="Bow_Root"></bone>
+		<bone name="Bow_Branch_Top"></bone>
+		<bone name="Bow_Branch_Bot"></bone>
+	</standard_skeleton>
+	<skeleton title="Bow_Armature" target="Bow_Armature">
+		<identifier>
+			<root>Bow_String</root>
+		</identifier>
+		<bone name="Bow_String">
+			<target>Bow_String</target>
+		</bone>
+		<bone name="Bow_Root">
+			<target>Bow_Root</target>
+		</bone>
+		<bone name="Bow_Branch_Top">
+			<target>Bow_Branch_Top</target>
+		</bone>
+		<bone name="Bow_Branch_Bot">
+			<target>Bow_Branch_Bot</target>
+		</bone>
+	</skeleton>
+</skeletons>

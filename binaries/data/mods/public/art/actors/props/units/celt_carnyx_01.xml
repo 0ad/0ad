@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Carnyx-A">
+      <mesh>props/celt_carnyx_a.dae</mesh>
+      <textures>
+        <texture file="props/carnyx_a.png" name="baseTex"/>
+        <texture file="props/carnyx_a_spec.png" name="specTex"/>
+        <texture file="props/carnyx_a_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

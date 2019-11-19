@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/helmet/props/gladiator_mask_a.dae</mesh>
+      <textures>
+        <texture file="props/helmet/gladiator_01_props_norm.png" name="normTex"/>
+        <texture file="props/helmet/gladiator_01_props_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Iron-01">
+      <textures>
+        <texture file="props/helmet/gladiator_01_props_iron.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iron-02">
+      <textures>
+        <texture file="props/helmet/gladiator_01_props_iron_clean.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Bronze-01">
+      <textures>
+        <texture file="props/helmet/gladiator_01_props_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

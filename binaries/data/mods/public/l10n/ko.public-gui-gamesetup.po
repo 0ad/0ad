@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-10-24 15:03+0000\n"
+"POT-Creation-Date: 2019-11-15 08:08+0000\n"
+"PO-Revision-Date: 2019-11-15 15:09+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -518,64 +518,64 @@ msgstr "아무거나"
 msgid "Pick a biome at random."
 msgstr "무작위로 생물군집을 선택합니다."
 
-#: gui/gamesetup/gamesetup.js:2210
+#: gui/gamesetup/gamesetup.js:2215
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2215
+#: gui/gamesetup/gamesetup.js:2220
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "알 수 없음"
 
-#: gui/gamesetup/gamesetup.js:2245
+#: gui/gamesetup/gamesetup.js:2250
 msgid "Yes"
 msgstr "예"
 
-#: gui/gamesetup/gamesetup.js:2245
+#: gui/gamesetup/gamesetup.js:2250
 msgid "No"
 msgstr "아니오"
 
-#: gui/gamesetup/gamesetup.js:2252
+#: gui/gamesetup/gamesetup.js:2257
 #, javascript-format
 msgid "%(setting)s:"
 msgstr "%(setting)s:"
 
-#: gui/gamesetup/gamesetup.js:2334
+#: gui/gamesetup/gamesetup.js:2339
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s 님 %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2498
+#: gui/gamesetup/gamesetup.js:2503
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "인공지능: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2506
+#: gui/gamesetup/gamesetup.js:2511
 msgid "Unassigned"
 msgstr "지정되지 않음"
 
-#: gui/gamesetup/gamesetup.js:2577
+#: gui/gamesetup/gamesetup.js:2582
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2584
+#: gui/gamesetup/gamesetup.js:2589
 msgid "Unknown Player"
 msgstr "알 수 없는 선수"
 
-#: gui/gamesetup/gamesetup.js:2623
+#: gui/gamesetup/gamesetup.js:2628
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2624
+#: gui/gamesetup/gamesetup.js:2629
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2625
+#: gui/gamesetup/gamesetup.js:2630
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -637,22 +637,28 @@ msgstr "놀이에 참여할 수 없음: %(message)s."
 msgid "%(playername)s's game"
 msgstr "%(playername)s 의 놀이"
 
+#: gui/loading/ProgressBar.js:48
+#, javascript-format
+msgctxt "loading screen progress"
+msgid "%(percentage)s%%"
+msgstr "%(percentage)s%%"
+
 #. Translation: A bullet point used before every item of list of tips
 #. displayed on loading screen
-#: gui/loading/loading.js:33
+#: gui/loading/TipDisplay.js:52
 #, javascript-format
 msgid "• %(tiptext)s"
 msgstr "• %(tiptext)s"
 
-#: gui/loading/loading.js:51
-#, javascript-format
-msgid "Loading “%(map)s”"
-msgstr "“%(map)s” 의 지도를 불러오는 중"
-
-#: gui/loading/loading.js:55
+#: gui/loading/TitleDisplay.js:15
 #, javascript-format
 msgid "Generating “%(map)s”"
 msgstr "“%(map)s” 의 지도를 만드는 중"
+
+#: gui/loading/TitleDisplay.js:17
+#, javascript-format
+msgid "Loading “%(map)s”"
+msgstr "“%(map)s” 의 지도를 불러오는 중"
 
 #: gui/aiconfig/aiconfig.xml:(caption):14
 msgid "AI Configuration"
