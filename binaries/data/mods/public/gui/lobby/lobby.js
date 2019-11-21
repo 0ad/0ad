@@ -26,7 +26,7 @@ var g_Nickname = Engine.LobbyGetNick();
 /**
  * This class organizes all components of this GUI page.
  */
-var g_Lobby;
+var g_LobbyHandler;
 
 /**
  * Called after the XmppConnection succeeded and when returning from a game.
@@ -34,7 +34,7 @@ var g_Lobby;
 function init(attribs)
 {
 	if (g_Settings)
-		g_Lobby = new Lobby(attribs && attribs.dialog);
+		g_LobbyHandler = new LobbyHandler(attribs && attribs.dialog);
 	else
 		error("Could not load settings");
 }

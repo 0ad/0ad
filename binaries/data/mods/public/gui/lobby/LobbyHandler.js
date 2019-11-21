@@ -1,7 +1,7 @@
 /**
  * This class owns the page handlers.
  */
-class Lobby
+class LobbyHandler
 {
 	constructor(dialog)
 	{
