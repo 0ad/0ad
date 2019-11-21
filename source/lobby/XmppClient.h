@@ -90,6 +90,7 @@ public:
 	void SetPresence(const std::string& presence);
 	const char* GetPresence(const std::string& nickname);
 	const char* GetRole(const std::string& nickname);
+	std::wstring GetRating(const std::string& nickname);
 	const std::wstring& GetSubject();
 
 	void GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
@@ -150,7 +151,7 @@ protected:
 	virtual void handleSessionInitiation(glooxwrapper::Jingle::Session& session, const glooxwrapper::Jingle::Session::Jingle& jingle);
 
 public:
-	JS::Value GuiPollNewMessage(const ScriptInterface& scriptInterface);
+	JS::Value GuiPollNewMessages(const ScriptInterface& scriptInterface);
 	JS::Value GuiPollHistoricMessages(const ScriptInterface& scriptInterface);
 	bool GuiPollHasPlayerListUpdate();
 	void SendMUCMessage(const std::string& message);

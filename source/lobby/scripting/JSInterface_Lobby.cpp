@@ -56,7 +56,7 @@ void JSI_Lobby::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetGameList>("GetGameList");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetBoardList>("GetBoardList");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetProfile>("GetProfile");
-	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::LobbyGuiPollNewMessage>("LobbyGuiPollNewMessage");
+	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::LobbyGuiPollNewMessages>("LobbyGuiPollNewMessages");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::LobbyGuiPollHistoricMessages>("LobbyGuiPollHistoricMessages");
 	scriptInterface.RegisterFunction<bool, &JSI_Lobby::LobbyGuiPollHasPlayerListUpdate>("LobbyGuiPollHasPlayerListUpdate");
 	scriptInterface.RegisterFunction<void, std::wstring, &JSI_Lobby::LobbySendMessage>("LobbySendMessage");
@@ -67,6 +67,7 @@ void JSI_Lobby::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, &JSI_Lobby::LobbyBan>("LobbyBan");
 	scriptInterface.RegisterFunction<const char*, std::wstring, &JSI_Lobby::LobbyGetPlayerPresence>("LobbyGetPlayerPresence");
 	scriptInterface.RegisterFunction<const char*, std::wstring, &JSI_Lobby::LobbyGetPlayerRole>("LobbyGetPlayerRole");
+	scriptInterface.RegisterFunction<std::wstring, std::wstring, &JSI_Lobby::LobbyGetPlayerRating>("LobbyGetPlayerRating");
 	scriptInterface.RegisterFunction<std::wstring, std::wstring, std::wstring, &JSI_Lobby::EncryptPassword>("EncryptPassword");
 	scriptInterface.RegisterFunction<std::wstring, &JSI_Lobby::LobbyGetRoomSubject>("LobbyGetRoomSubject");
 #endif // CONFIG2_LOBBY
@@ -243,12 +244,12 @@ bool JSI_Lobby::LobbyGuiPollHasPlayerListUpdate(ScriptInterface::CxPrivate* UNUS
 	return g_XmppClient && g_XmppClient->GuiPollHasPlayerListUpdate();
 }
 
-JS::Value JSI_Lobby::LobbyGuiPollNewMessage(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_Lobby::LobbyGuiPollNewMessages(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_XmppClient)
 		return JS::UndefinedValue();
 
-	return g_XmppClient->GuiPollNewMessage(*(pCxPrivate->pScriptInterface));
+	return g_XmppClient->GuiPollNewMessages(*(pCxPrivate->pScriptInterface));
 }
 
 JS::Value JSI_Lobby::LobbyGuiPollHistoricMessages(ScriptInterface::CxPrivate* pCxPrivate)
@@ -323,6 +324,14 @@ const char* JSI_Lobby::LobbyGetPlayerRole(ScriptInterface::CxPrivate* UNUSED(pCx
 		return "";
 
 	return g_XmppClient->GetRole(utf8_from_wstring(nickname));
+}
+
+std::wstring JSI_Lobby::LobbyGetPlayerRating(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& nickname)
+{
+	if (!g_XmppClient)
+		return std::wstring();
+
+	return g_XmppClient->GetRating(utf8_from_wstring(nickname));
 }
 
 // Non-public secure PBKDF2 hash function with salting and 1,337 iterations

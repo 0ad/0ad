@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object type="image" sprite="ModernDarkBoxGold">
+
+	<!-- Map Name -->
+	<object name="sgMapName" size="0 5 100% 20" type="text" style="ModernLabelText"/>
+
+	<!-- Map Preview -->
+	<object name="sgMapPreview" size="5 25 100%-5 185" type="image"/>
+
+	<!-- Map Description -->
+	<object type="image" sprite="ModernDarkBoxWhite" size="5 190 100%-5 60%">
+		<object name="sgMapDescription" type="text" style="ModernText" font="sans-14"/>
+	</object>
+
+	<object type="image" sprite="ModernDarkBoxWhite" size="5 60%+5 100%-5 100%-1">
+
+		<!-- Number of players, hostname, gamestart time -->
+		<object name="sgGame" size="5 5 100%-5 5" type="text" style="ModernLabelText"/>
+
+		<!-- Player Names -->
+		<object name="sgPlayersNames" type="text" style="MapPlayerList"/>
+
+	</object>
+
+</object>

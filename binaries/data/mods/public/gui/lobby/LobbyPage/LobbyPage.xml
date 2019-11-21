@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object>
+
+	<!-- Translucent black background -->
+	<object type="image" sprite="ModernFade"/>
+
+	<object name="lobbyPage" type="image" sprite="ModernWindow">
+
+		<object name="lobbyPageTitle" type="text" style="ModernLabelText" size="50%-128 4 50%+128 36">
+			<translatableAttribute id="caption">Multiplayer Lobby</translatableAttribute>
+		</object>
+
+		<object name="lobbyPanels" size="0 40 100% 100%-20">
+
+			<object name="leftPanel" size="20 0 20% 100%+20">
+				<object size="0 0 100% 100%-315">
+					<include file="gui/lobby/LobbyPage/PlayerList.xml"/>
+				</object>
+				<object size="0 100%-310 100% 100%-104">
+					<include file="gui/lobby/LobbyPage/ProfilePanel.xml"/>
+				</object>
+				<object size="0 100%-98 100% 100%">
+					<object name="toggleBuddyButton" type="button" style="ModernButtonRed" size="0 0 100% 25"/>
+					<object name="leaderboardButton" type="button" style="ModernButtonRed" size="0 27 100% 52"/>
+					<object name="profileButton" type="button" style="ModernButtonRed" size="0 54 100% 79"/>
+				</object>
+			</object>
+
+			<object name="middlePanel" size="20%+5 0 100%-255 100%">
+				<object size="0 0 100% 24">
+					<include file="gui/lobby/LobbyPage/GameListFilters.xml"/>
+				</object>
+				<object size="0 25 100% 48%">
+					<include file="gui/lobby/LobbyPage/GameList.xml"/>
+				</object>
+				<object size="0 49% 100% 100%">
+					<include file="gui/lobby/LobbyPage/Chat/ChatPanel.xml"/>
+				</object>
+			</object>
+
+			<object name="rightPanel" size="100%-250 0 100%-20 100%">
+				<object name="gameDetails" hidden="true">
+					<include file="gui/lobby/LobbyPage/GameDetails.xml"/>
+				</object>
+				<object  name="subjectPanel">
+					<include file="gui/lobby/LobbyPage/Subject.xml"/>
+				</object>
+				<object name="joinButton" size="0 100%-79 100% 100%-54" type="button" style="ModernButtonRed"/>
+				<object name="hostButton" size="0 100%-52 100% 100%-27" type="button" style="ModernButtonRed"/>
+				<object name="leaveButton" size="0 100%-25 100% 100%" type="button" style="ModernButtonRed"/>
+			</object>
+
+		</object>
+	</object>
+</object>

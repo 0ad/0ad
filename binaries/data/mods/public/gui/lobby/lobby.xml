@@ -4,17 +4,21 @@
 
 	<script directory="gui/common/"/>
 	<script directory="gui/lobby/"/>
+	<script directory="gui/lobby/LeaderboardPage/"/>
+	<script directory="gui/lobby/LobbyPage/"/>
+	<script directory="gui/lobby/LobbyPage/Buttons/"/>
+	<script directory="gui/lobby/LobbyPage/Chat/"/>
+	<script directory="gui/lobby/LobbyPage/Chat/ChatMessages/"/>
+	<script directory="gui/lobby/LobbyPage/Chat/StatusMessages/"/>
+	<script directory="gui/lobby/LobbyPage/Chat/SystemMessages/"/>
+	<script directory="gui/lobby/LobbyPage/GameListFilters/"/>
+	<script directory="gui/lobby/ProfilePage/"/>
 
-	<object type="image" sprite="ModernFade" name="fadeImage"/>
+	<object>
 
-	<object type="image" style="ModernWindow" name="lobbyWindow">
-
-		<object name="lobbyWindowTitle" style="ModernLabelText" type="text" size="50%-128 0%+4 50%+128 36">
-			<translatableAttribute id="caption">Multiplayer Lobby</translatableAttribute>
-		</object>
-
-		<include file="gui/lobby/lobby_panels.xml"/>
+		<include file="gui/lobby/LobbyPage/LobbyPage.xml"/>
+		<include file="gui/lobby/LeaderboardPage/LeaderboardPage.xml"/>
+		<include file="gui/lobby/ProfilePage/ProfilePage.xml"/>
 
 	</object>
-
 </objects>

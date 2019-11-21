@@ -573,7 +573,7 @@ void XmppClient::GUIGetGameList(const ScriptInterface& scriptInterface, JS::Muta
 
 	const char* stats[] = { "name", "ip", "port", "stunIP", "stunPort", "hostUsername", "state",
 		"nbp", "maxnbp", "players", "mapName", "niceMapName", "mapSize", "mapType",
-		"victoryCondition", "startTime", "mods" };
+		"victoryConditions", "startTime", "mods" };
 
 	for(const glooxwrapper::Tag* const& t : m_GameList)
 	{
@@ -687,48 +687,79 @@ void XmppClient::CreateGUIMessage(
 
 bool XmppClient::GuiPollHasPlayerListUpdate()
 {
+	// The initial playerlist will be received in multiple messages
+	// Only inform the GUI after all of these playerlist fragments were received.
+	if (!m_initialLoadComplete)
+		return false;
+
 	bool hasUpdate = m_PlayerMapUpdate;
 	m_PlayerMapUpdate = false;
 	return hasUpdate;
 }
 
-JS::Value XmppClient::GuiPollNewMessage(const ScriptInterface& scriptInterface)
+JS::Value XmppClient::GuiPollNewMessages(const ScriptInterface& scriptInterface)
 {
-	if (m_GuiMessageQueue.empty())
+	if (!m_initialLoadComplete || m_GuiMessageQueue.empty())
 		return JS::UndefinedValue();
 
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	JS::RootedValue message(cx, m_GuiMessageQueue.front());
-	m_GuiMessageQueue.pop_front();
+	// Optimize for batch message processing that is more
+	// performance demanding than processing a lone message.
+	JS::RootedValue messages(cx);
+	ScriptInterface::CreateArray(cx, &messages);
 
-	JS::RootedValue messageCopy(cx);
-	if (JS_StructuredClone(cx, message, &messageCopy, nullptr, nullptr))
+	int j = 0;
+
+	for (const JS::Heap<JS::Value>& message : m_GuiMessageQueue)
 	{
-		scriptInterface.SetProperty(messageCopy, "historic", true);
-		scriptInterface.FreezeObject(messageCopy, true);
-		m_HistoricGuiMessages.push_back(JS::Heap<JS::Value>(messageCopy));
-	}
-	else
-		LOGERROR("Could not clone historic lobby GUI message!");
+		scriptInterface.SetPropertyInt(messages, j++, message);
 
-	return message;
+		// Store historic chat messages.
+		// Only store relevant messages to minimize memory footprint.
+		JS::RootedValue rootedMessage(cx, message);
+		std::string type;
+		scriptInterface.GetProperty(rootedMessage, "type", type);
+		if (type != "chat")
+			continue;
+
+		std::string level;
+		scriptInterface.GetProperty(rootedMessage, "level", level);
+		if (level != "room-message" && level != "private-message")
+			continue;
+
+		JS::RootedValue historicMessage(cx);
+		if (JS_StructuredClone(cx, rootedMessage, &historicMessage, nullptr, nullptr))
+		{
+			scriptInterface.SetProperty(historicMessage, "historic", true);
+			scriptInterface.FreezeObject(historicMessage, true);
+			m_HistoricGuiMessages.push_back(JS::Heap<JS::Value>(historicMessage));
+		}
+		else
+			LOGERROR("Could not clone historic lobby GUI message!");
+	}
+
+	m_GuiMessageQueue.clear();
+	return messages;
 }
 
 JS::Value XmppClient::GuiPollHistoricMessages(const ScriptInterface& scriptInterface)
 {
+	if (m_HistoricGuiMessages.empty())
+		return JS::UndefinedValue();
+
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	JS::RootedValue ret(cx);
-	ScriptInterface::CreateArray(cx, &ret);
+	JS::RootedValue messages(cx);
+	ScriptInterface::CreateArray(cx, &messages);
 
 	int j = 0;
 	for (const JS::Heap<JS::Value>& message : m_HistoricGuiMessages)
-		scriptInterface.SetPropertyInt(ret, j++, message);
+		scriptInterface.SetPropertyInt(messages, j++, message);
 
-	return ret;
+	return messages;
 }
 
 /**
@@ -1085,6 +1116,20 @@ const char* XmppClient::GetRole(const std::string& nick)
 		return "";
 
 	return GetRoleString(it->second.m_Role);
+}
+
+/**
+ * Get the most recent received rating of the given nick.
+ * Notice that this doesn't request a rating profile if it hasn't been received yet.
+ */
+std::wstring XmppClient::GetRating(const std::string& nick)
+{
+	const PlayerMap::iterator it = m_PlayerMap.find(nick);
+
+	if (it == m_PlayerMap.end())
+		return std::wstring();
+
+	return wstring_from_utf8(it->second.m_Rating.to_string());
 }
 
 /*****************************************************

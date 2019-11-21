@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="gamesBox"
+	style="ModernSortedList"
+	selected_column="gameName"
+	selected_column_order="1"
+	type="olist"
+	sortable="true"
+	font="sans-stroke-13"
+>
+	<column id="buddy" width="12"/>
+	<column id="gameName" color="128 128 128" width="33%-12">
+		<translatableAttribute id="heading">Name</translatableAttribute>
+	</column>
+	<column id="mapName" color="128 128 128" width="25%">
+		<translatableAttribute id="heading">Map Name</translatableAttribute>
+	</column>
+	<column id="mapSize" color="128 128 128" width="16%">
+		<translatableAttribute id="heading" context="map">Size</translatableAttribute>
+	</column>
+	<column id="mapType" color="0 160 160" width="16%">
+		<translatableAttribute id="heading" context="map">Type</translatableAttribute>
+	</column>
+	<column id="maxnbp" color="0 128 128" width="10%">
+		<translatableAttribute id="heading">Players</translatableAttribute>
+	</column>
+	<column id="gameRating" color="0 160 160" width="16%">
+		<translatableAttribute id="heading">Rating</translatableAttribute>
+	</column>
+</object>

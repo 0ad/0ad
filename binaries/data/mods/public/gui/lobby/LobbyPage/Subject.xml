@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object type="image" sprite="ModernDarkBoxGold">
+
+	<object name="logoTop" size="50%-110 40 50%+110 140" type="image" sprite="logo"/>
+	<object name="logoCenter" size="50%-110 50%-50 50%+110 50%+50" type="image" sprite="logo"/>
+
+	<object name="subjectBox" size="5 180 100%-5 100%-10" type="image" sprite="ModernDarkBoxWhite">
+		<object name="subjectText" size="5 5 100%-5 100%-10" type="text" style="ModernText" text_align="center"/>
+	</object>
+
+</object>
