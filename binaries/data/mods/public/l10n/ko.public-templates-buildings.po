@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-10-28 08:16+0000\n"
-"PO-Revision-Date: 2019-11-01 17:39+0000\n"
+"POT-Creation-Date: 2019-11-18 08:09+0000\n"
+"PO-Revision-Date: 2019-11-20 13:31+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -130,21 +130,23 @@ msgid "Wall off your town for a stout defense."
 msgstr "튼튼한 방어를 위해 마을에 벽을 쌓습니다."
 
 #: simulation/templates/template_structure_defensive_tower.xml:35
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:60
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:59
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "DefenseTower"
 msgstr "방어탑"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:56
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:57
 msgid "Artillery Tower"
 msgstr "포 탑"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:57
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:58
 msgid "Catapults stones. Needs the murder holes tech to protect its foot."
 msgstr "투석기 돌. 발을 보호하기 위해 근총안 기술이 필요합니다."
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:60
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:59
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
 #: simulation/templates/template_structure_military_fortress.xml:74
 #: simulation/templates/template_structure_military_workshop.xml:29
@@ -154,10 +156,22 @@ msgstr "투석기 돌. 발을 보호하기 위해 근총안 기술이 필요합�
 msgid "City"
 msgstr "도시"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:60
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:59
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "StoneTower"
 msgstr "스톤타워"
+
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:56
+msgid "Bolt Tower"
+msgstr "화살탑"
+
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:57
+msgid ""
+"Shoots bolts. Faster reaction time against raiding units than the artillery "
+"tower, weak to all siege weapons and mass melee. Needs the murder holes tech"
+" to protect its foot."
+msgstr "화살을 쏩니다. 포 탑보다 공격 유닛에 대한 반응이 빠르며, 모든 공성 무기와 집단 근접공격에  약합니다. 발을 보호하려면 근총안 기술이 필요합니다."
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:52
 msgid ""
@@ -475,23 +489,38 @@ msgstr "에파우로스"
 
 #: simulation/templates/structures/athen_defense_tower.xml:9
 #: simulation/templates/structures/athen_tower_artillery.xml:9
+#: simulation/templates/structures/athen_tower_bolt.xml:9
 #: simulation/templates/structures/mace_defense_tower.xml:9
 #: simulation/templates/structures/mace_tower_artillery.xml:9
+#: simulation/templates/structures/mace_tower_bolt.xml:9
+#: simulation/templates/structures/ptol_tower_bolt.xml:9
 #: simulation/templates/structures/sele_defense_tower.xml:9
 #: simulation/templates/structures/sele_tower_artillery.xml:9
 #: simulation/templates/structures/spart_defense_tower.xml:9
+#: simulation/templates/structures/spart_tower_bolt.xml:9
 msgid "Pyrgíon"
 msgstr "피르기온"
 
 #: simulation/templates/structures/athen_defense_tower.xml:23
 #: simulation/templates/structures/cart_defense_tower.xml:24
+#: simulation/templates/structures/mace_defense_tower.xml:20
 #: simulation/templates/structures/ptol_defense_tower.xml:23
 #: simulation/templates/structures/rome_defense_tower.xml:23
-#: simulation/templates/structures/sele_defense_tower.xml:23
 msgid ""
-"Reinforce with stone block, and install small torsion engines to upgrade "
-"this defense tower into an artillery tower."
-msgstr "돌덩이로 보강하고, 작은 비틀림 장치를 설치하여 이 방어 탑을 포 탑으로 향상합니다."
+"Reinforce with stone block, and install small stone throwers to upgrade this"
+" defense tower into a slow, area of effect, and siege resistant artillery "
+"tower."
+msgstr "돌덩이로 보강하고, 작은 돌 던지기들을 설치하여 이 방어탑을 느린 효과의 영역과 공성 저항의 포탑으로 갱신합니다."
+
+#: simulation/templates/structures/athen_defense_tower.xml:33
+#: simulation/templates/structures/cart_defense_tower.xml:34
+#: simulation/templates/structures/mace_defense_tower.xml:30
+#: simulation/templates/structures/ptol_defense_tower.xml:33
+#: simulation/templates/structures/rome_defense_tower.xml:33
+msgid ""
+"Reinforce with stone block, and install scorpions to upgrade this defense "
+"tower into a prompt, long range, and accurate bolt tower."
+msgstr "돌덩이로 보강하고, 전갈을 설치하여 이 방어탑을 빠르고, 길고, 정확한 화살탑으로 갱신합니다."
 
 #: simulation/templates/structures/athen_dock.xml:12
 #: simulation/templates/structures/mace_dock.xml:12
@@ -659,12 +688,6 @@ msgstr "당신의 문명에 영광을 가져오고 제국의 영토를 넓힙니
 msgid "Hoplothēkē"
 msgstr "호프로테케"
 
-#: simulation/templates/structures/baby_defense_tower.xml:5
-#: simulation/templates/structures/pers_defense_tower.xml:5
-#: simulation/templates/structures/pers_wall_tower.xml:9
-msgid "Pāyaud"
-msgstr "파야우드"
-
 #: simulation/templates/structures/brit_barracks.xml:15
 msgid "Coriosessa"
 msgstr "크리오세싸"
@@ -821,6 +844,7 @@ msgstr "레페트"
 
 #: simulation/templates/structures/cart_defense_tower.xml:9
 #: simulation/templates/structures/cart_tower_artillery.xml:9
+#: simulation/templates/structures/cart_tower_bolt.xml:9
 #: simulation/templates/structures/cart_wall_tower.xml:12
 msgid "Mijdil"
 msgstr "미즈딜"
@@ -1499,6 +1523,12 @@ msgstr "크사카파반"
 msgid "Gaiāšta"
 msgstr "가이아스타"
 
+#: simulation/templates/structures/pers_defense_tower.xml:5
+#: simulation/templates/structures/pers_tower_babylon.xml:5
+#: simulation/templates/structures/pers_wall_tower.xml:9
+msgid "Pāyaud"
+msgstr "파야우드"
+
 #: simulation/templates/structures/pers_dock.xml:12
 msgid "Nāvašta"
 msgstr "나바스타"
@@ -1721,6 +1751,14 @@ msgstr "메크테르"
 msgid "Temple of Edfu"
 msgstr "에드후 신전"
 
+#: simulation/templates/structures/rome_ampitheater_pompeii.xml:10
+msgid "Ampitheater"
+msgstr "원형극장"
+
+#: simulation/templates/structures/rome_ampitheater_pompeii.xml:11
+msgid "Ampitheatrum"
+msgstr "암피테아트럼"
+
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
 msgstr "개선문"
@@ -1765,6 +1803,7 @@ msgstr "사에프툼"
 
 #: simulation/templates/structures/rome_defense_tower.xml:9
 #: simulation/templates/structures/rome_tower_artillery.xml:9
+#: simulation/templates/structures/rome_tower_bolt.xml:9
 msgid "Turris Laterīcia"
 msgstr "투르리스 라테리시아"
 
@@ -1912,6 +1951,12 @@ msgstr "시디로우르게이온"
 msgid "Agorā́"
 msgstr "아고라"
 
+#: simulation/templates/structures/sele_defense_tower.xml:23
+msgid ""
+"Reinforce with stone block, and install small torsion engines to upgrade "
+"this defense tower into an artillery tower."
+msgstr "돌덩이로 보강하고, 작은 비틀림 장치를 설치하여 이 방어 탑을 포 탑으로 향상합니다."
+
 #: simulation/templates/structures/sele_dock.xml:9
 msgid "Liménas"
 msgstr "리메나스"
@@ -1954,6 +1999,12 @@ msgstr "나오스"
 #: simulation/templates/structures/sele_wonder.xml:9
 msgid "Temple of Pythian Apollo"
 msgstr "아폴로 신탁 신전"
+
+#: simulation/templates/structures/spart_defense_tower.xml:23
+msgid ""
+"Reinforce with stone block, and install small oxybeles to upgrade this "
+"defense tower into a prompt, long range, and accurate bolt tower."
+msgstr "돌덩이로 보강하고, 작은 옥시레스를 설치하여 신속하고, 길고, 정확한 화살탑으로 갱신합니다."
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"
