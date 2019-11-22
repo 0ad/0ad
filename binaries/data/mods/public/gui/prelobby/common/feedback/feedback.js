@@ -10,19 +10,20 @@ var g_LobbyMessages = {
 	}
 };
 
+/**
+ * Other message types (such as gamelists) may be received in case of the current player being logged in and
+ * logging in in a second program instance with the same account name.
+ * Therefore messages without handlers are ignored without reporting them here.
+ */
 function onTick()
 {
-	while (true)
-	{
-		let message = Engine.LobbyGuiPollNewMessage();
-		if (!message)
-			break;
+	let messages = Engine.LobbyGuiPollNewMessages();
+	if (!messages)
+		return;
 
+	for (let message of messages)
 		if (message.type == "system" && message.level)
 			g_LobbyMessages[message.level](message);
-		else
-			warn("Unknown prelobby message: " + uneval(message));
-	}
 }
 
 function setFeedback(feedbackText)

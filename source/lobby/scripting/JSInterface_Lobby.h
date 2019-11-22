@@ -48,7 +48,7 @@ namespace JSI_Lobby
 	JS::Value GetGameList(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value GetBoardList(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value GetProfile(ScriptInterface::CxPrivate* pCxPrivate);
-	JS::Value LobbyGuiPollNewMessage(ScriptInterface::CxPrivate* pCxPrivate);
+	JS::Value LobbyGuiPollNewMessages(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value LobbyGuiPollHistoricMessages(ScriptInterface::CxPrivate* pCxPrivate);
 	bool LobbyGuiPollHasPlayerListUpdate(ScriptInterface::CxPrivate* pCxPrivate);
 	void LobbySendMessage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& message);
@@ -59,6 +59,7 @@ namespace JSI_Lobby
 	void LobbyBan(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nick, const std::wstring& reason);
 	const char* LobbyGetPlayerPresence(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nickname);
 	const char* LobbyGetPlayerRole(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nickname);
+	std::wstring LobbyGetPlayerRating(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nickname);
 	std::wstring LobbyGetRoomSubject(ScriptInterface::CxPrivate* pCxPrivate);
 
 	// Non-public secure PBKDF2 hash function with salting and 1,337 iterations

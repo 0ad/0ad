@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="leaderboardPage" hidden="true">
+
+	<!-- Translucent black background -->
+	<object type="image" z="100" sprite="ModernFade"/>
+
+	<object type="image" style="ModernDialog" size="50%-224 50%-160 50%+224 50%+160" z="101">
+
+		<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
+			<translatableAttribute id="caption">Leaderboard</translatableAttribute>
+		</object>
+
+		<object name="leaderboardBox" style="ModernList" type="olist" size="19 19 100%-19 100%-62">
+			<column id="rank" color="255 255 255" width="15%">
+				<translatableAttribute id="heading">Rank</translatableAttribute>
+			</column>
+			<column id="name" color="255 255 255" width="55%">
+				<translatableAttribute id="heading">Name</translatableAttribute>
+			</column>
+			<column id="rating" color="255 255 255" width="30%">
+				<translatableAttribute id="heading">Rating</translatableAttribute>
+			</column>
+		</object>
+
+		<object type="button" name="leaderboardPageBack" style="ModernButtonRed" size="50%-133 100%-45 50%-5 100%-17">
+			<translatableAttribute id="caption">Back</translatableAttribute>
+		</object>
+
+		<object type="button" name="leaderboardUpdateButton" style="ModernButtonRed" size="50%+5 100%-45 50%+133 100%-17">
+			<translatableAttribute id="caption">Update</translatableAttribute>
+		</object>
+	</object>
+</object>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="filterPanel">
+
+	<object type="text" size="22 0 52%-10 100%" text_align="left" textcolor="white">
+		<translatableAttribute id="caption">Show only open games</translatableAttribute>
+	</object>
+	<object name="filterOpenGames" type="checkbox" checked="false" style="ModernTickBox" size="0 0 20 20"/>
+
+	<object name="mapSizeFilter"
+		type="dropdown"
+		style="ModernDropDown"
+		size="58%-5 0 74%-10 100%"
+		font="sans-bold-13">
+	</object>
+
+	<object name="mapTypeFilter"
+		type="dropdown"
+		style="ModernDropDown"
+		size="74%-5 0 90%-10 100%"
+		font="sans-bold-13">
+	</object>
+
+	<object name="playersNumberFilter"
+		type="dropdown"
+		style="ModernDropDown"
+		size="90%-5 0 100%-10 100%"
+		font="sans-bold-13">
+	</object>
+
+	<object name="gameRatingFilter"
+		type="dropdown"
+		style="ModernDropDown"
+		size="84%-5 0 100%-10 100%"
+		font="sans-bold-13">
+	</object>
+
+</object>

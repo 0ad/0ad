@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="chatPanel" type="image" sprite="ModernDarkBoxGold">
+	<object name="chatText" size="0 0 100% 100%-28" type="text" style="ChatPanel" font="sans-13"/>
+	<object name="chatInput" size="0 100%-26 100%-72 100%-4" type="input" style="ModernInput" font="sans-13"/>
+	<object name="chatSubmit" size="100%-72 100%-26 100%-4 100%-4" type="button" style="StoneButton">
+		<translatableAttribute id="caption">Send</translatableAttribute>
+	</object>
+</object>

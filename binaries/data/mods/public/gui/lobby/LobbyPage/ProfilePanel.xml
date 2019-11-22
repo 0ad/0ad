@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This is the display of the player selected in the playerlist, not the profile page. -->
+<object name="profileBox" type="image" sprite="ModernDarkBoxGold">
+	<object name="profileArea" hidden="true">
+		<object name="playernameText" size="0 0 100% 45" type="text" style="ModernLabelText" font="sans-bold-16" />
+		<object name="roleText" size="0 45 100% 70" type="text" style="ModernLabelText" font="sans-bold-stroke-12" />
+		<object size="0 70 40%+40 90" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
+			<translatableAttribute id="caption">Current Rank:</translatableAttribute>
+		</object>
+		<object name="rankText" size="40%+45 70 100% 90" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+		<object size="0 90 40%+40 110" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
+			<translatableAttribute id="caption">Highest Rating:</translatableAttribute>
+		</object>
+		<object name="highestRatingText" size="40%+45 90 100% 110" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+		<object size="0 110 40%+40 130" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
+			<translatableAttribute id="caption">Total Games:</translatableAttribute>
+		</object>
+		<object name="totalGamesText" size="40%+45 110 100% 130" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+		<object size="0 130 40%+40 150" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
+			<translatableAttribute id="caption">Wins:</translatableAttribute>
+		</object>
+		<object name="winsText" size="40%+45 130 100% 150" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+		<object size="0 150 40%+40 170" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
+			<translatableAttribute id="caption">Losses:</translatableAttribute>
+		</object>
+		<object name="lossesText" size="40%+45 150 100% 170" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+		<object size="0 170 40%+40 190" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
+			<translatableAttribute id="caption">Win Rate:</translatableAttribute>
+		</object>
+		<object name="ratioText" size="40%+45 170 100% 190" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+	</object>
+</object>

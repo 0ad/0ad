@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="profilePage" hidden="true">
+
+	<!-- Translucent black background -->
+	<object type="image" z="100" sprite="ModernFade"/>
+
+	<object type="image" style="ModernDialog" size="50%-224 50%-160 50%+224 50%+160" z="102">
+
+		<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
+			<translatableAttribute id="caption">Player Profile Lookup</translatableAttribute>
+		</object>
+
+		<object type="text" size="15 25 40% 50" text_align="right" textcolor="white">
+			<translatableAttribute id="caption">Enter playername:</translatableAttribute>
+		</object>
+
+		<object name="fetchInput" size="40%+10 25 100%-25 50" type="input" style="ModernInput" font="sans-13"/>
+
+		<object name="viewProfileButton" type="button" style="ModernButtonRed" size="50%-64 60 50%+64 85">
+			<translatableAttribute id="caption">View Profile</translatableAttribute>
+		</object>
+
+		<object name="profileWindowPanel" size="25 95 100%-25 100%-60">
+			<object name="profileWindowBox" type="image" sprite="ModernDarkBoxGold">
+				<object name="profileWindowArea" hidden="true">
+					<object name="profilePlayernameText" size="0 0 100% 25" type="text" style="ModernLabelText" font="sans-bold-16" />
+					<object size="0 30 40%+40 50" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
+						<translatableAttribute id="caption">Current Rank:</translatableAttribute>
+					</object>
+					<object name="profileRankText" size="40%+45 30 100% 50" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+					<object size="0 50 40%+40 70" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
+						<translatableAttribute id="caption">Highest Rating:</translatableAttribute>
+					</object>
+					<object name="profileHighestRatingText" size="40%+45 50 100% 70" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+					<object size="0 70 40%+40 90" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
+						<translatableAttribute id="caption">Total Games:</translatableAttribute>
+					</object>
+					<object name="profileTotalGamesText" size="40%+45 70 100% 90" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+					<object size="0 90 40%+40 110" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
+						<translatableAttribute id="caption">Wins:</translatableAttribute>
+					</object>
+					<object name="profileWinsText" size="40%+45 90 100% 110" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+					<object size="0 110 40%+40 130" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
+						<translatableAttribute id="caption">Losses:</translatableAttribute>
+					</object>
+					<object name="profileLossesText" size="40%+45 110 100% 130" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+					<object size="0 130 40%+40 150" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
+						<translatableAttribute id="caption">Win Rate:</translatableAttribute>
+					</object>
+					<object name="profileRatioText" size="40%+45 130 100% 150" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+				</object>
+				<object name="profileErrorText" size="25% 25% 75% 75%" type="text" style="ModernLabelText" font="sans-bold-stroke-13">
+					<translatableAttribute id="caption">Please enter a player name.</translatableAttribute>
+				</object>
+			</object>
+		</object>
+
+		<object type="button" name="profileBackButton" style="ModernButtonRed" size="50%-64 100%-50 50%+64 100%-25" hotkey="cancel">
+			<translatableAttribute id="caption">Back</translatableAttribute>
+		</object>
+
+	</object>
+</object>
