@@ -105,7 +105,7 @@ var g_ReplaySelectionData;
 
 /**
  * Remembers which clients are assigned to which player slots.
- * The keys are guids or "local" in Singleplayer.
+ * The keys are GUIDs or "local" in single-player.
  */
 var g_PlayerAssignments;
 

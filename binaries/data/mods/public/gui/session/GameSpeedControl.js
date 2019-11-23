@@ -1,6 +1,6 @@
 /**
  * This class controls the gamespeed.
- * The control is only available in singleplayer and replaymode.
+ * The control is only available in single-player and replay mode.
  * Fast forwarding is enabled if and only if there is no human player assigned.
  */
 class GameSpeedControl

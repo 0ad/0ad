@@ -46,8 +46,8 @@ var g_MainMenuItems = [
 		]
 	},
 	{
-		"caption": translate("Single Player"),
-		"tooltip": translate("Click here to start a new single player game."),
+		"caption": translate("Single-player"),
+		"tooltip": translate("Click here to start a new single-player game."),
 		"submenu": [
 			{
 				"caption": translate("Matches"),
@@ -75,7 +75,7 @@ var g_MainMenuItems = [
 					Engine.SwitchGuiPage("page_replaymenu.xml", {
 						"replaySelectionData": {
 							"filters": {
-								"singleplayer": "Singleplayer"
+								"singleplayer": "Single-player"
 							}
 						}
 					});

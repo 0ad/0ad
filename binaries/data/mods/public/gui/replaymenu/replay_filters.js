@@ -139,8 +139,8 @@ function initDurationFilter(filters)
 function initSingleplayerFilter(filters)
 {
 	let singleplayerFilter = Engine.GetGUIObjectByName("singleplayerFilter");
-	singleplayerFilter.list = [translate("Single- and multiplayer"), translate("Single Player"), translate("Multiplayer")];
-	singleplayerFilter.list_data = ["", "Singleplayer", "Multiplayer"];
+	singleplayerFilter.list = [translate("Single-player and multiplayer"), translate("Single-player"), translate("Multiplayer")];
+	singleplayerFilter.list_data = ["", "Single-player", "Multiplayer"];
 
 	if (filters && filters.singleplayer)
 		singleplayerFilter.selected = singleplayerFilter.list_data.indexOf(filters.singleplayer);
@@ -234,10 +234,10 @@ function filterReplay(replay)
 	if (compatibilityFilter.checked && !isReplayCompatible(replay))
 		return false;
 
-	// Filter by singleplayer / multiplayer
+	// Filter by single-player or multiplayer.
 	let singleplayerFilter = Engine.GetGUIObjectByName("singleplayerFilter");
 	let selectedSingleplayerFilter = singleplayerFilter.list_data[singleplayerFilter.selected] || "";
-	if (selectedSingleplayerFilter == "Singleplayer" && replay.isMultiplayer ||
+	if (selectedSingleplayerFilter == "Single-player" && replay.isMultiplayer ||
 	    selectedSingleplayerFilter == "Multiplayer" && !replay.isMultiplayer)
 		return false;
 

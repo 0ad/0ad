@@ -76,7 +76,7 @@ class ChatMessageFormatPlayer
 		msg.cmd = msg.text.split(/\s/)[0];
 		msg.text = msg.text.substr(msg.cmd.length + 1);
 
-		// GUID is "local" in singleplayer, some string in multiplayer.
+		// GUID is "local" in single-player, some string in multiplayer.
 		// Chat messages sent by the simulation (AI) come with the playerID.
 		let senderID = msg.player ? msg.player : (g_PlayerAssignments[msg.guid] || msg).player;
 

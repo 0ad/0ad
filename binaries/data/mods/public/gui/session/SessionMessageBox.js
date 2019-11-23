@@ -1,6 +1,6 @@
 /**
  * This is the same as a regular MessageBox, but it pauses if it is
- * a singleplayer game, until the player answered the dialog.
+ * a single-player game, until the player answered the dialog.
  */
 class SessionMessageBox
 {
