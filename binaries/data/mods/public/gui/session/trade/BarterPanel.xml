@@ -21,7 +21,7 @@
 			<translatableAttribute id="caption">No Markets Available</translatableAttribute>
 		</object>
 
-		<object name="barterResources" size="72 0 100% 100%" hotkey="session.massbarter">
+		<object name="barterResources" size="92 0 100% 100%" hotkey="session.massbarter">
 			<repeat count="10">
 				<object size="0 0 58 100%">
 					<include file="gui/session/trade/BarterButton.xml"/>
