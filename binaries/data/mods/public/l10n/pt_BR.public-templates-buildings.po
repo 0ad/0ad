@@ -32,8 +32,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-10-28 08:16+0000\n"
-"PO-Revision-Date: 2019-10-28 14:31+0000\n"
+"POT-Creation-Date: 2019-11-18 08:09+0000\n"
+"PO-Revision-Date: 2019-11-18 15:16+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -140,21 +140,23 @@ msgid "Wall off your town for a stout defense."
 msgstr "Mure sua cidade para uma defesa robusta."
 
 #: simulation/templates/template_structure_defensive_tower.xml:35
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:60
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:59
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "DefenseTower"
 msgstr "Torre Defensiva"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:56
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:57
 msgid "Artillery Tower"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:57
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:58
 msgid "Catapults stones. Needs the murder holes tech to protect its foot."
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:60
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:59
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
 #: simulation/templates/template_structure_military_fortress.xml:74
 #: simulation/templates/template_structure_military_workshop.xml:29
@@ -164,10 +166,22 @@ msgstr ""
 msgid "City"
 msgstr "Cidade"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:60
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:59
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "StoneTower"
 msgstr "Torre de Defesa"
+
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:56
+msgid "Bolt Tower"
+msgstr ""
+
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:57
+msgid ""
+"Shoots bolts. Faster reaction time against raiding units than the artillery "
+"tower, weak to all siege weapons and mass melee. Needs the murder holes tech"
+" to protect its foot."
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:52
 msgid ""
@@ -485,22 +499,37 @@ msgstr "Épaulos"
 
 #: simulation/templates/structures/athen_defense_tower.xml:9
 #: simulation/templates/structures/athen_tower_artillery.xml:9
+#: simulation/templates/structures/athen_tower_bolt.xml:9
 #: simulation/templates/structures/mace_defense_tower.xml:9
 #: simulation/templates/structures/mace_tower_artillery.xml:9
+#: simulation/templates/structures/mace_tower_bolt.xml:9
+#: simulation/templates/structures/ptol_tower_bolt.xml:9
 #: simulation/templates/structures/sele_defense_tower.xml:9
 #: simulation/templates/structures/sele_tower_artillery.xml:9
 #: simulation/templates/structures/spart_defense_tower.xml:9
+#: simulation/templates/structures/spart_tower_bolt.xml:9
 msgid "Pyrgíon"
 msgstr "Pyrgíon"
 
 #: simulation/templates/structures/athen_defense_tower.xml:23
 #: simulation/templates/structures/cart_defense_tower.xml:24
+#: simulation/templates/structures/mace_defense_tower.xml:20
 #: simulation/templates/structures/ptol_defense_tower.xml:23
 #: simulation/templates/structures/rome_defense_tower.xml:23
-#: simulation/templates/structures/sele_defense_tower.xml:23
 msgid ""
-"Reinforce with stone block, and install small torsion engines to upgrade "
-"this defense tower into an artillery tower."
+"Reinforce with stone block, and install small stone throwers to upgrade this"
+" defense tower into a slow, area of effect, and siege resistant artillery "
+"tower."
+msgstr ""
+
+#: simulation/templates/structures/athen_defense_tower.xml:33
+#: simulation/templates/structures/cart_defense_tower.xml:34
+#: simulation/templates/structures/mace_defense_tower.xml:30
+#: simulation/templates/structures/ptol_defense_tower.xml:33
+#: simulation/templates/structures/rome_defense_tower.xml:33
+msgid ""
+"Reinforce with stone block, and install scorpions to upgrade this defense "
+"tower into a prompt, long range, and accurate bolt tower."
 msgstr ""
 
 #: simulation/templates/structures/athen_dock.xml:12
@@ -669,12 +698,6 @@ msgstr "Traga glória à sua civilização e agregue grandes extensões de terra
 msgid "Hoplothēkē"
 msgstr "Hoplothēkē"
 
-#: simulation/templates/structures/baby_defense_tower.xml:5
-#: simulation/templates/structures/pers_defense_tower.xml:5
-#: simulation/templates/structures/pers_wall_tower.xml:9
-msgid "Pāyaud"
-msgstr "Pāyaud"
-
 #: simulation/templates/structures/brit_barracks.xml:15
 msgid "Coriosessa"
 msgstr "Coriosessa"
@@ -831,6 +854,7 @@ msgstr "Rēfet"
 
 #: simulation/templates/structures/cart_defense_tower.xml:9
 #: simulation/templates/structures/cart_tower_artillery.xml:9
+#: simulation/templates/structures/cart_tower_bolt.xml:9
 #: simulation/templates/structures/cart_wall_tower.xml:12
 msgid "Mijdil"
 msgstr "Mijdil"
@@ -1509,6 +1533,12 @@ msgstr "Xšaçapāvan"
 msgid "Gaiāšta"
 msgstr "Gaiāšta"
 
+#: simulation/templates/structures/pers_defense_tower.xml:5
+#: simulation/templates/structures/pers_tower_babylon.xml:5
+#: simulation/templates/structures/pers_wall_tower.xml:9
+msgid "Pāyaud"
+msgstr "Pāyaud"
+
 #: simulation/templates/structures/pers_dock.xml:12
 msgid "Nāvašta"
 msgstr "Nāvašta"
@@ -1731,6 +1761,14 @@ msgstr "mktr"
 msgid "Temple of Edfu"
 msgstr "Templo de Edfu"
 
+#: simulation/templates/structures/rome_ampitheater_pompeii.xml:10
+msgid "Ampitheater"
+msgstr ""
+
+#: simulation/templates/structures/rome_ampitheater_pompeii.xml:11
+msgid "Ampitheatrum"
+msgstr ""
+
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
 msgstr "Arco do Triunfo"
@@ -1775,6 +1813,7 @@ msgstr "Saeptum"
 
 #: simulation/templates/structures/rome_defense_tower.xml:9
 #: simulation/templates/structures/rome_tower_artillery.xml:9
+#: simulation/templates/structures/rome_tower_bolt.xml:9
 msgid "Turris Laterīcia"
 msgstr "Turris Laterīcia"
 
@@ -1922,6 +1961,12 @@ msgstr "Sidirourgeíon"
 msgid "Agorā́"
 msgstr "Ágora"
 
+#: simulation/templates/structures/sele_defense_tower.xml:23
+msgid ""
+"Reinforce with stone block, and install small torsion engines to upgrade "
+"this defense tower into an artillery tower."
+msgstr ""
+
 #: simulation/templates/structures/sele_dock.xml:9
 msgid "Liménas"
 msgstr "Liménas"
@@ -1964,6 +2009,12 @@ msgstr "Naós"
 #: simulation/templates/structures/sele_wonder.xml:9
 msgid "Temple of Pythian Apollo"
 msgstr "Templo de Pythian Apollo"
+
+#: simulation/templates/structures/spart_defense_tower.xml:23
+msgid ""
+"Reinforce with stone block, and install small oxybeles to upgrade this "
+"defense tower into a prompt, long range, and accurate bolt tower."
+msgstr ""
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"
