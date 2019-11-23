@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special_amphitheater">
+  <Identity>
+    <Civ>rome</Civ>
+    <GenericName>Amphitheater</GenericName>
+    <SpecificName>Amphitheatrum</SpecificName>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/romans/amphitheater_pompeii.xml</Actor>
+  </VisualActor>
+</Entity>
