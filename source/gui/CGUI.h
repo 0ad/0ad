@@ -61,9 +61,9 @@ public:
 	~CGUI();
 
 	/**
-	 * Initializes the GUI, needs to be called before the GUI is used
+	 * Informs the GUI page which GUI object types may be constructed from XML.
 	 */
-	void Initialize();
+	void AddObjectTypes();
 
 	/**
 	 * Performs processing that should happen every frame
