@@ -5,11 +5,20 @@
     <variant name="Wall long">
       <mesh>structural/hele_wall_long.dae</mesh>
       <textures>
-		<texture file="structural/hele_struct_b.dds" name="baseTex"/>
-		<texture file="structural/hele_struct_b_norm.png" name="normTex"/>
-		<texture file="structural/hele_struct_b_spec.png" name="specTex"/>
-		<texture file="structural/ao/hele_wall_long.png" name="aoTex"/>
-		</textures>
+        <texture file="structural/hele_struct_b.dds" name="baseTex"/>
+        <texture file="structural/hele_struct_b_norm.png" name="normTex"/>
+        <texture file="structural/hele_struct_b_spec.png" name="specTex"/>
+        <texture file="structural/ao/hele_wall_long.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="upgrading">
+      <props>
+        <prop actor="props/structures/construction/scaf_9x3_wall.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <group>

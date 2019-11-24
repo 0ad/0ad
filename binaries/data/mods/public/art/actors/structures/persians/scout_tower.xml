@@ -27,6 +27,15 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="upgrading">
+      <props>
+        <prop actor="props/structures/construction/scaf_3x3_tower.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
     <variant name="ungarrisoned" frequency="1"/>
     <variant name="garrisoned">
       <props>
@@ -45,5 +54,5 @@
       </props>
     </variant>
   </group>
-      <material>player_trans_ao_parallax_spec.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

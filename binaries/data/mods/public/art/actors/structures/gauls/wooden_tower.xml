@@ -28,12 +28,21 @@
     <variant frequency="1" name="wood">
       <mesh>structural/gaul_wooden_tower_2.dae</mesh>
       <props>
-        <prop actor="props/structures/gauls/wooden_tower_2_roof.xml" attachpoint="root"/>
-        <prop actor="props/flora/bush_tempe_underbrush.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/wooden_tower_2_roof.xml" attachpoint="roof"/>
       </props>
       <textures>
         <texture file="structural/ao/gaul_wooden_tower_2_AO.png" name="aoTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="upgrading">
+      <props>
+        <prop actor="props/flora/bush_tempe_underbrush.xml" attachpoint="root"/>
+        <prop actor="props/structures/construction/scaf_3x3_tower.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <group>

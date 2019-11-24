@@ -22,17 +22,29 @@
   <group>
     <variant name="ivy" frequency="1">
       <props>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-        <prop actor="props/structures/romans/rome_tower_wood.xml" attachpoint="root"/>
-        <prop actor="props/flora/bush_tempe_underbrush.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/tower_nature.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/rome_tower_wood.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+        <prop actor="props/flora/bush_tempe_underbrush.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant name="no ivy" frequency="1">
       <props>
+        <prop actor="props/structures/romans/rome_tower_wood.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+        <prop actor="props/flora/bush_tempe_underbrush.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="upgrading">
+      <props>
+        <prop actor="props/flora/bush_tempe_underbrush.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/rome_tower_wood.xml" attachpoint="root"/>
-        <prop actor="props/flora/bush_tempe_underbrush.xml" attachpoint="root"/>
+        <prop actor="props/structures/construction/scaf_3x3_tower.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

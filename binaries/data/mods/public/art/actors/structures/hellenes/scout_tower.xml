@@ -23,6 +23,18 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="upgrading">
+      <props>
+        <prop actor="props/structures/hellenes/scout_tower_fancy.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/scout_tower_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_1x1.xml" attachpoint="root"/>
+        <prop actor="props/structures/construction/scaf_3x3_tower.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
     <variant name="ungarrisoned" frequency="1"/>
     <variant name="garrisoned">
       <props>
