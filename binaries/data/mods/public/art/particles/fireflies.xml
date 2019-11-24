@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<particles>
+  <texture>art/textures/particles/orange_firefly.png</texture>
+  <blend mode="add"/>
+  <constant name="emissionrate" value="200.0"/>
+  <constant name="lifetime" value="5.0"/>
+  <uniform name="size" min="0.15" max="0.2"/>
+  <uniform name="velocity.y" min="0.2" max="0.5"/>
+  <uniform name="velocity.x" min="-0.5" max="0.5"/>
+  <uniform name="velocity.z" min="-1.5" max="1.0"/>
+  <uniform name="position.x" min="-20.0" max="20.0"/>
+  <uniform name="position.z" min="-20.0" max="20.0"/>
+  <uniform name="position.y" min="0.5" max="15.0"/>
+</particles>
