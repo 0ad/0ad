@@ -6,7 +6,7 @@ class QuitConfirmationMenu
 }
 
 /**
- * In singleplayer mode, replaymode and for observers in multiplayermatches that
+ * In single-player mode, replay mode and for observers in multiplayer matches that
  * aren't the host, exit the match instantly.
  */
 QuitConfirmationMenu.prototype.Singleplayer = class extends QuitConfirmation

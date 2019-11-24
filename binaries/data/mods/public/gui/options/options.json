@@ -5,20 +5,20 @@
 		[
 			{
 				"type": "string",
-				"label": "Playername (Single Player)",
-				"tooltip": "How you want to be addressed in Single Player matches.",
+				"label": "Player Name (Single-player)",
+				"tooltip": "How you want to be addressed in single-player matches.",
 				"config": "playername.singleplayer"
 			},
 			{
 				"type": "string",
-				"label": "Playername (Multiplayer)",
-				"tooltip": "How you want to be addressed in Multiplayer matches (except lobby).",
+				"label": "Player Name (Multiplayer)",
+				"tooltip": "How you want to be addressed in multiplayer matches (except lobby).",
 				"config": "playername.multiplayer"
 			},
 			{
 				"type": "boolean",
 				"label": "Background Pause",
-				"tooltip": "Pause single player games when window loses focus.",
+				"tooltip": "Pause single-player games when window loses focus.",
 				"config": "pauseonfocusloss"
 			},
 			{

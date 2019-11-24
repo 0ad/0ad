@@ -1,7 +1,16 @@
 /**
  * Order in which the tabs should show up.
  */
-var g_OrderTabNames = ["special", "programming", "art", "translators", "misc", "donators"];
+var g_OrderTabNames = [
+	"special",
+	"programming",
+	"art",
+	"history",
+	"balancing",
+	"community",
+	"translators",
+	"donators"
+];
 
 /**
  * Array of Objects containg all relevant data per tab.
@@ -11,7 +20,7 @@ var g_PanelData = [];
 /**
  * Vertical size of a tab button.
  */
-var g_TabButtonHeight = 30;
+var g_TabButtonHeight = 35;
 
 /**
  * Vertical space between two tab buttons.

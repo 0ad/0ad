@@ -3,7 +3,7 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="ampitheater">
-      <mesh>structural/rome_ampitheater_pompeii.dae</mesh>
+      <mesh>structural/rome_amphitheater_pompeii.dae</mesh>
       <props>
         <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/celt_barracks.xml" attachpoint="root"/>
@@ -12,7 +12,7 @@
         <texture file="structural/rome_struct_2.png" name="baseTex"/>
         <texture file="structural/rome_struct_2_norm.png" name="normTex"/>
         <texture file="structural/rome_struct_2_spec.png" name="specTex"/>
-        <texture file="structural/ao/rome_ampitheater_pompeii_AO.png" name="aoTex"/>
+        <texture file="structural/ao/rome_amphitheater_pompeii_AO.png" name="aoTex"/>
       </textures>
     </variant>
   </group>

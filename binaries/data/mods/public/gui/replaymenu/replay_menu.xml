@@ -109,7 +109,7 @@
 				<translatableAttribute id="caption">Filter compatible replays</translatableAttribute>
 			</object>
 
-			<!-- Singleplayer / Multiplayer Filter -->
+			<!-- Single-player / Multiplayer Filter -->
 			<object name="singleplayerFilter" type="dropdown" style="ModernDropDown" size="0 30 100% 55" font="sans-bold-13">
 				<action on="SelectionChange">displayReplayList();</action>
 			</object>

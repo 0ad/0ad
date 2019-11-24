@@ -289,7 +289,7 @@ var g_PlayerAssignmentList = {};
 
 /**
  * Remembers which clients are assigned to which player slots and whether they are ready.
- * The keys are guids or "local" in Singleplayer.
+ * The keys are GUIDs or "local" in single-player.
  */
 var g_PlayerAssignments = {};
 
@@ -1226,7 +1226,7 @@ function init(attribs)
 			}
 		};
 
-	// Replace empty playername when entering a singleplayermatch for the first time
+	// Replace empty player name when entering a single-player match for the first time.
 	if (!g_IsNetworked)
 		Engine.ConfigDB_CreateAndWriteValueToFile("user", "playername.singleplayer", singleplayerName(), "config/user.cfg");
 

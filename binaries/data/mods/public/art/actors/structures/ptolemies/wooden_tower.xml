@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="0" name="Base">
       <mesh>structural/ptol_wooden_tower.dae</mesh>
       <props>
         <prop actor="props/structures/decals/dirt_1x1.xml" attachpoint="root"/>
@@ -14,6 +14,20 @@
         <texture file="structural/ptol_struct_norm.png" name="normTex"/>
         <texture file="structural/ptol_struct_spec.png" name="specTex"/>
         <texture file="structural/ao/ptol_wooden_tower_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="100" name="straight">
+      <mesh>structural/ptol_wooden_tower_2.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/spart_1x1.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+      </props>
+      <textures>
+        <texture file="structural/ptol_struct.png" name="baseTex"/>
+        <texture file="structural/ptol_struct_norm.png" name="normTex"/>
+        <texture file="structural/ptol_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/ptol_wooden_tower_2_AO.png" name="aoTex"/>
       </textures>
     </variant>
   </group>

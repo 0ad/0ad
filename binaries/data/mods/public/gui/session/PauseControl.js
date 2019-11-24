@@ -2,7 +2,7 @@
  * Controller to pause or resume the game and remember which players paused the game.
  *
  * If the current player ordered a pause manually, it is called explicit pause.
- * If the player opened a dialog in singleplayer mode, the game is paused implicitly.
+ * If the player opened a dialog in single-player mode, the game is paused implicitly.
  */
 class PauseControl
 {
@@ -10,7 +10,7 @@ class PauseControl
 	{
 		/**
 		 * This is true if the current player has paused the game using the pause button or hotkey.
-		 * The game may also be paused without this being true in singleplayermode when opening a dialog.
+		 * The game may also be paused without this being true in single-player mode when opening a dialog.
 		 */
 		this.explicitPause = false;
 
@@ -48,7 +48,7 @@ class PauseControl
 	}
 
 	/**
-	 * Called from UI dialogs, but only in singleplayermode.
+	 * Called from UI dialogs, but only in single-player mode.
 	 */
 	implicitPause()
 	{
