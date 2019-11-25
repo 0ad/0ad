@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 #include "graphics/ParticleEmitterType.h"
 
 #include <boost/random/mersenne_twister.hpp>
-#include <boost/unordered_map.hpp>
+#include <unordered_map>
 
 class SceneCollector;
 
@@ -61,7 +61,7 @@ private:
 
 	std::list<CParticleEmitterPtr> m_UnattachedEmitters;
 
-	boost::unordered_map<VfsPath, CParticleEmitterTypePtr> m_EmitterTypes;
+	std::unordered_map<VfsPath, CParticleEmitterTypePtr> m_EmitterTypes;
 };
 
 #endif // INCLUDED_PARTICLEMANAGER

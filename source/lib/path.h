@@ -37,13 +37,10 @@
 #ifndef INCLUDED_PATH
 #define INCLUDED_PATH
 
-#if CONFIG_ENABLE_BOOST
-# include "boost/functional/hash.hpp"
-#endif
-
 #include "lib/utf8.h"
 
 #include <cstring>
+#include <functional>
 
 namespace ERR
 {
@@ -73,11 +70,11 @@ LIB_API const wchar_t* path_name_only(const wchar_t* path);
 
 // NB: there is a need for 'generic' paths (e.g. for Trace entry / archive pathnames).
 // converting between specialized variants via c_str would be inefficient, and the
-// Os/VfsPath typedefs are hopefully sufficient to avoid errors.
+// Os/VfsPath types are hopefully sufficient to avoid errors.
 class Path
 {
 public:
-	typedef std::wstring String;
+	using String = std::wstring;
 
 	Path()
 	{
@@ -307,21 +304,19 @@ static inline std::wistream& operator>>(std::wistream& s, Path& path)
 	return s;
 }
 
-#if CONFIG_ENABLE_BOOST
-
-namespace boost {
-
+namespace std
+{
 template<>
-struct hash<Path> : std::unary_function<Path, std::size_t>
+struct hash<Path>
 {
 	std::size_t operator()(const Path& path) const
 	{
-		return hash_value(path.string());
+		return m_StringHash(path.string());
 	}
+
+private:
+	std::hash<std::wstring> m_StringHash;
 };
-
 }
-
-#endif	// #if CONFIG_ENABLE_BOOST
 
 #endif	// #ifndef INCLUDED_PATH

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,29 +20,27 @@
 #include "ShaderDefines.h"
 
 #include "graphics/ShaderProgram.h"
+#include "lib/hash.h"
 #include "maths/Vector4D.h"
 #include "ps/ThreadUtil.h"
 
 #include <sstream>
 
-size_t hash_value(const CVector4D& v)
+namespace std
 {
-	size_t hash = 0;
-	boost::hash_combine(hash, v.X);
-	boost::hash_combine(hash, v.Y);
-	boost::hash_combine(hash, v.Z);
-	boost::hash_combine(hash, v.W);
-	return hash;
-}
-
-size_t hash_value(const CShaderParams<CStrIntern>::SItems& items)
+template<>
+struct hash<CVector4D>
 {
-	return items.hash;
-}
-
-size_t hash_value(const CShaderParams<CVector4D>::SItems& items)
-{
-	return items.hash;
+	std::size_t operator()(const CVector4D& v) const
+	{
+		size_t hash = 0;
+		hash_combine(hash, v.X);
+		hash_combine(hash, v.Y);
+		hash_combine(hash, v.Z);
+		hash_combine(hash, v.W);
+		return hash;
+	}
+};
 }
 
 bool operator==(const CShaderParams<CStrIntern>::SItems& a, const CShaderParams<CStrIntern>::SItems& b)
@@ -180,8 +178,8 @@ void CShaderParams<value_t>::SItems::RecalcHash()
 	size_t h = 0;
 	for (size_t i = 0; i < items.size(); ++i)
 	{
-		boost::hash_combine(h, items[i].first);
-		boost::hash_combine(h, items[i].second);
+		hash_combine(h, items[i].first);
+		hash_combine(h, items[i].second);
 	}
 	hash = h;
 }

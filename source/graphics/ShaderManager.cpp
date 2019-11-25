@@ -21,6 +21,7 @@
 
 #include "graphics/ShaderTechnique.h"
 #include "lib/config2.h"
+#include "lib/hash.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
@@ -335,9 +336,9 @@ static GLenum ParseBlendFunc(const CStr& str)
 size_t CShaderManager::EffectCacheKeyHash::operator()(const EffectCacheKey& key) const
 {
 	size_t hash = 0;
-	boost::hash_combine(hash, key.name.GetHash());
-	boost::hash_combine(hash, key.defines1.GetHash());
-	boost::hash_combine(hash, key.defines2.GetHash());
+	hash_combine(hash, key.name.GetHash());
+	hash_combine(hash, key.defines1.GetHash());
+	hash_combine(hash, key.defines2.GetHash());
 	return hash;
 }
 

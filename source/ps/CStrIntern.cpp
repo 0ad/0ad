@@ -23,7 +23,7 @@
 #include "ps/CLogger.h"
 #include "ps/ThreadUtil.h"
 
-#include <boost/unordered_map.hpp>
+#include <unordered_map>
 
 class CStrInternInternals
 {
@@ -49,7 +49,7 @@ private:
 
 // Interned strings are stored in a hash table, indexed by string:
 
-typedef std::string StringsKey;
+using StringsKey = std::string;
 
 struct StringsKeyHash
 {
@@ -60,7 +60,7 @@ struct StringsKeyHash
 };
 
 // To avoid std::string memory allocations when GetString does lookups in the
-// hash table of interned strings, we make use of boost::unordered_map's ability
+// hash table of interned strings, we make use of std::unordered_map's ability
 // to do lookups with a functionally equivalent proxy object:
 
 struct StringsKeyProxy
@@ -85,7 +85,7 @@ struct StringsKeyProxyEq
 	}
 };
 
-static boost::unordered_map<StringsKey, shared_ptr<CStrInternInternals>, StringsKeyHash> g_Strings;
+static std::unordered_map<StringsKey, shared_ptr<CStrInternInternals>, StringsKeyHash> g_Strings;
 
 #define X(id) CStrIntern str_##id(#id);
 #define X2(id, str) CStrIntern str_##id(str);
@@ -100,15 +100,7 @@ static CStrInternInternals* GetString(const char* str, size_t len)
 	// to be thread-safe, preferably without sacrificing performance.)
 	ENSURE(ThreadUtil::IsMainThread());
 
-#if BOOST_VERSION >= 104200
-	StringsKeyProxy proxy = { str, len };
-	boost::unordered_map<StringsKey, shared_ptr<CStrInternInternals> >::iterator it =
-		g_Strings.find(proxy, StringsKeyProxyHash(), StringsKeyProxyEq());
-#else
-	// Boost <= 1.41 doesn't support the new find(), so do a slightly less efficient lookup
-	boost::unordered_map<StringsKey, shared_ptr<CStrInternInternals> >::iterator it =
-		g_Strings.find(str);
-#endif
+	std::unordered_map<StringsKey, shared_ptr<CStrInternInternals> >::iterator it = g_Strings.find(str);
 
 	if (it != g_Strings.end())
 		return it->second.get();

@@ -24,9 +24,9 @@
 #include "ps/TemplateLoader.h"
 #include "scriptinterface/ScriptInterface.h"
 
-#include <boost/unordered_set.hpp>
-#include <string>
 #include <set>
+#include <string>
+#include <unordered_set>
 
 class CGUI;
 
@@ -150,7 +150,7 @@ private:
 		void PerformCallbackFunction(shared_ptr<ScriptInterface::StructuredClone> args);
 
 		CStrW name;
-		boost::unordered_set<VfsPath> inputs; // for hotloading
+		std::unordered_set<VfsPath> inputs; // for hotloading
 		shared_ptr<ScriptInterface::StructuredClone> initData; // data to be passed to the init() function
 		shared_ptr<CGUI> gui; // the actual GUI page
 

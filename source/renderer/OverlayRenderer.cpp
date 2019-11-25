@@ -19,11 +19,11 @@
 
 #include "OverlayRenderer.h"
 
-#include <boost/unordered_map.hpp>
 #include "graphics/LOSTexture.h"
 #include "graphics/Overlay.h"
 #include "graphics/Terrain.h"
 #include "graphics/TextureManager.h"
+#include "lib/hash.h"
 #include "lib/ogl.h"
 #include "maths/MathUtil.h"
 #include "maths/Quaternion.h"
@@ -34,9 +34,11 @@
 #include "renderer/VertexArray.h"
 #include "renderer/VertexBuffer.h"
 #include "renderer/VertexBufferManager.h"
-#include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpWaterManager.h"
+#include "simulation2/Simulation2.h"
 #include "simulation2/system/SimContext.h"
+
+#include <unordered_map>
 
 /**
  * Key used to group quads into batches for more efficient rendering. Currently groups by the combination
@@ -55,6 +57,17 @@ struct QuadBatchKey
 
 	CTexturePtr m_Texture;
 	CTexturePtr m_TextureMask;
+};
+
+struct QuadBatchHash
+{
+	std::size_t operator()(const QuadBatchKey& d) const
+	{
+		size_t seed = 0;
+		hash_combine(seed, d.m_Texture);
+		hash_combine(seed, d.m_TextureMask);
+		return seed;
+	}
 };
 
 /**
@@ -79,7 +92,7 @@ public:
 
 struct OverlayRendererInternals
 {
-	typedef boost::unordered_map<QuadBatchKey, QuadBatchData> QuadBatchMap;
+	using QuadBatchMap = std::unordered_map<QuadBatchKey, QuadBatchData, QuadBatchHash>;
 
 	OverlayRendererInternals();
 	~OverlayRendererInternals(){ }
@@ -176,14 +189,6 @@ void OverlayRendererInternals::Initialize()
 	}
 	quadIndices.Upload();
 	quadIndices.FreeBackingStore();
-}
-
-static size_t hash_value(const QuadBatchKey& d)
-{
-	size_t seed = 0;
-	boost::hash_combine(seed, d.m_Texture);
-	boost::hash_combine(seed, d.m_TextureMask);
-	return seed;
 }
 
 OverlayRenderer::OverlayRenderer()

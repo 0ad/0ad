@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -90,9 +90,16 @@ private:
 	CStrInternInternals* m;
 };
 
-static inline size_t hash_value(const CStrIntern& str)
+namespace std
 {
-	return str.GetHash();
+template<>
+struct hash<CStrIntern>
+{
+	std::size_t operator()(const CStrIntern& str) const
+	{
+		return str.GetHash();
+	}
+};
 }
 
 #define X(id) extern CStrIntern str_##id;

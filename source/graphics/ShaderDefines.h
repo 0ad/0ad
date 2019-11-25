@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,8 +22,8 @@
 #include "ps/CStr.h"
 #include "ps/CStrIntern.h"
 
-#include <boost/unordered_map.hpp>
 #include <map>
+#include <unordered_map>
 
 class CVector4D;
 
@@ -96,7 +96,7 @@ public:
 	struct SItems
 	{
 		// Name/value pair
-		typedef std::pair<CStrIntern, value_t> Item;
+		using Item = std::pair<CStrIntern, value_t>;
 
 		// Sorted by name; no duplicated names
 		std::vector<Item> items;
@@ -106,11 +106,19 @@ public:
 		void RecalcHash();
 	};
 
+	struct SItemsHash
+	{
+		std::size_t operator()(const SItems& items) const
+		{
+			return items.hash;
+		}
+	};
+
 protected:
  	SItems* m_Items; // interned value
 
 private:
-	typedef boost::unordered_map<SItems, shared_ptr<SItems> > InternedItems_t;
+	using InternedItems_t = std::unordered_map<SItems, shared_ptr<SItems>, SItemsHash >;
 	static InternedItems_t s_InternedItems;
 
 	/**
@@ -188,7 +196,7 @@ enum RENDER_QUERIES
 class CShaderRenderQueries
 {
 public:
-	typedef std::pair<int, CStrIntern> RenderQuery;
+	using RenderQuery = std::pair<int, CStrIntern>;
 
 	void Add(const char* name);
 	size_t GetSize() const { return m_Items.size(); }

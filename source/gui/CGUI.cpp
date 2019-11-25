@@ -40,6 +40,7 @@
 #include "scriptinterface/ScriptInterface.h"
 
 #include <string>
+#include <unordered_set>
 
 extern int g_yres;
 
@@ -437,7 +438,7 @@ const SGUIScrollBarStyle* CGUI::GetScrollBarStyle(const CStr& style) const
 /**
  * @callgraph
  */
-void CGUI::LoadXmlFile(const VfsPath& Filename, boost::unordered_set<VfsPath>& Paths)
+void CGUI::LoadXmlFile(const VfsPath& Filename, std::unordered_set<VfsPath>& Paths)
 {
 	Paths.insert(Filename);
 
@@ -474,7 +475,7 @@ void CGUI::LoadedXmlFiles()
 //	XML Reading Xeromyces Specific Sub-Routines
 //===================================================================
 
-void CGUI::Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile, boost::unordered_set<VfsPath>& Paths)
+void CGUI::Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile, std::unordered_set<VfsPath>& Paths)
 {
 	int el_script = pFile->GetElementID("script");
 
@@ -524,7 +525,7 @@ void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 	}
 }
 
-void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject* pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth)
+void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject* pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, std::unordered_set<VfsPath>& Paths, u32 nesting_depth)
 {
 	ENSURE(pParent);
 
@@ -822,7 +823,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		delete object;
 }
 
-void CGUI::Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject* pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth)
+void CGUI::Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject* pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, std::unordered_set<VfsPath>& Paths, u32 nesting_depth)
 {
 	#define ELMT(x) int elmt_##x = pFile->GetElementID(#x)
 	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)
@@ -850,7 +851,7 @@ void CGUI::Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	}
 }
 
-void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, boost::unordered_set<VfsPath>& Paths)
+void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, std::unordered_set<VfsPath>& Paths)
 {
 	// Check for a 'file' parameter
 	CStrW file(Element.GetAttributes().GetNamedItem(pFile->GetAttributeID("file")).FromUTF8());

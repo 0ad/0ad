@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,7 +27,7 @@
 #include "precompiled.h"
 #include "h_mgr.h"
 
-#include <boost/unordered_map.hpp>
+#include <unordered_map>
 
 #include <limits.h>	// CHAR_BIT
 #include <string.h>
@@ -94,9 +94,8 @@ static const u64 IDX_MASK = (1l << IDX_BITS) - 1;
 
 // - tag (1-based) ensures the handle references a certain resource instance.
 //   (field width determines maximum unambiguous resource allocs)
-typedef i64 Tag;
+using Tag = i64;
 #define TAG_BITS 48
-static const u64 TAG_MASK = 0xFFFFFFFF;	// safer than (1 << 32) - 1
 
 // make sure both fields fit within a Handle variable
 cassert(IDX_BITS + TAG_BITS <= sizeof(Handle)*CHAR_BIT);
@@ -107,13 +106,6 @@ cassert(IDX_BITS + TAG_BITS <= sizeof(Handle)*CHAR_BIT);
 static inline size_t h_idx(const Handle h)
 {
 	return (size_t)(h & IDX_MASK) - 1;
-}
-
-// return the handle's tag field.
-// no error checking!
-static inline Tag h_tag(Handle h)
-{
-	return h >> IDX_BITS;
 }
 
 // build a handle from index and tag.
@@ -282,8 +274,8 @@ static Status h_data_tag_type(const Handle h, const H_Type type, HDATA*& hd)
 // that wasn't foreseen here, so we'll just refrain from adding to the index.
 // that means they won't be found via h_find - no biggie.
 
-typedef boost::unordered_multimap<uintptr_t, ssize_t> Key2Idx;
-typedef Key2Idx::iterator It;
+using Key2Idx = std::unordered_multimap<uintptr_t, ssize_t>;
+using It = Key2Idx::iterator;
 static OverrunProtector<Key2Idx> key2idx_wrapper;
 
 enum KeyRemoveFlag { KEY_NOREMOVE, KEY_REMOVE };

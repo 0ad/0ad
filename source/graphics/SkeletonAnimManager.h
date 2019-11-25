@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,10 +22,11 @@
 #ifndef INCLUDED_SKELETONANIMMANAGER
 #define INCLUDED_SKELETONANIMMANAGER
 
+#include "lib/file/vfs/vfs_path.h"
+
 #include <map>
 #include <set>
-#include "lib/file/vfs/vfs_path.h"
-#include <boost/unordered_map.hpp>
+#include <unordered_map>
 
 class CColladaManager;
 class CSkeletonAnimDef;
@@ -48,7 +49,7 @@ public:
 
 private:
 	// map of all known animations. Value is NULL if it failed to load.
-	boost::unordered_map<VfsPath, CSkeletonAnimDef*> m_Animations;
+	std::unordered_map<VfsPath, CSkeletonAnimDef*> m_Animations;
 
 	CColladaManager& m_ColladaManager;
 };

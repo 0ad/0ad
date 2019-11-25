@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -28,17 +28,10 @@
 #define INCLUDED_CACHE_ADT
 
 #include <cfloat>
-
 #include <list>
 #include <map>
 #include <queue> // std::priority_queue
-
-#if CONFIG_ENABLE_BOOST
-# include <boost/unordered_map.hpp>
-# define MAP boost::unordered_map
-#else
-# define MAP stdext::hash_map
-#endif
+#include <unordered_map>
 
 /*
 Cache for items of variable size and value/"cost".
@@ -313,7 +306,7 @@ again:
 	}
 
 protected:
-	class Map : public MAP<Key, Entry>
+	class Map : public std::unordered_map<Key, Entry>
 	{
 	public:
 		static Entry& entry_from_it(typename Map::iterator it) { return it->second; }

@@ -27,6 +27,6 @@
 #include "ps/CStr.h"
 #include "ps/Game.h"
 
-#include <boost/unordered_map.hpp>
+#include <unordered_map>
 
 #endif // HAVE_PCH

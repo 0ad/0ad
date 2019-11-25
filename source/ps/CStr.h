@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -16,8 +16,6 @@
  */
 
 /**
- * File        : CStr.h
- * Project     : engine
  * Description : Contains CStr class which is a versatile class for making string use easy.
  *			   : The class implements a series of string manipulation/formatting functions.
  **/
@@ -340,10 +338,5 @@ public:
 	u8* Serialize(u8* buffer) const;
 	const u8* Deserialize(const u8* buffer, const u8* bufferend);
 };
-
-static inline size_t hash_value(const CStr& s)
-{
-	return s.GetHashCode();
-}
 
 #endif

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,11 +20,11 @@
 
 #include "lib/file/vfs/vfs_path.h"
 
-#include <boost/unordered_map.hpp>
 #include <memory>
+#include <unordered_map>
 
 class CModelDef;
-typedef std::shared_ptr<CModelDef> CModelDefPtr;
+using CModelDefPtr = std::shared_ptr<CModelDef>;
 
 class CColladaManager;
 
@@ -38,7 +38,7 @@ public:
 	CModelDefPtr GetMesh(const VfsPath& pathname);
 
 private:
-	typedef boost::unordered_map<VfsPath, std::weak_ptr<CModelDef> > mesh_map;
+	using mesh_map = std::unordered_map<VfsPath, std::weak_ptr<CModelDef> >;
 	mesh_map m_MeshMap;
 	CColladaManager& m_ColladaManager;
 };

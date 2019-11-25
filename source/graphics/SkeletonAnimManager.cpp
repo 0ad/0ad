@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@
 #include "ps/CLogger.h"
 #include "ps/FileIo.h"
 
+#include <unordered_map>
 
 ///////////////////////////////////////////////////////////////////////////////
 // CSkeletonAnimManager constructor
@@ -41,7 +42,7 @@ CSkeletonAnimManager::CSkeletonAnimManager(CColladaManager& colladaManager)
 // CSkeletonAnimManager destructor
 CSkeletonAnimManager::~CSkeletonAnimManager()
 {
-	typedef boost::unordered_map<VfsPath,CSkeletonAnimDef*>::iterator Iter;
+	using Iter = std::unordered_map<VfsPath,CSkeletonAnimDef*>::iterator;
 	for (Iter i = m_Animations.begin(); i != m_Animations.end(); ++i)
 		delete i->second;
 }
@@ -54,7 +55,7 @@ CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const VfsPath& pathname)
 	VfsPath name = pathname.ChangeExtension(L"");
 
 	// Find if it's already been loaded
-	boost::unordered_map<VfsPath, CSkeletonAnimDef*>::iterator iter = m_Animations.find(name);
+	std::unordered_map<VfsPath, CSkeletonAnimDef*>::iterator iter = m_Animations.find(name);
 	if (iter != m_Animations.end())
 		return iter->second;
 

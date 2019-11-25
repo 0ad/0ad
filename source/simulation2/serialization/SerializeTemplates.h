@@ -27,7 +27,7 @@
 #include "simulation2/serialization/IDeserializer.h"
 #include "simulation2/serialization/ISerializer.h"
 
-#include <boost/unordered_map.hpp>
+#include <unordered_map>
 #include <utility>
 
 template<typename ELEM>
@@ -200,14 +200,14 @@ template<typename KS, typename VS>
 struct SerializeUnorderedMap
 {
 	template<typename K, typename V>
-	void operator()(ISerializer& serialize, const char* name, boost::unordered_map<K, V>& value)
+	void operator()(ISerializer& serialize, const char* name, std::unordered_map<K, V>& value)
 	{
 		std::map<K, V> ordered_value(value.begin(), value.end());
 		SerializeMap<KS, VS>()(serialize, name, ordered_value);
 	}
 
 	template<typename K, typename V>
-	void operator()(IDeserializer& deserialize, const char* name, boost::unordered_map<K, V>& value)
+	void operator()(IDeserializer& deserialize, const char* name, std::unordered_map<K, V>& value)
 	{
 		SerializeMap<KS, VS>()(deserialize, name, value);
 	}

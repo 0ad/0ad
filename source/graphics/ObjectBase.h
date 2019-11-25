@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,27 +18,26 @@
 #ifndef INCLUDED_OBJECTBASE
 #define INCLUDED_OBJECTBASE
 
-class CModel;
-class CSkeletonAnim;
-class CObjectManager;
-class CXeromyces;
-class XMBElement;
-
-#include <vector>
-#include <set>
-#include <map>
-#include <boost/unordered_set.hpp>
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
 #include "ps/CStrIntern.h"
 
+class CModel;
+class CObjectManager;
+class CSkeletonAnim;
+class CXeromyces;
+class XMBElement;
+
 #include <boost/random/mersenne_twister.hpp>
+#include <map>
+#include <set>
+#include <unordered_set>
+#include <vector>
 
 class CObjectBase
 {
 	NONCOPYABLE(CObjectBase);
 public:
-
 	struct Anim
 	{
 		// constructor
@@ -184,14 +183,14 @@ private:
 	// A low-quality RNG like rand48 causes visible non-random patterns (particularly
 	// in large grids of the same actor with consecutive seeds, e.g. forests),
 	// so use a better one that appears to avoid those patterns
-	typedef boost::mt19937 rng_t;
+	using rng_t = boost::mt19937;
 
 	std::set<CStr> CalculateRandomRemainingSelections(rng_t& rng, const std::vector<std::set<CStr> >& initialSelections);
 
 	std::vector< std::vector<Variant> > m_VariantGroups;
 	CObjectManager& m_ObjectManager;
 
-	boost::unordered_set<VfsPath> m_UsedFiles;
+	std::unordered_set<VfsPath> m_UsedFiles;
 
 	void LoadVariant(const CXeromyces& XeroFile, const XMBElement& variant, Variant& currentVariant);
 };
