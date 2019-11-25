@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-27 07:08+0000\n"
-"PO-Revision-Date: 2019-09-27 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-11-22 08:08+0000\n"
+"PO-Revision-Date: 2019-11-22 15:16+0000\n"
+"Last-Translator: Kelvin Cooper <Zhu-Zhe-Yong@live.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,382 +28,467 @@ msgstr ""
 "Language: zh\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gui/lobby/lobby.js:50
-msgid "Online"
-msgstr "在线"
-
-#: gui/lobby/lobby.js:51
-msgid "Away"
-msgstr "离开"
-
-#: gui/lobby/lobby.js:52
-msgid "Busy"
-msgstr "忙碌"
-
-#: gui/lobby/lobby.js:53
-msgid "Offline"
-msgstr "离线"
-
-#: gui/lobby/lobby.js:54
-msgctxt "lobby presence"
-msgid "Unknown"
-msgstr "未知"
-
-#: gui/lobby/lobby.js:58
-msgid "Moderator"
-msgstr "版主"
-
-#: gui/lobby/lobby.js:59
-msgid "Player"
-msgstr "玩家"
-
-#: gui/lobby/lobby.js:60
-msgid "Muted Player"
-msgstr "静音玩家"
-
-#: gui/lobby/lobby.js:165
-msgid "Disconnected."
-msgstr "已断开连接。"
-
-#: gui/lobby/lobby.js:184
-#, javascript-format
-msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr "%(nick)s改变游说对象为%(subject)s"
-
-#: gui/lobby/lobby.js:194
-#, javascript-format
-msgid "%(nick)s has joined."
-msgstr "%(nick)s 已加入"
-
-#: gui/lobby/lobby.js:203
-#, javascript-format
-msgid "%(nick)s has left."
-msgstr "%(nick)s 已离开"
-
-#: gui/lobby/lobby.js:220
-msgid "You have been muted."
-msgstr "你已被静音。"
-
-#: gui/lobby/lobby.js:221
-#, javascript-format
-msgid "%(nick)s has been muted."
-msgstr "%(nick)s已被静音。"
-
-#: gui/lobby/lobby.js:224
-msgid "You are now a moderator."
-msgstr "你现在是主持人。"
-
-#: gui/lobby/lobby.js:225
-#, javascript-format
-msgid "%(nick)s is now a moderator."
-msgstr "%(nick)s现在是主持人。"
-
-#: gui/lobby/lobby.js:228
-msgid "You have been unmuted."
-msgstr "你已被取消静音。"
-
-#: gui/lobby/lobby.js:229
-#, javascript-format
-msgid "%(nick)s has been unmuted."
-msgstr "%(nick)s已被取消静音。"
-
-#: gui/lobby/lobby.js:231
-msgid "You are not a moderator anymore."
-msgstr "你不再是主持人。"
-
-#: gui/lobby/lobby.js:232
-#, javascript-format
-msgid "%(nick)s is not a moderator anymore."
-msgstr "%(nick)s不再是主持人。"
-
-#: gui/lobby/lobby.js:245
-#, javascript-format
-msgid "%(oldnick)s is now known as %(newnick)s."
-msgstr "%(oldnick)s 改名为 %(newnick)s 。"
-
-#: gui/lobby/lobby.js:273
+#: gui/lobby/LobbyPage/AnnouncementHandler.js:18
 msgid "Notice"
 msgstr "公告"
 
-#: gui/lobby/lobby.js:308
-msgid "Set your state to 'Away'."
-msgstr "将你的状态设为“离开”"
+#: gui/lobby/LobbyPage/ConnectionHandler.js:45
+msgid "BANNED"
+msgstr "被禁"
 
-#: gui/lobby/lobby.js:315
-msgid "Set your state to 'Online'."
-msgstr "将你的状态设为“在线”"
+#: gui/lobby/LobbyPage/ConnectionHandler.js:45
+msgid "KICKED"
+msgstr "已被踢出"
 
-#: gui/lobby/lobby.js:322
-msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "从大厅踢出一个指定的用户。使用方法: /kick 别名 原因"
-
-#: gui/lobby/lobby.js:330
-msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr "从大厅禁言一个指定的用户。使用方法: /ban 别名 原因"
-
-#: gui/lobby/lobby.js:338
-msgid "Show this help."
-msgstr "显示此条帮助"
-
-#: gui/lobby/lobby.js:341
-msgid "Chat commands:"
-msgstr "聊天指令:"
-
-#. Translation: Chat command help format
-#: gui/lobby/lobby.js:345
-#, javascript-format
-msgid "%(command)s - %(description)s"
-msgstr "%(command)s - %(description)s"
-
-#: gui/lobby/lobby.js:358
-msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr "发送一个关于你自己的聊天信息。例如：/me 去游泳。"
-
-#: gui/lobby/lobby.js:362
-msgid ""
-"Send text as a chat message (even if it starts with slash). Example: /say "
-"/help is a great command."
-msgstr "发送文字作为一个聊天信息(即使是以斜线开头)。例如: /say /help 是一个不错的指令。"
-
-#: gui/lobby/lobby.js:366
-msgid "Clear all chat scrollback."
-msgstr "清空之前所有的聊天记录。"
-
-#: gui/lobby/lobby.js:373
-msgid "Return to the main menu."
-msgstr "返回到主菜单."
-
-#: gui/lobby/lobby.js:429
+#: gui/lobby/LobbyPage/ConnectionHandler.js:61
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
 msgstr "您已与大厅断开连接。是否重新连接？"
 
-#: gui/lobby/lobby.js:430 gui/lobby/lobby.js:1209
+#: gui/lobby/LobbyPage/ConnectionHandler.js:62
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
 #: gui/prelobby/common/credentials/credentials.js:55
 msgid "Confirmation"
 msgstr "确定"
 
-#: gui/lobby/lobby.js:431 gui/lobby/lobby.js:1192 gui/lobby/lobby.js:1210
+#: gui/lobby/LobbyPage/ConnectionHandler.js:63
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "No"
 msgstr "否"
 
-#: gui/lobby/lobby.js:431 gui/lobby/lobby.js:1192 gui/lobby/lobby.js:1210
+#: gui/lobby/LobbyPage/ConnectionHandler.js:63
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "Yes"
 msgstr "是"
 
-#: gui/lobby/lobby.js:446
-msgctxt "previous page"
-msgid "Back"
-msgstr "后退"
-
-#: gui/lobby/lobby.js:447
-msgctxt "previous page"
-msgid "Main Menu"
-msgstr "主菜单"
-
-#: gui/lobby/lobby.js:516
-msgctxt "map size"
-msgid "Any"
-msgstr "任意"
-
-#: gui/lobby/lobby.js:521
-msgctxt "player number"
-msgid "Any"
-msgstr "任意"
-
-#: gui/lobby/lobby.js:525 gui/lobby/lobby.js:539
-msgctxt "map"
-msgid "Any"
-msgstr "任意"
-
-#: gui/lobby/lobby.js:533
-#, javascript-format
-msgctxt "gamelist filter"
-msgid "> %(rating)s"
-msgstr "> %(rating)s"
-
-#: gui/lobby/lobby.js:534
-#, javascript-format
-msgctxt "gamelist filter"
-msgid "< %(rating)s"
-msgstr "< %(rating)s"
-
-#: gui/lobby/lobby.js:607
-msgid "You have been banned from the lobby!"
-msgstr "你在大厅已被禁言。"
-
-#: gui/lobby/lobby.js:608
-msgid "You have been kicked from the lobby!"
-msgstr "你已被踢出大厅。"
-
-#: gui/lobby/lobby.js:610
-#, javascript-format
-msgid "%(nick)s has been banned from the lobby."
-msgstr "%(nick)s在大厅已被禁言。"
-
-#: gui/lobby/lobby.js:611
-#, javascript-format
-msgid "%(nick)s has been kicked from the lobby."
-msgstr "%(nick)s已被踢出大厅。"
-
-#: gui/lobby/lobby.js:614
-#, javascript-format
-msgctxt "lobby kick"
-msgid "Reason: %(reason)s"
-msgstr "原因: %(reason)s"
-
-#: gui/lobby/lobby.js:642
-msgid "BANNED"
-msgstr "被禁"
-
-#: gui/lobby/lobby.js:642
-msgid "KICKED"
-msgstr "已被踢出"
-
-#: gui/lobby/lobby.js:673
-msgid "Unmark as Buddy"
-msgstr "取消标记为好友"
-
-#: gui/lobby/lobby.js:673
-msgid "Mark as Buddy"
-msgstr "标记为好友"
-
-#: gui/lobby/lobby.js:866 gui/lobby/lobby.js:867 gui/lobby/lobby.js:868
-#: gui/lobby/lobby.js:869 gui/lobby/lobby.js:870 gui/lobby/lobby.js:871
-msgid "N/A"
-msgstr "N/A"
-
-#: gui/lobby/lobby.js:899
-#, javascript-format
-msgid "Player \"%(nick)s\" not found."
-msgstr "未找到玩家  \"%(nick)s\""
-
 #. Translation: The number of players and observers in this game
-#: gui/lobby/lobby.js:1083
+#: gui/lobby/LobbyPage/Game.js:298
 #, javascript-format
 msgid "%(current)s/%(max)s +%(observercount)s"
 msgstr ""
 
 #. Translation: The number of players in this game
-#: gui/lobby/lobby.js:1085
+#: gui/lobby/LobbyPage/Game.js:301
 #, javascript-format
 msgid "%(current)s/%(max)s"
 msgstr ""
 
-#. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/lobby.js:1143
+#: gui/lobby/LobbyPage/GameDetails.js:65
+msgctxt "victory condition"
+msgid "Endless Game"
+msgstr "无尽的游戏"
+
+#: gui/lobby/LobbyPage/GameDetails.js:117
 #, javascript-format
-msgid "Game started at %(time)s"
-msgstr "游戏开始于%(time)s"
+msgid "Host: %(playername)s"
+msgstr ""
 
-#: gui/lobby/lobby.js:1144 gui/lobby/lobby.js:1526
-msgid "HH:mm"
-msgstr "HH:mm"
-
-#: gui/lobby/lobby.js:1148
+#: gui/lobby/LobbyPage/GameDetails.js:119
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr "玩家 :  %(current)s/%(total)s"
 
-#: gui/lobby/lobby.js:1188
-msgid "Your active mods do not match the mods of this game."
-msgstr "当前Mods与此游戏Mods不匹配。"
+#: gui/lobby/LobbyPage/GameDetails.js:121
+msgid "Victory Conditions:"
+msgstr ""
 
-#: gui/lobby/lobby.js:1190
-msgid "Do you want to switch to the mod selection page?"
-msgstr "是否要切换到mod选项？"
+#. Translation: Comma used to concatenate victory conditions
+#: gui/lobby/LobbyPage/GameDetails.js:124
+msgid ", "
+msgstr "，"
 
-#: gui/lobby/lobby.js:1191
-msgid "Incompatible mods"
-msgstr "无法兼容的Mods"
+#: gui/lobby/LobbyPage/GameDetails.js:126
+msgid "Mods:"
+msgstr ""
 
-#: gui/lobby/lobby.js:1208
-msgid "The game has already started. Do you want to join as observer?"
-msgstr "游戏已开始，是否进入为观察者模式？"
-
-#: gui/lobby/lobby.js:1242
+#. Translation: %(time)s is the hour and minute here.
+#: gui/lobby/LobbyPage/GameDetails.js:129
 #, javascript-format
-msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr "此游戏的位址 '%(ip)s'  似乎无效。"
+msgid "Game started at %(time)s"
+msgstr "游戏开始于%(time)s"
 
-#: gui/lobby/lobby.js:1355
+#: gui/lobby/LobbyPage/GameDetails.js:131
+#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
+msgid "HH:mm"
+msgstr "HH:mm"
+
+#: gui/lobby/LobbyPage/GameDetails.js:133
+msgid "Map Type:"
+msgstr "地图类型："
+
+#: gui/lobby/LobbyPage/GameDetails.js:135
+msgid "Map Size:"
+msgstr "地图大小:"
+
+#: gui/lobby/LobbyPage/GameDetails.js:137
+msgid "Map Description:"
+msgstr ""
+
+#: gui/lobby/LobbyPage/KickStrings.js:39
+msgid "You have been kicked from the lobby!"
+msgstr "你已被踢出大厅。"
+
+#: gui/lobby/LobbyPage/KickStrings.js:40
+msgid "You have been banned from the lobby!"
+msgstr "你在大厅已被禁言。"
+
+#: gui/lobby/LobbyPage/KickStrings.js:43
 #, javascript-format
-msgid "The command '%(cmd)s' is not supported."
-msgstr "指令‘%(cmd)s’不被支持。"
+msgid "%(nick)s has been kicked from the lobby."
+msgstr "%(nick)s已被踢出大厅。"
 
-#: gui/lobby/lobby.js:1367
+#: gui/lobby/LobbyPage/KickStrings.js:44
 #, javascript-format
-msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr "指令‘%(cmd)s’仅限主持人使用。"
+msgid "%(nick)s has been banned from the lobby."
+msgstr "%(nick)s在大厅已被禁言。"
 
-#. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:1446
+#: gui/lobby/LobbyPage/KickStrings.js:49
 #, javascript-format
-msgid "* %(sender)s"
-msgstr "* %(sender)s"
+msgctxt "lobby kick"
+msgid "Reason: %(reason)s"
+msgstr "原因: %(reason)s"
 
-#. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:1451
-#, javascript-format
-msgid "%(sender)s %(action)s"
-msgstr "%(sender)s %(action)s"
-
-#. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:1460 gui/lobby/lobby.js:1481 gui/lobby/lobby.js:1508
-#, javascript-format
-msgid "<%(sender)s>"
-msgstr "<%(sender)s>"
-
-#. Translation: IRC message.
-#: gui/lobby/lobby.js:1465 gui/lobby/lobby.js:1486 gui/lobby/lobby.js:1513
-#, javascript-format
-msgid "%(sender)s %(message)s"
-msgstr "%(sender)s %(message)s"
-
-#. Translation: IRC system message.
-#: gui/lobby/lobby.js:1475
-#, javascript-format
-msgid "== %(message)s"
-msgstr "== %(message)s"
-
-#: gui/lobby/lobby.js:1503
-#, javascript-format
-msgctxt "lobby private message"
-msgid "(%(private)s) <%(sender)s>"
-msgstr "(%(private)s) <%(sender)s>"
-
-#: gui/lobby/lobby.js:1504
-msgid "Private"
-msgstr "私有"
-
-#. Translation: Time prefix as shown in the multiplayer lobby (when you enable
-#. it in the options page).
-#: gui/lobby/lobby.js:1529
-#, javascript-format
-msgid "\\[%(time)s]"
-msgstr "\\[%(time)s]"
-
-#. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:1534
-#, javascript-format
-msgid "%(time)s %(message)s"
-msgstr "%(time)s %(message)s"
-
-#: gui/lobby/lobby.js:1573
+#: gui/lobby/LobbyPage/PlayerColor.js:34
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:1589
+#: gui/lobby/LobbyPage/PlayerList.js:178
+msgid "Online"
+msgstr "在线"
+
+#: gui/lobby/LobbyPage/PlayerList.js:184
+msgid "Away"
+msgstr "离开"
+
+#: gui/lobby/LobbyPage/PlayerList.js:190
+msgid "Busy"
+msgstr "忙碌"
+
+#: gui/lobby/LobbyPage/PlayerList.js:196
+msgid "Offline"
+msgstr "离线"
+
+#: gui/lobby/LobbyPage/PlayerList.js:202
+msgctxt "lobby presence"
+msgid "Unknown"
+msgstr "未知"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:106
+msgid "N/A"
+msgstr "N/A"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:112
+msgid "Moderator"
+msgstr "版主"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:113
+msgid "Player"
+msgstr "玩家"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:114
+msgid "Muted Player"
+msgstr "静音玩家"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:120
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:1591
+#: gui/lobby/LobbyPage/ProfilePanel.js:122
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
+
+#: gui/lobby/LobbyPage/Buttons/BuddyButton.js:69
+msgid "Mark as Buddy"
+msgstr "标记为好友"
+
+#: gui/lobby/LobbyPage/Buttons/BuddyButton.js:70
+msgid "Unmark as Buddy"
+msgstr "取消标记为好友"
+
+#: gui/lobby/LobbyPage/Buttons/HostButton.js:10
+msgid "Host Game"
+msgstr "创建游戏"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:40
+msgid "Your active mods do not match the mods of this game."
+msgstr "当前Mods与此游戏Mods不匹配。"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
+msgid "Do you want to switch to the mod selection page?"
+msgstr "是否要切换到mod选项？"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
+msgid "Incompatible mods"
+msgstr "无法兼容的Mods"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
+msgid "The game has already started. Do you want to join as observer?"
+msgstr "游戏已开始，是否进入为观察者模式？"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:89
+#, javascript-format
+msgid "This game's address '%(ip)s' does not appear to be valid."
+msgstr "此游戏的位址 '%(ip)s'  似乎无效。"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:91
+msgid "Error"
+msgstr "错误"
+
+#. Translation: Join the game currently selected in the list.
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:130
+msgid "Join Game"
+msgstr "加入游戏"
+
+#: gui/lobby/LobbyPage/Buttons/LeaderboardButton.js:9
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):10
+msgid "Leaderboard"
+msgstr "排行榜"
+
+#: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):10
+msgid "Player Profile Lookup"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
+msgctxt "previous page"
+msgid "Back"
+msgstr "后退"
+
+#: gui/lobby/LobbyPage/Buttons/QuitButton.js:16
+msgctxt "previous page"
+msgid "Main Menu"
+msgstr "主菜单"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:32
+#, javascript-format
+msgid "The command '%(cmd)s' is not supported."
+msgstr "指令‘%(cmd)s’不被支持。"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:44
+#, javascript-format
+msgid "The command '%(cmd)s' is restricted to moderators."
+msgstr "指令‘%(cmd)s’仅限主持人使用。"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:66
+#, javascript-format
+msgid "The command '%(cmd)s' requires at least one argument."
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:87
+msgid "Set your state to 'Away'."
+msgstr "将你的状态设为“离开”"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:94
+msgid "Set your state to 'Online'."
+msgstr "将你的状态设为“在线”"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:101
+msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
+msgstr "从大厅踢出一个指定的用户。使用方法: /kick 别名 原因"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:113
+msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
+msgstr "从大厅禁言一个指定的用户。使用方法: /ban 别名 原因"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:125
+msgid "Show this help."
+msgstr "显示此条帮助"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:128
+msgid "Chat commands:"
+msgstr "聊天指令:"
+
+#. Translation: Chat command help format
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:132
+#, javascript-format
+msgid "%(command)s - %(description)s"
+msgstr "%(command)s - %(description)s"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:146
+msgid "Send a chat message about yourself. Example: /me goes swimming."
+msgstr "发送一个关于你自己的聊天信息。例如：/me 去游泳。"
+
+#. Translation: Chat command
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:149
+msgid "/me"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:153
+msgid ""
+"Send text as a chat message (even if it starts with slash). Example: /say "
+"/help is a great command."
+msgstr "发送文字作为一个聊天信息(即使是以斜线开头)。例如: /say /help 是一个不错的指令。"
+
+#. Translation: Chat command
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:156
+msgid "/say"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:160
+msgid "Clear all chat scrollback."
+msgstr "清空之前所有的聊天记录。"
+
+#. Translation: Chat message format when there is a time prefix.
+#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:25
+#, javascript-format
+msgid "%(time)s %(message)s"
+msgstr "%(time)s %(message)s"
+
+#. Translation: Time prefix as shown in the multiplayer lobby (when you enable
+#. it in the options page).
+#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:28
+#, javascript-format
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
+
+#. Translation: Chat message issued using the ‘/me’ command.
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatMe.js:24
+#, javascript-format
+msgid "* %(sender)s %(message)s"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatSay.js:29
+#, javascript-format
+msgid "<%(sender)s>"
+msgstr "<%(sender)s>"
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatSay.js:31
+#, javascript-format
+msgid "%(sender)s %(message)s"
+msgstr "%(sender)s %(message)s"
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:23
+msgid "Private"
+msgstr "私有"
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:25
+#, javascript-format
+msgid "(%(private)s) %(message)s"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:47
+#, javascript-format
+msgid "%(nick)s has joined."
+msgstr "%(nick)s 已加入"
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:48
+#, javascript-format
+msgid "%(nick)s has left."
+msgstr "%(nick)s 已离开"
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:70
+#, javascript-format
+msgid "%(oldnick)s is now known as %(newnick)s."
+msgstr "%(oldnick)s 改名为 %(newnick)s 。"
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:107
+msgid "You have been muted."
+msgstr "你已被静音。"
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:108
+#, javascript-format
+msgid "%(nick)s has been muted."
+msgstr "%(nick)s已被静音。"
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:112
+msgid "You are now a moderator."
+msgstr "你现在是主持人。"
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:113
+#, javascript-format
+msgid "%(nick)s is now a moderator."
+msgstr "%(nick)s现在是主持人。"
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:118
+msgid "You have been unmuted."
+msgstr "你已被取消静音。"
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:119
+#, javascript-format
+msgid "%(nick)s has been unmuted."
+msgstr "%(nick)s已被取消静音。"
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:124
+msgid "You are not a moderator anymore."
+msgstr "你不再是主持人。"
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:125
+#, javascript-format
+msgid "%(nick)s is not a moderator anymore."
+msgstr "%(nick)s不再是主持人。"
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:152
+#, javascript-format
+msgid "%(nick)s changed the lobby subject to:"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:153
+#, javascript-format
+msgid "%(nick)s deleted the lobby subject."
+msgstr ""
+
+#. Translation: Chat status message
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
+#, javascript-format
+msgid "== %(message)s"
+msgstr "== %(message)s"
+
+#: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
+msgid "Connected."
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:56
+msgid "Disconnected."
+msgstr "已断开连接。"
+
+#. Translation: Caption for system notifications shown in the chat panel
+#: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:25
+msgid "System:"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
+#, javascript-format
+msgid "=== %(system)s %(message)s"
+msgstr ""
+
+#: gui/lobby/LobbyPage/GameListFilters/MapSize.js:9
+msgctxt "map size"
+msgid "Any"
+msgstr "任意"
+
+#: gui/lobby/LobbyPage/GameListFilters/MapType.js:9
+#: gui/lobby/LobbyPage/GameListFilters/Rating.js:11
+msgctxt "map"
+msgid "Any"
+msgstr "任意"
+
+#: gui/lobby/LobbyPage/GameListFilters/PlayerCount.js:10
+msgctxt "player number"
+msgid "Any"
+msgstr "任意"
+
+#: gui/lobby/LobbyPage/GameListFilters/Rating.js:19
+#, javascript-format
+msgctxt "gamelist filter"
+msgid "> %(rating)s"
+msgstr "> %(rating)s"
+
+#: gui/lobby/LobbyPage/GameListFilters/Rating.js:20
+#, javascript-format
+msgctxt "gamelist filter"
+msgid "< %(rating)s"
+msgstr "< %(rating)s"
+
+#: gui/lobby/ProfilePage/ProfilePage.js:70
+#, javascript-format
+msgid "Player \"%(nick)s\" not found."
+msgstr "未找到玩家  \"%(nick)s\""
 
 #: gui/prelobby/common/credentials/credentials.js:5
 msgid "Please enter your username"
@@ -489,132 +574,105 @@ msgstr "注册中……"
 msgid "Registered"
 msgstr "已注册"
 
-#: gui/lobby/lobby.xml:(caption):13
-#: gui/prelobby/entrance/entrance.xml:(caption):14
-msgid "Multiplayer Lobby"
-msgstr "多人游戏大厅"
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):15
+msgid "Rank"
+msgstr "等级"
 
-#: gui/lobby/lobby_panels.xml:(heading):23
-msgid "Status"
-msgstr "状态"
-
-#: gui/lobby/lobby_panels.xml:(heading):26
-#: gui/lobby/lobby_panels.xml:(heading):189
-#: gui/lobby/lobby_panels.xml:(heading):283
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):18
+#: gui/lobby/LobbyPage/GameList.xml:(heading):12
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):15
 msgid "Name"
 msgstr "名字"
 
-#: gui/lobby/lobby_panels.xml:(heading):29
-#: gui/lobby/lobby_panels.xml:(heading):204
-#: gui/lobby/lobby_panels.xml:(heading):286
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):21
+#: gui/lobby/LobbyPage/GameList.xml:(heading):27
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
 msgid "Rating"
 msgstr "排位"
 
-#: gui/lobby/lobby_panels.xml:(heading):192
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):26
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):59
+msgid "Back"
+msgstr "后退"
+
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):30
+msgid "Update"
+msgstr "更新"
+
+#: gui/lobby/LobbyPage/GameList.xml:(heading):15
 msgid "Map Name"
 msgstr "地图名称"
 
-#: gui/lobby/lobby_panels.xml:(heading):195
+#: gui/lobby/LobbyPage/GameList.xml:(heading):18
 msgctxt "map"
 msgid "Size"
 msgstr "大小"
 
-#: gui/lobby/lobby_panels.xml:(heading):198
+#: gui/lobby/LobbyPage/GameList.xml:(heading):21
 msgctxt "map"
 msgid "Type"
 msgstr "类型"
 
-#: gui/lobby/lobby_panels.xml:(heading):201
+#: gui/lobby/LobbyPage/GameList.xml:(heading):24
 msgid "Players"
 msgstr "玩家"
 
-#: gui/lobby/lobby_panels.xml:(heading):280
-msgid "Rank"
-msgstr "等级"
-
-#: gui/lobby/lobby_panels.xml:(caption):51
-#: gui/lobby/lobby_panels.xml:(caption):325
-msgid "Current Rank:"
-msgstr "当前队列："
-
-#: gui/lobby/lobby_panels.xml:(caption):55
-#: gui/lobby/lobby_panels.xml:(caption):329
-msgid "Highest Rating:"
-msgstr "最高排行："
-
-#: gui/lobby/lobby_panels.xml:(caption):59
-#: gui/lobby/lobby_panels.xml:(caption):333
-msgid "Total Games:"
-msgstr "游戏总数："
-
-#: gui/lobby/lobby_panels.xml:(caption):63
-#: gui/lobby/lobby_panels.xml:(caption):337
-msgid "Wins:"
-msgstr "胜者："
-
-#: gui/lobby/lobby_panels.xml:(caption):67
-#: gui/lobby/lobby_panels.xml:(caption):341
-msgid "Losses:"
-msgstr "输者："
-
-#: gui/lobby/lobby_panels.xml:(caption):71
-#: gui/lobby/lobby_panels.xml:(caption):345
-msgid "Win Rate:"
-msgstr "胜率："
-
-#: gui/lobby/lobby_panels.xml:(caption):85
-#: gui/lobby/lobby_panels.xml:(caption):273
-msgid "Leaderboard"
-msgstr "排行榜"
-
-#: gui/lobby/lobby_panels.xml:(caption):91
-#: gui/lobby/lobby_panels.xml:(caption):308
-msgid "User Profile Lookup"
-msgstr "查询用户档案"
-
-#: gui/lobby/lobby_panels.xml:(caption):119
-msgid "Map Type:"
-msgstr "地图类型："
-
-#: gui/lobby/lobby_panels.xml:(caption):131
-msgid "Map Size:"
-msgstr "地图大小:"
-
-#. Join the game currently selected in the list.
-#: gui/lobby/lobby_panels.xml:(caption):156
-msgid "Join Game"
-msgstr "加入游戏"
-
-#: gui/lobby/lobby_panels.xml:(caption):162
-msgid "Host Game"
-msgstr "创建游戏"
-
-#: gui/lobby/lobby_panels.xml:(caption):243
+#: gui/lobby/LobbyPage/GameListFilters.xml:(caption):5
 msgid "Show only open games"
 msgstr "只显示开放的游戏"
 
-#: gui/lobby/lobby_panels.xml:(caption):261
+#: gui/lobby/LobbyPage/LobbyPage.xml:(caption):10
+#: gui/prelobby/entrance/entrance.xml:(caption):14
+msgid "Multiplayer Lobby"
+msgstr "多人游戏大厅"
+
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):12
+msgid "Status"
+msgstr "状态"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):8
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):28
+msgid "Current Rank:"
+msgstr "当前队列："
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):12
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):32
+msgid "Highest Rating:"
+msgstr "最高排行："
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):16
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):36
+msgid "Total Games:"
+msgstr "游戏总数："
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):20
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):40
+msgid "Wins:"
+msgstr "胜者："
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):24
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):44
+msgid "Losses:"
+msgstr "输者："
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):28
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):48
+msgid "Win Rate:"
+msgstr "胜率："
+
+#: gui/lobby/LobbyPage/Chat/ChatPanel.xml:(caption):6
 msgid "Send"
 msgstr "发送"
 
-#: gui/lobby/lobby_panels.xml:(caption):293
-#: gui/lobby/lobby_panels.xml:(caption):355
-msgid "Back"
-msgstr "后退"
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):14
+msgid "Enter playername:"
+msgstr ""
 
-#: gui/lobby/lobby_panels.xml:(caption):299
-msgid "Update"
-msgstr "更新"
-
-#: gui/lobby/lobby_panels.xml:(caption):311
-msgid "Enter username:"
-msgstr "输入用户名 :"
-
-#: gui/lobby/lobby_panels.xml:(caption):317
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):20
 msgid "View Profile"
 msgstr "查看档案"
 
-#: gui/lobby/lobby_panels.xml:(caption):350
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):53
 msgid "Please enter a player name."
 msgstr "请输入玩家名。"
 

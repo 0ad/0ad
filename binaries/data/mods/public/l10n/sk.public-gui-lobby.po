@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-27 07:08+0000\n"
-"PO-Revision-Date: 2019-09-27 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-11-22 08:08+0000\n"
+"PO-Revision-Date: 2019-11-22 15:16+0000\n"
+"Last-Translator: Peto (wt-ts) <peter.tuharsky@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,382 +27,467 @@ msgstr ""
 "Language: sk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
-#: gui/lobby/lobby.js:50
-msgid "Online"
-msgstr "Pripojený"
-
-#: gui/lobby/lobby.js:51
-msgid "Away"
-msgstr "Preč"
-
-#: gui/lobby/lobby.js:52
-msgid "Busy"
-msgstr "Zaneprázdnený"
-
-#: gui/lobby/lobby.js:53
-msgid "Offline"
-msgstr "Nepripojený"
-
-#: gui/lobby/lobby.js:54
-msgctxt "lobby presence"
-msgid "Unknown"
-msgstr "Neznámy"
-
-#: gui/lobby/lobby.js:58
-msgid "Moderator"
-msgstr "Moderátor"
-
-#: gui/lobby/lobby.js:59
-msgid "Player"
-msgstr "Hráč"
-
-#: gui/lobby/lobby.js:60
-msgid "Muted Player"
-msgstr "Stlmený hráč"
-
-#: gui/lobby/lobby.js:165
-msgid "Disconnected."
-msgstr "Odpojený."
-
-#: gui/lobby/lobby.js:184
-#, javascript-format
-msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr "%(nick)s zmenil lobby subjekt na %(subject)s"
-
-#: gui/lobby/lobby.js:194
-#, javascript-format
-msgid "%(nick)s has joined."
-msgstr "%(nick)s sa pripojil."
-
-#: gui/lobby/lobby.js:203
-#, javascript-format
-msgid "%(nick)s has left."
-msgstr "%(nick)s sa odpojil."
-
-#: gui/lobby/lobby.js:220
-msgid "You have been muted."
-msgstr "Bol si stlmený."
-
-#: gui/lobby/lobby.js:221
-#, javascript-format
-msgid "%(nick)s has been muted."
-msgstr "%(nick)s bol stmený."
-
-#: gui/lobby/lobby.js:224
-msgid "You are now a moderator."
-msgstr "Odteraz si moderátor."
-
-#: gui/lobby/lobby.js:225
-#, javascript-format
-msgid "%(nick)s is now a moderator."
-msgstr "%(nick)s je odteraz moderátor."
-
-#: gui/lobby/lobby.js:228
-msgid "You have been unmuted."
-msgstr "Už nie si stlmený."
-
-#: gui/lobby/lobby.js:229
-#, javascript-format
-msgid "%(nick)s has been unmuted."
-msgstr "%(nick)s už nie je stlmený."
-
-#: gui/lobby/lobby.js:231
-msgid "You are not a moderator anymore."
-msgstr "Už nie si moderátor."
-
-#: gui/lobby/lobby.js:232
-#, javascript-format
-msgid "%(nick)s is not a moderator anymore."
-msgstr "%(nick)s už nie je moderátor."
-
-#: gui/lobby/lobby.js:245
-#, javascript-format
-msgid "%(oldnick)s is now known as %(newnick)s."
-msgstr "%(oldnick)s sa odteraz volá %(newnick)s."
-
-#: gui/lobby/lobby.js:273
+#: gui/lobby/LobbyPage/AnnouncementHandler.js:18
 msgid "Notice"
 msgstr "Poznámka"
 
-#: gui/lobby/lobby.js:308
-msgid "Set your state to 'Away'."
-msgstr "Nastav svoj stav na 'Som preč'."
+#: gui/lobby/LobbyPage/ConnectionHandler.js:45
+msgid "BANNED"
+msgstr "ZABANOVANÝ "
 
-#: gui/lobby/lobby.js:315
-msgid "Set your state to 'Online'."
-msgstr "Nastav svoj stav na 'Online'."
+#: gui/lobby/LobbyPage/ConnectionHandler.js:45
+msgid "KICKED"
+msgstr "VYHODENÝ "
 
-#: gui/lobby/lobby.js:322
-msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "Vyhoď konkrétneho hráča z lobby. Použitie: /kick nick dôvod"
-
-#: gui/lobby/lobby.js:330
-msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr "Zablokuj konkrétneho hráča v lobby. Použitie: /ban nick dôvod"
-
-#: gui/lobby/lobby.js:338
-msgid "Show this help."
-msgstr "Zobraz tohto pomocníka."
-
-#: gui/lobby/lobby.js:341
-msgid "Chat commands:"
-msgstr "Príkazy chatu:"
-
-#. Translation: Chat command help format
-#: gui/lobby/lobby.js:345
-#, javascript-format
-msgid "%(command)s - %(description)s"
-msgstr "%(command)s - %(description)s"
-
-#: gui/lobby/lobby.js:358
-msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr "Pošli správu o sebe. Príklad: /me ide plávať."
-
-#: gui/lobby/lobby.js:362
-msgid ""
-"Send text as a chat message (even if it starts with slash). Example: /say "
-"/help is a great command."
-msgstr "Pošli text ako správu (aj keď začína lomkou). Príklad: /say /help je super príkaz."
-
-#: gui/lobby/lobby.js:366
-msgid "Clear all chat scrollback."
-msgstr "Vyčistiť celý pokec. "
-
-#: gui/lobby/lobby.js:373
-msgid "Return to the main menu."
-msgstr "Návrat do hlavného menu."
-
-#: gui/lobby/lobby.js:429
+#: gui/lobby/LobbyPage/ConnectionHandler.js:61
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
 msgstr "Boli ste odpojený z lobby. Chceš sa znova pripojiť? "
 
-#: gui/lobby/lobby.js:430 gui/lobby/lobby.js:1209
+#: gui/lobby/LobbyPage/ConnectionHandler.js:62
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
 #: gui/prelobby/common/credentials/credentials.js:55
 msgid "Confirmation"
 msgstr "Potvrdenie"
 
-#: gui/lobby/lobby.js:431 gui/lobby/lobby.js:1192 gui/lobby/lobby.js:1210
+#: gui/lobby/LobbyPage/ConnectionHandler.js:63
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "No"
 msgstr "Nie"
 
-#: gui/lobby/lobby.js:431 gui/lobby/lobby.js:1192 gui/lobby/lobby.js:1210
+#: gui/lobby/LobbyPage/ConnectionHandler.js:63
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "Yes"
 msgstr "Áno"
 
-#: gui/lobby/lobby.js:446
-msgctxt "previous page"
-msgid "Back"
-msgstr "Späť"
-
-#: gui/lobby/lobby.js:447
-msgctxt "previous page"
-msgid "Main Menu"
-msgstr "Hlavné menu"
-
-#: gui/lobby/lobby.js:516
-msgctxt "map size"
-msgid "Any"
-msgstr "Ľubovoľná"
-
-#: gui/lobby/lobby.js:521
-msgctxt "player number"
-msgid "Any"
-msgstr "Ľubovoľná"
-
-#: gui/lobby/lobby.js:525 gui/lobby/lobby.js:539
-msgctxt "map"
-msgid "Any"
-msgstr "Ľubovoľná"
-
-#: gui/lobby/lobby.js:533
-#, javascript-format
-msgctxt "gamelist filter"
-msgid "> %(rating)s"
-msgstr "> %(rating)s"
-
-#: gui/lobby/lobby.js:534
-#, javascript-format
-msgctxt "gamelist filter"
-msgid "< %(rating)s"
-msgstr "< %(rating)s"
-
-#: gui/lobby/lobby.js:607
-msgid "You have been banned from the lobby!"
-msgstr "Bol si zabanovaný z lobby! "
-
-#: gui/lobby/lobby.js:608
-msgid "You have been kicked from the lobby!"
-msgstr "Bol si vyhodený z lobby! "
-
-#: gui/lobby/lobby.js:610
-#, javascript-format
-msgid "%(nick)s has been banned from the lobby."
-msgstr "%(nick)s bol zabanovaný z lobby. "
-
-#: gui/lobby/lobby.js:611
-#, javascript-format
-msgid "%(nick)s has been kicked from the lobby."
-msgstr "%(nick)s bol vyhodený z lobby. "
-
-#: gui/lobby/lobby.js:614
-#, javascript-format
-msgctxt "lobby kick"
-msgid "Reason: %(reason)s"
-msgstr "Dôvod: %(reason)s"
-
-#: gui/lobby/lobby.js:642
-msgid "BANNED"
-msgstr "ZABANOVANÝ "
-
-#: gui/lobby/lobby.js:642
-msgid "KICKED"
-msgstr "VYHODENÝ "
-
-#: gui/lobby/lobby.js:673
-msgid "Unmark as Buddy"
-msgstr "Odstrániť označenie Kamaráta"
-
-#: gui/lobby/lobby.js:673
-msgid "Mark as Buddy"
-msgstr "Označiť ako Kamaráta"
-
-#: gui/lobby/lobby.js:866 gui/lobby/lobby.js:867 gui/lobby/lobby.js:868
-#: gui/lobby/lobby.js:869 gui/lobby/lobby.js:870 gui/lobby/lobby.js:871
-msgid "N/A"
-msgstr "Nie je k dispozícií"
-
-#: gui/lobby/lobby.js:899
-#, javascript-format
-msgid "Player \"%(nick)s\" not found."
-msgstr "Hráč \"%(nick)s\" nebol nájdený."
-
 #. Translation: The number of players and observers in this game
-#: gui/lobby/lobby.js:1083
+#: gui/lobby/LobbyPage/Game.js:298
 #, javascript-format
 msgid "%(current)s/%(max)s +%(observercount)s"
 msgstr ""
 
 #. Translation: The number of players in this game
-#: gui/lobby/lobby.js:1085
+#: gui/lobby/LobbyPage/Game.js:301
 #, javascript-format
 msgid "%(current)s/%(max)s"
 msgstr ""
 
-#. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/lobby.js:1143
+#: gui/lobby/LobbyPage/GameDetails.js:65
+msgctxt "victory condition"
+msgid "Endless Game"
+msgstr "Hra bez konca"
+
+#: gui/lobby/LobbyPage/GameDetails.js:117
 #, javascript-format
-msgid "Game started at %(time)s"
-msgstr "Hra sa začala o %(time)s"
+msgid "Host: %(playername)s"
+msgstr ""
 
-#: gui/lobby/lobby.js:1144 gui/lobby/lobby.js:1526
-msgid "HH:mm"
-msgstr "HH:mm"
-
-#: gui/lobby/lobby.js:1148
+#: gui/lobby/LobbyPage/GameDetails.js:119
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr "Hráčov: %(current)s/%(total)s"
 
-#: gui/lobby/lobby.js:1188
-msgid "Your active mods do not match the mods of this game."
-msgstr "Tvoje aktivované módy sa nezhodujú s módmi tohto zápasu. "
+#: gui/lobby/LobbyPage/GameDetails.js:121
+msgid "Victory Conditions:"
+msgstr ""
 
-#: gui/lobby/lobby.js:1190
-msgid "Do you want to switch to the mod selection page?"
-msgstr "Chceš prejsť na stránku výberu módov? "
+#. Translation: Comma used to concatenate victory conditions
+#: gui/lobby/LobbyPage/GameDetails.js:124
+msgid ", "
+msgstr ", "
 
-#: gui/lobby/lobby.js:1191
-msgid "Incompatible mods"
-msgstr "Nekompatibilné módy "
+#: gui/lobby/LobbyPage/GameDetails.js:126
+msgid "Mods:"
+msgstr ""
 
-#: gui/lobby/lobby.js:1208
-msgid "The game has already started. Do you want to join as observer?"
-msgstr "Hra už začala. Chcete sa pripojiť ako pozorovateľ? "
-
-#: gui/lobby/lobby.js:1242
+#. Translation: %(time)s is the hour and minute here.
+#: gui/lobby/LobbyPage/GameDetails.js:129
 #, javascript-format
-msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr "Adresa hry \"%(ip)s\" vyzerá byť neplatná."
+msgid "Game started at %(time)s"
+msgstr "Hra sa začala o %(time)s"
 
-#: gui/lobby/lobby.js:1355
+#: gui/lobby/LobbyPage/GameDetails.js:131
+#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
+msgid "HH:mm"
+msgstr "HH:mm"
+
+#: gui/lobby/LobbyPage/GameDetails.js:133
+msgid "Map Type:"
+msgstr "Typ mapy:"
+
+#: gui/lobby/LobbyPage/GameDetails.js:135
+msgid "Map Size:"
+msgstr "Veľkosť mapy"
+
+#: gui/lobby/LobbyPage/GameDetails.js:137
+msgid "Map Description:"
+msgstr ""
+
+#: gui/lobby/LobbyPage/KickStrings.js:39
+msgid "You have been kicked from the lobby!"
+msgstr "Bol si vyhodený z lobby! "
+
+#: gui/lobby/LobbyPage/KickStrings.js:40
+msgid "You have been banned from the lobby!"
+msgstr "Bol si zabanovaný z lobby! "
+
+#: gui/lobby/LobbyPage/KickStrings.js:43
 #, javascript-format
-msgid "The command '%(cmd)s' is not supported."
-msgstr "Príkaz \"%(cmd)s\" nie je podporovaný."
+msgid "%(nick)s has been kicked from the lobby."
+msgstr "%(nick)s bol vyhodený z lobby. "
 
-#: gui/lobby/lobby.js:1367
+#: gui/lobby/LobbyPage/KickStrings.js:44
 #, javascript-format
-msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr "Príkaz \"%(cmd)s\" môžu používať iba moderátory."
+msgid "%(nick)s has been banned from the lobby."
+msgstr "%(nick)s bol zabanovaný z lobby. "
 
-#. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:1446
+#: gui/lobby/LobbyPage/KickStrings.js:49
 #, javascript-format
-msgid "* %(sender)s"
-msgstr "* %(sender)s"
+msgctxt "lobby kick"
+msgid "Reason: %(reason)s"
+msgstr "Dôvod: %(reason)s"
 
-#. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:1451
-#, javascript-format
-msgid "%(sender)s %(action)s"
-msgstr "%(sender)s %(action)s"
-
-#. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:1460 gui/lobby/lobby.js:1481 gui/lobby/lobby.js:1508
-#, javascript-format
-msgid "<%(sender)s>"
-msgstr "<%(sender)s>"
-
-#. Translation: IRC message.
-#: gui/lobby/lobby.js:1465 gui/lobby/lobby.js:1486 gui/lobby/lobby.js:1513
-#, javascript-format
-msgid "%(sender)s %(message)s"
-msgstr "%(sender)s %(message)s"
-
-#. Translation: IRC system message.
-#: gui/lobby/lobby.js:1475
-#, javascript-format
-msgid "== %(message)s"
-msgstr "== %(message)s"
-
-#: gui/lobby/lobby.js:1503
-#, javascript-format
-msgctxt "lobby private message"
-msgid "(%(private)s) <%(sender)s>"
-msgstr "(%(private)s) <%(sender)s>"
-
-#: gui/lobby/lobby.js:1504
-msgid "Private"
-msgstr "Súkromné"
-
-#. Translation: Time prefix as shown in the multiplayer lobby (when you enable
-#. it in the options page).
-#: gui/lobby/lobby.js:1529
-#, javascript-format
-msgid "\\[%(time)s]"
-msgstr "\\[%(time)s]"
-
-#. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:1534
-#, javascript-format
-msgid "%(time)s %(message)s"
-msgstr "%(time)s %(message)s"
-
-#: gui/lobby/lobby.js:1573
+#: gui/lobby/LobbyPage/PlayerColor.js:34
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:1589
+#: gui/lobby/LobbyPage/PlayerList.js:178
+msgid "Online"
+msgstr "Pripojený"
+
+#: gui/lobby/LobbyPage/PlayerList.js:184
+msgid "Away"
+msgstr "Preč"
+
+#: gui/lobby/LobbyPage/PlayerList.js:190
+msgid "Busy"
+msgstr "Zaneprázdnený"
+
+#: gui/lobby/LobbyPage/PlayerList.js:196
+msgid "Offline"
+msgstr "Nepripojený"
+
+#: gui/lobby/LobbyPage/PlayerList.js:202
+msgctxt "lobby presence"
+msgid "Unknown"
+msgstr "Neznámy"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:106
+msgid "N/A"
+msgstr "Nie je k dispozícií"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:112
+msgid "Moderator"
+msgstr "Moderátor"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:113
+msgid "Player"
+msgstr "Hráč"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:114
+msgid "Muted Player"
+msgstr "Stlmený hráč"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:120
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:1591
+#: gui/lobby/LobbyPage/ProfilePanel.js:122
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
+
+#: gui/lobby/LobbyPage/Buttons/BuddyButton.js:69
+msgid "Mark as Buddy"
+msgstr "Označiť ako Kamaráta"
+
+#: gui/lobby/LobbyPage/Buttons/BuddyButton.js:70
+msgid "Unmark as Buddy"
+msgstr "Odstrániť označenie Kamaráta"
+
+#: gui/lobby/LobbyPage/Buttons/HostButton.js:10
+msgid "Host Game"
+msgstr "Vytvoriť hru"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:40
+msgid "Your active mods do not match the mods of this game."
+msgstr "Tvoje aktivované módy sa nezhodujú s módmi tohto zápasu. "
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
+msgid "Do you want to switch to the mod selection page?"
+msgstr "Chceš prejsť na stránku výberu módov? "
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
+msgid "Incompatible mods"
+msgstr "Nekompatibilné módy "
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
+msgid "The game has already started. Do you want to join as observer?"
+msgstr "Hra už začala. Chcete sa pripojiť ako pozorovateľ? "
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:89
+#, javascript-format
+msgid "This game's address '%(ip)s' does not appear to be valid."
+msgstr "Adresa hry \"%(ip)s\" vyzerá byť neplatná."
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:91
+msgid "Error"
+msgstr "Chyba"
+
+#. Translation: Join the game currently selected in the list.
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:130
+msgid "Join Game"
+msgstr "Pridať sa  k hre"
+
+#: gui/lobby/LobbyPage/Buttons/LeaderboardButton.js:9
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):10
+msgid "Leaderboard"
+msgstr "Tabuľka najlepších hráčov"
+
+#: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):10
+msgid "Player Profile Lookup"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
+msgctxt "previous page"
+msgid "Back"
+msgstr "Späť"
+
+#: gui/lobby/LobbyPage/Buttons/QuitButton.js:16
+msgctxt "previous page"
+msgid "Main Menu"
+msgstr "Hlavné menu"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:32
+#, javascript-format
+msgid "The command '%(cmd)s' is not supported."
+msgstr "Príkaz \"%(cmd)s\" nie je podporovaný."
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:44
+#, javascript-format
+msgid "The command '%(cmd)s' is restricted to moderators."
+msgstr "Príkaz \"%(cmd)s\" môžu používať iba moderátory."
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:66
+#, javascript-format
+msgid "The command '%(cmd)s' requires at least one argument."
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:87
+msgid "Set your state to 'Away'."
+msgstr "Nastav svoj stav na 'Som preč'."
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:94
+msgid "Set your state to 'Online'."
+msgstr "Nastav svoj stav na 'Online'."
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:101
+msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
+msgstr "Vyhoď konkrétneho hráča z lobby. Použitie: /kick nick dôvod"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:113
+msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
+msgstr "Zablokuj konkrétneho hráča v lobby. Použitie: /ban nick dôvod"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:125
+msgid "Show this help."
+msgstr "Zobraz tohto pomocníka."
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:128
+msgid "Chat commands:"
+msgstr "Príkazy chatu:"
+
+#. Translation: Chat command help format
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:132
+#, javascript-format
+msgid "%(command)s - %(description)s"
+msgstr "%(command)s - %(description)s"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:146
+msgid "Send a chat message about yourself. Example: /me goes swimming."
+msgstr "Pošli správu o sebe. Príklad: /me ide plávať."
+
+#. Translation: Chat command
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:149
+msgid "/me"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:153
+msgid ""
+"Send text as a chat message (even if it starts with slash). Example: /say "
+"/help is a great command."
+msgstr "Pošli text ako správu (aj keď začína lomkou). Príklad: /say /help je super príkaz."
+
+#. Translation: Chat command
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:156
+msgid "/say"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:160
+msgid "Clear all chat scrollback."
+msgstr "Vyčistiť celý pokec. "
+
+#. Translation: Chat message format when there is a time prefix.
+#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:25
+#, javascript-format
+msgid "%(time)s %(message)s"
+msgstr "%(time)s %(message)s"
+
+#. Translation: Time prefix as shown in the multiplayer lobby (when you enable
+#. it in the options page).
+#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:28
+#, javascript-format
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
+
+#. Translation: Chat message issued using the ‘/me’ command.
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatMe.js:24
+#, javascript-format
+msgid "* %(sender)s %(message)s"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatSay.js:29
+#, javascript-format
+msgid "<%(sender)s>"
+msgstr "<%(sender)s>"
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatSay.js:31
+#, javascript-format
+msgid "%(sender)s %(message)s"
+msgstr "%(sender)s %(message)s"
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:23
+msgid "Private"
+msgstr "Súkromné"
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:25
+#, javascript-format
+msgid "(%(private)s) %(message)s"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:47
+#, javascript-format
+msgid "%(nick)s has joined."
+msgstr "%(nick)s sa pripojil."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:48
+#, javascript-format
+msgid "%(nick)s has left."
+msgstr "%(nick)s sa odpojil."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:70
+#, javascript-format
+msgid "%(oldnick)s is now known as %(newnick)s."
+msgstr "%(oldnick)s sa odteraz volá %(newnick)s."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:107
+msgid "You have been muted."
+msgstr "Bol si stlmený."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:108
+#, javascript-format
+msgid "%(nick)s has been muted."
+msgstr "%(nick)s bol stmený."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:112
+msgid "You are now a moderator."
+msgstr "Odteraz si moderátor."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:113
+#, javascript-format
+msgid "%(nick)s is now a moderator."
+msgstr "%(nick)s je odteraz moderátor."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:118
+msgid "You have been unmuted."
+msgstr "Už nie si stlmený."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:119
+#, javascript-format
+msgid "%(nick)s has been unmuted."
+msgstr "%(nick)s už nie je stlmený."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:124
+msgid "You are not a moderator anymore."
+msgstr "Už nie si moderátor."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:125
+#, javascript-format
+msgid "%(nick)s is not a moderator anymore."
+msgstr "%(nick)s už nie je moderátor."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:152
+#, javascript-format
+msgid "%(nick)s changed the lobby subject to:"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:153
+#, javascript-format
+msgid "%(nick)s deleted the lobby subject."
+msgstr ""
+
+#. Translation: Chat status message
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
+#, javascript-format
+msgid "== %(message)s"
+msgstr "== %(message)s"
+
+#: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
+msgid "Connected."
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:56
+msgid "Disconnected."
+msgstr "Odpojený."
+
+#. Translation: Caption for system notifications shown in the chat panel
+#: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:25
+msgid "System:"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
+#, javascript-format
+msgid "=== %(system)s %(message)s"
+msgstr ""
+
+#: gui/lobby/LobbyPage/GameListFilters/MapSize.js:9
+msgctxt "map size"
+msgid "Any"
+msgstr "Ľubovoľná"
+
+#: gui/lobby/LobbyPage/GameListFilters/MapType.js:9
+#: gui/lobby/LobbyPage/GameListFilters/Rating.js:11
+msgctxt "map"
+msgid "Any"
+msgstr "Ľubovoľná"
+
+#: gui/lobby/LobbyPage/GameListFilters/PlayerCount.js:10
+msgctxt "player number"
+msgid "Any"
+msgstr "Ľubovoľná"
+
+#: gui/lobby/LobbyPage/GameListFilters/Rating.js:19
+#, javascript-format
+msgctxt "gamelist filter"
+msgid "> %(rating)s"
+msgstr "> %(rating)s"
+
+#: gui/lobby/LobbyPage/GameListFilters/Rating.js:20
+#, javascript-format
+msgctxt "gamelist filter"
+msgid "< %(rating)s"
+msgstr "< %(rating)s"
+
+#: gui/lobby/ProfilePage/ProfilePage.js:70
+#, javascript-format
+msgid "Player \"%(nick)s\" not found."
+msgstr "Hráč \"%(nick)s\" nebol nájdený."
 
 #: gui/prelobby/common/credentials/credentials.js:5
 msgid "Please enter your username"
@@ -488,132 +573,105 @@ msgstr "Registrujem vás..."
 msgid "Registered"
 msgstr "Zaregistrovaný"
 
-#: gui/lobby/lobby.xml:(caption):13
-#: gui/prelobby/entrance/entrance.xml:(caption):14
-msgid "Multiplayer Lobby"
-msgstr "Lobby hry viac hráčov"
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):15
+msgid "Rank"
+msgstr "Hodnosť"
 
-#: gui/lobby/lobby_panels.xml:(heading):23
-msgid "Status"
-msgstr "Stav"
-
-#: gui/lobby/lobby_panels.xml:(heading):26
-#: gui/lobby/lobby_panels.xml:(heading):189
-#: gui/lobby/lobby_panels.xml:(heading):283
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):18
+#: gui/lobby/LobbyPage/GameList.xml:(heading):12
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):15
 msgid "Name"
 msgstr "Meno"
 
-#: gui/lobby/lobby_panels.xml:(heading):29
-#: gui/lobby/lobby_panels.xml:(heading):204
-#: gui/lobby/lobby_panels.xml:(heading):286
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):21
+#: gui/lobby/LobbyPage/GameList.xml:(heading):27
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
 msgid "Rating"
 msgstr "Hodnotenie"
 
-#: gui/lobby/lobby_panels.xml:(heading):192
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):26
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):59
+msgid "Back"
+msgstr "Späť"
+
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):30
+msgid "Update"
+msgstr "Aktualizovať"
+
+#: gui/lobby/LobbyPage/GameList.xml:(heading):15
 msgid "Map Name"
 msgstr "Meno mapy"
 
-#: gui/lobby/lobby_panels.xml:(heading):195
+#: gui/lobby/LobbyPage/GameList.xml:(heading):18
 msgctxt "map"
 msgid "Size"
 msgstr "Veľkosť"
 
-#: gui/lobby/lobby_panels.xml:(heading):198
+#: gui/lobby/LobbyPage/GameList.xml:(heading):21
 msgctxt "map"
 msgid "Type"
 msgstr "Typ"
 
-#: gui/lobby/lobby_panels.xml:(heading):201
+#: gui/lobby/LobbyPage/GameList.xml:(heading):24
 msgid "Players"
 msgstr "Hráči"
 
-#: gui/lobby/lobby_panels.xml:(heading):280
-msgid "Rank"
-msgstr "Hodnosť"
-
-#: gui/lobby/lobby_panels.xml:(caption):51
-#: gui/lobby/lobby_panels.xml:(caption):325
-msgid "Current Rank:"
-msgstr "Súčasná hodnosť:"
-
-#: gui/lobby/lobby_panels.xml:(caption):55
-#: gui/lobby/lobby_panels.xml:(caption):329
-msgid "Highest Rating:"
-msgstr "Najvyššie dosiahnuté hodnotenie:"
-
-#: gui/lobby/lobby_panels.xml:(caption):59
-#: gui/lobby/lobby_panels.xml:(caption):333
-msgid "Total Games:"
-msgstr "Celkovo hier:"
-
-#: gui/lobby/lobby_panels.xml:(caption):63
-#: gui/lobby/lobby_panels.xml:(caption):337
-msgid "Wins:"
-msgstr "Výhier:"
-
-#: gui/lobby/lobby_panels.xml:(caption):67
-#: gui/lobby/lobby_panels.xml:(caption):341
-msgid "Losses:"
-msgstr "Prehier:"
-
-#: gui/lobby/lobby_panels.xml:(caption):71
-#: gui/lobby/lobby_panels.xml:(caption):345
-msgid "Win Rate:"
-msgstr "Pomer víťazstiev:"
-
-#: gui/lobby/lobby_panels.xml:(caption):85
-#: gui/lobby/lobby_panels.xml:(caption):273
-msgid "Leaderboard"
-msgstr "Tabuľka najlepších hráčov"
-
-#: gui/lobby/lobby_panels.xml:(caption):91
-#: gui/lobby/lobby_panels.xml:(caption):308
-msgid "User Profile Lookup"
-msgstr "Vyhľadávanie užívateľského profilu"
-
-#: gui/lobby/lobby_panels.xml:(caption):119
-msgid "Map Type:"
-msgstr "Typ mapy:"
-
-#: gui/lobby/lobby_panels.xml:(caption):131
-msgid "Map Size:"
-msgstr "Veľkosť mapy"
-
-#. Join the game currently selected in the list.
-#: gui/lobby/lobby_panels.xml:(caption):156
-msgid "Join Game"
-msgstr "Pridať sa  k hre"
-
-#: gui/lobby/lobby_panels.xml:(caption):162
-msgid "Host Game"
-msgstr "Vytvoriť hru"
-
-#: gui/lobby/lobby_panels.xml:(caption):243
+#: gui/lobby/LobbyPage/GameListFilters.xml:(caption):5
 msgid "Show only open games"
 msgstr "Zobraz iba otvorené hry"
 
-#: gui/lobby/lobby_panels.xml:(caption):261
+#: gui/lobby/LobbyPage/LobbyPage.xml:(caption):10
+#: gui/prelobby/entrance/entrance.xml:(caption):14
+msgid "Multiplayer Lobby"
+msgstr "Lobby hry viac hráčov"
+
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):12
+msgid "Status"
+msgstr "Stav"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):8
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):28
+msgid "Current Rank:"
+msgstr "Súčasná hodnosť:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):12
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):32
+msgid "Highest Rating:"
+msgstr "Najvyššie dosiahnuté hodnotenie:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):16
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):36
+msgid "Total Games:"
+msgstr "Celkovo hier:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):20
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):40
+msgid "Wins:"
+msgstr "Výhier:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):24
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):44
+msgid "Losses:"
+msgstr "Prehier:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):28
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):48
+msgid "Win Rate:"
+msgstr "Pomer víťazstiev:"
+
+#: gui/lobby/LobbyPage/Chat/ChatPanel.xml:(caption):6
 msgid "Send"
 msgstr "Poslať"
 
-#: gui/lobby/lobby_panels.xml:(caption):293
-#: gui/lobby/lobby_panels.xml:(caption):355
-msgid "Back"
-msgstr "Späť"
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):14
+msgid "Enter playername:"
+msgstr ""
 
-#: gui/lobby/lobby_panels.xml:(caption):299
-msgid "Update"
-msgstr "Aktualizovať"
-
-#: gui/lobby/lobby_panels.xml:(caption):311
-msgid "Enter username:"
-msgstr "Zadajte prihlasovacie meno:"
-
-#: gui/lobby/lobby_panels.xml:(caption):317
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):20
 msgid "View Profile"
 msgstr "Prezrieť profil"
 
-#: gui/lobby/lobby_panels.xml:(caption):350
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):53
 msgid "Please enter a player name."
 msgstr "Zadajte, prosím, meno hráča."
 
