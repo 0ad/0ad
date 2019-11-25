@@ -4,16 +4,27 @@
   <group>
     <variant frequency="100" name="wall long">
       <mesh>structural/maur_wall_long_struct.dae</mesh>
-	  <props>
-		<prop actor="props/structures/mauryas/wall_long_palisade.xml" attachpoint="root"/>
-		<prop actor="props/structures/mauryas/wall_long_struct_b.xml" attachpoint="root"/>
-	  </props>
+      <props>
+        <prop actor="props/structures/mauryas/wall_long_palisade.xml" attachpoint="root"/>
+        <prop actor="props/structures/mauryas/wall_long_struct_b.xml" attachpoint="root"/>
+      </props>
       <textures>
-		<texture file="structural/maur_struct.png" name="baseTex"/>
-		<texture file="structural/maur_struct_spec.png" name="specTex"/>
-		<texture file="structural/maur_struct_norm.png" name="normTex"/>
-		<texture file="structural/ao/maur_wall_long_ao.png" name="aoTex"/>
-	  </textures>
+        <texture file="structural/maur_struct.png" name="baseTex"/>
+        <texture file="structural/maur_struct_spec.png" name="specTex"/>
+        <texture file="structural/maur_struct_norm.png" name="normTex"/>
+        <texture file="structural/ao/maur_wall_long_ao.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="upgrading">
+      <props>
+        <prop actor="props/structures/mauryas/wall_long_palisade.xml" attachpoint="root"/>
+        <prop actor="props/structures/mauryas/wall_long_struct_b.xml" attachpoint="root"/>
+        <prop actor="props/structures/construction/scaf_9x3_wall.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <group>
@@ -22,8 +33,8 @@
       <props>
         <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
-		<prop actor="props/structures/mauryas/wall_long_palisade.xml" attachpoint="root"/>
-		<prop actor="props/structures/mauryas/wall_long_struct_b.xml" attachpoint="root"/>
+        <prop actor="props/structures/mauryas/wall_long_palisade.xml" attachpoint="root"/>
+        <prop actor="props/structures/mauryas/wall_long_struct_b.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

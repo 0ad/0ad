@@ -144,7 +144,7 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptRuntime> scriptRuntime)
 	inputs.clear();
 	gui.reset(new CGUI(scriptRuntime));
 
-	gui->Initialize();
+	gui->AddObjectTypes();
 
 	VfsPath path = VfsPath("gui") / name;
 	inputs.insert(path);

@@ -27,6 +27,7 @@
         <stone>100</stone>
       </Cost>
       <Time>200</Time>
+      <Variant>upgrading</Variant>
     </Tower1>
     <Tower2>
       <Entity>structures/{civ}_tower_bolt</Entity>
@@ -37,6 +38,7 @@
         <stone>100</stone>
       </Cost>
       <Time>200</Time>
+      <Variant>upgrading</Variant>
     </Tower2>
   </Upgrade>
 </Entity>

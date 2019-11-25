@@ -10,13 +10,13 @@
   </group>
   <group>
     <variant file="biped/base_cavalry_swordsman_relax.xml"/>
-    <variant file="biped/rider/base_carry_meat.xml"/>
+    <variant file="biped/rider/cape_carry_meat.xml"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/rider/attack_slaughter.xml"/>
+    <variant file="biped/rider/cape_attack_slaughter.xml"/>
     <variant file="biped/rider/promotion.xml"/>
-    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/cape_gather_meat.xml"/>
     <variant file="biped/rider/death.xml"/>
   </group>
   <material>player_trans.xml</material>

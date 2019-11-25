@@ -19,21 +19,8 @@
 
 #include "CGUI.h"
 
+#include "gui/GUIObjectTypes.h"
 #include "gui/IGUIScrollBar.h"
-#include "gui/ObjectTypes/CButton.h"
-#include "gui/ObjectTypes/CChart.h"
-#include "gui/ObjectTypes/CCheckBox.h"
-#include "gui/ObjectTypes/CDropDown.h"
-#include "gui/ObjectTypes/CImage.h"
-#include "gui/ObjectTypes/CInput.h"
-#include "gui/ObjectTypes/CList.h"
-#include "gui/ObjectTypes/CMiniMap.h"
-#include "gui/ObjectTypes/COList.h"
-#include "gui/ObjectTypes/CProgressBar.h"
-#include "gui/ObjectTypes/CRadioButton.h"
-#include "gui/ObjectTypes/CSlider.h"
-#include "gui/ObjectTypes/CText.h"
-#include "gui/ObjectTypes/CTooltip.h"
 #include "gui/Scripting/ScriptFunctions.h"
 #include "i18n/L10n.h"
 #include "lib/bits.h"
@@ -58,6 +45,28 @@ extern int g_yres;
 
 const double SELECT_DBLCLICK_RATE = 0.5;
 const u32 MAX_OBJECT_DEPTH = 100; // Max number of nesting for GUI includes. Used to detect recursive inclusion
+
+CGUI::CGUI(const shared_ptr<ScriptRuntime>& runtime)
+	: m_BaseObject(*this),
+	  m_FocusedObject(nullptr),
+	  m_InternalNameNumber(0),
+	  m_MouseButtons(0)
+{
+	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIPage", runtime));
+	m_ScriptInterface->SetCallbackData(this);
+
+	GuiScriptingInit(*m_ScriptInterface);
+	m_ScriptInterface->LoadGlobalScripts();
+}
+
+CGUI::~CGUI()
+{
+	for (const std::pair<CStr, IGUIObject*>& p : m_pAllObjects)
+		delete p.second;
+
+	for (const std::pair<CStr, const CGUISprite*>& p : m_Sprites)
+		delete p.second;
+}
 
 InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 {
@@ -272,57 +281,6 @@ void CGUI::SendEventToAll(const CStr& EventName, const JS::HandleValueArray& par
 	m_BaseObject.RecurseObject(nullptr, &IGUIObject::ScriptEvent, EventNameLower, paramData);
 }
 
-CGUI::CGUI(const shared_ptr<ScriptRuntime>& runtime)
-	: m_MouseButtons(0), m_FocusedObject(nullptr), m_InternalNameNumber(0), m_BaseObject(*this)
-{
-	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIPage", runtime));
-	m_ScriptInterface->SetCallbackData(this);
-
-	GuiScriptingInit(*m_ScriptInterface);
-	m_ScriptInterface->LoadGlobalScripts();
-}
-
-CGUI::~CGUI()
-{
-	for (const std::pair<CStr, IGUIObject*>& p : m_pAllObjects)
-		delete p.second;
-
-	for (const std::pair<CStr, const CGUISprite*>& p : m_Sprites)
-		delete p.second;
-}
-
-IGUIObject* CGUI::ConstructObject(const CStr& str)
-{
-	std::map<CStr, ConstructObjectFunction>::iterator it = m_ObjectTypes.find(str);
-	if (it != m_ObjectTypes.end())
-		return (*it->second)(*this);
-
-	// Error reporting will be handled with the nullptr return.
-	return nullptr;
-}
-
-void CGUI::Initialize()
-{
-	// Add base types!
-	//  You can also add types outside the GUI to extend the flexibility of the GUI.
-	//  Pyrogenesis though will have all the object types inserted from here.
-	AddObjectType("empty",			&CGUIDummyObject::ConstructObject);
-	AddObjectType("button",			&CButton::ConstructObject);
-	AddObjectType("image",			&CImage::ConstructObject);
-	AddObjectType("text",			&CText::ConstructObject);
-	AddObjectType("checkbox",		&CCheckBox::ConstructObject);
-	AddObjectType("radiobutton",	&CRadioButton::ConstructObject);
-	AddObjectType("progressbar",	&CProgressBar::ConstructObject);
-	AddObjectType("minimap",        &CMiniMap::ConstructObject);
-	AddObjectType("input",			&CInput::ConstructObject);
-	AddObjectType("list",			&CList::ConstructObject);
-	AddObjectType("olist",			&COList::ConstructObject);
-	AddObjectType("dropdown",		&CDropDown::ConstructObject);
-	AddObjectType("tooltip",		&CTooltip::ConstructObject);
-	AddObjectType("chart",			&CChart::ConstructObject);
-	AddObjectType("slider",			&CSlider::ConstructObject);
-}
-
 void CGUI::Draw()
 {
 	// Clear the depth buffer, so the GUI is
@@ -346,6 +304,16 @@ void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float&
 void CGUI::UpdateResolution()
 {
 	m_BaseObject.RecurseObject(nullptr, &IGUIObject::UpdateCachedSize);
+}
+
+IGUIObject* CGUI::ConstructObject(const CStr& str)
+{
+	std::map<CStr, ConstructObjectFunction>::iterator it = m_ObjectTypes.find(str);
+
+	if (it == m_ObjectTypes.end())
+		return nullptr;
+
+	return (*it->second)(*this);
 }
 
 bool CGUI::AddObject(IGUIObject& parent, IGUIObject& child)
