@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,26 +18,24 @@
 #ifndef INCLUDED_SIMULATION2
 #define INCLUDED_SIMULATION2
 
+#include "lib/file/vfs/vfs_path.h"
+#include "scriptinterface/ScriptVal.h"
+#include "simulation2/helpers/SimulationCommand.h"
 #include "simulation2/system/CmpPtr.h"
 #include "simulation2/system/Components.h"
-#include "simulation2/helpers/SimulationCommand.h"
-#include "scriptinterface/ScriptVal.h"
 
-#include "lib/file/vfs/vfs_path.h"
-
-#include <boost/unordered_map.hpp>
-
+#include <unordered_map>
 #include <map>
 
-class CSimulation2Impl;
-class CSimContext;
-class CUnitManager;
-class CTerrain;
-class IComponent;
-class ScriptInterface;
-class CMessage;
-class SceneCollector;
 class CFrustum;
+class CMessage;
+class CSimContext;
+class CSimulation2Impl;
+class CTerrain;
+class CUnitManager;
+class IComponent;
+class SceneCollector;
+class ScriptInterface;
 class ScriptRuntime;
 
 /**
@@ -206,8 +204,11 @@ public:
 	void PostMessage(entity_id_t ent, const CMessage& msg) const;
 	void BroadcastMessage(const CMessage& msg) const;
 
-	typedef std::vector<std::pair<entity_id_t, IComponent*> > InterfaceList;
-	typedef boost::unordered_map<entity_id_t, IComponent*> InterfaceListUnordered;
+	using InterfaceList =
+		std::vector<std::pair<entity_id_t, IComponent*> >;
+
+	using InterfaceListUnordered =
+		std::unordered_map<entity_id_t, IComponent*>;
 
 	/**
 	 * Returns a list of components implementing the given interface, and their

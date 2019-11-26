@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-27 07:08+0000\n"
-"PO-Revision-Date: 2019-10-23 17:32+0000\n"
+"POT-Creation-Date: 2019-11-22 08:08+0000\n"
+"PO-Revision-Date: 2019-11-22 17:57+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -35,382 +35,467 @@ msgstr ""
 "Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/lobby/lobby.js:50
-msgid "Online"
-msgstr "Elérhető"
-
-#: gui/lobby/lobby.js:51
-msgid "Away"
-msgstr "Távol"
-
-#: gui/lobby/lobby.js:52
-msgid "Busy"
-msgstr "Elfoglalt"
-
-#: gui/lobby/lobby.js:53
-msgid "Offline"
-msgstr "Kilépett"
-
-#: gui/lobby/lobby.js:54
-msgctxt "lobby presence"
-msgid "Unknown"
-msgstr "Ismeretlen"
-
-#: gui/lobby/lobby.js:58
-msgid "Moderator"
-msgstr "Moderátor"
-
-#: gui/lobby/lobby.js:59
-msgid "Player"
-msgstr "Játékos"
-
-#: gui/lobby/lobby.js:60
-msgid "Muted Player"
-msgstr "Némított játékos"
-
-#: gui/lobby/lobby.js:165
-msgid "Disconnected."
-msgstr "Szétkapcsolódva."
-
-#: gui/lobby/lobby.js:184
-#, javascript-format
-msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr "%(nick)smódosította a váró tárgyát erre: %(subject)s"
-
-#: gui/lobby/lobby.js:194
-#, javascript-format
-msgid "%(nick)s has joined."
-msgstr "%(nick)s csatlakozott."
-
-#: gui/lobby/lobby.js:203
-#, javascript-format
-msgid "%(nick)s has left."
-msgstr "%(nick)s távozott."
-
-#: gui/lobby/lobby.js:220
-msgid "You have been muted."
-msgstr "Le lettél némítva."
-
-#: gui/lobby/lobby.js:221
-#, javascript-format
-msgid "%(nick)s has been muted."
-msgstr "%(nick)s le lett némítva."
-
-#: gui/lobby/lobby.js:224
-msgid "You are now a moderator."
-msgstr "Mostantól moderátor vagy."
-
-#: gui/lobby/lobby.js:225
-#, javascript-format
-msgid "%(nick)s is now a moderator."
-msgstr "%(nick)s mostantól moderátor."
-
-#: gui/lobby/lobby.js:228
-msgid "You have been unmuted."
-msgstr "Mostantól nem vagy némítva."
-
-#: gui/lobby/lobby.js:229
-#, javascript-format
-msgid "%(nick)s has been unmuted."
-msgstr "%(nick)s mostantól nincs némítva."
-
-#: gui/lobby/lobby.js:231
-msgid "You are not a moderator anymore."
-msgstr "Már nem vagy moderátor."
-
-#: gui/lobby/lobby.js:232
-#, javascript-format
-msgid "%(nick)s is not a moderator anymore."
-msgstr "%(nick)s már nem moderátor."
-
-#: gui/lobby/lobby.js:245
-#, javascript-format
-msgid "%(oldnick)s is now known as %(newnick)s."
-msgstr "%(oldnick)s mostantól így ismert: %(newnick)s"
-
-#: gui/lobby/lobby.js:273
+#: gui/lobby/LobbyPage/AnnouncementHandler.js:18
 msgid "Notice"
 msgstr "Értesítés"
 
-#: gui/lobby/lobby.js:308
-msgid "Set your state to 'Away'."
-msgstr "Állapot beállítása: „Távol”."
+#: gui/lobby/LobbyPage/ConnectionHandler.js:45
+msgid "BANNED"
+msgstr "KITILTVA"
 
-#: gui/lobby/lobby.js:315
-msgid "Set your state to 'Online'."
-msgstr "Állapot beállítása: „Elérhető”."
+#: gui/lobby/LobbyPage/ConnectionHandler.js:45
+msgid "KICKED"
+msgstr "KIRÚGVA"
 
-#: gui/lobby/lobby.js:322
-msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "A megadott felhasználó kirúgása a váróból. Használat: /kick becenév ok"
-
-#: gui/lobby/lobby.js:330
-msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr "A megadott a felhasználó kitiltása a váróból. Használat: /ban becenév ok"
-
-#: gui/lobby/lobby.js:338
-msgid "Show this help."
-msgstr "Ezen súgó megjelenítése."
-
-#: gui/lobby/lobby.js:341
-msgid "Chat commands:"
-msgstr "Csevegő parancsok:"
-
-#. Translation: Chat command help format
-#: gui/lobby/lobby.js:345
-#, javascript-format
-msgid "%(command)s - %(description)s"
-msgstr "%(command)s – %(description)s"
-
-#: gui/lobby/lobby.js:358
-msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr "Csevegőüzenet küldése saját magadról. Példa: /me elment úszni."
-
-#: gui/lobby/lobby.js:362
-msgid ""
-"Send text as a chat message (even if it starts with slash). Example: /say "
-"/help is a great command."
-msgstr "Szöveg küldése csevegőüzenetként (akkor is, ha perjellel kezdődik). Példa: /say /help, egy nagyszerű parancs"
-
-#: gui/lobby/lobby.js:366
-msgid "Clear all chat scrollback."
-msgstr "Minden csevegési előzmény törlése."
-
-#: gui/lobby/lobby.js:373
-msgid "Return to the main menu."
-msgstr "Visszatérés a főmenübe."
-
-#: gui/lobby/lobby.js:429
+#: gui/lobby/LobbyPage/ConnectionHandler.js:61
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
 msgstr "Szétkapcsolódtál a váróból? Vissza akarsz kapcsolódni?"
 
-#: gui/lobby/lobby.js:430 gui/lobby/lobby.js:1209
+#: gui/lobby/LobbyPage/ConnectionHandler.js:62
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
 #: gui/prelobby/common/credentials/credentials.js:55
 msgid "Confirmation"
 msgstr "Megerősítés"
 
-#: gui/lobby/lobby.js:431 gui/lobby/lobby.js:1192 gui/lobby/lobby.js:1210
+#: gui/lobby/LobbyPage/ConnectionHandler.js:63
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "No"
 msgstr "Nem"
 
-#: gui/lobby/lobby.js:431 gui/lobby/lobby.js:1192 gui/lobby/lobby.js:1210
+#: gui/lobby/LobbyPage/ConnectionHandler.js:63
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "Yes"
 msgstr "Igen"
 
-#: gui/lobby/lobby.js:446
-msgctxt "previous page"
-msgid "Back"
-msgstr "Vissza"
-
-#: gui/lobby/lobby.js:447
-msgctxt "previous page"
-msgid "Main Menu"
-msgstr "Főmenü"
-
-#: gui/lobby/lobby.js:516
-msgctxt "map size"
-msgid "Any"
-msgstr "Bármely"
-
-#: gui/lobby/lobby.js:521
-msgctxt "player number"
-msgid "Any"
-msgstr "Bármely"
-
-#: gui/lobby/lobby.js:525 gui/lobby/lobby.js:539
-msgctxt "map"
-msgid "Any"
-msgstr "Bármely"
-
-#: gui/lobby/lobby.js:533
-#, javascript-format
-msgctxt "gamelist filter"
-msgid "> %(rating)s"
-msgstr "> %(rating)s"
-
-#: gui/lobby/lobby.js:534
-#, javascript-format
-msgctxt "gamelist filter"
-msgid "< %(rating)s"
-msgstr "< %(rating)s"
-
-#: gui/lobby/lobby.js:607
-msgid "You have been banned from the lobby!"
-msgstr "Kitiltottak a váróból."
-
-#: gui/lobby/lobby.js:608
-msgid "You have been kicked from the lobby!"
-msgstr "Kirúgtak a váróból."
-
-#: gui/lobby/lobby.js:610
-#, javascript-format
-msgid "%(nick)s has been banned from the lobby."
-msgstr "%(nick)s ki lett tiltva a váróból"
-
-#: gui/lobby/lobby.js:611
-#, javascript-format
-msgid "%(nick)s has been kicked from the lobby."
-msgstr "%(nick)s ki lett rúgva a váróból."
-
-#: gui/lobby/lobby.js:614
-#, javascript-format
-msgctxt "lobby kick"
-msgid "Reason: %(reason)s"
-msgstr "Ok: %(reason)s"
-
-#: gui/lobby/lobby.js:642
-msgid "BANNED"
-msgstr "KITILTVA"
-
-#: gui/lobby/lobby.js:642
-msgid "KICKED"
-msgstr "KIRÚGVA"
-
-#: gui/lobby/lobby.js:673
-msgid "Unmark as Buddy"
-msgstr "Eltávolítás a barátok közül"
-
-#: gui/lobby/lobby.js:673
-msgid "Mark as Buddy"
-msgstr "Megjelölés barátként"
-
-#: gui/lobby/lobby.js:866 gui/lobby/lobby.js:867 gui/lobby/lobby.js:868
-#: gui/lobby/lobby.js:869 gui/lobby/lobby.js:870 gui/lobby/lobby.js:871
-msgid "N/A"
-msgstr "nincs adat"
-
-#: gui/lobby/lobby.js:899
-#, javascript-format
-msgid "Player \"%(nick)s\" not found."
-msgstr "„%(nick)s” játékos nem található."
-
 #. Translation: The number of players and observers in this game
-#: gui/lobby/lobby.js:1083
+#: gui/lobby/LobbyPage/Game.js:298
 #, javascript-format
 msgid "%(current)s/%(max)s +%(observercount)s"
 msgstr "%(current)s/%(max)s +%(observercount)s"
 
 #. Translation: The number of players in this game
-#: gui/lobby/lobby.js:1085
+#: gui/lobby/LobbyPage/Game.js:301
 #, javascript-format
 msgid "%(current)s/%(max)s"
 msgstr "%(current)s/%(max)s"
 
-#. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/lobby.js:1143
+#: gui/lobby/LobbyPage/GameDetails.js:65
+msgctxt "victory condition"
+msgid "Endless Game"
+msgstr "Végtelen játék"
+
+#: gui/lobby/LobbyPage/GameDetails.js:117
 #, javascript-format
-msgid "Game started at %(time)s"
-msgstr "Játék kezdete: %(time)s"
+msgid "Host: %(playername)s"
+msgstr "Kiszolgáló: %(playername)s"
 
-#: gui/lobby/lobby.js:1144 gui/lobby/lobby.js:1526
-msgid "HH:mm"
-msgstr "HH:mm"
-
-#: gui/lobby/lobby.js:1148
+#: gui/lobby/LobbyPage/GameDetails.js:119
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr "Játékosok: %(current)s/%(total)s"
 
-#: gui/lobby/lobby.js:1188
-msgid "Your active mods do not match the mods of this game."
-msgstr "Az aktív módosítások nem egyeznek a játék módosításaival."
+#: gui/lobby/LobbyPage/GameDetails.js:121
+msgid "Victory Conditions:"
+msgstr "Győzelmi feltételek:"
 
-#: gui/lobby/lobby.js:1190
-msgid "Do you want to switch to the mod selection page?"
-msgstr "Átlépsz a módosításválasztó oldalra?"
+#. Translation: Comma used to concatenate victory conditions
+#: gui/lobby/LobbyPage/GameDetails.js:124
+msgid ", "
+msgstr ", "
 
-#: gui/lobby/lobby.js:1191
-msgid "Incompatible mods"
-msgstr "Nem kompatibilis módosítások"
+#: gui/lobby/LobbyPage/GameDetails.js:126
+msgid "Mods:"
+msgstr "Modok:"
 
-#: gui/lobby/lobby.js:1208
-msgid "The game has already started. Do you want to join as observer?"
-msgstr "A játék már elkezdődött. Szeretnél megfigyelőként csatlakozni?"
-
-#: gui/lobby/lobby.js:1242
+#. Translation: %(time)s is the hour and minute here.
+#: gui/lobby/LobbyPage/GameDetails.js:129
 #, javascript-format
-msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr "Ennek a játéknak a(z) „%(ip)s” címe nem tűnik érvényesnek."
+msgid "Game started at %(time)s"
+msgstr "Játék kezdete: %(time)s"
 
-#: gui/lobby/lobby.js:1355
+#: gui/lobby/LobbyPage/GameDetails.js:131
+#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
+msgid "HH:mm"
+msgstr "HH:mm"
+
+#: gui/lobby/LobbyPage/GameDetails.js:133
+msgid "Map Type:"
+msgstr "Térkép típusa:"
+
+#: gui/lobby/LobbyPage/GameDetails.js:135
+msgid "Map Size:"
+msgstr "Térkép mérete:"
+
+#: gui/lobby/LobbyPage/GameDetails.js:137
+msgid "Map Description:"
+msgstr "Térkép leírása:"
+
+#: gui/lobby/LobbyPage/KickStrings.js:39
+msgid "You have been kicked from the lobby!"
+msgstr "Kirúgtak a váróból."
+
+#: gui/lobby/LobbyPage/KickStrings.js:40
+msgid "You have been banned from the lobby!"
+msgstr "Kitiltottak a váróból."
+
+#: gui/lobby/LobbyPage/KickStrings.js:43
 #, javascript-format
-msgid "The command '%(cmd)s' is not supported."
-msgstr "A(z) '%(cmd)s' parancs nem támogatott."
+msgid "%(nick)s has been kicked from the lobby."
+msgstr "%(nick)s ki lett rúgva a váróból."
 
-#: gui/lobby/lobby.js:1367
+#: gui/lobby/LobbyPage/KickStrings.js:44
 #, javascript-format
-msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr "A(z) '%(cmd)s' parancs elérése a moderátorokra korlátozott."
+msgid "%(nick)s has been banned from the lobby."
+msgstr "%(nick)s ki lett tiltva a váróból"
 
-#. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:1446
+#: gui/lobby/LobbyPage/KickStrings.js:49
 #, javascript-format
-msgid "* %(sender)s"
-msgstr "* %(sender)s"
+msgctxt "lobby kick"
+msgid "Reason: %(reason)s"
+msgstr "Ok: %(reason)s"
 
-#. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:1451
-#, javascript-format
-msgid "%(sender)s %(action)s"
-msgstr "%(sender)s %(action)s"
-
-#. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:1460 gui/lobby/lobby.js:1481 gui/lobby/lobby.js:1508
-#, javascript-format
-msgid "<%(sender)s>"
-msgstr "<%(sender)s>"
-
-#. Translation: IRC message.
-#: gui/lobby/lobby.js:1465 gui/lobby/lobby.js:1486 gui/lobby/lobby.js:1513
-#, javascript-format
-msgid "%(sender)s %(message)s"
-msgstr "%(sender)s %(message)s"
-
-#. Translation: IRC system message.
-#: gui/lobby/lobby.js:1475
-#, javascript-format
-msgid "== %(message)s"
-msgstr "== %(message)s"
-
-#: gui/lobby/lobby.js:1503
-#, javascript-format
-msgctxt "lobby private message"
-msgid "(%(private)s) <%(sender)s>"
-msgstr "(%(private)s) <%(sender)s>"
-
-#: gui/lobby/lobby.js:1504
-msgid "Private"
-msgstr "Privát"
-
-#. Translation: Time prefix as shown in the multiplayer lobby (when you enable
-#. it in the options page).
-#: gui/lobby/lobby.js:1529
-#, javascript-format
-msgid "\\[%(time)s]"
-msgstr "\\[%(time)s]"
-
-#. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:1534
-#, javascript-format
-msgid "%(time)s %(message)s"
-msgstr "%(time)s %(message)s"
-
-#: gui/lobby/lobby.js:1573
+#: gui/lobby/LobbyPage/PlayerColor.js:34
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:1589
+#: gui/lobby/LobbyPage/PlayerList.js:178
+msgid "Online"
+msgstr "Elérhető"
+
+#: gui/lobby/LobbyPage/PlayerList.js:184
+msgid "Away"
+msgstr "Távol"
+
+#: gui/lobby/LobbyPage/PlayerList.js:190
+msgid "Busy"
+msgstr "Elfoglalt"
+
+#: gui/lobby/LobbyPage/PlayerList.js:196
+msgid "Offline"
+msgstr "Kilépett"
+
+#: gui/lobby/LobbyPage/PlayerList.js:202
+msgctxt "lobby presence"
+msgid "Unknown"
+msgstr "Ismeretlen"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:106
+msgid "N/A"
+msgstr "nincs adat"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:112
+msgid "Moderator"
+msgstr "Moderátor"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:113
+msgid "Player"
+msgstr "Játékos"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:114
+msgid "Muted Player"
+msgstr "Némított játékos"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:120
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:1591
+#: gui/lobby/LobbyPage/ProfilePanel.js:122
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
+
+#: gui/lobby/LobbyPage/Buttons/BuddyButton.js:69
+msgid "Mark as Buddy"
+msgstr "Megjelölés barátként"
+
+#: gui/lobby/LobbyPage/Buttons/BuddyButton.js:70
+msgid "Unmark as Buddy"
+msgstr "Eltávolítás a barátok közül"
+
+#: gui/lobby/LobbyPage/Buttons/HostButton.js:10
+msgid "Host Game"
+msgstr "Játék létrehozása"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:40
+msgid "Your active mods do not match the mods of this game."
+msgstr "Az aktív módosítások nem egyeznek a játék módosításaival."
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
+msgid "Do you want to switch to the mod selection page?"
+msgstr "Átlépsz a módosításválasztó oldalra?"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
+msgid "Incompatible mods"
+msgstr "Nem kompatibilis módosítások"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
+msgid "The game has already started. Do you want to join as observer?"
+msgstr "A játék már elkezdődött. Szeretnél megfigyelőként csatlakozni?"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:89
+#, javascript-format
+msgid "This game's address '%(ip)s' does not appear to be valid."
+msgstr "Ennek a játéknak a(z) „%(ip)s” címe nem tűnik érvényesnek."
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:91
+msgid "Error"
+msgstr "Hiba"
+
+#. Translation: Join the game currently selected in the list.
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:130
+msgid "Join Game"
+msgstr "Csatlakozás játékhoz"
+
+#: gui/lobby/LobbyPage/Buttons/LeaderboardButton.js:9
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):10
+msgid "Leaderboard"
+msgstr "Ranglista"
+
+#: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):10
+msgid "Player Profile Lookup"
+msgstr "Játékosprofil keresése"
+
+#: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
+msgctxt "previous page"
+msgid "Back"
+msgstr "Vissza"
+
+#: gui/lobby/LobbyPage/Buttons/QuitButton.js:16
+msgctxt "previous page"
+msgid "Main Menu"
+msgstr "Főmenü"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:32
+#, javascript-format
+msgid "The command '%(cmd)s' is not supported."
+msgstr "A(z) '%(cmd)s' parancs nem támogatott."
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:44
+#, javascript-format
+msgid "The command '%(cmd)s' is restricted to moderators."
+msgstr "A(z) '%(cmd)s' parancs elérése a moderátorokra korlátozott."
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:66
+#, javascript-format
+msgid "The command '%(cmd)s' requires at least one argument."
+msgstr "A(z) „%(cmd)s” parancshoz legalább egy argumentum szükséges."
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:87
+msgid "Set your state to 'Away'."
+msgstr "Állapot beállítása: „Távol”."
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:94
+msgid "Set your state to 'Online'."
+msgstr "Állapot beállítása: „Elérhető”."
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:101
+msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
+msgstr "A megadott felhasználó kirúgása a váróból. Használat: /kick becenév ok"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:113
+msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
+msgstr "A megadott a felhasználó kitiltása a váróból. Használat: /ban becenév ok"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:125
+msgid "Show this help."
+msgstr "Ezen súgó megjelenítése."
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:128
+msgid "Chat commands:"
+msgstr "Csevegő parancsok:"
+
+#. Translation: Chat command help format
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:132
+#, javascript-format
+msgid "%(command)s - %(description)s"
+msgstr "%(command)s – %(description)s"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:146
+msgid "Send a chat message about yourself. Example: /me goes swimming."
+msgstr "Csevegőüzenet küldése saját magadról. Példa: /me elment úszni."
+
+#. Translation: Chat command
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:149
+msgid "/me"
+msgstr "/me"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:153
+msgid ""
+"Send text as a chat message (even if it starts with slash). Example: /say "
+"/help is a great command."
+msgstr "Szöveg küldése csevegőüzenetként (akkor is, ha perjellel kezdődik). Példa: /say /help, egy nagyszerű parancs"
+
+#. Translation: Chat command
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:156
+msgid "/say"
+msgstr "/say"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:160
+msgid "Clear all chat scrollback."
+msgstr "Minden csevegési előzmény törlése."
+
+#. Translation: Chat message format when there is a time prefix.
+#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:25
+#, javascript-format
+msgid "%(time)s %(message)s"
+msgstr "%(time)s %(message)s"
+
+#. Translation: Time prefix as shown in the multiplayer lobby (when you enable
+#. it in the options page).
+#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:28
+#, javascript-format
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
+
+#. Translation: Chat message issued using the ‘/me’ command.
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatMe.js:24
+#, javascript-format
+msgid "* %(sender)s %(message)s"
+msgstr "* %(sender)s %(message)s"
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatSay.js:29
+#, javascript-format
+msgid "<%(sender)s>"
+msgstr "<%(sender)s>"
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatSay.js:31
+#, javascript-format
+msgid "%(sender)s %(message)s"
+msgstr "%(sender)s %(message)s"
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:23
+msgid "Private"
+msgstr "Privát"
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:25
+#, javascript-format
+msgid "(%(private)s) %(message)s"
+msgstr "(%(private)s) %(message)s"
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:47
+#, javascript-format
+msgid "%(nick)s has joined."
+msgstr "%(nick)s csatlakozott."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:48
+#, javascript-format
+msgid "%(nick)s has left."
+msgstr "%(nick)s távozott."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:70
+#, javascript-format
+msgid "%(oldnick)s is now known as %(newnick)s."
+msgstr "%(oldnick)s mostantól így ismert: %(newnick)s"
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:107
+msgid "You have been muted."
+msgstr "Le lettél némítva."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:108
+#, javascript-format
+msgid "%(nick)s has been muted."
+msgstr "%(nick)s le lett némítva."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:112
+msgid "You are now a moderator."
+msgstr "Mostantól moderátor vagy."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:113
+#, javascript-format
+msgid "%(nick)s is now a moderator."
+msgstr "%(nick)s mostantól moderátor."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:118
+msgid "You have been unmuted."
+msgstr "Mostantól nem vagy némítva."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:119
+#, javascript-format
+msgid "%(nick)s has been unmuted."
+msgstr "%(nick)s mostantól nincs némítva."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:124
+msgid "You are not a moderator anymore."
+msgstr "Már nem vagy moderátor."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:125
+#, javascript-format
+msgid "%(nick)s is not a moderator anymore."
+msgstr "%(nick)s már nem moderátor."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:152
+#, javascript-format
+msgid "%(nick)s changed the lobby subject to:"
+msgstr "%(nick)s erre módosította a váró tárgyát:"
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:153
+#, javascript-format
+msgid "%(nick)s deleted the lobby subject."
+msgstr "%(nick)s törölte a váró tárgyát."
+
+#. Translation: Chat status message
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
+#, javascript-format
+msgid "== %(message)s"
+msgstr "== %(message)s"
+
+#: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
+msgid "Connected."
+msgstr "Kapcsolódva."
+
+#: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:56
+msgid "Disconnected."
+msgstr "Szétkapcsolódva."
+
+#. Translation: Caption for system notifications shown in the chat panel
+#: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:25
+msgid "System:"
+msgstr "Rendszer:"
+
+#: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
+#, javascript-format
+msgid "=== %(system)s %(message)s"
+msgstr "=== %(system)s %(message)s"
+
+#: gui/lobby/LobbyPage/GameListFilters/MapSize.js:9
+msgctxt "map size"
+msgid "Any"
+msgstr "Bármely"
+
+#: gui/lobby/LobbyPage/GameListFilters/MapType.js:9
+#: gui/lobby/LobbyPage/GameListFilters/Rating.js:11
+msgctxt "map"
+msgid "Any"
+msgstr "Bármely"
+
+#: gui/lobby/LobbyPage/GameListFilters/PlayerCount.js:10
+msgctxt "player number"
+msgid "Any"
+msgstr "Bármely"
+
+#: gui/lobby/LobbyPage/GameListFilters/Rating.js:19
+#, javascript-format
+msgctxt "gamelist filter"
+msgid "> %(rating)s"
+msgstr "> %(rating)s"
+
+#: gui/lobby/LobbyPage/GameListFilters/Rating.js:20
+#, javascript-format
+msgctxt "gamelist filter"
+msgid "< %(rating)s"
+msgstr "< %(rating)s"
+
+#: gui/lobby/ProfilePage/ProfilePage.js:70
+#, javascript-format
+msgid "Player \"%(nick)s\" not found."
+msgstr "„%(nick)s” játékos nem található."
 
 #: gui/prelobby/common/credentials/credentials.js:5
 msgid "Please enter your username"
@@ -496,132 +581,105 @@ msgstr "Regisztráció…"
 msgid "Registered"
 msgstr "Regisztrálva"
 
-#: gui/lobby/lobby.xml:(caption):13
-#: gui/prelobby/entrance/entrance.xml:(caption):14
-msgid "Multiplayer Lobby"
-msgstr "Többjátékos váró"
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):15
+msgid "Rank"
+msgstr "Rang"
 
-#: gui/lobby/lobby_panels.xml:(heading):23
-msgid "Status"
-msgstr "Állapot"
-
-#: gui/lobby/lobby_panels.xml:(heading):26
-#: gui/lobby/lobby_panels.xml:(heading):189
-#: gui/lobby/lobby_panels.xml:(heading):283
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):18
+#: gui/lobby/LobbyPage/GameList.xml:(heading):12
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):15
 msgid "Name"
 msgstr "Név"
 
-#: gui/lobby/lobby_panels.xml:(heading):29
-#: gui/lobby/lobby_panels.xml:(heading):204
-#: gui/lobby/lobby_panels.xml:(heading):286
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):21
+#: gui/lobby/LobbyPage/GameList.xml:(heading):27
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
 msgid "Rating"
 msgstr "Értékelés"
 
-#: gui/lobby/lobby_panels.xml:(heading):192
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):26
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):59
+msgid "Back"
+msgstr "Vissza"
+
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):30
+msgid "Update"
+msgstr "Frissítés"
+
+#: gui/lobby/LobbyPage/GameList.xml:(heading):15
 msgid "Map Name"
 msgstr "Térkép neve"
 
-#: gui/lobby/lobby_panels.xml:(heading):195
+#: gui/lobby/LobbyPage/GameList.xml:(heading):18
 msgctxt "map"
 msgid "Size"
 msgstr "Méret"
 
-#: gui/lobby/lobby_panels.xml:(heading):198
+#: gui/lobby/LobbyPage/GameList.xml:(heading):21
 msgctxt "map"
 msgid "Type"
 msgstr "Típus"
 
-#: gui/lobby/lobby_panels.xml:(heading):201
+#: gui/lobby/LobbyPage/GameList.xml:(heading):24
 msgid "Players"
 msgstr "Játékosok"
 
-#: gui/lobby/lobby_panels.xml:(heading):280
-msgid "Rank"
-msgstr "Rang"
-
-#: gui/lobby/lobby_panels.xml:(caption):51
-#: gui/lobby/lobby_panels.xml:(caption):325
-msgid "Current Rank:"
-msgstr "Jelenlegi rang:"
-
-#: gui/lobby/lobby_panels.xml:(caption):55
-#: gui/lobby/lobby_panels.xml:(caption):329
-msgid "Highest Rating:"
-msgstr "Legmagasabb rang:"
-
-#: gui/lobby/lobby_panels.xml:(caption):59
-#: gui/lobby/lobby_panels.xml:(caption):333
-msgid "Total Games:"
-msgstr "Összes játék:"
-
-#: gui/lobby/lobby_panels.xml:(caption):63
-#: gui/lobby/lobby_panels.xml:(caption):337
-msgid "Wins:"
-msgstr "Győzelmek:"
-
-#: gui/lobby/lobby_panels.xml:(caption):67
-#: gui/lobby/lobby_panels.xml:(caption):341
-msgid "Losses:"
-msgstr "Vereségek:"
-
-#: gui/lobby/lobby_panels.xml:(caption):71
-#: gui/lobby/lobby_panels.xml:(caption):345
-msgid "Win Rate:"
-msgstr "Győzelmi arány:"
-
-#: gui/lobby/lobby_panels.xml:(caption):85
-#: gui/lobby/lobby_panels.xml:(caption):273
-msgid "Leaderboard"
-msgstr "Ranglista"
-
-#: gui/lobby/lobby_panels.xml:(caption):91
-#: gui/lobby/lobby_panels.xml:(caption):308
-msgid "User Profile Lookup"
-msgstr "Felhasználói profil keresése"
-
-#: gui/lobby/lobby_panels.xml:(caption):119
-msgid "Map Type:"
-msgstr "Térkép típusa:"
-
-#: gui/lobby/lobby_panels.xml:(caption):131
-msgid "Map Size:"
-msgstr "Térkép mérete:"
-
-#. Join the game currently selected in the list.
-#: gui/lobby/lobby_panels.xml:(caption):156
-msgid "Join Game"
-msgstr "Csatlakozás játékhoz"
-
-#: gui/lobby/lobby_panels.xml:(caption):162
-msgid "Host Game"
-msgstr "Játék létrehozása"
-
-#: gui/lobby/lobby_panels.xml:(caption):243
+#: gui/lobby/LobbyPage/GameListFilters.xml:(caption):5
 msgid "Show only open games"
 msgstr "Csak a nyílt játékok megjelenítése"
 
-#: gui/lobby/lobby_panels.xml:(caption):261
+#: gui/lobby/LobbyPage/LobbyPage.xml:(caption):10
+#: gui/prelobby/entrance/entrance.xml:(caption):14
+msgid "Multiplayer Lobby"
+msgstr "Többjátékos váró"
+
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):12
+msgid "Status"
+msgstr "Állapot"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):8
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):28
+msgid "Current Rank:"
+msgstr "Jelenlegi rang:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):12
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):32
+msgid "Highest Rating:"
+msgstr "Legmagasabb rang:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):16
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):36
+msgid "Total Games:"
+msgstr "Összes játék:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):20
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):40
+msgid "Wins:"
+msgstr "Győzelmek:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):24
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):44
+msgid "Losses:"
+msgstr "Vereségek:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):28
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):48
+msgid "Win Rate:"
+msgstr "Győzelmi arány:"
+
+#: gui/lobby/LobbyPage/Chat/ChatPanel.xml:(caption):6
 msgid "Send"
 msgstr "Küldés"
 
-#: gui/lobby/lobby_panels.xml:(caption):293
-#: gui/lobby/lobby_panels.xml:(caption):355
-msgid "Back"
-msgstr "Vissza"
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):14
+msgid "Enter playername:"
+msgstr "Adja meg a játékosnevet:"
 
-#: gui/lobby/lobby_panels.xml:(caption):299
-msgid "Update"
-msgstr "Frissítés"
-
-#: gui/lobby/lobby_panels.xml:(caption):311
-msgid "Enter username:"
-msgstr "Felhasználónév megadása:"
-
-#: gui/lobby/lobby_panels.xml:(caption):317
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):20
 msgid "View Profile"
 msgstr "Profil megtekintése"
 
-#: gui/lobby/lobby_panels.xml:(caption):350
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):53
 msgid "Please enter a player name."
 msgstr "Adj meg egy játékosnevet."
 

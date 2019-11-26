@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,18 +35,34 @@ protected:
 	virtual void setNew(ssize_t x, ssize_t y, const T& val) = 0;
 
 private:
-	std::size_t hash_value(const std::pair<ssize_t, ssize_t>& p)
+	// TODO: more efficient representation
+	using Data = std::unordered_map<std::pair<ssize_t, ssize_t>, std::pair<T, T> >; // map of <x,y> -> <old_val, new_val>
+	Data m_Data;
+};
+
+namespace std
+{
+template<>
+struct hash<std::pair<ssize_t, ssize_t> >
+{
+	std::size_t operator()(const std::pair<ssize_t, ssize_t>& p) const
 	{
 		std::size_t seed = 0;
-		boost::hash_combine(seed, p.first << 16);
-		boost::hash_combine(seed, p.second);
+		hash_combine(seed, p.first << 16);
+		hash_combine(seed, p.second);
 		return seed;
 	}
 
-	// TODO: more efficient representation
-	typedef boost::unordered_map<std::pair<ssize_t, ssize_t>, std::pair<T, T> > Data; // map of <x,y> -> <old_val, new_val>
-	Data m_Data;
+	// Same as boost::hash_combine
+	void hash_combine(std::size_t& seed, const ssize_t val) const
+	{
+		seed ^= m_SizeHash(val) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+	}
+
+private:
+	std::hash<ssize_t> m_SizeHash;
 };
+}
 
 //////////////////////////////////////////////////////////////////////////
 

@@ -1492,7 +1492,7 @@ function flushTrainingBatch()
 		g_BatchTrainingEntityAllowedCount < batchedSize * appropriateBuildings.length)
 	{
 		// Train as many full batches as we can
-		let buildingsCountToTrainFullBatch = Math.floor( g_BatchTrainingEntityAllowedCount / batchedSize);
+		let buildingsCountToTrainFullBatch = Math.floor(g_BatchTrainingEntityAllowedCount / batchedSize);
 		Engine.PostNetworkCommand({
 			"type": "train",
 			"entities": appropriateBuildings.slice(0, buildingsCountToTrainFullBatch),
@@ -1501,12 +1501,14 @@ function flushTrainingBatch()
 		});
 
 		// Train remainer in one more building
-		Engine.PostNetworkCommand({
-			"type": "train",
-			"entities": [appropriateBuildings[buildingsCountToTrainFullBatch]],
-			"template": g_BatchTrainingType,
-			"count": g_BatchTrainingEntityAllowedCount % batchedSize
-		});
+		let remainer = g_BatchTrainingEntityAllowedCount % batchedSize;
+		if (remainer)
+			Engine.PostNetworkCommand({
+				"type": "train",
+				"entities": [appropriateBuildings[buildingsCountToTrainFullBatch]],
+				"template": g_BatchTrainingType,
+				"count": remainer
+			});
 	}
 	else
 		Engine.PostNetworkCommand({

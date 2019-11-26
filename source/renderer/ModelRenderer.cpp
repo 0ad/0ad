@@ -17,15 +17,6 @@
 
 #include "precompiled.h"
 
-#include "lib/allocators/allocator_adapters.h"
-#include "lib/allocators/arena.h"
-#include "lib/ogl.h"
-#include "maths/Vector3D.h"
-#include "maths/Vector4D.h"
-
-#include "ps/CLogger.h"
-#include "ps/Profile.h"
-
 #include "graphics/Color.h"
 #include "graphics/LightEnv.h"
 #include "graphics/Material.h"
@@ -33,7 +24,14 @@
 #include "graphics/ModelDef.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
-
+#include "lib/allocators/allocator_adapters.h"
+#include "lib/allocators/arena.h"
+#include "lib/hash.h"
+#include "lib/ogl.h"
+#include "maths/Vector3D.h"
+#include "maths/Vector4D.h"
+#include "ps/CLogger.h"
+#include "ps/Profile.h"
 #include "renderer/MikktspaceWrap.h"
 #include "renderer/ModelRenderer.h"
 #include "renderer/ModelVertexRenderer.h"
@@ -338,8 +336,8 @@ struct SMRMaterialBucketKeyHash
 	size_t operator()(const SMRMaterialBucketKey& key) const
 	{
 		size_t hash = 0;
-		boost::hash_combine(hash, key.effect.GetHash());
-		boost::hash_combine(hash, key.defines.GetHash());
+		hash_combine(hash, key.effect.GetHash());
+		hash_combine(hash, key.defines.GetHash());
 		return hash;
 	}
 };
@@ -424,12 +422,17 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 	 */
 
 	Allocators::DynamicArena arena(256 * KiB);
-	typedef ProxyAllocator<CModel*, Allocators::DynamicArena> ModelListAllocator;
-	typedef std::vector<CModel*, ModelListAllocator> ModelList_t;
-	typedef boost::unordered_map<SMRMaterialBucketKey, ModelList_t,
-		SMRMaterialBucketKeyHash, std::equal_to<SMRMaterialBucketKey>,
-		ProxyAllocator<std::pair<const SMRMaterialBucketKey, ModelList_t>, Allocators::DynamicArena>
-	> MaterialBuckets_t;
+	using ModelListAllocator = ProxyAllocator<CModel*, Allocators::DynamicArena>;
+	using ModelList_t = std::vector<CModel*, ModelListAllocator>;
+	using MaterialBuckets_t = std::unordered_map<
+		SMRMaterialBucketKey,
+		ModelList_t,
+		SMRMaterialBucketKeyHash,
+		std::equal_to<SMRMaterialBucketKey>,
+		ProxyAllocator<
+			std::pair<const SMRMaterialBucketKey, ModelList_t>,
+			Allocators::DynamicArena> >;
+
 	MaterialBuckets_t materialBuckets((MaterialBuckets_t::allocator_type(arena)));
 
 	{

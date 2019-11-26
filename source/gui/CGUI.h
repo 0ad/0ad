@@ -33,8 +33,8 @@
 #include "ps/XML/Xeromyces.h"
 #include "scriptinterface/ScriptInterface.h"
 
-#include <boost/unordered_set.hpp>
 #include <map>
+#include <unordered_set>
 #include <vector>
 
 extern const double SELECT_DBLCLICK_RATE;
@@ -120,7 +120,7 @@ public:
 	 * @param Filename Name of file
 	 * @param Paths Set of paths; all XML and JS files loaded will be added to this
 	 */
-	void LoadXmlFile(const VfsPath& Filename, boost::unordered_set<VfsPath>& Paths);
+	void LoadXmlFile(const VfsPath& Filename, std::unordered_set<VfsPath>& Paths);
 
 	/**
 	 * Called after all XML files linked in the page file were loaded.
@@ -346,7 +346,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile, boost::unordered_set<VfsPath>& Paths);
+	void Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile, std::unordered_set<VfsPath>& Paths);
 
 	/**
 	 * Reads in the root element \<sprites\> (the DOMElement).
@@ -405,7 +405,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject* pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth);
+	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject* pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, std::unordered_set<VfsPath>& Paths, u32 nesting_depth);
 
 	/**
 	 * Reads in the element \<repeat\>, which repeats its child \<object\>s
@@ -413,7 +413,7 @@ private:
 	 * 'var' enclosed in square brackets) in its descendants' names with "[0]",
 	 * "[1]", etc.
 	 */
-	void Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject* pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth);
+	void Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject* pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, std::unordered_set<VfsPath>& Paths, u32 nesting_depth);
 
 	/**
 	 * Reads in the element \<script\> (the XMBElement) and executes
@@ -426,7 +426,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, boost::unordered_set<VfsPath>& Paths);
+	void Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, std::unordered_set<VfsPath>& Paths);
 
 	/**
 	 * Reads in the element \<sprite\> (the XMBElement) and stores the

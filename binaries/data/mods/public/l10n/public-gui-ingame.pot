@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2019-11-01 08:08+0000\n"
-"PO-Revision-Date: 2019-11-01 08:08+0000\n"
+"POT-Creation-Date: 2019-11-25 08:08+0000\n"
+"PO-Revision-Date: 2019-11-25 08:08+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -136,31 +136,31 @@ msgstr[1] ""
 msgid "Cannot build wall here!"
 msgstr ""
 
-#: gui/session/messages.js:96
+#: gui/session/messages.js:88
 msgid "You have won!"
 msgstr ""
 
-#: gui/session/messages.js:97
+#: gui/session/messages.js:89
 msgid "You have been defeated!"
 msgstr ""
 
-#: gui/session/messages.js:378
+#: gui/session/messages.js:358
 msgid "Click to quit this tutorial."
 msgstr ""
 
-#: gui/session/messages.js:379
+#: gui/session/messages.js:359
 msgid "Quit"
 msgstr ""
 
-#: gui/session/messages.js:383
+#: gui/session/messages.js:363
 msgid "Click when ready."
 msgstr ""
 
-#: gui/session/messages.js:387
+#: gui/session/messages.js:367
 msgid "Follow the instructions."
 msgstr ""
 
-#: gui/session/messages.js:512
+#: gui/session/messages.js:492
 msgid "Unknown Player"
 msgstr ""
 
@@ -539,6 +539,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:1265
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
+#: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr ""
 
@@ -1549,14 +1550,10 @@ msgstr ""
 msgid "No Markets Available"
 msgstr ""
 
-#: gui/session/trade/TradeDialog.xml:(caption):9
-msgid "Barter & Trade Goods"
-msgstr ""
-
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
 msgstr ""
 
 #: gui/session/trade/TradePanel.xml:(caption):14
-msgid "Goods:"
+msgid "Resources:"
 msgstr ""

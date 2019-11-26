@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,10 +20,6 @@
 
 #define USE_SHADER_XML_VALIDATION 1
 
-#include <boost/unordered_map.hpp>
-#include <memory>
-#include <set>
-
 #include "graphics/ShaderDefines.h"
 #include "graphics/ShaderProgram.h"
 #include "graphics/ShaderTechnique.h"
@@ -32,6 +28,9 @@
 # include "ps/XML/RelaxNG.h"
 #endif
 
+#include <unordered_map>
+#include <memory>
+#include <set>
 
 /**
  * Shader manager: loads and caches shader programs.
@@ -114,11 +113,11 @@ private:
 		size_t operator()(const EffectCacheKey& key) const;
 	};
 
-	typedef boost::unordered_map<EffectCacheKey, CShaderTechniquePtr, EffectCacheKeyHash> EffectCacheMap;
+	using EffectCacheMap = std::unordered_map<EffectCacheKey, CShaderTechniquePtr, EffectCacheKeyHash>;
 	EffectCacheMap m_EffectCache;
 
 	// Store the set of shaders that need to be reloaded when the given file is modified
-	typedef boost::unordered_map<VfsPath, std::set<std::weak_ptr<CShaderProgram>, std::owner_less<std::weak_ptr<CShaderProgram>>>> HotloadFilesMap;
+	using HotloadFilesMap = std::unordered_map<VfsPath, std::set<std::weak_ptr<CShaderProgram>, std::owner_less<std::weak_ptr<CShaderProgram> > > >;
 	HotloadFilesMap m_HotloadFiles;
 
 	bool NewProgram(const char* name, const CShaderDefines& defines, CShaderProgramPtr& program);

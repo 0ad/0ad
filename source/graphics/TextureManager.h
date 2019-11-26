@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,13 +18,12 @@
 #ifndef INCLUDED_TEXTUREMANAGER
 #define INCLUDED_TEXTUREMANAGER
 
-#include "Texture.h"
+#include "graphics/Texture.h"
+#include "lib/file/vfs/vfs.h"
+#include "lib/ogl.h"
+#include "lib/res/handle.h"
 
 #include <memory>
-
-#include "lib/ogl.h"
-#include "lib/file/vfs/vfs.h"
-#include "lib/res/handle.h"
 
 class CTextureProperties;
 class CTextureManagerImpl;
@@ -311,8 +310,5 @@ private:
 	// (weak pointer to avoid cycles)
 	std::weak_ptr<CTexture> m_Self;
 };
-
-std::size_t hash_value(const CTexturePtr& v);
-std::size_t hash_value(const CTextureProperties& v);
 
 #endif // INCLUDED_TEXTUREMANAGER

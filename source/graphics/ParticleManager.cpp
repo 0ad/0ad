@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,8 @@
 #include "ps/Profile.h"
 #include "renderer/Scene.h"
 
+#include <unordered_map>
+
 static Status ReloadChangedFileCB(void* param, const VfsPath& path)
 {
 	return static_cast<CParticleManager*>(param)->ReloadChangedFile(path);
@@ -41,7 +43,7 @@ CParticleManager::~CParticleManager()
 
 CParticleEmitterTypePtr CParticleManager::LoadEmitterType(const VfsPath& path)
 {
-	boost::unordered_map<VfsPath, CParticleEmitterTypePtr>::iterator it = m_EmitterTypes.find(path);
+	std::unordered_map<VfsPath, CParticleEmitterTypePtr>::iterator it = m_EmitterTypes.find(path);
 	if (it != m_EmitterTypes.end())
 		return it->second;
 

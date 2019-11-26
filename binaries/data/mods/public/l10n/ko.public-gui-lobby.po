@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-27 07:08+0000\n"
-"PO-Revision-Date: 2019-10-25 11:04+0000\n"
+"POT-Creation-Date: 2019-11-22 08:08+0000\n"
+"PO-Revision-Date: 2019-11-22 15:16+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -22,382 +22,467 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gui/lobby/lobby.js:50
-msgid "Online"
-msgstr "접속중"
-
-#: gui/lobby/lobby.js:51
-msgid "Away"
-msgstr "자리비움"
-
-#: gui/lobby/lobby.js:52
-msgid "Busy"
-msgstr "바쁨"
-
-#: gui/lobby/lobby.js:53
-msgid "Offline"
-msgstr "접속 안함"
-
-#: gui/lobby/lobby.js:54
-msgctxt "lobby presence"
-msgid "Unknown"
-msgstr "알수없음"
-
-#: gui/lobby/lobby.js:58
-msgid "Moderator"
-msgstr "진행자"
-
-#: gui/lobby/lobby.js:59
-msgid "Player"
-msgstr "선수"
-
-#: gui/lobby/lobby.js:60
-msgid "Muted Player"
-msgstr "소리 끈 선수"
-
-#: gui/lobby/lobby.js:165
-msgid "Disconnected."
-msgstr "접속종료."
-
-#: gui/lobby/lobby.js:184
-#, javascript-format
-msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr "%(nick)s 님이 앞마당 제목을 %(subject)s (으)로 바꿨습니다."
-
-#: gui/lobby/lobby.js:194
-#, javascript-format
-msgid "%(nick)s has joined."
-msgstr "%(nick)s 님이 오셨습니다."
-
-#: gui/lobby/lobby.js:203
-#, javascript-format
-msgid "%(nick)s has left."
-msgstr "%(nick)s 님이 나갔습니다."
-
-#: gui/lobby/lobby.js:220
-msgid "You have been muted."
-msgstr "소리를 없앴습니다."
-
-#: gui/lobby/lobby.js:221
-#, javascript-format
-msgid "%(nick)s has been muted."
-msgstr "%(nick)s 님이 소리를 없앴습니다."
-
-#: gui/lobby/lobby.js:224
-msgid "You are now a moderator."
-msgstr "당신은 이제 진행자(방장?)가 되었습니다."
-
-#: gui/lobby/lobby.js:225
-#, javascript-format
-msgid "%(nick)s is now a moderator."
-msgstr "%(nick)s 님이 진행자(방장?)가 되었습니다."
-
-#: gui/lobby/lobby.js:228
-msgid "You have been unmuted."
-msgstr "소리를 켰습니다."
-
-#: gui/lobby/lobby.js:229
-#, javascript-format
-msgid "%(nick)s has been unmuted."
-msgstr "%(nick)s 님이 소리를 켰습니다."
-
-#: gui/lobby/lobby.js:231
-msgid "You are not a moderator anymore."
-msgstr "당신은 더 이상 진행자가 아닙니다."
-
-#: gui/lobby/lobby.js:232
-#, javascript-format
-msgid "%(nick)s is not a moderator anymore."
-msgstr "%(nick)s 님은 더 이상 진행자가 아닙니다."
-
-#: gui/lobby/lobby.js:245
-#, javascript-format
-msgid "%(oldnick)s is now known as %(newnick)s."
-msgstr "예전의 %(oldnick)s 님은 지금 %(newnick)s 님 입니다."
-
-#: gui/lobby/lobby.js:273
+#: gui/lobby/LobbyPage/AnnouncementHandler.js:18
 msgid "Notice"
 msgstr "공지사항"
 
-#: gui/lobby/lobby.js:308
-msgid "Set your state to 'Away'."
-msgstr "상태를 '자리 비움'으로 설정하십시오."
+#: gui/lobby/LobbyPage/ConnectionHandler.js:45
+msgid "BANNED"
+msgstr "차단당함ehsms차단됨"
 
-#: gui/lobby/lobby.js:315
-msgid "Set your state to 'Online'."
-msgstr "상태를 '온라인'으로 설정하십시오."
+#: gui/lobby/LobbyPage/ConnectionHandler.js:45
+msgid "KICKED"
+msgstr "추방당함ehsms추방됨"
 
-#: gui/lobby/lobby.js:322
-msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "지정한 사용자를 앞마당에서 강제로 추방합니다. 사용법: /kick 사용자이름 이유."
-
-#: gui/lobby/lobby.js:330
-msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr "지정한 사용자를 앞마당에서 차단합니다. 사용법: /ban 사용자이름 이유"
-
-#: gui/lobby/lobby.js:338
-msgid "Show this help."
-msgstr "이 도움말을 표시하십시오."
-
-#: gui/lobby/lobby.js:341
-msgid "Chat commands:"
-msgstr "대화 명령어:"
-
-#. Translation: Chat command help format
-#: gui/lobby/lobby.js:345
-#, javascript-format
-msgid "%(command)s - %(description)s"
-msgstr "%(command)s - %(description)s"
-
-#: gui/lobby/lobby.js:358
-msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr "자신에 대한 채팅 메시지를 보냅니다. 예 : /me 수영하러 갑니다."
-
-#: gui/lobby/lobby.js:362
-msgid ""
-"Send text as a chat message (even if it starts with slash). Example: /say "
-"/help is a great command."
-msgstr "문자 메시지를 대화 메시지로 보냅니다(슬래시로 시작하는 경우에도). 예 : /say /help는 훌륭한 명령입니다."
-
-#: gui/lobby/lobby.js:366
-msgid "Clear all chat scrollback."
-msgstr "모든 대화 스크롤백을 지웁니다."
-
-#: gui/lobby/lobby.js:373
-msgid "Return to the main menu."
-msgstr "주 메뉴로 돌아갑니다."
-
-#: gui/lobby/lobby.js:429
+#: gui/lobby/LobbyPage/ConnectionHandler.js:61
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
 msgstr "앞마당에서 연결이 끊어졌습니다. 다시 연결 하시겠습니까?"
 
-#: gui/lobby/lobby.js:430 gui/lobby/lobby.js:1209
+#: gui/lobby/LobbyPage/ConnectionHandler.js:62
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
 #: gui/prelobby/common/credentials/credentials.js:55
 msgid "Confirmation"
 msgstr "확인"
 
-#: gui/lobby/lobby.js:431 gui/lobby/lobby.js:1192 gui/lobby/lobby.js:1210
+#: gui/lobby/LobbyPage/ConnectionHandler.js:63
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "No"
 msgstr "아니오"
 
-#: gui/lobby/lobby.js:431 gui/lobby/lobby.js:1192 gui/lobby/lobby.js:1210
+#: gui/lobby/LobbyPage/ConnectionHandler.js:63
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "Yes"
 msgstr "예"
 
-#: gui/lobby/lobby.js:446
-msgctxt "previous page"
-msgid "Back"
-msgstr "뒤로"
-
-#: gui/lobby/lobby.js:447
-msgctxt "previous page"
-msgid "Main Menu"
-msgstr "주 차림표"
-
-#: gui/lobby/lobby.js:516
-msgctxt "map size"
-msgid "Any"
-msgstr "아무거나"
-
-#: gui/lobby/lobby.js:521
-msgctxt "player number"
-msgid "Any"
-msgstr "아무거나"
-
-#: gui/lobby/lobby.js:525 gui/lobby/lobby.js:539
-msgctxt "map"
-msgid "Any"
-msgstr "아무거나"
-
-#: gui/lobby/lobby.js:533
-#, javascript-format
-msgctxt "gamelist filter"
-msgid "> %(rating)s"
-msgstr "> %(rating)s"
-
-#: gui/lobby/lobby.js:534
-#, javascript-format
-msgctxt "gamelist filter"
-msgid "< %(rating)s"
-msgstr "< %(rating)s"
-
-#: gui/lobby/lobby.js:607
-msgid "You have been banned from the lobby!"
-msgstr "당신은 앞마당에서 차단되었습니다!"
-
-#: gui/lobby/lobby.js:608
-msgid "You have been kicked from the lobby!"
-msgstr "당신은 앞마당에서 추방되었습니다!"
-
-#: gui/lobby/lobby.js:610
-#, javascript-format
-msgid "%(nick)s has been banned from the lobby."
-msgstr "%(nick)s 님이 앞마당에서 차단되었습니다."
-
-#: gui/lobby/lobby.js:611
-#, javascript-format
-msgid "%(nick)s has been kicked from the lobby."
-msgstr "%(nick)s 님이 앞마당에서 추방되었습니다."
-
-#: gui/lobby/lobby.js:614
-#, javascript-format
-msgctxt "lobby kick"
-msgid "Reason: %(reason)s"
-msgstr "이유: %(reason)s"
-
-#: gui/lobby/lobby.js:642
-msgid "BANNED"
-msgstr "차단당함ehsms차단됨"
-
-#: gui/lobby/lobby.js:642
-msgid "KICKED"
-msgstr "추방당함ehsms추방됨"
-
-#: gui/lobby/lobby.js:673
-msgid "Unmark as Buddy"
-msgstr "친구로 표시 취소"
-
-#: gui/lobby/lobby.js:673
-msgid "Mark as Buddy"
-msgstr "친구로 표시"
-
-#: gui/lobby/lobby.js:866 gui/lobby/lobby.js:867 gui/lobby/lobby.js:868
-#: gui/lobby/lobby.js:869 gui/lobby/lobby.js:870 gui/lobby/lobby.js:871
-msgid "N/A"
-msgstr "이용할 수 없음ehsms없음"
-
-#: gui/lobby/lobby.js:899
-#, javascript-format
-msgid "Player \"%(nick)s\" not found."
-msgstr "사용자를 찾을 수 없습니다. - %(nick)s"
-
 #. Translation: The number of players and observers in this game
-#: gui/lobby/lobby.js:1083
+#: gui/lobby/LobbyPage/Game.js:298
 #, javascript-format
 msgid "%(current)s/%(max)s +%(observercount)s"
 msgstr "%(current)s/%(max)s +%(observercount)s"
 
 #. Translation: The number of players in this game
-#: gui/lobby/lobby.js:1085
+#: gui/lobby/LobbyPage/Game.js:301
 #, javascript-format
 msgid "%(current)s/%(max)s"
 msgstr "%(current)s/%(max)s"
 
-#. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/lobby.js:1143
+#: gui/lobby/LobbyPage/GameDetails.js:65
+msgctxt "victory condition"
+msgid "Endless Game"
+msgstr "끝없는 놀이"
+
+#: gui/lobby/LobbyPage/GameDetails.js:117
 #, javascript-format
-msgid "Game started at %(time)s"
-msgstr "놀이가 %(time)s 에 시작합니다"
+msgid "Host: %(playername)s"
+msgstr ""
 
-#: gui/lobby/lobby.js:1144 gui/lobby/lobby.js:1526
-msgid "HH:mm"
-msgstr "HH:mm"
-
-#: gui/lobby/lobby.js:1148
+#: gui/lobby/LobbyPage/GameDetails.js:119
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr "선수: %(current)s/%(total)s"
 
-#: gui/lobby/lobby.js:1188
-msgid "Your active mods do not match the mods of this game."
-msgstr "사용 중인 모드는 이 게임의 모드와 일치하지 않습니다."
+#: gui/lobby/LobbyPage/GameDetails.js:121
+msgid "Victory Conditions:"
+msgstr ""
 
-#: gui/lobby/lobby.js:1190
-msgid "Do you want to switch to the mod selection page?"
-msgstr "모드 선택 페이지로 전환 하시겠습니까?"
+#. Translation: Comma used to concatenate victory conditions
+#: gui/lobby/LobbyPage/GameDetails.js:124
+msgid ", "
+msgstr ", "
 
-#: gui/lobby/lobby.js:1191
-msgid "Incompatible mods"
-msgstr "호환되지 않는 모드"
+#: gui/lobby/LobbyPage/GameDetails.js:126
+msgid "Mods:"
+msgstr ""
 
-#: gui/lobby/lobby.js:1208
-msgid "The game has already started. Do you want to join as observer?"
-msgstr "놀이가 이미 시작되었습니다. 관찰하시겠습니까?"
-
-#: gui/lobby/lobby.js:1242
+#. Translation: %(time)s is the hour and minute here.
+#: gui/lobby/LobbyPage/GameDetails.js:129
 #, javascript-format
-msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr "놀이 주소  '%(ip)s'가 유효하지 않습니다."
+msgid "Game started at %(time)s"
+msgstr "놀이가 %(time)s 에 시작합니다"
 
-#: gui/lobby/lobby.js:1355
+#: gui/lobby/LobbyPage/GameDetails.js:131
+#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
+msgid "HH:mm"
+msgstr "HH:mm"
+
+#: gui/lobby/LobbyPage/GameDetails.js:133
+msgid "Map Type:"
+msgstr "지도 유형:"
+
+#: gui/lobby/LobbyPage/GameDetails.js:135
+msgid "Map Size:"
+msgstr "지도 크기:"
+
+#: gui/lobby/LobbyPage/GameDetails.js:137
+msgid "Map Description:"
+msgstr ""
+
+#: gui/lobby/LobbyPage/KickStrings.js:39
+msgid "You have been kicked from the lobby!"
+msgstr "당신은 앞마당에서 추방되었습니다!"
+
+#: gui/lobby/LobbyPage/KickStrings.js:40
+msgid "You have been banned from the lobby!"
+msgstr "당신은 앞마당에서 차단되었습니다!"
+
+#: gui/lobby/LobbyPage/KickStrings.js:43
 #, javascript-format
-msgid "The command '%(cmd)s' is not supported."
-msgstr "'%(cmd)s' 명령은 지원되지 않습니다."
+msgid "%(nick)s has been kicked from the lobby."
+msgstr "%(nick)s 님이 앞마당에서 추방되었습니다."
 
-#: gui/lobby/lobby.js:1367
+#: gui/lobby/LobbyPage/KickStrings.js:44
 #, javascript-format
-msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr "'%(cmd)s' 명령은 조정자or 중재자로 제한됩니다."
+msgid "%(nick)s has been banned from the lobby."
+msgstr "%(nick)s 님이 앞마당에서 차단되었습니다."
 
-#. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:1446
+#: gui/lobby/LobbyPage/KickStrings.js:49
 #, javascript-format
-msgid "* %(sender)s"
-msgstr "* %(sender)s"
+msgctxt "lobby kick"
+msgid "Reason: %(reason)s"
+msgstr "이유: %(reason)s"
 
-#. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:1451
-#, javascript-format
-msgid "%(sender)s %(action)s"
-msgstr "%(sender)s 님 %(action)s"
-
-#. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:1460 gui/lobby/lobby.js:1481 gui/lobby/lobby.js:1508
-#, javascript-format
-msgid "<%(sender)s>"
-msgstr "<%(sender)s> 님"
-
-#. Translation: IRC message.
-#: gui/lobby/lobby.js:1465 gui/lobby/lobby.js:1486 gui/lobby/lobby.js:1513
-#, javascript-format
-msgid "%(sender)s %(message)s"
-msgstr "%(sender)s 님 %(message)s"
-
-#. Translation: IRC system message.
-#: gui/lobby/lobby.js:1475
-#, javascript-format
-msgid "== %(message)s"
-msgstr "== %(message)s"
-
-#: gui/lobby/lobby.js:1503
-#, javascript-format
-msgctxt "lobby private message"
-msgid "(%(private)s) <%(sender)s>"
-msgstr "(%(private)s) <%(sender)s>"
-
-#: gui/lobby/lobby.js:1504
-msgid "Private"
-msgstr "개인"
-
-#. Translation: Time prefix as shown in the multiplayer lobby (when you enable
-#. it in the options page).
-#: gui/lobby/lobby.js:1529
-#, javascript-format
-msgid "\\[%(time)s]"
-msgstr "\\[%(time)s]"
-
-#. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:1534
-#, javascript-format
-msgid "%(time)s %(message)s"
-msgstr "%(time)s %(message)s"
-
-#: gui/lobby/lobby.js:1573
+#: gui/lobby/LobbyPage/PlayerColor.js:34
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:1589
+#: gui/lobby/LobbyPage/PlayerList.js:178
+msgid "Online"
+msgstr "접속중"
+
+#: gui/lobby/LobbyPage/PlayerList.js:184
+msgid "Away"
+msgstr "자리비움"
+
+#: gui/lobby/LobbyPage/PlayerList.js:190
+msgid "Busy"
+msgstr "바쁨"
+
+#: gui/lobby/LobbyPage/PlayerList.js:196
+msgid "Offline"
+msgstr "접속 안함"
+
+#: gui/lobby/LobbyPage/PlayerList.js:202
+msgctxt "lobby presence"
+msgid "Unknown"
+msgstr "알수없음"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:106
+msgid "N/A"
+msgstr "이용할 수 없음ehsms없음"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:112
+msgid "Moderator"
+msgstr "진행자"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:113
+msgid "Player"
+msgstr "선수"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:114
+msgid "Muted Player"
+msgstr "소리 끈 선수"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:120
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:1591
+#: gui/lobby/LobbyPage/ProfilePanel.js:122
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
+
+#: gui/lobby/LobbyPage/Buttons/BuddyButton.js:69
+msgid "Mark as Buddy"
+msgstr "친구로 표시"
+
+#: gui/lobby/LobbyPage/Buttons/BuddyButton.js:70
+msgid "Unmark as Buddy"
+msgstr "친구로 표시 취소"
+
+#: gui/lobby/LobbyPage/Buttons/HostButton.js:10
+msgid "Host Game"
+msgstr "놀이 만들기"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:40
+msgid "Your active mods do not match the mods of this game."
+msgstr "사용 중인 모드는 이 게임의 모드와 일치하지 않습니다."
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
+msgid "Do you want to switch to the mod selection page?"
+msgstr "모드 선택 페이지로 전환 하시겠습니까?"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
+msgid "Incompatible mods"
+msgstr "호환되지 않는 모드"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
+msgid "The game has already started. Do you want to join as observer?"
+msgstr "놀이가 이미 시작되었습니다. 관찰하시겠습니까?"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:89
+#, javascript-format
+msgid "This game's address '%(ip)s' does not appear to be valid."
+msgstr "놀이 주소  '%(ip)s'가 유효하지 않습니다."
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:91
+msgid "Error"
+msgstr "오류"
+
+#. Translation: Join the game currently selected in the list.
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:130
+msgid "Join Game"
+msgstr "놀이 참여하기"
+
+#: gui/lobby/LobbyPage/Buttons/LeaderboardButton.js:9
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):10
+msgid "Leaderboard"
+msgstr "순위표"
+
+#: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):10
+msgid "Player Profile Lookup"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
+msgctxt "previous page"
+msgid "Back"
+msgstr "뒤로"
+
+#: gui/lobby/LobbyPage/Buttons/QuitButton.js:16
+msgctxt "previous page"
+msgid "Main Menu"
+msgstr "주 차림표"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:32
+#, javascript-format
+msgid "The command '%(cmd)s' is not supported."
+msgstr "'%(cmd)s' 명령은 지원되지 않습니다."
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:44
+#, javascript-format
+msgid "The command '%(cmd)s' is restricted to moderators."
+msgstr "'%(cmd)s' 명령은 조정자or 중재자로 제한됩니다."
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:66
+#, javascript-format
+msgid "The command '%(cmd)s' requires at least one argument."
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:87
+msgid "Set your state to 'Away'."
+msgstr "상태를 '자리 비움'으로 설정하십시오."
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:94
+msgid "Set your state to 'Online'."
+msgstr "상태를 '온라인'으로 설정하십시오."
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:101
+msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
+msgstr "지정한 사용자를 앞마당에서 강제로 추방합니다. 사용법: /kick 사용자이름 이유."
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:113
+msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
+msgstr "지정한 사용자를 앞마당에서 차단합니다. 사용법: /ban 사용자이름 이유"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:125
+msgid "Show this help."
+msgstr "이 도움말을 표시하십시오."
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:128
+msgid "Chat commands:"
+msgstr "대화 명령어:"
+
+#. Translation: Chat command help format
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:132
+#, javascript-format
+msgid "%(command)s - %(description)s"
+msgstr "%(command)s - %(description)s"
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:146
+msgid "Send a chat message about yourself. Example: /me goes swimming."
+msgstr "자신에 대한 채팅 메시지를 보냅니다. 예 : /me 수영하러 갑니다."
+
+#. Translation: Chat command
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:149
+msgid "/me"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:153
+msgid ""
+"Send text as a chat message (even if it starts with slash). Example: /say "
+"/help is a great command."
+msgstr "문자 메시지를 대화 메시지로 보냅니다(슬래시로 시작하는 경우에도). 예 : /say /help는 훌륭한 명령입니다."
+
+#. Translation: Chat command
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:156
+msgid "/say"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:160
+msgid "Clear all chat scrollback."
+msgstr "모든 대화 스크롤백을 지웁니다."
+
+#. Translation: Chat message format when there is a time prefix.
+#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:25
+#, javascript-format
+msgid "%(time)s %(message)s"
+msgstr "%(time)s %(message)s"
+
+#. Translation: Time prefix as shown in the multiplayer lobby (when you enable
+#. it in the options page).
+#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:28
+#, javascript-format
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
+
+#. Translation: Chat message issued using the ‘/me’ command.
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatMe.js:24
+#, javascript-format
+msgid "* %(sender)s %(message)s"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatSay.js:29
+#, javascript-format
+msgid "<%(sender)s>"
+msgstr "<%(sender)s> 님"
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatSay.js:31
+#, javascript-format
+msgid "%(sender)s %(message)s"
+msgstr "%(sender)s 님 %(message)s"
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:23
+msgid "Private"
+msgstr "개인"
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:25
+#, javascript-format
+msgid "(%(private)s) %(message)s"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:47
+#, javascript-format
+msgid "%(nick)s has joined."
+msgstr "%(nick)s 님이 오셨습니다."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:48
+#, javascript-format
+msgid "%(nick)s has left."
+msgstr "%(nick)s 님이 나갔습니다."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:70
+#, javascript-format
+msgid "%(oldnick)s is now known as %(newnick)s."
+msgstr "예전의 %(oldnick)s 님은 지금 %(newnick)s 님 입니다."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:107
+msgid "You have been muted."
+msgstr "소리를 없앴습니다."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:108
+#, javascript-format
+msgid "%(nick)s has been muted."
+msgstr "%(nick)s 님이 소리를 없앴습니다."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:112
+msgid "You are now a moderator."
+msgstr "당신은 이제 진행자(방장?)가 되었습니다."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:113
+#, javascript-format
+msgid "%(nick)s is now a moderator."
+msgstr "%(nick)s 님이 진행자(방장?)가 되었습니다."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:118
+msgid "You have been unmuted."
+msgstr "소리를 켰습니다."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:119
+#, javascript-format
+msgid "%(nick)s has been unmuted."
+msgstr "%(nick)s 님이 소리를 켰습니다."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:124
+msgid "You are not a moderator anymore."
+msgstr "당신은 더 이상 진행자가 아닙니다."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:125
+#, javascript-format
+msgid "%(nick)s is not a moderator anymore."
+msgstr "%(nick)s 님은 더 이상 진행자가 아닙니다."
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:152
+#, javascript-format
+msgid "%(nick)s changed the lobby subject to:"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:153
+#, javascript-format
+msgid "%(nick)s deleted the lobby subject."
+msgstr ""
+
+#. Translation: Chat status message
+#: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
+#, javascript-format
+msgid "== %(message)s"
+msgstr "== %(message)s"
+
+#: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
+msgid "Connected."
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:56
+msgid "Disconnected."
+msgstr "접속종료."
+
+#. Translation: Caption for system notifications shown in the chat panel
+#: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:25
+msgid "System:"
+msgstr ""
+
+#: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
+#, javascript-format
+msgid "=== %(system)s %(message)s"
+msgstr ""
+
+#: gui/lobby/LobbyPage/GameListFilters/MapSize.js:9
+msgctxt "map size"
+msgid "Any"
+msgstr "아무거나"
+
+#: gui/lobby/LobbyPage/GameListFilters/MapType.js:9
+#: gui/lobby/LobbyPage/GameListFilters/Rating.js:11
+msgctxt "map"
+msgid "Any"
+msgstr "아무거나"
+
+#: gui/lobby/LobbyPage/GameListFilters/PlayerCount.js:10
+msgctxt "player number"
+msgid "Any"
+msgstr "아무거나"
+
+#: gui/lobby/LobbyPage/GameListFilters/Rating.js:19
+#, javascript-format
+msgctxt "gamelist filter"
+msgid "> %(rating)s"
+msgstr "> %(rating)s"
+
+#: gui/lobby/LobbyPage/GameListFilters/Rating.js:20
+#, javascript-format
+msgctxt "gamelist filter"
+msgid "< %(rating)s"
+msgstr "< %(rating)s"
+
+#: gui/lobby/ProfilePage/ProfilePage.js:70
+#, javascript-format
+msgid "Player \"%(nick)s\" not found."
+msgstr "사용자를 찾을 수 없습니다. - %(nick)s"
 
 #: gui/prelobby/common/credentials/credentials.js:5
 msgid "Please enter your username"
@@ -483,132 +568,105 @@ msgstr "등록중…"
 msgid "Registered"
 msgstr "등록된"
 
-#: gui/lobby/lobby.xml:(caption):13
-#: gui/prelobby/entrance/entrance.xml:(caption):14
-msgid "Multiplayer Lobby"
-msgstr "함께 놀기 앞마당"
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):15
+msgid "Rank"
+msgstr "순위"
 
-#: gui/lobby/lobby_panels.xml:(heading):23
-msgid "Status"
-msgstr "상태"
-
-#: gui/lobby/lobby_panels.xml:(heading):26
-#: gui/lobby/lobby_panels.xml:(heading):189
-#: gui/lobby/lobby_panels.xml:(heading):283
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):18
+#: gui/lobby/LobbyPage/GameList.xml:(heading):12
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):15
 msgid "Name"
 msgstr "이름"
 
-#: gui/lobby/lobby_panels.xml:(heading):29
-#: gui/lobby/lobby_panels.xml:(heading):204
-#: gui/lobby/lobby_panels.xml:(heading):286
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):21
+#: gui/lobby/LobbyPage/GameList.xml:(heading):27
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
 msgid "Rating"
 msgstr "점수"
 
-#: gui/lobby/lobby_panels.xml:(heading):192
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):26
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):59
+msgid "Back"
+msgstr "뒤로"
+
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):30
+msgid "Update"
+msgstr "새로고침"
+
+#: gui/lobby/LobbyPage/GameList.xml:(heading):15
 msgid "Map Name"
 msgstr "지도 이름"
 
-#: gui/lobby/lobby_panels.xml:(heading):195
+#: gui/lobby/LobbyPage/GameList.xml:(heading):18
 msgctxt "map"
 msgid "Size"
 msgstr "크기"
 
-#: gui/lobby/lobby_panels.xml:(heading):198
+#: gui/lobby/LobbyPage/GameList.xml:(heading):21
 msgctxt "map"
 msgid "Type"
 msgstr "종류"
 
-#: gui/lobby/lobby_panels.xml:(heading):201
+#: gui/lobby/LobbyPage/GameList.xml:(heading):24
 msgid "Players"
 msgstr "사용자들"
 
-#: gui/lobby/lobby_panels.xml:(heading):280
-msgid "Rank"
-msgstr "순위"
-
-#: gui/lobby/lobby_panels.xml:(caption):51
-#: gui/lobby/lobby_panels.xml:(caption):325
-msgid "Current Rank:"
-msgstr "현재 등수:"
-
-#: gui/lobby/lobby_panels.xml:(caption):55
-#: gui/lobby/lobby_panels.xml:(caption):329
-msgid "Highest Rating:"
-msgstr "가장 높은 점수:"
-
-#: gui/lobby/lobby_panels.xml:(caption):59
-#: gui/lobby/lobby_panels.xml:(caption):333
-msgid "Total Games:"
-msgstr "총 놀이 수:"
-
-#: gui/lobby/lobby_panels.xml:(caption):63
-#: gui/lobby/lobby_panels.xml:(caption):337
-msgid "Wins:"
-msgstr "승리:"
-
-#: gui/lobby/lobby_panels.xml:(caption):67
-#: gui/lobby/lobby_panels.xml:(caption):341
-msgid "Losses:"
-msgstr "패배:"
-
-#: gui/lobby/lobby_panels.xml:(caption):71
-#: gui/lobby/lobby_panels.xml:(caption):345
-msgid "Win Rate:"
-msgstr "승률:"
-
-#: gui/lobby/lobby_panels.xml:(caption):85
-#: gui/lobby/lobby_panels.xml:(caption):273
-msgid "Leaderboard"
-msgstr "순위표"
-
-#: gui/lobby/lobby_panels.xml:(caption):91
-#: gui/lobby/lobby_panels.xml:(caption):308
-msgid "User Profile Lookup"
-msgstr "사용자 정보 찾기"
-
-#: gui/lobby/lobby_panels.xml:(caption):119
-msgid "Map Type:"
-msgstr "지도 유형:"
-
-#: gui/lobby/lobby_panels.xml:(caption):131
-msgid "Map Size:"
-msgstr "지도 크기:"
-
-#. Join the game currently selected in the list.
-#: gui/lobby/lobby_panels.xml:(caption):156
-msgid "Join Game"
-msgstr "놀이 참여하기"
-
-#: gui/lobby/lobby_panels.xml:(caption):162
-msgid "Host Game"
-msgstr "놀이 만들기"
-
-#: gui/lobby/lobby_panels.xml:(caption):243
+#: gui/lobby/LobbyPage/GameListFilters.xml:(caption):5
 msgid "Show only open games"
 msgstr "열려 있는 놀이만 표시"
 
-#: gui/lobby/lobby_panels.xml:(caption):261
+#: gui/lobby/LobbyPage/LobbyPage.xml:(caption):10
+#: gui/prelobby/entrance/entrance.xml:(caption):14
+msgid "Multiplayer Lobby"
+msgstr "함께 놀기 앞마당"
+
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):12
+msgid "Status"
+msgstr "상태"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):8
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):28
+msgid "Current Rank:"
+msgstr "현재 등수:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):12
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):32
+msgid "Highest Rating:"
+msgstr "가장 높은 점수:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):16
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):36
+msgid "Total Games:"
+msgstr "총 놀이 수:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):20
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):40
+msgid "Wins:"
+msgstr "승리:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):24
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):44
+msgid "Losses:"
+msgstr "패배:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):28
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):48
+msgid "Win Rate:"
+msgstr "승률:"
+
+#: gui/lobby/LobbyPage/Chat/ChatPanel.xml:(caption):6
 msgid "Send"
 msgstr "보내기"
 
-#: gui/lobby/lobby_panels.xml:(caption):293
-#: gui/lobby/lobby_panels.xml:(caption):355
-msgid "Back"
-msgstr "뒤로"
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):14
+msgid "Enter playername:"
+msgstr ""
 
-#: gui/lobby/lobby_panels.xml:(caption):299
-msgid "Update"
-msgstr "새로고침"
-
-#: gui/lobby/lobby_panels.xml:(caption):311
-msgid "Enter username:"
-msgstr "사용자 이름 입력:"
-
-#: gui/lobby/lobby_panels.xml:(caption):317
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):20
 msgid "View Profile"
 msgstr "정보 보기"
 
-#: gui/lobby/lobby_panels.xml:(caption):350
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):53
 msgid "Please enter a player name."
 msgstr "사용자 이름을 입력하세요."
 

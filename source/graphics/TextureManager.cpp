@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,16 +19,12 @@
 
 #include "TextureManager.h"
 
-#include <boost/functional/hash.hpp>
-#include <boost/unordered_map.hpp>
-#include <boost/unordered_set.hpp>
-#include <iomanip>
-
 #include "graphics/TextureConverter.h"
 #include "lib/allocators/shared_ptr.h"
-#include "lib/res/h_mgr.h"
 #include "lib/file/vfs/vfs_tree.h"
+#include "lib/hash.h"
 #include "lib/res/graphics/ogl_tex.h"
+#include "lib/res/h_mgr.h"
 #include "lib/timer.h"
 #include "maths/MD5.h"
 #include "ps/CacheLoader.h"
@@ -36,25 +32,31 @@
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
 
+#include <iomanip>
+#include <unordered_map>
+#include <unordered_set>
+
 struct TPhash
-	 : std::unary_function<CTextureProperties, std::size_t>,
-	 std::unary_function<CTexturePtr, std::size_t>
 {
 	std::size_t operator()(CTextureProperties const& a) const
 	{
 		std::size_t seed = 0;
-		boost::hash_combine(seed, a.m_Path);
-		boost::hash_combine(seed, a.m_Filter);
-		boost::hash_combine(seed, a.m_WrapS);
-		boost::hash_combine(seed, a.m_WrapT);
-		boost::hash_combine(seed, a.m_Aniso);
-		boost::hash_combine(seed, a.m_Format);
+		hash_combine(seed, m_PathHash(a.m_Path));
+		hash_combine(seed, a.m_Filter);
+		hash_combine(seed, a.m_WrapS);
+		hash_combine(seed, a.m_WrapT);
+		hash_combine(seed, a.m_Aniso);
+		hash_combine(seed, a.m_Format);
 		return seed;
 	}
+
 	std::size_t operator()(CTexturePtr const& a) const
 	{
 		return (*this)(a->m_Properties);
 	}
+
+private:
+	std::hash<Path> m_PathHash;
 };
 
 struct TPequal_to
@@ -72,17 +74,6 @@ struct TPequal_to
 		return (*this)(a->m_Properties, b->m_Properties);
 	}
 };
-
-std::size_t hash_value(const CTexturePtr& v)
-{
-	TPhash h;
-	return h(v);
-}
-std::size_t hash_value(const CTextureProperties& v)
-{
-	TPhash h;
-	return h(v);
-}
 
 class CTextureManagerImpl
 {
@@ -516,17 +507,20 @@ private:
 	CTexturePtr m_ErrorTexture;
 
 	// Cache of all loaded textures
-	typedef boost::unordered_set<CTexturePtr, TPhash, TPequal_to> TextureCache;
+	using TextureCache =
+		std::unordered_set<CTexturePtr, TPhash, TPequal_to>;
 	TextureCache m_TextureCache;
 	// TODO: we ought to expire unused textures from the cache eventually
 
 	// Store the set of textures that need to be reloaded when the given file
 	// (a source file or settings.xml) is modified
-	typedef boost::unordered_map<VfsPath, std::set<std::weak_ptr<CTexture>, std::owner_less<std::weak_ptr<CTexture>>>> HotloadFilesMap;
+	using HotloadFilesMap =
+		std::unordered_map<VfsPath, std::set<std::weak_ptr<CTexture>, std::owner_less<std::weak_ptr<CTexture> > > >;
 	HotloadFilesMap m_HotloadFiles;
 
 	// Cache for the conversion settings files
-	typedef boost::unordered_map<VfsPath, shared_ptr<CTextureConverter::SettingsFile> > SettingsFilesMap;
+	using SettingsFilesMap =
+		std::unordered_map<VfsPath, shared_ptr<CTextureConverter::SettingsFile> >;
 	SettingsFilesMap m_SettingsFiles;
 };
 

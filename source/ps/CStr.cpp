@@ -16,8 +16,6 @@
  */
 
 /**
- * File        : CStr.cpp
- * Project     : engine
  * Description : Controls compilation of CStr class and
  *             : includes some function implementations.
  **/

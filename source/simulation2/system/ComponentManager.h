@@ -18,15 +18,14 @@
 #ifndef INCLUDED_COMPONENTMANAGER
 #define INCLUDED_COMPONENTMANAGER
 
-#include "Entity.h"
-#include "Components.h"
+#include "ps/Filesystem.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptVal.h"
 #include "simulation2/helpers/Player.h"
-#include "ps/Filesystem.h"
+#include "simulation2/system/Components.h"
+#include "simulation2/system/Entity.h"
 
 #include <boost/random/linear_congruential.hpp>
-#include <boost/unordered_map.hpp>
 #include <map>
 #include <set>
 #include <unordered_map>
@@ -270,9 +269,9 @@ public:
 
 	IComponent* QueryInterface(entity_id_t ent, InterfaceId iid) const;
 
-	typedef std::pair<entity_id_t, IComponent*> InterfacePair;
-	typedef std::vector<InterfacePair> InterfaceList;
-	typedef boost::unordered_map<entity_id_t, IComponent*> InterfaceListUnordered;
+	using InterfacePair = std::pair<entity_id_t, IComponent*>;
+	using InterfaceList = std::vector<InterfacePair>;
+	using InterfaceListUnordered = std::unordered_map<entity_id_t, IComponent*>;
 
 	InterfaceList GetEntitiesWithInterface(InterfaceId iid) const;
 	const InterfaceListUnordered& GetEntitiesWithInterfaceUnordered(InterfaceId iid) const;
@@ -353,7 +352,7 @@ private:
 	// TODO: some of these should be vectors
 	std::map<ComponentTypeId, ComponentType> m_ComponentTypesById;
 	std::vector<CComponentManager::ComponentTypeId> m_ScriptedSystemComponents;
-	std::vector<boost::unordered_map<entity_id_t, IComponent*> > m_ComponentsByInterface; // indexed by InterfaceId
+	std::vector<std::unordered_map<entity_id_t, IComponent*> > m_ComponentsByInterface; // indexed by InterfaceId
 	std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> > m_ComponentsByTypeId;
 	std::map<MessageTypeId, std::vector<ComponentTypeId> > m_LocalMessageSubscriptions;
 	std::map<MessageTypeId, std::vector<ComponentTypeId> > m_GlobalMessageSubscriptions;

@@ -19,19 +19,17 @@
 
 #include "ComponentManager.h"
 
-#include "DynamicSubscription.h"
-#include "IComponent.h"
-#include "ParamNode.h"
-#include "SimContext.h"
-
-#include "simulation2/MessageTypes.h"
-#include "simulation2/components/ICmpTemplateManager.h"
-
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
-#include "ps/Profile.h"
 #include "ps/Filesystem.h"
+#include "ps/Profile.h"
 #include "ps/scripting/JSInterface_VFS.h"
+#include "simulation2/components/ICmpTemplateManager.h"
+#include "simulation2/MessageTypes.h"
+#include "simulation2/system/DynamicSubscription.h"
+#include "simulation2/system/IComponent.h"
+#include "simulation2/system/ParamNode.h"
+#include "simulation2/system/SimContext.h"
 
 /**
  * Used for script-only message types.
@@ -507,7 +505,7 @@ void CComponentManager::ResetState()
 		}
 	}
 
-	std::vector<boost::unordered_map<entity_id_t, IComponent*> >::iterator ifcit = m_ComponentsByInterface.begin();
+	std::vector<std::unordered_map<entity_id_t, IComponent*> >::iterator ifcit = m_ComponentsByInterface.begin();
 	for (; ifcit != m_ComponentsByInterface.end(); ++ifcit)
 		ifcit->clear();
 
@@ -742,7 +740,7 @@ IComponent* CComponentManager::ConstructComponent(CEntityHandle ent, ComponentTy
 
 	ENSURE((size_t)ct.iid < m_ComponentsByInterface.size());
 
-	boost::unordered_map<entity_id_t, IComponent*>& emap1 = m_ComponentsByInterface[ct.iid];
+	std::unordered_map<entity_id_t, IComponent*>& emap1 = m_ComponentsByInterface[ct.iid];
 	if (emap1.find(ent.GetId()) != emap1.end())
 	{
 		LOGERROR("Multiple components for interface %d", ct.iid);
@@ -791,7 +789,7 @@ void CComponentManager::AddMockComponent(CEntityHandle ent, InterfaceId iid, ICo
 	// Just add it into the by-interface map, not the by-component-type map,
 	// so it won't be considered for messages or deletion etc
 
-	boost::unordered_map<entity_id_t, IComponent*>& emap1 = m_ComponentsByInterface.at(iid);
+	std::unordered_map<entity_id_t, IComponent*>& emap1 = m_ComponentsByInterface.at(iid);
 	if (emap1.find(ent.GetId()) != emap1.end())
 		debug_warn(L"Multiple components for interface");
 	emap1.insert(std::make_pair(ent.GetId(), &component));
@@ -942,7 +940,7 @@ void CComponentManager::FlushDestroyedComponents()
 			m_ComponentCaches.erase(ent);
 
 			// Remove from m_ComponentsByInterface
-			std::vector<boost::unordered_map<entity_id_t, IComponent*> >::iterator ifcit = m_ComponentsByInterface.begin();
+			std::vector<std::unordered_map<entity_id_t, IComponent*> >::iterator ifcit = m_ComponentsByInterface.begin();
 			for (; ifcit != m_ComponentsByInterface.end(); ++ifcit)
 			{
 				ifcit->erase(ent);
@@ -959,7 +957,7 @@ IComponent* CComponentManager::QueryInterface(entity_id_t ent, InterfaceId iid) 
 		return NULL;
 	}
 
-	boost::unordered_map<entity_id_t, IComponent*>::const_iterator eit = m_ComponentsByInterface[iid].find(ent);
+	std::unordered_map<entity_id_t, IComponent*>::const_iterator eit = m_ComponentsByInterface[iid].find(ent);
 	if (eit == m_ComponentsByInterface[iid].end())
 	{
 		// This entity doesn't implement this interface
@@ -981,7 +979,7 @@ CComponentManager::InterfaceList CComponentManager::GetEntitiesWithInterface(Int
 
 	ret.reserve(m_ComponentsByInterface[iid].size());
 
-	boost::unordered_map<entity_id_t, IComponent*>::const_iterator it = m_ComponentsByInterface[iid].begin();
+	std::unordered_map<entity_id_t, IComponent*>::const_iterator it = m_ComponentsByInterface[iid].begin();
 	for (; it != m_ComponentsByInterface[iid].end(); ++it)
 		ret.push_back(*it);
 
