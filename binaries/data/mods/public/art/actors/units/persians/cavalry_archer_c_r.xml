@@ -20,7 +20,7 @@
         <texture file="skeletal/pers_champ_cav_r_spec.png" name="specTex"/>
       </textures>
       <props>
-        <prop actor="props/units/armor/pers_neckguard_iron_cav_archer.xml" attachpoint="root"/>
+        <prop actor="props/units/armor/pers_neckguard_iron.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant frequency="1" name="Rider-Armour-Bronze">
@@ -29,7 +29,7 @@
         <texture file="skeletal/pers_champ_cav_r_spec.png" name="specTex"/>
       </textures>
       <props>
-        <prop actor="props/units/armor/pers_neckguard_bronze_cav_archer.xml" attachpoint="root"/>
+        <prop actor="props/units/armor/pers_neckguard_bronze.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant frequency="1" name="scale-sleeve-full-1a">
@@ -38,7 +38,7 @@
         <texture file="skeletal/pers_scale_sleeve_full_1_spec.png" name="specTex"/>
       </textures>
       <props>
-        <prop actor="props/units/armor/pers_neckguard_bronze_cav_archer.xml" attachpoint="root"/>
+        <prop actor="props/units/armor/pers_neckguard_bronze.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant frequency="1" name="scale-sleeve-full-1b">
@@ -47,7 +47,7 @@
         <texture file="skeletal/pers_scale_sleeve_full_1_spec.png" name="specTex"/>
       </textures>
       <props>
-        <prop actor="props/units/armor/pers_neckguard_iron_cav_archer.xml" attachpoint="root"/>
+        <prop actor="props/units/armor/pers_neckguard_iron.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant frequency="1" name="scale-armband-full-1a">
@@ -56,7 +56,7 @@
         <texture file="skeletal/pers_scale_amband_full_1_spec.png" name="specTex"/>
       </textures>
       <props>
-        <prop actor="props/units/armor/pers_neckguard_bronze_cav_archer.xml" attachpoint="root"/>
+        <prop actor="props/units/armor/pers_neckguard_bronze.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant frequency="1" name="scale-armband-full-1b">
@@ -65,7 +65,7 @@
         <texture file="skeletal/pers_scale_amband_full_1_spec.png" name="specTex"/>
       </textures>
       <props>
-        <prop actor="props/units/armor/pers_neckguard_iron_cav_archer.xml" attachpoint="root"/>
+        <prop actor="props/units/armor/pers_neckguard_iron.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant frequency="1" name="scale-sleeve-top-1a">
@@ -74,7 +74,7 @@
         <texture file="skeletal/pers_scale_sleeve_top_1_spec.png" name="specTex"/>
       </textures>
       <props>
-        <prop actor="props/units/armor/pers_neckguard_bronze_cav_archer.xml" attachpoint="root"/>
+        <prop actor="props/units/armor/pers_neckguard_bronze.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant frequency="1" name="scale-sleeve-top-1b">
@@ -83,7 +83,7 @@
         <texture file="skeletal/pers_scale_sleeve_top_1_spec.png" name="specTex"/>
       </textures>
       <props>
-        <prop actor="props/units/armor/pers_neckguard_iron_cav_archer.xml" attachpoint="root"/>
+        <prop actor="props/units/armor/pers_neckguard_iron.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant frequency="1" name="scale-sleeve-bottom-1a">
@@ -92,7 +92,7 @@
         <texture file="skeletal/pers_scale_sleeve_full_1_spec.png" name="specTex"/>
       </textures>
       <props>
-        <prop actor="props/units/armor/pers_neckguard_bronze_cav_archer.xml" attachpoint="root"/>
+        <prop actor="props/units/armor/pers_neckguard_bronze.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant frequency="1" name="scale-sleeve-bottom-1b">
@@ -101,7 +101,7 @@
         <texture file="skeletal/pers_scale_sleeve_bottom_1_spec.png" name="specTex"/>
       </textures>
       <props>
-        <prop actor="props/units/armor/pers_neckguard_iron_cav_archer.xml" attachpoint="root"/>
+        <prop actor="props/units/armor/pers_neckguard_iron.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -120,9 +120,9 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_cavalry_archer_fast.xml" name="Archer-Fast" frequency="1"/>
-    <variant file="biped/attack_ranged_cavalry_archer_back.xml" frequency="100" name="Attack_ranged"/>
-    <variant file="biped/rider/death.xml"/>
+    <variant file="biped/rider/cavalry/base_archer_fast_back.xml" name="Archer-Relax-Back" frequency="1"/>
+    <variant file="biped/rider/cavalry/attack_ranged_archer_back.xml"/>
+    <variant file="biped/rider/death_ranged.xml"/>
   </group>
   <material>player_trans_spec_helmet.xml</material>
 </actor>
