@@ -2,13 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Spearman Horse">
+    <variant>
       <mesh>skeletal/horse_barb.dae</mesh>
       <props>
         <prop actor="units/kushites/cavalry_spearman_b_r.xml" attachpoint="rider"/>
         <prop actor="props/horse/cav_blanket_kush.xml" attachpoint="root"/>
         <prop actor="props/horse/cav_straps_head_kush.xml" attachpoint="head"/>
-        <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_rein_leather.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -26,12 +26,11 @@
     <variant file="quadraped/horse/bay_02.xml" frequency="1" name="bay_02"/>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_trot.xml" name="Horse-Trot" frequency="1"/>
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
-    <variant name="gather_meat">
+    <variant file="quadraped/base_horse_gather_meat.xml" name="gather_meat">
       <props>
-        <prop actor="" attachpoint="rider"/>
         <prop actor="units/kushites/cavalry_spearman_b_r.xml" attachpoint="rider_R"/>
       </props>
     </variant>

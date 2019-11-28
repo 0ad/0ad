@@ -7,19 +7,19 @@
     </variant>
   </group>
   <group>
-    <variant file="quadraped/horse/fauna/breed_brown.xml" frequency="1" name="brown"/>
-    <variant file="quadraped/horse/fauna/breed_black.xml" frequency="1" name="black"/>
-    <variant file="quadraped/horse/fauna/breed_beige.xml" frequency="1" name="beige"/>
-    <variant file="quadraped/horse/fauna/breed_tan.xml" frequency="1" name="tan"/>
-    <variant file="quadraped/horse/fauna/breed_cherrybay.xml" frequency="1" name="cherrybay"/>
-    <variant file="quadraped/horse/fauna/breed_white.xml" frequency="1" name="white"/>
-    <variant file="quadraped/horse/fauna/breed_gray.xml" frequency="1" name="gray"/>
-    <variant file="quadraped/horse/fauna/breed_halflinger.xml" frequency="1" name="halflinger"/>
-    <variant file="quadraped/horse/fauna/breed_bay_01.xml" frequency="1" name="bay_01"/>
-    <variant file="quadraped/horse/fauna/breed_bay_02.xml" frequency="1" name="bay_02"/>
+    <variant file="quadraped/horse/breed_brown.xml" frequency="1" name="brown"/>
+    <variant file="quadraped/horse/breed_black.xml" frequency="1" name="black"/>
+    <variant file="quadraped/horse/breed_beige.xml" frequency="1" name="beige"/>
+    <variant file="quadraped/horse/breed_tan.xml" frequency="1" name="tan"/>
+    <variant file="quadraped/horse/breed_cherrybay.xml" frequency="1" name="cherrybay"/>
+    <variant file="quadraped/horse/breed_white.xml" frequency="1" name="white"/>
+    <variant file="quadraped/horse/breed_gray.xml" frequency="1" name="gray"/>
+    <variant file="quadraped/horse/breed_halflinger.xml" frequency="1" name="halflinger"/>
+    <variant file="quadraped/horse/breed_bay_01.xml" frequency="1" name="bay_01"/>
+    <variant file="quadraped/horse/breed_bay_02.xml" frequency="1" name="bay_02"/>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_fauna.xml" name="Horse-Fauna" frequency="1"/>
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
   </group>

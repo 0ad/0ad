@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="quadraped/base_horse_spearman.xml" frequency="1" name="Spearman Horse">
+    <variant>
       <mesh>skeletal/horse_persian.dae</mesh>
       <props>
         <prop actor="units/ptolemies/cavalry_spearman_c_r.xml" attachpoint="rider"/>
@@ -21,7 +21,7 @@
     <variant file="quadraped/horse/gray.xml" frequency="1" name="gray"/>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_pace.xml" name="Horse-Pace" frequency="1"/>
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
   </group>

@@ -2,12 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_swordsman.xml" name="Swordsman Horse">
+    <variant>
       <mesh>skeletal/horse_tessalian.dae</mesh>
       <props>
         <prop actor="units/macedonians/hero_cavalry_spearman_philip_r.xml" attachpoint="rider"/>
         <prop actor="props/horse/cav_blanket_mace_hero.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_rein_leather.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -25,7 +25,7 @@
     <variant file="quadraped/horse/bay_02.xml" frequency="1" name="bay_02"/>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_trot.xml" name="Horse-Trot" frequency="1"/>
     <variant file="quadraped/base_horse_death.xml" name="Spearman Horse"/>
     <variant file="quadraped/base_horse_run.xml" name="Spearman Horse"/>
   </group>

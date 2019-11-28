@@ -2,11 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_spearman.xml" name="Spearman Horse">
+    <variant>
       <mesh>skeletal/horse_lusitano.dae</mesh>
       <props>
         <prop actor="units/carthaginians/cavalry_spearman_c_r.xml" attachpoint="rider"/>
-        <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_peytral_sele.xml" attachpoint="root"/>
         <prop actor="props/horse/cav_blanket_kart.xml" attachpoint="root"/>
       </props>
     </variant>
@@ -24,19 +24,9 @@
     <variant file="quadraped/horse/bay_02.xml" frequency="1" name="bay_02"/>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
-    <variant file="quadraped/base_horse_death.xml">
-      <props>
-        <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_blanket_kart.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant file="quadraped/base_horse_run.xml">
-      <props>
-        <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_blanket_kart.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="quadraped/base_horse_pace.xml" name="Horse-Pace" frequency="1"/>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
   </group>
   <material>basic_trans_parallax_spec.xml</material>
 </actor>

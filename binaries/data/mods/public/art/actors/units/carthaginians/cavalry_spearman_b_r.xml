@@ -61,15 +61,15 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_cavalry_spearman_relax_shield_aspis_reverse.xml"/>
+    <variant file="biped/rider/cavalry/base_spearman_relax_shield_aspis_reverse.xml" name="Spearman-Relax-Shield-Aspis-Reverse" frequency="1"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/rider/attack_slaughter_shield_hele.xml"/>
     <variant file="biped/rider/promotion_shield.xml" />
-    <variant file="biped/rider/gather_meat_hele.xml"/>
-    <variant file="biped/rider/death_shield.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/rider/death_aspis.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

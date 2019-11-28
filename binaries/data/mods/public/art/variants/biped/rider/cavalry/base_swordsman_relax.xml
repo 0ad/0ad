@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="Base">
+  <animations>
+    <animation file="biped/rider/cavalry/generic/attack_melee_01.dae" name="attack_slaughter" event="0.5" id="attack1" speed="60"/>
+    <animation file="biped/rider/cavalry/generic/attack_melee_02.dae" name="attack_slaughter" event="0.5" id="attack2" speed="60"/>
+    <animation file="biped/rider/cavalry/generic/attack_melee_01.dae" name="attack_melee" event="0.5" id="attack1" speed="60"/>
+    <animation file="biped/rider/cavalry/generic/attack_melee_02.dae" name="attack_melee" event="0.5" id="attack2" speed="60"/>
+    <animation file="biped/rider/cavalry/generic/attack_melee_03.dae" name="attack_melee" event="0.5" id="attack3" speed="60"/>
+    <animation file="biped/rider/cavalry/generic/idle_relax_01.dae" name="Idle" id="idle1" frequency="10" speed="80"/>
+    <animation file="biped/rider/cavalry/generic/idle_relax_02.dae" name="Idle" id="idle2" frequency="3" speed="80"/>
+    <animation file="biped/rider/cavalry/generic/idle_relax_03.dae" name="Idle" id="idle3" frequency="3" speed="80"/>
+    <animation file="biped/rider/cavalry/generic/idle_relax_04.dae" name="Idle" id="idle4" frequency="4" speed="80"/>
+    <animation file="biped/rider/cavalry/generic/idle_relax_05.dae" name="Idle" id="idle5" frequency="4" speed="80"/>
+    <animation file="biped/rider/cavalry/generic/attack_capture.dae" name="attack_capture" speed="80"/>
+    <animation file="biped/rider/cavalry/generic/death_01.dae" name="death" id="death1" speed="120"/>
+    <animation file="biped/rider/cavalry/generic/death_02.dae" name="death" id="death2" speed="120"/>
+    <animation file="biped/rider/cavalry/generic/gallop_ready.dae" name="Run" speed="3"/>
+    <animation file="biped/rider/cavalry/generic/trot_relax.dae" name="Walk" speed="7"/>
+    <animation file="biped/rider/cavalry/promotion.dae" name="promotion" speed="117"/>
+  </animations>
+</variant>

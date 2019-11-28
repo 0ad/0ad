@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear_lance_cavalry.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/capes/rider/spearman_ready_reverse.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/rider/cape_long_player.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="skeletal/hele_tunic.dds" name="baseTex"/>
@@ -15,7 +15,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_cavalry_spearman_relax_reverse.xml"/>
+    <variant file="biped/rider/cavalry/base_spearman_relax_reverse_02.xml" name="Spearman-Relax-Reverse-02" frequency="1"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>

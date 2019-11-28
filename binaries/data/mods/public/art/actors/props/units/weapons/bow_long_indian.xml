@@ -13,7 +13,10 @@
     <variant name="Idle"/>
     <variant name="Attack_Ranged">
       <animations>
-        <animation event="0.55" file="mechanical/weap_bow_attack.dae" load="0" name="attack_ranged" speed="200"/>
+        <animation event="0.55" file="mechanical/weap_bow_attack.dae" load="0.72" name="attack_ranged" id="Attack1" speed="200"/>
+        <animation event="0.55" file="mechanical/weap_bow_attack.dae" load="0.72" name="attack_ranged" id="Attack2" speed="200"/>
+        <animation event="0.55" file="mechanical/weap_bow_attack.dae" load="0.72" name="attack_ranged" id="Attack3" speed="200"/>
+        <animation event="0.55" file="mechanical/weap_bow_attack.dae" load="0.72" name="attack_ranged" id="Attack4" speed="200"/>
       </animations>
     </variant>
   </group>

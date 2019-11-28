@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <variant name="attack_slaughter">
-    <animations>
-        <animation file="biped/rider/cavalry/generic/attack_shield_cut_a.dae" event="0.5" name="attack_slaughter" id="attack1" speed="60"/>
-        <animation file="biped/rider/cavalry/generic/attack_shield_cut_b.dae" event="0.5" name="attack_slaughter" id="attack2" speed="60"/>
-    </animations>
+  <animations>
+    <animation file="biped/rider/cavalry/generic/attack_melee_shield_01.dae" name="attack_melee" event="0.5" id="attack1" speed="60"/>
+    <animation file="biped/rider/cavalry/generic/attack_melee_shield_02.dae" name="attack_melee" event="0.5" id="attack2" speed="60"/>
+  </animations>
 </variant>

@@ -5,10 +5,26 @@
     <variant frequency="1" name="Base">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/helmets/rome_helmet_montefortino.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/sheath_gladius_e.xml" attachpoint="sheath_01_R"/>
         <prop actor="props/units/weapons/gladus.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Gladiator-01">
+      <props>
+        <prop actor="props/units/helmets/gladiator_secutor.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Gladiator-02">
+      <props>
+        <prop actor="props/units/helmets/gladiator_murmillo.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Gladiator-03">
+      <props>
+        <prop actor="props/units/helmets/gladiator_hoplomacus.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>

@@ -1,5 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <variant name="Run">
+  <animations>
+    <animation file="quadraped/horse_gallop.dae" name="Run" speed="3"/>
+  </animations>
   <props>
     <prop actor="particle/dust_cav.xml" attachpoint="decals"/>
   </props>
