@@ -2,12 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_javelin.xml" name="Javelinist Horse">
+    <variant>
       <mesh>skeletal/horse_marwari.dae</mesh>
       <props>
         <prop actor="units/mauryas/cavalry_javelinist_e_r.xml" attachpoint="rider"/>
         <prop actor="props/horse/cav_blanket_maur.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_rein_leather.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -20,12 +20,11 @@
     <variant file="quadraped/horse/gray.xml" frequency="1" name="gray"/>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_javelin.xml" name="Javelinist-Horse" frequency="1"/>
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
-    <variant name="gather_meat">
+    <variant file="quadraped/base_horse_gather_meat.xml" name="gather_meat">
       <props>
-        <prop actor="" attachpoint="rider"/>
         <prop actor="units/mauryas/cavalry_javelinist_e_r.xml" attachpoint="rider_R"/>
       </props>
     </variant>

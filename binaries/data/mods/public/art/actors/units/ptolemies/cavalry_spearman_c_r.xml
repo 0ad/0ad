@@ -2,13 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_cavalry_spearman_relax_shield_aspis.xml" frequency="100" name="Base">
+    <variant>
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_a.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear_long.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/aspis_ptol_c.xml" attachpoint="shield_arm"/>
-        <prop actor="props/units/capes/rider/champ_ptol_spear.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/rider/cape_med_player.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="skeletal/ptol_isp_e_1_spec.png" name="specTex"/>
@@ -75,8 +75,8 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
-    <variant file="biped/rider/death_shield.xml"/>
+    <variant file="biped/rider/cavalry/base_spearman_fast_shield_aspis.xml" name="Spearman-Fast-Shield-Aspis" frequency="1"/>
+    <variant file="biped/rider/death_aspis.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

@@ -2,11 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_javelin.xml" name="Base">
+    <variant>
       <mesh>skeletal/horse_celtic.dae</mesh>
       <props>
         <prop actor="units/britons/hero_cavalry_javelinist_boudicca_r.xml" attachpoint="rider"/>
-        <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_rein_leather.xml" attachpoint="root"/>
         <prop actor="props/horse/cav_blanket_celt.xml" attachpoint="root"/>
       </props>
     </variant>
@@ -18,7 +18,7 @@
     <variant file="quadraped/horse/cherrybay.xml" frequency="1" name="cherrybay"/>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_javelin.xml" name="Javelinist-Horse" frequency="1"/>
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
   </group>

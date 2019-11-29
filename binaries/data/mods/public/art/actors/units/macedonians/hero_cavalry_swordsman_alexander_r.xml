@@ -2,13 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_cavalry_swordsman_relax.xml" frequency="1" name="Base">
+    <variant>
       <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/helmets/old/hele_alexander.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_alexander.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/capes/rider/mace_hero_swordsman_alexander.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/rider/cape_long_beige.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="skeletal/mace_hero_alexander.png" name="baseTex"/>
@@ -16,7 +16,7 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/cavalry/base_swordsman_relax.xml" name="Swordsman-Relax" frequency="1"/>
     <variant file="biped/rider/death.xml"/>
   </group>
   <material>player_trans.xml</material>

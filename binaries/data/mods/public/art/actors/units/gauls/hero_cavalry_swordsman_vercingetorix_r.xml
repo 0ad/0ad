@@ -2,13 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_cavalry_swordsman_ready_shield.xml" frequency="1" name="Base">
+    <variant>
       <mesh>skeletal/new/m_pants.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_vercingetorix.xml" attachpoint="head"/>
         <prop actor="props/units/shields/celt_round_swirl.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
-        <prop actor="props/temp/l_sheath.xml" attachpoint="sheath_L"/>
+        <prop actor="props/units/weapons/sheath_celt_iron_e.xml" attachpoint="sheath_01_L"/>
       </props>
       <textures>
         <texture file="skeletal/celt_vercingetorix.dds" name="baseTex"/>
@@ -16,7 +16,7 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/cavalry/base_swordsman_ready_shield.xml" name="Swordsman-Ready-Shield" frequency="1"/>
     <variant file="biped/rider/death_shield.xml"/>
   </group>
   <material>player_trans.xml</material>

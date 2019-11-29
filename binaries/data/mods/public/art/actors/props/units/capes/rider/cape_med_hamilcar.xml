@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/new/capes/cape_hd_medium.dae</mesh>
+      <textures>
+        <texture file="props/cape_kart_hannibal.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/rider/cavalry/base_spearman_2h_fast_ready.xml" name="Spearman-2h-Fast-Ready" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_2h_fast_relax.xml" name="Spearman-2h-Fast-Relax" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_2h_ready.xml" name="Spearman-2h-Ready" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_2h_relax.xml" name="Spearman-2h-Relax" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_fast_01.xml" name="Spearman-Fast-01" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_fast_02.xml" name="Spearman-Fast-02" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_fast_shield_01.xml" name="Spearman-Fast-Shield-01" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_fast_shield_02.xml" name="Spearman-Fast-Shield-02" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_fast_shield_aspis.xml" name="Spearman-Fast-Shield-Aspis" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_ready.xml" name="Spearman-Ready" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_ready_shield.xml" name="Spearman-Ready-Shield" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_relax_01.xml" name="Spearman-Relax-01" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_relax_02.xml" name="Spearman-Relax-02" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_relax_reverse_01.xml" name="Spearman-Relax-Reverse-01" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_relax_reverse_02.xml" name="Spearman-Relax-Reverse-02" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_relax_shield_01.xml" name="Spearman-Relax-Shield-01" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_relax_shield_02.xml" name="Spearman-Relax-Shield-02" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_relax_shield_reverse.xml" name="Spearman-Relax-Shield-Reverse" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_relax_shield_aspis.xml" name="Spearman-Relax-Shield-Aspis" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_relax_shield_aspis_reverse.xml" name="Spearman-Relax-Shield-Aspis-Reverse" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_swordsman_fast_ready.xml" name="Swordsman-Fast-Ready" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_swordsman_fast_ready_shield.xml" name="Swordsman-Fast-Ready-Shield" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_swordsman_fast_relax.xml" name="Swordsman-Fast-Relax" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_swordsman_fast_relax_shield.xml" name="Swordsman-Fast-Relax-Shield" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_swordsman_ready.xml" name="Swordsman-Ready" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_swordsman_ready_shield.xml" name="Swordsman-Ready-Shield" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_swordsman_ready_shield_aspis.xml" name="Swordsman-Ready-Shield-Aspis" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_swordsman_relax.xml" name="Swordsman-Relax" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_swordsman_relax_shield.xml" name="Swordsman-Relax-Shield" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_swordsman_relax_shield_aspis.xml" name="Swordsman-Relax-Shield-Aspis" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_javelin_fast.xml" name="Javelinist-Fast" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_javelin_relax.xml" name="Javelinist-Relax" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_archer_relax_back.xml" name="Archer-Relax-Back" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_archer_relax_hip.xml" name="Archer-Relax-Hip" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_archer_fast_back.xml" name="Archer-Relax-Back" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_archer_fast_hip.xml" name="Archer-Relax-Hip" frequency="1"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/base_carry_meat.xml"/>
+    <variant file="biped/rider/attack_slaughter.xml"/>
+    <variant file="biped/cape_gather_meat.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

@@ -26,16 +26,16 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_cavalry_archer_relax.xml"/>
+    <variant file="biped/rider/cavalry/base_archer_relax_hip.xml" name="Archer-Relax-Hip" frequency="1"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/attack_ranged_cavalry_archer_hip.xml"/>
+    <variant file="biped/rider/cavalry/attack_ranged_archer_hip.xml"/>
     <variant file="biped/rider/promotion_shield.xml"/>
     <variant file="biped/rider/attack_slaughter_shield_hele.xml"/>
     <variant file="biped/gather_meat.xml"/>
-    <variant file="biped/rider/death_archer.xml"/>
+    <variant file="biped/rider/death_ranged.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

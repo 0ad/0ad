@@ -2,22 +2,17 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="quadraped/base_horse_spearman.xml" name="Spearman Horse"/>
-  </group>
-  <group>
-    <variant file="quadraped/base_horse_swordsman.xml"  name="Swordsman Horse"/>
-  </group>
-  <group>
-    <variant file="quadraped/base_horse_javelin.xml"  name="Javelinist Horse"/>
-  </group>
-  <group>
-    <variant file="quadraped/base_horse_chariot.xml"  name="Chariot Horse"/>
-  </group>
-  <group>
-    <variant file="quadraped/base_horse_archer.xml" name="Archer Horse"/>
-  </group>
-  <group>
     <variant file="quadraped/horse/props/blanket_iber_01.xml" name="horse-blanket-iberian-01"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_javelin_fast.xml"  name="Javelinist-Fast-Horse" frequency="1"/>
+    <variant file="quadraped/base_horse_archer_fast.xml" name="Archer-Fast-Horse" frequency="1"/>
+    <variant file="quadraped/base_horse_javelin.xml"  name="Javelinist-Horse" frequency="1"/>
+    <variant file="quadraped/base_horse_chariot.xml"  name="Chariot-Horse" frequency="1"/>
+    <variant file="quadraped/base_horse_archer.xml" name="Archer-Horse" frequency="1"/>
+    <variant file="quadraped/base_horse_trot.xml" name="Horse-Trot" frequency="1"/>
+    <variant file="quadraped/base_horse_pace.xml" name="Horse-Pace" frequency="1"/>
+    <variant file="quadraped/base_horse_walk.xml" name="Horse-Walk" frequency="1"/>
   </group>
   <material>basic_trans.xml</material>
 </actor>

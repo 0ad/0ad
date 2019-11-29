@@ -2,13 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_swordsman.xml" name="Base">
+    <variant>
       <mesh>skeletal/horse_lusitano.dae</mesh>
       <props>
         <prop actor="units/romans/hero_cavalry_swordsman_scipio_r.xml" attachpoint="rider"/>
         <prop actor="props/horse/chest_colorband_01.xml" attachpoint="root"/>
         <prop actor="props/horse/cav_blanket_rome.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_rein_spearman.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_rein_leather.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -19,7 +19,7 @@
     <variant file="quadraped/horse/white.xml" frequency="1" name="white"/>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_trot.xml" name="Horse-Trot" frequency="1"/>
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
   </group>

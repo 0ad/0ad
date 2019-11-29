@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="quadraped/base_horse_chariot.xml" frequency="1" name="Chariot Horse">
+    <variant>
       <mesh>skeletal/horse_persian.dae</mesh>
       <props>
         <prop actor="props/horse/cav_blanket_back_pers.xml" attachpoint="root"/>
@@ -20,7 +20,7 @@
     <variant file="quadraped/horse/gray.xml" frequency="1" name="horse-01"/>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_chariot.xml" name="Chariot-Horse" frequency="1"/>
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
   </group>

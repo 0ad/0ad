@@ -2,14 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
+    <variant>
       <mesh>skeletal/new/m_pants.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/helmets/pers_conical_b1.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/spear_ball.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/pers_buckler_1.xml" attachpoint="shield"/>
-        <prop actor="props/units/capes/rider/pers_spearman_e.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/rider/cape_med_player.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="skeletal/pers_su1_anusiya.dds" name="baseTex"/>
@@ -17,7 +16,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_cavalry_spearman_ready_shield.xml"/>
+    <variant file="biped/rider/cavalry/base_spearman_ready.xml" name="Spearman-Ready" frequency="1"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>

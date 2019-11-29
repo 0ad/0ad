@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="Base">
+  <animations>
+    <animation file="quadraped/horse_attack_01.dae" event="0.5" name="attack_slaughter" id="attack1" speed="60"/>
+    <animation file="quadraped/horse_attack_02.dae" event="0.5" name="attack_slaughter" id="attack2" speed="60"/>
+    <animation file="quadraped/horse_idle_01.dae" event="0.55" name="attack_ranged" id="Attack1" load="0.72" speed="80"/>
+    <animation file="quadraped/horse_idle_03.dae" event="0.55" name="attack_ranged" id="Attack2" load="0.72" speed="80"/>
+    <animation file="quadraped/horse_idle_04.dae" event="0.55" name="attack_ranged" id="Attack3" load="0.72" speed="80"/>
+    <animation file="quadraped/horse_idle_05.dae" event="0.55" name="attack_ranged" id="Attack4" load="0.72" speed="80"/>
+    <animation file="quadraped/horse_idle_01.dae" name="Idle" id="idle1" frequency="10" speed="80"/>
+    <animation file="quadraped/horse_idle_02.dae" name="Idle" id="idle2" frequency="3" speed="80"/>
+    <animation file="quadraped/horse_idle_03.dae" name="Idle" id="idle3" frequency="3" speed="80"/>
+    <animation file="quadraped/horse_idle_04.dae" name="Idle" id="idle4" frequency="4" speed="80"/>
+    <animation file="quadraped/horse_idle_05.dae" name="Idle" id="idle5" frequency="4" speed="80"/>
+    <animation file="quadraped/horse_death_01.dae" name="death" id="death1" speed="120"/>
+    <animation file="quadraped/horse_death_02.dae" name="death" id="death2" speed="120"/>
+    <animation file="quadraped/horse_gather_meat.dae" name="gather_meat" speed="80"/>
+    <animation file="quadraped/horse_idle_01.dae" name="attack_capture" speed="80"/>
+    <animation file="quadraped/horse_promotion.dae" name="promotion" speed="117"/>
+    <animation file="quadraped/horse_gallop.dae" name="Run" speed="3"/>
+    <animation file="quadraped/horse_pace.dae" name="Walk" speed="5"/>
+  </animations>
+</variant>

@@ -2,14 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
+    <variant>
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/helmets/rome_helmet_montefortino.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/rome_parma_b.xml" attachpoint="shield_arm"/>
-        <prop actor="props/units/capes/rider/spearman_relax_shield.xml" attachpoint="root"/>
+        <prop actor="props/units/capes/rider/cape_long_player.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="skeletal/rome_csp_b.dds" name="baseTex"/>
@@ -17,13 +17,13 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_cavalry_spearman_relax_shield_a.xml"/>
+    <variant file="biped/rider/cavalry/base_spearman_relax_shield_01.xml" name="Spearman-Relax-Shield-01" frequency="1"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/rider/attack_slaughter_shield_rome.xml"/>
     <variant file="biped/rider/promotion_shield.xml" />
+    <variant file="biped/rider/attack_slaughter_shield_rome.xml"/>
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death_shield.xml"/>
   </group>

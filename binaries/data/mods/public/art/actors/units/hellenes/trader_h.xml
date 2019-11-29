@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_trader.xml" name="Trader Horse">
+    <variant>
       <mesh>skeletal/horse_tessalian.dae</mesh>
       <props>
         <prop actor="props/horse/trader_blanket.xml" attachpoint="root"/>
@@ -11,19 +11,19 @@
     </variant>
   </group>
   <group>
-    <variant file="quadraped/horse/trader/brown.xml" frequency="1" name="brown"/>
-    <variant file="quadraped/horse/trader/black.xml" frequency="1" name="black"/>
-    <variant file="quadraped/horse/trader/beige.xml" frequency="1" name="beige"/>
-    <variant file="quadraped/horse/trader/tan.xml" frequency="1" name="tan"/>
-    <variant file="quadraped/horse/trader/cherrybay.xml" frequency="1" name="cherrybay"/>
-    <variant file="quadraped/horse/trader/white.xml" frequency="1" name="white"/>
-    <variant file="quadraped/horse/trader/gray.xml" frequency="1" name="gray"/>
-    <variant file="quadraped/horse/trader/halflinger.xml" frequency="1" name="halflinger"/>
-    <variant file="quadraped/horse/trader/bay_01.xml" frequency="1" name="bay_01"/>
-    <variant file="quadraped/horse/trader/bay_02.xml" frequency="1" name="bay_02"/>
+    <variant file="quadraped/horse/brown.xml" frequency="1" name="brown"/>
+    <variant file="quadraped/horse/black.xml" frequency="1" name="black"/>
+    <variant file="quadraped/horse/beige.xml" frequency="1" name="beige"/>
+    <variant file="quadraped/horse/tan.xml" frequency="1" name="tan"/>
+    <variant file="quadraped/horse/cherrybay.xml" frequency="1" name="cherrybay"/>
+    <variant file="quadraped/horse/white.xml" frequency="1" name="white"/>
+    <variant file="quadraped/horse/gray.xml" frequency="1" name="gray"/>
+    <variant file="quadraped/horse/halflinger.xml" frequency="1" name="halflinger"/>
+    <variant file="quadraped/horse/bay_01.xml" frequency="1" name="bay_01"/>
+    <variant file="quadraped/horse/bay_02.xml" frequency="1" name="bay_02"/>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="quadraped/base_horse_walk.xml" name="Horse-Walk" frequency="1"/>
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
   </group>
