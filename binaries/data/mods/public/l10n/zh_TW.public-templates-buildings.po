@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-18 08:09+0000\n"
-"PO-Revision-Date: 2019-11-18 15:16+0000\n"
+"POT-Creation-Date: 2019-11-25 08:09+0000\n"
+"PO-Revision-Date: 2019-11-25 15:07+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -432,6 +432,11 @@ msgstr "特殊的建築物"
 msgid "This is a special building unique to a particular civilization."
 msgstr "只有特定的文明才有此特殊的建築物。"
 
+#: simulation/templates/template_structure_special_amphitheater.xml:22
+#: simulation/templates/structures/rome_amphitheater_pompeii.xml:5
+msgid "Amphitheater"
+msgstr ""
+
 #: simulation/templates/template_structure_special_library.xml:17
 msgid "Library"
 msgstr "圖書館"
@@ -509,11 +514,11 @@ msgid ""
 "tower."
 msgstr ""
 
-#: simulation/templates/structures/athen_defense_tower.xml:33
-#: simulation/templates/structures/cart_defense_tower.xml:34
-#: simulation/templates/structures/mace_defense_tower.xml:30
-#: simulation/templates/structures/ptol_defense_tower.xml:33
-#: simulation/templates/structures/rome_defense_tower.xml:33
+#: simulation/templates/structures/athen_defense_tower.xml:34
+#: simulation/templates/structures/cart_defense_tower.xml:35
+#: simulation/templates/structures/mace_defense_tower.xml:31
+#: simulation/templates/structures/ptol_defense_tower.xml:34
+#: simulation/templates/structures/rome_defense_tower.xml:34
 msgid ""
 "Reinforce with stone block, and install scorpions to upgrade this defense "
 "tower into a prompt, long range, and accurate bolt tower."
@@ -1323,8 +1328,16 @@ msgid "Gotra"
 msgstr "氏族"
 
 #: simulation/templates/structures/maur_defense_tower.xml:5
+#: simulation/templates/structures/maur_tower_double.xml:11
 msgid "Udarka"
 msgstr "Udarka"
+
+#: simulation/templates/structures/maur_defense_tower.xml:13
+msgid ""
+"Reinforce with stone block, and add a second rampart for up to 16 archers to"
+" stand upon. Infantry Archer exclusive tower. Devastating against melee "
+"troops, weak to siege and massed ranged units"
+msgstr ""
 
 #: simulation/templates/structures/maur_dock.xml:9
 msgid "Naukasthanaka"
@@ -1391,6 +1404,17 @@ msgstr "Khalla"
 #: simulation/templates/structures/maur_temple.xml:12
 msgid "Devalaya"
 msgstr "Devalaya"
+
+#: simulation/templates/structures/maur_tower_double.xml:8
+msgid "Rampart Tower"
+msgstr ""
+
+#: simulation/templates/structures/maur_tower_double.xml:9
+msgid ""
+"Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
+"archers recieve a range and armor bonus. Only archers can garrison. Needs "
+"the murder holes tech to protect its foot."
+msgstr ""
 
 #: simulation/templates/structures/maur_wall_gate.xml:9
 msgid "Dwara"
@@ -1748,12 +1772,8 @@ msgstr "mktr"
 msgid "Temple of Edfu"
 msgstr "埃德富神廟"
 
-#: simulation/templates/structures/rome_ampitheater_pompeii.xml:10
-msgid "Ampitheater"
-msgstr ""
-
-#: simulation/templates/structures/rome_ampitheater_pompeii.xml:11
-msgid "Ampitheatrum"
+#: simulation/templates/structures/rome_amphitheater_pompeii.xml:6
+msgid "Amphitheatrum"
 msgstr ""
 
 #: simulation/templates/structures/rome_arch.xml:22
@@ -1844,21 +1864,21 @@ msgstr "城門"
 msgid "Porta Circummūnītiōnis"
 msgstr ""
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:51
+#: simulation/templates/structures/rome_siege_wall_long.xml:61
 #: simulation/templates/structures/rome_siege_wall_medium.xml:45
 #: simulation/templates/structures/rome_siege_wall_short.xml:32
 #: simulation/templates/structures/rome_wallset_siege.xml:5
 msgid "Siege Wall"
 msgstr "圍牆"
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:52
+#: simulation/templates/structures/rome_siege_wall_long.xml:62
 #: simulation/templates/structures/rome_siege_wall_medium.xml:46
 #: simulation/templates/structures/rome_siege_wall_short.xml:33
 #: simulation/templates/structures/rome_wallset_siege.xml:6
 msgid "Mūrus Circummūnītiōnis"
 msgstr ""
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:55
+#: simulation/templates/structures/rome_siege_wall_long.xml:65
 #: simulation/templates/structures/rome_siege_wall_medium.xml:49
 #: simulation/templates/structures/rome_siege_wall_short.xml:36
 #: simulation/templates/structures/rome_wallset_siege.xml:8

@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-10-23 13:25+0000\n"
-"PO-Revision-Date: 2019-10-24 14:42+0000\n"
+"POT-Creation-Date: 2019-11-25 08:08+0000\n"
+"PO-Revision-Date: 2019-11-26 04:39+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -87,6 +87,12 @@ msgstr "Kahramanlar"
 msgid "History of the %(civilization)s"
 msgstr " %(civilization)sin tarihi"
 
+#. dennis-ignore: *
+#: gui/common/OverlayCounterFPS.js:28
+#, javascript-format
+msgid "FPS: %(fps)4s"
+msgstr "FPS: %(fps)4s"
+
 #: gui/common/color.js:178
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
@@ -102,26 +108,20 @@ msgctxt "hotkey"
 msgid "Tab"
 msgstr "Sekme"
 
-#. dennis-ignore: *
-#: gui/common/functions_global_object.js:7
-#, javascript-format
-msgid "FPS: %(fps)4s"
-msgstr "FPS: %(fps)4s"
-
-#: gui/common/functions_global_object.js:79
+#: gui/common/functions_global_object.js:53
 msgid "Loading Aborted"
 msgstr "Yükleme İptal edildi"
 
-#: gui/common/functions_utility.js:21
+#: gui/common/functions_utility.js:42
 msgid "Gaia"
 msgstr "Doğa"
 
-#: gui/common/functions_utility.js:98
+#: gui/common/functions_utility.js:119
 msgctxt "map selection"
 msgid "Random"
 msgstr "Rastgele"
 
-#: gui/common/functions_utility.js:212
+#: gui/common/functions_utility.js:233
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "İnşa et: %(buildDate)s (%(revision)s)"
@@ -903,17 +903,17 @@ msgstr "Dost Ateşi: %(enabled)s"
 
 #: gui/common/tooltips.js:364 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:295 gui/options/options.js:345
-#: gui/options/options.js:371 gui/pregame/MainMenuItems.js:179
-#: gui/pregame/MainMenuItems.js:196 gui/replaymenu/replay_actions.js:169
+#: gui/options/options.js:295 gui/options/options.js:348
+#: gui/options/options.js:374 gui/pregame/MainMenuItems.js:182
+#: gui/pregame/MainMenuItems.js:199 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Evet"
 
 #: gui/common/tooltips.js:364 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:295 gui/options/options.js:345
-#: gui/options/options.js:371 gui/pregame/MainMenuItems.js:179
-#: gui/pregame/MainMenuItems.js:196 gui/replaymenu/replay_actions.js:169
+#: gui/options/options.js:295 gui/options/options.js:348
+#: gui/options/options.js:374 gui/pregame/MainMenuItems.js:182
+#: gui/pregame/MainMenuItems.js:199 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Hayır"
 
@@ -1172,7 +1172,7 @@ msgstr "Daha fazla bilgi için sağ tıklayın."
 msgid "Click to view more information."
 msgstr "Daha fazla bilgi için tıklayın."
 
-#: gui/credits/credits.js:71
+#: gui/credits/credits.js:80
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
@@ -1243,7 +1243,7 @@ msgid "Do you still want to proceed?"
 msgstr "Hala devam etmek istiyor musunuz?"
 
 #: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:294
-#: gui/options/options.js:344 gui/options/options.js:370
+#: gui/options/options.js:347 gui/options/options.js:373
 msgid "Warning"
 msgstr "Uyarı"
 
@@ -1302,11 +1302,11 @@ msgid ""
 "continue?"
 msgstr "Sıfırlama kaydedilmiş ayarları silecektir. Devam edilsin mi?"
 
-#: gui/options/options.js:343
+#: gui/options/options.js:346
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr "Bazı ayarlar geçersiz. Kaydetmek istediğinizden emin misiniz?"
 
-#: gui/options/options.js:369
+#: gui/options/options.js:372
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Kaydedilmemiş değişiklikler var, pencereyi kapatmak istiyor musun?"
 
@@ -1358,12 +1358,12 @@ msgid "%(hotkey)s: Learn about the many civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: 0 A.D.'de öne çıkan birçok medeniyetle ilgili daha fazlasını öğrenin."
 
 #: gui/pregame/MainMenuItems.js:49 gui/replaymenu/replay_filters.js:142
-msgid "Single Player"
-msgstr "Tek Oyunculu"
+msgid "Single-player"
+msgstr "Tek oyunculu"
 
 #: gui/pregame/MainMenuItems.js:50
-msgid "Click here to start a new single player game."
-msgstr "Yeni bir tek kişilik oyun başlatmak için buraya tıklayın"
+msgid "Click here to start a new single-player game."
+msgstr "Yeni bir tekoyunculu oyun başlatmak için buraya tıklayın."
 
 #: gui/pregame/MainMenuItems.js:53
 msgid "Matches"
@@ -1447,67 +1447,67 @@ msgstr "Ayarlar"
 msgid "Adjust game settings."
 msgstr "Oyun ayarlarını ayarla."
 
-#: gui/pregame/MainMenuItems.js:148 gui/locale/locale.xml:(caption):14
+#: gui/pregame/MainMenuItems.js:151 gui/locale/locale.xml:(caption):14
 msgid "Language"
 msgstr "Dil"
 
-#: gui/pregame/MainMenuItems.js:149
+#: gui/pregame/MainMenuItems.js:152
 msgid "Choose the language of the game."
 msgstr "Oyun lisanı seç."
 
-#: gui/pregame/MainMenuItems.js:155
+#: gui/pregame/MainMenuItems.js:158
 msgid "Mod Selection"
 msgstr "Mod Seçimi"
 
-#: gui/pregame/MainMenuItems.js:156
+#: gui/pregame/MainMenuItems.js:159
 msgid "Select and download mods for the game."
 msgstr "Oyun için modları seçin ve yükleyin."
 
-#: gui/pregame/MainMenuItems.js:162
+#: gui/pregame/MainMenuItems.js:165
 msgid "Welcome Screen"
 msgstr "Karşılama Ekranı"
 
-#: gui/pregame/MainMenuItems.js:163
+#: gui/pregame/MainMenuItems.js:166
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Karşılama Ekranını göster. Yanlışlıkla gizlemişseniz, çok kullanışlıdır."
 
-#: gui/pregame/MainMenuItems.js:171
+#: gui/pregame/MainMenuItems.js:174
 msgid "Scenario Editor"
 msgstr "Senaryo Düzenleyicisi"
 
-#: gui/pregame/MainMenuItems.js:172
+#: gui/pregame/MainMenuItems.js:175
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Atlas Senaryo Düzenleyicisi'ni yeni bir pencerede açın.  Oyunu komut-satırı argümanından \"-editor\" ile başlatarak, çok daha hatasızca çalıştırabilirsiniz."
 
-#: gui/pregame/MainMenuItems.js:177
+#: gui/pregame/MainMenuItems.js:180
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "0 A.D.'yi kapatıp Senaryo Editörünü açmak istediğinizden emin misiniz?"
 
-#: gui/pregame/MainMenuItems.js:178 gui/pregame/MainMenuItems.js:195
+#: gui/pregame/MainMenuItems.js:181 gui/pregame/MainMenuItems.js:198
 msgid "Confirmation"
 msgstr "Onay"
 
-#: gui/pregame/MainMenuItems.js:184
+#: gui/pregame/MainMenuItems.js:187
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Senaryo editörü mevcut değil ya da yüklenmesi başarısız. Daha fazla bilgi için oyun günlük dosyasına bakınız."
 
-#: gui/pregame/MainMenuItems.js:185 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/MainMenuItems.js:188 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "Hata"
 
-#: gui/pregame/MainMenuItems.js:189
+#: gui/pregame/MainMenuItems.js:192
 msgid "Exit"
 msgstr "Çıkış"
 
-#: gui/pregame/MainMenuItems.js:190
+#: gui/pregame/MainMenuItems.js:193
 msgid "Exits the game."
 msgstr "Oyundan çık."
 
-#: gui/pregame/MainMenuItems.js:194
+#: gui/pregame/MainMenuItems.js:197
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "0 A.D.'den çıkmak istediğinize emin misiniz?"
 
@@ -1575,7 +1575,7 @@ msgstr "Katkıcılar"
 msgid "Click to see the 0 A.D. credits."
 msgstr "0 A.D. katkıcılarını görmek için tıklayın."
 
-#: gui/pregame/SplashscreenHandler.js:44
+#: gui/pregame/SplashscreenHandler.js:49
 #, javascript-format
 msgid ""
 "%(warning)s You appear to be using non-shader (fixed function) graphics. "
@@ -1588,20 +1588,20 @@ msgstr "%(warning)s Gölgesiz(sabit işlevli) grafik kullanıyor olduğunuz gör
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/SplashscreenHandler.js:52
+#: gui/pregame/SplashscreenHandler.js:57
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Lütfen daha fazla bilgi için \"Devamını Oku\"ya basın ya da devam etmek için \"Tamam\"a basın."
 
-#: gui/pregame/SplashscreenHandler.js:53
+#: gui/pregame/SplashscreenHandler.js:58
 msgid "WARNING!"
 msgstr "DİKKAT!"
 
-#: gui/pregame/SplashscreenHandler.js:54
+#: gui/pregame/SplashscreenHandler.js:59
 #: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "OK"
 msgstr "Tamam"
 
-#: gui/pregame/SplashscreenHandler.js:54
+#: gui/pregame/SplashscreenHandler.js:59
 msgid "Read More"
 msgstr "Daha Fazlasını Oku"
 
@@ -1843,8 +1843,8 @@ msgid "%(min)s - %(max)s min"
 msgstr "%(min)s - %(max)s dk"
 
 #: gui/replaymenu/replay_filters.js:142
-msgid "Single- and multiplayer"
-msgstr "Tek -ve çoklu oyuncu"
+msgid "Single-player and multiplayer"
+msgstr "Tekoyunculu ve çokoyunculu"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
@@ -2042,7 +2042,6 @@ msgid "%(resourceFirstWord)s exchanged"
 msgstr "%(resourceFirstWord)s alışverişi yapıldı"
 
 #: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):109
-#: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Çeşitli"
 
@@ -2545,6 +2544,19 @@ msgstr "Sesler"
 msgid "Art"
 msgstr "Tasarım"
 
+#: gui/credits/texts/balancing.jsonContent[0].Subtitle
+#: gui/credits/texts/history.jsonContent[0].Subtitle
+msgid "Head"
+msgstr "Lider"
+
+#: gui/credits/texts/balancing.jsonTitle
+msgid "Balancing"
+msgstr "Dengeliyor"
+
+#: gui/credits/texts/community.jsonTitle
+msgid "Community and Management"
+msgstr "Topluluk ve Yönetim"
+
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
 msgstr "Pledgie Sürücü 1"
@@ -2563,17 +2575,9 @@ msgstr "Indiegogo 2013 kampanyası\n1000 den fazla destekçi (!), dahil:"
 msgid "Donors"
 msgstr "Bağışçılar"
 
-#: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
-msgid "Head"
-msgstr "Lider"
-
-#: gui/credits/texts/misc.jsonContent[0].Title
+#: gui/credits/texts/history.jsonTitle
 msgid "History References"
 msgstr "Tarihi Referanslar"
-
-#: gui/credits/texts/misc.jsonContent[1].Title
-msgid "Community and Management"
-msgstr "Topluluk ve Yönetim"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -2624,24 +2628,24 @@ msgid "Translators"
 msgstr "Çevirmenler"
 
 #: gui/options/options.json[0].options[0].tooltip
-msgid "How you want to be addressed in Single Player matches."
-msgstr "Tek Kişilik Maçlarda nasıl hitap edilmek istiyorsun."
+msgid "How you want to be addressed in single-player matches."
+msgstr "Tekoyunculu maçlarda nasıl adreslenmek istediğiniz"
 
 #: gui/options/options.json[0].options[0].label
-msgid "Playername (Single Player)"
-msgstr "Oyuncuadı (Tek Oyunculu)"
+msgid "Player Name (Single-player)"
+msgstr "Oyuncu adı (Tekoyuncu)"
 
 #: gui/options/options.json[0].options[1].tooltip
-msgid "How you want to be addressed in Multiplayer matches (except lobby)."
-msgstr "Multiplayer maçlarında nasıl adreslenmek istiyorsunuz (lobi hariç)."
+msgid "How you want to be addressed in multiplayer matches (except lobby)."
+msgstr "Çok oyunculu maçlarda nasıl adreslenmek istediğiniz (lobi hariç)"
 
 #: gui/options/options.json[0].options[1].label
-msgid "Playername (Multiplayer)"
-msgstr "Oyuncuadı (Çok Oyunculu)"
+msgid "Player Name (Multiplayer)"
+msgstr "Oyuncu adı (Çokoyunculu)"
 
 #: gui/options/options.json[0].options[2].tooltip
-msgid "Pause single player games when window loses focus."
-msgstr "Ekran odağını kaybedince Tekil Oyunculu oyunu durdur."
+msgid "Pause single-player games when window loses focus."
+msgstr "Pencere odağını yitirdiği zaman tekoyunculu oyunları durdur."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background Pause"
