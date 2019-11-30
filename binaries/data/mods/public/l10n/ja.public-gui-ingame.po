@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-01 08:08+0000\n"
-"PO-Revision-Date: 2019-11-01 15:45+0000\n"
+"POT-Creation-Date: 2019-11-25 08:08+0000\n"
+"PO-Revision-Date: 2019-11-25 15:07+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -153,31 +153,31 @@ msgstr[0] "平均ボーナス射程：%(range)sメートル"
 msgid "Cannot build wall here!"
 msgstr "ここに壁は建設できません"
 
-#: gui/session/messages.js:96
+#: gui/session/messages.js:88
 msgid "You have won!"
 msgstr "勝利しました！"
 
-#: gui/session/messages.js:97
+#: gui/session/messages.js:89
 msgid "You have been defeated!"
 msgstr "敗北しました！"
 
-#: gui/session/messages.js:378
+#: gui/session/messages.js:358
 msgid "Click to quit this tutorial."
 msgstr "クリックしてチュートリアルを終了する。"
 
-#: gui/session/messages.js:379
+#: gui/session/messages.js:359
 msgid "Quit"
 msgstr "終了"
 
-#: gui/session/messages.js:383
+#: gui/session/messages.js:363
 msgid "Click when ready."
 msgstr "準備ができたらクリック。"
 
-#: gui/session/messages.js:387
+#: gui/session/messages.js:367
 msgid "Follow the instructions."
 msgstr "指示に従ってください。"
 
-#: gui/session/messages.js:512
+#: gui/session/messages.js:492
 msgid "Unknown Player"
 msgstr "不明なプレイヤー"
 
@@ -556,6 +556,7 @@ msgstr "護衛解除"
 
 #: gui/session/unit_actions.js:1265
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
+#: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr "取引と交易"
 
@@ -1559,14 +1560,10 @@ msgstr "買付："
 msgid "No Markets Available"
 msgstr "市場がありません"
 
-#: gui/session/trade/TradeDialog.xml:(caption):9
-msgid "Barter & Trade Goods"
-msgstr "商品の取引と売買"
-
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
 msgstr "交易"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
-msgid "Goods:"
-msgstr "商品："
+msgid "Resources:"
+msgstr ""

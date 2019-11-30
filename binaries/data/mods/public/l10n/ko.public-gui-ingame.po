@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-01 08:08+0000\n"
-"PO-Revision-Date: 2019-11-01 17:30+0000\n"
-"Last-Translator: ks k\n"
+"POT-Creation-Date: 2019-11-25 08:08+0000\n"
+"PO-Revision-Date: 2019-11-25 15:07+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -159,31 +159,31 @@ msgstr[0] "추가 사정 거리: %(range)s 미터"
 msgid "Cannot build wall here!"
 msgstr "여기에는 성벽을 세울 수 없습니다!"
 
-#: gui/session/messages.js:96
+#: gui/session/messages.js:88
 msgid "You have won!"
 msgstr "이겼습니다!"
 
-#: gui/session/messages.js:97
+#: gui/session/messages.js:89
 msgid "You have been defeated!"
 msgstr "패배했습니다!"
 
-#: gui/session/messages.js:378
+#: gui/session/messages.js:358
 msgid "Click to quit this tutorial."
 msgstr "이 자습서를 종료하려면 클릭하십시오."
 
-#: gui/session/messages.js:379
+#: gui/session/messages.js:359
 msgid "Quit"
 msgstr "종료"
 
-#: gui/session/messages.js:383
+#: gui/session/messages.js:363
 msgid "Click when ready."
 msgstr "준비가 되면 클릭하십시오."
 
-#: gui/session/messages.js:387
+#: gui/session/messages.js:367
 msgid "Follow the instructions."
 msgstr "지시를 따르십시오."
 
-#: gui/session/messages.js:512
+#: gui/session/messages.js:492
 msgid "Unknown Player"
 msgstr "알 수 없는 선수"
 
@@ -562,6 +562,7 @@ msgstr "지키지 않기"
 
 #: gui/session/unit_actions.js:1265
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
+#: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr "거래와 교역"
 
@@ -1565,14 +1566,10 @@ msgstr "사기:"
 msgid "No Markets Available"
 msgstr "시장이 없습니다"
 
-#: gui/session/trade/TradeDialog.xml:(caption):9
-msgid "Barter & Trade Goods"
-msgstr "상품 거래와 교역"
-
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
 msgstr "교역"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
-msgid "Goods:"
-msgstr "상품:"
+msgid "Resources:"
+msgstr ""

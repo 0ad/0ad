@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-10-23 13:25+0000\n"
-"PO-Revision-Date: 2019-10-23 15:28+0000\n"
+"POT-Creation-Date: 2019-11-25 08:08+0000\n"
+"PO-Revision-Date: 2019-11-25 16:09+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -78,6 +78,12 @@ msgstr "英雄"
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s 的歷史"
 
+#. dennis-ignore: *
+#: gui/common/OverlayCounterFPS.js:28
+#, javascript-format
+msgid "FPS: %(fps)4s"
+msgstr "FPS：%(fps)4s"
+
 #: gui/common/color.js:178
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
@@ -93,26 +99,20 @@ msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
 
-#. dennis-ignore: *
-#: gui/common/functions_global_object.js:7
-#, javascript-format
-msgid "FPS: %(fps)4s"
-msgstr "FPS：%(fps)4s"
-
-#: gui/common/functions_global_object.js:79
+#: gui/common/functions_global_object.js:53
 msgid "Loading Aborted"
 msgstr "已中止載入"
 
-#: gui/common/functions_utility.js:21
+#: gui/common/functions_utility.js:42
 msgid "Gaia"
 msgstr "大地之母"
 
-#: gui/common/functions_utility.js:98
+#: gui/common/functions_utility.js:119
 msgctxt "map selection"
 msgid "Random"
 msgstr "隨機"
 
-#: gui/common/functions_utility.js:212
+#: gui/common/functions_utility.js:233
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "組建： %(buildDate)s (%(revision)s)"
@@ -883,17 +883,17 @@ msgstr "友軍火力：%(enabled)s"
 
 #: gui/common/tooltips.js:364 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:295 gui/options/options.js:345
-#: gui/options/options.js:371 gui/pregame/MainMenuItems.js:179
-#: gui/pregame/MainMenuItems.js:196 gui/replaymenu/replay_actions.js:169
+#: gui/options/options.js:295 gui/options/options.js:348
+#: gui/options/options.js:374 gui/pregame/MainMenuItems.js:182
+#: gui/pregame/MainMenuItems.js:199 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "是"
 
 #: gui/common/tooltips.js:364 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:295 gui/options/options.js:345
-#: gui/options/options.js:371 gui/pregame/MainMenuItems.js:179
-#: gui/pregame/MainMenuItems.js:196 gui/replaymenu/replay_actions.js:169
+#: gui/options/options.js:295 gui/options/options.js:348
+#: gui/options/options.js:374 gui/pregame/MainMenuItems.js:182
+#: gui/pregame/MainMenuItems.js:199 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "否"
 
@@ -1146,7 +1146,7 @@ msgstr "按右鍵看更多資訊"
 msgid "Click to view more information."
 msgstr "點擊看更多資訊"
 
-#: gui/credits/credits.js:71
+#: gui/credits/credits.js:80
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
@@ -1217,7 +1217,7 @@ msgid "Do you still want to proceed?"
 msgstr "您仍要繼續嗎？"
 
 #: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:294
-#: gui/options/options.js:344 gui/options/options.js:370
+#: gui/options/options.js:347 gui/options/options.js:373
 msgid "Warning"
 msgstr "警告"
 
@@ -1276,11 +1276,11 @@ msgid ""
 "continue?"
 msgstr "重置選項將會抹除您儲存的設定。您想要繼續嗎？"
 
-#: gui/options/options.js:343
+#: gui/options/options.js:346
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr "部份設定值無效！您確定要儲存它們嗎？"
 
-#: gui/options/options.js:369
+#: gui/options/options.js:372
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "您有未儲存的變更，您想要關閉這個視窗嗎？"
 
@@ -1332,12 +1332,12 @@ msgid "%(hotkey)s: Learn about the many civilizations featured in 0 A.D."
 msgstr "%(hotkey)s：學習0 A.D介紹到的諸多文明"
 
 #: gui/pregame/MainMenuItems.js:49 gui/replaymenu/replay_filters.js:142
-msgid "Single Player"
-msgstr "單人遊戲"
+msgid "Single-player"
+msgstr ""
 
 #: gui/pregame/MainMenuItems.js:50
-msgid "Click here to start a new single player game."
-msgstr "點擊這裏開始新的單人遊戲。"
+msgid "Click here to start a new single-player game."
+msgstr ""
 
 #: gui/pregame/MainMenuItems.js:53
 msgid "Matches"
@@ -1421,67 +1421,67 @@ msgstr "選項"
 msgid "Adjust game settings."
 msgstr "調整遊戲設定。"
 
-#: gui/pregame/MainMenuItems.js:148 gui/locale/locale.xml:(caption):14
+#: gui/pregame/MainMenuItems.js:151 gui/locale/locale.xml:(caption):14
 msgid "Language"
 msgstr "語言"
 
-#: gui/pregame/MainMenuItems.js:149
+#: gui/pregame/MainMenuItems.js:152
 msgid "Choose the language of the game."
 msgstr "選擇遊戲語言。"
 
-#: gui/pregame/MainMenuItems.js:155
+#: gui/pregame/MainMenuItems.js:158
 msgid "Mod Selection"
 msgstr "Mod 選擇"
 
-#: gui/pregame/MainMenuItems.js:156
+#: gui/pregame/MainMenuItems.js:159
 msgid "Select and download mods for the game."
 msgstr "選擇與下載這個遊戲的模組"
 
-#: gui/pregame/MainMenuItems.js:162
+#: gui/pregame/MainMenuItems.js:165
 msgid "Welcome Screen"
 msgstr "歡迎畫面"
 
-#: gui/pregame/MainMenuItems.js:163
+#: gui/pregame/MainMenuItems.js:166
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "顯示歡迎畫面。如果您不小心隱藏它的時候很有用。"
 
-#: gui/pregame/MainMenuItems.js:171
+#: gui/pregame/MainMenuItems.js:174
 msgid "Scenario Editor"
 msgstr "劇情編輯器"
 
-#: gui/pregame/MainMenuItems.js:172
+#: gui/pregame/MainMenuItems.js:175
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "在新視窗中開啟地圖編輯器。您可以利用命令列執行遊戲並在其後加上 \"-editor\" 的參數以較可靠的執行編輯器。"
 
-#: gui/pregame/MainMenuItems.js:177
+#: gui/pregame/MainMenuItems.js:180
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "你確定要退出 0 A.D. ，打開劇情編輯器嗎？"
 
-#: gui/pregame/MainMenuItems.js:178 gui/pregame/MainMenuItems.js:195
+#: gui/pregame/MainMenuItems.js:181 gui/pregame/MainMenuItems.js:198
 msgid "Confirmation"
 msgstr "確認"
 
-#: gui/pregame/MainMenuItems.js:184
+#: gui/pregame/MainMenuItems.js:187
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "劇情編輯器無法使用或載入失敗。見遊戲日誌以獲得更多資訊。"
 
-#: gui/pregame/MainMenuItems.js:185 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/MainMenuItems.js:188 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "錯誤"
 
-#: gui/pregame/MainMenuItems.js:189
+#: gui/pregame/MainMenuItems.js:192
 msgid "Exit"
 msgstr "結束"
 
-#: gui/pregame/MainMenuItems.js:190
+#: gui/pregame/MainMenuItems.js:193
 msgid "Exits the game."
 msgstr "結束遊戲。"
 
-#: gui/pregame/MainMenuItems.js:194
+#: gui/pregame/MainMenuItems.js:197
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "您確定要退出 0 A.D. 嗎？"
 
@@ -1549,7 +1549,7 @@ msgstr "銘謝"
 msgid "Click to see the 0 A.D. credits."
 msgstr "點此觀看 0 A.D. 感謝名單。"
 
-#: gui/pregame/SplashscreenHandler.js:44
+#: gui/pregame/SplashscreenHandler.js:49
 #, javascript-format
 msgid ""
 "%(warning)s You appear to be using non-shader (fixed function) graphics. "
@@ -1562,20 +1562,20 @@ msgstr "%(warning)s 您似乎正使用非著色器（shader 一種特定功能�
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/SplashscreenHandler.js:52
+#: gui/pregame/SplashscreenHandler.js:57
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "請按「閱讀更多」來閱讀更多資訊，或按「確定」來繼續。"
 
-#: gui/pregame/SplashscreenHandler.js:53
+#: gui/pregame/SplashscreenHandler.js:58
 msgid "WARNING!"
 msgstr "警告！"
 
-#: gui/pregame/SplashscreenHandler.js:54
+#: gui/pregame/SplashscreenHandler.js:59
 #: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "OK"
 msgstr "確定"
 
-#: gui/pregame/SplashscreenHandler.js:54
+#: gui/pregame/SplashscreenHandler.js:59
 msgid "Read More"
 msgstr "閱讀更多"
 
@@ -1815,8 +1815,8 @@ msgid "%(min)s - %(max)s min"
 msgstr "%(min)s - %(max)s 分鐘"
 
 #: gui/replaymenu/replay_filters.js:142
-msgid "Single- and multiplayer"
-msgstr "單人與多人"
+msgid "Single-player and multiplayer"
+msgstr ""
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
@@ -2014,7 +2014,6 @@ msgid "%(resourceFirstWord)s exchanged"
 msgstr "%(resourceFirstWord)s 已交換"
 
 #: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):109
-#: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "雜項"
 
@@ -2517,6 +2516,19 @@ msgstr "聲音"
 msgid "Art"
 msgstr "美術"
 
+#: gui/credits/texts/balancing.jsonContent[0].Subtitle
+#: gui/credits/texts/history.jsonContent[0].Subtitle
+msgid "Head"
+msgstr "前端"
+
+#: gui/credits/texts/balancing.jsonTitle
+msgid "Balancing"
+msgstr ""
+
+#: gui/credits/texts/community.jsonTitle
+msgid "Community and Management"
+msgstr "社群與管理"
+
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
 msgstr "Pledgie 宣傳 1"
@@ -2535,17 +2547,9 @@ msgstr "Indiegogo 2013 活動\n多於 1000 筆捐款 (!)，包含了："
 msgid "Donors"
 msgstr "捐贈者"
 
-#: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
-msgid "Head"
-msgstr "前端"
-
-#: gui/credits/texts/misc.jsonContent[0].Title
+#: gui/credits/texts/history.jsonTitle
 msgid "History References"
 msgstr "歷史參考資料"
-
-#: gui/credits/texts/misc.jsonContent[1].Title
-msgid "Community and Management"
-msgstr "社群與管理"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -2596,24 +2600,24 @@ msgid "Translators"
 msgstr "譯者"
 
 #: gui/options/options.json[0].options[0].tooltip
-msgid "How you want to be addressed in Single Player matches."
-msgstr "您在單人遊戲中要如被稱呼。"
+msgid "How you want to be addressed in single-player matches."
+msgstr ""
 
 #: gui/options/options.json[0].options[0].label
-msgid "Playername (Single Player)"
-msgstr "玩家名稱（單人）"
+msgid "Player Name (Single-player)"
+msgstr ""
 
 #: gui/options/options.json[0].options[1].tooltip
-msgid "How you want to be addressed in Multiplayer matches (except lobby)."
-msgstr "您在多人遊戲中要如何被稱呼（除了大廳外）。"
+msgid "How you want to be addressed in multiplayer matches (except lobby)."
+msgstr ""
 
 #: gui/options/options.json[0].options[1].label
-msgid "Playername (Multiplayer)"
-msgstr "玩家名稱（多人）"
+msgid "Player Name (Multiplayer)"
+msgstr ""
 
 #: gui/options/options.json[0].options[2].tooltip
-msgid "Pause single player games when window loses focus."
-msgstr "當視窗失去焦點時，暫停單人遊戲。"
+msgid "Pause single-player games when window loses focus."
+msgstr ""
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background Pause"

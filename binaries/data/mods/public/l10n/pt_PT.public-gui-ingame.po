@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-01 08:08+0000\n"
-"PO-Revision-Date: 2019-11-01 15:45+0000\n"
+"POT-Creation-Date: 2019-11-25 08:08+0000\n"
+"PO-Revision-Date: 2019-11-25 15:07+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -161,31 +161,31 @@ msgstr[1] "Bónus de alcance médio: %(range)s metros"
 msgid "Cannot build wall here!"
 msgstr "Não se pode construir uma muralha aqui!"
 
-#: gui/session/messages.js:96
+#: gui/session/messages.js:88
 msgid "You have won!"
 msgstr "Ganhaste!"
 
-#: gui/session/messages.js:97
+#: gui/session/messages.js:89
 msgid "You have been defeated!"
 msgstr "Foste derrotado!"
 
-#: gui/session/messages.js:378
+#: gui/session/messages.js:358
 msgid "Click to quit this tutorial."
 msgstr "Clica para sair deste tutorial."
 
-#: gui/session/messages.js:379
+#: gui/session/messages.js:359
 msgid "Quit"
 msgstr "Sair"
 
-#: gui/session/messages.js:383
+#: gui/session/messages.js:363
 msgid "Click when ready."
 msgstr "Clica quando estiveres pronto."
 
-#: gui/session/messages.js:387
+#: gui/session/messages.js:367
 msgid "Follow the instructions."
 msgstr "Segue as instruções."
 
-#: gui/session/messages.js:512
+#: gui/session/messages.js:492
 msgid "Unknown Player"
 msgstr "Jogador desconhecido"
 
@@ -565,6 +565,7 @@ msgstr "Cancelar a guarda"
 
 #: gui/session/unit_actions.js:1265
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
+#: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr "Trocas e comércio"
 
@@ -1577,14 +1578,10 @@ msgstr "Comprar:"
 msgid "No Markets Available"
 msgstr "Sem mercados disponíveis"
 
-#: gui/session/trade/TradeDialog.xml:(caption):9
-msgid "Barter & Trade Goods"
-msgstr "Trocas e comércio de bens"
-
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
 msgstr "Comercializar"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
-msgid "Goods:"
-msgstr "Bens:"
+msgid "Resources:"
+msgstr ""

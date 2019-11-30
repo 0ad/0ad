@@ -36,6 +36,7 @@
 # juanda097 <juanda097@protonmail.ch>, 2019
 # Lenny Hans Andreu <landreuhs@outlook.com>, 2013
 # Brookhaven Alt <Lion.Kanzen@gmail.com>, 2013
+# Martin Santiago <martinsape2015@gmail.com>, 2019
 # matiasng37 <matiasng37@gmail.com>, 2013
 # memmaker650 <memmaker650@gmail.com>, 2014
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
@@ -54,9 +55,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-01 08:08+0000\n"
-"PO-Revision-Date: 2019-11-01 15:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-11-25 08:08+0000\n"
+"PO-Revision-Date: 2019-11-26 17:17+0000\n"
+"Last-Translator: Martin Santiago <martinsape2015@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,7 +68,7 @@ msgstr ""
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "Presiona %(hotkey)s para alternar este menú."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -84,7 +85,7 @@ msgstr "Resumen"
 #: gui/session/MenuButtons.js:87
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr ""
+msgstr "Presiona %(hotkey)s para abrir la pantalla de resumen."
 
 #: gui/session/MenuButtons.js:130
 msgid "Lobby"
@@ -95,7 +96,7 @@ msgstr "Sala multijugador"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr ""
+msgstr "Presiona %(hotkey)s para abrir la sala multijugador sin salir del juego."
 
 #: gui/session/MenuButtons.js:158
 msgid "Options"
@@ -112,7 +113,7 @@ msgstr "Pausa"
 #: gui/session/MenuButtons.js:197
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr ""
+msgstr "Presiona %(hotkey)s para pausar o reanudar el juego."
 
 #: gui/session/MenuButtons.js:213
 msgid "Resign"
@@ -190,31 +191,31 @@ msgstr[1] "Bonificación media de tiro: %(range)s metros"
 msgid "Cannot build wall here!"
 msgstr "¡No puedes construir murallas aquí!"
 
-#: gui/session/messages.js:96
+#: gui/session/messages.js:88
 msgid "You have won!"
 msgstr "¡Has ganado!"
 
-#: gui/session/messages.js:97
+#: gui/session/messages.js:89
 msgid "You have been defeated!"
 msgstr "¡Has sido derrotado!"
 
-#: gui/session/messages.js:378
+#: gui/session/messages.js:358
 msgid "Click to quit this tutorial."
 msgstr "Haz clic para salir del turorial."
 
-#: gui/session/messages.js:379
+#: gui/session/messages.js:359
 msgid "Quit"
 msgstr "Salir"
 
-#: gui/session/messages.js:383
+#: gui/session/messages.js:363
 msgid "Click when ready."
 msgstr "Haz clic aquí cuando estés listo."
 
-#: gui/session/messages.js:387
+#: gui/session/messages.js:367
 msgid "Follow the instructions."
 msgstr "Sigue las instrucciones en pantalla."
 
-#: gui/session/messages.js:512
+#: gui/session/messages.js:492
 msgid "Unknown Player"
 msgstr "Jugador desconocido"
 
@@ -407,12 +408,12 @@ msgstr ","
 #: gui/session/selection_panels.js:1062
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "Mejorar a %(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1067
 #, javascript-format
 msgid "Upgrade to %(name)s."
-msgstr ""
+msgstr "Mejorar a %(name)s."
 
 #: gui/session/selection_panels.js:1084
 msgid "Cancel Upgrading"
@@ -594,6 +595,7 @@ msgstr "Desproteger"
 
 #: gui/session/unit_actions.js:1265
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
+#: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr "Comercio e intercambios"
 
@@ -726,12 +728,12 @@ msgstr "Chat privado"
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr ""
+msgstr "Notificaciones del juego"
 
 #: gui/session/chat/ChatHistory.js:130
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr ""
+msgstr "Notificaciones de red"
 
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
@@ -799,7 +801,7 @@ msgstr "%(player)s se ha unido a la partida."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:57
 msgid "no-context"
-msgstr ""
+msgstr "Sin contexto"
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:61
 #, javascript-format
@@ -984,7 +986,7 @@ msgstr "Ascender unidades seleccionadas"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:229
 msgid "Enable culling"
-msgstr ""
+msgstr "Habilitar el sacrificio"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:247
 msgid "Lock cull camera"
@@ -992,7 +994,7 @@ msgstr "Cámara de bloqueo"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:265
 msgid "Display camera frustum"
-msgstr ""
+msgstr "Mostrar cámara frustum"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -1144,7 +1146,7 @@ msgstr "Desincronizado"
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr ""
+msgstr "Fuera de Sincronización"
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:63
@@ -1290,19 +1292,19 @@ msgstr "Vender %(resource)s"
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
-msgstr ""
+msgstr "+%(amount)s"
 
 #: gui/session/trade/BarterButton.js:103
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"
-msgstr ""
+msgstr "-%(amount)s"
 
 #: gui/session/trade/TradeButton.js:56
 #, javascript-format
 msgctxt "trading good ratio"
 msgid "%(amount)s%%"
-msgstr ""
+msgstr "%(amount)s%%"
 
 #: gui/session/trade/TradeButtonManager.js:76
 #, javascript-format
@@ -1606,14 +1608,10 @@ msgstr "Comprar:"
 msgid "No Markets Available"
 msgstr "No hay ningún mercado disponible"
 
-#: gui/session/trade/TradeDialog.xml:(caption):9
-msgid "Barter & Trade Goods"
-msgstr "Comercio e intercambio de bienes"
-
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
 msgstr "Comercio"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
-msgid "Goods:"
-msgstr "Bienes:"
+msgid "Resources:"
+msgstr "Recursos:"

@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-01 08:08+0000\n"
-"PO-Revision-Date: 2019-11-01 15:45+0000\n"
+"POT-Creation-Date: 2019-11-25 08:08+0000\n"
+"PO-Revision-Date: 2019-11-25 15:07+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -158,31 +158,31 @@ msgstr[0] "Rata-rata bonus jarak: %(range)s meter"
 msgid "Cannot build wall here!"
 msgstr "Tidak bisa membuat tembok di sini!"
 
-#: gui/session/messages.js:96
+#: gui/session/messages.js:88
 msgid "You have won!"
 msgstr "Anda telah menang!"
 
-#: gui/session/messages.js:97
+#: gui/session/messages.js:89
 msgid "You have been defeated!"
 msgstr "Anda telah dikalahkan!"
 
-#: gui/session/messages.js:378
+#: gui/session/messages.js:358
 msgid "Click to quit this tutorial."
 msgstr "Klik untuk keluar dari tutorial."
 
-#: gui/session/messages.js:379
+#: gui/session/messages.js:359
 msgid "Quit"
 msgstr "Keluar"
 
-#: gui/session/messages.js:383
+#: gui/session/messages.js:363
 msgid "Click when ready."
 msgstr "Klik saat siap."
 
-#: gui/session/messages.js:387
+#: gui/session/messages.js:367
 msgid "Follow the instructions."
 msgstr "Ikuti instruksi."
 
-#: gui/session/messages.js:512
+#: gui/session/messages.js:492
 msgid "Unknown Player"
 msgstr "Pemain Tidak Dikenal"
 
@@ -561,6 +561,7 @@ msgstr "Batalkan melindungi"
 
 #: gui/session/unit_actions.js:1265
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
+#: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr "Pertukaran & Perdagangan"
 
@@ -1564,14 +1565,10 @@ msgstr "Membeli:"
 msgid "No Markets Available"
 msgstr "Tidak Ada Pasar Tersedia"
 
-#: gui/session/trade/TradeDialog.xml:(caption):9
-msgid "Barter & Trade Goods"
-msgstr "Barter & Barang Dagangan"
-
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
 msgstr "Dagang"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
-msgid "Goods:"
-msgstr "Dagangan:"
+msgid "Resources:"
+msgstr ""

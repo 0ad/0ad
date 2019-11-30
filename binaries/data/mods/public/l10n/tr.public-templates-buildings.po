@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-18 08:09+0000\n"
-"PO-Revision-Date: 2019-11-19 13:26+0000\n"
+"POT-Creation-Date: 2019-11-25 08:09+0000\n"
+"PO-Revision-Date: 2019-11-26 04:48+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -148,7 +148,7 @@ msgstr "Ağır Silah Kulesi"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:58
 msgid "Catapults stones. Needs the murder holes tech to protect its foot."
-msgstr "Taşları mancınıklar. İçindeki piyadeleri korumak için Cinayet Delikleri teknolojisi gerektirir."
+msgstr "Taşları mancınıklar. Dibini korumak için Kale Mazgalları teknolojisi gerektirir."
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:60
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:59
@@ -176,7 +176,7 @@ msgid ""
 "Shoots bolts. Faster reaction time against raiding units than the artillery "
 "tower, weak to all siege weapons and mass melee. Needs the murder holes tech"
 " to protect its foot."
-msgstr "Ok atar. Yağmacı birimlere karşı mancınık kulesinden daha hızlı tepki verir., tüm kuşatma silahlarına ve kalabalık yakın dövüşçülere karşı zayıftır. İçindeki piyadeleri korumak için katliam delikleri teknolojisine ihtiyaç duyar."
+msgstr "Ok atar. Yağmacı birimlere karşı mancınık kulesinden daha hızlı tepki verir., tüm kuşatma silahlarına ve kalabalık yakın dövüşçülere karşı zayıftır. Dibini korumak için Kale Mazgalları teknolojisi gerektirir."
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:52
 msgid ""
@@ -203,7 +203,7 @@ msgstr "Nöbetçi Kulesi"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot. Upgradeable to stone tower."
-msgstr "Ok atar. Daha fazla savunma için birim yerleştirin. İçindeki piyadeleri korumak için Ölüm Çukurları teknolojisi gerektirir. Taş kuleye geliştirilebilir."
+msgstr "Ok atar. Daha fazla savunma için birim yerleştirin. Dibini korumak için Kale Mazgalları teknolojisi gerektirir. Taş kuleye geliştirilebilir."
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:60
 msgid "Reinforce with stone and upgrade to a defense tower."
@@ -217,7 +217,7 @@ msgstr "Savunma Kulesi"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot."
-msgstr "Ok atar. Daha fazla savunma için birim yerleştirin. İçindeki piyadeleri korumak için Ölüm Çukurları teknolojisi gerektirir."
+msgstr "Ok atar. Daha fazla savunma için birim yerleştirin. Dibinii korumak için Kale Mazgalları teknolojisi gerektirir."
 
 #: simulation/templates/template_structure_defensive_wall.xml:16
 #: simulation/templates/structures/cart_s_wall_long.xml:7
@@ -440,6 +440,11 @@ msgstr "Özel Yapılar"
 msgid "This is a special building unique to a particular civilization."
 msgstr "Bu, belirli bir uygarlığa özgü özel bir yapıdır."
 
+#: simulation/templates/template_structure_special_amphitheater.xml:22
+#: simulation/templates/structures/rome_amphitheater_pompeii.xml:5
+msgid "Amphitheater"
+msgstr "Amfitiyatro"
+
 #: simulation/templates/template_structure_special_library.xml:17
 msgid "Library"
 msgstr "Kütüphane"
@@ -517,11 +522,11 @@ msgid ""
 "tower."
 msgstr "Bu savunma kulesini yavaş, etki alanlı ve kuşatmaya dayanıklı bir ok kulesine çevirmek için taş blokla güçlendirin, küçük taş atıcılar kurun."
 
-#: simulation/templates/structures/athen_defense_tower.xml:33
-#: simulation/templates/structures/cart_defense_tower.xml:34
-#: simulation/templates/structures/mace_defense_tower.xml:30
-#: simulation/templates/structures/ptol_defense_tower.xml:33
-#: simulation/templates/structures/rome_defense_tower.xml:33
+#: simulation/templates/structures/athen_defense_tower.xml:34
+#: simulation/templates/structures/cart_defense_tower.xml:35
+#: simulation/templates/structures/mace_defense_tower.xml:31
+#: simulation/templates/structures/ptol_defense_tower.xml:34
+#: simulation/templates/structures/rome_defense_tower.xml:34
 msgid ""
 "Reinforce with stone block, and install scorpions to upgrade this defense "
 "tower into a prompt, long range, and accurate bolt tower."
@@ -1331,8 +1336,16 @@ msgid "Gotra"
 msgstr "Gotra"
 
 #: simulation/templates/structures/maur_defense_tower.xml:5
+#: simulation/templates/structures/maur_tower_double.xml:11
 msgid "Udarka"
 msgstr "Udarka"
+
+#: simulation/templates/structures/maur_defense_tower.xml:13
+msgid ""
+"Reinforce with stone block, and add a second rampart for up to 16 archers to"
+" stand upon. Infantry Archer exclusive tower. Devastating against melee "
+"troops, weak to siege and massed ranged units"
+msgstr "Taş blokla güçlendirin ve 16 okçuya kadar üzerinde durması için ikinci bir sur ekleyin. Okçu piyade seçkin kulesi. Yakın dövüş birliklerine karşı yıkıcı, kuşatma makinelerine ve kalabalık menzilli birimlere zayıf."
 
 #: simulation/templates/structures/maur_dock.xml:9
 msgid "Naukasthanaka"
@@ -1399,6 +1412,17 @@ msgstr "Khalla"
 #: simulation/templates/structures/maur_temple.xml:12
 msgid "Devalaya"
 msgstr "Devalaya"
+
+#: simulation/templates/structures/maur_tower_double.xml:8
+msgid "Rampart Tower"
+msgstr "Sur Kulesi"
+
+#: simulation/templates/structures/maur_tower_double.xml:9
+msgid ""
+"Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
+"archers recieve a range and armor bonus. Only archers can garrison. Needs "
+"the murder holes tech to protect its foot."
+msgstr "16 okçu için surlara sahip daha yüksek sağlık kulesi. Gözle görülür konuşlu okçular menzil ve zırh bonusu alırlar. Sadece okçular konuşlandırılabilir. Dibini korumak için Kale Mazgalları teknolojisine gerektirir."
 
 #: simulation/templates/structures/maur_wall_gate.xml:9
 msgid "Dwara"
@@ -1756,13 +1780,9 @@ msgstr "mktr"
 msgid "Temple of Edfu"
 msgstr "Edfu Tapınağı"
 
-#: simulation/templates/structures/rome_ampitheater_pompeii.xml:10
-msgid "Ampitheater"
-msgstr "Amfitiyatro"
-
-#: simulation/templates/structures/rome_ampitheater_pompeii.xml:11
-msgid "Ampitheatrum"
-msgstr "Ampitheatrum"
+#: simulation/templates/structures/rome_amphitheater_pompeii.xml:6
+msgid "Amphitheatrum"
+msgstr "Amphitheatrum"
 
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
@@ -1852,21 +1872,21 @@ msgstr "Kuşatma Duvar Geçidi"
 msgid "Porta Circummūnītiōnis"
 msgstr "Porta Circummūnītiōnis"
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:51
+#: simulation/templates/structures/rome_siege_wall_long.xml:61
 #: simulation/templates/structures/rome_siege_wall_medium.xml:45
 #: simulation/templates/structures/rome_siege_wall_short.xml:32
 #: simulation/templates/structures/rome_wallset_siege.xml:5
 msgid "Siege Wall"
 msgstr "Kuşatma Duvarı"
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:52
+#: simulation/templates/structures/rome_siege_wall_long.xml:62
 #: simulation/templates/structures/rome_siege_wall_medium.xml:46
 #: simulation/templates/structures/rome_siege_wall_short.xml:33
 #: simulation/templates/structures/rome_wallset_siege.xml:6
 msgid "Mūrus Circummūnītiōnis"
 msgstr "Mūrus Circummūnītiōnis"
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:55
+#: simulation/templates/structures/rome_siege_wall_long.xml:65
 #: simulation/templates/structures/rome_siege_wall_medium.xml:49
 #: simulation/templates/structures/rome_siege_wall_short.xml:36
 #: simulation/templates/structures/rome_wallset_siege.xml:8
