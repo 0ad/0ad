@@ -14,6 +14,7 @@
 # 477f07d437f0da0e33ec4ecd7b8e2b62, 2017
 # Michiel <mvdijk@mivadi.com>, 2014
 # niektb <niektb95@gmail.com>, 2014-2015
+# Paul Staring <ooypunk@hotmail.com>, 2019
 # Piers T <pierstitus@gmail.com>, 2019
 # Pim de Graaf <pimdegraaf1997@gmail.com>, 2019
 # TheBuG <Ruben.bilo@gmail.com>, 2014
@@ -24,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-10-13 13:44+0000\n"
-"Last-Translator: Pim de Graaf <pimdegraaf1997@gmail.com>\n"
+"PO-Revision-Date: 2019-12-01 22:20+0000\n"
+"Last-Translator: Paul Staring <ooypunk@hotmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +46,7 @@ msgstr "Eenheden gepromoveerd naar de geavanceerde klasse krijgen extra kwalitei
 msgid ""
 "The Indian and Iranian peoples had a tradition of fine archery and a "
 "penchant for using massed archers in battle."
-msgstr "De Indiers en Iraniers hadden een traditie van goede boogschutters en een voorkeur voor grote groepen boogschutters in het gevecht."
+msgstr "De Indiërs en Iraniërs hadden een traditie van goede boogschutters en een voorkeur voor grote groepen boogschutters in het gevecht."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
@@ -438,7 +439,7 @@ msgstr "Khrysaspís"
 msgid ""
 "Only the most celebrated soldiers had shields faced with silver, as did the "
 "famous 'Silver Shields' regiment in Alexander the Great's army."
-msgstr "Enkel de meest gevierde soldaten kregen schilden met zilver beslegen, zoals het bekende 'Zilveren Schilden' regiment in het leger van Alexander de Grote."
+msgstr "Enkel de meest gevierde soldaten kregen schilden met zilver beslagen, zoals het bekende 'Zilveren Schilden' regiment in het leger van Alexander de Grote."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
@@ -661,7 +662,7 @@ msgstr "Het gebruik van ijzer in plaats van brons maakte de wapens sterker."
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry."
-msgstr ""
+msgstr "Training verhoogt de schade van afstandsinfanterie."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
@@ -737,11 +738,11 @@ msgstr "Wootzstaal"
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.iber
 msgid "Toledo Steel"
-msgstr "Toledo staal"
+msgstr "Toledo-staal"
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsondescription
 msgid "Using rubble materials reduces the costs and build times of walls."
-msgstr "Het gebruik van afvalstenen verminderd de kost en bouwtijd van muren."
+msgstr "Het gebruik van afvalstenen vermindert de prijs en bouwtijd van muren."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
 msgid "City walls -20% build time, but -1 crush armor level."
@@ -765,20 +766,20 @@ msgstr "Fok vee (schapen, geiten, runderen, etc.) voor voedsel."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Domestic Animals −25% breeding time."
-msgstr ""
+msgstr "Huisdieren -25% foktijd"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
-msgstr "Kwekerij"
+msgstr "Veeteelt"
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
 msgid "Workers use baskets. Increases shuttling capacity for all resources."
-msgstr ""
+msgstr "Arbeiders gebruiken rieten manden. Verhoogt draagcapaciteit voor alle grondstoffen."
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers +5 resource capacity."
-msgstr ""
+msgstr "Arbeiders +5 grondstofcapaciteit."
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -788,11 +789,11 @@ msgstr "Rieten manden"
 msgid ""
 "Workers use horse-drawn carts. Increases shuttling capacity for all "
 "resources."
-msgstr ""
+msgstr "Arbeiders gebruiken per paard getrokken karren. Verhoogt draagcapaciteit voor alle grondstoffen."
 
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 msgid "Workers +10 resource capacity."
-msgstr ""
+msgstr "Arbeiders +10 grondstofcapaciteit."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -808,7 +809,7 @@ msgstr "Vissersboten +20 transportcapaciteit."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsongenericName
 msgid "Salting Fish"
-msgstr "Pekel"
+msgstr "Vis pekelen"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
@@ -817,7 +818,7 @@ msgstr "Beschikbaar in Stadsfase. Vereist Visnet."
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid ""
 "Workers use wheelbarrows. Increases shuttling capacity for all resources."
-msgstr ""
+msgstr "Arbeiders gebruiken kruiwagens. Verhoogt draagcapaciteit voor alle grondstoffen."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
@@ -829,7 +830,7 @@ msgstr "Extra voedingsstoffen voor boerderijen."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% grain gather rate."
-msgstr ""
+msgstr "Arbeiders +25% graanverzamelingssnelheid."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -839,12 +840,12 @@ msgstr "Mest"
 msgid ""
 "Equip your workers with iron plows, animal-drawn instruments to turn the "
 "sod."
-msgstr ""
+msgstr "Voorzie uw arbeiders van ijzeren ploegen, diergedreven gereedschap om de zoden te keren."
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% grain gather rate."
-msgstr ""
+msgstr "Arbeiders +15% graanverzamelingssnelheid."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -860,11 +861,11 @@ msgstr "Verzameloefeningen"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Use nets to improve the productivity of fishing boats."
-msgstr ""
+msgstr "Gebruik netten om de productiviteit van vissersboten te verhogen."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid "Fishing Boats +30% fish gather rate."
-msgstr ""
+msgstr "Vissersboten +30% visverzamelingssnelheid."
 
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
@@ -879,7 +880,7 @@ msgstr "Verhoog werksnelheid van houthakkers."
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +15% wood gather rate."
-msgstr ""
+msgstr "Arbeiders +15% houtverzamelingssnelheid."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
@@ -887,7 +888,7 @@ msgstr "Ijzeren bijlen"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 msgid "Workers +50% wood gather rate."
-msgstr ""
+msgstr "Arbeiders +50% houtverzamelingssnelheid."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -901,12 +902,12 @@ msgstr "Sterkere bijl"
 msgid ""
 "Compel serfs to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr ""
+msgstr "Beveel slaven om uw arbeiders te helpen bij het steendelven. Verhoogt steenverzamelingssnelheid."
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "Workers +15% stone gather rate."
-msgstr ""
+msgstr "Arbeiders +15% steenverzamelingssnelheid."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -920,7 +921,7 @@ msgstr "Heílōtes"
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
-msgstr ""
+msgstr "Huur dienaren om te helpen bij het steendelven. Verhoogt steenverzamelingssnelheid."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -934,12 +935,12 @@ msgstr "Doûloi"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
 msgid "Develop shaft mining. Increases metal gathering rates."
-msgstr ""
+msgstr "Ontwikkel schachtmijnen. Verhoogt metaalverzamelingssnelheid."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +15% metal gather rate."
-msgstr ""
+msgstr "Arbeiders +15% metaalverzamelingssnelheid."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -947,11 +948,11 @@ msgstr "Schachtmijnen"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
-msgstr ""
+msgstr "Ontdek een zilverader. Verhoogt metaalverzamelingssnelheid."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 msgid "Workers +50% metal gather rate."
-msgstr ""
+msgstr "Arbeiders +50% metaalverzamelingssnelheid."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -969,11 +970,11 @@ msgstr "Mines van Laureion"
 msgid ""
 "Buy slaves to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr ""
+msgstr "Koop slaven om uw arbeiders te helpen bij het steendelven. Verhoogt steenverzamelingssnelheid."
 
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +50% stone gather rate."
-msgstr ""
+msgstr "Arbeiders +50% steenverzamelingssnelheid."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -988,23 +989,23 @@ msgstr "Andrápoda"
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid ""
 "Equip your workers with helpful tools. Increases metal gathering rates."
-msgstr ""
+msgstr "Voorzie uw arbeiders van nuttig gereedschap. Verhoogt metaalverzamelingssnelheid."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
-msgstr "Splijthamer"
+msgstr "Wig en Hamer"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Equip your foragers with wicker baskets for foraging."
-msgstr ""
+msgstr "Voorzie uw verzamelaars van rieten manden voor het foerageren."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Workers +50% fruit gather rate."
-msgstr ""
+msgstr "Arbeiders +50% fruitverzamelingssnelheid."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
-msgstr "Rieten mand"
+msgstr "Rieten Manden"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
 msgid "Units garrisoned in Barracks heal over time."
