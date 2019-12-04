@@ -4177,7 +4177,6 @@ UnitAI.prototype.SetAnimationVariant = function(type)
 		return;
 
 	cmpVisual.SetVariant("animationVariant", type);
-	return;
 };
 
 /*
