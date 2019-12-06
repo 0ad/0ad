@@ -29,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-10-21 19:54+0000\n"
-"Last-Translator: Robert Halbscheffel <robert.halbscheffel@gmail.com>\n"
+"PO-Revision-Date: 2019-12-02 20:36+0000\n"
+"Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -884,7 +884,7 @@ msgstr "Erhöht die Holz-Sammelgeschwindigkeit für Bäume."
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +15% wood gather rate."
-msgstr ""
+msgstr "Arbeiter +15 % Sammelrate für Holz."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
@@ -892,7 +892,7 @@ msgstr "Eisenäxte"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 msgid "Workers +50% wood gather rate."
-msgstr ""
+msgstr "Arbeiter +50 % Sammelrate für Holz."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -906,12 +906,12 @@ msgstr "Stärkere Axt"
 msgid ""
 "Compel serfs to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr ""
+msgstr "Zwinge Leibeigene dazu, deinen Arbeitern beim Steinabbau zu helfen. Erhöht die Sammelrate für Stein."
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "Workers +15% stone gather rate."
-msgstr ""
+msgstr "Arbeiter +15 % Sammelrate für Stein."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -925,7 +925,7 @@ msgstr "Heílōtes"
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
-msgstr ""
+msgstr "Heurige Diener an, um beim Stellenabbau zu helfen. Erhöht die Sammelrate für Stein."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -939,12 +939,12 @@ msgstr "Doûloi"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
 msgid "Develop shaft mining. Increases metal gathering rates."
-msgstr ""
+msgstr "Entwickle den Schachtbergbau. Erhöht die Sammelrate für Metall."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +15% metal gather rate."
-msgstr ""
+msgstr "Arbeiter +15 % Sammelrate für Metall."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -952,11 +952,11 @@ msgstr "Bergbauschächte"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
-msgstr ""
+msgstr "Triff eine wertvolle Silberader. Erhöht die Sammelrate für Metall."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 msgid "Workers +50% metal gather rate."
-msgstr ""
+msgstr "Arbeiter +50 % Sammelrate für Metall."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -974,11 +974,11 @@ msgstr "Minen von Laureion"
 msgid ""
 "Buy slaves to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr ""
+msgstr "Kaufe Sklaven, und deinen Arbeiten beim Steinabbau zu helfen. Erhöht die Sammelrate für Stein."
 
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +50% stone gather rate."
-msgstr ""
+msgstr "Arbeiter +50 % Sammelrate für Stein."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -1001,11 +1001,11 @@ msgstr "Hammer und Meißel"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Equip your foragers with wicker baskets for foraging."
-msgstr ""
+msgstr "Stattet deine Sammler mit beiden Körpern zum Sammeln aus."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Workers +50% fruit gather rate."
-msgstr ""
+msgstr "Arbeiter +50 % Sammelrate für Früchte."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
@@ -1275,7 +1275,7 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
 " health. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Schreite zur Großstadtphase fort, wodurch zusätzliche Gebäude und Einheiten freigeschaltet werden. Das Hoheitsgebiet von Verwaltungssitzen wird um +50% erhöht. Der 'Silbereulen'-Bonus verleiht allen Arbeiten eine um +10% erhöhte Metallabbaurate.   Bürgersoldaten haben eine um +20% erhöhte maximale Gesundheit. Alle Strukturen +9 Regenerationsrate bei einquartierten Einheiten."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1299,7 +1299,7 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
 "health. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Schreite zur Großstadtphase fort, wodurch zusätzliche Gebäude und Einheiten freigeschaltet werden. Das Hoheitsgebiet von Verwaltungssitzen wird um +50% erhöht. Bürgersoldaten 10% Gesundheit. Alle Strukturen +9 Regenerationsrate bei einquartierten Einheiten."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1326,7 +1326,7 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
 "health. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Schreite zur Stadtphase fort, wodurch zusätzliche Gebäude und Einheiten freigeschaltet werden. Das Hoheitsgebiet von Verwaltungssitzen wird um +30% erhöht. Der „Silbereulen“-Bonus verleiht allen Arbeiten eine um +10% erhöhte Metallabbaurate. Bürgersoldaten haben eine um +20% erhöhte Gesundheit. Alle Gebäude +7 Regenerationsrate für einquartierten Einheiten."
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1350,7 +1350,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
 "All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Schreite zur Stadtphase fort, wodurch zusätzliche Gebäude und Einheiten freigeschaltet werden. Das Hoheitsgebiet von Verwaltungssitzen wird um +30% erhöht. Bürgersoldaten +20% Gesundheit. Alle Gebäude +7 Regenerationsrate für einquartierten Einheiten."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1516,7 +1516,7 @@ msgstr "Verbesserung der Zielgenauigkeit."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt Shooters −20% ranged attack spread."
-msgstr ""
+msgstr "Bolzengeschütze -20% Fernkampfstreuung."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -2299,7 +2299,7 @@ msgstr "Karthager bauten ihre Stadtmauern in drei konzentrischen Kreisen. Diese 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
 "Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
-msgstr ""
+msgstr "Karthagische Mauern +100% Bauzeit, +100% Steinkosten und +200% Gesundheit."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -2313,7 +2313,7 @@ msgstr "Keltische Gebäude wurden hauptsächlich aus Holz mit einem Fundament au
 msgid ""
 "Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
 " points."
-msgstr ""
+msgstr "Britonische und gallische Strukturen -20% Bauzeit, -20% Gesundheit, und -20% Eroberungspunkte."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
@@ -2327,7 +2327,7 @@ msgstr "Die Griechen nutzten Steinbautechniken aus der frühen mykenischen Zeit.
 msgid ""
 "Athenian, Macedonian, and Spartan Structures +10% build time, +10% health, "
 "and +10% capture points."
-msgstr ""
+msgstr "Athenische, makedonische, und spartanische Strukturen +10% Bauzeit, +10 %Gesundheit und +10% Eroberungspunkte."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -2625,7 +2625,7 @@ msgstr "Hellenistische Metropole"
 msgid ""
 "Significantly increase training speed of champions and siege engines at the "
 "fortress when training them in large batches."
-msgstr ""
+msgstr "Erhöhe die Ausbildungsgeschwindigkeit von Gardisten und Belagerungswaffen in der Festung signifikant, wenn sie in großen Gruppen ausgebildet werden."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."

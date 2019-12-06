@@ -45,7 +45,7 @@
 # Sander Deryckere, 2014
 # slimkhan, 2014
 # Slim Khan, 2014
-# Polakrity <sxk-fr@live.fr>, 2014,2017
+# Polakrity <sxk-fr@live.fr>, 2014,2017,2019
 # tavariz <guipoi@yahoo.fr>, 2014
 # Thedemos <thekingadn@gmail.com>, 2014
 # Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>, 2017-2018
@@ -60,8 +60,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-30 07:12+0000\n"
-"PO-Revision-Date: 2019-11-24 18:56+0000\n"
-"Last-Translator: AAAAA BBBBB <laray.laray@outlook.fr>\n"
+"PO-Revision-Date: 2019-12-02 22:06+0000\n"
+"Last-Translator: Polakrity <sxk-fr@live.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -112,7 +112,7 @@ msgstr "Les Grecs ont très bien réussi à helléniser de nombreux étrangers. 
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Allied Warships −25% construction time."
-msgstr "-25% du temps construction pour les Navires Alliés"
+msgstr "Réduit le temps de construction des navires alliés de -25%."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -362,7 +362,7 @@ msgstr "La religion et le druidisme celtes ont inspiré leur mentalité guerriè
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "Allied Healers −20% resource costs."
-msgstr "-20% du coût en ressources pour les Soigneurs Alliés"
+msgstr "Réduit le coût des ressources des soigneurs alliés de -20%."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -814,7 +814,7 @@ msgstr "Gaulois"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Allied Structures −20% technology research time."
-msgstr "-20% du temps de recherche pour les Bâtiments Alliés "
+msgstr "Réduit le temps de recherche des technologies des bâtiments alliés de -20%."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -885,11 +885,11 @@ msgid ""
 " a relief force from Veii, he negotiated his surrender for 1000 pounds of "
 "gold, and adding the weight of his sword on the scale when the Romans "
 "complained that he used false weights he uttered those famous words."
-msgstr "Malheur au Vaincu! Brennus, le chef Gaulois, a pris Rome (à l'exception d'une garnison sur le Capitole). Quand Camillus l'assiégea avec la relève de Veii, il négocia sa reddition à 1000 livres d'or. Les Romains l'accusant d'avoir utilisé de faux poids, il ajouta son épée sur la balance, prononçant ces fameux mots. "
+msgstr "Malheur au Vaincu ! Brennus, le chef Gaulois, a pris Rome (à l'exception d'une garnison sur le Capitole). Quand Camillus l'assiégea avec la relève de Veii, il négocia sa reddition à 1000 livres d'or. Les Romains l'accusant d'avoir utilisé de faux poids, il ajouta son épée sur la balance, prononçant ces fameux mots. "
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
-msgstr "Les druides gaulois gagnent un peu d'attaque de mélée."
+msgstr "Les druides gaulois gagnent un peu d'attaque de mêlée."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
 msgid "Carnutes"
@@ -900,7 +900,7 @@ msgid ""
 "The Carnutes were druids from Aulercia. They fought when needed, and were "
 "largely responsible for turning back the Belgae incursions into Armorica and"
 " Aulercia."
-msgstr "Les druides Carnutes étaient des Aulerques. Ils se battaient qu'en cas de besoin, et ont largement contribué a faire reculer les incursions Belges en Armorique et en Aulerque."
+msgstr "Les Carnutes étaient des druides d'Aulercie. Ils se battaient qu'en cas de besoin, et ont largement contribué à repousser les incursions belges en Armorique et en Aulercie."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -2011,7 +2011,7 @@ msgstr "Écuries de cavalerie"
 
 #: simulation/data/civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry citizen-soldiers."
-msgstr "Entraîner des citoyens-soldats de cavalerie."
+msgstr "Entraîne des citoyens-soldats de cavalerie."
 
 #: simulation/data/civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
@@ -2025,7 +2025,7 @@ msgstr "Apadana"
 msgid ""
 "Train heroes and Persian Immortals. Gives a slow trickle of all resources as"
 " 'Satrapy Tribute.'"
-msgstr "Forme des héros et des immortels Perses. Génère un flux régulier de toutes les ressources comme \"Tribut de satrapie\"."
+msgstr "Forme des héros et des immortels perses. Génère un flux régulier de toutes les ressources comme \"Tribut de satrapie\"."
 
 #: simulation/data/civs/pers.jsonStructures[1].History
 msgid ""
@@ -2076,7 +2076,7 @@ msgstr "La dynastie Gréco-Macédonienne des Ptolémée s'est appuyé sur un gra
 
 #: simulation/data/civs/ptol.jsonCivBonuses[1].Description
 msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
-msgstr "Les égyptiens ptolémaïques reçoivent 3 techonologies agricoles additionnelles. "
+msgstr "Les égyptiens ptolémaïques reçoivent 3 technologies agricoles supplémentaires. "
 
 #: simulation/data/civs/ptol.jsonCivBonuses[1].Name
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[2].Name

@@ -51,8 +51,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-25 08:08+0000\n"
-"PO-Revision-Date: 2019-11-25 16:09+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-12-02 20:09+0000\n"
+"Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -563,15 +563,15 @@ msgstr "Sichere Lobby Authentifizierung fehlgeschlagen. Trete über die Lobby be
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr ""
+msgstr "Fehler: Server konnte keine eindeutige Client-Identifikation zuweisen."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
-msgstr ""
+msgstr "Fehler: Client-Kommandos waren für eine unerwartete Spielrunde bereit."
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
-msgstr ""
+msgstr "Fehler: Client simulierte eine unerwartete Spielrunde."
 
 #: gui/common/network.js:81
 #, javascript-format
@@ -1205,7 +1205,7 @@ msgstr "%(nick)s – %(name)s"
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr ""
+msgstr "Lösche den gewählten Speicherstand mit %(hotkey)s."
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:202
 #, javascript-format
@@ -1384,11 +1384,11 @@ msgstr "%(hotkey)s: Erfahre mehr über die vielen Zivilisationen in 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:49 gui/replaymenu/replay_filters.js:142
 msgid "Single-player"
-msgstr ""
+msgstr "Einzelspieler"
 
 #: gui/pregame/MainMenuItems.js:50
 msgid "Click here to start a new single-player game."
-msgstr ""
+msgstr "Hier klicken um ein neues Einzelspieler Spiel zu starten."
 
 #: gui/pregame/MainMenuItems.js:53
 msgid "Matches"
@@ -1869,7 +1869,7 @@ msgstr "%(min)s – %(max)s min"
 
 #: gui/replaymenu/replay_filters.js:142
 msgid "Single-player and multiplayer"
-msgstr ""
+msgstr "Einzelspieler und Mehrspieler"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
@@ -2379,7 +2379,7 @@ msgstr "Hauptmenü"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Rebuild Cache"
-msgstr ""
+msgstr "Cache neu erstellen"
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
 #: gui/summary/summary.xml:(caption):34
@@ -2576,7 +2576,7 @@ msgstr "Leitung"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr ""
+msgstr "Ausgewogenheit"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
@@ -2654,23 +2654,23 @@ msgstr "Übersetzer"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "Wie du in Einzelspieler-Partien angesprochen werden möchtest."
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player Name (Single-player)"
-msgstr ""
+msgstr "Spielername (Einzelspieler)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr ""
+msgstr "Wie du in Mehrspieler-Partien angesprochen werden möchtest (Lobby ausgenommen)."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player Name (Multiplayer)"
-msgstr ""
+msgstr "Spielername (Mehrspieler)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr ""
+msgstr "Pausiert Einzelspielerspiele wenn das Fenster den Fokus verliert."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background Pause"

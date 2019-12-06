@@ -43,7 +43,7 @@
 # Pseudo4578, 2019
 # robin moussu <robin.moussu+transifex@gmail.com>, 2015
 # Romain Mesnil <bnb6avekk6@protonmail.com>, 2016
-# Polakrity <sxk-fr@live.fr>, 2014,2017-2018
+# Polakrity <sxk-fr@live.fr>, 2014,2017-2019
 # Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>, 2018-2019
 # Valentin Ambroise <valentin.amb@hotmail.com>, 2015
 # Vincent Pouliquen <vins_om@hotmail.fr>, 2014
@@ -52,8 +52,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-25 08:08+0000\n"
-"PO-Revision-Date: 2019-11-25 16:09+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-12-06 00:29+0000\n"
+"Last-Translator: Polakrity <sxk-fr@live.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -528,15 +528,15 @@ msgstr "Cela est souvent causé par un port UDP 20595 qui n'a pas été retransm
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr "L'hôte a fermé la partie."
+msgstr "L'hôte a mis fin à la partie."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr "Version de protocole internet incorrecte."
+msgstr "La version du protocole internet est incorrecte."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr "La partie est en cours de chargement, veuillez recommencer plus tard."
+msgstr "La partie est en cours de chargement, veuillez réessayer plus tard."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
@@ -552,19 +552,19 @@ msgstr "Vous avez été banni."
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr "Nom d'utilisateur déjà connecté. Si vous avez été déconnecté, réessayez dans quelques secondes."
+msgstr "Le nom de joueur est déjà utilisé. Si vous avez été déconnecté, réessayez dans quelques secondes."
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr "Serveur complet."
+msgstr "Le serveur est complet."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr ""
+msgstr "L'authentification sécurisée au salon multijoueur a échoué. Rejoigner par le salon multijoueur."
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr ""
+msgstr "Erreur : Le serveur n'a pas réussi à allouer un identifiant client unique."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
@@ -905,7 +905,7 @@ msgstr ""
 #: gui/common/tooltips.js:313
 #, javascript-format
 msgid "%(attackType)s Attack"
-msgstr ""
+msgstr "Attaque %(attackType)s"
 
 #: gui/common/tooltips.js:331
 #, javascript-format
@@ -1287,7 +1287,7 @@ msgstr "Sauvegarder"
 
 #: gui/loadgame/SavegameWriter.js:46
 msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr "Cette sauvegarde sera écrasée définitivement, êtes-vous sûr(e) ?"
+msgstr "Êtes-vous sûr de vouloir écraser cette sauvegarde définitivement ?"
 
 #: gui/loadgame/SavegameWriter.js:47
 msgid "OVERWRITE SAVE"
@@ -1344,7 +1344,7 @@ msgstr "Apprendre à jouer"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
-msgstr "Apprenez à jouer, démarrez le tutoriel, découvrez les arbres de technologies, et l'histoire derrière les civilisations."
+msgstr "Apprenez à jouer : démarrer le tutoriel, découvrir les arbres de technologies et l'histoire derrière les civilisations."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -1385,11 +1385,11 @@ msgstr "%(hotkey)s : En apprendre plus sur les nombreuses civilisations présent
 
 #: gui/pregame/MainMenuItems.js:49 gui/replaymenu/replay_filters.js:142
 msgid "Single-player"
-msgstr ""
+msgstr "Solo"
 
 #: gui/pregame/MainMenuItems.js:50
 msgid "Click here to start a new single-player game."
-msgstr ""
+msgstr "Cliquer ici pour commencer une nouvelle partie en mode solo."
 
 #: gui/pregame/MainMenuItems.js:53
 msgid "Matches"
@@ -1440,7 +1440,7 @@ msgstr "Héberger une partie"
 
 #: gui/pregame/MainMenuItems.js:102
 msgid "Host a multiplayer game."
-msgstr ""
+msgstr "Héberger une partie multijoueur."
 
 #: gui/pregame/MainMenuItems.js:110
 msgid "Game Lobby"
@@ -1451,7 +1451,7 @@ msgstr "Hall multijoueur"
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
-msgstr "%(hotkey)s : Lance le hall multijoueur pour rejoindre et héberger des parties visibles publiquement et discuter avec d'autres joueurs."
+msgstr "%(hotkey)s : Ouvre le hall multijoueur pour rejoindre et héberger des parties visibles publiquement et discuter avec d'autres joueurs."
 
 #: gui/pregame/MainMenuItems.js:113
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
@@ -1463,7 +1463,7 @@ msgstr "Paramètres"
 
 #: gui/pregame/MainMenuItems.js:138
 msgid "Game options and scenario design tools."
-msgstr "Options de jeu et Outils de scénarisation."
+msgstr "Options de jeu et outils de scénarisation."
 
 #: gui/pregame/MainMenuItems.js:141
 msgid "Options"
@@ -1487,7 +1487,7 @@ msgstr "Sélection des mods"
 
 #: gui/pregame/MainMenuItems.js:159
 msgid "Select and download mods for the game."
-msgstr "Sélectionnez et téléchargez des mods pour le jeu."
+msgstr "Sélectionner et télécharger des mods pour le jeu."
 
 #: gui/pregame/MainMenuItems.js:165
 msgid "Welcome Screen"
@@ -1549,7 +1549,7 @@ msgstr "Alpha XXIV"
 msgid ""
 "Notice: This game is under development and many features have not been added"
 " yet."
-msgstr ""
+msgstr "ATTENTION : Ce jeu est en cours de développement et certaines fonctionnalités n'ont pas encore été ajoutées."
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
@@ -1683,7 +1683,7 @@ msgstr "Merci pour votre aide !"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
-msgstr "Les retours sont actuellement activés"
+msgstr "Le retour d'information est actuellement activé."
 
 #: gui/pregame/userreport/userreport.js:83
 #, javascript-format
@@ -1702,7 +1702,7 @@ msgstr "Aidez à améliorer 0 A.D. !"
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr "Vous pouvez nous envoyer des retours automatiquement pour nous aider à résoudre les bugs, et à améliorer les performances et la compatibilité."
+msgstr "Vous pouvez envoyer automatiquement des retours d'information pour nous aider à résoudre les bugs ainsi que de permettre d'améliorer les performances et la compatibilité."
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/draw.js:48
@@ -1740,7 +1740,7 @@ msgstr "%(hotkey)s: Passer à l'historique."
 #: gui/reference/structree/structree.js:42
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr "%(hotkey)s : Fermer l'arbre technologique."
+msgstr "%(hotkey)s : Fermer l'arbre de structures."
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
@@ -1812,7 +1812,7 @@ msgstr "Pas de résumé disponible."
 
 #: gui/replaymenu/replay_actions.js:166
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr "Êtes-vous sûr(e) de vouloir supprimer cette vidéo définitivement ?"
+msgstr "Êtes-vous sûr de vouloir supprimer cette rediffusion définitivement ?"
 
 #: gui/replaymenu/replay_actions.js:168
 msgid "Delete replay"
@@ -1870,7 +1870,7 @@ msgstr "%(min)s - %(max)s min"
 
 #: gui/replaymenu/replay_filters.js:142
 msgid "Single-player and multiplayer"
-msgstr ""
+msgstr "Solo et multijoueur"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
@@ -2081,7 +2081,7 @@ msgstr "Contrôle de la carte (maximum)"
 
 #: gui/summary/layout.js:187
 msgid "Map control (finish)"
-msgstr "Contrôle de la carte (à la fin)"
+msgstr "Contrôle de la carte (fin de partie)"
 
 #: gui/summary/layout.js:188
 msgid "Map exploration"
@@ -2380,7 +2380,7 @@ msgstr "Menu principal"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Rebuild Cache"
-msgstr ""
+msgstr "Recharger le cache"
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
 #: gui/summary/summary.xml:(caption):34
@@ -2413,7 +2413,7 @@ msgstr "Durée"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):238
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr "Régénérer le cache des vidéos à partir de rien. Potentiellement lent !"
+msgstr "Régénérer le cache des rediffusions. Cette fonction est potentiellement lente !"
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -2659,7 +2659,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player Name (Single-player)"
-msgstr ""
+msgstr "Nom du joueur (Solo)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
@@ -2667,7 +2667,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player Name (Multiplayer)"
-msgstr ""
+msgstr "Nom du joueur (Multijoueur)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
@@ -2681,7 +2681,7 @@ msgstr "Tâche de fond en pause"
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr "Si vous le désactivez, l'écran d'accueil apparait tout de même lorsqu'une nouvelle version est disponible et peut être affiché depuis le menu principal."
+msgstr "Si désactivé, l'écran d'accueil apparaît tout de même lors de l'utilisation d'une nouvelle version. Vous pouvez l'afficher depuis le menu principal."
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable Welcome Screen"
@@ -2689,7 +2689,7 @@ msgstr "Activer la page de bienvenue"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr "Montrer quel joueur a une mauvaise connexion en partie multijoueurs."
+msgstr "Afficher quel joueur a une mauvaise connexion dans les parties multijoueur."
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network Warnings"
@@ -2763,7 +2763,7 @@ msgstr "Limite de spectateurs"
 #: gui/options/options.json[0].options[11].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
-msgstr "Afficher l'heure à laquelle sont postés les messages dans le chat du hall, lors de la préparation du jeu et en cours de partie."
+msgstr "Afficher l'heure d'envoi des messages dans le canal de discussion : du hall, de la configuration de partie et en cours de partie."
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat Timestamp"
@@ -2846,7 +2846,7 @@ msgstr "Très haute"
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr "Résolution des ombres des cartes. Des valeurs élevées peuvent entraîner l'arrêt du jeu quand vous utilisez une carte graphique avec peu de mémoire !"
+msgstr "Résolution des ombres des cartes. Utiliser des valeurs élevées avec une carte graphique possédant peu de mémoire peut entraîner l'arrêt inopiné du jeu  !"
 
 #: gui/options/options.json[1].options[6].label
 msgid "Shadow Quality"
@@ -2880,7 +2880,7 @@ msgstr "Particules"
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr "Si désactivé, utilise les paramètres les plus bas possibles pour le rendu de l'eau. Ceci rend les autres paramètres inutiles."
+msgstr "Lorsque ce paramètre est désactivé; utilise les paramètres les plus bas possibles pour le rendu de l'eau. Rend les autres paramètres inutiles."
 
 #: gui/options/options.json[1].options[10].label
 msgid "Water Effects"
@@ -2898,7 +2898,7 @@ msgstr "Eau haute résolution"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid "Use actual water depth in rendering calculations."
-msgstr "Utiliser la vraie profondeur de l'eau dans les calculs de rendu."
+msgstr "Utilise la vraie profondeur de l'eau dans les calculs de rendu."
 
 #: gui/options/options.json[1].options[12].label
 msgid "Real Water Depth"
@@ -2906,7 +2906,7 @@ msgstr "Profondeur réelle de l'eau"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid "Allow water to reflect a mirror image."
-msgstr "Permettre à l'eau de refléter les objets."
+msgstr "Permet à l'eau de refléter les objets."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Water Reflections"
@@ -2914,7 +2914,7 @@ msgstr "Reflets sur l'eau"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Use a real water refraction map and not transparency."
-msgstr "Utiliser une vraie carte de réfraction pour l'eau et non de la transparence."
+msgstr "Utilise une vraie carte de réfraction pour l'eau et non de la transparence."
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water Refraction"
@@ -2922,7 +2922,7 @@ msgstr "Réfraction de l'eau"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Cast shadows on water."
-msgstr "Projeter les ombres sur l'eau."
+msgstr "Projette les ombres sur l'eau."
 
 #: gui/options/options.json[1].options[15].label
 msgid "Shadows on Water"
@@ -2930,7 +2930,7 @@ msgstr "Ombres sur l'eau"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
-msgstr "Lever doucement l'obscurité et le brouillard de guerre"
+msgstr "Révèle doucement l'obscurité et le brouillard de guerre."
 
 #: gui/options/options.json[1].options[16].label
 msgid "Smooth LOS"
@@ -2938,7 +2938,7 @@ msgstr "Ligne de mire fluide"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Render Sky."
-msgstr "Afficher le rendu du ciel."
+msgstr "Active l'affichage du ciel."
 
 #: gui/options/options.json[1].options[17].label
 msgid "Show Sky"
@@ -2956,7 +2956,7 @@ msgstr "VSync"
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
-msgstr "Pour économiser de la puissance de calcul, limiter la fréquence de rendu dans tous les menus. Utiliser le maximum pour désactiver la limite."
+msgstr "Pour économiser la charge du travail du processeur, limite la fréquence de rendu dans tous les menus. Définir le paramètre au maximum pour désactiver cette limite."
 
 #: gui/options/options.json[1].options[19].label
 msgid "FPS Throttling in Menus"
@@ -2966,7 +2966,7 @@ msgstr "Limite de FPS dans les menus"
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
-msgstr "Pour économiser de la puissance de calcul, limiter la fréquence de rendu durant les parties. Utiliser le maximum pour désactiver la limite."
+msgstr "Pour économiser la charge du travail du processeur, limite la fréquence de rendu durant les parties. Définir le paramètre au maximum pour désactiver cette limite."
 
 #: gui/options/options.json[1].options[20].label
 msgid "FPS Throttling in Games"
@@ -2974,7 +2974,7 @@ msgstr "Limite de FPS en jeu"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
-msgstr "Définissez l'équilibre entre la performance et l'apparence visuelle."
+msgstr "Définissez l'équilibre entre performance et apparence visuelle."
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
@@ -2982,7 +2982,7 @@ msgstr "Graphismes"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain."
-msgstr "Gain audio principal."
+msgstr "Niveau du volume de l'audio principal."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master Volume"
@@ -2990,7 +2990,7 @@ msgstr "Volume principal"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
-msgstr "Volume de la musique du jeu."
+msgstr "Niveau du volume de la musique du jeu."
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music Volume"
@@ -2998,7 +2998,7 @@ msgstr "Volume de la musique"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
-msgstr "Volume d'ambiance du jeu."
+msgstr "Niveau du volume d'ambiance émit en jeu."
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient Volume"
@@ -3006,7 +3006,7 @@ msgstr "Volume ambiant"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
-msgstr "Volume des actions d'unités du jeu."
+msgstr "Niveau du volume émit par les unités en jeu."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action Volume"
@@ -3014,7 +3014,7 @@ msgstr "Volume des actions"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
-msgstr "Volume de l'UI."
+msgstr "Niveau du volume de l'interface graphique."
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI Volume"
@@ -3022,7 +3022,7 @@ msgstr "Volume de l'interface"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
-msgstr "Recevoir une notification audio lorsqu'une personne écrit votre pseudo dans le chat."
+msgstr "Recevoir une notification audio lorsqu'une personne écrit votre pseudonyme dans le canal de discussion."
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick Notification"
@@ -3030,19 +3030,19 @@ msgstr "Notification de nom d'utilisateur"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
-msgstr "Recevoir une notification audio lorsqu'un un nouveau joueur rejoint la configuration de la partie."
+msgstr "Recevoir une notification audio lorsqu'un nouveau client rejoint le salon de configuration de la partie."
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game Setup - New Player Notification"
-msgstr "Configuration de la partie - Notification de nouveau joueur"
+msgstr "Notification de nouveau joueur (configuration du jeu)"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
-msgstr "Afficher les conseils lors du chargement."
+msgstr "Afficher les conseils lors de la configuration d'une partie."
 
 #: gui/options/options.json[3].options[0].label
 msgid "Enable Game Setting Tips"
-msgstr "Activer les conseils de jeu"
+msgstr "Activer les conseils (configuration du jeu)"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
@@ -3055,7 +3055,7 @@ msgstr "Active le glissement du panneau des paramètres."
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
-msgstr "Enregistrer et restaurer les paramètres du match pour une réutilisation rapide lors de l'hébergement d'une autre partie."
+msgstr "Enregistre et restaure les paramètres de jeu pour une réutilisation rapide lors de la création d'une nouvelle partie."
 
 #: gui/options/options.json[3].options[2].label
 msgid "Persist Match Settings"
@@ -3308,7 +3308,7 @@ msgstr "Descendant"
 #: gui/options/options.json[5].options[13].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
-msgstr "Trie dynamiquement les joueurs selon la valeur dans l'affichage des ressources et de la population."
+msgstr "Trie dynamiquement les joueurs dans l'infobulle des ressources et de la population par valeur."
 
 #: gui/options/options.json[5].options[13].label
 msgid "Sort resources and population tooltip"
@@ -3316,7 +3316,7 @@ msgstr "Tri de l'affichage des ressources et de la population."
 
 #: gui/options/options.json[5].options[14].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
-msgstr "La couleur de vos unités lorsque les couleurs de diplomatie sont permises."
+msgstr "La couleur de vos unités lorsque les couleurs de diplomatie sont activées."
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy Colors: Self"
@@ -3764,7 +3764,7 @@ msgstr ""
 
 #: gui/text/tips/fortress.txt:4
 msgid "Gives a population boost."
-msgstr ""
+msgstr "Donne un bonus de population."
 
 #: gui/text/tips/fortress.txt:5
 msgid "Garrison soldiers inside to add more firepower to its defense."
@@ -3932,7 +3932,7 @@ msgstr ""
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
-msgstr ""
+msgstr "Peut transporter jusqu'à 50 unités."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "Increases firepower with garrisoned catapults."
@@ -3982,7 +3982,7 @@ msgstr "HOPLITES SPARTIATES"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "Strongest infantry unit in the game."
-msgstr ""
+msgstr "L'unité d'infanterie la plus forte du jeu."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
