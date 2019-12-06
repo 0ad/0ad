@@ -281,9 +281,19 @@ JS::Value CMessageMotionUpdate::ToJSVal(const ScriptInterface& scriptInterface) 
 	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageMotionUpdate::FromJSVal(const ScriptInterface&, JS::HandleValue)
+CMessage* CMessageMotionUpdate::FromJSVal(const ScriptInterface& scriptInterface, JS::HandleValue val)
 {
-	LOGWARNING("CMessageMotionUpdate::FromJSVal not implemented");
+	FROMJSVAL_SETUP();
+	GET_MSG_PROPERTY(std::wstring, updateString);
+
+	if (updateString == L"likelySuccess")
+		return new CMessageMotionUpdate(CMessageMotionUpdate::LIKELY_SUCCESS);
+	if (updateString == L"likelyFailure")
+		return new CMessageMotionUpdate(CMessageMotionUpdate::LIKELY_FAILURE);
+	if (updateString == L"obstructed")
+		return new CMessageMotionUpdate(CMessageMotionUpdate::OBSTRUCTED);
+
+	LOGWARNING("CMessageMotionUpdate::FromJSVal passed wrong updateString");
 	return NULL;
 }
 

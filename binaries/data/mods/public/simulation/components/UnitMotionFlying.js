@@ -203,7 +203,7 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 	if (!this.reachedTarget && this.targetMinRange <= distFromTarget && distFromTarget <= this.targetMaxRange)
 	{
 		this.reachedTarget = true;
-		Engine.PostMessage(this.entity, MT_MotionChanged, { "starting": false, "error": false });
+		Engine.PostMessage(this.entity, MT_MotionUpdate, { "updateString": "likelySuccess" });
 	}
 
 	// If we're facing away from the target, and are still fairly close to it,
@@ -289,6 +289,11 @@ UnitMotionFlying.prototype.SetSpeedMultiplier = function()
 UnitMotionFlying.prototype.GetRunMultiplier = function()
 {
 	return 1;
+};
+
+UnitMotionFlying.prototype.IsMoveRequested = function()
+{
+	return this.hasTarget;
 };
 
 UnitMotionFlying.prototype.GetCurrentSpeed = function()
