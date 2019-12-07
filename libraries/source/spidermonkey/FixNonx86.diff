@@ -72,6 +72,29 @@ diff --git a/js/src/gc/Memory.cpp b/js/src/gc/Memory.cpp
  #endif
  }
  
+diff --git a/js/src/jit/none/MacroAssembler-none.h b/js/src/jit/none/MacroAssembler-none.h
+--- a/js/src/jit/none/MacroAssembler-none.h
++++ b/js/src/jit/none/MacroAssembler-none.h
+@@ -254,16 +254,18 @@ class MacroAssemblerNone : public Assemb
+     template <typename T, typename S> void branchSub32(Condition, T, S, Label*) { MOZ_CRASH(); }
+     template <typename T, typename S> void branchPtr(Condition, T, S, Label*) { MOZ_CRASH(); }
+     template <typename T, typename S> void branchTestPtr(Condition, T, S, Label*) { MOZ_CRASH(); }
+     template <typename T, typename S> void branchDouble(DoubleCondition, T, S, Label*) { MOZ_CRASH(); }
+     template <typename T, typename S> void branchFloat(DoubleCondition, T, S, Label*) { MOZ_CRASH(); }
+     template <typename T, typename S> void branchPrivatePtr(Condition, T, S, Label*) { MOZ_CRASH(); }
+     template <typename T, typename S> void decBranchPtr(Condition, T, S, Label*) { MOZ_CRASH(); }
+     template <typename T, typename S> void branchTest64(Condition, T, T, S, Label*) { MOZ_CRASH(); }
++    template <typename T, typename S> void branch64(Condition, T, S, Label*) { MOZ_CRASH(); }
++    template <typename T, typename S> void branch64(Condition, T, T, S, Label*) { MOZ_CRASH(); }
+     template <typename T, typename S> void mov(T, S) { MOZ_CRASH(); }
+     template <typename T, typename S> void movq(T, S) { MOZ_CRASH(); }
+     template <typename T, typename S> void movePtr(T, S) { MOZ_CRASH(); }
+     template <typename T, typename S> void move32(T, S) { MOZ_CRASH(); }
+     template <typename T, typename S> void moveFloat32(T, S) { MOZ_CRASH(); }
+     template <typename T, typename S> void moveDouble(T, S) { MOZ_CRASH(); }
+     template <typename T, typename S> void move64(T, S) { MOZ_CRASH(); }
+     template <typename T> CodeOffset movWithPatch(T, Register) { MOZ_CRASH(); }
+
 diff --git a/js/src/jsapi-tests/testGCAllocator.cpp b/js/src/jsapi-tests/testGCAllocator.cpp
 --- a/js/src/jsapi-tests/testGCAllocator.cpp
 +++ b/js/src/jsapi-tests/testGCAllocator.cpp

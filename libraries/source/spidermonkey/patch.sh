@@ -33,7 +33,10 @@ patch -p1  < ../FixTracelogger.diff
 patch -p0 < ../FixpsutilFreeBSD.diff
 
 # Patch some parts of the code to support extra processor architectures
-# Includes https://bugzilla.mozilla.org/show_bug.cgi?id=1143022 and https://bugzilla.mozilla.org/show_bug.cgi?id=1277742
+# Includes:
+# * https://bugzilla.mozilla.org/show_bug.cgi?id=1143022 (for arm64)
+# * https://bugzilla.mozilla.org/show_bug.cgi?id=1277742 (for aarch64)
+# * https://bugzilla.mozilla.org/show_bug.cgi?id=1266366 (for ppc64)
 patch -p1 < ../FixNonx86.diff
 
 # Always link mozglue into the shared library when building standalone.
