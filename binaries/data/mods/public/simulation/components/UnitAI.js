@@ -1332,6 +1332,8 @@ UnitAI.prototype.UnitFsmSpec = {
 				let cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
 				if (cmpFormation)
 					cmpFormation.SetInPosition(this.entity);
+
+				delete this.formationOffset;
 			},
 		},
 
