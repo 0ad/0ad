@@ -1,5 +1,6 @@
 def AtlasOption = ""
 def GlooxOption = ""
+def AtlasPrj = ""
 def output = ""
 def jobs = "2"
 pipeline {
@@ -34,13 +35,14 @@ pipeline {
 
 		stage('Setup workspace') {
 			steps {
-			   	bat "del binaries\\system\\pyrogenesis.pdb binaries\\system\\pyrogenesis.exe"
+				bat "del binaries\\system\\pyrogenesis.pdb binaries\\system\\pyrogenesis.exe"
 				script {
 					if (env.atlas == 'true') {
 						echo "atlas is enabled"
 						AtlasOption = "--atlas"
-						bat 'robocopy /MIR C:\\wxwidgets3.0.4\\lib libraries\\win32\\wxwidgets\\lib ^& IF %ERRORLEVEL% LEQ 1 exit 0'
-						bat 'robocopy /MIR C:\\wxwidgets3.0.4\\include libraries\\win32\\wxwidgets\\include ^& IF %ERRORLEVEL% LEQ 1 exit 0'
+						AtlasPrj = "/t:AtlasUI"
+						bat "(robocopy /MIR C:\\wxwidgets3.0.4\\lib libraries\\win32\\wxwidgets\\lib) ^& IF %ERRORLEVEL% LEQ 1 exit 0"
+						bat "(robocopy /MIR C:\\wxwidgets3.0.4\\include libraries\\win32\\wxwidgets\\include) ^& IF %ERRORLEVEL% LEQ 1 exit 0"
 						bat "del binaries\\system\\AtlasUI.dll"
 					}
 					if (env.gloox == 'true') {
@@ -63,7 +65,7 @@ pipeline {
 
 		stage ('Build') {
 			steps {
-				bat("cd build\\workspaces\\vc2015 && MSBuild.exe pyrogenesis.sln /m:${jobs} /p:PlatformToolset=v140_xp /t:pyrogenesis /t:test /p:Configuration=Release")
+				bat("cd build\\workspaces\\vc2015 && MSBuild.exe pyrogenesis.sln /m:${jobs} /p:PlatformToolset=v140_xp /t:pyrogenesis ${AtlasPrj} /t:test /p:Configuration=Release")
 			}
 		}
 
@@ -81,14 +83,14 @@ pipeline {
 		}
 
 		stage ('Commit') {
-		    options {
+			options {
 				// Account for network errors
 				retry(3)
 			}
 			steps {
 				bat "svn changelist --remove --recursive --cl commit ."
 				script {
-	  				if (env.pyrogenesis == 'true') {
+					if (env.pyrogenesis == 'true') {
 						bat "svn changelist commit binaries\\system\\pyrogenesis.pdb binaries\\system\\pyrogenesis.exe"
 					}
 					if (env.atlas == 'true') {
