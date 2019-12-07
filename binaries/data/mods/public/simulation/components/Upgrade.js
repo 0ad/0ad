@@ -308,6 +308,7 @@ Upgrade.prototype.GetProgress = function()
 Upgrade.prototype.SetElapsedTime = function(time)
 {
 	this.elapsedTime = time;
+	Engine.PostMessage(this.entity, MT_UpgradeProgressUpdate, null);
 };
 
 Upgrade.prototype.SetUpgradeAnimationVariant = function()
