@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# AAAAA BBBBB <laray.laray@outlook.fr>, 2019
 # Alexis Mousset <contact@amousset.me>, 2016
 # Arthur Jaouen <arthur.jaouen@gmail.com>, 2015
 # Barth Frey <frey.barthelemy@gmail.com>, 2017
@@ -21,7 +22,7 @@
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2017
 # nicolas t <deux718281@yahoo.fr>, 2016
 # oiseauroch <tobollive@aol.com>, 2018
-# Polakrity <sxk-fr@live.fr>, 2017-2018
+# Polakrity <sxk-fr@live.fr>, 2017-2019
 # oiseauroch <tobollive@aol.com>, 2018
 # Toto AD <ad@imw.fr>, 2014
 # tutosfaciles 48 <tutosfaciles48@gmail.com>, 2019
@@ -29,8 +30,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-11-27 20:47+0000\n"
-"Last-Translator: tutosfaciles 48 <tutosfaciles48@gmail.com>\n"
+"PO-Revision-Date: 2019-12-05 17:58+0000\n"
+"Last-Translator: AAAAA BBBBB <laray.laray@outlook.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,7 +53,7 @@ msgstr "Voir en ligne"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]Manuel en jeu de 0 A.D.[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:2
 msgid ""
@@ -83,7 +84,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr "Les contrôles et la prise en main devraient être familiers aux joueurs de RTS traditionnels. Il y a actuellement beaucoup de fonctionnalités manquantes et les statistiques sont faiblement équilibrées – vous devrez certainement attendre les versions bêta pour qu'elles fonctionnent bien. "
+msgstr "Les contrôles et la prise en main devraient être familiers aux joueurs de jeux de stratégie en temps réel (RTS) traditionnels. Il y a actuellement beaucoup de fonctionnalités manquantes et les statistiques sont très peu équilibrées – vous devrez certainement attendre jusqu'à la sortie d'une version beta pour que cela fonctionne bien. "
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls:"
@@ -91,11 +92,11 @@ msgstr "Contrôles de base :"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr "• Clic gauche pour sélectionner les unités."
+msgstr "• Clic gauche pour sélectionner les unités"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr "• Clic gauche et glisser pour sélectionner des groupes d'unités. "
+msgstr "• Clic gauche et glisser pour sélectionner des groupes d'unités"
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
@@ -107,19 +108,19 @@ msgstr ""
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr ""
+msgstr "•Pour tourner la camera, utilisez les touches Ctrl + touches directionnelles, ou Maj + Molette de souris"
 
 #: gui/manual/intro.txt:16
 msgid "• Mouse wheel, or \"=\"/\"+\" and \"-\"/\"−\" keys, to zoom"
-msgstr ""
+msgstr "•Pour zoomer, utilisez la Molette de la souris ou les touches \"=\"/\"+\" et \"-\"/\"−\"."
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr ""
+msgstr "Le menu principal donne accès à deux modes de jeu :"
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -145,11 +146,11 @@ msgstr "Pour créer une partie multijoueur, l'un des joueurs doit autoriser la c
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Paramètres du jeu[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr ""
+msgstr "Dans une partie multijoueur, seul l'hôte peut modifier les paramètres de la partie."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -197,11 +198,11 @@ msgstr "Quand vous êtes prêt(e) à commencer, cliquez sur \"Démarrer la parti
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys:[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Raccourcis :[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Ensemble du programme[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:41
 msgid ""
@@ -210,7 +211,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "Utilisez les touches Alt + Entée pour basculé de Plein écran à Fenêtré"
 
 #: gui/manual/intro.txt:43
 msgid "  ~ or F9 – Show/hide console"
@@ -254,7 +255,7 @@ msgstr "Maj + Tab, Alt + W – Basculer sur l'onglet précédent."
 
 #: gui/manual/intro.txt:52
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]En jeu[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:53
 msgid ""
@@ -302,7 +303,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:62
 msgid "  Enter/Return – Open/send chat"
-msgstr ""
+msgstr "Entrée/retour chariot – Ouvrir la fenêtre de discussion/Envoyer un message"
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
@@ -314,7 +315,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:65
 msgid "  Pause – Pause/resume the game"
-msgstr ""
+msgstr "Pause – Mettre en pause/reprendre la partie"
 
 #: gui/manual/intro.txt:66
 msgid ""
@@ -565,7 +566,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Surcouches[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:120
 msgid "  Alt + G – Hide/show the GUI"
@@ -573,7 +574,7 @@ msgstr "Alt + G – Masquer/afficher l'interface"
 
 #: gui/manual/intro.txt:121
 msgid "  Alt + D – Show/hide developer overlay (with developer options)"
-msgstr ""
+msgstr " Alt + D – Afficher/masquer la surcouche développeur (avec les options de développement)"
 
 #: gui/manual/intro.txt:122
 msgid ""
@@ -586,15 +587,15 @@ msgstr ""
 msgid ""
 "  Alt + Shift + S – Toggle unit silhouettes (might give a small performance "
 "boost)"
-msgstr ""
+msgstr " Alt + Shift + S – Afficher/masquer les silhouettes des unités (peut améliorer sensiblement les performances)"
 
 #: gui/manual/intro.txt:124
 msgid "  Alt + Z – Toggle sky"
-msgstr ""
+msgstr " Alt + Z – Afficher/masquer le ciel"
 
 #: gui/manual/intro.txt:125
 msgid "  Alt + X – Toggle diplomacy colors"
-msgstr ""
+msgstr " Alt + X – Pour basculer les couleurs diplomatiques"
 
 #: gui/manual/intro.txt:126
 msgid ""
@@ -614,7 +615,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:130
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Manipulation de la caméra[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:131
 msgid "  W or ↑ (Up) – Pan screen up"
@@ -622,11 +623,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:132
 msgid "  S or ↓ (Down) – Pan screen down"
-msgstr ""
+msgstr " S ou ↓ (Bas) – Déplace l'affichage vers le bas"
 
 #: gui/manual/intro.txt:133
 msgid "  A or ← (Left) – Pan screen left"
-msgstr ""
+msgstr " A ou ← (Gauche) – Déplace l'affichage vers la gauche"
 
 #: gui/manual/intro.txt:134
 msgid "  D or → (Right) – Pan screen right"
@@ -672,11 +673,11 @@ msgstr ""
 #: gui/manual/intro.txt:143
 msgid ""
 "  F – Follow the selected unit (move the camera to stop following the unit)"
-msgstr ""
+msgstr " F – Suit l'unité sélectionnée (déplacer la caméra pour arrêter de la suivre)"
 
 #: gui/manual/intro.txt:144
 msgid "  R – Reset camera zoom/orientation"
-msgstr ""
+msgstr " R – Réinitialise le zoom/orientation de la caméra"
 
 #: gui/manual/intro.txt:145
 msgid "  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)"
@@ -693,7 +694,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:149
 msgid "[font=\"sans-bold-14\"]During Building Placement[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Lors du placement d'un bâtiment[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:150
 msgid "  \\[ (Left Bracket) – Rotate building 15 degrees counter-clockwise"
@@ -711,15 +712,15 @@ msgstr ""
 
 #: gui/manual/intro.txt:154
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Lors du chargement d'une partie sauvegardée[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:155
 msgid "  Esc – Cancel"
-msgstr ""
+msgstr " Echap – Annuler"
 
 #: gui/manual/intro.txt:156
 msgid "  Delete – Delete the selected saved game, ask for confirmation"
-msgstr ""
+msgstr " Suppr – Supprime la partie sauvegardée sélectionnée en demandant confirmation"
 
 #: gui/manual/intro.txt:157
 msgid ""

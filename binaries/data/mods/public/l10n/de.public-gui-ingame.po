@@ -13,7 +13,7 @@
 # Candy_man <nix@mailinator.net>, 2014
 # chaosville <m.hammel@gmail.com>, 2013
 # cledge <christiankletsch@gmx.de>, 2014
-# xtother90, 2018
+# xtother90, 2018-2019
 # Elias Keis, 2019
 # endoriel, 2014
 # Enrico <TheEyeGer@web.de>, 2013
@@ -74,8 +74,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-25 08:08+0000\n"
-"PO-Revision-Date: 2019-11-25 15:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-12-02 20:01+0000\n"
+"Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -86,7 +86,7 @@ msgstr ""
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "Drücke%(hotkey)s, um dieses Menü umzuschalten."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -103,7 +103,7 @@ msgstr "Zusammenfassung"
 #: gui/session/MenuButtons.js:87
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr ""
+msgstr "Drücke%(hotkey)s, um den Zusammenfassungsbildschirm zu öffnen."
 
 #: gui/session/MenuButtons.js:130
 msgid "Lobby"
@@ -114,7 +114,7 @@ msgstr "Lobby"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr ""
+msgstr "Drücke %(hotkey)s, um die Multiplayer-Lobby zu öffnen, ohne das Spiel zu verlassen."
 
 #: gui/session/MenuButtons.js:158
 msgid "Options"
@@ -131,7 +131,7 @@ msgstr "Pausieren"
 #: gui/session/MenuButtons.js:197
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr ""
+msgstr "Drücke %(hotkey)s, um das Spiel zu pausieren oder weiterlaufen zu lassen."
 
 #: gui/session/MenuButtons.js:213
 msgid "Resign"
@@ -746,12 +746,12 @@ msgstr "Privater Chat"
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr ""
+msgstr "Spielbenachrichtigungen"
 
 #: gui/session/chat/ChatHistory.js:130
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr ""
+msgstr "Netzwerkbenachrichtigungen"
 
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
@@ -819,7 +819,7 @@ msgstr "%(player)s ist dem Spiel beigetreten."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:57
 msgid "no-context"
-msgstr ""
+msgstr "Kein-Kontext"
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:61
 #, javascript-format
@@ -1164,7 +1164,7 @@ msgstr "Desynchronisation"
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr ""
+msgstr "Desynchronisation"
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:63
@@ -1310,19 +1310,19 @@ msgstr "Verkaufe %(resource)s"
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
-msgstr ""
+msgstr "+%(amount)s"
 
 #: gui/session/trade/BarterButton.js:103
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"
-msgstr ""
+msgstr "-%(amount)s"
 
 #: gui/session/trade/TradeButton.js:56
 #, javascript-format
 msgctxt "trading good ratio"
 msgid "%(amount)s%%"
-msgstr ""
+msgstr "%(amount)s%%"
 
 #: gui/session/trade/TradeButtonManager.js:76
 #, javascript-format
@@ -1632,4 +1632,4 @@ msgstr "Handel"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
-msgstr ""
+msgstr "Ressourcen:"
