@@ -730,7 +730,8 @@ function setup_all_libs ()
 		"graphics/scripting",
 		"renderer",
 		"renderer/scripting",
-		"third_party/mikktspace"
+		"third_party/mikktspace",
+		"third_party/ogre3d_preprocessor"
 	}
 	extern_libs = {
 		"opengl",
