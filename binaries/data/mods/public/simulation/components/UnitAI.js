@@ -1461,19 +1461,24 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"LosRangeUpdate": function(msg) {
-				if (this.GetStance().targetVisibleEnemies)
-				{
-					// Start attacking one of the newly-seen enemy (if any)
+				// Start attacking one of the newly-seen enemy (if any).
+				// We check for idleness to prevent an entity to attack only newly seen enemies
+				// when receiving a LosRangeUpdate on the same turn as the entity becomes idle
+				// since this.FindNewTargets is called in the timer.
+				if (this.isIdle && msg.data.added.length && this.GetStance().targetVisibleEnemies)
 					this.AttackEntitiesByPreference(msg.data.added);
-				}
 			},
 
 			"LosHealRangeUpdate": function(msg) {
-				this.RespondToHealableEntities(msg.data.added);
+				// We check for idleness to prevent an entity to heal only newly seen entities
+				// when receiving a LosHealRangeUpdate on the same turn as the entity becomes idle
+				// since this.FindNewHealTargets is called in the timer.
+				if (this.isIdle && msg.data.added.length)
+					this.RespondToHealableEntities(msg.data.added);
 			},
 
 			"Timer": function(msg) {
-				// If the unit is guarding/escorting, go back to its duty
+				// If the unit is guarding/escorting, go back to its duty.
 				if (this.isGuardOf)
 				{
 					this.Guard(this.isGuardOf, false);
@@ -1485,13 +1490,13 @@ UnitAI.prototype.UnitFsmSpec = {
 				// (If anyone approaches later it'll be handled via LosHealRangeUpdate.)
 				// If anyone in sight gets hurt that will be handled via LosHealRangeUpdate.
 				if (this.IsHealer() && this.FindNewHealTargets())
-					return; // (abort the FSM transition since we may have already switched state)
+					return;
 
 				// If we entered the idle state we must have nothing better to do,
 				// so immediately check whether there's anybody nearby to attack.
 				// (If anyone approaches later, it'll be handled via LosRangeUpdate.)
 				if (this.FindNewTargets())
-					return; // (abort the FSM transition since we may have already switched state)
+					return;
 
 				if (this.formationOffset && this.formationController)
 				{
