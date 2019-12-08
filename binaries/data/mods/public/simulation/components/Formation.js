@@ -342,10 +342,10 @@ Formation.prototype.RemoveMembers = function(ents)
 		return;
 	}
 
+	this.ComputeMotionParameters();
+
 	if (!this.rearrange)
 		return;
-
-	this.ComputeMotionParameters();
 
 	// Rearrange the remaining members
 	this.MoveMembersIntoFormation(true, true);
@@ -377,6 +377,7 @@ Formation.prototype.AddMembers = function(ents)
 		}
 	}
 
+	this.ComputeMotionParameters();
 	this.MoveMembersIntoFormation(true, true);
 };
 
