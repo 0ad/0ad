@@ -20,6 +20,7 @@
 #include "ShaderProgram.h"
 
 #include "graphics/Color.h"
+#include "graphics/PreprocessorWrapper.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
 #include "lib/res/graphics/ogl_tex.h"
@@ -27,7 +28,6 @@
 #include "maths/Vector3D.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
-#include "ps/PreprocessorWrapper.h"
 
 #if !CONFIG2_GLES
 

@@ -77,19 +77,14 @@ static SColor4ub sse_ConvertRGBColorTo4ub(const RGBColor& src)
 
 void ColorActivateFastImpl()
 {
-	if(0)
-	{
-	}
 #if HAVE_SSE
-	else if (x86_x64::Cap(x86_x64::CAP_SSE))
+	if (x86_x64::Cap(x86_x64::CAP_SSE))
 	{
 		ConvertRGBColorTo4ub = sse_ConvertRGBColorTo4ub;
+		return;
 	}
 #endif
-	else
-	{
-		debug_printf("No SSE available. Slow fallback routines will be used.\n");
-	}
+	debug_printf("No SSE available. Slow fallback routines will be used.\n");
 }
 
 /**

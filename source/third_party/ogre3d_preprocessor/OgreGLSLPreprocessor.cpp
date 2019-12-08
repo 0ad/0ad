@@ -34,9 +34,7 @@ THE SOFTWARE.
 
 #include "precompiled.h"
 
-#include "Preprocessor.h"
-
-#include "ps/CLogger.h"
+#include "OgreGLSLPreprocessor.h"
 
 // Limit max number of macro arguments to this
 #define MAX_MACRO_ARGS 16
@@ -230,11 +228,12 @@ static void DefaultError (void *iData, int iLine, const char *iError,
                           const char *iToken, size_t iTokenLen)
 {
     (void)iData;
+    char line [1000];
     if (iToken)
-        LOGERROR("Preprocessor error: line %d: %s: '%s'\n",
-                  iLine, iError, std::string (iToken, iTokenLen));
+        snprintf (line, sizeof (line), "line %d: %s: `%.*s'\n",
+                    iLine, iError, int (iTokenLen), iToken);
     else
-        LOGERROR("Preprocessor error: line %d: %s\n", iLine, iError);
+        snprintf (line, sizeof (line), "line %d: %s\n", iLine, iError);
 }
 
 //---------------------------------------------------------------------------//

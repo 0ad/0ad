@@ -310,7 +310,7 @@ function tryPlaceBuilding(queued)
 		"autocontinue": true,
 		"queued": queued
 	});
-	Engine.GuiInterfaceCall("PlaySound", { "name": "order_repair", "entity": selection[0] });
+	Engine.GuiInterfaceCall("PlaySound", { "name": "order_build", "entity": selection[0] });
 
 	if (!queued)
 		placementSupport.Reset();
@@ -367,7 +367,7 @@ function tryPlaceWall(queued)
 	if (hasWallSegment)
 	{
 		Engine.PostNetworkCommand(cmd);
-		Engine.GuiInterfaceCall("PlaySound", { "name": "order_repair", "entity": selection[0] });
+		Engine.GuiInterfaceCall("PlaySound", { "name": "order_build", "entity": selection[0] });
 	}
 
 	return true;

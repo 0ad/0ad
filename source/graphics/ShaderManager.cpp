@@ -19,6 +19,7 @@
 
 #include "ShaderManager.h"
 
+#include "graphics/PreprocessorWrapper.h"
 #include "graphics/ShaderTechnique.h"
 #include "lib/config2.h"
 #include "lib/hash.h"
@@ -27,7 +28,6 @@
 #include "ps/CLogger.h"
 #include "ps/CStrIntern.h"
 #include "ps/Filesystem.h"
-#include "ps/PreprocessorWrapper.h"
 #include "ps/Profile.h"
 #if USE_SHADER_XML_VALIDATION
 # include "ps/XML/RelaxNG.h"

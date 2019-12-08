@@ -206,17 +206,7 @@ int WaterManager::LoadWaterTextures()
 #warning Fix WaterManager::LoadWaterTextures on GLES
 #else
 	// Load normalmaps (for fancy water)
-	for (size_t i = 0; i < ARRAY_SIZE(m_NormalMap); ++i)
-	{
-		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/%ls/normal00%02d.png", m_WaterType.c_str(), (int)i+1);
-		CTextureProperties textureProps(pathname);
-		textureProps.SetWrap(GL_REPEAT);
-		textureProps.SetMaxAnisotropy(4);
-
-		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
-		texture->Prefetch();
-		m_NormalMap[i] = texture;
-	}
+	ReloadWaterNormalTextures();
 
 	// Load CoastalWaves
 	{
@@ -380,14 +370,12 @@ void WaterManager::Resize()
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-// This is for Atlas. TODO: this copies code from init, should reuse it.
 void WaterManager::ReloadWaterNormalTextures()
 {
 	wchar_t pathname[PATH_MAX];
-	// Load normalmaps (for fancy water)
 	for (size_t i = 0; i < ARRAY_SIZE(m_NormalMap); ++i)
 	{
-		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/%ls/normal00%02d.png", m_WaterType.c_str(), (int)i+1);
+		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/%ls/normal00%02d.png", m_WaterType.c_str(), static_cast<int>(i) + 1);
 		CTextureProperties textureProps(pathname);
 		textureProps.SetWrap(GL_REPEAT);
 		textureProps.SetMaxAnisotropy(4);

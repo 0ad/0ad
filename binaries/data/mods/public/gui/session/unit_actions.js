@@ -351,7 +351,7 @@ var g_UnitActions =
 			});
 
 			Engine.GuiInterfaceCall("PlaySound", {
-				"name": "order_repair",
+				"name": action.foundation ? "order_build" : "order_repair",
 				"entity": selection[0]
 			});
 
@@ -364,18 +364,23 @@ var g_UnitActions =
 			    !playerCheck(entState, targetState, ["Player", "Ally"]))
 				return false;
 
-			return { "possible": true };
+			return {
+				"possible": true,
+				"foundation": targetState.foundation
+			};
 		},
 		"preSelectedActionCheck": function(target, selection)
 		{
 			if (preSelectedAction != ACTION_REPAIR)
 				return false;
 
-			if (getActionInfo("repair", target, selection).possible)
+			let actionInfo = getActionInfo("repair", target, selection);
+			if (actionInfo.possible)
 				return {
 					"type": "repair",
 					"cursor": "action-repair",
-					"target": target
+					"target": target,
+					"foundation": actionInfo.foundation
 				};
 
 			return {
@@ -386,25 +391,29 @@ var g_UnitActions =
 		},
 		"hotkeyActionCheck": function(target, selection)
 		{
+			let actionInfo = getActionInfo("repair", target, selection);
 			if (!Engine.HotkeyIsPressed("session.repair") ||
-			    !getActionInfo("repair", target, selection).possible)
+			    !actionInfo.possible)
 				return false;
 
 			return {
 				"type": "repair",
 				"cursor": "action-repair",
-				"target": target
+				"target": target,
+				"foundation": actionInfo.foundation
 			};
 		},
 		"actionCheck": function(target, selection)
 		{
-			if (!getActionInfo("repair", target, selection).possible)
+			let actionInfo = getActionInfo("repair", target, selection);
+			if (!actionInfo.possible)
 				return false;
 
 			return {
 				"type": "repair",
 				"cursor": "action-repair",
-				"target": target
+				"target": target,
+				"foundation": actionInfo.foundation
 			};
 		},
 		"specificness": 11,

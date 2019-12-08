@@ -23,6 +23,7 @@ StatusBars.prototype.Schema =
 StatusBars.prototype.Sprites = [
 	"ExperienceBar",
 	"PackBar",
+	"UpgradeBar",
 	"ResourceSupplyBar",
 	"CaptureBar",
 	"HealthBar",
@@ -105,6 +106,12 @@ StatusBars.prototype.OnResourceSupplyChanged = function(msg)
 };
 
 StatusBars.prototype.OnPackProgressUpdate = function(msg)
+{
+	if (this.enabled)
+		this.RegenerateSprites();
+};
+
+StatusBars.prototype.OnUpgradeProgressUpdate = function(msg)
 {
 	if (this.enabled)
 		this.RegenerateSprites();
@@ -194,6 +201,18 @@ StatusBars.prototype.AddPackBar = function(cmpOverlayRenderer, yoffset)
 		return 0;
 
 	return this.AddBar(cmpOverlayRenderer, yoffset, "pack", cmpPack.GetProgress());
+};
+
+StatusBars.prototype.AddUpgradeBar = function(cmpOverlayRenderer, yoffset)
+{
+	if (!this.enabled)
+		return 0;
+
+	let cmpUpgrade = Engine.QueryInterface(this.entity, IID_Upgrade);
+	if (!cmpUpgrade || !cmpUpgrade.IsUpgrading())
+		return 0;
+
+	return this.AddBar(cmpOverlayRenderer, yoffset, "upgrade", cmpUpgrade.GetProgress());
 };
 
 StatusBars.prototype.AddHealthBar = function(cmpOverlayRenderer, yoffset)

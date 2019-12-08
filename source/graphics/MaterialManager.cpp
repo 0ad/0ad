@@ -19,13 +19,13 @@
 
 #include "MaterialManager.h"
 
+#include "graphics/PreprocessorWrapper.h"
 #include "lib/ogl.h"
 #include "maths/MathUtil.h"
 #include "maths/Vector4D.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
-#include "ps/PreprocessorWrapper.h"
 #include "ps/XML/Xeromyces.h"
 #include "renderer/RenderingOptions.h"
 
