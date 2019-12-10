@@ -66,6 +66,8 @@ uniform vec4 waveParams2; // Smallintensity, Smallbase, Bigmovement, Smallmoveme
 #endif
 #if USE_REAL_DEPTH
 	uniform sampler2D depthTex;
+	uniform float zNear;
+	uniform float zFar;
 #endif
 
 #if USE_SHADOWS_ON_WATER && USE_SHADOW
@@ -199,10 +201,6 @@ void main()
 
 	float depth;
 #if USE_REAL_DEPTH
-	// Don't change these two. They should match the values in the config (TODO: dec uniforms).
-	float zNear = 2.0;
-	float zFar = 4096.0;
-
 	// Compute real depth at the target point.
 	float water_b = gl_FragCoord.z;
 	float water_n = 2.0 * water_b - 1.0;
