@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -132,7 +132,7 @@ public:
 		case MT_RenderSubmit:
 		{
 			const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
-			RenderSubmit(msgData.collector);
+			RenderSubmit(msgData.collector, msgData.frustum, msgData.culling);
 			break;
 		}
 		}
@@ -186,14 +186,18 @@ public:
 		}
 	}
 
-	void RenderSubmit(SceneCollector& collector)
+	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling)
 	{
 		if (!m_RangeOverlayData.size())
 			return;
 
 		for (const RangeOverlayData& rangeOverlay : m_RangeOverlayData)
 			if (rangeOverlay.second)
+			{
+				if (culling && !rangeOverlay.second->IsVisibleInFrustum(frustum))
+					continue;
 				collector.Submit(rangeOverlay.second);
+			}
 	}
 
 private:

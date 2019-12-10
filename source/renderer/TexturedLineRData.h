@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,7 +22,10 @@
 #include "graphics/RenderableObject.h"
 #include "graphics/ShaderProgramPtr.h"
 #include "graphics/TextureManager.h"
+#include "maths/BoundingBoxAligned.h"
 #include "renderer/VertexBufferManager.h"
+
+class CFrustum;
 
 /**
  * Rendering data for an STexturedOverlayLine.
@@ -57,6 +60,8 @@ public:
 	void Update(const SOverlayTexturedLine& line);
 	void Render(const SOverlayTexturedLine& line, const CShaderProgramPtr& shader);
 
+	bool IsVisibleInFrustum(const CFrustum& frustum) const;
+
 protected:
 
 	struct SVertex
@@ -90,6 +95,7 @@ protected:
 
 	CVertexBuffer::VBChunk* m_VB;
 	CVertexBuffer::VBChunk* m_VBIndices;
+	CBoundingBoxAligned m_BoundingBox;
 };
 
 #endif // INCLUDED_TEXTUREDLINERDATA

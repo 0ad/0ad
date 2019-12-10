@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -215,7 +215,7 @@ public:
 		return m_EditorOnly;
 	}
 
-	void RenderSubmit(SceneCollector& collector);
+	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
 
 	/**
 	 * Draw a textured line overlay. The selection overlays for structures are based solely on footprint shape.
@@ -250,6 +250,8 @@ private:
 	SOverlayDescriptor m_OverlayDescriptor;
 	SOverlayTexturedLine* m_BuildingOverlay;
 	SOverlayQuad* m_UnitOverlay;
+
+	CBoundingBoxAligned m_UnitOverlayBoundingBox;
 
 	SOverlayLine* m_DebugBoundingBoxOverlay;
 	SOverlayLine* m_DebugSelectionBoxOverlay;
@@ -358,7 +360,7 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 		PROFILE("Selectable::RenderSubmit");
 
 		const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
-		RenderSubmit(msgData.collector);
+		RenderSubmit(msgData.collector, msgData.frustum, msgData.culling);
 
 		break;
 	}
@@ -522,7 +524,8 @@ void CCmpSelectable::UpdateDynamicOverlay(float frameOffset)
 	points.push_back(CVector2D(position + unitX *  halfSizeX    + unitZ *(-halfSizeZ))); // bottom right
 	points.push_back(CVector2D(position + unitX *  halfSizeX    + unitZ *  halfSizeZ));  // top right
 
-	for (int i=0; i < 4; i++)
+	m_UnitOverlayBoundingBox = CBoundingBoxAligned();
+	for (size_t i = 0; i < 4; ++i)
 	{
 		float quadY = std::max(
 			terrain->GetExactGroundLevel(points[i].X, points[i].Y),
@@ -530,10 +533,11 @@ void CCmpSelectable::UpdateDynamicOverlay(float frameOffset)
 		);
 
 		m_UnitOverlay->m_Corners[i] = CVector3D(points[i].X, quadY, points[i].Y);
+		m_UnitOverlayBoundingBox += m_UnitOverlay->m_Corners[i];
 	}
 }
 
-void CCmpSelectable::RenderSubmit(SceneCollector& collector)
+void CCmpSelectable::RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling)
 {
 	// don't render selection overlay if it's not gonna be visible
 	if (!ICmpSelectable::m_OverrideVisible)
@@ -560,11 +564,15 @@ void CCmpSelectable::RenderSubmit(SceneCollector& collector)
 						UpdateTexturedLineOverlay(&m_OverlayDescriptor, *m_BuildingOverlay, 0);
 					}
 					m_BuildingOverlay->m_Color = m_Color; // done separately so alpha changes don't require a full update call
+					if (culling && !m_BuildingOverlay->IsVisibleInFrustum(frustum))
+						break;
 					collector.Submit(m_BuildingOverlay);
 				}
 				break;
 			case DYNAMIC_QUAD:
 				{
+					if (culling && !frustum.IsBoxVisible(m_UnitOverlayBoundingBox))
+						break;
 					if (m_UnitOverlay)
 						collector.Submit(m_UnitOverlay);
 				}

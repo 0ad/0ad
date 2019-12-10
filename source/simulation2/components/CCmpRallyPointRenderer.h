@@ -268,7 +268,7 @@ private:
 	 */
 	static void MergeVisibilitySegments(std::vector<SVisibilitySegment>& segments);
 
-	void RenderSubmit(SceneCollector& collector);
+	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
 };
 
 REGISTER_COMPONENT_TYPE(RallyPointRenderer)

@@ -223,7 +223,7 @@ public:
 		case MT_RenderSubmit:
 		{
 			const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
-			RenderSubmit(msgData.collector);
+			RenderSubmit(msgData.collector, msgData.frustum, msgData.culling);
 			break;
 		}
 		}
@@ -302,7 +302,7 @@ public:
 
 	void Interpolate(float frameTime, float frameOffset);
 
-	void RenderSubmit(SceneCollector& collector);
+	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
 
 	void SetVisibility(bool visible)
 	{
@@ -691,13 +691,17 @@ void CCmpTerritoryManager::Interpolate(float frameTime, float UNUSED(frameOffset
 	}
 }
 
-void CCmpTerritoryManager::RenderSubmit(SceneCollector& collector)
+void CCmpTerritoryManager::RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling)
 {
 	if (!m_Visible)
 		return;
 
 	for (size_t i = 0; i < m_BoundaryLines.size(); ++i)
+	{
+		if (culling && !m_BoundaryLines[i].overlay.IsVisibleInFrustum(frustum))
+			continue;
 		collector.Submit(&m_BoundaryLines[i].overlay);
+	}
 
 	for (size_t i = 0; i < m_DebugBoundaryLineNodes.size(); ++i)
 		collector.Submit(&m_DebugBoundaryLineNodes[i]);

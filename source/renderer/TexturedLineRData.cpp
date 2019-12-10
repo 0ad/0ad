@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 
 #include "TexturedLineRData.h"
 
+#include "graphics/Frustum.h"
 #include "graphics/Terrain.h"
 #include "maths/MathUtil.h"
 #include "maths/Quaternion.h"
@@ -303,6 +304,10 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 
 	ENSURE(indices.size() % 3 == 0); // GL_TRIANGLES indices, so must be multiple of 3
 
+	m_BoundingBox = CBoundingBoxAligned();
+	for (const SVertex& vertex : vertices)
+		m_BoundingBox += vertex.m_Position;
+
 	m_VB = g_VBMan.Allocate(sizeof(SVertex), vertices.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
 	if (m_VB) // allocation might fail (e.g. due to too many vertices)
 	{
@@ -435,4 +440,9 @@ void CTexturedLineRData::CreateLineCap(const SOverlayTexturedLine& line, const C
 		break;
 	}
 
+}
+
+bool CTexturedLineRData::IsVisibleInFrustum(const CFrustum& frustum) const
+{
+	return frustum.IsBoxVisible(m_BoundingBox);
 }
