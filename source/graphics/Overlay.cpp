@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "graphics/TextureManager.h"
 #include "ps/CStr.h"
 #include "renderer/Renderer.h"
+#include "renderer/TexturedLineRData.h"
 
 SOverlayTexturedLine::LineCapType SOverlayTexturedLine::StrToLineCapType(const std::wstring& str)
 {
@@ -56,4 +57,13 @@ void SOverlayTexturedLine::CreateOverlayTexture(const SOverlayDescriptor* overla
 	m_TextureMask = g_Renderer.GetTextureManager().CreateTexture(texturePropsMask);
 
 	ENSURE(m_TextureBase);
+}
+
+bool SOverlayTexturedLine::IsVisibleInFrustum(const CFrustum& frustum) const
+{
+	// If we don't have render data, we don't have actual bounds and we need
+	// to calculate them on a prerendering stage.
+	if (!m_RenderData)
+		return true;
+	return m_RenderData->IsVisibleInFrustum(frustum);
 }

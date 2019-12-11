@@ -25,6 +25,7 @@
 #include "maths/FixedVector3D.h"
 #include "ps/CStrIntern.h"
 
+class CFrustum;
 class CTerrain;
 class CSimContext;
 class CTexturedLineRData;
@@ -134,6 +135,8 @@ struct SOverlayTexturedLine
 		for (size_t i = 0; i < points.size(); ++i)
 			PushCoords(points[i]);
 	}
+
+	bool IsVisibleInFrustum(const CFrustum& frustum) const;
 };
 
 /**

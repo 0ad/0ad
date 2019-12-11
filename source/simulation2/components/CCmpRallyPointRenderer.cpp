@@ -165,7 +165,7 @@ void CCmpRallyPointRenderer::HandleMessage(const CMessage& msg, bool UNUSED(glob
 		if (m_Displayed && IsSet())
 		{
 			const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
-			RenderSubmit(msgData.collector);
+			RenderSubmit(msgData.collector, msgData.frustum, msgData.culling);
 		}
 	}
 	break;
@@ -920,13 +920,17 @@ void CCmpRallyPointRenderer::MergeVisibilitySegments(std::vector<SVisibilitySegm
 	}
 }
 
-void CCmpRallyPointRenderer::RenderSubmit(SceneCollector& collector)
+void CCmpRallyPointRenderer::RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling)
 {
 	// We only get here if the rally point is set and should be displayed
 	for(std::vector<SOverlayTexturedLine>& row : m_TexturedOverlayLines)
-		for (SOverlayTexturedLine& col : row)
-			if (!col.m_Coords.empty())
-				collector.Submit(&col);
+		for (SOverlayTexturedLine& col : row) {
+			if (col.m_Coords.empty())
+				continue;
+			if (culling && !col.IsVisibleInFrustum(frustum))
+				continue;
+			collector.Submit(&col);
+		}
 
 	if (m_EnableDebugNodeOverlay && !m_DebugNodeOverlays.empty())
 	{

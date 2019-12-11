@@ -741,7 +741,6 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	m->fancyWaterShader->Bind();
 
 	const CCamera& camera = g_Renderer.GetViewCamera();
-	CVector3D camPos = camera.m_Orientation.GetTranslation();
 
 	m->fancyWaterShader->BindTexture(str_normalMap, WaterMgr->m_NormalMap[curTex]);
 	m->fancyWaterShader->BindTexture(str_normalMap2, WaterMgr->m_NormalMap[nexTex]);
@@ -789,7 +788,14 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	m->fancyWaterShader->Uniform(str_windAngle, WaterMgr->m_WindAngle);
 	m->fancyWaterShader->Uniform(str_repeatScale, 1.0f / repeatPeriod);
 	m->fancyWaterShader->Uniform(str_losMatrix, losTexture.GetTextureMatrix());
-	m->fancyWaterShader->Uniform(str_cameraPos, camPos);
+
+	m->fancyWaterShader->Uniform(str_cameraPos, camera.m_Orientation.GetTranslation());
+	if (WaterMgr->m_WaterRealDepth)
+	{
+		m->fancyWaterShader->Uniform(str_zNear, camera.GetNearPlane());
+		m->fancyWaterShader->Uniform(str_zFar, camera.GetFarPlane());
+	}
+
 	m->fancyWaterShader->Uniform(str_fogColor, lightEnv.m_FogColor);
 	m->fancyWaterShader->Uniform(str_fogParams, lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
 	m->fancyWaterShader->Uniform(str_time, (float)time);
