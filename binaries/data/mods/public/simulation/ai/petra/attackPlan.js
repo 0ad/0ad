@@ -192,7 +192,7 @@ PETRA.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	for (let cat in this.unitStat)
 	{
 		this.unitStat[cat].targetSize = Math.round(this.Config.popScaling * this.unitStat[cat].targetSize);
-		this.unitStat[cat].minSize = Math.floor(this.Config.popScaling * this.unitStat[cat].minSize);
+		this.unitStat[cat].minSize = Math.ceil(this.Config.popScaling * this.unitStat[cat].minSize);
 	}
 
 	// TODO: there should probably be one queue per type of training building
