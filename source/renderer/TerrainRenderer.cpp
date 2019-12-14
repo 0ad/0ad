@@ -789,7 +789,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	m->fancyWaterShader->Uniform(str_repeatScale, 1.0f / repeatPeriod);
 	m->fancyWaterShader->Uniform(str_losMatrix, losTexture.GetTextureMatrix());
 
-	m->fancyWaterShader->Uniform(str_cameraPos, camera.m_Orientation.GetTranslation());
+	m->fancyWaterShader->Uniform(str_cameraPos, camera.GetOrientation().GetTranslation());
 	if (WaterMgr->m_WaterRealDepth)
 	{
 		m->fancyWaterShader->Uniform(str_zNear, camera.GetNearPlane());

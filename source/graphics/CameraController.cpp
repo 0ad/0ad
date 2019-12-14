@@ -298,7 +298,7 @@ void CCameraController::Update(const float deltaRealTime)
 	float zoomDelta = -m_Zoom.Update(deltaRealTime);
 	if (zoomDelta)
 	{
-		CVector3D forwards = m_Camera.m_Orientation.GetIn();
+		CVector3D forwards = m_Camera.GetOrientation().GetIn();
 		m_PosX.AddSmoothly(forwards.X * zoomDelta);
 		m_PosY.AddSmoothly(forwards.Y * zoomDelta);
 		m_PosZ.AddSmoothly(forwards.Z * zoomDelta);
@@ -319,7 +319,7 @@ void CCameraController::Update(const float deltaRealTime)
 		CTerrain* pTerrain = g_Game->GetWorld()->GetTerrain();
 
 		CVector3D pivot = GetSmoothPivot(targetCam);
-		CVector3D delta = targetCam.m_Orientation.GetTranslation() - pivot;
+		CVector3D delta = targetCam.GetOrientation().GetTranslation() - pivot;
 
 		CVector3D desiredPivot = pivot;
 
@@ -364,7 +364,7 @@ void CCameraController::Update(const float deltaRealTime)
 			CVector3D upwards(0.0f, 1.0f, 0.0f);
 
 			CVector3D pivot = GetSmoothPivot(targetCam);
-			CVector3D delta = targetCam.m_Orientation.GetTranslation() - pivot;
+			CVector3D delta = targetCam.GetOrientation().GetTranslation() - pivot;
 
 			CQuaternion q;
 			q.FromAxisAngle(upwards, rotateYDelta);
@@ -384,10 +384,10 @@ void CCameraController::Update(const float deltaRealTime)
 		float rotateXDelta = m_RotateX.Update(deltaRealTime);
 		if (rotateXDelta)
 		{
-			CVector3D rightwards = targetCam.m_Orientation.GetLeft() * -1.0f;
+			CVector3D rightwards = targetCam.GetOrientation().GetLeft() * -1.0f;
 
 			CVector3D pivot = GetSmoothPivot(targetCam);
-			CVector3D delta = targetCam.m_Orientation.GetTranslation() - pivot;
+			CVector3D delta = targetCam.GetOrientation().GetTranslation() - pivot;
 
 			CQuaternion q;
 			q.FromAxisAngle(rightwards, rotateXDelta);
@@ -428,7 +428,7 @@ void CCameraController::Update(const float deltaRealTime)
 
 CVector3D CCameraController::GetSmoothPivot(CCamera& camera) const
 {
-	return camera.m_Orientation.GetTranslation() + camera.m_Orientation.GetIn() * m_Zoom.GetSmoothedValue();
+	return camera.GetOrientation().GetTranslation() + camera.GetOrientation().GetIn() * m_Zoom.GetSmoothedValue();
 }
 
 CVector3D CCameraController::GetCameraPivot() const
@@ -538,10 +538,10 @@ void CCameraController::ResetCameraAngleZoom()
 	SetupCameraMatrixNonSmooth(&targetCam.m_Orientation);
 
 	// Compute the zoom adjustment to get us back to the default
-	CVector3D forwards = targetCam.m_Orientation.GetIn();
+	CVector3D forwards = targetCam.GetOrientation().GetIn();
 
 	CVector3D pivot = GetSmoothPivot(targetCam);
-	CVector3D delta = pivot - targetCam.m_Orientation.GetTranslation();
+	CVector3D delta = pivot - targetCam.GetOrientation().GetTranslation();
 	float dist = delta.Dot(forwards);
 	m_Zoom.AddSmoothly(m_ViewZoomDefault - dist);
 
@@ -591,8 +591,8 @@ void CCameraController::FocusHeight(bool smooth)
 	CCamera targetCam = m_Camera;
 	SetupCameraMatrixSmoothRot(&targetCam.m_Orientation);
 
-	const CVector3D position = targetCam.m_Orientation.GetTranslation();
-	const CVector3D forwards = targetCam.m_Orientation.GetIn();
+	const CVector3D position = targetCam.GetOrientation().GetTranslation();
+	const CVector3D forwards = targetCam.GetOrientation().GetIn();
 
 	// horizontal view radius
 	const float radius = sqrtf(forwards.X * forwards.X + forwards.Z * forwards.Z) * m_Zoom.GetSmoothedValue();

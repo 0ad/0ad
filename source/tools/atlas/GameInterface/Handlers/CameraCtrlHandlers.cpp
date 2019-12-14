@@ -232,7 +232,7 @@ QUERYHANDLER(GetView)
 	info.pY = focus.Y;
 	info.pZ = focus.Z;
 
-	CQuaternion quatRot = g_Game->GetView()->GetCamera()->m_Orientation.GetRotation();
+	CQuaternion quatRot = g_Game->GetView()->GetCamera()->GetOrientation().GetRotation();
 	quatRot.Normalize();
 	CVector3D rotation = quatRot.ToEulerAngles();
 

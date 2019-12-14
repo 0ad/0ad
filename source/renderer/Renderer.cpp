@@ -348,7 +348,7 @@ public:
 	void SetOpenGLCamera(const CCamera& camera)
 	{
 		CMatrix3D view;
-		camera.m_Orientation.GetInverse(view);
+		camera.GetOrientation().GetInverse(view);
 		const CMatrix3D& proj = camera.GetProjection();
 
 #if CONFIG2_GLES
@@ -910,7 +910,7 @@ void CRenderer::SetObliqueFrustumClipping(CCamera& camera, const CVector4D& worl
 {
 	// First, we'll convert the given clip plane to camera space, then we'll
 	// Get the view matrix and normal matrix (top 3x3 part of view matrix)
-	CMatrix3D normalMatrix = camera.m_Orientation.GetTranspose();
+	CMatrix3D normalMatrix = camera.GetOrientation().GetTranspose();
 	CVector4D camPlane = normalMatrix.Transform(worldPlane);
 
 	CMatrix3D matrix = camera.GetProjection();

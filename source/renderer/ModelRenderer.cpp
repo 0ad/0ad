@@ -366,7 +366,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 		return;
 
 	CMatrix3D worldToCam;
-	g_Renderer.GetViewCamera().m_Orientation.GetInverse(worldToCam);
+	g_Renderer.GetViewCamera().GetOrientation().GetInverse(worldToCam);
 
 	/*
 	 * Rendering approach:
