@@ -248,6 +248,8 @@ UnitAI.prototype.UnitFsmSpec = {
 		// No orders left, we're an individual now
 		if (this.IsAnimal())
 			this.SetNextState("ANIMAL.IDLE");
+		else if (this.IsFormationMember())
+			this.SetNextState("FORMATIONMEMBER.IDLE");
 		else
 			this.SetNextState("INDIVIDUAL.IDLE");
 
@@ -637,7 +639,10 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Cheering": function(msg) {
-		this.SetNextState("INDIVIDUAL.CHEERING");
+		if (this.IsFormationMember())
+			this.SetNextState("FORMATIONMEMBER.CHEERING");
+		else
+			this.SetNextState("INDIVIDUAL.CHEERING");
 	},
 
 	"Order.Pack": function(msg) {
@@ -1300,6 +1305,8 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"IDLE": "INDIVIDUAL.IDLE",
+
+		"CHEERING": "INDIVIDUAL.CHEERING",
 
 		"WALKING": {
 			"enter": function() {
