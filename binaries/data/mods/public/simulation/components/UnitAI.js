@@ -1306,6 +1306,12 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.formationOffset = { "x": this.order.data.x, "z": this.order.data.z };
 				let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 				cmpUnitMotion.MoveToFormationOffset(this.order.data.target, this.order.data.x, this.order.data.z);
+				if (this.order.data.offsetsChanged)
+				{
+					let cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
+					if (cmpFormation)
+						this.SetAnimationVariant(cmpFormation.GetFormationAnimation(this.entity));
+				}
 			},
 
 			"leave": function() {
@@ -1349,6 +1355,8 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.FinishOrder();
 					return true;
 				}
+				if (cmpFormation && this.order.data.offsetsChanged)
+					this.SetAnimationVariant(cmpFormation.GetFormationAnimation(this.entity));
 			},
 
 			"MovementUpdate": function() {
