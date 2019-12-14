@@ -5,13 +5,14 @@
 # Translators:
 # Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018
 # reza latifi <reza.bubba@gmail.com>, 2019
+# бахром дуниахо <brandonw041@gmail.com>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2019-03-22 09:45+0100\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: reza latifi <reza.bubba@gmail.com>, 2019\n"
+"Last-Translator: бахром дуниахо <brandonw041@gmail.com>, 2019\n"
 "Language-Team: Persian (https://www.transifex.com/wildfire-games/teams/17418/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -169,12 +170,18 @@ msgid ""
 "II icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"مرکز تمدن را انتخاب کنید و سپس با کلیک بر روی عکسی که نشانه \"||\" دو یونانی"
+" بر روی آن است کلیک کنید تا مرکز تمدن شما از مرحله روستایی به مرحله شهرک "
+"ارتقا پیدا کند(دقت کنید که شما باید نخست منتظر تکمیل برج دیدبانی شوید تا "
+"ساخته شود)."
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
 "While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
+"زمانی که منتظر ارتقا فاز خود هستید، بهتر است اگر کارگر بیکار دارید به آنها "
+"فرمان دهید تا به جمع آوری منابع بپردازند که با کمبود منابع روبرو نشوید."
 
 #: maps/tutorials/Introductory_Tutorial.js:220
 msgid ""
@@ -243,6 +250,8 @@ msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "Barracks."
 msgstr ""
+"زمانی که منتظر تغییر مرحله هستید، شما می توانید در پادگان خود سربازان بیشتری"
+" بسازید."
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
@@ -277,6 +286,10 @@ msgid ""
 "ultimately, your goal will be to develop and expand your empire, often by "
 "evolving to Town Phase and City Phase afterward.\n"
 msgstr ""
+"این آموزش به شما مباحث پایه برای توسعه اقتصادتان در بازی را آموزش می دهد. "
+"معمولا، شما بازی را همراه با یک مرکز تمدن و تعدادی نیرو در \"مرحله روستایی\""
+" آغاز می کنید. و در نهایت هدف شما این است که با توسعه و گسترش امپراتوری خود،"
+" اغلب با رسیدن به \"مرحله شهرک\" و \"مرحله شهری \" اتفاق می افتد.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -343,6 +356,11 @@ msgid ""
 "that advancing to Town Phase requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
+"سطر بالای قسمت پایین شامل عکس نیروهایی است که می توان پرورش داد در حالی که "
+"سطر پایین یا دو سطر پایین مربوط به تحقیق فناوری ها است. نشانگر ماوس خود را "
+"بر روی عکس \"||\" قرار دهید. راهنما به شما می گوید که برای رسیدن به مرحله "
+"شهرک نیاز دارید که هم ساختمان های بیشتری بسازید و هم غدا و چوب بیشتری جمع "
+"کنید."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -459,11 +477,18 @@ msgid ""
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
+"نخست، بیایید نقطه تجمع را تنظیم کنیم. مشخص کردن نقطه تجمع یک ساختمان که می "
+"تواند نیرو پرورش دهد باعث می شود مقصد حرکت نیروها بلافاصله بعد از پرورش "
+"یافتن از ساختمان به آن نقطه تغییر پیدا میکند. ما میخواهیم نیروهای که جدیدا "
+"پرورش می دهیم برای جمع کردن چوب به قسمت جنوبی مرکز تمدن بروند. برای انجام "
+"این کار، مرکز تمدن خود را انتخاب کنید و سپس نشانه گر ماوس خود را بر روی "
+"درختان مورد نظر قرار دهید و کلید راست را بزنید.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
 "Rally points are indicated by a small flag at the end of the blue line."
 msgstr ""
+"نقطه تجمع با یک پرچم کوجک در مقصد و در انتهای خط آبی نمایش داده می شود."
 
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
@@ -478,6 +503,9 @@ msgid ""
 "Now that the rally point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
 msgstr ""
+"حال که نقطه تجمع را مشخص کردید، ما می توانیم نیروهای بیشتری پرورش دهیم و "
+"آنها کاری که آنها تخصیص داده اید را بصورت خودکار بعد از آماده شدن انجام "
+"خواهند داد.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:98
 msgid ""
@@ -607,6 +635,11 @@ msgid ""
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally point is crossed out)."
 msgstr ""
+"در این میان، به نظر می رسد ما به تعداد کافی کارگر برای جمع آوری چوب پرورش "
+"داده ایم. ما باید نقطه تجمع مرکز تمدن را از روی جمع کردن چوب برداریم. برای "
+"این منظور، زمانی که مرکز تمدن انتخاب شده است در یک فضای خالی نزدیک مرکز تمدن"
+" کلیک می کنیم تا نقطه تجمع از روی درختان برداشته در مقصد جدید قرار گیرد. "
+"(پرجم نشانه گر محل تجمع نیز جابجا می شود)"
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
@@ -786,6 +819,11 @@ msgid ""
 "sent by a rally point will help building it, while they will gather it when "
 "built."
 msgstr ""
+"بر روی یک زمین کشاورزی می توان تا 5 کشاورز داشت. برای اضافه کردن کشاورز به "
+"زمین کشاورزی می توانید مرکز تمدن خود را انتخاب کرده مکان تجمع را بر روی "
+"مزرعه مورد نظر قرار دهید و سپس شروع به پرورش کارگر کنید اگر ساخت مزرعه ای به"
+" پایان نرسیده بود آنها به ساخت آن کمک می کنند و سپس در آن شروع به کار میکنند"
+" و اگر ساخته شده بود در آن تا سقف 5 نفر شروع به کار میکنند."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
@@ -835,6 +873,8 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the Town Phase icon to see what is still needed.\n"
 msgstr ""
+"ما می بایست شروع به آماده سازی برای بالا بردن مرحله مرکز تمدن خود به \"مرحله شهرک\" کنیم. این مرحله باعث می شود قفل نیروها و ساختمان های بیشتری باز شود. مرکز تمدن را انتخاب کرده و نشانگر ماوس خود را بر روی عکس \"مرحله شهرک\" ببرید تا تمام نیازمندی های آنرا مشاهده کنید.\n"
+"\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -842,6 +882,9 @@ msgid ""
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
 "in case of attack, so let's build Barracks.\n"
 msgstr ""
+"ما حال میدانیم که چه میزان منابع نیاز داریم، اما یک ساختمان هم کم است. اگرچه"
+" این آموزش اقتصاد بازی است، با این وجود بد نیست که برای دفاع از خود در برابر"
+" حمله های احتمالی نیز آماده شوید. بنابرین بیایید یک پادگان بسازیم.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
@@ -850,6 +893,9 @@ msgid ""
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
+"چهار سرباز شهروند را انتخاب کرده و به آنها فرمان دهید تا یک پادگان بسازند: "
+"همانند قبل، انتخاب سربازها، کلیلک بر روی عکس پادگان در پنل تولید و سپس قرار "
+"دادن پایه ساختمان در نزدیکی مرکز تمدن جایی که شما می خواهید ساخته شود."
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
@@ -859,12 +905,19 @@ msgid ""
 " on it (you should see a hammer icon). Then produce two more builders by "
 "clicking on the hoplite icon twice."
 msgstr ""
+"کمی صبر کنید تا پادگان ساخته شود. بخاطر اینکه ساخت این ساختمان بسیار زمانبر "
+"است، شما می توانید دو سه سرباز بیشتر برای ساخت آن بفرستید تا سریعتر آماده "
+"شود. برای اینکار مرکز تمدن را انتخاب کرده و محل تجمع را بر روی پایه ساختمان "
+"پادگان از طریق کلیک راست قرار دهید (شما می توانید عکس چکش را ببینید)، و سپس "
+"دستور دهید تا دو هاپلیت جدید پرورش یابد، با کلیک کردن بر روی عکسش."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
 "You should now be able to research Town Phase. Select the Civic Center and "
 "click on the technology icon.\n"
 msgstr ""
+"حال شما باید قادر شده باشید که تحقیق \"مرحله شهرک\" را انجام دهید. مرکز تمدن"
+" را انتخاب کرده و بر روی فناوری مربوطه کلیک کنید.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:395
 msgid ""

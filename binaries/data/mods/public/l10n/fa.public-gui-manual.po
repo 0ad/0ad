@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# бахром дуниахо <brandonw041@gmail.com>, 2019
 # hamed farri <hamed.farri@gmail.com>, 2016
 # mohammad khodadadi <asmanp2012@gmail.com>, 2017
 # Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-10-11 20:05+0000\n"
-"Last-Translator: reza latifi <reza.bubba@gmail.com>\n"
+"PO-Revision-Date: 2019-12-10 00:38+0000\n"
+"Last-Translator: бахром дуниахо <brandonw041@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -73,35 +74,35 @@ msgstr "کنترل‌های اصلی:"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr ""
+msgstr "• برای انتخاب کردن واحدها کلیک چپ کنید"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr ""
+msgstr "• برای انتخاب کردن گروه واحدها کلیک چپ کنید و بکشید"
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr ""
+msgstr "• برای فرمان دادن واحدها به هدفشان کلیک راست کنید"
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr ""
+msgstr "• برای حرکت دادن دوربین کلید WASD یا جهت دار استفاده کنید"
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr ""
+msgstr "• برای چرخاندن دوربین, Ctrl + کلید جهت دار, یا Shift + چرخ ماوس استفاده کنید"
 
 #: gui/manual/intro.txt:16
 msgid "• Mouse wheel, or \"=\"/\"+\" and \"-\"/\"−\" keys, to zoom"
-msgstr ""
+msgstr "• برای بزرگنمایی کردن,  چرخ ماوس, یا کلید \"=\"/\"+\" و \"-\"/\"_\" استفاده کنید"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]حالت ها[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr ""
+msgstr "منوی اصلی به دو حالت بازی دسترسی می دهد:"
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -109,13 +110,13 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]تکنفره[font=\"sans-14\"] – بازی جعبه شنی یا علیه یک یا چند بازیکن کامپیوتری (AI) بازی کنید. AI پیش فرض (پترا) در حال توسعه است و ممکن است همیشه از ویژگی های جدید به روز نباشد ، اما با این AI می توانید بازی را با یا علیه آن انجام دهید."
 
 #: gui/manual/intro.txt:21
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]چند نفره[font=\"sans-14\"] – از طریق اینترنت علیه مخالفان انسانی بازی کن."
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -127,11 +128,11 @@ msgstr "برای راه اندازی یک بازی چند نفره، یکی از
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]تنظیمات بازی[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr ""
+msgstr "در جلسه بازی چند نفره, فقط میزبان میتواند گزینه های تنظیمات بازی عوض کند."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -141,19 +142,19 @@ msgstr "اول، نقشه ای که می خواهید بازی کنید را ا�
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]نقشه تصادفی[font=\"sans-14\"] – نقشه به صورت خودکار از یک اسکریپت ایجاد شده است"
 
 #: gui/manual/intro.txt:30
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]نقشه سناریو[font=\"sans-14\"] – نقشه ایجاد شده توسط طراحان نقشه و با تمدن های از پیش تعیین شده"
 
 #: gui/manual/intro.txt:31
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]نقشه زد و خورد[font=\"sans-14\"] – نقشه ایجاد شده توسط طراحان نقشه اما تمدنها میتوانند انتخاب بشوند."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -179,124 +180,124 @@ msgstr "زمانی که آماده بودید، بر روی دکمه \"شروع 
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys:[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]کلیدهای گرم:[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]در سراسر برنامه[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:41
 msgid ""
 "  Alt + F4 – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr "Alt + F4 – برای ترک کردن بازی بدون پرسیده شدن بابت تایید"
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "Alt + Enter – برای تغییر کردن بین صفحه کامل یا صفحه پنجره شده"
 
 #: gui/manual/intro.txt:43
 msgid "  ~ or F9 – Show/hide console"
-msgstr ""
+msgstr "~ or F9 – برای نمایش دادن/پنهان کردن کنسول"
 
 #: gui/manual/intro.txt:44
 msgid "  Alt + F – Show/hide frame counter (FPS)"
-msgstr ""
+msgstr "Alt + F – برای نمایش دادن/پنهان کردن پیشخوان نرخ فریم )FPS("
 
 #: gui/manual/intro.txt:45
 msgid ""
 "  F11 – Enable/disable real-time profiler (toggles through the displays of "
 "information)"
-msgstr ""
+msgstr " F11 – برای فعال/غیر فعال کردن پروفایلر زمان واقعی )تغییر شدن در میان نمایش از اطلاعاتی ("
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to \"logs/profile.txt\""
-msgstr ""
+msgstr " Shift + F11 – برای ذخیره کردن اطلاعات پروفایلر حاضری به: \"logs/profile.txt\""
 
 #: gui/manual/intro.txt:47
 msgid ""
 "  F2 – Take screenshot (in .png format, location is displayed in the top "
 "left of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr ""
+msgstr "F2 – برای گرفتن عکس صفحه )در .png قالب, محل در بالا چپ GUI نمایش میشود بعد از فایل ذخیره شده, و اگر نمیتوانید عکس را ببینید عکس نیزمیتواند در کنسول/سیاههها دیده بشود("
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, "
 "location is displayed in the top left of the GUI after the file has been "
 "saved, and can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr " Shift + F2 – برای گرفتن عکس صفحه بزرگ)6400×4800 پیکسل, در .bmp قالب, محل در بالا چپ GUI نمایش میشود بعد از فایل ذخیره شده, و اگر نمیتوانید عکس را ببینید عکس نیزمیتواند در کنسول/سیاههها دیده بشود("
 
 #: gui/manual/intro.txt:49
 msgid "  Tab, Alt + S – Switch to the next tab"
-msgstr ""
+msgstr "Tab, Alt + S – تغییر به برگه بعدی"
 
 #: gui/manual/intro.txt:50
 msgid "  Shift + Tab, Alt + W – Switch to the previous tab"
-msgstr ""
+msgstr "Shift + Tab, Alt + W – تغییر به برگه قلبی"
 
 #: gui/manual/intro.txt:52
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]در جلسه بازی[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:53
 msgid ""
 "  Double Left Click \\[on unit] – Select all of your units of the same kind "
 "on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "Double Left Click \\[on unit] – همه واحدهای خود را از نوع مشابه در صفحه انتخاب کنید (حتی اگر آنها رتبه مختلف داشته باشند.)"
 
 #: gui/manual/intro.txt:54
 msgid ""
 "  Triple Left Click \\[on unit] – Select all of your units of the same kind "
 "and the same rank on the screen"
-msgstr ""
+msgstr "Triple Left Click \\[on unit] – همه واحدهای خود را از نوع مشابه و همان رتبه بر در صفحه انتخاب کنید"
 
 #: gui/manual/intro.txt:55
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "Alt + Double Left Click \\[on unit] – همه واحدهای خود را از نوع مشابه در کل نقشه انتخاب کنید (حتی اگر آنها رتبه مختلف داشته باشند.)"
 
 #: gui/manual/intro.txt:56
 msgid ""
 "  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
 "kind and rank on the entire map"
-msgstr ""
+msgstr "Alt + Triple Left Click \\[on unit] – همه واحدهای خود را از نوع مشابه و همان رتبه بر در کل نقشه انتخاب کنید"
 
 #: gui/manual/intro.txt:57
 msgid "  Shift + F5 – Quicksave"
-msgstr ""
+msgstr "Shift + F5 – ذخیره بدون مکث"
 
 #: gui/manual/intro.txt:58
 msgid "  Shift + F8 – Quickload"
-msgstr ""
+msgstr "Shift + F8 – بارگیری سریع"
 
 #: gui/manual/intro.txt:59
 msgid "  F10 – Open/close menu"
-msgstr ""
+msgstr "F10 – باز کردن/بستن منو"
 
 #: gui/manual/intro.txt:60
 msgid "  F12 – Show/hide time elapsed counter"
-msgstr ""
+msgstr "F12 – برای نمایش دادن/پنهان پیشخوان زمان سپری"
 
 #: gui/manual/intro.txt:61
 msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "Esc – برای بستن همه گفتگو (گپ، منو) یا پاک کردن واحدهای انتخاب شده."
 
 #: gui/manual/intro.txt:62
 msgid "  Enter/Return – Open/send chat"
-msgstr ""
+msgstr "Enter/Return – برای باز کردن/ ارسال کردن گپ"
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
-msgstr ""
+msgstr "T – ارسال کردن گپ تیم"
 
 #: gui/manual/intro.txt:64
 msgid "  L – Chat with the previously selected private chat partner"
-msgstr ""
+msgstr "L – برای گپ کردن با شریک گپ خصوصی سابق"
 
 #: gui/manual/intro.txt:65
 msgid "  Pause – Pause/resume the game"
-msgstr ""
+msgstr "Pause – برای مکث/ادامه کردن بازی"
 
 #: gui/manual/intro.txt:66
 msgid ""
