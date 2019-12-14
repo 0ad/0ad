@@ -1,19 +1,22 @@
 // See helpers/TraderGain.js for the CalculateTaderGain() function which works out how many
 // resources a trader gets
 
-// Additional gain for ships for each garrisoned trader, in percents
-const GARRISONED_TRADER_ADDITION = 20;
-
 function Trader() {}
 
 Trader.prototype.Schema =
 	"<a:help>Lets the unit generate resouces while moving between markets (or docks in case of water trading).</a:help>" +
 	"<a:example>" +
 		"<GainMultiplier>0.75</GainMultiplier>" +
+		"<GarrisonGainMultiplier>0.2</GarrisonGainMultiplier>" +
 	"</a:example>" +
 	"<element name='GainMultiplier' a:help='Trader gain for a 100m distance and mapSize = 1024'>" +
 		"<ref name='positiveDecimal'/>" +
-	"</element>";
+	"</element>" +
+	"<optional>" +
+		"<element name='GarrisonGainMultiplier' a:help='Additional gain for garrisonable unit for each garrisoned trader (1.0 means 100%)'>" +
+			"<ref name='positiveDecimal'/>" +
+		"</element>" +
+	"</optional>";
 
 Trader.prototype.Init = function()
 {
@@ -32,32 +35,32 @@ Trader.prototype.CalculateGain = function(currentMarket, nextMarket)
 	if (!gain)	// One of our markets must have been destroyed
 		return null;
 
-	// For ship increase gain for each garrisoned trader
+	// For garrisonable unit increase gain for each garrisoned trader
 	// Calculate this here to save passing unnecessary stuff into the CalculateTraderGain function
-	let cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
-	if (cmpIdentity && cmpIdentity.HasClass("Ship"))
-	{
-		let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
-		if (cmpGarrisonHolder)
-		{
-			let garrisonMultiplier = 1;
-			let garrisonedTradersCount = 0;
-			for (let entity of cmpGarrisonHolder.GetEntities())
-			{
-				let cmpGarrisonedUnitTrader = Engine.QueryInterface(entity, IID_Trader);
-				if (cmpGarrisonedUnitTrader)
-					++garrisonedTradersCount;
-			}
-			garrisonMultiplier *= 1 + GARRISONED_TRADER_ADDITION * garrisonedTradersCount / 100;
+	let garrisonGainMultiplier = this.GetGarrisonGainMultiplier();
+	if (garrisonGainMultiplier === undefined)
+		return gain;
 
-			if (gain.traderGain)
-				gain.traderGain = Math.round(garrisonMultiplier * gain.traderGain);
-			if (gain.market1Gain)
-				gain.market1Gain = Math.round(garrisonMultiplier * gain.market1Gain);
-			if (gain.market2Gain)
-				gain.market2Gain = Math.round(garrisonMultiplier * gain.market2Gain);
-		}
+	let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
+	if (!cmpGarrisonHolder)
+		return gain;
+
+	let garrisonMultiplier = 1;
+	let garrisonedTradersCount = 0;
+	for (let entity of cmpGarrisonHolder.GetEntities())
+	{
+		let cmpGarrisonedUnitTrader = Engine.QueryInterface(entity, IID_Trader);
+		if (cmpGarrisonedUnitTrader)
+			++garrisonedTradersCount;
 	}
+	garrisonMultiplier *= 1 + garrisonGainMultiplier * garrisonedTradersCount;
+
+	if (gain.traderGain)
+		gain.traderGain = Math.round(garrisonMultiplier * gain.traderGain);
+	if (gain.market1Gain)
+		gain.market1Gain = Math.round(garrisonMultiplier * gain.market1Gain);
+	if (gain.market2Gain)
+		gain.market2Gain = Math.round(garrisonMultiplier * gain.market2Gain);
 
 	return gain;
 };
@@ -130,6 +133,13 @@ Trader.prototype.GetSecondMarket = function()
 Trader.prototype.GetTraderGainMultiplier = function()
 {
 	return ApplyValueModificationsToEntity("Trader/GainMultiplier", +this.template.GainMultiplier, this.entity);
+};
+
+Trader.prototype.GetGarrisonGainMultiplier = function()
+{
+	if (this.template.GarrisonGainMultiplier === undefined)
+		return undefined;
+	return ApplyValueModificationsToEntity("Trader/GarrisonGainMultiplier", +this.template.GarrisonGainMultiplier, this.entity);
 };
 
 Trader.prototype.HasBothMarkets = function()
