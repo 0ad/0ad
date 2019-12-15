@@ -248,6 +248,8 @@ UnitAI.prototype.UnitFsmSpec = {
 		// No orders left, we're an individual now
 		if (this.IsAnimal())
 			this.SetNextState("ANIMAL.IDLE");
+		else if (this.IsFormationMember())
+			this.SetNextState("FORMATIONMEMBER.IDLE");
 		else
 			this.SetNextState("INDIVIDUAL.IDLE");
 
@@ -637,7 +639,10 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Cheering": function(msg) {
-		this.SetNextState("INDIVIDUAL.CHEERING");
+		if (this.IsFormationMember())
+			this.SetNextState("FORMATIONMEMBER.CHEERING");
+		else
+			this.SetNextState("INDIVIDUAL.CHEERING");
 	},
 
 	"Order.Pack": function(msg) {
@@ -1301,11 +1306,19 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"IDLE": "INDIVIDUAL.IDLE",
 
+		"CHEERING": "INDIVIDUAL.CHEERING",
+
 		"WALKING": {
 			"enter": function() {
 				this.formationOffset = { "x": this.order.data.x, "z": this.order.data.z };
 				let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 				cmpUnitMotion.MoveToFormationOffset(this.order.data.target, this.order.data.x, this.order.data.z);
+				if (this.order.data.offsetsChanged)
+				{
+					let cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
+					if (cmpFormation)
+						this.SetAnimationVariant(cmpFormation.GetFormationAnimation(this.entity));
+				}
 			},
 
 			"leave": function() {
@@ -1349,6 +1362,8 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.FinishOrder();
 					return true;
 				}
+				if (cmpFormation && this.order.data.offsetsChanged)
+					this.SetAnimationVariant(cmpFormation.GetFormationAnimation(this.entity));
 			},
 
 			"MovementUpdate": function() {

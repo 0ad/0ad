@@ -231,7 +231,7 @@ void CMiniMap::SetCameraPos()
 
 float CMiniMap::GetAngle() const
 {
-	CVector3D cameraIn = m_Camera->m_Orientation.GetIn();
+	CVector3D cameraIn = m_Camera->GetOrientation().GetIn();
 	return -atan2(cameraIn.X, cameraIn.Z);
 }
 

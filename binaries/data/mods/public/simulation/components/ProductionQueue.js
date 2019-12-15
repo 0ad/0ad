@@ -350,7 +350,10 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			let cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 			cmpTechnologyManager.QueuedResearch(templateName, this.entity);
 			if (this.queue.length == 0)
+			{
 				cmpTechnologyManager.StartedResearch(templateName, false);
+				this.SetAnimation("researching");
+			}
 
 			this.queue.push({
 				"id": this.nextID++,
@@ -447,6 +450,7 @@ ProductionQueue.prototype.RemoveBatch = function(id)
 			// item.player is used as this.entity's owner may be invalid (deletion, etc.)
 			var cmpTechnologyManager = QueryPlayerIDInterface(item.player, IID_TechnologyManager);
 			cmpTechnologyManager.StoppedResearch(item.technologyTemplate, true);
+			this.SetAnimation("idle");
 		}
 
 		// Remove from the queue
@@ -457,6 +461,13 @@ ProductionQueue.prototype.RemoveBatch = function(id)
 		return;
 	}
 };
+
+ProductionQueue.prototype.SetAnimation = function(name)
+{
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (cmpVisual)
+		cmpVisual.SelectAnimation(name, false, 1);
+}
 
 /*
  * Returns basic data from all batches in the production queue.
@@ -704,6 +715,7 @@ ProductionQueue.prototype.ProgressTimeout = function(data)
 				// Mark the research as started.
 				var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 				cmpTechnologyManager.StartedResearch(item.technologyTemplate, true);
+				this.SetAnimation("researching");
 			}
 
 			item.productionStarted = true;
@@ -763,9 +775,8 @@ ProductionQueue.prototype.ProgressTimeout = function(data)
 		{
 			var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 			cmpTechnologyManager.ResearchTechnology(item.technologyTemplate);
-
+			this.SetAnimation("idle");
 			let template = TechnologyTemplates.Get(item.technologyTemplate);
-
 			if (template && template.soundComplete)
 			{
 				var cmpSoundManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_SoundManager);

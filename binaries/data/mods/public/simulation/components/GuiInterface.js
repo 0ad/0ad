@@ -561,8 +561,10 @@ GuiInterface.prototype.GetAverageRangeForBuildings = function(player, cmd)
 	return cmpRangeManager.GetElevationAdaptedRange(pos, rot, range, elevationBonus, 2*Math.PI);
 };
 
-GuiInterface.prototype.GetTemplateData = function(player, templateName)
+GuiInterface.prototype.GetTemplateData = function(player, data)
 {
+	let templateName = data.templateName;
+	let owner = !!data.owner ? data.owner : player;
 	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	let template = cmpTemplateManager.GetTemplate(templateName);
 
@@ -572,14 +574,14 @@ GuiInterface.prototype.GetTemplateData = function(player, templateName)
 	let aurasTemplate = {};
 
 	if (!template.Auras)
-		return GetTemplateDataHelper(template, player, aurasTemplate);
+		return GetTemplateDataHelper(template, owner, aurasTemplate);
 
 	let auraNames = template.Auras._string.split(/\s+/);
 
 	for (let name of auraNames)
 		aurasTemplate[name] = AuraTemplates.Get(name);
 
-	return GetTemplateDataHelper(template, player, aurasTemplate);
+	return GetTemplateDataHelper(template, owner, aurasTemplate);
 };
 
 GuiInterface.prototype.IsTechnologyResearched = function(player, data)
@@ -1219,7 +1221,7 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 			this.placementWallEntities[tpl] = {
 				"numUsed": 0,
 				"entities": [],
-				"templateData": this.GetTemplateData(player, tpl),
+				"templateData": this.GetTemplateData(player, { "templateName": tpl }),
 			};
 
 			// ensure that the loaded template data contains a wallPiece component

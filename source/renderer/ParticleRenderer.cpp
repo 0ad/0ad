@@ -113,7 +113,7 @@ void ParticleRenderer::PrepareForRendering(const CShaderDefines& context)
 		// Sort back-to-front by distance from camera
 		PROFILE("sort emitters");
 		CMatrix3D worldToCam;
-		g_Renderer.GetViewCamera().m_Orientation.GetInverse(worldToCam);
+		g_Renderer.GetViewCamera().GetOrientation().GetInverse(worldToCam);
 		std::stable_sort(m->emitters[cullGroup].begin(), m->emitters[cullGroup].end(), SortEmitterDistance(worldToCam));
 	}
 

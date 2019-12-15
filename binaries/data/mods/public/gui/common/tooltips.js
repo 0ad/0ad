@@ -644,16 +644,16 @@ function getWallPieceTooltip(wallTypes)
 /**
  * Returns the cost information to display in the specified entity's construction button tooltip.
  */
-function getEntityCostTooltip(template, entity, buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch)
+function getEntityCostTooltip(template, player, entity, buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch)
 {
 	// Entities with a wallset component are proxies for initiating wall placement and as such do not have a cost of
 	// their own; the individual wall pieces within it do.
 	if (template.wallSet)
 	{
-		let templateLong = GetTemplateData(template.wallSet.templates.long);
-		let templateMedium = GetTemplateData(template.wallSet.templates.medium);
-		let templateShort = GetTemplateData(template.wallSet.templates.short);
-		let templateTower = GetTemplateData(template.wallSet.templates.tower);
+		let templateLong = GetTemplateData(template.wallSet.templates.long, player);
+		let templateMedium = GetTemplateData(template.wallSet.templates.medium, player);
+		let templateShort = GetTemplateData(template.wallSet.templates.short, player);
+		let templateTower = GetTemplateData(template.wallSet.templates.tower, player);
 
 		let wallCosts = getWallPieceTooltip([templateShort, templateMedium, templateLong]);
 		let towerCosts = getEntityCostComponentsTooltipString(templateTower);

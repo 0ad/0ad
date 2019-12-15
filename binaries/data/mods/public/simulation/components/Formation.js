@@ -480,12 +480,16 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 		this.offsets = undefined;
 	}
 
+	let offsetsChanged = false;
 	var newOrientation = this.GetEstimatedOrientation(avgpos);
 	var dSin = Math.abs(newOrientation.sin - this.oldOrientation.sin);
 	var dCos = Math.abs(newOrientation.cos - this.oldOrientation.cos);
 	// If the formation existed, only recalculate positions if the turning agle is somewhat biggish
 	if (!this.offsets || dSin > 1 || dCos > 1)
+	{
 		this.offsets = this.ComputeFormationOffsets(active, positions);
+		offsetsChanged = true;
+	}
 
 	this.oldOrientation = newOrientation;
 
@@ -506,7 +510,8 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 		{
 			"target": this.entity,
 			"x": offset.x,
-			"z": offset.y
+			"z": offset.y,
+			"offsetsChanged": offsetsChanged
 		};
 		cmpUnitAI.AddOrder("FormationWalk", data, !force);
 		xMax = Math.max(xMax, offset.x);
@@ -931,7 +936,11 @@ Formation.prototype.OnGlobalEntityRenamed = function(msg)
 		cmpOldUnitAI.SetFormationController(INVALID_ENTITY);
 
 		if (cmpNewUnitAI)
+		{
 			cmpNewUnitAI.SetFormationController(this.entity);
+			if (!cmpNewUnitAI.GetOrders().length)
+				cmpNewUnitAI.SetNextState("FORMATIONMEMBER.IDLE");
+		}
 
 		// Because the renamed entity might have different characteristics,
 		// (e.g. packed vs. unpacked siege), we need to recompute motion parameters

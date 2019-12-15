@@ -217,7 +217,7 @@ g_SelectionPanels.Construction = {
 	},
 	"setupButton": function(data)
 	{
-		let template = GetTemplateData(data.item);
+		let template = GetTemplateData(data.item, data.player);
 		if (!template)
 			return false;
 
@@ -240,12 +240,15 @@ g_SelectionPanels.Construction = {
 			getEntityNamesFormatted,
 			getVisibleEntityClassesFormatted,
 			getAurasTooltip,
-			getEntityTooltip,
-			getEntityCostTooltip,
-			getGarrisonTooltip,
-			getPopulationBonusTooltip,
-			showTemplateViewerOnRightClickTooltip
+			getEntityTooltip
 		].map(func => func(template));
+		tooltips.push(
+			getEntityCostTooltip(template, data.player),
+			getGarrisonTooltip(template),
+			getPopulationBonusTooltip(template),
+			showTemplateViewerOnRightClickTooltip(template)
+		);
+
 
 		let limits = getEntityLimitAndCount(data.playerState, data.item);
 		tooltips.push(
@@ -930,7 +933,7 @@ g_SelectionPanels.Training = {
 	},
 	"setupButton": function(data)
 	{
-		let template = GetTemplateData(data.item);
+		let template = GetTemplateData(data.item, data.player);
 		if (!template)
 			return false;
 
@@ -969,9 +972,8 @@ g_SelectionPanels.Training = {
 			getVisibleEntityClassesFormatted(template),
 			getAurasTooltip(template),
 			getEntityTooltip(template),
-			getEntityCostTooltip(template, unitIds[0], buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch)
+			getEntityCostTooltip(template, data.player, unitIds[0], buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch)
 		];
-
 		let limits = getEntityLimitAndCount(data.playerState, data.item);
 		tooltips.push(formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers));
 

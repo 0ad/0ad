@@ -144,15 +144,15 @@ void SetCurrentPaths(const std::vector<sCinemaPath>& atlasPaths)
 QUERYHANDLER(GetCameraInfo)
 {
 	sCameraInfo info;
-	CMatrix3D* cam = &g_Game->GetView()->GetCamera()->m_Orientation;
+	const CMatrix3D& cameraOrientation = g_Game->GetView()->GetCamera()->GetOrientation();
 
-	CQuaternion quatRot = cam->GetRotation();
+	CQuaternion quatRot = cameraOrientation.GetRotation();
 	quatRot.Normalize();
 	CVector3D rotation = quatRot.ToEulerAngles();
 	rotation.X = RADTODEG(rotation.X);
 	rotation.Y = RADTODEG(rotation.Y);
 	rotation.Z = RADTODEG(rotation.Z);
-	CVector3D translation = cam->GetTranslation();
+	CVector3D translation = cameraOrientation.GetTranslation();
 
 	info.pX = translation.X;
 	info.pY = translation.Y;

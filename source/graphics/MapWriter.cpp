@@ -286,13 +286,13 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 			XMLWriter_Element cameraTag(xmlMapFile, "Camera");
 			{
 				XMLWriter_Element positionTag(xmlMapFile, "Position");
-				CVector3D pos = pCamera->m_Orientation.GetTranslation();
+				CVector3D pos = pCamera->GetOrientation().GetTranslation();
 				positionTag.Attribute("x", pos.X);
 				positionTag.Attribute("y", pos.Y);
 				positionTag.Attribute("z", pos.Z);
 			}
 
-			CVector3D in = pCamera->m_Orientation.GetIn();
+			CVector3D in = pCamera->GetOrientation().GetIn();
 			// Convert to spherical coordinates
 			float rotation = atan2(in.X, in.Z);
 			float declination = atan2(sqrt(in.X*in.X + in.Z*in.Z), in.Y) - static_cast<float>(M_PI / 2);

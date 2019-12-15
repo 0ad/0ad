@@ -183,14 +183,8 @@ void timer_DisplayClientTotals()
 	debug_printf("TIMER TOTALS (%lu clients)\n", (unsigned long)numClients);
 	debug_printf("-----------------------------------------------------\n");
 
-	while(clients)
+	for(TimerClient* tc = clients; tc; tc = tc->next)
 	{
-		// (make sure list and count are consistent)
-		ENSURE(numClients != 0);
-		TimerClient* tc = clients;
-		clients = tc->next;
-		numClients--;
-
 		const std::string duration = tc->sum.ToString();
 		debug_printf("  %s: %s (%lux)\n", utf8_from_wstring(tc->description).c_str(), duration.c_str(), (unsigned long)tc->num_calls);
 	}

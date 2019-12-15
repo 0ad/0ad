@@ -208,15 +208,21 @@ function GetEntityState(entId)
 	return g_EntityStates[entId];
 }
 
-function GetTemplateData(templateName)
+/**
+ * Returns template data calling GetTemplateData defined in GuiInterface.js
+ * and deepfreezing returned object.
+ * @param {string} templateName - Data of this template will be returned.
+ * @param {number|undefined} owner - Modifications of this player will be applied to the template.
+ *      If undefined, id of player calling this method will be used.
+ */
+function GetTemplateData(templateName, owner)
 {
 	if (!(templateName in g_TemplateData))
 	{
-		let template = Engine.GuiInterfaceCall("GetTemplateData", templateName);
+		let template = Engine.GuiInterfaceCall("GetTemplateData", { "templateName": templateName, "owner": owner });
 		translateObjectKeys(template, ["specific", "generic", "tooltip"]);
 		g_TemplateData[templateName] = deepfreeze(template);
 	}
-
 	return g_TemplateData[templateName];
 }
 
