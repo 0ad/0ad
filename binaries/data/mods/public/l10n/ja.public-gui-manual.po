@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Asakura, 2015,2017
+# Jun Furukawa <junnik@icloud.com>, 2019
 # Kanetaka Suto, 2014-2015
 # karubabu <karubabu@protonmail.com>, 2018
 # llen_llen, 2014
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-09-16 15:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-12-13 17:30+0000\n"
+"Last-Translator: Jun Furukawa <junnik@icloud.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,18 +37,18 @@ msgstr "オンラインで見る"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D.操作マニュアル[font=\"sans-14\"] "
 
 #: gui/manual/intro.txt:2
 msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "0 A.D.をインストールしていただきありがとうございます。このページでは、未完成で開発途上のアルファ版であるこのゲームで利用可能な機能の概要を説明します。"
+msgstr "0 A.D.をインストールしていただきありがとうございます。このゲームは未完成で開発中のアルファ版ですが、このページではゲームで利用可能な機能の概要を説明します。"
 
 #: gui/manual/intro.txt:4
 msgid "[font=\"sans-bold-16\"]Graphics settings[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]グラフィック設定[font=\"sans-14\"] "
 
 #: gui/manual/intro.txt:5
 msgid ""
@@ -55,11 +56,11 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the \"HQ "
 "Water Effects\" and \"Shadows\" options."
-msgstr ""
+msgstr "Alt+Enterキーで全画面表示とウィンドウ表示を切り替えることができます。ウィンドウ表示モードでは画面サイズの変更ができます。ゲームの動作が遅い時はオプションウィンドウでHQ Water EffectsやShadowsを無効にするなど設定を変更してください。"
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]ゲームのプレイ[font=\"sans-14\"] "
 
 #: gui/manual/intro.txt:8
 msgid ""
@@ -67,7 +68,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr ""
+msgstr "リアルタイムストラテジーゲーム(RTS)を長くプレイされている方ならゲームの操作についてはご存知のはずです。足りない機能やバランスの悪いところがまだたくさんありますが–うまく動くようになるためにはベータ版のリリースを待っていただくことになってしまいます。"
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls:"
@@ -75,35 +76,35 @@ msgstr "基本的な操作："
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr ""
+msgstr "・左クリックでユニットを選択します。"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr ""
+msgstr "・左クリックしながらドラッグすることで複数ユニットを選択できます。"
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr ""
+msgstr "・右クリックでユニットが目的地へ移動するよう命令できます。"
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr ""
+msgstr "・十字キーまたはWASDキーでカメラを移動します。"
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr ""
+msgstr "・Ctrl + 十字キー、またはShift + マウスホイールでカメラを回転します。"
 
 #: gui/manual/intro.txt:16
 msgid "• Mouse wheel, or \"=\"/\"+\" and \"-\"/\"−\" keys, to zoom"
-msgstr ""
+msgstr "・マウスホイールまたは\"=\"/\"+\"キー、\"-\"/\"−\"キーでズームします。"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]モード[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr ""
+msgstr "メインメニューでふたつのゲームモードが選べます。"
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -111,13 +112,13 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]シングルプレーヤー[font=\"sans-14\"] – １人以上のコンピュータープレーヤー(AI)と対戦します。デフォルトのAI (Petra)は開発途上で新しい機能が揃っていないこともありますが、味方としても敵としても一緒にプレイすることができます。"
 
 #: gui/manual/intro.txt:21
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]マルチプレーヤー[font=\"sans-14\"] – インターネットを通じて他のプレーヤーと対戦します。"
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -125,15 +126,15 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "マルチプレイヤーゲームを立ち上げるには、1人のプレイヤーが「ゲームをホストする」オプションを選ばなければなりません。ゲームはUDPの20595番ポートを使用するので、ホストは自分のNATやファイアウォールなどがこれを許可するように調整しなけれなりません。その後に、他のプレイヤーは「ゲームに参加する」を選んでホストのIPアドレスを入力できます。"
+msgstr "マルチプレイヤーゲームを立ち上げるには、いずれかのプレイヤーが「ゲームをホストする」オプションを選択する必要があります。ゲームはUDP20595番ポートを使用するので、ホストは自分のNATやファイアウォールなどがこれを許可するよう設定しなけれなりません。他のプレイヤーは「ゲームに参加する」を選択してホストのIPアドレスを入力します。"
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]ゲーム開始設定[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr ""
+msgstr "マルチプレーヤーゲームではホストだけがゲーム開始設定を変更できます。"
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -143,19 +144,19 @@ msgstr "まず最初にプレイしたいマップのタイプを選びます：
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]ランダムマップ[font=\"sans-14\"] – スクリプトによって自動的に作成されるマップです。"
 
 #: gui/manual/intro.txt:30
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]シナリオマップ[font=\"sans-14\"] – マップデザイナーによって作成されたマップで文明の位置が決まっています。"
 
 #: gui/manual/intro.txt:31
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]攻防マップ[font=\"sans-14\"] – マップデザイナーによって作成されたマップですが文明の位置は選ぶことができます。"
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -164,7 +165,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr "マップをさらにフィルタリングすることができます。 デフォルトマップは一般にプレイ可能なマップです。 海洋マップは、すべての対戦相手が土地に到達できるわけではないマップです。デモマップはテスト目的で使用されるマップです (一般的には役に立たちません) 。「すべてのマップ」フィルタは、すべてのマップを1つのリストにまとめて表示します。"
+msgstr "次にマップをフィルタリングすることができます。 デフォルトマップは普通に遊ぶことができるマップです。 海洋マップは陸続きに攻めることができない敵もいるマップです。デモマップはテスト目的で使用されるマップです (通常プレイするには役に立たちません) 。「全てのマップ」を選択すると全マップを一度に表示します。"
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -173,7 +174,7 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr "最後に設定を変更します。 ランダムマップでは、プレイヤーの人数やマップの大きさなどが含まれます。シナリオでは、誰がどのプレイヤーを操作するか (マップ内のどこが開始位置となるかなどが定まります) だけを選択できます。 オプションは、人間のプレイヤーかAI、プレイヤーなしいずれかです (敵はただ遊んでいるだけになります) 。"
+msgstr "最後に設定を変更します。 ランダムマップでは、プレイヤーの人数やマップの大きさを決定します。シナリオマップでは誰がどのプレイヤーを操作するか (マップ内のどこを開始位置とするか) のみ選択します。人間のプレイヤーまたはAI、プレイヤーなし(敵なし)のいずれかを選択できます。"
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the \"Start game\" button."
@@ -181,45 +182,45 @@ msgstr "準備ができたら、「ゲーム開始」ボタンをクリックし
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys:[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]ホットキー[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]ゲーム共通[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:41
 msgid ""
 "  Alt + F4 – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr "  Alt + F4 – 確認なしで直ちに画面を閉じる"
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "  Alt + Enter – フルスクリーン表示とウィンドウ表示を切り替える"
 
 #: gui/manual/intro.txt:43
 msgid "  ~ or F9 – Show/hide console"
-msgstr ""
+msgstr "  ~ or F9 – コンソールの表示・非表示"
 
 #: gui/manual/intro.txt:44
 msgid "  Alt + F – Show/hide frame counter (FPS)"
-msgstr ""
+msgstr "  Alt + F – フレームカウンター(FPS)の表示・非表示"
 
 #: gui/manual/intro.txt:45
 msgid ""
 "  F11 – Enable/disable real-time profiler (toggles through the displays of "
 "information)"
-msgstr ""
+msgstr "  F11 – リアルタイムプロファイラの有効・無効（情報画面表示の切り替え）"
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to \"logs/profile.txt\""
-msgstr ""
+msgstr "  Shift + F11 – logs/profile.txtへ現在のプロファイラデータを保存する"
 
 #: gui/manual/intro.txt:47
 msgid ""
 "  F2 – Take screenshot (in .png format, location is displayed in the top "
 "left of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr ""
+msgstr "  F2 – スクリーンショットをとる (.png形式。保存先はファイルが保存されたときに画面の左上に表示されます。見逃した場合はコンソール／ログでも見ることができます)"
 
 #: gui/manual/intro.txt:48
 msgid ""

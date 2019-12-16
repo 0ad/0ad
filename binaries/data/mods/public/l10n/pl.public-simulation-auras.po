@@ -12,7 +12,7 @@
 # Karol Korczak <kvdb@wp.pl>, 2017
 # Krzysztof Ogonowski <kogonowski@icloud.com>, 2017
 # Leszek Szary, 2017
-# Marcin S <dzidek1003@o2.pl>, 2016-2017
+# Marcin S <dzidek1003@o2.pl>, 2016-2017,2019
 # Marek Balicki <m.s.balicki@gmail.com>, 2017
 # Marek Opłotny <oplotny.marek@gmail.com>, 2017
 # Mateusz Kubicz <zabsik1@wp.pl>, 2017
@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-09-16 18:04+0000\n"
-"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
+"PO-Revision-Date: 2019-12-14 19:59+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +56,7 @@ msgstr "Zapał religijny"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr "Wojownicy otrzymują +20% wartości ataku."
+msgstr "Wojownicy otrzymują +20% wartości ataku dystansowego."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -73,7 +73,7 @@ msgstr "Wpływowa Obecność"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers +10% melee and ranged attack damage."
-msgstr "Wojownicy otrzymują +10% wartości ataku."
+msgstr "Wojownicy otrzymują +10% do wartości ataku dystansowego oraz walki wręcz."
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
