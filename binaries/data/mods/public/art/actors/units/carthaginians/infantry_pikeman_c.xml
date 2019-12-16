@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -8,8 +8,8 @@
         <prop actor="props/units/shields/pelte_cart_c.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
-        <prop actor="props/units/armor/greave_02_white_r.xml" attachpoint="leg_R"/>
-        <prop actor="props/units/armor/greave_02_white_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_02_bronze_r.xml" attachpoint="leg_R"/>
+        <prop actor="props/units/armor/greave_02_bronze_l.xml" attachpoint="leg_L"/>
       </props>
     </variant>
   </group>
@@ -39,37 +39,39 @@
         <prop actor="props/units/helmets/hele_phrygian_b10.xml" attachpoint="helmet"/>
       </props>
     </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Carth-Sacred Band-ShortSleeve">
-      <textures>
-        <texture file="skeletal/kart_su1_sacredband_1.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Carth-Sacred Band-LongSleeve">
-      <textures>
-        <texture file="skeletal/kart_su1_sacredband_2.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Carth-Sacred Band-LongSleeve-dirty">
-      <textures>
-        <texture file="skeletal/kart_su1_sacredband_4.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="2" name="Carth-Sacred Band-Brown">
-      <textures>
-        <texture file="skeletal/kart_su1_sacredband_3.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="2" name="Carth-Sacred Band-Yellow">
-      <textures>
-        <texture file="skeletal/kart_su1_sacredband_5.dds" name="baseTex"/>
-      </textures>
+    <variant frequency="1" name="Helmet-Persian-Conical">
+      <props>
+        <prop actor="props/units/helmets/pers_conical_a1.xml" attachpoint="helmet"/>
+      </props>
     </variant>
   </group>
   <group>
-    <variant file="biped/base_pikeman_relax.xml"/>
+    <variant frequency="2" name="Scale-1b">
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
+      <textures>
+        <texture file="skeletal/cart_scale_1_b.png" name="baseTex"/>
+        <texture file="skeletal/cart_scale_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Linothorax-1a">
+      <textures>
+        <texture file="skeletal/cart_linothorax_champion_1_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Linothorax-1b">
+      <textures>
+        <texture file="skeletal/cart_linothorax_champion_1_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Linothorax-1c">
+      <textures>
+        <texture file="skeletal/cart_linothorax_champion_1_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
     <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/base_pikeman_relax.xml"/>
     <variant file="biped/death_infantry.xml"/>
     <variant file="biped/formations/syntagma_front.xml"/>
     <variant file="biped/formations/syntagma_01.xml"/>

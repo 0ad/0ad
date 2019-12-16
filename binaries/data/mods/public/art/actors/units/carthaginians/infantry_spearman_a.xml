@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"  ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -8,6 +8,26 @@
         <prop actor="props/units/shields/aspis_kart_a.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
+      </props>
+      <textures>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Greave-01">
+      <props>
+        <prop actor="props/units/armor/greave_11_bronze_l.xml" attachpoint="leg_L"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-02">
+      <props>
+        <prop actor="props/units/armor/greave_07_bronze_l.xml" attachpoint="leg_L"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-03">
+      <props>
+        <prop actor="props/units/armor/greave_09_bronze_l.xml" attachpoint="leg_L"/>
       </props>
     </variant>
   </group>
@@ -59,9 +79,39 @@
         <texture file="skeletal/kart_isp_a_3.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="3" name="Liby-Phoenician-Armour-4-Scale Reinforcement">
+    <variant frequency="1" name="Liby-Phoenician-Armour-4-Scale Reinforcement">
       <textures>
         <texture file="skeletal/kart_isp_a_4.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Linothorax-1a">
+      <textures>
+        <texture file="skeletal/cart_linothorax_1_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Linothorax-1b">
+      <textures>
+        <texture file="skeletal/cart_linothorax_1_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Linothorax-1c">
+      <textures>
+        <texture file="skeletal/cart_linothorax_1_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Padded-1a">
+      <textures>
+        <texture file="skeletal/cart_padded_1_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Padded-1b">
+      <textures>
+        <texture file="skeletal/cart_padded_1_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Padded-1c">
+      <textures>
+        <texture file="skeletal/cart_padded_1_c.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -89,5 +139,5 @@
     <variant file="biped/build_farm.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
