@@ -11,7 +11,9 @@
         <animation file="quadraped/zebra_death.dae" name="death" speed="100"/>
       </animations>
       <mesh>skeletal/zebra.dae</mesh>
-      <textures><texture file="skeletal/animal_zebra.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/animal_zebra.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -27,5 +29,5 @@
       </props>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>default.xml</material>
 </actor>
