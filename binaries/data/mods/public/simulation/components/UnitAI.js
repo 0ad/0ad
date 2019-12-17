@@ -1527,6 +1527,16 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				if (!this.isIdle)
 				{
+					if (this.formationController)
+					{
+						let cmpFormationPosition = Engine.QueryInterface(this.formationController, IID_Position);
+						if (cmpFormationPosition && cmpFormationPosition.IsInWorld())
+						{
+							let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+							if (cmpPosition && cmpPosition.IsInWorld())
+								cmpPosition.TurnTo(cmpFormationPosition.GetRotation().y);
+						}
+					}
 					this.isIdle = true;
 					Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
 				}

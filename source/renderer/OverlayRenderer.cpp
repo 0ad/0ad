@@ -628,7 +628,8 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 		else
 			sprite->m_Texture->Bind();
 
-		shader->Uniform(str_colorMul, sprite->m_Color);
+		if (shader)
+			shader->Uniform(str_colorMul, sprite->m_Color);
 
 		CVector3D pos[4] = {
 			sprite->m_Position + right*sprite->m_X0 + up*sprite->m_Y0,

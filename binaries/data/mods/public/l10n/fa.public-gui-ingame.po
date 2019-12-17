@@ -12,12 +12,13 @@
 # omidh <omid_h28@hotmail.com>, 2013
 # VAHID SOHRABLOO <vahid4134@gmail.com>, 2014
 # علیرضا محمدنژاد <aarmn80@gmail.com>, 2018
+# бахром дуниахо <brandonw041@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-25 08:08+0000\n"
-"PO-Revision-Date: 2019-11-25 15:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-12-13 16:45+0000\n"
+"Last-Translator: бахром дуниахо <brandonw041@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +29,7 @@ msgstr ""
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "برای تغییر کردن این منو کلید %(hotkey)s فشار بدهید."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -45,7 +46,7 @@ msgstr "خلاصه"
 #: gui/session/MenuButtons.js:87
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr ""
+msgstr "برای باز کردن صفحه خلاصهی کلید %(hotkey)s فشار بدهید."
 
 #: gui/session/MenuButtons.js:130
 msgid "Lobby"
@@ -56,7 +57,7 @@ msgstr "لابی"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr ""
+msgstr "برای باز کردن صفحه لابی بازی چند نفره بدون ترک کردن بازی کلید %(hotkey)s فشار بدهید."
 
 #: gui/session/MenuButtons.js:158
 msgid "Options"
@@ -73,7 +74,7 @@ msgstr "توقف بازی"
 #: gui/session/MenuButtons.js:197
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr ""
+msgstr "برای مکث/ادامه دادن بازی کلید %(hotkey)s فشار بدهید."
 
 #: gui/session/MenuButtons.js:213
 msgid "Resign"
@@ -102,7 +103,7 @@ msgstr "منتظر اتصال بازیکنان:"
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
-msgstr ""
+msgstr "در حال حاضر همزمان کردن جلسه بازی با نفرهای دیگر..."
 
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"
@@ -368,12 +369,12 @@ msgstr "،"
 #: gui/session/selection_panels.js:1062
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "بهبود کردن به %(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1067
 #, javascript-format
 msgid "Upgrade to %(name)s."
-msgstr ""
+msgstr "بهبود کردن به %(name)s."
 
 #: gui/session/selection_panels.js:1084
 msgid "Cancel Upgrading"
@@ -688,12 +689,12 @@ msgstr "گفتگو خصوصی"
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr ""
+msgstr "اطلاع رسانی بازی"
 
 #: gui/session/chat/ChatHistory.js:130
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr ""
+msgstr "اطلاع رسانی شبکه"
 
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
@@ -761,7 +762,7 @@ msgstr "%(player)s وارد بازی شد"
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:57
 msgid "no-context"
-msgstr ""
+msgstr "no-context"
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:61
 #, javascript-format
@@ -946,15 +947,15 @@ msgstr "ارتقاء واحد انتخاب شده"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:229
 msgid "Enable culling"
-msgstr ""
+msgstr "Enable culling"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:247
 msgid "Lock cull camera"
-msgstr ""
+msgstr "Lock cull camera"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:265
 msgid "Display camera frustum"
-msgstr ""
+msgstr "نمایش دادن دوربین مخروط ناقص"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -1106,7 +1107,7 @@ msgstr "Out of Sync"
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr ""
+msgstr "همجمان کرده نشده"
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:63
@@ -1252,19 +1253,19 @@ msgstr "فروش %(resource)s"
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
-msgstr ""
+msgstr "+%(amount)s"
 
 #: gui/session/trade/BarterButton.js:103
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"
-msgstr ""
+msgstr "-%(amount)s"
 
 #: gui/session/trade/TradeButton.js:56
 #, javascript-format
 msgctxt "trading good ratio"
 msgid "%(amount)s%%"
-msgstr ""
+msgstr "%(amount)s%%"
 
 #: gui/session/trade/TradeButtonManager.js:76
 #, javascript-format
@@ -1528,7 +1529,7 @@ msgstr "برای انتخاب نیروهای های گروه بندی شده ک�
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "ALPHA XXIV"
-msgstr ""
+msgstr "ALPHA XXIV"
 
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
@@ -1574,4 +1575,4 @@ msgstr "تجارت"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
-msgstr ""
+msgstr "منابع:"

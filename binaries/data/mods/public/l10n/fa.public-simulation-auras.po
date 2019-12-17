@@ -9,7 +9,7 @@
 # Hessam Shahpouri, 2017
 # mohammad khodadadi <asmanp2012@gmail.com>, 2017
 # Mostafa Bodagh <mosi2772@gmail.com>, 2017
-# Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018
+# Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018-2019
 # reza latifi <reza.bubba@gmail.com>, 2019
 # علیرضا محمدنژاد <aarmn80@gmail.com>, 2018
 # бахром дуниахо <brandonw041@gmail.com>, 2019
@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-12-11 19:08+0000\n"
-"Last-Translator: бахром дуниахо <brandonw041@gmail.com>\n"
+"PO-Revision-Date: 2019-12-14 07:30+0000\n"
+"Last-Translator: Mostafa Lotfi <lotfi.mostafa@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +32,7 @@ msgstr "تعمیرگاه کشتی"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr "نرخ احیا کشتی های پهلو گرفته +10  افزایش می‌یابد."
+msgstr "کشتی هایی که در آنها نیرو مستقر شده است +10 نرخ بازیابی سلامت"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -40,7 +40,7 @@ msgstr "برکت خدایان"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Humans +3 health regeneration rate."
-msgstr "نرخ بازسازی سلامتی انسانان +3 افزایش می‌یابد."
+msgstr "نرخ بازیابی سلامتی انسان ها +3 افزایش می‌یابد."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -48,7 +48,7 @@ msgstr "تعصب دینی"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr "سربازان +20% خسارت حمله دوربردی و خسارت حمله غوغای می دهند."
+msgstr "سربازان +20% قدرت حمله نزدیک زن و دور زن"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -65,7 +65,7 @@ msgstr "حضور چشمگیر"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers +10% melee and ranged attack damage."
-msgstr "سربازان +10% خسارت حمله دوربردی و خسارت حمله غوغای می دهند."
+msgstr "سربازان +10% قدرت حمله نزدیک زن و دور زن"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
@@ -73,7 +73,7 @@ msgstr "اهرام مرواه"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
 msgid "Civic Centers +10% territory influence radius."
-msgstr ""
+msgstr "مرکز تمدن +10% شعاع تاثیر قلمرو"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -145,7 +145,7 @@ msgstr "نماد شکوه و عظمت"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "+10 maximum population limit."
-msgstr "سقف تعداد جمعیت +10% افزایش می‌یابد."
+msgstr "سقف جمعیت +10% افزایش می‌یابد."
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion"

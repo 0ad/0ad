@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -8,6 +8,26 @@
         <prop actor="props/units/shields/aspis_kart_e.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Greave-01">
+      <props>
+        <prop actor="props/units/armor/greave_11_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_11_bronze_r.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-02">
+      <props>
+        <prop actor="props/units/armor/greave_07_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_07_bronze_r.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-03">
+      <props>
+        <prop actor="props/units/armor/greave_09_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_09_bronze_r.xml" attachpoint="leg_R"/>
       </props>
     </variant>
   </group>
@@ -42,11 +62,23 @@
         <prop actor="props/units/helmets/hele_phrygian_b10.xml" attachpoint="helmet"/>
       </props>
     </variant>
+    <variant frequency="1" name="Helmet-Persian-Conical">
+      <props>
+        <prop actor="props/units/helmets/pers_conical_a1.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
   </group>
   <group>
-    <variant frequency="1" name="Liby-Phoenician-Chainmail-1">
+    <variant frequency="0" name="Liby-Phoenician-Chainmail-1">
       <textures>
         <texture file="skeletal/kart_isp_e_1.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Scale-1a">
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
+      <textures>
+        <texture file="skeletal/cart_scale_1_a.png" name="baseTex"/>
+        <texture file="skeletal/cart_scale_1_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -74,5 +106,5 @@
     <variant file="biped/build_farm.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
