@@ -269,7 +269,7 @@ private:
 			g_Profiler2.RecordRegionEnter("condition_variable wait");
 
 			std::unique_lock<std::mutex> lock(m_WorkerMutex);
-			m_WorkerCV.wait(lock, [this] { return m_Enabled || m_Shutdown; });
+			m_WorkerCV.wait(lock);
 			lock.unlock();
 
 			g_Profiler2.RecordRegionLeave();
