@@ -74,6 +74,20 @@
         <texture file="skeletal/kart_isp_e_1.dds" name="baseTex"/>
       </textures>
     </variant>
+    <variant frequency="1" name="Cuirass-1a">
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
+      <textures>
+        <texture file="skeletal/cart_cuirass_1_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Lamellar-1a">
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
+      <textures>
+        <texture file="skeletal/cart_lamellar_1_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_lamellar_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
     <variant frequency="1" name="Scale-1a">
       <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <textures>
