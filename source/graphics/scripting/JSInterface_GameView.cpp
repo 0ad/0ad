@@ -68,26 +68,17 @@ void JSI_GameView::RegisterScriptFunctions_Settings(const ScriptInterface& scrip
 
 #undef REGISTER_BOOLEAN_SCRIPT_SETTING
 
-/**
- * Get the current X coordinate of the camera.
- */
-float JSI_GameView::CameraGetX(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+JS::Value JSI_GameView::GetCameraPivot(ScriptInterface::CxPrivate* pCxPrivate)
 {
-	if (!g_Game || !g_Game->GetView())
-		return -1;
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	CVector3D pivot(-1, -1, -1);
+	if (g_Game && g_Game->GetView())
+		pivot = g_Game->GetView()->GetCameraPivot();
 
-	return g_Game->GetView()->GetCameraPivot().X;
-}
-
-/**
- * Get the current Z coordinate of the camera.
- */
-float JSI_GameView::CameraGetZ(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	if (!g_Game || !g_Game->GetView())
-		return -1;
-
-	return g_Game->GetView()->GetCameraPivot().Z;
+	JS::RootedValue pivotValue(cx);
+	ScriptInterface::CreateObject(cx, &pivotValue, "x", pivot.X, "z", pivot.Z);
+	return pivotValue;
 }
 
 /**
@@ -174,8 +165,7 @@ void JSI_GameView::RegisterScriptFunctions(const ScriptInterface& scriptInterfac
 {
 	RegisterScriptFunctions_Settings(scriptInterface);
 
-	scriptInterface.RegisterFunction<float, &CameraGetX>("CameraGetX");
-	scriptInterface.RegisterFunction<float, &CameraGetZ>("CameraGetZ");
+	scriptInterface.RegisterFunction<JS::Value, &GetCameraPivot>("GetCameraPivot");
 	scriptInterface.RegisterFunction<void, entity_pos_t, entity_pos_t, &CameraMoveTo>("CameraMoveTo");
 	scriptInterface.RegisterFunction<void, float, float, float, &SetCameraTarget>("SetCameraTarget");
 	scriptInterface.RegisterFunction<void, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, &SetCameraData>("SetCameraData");

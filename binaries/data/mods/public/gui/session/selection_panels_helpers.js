@@ -183,20 +183,23 @@ function jumpCamera(index)
 		return;
 
 	let threshold = Engine.ConfigDB_GetValue("user", "gui.session.camerajump.threshold");
+	let cameraPivot = Engine.GetCameraPivot();
 	if (g_JumpCameraLast &&
-	    Math.abs(Engine.CameraGetX() - position.x) < threshold &&
-	    Math.abs(Engine.CameraGetZ() - position.z) < threshold)
+	    Math.abs(cameraPivot.x - position.x) < threshold &&
+	    Math.abs(cameraPivot.z - position.z) < threshold)
+	{
 		Engine.CameraMoveTo(g_JumpCameraLast.x, g_JumpCameraLast.z);
+	}
 	else
 	{
-		g_JumpCameraLast = { "x": Engine.CameraGetX(), "z": Engine.CameraGetZ() };
+		g_JumpCameraLast = cameraPivot;
 		Engine.CameraMoveTo(position.x, position.z);
 	}
 }
 
 function setJumpCamera(index)
 {
-	g_JumpCameraPositions[index] = { "x": Engine.CameraGetX(), "z": Engine.CameraGetZ() };
+	g_JumpCameraPositions[index] = Engine.GetCameraPivot();
 }
 
 /**
