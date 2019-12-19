@@ -89,7 +89,8 @@ static x86_x64::Cache L1Cache(u32 reg, x86_x64::Cache::Type type)
 static const size_t associativityTable[16] =
 {
 	0, 1, 2, 0, 4, 0, 8, 0,
-	16, 0, 32, 48, 64, 96, 128, x86_x64::Cache::fullyAssociative
+	// TODO: The second '16' does not obey to the specifications and is only a workaround. For a correct implementation please look here: https://community.amd.com/thread/244207
+	16, 16, 32, 48, 64, 96, 128, x86_x64::Cache::fullyAssociative
 };
 
 static x86_x64::Cache L2Cache(u32 reg, x86_x64::Cache::Type type)
