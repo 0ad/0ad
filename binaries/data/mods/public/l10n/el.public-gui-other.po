@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-25 08:08+0000\n"
-"PO-Revision-Date: 2019-11-25 16:09+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-12-19 11:20+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +43,7 @@ msgstr "%(hotkey)s: Κλείσιμο Ιστορίας."
 #: gui/civinfo/civinfo.js:85
 #, javascript-format
 msgid "• %(string)s"
-msgstr ""
+msgstr "• %(string)s"
 
 #: gui/civinfo/civinfo.js:113
 #, javascript-format
@@ -95,7 +95,7 @@ msgstr "Ανεκχώρητο πλήκτρο συντόμευσης: %(hotkeyName
 #: gui/common/color.js:193
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr ""
+msgstr "Πάτα το πλήκτρο %(hotkey)s για να ολοκληρώσεις αυτόματα τα ονόματα των παικτών."
 
 #: gui/common/color.js:195
 msgctxt "hotkey"
@@ -492,43 +492,43 @@ msgstr "Κακή σύνδεση με τον παίχτη %(player)s (%(milliseco
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr ""
+msgstr "Αυτό προκαλείται συχνά από τη UDP θύρα 20595  που δεν προωθείται από την πλευρά του εξυπηρετητή, από ένα τείχος προστασίας ή από το λογισμικό αντιικών."
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "Ο οικοδεσπότης τερμάτισε το παιχνίδι."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "Λάθος έκδοση δικτυακού πρωτοκόλλου."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "Το παιχνίδι φορτώνει, δοκιμάστε ξανά αργότερα."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "Το παιχνίδι ήδη έχει αρχίσει, δεν επιτρέπονται παρατηρητές."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "Σε έδιωξαν από το παιχνίδι."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "Σου απαγορεύτηκε η πρόσβαση."
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Το όνομα χρήστη χρησιμοποιείτε. Αν αποσυνδέθηκες, δοκίμασε ξανά σε μερικά δευτερόλεπτα."
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "Ο διακομιστής είναι γεμάτος."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr ""
+msgstr "Ο έλεγχος ασφαλείας του λόμπι απέτυχε. Συνδέσου μέσω του λόμπι."
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
@@ -788,8 +788,8 @@ msgstr "Βαθμός:"
 #, javascript-format
 msgid "%(projectileCount)s %(projectileName)s"
 msgid_plural "%(projectileCount)s %(projectileName)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(projectileCount)s %(projectileName)s"
+msgstr[1] "%(projectileCount)s %(projectileName)s"
 
 #: gui/common/tooltips.js:202
 msgid "arrow"
@@ -826,7 +826,7 @@ msgstr ""
 #: gui/common/tooltips.js:233
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
 #: gui/common/tooltips.js:243 gui/common/tooltips.js:766
 msgid "Range:"
@@ -863,7 +863,7 @@ msgstr ""
 #: gui/common/tooltips.js:274
 msgctxt "damage type"
 msgid "Capture"
-msgstr ""
+msgstr "Κατάληψη"
 
 #: gui/common/tooltips.js:283
 #, javascript-format
@@ -888,7 +888,7 @@ msgstr ""
 #: gui/common/tooltips.js:357
 #, javascript-format
 msgid "%(label)s: %(effects)s"
-msgstr ""
+msgstr "%(label)s: %(effects)s"
 
 #: gui/common/tooltips.js:363
 #, javascript-format
@@ -1353,11 +1353,11 @@ msgstr "%(hotkey)s: Μάθε για τους διάφορους πολιτισμ
 
 #: gui/pregame/MainMenuItems.js:49 gui/replaymenu/replay_filters.js:142
 msgid "Single-player"
-msgstr ""
+msgstr "Ένας παίκτης"
 
 #: gui/pregame/MainMenuItems.js:50
 msgid "Click here to start a new single-player game."
-msgstr ""
+msgstr "Κλικ εδώ για να αρχίσεις ένα νέο παιχνίδι για έναν παίκτη."
 
 #: gui/pregame/MainMenuItems.js:53
 msgid "Matches"
@@ -1838,7 +1838,7 @@ msgstr "%(min)s - %(max)s λεπτά"
 
 #: gui/replaymenu/replay_filters.js:142
 msgid "Single-player and multiplayer"
-msgstr ""
+msgstr "Ένας και πολλοί παίχτες"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
@@ -1859,7 +1859,7 @@ msgstr "Αβαθμολόγητα παιχνίδια"
 #: gui/replaymenu/replay_menu.js:193
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
-msgstr ""
+msgstr "Φιλτράρετε τις επαναλήψεις πληκτρολογώντας ένα ή περισσότερα, μερικά ή πλήρη ονόματα παιχτών."
 
 #: gui/replaymenu/replay_menu.js:197
 #, javascript-format
@@ -2545,7 +2545,7 @@ msgstr "Αρχηγός"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr ""
+msgstr "Εξισορρόπηση παιχνιδιού"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
@@ -2623,23 +2623,23 @@ msgstr "Μεταφραστές"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "Πώς θέλετε να αντιμετωπιστούν οι αγώνες για έναν παίκτη."
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player Name (Single-player)"
-msgstr ""
+msgstr "Όνομα Παίχτη (Παιχνίδι για ένα παίχτη)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr ""
+msgstr "Πώς θέλετε να αντιμετωπιστούν οι αγώνες για Πολλούς Παίχτες (εξαιρούνται τα λόμπι)."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player Name (Multiplayer)"
-msgstr ""
+msgstr "Όνομα Παίχτη (Παιχνίδι για πολλούς παίχτες)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr ""
+msgstr "Παύση παιχνιδιού με έναν παίκτη όταν χάνετε η εστίαση στο παράθυρο."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background Pause"
@@ -2998,11 +2998,11 @@ msgstr "Προειδοποίηση για το Ψευδώνυμο"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
-msgstr ""
+msgstr "Λήψη ηχητικής ειδοποίησης όταν ένας νέος πελάτης συμμετέχει στη ρύθμιση του παιχνιδιού."
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game Setup - New Player Notification"
-msgstr ""
+msgstr "Ρύθμιση Παιχνιδιού - Ειδοποίηση Νέου Παίκτη"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -3246,11 +3246,11 @@ msgstr "Εικονίδιο κατάταξης πάνω από την μπάρα 
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid "Show an experience status bar above each selected unit."
-msgstr ""
+msgstr "Εμφάνιση μιας μπάρας προόδου της εμπειρίας πάνω από κάθε επιλεγμένη μονάδα."
 
 #: gui/options/options.json[5].options[11].label
 msgid "Experience status bar"
-msgstr ""
+msgstr "Μπάρα προόδου εμπειρίας"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
@@ -3552,17 +3552,17 @@ msgstr "ΡΩΜΑΪΚΟ ΣΤΡΑΤΟΠΕΔΟ"
 msgid ""
 "Buildable in neutral or enemy territory. Good for building a secret base "
 "behind enemy lines or to consolidate gains within enemy territory."
-msgstr ""
+msgstr "Οικοδομήσιμο σε ουδέτερο ή εχθρικό έδαφος. Καλό για την δημιουργία μίας μυστικής βάσης πίσω από τις εχθρικές γραμμές ή για να εδραιωθείτε κατακτόντας εχθρικό έδαφος."
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct siege weapons and train citizen-soldiers."
-msgstr ""
+msgstr "Κατασκευάζει πολιορκητικά όπλα και εκπαιδεύει πολίτες-οπλίτες."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr ""
+msgstr "Οχύρωσε μονάδες για να θεραπεύονται με αργό ρυθμό και να προστατεύουν το στρατόπεδο από επιθέσεις και παρακμή."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -3572,21 +3572,21 @@ msgstr "ΣΤΡΑΤΩΝΕΣ"
 msgid ""
 "Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "Εκπαιδεύει όλους τους πολίτες-οπλίτες. Μερικές φατρίες μπορούν να ξεκλειδώσουν και την εκπαίδευση των πρωταθλητών."
 
 #: gui/text/tips/barracks.txt:3
 msgid "Research military technologies unique to each faction."
-msgstr ""
+msgstr "Ερευνήστε στρατιωτική τεχνολογία μοναδική για κάθε φατρία."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
 "Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "Κατασκευάστε ένα νωρίς για να εκπαιδεύσεις τους πολίτες οπλίτες, ενώ αλλάζεις φάση στον οικισμού σου."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "Κατασκευάστε μια προκεχωρημένη βάση για να εφοδιαζεται την επίθεση σας με φρέσκα στρατεύματα."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
@@ -3594,11 +3594,11 @@ msgstr "Σιδηρουργός"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "Research structure for all factions."
-msgstr ""
+msgstr "Ερευνητικό κτίριο για όλες τις παρατάξεις."
 
 #: gui/text/tips/blacksmith.txt:3
 msgid "Research weapon and armor upgrades for your units."
-msgstr ""
+msgstr "Ανακάλυψε βελτιώσεις όπλων και πανοπλίας για τις μονάδες σου."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -3606,19 +3606,19 @@ msgstr "ΙΕΡΟΣ ΛΟΧΟΣ ΚΑΡΧΗΔΟΝΙΩΝ"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "Πρωταθλητής Λογχοφόρος και Πρωταθλητής Λογχοφόρος Ιππικού για την Καρχηδόνα."
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr ""
+msgstr "Αμφότεροι μπορούν να εκπαιδευτούν από τους Ναούς, αντί του Κάστρου όπως οι περισσότεροι άλλοι πρωταθλητές."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "Χρησιμοποίησε τους Λογχοφόρους ως βαρύ πεζικό κατά του ιππικού. Χρησιμοποίησε το Ιππικό ως ισχυρό πλήγμα εναντίων πολιορκητικών όπλων και ακροβολιστών."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -3626,17 +3626,17 @@ msgstr "ΚΑΤΑΠΕΛΤΕΣ"
 
 #: gui/text/tips/catapults.txt:2
 msgid "Ranged siege engines that are good against buildings."
-msgstr ""
+msgstr "Εκηβόλες πολιορκητικές μηχανές που είναι καλές εναντίων κτηρίων."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
-msgstr ""
+msgstr "Ακριβός και αργός."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
 "Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr ""
+msgstr "Πακετάρεται σε κάρα για τη μετακίνηση, και αποσυσκευάζεται σε σταθερές μηχανές για την επίθεση!"
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -3644,19 +3644,19 @@ msgstr "ΚΕΛΤΙΚΟ ΠΟΛΕΜΙΚΟ ΠΟΤΑΜΟΠΛΟΙΟ"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "A medium trireme-class warship."
-msgstr ""
+msgstr "Ένα μέτριο πολεμικό πλοίο κλάσης τριήρης."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "Διαθέσιμο σε Βρετανούς, Γαλάτες και Ίβηρες."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
-msgstr ""
+msgstr "Μπορεί να μεταφέρει πάνω από 50 μονάδες."
 
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
-msgstr ""
+msgstr "Αυξάνει τη δύναμη πυρός με τη φρουρά πεζικού."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -3664,21 +3664,21 @@ msgstr "ΑΣΤΙΚΑ ΚΕΝΤΡΑ"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "The foundation of your new colony."
-msgstr ""
+msgstr "Τα θεμέλια της νέας σου αποικίας."
 
 #: gui/text/tips/civic_centres.txt:3
 msgid "Claim large tracts of territory."
-msgstr ""
+msgstr "Διεκδικεί μεγάλες εδαφικές εκτάσεις."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
-msgstr ""
+msgstr "Μπορεί να χτιστεί σε φίλια και ουδέτερα εδάφη."
 
 #: gui/text/tips/civic_centres.txt:5
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr ""
+msgstr "Εκπαιδεύει πολίτες: γυναίκες πολίτες, πεζικάριους πολίτες οπλίτες και ιππικό πολίτες οπλίτες."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3686,17 +3686,17 @@ msgstr "ΠΡΕΣΒΕΙΕΣ"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special Barracks available to the Carthaginians."
-msgstr ""
+msgstr "Ειδικό Στρατώνας διαθέσιμος για τους Καρχηδόνιους."
 
 #: gui/text/tips/embassies.txt:3
 msgid "Train mercenaries from each of the ethnically-themed embassies."
-msgstr ""
+msgstr "Εκπαιδεύει μισθοφόρους από κάθε πρεσβεία εθνικότητας."
 
 #: gui/text/tips/embassies.txt:4
 msgid ""
 "Mercenary citizen-soldiers have their normal Food cost converted to Metal "
 "cost."
-msgstr ""
+msgstr "Στον μισθοφόρο πολίτη-οπλίτη το βασικό κόστος σε Τροφή μετατρέπεται σε κόστος Μετάλλου."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -3704,19 +3704,19 @@ msgstr "ΑΛΙΕΙΑ"
 
 #: gui/text/tips/fishing.txt:2
 msgid "Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "Αλιεύει στις θάλασσες για μια πλούσια συγκομιδή."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
-msgstr ""
+msgstr "Τα αλιευτικά μεταφέρουν ένα μεγάλο μέγεθος από τροφή σε κάθε τους διαδρομή."
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
-msgstr ""
+msgstr "Το ψάρεμα είναι γρηγορότερο από το να συλλέγεις τροφή από τα λιβάδια."
 
 #: gui/text/tips/fishing.txt:5
 msgid "Careful! Fish are not an infinite resource!"
-msgstr ""
+msgstr "Προσοχή! Τα ψάρια δεν είναι μία αστείρευτη πηγή!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -3724,19 +3724,19 @@ msgstr "ΦΡΟΥΡΙΟ"
 
 #: gui/text/tips/fortress.txt:2
 msgid "The Fortress is usually each faction's strongest building."
-msgstr ""
+msgstr "Τα Κάστρα είναι συνήθως τα ισχυρότερα κτήρια κάθε φατρίας."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "Εκπαιδεύει Πρωταθλητές και Ήρωες και κατασκευάζει Πολιορκητικές Μηχανές."
 
 #: gui/text/tips/fortress.txt:4
 msgid "Gives a population boost."
-msgstr ""
+msgstr "Δίνει ένα πλεόνασμα πληθυσμού."
 
 #: gui/text/tips/fortress.txt:5
 msgid "Garrison soldiers inside to add more firepower to its defense."
-msgstr ""
+msgstr "Οχύρωσε στρατιώτες μέσα για να αυξήσεις τη δύναμή πυρός στην άμυνα του."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -3745,17 +3745,17 @@ msgstr "ΕΛΕΥΘΕΡΗ ΘΕΣΗ"
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "Gain an advantage on the battleground by tactically positioning your units!"
-msgstr ""
+msgstr "Αποκτήστε πλεονέκτημα στο πεδίο της μάχης, τοποθετώντας με τακτική τις μονάδες σας!"
 
 #: gui/text/tips/freehand_position.txt:3
 msgid ""
 "Therefore select some units, press and hold the right mouse button, draw any"
 " line, then release the button."
-msgstr ""
+msgstr "Επομένως, επιλέξτε μερικές μονάδες, πατήστε και κρατήστε πατημένο το δεξί πλήκτρο του ποντικιού, σύρετε οποιαδήποτε γραμμή και στη συνέχεια αφήστε το κουμπί."
 
 #: gui/text/tips/freehand_position.txt:4
 msgid "Your units will now spread out on this line."
-msgstr ""
+msgstr "Οι μονάδες σου τώρα θα απλωθούν σε αυτή τη γραμμή."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -3763,25 +3763,25 @@ msgstr "ΣΥΛΛΟΓΗ ΠΡΟΜΗΘΕΙΩΝ"
 
 #: gui/text/tips/gathering.txt:2
 msgid "Use citizen-soldiers and female citizens to gather resources."
-msgstr ""
+msgstr "Χρησιμοποίησε πολίτες οπλίτες και γυναίκες πολίτες για την συγκομιδή πόρων."
 
 #: gui/text/tips/gathering.txt:3
 msgid "Female citizens gather vegetable resources faster."
-msgstr ""
+msgstr "Οι γυναίκες πολίτες μαζεύουν γρηγορότερα φυτικούς πόρους."
 
 #: gui/text/tips/gathering.txt:4
 msgid "Infantry citizen-soldiers are faster gathering minerals."
-msgstr ""
+msgstr "Οι πολίτες οπλίτες πεζικού είναι γρηγορότεροι στη συγκομιδή μεταλλευμάτων."
 
 #: gui/text/tips/gathering.txt:5
 msgid "Cavalry citizen-soldiers are faster gathering meat."
-msgstr ""
+msgstr "Οι ιππείς πολίτες οπλίτες είναι γρηγορότεροι στη συγκομιδή κρέατος."
 
 #: gui/text/tips/gathering.txt:6
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr ""
+msgstr "Στο υψηλότερο επίπεδο ο οπλίτης πολίτης (προχωρημένος, εκλεκτός) είναι καλλίτερος στη μάχη, αλλά λιγότερο αποτελεσματικός στη συγκομιδή πόρων."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -3791,15 +3791,15 @@ msgstr "ΙΦΙΚΡΑΤΗΣ"
 msgid ""
 "The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr ""
+msgstr "Ο Αθηναίος στρατηγός που αναμόρφωσε τον Αθηναϊκό στρατό ώστε να είναι γρηγορότερος και πιο ευέλικτος."
 
 #: gui/text/tips/iphicrates.txt:3
 msgid "Units in his formation are faster and stronger."
-msgstr ""
+msgstr "Οι μονάδες σε αυτό το σχηματισμό είναι γρηγορότερες και ισχυρότερες."
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "Skirmishers move faster while he lives."
-msgstr ""
+msgstr "Οι Ακροβολιστές κινούνται γρηγορότερα όσο είναι ζωντανός."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -3807,19 +3807,19 @@ msgstr "ΠΡΟΦΥΛΑΚΕΣ"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral territory for a large scouting range."
-msgstr ""
+msgstr "Κτίσε σε ουδέτερο έδαφος για μεγάλη περιοχή εξερεύνησης."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap, at 80 Wood."
-msgstr ""
+msgstr "Φθηνότερο κατά 80 Ξύλο."
 
 #: gui/text/tips/outposts.txt:4
 msgid "They construct quickly, but are weak."
-msgstr ""
+msgstr "Κατασκευάζονται γρήγορα, αλλά είναι αδύναμοι."
 
 #: gui/text/tips/outposts.txt:5
 msgid "Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr ""
+msgstr "Οχύρωσε μία μονάδα σε αυτό ώστε να σταματήσεις τη φθορά του στο ουδέτερο έδαφος."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -3827,11 +3827,11 @@ msgstr "ΤΟΙΧΟΣ ΑΠΟ ΠΑΣΣΑΛΟΥΣ"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr ""
+msgstr "Ένα γρήγορο, φθηνό ξύλινο τοίχος, διαθέσιμο για όλες τις φατρίες."
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
-msgstr ""
+msgstr "Οι περισσότερες φατρίες έχουν πρόσβαση σε αυτούς από την Φάση Χωριού."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
@@ -3839,15 +3839,15 @@ msgstr "ΠΕΡΙΚΛΗΣ"
 
 #: gui/text/tips/pericles.txt:2
 msgid "The foremost Athenian politician of the 5th century BC."
-msgstr ""
+msgstr "Ο κύριος Αθηναίος πολιτικός του 5ου αιώνα π.Χ.."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Buildings construct faster within his range."
-msgstr ""
+msgstr "Τα κτίρια κατασκευάζονται γρηγορότερα μέσα στην εμβέλειά του."
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."
-msgstr ""
+msgstr "Οι ναοί είναι φθηνότεροι όσο είναι ζωντανός."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -3855,21 +3855,21 @@ msgstr "ΠΕΡΣΙΚΗ ΑΡΧΙΤΕΚΤΟΝΙΚΗ"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
-msgstr ""
+msgstr "Ειδική τεχνολογία για τους Πέρσες."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "All Persian buildings +25% stronger."
-msgstr ""
+msgstr "Όλα τα Περσικά κτίρια είναι +25% ισχυρότερα."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "Ως ασυνέπεια επιμηκύνεται ο χρόνος κατασκευής κατά +20%."
 
 #: gui/text/tips/persian_architecture.txt:5
 msgid ""
 "Persians also have access to a great number of structural and defensive "
 "technologies."
-msgstr ""
+msgstr "Οι Πέρσες έχουν επίσης πρόσβαση σε μεγάλο αριθμό κατασκευαστικών και αμυντικών τεχνολογιών."
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
@@ -3877,34 +3877,34 @@ msgstr "ΔΟΡΑΤΟΦΟΡΟΣ"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "Βαριά θωράκιση και αργοί. Χαμηλή επίθεση."
 
 #: gui/text/tips/pikemen.txt:3
 msgid ""
 "Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "Χρησιμοποιούνται εναντίων του ιππικού ή εναντίων άλλων εκ του συστάδην πεζικού για να τους καθηλώσουν."
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr ""
+msgstr "Διαθέσιμοι σε: Κουσίτες, Μακεδόνες, Πτολεμαίους και Σελευκίδες."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
-msgstr ""
+msgstr "Πεντήρης"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, and Seleucids."
-msgstr ""
+msgstr "Το βαρύτερο βασικό πολεμικό πλοίο. Διαθέσιμο σε: Καρχηδόνιους, Πτολεμαίους, Ρωμαίους και Σελευκίδες."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
-msgstr ""
+msgstr "Μεταφέρει πάνω από 50 μονάδες."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "Increases firepower with garrisoned catapults."
-msgstr ""
+msgstr "Αυξάνει τη δύναμη πυρός με τη φρουρά καταπελτών."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -3912,19 +3912,19 @@ msgstr "ΒΙΟΤΟΠΟΣ ΣΑΒΑΝΑΣ"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "Generally flat, with a few watering holes and rocky outcrops."
-msgstr ""
+msgstr "Γενικά επίπεδη, με μερικές τρύπες νερού και βραχώδης προεξοχές."
 
 #: gui/text/tips/savanna_biome.txt:3
 msgid "Chock full of herd animals for plentiful hunting."
-msgstr ""
+msgstr "Ασφυκτικά γεμάτη από αγέλες ζώων για πλούσιο κυνήγι."
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "Rich in all types of mining."
-msgstr ""
+msgstr "Πλούσιος σε όλα τα είδη εξόρυξης."
 
 #: gui/text/tips/savanna_biome.txt:5
 msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr ""
+msgstr "Τα δάση είναι αραιά, αλλά αποτελούνται από υψηλής απόδοσης Αδανσωνιών δέντρων."
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
@@ -3932,17 +3932,17 @@ msgstr "ΑΜΥΝΤΙΚΟΙ ΠΥΡΓΟΙ"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "Free-standing towers good for defending large areas of countryside."
-msgstr ""
+msgstr "Οι επιδαπέδιοι πύργοι είναι καλοί για την υπεράσπιση μεγάλων περιοχών της υπαίθρου."
 
 #: gui/text/tips/scout_towers.txt:3
 msgid ""
 "They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
 "Wood and 250 Stone (because they're stronger)."
-msgstr ""
+msgstr "Συνήθως στοιχίζουν 100 Ξύλο και 100 Πέτρα, Οι Ιβηρικοί Αμυντικοί Πύργοι στοιχίζουν 50 Ξύλο και 250 Πέτρα (επειδή είναι ισχυρότεροι)."
 
 #: gui/text/tips/scout_towers.txt:4
 msgid "Has a ranged attack that increases for each garrisoned unit."
-msgstr ""
+msgstr "Έχει επίθεση  από απόσταση που αυξάνεται για κάθε οχυρωμένη μονάδα."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -3950,17 +3950,17 @@ msgstr "ΣΠΑΡΤΙΑΤΕΣ"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "Strongest infantry unit in the game."
-msgstr ""
+msgstr "Η δυνατότερη μονάδα πεζικού στο παιχνίδι."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr ""
+msgstr "Πρωταθλητής Πεζικάριος διαθέσιμος στους Σπαρτιάτες."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
 "Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr ""
+msgstr "Χρησιμοποίησέ τους για τη σφαγή του ιππικού ή ως δύναμη σοκ για την υποστήριξη του πεζικού σου."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
@@ -3968,21 +3968,21 @@ msgstr "ΛΟΓΧΟΦΟΡΟΣ"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "The basic melee infantry for every faction in the game."
-msgstr ""
+msgstr "Το βασικό εκ του συστάδην πεζικό για κάθε φατρία στο παιχνίδι."
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
-msgstr ""
+msgstr "Χρησιμοποιείται εναντίον του ιππικού με ένα πλεόνασμα επίθεσης."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
-msgstr ""
+msgstr "Η υπολογίσιμη δύναμη σπάθισης τους κάνουν καλούς για στρατιώτες πρώτης γραμμής."
 
 #: gui/text/tips/spearmen.txt:5
 msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
-msgstr ""
+msgstr "Αντιμετωπίζονται από εκηβόλες μονάδες και ξιφομάχους, έτσι υποστηρίξτε τους ακοντιστές σας με σφενδονιστές ή ιππικό."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
@@ -3990,15 +3990,15 @@ msgstr "ΣΤΟΑ"
 
 #: gui/text/tips/stoa.txt:2
 msgid "A special structure for  Athenians, Macedonians, and Spartans."
-msgstr ""
+msgstr "Μία ειδική κατασκευή για τους Αθηναίους, τους Μακεδόνες και τους Σπαρτιάτες."
 
 #: gui/text/tips/stoa.txt:3
 msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr ""
+msgstr "Εκπαιδεύει Βαριούς Ακροβολιστές και Πρωταθλητές Ξιφομάχους."
 
 #: gui/text/tips/stoa.txt:4
 msgid "Grants +10 Population."
-msgstr ""
+msgstr "Δίνει +10 Πληθυσμό."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
@@ -4006,13 +4006,13 @@ msgstr "ΑΠΟΘΗΚΕΣ"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
-msgstr ""
+msgstr "Ένα φτηνό εναποθετήριο για μη φαγώσιμες ύλες (Ξύλο, Πέτρα και Μέταλλο)."
 
 #: gui/text/tips/storehouses.txt:3
 msgid ""
 "Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr ""
+msgstr "Ερευνά τεχνολογίες για την βελτίωση της ποσότητας συγκομιδής των πολιτών σου."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -4020,23 +4020,23 @@ msgstr "ΝΑΟΙ"
 
 #: gui/text/tips/temples.txt:2
 msgid "Town Phase structure."
-msgstr ""
+msgstr "Κατασκευή της Φάσης Κωμόπολη."
 
 #: gui/text/tips/temples.txt:3
 msgid "Recruit Healers to heal your troops on the battlefield."
-msgstr ""
+msgstr "Στρατολόγησε Θεραπευτές για να θεραπεύουν τους στρατιώτες σου στο πεδίο μάχης."
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
-msgstr ""
+msgstr "Ερευνεί τεχνολογίες θεραπείας."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
-msgstr ""
+msgstr "H αύρα του θεραπεύει τις κοντινές μονάδες."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
-msgstr ""
+msgstr "Οχύρωσε τραυματισμένες μονάδες μέσα για πιο γρήγορη θεραπεία."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
@@ -4045,19 +4045,19 @@ msgstr "Η ΠΕΡΙΟΧΗ ΠΑΡΑΚΜΗ"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when buildings are not connected to an allied Civil Center."
-msgstr ""
+msgstr "Παρακμή ξεκινάει όταν κτήρια δεν συνδέονται με ένα κοντινό συμμαχικό Αστικό Κέντρο."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr ""
+msgstr "Η διαδικασία παρακμής μπορεί να επιβραδυνθεί ή να αντιστραφεί βάζοντας κάποιες μονάδες μέσα στο κτήριο να το φρουρούν."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
 "When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "Όταν η παρακμή ολοκληρωθεί, τότε το κτήριο θα δοθεί στον γείτονα με την μεγαλύτερη επιρροή."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -4067,15 +4067,15 @@ msgstr "ΘΕΜΙΣΤΟΚΛΗΣ"
 msgid ""
 "Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr ""
+msgstr "Αθηναίος ήρωας που διοικούσε τους Έλληνες στις μεγάλες ναυμαχίες του Αρτεμισίου και της Σαλαμίνας."
 
 #: gui/text/tips/themistocles.txt:3
 msgid "All ships are built faster while he lives."
-msgstr ""
+msgstr "Όλα τα πλοία κατασκευάζονται πιο γρήγορα όσο είναι ζωντανός."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "The ship he is garrisoned inside sails much faster."
-msgstr ""
+msgstr "Στο πλοίο που επιβιβάζεται πλέει πολύ πιο γρήγορα."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -4083,15 +4083,15 @@ msgstr "- ΤΡΙΗΡΗΣ"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The Medium Warship."
-msgstr ""
+msgstr "Μεσαίο Πολεμικό Πλοίο."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Good for transporting or fighting."
-msgstr ""
+msgstr "Καλή για μεταφορές ή μάχες."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "Επιβιβάζοντας στρατιώτες στο πλοίο αυξάνετε τη δύναμη πυρός του."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
@@ -4099,19 +4099,19 @@ msgstr "ΒΙΡΙΑΤΟΣ"
 
 #: gui/text/tips/viriato.txt:2
 msgid "Iberian hero of the Lusitani tribe."
-msgstr ""
+msgstr "Ιβηρικός ήρωα από τη φυλή της Λουζιτάνιας."
 
 #: gui/text/tips/viriato.txt:3
 msgid ""
 "At least seven campaigns against the Romans during the Lusitani Wars from "
 "147 to 139 BC."
-msgstr ""
+msgstr "Πραγματοποίησε τουλάχιστον 7 εκστρατείες εναντίων των Ρωμαίων κατά τον Πύρινο Πόλεμο από το 147 έως το 139 π.Χ.."
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
 "Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
 "their opponents."
-msgstr ""
+msgstr "Έχει την αύρα της \"Τακτικής του Ανταρτοπόλεμου\" και επιτρέπει στις κοντινές σε αυτόν Ιβηρικές μονάδες να ενεδρεύουν τους αντιπάλους τους."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -4119,17 +4119,17 @@ msgstr "ΕΛΕΦΑΝΤΕΣ ΠΟΛΕΜΟΥ"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
-msgstr ""
+msgstr "Τεράστια κτήνη από την Αφρική και Ινδία, εκπαιδευμένα για πόλεμο."
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
-msgstr ""
+msgstr "Κοστίζει πολύ Φαγητό και Μέταλλο, αλλά είναι πολύ δυνατός."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "Διαθέσιμοι σε: Καρχηδόνιους, Κουσίτες, Μαουρύα, Πέρσες Πτολεμαίους και Σελευκίδες."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
@@ -4137,16 +4137,16 @@ msgstr "ΦΑΛΑΙΝΕΣ"
 
 #: gui/text/tips/whales.txt:2
 msgid "An oceanic resource."
-msgstr ""
+msgstr "Ένας ωκεάνιος πόρος."
 
 #: gui/text/tips/whales.txt:3
 msgid "2000 Food."
-msgstr ""
+msgstr "2000 Φαγητό."
 
 #: gui/text/tips/whales.txt:4
 msgid "Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "Η συλλογή είναι εφικτή από Αλιευτικά μετά το σκοτωμό της φάλαινας."
 
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "Περιπλανιέται γύρω από τους ωκεανούς του παιχνιδιού και φεύγει όταν της επιτίθενται."
