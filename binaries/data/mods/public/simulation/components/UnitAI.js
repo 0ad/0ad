@@ -5437,11 +5437,11 @@ UnitAI.prototype.Flee = function(target, queued)
 };
 
 /**
- * Adds cheer order to the queue. Forced so it won't be interrupted by attacks.
+ * Pushes a cheer order to the front of the queue. Forced so it won't be interrupted by attacks.
  */
 UnitAI.prototype.Cheer = function()
 {
-	this.AddOrder("Cheering", { "force": true }, false);
+	this.PushOrderFront("Cheering", { "force": true });
 };
 
 UnitAI.prototype.Pack = function(queued)
