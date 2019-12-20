@@ -1036,26 +1036,6 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"GARRISON":{
-			"enter": function() {
-				// If the garrisonholder should pickup, warn it so it can take needed action
-				var cmpGarrisonHolder = Engine.QueryInterface(this.order.data.target, IID_GarrisonHolder);
-				if (cmpGarrisonHolder && cmpGarrisonHolder.CanPickup(this.entity))
-				{
-					this.pickup = this.order.data.target;       // temporary, deleted in "leave"
-					Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity });
-				}
-			},
-
-			"leave": function() {
-				// If a pickup has been requested and not yet canceled, cancel it
-				if (this.pickup)
-				{
-					Engine.PostMessage(this.pickup, MT_PickupCanceled, { "entity": this.entity });
-					delete this.pickup;
-				}
-			},
-
-
 			"APPROACHING": {
 				"enter": function() {
 					if (!this.MoveToGarrisonRange(this.order.data.target))
@@ -1066,10 +1046,25 @@ UnitAI.prototype.UnitFsmSpec = {
 					let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 					cmpFormation.SetRearrange(true);
 					cmpFormation.MoveMembersIntoFormation(true, true);
+
+					// If the garrisonholder should pickup, warn it so it can take needed action.
+					let cmpGarrisonHolder = Engine.QueryInterface(this.order.data.target, IID_GarrisonHolder);
+					if (cmpGarrisonHolder && cmpGarrisonHolder.CanPickup(this.entity))
+					{
+						this.pickup = this.order.data.target;       // temporary, deleted in "leave"
+						Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity });
+					}
 				},
 
 				"leave": function() {
 					this.StopMoving();
+
+					// If a pickup has been requested and not yet canceled, cancel it.
+					if (this.pickup)
+					{
+						Engine.PostMessage(this.pickup, MT_PickupCanceled, { "entity": this.entity });
+						delete this.pickup;
+					}
 				},
 
 				"MovementUpdate": function(msg) {
@@ -1080,12 +1075,6 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"GARRISONING": {
 				"enter": function() {
-					// If a pickup has been requested, cancel it as it will be requested by members
-					if (this.pickup)
-					{
-						Engine.PostMessage(this.pickup, MT_PickupCanceled, { "entity": this.entity });
-						delete this.pickup;
-					}
 					this.CallMemberFunction("Garrison", [this.order.data.target, false]);
 					this.SetNextState("MEMBER");
 				},
@@ -2882,24 +2871,13 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"GARRISON": {
-			"enter": function() {
-				// If the garrisonholder should pickup, warn it so it can take needed action
-				var cmpGarrisonHolder = Engine.QueryInterface(this.order.data.target, IID_GarrisonHolder);
-				if (cmpGarrisonHolder && cmpGarrisonHolder.CanPickup(this.entity))
-				{
-					this.pickup = this.order.data.target;       // temporary, deleted in "leave"
-					Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity });
-				}
-			},
-
 			"leave": function() {
-				// If a pickup has been requested and not yet canceled, cancel it
+				// If a pickup has been requested and not yet canceled, cancel it.
 				if (this.pickup)
 				{
 					Engine.PostMessage(this.pickup, MT_PickupCanceled, { "entity": this.entity });
 					delete this.pickup;
 				}
-
 			},
 
 			"APPROACHING": {
@@ -2908,6 +2886,18 @@ UnitAI.prototype.UnitFsmSpec = {
 					{
 						this.FinishOrder();
 						return true;
+					}
+
+					// If a pickup was still pending, cancel that.
+					if (this.pickup)
+						Engine.PostMessage(this.pickup, MT_PickupCanceled, { "entity": this.entity });
+
+					// If the garrisonholder should pickup, warn it so it can take needed action.
+					let cmpGarrisonHolder = Engine.QueryInterface(this.order.data.target, IID_GarrisonHolder);
+					if (cmpGarrisonHolder && cmpGarrisonHolder.CanPickup(this.entity))
+					{
+						this.pickup = this.order.data.target;       // temporary, deleted in "leave"
+						Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity });
 					}
 				},
 
