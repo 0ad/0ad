@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -48,7 +48,7 @@ Status debug_CaptureContext(void* UNUSED(context))
 void debug_break()
 {
 #ifndef NDEBUG
-	kill(getpid(), SIGTRAP);
+	raise(SIGTRAP);
 #endif
 }
 
