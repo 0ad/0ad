@@ -48,7 +48,7 @@ extern int g_xres, g_yres;
 static const float CAMERA_EDGE_MARGIN = 2.0f * TERRAIN_TILE_SIZE;
 
 CCameraController::CCameraController(CCamera& camera)
-	: m_Camera(camera),
+	: ICameraController(camera),
 	  m_ConstrainCamera(true),
 	  m_FollowEntity(INVALID_ENTITY),
 	  m_FollowFirstPerson(false),
@@ -101,6 +101,8 @@ CCameraController::CCameraController(CCamera& camera)
 	SetupCameraMatrixSmooth(&m_Camera.m_Orientation);
 	m_Camera.UpdateFrustum();
 }
+
+CCameraController::~CCameraController() = default;
 
 void CCameraController::LoadConfig()
 {
