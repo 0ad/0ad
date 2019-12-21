@@ -8,6 +8,7 @@
 # MIlosSD <pirisd@gmail.com>, 2014
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
 # MIlosSD <pirisd@gmail.com>, 2014-2015
+# Stefan Ilic <miboxsrbija@gmail.com>, 2019
 # Stefan Vukanovic <lisacvukhome@gmail.com>, 2016
 # Tom Azurian <tomtanz@outlook.com>, 2016
 # Tpe3op <tre-zor@live.com>, 2014
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-15 08:08+0000\n"
-"PO-Revision-Date: 2019-11-15 15:09+0000\n"
-"Last-Translator: Aca G. <martel.gilgames@gmail.com>\n"
+"PO-Revision-Date: 2019-12-20 03:56+0000\n"
+"Last-Translator: Stefan Ilic <miboxsrbija@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,7 +125,7 @@ msgstr "Подразумевано"
 #: gui/gamesetup/gamesetup.js:174
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "Све мапе осим морских и демо мапа."
 
 #: gui/gamesetup/gamesetup.js:180
 msgid "Naval Maps"
@@ -133,7 +134,7 @@ msgstr "Поморска мапа"
 #: gui/gamesetup/gamesetup.js:181
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr ""
+msgstr "Мапе где бродови требају да достигну свог непријатеља."
 
 #: gui/gamesetup/gamesetup.js:186
 msgid "Demo Maps"
@@ -142,7 +143,7 @@ msgstr "Демо мапа"
 #: gui/gamesetup/gamesetup.js:187
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr ""
+msgstr "Ове мапе не могу да се играју,имају само сврху демонстрације."
 
 #: gui/gamesetup/gamesetup.js:192
 msgid "New Maps"
@@ -151,7 +152,7 @@ msgstr "Нове мапе"
 #: gui/gamesetup/gamesetup.js:193
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr ""
+msgstr "Мапе које су потпуно нове у овом издању игре."
 
 #: gui/gamesetup/gamesetup.js:198
 msgid "Trigger Maps"
@@ -169,12 +170,12 @@ msgstr "Све мапе"
 #: gui/gamesetup/gamesetup.js:205
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
-msgstr ""
+msgstr "Све мапе од изабраних типова мапа:"
 
 #: gui/gamesetup/gamesetup.js:404
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Мапа"
 
 #: gui/gamesetup/gamesetup.js:419
 msgctxt "Match settings tab name"
@@ -184,7 +185,7 @@ msgstr "Играч"
 #: gui/gamesetup/gamesetup.js:429
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Тип игре"
 
 #: gui/gamesetup/gamesetup.js:469
 msgid "Map Type"
@@ -247,7 +248,7 @@ msgstr "Одабери популациони лимит."
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr ""
+msgstr "Упозорење: Може доћи до губитка преформанси уколико сви %(players)s играчи достигну %(popCap)sпопулацију."
 
 #: gui/gamesetup/gamesetup.js:604
 msgid "Starting Resources"
@@ -307,11 +308,11 @@ msgstr "Изабери брзину игре."
 
 #: gui/gamesetup/gamesetup.js:699
 msgid "Difficulty"
-msgstr ""
+msgstr "Тежина"
 
 #: gui/gamesetup/gamesetup.js:701
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Изаберите тежину сценарија"
 
 #: gui/gamesetup/gamesetup.js:721
 msgid "Select player."
@@ -323,7 +324,7 @@ msgstr "Изабери играчев тим"
 
 #: gui/gamesetup/gamesetup.js:768
 msgid "Choose the civilization for this player."
-msgstr ""
+msgstr "Изаберите цивилизацију за овог играча"
 
 #: gui/gamesetup/gamesetup.js:782
 msgid "Pick a color."
@@ -377,7 +378,7 @@ msgstr "Онемогући благо"
 
 #: gui/gamesetup/gamesetup.js:897
 msgid "Do not add treasures to the map."
-msgstr ""
+msgstr "Не додавати блага на мапи"
 
 #: gui/gamesetup/gamesetup.js:908
 msgid "Disable Spies"
@@ -424,7 +425,7 @@ msgstr "Омогућити да ли ће се ова партија бодов�
 #: gui/gamesetup/gamesetup.js:997
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr ""
+msgstr "Претисните %(hotkey)s за насумични одабир имена играча или подешаванја."
 
 #: gui/gamesetup/gamesetup.js:1045
 msgid "Back"
@@ -440,7 +441,7 @@ msgstr "Повратак у главни мени."
 
 #: gui/gamesetup/gamesetup.js:1077
 msgid "Start Game!"
-msgstr ""
+msgstr "Започните игру!"
 
 #: gui/gamesetup/gamesetup.js:1093
 msgid "Start a new game with the current settings."
@@ -450,7 +451,7 @@ msgstr "Покрени нову игру са тренутним подешав�
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr ""
+msgstr "Започните нову игру са тренутним подешавањима (онеспособити док сви играчи нису спремни)."
 
 #: gui/gamesetup/gamesetup.js:1106
 #, javascript-format
@@ -471,7 +472,7 @@ msgstr "Ресетуј све екипе на подразумевано."
 #: gui/gamesetup/gamesetup.js:1185
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Подеси AI подешавања."
 
 #: gui/gamesetup/gamesetup.js:1498
 #, javascript-format
@@ -481,12 +482,12 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1499
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr ""
+msgstr "Користи %(hotkey)s да помериш приказ подешавања доле."
 
 #: gui/gamesetup/gamesetup.js:1500
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr ""
+msgstr "Користи %(hotkey)s да помериш приказ подешавања горе."
 
 #: gui/gamesetup/gamesetup.js:1834
 msgctxt "map selection"
@@ -495,7 +496,7 @@ msgstr "Насумично"
 
 #: gui/gamesetup/gamesetup.js:1836
 msgid "Pick any of the given maps at random."
-msgstr ""
+msgstr "Насумичан одабир мапа."
 
 #: gui/gamesetup/gamesetup.js:1868
 msgctxt "biome"
@@ -510,7 +511,7 @@ msgstr "Изабери биом насумично."
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s"
 
 #: gui/gamesetup/gamesetup.js:2220
 msgctxt "settings value"
@@ -528,7 +529,7 @@ msgstr "Не"
 #: gui/gamesetup/gamesetup.js:2257
 #, javascript-format
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s"
 
 #: gui/gamesetup/gamesetup.js:2339
 #, javascript-format
@@ -574,12 +575,12 @@ msgstr "%(name)s's партија"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:114
 msgid "Please enter a valid server name."
-msgstr ""
+msgstr "Молимо вас унесите исправно име сервера."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:121
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr ""
+msgstr "Број порта сервера мора бити између %(min)s и %(max)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:138
 msgid "Connecting to server..."
@@ -604,12 +605,12 @@ msgstr "Име партије се већ користи."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:308
 msgid "Failed to host via STUN."
-msgstr ""
+msgstr "Неуспешно креирање  преко СТУН-а."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:322
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr ""
+msgstr "Не можете хостовати(креирати) игру:%(message)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:323 gui/gamesetup_mp/gamesetup_mp.js:352
 msgid "Error"
@@ -618,7 +619,7 @@ msgstr "Грешка"
 #: gui/gamesetup_mp/gamesetup_mp.js:351
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr ""
+msgstr "Не можете се прикључити игри: %(message)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:373
 #, javascript-format
@@ -662,7 +663,7 @@ msgstr "AI тежина:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 msgid "AI Behavior:"
-msgstr ""
+msgstr "AI понашање:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):47
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):127
@@ -683,7 +684,7 @@ msgstr "Учитавање"
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "Мапа се учитава. Молимо вас сачекајте..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):42
 msgid "Player Name"
@@ -707,7 +708,7 @@ msgstr "Тим"
 
 #: gui/gamesetup/gamesetup.xml:(caption):90
 msgid "Show this message in the future."
-msgstr ""
+msgstr "Прикажи ову поруку у будућности."
 
 #: gui/gamesetup/gamesetup.xml:(caption):175
 msgid "Send"
@@ -732,7 +733,7 @@ msgstr "Прикључивање постојећој партији"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "Име играча:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
@@ -741,7 +742,7 @@ msgstr "Име домаћина сервера или IP:"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):48
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):95
 msgid "Server Port:"
-msgstr ""
+msgstr "Порт сервера:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
 msgid "Set up your server to host."
@@ -749,7 +750,7 @@ msgstr "Постави свој сервер да би био домаћин и�
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr ""
+msgstr "Име сервера:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"
@@ -762,7 +763,7 @@ msgstr "настави"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
-msgstr ""
+msgstr "Оставите празно поље како би сте користили подразумевани порт."
 
 #: gui/text/quotes.txt:1
 msgid ""

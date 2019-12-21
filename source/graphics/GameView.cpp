@@ -61,6 +61,8 @@
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpRangeManager.h"
 
+#include <memory>
+
 class CGameViewImpl
 {
 	NONCOPYABLE(CGameViewImpl);
@@ -75,7 +77,7 @@ public:
 		CullCamera(),
 		LockCullCamera(false),
 		Culling(true),
-		CameraController(ViewCamera)
+		CameraController(new CCameraController(ViewCamera))
 	{
 	}
 
@@ -127,7 +129,11 @@ public:
 
 	CCinemaManager CinemaManager;
 
-	CCameraController CameraController;
+	/**
+	 * Controller of the view's camera. We use a std::unique_ptr for an easy
+	 * on the fly replacement. It's guaranteed that the pointer is never nulllptr.
+	 */
+	std::unique_ptr<ICameraController> CameraController;
 };
 
 #define IMPLEMENT_BOOLEAN_SETTING(NAME) \
@@ -146,12 +152,12 @@ IMPLEMENT_BOOLEAN_SETTING(LockCullCamera);
 
 bool CGameView::GetConstrainCameraEnabled() const
 {
-	return m->CameraController.GetConstrainCamera();
+	return m->CameraController->GetConstrainCamera();
 }
 
 void CGameView::SetConstrainCameraEnabled(bool enabled)
 {
-	m->CameraController.SetConstrainCamera(enabled);
+	m->CameraController->SetConstrainCamera(enabled);
 }
 
 #undef IMPLEMENT_BOOLEAN_SETTING
@@ -172,7 +178,7 @@ CGameView::~CGameView()
 
 void CGameView::SetViewport(const SViewPort& vp)
 {
-	m->CameraController.SetViewport(vp);
+	m->CameraController->SetViewport(vp);
 }
 
 CObjectManager& CGameView::GetObjectManager()
@@ -202,7 +208,7 @@ CTerritoryTexture& CGameView::GetTerritoryTexture()
 
 int CGameView::Initialize()
 {
-	m->CameraController.LoadConfig();
+	m->CameraController->LoadConfig();
 	return 0;
 }
 
@@ -309,52 +315,52 @@ void CGameView::Update(const float deltaRealTime)
 	if (m->CinemaManager.IsEnabled())
 		return;
 
-	m->CameraController.Update(deltaRealTime);
+	m->CameraController->Update(deltaRealTime);
 }
 
 CVector3D CGameView::GetCameraPivot() const
 {
-	return m->CameraController.GetCameraPivot();
+	return m->CameraController->GetCameraPivot();
 }
 
 CVector3D CGameView::GetCameraPosition() const
 {
-	return m->CameraController.GetCameraPosition();
+	return m->CameraController->GetCameraPosition();
 }
 
 CVector3D CGameView::GetCameraRotation() const
 {
-	return m->CameraController.GetCameraRotation();
+	return m->CameraController->GetCameraRotation();
 }
 
 float CGameView::GetCameraZoom() const
 {
-	return m->CameraController.GetCameraZoom();
+	return m->CameraController->GetCameraZoom();
 }
 
 void CGameView::SetCamera(const CVector3D& pos, float rotX, float rotY, float zoom)
 {
-	m->CameraController.SetCamera(pos, rotX, rotY, zoom);
+	m->CameraController->SetCamera(pos, rotX, rotY, zoom);
 }
 
 void CGameView::MoveCameraTarget(const CVector3D& target)
 {
-	m->CameraController.MoveCameraTarget(target);
+	m->CameraController->MoveCameraTarget(target);
 }
 
 void CGameView::ResetCameraTarget(const CVector3D& target)
 {
-	m->CameraController.ResetCameraTarget(target);
+	m->CameraController->ResetCameraTarget(target);
 }
 
 void CGameView::FollowEntity(entity_id_t entity, bool firstPerson)
 {
-	m->CameraController.FollowEntity(entity, firstPerson);
+	m->CameraController->FollowEntity(entity, firstPerson);
 }
 
 entity_id_t CGameView::GetFollowedEntity()
 {
-	return m->CameraController.GetFollowedEntity();
+	return m->CameraController->GetFollowedEntity();
 }
 
 InReaction game_view_handler(const SDL_Event_* ev)
@@ -402,5 +408,5 @@ InReaction CGameView::HandleEvent(const SDL_Event_* ev)
 		}
 	}
 
-	return m->CameraController.HandleEvent(ev);
+	return m->CameraController->HandleEvent(ev);
 }
