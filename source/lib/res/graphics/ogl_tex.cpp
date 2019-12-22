@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -105,10 +105,8 @@ static bool fmt_is_s3tc(GLenum fmt)
 	{
 	case GL_COMPRESSED_RGB_S3TC_DXT1_EXT:
 	case GL_COMPRESSED_RGBA_S3TC_DXT1_EXT:
-#if !CONFIG2_GLES
 	case GL_COMPRESSED_RGBA_S3TC_DXT3_EXT:
 	case GL_COMPRESSED_RGBA_S3TC_DXT5_EXT:
-#endif
 		return true;
 	default:
 		return false;
@@ -133,12 +131,10 @@ static GLint choose_fmt(size_t bpp, size_t flags)
 			return GL_COMPRESSED_RGBA_S3TC_DXT1_EXT;
 		case 1:
 			return GL_COMPRESSED_RGB_S3TC_DXT1_EXT;
-#if !CONFIG2_GLES
 		case 3:
 			return GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
 		case 5:
 			return GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
-#endif
 		default:
 			DEBUG_WARN_ERR(ERR::LOGIC);	// invalid DXT value
 			return 0;
@@ -752,8 +748,8 @@ static void detect_gl_upload_caps()
 	{
 #if CONFIG2_GLES
 		// some GLES implementations have GL_EXT_texture_compression_dxt1
-		// but that only supports DXT1 so we can't use it anyway
-		have_s3tc = 0;
+		// but that only supports DXT1 so we can't use it.
+		have_s3tc = ogl_HaveExtensions(0, "GL_EXT_texture_compression_s3tc", NULL) == 0;
 #else
 		// note: we don't bother checking for GL_S3_s3tc - it is incompatible
 		// and irrelevant (was never widespread).

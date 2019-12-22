@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Wildfire Games.
+/* Copyright (c) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -26,9 +26,10 @@
 #include <stdio.h>
 #include <wchar.h>
 
+#include "lib/code_annotation.h"
 #include "lib/utf8.h"
+#include "lib/sysdep/os/unix/udbg.h"
 #include "lib/sysdep/sysdep.h"
-#include "udbg.h"
 
 #include <boost/algorithm/string/replace.hpp>
 
@@ -63,7 +64,7 @@ void sys_display_msg(const wchar_t* caption, const wchar_t* msg)
 }
 
 #if OS_MACOSX || OS_ANDROID
-static ErrorReactionInternal try_gui_display_error(const wchar_t* text, bool manual_break, bool allow_suppress, bool no_continue)
+static ErrorReactionInternal try_gui_display_error(const wchar_t* UNUSED(text), bool UNUSED(manual_break), bool UNUSED(allow_suppress), bool UNUSED(no_continue))
 {
 	// TODO: implement this, in a way that doesn't rely on X11
 	// and doesn't occasionally cause crazy errors like
