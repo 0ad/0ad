@@ -19,6 +19,7 @@
 # Jesus A <jasenjot@gmail.com>, 2017
 # Joaquin Marcher <joacorock@gmail.com>, 2018
 # juanda097 <juanda097@protonmail.ch>, 2019
+# Juan Rivera <juanit.900@gmail.com>, 2019
 # Martin Santiago <martinsape2015@gmail.com>, 2019
 # Mauricio Luque <email@mauricioluque.com>, 2019
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
@@ -31,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-12-02 22:11+0000\n"
-"Last-Translator: Alejandro Cosculluela <coscumoscu@gmail.com>\n"
+"PO-Revision-Date: 2019-12-20 12:22+0000\n"
+"Last-Translator: Juan Rivera <juanit.900@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +63,7 @@ msgstr "Fervor religioso"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr "Soldados +20% de daños en melé y ataques dentro del rango."
+msgstr "Soldados +20% de daños provocados en ataques cuerpo a cuerpo y ataques a distancia"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -103,7 +104,7 @@ msgstr "Saber es poder"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −10% technology resource costs and research time."
-msgstr "Estructuras -10% en coste del recurso tecnología y tiempo de investigación."
+msgstr "Las tecnologías de Estructuras requieren un 10% menos de recursos y tiempo de investigación"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -290,7 +291,7 @@ msgstr "Inspiración"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraDescription
 msgid "Citizen Soldiers +10% build rate and gather speed."
-msgstr ""
+msgstr "Los soldados construyen y recogen recursos un 10% más rápido"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
@@ -300,7 +301,7 @@ msgstr "Reformas económicas"
 msgid ""
 "Solon instituted several economic reforms encouraging commerce and agriculture.\n"
 "Workers +15% gather speed."
-msgstr ""
+msgstr "Solón introdujo numerosas reformas económicas para fomentar el comercio y la agricultura.\nLos trabajadores recogen recursos un 15% más rápido"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
@@ -310,7 +311,7 @@ msgstr "Fortuna económica"
 msgid ""
 "Solon brought in a new system of weights and measures, fathers were encouraged to find trades for their sons.\n"
 "Economic technologies −10% resource costs."
-msgstr ""
+msgstr "Solón ideó un nuevo sistema de pesos y medidas, los padres fueron animados a encontrar comerciantes para formar a sus hijos.\nInvestigar las tecnologías económicas requieren un 10% menos de recursos"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraName
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraName
@@ -321,7 +322,7 @@ msgstr "Tácticas de guerrilla"
 msgid ""
 "Seeing entrenched defense to be useless against the Roman army, Cassivellaunus resorted to guerrilla tactics. This was later employed by other chieftains too.\n"
 "Soldiers +15% movement speed and +15% vision range."
-msgstr ""
+msgstr "Viendo que la defensa tradicional y acantonada era inútil contra el ejército romano, Casivelono recurrió a las tácticas de guerrilla. Más tarde, fue reclutado por otros jefes tribales.\nLos soldados tienen un 15% más de velocidad de movimiento y rango de visión"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
 msgid "Skirmisher Harassment"
@@ -331,7 +332,7 @@ msgstr "Terror del escaramucero"
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
 "Javelinists +20% attack range."
-msgstr ""
+msgstr "Casivelono desplegó jabalineros ágiles y móviles para acosar a las tropas romanas y sus líneas de suministro.\nLos jabalinero tienen un +20% de rango de ataque"
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -341,7 +342,7 @@ msgstr "Comandante de caballería pesada"
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
 "Melee Cavalry +1 armor and +10% health."
-msgstr ""
+msgstr "Líder de la caballería pesada cartaginesa en Trebia y Cannas, sus cargas triples de caballería tuvieron un efecto devastador en las formaciones enemigas.\nLa caballería cuerpo a cuerpo tiene +1 de armadura y +10% de puntos de salud"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraName
 msgid "Ambush Slaughter"
@@ -351,7 +352,7 @@ msgstr "Matanza subrepticia"
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
 "Soldiers +5% melee and ranged attack damage and −25% promotion experience."
-msgstr ""
+msgstr "Batallando con los romanos, Ambiórix se dio cuenta de la futibilidad de una guerra abierta contra ellos y se decidió por las tácticas de emboscada. Los galos aprendieron rápidamente donde y cuando ejecutar ataques sorpresa.\nLos soldados cuerpo a cuerpo y a distancia tienen +5% de ataque y -25% de coste de experiencia para la promoción"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
@@ -361,7 +362,7 @@ msgstr "Tributo romano"
 msgid ""
 "When the Roman army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by force.\n"
 "Workers −10% grain gather rate."
-msgstr ""
+msgstr "Cuando el ejército romano se encontraba falto de suministros, los galos recibieron la orden de cederles parte de su cosecha. Los eburones bajo el mando de Ambiorix se resistieron a ello incluso cuando César mandó tropas para tomarla por la fuerza.\nLos trabajadores tienen un -10% de velocidad de recolección"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraName
 msgid "Mercenary Commander"
@@ -371,7 +372,7 @@ msgstr "Comandante mercenario"
 msgid ""
 "Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
 "Allied Citizen Mercenaries −25% metal cost."
-msgstr ""
+msgstr "Junto a su hermano Indíbil, Mandonio comandó a las levas ibéricas y tropas mercenarias durante las Guerras Púnicas.\nLos mercenarios de jugadores aliados tienen un -25% de coste de metal"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
@@ -381,7 +382,7 @@ msgstr "Clemente"
 msgid ""
 "Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
 "Soldiers +10% health."
-msgstr ""
+msgstr "Consciente de la caída de Indíbil en combate, Mandonio dirigió a los supervivientes a lugar seguro.\nLos soldados tienen +10% de puntos de salud. "
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraName
 msgid "Earliest Nubian Queen"
@@ -391,7 +392,7 @@ msgstr "Primera Reina Nubia"
 msgid ""
 "Ruling with full power in the Meroë Empire and also playing a significant role in the Meroitic religion, Shanakdakheto represented the might of Kush, something not to be taken lightly.\n"
 "Enemy Female Citizens −15% gather speed."
-msgstr ""
+msgstr "Gobernando de forma absoluta el Imperio de Meroë y como una pieza clave de la religión meroítica, Shanakdakheto era la representación del poder de Kush, algo que no se podía tomar a la ligera.\nLas ciudadanas enemigas tienen un -15% a su velocidad de recolección."
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
 msgid "Temple at Naqa"
@@ -401,7 +402,7 @@ msgstr "Templo en Naqa"
 msgid ""
 "As in all cultures, religion played a significant part in Kush. Shanakdakheto had the temple built around 160 BC as a symbol of the advancedness of Meroë.\n"
 "Temples +1 garrison heal rate."
-msgstr ""
+msgstr "Como en el resto de culturas la religión era parte clave en Kush. Shanakdakheto construyó su templo sobre el 160 AC como un símbolo del esplendor de Meroë.\nLos templos tienen un +1 en su velocidad de curación a las tropas guarneidas."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
