@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-25 08:09+0000\n"
-"PO-Revision-Date: 2019-11-25 15:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2019-12-20 08:09+0000\n"
+"PO-Revision-Date: 2019-12-20 14:22+0000\n"
+"Last-Translator: Guillermo Gini <guillermofgini@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -85,6 +85,9 @@ msgid "House"
 msgstr "Casa"
 
 #: simulation/templates/template_structure_civic_stoa.xml:33
+#: simulation/templates/structures/athen_royal_stoa.xml:5
+#: simulation/templates/structures/mace_royal_stoa.xml:5
+#: simulation/templates/structures/spart_royal_stoa.xml:12
 msgid "Stoa"
 msgstr "Estoa"
 
@@ -345,7 +348,6 @@ msgstr "Establo de Elefantes"
 #: simulation/templates/template_structure_military_embassy.xml:38
 #: simulation/templates/template_structure_military_embassy.xml:39
 #: simulation/templates/structures/cart_embassy.xml:19
-#: simulation/templates/structures/cart_embassy.xml:20
 msgid "Embassy"
 msgstr "Embajada"
 
@@ -472,42 +474,43 @@ msgstr "Maravilla"
 
 #: simulation/templates/structures/athen_barracks.xml:18
 #: simulation/templates/structures/mace_barracks.xml:18
+#: simulation/templates/structures/ptol_barracks.xml:17
+#: simulation/templates/structures/sele_barracks.xml:18
 #: simulation/templates/structures/spart_barracks.xml:18
-#: simulation/templates/structures/spart_range.xml:5
-msgid "Stratēgeîon"
-msgstr "Stratēgeîon-Cuartel"
+msgid "Stratopedon"
+msgstr ""
 
 #: simulation/templates/structures/athen_blacksmith.xml:5
+#: simulation/templates/structures/mace_blacksmith.xml:5
+#: simulation/templates/structures/ptol_blacksmith.xml:5
+#: simulation/templates/structures/sele_blacksmith.xml:5
 #: simulation/templates/structures/spart_blacksmith.xml:5
-msgid "Khalkeṓn"
-msgstr "Khalkeṓn- Herrería"
+msgid "Chalkeōn"
+msgstr ""
 
 #: simulation/templates/structures/athen_civil_centre.xml:8
 #: simulation/templates/structures/mace_civil_centre.xml:8
+#: simulation/templates/structures/ptol_civil_centre.xml:9
+#: simulation/templates/structures/sele_civil_centre.xml:5
 #: simulation/templates/structures/spart_civil_centre.xml:8
-msgid "Agorá"
-msgstr "Agora"
+msgid "Agora"
+msgstr ""
 
 #: simulation/templates/structures/athen_corral.xml:5
 #: simulation/templates/structures/mace_corral.xml:5
+#: simulation/templates/structures/ptol_corral.xml:17
 #: simulation/templates/structures/sele_corral.xml:5
 #: simulation/templates/structures/spart_corral.xml:5
-msgid "Épaulos"
-msgstr "Épaulos-Corral"
+msgid "Epaulos"
+msgstr ""
 
 #: simulation/templates/structures/athen_defense_tower.xml:9
-#: simulation/templates/structures/athen_tower_artillery.xml:9
-#: simulation/templates/structures/athen_tower_bolt.xml:9
 #: simulation/templates/structures/mace_defense_tower.xml:9
-#: simulation/templates/structures/mace_tower_artillery.xml:9
-#: simulation/templates/structures/mace_tower_bolt.xml:9
-#: simulation/templates/structures/ptol_tower_bolt.xml:9
+#: simulation/templates/structures/ptol_defense_tower.xml:9
 #: simulation/templates/structures/sele_defense_tower.xml:9
-#: simulation/templates/structures/sele_tower_artillery.xml:9
 #: simulation/templates/structures/spart_defense_tower.xml:9
-#: simulation/templates/structures/spart_tower_bolt.xml:9
-msgid "Pyrgíon"
-msgstr "Pyrgíon-Torre de Defensa"
+msgid "Pyrgion"
+msgstr ""
 
 #: simulation/templates/structures/athen_defense_tower.xml:23
 #: simulation/templates/structures/cart_defense_tower.xml:24
@@ -532,26 +535,35 @@ msgstr ""
 
 #: simulation/templates/structures/athen_dock.xml:12
 #: simulation/templates/structures/mace_dock.xml:12
+#: simulation/templates/structures/ptol_dock.xml:9
+#: simulation/templates/structures/sele_dock.xml:9
 #: simulation/templates/structures/spart_dock.xml:12
-msgid "Limḗn"
-msgstr "Limḗn-Muelle"
+msgid "Limēn"
+msgstr ""
 
 #: simulation/templates/structures/athen_farmstead.xml:11
 #: simulation/templates/structures/mace_farmstead.xml:11
+#: simulation/templates/structures/ptol_farmstead.xml:17
+#: simulation/templates/structures/sele_farmstead.xml:8
 #: simulation/templates/structures/spart_farmstead.xml:11
-msgid "Sitobólion"
-msgstr "Sitobólion-Granja"
+msgid "Epoikion"
+msgstr ""
 
 #: simulation/templates/structures/athen_field.xml:5
 #: simulation/templates/structures/mace_field.xml:5
+#: simulation/templates/structures/ptol_field.xml:5
 #: simulation/templates/structures/sele_field.xml:5
 #: simulation/templates/structures/spart_field.xml:5
-msgid "Agrós"
-msgstr "Agrós-Huerto"
+msgid "Agros"
+msgstr ""
 
 #: simulation/templates/structures/athen_fortress.xml:9
-msgid "Epiteíkhisma"
-msgstr "Epiteíkhisma-Fortaleza"
+#: simulation/templates/structures/mace_fortress.xml:9
+#: simulation/templates/structures/ptol_fortress.xml:9
+#: simulation/templates/structures/sele_fortress.xml:9
+#: simulation/templates/structures/spart_fortress.xml:9
+msgid "Phrourion"
+msgstr "Phrourion-Fortaleza"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
@@ -563,8 +575,8 @@ msgid "Gymnasium"
 msgstr "Gimnasio"
 
 #: simulation/templates/structures/athen_gymnasion.xml:25
-msgid "Gymnásion"
-msgstr "Gymnásion-Gimnasio Griego"
+msgid "Gymnasion"
+msgstr "Gimnasio"
 
 #: simulation/templates/structures/athen_gymnasion.xml:26
 #: simulation/templates/structures/pers_hall.xml:32
@@ -573,45 +585,54 @@ msgstr ""
 
 #: simulation/templates/structures/athen_house.xml:5
 #: simulation/templates/structures/mace_house.xml:5
+#: simulation/templates/structures/ptol_house.xml:18
 #: simulation/templates/structures/sele_house.xml:8
 #: simulation/templates/structures/spart_house.xml:5
-msgid "Oîkos"
-msgstr "Oîkos-Casa"
+msgid "Oikos"
+msgstr ""
 
 #: simulation/templates/structures/athen_market.xml:5
 #: simulation/templates/structures/mace_market.xml:5
+#: simulation/templates/structures/ptol_market.xml:9
+#: simulation/templates/structures/sele_market.xml:5
 #: simulation/templates/structures/spart_market.xml:5
-msgid "Empórios"
-msgstr "Empórios-Mercado"
+msgid "Emporion"
+msgstr ""
 
 #: simulation/templates/structures/athen_outpost.xml:5
 #: simulation/templates/structures/mace_outpost.xml:5
+#: simulation/templates/structures/ptol_outpost.xml:5
+#: simulation/templates/structures/sele_outpost.xml:5
 #: simulation/templates/structures/spart_outpost.xml:5
-msgid "Greek Outpost"
-msgstr "Puesto de vigilancia griego."
-
-#: simulation/templates/structures/athen_outpost.xml:6
-#: simulation/templates/structures/mace_outpost.xml:6
-#: simulation/templates/structures/spart_outpost.xml:6
-msgid "Prophylakḗ"
-msgstr "Prophylakḗ-Puesto de avanzada"
+msgid "Prophylagma"
+msgstr ""
 
 #: simulation/templates/structures/athen_prytaneion.xml:25
 msgid "Council Chamber"
 msgstr "Sala del Consejo"
 
 #: simulation/templates/structures/athen_prytaneion.xml:26
-msgid "Prytaneîon"
-msgstr "Prytaneîon-Cámara del Concejo"
+msgid "Prytaneion"
+msgstr "Pritaneo"
 
 #: simulation/templates/structures/athen_prytaneion.xml:27
 msgid "Train Heroes and research technologies."
 msgstr ""
 
-#: simulation/templates/structures/athen_royal_stoa.xml:5
-#: simulation/templates/structures/mace_royal_stoa.xml:5
-#: simulation/templates/structures/spart_royal_stoa.xml:12
-msgid "Stoá"
+#: simulation/templates/structures/athen_range.xml:8
+#: simulation/templates/structures/mace_range.xml:8
+#: simulation/templates/structures/ptol_range.xml:8
+#: simulation/templates/structures/sele_range.xml:8
+#: simulation/templates/structures/spart_range.xml:5
+msgid "Stratopedon tōn Psilōn"
+msgstr ""
+
+#: simulation/templates/structures/athen_sentry_tower.xml:5
+#: simulation/templates/structures/mace_sentry_tower.xml:5
+#: simulation/templates/structures/ptol_sentry_tower.xml:5
+#: simulation/templates/structures/sele_sentry_tower.xml:5
+#: simulation/templates/structures/spart_sentry_tower.xml:5
+msgid "Pyrgidion"
 msgstr ""
 
 #: simulation/templates/structures/athen_stable.xml:5
@@ -619,32 +640,48 @@ msgstr ""
 #: simulation/templates/structures/ptol_stable.xml:5
 #: simulation/templates/structures/sele_stable.xml:5
 #: simulation/templates/structures/spart_stable.xml:5
-msgid "Hippṓn"
+msgid "Hippōn"
 msgstr ""
 
 #: simulation/templates/structures/athen_storehouse.xml:8
 #: simulation/templates/structures/mace_storehouse.xml:8
+#: simulation/templates/structures/ptol_storehouse.xml:18
 #: simulation/templates/structures/sele_storehouse.xml:8
 #: simulation/templates/structures/spart_storehouse.xml:8
-msgid "Apothḗkē"
-msgstr "Apothḗkē-Almacén"
+msgid "Apothēkē"
+msgstr ""
 
 #: simulation/templates/structures/athen_temple.xml:9
-msgid "Naṓs"
-msgstr "Naṓs-Templo"
+#: simulation/templates/structures/mace_temple.xml:9
+#: simulation/templates/structures/ptol_temple.xml:12
+#: simulation/templates/structures/sele_temple.xml:9
+#: simulation/templates/structures/spart_temple.xml:9
+msgid "Naos"
+msgstr ""
 
 #: simulation/templates/structures/athen_theatron.xml:5
 #: simulation/templates/structures/mace_theatron.xml:5
 #: simulation/templates/structures/spart_theatron.xml:5
-msgid "Théātron"
-msgstr "Théātron-Teatro Griego"
+msgid "Theatron"
+msgstr "Teatros"
+
+#: simulation/templates/structures/athen_tower_artillery.xml:9
+#: simulation/templates/structures/athen_tower_bolt.xml:9
+#: simulation/templates/structures/mace_tower_artillery.xml:9
+#: simulation/templates/structures/mace_tower_bolt.xml:9
+#: simulation/templates/structures/ptol_tower_bolt.xml:9
+#: simulation/templates/structures/sele_tower_artillery.xml:9
+#: simulation/templates/structures/spart_tower_bolt.xml:9
+msgid "Pyrgíon"
+msgstr "Pyrgíon-Torre de Defensa"
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
+#: simulation/templates/structures/ptol_wall_gate.xml:9
 #: simulation/templates/structures/sele_wall_gate.xml:9
 #: simulation/templates/structures/spart_wall_gate.xml:9
-msgid "Pýlai"
-msgstr "Pýlai-Puerta"
+msgid "Pylai"
+msgstr ""
 
 #: simulation/templates/structures/athen_wall_long.xml:10
 #: simulation/templates/structures/athen_wall_medium.xml:10
@@ -654,6 +691,10 @@ msgstr "Pýlai-Puerta"
 #: simulation/templates/structures/mace_wall_medium.xml:10
 #: simulation/templates/structures/mace_wall_short.xml:10
 #: simulation/templates/structures/mace_wallset_stone.xml:5
+#: simulation/templates/structures/ptol_wall_long.xml:29
+#: simulation/templates/structures/ptol_wall_medium.xml:23
+#: simulation/templates/structures/ptol_wall_short.xml:10
+#: simulation/templates/structures/ptol_wallset_stone.xml:5
 #: simulation/templates/structures/sele_wall_long.xml:10
 #: simulation/templates/structures/sele_wall_medium.xml:10
 #: simulation/templates/structures/sele_wall_short.xml:10
@@ -662,21 +703,20 @@ msgstr "Pýlai-Puerta"
 #: simulation/templates/structures/spart_wall_medium.xml:10
 #: simulation/templates/structures/spart_wall_short.xml:10
 #: simulation/templates/structures/spart_wallset_stone.xml:5
-msgid "Teîkhos"
-msgstr "Teîkhos-Muralla"
+msgid "Teichos"
+msgstr ""
 
 #: simulation/templates/structures/athen_wall_tower.xml:9
 #: simulation/templates/structures/mace_wall_tower.xml:9
+#: simulation/templates/structures/ptol_wall_tower.xml:9
 #: simulation/templates/structures/sele_wall_tower.xml:9
 #: simulation/templates/structures/spart_wall_tower.xml:9
-msgid "Pýrgos"
-msgstr "Pýrgos-Torre de Muralla"
+msgid "Pyrgos"
+msgstr ""
 
 #: simulation/templates/structures/athen_wonder.xml:15
-#: simulation/templates/structures/mace_wonder.xml:15
-#: simulation/templates/structures/spart_wonder.xml:15
-msgid "Naós Parthenṓn"
-msgstr "Naós Parthenṓn-Maravilla"
+msgid "Parthenōn﻿﻿"
+msgstr ""
 
 #: simulation/templates/structures/athen_wonder.xml:16
 #: simulation/templates/structures/cart_wonder.xml:16
@@ -871,11 +911,7 @@ msgid ""
 "other docks."
 msgstr "Construye barcos pesqueros para recolectar alimento y buques mercantes para comerciar con otros muelles. "
 
-#: simulation/templates/structures/cart_elephant_stables.xml:5
-msgid "Carthaginian Elephant Stables"
-msgstr "Establo de elefantes Cartagineses "
-
-#: simulation/templates/structures/cart_embassy.xml:21
+#: simulation/templates/structures/cart_embassy.xml:20
 msgid "Hire mercenaries."
 msgstr "Contrata mercenarios."
 
@@ -912,10 +948,6 @@ msgid "Šadd"
 msgstr "Šadd-Huerto"
 
 #: simulation/templates/structures/cart_fortress.xml:9
-msgid "Blockhouse Fort"
-msgstr "Fortín"
-
-#: simulation/templates/structures/cart_fortress.xml:10
 msgid "Ḥamet"
 msgstr "Ḥamet-Fortaleza"
 
@@ -926,10 +958,6 @@ msgstr "Bet-Casa"
 #: simulation/templates/structures/cart_market.xml:12
 msgid "Šūq"
 msgstr "Šūq-Mercado"
-
-#: simulation/templates/structures/cart_outpost.xml:5
-msgid "Carthaginian Outpost"
-msgstr "Puesto de avanzada cartaginés "
 
 #: simulation/templates/structures/cart_s_wall_long.xml:6
 #: simulation/templates/structures/cart_s_wall_medium.xml:6
@@ -1099,10 +1127,6 @@ msgid ""
 "All units within vision of this monument will fight harder. Buildings in the"
 " territory of the monument do not decay."
 msgstr "Todas las unidades dentro del rango del monumento luchan con más fuerza. Los edificios dentro del territorio del monumento no se deterioran."
-
-#: simulation/templates/structures/iber_outpost.xml:5
-msgid "Iberian Outpost"
-msgstr "Puesto de Avanzada Ibérico"
 
 #: simulation/templates/structures/iber_storehouse.xml:5
 msgid "Ola"
@@ -1299,23 +1323,15 @@ msgstr "Mnw nht"
 msgid "Pr-ỉwn n ms﻿"
 msgstr ""
 
-#: simulation/templates/structures/mace_blacksmith.xml:5
-msgid "Sidērourgeîon"
-msgstr "Sidērourgeîon-Herrería"
-
-#: simulation/templates/structures/mace_fortress.xml:9
-msgid "Teíchisma"
-msgstr "Teíchisma-Fortaleza"
-
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
-msgid "Bibliothḗkē"
-msgstr "Bibliothḗkē-Biblioteca"
+#: simulation/templates/structures/sele_library.xml:9
+msgid "Bibliothēkē"
+msgstr ""
 
-#: simulation/templates/structures/mace_temple.xml:9
-#: simulation/templates/structures/spart_temple.xml:9
-msgid "Asklēpieîon"
-msgstr "Asklepeion"
+#: simulation/templates/structures/mace_wonder.xml:15
+msgid "Hieron tou Dios tou Olympiou"
+msgstr ""
 
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"
@@ -1447,12 +1463,13 @@ msgid "MercenaryCamp"
 msgstr "Campamento Mercenario"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
-msgid "Mercenary Camp (Egyptian)"
-msgstr "Campamento de Mercenarios (Egipto)"
+msgid "Egyptian Mercenary Camp"
+msgstr ""
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:30
-msgid "Stratópedo Misthophóron Aigyptiakós"
-msgstr "Stratópedo Misthophóron Aigyptiakós"
+#: simulation/templates/structures/ptol_mercenary_camp.xml:30
+msgid "Stratopedeia Misthophorōn"
+msgstr ""
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:32
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
@@ -1658,48 +1675,16 @@ msgstr "Almacén"
 msgid "Hanging Gardens of Babylon"
 msgstr "Jardines colgantes de Babilonia"
 
-#: simulation/templates/structures/ptol_barracks.xml:17
-msgid "ḥwt-n-mš'"
-msgstr "ḥwt-n-mš'-Cuartel"
-
 #: simulation/templates/structures/ptol_barracks.xml:18
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements."
 msgstr "Entrena ciudadanos-soldados Egipcios y de Medio Oriente. Investiga mejoras de entrenamiento."
 
-#: simulation/templates/structures/ptol_civil_centre.xml:9
-msgid "pr-'a"
-msgstr "pr-'a-Centro Cívico"
-
-#: simulation/templates/structures/ptol_corral.xml:17
-msgid "h-n-ssmt.w"
-msgstr "h-n-ssmt.w-Corral"
-
-#: simulation/templates/structures/ptol_defense_tower.xml:9
-#: simulation/templates/structures/ptol_tower_artillery.xml:9
-msgid "mktr-n-ḏw"
-msgstr "mktr-n-ḏw-Torre de Defensa"
-
-#: simulation/templates/structures/ptol_dock.xml:9
-msgid "ḥwt-n-dpt.w"
-msgstr "ḥwt-n-dpt.w-Muelle"
-
 #: simulation/templates/structures/ptol_elephant_stables.xml:5
-msgid "Ptolemaic Elephant Stables"
-msgstr "Establo de elefantes ptolemaico"
-
-#: simulation/templates/structures/ptol_farmstead.xml:17
-msgid "pr-n-t"
-msgstr "pr-n-t-Granja"
-
-#: simulation/templates/structures/ptol_fortress.xml:9
-msgid "mktr-'a"
-msgstr "mktr-'a-Fortaleza"
-
-#: simulation/templates/structures/ptol_house.xml:18
-msgid "ḥwt"
-msgstr "ḥwt-Casa"
+#: simulation/templates/structures/sele_elephant_stables.xml:5
+msgid "Stathmos tōn Elepantōn"
+msgstr ""
 
 #: simulation/templates/structures/ptol_house.xml:19
 msgid ""
@@ -1712,8 +1697,8 @@ msgid "Lighthouse"
 msgstr "Faro"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:18
-msgid "Pháros"
-msgstr "Pháros-Faro"
+msgid "Pharos"
+msgstr ""
 
 #: simulation/templates/structures/ptol_lighthouse.xml:21
 msgid ""
@@ -1721,17 +1706,9 @@ msgid ""
 "large vision range: 180 meters."
 msgstr "Constrúyelo a lo largo de la costa para revelar las costas de todo el mapa. Gran rango de visión: 180 metros."
 
-#: simulation/templates/structures/ptol_market.xml:9
-msgid "ḥwt-n-ḫt.w-wḫa.w"
-msgstr "ḥwt-n-ḫt.w-wḫa.w-Mercado"
-
 #: simulation/templates/structures/ptol_mercenary_camp.xml:29
 msgid "Mercenary Camp"
 msgstr "Campamento Mercenario"
-
-#: simulation/templates/structures/ptol_mercenary_camp.xml:30
-msgid "Stratopedeía Misthophórōn"
-msgstr "Stratopedeía Misthophórōn"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:32
 msgid ""
@@ -1741,8 +1718,8 @@ msgstr "Estructura barata de tipo Cuartel que se puede construir en territorio n
 
 #: simulation/templates/structures/ptol_military_colony.xml:9
 #: simulation/templates/structures/sele_military_colony.xml:9
-msgid "Klēroukhía"
-msgstr "cleruquía"
+msgid "Klērouchia"
+msgstr ""
 
 #: simulation/templates/structures/ptol_military_colony.xml:10
 msgid ""
@@ -1751,35 +1728,16 @@ msgid ""
 "cheaper and built faster. Train settler-soldiers of various nationalities."
 msgstr "Edificio de expansión ptolemaico, similar al Centro Cívico de otras facciones. Es más débil y ejerce menor influencia sobre el territorio, pero es más barato y más rápido de construir. Entrena soldados colonos de distintas nacionalidades. "
 
-#: simulation/templates/structures/ptol_outpost.xml:5
-msgid "mktr-n-ḫt"
-msgstr "mktr-n-ḫt-Puesto de Avanzada"
-
-#: simulation/templates/structures/ptol_storehouse.xml:18
-msgid "h-n-ḫt.w"
-msgstr "h-n-ḫt.w-Almacén"
-
-#: simulation/templates/structures/ptol_wall_gate.xml:9
-msgid "sba-n-njwt"
-msgstr "sba-n-njwt-Puerta"
-
-#: simulation/templates/structures/ptol_wall_long.xml:29
-#: simulation/templates/structures/ptol_wall_medium.xml:23
-#: simulation/templates/structures/ptol_wall_short.xml:10
-#: simulation/templates/structures/ptol_wallset_stone.xml:5
-msgid "h-n-njwt"
-msgstr "h-n-njwt-Muralla"
-
-#: simulation/templates/structures/ptol_wall_tower.xml:9
-msgid "mktr"
-msgstr "mktr-Torre de Muralla"
+#: simulation/templates/structures/ptol_tower_artillery.xml:9
+msgid "mktr-n-ḏw"
+msgstr "mktr-n-ḏw-Torre de Defensa"
 
 #: simulation/templates/structures/ptol_wonder.xml:15
-msgid "Temple of Edfu"
-msgstr "Templo de Edfu"
+msgid "Hieron tou Hōrou"
+msgstr ""
 
 #: simulation/templates/structures/rome_amphitheater_pompeii.xml:6
-msgid "Amphitheatrum"
+msgid "Amphitheātrum"
 msgstr ""
 
 #: simulation/templates/structures/rome_arch.xml:22
@@ -1962,47 +1920,11 @@ msgstr ""
 msgid "Ballistārium"
 msgstr ""
 
-#: simulation/templates/structures/sele_barracks.xml:18
-msgid "Stratones"
-msgstr "Stratones-Cuartel"
-
-#: simulation/templates/structures/sele_blacksmith.xml:5
-msgid "Sidirourgeíon"
-msgstr "Sidirourgeíon-Herrería"
-
-#: simulation/templates/structures/sele_civil_centre.xml:5
-msgid "Agorā́"
-msgstr "Ágora"
-
 #: simulation/templates/structures/sele_defense_tower.xml:23
 msgid ""
 "Reinforce with stone block, and install small torsion engines to upgrade "
 "this defense tower into an artillery tower."
 msgstr ""
-
-#: simulation/templates/structures/sele_dock.xml:9
-msgid "Liménas"
-msgstr "Liménas-Muelle"
-
-#: simulation/templates/structures/sele_elephant_stables.xml:5
-msgid "Seleucid Elephant Stables"
-msgstr "Establo de elefantes seléucida"
-
-#: simulation/templates/structures/sele_farmstead.xml:8
-msgid "Sītobólion"
-msgstr "Sītobólion-Granja"
-
-#: simulation/templates/structures/sele_fortress.xml:9
-msgid "Phrourion"
-msgstr "Phrourion-Fortaleza"
-
-#: simulation/templates/structures/sele_library.xml:9
-msgid "Bibliothikon"
-msgstr "Bibliothikon-Biblioteca"
-
-#: simulation/templates/structures/sele_market.xml:5
-msgid "Empórion"
-msgstr "Empórion-Mercado"
 
 #: simulation/templates/structures/sele_military_colony.xml:10
 msgid ""
@@ -2011,17 +1933,9 @@ msgid ""
 "cheaper and built faster. Train settler-soldiers of various nationalities."
 msgstr "Edificio de expansión seléucida, similar al Centro Cívico de otras facciones. Es más débil y ejerce menor influencia sobre el territorio, pero es más barato y más rápido de construir. Entrena soldados colonos de distintas nacionalidades. "
 
-#: simulation/templates/structures/sele_outpost.xml:5
-msgid "Prophylax"
-msgstr "Prophylax-Puesto de Avanzada"
-
-#: simulation/templates/structures/sele_temple.xml:9
-msgid "Naós"
-msgstr "Naós-Templo"
-
 #: simulation/templates/structures/sele_wonder.xml:9
-msgid "Temple of Pythian Apollo"
-msgstr "Templo de Apolo Pítico-Maravilla"
+msgid "Hieron tou Apollōnos Pythiou"
+msgstr ""
 
 #: simulation/templates/structures/spart_defense_tower.xml:23
 msgid ""
@@ -2029,17 +1943,13 @@ msgid ""
 "defense tower into a prompt, long range, and accurate bolt tower."
 msgstr ""
 
-#: simulation/templates/structures/spart_fortress.xml:9
-msgid "Teíkhisma"
-msgstr "Teíkhisma-Fortaleza"
-
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Spartan Senate"
 msgstr "Senado Espartano"
 
 #: simulation/templates/structures/spart_gerousia.xml:23
-msgid "Gerontía"
-msgstr "Gerontía"
+msgid "Gerousia"
+msgstr ""
 
 #: simulation/templates/structures/spart_gerousia.xml:24
 msgid "Train Heroes."
@@ -2050,11 +1960,15 @@ msgid "Military Mess Hall"
 msgstr "Cantina militar"
 
 #: simulation/templates/structures/spart_syssiton.xml:26
-msgid "Syssítion"
-msgstr "Syssítion-Cantina Militar"
+msgid "Syssition"
+msgstr "Sisitia"
 
 #: simulation/templates/structures/spart_syssiton.xml:27
 msgid "Train Champions and Heroes."
+msgstr ""
+
+#: simulation/templates/structures/spart_wonder.xml:15
+msgid "Hieron tēs Artemidos Orthias"
 msgstr ""
 
 #: simulation/templates/structures/spart_wonder.xml:16
