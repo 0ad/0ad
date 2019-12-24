@@ -1,18 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant>
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/rome_head_veteran.xml" attachpoint="head"/>
         <prop actor="props/units/shields/rome_parma_e.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/capes/rider/cape_long_player.xml" attachpoint="root"/>
       </props>
-      <textures>
-        <texture file="skeletal/rome_csp_e.dds" name="baseTex"/>
-      </textures>
     </variant>
   </group>
   <group>
@@ -23,15 +20,41 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/rider/cavalry/base_spearman_relax_shield_01.xml" name="Spearman-Relax-Shield-01" frequency="1"/>
+    <variant frequency="1" name="rome-cuirass-1a">
+      <textures>
+        <texture file="skeletal/rome_cuirass_1_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-scale-1a">
+      <textures>
+        <texture file="skeletal/rome_scale_1_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_scale_3_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-scale-1b">
+      <textures>
+        <texture file="skeletal/rome_scale_1_b.png" name="baseTex"/>
+        <texture file="skeletal/hele_scale_3_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-scale-1c">
+      <textures>
+        <texture file="skeletal/rome_scale_1_c.png" name="baseTex"/>
+        <texture file="skeletal/hele_scale_3_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/rider/cavalry/base_spearman_relax_shield_01.xml" frequency="1" name="Spearman-Relax-Shield-01"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/rider/promotion_shield.xml" />
+    <variant file="biped/rider/promotion_shield.xml"/>
     <variant file="biped/rider/attack_slaughter_shield_rome.xml"/>
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death_shield.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

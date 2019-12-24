@@ -12,9 +12,6 @@
         <prop actor="props/units/helmets/gladiator_hoplomacus.xml" attachpoint="helmet"/>
         <prop actor="props/units/shields/rome_parma_hero.xml" attachpoint="shield"/>
       </props>
-      <textures>
-        <texture file="skeletal/rome_ijv_b.png" name="baseTex"/>
-      </textures>
     </variant>
   </group>
   <group>
@@ -23,6 +20,63 @@
         <prop actor="props/units/armor/greave_06_bronze_r.xml" attachpoint="leg_R"/>
         <prop actor="props/units/armor/greave_06_bronze_l.xml" attachpoint="leg_L"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="rome-gladiator-tunic">
+      <textures>
+        <texture file="skeletal/rome_ijv_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-gladiator-1-african">
+      <mesh>skeletal/new/m_naked.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_kush_meroitic.xml" attachpoint="head"/>
+      </props>
+      <textures>
+        <texture file="skeletal/rome_gladiator_1_african.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-gladiator-1-caucasian">
+      <mesh>skeletal/new/m_naked.dae</mesh>
+      <textures>
+        <texture file="skeletal/rome_gladiator_1_caucasian.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-gladiator-1-eastern">
+      <mesh>skeletal/new/m_naked.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_pers_b.xml" attachpoint="head"/>
+      </props>
+      <textures>
+        <texture file="skeletal/rome_gladiator_1_eastern.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-gladiator-2-african">
+      <props>
+        <prop actor="props/units/heads/head_kush_meroitic.xml" attachpoint="head"/>
+        <prop attachpoint="leg_R"/>
+      </props>
+      <textures>
+        <texture file="skeletal/rome_gladiator_2_african.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-gladiator-2-caucasian">
+      <props>
+        <prop attachpoint="leg_R"/>
+      </props>
+      <textures>
+        <texture file="skeletal/rome_gladiator_2_caucasian.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-gladiator-2-eastern">
+      <props>
+        <prop actor="props/units/heads/new/head_pers_b.xml" attachpoint="head"/>
+        <prop attachpoint="leg_R"/>
+      </props>
+      <textures>
+        <texture file="skeletal/rome_gladiator_2_eastern.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>

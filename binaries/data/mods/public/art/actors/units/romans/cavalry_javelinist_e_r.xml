@@ -86,9 +86,75 @@
         <texture file="skeletal/rome_chainmail_3_spec.png" name="specTex"/>
       </textures>
     </variant>
+    <variant frequency="1" name="rome-chainmail-4a">
+      <textures>
+        <texture file="skeletal/rome_chainmail_4_a.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-chainmail-4b">
+      <textures>
+        <texture file="skeletal/rome_chainmail_4_b.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-chainmail-4c">
+      <textures>
+        <texture file="skeletal/rome_chainmail_4_c.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-chainmail-4d">
+      <textures>
+        <texture file="skeletal/rome_chainmail_4_d.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-chainmail-4e">
+      <textures>
+        <texture file="skeletal/rome_chainmail_4_e.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-chainmail-4f">
+      <textures>
+        <texture file="skeletal/rome_chainmail_4_f.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-scale-1a">
+      <textures>
+        <texture file="skeletal/rome_scale_1_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_scale_3_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="hele-scale-1-a">
+      <textures>
+        <texture file="skeletal/hele_scale_1_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_scale_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="hele-lamellar-1a">
+      <textures>
+        <texture file="skeletal/hele_lamellar_1_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_lamellar_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="hele-linothorax-lamellar-1a">
+      <textures>
+        <texture file="skeletal/hele_linothorax_lamelar_1_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_lamellar_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="hele-linothorax-lamellar-1b">
+      <textures>
+        <texture file="skeletal/hele_linothorax_lamelar_1_b.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_lamellar_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
   </group>
   <group>
-    <variant file="biped/rider/cavalry/base_javelin_relax.xml" name="Javelinist-Relax" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_javelin_relax.xml" frequency="1" name="Javelinist-Relax"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>
@@ -99,5 +165,5 @@
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death_ranged.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

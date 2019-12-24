@@ -87,6 +87,24 @@
         <texture file="skeletal/hele_isp_e_1.dds" name="baseTex"/>
       </textures>
     </variant>
+    <variant frequency="1" name="cuirass-1a">
+      <textures>
+        <texture file="skeletal/hele_cuirass_1_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_cuirass_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="cuirass-1b">
+      <textures>
+        <texture file="skeletal/hele_cuirass_1_b.png" name="baseTex"/>
+        <texture file="skeletal/hele_cuirass_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="cuirass-1c">
+      <textures>
+        <texture file="skeletal/hele_cuirass_1_c.png" name="baseTex"/>
+        <texture file="skeletal/hele_cuirass_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
     <variant frequency="1" name="cuirass-2a">
       <textures>
         <texture file="skeletal/hele_cuirass_2_a.png" name="baseTex"/>
@@ -117,19 +135,25 @@
         <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="scale-old">
+    <variant frequency="3" name="scale-old">
       <textures>
         <texture file="skeletal/hele_linothorax_scale.dds" name="baseTex"/>
         <texture file="skeletal/hele_scale_1_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="scale-1-a">
+    <variant frequency="3" name="scale-1a">
       <textures>
         <texture file="skeletal/hele_scale_1_a.png" name="baseTex"/>
         <texture file="skeletal/hele_scale_1_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="lamellar-1a">
+    <variant frequency="3" name="scale-5a">
+      <textures>
+        <texture file="skeletal/hele_scale_5_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_scale_5_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="lamellar-1a">
       <textures>
         <texture file="skeletal/hele_lamellar_1_a.png" name="baseTex"/>
         <texture file="skeletal/hele_lamellar_1_spec.png" name="specTex"/>

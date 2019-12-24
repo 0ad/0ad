@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant>
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/shields/rome_parma_a.xml" attachpoint="shield_arm"/>
@@ -20,27 +20,59 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Chainmail-Plain">
+    <variant frequency="1" name="rome-chainmail-4d">
       <textures>
-        <texture file="skeletal/rome_csp_a.dds" name="baseTex"/>
+        <texture file="skeletal/rome_chainmail_4_d.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Chainmail-Shoulder detail">
+    <variant frequency="1" name="rome-chainmail-4e">
       <textures>
-        <texture file="skeletal/rome_isp_e_2.dds" name="baseTex"/>
+        <texture file="skeletal/rome_chainmail_4_e.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-chainmail-4f">
+      <textures>
+        <texture file="skeletal/rome_chainmail_4_f.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-chainmail-4-padded-a">
+      <textures>
+        <texture file="skeletal/rome_chainmail_4_padded_a.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-compound-cardiopylax-1a">
+      <textures>
+        <texture file="skeletal/rome_compound_cardiopylax_1_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-compound-cardiopylax-1b">
+      <textures>
+        <texture file="skeletal/rome_compound_cardiopylax_1_b.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-compound-cardiopylax-1c">
+      <textures>
+        <texture file="skeletal/rome_compound_cardiopylax_1_c.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant file="biped/rider/cavalry/base_spearman_relax_shield_01.xml" name="Spearman-Relax-Shield-01" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_relax_shield_01.xml" frequency="1" name="Spearman-Relax-Shield-01"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/rider/promotion_shield.xml" />
+    <variant file="biped/rider/promotion_shield.xml"/>
     <variant file="biped/rider/attack_slaughter_shield_rome.xml"/>
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death_shield.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
