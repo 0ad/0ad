@@ -38,26 +38,17 @@
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "BaseHeight": 0,
-  "BaseTerrain": [
-    "medit_rocks_grass"
-  ],
   "CircularMap": true,
   "Description": "A demo Skirmish map.",
   "Keywords": [
     "demo"
   ],
-  "LockTeams": false,
   "Name": "Skirmish Demo",
   "PlayerData": [
     {},
-    {
-      "AI": ""
-    }
+    {}
   ],
   "Preview": "",
-  "RevealMap": false,
-  "Size": 192,
   "VictoryConditions": []
 }
 ]]></ScriptSettings>

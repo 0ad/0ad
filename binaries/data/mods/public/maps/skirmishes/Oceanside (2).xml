@@ -39,48 +39,17 @@
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "AISeed": 0,
   "CircularMap": true,
   "Description": "A Lush temperate biome along an ocean. ",
   "Keywords": [
     "new"
   ],
-  "LockTeams": false,
   "Name": "Oceanside (2)",
   "PlayerData": [
-    {
-      "Civ": "athen",
-      "StartingCamera": {
-        "Position": {
-          "x": 220.84,
-          "y": 184.853,
-          "z": 734.317
-        },
-        "Rotation": {
-          "x": 35,
-          "y": 0,
-          "z": 0
-        }
-      }
-    },
-    {
-      "Civ": "cart",
-      "StartingCamera": {
-        "Position": {
-          "x": 769.293,
-          "y": 181.491,
-          "z": 206.053
-        },
-        "Rotation": {
-          "x": 35,
-          "y": -2.28607,
-          "z": -4.27227e-7
-        }
-      }
-    }
+    {},
+    {}
   ],
   "Preview": "oceanside.png",
-  "RevealMap": false,
   "VictoryConditions": [
     "conquest"
   ]

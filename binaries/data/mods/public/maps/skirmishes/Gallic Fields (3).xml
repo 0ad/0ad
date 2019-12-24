@@ -41,57 +41,13 @@
   "CircularMap": true,
   "Description": "Defend your Gallic outpost against attacks from your treacherous neighbors!\n\nEach player begins the match with a wooden palisade and some guard towers atop a low embankment.\n\nWatch out for Romans passing by!",
   "Keywords": ["trigger"],
-  "LockTeams": false,
   "Name": "Gallic Fields (3)",
   "PlayerData": [
-    {
-      "Name": "Player 1",
-      "StartingCamera": {
-        "Position": {
-          "x": 317.2,
-          "y": 29.474,
-          "z": 370.841
-        },
-        "Rotation": {
-          "x": 32.1729,
-          "y": 4.9014,
-          "z": -0.00101826
-        }
-      }
-    },
-    {
-      "Name": "Player 2",
-      "StartingCamera": {
-        "Position": {
-          "x": 692.891,
-          "y": 22.3825,
-          "z": 314.201
-        },
-        "Rotation": {
-          "x": 30,
-          "y": 0,
-          "z": 0
-        }
-      }
-    },
-    {
-      "Name": "Player 3",
-      "StartingCamera": {
-        "Position": {
-          "x": 525.212,
-          "y": 22.3825,
-          "z": 740.907
-        },
-        "Rotation": {
-          "x": 30,
-          "y": 0,
-          "z": 0
-        }
-      }
-    }
+    {},
+    {},
+    {}
   ],
   "Preview": "gallic_fields.png",
-  "RevealMap": false,
   "TriggerScripts": [
     "scripts/TriggerHelper.js",
     "skirmishes/Gallic Fields (3).js"

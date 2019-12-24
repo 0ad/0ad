@@ -38,29 +38,15 @@
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "BaseHeight": 0,
-  "BaseTerrain": [
-    "medit_grass_field_dry",
-    "medit_grass_field_brown",
-    "medit_grass_field_b"
-  ],
   "CircularMap": true,
   "Description": "The mountains buffering the Persian homeland, straddling Persis, Susiana, and Media.\u000a\u000aPlayers start the match near the Persian Gulf in their own province with 1 free Temple. \u000a\u000aAccess to untapped resources and territories can be found through the rugged hinterlands.",
   "Keywords": [],
-  "LockTeams": false,
   "Name": "Zagros Mountains (2)",
   "PlayerData": [
-    {
-      "Name": "Player 1"
-    },
-    {
-      "Name": "Player 2"
-    }
+    {},
+    {}
   ],
   "Preview": "zagros_mountains_skirmish_2.png",
-  "RevealMap": false,
-  "Script": "latium.js",
-  "Size": 256,
   "VictoryConditions": [
     "conquest"
   ]

@@ -41,7 +41,6 @@
   "CircularMap": true,
   "Description": "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\u000a\u000aThis represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt.",
   "Keywords": [],
-  "LockTeams": false,
   "Name": "Libyan Oases (4)",
   "PlayerData": [
     {
@@ -49,13 +48,6 @@
         "b": 200,
         "g": 46,
         "r": 46
-      },
-      "Name": "Player 1",
-      "Resources": {
-        "food": 300,
-        "metal": 300,
-        "stone": 300,
-        "wood": 300
       }
     },
     {
@@ -63,13 +55,6 @@
         "b": 20,
         "g": 20,
         "r": 150
-      },
-      "Name": "Player 2",
-      "Resources": {
-        "food": 300,
-        "metal": 300,
-        "stone": 300,
-        "wood": 300
       }
     },
     {
@@ -77,13 +62,6 @@
         "b": 5,
         "g": 165,
         "r": 50
-      },
-      "Name": "Player 3",
-      "Resources": {
-        "food": 300,
-        "metal": 300,
-        "stone": 300,
-        "wood": 300
       }
     },
     {
@@ -91,18 +69,10 @@
         "b": 199,
         "g": 54,
         "r": 134
-      },
-      "Name": "Player 4",
-      "Resources": {
-        "food": 300,
-        "metal": 300,
-        "stone": 300,
-        "wood": 300
       }
     }
   ],
   "Preview": "oasis_4.png",
-  "RevealMap": false,
   "VictoryConditions": [
     "conquest"
   ]

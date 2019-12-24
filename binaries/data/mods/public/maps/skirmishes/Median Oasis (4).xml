@@ -41,7 +41,6 @@
   "CircularMap": true,
   "Description": "A large oasis acts as the hub of mountainous spokes that divide the home territories of each player.",
   "Keywords": [],
-  "LockTeams": false,
   "Name": "Median Oasis (4)",
   "PlayerData": [
     {
@@ -49,36 +48,31 @@
         "b": 200,
         "g": 46,
         "r": 46
-      },
-      "Name": "Player 1"
+      }
     },
     {
       "Color": {
         "b": 20,
         "g": 20,
         "r": 150
-      },
-      "Name": "Player 2"
+      }
     },
     {
       "Color": {
         "b": 33,
         "g": 107,
         "r": 40
-      },
-      "Name": "Player 3"
+      }
     },
     {
       "Color": {
         "b": 191,
         "g": 163,
         "r": 64
-      },
-      "Name": "Player 4"
+      }
     }
   ],
   "Preview": "median_oasis_1.png",
-  "RevealMap": false,
   "VictoryConditions": [
     "conquest"
   ]

@@ -41,7 +41,6 @@
   "CircularMap": true,
   "Description": "A deep rocky canyon slicing through the desert.\u000a\u000aEach player starts their colony on a plateau on either side of the ravine.",
   "Keywords": [],
-  "LockTeams": false,
   "Name": "Death Canyon (2)",
   "PlayerData": [
     {
@@ -49,20 +48,17 @@
         "b": 200,
         "g": 46,
         "r": 46
-      },
-      "Name": "Player 1"
+      }
     },
     {
       "Color": {
         "b": 20,
         "g": 20,
         "r": 150
-      },
-      "Name": "Player 2"
+      }
     }
   ],
   "Preview": "death_canyon_1.png",
-  "RevealMap": false,
   "VictoryConditions": [
     "conquest"
   ]

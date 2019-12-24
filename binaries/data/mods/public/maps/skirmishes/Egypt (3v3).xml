@@ -45,9 +45,7 @@
   "Name": "Egypt (3v3)",
   "Description": "Fight for the remains of ancient Egypt!\n\nPlayers start with full grown cities and small armies, each having distinct advantages and drawbacks. Take care, there are 7 mighty forts and marauding bandids!\n\nIt is the last century before 0 A.D. Egypt is internally divided between hellenistic (Alexandria, represented by Seleucids) and traditional influences (Memphis, represented by Ptolemies). Thebes in the southern clime of river Nile has already been taken over by the Kush. In the north western Al-Dschabal al-Achdar, where the mediterranean city of Cyrene is located the Romans are preparing their invasion. From the eastern desert at-Tih and mount Sinai enemies (represented by Persians) are pushing forward and the oasis Siwa. Charga (represented by Carthage) in the south western desert are trying to get a share of the pie as well.\nLocations:\n- Alexandria: library, harbor\n- Memphis: Necropolis, pyramids, Apis shrine\n- Thebes: temple district, Valley of the Kings \n- Cyrene: mediterranean Macchie, olive groves\n- Fayyum: crocodile shrine, nile dam\n- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n- Western desert: Oasis Charga and Siwa, Qattara Depression\n",
   "PlayerData": [
-    null,
     {
-      "AI": "petra",
       "Civ": "sele",
       "Color": {
         "b": 98,
@@ -55,22 +53,9 @@
         "r": 0
       },
       "Name": "Alexandria",
-      "StartingCamera": {
-        "Position": {
-          "x": 797.781,
-          "y": 26.8894,
-          "z": 1738.21
-        },
-        "Rotation": {
-          "x": -144.999,
-          "y": 76.088,
-          "z": -179.999
-        }
-      },
       "Team": 0
     },
     {
-      "AI": "petra",
       "Civ": "kush",
       "Color": {
         "b": 16,
@@ -81,7 +66,6 @@
       "Team": 0
     },
     {
-      "AI": "petra",
       "Civ": "cart",
       "Color": {
         "b": 128,
@@ -92,7 +76,6 @@
       "Team": 1
     },
     {
-      "AI": "petra",
       "Civ": "pers",
       "Color": {
         "b": 5,
@@ -103,7 +86,6 @@
       "Team": 1
     },
     {
-      "AI": "petra",
       "Civ": "ptol",
       "Color": {
         "b": 170,
@@ -114,7 +96,6 @@
       "Team": 0
     },
     {
-      "AI": "petra",
       "Civ": "rome",
       "Color": {
         "b": 0,
