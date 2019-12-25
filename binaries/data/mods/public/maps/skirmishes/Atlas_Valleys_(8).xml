@@ -39,48 +39,24 @@
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "AISeed": 0,
   "CircularMap": true,
   "Description": "Skirmish high in the Atlas mountains, where snowcapped mountains loom over desert oases. A wild landscape awaits; every player will experience different advantages and challenges based on their location.",
-  "Keywords": [],
-  "LockTeams": false,
+  "Keywords": ["new"],
   "Name": "Atlas Valleys (8)",
-  "Nomad": false,
   "PlayerData": [
-    {
-      "Civ": "athen"
-    },
-    {
-      "Civ": "cart"
-    },
-    {
-      "Civ": "gaul"
-    },
-    {
-      "Civ": "iber"
-    },
-    {
-      "Civ": "mace"
-    },
-    {
-      "Civ": "pers"
-    },
-    {
-      "Civ": "rome"
-    },
-    {
-      "Civ": "spart"
-    }
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
   ],
   "Preview": "Atlas_Valleys_(8).png",
-  "RevealMap": false,
-  "Script": "african_plains.js",
-  "Seed": 1550,
-  "Size": 384,
   "VictoryConditions": [
     "conquest"
-  ],
-  "mapType": "random"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

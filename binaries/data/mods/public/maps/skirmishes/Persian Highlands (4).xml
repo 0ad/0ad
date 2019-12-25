@@ -38,37 +38,17 @@
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "BaseHeight": 10,
-  "BaseTerrain": [
-    "desert_dirt_persia_2",
-    "desert_dirt_persia_1",
-    "desert_dirt_persia_2",
-    "grass_field_dry",
-    "grass_field_dry"
-  ],
   "CircularMap": true,
   "Description": "A dry central basin rich in minerals surrounded by rocky hills and highlands.",
   "Keywords": [],
-  "LockTeams": false,
   "Name": "Persian Highlands (4)",
   "PlayerData": [
-    {
-      "Name": "Player 1"
-    },
-    {
-      "Name": "Player 2"
-    },
-    {
-      "Name": "Player 3"
-    },
-    {
-      "Name": "Player 4"
-    }
+    {},
+    {},
+    {},
+    {}
   ],
   "Preview": "persian_highlands_skirmish.png",
-  "RevealMap": false,
-  "Script": "persian_highlands.js",
-  "Size": 320,
   "VictoryConditions": [
     "conquest"
   ]

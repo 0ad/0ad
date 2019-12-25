@@ -38,16 +38,9 @@
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "BaseHeight": 1,
-  "BaseTerrain": [
-    "medit_dirt",
-    "medit_dirt_b",
-    "medit_dirt_c"
-  ],
   "CircularMap": true,
   "Description": "Players start around a small oasis in the center of the map which holds much of the available wood on the map.\u000a\u000aElsewhere, in the hinterlands, lies great riches, in the form of large deposits of gold and other metals.",
   "Keywords": [],
-  "LockTeams": false,
   "Name": "Gold Oasis (2)",
   "PlayerData": [
     {
@@ -55,22 +48,17 @@
         "b": 200,
         "g": 46,
         "r": 46
-      },
-      "Name": "Player 1"
+      }
     },
     {
       "Color": {
         "b": 20,
         "g": 20,
         "r": 150
-      },
-      "Name": "Player 2"
+      }
     }
   ],
   "Preview": "gold_oasis_1.png",
-  "RevealMap": false,
-  "Script": "oasis.js",
-  "Size": 256,
   "VictoryConditions": [
     "conquest"
   ]

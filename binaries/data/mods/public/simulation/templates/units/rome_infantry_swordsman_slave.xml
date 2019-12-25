@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_melee_swordsman">
+  <Builder>
+    <Entities datatype="tokens">
+      -structures/wallset_palisade
+      structures/rome_tower_artillery
+      structures/rome_army_camp
+      structures/rome_wallset_siege
+      structures/rome_temple_vesta
+    </Entities>
+  </Builder>
+  <Identity>
+    <Civ>rome</Civ>
+    <Lang>latin</Lang>
+    <SelectionGroupName>units/rome_infantry_swordsman_servus</SelectionGroupName>
+    <GenericName>Slave</GenericName>
+    <SpecificName>Servus</SpecificName>
+    <Icon>units/rome_infantry_swordsman.png</Icon>
+  </Identity>
+  <Health>
+    <DamageVariants>
+      <lightdamage>0.85</lightdamage>
+      <mediumdamage>0.45</mediumdamage>
+    </DamageVariants>
+  </Health>
+  <Promotion disable=""/>
+  <VisualActor>
+    <Actor>units/romans/infantry_swordsman_servus.xml</Actor>
+  </VisualActor>
+</Entity>

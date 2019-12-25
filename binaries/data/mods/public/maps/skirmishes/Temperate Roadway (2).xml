@@ -39,49 +39,17 @@
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "AISeed": 0,
   "CircularMap": true,
   "Description": "Temperate zone map with plentiful resources. Map Size: Small",
   "Keywords": [
     "new"
   ],
-  "LockTeams": false,
   "Name": "Temperate Roadway (2)",
   "PlayerData": [
-    null,
-    {
-      "Civ": "athen",
-      "StartingCamera": {
-        "Position": {
-          "x": 626.246,
-          "y": 182.526,
-          "z": 477.739
-        },
-        "Rotation": {
-          "x": 35,
-          "y": 0,
-          "z": 0
-        }
-      }
-    },
-    {
-      "Civ": "cart",
-      "StartingCamera": {
-        "Position": {
-          "x": 195.767,
-          "y": 181.856,
-          "z": 231.539
-        },
-        "Rotation": {
-          "x": 35,
-          "y": -82.5277,
-          "z": -0.0000393908
-        }
-      }
-    }
+    {},
+    {}
   ],
   "Preview": "roadway.png",
-  "RevealMap": false,
   "VictoryConditions": [
     "conquest"
   ]

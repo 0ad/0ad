@@ -38,37 +38,19 @@
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "BaseHeight": -8,
-  "BaseTerrain": [
-    "medit_dirt",
-    "medit_dirt_b",
-    "medit_dirt_c"
-  ],
   "CircularMap": true,
   "Description": "The players start on two opposing islands, both with a very jagged relief that will make landing difficult.\u000a\u000aOriginally occupied by the Torreans, then marginally settled by Etruscans, Phocaeans and Syracusans. Rome conquered these two islands from Carthage during the First Punic War and in 238 BC created the \"Corsica et Sardinia\" province. The Corsicans regularly revolted and over the course of a century, the island lost two thirds of its Corsican population.",
   "Keywords": [
     "naval"
   ],
-  "LockTeams": false,
   "Name": "Corsica and Sardinia (4)",
   "PlayerData": [
-    {
-      "Name": "Player 1"
-    },
-    {
-      "Name": "Player 2"
-    },
-    {
-      "Name": "Player 3"
-    },
-    {
-      "Name": "Player 4"
-    }
+    {},
+    {},
+    {},
+    {}
   ],
   "Preview": "corsica_and_sardinia.png",
-  "RevealMap": false,
-  "Script": "corsica.js",
-  "Size": 384,
   "VictoryConditions": [
     "conquest"
   ]

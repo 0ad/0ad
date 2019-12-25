@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -106,6 +106,12 @@
       <textures>
         <texture file="skeletal/hele_linothorax_lamelar_1_b.png" name="baseTex"/>
         <texture file="skeletal/hele_linothorax_lamellar_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="rome-scale-1a">
+      <textures>
+        <texture file="skeletal/rome_scale_1_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_scale_3_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>

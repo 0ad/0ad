@@ -41,7 +41,6 @@
   "CircularMap": true,
   "Description": "Two factions find themselves perched safely atop large rocky plateaus.\u000a\u000aScout the lands to find free treasures and to secure new resources.",
   "Keywords": [],
-  "LockTeams": false,
   "Name": "Greek Acropolis Night (2)",
   "PlayerData": [
     {
@@ -49,20 +48,17 @@
         "b": 200,
         "g": 46,
         "r": 46
-      },
-      "Name": "Player 1"
+      }
     },
     {
       "Color": {
         "b": 20,
         "g": 20,
         "r": 150
-      },
-      "Name": "Player 2"
+      }
     }
   ],
   "Preview": "acropolis_7.png",
-  "RevealMap": false,
   "VictoryConditions": [
     "conquest"
   ]

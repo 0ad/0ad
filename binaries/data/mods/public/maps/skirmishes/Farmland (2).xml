@@ -39,49 +39,17 @@
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "AISeed": 0,
   "CircularMap": true,
   "Description": "Farmland in Eastern Europe.",
   "Keywords": [
     "new"
   ],
-  "LockTeams": false,
   "Name": "Farmland (2)",
   "PlayerData": [
-    null,
-    {
-      "Civ": "athen",
-      "StartingCamera": {
-        "Position": {
-          "x": 187.512,
-          "y": 178.087,
-          "z": 395.377
-        },
-        "Rotation": {
-          "x": -145,
-          "y": -25.0331,
-          "z": -180
-        }
-      }
-    },
-    {
-      "Civ": "cart",
-      "StartingCamera": {
-        "Position": {
-          "x": 822.783,
-          "y": 178.087,
-          "z": 668.128
-        },
-        "Rotation": {
-          "x": 32.6701,
-          "y": -8.55636,
-          "z": 2.15846e-7
-        }
-      }
-    }
+    {},
+    {}
   ],
   "Preview": "farmland.png",
-  "RevealMap": false,
   "VictoryConditions": [
     "conquest"
   ]

@@ -42,103 +42,28 @@
   "CircularMap": true,
   "Description": "A foggy alpine landscape becomes a battleground as each team has an ally squashed precariously between two enemies. Two forest cliffs overlook the center lake, accessible from the sides of the map.",
   "Keywords": [],
-  "LockTeams": true,
   "Name": "Dueling Cliffs (3v3)",
   "PlayerData": [
-    null,
     {
-      "StartingCamera": {
-        "Position": {
-          "x": 846.03,
-          "y": 185.603,
-          "z": 190.196
-        },
-        "Rotation": {
-          "x": 35,
-          "y": 0,
-          "z": 0
-        }
-      },
       "Team": 0
     },
     {
-      "StartingCamera": {
-        "Position": {
-          "x": 1336.49,
-          "y": 192.332,
-          "z": 670.555
-        },
-        "Rotation": {
-          "x": 35,
-          "y": 0,
-          "z": 0
-        }
-      },
       "Team": 1
     },
     {
-      "StartingCamera": {
-        "Position": {
-          "x": 205.537,
-          "y": 186.825,
-          "z": 819.997
-        },
-        "Rotation": {
-          "x": -145,
-          "y": -20.3875,
-          "z": -180
-        }
-      },
       "Team": 0
     },
     {
-      "StartingCamera": {
-        "Position": {
-          "x": 678.2,
-          "y": 196.113,
-          "z": 1310.75
-        },
-        "Rotation": {
-          "x": 35,
-          "y": 0,
-          "z": 0
-        }
-      },
       "Team": 1
     },
     {
-      "StartingCamera": {
-        "Position": {
-          "x": 452.272,
-          "y": 176.105,
-          "z": 1046.33
-        },
-        "Rotation": {
-          "x": 35,
-          "y": 0,
-          "z": 0
-        }
-      },
       "Team": 0
     },
     {
-      "StartingCamera": {
-        "Position": {
-          "x": 1087.87,
-          "y": 181.165,
-          "z": 428.571
-        },
-        "Rotation": {
-          "x": 35,
-          "y": 0,
-          "z": 0
-        }
-      },
       "Team": 1
     }
   ],
   "Preview": "dueling_cliffs.png",
-  "RevealMap": false,
   "VictoryConditions": [
     "conquest"
   ]

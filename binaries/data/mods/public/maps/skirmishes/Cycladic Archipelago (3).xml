@@ -38,16 +38,11 @@
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "BaseHeight": 0,
-  "BaseTerrain": [
-    "medit_sea_depths"
-  ],
   "CircularMap": true,
   "Description": "A \"small island\"-style map set in the Aegean Sea.\u000a\u000aMap size: Very Large",
   "Keywords": [
     "naval"
   ],
-  "LockTeams": false,
   "Name": "Cycladic Archipelago (3)",
   "PlayerData": [
     {
@@ -76,8 +71,6 @@
     }
   ],
   "Preview": "cycladic_archipelago_skirm_3.png",
-  "RevealMap": false,
-  "Size": 384,
   "VictoryConditions": [
     "conquest"
   ]
