@@ -1320,18 +1320,17 @@ bool CCmpUnitMotion::ComputeGoal(PathGoal& out, const MoveRequest& moveRequest) 
 	// min-range is not 0 and max-range is not infinity.
 	if (distance < moveRequest.m_MinRange)
 	{
-		// Distance checks are nearest edge to nearest edge, so we need to account for our clearance
-		// and we must make sure diagonals also fit so multiply by slightly more than sqrt(2)
-		entity_pos_t goalDistance = moveRequest.m_MinRange + m_Clearance * 3 / 2;
-
 		if (ShouldTreatTargetAsCircle(moveRequest.m_MinRange, circleRadius))
 		{
 			// We are safely away from the obstruction itself if we are away from the circumscribing circle
 			out.type = PathGoal::INVERTED_CIRCLE;
-			out.hw = circleRadius + goalDistance;
+			out.hw = circleRadius + moveRequest.m_MinRange;
 		}
 		else
 		{
+			// Distance checks are nearest edge to nearest edge, so we need to account for our clearance
+			// and we must make sure diagonals also fit so multiply by slightly more than sqrt(2)
+			entity_pos_t goalDistance = moveRequest.m_MinRange + m_Clearance * 3 / 2;
 			out.type = PathGoal::INVERTED_SQUARE;
 			out.hw = targetObstruction.hw + goalDistance;
 			out.hh = targetObstruction.hh + goalDistance;
