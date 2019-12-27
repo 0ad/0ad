@@ -2,10 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_slave_male.xml">
+    <variant file="biped/base_citizen_soldier.xml">
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
+        <prop actor="props/units/tools/siege_lever.xml" attachpoint="weapon_L"/>
       </props>
       <textures>
         <texture file="skeletal/kart_isp_e_1.dds" name="baseTex"/>
@@ -40,8 +41,34 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="Greave-01">
+      <props>
+        <prop actor="props/units/armor/greave_07_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_07_bronze_l.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-02">
+      <props>
+        <prop actor="props/units/armor/greave_12_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_12_bronze_l.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-03">
+      <props>
+        <prop actor="props/units/armor/greave_09_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_09_bronze_l.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-04">
+      <props>
+        <prop actor="props/units/armor/greave_02_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_02_bronze_l.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+  </group>
+  <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/attack_ranged_oxybeles_fire_b.xml"/>
+    <variant file="biped/attack_ranged_oxybeles_02.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>

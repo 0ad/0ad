@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="wagon hele rock">
+    <variant frequency="1" name="Base">
       <animations>
         <animation file="mechanical/wagon_four_wheel_empty_idle.dae" name="Idle" id="idle1" speed="80"/>
         <animation file="mechanical/wagon_four_wheel_empty_idle.dae" name="Idle" id="idle2" speed="80"/>
@@ -12,15 +12,17 @@
       </animations>
       <mesh>props/special/wagon_four_wheel_empty.dae</mesh>
       <props>
-        <prop actor="props/units/rome_rock_packed.xml" attachpoint="cargo"/>
+        <prop actor="props/units/hele_rock_packed.xml" attachpoint="cargo"/>
         <prop actor="units/hellenes/trader_h.xml" attachpoint="horse_l"/>
         <prop actor="units/hellenes/trader_h.xml" attachpoint="horse_r"/>
-        <prop actor="units/romans/ballista_infantry_a.xml" attachpoint="engineer_a" maxheight="20" minheight="-20"/>
-        <prop actor="units/romans/ballista_infantry_b.xml" attachpoint="engineer_b" maxheight="20" minheight="-20"/>
+        <prop actor="units/romans/ballista_operator_a.xml" attachpoint="engineer_a" maxheight="20" minheight="-20"/>
+        <prop actor="units/romans/ballista_operator_a.xml" attachpoint="engineer_b" maxheight="20" minheight="-20"/>
+        <prop actor="units/romans/ballista_operator_a.xml" attachpoint="engineer_c" maxheight="20" minheight="-20"/>
       </props>
       <textures>
         <texture file="props/wooden_wagon.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
+  <material>player_trans.xml</material>
 </actor>

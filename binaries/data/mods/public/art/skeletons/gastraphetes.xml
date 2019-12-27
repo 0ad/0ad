@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="Gastraphetes_Armature" title="Gastraphetes Armature">
+    <bone name="Gastraphetes_Weap">
+      <bone name="Gastraphetes_Slider_Plank">
+        <bone name="Gastraphetes_Weap_Lock" />
+        <bone name="Gastraphetes_Trigger_Lock" />
+        <bone name="Gastraphetes_Trigger" />
+      </bone>
+      <bone name="Gastraphetes_Arm_01_R">
+        <bone name="Gastraphetes_Arm_02_R">
+          <bone name="Gastraphetes_Arm_03_R">
+            <bone name="Gastraphetes_Arm_04_R">
+              <bone name="Gastraphetes_Sling_01_R">
+                <bone name="Gastraphetes_Sling_02_R">
+                  <bone name="Gastraphetes_Sling_03_R">
+                    <bone name="Gastraphetes_Sling_04_R" />
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Gastraphetes_Arm_01_L">
+        <bone name="Gastraphetes_Arm_02_L">
+          <bone name="Gastraphetes_Arm_03_L">
+            <bone name="Gastraphetes_Arm_04_L">
+              <bone name="Gastraphetes_Sling_01_L">
+                <bone name="Gastraphetes_Sling_02_L">
+                  <bone name="Gastraphetes_Sling_03_L">
+                    <bone name="Gastraphetes_Sling_04_L" />
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Gastraphetes_Sling" />
+    <bone name="Oxybeles.004" />
+  </standard_skeleton>
+  <skeleton target="Gastraphetes_Armature" title="Gastraphetes Armature">
+    <identifier>
+      <root>Gastraphetes_Weap</root>
+    </identifier>
+    <bone name="Gastraphetes_Weap">
+      <target>Gastraphetes_Weap</target>
+      <bone name="Gastraphetes_Slider_Plank">
+        <target>Gastraphetes_Slider_Plank</target>
+        <bone name="Gastraphetes_Weap_Lock">
+          <target>Gastraphetes_Weap_Lock</target>
+        </bone>
+        <bone name="Gastraphetes_Trigger_Lock">
+          <target>Gastraphetes_Trigger_Lock</target>
+        </bone>
+        <bone name="Gastraphetes_Trigger">
+          <target>Gastraphetes_Trigger</target>
+        </bone>
+      </bone>
+      <bone name="Gastraphetes_Arm_01_R">
+        <target>Gastraphetes_Arm_01_R</target>
+        <bone name="Gastraphetes_Arm_02_R">
+          <target>Gastraphetes_Arm_02_R</target>
+          <bone name="Gastraphetes_Arm_03_R">
+            <target>Gastraphetes_Arm_03_R</target>
+            <bone name="Gastraphetes_Arm_04_R">
+              <target>Gastraphetes_Arm_04_R</target>
+              <bone name="Gastraphetes_Sling_01_R">
+                <target>Gastraphetes_Sling_01_R</target>
+                <bone name="Gastraphetes_Sling_02_R">
+                  <target>Gastraphetes_Sling_02_R</target>
+                  <bone name="Gastraphetes_Sling_03_R">
+                    <target>Gastraphetes_Sling_03_R</target>
+                    <bone name="Gastraphetes_Sling_04_R">
+                      <target>Gastraphetes_Sling_04_R</target>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Gastraphetes_Arm_01_L">
+        <target>Gastraphetes_Arm_01_L</target>
+        <bone name="Gastraphetes_Arm_02_L">
+          <target>Gastraphetes_Arm_02_L</target>
+          <bone name="Gastraphetes_Arm_03_L">
+            <target>Gastraphetes_Arm_03_L</target>
+            <bone name="Gastraphetes_Arm_04_L">
+              <target>Gastraphetes_Arm_04_L</target>
+              <bone name="Gastraphetes_Sling_01_L">
+                <target>Gastraphetes_Sling_01_L</target>
+                <bone name="Gastraphetes_Sling_02_L">
+                  <target>Gastraphetes_Sling_02_L</target>
+                  <bone name="Gastraphetes_Sling_03_L">
+                    <target>Gastraphetes_Sling_03_L</target>
+                    <bone name="Gastraphetes_Sling_04_L">
+                      <target>Gastraphetes_Sling_04_L</target>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Gastraphetes_Sling">
+      <target>Gastraphetes_Sling</target>
+    </bone>
+    <bone name="Oxybeles.004">
+      <target>Oxybeles.004</target>
+    </bone>
+  </skeleton>
+</skeletons>
