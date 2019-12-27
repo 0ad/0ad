@@ -9,6 +9,7 @@
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
 # Arthur Jaouen <arthur.jaouen@gmail.com>, 2014-2015
 # Barth Frey <frey.barthelemy@gmail.com>, 2017-2018
+# benjamin jasse <benuri@hotmail.fr>, 2019
 # Bruno T <brtur2@gmail.com>, 2019
 # Buggi, 2014
 # curieux de l'être <skimandco@gmail.com>, 2017
@@ -52,8 +53,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-25 08:08+0000\n"
-"PO-Revision-Date: 2019-12-06 00:29+0000\n"
-"Last-Translator: Polakrity <sxk-fr@live.fr>\n"
+"PO-Revision-Date: 2019-12-24 10:26+0000\n"
+"Last-Translator: benjamin jasse <benuri@hotmail.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,7 +76,7 @@ msgstr "%(hotkey)s : Fermer l'Historique."
 #: gui/civinfo/civinfo.js:85
 #, javascript-format
 msgid "• %(string)s"
-msgstr ""
+msgstr "%(string)s"
 
 #: gui/civinfo/civinfo.js:113
 #, javascript-format
@@ -572,7 +573,7 @@ msgstr ""
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
-msgstr ""
+msgstr "Erreur: le client a simulé une partie imprévue "
 
 #: gui/common/network.js:81
 #, javascript-format
@@ -806,7 +807,7 @@ msgstr "(%(armorPercentage)s)"
 
 #: gui/common/tooltips.js:192
 msgid "Garrison to fire arrows"
-msgstr ""
+msgstr "Garnison pour tirer des flèches"
 
 #: gui/common/tooltips.js:195
 msgid "Interval:"
@@ -895,7 +896,7 @@ msgstr ""
 #: gui/common/tooltips.js:274
 msgctxt "damage type"
 msgid "Capture"
-msgstr ""
+msgstr "Capter"
 
 #: gui/common/tooltips.js:283
 #, javascript-format
@@ -915,7 +916,7 @@ msgstr ""
 #: gui/common/tooltips.js:354
 #, javascript-format
 msgid "%(splashShape)s Splash Damage"
-msgstr ""
+msgstr "%(splashShape)s Dégâts de zone"
 
 #: gui/common/tooltips.js:357
 #, javascript-format
@@ -1206,12 +1207,12 @@ msgstr "%(nick)s - %(name)s"
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr ""
+msgstr "Pour supprimer la sauvegarde utiliser %(hotkey)s"
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:202
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr ""
+msgstr "Maintenir%(hotkey)s pour ignorer la boîte de dialogue de confirmation lors de la suppression."
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
 #, javascript-format
@@ -1896,7 +1897,7 @@ msgstr "Filtrez les replays en saisissant un ou plusieurs noms de joueurs partia
 #: gui/replaymenu/replay_menu.js:197
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
-msgstr ""
+msgstr "Supprimer le replay sélectionnée à l'aide de %(hotkey)s"
 
 #: gui/replaymenu/replay_menu.js:282
 #, javascript-format
@@ -2577,7 +2578,7 @@ msgstr "Direction"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr ""
+msgstr "Équilibrage "
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
@@ -2671,7 +2672,7 @@ msgstr "Nom du joueur (Multijoueur)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr ""
+msgstr "Mettez en pause les jeux solo lorsque la fenêtre passe en arrière plan."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background Pause"
@@ -3638,7 +3639,7 @@ msgstr "BATAILLON SACRÉ CARTHAGINOIS"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "Champions Lancier et Champions de cavalerie Lancier pour Carthage."
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
@@ -3650,7 +3651,7 @@ msgstr "Les deux peuvent être entraînés au temple, au lieu de la forteresse c
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "Utilisez les lanciers comme infanterie lourde contre la cavalerie. Utilisez la cavalerie comme un choc lourd contre les armes de siège et les tirailleurs."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -3658,7 +3659,7 @@ msgstr "CATAPULTES"
 
 #: gui/text/tips/catapults.txt:2
 msgid "Ranged siege engines that are good against buildings."
-msgstr ""
+msgstr "Engins de siège à distance efficaces contre les bâtiments."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
@@ -3668,7 +3669,7 @@ msgstr "Coûteuses et lentes."
 msgid ""
 "Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr ""
+msgstr "Rentrer dans des chariots pour le déplacement et sortir de l'engin une fois à l'arrêt pour l'attaque!"
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -3680,7 +3681,7 @@ msgstr "Un navire de guerre moyen, de classe trirème."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "Disponible pour les Britanniques, les Gaulois et les Ibères."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
@@ -3696,11 +3697,11 @@ msgstr "CENTRES-VILLES"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "The foundation of your new colony."
-msgstr ""
+msgstr "La base de votre nouvelle colonie."
 
 #: gui/text/tips/civic_centres.txt:3
 msgid "Claim large tracts of territory."
-msgstr ""
+msgstr "Revendiquez de vastes étendues de territoire."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
@@ -3710,7 +3711,7 @@ msgstr "Peuvent être construits en territoire allié et neutre."
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr ""
+msgstr "Former des citoyennes: citoyennes, citoyennes-soldats d'infanterie et citoyennes-soldats de cavalerie."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3718,7 +3719,7 @@ msgstr "AMBASSADES"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special Barracks available to the Carthaginians."
-msgstr ""
+msgstr "Caserne spéciale à la disposition des Carthaginois."
 
 #: gui/text/tips/embassies.txt:3
 msgid "Train mercenaries from each of the ethnically-themed embassies."
@@ -3728,7 +3729,7 @@ msgstr ""
 msgid ""
 "Mercenary citizen-soldiers have their normal Food cost converted to Metal "
 "cost."
-msgstr ""
+msgstr "Les citoyens-soldats mercenaires voient leur coût de nourriture normal converti en coût de métal."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -3736,7 +3737,7 @@ msgstr "PÊCHE"
 
 #: gui/text/tips/fishing.txt:2
 msgid "Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "Pêcher en mers pour une récolte abondante."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."

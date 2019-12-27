@@ -9,6 +9,7 @@
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
 # Arthur Jaouen <arthur.jaouen@gmail.com>, 2015
 # Bastien Do <bastiendodinh@gmail.com>, 2016
+# benjamin jasse <benuri@hotmail.fr>, 2019
 # Bruno T <brtur2@gmail.com>, 2016
 # Cyril Mercier, 2018
 # Requin <dylanroux34@gmail.com>, 2018
@@ -45,8 +46,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-12-20 08:09+0000\n"
-"PO-Revision-Date: 2019-12-20 14:22+0000\n"
-"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
+"PO-Revision-Date: 2019-12-24 10:07+0000\n"
+"Last-Translator: benjamin jasse <benuri@hotmail.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -189,14 +190,14 @@ msgstr "Tour de pierre"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
-msgstr ""
+msgstr "Tour arbalétrier"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:57
 msgid ""
 "Shoots bolts. Faster reaction time against raiding units than the artillery "
 "tower, weak to all siege weapons and mass melee. Needs the murder holes tech"
 " to protect its foot."
-msgstr ""
+msgstr "Tire de carreaux. Temps de réaction plus rapide contre les unités de raid que la tour d'artillerie, faible contre toutes les armes de siège et groupes de mêlée. A besoin de la technologie assomoir pour protéger son pied."
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:52
 msgid ""
@@ -379,7 +380,7 @@ msgstr "Forteresse"
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
-msgstr ""
+msgstr "Former des champions, des héros et des technologies de recherche. Des soldats en garnison pour des tirs de flèches supplémentaire."
 
 #: simulation/templates/template_structure_military_kennel.xml:38
 msgid "Kennel"
@@ -416,7 +417,7 @@ msgstr "Atelier de siège"
 
 #: simulation/templates/template_structure_military_workshop.xml:28
 msgid "Construct Siege Engines and research Siege Engine technologies."
-msgstr ""
+msgstr "Construit des engins de siège et recherche des technologies d'engins de siège."
 
 #: simulation/templates/template_structure_military_workshop.xml:29
 msgid "Workshop"
@@ -497,7 +498,7 @@ msgstr "Merveille"
 #: simulation/templates/structures/sele_barracks.xml:18
 #: simulation/templates/structures/spart_barracks.xml:18
 msgid "Stratopedon"
-msgstr ""
+msgstr "Camps"
 
 #: simulation/templates/structures/athen_blacksmith.xml:5
 #: simulation/templates/structures/mace_blacksmith.xml:5
@@ -505,7 +506,7 @@ msgstr ""
 #: simulation/templates/structures/sele_blacksmith.xml:5
 #: simulation/templates/structures/spart_blacksmith.xml:5
 msgid "Chalkeōn"
-msgstr ""
+msgstr "forge"
 
 #: simulation/templates/structures/athen_civil_centre.xml:8
 #: simulation/templates/structures/mace_civil_centre.xml:8
@@ -513,7 +514,7 @@ msgstr ""
 #: simulation/templates/structures/sele_civil_centre.xml:5
 #: simulation/templates/structures/spart_civil_centre.xml:8
 msgid "Agora"
-msgstr ""
+msgstr "Agora"
 
 #: simulation/templates/structures/athen_corral.xml:5
 #: simulation/templates/structures/mace_corral.xml:5
@@ -529,7 +530,7 @@ msgstr ""
 #: simulation/templates/structures/sele_defense_tower.xml:9
 #: simulation/templates/structures/spart_defense_tower.xml:9
 msgid "Pyrgion"
-msgstr ""
+msgstr "Pyrgion"
 
 #: simulation/templates/structures/athen_defense_tower.xml:23
 #: simulation/templates/structures/cart_defense_tower.xml:24
@@ -540,7 +541,7 @@ msgid ""
 "Reinforce with stone block, and install small stone throwers to upgrade this"
 " defense tower into a slow, area of effect, and siege resistant artillery "
 "tower."
-msgstr ""
+msgstr "Renforcez avec un bloc de pierre et installez de petits lanceurs de pierre pour améliorer cette tour de défense en une tour d'artillerie lente, à zone d'effet et résistante au siège."
 
 #: simulation/templates/structures/athen_defense_tower.xml:34
 #: simulation/templates/structures/cart_defense_tower.xml:35
@@ -550,7 +551,7 @@ msgstr ""
 msgid ""
 "Reinforce with stone block, and install scorpions to upgrade this defense "
 "tower into a prompt, long range, and accurate bolt tower."
-msgstr ""
+msgstr "Renforcez avec un bloc de pierre et installez des scorpions pour améliorer cette tour de défense en une tour d'arbaletier rapide, longue portée et précise."
 
 #: simulation/templates/structures/athen_dock.xml:12
 #: simulation/templates/structures/mace_dock.xml:12
@@ -566,7 +567,7 @@ msgstr ""
 #: simulation/templates/structures/sele_farmstead.xml:8
 #: simulation/templates/structures/spart_farmstead.xml:11
 msgid "Epoikion"
-msgstr ""
+msgstr "Colonie"
 
 #: simulation/templates/structures/athen_field.xml:5
 #: simulation/templates/structures/mace_field.xml:5
@@ -574,7 +575,7 @@ msgstr ""
 #: simulation/templates/structures/sele_field.xml:5
 #: simulation/templates/structures/spart_field.xml:5
 msgid "Agros"
-msgstr ""
+msgstr "Champs"
 
 #: simulation/templates/structures/athen_fortress.xml:9
 #: simulation/templates/structures/mace_fortress.xml:9
@@ -587,7 +588,7 @@ msgstr "Phrourion"
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid "Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Soldats de garnison pour des flèches supplémentaires."
 
 #: simulation/templates/structures/athen_gymnasion.xml:24
 msgid "Gymnasium"
@@ -731,11 +732,11 @@ msgstr ""
 #: simulation/templates/structures/sele_wall_tower.xml:9
 #: simulation/templates/structures/spart_wall_tower.xml:9
 msgid "Pyrgos"
-msgstr ""
+msgstr "Tour"
 
 #: simulation/templates/structures/athen_wonder.xml:15
 msgid "Parthenōn﻿﻿"
-msgstr ""
+msgstr "Parthénon"
 
 #: simulation/templates/structures/athen_wonder.xml:16
 #: simulation/templates/structures/cart_wonder.xml:16
@@ -880,7 +881,7 @@ msgstr "Ne peut ni tirer, ni accueillir de garnison."
 
 #: simulation/templates/structures/brit_wonder.xml:10
 msgid "Uffington White Horse"
-msgstr ""
+msgstr "Le Cheval blanc d'Uffington"
 
 #: simulation/templates/structures/brit_workshop.xml:5
 #: simulation/templates/structures/gaul_workshop.xml:5
@@ -1014,7 +1015,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train Healers and Champions and research healing technologies. Garrison "
 "units to heal them at a quick rate."
-msgstr ""
+msgstr "Former des guérisseurs et des champions et rechercher des technologies de guérison. Unités en garnison soignées rapidement."
 
 #: simulation/templates/structures/cart_tophet.xml:22
 msgid "Sacrificial Temple"
@@ -1028,7 +1029,7 @@ msgstr "Tophet"
 msgid ""
 "Train Healers and Champion Cavalry and research healing technologies. "
 "Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Entraînez des guérisseurs et des champions de cavalerie et recherchez des technologies de guérison. Unités en garnison soignées rapidement."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -1234,7 +1235,7 @@ msgstr "Village nubien"
 
 #: simulation/templates/structures/kush_nuba_village.xml:23
 msgid "Train the Nuba Clubman and Nuba Hunter."
-msgstr "Entraîne des guerrier nubien et des chasseur nubien."
+msgstr "Entraîne des guerriers nubien et des chasseurs nubien."
 
 #: simulation/templates/structures/kush_outpost.xml:5
 msgid "trtr"
@@ -1346,11 +1347,11 @@ msgstr "Pr-ỉwn n ms"
 #: simulation/templates/structures/ptol_library.xml:5
 #: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothēkē"
-msgstr ""
+msgstr "Bibliothèque"
 
 #: simulation/templates/structures/mace_wonder.xml:15
 msgid "Hieron tou Dios tou Olympiou"
-msgstr ""
+msgstr "Prêtre Olympien de Zeus"
 
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"
@@ -1378,7 +1379,7 @@ msgid ""
 "Reinforce with stone block, and add a second rampart for up to 16 archers to"
 " stand upon. Infantry Archer exclusive tower. Devastating against melee "
 "troops, weak to siege and massed ranged units"
-msgstr ""
+msgstr "Renforcez avec un bloc de pierre et ajoutez un deuxième rempart pour un maximum de 16 archers. Tour d'archer exclusivement. Dévastateur contre les troupes de mêlée, faible pour unités de siège et les unités regroupées à distance."
 
 #: simulation/templates/structures/maur_dock.xml:9
 msgid "Naukasthanaka"
@@ -1455,7 +1456,7 @@ msgid ""
 "Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
 "archers recieve a range and armor bonus. Only archers can garrison. Needs "
 "the murder holes tech to protect its foot."
-msgstr ""
+msgstr "Tour de santé supérieure avec remparts pouvant accueillir jusqu'à 16 archers. Les archers en garnison reçoivent un bonus de portée et d'armure. Garnison d'archer uniquement. A besoin de la technologie Assommoir pour protéger son pied."
 
 #: simulation/templates/structures/maur_wall_gate.xml:9
 msgid "Dwara"
@@ -1483,7 +1484,7 @@ msgstr "Camp de Mercenaires"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 msgid "Egyptian Mercenary Camp"
-msgstr ""
+msgstr "Camp de Mercenaires Égyptien "
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:30
 #: simulation/templates/structures/ptol_mercenary_camp.xml:30
@@ -1530,7 +1531,7 @@ msgstr "Palissade"
 
 #: simulation/templates/structures/palisades_spike_angle.xml:17
 msgid "Angle Spike"
-msgstr ""
+msgstr "Pieux d'angle"
 
 #: simulation/templates/structures/palisades_spikes_small.xml:17
 msgid "Small Spikes"
@@ -1546,7 +1547,7 @@ msgstr "Tour de guet"
 
 #: simulation/templates/structures/pers_apadana.xml:29
 msgid "Throne Hall"
-msgstr ""
+msgstr "Salle du trône"
 
 #: simulation/templates/structures/pers_apadana.xml:30
 msgid "Apadāna"
@@ -1556,7 +1557,7 @@ msgstr "Apadāna"
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Champions and Heroes."
-msgstr ""
+msgstr "\"Offrande aux Satrapy\": Gagnez un filet de nourriture, de bois, de pierre et de métal. Former des champions et des héros."
 
 #: simulation/templates/structures/pers_apartment_block.xml:15
 msgid "Apartment Block"
@@ -1568,7 +1569,7 @@ msgstr "Padgan"
 
 #: simulation/templates/structures/pers_barracks.xml:6
 msgid "Levy citizen-soldier infantry."
-msgstr ""
+msgstr "Enrôler des Citoyens-soldats d'infanterie "
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1614,7 +1615,7 @@ msgstr "Didā"
 msgid ""
 "Train Champions and research technologies. Garrison Soldiers for additional "
 "arrows."
-msgstr ""
+msgstr "Former des champions et des technologies de recherche. Soldats de garnison pour des flèches supplémentaires."
 
 #: simulation/templates/structures/pers_hall.xml:29
 msgid "Gate of All Nations"
@@ -1753,11 +1754,11 @@ msgstr "mktr-n-ḏw"
 
 #: simulation/templates/structures/ptol_wonder.xml:15
 msgid "Hieron tou Hōrou"
-msgstr ""
+msgstr "Temple pour Horou"
 
 #: simulation/templates/structures/rome_amphitheater_pompeii.xml:6
 msgid "Amphitheātrum"
-msgstr ""
+msgstr "Amphithéâtre"
 
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
@@ -1783,7 +1784,7 @@ msgstr "Castra"
 msgid ""
 "Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
 "Siege Engines. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Construisez en territoire neutre ou ennemi. Former des citoyens-soldats et construire des engins de siège. Soldats en garnison pour des flèches supplémentaires.\n "
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1943,7 +1944,7 @@ msgstr "Ballistārium"
 msgid ""
 "Reinforce with stone block, and install small torsion engines to upgrade "
 "this defense tower into an artillery tower."
-msgstr ""
+msgstr "Renforcez avec un bloc de pierre et installez de petits balistes pour transformer cette tour défensive en tour d'artillerie."
 
 #: simulation/templates/structures/sele_military_colony.xml:10
 msgid ""
@@ -1954,13 +1955,13 @@ msgstr "Le bâtiment séleucide utilisé pour l'expansion, comparable aux centre
 
 #: simulation/templates/structures/sele_wonder.xml:9
 msgid "Hieron tou Apollōnos Pythiou"
-msgstr ""
+msgstr "Temple pour Apollon "
 
 #: simulation/templates/structures/spart_defense_tower.xml:23
 msgid ""
 "Reinforce with stone block, and install small oxybeles to upgrade this "
 "defense tower into a prompt, long range, and accurate bolt tower."
-msgstr ""
+msgstr "Renforcez avec un bloc de pierre et installez de petites Oxybeles (Balistes) pour améliorer cette défense de tour en une tour d’arbalétrier rapide à longue portée et précise."
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Spartan Senate"
@@ -1988,7 +1989,7 @@ msgstr "Entraîne des Champions et des Héros."
 
 #: simulation/templates/structures/spart_wonder.xml:15
 msgid "Hieron tēs Artemidos Orthias"
-msgstr ""
+msgstr "Temple pour Artémis "
 
 #: simulation/templates/structures/spart_wonder.xml:16
 msgid ""
