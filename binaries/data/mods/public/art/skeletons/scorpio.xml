@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="Scorpio_Armature" title="Scorpio Armature">
+    <bone name="Scorpio_Root">
+      <bone name="Scorpio_Plank_Support">
+        <bone name="Scorpio_Weap">
+          <bone name="Scorpio_Slider_Plank">
+            <bone name="Scorpio_Weap_Lock" />
+            <bone name="Scorpio_Trigger_Lock" />
+            <bone name="Scorpio_Trigger" />
+          </bone>
+          <bone name="Scorpio_Windlass">
+            <bone name="Scorpio_Wheel_01_R" />
+            <bone name="Scorpio_Wheel_02_R" />
+            <bone name="Scorpio_Wheel_03_R" />
+            <bone name="Scorpio_Wheel_04_R" />
+            <bone name="Scorpio_Wheel_01_L" />
+            <bone name="Scorpio_Wheel_02_L" />
+            <bone name="Scorpio_Wheel_03_L" />
+            <bone name="Scorpio_Wheel_04_L" />
+          </bone>
+          <bone name="Scorpio_Trigger_Sling" />
+          <bone name="Scorpio_Torsion_R" />
+          <bone name="Scorpio_Torsion_L" />
+          <bone name="Scorpio_Arm_R">
+            <bone name="Scorpio_Sling_01_R">
+              <bone name="Scorpio_Sling_02_R">
+                <bone name="Scorpio_Sling_03_R">
+                  <bone name="Scorpio_Sling_04_R" />
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Scorpio_Arm_L">
+            <bone name="Scorpio_Sling_01_L.">
+              <bone name="Scorpio_Sling_02_L">
+                <bone name="Scorpio_Sling_03_L">
+                  <bone name="Scorpio_Sling_04_L" />
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Scorpio_Lower_Support" />
+      </bone>
+    </bone>
+    <bone name="Scorpio_Sling" />
+    <bone name="Scorpio" />
+  </standard_skeleton>
+  <skeleton target="Scorpio_Armature" title="Scorpio Armature">
+    <identifier>
+      <root>Scorpio_Root</root>
+    </identifier>
+    <bone name="Scorpio_Root">
+      <target>Scorpio_Root</target>
+      <bone name="Scorpio_Plank_Support">
+        <target>Scorpio_Plank_Support</target>
+        <bone name="Scorpio_Weap">
+          <target>Scorpio_Weap</target>
+          <bone name="Scorpio_Slider_Plank">
+            <target>Scorpio_Slider_Plank</target>
+            <bone name="Scorpio_Weap_Lock">
+              <target>Scorpio_Weap_Lock</target>
+            </bone>
+            <bone name="Scorpio_Trigger_Lock">
+              <target>Scorpio_Trigger_Lock</target>
+            </bone>
+            <bone name="Scorpio_Trigger">
+              <target>Scorpio_Trigger</target>
+            </bone>
+          </bone>
+          <bone name="Scorpio_Windlass">
+            <target>Scorpio_Windlass</target>
+            <bone name="Scorpio_Wheel_01_R">
+              <target>Scorpio_Wheel_01_R</target>
+            </bone>
+            <bone name="Scorpio_Wheel_02_R">
+              <target>Scorpio_Wheel_02_R</target>
+            </bone>
+            <bone name="Scorpio_Wheel_03_R">
+              <target>Scorpio_Wheel_03_R</target>
+            </bone>
+            <bone name="Scorpio_Wheel_04_R">
+              <target>Scorpio_Wheel_04_R</target>
+            </bone>
+            <bone name="Scorpio_Wheel_01_L">
+              <target>Scorpio_Wheel_01_L</target>
+            </bone>
+            <bone name="Scorpio_Wheel_02_L">
+              <target>Scorpio_Wheel_02_L</target>
+            </bone>
+            <bone name="Scorpio_Wheel_03_L">
+              <target>Scorpio_Wheel_03_L</target>
+            </bone>
+            <bone name="Scorpio_Wheel_04_L">
+              <target>Scorpio_Wheel_04_L</target>
+            </bone>
+          </bone>
+          <bone name="Scorpio_Trigger_Sling">
+            <target>Scorpio_Trigger_Sling</target>
+          </bone>
+          <bone name="Scorpio_Torsion_R">
+            <target>Scorpio_Torsion_R</target>
+          </bone>
+          <bone name="Scorpio_Torsion_L">
+            <target>Scorpio_Torsion_L</target>
+          </bone>
+          <bone name="Scorpio_Arm_R">
+            <target>Scorpio_Arm_R</target>
+            <bone name="Scorpio_Sling_01_R">
+              <target>Scorpio_Sling_01_R</target>
+              <bone name="Scorpio_Sling_02_R">
+                <target>Scorpio_Sling_02_R</target>
+                <bone name="Scorpio_Sling_03_R">
+                  <target>Scorpio_Sling_03_R</target>
+                  <bone name="Scorpio_Sling_04_R">
+                    <target>Scorpio_Sling_04_R</target>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Scorpio_Arm_L">
+            <target>Scorpio_Arm_L</target>
+            <bone name="Scorpio_Sling_01_L.">
+              <target>Scorpio_Sling_01_L.</target>
+              <bone name="Scorpio_Sling_02_L">
+                <target>Scorpio_Sling_02_L</target>
+                <bone name="Scorpio_Sling_03_L">
+                  <target>Scorpio_Sling_03_L</target>
+                  <bone name="Scorpio_Sling_04_L">
+                    <target>Scorpio_Sling_04_L</target>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Scorpio_Lower_Support">
+          <target>Scorpio_Lower_Support</target>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Scorpio_Sling">
+      <target>Scorpio_Sling</target>
+    </bone>
+    <bone name="Scorpio">
+      <target>Scorpio</target>
+    </bone>
+  </skeleton>
+</skeletons>

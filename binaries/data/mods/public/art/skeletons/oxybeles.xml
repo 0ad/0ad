@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="Oxybeles_Armature" title="Oxybeles Armature">
+    <bone name="Oxybeles_Root">
+      <bone name="Oxybeles_Plank_Support">
+        <bone name="Oxybeles_Weap">
+          <bone name="Oxybeles_Slider_Plank">
+            <bone name="Oxybeles_Weap_Lock" />
+            <bone name="Oxybeles_Trigger_Lock" />
+            <bone name="Oxybeles_Trigger" />
+          </bone>
+          <bone name="Oxybeles_Windlass">
+            <bone name="Oxybeles_Wheel_01_R" />
+            <bone name="Oxybeles_Wheel_02_R" />
+            <bone name="Oxybeles_Wheel_03_R" />
+            <bone name="Oxybeles_Wheel_04_R" />
+            <bone name="Oxybeles_Wheel_01_L" />
+            <bone name="Oxybeles_Wheel_02_L" />
+            <bone name="Oxybeles_Wheel_03_L" />
+            <bone name="Oxybeles_Wheel_04_L" />
+          </bone>
+          <bone name="Oxybeles_Trigger_Sling" />
+          <bone name="Oxybeles_Arm_01_R">
+            <bone name="Oxybeles_Arm_02_R">
+              <bone name="Oxybeles_Arm_03_R">
+                <bone name="Oxybeles_Arm_04_R">
+                  <bone name="Oxybeles_Sling_01_R">
+                    <bone name="Oxybeles_Sling_02_R">
+                      <bone name="Oxybeles_Sling_03_R">
+                        <bone name="Oxybeles_Sling_04_R" />
+                      </bone>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Oxybeles_Arm_01_L">
+            <bone name="Oxybeles_Arm_02_L">
+              <bone name="Oxybeles_Arm_03_L">
+                <bone name="Oxybeles_Arm_04_L">
+                  <bone name="Oxybeles_Sling_01_L">
+                    <bone name="Oxybeles_Sling_02_L">
+                      <bone name="Oxybeles_Sling_03_L">
+                        <bone name="Oxybeles_Sling_04_L" />
+                      </bone>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Oxybeles_Lower_Support" />
+      </bone>
+    </bone>
+    <bone name="Oxybeles_Sling" />
+    <bone name="Lithobolos_Small.001" />
+  </standard_skeleton>
+  <skeleton target="Oxybeles_Armature" title="Oxybeles Armature">
+    <identifier>
+      <root>Oxybeles_Root</root>
+    </identifier>
+    <bone name="Oxybeles_Root">
+      <target>Oxybeles_Root</target>
+      <bone name="Oxybeles_Plank_Support">
+        <target>Oxybeles_Plank_Support</target>
+        <bone name="Oxybeles_Weap">
+          <target>Oxybeles_Weap</target>
+          <bone name="Oxybeles_Slider_Plank">
+            <target>Oxybeles_Slider_Plank</target>
+            <bone name="Oxybeles_Weap_Lock">
+              <target>Oxybeles_Weap_Lock</target>
+            </bone>
+            <bone name="Oxybeles_Trigger_Lock">
+              <target>Oxybeles_Trigger_Lock</target>
+            </bone>
+            <bone name="Oxybeles_Trigger">
+              <target>Oxybeles_Trigger</target>
+            </bone>
+          </bone>
+          <bone name="Oxybeles_Windlass">
+            <target>Oxybeles_Windlass</target>
+            <bone name="Oxybeles_Wheel_01_R">
+              <target>Oxybeles_Wheel_01_R</target>
+            </bone>
+            <bone name="Oxybeles_Wheel_02_R">
+              <target>Oxybeles_Wheel_02_R</target>
+            </bone>
+            <bone name="Oxybeles_Wheel_03_R">
+              <target>Oxybeles_Wheel_03_R</target>
+            </bone>
+            <bone name="Oxybeles_Wheel_04_R">
+              <target>Oxybeles_Wheel_04_R</target>
+            </bone>
+            <bone name="Oxybeles_Wheel_01_L">
+              <target>Oxybeles_Wheel_01_L</target>
+            </bone>
+            <bone name="Oxybeles_Wheel_02_L">
+              <target>Oxybeles_Wheel_02_L</target>
+            </bone>
+            <bone name="Oxybeles_Wheel_03_L">
+              <target>Oxybeles_Wheel_03_L</target>
+            </bone>
+            <bone name="Oxybeles_Wheel_04_L">
+              <target>Oxybeles_Wheel_04_L</target>
+            </bone>
+          </bone>
+          <bone name="Oxybeles_Trigger_Sling">
+            <target>Oxybeles_Trigger_Sling</target>
+          </bone>
+          <bone name="Oxybeles_Arm_01_R">
+            <target>Oxybeles_Arm_01_R</target>
+            <bone name="Oxybeles_Arm_02_R">
+              <target>Oxybeles_Arm_02_R</target>
+              <bone name="Oxybeles_Arm_03_R">
+                <target>Oxybeles_Arm_03_R</target>
+                <bone name="Oxybeles_Arm_04_R">
+                  <target>Oxybeles_Arm_04_R</target>
+                  <bone name="Oxybeles_Sling_01_R">
+                    <target>Oxybeles_Sling_01_R</target>
+                    <bone name="Oxybeles_Sling_02_R">
+                      <target>Oxybeles_Sling_02_R</target>
+                      <bone name="Oxybeles_Sling_03_R">
+                        <target>Oxybeles_Sling_03_R</target>
+                        <bone name="Oxybeles_Sling_04_R">
+                          <target>Oxybeles_Sling_04_R</target>
+                        </bone>
+                      </bone>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Oxybeles_Arm_01_L">
+            <target>Oxybeles_Arm_01_L</target>
+            <bone name="Oxybeles_Arm_02_L">
+              <target>Oxybeles_Arm_02_L</target>
+              <bone name="Oxybeles_Arm_03_L">
+                <target>Oxybeles_Arm_03_L</target>
+                <bone name="Oxybeles_Arm_04_L">
+                  <target>Oxybeles_Arm_04_L</target>
+                  <bone name="Oxybeles_Sling_01_L">
+                    <target>Oxybeles_Sling_01_L</target>
+                    <bone name="Oxybeles_Sling_02_L">
+                      <target>Oxybeles_Sling_02_L</target>
+                      <bone name="Oxybeles_Sling_03_L">
+                        <target>Oxybeles_Sling_03_L</target>
+                        <bone name="Oxybeles_Sling_04_L">
+                          <target>Oxybeles_Sling_04_L</target>
+                        </bone>
+                      </bone>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Oxybeles_Lower_Support">
+          <target>Oxybeles_Lower_Support</target>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Oxybeles_Sling">
+      <target>Oxybeles_Sling</target>
+    </bone>
+    <bone name="Lithobolos_Small.001">
+      <target>Lithobolos_Small.001</target>
+    </bone>
+  </skeleton>
+</skeletons>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Type-A">
+      <mesh>props/siege_artillery/oxybeles_01.dae</mesh>
+      <textures>
+        <texture file="props/siege_artillery_01.png" name="baseTex"/>
+        <texture file="props/siege_artillery_01_norm.png" name="normTex"/>
+        <texture file="props/siege_artillery_01_spec.png" name="specTex"/>
+      </textures>
+      <animations>
+        <animation file="mechanical/siege_artillery/oxybeles_idle_01.dae" name="Idle" speed="100" />
+        <animation event="0.99" load="0.25" file="mechanical/siege_artillery/oxybeles_attack_ranged_01.dae" name="attack_ranged" speed="120"/>
+        <animation file="mechanical/siege_artillery/oxybeles_idle_01.dae" name="Death" speed="100" />
+      </animations>
+      <props>
+        <prop actor="units/hellenes/oxybeles_infantry_a.xml" attachpoint="operator_L"/>
+        <prop actor="units/hellenes/oxybeles_infantry_b.xml" attachpoint="operator_R"/>
+        <prop actor="props/units/siege_artillery/bolt_front_med.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/siege_artillery/bolt_projectile_med.xml" attachpoint="projectile"/>
+        <prop actor="props/units/siege_artillery/bolt_ammo_med.xml" attachpoint="ammo"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

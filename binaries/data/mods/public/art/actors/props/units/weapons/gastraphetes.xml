@@ -3,19 +3,22 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Gastraphetes">
-      <mesh>props/gastraphetes.dae</mesh>
+      <mesh>props/siege_artillery/gastraphetes_01.dae</mesh>
+      <textures>
+        <texture file="props/siege_artillery_01.png" name="baseTex"/>
+        <texture file="props/siege_artillery_01_norm.png" name="normTex"/>
+        <texture file="props/siege_artillery_01_spec.png" name="specTex"/>
+      </textures>
       <animations>
-        <animation event="0.92" file="mechanical/gastraphetes_attack.dae" load="0.75" name="attack_ranged" speed="100"/>
-        <animation file="mechanical/gastraphetes_idle.dae" name="idle" speed="100"/>
+        <animation file="mechanical/siege_artillery/gastraphetes_idle_01.dae" name="Idle" speed="100" />
+        <animation event="0.92" load="0.70" file="mechanical/siege_artillery/gastraphetes_attack_ranged_01.dae" name="attack_ranged" speed="120"/>
+        <animation file="mechanical/siege_artillery/gastraphetes_idle_01.dae" name="Death" speed="100" />
       </animations>
       <props>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-projectile"/>
       </props>
-      <textures>
-        <texture file="structural/hele_siege.dds" name="baseTex"/>
-      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

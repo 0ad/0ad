@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="Lithobolos_Small_Armature" title="Lithobolos Small Armature">
+    <bone name="Lithobolos_Root">
+      <bone name="Lithobolos_Plank_Support">
+        <bone name="Lithobolos_Weap">
+          <bone name="Lithobolos_Torsion_R" />
+          <bone name="Lithobolos_Torsion_L" />
+          <bone name="Lithobolos_Wheel">
+            <bone name="Lithobolos_Wheel_01_R" />
+            <bone name="Lithobolos_Wheel_02_R" />
+            <bone name="Lithobolos_Wheel_03_R" />
+            <bone name="Lithobolos_Wheel_04_R" />
+            <bone name="Lithobolos_Wheel_01_L" />
+            <bone name="Lithobolos_Wheel_02_L" />
+            <bone name="Lithobolos_Wheel_03_L" />
+            <bone name="Lithobolos_Wheel_04_L" />
+          </bone>
+          <bone name="Lithobolos_Slider_Plank">
+            <bone name="Lithobolos_Weap_Lock" />
+            <bone name="Lithobolos_Trigger_Lock" />
+            <bone name="Lithobolos_Trigger" />
+          </bone>
+          <bone name="Lithobolos_Trigger_Sling" />
+          <bone name="Lithobolos_Torsion_R.001">
+            <bone name="Lithobolos_Arm_R">
+              <bone name="Lithobolos_Sling_01_R">
+                <bone name="Lithobolos_Sling_02_R">
+                  <bone name="Lithobolos_Sling_03_R">
+                    <bone name="Lithobolos_Sling_04_R" />
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Lithobolos_Torsion_L.001">
+            <bone name="Lithobolos_Arm_L">
+              <bone name="Lithobolos_Sling_01_L">
+                <bone name="Lithobolos_Sling_02_L">
+                  <bone name="Lithobolos_Sling_03_L">
+                    <bone name="Lithobolos_Sling_04_L" />
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Lithobolos_Sling" />
+    <bone name="Lithobolos_Small" />
+  </standard_skeleton>
+  <skeleton target="Lithobolos_Small_Armature" title="Lithobolos Small Armature">
+    <identifier>
+      <root>Lithobolos_Root</root>
+    </identifier>
+    <bone name="Lithobolos_Root">
+      <target>Lithobolos_Root</target>
+      <bone name="Lithobolos_Plank_Support">
+        <target>Lithobolos_Plank_Support</target>
+        <bone name="Lithobolos_Weap">
+          <target>Lithobolos_Weap</target>
+          <bone name="Lithobolos_Torsion_R">
+            <target>Lithobolos_Torsion_R</target>
+          </bone>
+          <bone name="Lithobolos_Torsion_L">
+            <target>Lithobolos_Torsion_L</target>
+          </bone>
+          <bone name="Lithobolos_Wheel">
+            <target>Lithobolos_Wheel</target>
+            <bone name="Lithobolos_Wheel_01_R">
+              <target>Lithobolos_Wheel_01_R</target>
+            </bone>
+            <bone name="Lithobolos_Wheel_02_R">
+              <target>Lithobolos_Wheel_02_R</target>
+            </bone>
+            <bone name="Lithobolos_Wheel_03_R">
+              <target>Lithobolos_Wheel_03_R</target>
+            </bone>
+            <bone name="Lithobolos_Wheel_04_R">
+              <target>Lithobolos_Wheel_04_R</target>
+            </bone>
+            <bone name="Lithobolos_Wheel_01_L">
+              <target>Lithobolos_Wheel_01_L</target>
+            </bone>
+            <bone name="Lithobolos_Wheel_02_L">
+              <target>Lithobolos_Wheel_02_L</target>
+            </bone>
+            <bone name="Lithobolos_Wheel_03_L">
+              <target>Lithobolos_Wheel_03_L</target>
+            </bone>
+            <bone name="Lithobolos_Wheel_04_L">
+              <target>Lithobolos_Wheel_04_L</target>
+            </bone>
+          </bone>
+          <bone name="Lithobolos_Slider_Plank">
+            <target>Lithobolos_Slider_Plank</target>
+            <bone name="Lithobolos_Weap_Lock">
+              <target>Lithobolos_Weap_Lock</target>
+            </bone>
+            <bone name="Lithobolos_Trigger_Lock">
+              <target>Lithobolos_Trigger_Lock</target>
+            </bone>
+            <bone name="Lithobolos_Trigger">
+              <target>Lithobolos_Trigger</target>
+            </bone>
+          </bone>
+          <bone name="Lithobolos_Trigger_Sling">
+            <target>Lithobolos_Trigger_Sling</target>
+          </bone>
+          <bone name="Lithobolos_Torsion_R.001">
+            <target>Lithobolos_Torsion_R.001</target>
+            <bone name="Lithobolos_Arm_R">
+              <target>Lithobolos_Arm_R</target>
+              <bone name="Lithobolos_Sling_01_R">
+                <target>Lithobolos_Sling_01_R</target>
+                <bone name="Lithobolos_Sling_02_R">
+                  <target>Lithobolos_Sling_02_R</target>
+                  <bone name="Lithobolos_Sling_03_R">
+                    <target>Lithobolos_Sling_03_R</target>
+                    <bone name="Lithobolos_Sling_04_R">
+                      <target>Lithobolos_Sling_04_R</target>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Lithobolos_Torsion_L.001">
+            <target>Lithobolos_Torsion_L.001</target>
+            <bone name="Lithobolos_Arm_L">
+              <target>Lithobolos_Arm_L</target>
+              <bone name="Lithobolos_Sling_01_L">
+                <target>Lithobolos_Sling_01_L</target>
+                <bone name="Lithobolos_Sling_02_L">
+                  <target>Lithobolos_Sling_02_L</target>
+                  <bone name="Lithobolos_Sling_03_L">
+                    <target>Lithobolos_Sling_03_L</target>
+                    <bone name="Lithobolos_Sling_04_L">
+                      <target>Lithobolos_Sling_04_L</target>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Lithobolos_Sling">
+      <target>Lithobolos_Sling</target>
+    </bone>
+    <bone name="Lithobolos_Small">
+      <target>Lithobolos_Small</target>
+    </bone>
+  </skeleton>
+</skeletons>

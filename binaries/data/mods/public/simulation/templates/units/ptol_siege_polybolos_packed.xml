@@ -5,6 +5,16 @@
     <SpecificName>Polybolos</SpecificName>
     <Icon>units/hele_siege_oxybeles_packed.png</Icon>
   </Identity>
+  <Attack>
+    <Ranged>
+      <PrepareTime>3000</PrepareTime>
+      <RepeatTime>4000</RepeatTime>
+    </Ranged>
+  </Attack>
+  <Footprint replace="">
+    <Square width="5.0" depth="5.0"/>
+    <Height>2.0</Height>
+  </Footprint>
   <Pack>
     <Entity>units/ptol_siege_polybolos_unpacked</Entity>
     <State>packed</State>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Type-A">
+      <mesh>props/siege_artillery/lithobolos_01.dae</mesh>
+      <textures>
+        <texture file="props/siege_artillery_01.png" name="baseTex"/>
+        <texture file="props/siege_artillery_01_norm.png" name="normTex"/>
+        <texture file="props/siege_artillery_01_spec.png" name="specTex"/>
+      </textures>
+      <animations>
+        <animation file="mechanical/siege_artillery/lithobolos_idle_01.dae" name="Idle" speed="100" />
+        <animation event="0.98" load="0.38" file="mechanical/siege_artillery/lithobolos_attack_ranged_01.dae" name="attack_ranged" speed="120"/>
+      </animations>
+      <props>
+        <prop actor="units/hellenes/lithobolos_infantry_a.xml" attachpoint="operator_01"/>
+        <prop actor="units/hellenes/lithobolos_infantry_b.xml" attachpoint="operator_02"/>
+        <prop actor="units/hellenes/lithobolos_infantry_b.xml" attachpoint="operator_03"/>
+        <prop actor="units/hellenes/lithobolos_infantry_c.xml" attachpoint="operator_04"/>
+        <prop actor="units/hellenes/lithobolos_infantry_d.xml" attachpoint="operator_05"/>
+        <prop actor="props/units/weapons/rock_flaming.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/rock.xml" attachpoint="loaded-projectile"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

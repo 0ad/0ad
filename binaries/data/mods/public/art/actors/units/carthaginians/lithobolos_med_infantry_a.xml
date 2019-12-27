@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <group>
+    <variant file="biped/base_citizen_soldier.xml">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
+        <prop actor="props/units/tools/siege_lever.xml" attachpoint="weapon_R"/>
+      </props>
+      <textures>
+        <texture file="skeletal/kart_isp_e_1.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Helmet-Carthaginian-Bronze-01">
+      <props>
+        <prop actor="props/units/helmets/cart_helmet_a.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet-Carthaginian-Bronze-02">
+      <props>
+        <prop actor="props/units/helmets/cart_helmet_b.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet-Thracian-Bronze-Black">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_br.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet-Thracian-Bronze">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b6.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet-Phrygian-Bronze">
+      <props>
+        <prop actor="props/units/helmets/hele_phrygian_b10.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Greave-01">
+      <props>
+        <prop actor="props/units/armor/greave_07_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_07_bronze_r.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-02">
+      <props>
+        <prop actor="props/units/armor/greave_12_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_12_bronze_r.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-03">
+      <props>
+        <prop actor="props/units/armor/greave_09_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_09_bronze_r.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-04">
+      <props>
+        <prop actor="props/units/armor/greave_02_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_02_bronze_r.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/base_citizen_soldier.xml"/>
+    <variant file="biped/attack_ranged_lithobolos_med_01.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

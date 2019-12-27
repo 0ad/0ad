@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="Polybolos_Armature" title="Polybolos Armature">
+    <bone name="Polybolos_Root">
+      <bone name="Polybolos_Plank_Support">
+        <bone name="Polybolos_Weap">
+          <bone name="Polybolos_Torsion_R" />
+          <bone name="Polybolos_Torsion_L" />
+          <bone name="Polybolos_Slider_Plank">
+            <bone name="Polybolos_Trigger_Lock" />
+            <bone name="Polybolos_Trigger_01" />
+            <bone name="Polybolos_Trigger_02" />
+          </bone>
+          <bone name="Polybolos_Rotating_Tray">
+            <bone name="Polybolos_Rotating_Tray.001" />
+          </bone>
+          <bone name="Polybolos_Projectile" />
+          <bone name="Polybolos_Windlass_Back" />
+          <bone name="Polybolos_Arm_R">
+            <bone name="Polybolos_Sling_01_R">
+              <bone name="Polybolos_Sling_02_R">
+                <bone name="Polybolos_Sling_03_R">
+                  <bone name="Polybolos_Sling_04_R" />
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Polybolos_Arm_L">
+            <bone name="Polybolos_Sling_01_L">
+              <bone name="Polybolos_Sling_02_L">
+                <bone name="Polybolos_Sling_03_L">
+                  <bone name="Polybolos_Sling_04_L" />
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Polybolos_Windlass_Front" />
+          <bone name="Polybolos_Weap_Rotation_Supp" />
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Polybolos_Sling" />
+  </standard_skeleton>
+  <skeleton target="Polybolos_Armature" title="Polybolos Armature">
+    <identifier>
+      <root>Polybolos_Root</root>
+    </identifier>
+    <bone name="Polybolos_Root">
+      <target>Polybolos_Root</target>
+      <bone name="Polybolos_Plank_Support">
+        <target>Polybolos_Plank_Support</target>
+        <bone name="Polybolos_Weap">
+          <target>Polybolos_Weap</target>
+          <bone name="Polybolos_Torsion_R">
+            <target>Polybolos_Torsion_R</target>
+          </bone>
+          <bone name="Polybolos_Torsion_L">
+            <target>Polybolos_Torsion_L</target>
+          </bone>
+          <bone name="Polybolos_Slider_Plank">
+            <target>Polybolos_Slider_Plank</target>
+            <bone name="Polybolos_Trigger_Lock">
+              <target>Polybolos_Trigger_Lock</target>
+            </bone>
+            <bone name="Polybolos_Trigger_01">
+              <target>Polybolos_Trigger_01</target>
+            </bone>
+            <bone name="Polybolos_Trigger_02">
+              <target>Polybolos_Trigger_02</target>
+            </bone>
+          </bone>
+          <bone name="Polybolos_Rotating_Tray">
+            <target>Polybolos_Rotating_Tray</target>
+            <bone name="Polybolos_Rotating_Tray.001">
+              <target>Polybolos_Rotating_Tray.001</target>
+            </bone>
+          </bone>
+          <bone name="Polybolos_Projectile">
+            <target>Polybolos_Projectile</target>
+          </bone>
+          <bone name="Polybolos_Windlass_Back">
+            <target>Polybolos_Windlass_Back</target>
+          </bone>
+          <bone name="Polybolos_Arm_R">
+            <target>Polybolos_Arm_R</target>
+            <bone name="Polybolos_Sling_01_R">
+              <target>Polybolos_Sling_01_R</target>
+              <bone name="Polybolos_Sling_02_R">
+                <target>Polybolos_Sling_02_R</target>
+                <bone name="Polybolos_Sling_03_R">
+                  <target>Polybolos_Sling_03_R</target>
+                  <bone name="Polybolos_Sling_04_R">
+                    <target>Polybolos_Sling_04_R</target>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Polybolos_Arm_L">
+            <target>Polybolos_Arm_L</target>
+            <bone name="Polybolos_Sling_01_L">
+              <target>Polybolos_Sling_01_L</target>
+              <bone name="Polybolos_Sling_02_L">
+                <target>Polybolos_Sling_02_L</target>
+                <bone name="Polybolos_Sling_03_L">
+                  <target>Polybolos_Sling_03_L</target>
+                  <bone name="Polybolos_Sling_04_L">
+                    <target>Polybolos_Sling_04_L</target>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+          <bone name="Polybolos_Windlass_Front">
+            <target>Polybolos_Windlass_Front</target>
+          </bone>
+          <bone name="Polybolos_Weap_Rotation_Supp">
+            <target>Polybolos_Weap_Rotation_Supp</target>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Polybolos_Sling">
+      <target>Polybolos_Sling</target>
+    </bone>
+  </skeleton>
+</skeletons>
