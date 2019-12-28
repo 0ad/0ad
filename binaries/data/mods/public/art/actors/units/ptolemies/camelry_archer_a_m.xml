@@ -2,12 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="quadraped/base_camel_archer.xml">
+    <variant>
       <mesh>skeletal/camel.dae</mesh>
       <props>
         <prop actor="units/ptolemies/camelry_archer_a_r.xml" attachpoint="rider"/>
-        <prop actor="props/camel/camel_rein.xml" attachpoint="head"/>
-        <prop actor="props/camel/camel_blanket.xml" attachpoint="root"/>
+        <prop actor="props/camel/camel_rein.xml" attachpoint="blanket"/>
+        <prop actor="props/camel/camel_blanket.xml" attachpoint="blanket"/>
         <prop actor="props/camel/teeths.xml" attachpoint="mouth_bot"/>
         <prop actor="props/units/quiver_cavalry_right.xml" attachpoint="quiver_R"/>
       </props>
@@ -31,13 +31,12 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant file="quadraped/base_camel_mount.xml"/>
     <variant file="quadraped/base_camel_run.xml" />
     <variant file="quadraped/base_camel_death.xml" />
-    <variant name="gather_meat">
+    <variant file="quadraped/base_camel_gather_meat.xml" name="gather_meat">
       <props>
-        <prop actor="" attachpoint="rider"/>
-        <prop actor="units/ptolemies/camelry_archer_a_r.xml" attachpoint="rider_root"/>
+        <prop actor="units/ptolemies/camelry_archer_a_r.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

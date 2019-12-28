@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-25 08:08+0000\n"
-"PO-Revision-Date: 2019-12-20 19:40+0000\n"
+"PO-Revision-Date: 2019-12-26 20:55+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -532,7 +532,7 @@ msgstr "Ο έλεγχος ασφαλείας του λόμπι απέτυχε. �
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr ""
+msgstr "Σφάλμα: Ο διακομιστής απέτυχε να εντοπίσει ένα μοναδικό αναγνωριστικό πελάτη."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
@@ -800,7 +800,7 @@ msgstr[1] "βέλη"
 #: gui/common/tooltips.js:205
 #, javascript-format
 msgid "%(projectileString)s / %(attackRateString)s"
-msgstr ""
+msgstr "%(projectileString)s / %(attackRateString)s"
 
 #. Translation: For example: Range: 2 to 10 (+2) meters
 #: gui/common/tooltips.js:225
@@ -808,19 +808,19 @@ msgstr ""
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
 "%(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s σε%(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 (+2) meters
 #: gui/common/tooltips.js:227
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 2 to 10 meters
 #: gui/common/tooltips.js:231
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s σε%(maxRange)s %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 meters
 #: gui/common/tooltips.js:233
@@ -858,7 +858,7 @@ msgstr "%(damage)s %(damageType)s"
 #: gui/common/tooltips.js:272
 #, javascript-format
 msgid "%(amount)s %(name)s"
-msgstr ""
+msgstr "%(amount)s %(name)s"
 
 #: gui/common/tooltips.js:274
 msgctxt "damage type"
@@ -873,7 +873,7 @@ msgstr "δίνει στον %(name)s"
 #: gui/common/tooltips.js:313
 #, javascript-format
 msgid "%(attackType)s Attack"
-msgstr ""
+msgstr "Επίθεση%(attackType)s "
 
 #: gui/common/tooltips.js:331
 #, javascript-format
@@ -883,7 +883,7 @@ msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s"
 #: gui/common/tooltips.js:354
 #, javascript-format
 msgid "%(splashShape)s Splash Damage"
-msgstr ""
+msgstr "%(splashShape)s Ζημιά σε Περιοχή"
 
 #: gui/common/tooltips.js:357
 #, javascript-format
@@ -1408,7 +1408,7 @@ msgstr "Φιλοξενία παιχνιδιού"
 
 #: gui/pregame/MainMenuItems.js:102
 msgid "Host a multiplayer game."
-msgstr ""
+msgstr "Φιλοξενία παιχνιδιού πολλών παιχτών."
 
 #: gui/pregame/MainMenuItems.js:110
 msgid "Game Lobby"
@@ -1517,7 +1517,7 @@ msgstr "Άλφα ΚΔ"
 msgid ""
 "Notice: This game is under development and many features have not been added"
 " yet."
-msgstr ""
+msgstr "Σημείωση: Το παιχνίδι αυτό βρίσκεται υπό ανάπτυξη και πολλά χαρακτηριστικά δεν έχουν προστεθεί ακόμα."
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"

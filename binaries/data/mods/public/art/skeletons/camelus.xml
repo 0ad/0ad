@@ -1,221 +1,238 @@
 <?xml version='1.0' encoding='utf-8'?>
 <skeletons>
   <standard_skeleton id="Camelus" title="Camelus">
-    <bone name="Camelus_TailNub" />
-    <bone name="Camelus_HeadNub" />
-    <bone name="Camelus_L_Finger0Nub" />
-    <bone name="Camelus_R_Finger0Nub" />
-    <bone name="Camelus_R_Toe0Nub" />
-    <bone name="Camelus_L_Toe0Nub" />
-    <bone name="Camelus_rl_quarter" />
-    <bone name="Camelus_rr_quarter" />
-    <bone name="Camelus_fr_quarter" />
-    <bone name="Camelus_fl_quarter" />
-    <bone name="Camelus_Root">
+    <bone name="Camelus_root">
       <bone name="Camelus_Pelvis">
         <bone name="Camelus_Spine">
           <bone name="Camelus_Spine1">
-            <bone name="Camelus_Neck">
-              <bone name="Camelus_Neck1">
-                <bone name="Camelus_Neck2">
-                  <bone name="Camelus_Head">
-                    <bone name="Camelus_Bot_Jaw_1">
-                      <bone name="Camelus_Bot_Jaw_2" />
-                    </bone>
-                    <bone name="Camelus_Top_Jaw">
-                      <bone name="Camelus_Top_Jaw_R" />
-                      <bone name="Camelus_Top_Jaw_L" />
+            <bone name="Camelus_Spine2">
+              <bone name="Camelus_Neck_01">
+                <bone name="Camelus_Neck_02">
+                  <bone name="Camelus_Neck_03">
+                    <bone name="Camelus_Neck_04">
+                      <bone name="Camelus_Head">
+                        <bone name="Camelus_Bot_Jaw_1">
+                          <bone name="Camelus_Bot_Jaw_2"/>
+                        </bone>
+                        <bone name="Camelus_Top_Jaw">
+                          <bone name="Camelus_Top_Jaw_R"/>
+                          <bone name="Camelus_Top_Jaw_L"/>
+                        </bone>
+                      </bone>
                     </bone>
                   </bone>
                 </bone>
               </bone>
             </bone>
-            <bone name="Camelus_R_Clavicle">
-              <bone name="Camelus_R_Forearm">
-                <bone name="Camelus_R_Hand">
-                  <bone name="Camelus_R_Wrist">
-                    <bone name="Camelus_R_Finger0" />
+            <bone name="Camelus_shoulder_R">
+              <bone name="Camelus_upperarm_R">
+                <bone name="Camelus_Arm_R">
+                  <bone name="Camelus_Forearm_R">
+                    <bone name="Camelus_Hand_R">
+                      <bone name="Camelus_Hoof_R" />
+                    </bone>
                   </bone>
                 </bone>
               </bone>
             </bone>
-            <bone name="Camelus_L_Clavicle">
-              <bone name="Camelus_L_Forearm">
-                <bone name="Camelus_L_Hand">
-                  <bone name="Camelus_L_Wrist">
-                    <bone name="Camelus_L_Finger0" />
+            <bone name="Camelus_shoulder_L">
+              <bone name="Camelus_upperarm_L">
+                <bone name="Camelus_Arm_L">
+                  <bone name="Camelus_Forearm_L">
+                    <bone name="Camelus_Hand_L">
+                      <bone name="Camelus_Hoof_L" />
+                    </bone>
                   </bone>
                 </bone>
               </bone>
             </bone>
           </bone>
+          <bone name="Camelus_Belly" />
         </bone>
         <bone name="Camelus_Tail">
-          <bone name="Camelus_Tail1">
-            <bone name="Camelus_Tail2" />
+          <bone name="Camelus_Tail_01">
+            <bone name="Camelus_Tail_02">
+              <bone name="Camelus_Tail_03" />
+            </bone>
           </bone>
         </bone>
-        <bone name="Camelus_L_Thigh">
-          <bone name="Camelus_L_Leg">
-            <bone name="Camelus_L_Foot">
-              <bone name="Camelus_L_Ankle">
-                <bone name="Camelus_L_Toe0" />
+        <bone name="Camelus_Femur_R">
+          <bone name="Camelus_Thigh_R">
+            <bone name="Camelus_Leg_R">
+              <bone name="Camelus_Foreleg_R">
+                <bone name="Camelus_Shin_R">
+                  <bone name="Camelus_Foot_R">
+                    <bone name="Camelus_Hoof_back_R" />
+                  </bone>
+                </bone>
               </bone>
             </bone>
           </bone>
         </bone>
-        <bone name="Camelus_R_Thigh">
-          <bone name="Camelus_R_Leg">
-            <bone name="Camelus_R_Foot">
-              <bone name="Camelus_R_Ankle">
-                <bone name="Camelus_R_Toe0" />
+        <bone name="Camelus_Femur_L">
+          <bone name="Camelus_Thigh_L">
+            <bone name="Camelus_Leg_L">
+              <bone name="Camelus_Foreleg_L">
+                <bone name="Camelus_Shin_L">
+                  <bone name="Camelus_Foot_L">
+                    <bone name="Camelus_Hoof_back_L" />
+                  </bone>
+                </bone>
               </bone>
             </bone>
           </bone>
         </bone>
+        <bone name="Camelus_Tail_Root" />
       </bone>
+      <bone name="Camelus_Rein"/>
     </bone>
   </standard_skeleton>
   <skeleton target="Camelus" title="Camelus">
     <identifier>
-      <root>Camelus_Root</root>
+      <root>Camelus_root</root>
     </identifier>
-    <bone name="Camelus_TailNub">
-      <target>Camelus_TailNub</target>
-    </bone>
-    <bone name="Camelus_HeadNub">
-      <target>Camelus_HeadNub</target>
-    </bone>
-    <bone name="Camelus_L_Finger0Nub">
-      <target>Camelus_L_Finger0Nub</target>
-    </bone>
-    <bone name="Camelus_R_Finger0Nub">
-      <target>Camelus_R_Finger0Nub</target>
-    </bone>
-    <bone name="Camelus_R_Toe0Nub">
-      <target>Camelus_R_Toe0Nub</target>
-    </bone>
-    <bone name="Camelus_L_Toe0Nub">
-      <target>Camelus_L_Toe0Nub</target>
-    </bone>
-    <bone name="Camelus_rl_quarter">
-      <target>Camelus_rl_quarter</target>
-    </bone>
-    <bone name="Camelus_rr_quarter">
-      <target>Camelus_rr_quarter</target>
-    </bone>
-    <bone name="Camelus_fr_quarter">
-      <target>Camelus_fr_quarter</target>
-    </bone>
-    <bone name="Camelus_fl_quarter">
-      <target>Camelus_fl_quarter</target>
-    </bone>
-    <bone name="Camelus_Root">
-      <target>Camelus_Root</target>
+    <bone name="Camelus_root">
+      <target>Camelus_root</target>
       <bone name="Camelus_Pelvis">
         <target>Camelus_Pelvis</target>
         <bone name="Camelus_Spine">
           <target>Camelus_Spine</target>
           <bone name="Camelus_Spine1">
             <target>Camelus_Spine1</target>
-            <bone name="Camelus_Neck">
-              <target>Camelus_Neck</target>
-              <bone name="Camelus_Neck1">
-                <target>Camelus_Neck1</target>
-                <bone name="Camelus_Neck2">
-                  <target>Camelus_Neck2</target>
-                  <bone name="Camelus_Head">
-                    <target>Camelus_Head</target>
-                    <bone name="Camelus_Bot_Jaw_1">
-                      <target>Camelus_Bot_Jaw_1</target>
-                      <bone name="Camelus_Bot_Jaw_2">
-                        <target>Camelus_Bot_Jaw_2</target>
-                      </bone>
-                    </bone>
-                    <bone name="Camelus_Top_Jaw">
-                      <target>Camelus_Top_Jaw</target>
-                      <bone name="Camelus_Top_Jaw_R">
-                        <target>Camelus_Top_Jaw_R</target>
-                      </bone>
-                      <bone name="Camelus_Top_Jaw_L">
-                        <target>Camelus_Top_Jaw_L</target>
+            <bone name="Camelus_Spine2">
+              <target>Camelus_Spine2</target>
+              <bone name="Camelus_Neck_01">
+                <target>Camelus_Neck_01</target>
+                <bone name="Camelus_Neck_02">
+                  <target>Camelus_Neck_02</target>
+                  <bone name="Camelus_Neck_03">
+                    <target>Camelus_Neck_03</target>
+                    <bone name="Camelus_Neck_04">
+                      <target>Camelus_Neck_04</target>
+                      <bone name="Camelus_Head">
+                        <target>Camelus_Head</target>
+                        <bone name="Camelus_Bot_Jaw_1">
+                          <target>Camelus_Bot_Jaw_1</target>
+                          <bone name="Camelus_Bot_Jaw_2">
+                            <target>Camelus_Bot_Jaw_2</target>
+                          </bone>
+                        </bone>
+                        <bone name="Camelus_Top_Jaw">
+                          <target>Camelus_Top_Jaw</target>
+                          <bone name="Camelus_Top_Jaw_R">
+                            <target>Camelus_Top_Jaw_R</target>
+                          </bone>
+                          <bone name="Camelus_Top_Jaw_L">
+                            <target>Camelus_Top_Jaw_L</target>
+                          </bone>
+                        </bone>
                       </bone>
                     </bone>
                   </bone>
                 </bone>
               </bone>
             </bone>
-            <bone name="Camelus_R_Clavicle">
-              <target>Camelus_R_Clavicle</target>
-              <bone name="Camelus_R_Forearm">
-                <target>Camelus_R_Forearm</target>
-                <bone name="Camelus_R_Hand">
-                  <target>Camelus_R_Hand</target>
-                  <bone name="Camelus_R_Wrist">
-                    <target>Camelus_R_Wrist</target>
-                    <bone name="Camelus_R_Finger0">
-                      <target>Camelus_R_Finger0</target>
+            <bone name="Camelus_shoulder_R">
+              <target>Camelus_shoulder_R</target>
+              <bone name="Camelus_upperarm_R">
+                <target>Camelus_upperarm_R</target>
+                <bone name="Camelus_Arm_R">
+                  <target>Camelus_Arm_R</target>
+                  <bone name="Camelus_Forearm_R">
+                    <target>Camelus_Forearm_R</target>
+                    <bone name="Camelus_Hand_R">
+                      <target>Camelus_Hand_R</target>
+                      <bone name="Camelus_Hoof_R">
+                        <target>Camelus_Hoof_R</target>
+                      </bone>
                     </bone>
                   </bone>
                 </bone>
               </bone>
             </bone>
-            <bone name="Camelus_L_Clavicle">
-              <target>Camelus_L_Clavicle</target>
-              <bone name="Camelus_L_Forearm">
-                <target>Camelus_L_Forearm</target>
-                <bone name="Camelus_L_Hand">
-                  <target>Camelus_L_Hand</target>
-                  <bone name="Camelus_L_Wrist">
-                    <target>Camelus_L_Wrist</target>
-                    <bone name="Camelus_L_Finger0">
-                      <target>Camelus_L_Finger0</target>
+            <bone name="Camelus_shoulder_L">
+              <target>Camelus_shoulder_L</target>
+              <bone name="Camelus_upperarm_L">
+                <target>Camelus_upperarm_L</target>
+                <bone name="Camelus_Arm_L">
+                  <target>Camelus_Arm_L</target>
+                  <bone name="Camelus_Forearm_L">
+                    <target>Camelus_Forearm_L</target>
+                    <bone name="Camelus_Hand_L">
+                      <target>Camelus_Hand_L</target>
+                      <bone name="Camelus_Hoof_L">
+                        <target>Camelus_Hoof_L</target>
+                      </bone>
                     </bone>
                   </bone>
                 </bone>
               </bone>
             </bone>
+          </bone>
+          <bone name="Camelus_Belly">
+            <target>Camelus_Belly</target>
           </bone>
         </bone>
         <bone name="Camelus_Tail">
           <target>Camelus_Tail</target>
-          <bone name="Camelus_Tail1">
-            <target>Camelus_Tail1</target>
-            <bone name="Camelus_Tail2">
-              <target>Camelus_Tail2</target>
+          <bone name="Camelus_Tail_01">
+            <target>Camelus_Tail_01</target>
+            <bone name="Camelus_Tail_02">
+              <target>Camelus_Tail_02</target>
+              <bone name="Camelus_Tail_03">
+                <target>Camelus_Tail_03</target>
+              </bone>
             </bone>
           </bone>
         </bone>
-        <bone name="Camelus_L_Thigh">
-          <target>Camelus_L_Thigh</target>
-          <bone name="Camelus_L_Leg">
-            <target>Camelus_L_Leg</target>
-            <bone name="Camelus_L_Foot">
-              <target>Camelus_L_Foot</target>
-              <bone name="Camelus_L_Ankle">
-                <target>Camelus_L_Ankle</target>
-                <bone name="Camelus_L_Toe0">
-                  <target>Camelus_L_Toe0</target>
+        <bone name="Camelus_Femur_R">
+          <target>Camelus_Femur_R</target>
+          <bone name="Camelus_Thigh_R">
+            <target>Camelus_Thigh_R</target>
+            <bone name="Camelus_Leg_R">
+              <target>Camelus_Leg_R</target>
+              <bone name="Camelus_Foreleg_R">
+                <target>Camelus_Foreleg_R</target>
+                <bone name="Camelus_Shin_R">
+                  <target>Camelus_Shin_R</target>
+                  <bone name="Camelus_Foot_R">
+                    <target>Camelus_Foot_R</target>
+                    <bone name="Camelus_Hoof_back_R">
+                      <target>Camelus_Hoof_back_R</target>
+                    </bone>
+                  </bone>
                 </bone>
               </bone>
             </bone>
           </bone>
         </bone>
-        <bone name="Camelus_R_Thigh">
-          <target>Camelus_R_Thigh</target>
-          <bone name="Camelus_R_Leg">
-            <target>Camelus_R_Leg</target>
-            <bone name="Camelus_R_Foot">
-              <target>Camelus_R_Foot</target>
-              <bone name="Camelus_R_Ankle">
-                <target>Camelus_R_Ankle</target>
-                <bone name="Camelus_R_Toe0">
-                  <target>Camelus_R_Toe0</target>
+        <bone name="Camelus_Femur_L">
+          <target>Camelus_Femur_L</target>
+          <bone name="Camelus_Thigh_L">
+            <target>Camelus_Thigh_L</target>
+            <bone name="Camelus_Leg_L">
+              <target>Camelus_Leg_L</target>
+              <bone name="Camelus_Foreleg_L">
+                <target>Camelus_Foreleg_L</target>
+                <bone name="Camelus_Shin_L">
+                  <target>Camelus_Shin_L</target>
+                  <bone name="Camelus_Foot_L">
+                    <target>Camelus_Foot_L</target>
+                    <bone name="Camelus_Hoof_back_L">
+                      <target>Camelus_Hoof_back_L</target>
+                    </bone>
+                  </bone>
                 </bone>
               </bone>
             </bone>
           </bone>
         </bone>
+        <bone name="Camelus_Tail_Root">
+          <target>Camelus_Tail_Root</target>
+        </bone>
+      </bone>
+      <bone name="Camelus_Rein">
+         <target>Camelus_Rein</target>
       </bone>
     </bone>
   </skeleton>

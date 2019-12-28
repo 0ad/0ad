@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="Base" frequency="1">
+  <animations>
+    <animation file="biped/rider/camelry/generic/attack_melee_01.dae" name="attack_slaughter" event="0.5" id="attack1" speed="60"/>
+    <animation file="biped/rider/camelry/generic/attack_melee_02.dae" name="attack_slaughter" event="0.5" id="attack2" speed="60"/>
+    <animation file="biped/rider/camelry/spearman/attack_melee_01.dae" name="attack_melee" event="0.5" id="attack1" speed="60"/>
+    <animation file="biped/rider/camelry/spearman/attack_melee_02.dae" name="attack_melee" event="0.5" id="attack2" speed="60"/>
+    <animation file="biped/rider/camelry/spearman/attack_melee_03.dae" name="attack_melee" event="0.5" id="attack3" speed="60"/>
+    <animation file="biped/rider/camelry/generic/idle_relax_01.dae" name="idle" id="idle1" speed="80"/>
+    <animation file="biped/rider/camelry/generic/idle_relax_02.dae" name="idle" id="idle2" speed="80"/>
+    <animation file="biped/rider/camelry/generic/idle_relax_03.dae" name="idle" id="idle3" speed="80"/>
+    <animation file="biped/rider/camelry/generic/idle_relax_01.dae" name="idle" id="idle4" speed="80"/>
+    <animation file="biped/rider/camelry/generic/trot_relax.dae" name="Walk" speed="10"/>
+    <animation file="biped/rider/camelry/generic/run_relax.dae" name="Run" speed="5"/>
+    <animation file="biped/rider/camelry/attack_capture.dae" name="attack_capture" speed="100"/>
+    <animation file="biped/rider/camelry/generic/death_01.dae" name="death" speed="100"/>
+  </animations>
+</variant>

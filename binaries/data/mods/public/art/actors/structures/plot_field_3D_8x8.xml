@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-  <castshadow/>
   <group>
     <variant frequency="100" name="field_foliagebush">
       <mesh>structural/field_propped_8x8.dae</mesh>
@@ -216,11 +215,9 @@
   <group>
     <variant frequency="1" name="textures">
       <textures>
-        <texture file="gaia/decal_farmland.png" name="baseTex"/>
-        <texture file="gaia/decal_farmland_norm.png" name="normTex"/>
-        <texture file="gaia/decal_farmland_spec.png" name="specTex"/>
+        <texture file="null_white.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>default.xml</material>
 </actor>

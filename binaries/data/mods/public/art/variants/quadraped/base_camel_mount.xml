@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variant name="Base" frequency="1">
+  <animations>
+    <animation file="quadraped/camel_idle_01.dae" name="Idle" id="idle1" speed="80"/>
+    <animation file="quadraped/camel_idle_02.dae" name="Idle" id="idle2" speed="80"/>
+    <animation file="quadraped/camel_idle_03.dae" name="Idle" id="idle3" speed="80"/>
+    <animation file="quadraped/camel_idle_01.dae" name="Idle" id="idle4" speed="80"/>
+    <animation file="quadraped/camel_attack_melee_01.dae" name="Attack_Melee" id="attack1" speed="100"/>
+    <animation file="quadraped/camel_attack_melee_02.dae" name="Attack_Melee" id="attack2" speed="100"/>
+    <animation file="quadraped/camel_attack_melee_01.dae" name="Attack_Melee" id="attack3" speed="100"/>
+    <animation file="quadraped/camel_attack_melee_01.dae" name="attack_slaughter" event="0.5" id="attack1" speed="60"/>
+    <animation file="quadraped/camel_attack_melee_02.dae" name="attack_slaughter" event="0.5" id="attack2" speed="60"/>
+    <animation file="quadraped/camel_idle_gather_meat.dae" name="gather_meat" speed="100"/>
+    <animation file="quadraped/camel_idle_01.dae" name="attack_ranged" speed="100"/>
+    <animation file="quadraped/camel_idle_01.dae" name="attack_capture" speed="100"/>
+    <animation file="quadraped/camel_trot.dae" name="carry_meat" speed="10"/>
+    <animation file="quadraped/camel_death.dae" name="Death" speed="120"/>
+    <animation file="quadraped/camel_trot.dae" name="Walk" speed="5"/>
+    <animation file="quadraped/camel_run.dae" name="Run" speed="5"/>
+  </animations>
+</variant>

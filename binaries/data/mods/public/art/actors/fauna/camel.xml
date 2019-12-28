@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_camel_fauna.xml">
+    <variant>
       <mesh>skeletal/camel.dae</mesh>
       <props>
         <prop actor="props/camel/teeths.xml" attachpoint="mouth_bot"/>
@@ -27,7 +27,7 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant file="quadraped/base_camel_fauna.xml"/>
     <variant file="quadraped/base_camel_run.xml" />
     <variant file="quadraped/base_camel_death.xml" />
   </group>
