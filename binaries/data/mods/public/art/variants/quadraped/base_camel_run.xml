@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <variant name="Run">
   <animations>
-    <animation file="quadraped/camel_run.dae" name="Run" speed="65"/>
+    <animation file="quadraped/camel_run.dae" name="Run" speed="5"/>
   </animations>
   <props>
-    <prop actor="particle/dust_cav.xml" attachpoint="root"/>
+    <prop actor="particle/dust_cav.xml" attachpoint="decals"/>
   </props>
 </variant>
