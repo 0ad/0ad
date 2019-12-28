@@ -140,7 +140,7 @@ var g_OrdersCancelUnpacking = new Set([
 	"WalkAndFight",
 	"WalkToTarget",
 	"Patrol",
-	"Garrison",
+	"Garrison"
 ]);
 
 // When leaving a foundation, we want to be clear of it by this distance.
@@ -928,6 +928,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			"enter": function(msg) {
 				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 				cmpFormation.SetRearrange(false);
+				return false;
 			},
 		},
 
@@ -941,6 +942,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 				cmpFormation.SetRearrange(true);
 				cmpFormation.MoveMembersIntoFormation(true, true);
+				return false;
 			},
 
 			"leave": function() {
@@ -967,6 +969,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 				cmpFormation.SetRearrange(true);
 				cmpFormation.MoveMembersIntoFormation(true, true);
+				return false;
 			},
 
 			"leave": function() {
@@ -995,7 +998,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				if (!cmpPosition || !cmpPosition.IsInWorld())
 				{
 					this.FinishOrder();
-					return;
+					return true;
 				}
 				if (!this.patrolStartPosOrder)
 				{
@@ -1014,6 +1017,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 				cmpFormation.SetRearrange(true);
 				cmpFormation.MoveMembersIntoFormation(true, true);
+				return false;
 			},
 
 			"Timer": function(msg) {
@@ -1067,6 +1071,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.pickup = this.order.data.target;       // temporary, deleted in "leave"
 						Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity });
 					}
+					return false;
 				},
 
 				"leave": function() {
@@ -1090,6 +1095,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				"enter": function() {
 					this.CallMemberFunction("Garrison", [this.order.data.target, false]);
 					this.SetNextState("MEMBER");
+					return true;
 				},
 			},
 		},
@@ -1104,6 +1110,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 				cmpFormation.SetRearrange(true);
 				cmpFormation.MoveMembersIntoFormation(true, true);
+				return false;
 			},
 
 			"leave": function() {
@@ -1136,6 +1143,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 					cmpFormation.SetRearrange(true);
 					cmpFormation.MoveMembersIntoFormation(true, true);
+					return false;
 				},
 
 				"leave": function() {
@@ -1211,6 +1219,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				cmpFormation.SetRearrange(false);
 				this.StopMoving();
 				this.StartTimer(1000, 1000);
+				return false;
 			},
 
 			"Timer": function(msg) {
@@ -1228,6 +1237,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.FindWalkAndFightTargets();
 					return;
 				}
+				return false;
 			},
 
 			"leave": function(msg) {
@@ -1289,6 +1299,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			let cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
 			if (cmpFormation)
 				this.SetAnimationVariant(cmpFormation.GetFormationAnimation(this.entity));
+			return false;
 		},
 
 		"leave": function() {
@@ -1310,6 +1321,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (cmpFormation)
 						this.SetAnimationVariant(cmpFormation.GetFormationAnimation(this.entity));
 				}
+				return false;
 			},
 
 			"leave": function() {
@@ -1355,6 +1367,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				}
 				if (cmpFormation && this.order.data.offsetsChanged)
 					this.SetAnimationVariant(cmpFormation.GetFormationAnimation(this.entity));
+				return false;
 			},
 
 			"MovementUpdate": function() {
@@ -1374,6 +1387,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			// Sanity-checking
 			if (this.IsAnimal())
 				error("Animal got moved into INDIVIDUAL.* state");
+			return false;
 		},
 
 		"Attacked": function(msg) {
@@ -1450,6 +1464,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				// but sending this info in Idle.enter will send spurious messages.
 				// Pick 100 to execute on the next turn in SP and MP.
 				this.StartTimer(100);
+				return false;
 			},
 
 			"leave": function() {
@@ -1541,6 +1556,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.FinishOrder();
 					return true;
 				}
+				return false;
 			},
 
 			"leave": function() {
@@ -1567,6 +1583,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.SetAnimationVariant("combat");
 
 				this.StartTimer(0, 1000);
+				return false;
 			},
 
 			"Timer": function(msg) {
@@ -1608,6 +1625,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				this.StartTimer(0, 1000);
 				this.SetAnimationVariant("combat");
+				return false;
 			},
 
 			"leave": function() {
@@ -1759,6 +1777,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				// Run quickly
 				this.SetSpeedMultiplier(this.GetRunMultiplier());
+				return false;
 			},
 
 			"HealthChanged": function() {
@@ -1804,6 +1823,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.SetAnimationVariant("combat");
 
 					this.StartTimer(1000, 1000);
+					return false;
 				},
 
 				"leave": function() {
@@ -1933,6 +1953,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					let cmpBuildingAI = Engine.QueryInterface(this.entity, IID_BuildingAI);
 					if (cmpBuildingAI)
 						cmpBuildingAI.SetUnitAITarget(this.order.data.target);
+					return false;
 				},
 
 				"leave": function() {
@@ -2065,6 +2086,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.SetSpeedMultiplier(this.GetRunMultiplier());
 					}
 					this.StartTimer(1000, 1000);
+					return false;
 				},
 
 				"leave": function() {
@@ -2170,6 +2192,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.FinishOrder();
 						return true;
 					}
+					return false;
 				},
 
 				"leave": function() {
@@ -2453,6 +2476,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					}
 
 					this.StartTimer(1000, 1000);
+					return false;
 				},
 
 				"leave": function() {
@@ -2507,6 +2531,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.resyncAnimation = prepare != this.healTimers.prepare;
 
 					this.FaceTowardsTarget(this.order.data.target);
+					return false;
 				},
 
 				"leave": function() {
@@ -2584,6 +2609,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.FinishOrder();
 						return true;
 					}
+					return false;
 				},
 
 				"leave": function() {
@@ -2650,6 +2676,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.FinishOrder();
 						return true;
 					}
+					return false;
 				},
 
 				"leave": function() {
@@ -2689,6 +2716,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.FinishOrder();
 						return true;
 					}
+					return false;
 				},
 
 				"leave": function() {
@@ -2880,6 +2908,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					Engine.PostMessage(this.pickup, MT_PickupCanceled, { "entity": this.entity });
 					delete this.pickup;
 				}
+				return false;
 			},
 
 			"APPROACHING": {
@@ -2901,6 +2930,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.pickup = this.order.data.target;       // temporary, deleted in "leave"
 						Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity });
 					}
+					return false;
 				},
 
 				"leave": function() {
@@ -3040,6 +3070,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
 				cmpPack.Pack();
+				return false;
 			},
 
 			"PackFinished": function(msg) {
@@ -3060,6 +3091,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
 				cmpPack.Unpack();
+				return false;
 			},
 
 			"PackFinished": function(msg) {
@@ -3082,6 +3114,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.FinishOrder();
 						return true;
 					}
+					return false;
 				},
 
 				"leave": function() {
@@ -3165,6 +3198,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.MoveRandomly(+this.template.RoamDistance);
 				// Set a random timer to switch to feeding state
 				this.StartTimer(randIntInclusive(+this.template.RoamTimeMin, +this.template.RoamTimeMax));
+				return false;
 			},
 
 			"leave": function() {
@@ -3210,6 +3244,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.SelectAnimation("feeding");
 				this.StopMoving();
 				this.StartTimer(randIntInclusive(+this.template.FeedTimeMin, +this.template.FeedTimeMax));
+				return false;
 			},
 
 			"leave": function() {
