@@ -11,6 +11,8 @@ var g_TargetMarker = {
  */
 var g_PatrolTargets = ["Unit"];
 
+const g_DisabledTags = { "color": "255 140 0" };
+
 /**
  * List of different actions units can execute,
  * this is mostly used to determine which actions can be executed
@@ -587,14 +589,17 @@ var g_UnitActions =
 				break;
 
 			case "set second":
-				if (tradingDetails.gain.traderGain == 0) // markets too close
-					return false;
+				if (tradingDetails.gain.traderGain == 0)
+					return {
+						"possible": true,
+						"tooltip": setStringTags(translate("This market is too close to the origin market."), g_DisabledTags),
+						"disabled": true
+					};
 
 				tooltip = translate("Right-click to set as destination trade market.") + "\n" +
 					sprintf(translate("Gain: %(gain)s"), {
 						"gain": getTradingTooltip(tradingDetails.gain)
 					});
-
 				break;
 			}
 
@@ -606,6 +611,15 @@ var g_UnitActions =
 		"actionCheck": function(target, selection)
 		{
 			let actionInfo = getActionInfo("setup-trade-route", target, selection);
+
+			if (actionInfo.disabled)
+				return {
+					"type": "none",
+					"cursor": "action-setup-trade-route-disabled",
+					"target": null,
+					"tooltip": actionInfo.tooltip
+				};
+
 			if (!actionInfo.possible)
 				return false;
 
@@ -826,6 +840,7 @@ var g_UnitActions =
 		"getActionInfo": function(entState, targetState)
 		{
 			let tooltip;
+			let disabled = false;
 			// default to walking there (or attack-walking if hotkey pressed)
 			let data = { "command": "walk" };
 			let cursor = "";
@@ -903,19 +918,26 @@ var g_UnitActions =
 				};
 
 				let gain = Engine.GuiInterfaceCall("GetTradingRouteGain", traderData);
-				if (gain && gain.traderGain)
+				if (gain)
 				{
 					data.command = "trade";
 					data.target = traderData.secondMarket;
 					data.source = traderData.firstMarket;
 					cursor = "action-setup-trade-route";
 
-					tooltip = translate("Right-click to establish a default route for new traders.") + "\n" +
-						sprintf(
-							trader ?
-								translate("Gain: %(gain)s") :
-								translate("Expected gain: %(gain)s"),
-							{ "gain": getTradingTooltip(gain) });
+					if (gain.traderGain)
+						tooltip = translate("Right-click to establish a default route for new traders.") + "\n" +
+							sprintf(
+								trader ?
+									translate("Gain: %(gain)s") :
+									translate("Expected gain: %(gain)s"),
+								{ "gain": getTradingTooltip(gain) });
+					else
+					{
+						disabled = true;
+						tooltip = setStringTags(translate("This market is too close to the origin market."), g_DisabledTags);
+						cursor = "action-setup-trade-route-disabled";
+					}
 				}
 			}
 			else if ((targetState.needsRepair || targetState.foundation) && playerCheck(entState, targetState, ["Ally"]))
@@ -945,6 +967,7 @@ var g_UnitActions =
 				"data": data,
 				"position": targetState.position,
 				"cursor": cursor,
+				"disabled": disabled,
 				"tooltip": tooltip
 			};
 
@@ -955,6 +978,15 @@ var g_UnitActions =
 				return false;
 
 			let actionInfo = getActionInfo("set-rallypoint", target, selection);
+
+			if (actionInfo.disabled)
+				return {
+					"type": "none",
+					"cursor": actionInfo.cursor,
+					"target": null,
+					"tooltip": actionInfo.tooltip
+				};
+
 			if (!actionInfo.possible)
 				return false;
 
