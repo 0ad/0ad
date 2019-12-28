@@ -132,6 +132,20 @@ var g_Stances = {
 	}
 };
 
+// These orders always require a packed unit, so if a unit that is unpacking is given one of these orders,
+// it will immediately cancel unpacking.
+var g_OrdersCancelUnpacking = new Set([
+	"FormationWalk",
+	"Walk",
+	"WalkAndFight",
+	"WalkToTarget",
+	"Patrol",
+	"Garrison",
+]);
+
+// When leaving a foundation, we want to be clear of it by this distance.
+var g_LeaveFoundationRange = 4;
+
 // See ../helpers/FSM.js for some documentation of this FSM specification syntax
 UnitAI.prototype.UnitFsmSpec = {
 
@@ -212,22 +226,13 @@ UnitAI.prototype.UnitFsmSpec = {
 	"Order.LeaveFoundation": function(msg) {
 		// If foundation is not ally of entity, or if entity is unpacked siege,
 		// ignore the order
-		if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target) && !Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager).IsCeasefireActive() ||
-			this.IsPacking() || this.CanPack() || this.IsTurret())
+		if (!this.WillMoveFromFoundation(msg.data.target))
 		{
 			this.FinishOrder();
 			return;
 		}
-
-		// Move a tile outside the building if necessary.
-		let range = 4;
-		if (this.CheckTargetRangeExplicit(msg.data.target, range, -1))
-			this.FinishOrder();
-		else
-		{
-			this.order.data.min = range;
-			this.SetNextState("INDIVIDUAL.WALKING");
-		}
+		this.order.data.min = g_LeaveFoundationRange;
+		this.SetNextState("INDIVIDUAL.WALKING");
 	},
 
 	// Individual orders:
@@ -426,6 +431,10 @@ UnitAI.prototype.UnitFsmSpec = {
 				return;
 			}
 
+			// Cancel any current packing order.
+			if (!this.EnsureCorrectPackStateForAttack(false))
+				return;
+
 			if (this.IsAnimal())
 				this.SetNextState("ANIMAL.COMBAT.ATTACKING");
 			else
@@ -449,6 +458,10 @@ UnitAI.prototype.UnitFsmSpec = {
 			this.PushOrderFront("Pack", { "force": true });
 			return;
 		}
+
+		// If we're currently packing/unpacking, make sure we are packed, so we can move.
+		if (!this.EnsureCorrectPackStateForAttack(true))
+			return;
 
 		if (this.IsAnimal())
 			this.SetNextState("ANIMAL.COMBAT.APPROACHING");
@@ -1254,24 +1267,13 @@ UnitAI.prototype.UnitFsmSpec = {
 		"Order.LeaveFoundation": function(msg) {
 			// If foundation is not ally of entity, or if entity is unpacked siege,
 			// ignore the order
-			if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target) && !Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager).IsCeasefireActive() ||
-				this.IsPacking() || this.CanPack() || this.IsTurret())
+			if (!this.WillMoveFromFoundation(msg.data.target))
 			{
 				this.FinishOrder();
 				return;
 			}
-			// Move a tile outside the building
-			let range = 4;
-			if (this.CheckTargetRangeExplicit(msg.data.target, range, -1))
-			{
-				// We are already at the target, or can't move at all
-				this.FinishOrder();
-			}
-			else
-			{
-				this.order.data.min = range;
-				this.SetNextState("WALKINGTOPOINT");
-			}
+			this.order.data.min = g_LeaveFoundationRange;
+			this.SetNextState("WALKINGTOPOINT");
 		},
 
 		"enter": function() {
@@ -3137,13 +3139,12 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"Order.LeaveFoundation": function(msg) {
 			// Move a tile outside the building
-			let range = 4;
-			if (this.CheckTargetRangeExplicit(msg.data.target, range, -1))
+			if (this.CheckTargetRangeExplicit(msg.data.target, g_LeaveFoundationRange, -1))
 			{
 				this.FinishOrder();
 				return;
 			}
-			this.order.data.min = range;
+			this.order.data.min = g_LeaveFoundationRange;
 			this.SetNextState("WALKING");
 		},
 
@@ -3671,7 +3672,7 @@ UnitAI.prototype.PushOrder = function(type, data)
  * Add an order onto the front of the queue,
  * and execute it immediately.
  */
-UnitAI.prototype.PushOrderFront = function(type, data)
+UnitAI.prototype.PushOrderFront = function(type, data, ignorePacking = false)
 {
 	var order = { "type": type, "data": data };
 	// If current order is cheering then add new order after it
@@ -3681,7 +3682,7 @@ UnitAI.prototype.PushOrderFront = function(type, data)
 		var cheeringOrder = this.orderQueue.shift();
 		this.orderQueue.unshift(cheeringOrder, order);
 	}
-	else if (this.order && this.IsPacking())
+	else if (!ignorePacking && this.order && this.IsPacking())
 	{
 		var packingOrder = this.orderQueue.shift();
 		this.orderQueue.unshift(packingOrder, order);
@@ -3735,6 +3736,62 @@ UnitAI.prototype.PushOrderAfterForced = function(type, data)
 	Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 };
 
+/**
+ * For a unit that is packing and trying to attack something,
+ * either cancel packing or continue with packing, as appropriate.
+ * Precondition:  if the unit is packing/unpacking, then orderQueue
+ * should have the Attack order at index 0,
+ * and the Pack/Unpack order at index 1.
+ * This precondition holds because if we are packing while processing "Order.Attack",
+ * then we must have come from ReplaceOrder, which guarantees it.
+ *
+ * @param {boolean} requirePacked - true if the unit needs to be packed to continue attacking,
+ *   false if it needs to be unpacked.
+ * @return {boolean} true if the unit can attack now, false if it must continue packing (or unpacking) first.
+ */
+UnitAI.prototype.EnsureCorrectPackStateForAttack = function(requirePacked)
+{
+	let cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+	if (!cmpPack ||
+	  !cmpPack.IsPacking() ||
+	  this.orderQueue.length != 2 ||
+	  this.orderQueue[0].type != "Attack" ||
+	  this.orderQueue[1].type != "Pack" &&
+	  this.orderQueue[1].type != "Unpack")
+		return true;
+
+	if (cmpPack.IsPacked() == requirePacked)
+	{
+		// The unit is already in the packed/unpacked state we want.
+		// Delete the packing order.
+		this.orderQueue.splice(1, 1);
+		cmpPack.CancelPack();
+		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
+		// Continue with the attack order.
+		return true;
+	}
+	// Move the attack order behind the unpacking order, to continue unpacking.
+	let tmp = this.orderQueue[0];
+	this.orderQueue[0] = this.orderQueue[1];
+	this.orderQueue[1] = tmp;
+	Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
+	return false;
+};
+
+UnitAI.prototype.WillMoveFromFoundation = function(target, checkPacking = true)
+{
+	// If foundation is not ally of entity, or if entity is unpacked siege,
+	// ignore the order.
+	if (!IsOwnedByAllyOfEntity(this.entity, target) &&
+	  !Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager).IsCeasefireActive() ||
+	  checkPacking && this.IsPacking() ||
+	  this.CanPack() || this.IsTurret())
+		return false;
+
+	// Move a tile outside the building.
+	return !this.CheckTargetRangeExplicit(target, g_LeaveFoundationRange, -1);
+};
+
 UnitAI.prototype.ReplaceOrder = function(type, data)
 {
 	// Remember the previous work orders to be able to go back to them later if required
@@ -3762,7 +3819,22 @@ UnitAI.prototype.ReplaceOrder = function(type, data)
 	{
 		var order = { "type": type, "data": data };
 		var packingOrder = this.orderQueue.shift();
-		this.orderQueue = [packingOrder, order];
+		if (type == "Attack")
+		{
+			// The Attack order is able to handle a packing unit, while other orders can't.
+			this.orderQueue = [packingOrder];
+			this.PushOrderFront(type, data, true);
+		}
+		else if (packingOrder.type == "Unpack" && g_OrdersCancelUnpacking.has(type))
+		{
+			// Immediately cancel unpacking before processing an order that demands a packed unit.
+			let cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+			cmpPack.CancelPack();
+			this.orderQueue = [];
+			this.PushOrder(type, data);
+		}
+		else
+			this.orderQueue = [packingOrder, order];
 	}
 	else
 	{
@@ -5086,7 +5158,17 @@ UnitAI.prototype.LeaveFoundation = function(target)
 	// ignore this new request so we don't end up being too indecisive
 	// to ever actually move anywhere
 	// Ignore also the request if we are packing
-	if (this.order && (this.order.type == "LeaveFoundation" || (this.order.type == "Flee" && this.order.data.target == target) || this.IsPacking()))
+	if (this.order && (this.order.type == "LeaveFoundation" || (this.order.type == "Flee" && this.order.data.target == target)))
+		return;
+
+	if (this.orderQueue.length && this.orderQueue[0].type == "Unpack" && this.WillMoveFromFoundation(target, false))
+	{
+		let cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+		if (cmpPack)
+			cmpPack.CancelPack();
+	}
+
+	if (this.IsPacking())
 		return;
 
 	this.PushOrderFront("LeaveFoundation", { "target": target, "force": true });
