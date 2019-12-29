@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<variant file="quadraped/base_camel_fauna.xml"/>
+<variant name="Base" frequency="1">
+  <animations>
+    <animation file="quadraped/camel_idle_01.dae" name="Idle" id="idle1" speed="80"/>
+    <animation file="quadraped/camel_idle_02.dae" name="Idle" id="idle2" speed="80"/>
+    <animation file="quadraped/camel_idle_03.dae" name="Idle" id="idle3" speed="80"/>
+    <animation file="quadraped/camel_idle_01.dae" name="Idle" id="idle4" speed="80"/>
+    <animation file="quadraped/camel_death.dae" name="Death" speed="120"/>
+    <animation file="quadraped/camel_walk.dae" name="Walk" speed="15"/>
+    <animation file="quadraped/camel_trot.dae" name="Run" speed="5"/>
+  </animations>
+</variant>

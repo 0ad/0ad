@@ -5,7 +5,7 @@
     <variant frequency="100" file="quadraped/base_camel_trader.xml">
       <mesh>skeletal/camel.dae</mesh>
       <props>
-        <prop actor="props/units/pers_camel_props.xml" attachpoint="saddle"/>
+        <prop actor="props/units/pers_camel_props.xml" attachpoint="rider"/>
         <prop actor="props/camel/teeths.xml" attachpoint="mouth_bot"/>
       </props>
     </variant>
