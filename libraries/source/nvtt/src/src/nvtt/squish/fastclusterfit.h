@@ -24,15 +24,15 @@
 	
    -------------------------------------------------------------------------- */
    
-#ifndef SQUISH_FASTCLUSTERFIT_H
-#define SQUISH_FASTCLUSTERFIT_H
+#ifndef NV_SQUISH_FASTCLUSTERFIT_H
+#define NV_SQUISH_FASTCLUSTERFIT_H
 
 #include "squish.h"
 #include "maths.h"
 #include "simd.h"
 #include "colourfit.h"
 
-namespace squish {
+namespace nvsquish {
 
 class FastClusterFit : public ColourFit
 {
@@ -53,14 +53,14 @@ private:
 	Vec3 m_principle;
 
 #if SQUISH_USE_SIMD
-	Vec4 m_unweighted[16];
+	Vec4 m_unweighted[17];
 	Vec4 m_metric;
 	Vec4 m_metricSqr;
 	Vec4 m_xxsum;
 	Vec4 m_xsum;
 	Vec4 m_besterror;
 #else
-	Vec3 m_unweighted[16];
+	Vec3 m_unweighted[17];
 	Vec3 m_metric;
 	Vec3 m_metricSqr;
 	Vec3 m_xxsum;

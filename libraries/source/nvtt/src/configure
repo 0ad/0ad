@@ -18,7 +18,7 @@ fi
 
 
 help=false
-build="Debug"	# release
+build="debug"	# release
 prefix=/usr/local
 
 # Parse the args
@@ -26,9 +26,8 @@ for i in "$@"
 do
 	case $i in
 		--help )				help=true ;;
-		--debug )				build="Debug" ;;
-		--release )				build="Release" ;;
-		--prefix=* )			prefix="${i#--prefix=}" ;;
+		--debug )				build="debug" ;;
+		--release )				build="release" ;;
 		--prefix=* )			prefix="${i#--prefix=}" ;;
 		* )						echo "Unrecognised argument $i" ;;
 	esac
@@ -51,9 +50,9 @@ fi
 
 echo "-- Configuring nvidia-texture-tools "`cat VERSION`
 
-mkdir -p ./build
-cd ./build
-$CMAKE .. -DNVTT_SHARED=1 -DCMAKE_BUILD_TYPE=$build -DCMAKE_INSTALL_PREFIX=$prefix -G "Unix Makefiles" || exit 1
+mkdir -p ./build-$build
+cd ./build-$build
+$CMAKE .. -DNVTT_SHARED=0 -DCMAKE_BUILD_TYPE=$build -DCMAKE_INSTALL_PREFIX=$prefix -G "Unix Makefiles" || exit 1
 cd ..
 
 echo ""
@@ -62,11 +61,15 @@ echo ""
 
 cat > Makefile << EOF
 all:
-	@make --no-print-directory -C build/
+	@+make --no-print-directory -C build-$build/
 install:
-	@make install --no-print-directory -C build/
+	@+make install --no-print-directory -C build-$build/
+package:
+	@+make package --no-print-directory -C build-$build/
+test:
+	@+make test --no-print-directory -C build-$build/
 clean:
-	@make clean --no-print-directory -C build/
+	@+make clean --no-print-directory -C build-$build/
 distclean:
-	@rm -Rf build/
+	@rm -Rf build-$build/
 EOF

@@ -1,4 +1,5 @@
-// Copyright NVIDIA Corporation 2007 -- Ignacio Castano <icastano@nvidia.com>
+// Copyright (c) 2009-2011 Ignacio Castano <castano@gmail.com>
+// Copyright (c) 2007-2009 NVIDIA Corporation -- Ignacio Castano <icastano@nvidia.com>
 // 
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -24,9 +25,11 @@
 #ifndef NV_TT_OUTPUTOPTIONS_H
 #define NV_TT_OUTPUTOPTIONS_H
 
-#include <nvcore/StrLib.h>
-#include <nvcore/StdStream.h>
 #include "nvtt.h"
+
+#include "nvcore/StrLib.h" // Path
+#include "nvcore/StdStream.h"
+
 
 namespace nvtt
 {
@@ -34,10 +37,9 @@ namespace nvtt
 	struct DefaultOutputHandler : public nvtt::OutputHandler
 	{
 		DefaultOutputHandler(const char * fileName) : stream(fileName) {}
+        DefaultOutputHandler(FILE * fp) : stream(fp, false) {}
 		
-		virtual ~DefaultOutputHandler()
-		{
-		}
+		virtual ~DefaultOutputHandler() {}
 		
 		virtual void beginImage(int size, int width, int height, int depth, int face, int miplevel)
 		{
@@ -52,21 +54,38 @@ namespace nvtt
 			//return !stream.isError();
 			return true;
 		}
-		
+
+		virtual void endImage()
+		{
+			// ignore.
+		}
+
 		nv::StdOutputStream stream;
 	};
-	
-	
+
+
 	struct OutputOptions::Private
 	{
 		nv::Path fileName;
+        FILE * fileHandle;
 		
-		mutable OutputHandler * outputHandler;
+		OutputHandler * outputHandler;
 		ErrorHandler * errorHandler;
+
 		bool outputHeader;
+		Container container;
+        int version;
+        bool srgb;
+        bool deleteOutputHandler;
+
+        void * wrapperProxy;    // For the C/C# wrapper.
 		
-		bool openFile() const;
-		void closeFile() const;
+		bool hasValidOutputHandler() const;
+
+		void beginImage(int size, int width, int height, int depth, int face, int miplevel) const;
+		bool writeData(const void * data, int size) const;
+        void endImage() const;
+		void error(Error e) const;
 	};
 
 	

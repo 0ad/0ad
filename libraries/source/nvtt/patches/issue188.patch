@@ -1,8 +1,12 @@
-Index: src/cmake/OptimalOptions.cmake
-===================================================================
---- src/cmake/OptimalOptions.cmake	(revision 13805)
-+++ src/cmake/OptimalOptions.cmake	(working copy)
-@@ -15,7 +15,7 @@
+---
+ cmake/OptimalOptions.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cmake/OptimalOptions.cmake b/cmake/OptimalOptions.cmake
+index ac450c9..4993dd5 100644
+--- a/cmake/OptimalOptions.cmake
++++ b/cmake/OptimalOptions.cmake
+@@ -16,7 +16,7 @@ IF(CMAKE_COMPILER_IS_GNUCXX)
  	ENDIF(NV_SYSTEM_PROCESSOR STREQUAL "i686")
  
  	IF(NV_SYSTEM_PROCESSOR STREQUAL "x86_64")
@@ -11,3 +15,4 @@ Index: src/cmake/OptimalOptions.cmake
  		#SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=athlon64 -msse3")
  	ENDIF(NV_SYSTEM_PROCESSOR STREQUAL "x86_64")
  
+--

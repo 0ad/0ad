@@ -1,4 +1,5 @@
-// Copyright NVIDIA Corporation 2008 -- Ignacio Castano <icastano@nvidia.com>
+// Copyright (c) 2009-2011 Ignacio Castano <castano@gmail.com>
+// Copyright (c) 2007-2009 NVIDIA Corporation -- Ignacio Castano <icastano@nvidia.com>
 // 
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -24,25 +25,38 @@
 #ifndef NV_TT_OPTIMALCOMPRESSDXT_H
 #define NV_TT_OPTIMALCOMPRESSDXT_H
 
-#include <nvimage/nvimage.h>
+//#include "nvimage/nvimage.h"
+
+#include "nvmath/Color.h"
 
 namespace nv
 {
+    struct ColorSet;
 	struct ColorBlock;
 	struct BlockDXT1;
 	struct BlockDXT3;
 	struct BlockDXT5;
 	struct AlphaBlockDXT3;
 	struct AlphaBlockDXT5;
+    struct AlphaBlock4x4;
 
 	namespace OptimalCompress
 	{
+        // Single color compressors:
 		void compressDXT1(Color32 rgba, BlockDXT1 * dxtBlock);
-		void compressDXT1a(Color32 rgba, BlockDXT1 * dxtBlock);
+		void compressDXT1a(Color32 rgba, uint alphaMask, BlockDXT1 * dxtBlock);
+		void compressDXT1G(uint8 g, BlockDXT1 * dxtBlock);
 		
-		void compressDXT1G(const ColorBlock & rgba, BlockDXT1 * block);
-		void compressDXT3A(const ColorBlock & rgba, AlphaBlockDXT3 * dxtBlock);
-		void compressDXT5A(const ColorBlock & rgba, AlphaBlockDXT5 * dxtBlock);
+        void compressDXT3A(const AlphaBlock4x4 & src, AlphaBlockDXT3 * dst);
+        void compressDXT5A(const AlphaBlock4x4 & src, AlphaBlockDXT5 * dst);
+
+		void compressDXT1G(const ColorBlock & src, BlockDXT1 * dst);
+		void compressDXT3A(const ColorBlock & src, AlphaBlockDXT3 * dst);
+		void compressDXT5A(const ColorBlock & src, AlphaBlockDXT5 * dst);
+        
+        void compressDXT1_Luma(const ColorBlock & src, BlockDXT1 * dst);
+
+        void compressDXT5A_RGBM(const ColorSet & src, const ColorBlock & RGB, AlphaBlockDXT5 * dst);
 	}
 } // nv namespace
 

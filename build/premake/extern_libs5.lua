@@ -463,7 +463,7 @@ extern_lib_defs = {
 			add_default_links({
 				win_names  = { "nvtt" },
 				unix_names = { "nvcore", "nvmath", "nvimage", "nvtt" },
-				osx_names = { "nvcore", "nvmath", "nvimage", "nvtt", "squish" },
+				osx_names = { "bc6h", "bc7", "nvcore", "nvimage", "nvmath", "nvthread", "nvtt", "squish" },
 				dbg_suffix = "", -- for performance we always use the release-mode version
 			})
 		end,

@@ -11,7 +11,7 @@ echo
 mkdir -p src/build/
 cd src/build/
 
-cmake .. -DNVTT_SHARED=1 -DCMAKE_BUILD_TYPE=Release -DBINDIR=bin -DLIBDIR=lib -DGLUT=0 -DGLEW=0 -DCG=0 -DCUDA=0 -DOPENEXR=0 -G "Unix Makefiles"
+cmake .. -DNVTT_SHARED=1 -DCMAKE_BUILD_TYPE=Release -DBINDIR=bin -DLIBDIR=lib -G "Unix Makefiles"
 
 ${MAKE} nvtt ${JOBS}
 

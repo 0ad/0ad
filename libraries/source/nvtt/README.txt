@@ -1,21 +1,9 @@
-This is NVTT 2.0.8-1 from http://code.google.com/p/nvidia-texture-tools/
+This is NVTT 2.1.1 from https://github.com/castano/nvidia-texture-tools
 plus some patches (see patches/):
-  r1156.patch (from NVTT SVN r1156 - fixes build with libtiff 4.0)
-  r1157.patch (from NVTT SVN r1157 - fixes build with CUDA 3.0)
-  r1172.patch (from NVTT SVN r1172 - fixes memory allocator interaction with Valgrind)
-  r907.patch and r1025.patch (from NVTT SVN - fixes build on FreeBSD)
-  rpath.patch (fixes .so file search paths for bundled copy)
-  issue139.patch (fixes http://code.google.com/p/nvidia-texture-tools/issues/detail?id=139)
-  issue176.patch (partially from http:/code.google.com/p/nvidia-texture-tools/issues/detail?id=176 - fixes build on OpenBSD)
-  png-api.patch (partially from NVTT SVN r1248 - fixes build with libpng 1.5)
+  cmake.patch - disables some dependencies
   cmake-freebsd.patch (fixes build on FreeBSD)
-  gcc47-unistd.patch (fixes build on GCC 4.7)
-  cmake-devflags.patch (from https://407191.bugs.gentoo.org/attachment.cgi?id=308589 - allows disabling various dependencies)
-  cmake-devflags2.patch - allows disabling more dependencies
-  issue182.patch (fixes http://code.google.com/p/nvidia-texture-tools/issues/detail?id=182)
-  cmake-noqt4.patch (removes unused dependency on Qt4, fixes build on systems without Qt)
-  arm-fix.patch (from NVTT SVN r1173 - fixes ARM build)
   issue188.patch (fixes http://code.google.com/p/nvidia-texture-tools/issues/detail?id=188)
-  clang-cpp11-error.patch (fixes build error on OS X Yosemite with clang, libc++ and c++11)
-  arm64-fix.patch (backported in http://trac.wildfiregames.com/ticket/3344 from upstream https://github.com/castano/nvidia-texture-tools/commit/58617584d4d2541ff9fcfe23a9a492af86b11efb - fixes ARM64 build)
-  gcc6-fix.path (fixes a compilation issue where GCC 6 doesn't want to cast a boolean to a pointer anymore)
+  issue261.patch (fixes https://github.com/castano/nvidia-texture-tools/issues/261)
+  rpath.patch (fixes .so file search paths for bundled copy)
+  win-shared-build.patch (adapted from https://github.com/castano/nvidia-texture-tools/pull/285)
+  musl-build.patch (fixes build on musl linux; contributed by voroskoi, with a part by leper, see https://code.wildfiregames.com/D2491)

@@ -7,9 +7,17 @@
 #include "nvcore.h"
 
 #include <stdlib.h> // malloc(), realloc() and free()
-#include <stddef.h> // size_t
+//#include <stddef.h> // size_t
 
-#include <new>	// new and delete
+//#include <new>	// new and delete
+
+
+#if NV_CC_GNUC
+#   define NV_ALIGN_16 __attribute__ ((__aligned__ (16)))
+#else
+#   define NV_ALIGN_16 __declspec(align(16))
+#endif
+
 
 #define NV_OVERRIDE_ALLOC 0
 
@@ -35,16 +43,20 @@ extern "C" {
 namespace nv {
 
     // C++ helpers.
-    template <typename T> T * malloc(size_t count) {
+    template <typename T> NV_FORCEINLINE T * malloc(size_t count) {
         return (T *)::malloc(sizeof(T) * count);
     }
 
-    template <typename T> T * realloc(T * ptr, size_t count) {
+    template <typename T> NV_FORCEINLINE T * realloc(T * ptr, size_t count) {
         return (T *)::realloc(ptr, sizeof(T) * count);
     }
 
-    template <typename T> void free(const T * ptr) {
+    template <typename T> NV_FORCEINLINE void free(const T * ptr) {
         ::free((void *)ptr);
+    }
+
+    template <typename T> NV_FORCEINLINE void zero(T & data) {
+        memset(&data, 0, sizeof(T));
     }
 
 } // nv namespace

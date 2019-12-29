@@ -1,4 +1,5 @@
-// Copyright NVIDIA Corporation 2007 -- Ignacio Castano <icastano@nvidia.com>
+// Copyright (c) 2009-2011 Ignacio Castano <castano@gmail.com>
+// Copyright (c) 2007-2009 NVIDIA Corporation -- Ignacio Castano <icastano@nvidia.com>
 // 
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -26,7 +27,6 @@
 #ifndef CUDAMATH_H
 #define CUDAMATH_H
 
-#include <float.h>
 
 
 inline __device__ __host__ float3 operator *(float3 a, float3 b)
@@ -84,7 +84,70 @@ inline __device__ __host__ void operator /=(float3 & b, float f)
 
 inline __device__ __host__ bool operator ==(float3 a, float3 b)
 {
-	return a.x == b.x && a.y == b.y && a.z == b.z;
+    return a.x == b.x && a.y == b.y && a.z == b.z;
+}
+
+
+// float2 operators
+inline __device__ __host__ float2 operator *(float2 a, float2 b)
+{
+    return make_float2(a.x*b.x, a.y*b.y);
+}
+
+inline __device__ __host__ float2 operator *(float f, float2 v)
+{
+    return make_float2(v.x*f, v.y*f);
+}
+
+inline __device__ __host__ float2 operator *(float2 v, float f)
+{
+    return make_float2(v.x*f, v.y*f);
+}
+
+inline __device__ __host__ float2 operator +(float2 a, float2 b)
+{
+    return make_float2(a.x+b.x, a.y+b.y);
+}
+
+inline __device__ __host__ void operator +=(float2 & b, float2 a)
+{
+    b.x += a.x;
+    b.y += a.y;
+}
+
+inline __device__ __host__ float2 operator -(float2 a, float2 b)
+{
+    return make_float2(a.x-b.x, a.y-b.y);
+}
+
+inline __device__ __host__ void operator -=(float2 & b, float2 a)
+{
+    b.x -= a.x;
+    b.y -= a.y;
+}
+
+inline __device__ __host__ float2 operator /(float2 v, float f)
+{
+    float inv = 1.0f / f;
+    return v * inv;
+}
+
+inline __device__ __host__ void operator /=(float2 & b, float f)
+{
+    float inv = 1.0f / f;
+    b.x *= inv;
+    b.y *= inv;
+}
+
+inline __device__ __host__ bool operator ==(float2 a, float2 b)
+{
+    return a.x == b.x && a.y == b.y;
+}
+
+
+inline __device__ __host__ float dot(float2 a, float2 b)
+{
+    return a.x * b.x + a.y * b.y;
 }
 
 inline __device__ __host__ float dot(float3 a, float3 b)
@@ -119,141 +182,251 @@ inline __device__ __host__ float3 normalize(float3 v)
     return make_float3(v.x * len, v.y * len, v.z * len);
 }
 
+inline __device__ __host__ float3 lerp(float3 a, float3 b, float t)
+{
+    const float s = 1.0f - t;
+    return make_float3(s * a.x + t * b.x, s * a.y + t * b.y, s * a.z + t * b.z);
+}
 
+inline __device__ __host__ float lengthSquared(float3 a)
+{
+    return dot(a, a);
+}
+
+inline __device__ __host__ float lengthSquared(float2 a)
+{
+    return dot(a, a);
+}
 
 
 // Use power method to find the first eigenvector.
 // http://www.miislita.com/information-retrieval-tutorial/matrix-tutorial-3-eigenvalues-eigenvectors.html
 inline __device__ __host__ float3 firstEigenVector( float matrix[6] )
 {
-	// 8 iterations seems to be more than enough.
+    // 8 iterations seems to be more than enough.
 
-	float3 row0 = make_float3(matrix[0], matrix[1], matrix[2]);
-	float3 row1 = make_float3(matrix[1], matrix[3], matrix[4]);
-	float3 row2 = make_float3(matrix[2], matrix[4], matrix[5]);
+    float3 row0 = make_float3(matrix[0], matrix[1], matrix[2]);
+    float3 row1 = make_float3(matrix[1], matrix[3], matrix[4]);
+    float3 row2 = make_float3(matrix[2], matrix[4], matrix[5]);
 
-	float r0 = dot(row0, row0);
-	float r1 = dot(row1, row1);
-	float r2 = dot(row2, row2);
+    float r0 = dot(row0, row0);
+    float r1 = dot(row1, row1);
+    float r2 = dot(row2, row2);
 
-	float3 v;
-	if (r0 > r1 && r0 > r2) v = row0;
-	else if (r1 > r2) v = row1;
-	else v = row2;
+    float3 v;
+    if (r0 > r1 && r0 > r2) v = row0;
+    else if (r1 > r2) v = row1;
+    else v = row2;
 
-	//float3 v = make_float3(1.0f, 1.0f, 1.0f);
-	for(int i = 0; i < 8; i++) {
-		float x = v.x * matrix[0] + v.y * matrix[1] + v.z * matrix[2];
-		float y = v.x * matrix[1] + v.y * matrix[3] + v.z * matrix[4];
-		float z = v.x * matrix[2] + v.y * matrix[4] + v.z * matrix[5];
-		float m = max(max(x, y), z);        
-		float iv = 1.0f / m;
-		if (m == 0.0f) iv = 0.0f;
-		v = make_float3(x*iv, y*iv, z*iv);
-	}
+    //float3 v = make_float3(1.0f, 1.0f, 1.0f);
+    for(int i = 0; i < 8; i++) {
+        float x = v.x * matrix[0] + v.y * matrix[1] + v.z * matrix[2];
+        float y = v.x * matrix[1] + v.y * matrix[3] + v.z * matrix[4];
+        float z = v.x * matrix[2] + v.y * matrix[4] + v.z * matrix[5];
+        float m = max(max(x, y), z);        
+        float iv = 1.0f / m;
+        if (m == 0.0f) iv = 0.0f;
+        v = make_float3(x*iv, y*iv, z*iv);
+    }
 
-	return v;
+    return v;
 }
+
 
 inline __device__ bool singleColor(const float3 * colors)
 {
 #if __DEVICE_EMULATION__
-	bool sameColor = false;
-	for (int i = 0; i < 16; i++)
-	{
-		sameColor &= (colors[i] == colors[0]);
-	}
-	return sameColor;
+    bool sameColor = false;
+    for (int i = 0; i < 16; i++)
+    {
+        sameColor &= (colors[i] == colors[0]);
+    }
+    return sameColor;
 #else
-	__shared__ int sameColor[16];
-	
-	const int idx = threadIdx.x;
-	
-	sameColor[idx] = (colors[idx] == colors[0]);
-	sameColor[idx] &= sameColor[idx^8];
-	sameColor[idx] &= sameColor[idx^4];
-	sameColor[idx] &= sameColor[idx^2];
-	sameColor[idx] &= sameColor[idx^1];
-	
-	return sameColor[0];
+    __shared__ int sameColor[16];
+
+    const int idx = threadIdx.x;
+
+    sameColor[idx] = (colors[idx] == colors[0]);
+    sameColor[idx] &= sameColor[idx^8];
+    sameColor[idx] &= sameColor[idx^4];
+    sameColor[idx] &= sameColor[idx^2];
+    sameColor[idx] &= sameColor[idx^1];
+
+    return sameColor[0];
 #endif
 }
 
 inline __device__ void colorSums(const float3 * colors, float3 * sums)
 {
 #if __DEVICE_EMULATION__
-	float3 color_sum = make_float3(0.0f, 0.0f, 0.0f);
-	for (int i = 0; i < 16; i++)
-	{
-		color_sum += colors[i];
-	}
+    float3 color_sum = make_float3(0.0f, 0.0f, 0.0f);
+    for (int i = 0; i < 16; i++)
+    {
+        color_sum += colors[i];
+    }
 
-	for (int i = 0; i < 16; i++)
-	{
-		sums[i] = color_sum;
-	}
+    for (int i = 0; i < 16; i++)
+    {
+        sums[i] = color_sum;
+    }
 #else
 
-	const int idx = threadIdx.x;
+    const int idx = threadIdx.x;
 
-	sums[idx] = colors[idx];
-	sums[idx] += sums[idx^8];
-	sums[idx] += sums[idx^4];
-	sums[idx] += sums[idx^2];
-	sums[idx] += sums[idx^1];
+    sums[idx] = colors[idx];
+    sums[idx] += sums[idx^8];
+    sums[idx] += sums[idx^4];
+    sums[idx] += sums[idx^2];
+    sums[idx] += sums[idx^1];
 
 #endif
 }
 
 inline __device__ float3 bestFitLine(const float3 * colors, float3 color_sum, float3 colorMetric)
 {
-	// Compute covariance matrix of the given colors.
+    // Compute covariance matrix of the given colors.
 #if __DEVICE_EMULATION__
-	float covariance[6] = {0, 0, 0, 0, 0, 0};
-	for (int i = 0; i < 16; i++)
-	{
-		float3 a = (colors[i] - color_sum * (1.0f / 16.0f)) * colorMetric;
-		covariance[0] += a.x * a.x;
-		covariance[1] += a.x * a.y;
-		covariance[2] += a.x * a.z;
-		covariance[3] += a.y * a.y;
-		covariance[4] += a.y * a.z;
-		covariance[5] += a.z * a.z;
-	}
+    float covariance[6] = {0, 0, 0, 0, 0, 0};
+    for (int i = 0; i < 16; i++)
+    {
+        float3 a = (colors[i] - color_sum * (1.0f / 16.0f)) * colorMetric;
+        covariance[0] += a.x * a.x;
+        covariance[1] += a.x * a.y;
+        covariance[2] += a.x * a.z;
+        covariance[3] += a.y * a.y;
+        covariance[4] += a.y * a.z;
+        covariance[5] += a.z * a.z;
+    }
 #else
 
-	const int idx = threadIdx.x;
+    const int idx = threadIdx.x;
 
-	float3 diff = (colors[idx] - color_sum * (1.0f / 16.0f)) * colorMetric;
+    float3 diff = (colors[idx] - color_sum * (1.0f / 16.0f)) * colorMetric;
 
-	// @@ Eliminate two-way bank conflicts here.
-	// @@ It seems that doing that and unrolling the reduction doesn't help...
-	__shared__ float covariance[16*6];
+    // @@ Eliminate two-way bank conflicts here.
+    // @@ It seems that doing that and unrolling the reduction doesn't help...
+    __shared__ float covariance[16*6];
 
-	covariance[6 * idx + 0] = diff.x * diff.x;    // 0, 6, 12, 2, 8, 14, 4, 10, 0
-	covariance[6 * idx + 1] = diff.x * diff.y;
-	covariance[6 * idx + 2] = diff.x * diff.z;
-	covariance[6 * idx + 3] = diff.y * diff.y;
-	covariance[6 * idx + 4] = diff.y * diff.z;
-	covariance[6 * idx + 5] = diff.z * diff.z;
+    covariance[6 * idx + 0] = diff.x * diff.x;    // 0, 6, 12, 2, 8, 14, 4, 10, 0
+    covariance[6 * idx + 1] = diff.x * diff.y;
+    covariance[6 * idx + 2] = diff.x * diff.z;
+    covariance[6 * idx + 3] = diff.y * diff.y;
+    covariance[6 * idx + 4] = diff.y * diff.z;
+    covariance[6 * idx + 5] = diff.z * diff.z;
 
-	for(int d = 8; d > 0; d >>= 1)
-	{
-		if (idx < d)
-		{
-			covariance[6 * idx + 0] += covariance[6 * (idx+d) + 0];
-			covariance[6 * idx + 1] += covariance[6 * (idx+d) + 1];
-			covariance[6 * idx + 2] += covariance[6 * (idx+d) + 2];
-			covariance[6 * idx + 3] += covariance[6 * (idx+d) + 3];
-			covariance[6 * idx + 4] += covariance[6 * (idx+d) + 4];
-			covariance[6 * idx + 5] += covariance[6 * (idx+d) + 5];
-		}
-	}
+    for(int d = 8; d > 0; d >>= 1)
+    {
+        if (idx < d)
+        {
+            covariance[6 * idx + 0] += covariance[6 * (idx+d) + 0];
+            covariance[6 * idx + 1] += covariance[6 * (idx+d) + 1];
+            covariance[6 * idx + 2] += covariance[6 * (idx+d) + 2];
+            covariance[6 * idx + 3] += covariance[6 * (idx+d) + 3];
+            covariance[6 * idx + 4] += covariance[6 * (idx+d) + 4];
+            covariance[6 * idx + 5] += covariance[6 * (idx+d) + 5];
+        }
+    }
 
 #endif
 
-	// Compute first eigen vector.
-	return firstEigenVector(covariance);
+    // Compute first eigen vector.
+    return firstEigenVector(covariance);
+}
+
+
+// @@ For 2D this may not be the most efficient method. It's a quadratic equation, right?
+inline __device__ __host__ float2 firstEigenVector2D( float matrix[3] )
+{
+    // @@ 8 iterations is probably more than enough.
+
+    const float2 row0 = make_float2(matrix[0], matrix[1]);
+    const float2 row1 = make_float2(matrix[1], matrix[2]);
+
+    float r0 = lengthSquared(row0);
+    float r1 = lengthSquared(row1);
+
+    float2 v;
+    if (r0 > r1) v = row0;
+    v = row1;
+
+    //float2 v = make_float2(1.0f, 1.0f);
+    for(int i = 0; i < 8; i++) {
+        float x = v.x * matrix[0] + v.y * matrix[1];
+        float y = v.x * matrix[1] + v.y * matrix[2];
+        float m = max(x, y);        
+        float iv = 1.0f / m;
+        if (m == 0.0f) iv = 0.0f;
+        v = make_float2(x*iv, y*iv);
+    }
+
+    return v;
+}
+
+inline __device__ void colorSums(const float2 * colors, float2 * sums)
+{
+#if __DEVICE_EMULATION__
+    float2 color_sum = make_float2(0.0f, 0.0f);
+    for (int i = 0; i < 16; i++)
+    {
+        color_sum += colors[i];
+    }
+
+    for (int i = 0; i < 16; i++)
+    {
+        sums[i] = color_sum;
+    }
+#else
+
+    const int idx = threadIdx.x;
+
+    sums[idx] = colors[idx];
+    sums[idx] += sums[idx^8];
+    sums[idx] += sums[idx^4];
+    sums[idx] += sums[idx^2];
+    sums[idx] += sums[idx^1];
+
+#endif
+}
+
+inline __device__ float2 bestFitLine(const float2 * colors, float2 color_sum)
+{
+    // Compute covariance matrix of the given colors.
+#if __DEVICE_EMULATION__
+    float covariance[3] = {0, 0, 0};
+    for (int i = 0; i < 16; i++)
+    {
+        float2 a = (colors[i] - color_sum * (1.0f / 16.0f));
+        covariance[0] += a.x * a.x;
+        covariance[1] += a.x * a.y;
+        covariance[2] += a.y * a.y;
+    }
+#else
+
+    const int idx = threadIdx.x;
+
+    float2 diff = (colors[idx] - color_sum * (1.0f / 16.0f));
+
+    __shared__ float covariance[16*3];
+
+    covariance[3 * idx + 0] = diff.x * diff.x;
+    covariance[3 * idx + 1] = diff.x * diff.y;
+    covariance[3 * idx + 2] = diff.y * diff.y;
+
+    for(int d = 8; d > 0; d >>= 1)
+    {
+        if (idx < d)
+        {
+            covariance[3 * idx + 0] += covariance[3 * (idx+d) + 0];
+            covariance[3 * idx + 1] += covariance[3 * (idx+d) + 1];
+            covariance[3 * idx + 2] += covariance[3 * (idx+d) + 2];
+        }
+    }
+
+#endif
+
+    // Compute first eigen vector.
+    return firstEigenVector2D(covariance);
 }
 
 

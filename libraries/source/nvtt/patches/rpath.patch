@@ -1,8 +1,12 @@
-Index: libraries/nvtt/src/CMakeLists.txt
-===================================================================
---- libraries/nvtt/src/CMakeLists.txt	(revision 8295)
-+++ libraries/nvtt/src/CMakeLists.txt	(working copy)
-@@ -22,6 +22,10 @@
+---
+ CMakeLists.txt | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9c80369..9e77386 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -42,6 +42,12 @@ IF(NVTT_SHARED)
  	SET(NVIMAGE_SHARED TRUE)
  ENDIF(NVTT_SHARED)
  
@@ -11,6 +15,8 @@ Index: libraries/nvtt/src/CMakeLists.txt
 +SET(CMAKE_INSTALL_RPATH "$ORIGIN")
 +SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 +SET(CMAKE_INSTALL_NAME_DIR "@executable_path")
++
+ ADD_SUBDIRECTORY(extern)
  
  ADD_SUBDIRECTORY(src)
- 
+--

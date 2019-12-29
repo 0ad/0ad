@@ -21,60 +21,96 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 // OTHER DEALINGS IN THE SOFTWARE.
 
+#pragma once
 #ifndef NV_IMAGE_PIXELFORMAT_H
 #define NV_IMAGE_PIXELFORMAT_H
 
-#include <nvimage/nvimage.h>
+#include "nvimage.h"
 
 
 namespace nv
 {
-	namespace PixelFormat
-	{
+    namespace PixelFormat
+    {
 
-		// Convert component @a c having @a inbits to the returned value having @a outbits.
-		inline uint convert(uint c, uint inbits, uint outbits)
-		{
-			if (inbits == 0)
-			{
-				return 0;
-			}
-			else if (inbits >= outbits)
-			{
-				// truncate
-				return c >> (inbits - outbits);
-			}
-			else
-			{
-				// bitexpand
-				return (c << (outbits - inbits)) | convert(c, inbits, outbits - inbits);
-			}
-		}
+        // Convert component @a c having @a inbits to the returned value having @a outbits.
+        inline uint convert(uint c, uint inbits, uint outbits)
+        {
+            if (inbits == 0)
+            {
+            	return 0;
+            }
+            else if (inbits >= outbits)
+            {
+            	// truncate
+            	return c >> (inbits - outbits);
+            }
+            else
+            {
+            	// bitexpand
+                return (c << (outbits - inbits)) | convert(c, inbits, outbits - inbits);
+            }
+        }
 
-		// Get pixel component shift and size given its mask.
-		inline void maskShiftAndSize(uint mask, uint * shift, uint * size)
-		{
-			if (!mask)
-			{
-				*shift = 0;
-				*size = 0;
-				return;
-			}
+        // Get pixel component shift and size given its mask.
+        inline void maskShiftAndSize(uint mask, uint * shift, uint * size)
+        {
+            if (!mask)
+            {
+                *shift = 0;
+                *size = 0;
+                return;
+            }
+        
+            *shift = 0;
+            while((mask & 1) == 0) {
+                ++(*shift);
+                mask >>= 1;
+            }
+        
+            *size = 0;
+            while((mask & 1) == 1) {
+                ++(*size);
+                mask >>= 1;
+            }
+        }
 
-			*shift = 0;
-			while((mask & 1) == 0) {
-				++(*shift);
-				mask >>= 1;
-			}
-			
-			*size = 0;
-			while((mask & 1) == 1) {
-				++(*size);
-				mask >>= 1;
-			}
-		}
+        inline float quantizeCeil(float f, int inbits, int outbits)
+        {
+            nvDebugCheck(f >= 0.0f && f <= 1.0f);
+            //uint i = f * (float(1 << inbits) - 1);
+            //i = convert(i, inbits, outbits);
+            //float result = float(i) / (float(1 << outbits) - 1);
+            //nvCheck(result >= f);
+            float result;
+            int offset = 0;
+            do {
+                uint i = offset + uint(f * (float(1 << inbits) - 1));
+                i = convert(i, inbits, outbits);
+                result = float(i) / (float(1 << outbits) - 1);
+                offset++;
+            } while (result < f);
 
-	} // PixelFormat namespace
+            return result;
+        }
+
+        /*
+        inline float quantizeRound(float f, int bits)
+        {
+            nvDebugCheck(f >= 0.0f && f <= 1.0f);
+            float scale = float(1 << bits);
+            return fround(f * scale) / scale;
+        }
+
+        inline float quantizeFloor(float f, int bits)
+        {
+            nvDebugCheck(f >= 0.0f && f <= 1.0f);
+            float scale = float(1 << bits);
+            return floor(f * scale) / scale;
+        }
+        */
+
+    } // PixelFormat namespace
 
 } // nv namespace
 

@@ -23,16 +23,16 @@
 	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	
    -------------------------------------------------------------------------- */
-   
-#ifndef SQUISH_WEIGHTEDCLUSTERFIT_H
-#define SQUISH_WEIGHTEDCLUSTERFIT_H
+
+#ifndef NV_SQUISH_WEIGHTEDCLUSTERFIT_H
+#define NV_SQUISH_WEIGHTEDCLUSTERFIT_H
 
 #include "squish.h"
 #include "maths.h"
 #include "simd.h"
 #include "colourfit.h"
 
-namespace squish {
+namespace nvsquish {
 
 class WeightedClusterFit : public ColourFit
 {

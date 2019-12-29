@@ -1,6 +1,7 @@
 /* -----------------------------------------------------------------------------
 
 	Copyright (c) 2006 Simon Brown                          si@sjbrown.co.uk
+	Copyright (c) 2016 Raptor Engineering, LLC
 
 	Permission is hereby granted, free of charge, to any person obtaining
 	a copy of this software and associated documentation files (the 
@@ -26,12 +27,14 @@
 #ifndef SQUISH_SIMD_VE_H
 #define SQUISH_SIMD_VE_H
 
+#ifndef __APPLE_ALTIVEC__
 #include <altivec.h>
 #undef bool
+#endif
 
-namespace squish {
+namespace nvsquish {
 
-#define VEC4_CONST( X ) Vec4( ( vector float )( X ) )
+#define VEC4_CONST( X ) Vec4( vec_splats( (float)X ) )
 
 class Vec4
 {
@@ -76,7 +79,14 @@ public:
 		u.v = m_v;
 		return Vec3( u.c[0], u.c[1], u.c[2] );
 	}
-	
+
+	float GetX() const
+	{
+		union { vector float v; float c[4]; } u;
+		u.v = m_v;
+		return u.c[0];
+	}
+
 	Vec4 SplatX() const { return Vec4( vec_splat( m_v, 0 ) ); }
 	Vec4 SplatY() const { return Vec4( vec_splat( m_v, 1 ) ); }
 	Vec4 SplatZ() const { return Vec4( vec_splat( m_v, 2 ) ); }
@@ -96,7 +106,7 @@ public:
 	
 	Vec4& operator*=( Arg v )
 	{
-		m_v = vec_madd( m_v, v.m_v, ( vector float )( -0.0f ) );
+		m_v = vec_madd( m_v, v.m_v, vec_splats( -0.0f ) );
 		return *this;
 	}
 	
@@ -112,7 +122,7 @@ public:
 	
 	friend Vec4 operator*( Vec4::Arg left, Vec4::Arg right  )
 	{
-		return Vec4( vec_madd( left.m_v, right.m_v, ( vector float )( -0.0f ) ) );
+		return Vec4( vec_madd( left.m_v, right.m_v, vec_splats( -0.0f ) ) );
 	}
 	
 	//! Returns a*b + c
@@ -133,7 +143,7 @@ public:
 		vector float estimate = vec_re( v.m_v );
 		
 		// one round of Newton-Rhaphson refinement
-		vector float diff = vec_nmsub( estimate, v.m_v, ( vector float )( 1.0f ) );
+		vector float diff = vec_nmsub( estimate, v.m_v, vec_splats( 1.0f ) );
 		return Vec4( vec_madd( diff, estimate, estimate ) );
 	}
 	
