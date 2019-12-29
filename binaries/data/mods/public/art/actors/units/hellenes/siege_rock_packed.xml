@@ -15,9 +15,9 @@
         <prop actor="props/units/hele_rock_packed.xml" attachpoint="cargo"/>
         <prop actor="units/hellenes/trader_h.xml" attachpoint="horse_l"/>
         <prop actor="units/hellenes/trader_h.xml" attachpoint="horse_r"/>
-        <prop actor="units/athenians/lithobolos_infantry_d.xml" attachpoint="engineer_a" maxheight="20" minheight="-20"/>
-        <prop actor="units/athenians/lithobolos_infantry_d.xml" attachpoint="engineer_b" maxheight="20" minheight="-20"/>
-        <prop actor="units/athenians/lithobolos_infantry_d.xml" attachpoint="engineer_c" maxheight="20" minheight="-20"/>
+        <prop actor="units/hellenes/lithobolos_infantry_d.xml" attachpoint="engineer_a" maxheight="20" minheight="-20"/>
+        <prop actor="units/hellenes/lithobolos_infantry_d.xml" attachpoint="engineer_b" maxheight="20" minheight="-20"/>
+        <prop actor="units/hellenes/lithobolos_infantry_d.xml" attachpoint="engineer_c" maxheight="20" minheight="-20"/>
       </props>
       <textures>
         <texture file="props/wooden_wagon.png" name="baseTex"/>

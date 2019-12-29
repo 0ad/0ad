@@ -44,7 +44,7 @@ GLOOX_VERSION="gloox-1.0.22"
 ICU_VERSION="icu4c-59_1"
 ENET_VERSION="enet-1.3.13"
 MINIUPNPC_VERSION="miniupnpc-2.0.20180222"
-SODIUM_VERSION="libsodium-1.0.16"
+SODIUM_VERSION="libsodium-1.0.18"
 # --------------------------------------------------------------
 # Bundled with the game:
 # * SpiderMonkey 45
