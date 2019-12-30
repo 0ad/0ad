@@ -5,11 +5,15 @@
 # Translators:
 # Wuzzy <almikes@aol.com>, 2014-2018
 # xtother90, 2018-2019
+# duichwer <Kilian.Seizinger@gmx.de>, 2019
+# Elias Keis, 2019
 # Elias Keis, 2019
 # Fabian Gref <fabian.gref@gmail.com>, 2017
 # Firstname Lastname <je.eppler@posteo.net>, 2019
 # Glorfindel Of Gondolin, 2019
+# Glorfindel Of Gondolin, 2019
 # duichwer <Kilian.Seizinger@gmx.de>, 2019
+# Kjell, 2019
 # Kjell, 2019
 # leper <leper@wildfiregames.com>, 2014-2016
 # Lukas Heiniger <kenionatus@techie.com>, 2019
@@ -20,6 +24,8 @@
 # Patrick B <chessplayer95.pb@googlemail.com>, 2016
 # Paul Friedrig <george.2juggernaut@gmail.com>, 2016
 # Paul Müller <paulbochynek@web.de>, 2015
+# pilino1234 <pilino1234@zoho.eu>, 2016
+# qwertz, 2015
 # qwertz, 2015
 # Raymond Vetter, 2014-2019
 # Robert Halbscheffel <robert.halbscheffel@gmail.com>, 2019
@@ -29,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-12-02 20:36+0000\n"
-"Last-Translator: xtother90\n"
+"PO-Revision-Date: 2019-12-29 12:59+0000\n"
+"Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -344,7 +350,7 @@ msgstr "Linothorakes"
 #: simulation/data/technologies/armor_infantry_hack_02.jsontooltip
 #: simulation/data/technologies/armor_infantry_hack_03.jsontooltip
 msgid "All Infantry +1 Hack Armor Level."
-msgstr "Infanterie +1 Hiebschutz"
+msgstr "Infanterie +1 Hiebschutz."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsondescription
 msgid "Body armor reinforced with bronze scales."
@@ -363,7 +369,7 @@ msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
 "equipped with such body armor, as it was very expensive and time-consuming "
 "to fabricate."
-msgstr "Bronzener Körperpanzer. Nur die besten Soldaten wurden mit einer solchen Rüstung ausgestattet, denn diese war in der Herstellung sehr teuer und zeitaufwendig. "
+msgstr "Bronzener Körperpanzer. Nur die besten Soldaten wurden mit einer solchen Rüstung ausgestattet, denn diese war in der Herstellung sehr teuer und zeitaufwendig."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
@@ -383,7 +389,7 @@ msgstr "Sperrholzkonstruktion für große Schilde."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
 msgid "Infantry Spearmen +2 Pierce Armor Levels."
-msgstr "Infanteriespeerkämpfer erhalten +2 Hiebschutz"
+msgstr "Infanteriespeerkämpfer erhalten +2 Hiebschutz."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
 msgid "Plywood Shield Construction"
@@ -406,7 +412,7 @@ msgstr "Die besten Schilde haben entweder an den Ecken (Römisches Scutum) oder 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr "Speerkämpfer der Infanterie erhalten +1 Hiebschutz"
+msgstr "Speerkämpfer der Infanterie erhalten +1 Hiebschutz."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
@@ -762,7 +768,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr "Einheiten, die zum Elite-Rang befördert werden, bekommen viele Extras dazu: 20% Gesundheit, 1 Rüstungslevel jedes Typs, 20% Angriff für Nahkampfeinheiten, 4m Reichweite und höhere Genauigkeit für Fernkämpfer, höhere Bewegungsgeschwindigkeit und mehr Heilrate und -reichweite für Heiler.\n"
+msgstr "Einheiten, die zum Elite-Rang befördert werden, bekommen viele Extras dazu: 20% Gesundheit, 1 Rüstungslevel jedes Typs, 20% Angriff für Nahkampfeinheiten, 4m Reichweite und höhere Genauigkeit für Fernkämpfer, höhere Bewegungsgeschwindigkeit und mehr Heilrate und -reichweite für Heiler."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -834,7 +840,7 @@ msgstr "Zusätzliche Nährstoffe für Farmen."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% grain gather rate."
-msgstr "Arbeiter +25% Sammelrate für Getreide"
+msgstr "Arbeiter +25% Sammelrate für Getreide."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -1365,7 +1371,7 @@ msgstr "Der Staat oder Stamm baut meist einen Speisesaal für öffentliche Feste
 #: simulation/data/technologies/pop_civic_01.jsontooltip
 #: simulation/data/technologies/pop_civic_02.jsontooltip
 msgid "Civic Centers +5 population cap bonus."
-msgstr "Verwaltungssitze erhalten +5 Bevölkerungslimit-Bonus"
+msgstr "Verwaltungssitze erhalten +5 Bevölkerungslimit-Bonus."
 
 #: simulation/data/technologies/pop_civic_01.jsongenericName
 msgid "Dining Hall"
@@ -1406,7 +1412,7 @@ msgstr "Heimgärten rangieren von einfach eingezäunten Landstücken bis hin zu 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +20% population cap bonus."
-msgstr "Häuser erhalten +20% Bevölkerungslimit-Bonus. "
+msgstr "Häuser erhalten +20% Bevölkerungslimit-Bonus."
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
@@ -1504,7 +1510,7 @@ msgstr "Fortschrittliche Technologien zur Verbesserung der Belagerungseffizienz.
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "Siege Engines +25% attack crush damage."
-msgstr "Belagerungsmaschinen +25% Angriffsschaden"
+msgstr "Belagerungsmaschinen +25% Angriffsschaden."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
@@ -1524,11 +1530,11 @@ msgstr "Bolzengenauigkeit"
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
 msgid "Siege engines require less metal."
-msgstr "Belagerungsmaschinen benötigen weniger Metall"
+msgstr "Belagerungsmaschinen benötigen weniger Metall."
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
 msgid "Siege Engines −20% metal cost."
-msgstr "Belagerungsmaschinen -20% Metallkosten"
+msgstr "Belagerungsmaschinen -20% Metallkosten."
 
 #: simulation/data/technologies/siege_cost_metal.jsongenericName
 msgid "Metalworker"
@@ -1540,7 +1546,7 @@ msgstr "Belagerungsmaschinen benötigen weniger Holz."
 
 #: simulation/data/technologies/siege_cost_wood.jsontooltip
 msgid "Siege Engines −20% wood cost."
-msgstr "Belagerungsmaschinen -20% Holzkosten"
+msgstr "Belagerungsmaschinen -20% Holzkosten."
 
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
@@ -1548,11 +1554,11 @@ msgstr "Artillerieausbilder"
 
 #: simulation/data/technologies/siege_packing.jsondescription
 msgid "Immobile siege engines are assembled and disassembled faster."
-msgstr "Unbewegliche Belagerungswaffen werden schneller zusammen- und auseinandergebaut"
+msgstr "Unbewegliche Belagerungswaffen werden schneller zusammen- und auseinandergebaut."
 
 #: simulation/data/technologies/siege_packing.jsontooltip
 msgid "Siege Engines −25% pack and unpack time."
-msgstr "Belagerungsmaschinen -25% Zeit für Auf- und Abbau"
+msgstr "Belagerungsmaschinen −25% Zeit für Auf- und Abbau."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -2381,7 +2387,7 @@ msgstr "Die Perser konnten aufgrund der schieren Größe des Achämenidenreiches
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "Persians +10% maximum population limit."
-msgstr "Perser haben ein 10% höheres maximales Bevölkerungslimit.   "
+msgstr "Perser haben ein 10% höheres maximales Bevölkerungslimit."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2397,7 +2403,7 @@ msgstr "Die Spartaner hatten nicht die größte Armee der Welt, aber sie hatten 
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
 msgid "Spartans −10% maximum population limit."
-msgstr "Spartaner haben 10% höheres Bevölkerungslimit"
+msgstr "Spartaner haben 10% höheres Bevölkerungslimit."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"
@@ -2459,7 +2465,7 @@ msgstr "Die Langen Mauern von Athen wurden unter Federführung des genialen Them
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
 msgid "Build stone walls in neutral territory."
-msgstr "Baue Steinmauern in neutralem Territorium"
+msgstr "Baue Steinmauern in neutralem Territorium."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
@@ -2479,7 +2485,7 @@ msgstr "Monumentale Architektur"
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
-msgstr "Lass deine Priester vom Hohepriester selbst unterweisen - möge Amun ihn segnen"
+msgstr "Lass deine Priester vom Hohepriester selbst unterweisen - möge Amun ihn segnen."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
@@ -2580,7 +2586,7 @@ msgstr "Verhärtete Camps und Belagerungswände zerfallen 50% langsamer."
 
 #: simulation/data/technologies/romans/decay_logistics.jsongenericName
 msgid "Roman Logistics"
-msgstr "Römische Logistik "
+msgstr "Römische Logistik"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsondescription
 msgid ""
