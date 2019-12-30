@@ -23,15 +23,15 @@
 	
    -------------------------------------------------------------------------- */
    
-#ifndef SQUISH_CLUSTERFIT_H
-#define SQUISH_CLUSTERFIT_H
+#ifndef NV_SQUISH_CLUSTERFIT_H
+#define NV_SQUISH_CLUSTERFIT_H
 
 #include "squish.h"
 #include "maths.h"
 #include "simd.h"
 #include "colourfit.h"
 
-namespace squish {
+namespace nvsquish {
 
 class ClusterFit : public ColourFit
 {

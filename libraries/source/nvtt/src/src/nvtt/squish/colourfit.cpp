@@ -22,11 +22,11 @@
 	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	
    -------------------------------------------------------------------------- */
-   
+
 #include "colourfit.h"
 #include "colourset.h"
 
-namespace squish {
+namespace nvsquish {
 
 ColourFit::ColourFit()
 {

@@ -1,4 +1,5 @@
-// Copyright NVIDIA Corporation 2007 -- Ignacio Castano <icastano@nvidia.com>
+// Copyright (c) 2009-2011 Ignacio Castano <castano@gmail.com>
+// Copyright (c) 2007-2009 NVIDIA Corporation -- Ignacio Castano <icastano@nvidia.com>
 // 
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -47,7 +48,7 @@
 #	define NVTT_API
 #endif
 
-#define NVTT_VERSION 200
+#define NVTT_VERSION 20100
 
 #ifdef __cplusplus
 typedef struct nvtt::InputOptions NvttInputOptions;
@@ -123,13 +124,6 @@ typedef enum
 	NVTT_MipmapFilter_Kaiser,
 } NvttMipmapFilter;
 
-/// Color transformation.
-typedef enum
-{
-	NVTT_ColorTransform_None,
-	NVTT_ColorTransform_Linear,
-} NvttColorTransform;
-
 /// Extents rounding mode.
 typedef enum
 {
@@ -156,6 +150,7 @@ typedef enum
 	NVTT_Error_Unknown,
 	NVTT_Error_FileOpen,
 	NVTT_Error_FileWrite,
+    NVTT_Error_UnsupportedOutputFormat,
 } NvttError;
 
 typedef enum
@@ -171,8 +166,9 @@ extern "C" {
 
 // Callbacks
 //typedef void (* nvttErrorHandler)(NvttError e);
-//typedef void (* nvttOutputHandler)(const void * data, int size);
-//typedef void (* nvttImageHandler)(int size, int width, int height, int depth, int face, int miplevel);
+typedef void (* nvttBeginImageHandler)(int size, int width, int height, int depth, int face, int miplevel);
+typedef bool (* nvttOutputHandler)(const void * data, int size);
+typedef void (* nvttEndImageHandler)();
 
 
 // InputOptions class.
@@ -194,8 +190,6 @@ NVTT_API void nvttSetInputOptionsConvertToNormalMap(NvttInputOptions * inputOpti
 NVTT_API void nvttSetInputOptionsHeightEvaluation(NvttInputOptions * inputOptions, float redScale, float greenScale, float blueScale, float alphaScale);
 NVTT_API void nvttSetInputOptionsNormalFilter(NvttInputOptions * inputOptions, float sm, float medium, float big, float large);
 NVTT_API void nvttSetInputOptionsNormalizeMipmaps(NvttInputOptions * inputOptions, NvttBoolean b);
-NVTT_API void nvttSetInputOptionsColorTransform(NvttInputOptions * inputOptions, NvttColorTransform t);
-NVTT_API void nvttSetInputOptionsLinearTransform(NvttInputOptions * inputOptions, int channel, float w0, float w1, float w2, float w3);
 NVTT_API void nvttSetInputOptionsMaxExtents(NvttInputOptions * inputOptions, int dim);
 NVTT_API void nvttSetInputOptionsRoundMode(NvttInputOptions * inputOptions, NvttRoundMode mode);
 
@@ -218,7 +212,7 @@ NVTT_API void nvttDestroyOutputOptions(NvttOutputOptions * outputOptions);
 NVTT_API void nvttSetOutputOptionsFileName(NvttOutputOptions * outputOptions, const char * fileName);
 NVTT_API void nvttSetOutputOptionsOutputHeader(NvttOutputOptions * outputOptions, NvttBoolean b);
 //NVTT_API void nvttSetOutputOptionsErrorHandler(NvttOutputOptions * outputOptions, nvttErrorHandler errorHandler);
-//NVTT_API void nvttSetOutputOptionsOutputHandler(NvttOutputOptions * outputOptions, nvttOutputHandler outputHandler, nvttImageHandler imageHandler);
+NVTT_API void nvttSetOutputOptionsOutputHandler(NvttOutputOptions * outputOptions, nvttBeginImageHandler beginImageHandler, nvttOutputHandler outputHandler, nvttEndImageHandler endImageHandler);
 
 
 // Compressor class.

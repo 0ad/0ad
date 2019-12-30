@@ -39,39 +39,22 @@
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "AISeed": 0,
   "CircularMap": true,
   "Description": "A lazy river meanders through these Serbian wetlands. Stone is scarce, but many lumps of bog iron sit waiting to be found.\n\n*This map makes heavy use of grass actors which may adversely affect performance.",
   "Keywords": [
     "new"
   ],
-  "LockTeams": false,
   "Name": "Obedska Bog Night (4)",
-  "Nomad": false,
   "PlayerData": [
-    "",
-    {
-      "Civ": "athen"
-    },
-    {
-      "Civ": "cart"
-    },
-    {
-      "Civ": "gaul"
-    },
-    {
-      "Civ": "iber"
-    }
+    {},
+    {},
+    {},
+    {}
   ],
   "Preview": "Obedska_Bog_Night_(4).png",
-  "RevealMap": false,
-  "Script": "rhine_marshlands.js",
-  "Seed": 5658,
-  "Size": 320,
   "VictoryConditions": [
     "conquest"
-  ],
-  "mapType": "random"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>
@@ -108,7 +91,7 @@
 		<Entity uid="180">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="996.95954" z="427.25464"/>
+			<Position x="1002.15003" z="433.97858"/>
 			<Orientation y="-3.2647"/>
 		</Entity>
 		<Entity uid="181">
@@ -126,13 +109,13 @@
 		<Entity uid="183">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="995.24103" z="437.28608"/>
+			<Position x="999.32612" z="442.17273"/>
 			<Orientation y="-2.3461"/>
 		</Entity>
 		<Entity uid="184">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="994.32752" z="433.15632"/>
+			<Position x="998.96973" z="437.37974"/>
 			<Orientation y="-1.72445"/>
 		</Entity>
 		<Entity uid="185">
@@ -248,13 +231,13 @@
 		<Entity uid="230">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="874.47303" z="1065.76417"/>
+			<Position x="870.46595" z="1059.15052"/>
 			<Orientation y="-2.56829"/>
 		</Entity>
 		<Entity uid="231">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="875.74854" z="1069.69233"/>
+			<Position x="875.01813" z="1056.42334"/>
 			<Orientation y="1.31286"/>
 		</Entity>
 		<Entity uid="232">
@@ -266,7 +249,7 @@
 		<Entity uid="233">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="878.1753" z="1063.47632"/>
+			<Position x="874.25617" z="1059.90833"/>
 			<Orientation y="-1.33944"/>
 		</Entity>
 		<Entity uid="234">
@@ -513,7 +496,7 @@
 		<Entity uid="352">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="473.17511" z="257.78562"/>
+			<Position x="470.35813" z="260.98588"/>
 			<Orientation y="-3.98926"/>
 			<Obstruction group="17631"/>
 		</Entity>
@@ -545,37 +528,37 @@
 		<Entity uid="357">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="395.94452" z="267.58185"/>
+			<Position x="406.6471" z="257.6576"/>
 			<Orientation y="-3.91553"/>
 		</Entity>
 		<Entity uid="358">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="387.94636" z="268.39649"/>
+			<Position x="405.00953" z="254.64206"/>
 			<Orientation y="0.76314"/>
 		</Entity>
 		<Entity uid="359">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="391.27375" z="264.60663"/>
+			<Position x="398.96866" z="256.91871"/>
 			<Orientation y="-1.1142"/>
 		</Entity>
 		<Entity uid="360">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="400.67133" z="264.43641"/>
+			<Position x="404.72315" z="262.6323"/>
 			<Orientation y="0.05417"/>
 		</Entity>
 		<Entity uid="361">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="395.2569" z="260.51471"/>
+			<Position x="402.06547" z="259.41224"/>
 			<Orientation y="0.28104"/>
 		</Entity>
 		<Entity uid="362">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
-			<Position x="442.24244" z="212.14026"/>
+			<Position x="440.31028" z="218.17469"/>
 			<Orientation y="-3.04273"/>
 		</Entity>
 		<Entity uid="363">
@@ -62653,7 +62636,7 @@
 		<Entity uid="16288">
 			<Template>gaia/flora_bush_temperate</Template>
 			<Player>0</Player>
-			<Position x="1072.71131" z="434.17911"/>
+			<Position x="1086.92005" z="431.22168"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="38174"/>
 		</Entity>

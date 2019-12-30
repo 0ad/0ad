@@ -1,0 +1,243 @@
+---
+ CMakeLists.txt              | 16 ++++----
+ src/CMakeLists.txt          | 82 ++++++++++++++++++-------------------
+ src/nvcore/CMakeLists.txt   |  6 +--
+ src/nvimage/CMakeLists.txt  |  6 +--
+ src/nvmath/CMakeLists.txt   |  6 +--
+ src/nvthread/CMakeLists.txt |  6 +--
+ src/nvtt/CMakeLists.txt     |  6 +--
+ 7 files changed, 64 insertions(+), 64 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ab4dcb6..9c80369 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -11,19 +11,19 @@ SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${NV_CMAKE_DIR}")
+ #ENDIF(CMAKE_COMPILER_IS_GNUCC)
+ set (CMAKE_CXX_STANDARD 11)
+ 
+-IF(WIN32)
++#IF(WIN32)
+ 	# gnuwin32 paths:
+-	SET(GNUWIN32_PATH "${NV_SOURCE_DIR}/extern/gnuwin32")
+-	SET(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "${GNUWIN32_PATH}/include")
+-	SET(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "${GNUWIN32_PATH}/lib")
++	#SET(GNUWIN32_PATH "${NV_SOURCE_DIR}/extern/gnuwin32")
++	#SET(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "${GNUWIN32_PATH}/include")
++	#SET(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "${GNUWIN32_PATH}/lib")
+ 	
+ 	# Set GLUT path:
+-	SET(GLUT_ROOT_DIR "${NV_SOURCE_DIR}/extern/glut")
++	#SET(GLUT_ROOT_DIR "${NV_SOURCE_DIR}/extern/glut")
+ 
+ 	# Set FreeImage path:
+-	SET(FREEIMAGE_ROOT_DIR "${NV_SOURCE_DIR}/extern/FreeImage")
+-	
+-ENDIF(WIN32)
++	#SET(FREEIMAGE_ROOT_DIR "${NV_SOURCE_DIR}/extern/FreeImage")
++
++#ENDIF(WIN32)
+ 
+ INCLUDE(${NV_CMAKE_DIR}/OptimalOptions.cmake)
+ MESSAGE(STATUS "Setting optimal options")
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index f64b263..ec97402 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -11,13 +11,16 @@
+ SUBDIRS(bc6h)
+ SUBDIRS(bc7)
+ 
++# Make PNG optional (we disable it on macOS)
++SET(PNG TRUE CACHE BOOL "")
++
+ # OpenGL
+-#INCLUDE(FindOpenGL)
+-#IF(OPENGL_FOUND)
+-#	MESSAGE(STATUS "Looking for OpenGL - found")
+-#ELSE(OPENGL_FOUND)
+-#	MESSAGE(STATUS "Looking for OpenGL - not found")
+-#ENDIF(OPENGL_FOUND)
++INCLUDE(FindOpenGL)
++IF(OPENGL_FOUND)
++	MESSAGE(STATUS "Looking for OpenGL - found")
++ELSE(OPENGL_FOUND)
++	MESSAGE(STATUS "Looking for OpenGL - not found")
++ENDIF(OPENGL_FOUND)
+ 
+ # GLUT
+ #INCLUDE(FindGLUT)
+@@ -28,12 +31,12 @@
+ #ENDIF(GLUT_FOUND)
+ 
+ # DirectX
+-#INCLUDE(${NV_CMAKE_DIR}/FindDirectX.cmake)
+-#IF(DX10_FOUND)
+-#	MESSAGE(STATUS "Looking for DirectX - found")
+-#ELSE(DX10_FOUND)
+-#	MESSAGE(STATUS "Looking for DirectX - not found")
+-#ENDIF(DX10_FOUND)
++INCLUDE(${NV_CMAKE_DIR}/FindDirectX.cmake)
++IF(DX10_FOUND)
++	MESSAGE(STATUS "Looking for DirectX - found")
++ELSE(DX10_FOUND)
++	MESSAGE(STATUS "Looking for DirectX - not found")
++ENDIF(DX10_FOUND)
+ 
+ # GLEW
+ #INCLUDE(${NV_CMAKE_DIR}/FindGLEW.cmake)
+@@ -53,18 +56,18 @@
+ 
+ # CUDA
+ #FIND_PACKAGE(CUDA)
+-IF(CUDA_FOUND)
+-    IF(MINGW)
+-        MESSAGE(STATUS "Looking for CUDA - not supported on MinGW")
+-        UNSET(CUDA_FOUND)
+-    ENDIF(MINGW)
+-    IF(CUDA_FOUND)
+-        SET(HAVE_CUDA ${CUDA_FOUND} CACHE BOOL "Set to TRUE if CUDA is found, FALSE otherwise")
+-        MESSAGE(STATUS "Looking for CUDA - found")
+-    ENDIF(CUDA_FOUND)
+-ELSE(CUDA_FOUND)
+-    MESSAGE(STATUS "Looking for CUDA - not found")
+-ENDIF(CUDA_FOUND)
++#IF(CUDA_FOUND)
++#	IF(MINGW)
++#		MESSAGE(STATUS "Looking for CUDA - not supported on MinGW")
++#		UNSET(CUDA_FOUND)
++#	ENDIF(MINGW)
++#	IF(CUDA_FOUND)
++#		SET(HAVE_CUDA ${CUDA_FOUND} CACHE BOOL "Set to TRUE if CUDA is found, FALSE otherwise")
++#		MESSAGE(STATUS "Looking for CUDA - found")
++#	ENDIF(CUDA_FOUND)
++#ELSE(CUDA_FOUND)
++#	MESSAGE(STATUS "Looking for CUDA - not found")
++#ENDIF(CUDA_FOUND)
+ 
+ # Maya
+ #INCLUDE(${NV_CMAKE_DIR}/FindMaya.cmake)
+@@ -94,13 +97,15 @@
+ #ENDIF(JPEG_FOUND)
+ 
+ # PNG
+-#INCLUDE(FindPNG)
+-#IF(PNG_FOUND)
+-#	SET(HAVE_PNG ${PNG_FOUND} CACHE BOOL "Set to TRUE if PNG is found, FALSE otherwise")
+-#	MESSAGE(STATUS "Looking for PNG - found")
+-#ELSE(PNG_FOUND)
+-#	MESSAGE(STATUS "Looking for PNG - not found")
+-#ENDIF(PNG_FOUND)
++IF(PNG)
++	INCLUDE(FindPNG)
++	IF(PNG_FOUND)
++		SET(HAVE_PNG ${PNG_FOUND} CACHE BOOL "Set to TRUE if PNG is found, FALSE otherwise")
++		MESSAGE(STATUS "Looking for PNG - found")
++	ELSE(PNG_FOUND)
++		MESSAGE(STATUS "Looking for PNG - not found")
++	ENDIF(PNG_FOUND)
++ENDIF(PNG)
+ 
+ # TIFF
+ #SET(TIFF_NAMES libtiff)
+@@ -122,15 +127,15 @@
+ #ENDIF(OPENEXR_FOUND)
+ 
+ # OpenMP
+-INCLUDE(FindOpenMP)
+-IF(OPENMP_FOUND)
+-	SET(HAVE_OPENMP ${OPENMP_FOUND} CACHE BOOL "Set to TRUE if OpenMP is found, FALSE otherwise")
+-	MESSAGE(STATUS "Looking for OpenMP - found")
+-	SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+-	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+-ELSE(OPENMP_FOUND)
+-	MESSAGE(STATUS "Looking for OpenMP - not found")
+-ENDIF(OPENMP_FOUND)
++#INCLUDE(FindOpenMP)
++#IF(OPENMP_FOUND)
++#	SET(HAVE_OPENMP ${OPENMP_FOUND} CACHE BOOL "Set to TRUE if OpenMP is found, FALSE otherwise")
++#	MESSAGE(STATUS "Looking for OpenMP - found")
++#	SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
++#	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
++#ELSE(OPENMP_FOUND)
++#	MESSAGE(STATUS "Looking for OpenMP - not found")
++#ENDIF(OPENMP_FOUND)
+ 
+ # Threads
+ FIND_PACKAGE(Threads REQUIRED)
+ MESSAGE(STATUS "Use thread library: ${CMAKE_THREAD_LIBS_INIT}")
+diff --git a/src/nvcore/CMakeLists.txt b/src/nvcore/CMakeLists.txt
+index 3dfcb5d..a0bec38 100644
+--- a/src/nvcore/CMakeLists.txt
++++ b/src/nvcore/CMakeLists.txt
+@@ -44,6 +44,6 @@ if (CMAKE_SYSTEM_NAME MATCHES "NetBSD" OR CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
+ endif()
+ 
+ INSTALL(TARGETS nvcore
+-    RUNTIME DESTINATION bin
+-    LIBRARY DESTINATION lib
+-    ARCHIVE DESTINATION lib/static)
++    RUNTIME DESTINATION ${BINDIR}
++    LIBRARY DESTINATION ${LIBDIR}
++    ARCHIVE DESTINATION ${LIBDIR})
+diff --git a/src/nvimage/CMakeLists.txt b/src/nvimage/CMakeLists.txt
+index dce627d..420d9a6 100644
+--- a/src/nvimage/CMakeLists.txt
++++ b/src/nvimage/CMakeLists.txt
+@@ -56,7 +56,7 @@ ENDIF(NVIMAGE_SHARED)
+ TARGET_LINK_LIBRARIES(nvimage ${LIBS} nvcore posh bc6h bc7 nvmath)
+ 
+ INSTALL(TARGETS nvimage
+-    RUNTIME DESTINATION bin
+-    LIBRARY DESTINATION lib
+-    ARCHIVE DESTINATION lib/static)
++    RUNTIME DESTINATION ${BINDIR}
++    LIBRARY DESTINATION ${LIBDIR}
++    ARCHIVE DESTINATION ${LIBDIR})
+ 
+diff --git a/src/nvmath/CMakeLists.txt b/src/nvmath/CMakeLists.txt
+index abeb05f..e63df63 100644
+--- a/src/nvmath/CMakeLists.txt
++++ b/src/nvmath/CMakeLists.txt
+@@ -28,6 +28,6 @@ ENDIF(NVMATH_SHARED)
+ TARGET_LINK_LIBRARIES(nvmath ${LIBS} nvcore)
+ 
+ INSTALL(TARGETS nvmath
+-    RUNTIME DESTINATION bin
+-    LIBRARY DESTINATION lib
+-    ARCHIVE DESTINATION lib/static)
++    RUNTIME DESTINATION ${BINDIR}
++    LIBRARY DESTINATION ${LIBDIR}
++    ARCHIVE DESTINATION ${LIBDIR})
+diff --git a/src/nvthread/CMakeLists.txt b/src/nvthread/CMakeLists.txt
+index 15dbc4e..a2b3654 100644
+--- a/src/nvthread/CMakeLists.txt
++++ b/src/nvthread/CMakeLists.txt
+@@ -23,6 +23,6 @@ ENDIF(NVTHREAD_SHARED)
+ TARGET_LINK_LIBRARIES(nvthread ${LIBS} nvcore)
+ 
+ INSTALL(TARGETS nvthread
+-	RUNTIME DESTINATION bin
+-	LIBRARY DESTINATION lib
+-	ARCHIVE DESTINATION lib/static)
++	RUNTIME DESTINATION ${BINDIR}
++	LIBRARY DESTINATION ${LIBDIR}
++	ARCHIVE DESTINATION ${LIBDIR})
+diff --git a/src/nvtt/CMakeLists.txt b/src/nvtt/CMakeLists.txt
+index 7923159..df77c86 100644
+--- a/src/nvtt/CMakeLists.txt
++++ b/src/nvtt/CMakeLists.txt
+@@ -50,9 +50,9 @@ ENDIF(NVTT_SHARED)
+ TARGET_LINK_LIBRARIES(nvtt ${LIBS} nvcore nvimage nvthread squish bc6h bc7 nvmath)
+ 
+ INSTALL(TARGETS nvtt 
+-    RUNTIME DESTINATION bin
+-    LIBRARY DESTINATION lib
+-    ARCHIVE DESTINATION lib/static)
++    RUNTIME DESTINATION ${BINDIR}
++    LIBRARY DESTINATION ${LIBDIR}
++    ARCHIVE DESTINATION ${LIBDIR})
+ 
+ INSTALL(FILES nvtt.h DESTINATION include/nvtt)
+ 
+--

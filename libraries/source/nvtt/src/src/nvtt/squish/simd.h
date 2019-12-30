@@ -23,8 +23,8 @@
 	
    -------------------------------------------------------------------------- */
    
-#ifndef SQUISH_SIMD_H
-#define SQUISH_SIMD_H
+#ifndef NV_SQUISH_SIMD_H
+#define NV_SQUISH_SIMD_H
 
 #include "maths.h"
 

@@ -1,4 +1,5 @@
-// Copyright NVIDIA Corporation 2007 -- Ignacio Castano <icastano@nvidia.com>
+// Copyright (c) 2009-2011 Ignacio Castano <castano@gmail.com>
+// Copyright (c) 2007-2009 NVIDIA Corporation -- Ignacio Castano <icastano@nvidia.com>
 // 
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -21,8 +22,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 // OTHER DEALINGS IN THE SOFTWARE.
 
-#include <nvcore/Debug.h>
-#include <nvcore/Library.h>
+#include "nvcore/Debug.h"
 #include "CudaUtils.h"
 
 #if defined HAVE_CUDA
@@ -41,11 +41,11 @@ using namespace cuda;
 
 static bool isWindowsVista()
 {
-OSVERSIONINFO osvi;
-osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+	OSVERSIONINFO osvi;
+	osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
 
-::GetVersionEx(&osvi);
-return osvi.dwMajorVersion >= 6;
+	::GetVersionEx(&osvi);
+	return osvi.dwMajorVersion >= 6;
 }
 
 
@@ -53,20 +53,20 @@ typedef BOOL (WINAPI *LPFN_ISWOW64PROCESS) (HANDLE, PBOOL);
 
 static bool isWow32()
 {
-LPFN_ISWOW64PROCESS fnIsWow64Process = (LPFN_ISWOW64PROCESS)GetProcAddress(GetModuleHandle("kernel32"), "IsWow64Process");
+	LPFN_ISWOW64PROCESS fnIsWow64Process = (LPFN_ISWOW64PROCESS)GetProcAddress(GetModuleHandle("kernel32"), "IsWow64Process");
 
-BOOL bIsWow64 = FALSE;
+	BOOL bIsWow64 = FALSE;
+ 
+	if (NULL != fnIsWow64Process)
+	{
+		if (!fnIsWow64Process(GetCurrentProcess(), &bIsWow64))
+		{
+			// Assume 32 bits.
+			return true;
+		}
+	}
 
-if (NULL != fnIsWow64Process)
-{
-if (!fnIsWow64Process(GetCurrentProcess(), &bIsWow64))
-{
-// Assume 32 bits.
-return true;
-}
-}
-
-return !bIsWow64;
+	return !bIsWow64;
 }
 
 #endif
@@ -81,13 +81,13 @@ static bool isCudaDriverAvailable(int version)
 #else
 	Library nvcuda(NV_LIBRARY_NAME(cuda));
 #endif
-
+	
 	if (!nvcuda.isValid())
 	{
 		nvDebug("*** CUDA driver not found.\n");
 		return false;
 	}
-
+	
 	if (version >= 2000)
 	{
 		void * address = nvcuda.bindSymbol("cuStreamCreate");
@@ -105,7 +105,7 @@ static bool isCudaDriverAvailable(int version)
 			return false;
 		}
 	}
-
+	
 	if (version >= 2020)
 	{
 		typedef CUresult (CUDAAPI * PFCU_DRIVERGETVERSION)(int * version);
@@ -158,8 +158,6 @@ bool nv::cuda::isHardwarePresent()
 
 	// @@ Make sure that warp size == 32
 
-	// @@ Make sure available GPU is faster than the CPU.
-
 	return count > 0;
 #else
 	return false;
@@ -182,59 +180,30 @@ int nv::cuda::deviceCount()
 	return 0;
 }
 
-
-// Make sure device meets requirements:
-// - Not an emulation device.
-// - Not an integrated device?
-// - Faster than CPU.
-bool nv::cuda::isValidDevice(int i)
-{
-#if defined HAVE_CUDA
-
-	cudaDeviceProp device_properties;
-	cudaGetDeviceProperties(&device_properties, i);
-	int gflops = device_properties.multiProcessorCount * device_properties.clockRate;
-
-	if (device_properties.major == -1 || device_properties.minor == -1) {
-		// Emulation device.
-		return false;
-	}
-
-#if CUDART_VERSION >= 2030 // 2.3
-	/*if (device_properties.integrated)
-	{
-		// Integrated devices.
-		return false;
-	}*/
-#endif
-
-	return true;
-#else
-	return false;
-#endif
-}
-
 int nv::cuda::getFastestDevice()
 {
-	int max_gflops_device = -1;
+	int max_gflops_device = 0;
 #if defined HAVE_CUDA
 	int max_gflops = 0;
 
 	const int device_count = deviceCount();
-	for (int i = 0; i < device_count; i++)
+	int current_device = 0;
+	while (current_device < device_count)
 	{
-		if (isValidDevice(i))
-		{
-			cudaDeviceProp device_properties;
-			cudaGetDeviceProperties(&device_properties, i);
-			int gflops = device_properties.multiProcessorCount * device_properties.clockRate;
+		cudaDeviceProp device_properties;
+		cudaGetDeviceProperties(&device_properties, current_device);
+		int gflops = device_properties.multiProcessorCount * device_properties.clockRate;
 
-			if (gflops > max_gflops)
+		if (device_properties.major != -1 && device_properties.minor != -1)
+		{
+			if( gflops > max_gflops )
 			{
 				max_gflops = gflops;
-				max_gflops_device = i;
+				max_gflops_device = current_device;
 			}
 		}
+		
+		current_device++;
 	}
 #endif
 	return max_gflops_device;
@@ -242,53 +211,23 @@ int nv::cuda::getFastestDevice()
 
 
 /// Activate the given devices.
-bool nv::cuda::initDevice(int * device_ptr)
+bool nv::cuda::setDevice(int i)
 {
-	nvDebugCheck(device_ptr != NULL);
+	nvCheck(i < deviceCount());
 #if defined HAVE_CUDA
+	cudaError_t result = cudaSetDevice(i);
 
-#if CUDART_VERSION >= 2030 // 2.3
-
-	// Set device flags to yield in order to play nice with other threads and to find out if CUDA was already active.
-	cudaError_t resul = cudaSetDeviceFlags(cudaDeviceScheduleYield);
-
-#endif
-
-	int device = getFastestDevice();
-
-	if (device == -1)
-	{
-		// No device is fast enough.
-		*device_ptr = -1;
-		return false;
-	}
-
-	// Select CUDA device.
-	cudaError_t result = cudaSetDevice(device);
-
-	if (result == cudaErrorSetOnActiveProcess)
-	{
-		int device;
-		result = cudaGetDevice(&device);
-
-		*device_ptr = -1;  // No device to cleanup.
-		return isValidDevice(device); // Return true if device is valid.
-	}
-	else if (result != cudaSuccess)
-	{
+	if (result != cudaSuccess) {
 		nvDebug("*** CUDA Error: %s\n", cudaGetErrorString(result));
-		*device_ptr = -1;
-		return false;
 	}
 
-	*device_ptr = device;
-	return true;
+	return result == cudaSuccess;
 #else
 	return false;
 #endif
 }
 
-void nv::cuda::exitDevice()
+void nv::cuda::exit()
 {
 #if defined HAVE_CUDA
 	cudaError_t result = cudaThreadExit();

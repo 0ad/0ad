@@ -1,9 +1,10 @@
 // This code is in the public domain -- castanyo@yahoo.es
 
+#pragma once
 #ifndef NV_IMAGE_TGAFILE_H
 #define NV_IMAGE_TGAFILE_H
 
-#include <nvcore/Stream.h>
+#include "nvcore/Stream.h"
 
 namespace nv
 {

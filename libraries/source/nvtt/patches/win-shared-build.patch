@@ -1,0 +1,362 @@
+---
+ src/nvcore/StrLib.h               |  8 ++++----
+ src/nvimage/BlockDXT.h            | 16 ++++++++--------
+ src/nvimage/ColorBlock.h          |  6 ++++--
+ src/nvimage/DirectDrawSurface.cpp |  4 ++--
+ src/nvimage/DirectDrawSurface.h   |  4 ++--
+ src/nvimage/ErrorMetric.h         |  8 ++++----
+ src/nvimage/FloatImage.h          |  4 ++--
+ src/nvimage/NormalMap.h           |  8 ++++----
+ src/nvmath/Fitting.h              | 12 ++++++------
+ src/nvmath/Gamma.h                |  4 ++--
+ src/nvmath/Half.cpp               | 10 ++++++++++
+ src/nvmath/Half.h                 | 23 ++++-------------------
+ src/nvtt/CMakeLists.txt           |  1 +
+ 13 files changed, 53 insertions(+), 55 deletions(-)
+
+diff --git a/src/nvcore/StrLib.h b/src/nvcore/StrLib.h
+index 1d6d13a..1ae8e91 100644
+--- a/src/nvcore/StrLib.h
++++ b/src/nvcore/StrLib.h
+@@ -197,11 +197,11 @@ namespace nv
+         void stripExtension();
+ 
+         // statics
+-        NVCORE_API static char separator();
+-        NVCORE_API static const char * fileName(const char *);
+-        NVCORE_API static const char * extension(const char *);
++        static char separator();
++        static const char * fileName(const char *);
++        static const char * extension(const char *);
+ 
+-        NVCORE_API static void translatePath(char * path, char pathSeparator = NV_PATH_SEPARATOR);
++        static void translatePath(char * path, char pathSeparator = NV_PATH_SEPARATOR);
+     };
+ 
+ 
+diff --git a/src/nvimage/BlockDXT.h b/src/nvimage/BlockDXT.h
+index 18a3b65..8ad5bed 100644
+--- a/src/nvimage/BlockDXT.h
++++ b/src/nvimage/BlockDXT.h
+@@ -39,7 +39,7 @@ namespace nv
+ 
+ 
+     /// DXT1 block.
+-    struct BlockDXT1
++    struct NVIMAGE_CLASS BlockDXT1
+     {
+         Color16 col0;
+         Color16 col1;
+@@ -105,7 +105,7 @@ namespace nv
+ 
+ 
+     /// DXT3 block.
+-    struct BlockDXT3
++    struct NVIMAGE_CLASS BlockDXT3
+     {
+         AlphaBlockDXT3 alpha;
+         BlockDXT1 color;
+@@ -119,7 +119,7 @@ namespace nv
+ 
+ 
+     /// DXT5 alpha block.
+-    struct AlphaBlockDXT5
++    struct NVIMAGE_CLASS AlphaBlockDXT5
+     {
+         union {
+             struct {
+@@ -162,7 +162,7 @@ namespace nv
+ 
+ 
+     /// DXT5 block.
+-    struct BlockDXT5
++    struct NVIMAGE_CLASS BlockDXT5
+     {
+         AlphaBlockDXT5 alpha;
+         BlockDXT1 color;
+@@ -175,7 +175,7 @@ namespace nv
+     };
+ 
+     /// ATI1 block.
+-    struct BlockATI1
++    struct NVIMAGE_CLASS BlockATI1
+     {
+         AlphaBlockDXT5 alpha;
+ 
+@@ -186,7 +186,7 @@ namespace nv
+     };
+ 
+     /// ATI2 block.
+-    struct BlockATI2
++    struct NVIMAGE_CLASS BlockATI2
+     {
+         AlphaBlockDXT5 x;
+         AlphaBlockDXT5 y;
+@@ -217,14 +217,14 @@ namespace nv
+     };
+ 
+ 	/// BC6 block.
+-	struct BlockBC6
++	struct NVIMAGE_CLASS BlockBC6
+ 	{
+ 		uint8 data[16];		// Not even going to try to write a union for this thing.
+ 		void decodeBlock(Vector3 colors[16]) const;
+ 	};
+ 
+ 	/// BC7 block.
+-	struct BlockBC7
++	struct NVIMAGE_CLASS BlockBC7
+ 	{
+ 		uint8 data[16];		// Not even going to try to write a union for this thing.
+ 		void decodeBlock(ColorBlock * block) const;
+diff --git a/src/nvimage/ColorBlock.h b/src/nvimage/ColorBlock.h
+index 6638f56..d63d5a5 100644
+--- a/src/nvimage/ColorBlock.h
++++ b/src/nvimage/ColorBlock.h
+@@ -4,6 +4,8 @@
+ #ifndef NV_IMAGE_COLORBLOCK_H
+ #define NV_IMAGE_COLORBLOCK_H
+ 
++#include "nvimage.h"
++
+ #include "nvmath/Color.h"
+ #include "nvmath/Vector.h"
+ 
+@@ -14,7 +16,7 @@ namespace nv
+ 
+ 
+     /// Uncompressed 4x4 color block.
+-    struct ColorBlock
++    struct NVIMAGE_CLASS ColorBlock
+     {
+         ColorBlock();
+         ColorBlock(const uint * linearImage);
+@@ -128,7 +130,7 @@ namespace nv
+ 
+ 
+     /// Uncompressed 4x4 alpha block.
+-    struct AlphaBlock4x4
++    struct NVIMAGE_CLASS AlphaBlock4x4
+     {
+         void init(uint8 value);
+         void init(const ColorBlock & src, uint channel);
+diff --git a/src/nvimage/DirectDrawSurface.cpp b/src/nvimage/DirectDrawSurface.cpp
+index 2daaea5..ffa132e 100644
+--- a/src/nvimage/DirectDrawSurface.cpp
++++ b/src/nvimage/DirectDrawSurface.cpp
+@@ -461,7 +461,7 @@ namespace
+ 
+ } // namespace
+ 
+-uint nv::findD3D9Format(uint bitcount, uint rmask, uint gmask, uint bmask, uint amask)
++NVIMAGE_API uint nv::findD3D9Format(uint bitcount, uint rmask, uint gmask, uint bmask, uint amask)
+ {
+     for (int i = 0; i < s_formatCount; i++)
+     {
+@@ -478,7 +478,7 @@ uint nv::findD3D9Format(uint bitcount, uint rmask, uint gmask, uint bmask, uint
+     return 0;
+ }
+ 
+-uint nv::findDXGIFormat(uint bitcount, uint rmask, uint gmask, uint bmask, uint amask)
++NVIMAGE_API uint nv::findDXGIFormat(uint bitcount, uint rmask, uint gmask, uint bmask, uint amask)
+ {
+     for (int i = 0; i < s_formatCount; i++)
+     {
+diff --git a/src/nvimage/DirectDrawSurface.h b/src/nvimage/DirectDrawSurface.h
+index d63fdde..6513b14 100644
+--- a/src/nvimage/DirectDrawSurface.h
++++ b/src/nvimage/DirectDrawSurface.h
+@@ -263,9 +263,9 @@ namespace nv
+         DXGI_FORMAT_BC7_UNORM_SRGB = 99,
+     };
+ 
+-    extern uint findD3D9Format(uint bitcount, uint rmask, uint gmask, uint bmask, uint amask);
++    NVIMAGE_API extern uint findD3D9Format(uint bitcount, uint rmask, uint gmask, uint bmask, uint amask);
+ 
+-    extern uint findDXGIFormat(uint bitcount, uint rmask, uint gmask, uint bmask, uint amask);
++    NVIMAGE_API extern uint findDXGIFormat(uint bitcount, uint rmask, uint gmask, uint bmask, uint amask);
+ 
+     struct RGBAPixelFormat
+     {
+diff --git a/src/nvimage/ErrorMetric.h b/src/nvimage/ErrorMetric.h
+index b875802..df025b5 100644
+--- a/src/nvimage/ErrorMetric.h
++++ b/src/nvimage/ErrorMetric.h
+@@ -6,10 +6,10 @@ namespace nv
+ {
+     class FloatImage;
+ 
+-    float rmsColorError(const FloatImage * ref, const FloatImage * img, bool alphaWeight);
+-    float rmsAlphaError(const FloatImage * ref, const FloatImage * img);
++    NVIMAGE_API float rmsColorError(const FloatImage * ref, const FloatImage * img, bool alphaWeight);
++    NVIMAGE_API float rmsAlphaError(const FloatImage * ref, const FloatImage * img);
+ 
+-    float cieLabError(const FloatImage * ref, const FloatImage * img);
++    NVIMAGE_API float cieLabError(const FloatImage * ref, const FloatImage * img);
+     float cieLab94Error(const FloatImage * ref, const FloatImage * img);
+     float spatialCieLabError(const FloatImage * ref, const FloatImage * img);
+ 
+@@ -17,6 +17,6 @@ namespace nv
+     float averageAlphaError(const FloatImage * ref, const FloatImage * img);
+ 
+     float averageAngularError(const FloatImage * img0, const FloatImage * img1);
+-    float rmsAngularError(const FloatImage * img0, const FloatImage * img1);
++    NVIMAGE_API float rmsAngularError(const FloatImage * img0, const FloatImage * img1);
+ 
+ } // nv namespace
+diff --git a/src/nvimage/FloatImage.h b/src/nvimage/FloatImage.h
+index 1015aec..104baf0 100644
+--- a/src/nvimage/FloatImage.h
++++ b/src/nvimage/FloatImage.h
+@@ -152,7 +152,7 @@ namespace nv
+         float sampleNearestRepeat(uint c, float x, float y, float z) const;
+         float sampleNearestMirror(uint c, float x, float y, float z) const;
+ 
+-        float sampleLinearClamp(uint c, float x, float y) const;
++        NVIMAGE_API float sampleLinearClamp(uint c, float x, float y) const;
+         float sampleLinearRepeat(uint c, float x, float y) const;
+         float sampleLinearMirror(uint c, float x, float y) const;
+ 
+@@ -162,7 +162,7 @@ namespace nv
+         //@}
+ 
+ 
+-        FloatImage* clone() const;
++        NVIMAGE_API FloatImage* clone() const;
+ 
+     public:
+ 
+diff --git a/src/nvimage/NormalMap.h b/src/nvimage/NormalMap.h
+index 3f13d42..39a27ad 100644
+--- a/src/nvimage/NormalMap.h
++++ b/src/nvimage/NormalMap.h
+@@ -44,12 +44,12 @@ namespace nv
+ 	};
+ 
+ 	// @@ These two functions should be deprecated:
+-	FloatImage * createNormalMap(const Image * img, FloatImage::WrapMode wm, Vector4::Arg heightWeights, NormalMapFilter filter = NormalMapFilter_Sobel3x3);
+-	FloatImage * createNormalMap(const Image * img, FloatImage::WrapMode wm, Vector4::Arg heightWeights, Vector4::Arg filterWeights);
++	NVIMAGE_API FloatImage * createNormalMap(const Image * img, FloatImage::WrapMode wm, Vector4::Arg heightWeights, NormalMapFilter filter = NormalMapFilter_Sobel3x3);
++	NVIMAGE_API FloatImage * createNormalMap(const Image * img, FloatImage::WrapMode wm, Vector4::Arg heightWeights, Vector4::Arg filterWeights);
+ 
+-	FloatImage * createNormalMap(const FloatImage * img, FloatImage::WrapMode wm, Vector4::Arg filterWeights);
++	NVIMAGE_API FloatImage * createNormalMap(const FloatImage * img, FloatImage::WrapMode wm, Vector4::Arg filterWeights);
+ 
+-	void normalizeNormalMap(FloatImage * img);
++	NVIMAGE_API void normalizeNormalMap(FloatImage * img);
+ 
+ 	// @@ Add generation of DU/DV maps.
+ 
+diff --git a/src/nvmath/Fitting.h b/src/nvmath/Fitting.h
+index 7a88cd2..5ffb50a 100644
+--- a/src/nvmath/Fitting.h
++++ b/src/nvmath/Fitting.h
+@@ -23,14 +23,14 @@ namespace nv
+         Vector4 computeCovariance(int n, const Vector4 * points, float * covariance);
+         Vector4 computeCovariance(int n, const Vector4 * points, const float * weights, const Vector4 & metric, float * covariance);
+ 
+-        Vector3 computePrincipalComponent_PowerMethod(int n, const Vector3 * points);
+-        Vector3 computePrincipalComponent_PowerMethod(int n, const Vector3 * points, const float * weights, const Vector3 & metric);
++        NVMATH_API Vector3 computePrincipalComponent_PowerMethod(int n, const Vector3 * points);
++        NVMATH_API Vector3 computePrincipalComponent_PowerMethod(int n, const Vector3 * points, const float * weights, const Vector3 & metric);
+ 
+-        Vector3 computePrincipalComponent_EigenSolver(int n, const Vector3 * points);
+-        Vector3 computePrincipalComponent_EigenSolver(int n, const Vector3 * points, const float * weights, const Vector3 & metric);
++        NVMATH_API Vector3 computePrincipalComponent_EigenSolver(int n, const Vector3 * points);
++        NVMATH_API Vector3 computePrincipalComponent_EigenSolver(int n, const Vector3 * points, const float * weights, const Vector3 & metric);
+ 
+-		Vector4 computePrincipalComponent_EigenSolver(int n, const Vector4 * points);
+-        Vector4 computePrincipalComponent_EigenSolver(int n, const Vector4 * points, const float * weights, const Vector4 & metric);
++        NVMATH_API Vector4 computePrincipalComponent_EigenSolver(int n, const Vector4 * points);
++        NVMATH_API Vector4 computePrincipalComponent_EigenSolver(int n, const Vector4 * points, const float * weights, const Vector4 & metric);
+ 
+         Vector3 computePrincipalComponent_SVD(int n, const Vector3 * points);
+         Vector4 computePrincipalComponent_SVD(int n, const Vector4 * points);
+diff --git a/src/nvmath/Gamma.h b/src/nvmath/Gamma.h
+index e990a79..f59dd05 100644
+--- a/src/nvmath/Gamma.h
++++ b/src/nvmath/Gamma.h
+@@ -30,8 +30,8 @@
+ namespace nv {
+ 
+     // gamma conversion of float array (in-place is allowed)
+-    void powf_5_11(const float* src, float* dst, int count);
+-    void powf_11_5(const float* src, float* dst, int count);
++    NVMATH_API void powf_5_11(const float* src, float* dst, int count);
++    NVMATH_API void powf_11_5(const float* src, float* dst, int count);
+ 
+ } // nv namespace
+ 
+diff --git a/src/nvmath/Half.cpp b/src/nvmath/Half.cpp
+index 953cc7c..efb4ab8 100644
+--- a/src/nvmath/Half.cpp
++++ b/src/nvmath/Half.cpp
+@@ -633,6 +633,16 @@ void nv::half_init_tables()
+     }
+ }
+ 
++// Fast half to float conversion based on:
++// http://www.fox-toolkit.org/ftp/fasthalffloatconversion.pdf
++uint32 nv::fast_half_to_float(uint16 h)
++{
++	// Initialize table if necessary.
++	if (mantissa_table[0] != 0)
++		half_init_tables();
++	uint exp = h >> 10;
++	return mantissa_table[offset_table[exp] + (h & 0x3ff)] + exponent_table[exp];
++}
+ 
+ #if 0
+ 
+diff --git a/src/nvmath/Half.h b/src/nvmath/Half.h
+index 6f5b8ad..77dff5a 100644
+--- a/src/nvmath/Half.h
++++ b/src/nvmath/Half.h
+@@ -6,30 +6,15 @@
+ 
+ namespace nv {
+ 
+-    uint32 half_to_float( uint16 h );
+-    uint16 half_from_float( uint32 f );
++    NVMATH_API uint32 half_to_float( uint16 h );
++    NVMATH_API uint16 half_from_float( uint32 f );
+ 
+     // vin,vout must be 16 byte aligned. count must be a multiple of 8.
+     // implement a non-SSE version if we need it. For now, this naming makes it clear this is only available when SSE2 is
+     void half_to_float_array_SSE2(const uint16 * vin, float * vout, int count);
+ 
+-    void half_init_tables();
+-
+-    extern uint32 mantissa_table[2048];
+-    extern uint32 exponent_table[64];
+-    extern uint32 offset_table[64];
+-
+-    // Fast half to float conversion based on:
+-    // http://www.fox-toolkit.org/ftp/fasthalffloatconversion.pdf
+-    inline uint32 fast_half_to_float(uint16 h)
+-    {
+-		// Initialize table if necessary.
+-		if (mantissa_table[0] != 0)
+-			half_init_tables();
+-	    uint exp = h >> 10;
+-	    return mantissa_table[offset_table[exp] + (h & 0x3ff)] + exponent_table[exp];
+-    }
+-
++    NVMATH_API void half_init_tables();
++    NVMATH_API uint32 fast_half_to_float(uint16 h);
+ 
+     inline uint16 to_half(float c) {
+         union { float f; uint32 u; } f;
+diff --git a/src/nvtt/CMakeLists.txt b/src/nvtt/CMakeLists.txt
+index e543807..a0d8aa9 100644
+--- a/src/nvtt/CMakeLists.txt
++++ b/src/nvtt/CMakeLists.txt
+@@ -46,6 +46,7 @@ IF(NVTT_SHARED)
+         SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,-z,origin")
+     ENDIF(CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
+ 
++    ADD_DEFINITIONS(-DNVTT_SHARED=1)
+     ADD_LIBRARY(nvtt SHARED ${NVTT_SRCS})
+ ELSE(NVTT_SHARED)
+     ADD_LIBRARY(nvtt ${NVTT_SRCS})
+--

@@ -12,13 +12,16 @@ http://www.efg2.com/Lab/Library/ImageProcessing/DHALF.TXT
 @@ This code needs to be reviewed, I'm not sure it's correct.
 */
 
-#include <nvimage/Quantize.h>
-#include <nvimage/Image.h>
-#include <nvimage/PixelFormat.h>
+#include "Quantize.h"
+#include "Image.h"
+#include "PixelFormat.h"
 
-#include <nvmath/Color.h>
+#include "nvmath/Color.h"
+#include "nvmath/Vector.inl"
 
-#include <nvcore/Containers.h> // swap
+#include "nvcore/Utils.h" // swap
+
+#include <string.h> // memset
 
 
 using namespace nv;
@@ -82,8 +85,8 @@ void nv::Quantize::FloydSteinberg_BinaryAlpha( Image * image, int alpha_threshol
 	memset(row0, 0, sizeof(float)*(w+2));
 	memset(row1, 0, sizeof(float)*(w+2));
 	
-	for(uint y = 0; y < h; y++) {
-		for(uint x = 0; x < w; x++) {
+	for (uint y = 0; y < h; y++) {
+		for (uint x = 0; x < w; x++) {
 			
 			Color32 pixel = image->pixel(x, y);
 			
@@ -91,7 +94,7 @@ void nv::Quantize::FloydSteinberg_BinaryAlpha( Image * image, int alpha_threshol
 			int alpha = int(pixel.a) + int(row0[1+x]);
 			
 			// Convert color.
-			if( alpha > alpha_threshold ) pixel.a = 255;
+			if (alpha > alpha_threshold) pixel.a = 255;
 			else pixel.a = 0;
 			
 			// Store color.
@@ -174,10 +177,10 @@ void nv::Quantize::FloydSteinberg(Image * image, uint rsize, uint gsize, uint bs
 			Color32 pixel = image->pixel(x, y);
 
 			// Add error.
-			pixel.r = clamp(int(pixel.r) + int(row0[1+x].x()), 0, 255);
-			pixel.g = clamp(int(pixel.g) + int(row0[1+x].y()), 0, 255);
-			pixel.b = clamp(int(pixel.b) + int(row0[1+x].z()), 0, 255);
-			pixel.a = clamp(int(pixel.a) + int(row0[1+x].w()), 0, 255);
+			pixel.r = clamp(int(pixel.r) + int(row0[1+x].x), 0, 255);
+			pixel.g = clamp(int(pixel.g) + int(row0[1+x].y), 0, 255);
+			pixel.b = clamp(int(pixel.b) + int(row0[1+x].z), 0, 255);
+			pixel.a = clamp(int(pixel.a) + int(row0[1+x].w), 0, 255);
 			
 			int r = pixel.r;
 			int g = pixel.g;

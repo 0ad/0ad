@@ -1,363 +1,321 @@
-// This code is in the public domain -- castanyo@yahoo.es
+// This code is in the public domain -- Ignacio Castaño <castano@gmail.com>
 
 #ifndef NV_CORE_PTR_H
 #define NV_CORE_PTR_H
 
-#include <nvcore/nvcore.h>
-#include <nvcore/Debug.h>
+#include "nvcore.h"
+#include "Debug.h"
 
-#include <stdio.h>	// NULL
+#include "RefCounted.h"
 
 namespace nv
 {
-	
-/** Simple auto pointer template class.
- *
- * This is very similar to the standard auto_ptr class, but with some 
- * additional limitations to make its use less error prone:
- * - Copy constructor and assignment operator are disabled.
- * - reset method is removed.
- * 
- * The semantics of the standard auto_ptr are not clear and change depending
- * on the std implementation. For a discussion of the problems of auto_ptr read:
- * http://www.awprofessional.com/content/images/020163371X/autoptrupdate\auto_ptr_update.html
- */
-template <class T>
-class AutoPtr
-{
-	NV_FORBID_COPY(AutoPtr);
-	NV_FORBID_HEAPALLOC();
-public:
-	
-	/// Default ctor.
-	AutoPtr() : m_ptr(NULL) { }
-	
-	/// Ctor.
-	explicit AutoPtr( T * p ) : m_ptr(p) { }
-	
-	/** Dtor. Deletes owned pointer. */
-	~AutoPtr() {
-		delete m_ptr;
-		m_ptr = NULL;
-	}
+    class WeakProxy;
 
-	/** Delete owned pointer and assign new one. */
-	void operator=( T * p ) {
-		if (p != m_ptr)
-		{
-			delete m_ptr;
-			m_ptr = p;
-		}
-	}
+    /** Simple auto pointer template class.
+    *
+    * This is very similar to the standard auto_ptr class, but with some 
+    * additional limitations to make its use less error prone:
+    * - Copy constructor and assignment operator are disabled.
+    * - reset method is removed.
+    * 
+    * The semantics of the standard auto_ptr are not clear and change depending
+    * on the std implementation. For a discussion of the problems of auto_ptr read:
+    * http://www.awprofessional.com/content/images/020163371X/autoptrupdate\auto_ptr_update.html
+    */
+    template <class T>
+    class AutoPtr
+    {
+        NV_FORBID_COPY(AutoPtr);
+        NV_FORBID_HEAPALLOC();
+    public:
 
-	/** Member access. */
-	T * operator -> () const {
-		nvDebugCheck(m_ptr != NULL);
-		return m_ptr;
-	}
+        /// Ctor.
+        AutoPtr(T * p = NULL) : m_ptr(p) { }
 
-	/** Get reference. */
-	T & operator*() const {
-		nvDebugCheck(m_ptr != NULL);
-		return *m_ptr;
-	}
+        template <class Q>
+        AutoPtr(Q * p) : m_ptr(static_cast<T *>(p)) { }
 
-	/** Get pointer. */
-	T * ptr() const { return m_ptr; }
-	
-	/** Relinquish ownership of the underlying pointer and returns that pointer. */
-	T * release() {
-		T * tmp = m_ptr;
-		m_ptr = NULL;
-		return tmp;
-	}
-	
-	/** Const pointer equal comparation. */
-	friend bool operator == (const AutoPtr<T> & ap, const T * const p) {
-		return (ap.ptr() == p);
-	}
+        /// Dtor. Deletes owned pointer.
+        ~AutoPtr() {
+            delete m_ptr;
+            m_ptr = NULL;
+        }
 
-	/** Const pointer nequal comparation. */
-	friend bool operator != (const AutoPtr<T> & ap, const T * const p) {
-		return (ap.ptr() != p);
-	}
+        /// Delete owned pointer and assign new one.
+        void operator=( T * p ) {
+            if (p != m_ptr)
+            {
+                delete m_ptr;
+                m_ptr = p;
+            }
+        }
 
-	/** Const pointer equal comparation. */
-	friend bool operator == (const T * const p, const AutoPtr<T> & ap) {
-		return (ap.ptr() == p);
-	}
+        template <class Q>
+        void operator=( Q * p ) {
+            if (p != m_ptr)
+            {
+                delete m_ptr;
+                m_ptr = static_cast<T *>(p);
+            }
+        }
 
-	/** Const pointer nequal comparation. */
-	friend bool operator != (const T * const p, const AutoPtr<T> & ap) {
-		return (ap.ptr() != p);
-	}
+        /// Member access.
+        T * operator -> () const {
+            nvDebugCheck(m_ptr != NULL);
+            return m_ptr;
+        }
 
-private:
-	T * m_ptr;
-};
+        /// Get reference.
+        T & operator*() const {
+            nvDebugCheck(m_ptr != NULL);
+            return *m_ptr;
+        }
 
-#if 0
-/** Reference counted base class to be used with Pointer.
- *
- * The only requirement of the Pointer class is that the RefCounted class implements the 
- * addRef and release methods.
- */
-class RefCounted
-{
-	NV_FORBID_COPY(RefCounted);
-public:
+        /// Get pointer.
+        T * ptr() const { return m_ptr; }
 
-	/// Ctor.
-	RefCounted() : m_count(0), m_weak_proxy(NULL)
-	{
-		s_total_obj_count++;
-	}
+        /// Relinquish ownership of the underlying pointer and returns that pointer.
+        T * release() {
+            T * tmp = m_ptr;
+            m_ptr = NULL;
+            return tmp;
+        }
 
-	/// Virtual dtor.
-	virtual ~RefCounted()
-	{
-		nvCheck( m_count == 0 );
-		nvCheck( s_total_obj_count > 0 );
-		s_total_obj_count--;
-	}
+        /// Const pointer equal comparation.
+        friend bool operator == (const AutoPtr<T> & ap, const T * const p) {
+            return (ap.ptr() == p);
+        }
+
+        /// Const pointer nequal comparation.
+        friend bool operator != (const AutoPtr<T> & ap, const T * const p) {
+            return (ap.ptr() != p);
+        }
+
+        /// Const pointer equal comparation.
+        friend bool operator == (const T * const p, const AutoPtr<T> & ap) {
+            return (ap.ptr() == p);
+        }
+
+        /// Const pointer nequal comparation.
+        friend bool operator != (const T * const p, const AutoPtr<T> & ap) {
+            return (ap.ptr() != p);
+        }
+
+    private:
+        T * m_ptr;
+    };
 
 
-	/// Increase reference count.
-	uint addRef() const
-	{
-		s_total_ref_count++;
-		m_count++;
-		return m_count;
-	}
+    /// Smart pointer template class.
+    template <class BaseClass>
+    class SmartPtr {
+    public:
+
+        // BaseClass must implement addRef() and release().
+        typedef SmartPtr<BaseClass>	ThisType;
+
+        /// Default ctor.
+        SmartPtr() : m_ptr(NULL) 
+        {
+        }
+
+        /// Other type assignment.
+        template <class OtherBase>
+        SmartPtr( const SmartPtr<OtherBase> & tc )
+        {
+            m_ptr = static_cast<BaseClass *>( tc.ptr() );
+            if (m_ptr) {
+                m_ptr->addRef();
+            }
+        }
+
+        /// Copy ctor.
+        SmartPtr( const ThisType & bc )
+        {
+            m_ptr = bc.ptr();
+            if (m_ptr) {
+                m_ptr->addRef();
+            }
+        }
+
+        /// Copy cast ctor. SmartPtr(NULL) is valid.
+        explicit SmartPtr( BaseClass * bc )
+        {
+            m_ptr = bc;
+            if (m_ptr) {
+                m_ptr->addRef();
+            }
+        }
+
+        /// Dtor.
+        ~SmartPtr()
+        {
+            set(NULL);
+        }
 
 
-	/// Decrease reference count and remove when 0.
-	uint release() const
-	{
-		nvCheck( m_count > 0 );
-		
-		s_total_ref_count--;
-		m_count--;
-		if( m_count == 0 ) {
-			releaseWeakProxy();
-			delete this;
-			return 0;
-		}
-		return m_count;
-	}
+        /// -> operator.
+        BaseClass * operator -> () const
+        {
+            nvCheck( m_ptr != NULL );
+            return m_ptr;
+        }
 
-	/// Get weak proxy.
-	WeakProxy * getWeakProxy() const
-	{
-		if (m_weak_proxy == NULL) {
-			m_weak_proxy = new WeakProxy;
-			m_weak_proxy->AddRef();
-		}
-		return m_weak_proxy;
-	}
+        /// * operator.
+        BaseClass & operator*() const
+        {
+            nvCheck( m_ptr != NULL );
+            return *m_ptr;
+        }
 
-	/// Release the weak proxy.	
-	void releaseWeakProxy() const
-	{
-		if (m_weak_proxy != NULL) {
-			m_weak_proxy->NotifyObjectDied();
-			m_weak_proxy->Release();
-			m_weak_proxy = NULL;
-		}
-	}
+        /// Get pointer.
+        BaseClass * ptr() const
+        {
+            return m_ptr;
+        }
 
-	/** @name Debug methods: */
-	//@{
-		/// Get reference count.
-		int refCount() const
-		{
-			return m_count;
-		}
+        /// Other type assignment.
+        template <class OtherBase>
+        void operator = ( const SmartPtr<OtherBase> & tc )
+        {
+            set( static_cast<BaseClass *>(tc.ptr()) );
+        }
 
-		/// Get total number of objects.
-		static int totalObjectCount()
-		{
-			return s_total_obj_count;
-		}
+        /// This type assignment.
+        void operator = ( const ThisType & bc )
+        {
+            set( bc.ptr() );
+        }
 
-		/// Get total number of references.
-		static int totalReferenceCount()
-		{
-			return s_total_ref_count;
-		}
-	//@}
+        /// Pointer assignment.
+        void operator = ( BaseClass * bc )
+        {
+            set( bc );
+        }
 
 
-private:
+        /// Other type equal comparation.
+        template <class OtherBase>
+        bool operator == ( const SmartPtr<OtherBase> & other ) const
+        {
+            return m_ptr == other.ptr();
+        }
 
-	NVCORE_API static int s_total_ref_count;
-	NVCORE_API static int s_total_obj_count;
+        /// This type equal comparation.
+        bool operator == ( const ThisType & bc ) const
+        {
+            return m_ptr == bc.ptr();
+        }
 
-	mutable int m_count;
-	mutable WeakProxy * weak_proxy;
+        /// Const pointer equal comparation.
+        bool operator == ( const BaseClass * const bc ) const
+        {
+            return m_ptr == bc;
+        }
 
-};
-#endif
+        /// Other type not equal comparation.
+        template <class OtherBase>
+        bool operator != ( const SmartPtr<OtherBase> & other ) const
+        {
+            return m_ptr != other.ptr();
+        }
 
-/// Smart pointer template class.
-template <class BaseClass>
-class Pointer {
-public:
+        /// Other type not equal comparation.
+        bool operator != ( const ThisType & bc ) const
+        {
+            return m_ptr != bc.ptr();
+        }
 
-	// BaseClass must implement addRef() and release().
-	typedef Pointer<BaseClass>	ThisType;
+        /// Const pointer not equal comparation.
+        bool operator != (const BaseClass * const bc) const
+        {
+            return m_ptr != bc;
+        }
 
-	/// Default ctor.
-	Pointer() : m_ptr(NULL) 
-	{
-	}
+        /// This type lower than comparation.
+        bool operator < (const ThisType & p) const
+        {
+            return m_ptr < p.ptr();
+        }
 
-	/** Other type assignment. */
-	template <class OtherBase>
-	Pointer( const Pointer<OtherBase> & tc )
-	{
-		m_ptr = static_cast<BaseClass *>( tc.ptr() );
-		if( m_ptr ) {
-			m_ptr->addRef();
-		}
-	}
+        bool isValid() const {
+            return isValidPtr(m_ptr);
+        }
 
-	/** Copy ctor. */
-	Pointer( const ThisType & bc )
-	{
-		m_ptr = bc.ptr();
-		if( m_ptr ) {
-			m_ptr->addRef();
-		}
-	}
+    private:
 
-	/** Copy cast ctor. Pointer(NULL) is valid. */
-	explicit Pointer( BaseClass * bc )
-	{
-		m_ptr = bc;
-		if( m_ptr ) {
-			m_ptr->addRef();
-		}
-	}
+        // Set this pointer.
+        void set( BaseClass * p )
+        {
+            if (p) p->addRef();
+            if (m_ptr) m_ptr->release();
+            m_ptr = p;
+        }
 
-	/** Dtor. */
-	~Pointer()
-	{
-		set(NULL);
-	}
+    private:
 
+        BaseClass * m_ptr;
 
-	/** @name Accessors: */
-	//@{
-		/** -> operator. */
-		BaseClass * operator -> () const
-		{
-			nvCheck( m_ptr != NULL );
-			return m_ptr;
-		}
-
-		/** * operator. */
-		BaseClass & operator*() const
-		{
-			nvCheck( m_ptr != NULL );
-			return *m_ptr;
-		}
-
-		/** Get pointer. */
-		BaseClass * ptr() const
-		{
-			return m_ptr;
-		}
-	//@}
+    };
 
 
-	/** @name Mutators: */
-	//@{
-		/** Other type assignment. */
-		template <class OtherBase>
-		void operator = ( const Pointer<OtherBase> & tc )
-		{
-			set( static_cast<BaseClass *>(tc.ptr()) );
-		}
+    /// Smart pointer template class.
+    template <class T>
+    class WeakPtr {
+    public:
 
-		/** This type assignment. */
-		void operator = ( const ThisType & bc )
-		{
-			set( bc.ptr() );
-		}
+        WeakPtr() {}
 
-		/** Pointer assignment. */
-		void operator = ( BaseClass * bc )
-		{
-			set( bc );
-		}
-	//@}
+        WeakPtr(T * p)  { operator=(p); }
+        WeakPtr(const SmartPtr<T> & p) { operator=(p.ptr()); }
 
+        // Default constructor and assignment from weak_ptr<T> are OK.
 
-	/** @name Comparators: */
-	//@{
-		/** Other type equal comparation. */
-		template <class OtherBase>
-		bool operator == ( const Pointer<OtherBase> & other ) const
-		{
-			return m_ptr == other.ptr();
-		}
+        void operator=(T * p)
+        {
+            if (p) {
+                m_proxy = p->getWeakProxy();
+                nvDebugCheck(m_proxy != NULL);
+                nvDebugCheck(m_proxy->ptr() == p);
+            }
+            else {
+                m_proxy = NULL;
+            }
+        }
 
-		/** This type equal comparation. */
-		bool operator == ( const ThisType & bc ) const
-		{
-			return m_ptr == bc.ptr();
-		}
+        void operator=(const SmartPtr<T> & ptr) { operator=(ptr.ptr()); }
 
-		/** Const pointer equal comparation. */
-		bool operator == ( const BaseClass * const bc ) const
-		{
-			return m_ptr == bc;
-		}
+        bool operator==(const SmartPtr<T> & p) const { return ptr() == p.ptr(); }
+        bool operator!=(const SmartPtr<T> & p) const { return ptr() != p.ptr(); }
 
-		/** Other type not equal comparation. */
-		template <class OtherBase>
-		bool operator != ( const Pointer<OtherBase> & other ) const
-		{
-			return m_ptr != other.ptr();
-		}
-		
-		/** Other type not equal comparation. */
-		bool operator != ( const ThisType & bc ) const
-		{
-			return m_ptr != bc.ptr();
-		}
+        bool operator==(const WeakPtr<T> & p) const { return ptr() == p.ptr(); }
+        bool operator!=(const WeakPtr<T> & p) const { return ptr() != p.ptr(); }
 
-		/** Const pointer not equal comparation. */
-		bool operator != (const BaseClass * const bc) const
-		{
-			return m_ptr != bc;
-		}
+        bool operator==(T * p) const { return ptr() == p; }
+        bool operator!=(T * p) const { return ptr() != p; }
 
-		/** This type lower than comparation. */
-		bool operator < (const ThisType & p) const
-		{
-			return m_ptr < p.ptr();
-		}
-	//@}
+        T * operator->() const
+        {
+            T * p = ptr();
+            nvDebugCheck(p != NULL);
+            return p;
+        }
 
-private:
+        T * ptr() const
+        {
+            if (m_proxy != NULL) {
+                return static_cast<T *>(m_proxy->ptr());
+            }
+            return NULL;
+        }
 
-	/** Set this pointer. */
-	void set( BaseClass * p )
-	{
-		if( m_ptr != p ) {
-			if( m_ptr ) m_ptr->release();
-			if( p ) p->addRef();
-			m_ptr = p;
-		}
-	}
+    private:
 
-private:
+        mutable SmartPtr<WeakProxy> m_proxy;
 
-	BaseClass * m_ptr;
+    };
 
-};
 
 } // nv namespace
 

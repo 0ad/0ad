@@ -1,15 +1,25 @@
-NVIDIA Texture Tools version 2.0.8
- * Fix float to fixed image conversion. Patch provided by Alex Pfaffe. Fixes issue 121.
- * ColorBlock::isSingleColor compares only RGB channels. Fixes issue 115.
- * Fix cmake build in msvc. Fixes issue 111.
- * Better estimate principal component. Fixes issue 120.
+NVIDIA Texture Tools version 2.1.1
+ * Various fixes.
+
+NVIDIA Texture Tools version 2.1.0
+ * Too many changes to list here.
+ * CTX1 CUDA compressor.
+ * DXT1n CUDA compressor.
+ * Support alpha premultiplication by Charles Nicholson. See issue 30.
+ * Improved decompressor tool submitted by Amorilia. See issue 41.
+ * Add support for YCoCg color transform. Fixes issue 18.
+ * Add support for linear and swizzle transforms. Fixes issue 4.
+ * Fix loading of EXR files using OpenEXR.
+ * Use FreeImage as primary image loading library. Fixes issue 31. Reverted.
+ * Output swizzle codes like AMD's tools.
+ * Added support for saving PNGs by Frank Richter. Fixes issue 79 and 80.
+ * Added gnome thumbnailer by Frank Richter. Fixes issue 82.
+ * Cleanup sources removing files that are not strictly required.
 
 NVIDIA Texture Tools version 2.0.7
  * Output correct exit codes. Fixes issue 92.
  * Fix thread-safety errors. Fixes issue 90.
  * Add SIMD power method. Fixes issue 94.
- * Interact better with applications that already use CUDA.
- * Faster CPU compression.
 
 NVIDIA Texture Tools version 2.0.6
  * Fix dll version checking.

@@ -1,4 +1,5 @@
-// Copyright NVIDIA Corporation 2007 -- Ignacio Castano <icastano@nvidia.com>
+// Copyright (c) 2009-2011 Ignacio Castano <castano@gmail.com>
+// Copyright (c) 2007-2009 NVIDIA Corporation -- Ignacio Castano <icastano@nvidia.com>
 // 
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -21,93 +22,61 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 // OTHER DEALINGS IN THE SOFTWARE.
 
-#ifndef NV_TT_INPUTOPTIONS_H
-#define NV_TT_INPUTOPTIONS_H
+#ifndef NVTT_INPUTOPTIONS_H
+#define NVTT_INPUTOPTIONS_H
 
-#include <nvcore/Ptr.h>
-#include <nvmath/Vector.h>
-#include <nvmath/Matrix.h>
-#include <nvimage/Image.h>
 #include "nvtt.h"
+
+#include "nvmath/Vector.h"
+
 
 namespace nvtt
 {
 
-	struct InputOptions::Private
-	{
-		Private() : images(NULL) {}
-		
-		WrapMode wrapMode;
-		TextureType textureType;
-		InputFormat inputFormat;
-		AlphaMode alphaMode;
-		
-		uint faceCount;
-		uint mipmapCount;
-		uint imageCount;
-		
-		struct InputImage;
-		InputImage * images;
-		
-		// Gamma conversion.
-		float inputGamma;
-		float outputGamma;
-		
-		// Color transform.
-		ColorTransform colorTransform;
-		nv::Matrix linearTransform;
-		
-		// Mipmap generation options.
-		bool generateMipmaps;
-		int maxLevel;
-		MipmapFilter mipmapFilter;
-		
-		// Kaiser filter parameters.
-		float kaiserWidth;
-		float kaiserAlpha;
-		float kaiserStretch;
-		
-		// Normal map options.
-		bool isNormalMap;
-		bool normalizeMipmaps;
-		bool convertToNormalMap;
-		nv::Vector4 heightFactors;
-		nv::Vector4 bumpFrequencyScale;
-		
-		// Adjust extents.
-		uint maxExtent;
-		RoundMode roundMode;
-		
-		// @@ These are computed in nvtt::compress, so they should be mutable or stored elsewhere...
-		mutable uint targetWidth;
-		mutable uint targetHeight;
-		mutable uint targetDepth;
-		mutable uint targetMipmapCount;
-		
-		void computeTargetExtents() const;
-		
-		int realMipmapCount() const;
-		
-		const nv::Image * image(uint face, uint mipmap) const;
-		const nv::Image * image(uint idx) const;
+    struct InputOptions::Private
+    {
+        Private() : images(NULL) {}
 
-	};
+        WrapMode wrapMode;
+        TextureType textureType;
+        InputFormat inputFormat;
+        AlphaMode alphaMode;
 
-	// Internal image structure.
-	struct InputOptions::Private::InputImage
-	{
-		InputImage() {}
-		
-		int mipLevel;
-		int face;
-		
-		int width;
-		int height;
-		int depth;
-		
-		nv::AutoPtr<nv::Image> data;
-	};
+        uint width;
+        uint height;
+        uint depth;
+        uint faceCount;
+        uint mipmapCount;
+        uint imageCount;
+
+        void ** images;
+
+        // Gamma conversion.
+        float inputGamma;
+        float outputGamma;
+
+        // Mipmap generation options.
+        bool generateMipmaps;
+        int maxLevel;
+        MipmapFilter mipmapFilter;
+
+        // Kaiser filter parameters.
+        float kaiserWidth;
+        float kaiserAlpha;
+        float kaiserStretch;
+
+        // Normal map options.
+        bool isNormalMap;
+        bool normalizeMipmaps;
+        bool convertToNormalMap;
+        nv::Vector4 heightFactors;
+        nv::Vector4 bumpFrequencyScale;
+
+        // Adjust extents.
+        uint maxExtent;
+        RoundMode roundMode;
+    };
 
 } // nvtt namespace
 
-#endif // NV_TT_INPUTOPTIONS_H
+#endif // NVTT_INPUTOPTIONS_H

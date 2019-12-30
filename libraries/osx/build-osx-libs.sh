@@ -1002,7 +1002,7 @@ then
 
   # Could use CMAKE_OSX_DEPLOYMENT_TARGET and CMAKE_OSX_SYSROOT
   # but they're not as flexible for cross-compiling
-  # Disable optional libs that we don't need (avoids some conflicts with MacPorts)
+  # Disable png support (avoids some conflicts with MacPorts)
   (cmake .. \
       -DCMAKE_LINK_FLAGS="$LDFLAGS" \
       -DCMAKE_C_FLAGS="$CFLAGS" \
@@ -1010,19 +1010,13 @@ then
       -DCMAKE_BUILD_TYPE=Release \
       -DBINDIR=bin \
       -DLIBDIR=lib \
-      -DGLUT=0 \
-      -DGLEW=0 \
-      -DCG=0 \
-      -DCUDA=0 \
-      -DOPENEXR=0 \
-      -DJPEG=0 \
       -DPNG=0 \
-      -DTIFF=0 \
       -G "Unix Makefiles" \
     && make clean && make nvtt ${JOBS}) || die "NVTT build failed"
   popd
 
   mkdir -p ../lib
+  cp build/src/bc*/libbc*.a ../lib/
   cp build/src/nv*/libnv*.a ../lib/
   cp build/src/nvtt/squish/libsquish.a ../lib/
   popd

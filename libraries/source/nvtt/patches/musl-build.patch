@@ -1,0 +1,36 @@
+---
+ src/nvmath/nvmath.h       | 4 +---
+ src/nvthread/nvthread.cpp | 2 ++
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/nvmath/nvmath.h b/src/nvmath/nvmath.h
+index 439e599575..1f1ff1fcbc 100644
+--- a/src/nvmath/nvmath.h
++++ b/src/nvmath/nvmath.h
+@@ -187,10 +187,8 @@ namespace nv
+     {
+ #if NV_OS_WIN32 || NV_OS_XBOX
+         return _isnan(f) != 0;
+-#elif NV_OS_DARWIN || NV_OS_FREEBSD || NV_OS_NETBSD || NV_OS_OPENBSD || NV_OS_ORBIS
++#elif NV_OS_DARWIN || NV_OS_FREEBSD || NV_OS_NETBSD || NV_OS_OPENBSD || NV_OS_ORBIS || NV_OS_LINUX
+         return isnan(f);
+-#elif NV_OS_LINUX
+-        return isnanf(f);
+ #else
+ #   error "isNan not supported"
+ #endif
+diff --git a/libraries/source/nvtt/src/src/nvthread/nvthread.cpp b/libraries/source/nvtt/src/src/nvthread/nvthread.cpp
+index d8564d391b..967b886d0f 100644
+--- a/src/nvthread/nvthread.cpp
++++ b/src/nvthread/nvthread.cpp
+@@ -8,7 +8,9 @@
+ #include "Win32.h"
+ #elif NV_OS_UNIX
+ #include <sys/types.h>
++#if !NV_OS_LINUX
+ #include <sys/sysctl.h>
++#endif
+ #include <unistd.h>
+ #elif NV_OS_DARWIN
+ #import <stdio.h>
+--

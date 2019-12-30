@@ -28,7 +28,7 @@
 #include "colourblock.h"
 #include <cfloat>
 
-namespace squish {
+namespace nvsquish {
 
 ClusterFit::ClusterFit()
 {
@@ -109,7 +109,7 @@ void ClusterFit::SetMetric(float r, float g, float b)
 float ClusterFit::GetBestError() const
 {
 #if SQUISH_USE_SIMD
-	return m_besterror.GetVec3().X();
+	return m_besterror.GetX();
 #else
 	return m_besterror;
 #endif
@@ -280,15 +280,6 @@ void ClusterFit::Compress4( void* block )
 					m_beta[k] = m_weights[k];
 				}
 
-				/*unsigned int permutation = 0;
-				for(int p = 0; p < 16; p++) {
-					permutation |= indices[p] << (p * 2);
-				}
-				if (debug) printf("%X:\t", permutation);
-
-				if (debug && permutation == 0x55FFFFAA) __debugbreak();
-				*/
-
 				// solve a least squares problem to place the endpoints
 #if SQUISH_USE_SIMD
 				Vec4 start, end;
@@ -392,8 +383,7 @@ Vec4 ClusterFit::SolveLeastSquares( Vec4& start, Vec4& end ) const
 
 	// clamp to the grid
 	Vec4 const grid( 31.0f, 63.0f, 31.0f, 0.0f );
-//	Vec4 const gridrcp( 1.0f/31.0f, 1.0f/63.0f, 1.0f/31.0f, 0.0f );
-	Vec4 const gridrcp( 0.03227752766457f, 0.01583151765563f, 0.03227752766457f, 0.0f ); // IC: use approximate grid fitting.
+	Vec4 const gridrcp( 1.0f/31.0f, 1.0f/63.0f, 1.0f/31.0f, 0.0f );
 	Vec4 const onethird = VEC4_CONST( 1.0f/3.0f );
 	Vec4 const twothirds = VEC4_CONST( 2.0f/3.0f );
 	a = Truncate( MultiplyAdd( grid, a, half ) )*gridrcp;
@@ -468,8 +458,7 @@ float ClusterFit::SolveLeastSquares( Vec3& start, Vec3& end ) const
 
 	// clamp to the grid
 	Vec3 const grid( 31.0f, 63.0f, 31.0f );
-	//Vec3 const gridrcp( 1.0f/31.0f, 1.0f/63.0f, 1.0f/31.0f );
-	Vec3 const gridrcp(0.03227752766457f, 0.01583151765563f, 0.03227752766457f); // IC: use approximate grid fitting.
+	Vec3 const gridrcp( 1.0f/31.0f, 1.0f/63.0f, 1.0f/31.0f );
 	Vec3 const half( 0.5f );
 	a = Floor( grid*a + half )*gridrcp;
 	b = Floor( grid*b + half )*gridrcp;

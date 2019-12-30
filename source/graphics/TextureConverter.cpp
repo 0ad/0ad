@@ -52,6 +52,10 @@ struct BufferOutputHandler : public nvtt::OutputHandler
 		memcpy(&buffer[off], data, size);
 		return true;
 	}
+
+	virtual void endImage()
+	{
+	}
 };
 
 /**
@@ -64,8 +68,6 @@ struct CTextureConverter::ConversionRequest
 	nvtt::InputOptions inputOptions;
 	nvtt::CompressionOptions compressionOptions;
 	nvtt::OutputOptions outputOptions;
-	bool isDXT1a; // see comment in RunThread
-	bool is8bpp;
 };
 
 /**
@@ -383,9 +385,6 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 	else
 		request->inputOptions.setAlphaMode(nvtt::AlphaMode_None);
 
-	request->isDXT1a = false;
-	request->is8bpp = false;
-
 	if (settings.format == FMT_RGBA)
 	{
 		request->compressionOptions.setFormat(nvtt::Format_RGBA);
@@ -396,7 +395,6 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 	{
 		request->compressionOptions.setFormat(nvtt::Format_RGBA);
 		request->compressionOptions.setPixelFormat(8, 0x00, 0x00, 0x00, 0xFF);
-		request->is8bpp = true;
 	}
 	else if (!hasAlpha)
 	{
@@ -406,7 +404,6 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 	else if (settings.format == FMT_DXT1)
 	{
 		request->compressionOptions.setFormat(nvtt::Format_DXT1a);
-		request->isDXT1a = true;
 	}
 	else if (settings.format == FMT_DXT3)
 	{
@@ -577,19 +574,6 @@ void CTextureConverter::RunThread(CTextureConverter* textureConverter)
 			nvtt::Compressor compressor;
 			result->ret = compressor.process(request->inputOptions, request->compressionOptions, request->outputOptions);
 		}
-
-		// Ugly hack: NVTT 2.0 doesn't set DDPF_ALPHAPIXELS for DXT1a, so we can't
-		// distinguish it from DXT1. (It's fixed in trunk by
-		// http://code.google.com/p/nvidia-texture-tools/source/detail?r=924&path=/trunk).
-		// Rather than using a trunk NVTT (unstable, makes packaging harder)
-		// or patching our copy (makes packaging harder), we'll just manually
-		// set the flag here.
-		if (request->isDXT1a && result->ret && result->output.buffer.size() > 80)
-			result->output.buffer[80] |= 1; // DDPF_ALPHAPIXELS in DDS_PIXELFORMAT.dwFlags
-		// Ugly hack: NVTT always sets DDPF_RGB, even if we're trying to output 8-bit
-		// alpha-only DDS with no RGB components. Unset that flag.
-		if (request->is8bpp)
-			result->output.buffer[80] &= ~0x40; // DDPF_RGB in DDS_PIXELFORMAT.dwFlags
 
 		// Push the result onto the queue
 		std::lock_guard<std::mutex> wait_lock(textureConverter->m_WorkerMutex);

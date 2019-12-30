@@ -1,4 +1,5 @@
-// Copyright NVIDIA Corporation 2007 -- Ignacio Castano <icastano@nvidia.com>
+// Copyright (c) 2009-2011 Ignacio Castano <castano@gmail.com>
+// Copyright (c) 2007-2009 NVIDIA Corporation -- Ignacio Castano <icastano@nvidia.com>
 // 
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -29,21 +30,29 @@
 namespace nv
 {
 	struct ColorBlock;
+    struct ColorSet;
+    struct AlphaBlock4x4;
 	struct BlockDXT1;
 	struct BlockDXT3;
 	struct BlockDXT5;
 	struct AlphaBlockDXT3;
 	struct AlphaBlockDXT5;
+    class Vector3;
 
 	namespace QuickCompress
 	{
-		void compressDXT1(const ColorBlock & rgba, BlockDXT1 * dxtBlock);
-		void compressDXT1a(const ColorBlock & rgba, BlockDXT1 * dxtBlock);
+		void compressDXT1(const ColorBlock & src, BlockDXT1 * dst);
+		void compressDXT1a(const ColorBlock & src, BlockDXT1 * dst);
 		
-		void compressDXT3(const ColorBlock & rgba, BlockDXT3 * dxtBlock);
+		void compressDXT3(const ColorBlock & src, BlockDXT3 * dst);
 		
-		void compressDXT5A(const ColorBlock & rgba, AlphaBlockDXT5 * dxtBlock, int iterationCount=8);
-		void compressDXT5(const ColorBlock & rgba, BlockDXT5 * dxtBlock, int iterationCount=8);
+		void compressDXT5A(const ColorBlock & src, AlphaBlockDXT5 * dst, int iterationCount=8);
+		void compressDXT5A(const AlphaBlock4x4 & src, AlphaBlockDXT5 * dst, int iterationCount=8);
+
+		void compressDXT5(const ColorBlock & src, BlockDXT5 * dst, int iterationCount=8);
+
+        void outputBlock4(const ColorSet & set, const Vector3 & start, const Vector3 & end, BlockDXT1 * block);
+        void outputBlock3(const ColorSet & set, const Vector3 & start, const Vector3 & end, BlockDXT1 * block);
 	}
 } // nv namespace
 
