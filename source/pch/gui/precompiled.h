@@ -22,11 +22,11 @@
 # pragma warning(disable:4250)	// "inherits 'IGUITextOwner::IGUITextOwner::UpdateCachedSize' via dominance"
 #endif
 
-#if HAVE_PCH
+#if CONFIG_ENABLE_PCH
 
 #include "gui/CGUI.h"
 #include "gui/ObjectBases/IGUIObject.h"
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptInterface.h"
 
-#endif // HAVE_PCH
+#endif // CONFIG_ENABLE_PCH

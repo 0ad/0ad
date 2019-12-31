@@ -456,9 +456,10 @@ function project_add_contents(source_root, rel_source_dirs, rel_include_dirs, ex
 			pchheader(pch_dir.."precompiled.h")
 		filter {}
 		pchsource(pch_dir.."precompiled.cpp")
-		defines { "USING_PCH" }
+		defines { "CONFIG_ENABLE_PCH=1" }
 		files { pch_dir.."precompiled.h", pch_dir.."precompiled.cpp" }
 	else
+		defines { "CONFIG_ENABLE_PCH=0" }
 		flags { "NoPCH" }
 	end
 

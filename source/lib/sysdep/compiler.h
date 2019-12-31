@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 Wildfire Games.
+/* Copyright (c) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -71,17 +71,6 @@
 #ifndef __has_cpp_attribute
 # define __has_cpp_attribute(x) 0
 #endif
-
-
-// are PreCompiled Headers supported?
-#if MSC_VERSION
-# define HAVE_PCH 1
-#elif defined(USING_PCH)
-# define HAVE_PCH 1
-#else
-# define HAVE_PCH 0
-#endif
-
 
 // check if compiling in pure C mode (not C++) with support for C99.
 // (this is more convenient than testing __STDC_VERSION__ directly)

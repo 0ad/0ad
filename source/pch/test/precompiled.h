@@ -17,7 +17,7 @@
 
 #include "lib/precompiled.h"	// common precompiled header
 
-#if HAVE_PCH
+#if CONFIG_ENABLE_PCH
 
 #include "simulation2/system/ComponentTest.h"
 #include "lib/self_test.h"
@@ -26,4 +26,4 @@
 #include <cxxtest/TestRunner.h>
 #include <cxxtest/RealDescriptions.h>
 
-#endif // HAVE_PCH
+#endif // CONFIG_ENABLE_PCH
