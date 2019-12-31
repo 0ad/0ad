@@ -14,14 +14,14 @@
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Peto (wt-ts) <peter.tuharsky@gmail.com>, 2015-2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
-# Angen <slavomir.slovenkai@gmail.com>, 2017-2018
+# Angen <slavomir.slovenkai@gmail.com>, 2017-2019
 # Tom Hanax, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-25 08:08+0000\n"
-"PO-Revision-Date: 2019-11-25 16:09+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2019-12-28 21:24+0000\n"
+"Last-Translator: Angen <slavomir.slovenkai@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +43,7 @@ msgstr "%(hotkey)s: Zrušiť Históriu. "
 #: gui/civinfo/civinfo.js:85
 #, javascript-format
 msgid "• %(string)s"
-msgstr ""
+msgstr "• %(string)s"
 
 #: gui/civinfo/civinfo.js:113
 #, javascript-format
@@ -1393,11 +1393,11 @@ msgstr "%(hotkey)s: Dozveď sa viac o civilizáciách v 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:49 gui/replaymenu/replay_filters.js:142
 msgid "Single-player"
-msgstr ""
+msgstr "Hra jedného hráča"
 
 #: gui/pregame/MainMenuItems.js:50
 msgid "Click here to start a new single-player game."
-msgstr ""
+msgstr "Kliknutím sem začnete novú hru jedného hráča."
 
 #: gui/pregame/MainMenuItems.js:53
 msgid "Matches"
@@ -1882,7 +1882,7 @@ msgstr "%(min)s - %(max)s min"
 
 #: gui/replaymenu/replay_filters.js:142
 msgid "Single-player and multiplayer"
-msgstr ""
+msgstr "Hra jedného i viacerých hráčov"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
@@ -2667,11 +2667,11 @@ msgstr "Prekladatelia"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "Ako vás majú volať počas hier jedného hráča."
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player Name (Single-player)"
-msgstr ""
+msgstr "Hráčske meno (Hra jedného hráča)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
@@ -2683,7 +2683,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr ""
+msgstr "Pozastav hru jedného hráča, ak okno s hrou nebude aktívne."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background Pause"
