@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant>
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/shields/thracian_oval.xml" attachpoint="shield"/>
@@ -11,30 +11,49 @@
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
         <prop actor="props/units/capes/cape_long_player_skirmisher.xml" attachpoint="root"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="hele-tunic-3-psiloi-b">
       <textures>
-        <texture file="skeletal/mace_thureophoros.dds" name="baseTex"/>
+        <texture file="skeletal/hele_tunic_3_psiloi_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="hele-epilektoi-2">
+      <textures>
+        <texture file="skeletal/hele_epilektoi_2.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="hele-epilektoi-6">
+      <textures>
+        <texture file="skeletal/hele_epilektoi_6.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="hele-epilektoi-9">
+      <textures>
+        <texture file="skeletal/hele_epilektoi_9.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Hele Thracian Helmet-02">
+    <variant frequency="3" name="Hele Pilos Helmet-02">
       <props>
         <prop actor="props/units/helmets/hele_pilos_a2.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Hele Thracian Helmet-02">
+    <variant frequency="9" name="Hele Thracian Helmet-02">
       <props>
         <prop actor="props/units/helmets/hele_thracian_b2_crested.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Hele Thracian Helmet-05">
+    <variant frequency="9" name="Hele Thracian Helmet-05">
       <props>
         <prop actor="props/units/helmets/hele_thracian_b5_crested.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant file="biped/base_skirmisher_fast.xml" name="Skirmisher-Shield-Fast" frequency="1"/>
+    <variant file="biped/base_skirmisher_fast.xml" frequency="1" name="Skirmisher-Shield-Fast"/>
     <variant file="biped/attack_ranged_javelinist.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/death_cape_long.xml"/>

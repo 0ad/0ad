@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -8,17 +8,34 @@
         <prop actor="props/units/shields/thebes_sacred_band.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/heads/new/head_hele_e.xml" attachpoint="head"/>
-        <prop actor="props/units/capes/cape_long_player.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/sheath_xiphos.xml" attachpoint="sheath_01_L"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Hele Pilos Helmet-01">
+    <variant frequency="1" name="Greave-01">
+      <props>
+        <prop actor="props/units/armor/greave_11_bronze_l.xml" attachpoint="leg_L"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-02">
+      <props>
+        <prop actor="props/units/armor/greave_07_bronze_l.xml" attachpoint="leg_L"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-03">
+      <props>
+        <prop actor="props/units/armor/greave_09_bronze_l.xml" attachpoint="leg_L"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="Hele Pilos Helmet-01">
       <props>
         <prop actor="props/units/helmets/hele_pilos.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Hele Boeotian Helmet-02">
+    <variant frequency="9" name="Hele Boeotian Helmet-02">
       <props>
         <prop actor="props/units/helmets/hele_boeotian_crest.xml" attachpoint="helmet"/>
       </props>
@@ -65,36 +82,41 @@
     </variant>
   </group>
   <group>
-    <variant frequency="3" name="armour-var-f">
+    <variant frequency="1" name="cuirass-1b">
       <textures>
-        <texture file="skeletal/hele_isp_e_f.dds" name="baseTex"/>
+        <texture file="skeletal/hele_cuirass_1_b.png" name="baseTex"/>
+        <texture file="skeletal/hele_cuirass_1_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="2" name="armour-var-sb">
+    <variant frequency="1" name="theb-linothorax-1a">
       <textures>
-        <texture file="skeletal/hele_thebes_sacredband.dds" name="baseTex"/>
+        <texture file="skeletal/theb_linothorax_1_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="armour-var-g">
+    <variant frequency="1" name="theb-linothorax-1b">
       <textures>
-        <texture file="skeletal/hele_isp_e_g.dds" name="baseTex"/>
+        <texture file="skeletal/theb_linothorax_1_b.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="armour-bronze">
+    <variant frequency="1" name="mace-linothorax-1c">
       <textures>
-        <texture file="skeletal/hele_pezhetairoi_2.dds" name="baseTex"/>
+        <texture file="skeletal/mace_linothorax_1_c.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="armour-black">
+    <variant frequency="1" name="scale-5a">
       <textures>
-        <texture file="skeletal/hele_csw_a_2.dds" name="baseTex"/>
+        <texture file="skeletal/hele_scale_5_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_scale_5_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant file="biped/base_hoplite_fast.xml" name="Hoplite-Fast" frequency="1"/>
+    <variant file="biped/base_hoplite_fast.xml" frequency="1" name="Hoplite-Fast"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/death_cape_long.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
