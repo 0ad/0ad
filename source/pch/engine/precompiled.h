@@ -21,9 +21,9 @@
 
 #include "ps/Pyrogenesis.h"	// old error system
 
-#if HAVE_PCH
+#if CONFIG_ENABLE_PCH
 
 #include "SDL.h"
 #include "SDL_endian.h"
 
-#endif // HAVE_PCH
+#endif // CONFIG_ENABLE_PCH

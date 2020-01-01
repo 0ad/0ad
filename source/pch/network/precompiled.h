@@ -18,10 +18,10 @@
 #define MINIMAL_PCH 2
 #include "lib/precompiled.h"	// common precompiled header
 
-#if HAVE_PCH
+#if CONFIG_ENABLE_PCH
 
 // These headers are included by almost all compilation units.
 #include "ps/CStr.h"
 #include "ps/ThreadUtil.h"
 
-#endif // HAVE_PCH
+#endif // CONFIG_ENABLE_PCH

@@ -21,7 +21,7 @@
 // Minimal is a bit *too* minimal to let things compile, so include a few more headers
 #include "lib/debug.h"
 
-#if HAVE_PCH
+#if CONFIG_ENABLE_PCH
 
 // The simulation has many header files (component interfaces) which are quick to compile on their own
 // but bring in a lot of headers indirectly. Adding these to the precompiled header
@@ -30,4 +30,4 @@
 #include "simulation2/system/Interface.h"
 #include "simulation2/system/InterfaceScripted.h"
 
-#endif // HAVE_PCH
+#endif // CONFIG_ENABLE_PCH
