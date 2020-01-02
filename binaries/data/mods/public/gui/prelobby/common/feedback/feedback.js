@@ -22,8 +22,13 @@ function onTick()
 		return;
 
 	for (let message of messages)
+	{
 		if (message.type == "system" && message.level)
 			g_LobbyMessages[message.level](message);
+
+		if (!Engine.HasXmppClient())
+			break;
+	}
 }
 
 function setFeedback(feedbackText)

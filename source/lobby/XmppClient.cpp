@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -279,6 +279,7 @@ void XmppClient::onDisconnect(gloox::ConnectionError error)
 	m_Profile.clear();
 	m_HistoricGuiMessages.clear();
 	m_isConnected = false;
+	m_initialLoadComplete = false;
 
 	CreateGUIMessage(
 		"system",
@@ -699,7 +700,7 @@ bool XmppClient::GuiPollHasPlayerListUpdate()
 
 JS::Value XmppClient::GuiPollNewMessages(const ScriptInterface& scriptInterface)
 {
-	if (!m_initialLoadComplete || m_GuiMessageQueue.empty())
+	if ((m_isConnected && !m_initialLoadComplete) || m_GuiMessageQueue.empty())
 		return JS::UndefinedValue();
 
 	JSContext* cx = scriptInterface.GetContext();
