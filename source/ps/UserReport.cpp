@@ -29,6 +29,7 @@
 #include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
 #include "ps/Profiler2.h"
+#include "ps/Pyrogenesis.h"
 
 #include <condition_variable>
 #include <fstream>

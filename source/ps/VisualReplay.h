@@ -18,7 +18,9 @@
 #ifndef INCLUDED_REPlAY
 #define INCLUDED_REPlAY
 
+#include "lib/os_path.h"
 #include "scriptinterface/ScriptInterface.h"
+
 class CSimulation2;
 class CGUIManager;
 

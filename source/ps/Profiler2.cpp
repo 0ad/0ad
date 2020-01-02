@@ -25,9 +25,11 @@
 #include "Profiler2.h"
 
 #include "lib/allocators/shared_ptr.h"
+#include "lib/os_path.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Profiler2GPU.h"
+#include "ps/Pyrogenesis.h"
 #include "third_party/mongoose/mongoose.h"
 
 #include <iomanip>

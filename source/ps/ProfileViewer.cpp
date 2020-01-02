@@ -33,6 +33,7 @@
 #include "ps/Filesystem.h"
 #include "ps/Hotkey.h"
 #include "ps/Profile.h"
+#include "ps/Pyrogenesis.h"
 #include "renderer/Renderer.h"
 #include "scriptinterface/ScriptInterface.h"
 
