@@ -43,6 +43,7 @@
 #include "ps/Game.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "ps/Pyrogenesis.h"
 #include "ps/VideoMode.h"
 #include "renderer/Renderer.h"
 #include "maths/MathUtil.h"

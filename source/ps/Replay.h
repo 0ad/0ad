@@ -18,6 +18,7 @@
 #ifndef INCLUDED_REPLAY
 #define INCLUDED_REPLAY
 
+#include "lib/os_path.h"
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptTypes.h"
 
