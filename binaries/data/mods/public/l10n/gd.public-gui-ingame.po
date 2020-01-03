@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-25 08:08+0000\n"
-"PO-Revision-Date: 2019-11-25 15:07+0000\n"
+"POT-Creation-Date: 2019-12-30 08:12+0000\n"
+"PO-Revision-Date: 2019-12-30 15:26+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -123,7 +123,7 @@ msgid "Paused by %(players)s"
 msgstr "Air a chur ’na stad le %(players)s"
 
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:262
-#: gui/session/selection_details.js:278 gui/session/selection_panels.js:594
+#: gui/session/selection_details.js:278 gui/session/selection_panels.js:597
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -232,9 +232,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:252 gui/session/unit_actions.js:562
-#: gui/session/unit_actions.js:571 gui/session/unit_actions.js:585
-#: gui/session/unit_actions.js:907
+#: gui/session/selection_details.js:252 gui/session/unit_actions.js:573
+#: gui/session/unit_actions.js:582 gui/session/unit_actions.js:600
+#: gui/session/unit_actions.js:932
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Buannachd: %(gain)s"
@@ -300,54 +300,54 @@ msgstr "Tog caismeachd!"
 msgid "End of alert."
 msgstr "Deireadh na caismeachd."
 
-#: gui/session/selection_panels.js:376
+#: gui/session/selection_panels.js:379
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "A-mach le %(name)s"
 
-#: gui/session/selection_panels.js:377
+#: gui/session/selection_panels.js:380
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Briog aon turas ach an dig 1 dhiubh a-mach. Shift-bhriog ach an dig gach saighdear dhen t-seòrsa seo a-mach."
 
-#: gui/session/selection_panels.js:379 gui/session/selection_panels.js:869
+#: gui/session/selection_panels.js:382 gui/session/selection_panels.js:872
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Cluicheadair: %(playername)s"
 
-#: gui/session/selection_panels.js:414
+#: gui/session/selection_panels.js:417
 msgid "Lock Gate"
 msgstr "Glais an geata"
 
-#: gui/session/selection_panels.js:420
+#: gui/session/selection_panels.js:423
 msgid "Unlock Gate"
 msgstr "Neo-ghlais an geata"
 
-#: gui/session/selection_panels.js:470
+#: gui/session/selection_panels.js:473
 msgid "Pack"
 msgstr "Paisg"
 
-#: gui/session/selection_panels.js:478
+#: gui/session/selection_panels.js:481
 msgid "Unpack"
 msgstr "Neo-phaisg"
 
-#: gui/session/selection_panels.js:486
+#: gui/session/selection_panels.js:489
 msgid "Cancel Packing"
 msgstr "Sguir dhen phasgadh"
 
-#: gui/session/selection_panels.js:494
+#: gui/session/selection_panels.js:497
 msgid "Cancel Unpacking"
 msgstr "Sguir dhen neo-phasgadh"
 
-#: gui/session/selection_panels.js:581
+#: gui/session/selection_panels.js:584
 msgid "Insufficient population capacity:"
 msgstr "Chan fhoghainn an tomhas-sluaigh:"
 
-#: gui/session/selection_panels.js:582
+#: gui/session/selection_panels.js:585
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:745
+#: gui/session/selection_panels.js:748
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
@@ -356,31 +356,31 @@ msgstr[1] "%(number)s eintiteas dhen chlas %(class)s"
 msgstr[2] "%(number)s eintiteasan dhen chlas %(class)s"
 msgstr[3] "%(number)s eintiteas dhen chlas %(class)s"
 
-#: gui/session/selection_panels.js:751
+#: gui/session/selection_panels.js:754
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Air fhàgail: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:752
+#: gui/session/selection_panels.js:755
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:1062
+#: gui/session/selection_panels.js:1064
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1067
+#: gui/session/selection_panels.js:1069
 #, javascript-format
 msgid "Upgrade to %(name)s."
 msgstr ""
 
-#: gui/session/selection_panels.js:1084
+#: gui/session/selection_panels.js:1086
 msgid "Cancel Upgrading"
 msgstr "Sgur dhen àrdachadh"
 
-#: gui/session/selection_panels.js:1089
+#: gui/session/selection_panels.js:1091
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "Cha ghabh nì àrdachadh a tha ’ga àrdachadh mar-thà."
 
@@ -475,125 +475,129 @@ msgstr "%(action)s gus %(number)s a thrèanadh."
 msgid "Shift-click"
 msgstr "Shift-bhriog"
 
-#: gui/session/unit_actions.js:560
+#: gui/session/unit_actions.js:571
 msgid "Origin trade market."
 msgstr "Margaid thùsail."
 
-#: gui/session/unit_actions.js:566
+#: gui/session/unit_actions.js:577
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Dèan briogadh deas air margaid eile gus a shuidheachadh mar cheann-uidhe a’ mhalairt."
 
-#: gui/session/unit_actions.js:570
+#: gui/session/unit_actions.js:581
 msgid "Destination trade market."
 msgstr "Margaid-uidhe."
 
-#: gui/session/unit_actions.js:577
+#: gui/session/unit_actions.js:588
 msgid "Right-click to set as origin trade market"
 msgstr "Dèan briogadh deas gus a’ mhargaid a shuidheachadh mar thùs a’ mhalairt"
 
-#: gui/session/unit_actions.js:584
+#: gui/session/unit_actions.js:595 gui/session/unit_actions.js:938
+msgid "This market is too close to the origin market."
+msgstr ""
+
+#: gui/session/unit_actions.js:599
 msgid "Right-click to set as destination trade market."
 msgstr "Dèan briogadh deas gus a’ mhargaid a shuidheachadh mar cheann-uidhe a’ mhalairt"
 
-#: gui/session/unit_actions.js:637 gui/session/unit_actions.js:852
+#: gui/session/unit_actions.js:660 gui/session/unit_actions.js:876
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "An gearastan an-dràsta: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:904
+#: gui/session/unit_actions.js:929
 msgid "Right-click to establish a default route for new traders."
 msgstr "Dèan briogadh deas gus slighe-mhalairt bhunaiteach a’ stèidheachadh do luchd-malairt ùr."
 
-#: gui/session/unit_actions.js:908
+#: gui/session/unit_actions.js:933
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Dùil air buannachd: %(gain)s"
 
-#: gui/session/unit_actions.js:1030 gui/session/unit_actions.js:1358
+#: gui/session/unit_actions.js:1071 gui/session/unit_actions.js:1399
 msgid "Unload All."
 msgstr "A-mach leotha uile."
 
-#: gui/session/unit_actions.js:1048
+#: gui/session/unit_actions.js:1089
 msgid "Destroy the selected units or buildings."
 msgstr "Mill na h-aonadan no togalaichean a thagh thu."
 
-#: gui/session/unit_actions.js:1050
+#: gui/session/unit_actions.js:1091
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Cleachd %(hotkey)s gus còmhradh-dearbhaidh a sheachnadh."
 
-#: gui/session/unit_actions.js:1097
+#: gui/session/unit_actions.js:1138
 msgid "Abort the current order."
 msgstr "Sguir dhen òrdugh làithreach."
 
-#: gui/session/unit_actions.js:1116
+#: gui/session/unit_actions.js:1157
 msgid "Order the selected units to garrison in a building or unit."
 msgstr "Cuir na h-aonadan a thagh thu ’nan gearastan ann an togalach no ann an aonad eile."
 
-#: gui/session/unit_actions.js:1139
+#: gui/session/unit_actions.js:1180
 msgid "Unload"
 msgstr "A-mach leat"
 
-#: gui/session/unit_actions.js:1157
+#: gui/session/unit_actions.js:1198
 msgid "Order the selected units to repair a building or mechanical unit."
 msgstr "Thoir air na h-aonadan a thagh thu togalach no inneal a chàradh."
 
-#: gui/session/unit_actions.js:1176
+#: gui/session/unit_actions.js:1217
 msgid "Focus on Rally Point."
 msgstr "Fòcas air ceann-cruinneachaidh."
 
-#: gui/session/unit_actions.js:1211
+#: gui/session/unit_actions.js:1252
 msgid "Back to Work"
 msgstr "Tillibh dhan obair"
 
-#: gui/session/unit_actions.js:1230
+#: gui/session/unit_actions.js:1271
 msgid "Order the selected units to guard a building or unit."
 msgstr "Thoir air na h-aonadan a thagh thu togalach no aonad eile a dhìon."
 
-#: gui/session/unit_actions.js:1248
+#: gui/session/unit_actions.js:1289
 msgid "Remove guard"
 msgstr "Thoir geàrd air falbh"
 
-#: gui/session/unit_actions.js:1265
+#: gui/session/unit_actions.js:1306
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr "Iomlaideadh ⁊ malart"
 
-#: gui/session/unit_actions.js:1283
+#: gui/session/unit_actions.js:1324
 msgid "Patrol"
 msgstr "Cuairteachan"
 
-#: gui/session/unit_actions.js:1284
+#: gui/session/unit_actions.js:1325
 msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr "Thoir ionnsaigh air gach aonad nàimhdeil ris an tachras is leig seachad gach togalach."
 
-#: gui/session/unit_actions.js:1310
+#: gui/session/unit_actions.js:1351
 msgid "Press to allow allies to use this dropsite"
 msgstr "Brùth ach am faod na caidreabhaich an t-ionad-stòrais seo a chleachdadh"
 
-#: gui/session/unit_actions.js:1314
+#: gui/session/unit_actions.js:1355
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Brùth ach nach cleachd na caidreabhaich an t-ionad-stòrais seo"
 
-#: gui/session/unit_actions.js:1379
+#: gui/session/unit_actions.js:1420
 msgid "You are allowed to use this dropsite"
 msgstr "Faodaidh tu an t-ionad-stòrais seo a chleachdadh"
 
-#: gui/session/unit_actions.js:1384
+#: gui/session/unit_actions.js:1425
 msgid "The use of this dropsite is prohibited"
 msgstr "Chan fhaod thu an t-ionad-stòrais seo a chleachdadh"
 
-#: gui/session/unit_actions.js:1458
+#: gui/session/unit_actions.js:1499
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Feumaidh tu an nì a mharbhadh mus urrainn dhut a bhuain"
 
-#: gui/session/unit_actions.js:1461
+#: gui/session/unit_actions.js:1502
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Chan urrainn dhut a’ bhith seo a mhilleadh o nach eil an dàrna leth dhe na puingean-glacaidh agad"
 
-#: gui/session/unit_actions.js:1464
+#: gui/session/unit_actions.js:1505
 msgid "This entity is undeletable"
 msgstr "Cha ghabh an nì a sguabadh às"
 

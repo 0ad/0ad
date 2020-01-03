@@ -6,7 +6,7 @@
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2019
 # Asakura, 2015,2017
 # Cheung Hung, 2015
-# 이정희 <daemul72@gmail.com>, 2019
+# 이정희 <daemul72@gmail.com>, 2019-2020
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # jjj <triplej03@nate.com>, 2014
 # karubabu <karubabu@protonmail.com>, 2018
@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-25 08:08+0000\n"
-"PO-Revision-Date: 2019-11-25 16:09+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-01-02 17:36+0000\n"
+"Last-Translator: 이정희 <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1337,11 +1337,11 @@ msgstr "%(hotkey)s: 0 A.D. 에 나타난 많은 문명들에 대해 배웁니다
 
 #: gui/pregame/MainMenuItems.js:49 gui/replaymenu/replay_filters.js:142
 msgid "Single-player"
-msgstr ""
+msgstr "싱글 플레이어"
 
 #: gui/pregame/MainMenuItems.js:50
 msgid "Click here to start a new single-player game."
-msgstr ""
+msgstr "새로운 싱글 플레이어 게임을 시작하려면 여기를 클릭하십시오."
 
 #: gui/pregame/MainMenuItems.js:53
 msgid "Matches"
@@ -1820,7 +1820,7 @@ msgstr "%(min)s - %(max)s 분"
 
 #: gui/replaymenu/replay_filters.js:142
 msgid "Single-player and multiplayer"
-msgstr ""
+msgstr "싱글플레이어 및 멀티플레이어"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
@@ -2527,7 +2527,7 @@ msgstr "머리"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr ""
+msgstr "균형 조정"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
@@ -2605,23 +2605,23 @@ msgstr "번역자"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "싱글 플레이어 매치에서 어떻게 다루어야 할지."
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player Name (Single-player)"
-msgstr ""
+msgstr "플레이어 이름(싱글 플레이어)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr ""
+msgstr "멀티 플레이어 경기에서 어떻게 대응하고 싶은지 (로비 제외)."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player Name (Multiplayer)"
-msgstr ""
+msgstr "플레이어 이름 (멀티 플레이어)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr ""
+msgstr "게임창이 마우스 초점을 잃으면 싱글 플레이어 게임을 일시 중지합니다."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background Pause"

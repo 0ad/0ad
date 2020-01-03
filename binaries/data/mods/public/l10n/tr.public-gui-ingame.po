@@ -43,8 +43,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-25 08:08+0000\n"
-"PO-Revision-Date: 2019-11-26 04:34+0000\n"
+"POT-Creation-Date: 2019-12-30 08:12+0000\n"
+"PO-Revision-Date: 2019-12-31 17:00+0000\n"
 "Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -156,7 +156,7 @@ msgid "Paused by %(players)s"
 msgstr "%(players)s tarafından durduruldu"
 
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:262
-#: gui/session/selection_details.js:278 gui/session/selection_panels.js:594
+#: gui/session/selection_details.js:278 gui/session/selection_panels.js:597
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -261,9 +261,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:252 gui/session/unit_actions.js:562
-#: gui/session/unit_actions.js:571 gui/session/unit_actions.js:585
-#: gui/session/unit_actions.js:907
+#: gui/session/selection_details.js:252 gui/session/unit_actions.js:573
+#: gui/session/unit_actions.js:582 gui/session/unit_actions.js:600
+#: gui/session/unit_actions.js:932
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Kazanç: %(gain)s"
@@ -329,85 +329,85 @@ msgstr "Alarm çal!"
 msgid "End of alert."
 msgstr "Alarmı sonlandır."
 
-#: gui/session/selection_panels.js:376
+#: gui/session/selection_panels.js:379
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Kaldır %(name)s"
 
-#: gui/session/selection_panels.js:377
+#: gui/session/selection_panels.js:380
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Tek tıklamayla 1 tane kaldır. Shift + tıklama ile bu türdeki tümünü kaldır."
 
-#: gui/session/selection_panels.js:379 gui/session/selection_panels.js:869
+#: gui/session/selection_panels.js:382 gui/session/selection_panels.js:872
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Oyuncu: %(playername)s"
 
-#: gui/session/selection_panels.js:414
+#: gui/session/selection_panels.js:417
 msgid "Lock Gate"
 msgstr "Geçidi Kilitle"
 
-#: gui/session/selection_panels.js:420
+#: gui/session/selection_panels.js:423
 msgid "Unlock Gate"
 msgstr "Geçidi Aç"
 
-#: gui/session/selection_panels.js:470
+#: gui/session/selection_panels.js:473
 msgid "Pack"
 msgstr "Paketle"
 
-#: gui/session/selection_panels.js:478
+#: gui/session/selection_panels.js:481
 msgid "Unpack"
 msgstr "Paketi aç"
 
-#: gui/session/selection_panels.js:486
+#: gui/session/selection_panels.js:489
 msgid "Cancel Packing"
 msgstr "Paketlemeyi Durdu"
 
-#: gui/session/selection_panels.js:494
+#: gui/session/selection_panels.js:497
 msgid "Cancel Unpacking"
 msgstr "Paketi Açmayı Durdur"
 
-#: gui/session/selection_panels.js:581
+#: gui/session/selection_panels.js:584
 msgid "Insufficient population capacity:"
 msgstr "Yetersiz nüfüs kapasitesi:"
 
-#: gui/session/selection_panels.js:582
+#: gui/session/selection_panels.js:585
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:745
+#: gui/session/selection_panels.js:748
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(class)s sınıfındaki %(number)s varlıkları"
 msgstr[1] "%(class)s  sınıftaki %(number)s varlıkları  "
 
-#: gui/session/selection_panels.js:751
+#: gui/session/selection_panels.js:754
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Kalan: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:752
+#: gui/session/selection_panels.js:755
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:1062
+#: gui/session/selection_panels.js:1064
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
 msgstr "Şuna terfi ettir: %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1067
+#: gui/session/selection_panels.js:1069
 #, javascript-format
 msgid "Upgrade to %(name)s."
 msgstr "Şuna terfi ettir: %(name)s."
 
-#: gui/session/selection_panels.js:1084
+#: gui/session/selection_panels.js:1086
 msgid "Cancel Upgrading"
 msgstr "Geliştirmeyi Durdur"
 
-#: gui/session/selection_panels.js:1089
+#: gui/session/selection_panels.js:1091
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "İşlem yükseltilme esnasında tekrar yükseltme yapamaz."
 
@@ -502,125 +502,129 @@ msgstr "%(number)s tane eğitmek için %(action)s."
 msgid "Shift-click"
 msgstr "Üst karakter-tıklama"
 
-#: gui/session/unit_actions.js:560
+#: gui/session/unit_actions.js:571
 msgid "Origin trade market."
 msgstr "Ticaret başlangıç pazarı."
 
-#: gui/session/unit_actions.js:566
+#: gui/session/unit_actions.js:577
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Başka bir pazarı ile ticaret yapmak için pazarın üzerine  sağ-tıkla. "
 
-#: gui/session/unit_actions.js:570
+#: gui/session/unit_actions.js:581
 msgid "Destination trade market."
 msgstr "Ticaret varış pazarı."
 
-#: gui/session/unit_actions.js:577
+#: gui/session/unit_actions.js:588
 msgid "Right-click to set as origin trade market"
 msgstr "Ticaret başlangıç pazarı olarak ayarlamak için sağ tıklayın"
 
-#: gui/session/unit_actions.js:584
+#: gui/session/unit_actions.js:595 gui/session/unit_actions.js:938
+msgid "This market is too close to the origin market."
+msgstr "Bu market kaynak markete çok yakın."
+
+#: gui/session/unit_actions.js:599
 msgid "Right-click to set as destination trade market."
 msgstr "Ticaret varış pazarı olarak ayarlamak için sağ tıklayın"
 
-#: gui/session/unit_actions.js:637 gui/session/unit_actions.js:852
+#: gui/session/unit_actions.js:660 gui/session/unit_actions.js:876
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Şu anki birlik: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:904
+#: gui/session/unit_actions.js:929
 msgid "Right-click to establish a default route for new traders."
 msgstr "Yeni tacirlere varsayılan güzergah belirlemek için sağ tıklayın."
 
-#: gui/session/unit_actions.js:908
+#: gui/session/unit_actions.js:933
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Hedeflenen kazanç: %(gain)s"
 
-#: gui/session/unit_actions.js:1030 gui/session/unit_actions.js:1358
+#: gui/session/unit_actions.js:1071 gui/session/unit_actions.js:1399
 msgid "Unload All."
 msgstr "Hepsini kaldır."
 
-#: gui/session/unit_actions.js:1048
+#: gui/session/unit_actions.js:1089
 msgid "Destroy the selected units or buildings."
 msgstr "Seçili olan bina/birimleri sil"
 
-#: gui/session/unit_actions.js:1050
+#: gui/session/unit_actions.js:1091
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Onay iletişim kutularından kaçınmak için kısayol tuşlarını kullanın; %(hotkey)s "
 
-#: gui/session/unit_actions.js:1097
+#: gui/session/unit_actions.js:1138
 msgid "Abort the current order."
 msgstr "Mevcut düzeni iptal edin."
 
-#: gui/session/unit_actions.js:1116
+#: gui/session/unit_actions.js:1157
 msgid "Order the selected units to garrison in a building or unit."
 msgstr "Seçilen birimleri bir binadaki veya birimin garnizonuna sipariş edin."
 
-#: gui/session/unit_actions.js:1139
+#: gui/session/unit_actions.js:1180
 msgid "Unload"
 msgstr "Boşalt"
 
-#: gui/session/unit_actions.js:1157
+#: gui/session/unit_actions.js:1198
 msgid "Order the selected units to repair a building or mechanical unit."
 msgstr "Seçilen birimleri bir bina veya mekanik birimi onarmak üzere sipariş edin."
 
-#: gui/session/unit_actions.js:1176
+#: gui/session/unit_actions.js:1217
 msgid "Focus on Rally Point."
 msgstr "Toplanma noktasına git."
 
-#: gui/session/unit_actions.js:1211
+#: gui/session/unit_actions.js:1252
 msgid "Back to Work"
 msgstr "Çalışmaya Dön"
 
-#: gui/session/unit_actions.js:1230
+#: gui/session/unit_actions.js:1271
 msgid "Order the selected units to guard a building or unit."
 msgstr "Seçilen birimleri, bir binayı veya birimi korumak için sipariş edin."
 
-#: gui/session/unit_actions.js:1248
+#: gui/session/unit_actions.js:1289
 msgid "Remove guard"
 msgstr "Korumayı kaldır"
 
-#: gui/session/unit_actions.js:1265
+#: gui/session/unit_actions.js:1306
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr "Takas & Ticaret"
 
-#: gui/session/unit_actions.js:1283
+#: gui/session/unit_actions.js:1324
 msgid "Patrol"
 msgstr "Devriye"
 
-#: gui/session/unit_actions.js:1284
+#: gui/session/unit_actions.js:1325
 msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr "Binadan kaçarken düşman birimlerinin hepsine saldır."
 
-#: gui/session/unit_actions.js:1310
+#: gui/session/unit_actions.js:1351
 msgid "Press to allow allies to use this dropsite"
 msgstr "Müttefiklerin bu açılır listeyi  kullanmalarına izin vermek için tıklayın"
 
-#: gui/session/unit_actions.js:1314
+#: gui/session/unit_actions.js:1355
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Müttefiklerin bu depolama alanını kullanmasını önlemek için tıklayın"
 
-#: gui/session/unit_actions.js:1379
+#: gui/session/unit_actions.js:1420
 msgid "You are allowed to use this dropsite"
 msgstr "Bu açılır listeyi kullanmanıza izniniz var"
 
-#: gui/session/unit_actions.js:1384
+#: gui/session/unit_actions.js:1425
 msgid "The use of this dropsite is prohibited"
 msgstr "Bu depolama alanını kullanamazsınız."
 
-#: gui/session/unit_actions.js:1458
+#: gui/session/unit_actions.js:1499
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "İşletme, toplanmadan önce öldürülmelidir."
 
-#: gui/session/unit_actions.js:1461
+#: gui/session/unit_actions.js:1502
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Bu nesneyi yok edemezsiniz çünkü yarısından azı görürür bir şekilde."
 
-#: gui/session/unit_actions.js:1464
+#: gui/session/unit_actions.js:1505
 msgid "This entity is undeletable"
 msgstr "Bu unite silinemez"
 

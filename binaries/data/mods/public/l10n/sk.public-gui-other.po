@@ -12,6 +12,7 @@
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Miroslav Remák <Unknown>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
+# Patrik Špaňo <pa4k.xyon@gmail.com>, 2020
 # Peto (wt-ts) <peter.tuharsky@gmail.com>, 2015-2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 # Angen <slavomir.slovenkai@gmail.com>, 2017-2019
@@ -20,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-25 08:08+0000\n"
-"PO-Revision-Date: 2019-12-28 21:24+0000\n"
-"Last-Translator: Angen <slavomir.slovenkai@gmail.com>\n"
+"PO-Revision-Date: 2020-01-02 16:47+0000\n"
+"Last-Translator: Patrik Špaňo <pa4k.xyon@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,12 +97,12 @@ msgstr "FPS: %(fps)4s"
 #: gui/common/color.js:178
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr "Nezaradená klávesa: %(hotkeyName)s"
+msgstr "Nepriradená klávesová skratka: %(hotkeyName)s"
 
 #: gui/common/color.js:193
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr "Stračte %(hotkey)s pre automatické doplnenie hráčskych mien."
+msgstr "Stlačte %(hotkey)s pre automatické doplnenie hráčskych mien."
 
 #: gui/common/color.js:195
 msgctxt "hotkey"

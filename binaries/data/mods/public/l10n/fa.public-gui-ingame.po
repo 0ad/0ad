@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-25 08:08+0000\n"
-"PO-Revision-Date: 2019-12-13 16:45+0000\n"
-"Last-Translator: бахром дуниахо <brandonw041@gmail.com>\n"
+"POT-Creation-Date: 2019-12-30 08:12+0000\n"
+"PO-Revision-Date: 2019-12-30 15:26+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -129,7 +129,7 @@ msgid "Paused by %(players)s"
 msgstr "بازی متوقف شد توسط %(players)s"
 
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:262
-#: gui/session/selection_details.js:278 gui/session/selection_panels.js:594
+#: gui/session/selection_details.js:278 gui/session/selection_panels.js:597
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -234,9 +234,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:252 gui/session/unit_actions.js:562
-#: gui/session/unit_actions.js:571 gui/session/unit_actions.js:585
-#: gui/session/unit_actions.js:907
+#: gui/session/selection_details.js:252 gui/session/unit_actions.js:573
+#: gui/session/unit_actions.js:582 gui/session/unit_actions.js:600
+#: gui/session/unit_actions.js:932
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "بدست آورد: %(gain)s"
@@ -302,85 +302,85 @@ msgstr "اعلام خطر!"
 msgid "End of alert."
 msgstr "پایان خطر."
 
-#: gui/session/selection_panels.js:376
+#: gui/session/selection_panels.js:379
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "خارج کردن %(name)s"
 
-#: gui/session/selection_panels.js:377
+#: gui/session/selection_panels.js:380
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "یک بار کلیک کنید تا 1 نفر خارج شود. هنگام کلیک شیفت را نگه دارید تا همه نیروهای از نوع خارج شوند."
 
-#: gui/session/selection_panels.js:379 gui/session/selection_panels.js:869
+#: gui/session/selection_panels.js:382 gui/session/selection_panels.js:872
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "بازیکن: %(playername)s"
 
-#: gui/session/selection_panels.js:414
+#: gui/session/selection_panels.js:417
 msgid "Lock Gate"
 msgstr "قفل دروازه"
 
-#: gui/session/selection_panels.js:420
+#: gui/session/selection_panels.js:423
 msgid "Unlock Gate"
 msgstr "گشودن دربازه"
 
-#: gui/session/selection_panels.js:470
+#: gui/session/selection_panels.js:473
 msgid "Pack"
 msgstr "بستن"
 
-#: gui/session/selection_panels.js:478
+#: gui/session/selection_panels.js:481
 msgid "Unpack"
 msgstr "باز کردن"
 
-#: gui/session/selection_panels.js:486
+#: gui/session/selection_panels.js:489
 msgid "Cancel Packing"
 msgstr "لغو بستن"
 
-#: gui/session/selection_panels.js:494
+#: gui/session/selection_panels.js:497
 msgid "Cancel Unpacking"
 msgstr "لغو بازکردن"
 
-#: gui/session/selection_panels.js:581
+#: gui/session/selection_panels.js:584
 msgid "Insufficient population capacity:"
 msgstr "جای کافی موجود نیست:"
 
-#: gui/session/selection_panels.js:582
+#: gui/session/selection_panels.js:585
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:745
+#: gui/session/selection_panels.js:748
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s وجود کلاس %(class)s"
 msgstr[1] "%(number)s وجود کلاس %(class)s"
 
-#: gui/session/selection_panels.js:751
+#: gui/session/selection_panels.js:754
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "باقی مانده: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:752
+#: gui/session/selection_panels.js:755
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr "،"
 
-#: gui/session/selection_panels.js:1062
+#: gui/session/selection_panels.js:1064
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
 msgstr "بهبود کردن به %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1067
+#: gui/session/selection_panels.js:1069
 #, javascript-format
 msgid "Upgrade to %(name)s."
 msgstr "بهبود کردن به %(name)s."
 
-#: gui/session/selection_panels.js:1084
+#: gui/session/selection_panels.js:1086
 msgid "Cancel Upgrading"
 msgstr "لغو ارتقا"
 
-#: gui/session/selection_panels.js:1089
+#: gui/session/selection_panels.js:1091
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "قادر به ارتقا نیست وقتی که در حال ارتقا دیگری است"
 
@@ -475,125 +475,129 @@ msgstr "%(action)s برای پرورش %(number)s."
 msgid "Shift-click"
 msgstr "شیفت و کلیک"
 
-#: gui/session/unit_actions.js:560
+#: gui/session/unit_actions.js:571
 msgid "Origin trade market."
 msgstr "بازار مبدأ تجارت."
 
-#: gui/session/unit_actions.js:566
+#: gui/session/unit_actions.js:577
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "بر روی بازار دیگری کلیک راست کنید تا آن را به عنوان مقصد تجارت مشخص کنید."
 
-#: gui/session/unit_actions.js:570
+#: gui/session/unit_actions.js:581
 msgid "Destination trade market."
 msgstr "بازار مقصد تجارت."
 
-#: gui/session/unit_actions.js:577
+#: gui/session/unit_actions.js:588
 msgid "Right-click to set as origin trade market"
 msgstr "کلیک راست کنید تا به عنوان بازار مبدأ تجارت انتخاب شود."
 
-#: gui/session/unit_actions.js:584
+#: gui/session/unit_actions.js:595 gui/session/unit_actions.js:938
+msgid "This market is too close to the origin market."
+msgstr ""
+
+#: gui/session/unit_actions.js:599
 msgid "Right-click to set as destination trade market."
 msgstr "کلیک راست کنید تا به عنوان بازار مقصد تجارت انتخاب شود."
 
-#: gui/session/unit_actions.js:637 gui/session/unit_actions.js:852
+#: gui/session/unit_actions.js:660 gui/session/unit_actions.js:876
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "سربازان مستقر: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:904
+#: gui/session/unit_actions.js:929
 msgid "Right-click to establish a default route for new traders."
 msgstr "کلیک راست کنید تا یک مسیر پیش فرض برای تاجران جدید مشخص کنید."
 
-#: gui/session/unit_actions.js:908
+#: gui/session/unit_actions.js:933
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "سود مورد انتظار: %(gain)s"
 
-#: gui/session/unit_actions.js:1030 gui/session/unit_actions.js:1358
+#: gui/session/unit_actions.js:1071 gui/session/unit_actions.js:1399
 msgid "Unload All."
 msgstr "خالی کردن همه"
 
-#: gui/session/unit_actions.js:1048
+#: gui/session/unit_actions.js:1089
 msgid "Destroy the selected units or buildings."
 msgstr "از بین بردن نیروهای انتخاب شده یا ساختمان ها"
 
-#: gui/session/unit_actions.js:1050
+#: gui/session/unit_actions.js:1091
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "بکارگیری %(hotkey)s برای اجتناب از دیالوگ تایید."
 
-#: gui/session/unit_actions.js:1097
+#: gui/session/unit_actions.js:1138
 msgid "Abort the current order."
 msgstr "لغو دستور فعلی"
 
-#: gui/session/unit_actions.js:1116
+#: gui/session/unit_actions.js:1157
 msgid "Order the selected units to garrison in a building or unit."
 msgstr "فرمان دادن به نیروهای انتخاب شده تا در یک ساختمان یا نیرو مستقر شوند"
 
-#: gui/session/unit_actions.js:1139
+#: gui/session/unit_actions.js:1180
 msgid "Unload"
 msgstr "خالی کردن"
 
-#: gui/session/unit_actions.js:1157
+#: gui/session/unit_actions.js:1198
 msgid "Order the selected units to repair a building or mechanical unit."
 msgstr "فرمان دهد به نیروهای انتخاب شده تا یک ساختمان یا نیروی مکانیکی را تعمیر کنند"
 
-#: gui/session/unit_actions.js:1176
+#: gui/session/unit_actions.js:1217
 msgid "Focus on Rally Point."
 msgstr "تمرکز بر نقطه تجمع"
 
-#: gui/session/unit_actions.js:1211
+#: gui/session/unit_actions.js:1252
 msgid "Back to Work"
 msgstr "بازگشت به کار"
 
-#: gui/session/unit_actions.js:1230
+#: gui/session/unit_actions.js:1271
 msgid "Order the selected units to guard a building or unit."
 msgstr "فرمان دادن به نیروهای انتخاب شده برای محافظت از یک ساختمان یا نیرو"
 
-#: gui/session/unit_actions.js:1248
+#: gui/session/unit_actions.js:1289
 msgid "Remove guard"
 msgstr "برداشتن محافظ"
 
-#: gui/session/unit_actions.js:1265
+#: gui/session/unit_actions.js:1306
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr "تهاتر & معامله"
 
-#: gui/session/unit_actions.js:1283
+#: gui/session/unit_actions.js:1324
 msgid "Patrol"
 msgstr "گشت"
 
-#: gui/session/unit_actions.js:1284
+#: gui/session/unit_actions.js:1325
 msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr "حمله به تمام نیروهای دشمن مواجه شده و صرف نظر کردن از ساختمان ها"
 
-#: gui/session/unit_actions.js:1310
+#: gui/session/unit_actions.js:1351
 msgid "Press to allow allies to use this dropsite"
 msgstr "فشار دادن برای اجازه دادن به هم پیمان ها که از این محل تخلیه منابع استفاده کنند"
 
-#: gui/session/unit_actions.js:1314
+#: gui/session/unit_actions.js:1355
 msgid "Press to prevent allies from using this dropsite"
 msgstr "فشار دادن برای جلوگیری از هم پیمان ها برای استفاده از این محل تخلیه منابع"
 
-#: gui/session/unit_actions.js:1379
+#: gui/session/unit_actions.js:1420
 msgid "You are allowed to use this dropsite"
 msgstr "شما اجازه پیدا کردید تا از این محل تخلیه منابع استفاده کنید"
 
-#: gui/session/unit_actions.js:1384
+#: gui/session/unit_actions.js:1425
 msgid "The use of this dropsite is prohibited"
 msgstr "شما اجازه استفاده از این محل تخلیه منابع را ندارید"
 
-#: gui/session/unit_actions.js:1458
+#: gui/session/unit_actions.js:1499
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "این موجود باید نخست کشته شود تا بتوانید منابع آنرا جمع آوری کنید"
 
-#: gui/session/unit_actions.js:1461
+#: gui/session/unit_actions.js:1502
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "شما نمی توانید این واحد را تخریب کنید چرا که شما مالکیت کمتر از نصف از امتیاز تسخیر آنرا در اختیار دارید."
 
-#: gui/session/unit_actions.js:1464
+#: gui/session/unit_actions.js:1505
 msgid "This entity is undeletable"
 msgstr "این واحد غیر قابل حذف است."
 
