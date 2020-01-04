@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/shields/cart_tarantine_e.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
@@ -39,47 +40,83 @@
     </variant>
   </group>
   <group>
-    <variant frequency="6" name="Cuirass">
-      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+    <variant frequency="1" name="Greave-01">
+      <props>
+        <prop actor="props/units/armor/greave_06_bronze_l.xml" attachpoint="leg_L"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Greave-03">
+      <props>
+        <prop actor="props/units/armor/greave_08_bronze_l.xml" attachpoint="leg_L"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="cardiopylax-2-c-a">
       <textures>
-        <texture file="skeletal/samnite_isp_e_1.dds" name="baseTex"/>
+        <texture file="skeletal/rome_cardiopylax_2_champion_a.png" name="baseTex"/>
+        <texture file="skeletal/rome_cardiopylax_2_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="2" name="pectoral-tripledisc">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+    <variant frequency="3" name="ital-cuirass-1b">
       <textures>
-        <texture file="skeletal/kart_csp_a_1.dds" name="baseTex"/>
+        <texture file="skeletal/ital_cuirass_1_b.png" name="baseTex"/>
+        <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="2" name="pectoral-square">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+    <variant frequency="3" name="ital-cuirass-1a">
       <textures>
-        <texture file="skeletal/kart_csp_a_2.dds" name="baseTex"/>
+        <texture file="skeletal/ital_cuirass_1_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="2" name="pectoral-muscle">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+    <variant frequency="3" name="ital-cuirass-1c">
       <textures>
-        <texture file="skeletal/kart_csp_a_3.dds" name="baseTex"/>
+        <texture file="skeletal/ital_cuirass_1_c.png" name="baseTex"/>
+        <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="2" name="Roman Scale Mail">
-      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
+    <variant frequency="1" name="ital-linothorax-1a">
       <textures>
-        <texture file="skeletal/rome_su1_extraordinarii.dds" name="baseTex"/>
+        <texture file="skeletal/ital_linothorax_1_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Roman Chainmail">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+    <variant frequency="1" name="ital-linothorax-1b">
       <textures>
-        <texture file="skeletal/rome_su3_marian_legion.dds" name="baseTex"/>
+        <texture file="skeletal/ital_linothorax_1_b.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="9" name="ital-linothorax-1c">
+      <textures>
+        <texture file="skeletal/ital_linothorax_1_c.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ital-linothorax-1d">
+      <textures>
+        <texture file="skeletal/ital_linothorax_1_d.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="linothorax-lamellar-1a">
+      <textures>
+        <texture file="skeletal/hele_linothorax_lamelar_1_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_lamellar_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="linothorax-lamellar-1b">
+      <textures>
+        <texture file="skeletal/hele_linothorax_lamelar_1_b.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_lamellar_1_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant file="biped/base_hoplite_fast.xml" name="Hoplite-Fast" frequency="1"/>
+    <variant file="biped/base_hoplite_fast.xml" frequency="1" name="Hoplite-Fast"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/death_cape_long.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
