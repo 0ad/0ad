@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-25 08:08+0000\n"
-"PO-Revision-Date: 2019-11-25 15:07+0000\n"
+"POT-Creation-Date: 2019-12-30 08:12+0000\n"
+"PO-Revision-Date: 2019-12-30 15:26+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -132,7 +132,7 @@ msgid "Paused by %(players)s"
 msgstr ""
 
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:262
-#: gui/session/selection_details.js:278 gui/session/selection_panels.js:594
+#: gui/session/selection_details.js:278 gui/session/selection_panels.js:597
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr ""
@@ -237,9 +237,9 @@ msgstr " %(amount)s / %(max)s "
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:252 gui/session/unit_actions.js:562
-#: gui/session/unit_actions.js:571 gui/session/unit_actions.js:585
-#: gui/session/unit_actions.js:907
+#: gui/session/selection_details.js:252 gui/session/unit_actions.js:573
+#: gui/session/unit_actions.js:582 gui/session/unit_actions.js:600
+#: gui/session/unit_actions.js:932
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Indtægt: %(gain)s"
@@ -305,85 +305,85 @@ msgstr "Aktiver alarmen!"
 msgid "End of alert."
 msgstr "Alarm afsluttet."
 
-#: gui/session/selection_panels.js:376
+#: gui/session/selection_panels.js:379
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Aflæs %(name)s"
 
-#: gui/session/selection_panels.js:377
+#: gui/session/selection_panels.js:380
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Klik en gang for at aflæsse 1. Shift-klik for at aflæsse alle enheder af denne type."
 
-#: gui/session/selection_panels.js:379 gui/session/selection_panels.js:869
+#: gui/session/selection_panels.js:382 gui/session/selection_panels.js:872
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:414
+#: gui/session/selection_panels.js:417
 msgid "Lock Gate"
 msgstr "Lås Port"
 
-#: gui/session/selection_panels.js:420
+#: gui/session/selection_panels.js:423
 msgid "Unlock Gate"
 msgstr "Åben Port"
 
-#: gui/session/selection_panels.js:470
+#: gui/session/selection_panels.js:473
 msgid "Pack"
 msgstr "Pak sammen"
 
-#: gui/session/selection_panels.js:478
+#: gui/session/selection_panels.js:481
 msgid "Unpack"
 msgstr "Pak ud"
 
-#: gui/session/selection_panels.js:486
+#: gui/session/selection_panels.js:489
 msgid "Cancel Packing"
 msgstr "Afbryd Pakning"
 
-#: gui/session/selection_panels.js:494
+#: gui/session/selection_panels.js:497
 msgid "Cancel Unpacking"
 msgstr "Afbryd Udpakning"
 
-#: gui/session/selection_panels.js:581
+#: gui/session/selection_panels.js:584
 msgid "Insufficient population capacity:"
 msgstr "Utilstrækkelig befolkningskapacitet:"
 
-#: gui/session/selection_panels.js:582
+#: gui/session/selection_panels.js:585
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:745
+#: gui/session/selection_panels.js:748
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/selection_panels.js:751
+#: gui/session/selection_panels.js:754
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:752
+#: gui/session/selection_panels.js:755
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ""
 
-#: gui/session/selection_panels.js:1062
+#: gui/session/selection_panels.js:1064
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1067
+#: gui/session/selection_panels.js:1069
 #, javascript-format
 msgid "Upgrade to %(name)s."
 msgstr ""
 
-#: gui/session/selection_panels.js:1084
+#: gui/session/selection_panels.js:1086
 msgid "Cancel Upgrading"
 msgstr "Annuller opgradering"
 
-#: gui/session/selection_panels.js:1089
+#: gui/session/selection_panels.js:1091
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "Kan ikke opgradere når enheden allerede opgraderer."
 
@@ -478,125 +478,129 @@ msgstr "%(action)s for at træne %(number)s."
 msgid "Shift-click"
 msgstr "Shift-klik"
 
-#: gui/session/unit_actions.js:560
+#: gui/session/unit_actions.js:571
 msgid "Origin trade market."
 msgstr "Oprindelsesmarked:"
 
-#: gui/session/unit_actions.js:566
+#: gui/session/unit_actions.js:577
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Højreklik på et andet marked for at sætte det som destinationsmarked."
 
-#: gui/session/unit_actions.js:570
+#: gui/session/unit_actions.js:581
 msgid "Destination trade market."
 msgstr "Destinationsmarked:"
 
-#: gui/session/unit_actions.js:577
+#: gui/session/unit_actions.js:588
 msgid "Right-click to set as origin trade market"
 msgstr "Højreklik for at vælge oprindelsesmarked"
 
-#: gui/session/unit_actions.js:584
+#: gui/session/unit_actions.js:595 gui/session/unit_actions.js:938
+msgid "This market is too close to the origin market."
+msgstr ""
+
+#: gui/session/unit_actions.js:599
 msgid "Right-click to set as destination trade market."
 msgstr "Højreklik for at vælge destinationsmarked"
 
-#: gui/session/unit_actions.js:637 gui/session/unit_actions.js:852
+#: gui/session/unit_actions.js:660 gui/session/unit_actions.js:876
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Nuværende garnison: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:904
+#: gui/session/unit_actions.js:929
 msgid "Right-click to establish a default route for new traders."
 msgstr "Højreklik for at etablere en ny standardrute for nye handlende."
 
-#: gui/session/unit_actions.js:908
+#: gui/session/unit_actions.js:933
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Forventet indtægt: %(gain)s"
 
-#: gui/session/unit_actions.js:1030 gui/session/unit_actions.js:1358
+#: gui/session/unit_actions.js:1071 gui/session/unit_actions.js:1399
 msgid "Unload All."
 msgstr ""
 
-#: gui/session/unit_actions.js:1048
+#: gui/session/unit_actions.js:1089
 msgid "Destroy the selected units or buildings."
 msgstr ""
 
-#: gui/session/unit_actions.js:1050
+#: gui/session/unit_actions.js:1091
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr ""
 
-#: gui/session/unit_actions.js:1097
+#: gui/session/unit_actions.js:1138
 msgid "Abort the current order."
 msgstr ""
 
-#: gui/session/unit_actions.js:1116
+#: gui/session/unit_actions.js:1157
 msgid "Order the selected units to garrison in a building or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1139
+#: gui/session/unit_actions.js:1180
 msgid "Unload"
 msgstr "Læs af"
 
-#: gui/session/unit_actions.js:1157
+#: gui/session/unit_actions.js:1198
 msgid "Order the selected units to repair a building or mechanical unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1176
+#: gui/session/unit_actions.js:1217
 msgid "Focus on Rally Point."
 msgstr ""
 
-#: gui/session/unit_actions.js:1211
+#: gui/session/unit_actions.js:1252
 msgid "Back to Work"
 msgstr "Tilbage til Arbejdet"
 
-#: gui/session/unit_actions.js:1230
+#: gui/session/unit_actions.js:1271
 msgid "Order the selected units to guard a building or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1248
+#: gui/session/unit_actions.js:1289
 msgid "Remove guard"
 msgstr "Fjern beskyttelse"
 
-#: gui/session/unit_actions.js:1265
+#: gui/session/unit_actions.js:1306
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr ""
 
-#: gui/session/unit_actions.js:1283
+#: gui/session/unit_actions.js:1324
 msgid "Patrol"
 msgstr ""
 
-#: gui/session/unit_actions.js:1284
+#: gui/session/unit_actions.js:1325
 msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr ""
 
-#: gui/session/unit_actions.js:1310
+#: gui/session/unit_actions.js:1351
 msgid "Press to allow allies to use this dropsite"
 msgstr ""
 
-#: gui/session/unit_actions.js:1314
+#: gui/session/unit_actions.js:1355
 msgid "Press to prevent allies from using this dropsite"
 msgstr ""
 
-#: gui/session/unit_actions.js:1379
+#: gui/session/unit_actions.js:1420
 msgid "You are allowed to use this dropsite"
 msgstr ""
 
-#: gui/session/unit_actions.js:1384
+#: gui/session/unit_actions.js:1425
 msgid "The use of this dropsite is prohibited"
 msgstr ""
 
-#: gui/session/unit_actions.js:1458
+#: gui/session/unit_actions.js:1499
 msgid "The entity has to be killed before it can be gathered from"
 msgstr ""
 
-#: gui/session/unit_actions.js:1461
+#: gui/session/unit_actions.js:1502
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr ""
 
-#: gui/session/unit_actions.js:1464
+#: gui/session/unit_actions.js:1505
 msgid "This entity is undeletable"
 msgstr ""
 
