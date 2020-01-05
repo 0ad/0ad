@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_spearman_ready.xml">
+    <variant file="biped/base_spearman_relax.xml">
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/helmets/hele_chalcidean_a6.xml" attachpoint="helmet"/>
@@ -10,8 +10,19 @@
         <prop actor="props/units/shields/iber_scutum_hero.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="iber-hero-indibil-linothorax-1a">
       <textures>
-        <texture file="skeletal/iber_hero_indibil.dds" name="baseTex"/>
+        <texture file="skeletal/iber_hero_indibil_linothorax_1_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="iber-hero-indibil-linothorax-1b">
+      <textures>
+        <texture file="skeletal/iber_hero_indibil_linothorax_1_b.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -21,5 +32,5 @@
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
