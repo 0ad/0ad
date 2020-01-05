@@ -49,5 +49,9 @@ class LobbyRatingReporter
  */
 LobbyRatingReporter.Available = function()
 {
-	return Engine.HasXmppClient() && Engine.IsRankedGame() && g_GameAttributes.settings.PlayerData.length == 3;
+	return Engine.HasXmppClient() &&
+		!g_IsReplay &&
+		Engine.GetPlayerID() != -1 &&
+		g_GameAttributes.settings.RatingEnabled &&
+		g_GameAttributes.settings.PlayerData.length == 3;
 };

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,6 +30,7 @@ public:
 	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) const { out = obstruction; return true; }
 	virtual bool GetPreviousObstructionSquare(ICmpObstructionManager::ObstructionSquare& UNUSED(out)) const { return true; }
 	virtual entity_pos_t GetSize() const { return entity_pos_t::Zero(); }
+	virtual CFixedVector2D GetStaticSize() const { return CFixedVector2D(); }
 	virtual entity_pos_t GetUnitRadius() const { return entity_pos_t::Zero(); }
 	virtual EObstructionType GetObstructionType() const { return ICmpObstruction::STATIC; }
 	virtual void SetUnitClearance(const entity_pos_t& UNUSED(clearance)) { }

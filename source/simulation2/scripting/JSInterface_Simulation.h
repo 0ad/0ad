@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 #define INCLUDED_JSI_SIMULATION
 
 #include "scriptinterface/ScriptInterface.h"
+#include "simulation2/helpers/Position.h"
 #include "simulation2/system/Entity.h"
 
 namespace JSI_Simulation
@@ -31,6 +32,7 @@ namespace JSI_Simulation
 	std::vector<entity_id_t> PickPlayerEntitiesOnScreen(ScriptInterface::CxPrivate* pCxPrivate, int player);
 	std::vector<entity_id_t> PickNonGaiaEntitiesOnScreen(ScriptInterface::CxPrivate* pCxPrivate);
 	std::vector<entity_id_t> GetEntitiesWithStaticObstructionOnScreen(ScriptInterface::CxPrivate* pCxPrivate);
+	JS::Value GetEdgesOfStaticObstructionsOnScreenNearTo(ScriptInterface::CxPrivate* pCxPrivate, entity_pos_t x, entity_pos_t z);
 	std::vector<entity_id_t> PickSimilarPlayerEntities(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName, bool includeOffScreen, bool matchRank, bool allowFoundations);
 	JS::Value GetAIs(ScriptInterface::CxPrivate* pCxPrivate);
 	void SetBoundingBoxDebugOverlay(ScriptInterface::CxPrivate* pCxPrivate, bool enabled);

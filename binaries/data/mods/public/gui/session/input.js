@@ -722,11 +722,15 @@ function handleInputBeforeGui(ev, hoveredObject)
 				placementSupport.SetDefaultAngle();
 			}
 
-			var snapData = Engine.GuiInterfaceCall("GetFoundationSnapData", {
-				"template": placementSupport.template,
-				"x": placementSupport.position.x,
-				"z": placementSupport.position.z
-			});
+			let snapToEdges = Engine.HotkeyIsPressed("session.snaptoedges");
+			let snapData = Engine.GuiInterfaceCall("GetFoundationSnapData", {
+ 				"template": placementSupport.template,
+ 				"x": placementSupport.position.x,
+				"z": placementSupport.position.z,
+				"angle": placementSupport.angle,
+				"snapToEdges": snapToEdges && Engine.GetEdgesOfStaticObstructionsOnScreenNearTo(
+					placementSupport.position.x, placementSupport.position.z)
+ 			});
 			if (snapData)
 			{
 				placementSupport.angle = snapData.angle;
@@ -1045,11 +1049,14 @@ function handleInputAfterGui(ev)
 					return true;
 				}
 
-				var snapData = Engine.GuiInterfaceCall("GetFoundationSnapData", {
-					"template": placementSupport.template,
-					"x": placementSupport.position.x,
-					"z": placementSupport.position.z,
-				});
+				let snapToEdges = Engine.HotkeyIsPressed("session.snaptoedges");
+				let snapData = Engine.GuiInterfaceCall("GetFoundationSnapData", {
+ 					"template": placementSupport.template,
+ 					"x": placementSupport.position.x,
+ 					"z": placementSupport.position.z,
+					"snapToEdges": snapToEdges && Engine.GetEdgesOfStaticObstructionsOnScreenNearTo(
+						placementSupport.position.x, placementSupport.position.z)
+ 				});
 				if (snapData)
 				{
 					placementSupport.angle = snapData.angle;
@@ -1073,6 +1080,25 @@ function handleInputAfterGui(ev)
 				else
 				{
 					placementSupport.position = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
+
+					let snapToEdges = Engine.HotkeyIsPressed("session.snaptoedges");
+					if (snapToEdges)
+					{
+						let snapData = Engine.GuiInterfaceCall("GetFoundationSnapData", {
+							"template": placementSupport.template,
+							"x": placementSupport.position.x,
+							"z": placementSupport.position.z,
+							"snapToEdges": Engine.GetEdgesOfStaticObstructionsOnScreenNearTo(
+								placementSupport.position.x, placementSupport.position.z)
+						});
+						if (snapData)
+						{
+							placementSupport.angle = snapData.angle;
+							placementSupport.position.x = snapData.x;
+							placementSupport.position.z = snapData.z;
+						}
+					}
+
 					g_DragStart = new Vector2D(ev.x, ev.y);
 					inputState = INPUT_BUILDING_CLICK;
 				}

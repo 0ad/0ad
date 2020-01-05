@@ -35,6 +35,7 @@ GuiInterface.prototype.Init = function()
 	this.entsWithAuraAndStatusBars = new Set();
 	this.enabledVisualRangeOverlayTypes = {};
 	this.templateModified = {};
+	this.obstructionSnap = new ObstructionSnap();
 };
 
 /*
@@ -1666,6 +1667,13 @@ GuiInterface.prototype.GetFoundationSnapData = function(player, data)
 
 		if (minDistEntitySnapData != null)
 			return minDistEntitySnapData;
+	}
+
+	if (data.snapToEdges)
+	{
+		let position = this.obstructionSnap.getPosition(data, template);
+		if (position)
+			return position;
 	}
 
 	if (template.BuildRestrictions.PlacementType == "shore")

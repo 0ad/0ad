@@ -37,7 +37,6 @@ void JSI_Lobby::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	// Lobby functions
 	scriptInterface.RegisterFunction<bool, &JSI_Lobby::HasXmppClient>("HasXmppClient");
-	scriptInterface.RegisterFunction<bool, &JSI_Lobby::IsRankedGame>("IsRankedGame");
 	scriptInterface.RegisterFunction<void, bool, &JSI_Lobby::SetRankedGame>("SetRankedGame");
 #if CONFIG2_LOBBY // Allow the lobby to be disabled
 	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, std::wstring, std::wstring, int, &JSI_Lobby::StartXmppClient>("StartXmppClient");
@@ -76,11 +75,6 @@ void JSI_Lobby::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 bool JSI_Lobby::HasXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	return g_XmppClient;
-}
-
-bool JSI_Lobby::IsRankedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	return g_rankedGame;
 }
 
 void JSI_Lobby::SetRankedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool isRanked)
