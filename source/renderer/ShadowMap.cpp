@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -78,6 +78,10 @@ struct ShadowMapInternals
 
 	CBoundingBoxAligned ShadowRenderBound;
 
+	CBoundingBoxAligned FixedFrustumBounds;
+	bool FixedShadowsEnabled;
+	float FixedShadowsDistance;
+
 	// Camera transformed into light space
 	CCamera LightspaceCamera;
 
@@ -122,6 +126,11 @@ ShadowMap::ShadowMap()
 
 	// Avoid using uninitialised values in AddShadowedBound if SetupFrame wasn't called first
 	m->LightTransform.SetIdentity();
+
+	m->FixedShadowsEnabled = false;
+	m->FixedShadowsDistance = 300.0f;
+	CFG_GET_VAL("shadowsfixed", m->FixedShadowsEnabled);
+	CFG_GET_VAL("shadowsfixeddistance", m->FixedShadowsDistance);
 }
 
 
@@ -163,11 +172,16 @@ void ShadowMap::SetupFrame(const CCamera& camera, const CVector3D& lightdir)
 	if (!m->Texture)
 		m->CreateTexture();
 
-	CVector3D z = lightdir;
-	CVector3D y;
-	CVector3D x = camera.m_Orientation.GetIn();
-	CVector3D eyepos = camera.m_Orientation.GetTranslation();
+	CVector3D x, eyepos;
+	if (!m->FixedShadowsEnabled)
+	{
+		x = camera.m_Orientation.GetIn();
+		eyepos = camera.m_Orientation.GetTranslation();
+	}
+	else
+		x = CVector3D(0, 1, 0);
 
+	CVector3D z = lightdir;
 	z.Normalize();
 	x -= z * z.Dot(x);
 	if (x.Length() < 0.001)
@@ -178,7 +192,7 @@ void ShadowMap::SetupFrame(const CCamera& camera, const CVector3D& lightdir)
 		x -= z * z.Dot(x);
 	}
 	x.Normalize();
-	y = z.Cross(x);
+	CVector3D y = z.Cross(x);
 
 	// X axis perpendicular to light direction, flowing along with view direction
 	m->LightTransform._11 = x.X;
@@ -213,6 +227,43 @@ void ShadowMap::SetupFrame(const CCamera& camera, const CVector3D& lightdir)
 	m->LightspaceCamera = camera;
 	m->LightspaceCamera.m_Orientation = m->LightTransform * camera.m_Orientation;
 	m->LightspaceCamera.UpdateFrustum();
+
+	if (m->FixedShadowsEnabled)
+	{
+		// We need to calculate a circumscribed sphere for the camera to
+		// create a rotation stable bounding box.
+		const CVector3D cameraIn = camera.m_Orientation.GetIn();
+		const CVector3D cameraTranslation = camera.m_Orientation.GetTranslation();
+		const CVector3D centerNear = cameraTranslation + cameraIn * camera.GetNearPlane();
+		const CVector3D centerDist = cameraTranslation + cameraIn * m->FixedShadowsDistance;
+
+		// We can solve 3D problem in 2D space, because the frustum is
+		// symmetric by 2 planes. Than means we can use only one corner
+		// to find a circumscribed sphere.
+		CCamera::Quad corners;
+		camera.GetViewQuad(camera.GetNearPlane(), corners);
+		const CVector3D cornerNear = camera.GetOrientation().Transform(corners[0]);
+		camera.GetViewQuad(m->FixedShadowsDistance, corners);
+		const CVector3D cornerDist = camera.GetOrientation().Transform(corners[0]);
+
+		// We solve 2D case for the right trapezoid.
+		const float firstBase = (cornerNear - centerNear).Length();
+		const float secondBase = (cornerDist - centerDist).Length();
+		const float height = (centerDist - centerNear).Length();
+		const float distanceToCenter =
+			(height * height + secondBase * secondBase - firstBase * firstBase) * 0.5f / height;
+
+		CVector3D position = cameraTranslation + cameraIn * (camera.GetNearPlane() + distanceToCenter);
+		const float radius = (cornerNear - position).Length();
+
+		// We need to convert the bounding box to the light space.
+		position = m->LightTransform.Rotate(position);
+		
+		const float insets = 0.2f;
+		m->FixedFrustumBounds = CBoundingBoxAligned(position, position);
+		m->FixedFrustumBounds.Expand(radius);
+		m->FixedFrustumBounds.Expand(insets);
+	}
 }
 
 
@@ -268,43 +319,57 @@ CFrustum ShadowMap::GetShadowCasterCullFrustum()
 // projection and transformation matrices
 void ShadowMapInternals::CalcShadowMatrices()
 {
-	// Start building the shadow map to cover all objects that will receive shadows
-	CBoundingBoxAligned receiverBound = ShadowReceiverBound;
-
-	// Intersect with the camera frustum, so the shadow map doesn't have to get
-	// stretched to cover the off-screen parts of large models
-	receiverBound.IntersectFrustumConservative(LightspaceCamera.GetFrustum());
-
-	// Intersect with the shadow caster bounds, because there's no point
-	// wasting space around the edges of the shadow map that we're not going
-	// to draw into
-	ShadowRenderBound[0].X = std::max(receiverBound[0].X, ShadowCasterBound[0].X);
-	ShadowRenderBound[0].Y = std::max(receiverBound[0].Y, ShadowCasterBound[0].Y);
-	ShadowRenderBound[1].X = std::min(receiverBound[1].X, ShadowCasterBound[1].X);
-	ShadowRenderBound[1].Y = std::min(receiverBound[1].Y, ShadowCasterBound[1].Y);
-
-	// Set the near and far planes to include just the shadow casters,
-	// so we make full use of the depth texture's range. Add a bit of a
-	// delta so we don't accidentally clip objects that are directly on
-	// the planes.
-	ShadowRenderBound[0].Z = ShadowCasterBound[0].Z - 2.f;
-	ShadowRenderBound[1].Z = ShadowCasterBound[1].Z + 2.f;
-
-	// ShadowBound might have been empty to begin with, producing an empty result
-	if (ShadowRenderBound.IsEmpty())
+	if (FixedShadowsEnabled)
 	{
-		// no-op
-		LightProjection.SetIdentity();
-		TextureMatrix = LightTransform;
-		return;
-	}
+		ShadowRenderBound = FixedFrustumBounds;
 
-	// round off the shadow boundaries to sane increments to help reduce swim effect
-	float boundInc = 16.0f;
-	ShadowRenderBound[0].X = floor(ShadowRenderBound[0].X / boundInc) * boundInc;
-	ShadowRenderBound[0].Y = floor(ShadowRenderBound[0].Y / boundInc) * boundInc;
-	ShadowRenderBound[1].X = ceil(ShadowRenderBound[1].X / boundInc) * boundInc;
-	ShadowRenderBound[1].Y = ceil(ShadowRenderBound[1].Y / boundInc) * boundInc;
+		// Set the near and far planes to include just the shadow casters,
+		// so we make full use of the depth texture's range. Add a bit of a
+		// delta so we don't accidentally clip objects that are directly on
+		// the planes.
+		ShadowRenderBound[0].Z = ShadowCasterBound[0].Z - 2.f;
+		ShadowRenderBound[1].Z = ShadowCasterBound[1].Z + 2.f;
+	}
+	else
+	{
+		// Start building the shadow map to cover all objects that will receive shadows
+		CBoundingBoxAligned receiverBound = ShadowReceiverBound;
+
+		// Intersect with the camera frustum, so the shadow map doesn't have to get
+		// stretched to cover the off-screen parts of large models
+		receiverBound.IntersectFrustumConservative(LightspaceCamera.GetFrustum());
+
+		// Intersect with the shadow caster bounds, because there's no point
+		// wasting space around the edges of the shadow map that we're not going
+		// to draw into
+		ShadowRenderBound[0].X = std::max(receiverBound[0].X, ShadowCasterBound[0].X);
+		ShadowRenderBound[0].Y = std::max(receiverBound[0].Y, ShadowCasterBound[0].Y);
+		ShadowRenderBound[1].X = std::min(receiverBound[1].X, ShadowCasterBound[1].X);
+		ShadowRenderBound[1].Y = std::min(receiverBound[1].Y, ShadowCasterBound[1].Y);
+
+		// Set the near and far planes to include just the shadow casters,
+		// so we make full use of the depth texture's range. Add a bit of a
+		// delta so we don't accidentally clip objects that are directly on
+		// the planes.
+		ShadowRenderBound[0].Z = ShadowCasterBound[0].Z - 2.f;
+		ShadowRenderBound[1].Z = ShadowCasterBound[1].Z + 2.f;
+
+		// ShadowBound might have been empty to begin with, producing an empty result
+		if (ShadowRenderBound.IsEmpty())
+		{
+			// no-op
+			LightProjection.SetIdentity();
+			TextureMatrix = LightTransform;
+			return;
+		}
+
+		// round off the shadow boundaries to sane increments to help reduce swim effect
+		float boundInc = 16.0f;
+		ShadowRenderBound[0].X = floor(ShadowRenderBound[0].X / boundInc) * boundInc;
+		ShadowRenderBound[0].Y = floor(ShadowRenderBound[0].Y / boundInc) * boundInc;
+		ShadowRenderBound[1].X = ceil(ShadowRenderBound[1].X / boundInc) * boundInc;
+		ShadowRenderBound[1].Y = ceil(ShadowRenderBound[1].Y / boundInc) * boundInc;
+	}
 
 	// Setup orthogonal projection (lightspace -> clip space) for shadowmap rendering
 	CVector3D scale = ShadowRenderBound[1] - ShadowRenderBound[0];
@@ -529,7 +594,6 @@ void ShadowMapInternals::CreateTexture()
 		g_RenderingOptions.SetShadows(false);
 	}
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Set up to render into shadow map texture
