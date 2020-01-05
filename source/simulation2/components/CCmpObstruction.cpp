@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -517,6 +517,11 @@ public:
 			return m_Clearance;
 		else
 			return CFixedVector2D(m_Size0 / 2, m_Size1 / 2).Length();
+	}
+
+	virtual CFixedVector2D GetStaticSize() const
+	{
+		return m_Type == STATIC ? CFixedVector2D(m_Size0, m_Size1) : CFixedVector2D();
 	}
 
 	virtual void SetUnitClearance(const entity_pos_t& clearance)

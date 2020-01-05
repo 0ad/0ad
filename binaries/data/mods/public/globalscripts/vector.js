@@ -30,6 +30,13 @@ Vector2D.prototype.set = function(x, y)
 	return this;
 };
 
+Vector2D.prototype.setFrom = function(v)
+{
+	this.x = v.x;
+	this.y = v.y;
+	return this;
+};
+
 Vector2D.prototype.add = function(v)
 {
 	this.x += v.x;
@@ -238,6 +245,11 @@ Vector2D.sum = function(vectorList)
 		sum.add(vectorList[i]);
 
 	return sum;
+};
+
+Vector2D.dot = function(v1, v2)
+{
+	return v1.x * v2.x + v1.y * v2.y;
 };
 
 /////////////////////////////////////////////////////////////////////

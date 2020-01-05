@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -298,6 +298,7 @@ template<> void ScriptInterface::ToJSVal<char[N]>(JSContext* cx, JS::MutableHand
 	ToJSVal(cx, ret, static_cast<const char*>(val)); \
 }
 
+TOJSVAL_CHAR(3)
 TOJSVAL_CHAR(5)
 TOJSVAL_CHAR(6)
 TOJSVAL_CHAR(7)

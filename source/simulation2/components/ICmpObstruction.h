@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,6 +59,8 @@ public:
 	virtual bool GetPreviousObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) const = 0;
 
 	virtual entity_pos_t GetSize() const = 0;
+
+	virtual CFixedVector2D GetStaticSize() const = 0;
 
 	virtual entity_pos_t GetUnitRadius() const = 0;
 
