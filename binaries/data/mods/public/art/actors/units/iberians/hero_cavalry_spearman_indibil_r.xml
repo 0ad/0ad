@@ -1,23 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant>
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_iber_su1.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/iber_scutum_hero.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/helmets/hele_chalcidean_a6.xml" attachpoint="helmet"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Greave-04">
+      <props>
+        <prop actor="props/units/armor/greave_04_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_04_bronze_r.xml" attachpoint="leg_R"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="iber-hero-indibil-linothorax">
       <textures>
-        <texture file="skeletal/iber_hero_indibil.dds" name="baseTex"/>
+        <texture file="skeletal/iber_hero_indibil_linothorax_1_a.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="iber-hero-indibil-linothorax-1b">
+      <textures>
+        <texture file="skeletal/iber_hero_indibil_linothorax_1_b.png" name="baseTex"/>
+        <texture file="skeletal/hele_linothorax_1_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant file="biped/rider/cavalry/base_spearman_relax_shield_01.xml" name="Spearman-Relax-Shield-01" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_relax_shield_01.xml" frequency="1" name="Spearman-Relax-Shield-01"/>
     <variant file="biped/rider/death.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
