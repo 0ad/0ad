@@ -14,7 +14,7 @@
 # Jaroslav Lichtblau <jlichtblau@seznam.cz>, 2016
 # LiberteCzech <liberte.czech@gmail.com>, 2015
 # OndraK <ondrej.kajinek@gmail.com>, 2014
-# fri, 2014-2018
+# fri, 2014-2018,2020
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2014,2016-2017
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017
@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-12-30 08:12+0000\n"
-"PO-Revision-Date: 2019-12-30 15:26+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-01-05 20:14+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +38,7 @@ msgstr ""
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "Stiskněte %(hotkey)s pro přepnutí této nabídky."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -55,7 +55,7 @@ msgstr "Shrnutí"
 #: gui/session/MenuButtons.js:87
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr ""
+msgstr "Stiskněte %(hotkey)s pro otevření souhrnné obrazovky."
 
 #: gui/session/MenuButtons.js:130
 msgid "Lobby"
@@ -708,12 +708,12 @@ msgstr "Soukromý rozhovor"
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr ""
+msgstr "Herní oznámení"
 
 #: gui/session/chat/ChatHistory.js:130
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr ""
+msgstr "Síťová oznámení"
 
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
@@ -723,17 +723,17 @@ msgstr "Napište zprávu, která se má odeslat."
 #: gui/session/chat/ChatInput.js:37
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr "Zmáčkni %(hotkey)s pro otevření veřejného rozhovoru."
+msgstr "Stiskněte %(hotkey)s pro otevření veřejného rozhovoru."
 
 #: gui/session/chat/ChatInput.js:40
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr "Zmáčkni %(hotkey)s pro otevření diváckého rozhovoru."
+msgstr "Stiskněte %(hotkey)s pro otevření diváckého rozhovoru."
 
 #: gui/session/chat/ChatInput.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr "Zmáčkni %(hotkey)s pro otevření spojeneckého rozhovoru."
+msgstr "Stiskněte %(hotkey)s pro otevření spojeneckého rozhovoru."
 
 #: gui/session/chat/ChatInput.js:43
 #, javascript-format
@@ -1272,19 +1272,19 @@ msgstr "Prodat %(resource)s"
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
-msgstr ""
+msgstr "+%(amount)s"
 
 #: gui/session/trade/BarterButton.js:103
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"
-msgstr ""
+msgstr "-%(amount)s"
 
 #: gui/session/trade/TradeButton.js:56
 #, javascript-format
 msgctxt "trading good ratio"
 msgid "%(amount)s%%"
-msgstr ""
+msgstr "%(amount)s%%"
 
 #: gui/session/trade/TradeButtonManager.js:76
 #, javascript-format
@@ -1566,7 +1566,7 @@ msgstr "Klepněte pro vybrání seskupených jednotek, klepněte dvakrát pro p�
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "ALPHA XXIV"
-msgstr ""
+msgstr "ALFA XXIV"
 
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
@@ -1612,4 +1612,4 @@ msgstr "Obchod"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
-msgstr ""
+msgstr "Zdroje:"
