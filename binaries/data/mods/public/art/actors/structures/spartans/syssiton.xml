@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="0" name="Greek Gymnasion Special Building">
+    <variant frequency="0" name="Greek Syssiton Special Building">
       <mesh>structural/spart_sissyton_struct.dae</mesh>
       <props>
         <prop actor="props/structures/spartans/sissyton_decor.xml" attachpoint="root"/>
@@ -18,7 +18,7 @@
         <texture file="structural/ao/spart_syssiton.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="syssiton">
+    <variant frequency="1" name="Spart Syssiton Special Building">
       <mesh>structural/spart_syssiton_2.dae</mesh>
       <props>
         <prop actor="props/structures/decals/dirt_3x6.xml" attachpoint="root"/>

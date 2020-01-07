@@ -56,7 +56,7 @@ PETRA.Config = function(difficulty, behavior)
 	this.buildings =
 	{
 		"default": [],
-		"athen": ["structures/{civ}_gymnasion", "structures/{civ}_prytaneion",
+		"athen": ["structures/{civ}_gymnasium", "structures/{civ}_prytaneion",
 			  "structures/{civ}_theatron", "structures/{civ}_royal_stoa"],
 		"brit": ["structures/{civ}_rotarymill"],
 		"cart": ["structures/{civ}_embassy_celtic", "structures/{civ}_embassy_iberian",
