@@ -39,42 +39,23 @@
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "AISeed": 0,
   "CircularMap": true,
   "Description": "The diverse rainforests nestled in the Sahyadri mountain range of the west coast of India. It goes without saying, wood is abundant.\n\nIberian players do not get full circuit walls, but 5 strategically placed wall towers.\n\nWARNING: This map uses a lot of floral actors on account of being a rainforest. Expect a drop in framerate, this is taxing on most mid range computers.",
   "Keywords": [
     "new"
   ],
-  "LockTeams": false,
   "Name": "Sahyadri Buttes (5)",
-  "Nomad": false,
   "PlayerData": [
-    "",
-    {
-      "Civ": "athen"
-    },
-    {
-      "Civ": "cart"
-    },
-    {
-      "Civ": "gaul"
-    },
-    {
-      "Civ": "iber"
-    },
-    {
-      "Civ": "mace"
-    }
+    {},
+    {},
+    {},
+    {},
+    {}
   ],
   "Preview": "Sahyadri_Buttes_(5).png",
-  "RevealMap": false,
-  "Script": "anatolian_plateau.js",
-  "Seed": 9906,
-  "Size": 384,
   "VictoryConditions": [
     "conquest"
-  ],
-  "mapType": "random"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>
