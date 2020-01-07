@@ -14,13 +14,13 @@
 # Nicolas Auvray <na.itms76@gmail.com>, 2014
 # Savvas Nesseris <nesseris@yahoo.com>, 2016
 # Sotiris K <sotok42@gmail.com>, 2015
-# Vasilis Drosos <basilisd@gmail.com>, 2016-2019
+# Vasilis Drosos <basilisd@gmail.com>, 2016-2020
 # Steven Gikas <stevengk123@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-25 08:08+0000\n"
-"PO-Revision-Date: 2019-12-31 17:08+0000\n"
+"PO-Revision-Date: 2020-01-04 18:40+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -536,7 +536,7 @@ msgstr "Σφάλμα: Ο διακομιστής απέτυχε να εντοπί
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
-msgstr ""
+msgstr "Σφάλμα: Οι εντολές του πελάτη ήταν έτοιμες για έναν απροσδόκητο γύρο παιχνιδιού."
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
@@ -1174,12 +1174,12 @@ msgstr "%(nick)s - %(name)s"
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr ""
+msgstr "Διαγραφή της επιλεγμένης αποθήκευσης παιχνιδιού χρησιμοποιώντας το πλήκτρο %(hotkey)s."
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:202
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr ""
+msgstr "Κράτα πατημένο το πλήκτρο %(hotkey)s για να παρακάμψεις το διάλογο επιβεβαίωσης κατά τη διαγραφή."
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
 #, javascript-format

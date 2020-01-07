@@ -28,7 +28,7 @@
 # csparta <scoon405@gmail.com>, 2016
 # Steven Gikas <stevengk123@gmail.com>, 2016
 # Thanasis Mousiolis <thanasism@yahoo.com>, 2014
-# Vasilis Drosos <basilisd@gmail.com>, 2016-2019
+# Vasilis Drosos <basilisd@gmail.com>, 2016-2020
 # XTos <christos.kyratzis@gmail.com>, 2014
 # Yiannis Fistikis <jfistikis@mailinator.com>, 2013
 # ZedRyder <zedryder@gmail.com>, 2014
@@ -38,7 +38,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-12-30 08:12+0000\n"
-"PO-Revision-Date: 2019-12-31 17:06+0000\n"
+"PO-Revision-Date: 2020-01-04 18:24+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgstr ""
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "Πάτα το %(hotkey)s για να ανοιγοκλείσεις αυτό το μενού."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -67,7 +67,7 @@ msgstr "Σύνοψη"
 #: gui/session/MenuButtons.js:87
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr ""
+msgstr "Πάτα το %(hotkey)s για να ανοίξεις την οθόνη σύνοψης."
 
 #: gui/session/MenuButtons.js:130
 msgid "Lobby"
@@ -1132,7 +1132,7 @@ msgstr "Αποσυγχρονίστηκε"
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr ""
+msgstr "Αποσυγχρονίστηκε"
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:63
