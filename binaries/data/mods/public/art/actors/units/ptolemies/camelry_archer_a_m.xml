@@ -6,8 +6,8 @@
       <mesh>skeletal/camel.dae</mesh>
       <props>
         <prop actor="units/ptolemies/camelry_archer_a_r.xml" attachpoint="rider"/>
-        <prop actor="props/camel/camel_rein.xml" attachpoint="blanket"/>
-        <prop actor="props/camel/camel_blanket.xml" attachpoint="blanket"/>
+        <prop actor="props/camel/camel_rein.xml" attachpoint="root"/>
+        <prop actor="props/camel/camel_blanket.xml" attachpoint="root"/>
         <prop actor="props/camel/teeths.xml" attachpoint="mouth_bot"/>
         <prop actor="props/units/quiver_cavalry_right.xml" attachpoint="quiver_R"/>
       </props>
@@ -36,7 +36,7 @@
     <variant file="quadraped/base_camel_death.xml" />
     <variant file="quadraped/base_camel_gather_meat.xml" name="gather_meat">
       <props>
-        <prop actor="units/ptolemies/camelry_archer_a_r.xml" attachpoint="root"/>
+        <prop actor="units/ptolemies/camelry_archer_a_r.xml" attachpoint="rider_L"/>
       </props>
     </variant>
   </group>

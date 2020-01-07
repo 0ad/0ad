@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="quadraped/base_camel_mount.xml">
+    <variant>
       <mesh>props/horse/blanket_camel_01.dae</mesh>
       <textures>
         <texture file="props/camel_blanket.png" name="baseTex"/>
@@ -10,6 +10,9 @@
         <texture file="props/camel_blanket_spec.png" name="specTex"/>
       </textures>
     </variant>
+  </group>
+  <group>
+    <variant file="quadraped/base_camel_mount.xml"/>
   </group>
   <material>player_trans_parallax_spec.xml</material>
 </actor>
