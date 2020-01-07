@@ -2437,8 +2437,9 @@ function updateGUIObjects()
 	// Refresh AI config page
 	if (g_LastViewedAIPlayer != -1)
 	{
+		let playerIndex = g_LastViewedAIPlayer;
 		Engine.PopGuiPage();
-		openAIConfig(g_LastViewedAIPlayer);
+		openAIConfig(playerIndex);
 	}
 }
 
@@ -2463,6 +2464,9 @@ function updateGameAttributes()
 
 function openAIConfig(playerSlot)
 {
+	if (!g_GameAttributes.settings.PlayerData[playerSlot])
+		return;
+
 	g_LastViewedAIPlayer = playerSlot;
 
 	Engine.PushGuiPage(
@@ -2476,7 +2480,7 @@ function openAIConfig(playerSlot)
 		ai => {
 			g_LastViewedAIPlayer = -1;
 
-			if (!ai.save || !g_IsController)
+			if (!ai || !ai.save || !g_IsController)
 				return;
 
 			g_GameAttributes.settings.PlayerData[ai.playerSlot].AI = ai.id;
