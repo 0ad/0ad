@@ -2,10 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Seleucid_Civic_Centre">
+    <variant frequency="1" name="Seleucid Temple">
+      <mesh>structural/sele_temple.dae</mesh>
       <props>
         <prop actor="props/structures/decals/dirt_4x6.xml" attachpoint="root"/>
-        <prop actor="props/structures/seleucids/temple pediment.xml" attachpoint="root" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/seleucids/temple_pediment.xml" attachpoint="root"/>
         <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush" maxheight="20" minheight="-20"/>
         <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_1" maxheight="20" minheight="-20"/>
         <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_2" maxheight="20" minheight="-20"/>
@@ -19,13 +20,6 @@
         <texture file="structural/Sele_struct_2.png" name="baseTex"/>
         <texture file="structural/Sele_struct_2_norm.png" name="normTex"/>
         <texture file="structural/Sele_struct_2_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="aa">
-      <mesh>structural/sele_temple.dae</mesh>
-      <textures>
         <texture file="structural/ao/sele_temple.png" name="aoTex"/>
       </textures>
     </variant>
@@ -43,6 +37,8 @@
     <variant name="death">
       <props>
         <prop attachpoint="garrisoned"/>
+        <prop actor="props/structures/decals/dirt_4x6.xml" attachpoint="root"/>
+        <prop actor="props/structures/seleucids/temple_pediment.xml" attachpoint="root"/>
         <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>

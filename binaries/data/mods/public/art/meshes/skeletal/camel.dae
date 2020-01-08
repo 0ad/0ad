@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.81.16 commit date:2019-11-20, commit time:14:27, hash:26bd5ebd42e3</authoring_tool>
     </contributor>
-    <created>2019-12-26T17:33:21</created>
-    <modified>2019-12-26T17:33:21</modified>
+    <created>2020-01-07T16:31:44</created>
+    <modified>2020-01-07T16:31:44</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -1011,13 +1011,13 @@
             </extra>
           </node>
           <node id="Camelus_prop_rider_L" name="prop_rider_L" sid="prop_rider_L" type="JOINT">
-            <matrix sid="transform">1 2.38419e-7 0 1.429087 0 0 1 0.3295844 2.38419e-7 -1 -5.68434e-14 0.874504 0 0 0 1</matrix>
+            <matrix sid="transform">0.9396927 -0.34202 3.63216e-8 1.429087 -2.6077e-8 7.45058e-9 1 0.3295844 -0.34202 -0.9396927 0 0.874504 0 0 0 1</matrix>
             <extra>
               <technique profile="blender">
                 <layer sid="layer" type="string">15</layer>
                 <roll sid="roll" type="float">0</roll>
-                <tip_x sid="tip_x" type="float">1.19209e-7</tip_x>
-                <tip_y sid="tip_y" type="float">0.5000001</tip_y>
+                <tip_x sid="tip_x" type="float">-0.17101</tip_x>
+                <tip_y sid="tip_y" type="float">0.4698464</tip_y>
                 <tip_z sid="tip_z" type="float">0</tip_z>
               </technique>
             </extra>

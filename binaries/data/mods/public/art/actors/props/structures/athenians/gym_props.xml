@@ -2,13 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="gymnasion props">
+    <variant frequency="1" name="Gymnasium props">
       <mesh>props/athen_gym_propsa.dae</mesh>
       <textures>
         <texture file="props/hele_props_a.dds" name="baseTex"/>
-<texture file="props/hele_props_a_norm.png" name="normTex"/>
-<texture file="props/hele_props_a_spec.png" name="specTex"/>
-<texture file="structural/ao/athen_gym.png" name="aoTex"/>
+        <texture file="props/hele_props_a_norm.png" name="normTex"/>
+        <texture file="props/hele_props_a_spec.png" name="specTex"/>
+        <texture file="structural/ao/athen_gym.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
