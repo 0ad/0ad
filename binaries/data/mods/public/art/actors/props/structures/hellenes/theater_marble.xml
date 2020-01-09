@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="theater marble">
+      <mesh>structural/hele_theater_marble.dae</mesh>
+      <textures>
+        <texture file="props/marble.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>default.xml</material>
+</actor>

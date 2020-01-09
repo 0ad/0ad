@@ -2,10 +2,10 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
+    <variant frequency="1" name="Iberian Wonder">
       <mesh>structural/iber_wonder.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/dirt_theatron.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_theater.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="dirt"/>
         <prop actor="props/flora/bush_desert_dry_a.xml" attachpoint="plant_1" maxheight="20" minheight="-20"/>
         <prop actor="props/flora/bush_dry_a.xml" attachpoint="plant_2" maxheight="20" minheight="-20"/>
@@ -35,6 +35,7 @@
     <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
+        <prop actor="props/structures/decals/dirt_theater.xml" attachpoint="root"/>
         <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
