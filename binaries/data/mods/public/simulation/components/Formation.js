@@ -200,13 +200,13 @@ Formation.prototype.GetPrimaryMember = function()
  * Get the formation animation for a certain member of this formation
  * @param entity The entity ID to get the animation for
  * @return The name of the transformed animation as defined in the template
- * E.g. "testudo_row1"
+ * E.g. "testudo_row1" or undefined if does not exist
  */
 Formation.prototype.GetFormationAnimation = function(entity)
 {
 	var animationGroup = this.animations;
 	if (!animationGroup.length || this.columnar || !this.memberPositions[entity])
-		return "formation";
+		return undefined;
 	var row = this.memberPositions[entity].row;
 	var column = this.memberPositions[entity].column;
 	for (var i = 0; i < animationGroup.length; ++i)
@@ -237,7 +237,7 @@ Formation.prototype.GetFormationAnimation = function(entity)
 
 		return animationGroup[i].animation;
 	}
-	return "formation";
+	return undefined;
 };
 
 /**
@@ -427,12 +427,13 @@ Formation.prototype.Disband = function()
 
 /**
  * Set all members to form up into the formation shape.
- * If moveCenter is true, the formation center will be reinitialised
+ * @param {boolean} moveCenter - The formation center will be reinitialised
  * to the center of the units.
- * If force is true, all individual orders of the formation units are replaced,
+ * @param {boolean} force - All individual orders of the formation units are replaced,
  * otherwise the order to walk into formation is just pushed to the front.
+ * @param {string | undefined} variant - Variant to be passed as order parameter.
  */
-Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
+Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force, variant)
 {
 	if (!this.members.length)
 		return;
@@ -510,7 +511,8 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 			"target": this.entity,
 			"x": offset.x,
 			"z": offset.y,
-			"offsetsChanged": offsetsChanged
+			"offsetsChanged": offsetsChanged,
+			"variant": variant
 		};
 		cmpUnitAI.AddOrder("FormationWalk", data, !force);
 		xMax = Math.max(xMax, offset.x);
