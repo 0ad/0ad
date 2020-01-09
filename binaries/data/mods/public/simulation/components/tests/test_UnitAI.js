@@ -91,6 +91,7 @@ function TestFormationExiting(mode)
 		"MoveToFormationOffset": (target, x, z) => {},
 		"MoveToTargetRange": (target, min, max) => true,
 		"StopMoving": () => {},
+		"SetFacePointAfterMove": () => {},
 		"GetPassabilityClassName": () => "default"
 	});
 
@@ -144,6 +145,7 @@ function TestFormationExiting(mode)
 		"StopMoving": () => {},
 		"SetSpeedMultiplier": () => {},
 		"MoveToPointRange": () => true,
+		"SetFacePointAfterMove": () => {},
 		"GetPassabilityClassName": () => "default"
 	});
 
@@ -248,6 +250,7 @@ function TestMoveIntoFormationWhileAttacking()
 			"MoveToFormationOffset": (target, x, z) => {},
 			"MoveToTargetRange": (target, min, max) => true,
 			"StopMoving": () => {},
+			"SetFacePointAfterMove": () => {},
 			"GetPassabilityClassName": () => "default"
 		});
 
@@ -293,6 +296,7 @@ function TestMoveIntoFormationWhileAttacking()
 		"SetSpeedMultiplier": (speed) => {},
 		"MoveToPointRange": (x, z, minRange, maxRange) => {},
 		"StopMoving": () => {},
+		"SetFacePointAfterMove": () => {},
 		"GetPassabilityClassName": () => "default"
 	});
 

@@ -1314,6 +1314,8 @@ UnitAI.prototype.UnitFsmSpec = {
 			"enter": function() {
 				this.formationOffset = { "x": this.order.data.x, "z": this.order.data.z };
 				let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+				// Prevent unit to turn when stopmoving is called.
+				cmpUnitMotion.SetFacePointAfterMove(false);
 				cmpUnitMotion.MoveToFormationOffset(this.order.data.target, this.order.data.x, this.order.data.z);
 				if (this.order.data.offsetsChanged)
 				{
@@ -1326,6 +1328,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"leave": function() {
 				this.StopMoving();
+				this.SetFacePointAfterMove(true);
 			},
 
 			// Occurs when the unit has reached its destination and the controller
@@ -1526,23 +1529,13 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.PushOrder("FormationWalk", {
 						"target": this.formationController,
 						"x": this.formationOffset.x,
-						"z": this.formationOffset.z,
+						"z": this.formationOffset.z
 					});
 					return;
 				}
 
 				if (!this.isIdle)
 				{
-					if (this.formationController)
-					{
-						let cmpFormationPosition = Engine.QueryInterface(this.formationController, IID_Position);
-						if (cmpFormationPosition && cmpFormationPosition.IsInWorld())
-						{
-							let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-							if (cmpPosition && cmpPosition.IsInWorld())
-								cmpPosition.TurnTo(cmpFormationPosition.GetRotation().y);
-						}
-					}
 					this.isIdle = true;
 					Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
 				}
