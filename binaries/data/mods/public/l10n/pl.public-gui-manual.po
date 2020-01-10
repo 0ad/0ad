@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -18,12 +18,12 @@
 # miragae <miragae@gmail.com>, 2014
 # Nicolas Auvray <na.itms76@gmail.com>, 2016
 # Paweł Stopa <pawcio980@gmail.com>, 2018
-# Przemysław Murach <moonshine133@vp.pl>, 2019
+# Przemysław Murach <moonshine133@vp.pl>, 2019-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-09-16 17:45+0000\n"
+"POT-Creation-Date: 2020-01-06 08:10+0000\n"
+"PO-Revision-Date: 2020-01-07 01:06+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -557,165 +557,171 @@ msgid ""
 "along the way are targeted"
 msgstr "CTRL + Q + PPM z zaznaczonymi jednostkami – atak w ruchu; obiera za cel jedynie jednostki na trasie przemarszu"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:118
+msgid ""
+"  Ctrl + Mouse Move near structures – Align the new structure with an "
+"existing nearby structure"
+msgstr "CTRL + poruszenie myszką obok budynków – dopasuj plan budynku do istniejącej już budowli"
+
+#: gui/manual/intro.txt:120
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Nakładki[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:121
 msgid "  Alt + G – Hide/show the GUI"
 msgstr "ALT + G – pokaż/ukryj interfejs"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:122
 msgid "  Alt + D – Show/hide developer overlay (with developer options)"
 msgstr "ALT + D – pokaż/ukryj nakładkę twórcy (z opcjami developerskimi)"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:123
 msgid ""
 "  Alt + Shift + W – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
 msgstr "ALT + SHIFT + W – przełącza model szkieletowy (wciśnij raz, by nałożyć szkielety na modele z teksturami; dwukrotnie, by włączyć same szkielety z teksturami; trzykrotnie, by wrócić do normalnego trybu teksturowego)"
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:124
 msgid ""
 "  Alt + Shift + S – Toggle unit silhouettes (might give a small performance "
 "boost)"
 msgstr "ALT + SHIFT + S – przełącza obrysy postaci (może przyspieszyć działanie gry)"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:125
 msgid "  Alt + Z – Toggle sky"
 msgstr "ALT + Z – przełącza niebo"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:126
 msgid "  Alt + X – Toggle diplomacy colors"
 msgstr "ALT + X – przełącza kolory dyplomacji"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:127
 msgid ""
 "  Alt + C – Toggle attack range visualizations of selected units and "
 "structures"
 msgstr "ALT + C – przełącza wizualizacje zasięgu ataku zaznaczonych jednostek i budowli"
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:128
 msgid ""
 "  Alt + V – Toggle aura range visualizations of selected units and "
 "structures"
 msgstr "ALT + V – przełącza wizualizacje zasięgu aur zaznaczonych jednostek i budowli"
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:129
 msgid "  Alt + B – Toggle heal range visualizations of selected units"
 msgstr "ALT + B – przełącza wizualizacje zasięgu leczenia zaznaczonych jednostek"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:131
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Operowanie kamerą[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:132
 msgid "  W or ↑ (Up) – Pan screen up"
 msgstr "  W lub ↑ (strzałka w górę) – przesuń ekran w górę"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:133
 msgid "  S or ↓ (Down) – Pan screen down"
 msgstr " S lub ↓ (strzałka w dół) – przesuń ekran w dół"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:134
 msgid "  A or ← (Left) – Pan screen left"
 msgstr "  A lub ← (strzałka w lewo) – przesuń ekran w lewo"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:135
 msgid "  D or → (Right) – Pan screen right"
 msgstr "  D lub → (strzałka w prawo) – przesuń ekran w prawo"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:136
 msgid "  Ctrl + W or Ctrl + ↑ (Up) – Rotate camera to look upward"
 msgstr "CTRL + W lub CTRL + ↑ (strzałka w górę) – obróć kamerę w górę"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:137
 msgid "  Ctrl + S or Ctrl + ↓ (Down) – Rotate camera to look downward"
 msgstr "CTRL + S lub CTRL + ↓ (strzałka w dół) – obróć kamerę w dół"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:138
 msgid "  Ctrl + A or Ctrl + ← (Left) – Rotate camera clockwise around terrain"
 msgstr "CTRL + A lub CTRL + ← (strzałka w lewo) – obróć kamerę zgodnie z ruchem wskazówek zegara"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:139
 msgid ""
 "  Ctrl + D or Ctrl + → (Right) – Rotate camera counter-clockwise around "
 "terrain"
 msgstr "CTRL + D lub CTRL + → (strzałka w prawo) – obróć kamerę przeciwnie do ruchu wskazówek zegara"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:140
 msgid "  Q – Rotate camera clockwise around terrain"
 msgstr "Q – obróć kamerę zgodnie z ruchem wskazówek zegara"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:141
 msgid "  E – Rotate camera counter-clockwise around terrain"
 msgstr "E – obróć kamerę przeciwnie do ruchu wskazówek zegara"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:142
 msgid ""
 "  Shift + Mouse Wheel Rotate Up – Rotate camera clockwise around terrain"
 msgstr "SHIFT + kółko myszki w górę – obróć kamerę zgodnie z ruchem wskazówek zegara"
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:143
 msgid ""
 "  Shift + Mouse Wheel Rotate Down – Rotate camera counter-clockwise around "
 "terrain"
 msgstr "SHIFT + kółko myszki w dół – obróć kamerę przeciwnie do ruchu wskazówek zegara"
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:144
 msgid ""
 "  F – Follow the selected unit (move the camera to stop following the unit)"
 msgstr "F – podążaj za zaznaczoną jednostką (porusz kamerą, aby przestać)"
 
-#: gui/manual/intro.txt:144
+#: gui/manual/intro.txt:145
 msgid "  R – Reset camera zoom/orientation"
 msgstr "R – resetuje poziom przybliżenia/orientację"
 
-#: gui/manual/intro.txt:145
+#: gui/manual/intro.txt:146
 msgid "  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)"
 msgstr "= lub + – przybliż (przytrzymaj, by ciągle przybliżać)"
 
-#: gui/manual/intro.txt:146
+#: gui/manual/intro.txt:147
 msgid ""
 "  - (Hyphen) or − (Minus) – Zoom out (keep pressed for continuous zoom)"
 msgstr "- lub − (minus) – oddal (przytrzymaj, by ciągle oddalać)"
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:148
 msgid "  Middle Mouse Button – Keep pressed and move the mouse to pan"
 msgstr "środkowy przycisk myszki – przytrzymaj i ruszaj myszką, aby poruszać ekran"
 
-#: gui/manual/intro.txt:149
+#: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Building Placement[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Podczas stawiania budowli[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:150
+#: gui/manual/intro.txt:151
 msgid "  \\[ (Left Bracket) – Rotate building 15 degrees counter-clockwise"
 msgstr "[ – obróć budynek o 15 stopni przeciwnie do ruchu wskazówek zegara"
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:152
 msgid "  ] (Right Bracket) – Rotate building 15 degrees clockwise"
 msgstr "] – obróć budynek o 15 stopni zgodnie z ruchem wskazówek zegara"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:153
 msgid ""
 "  Left Drag – Rotate building using mouse (foundation will be placed on "
 "mouse release)"
 msgstr "LPM i przeciągnij – obróć budynek przy pomocy myszki (fundamenty zostaną postawione, gdy puścisz przycisk)"
 
-#: gui/manual/intro.txt:154
+#: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Podczas ładowania zapisanej gry[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:155
+#: gui/manual/intro.txt:156
 msgid "  Esc – Cancel"
 msgstr "ESC – anuluj"
 
-#: gui/manual/intro.txt:156
+#: gui/manual/intro.txt:157
 msgid "  Delete – Delete the selected saved game, ask for confirmation"
 msgstr "Delete – usuwa zapisaną grę, pyta o potwierdzenie"
 
-#: gui/manual/intro.txt:157
+#: gui/manual/intro.txt:158
 msgid ""
 "  Shift + Delete – Immediately delete the selected saved game, without "
 "asking for confirmation"

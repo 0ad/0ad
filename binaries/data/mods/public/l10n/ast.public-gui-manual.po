@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-10-08 22:35+0000\n"
-"Last-Translator: David Sowa <isithere2@yahoo.com>\n"
+"POT-Creation-Date: 2020-01-06 08:10+0000\n"
+"PO-Revision-Date: 2020-01-06 14:41+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -543,165 +543,171 @@ msgid ""
 "along the way are targeted"
 msgstr "  Ctrl + Q + Botón drechu con unidá(es) esbillada(es) – Movese atacando, namái les unidaes a lo llargo del camín se fixen como oxetivos"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:118
+msgid ""
+"  Ctrl + Mouse Move near structures – Align the new structure with an "
+"existing nearby structure"
+msgstr ""
+
+#: gui/manual/intro.txt:120
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Sobrecapes[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:121
 msgid "  Alt + G – Hide/show the GUI"
 msgstr "  Alt + G – Anubrir/amosar la GUI"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:122
 msgid "  Alt + D – Show/hide developer overlay (with developer options)"
 msgstr "  Alt + D – Amosar/anubrir sobrecapa desendolcadora, (con opciones desendolcadores)"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:123
 msgid ""
 "  Alt + Shift + W – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
 msgstr "  Alt + Mayús + W – Activar/desactivar el mou wireframe (primi una vegada pa sobreponer cadarmes nos modelos con testura, dos vegaes pa quedar con namái les cadarmes pintaes coles testures, tres vegaes pa volver al mou normal)"
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:124
 msgid ""
 "  Alt + Shift + S – Toggle unit silhouettes (might give a small performance "
 "boost)"
 msgstr "  Alt + Mayús + S – Activar/desactivar contornos de les unidaes (quiciabes dea dello más de rindimientu)"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:125
 msgid "  Alt + Z – Toggle sky"
 msgstr "  Alt + Z – Activar/desactivar cielu"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:126
 msgid "  Alt + X – Toggle diplomacy colors"
 msgstr "  Alt + X – Activar/desactivar colores diplomátiques"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:127
 msgid ""
 "  Alt + C – Toggle attack range visualizations of selected units and "
 "structures"
 msgstr "  Alt + C – Activar/desactivar visualizaciones del algame ataque de les unidaes y construcciones esbillaes"
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:128
 msgid ""
 "  Alt + V – Toggle aura range visualizations of selected units and "
 "structures"
 msgstr "  Alt + V – Activar/desactivar visualizaciones del algame aura de les unidaes y construcciones esbillaes"
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:129
 msgid "  Alt + B – Toggle heal range visualizations of selected units"
 msgstr "  Alt + B – Activar/desactivar visualizaciones del algame curamientu de les unidaes esbillaes"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:131
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Remanamientu la cámara[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:132
 msgid "  W or ↑ (Up) – Pan screen up"
 msgstr "  W o ↑ (Arriba) – Mover vista escontra arriba"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:133
 msgid "  S or ↓ (Down) – Pan screen down"
 msgstr "  S o ↓ (Abaxo) – Mover vista escontra abaxo"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:134
 msgid "  A or ← (Left) – Pan screen left"
 msgstr "  A o ← (Esquierda) – Mover vista a la manzorga"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:135
 msgid "  D or → (Right) – Pan screen right"
 msgstr "  D o → (Drecha) – Mover vista a la mandrecha"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:136
 msgid "  Ctrl + W or Ctrl + ↑ (Up) – Rotate camera to look upward"
 msgstr "  Ctrl + W o ↑ (Arriba) – Rodar cámara pa mirar escontra arriba"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:137
 msgid "  Ctrl + S or Ctrl + ↓ (Down) – Rotate camera to look downward"
 msgstr "  Ctrl + S o Ctrl + ↓ (Abaxo) – Rodar cámara pa mirar escontra abaxo"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:138
 msgid "  Ctrl + A or Ctrl + ← (Left) – Rotate camera clockwise around terrain"
 msgstr "  Ctrl + A o Ctrl + ← (Esquierda) – Rodar cámara en sen horariu alredor del tarrén"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:139
 msgid ""
 "  Ctrl + D or Ctrl + → (Right) – Rotate camera counter-clockwise around "
 "terrain"
 msgstr "  Ctrl + D o Ctrl + → (Drecha) – Rodar cámara en sen antihorariu alredor del tarrén"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:140
 msgid "  Q – Rotate camera clockwise around terrain"
 msgstr "  Q – Rodar cámara en sen horariu alredor del tarrén"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:141
 msgid "  E – Rotate camera counter-clockwise around terrain"
 msgstr "  E – Rodar cámara en sen antihorariu alredor del tarrén"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:142
 msgid ""
 "  Shift + Mouse Wheel Rotate Up – Rotate camera clockwise around terrain"
 msgstr "  Mayús + Rueda'l mur rodala p'arriba – Rodar cámara en sen horariu alredor del tarrén"
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:143
 msgid ""
 "  Shift + Mouse Wheel Rotate Down – Rotate camera counter-clockwise around "
 "terrain"
 msgstr "  Mayús + Rueda'l mur rodala p'abaxo – Rodar cámara en sen antihorariu alredor del tarrén "
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:144
 msgid ""
 "  F – Follow the selected unit (move the camera to stop following the unit)"
 msgstr "  F – Siguir la unidá esbillada (movi la cámara pa dexar de siguir la unidá)"
 
-#: gui/manual/intro.txt:144
+#: gui/manual/intro.txt:145
 msgid "  R – Reset camera zoom/orientation"
 msgstr "  R – Reafitar la orientación/averamientu la cámara"
 
-#: gui/manual/intro.txt:145
+#: gui/manual/intro.txt:146
 msgid "  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)"
 msgstr "  = (Igual) o + (Más) – Averar (caltén primíu p'averar de contino)"
 
-#: gui/manual/intro.txt:146
+#: gui/manual/intro.txt:147
 msgid ""
 "  - (Hyphen) or − (Minus) – Zoom out (keep pressed for continuous zoom)"
 msgstr "  - (Guión) o − (Menos) – Allonxar (caltén primíu p'allonxar de contino)"
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:148
 msgid "  Middle Mouse Button – Keep pressed and move the mouse to pan"
 msgstr "  Botón mediu'l mur – Caltén calcáu y movi'l mur pa treslladar la vista la cámara."
 
-#: gui/manual/intro.txt:149
+#: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Building Placement[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Nel allugamientu de construcciones[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:150
+#: gui/manual/intro.txt:151
 msgid "  \\[ (Left Bracket) – Rotate building 15 degrees counter-clockwise"
 msgstr "  \\[ (Corchete esquierdu) – Rodar construcción 15 graos en sen antihorariu"
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:152
 msgid "  ] (Right Bracket) – Rotate building 15 degrees clockwise"
 msgstr "  ] (Corchete drechu) – Rodar construcción 15 graos en sen horariu"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:153
 msgid ""
 "  Left Drag – Rotate building using mouse (foundation will be placed on "
 "mouse release)"
 msgstr "  Clic esquierdu + Arrastrar – Rodar construcción col mur (les murueques van ponese en soltando'l mur)"
 
-#: gui/manual/intro.txt:154
+#: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Al cargar una partida guardada[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:155
+#: gui/manual/intro.txt:156
 msgid "  Esc – Cancel"
 msgstr "  Esc – Encaboxar"
 
-#: gui/manual/intro.txt:156
+#: gui/manual/intro.txt:157
 msgid "  Delete – Delete the selected saved game, ask for confirmation"
 msgstr "  Desaniciar – Desaniciar la partida guardada esbillada, pidir confirmanza"
 
-#: gui/manual/intro.txt:157
+#: gui/manual/intro.txt:158
 msgid ""
 "  Shift + Delete – Immediately delete the selected saved game, without "
 "asking for confirmation"

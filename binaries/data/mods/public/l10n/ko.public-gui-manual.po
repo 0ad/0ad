@@ -1,9 +1,10 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # moolow <copyhyeon@gmail.com>, 2019
+# 이정희 <daemul72@gmail.com>, 2020
 # EK lee <sodadida@gmail.com>, 2019
 # 손가현 <sgh991002@gmail.com>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
@@ -21,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-10-24 15:03+0000\n"
-"Last-Translator: ks k\n"
+"POT-Creation-Date: 2020-01-06 08:10+0000\n"
+"PO-Revision-Date: 2020-01-08 12:42+0000\n"
+"Last-Translator: 이정희 <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -556,165 +557,171 @@ msgid ""
 "along the way are targeted"
 msgstr "  유닛(들)을 선택한 상태에서 Ctrl + Q + 오른쪽 클릭 – 공격 이동, 길을 따라있는 유닛 만 대상이됨"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:118
+msgid ""
+"  Ctrl + Mouse Move near structures – Align the new structure with an "
+"existing nearby structure"
+msgstr "Ctrl + 마우스 가까운 건축물 이동 – 기존 건축물과 새 건축물을 정렬"
+
+#: gui/manual/intro.txt:120
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]덧판[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:121
 msgid "  Alt + G – Hide/show the GUI"
 msgstr "  Alt + G – GUI 숨기기/보이기"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:122
 msgid "  Alt + D – Show/hide developer overlay (with developer options)"
 msgstr "  Alt + D – 개발자용 덧판 보이기/숨기기 (개발자용 선택사항)"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:123
 msgid ""
 "  Alt + Shift + W – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
 msgstr "  Alt + Shift + W – 와이어프레임 모드 켜고 끄기 (한번 누르면 텍스쳐 모델에 덮어씌워지고 두번 누르면 텍스쳐 따라 색칠된 와이어프레임만 보입니다. 세번째엔 정상 텍스쳐 모드로 돌아옵니다)"
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:124
 msgid ""
 "  Alt + Shift + S – Toggle unit silhouettes (might give a small performance "
 "boost)"
 msgstr "  Alt + Shift + S – 유닛 윤곽들을 켜고 끄기 (약간의 성능 향상이 있음)"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:125
 msgid "  Alt + Z – Toggle sky"
 msgstr "  Alt + Z – 하늘을 켜고 끄기"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:126
 msgid "  Alt + X – Toggle diplomacy colors"
 msgstr "  Alt + X – 국경 색을 켜고 끄기"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:127
 msgid ""
 "  Alt + C – Toggle attack range visualizations of selected units and "
 "structures"
 msgstr "  Alt + C – 선택한 유닛과 건축물의 사거리 시각화를 켜고 끄기"
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:128
 msgid ""
 "  Alt + V – Toggle aura range visualizations of selected units and "
 "structures"
 msgstr "  Alt + V – 선택한 유닛과 건축물의 오라 범위 시각화를 켜고 끄기"
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:129
 msgid "  Alt + B – Toggle heal range visualizations of selected units"
 msgstr "  Alt + B – 선택한 유닛의 치유 범위 시각화를 켜고 끄기"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:131
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]카메라 조작[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:132
 msgid "  W or ↑ (Up) – Pan screen up"
 msgstr "  W 또는 ↑ (위로) – 화면 위로 이동"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:133
 msgid "  S or ↓ (Down) – Pan screen down"
 msgstr "  S 또는 ↓ (아래로) – 화면 아래로 이동"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:134
 msgid "  A or ← (Left) – Pan screen left"
 msgstr "  A 또는 ← (왼쪽) – 화면 왼쪽으로 이동"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:135
 msgid "  D or → (Right) – Pan screen right"
 msgstr "  D 또는 → (오른쪽) – 화면 오른쪽으로 이동"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:136
 msgid "  Ctrl + W or Ctrl + ↑ (Up) – Rotate camera to look upward"
 msgstr "  Ctrl + W 또는 Ctrl + ↑ (위쪽 화살키) – 카메라를 위쪽으로 돌리기"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:137
 msgid "  Ctrl + S or Ctrl + ↓ (Down) – Rotate camera to look downward"
 msgstr "  Ctrl + S 또는 Ctrl + ↓ (아래쪽 화살키) – 카메라를 아래쪽으로 돌리기"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:138
 msgid "  Ctrl + A or Ctrl + ← (Left) – Rotate camera clockwise around terrain"
 msgstr "  Ctrl + A 또는 Ctrl + ← (왼쪽 화살키) – 카메라를 왼쪽으로 돌리기"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:139
 msgid ""
 "  Ctrl + D or Ctrl + → (Right) – Rotate camera counter-clockwise around "
 "terrain"
 msgstr "  Ctrl + D 또는 Ctrl + → (오른쪽 화살키) – 카메라를 오른쪽으로 돌리기"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:140
 msgid "  Q – Rotate camera clockwise around terrain"
 msgstr "  Q – 지형 주위에서 카메라 시계 방향으로 돌리기"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:141
 msgid "  E – Rotate camera counter-clockwise around terrain"
 msgstr "  E – 지형 주위에서 카메라 반시계 방향으로 돌리기"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:142
 msgid ""
 "  Shift + Mouse Wheel Rotate Up – Rotate camera clockwise around terrain"
 msgstr "  Shift + 마우스 바퀴 올려돌림 – 지형 주위에 카메라 시계방향으로 돌리기"
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:143
 msgid ""
 "  Shift + Mouse Wheel Rotate Down – Rotate camera counter-clockwise around "
 "terrain"
 msgstr "  Shift + 마우스 바퀴 내려 돌림 – 지형 주위에 카메라 반시계 방향으로 돌리기"
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:144
 msgid ""
 "  F – Follow the selected unit (move the camera to stop following the unit)"
 msgstr "  F – 선택한 유닛을 따라가기 (카메라를 움직여 유닛의 뒤를 따라가지 않음)"
 
-#: gui/manual/intro.txt:144
+#: gui/manual/intro.txt:145
 msgid "  R – Reset camera zoom/orientation"
 msgstr "  R – 카메라 확대 축소/방향 다시 설정"
 
-#: gui/manual/intro.txt:145
+#: gui/manual/intro.txt:146
 msgid "  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)"
 msgstr "  = (는표) 또는 + (더하기) – 카메라 확대 (누르고 있으면 계속 확대 축소)"
 
-#: gui/manual/intro.txt:146
+#: gui/manual/intro.txt:147
 msgid ""
 "  - (Hyphen) or − (Minus) – Zoom out (keep pressed for continuous zoom)"
 msgstr "  - (하이픈) 또는 − (빼기) – 카메라 축소 (누르고 있으면 계속 확대 축소)"
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:148
 msgid "  Middle Mouse Button – Keep pressed and move the mouse to pan"
 msgstr "  마우스 가운데 버튼 – 누른 상태로 마우스를 움직이면 팬이 움직입니다"
 
-#: gui/manual/intro.txt:149
+#: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Building Placement[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]건물 배치 도중[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:150
+#: gui/manual/intro.txt:151
 msgid "  \\[ (Left Bracket) – Rotate building 15 degrees counter-clockwise"
 msgstr "  \\[ (왼쪽 대괄호) – 건물을 시계 반대 방향으로 15도 돌림"
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:152
 msgid "  ] (Right Bracket) – Rotate building 15 degrees clockwise"
 msgstr "  ] (오른쪽 대괄호) – 건물을 시계 방향으로 15도 돌림"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:153
 msgid ""
 "  Left Drag – Rotate building using mouse (foundation will be placed on "
 "mouse release)"
 msgstr "  마우스 왼쪽 끌기 – 마우스를 사용하여 건물을 돌림 (토대는 마우스를 놓을 때 배치됨)"
 
-#: gui/manual/intro.txt:154
+#: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]저장된 놀이를 볼러올 때[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:155
+#: gui/manual/intro.txt:156
 msgid "  Esc – Cancel"
 msgstr "  Esc – 취소"
 
-#: gui/manual/intro.txt:156
+#: gui/manual/intro.txt:157
 msgid "  Delete – Delete the selected saved game, ask for confirmation"
 msgstr "  Delete – 선택하고 저장된 놀이를 삭제하고 확인을 요청"
 
-#: gui/manual/intro.txt:157
+#: gui/manual/intro.txt:158
 msgid ""
 "  Shift + Delete – Immediately delete the selected saved game, without "
 "asking for confirmation"
