@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -177,9 +177,12 @@ void CCmpPathfinder::HandleMessage(const CMessage& msg, bool UNUSED(global))
 		break;
 	}
 	case MT_TerrainChanged:
+	{
+		const CMessageTerrainChanged& msgData = static_cast<const CMessageTerrainChanged&>(msg);
 		m_TerrainDirty = true;
-		MinimalTerrainUpdate();
+		MinimalTerrainUpdate(msgData.i0, msgData.j0, msgData.i1, msgData.j1);
 		break;
+	}
 	case MT_WaterChanged:
 	case MT_ObstructionMapShapeChanged:
 		m_TerrainDirty = true;
@@ -564,12 +567,12 @@ void CCmpPathfinder::UpdateGrid()
 	m_AIPathfinderDirtinessInformation.MergeAndClear(m_DirtinessInformation);
 }
 
-void CCmpPathfinder::MinimalTerrainUpdate()
+void CCmpPathfinder::MinimalTerrainUpdate(int itile0, int jtile0, int itile1, int jtile1)
 {
-	TerrainUpdateHelper(false);
+	TerrainUpdateHelper(false, itile0, jtile0, itile1, jtile1);
 }
 
-void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability/* = true */)
+void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability, int itile0, int jtile0, int itile1, int jtile1)
 {
 	PROFILE3("TerrainUpdateHelper");
 
@@ -585,7 +588,8 @@ void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability/* = true */)
 	if (terrainSize == 0)
 		return;
 
-	if (!m_TerrainOnlyGrid || m_MapSize != terrainSize)
+	const bool needsNewTerrainGrid = !m_TerrainOnlyGrid || m_MapSize != terrainSize;
+	if (needsNewTerrainGrid)
 	{
 		m_MapSize = terrainSize;
 
@@ -605,10 +609,26 @@ void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability/* = true */)
 
 	Grid<u16> shoreGrid = ComputeShoreGrid();
 
-	// Compute initial terrain-dependent passability
-	for (int j = 0; j < m_MapSize * Pathfinding::NAVCELLS_PER_TILE; ++j)
+	const bool partialTerrainGridUpdate =
+		!expandPassability && !needsNewTerrainGrid &&
+		itile0 != -1 && jtile0 != -1 && itile1 != -1 && jtile1 != -1;
+	int istart = 0, iend = m_MapSize * Pathfinding::NAVCELLS_PER_TILE;
+	int jstart = 0, jend = m_MapSize * Pathfinding::NAVCELLS_PER_TILE;
+	if (partialTerrainGridUpdate)
 	{
-		for (int i = 0; i < m_MapSize * Pathfinding::NAVCELLS_PER_TILE; ++i)
+		// We need to extend the boundaries by 1 tile, because slope and ground
+		// level are calculated by multiple neighboring tiles.
+		// TODO: add CTerrain constant instead of 1.
+		istart = Clamp(itile0 - 1, 0, static_cast<int>(m_MapSize)) * Pathfinding::NAVCELLS_PER_TILE;
+		iend = Clamp(itile1 + 1, 0, static_cast<int>(m_MapSize)) * Pathfinding::NAVCELLS_PER_TILE;
+		jstart = Clamp(jtile0 - 1, 0, static_cast<int>(m_MapSize)) * Pathfinding::NAVCELLS_PER_TILE;
+		jend = Clamp(jtile1 + 1, 0, static_cast<int>(m_MapSize)) * Pathfinding::NAVCELLS_PER_TILE;
+	}
+
+	// Compute initial terrain-dependent passability
+	for (int j = jstart; j < jend; ++j)
+	{
+		for (int i = istart; i < iend; ++i)
 		{
 			// World-space coordinates for this navcell
 			fixed x, z;
@@ -656,9 +676,9 @@ void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability/* = true */)
 
 	if (cmpObstructionManager->GetPassabilityCircular())
 	{
-		for (int j = 0; j < h; ++j)
+		for (int j = jstart; j < jend; ++j)
 		{
-			for (int i = 0; i < w; ++i)
+			for (int i = istart; i < iend; ++i)
 			{
 				// Based on CCmpRangeManager::LosIsOffWorld
 				// but tweaked since it's tile-based instead.

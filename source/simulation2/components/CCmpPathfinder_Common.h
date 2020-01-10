@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -240,13 +240,13 @@ public:
 	 * Updates the terrain-only grid without updating the dirtiness informations.
 	 * Useful for fast passability updates in Atlas.
 	 */
-	void MinimalTerrainUpdate();
+	void MinimalTerrainUpdate(int itile0, int jtile0, int itile1, int jtile1);
 
 	/**
 	 * Regenerates the terrain-only grid.
 	 * Atlas doesn't need to have passability cells expanded.
 	 */
-	void TerrainUpdateHelper(bool expandPassability = true);
+	void TerrainUpdateHelper(bool expandPassability = true, int itile0 = -1, int jtile0 = -1, int itile1 = -1, int jtile1 = -1);
 
 	void RenderSubmit(SceneCollector& collector);
 };
