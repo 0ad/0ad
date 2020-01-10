@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -23,7 +23,6 @@
 #include "precompiled.h"
 
 #include "lib/sysdep/sysdep.h"
-#include "lib/sysdep/cursor.h"
 
 #include "lib/external_libraries/libsdl.h"
 
@@ -64,57 +63,3 @@ Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
 }
 
 }
-
-// stub implementation of sys_cursor* functions
-
-// note: do not return ERR_NOT_IMPLEMENTED or similar because that
-// would result in WARN_ERRs.
-Status sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, sys_cursor* cursor)
-{
-	UNUSED2(w);
-	UNUSED2(h);
-	UNUSED2(hx);
-	UNUSED2(hy);
-	UNUSED2(bgra_img);
-
-	*cursor = 0;
-	return INFO::OK;
-}
-
-// returns a dummy value representing an empty cursor
-Status sys_cursor_create_empty(sys_cursor* cursor)
-{
-	*cursor = (void*)1; // any non-zero value, since the cursor NULL has special meaning
-	return INFO::OK;
-}
-
-// replaces the current system cursor with the one indicated. need only be
-// called once per cursor; pass 0 to restore the default.
-Status sys_cursor_set(sys_cursor cursor)
-{
-	if (cursor) // dummy empty cursor
-		SDL_ShowCursor(SDL_DISABLE);
-	else // restore default cursor
-		SDL_ShowCursor(SDL_ENABLE);
-
-	return INFO::OK;
-}
-
-// destroys the indicated cursor and frees its resources. if it is
-// currently the system cursor, the default cursor is restored first.
-Status sys_cursor_free(sys_cursor cursor)
-{
-	// bail now to prevent potential confusion below; there's nothing to do.
-	if(!cursor)
-		return INFO::OK;
-
-	SDL_ShowCursor(SDL_ENABLE);
-
-	return INFO::OK;
-}
-
-Status sys_cursor_reset()
-{
-	return INFO::OK;
-}
-
