@@ -47,11 +47,11 @@ var g_MainMenuItems = [
 	},
 	{
 		"caption": translate("Single-player"),
-		"tooltip": translate("Click here to start a new single-player game."),
+		"tooltip": translate("Challenge the computer player to a single-player match."),
 		"submenu": [
 			{
 				"caption": translate("Matches"),
-				"tooltip": translate("Start the economic tutorial."),
+				"tooltip": translate("Click here to start a new single-player game."),
 				"onPress": () => {
 					Engine.SwitchGuiPage("page_gamesetup.xml", {});
 				}
@@ -193,11 +193,11 @@ var g_MainMenuItems = [
 		"tooltip": translate("Exits the game."),
 		"onPress": () => {
 			messageBox(
-					400, 200,
-					translate("Are you sure you want to quit 0 A.D.?"),
-					translate("Confirmation"),
-					[translate("No"), translate("Yes")],
-					[null, Engine.Exit]);
+				400, 200,
+				translate("Are you sure you want to quit 0 A.D.?"),
+				translate("Confirmation"),
+				[translate("No"), translate("Yes")],
+				[null, Engine.Exit]);
 		}
 	}
 ];
