@@ -656,7 +656,7 @@ void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability, int itile0, int
 
 			// Compute the passability for every class for this cell
 			NavcellData t = 0;
-			for (PathfinderPassability& passability : m_PassClasses)
+			for (const PathfinderPassability& passability : m_PassClasses)
 				if (!passability.IsPassable(depth, slope, shoredist))
 					t |= passability.m_Mask;
 
@@ -668,7 +668,7 @@ void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability, int itile0, int
 	const int edgeSize = MAP_EDGE_TILES * Pathfinding::NAVCELLS_PER_TILE;
 
 	NavcellData edgeMask = 0;
-	for (PathfinderPassability& passability : m_PassClasses)
+	for (const PathfinderPassability& passability : m_PassClasses)
 		edgeMask |= passability.m_Mask;
 
 	int w = m_TerrainOnlyGrid->m_W;

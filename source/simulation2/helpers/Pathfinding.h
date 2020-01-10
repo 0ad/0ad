@@ -372,7 +372,7 @@ public:
 			m_Obstructions = NONE;
 	}
 
-	bool IsPassable(fixed waterdepth, fixed steepness, fixed shoredist)
+	bool IsPassable(fixed waterdepth, fixed steepness, fixed shoredist) const
 	{
 		return ((m_MinDepth <= waterdepth && waterdepth <= m_MaxDepth) && (steepness < m_MaxSlope) && (m_MinShore <= shoredist && shoredist <= m_MaxShore));
 	}
