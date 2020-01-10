@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -71,27 +71,22 @@ public:
 	CTerrainTextureEntry(CTerrainPropertiesPtr props, const VfsPath& path);
 	~CTerrainTextureEntry();
 
-	CStr GetTag() const
-	{ return m_Tag; }
+	const CStr& GetTag() const { return m_Tag; }
 
-	const CTerrainProperties& GetProperties() const
-	{ return *m_pProperties; }
+	const CTerrainProperties& GetProperties() const { return *m_pProperties; }
 
 	// Get texture handle, load texture if not loaded.
-	const CTexturePtr& GetTexture() {
-		return m_Material.GetDiffuseTexture();
-	}
+	const CTexturePtr& GetTexture() const { return m_Material.GetDiffuseTexture(); }
 
-	const CMaterial& GetMaterial() {
-		return m_Material;
-	}
+	const CMaterial& GetMaterial() const { return m_Material; }
 
 	// Returns a matrix of the form [c 0 -s 0; -s 0 -c 0; 0 0 0 0; 0 0 0 1]
 	// mapping world-space (x,y,z,1) coordinates onto (u,v,0,1) texcoords
-	const float* GetTextureMatrix();
+	const float* GetTextureMatrix() const;
 
 	// Get mipmap color in BGRA format
-	u32 GetBaseColor() {
+	u32 GetBaseColor()
+	{
 		if (!m_BaseColorValid) BuildBaseColor();
 		return m_BaseColor;
 	}
