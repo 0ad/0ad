@@ -2,12 +2,8 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="foundation theatron">
+    <variant frequency="1" name="Stonehenge Foundation">
       <mesh>structural/found_stonehenge.dae</mesh>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Base">
       <props>
         <prop actor="props/special/eyecandy/box.xml" attachpoint="box001" maxheight="20" minheight="-20"/>
         <prop actor="props/special/eyecandy/box.xml" attachpoint="box002" maxheight="20" minheight="-20"/>

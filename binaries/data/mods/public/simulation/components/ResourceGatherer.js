@@ -98,6 +98,11 @@ ResourceGatherer.prototype.GetLastCarriedType = function()
 	return undefined;
 };
 
+ResourceGatherer.prototype.SetLastCarriedType = function(lastCarriedType)
+{
+	this.lastCarriedType = lastCarriedType;
+};
+
 // Since this code is very performancecritical and applying technologies quite slow, cache it.
 ResourceGatherer.prototype.RecalculateGatherRatesAndCapacities = function()
 {

@@ -1142,7 +1142,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					}
 					let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 					cmpFormation.SetRearrange(true);
-					cmpFormation.MoveMembersIntoFormation(true, true);
+					cmpFormation.MoveMembersIntoFormation(true, true, "combat");
 					return false;
 				},
 
@@ -1181,7 +1181,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 					// TODO fix the rearranging while attacking as formation
 					cmpFormation.SetRearrange(!this.IsAttackingAsFormation());
-					cmpFormation.MoveMembersIntoFormation(false, false);
+					cmpFormation.MoveMembersIntoFormation(false, false, "combat");
 					this.StartTimer(200, 200);
 					return false;
 				},
@@ -1268,6 +1268,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			}
 
 			// No orders left, we're an individual now
+			this.formationAnimationVariant = undefined;
 			this.SetNextState("INDIVIDUAL.IDLE");
 		},
 
@@ -1298,7 +1299,13 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			let cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
 			if (cmpFormation)
-				this.SetAnimationVariant(cmpFormation.GetFormationAnimation(this.entity));
+			{
+				this.formationAnimationVariant = cmpFormation.GetFormationAnimation(this.entity);
+				if (this.formationAnimationVariant)
+					this.SetAnimationVariant(this.formationAnimationVariant);
+				else
+					this.SetDefaultAnimationVariant();
+			}
 			return false;
 		},
 
@@ -1321,8 +1328,14 @@ UnitAI.prototype.UnitFsmSpec = {
 				{
 					let cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
 					if (cmpFormation)
-						this.SetAnimationVariant(cmpFormation.GetFormationAnimation(this.entity));
+						this.formationAnimationVariant = cmpFormation.GetFormationAnimation(this.entity);
 				}
+				if (this.formationAnimationVariant)
+					this.SetAnimationVariant(this.formationAnimationVariant);
+				else if (this.order.data.variant)
+					this.SetAnimationVariant(this.order.data.variant);
+				else
+					this.SetDefaultAnimationVariant();
 				return false;
 			},
 
@@ -1368,8 +1381,6 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.FinishOrder();
 					return true;
 				}
-				if (cmpFormation && this.order.data.offsetsChanged)
-					this.SetAnimationVariant(cmpFormation.GetFormationAnimation(this.entity));
 				return false;
 			},
 
@@ -3048,6 +3059,10 @@ UnitAI.prototype.UnitFsmSpec = {
 			"leave": function() {
 				this.StopTimer();
 				this.ResetAnimation();
+				if (this.formationAnimationVariant)
+					this.SetAnimationVariant(this.formationAnimationVariant)
+				else
+					this.SetDefaultAnimationVariant();
 				var cmpResistance = Engine.QueryInterface(this.entity, IID_Resistance);
 				cmpResistance.SetInvulnerability(false);
 			},
@@ -3294,6 +3309,8 @@ UnitAI.prototype.Init = function()
 	// For preventing increased action rate due to Stop orders or target death.
 	this.lastAttacked = undefined;
 	this.lastHealed = undefined;
+
+	this.formationAnimationVariant = undefined;
 
 	this.SetStance(this.template.DefaultStance);
 };
@@ -4302,30 +4319,27 @@ UnitAI.prototype.SetAnimationVariant = function(type)
 };
 
 /*
- * Reset the animation variant to default behavior
+ * Reset the animation variant to default behavior.
  * Default behavior is to pick a resource-carrying variant if resources are being carried.
  * Otherwise pick nothing in particular.
  */
 UnitAI.prototype.SetDefaultAnimationVariant = function()
 {
 	let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-	if (!cmpResourceGatherer)
+	if (cmpResourceGatherer)
 	{
-		this.SetAnimationVariant("");
-		return;
-	}
+		let type = cmpResourceGatherer.GetLastCarriedType();
+		if (type)
+		{
+			let typename = "carry_" + type.generic;
 
-	let type = cmpResourceGatherer.GetLastCarriedType();
-	if (type)
-	{
-		let typename = "carry_" + type.generic;
+			// Special case for meat.
+			if (type.specific == "meat")
+				typename = "carry_" + type.specific;
 
-		// Special case for meat
-		if (type.specific == "meat")
-			typename = "carry_" + type.specific;
-
-		this.SetAnimationVariant(typename);
-		return;
+			this.SetAnimationVariant(typename);
+			return;
+		}
 	}
 
 	this.SetAnimationVariant("");

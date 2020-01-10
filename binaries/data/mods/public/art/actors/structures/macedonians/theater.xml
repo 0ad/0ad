@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Macedonian theater">
+      <mesh>structural/mace_theater_struct.dae</mesh>
+      <props>
+        <prop actor="props/structures/macedonians/theater_marble.xml" attachpoint="root"/>
+        <prop actor="props/structures/macedonians/theater_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/macedonians/theater_decor.xml" attachpoint="root"/>
+        <prop actor="props/structures/macedonians/theater_tile.xml" attachpoint="root"/>
+        <prop actor="props/structures/macedonians/theater_nature.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/hele_struct.dds" name="baseTex"/>
+        <texture file="structural/hele_struct_norm.png" name="normTex"/>
+        <texture file="structural/hele_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/mace_theater.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

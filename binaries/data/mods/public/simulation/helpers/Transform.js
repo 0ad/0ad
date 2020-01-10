@@ -88,6 +88,7 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 	{
 		let carriedResources = cmpResGatherer.GetCarryingStatus();
 		cmpNewResGatherer.GiveResources(carriedResources);
+		cmpNewResGatherer.SetLastCarriedType(cmpResGatherer.GetLastCarriedType());
 	}
 
 
