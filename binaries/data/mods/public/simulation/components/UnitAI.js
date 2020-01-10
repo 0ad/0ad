@@ -734,6 +734,8 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"Order.Stop": function(msg) {
+			let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			cmpFormation.ResetOrderVariant();
 			if (!this.IsAttackingAsFormation())
 				this.CallMemberFunction("Stop", [false]);
 			this.StopMoving();
@@ -968,7 +970,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.StartTimer(0, 1000);
 				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 				cmpFormation.SetRearrange(true);
-				cmpFormation.MoveMembersIntoFormation(true, true);
+				cmpFormation.MoveMembersIntoFormation(true, true, "combat");
 				return false;
 			},
 
@@ -1016,7 +1018,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 				cmpFormation.SetRearrange(true);
-				cmpFormation.MoveMembersIntoFormation(true, true);
+				cmpFormation.MoveMembersIntoFormation(true, true, "combat");
 				return false;
 			},
 
@@ -1311,6 +1313,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"leave": function() {
 			this.SetDefaultAnimationVariant();
+			this.formationAnimationVariant = undefined;
 		},
 
 		"IDLE": "INDIVIDUAL.IDLE",
@@ -1815,6 +1818,11 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.RespondToTargetedEntities([msg.data.attacker]);
 			},
 
+			"leave": function() {
+				if (!this.formationAnimationVariant)
+					this.SetDefaultAnimationVariant();
+			},
+
 			"APPROACHING": {
 				"enter": function() {
 					if (!this.MoveToTargetAttackRange(this.order.data.target, this.order.data.attackType))
@@ -1823,16 +1831,14 @@ UnitAI.prototype.UnitFsmSpec = {
 						return true;
 					}
 
-					// Show weapons rather than carried resources.
-					this.SetAnimationVariant("combat");
+					if (!this.formationAnimationVariant)
+						this.SetAnimationVariant("combat");
 
 					this.StartTimer(1000, 1000);
 					return false;
 				},
 
 				"leave": function() {
-					// Show carried resources when walking.
-					this.SetDefaultAnimationVariant();
 					this.StopMoving();
 					this.StopTimer();
 				},
@@ -1939,7 +1945,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						prepare = Math.max(prepare, repeatLeft);
 					}
 
-					if (!this.IsFormationMember())
+					if (!this.formationAnimationVariant)
 						this.SetAnimationVariant("combat");
 
 					this.oldAttackType = this.order.data.attackType;
@@ -1965,7 +1971,6 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (cmpBuildingAI)
 						cmpBuildingAI.SetUnitAITarget(0);
 					this.StopTimer();
-					this.SetDefaultAnimationVariant();
 					this.ResetAnimation();
 				},
 
@@ -2080,8 +2085,8 @@ UnitAI.prototype.UnitFsmSpec = {
 						return true;
 					}
 
-					// Show weapons rather than carried resources.
-					this.SetAnimationVariant("combat");
+					if (!this.formationAnimationVariant)
+						this.SetAnimationVariant("combat");
 
 					var cmpUnitAI = Engine.QueryInterface(this.order.data.target, IID_UnitAI);
 					if (cmpUnitAI && cmpUnitAI.IsFleeing())
@@ -2096,8 +2101,6 @@ UnitAI.prototype.UnitFsmSpec = {
 				"leave": function() {
 					this.ResetSpeedMultiplier();
 
-					// Show carried resources when walking.
-					this.SetDefaultAnimationVariant();
 					this.StopMoving();
 					this.StopTimer();
 				},

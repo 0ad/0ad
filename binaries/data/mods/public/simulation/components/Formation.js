@@ -109,6 +109,8 @@ Formation.prototype.Init = function()
 		}
 	}
 
+	this.lastOrderVariant = undefined;
+
 	this.members = []; // entity IDs currently belonging to this formation
 	this.memberPositions = {};
 	this.maxRowsUsed = 0;
@@ -347,7 +349,7 @@ Formation.prototype.RemoveMembers = function(ents)
 		return;
 
 	// Rearrange the remaining members
-	this.MoveMembersIntoFormation(true, true);
+	this.MoveMembersIntoFormation(true, true, this.lastOrderVariant);
 };
 
 Formation.prototype.AddMembers = function(ents)
@@ -377,7 +379,7 @@ Formation.prototype.AddMembers = function(ents)
 	}
 
 	this.ComputeMotionParameters();
-	this.MoveMembersIntoFormation(true, true);
+	this.MoveMembersIntoFormation(true, true, this.lastOrderVariant);
 };
 
 /**
@@ -470,6 +472,7 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force, varia
 		}
 	}
 
+	this.lastOrderVariant = variant;
 	// Switch between column and box if necessary
 	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
 	var walkingDistance = cmpUnitAI.ComputeWalkingDistance();
@@ -906,10 +909,15 @@ Formation.prototype.ShapeUpdate = function()
 	{
 		this.offsets = undefined;
 		this.columnar = columnar;
-		this.MoveMembersIntoFormation(false, true);
+		this.MoveMembersIntoFormation(false, true, this.lastOrderVariant);
 		// (disable moveCenter so we can't get stuck in a loop of switching
 		// shape causing center to change causing shape to switch back)
 	}
+};
+
+Formation.prototype.ResetOrderVariant = function()
+{
+	this.lastOrderVariant = undefined;
 };
 
 Formation.prototype.OnGlobalOwnershipChanged = function(msg)
