@@ -3673,6 +3673,7 @@ UnitAI.prototype.FinishOrder = function()
 	// Check if there are queued formation orders
 	if (this.IsFormationMember())
 	{
+		this.SetNextState("FORMATIONMEMBER.IDLE");
 		let cmpUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
 		if (cmpUnitAI)
 		{
