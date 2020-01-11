@@ -1,7 +1,7 @@
 var g_MainMenuItems = [
 	{
 		"caption": translate("Learn To Play"),
-		"tooltip": translate("Learn how to play, start the tutorial, discover the technology trees, and the history behind the civilizations"),
+		"tooltip": translate("Learn how to play, start the tutorial, discover the technology trees, and the history behind the civilizations."),
 		"submenu": [
 			{
 				"caption": translate("Manual"),
@@ -33,7 +33,7 @@ var g_MainMenuItems = [
 			},
 			{
 				"caption": translate("History"),
-				"tooltip": colorizeHotkey(translate("%(hotkey)s: Learn about the many civilizations featured in 0 A.D."), "civinfo"),
+				"tooltip": colorizeHotkey(translate("%(hotkey)s: Learn about the civilizations featured in 0 A.D."), "civinfo"),
 				"hotkey": "civinfo",
 				"onPress": () => {
 					let callback = data => {
@@ -47,11 +47,11 @@ var g_MainMenuItems = [
 	},
 	{
 		"caption": translate("Single-player"),
-		"tooltip": translate("Challenge the computer player to a single-player match."),
+		"tooltip": translate("Start, load, or replay a single-player game."),
 		"submenu": [
 			{
 				"caption": translate("Matches"),
-				"tooltip": translate("Click here to start a new single-player game."),
+				"tooltip": translate("Start a new single-player game."),
 				"onPress": () => {
 					Engine.SwitchGuiPage("page_gamesetup.xml", {});
 				}
@@ -63,7 +63,7 @@ var g_MainMenuItems = [
 			},
 			{
 				"caption": translate("Load Game"),
-				"tooltip": translate("Click here to load a saved game."),
+				"tooltip": translate("Load a saved game."),
 				"onPress": () => {
 					Engine.PushGuiPage("page_loadgame.xml");
 				}
@@ -135,7 +135,7 @@ var g_MainMenuItems = [
 	},
 	{
 		"caption": translate("Settings"),
-		"tooltip": translate("Game options and scenario design tools."),
+		"tooltip": translate("Change game options."),
 		"submenu": [
 			{
 				"caption": translate("Options"),
@@ -163,7 +163,7 @@ var g_MainMenuItems = [
 			},
 			{
 				"caption": translate("Welcome Screen"),
-				"tooltip": translate("Show the Welcome Screen. Useful if you hid it by mistake."),
+				"tooltip": translate("Show the Welcome Screen again. Useful if you hid it by mistake."),
 				"onPress": () => {
 					Engine.PushGuiPage("page_splashscreen.xml");
 				}
@@ -190,7 +190,7 @@ var g_MainMenuItems = [
 	},
 	{
 		"caption": translate("Exit"),
-		"tooltip": translate("Exits the game."),
+		"tooltip": translate("Exit the game."),
 		"onPress": () => {
 			messageBox(
 				400, 200,
