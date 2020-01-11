@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -155,9 +155,6 @@ void CLOSTexture::InterpolateLOS()
 		m_Dirty = false;
 	}
 
-	GLint originalFBO;
-	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &originalFBO);
-
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_smoothFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D,
 				   whichTex ? m_TextureSmooth2 : m_TextureSmooth1, 0);
@@ -214,7 +211,7 @@ void CLOSTexture::InterpolateLOS()
 
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, 0, 0);
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, originalFBO);
+	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 
 	whichTex = !whichTex;
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -1020,10 +1020,6 @@ void CRenderer::RenderReflections(const CShaderDefines& context, const CBounding
 {
 	PROFILE3_GPU("water reflections");
 
-	// Save the post-processing framebuffer.
-	GLint fbo;
-	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &fbo);
-
 	WaterManager& wm = m->waterManager;
 
 	// Remember old camera
@@ -1087,10 +1083,7 @@ void CRenderer::RenderReflections(const CShaderDefines& context, const CBounding
   	m_ViewCamera = normalCamera;
   	m->SetOpenGLCamera(m_ViewCamera);
 
-	// rebind post-processing frambuffer.
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, fbo);
-
-	return;
+	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
 
 
@@ -1099,10 +1092,6 @@ void CRenderer::RenderReflections(const CShaderDefines& context, const CBounding
 void CRenderer::RenderRefractions(const CShaderDefines& context, const CBoundingBoxAligned &scissor)
 {
 	PROFILE3_GPU("water refractions");
-
-	// Save the post-processing framebuffer.
-	GLint fbo;
-	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &fbo);
 
 	WaterManager& wm = m->waterManager;
 
@@ -1151,10 +1140,7 @@ void CRenderer::RenderRefractions(const CShaderDefines& context, const CBounding
   	m_ViewCamera = normalCamera;
   	m->SetOpenGLCamera(m_ViewCamera);
 
-	// rebind post-processing frambuffer.
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, fbo);
-
-	return;
+	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
 
 void CRenderer::RenderSilhouettes(const CShaderDefines& context)
@@ -1301,12 +1287,6 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 
 	GetScene().GetLOSTexture().InterpolateLOS();
 
-	if (g_RenderingOptions.GetPostProc())
-	{
-		m->postprocManager.Initialize();
-		m->postprocManager.CaptureRenderOutput();
-	}
-
 	CShaderDefines context = m->globalContext;
 
 	int cullGroup = CULL_DEFAULT;
@@ -1338,21 +1318,6 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 		RenderShadowMap(context);
 	}
 
-	{
-		PROFILE3_GPU("clear buffers");
-		glClearColor(m_ClearColor[0], m_ClearColor[1], m_ClearColor[2], m_ClearColor[3]);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-	}
-
-	if (g_RenderingOptions.GetPostProc())
-	{
-		// We have to update the post process manager with real near/far planes
-		// that we use for the scene rendering.
-		m->postprocManager.SetDepthBufferClipPlanes(
-			m_ViewCamera.GetNearPlane(), m_ViewCamera.GetFarPlane()
-		);
-	}
-
 	ogl_WarnIfError();
 
 	if (m_WaterManager->m_RenderWater)
@@ -1365,6 +1330,23 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 			if (g_RenderingOptions.GetWaterRefraction())
 				RenderRefractions(context, waterScissor);
 		}
+	}
+
+	if (g_RenderingOptions.GetPostProc())
+	{
+		// We have to update the post process manager with real near/far planes
+		// that we use for the scene rendering.
+		m->postprocManager.SetDepthBufferClipPlanes(
+			m_ViewCamera.GetNearPlane(), m_ViewCamera.GetFarPlane()
+		);
+		m->postprocManager.Initialize();
+		m->postprocManager.CaptureRenderOutput();
+	}
+
+	{
+		PROFILE3_GPU("clear buffers");
+		glClearColor(m_ClearColor[0], m_ClearColor[1], m_ClearColor[2], m_ClearColor[3]);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	}
 
 	if (g_RenderingOptions.GetShowSky())

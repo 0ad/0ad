@@ -599,11 +599,6 @@ void ShadowMapInternals::CreateTexture()
 // Set up to render into shadow map texture
 void ShadowMap::BeginRender()
 {
-	// HACK HACK: this depends in non-obvious ways on the behaviour of the caller
-
-	// save caller's FBO
-	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &m->SavedViewFBO);
-
 	// Calc remaining shadow matrices
 	m->CalcShadowMatrices();
 
@@ -656,7 +651,7 @@ void ShadowMap::EndRender()
 
 	{
 		PROFILE("unbind framebuffer");
-		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m->SavedViewFBO);
+		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 	}
 
 	const SViewPort vp = { 0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight() };
