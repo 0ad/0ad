@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object>
+	<!-- This GUI object displays the name of the setting. -->
+	<object
+		type="text"
+		size="0 0 170 30"
+		style="ModernRightLabelText"
+		tooltip_style="onscreenToolTip"
+		z="1"
+	/>
+
+	<!-- This GUI object displays the settings value if the control is disabled. -->
+	<object
+		type="text"
+		size="175 0 100% 30"
+		style="ModernLeftLabelText"
+		tooltip_style="onscreenToolTip"
+		z="1"
+	/>
+</object>

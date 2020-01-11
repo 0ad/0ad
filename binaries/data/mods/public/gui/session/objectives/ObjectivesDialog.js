@@ -1,6 +1,6 @@
 class ObjectivesDialog
 {
-	constructor(playerViewControl)
+	constructor(playerViewControl, mapCache)
 	{
 		this.gameDescription = Engine.GetGUIObjectByName("gameDescription");
 		this.objectivesPlayerstate = Engine.GetGUIObjectByName("objectivesPlayerstate");
@@ -9,7 +9,7 @@ class ObjectivesDialog
 
 		// TODO: atlas should support this
 		if (!Engine.IsAtlasRunning())
-			Engine.GetGUIObjectByName("gameDescriptionText").caption = getGameDescription();
+			Engine.GetGUIObjectByName("gameDescriptionText").caption = getGameDescription(mapCache);
 
 		Engine.GetGUIObjectByName("closeObjectives").onPress = this.close.bind(this);
 

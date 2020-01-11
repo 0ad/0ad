@@ -52,7 +52,8 @@ function InitGame(settings)
 	{
 		let cmpPlayer = QueryPlayerIDInterface(i);
 		cmpPlayer.SetCheatsEnabled(!!settings.CheatsEnabled);
-		if (settings.PlayerData[i] && settings.PlayerData[i].AI && settings.PlayerData[i].AI != "")
+
+		if (settings.PlayerData[i] && !!settings.PlayerData[i].AI)
 		{
 			let AIDiff = +settings.PlayerData[i].AIDiff;
 			cmpAIManager.AddPlayer(settings.PlayerData[i].AI, i, AIDiff, settings.PlayerData[i].AIBehavior || "random");
@@ -63,17 +64,6 @@ function InitGame(settings)
 				"Trader/GainMultiplier": [{ "affects": ["Unit", "Structure"], "multiply": rate[AIDiff] }],
 				"Cost/BuildTime": [{ "affects": ["Unit", "Structure"], "multiply": time[AIDiff] }],
 			}, cmpPlayer.entity);
-		}
-		if (settings.PopulationCap)
-			cmpPlayer.SetMaxPopulation(settings.PopulationCap);
-
-		if (settings.mapType !== "scenario" && settings.StartingResources)
-		{
-			let resourceCounts = cmpPlayer.GetResourceCounts();
-			let newResourceCounts = {};
-			for (let resouces in resourceCounts)
-				newResourceCounts[resouces] = settings.StartingResources;
-			cmpPlayer.SetResourceCounts(newResourceCounts);
 		}
 	}
 	// Map or player data (handicap...) dependent initialisations of components (i.e. garrisoned units)

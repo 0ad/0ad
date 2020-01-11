@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="spTips" type="image" hidden="true">
+
+	<object type="image" size="4 10 28 34" sprite="ModernGear"/>
+
+	<object name="aiTips" type="text" size="32 0 100%-20 100%-32" style="ModernLeftLabelText" />
+
+	<object type="text"  size="30 100%-30 100% 100%-8" style="ModernLeftLabelText">
+		<translatableAttribute id="caption">Show this message in the future.</translatableAttribute>
+	</object>
+
+	<object name="displaySPTips" type="checkbox" style="ModernTickBox" size="8 100%-30 28 100%-8" checked="true"/>
+
+</object>

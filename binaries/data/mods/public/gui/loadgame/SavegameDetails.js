@@ -11,6 +11,8 @@ class SavegameDetails
 {
 	constructor()
 	{
+		this.mapCache = new MapCache();
+
 		this.onSelectionChange();
 	}
 
@@ -22,13 +24,16 @@ class SavegameDetails
 		if (!metadata)
 			return;
 
-		Engine.GetGUIObjectByName("savedMapName").caption = translate(metadata.initAttributes.settings.Name);
-		Engine.GetGUIObjectByName("savedInfoPreview").sprite = getMapPreviewImage(
-			getMapDescriptionAndPreview(metadata.initAttributes.mapType, metadata.initAttributes.map, metadata.initAttributes).preview);
+		Engine.GetGUIObjectByName("savedMapName").caption =
+			this.mapCache.getMapName(metadata.initAttributes.mapType, metadata.initAttributes.map);
+
+		Engine.GetGUIObjectByName("savedInfoPreview").sprite =
+			this.mapCache.getMapPreview(metadata.initAttributes.mapType, metadata.initAttributes.map, metadata.initAttributes);
+
 		Engine.GetGUIObjectByName("savedPlayers").caption = metadata.initAttributes.settings.PlayerData.length - 1;
 		Engine.GetGUIObjectByName("savedPlayedTime").caption = timeToString(metadata.gui.timeElapsed ? metadata.gui.timeElapsed : 0);
 		Engine.GetGUIObjectByName("savedMapType").caption = translateMapType(metadata.initAttributes.mapType);
-		Engine.GetGUIObjectByName("savedMapSize").caption = translateMapSize(metadata.initAttributes.settings.Size);
+		Engine.GetGUIObjectByName("savedMapSize").caption = translateMapSize(metadata.initAttributes.settings.Size || -1);
 		Engine.GetGUIObjectByName("savedVictory").caption = metadata.initAttributes.settings.VictoryConditions.map(victoryConditionName => translateVictoryCondition(victoryConditionName)).join(translate(", "));
 
 		let caption = sprintf(translate("Mods: %(mods)s"), { "mods": modsToString(metadata.mods) });

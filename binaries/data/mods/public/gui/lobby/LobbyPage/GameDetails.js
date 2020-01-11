@@ -3,8 +3,10 @@
  */
 class GameDetails
 {
-	constructor(dialog, gameList)
+	constructor(dialog, gameList, mapCache)
 	{
+		this.mapCache = mapCache;
+
 		this.playernameArgs = {};
 		this.playerCountArgs = {};
 		this.gameStartArgs = {};
@@ -45,15 +47,13 @@ class GameDetails
 		Engine.ProfileStart("GameDetails");
 
 		let stanza = game.stanza;
+		let displayData = game.displayData;
+
 		if (stanza.mapType != this.lastGame.mapType || stanza.mapName != this.lastGame.mapName)
 		{
-			let mapData = getMapDescriptionAndPreview(stanza.mapType, stanza.mapName);
-			this.sgMapPreview.sprite = getMapPreviewImage(mapData.preview);
-			this.mapDescription = mapData.description;
+			this.sgMapName.caption = displayData.mapName;
+			this.sgMapPreview.sprite = this.mapCache.getMapPreview(stanza.mapType, stanza.mapName);
 		}
-
-		let displayData = game.displayData;
-		this.sgMapName.caption = displayData.mapName;
 
 		{
 			let txt;
@@ -71,7 +71,7 @@ class GameDetails
 			txt +=
 				"\n" + setStringTags(this.MapTypeFormat, this.CaptionTags) + " " + displayData.mapType +
 				"\n" + setStringTags(this.MapSizeFormat, this.CaptionTags) + " " + displayData.mapSize +
-				"\n" + setStringTags(this.MapDescriptionFormat, this.CaptionTags) + " " + this.mapDescription;
+				"\n" + setStringTags(this.MapDescriptionFormat, this.CaptionTags) + " " + displayData.mapDescription;
 
 			this.sgMapDescription.caption = txt;
 		}

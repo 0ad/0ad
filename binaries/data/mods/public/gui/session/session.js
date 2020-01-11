@@ -2,12 +2,10 @@ const g_IsReplay = Engine.IsVisualReplay();
 
 const g_CivData = loadCivData(false, true);
 
-const g_Ceasefire = prepareForDropdown(g_Settings && g_Settings.Ceasefire);
 const g_MapSizes = prepareForDropdown(g_Settings && g_Settings.MapSizes);
 const g_MapTypes = prepareForDropdown(g_Settings && g_Settings.MapTypes);
 const g_PopulationCapacities = prepareForDropdown(g_Settings && g_Settings.PopulationCapacities);
 const g_StartingResources = prepareForDropdown(g_Settings && g_Settings.StartingResources);
-const g_VictoryDurations = prepareForDropdown(g_Settings && g_Settings.VictoryDurations);
 const g_VictoryConditions = g_Settings && g_Settings.VictoryConditions;
 
 var g_Ambient;
@@ -266,6 +264,7 @@ function init(initData, hotloadData)
 			restoreSavedGameData(initData.savedGUIData);
 	}
 
+	let mapCache = new MapCache();
 	g_Cheats = new Cheats();
 	g_DiplomacyColors = new DiplomacyColors();
 	g_PlayerViewControl = new PlayerViewControl();
@@ -284,7 +283,7 @@ function init(initData, hotloadData)
 	g_Menu = new Menu(g_PauseControl, g_PlayerViewControl, g_Chat);
 	g_MiniMapPanel = new MiniMapPanel(g_PlayerViewControl, g_DiplomacyColors, g_WorkerTypes);
 	g_NetworkStatusOverlay = new NetworkStatusOverlay();
-	g_ObjectivesDialog = new ObjectivesDialog(g_PlayerViewControl);
+	g_ObjectivesDialog = new ObjectivesDialog(g_PlayerViewControl, mapCache);
 	g_OutOfSyncNetwork = new OutOfSyncNetwork();
 	g_OutOfSyncReplay = new OutOfSyncReplay();
 	g_PanelEntityManager = new PanelEntityManager(g_PlayerViewControl, g_Selection, g_PanelEntityOrder);

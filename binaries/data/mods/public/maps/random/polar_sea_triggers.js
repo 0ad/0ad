@@ -15,18 +15,6 @@ var maxWaveTime = 4;
 var targetClasses = "Organic+!Domestic";
 var targetCount = 3;
 
-var disabledTechnologies = [
-	"gather_lumbering_ironaxes",
-	"gather_lumbering_sharpaxes",
-	"gather_lumbering_strongeraxes"
-];
-
-Trigger.prototype.InitDisableTechnologies = function()
-{
-	for (let i = 1; i < TriggerHelper.GetNumberOfPlayers(); ++i)
-		QueryPlayerIDInterface(i).SetDisabledTechnologies(disabledTechnologies);
-};
-
 Trigger.prototype.SpawnWolvesAndAttack = function()
 {
 	let waveSize = Math.round(Math.random() * (maxWaveSize - minWaveSize) + minWaveSize);
@@ -107,6 +95,5 @@ Trigger.prototype.SpawnWolvesAndAttack = function()
 
 {
 	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-	cmpTrigger.InitDisableTechnologies();
 	cmpTrigger.DoAfterDelay(firstWaveTime * 60 * 1000, "SpawnWolvesAndAttack", {});
 }

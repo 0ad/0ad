@@ -15,7 +15,8 @@ var g_MainMenuItems = [
 				"tooltip": translate("Start the economic tutorial."),
 				"onPress": () => {
 					Engine.SwitchGuiPage("page_gamesetup.xml", {
-						"tutorial": true
+						"mapType": "scenario",
+						"map": "maps/tutorials/starting_economy_walkthrough"
 					});
 				}
 			},
@@ -53,7 +54,7 @@ var g_MainMenuItems = [
 				"caption": translate("Matches"),
 				"tooltip": translate("Start a new single-player game."),
 				"onPress": () => {
-					Engine.SwitchGuiPage("page_gamesetup.xml", {});
+					Engine.SwitchGuiPage("page_gamesetup.xml");
 				}
 			},
 			{

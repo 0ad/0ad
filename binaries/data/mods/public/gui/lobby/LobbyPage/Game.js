@@ -13,8 +13,10 @@
  */
 class Game
 {
-	constructor()
+	constructor(mapCache)
 	{
+		this.mapCache = mapCache;
+
 		// Stanza data, object with exclusively string values
 		// Used to compare which part of the stanza data changed,
 		// perform partial updates and trigger event notifications.
@@ -91,7 +93,8 @@ class Game
 		if (oldStanza.niceMapName != newStanza.niceMapName)
 		{
 			Engine.ProfileStart("niceMapName");
-			displayData.mapName = escapeText(translateMapTitle(newStanza.niceMapName));
+			displayData.mapName = escapeText(this.mapCache.translateMapName(newStanza.niceMapName));
+			displayData.mapDescription = this.mapCache.getTranslatedMapDescription(newStanza.mapType, newStanza.mapName);
 			Engine.ProfileStop();
 		}
 

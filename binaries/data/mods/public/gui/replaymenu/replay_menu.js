@@ -53,6 +53,8 @@ var g_ReplaysLoaded = false;
  */
 var g_SummarySelectedData;
 
+var g_MapCache = new MapCache();
+
 /**
  * Initializes globals, loads replays and displays the list.
  */
@@ -174,8 +176,8 @@ function sanitizeGameAttributes(attribs)
 	if (!attribs.settings.PopulationCap)
 		attribs.settings.PopulationCap = 300;
 
-	if (!attribs.settings.mapType)
-		attribs.settings.mapType = "skirmish";
+	if (!attribs.mapType)
+		attribs.mapType = "skirmish";
 
 	// Remove gaia
 	if (attribs.settings.PlayerData.length && attribs.settings.PlayerData[0] == null)
@@ -276,7 +278,7 @@ function displayReplayDetails()
 
 	Engine.GetGUIObjectByName("sgMapName").caption = translate(replay.attribs.settings.Name);
 	Engine.GetGUIObjectByName("sgMapSize").caption = translateMapSize(replay.attribs.settings.Size);
-	Engine.GetGUIObjectByName("sgMapType").caption = translateMapType(replay.attribs.settings.mapType);
+	Engine.GetGUIObjectByName("sgMapType").caption = translateMapType(replay.attribs.mapType);
 	Engine.GetGUIObjectByName("sgVictory").caption = replay.attribs.settings.VictoryConditions.map(victoryConditionName =>
 		translateVictoryCondition(victoryConditionName)).join(translate(", "));
 	Engine.GetGUIObjectByName("sgNbPlayers").caption = sprintf(translate("Players: %(numberOfPlayers)s"),
@@ -292,9 +294,8 @@ function displayReplayDetails()
 				metadata.playerStates &&
 				metadata.playerStates.map(pState => pState.state));
 
-	let mapData = getMapDescriptionAndPreview(replay.attribs.settings.mapType, replay.attribs.map, replay.attribs);
-	Engine.GetGUIObjectByName("sgMapPreview").sprite = getMapPreviewImage(mapData.preview);
-	Engine.GetGUIObjectByName("sgMapDescription").caption = mapData.description;
+	Engine.GetGUIObjectByName("sgMapPreview").sprite = g_MapCache.getMapPreview(replay.attribs.mapType, replay.attribs.map, replay.attribs);
+	Engine.GetGUIObjectByName("sgMapDescription").caption = g_MapCache.getTranslatedMapDescription(replay.attribs.mapType, replay.attribs.map);
 
 	Engine.GetGUIObjectByName("summaryButton").hidden = !Engine.HasReplayMetadata(replay.directory);
 }
