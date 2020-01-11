@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,7 +26,6 @@
 #include "lib/file/common/file_stats.h"
 #include "lib/res/h_mgr.h"
 #include "lib/res/graphics/cursor.h"
-#include "lib/sysdep/cursor.h"
 
 #include "graphics/CinemaManager.h"
 #include "graphics/FontMetrics.h"
@@ -695,7 +694,6 @@ static void InitSDL()
 static void ShutdownSDL()
 {
 	SDL_Quit();
-	sys_cursor_reset();
 }
 
 

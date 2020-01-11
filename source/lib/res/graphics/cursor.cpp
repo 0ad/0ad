@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -34,17 +34,7 @@
 #include "lib/external_libraries/libsdl.h"
 #include "lib/ogl.h"
 #include "lib/res/h_mgr.h"
-#include "lib/sysdep/cursor.h"
 #include "ogl_tex.h"
-
-// On Windows, allow runtime choice between system cursors and OpenGL
-// cursors (Windows = more responsive, OpenGL = more consistent with what
-// the game sees)
-#if OS_WIN || OS_UNIX
-# define ALLOW_SYS_CURSOR 1
-#else
-# define ALLOW_SYS_CURSOR 0
-#endif
 
 class SDLCursor
 {
@@ -303,7 +293,7 @@ static Status Cursor_to_string(const Cursor* c, wchar_t* buf)
 
 
 // note: these standard resource interface functions are not exposed to the
-// caller. all we need here is storage for the sys_cursor / GLCursor and
+// caller. all we need here is storage for the SDL_Cursor / GLCursor and
 // a name -> data lookup mechanism, both provided by h_mgr.
 // in other words, we continually create/free the cursor resource in
 // cursor_draw and trust h_mgr's caching to absorb it.

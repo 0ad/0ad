@@ -56,6 +56,9 @@
   </group>
   <group>
     <variant file="biped/base_spearman_shield_relax_ptol.xml" name="Spearman-Shield-Relax-Ptol" frequency="1"/>
+    <variant file="biped/formations/phalanx_front.xml"/>
+    <variant file="biped/formations/phalanx_mid.xml"/>
+    <variant file="biped/formations/phalanx_back.xml"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>

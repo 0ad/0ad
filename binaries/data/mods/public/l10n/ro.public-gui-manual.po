@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-16 07:10+0000\n"
-"PO-Revision-Date: 2019-09-16 15:24+0000\n"
+"POT-Creation-Date: 2020-01-06 08:10+0000\n"
+"PO-Revision-Date: 2020-01-06 14:41+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -550,165 +550,171 @@ msgid ""
 "along the way are targeted"
 msgstr ""
 
-#: gui/manual/intro.txt:119
-msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
+#: gui/manual/intro.txt:118
+msgid ""
+"  Ctrl + Mouse Move near structures – Align the new structure with an "
+"existing nearby structure"
 msgstr ""
 
 #: gui/manual/intro.txt:120
-msgid "  Alt + G – Hide/show the GUI"
+msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr ""
 
 #: gui/manual/intro.txt:121
-msgid "  Alt + D – Show/hide developer overlay (with developer options)"
+msgid "  Alt + G – Hide/show the GUI"
 msgstr ""
 
 #: gui/manual/intro.txt:122
+msgid "  Alt + D – Show/hide developer overlay (with developer options)"
+msgstr ""
+
+#: gui/manual/intro.txt:123
 msgid ""
 "  Alt + Shift + W – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
 msgstr ""
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:124
 msgid ""
 "  Alt + Shift + S – Toggle unit silhouettes (might give a small performance "
 "boost)"
 msgstr ""
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:125
 msgid "  Alt + Z – Toggle sky"
 msgstr ""
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:126
 msgid "  Alt + X – Toggle diplomacy colors"
 msgstr ""
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:127
 msgid ""
 "  Alt + C – Toggle attack range visualizations of selected units and "
 "structures"
 msgstr ""
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:128
 msgid ""
 "  Alt + V – Toggle aura range visualizations of selected units and "
 "structures"
 msgstr ""
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:129
 msgid "  Alt + B – Toggle heal range visualizations of selected units"
 msgstr ""
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:131
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
 msgstr ""
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:132
 msgid "  W or ↑ (Up) – Pan screen up"
 msgstr ""
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:133
 msgid "  S or ↓ (Down) – Pan screen down"
 msgstr ""
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:134
 msgid "  A or ← (Left) – Pan screen left"
 msgstr ""
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:135
 msgid "  D or → (Right) – Pan screen right"
 msgstr ""
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:136
 msgid "  Ctrl + W or Ctrl + ↑ (Up) – Rotate camera to look upward"
 msgstr ""
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:137
 msgid "  Ctrl + S or Ctrl + ↓ (Down) – Rotate camera to look downward"
 msgstr ""
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:138
 msgid "  Ctrl + A or Ctrl + ← (Left) – Rotate camera clockwise around terrain"
 msgstr ""
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:139
 msgid ""
 "  Ctrl + D or Ctrl + → (Right) – Rotate camera counter-clockwise around "
 "terrain"
 msgstr ""
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:140
 msgid "  Q – Rotate camera clockwise around terrain"
 msgstr ""
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:141
 msgid "  E – Rotate camera counter-clockwise around terrain"
 msgstr ""
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:142
 msgid ""
 "  Shift + Mouse Wheel Rotate Up – Rotate camera clockwise around terrain"
 msgstr ""
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:143
 msgid ""
 "  Shift + Mouse Wheel Rotate Down – Rotate camera counter-clockwise around "
 "terrain"
 msgstr ""
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:144
 msgid ""
 "  F – Follow the selected unit (move the camera to stop following the unit)"
 msgstr ""
 
-#: gui/manual/intro.txt:144
+#: gui/manual/intro.txt:145
 msgid "  R – Reset camera zoom/orientation"
 msgstr ""
 
-#: gui/manual/intro.txt:145
+#: gui/manual/intro.txt:146
 msgid "  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)"
 msgstr ""
 
-#: gui/manual/intro.txt:146
+#: gui/manual/intro.txt:147
 msgid ""
 "  - (Hyphen) or − (Minus) – Zoom out (keep pressed for continuous zoom)"
 msgstr ""
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:148
 msgid "  Middle Mouse Button – Keep pressed and move the mouse to pan"
 msgstr ""
 
-#: gui/manual/intro.txt:149
+#: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Building Placement[font=\"sans-14\"]"
 msgstr ""
 
-#: gui/manual/intro.txt:150
+#: gui/manual/intro.txt:151
 msgid "  \\[ (Left Bracket) – Rotate building 15 degrees counter-clockwise"
 msgstr ""
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:152
 msgid "  ] (Right Bracket) – Rotate building 15 degrees clockwise"
 msgstr ""
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:153
 msgid ""
 "  Left Drag – Rotate building using mouse (foundation will be placed on "
 "mouse release)"
 msgstr ""
 
-#: gui/manual/intro.txt:154
+#: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
 msgstr ""
 
-#: gui/manual/intro.txt:155
+#: gui/manual/intro.txt:156
 msgid "  Esc – Cancel"
 msgstr ""
 
-#: gui/manual/intro.txt:156
+#: gui/manual/intro.txt:157
 msgid "  Delete – Delete the selected saved game, ask for confirmation"
 msgstr ""
 
-#: gui/manual/intro.txt:157
+#: gui/manual/intro.txt:158
 msgid ""
 "  Shift + Delete – Immediately delete the selected saved game, without "
 "asking for confirmation"
