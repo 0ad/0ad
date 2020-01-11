@@ -105,8 +105,8 @@ function selectCiv(civCode)
 		structInfo.phase = getPhaseOfTemplate(structInfo);
 		let structPhaseIdx = g_ParsedData.phaseList.indexOf(structInfo.phase);
 
-		// If this building is shared with another civ,
-		// it may have already gone through the grouping process already
+		// If this structure is shared with another civ,
+		// it may have already gone through the grouping process already.
 		if (!Array.isArray(structInfo.production.techs))
 			continue;
 

@@ -235,7 +235,7 @@ var g_NotificationsTypes =
 		    entState.identity.classes.indexOf("Animal") != -1)
 			return;
 
-		// Focus the building to construct
+		// Focus the structure to build.
 		if (cmd.type == "repair")
 		{
 			let targetState = GetEntityState(cmd.target);

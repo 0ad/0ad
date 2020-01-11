@@ -158,7 +158,7 @@
 			{
 				"type": "boolean",
 				"label": "Unit Silhouettes",
-				"tooltip": "Show outlines of units behind buildings.",
+				"tooltip": "Show outlines of units behind structures.",
 				"config": "silhouettes",
 				"function": "Renderer_SetSilhouettesEnabled"
 			},
@@ -495,7 +495,7 @@
 			{
 				"type": "boolean",
 				"label": "Detailed Tooltips",
-				"tooltip": "Show detailed tooltips for trainable units in unit-producing buildings.",
+				"tooltip": "Show detailed tooltips for trainable units in unit-producing structures.",
 				"config": "showdetailedtooltips"
 			},
 			{

@@ -117,21 +117,21 @@ function selectCiv(code)
 	for (let bonus of civInfo.CivBonuses)
 		bonusCaption += subHeading(bonus);
 
-	// Team Bonuses
+	// Team bonuses
 	bonusCaption += heading(translatePlural("Team Bonus", "Team Bonuses", civInfo.TeamBonuses.length), 12) + '\n';
 	for (let bonus of civInfo.TeamBonuses)
 		bonusCaption += subHeading(bonus);
 
 	Engine.GetGUIObjectByName("civBonuses").caption = bonusCaption;
 
-	// Special techs
+	// Special technologies
 	var techCaption = heading(translate("Special Technologies"), 12) + '\n';
 	for (let faction of civInfo.Factions)
 		for (let technology of faction.Technologies)
 			techCaption += subHeading(technology);
 
-	// Special buildings
-	techCaption += heading(translatePlural("Special Building", "Special Buildings", civInfo.Structures.length), 12) + '\n';
+	// Special structures
+	techCaption += heading(translatePlural("Special Structure", "Special Structures", civInfo.Structures.length), 12) + '\n';
 	for (let structure of civInfo.Structures)
 		techCaption += subHeading(structure);
 

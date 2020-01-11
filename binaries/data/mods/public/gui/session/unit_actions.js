@@ -904,7 +904,7 @@ var g_UnitActions =
 			         (!entState.market.naval || targetState.market.naval) &&
 			         !playerCheck(entState, targetState, ["Enemy"]))
 			{
-				// Find a trader (if any) that this building can produce.
+				// Find a trader (if any) that this structure can train.
 				let trader;
 				if (entState.production && entState.production.entities.length)
 					for (let i = 0; i < entState.production.entities.length; ++i)
@@ -1086,7 +1086,7 @@ var g_EntityCommands =
 				{
 					"tooltip":
 						colorizeHotkey("%(hotkey)s" + " ", "session.kill") +
-						translate("Destroy the selected units or buildings.") + "\n" +
+						translate("Destroy the selected units or structures.") + "\n" +
 						colorizeHotkey(
 							translate("Use %(hotkey)s to avoid the confirmation dialog."),
 							"session.noconfirmation"
@@ -1154,7 +1154,7 @@ var g_EntityCommands =
 
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.garrison") +
-				           translate("Order the selected units to garrison in a building or unit."),
+				           translate("Order the selected units to garrison in a structure or unit."),
 				"icon": "garrison.png"
 			};
 		},
@@ -1195,7 +1195,7 @@ var g_EntityCommands =
 
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.repair") +
-				           translate("Order the selected units to repair a building or mechanical unit."),
+				           translate("Order the selected units to repair a structure, ship, or siege engine."),
 				"icon": "repair.png"
 			};
 		},
@@ -1268,7 +1268,7 @@ var g_EntityCommands =
 
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.guard") +
-				           translate("Order the selected units to guard a building or unit."),
+				           translate("Order the selected units to guard a structure or unit."),
 				"icon": "add-guard.png"
 			};
 		},
@@ -1322,7 +1322,7 @@ var g_EntityCommands =
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.patrol") +
 				           translate("Patrol") + "\n" +
-				           translate("Attack all encountered enemy units while avoiding buildings."),
+				           translate("Attack all encountered enemy units while avoiding structures."),
 				"icon": "patrol.png"
 			};
 		},

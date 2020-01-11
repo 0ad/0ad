@@ -63,8 +63,8 @@ When you are ready to start, click the "Start game" button.
   T – Send team chat
   L – Chat with the previously selected private chat partner
   Pause – Pause/resume the game
-  Delete – Delete currently selected unit(s)/building(s), ask for confirmation
-  Shift + Delete – Immediately delete currently selected unit(s)/building(s), without asking for confirmation
+  Delete – Delete currently selected unit(s)/structure(s), ask for confirmation
+  Shift + Delete – Immediately delete currently selected unit(s)/structure(s), without asking for confirmation
   / (Slash) – Select idle fighter
   Shift + / (Slash) – Add idle fighter to selection
   Alt + / (Slash) – Select all idle fighters
@@ -76,15 +76,15 @@ When you are ready to start, click the "Start game" button.
   Alt + \\ (Backslash) – Select all idle units
   H – Stop (halt) the currently selected units
   Y – The unit will go back to work
-  U – Unload the garrisoned units of the selected buildings
-  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from the selected unit(s)/building(s)
-  1 (and so on up to 0) – Select the units/buildings in control group 1 (to 0)
-  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected units/buildings
+  U – Unload the garrisoned units of the selected structure(s)
+  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from the selected unit(s)/structure(s)
+  1 (and so on up to 0) – Select the unit(s)/structure(s) in control group 1 (to 0)
+  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected unit(s)/structure(s)
   Ctrl + F5 (and so on up to F8) – Mark the current camera position, for jumping back to later
   F5, F6, F7, and F8 – Move the camera to a marked position. Jump back to the last location if the camera is already over the marked position
-  Z, X, C, V, B, N, M – With training buildings selected. Add the 1st, 2nd, … unit shown to the training queue for all the selected buildings
-  PageUp with units selected – Highlights the units/buildings guarded by the selection
-  PageDown with units/buildings selected – Highlights the units guarding the selection
+  Z, X, C, V, B, N, M – With training structure selected. Add the 1st, 2nd, … unit shown to the training queue for all the selected structures
+  PageUp with unit(s) selected – Highlights the unit(s)/structure(s) guarded by the selection
+  PageDown with unit(s)/structure(s) selected – Highlights the unit(s) guarding the selection
   Tab – See all status bars (which would also show the building progress)
   Ctrl + Tab – Toggle summary window
   Alt + L – Show the multiplayer lobby in a dialog window
@@ -96,8 +96,8 @@ When you are ready to start, click the "Start game" button.
   Alt + Shift + H – Toggle civilization info panel
 
 [font="sans-bold-14"]Modify mouse action[font="sans-14"]
-  Ctrl + Right Click on building – Garrison
-  J + Right Click on building – Repair
+  Ctrl + Right Click on structure – Garrison
+  J + Right Click on structure – Repair
   P + Right Click – Patrol
   Shift + Right Click – Queue the move/build/gather/etc order
   Alt + Right Click – Order one unit from the current selection to move/build/gather/etc and unselect it. Used to quickly dispatch units with specific tasks
@@ -109,10 +109,10 @@ When you are ready to start, click the "Start game" button.
   I + Left Drag over units on map – Only select idle units
   O + Left Drag over units on map – Only select wounded units
   Ctrl + Left Click on unit/group icon with multiple units selected – Deselect
-  Right Click with a building(s) selected – sets a rally point for units created/ungarrisoned from that building
+  Right Click with a structure(s) selected – sets a rally point for units created/ungarrisoned from that structure
   Ctrl + Right Click with unit(s) selected:
     • If the cursor is over an own or allied structure – Garrison
-    • If the cursor is over an enemy unit or building – Attack (instead of capture or gather)
+    • If the cursor is over an enemy unit/structure – Attack (instead of capture or gather)
     • Otherwise – Attack move (by default all enemy units and structures along the way are targeted)
   Ctrl + Q + Right Click with unit(s) selected – Attack move, only units along the way are targeted
   Ctrl + Mouse Move near structures – Align the new structure with an existing nearby structure
@@ -147,10 +147,10 @@ When you are ready to start, click the "Start game" button.
   - (Hyphen) or − (Minus) – Zoom out (keep pressed for continuous zoom)
   Middle Mouse Button – Keep pressed and move the mouse to pan
 
-[font="sans-bold-14"]During Building Placement[font="sans-14"]
-  \[ (Left Bracket) – Rotate building 15 degrees counter-clockwise
-  ] (Right Bracket) – Rotate building 15 degrees clockwise
-  Left Drag – Rotate building using mouse (foundation will be placed on mouse release)
+[font="sans-bold-14"]During Structure Placement[font="sans-14"]
+  \[ (Left Bracket) – Rotate structure 15 degrees counter-clockwise
+  ] (Right Bracket) – Rotate structure 15 degrees clockwise
+  Left Drag – Rotate structure using mouse (foundation will be placed on mouse release)
 
 [font="sans-bold-14"]When loading a saved game[font="sans-14"]
   Esc – Cancel

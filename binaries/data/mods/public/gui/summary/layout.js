@@ -18,7 +18,7 @@ var getScorePanelsData = () => ({
 		"teamCounterFn": calculateScoreTeam
 	},
 	"buildings": {
-		"caption": translate("Buildings"),
+		"caption": translate("Structures"),
 		"headings": [
 			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			{ "identifier": "total", "caption": translate("Total"), "yStart": 34, "width": 105 },
@@ -32,7 +32,7 @@ var getScorePanelsData = () => ({
 		],
 		"titleHeadings": [
 			{
-				"caption": sprintf(translate("Buildings Statistics (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"),
+				"caption": sprintf(translate("Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"),
 					{
 						"constructed": getColoredTypeTranslation("constructed"),
 						"destroyed": getColoredTypeTranslation("destroyed"),
@@ -71,7 +71,7 @@ var getScorePanelsData = () => ({
 		],
 		"titleHeadings": [
 			{
-				"caption": sprintf(translate("Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"),
+				"caption": sprintf(translate("Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"),
 					{
 						"trained": getColoredTypeTranslation("trained"),
 						"killed": getColoredTypeTranslation("killed"),

@@ -598,7 +598,7 @@ function onTick()
 
 		updateGUIObjects();
 
-		// Display rally points for selected buildings
+		// Display rally points for selected structures.
 		if (Engine.GetPlayerID() != -1)
 			Engine.GuiInterfaceCall("DisplayRallyPoint", { "entities": g_Selection.toList() });
 	}

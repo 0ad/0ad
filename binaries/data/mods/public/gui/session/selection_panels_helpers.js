@@ -144,7 +144,7 @@ function formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize
 		fullBatchesString = fullBatchSize;
 
 	// We need to display the batch details part if there is either more than
-	// one building with full batch or one building with the full batch and
+	// one structure with full batch or one structure with the full batch and
 	// another with a partial batch
 	let batchString;
 	if (buildingsCountToTrainFullBatch > 1 ||
