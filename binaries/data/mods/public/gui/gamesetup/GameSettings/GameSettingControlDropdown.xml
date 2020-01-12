@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="dropdownSettingFrame[n]" size="0 2 100% 32" hidden="true">
+
+	<include file="gui/gamesetup/GameSettings/GameSettingControlLabels.xml"/>
+	<object
+		name="dropdownSettingControl[n]"
+		type="dropdown"
+		size="175 0 100% 30"
+		style="ModernDropDown"
+		tooltip_style="onscreenToolTip"
+		hidden="true"
+		z="1"
+	/>
+</object>

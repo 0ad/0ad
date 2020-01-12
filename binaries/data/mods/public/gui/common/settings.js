@@ -209,8 +209,6 @@ function loadCeasefire()
 
 /**
  * Hardcoded, as modding is not supported without major changes.
- *
- * @returns {Array}
  */
 function loadMapTypes()
 {
@@ -219,17 +217,26 @@ function loadMapTypes()
 			"Name": "skirmish",
 			"Title": translateWithContext("map", "Skirmish"),
 			"Description": translate("A map with a predefined landscape and number of players. Freely select the other gamesettings."),
-			"Default": true
+			"Default": true,
+			"Path": "maps/skirmishes/",
+			"Suffix": ".xml",
+			"GetData": Engine.LoadMapSettings
 		},
 		{
 			"Name": "random",
 			"Title": translateWithContext("map", "Random"),
-			"Description": translate("Create a unique map with a different resource distribution each time. Freely select the number of players and teams.")
+			"Description": translate("Create a unique map with a different resource distribution each time. Freely select the number of players and teams."),
+			"Path": "maps/random/",
+			"Suffix": ".json",
+			"GetData": mapPath => Engine.ReadJSONFile(mapPath + ".json")
 		},
 		{
 			"Name": "scenario",
 			"Title": translateWithContext("map", "Scenario"),
-			"Description": translate("A map with a predefined landscape and matchsettings.")
+			"Description": translate("A map with a predefined landscape and matchsettings."),
+			"Path": "maps/scenarios/",
+			"Suffix": ".xml",
+			"GetData": Engine.LoadMapSettings
 		}
 	];
 }

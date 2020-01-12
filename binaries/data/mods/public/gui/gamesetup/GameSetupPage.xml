@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object hidden="true" name="setupWindow">
+
+	<!-- TODO: Implement Engine.SetNetMessageHandler(msg => handlerFunction); instead of pulling onTick -->
+	<object name="netMessages"/>
+
+	<object name="topPanel" size="24 40 100%-24 336">
+
+		<object size="0 0 100%-416 100%">
+			<include file="gui/gamesetup/GameSettings/PerPlayer/PlayersPanel.xml"/>
+		</object>
+
+		<object size="100%-402 0 100% 100%">
+			<include file="gui/gamesetup/Panels/MapPreview.xml"/>
+		</object>
+	</object>
+
+	<object name="centerPanel" size="0 0 100% 100%-60">
+
+		<object name="centerLeftPanel" size="24 0 100% 100%">
+			<object size="0 346 100%-795-24 100%">
+				<include file="gui/gamesetup/Panels/Chat/ChatPanel.xml"/>
+			</object>
+
+			<object size="0 370 500-24 510">
+				<include file="gui/gamesetup/Panels/TipsPanel.xml"/>
+			</object>
+		</object>
+
+		<object name="centerCenterPanel" size="100%-315 346 100%-315 100%">
+			<include file="gui/gamesetup/Panels/GameSettingsPanel.xml"/>
+		</object>
+
+		<object name="centerRightPanel" size="100%-315 346 100% 100%">
+
+			<!-- Opaque Background to hide GameSettingsPanel parts during animation -->
+			<object type="image" sprite="ModernDarkBoxOpaque"  z="45"/>
+
+			<object size="100%-41 0 100%-25 16">
+				<include file="gui/gamesetup/Panels/Buttons/LobbyButton.xml"/>
+			</object>
+
+			<object size="0 0 100%-25 0" z="45">
+				<include file="gui/gamesetup/Panels/GameSettingsTabs.xml"/>
+			</object>
+
+			<object size="0 0 100%-25 100%" z="45">
+				<include file="gui/gamesetup/Panels/GameDescription.xml"/>
+			</object>
+		</object>
+
+	</object>
+
+	<object name="bottomPanel" size="0 0 100% 100%-24">
+
+		<object name="bottomLeftPanel">
+
+			<object size="20 100%-32 100%-312 100%">
+				<include file="gui/gamesetup/Panels/Tooltip.xml"/>
+			</object>
+
+			<object size="0 100%-28 100%-320 100%">
+				<include file="gui/gamesetup/Panels/GameSettingWarning.xml"/>
+			</object>
+
+		</object>
+
+		<object name="bottomRightPanel" size="100%-314 100%-28 100% 100%">
+
+			<object size="0 0 140 100%">
+				<include file="gui/gamesetup/Panels/Buttons/CancelButton.xml"/>
+			</object>
+
+			<object	size="150 0 290 100%">
+				<include file="gui/gamesetup/Panels/Buttons/ReadyButton.xml"/>
+				<include file="gui/gamesetup/Panels/Buttons/StartGameButton.xml"/>
+			</object>
+
+		</object>
+
+	</object>
+</object>

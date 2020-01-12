@@ -1,5 +1,5 @@
 /**
- * This class reports the buildings built, lost and destroyed of some selected structure classes.
+ * This class reports the structures built, lost, and destroyed of some selected structure classes.
  */
 LobbyRatingReport.prototype.Buildings = class
 {

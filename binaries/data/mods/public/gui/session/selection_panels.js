@@ -387,7 +387,7 @@ g_SelectionPanels.Garrison = {
 		data.button.sprite_disabled = data.button.sprite;
 
 		// Selection panel buttons only appear disabled if they
-		// also appear disabled to the owner of the building.
+		// also appear disabled to the owner of the structure.
 		data.icon.sprite =
 			(canUngarrison || g_IsObserver ? "" : "grayscale:") +
 			"stretched:session/portraits/" + template.icon;

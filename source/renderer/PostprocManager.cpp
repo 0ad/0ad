@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -332,9 +332,6 @@ void CPostprocManager::ApplyBlur()
 {
 	glDisable(GL_BLEND);
 
-	GLint originalFBO;
-	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &originalFBO);
-
 	int width = m_Width, height = m_Height;
 
 	#define SCALE_AND_BLUR(tex1, tex2, temptex) \
@@ -349,8 +346,6 @@ void CPostprocManager::ApplyBlur()
 	SCALE_AND_BLUR(m_BlurTex4a, m_BlurTex8a, m_BlurTex8b);
 
 	#undef SCALE_AND_BLUR
-
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, originalFBO);
 }
 
 
@@ -496,6 +491,7 @@ void CPostprocManager::ApplyPostproc()
 	// (This may need to change depending on future usage, however that will have a fps hit)
 	ApplyBlur();
 
+	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
 	for (int pass = 0; pass < m_PostProcTech->GetNumPasses(); ++pass)
 		ApplyEffect(m_PostProcTech, pass);
 

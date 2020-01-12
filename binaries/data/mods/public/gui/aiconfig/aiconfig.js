@@ -33,16 +33,18 @@ function init(settings)
 	// Remember the player ID that we change the AI settings for
 	g_PlayerSlot = settings.playerSlot;
 
+	let enabled = g_IsController && !settings.fixed;
+
 	for (let name in g_AIControls)
 	{
 		let control = Engine.GetGUIObjectByName(name);
 		control.list = g_AIControls[name].labels;
 		control.selected = g_AIControls[name].selected(settings);
-		control.hidden = !g_IsController;
+		control.hidden = !enabled;
 
 		let label = Engine.GetGUIObjectByName(name + "Text");
 		label.caption = control.list[control.selected];
-		label.hidden = g_IsController;
+		label.hidden = enabled;
 	}
 
 	checkBehavior();

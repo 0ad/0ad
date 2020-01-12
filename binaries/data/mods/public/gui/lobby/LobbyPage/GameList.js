@@ -11,8 +11,10 @@ class GameListFilters
  */
 class GameList
 {
-	constructor(xmppMessages, buddyButton)
+	constructor(xmppMessages, buddyButton, mapCache)
 	{
+		this.mapCache = mapCache;
+
 		// Array of Game class instances, where the keys are ip+port strings, used for quick lookups
 		this.games = {};
 
@@ -98,7 +100,7 @@ class GameList
 				let game = this.games[stanza.ip] || undefined;
 				let exists = !!game;
 				if (!exists)
-					game = new Game();
+					game = new Game(this.mapCache);
 
 				game.update(stanza, selectedColumn);
 				newGames[stanza.ip] = game;

@@ -17,7 +17,7 @@ var g_TypeColors = {
 };
 
 /**
- * Colors, captions and format used for units, buildings, etc. types
+ * Colors, captions and format used for units, structures, etc. types
  */
 var g_SummaryTypes = {
 	"percent": {

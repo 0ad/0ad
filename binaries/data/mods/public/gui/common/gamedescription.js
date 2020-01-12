@@ -34,55 +34,6 @@ var g_Buddies = Engine.ConfigDB_GetValue("user", "lobby.buddies").split(g_BuddyL
  */
 var g_BuddySymbol = '•';
 
-var g_MapPreviewPath = "session/icons/mappreview/";
-
-/**
- * Returns the biome specific mappreview image if it exists, or empty string otherwise.
- */
-function getBiomePreview(mapName, biomeName)
-{
-	let biomePreview = basename(mapName) + "_" + basename(biomeName) + ".png";
-
-	if (Engine.TextureExists("art/textures/ui/" + g_MapPreviewPath + biomePreview))
-		return biomePreview;
-
-	return "";
-}
-
-/**
- * Returns map description and preview image or placeholder.
- */
-function getMapDescriptionAndPreview(mapType, mapName, gameAttributes = undefined)
-{
-	let mapData;
-	if (mapType == "random" && mapName == "random")
-		mapData = { "settings": { "Description": translate("A randomly selected map.") } };
-	else if (mapType == "random" && Engine.FileExists(mapName + ".json"))
-		mapData = Engine.ReadJSONFile(mapName + ".json");
-	else if (Engine.FileExists(mapName + ".xml"))
-		mapData = Engine.LoadMapSettings(mapName + ".xml");
-
-	let biomePreview = getBiomePreview(mapName, gameAttributes && gameAttributes.settings.Biome || "");
-
-	return deepfreeze({
-		"description": mapData && mapData.settings && mapData.settings.Description ? translate(mapData.settings.Description) : translate("Sorry, no description available."),
-		"preview": biomePreview ? biomePreview :
-			mapData && mapData.settings && mapData.settings.Preview ? mapData.settings.Preview : "nopreview.png"
-	});
-}
-
-/**
- * Sets the mappreview image correctly.
- * It needs to be cropped as the engine only allows loading square textures.
- *
- * @param {string} filename
- */
-function getMapPreviewImage(filename)
-{
-	return "cropped:" + 400 / 512 + "," + 300 / 512 + ":" +
-		g_MapPreviewPath + filename;
-}
-
 /**
  * Returns a formatted string describing the player assignments.
  * Needs g_CivData to translate!
@@ -229,7 +180,7 @@ function formatPlayerInfo(playerDataArray, playerStates)
  *
  * Requires g_GameAttributes and g_VictoryConditions.
  */
-function getGameDescription()
+function getGameDescription(mapCache)
 {
 	let titles = [];
 	if (!g_GameAttributes.settings.VictoryConditions.length)
@@ -341,13 +292,13 @@ function getGameDescription()
 	{
 		titles.push({
 			"label": translate("Map Name"),
-			"value": translate(g_GameAttributes.settings.Name)
+			"value": mapCache.translateMapName(
+				mapCache.getTranslatableMapName(g_GameAttributes.mapType, g_GameAttributes.map, g_GameAttributes))
 		});
+
 		titles.push({
 			"label": translate("Map Description"),
-			"value": g_GameAttributes.settings.Description ?
-					translate(g_GameAttributes.settings.Description) :
-					translate("Sorry, no description available.")
+			"value": mapCache.getTranslatedMapDescription(g_GameAttributes.mapType, g_GameAttributes.map)
 		});
 	}
 
@@ -355,12 +306,6 @@ function getGameDescription()
 		"label": translate("Map Type"),
 		"value": g_MapTypes.Title[g_MapTypes.Name.indexOf(g_GameAttributes.mapType)]
 	});
-
-	if (typeof g_MapFilterList !== "undefined")
-		titles.push({
-			"label": translate("Map Filter"),
-			"value": g_MapFilterList.name[g_MapFilterList.id.findIndex(id => id == g_GameAttributes.mapFilter)]
-		});
 
 	if (g_GameAttributes.mapType == "random")
 	{
@@ -390,32 +335,42 @@ function getGameDescription()
 		});
 	}
 
-	titles.push({
-		"label": g_GameAttributes.settings.Nomad ? translate("Nomad Mode") : translate("Civic Centers"),
-		"value":
-			g_GameAttributes.settings.Nomad ?
-				translate("Players start with only few units and have to find a suitable place to build their city.") :
-				translate("Players start with a Civic Center.")
-	});
+	if (g_GameAttributes.settings.Nomad !== undefined)
+		titles.push({
+			"label": g_GameAttributes.settings.Nomad ? translate("Nomad Mode") : translate("Civic Centers"),
+			"value":
+				g_GameAttributes.settings.Nomad ?
+					translate("Players start with only few units and have to find a suitable place to build their city.") :
+					translate("Players start with a Civic Center.")
+		});
 
-	titles.push({
-		"label": translate("Starting Resources"),
-		"value": sprintf(translate("%(startingResourcesTitle)s (%(amount)s)"), {
-			"startingResourcesTitle":
-				g_StartingResources.Title[
-					g_StartingResources.Resources.indexOf(
-						g_GameAttributes.settings.StartingResources)],
-			"amount": g_GameAttributes.settings.StartingResources
-		})
-	});
+	if (g_GameAttributes.settings.StartingResources !== undefined)
+		titles.push({
+			"label": translate("Starting Resources"),
+			"value":
+				g_GameAttributes.settings.PlayerData &&
+				g_GameAttributes.settings.PlayerData.some(pData => pData && pData.Resources !== undefined) ?
+					translateWithContext("starting resources", "Per Player") :
+					sprintf(translate("%(startingResourcesTitle)s (%(amount)s)"), {
+						"startingResourcesTitle":
+							g_StartingResources.Title[
+								g_StartingResources.Resources.indexOf(
+									g_GameAttributes.settings.StartingResources)],
+						"amount": g_GameAttributes.settings.StartingResources
+					})
+		});
 
-	titles.push({
-		"label": translate("Population Limit"),
-		"value":
-			g_PopulationCapacities.Title[
-				g_PopulationCapacities.Population.indexOf(
-					g_GameAttributes.settings.PopulationCap)]
-	});
+	if (g_GameAttributes.settings.PopulationCap !== undefined)
+		titles.push({
+			"label": translate("Population Limit"),
+			"value":
+				g_GameAttributes.settings.PlayerData &&
+				g_GameAttributes.settings.PlayerData.some(pData => pData && pData.PopulationLimit !== undefined) ?
+					translateWithContext("population limit", "Per Player") :
+					g_PopulationCapacities.Title[
+						g_PopulationCapacities.Population.indexOf(
+							g_GameAttributes.settings.PopulationCap)]
+		});
 
 	titles.push({
 		"label": translate("Treasures"),

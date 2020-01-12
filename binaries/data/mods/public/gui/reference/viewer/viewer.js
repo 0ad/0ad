@@ -156,7 +156,7 @@ function getResearchedByText(template)
 }
 
 /**
- * @return {string} List of the names of the buildings the selected unit can build.
+ * @return {string} List of the names of the structures the selected unit can build.
  */
 function getBuildText(template)
 {
@@ -202,7 +202,7 @@ function getTrainText(template)
 }
 
 /**
- * @return {string} List of the names of the buildings/units the selected structure/unit can upgrade to.
+ * @return {string} List of the names of the structures/units the selected structure/unit can upgrade to.
  */
 function getUpgradeText(template)
 {

@@ -522,7 +522,7 @@
 	- Misc. -
 	==========================================
 	-->
-	<sprite name = "ModernWindowCornerBottomRight">
+	<sprite name = "ModernDarkBoxOpaque">
 		<!-- background -->
 		<image backcolor = "12 12 12"/>
 		<image texture = "global/modern/background.png"
@@ -532,14 +532,8 @@
 
 		<!-- shading -->
 		<image texture = "global/modern/shadow-high.png"
-			texture_size = "0 0 1024 256"
-			size = "0 100%-268 100%-12 100%-12"
-		/>
-
-		<!-- bottom edge -->
-		<image texture = "global/modern/border.png"
-			real_texture_placement = "0 0 2048 8"
-			size = "0 100%-16 100%-10 100%-8"
+			texture_size = "0 0 1024 128"
+			size = "0 100%-140 100%-12 100%-12"
 		/>
 	</sprite>
 	<sprite name = "ModernDropDownArrow">

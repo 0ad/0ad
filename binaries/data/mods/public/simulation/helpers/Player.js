@@ -95,26 +95,72 @@ function LoadPlayerSettings(settings, newPlayers)
 			continue;
 		}
 
-		if (getSetting(playerData, playerDefaults, i, "PopulationLimit") !== undefined)
-			cmpPlayer.SetMaxPopulation(getSetting(playerData, playerDefaults, i, "PopulationLimit"));
+		// PopulationLimit
+		{
+			let maxPopulation =
+				settings.PlayerData[i].PopulationLimit !== undefined ?
+					settings.PlayerData[i].PopulationLimit :
+				settings.PopulationCap !== undefined ?
+					settings.PopulationCap :
+				playerDefaults[i].PopulationLimit !== undefined ?
+					playerDefaults[i].PopulationLimit :
+					undefined;
 
-		if (getSetting(playerData, playerDefaults, i, "Resources") !== undefined)
-			cmpPlayer.SetResourceCounts(getSetting(playerData, playerDefaults, i, "Resources"));
+			if (maxPopulation !== undefined)
+				cmpPlayer.SetMaxPopulation(maxPopulation);
+		}
 
-		if (getSetting(playerData, playerDefaults, i, "StartingTechnologies") !== undefined)
-			cmpPlayer.SetStartingTechnologies(getSetting(playerData, playerDefaults, i, "StartingTechnologies"));
+		// StartingResources
+		if (settings.PlayerData[i].Resources !== undefined)
+			cmpPlayer.SetResourceCounts(settings.PlayerData[i].Resources);
+		else if (settings.StartingResources)
+		{
+			let resourceCounts = cmpPlayer.GetResourceCounts();
+			let newResourceCounts = {};
+			for (let resouces in resourceCounts)
+				newResourceCounts[resouces] = settings.StartingResources;
+			cmpPlayer.SetResourceCounts(newResourceCounts);
+		}
+		else if (playerDefaults[i].Resources !== undefined)
+			cmpPlayer.SetResourceCounts(playerDefaults[i].Resources);
 
-		if (getSetting(playerData, playerDefaults, i, "DisabledTechnologies") !== undefined)
-			cmpPlayer.SetDisabledTechnologies(getSetting(playerData, playerDefaults, i, "DisabledTechnologies"));
+		// StartingTechnologies
+		{
+			let startingTechnologies =
+				settings.PlayerData[i].StartingTechnologies ||
+				settings.StartingTechnologies ||
+				playerDefaults[i].StartingTechnologies ||
+				[];
 
-		let disabledTemplates = [];
-		if (settings.DisabledTemplates !== undefined)
-			disabledTemplates = settings.DisabledTemplates;
-		if (getSetting(playerData, playerDefaults, i, "DisabledTemplates") !== undefined)
-			disabledTemplates = disabledTemplates.concat(getSetting(playerData, playerDefaults, i, "DisabledTemplates"));
-		if (disabledTemplates.length)
-			cmpPlayer.SetDisabledTemplates(disabledTemplates);
+			if (startingTechnologies.length)
+				cmpPlayer.SetStartingTechnologies(startingTechnologies);
+		}
 
+		// DisabledTechnologies
+		{
+			let disabledTechnologies =
+				settings.PlayerData[i].DisabledTechnologies ||
+				settings.DisabledTechnologies ||
+				playerDefaults[i].DisabledTechnologies ||
+				[];
+
+			if (disabledTechnologies.length)
+				cmpPlayer.SetDisabledTechnologies(disabledTechnologies);
+		}
+
+		// DisabledTemplates
+		{
+			let disabledTemplates =
+				settings.PlayerData[i].DisabledTemplates ||
+				settings.DisabledTemplates ||
+				playerDefaults[i].DisabledTemplates ||
+				[];
+
+			if (disabledTemplates.length)
+				cmpPlayer.SetDisabledTemplates(disabledTemplates);
+		}
+
+		// DisableSpies
 		if (settings.DisableSpies)
 		{
 			cmpPlayer.AddDisabledTechnology("unlock_spies");
@@ -323,7 +369,7 @@ function IsOwnedByMutualAllyOfPlayer(player, target)
 	return IsOwnedByHelper(player, target, "IsMutualAlly");
 }
 
-function IsOwnedByNeutralOfPlayer(player,target)
+function IsOwnedByNeutralOfPlayer(player, target)
 {
 	return IsOwnedByHelper(player, target, "IsNeutral");
 }

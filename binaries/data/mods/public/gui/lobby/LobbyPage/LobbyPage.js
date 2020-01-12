@@ -7,8 +7,9 @@ class LobbyPage
 	constructor(dialog, xmppMessages, leaderboardPage, profilePage)
 	{
 		Engine.ProfileStart("Create LobbyPage");
+		let mapCache = new MapCache();
 		let buddyButton = new BuddyButton(xmppMessages);
-		let gameList = new GameList(xmppMessages, buddyButton);
+		let gameList = new GameList(xmppMessages, buddyButton, mapCache);
 		let playerList = new PlayerList(xmppMessages, buddyButton, gameList);
 
 		this.lobbyPage = {
@@ -22,7 +23,7 @@ class LobbyPage
 			},
 			"panels": {
 				"chatPanel": new ChatPanel(xmppMessages),
-				"gameDetails": new GameDetails(dialog, gameList),
+				"gameDetails": new GameDetails(dialog, gameList, mapCache),
 				"gameList": gameList,
 				"playerList": playerList,
 				"profilePanel": new ProfilePanel(xmppMessages, playerList, leaderboardPage),

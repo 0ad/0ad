@@ -78,7 +78,7 @@
 		<object name="buildingsPanelButton" type="button" style="ModernTabButtonHorizontal" size="142 92 260 120">
 			<action on="Press">selectPanel(this);</action>
 			<object type="text" style="ModernLabelText" ghost="true">
-				<translatableAttribute id="caption">Buildings</translatableAttribute>
+				<translatableAttribute id="caption">Structures</translatableAttribute>
 			</object>
 		</object>
 

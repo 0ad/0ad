@@ -114,11 +114,6 @@ function stringifiedTeamListToPlayerData(stringifiedTeamList)
 	return playerData;
 }
 
-function translateMapTitle(mapTitle)
-{
-	return mapTitle == "random" ? translateWithContext("map selection", "Random") : translate(mapTitle);
-}
-
 function removeDupes(array)
 {
 	// loop backwards to make splice operations cheaper

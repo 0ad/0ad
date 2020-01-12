@@ -163,8 +163,8 @@ function updateBuildingPlacementPreview()
 
 			if (placementSupport.attack && placementSupport.attack.Ranged)
 			{
-				// building can be placed here, and has an attack
-				// show the range advantage in the tooltip
+				// Structure can be placed here, and has an attack.
+				// Show the range advantage in the tooltip.
 				var cmd = {
 					"x": placementSupport.position.x,
 					"z": placementSupport.position.z,
@@ -643,7 +643,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 			case "mousemotion":
 				placementSupport.wallEndPosition = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
 
-				// Update the building placement preview, and by extension, the list of snapping candidate entities for both (!)
+				// Update the structure placement preview, and by extension, the list of snapping candidate entities for both (!)
 				// the ending point and the starting point to snap to.
 				//
 				// TODO: Note that here, we need to fetch all similar entities, including any offscreen ones, to support the case
@@ -744,7 +744,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 		case "mousebuttonup":
 			if (ev.button == SDL_BUTTON_LEFT)
 			{
-				// If shift is down, let the player continue placing another of the same building
+				// If shift is down, let the player continue placing another of the same structure.
 				var queued = Engine.HotkeyIsPressed("session.queue");
 				if (tryPlaceBuilding(queued))
 				{
@@ -1289,8 +1289,8 @@ function startBuildingPlacement(buildTemplate, playerState)
 		return;
 
 	// TODO: we should clear any highlight selection rings here. If the mouse was over an entity before going onto the GUI
-	// to start building a structure, then the highlight selection rings are kept during the construction of the building.
-	// Gives the impression that somehow the hovered-over entity has something to do with the building you're constructing.
+	// to start building a structure, then the highlight selection rings are kept during the construction of the structure.
+	// Gives the impression that somehow the hovered-over entity has something to do with the structure you're building.
 
 	placementSupport.Reset();
 
@@ -1384,7 +1384,7 @@ function addTrainingByPosition(position)
 	let trainableEnts = getAllTrainableEntitiesFromSelection();
 
 	let entToTrain = trainableEnts[position];
-	// When we have no building to train or the position is invalid
+	// When we have no structure to train units or the position is invalid
 	if (!entToTrain)
 		return;
 
@@ -1409,10 +1409,10 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 	{
 		if (inputState == INPUT_BATCHTRAINING)
 		{
-			// Check if we are training in the same building(s) as the last batch
+			// Check if we are training in the same structure(s) as the last batch
 			// NOTE: We just check if the arrays are the same and if the order is the same
 			// If the order changed, we have a new selection and we should create a new batch.
-			// If we're already creating a batch of this unit (in the same building(s)), then just extend it
+			// If we're already creating a batch of this unit (in the same structure(s)), then just extend it
 			// (if training limits allow)
 			if (g_BatchTrainingEntities.length == selection.length &&
 			    g_BatchTrainingEntities.every((ent, i) => ent == selection[i]) &&
@@ -1456,7 +1456,7 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 	}
 	else
 	{
-		// Non-batched - just create a single entity in each building
+		// Non-batched - just create a single entity in each structure
 		// (but no more than entity limit allows)
 		let buildingsForTraining = appropriateBuildings;
 		if (canBeAddedCount !== undefined)
@@ -1488,15 +1488,15 @@ function getTrainingStatus(selection, trainEntType, playerState)
 	else
 		canBeAddedCount = getEntityLimitAndCount(playerState, trainEntType).canBeAddedCount;
 
-	// We need to calculate count after the next increment if it's possible
+	// We need to calculate count after the next increment if possible.
 	if ((canBeAddedCount == undefined || canBeAddedCount > nextBatchTrainingCount * appropriateBuildings.length) &&
 	    Engine.HotkeyIsPressed("session.batchtrain"))
 		nextBatchTrainingCount += getBatchTrainingSize();
 
 	nextBatchTrainingCount = Math.max(nextBatchTrainingCount, 1);
 
-	// If training limits don't allow us to train batchTrainingCount in each appropriate building
-	// train as many full batches as we can and remainer in one more building.
+	// If training limits don't allow us to train batchedSize in each appropriate structure,
+	// train as many full batches as we can and the remainder in one more structure.
 	let buildingsCountToTrainFullBatch = appropriateBuildings.length;
 	let remainderToTrain = 0;
 	if (canBeAddedCount !== undefined &&
@@ -1513,11 +1513,11 @@ function flushTrainingBatch()
 {
 	let batchedSize = g_NumberOfBatches * getBatchTrainingSize();
 	let appropriateBuildings = getBuildingsWhichCanTrainEntity(g_BatchTrainingEntities, g_BatchTrainingType);
-	// If training limits don't allow us to train batchedSize in each appropriate building
+	// If training limits don't allow us to train batchedSize in each appropriate structure.
 	if (g_BatchTrainingEntityAllowedCount !== undefined &&
 		g_BatchTrainingEntityAllowedCount < batchedSize * appropriateBuildings.length)
 	{
-		// Train as many full batches as we can
+		// Train as many full batches as we can.
 		let buildingsCountToTrainFullBatch = Math.floor(g_BatchTrainingEntityAllowedCount / batchedSize);
 		Engine.PostNetworkCommand({
 			"type": "train",
@@ -1526,7 +1526,7 @@ function flushTrainingBatch()
 			"count": batchedSize
 		});
 
-		// Train remainer in one more building
+		// Train remainer in one more structure.
 		let remainer = g_BatchTrainingEntityAllowedCount % batchedSize;
 		if (remainer)
 			Engine.PostNetworkCommand({

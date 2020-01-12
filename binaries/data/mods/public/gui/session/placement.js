@@ -6,14 +6,14 @@ function PlacementSupport()
 PlacementSupport.DEFAULT_ANGLE = Math.PI * 3 / 4;
 
 /**
- * Resets the building placement support state. Use this to cancel construction of an entity.
+ * Reset the structure placement support state. Use this to cancel construction of an entity.
  */
 PlacementSupport.prototype.Reset = function()
 {
 	this.mode = null;
 	this.position = null;
 	this.template = null;
-	this.tooltipMessage = "";        // tooltip text to show while the user is placing a building
+	this.tooltipMessage = "";        // tooltip text to show while the user is placing a structure
 	this.tooltipError = false;
 	this.wallSet = null;             // maps types of wall pieces ("tower", "long", "short", ...) to template names
 	this.wallSnapEntities = null;    // list of candidate entities to snap the starting and (!) ending positions to when building walls
