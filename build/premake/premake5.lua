@@ -385,6 +385,10 @@ function project_create(project_name, target_type)
 		toolset "v140_xp"
 	filter {}
 
+	filter "action:vs*"
+		buildoptions "/utf-8"
+	filter {}
+
 	project_set_target(project_name)
 	project_set_build_flags()
 end
