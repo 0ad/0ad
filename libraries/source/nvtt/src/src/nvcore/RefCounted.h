@@ -1,4 +1,4 @@
-// This code is in the public domain -- Ignacio Castaño <castano@gmail.com>
+// This code is in the public domain -- Ignacio CastaÃ±o <castano@gmail.com>
 
 #ifndef NV_CORE_REFCOUNTED_H
 #define NV_CORE_REFCOUNTED_H
