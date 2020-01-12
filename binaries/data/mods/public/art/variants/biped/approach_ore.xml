@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="approach_ore">
+  <animations>
+    <animation file="biped/gatherer/idle_axe_01.dae" name="Idle" speed="20"/>
+    <animation file="biped/gatherer/walk_pickaxe.dae" name="Walk" speed="20"/>
+    <animation file="biped/gatherer/walk_pickaxe.dae" name="Run" speed="20"/>
+  </animations>
+  <props>
+    <prop actor="props/units/tools/pick.xml" attachpoint="weapon_R"/>
+    <prop attachpoint="weapon_L"/>
+    <prop attachpoint="shield"/>
+    <prop attachpoint="shield_arm"/>
+    <prop attachpoint="ammo"/>
+    <prop attachpoint="weapon_bow"/>
+  </props>
+</variant>

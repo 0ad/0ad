@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="approach_praise">
+  <animations>
+    <animation file="biped/citizen/idle_relax_m_a.dae" name="Idle" speed="20"/>
+    <animation file="biped/citizen/walk_relax_m.dae" name="Walk" speed="20"/>
+    <animation file="biped/citizen/walk_relax_m.dae" name="Run" speed="20"/>
+  </animations>
+  <props>
+    <prop actor="" attachpoint="shield"/>
+    <prop actor="" attachpoint="weapon_R"/>
+    <prop actor="" attachpoint="weapon_L"/>
+    <prop actor="" attachpoint="ammo"/>
+    <prop actor="" attachpoint="shield_arm"/>
+    <prop actor="" attachpoint="weapon_bow"/>
+  </props>
+</variant>
