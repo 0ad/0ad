@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -45,13 +45,13 @@ PASS_BY_VALUE_IN_NATIVE_WRAPPER(double)
 
 #undef PASS_BY_VALUE_IN_NATIVE_WRAPPER
 
-// This works around a bug in Visual Studio 2013 (error C2244 if ScriptInterface:: is included in the
+// This works around a bug in Visual Studio (error C2244 if ScriptInterface:: is included in the
 // type specifier of MaybeRef<T>::Type for parameters inside the member function declaration).
 // It's probably the bug described here, but I'm not quite sure (at least the example there still
 // cause error C2244):
 // https://connect.microsoft.com/VisualStudio/feedback/details/611863/vs2010-c-fails-with-error-c2244-gcc-4-3-4-compiles-ok
 //
-// TODO: When dropping support for VS 2013, check if this bug is still present in the supported
+// TODO: When dropping support for VS 2015, check if this bug is still present in the supported
 // Visual Studio versions (replace the macro definitions in NativeWrapperDecls.h with these ones,
 // remove them from here and check if this causes error C2244 when compiling.
 #undef NUMBERED_LIST_TAIL_MAYBE_REF

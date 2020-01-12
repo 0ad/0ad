@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -76,21 +76,6 @@ public:
 	inline void set(JSContext* cx, T val)
 	{
 		m_Val.reset(new JS::PersistentRooted<T>(cx, val));
-	}
-
-	// TODO: Move assignment operator and move constructor only have to be
-	// explicitly defined for Visual Studio. VS2013 is still behind on C++11 support
-	// What's missing is what they call "Rvalue references v3.0", see
-	// https://msdn.microsoft.com/en-us/library/hh567368.aspx#rvref
-	DefPersistentRooted<T>& operator=(DefPersistentRooted<T>&& other)
-	{
-		m_Val = std::move(other.m_Val);
-		return *this;
-	}
-
-	DefPersistentRooted<T>(DefPersistentRooted<T>&& other)
-	{
-		m_Val = std::move(other.m_Val);
 	}
 
 private:

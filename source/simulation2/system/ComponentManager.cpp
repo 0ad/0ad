@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -248,7 +248,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxP
 		componentManager->m_ScriptInterface.GetProperty(protoVal, "Schema", schema);
 
 	// Construct a new ComponentType, using the wrapper's alloc functions
-	ComponentType ct(
+	ComponentType ct{
 		CT_Script,
 		iid,
 		ctWrapper.alloc,
@@ -256,7 +256,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxP
 		cname,
 		schema,
 		DefPersistentRooted<JS::Value>(cx, ctor)
-	);
+	};
 	componentManager->m_ComponentTypesById[cid] = std::move(ct);
 
 	componentManager->m_CurrentComponent = cid; // needed by Subscribe
@@ -533,7 +533,7 @@ void CComponentManager::SetRNGSeed(u32 seed)
 void CComponentManager::RegisterComponentType(InterfaceId iid, ComponentTypeId cid, AllocFunc alloc, DeallocFunc dealloc,
 		const char* name, const std::string& schema)
 {
-	ComponentType c(CT_Native, iid, alloc, dealloc, name, schema, DefPersistentRooted<JS::Value>());
+	ComponentType c{ CT_Native, iid, alloc, dealloc, name, schema, DefPersistentRooted<JS::Value>() };
 	m_ComponentTypesById.insert(std::make_pair(cid, std::move(c)));
 	m_ComponentTypeIdsByName[name] = cid;
 }
@@ -541,7 +541,7 @@ void CComponentManager::RegisterComponentType(InterfaceId iid, ComponentTypeId c
 void CComponentManager::RegisterComponentTypeScriptWrapper(InterfaceId iid, ComponentTypeId cid, AllocFunc alloc,
 		DeallocFunc dealloc, const char* name, const std::string& schema)
 {
-	ComponentType c(CT_ScriptWrapper, iid, alloc, dealloc, name, schema, DefPersistentRooted<JS::Value>());
+	ComponentType c{ CT_ScriptWrapper, iid, alloc, dealloc, name, schema, DefPersistentRooted<JS::Value>() };
 	m_ComponentTypesById.insert(std::make_pair(cid, std::move(c)));
 	m_ComponentTypeIdsByName[name] = cid;
 	// TODO: merge with RegisterComponentType

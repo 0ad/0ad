@@ -560,10 +560,6 @@ extern_lib_defs = {
 					pkgconfig.add_links("mozjs-45")
 				end
 			else
-				filter { "Debug", "action:vs2013" }
-					links { "mozjs45-ps-debug-vc120" }
-				filter { "Release", "action:vs2013" }
-					links { "mozjs45-ps-release-vc120" }
 				filter { "Debug", "action:vs2015" }
 					links { "mozjs45-ps-debug-vc140" }
 				filter { "Release", "action:vs2015" }
