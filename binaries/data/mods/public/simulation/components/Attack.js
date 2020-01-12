@@ -412,14 +412,15 @@ Attack.prototype.GetTimers = function(type)
 	return { "prepare": prepare, "repeat": repeat };
 };
 
-Attack.prototype.GetSplashDamage = function(type)
+Attack.prototype.GetSplashData = function(type)
 {
 	if (!this.template[type].Splash)
-		return false;
+		return;
 
 	return {
 		"attackData": this.GetAttackEffectsData(type, true),
 		"friendlyFire": this.template[type].Splash.FriendlyFire != "false",
+		"radius": ApplyValueModificationsToEntity("Attack/" + type + "/Splash/Range", +this.template[type].Splash.Range, this.entity),
 		"shape": this.template[type].Splash.Shape,
 	};
 };
@@ -535,15 +536,10 @@ Attack.prototype.PerformAttack = function(type, target)
 			"position": realTargetPosition,
 			"direction": missileDirection,
 			"projectileId": id,
-			"attackImpactSound": attackImpactSound
+			"attackImpactSound": attackImpactSound,
+			"splash": this.GetSplashData(type),
 		};
-		if (this.template[type].Splash)
-			data.splash = {
-				"friendlyFire": this.template[type].Splash.FriendlyFire != "false",
-				"radius": +this.template[type].Splash.Range,
-				"shape": this.template[type].Splash.Shape,
-				"attackData": this.GetAttackEffectsData(type, true),
-			};
+
 		cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_DelayedDamage, "MissileHit", +this.template[type].Delay + timeToTarget * 1000, data);
 	}
 	else
