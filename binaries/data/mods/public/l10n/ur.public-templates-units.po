@@ -1,13 +1,13 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-12-27 08:09+0000\n"
-"PO-Revision-Date: 2019-12-27 14:29+0000\n"
+"POT-Creation-Date: 2020-01-10 08:09+0000\n"
+"PO-Revision-Date: 2020-01-10 15:41+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Urdu (http://www.transifex.com/wildfire-games/0ad/language/ur/)\n"
 "MIME-Version: 1.0\n"
@@ -52,9 +52,9 @@ msgstr ""
 #: simulation/templates/template_unit_dog.xml:42
 #: simulation/templates/template_unit_infantry.xml:68
 #: simulation/templates/template_unit_support_healer.xml:27
-#: simulation/templates/units/brit_support_healer_b.xml:8
+#: simulation/templates/units/brit_support_healer_b.xml:9
 #: simulation/templates/units/cart_support_healer_b.xml:9
-#: simulation/templates/units/gaul_support_healer_b.xml:8
+#: simulation/templates/units/gaul_support_healer_b.xml:9
 #: simulation/templates/units/iber_support_healer_b.xml:10
 #: simulation/templates/units/maur_support_healer_b.xml:9
 #: simulation/templates/units/pers_support_healer_b.xml:10
@@ -928,8 +928,19 @@ msgid "Athenian Woman"
 msgstr ""
 
 #: simulation/templates/units/athen_support_healer_b.xml:7
+#: simulation/templates/units/mace_support_healer_b.xml:7
+#: simulation/templates/units/ptol_support_healer_b.xml:6
+#: simulation/templates/units/sele_support_healer_b.xml:7
 #: simulation/templates/units/spart_support_healer_b.xml:7
-msgid "Iatrós"
+msgid "Surgeon"
+msgstr ""
+
+#: simulation/templates/units/athen_support_healer_b.xml:8
+#: simulation/templates/units/mace_support_healer_b.xml:8
+#: simulation/templates/units/ptol_support_healer_b.xml:7
+#: simulation/templates/units/sele_support_healer_b.xml:8
+#: simulation/templates/units/spart_support_healer_b.xml:8
+msgid "Iatros"
 msgstr ""
 
 #: simulation/templates/units/athen_support_slave.xml:5
@@ -1076,8 +1087,10 @@ msgid "Celtic Woman"
 msgstr ""
 
 #: simulation/templates/units/brit_support_healer_b.xml:6
+#: simulation/templates/units/brit_support_healer_b.xml:7
 #: simulation/templates/units/gaul_support_healer_b.xml:6
-msgid "Druides"
+#: simulation/templates/units/gaul_support_healer_b.xml:7
+msgid "Druid"
 msgstr ""
 
 #: simulation/templates/units/brit_support_trader.xml:9
@@ -1785,11 +1798,6 @@ msgstr ""
 msgid "Macedonian Woman"
 msgstr ""
 
-#: simulation/templates/units/mace_support_healer_b.xml:7
-#: simulation/templates/units/sele_support_healer_b.xml:7
-msgid "Hiereús"
-msgstr ""
-
 #: simulation/templates/units/maur_catafalque.xml:9
 msgid "Bindusara"
 msgstr ""
@@ -2353,14 +2361,6 @@ msgstr ""
 msgid "Egyptian Woman"
 msgstr ""
 
-#: simulation/templates/units/ptol_support_healer_b.xml:6
-msgid "Egyptian Priest"
-msgstr ""
-
-#: simulation/templates/units/ptol_support_healer_b.xml:7
-msgid "Hiereús Aigýptios"
-msgstr ""
-
 #: simulation/templates/units/rome_catafalque.xml:9
 msgid "Lūcius Iūnius Brūtus"
 msgstr ""
@@ -2527,11 +2527,11 @@ msgid "Roman Woman"
 msgstr ""
 
 #: simulation/templates/units/rome_support_healer_b.xml:7
-msgid "State Priest"
+msgid "Doctor"
 msgstr ""
 
 #: simulation/templates/units/rome_support_healer_b.xml:8
-msgid "Pontifex"
+msgid "Medicus"
 msgstr ""
 
 #: simulation/templates/units/rome_support_trader.xml:10
