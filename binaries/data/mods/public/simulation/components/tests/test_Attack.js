@@ -184,7 +184,7 @@ attackComponentTest(undefined, true, (attacker, cmpAttack, defender) => {
 		"repeat": 1000
 	});
 
-	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetSplashDamage("Ranged"), {
+	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetSplashData("Ranged"), {
 		"attackData": {
 			"Damage": {
 				"Hack": 0,
@@ -199,6 +199,7 @@ attackComponentTest(undefined, true, (attacker, cmpAttack, defender) => {
 			}
 		},
 		"friendlyFire": false,
+		"radius": 10,
 		"shape": "Circular"
 	});
 });

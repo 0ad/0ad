@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,9 +29,9 @@ different compiler versions (or the same version with different build flags):
 the STL types have different layouts, and new/delete can use different heaps.
 
 We want to let people build the game on Windows with any compiler version
-(VC2008, 2010, 2012, 2013, and debug vs release), without requiring them to
-rebuild the gloox library themselves. And we don't want to provide ~8 different
-prebuilt versions of the library.
+(any supported Visual Studio version, and debug vs release), without requiring
+them to rebuild the gloox library themselves. And we don't want to provide ~8
+different prebuilt versions of the library.
 
 glooxwrapper replaces the gloox API with a version that is safe to use across
 compiler versions. glooxwrapper and gloox must be compiled together with the

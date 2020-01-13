@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -427,25 +427,6 @@ private:
 
 	struct CustomType
 	{
-		// TODO: Move assignment operator and move constructor only have to be
-		// explicitly defined for Visual Studio. VS2013 is still behind on C++11 support
-		// What's missing is what they call "Rvalue references v3.0", see
-		// https://msdn.microsoft.com/en-us/library/hh567368.aspx#rvref
-		CustomType() {}
-		CustomType& operator=(CustomType&& other)
-		{
-			m_Prototype = std::move(other.m_Prototype);
-			m_Class = std::move(other.m_Class);
-			m_Constructor = std::move(other.m_Constructor);
-			return *this;
-		}
-		CustomType(CustomType&& other)
-		{
-			m_Prototype = std::move(other.m_Prototype);
-			m_Class = std::move(other.m_Class);
-			m_Constructor = std::move(other.m_Constructor);
-		}
-
 		JS::PersistentRootedObject m_Prototype;
 		JSClass* m_Class;
 		JSNative m_Constructor;

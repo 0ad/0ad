@@ -702,7 +702,7 @@ __asm
 
 /* This method is faster than the OpenEXR implementation (very often
  * used, eg. in Ogre), with the additional benefit of rounding, inspired
- * by James Tursa’s half-precision code. */
+ * by James Tursa's half-precision code. */
 static inline uint16_t float_to_half_branch(uint32_t x)
 {
     uint16_t bits = (x >> 16) & 0x8000; /* Get the sign */
@@ -752,7 +752,7 @@ static inline uint16_t float_to_half_branch(uint32_t x)
 #define S256(x)  S64((x)),  S64((x)+64),   S64((x)+128),  S64((x)+192)
 #define S1024(x) S256((x)), S256((x)+256), S256((x)+512), S256((x)+768)
 
-/* Lookup table-based algorithm from “Fast Half Float Conversions”
+/* Lookup table-based algorithm from "Fast Half Float Conversions"
  * by Jeroen van der Zijp, November 2008. No rounding is performed,
  * and some NaN values may be incorrectly converted to Inf. */
 static inline uint16_t float_to_half_nobranch(uint32_t x)

@@ -1005,9 +1005,9 @@ void CubeSurface::sky(float turbidity, float albedo[3], float solarElevation) {
 
     // 700 nm (red), 546.1 nm (green) and 435.8 nm (blue).
     float channel_center[3] = {
-        700,    // Red 620–740,
-        546.1,  // Green 520–570,
-        435.8,  // Blue 450–490,
+        700,    // Red 620-740,
+        546.1,  // Green 520-570,
+        435.8,  // Blue 450-490,
     };
 
     // @@ For each pixel:

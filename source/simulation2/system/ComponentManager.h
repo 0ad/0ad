@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -72,46 +72,6 @@ private:
 		std::string name;
 		std::string schema; // RelaxNG fragment
 		DefPersistentRooted<JS::Value> ctor; // only valid if type == CT_Script
-
-		// TODO: Constructor, move assignment operator and move constructor only have to be
-		// explicitly defined for Visual Studio. VS2013 is still behind on C++11 support
-		// What's missing is what they call "Rvalue references v3.0", see
-		// https://msdn.microsoft.com/en-us/library/hh567368.aspx#rvref
-		ComponentType() {}
-		ComponentType (EComponentTypeType type, InterfaceId iid, AllocFunc alloc,
-			DeallocFunc dealloc, std::string name, std::string schema, DefPersistentRooted<JS::Value> ctor) :
-				type(type),
-				iid(iid),
-				alloc(alloc),
-				dealloc(dealloc),
-				name(name),
-				schema(schema),
-				ctor(std::move(ctor))
-		{
-		}
-
-		ComponentType& operator= (ComponentType&& other)
-		{
-			type = std::move(other.type);
-			iid = std::move(other.iid);
-			alloc = std::move(other.alloc);
-			dealloc = std::move(other.dealloc);
-			name = std::move(other.name);
-			schema = std::move(other.schema);
-			ctor = std::move(other.ctor);
-			return *this;
-		}
-
-		ComponentType(ComponentType&& other)
-		{
-			type = std::move(other.type);
-			iid = std::move(other.iid);
-			alloc = std::move(other.alloc);
-			dealloc = std::move(other.dealloc);
-			name = std::move(other.name);
-			schema = std::move(other.schema);
-			ctor = std::move(other.ctor);
-		}
 	};
 
 public:

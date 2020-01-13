@@ -2165,6 +2165,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.SetNextState("FINDINGNEWTARGET");
 						return true;
 					}
+					this.SetAnimationVariant("approach_" + this.order.data.type.specific);
 					return false;
 				},
 
@@ -2199,10 +2200,12 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.FinishOrder();
 						return true;
 					}
+					this.SetAnimationVariant("approach_" + this.order.data.type.specific);
 					return false;
 				},
 
 				"leave": function() {
+					this.SetDefaultAnimationVariant();
 					this.StopMoving();
 				},
 
