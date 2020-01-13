@@ -4,10 +4,11 @@
   <group>
     <variant>
       <mesh>props/hele_storehouse_wood.dae</mesh>
-      <textures><texture file="props/wood_c.png" name="baseTex"/>
-<texture file="structural/ao/hele_storehouse.png" name="aoTex"/>
-</textures>
+      <textures>
+        <texture file="props/wood_c.png" name="baseTex"/>
+        <texture file="structural/ao/hele_storehouse.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
-  <material>basic_trans_ao.xml</material>
+  <material>no_trans_ao.xml</material>
 </actor>
