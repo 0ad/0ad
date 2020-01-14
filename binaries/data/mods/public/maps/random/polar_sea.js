@@ -134,7 +134,7 @@ Engine.SetProgress(65);
 g_Map.log("Creating dirt patches");
 createLayeredPatches(
 	[scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
-	[[tDirt,tHalfSnow], [tHalfSnow,tSnowLimited]],
+	[[tDirt, tHalfSnow], [tHalfSnow, tSnowLimited]],
 	[2],
 	avoidClasses(clWater, 3, clDirt, 5, clPlayer, 12),
 	scaleByMapSize(15, 45),
@@ -150,10 +150,10 @@ createPatches(
 Engine.SetProgress(70);
 
 g_Map.log("Creating stone mines");
-	createMines(
+createMines(
 	[
 		[new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
-		[new SimpleObject(oStoneSmall, 2,5, 1,3)]
+		[new SimpleObject(oStoneSmall, 2, 5, 1, 3)]
 	],
 	avoidClasses(clWater, 3, clPlayer, 20, clRock, 18, clHill, 2),
 	clRock);
@@ -161,7 +161,7 @@ g_Map.log("Creating stone mines");
 g_Map.log("Creating metal mines");
 createMines(
 	[
-		[new SimpleObject(oMetalLarge, 1,1, 0,4)]
+		[new SimpleObject(oMetalLarge, 1, 1, 0, 4)]
 	],
 	avoidClasses(clWater, 3, clPlayer, 20, clMetal, 18, clRock, 5, clHill, 2),
 	clMetal);
@@ -241,7 +241,7 @@ createObjectGroupsDeprecated(
 	100);
 Engine.SetProgress(95);
 
-if (randBool(1/3))
+if (g_MapSettings.Daytime !== undefined ? g_MapSettings.Daytime == "dawn" : randBool(1/3))
 {
 	setSkySet("sunset 1");
 	setSunColor(0.8, 0.7, 0.6);

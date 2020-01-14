@@ -4,7 +4,7 @@
 		"Script" : "polar_sea.js",
 		"Description" : "Players start in a cold polar region barren of vegetation. In the sea fish and whales abound, while the fragile icy land teems with huntable walruses and deadly wolves. These wolves, made ravenous by the harsh and forbidding climate, drawn by the scent of prey, have started appearing in terrifying numbers. A wise and strong ruler will not only achieve victory over his enemies, but also keep the number of these beasts at bay, lest they undermine his economy and cause his downfall. [color=\"red\"]Warning: It is inadvisable to disable treasures, since there is no gatherable wood. Not recommended for inexperienced players.[/color]",
 		"Keywords": ["trigger"],
-		"Preview" : "polar_sea.png",
+		"Preview" : "polar_sea_dawn.png",
 		"CircularMap" : true,
 		"TriggerScripts" : [
 			"scripts/TriggerHelper.js",
@@ -14,6 +14,21 @@
 			"gather_lumbering_ironaxes",
 			"gather_lumbering_sharpaxes",
 			"gather_lumbering_strongeraxes"
+		],
+		"Daytime":
+		[
+			{
+				"Id": "dawn",
+				"Name": "Dawn",
+				"Description": "Scattered sunlight illuminates the scenery in a vivid red tone.",
+				"Preview" : "polar_sea_dawn.png"
+			},
+			{
+				"Id": "daylight",
+				"Name": "Daylight",
+				"Description": "The scenery is illuminated by direct or indirect sunlight.",
+				"Preview" : "polar_sea_daylight.png"
+			}
 		]
 	}
 }
