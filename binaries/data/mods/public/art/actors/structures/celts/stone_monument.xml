@@ -9,11 +9,11 @@
       </props>
       <textures>
         <texture file="structural/celt_stonehenge.png" name="baseTex"/>
-		<texture file="structural/celt_stonehenge_spec.png" name="specTex"/>
+        <texture file="structural/celt_stonehenge_spec.png" name="specTex"/>
         <texture file="structural/celt_stonehenge_norm.png" name="normTex"/>
         <texture file="structural/ao/celt_stonehenge.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
-  <material>basic_trans_ao_parallax_spec.xml</material>
+  <material>no_trans_ao_parallax_spec.xml</material>
 </actor>

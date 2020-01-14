@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <object>
-	<object name="productLogo" type="image" ghost="true" size="50%-110 30 50%+110 130"/>
+	<object name="productLogo" type="image" ghost="true" size="50%-110 10 50%+110 110"/>
 
-	<object type="image" style="TranslucentPanelThinBorder" size="8 100%-420 100%-8 100%-94">
+	<object type="image" style="TranslucentPanelThinBorder" size="8 100%-360 100%-8 100%-94">
 
 		<object name="productDescription" font="sans-14" type="text" textcolor="white" size="8 8 100%-8 100%-36" ghost="true"/>
 

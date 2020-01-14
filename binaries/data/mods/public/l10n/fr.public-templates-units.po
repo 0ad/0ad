@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -7,7 +7,7 @@
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
 # Arthur Jaouen <arthur.jaouen@gmail.com>, 2014
 # Barth Frey <frey.barthelemy@gmail.com>, 2017
-# benjamin jasse <benuri@hotmail.fr>, 2019
+# benjamin jasse <benuri@hotmail.fr>, 2019-2020
 # Cajetan Bouchard <cajetan.bouchard@gmail.com>, 2014
 # curieux de l'être <skimandco@gmail.com>, 2017
 # Cyril Mercier, 2018-2019
@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-12-27 08:09+0000\n"
-"PO-Revision-Date: 2019-12-27 17:42+0000\n"
+"POT-Creation-Date: 2020-01-10 08:09+0000\n"
+"PO-Revision-Date: 2020-01-11 16:45+0000\n"
 "Last-Translator: benjamin jasse <benuri@hotmail.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -85,9 +85,9 @@ msgstr "Cavalier"
 #: simulation/templates/template_unit_dog.xml:42
 #: simulation/templates/template_unit_infantry.xml:68
 #: simulation/templates/template_unit_support_healer.xml:27
-#: simulation/templates/units/brit_support_healer_b.xml:8
+#: simulation/templates/units/brit_support_healer_b.xml:9
 #: simulation/templates/units/cart_support_healer_b.xml:9
-#: simulation/templates/units/gaul_support_healer_b.xml:8
+#: simulation/templates/units/gaul_support_healer_b.xml:9
 #: simulation/templates/units/iber_support_healer_b.xml:10
 #: simulation/templates/units/maur_support_healer_b.xml:9
 #: simulation/templates/units/pers_support_healer_b.xml:10
@@ -961,9 +961,20 @@ msgid "Athenian Woman"
 msgstr "Femme athénienne"
 
 #: simulation/templates/units/athen_support_healer_b.xml:7
+#: simulation/templates/units/mace_support_healer_b.xml:7
+#: simulation/templates/units/ptol_support_healer_b.xml:6
+#: simulation/templates/units/sele_support_healer_b.xml:7
 #: simulation/templates/units/spart_support_healer_b.xml:7
-msgid "Iatrós"
-msgstr "Iatrós"
+msgid "Surgeon"
+msgstr "Chirurgien"
+
+#: simulation/templates/units/athen_support_healer_b.xml:8
+#: simulation/templates/units/mace_support_healer_b.xml:8
+#: simulation/templates/units/ptol_support_healer_b.xml:7
+#: simulation/templates/units/sele_support_healer_b.xml:8
+#: simulation/templates/units/spart_support_healer_b.xml:8
+msgid "Iatros"
+msgstr "Docteur"
 
 #: simulation/templates/units/athen_support_slave.xml:5
 msgid "Doûlos"
@@ -1109,9 +1120,11 @@ msgid "Celtic Woman"
 msgstr "Femme celte"
 
 #: simulation/templates/units/brit_support_healer_b.xml:6
+#: simulation/templates/units/brit_support_healer_b.xml:7
 #: simulation/templates/units/gaul_support_healer_b.xml:6
-msgid "Druides"
-msgstr "Druides"
+#: simulation/templates/units/gaul_support_healer_b.xml:7
+msgid "Druid"
+msgstr "Druide"
 
 #: simulation/templates/units/brit_support_trader.xml:9
 #: simulation/templates/units/gaul_support_trader.xml:9
@@ -1818,11 +1831,6 @@ msgstr "Gýnē Makedonikḗ"
 msgid "Macedonian Woman"
 msgstr "Femme macédonienne"
 
-#: simulation/templates/units/mace_support_healer_b.xml:7
-#: simulation/templates/units/sele_support_healer_b.xml:7
-msgid "Hiereús"
-msgstr "Hiereús"
-
 #: simulation/templates/units/maur_catafalque.xml:9
 msgid "Bindusara"
 msgstr "Bindusâra"
@@ -2386,14 +2394,6 @@ msgstr "Gýnē Aigýptia"
 msgid "Egyptian Woman"
 msgstr "Femme égyptienne"
 
-#: simulation/templates/units/ptol_support_healer_b.xml:6
-msgid "Egyptian Priest"
-msgstr "Prêtre égyptien"
-
-#: simulation/templates/units/ptol_support_healer_b.xml:7
-msgid "Hiereús Aigýptios"
-msgstr "Hiereús Aigýptios"
-
 #: simulation/templates/units/rome_catafalque.xml:9
 msgid "Lūcius Iūnius Brūtus"
 msgstr "Lūcius Iūnius Brūtus"
@@ -2560,12 +2560,12 @@ msgid "Roman Woman"
 msgstr "Femme romaine"
 
 #: simulation/templates/units/rome_support_healer_b.xml:7
-msgid "State Priest"
-msgstr "Prêtre d'État"
+msgid "Doctor"
+msgstr "Docteur"
 
 #: simulation/templates/units/rome_support_healer_b.xml:8
-msgid "Pontifex"
-msgstr "Pontifex"
+msgid "Medicus"
+msgstr "médecin"
 
 #: simulation/templates/units/rome_support_trader.xml:10
 msgid "Plebeian Merchant"

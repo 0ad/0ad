@@ -9,7 +9,7 @@
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
 # Arthur Jaouen <arthur.jaouen@gmail.com>, 2014-2015
 # Barth Frey <frey.barthelemy@gmail.com>, 2017-2018
-# benjamin jasse <benuri@hotmail.fr>, 2019
+# benjamin jasse <benuri@hotmail.fr>, 2019-2020
 # Bruno T <brtur2@gmail.com>, 2019
 # Buggi, 2014
 # curieux de l'être <skimandco@gmail.com>, 2017
@@ -53,7 +53,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-25 08:08+0000\n"
-"PO-Revision-Date: 2019-12-24 10:26+0000\n"
+"PO-Revision-Date: 2020-01-11 17:02+0000\n"
 "Last-Translator: benjamin jasse <benuri@hotmail.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -569,7 +569,7 @@ msgstr "Erreur : Le serveur n'a pas réussi à allouer un identifiant client uni
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
-msgstr ""
+msgstr "Erreur: les commandes client étaient prêtes pour partie inattendu."
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
@@ -821,8 +821,8 @@ msgstr "Taux :"
 #, javascript-format
 msgid "%(projectileCount)s %(projectileName)s"
 msgid_plural "%(projectileCount)s %(projectileName)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1%(nomduprojectile)s 2%(nombredeprojectiles)s"
+msgstr[1] "1%(nom du projectile)s 2%(nombre de projectiles)s"
 
 #: gui/common/tooltips.js:202
 msgid "arrow"
@@ -833,7 +833,7 @@ msgstr[1] "flèches"
 #: gui/common/tooltips.js:205
 #, javascript-format
 msgid "%(projectileString)s / %(attackRateString)s"
-msgstr ""
+msgstr "1%(Seriedeprojectile)s / 2%(FréquenceSeried'attaque)s "
 
 #. Translation: For example: Range: 2 to 10 (+2) meters
 #: gui/common/tooltips.js:225
@@ -2656,7 +2656,7 @@ msgstr "Traduction"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "Comment souhaitez vous être nommé dans les matchs en solo."
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player Name (Single-player)"
@@ -2664,7 +2664,7 @@ msgstr "Nom du joueur (Solo)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr ""
+msgstr "Comment souhaitez vous être nommé dans les matchs multijoueurs (sauf entrée)"
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player Name (Multiplayer)"
@@ -3723,7 +3723,7 @@ msgstr "Caserne spéciale à la disposition des Carthaginois."
 
 #: gui/text/tips/embassies.txt:3
 msgid "Train mercenaries from each of the ethnically-themed embassies."
-msgstr ""
+msgstr "Former des mercenaires des ambassades de chacune des ethnie.\n "
 
 #: gui/text/tips/embassies.txt:4
 msgid ""
@@ -3757,7 +3757,7 @@ msgstr "FORTERESSE"
 
 #: gui/text/tips/fortress.txt:2
 msgid "The Fortress is usually each faction's strongest building."
-msgstr ""
+msgstr "La forteresse est généralement le bâtiment le plus solide de chaque faction."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."

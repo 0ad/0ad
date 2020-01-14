@@ -190,6 +190,13 @@ var g_MainMenuItems = [
 		}
 	},
 	{
+		"caption": translate("Credits"),
+		"tooltip": translate("Show the 0 A.D. credits."),
+		"onPress": () => {
+			Engine.PushGuiPage("page_credits.xml");
+		}
+	},
+	{
 		"caption": translate("Exit"),
 		"tooltip": translate("Exit the game."),
 		"onPress": () => {
