@@ -1424,11 +1424,12 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 
 	// render debug lines
 	if (g_RenderingOptions.GetDisplayFrustum())
-	{
 		DisplayFrustum();
+
+	if (g_RenderingOptions.GetDisplayShadowsFrustum())
+	{
 		m->shadow.RenderDebugBounds();
 		m->shadow.RenderDebugTexture();
-		ogl_WarnIfError();
 	}
 
 	m->silhouetteRenderer.RenderDebugOverlays(m_ViewCamera);
@@ -1499,6 +1500,8 @@ void CRenderer::DisplayFrustum()
 	glEnable(GL_CULL_FACE);
 	glDepthMask(1);
 #endif
+
+	ogl_WarnIfError();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

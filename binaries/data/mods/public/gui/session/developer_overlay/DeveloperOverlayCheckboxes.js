@@ -275,3 +275,21 @@ DeveloperOverlayCheckboxes.prototype.DisplayCameraFrustum = class
 		return Engine.Renderer_GetDisplayFrustumEnabled();
 	}
 };
+
+DeveloperOverlayCheckboxes.prototype.DisplayShadowsFrustum = class
+{
+	label()
+	{
+		return translate("Display shadows frustum");
+	}
+
+	onPress(checked)
+	{
+		Engine.Renderer_SetDisplayShadowsFrustumEnabled(checked);
+	}
+
+	checked()
+	{
+		return Engine.Renderer_GetDisplayShadowsFrustumEnabled();
+	}
+};
