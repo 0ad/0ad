@@ -11,10 +11,7 @@ ResourceTrickle.prototype.Schema =
 
 ResourceTrickle.prototype.Init = function()
 {
-	this.ComputeRates();
-
-	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
- 	cmpTimer.SetInterval(this.entity, IID_ResourceTrickle, "Trickle", this.GetTimer(), this.GetTimer(), undefined);
+	this.CheckTimer();
 };
 
 ResourceTrickle.prototype.GetTimer = function()
@@ -27,11 +24,24 @@ ResourceTrickle.prototype.GetRates = function()
 	return this.rates;
 };
 
+/**
+ * @return {boolean} - Whether this entity has at least one non-zero trickle rate.
+ */
 ResourceTrickle.prototype.ComputeRates = function()
 {
 	this.rates = {};
+	let hasTrickle = false;
 	for (let resource in this.template.Rates)
-		this.rates[resource] = ApplyValueModificationsToEntity("ResourceTrickle/Rates/"+resource, +this.template.Rates[resource], this.entity);
+	{
+		let rate = ApplyValueModificationsToEntity("ResourceTrickle/Rates/" + resource, +this.template.Rates[resource], this.entity);
+		if (rate)
+		{
+			this.rates[resource] = rate;
+			hasTrickle = true;
+		}
+	}
+
+	return hasTrickle;
 };
 
 ResourceTrickle.prototype.Trickle = function(data, lateness)
@@ -49,7 +59,28 @@ ResourceTrickle.prototype.OnValueModification = function(msg)
 	if (msg.component != "ResourceTrickle")
 		return;
 
-	this.ComputeRates();
+	this.CheckTimer();
+};
+
+ResourceTrickle.prototype.CheckTimer = function()
+{
+	if (!this.ComputeRates())
+	{
+		if (this.timer)
+		{
+			let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+			cmpTimer.CancelTimer(this.timer);
+			delete this.timer;
+		}
+		return;
+	}
+
+	if (this.timer)
+		return;
+
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	let interval = +this.template.Interval;
+	this.timer = cmpTimer.SetInterval(this.entity, IID_ResourceTrickle, "Trickle", interval, interval, undefined);
 };
 
 Engine.RegisterComponentType(IID_ResourceTrickle, "ResourceTrickle", ResourceTrickle);
