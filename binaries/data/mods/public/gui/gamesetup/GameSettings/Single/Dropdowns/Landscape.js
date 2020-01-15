@@ -93,6 +93,9 @@ GameSettingControls.Landscape = class extends GameSettingControlDropdown
 
 	onPickRandomItems()
 	{
+		if (!this.mapData)
+			return;
+
 		let items;
 		let landscapes = this.mapData.settings.Landscapes;
 

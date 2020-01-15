@@ -25,7 +25,8 @@ class SavegameDetails
 			return;
 
 		Engine.GetGUIObjectByName("savedMapName").caption =
-			this.mapCache.getMapName(metadata.initAttributes.mapType, metadata.initAttributes.map);
+			this.mapCache.translateMapName(
+				this.mapCache.getTranslatableMapName(metadata.initAttributes.mapType, metadata.initAttributes.map));
 
 		Engine.GetGUIObjectByName("savedInfoPreview").sprite =
 			this.mapCache.getMapPreview(metadata.initAttributes.mapType, metadata.initAttributes.map, metadata.initAttributes);
