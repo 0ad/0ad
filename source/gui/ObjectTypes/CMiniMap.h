@@ -58,6 +58,8 @@ protected:
 
 	void FireWorldClickEvent(int button, int clicks);
 
+	static const CStr EventNameWorldClick;
+
 	// the terrain we are mini-mapping
 	const CTerrain* m_Terrain;
 

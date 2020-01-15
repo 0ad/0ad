@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -82,7 +82,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	// Use onWhatever to access event handlers
 	if (propName.substr(0, 2) == "on")
 	{
-		CStr eventName(CStr(propName.substr(2)).LowerCase());
+		CStr eventName(propName.substr(2));
 		std::map<CStr, JS::Heap<JSObject*>>::iterator it = e->m_ScriptHandlers.find(eventName);
 		if (it == e->m_ScriptHandlers.end())
 			vp.setNull();
@@ -163,7 +163,7 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 			return result.fail(JSMSG_NOT_FUNCTION);
 		}
 
-		CStr eventName(CStr(propName.substr(2)).LowerCase());
+		CStr eventName(propName.substr(2));
 		e->SetScriptHandler(eventName, vpObj);
 
 		return result.succeed();
@@ -194,7 +194,7 @@ bool JSI_IGUIObject::deleteProperty(JSContext* cx, JS::HandleObject obj, JS::Han
 	// event handlers
 	if (propName.substr(0, 2) == "on")
 	{
-		CStr eventName(CStr(propName.substr(2)).LowerCase());
+		CStr eventName(propName.substr(2));
 		e->UnsetScriptHandler(eventName);
 		return result.succeed();
 	}

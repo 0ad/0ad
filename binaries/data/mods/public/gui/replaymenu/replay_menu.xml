@@ -62,7 +62,7 @@
 
 				<action on="SelectionChange">displayReplayDetails();</action>
 				<action on="SelectionColumnChange">displayReplayList();</action>
-				<action on="mouseleftdoubleclickitem">startReplay();</action>
+				<action on="MouseLeftDoubleClickItem">startReplay();</action>
 
 				<!-- Columns -->
 				<column id="months" color="172 172 212" width="12%">

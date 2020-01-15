@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -58,6 +58,8 @@ extern GameLoopState* g_AtlasGameLoop;
  * Globally accessible pointer to the CGame object.
  **/
 CGame *g_Game=NULL;
+
+const CStr CGame::EventNameSimulationUpdate = "SimulationUpdate";
 
 /**
  * Constructor
@@ -401,7 +403,7 @@ void CGame::Update(const double deltaRealTime, bool doInterpolate)
 		{
 			{
 				PROFILE3("gui sim update");
-				g_GUI->SendEventToAll("SimulationUpdate");
+				g_GUI->SendEventToAll(EventNameSimulationUpdate);
 			}
 
 			GetView()->GetLOSTexture().MakeDirty();

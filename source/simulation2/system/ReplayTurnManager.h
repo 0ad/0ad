@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,6 +40,9 @@ private:
 	void NotifyFinishedUpdate(u32 turn) override;
 
 	void DoTurn(u32 turn);
+
+	static const CStr EventNameReplayFinished;
+	static const CStr EventNameReplayOutOfSync;
 
 	// Contains the commands of every player on each turn
 	std::map<u32, std::vector<std::pair<player_id_t, std::string>>> m_ReplayCommands;

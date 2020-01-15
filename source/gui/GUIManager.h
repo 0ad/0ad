@@ -161,6 +161,8 @@ private:
 		shared_ptr<JS::PersistentRootedValue> callbackFunction;
 	};
 
+	const static CStr EventNameWindowResized;
+
 	shared_ptr<CGUI> top() const;
 
 	shared_ptr<ScriptRuntime> m_ScriptRuntime;

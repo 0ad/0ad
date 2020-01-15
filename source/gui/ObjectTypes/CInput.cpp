@@ -37,6 +37,10 @@
 
 extern int g_yres;
 
+const CStr CInput::EventNameTextEdit = "TextEdit";
+const CStr CInput::EventNamePress = "Press";
+const CStr CInput::EventNameTab = "Tab";
+
 CInput::CInput(CGUI& pGUI)
 	:
 	IGUIObject(pGUI),
@@ -157,7 +161,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		m_iBufferPos_Tail = -1;
 
 		UpdateAutoScroll();
-		SendEvent(GUIM_TEXTEDIT, "textedit");
+		SendEvent(GUIM_TEXTEDIT, EventNameTextEdit);
 
 		return IN_HANDLED;
 	}
@@ -206,7 +210,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
 
 		UpdateAutoScroll();
-		SendEvent(GUIM_TEXTEDIT, "textedit");
+		SendEvent(GUIM_TEXTEDIT, EventNameTextEdit);
 
 		return IN_HANDLED;
 	}
@@ -244,7 +248,7 @@ void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode)
 	{
 	case SDLK_TAB:
 	{
-		SendEvent(GUIM_TAB, "tab");
+		SendEvent(GUIM_TAB, EventNameTab);
 		// Don't send a textedit event, because it should only
 		// be sent if the GUI control changes the text
 		break;
@@ -275,7 +279,7 @@ void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode)
 		}
 
 		UpdateAutoScroll();
-		SendEvent(GUIM_TEXTEDIT, "textedit");
+		SendEvent(GUIM_TEXTEDIT, EventNameTextEdit);
 		break;
 	}
 	case SDLK_DELETE:
@@ -297,7 +301,7 @@ void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode)
 		}
 
 		UpdateAutoScroll();
-		SendEvent(GUIM_TEXTEDIT, "textedit");
+		SendEvent(GUIM_TEXTEDIT, EventNameTextEdit);
 		break;
 	}
 	case SDLK_KP_ENTER:
@@ -307,7 +311,7 @@ void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode)
 		//  otherwise a '\n' character will be added.
 		if (!m_MultiLine)
 		{
-			SendEvent(GUIM_PRESSED, "press");
+			SendEvent(GUIM_PRESSED, EventNamePress);
 			break;
 		}
 
@@ -343,7 +347,7 @@ void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode)
 		++m_iBufferPos;
 
 		UpdateAutoScroll();
-		SendEvent(GUIM_TEXTEDIT, "textedit");
+		SendEvent(GUIM_TEXTEDIT, EventNameTextEdit);
 		break;
 	}
 	}
@@ -617,7 +621,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 
 			sys_clipboard_free(text);
 
-			SendEvent(GUIM_TEXTEDIT, "textedit");
+			SendEvent(GUIM_TEXTEDIT, EventNameTextEdit);
 		}
 
 		return IN_HANDLED;
@@ -653,7 +657,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 			{
 				DeleteCurSelection();
 				UpdateAutoScroll();
-				SendEvent(GUIM_TEXTEDIT, "textedit");
+				SendEvent(GUIM_TEXTEDIT, EventNameTextEdit);
 			}
 		}
 
@@ -700,7 +704,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 
 			UpdateBufferPositionSetting();
 			DeleteCurSelection();
-			SendEvent(GUIM_TEXTEDIT, "textedit");
+			SendEvent(GUIM_TEXTEDIT, EventNameTextEdit);
 		}
 		UpdateAutoScroll();
 		return IN_HANDLED;
@@ -739,7 +743,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 			DeleteCurSelection();
 		}
 		UpdateAutoScroll();
-		SendEvent(GUIM_TEXTEDIT, "textedit");
+		SendEvent(GUIM_TEXTEDIT, EventNameTextEdit);
 		return IN_HANDLED;
 	}
 	else if (hotkey == "text.move.left")

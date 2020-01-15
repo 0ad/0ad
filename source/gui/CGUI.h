@@ -74,17 +74,17 @@ public:
 	/**
 	 * Sends a specified script event to every object
 	 *
-	 * @param EventName String representation of event name
+	 * @param eventName String representation of event name
 	 */
-	void SendEventToAll(const CStr& EventName);
+	void SendEventToAll(const CStr& eventName);
 
 	/**
 	 * Sends a specified script event to every object
 	 *
-	 * @param EventName String representation of event name
+	 * @param eventName String representation of event name
 	 * @param paramData JS::HandleValueArray storing the arguments passed to the event handler.
 	 */
-	void SendEventToAll(const CStr& EventName, const JS::HandleValueArray& paramData);
+	void SendEventToAll(const CStr& eventName, const JS::HandleValueArray& paramData);
 
 	/**
 	 * Displays the whole GUI
@@ -610,6 +610,24 @@ private:
 	 * Contrary to object hotkeys, this allows for only one global function per hotkey name.
 	 */
 	std::map<CStr, JS::PersistentRootedValue> m_GlobalHotkeys;
+
+	/**
+	 * XML and JS can subscribe handlers to events identified by these names.
+	 * Store in static const members to avoid string copies, gain compile errors when misspelling and
+	 * to allow reuse in other classes.
+	 */
+	static const CStr EventNameLoad;
+	static const CStr EventNameTick;
+	static const CStr EventNamePress;
+	static const CStr EventNameRelease;
+	static const CStr EventNameMouseRightPress;
+	static const CStr EventNameMouseLeftPress;
+	static const CStr EventNameMouseWheelDown;
+	static const CStr EventNameMouseWheelUp;
+	static const CStr EventNameMouseLeftDoubleClick;
+	static const CStr EventNameMouseLeftRelease;
+	static const CStr EventNameMouseRightDoubleClick;
+	static const CStr EventNameMouseRightRelease;
 
 	//--------------------------------------------------------
 	//	Databases

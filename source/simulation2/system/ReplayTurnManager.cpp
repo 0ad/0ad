@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,9 @@
 #include "ps/CLogger.h"
 #include "ps/Util.h"
 #include "simulation2/Simulation2.h"
+
+const CStr CReplayTurnManager::EventNameReplayFinished = "ReplayFinished";
+const CStr CReplayTurnManager::EventNameReplayOutOfSync = "ReplayOutOfSync";
 
 CReplayTurnManager::CReplayTurnManager(CSimulation2& simulation, IReplayLogger& replay)
 	: CLocalTurnManager(simulation, replay)
@@ -57,7 +60,7 @@ void CReplayTurnManager::StoreFinalReplayTurn(u32 turn)
 void CReplayTurnManager::NotifyFinishedUpdate(u32 turn)
 {
 	if (turn == 1 && m_FinalTurn == 0)
-		g_GUI->SendEventToAll("ReplayFinished");
+		g_GUI->SendEventToAll(EventNameReplayFinished);
 
 	if (turn > m_FinalTurn)
 		return;
@@ -99,7 +102,7 @@ void CReplayTurnManager::NotifyFinishedUpdate(u32 turn)
 	scriptInterface.ToJSVal(cx, &expectedHashVal, expectedHash);
 	paramData.append(expectedHashVal);
 
-	g_GUI->SendEventToAll("ReplayOutOfSync", paramData);
+	g_GUI->SendEventToAll(EventNameReplayOutOfSync, paramData);
 }
 
 void CReplayTurnManager::DoTurn(u32 turn)
@@ -120,5 +123,5 @@ void CReplayTurnManager::DoTurn(u32 turn)
 	}
 
 	if (turn == m_FinalTurn)
-		g_GUI->SendEventToAll("ReplayFinished");
+		g_GUI->SendEventToAll(EventNameReplayFinished);
 }

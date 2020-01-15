@@ -113,6 +113,8 @@ shared_ptr<ScriptRuntime> g_ScriptRuntime;
 
 static const int SANE_TEX_QUALITY_DEFAULT = 5;	// keep in sync with code
 
+static const CStr g_EventNameGameLoadProgress = "GameLoadProgress";
+
 bool g_InDevelopmentCopy;
 bool g_CheckedIfInDevelopmentCopy = false;
 
@@ -193,7 +195,7 @@ void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 	scriptInterface.ToJSVal(cx, &valPendingTask, pending_task);
 	paramData.append(valPendingTask);
 
-	g_GUI->SendEventToAll("GameLoadProgress", paramData);
+	g_GUI->SendEventToAll(g_EventNameGameLoadProgress, paramData);
 }
 
 bool ShouldRender()

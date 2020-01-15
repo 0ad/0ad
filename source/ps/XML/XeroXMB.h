@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,9 +17,6 @@
 
 /*
 	Xeromyces - XMB reading library
-*/
-
-/*
 
 Brief outline:
 
@@ -33,10 +30,6 @@ Main limitations:
    considered identical.
  * Tries to avoid using strings - you usually have to load the
    numeric IDs and use them instead.
- * Case-sensitive (but converts all element/attribute names in
-   the XML file to lowercase, so you only have to be careful in
-   the code)
-
 
 Theoretical file structure:
 
