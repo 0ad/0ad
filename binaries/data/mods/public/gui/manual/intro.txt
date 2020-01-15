@@ -2,7 +2,7 @@
 Thank you for installing 0 A.D.! This page will give a brief overview of the features available in this incomplete, under-development, alpha version of the game.
 
 [font="sans-bold-16"]Graphics settings[font="sans-14"]
-You can switch between fullscreen and windowed mode by pressing Alt + Enter. In windowed mode, you can resize the window. If the game runs too slowly, you can change some settings in the options window: try disabling the "HQ Water Effects" and "Shadows" options.
+You can switch between fullscreen and windowed mode by pressing Alt + Enter. In windowed mode, you can resize the window. If the game runs too slowly, you can change some settings in the options window: try disabling the “HQ Water Effects” and “Shadows” options.
 
 [font="sans-bold-16"]Playing the game[font="sans-14"]
 The controls and gameplay should be familiar to players of traditional real-time strategy (RTS) games. There are currently a lot of missing features and poorly-balanced stats – you will probably have to wait until a beta release for it to work well.
@@ -13,14 +13,14 @@ Basic controls:
 • Right-click to order units to the target
 • Arrow keys or WASD keys to move the camera
 • Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera
-• Mouse wheel, or "="/"+" and "-"/"−" keys, to zoom
+• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom
 
 [font="sans-bold-16"]Modes[font="sans-14"]
 The main menu gives access to two game modes:
-• [font="sans-bold-14"]Single-player[font="sans-14"] – play a sandbox game or against one or more computer players (AI). The default AI (Petra) is under development and may not always be up to date on the new features, but you can play the game with or against it nonetheless.
-• [font="sans-bold-14"]Multiplayer[font="sans-14"] – play against human opponents over the internet.
+• [font="sans-bold-14"]Single-player[font="sans-14"] – Play a sandbox game or against one or more computer players (AI). The default AI (Petra) is under development and may not always be up to date on the new features, but you can play the game with or against it nonetheless.
+• [font="sans-bold-14"]Multiplayer[font="sans-14"] – Play against human opponents over the internet.
 
-To set up a multiplayer game, one player must select the "Host game" option. The game uses UDP port 20595, so the host must configure their NAT/firewall/etc to allow this. Other players can then select "Join game" and enter the host's IP address.
+To set up a multiplayer game, one player must select the “Host game” option. The game uses UDP port 20595, so the host must configure their NAT/firewall/etc. to allow this. Other players can then select “Join game” and enter the host's IP address.
 
 [font="sans-bold-16"]Game setup[font="sans-14"]
 In a multiplayer game, only the host can alter the game setup options.
@@ -30,20 +30,20 @@ First, select what type of map you want to play:
 • [font="sans-bold-14"]Scenario map[font="sans-14"] – A map created by map designers and with fixed civilizations
 • [font="sans-bold-14"]Skirmish map[font="sans-14"] – A map created by map designers but where the civilizations can be chosen
 
-Then the maps can be further filtered. The default maps are generally playable maps. Naval maps are maps where not all opponents can be reached over land and demo maps are maps used for testing purposes (generally not useful to play on). The "All Maps" filter shows all maps together in one list.
+Then the maps can be further filtered. The default maps are generally playable maps. Naval maps are maps where not all opponents can be reached over land and demo maps are maps used for testing purposes (generally not useful to play on). The “All Maps” filter shows all maps together in one list.
 
-Finally change the settings. For random maps this includes the number of players, the size of a map, etc. For scenarios you can only select who controls which player (decides where you start on the map etc). The options are either a human player, an AI or no player at all (the opponent will just be idle).
+Finally change the settings. For random maps this includes the number of players, the size of a map, etc. For scenarios you can only select who controls which player (decides where you start on the map etc.). The options are either a human player, an AI or no player at all (the opponent will just be idle).
 
-When you are ready to start, click the "Start game" button.
+When you are ready to start, click the “Start game” button.
 
-[font="sans-bold-16"]Hotkeys:[font="sans-14"]
+[font="sans-bold-16"]Hotkeys[font="sans-14"]
 [font="sans-bold-14"]Program-wide[font="sans-14"]
   Alt + F4 – Immediately close the game, without asking for confirmation
   Alt + Enter – Toggle between fullscreen and windowed
   ~ or F9 – Show/hide console
   Alt + F – Show/hide frame counter (FPS)
   F11 – Enable/disable real-time profiler (toggles through the displays of information)
-  Shift + F11 – Save current profiler data to "logs/profile.txt"
+  Shift + F11 – Save current profiler data to “logs/profile.txt”
   F2 – Take screenshot (in .png format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
   Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
   Tab, Alt + S – Switch to the next tab
@@ -81,10 +81,10 @@ When you are ready to start, click the "Start game" button.
   1 (and so on up to 0) – Select the unit(s)/structure(s) in control group 1 (to 0)
   Shift + 1 (to 0) – Add control group 1 (to 0) to the selected unit(s)/structure(s)
   Ctrl + F5 (and so on up to F8) – Mark the current camera position, for jumping back to later
-  F5, F6, F7, and F8 – Move the camera to a marked position. Jump back to the last location if the camera is already over the marked position
+  F5 (and so on up to F8) – Move the camera to a marked position. Jump back to the last location if the camera is already over the marked position
   Z, X, C, V, B, N, M – With training structure selected. Add the 1st, 2nd, … unit shown to the training queue for all the selected structures
-  PageUp with unit(s) selected – Highlights the unit(s)/structure(s) guarded by the selection
-  PageDown with unit(s)/structure(s) selected – Highlights the unit(s) guarding the selection
+  PageUp with unit(s) selected – Highlight the unit(s)/structure(s) guarded by the selection
+  PageDown with unit(s)/structure(s) selected – Highlight the unit(s) guarding the selection
   Tab – See all status bars (which would also show the building progress)
   Ctrl + Tab – Toggle summary window
   Alt + L – Show the multiplayer lobby in a dialog window
@@ -99,8 +99,8 @@ When you are ready to start, click the "Start game" button.
   Ctrl + Right Click on structure – Garrison
   J + Right Click on structure – Repair
   P + Right Click – Patrol
-  Shift + Right Click – Queue the move/build/gather/etc order
-  Alt + Right Click – Order one unit from the current selection to move/build/gather/etc and unselect it. Used to quickly dispatch units with specific tasks
+  Shift + Right Click – Queue the move/build/gather/etc. order
+  Alt + Right Click – Order one unit from the current selection to move/build/gather/etc. and unselect it. Used to quickly dispatch units with specific tasks
   Shift + Left Click when training units – Add units in batches (the batch size is 5 by default and can be changed in the options)
   Shift + Left Click or Left Drag over unit on map – Add unit to selection
   Ctrl + Left Click or Left Drag over unit on map – Remove unit from selection
@@ -109,7 +109,7 @@ When you are ready to start, click the "Start game" button.
   I + Left Drag over units on map – Only select idle units
   O + Left Drag over units on map – Only select wounded units
   Ctrl + Left Click on unit/group icon with multiple units selected – Deselect
-  Right Click with a structure(s) selected – sets a rally point for units created/ungarrisoned from that structure
+  Right Click with a structure(s) selected – Set a rally point for units created/ungarrisoned from that structure
   Ctrl + Right Click with unit(s) selected:
     • If the cursor is over an own or allied structure – Garrison
     • If the cursor is over an enemy unit/structure – Attack (instead of capture or gather)
