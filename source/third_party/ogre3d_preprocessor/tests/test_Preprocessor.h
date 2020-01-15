@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,12 +25,12 @@ class TestPreprocessor : public CxxTest::TestSuite
 public:
 	void setUp()
 	{
-		CPreprocessor::ErrorHandler = CPreprocessorWrapper::PyrogenesisShaderError;
+		Ogre::CPreprocessor::ErrorHandler = CPreprocessorWrapper::PyrogenesisShaderError;
 	}
 
 	void test_basic()
 	{
-		CPreprocessor preproc;
+		Ogre::CPreprocessor preproc;
 		const char* in = "#define TEST 2\n1+1=TEST\n";
 		size_t len = 0;
 		char* out = preproc.Parse(in, strlen(in), len);
@@ -45,7 +45,7 @@ public:
 	{
 		TestLogger logger;
 
-		CPreprocessor preproc;
+		Ogre::CPreprocessor preproc;
 		const char* in = "foo\n#if ()\nbar\n";
 		size_t len = 0;
 		char* out = preproc.Parse(in, strlen(in), len);

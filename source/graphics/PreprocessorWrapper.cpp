@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,22 +22,22 @@
 #include "graphics/ShaderDefines.h"
 #include "ps/CLogger.h"
 
-void CPreprocessorWrapper::PyrogenesisShaderError(void* UNUSED(iData), int iLine, const char* iError, const char* iToken, size_t iTokenLen)
+void CPreprocessorWrapper::PyrogenesisShaderError(int iLine, const char* iError, const Ogre::CPreprocessor::Token* iToken)
 {
 	if (iToken)
-		LOGERROR("Preprocessor error: line %d: %s: '%s'\n", iLine, iError, std::string(iToken, iTokenLen).c_str());
+		LOGERROR("Preprocessor error: line %d: %s: '%s'\n", iLine, iError, std::string(iToken->String, iToken->Length).c_str());
 	else
 		LOGERROR("Preprocessor error: line %d: %s\n", iLine, iError);
 }
 
 CPreprocessorWrapper::CPreprocessorWrapper()
 {
-	CPreprocessor::ErrorHandler = CPreprocessorWrapper::PyrogenesisShaderError;
+	Ogre::CPreprocessor::ErrorHandler = CPreprocessorWrapper::PyrogenesisShaderError;
 }
 
 void CPreprocessorWrapper::AddDefine(const char* name, const char* value)
 {
-	m_Preprocessor.Define(name, value);
+	m_Preprocessor.Define(name, strlen(name), value, strlen(value));
 }
 
 void CPreprocessorWrapper::AddDefines(const CShaderDefines& defines)

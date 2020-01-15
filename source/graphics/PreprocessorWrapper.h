@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,10 +39,10 @@ public:
 
 	CStr Preprocess(const CStr& input);
 
-	static void PyrogenesisShaderError(void* UNUSED(iData), int iLine, const char* iError, const char* iToken, size_t iTokenLen);
+	static void PyrogenesisShaderError(int iLine, const char* iError, const Ogre::CPreprocessor::Token* iToken);
 
 private:
-	CPreprocessor m_Preprocessor;
+	Ogre::CPreprocessor m_Preprocessor;
 };
 
 #endif // INCLUDED_PREPROCESSORWRAPPER
