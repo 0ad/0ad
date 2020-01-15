@@ -64,21 +64,13 @@ class MapCache
 
 	getMapPreview(mapType, mapPath, gameAttributes = undefined)
 	{
-		let mapData = this.getMapData(mapType, mapPath);
+		let filename = gameAttributes && gameAttributes.settings && gameAttributes.settings.Preview || undefined;
 
-		let biomePreviewFile =
-			basename(mapPath) + "_" +
-			basename(gameAttributes && gameAttributes.settings.Biome || "") + ".png";
-
-		let biomePreview = Engine.TextureExists(
-			this.TexturesPath + this.PreviewsPath + biomePreviewFile) && biomePreviewFile;
-
-		let filename =
-			biomePreview ?
-				biomePreview :
-				mapData && mapData.settings && mapData.settings.Preview ?
-					mapData.settings.Preview :
-					this.DefaultPreview;
+		if (!filename)
+		{
+			let mapData = this.getMapData(mapType, mapPath);
+			filename = mapData && mapData.settings && mapData.settings.Preview || this.DefaultPreview;
+		}
 
 		return "cropped:" + this.PreviewWidth + "," + this.PreviewHeight + ":" + this.PreviewsPath + filename;
 	}

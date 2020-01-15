@@ -5,10 +5,25 @@
 		"Description" : "Players start along the banks of the river Danube in the period following the expansion into Pannonia by the Celtic Boii tribe. Seeking to consolidate their hold on this land, celtic reinforcements have been sent to root out the remaining foreign cultures. Players not only have to vie for power amongst themselves, but also beat back these ruthless invaders. Ultimately, the Boii were defeated by the rising power of the Dacians, hence leading to the reemergence of the Geto-Dacian Confederation under King Burebista.",
 		"Keywords": ["trigger", "naval"],
 		"CircularMap" : true,
-		"Preview" : "danubius.png",
+		"Preview" : "danubius_night.png",
 		"TriggerScripts" : [
 			"scripts/TriggerHelper.js",
 			"random/danubius_triggers.js"
+		],
+		"Daytime":
+		[
+			{
+				"Id": "day",
+				"Name": "Day",
+				"Description": "Bright daylight illuminates the scene.",
+				"Preview" : "danubius_day.png"
+			},
+			{
+				"Id": "night",
+				"Name": "Night",
+				"Description": "Attackers are covered by the darkness of the night.",
+				"Preview" : "danubius_night.png"
+			}
 		]
 	}
 }

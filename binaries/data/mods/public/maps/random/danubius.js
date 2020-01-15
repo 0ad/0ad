@@ -1,6 +1,8 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+const day = g_MapSettings.dayTime !== undefined ? g_MapSettings.dayTime == "day" : randBool(2/3);
+
 // Spawn ships away from the shoreline, but patrol close to the shoreline
 const triggerPointShipSpawn = "trigger/trigger_point_A";
 const triggerPointShipPatrol = "trigger/trigger_point_B";
@@ -235,7 +237,7 @@ var fortressDanubiusVillage = new Fortress(
 	"Geto-Dacian Tribal Confederation",
 	new Array(2).fill([
 		"gate", "pillar", "hut", "long", "long",
-		"cornerIn", "defense_tower", "long",  "temple", "long",
+		"cornerIn", "defense_tower", "long", "temple", "long",
 		"pillar", "house", "long", "short", "pillar", "gate", "pillar", "longhouse", "long", "long",
 		"cornerIn", "defense_tower", "long", "tavern", "long", "pillar"
 	]).reduce((result, items) => result.concat(items), []));
@@ -303,8 +305,8 @@ if (gallicCC)
 			for (let participants of ritualParticipants)
 			{
 				let [positions, angles] = distributePointsOnCircle(participants.count, startAngle, participants.radius * mRadius, meetingPlacePosition);
-				for (let i = 0; i < positions.length; ++i)
-					g_Map.placeEntityPassable(pickRandom(participants.templates), 0, positions[i], angles[i] + participants.angle);
+				for (let j = 0; j < positions.length; ++j)
+					g_Map.placeEntityPassable(pickRandom(participants.templates), 0, positions[j], angles[j] + participants.angle);
 			}
 		}
 
@@ -323,7 +325,7 @@ if (gallicCC)
 		placeCustomFortress(civicCenterPosition, fortressDanubiusSpikes, "danubius_spikes", 0, startAngle + Math.PI);
 
 		// Place treasure, potentially inside buildings
-		for (let i = 0; i < gallicCCTreasureCount; ++i)
+		for (let j = 0; j < gallicCCTreasureCount; ++j)
 			g_Map.placeEntityPassable(
 				pickRandom(oTreasures),
 				0,
@@ -444,7 +446,7 @@ Engine.SetProgress(50);
 g_Map.log("Creating grass patches");
 createLayeredPatches(
 	[scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
-	[[tGrass, tGrass2],[tGrass2, tGrass3], [tGrass3, tGrass]],
+	[[tGrass, tGrass2], [tGrass2, tGrass3], [tGrass3, tGrass]],
 	[1, 1],
 	avoidClasses(clForest, 0, clPlayer, 10, clWater, 2, clDirt, 2, clHill, 1, clGauls, 5, clPath, 1),
 	scaleByMapSize(15, 45),
@@ -566,7 +568,7 @@ for (let i = 0; i < 2; ++i)
 		],
 		i == 0 ?
 			avoidClasses(clWater, 4, clForest, 1, clPlayer, 16, clRock, 4, clMetal, 4, clHill, 4, clGauls, 5, clPath, 1) :
-			[stayClasses(clIsland, 4) , avoidClasses(clForest, 1, clRock, 4, clMetal, 4)]);
+			[stayClasses(clIsland, 4), avoidClasses(clForest, 1, clRock, 4, clMetal, 4)]);
 Engine.SetProgress(75);
 
 g_Map.log("Creating fish");
@@ -797,7 +799,7 @@ createObjectGroupsByAreas(
 
 placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clMetal, 4, clRock, 4, clIsland, 4, clGauls, 20, clRitualPlace, 20, clForest, 1, clBaseResource, 4, clHill, 4, clFood, 2));
 
-if (randBool(2/3))
+if (day)
 {
 	g_Map.log("Setting day theme");
 	setSkySet("cumulus");

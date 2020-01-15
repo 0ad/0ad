@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -52,6 +52,7 @@ IMPLEMENT_BOOLEAN_SCRIPT_SETTING(ShowSky);
 IMPLEMENT_BOOLEAN_SCRIPT_SETTING(SmoothLOS);
 IMPLEMENT_BOOLEAN_SCRIPT_SETTING(PostProc);
 IMPLEMENT_BOOLEAN_SCRIPT_SETTING(DisplayFrustum);
+IMPLEMENT_BOOLEAN_SCRIPT_SETTING(DisplayShadowsFrustum);
 
 #undef IMPLEMENT_BOOLEAN_SCRIPT_SETTING
 
@@ -101,6 +102,7 @@ void JSI_Renderer::RegisterScriptFunctions(const ScriptInterface& scriptInterfac
 	REGISTER_BOOLEAN_SCRIPT_SETTING(SmoothLOS);
 	REGISTER_BOOLEAN_SCRIPT_SETTING(PostProc);
 	REGISTER_BOOLEAN_SCRIPT_SETTING(DisplayFrustum);
+	REGISTER_BOOLEAN_SCRIPT_SETTING(DisplayShadowsFrustum);
 }
 
 #undef REGISTER_BOOLEAN_SCRIPT_SETTING

@@ -92,12 +92,12 @@ PlayerSettingControls.AIConfigButton = class extends GameSettingControl
 		// Sanitize, make AI state self-consistent
 		if (pData.AI)
 		{
-			if (!pData.AIDiff || !pData.AIBehavior)
+			if (pData.AIDiff === undefined || pData.AIBehavior === undefined)
 			{
-				if (!pData.AIDiff)
+				if (pData.AIDiff === undefined)
 					pData.AIDiff = this.defaultAIDiff;
 
-				if (!pData.AIBehavior)
+				if (pData.AIBehavior === undefined)
 					pData.AIBehavior = this.defaultBehavior;
 
 				this.gameSettingsControl.updateGameAttributes();
@@ -115,7 +115,7 @@ PlayerSettingControls.AIConfigButton = class extends GameSettingControl
 			}
 			this.gameSettingsControl.updateGameAttributes();
 		}
-		else if (pData.AIBehavior || pData.AIDiff)
+		else if (pData.AIBehavior !== undefined || pData.AIDiff !== undefined)
 		{
 			pData.AI = false;
 			delete pData.AIBehavior;

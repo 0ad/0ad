@@ -800,6 +800,8 @@ void ShadowMap::RenderDebugBounds()
 
 	glEnable(GL_CULL_FACE);
 	glDepthMask(1);
+
+	ogl_WarnIfError();
 }
 
 void ShadowMap::RenderDebugTexture()
@@ -844,4 +846,6 @@ void ShadowMap::RenderDebugTexture()
 
 	glEnable(GL_DEPTH_TEST);
 	glDepthMask(1);
+
+	ogl_WarnIfError();
 }

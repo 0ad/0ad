@@ -9,7 +9,7 @@ class GameSettingsPanel
 		this.gameSettingsPanelResizeHandlers = new Set();
 
 		this.setupWindow = Engine.GetGUIObjectByName("setupWindow");
-		this.setupWindow.onWindowResized = this.onTabSelect.bind(this);
+		this.setupWindow.onWindowResized = this.triggerResizeHandlers.bind(this);
 
 		this.settingsPanel = Engine.GetGUIObjectByName("settingsPanel");
 
@@ -19,7 +19,7 @@ class GameSettingsPanel
 
 		gameSettingTabs.registerTabSelectHandler(this.onTabSelect.bind(this));
 		gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
-		gamesetupPage.registerLoadHandler(this.onLoad.bind(this));
+		gamesetupPage.registerLoadHandler(this.triggerResizeHandlers.bind(this));
 	}
 
 	registerGameSettingsPanelResizeHandler(handler)
@@ -27,7 +27,7 @@ class GameSettingsPanel
 		this.gameSettingsPanelResizeHandlers.add(handler);
 	}
 
-	onLoad()
+	triggerResizeHandlers()
 	{
 		for (let handler of this.gameSettingsPanelResizeHandlers)
 			handler(this.settingsPanelFrame);
@@ -96,8 +96,7 @@ class GameSettingsPanel
 		size.right += offset;
 		this.settingsPanelFrame.size = size;
 
-		for (let handler of this.gameSettingsPanelResizeHandlers)
-			handler(this.settingsPanelFrame);
+		this.triggerResizeHandlers();
 	}
 
 	/**

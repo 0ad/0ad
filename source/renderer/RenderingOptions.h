@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -98,6 +98,7 @@ OPTION_CUSTOM_SETTER(NAME, TYPE); OPTION_GETTER(NAME, TYPE); OPTION_DEF(NAME, TY
 	OPTION(ShowSky, bool);
 	OPTION(PostProc, bool);
 	OPTION(DisplayFrustum, bool);
+	OPTION(DisplayShadowsFrustum, bool);
 
 	OPTION(RenderActors, bool);
 
