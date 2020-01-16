@@ -199,10 +199,15 @@ public:
 	 * Send event to this GUI object (HandleMessage and ScriptEvent)
 	 *
 	 * @param type Type of GUI message to be handled
-	 * @param EventName String representation of event name
+	 * @param eventName String representation of event name
 	 * @return IN_HANDLED if event was handled, or IN_PASS if skipped
 	 */
-	InReaction SendEvent(EGUIMessageType type, const CStr& EventName);
+	InReaction SendEvent(EGUIMessageType type, const CStr& eventName);
+
+	/**
+	 * Same as SendEvent, but passes mouse coordinates and button state as an argument.
+	 */
+	InReaction SendMouseEvent(EGUIMessageType type, const CStr& eventName);
 
 	/**
 	 * All sizes are relative to resolution, and the calculation
@@ -219,11 +224,11 @@ public:
 	/**
 	 * Set the script handler for a particular object-specific action
 	 *
-	 * @param Action Name of action
+	 * @param eventName Name of action
 	 * @param Code Javascript code to execute when the action occurs
 	 * @param pGUI GUI instance to associate the script with
 	 */
-	void RegisterScriptHandler(const CStr& Action, const CStr& Code, CGUI& pGUI);
+	void RegisterScriptHandler(const CStr& eventName, const CStr& Code, CGUI& pGUI);
 
 	/**
 	 * Inheriting classes may append JS functions to the JS object representing this class.
@@ -373,28 +378,28 @@ protected:
 	 * Does nothing if no script has been registered for that action.
 	 * The mouse coordinates will be passed as the first argument.
 	 *
-	 * @param Action Name of action
+	 * @param eventName Name of action
 	 */
-	void ScriptEvent(const CStr& Action);
+	void ScriptEvent(const CStr& eventName);
 
 	/**
 	 * Execute the script for a particular action.
 	 * Does nothing if no script has been registered for that action.
 	 *
-	 * @param Action Name of action
+	 * @param eventName Name of action
 	 * @param paramData JS::HandleValueArray arguments to pass to the event.
 	 */
-	void ScriptEvent(const CStr& Action, const JS::HandleValueArray& paramData);
+	void ScriptEvent(const CStr& eventName, const JS::HandleValueArray& paramData);
 
 	/**
 	 * Assigns a JS function to the event name.
 	 */
-	void SetScriptHandler(const CStr& Action, JS::HandleObject Function);
+	void SetScriptHandler(const CStr& eventName, JS::HandleObject Function);
 
 	/**
 	 * Deletes an event handler assigned to the given name, if such a handler exists.
 	 */
-	void UnsetScriptHandler(const CStr& Action);
+	void UnsetScriptHandler(const CStr& eventName);
 
 	/**
 	 * Inputes the object that is currently hovered, this function
@@ -456,6 +461,10 @@ private:
 
 // Variables
 protected:
+	static const CStr EventNameMouseEnter;
+	static const CStr EventNameMouseMove;
+	static const CStr EventNameMouseLeave;
+
 	// Name of object
 	CStr m_Name;
 

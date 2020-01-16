@@ -30,6 +30,7 @@ public:
 	virtual ~CSlider();
 
 protected:
+	static const CStr EventNameValueChange;
 
 	/**
 	 * @see IGUIObject#HandleMessage()

@@ -83,6 +83,8 @@ protected:
 	CGUISpriteInstance m_SpriteNotSorted;
 
 private:
+	static const CStr EventNameSelectionColumnChange;
+
 	// Width of space available for columns
 	float m_TotalAvailableColumnWidth;
 	float m_HeadingHeight;

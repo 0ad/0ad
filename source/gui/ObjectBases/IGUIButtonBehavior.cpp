@@ -21,6 +21,11 @@
 
 #include "gui/CGUISprite.h"
 
+const CStr IGUIButtonBehavior::EventNamePress = "Press";
+const CStr IGUIButtonBehavior::EventNamePressRight = "PressRight";
+const CStr IGUIButtonBehavior::EventNameDoublePress = "DoublePress";
+const CStr IGUIButtonBehavior::EventNameDoublePressRight = "DoublePressRight";
+
 IGUIButtonBehavior::IGUIButtonBehavior(IGUIObject& pObject)
 	: m_pObject(pObject),
 	  m_Pressed(),
@@ -69,7 +74,7 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 
 		// Since GUIM_MOUSE_PRESS_LEFT also gets called twice in a
 		// doubleclick event, we let it handle playing sounds.
-		m_pObject.SendEvent(GUIM_DOUBLE_PRESSED, "doublepress");
+		m_pObject.SendEvent(GUIM_DOUBLE_PRESSED, EventNameDoublePress);
 		break;
 
 	case GUIM_MOUSE_PRESS_LEFT:
@@ -80,7 +85,7 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 		}
 
 		m_pObject.PlaySound(m_SoundPressed);
-		m_pObject.SendEvent(GUIM_PRESSED, "press");
+		m_pObject.SendEvent(GUIM_PRESSED, EventNamePress);
 		m_Pressed = true;
 		break;
 
@@ -90,7 +95,7 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 
 		// Since GUIM_MOUSE_PRESS_RIGHT also gets called twice in a
 		// doubleclick event, we let it handle playing sounds.
-		m_pObject.SendEvent(GUIM_DOUBLE_PRESSED_MOUSE_RIGHT, "doublepressright");
+		m_pObject.SendEvent(GUIM_DOUBLE_PRESSED_MOUSE_RIGHT, EventNameDoublePressRight);
 		break;
 
 	case GUIM_MOUSE_PRESS_RIGHT:
@@ -102,7 +107,7 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 
 		// Button was right-clicked
 		m_pObject.PlaySound(m_SoundPressed);
-		m_pObject.SendEvent(GUIM_PRESSED_MOUSE_RIGHT, "pressright");
+		m_pObject.SendEvent(GUIM_PRESSED_MOUSE_RIGHT, EventNamePressRight);
 		m_PressedRight = true;
 		break;
 

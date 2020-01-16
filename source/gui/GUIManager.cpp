@@ -31,6 +31,8 @@
 
 CGUIManager* g_GUI = nullptr;
 
+const CStr CGUIManager::EventNameWindowResized = "WindowResized";
+
 
 // General TODOs:
 //
@@ -377,7 +379,7 @@ void CGUIManager::UpdateResolution()
 	for (const SGUIPage& p : pageStack)
 	{
 		p.gui->UpdateResolution();
-		p.gui->SendEventToAll("WindowResized");
+		p.gui->SendEventToAll(EventNameWindowResized);
 	}
 }
 

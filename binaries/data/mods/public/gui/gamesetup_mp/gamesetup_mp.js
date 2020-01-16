@@ -198,7 +198,9 @@ function pollAndHandleNetworkClient()
 					"isRejoining": g_IsRejoining,
 					"playerAssignments": g_PlayerAssignments
 				});
-				break;
+
+				// Process further pending netmessages in the session page
+				return;
 
 			case "chat":
 				break;

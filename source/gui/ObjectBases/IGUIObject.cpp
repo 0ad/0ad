@@ -27,6 +27,10 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "soundmanager/ISoundManager.h"
 
+const CStr IGUIObject::EventNameMouseEnter = "MouseEnter";
+const CStr IGUIObject::EventNameMouseMove = "MouseMove";
+const CStr IGUIObject::EventNameMouseLeave = "MouseLeave";
+
 IGUIObject::IGUIObject(CGUI& pGUI)
 	: m_pGUI(pGUI),
 	  m_pParent(),
@@ -178,18 +182,18 @@ void IGUIObject::UpdateMouseOver(IGUIObject* const& pMouseOver)
 	if (pMouseOver == this)
 	{
 		if (!m_MouseHovering)
-			SendEvent(GUIM_MOUSE_ENTER, "mouseenter");
+			SendMouseEvent(GUIM_MOUSE_ENTER,EventNameMouseEnter);
 
 		m_MouseHovering = true;
 
-		SendEvent(GUIM_MOUSE_OVER, "mousemove");
+		SendMouseEvent(GUIM_MOUSE_OVER, EventNameMouseMove);
 	}
 	else
 	{
 		if (m_MouseHovering)
 		{
 			m_MouseHovering = false;
-			SendEvent(GUIM_MOUSE_LEAVE, "mouseleave");
+			SendMouseEvent(GUIM_MOUSE_LEAVE, EventNameMouseLeave);
 		}
 	}
 }
@@ -292,7 +296,7 @@ float IGUIObject::GetBufferedZ() const
 	return m_Z;
 }
 
-void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGUI& pGUI)
+void IGUIObject::RegisterScriptHandler(const CStr& eventName, const CStr& Code, CGUI& pGUI)
 {
 	JSContext* cx = pGUI.GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
@@ -303,12 +307,12 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 	const char* paramNames[paramCount] = { "mouse" };
 
 	// Location to report errors from
-	CStr CodeName = GetName()+" "+Action;
+	CStr CodeName = GetName() + " " + eventName;
 
 	// Generate a unique name
 	static int x = 0;
 	char buf[64];
-	sprintf_s(buf, ARRAY_SIZE(buf), "__eventhandler%d (%s)", x++, Action.c_str());
+	sprintf_s(buf, ARRAY_SIZE(buf), "__eventhandler%d (%s)", x++, eventName.c_str());
 
 	JS::CompileOptions options(cx);
 	options.setFileAndLine(CodeName.c_str(), 0);
@@ -318,25 +322,25 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 	JS::AutoObjectVector emptyScopeChain(cx);
 	if (!JS::CompileFunction(cx, emptyScopeChain, options, buf, paramCount, paramNames, Code.c_str(), Code.length(), &func))
 	{
-		LOGERROR("RegisterScriptHandler: Failed to compile the script for %s", Action.c_str());
+		LOGERROR("RegisterScriptHandler: Failed to compile the script for %s", eventName.c_str());
 		return;
 	}
 
 	JS::RootedObject funcObj(cx, JS_GetFunctionObject(func));
-	SetScriptHandler(Action, funcObj);
+	SetScriptHandler(eventName, funcObj);
 }
 
-void IGUIObject::SetScriptHandler(const CStr& Action, JS::HandleObject Function)
+void IGUIObject::SetScriptHandler(const CStr& eventName, JS::HandleObject Function)
 {
 	if (m_ScriptHandlers.empty())
 		JS_AddExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetJSRuntime(), Trace, this);
 
-	m_ScriptHandlers[Action] = JS::Heap<JSObject*>(Function);
+	m_ScriptHandlers[eventName] = JS::Heap<JSObject*>(Function);
 }
 
-void IGUIObject::UnsetScriptHandler(const CStr& Action)
+void IGUIObject::UnsetScriptHandler(const CStr& eventName)
 {
-	std::map<CStr, JS::Heap<JSObject*> >::iterator it = m_ScriptHandlers.find(Action);
+	std::map<CStr, JS::Heap<JSObject*> >::iterator it = m_ScriptHandlers.find(eventName);
 
 	if (it == m_ScriptHandlers.end())
 		return;
@@ -347,25 +351,28 @@ void IGUIObject::UnsetScriptHandler(const CStr& Action)
 		JS_RemoveExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetJSRuntime(), Trace, this);
 }
 
-InReaction IGUIObject::SendEvent(EGUIMessageType type, const CStr& EventName)
+InReaction IGUIObject::SendEvent(EGUIMessageType type, const CStr& eventName)
 {
 	PROFILE2_EVENT("gui event");
-	PROFILE2_ATTR("type: %s", EventName.c_str());
+	PROFILE2_ATTR("type: %s", eventName.c_str());
 	PROFILE2_ATTR("object: %s", m_Name.c_str());
 
 	SGUIMessage msg(type);
 	HandleMessage(msg);
 
-	ScriptEvent(EventName);
+	ScriptEvent(eventName);
 
-	return (msg.skipped ? IN_PASS : IN_HANDLED);
+	return msg.skipped ? IN_PASS : IN_HANDLED;
 }
 
-void IGUIObject::ScriptEvent(const CStr& Action)
+InReaction IGUIObject::SendMouseEvent(EGUIMessageType type, const CStr& eventName)
 {
-	std::map<CStr, JS::Heap<JSObject*> >::iterator it = m_ScriptHandlers.find(Action);
-	if (it == m_ScriptHandlers.end())
-		return;
+	PROFILE2_EVENT("gui mouse event");
+	PROFILE2_ATTR("type: %s", eventName.c_str());
+	PROFILE2_ATTR("object: %s", m_Name.c_str());
+
+	SGUIMessage msg(type);
+	HandleMessage(msg);
 
 	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
@@ -381,23 +388,27 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 		"x", mousePos.x,
 		"y", mousePos.y,
 		"buttons", m_pGUI.GetMouseButtons());
-
 	JS::AutoValueVector paramData(cx);
 	paramData.append(mouse);
-	JS::RootedObject obj(cx, GetJSObject());
-	JS::RootedValue handlerVal(cx, JS::ObjectValue(*it->second));
-	JS::RootedValue result(cx);
-	bool ok = JS_CallFunctionValue(cx, obj, handlerVal, paramData, &result);
-	if (!ok)
-	{
-		// We have no way to propagate the script exception, so just ignore it
-		// and hope the caller checks JS_IsExceptionPending
-	}
+	ScriptEvent(eventName, paramData);
+
+	return msg.skipped ? IN_PASS : IN_HANDLED;
 }
 
-void IGUIObject::ScriptEvent(const CStr& Action, const JS::HandleValueArray& paramData)
+void IGUIObject::ScriptEvent(const CStr& eventName)
 {
-	std::map<CStr, JS::Heap<JSObject*> >::iterator it = m_ScriptHandlers.find(Action);
+	if (m_ScriptHandlers.find(eventName) == m_ScriptHandlers.end())
+		return;
+
+	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
+	JSAutoRequest rq(cx);
+	JS::AutoValueVector paramData(cx);
+	ScriptEvent(eventName, paramData);
+}
+
+void IGUIObject::ScriptEvent(const CStr& eventName, const JS::HandleValueArray& paramData)
+{
+	std::map<CStr, JS::Heap<JSObject*> >::iterator it = m_ScriptHandlers.find(eventName);
 	if (it == m_ScriptHandlers.end())
 		return;
 
@@ -408,7 +419,7 @@ void IGUIObject::ScriptEvent(const CStr& Action, const JS::HandleValueArray& par
 	JS::RootedValue result(cx);
 
 	if (!JS_CallFunctionValue(cx, obj, handlerVal, paramData, &result))
-		JS_ReportError(cx, "Errors executing script action \"%s\"", Action.c_str());
+		JS_ReportError(cx, "Errors executing script event \"%s\"", eventName.c_str());
 }
 
 void IGUIObject::CreateJSObject()

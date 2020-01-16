@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,6 +47,19 @@ extern int g_yres;
 const double SELECT_DBLCLICK_RATE = 0.5;
 const u32 MAX_OBJECT_DEPTH = 100; // Max number of nesting for GUI includes. Used to detect recursive inclusion
 
+const CStr CGUI::EventNameLoad = "Load";
+const CStr CGUI::EventNameTick = "Tick";
+const CStr CGUI::EventNamePress = "Press";
+const CStr CGUI::EventNameRelease = "Release";
+const CStr CGUI::EventNameMouseRightPress = "MouseRightPress";
+const CStr CGUI::EventNameMouseLeftPress = "MouseLeftPress";
+const CStr CGUI::EventNameMouseWheelDown = "MouseWheelDown";
+const CStr CGUI::EventNameMouseWheelUp = "MouseWheelUp";
+const CStr CGUI::EventNameMouseLeftDoubleClick = "MouseLeftDoubleClick";
+const CStr CGUI::EventNameMouseLeftRelease = "MouseLeftRelease";
+const CStr CGUI::EventNameMouseRightDoubleClick = "MouseRightDoubleClick";
+const CStr CGUI::EventNameMouseRightRelease = "MouseRightRelease";
+
 CGUI::CGUI(const shared_ptr<ScriptRuntime>& runtime)
 	: m_BaseObject(*this),
 	  m_FocusedObject(nullptr),
@@ -93,9 +106,9 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 			for (IGUIObject* const& obj : it->second)
 			{
 				if (ev->ev.type == SDL_HOTKEYDOWN)
-					ret = obj->SendEvent(GUIM_PRESSED, "press");
+					ret = obj->SendEvent(GUIM_PRESSED, EventNamePress);
 				else
-					ret = obj->SendEvent(GUIM_RELEASED, "release");
+					ret = obj->SendEvent(GUIM_RELEASED, EventNameRelease);
 			}
 	}
 
@@ -158,12 +171,12 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 				SetFocusedObject(pNearest);
 
 				if (pNearest)
-					ret = pNearest->SendEvent(GUIM_MOUSE_PRESS_LEFT, "mouseleftpress");
+					ret = pNearest->SendMouseEvent(GUIM_MOUSE_PRESS_LEFT, EventNameMouseLeftPress);
 				break;
 
 			case SDL_BUTTON_RIGHT:
 				if (pNearest)
-					ret = pNearest->SendEvent(GUIM_MOUSE_PRESS_RIGHT, "mouserightpress");
+					ret = pNearest->SendMouseEvent(GUIM_MOUSE_PRESS_RIGHT, EventNameMouseRightPress);
 				break;
 
 			default:
@@ -173,9 +186,9 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		else if (ev->ev.type == SDL_MOUSEWHEEL && pNearest)
 		{
 			if (ev->ev.wheel.y < 0)
-				ret = pNearest->SendEvent(GUIM_MOUSE_WHEEL_DOWN, "mousewheeldown");
+				ret = pNearest->SendMouseEvent(GUIM_MOUSE_WHEEL_DOWN, EventNameMouseWheelDown);
 			else if (ev->ev.wheel.y > 0)
-				ret = pNearest->SendEvent(GUIM_MOUSE_WHEEL_UP, "mousewheelup");
+				ret = pNearest->SendMouseEvent(GUIM_MOUSE_WHEEL_UP, EventNameMouseWheelUp);
 		}
 		else if (ev->ev.type == SDL_MOUSEBUTTONUP)
 		{
@@ -186,11 +199,10 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 				{
 					double timeElapsed = timer_Time() - pNearest->m_LastClickTime[SDL_BUTTON_LEFT];
 					pNearest->m_LastClickTime[SDL_BUTTON_LEFT] = timer_Time();
-
 					if (timeElapsed < SELECT_DBLCLICK_RATE)
-						ret = pNearest->SendEvent(GUIM_MOUSE_DBLCLICK_LEFT, "mouseleftdoubleclick");
+						ret = pNearest->SendMouseEvent(GUIM_MOUSE_DBLCLICK_LEFT, EventNameMouseLeftDoubleClick);
 					else
-						ret = pNearest->SendEvent(GUIM_MOUSE_RELEASE_LEFT, "mouseleftrelease");
+						ret = pNearest->SendMouseEvent(GUIM_MOUSE_RELEASE_LEFT, EventNameMouseLeftRelease);
 				}
 				break;
 			case SDL_BUTTON_RIGHT:
@@ -198,11 +210,10 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 				{
 					double timeElapsed = timer_Time() - pNearest->m_LastClickTime[SDL_BUTTON_RIGHT];
 					pNearest->m_LastClickTime[SDL_BUTTON_RIGHT] = timer_Time();
-
 					if (timeElapsed < SELECT_DBLCLICK_RATE)
-						ret = pNearest->SendEvent(GUIM_MOUSE_DBLCLICK_RIGHT, "mouserightdoubleclick");
+						ret = pNearest->SendMouseEvent(GUIM_MOUSE_DBLCLICK_RIGHT, EventNameMouseRightDoubleClick);
 					else
-						ret = pNearest->SendEvent(GUIM_MOUSE_RELEASE_RIGHT, "mouserightrelease");
+						ret = pNearest->SendMouseEvent(GUIM_MOUSE_RELEASE_RIGHT, EventNameMouseRightRelease);
 				}
 				break;
 			}
@@ -257,29 +268,18 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 
 void CGUI::TickObjects()
 {
-	const CStr action = "tick";
-	m_BaseObject.RecurseObject(nullptr, &IGUIObject::ScriptEvent, action);
-
+	SendEventToAll(EventNameTick);
 	m_Tooltip.Update(FindObjectUnderMouse(), m_MousePos, *this);
 }
 
-void CGUI::SendEventToAll(const CStr& EventName)
+void CGUI::SendEventToAll(const CStr& eventName)
 {
-	// janwas 2006-03-03: spoke with Ykkrosh about EventName case.
-	// when registering, case is converted to lower - this avoids surprise
-	// if someone were to get the case wrong and then not notice their
-	// handler is never called. however, until now, the other end
-	// (sending events here) wasn't converting to lower case,
-	// leading to a similar problem.
-	// now fixed; case is irrelevant since all are converted to lower.
-	const CStr EventNameLower = EventName.LowerCase();
-	m_BaseObject.RecurseObject(nullptr, &IGUIObject::ScriptEvent, EventNameLower);
+	m_BaseObject.RecurseObject(nullptr, &IGUIObject::ScriptEvent, eventName);
 }
 
-void CGUI::SendEventToAll(const CStr& EventName, const JS::HandleValueArray& paramData)
+void CGUI::SendEventToAll(const CStr& eventName, const JS::HandleValueArray& paramData)
 {
-	const CStr EventNameLower = EventName.LowerCase();
-	m_BaseObject.RecurseObject(nullptr, &IGUIObject::ScriptEvent, EventNameLower, paramData);
+	m_BaseObject.RecurseObject(nullptr, &IGUIObject::ScriptEvent, eventName, paramData);
 }
 
 void CGUI::Draw()
@@ -468,7 +468,7 @@ void CGUI::LoadedXmlFiles()
 	SGUIMessage msg(GUIM_LOAD);
 	m_BaseObject.RecurseObject(nullptr, &IGUIObject::HandleMessage, msg);
 
-	SendEventToAll("load");
+	SendEventToAll(EventNameLoad);
 }
 
 //===================================================================
@@ -677,9 +677,8 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 				// Read the inline code (concatenating to the file code, if both are specified)
 				code += CStr(child.GetText());
 
-			CStr action = CStr(child.GetAttributes().GetNamedItem(attr_on));
-
-			object->RegisterScriptHandler(action.LowerCase(), code, *this);
+			CStr eventName = child.GetAttributes().GetNamedItem(attr_on);
+			object->RegisterScriptHandler(eventName, code, *this);
 		}
 		else if (element_name == elmt_repeat)
 		{

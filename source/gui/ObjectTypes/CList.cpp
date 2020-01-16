@@ -26,6 +26,11 @@
 #include "lib/external_libraries/libsdl.h"
 #include "lib/timer.h"
 
+const CStr CList::EventNameSelectionChange = "SelectionChange";
+const CStr CList::EventNameHoverChange = "HoverChange";
+const CStr CList::EventNameMouseLeftClickItem = "MouseLeftClickItem";
+const CStr CList::EventNameMouseLeftDoubleClickItem = "MouseLeftDoubleClickItem";
+
 CList::CList(CGUI& pGUI)
 	: IGUIObject(pGUI),
 	  IGUITextOwner(*static_cast<IGUIObject*>(this)),
@@ -172,8 +177,7 @@ void CList::HandleMessage(SGUIMessage& Message)
 			if (m_AutoScroll)
 				UpdateAutoScroll();
 
-			// TODO only works if lower-case, shouldn't it be made case sensitive instead?
-			ScriptEvent("selectionchange");
+			ScriptEvent(EventNameSelectionChange);
 		}
 
 		if (Message.value == "scrollbar")
@@ -204,9 +208,9 @@ void CList::HandleMessage(SGUIMessage& Message)
 		PlaySound(m_SoundSelected);
 
 		if (timer_Time() - m_LastItemClickTime < SELECT_DBLCLICK_RATE && hovered == m_PrevSelectedItem)
-			this->SendEvent(GUIM_MOUSE_DBLCLICK_LEFT_ITEM, "mouseleftdoubleclickitem");
+			this->SendMouseEvent(GUIM_MOUSE_DBLCLICK_LEFT_ITEM, EventNameMouseLeftDoubleClickItem);
 		else
-			this->SendEvent(GUIM_MOUSE_PRESS_LEFT_ITEM, "mouseleftclickitem");
+			this->SendMouseEvent(GUIM_MOUSE_PRESS_LEFT_ITEM, EventNameMouseLeftClickItem);
 
 		m_LastItemClickTime = timer_Time();
 		m_PrevSelectedItem = hovered;
@@ -219,7 +223,7 @@ void CList::HandleMessage(SGUIMessage& Message)
 			break;
 
 		SetSetting<i32>("hovered", -1, true);
-		ScriptEvent("hoverchange");
+		ScriptEvent(EventNameHoverChange);
 		break;
 	}
 
@@ -230,7 +234,7 @@ void CList::HandleMessage(SGUIMessage& Message)
 			break;
 
 		SetSetting<i32>("hovered", hovered, true);
-		ScriptEvent("hoverchange");
+		ScriptEvent(EventNameHoverChange);
 		break;
 	}
 

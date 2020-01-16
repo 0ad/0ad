@@ -29,6 +29,8 @@
 const float SORT_SPRITE_DIM = 16.0f;
 const CPos COLUMN_SHIFT = CPos(0, 4);
 
+const CStr COList::EventNameSelectionColumnChange = "SelectionColumnChange";
+
 COList::COList(CGUI& pGUI)
 	: CList(pGUI),
 	  m_SpriteHeading(),
@@ -165,7 +167,7 @@ void COList::HandleMessage(SGUIMessage& Message)
 				else
 					SetSetting<i32>("selected_column_order", -m_SelectedColumnOrder, true);
 
-				ScriptEvent("selectioncolumnchange");
+				ScriptEvent(EventNameSelectionColumnChange);
 				PlaySound(m_SoundSelected);
 				return;
 			}

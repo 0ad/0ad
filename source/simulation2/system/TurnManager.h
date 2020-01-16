@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,20 +18,21 @@
 #ifndef INCLUDED_TURNMANAGER
 #define INCLUDED_TURNMANAGER
 
+#include "ps/CStr.h"
 #include "simulation2/helpers/SimulationCommand.h"
 
 #include <list>
 #include <map>
 #include <vector>
 
+class CSimulationMessage;
+class CSimulation2;
+class IReplayLogger;
+
 extern const u32 DEFAULT_TURN_LENGTH_SP;
 extern const u32 DEFAULT_TURN_LENGTH_MP;
 
 extern const int COMMAND_DELAY;
-
-class CSimulationMessage;
-class CSimulation2;
-class IReplayLogger;
 
 /**
  * This file defines the base class of the turn managers for clients, local games and replays.
@@ -186,6 +187,8 @@ protected:
 	u32 m_FinalTurn;
 
 private:
+	static const CStr EventNameSavegameLoaded;
+
 	size_t m_TimeWarpNumTurns; // 0 if disabled
 	std::list<std::string> m_TimeWarpStates;
 	std::string m_QuickSaveState; // TODO: should implement a proper disk-based quicksave system

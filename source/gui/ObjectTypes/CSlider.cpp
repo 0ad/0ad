@@ -22,6 +22,8 @@
 #include "gui/CGUI.h"
 #include "maths/MathUtil.h"
 
+const CStr CSlider::EventNameValueChange = "ValueChange";
+
 CSlider::CSlider(CGUI& pGUI)
 	: IGUIObject(pGUI),
 	  m_IsPressed(),
@@ -127,7 +129,7 @@ void CSlider::Draw()
 void CSlider::UpdateValue()
 {
 	SetSetting<float>("value", m_Value, true);
-	ScriptEvent("valuechange");
+	ScriptEvent(EventNameValueChange);
 }
 
 CRect CSlider::GetButtonRect() const

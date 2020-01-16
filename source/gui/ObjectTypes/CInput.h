@@ -190,6 +190,10 @@ protected:
 	/// If the cursor should be drawn or not.
 	bool m_CursorVisState;
 
+	static const CStr EventNameTextEdit;
+	static const CStr EventNamePress;
+	static const CStr EventNameTab;
+
 	// Settings
 	i32 m_BufferPosition;
 	float m_BufferZone;

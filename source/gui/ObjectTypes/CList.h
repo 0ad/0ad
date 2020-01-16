@@ -138,6 +138,11 @@ protected:
 	CGUIList m_ListData;
 
 private:
+	static const CStr EventNameSelectionChange;
+	static const CStr EventNameHoverChange;
+	static const CStr EventNameMouseLeftClickItem;
+	static const CStr EventNameMouseLeftDoubleClickItem;
+
 	// Whether the list's items have been modified since last handling a message.
 	bool m_Modified;
 

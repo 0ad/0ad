@@ -2,6 +2,7 @@ class GameSettingsPanel
 {
 	constructor(gamesetupPage, gameSettingTabs, gameSettingsControl, gameSettingControlManager)
 	{
+		this.centerRightPanel = Engine.GetGUIObjectByName("centerRightPanel");
 		this.settingTabButtonsFrame = Engine.GetGUIObjectByName("settingTabButtonsFrame");
 		this.settingsPanelFrame = Engine.GetGUIObjectByName("settingsPanelFrame");
 
@@ -9,7 +10,7 @@ class GameSettingsPanel
 		this.gameSettingsPanelResizeHandlers = new Set();
 
 		this.setupWindow = Engine.GetGUIObjectByName("setupWindow");
-		this.setupWindow.onWindowResized = this.triggerResizeHandlers.bind(this);
+		this.setupWindow.onWindowResized = this.onWindowResized.bind(this);
 
 		this.settingsPanel = Engine.GetGUIObjectByName("settingsPanel");
 
@@ -17,8 +18,8 @@ class GameSettingsPanel
 		this.slideSpeed = this.enabled ? this.SlideSpeed : Infinity;
 		this.lastTickTime = undefined;
 
-		gameSettingTabs.registerTabSelectHandler(this.onTabSelect.bind(this));
-		gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
+		gameSettingTabs.registerTabSelectHandler(this.updateSize.bind(this));
+		gameSettingsControl.registerGameAttributesBatchChangeHandler(this.updateSize.bind(this));
 		gamesetupPage.registerLoadHandler(this.triggerResizeHandlers.bind(this));
 	}
 
@@ -33,13 +34,13 @@ class GameSettingsPanel
 			handler(this.settingsPanelFrame);
 	}
 
-	onGameAttributesBatchChange()
+	onWindowResized()
 	{
-		this.gameSettingControlManager.updateSettingVisibility();
-		this.positionSettings();
+		this.updateSize();
+		this.triggerResizeHandlers();
 	}
 
-	onTabSelect()
+	updateSize()
 	{
 		this.gameSettingControlManager.updateSettingVisibility();
 		this.positionSettings();
@@ -106,9 +107,10 @@ class GameSettingsPanel
 	positionSettings()
 	{
 		let setupWindowSize = this.setupWindow.getComputedSize();
+
 		let columnWidth = Math.min(
 			this.MaxColumnWidth,
-			(setupWindowSize.right - setupWindowSize.left + this.settingTabButtonsFrame.size.left) / 2);
+			(setupWindowSize.right - setupWindowSize.left + this.centerRightPanel.size.left) / 2);
 
 		let settingsPerColumn;
 		{

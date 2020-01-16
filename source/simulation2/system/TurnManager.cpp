@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,6 +39,8 @@ const int COMMAND_DELAY = 2;
 #else
 #define NETTURN_LOG(...)
 #endif
+
+const CStr CTurnManager::EventNameSavegameLoaded = "SavegameLoaded";
 
 CTurnManager::CTurnManager(CSimulation2& simulation, u32 defaultTurnLength, int clientId, IReplayLogger& replay)
 	: m_Simulation2(simulation), m_CurrentTurn(0), m_ReadyTurn(1), m_TurnLength(defaultTurnLength),
@@ -357,7 +359,7 @@ void CTurnManager::QuickLoad()
 
 	JS::AutoValueArray<1> paramData(cx);
 	paramData[0].set(quickSaveMetadataClone);
-	g_GUI->SendEventToAll("SavegameLoaded", paramData);
+	g_GUI->SendEventToAll(EventNameSavegameLoaded, paramData);
 
 	LOGMESSAGERENDER("Quickloaded game");
 }

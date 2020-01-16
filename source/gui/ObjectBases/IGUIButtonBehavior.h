@@ -60,6 +60,11 @@ public:
 	const CGUISpriteInstance& GetButtonSprite(const CGUISpriteInstance& sprite, const CGUISpriteInstance& sprite_over, const CGUISpriteInstance& sprite_pressed, const CGUISpriteInstance& sprite_disabled) const;
 
 protected:
+	static const CStr EventNamePress;
+	static const CStr EventNamePressRight;
+	static const CStr EventNameDoublePress;
+	static const CStr EventNameDoublePressRight;
+
 	/**
 	 * @see IGUIObject#ResetStates()
 	 */

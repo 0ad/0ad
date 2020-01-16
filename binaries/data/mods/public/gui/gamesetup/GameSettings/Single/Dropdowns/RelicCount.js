@@ -4,7 +4,8 @@ GameSettingControls.RelicCount = class extends GameSettingControlDropdown
 	{
 		super(...args);
 
-		this.values = Array.from(new Array(g_CivData.length), (v, i) => i + 1);
+		this.values = Object.keys(g_CivData).map((v, i) => i + 1);
+
 		this.dropdown.list = this.values;
 		this.dropdown.list_data = this.values;
 
@@ -80,6 +81,6 @@ GameSettingControls.RelicCount.prototype.Tooltip =
 	translate("Total number of relics spawned on the map. Relic victory is most realistic with only one or two relics. With greater numbers, the relics are important to capture to receive aura bonuses.");
 
 GameSettingControls.RelicCount.prototype.NameCaptureTheRelic =
-	this.NameCaptureTheRelic;
+	"capture_the_relic";
 
 GameSettingControls.RelicCount.prototype.DefaultRelicCount = 2;

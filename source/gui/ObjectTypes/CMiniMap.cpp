@@ -64,6 +64,8 @@ static unsigned int ScaleColor(unsigned int color, float x)
 	return (0xff000000 | b | g<<8 | r<<16);
 }
 
+const CStr CMiniMap::EventNameWorldClick = "WorldClick";
+
 CMiniMap::CMiniMap(CGUI& pGUI) :
 	IGUIObject(pGUI),
 	m_TerrainTexture(0), m_TerrainData(0), m_MapSize(0), m_Terrain(0), m_TerrainDirty(true), m_MapScale(1.f),
@@ -249,7 +251,7 @@ void CMiniMap::FireWorldClickEvent(int UNUSED(button), int UNUSED(clicks))
 	JS::AutoValueVector paramData(cx);
 	paramData.append(coords);
 
-	ScriptEvent("worldclick", paramData);
+	ScriptEvent(EventNameWorldClick, paramData);
 }
 
 // This sets up and draws the rectangle on the minimap
