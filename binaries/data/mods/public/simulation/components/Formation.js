@@ -310,8 +310,10 @@ Formation.prototype.SetMembers = function(ents)
 /**
  * Remove the given list of entities.
  * The entities must already be members of this formation.
+ * @param {boolean} rename - Whether the removal was part of an entity rename
+	(prevents disbanding of the formation when under the member limit).
  */
-Formation.prototype.RemoveMembers = function(ents)
+Formation.prototype.RemoveMembers = function(ents, renamed = false)
 {
 	this.offsets = undefined;
 	this.members = this.members.filter(function(e) { return ents.indexOf(e) == -1; });
@@ -337,7 +339,8 @@ Formation.prototype.RemoveMembers = function(ents)
 	this.formationMembersWithAura = this.formationMembersWithAura.filter(function(e) { return ents.indexOf(e) == -1; });
 
 	// If there's nobody left, destroy the formation
-	if (this.members.length == 0)
+	// unless this is a rename where we can have 0 members temporarily.
+	if (this.members.length == 0 && !renamed)
 	{
 		Engine.DestroyEntity(this.entity);
 		return;
@@ -369,6 +372,8 @@ Formation.prototype.AddMembers = function(ents)
 	{
 		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI.SetFormationController(this.entity);
+		if (!cmpUnitAI.GetOrders().length)
+			cmpUnitAI.SetNextState("FORMATIONMEMBER.IDLE");
 
 		let cmpAuras = Engine.QueryInterface(ent, IID_Auras);
 		if (cmpAuras && cmpAuras.HasFormationAura())
@@ -379,6 +384,10 @@ Formation.prototype.AddMembers = function(ents)
 	}
 
 	this.ComputeMotionParameters();
+
+	if (!this.rearrange)
+		return;
+
 	this.MoveMembersIntoFormation(true, true, this.lastOrderVariant);
 };
 
@@ -931,30 +940,19 @@ Formation.prototype.OnGlobalOwnershipChanged = function(msg)
 
 Formation.prototype.OnGlobalEntityRenamed = function(msg)
 {
-	if (this.members.indexOf(msg.entity) != -1)
-	{
-		this.offsets = undefined;
-		var cmpNewUnitAI = Engine.QueryInterface(msg.newentity, IID_UnitAI);
-		if (cmpNewUnitAI)
-		{
-			this.members[this.members.indexOf(msg.entity)] = msg.newentity;
-			this.memberPositions[msg.newentity] = this.memberPositions[msg.entity];
-		}
+	if (this.members.indexOf(msg.entity) == -1)
+		return;
 
-		var cmpOldUnitAI = Engine.QueryInterface(msg.entity, IID_UnitAI);
-		cmpOldUnitAI.SetFormationController(INVALID_ENTITY);
+	// Save rearranging to temporarily set it to false.
+	let temp = this.rearrange;
+	this.rearrange = false;
 
-		if (cmpNewUnitAI)
-		{
-			cmpNewUnitAI.SetFormationController(this.entity);
-			if (!cmpNewUnitAI.GetOrders().length)
-				cmpNewUnitAI.SetNextState("FORMATIONMEMBER.IDLE");
-		}
+	// First remove the old member to be able to reuse its position.
+	this.RemoveMembers([msg.entity], true);
+	this.AddMembers([msg.newentity]);
+	this.memberPositions[msg.newentity] = this.memberPositions[msg.entity];
 
-		// Because the renamed entity might have different characteristics,
-		// (e.g. packed vs. unpacked siege), we need to recompute motion parameters
-		this.ComputeMotionParameters();
-	}
+	this.rearrange = temp;
 };
 
 Formation.prototype.RegisterTwinFormation = function(entity)
