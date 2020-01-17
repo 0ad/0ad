@@ -129,13 +129,13 @@ void main()
     float height = 1.0;
     float scale = effectSettings.z;
 	  
-    int iter = int(min(20, 25.0 - dist/10.0));
+    int iter = int(min(20.0, 25.0 - dist/10.0));
 	
-	if (iter > 0.01)
+	if (iter > 0)
 	{
-		float s = 1.0/iter;
+		float s = 1.0/float(iter);
 		float t = s;
-		move = vec2(-eyeDir.x, eyeDir.y) * scale / (eyeDir.z * iter);
+		move = vec2(-eyeDir.x, eyeDir.y) * scale / (eyeDir.z * float(iter));
 		vec2 nil = vec2(0.0);
 
 		for (int i = 0; i < iter; ++i) {

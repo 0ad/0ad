@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,7 +44,8 @@
 #include "ps/UserReport.h"
 #include "ps/VideoMode.h"
 
-#ifdef SDL_VIDEO_DRIVER_X11
+// TODO: Support OpenGL platforms which don’t use GLX as well.
+#if defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
 #include <GL/glx.h>
 #include "SDL_syswm.h"
 
@@ -712,7 +713,8 @@ static void ReportGLLimits(const ScriptInterface& scriptInterface, JS::HandleVal
 #endif // CONFIG2_GLES
 
 
-#ifdef SDL_VIDEO_DRIVER_X11
+// TODO: Support OpenGL platforms which don’t use GLX as well.
+#if defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
 
 #define GLXQCR_INTEGER(id) do { \
 	unsigned int i = UINT_MAX; \

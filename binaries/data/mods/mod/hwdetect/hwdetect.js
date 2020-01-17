@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -217,6 +217,11 @@ function RunDetection(settings)
 	// Enable GLSL on OpenGL 3+, which should be able to properly
 	// manage GLSL shaders, needed for effects like windy trees
 	if (GL_VERSION.match(/^[3-9]/))
+		enable_glsl = true;
+
+	// Enable GLSL on OpenGL ES 2.0+, which doesn’t support the fixed
+	// function fallbacks
+	if (GL_VERSION.match(/^OpenGL ES /))
 		enable_glsl = true;
 
 	// Enable most graphics options on OpenGL 4+, which should be
