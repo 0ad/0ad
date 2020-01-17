@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-12-30 08:12+0000\n"
-"PO-Revision-Date: 2020-01-02 19:00+0000\n"
+"POT-Creation-Date: 2020-01-13 08:22+0000\n"
+"PO-Revision-Date: 2020-01-14 17:17+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -514,8 +514,8 @@ msgid "Unload All."
 msgstr "Hustu guztia."
 
 #: gui/session/unit_actions.js:1089
-msgid "Destroy the selected units or buildings."
-msgstr "Aukeratutako eraikin edo unitateak eraisten ditu."
+msgid "Destroy the selected units or structures."
+msgstr "Aukeratutako egitura edo unitateak eraisten ditu."
 
 #: gui/session/unit_actions.js:1091
 #, javascript-format
@@ -527,16 +527,16 @@ msgid "Abort the current order."
 msgstr "Ezeztatu oraingo agindua."
 
 #: gui/session/unit_actions.js:1157
-msgid "Order the selected units to garrison in a building or unit."
-msgstr "Agindu aukeratutako unitateei eraikin edo unitate batean guardan sartzea."
+msgid "Order the selected units to garrison in a structure or unit."
+msgstr "Agindu aukeratutako unitateei egitura edo unitate batean guardan sartzea."
 
 #: gui/session/unit_actions.js:1180
 msgid "Unload"
 msgstr "Hustu"
 
 #: gui/session/unit_actions.js:1198
-msgid "Order the selected units to repair a building or mechanical unit."
-msgstr "Aukeratutako unitateei agindu eraikin edo unitate mekanikoa konpontzea."
+msgid "Order the selected units to repair a structure, ship, or siege engine."
+msgstr "Aukeratutako unitateei agindu egitura, itsasontzi edo setio makina konpontzea."
 
 #: gui/session/unit_actions.js:1217
 msgid "Focus on Rally Point."
@@ -547,8 +547,8 @@ msgid "Back to Work"
 msgstr "Bueltan lanera"
 
 #: gui/session/unit_actions.js:1271
-msgid "Order the selected units to guard a building or unit."
-msgstr "Aukeratutako unitateei agindu eraikin edo unitate bat babestea."
+msgid "Order the selected units to guard a structure or unit."
+msgstr "Aukeratutako unitateei agindu egitura edo unitate bat babestea."
 
 #: gui/session/unit_actions.js:1289
 msgid "Remove guard"
@@ -565,8 +565,8 @@ msgid "Patrol"
 msgstr "Patruilatu"
 
 #: gui/session/unit_actions.js:1325
-msgid "Attack all encountered enemy units while avoiding buildings."
-msgstr "Bidean aurkituko diren etsaiak eraso eraikinak saihestuz."
+msgid "Attack all encountered enemy units while avoiding structures."
+msgstr "Bidean aurkituko diren etsaiak eraso egiturak saihestuz."
 
 #: gui/session/unit_actions.js:1351
 msgid "Press to allow allies to use this dropsite"

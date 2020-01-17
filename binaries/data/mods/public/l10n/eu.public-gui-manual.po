@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-06 08:10+0000\n"
-"PO-Revision-Date: 2020-01-08 21:31+0000\n"
+"POT-Creation-Date: 2020-01-13 08:22+0000\n"
+"PO-Revision-Date: 2020-01-14 17:26+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -300,15 +300,15 @@ msgstr "Etena  –  Eten/berrabiarazi jokoa"
 
 #: gui/manual/intro.txt:66
 msgid ""
-"  Delete – Delete currently selected unit(s)/building(s), ask for "
+"  Delete – Delete currently selected unit(s)/structure(s), ask for "
 "confirmation"
-msgstr "Ezabatu  –  Ezabatu orain hautatutako unitate edo eraikinak, eskatu baieztapena"
+msgstr "Ezabatu  –  Ezabatu orain hautatutako unitate(ak) edo egitura(k), eskatu baieztapena"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "  Shift + Delete – Immediately delete currently selected "
-"unit(s)/building(s), without asking for confirmation"
-msgstr "Maius + Ezabatu – Ezabatu berehala hautatutako unitate/eraikinak, baieztapena eskatu gabe"
+"unit(s)/structure(s), without asking for confirmation"
+msgstr "Maius + Ezabatu – Ezabatu berehala hautatutako unitate/agiturak, baieztapena eskatu gabe"
 
 #: gui/manual/intro.txt:68
 msgid "  / (Slash) – Select idle fighter"
@@ -358,26 +358,26 @@ msgid "  Y – The unit will go back to work"
 msgstr "  Y – Unitatea lanera itzuliko da"
 
 #: gui/manual/intro.txt:79
-msgid "  U – Unload the garrisoned units of the selected buildings"
-msgstr "U – Atera guardan sartutako unitateak aukeratutako eraikinetatik"
+msgid "  U – Unload the garrisoned units of the selected structure(s)"
+msgstr "U – Atera guardan sartutako unitateak aukeratutako egituretatik"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from "
-"the selected unit(s)/building(s)"
-msgstr "Ktrl + 1 (eta Ktrl + 0ra artekoak) – Sortu 1 (eta 0ra arte) kontrol-taldea hautatutako unitateekin/eraikinekin"
+"the selected unit(s)/structure(s)"
+msgstr "Ktrl + 1 (eta Ktrl + 0ra artekoak) – Sortu 1 (eta 0ra arte) kontrol-taldea hautatutako unitateekin/egiturekin"
 
 #: gui/manual/intro.txt:81
 msgid ""
-"  1 (and so on up to 0) – Select the units/buildings in control group 1 (to "
-"0)"
-msgstr "1 (eta 0ra artekoak) – Hautatu 1 (eta 0ra arte) kontrol-taldeko unitateak/eraikinak"
+"  1 (and so on up to 0) – Select the unit(s)/structure(s) in control group 1"
+" (to 0)"
+msgstr "1 (eta 0ra artekoak) – Hautatu 1 (eta 0ra arte) kontrol-taldeko unitateak/egiturak"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected "
-"units/buildings"
-msgstr "Maius + 1 (0 arte) – 1 (0 arte) kontrol taldeari aukeratutako unitate edo eraikinak gehitzen dizkio"
+"unit(s)/structure(s)"
+msgstr "Maius + 1 (0 arte) – 1 (0 arte) kontrol taldeari aukeratutako unitate edo egiturak gehitzen dizkio"
 
 #: gui/manual/intro.txt:83
 msgid ""
@@ -393,21 +393,21 @@ msgstr "  F5, F6, F7, etaF8 – Eraman kamera finkatutako posizio batera. joan a
 
 #: gui/manual/intro.txt:85
 msgid ""
-"  Z, X, C, V, B, N, M – With training buildings selected. Add the 1st, 2nd, "
-"… unit shown to the training queue for all the selected buildings"
-msgstr "Z, X, C, V, B, N, M: Aukeratutako trebatze eraikin batekin. Gehitu 1., 2,... unitatea erreklutatze ilarari aukeratutako eraikin guztientzat."
+"  Z, X, C, V, B, N, M – With training structure selected. Add the 1st, 2nd, "
+"… unit shown to the training queue for all the selected structures"
+msgstr "Z, X, C, V, B, N, M: Aukeratutako trebatze egitura batekin. Gehitu 1., 2,... unitatea erreklutatze ilarari aukeratutako egitura guztientzat."
 
 #: gui/manual/intro.txt:86
 msgid ""
-"  PageUp with units selected – Highlights the units/buildings guarded by the"
-" selection"
-msgstr "Orria gora aukeratutako unitateekin – Aukeraketak babestutako eraikin eta unitateak nabarmentzen ditu."
+"  PageUp with unit(s) selected – Highlights the unit(s)/structure(s) guarded"
+" by the selection"
+msgstr "Orria gora aukeratutako unitate(a)(e)kin – Aukeraketak babestutako egitura eta unitateak nabarmentzen ditu."
 
 #: gui/manual/intro.txt:87
 msgid ""
-"  PageDown with units/buildings selected – Highlights the units guarding the"
-" selection"
-msgstr "Orria behera aukeratutako eraikin eta unitateekin  – Unitateak nabarmentzen ditu aukeraketa babestuz."
+"  PageDown with unit(s)/structure(s) selected – Highlights the unit(s) "
+"guarding the selection"
+msgstr "Orria behera aukeratutako egitura eta unitate(are)ekin  – Unitate(ak) nabarmentzen ditu aukeraketa babestuz."
 
 #: gui/manual/intro.txt:88
 msgid ""
@@ -451,12 +451,12 @@ msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Saguaren akzioa aldatzen du[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
-msgid "  Ctrl + Right Click on building – Garrison"
-msgstr "Ctrl + Eskuin klika eraikinean – Sartu guardan"
+msgid "  Ctrl + Right Click on structure – Garrison"
+msgstr "Ctrl + Eskuin klika egituran – Sartu guardan"
 
 #: gui/manual/intro.txt:100
-msgid "  J + Right Click on building – Repair"
-msgstr "J + Eskuin klika eraikinean – Konpondu"
+msgid "  J + Right Click on structure – Repair"
+msgstr ""
 
 #: gui/manual/intro.txt:101
 msgid "  P + Right Click – Patrol"
@@ -515,9 +515,9 @@ msgstr "Ctrl + ezker klika unitate/talde ikono baten gainean aukeratutako unitat
 
 #: gui/manual/intro.txt:112
 msgid ""
-"  Right Click with a building(s) selected – sets a rally point for units "
-"created/ungarrisoned from that building"
-msgstr "Eskuin klika eraikin bat aukeratuta dagoela eratu  – sortutako unitateentzako edo eraikinaren guardatik ateratakoentzako elkartze puntu bat ezartzen du."
+"  Right Click with a structure(s) selected – sets a rally point for units "
+"created/ungarrisoned from that structure"
+msgstr ""
 
 #: gui/manual/intro.txt:113
 msgid "  Ctrl + Right Click with unit(s) selected:"
@@ -529,9 +529,9 @@ msgstr "• Erakuslea eraikin aliatuaren gainean badago – Sartu guardan"
 
 #: gui/manual/intro.txt:115
 msgid ""
-"    • If the cursor is over an enemy unit or building – Attack (instead of "
+"    • If the cursor is over an enemy unit/structure – Attack (instead of "
 "capture or gather)"
-msgstr " • Erakuslea eraikin edo unitate etsai baten gainean badago  –  Eraso (atzeman edo ustiatu ordez)"
+msgstr ""
 
 #: gui/manual/intro.txt:116
 msgid ""
@@ -680,22 +680,22 @@ msgid "  Middle Mouse Button – Keep pressed and move the mouse to pan"
 msgstr "Saguaren erdiko botoia  – Mantendu sakatuta eta mugitu sagua kamera mugitzeko"
 
 #: gui/manual/intro.txt:150
-msgid "[font=\"sans-bold-14\"]During Building Placement[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]Eraikina Kokatu Bitartean[font=\"sans-14\"]"
+msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:151
-msgid "  \\[ (Left Bracket) – Rotate building 15 degrees counter-clockwise"
-msgstr "  \\[ (ezker kakoa) – Biratu eraikina 15 gradu erlojuaren kontrako norabidean "
+msgid "  \\[ (Left Bracket) – Rotate structure 15 degrees counter-clockwise"
+msgstr ""
 
 #: gui/manual/intro.txt:152
-msgid "  ] (Right Bracket) – Rotate building 15 degrees clockwise"
-msgstr "] (eskuin kakoa) – Biratu eraikina 15 gradu erlojuaren norabidean"
+msgid "  ] (Right Bracket) – Rotate structure 15 degrees clockwise"
+msgstr ""
 
 #: gui/manual/intro.txt:153
 msgid ""
-"  Left Drag – Rotate building using mouse (foundation will be placed on "
+"  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
-msgstr "Ezker botoiaz arrastatu – Biratu eraikina sagua erabiliz (oinarriak botoia askatzean kokatuko dira)"
+msgstr ""
 
 #: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"

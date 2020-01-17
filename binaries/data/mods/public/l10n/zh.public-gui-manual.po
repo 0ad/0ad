@@ -7,7 +7,7 @@
 # Christian Xia <wood_elf@126.com>, 2016
 # helinb <1696060289@qq.com>, 2015
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
-# SECRET <lxx4380@gmail.com>, 2018
+# lxx4380 <lxx4380@gmail.com>, 2018
 # liulitchi <xingzuo88@qq.com>, 2014,2017-2019
 # 呂正 <jack.lvzheng@gmail.com>, 2015
 # 星臣 <yuronglong1996@gmail.com>, 2017
@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-06 08:10+0000\n"
-"PO-Revision-Date: 2020-01-06 14:41+0000\n"
+"POT-Creation-Date: 2020-01-13 08:22+0000\n"
+"PO-Revision-Date: 2020-01-13 15:17+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -306,14 +306,14 @@ msgstr "Pause 键 -- 暂停/恢复游戏"
 
 #: gui/manual/intro.txt:66
 msgid ""
-"  Delete – Delete currently selected unit(s)/building(s), ask for "
+"  Delete – Delete currently selected unit(s)/structure(s), ask for "
 "confirmation"
-msgstr "Delete -- 删除已储存的游戏，删除前会提示确认"
+msgstr ""
 
 #: gui/manual/intro.txt:67
 msgid ""
 "  Shift + Delete – Immediately delete currently selected "
-"unit(s)/building(s), without asking for confirmation"
+"unit(s)/structure(s), without asking for confirmation"
 msgstr ""
 
 #: gui/manual/intro.txt:68
@@ -364,25 +364,25 @@ msgid "  Y – The unit will go back to work"
 msgstr "Y：单位将返回工作"
 
 #: gui/manual/intro.txt:79
-msgid "  U – Unload the garrisoned units of the selected buildings"
-msgstr "U：撤出所选建筑内的守卫部队"
+msgid "  U – Unload the garrisoned units of the selected structure(s)"
+msgstr ""
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from "
-"the selected unit(s)/building(s)"
-msgstr "选取单位或者建筑，然后按Ctrl+数字(0到9)，进行编队。(Ctrl+1即编号为1的组队，以此类推。)"
+"the selected unit(s)/structure(s)"
+msgstr ""
 
 #: gui/manual/intro.txt:81
 msgid ""
-"  1 (and so on up to 0) – Select the units/buildings in control group 1 (to "
-"0)"
-msgstr "按数字键1 (以此类推，包含0到9): 选择相应编号的编队"
+"  1 (and so on up to 0) – Select the unit(s)/structure(s) in control group 1"
+" (to 0)"
+msgstr ""
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected "
-"units/buildings"
+"unit(s)/structure(s)"
 msgstr ""
 
 #: gui/manual/intro.txt:83
@@ -399,20 +399,20 @@ msgstr ""
 
 #: gui/manual/intro.txt:85
 msgid ""
-"  Z, X, C, V, B, N, M – With training buildings selected. Add the 1st, 2nd, "
-"… unit shown to the training queue for all the selected buildings"
+"  Z, X, C, V, B, N, M – With training structure selected. Add the 1st, 2nd, "
+"… unit shown to the training queue for all the selected structures"
 msgstr ""
 
 #: gui/manual/intro.txt:86
 msgid ""
-"  PageUp with units selected – Highlights the units/buildings guarded by the"
-" selection"
+"  PageUp with unit(s) selected – Highlights the unit(s)/structure(s) guarded"
+" by the selection"
 msgstr ""
 
 #: gui/manual/intro.txt:87
 msgid ""
-"  PageDown with units/buildings selected – Highlights the units guarding the"
-" selection"
+"  PageDown with unit(s)/structure(s) selected – Highlights the unit(s) "
+"guarding the selection"
 msgstr ""
 
 #: gui/manual/intro.txt:88
@@ -457,11 +457,11 @@ msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
 msgstr ""
 
 #: gui/manual/intro.txt:99
-msgid "  Ctrl + Right Click on building – Garrison"
+msgid "  Ctrl + Right Click on structure – Garrison"
 msgstr ""
 
 #: gui/manual/intro.txt:100
-msgid "  J + Right Click on building – Repair"
+msgid "  J + Right Click on structure – Repair"
 msgstr ""
 
 #: gui/manual/intro.txt:101
@@ -521,8 +521,8 @@ msgstr ""
 
 #: gui/manual/intro.txt:112
 msgid ""
-"  Right Click with a building(s) selected – sets a rally point for units "
-"created/ungarrisoned from that building"
+"  Right Click with a structure(s) selected – sets a rally point for units "
+"created/ungarrisoned from that structure"
 msgstr ""
 
 #: gui/manual/intro.txt:113
@@ -535,7 +535,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:115
 msgid ""
-"    • If the cursor is over an enemy unit or building – Attack (instead of "
+"    • If the cursor is over an enemy unit/structure – Attack (instead of "
 "capture or gather)"
 msgstr ""
 
@@ -686,20 +686,20 @@ msgid "  Middle Mouse Button – Keep pressed and move the mouse to pan"
 msgstr ""
 
 #: gui/manual/intro.txt:150
-msgid "[font=\"sans-bold-14\"]During Building Placement[font=\"sans-14\"]"
+msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
 msgstr ""
 
 #: gui/manual/intro.txt:151
-msgid "  \\[ (Left Bracket) – Rotate building 15 degrees counter-clockwise"
+msgid "  \\[ (Left Bracket) – Rotate structure 15 degrees counter-clockwise"
 msgstr ""
 
 #: gui/manual/intro.txt:152
-msgid "  ] (Right Bracket) – Rotate building 15 degrees clockwise"
+msgid "  ] (Right Bracket) – Rotate structure 15 degrees clockwise"
 msgstr ""
 
 #: gui/manual/intro.txt:153
 msgid ""
-"  Left Drag – Rotate building using mouse (foundation will be placed on "
+"  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
 msgstr ""
 

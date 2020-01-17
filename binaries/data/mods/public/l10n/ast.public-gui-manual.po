@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-06 08:10+0000\n"
-"PO-Revision-Date: 2020-01-06 14:41+0000\n"
+"POT-Creation-Date: 2020-01-13 08:22+0000\n"
+"PO-Revision-Date: 2020-01-13 15:17+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -298,15 +298,15 @@ msgstr "  Posa – Posar/siguir cola partida"
 
 #: gui/manual/intro.txt:66
 msgid ""
-"  Delete – Delete currently selected unit(s)/building(s), ask for "
+"  Delete – Delete currently selected unit(s)/structure(s), ask for "
 "confirmation"
-msgstr "  Desaniciar – Desaniciar unida(es)/construccion(es) esbilla(es), pidir confirmanza"
+msgstr ""
 
 #: gui/manual/intro.txt:67
 msgid ""
 "  Shift + Delete – Immediately delete currently selected "
-"unit(s)/building(s), without asking for confirmation"
-msgstr "  Mayús + Desaniciar – Desaniciar unida(es)/construccion(es) esbilla(es) nel intre, ensin pidir confirmanza"
+"unit(s)/structure(s), without asking for confirmation"
+msgstr ""
 
 #: gui/manual/intro.txt:68
 msgid "  / (Slash) – Select idle fighter"
@@ -356,26 +356,26 @@ msgid "  Y – The unit will go back to work"
 msgstr "  Y – La unidá va volver al trabayu"
 
 #: gui/manual/intro.txt:79
-msgid "  U – Unload the garrisoned units of the selected buildings"
-msgstr "  U – Sacar les unidaes guarecíes de les construcciones esbillaes"
+msgid "  U – Unload the garrisoned units of the selected structure(s)"
+msgstr ""
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from "
-"the selected unit(s)/building(s)"
-msgstr "  Ctrl + 1 (etcétera fasta Ctrl + 0) – Criar grupu control 1 (fasta 0) de les unida(es)/construccion(es) esbilla(es)"
+"the selected unit(s)/structure(s)"
+msgstr ""
 
 #: gui/manual/intro.txt:81
 msgid ""
-"  1 (and so on up to 0) – Select the units/buildings in control group 1 (to "
-"0)"
-msgstr "  1 (etcétera fasta 0) – Esbillar les unidaes/construcciones del grupu control 1 (fasta 0)"
+"  1 (and so on up to 0) – Select the unit(s)/structure(s) in control group 1"
+" (to 0)"
+msgstr ""
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected "
-"units/buildings"
-msgstr "  Mayús + 1 (fasta 0) – Amestar grupu control 1 (fasta 0) a les unidaes/construcciones esbillaes"
+"unit(s)/structure(s)"
+msgstr ""
 
 #: gui/manual/intro.txt:83
 msgid ""
@@ -391,21 +391,21 @@ msgstr "  F5, F6, F7 y F8 – Mover la cámara a un allugamientu conseñáu. Vol
 
 #: gui/manual/intro.txt:85
 msgid ""
-"  Z, X, C, V, B, N, M – With training buildings selected. Add the 1st, 2nd, "
-"… unit shown to the training queue for all the selected buildings"
-msgstr "  Z, X, C, V, B, N, M – Con construcciones d'allistamientu esbillaes. Amestar la 1a, 2a, … unidá amosada a la cola d'allistamientu de toles construcciones esbillaes"
+"  Z, X, C, V, B, N, M – With training structure selected. Add the 1st, 2nd, "
+"… unit shown to the training queue for all the selected structures"
+msgstr ""
 
 #: gui/manual/intro.txt:86
 msgid ""
-"  PageUp with units selected – Highlights the units/buildings guarded by the"
-" selection"
-msgstr "  PáxAr con unidaes esbillaes – Resaltar les unidaes/construcciones protexíes pola esbilla"
+"  PageUp with unit(s) selected – Highlights the unit(s)/structure(s) guarded"
+" by the selection"
+msgstr ""
 
 #: gui/manual/intro.txt:87
 msgid ""
-"  PageDown with units/buildings selected – Highlights the units guarding the"
-" selection"
-msgstr "  PáxAb con unidaes/construcciones esbillaes – Resaltar les unidaes que protexen la esbilla"
+"  PageDown with unit(s)/structure(s) selected – Highlights the unit(s) "
+"guarding the selection"
+msgstr ""
 
 #: gui/manual/intro.txt:88
 msgid ""
@@ -449,12 +449,12 @@ msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Camudar aición del mur[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
-msgid "  Ctrl + Right Click on building – Garrison"
-msgstr "  Ctrl + Clic drechu en construcción – Guarecer"
+msgid "  Ctrl + Right Click on structure – Garrison"
+msgstr ""
 
 #: gui/manual/intro.txt:100
-msgid "  J + Right Click on building – Repair"
-msgstr "  J + Clic drechu en construcción – Iguar"
+msgid "  J + Right Click on structure – Repair"
+msgstr ""
 
 #: gui/manual/intro.txt:101
 msgid "  P + Right Click – Patrol"
@@ -513,9 +513,9 @@ msgstr "  Ctrl + Clic esquierdu n'iconu unidá/grupu con múltiples unidaes esbi
 
 #: gui/manual/intro.txt:112
 msgid ""
-"  Right Click with a building(s) selected – sets a rally point for units "
-"created/ungarrisoned from that building"
-msgstr "  Clic drechu con una construcción(es) esbillada(es) – Afitar un puntu d'alcuentru pa unidaes criaes/sacaes d'esa construcción"
+"  Right Click with a structure(s) selected – sets a rally point for units "
+"created/ungarrisoned from that structure"
+msgstr ""
 
 #: gui/manual/intro.txt:113
 msgid "  Ctrl + Right Click with unit(s) selected:"
@@ -527,9 +527,9 @@ msgstr "    • Si'l punteru ta enriba d'una estructura propia o aliada – Guar
 
 #: gui/manual/intro.txt:115
 msgid ""
-"    • If the cursor is over an enemy unit or building – Attack (instead of "
+"    • If the cursor is over an enemy unit/structure – Attack (instead of "
 "capture or gather)"
-msgstr "    • Si'l punteru ta enriba d'una unidá o construcción enemiga – Atacar (en cuenta de capturar o recoyer)"
+msgstr ""
 
 #: gui/manual/intro.txt:116
 msgid ""
@@ -678,22 +678,22 @@ msgid "  Middle Mouse Button – Keep pressed and move the mouse to pan"
 msgstr "  Botón mediu'l mur – Caltén calcáu y movi'l mur pa treslladar la vista la cámara."
 
 #: gui/manual/intro.txt:150
-msgid "[font=\"sans-bold-14\"]During Building Placement[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]Nel allugamientu de construcciones[font=\"sans-14\"]"
+msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:151
-msgid "  \\[ (Left Bracket) – Rotate building 15 degrees counter-clockwise"
-msgstr "  \\[ (Corchete esquierdu) – Rodar construcción 15 graos en sen antihorariu"
+msgid "  \\[ (Left Bracket) – Rotate structure 15 degrees counter-clockwise"
+msgstr ""
 
 #: gui/manual/intro.txt:152
-msgid "  ] (Right Bracket) – Rotate building 15 degrees clockwise"
-msgstr "  ] (Corchete drechu) – Rodar construcción 15 graos en sen horariu"
+msgid "  ] (Right Bracket) – Rotate structure 15 degrees clockwise"
+msgstr ""
 
 #: gui/manual/intro.txt:153
 msgid ""
-"  Left Drag – Rotate building using mouse (foundation will be placed on "
+"  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
-msgstr "  Clic esquierdu + Arrastrar – Rodar construcción col mur (les murueques van ponese en soltando'l mur)"
+msgstr ""
 
 #: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"

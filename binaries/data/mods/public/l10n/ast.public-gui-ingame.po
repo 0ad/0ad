@@ -1,16 +1,16 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# David Sowa <isithere2@yahoo.com>, 2017-2019
+# David Sowa <isithere2@yahoo.com>, 2017-2020
 # enolp <enolp@softastur.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-12-30 08:12+0000\n"
-"PO-Revision-Date: 2019-12-30 15:26+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2020-01-13 08:22+0000\n"
+"PO-Revision-Date: 2020-01-16 19:55+0000\n"
+"Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -485,7 +485,7 @@ msgstr "Calca col botón derechu p'afitar como mercáu comercial d'orixe"
 
 #: gui/session/unit_actions.js:595 gui/session/unit_actions.js:938
 msgid "This market is too close to the origin market."
-msgstr ""
+msgstr "Esti mercáu ta demasiao cerca del mercáu d'orixe."
 
 #: gui/session/unit_actions.js:599
 msgid "Right-click to set as destination trade market."
@@ -510,8 +510,8 @@ msgid "Unload All."
 msgstr "Descargalo too."
 
 #: gui/session/unit_actions.js:1089
-msgid "Destroy the selected units or buildings."
-msgstr "Acabar coles unidaes o construcciones esbillaes."
+msgid "Destroy the selected units or structures."
+msgstr "Destrúi les unidaes o construcciones esbillaes."
 
 #: gui/session/unit_actions.js:1091
 #, javascript-format
@@ -523,16 +523,16 @@ msgid "Abort the current order."
 msgstr "Albortar la orde actual."
 
 #: gui/session/unit_actions.js:1157
-msgid "Order the selected units to garrison in a building or unit."
-msgstr "Ordenar a les unidaes esbillaes que se guarezan nuna construcción o unidá."
+msgid "Order the selected units to garrison in a structure or unit."
+msgstr "Ordena que les unidaes esbillaes se guarezan nuna construcción o unidá."
 
 #: gui/session/unit_actions.js:1180
 msgid "Unload"
 msgstr "Descargar"
 
 #: gui/session/unit_actions.js:1198
-msgid "Order the selected units to repair a building or mechanical unit."
-msgstr "Ordenar a les unidaes esbillaes iguar una construcción o unidá mecánica."
+msgid "Order the selected units to repair a structure, ship, or siege engine."
+msgstr "Ordena que les unidaes esbillaes igüen una construcción, barcu o máquina d'asediu."
 
 #: gui/session/unit_actions.js:1217
 msgid "Focus on Rally Point."
@@ -543,8 +543,8 @@ msgid "Back to Work"
 msgstr "Volver al trabayu"
 
 #: gui/session/unit_actions.js:1271
-msgid "Order the selected units to guard a building or unit."
-msgstr "Ordenar a les unidaes esbillaes guardar una construcción o unidá."
+msgid "Order the selected units to guard a structure or unit."
+msgstr "Ordena que les unidaes esbillaes guarden una construcción o unidá."
 
 #: gui/session/unit_actions.js:1289
 msgid "Remove guard"
@@ -561,8 +561,8 @@ msgid "Patrol"
 msgstr "Roldar"
 
 #: gui/session/unit_actions.js:1325
-msgid "Attack all encountered enemy units while avoiding buildings."
-msgstr "Atacar a toles unidaes enemigues que s'alcuentren, escaeciéndose de construcciones."
+msgid "Attack all encountered enemy units while avoiding structures."
+msgstr "Ataca toles unidaes enemigues alcontraes evitando construcciones."
 
 #: gui/session/unit_actions.js:1351
 msgid "Press to allow allies to use this dropsite"

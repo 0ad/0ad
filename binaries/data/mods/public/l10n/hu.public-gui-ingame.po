@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-12-30 08:12+0000\n"
-"PO-Revision-Date: 2020-01-03 11:36+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2020-01-13 08:22+0000\n"
+"PO-Revision-Date: 2020-01-13 15:06+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -527,8 +527,8 @@ msgid "Unload All."
 msgstr "Összes kirakása."
 
 #: gui/session/unit_actions.js:1089
-msgid "Destroy the selected units or buildings."
-msgstr "Kijelölt egységek vagy épületek megsemmisítése."
+msgid "Destroy the selected units or structures."
+msgstr ""
 
 #: gui/session/unit_actions.js:1091
 #, javascript-format
@@ -540,16 +540,16 @@ msgid "Abort the current order."
 msgstr "Jelenlegi utasítás megszakítása."
 
 #: gui/session/unit_actions.js:1157
-msgid "Order the selected units to garrison in a building or unit."
-msgstr "Kijelölt egységek utasítása egy épületbe vagy egységbe történő beszállásolásra."
+msgid "Order the selected units to garrison in a structure or unit."
+msgstr ""
 
 #: gui/session/unit_actions.js:1180
 msgid "Unload"
 msgstr "Kirakás"
 
 #: gui/session/unit_actions.js:1198
-msgid "Order the selected units to repair a building or mechanical unit."
-msgstr "Kijelölt egységek utasítása egy épület vagy mechanikus egység megjavítására."
+msgid "Order the selected units to repair a structure, ship, or siege engine."
+msgstr ""
 
 #: gui/session/unit_actions.js:1217
 msgid "Focus on Rally Point."
@@ -560,8 +560,8 @@ msgid "Back to Work"
 msgstr "Vissza dolgozni!"
 
 #: gui/session/unit_actions.js:1271
-msgid "Order the selected units to guard a building or unit."
-msgstr "Kijelölt egységek utasítása egy épület vagy egység védelmére."
+msgid "Order the selected units to guard a structure or unit."
+msgstr ""
 
 #: gui/session/unit_actions.js:1289
 msgid "Remove guard"
@@ -578,8 +578,8 @@ msgid "Patrol"
 msgstr "Őrjárat"
 
 #: gui/session/unit_actions.js:1325
-msgid "Attack all encountered enemy units while avoiding buildings."
-msgstr "A látott ellenséges egységek megtámadása, és az épületek elkerülése."
+msgid "Attack all encountered enemy units while avoiding structures."
+msgstr ""
 
 #: gui/session/unit_actions.js:1351
 msgid "Press to allow allies to use this dropsite"

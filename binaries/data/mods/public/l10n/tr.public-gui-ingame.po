@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -13,7 +13,7 @@
 # Eren Ramiz <kumbasar2004@hotmail.com>, 2016
 # mahmut özcan <faradundamarti@yandex.com>, 2013
 # Furkan Çevik <furkan_ts1967@hotmail.com>, 2013
-# Günay Yılmaz <turkoman07@gmail.com>, 2019
+# Togarma, 2019
 # Hüseyin Cem Aras <hcemaras@gmail.com>, 2015
 # İrfan Sunay <irfan_sunay@hotmail.com>, 2018
 # Kemal Oktay Aktoğan <oktayaktogan@gmail.com>, 2017
@@ -31,6 +31,7 @@
 # Serkan <fkserkank@gmail.com>, 2013
 # sicey <sicey224@hotmail.com>, 2015
 # Taha Karadoğan <tahakaradogan@gmail.com>, 2016
+# Togarma, 2020
 # Tayfun Toprakcıoğlu, 2017
 # ubuntuki <aleverzurumlu@gmail.com>, 2014
 # Butterfly <gokhanlnx@gmail.com>, 2013
@@ -43,9 +44,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-12-30 08:12+0000\n"
-"PO-Revision-Date: 2019-12-31 17:00+0000\n"
-"Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
+"POT-Creation-Date: 2020-01-13 08:22+0000\n"
+"PO-Revision-Date: 2020-01-14 06:01+0000\n"
+"Last-Translator: Togarma\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -545,8 +546,8 @@ msgid "Unload All."
 msgstr "Hepsini kaldır."
 
 #: gui/session/unit_actions.js:1089
-msgid "Destroy the selected units or buildings."
-msgstr "Seçili olan bina/birimleri sil"
+msgid "Destroy the selected units or structures."
+msgstr "Seçilen birimleri ya da binaları yok et."
 
 #: gui/session/unit_actions.js:1091
 #, javascript-format
@@ -558,16 +559,16 @@ msgid "Abort the current order."
 msgstr "Mevcut düzeni iptal edin."
 
 #: gui/session/unit_actions.js:1157
-msgid "Order the selected units to garrison in a building or unit."
-msgstr "Seçilen birimleri bir binadaki veya birimin garnizonuna sipariş edin."
+msgid "Order the selected units to garrison in a structure or unit."
+msgstr "Seçilen birimleri bir binaya ya da birime konuşlandır."
 
 #: gui/session/unit_actions.js:1180
 msgid "Unload"
 msgstr "Boşalt"
 
 #: gui/session/unit_actions.js:1198
-msgid "Order the selected units to repair a building or mechanical unit."
-msgstr "Seçilen birimleri bir bina veya mekanik birimi onarmak üzere sipariş edin."
+msgid "Order the selected units to repair a structure, ship, or siege engine."
+msgstr "Seçilen birimlere binayı, gemiyi ya da kuşatma makinasını tamir etme komutu ver."
 
 #: gui/session/unit_actions.js:1217
 msgid "Focus on Rally Point."
@@ -578,8 +579,8 @@ msgid "Back to Work"
 msgstr "Çalışmaya Dön"
 
 #: gui/session/unit_actions.js:1271
-msgid "Order the selected units to guard a building or unit."
-msgstr "Seçilen birimleri, bir binayı veya birimi korumak için sipariş edin."
+msgid "Order the selected units to guard a structure or unit."
+msgstr "Seçilen birimlere bir binayı ya da birimi koruma komutu ver."
 
 #: gui/session/unit_actions.js:1289
 msgid "Remove guard"
@@ -596,8 +597,8 @@ msgid "Patrol"
 msgstr "Devriye"
 
 #: gui/session/unit_actions.js:1325
-msgid "Attack all encountered enemy units while avoiding buildings."
-msgstr "Binadan kaçarken düşman birimlerinin hepsine saldır."
+msgid "Attack all encountered enemy units while avoiding structures."
+msgstr "Binaları es geçerken karşılaşılan tüm düşman birimlerine saldır."
 
 #: gui/session/unit_actions.js:1351
 msgid "Press to allow allies to use this dropsite"
@@ -720,12 +721,12 @@ msgstr "Özel sohbet"
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr "Oyun Notları"
+msgstr "Oyun Bildirimleri"
 
 #: gui/session/chat/ChatHistory.js:130
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr "Ağ Notları"
+msgstr "Ağ Bildirimleri"
 
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
