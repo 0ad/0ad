@@ -140,7 +140,11 @@ var g_OptionType = {
 		"initGUI": (option, control) => {
 			control.list = option.list.map(e => e.label);
 			control.list_data = option.list.map(e => e.value);
-		},
+			control.onHoverChange = () => {
+				let item = option.list[control.hovered];
+				control.tooltip = item && item.tooltip || option.tooltip;
+			};
+		}
 	},
 	"slider":
 	{

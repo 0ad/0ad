@@ -32,7 +32,7 @@
 						<object type="image" size="-39 5 -5 100%-5"/>
 					</object>
 					<object name="option_control_number[n]" size="65% 0 100%-8 100%" type="input" style="ModernInput"/>
-					<object name="option_control_dropdown[n]" size="65% 0 100%-8 100%" type="dropdown" style="ModernDropDown"/>
+					<object name="option_control_dropdown[n]" size="65% 0 100%-8 100%" type="dropdown" style="ModernDropDown" tooltip_style="tooltipInstant"/>
 					<object name="option_control_slider[n]" size="65% 0 100%-8 100%" type="slider" style="ModernSlider"/>
 				</object>
 			</repeat>

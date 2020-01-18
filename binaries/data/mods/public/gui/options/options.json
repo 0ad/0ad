@@ -371,9 +371,21 @@
 				"tooltip": "Automatically assign joining clients to free player slots during the match setup.",
 				"config": "gui.gamesetup.assignplayers",
 				"list": [
-					{ "value": "everyone", "label": "Everyone" },
-					{ "value": "buddies", "label": "Buddies" },
-					{ "value": "disabled", "label": "Disabled" }
+					{
+						"value": "everyone",
+						"label": "Everyone",
+						"tooltip": "Players joining the match will be assigned if there is a free slot."
+					},
+					{
+						"value": "buddies",
+						"label": "Buddies",
+						"tooltip": "Players joining the match will only be assigned if they are a buddy of the host and if there is a free slot."
+					},
+					{
+						"value": "disabled",
+						"label": "Disabled",
+						"tooltip": "Players only receive a slot when the host assigns them explicitly."
+					}
 				]
 			}
 		]
