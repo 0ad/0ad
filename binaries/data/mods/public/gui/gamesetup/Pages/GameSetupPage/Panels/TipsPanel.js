@@ -39,7 +39,7 @@ class TipsPanel
 }
 
 TipsPanel.prototype.File =
-	"gui/gamesetup/Panels/Tips.txt";
+	"gui/gamesetup/Pages/GameSetupPage/Panels/Tips.txt";
 
 TipsPanel.prototype.Config =
 	"gui.gamesetup.enabletips";

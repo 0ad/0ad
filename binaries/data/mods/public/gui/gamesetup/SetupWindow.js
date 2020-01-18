@@ -1,15 +1,15 @@
 /**
- * The GamesetupPage is the root class owning all other class instances.
+ * The SetupWindow is the root class owning all other class instances.
  * The class shall be ineligible to perform any GUI object logic and shall defer that task to owned classes.
  */
-class GamesetupPage
+class SetupWindow
 {
 	constructor(initData, hotloadData)
 	{
 		if (!g_Settings)
 			return;
 
-		Engine.ProfileStart("GamesetupPage");
+		Engine.ProfileStart("SetupWindow");
 
 		this.loadHandlers = new Set();
 		this.closePageHandlers = new Set();
@@ -34,7 +34,7 @@ class GamesetupPage
 		};
 
 		// These class instances are interfaces to networked messages and do not manage any GUI Object.
-		this.netMessages = {
+		this.networkControls = {
 			"netMessages": netMessages,
 			"gameRegisterStanza":
 				Engine.HasXmppClient() &&
@@ -42,46 +42,11 @@ class GamesetupPage
 					initData, this, netMessages, gameSettingsControl, playerAssignmentsControl, mapCache)
 		};
 
-		// This class instance owns all gamesetting GUI controls such as dropdowns and checkboxes.
-		// The controls also deterministically sanitize g_GameAttributes and g_PlayerAssignments
-		// without broadcasting the change.
-		this.gameSettingControlManager =
-			new GameSettingControlManager(this, gameSettingsControl, mapCache, mapFilters, netMessages, playerAssignmentsControl);
-
-		// These classes manage GUI buttons.
-		{
-			let startGameButton = new StartGameButton(this, startGameControl, netMessages, readyControl, playerAssignmentsControl);
-			let readyButton = new ReadyButton(readyControl, netMessages, playerAssignmentsControl);
-			this.panelButtons = {
-				"cancelButton": new CancelButton(this, startGameButton, readyButton, this.netMessages.gameRegisterStanza),
-				"civInfoButton": new CivInfoButton(),
-				"lobbyButton": new LobbyButton(),
-				"readyButton": readyButton,
-				"startGameButton": startGameButton
-			};
-		}
-
-		// These classes manage GUI Objects.
-		{
-			let gameSettingTabs = new GameSettingTabs(this, this.panelButtons.lobbyButton);
-			let gameSettingsPanel = new GameSettingsPanel(
-				this, gameSettingTabs, gameSettingsControl, this.gameSettingControlManager);
-
-			this.panels = {
-				"chatPanel": new ChatPanel(this.gameSettingControlManager, gameSettingsControl, netMessages, playerAssignmentsControl, readyControl, gameSettingsPanel),
-				"gameSettingWarning": new GameSettingWarning(gameSettingsControl, this.panelButtons.cancelButton),
-				"gameDescription": new GameDescription(mapCache, gameSettingTabs, gameSettingsControl),
-				"gameSettingsPanel": gameSettingsPanel,
-				"gameSettingsTabs": gameSettingTabs,
-				"loadingWindow": new LoadingWindow(netMessages),
-				"mapPreview": new MapPreview(gameSettingsControl, mapCache),
-				"resetCivsButton": new ResetCivsButton(gameSettingsControl),
-				"resetTeamsButton": new ResetTeamsButton(gameSettingsControl),
-				"soundNotification": new SoundNotification(netMessages, playerAssignmentsControl),
-				"tipsPanel": new TipsPanel(gameSettingsPanel),
-				"tooltip": new Tooltip(this.panelButtons.cancelButton)
-			};
-		}
+		// These are the pages within the setup window that may use the controls defined above
+		this.pages = {
+			"loadingPage": new LoadingPage(netMessages),
+			"gameSetupPage": new GameSetupPage(this, gameSettingsControl, playerAssignmentsControl, netMessages, this.networkControls.gameRegisterStanza, mapCache, mapFilters, startGameControl, readyControl)
+		};
 
 		setTimeout(displayGamestateNotifications, 1000);
 		Engine.GetGUIObjectByName("setupWindow").onTick = updateTimers;

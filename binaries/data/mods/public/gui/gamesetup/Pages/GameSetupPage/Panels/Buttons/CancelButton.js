@@ -1,8 +1,8 @@
 class CancelButton
 {
-	constructor(gamesetupPage, startGameButton, readyButton, gameSettingsControl)
+	constructor(setupWindow, startGameButton, readyButton, gameSettingsControl)
 	{
-		this.gamesetupPage = gamesetupPage;
+		this.setupWindow = setupWindow;
 		this.startGameButton = startGameButton;
 		this.readyButton = readyButton;
 		this.gameSettingsControl = gameSettingsControl;
@@ -14,7 +14,7 @@ class CancelButton
 		this.cancelButton = Engine.GetGUIObjectByName("cancelButton");
 		this.cancelButton.caption = this.Caption;
 		this.cancelButton.tooltip = Engine.HasXmppClient() ? this.TooltipLobby : this.TooltipMenu;
-		this.cancelButton.onPress = gamesetupPage.closePage.bind(gamesetupPage);
+		this.cancelButton.onPress = setupWindow.closePage.bind(setupWindow);
 
 		readyButton.registerButtonHiddenChangeHandler(this.onNeighborButtonHiddenChange.bind(this));
 		startGameButton.registerButtonHiddenChangeHandler(this.onNeighborButtonHiddenChange.bind(this));

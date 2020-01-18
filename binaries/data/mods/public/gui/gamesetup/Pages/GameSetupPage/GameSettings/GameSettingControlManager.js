@@ -11,10 +11,8 @@ class GameSettingControls
  */
 class GameSettingControlManager
 {
-	constructor(gamesetupPage, gameSettingsControl, mapCache, mapFilters, netMessages, playerAssignmentsControl)
+	constructor(setupWindow, gameSettingsControl, mapCache, mapFilters, netMessages, playerAssignmentsControl)
 	{
-		this.gameSettingsControl = gameSettingsControl;
-
 		this.rows = {};
 		this.gameSettingControls = {};
 

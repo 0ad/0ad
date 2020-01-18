@@ -3,7 +3,7 @@
  */
 class GameSettingsFile
 {
-	constructor(gamesetupPage)
+	constructor(setupWindow)
 	{
 		this.filename = g_IsNetworked ?
 			this.GameAttributesFileMultiplayer :
@@ -12,7 +12,7 @@ class GameSettingsFile
 		this.engineInfo = Engine.GetEngineInfo();
 		this.enabled = Engine.ConfigDB_GetValue("user", this.ConfigName) == "true";
 
-		gamesetupPage.registerClosePageHandler(this.saveFile.bind(this));
+		setupWindow.registerClosePageHandler(this.saveFile.bind(this));
 	}
 
 	loadFile()

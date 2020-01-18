@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <object name="checkboxSettingFrame[n]" size="0 2 100% 32" hidden="true">
 
-	<include file="gui/gamesetup/GameSettings/GameSettingControlLabels.xml"/>
+	<include file="gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlLabels.xml"/>
 	<object
 		name="checkboxSettingControl[n]"
 		type="checkbox"

@@ -5,7 +5,7 @@
  */
 class GameRegisterStanza
 {
-	constructor(initData, gamesetupPage, netMessages, gameSettingsControl, playerAssignmentsControl, mapCache)
+	constructor(initData, setupWindow, netMessages, gameSettingsControl, playerAssignmentsControl, mapCache)
 	{
 		this.mapCache = mapCache;
 
@@ -24,7 +24,7 @@ class GameRegisterStanza
 		playerAssignmentsControl.registerClientJoinHandler(sendImmediately);
 		playerAssignmentsControl.registerClientLeaveHandler(sendImmediately);
 
-		gamesetupPage.registerClosePageHandler(this.onClosePage.bind(this));
+		setupWindow.registerClosePageHandler(this.onClosePage.bind(this));
 		gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
 		netMessages.registerNetMessageHandler("start", this.onGameStart.bind(this));
 	}

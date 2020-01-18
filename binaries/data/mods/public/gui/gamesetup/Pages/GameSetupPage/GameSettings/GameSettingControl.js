@@ -25,14 +25,14 @@ class GameSettingControl
 {
 	// The constructor and inherited constructors shall not modify game attributes,
 	// since all GameSettingControl shall be able to subscribe to any gamesetting change.
-	constructor(gameSettingControlManager, category, playerIndex, gamesetupPage, gameSettingsControl, mapCache, mapFilters, netMessages, playerAssignmentsControl)
+	constructor(gameSettingControlManager, category, playerIndex, setupWindow, gameSettingsControl, mapCache, mapFilters, netMessages, playerAssignmentsControl)
 	{
 		// Store arguments
 		{
 			this.category = category;
 			if (playerIndex !== undefined)
 				this.playerIndex = playerIndex;
-			this.gamesetupPage = gamesetupPage;
+			this.setupWindow = setupWindow;
 			this.gameSettingsControl = gameSettingsControl;
 			this.mapCache = mapCache;
 			this.mapFilters = mapFilters;
@@ -63,7 +63,7 @@ class GameSettingControl
 			gameSettingsControl.registerMapChangeHandler(this.onMapChange.bind(this));
 
 		if (this.onLoad)
-			gamesetupPage.registerLoadHandler(this.onLoad.bind(this));
+			setupWindow.registerLoadHandler(this.onLoad.bind(this));
 
 		if (this.onGameAttributesChange)
 			gameSettingsControl.registerGameAttributesChangeHandler(this.onGameAttributesChange.bind(this));

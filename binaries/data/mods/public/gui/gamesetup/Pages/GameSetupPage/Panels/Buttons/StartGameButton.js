@@ -1,6 +1,6 @@
 class StartGameButton
 {
-	constructor(gamesetupPage, startGameControl, netMessages, readyControl, playerAssignmentsControl)
+	constructor(setupWindow, startGameControl, netMessages, readyControl, playerAssignmentsControl)
 	{
 		this.startGameControl = startGameControl;
 		this.readyControl = readyControl;
@@ -12,7 +12,7 @@ class StartGameButton
 		this.startGameButton.caption = this.Caption;
 		this.startGameButton.onPress = this.onPress.bind(this);
 
-		gamesetupPage.registerLoadHandler(this.onLoad.bind(this));
+		setupWindow.registerLoadHandler(this.onLoad.bind(this));
 		playerAssignmentsControl.registerPlayerAssignmentsChangeHandler(this.update.bind(this));
 	}
 

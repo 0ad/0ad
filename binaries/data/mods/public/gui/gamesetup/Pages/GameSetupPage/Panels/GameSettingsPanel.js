@@ -1,6 +1,6 @@
 class GameSettingsPanel
 {
-	constructor(gamesetupPage, gameSettingTabs, gameSettingsControl, gameSettingControlManager)
+	constructor(setupWindow, gameSettingTabs, gameSettingsControl, gameSettingControlManager)
 	{
 		this.centerRightPanel = Engine.GetGUIObjectByName("centerRightPanel");
 		this.settingTabButtonsFrame = Engine.GetGUIObjectByName("settingTabButtonsFrame");
@@ -20,7 +20,7 @@ class GameSettingsPanel
 
 		gameSettingTabs.registerTabSelectHandler(this.updateSize.bind(this));
 		gameSettingsControl.registerGameAttributesBatchChangeHandler(this.updateSize.bind(this));
-		gamesetupPage.registerLoadHandler(this.triggerResizeHandlers.bind(this));
+		setupWindow.registerLoadHandler(this.triggerResizeHandlers.bind(this));
 	}
 
 	registerGameSettingsPanelResizeHandler(handler)
