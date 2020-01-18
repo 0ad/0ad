@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -31,7 +31,7 @@
 # wuxb <wuxb45@gmail.com>, 2014
 # wuxb <wuxb45@gmail.com>, 2014
 # xingtong, 2013
-# liulitchi <xingzuo88@qq.com>, 2014,2017-2019
+# liulitchi <xingzuo88@qq.com>, 2014,2017-2020
 # yhcvb <yhcvb@126.com>, 2014
 # yhcvb <yhcvb@126.com>, 2014
 # yukisola <yolandaapply@gmail.com>, 2014
@@ -45,9 +45,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-12-30 08:12+0000\n"
-"PO-Revision-Date: 2019-12-30 15:26+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2020-01-13 08:22+0000\n"
+"PO-Revision-Date: 2020-01-14 03:22+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -519,7 +519,7 @@ msgstr "右键单击设置为出发贸易市场"
 
 #: gui/session/unit_actions.js:595 gui/session/unit_actions.js:938
 msgid "This market is too close to the origin market."
-msgstr ""
+msgstr "市场距离产地太近。"
 
 #: gui/session/unit_actions.js:599
 msgid "Right-click to set as destination trade market."
@@ -544,7 +544,7 @@ msgid "Unload All."
 msgstr "卸载全部。"
 
 #: gui/session/unit_actions.js:1089
-msgid "Destroy the selected units or buildings."
+msgid "Destroy the selected units or structures."
 msgstr "摧毁选定的单位或建筑。"
 
 #: gui/session/unit_actions.js:1091
@@ -557,16 +557,16 @@ msgid "Abort the current order."
 msgstr "中止当前的命令。"
 
 #: gui/session/unit_actions.js:1157
-msgid "Order the selected units to garrison in a building or unit."
-msgstr "命令所选单位守卫建筑或单位。"
+msgid "Order the selected units to garrison in a structure or unit."
+msgstr "让选取的单位驻守于建筑物或单位内。"
 
 #: gui/session/unit_actions.js:1180
 msgid "Unload"
 msgstr "卸载"
 
 #: gui/session/unit_actions.js:1198
-msgid "Order the selected units to repair a building or mechanical unit."
-msgstr "命令所选单位修复建筑或机械单位。"
+msgid "Order the selected units to repair a structure, ship, or siege engine."
+msgstr "让所选单位修复建筑、船只或工程器械。"
 
 #: gui/session/unit_actions.js:1217
 msgid "Focus on Rally Point."
@@ -577,8 +577,8 @@ msgid "Back to Work"
 msgstr "返回工作"
 
 #: gui/session/unit_actions.js:1271
-msgid "Order the selected units to guard a building or unit."
-msgstr "命令选定的单位守卫建筑物或单位。"
+msgid "Order the selected units to guard a structure or unit."
+msgstr "让选取的单位守卫建筑物或单位。"
 
 #: gui/session/unit_actions.js:1289
 msgid "Remove guard"
@@ -595,8 +595,8 @@ msgid "Patrol"
 msgstr "巡逻"
 
 #: gui/session/unit_actions.js:1325
-msgid "Attack all encountered enemy units while avoiding buildings."
-msgstr "攻击敌方的所有非建筑单位。"
+msgid "Attack all encountered enemy units while avoiding structures."
+msgstr "攻击敌方所有的非建筑单位。"
 
 #: gui/session/unit_actions.js:1351
 msgid "Press to allow allies to use this dropsite"
@@ -1596,4 +1596,4 @@ msgstr "贸易"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
-msgstr ""
+msgstr "资源："

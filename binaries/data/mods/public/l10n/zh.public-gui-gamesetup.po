@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -30,7 +30,7 @@
 # Vince Luo <vinceluo11@gmail.com>, 2017
 # xiaolong dai <1091198228@qq.com>, 2018
 # xingtong, 2013
-# liulitchi <xingzuo88@qq.com>, 2014,2017-2019
+# liulitchi <xingzuo88@qq.com>, 2014,2017-2020
 # yukisola <yolandaapply@gmail.com>, 2014
 # hiahoo lee (leaber) <zodiac8765@gmail.com>, 2014
 # 吴善俊 <sjwuny@126.com>, 2014
@@ -47,9 +47,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-15 08:08+0000\n"
-"PO-Revision-Date: 2019-11-15 15:09+0000\n"
-"Last-Translator: Kelvin Cooper <Zhu-Zhe-Yong@live.com>\n"
+"POT-Creation-Date: 2020-01-13 08:22+0000\n"
+"PO-Revision-Date: 2020-01-14 03:17+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,538 +66,548 @@ msgstr "无"
 msgid "AI will be disabled for this player."
 msgstr "此玩家禁用AI。"
 
-#: gui/gamesetup/gamesetup.js:65
-msgctxt "team"
-msgid "None"
-msgstr "无"
-
-#: gui/gamesetup/gamesetup.js:81
-msgctxt "civilization"
-msgid "Random"
-msgstr "随机"
-
-#: gui/gamesetup/gamesetup.js:82
-msgid "Picks one civilization at random when the game starts."
-msgstr "当游戏开始时，随机挑选一个文明。"
-
-#: gui/gamesetup/gamesetup.js:120
-#, javascript-format
-msgid "* %(username)s is not ready."
-msgstr "* %(username)s 未准备完成."
-
-#: gui/gamesetup/gamesetup.js:121
-msgid "I'm ready"
-msgstr "准备好了"
-
-#: gui/gamesetup/gamesetup.js:122
-msgid "State that you are ready to play."
-msgstr "表明你准备就绪。"
-
-#: gui/gamesetup/gamesetup.js:126
-#, javascript-format
-msgid "* %(username)s is ready!"
-msgstr "* %(username)s 就绪!"
-
-#: gui/gamesetup/gamesetup.js:127
-msgid "Stay ready"
-msgstr "保持就绪"
-
-#: gui/gamesetup/gamesetup.js:128
-msgid "Stay ready even when the game settings change."
-msgstr "保持就绪即使游戏设置更改。"
-
-#: gui/gamesetup/gamesetup.js:133
-msgid "I'm not ready!"
-msgstr "我还没准备好 ！"
-
-#: gui/gamesetup/gamesetup.js:134
-msgid "State that you are not ready to play."
-msgstr "表明你未准备就绪。"
-
-#: gui/gamesetup/gamesetup.js:157
-msgid "Game settings have been changed"
-msgstr "游戏设置已更改"
-
-#: gui/gamesetup/gamesetup.js:158
-#, javascript-format
-msgid "%(username)s has joined"
-msgstr "%(username)s 已加入"
-
-#: gui/gamesetup/gamesetup.js:159
-#, javascript-format
-msgid "%(username)s has left"
-msgstr "%(username)s 已离开"
-
-#: gui/gamesetup/gamesetup.js:160
-#, javascript-format
-msgid "%(username)s has been kicked"
-msgstr "%(username)s 被踢"
-
-#: gui/gamesetup/gamesetup.js:161
-#, javascript-format
-msgid "%(username)s has been banned"
-msgstr "%(username)s  被禁"
-
-#: gui/gamesetup/gamesetup.js:162
-#, javascript-format
-msgid "%(username)s %(message)s"
-msgstr "%(username)s %(message)s"
-
-#: gui/gamesetup/gamesetup.js:163
-#, javascript-format
-msgid "<%(username)s>"
-msgstr "<%(username)s>"
-
-#: gui/gamesetup/gamesetup.js:173
-msgctxt "map filter"
+#: gui/gamesetup/Controls/MapFilters.js:85
 msgid "Default"
 msgstr "默认"
 
-#: gui/gamesetup/gamesetup.js:174
-msgctxt "map filter"
+#: gui/gamesetup/Controls/MapFilters.js:86
 msgid "All maps except naval and demo maps."
 msgstr "除海战和演示地图以外的所有地图。"
 
-#: gui/gamesetup/gamesetup.js:180
+#: gui/gamesetup/Controls/MapFilters.js:91
 msgid "Naval Maps"
 msgstr "海事地图"
 
-#: gui/gamesetup/gamesetup.js:181
-msgctxt "map filter"
+#: gui/gamesetup/Controls/MapFilters.js:92
 msgid "Maps where ships are needed to reach the enemy."
 msgstr "需要船只才能到达敌人的地图。"
 
-#: gui/gamesetup/gamesetup.js:186
+#: gui/gamesetup/Controls/MapFilters.js:97
 msgid "Demo Maps"
 msgstr "演示地图"
 
-#: gui/gamesetup/gamesetup.js:187
-msgctxt "map filter"
+#: gui/gamesetup/Controls/MapFilters.js:98
 msgid "These maps are not playable but for demonstration purposes only."
 msgstr "这些地图不是可玩的，只是出于演示目的。"
 
-#: gui/gamesetup/gamesetup.js:192
+#: gui/gamesetup/Controls/MapFilters.js:103
 msgid "New Maps"
 msgstr "新地图"
 
-#: gui/gamesetup/gamesetup.js:193
-msgctxt "map filter"
+#: gui/gamesetup/Controls/MapFilters.js:104
 msgid "Maps that are brand new in this release of the game."
 msgstr "在游戏发布的时候，地图是全新的。"
 
-#: gui/gamesetup/gamesetup.js:198
+#: gui/gamesetup/Controls/MapFilters.js:109
 msgid "Trigger Maps"
 msgstr "触发地图"
 
-#: gui/gamesetup/gamesetup.js:199
-msgctxt "map filter"
+#: gui/gamesetup/Controls/MapFilters.js:110
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "有脚本事件和潜在生成的敌人单位的地图。"
 
-#: gui/gamesetup/gamesetup.js:204
+#: gui/gamesetup/Controls/MapFilters.js:115
 msgid "All Maps"
 msgstr "所有地图"
 
-#: gui/gamesetup/gamesetup.js:205
-msgctxt "map filter"
+#: gui/gamesetup/Controls/MapFilters.js:116
 msgid "Every map of the chosen maptype."
 msgstr "选定地图类型的所有地图"
 
-#: gui/gamesetup/gamesetup.js:404
+#: gui/gamesetup/GameSettings/GameSettingControl.js:172
+#, javascript-format
+msgctxt "Title for specific setting"
+msgid "%(setting)s:"
+msgstr "%(setting)s："
+
+#: gui/gamesetup/GameSettings/GameSettingControlCheckbox.js:57
+msgid "Yes"
+msgstr "是"
+
+#: gui/gamesetup/GameSettings/GameSettingControlCheckbox.js:60
+msgid "No"
+msgstr "否"
+
+#: gui/gamesetup/GameSettings/GameSettingControlDropdown.js:64
+msgctxt "settings value"
+msgid "Unknown"
+msgstr "未知"
+
+#: gui/gamesetup/GameSettings/GameSettingsLayout.js:7
 msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "地图"
 
-#: gui/gamesetup/gamesetup.js:419
+#: gui/gamesetup/GameSettings/GameSettingsLayout.js:22
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "玩家"
 
-#: gui/gamesetup/gamesetup.js:429
+#: gui/gamesetup/GameSettings/GameSettingsLayout.js:32
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "游戏类型"
 
-#: gui/gamesetup/gamesetup.js:469
-msgid "Map Type"
-msgstr "地图类型"
+#: gui/gamesetup/GameSettings/PerPlayer/AIConfigButton.js:182
+#, javascript-format
+msgid "Configure AI: %(description)s."
+msgstr "配置AI：%(description)s。"
 
-#: gui/gamesetup/gamesetup.js:470
-msgid "Select a map type."
-msgstr "选择一个地图类型."
+#: gui/gamesetup/GameSettings/PerPlayer/PlayerName.js:114
+#, javascript-format
+msgid "%(playerName)s %(romanNumber)s"
+msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:493
-msgid "Map Filter"
-msgstr "地图筛选器"
+#: gui/gamesetup/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:153
+msgid "Select player."
+msgstr "选择玩家"
 
-#: gui/gamesetup/gamesetup.js:494
-msgid "Select a map filter."
-msgstr "选择一个地图筛选器."
+#: gui/gamesetup/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:230
+#, javascript-format
+msgid "AI: %(ai)s"
+msgstr "电脑: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:509
-msgid "Select Map"
-msgstr "选择地图"
+#: gui/gamesetup/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:265
+msgid "Unassigned"
+msgstr "未指定"
 
-#: gui/gamesetup/gamesetup.js:510
-msgid "Select a map to play on."
-msgstr "选择一个地图来开始游戏."
+#: gui/gamesetup/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:131
+msgid "Choose the civilization for this player."
+msgstr "为此玩家选择文明"
 
-#: gui/gamesetup/gamesetup.js:524
-msgid "Map Size"
-msgstr "地图尺寸"
+#: gui/gamesetup/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:134
+msgctxt "civilization"
+msgid "Random"
+msgstr "随机"
 
-#: gui/gamesetup/gamesetup.js:525
-msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "选择地图大小. (大的地图可能会影响性能)"
+#: gui/gamesetup/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:140
+msgid "Picks one civilization at random when the game starts."
+msgstr "当游戏开始时，随机挑选一个文明。"
 
-#: gui/gamesetup/gamesetup.js:539
+#: gui/gamesetup/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:172
+msgid "Pick a color."
+msgstr "选择一种颜色。"
+
+#: gui/gamesetup/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:73
+msgid "Select player's team."
+msgstr "选择玩家的组队"
+
+#: gui/gamesetup/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:76
+msgctxt "team"
+msgid "None"
+msgstr "无"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Cheats.js:40
+msgid "Cheats"
+msgstr "作弊"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Cheats.js:43
+msgid "Toggle the usability of cheats."
+msgstr "开启允许秘籍."
+
+#. Translation: Make sure to differentiate between the revealed map and
+#. explored map settings!
+#: gui/gamesetup/GameSettings/Single/Checkboxes/ExploredMap.js:54
+msgid "Explored Map"
+msgstr "探索过的地图"
+
+#. Translation: Make sure to differentiate between the revealed map and
+#. explored map settings!
+#: gui/gamesetup/GameSettings/Single/Checkboxes/ExploredMap.js:58
+msgid "Toggle explored map (see initial map)."
+msgstr "切换已经勘探过的地图 ( 显示最初的地图 ) 。"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/LastManStanding.js:58
+msgid "Last Man Standing"
+msgstr "最后屹立在战场上者"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/LastManStanding.js:61
+msgid ""
+"Toggle whether the last remaining player or the last remaining set of allies"
+" wins."
+msgstr "不论最后是切换为剩余玩家还是剩余的盟友，都可一起获得胜利。"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/LockedTeams.js:52
+msgid "Teams Locked"
+msgstr "锁定组队"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/LockedTeams.js:55
+msgid "Toggle locked teams."
+msgstr "开启组队锁定."
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Nomad.js:60
+msgid "Nomad"
+msgstr "游牧"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Nomad.js:63
+msgid ""
+"In Nomad mode, players start with only few units and have to find a suitable"
+" place to build their city. Ceasefire is recommended."
+msgstr "在游牧模式下，玩家从少数单位开局并需要找到一个合适的地方来建造他们的城市。 建议停战。"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Rating.js:51
+msgid "Rated Game"
+msgstr "排位赛"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Rating.js:54
+msgid "Toggle if this game will be rated for the leaderboard."
+msgstr "切换本比赛是否算入排位。"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/RegicideGarrison.js:61
+msgid "Hero Garrison"
+msgstr "英雄驻军"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/RegicideGarrison.js:64
+msgid "Toggle whether heroes can be garrisoned."
+msgstr "触发英雄是否可以驻守。"
+
+#. Translation: Make sure to differentiate between the revealed map and
+#. explored map settings!
+#: gui/gamesetup/GameSettings/Single/Checkboxes/RevealedMap.js:49
+msgid "Revealed Map"
+msgstr "显示的地图"
+
+#. Translation: Make sure to differentiate between the revealed map and
+#. explored map settings!
+#: gui/gamesetup/GameSettings/Single/Checkboxes/RevealedMap.js:53
+msgid "Toggle revealed map (see everything)."
+msgstr "切换显示全地图 （显示所有）。"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Spies.js:42
+msgid "Disable Spies"
+msgstr "禁用间谍"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Spies.js:45
+msgid "Disable spies during the game."
+msgstr "游戏中禁用间谍。"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Treasures.js:42
+msgid "Disable Treasures"
+msgstr "取消宝藏系统"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Treasures.js:45
+msgid "Do not add treasures to the map."
+msgstr "不要在地图上添加宝藏。"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:119
 msgid "Biome"
 msgstr "生物群系"
 
-#: gui/gamesetup/gamesetup.js:540
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:125
 msgid "Select the flora and fauna."
 msgstr "选择动植物群落"
 
-#: gui/gamesetup/gamesetup.js:555
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:128
+msgctxt "biome"
+msgid "Random"
+msgstr "随机"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:131
+msgid "Pick a biome at random."
+msgstr "随机选择生物群落。"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Ceasefire.js:52
+msgid "Ceasefire"
+msgstr "停火"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Ceasefire.js:55
+msgid "Set time where no attacks are possible."
+msgstr "在没有攻击时设置时间是可能的。"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/GameSpeed.js:73
+msgid "Game Speed"
+msgstr "游戏速度"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/GameSpeed.js:76
+msgid "Select game speed."
+msgstr "选择游戏速度."
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapFilter.js:89
+msgid "Map Filter"
+msgstr "地图筛选器"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapFilter.js:92
+msgid "Select a map filter."
+msgstr "选择一个地图筛选器."
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapSelection.js:146
+msgid "Select Map"
+msgstr "选择地图"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapSelection.js:149
+msgid "Select a map to play on."
+msgstr "选择一个地图来开始游戏."
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapSelection.js:155
+msgctxt "map selection"
+msgid "Random"
+msgstr "随机"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapSelection.js:158
+msgid "Pick any of the given maps at random."
+msgstr "随机选择地图"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapSize.js:74
+msgid "Map Size"
+msgstr "地图尺寸"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapSize.js:77
+msgid "Select map size. (Larger sizes may reduce performance.)"
+msgstr "选择地图大小. (大的地图可能会影响性能)"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapType.js:61
+msgid "Map Type"
+msgstr "地图类型"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapType.js:64
+msgid "Select a map type."
+msgstr "选择一个地图类型."
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/PlayerCount.js:49
 msgid "Number of Players"
 msgstr "玩家数"
 
-#: gui/gamesetup/gamesetup.js:556
+#: gui/gamesetup/GameSettings/Single/Dropdowns/PlayerCount.js:52
 msgid "Select number of players."
 msgstr "选择玩家数量"
 
-#: gui/gamesetup/gamesetup.js:576
+#: gui/gamesetup/GameSettings/Single/Dropdowns/PopulationCap.js:82
 msgid "Population Cap"
 msgstr "人口上限"
 
-#: gui/gamesetup/gamesetup.js:583
+#: gui/gamesetup/GameSettings/Single/Dropdowns/PopulationCap.js:85
 msgid "Select population limit."
 msgstr "选择人口上限"
 
-#: gui/gamesetup/gamesetup.js:586
+#: gui/gamesetup/GameSettings/Single/Dropdowns/PopulationCap.js:88
+msgctxt "population limit"
+msgid "Per Player"
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/PopulationCap.js:91
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
 msgstr "警告：当所有的%(players)s玩家都到达人口上限%(popCap)s时，会有性能问题"
 
-#: gui/gamesetup/gamesetup.js:604
-msgid "Starting Resources"
-msgstr "初始资源"
-
-#: gui/gamesetup/gamesetup.js:607
-#, javascript-format
-msgid "Initial amount of each resource: %(resources)s."
-msgstr "初始资源数%(resources)s"
-
-#: gui/gamesetup/gamesetup.js:610
-msgid "Select the game's starting resources."
-msgstr "选择游戏初始资源。"
-
-#: gui/gamesetup/gamesetup.js:625
-msgid "Ceasefire"
-msgstr "停火"
-
-#: gui/gamesetup/gamesetup.js:626
-msgid "Set time where no attacks are possible."
-msgstr "在没有攻击时设置时间是可能的。"
-
-#: gui/gamesetup/gamesetup.js:639
+#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicCount.js:77
 msgid "Relic Count"
 msgstr "遗迹数"
 
-#: gui/gamesetup/gamesetup.js:640
+#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicCount.js:80
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
 msgstr "地图上的遗迹总数。若地图上仅有一两个遗迹，遗迹胜利模式下的游戏体验会更加逼真。若地图上存在大量遗迹，玩家要通过占领遗迹获得遗迹光环奖励。"
 
-#: gui/gamesetup/gamesetup.js:654
+#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicDuration.js:79
 msgid "Relic Duration"
 msgstr "遗迹持有时长"
 
-#: gui/gamesetup/gamesetup.js:655
+#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicDuration.js:82
 msgid "Minutes until the player has achieved Relic Victory."
 msgstr "距离玩家获得遗迹胜利只剩数分钟"
 
-#: gui/gamesetup/gamesetup.js:669
-msgid "Wonder Duration"
-msgstr "奇迹保持时长"
+#: gui/gamesetup/GameSettings/Single/Dropdowns/StartingResources.js:81
+msgid "Starting Resources"
+msgstr "初始资源"
 
-#: gui/gamesetup/gamesetup.js:670
-msgid "Minutes until the player has achieved Wonder Victory."
-msgstr "距离玩家获得奇观胜利只剩数分钟。"
+#: gui/gamesetup/GameSettings/Single/Dropdowns/StartingResources.js:84
+msgid "Select the game's starting resources."
+msgstr "选择游戏初始资源。"
 
-#: gui/gamesetup/gamesetup.js:684
-msgid "Game Speed"
-msgstr "游戏速度"
+#: gui/gamesetup/GameSettings/Single/Dropdowns/StartingResources.js:87
+#, javascript-format
+msgid "Initial amount of each resource: %(resources)s."
+msgstr "初始资源数%(resources)s"
 
-#: gui/gamesetup/gamesetup.js:685
-msgid "Select game speed."
-msgstr "选择游戏速度."
+#: gui/gamesetup/GameSettings/Single/Dropdowns/StartingResources.js:90
+msgctxt "starting resources"
+msgid "Per Player"
+msgstr ""
 
-#: gui/gamesetup/gamesetup.js:699
+#: gui/gamesetup/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
 msgstr "难度"
 
-#: gui/gamesetup/gamesetup.js:701
+#: gui/gamesetup/GameSettings/Single/Dropdowns/TriggerDifficulty.js:84
 msgid "Select the difficulty of this scenario."
 msgstr "选择这一场景的难度。"
 
-#: gui/gamesetup/gamesetup.js:721
-msgid "Select player."
-msgstr "选择玩家"
+#: gui/gamesetup/GameSettings/Single/Dropdowns/WonderDuration.js:79
+msgid "Wonder Duration"
+msgstr "奇迹保持时长"
 
-#: gui/gamesetup/gamesetup.js:756
-msgid "Select player's team."
-msgstr "选择玩家的组队"
+#: gui/gamesetup/GameSettings/Single/Dropdowns/WonderDuration.js:82
+msgid "Minutes until the player has achieved Wonder Victory"
+msgstr "距离玩家获得奇观胜利的剩余分钟"
 
-#: gui/gamesetup/gamesetup.js:768
-msgid "Choose the civilization for this player."
-msgstr "为此玩家选择文明"
+#: gui/gamesetup/Panels/GameSettingWarning.js:38
+msgid "Cheats enabled."
+msgstr "启用秘籍。"
 
-#: gui/gamesetup/gamesetup.js:782
-msgid "Pick a color."
-msgstr "选择一种颜色。"
-
-#: gui/gamesetup/gamesetup.js:836
-msgid "Hero Garrison"
-msgstr "英雄驻军"
-
-#: gui/gamesetup/gamesetup.js:837
-msgid "Toggle whether heroes can be garrisoned."
-msgstr "触发英雄是否可以驻守。"
-
-#: gui/gamesetup/gamesetup.js:849
-msgid "Nomad"
-msgstr "游牧"
-
-#: gui/gamesetup/gamesetup.js:850
-msgid ""
-"In Nomad mode, players start with only few units and have to find a suitable"
-" place to build their city. Ceasefire is recommended."
-msgstr "在游牧模式下，玩家从少数单位开局并需要找到一个合适的地方来建造他们的城市。 建议停战。"
-
-#. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/gamesetup.js:863
-msgid "Revealed Map"
-msgstr "显示的地图"
-
-#. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/gamesetup.js:866
-msgid "Toggle revealed map (see everything)."
-msgstr "切换显示全地图 （显示所有）。"
-
-#. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/gamesetup.js:882
-msgid "Explored Map"
-msgstr "探索过的地图"
-
-#. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/gamesetup.js:885
-msgid "Toggle explored map (see initial map)."
-msgstr "切换已经勘探过的地图 ( 显示最初的地图 ) 。"
-
-#: gui/gamesetup/gamesetup.js:896
-msgid "Disable Treasures"
-msgstr "取消宝藏系统"
-
-#: gui/gamesetup/gamesetup.js:897
-msgid "Do not add treasures to the map."
-msgstr "不要在地图上添加宝藏。"
-
-#: gui/gamesetup/gamesetup.js:908
-msgid "Disable Spies"
-msgstr "禁用间谍"
-
-#: gui/gamesetup/gamesetup.js:909
-msgid "Disable spies during the game."
-msgstr "游戏中禁用间谍。"
-
-#: gui/gamesetup/gamesetup.js:920
-msgid "Teams Locked"
-msgstr "锁定组队"
-
-#: gui/gamesetup/gamesetup.js:921
-msgid "Toggle locked teams."
-msgstr "开启组队锁定."
-
-#: gui/gamesetup/gamesetup.js:935
-msgid "Last Man Standing"
-msgstr "最后屹立在战场上者"
-
-#: gui/gamesetup/gamesetup.js:936
-msgid ""
-"Toggle whether the last remaining player or the last remaining set of allies"
-" wins."
-msgstr "不论最后是切换为剩余玩家还是剩余的盟友，都可一起获得胜利。"
-
-#: gui/gamesetup/gamesetup.js:949
-msgid "Cheats"
-msgstr "作弊"
-
-#: gui/gamesetup/gamesetup.js:950
-msgid "Toggle the usability of cheats."
-msgstr "开启允许秘籍."
-
-#: gui/gamesetup/gamesetup.js:963
-msgid "Rated Game"
+#: gui/gamesetup/Panels/GameSettingWarning.js:41
+msgid "Rated game."
 msgstr "排位赛"
 
-#: gui/gamesetup/gamesetup.js:964
-msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "切换本比赛是否算入排位。"
-
-#: gui/gamesetup/gamesetup.js:997
+#: gui/gamesetup/Panels/GameSettingsTabs.js:76
 #, javascript-format
-msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr "按下%(hotkey)s后，自动完成昵称或设置。"
+msgid "Toggle the %(name)s settings tab."
+msgstr "切换%(name)s设置选项卡。"
 
-#: gui/gamesetup/gamesetup.js:1045
+#: gui/gamesetup/Panels/GameSettingsTabs.js:79
+#, javascript-format
+msgid "Use %(hotkey)s to move a settings tab up."
+msgstr "使用%(hotkey)s向上移动设置选项卡。"
+
+#: gui/gamesetup/Panels/GameSettingsTabs.js:82
+#, javascript-format
+msgid "Use %(hotkey)s to move a settings tab down."
+msgstr "使用%(hotkey)s向下移动设置选项卡。"
+
+#: gui/gamesetup/Panels/Buttons/CancelButton.js:39
 msgid "Back"
 msgstr "后退"
 
-#: gui/gamesetup/gamesetup.js:1048
+#: gui/gamesetup/Panels/Buttons/CancelButton.js:42
 msgid "Return to the lobby."
 msgstr "返回大厅。"
 
-#: gui/gamesetup/gamesetup.js:1049
+#: gui/gamesetup/Panels/Buttons/CancelButton.js:45
 msgid "Return to the main menu."
 msgstr "返回到主菜单."
 
-#: gui/gamesetup/gamesetup.js:1077
-msgid "Start Game!"
-msgstr "开始游戏!"
-
-#: gui/gamesetup/gamesetup.js:1093
-msgid "Start a new game with the current settings."
-msgstr "使用当前的设置开始一局新游戏."
-
-#: gui/gamesetup/gamesetup.js:1094
-msgid ""
-"Start a new game with the current settings (disabled until all players are "
-"ready)."
-msgstr "使用当前的设置开始一局新游戏。(禁用直到所有玩家准备好)"
-
-#: gui/gamesetup/gamesetup.js:1106
+#: gui/gamesetup/Panels/Buttons/CivInfoButton.js:48
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
 msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: 查看历史/建筑树\n单击重新打开上次打开的。"
 
-#: gui/gamesetup/gamesetup.js:1118
+#: gui/gamesetup/Panels/Buttons/LobbyButton.js:19
+msgid "Show the multiplayer lobby in a dialog window."
+msgstr "在对话框窗口中显示多人游戏大厅"
+
+#: gui/gamesetup/Panels/Buttons/ReadyButton.js:79
+msgid "I'm ready"
+msgstr "准备好了"
+
+#: gui/gamesetup/Panels/Buttons/ReadyButton.js:80
+msgid "Stay ready"
+msgstr "保持就绪"
+
+#: gui/gamesetup/Panels/Buttons/ReadyButton.js:81
+msgid "I'm not ready!"
+msgstr "我还没准备好 ！"
+
+#: gui/gamesetup/Panels/Buttons/ReadyButton.js:85
+msgid "State that you are ready to play."
+msgstr "表明你准备就绪。"
+
+#: gui/gamesetup/Panels/Buttons/ReadyButton.js:86
+msgid "Stay ready even when the game settings change."
+msgstr "保持就绪即使游戏设置更改。"
+
+#: gui/gamesetup/Panels/Buttons/ReadyButton.js:87
+msgid "State that you are not ready to play."
+msgstr "表明你未准备就绪。"
+
+#: gui/gamesetup/Panels/Buttons/ResetCivsButton.js:33
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
 msgstr "已选择的文明重置为默认（随机）。"
 
-#: gui/gamesetup/gamesetup.js:1128
+#: gui/gamesetup/Panels/Buttons/ResetTeamsButton.js:35
 msgid "Reset all teams to the default."
 msgstr "将所有团队重置为默认值。"
 
-#: gui/gamesetup/gamesetup.js:1185
+#: gui/gamesetup/Panels/Buttons/StartGameButton.js:66
+msgid "Start Game!"
+msgstr "开始游戏!"
+
+#: gui/gamesetup/Panels/Buttons/StartGameButton.js:69
+msgid "Start a new game with the current settings."
+msgstr "使用当前的设置开始一局新游戏."
+
+#: gui/gamesetup/Panels/Buttons/StartGameButton.js:72
+msgid ""
+"Start a new game with the current settings (disabled until all players are "
+"ready)."
+msgstr "使用当前的设置开始一局新游戏。(禁用直到所有玩家准备好)"
+
+#: gui/gamesetup/Panels/Chat/ChatInputPanel.js:55
 #, javascript-format
-msgid "Configure AI: %(description)s."
-msgstr "配置AI：%(description)s。"
+msgid "Press %(hotkey)s to autocomplete player names or settings."
+msgstr "按下%(hotkey)s后，自动完成昵称或设置。"
 
-#: gui/gamesetup/gamesetup.js:1498
-#, javascript-format
-msgid "Toggle the %(name)s settings tab."
-msgstr "切换%(name)s设置选项卡。"
-
-#: gui/gamesetup/gamesetup.js:1499
-#, javascript-format
-msgid "Use %(hotkey)s to move a settings tab down."
-msgstr "使用%(hotkey)s向下移动设置选项卡。"
-
-#: gui/gamesetup/gamesetup.js:1500
-#, javascript-format
-msgid "Use %(hotkey)s to move a settings tab up."
-msgstr "使用%(hotkey)s向上移动设置选项卡。"
-
-#: gui/gamesetup/gamesetup.js:1834
-msgctxt "map selection"
-msgid "Random"
-msgstr "随机"
-
-#: gui/gamesetup/gamesetup.js:1836
-msgid "Pick any of the given maps at random."
-msgstr "随机选择地图"
-
-#: gui/gamesetup/gamesetup.js:1868
-msgctxt "biome"
-msgid "Random"
-msgstr "随机"
-
-#: gui/gamesetup/gamesetup.js:1869
-msgid "Pick a biome at random."
-msgstr "随机选择生物群落。"
-
-#: gui/gamesetup/gamesetup.js:2215
-#, javascript-format
-msgctxt "Title for specific setting"
-msgid "%(setting)s:"
-msgstr "%(setting)s："
-
-#: gui/gamesetup/gamesetup.js:2220
-msgctxt "settings value"
-msgid "Unknown"
-msgstr "未知"
-
-#: gui/gamesetup/gamesetup.js:2250
-msgid "Yes"
-msgstr "是"
-
-#: gui/gamesetup/gamesetup.js:2250
-msgid "No"
-msgstr "否"
-
-#: gui/gamesetup/gamesetup.js:2257
-#, javascript-format
-msgid "%(setting)s:"
-msgstr "%(setting)s："
-
-#: gui/gamesetup/gamesetup.js:2339
-#, javascript-format
-msgid "%(playerName)s %(romanNumber)s"
-msgstr "%(playerName)s %(romanNumber)s"
-
-#: gui/gamesetup/gamesetup.js:2503
-#, javascript-format
-msgid "AI: %(ai)s"
-msgstr "电脑: %(ai)s"
-
-#: gui/gamesetup/gamesetup.js:2511
-msgid "Unassigned"
-msgstr "未指定"
-
-#: gui/gamesetup/gamesetup.js:2582
+#: gui/gamesetup/Panels/Chat/StatusMessageFormat.js:24
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2589
-msgid "Unknown Player"
-msgstr "未知玩家"
-
-#: gui/gamesetup/gamesetup.js:2628
+#: gui/gamesetup/Panels/Chat/TimestampWrapper.js:25
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2629
+#: gui/gamesetup/Panels/Chat/TimestampWrapper.js:28
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2630
+#: gui/gamesetup/Panels/Chat/TimestampWrapper.js:31
 msgid "HH:mm"
 msgstr "HH:mm"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/ClientChat.js:26
+msgid "Unknown Player"
+msgstr "未知玩家"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/ClientChat.js:46
+#, javascript-format
+msgid "<%(username)s>"
+msgstr "<%(username)s>"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/ClientChat.js:49
+#, javascript-format
+msgid "%(username)s %(message)s"
+msgstr "%(username)s %(message)s"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/ClientConnection.js:27
+#, javascript-format
+msgid "%(username)s has joined"
+msgstr "%(username)s 已加入"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/ClientConnection.js:30
+#, javascript-format
+msgid "%(username)s has left"
+msgstr "%(username)s 已离开"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/ClientKicked.js:22
+#, javascript-format
+msgid "%(username)s has been kicked"
+msgstr "%(username)s 被踢"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/ClientKicked.js:25
+#, javascript-format
+msgid "%(username)s has been banned"
+msgstr "%(username)s  被禁"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/ClientReady.js:28
+#, javascript-format
+msgid "* %(username)s is not ready."
+msgstr "* %(username)s 未准备完成."
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/ClientReady.js:29
+#, javascript-format
+msgid "* %(username)s is ready!"
+msgstr "* %(username)s 就绪!"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/GameSettingsChanged.js:22
+msgid "Game settings have been changed"
+msgstr "游戏设置已更改"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:55
 #, javascript-format
@@ -705,53 +715,45 @@ msgstr "取消"
 msgid "OK"
 msgstr "确定"
 
-#: gui/gamesetup/gamesetup.xml:(caption):12
+#: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Match Setup"
 msgstr "竞赛设置"
 
-#: gui/gamesetup/gamesetup.xml:(caption):18
-msgid "Loading"
-msgstr "加载中"
-
-#: gui/gamesetup/gamesetup.xml:(caption):22
-msgid "Loading map data. Please wait…"
-msgstr "正在加载地图。请稍等..."
-
-#: gui/gamesetup/gamesetup.xml:(caption):42
+#: gui/gamesetup/GameSettings/PerPlayer/PlayersPanel.xml:(caption):6
 msgid "Player Name"
 msgstr "玩家名字"
 
-#: gui/gamesetup/gamesetup.xml:(caption):46
+#: gui/gamesetup/GameSettings/PerPlayer/PlayersPanel.xml:(caption):10
 msgid "Color"
 msgstr "色彩"
 
-#: gui/gamesetup/gamesetup.xml:(caption):50
+#: gui/gamesetup/GameSettings/PerPlayer/PlayersPanel.xml:(caption):14
 msgid "Player Placement"
 msgstr "玩家位置"
 
-#: gui/gamesetup/gamesetup.xml:(caption):54
+#: gui/gamesetup/GameSettings/PerPlayer/PlayersPanel.xml:(caption):18
 msgid "Civilization"
 msgstr "文明"
 
-#: gui/gamesetup/gamesetup.xml:(caption):61
+#: gui/gamesetup/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
 msgid "Team"
 msgstr "组队"
 
-#: gui/gamesetup/gamesetup.xml:(caption):90
+#: gui/gamesetup/Panels/LoadingWindow.xml:(caption):5
+msgid "Loading"
+msgstr "加载中"
+
+#: gui/gamesetup/Panels/LoadingWindow.xml:(caption):9
+msgid "Loading map data. Please wait…"
+msgstr "正在加载地图。请稍等..."
+
+#: gui/gamesetup/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
 msgstr "稍后显示此消息"
 
-#: gui/gamesetup/gamesetup.xml:(caption):175
+#: gui/gamesetup/Panels/Chat/ChatPanel.xml:(caption):9
 msgid "Send"
 msgstr "发送"
-
-#: gui/gamesetup/gamesetup.xml:(caption):192
-msgid "Cheats enabled."
-msgstr "启用秘籍。"
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):161
-msgid "Show the multiplayer lobby in a dialog window."
-msgstr "在对话框窗口中显示多人游戏大厅"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"

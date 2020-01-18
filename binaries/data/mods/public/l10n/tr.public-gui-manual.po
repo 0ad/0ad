@@ -10,14 +10,15 @@
 # Togarma, 2019-2020
 # Kemal Oktay Aktoğan <oktayaktogan@gmail.com>, 2018
 # sicey <sicey224@hotmail.com>, 2015
+# Togarma, 2020
 # Tayfun Toprakcıoğlu, 2017
 # Volkan Gezer <volkangezer@gmail.com>, 2014-2015
 # yakup <mutouk@yandex.ru>, 2014-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-06 08:10+0000\n"
-"PO-Revision-Date: 2020-01-06 17:16+0000\n"
+"POT-Creation-Date: 2020-01-13 08:22+0000\n"
+"PO-Revision-Date: 2020-01-14 06:15+0000\n"
 "Last-Translator: Togarma\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -306,15 +307,15 @@ msgstr "Pause - Oyunu duraklat / sürdür"
 
 #: gui/manual/intro.txt:66
 msgid ""
-"  Delete – Delete currently selected unit(s)/building(s), ask for "
+"  Delete – Delete currently selected unit(s)/structure(s), ask for "
 "confirmation"
-msgstr "Delete - Seçili birimleri / binaları silin, onay isteyin"
+msgstr "Sil - Seçili birimleri / yapıları silin, onay isteyin"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "  Shift + Delete – Immediately delete currently selected "
-"unit(s)/building(s), without asking for confirmation"
-msgstr "Shift + Delete - Seçili üniteleri / binaları hemen onay istemeden silin"
+"unit(s)/structure(s), without asking for confirmation"
+msgstr "Shift + Delete - Onaylama sormadan seçili olan birimleri / yapıları hemen sil"
 
 #: gui/manual/intro.txt:68
 msgid "  / (Slash) – Select idle fighter"
@@ -364,26 +365,26 @@ msgid "  Y – The unit will go back to work"
 msgstr "Y - Birimler çalışmaya geri dönecek"
 
 #: gui/manual/intro.txt:79
-msgid "  U – Unload the garrisoned units of the selected buildings"
-msgstr "U - Seçilen binalarda konuşlanan birimleri boşalt"
+msgid "  U – Unload the garrisoned units of the selected structure(s)"
+msgstr "U - Seçilen yapılara konuşlandırılmış birimlerini boşaltın"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from "
-"the selected unit(s)/building(s)"
-msgstr "Ctrl + 1 (ve benzeri Ctrl + 0'a kadar) - Seçili birim (ler) / binalardan 1 (ila 0) arası kontrol grubu oluşturun"
+"the selected unit(s)/structure(s)"
+msgstr "Ctrl + 1 (vb. Ctrl + 0'a kadar) - Seçili birim (ler) / yapılardan kontrol grubu 1 (- 0) oluşturun"
 
 #: gui/manual/intro.txt:81
 msgid ""
-"  1 (and so on up to 0) – Select the units/buildings in control group 1 (to "
-"0)"
-msgstr "1 (ve benzeri 0'a kadar) - 1 kontrol grubundaki birimleri / binaları seçin (ila 0)"
+"  1 (and so on up to 0) – Select the unit(s)/structure(s) in control group 1"
+" (to 0)"
+msgstr "1 (vb. En fazla 0) - Kontrol grubu 1'deki (0) birimleri / binaları seçin"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected "
-"units/buildings"
-msgstr "Shift + 1 (ila 0) - Seçili birimlere / binalara kontrol grubu 1 (ila 0) ekleyin"
+"unit(s)/structure(s)"
+msgstr "Shift + 1 (0'a) - Seçili birim (ler) / yapılara kontrol grubu 1'i (0'a) ekleyin"
 
 #: gui/manual/intro.txt:83
 msgid ""
@@ -399,21 +400,21 @@ msgstr "F5, F6, F7 ve F8 - Kamerayı işaretli bir konuma getirin. Kamera zaten 
 
 #: gui/manual/intro.txt:85
 msgid ""
-"  Z, X, C, V, B, N, M – With training buildings selected. Add the 1st, 2nd, "
-"… unit shown to the training queue for all the selected buildings"
-msgstr "Z, X, C, V, B, N, M - Eğitim binaları seçiliyken. Seçilen tüm binalar için eğitim kuyruğuna gösterilen 1., 2.,… birimini ekleyin"
+"  Z, X, C, V, B, N, M – With training structure selected. Add the 1st, 2nd, "
+"… unit shown to the training queue for all the selected structures"
+msgstr "Z, X, C, V, B, N, M - Eğitim yapısı seçiliyken. Seçilen tüm yapılar için eğitim kuyruğuna gösterilen 1., 2.,… birimi ekleyin"
 
 #: gui/manual/intro.txt:86
 msgid ""
-"  PageUp with units selected – Highlights the units/buildings guarded by the"
-" selection"
-msgstr "Seçili birimlerle PageUp - Seçimle korunan birimleri / binaları vurgular"
+"  PageUp with unit(s) selected – Highlights the unit(s)/structure(s) guarded"
+" by the selection"
+msgstr "Seçili birimler ile PageUp - Seçim tarafından korunan birimleri / yapıları vurgular"
 
 #: gui/manual/intro.txt:87
 msgid ""
-"  PageDown with units/buildings selected – Highlights the units guarding the"
-" selection"
-msgstr "PageDown seçili birimler / binalar - Seçimi koruyan birimleri işaretler"
+"  PageDown with unit(s)/structure(s) selected – Highlights the unit(s) "
+"guarding the selection"
+msgstr "PageDown (birim) / yapı (lar) seçiliyken - Seçimi koruyan birimleri gösterir"
 
 #: gui/manual/intro.txt:88
 msgid ""
@@ -457,12 +458,12 @@ msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Fare Hareketini Yönlendir[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
-msgid "  Ctrl + Right Click on building – Garrison"
-msgstr "Ctrl + Binaya sağ tıklayın - Konuşlandır"
+msgid "  Ctrl + Right Click on structure – Garrison"
+msgstr "Ctrl + Yapıya sağ tıklayın - Konuşlandır"
 
 #: gui/manual/intro.txt:100
-msgid "  J + Right Click on building – Repair"
-msgstr "J + Binaya Sağ Tıkla - Onar"
+msgid "  J + Right Click on structure – Repair"
+msgstr "J + Yapıya Sağ Tıkla - Onar"
 
 #: gui/manual/intro.txt:101
 msgid "  P + Right Click – Patrol"
@@ -521,9 +522,9 @@ msgstr "Ctrl + Sol tıklama ile birden fazla birim seçili birim / grup simgesin
 
 #: gui/manual/intro.txt:112
 msgid ""
-"  Right Click with a building(s) selected – sets a rally point for units "
-"created/ungarrisoned from that building"
-msgstr "Seçili bir bina (lar) ile Sağ Tıkla - bu binadan oluşturulan / konuşlandırılmış birimler için bir toplanma noktası belirler"
+"  Right Click with a structure(s) selected – sets a rally point for units "
+"created/ungarrisoned from that structure"
+msgstr "Bir yapı seçiliyken Sağ Tıklama - bu yapıdan yaratılan / silahsız edilen birimler için bir toplanma noktası belirler"
 
 #: gui/manual/intro.txt:113
 msgid "  Ctrl + Right Click with unit(s) selected:"
@@ -535,9 +536,9 @@ msgstr "• İmleç kendi veya müttefik bir yapının üzerindeyse - Konuşland
 
 #: gui/manual/intro.txt:115
 msgid ""
-"    • If the cursor is over an enemy unit or building – Attack (instead of "
+"    • If the cursor is over an enemy unit/structure – Attack (instead of "
 "capture or gather)"
-msgstr "• İmleç düşman biriminin veya binasının üzerindeyse - Saldır (yakalamak veya toplamak yerine)"
+msgstr "• İmleç bir düşman biriminin / yapısının üzerindeyse - Saldır (yakala veya topla yerine)"
 
 #: gui/manual/intro.txt:116
 msgid ""
@@ -686,22 +687,22 @@ msgid "  Middle Mouse Button – Keep pressed and move the mouse to pan"
 msgstr "Orta Fare Düğmesi - Basılı tutun ve fareyi kaydırmak için hareket ettirin"
 
 #: gui/manual/intro.txt:150
-msgid "[font=\"sans-bold-14\"]During Building Placement[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]Bina Yerleştirirken[font=\"sans-14\"]"
+msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
+msgstr "[font = \"sans-bold-14\"] Yapı Yerleşimi Sırasında [font = \"sans-14\"]"
 
 #: gui/manual/intro.txt:151
-msgid "  \\[ (Left Bracket) – Rotate building 15 degrees counter-clockwise"
-msgstr "\\ [(Sol Braket) - Binanın saat yönünün tersine 15 derece döndürülür"
+msgid "  \\[ (Left Bracket) – Rotate structure 15 degrees counter-clockwise"
+msgstr "\\ [(Sol Köşeli Ayraç) - Yapıyı saat yönünün tersine 15 derece döndür"
 
 #: gui/manual/intro.txt:152
-msgid "  ] (Right Bracket) – Rotate building 15 degrees clockwise"
-msgstr "] (Sağ Dirsek) - Binayı saat yönünde 15 derece döndürün"
+msgid "  ] (Right Bracket) – Rotate structure 15 degrees clockwise"
+msgstr "] (Sağ Köşeli Ayraç) - Yapıyı saat yönünde 15 derece döndür"
 
 #: gui/manual/intro.txt:153
 msgid ""
-"  Left Drag – Rotate building using mouse (foundation will be placed on "
+"  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
-msgstr "Sola Sürükle - Binayı fareyi kullanarak döndürün (temel fare bırakılınca atılır)"
+msgstr "Sol Sürükle - Fareyi kullanarak yapıyı döndür (temel fare bırakma üzerine yerleştirilir)"
 
 #: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"

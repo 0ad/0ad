@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-15 08:08+0000\n"
-"PO-Revision-Date: 2019-11-15 15:09+0000\n"
+"POT-Creation-Date: 2020-01-13 08:22+0000\n"
+"PO-Revision-Date: 2020-01-13 15:59+0000\n"
 "Last-Translator: Vahe Avagyan <vahe-a@outlook.fr>\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
@@ -27,538 +27,548 @@ msgstr "Ոչ մի"
 msgid "AI will be disabled for this player."
 msgstr "ԱԻ-ը կանջատվի այս խաղացողի համար։"
 
-#: gui/gamesetup/gamesetup.js:65
-msgctxt "team"
-msgid "None"
-msgstr "Ոչ մի"
-
-#: gui/gamesetup/gamesetup.js:81
-msgctxt "civilization"
-msgid "Random"
-msgstr "Պատահական"
-
-#: gui/gamesetup/gamesetup.js:82
-msgid "Picks one civilization at random when the game starts."
-msgstr "Պատահական քաղաքակրթության ընտրություն խաղի սկզբում։"
-
-#: gui/gamesetup/gamesetup.js:120
-#, javascript-format
-msgid "* %(username)s is not ready."
-msgstr "* %(username)s պատրաստ չի։"
-
-#: gui/gamesetup/gamesetup.js:121
-msgid "I'm ready"
-msgstr "Պատրաստ եմ"
-
-#: gui/gamesetup/gamesetup.js:122
-msgid "State that you are ready to play."
-msgstr "Հաղորդում, որ դուք պատրաստ եք խաղին։"
-
-#: gui/gamesetup/gamesetup.js:126
-#, javascript-format
-msgid "* %(username)s is ready!"
-msgstr "* %(username)s պատրաստ է!"
-
-#: gui/gamesetup/gamesetup.js:127
-msgid "Stay ready"
-msgstr "Մնացեք պատրաստ։"
-
-#: gui/gamesetup/gamesetup.js:128
-msgid "Stay ready even when the game settings change."
-msgstr "Մնացեք պատրաստ նույնիսկ խաղի կարգավորումների փոփոխության դեպքում։"
-
-#: gui/gamesetup/gamesetup.js:133
-msgid "I'm not ready!"
-msgstr "Պատրաստ չեմ!"
-
-#: gui/gamesetup/gamesetup.js:134
-msgid "State that you are not ready to play."
-msgstr "Հաղորդում, որ դուք պատրաստ չեք խաղին։"
-
-#: gui/gamesetup/gamesetup.js:157
-msgid "Game settings have been changed"
-msgstr "Խաղի կարգավորումները փոխվել են։"
-
-#: gui/gamesetup/gamesetup.js:158
-#, javascript-format
-msgid "%(username)s has joined"
-msgstr "%(username)s միացավ"
-
-#: gui/gamesetup/gamesetup.js:159
-#, javascript-format
-msgid "%(username)s has left"
-msgstr "%(username)s հեռացավ"
-
-#: gui/gamesetup/gamesetup.js:160
-#, javascript-format
-msgid "%(username)s has been kicked"
-msgstr "%(username)s հեռացվեց"
-
-#: gui/gamesetup/gamesetup.js:161
-#, javascript-format
-msgid "%(username)s has been banned"
-msgstr "%(username)s արգելափակվեց"
-
-#: gui/gamesetup/gamesetup.js:162
-#, javascript-format
-msgid "%(username)s %(message)s"
-msgstr "%(username)s %(message)s"
-
-#: gui/gamesetup/gamesetup.js:163
-#, javascript-format
-msgid "<%(username)s>"
-msgstr "<%(username)s>"
-
-#: gui/gamesetup/gamesetup.js:173
-msgctxt "map filter"
+#: gui/gamesetup/Controls/MapFilters.js:85
 msgid "Default"
 msgstr "Նախնական"
 
-#: gui/gamesetup/gamesetup.js:174
-msgctxt "map filter"
+#: gui/gamesetup/Controls/MapFilters.js:86
 msgid "All maps except naval and demo maps."
 msgstr "Բոլոր քարտեզները՝ բացի ծովային և ցուցադրական քարտեզների։"
 
-#: gui/gamesetup/gamesetup.js:180
+#: gui/gamesetup/Controls/MapFilters.js:91
 msgid "Naval Maps"
 msgstr "Ծովային քարտեզներ"
 
-#: gui/gamesetup/gamesetup.js:181
-msgctxt "map filter"
+#: gui/gamesetup/Controls/MapFilters.js:92
 msgid "Maps where ships are needed to reach the enemy."
 msgstr "Քարտեզներ, որոնցում հակառակորդին հասնելու համար անհրաժեշտ են նավեր։"
 
-#: gui/gamesetup/gamesetup.js:186
+#: gui/gamesetup/Controls/MapFilters.js:97
 msgid "Demo Maps"
 msgstr "Ցուցադրական քարտեզներ"
 
-#: gui/gamesetup/gamesetup.js:187
-msgctxt "map filter"
+#: gui/gamesetup/Controls/MapFilters.js:98
 msgid "These maps are not playable but for demonstration purposes only."
 msgstr "Այս քարտեզները խաղացվող չեն, նախատեսված են միայն ցուցադրության համար։"
 
-#: gui/gamesetup/gamesetup.js:192
+#: gui/gamesetup/Controls/MapFilters.js:103
 msgid "New Maps"
 msgstr "Նոր քարտեզներ"
 
-#: gui/gamesetup/gamesetup.js:193
-msgctxt "map filter"
+#: gui/gamesetup/Controls/MapFilters.js:104
 msgid "Maps that are brand new in this release of the game."
 msgstr "Քարտեզներ, որոնք ավելացվել են խաղի այս տարբերակի հետ։"
 
-#: gui/gamesetup/gamesetup.js:198
+#: gui/gamesetup/Controls/MapFilters.js:109
 msgid "Trigger Maps"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:199
-msgctxt "map filter"
+#: gui/gamesetup/Controls/MapFilters.js:110
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "Քարտեզներ, որոնցում կան նախորոշված իրադարձություններ, և որոնցում կարող են հայտնվել հակառակորդ միավորներ։"
 
-#: gui/gamesetup/gamesetup.js:204
+#: gui/gamesetup/Controls/MapFilters.js:115
 msgid "All Maps"
 msgstr "Բոլոր քարտեզները"
 
-#: gui/gamesetup/gamesetup.js:205
-msgctxt "map filter"
+#: gui/gamesetup/Controls/MapFilters.js:116
 msgid "Every map of the chosen maptype."
 msgstr "Ընտրված տեսակի բոլոր քարտեզները։"
 
-#: gui/gamesetup/gamesetup.js:404
+#: gui/gamesetup/GameSettings/GameSettingControl.js:172
+#, javascript-format
+msgctxt "Title for specific setting"
+msgid "%(setting)s:"
+msgstr "%(setting)s."
+
+#: gui/gamesetup/GameSettings/GameSettingControlCheckbox.js:57
+msgid "Yes"
+msgstr "Այո"
+
+#: gui/gamesetup/GameSettings/GameSettingControlCheckbox.js:60
+msgid "No"
+msgstr "Ոչ"
+
+#: gui/gamesetup/GameSettings/GameSettingControlDropdown.js:64
+msgctxt "settings value"
+msgid "Unknown"
+msgstr "Անհայտ"
+
+#: gui/gamesetup/GameSettings/GameSettingsLayout.js:7
 msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "Քարտեզ"
 
-#: gui/gamesetup/gamesetup.js:419
+#: gui/gamesetup/GameSettings/GameSettingsLayout.js:22
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "Խաղացող"
 
-#: gui/gamesetup/gamesetup.js:429
+#: gui/gamesetup/GameSettings/GameSettingsLayout.js:32
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "Խաղի տեսակ"
 
-#: gui/gamesetup/gamesetup.js:469
-msgid "Map Type"
-msgstr "Քարտեզի տեսակ"
+#: gui/gamesetup/GameSettings/PerPlayer/AIConfigButton.js:182
+#, javascript-format
+msgid "Configure AI: %(description)s."
+msgstr "Կարգաբերեք ԱԻ-ը․ %(description)s"
 
-#: gui/gamesetup/gamesetup.js:470
-msgid "Select a map type."
-msgstr "Ընտրեք քարտեզի տեսակը։"
+#: gui/gamesetup/GameSettings/PerPlayer/PlayerName.js:114
+#, javascript-format
+msgid "%(playerName)s %(romanNumber)s"
+msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:493
-msgid "Map Filter"
-msgstr "Քարտեզի տեսակավորում"
+#: gui/gamesetup/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:153
+msgid "Select player."
+msgstr "Ընտրեք խաղացող։"
 
-#: gui/gamesetup/gamesetup.js:494
-msgid "Select a map filter."
-msgstr "Ընտրեք քարտեզի տեսակավորումը։"
+#: gui/gamesetup/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:230
+#, javascript-format
+msgid "AI: %(ai)s"
+msgstr "ԱԻ․ %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:509
-msgid "Select Map"
-msgstr "Քարտեզի ընտրություն"
+#: gui/gamesetup/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:265
+msgid "Unassigned"
+msgstr "Չնշանակված"
 
-#: gui/gamesetup/gamesetup.js:510
-msgid "Select a map to play on."
-msgstr "Ընտրեք խաղի քարտեզը։"
+#: gui/gamesetup/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:131
+msgid "Choose the civilization for this player."
+msgstr "Ընտրեք այս խաղացողի քաղաքակրթությունը։"
 
-#: gui/gamesetup/gamesetup.js:524
-msgid "Map Size"
-msgstr "Քարտեզի չափ"
+#: gui/gamesetup/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:134
+msgctxt "civilization"
+msgid "Random"
+msgstr "Պատահական"
 
-#: gui/gamesetup/gamesetup.js:525
-msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "Ընտրեք քարտեզի չափը: (Մեծ քարտեզները կարող են նվազեցնել արագագործությունը։)"
+#: gui/gamesetup/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:140
+msgid "Picks one civilization at random when the game starts."
+msgstr "Պատահական քաղաքակրթության ընտրություն խաղի սկզբում։"
 
-#: gui/gamesetup/gamesetup.js:539
+#: gui/gamesetup/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:172
+msgid "Pick a color."
+msgstr "Ընտրեք գույն։"
+
+#: gui/gamesetup/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:73
+msgid "Select player's team."
+msgstr "Ընտրեք խաղացողի թիմը։"
+
+#: gui/gamesetup/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:76
+msgctxt "team"
+msgid "None"
+msgstr "Ոչ մի"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Cheats.js:40
+msgid "Cheats"
+msgstr "Չիտեր"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Cheats.js:43
+msgid "Toggle the usability of cheats."
+msgstr "Փոփոխել չիտերի օգտագործման հնարավորությունը։"
+
+#. Translation: Make sure to differentiate between the revealed map and
+#. explored map settings!
+#: gui/gamesetup/GameSettings/Single/Checkboxes/ExploredMap.js:54
+msgid "Explored Map"
+msgstr "Հետախուզված քարտեզ"
+
+#. Translation: Make sure to differentiate between the revealed map and
+#. explored map settings!
+#: gui/gamesetup/GameSettings/Single/Checkboxes/ExploredMap.js:58
+msgid "Toggle explored map (see initial map)."
+msgstr "Փոփոխեք քարտեզի հետախուզված լինելը (տեսնել նախնական քարտեզը)։"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/LastManStanding.js:58
+msgid "Last Man Standing"
+msgstr "Վերջին մարտիկ"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/LastManStanding.js:61
+msgid ""
+"Toggle whether the last remaining player or the last remaining set of allies"
+" wins."
+msgstr "Փոփոխել հաղթանակի շնորհումը վերջին մնացած խաղացողին կամ դաշնությանը։"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/LockedTeams.js:52
+msgid "Teams Locked"
+msgstr "Հաստատուն թմեր"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/LockedTeams.js:55
+msgid "Toggle locked teams."
+msgstr "Փոփոխել թմերի հաստատունությունը։"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Nomad.js:60
+msgid "Nomad"
+msgstr "Քոչվոր"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Nomad.js:63
+msgid ""
+"In Nomad mode, players start with only few units and have to find a suitable"
+" place to build their city. Ceasefire is recommended."
+msgstr "Քոչվոր ռեժիմում խաղացողներն սկսում են միայն մի քանի միավորներով և ստիպված են գտնել հարմար վայր՝ իրենց քաղաքը կառուցելու համար։ Խորհուրդ է տրվում կիրառել հրադադար։"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Rating.js:51
+msgid "Rated Game"
+msgstr "Վարկանիշային խաղ"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Rating.js:54
+msgid "Toggle if this game will be rated for the leaderboard."
+msgstr "Փոփոխել խաղի ազդեցությունը վարկանիշային աղյուսակի վրա։"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/RegicideGarrison.js:61
+msgid "Hero Garrison"
+msgstr "Հերոսների կայազորում"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/RegicideGarrison.js:64
+msgid "Toggle whether heroes can be garrisoned."
+msgstr "Փոփոխեք հերոսների կայազորման հնարավորությունը։"
+
+#. Translation: Make sure to differentiate between the revealed map and
+#. explored map settings!
+#: gui/gamesetup/GameSettings/Single/Checkboxes/RevealedMap.js:49
+msgid "Revealed Map"
+msgstr "Բացահայտ քարտեզ"
+
+#. Translation: Make sure to differentiate between the revealed map and
+#. explored map settings!
+#: gui/gamesetup/GameSettings/Single/Checkboxes/RevealedMap.js:53
+msgid "Toggle revealed map (see everything)."
+msgstr "Փոփոխեք քարտեզի բացահայտ լինելը (տեսնել ամեն ինչ)։"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Spies.js:42
+msgid "Disable Spies"
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Spies.js:45
+msgid "Disable spies during the game."
+msgstr "Թույլ չտալ լրտեսներ խաղի ընթացքում։"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Treasures.js:42
+msgid "Disable Treasures"
+msgstr "Արգելել գանձերը"
+
+#: gui/gamesetup/GameSettings/Single/Checkboxes/Treasures.js:45
+msgid "Do not add treasures to the map."
+msgstr "Չավելացնել գանձեր քարտեզում։"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:119
 msgid "Biome"
 msgstr "Բիոմ"
 
-#: gui/gamesetup/gamesetup.js:540
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:125
 msgid "Select the flora and fauna."
 msgstr "Ընտրեք ֆլորան և ֆաունան։"
 
-#: gui/gamesetup/gamesetup.js:555
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:128
+msgctxt "biome"
+msgid "Random"
+msgstr "Պատահական"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:131
+msgid "Pick a biome at random."
+msgstr "Ընտրել պատահական բիոմ։"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Ceasefire.js:52
+msgid "Ceasefire"
+msgstr "Հրադադար"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Ceasefire.js:55
+msgid "Set time where no attacks are possible."
+msgstr "Սահմանեք ժամանակ, որի ընդացքում անհնար են հարձակումները։"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/GameSpeed.js:73
+msgid "Game Speed"
+msgstr "Խաղի արագություն"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/GameSpeed.js:76
+msgid "Select game speed."
+msgstr "Ընտրեք խաղի արագությունը։"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapFilter.js:89
+msgid "Map Filter"
+msgstr "Քարտեզի տեսակավորում"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapFilter.js:92
+msgid "Select a map filter."
+msgstr "Ընտրեք քարտեզի տեսակավորումը։"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapSelection.js:146
+msgid "Select Map"
+msgstr "Քարտեզի ընտրություն"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapSelection.js:149
+msgid "Select a map to play on."
+msgstr "Ընտրեք խաղի քարտեզը։"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapSelection.js:155
+msgctxt "map selection"
+msgid "Random"
+msgstr "Պատահական"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapSelection.js:158
+msgid "Pick any of the given maps at random."
+msgstr "Ընտրել տրված քարտեզներից պատահական որևէ մեկը։"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapSize.js:74
+msgid "Map Size"
+msgstr "Քարտեզի չափ"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapSize.js:77
+msgid "Select map size. (Larger sizes may reduce performance.)"
+msgstr "Ընտրեք քարտեզի չափը: (Մեծ քարտեզները կարող են նվազեցնել արագագործությունը։)"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapType.js:61
+msgid "Map Type"
+msgstr "Քարտեզի տեսակ"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/MapType.js:64
+msgid "Select a map type."
+msgstr "Ընտրեք քարտեզի տեսակը։"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/PlayerCount.js:49
 msgid "Number of Players"
 msgstr "Խաղացողների քանակ"
 
-#: gui/gamesetup/gamesetup.js:556
+#: gui/gamesetup/GameSettings/Single/Dropdowns/PlayerCount.js:52
 msgid "Select number of players."
 msgstr "Ընտրեք խաղացողների քանակը։"
 
-#: gui/gamesetup/gamesetup.js:576
+#: gui/gamesetup/GameSettings/Single/Dropdowns/PopulationCap.js:82
 msgid "Population Cap"
 msgstr "Բնակչության սահմանաչափ"
 
-#: gui/gamesetup/gamesetup.js:583
+#: gui/gamesetup/GameSettings/Single/Dropdowns/PopulationCap.js:85
 msgid "Select population limit."
 msgstr "Ընտրեք բնակչության սահմանաչափը։"
 
-#: gui/gamesetup/gamesetup.js:586
+#: gui/gamesetup/GameSettings/Single/Dropdowns/PopulationCap.js:88
+msgctxt "population limit"
+msgid "Per Player"
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/PopulationCap.js:91
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
 msgstr "Զգուշացում․ բոլոր %(players)s խաղացողների կողմից %(popCap)s բնակչության հասնելու դեպքում կարող են լինել արագագործության խնդիրներ։"
 
-#: gui/gamesetup/gamesetup.js:604
-msgid "Starting Resources"
-msgstr "Սկզբնական ռեսուրսներ"
-
-#: gui/gamesetup/gamesetup.js:607
-#, javascript-format
-msgid "Initial amount of each resource: %(resources)s."
-msgstr "Յուրաքանչյուր ռեսուրսի նախնական քանակը՝ %(resources)s։"
-
-#: gui/gamesetup/gamesetup.js:610
-msgid "Select the game's starting resources."
-msgstr "Ընտրեք խաղի ռեսուրսների սկզբնական քանակը։"
-
-#: gui/gamesetup/gamesetup.js:625
-msgid "Ceasefire"
-msgstr "Հրադադար"
-
-#: gui/gamesetup/gamesetup.js:626
-msgid "Set time where no attacks are possible."
-msgstr "Սահմանեք ժամանակ, որի ընդացքում անհնար են հարձակումները։"
-
-#: gui/gamesetup/gamesetup.js:639
+#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicCount.js:77
 msgid "Relic Count"
 msgstr "Մասունքների քանակ"
 
-#: gui/gamesetup/gamesetup.js:640
+#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicCount.js:80
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
 msgstr "Քարտեզում հայտնվող մասունքների ընդհանուր քանակը։ Մասունքային հաղթանակն առավել իրատեսական է միայն մեկ կամ երկու մասունքների դեպքում։ Ավելի մեծ քանակության դեպքում մասունքների գրավումը կարևոր է աուրաների բոնուս ստանալու համար։"
 
-#: gui/gamesetup/gamesetup.js:654
+#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicDuration.js:79
 msgid "Relic Duration"
 msgstr "Մասունքային հաղթանակի ժամանակ։"
 
-#: gui/gamesetup/gamesetup.js:655
+#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicDuration.js:82
 msgid "Minutes until the player has achieved Relic Victory."
 msgstr "Խաղացողի կողմից մասունքային հաղթանակի հասնելուն մնացած րոպեները։"
 
-#: gui/gamesetup/gamesetup.js:669
-msgid "Wonder Duration"
-msgstr "Հրաշալիքային հաղթանակի ժամանակ։"
+#: gui/gamesetup/GameSettings/Single/Dropdowns/StartingResources.js:81
+msgid "Starting Resources"
+msgstr "Սկզբնական ռեսուրսներ"
 
-#: gui/gamesetup/gamesetup.js:670
-msgid "Minutes until the player has achieved Wonder Victory."
-msgstr "Խաղացողի կողմից հրաշալիքային հաղթանակի հասնելուն մնացած րոպեները։"
+#: gui/gamesetup/GameSettings/Single/Dropdowns/StartingResources.js:84
+msgid "Select the game's starting resources."
+msgstr "Ընտրեք խաղի ռեսուրսների սկզբնական քանակը։"
 
-#: gui/gamesetup/gamesetup.js:684
-msgid "Game Speed"
-msgstr "Խաղի արագություն"
+#: gui/gamesetup/GameSettings/Single/Dropdowns/StartingResources.js:87
+#, javascript-format
+msgid "Initial amount of each resource: %(resources)s."
+msgstr "Յուրաքանչյուր ռեսուրսի նախնական քանակը՝ %(resources)s։"
 
-#: gui/gamesetup/gamesetup.js:685
-msgid "Select game speed."
-msgstr "Ընտրեք խաղի արագությունը։"
+#: gui/gamesetup/GameSettings/Single/Dropdowns/StartingResources.js:90
+msgctxt "starting resources"
+msgid "Per Player"
+msgstr ""
 
-#: gui/gamesetup/gamesetup.js:699
+#: gui/gamesetup/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
 msgstr "Դժվարություն"
 
-#: gui/gamesetup/gamesetup.js:701
+#: gui/gamesetup/GameSettings/Single/Dropdowns/TriggerDifficulty.js:84
 msgid "Select the difficulty of this scenario."
 msgstr "Ընտրեք այս խաղի դժվարությունը։"
 
-#: gui/gamesetup/gamesetup.js:721
-msgid "Select player."
-msgstr "Ընտրեք խաղացող։"
+#: gui/gamesetup/GameSettings/Single/Dropdowns/WonderDuration.js:79
+msgid "Wonder Duration"
+msgstr "Հրաշալիքային հաղթանակի ժամանակ։"
 
-#: gui/gamesetup/gamesetup.js:756
-msgid "Select player's team."
-msgstr "Ընտրեք խաղացողի թիմը։"
-
-#: gui/gamesetup/gamesetup.js:768
-msgid "Choose the civilization for this player."
-msgstr "Ընտրեք այս խաղացողի քաղաքակրթությունը։"
-
-#: gui/gamesetup/gamesetup.js:782
-msgid "Pick a color."
-msgstr "Ընտրեք գույն։"
-
-#: gui/gamesetup/gamesetup.js:836
-msgid "Hero Garrison"
-msgstr "Հերոսների կայազորում"
-
-#: gui/gamesetup/gamesetup.js:837
-msgid "Toggle whether heroes can be garrisoned."
-msgstr "Փոփոխեք հերոսների կայազորման հնարավորությունը։"
-
-#: gui/gamesetup/gamesetup.js:849
-msgid "Nomad"
-msgstr "Քոչվոր"
-
-#: gui/gamesetup/gamesetup.js:850
-msgid ""
-"In Nomad mode, players start with only few units and have to find a suitable"
-" place to build their city. Ceasefire is recommended."
-msgstr "Քոչվոր ռեժիմում խաղացողներն սկսում են միայն մի քանի միավորներով և ստիպված են գտնել հարմար վայր՝ իրենց քաղաքը կառուցելու համար։ Խորհուրդ է տրվում կիրառել հրադադար։"
-
-#. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/gamesetup.js:863
-msgid "Revealed Map"
-msgstr "Բացահայտ քարտեզ"
-
-#. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/gamesetup.js:866
-msgid "Toggle revealed map (see everything)."
-msgstr "Փոփոխեք քարտեզի բացահայտ լինելը (տեսնել ամեն ինչ)։"
-
-#. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/gamesetup.js:882
-msgid "Explored Map"
-msgstr "Հետախուզված քարտեզ"
-
-#. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/gamesetup.js:885
-msgid "Toggle explored map (see initial map)."
-msgstr "Փոփոխեք քարտեզի հետախուզված լինելը (տեսնել նախնական քարտեզը)։"
-
-#: gui/gamesetup/gamesetup.js:896
-msgid "Disable Treasures"
-msgstr "Արգելել գանձերը"
-
-#: gui/gamesetup/gamesetup.js:897
-msgid "Do not add treasures to the map."
-msgstr "Չավելացնել գանձեր քարտեզում։"
-
-#: gui/gamesetup/gamesetup.js:908
-msgid "Disable Spies"
+#: gui/gamesetup/GameSettings/Single/Dropdowns/WonderDuration.js:82
+msgid "Minutes until the player has achieved Wonder Victory"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:909
-msgid "Disable spies during the game."
-msgstr "Թույլ չտալ լրտեսներ խաղի ընթացքում։"
+#: gui/gamesetup/Panels/GameSettingWarning.js:38
+msgid "Cheats enabled."
+msgstr "Չիտերը թույլատրվում են։"
 
-#: gui/gamesetup/gamesetup.js:920
-msgid "Teams Locked"
-msgstr "Հաստատուն թմեր"
+#: gui/gamesetup/Panels/GameSettingWarning.js:41
+msgid "Rated game."
+msgstr ""
 
-#: gui/gamesetup/gamesetup.js:921
-msgid "Toggle locked teams."
-msgstr "Փոփոխել թմերի հաստատունությունը։"
-
-#: gui/gamesetup/gamesetup.js:935
-msgid "Last Man Standing"
-msgstr "Վերջին մարտիկ"
-
-#: gui/gamesetup/gamesetup.js:936
-msgid ""
-"Toggle whether the last remaining player or the last remaining set of allies"
-" wins."
-msgstr "Փոփոխել հաղթանակի շնորհումը վերջին մնացած խաղացողին կամ դաշնությանը։"
-
-#: gui/gamesetup/gamesetup.js:949
-msgid "Cheats"
-msgstr "Չիտեր"
-
-#: gui/gamesetup/gamesetup.js:950
-msgid "Toggle the usability of cheats."
-msgstr "Փոփոխել չիտերի օգտագործման հնարավորությունը։"
-
-#: gui/gamesetup/gamesetup.js:963
-msgid "Rated Game"
-msgstr "Վարկանիշային խաղ"
-
-#: gui/gamesetup/gamesetup.js:964
-msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "Փոփոխել խաղի ազդեցությունը վարկանիշային աղյուսակի վրա։"
-
-#: gui/gamesetup/gamesetup.js:997
+#: gui/gamesetup/Panels/GameSettingsTabs.js:76
 #, javascript-format
-msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr "Սեղմեք %(hotkey)s՝ խաղացողների անունները կամ կարգավորումներն ավտոմատ կերպով լրացնելու համար։"
+msgid "Toggle the %(name)s settings tab."
+msgstr "Փոփոխեք կարգավորումների %(name)s ներդիրը։"
 
-#: gui/gamesetup/gamesetup.js:1045
+#: gui/gamesetup/Panels/GameSettingsTabs.js:79
+#, javascript-format
+msgid "Use %(hotkey)s to move a settings tab up."
+msgstr "Օգտագործեք %(hotkey)s՝ կարգավորումների ներդիրը բարձրացնելու համար։"
+
+#: gui/gamesetup/Panels/GameSettingsTabs.js:82
+#, javascript-format
+msgid "Use %(hotkey)s to move a settings tab down."
+msgstr "Օգտագործեք %(hotkey)s՝ կարգավորումների ներդիրն իջեցնելու համար։"
+
+#: gui/gamesetup/Panels/Buttons/CancelButton.js:39
 msgid "Back"
 msgstr "Վերադարձ"
 
-#: gui/gamesetup/gamesetup.js:1048
+#: gui/gamesetup/Panels/Buttons/CancelButton.js:42
 msgid "Return to the lobby."
 msgstr "Վերադառնալ սենյակ։"
 
-#: gui/gamesetup/gamesetup.js:1049
+#: gui/gamesetup/Panels/Buttons/CancelButton.js:45
 msgid "Return to the main menu."
 msgstr "Վերադառնալ հիմնական մենյու։"
 
-#: gui/gamesetup/gamesetup.js:1077
-msgid "Start Game!"
-msgstr "Սկսել խաղը!"
-
-#: gui/gamesetup/gamesetup.js:1093
-msgid "Start a new game with the current settings."
-msgstr "Սկսել նոր խաղ առկա կարգավորումներով։"
-
-#: gui/gamesetup/gamesetup.js:1094
-msgid ""
-"Start a new game with the current settings (disabled until all players are "
-"ready)."
-msgstr "Սկսել նոր խաղ առկա կարգավորումներով (արգելափակված մինչև բոլոր խաղացողների պատրաստությունը)։"
-
-#: gui/gamesetup/gamesetup.js:1106
+#: gui/gamesetup/Panels/Buttons/CivInfoButton.js:48
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
 msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s․ Ցուցադրել պատմությունը / Տեխնոլոգիական ծառ\nՎերջին բացվածը կվերաբացվի սեղմելու դեպքում։"
 
-#: gui/gamesetup/gamesetup.js:1118
+#: gui/gamesetup/Panels/Buttons/LobbyButton.js:19
+msgid "Show the multiplayer lobby in a dialog window."
+msgstr "Ցուցադրել ցանցային սենյակը խոսակցական պատուհանում։"
+
+#: gui/gamesetup/Panels/Buttons/ReadyButton.js:79
+msgid "I'm ready"
+msgstr "Պատրաստ եմ"
+
+#: gui/gamesetup/Panels/Buttons/ReadyButton.js:80
+msgid "Stay ready"
+msgstr "Մնացեք պատրաստ։"
+
+#: gui/gamesetup/Panels/Buttons/ReadyButton.js:81
+msgid "I'm not ready!"
+msgstr "Պատրաստ չեմ!"
+
+#: gui/gamesetup/Panels/Buttons/ReadyButton.js:85
+msgid "State that you are ready to play."
+msgstr "Հաղորդում, որ դուք պատրաստ եք խաղին։"
+
+#: gui/gamesetup/Panels/Buttons/ReadyButton.js:86
+msgid "Stay ready even when the game settings change."
+msgstr "Մնացեք պատրաստ նույնիսկ խաղի կարգավորումների փոփոխության դեպքում։"
+
+#: gui/gamesetup/Panels/Buttons/ReadyButton.js:87
+msgid "State that you are not ready to play."
+msgstr "Հաղորդում, որ դուք պատրաստ չեք խաղին։"
+
+#: gui/gamesetup/Panels/Buttons/ResetCivsButton.js:33
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
 msgstr "Վերականգնել ցանկացած ընտրված քաղաքակրթություն (պատահական)։"
 
-#: gui/gamesetup/gamesetup.js:1128
+#: gui/gamesetup/Panels/Buttons/ResetTeamsButton.js:35
 msgid "Reset all teams to the default."
 msgstr "Վերականգնել բոլոր թմերը (պատահական)։"
 
-#: gui/gamesetup/gamesetup.js:1185
+#: gui/gamesetup/Panels/Buttons/StartGameButton.js:66
+msgid "Start Game!"
+msgstr "Սկսել խաղը!"
+
+#: gui/gamesetup/Panels/Buttons/StartGameButton.js:69
+msgid "Start a new game with the current settings."
+msgstr "Սկսել նոր խաղ առկա կարգավորումներով։"
+
+#: gui/gamesetup/Panels/Buttons/StartGameButton.js:72
+msgid ""
+"Start a new game with the current settings (disabled until all players are "
+"ready)."
+msgstr "Սկսել նոր խաղ առկա կարգավորումներով (արգելափակված մինչև բոլոր խաղացողների պատրաստությունը)։"
+
+#: gui/gamesetup/Panels/Chat/ChatInputPanel.js:55
 #, javascript-format
-msgid "Configure AI: %(description)s."
-msgstr "Կարգաբերեք ԱԻ-ը․ %(description)s"
+msgid "Press %(hotkey)s to autocomplete player names or settings."
+msgstr "Սեղմեք %(hotkey)s՝ խաղացողների անունները կամ կարգավորումներն ավտոմատ կերպով լրացնելու համար։"
 
-#: gui/gamesetup/gamesetup.js:1498
-#, javascript-format
-msgid "Toggle the %(name)s settings tab."
-msgstr "Փոփոխեք կարգավորումների %(name)s ներդիրը։"
-
-#: gui/gamesetup/gamesetup.js:1499
-#, javascript-format
-msgid "Use %(hotkey)s to move a settings tab down."
-msgstr "Օգտագործեք %(hotkey)s՝ կարգավորումների ներդիրն իջեցնելու համար։"
-
-#: gui/gamesetup/gamesetup.js:1500
-#, javascript-format
-msgid "Use %(hotkey)s to move a settings tab up."
-msgstr "Օգտագործեք %(hotkey)s՝ կարգավորումների ներդիրը բարձրացնելու համար։"
-
-#: gui/gamesetup/gamesetup.js:1834
-msgctxt "map selection"
-msgid "Random"
-msgstr "Պատահական"
-
-#: gui/gamesetup/gamesetup.js:1836
-msgid "Pick any of the given maps at random."
-msgstr "Ընտրել տրված քարտեզներից պատահական որևէ մեկը։"
-
-#: gui/gamesetup/gamesetup.js:1868
-msgctxt "biome"
-msgid "Random"
-msgstr "Պատահական"
-
-#: gui/gamesetup/gamesetup.js:1869
-msgid "Pick a biome at random."
-msgstr "Ընտրել պատահական բիոմ։"
-
-#: gui/gamesetup/gamesetup.js:2215
-#, javascript-format
-msgctxt "Title for specific setting"
-msgid "%(setting)s:"
-msgstr "%(setting)s."
-
-#: gui/gamesetup/gamesetup.js:2220
-msgctxt "settings value"
-msgid "Unknown"
-msgstr "Անհայտ"
-
-#: gui/gamesetup/gamesetup.js:2250
-msgid "Yes"
-msgstr "Այո"
-
-#: gui/gamesetup/gamesetup.js:2250
-msgid "No"
-msgstr "Ոչ"
-
-#: gui/gamesetup/gamesetup.js:2257
-#, javascript-format
-msgid "%(setting)s:"
-msgstr "%(setting)s."
-
-#: gui/gamesetup/gamesetup.js:2339
-#, javascript-format
-msgid "%(playerName)s %(romanNumber)s"
-msgstr "%(playerName)s %(romanNumber)s"
-
-#: gui/gamesetup/gamesetup.js:2503
-#, javascript-format
-msgid "AI: %(ai)s"
-msgstr "ԱԻ․ %(ai)s"
-
-#: gui/gamesetup/gamesetup.js:2511
-msgid "Unassigned"
-msgstr "Չնշանակված"
-
-#: gui/gamesetup/gamesetup.js:2582
+#: gui/gamesetup/Panels/Chat/StatusMessageFormat.js:24
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2589
-msgid "Unknown Player"
-msgstr "Անհայտ խաղացող"
-
-#: gui/gamesetup/gamesetup.js:2628
+#: gui/gamesetup/Panels/Chat/TimestampWrapper.js:25
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2629
+#: gui/gamesetup/Panels/Chat/TimestampWrapper.js:28
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2630
+#: gui/gamesetup/Panels/Chat/TimestampWrapper.js:31
 msgid "HH:mm"
 msgstr "ԺԺ։րր"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/ClientChat.js:26
+msgid "Unknown Player"
+msgstr "Անհայտ խաղացող"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/ClientChat.js:46
+#, javascript-format
+msgid "<%(username)s>"
+msgstr "<%(username)s>"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/ClientChat.js:49
+#, javascript-format
+msgid "%(username)s %(message)s"
+msgstr "%(username)s %(message)s"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/ClientConnection.js:27
+#, javascript-format
+msgid "%(username)s has joined"
+msgstr "%(username)s միացավ"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/ClientConnection.js:30
+#, javascript-format
+msgid "%(username)s has left"
+msgstr "%(username)s հեռացավ"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/ClientKicked.js:22
+#, javascript-format
+msgid "%(username)s has been kicked"
+msgstr "%(username)s հեռացվեց"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/ClientKicked.js:25
+#, javascript-format
+msgid "%(username)s has been banned"
+msgstr "%(username)s արգելափակվեց"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/ClientReady.js:28
+#, javascript-format
+msgid "* %(username)s is not ready."
+msgstr "* %(username)s պատրաստ չի։"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/ClientReady.js:29
+#, javascript-format
+msgid "* %(username)s is ready!"
+msgstr "* %(username)s պատրաստ է!"
+
+#: gui/gamesetup/Panels/Chat/ChatMessages/GameSettingsChanged.js:22
+msgid "Game settings have been changed"
+msgstr "Խաղի կարգավորումները փոխվել են։"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:55
 #, javascript-format
@@ -666,53 +676,45 @@ msgstr "Չեղարկել"
 msgid "OK"
 msgstr "Լավ"
 
-#: gui/gamesetup/gamesetup.xml:(caption):12
+#: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Match Setup"
 msgstr "Խաղի կարգաբերում"
 
-#: gui/gamesetup/gamesetup.xml:(caption):18
-msgid "Loading"
-msgstr "Բեռնում"
-
-#: gui/gamesetup/gamesetup.xml:(caption):22
-msgid "Loading map data. Please wait…"
-msgstr "Բեռնվում են քարտեզի տվյալները։ Խնդրում ենք սպասել․․․"
-
-#: gui/gamesetup/gamesetup.xml:(caption):42
+#: gui/gamesetup/GameSettings/PerPlayer/PlayersPanel.xml:(caption):6
 msgid "Player Name"
 msgstr "Խաղացողի Անունը"
 
-#: gui/gamesetup/gamesetup.xml:(caption):46
+#: gui/gamesetup/GameSettings/PerPlayer/PlayersPanel.xml:(caption):10
 msgid "Color"
 msgstr "Գույն"
 
-#: gui/gamesetup/gamesetup.xml:(caption):50
+#: gui/gamesetup/GameSettings/PerPlayer/PlayersPanel.xml:(caption):14
 msgid "Player Placement"
 msgstr "Խաղացողի տեղաբաշխում"
 
-#: gui/gamesetup/gamesetup.xml:(caption):54
+#: gui/gamesetup/GameSettings/PerPlayer/PlayersPanel.xml:(caption):18
 msgid "Civilization"
 msgstr "Քաղաքակրթություն"
 
-#: gui/gamesetup/gamesetup.xml:(caption):61
+#: gui/gamesetup/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
 msgid "Team"
 msgstr "Թիմ"
 
-#: gui/gamesetup/gamesetup.xml:(caption):90
+#: gui/gamesetup/Panels/LoadingWindow.xml:(caption):5
+msgid "Loading"
+msgstr "Բեռնում"
+
+#: gui/gamesetup/Panels/LoadingWindow.xml:(caption):9
+msgid "Loading map data. Please wait…"
+msgstr "Բեռնվում են քարտեզի տվյալները։ Խնդրում ենք սպասել․․․"
+
+#: gui/gamesetup/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
 msgstr "Ցուցադրել այս հաղորդագրությունն ապագայում։"
 
-#: gui/gamesetup/gamesetup.xml:(caption):175
+#: gui/gamesetup/Panels/Chat/ChatPanel.xml:(caption):9
 msgid "Send"
 msgstr "Ուղարկել"
-
-#: gui/gamesetup/gamesetup.xml:(caption):192
-msgid "Cheats enabled."
-msgstr "Չիտերը թույլատրվում են։"
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):161
-msgid "Show the multiplayer lobby in a dialog window."
-msgstr "Ցուցադրել ցանցային սենյակը խոսակցական պատուհանում։"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"

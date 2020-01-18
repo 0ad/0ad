@@ -433,11 +433,6 @@ CRenderer::CRenderer()
 	if (skycolor.ParseString(skystring, 255.f))
 		SetClearColor(skycolor.AsSColor4ub());
 
-#if CONFIG2_GLES
-	// Override config option since GLES only supports GLSL
-	g_RenderingOptions.GetPreferGLSL() = true;
-#endif
-
 	m_ShadowZBias = 0.02f;
 	m_ShadowMapSize = 0;
 

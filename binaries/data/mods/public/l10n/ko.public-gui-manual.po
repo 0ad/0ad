@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-06 08:10+0000\n"
-"PO-Revision-Date: 2020-01-08 12:42+0000\n"
-"Last-Translator: 이정희 <daemul72@gmail.com>\n"
+"POT-Creation-Date: 2020-01-13 08:22+0000\n"
+"PO-Revision-Date: 2020-01-13 15:17+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -312,15 +312,15 @@ msgstr "  Pause – 놀이를 중단/재개"
 
 #: gui/manual/intro.txt:66
 msgid ""
-"  Delete – Delete currently selected unit(s)/building(s), ask for "
+"  Delete – Delete currently selected unit(s)/structure(s), ask for "
 "confirmation"
-msgstr "  Delete – 현재 선택된 유닛/건물들 삭제하고 확인 요청"
+msgstr ""
 
 #: gui/manual/intro.txt:67
 msgid ""
 "  Shift + Delete – Immediately delete currently selected "
-"unit(s)/building(s), without asking for confirmation"
-msgstr "  Shift + Delete – 확인 요청 없이 현재 선택된 유닛(들)/건물(들)을 바로 삭제"
+"unit(s)/structure(s), without asking for confirmation"
+msgstr ""
 
 #: gui/manual/intro.txt:68
 msgid "  / (Slash) – Select idle fighter"
@@ -370,26 +370,26 @@ msgid "  Y – The unit will go back to work"
 msgstr "  Y – 유닛이 하던 일로 돌아가기"
 
 #: gui/manual/intro.txt:79
-msgid "  U – Unload the garrisoned units of the selected buildings"
-msgstr "  U –선택된 건물에 주둔된 유닛 해체"
+msgid "  U – Unload the garrisoned units of the selected structure(s)"
+msgstr ""
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from "
-"the selected unit(s)/building(s)"
-msgstr "  Ctrl + 1 (~ Ctrl + 0 까지) – 선택된 유닛들/건물들로 부터 통제 묶음을 1 에서 (0까지) 만들기"
+"the selected unit(s)/structure(s)"
+msgstr ""
 
 #: gui/manual/intro.txt:81
 msgid ""
-"  1 (and so on up to 0) – Select the units/buildings in control group 1 (to "
-"0)"
-msgstr "  1 (~ 0까지) – 통제 묶음 1에서(0까지) 유닛들/건물들 선택"
+"  1 (and so on up to 0) – Select the unit(s)/structure(s) in control group 1"
+" (to 0)"
+msgstr ""
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected "
-"units/buildings"
-msgstr "  Shift + 1 (~ 0 까지) – 선택된 유닛들/건물들로 부터 제어그룹을 1 에서 (0까지) 만들기"
+"unit(s)/structure(s)"
+msgstr ""
 
 #: gui/manual/intro.txt:83
 msgid ""
@@ -405,21 +405,21 @@ msgstr "  F5, F6, F7, F8 – 지정된 카메라 위치로 이동하기. 카메�
 
 #: gui/manual/intro.txt:85
 msgid ""
-"  Z, X, C, V, B, N, M – With training buildings selected. Add the 1st, 2nd, "
-"… unit shown to the training queue for all the selected buildings"
-msgstr "  Z, X, C, V, B, N, M – 선택된 건물들 중에 훈련 건물이 선택되면 훈련 대기열에 유닛이 나타나며 순서대로 1번째, 2번째, ... 를 추가"
+"  Z, X, C, V, B, N, M – With training structure selected. Add the 1st, 2nd, "
+"… unit shown to the training queue for all the selected structures"
+msgstr ""
 
 #: gui/manual/intro.txt:86
 msgid ""
-"  PageUp with units selected – Highlights the units/buildings guarded by the"
-" selection"
-msgstr "  유닛 선택후 PageUp – 선택으로 지키고 있는 유닛/건물을 강조 표시"
+"  PageUp with unit(s) selected – Highlights the unit(s)/structure(s) guarded"
+" by the selection"
+msgstr ""
 
 #: gui/manual/intro.txt:87
 msgid ""
-"  PageDown with units/buildings selected – Highlights the units guarding the"
-" selection"
-msgstr "  유닛/건물 선택 후 PageDown – 해당 유닛을 지키고있는 유닛을 강조 표시"
+"  PageDown with unit(s)/structure(s) selected – Highlights the unit(s) "
+"guarding the selection"
+msgstr ""
 
 #: gui/manual/intro.txt:88
 msgid ""
@@ -463,12 +463,12 @@ msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]마우스 움직임 바꾸기[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
-msgid "  Ctrl + Right Click on building – Garrison"
-msgstr "  건물에 Ctrl + 마우스 오른쪽 버튼 클릭 – 주둔하기"
+msgid "  Ctrl + Right Click on structure – Garrison"
+msgstr ""
 
 #: gui/manual/intro.txt:100
-msgid "  J + Right Click on building – Repair"
-msgstr "  건물에 J + 마우스 오른쪽 버튼 클릭 – 고치기"
+msgid "  J + Right Click on structure – Repair"
+msgstr ""
 
 #: gui/manual/intro.txt:101
 msgid "  P + Right Click – Patrol"
@@ -527,9 +527,9 @@ msgstr "  여러 유닛이 선택된 상태에서 유닛/묶음 아이콘을 Ctr
 
 #: gui/manual/intro.txt:112
 msgid ""
-"  Right Click with a building(s) selected – sets a rally point for units "
-"created/ungarrisoned from that building"
-msgstr "  건물(들)을 선택한 상태에서 마우스 오른쪽 클릭 – 건물에서 유닛들이 생산/주둔해제될 경우 집결지를 설정"
+"  Right Click with a structure(s) selected – sets a rally point for units "
+"created/ungarrisoned from that structure"
+msgstr ""
 
 #: gui/manual/intro.txt:113
 msgid "  Ctrl + Right Click with unit(s) selected:"
@@ -541,9 +541,9 @@ msgstr "    • 커서가 아군 또는 연합의 구조물 위에있는 경우 
 
 #: gui/manual/intro.txt:115
 msgid ""
-"    • If the cursor is over an enemy unit or building – Attack (instead of "
+"    • If the cursor is over an enemy unit/structure – Attack (instead of "
 "capture or gather)"
-msgstr "    • 아군이 아닌 유닛이나 건물에 커서가 위치하면 – 공격 (포획 또는 채집 대신에)"
+msgstr ""
 
 #: gui/manual/intro.txt:116
 msgid ""
@@ -692,22 +692,22 @@ msgid "  Middle Mouse Button – Keep pressed and move the mouse to pan"
 msgstr "  마우스 가운데 버튼 – 누른 상태로 마우스를 움직이면 팬이 움직입니다"
 
 #: gui/manual/intro.txt:150
-msgid "[font=\"sans-bold-14\"]During Building Placement[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]건물 배치 도중[font=\"sans-14\"]"
+msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:151
-msgid "  \\[ (Left Bracket) – Rotate building 15 degrees counter-clockwise"
-msgstr "  \\[ (왼쪽 대괄호) – 건물을 시계 반대 방향으로 15도 돌림"
+msgid "  \\[ (Left Bracket) – Rotate structure 15 degrees counter-clockwise"
+msgstr ""
 
 #: gui/manual/intro.txt:152
-msgid "  ] (Right Bracket) – Rotate building 15 degrees clockwise"
-msgstr "  ] (오른쪽 대괄호) – 건물을 시계 방향으로 15도 돌림"
+msgid "  ] (Right Bracket) – Rotate structure 15 degrees clockwise"
+msgstr ""
 
 #: gui/manual/intro.txt:153
 msgid ""
-"  Left Drag – Rotate building using mouse (foundation will be placed on "
+"  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
-msgstr "  마우스 왼쪽 끌기 – 마우스를 사용하여 건물을 돌림 (토대는 마우스를 놓을 때 배치됨)"
+msgstr ""
 
 #: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"

@@ -630,7 +630,10 @@ UnitAI.prototype.UnitFsmSpec = {
 		}
 		else if (this.IsGarrisoned())
 		{
-			this.SetNextState("INDIVIDUAL.GARRISON.GARRISONED");
+			if (this.IsAnimal())
+				this.SetNextState("ANIMAL.GARRISON.GARRISONED");
+			else
+				this.SetNextState("INDIVIDUAL.GARRISON.GARRISONED");
 			return;
 		}
 
@@ -643,7 +646,10 @@ UnitAI.prototype.UnitFsmSpec = {
 			return;
 		}
 
-		this.SetNextState("INDIVIDUAL.GARRISON.APPROACHING");
+		if (this.IsAnimal())
+			this.SetNextState("ANIMAL.GARRISON.APPROACHING");
+		else
+			this.SetNextState("INDIVIDUAL.GARRISON.APPROACHING");
 	},
 
 	"Order.Ungarrison": function() {
@@ -3293,6 +3299,9 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"WALKING": "INDIVIDUAL.WALKING",	// reuse the same walking behaviour for animals
 							// only used for domestic animals
+
+		// Reuse the same garrison behaviour for animals.
+		"GARRISON": "INDIVIDUAL.GARRISON",
 	},
 };
 
@@ -5913,19 +5922,13 @@ UnitAI.prototype.CanGarrison = function(target)
 	if (this.IsFormationController())
 		return true;
 
-	var cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
+	let cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
 	if (!cmpGarrisonHolder)
 		return false;
 
 	// Verify that the target is owned by this entity's player or a mutual ally of this player
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (!cmpOwnership || !(IsOwnedByPlayer(cmpOwnership.GetOwner(), target) || IsOwnedByMutualAllyOfPlayer(cmpOwnership.GetOwner(), target)))
-		return false;
-
-	// Don't let animals garrison for now
-	// (If we want to support that, we'll need to change Order.Garrison so it
-	// doesn't move the animal into an INVIDIDUAL.* state)
-	if (this.IsAnimal())
 		return false;
 
 	return true;

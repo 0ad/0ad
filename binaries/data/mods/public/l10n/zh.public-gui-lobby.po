@@ -10,7 +10,7 @@
 # liulitchi <xingzuo88@qq.com>, 2014,2018
 # scinart <akubeej@gmail.com>, 2018
 # Vince Luo <vinceluo11@gmail.com>, 2017
-# liulitchi <xingzuo88@qq.com>, 2014,2018
+# liulitchi <xingzuo88@qq.com>, 2014,2018,2020
 # 武军 李 <lwj7863439@gmail.com>, 2016-2017
 # 玉堂白鹤 <yjwork@qq.com>, 2015
 # 越 杨 <tsugaku@163.com>, 2018
@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-22 08:08+0000\n"
-"PO-Revision-Date: 2019-11-22 15:16+0000\n"
-"Last-Translator: Kelvin Cooper <Zhu-Zhe-Yong@live.com>\n"
+"PO-Revision-Date: 2020-01-14 03:55+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -93,7 +93,7 @@ msgstr "玩家 :  %(current)s/%(total)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:121
 msgid "Victory Conditions:"
-msgstr ""
+msgstr "胜利条件："
 
 #. Translation: Comma used to concatenate victory conditions
 #: gui/lobby/LobbyPage/GameDetails.js:124
@@ -102,7 +102,7 @@ msgstr "，"
 
 #: gui/lobby/LobbyPage/GameDetails.js:126
 msgid "Mods:"
-msgstr ""
+msgstr "模组："
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/LobbyPage/GameDetails.js:129
@@ -125,7 +125,7 @@ msgstr "地图大小:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:137
 msgid "Map Description:"
-msgstr ""
+msgstr "地图描述："
 
 #: gui/lobby/LobbyPage/KickStrings.js:39
 msgid "You have been kicked from the lobby!"
@@ -450,7 +450,7 @@ msgstr "已断开连接。"
 #. Translation: Caption for system notifications shown in the chat panel
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:25
 msgid "System:"
-msgstr ""
+msgstr "系统："
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
 #, javascript-format
@@ -666,7 +666,7 @@ msgstr "发送"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):14
 msgid "Enter playername:"
-msgstr ""
+msgstr "输入玩家昵称 :"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):20
 msgid "View Profile"

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -86,12 +86,16 @@ void CChart::DrawLine(const CShaderProgramPtr& shader, const CGUIColor& color, c
 	shader->VertexPointer(3, GL_FLOAT, 0, &vertices[0]);
 	shader->AssertPointersBound();
 
+#if !CONFIG2_GLES
 	glEnable(GL_LINE_SMOOTH);
+#endif
 	glLineWidth(1.1f);
 	if (!g_Renderer.m_SkipSubmit)
 		glDrawArrays(GL_LINE_STRIP, 0, vertices.size() / 3);
 	glLineWidth(1.0f);
+#if !CONFIG2_GLES
 	glDisable(GL_LINE_SMOOTH);
+#endif
 }
 
 void CChart::DrawTriangleStrip(const CShaderProgramPtr& shader, const CGUIColor& color, const std::vector<float>& vertices) const
