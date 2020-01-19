@@ -91,9 +91,7 @@ inline int isinfinity(long double x) { return std::isinf(x); }
 
 # pragma warning(push)
 # pragma warning(disable: 4127) // conditional expression is constant
-#if _MSC_VER > 1800
 # pragma warning(disable:4456) // hides previous local declaration
-#endif
 
 inline int getsign(double value) {
   if (value < 0) return 1;
