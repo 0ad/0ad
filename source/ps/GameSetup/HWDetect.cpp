@@ -47,7 +47,7 @@
 // TODO: Support OpenGL platforms which don’t use GLX as well.
 #if defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
 #include <GL/glx.h>
-#include "SDL_syswm.h"
+#include <SDL_syswm.h>
 
 // Define the GLX_MESA_query_renderer macros if built with
 // an old Mesa (<10.0) that doesn't provide them
@@ -69,6 +69,7 @@
 
 #endif
 
+static void ReportSDL(const ScriptInterface& scriptInterface, JS::HandleValue settings);
 static void ReportGLLimits(const ScriptInterface& scriptInterface, JS::HandleValue settings);
 
 #if ARCH_X86_X64
@@ -285,6 +286,8 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings, "snd_card", snd_card);
 	scriptInterface.SetProperty(settings, "snd_drv_ver", snd_drv_ver);
 
+	ReportSDL(scriptInterface, settings);
+
 	ReportGLLimits(scriptInterface, settings);
 
 	scriptInterface.SetProperty(settings, "video_desktop_xres", g_VideoMode.GetDesktopXRes());
@@ -353,7 +356,7 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings, "timer_resolution", timer_Resolution());
 	
 	// The version should be increased for every meaningful change.
-	const int reportVersion = 12;
+	const int reportVersion = 13;
 
 	// Send the same data to the reporting system
 	g_UserReporter.SubmitReport(
@@ -365,6 +368,23 @@ void RunHardwareDetection()
 	// Run the detection script:
 	JS::RootedValue global(cx, scriptInterface.GetGlobalObject());
 	scriptInterface.CallFunctionVoid(global, "RunHardwareDetection", settings);
+}
+
+static void ReportSDL(const ScriptInterface& scriptInterface, JS::HandleValue settings)
+{
+	SDL_version build, runtime;
+	SDL_VERSION(&build);
+
+	char version[16];
+	snprintf(version, ARRAY_SIZE(version), "%d.%d.%d", build.major, build.minor, build.patch);
+	scriptInterface.SetProperty(settings, "sdl_build_version", version);
+
+	SDL_GetVersion(&runtime);
+	snprintf(version, ARRAY_SIZE(version), "%d.%d.%d", runtime.major, runtime.minor, runtime.patch);
+	scriptInterface.SetProperty(settings, "sdl_runtime_version", version);
+
+	const char* backend = GetSDLSubsystem(g_VideoMode.GetWindow());
+	scriptInterface.SetProperty(settings, "sdl_video_backend", backend ? backend : "unknown");
 }
 
 static void ReportGLLimits(const ScriptInterface& scriptInterface, JS::HandleValue settings)

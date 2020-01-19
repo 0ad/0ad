@@ -3,7 +3,7 @@
  */
 class PlayerAssignmentsControl
 {
-	constructor(gamesetupPage, netMessages)
+	constructor(setupWindow, netMessages)
 	{
 		this.clientJoinHandlers = new Set();
 		this.clientLeaveHandlers = new Set();
@@ -24,8 +24,8 @@ class PlayerAssignmentsControl
 			};
 		}
 
-		gamesetupPage.registerLoadHandler(this.onLoad.bind(this));
-		gamesetupPage.registerGetHotloadDataHandler(this.onGetHotloadData.bind(this));
+		setupWindow.registerLoadHandler(this.onLoad.bind(this));
+		setupWindow.registerGetHotloadDataHandler(this.onGetHotloadData.bind(this));
 		netMessages.registerNetMessageHandler("players", this.onPlayerAssignmentMessage.bind(this));
 	}
 

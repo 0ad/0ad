@@ -7,13 +7,13 @@
 
 		<repeat count="40" var="n">
 			<object>
-				<include file="gui/gamesetup/GameSettings/GameSettingControlDropdown.xml"/>
+				<include file="gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlDropdown.xml"/>
 			</object>
 		</repeat>
 
 		<repeat count="30" var="n">
 			<object>
-				<include file="gui/gamesetup/GameSettings/GameSettingControlCheckbox.xml"/>
+				<include file="gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlCheckbox.xml"/>
 			</object>
 		</repeat>
 

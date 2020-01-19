@@ -4,11 +4,11 @@
  */
 class GameSettingsControl
 {
-	constructor(gamesetupPage, netMessages, startGameControl, mapCache)
+	constructor(setupWindow, netMessages, startGameControl, mapCache)
 	{
 		this.startGameControl = startGameControl;
 		this.mapCache = mapCache;
-		this.gameSettingsFile = new GameSettingsFile(gamesetupPage);
+		this.gameSettingsFile = new GameSettingsFile(setupWindow);
 
 		this.previousMap = undefined;
 		this.depth = 0;
@@ -23,8 +23,8 @@ class GameSettingsControl
 		this.assignPlayerHandlers = new Set();
 		this.mapChangeHandlers = new Set();
 
-		gamesetupPage.registerLoadHandler(this.onLoad.bind(this));
-		gamesetupPage.registerGetHotloadDataHandler(this.onGetHotloadData.bind(this));
+		setupWindow.registerLoadHandler(this.onLoad.bind(this));
+		setupWindow.registerGetHotloadDataHandler(this.onGetHotloadData.bind(this));
 
 		startGameControl.registerLaunchGameHandler(this.onLaunchGame.bind(this));
 

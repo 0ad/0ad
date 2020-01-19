@@ -1,6 +1,6 @@
 class GameSettingTabs
 {
-	constructor(gamesetupPage, lobbyButton)
+	constructor(setupWindow, lobbyButton)
 	{
 		this.lobbyButton = lobbyButton;
 
@@ -15,7 +15,7 @@ class GameSettingTabs
 				colorizeHotkey("\n" + this.HotkeyDownTooltip, this.ConfigNameHotkeyDown) +
 				colorizeHotkey("\n" + this.HotkeyUpTooltip, this.ConfigNameHotkeyUp);
 
-		gamesetupPage.registerLoadHandler(this.onLoad.bind(this));
+		setupWindow.registerLoadHandler(this.onLoad.bind(this));
 		Engine.SetGlobalHotkey("cancel", selectPanel);
 	}
 

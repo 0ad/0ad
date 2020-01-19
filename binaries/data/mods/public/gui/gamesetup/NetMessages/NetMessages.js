@@ -3,7 +3,7 @@
  */
 class NetMessages
 {
-	constructor(gamesetupPage)
+	constructor(setupWindow)
 	{
 		this.netMessageHandlers = {};
 
@@ -13,7 +13,7 @@ class NetMessages
 		this.registerNetMessageHandler("netwarn", addNetworkWarning);
 
 		Engine.GetGUIObjectByName("netMessages").onTick = this.onTick.bind(this);
-		gamesetupPage.registerClosePageHandler(this.onClosePage.bind(this));
+		setupWindow.registerClosePageHandler(this.onClosePage.bind(this));
 	}
 
 	registerNetMessageHandler(messageType, handler)

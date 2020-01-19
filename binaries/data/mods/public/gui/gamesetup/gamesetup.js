@@ -35,16 +35,16 @@ var g_PlayerAssignments = {};
 /**
  * This instance owns all handlers that control the two synchronized states g_GameAttributes and g_PlayerAssignments.
  */
-var g_GamesetupPage;
+var g_SetupWindow;
 
 // TODO: Remove these two global functions by specifying the JS class name in the XML of the GUI page.
 
 function init(initData, hotloadData)
 {
-	g_GamesetupPage = new GamesetupPage(initData, hotloadData);
+	g_SetupWindow = new SetupWindow(initData, hotloadData);
 }
 
 function getHotloadData()
 {
-	return g_GamesetupPage.getHotloadData();
+	return g_SetupWindow.getHotloadData();
 }

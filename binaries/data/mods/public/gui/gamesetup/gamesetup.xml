@@ -4,17 +4,19 @@
 	<script directory="gui/common/"/>
 	<script directory="gui/gamesetup/"/>
 	<script directory="gui/gamesetup/Controls/"/>
-	<script directory="gui/gamesetup/GameSettings/"/>
-	<script directory="gui/gamesetup/GameSettings/PerPlayer/"/>
-	<script directory="gui/gamesetup/GameSettings/PerPlayer/Dropdowns/"/>
-	<script directory="gui/gamesetup/GameSettings/Single/"/>
-	<script directory="gui/gamesetup/GameSettings/Single/Checkboxes/"/>
-	<script directory="gui/gamesetup/GameSettings/Single/Dropdowns/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/GameSettings/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/"/>
 	<script directory="gui/gamesetup/NetMessages/"/>
-	<script directory="gui/gamesetup/Panels/"/>
-	<script directory="gui/gamesetup/Panels/Buttons/"/>
-	<script directory="gui/gamesetup/Panels/Chat/"/>
-	<script directory="gui/gamesetup/Panels/Chat/ChatMessages/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/Panels/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/Panels/Chat/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/"/>
+	<script directory="gui/gamesetup/Pages/LoadingPage/"/>
 
 	<object type="image" style="ModernWindow">
 
@@ -22,9 +24,8 @@
 			<translatableAttribute id="caption">Match Setup</translatableAttribute>
 		</object>
 
-		<include file="gui/gamesetup/Panels/LoadingWindow.xml"/>
-
-		<include file="gui/gamesetup/GameSetupPage.xml"/>
+		<include file="gui/gamesetup/Pages/LoadingPage/LoadingPage.xml"/>
+		<include file="gui/gamesetup/Pages/GameSetupPage/GameSetupPage.xml"/>
 	</object>
 
 </objects>
