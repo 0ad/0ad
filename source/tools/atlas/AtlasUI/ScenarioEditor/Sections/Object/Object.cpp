@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,11 +29,13 @@
 #include "GameInterface/Messages.h"
 
 #include "wx/busyinfo.h"
+#include "wx/wxcrt.h"
 
 enum
 {
 	ID_ObjectType = 1,
 	ID_ObjectFilter,
+	ID_ObjectExactFilter,
 	ID_PlayerSelect,
 	ID_SelectObject,
 	ID_ToggleViewer,
@@ -115,6 +117,113 @@ struct ObjectSidebarImpl
 	float m_ActorViewerSpeed;
 	Observable<ObjectSettings>& m_ObjectSettings;
 
+	struct SearchItem
+	{
+		// Weight of the pattern (higher - better).
+		size_t weight;
+		// Index in the original sequence to save the order.
+		size_t index;
+
+		bool operator<(const SearchItem& other) const
+		{
+			if (weight != other.weight)
+				return weight > other.weight;
+			return index < other.index;
+		}
+	};
+	// Cache the std::vector to prevent frequent reallocations.
+	std::vector<SearchItem> m_SearchItems;
+
+	struct SearchItemFilter
+	{
+		SearchItemFilter(const wxString& filterName)
+		{
+			bool firstCharacterInWord = true;
+			for (const wxUniChar& ch : filterName)
+			{
+				if (wxIsalpha(ch))
+				{
+					if (firstCharacterInWord)
+						m_FilterWords.push_back(wxString());
+					firstCharacterInWord = false;
+					m_FilterWords.back().Append(ch);
+				}
+				else
+					firstCharacterInWord = true;
+			}
+		}
+
+		// Returns positive integer if filter words can present in the name.
+		// Otherwise returns zero.
+		size_t CalculateWeight(const wxString& name)
+		{
+			if (m_FilterWords.empty() || name.IsEmpty())
+				return 0;
+			std::vector<size_t> filterWordWeights(m_FilterWords.size(), 0);
+			for (size_t wordBegin = 0; wordBegin < name.Length();)
+			{
+				if (!wxIsalpha(name[wordBegin]))
+				{
+					++wordBegin;
+					continue;
+				}
+				size_t wordEnd = wordBegin;
+				while (wordEnd < name.Length() && wxIsalpha(name[wordEnd]))
+					++wordEnd;
+				for (size_t i = 0; i < m_FilterWords.size(); ++i)
+				{
+					// TODO: we might have a copy here, maybe we can use
+					// something similar to std::string_view but for wxString.
+					size_t weight = CalculateLCS(
+						m_FilterWords[i], name.Mid(wordBegin, wordEnd - wordBegin));
+					// We use a simple heuristic, if LCS shorter than a half
+					// of the filter word, then it's not good for us.
+					if (weight < m_FilterWords[i].size() / 2)
+						continue;
+					filterWordWeights[i] = std::max(filterWordWeights[i], weight);
+				}
+				wordBegin = wordEnd;
+			}
+			size_t totalWeight = 0;
+			for (size_t weight : filterWordWeights)
+			{
+				// If a filter word was't found at all, then we can't accept
+				// the search item name.
+				if (!weight)
+					return 0;
+				totalWeight += weight;
+			}
+			return totalWeight;
+		}
+
+		// We use longest common subsequence to calculate the weight
+		// between two words: filter and item names.
+		size_t CalculateLCS(const wxString& filterWord, const wxString& word)
+		{
+			if (filterWord.IsEmpty() || word.IsEmpty())
+				return 0;
+			m_LCSGrid.resize(filterWord.Length() * word.Length());
+			for (size_t i = 0; i < filterWord.Length(); ++i)
+				for (size_t j = 0; j < word.Length(); ++j)
+				{
+		#define GRID(x, y) m_LCSGrid[(x) * word.Length() + (y)]
+					GRID(i, j) = wxTolower(filterWord.GetChar(i)) == wxTolower(word.GetChar(j));
+					if (i && j)
+						GRID(i, j) += GRID(i - 1, j - 1);
+					if (i)
+						GRID(i, j) = std::max(GRID(i, j), GRID(i - 1, j));
+					if (j)
+						GRID(i, j) = std::max(GRID(i, j), GRID(i, j - 1));
+		#undef GRID
+				}
+			return m_LCSGrid.back();
+		}
+
+		std::vector<wxString> m_FilterWords;
+		// Cache the std::vector to prevent frequent reallocations.
+		std::vector<size_t> m_LCSGrid;
+	};
+
 	void ActorViewerPostToGame()
 	{
 		POST_MESSAGE(SetActorViewer, (m_ActorViewerEntity.c_str(), m_ActorViewerAnimation.c_str(), m_ObjectSettings.GetPlayerID(), m_ActorViewerSpeed, false));
@@ -137,6 +246,7 @@ ObjectSidebar::ObjectSidebar(
 
 	wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
 	sizer->Add(new wxStaticText(scrolledWindow, wxID_ANY, _("Filter")), wxSizerFlags().Align(wxALIGN_CENTER));
+	sizer->AddSpacer(2);
 	sizer->Add(
 		Tooltipped(
 			new wxTextCtrl(scrolledWindow, ID_ObjectFilter),
@@ -145,6 +255,12 @@ ObjectSidebar::ObjectSidebar(
 		wxSizerFlags().Expand().Proportion(1)
 	);
 	scrollSizer->Add(sizer, wxSizerFlags().Expand());
+	scrollSizer->AddSpacer(3);
+	wxCheckBox* exactSearchCheckBox = new wxCheckBox(
+		scrolledWindow, ID_ObjectExactFilter, _("Exact Search"));
+	exactSearchCheckBox->SetValue(true);
+	scrollSizer->Add(Tooltipped(exactSearchCheckBox,
+		_("Provides a search with a strict string equality")));
 	scrollSizer->AddSpacer(3);
 
 	// ------------------------------------------------------------------------------------------
@@ -222,18 +338,43 @@ void ObjectSidebar::FilterObjects()
 
 	m_Impl->m_ObjectListBox->Freeze();
 	m_Impl->m_ObjectListBox->Clear();
-	for (std::vector<AtlasMessage::sObjectsListItem>::iterator it = m_Impl->m_Objects.begin(); it != m_Impl->m_Objects.end(); ++it)
+	if (wxDynamicCast(FindWindow(ID_ObjectExactFilter), wxCheckBox)->IsChecked() || filterName.IsEmpty())
 	{
-		if (it->type == filterType)
+		for (std::vector<AtlasMessage::sObjectsListItem>::iterator it = m_Impl->m_Objects.begin(); it != m_Impl->m_Objects.end(); ++it)
 		{
+			if (it->type != filterType)
+				continue;
 			wxString id = it->id.c_str();
 			wxString name = it->name.c_str();
 
 			if (name.Lower().Find(filterName.Lower()) != wxNOT_FOUND)
-			{
 				m_Impl->m_ObjectListBox->Append(name, new wxStringClientData(id));
-			}
 		}
+	}
+	else
+	{
+		ObjectSidebarImpl::SearchItemFilter filter(filterName);
+		for (size_t idx = 0; idx < m_Impl->m_Objects.size(); ++idx)
+		{
+			const AtlasMessage::sObjectsListItem& it = m_Impl->m_Objects[idx];
+			if (it.type != filterType)
+				continue;
+			wxString name = it.name.c_str();
+			size_t weight = filter.CalculateWeight(name);
+			// We don't want to show items with zero weight.
+			if (!weight)
+				continue;
+			m_Impl->m_SearchItems.push_back({weight, idx});
+		}
+		std::sort(m_Impl->m_SearchItems.begin(), m_Impl->m_SearchItems.end());
+		for (const ObjectSidebarImpl::SearchItem& item : m_Impl->m_SearchItems)
+		{
+			const AtlasMessage::sObjectsListItem& it = m_Impl->m_Objects[item.index];
+			wxString id = it.id.c_str();
+			wxString name = it.name.c_str();
+			m_Impl->m_ObjectListBox->Append(name, new wxStringClientData(id));
+		}
+		m_Impl->m_SearchItems.clear();
 	}
 	m_Impl->m_ObjectListBox->Thaw();
 }
@@ -282,11 +423,17 @@ void ObjectSidebar::OnSelectFilter(wxCommandEvent& WXUNUSED(evt))
 	FilterObjects();
 }
 
+void ObjectSidebar::OnToggleExactFilter(wxCommandEvent& WXUNUSED(evt))
+{
+	FilterObjects();
+}
+
 BEGIN_EVENT_TABLE(ObjectSidebar, Sidebar)
 	EVT_CHOICE(ID_ObjectType, ObjectSidebar::OnSelectType)
 	EVT_TEXT(ID_ObjectFilter, ObjectSidebar::OnSelectFilter)
 	EVT_LISTBOX(ID_SelectObject, ObjectSidebar::OnSelectObject)
 	EVT_BUTTON(ID_ToggleViewer, ObjectSidebar::OnToggleViewer)
+	EVT_CHECKBOX(ID_ObjectExactFilter, ObjectSidebar::OnToggleExactFilter)
 END_EVENT_TABLE();
 
 //////////////////////////////////////////////////////////////////////////
