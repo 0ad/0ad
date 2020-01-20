@@ -86,22 +86,6 @@ Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
 	return INFO::OK;
 }
 
-
-Status GetMonitorSize(int& width_mm, int& height_mm)
-{
-	Display* disp = XOpenDisplay(0);
-	if(!disp)
-		WARN_RETURN(ERR::FAIL);
-
-	int screen = XDefaultScreen(disp);
-
-	width_mm = XDisplayWidthMM(disp, screen);
-	height_mm = XDisplayHeightMM(disp, screen);
-
-	XCloseDisplay(disp);
-	return INFO::OK;
-}
-
 }	// namespace gfx
 
 

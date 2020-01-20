@@ -51,15 +51,6 @@ LIB_API std::wstring DriverInfo();
  **/
 LIB_API Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq);
 
-/**
- * (useful for determining aspect ratio)
- *
- * @param width_mm (out) screen width [mm]
- * @param height_mm (out) screen height [mm]
- * @return Status (if if negative, outputs were left unchanged)
- **/
-LIB_API Status GetMonitorSize(int& width_mm, int& height_mm);
-
 }	// namespace gfx
 
 #endif	// #ifndef INCLUDED_GFX
