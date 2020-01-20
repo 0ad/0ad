@@ -1,8 +1,8 @@
 class ReadyButton
 {
-	constructor(readyControl, netMessages, playerAssignmentsControl)
+	constructor(setupWindow)
 	{
-		this.readyControl = readyControl;
+		this.readyControl = setupWindow.controls.readyControl;
 
 		this.hidden = undefined;
 
@@ -13,8 +13,8 @@ class ReadyButton
 		this.readyButton.onPress = this.onPress.bind(this);
 		this.readyButton.onPressRight = this.onPressRight.bind(this);
 
-		playerAssignmentsControl.registerPlayerAssignmentsChangeHandler(this.onPlayerAssignmentsChange.bind(this));
-		netMessages.registerNetMessageHandler("netstatus", this.onNetStatusMessage.bind(this));
+		setupWindow.controls.playerAssignmentsControl.registerPlayerAssignmentsChangeHandler(this.onPlayerAssignmentsChange.bind(this));
+		setupWindow.controls.netMessages.registerNetMessageHandler("netstatus", this.onNetStatusMessage.bind(this));
 
 		if (g_IsController && g_IsNetworked)
 			this.readyControl.setReady(this.readyControl.StayReady, true);

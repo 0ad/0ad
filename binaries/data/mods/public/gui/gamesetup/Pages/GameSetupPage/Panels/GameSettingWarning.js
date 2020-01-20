@@ -1,13 +1,13 @@
 class GameSettingWarning
 {
-	constructor(gameSettingsControl, cancelButton)
+	constructor(setupWindow, cancelButton)
 	{
 		if (!g_IsNetworked)
 			return;
 
 		this.gameSettingWarning = Engine.GetGUIObjectByName("gameSettingWarning");
 
-		gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
+		setupWindow.controls.gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
 		cancelButton.registerCancelButtonResizeHandler(this.onCancelButtonResize.bind(this));
 	}
 

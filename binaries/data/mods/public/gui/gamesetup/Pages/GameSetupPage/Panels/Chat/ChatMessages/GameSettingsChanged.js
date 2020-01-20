@@ -3,12 +3,12 @@
  */
 ChatMessageEvents.GameSettingsChanged = class
 {
-	constructor(chatMessagesPanel, netMessages, gameSettingsControl, playerAssignmentsControl, readyControl)
+	constructor(setupWindow, chatMessagesPanel)
 	{
-		this.readyControl = readyControl;
+		this.readyControl = setupWindow.controls.readyControl;
 		this.chatMessagesPanel = chatMessagesPanel;
 
-		readyControl.registerResetReadyHandler(this.onResetReady.bind(this));
+		this.readyControl.registerResetReadyHandler(this.onResetReady.bind(this));
 	}
 
 	onResetReady()

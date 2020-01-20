@@ -1,11 +1,8 @@
 class CancelButton
 {
-	constructor(setupWindow, startGameButton, readyButton, gameSettingsControl)
+	constructor(setupWindow, startGameButton, readyButton)
 	{
 		this.setupWindow = setupWindow;
-		this.startGameButton = startGameButton;
-		this.readyButton = readyButton;
-		this.gameSettingsControl = gameSettingsControl;
 
 		this.cancelButtonResizeHandlers = new Set();
 

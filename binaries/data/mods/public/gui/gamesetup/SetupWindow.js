@@ -1,4 +1,11 @@
 /**
+ * This class stores the GameSetupPage and every subpage that is shown in the gamesetup.
+ */
+class SetupWindowPages
+{
+}
+
+/**
  * The SetupWindow is the root class owning all other class instances.
  * The class shall be ineligible to perform any GUI object logic and shall defer that task to owned classes.
  */
@@ -30,11 +37,7 @@ class SetupWindow
 			"mapCache": mapCache,
 			"mapFilters": mapFilters,
 			"readyControl": readyControl,
-			"startGameControl": startGameControl
-		};
-
-		// These class instances are interfaces to networked messages and do not manage any GUI Object.
-		this.networkControls = {
+			"startGameControl": startGameControl,
 			"netMessages": netMessages,
 			"gameRegisterStanza":
 				Engine.HasXmppClient() &&
@@ -43,10 +46,9 @@ class SetupWindow
 		};
 
 		// These are the pages within the setup window that may use the controls defined above
-		this.pages = {
-			"loadingPage": new LoadingPage(netMessages),
-			"gameSetupPage": new GameSetupPage(this, gameSettingsControl, playerAssignmentsControl, netMessages, this.networkControls.gameRegisterStanza, mapCache, mapFilters, startGameControl, readyControl)
-		};
+		this.pages = {};
+		for (let name in SetupWindowPages)
+			this.pages[name] = new SetupWindowPages[name](this);
 
 		setTimeout(displayGamestateNotifications, 1000);
 		Engine.GetGUIObjectByName("setupWindow").onTick = updateTimers;

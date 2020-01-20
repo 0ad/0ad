@@ -17,6 +17,8 @@
 	<script directory="gui/gamesetup/Pages/GameSetupPage/Panels/Chat/"/>
 	<script directory="gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/"/>
 	<script directory="gui/gamesetup/Pages/LoadingPage/"/>
+	<script directory="gui/gamesetup/Pages/AIConfigPage/"/>
+	<script directory="gui/gamesetup/Pages/AIConfigPage/Controls/"/>
 
 	<object type="image" style="ModernWindow">
 
@@ -26,6 +28,7 @@
 
 		<include file="gui/gamesetup/Pages/LoadingPage/LoadingPage.xml"/>
 		<include file="gui/gamesetup/Pages/GameSetupPage/GameSetupPage.xml"/>
+		<include file="gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml"/>
 	</object>
 
 </objects>

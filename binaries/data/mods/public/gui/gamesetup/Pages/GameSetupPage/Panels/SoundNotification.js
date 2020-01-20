@@ -1,9 +1,9 @@
 class SoundNotification
 {
-	constructor(netMessages, playerAssignmentsControl)
+	constructor(setupWindow)
 	{
-		netMessages.registerNetMessageHandler("chat", this.onClientChat.bind(this));
-		playerAssignmentsControl.registerClientJoinHandler(this.onClientJoin.bind(this));
+		setupWindow.controls.netMessages.registerNetMessageHandler("chat", this.onClientChat.bind(this));
+		setupWindow.controls.playerAssignmentsControl.registerClientJoinHandler(this.onClientJoin.bind(this));
 	}
 
 	onClientJoin(guid)
