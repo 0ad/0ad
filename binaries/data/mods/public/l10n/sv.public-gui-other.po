@@ -6,6 +6,7 @@
 # Hans Kunkell <hanzukun@gmail.com>, 2019
 # Jacob Carlsson <yejcob@gmail.com>, 2015
 # Jonatan Nyberg, 2016
+# Jonatan Nyberg, 2020
 # Kristoffer Grundström <hamnisdude@gmail.com>, 2018
 # Kristoffer Grundström <hamnisdude@gmail.com>, 2015-2016,2018
 # pilino1234 <pilino1234@zoho.eu>, 2016
@@ -20,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-13 08:22+0000\n"
-"PO-Revision-Date: 2020-01-13 15:16+0000\n"
-"Last-Translator: pilino1234 <pilino1234@zoho.eu>\n"
+"POT-Creation-Date: 2020-01-17 08:08+0000\n"
+"PO-Revision-Date: 2020-01-18 14:11+0000\n"
+"Last-Translator: Jonatan Nyberg\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -507,7 +508,7 @@ msgstr "Felaktigt version för nätverksprotokollet."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr "Spelet laddar, var snäll försök igen senare."
+msgstr "Spelet läses in, vänligen försök igen senare."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
@@ -578,7 +579,7 @@ msgstr "Användare (%(num)s): %(users)s"
 #: gui/common/tooltips.js:298 gui/common/tooltips.js:363
 #: gui/common/tooltips.js:413 gui/common/tooltips.js:446
 #: gui/common/tooltips.js:741 gui/common/tooltips.js:775
-#: gui/common/tooltips.js:841 gui/loadgame/SavegameDetails.js:37
+#: gui/common/tooltips.js:841 gui/loadgame/SavegameDetails.js:38
 #: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:283
 msgid ", "
 msgstr ","
@@ -902,7 +903,7 @@ msgstr "Väneld: %(enabled)s"
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:295 gui/options/options.js:348
 #: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
-#: gui/pregame/MainMenuItems.js:200 gui/replaymenu/replay_actions.js:169
+#: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Ja"
 
@@ -910,7 +911,7 @@ msgstr "Ja"
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:295 gui/options/options.js:348
 #: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
-#: gui/pregame/MainMenuItems.js:200 gui/replaymenu/replay_actions.js:169
+#: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Nej"
 
@@ -1197,7 +1198,7 @@ msgstr "Det sparade spelet kommer att tas bort permanent, är det säkert att du
 msgid "DELETE"
 msgstr "DELETE (Ta bort)"
 
-#: gui/loadgame/SavegameDetails.js:39
+#: gui/loadgame/SavegameDetails.js:40
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "Mods: %(mods)s"
@@ -1218,7 +1219,7 @@ msgstr "%(dateString)s %(map)s"
 
 #: gui/loadgame/SavegameLoader.js:9
 msgid "Load"
-msgstr "Ladda"
+msgstr "Läs in"
 
 #: gui/loadgame/SavegameLoader.js:39
 #, javascript-format
@@ -1462,7 +1463,7 @@ msgstr "Modifikationsval"
 
 #: gui/pregame/MainMenuItems.js:160
 msgid "Select and download mods for the game."
-msgstr "Välj och ladda ner mods för spelet."
+msgstr "Välj och hämta mods för spelet."
 
 #: gui/pregame/MainMenuItems.js:166
 msgid "Welcome Screen"
@@ -1486,7 +1487,7 @@ msgstr "Öppna scenario-redigeraren Atlas i ett nytt fönster. Du kan köra den 
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "Är du säker på att du vill sluta 0 A.D. och öppna Scenario Editor?"
 
-#: gui/pregame/MainMenuItems.js:182 gui/pregame/MainMenuItems.js:199
+#: gui/pregame/MainMenuItems.js:182 gui/pregame/MainMenuItems.js:206
 msgid "Confirmation"
 msgstr "Bekräfta"
 
@@ -1501,14 +1502,22 @@ msgid "Error"
 msgstr "Fel"
 
 #: gui/pregame/MainMenuItems.js:193
+msgid "Credits"
+msgstr "Medverkande"
+
+#: gui/pregame/MainMenuItems.js:194
+msgid "Show the 0 A.D. credits."
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:200
 msgid "Exit"
 msgstr "Avsluta"
 
-#: gui/pregame/MainMenuItems.js:194
+#: gui/pregame/MainMenuItems.js:201
 msgid "Exit the game."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:198
+#: gui/pregame/MainMenuItems.js:205
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Är du säker på att du vill avsluta 0 A.D.?"
 
@@ -1567,14 +1576,6 @@ msgstr "Donera"
 #: gui/pregame/ProjectInformation.js:58
 msgid "Help with the project expenses by donating."
 msgstr "Hjälp med projektets utgifter genom att donera."
-
-#: gui/pregame/ProjectInformation.js:65
-msgid "Credits"
-msgstr "Medverkande"
-
-#: gui/pregame/ProjectInformation.js:66
-msgid "Click to see the 0 A.D. credits."
-msgstr "Klicka för att se 0 A.D. medverkande."
 
 #: gui/pregame/SplashscreenHandler.js:49
 #, javascript-format
@@ -3113,7 +3114,7 @@ msgstr ""
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
-msgstr "Antal efterloggade meddelanden som ska laddas när du går med i lobbyn."
+msgstr "Antal efterloggade meddelanden som ska läsas in när du går med i lobbyn."
 
 #: gui/options/options.json[4].options[1].label
 msgid "Chat backlog"

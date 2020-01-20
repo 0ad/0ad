@@ -32,16 +32,16 @@
 # dddb155916b6708524139dbbf813fa7c, 2017
 # Rui <xymarior@yandex.com>, 2018-2019
 # Thiago Perrotta <inactive+thiagowfx@transifex.com>, 2015
-# Tiago, 2018-2019
+# Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>, 2018-2020
 # Victor Gregório <vt_marv@hotmail.com>, 2017
 # Vinícius Pereira <lameiravinicius24@gmail.com>, 2018
 # Werther Ramalho <werther23@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-13 08:22+0000\n"
-"PO-Revision-Date: 2020-01-13 15:16+0000\n"
-"Last-Translator: PedroDognani <pedro_dognani_@hotmail.com>\n"
+"POT-Creation-Date: 2020-01-17 08:08+0000\n"
+"PO-Revision-Date: 2020-01-19 17:35+0000\n"
+"Last-Translator: Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -267,7 +267,7 @@ msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Monumento (%(min)s minute)"
-msgstr[1] "Monumento (%(min)s minutos)"
+msgstr[1] "Maravilha (%(min)s minutos)"
 
 #: gui/common/gamedescription.js:212
 #, javascript-format
@@ -597,7 +597,7 @@ msgstr "Usuários (%(num)s): %(users)s"
 #: gui/common/tooltips.js:298 gui/common/tooltips.js:363
 #: gui/common/tooltips.js:413 gui/common/tooltips.js:446
 #: gui/common/tooltips.js:741 gui/common/tooltips.js:775
-#: gui/common/tooltips.js:841 gui/loadgame/SavegameDetails.js:37
+#: gui/common/tooltips.js:841 gui/loadgame/SavegameDetails.js:38
 #: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:283
 msgid ", "
 msgstr ","
@@ -921,7 +921,7 @@ msgstr "Fogo Amigo: %(enabled)s"
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:295 gui/options/options.js:348
 #: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
-#: gui/pregame/MainMenuItems.js:200 gui/replaymenu/replay_actions.js:169
+#: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Sim"
 
@@ -929,7 +929,7 @@ msgstr "Sim"
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:295 gui/options/options.js:348
 #: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
-#: gui/pregame/MainMenuItems.js:200 gui/replaymenu/replay_actions.js:169
+#: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Não"
 
@@ -1201,7 +1201,7 @@ msgstr ""
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:204
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr ""
+msgstr "Pressione %(hotkey)s para evitar o diálogo de confirmação ao excluir."
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
 #, javascript-format
@@ -1216,7 +1216,7 @@ msgstr "Jogo salvo será permanentemente deletado, tem certeza?"
 msgid "DELETE"
 msgstr "EXCLUIR"
 
-#: gui/loadgame/SavegameDetails.js:39
+#: gui/loadgame/SavegameDetails.js:40
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "Mods: %(mods)s"
@@ -1334,7 +1334,7 @@ msgstr "Aprenda a Jogar"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr ""
+msgstr "Aprenda a jogar, inicie o tutorial, descubra as árvores de tecnologia e a história por trás das civilizações."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -1371,15 +1371,15 @@ msgstr "História"
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Aprenda sobre as civilizações presentes em 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:142
 msgid "Single-player"
-msgstr ""
+msgstr "Um jogador"
 
 #: gui/pregame/MainMenuItems.js:51
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "Inicie, carregue ou reveja um jogo de um jogador."
 
 #: gui/pregame/MainMenuItems.js:54
 msgid "Matches"
@@ -1387,7 +1387,7 @@ msgstr "Partidas"
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "Inicie um novo jogo de um jogador."
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Campaigns"
@@ -1401,7 +1401,7 @@ msgstr "Reviva a história através de campanhas militares históricas. \\[NÃO 
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Load a saved game."
-msgstr ""
+msgstr "Carregue um jogo salvo."
 
 #: gui/pregame/MainMenuItems.js:73 gui/pregame/MainMenuItems.js:123
 msgid "Replays"
@@ -1457,7 +1457,7 @@ msgstr "Configurações"
 
 #: gui/pregame/MainMenuItems.js:139
 msgid "Change game options."
-msgstr ""
+msgstr "Altere as opções do jogo."
 
 #: gui/pregame/MainMenuItems.js:142
 msgid "Options"
@@ -1505,7 +1505,7 @@ msgstr "Abre o Editor de Cenário Atlas em uma nova janela. Você pode executá-
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "Tem certeza de que deseja sair do 0 A.D. e abrir o Editor de Cenário?"
 
-#: gui/pregame/MainMenuItems.js:182 gui/pregame/MainMenuItems.js:199
+#: gui/pregame/MainMenuItems.js:182 gui/pregame/MainMenuItems.js:206
 msgid "Confirmation"
 msgstr "Confirmação"
 
@@ -1520,14 +1520,22 @@ msgid "Error"
 msgstr "Erro"
 
 #: gui/pregame/MainMenuItems.js:193
+msgid "Credits"
+msgstr "Créditos"
+
+#: gui/pregame/MainMenuItems.js:194
+msgid "Show the 0 A.D. credits."
+msgstr "Mostra os créditos do 0 A.D."
+
+#: gui/pregame/MainMenuItems.js:200
 msgid "Exit"
 msgstr "Sair"
 
-#: gui/pregame/MainMenuItems.js:194
+#: gui/pregame/MainMenuItems.js:201
 msgid "Exit the game."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:198
+#: gui/pregame/MainMenuItems.js:205
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Você tem certeza que quer sair do 0 A.D.?"
 
@@ -1586,14 +1594,6 @@ msgstr "Doar"
 #: gui/pregame/ProjectInformation.js:58
 msgid "Help with the project expenses by donating."
 msgstr "Ajude com as despesas do projeto doando."
-
-#: gui/pregame/ProjectInformation.js:65
-msgid "Credits"
-msgstr "Créditos"
-
-#: gui/pregame/ProjectInformation.js:66
-msgid "Click to see the 0 A.D. credits."
-msgstr "Clique para ver os créditos de 0 A.D."
 
 #: gui/pregame/SplashscreenHandler.js:49
 #, javascript-format
@@ -1864,7 +1864,7 @@ msgstr "%(min)s - %(max)s min"
 
 #: gui/replaymenu/replay_filters.js:142
 msgid "Single-player and multiplayer"
-msgstr ""
+msgstr "Um jogador e multijogador"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
@@ -1890,7 +1890,7 @@ msgstr "Filtre as gravação digitando nomes de um ou mais jogadores ou digitand
 #: gui/replaymenu/replay_menu.js:199
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
-msgstr ""
+msgstr "Exclua as gravações selecionadas usando %(hotkey)s."
 
 #: gui/replaymenu/replay_menu.js:284
 #, javascript-format
@@ -2267,7 +2267,7 @@ msgstr "Cancelar"
 #: gui/loadgame/load.xml:(caption):53
 #: gui/replaymenu/replay_menu.xml:(caption):231
 msgid "Delete"
-msgstr "Deletar"
+msgstr "Excluir"
 
 #: gui/loadgame/load.xml:(caption):63
 msgid "Filter compatible saved games"
@@ -2374,7 +2374,7 @@ msgstr "Menu Principal"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Rebuild Cache"
-msgstr ""
+msgstr "Reconstruir Cache"
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
 #: gui/summary/summary.xml:(caption):34
@@ -2641,7 +2641,7 @@ msgstr "Nenhum historiador foi machucado durante o desenvolvimento deste projeto
 
 #: gui/credits/texts/special.jsonTitle
 msgid "Special Credits"
-msgstr "Créditos especiais"
+msgstr "Créditos Especiais"
 
 #: gui/credits/texts/translators.jsonTitle
 msgid "Translators"
@@ -2649,11 +2649,11 @@ msgstr "Tradutores"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "Como deseja ser chamado em partidas de um jogador."
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "Nome do jogador (um jogador)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
@@ -2665,7 +2665,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr ""
+msgstr "Pausa jogos de um jogador quando a janela perde o foco."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
@@ -2761,7 +2761,7 @@ msgstr "Mostra a hora em que as mensagens foram postadas no lobby, nas configura
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "Marcação de data e hora do chat"
 
 #: gui/options/options.json[0].label
 msgid "General"

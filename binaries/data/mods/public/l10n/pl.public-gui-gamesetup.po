@@ -49,7 +49,7 @@
 # Paweł Klimek <pawelklimek102@gmail.com>, 2014
 # Piotr <joda17@wp.pl>, 2015
 # Piotr Lehmann <lejmus@o2.pl>, 2017
-# Przemysław Murach <moonshine133@vp.pl>, 2019
+# Przemysław Murach <moonshine133@vp.pl>, 2019-2020
 # Robert Wolniak <robert.wolniak@gmail.com>, 2014
 # Jakub Rosiński, 2014
 # slodki12341 <slodki1234@gmail.com>, 2014
@@ -59,9 +59,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-13 08:22+0000\n"
-"PO-Revision-Date: 2020-01-13 15:59+0000\n"
-"Last-Translator: Marek Opłotny <oplotny.marek@gmail.com>\n"
+"POT-Creation-Date: 2020-01-17 08:08+0000\n"
+"PO-Revision-Date: 2020-01-18 18:34+0000\n"
+"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -150,12 +150,12 @@ msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "Mapa"
 
-#: gui/gamesetup/GameSettings/GameSettingsLayout.js:22
+#: gui/gamesetup/GameSettings/GameSettingsLayout.js:24
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "Gracz"
 
-#: gui/gamesetup/GameSettings/GameSettingsLayout.js:32
+#: gui/gamesetup/GameSettings/GameSettingsLayout.js:34
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "Rodzaj gry"
@@ -301,20 +301,20 @@ msgstr "Wyłącz skarby"
 msgid "Do not add treasures to the map."
 msgstr "Wyłącz wszystkie skarby na mapie."
 
-#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:119
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:135
 msgid "Biome"
 msgstr "Fauna i flora"
 
-#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:125
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:141
 msgid "Select the flora and fauna."
 msgstr "Wybierz florę i faunę."
 
-#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:128
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:144
 msgctxt "biome"
 msgid "Random"
 msgstr "Losowe"
 
-#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:131
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:147
 msgid "Pick a biome at random."
 msgstr "Wybierz faunę i florę losowo"
 
@@ -326,6 +326,24 @@ msgstr "Zawieszenie broni"
 msgid "Set time where no attacks are possible."
 msgstr "Ustaw czas gdy nie są możliwe ataki."
 
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Daytime.js:96
+msgid "Daytime"
+msgstr "Pora dnia"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Daytime.js:99
+msgid "Select whether the match takes place at daylight or night."
+msgstr "Zaznacz, czy rozgrywka toczy się za dnia, czy w nocy."
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Daytime.js:102
+msgctxt "daytime selection"
+msgid "Random"
+msgstr "Losowe"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Daytime.js:105
+msgctxt "daytime selection"
+msgid "Randomly pick a time of the day."
+msgstr "Pora dnia ustalona losowo."
+
 #: gui/gamesetup/GameSettings/Single/Dropdowns/GameSpeed.js:73
 msgid "Game Speed"
 msgstr "Prędkość Rozgrywki"
@@ -333,6 +351,44 @@ msgstr "Prędkość Rozgrywki"
 #: gui/gamesetup/GameSettings/Single/Dropdowns/GameSpeed.js:76
 msgid "Select game speed."
 msgstr "Wybierz szybkość gry."
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:124
+msgid "Landscape"
+msgstr "Krajobraz"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:127
+msgid "Select one of the landscapes of this map."
+msgstr "Wybierz krajobraz mapy."
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:133
+msgctxt "landscape selection"
+msgid "Random Land or Naval"
+msgstr "Losowo: ląd lub woda"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:134
+msgctxt "landscape selection"
+msgid "Select a random land or naval map generation."
+msgstr "Losowo generuje mapę lądową lub wodną."
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:138
+msgctxt "landscape selection"
+msgid "Random Land"
+msgstr "Losowy ląd"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:139
+msgctxt "landscape selection"
+msgid "Select a random land map generation."
+msgstr "Wygeneruj losową mapę lądową."
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:143
+msgctxt "landscape selection"
+msgid "Random Naval"
+msgstr "Losowa woda"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:144
+msgctxt "landscape selection"
+msgid "Select a random naval map generation."
+msgstr "Wygeneruj losową mapę wodną."
 
 #: gui/gamesetup/GameSettings/Single/Dropdowns/MapFilter.js:89
 msgid "Map Filter"
@@ -394,7 +450,7 @@ msgstr "Wybierz limit populacji."
 #: gui/gamesetup/GameSettings/Single/Dropdowns/PopulationCap.js:88
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Przez gracza"
 
 #: gui/gamesetup/GameSettings/Single/Dropdowns/PopulationCap.js:91
 #, javascript-format
@@ -403,11 +459,11 @@ msgid ""
 "%(popCap)s population."
 msgstr "Ostrzeżenie: Wydajność może spaść jeżeli wszyscy %(players)s gracze osiągną %(popCap)s populacji."
 
-#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicCount.js:77
+#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicCount.js:78
 msgid "Relic Count"
 msgstr "Liczba reliktów"
 
-#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicCount.js:80
+#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicCount.js:81
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
@@ -438,7 +494,7 @@ msgstr "Początkowa wartość każdego zasobu: %(resources)s"
 #: gui/gamesetup/GameSettings/Single/Dropdowns/StartingResources.js:90
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Przez gracza"
 
 #: gui/gamesetup/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
@@ -454,7 +510,7 @@ msgstr "Czas do zbudowania Cudu"
 
 #: gui/gamesetup/GameSettings/Single/Dropdowns/WonderDuration.js:82
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr ""
+msgstr "Czas aż gracz wygra poprzez budowę cudu"
 
 #: gui/gamesetup/Panels/GameSettingWarning.js:38
 msgid "Cheats enabled."
@@ -462,7 +518,7 @@ msgstr "Kody aktywowane."
 
 #: gui/gamesetup/Panels/GameSettingWarning.js:41
 msgid "Rated game."
-msgstr ""
+msgstr "Rozgrywka rankingowa."
 
 #: gui/gamesetup/Panels/GameSettingsTabs.js:76
 #, javascript-format
@@ -644,37 +700,37 @@ msgstr "Łączenie z serwerem..."
 msgid "Net message: %(message)s"
 msgstr "Wiadomość sieciowa: %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:221
+#: gui/gamesetup_mp/gamesetup_mp.js:223
 msgid "Registering with server..."
 msgstr "Rejestracja na serwerze..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:227
+#: gui/gamesetup_mp/gamesetup_mp.js:229
 msgid "Game has already started, rejoining..."
 msgstr "Gra już się zaczęła. Ponowne łączenie."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:298
+#: gui/gamesetup_mp/gamesetup_mp.js:300
 msgid "Game name already in use."
 msgstr "Nazwa gry jest już używana."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:308
+#: gui/gamesetup_mp/gamesetup_mp.js:310
 msgid "Failed to host via STUN."
 msgstr "Założenie hosta za pomocą STUN nie powiodło się."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:322
+#: gui/gamesetup_mp/gamesetup_mp.js:324
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Nie można hostować gry: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:323 gui/gamesetup_mp/gamesetup_mp.js:352
+#: gui/gamesetup_mp/gamesetup_mp.js:325 gui/gamesetup_mp/gamesetup_mp.js:354
 msgid "Error"
 msgstr "Błąd"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:351
+#: gui/gamesetup_mp/gamesetup_mp.js:353
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Nie można dołączyć do gry: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:373
+#: gui/gamesetup_mp/gamesetup_mp.js:375
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "Gra użytkownika %(playername)s"

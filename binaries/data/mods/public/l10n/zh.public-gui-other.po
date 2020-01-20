@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-13 08:22+0000\n"
-"PO-Revision-Date: 2020-01-14 03:53+0000\n"
+"POT-Creation-Date: 2020-01-17 08:08+0000\n"
+"PO-Revision-Date: 2020-01-19 10:30+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -576,7 +576,7 @@ msgstr "玩家 (%(num)s): %(users)s"
 #: gui/common/tooltips.js:298 gui/common/tooltips.js:363
 #: gui/common/tooltips.js:413 gui/common/tooltips.js:446
 #: gui/common/tooltips.js:741 gui/common/tooltips.js:775
-#: gui/common/tooltips.js:841 gui/loadgame/SavegameDetails.js:37
+#: gui/common/tooltips.js:841 gui/loadgame/SavegameDetails.js:38
 #: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:283
 msgid ", "
 msgstr "，"
@@ -877,7 +877,7 @@ msgstr ""
 #: gui/common/tooltips.js:354
 #, javascript-format
 msgid "%(splashShape)s Splash Damage"
-msgstr ""
+msgstr "%(splashShape)s溅射伤害"
 
 #: gui/common/tooltips.js:357
 #, javascript-format
@@ -893,7 +893,7 @@ msgstr "友好火力：%(enabled)s"
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:295 gui/options/options.js:348
 #: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
-#: gui/pregame/MainMenuItems.js:200 gui/replaymenu/replay_actions.js:169
+#: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "是"
 
@@ -901,7 +901,7 @@ msgstr "是"
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:295 gui/options/options.js:348
 #: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
-#: gui/pregame/MainMenuItems.js:200 gui/replaymenu/replay_actions.js:169
+#: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "否"
 
@@ -1182,7 +1182,7 @@ msgstr "确定要永久的删除保存的游戏吗？"
 msgid "DELETE"
 msgstr "删除"
 
-#: gui/loadgame/SavegameDetails.js:39
+#: gui/loadgame/SavegameDetails.js:40
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "附加模组：%(mods)s"
@@ -1300,7 +1300,7 @@ msgstr "游戏教程"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr ""
+msgstr "学习开局，熟悉教程，探索科技树以及了解文明背后的历史。"
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -1337,7 +1337,7 @@ msgstr "历史"
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s:了解各文明特性。"
 
 #: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:142
 msgid "Single-player"
@@ -1345,7 +1345,7 @@ msgstr "单人游戏"
 
 #: gui/pregame/MainMenuItems.js:51
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "开始、加载或重新开始单人游戏。"
 
 #: gui/pregame/MainMenuItems.js:54
 msgid "Matches"
@@ -1471,7 +1471,7 @@ msgstr "在新窗口打开场景编辑器。您可以在命令行以参数\"-edi
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "确定要退出 0 A.D. ，并打开剧情编辑器吗？"
 
-#: gui/pregame/MainMenuItems.js:182 gui/pregame/MainMenuItems.js:199
+#: gui/pregame/MainMenuItems.js:182 gui/pregame/MainMenuItems.js:206
 msgid "Confirmation"
 msgstr "确认"
 
@@ -1486,14 +1486,22 @@ msgid "Error"
 msgstr "错误"
 
 #: gui/pregame/MainMenuItems.js:193
+msgid "Credits"
+msgstr "职员名单"
+
+#: gui/pregame/MainMenuItems.js:194
+msgid "Show the 0 A.D. credits."
+msgstr "查看 0 A.D. 职员名单。"
+
+#: gui/pregame/MainMenuItems.js:200
 msgid "Exit"
 msgstr "退出"
 
-#: gui/pregame/MainMenuItems.js:194
+#: gui/pregame/MainMenuItems.js:201
 msgid "Exit the game."
 msgstr "退出游戏。"
 
-#: gui/pregame/MainMenuItems.js:198
+#: gui/pregame/MainMenuItems.js:205
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "确定要退出 0 A.D. 吗?"
 
@@ -1552,14 +1560,6 @@ msgstr "捐赠"
 #: gui/pregame/ProjectInformation.js:58
 msgid "Help with the project expenses by donating."
 msgstr "捐赠，帮助我们改善游戏"
-
-#: gui/pregame/ProjectInformation.js:65
-msgid "Credits"
-msgstr "职员名单"
-
-#: gui/pregame/ProjectInformation.js:66
-msgid "Click to see the 0 A.D. credits."
-msgstr "查看 0 A.D. 职员名单。"
 
 #: gui/pregame/SplashscreenHandler.js:49
 #, javascript-format
@@ -2338,7 +2338,7 @@ msgstr "主菜单"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Rebuild Cache"
-msgstr ""
+msgstr "重建缓存"
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
 #: gui/summary/summary.xml:(caption):34
@@ -2633,7 +2633,7 @@ msgstr "窗口失去焦点时，暂停单人游戏。"
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
-msgstr ""
+msgstr "窗口失去焦点时暂停"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
@@ -2659,7 +2659,7 @@ msgstr "在右上角显示帧率。"
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS overlay"
-msgstr ""
+msgstr "每秒帧数"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -2667,7 +2667,7 @@ msgstr "在右上角显示目前的系统时间。"
 
 #: gui/options/options.json[0].options[6].label
 msgid "Real time overlay"
-msgstr ""
+msgstr "实际时间"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
@@ -2675,7 +2675,7 @@ msgstr "在右上角显示目前的模拟时间。"
 
 #: gui/options/options.json[0].options[7].label
 msgid "Game time overlay"
-msgstr ""
+msgstr "游戏时长"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -2683,7 +2683,7 @@ msgstr "总是显示剩余的停火时间。"
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire time overlay"
-msgstr ""
+msgstr "停火时间"
 
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
@@ -2708,7 +2708,7 @@ msgstr "允许他人在游戏开始后，作为观察者加入游戏。"
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late observer joins"
-msgstr ""
+msgstr "最近加入的观察者"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
@@ -2716,7 +2716,7 @@ msgstr "如果达到限制，禁止观察者再加入。"
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer limit"
-msgstr ""
+msgstr "观察人数上限"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid ""
@@ -2725,7 +2725,7 @@ msgstr "在游戏大厅显示设置及聊天的时间信息。"
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "聊天时间戳"
 
 #: gui/options/options.json[0].label
 msgid "General"
@@ -2737,7 +2737,7 @@ msgstr "开启窗口游戏"
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
-msgstr ""
+msgstr "窗口模式"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
@@ -2757,11 +2757,11 @@ msgstr "战争迷雾"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "使用屏幕空间后处理过滤器（HDR，Bloom，DOF等）。"
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
-msgstr ""
+msgstr "后处理"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -3194,7 +3194,7 @@ msgstr "如果你或某个盟友已开始、中止或完成新阶段，并且所
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat notification phase"
-msgstr ""
+msgstr "聊天通知状态"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
@@ -3204,7 +3204,7 @@ msgstr "显示所选防御建筑的攻击范围（可使用热键切换）。"
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
-msgstr ""
+msgstr "显示攻击范围"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
@@ -3214,7 +3214,7 @@ msgstr "显示所选单位和建筑的光环范围（可使用热键切换）。
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
-msgstr ""
+msgstr "显示光环范围"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
@@ -3224,7 +3224,7 @@ msgstr "显示所选单位的治疗范围(也可以在游戏内通过热键显�
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
-msgstr ""
+msgstr "显示治疗范围"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
@@ -3245,7 +3245,7 @@ msgstr "经验状态栏"
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr ""
+msgstr "在可生产单位的建筑物中显示详细的单位提示信息。"
 
 #: gui/options/options.json[5].options[12].label
 msgid "Detailed tooltips"
@@ -3278,7 +3278,7 @@ msgstr "当启动政策色后，显示你的颜色。"
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy colors: self"
-msgstr ""
+msgstr "外交颜色：自身"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
@@ -4035,7 +4035,7 @@ msgstr "领土衰减"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr ""
+msgstr "没有和市政中心（自身或同盟大的）连接的建筑物，会逐步腐化。"
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
@@ -4047,7 +4047,7 @@ msgstr "- 可以在建筑中驻扎单位，来减慢或者逆转腐化过程。"
 msgid ""
 "When the decay is completed, the structure will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "腐化完成时，建筑物会被周围最有影响力的邻国获取。"
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"

@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -16,7 +16,7 @@
 # Enes Bilgin <enessbilginn@gmail.com>, 2018
 # Eren Ramiz <kumbasar2004@hotmail.com>, 2016
 # Ferhat Olçum <ferhatolcum@gmail.com>, 2018
-# Günay Yılmaz <turkoman07@gmail.com>, 2019
+# Togarma, 2019
 # Hasan Baran Kırmızı <hasanbaran98@gmail.com>, 2016
 # İrfan Sunay <irfan_sunay@hotmail.com>, 2018
 # Kemal Oktay Aktoğan <oktayaktogan@gmail.com>, 2017
@@ -32,9 +32,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-09-24 07:28+0000\n"
-"Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
+"POT-Creation-Date: 2020-01-17 08:09+0000\n"
+"PO-Revision-Date: 2020-01-17 18:09+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -139,11 +139,11 @@ msgstr "Tıbbi tedavi"
 msgid "Humans +1 health regeneration rate."
 msgstr "İnsanlara +1 sağlık yenilenme oranı."
 
-#: simulation/data/auras/structures/theatron.jsonauraName
+#: simulation/data/auras/structures/theater.jsonauraName
 msgid "Hellenization"
 msgstr "Helenleştirme"
 
-#: simulation/data/auras/structures/theatron.jsonauraDescription
+#: simulation/data/auras/structures/theater.jsonauraDescription
 msgid "Structures +20% territory influence radius."
 msgstr "Binalara +%20 bölge etkililik alanı."
 
@@ -217,8 +217,8 @@ msgid "Saripeko"
 msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
-msgid "Allied Citizen Javelinists −20% resource costs."
-msgstr "Müttefik Ciritçi Vatandaşlar -%20 kaynak bedeli."
+msgid "Allied Citizen Javelinists −10% resource costs."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -267,8 +267,8 @@ msgid "Conscription"
 msgstr "Zorunlu Hizmet"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "Allied Citizen Infantry −20% training time."
-msgstr "Müttefik Piyade Vatandaş -%20 eğitim süresi."
+msgid "Allied Citizen Infantry −10% training time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"

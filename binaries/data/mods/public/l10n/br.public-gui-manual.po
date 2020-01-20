@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-13 08:22+0000\n"
-"PO-Revision-Date: 2020-01-13 15:17+0000\n"
+"POT-Creation-Date: 2020-01-17 08:08+0000\n"
+"PO-Revision-Date: 2020-01-17 15:32+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -55,8 +55,8 @@ msgstr ""
 msgid ""
 "You can switch between fullscreen and windowed mode by pressing Alt + Enter."
 " In windowed mode, you can resize the window. If the game runs too slowly, "
-"you can change some settings in the options window: try disabling the \"HQ "
-"Water Effects\" and \"Shadows\" options."
+"you can change some settings in the options window: try disabling the “HQ "
+"Water Effects” and “Shadows” options."
 msgstr ""
 
 #: gui/manual/intro.txt:7
@@ -96,7 +96,7 @@ msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
 msgstr ""
 
 #: gui/manual/intro.txt:16
-msgid "• Mouse wheel, or \"=\"/\"+\" and \"-\"/\"−\" keys, to zoom"
+msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
 msgstr ""
 
 #: gui/manual/intro.txt:18
@@ -109,7 +109,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:20
 msgid ""
-"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – play a sandbox "
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – Play a sandbox "
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
@@ -117,17 +117,17 @@ msgstr ""
 
 #: gui/manual/intro.txt:21
 msgid ""
-"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
 msgstr ""
 
 #: gui/manual/intro.txt:23
 msgid ""
-"To set up a multiplayer game, one player must select the \"Host game\" "
-"option. The game uses UDP port 20595, so the host must configure their "
-"NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
+"To set up a multiplayer game, one player must select the “Host game” option."
+" The game uses UDP port 20595, so the host must configure their "
+"NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr "Evit diazezañ ur c'hoari lies-c'hoarier, ur c'hoarier a rank diuzañ an dibab \"Herbrec'hiañ ur c'hoari\". Implijout a ra ar c'hoari porzh 20595 UDP, ret e vo neuze d'an herbrec'hier kefluniañ o NAT/firewall/etc evit aotren an dra-mañ. C'hoarierien all a c'hell neuze dibab \"Emezelañ er c'hoari\" ha skrivañ chomlec'h IP an herbrec'hier."
+msgstr ""
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -164,7 +164,7 @@ msgid ""
 "Then the maps can be further filtered. The default maps are generally "
 "playable maps. Naval maps are maps where not all opponents can be reached "
 "over land and demo maps are maps used for testing purposes (generally not "
-"useful to play on). The \"All Maps\" filter shows all maps together in one "
+"useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
 msgstr ""
 
@@ -172,17 +172,17 @@ msgstr ""
 msgid ""
 "Finally change the settings. For random maps this includes the number of "
 "players, the size of a map, etc. For scenarios you can only select who "
-"controls which player (decides where you start on the map etc). The options "
-"are either a human player, an AI or no player at all (the opponent will just"
-" be idle)."
-msgstr "A-barzh ar fin kemmit an arventennoù. Evit ar pezh a sell ouzh ar c'hartennoù dre-zegouezh, an dra-se a endalc'h an niver a c'hoarierien, ment ar gartenn, hag all hag all. Evit ar pezh a sell ouzh ar senariooù, posupl eo deoc'h diuzañ, hepken, piv a gontrollo pep c'hoarier (divizet e vo gantañ pelec'h e vo loc'het ganeoc'h war ar gartenn...hag all...hag all). An dibaboù a vo pe ur Yann c'hoarier, un AI pe c'hoarier ebet (dre-se e vo dioberiant an enebour)."
+"controls which player (decides where you start on the map etc.). The options"
+" are either a human player, an AI or no player at all (the opponent will "
+"just be idle)."
+msgstr ""
 
 #: gui/manual/intro.txt:37
-msgid "When you are ready to start, click the \"Start game\" button."
-msgstr "Ur wech ma voc'h prest stagañ ganti, klikit war \"Stagañ ar c'hoariadenn\"."
+msgid "When you are ready to start, click the “Start game” button."
+msgstr ""
 
 #: gui/manual/intro.txt:39
-msgid "[font=\"sans-bold-16\"]Hotkeys:[font=\"sans-14\"]"
+msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
 msgstr ""
 
 #: gui/manual/intro.txt:40
@@ -213,7 +213,7 @@ msgid ""
 msgstr ""
 
 #: gui/manual/intro.txt:46
-msgid "  Shift + F11 – Save current profiler data to \"logs/profile.txt\""
+msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
 msgstr ""
 
 #: gui/manual/intro.txt:47
@@ -391,8 +391,8 @@ msgstr ""
 
 #: gui/manual/intro.txt:84
 msgid ""
-"  F5, F6, F7, and F8 – Move the camera to a marked position. Jump back to "
-"the last location if the camera is already over the marked position"
+"  F5 (and so on up to F8) – Move the camera to a marked position. Jump back "
+"to the last location if the camera is already over the marked position"
 msgstr ""
 
 #: gui/manual/intro.txt:85
@@ -403,13 +403,13 @@ msgstr ""
 
 #: gui/manual/intro.txt:86
 msgid ""
-"  PageUp with unit(s) selected – Highlights the unit(s)/structure(s) guarded"
-" by the selection"
+"  PageUp with unit(s) selected – Highlight the unit(s)/structure(s) guarded "
+"by the selection"
 msgstr ""
 
 #: gui/manual/intro.txt:87
 msgid ""
-"  PageDown with unit(s)/structure(s) selected – Highlights the unit(s) "
+"  PageDown with unit(s)/structure(s) selected – Highlight the unit(s) "
 "guarding the selection"
 msgstr ""
 
@@ -467,13 +467,13 @@ msgid "  P + Right Click – Patrol"
 msgstr ""
 
 #: gui/manual/intro.txt:102
-msgid "  Shift + Right Click – Queue the move/build/gather/etc order"
+msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
 msgstr ""
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  Alt + Right Click – Order one unit from the current selection to "
-"move/build/gather/etc and unselect it. Used to quickly dispatch units with "
+"move/build/gather/etc. and unselect it. Used to quickly dispatch units with "
 "specific tasks"
 msgstr ""
 
@@ -519,7 +519,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:112
 msgid ""
-"  Right Click with a structure(s) selected – sets a rally point for units "
+"  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
 msgstr ""
 

@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Gontzal M. Pujana <juchuf@gmail.com>, 2015-2016
+# Gontzal Manuel Pujana Onaindia <juchuf@gmail.com>, 2015-2016
 # Mielanjel Iraeta <pospolos@gmail.com>, 2017-2019
-# Osoitz <oelkoro@gmail.com>, 2015,2019
-# Gontzal M. Pujana <juchuf@gmail.com>, 2016-2017
+# Osoitz <oelkoro@gmail.com>, 2015,2019-2020
+# Gontzal Manuel Pujana Onaindia <juchuf@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-11-03 16:01+0000\n"
+"PO-Revision-Date: 2020-01-18 18:04+0000\n"
 "Last-Translator: Osoitz <oelkoro@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -1262,7 +1262,7 @@ msgstr "Aurreratu Hiri Arora, eraikin eta unitate gehiago gaitzen dituena. Gizar
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Herri Aroko 4 eraikin behar ditu (Hesiak eta Gizarte zentroak beste)"
+msgstr "Herri Aroko 4 egitura behar ditu (Hesiak eta Gizarte zentroak beste)"
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -1281,7 +1281,7 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
 "health. All structures +9 garrisoned regeneration rate."
-msgstr "Aurreratu Hiri Arora, eraikin eta unitate gehiago gaitzen dituena. Hiriaren erdigunea %50+ handitzen da. Hiritar soldaduei %10+ gehitzen zaie osasunean. Eraikin guztiek +9 guardan sartutako berrosatze abiaduran."
+msgstr "Aurreratu Hiri Arora, egitura eta unitate gehiago gaitzen dituena. Hiriaren erdigunea %50+ handitzen da. Hiritar soldaduei %10+ gehitzen zaie osasunean. Egitura guztiek +9 guardan sartutako berrosatze abiaduran."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1308,13 +1308,13 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
 "health. All structures +7 garrisoned regeneration rate."
-msgstr "Aurreratu Herri Arora, eraikin eta unitate gehiago gaitzen dituena. Hiriaren erdigunea %30+ handitzen da. Atenastarren  «zilarrezko hontza»ren hobariak %10+ gehiago ematen die langileei metala ustiatzeko abiaduran. Hiritar soldaduei %20+ gehitzen zaie osasunean. Eraikin guztiek +7 guardan sartutako berrosatze abiaduran."
+msgstr "Aurreratu Herri Arora, egitura eta unitate gehiago gaitzen dituena. Hiriaren erdigunea %30+ handitzen da. Atenastarren  «zilarrezko hontza»ren hobariak %10+ gehiago ematen die langileei metala ustiatzeko abiaduran. Hiritar soldaduei %20+ gehitzen zaie osasunean. Egitura guztiek +7 guardan sartutako berrosatze abiaduran."
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid ""
 "Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Herrixka aroko 5 eraikin behar ditu (Hesi eta Baratzeak beste)."
+msgstr "Herrixka aroko 5 egitura behar ditu (Hesi eta Baratzeak beste)."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1332,7 +1332,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
 "All structures +7 garrisoned regeneration rate."
-msgstr "Aurreratu Herri Arora, eraikin eta unitate gehiago gaitzen dituena. Hiriaren erdigunea %30+ handitzen da. Hiritar soldaduei %20+ gehitzen zaie osasunean. Estruktura guztiek +7 guardan sartutakoen berrosatze abiaduran."
+msgstr "Aurreratu Herri Arora, egitura eta unitate gehiago gaitzen dituena. Hiriaren erdigunea %30+ handitzen da. Hiritar soldaduei %20+ gehitzen zaie osasunean. Egitura guztiek +7 guardan sartutakoen berrosatze abiaduran."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1607,7 +1607,7 @@ msgstr "Postu aurreratuek denbora bikoitza iraun ahal dute eremu neutralean."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr "Postu aurreratuak %50- lurraldeko degradazioan."
+msgstr "Postu aurreratuak %50- lurralde narriaduran."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -2289,13 +2289,13 @@ msgstr "Hesi hirukoitza"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
-msgstr "Zelta eraikuntzak  egurrez eraikitzen ziren zabor oinarrien gainean."
+msgstr "Zelta egiturak egurrez eraikitzen ziren zabor oinarrien gainean."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
 "Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
 " points."
-msgstr "Britaniar eta Galiar estrukturak %20- eraikitze denboran, %20- osasunean, eta %20- atzemate puntu."
+msgstr "Britaniar eta Galiar egiturak %20- eraikitze denboran, %20- osasunean, eta %20- atzemate puntu."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
@@ -2309,7 +2309,7 @@ msgstr "Grekoek aro Mezenikotik erabiltzen zuten harri eraikinak. "
 msgid ""
 "Athenian, Macedonian, and Spartan Structures +10% build time, +10% health, "
 "and +10% capture points."
-msgstr "Atenastar, mazedoniar eta espartar estrukturek %10+ eraikitze denbora, %10+ osasuna, eta %10+ atzemate puntu."
+msgstr "Atenastar, mazedoniar eta espartar egiturek %10+ eraikitze denbora, %10+ osasuna, eta %10+ atzemate puntu."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -2558,7 +2558,7 @@ msgstr "Erromatarrak gerra logistikan maisuak izan ziren."
 
 #: simulation/data/technologies/romans/decay_logistics.jsontooltip
 msgid "Entrenched Camps and Siege Walls decay 50% slower."
-msgstr "Lubakitutako kanpamentuak eta setio hesiak %50 motelago suntsitu ziren. "
+msgstr "Lubakitutako kanpamentuen eta setio hesien narriadura %50 motelago. "
 
 #: simulation/data/technologies/romans/decay_logistics.jsongenericName
 msgid "Roman Logistics"

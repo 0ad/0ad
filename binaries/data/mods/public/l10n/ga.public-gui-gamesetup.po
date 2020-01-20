@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-13 08:22+0000\n"
-"PO-Revision-Date: 2020-01-13 15:59+0000\n"
+"POT-Creation-Date: 2020-01-17 08:08+0000\n"
+"PO-Revision-Date: 2020-01-17 14:29+0000\n"
 "Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -102,12 +102,12 @@ msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "Léarscáil"
 
-#: gui/gamesetup/GameSettings/GameSettingsLayout.js:22
+#: gui/gamesetup/GameSettings/GameSettingsLayout.js:24
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "Imreoir"
 
-#: gui/gamesetup/GameSettings/GameSettingsLayout.js:32
+#: gui/gamesetup/GameSettings/GameSettingsLayout.js:34
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "Cineál Cluiche"
@@ -253,20 +253,20 @@ msgstr "Díchumasaigh Taiscí"
 msgid "Do not add treasures to the map."
 msgstr "Ná cuir le taisce ar bith ar an léarscáil."
 
-#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:119
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:135
 msgid "Biome"
 msgstr "Bithóm"
 
-#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:125
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:141
 msgid "Select the flora and fauna."
 msgstr "Roghnagh flóra is fána."
 
-#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:128
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:144
 msgctxt "biome"
 msgid "Random"
 msgstr "Bithóm Fánach"
 
-#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:131
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:147
 msgid "Pick a biome at random."
 msgstr "Roghnaigh aon bhithóm go fánach."
 
@@ -278,6 +278,24 @@ msgstr "Sos Cogaidh"
 msgid "Set time where no attacks are possible."
 msgstr "Roghnaigh amanna nuair ní fhéidir leis na n-imreoirí aon ionsaí a dhéanamh."
 
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Daytime.js:96
+msgid "Daytime"
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Daytime.js:99
+msgid "Select whether the match takes place at daylight or night."
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Daytime.js:102
+msgctxt "daytime selection"
+msgid "Random"
+msgstr "Bithóm Fánach"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Daytime.js:105
+msgctxt "daytime selection"
+msgid "Randomly pick a time of the day."
+msgstr ""
+
 #: gui/gamesetup/GameSettings/Single/Dropdowns/GameSpeed.js:73
 msgid "Game Speed"
 msgstr "Luas Cluiche"
@@ -285,6 +303,44 @@ msgstr "Luas Cluiche"
 #: gui/gamesetup/GameSettings/Single/Dropdowns/GameSpeed.js:76
 msgid "Select game speed."
 msgstr "Roghnaigh luas an chluiche."
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:124
+msgid "Landscape"
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:127
+msgid "Select one of the landscapes of this map."
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:133
+msgctxt "landscape selection"
+msgid "Random Land or Naval"
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:134
+msgctxt "landscape selection"
+msgid "Select a random land or naval map generation."
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:138
+msgctxt "landscape selection"
+msgid "Random Land"
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:139
+msgctxt "landscape selection"
+msgid "Select a random land map generation."
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:143
+msgctxt "landscape selection"
+msgid "Random Naval"
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:144
+msgctxt "landscape selection"
+msgid "Select a random naval map generation."
+msgstr ""
 
 #: gui/gamesetup/GameSettings/Single/Dropdowns/MapFilter.js:89
 msgid "Map Filter"
@@ -355,11 +411,11 @@ msgid ""
 "%(popCap)s population."
 msgstr "Fógra: is féidir le deacrachtaí feidhmíochta a fháil má tá gach %(players)s imreoir ina n-uasdhaonra %(popCap)s."
 
-#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicCount.js:77
+#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicCount.js:78
 msgid "Relic Count"
 msgstr "Méid Iarsmaí"
 
-#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicCount.js:80
+#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicCount.js:81
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
@@ -596,37 +652,37 @@ msgstr "Ag ceangal leis an bhfreastalaí..."
 msgid "Net message: %(message)s"
 msgstr "Teachtaireacht líonra: %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:221
+#: gui/gamesetup_mp/gamesetup_mp.js:223
 msgid "Registering with server..."
 msgstr "Ag clárú leis an bhfreastalaí..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:227
+#: gui/gamesetup_mp/gamesetup_mp.js:229
 msgid "Game has already started, rejoining..."
 msgstr "Tá an cluiche ag imirt cheana féin, ag athcheangal..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:298
+#: gui/gamesetup_mp/gamesetup_mp.js:300
 msgid "Game name already in use."
 msgstr "Ainm cluiche ann cheana féin."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:308
+#: gui/gamesetup_mp/gamesetup_mp.js:310
 msgid "Failed to host via STUN."
 msgstr "Teipeadh óstáil trí STUN."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:322
+#: gui/gamesetup_mp/gamesetup_mp.js:324
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Ní féidir le cluiche a óstáil: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:323 gui/gamesetup_mp/gamesetup_mp.js:352
+#: gui/gamesetup_mp/gamesetup_mp.js:325 gui/gamesetup_mp/gamesetup_mp.js:354
 msgid "Error"
 msgstr "Earráid"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:351
+#: gui/gamesetup_mp/gamesetup_mp.js:353
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Ní féidir le glac leis an gcluiche: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:373
+#: gui/gamesetup_mp/gamesetup_mp.js:375
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "Cluiche %(playername)s"

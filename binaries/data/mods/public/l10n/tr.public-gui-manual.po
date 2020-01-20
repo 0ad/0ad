@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-13 08:22+0000\n"
-"PO-Revision-Date: 2020-01-14 06:15+0000\n"
-"Last-Translator: Togarma\n"
+"POT-Creation-Date: 2020-01-17 08:08+0000\n"
+"PO-Revision-Date: 2020-01-17 15:32+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,9 +58,9 @@ msgstr "[font=\"sans-bold-16\"]Görsel Ayarlar[font=\"sans-14\"]"
 msgid ""
 "You can switch between fullscreen and windowed mode by pressing Alt + Enter."
 " In windowed mode, you can resize the window. If the game runs too slowly, "
-"you can change some settings in the options window: try disabling the \"HQ "
-"Water Effects\" and \"Shadows\" options."
-msgstr "Alt + Enter tuşlarına basarak tam ekran ve pencereli mod arasında geçiş yapabilirsiniz. Pencereli modda pencereyi yeniden boyutlandırabilirsiniz. Oyun çok yavaş çalışırsa, seçenekler penceresinde bazı ayarları değiştirebilirsiniz: \"HQ Su Efektleri\" ve \"Gölgeler\" seçeneklerini devre dışı bırakmayı deneyin."
+"you can change some settings in the options window: try disabling the “HQ "
+"Water Effects” and “Shadows” options."
+msgstr ""
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -99,8 +99,8 @@ msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
 msgstr "• Kamerayı çevirmek için Ctrl + yön tuşları, ya da Shift + fare tekerini kullanın"
 
 #: gui/manual/intro.txt:16
-msgid "• Mouse wheel, or \"=\"/\"+\" and \"-\"/\"−\" keys, to zoom"
-msgstr "• Yakınlaştırmak için fare tekeri, =/+ ya da _/- tuşlarını kullanın."
+msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
+msgstr ""
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -112,25 +112,25 @@ msgstr "Ana menü iki oyun moduna erişim sağlar:"
 
 #: gui/manual/intro.txt:20
 msgid ""
-"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – play a sandbox "
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – Play a sandbox "
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr "• [font=\"sans-bold-14\"]Tek Oyunculu[font=\"sans-14\"]  - bir sanal oyun veya bir veya daha fazla bilgisayar oynatıcısına (AI) karşı oynayabilir. Varsayılan AI (Petra) geliştirilme aşamasındadır ve yeni özellikler konusunda her zaman güncel olmayabilir, ancak yine de oyunu oynayabilir veya buna karşı oynayabilirsiniz."
+msgstr ""
 
 #: gui/manual/intro.txt:21
 msgid ""
-"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – İnternet üzerinden insan rakiplere karşı oyna."
+msgstr ""
 
 #: gui/manual/intro.txt:23
 msgid ""
-"To set up a multiplayer game, one player must select the \"Host game\" "
-"option. The game uses UDP port 20595, so the host must configure their "
-"NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
+"To set up a multiplayer game, one player must select the “Host game” option."
+" The game uses UDP port 20595, so the host must configure their "
+"NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr "Çoklu oyuncu bir oyun kurmak için, bir oyuncu mutlaka \"Oyunu Kur\" seçeneğini seçmelidir. Oyun 20595 UDP portunu kullanır, bu nedenle oyun sahibi kendi NAT/güvenlik duvarını vb. buna izin verecek şekilde yapılandırmalıdır. Ardından diğer oyuncular \"Oyuna katıl\" seçer ve oyun sahibinin IP adresini girebilir."
+msgstr ""
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -167,26 +167,26 @@ msgid ""
 "Then the maps can be further filtered. The default maps are generally "
 "playable maps. Naval maps are maps where not all opponents can be reached "
 "over land and demo maps are maps used for testing purposes (generally not "
-"useful to play on). The \"All Maps\" filter shows all maps together in one "
+"useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr "Daha sonra haritalar daha fazla filtrelenebilir. Varsayılan haritalar genellikle oynanabilir haritalar. Deniz haritaları, rakiplerin karada ulaşamayacağı haritalar ve demo haritaları test amaçlı kullanılır (genellikle oynamak için kullanışlı değildir). \"Tüm Haritalar\" filtresi, tüm haritaları tek bir listede birlikte gösterir."
+msgstr ""
 
 #: gui/manual/intro.txt:35
 msgid ""
 "Finally change the settings. For random maps this includes the number of "
 "players, the size of a map, etc. For scenarios you can only select who "
-"controls which player (decides where you start on the map etc). The options "
-"are either a human player, an AI or no player at all (the opponent will just"
-" be idle)."
-msgstr "Daha sonra haritalar daha fazla filtrelenebilir. Varsayılan haritalar da oynanabilir haritalar. Deniz haritaları, rakiplerin karada ulaşamayacağı haritalar ve demo haritaları test amaçlıdır (genellikle oynamak için kullanışlı değildir). \"Tüm Haritalar\", tüm haritalar tek listede birlikte gösterir."
+"controls which player (decides where you start on the map etc.). The options"
+" are either a human player, an AI or no player at all (the opponent will "
+"just be idle)."
+msgstr ""
 
 #: gui/manual/intro.txt:37
-msgid "When you are ready to start, click the \"Start game\" button."
-msgstr "Başlamak için hazır olduğunuzda, \"Oyunu başlat\" butonuna tıklayın."
+msgid "When you are ready to start, click the “Start game” button."
+msgstr ""
 
 #: gui/manual/intro.txt:39
-msgid "[font=\"sans-bold-16\"]Hotkeys:[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-16\"]Kısayollar:[font=\"sans-14\"]"
+msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
@@ -216,8 +216,8 @@ msgid ""
 msgstr "F11 - Gerçek zamanlı profil oluşturucuyu etkinleştirme / devre dışı bırakma (bilgi ekranları arasında geçiş yapar)"
 
 #: gui/manual/intro.txt:46
-msgid "  Shift + F11 – Save current profiler data to \"logs/profile.txt\""
-msgstr "Shift + F11 - Geçerli profil oluşturucu verilerini \"logs / profile.txt\" konumuna kaydedin"
+msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
+msgstr ""
 
 #: gui/manual/intro.txt:47
 msgid ""
@@ -394,9 +394,9 @@ msgstr "Ctrl + F5 (ve benzeri F8'e kadar) - Geçerli kamera konumunu işaretler,
 
 #: gui/manual/intro.txt:84
 msgid ""
-"  F5, F6, F7, and F8 – Move the camera to a marked position. Jump back to "
-"the last location if the camera is already over the marked position"
-msgstr "F5, F6, F7 ve F8 - Kamerayı işaretli bir konuma getirin. Kamera zaten işaretlenmiş konumdaysa, son konuma geri dönün"
+"  F5 (and so on up to F8) – Move the camera to a marked position. Jump back "
+"to the last location if the camera is already over the marked position"
+msgstr ""
 
 #: gui/manual/intro.txt:85
 msgid ""
@@ -406,15 +406,15 @@ msgstr "Z, X, C, V, B, N, M - Eğitim yapısı seçiliyken. Seçilen tüm yapıl
 
 #: gui/manual/intro.txt:86
 msgid ""
-"  PageUp with unit(s) selected – Highlights the unit(s)/structure(s) guarded"
-" by the selection"
-msgstr "Seçili birimler ile PageUp - Seçim tarafından korunan birimleri / yapıları vurgular"
+"  PageUp with unit(s) selected – Highlight the unit(s)/structure(s) guarded "
+"by the selection"
+msgstr ""
 
 #: gui/manual/intro.txt:87
 msgid ""
-"  PageDown with unit(s)/structure(s) selected – Highlights the unit(s) "
+"  PageDown with unit(s)/structure(s) selected – Highlight the unit(s) "
 "guarding the selection"
-msgstr "PageDown (birim) / yapı (lar) seçiliyken - Seçimi koruyan birimleri gösterir"
+msgstr ""
 
 #: gui/manual/intro.txt:88
 msgid ""
@@ -470,15 +470,15 @@ msgid "  P + Right Click – Patrol"
 msgstr "P + Sağ Tıklama - Devriye"
 
 #: gui/manual/intro.txt:102
-msgid "  Shift + Right Click – Queue the move/build/gather/etc order"
-msgstr "Shift + Sağ Tıklama - move / build / gather / vb sırasını sıraya koy"
+msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
+msgstr ""
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  Alt + Right Click – Order one unit from the current selection to "
-"move/build/gather/etc and unselect it. Used to quickly dispatch units with "
+"move/build/gather/etc. and unselect it. Used to quickly dispatch units with "
 "specific tasks"
-msgstr "Alt + Sağ Tıklama - Taşımak / derlemek / seçmek / seçimini kaldırmak ve geçerli seçimi kaldırmak için bir birim sipariş edin. Belirli görevlere sahip birimleri hızlı bir şekilde göndermek için kullanılır"
+msgstr ""
 
 #: gui/manual/intro.txt:104
 msgid ""
@@ -522,9 +522,9 @@ msgstr "Ctrl + Sol tıklama ile birden fazla birim seçili birim / grup simgesin
 
 #: gui/manual/intro.txt:112
 msgid ""
-"  Right Click with a structure(s) selected – sets a rally point for units "
+"  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
-msgstr "Bir yapı seçiliyken Sağ Tıklama - bu yapıdan yaratılan / silahsız edilen birimler için bir toplanma noktası belirler"
+msgstr ""
 
 #: gui/manual/intro.txt:113
 msgid "  Ctrl + Right Click with unit(s) selected:"

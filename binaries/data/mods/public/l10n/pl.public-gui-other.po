@@ -30,7 +30,7 @@
 # Pawel Jarczak <keven204@o2.pl>, 2016
 # Paweł Stopa <pawcio980@gmail.com>, 2018
 # Piotr Lehmann <lejmus@o2.pl>, 2017
-# Przemysław Murach <moonshine133@vp.pl>, 2018-2019
+# Przemysław Murach <moonshine133@vp.pl>, 2018-2020
 # q <q@qq.qq>, 2015
 # Adam Rabiega <rabusek@gmail.com>, 2014
 # Rafał <rafix1989@interia.pl>, 2015
@@ -41,9 +41,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-13 08:22+0000\n"
-"PO-Revision-Date: 2020-01-13 15:16+0000\n"
-"Last-Translator: Daniel Whatever <Deynyel@protonmail.com>\n"
+"POT-Creation-Date: 2020-01-17 08:08+0000\n"
+"PO-Revision-Date: 2020-01-18 18:28+0000\n"
+"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,12 +54,12 @@ msgstr ""
 #: gui/civinfo/civinfo.js:20
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr "%(hotkey)s: Przełącz na drzewo Struktur."
+msgstr "%(hotkey)s: Przełącz na drzewo budowli."
 
 #: gui/civinfo/civinfo.js:21
 #, javascript-format
 msgid "%(hotkey)s: Close History."
-msgstr "%(hotkey)s: Zamknij Historię."
+msgstr "%(hotkey)s: Zamknij historię."
 
 #. Translation: insert an itemization symbol for each entry.
 #: gui/civinfo/civinfo.js:85
@@ -95,10 +95,10 @@ msgstr "Technologie specjalne"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Structure"
 msgid_plural "Special Structures"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Budynek specjalny"
+msgstr[1] "Budynki specjalne"
+msgstr[2] "Budynki specjalne"
+msgstr[3] "Budynki specjalne"
 
 #: gui/civinfo/civinfo.js:141 gui/summary/layout.js:67
 msgid "Heroes"
@@ -432,7 +432,7 @@ msgstr "Początkowe zasoby"
 #: gui/common/gamedescription.js:353
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Na gracza"
 
 #: gui/common/gamedescription.js:354
 #, javascript-format
@@ -446,7 +446,7 @@ msgstr "Limit populacji"
 #: gui/common/gamedescription.js:369
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Na gracza"
 
 #: gui/common/gamedescription.js:376
 msgid "Treasures"
@@ -613,7 +613,7 @@ msgstr "Użytkownicy (%(num)s): %(users)s"
 #: gui/common/tooltips.js:298 gui/common/tooltips.js:363
 #: gui/common/tooltips.js:413 gui/common/tooltips.js:446
 #: gui/common/tooltips.js:741 gui/common/tooltips.js:775
-#: gui/common/tooltips.js:841 gui/loadgame/SavegameDetails.js:37
+#: gui/common/tooltips.js:841 gui/loadgame/SavegameDetails.js:38
 #: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:283
 msgid ", "
 msgstr ", "
@@ -951,7 +951,7 @@ msgstr "Bratobójczy Ogień: %(enabled)s"
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:295 gui/options/options.js:348
 #: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
-#: gui/pregame/MainMenuItems.js:200 gui/replaymenu/replay_actions.js:169
+#: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Tak"
 
@@ -959,7 +959,7 @@ msgstr "Tak"
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:295 gui/options/options.js:348
 #: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
-#: gui/pregame/MainMenuItems.js:200 gui/replaymenu/replay_actions.js:169
+#: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Nie"
 
@@ -1258,7 +1258,7 @@ msgstr "Zapisane stany gry zostaną całkowicie usunięte, jesteś pewien?"
 msgid "DELETE"
 msgstr "USUŃ"
 
-#: gui/loadgame/SavegameDetails.js:39
+#: gui/loadgame/SavegameDetails.js:40
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "Mody: %(mods)s"
@@ -1376,7 +1376,7 @@ msgstr "Jak grać?"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr ""
+msgstr "Naucz się grać, rozpocznij samouczek, odkryj drzewo technologiczne i historie cywilizacji."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -1413,7 +1413,7 @@ msgstr "Historia"
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Poszerz swoją wiedzę o cywilizacjach gry 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:142
 msgid "Single-player"
@@ -1421,7 +1421,7 @@ msgstr "Gra jednoosobowa"
 
 #: gui/pregame/MainMenuItems.js:51
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "Rozpocznij, zapisz lub odtwórz powtórkę gry jednoosobowej."
 
 #: gui/pregame/MainMenuItems.js:54
 msgid "Matches"
@@ -1429,7 +1429,7 @@ msgstr "Potyczka"
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "Rozpocznij nową grę jednoosobową."
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Campaigns"
@@ -1443,7 +1443,7 @@ msgstr "Przeżyj historię poprzez historyczne kampanie militarne. \\[JESZCZE NI
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Load a saved game."
-msgstr ""
+msgstr "Wczytaj zapisaną grę."
 
 #: gui/pregame/MainMenuItems.js:73 gui/pregame/MainMenuItems.js:123
 msgid "Replays"
@@ -1499,7 +1499,7 @@ msgstr "Ustawienia"
 
 #: gui/pregame/MainMenuItems.js:139
 msgid "Change game options."
-msgstr ""
+msgstr "Zmień ustawienia gry."
 
 #: gui/pregame/MainMenuItems.js:142
 msgid "Options"
@@ -1531,7 +1531,7 @@ msgstr "Okienko powitalne"
 
 #: gui/pregame/MainMenuItems.js:167
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Pokaż ekran powitalny. Przydatne w razie przypadkowego ukrycia."
 
 #: gui/pregame/MainMenuItems.js:175
 msgid "Scenario Editor"
@@ -1547,7 +1547,7 @@ msgstr "Otwórz edytor scenariuszy w nowym oknie. Możesz go uruchomić bardziej
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "Czy na pewno chcesz wyjść z 0 A.D. i otworzyć Edytor Scenariuszy?"
 
-#: gui/pregame/MainMenuItems.js:182 gui/pregame/MainMenuItems.js:199
+#: gui/pregame/MainMenuItems.js:182 gui/pregame/MainMenuItems.js:206
 msgid "Confirmation"
 msgstr "Potwierdzenie"
 
@@ -1562,14 +1562,22 @@ msgid "Error"
 msgstr "Błąd"
 
 #: gui/pregame/MainMenuItems.js:193
+msgid "Credits"
+msgstr "Twórcy "
+
+#: gui/pregame/MainMenuItems.js:194
+msgid "Show the 0 A.D. credits."
+msgstr "Pokaż autorów gry 0 A.D."
+
+#: gui/pregame/MainMenuItems.js:200
 msgid "Exit"
 msgstr "Wyjście"
 
-#: gui/pregame/MainMenuItems.js:194
+#: gui/pregame/MainMenuItems.js:201
 msgid "Exit the game."
-msgstr ""
+msgstr "Wyjdź z gry."
 
-#: gui/pregame/MainMenuItems.js:198
+#: gui/pregame/MainMenuItems.js:205
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Czy na pewno chcesz wyjść z 0 A.D.?"
 
@@ -1628,14 +1636,6 @@ msgstr "Wesprzyj"
 #: gui/pregame/ProjectInformation.js:58
 msgid "Help with the project expenses by donating."
 msgstr "Wspomóż finansowanie projektu poprzez darowiznę."
-
-#: gui/pregame/ProjectInformation.js:65
-msgid "Credits"
-msgstr "Twórcy "
-
-#: gui/pregame/ProjectInformation.js:66
-msgid "Click to see the 0 A.D. credits."
-msgstr "Kliknij aby zobaczyć twórców 0 A.D."
 
 #: gui/pregame/SplashscreenHandler.js:49
 #, javascript-format
@@ -1979,7 +1979,7 @@ msgstr "Punkty za eksplorację"
 
 #: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):81
 msgid "Structures"
-msgstr ""
+msgstr "Budynki"
 
 #: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:102
 msgid "Total"
@@ -2018,7 +2018,7 @@ msgstr "Cuda"
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "Statystyki budynku (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):88
 msgid "Units"
@@ -2055,7 +2055,7 @@ msgstr "Kupcy"
 #: gui/summary/layout.js:74
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "Statystyki jednostki (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):95
 msgid "Resources"
@@ -2699,7 +2699,7 @@ msgstr "Jak chciałbyś się nazywać w grze jednoosobowej."
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "Nazwa gracza (gra jednoosobowa)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
@@ -2707,7 +2707,7 @@ msgstr "Jak chciałbyś się nazywać w grach wieloosobowych (poza lobby)."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr ""
+msgstr "Nazwa gracza (gra wieloosobowa)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
@@ -2715,7 +2715,7 @@ msgstr "Zatrzymaj grę po przełączeniu na inne okno."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
-msgstr ""
+msgstr "Pauza tła"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
@@ -2725,7 +2725,7 @@ msgstr "Jeśli go wyłączysz, ekran powitalny pojawi się jeszcze raz, za każd
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
-msgstr ""
+msgstr "Włącz ekran powitalny"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
@@ -2733,7 +2733,7 @@ msgstr "Zobacz, który z graczy ma złe połączenie w grach wieloosobowych. "
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network warnings"
-msgstr ""
+msgstr "Ostrzeżenia sieciowe"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2741,7 +2741,7 @@ msgstr "Pokaż klatki na sekundę w prawym górnym rogu ekranu."
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS overlay"
-msgstr ""
+msgstr "Nakładka FPS"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -2749,7 +2749,7 @@ msgstr "Pokaż czas systemowy w prawym górnym rogu ekranu."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Real time overlay"
-msgstr ""
+msgstr "Nakładka czasu rzeczywistego"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
@@ -2757,7 +2757,7 @@ msgstr "Pokaż obecny czas symulacji w prawym górnym rogu ekranu."
 
 #: gui/options/options.json[0].options[7].label
 msgid "Game time overlay"
-msgstr ""
+msgstr "Nakładka czasu gry"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -2765,7 +2765,7 @@ msgstr "Zawsze wyświetlaj pozostały czas zawieszenia broni."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire time overlay"
-msgstr ""
+msgstr "Nakładka czasu pokoju"
 
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
@@ -2790,7 +2790,7 @@ msgstr "Pozwól każdemu lub tylko znajomym dołączyć do gry jako obserwator p
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late observer joins"
-msgstr ""
+msgstr "Dołączył spóźniony obserwator"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
@@ -2798,7 +2798,7 @@ msgstr "Zapobiegaj dołączaniu się obserwatorów po osiągnięciu limitu."
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer limit"
-msgstr ""
+msgstr "Limit obserwatorów"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid ""
@@ -2807,7 +2807,7 @@ msgstr "Pokaż godzinę przy wiadomościach w lobby, ustawieniach gry i na czaci
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "Znacznik czatu"
 
 #: gui/options/options.json[0].label
 msgid "General"
@@ -2819,7 +2819,7 @@ msgstr "Uruchom 0 A.D. w oknie."
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
-msgstr ""
+msgstr "Tryb gry w oknie"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
@@ -2839,11 +2839,11 @@ msgstr "Mgła"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Użyj filtrów post-processingu (HDR, kwitnięcie, głębia ostrości, etc.)."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
-msgstr ""
+msgstr "Post-processing"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -2851,7 +2851,7 @@ msgstr "Liczba efektów shadera. WYMAGA PONOWNEGO URUCHOMIENIA GRY."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Shader effects"
-msgstr ""
+msgstr "Efekty shadera"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Enable shadows."
@@ -2890,7 +2890,7 @@ msgstr "Rozdzielczość cieni na mapie.  Wysokie wartości mogą spowodować awa
 
 #: gui/options/options.json[1].options[6].label
 msgid "Shadow quality"
-msgstr ""
+msgstr "Jakość cieni"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Smooth shadows."
@@ -2898,15 +2898,15 @@ msgstr "Wygładzone cienie."
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shadow filtering"
-msgstr ""
+msgstr "Filtrowanie cieni"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Show outlines of units behind structures."
-msgstr ""
+msgstr "Obrysy cieni jednostek znajdujących się za budowlami."
 
 #: gui/options/options.json[1].options[8].label
 msgid "Unit silhouettes"
-msgstr ""
+msgstr "Obrysy jednostek"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Enable particles."
@@ -2924,7 +2924,7 @@ msgstr "Kiedy wskaźnik jest na OFF, użyj najniżych możliwych opcji renderowa
 
 #: gui/options/options.json[1].options[10].label
 msgid "Water effects"
-msgstr ""
+msgstr "Efekty wody"
 
 #: gui/options/options.json[1].options[11].tooltip
 msgid ""
@@ -2934,7 +2934,7 @@ msgstr "Włącz efekty wody wyższej jakości z falami na brzegach, zburzoną wo
 
 #: gui/options/options.json[1].options[11].label
 msgid "High-quality water effects"
-msgstr ""
+msgstr "Efekty wody wysokiej jakości"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -2942,7 +2942,7 @@ msgstr "Użyj rzeczywistej głębokości wody w obliczeniach podczas renderowani
 
 #: gui/options/options.json[1].options[12].label
 msgid "Real water depth"
-msgstr ""
+msgstr "Realistyczna głębia wody"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid "Allow water to reflect a mirror image."
@@ -2950,7 +2950,7 @@ msgstr "Zezwalaj na lustrzane odbicia na powierzchni wody."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Water reflections"
-msgstr ""
+msgstr "Odbicia wody"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Use a real water refraction map and not transparency."
@@ -2958,7 +2958,7 @@ msgstr "Użyj rzeczywistego modelu refrakcji wody zamiast przezroczystości."
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water refraction"
-msgstr ""
+msgstr "Załamania wody"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Cast shadows on water."
@@ -2966,7 +2966,7 @@ msgstr "Rzucaj cienie na wodzie."
 
 #: gui/options/options.json[1].options[15].label
 msgid "Shadows on water"
-msgstr ""
+msgstr "Cienie na wodzie"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
@@ -2974,7 +2974,7 @@ msgstr "Płynnie odkrywaj ciemność i mgłę wojny"
 
 #: gui/options/options.json[1].options[16].label
 msgid "Smooth vision"
-msgstr ""
+msgstr "Gładka wizja"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Render Sky."
@@ -2982,7 +2982,7 @@ msgstr "Renderuj niebo."
 
 #: gui/options/options.json[1].options[17].label
 msgid "Show sky"
-msgstr ""
+msgstr "Pokaż niebo"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
@@ -3000,7 +3000,7 @@ msgstr "Aby oszczędzić pracy CPU, zdław częstotliwość renderowania we wszy
 
 #: gui/options/options.json[1].options[19].label
 msgid "FPS throttling in menus"
-msgstr ""
+msgstr "Tłumienie FPS w menu"
 
 #: gui/options/options.json[1].options[20].tooltip
 msgid ""
@@ -3010,7 +3010,7 @@ msgstr "Aby zmniejszyć obciążenie procesora, zmniejsz częstotliwość render
 
 #: gui/options/options.json[1].options[20].label
 msgid "FPS throttling in games"
-msgstr ""
+msgstr "Tłumienie FPS w grze"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -3026,7 +3026,7 @@ msgstr "Całkowita głośność dźwięków w grze"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master volume"
-msgstr ""
+msgstr "Główna głośność"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
@@ -3034,7 +3034,7 @@ msgstr "Głośność muzyki w trakcie gry"
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music volume"
-msgstr ""
+msgstr "Głośność muzyki"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
@@ -3042,7 +3042,7 @@ msgstr "Głośność otoczenia w trakcie gry"
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient volume"
-msgstr ""
+msgstr "Głośność tła"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
@@ -3050,7 +3050,7 @@ msgstr "Głośność akcji jednostek w trakcie gry"
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action volume"
-msgstr ""
+msgstr "Głośność akcji"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
@@ -3058,7 +3058,7 @@ msgstr "Głośność interfejsu użytkownika"
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI volume"
-msgstr ""
+msgstr "Głośność interfejsu"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
@@ -3066,7 +3066,7 @@ msgstr "Otrzymuj powiadomienie dźwiękowe gdy ktoś napisze twój Nick"
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick notification"
-msgstr ""
+msgstr "Powiadomienia o nicku"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -3074,7 +3074,7 @@ msgstr "Otrzymuj powiadomienie dźwiękowe gdy ktoś dołączy do Twojej gry"
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game setup - new player notification"
-msgstr ""
+msgstr "Ustawienia gry - powiadomienie o nowym graczu"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -3082,7 +3082,7 @@ msgstr "Pokazuje podpowiedzi podczas tworzenia gry."
 
 #: gui/options/options.json[3].options[0].label
 msgid "Enable game setting tips"
-msgstr ""
+msgstr "Włącz porady dotyczące ustawień gry"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
@@ -3090,7 +3090,7 @@ msgstr "Przesuń panel ustawień podczas otwierania, zamykania lub zmiany rozmia
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable settings panel slide"
-msgstr ""
+msgstr "Włącz okno panelu sterowania"
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
@@ -3151,7 +3151,7 @@ msgstr "Domyślne zachowanie się SI"
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI behavior"
-msgstr ""
+msgstr "Domyślne zachowanie SI"
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
@@ -3161,7 +3161,7 @@ msgstr "Automatycznie przypisuj łączących się klientów do wolnych miejsc dl
 
 #: gui/options/options.json[3].options[5].label
 msgid "Assign players"
-msgstr ""
+msgstr "Przydziel graczy"
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
@@ -3174,7 +3174,7 @@ msgstr "Chroń login i dane wymieniane z serwerem lobby za pomocą szyfrowania T
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
-msgstr ""
+msgstr "Szyfrowanie TLS"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
@@ -3182,7 +3182,7 @@ msgstr "Ilość przechowywanych wiadomości w historii czatu"
 
 #: gui/options/options.json[4].options[1].label
 msgid "Chat backlog"
-msgstr ""
+msgstr "Zapis czatu"
 
 #: gui/options/options.json[4].options[2].tooltip
 msgid ""
@@ -3192,7 +3192,7 @@ msgstr "Pokaż średnią ocenę aktywnych graczy w kolumnie listy potyczki."
 
 #: gui/options/options.json[4].options[2].label
 msgid "Game rating column"
-msgstr ""
+msgstr "Kolumna oceny gry"
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
@@ -3210,7 +3210,7 @@ msgstr "Skrót klawiszowy rannych jednostek traktuje wybrane jednostki jako zran
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
-msgstr ""
+msgstr "Zdrowie rannych jednostek"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
@@ -3218,7 +3218,7 @@ msgstr "Domyślna liczba jednostek trenowanych na partię"
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch training size"
-msgstr ""
+msgstr "Rozmiar szkolenia grupowego"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
@@ -3227,7 +3227,7 @@ msgstr "Ile razy trzeba przewinąć, aby zwiększyć / zmniejszyć wielkość pa
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
-msgstr ""
+msgstr "Przewiń współczynnik grup"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
@@ -3235,7 +3235,7 @@ msgstr "Pokazuj powiadomienie na czacie gdy jesteś atakowany przez innego gracz
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat notification attack"
-msgstr ""
+msgstr "Powiadomienie czatu o ataku"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
@@ -3245,7 +3245,7 @@ msgstr "Pokaż powiadomienie na czacie jeśli sojusznik przypisuje zasoby innemu
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat notification tribute"
-msgstr ""
+msgstr "Powiadomienie czatu o trybucie"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
@@ -3254,7 +3254,7 @@ msgstr "Pokaż powiadomienie na czacie obserwatorom, gdy gracz wymienia zasoby."
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat notification barter"
-msgstr ""
+msgstr "Powiadomienie czatu o wymianie"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -3276,7 +3276,7 @@ msgstr "Pokaż powiadomienie na czacie, jeśli ty lub sojusznik rozpocząłeś, 
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat notification phase"
-msgstr ""
+msgstr "Faza powiadomień czatu"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
@@ -3286,7 +3286,7 @@ msgstr "Wyświetla zasięg ataku wybranych struktur obronnych (można również 
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
-msgstr ""
+msgstr "Wizualizacja zasięgu ataku"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
@@ -3296,7 +3296,7 @@ msgstr "Wyświetlaj zasięgi aur zaznaczonych jednostek lub struktur (może być
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
-msgstr ""
+msgstr "Wizualizacja zasięgu aury"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
@@ -3306,7 +3306,7 @@ msgstr "Wyświetla zakres leczenia wybranych jednostek (można go także włącz
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
-msgstr ""
+msgstr "Wizualizacja zasięgu leczenia"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
@@ -3327,11 +3327,11 @@ msgstr "Pasek doświadczenia"
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr ""
+msgstr "Pokaż szczegółowe opisy szkolonych jednostkach w budynkach."
 
 #: gui/options/options.json[5].options[12].label
 msgid "Detailed tooltips"
-msgstr ""
+msgstr "Szczegółowe opisy"
 
 #: gui/options/options.json[5].options[13].list[0].label
 msgid "Unordered"
@@ -3360,7 +3360,7 @@ msgstr "Kolor Twoich jednostek gdy kolory dyplomacji są włączone."
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy colors: self"
-msgstr ""
+msgstr "Kolory dyplomacji: własny"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
@@ -3368,7 +3368,7 @@ msgstr "Kolor sojuszników gdy kolory dyplomacji są włączone."
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy colors: ally"
-msgstr ""
+msgstr "Kolory dyplomacji: sojusznicy"
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
@@ -3376,7 +3376,7 @@ msgstr "Kolor neutralnych graczy gdy kolory dyplomacji są włączone."
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy colors: neutral"
-msgstr ""
+msgstr "Kolory dyplomacji: neutralni"
 
 #: gui/options/options.json[5].options[17].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
@@ -3384,7 +3384,7 @@ msgstr "Kolor przeciwników gdy kolory dyplomacji są włączone."
 
 #: gui/options/options.json[5].options[17].label
 msgid "Diplomacy colors: enemy"
-msgstr ""
+msgstr "Kolory dyplomacji: wrogowie"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -3698,7 +3698,7 @@ msgstr "KATAPULTY"
 
 #: gui/text/tips/catapults.txt:2
 msgid "Ranged siege engines that are good against structures."
-msgstr ""
+msgstr "Dystansowe machiny oblężnicze skuteczne przeciw budynkom."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
@@ -3796,7 +3796,7 @@ msgstr "FORTECA"
 
 #: gui/text/tips/fortress.txt:2
 msgid "The Fortress is usually each faction's strongest structure."
-msgstr ""
+msgstr "Twierdza jest zwykle najpotężniejszym budynkiem każdej frakcji."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
@@ -3915,7 +3915,7 @@ msgstr "Najważniejszy ateński polityk piątego wieku p.n.e."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Structures are built faster within his range."
-msgstr ""
+msgstr "Budowle wznoszone są szybciej w jego zasięgu."
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."
@@ -3931,7 +3931,7 @@ msgstr "Unikalna technologia Persów."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr ""
+msgstr "Budowle mają 25% więcej zdrowia."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
@@ -4117,7 +4117,7 @@ msgstr "GRANICA TERYTORIUM"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr ""
+msgstr "Rozkład następuje, gdy budynki nie są połączone z sojuszniczym centrum osady."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
@@ -4129,7 +4129,7 @@ msgstr "Proces rozpadu może zostać opóźniony lub cofnięty poprzez umieszcze
 msgid ""
 "When the decay is completed, the structure will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "Gdy zakończy się proces rozkładu, budowla zostanie przekazana najbardziej wpływowemu sąsiadowi."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"

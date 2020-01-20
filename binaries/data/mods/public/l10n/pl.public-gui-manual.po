@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-13 08:22+0000\n"
-"PO-Revision-Date: 2020-01-13 15:17+0000\n"
+"POT-Creation-Date: 2020-01-17 08:08+0000\n"
+"PO-Revision-Date: 2020-01-17 15:32+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -63,9 +63,9 @@ msgstr "[font=\"sans-bold-16\"]Ustawienia grafiki[font=\"sans-14\"]"
 msgid ""
 "You can switch between fullscreen and windowed mode by pressing Alt + Enter."
 " In windowed mode, you can resize the window. If the game runs too slowly, "
-"you can change some settings in the options window: try disabling the \"HQ "
-"Water Effects\" and \"Shadows\" options."
-msgstr "Możesz przełączać pomiędzy trybem pełnoekranowym a okienkowym wciskając Alt + Enter. W trybie okienkowym możesz zmieniać rozmiary okna. Jeśli gra działa za wolno, możesz zmienić kilka ustawień w oknie opcji: spróbuj wyłączyć efekty wody i cienie."
+"you can change some settings in the options window: try disabling the “HQ "
+"Water Effects” and “Shadows” options."
+msgstr ""
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -104,8 +104,8 @@ msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
 msgstr "• CTRL + strzałki lub SHIFT + kółko myszki obracają kamerę"
 
 #: gui/manual/intro.txt:16
-msgid "• Mouse wheel, or \"=\"/\"+\" and \"-\"/\"−\" keys, to zoom"
-msgstr "• Kółko myszki lub =/+ i -/− służą do przybliżania"
+msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
+msgstr ""
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -117,25 +117,25 @@ msgstr "Z poziomu głównego menu można wybrać jeden z trybów gry:"
 
 #: gui/manual/intro.txt:20
 msgid ""
-"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – play a sandbox "
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – Play a sandbox "
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr "• [font=\"sans-bold-14\"]Tryb jednoosobowy[font=\"sans-14\"] – zagraj w trybie piaskownicy albo przeciwko graczom komputerowym (AI). Domyślne AI (Petra) jest w fazie rozwoju i nie zawsze może być zaznajomione z najnowszymi funkcjami, ale mimo to możesz zagrać z nim lub przeciw niemu."
+msgstr ""
 
 #: gui/manual/intro.txt:21
 msgid ""
-"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – zagraj przeciwko graczom w sieci."
+msgstr ""
 
 #: gui/manual/intro.txt:23
 msgid ""
-"To set up a multiplayer game, one player must select the \"Host game\" "
-"option. The game uses UDP port 20595, so the host must configure their "
-"NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
+"To set up a multiplayer game, one player must select the “Host game” option."
+" The game uses UDP port 20595, so the host must configure their "
+"NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr "Aby uruchomić tryb rozgrywki dla wielu graczy, jeden z nich musi wybrać \"Tryb gospodarza\". Gra używa protokołu UDP na porcie 20595, więc gospodarz musi odpowiednio skonfigurować NAT/firewall/itp., aby można było zagrać. Pozostali gracze wybierają \"Dołącz do gry\" i wpisują adres IP gospodarza."
+msgstr ""
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -172,26 +172,26 @@ msgid ""
 "Then the maps can be further filtered. The default maps are generally "
 "playable maps. Naval maps are maps where not all opponents can be reached "
 "over land and demo maps are maps used for testing purposes (generally not "
-"useful to play on). The \"All Maps\" filter shows all maps together in one "
+"useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr "Wtedy można dodatkowo filtrować mapy. Domyślne mapy są na ogół grywalne. Naval to mapa, gdzie nie wszyscy przeciwnicy mogą dotrzeć drogą lądową, a  mapy demonstracyjne są wykorzystywane w celach testowych (zazwyczaj nieprzydatne do gry na nich). Filtr \"All Maps\" (\"Wszystkie Mapy\") pokazuje wszystkie mapy w jednej liście."
+msgstr ""
 
 #: gui/manual/intro.txt:35
 msgid ""
 "Finally change the settings. For random maps this includes the number of "
 "players, the size of a map, etc. For scenarios you can only select who "
-"controls which player (decides where you start on the map etc). The options "
-"are either a human player, an AI or no player at all (the opponent will just"
-" be idle)."
-msgstr "Na końcu zmień ustawienia. Dla losowych map to oznacza dostosowanie liczby graczy, rozmiaru mapy etc. Dla scenariuszy oznacza że możesz wybrać tylko kto kontroluje którego gracza (decyduje to w jakim miejscu rozpoczynasz na mapie etc). Dostępne opcje to: człowiek, Bot lub żaden gracz w ogóle (przeciwnik będzie w stanie gotowości)."
+"controls which player (decides where you start on the map etc.). The options"
+" are either a human player, an AI or no player at all (the opponent will "
+"just be idle)."
+msgstr ""
 
 #: gui/manual/intro.txt:37
-msgid "When you are ready to start, click the \"Start game\" button."
-msgstr "Kiedy będziesz gotów do grania, kliknij przycisk \"Rozpocznij grę\"."
+msgid "When you are ready to start, click the “Start game” button."
+msgstr ""
 
 #: gui/manual/intro.txt:39
-msgid "[font=\"sans-bold-16\"]Hotkeys:[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-16\"]Skróty klawiszowe:[font=\"sans-14\"]"
+msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
@@ -221,8 +221,8 @@ msgid ""
 msgstr "F11 – włącza/wyłącza profilowanie w czasie rzeczywistym (przełącza widok informacji)"
 
 #: gui/manual/intro.txt:46
-msgid "  Shift + F11 – Save current profiler data to \"logs/profile.txt\""
-msgstr "SHIFT + F11 – zapisz aktualne dane profilowania do pliku \"logs/profile.txt\""
+msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
+msgstr ""
 
 #: gui/manual/intro.txt:47
 msgid ""
@@ -399,9 +399,9 @@ msgstr "CTRL + F5 (do F8) – oznacz aktualną pozycję kamery, do której może
 
 #: gui/manual/intro.txt:84
 msgid ""
-"  F5, F6, F7, and F8 – Move the camera to a marked position. Jump back to "
-"the last location if the camera is already over the marked position"
-msgstr "F5, F6, F7, F8 – przesuń kamerę na oznaczoną pozycję; skocz do ostatniej lokacji, jeśli kamera znajduje się już w oznaczonej pozycji"
+"  F5 (and so on up to F8) – Move the camera to a marked position. Jump back "
+"to the last location if the camera is already over the marked position"
+msgstr ""
 
 #: gui/manual/intro.txt:85
 msgid ""
@@ -411,13 +411,13 @@ msgstr ""
 
 #: gui/manual/intro.txt:86
 msgid ""
-"  PageUp with unit(s) selected – Highlights the unit(s)/structure(s) guarded"
-" by the selection"
+"  PageUp with unit(s) selected – Highlight the unit(s)/structure(s) guarded "
+"by the selection"
 msgstr ""
 
 #: gui/manual/intro.txt:87
 msgid ""
-"  PageDown with unit(s)/structure(s) selected – Highlights the unit(s) "
+"  PageDown with unit(s)/structure(s) selected – Highlight the unit(s) "
 "guarding the selection"
 msgstr ""
 
@@ -475,15 +475,15 @@ msgid "  P + Right Click – Patrol"
 msgstr "P + PPM – patrol"
 
 #: gui/manual/intro.txt:102
-msgid "  Shift + Right Click – Queue the move/build/gather/etc order"
-msgstr "SHIFT + PPM – kolejka ruchu/budowy/zbierania/itd."
+msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
+msgstr ""
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  Alt + Right Click – Order one unit from the current selection to "
-"move/build/gather/etc and unselect it. Used to quickly dispatch units with "
+"move/build/gather/etc. and unselect it. Used to quickly dispatch units with "
 "specific tasks"
-msgstr "ALT + PPM – wydaj obecnie zaznaczonej jednostce rozkaz ruchu/budowania/zbierania/itd. i odznacz ją; przydatne, by szybko wysłać jednostki z konkretnymi zadaniami"
+msgstr ""
 
 #: gui/manual/intro.txt:104
 msgid ""
@@ -527,7 +527,7 @@ msgstr "CTRL + LPM na ikonie jednostki/grupy z wieloma zaznaczonymi jednostkami 
 
 #: gui/manual/intro.txt:112
 msgid ""
-"  Right Click with a structure(s) selected – sets a rally point for units "
+"  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
 msgstr ""
 
