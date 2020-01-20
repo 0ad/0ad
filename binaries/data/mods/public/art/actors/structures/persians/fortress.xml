@@ -6,7 +6,7 @@
       <mesh>structural/pers_fortress.dae</mesh>
       <props>
         <prop actor="props/structures/persians/fortress_paintings.xml" attachpoint="root"/>
-        <prop actor="props/structures/persians/fortress_shields.xml" attachpoint="root"/>        
+        <prop actor="props/structures/persians/fortress_shields.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
@@ -14,15 +14,15 @@
       <textures>
         <texture file="structural/pers_struct.png" name="baseTex"/>
         <texture file="structural/pers_struct_norm.png" name="normTex"/>
-        <texture file="structural/pers_struct_spec.png" name="specTex"/>        
+        <texture file="structural/pers_struct_spec.png" name="specTex"/>
         <texture file="structural/ao/pers_fortress.png" name="aoTex"/>
-      </textures>      
+      </textures>
     </variant>
     <variant frequency="1" name="Persian_Fortress_B">
       <mesh>structural/pers_fortress_b.dae</mesh>
       <props>
         <prop actor="props/structures/persians/fortress_b_shields.xml" attachpoint="root"/>
-        <prop actor="props/structures/persians/fortress_b_paintings.xml" attachpoint="root"/>        
+        <prop actor="props/structures/persians/fortress_b_paintings.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
@@ -30,9 +30,9 @@
       <textures>
         <texture file="structural/pers_struct.png" name="baseTex"/>
         <texture file="structural/pers_struct_norm.png" name="normTex"/>
-        <texture file="structural/pers_struct_spec.png" name="specTex"/>        
+        <texture file="structural/pers_struct_spec.png" name="specTex"/>
         <texture file="structural/ao/pers_fortress_b.png" name="aoTex"/>
-      </textures>      
+      </textures>
     </variant>
   </group>
   <group>

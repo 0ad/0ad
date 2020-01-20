@@ -4,12 +4,12 @@
   <group>
     <variant name="stupa_gate">
       <mesh>props/ashoka_lion.dae</mesh>
-	  <textures>
-	  <texture file="structural/ashoka_lion.png" name="baseTex"/>
-	  <texture file="structural/ashoka_lion_spec.png" name="specTex"/>
-	  <texture file="structural/ashoka_lion_norm.png" name="normTex"/>
-	  </textures>
+      <textures>
+        <texture file="structural/ashoka_lion.png" name="baseTex"/>
+        <texture file="structural/ashoka_lion_spec.png" name="specTex"/>
+        <texture file="structural/ashoka_lion_norm.png" name="normTex"/>
+      </textures>
     </variant>
   </group>
-  <material>basic_trans_parallax_spec.xml</material>
+  <material>no_trans_parallax_spec.xml</material>
 </actor>
