@@ -6,9 +6,7 @@
 #include "precompiled.h"
 
 #ifdef _MSC_VER
-#if _MSC_VER > 1800
 # pragma warning(disable:4456) // hides previous local declaration
-#endif
 #endif
 
 /**

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -41,6 +41,9 @@
 
 // must come before any STL headers are included
 #if MSC_VERSION
+# if MSC_VERSION < 1900
+#   error "Visual Studio 2015 is the minimal supported version"
+# endif
 # ifdef NDEBUG	// release: disable all checks
 #  define _HAS_ITERATOR_DEBUGGING 0
 #  define _SECURE_SCL 0

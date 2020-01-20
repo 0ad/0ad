@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -81,7 +81,7 @@
 // defined by winsock2 and also Linux (with different values)
 // (values derived from winsock2 WSA* constants minus WSABASEERR)
 // update: disabled on newer Boost versions because filesystem drags in boost/cerrno.hpp
-#if (!defined(BOOST_VERSION) || BOOST_VERSION <= 103401) && (!MSC_VERSION || MSC_VERSION < 1600)
+#if (!defined(BOOST_VERSION) || BOOST_VERSION <= 103401) && !MSC_VERSION
 #define EWOULDBLOCK     35
 #define EINPROGRESS     36
 #define EALREADY        37
