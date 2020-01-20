@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -40,11 +40,6 @@ LIB_API std::wstring CardName();
  * or L"" if unknown.
  **/
 LIB_API std::wstring DriverInfo();
-
-/**
- * not implemented
- **/
-LIB_API size_t MemorySizeMiB();
 
 /**
  * (useful for choosing a new video mode)
