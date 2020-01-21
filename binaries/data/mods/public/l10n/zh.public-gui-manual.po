@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-13 08:22+0000\n"
-"PO-Revision-Date: 2020-01-13 15:17+0000\n"
+"POT-Creation-Date: 2020-01-17 08:08+0000\n"
+"PO-Revision-Date: 2020-01-17 15:32+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -57,9 +57,9 @@ msgstr "[font=\"sans-bold-16\"]图像设置[font=\"sans-14\"]"
 msgid ""
 "You can switch between fullscreen and windowed mode by pressing Alt + Enter."
 " In windowed mode, you can resize the window. If the game runs too slowly, "
-"you can change some settings in the options window: try disabling the \"HQ "
-"Water Effects\" and \"Shadows\" options."
-msgstr "可以按下 Alt + Enter ，在全屏模式和窗口模式之间切换。窗口模式下，可以调整窗口的大小。如果游戏运行速度过慢，则可以在设置界面尝试取消\"高清水效果\"和\"阴影\"选项。"
+"you can change some settings in the options window: try disabling the “HQ "
+"Water Effects” and “Shadows” options."
+msgstr ""
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -98,8 +98,8 @@ msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
 msgstr "• 使用Ctrl + 方向键, 或者 shift + 鼠标滚轮，来旋转视角"
 
 #: gui/manual/intro.txt:16
-msgid "• Mouse wheel, or \"=\"/\"+\" and \"-\"/\"−\" keys, to zoom"
-msgstr "• 使用鼠标滚轮，或者+ - 键进行缩放"
+msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
+msgstr ""
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -111,25 +111,25 @@ msgstr "主菜单中，提供两种游戏模式："
 
 #: gui/manual/intro.txt:20
 msgid ""
-"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – play a sandbox "
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – Play a sandbox "
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr "• [font=\"sans-bold-14\"]单人模式[font=\"sans-14\"]  -沙箱模式。AI系统正在开发，可能不具备最新特性。可对游戏进行测试。"
+msgstr ""
 
 #: gui/manual/intro.txt:21
 msgid ""
-"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]多人模式[font=\"sans-14\"]  -联网和他人对战。"
+msgstr ""
 
 #: gui/manual/intro.txt:23
 msgid ""
-"To set up a multiplayer game, one player must select the \"Host game\" "
-"option. The game uses UDP port 20595, so the host must configure their "
-"NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
+"To set up a multiplayer game, one player must select the “Host game” option."
+" The game uses UDP port 20595, so the host must configure their "
+"NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr "要进行多人游戏，至少需要一个玩家选择“建立主机”来创建一个游戏。游戏使用UDP端口20595，所以确保此端口没有被NAT或者防火墙之类的程序屏蔽。接下来其他玩家可以选择“加入游戏”，然后输入游戏主机的IP地址."
+msgstr ""
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -166,26 +166,26 @@ msgid ""
 "Then the maps can be further filtered. The default maps are generally "
 "playable maps. Naval maps are maps where not all opponents can be reached "
 "over land and demo maps are maps used for testing purposes (generally not "
-"useful to play on). The \"All Maps\" filter shows all maps together in one "
+"useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr "地图将进一步过滤。 默认地图为通常可玩地图。 海军地图是部分国家无法通过陆地到达的地图，演示地图用于测试(通常不适用于正常游戏)。 “所有地图”是在一个列表中显示所有地图。"
+msgstr ""
 
 #: gui/manual/intro.txt:35
 msgid ""
 "Finally change the settings. For random maps this includes the number of "
 "players, the size of a map, etc. For scenarios you can only select who "
-"controls which player (decides where you start on the map etc). The options "
-"are either a human player, an AI or no player at all (the opponent will just"
-" be idle)."
-msgstr "最后，更改设置。对于随机地图，您可以设置玩家数量、地图大小等。对于剧情地图，您只能选择控制玩家的角色(决定您在地图上的起始位置)。选项包括人类玩家、AI 或无玩家(对手将留空)。"
+"controls which player (decides where you start on the map etc.). The options"
+" are either a human player, an AI or no player at all (the opponent will "
+"just be idle)."
+msgstr ""
 
 #: gui/manual/intro.txt:37
-msgid "When you are ready to start, click the \"Start game\" button."
-msgstr "当您准备好时，请单击“开始游戏”按钮"
+msgid "When you are ready to start, click the “Start game” button."
+msgstr ""
 
 #: gui/manual/intro.txt:39
-msgid "[font=\"sans-bold-16\"]Hotkeys:[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-16\"]热键：[font=\"sans-14\"]"
+msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
@@ -215,8 +215,8 @@ msgid ""
 msgstr "F11 -- 启用/禁用 实时性能分析器 (切换显示信息)"
 
 #: gui/manual/intro.txt:46
-msgid "  Shift + F11 – Save current profiler data to \"logs/profile.txt\""
-msgstr "Shift + F11 — 保存当前分析数据到 “logs/profile.txt”"
+msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
+msgstr ""
 
 #: gui/manual/intro.txt:47
 msgid ""
@@ -393,8 +393,8 @@ msgstr ""
 
 #: gui/manual/intro.txt:84
 msgid ""
-"  F5, F6, F7, and F8 – Move the camera to a marked position. Jump back to "
-"the last location if the camera is already over the marked position"
+"  F5 (and so on up to F8) – Move the camera to a marked position. Jump back "
+"to the last location if the camera is already over the marked position"
 msgstr ""
 
 #: gui/manual/intro.txt:85
@@ -405,13 +405,13 @@ msgstr ""
 
 #: gui/manual/intro.txt:86
 msgid ""
-"  PageUp with unit(s) selected – Highlights the unit(s)/structure(s) guarded"
-" by the selection"
+"  PageUp with unit(s) selected – Highlight the unit(s)/structure(s) guarded "
+"by the selection"
 msgstr ""
 
 #: gui/manual/intro.txt:87
 msgid ""
-"  PageDown with unit(s)/structure(s) selected – Highlights the unit(s) "
+"  PageDown with unit(s)/structure(s) selected – Highlight the unit(s) "
 "guarding the selection"
 msgstr ""
 
@@ -469,13 +469,13 @@ msgid "  P + Right Click – Patrol"
 msgstr ""
 
 #: gui/manual/intro.txt:102
-msgid "  Shift + Right Click – Queue the move/build/gather/etc order"
+msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
 msgstr ""
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  Alt + Right Click – Order one unit from the current selection to "
-"move/build/gather/etc and unselect it. Used to quickly dispatch units with "
+"move/build/gather/etc. and unselect it. Used to quickly dispatch units with "
 "specific tasks"
 msgstr ""
 
@@ -521,7 +521,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:112
 msgid ""
-"  Right Click with a structure(s) selected – sets a rally point for units "
+"  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
 msgstr ""
 

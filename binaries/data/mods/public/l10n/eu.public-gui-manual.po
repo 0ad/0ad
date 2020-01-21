@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Gontzal M. Pujana <juchuf@gmail.com>, 2016
+# Gontzal Manuel Pujana Onaindia <juchuf@gmail.com>, 2016
 # Mielanjel Iraeta <pospolos@gmail.com>, 2017-2020
-# Osoitz <oelkoro@gmail.com>, 2015,2019
-# Gontzal M. Pujana <juchuf@gmail.com>, 2016
+# Osoitz <oelkoro@gmail.com>, 2015,2019-2020
+# Gontzal Manuel Pujana Onaindia <juchuf@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-13 08:22+0000\n"
-"PO-Revision-Date: 2020-01-14 17:26+0000\n"
-"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2020-01-17 08:08+0000\n"
+"PO-Revision-Date: 2020-01-18 18:55+0000\n"
+"Last-Translator: Osoitz <oelkoro@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,8 +51,8 @@ msgstr "[font=\"sans-bold-16\"]Grafikoen ezarpenak[font=\"sans-14\"]"
 msgid ""
 "You can switch between fullscreen and windowed mode by pressing Alt + Enter."
 " In windowed mode, you can resize the window. If the game runs too slowly, "
-"you can change some settings in the options window: try disabling the \"HQ "
-"Water Effects\" and \"Shadows\" options."
+"you can change some settings in the options window: try disabling the “HQ "
+"Water Effects” and “Shadows” options."
 msgstr "Pantaila osoa eta leihoa moduen artean txandakatu dezakezu Alt + Intro sakatuz. Leiho moduan neurriak alda ditzakezu. Jokoa motelegi doala baderitzozu aukeren leihoan ezarpen batzuk alda ditzakezu: Saiatu \"Kalitate handiko ur efektuak\" eta \"Itzalak\" aukerak desgaitzen."
 
 #: gui/manual/intro.txt:7
@@ -92,8 +92,8 @@ msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
 msgstr "• Ktrl + kurtsore-teklak, edo maius. + saguaren gurpila, kamera biratzeko"
 
 #: gui/manual/intro.txt:16
-msgid "• Mouse wheel, or \"=\"/\"+\" and \"-\"/\"−\" keys, to zoom"
-msgstr "• Saguaren gurpila, edo \"+\" eta \"-\" teklak, zooma kontrolatzeko"
+msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
+msgstr "• Saguaren gurpila, edo “=”/“+” eta “-”/“−” teklak, zooma kontrolatzeko"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -105,7 +105,7 @@ msgstr "Menu nagusiak bi joko mota jokatzeko aukera ematen du:"
 
 #: gui/manual/intro.txt:20
 msgid ""
-"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – play a sandbox "
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – Play a sandbox "
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
@@ -113,17 +113,17 @@ msgstr "• [font=\"sans-bold-14\"]Jokalari bakarra[font=\"sans-14\"] — Jolast
 
 #: gui/manual/intro.txt:21
 msgid ""
-"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Hainbat jokalari[font=\"sans-14\"] — benetako beste jokalarien aurka jolastu internetez."
+msgstr "• [font=\"sans-bold-14\"]Hainbat jokalari[font=\"sans-14\"] — Benetako beste jokalarien aurka jolastu internetez."
 
 #: gui/manual/intro.txt:23
 msgid ""
-"To set up a multiplayer game, one player must select the \"Host game\" "
-"option. The game uses UDP port 20595, so the host must configure their "
-"NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
+"To set up a multiplayer game, one player must select the “Host game” option."
+" The game uses UDP port 20595, so the host must configure their "
+"NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr "Hainbat jokalarientzako partida bat ezartzeko, jokalarietako batek \"Ostatatu partida bat\" aukerari eman behar lioke. Jokoak UDP 20595 ataka erabiltzen du, beraz, anfitrioiak NAT/firewall/etab. konfiguratu beharko luke sarrera emateko. Beste jokalariek \"Batu partida batera\" aukeratu dezakete eta zerbitzariaren IPa sartu."
+msgstr "Hainbat jokalarientzako partida bat ezartzeko, jokalarietako batek \"Ostatatu partida bat\" aukerari eman behar lioke. Jokoak UDP 20595 ataka erabiltzen du, beraz, anfitrioiak NAT/firewall/etab. konfiguratu beharko luke sarrera emateko. Beste jokalariek \"Batu partidara\" aukeratu dezakete eta zerbitzariaren IPa sartu."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -160,25 +160,25 @@ msgid ""
 "Then the maps can be further filtered. The default maps are generally "
 "playable maps. Naval maps are maps where not all opponents can be reached "
 "over land and demo maps are maps used for testing purposes (generally not "
-"useful to play on). The \"All Maps\" filter shows all maps together in one "
+"useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr "Mapak are gehiago filtratu daitezke. Jatorrizko mapak izan ohi dira jostagarrienak. Ur mapatan lurreko mapetako etsai askorengana ezin da jo, eta erakusteko mapak horretarako dira, ez jolasteko. «Mapa guztiak» filtrazioan bestela erakutsiko ez diren mapetarako sarbidea izango duzu."
+msgstr "Mapak are gehiago iragazi daitezke. Jatorrizko mapak izan ohi dira jostagarrienak. Ur mapatan etsai askorengana ezin da lurrez jo, eta demo mapak probetarako dira (orokorrean ez oso jostagarriak). «Mapa guztiak» iragazkiak mapa guztiak erakusten ditu zerrenda bakarrean."
 
 #: gui/manual/intro.txt:35
 msgid ""
 "Finally change the settings. For random maps this includes the number of "
 "players, the size of a map, etc. For scenarios you can only select who "
-"controls which player (decides where you start on the map etc). The options "
-"are either a human player, an AI or no player at all (the opponent will just"
-" be idle)."
-msgstr "Bukatzeko aldatu ezarpenak. Ausazko mapentzako jokalarien kopurua maparen tamaina, eta abar sartzen da. Jokalekuetan jokalari bakoitza nork kontrolatzen duen baino ezin duzu aukeratu (mapa non hasten zaren ezartzen du, etab). Aukerak giza jokalaria da, AA edo jokalaririk ez (aurkaria egonean geratuko da)"
+"controls which player (decides where you start on the map etc.). The options"
+" are either a human player, an AI or no player at all (the opponent will "
+"just be idle)."
+msgstr "Bukatzeko aldatu ezarpenak. Ausazko mapentzako jokalarien kopurua maparen tamaina, eta abar sartzen da. Jokalekuetan jokalari bakoitza nork kontrolatzen duen baino ezin duzu aukeratu (mapa non hasten zaren ezartzen du, etab). Aukerak dira: giza jokalaria, AA, edo jokalaririk ez (aurkaria egonean geratuko da)."
 
 #: gui/manual/intro.txt:37
-msgid "When you are ready to start, click the \"Start game\" button."
+msgid "When you are ready to start, click the “Start game” button."
 msgstr "Hasteko prest zaudenean, egin klik \"Hasi partida\" botoian."
 
 #: gui/manual/intro.txt:39
-msgid "[font=\"sans-bold-16\"]Hotkeys:[font=\"sans-14\"]"
+msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-16\"]Laster-teklak:[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
@@ -209,8 +209,8 @@ msgid ""
 msgstr "F11 – Gaitu/desgaitu denbora errealeko lan analizatzailea (informazio pantailen artean txandakatzen du)"
 
 #: gui/manual/intro.txt:46
-msgid "  Shift + F11 – Save current profiler data to \"logs/profile.txt\""
-msgstr "Maius + F11 – Uneko profilen datuak gordetzen ditu «logs/profile.txt»n"
+msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
+msgstr "Maius + F11 – Gorde uneko lan analizatzailearen datuak «logs/profile.txt» fitxategian"
 
 #: gui/manual/intro.txt:47
 msgid ""
@@ -387,9 +387,9 @@ msgstr "Ktrl + F5 (eta F8ra arte)  –  Markatu kameraren uneko kokalekua gero b
 
 #: gui/manual/intro.txt:84
 msgid ""
-"  F5, F6, F7, and F8 – Move the camera to a marked position. Jump back to "
-"the last location if the camera is already over the marked position"
-msgstr "  F5, F6, F7, etaF8 – Eraman kamera finkatutako posizio batera. joan aurreko kokalekura kamera posizio horretan badago."
+"  F5 (and so on up to F8) – Move the camera to a marked position. Jump back "
+"to the last location if the camera is already over the marked position"
+msgstr "  F5 ( eta F8 arte) – Eraman kamera finkatutako posizio batera. Joan aurreko kokalekura kamera posizio horretan badago."
 
 #: gui/manual/intro.txt:85
 msgid ""
@@ -399,15 +399,15 @@ msgstr "Z, X, C, V, B, N, M: Aukeratutako trebatze egitura batekin. Gehitu 1., 2
 
 #: gui/manual/intro.txt:86
 msgid ""
-"  PageUp with unit(s) selected – Highlights the unit(s)/structure(s) guarded"
-" by the selection"
-msgstr "Orria gora aukeratutako unitate(a)(e)kin – Aukeraketak babestutako egitura eta unitateak nabarmentzen ditu."
+"  PageUp with unit(s) selected – Highlight the unit(s)/structure(s) guarded "
+"by the selection"
+msgstr "Orria gora aukeratutako unitateekin – Aukeraketak babestutako egitura eta unitateak nabarmentzen ditu."
 
 #: gui/manual/intro.txt:87
 msgid ""
-"  PageDown with unit(s)/structure(s) selected – Highlights the unit(s) "
+"  PageDown with unit(s)/structure(s) selected – Highlight the unit(s) "
 "guarding the selection"
-msgstr "Orria behera aukeratutako egitura eta unitate(are)ekin  – Unitate(ak) nabarmentzen ditu aukeraketa babestuz."
+msgstr "Orria behera aukeratutako egitura edo unitateekin  – Aukeraketa babesten duten unitateak nabarmentzen ditu ."
 
 #: gui/manual/intro.txt:88
 msgid ""
@@ -456,22 +456,22 @@ msgstr "Ctrl + Eskuin klika egituran – Sartu guardan"
 
 #: gui/manual/intro.txt:100
 msgid "  J + Right Click on structure – Repair"
-msgstr ""
+msgstr "J + Eskuin klika egituran – Konpondu"
 
 #: gui/manual/intro.txt:101
 msgid "  P + Right Click – Patrol"
 msgstr "P + eskuin klika – Patruilatu"
 
 #: gui/manual/intro.txt:102
-msgid "  Shift + Right Click – Queue the move/build/gather/etc order"
+msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
 msgstr "Maius + eskuin klika  – Jarri ilaran mugitu/eraiki/ustiatu/... agindua"
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  Alt + Right Click – Order one unit from the current selection to "
-"move/build/gather/etc and unselect it. Used to quickly dispatch units with "
+"move/build/gather/etc. and unselect it. Used to quickly dispatch units with "
 "specific tasks"
-msgstr "Alt + eskuin klika –  agindu oraingo aukeraketako unitate bat mugitzeko/eraikitzeko/ustiatzeko/... eta aukeratik kendu. Eginbide zehatzak dituzten unitateak azkar egozteko erabiltzen da."
+msgstr "Alt + eskuin klika –  Agindu oraingo aukeraketako unitate bati mugitzea/eraikitzea/ustiatzea/... eta kendu aukeratik. Eginbide zehatzak dituzten unitateak azkar egozteko erabiltzen da."
 
 #: gui/manual/intro.txt:104
 msgid ""
@@ -515,9 +515,9 @@ msgstr "Ctrl + ezker klika unitate/talde ikono baten gainean aukeratutako unitat
 
 #: gui/manual/intro.txt:112
 msgid ""
-"  Right Click with a structure(s) selected – sets a rally point for units "
+"  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
-msgstr ""
+msgstr "Eskuin klika egituraren bat aukeratuta dagoela – Ezarri elkartze puntua sortutako edo eraikinaren guardatik ateratako unitateentzat."
 
 #: gui/manual/intro.txt:113
 msgid "  Ctrl + Right Click with unit(s) selected:"
@@ -525,19 +525,19 @@ msgstr "Ctrl + eskuin klika aukeratutako unitateekin:"
 
 #: gui/manual/intro.txt:114
 msgid "    • If the cursor is over an own or allied structure – Garrison"
-msgstr "• Erakuslea eraikin aliatuaren gainean badago – Sartu guardan"
+msgstr "• Erakuslea egitura aliatuaren gainean badago – Sartu guardan"
 
 #: gui/manual/intro.txt:115
 msgid ""
 "    • If the cursor is over an enemy unit/structure – Attack (instead of "
 "capture or gather)"
-msgstr ""
+msgstr " • Erakuslea unitate edo egitura etsai baten gainean badago  –  Eraso (atzeman edo ustiatu ordez)"
 
 #: gui/manual/intro.txt:116
 msgid ""
 "    • Otherwise – Attack move (by default all enemy units and structures "
 "along the way are targeted)"
-msgstr "• Bestela: Mugituz eraso (berez, bidean topatutako etsaien eraikin eta unitate guztiak erasoko dira)"
+msgstr "• Bestela: Mugituz eraso (berez, bidean topatutako etsaien egitura eta unitate guztiak erasoko dira)"
 
 #: gui/manual/intro.txt:117
 msgid ""
@@ -549,7 +549,7 @@ msgstr "Ctrl + Q + eskuin klika aukeratutako unitateekin – Mugituz eraso, bide
 msgid ""
 "  Ctrl + Mouse Move near structures – Align the new structure with an "
 "existing nearby structure"
-msgstr "Ctrl + Sagua Egituretatik gertu mugitu – lerrokatu egitura berria dagoeneko bertan dagoen beste batekin"
+msgstr "Ctrl + Sagua egituretatik gertu mugitu – lerrokatu egitura berria dagoeneko bertan dagoen beste batekin"
 
 #: gui/manual/intro.txt:120
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
@@ -681,21 +681,21 @@ msgstr "Saguaren erdiko botoia  – Mantendu sakatuta eta mugitu sagua kamera mu
 
 #: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Egitura kokatu bitartean[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:151
 msgid "  \\[ (Left Bracket) – Rotate structure 15 degrees counter-clockwise"
-msgstr ""
+msgstr "  \\[ (ezker kakoa) – Biratu egitura 15 gradu erlojuaren kontrako norabidean "
 
 #: gui/manual/intro.txt:152
 msgid "  ] (Right Bracket) – Rotate structure 15 degrees clockwise"
-msgstr ""
+msgstr "] (eskuin kakoa) – Biratu egitura 15 gradu erlojuaren norabidean"
 
 #: gui/manual/intro.txt:153
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
-msgstr ""
+msgstr "Ezker botoiaz arrastatu – Biratu egitura sagua erabiliz (oinarriak botoia askatzean kokatuko dira)"
 
 #: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"

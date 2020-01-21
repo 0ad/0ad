@@ -1,15 +1,16 @@
 ChatMessageEvents.ClientChat = class
 {
-	constructor(chatMessagesPanel, netMessages)
+	constructor(setupWindow, chatMessagesPanel)
 	{
 		this.chatMessagesPanel = chatMessagesPanel;
 
-		netMessages.registerNetMessageHandler("chat", this.onClientChat.bind(this));
 		this.usernameArgs = {};
 		this.messageArgs = {};
 
 		// TODO: Remove this global required by gui/common/
 		global.colorizePlayernameByGUID = this.colorizePlayernameByGUID.bind(this);
+
+		setupWindow.controls.netMessages.registerNetMessageHandler("chat", this.onClientChat.bind(this));
 	}
 
 	onClientChat(message)

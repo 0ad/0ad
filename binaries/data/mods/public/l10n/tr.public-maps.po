@@ -11,7 +11,7 @@
 # Eren Ramiz <kumbasar2004@hotmail.com>, 2016
 # Fatih <mfs_ykal11@hotmail.com>, 2015
 # Ferhat Olçum <ferhatolcum@gmail.com>, 2018
-# Günay Yılmaz <turkoman07@gmail.com>, 2019-2020
+# Togarma, 2019-2020
 # Hasan Baran Kırmızı <hasanbaran98@gmail.com>, 2016
 # Hüseyin Cem Aras <hcemaras@gmail.com>, 2016
 # İrfan Sunay <irfan_sunay@hotmail.com>, 2018
@@ -27,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-03 08:09+0000\n"
-"PO-Revision-Date: 2020-01-04 06:03+0000\n"
-"Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
+"POT-Creation-Date: 2020-01-17 08:09+0000\n"
+"PO-Revision-Date: 2020-01-17 15:02+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -204,14 +204,17 @@ msgid "Canyon"
 msgstr "Kanyon"
 
 #: maps/random/continent.jsonsettings.Description
+#: maps/random/unknown.jsonsettings.Landscapes.land[0].Description
 msgid "All players starts on a continent surrounded by water."
 msgstr "Tüm oyuncular suyla çevirilmiş bir kıtada başlar."
 
 #: maps/random/continent.jsonsettings.Name
+#: maps/random/unknown.jsonsettings.Landscapes.land[0].Name
 msgid "Continent"
 msgstr "Kıta"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
+#: maps/random/unknown.jsonsettings.Landscapes.land[1].Description
 #: maps/skirmishes/Corinthian Isthmus (2).xml:Description:39
 #: maps/skirmishes/Corinthian Isthmus (4).xml:Description:40
 msgid ""
@@ -254,6 +257,22 @@ msgid ""
 "the Boii were defeated by the rising power of the Dacians, hence leading to "
 "the reemergence of the Geto-Dacian Confederation under King Burebista."
 msgstr "Oyuncular Celtic Boii kabilesi tarafından Pannonia'ya doğru genişlemeyi takip eden dönemde Tuna nehrinin kıyılarında başlıyor. Bu topraklardaki tutumlarını pekiştirmek isteyen Kelt takviyesi geri kalan yabancı kültürleri kök salmak üzere gönderildi. Oyuncular sadece aralarında güç uğruna kavuşmakla kalmayıp aynı zamanda bu acımasız istilacıları da geri çekerler. Nihayetinde Boii, Dacians'ın yükselen gücü tarafından yenildi, bu nedenle Geto-Dacian Konfederasyonu'nun Kral Burebista tarafından yeniden doğmasına yol açtı."
+
+#: maps/random/danubius.jsonsettings.Daytime[0].Description
+msgid "Bright daylight illuminates the scene."
+msgstr ""
+
+#: maps/random/danubius.jsonsettings.Daytime[0].Name
+msgid "Day"
+msgstr ""
+
+#: maps/random/danubius.jsonsettings.Daytime[1].Description
+msgid "Attackers are covered by the darkness of the night."
+msgstr ""
+
+#: maps/random/danubius.jsonsettings.Daytime[1].Name
+msgid "Night"
+msgstr ""
 
 #: maps/random/danubius.jsonsettings.Name
 msgid "Danubius"
@@ -551,10 +570,12 @@ msgid "Lower Nubia"
 msgstr "Aşağı Nubiya"
 
 #: maps/random/mainland.jsonsettings.Description
+#: maps/random/unknown.jsonsettings.Landscapes.land[8].Description
 msgid "A typical map without any water."
 msgstr "Susuz özgün bir harita."
 
 #: maps/random/mainland.jsonsettings.Name
+#: maps/random/unknown.jsonsettings.Landscapes.land[8].Name
 msgid "Mainland"
 msgstr "Anakara"
 
@@ -687,6 +708,22 @@ msgid ""
 "inadvisable to disable treasures, since there is no gatherable wood. Not "
 "recommended for inexperienced players.[/color]"
 msgstr "Oyuncular, bitki örtüsünün kısır bir soğuk kutup bölgesi başlar. Denizde balıklar ve balinalar bol, kırılgan buz gibi topraklarda avlanmış kırlangıçlar ve ölümcül kurtlar var. Yırtıcı kokular tarafından çekilen sert ve yasak iklim tarafından yağmalanmış olan bu kurtlar korkunç sayılarda ortaya çıkmaya başladı. Bilge ve güçlü hükümdar yalnızca düşmanlarına karşı zafer kazanmakla kalmayıp, bu hayvanların sayısını korumaktadır, çünkü ekonomisini zayıflatmakta ve çöküşüne neden olmaktadırlar. [color=\"red\"] Uyarı: Hazineleri devre dışı bırakmak uygun değildir, çünkü toplayıcı bir tahta yoktur. Deneyimsiz oyuncular için önerilmez. [/color]"
+
+#: maps/random/polar_sea.jsonsettings.Daytime[0].Description
+msgid "Scattered sunlight illuminates the scenery in a vivid red tone."
+msgstr ""
+
+#: maps/random/polar_sea.jsonsettings.Daytime[0].Name
+msgid "Dawn"
+msgstr ""
+
+#: maps/random/polar_sea.jsonsettings.Daytime[1].Description
+msgid "The scenery is illuminated by direct or indirect sunlight."
+msgstr ""
+
+#: maps/random/polar_sea.jsonsettings.Daytime[1].Name
+msgid "Daylight"
+msgstr ""
 
 #: maps/random/polar_sea.jsonsettings.Name
 msgid "Polar Sea"
@@ -869,20 +906,94 @@ msgid "The Nile"
 msgstr "Nil Nehri"
 
 #: maps/random/unknown.jsonsettings.Description
-msgid "The unknown. Warning: May be a naval map."
-msgstr "Bilinmeyen. Uyarı:Deniz haritası olabilir."
+msgid "The unknown."
+msgstr "Bilinmeyen."
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[1].Name
+msgid "Isthmus"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[2].Description
+msgid "A small central river."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[2].Name
+msgid "Central River"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[3].Description
+msgid ""
+"Players are aligned on a strip of land with seas bordering on one or both "
+"sides that may hold islands."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[3].Name
+msgid "Edge Seas"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[4].Description
+msgid "Land shaped like a concrescent moon around a central lake."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[4].Name
+msgid "Gulf"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[5].Description
+msgid "Mainland style with some small random lakes."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[5].Name
+msgid "Lakes"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[6].Description
+msgid ""
+"A large hill encompasses the map and leaves players only a small passage to "
+"the two neighboring players."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[6].Name
+msgid "Passes"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[7].Description
+msgid ""
+"The land is enclosed by a hill that leaves a small area per player connected"
+" to the large central place."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[7].Name
+msgid "Lowlands"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.naval[0].Description
+msgid "A huge sea is dividing the map into two halves."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.naval[0].Name
+msgid "Naval: Central Sea"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.naval[1].Description
+msgid "Players are scattered across island chains and disconnected islands."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.naval[1].Name
+msgid "Naval: Archipelago"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.naval[2].Description
+msgid "A central lake with rivers possibly separating neighboring players."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.naval[2].Name
+msgid "Naval: Lake and rivers"
+msgstr ""
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
 msgstr "Bilinmeyen"
-
-#: maps/random/unknown_land.jsonsettings.Description
-msgid "The unknown."
-msgstr "Bilinmeyen."
-
-#: maps/random/unknown_land.jsonsettings.Name
-msgid "Unknown Land"
-msgstr "Bilinmeyen Arazi"
 
 #: maps/random/volcanic_lands.jsonsettings.Description
 msgid "A charred dead land where players start around a smoking volcano."

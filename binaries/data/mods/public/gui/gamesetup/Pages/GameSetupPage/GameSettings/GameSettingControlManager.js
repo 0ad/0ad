@@ -11,12 +11,12 @@ class GameSettingControls
  */
 class GameSettingControlManager
 {
-	constructor(setupWindow, gameSettingsControl, mapCache, mapFilters, netMessages, playerAssignmentsControl)
+	constructor(setupWindow)
 	{
+		this.setupWindow = setupWindow;
+
 		this.rows = {};
 		this.gameSettingControls = {};
-
-		let args = Array.from(arguments);
 
 		let getCategory = name =>
 			g_GameSettingsLayout.findIndex(category => category.settings.indexOf(name) != -1);
@@ -24,17 +24,17 @@ class GameSettingControlManager
 		for (let name in GameSettingControls)
 			this.gameSettingControls[name] =
 				new GameSettingControls[name](
-					this, getCategory(name), undefined, ...args);
+					this, getCategory(name), undefined, setupWindow);
 
 		for (let victoryCondition of g_VictoryConditions)
 			this.gameSettingControls[victoryCondition.Name] =
 				new VictoryConditionCheckbox(
-					victoryCondition, this, getCategory(victoryCondition.Name), undefined, ...args);
+					victoryCondition, this, getCategory(victoryCondition.Name), undefined, setupWindow);
 
 		this.playerSettingControlManagers = Array.from(
 			new Array(g_MaxPlayers),
 			(value, playerIndex) =>
-				new PlayerSettingControlManager(playerIndex, ...args));
+				new PlayerSettingControlManager(playerIndex, setupWindow));
 	}
 
 	getNextRow(name)

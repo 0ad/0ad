@@ -141,19 +141,6 @@ Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
 	return INFO::OK;
 }
 
-Status GetMonitorSize(int& width_mm, int& height_mm)
-{
-	CGSize screenSize = CGDisplayScreenSize(kCGDirectMainDisplay);
-
-	if (screenSize.width == 0 || screenSize.height == 0)
-		return ERR::FAIL;
-
-	width_mm = screenSize.width;
-	height_mm = screenSize.height;
-
-	return INFO::OK;
-}
-
 }	// namespace gfx
 
 

@@ -74,7 +74,6 @@
             {
                 "extractor": "javascript",
                 "filemasks": [
-                    "gui/aiconfig/**.js",
                     "gui/gamesetup/**.js",
                     "gui/gamesetup_mp/**.js",
                     "gui/loading/**.js"
@@ -98,7 +97,6 @@
             {
                 "extractor": "xml",
                 "filemasks": [
-                    "gui/aiconfig/**.xml",
                     "gui/gamesetup/**.xml",
                     "gui/gamesetup_mp/**.xml",
                     "gui/loading/**.xml"

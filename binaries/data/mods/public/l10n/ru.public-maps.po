@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-03 08:09+0000\n"
-"PO-Revision-Date: 2020-01-03 16:06+0000\n"
+"POT-Creation-Date: 2020-01-17 08:09+0000\n"
+"PO-Revision-Date: 2020-01-17 15:02+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -205,14 +205,17 @@ msgid "Canyon"
 msgstr "Каньон"
 
 #: maps/random/continent.jsonsettings.Description
+#: maps/random/unknown.jsonsettings.Landscapes.land[0].Description
 msgid "All players starts on a continent surrounded by water."
 msgstr "Все игроки начинают на континенте, окружённом водой."
 
 #: maps/random/continent.jsonsettings.Name
+#: maps/random/unknown.jsonsettings.Landscapes.land[0].Name
 msgid "Continent"
 msgstr "Континент"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
+#: maps/random/unknown.jsonsettings.Landscapes.land[1].Description
 #: maps/skirmishes/Corinthian Isthmus (2).xml:Description:39
 #: maps/skirmishes/Corinthian Isthmus (4).xml:Description:40
 msgid ""
@@ -255,6 +258,22 @@ msgid ""
 "the Boii were defeated by the rising power of the Dacians, hence leading to "
 "the reemergence of the Geto-Dacian Confederation under King Burebista."
 msgstr "Игроки начинают игру на берегах реки Дунай в период после вторжения кельтского племени бойев в Паннонию. Стремясь укрепить свою власть на этой территории, кельты занялись искоренением чуждых им культур. Игрокам предстоит не только соперничать за власть между собой, но и отражать нападения этих безжалостных захватчиков. В конечном итоге бойи были побеждены укрепившимися племенами даков, что привело к возрождению союза гето-даков под властью царя Буребисты."
+
+#: maps/random/danubius.jsonsettings.Daytime[0].Description
+msgid "Bright daylight illuminates the scene."
+msgstr ""
+
+#: maps/random/danubius.jsonsettings.Daytime[0].Name
+msgid "Day"
+msgstr ""
+
+#: maps/random/danubius.jsonsettings.Daytime[1].Description
+msgid "Attackers are covered by the darkness of the night."
+msgstr ""
+
+#: maps/random/danubius.jsonsettings.Daytime[1].Name
+msgid "Night"
+msgstr ""
 
 #: maps/random/danubius.jsonsettings.Name
 msgid "Danubius"
@@ -552,10 +571,12 @@ msgid "Lower Nubia"
 msgstr "Нижняя Нубия"
 
 #: maps/random/mainland.jsonsettings.Description
+#: maps/random/unknown.jsonsettings.Landscapes.land[8].Description
 msgid "A typical map without any water."
 msgstr "Обычная карта без водной части."
 
 #: maps/random/mainland.jsonsettings.Name
+#: maps/random/unknown.jsonsettings.Landscapes.land[8].Name
 msgid "Mainland"
 msgstr "Материк"
 
@@ -688,6 +709,22 @@ msgid ""
 "inadvisable to disable treasures, since there is no gatherable wood. Not "
 "recommended for inexperienced players.[/color]"
 msgstr "Игроки начинают в холодном лишенном растительности полярном регионе. Морские воды изобилуют рыбой и китами, а хрупкая ледяная земля кишит моржами, на которых можно охотиться, и беспощадными волками. Эти волки, воспитанные суровым климатом и ведомые запахом добычи, начали появляться в ужасающих количествах. Мудрый и решительный правитель не только одержит победу над своими врагами, но и удержит численность этих тварей, чтобы они не подорвали его экономику и не привели к его падению. [color=\"red\"]Внимание: Нежелательно отключать сокровища, поскольку на карте нет источников древесины. Не рекомендуется для неопытных игроков.[/color]"
+
+#: maps/random/polar_sea.jsonsettings.Daytime[0].Description
+msgid "Scattered sunlight illuminates the scenery in a vivid red tone."
+msgstr ""
+
+#: maps/random/polar_sea.jsonsettings.Daytime[0].Name
+msgid "Dawn"
+msgstr ""
+
+#: maps/random/polar_sea.jsonsettings.Daytime[1].Description
+msgid "The scenery is illuminated by direct or indirect sunlight."
+msgstr ""
+
+#: maps/random/polar_sea.jsonsettings.Daytime[1].Name
+msgid "Daylight"
+msgstr ""
 
 #: maps/random/polar_sea.jsonsettings.Name
 msgid "Polar Sea"
@@ -870,20 +907,94 @@ msgid "The Nile"
 msgstr "Нил"
 
 #: maps/random/unknown.jsonsettings.Description
-msgid "The unknown. Warning: May be a naval map."
-msgstr "Неизвестное. Внимание: может оказаться морской картой."
+msgid "The unknown."
+msgstr "Неизвестное."
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[1].Name
+msgid "Isthmus"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[2].Description
+msgid "A small central river."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[2].Name
+msgid "Central River"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[3].Description
+msgid ""
+"Players are aligned on a strip of land with seas bordering on one or both "
+"sides that may hold islands."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[3].Name
+msgid "Edge Seas"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[4].Description
+msgid "Land shaped like a concrescent moon around a central lake."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[4].Name
+msgid "Gulf"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[5].Description
+msgid "Mainland style with some small random lakes."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[5].Name
+msgid "Lakes"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[6].Description
+msgid ""
+"A large hill encompasses the map and leaves players only a small passage to "
+"the two neighboring players."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[6].Name
+msgid "Passes"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[7].Description
+msgid ""
+"The land is enclosed by a hill that leaves a small area per player connected"
+" to the large central place."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[7].Name
+msgid "Lowlands"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.naval[0].Description
+msgid "A huge sea is dividing the map into two halves."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.naval[0].Name
+msgid "Naval: Central Sea"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.naval[1].Description
+msgid "Players are scattered across island chains and disconnected islands."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.naval[1].Name
+msgid "Naval: Archipelago"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.naval[2].Description
+msgid "A central lake with rivers possibly separating neighboring players."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.naval[2].Name
+msgid "Naval: Lake and rivers"
+msgstr ""
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
 msgstr "Неизвестно"
-
-#: maps/random/unknown_land.jsonsettings.Description
-msgid "The unknown."
-msgstr "Неизвестное."
-
-#: maps/random/unknown_land.jsonsettings.Name
-msgid "Unknown Land"
-msgstr "Неизвестная земля"
 
 #: maps/random/volcanic_lands.jsonsettings.Description
 msgid "A charred dead land where players start around a smoking volcano."

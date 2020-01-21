@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-13 08:22+0000\n"
-"PO-Revision-Date: 2020-01-13 15:16+0000\n"
+"POT-Creation-Date: 2020-01-17 08:08+0000\n"
+"PO-Revision-Date: 2020-01-17 16:02+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -574,7 +574,7 @@ msgstr "Käyttäjät (%(num)s): %(users)s"
 #: gui/common/tooltips.js:298 gui/common/tooltips.js:363
 #: gui/common/tooltips.js:413 gui/common/tooltips.js:446
 #: gui/common/tooltips.js:741 gui/common/tooltips.js:775
-#: gui/common/tooltips.js:841 gui/loadgame/SavegameDetails.js:37
+#: gui/common/tooltips.js:841 gui/loadgame/SavegameDetails.js:38
 #: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:283
 msgid ", "
 msgstr ", "
@@ -898,7 +898,7 @@ msgstr "Oma tuli: %(enabled)s"
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:295 gui/options/options.js:348
 #: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
-#: gui/pregame/MainMenuItems.js:200 gui/replaymenu/replay_actions.js:169
+#: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Kyllä"
 
@@ -906,7 +906,7 @@ msgstr "Kyllä"
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:295 gui/options/options.js:348
 #: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
-#: gui/pregame/MainMenuItems.js:200 gui/replaymenu/replay_actions.js:169
+#: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Ei"
 
@@ -1193,7 +1193,7 @@ msgstr "Tallennettu peli poistetaan pysyvästi, oletko varma?"
 msgid "DELETE"
 msgstr "POISTA"
 
-#: gui/loadgame/SavegameDetails.js:39
+#: gui/loadgame/SavegameDetails.js:40
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "Modit: %(mods)s"
@@ -1482,7 +1482,7 @@ msgstr "Avaa Atlas skenaario editori uudessa ikkunassa. Voit suorittaa ohjelman 
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:182 gui/pregame/MainMenuItems.js:199
+#: gui/pregame/MainMenuItems.js:182 gui/pregame/MainMenuItems.js:206
 msgid "Confirmation"
 msgstr "Vahvistus"
 
@@ -1497,14 +1497,22 @@ msgid "Error"
 msgstr "Virhe"
 
 #: gui/pregame/MainMenuItems.js:193
+msgid "Credits"
+msgstr "Lopputekstit"
+
+#: gui/pregame/MainMenuItems.js:194
+msgid "Show the 0 A.D. credits."
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:200
 msgid "Exit"
 msgstr "Poistu"
 
-#: gui/pregame/MainMenuItems.js:194
+#: gui/pregame/MainMenuItems.js:201
 msgid "Exit the game."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:198
+#: gui/pregame/MainMenuItems.js:205
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Haluatko varmasti sulkea 0 A.D:n?"
 
@@ -1563,14 +1571,6 @@ msgstr "Lahjoita"
 #: gui/pregame/ProjectInformation.js:58
 msgid "Help with the project expenses by donating."
 msgstr "Auta projektin kustannusten suhteen lahjoittamalla."
-
-#: gui/pregame/ProjectInformation.js:65
-msgid "Credits"
-msgstr "Lopputekstit"
-
-#: gui/pregame/ProjectInformation.js:66
-msgid "Click to see the 0 A.D. credits."
-msgstr "Paina nähdäksesi 0 A.D. -lopputekstit."
 
 #: gui/pregame/SplashscreenHandler.js:49
 #, javascript-format

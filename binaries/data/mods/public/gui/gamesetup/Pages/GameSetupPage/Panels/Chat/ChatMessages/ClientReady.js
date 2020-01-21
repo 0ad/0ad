@@ -1,12 +1,12 @@
 ChatMessageEvents.ClientReady = class
 {
-	constructor(chatMessagesPanel, netMessages, gameSettingsControl, playerAssignmentsControl, readyControl)
+	constructor(setupWindow, chatMessagesPanel)
 	{
 		this.chatMessagesPanel = chatMessagesPanel;
 
 		this.args = {};
 
-		netMessages.registerNetMessageHandler("ready", this.onReadyMessage.bind(this));
+		setupWindow.controls.netMessages.registerNetMessageHandler("ready", this.onReadyMessage.bind(this));
 	}
 
 	onReadyMessage(message)

@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-13 08:22+0000\n"
-"PO-Revision-Date: 2020-01-13 15:17+0000\n"
+"POT-Creation-Date: 2020-01-17 08:08+0000\n"
+"PO-Revision-Date: 2020-01-17 15:32+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -54,9 +54,9 @@ msgstr "[font=\"sans-bold-16\"]グラフィック設定[font=\"sans-14\"] "
 msgid ""
 "You can switch between fullscreen and windowed mode by pressing Alt + Enter."
 " In windowed mode, you can resize the window. If the game runs too slowly, "
-"you can change some settings in the options window: try disabling the \"HQ "
-"Water Effects\" and \"Shadows\" options."
-msgstr "Alt+Enterキーで全画面表示とウィンドウ表示を切り替えることができます。ウィンドウ表示モードでは画面サイズの変更ができます。ゲームの動作が遅い時はオプションウィンドウでHQ Water EffectsやShadowsを無効にするなど設定を変更してください。"
+"you can change some settings in the options window: try disabling the “HQ "
+"Water Effects” and “Shadows” options."
+msgstr ""
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -95,8 +95,8 @@ msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
 msgstr "・Ctrl + 十字キー、またはShift + マウスホイールでカメラを回転します。"
 
 #: gui/manual/intro.txt:16
-msgid "• Mouse wheel, or \"=\"/\"+\" and \"-\"/\"−\" keys, to zoom"
-msgstr "・マウスホイールまたは\"=\"/\"+\"キー、\"-\"/\"−\"キーでズームします。"
+msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
+msgstr ""
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -108,25 +108,25 @@ msgstr "メインメニューでふたつのゲームモードが選べます。
 
 #: gui/manual/intro.txt:20
 msgid ""
-"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – play a sandbox "
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – Play a sandbox "
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr "• [font=\"sans-bold-14\"]シングルプレーヤー[font=\"sans-14\"] – １人以上のコンピュータープレーヤー(AI)と対戦します。デフォルトのAI (Petra)は開発途上で新しい機能が揃っていないこともありますが、味方としても敵としても一緒にプレイすることができます。"
+msgstr ""
 
 #: gui/manual/intro.txt:21
 msgid ""
-"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]マルチプレーヤー[font=\"sans-14\"] – インターネットを通じて他のプレーヤーと対戦します。"
+msgstr ""
 
 #: gui/manual/intro.txt:23
 msgid ""
-"To set up a multiplayer game, one player must select the \"Host game\" "
-"option. The game uses UDP port 20595, so the host must configure their "
-"NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
+"To set up a multiplayer game, one player must select the “Host game” option."
+" The game uses UDP port 20595, so the host must configure their "
+"NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr "マルチプレイヤーゲームを立ち上げるには、いずれかのプレイヤーが「ゲームをホストする」オプションを選択する必要があります。ゲームはUDP20595番ポートを使用するので、ホストは自分のNATやファイアウォールなどがこれを許可するよう設定しなけれなりません。他のプレイヤーは「ゲームに参加する」を選択してホストのIPアドレスを入力します。"
+msgstr ""
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -163,26 +163,26 @@ msgid ""
 "Then the maps can be further filtered. The default maps are generally "
 "playable maps. Naval maps are maps where not all opponents can be reached "
 "over land and demo maps are maps used for testing purposes (generally not "
-"useful to play on). The \"All Maps\" filter shows all maps together in one "
+"useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr "次にマップをフィルタリングすることができます。 デフォルトマップは普通に遊ぶことができるマップです。 海洋マップは陸続きに攻めることができない敵もいるマップです。デモマップはテスト目的で使用されるマップです (通常プレイするには役に立たちません) 。「全てのマップ」を選択すると全マップを一度に表示します。"
+msgstr ""
 
 #: gui/manual/intro.txt:35
 msgid ""
 "Finally change the settings. For random maps this includes the number of "
 "players, the size of a map, etc. For scenarios you can only select who "
-"controls which player (decides where you start on the map etc). The options "
-"are either a human player, an AI or no player at all (the opponent will just"
-" be idle)."
-msgstr "最後に設定を変更します。 ランダムマップでは、プレイヤーの人数やマップの大きさを決定します。シナリオマップでは誰がどのプレイヤーを操作するか (マップ内のどこを開始位置とするか) のみ選択します。人間のプレイヤーまたはAI、プレイヤーなし(敵なし)のいずれかを選択できます。"
+"controls which player (decides where you start on the map etc.). The options"
+" are either a human player, an AI or no player at all (the opponent will "
+"just be idle)."
+msgstr ""
 
 #: gui/manual/intro.txt:37
-msgid "When you are ready to start, click the \"Start game\" button."
-msgstr "準備ができたら、「ゲーム開始」ボタンをクリックします。"
+msgid "When you are ready to start, click the “Start game” button."
+msgstr ""
 
 #: gui/manual/intro.txt:39
-msgid "[font=\"sans-bold-16\"]Hotkeys:[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-16\"]ホットキー[font=\"sans-14\"]"
+msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
@@ -212,8 +212,8 @@ msgid ""
 msgstr "  F11 – リアルタイムプロファイラの有効・無効（情報画面表示の切り替え）"
 
 #: gui/manual/intro.txt:46
-msgid "  Shift + F11 – Save current profiler data to \"logs/profile.txt\""
-msgstr "  Shift + F11 – logs/profile.txtへ現在のプロファイラデータを保存する"
+msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
+msgstr ""
 
 #: gui/manual/intro.txt:47
 msgid ""
@@ -390,8 +390,8 @@ msgstr ""
 
 #: gui/manual/intro.txt:84
 msgid ""
-"  F5, F6, F7, and F8 – Move the camera to a marked position. Jump back to "
-"the last location if the camera is already over the marked position"
+"  F5 (and so on up to F8) – Move the camera to a marked position. Jump back "
+"to the last location if the camera is already over the marked position"
 msgstr ""
 
 #: gui/manual/intro.txt:85
@@ -402,13 +402,13 @@ msgstr ""
 
 #: gui/manual/intro.txt:86
 msgid ""
-"  PageUp with unit(s) selected – Highlights the unit(s)/structure(s) guarded"
-" by the selection"
+"  PageUp with unit(s) selected – Highlight the unit(s)/structure(s) guarded "
+"by the selection"
 msgstr ""
 
 #: gui/manual/intro.txt:87
 msgid ""
-"  PageDown with unit(s)/structure(s) selected – Highlights the unit(s) "
+"  PageDown with unit(s)/structure(s) selected – Highlight the unit(s) "
 "guarding the selection"
 msgstr ""
 
@@ -466,13 +466,13 @@ msgid "  P + Right Click – Patrol"
 msgstr ""
 
 #: gui/manual/intro.txt:102
-msgid "  Shift + Right Click – Queue the move/build/gather/etc order"
+msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
 msgstr ""
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  Alt + Right Click – Order one unit from the current selection to "
-"move/build/gather/etc and unselect it. Used to quickly dispatch units with "
+"move/build/gather/etc. and unselect it. Used to quickly dispatch units with "
 "specific tasks"
 msgstr ""
 
@@ -518,7 +518,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:112
 msgid ""
-"  Right Click with a structure(s) selected – sets a rally point for units "
+"  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
 msgstr ""
 

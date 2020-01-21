@@ -1,8 +1,8 @@
 class ResetTeamsButton
 {
-	constructor(gameSettingsControl)
+	constructor(setupWindow)
 	{
-		this.gameSettingsControl = gameSettingsControl;
+		this.gameSettingsControl = setupWindow.controls.gameSettingsControl;
 		this.gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
 
 		this.teamResetButton = Engine.GetGUIObjectByName("teamResetButton");

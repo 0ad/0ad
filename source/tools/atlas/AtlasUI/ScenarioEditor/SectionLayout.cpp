@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,15 +17,11 @@
 
 #include "precompiled.h"
 
-#include "wx/filename.h"
-#include "wx/wfstream.h"
-
 #include "SectionLayout.h"
 
 #include "CustomControls/SnapSplitterWindow/SnapSplitterWindow.h"
-
+#include "General/Datafile.h"
 #include "ScenarioEditor.h"
-
 #include "Sections/Cinema/Cinema.h"
 #include "Sections/Environment/Environment.h"
 #include "Sections/Map/Map.h"
@@ -33,7 +29,8 @@
 #include "Sections/Player/Player.h"
 #include "Sections/Terrain/Terrain.h"
 
-#include "General/Datafile.h"
+#include <wx/filename.h>
+#include <wx/wfstream.h>
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -257,8 +254,10 @@ SectionLayout::~SectionLayout()
 
 void SectionLayout::SetWindow(wxWindow* window)
 {
-	m_HorizSplitter = new SnapSplitterWindow(window, wxSP_NOBORDER);
-	m_VertSplitter = new SnapSplitterWindow(m_HorizSplitter, wxSP_3D);
+	m_HorizSplitter = new SnapSplitterWindow(
+		window, wxSP_NOBORDER, _T("Scenario Editor/Layout/HorizontalSplitter/"));
+	m_VertSplitter = new SnapSplitterWindow(
+		m_HorizSplitter, wxSP_3D, _T("Scenario Editor/Layout/VerticalSplitter/"));
 }
 
 wxWindow* SectionLayout::GetCanvasParent()

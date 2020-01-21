@@ -11,14 +11,12 @@ class PlayerSettingControls
  */
 class PlayerSettingControlManager
 {
-	constructor(playerIndex, setupWindow, gameSettingsControl, mapCache, mapFilters, netMessages, playerAssignmentsControl)
+	constructor(...args)
 	{
 		this.playerSettingControls = {};
 
 		for (let name in PlayerSettingControls)
-			this.playerSettingControls[name] =
-				new PlayerSettingControls[name](
-					undefined, undefined, playerIndex, setupWindow, gameSettingsControl, mapCache, mapFilters, netMessages, playerAssignmentsControl);
+			this.playerSettingControls[name] = new PlayerSettingControls[name](undefined, undefined, ...args);
 	}
 
 	addAutocompleteEntries(autocomplete)

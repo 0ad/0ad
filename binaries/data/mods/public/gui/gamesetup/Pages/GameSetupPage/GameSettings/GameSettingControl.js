@@ -25,19 +25,19 @@ class GameSettingControl
 {
 	// The constructor and inherited constructors shall not modify game attributes,
 	// since all GameSettingControl shall be able to subscribe to any gamesetting change.
-	constructor(gameSettingControlManager, category, playerIndex, setupWindow, gameSettingsControl, mapCache, mapFilters, netMessages, playerAssignmentsControl)
+	constructor(gameSettingControlManager, category, playerIndex, setupWindow)
 	{
 		// Store arguments
 		{
 			this.category = category;
-			if (playerIndex !== undefined)
-				this.playerIndex = playerIndex;
+			this.playerIndex = playerIndex;
+
 			this.setupWindow = setupWindow;
-			this.gameSettingsControl = gameSettingsControl;
-			this.mapCache = mapCache;
-			this.mapFilters = mapFilters;
-			this.netMessages = netMessages;
-			this.playerAssignmentsControl = playerAssignmentsControl;
+			this.gameSettingsControl = setupWindow.controls.gameSettingsControl;
+			this.mapCache = setupWindow.controls.mapCache;
+			this.mapFilters = setupWindow.controls.mapFilters;
+			this.netMessages = setupWindow.controls.netMessages;
+			this.playerAssignmentsControl = setupWindow.controls.playerAssignmentsControl;
 		}
 
 		// enabled and hidden should only be modified through their setters or
@@ -60,28 +60,28 @@ class GameSettingControl
 		this.setHidden(false);
 
 		if (this.onMapChange)
-			gameSettingsControl.registerMapChangeHandler(this.onMapChange.bind(this));
+			this.gameSettingsControl.registerMapChangeHandler(this.onMapChange.bind(this));
 
 		if (this.onLoad)
-			setupWindow.registerLoadHandler(this.onLoad.bind(this));
+			this.setupWindow.registerLoadHandler(this.onLoad.bind(this));
 
 		if (this.onGameAttributesChange)
-			gameSettingsControl.registerGameAttributesChangeHandler(this.onGameAttributesChange.bind(this));
+			this.gameSettingsControl.registerGameAttributesChangeHandler(this.onGameAttributesChange.bind(this));
 
 		if (this.onGameAttributesBatchChange)
-			gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
+			this.gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
 
 		if (this.onAssignPlayer && this.playerIndex === 0)
 			this.gameSettingsControl.registerAssignPlayerHandler(this.onAssignPlayer.bind(this));
 
 		if (this.onPickRandomItems)
-			gameSettingsControl.registerPickRandomItemsHandler(this.onPickRandomItems.bind(this));
+			this.gameSettingsControl.registerPickRandomItemsHandler(this.onPickRandomItems.bind(this));
 
 		if (this.onGameAttributesFinalize)
-			gameSettingsControl.registerGameAttributesFinalizeHandler(this.onGameAttributesFinalize.bind(this));
+			this.gameSettingsControl.registerGameAttributesFinalizeHandler(this.onGameAttributesFinalize.bind(this));
 
 		if (this.onPlayerAssignmentsChange)
-			playerAssignmentsControl.registerPlayerAssignmentsChangeHandler(this.onPlayerAssignmentsChange.bind(this));
+			this.playerAssignmentsControl.registerPlayerAssignmentsChangeHandler(this.onPlayerAssignmentsChange.bind(this));
 	}
 
 	setTitle(titleCaption)

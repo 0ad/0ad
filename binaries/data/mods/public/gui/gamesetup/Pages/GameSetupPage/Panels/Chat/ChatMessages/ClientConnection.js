@@ -1,11 +1,11 @@
 ChatMessageEvents.ClientConnection = class
 {
-	constructor(chatMessagesPanel, netMessages, gameSettingsControl, playerAssignmentsControl)
+	constructor(setupWindow, chatMessagesPanel)
 	{
 		this.chatMessagesPanel = chatMessagesPanel;
 
-		playerAssignmentsControl.registerClientJoinHandler(this.onClientJoin.bind(this));
-		playerAssignmentsControl.registerClientLeaveHandler(this.onClientLeave.bind(this));
+		setupWindow.controls.playerAssignmentsControl.registerClientJoinHandler(this.onClientJoin.bind(this));
+		setupWindow.controls.playerAssignmentsControl.registerClientLeaveHandler(this.onClientLeave.bind(this));
 
 		this.args = {};
 	}

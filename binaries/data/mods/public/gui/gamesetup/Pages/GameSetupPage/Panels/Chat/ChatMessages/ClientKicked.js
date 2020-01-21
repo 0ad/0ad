@@ -1,12 +1,12 @@
 ChatMessageEvents.ClientKicked = class
 {
-	constructor(chatMessagesPanel, netMessages)
+	constructor(setupWindow, chatMessagesPanel)
 	{
 		this.chatMessagesPanel = chatMessagesPanel;
 
 		this.messageArgs = {};
 
-		netMessages.registerNetMessageHandler("kicked", this.onClientKicked.bind(this));
+		setupWindow.controls.netMessages.registerNetMessageHandler("kicked", this.onClientKicked.bind(this));
 	}
 
 	onClientKicked(message)

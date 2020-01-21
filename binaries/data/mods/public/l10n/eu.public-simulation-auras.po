@@ -1,17 +1,17 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Inaxio Lopes <inaxio.lopes@gmail.com>, 2019
-# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2019
-# Osoitz <oelkoro@gmail.com>, 2017,2019
-# Gontzal M. Pujana <juchuf@gmail.com>, 2016-2017
+# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2020
+# Osoitz <oelkoro@gmail.com>, 2017,2019-2020
+# Gontzal Manuel Pujana Onaindia <juchuf@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-11-03 14:55+0000\n"
+"POT-Creation-Date: 2020-01-17 08:09+0000\n"
+"PO-Revision-Date: 2020-01-18 17:55+0000\n"
 "Last-Translator: Osoitz <oelkoro@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgstr "Meroitidar Piramideak"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
 msgid "Civic Centers +10% territory influence radius."
-msgstr "Zentro zibikoek %10 gehiagoko influentzia ematen dute"
+msgstr "Zentro zibikoek %10 gehiagoko lurraldetasun eragina ematen dute"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -83,7 +83,7 @@ msgstr "Jakintza Boterea da"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −10% technology resource costs and research time."
-msgstr "Estrukturek %10- merkagoak eta teknologietan denbora gutxiago"
+msgstr "Egiturak %10- merkagoak eta teknologietan denbora gutxiago"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -117,13 +117,13 @@ msgstr "Sendagintza"
 msgid "Humans +1 health regeneration rate."
 msgstr "Gizakiek +1 osasun berrosatze tasa."
 
-#: simulation/data/auras/structures/theatron.jsonauraName
+#: simulation/data/auras/structures/theater.jsonauraName
 msgid "Hellenization"
 msgstr "Helenizazioa"
 
-#: simulation/data/auras/structures/theatron.jsonauraDescription
+#: simulation/data/auras/structures/theater.jsonauraDescription
 msgid "Structures +20% territory influence radius."
-msgstr "Estrukturek %20+ influentzia territoriala."
+msgstr "Egiturek %20+ lurraldetasun eragina."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -195,8 +195,8 @@ msgid "Saripeko"
 msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
-msgid "Allied Citizen Javelinists −20% resource costs."
-msgstr "Aliatuen hiritar xabalinariak %20- baliabide kostuan."
+msgid "Allied Citizen Javelinists −10% resource costs."
+msgstr "Aliatuen hiritar xabalinariak %10- baliabide kostuan."
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -245,8 +245,8 @@ msgid "Conscription"
 msgstr "Derrigorrezko erreklutatzea"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "Allied Citizen Infantry −20% training time."
-msgstr "Lagun infanteriak -%20 denbora gutxiago"
+msgid "Allied Citizen Infantry −10% training time."
+msgstr "Lagun infanteriak -%10 denbora gutxiago"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -401,7 +401,7 @@ msgstr "Inperioaren Euslea"
 msgid ""
 "Son of Chandragupta Maurya, Bindusara consolidated the empire, creating a stable state for his son Ashoka to inherit.\n"
 "Structures +20% territory influence radius."
-msgstr "Chandragupta Mauryaren semea, Bindusarak Inperioari eutsi zion, estatu iraunkorra sortuz bere seme Ashoka oinorde izendatzeko.\nEgiturak %20+ influentzia territorialean."
+msgstr "Chandragupta Mauryaren semea, Bindusarak Inperioari eutsi zion, estatu iraunkorra sortuz bere seme Ashoka oinorde izendatzeko.\nEgiturak %20+ lurraldetasun eraginean."
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_2.jsonauraName
 msgid "Vamba Moriyar"
@@ -649,7 +649,7 @@ msgstr "Babes Pizgarria"
 msgid ""
 "When garrisoned, the Structure or Siege Engine has +2 capture points "
 "garrison regeneration rate."
-msgstr "Guardan sartzean, estruktura edo setio makinak +2 atzemate puntu guardan sendatze abiadura."
+msgstr "Guardan sartzean, egitura edo setio makinak +2 atzemate puntu guardan sendatze abiadura."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraName
 msgid "Valiant Defender"
@@ -657,7 +657,7 @@ msgstr "Valiant Defendatzailea"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraDescription
 msgid "When garrisoned, the Structure or Siege Tower has +75% arrow count."
-msgstr "Guardan sartzean, estruktura edo setio dorreak %75+ gezi kopuruan."
+msgstr "Guardan sartzean, egitura edo setio dorreak %75+ gezi kopuruan."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
 msgid "Battle Fervor"
@@ -747,7 +747,7 @@ msgstr "Inperialismoa"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraDescription
 msgid "Structures +10% territory influence radius."
-msgstr "Estrukturek %10+ influentzia territoriala."
+msgstr "Egiturek %10+ lurraldetasun eragina."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraName
 msgid "Conqueror"
@@ -928,7 +928,7 @@ msgstr "Konkistatzaile Handia"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraDescription
 msgid "Enemy Structures, Ships, and Siege Engines -20% health."
-msgstr "Etsaien estrukturak, ontziak, eta setio makinak %20- osasunean."
+msgstr "Etsaien egiturak, ontziak, eta setio makinak %20- osasunean."
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos"

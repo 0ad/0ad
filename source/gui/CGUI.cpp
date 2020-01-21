@@ -858,22 +858,32 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, std::unor
 	// If there is a file specified, open and execute it
 	if (!file.empty())
 	{
-		Paths.insert(file);
-		m_ScriptInterface->LoadGlobalScriptFile(file);
+		if (!VfsPath(file).IsDirectory())
+		{
+			Paths.insert(file);
+			m_ScriptInterface->LoadGlobalScriptFile(file);
+		}
+		else
+			LOGERROR("GUI: Script path %s is not a file path", file.ToUTF8().c_str());
 	}
 
 	// If it has a directory attribute, read all JS files in that directory
 	CStrW directory(Element.GetAttributes().GetNamedItem(pFile->GetAttributeID("directory")).FromUTF8());
 	if (!directory.empty())
 	{
-		VfsPaths pathnames;
-		vfs::GetPathnames(g_VFS, directory, L"*.js", pathnames);
-		for (const VfsPath& path : pathnames)
+		if (VfsPath(directory).IsDirectory())
 		{
-			// Only load new files (so when the insert succeeds)
-			if (Paths.insert(path).second)
-				m_ScriptInterface->LoadGlobalScriptFile(path);
+			VfsPaths pathnames;
+			vfs::GetPathnames(g_VFS, directory, L"*.js", pathnames);
+			for (const VfsPath& path : pathnames)
+			{
+				// Only load new files (so when the insert succeeds)
+				if (Paths.insert(path).second)
+					m_ScriptInterface->LoadGlobalScriptFile(path);
+			}
 		}
+		else
+			LOGERROR("GUI: Script path %s is not a directory path", directory.ToUTF8().c_str());
 	}
 
 	CStr code(Element.GetText());

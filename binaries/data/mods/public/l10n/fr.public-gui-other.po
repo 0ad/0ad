@@ -52,9 +52,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-13 08:22+0000\n"
-"PO-Revision-Date: 2020-01-13 15:16+0000\n"
-"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
+"POT-Creation-Date: 2020-01-17 08:08+0000\n"
+"PO-Revision-Date: 2020-01-19 14:44+0000\n"
+"Last-Translator: benjamin jasse <benuri@hotmail.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -429,7 +429,7 @@ msgstr "Ressources initiales"
 #: gui/common/gamedescription.js:353
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Par joueur"
 
 #: gui/common/gamedescription.js:354
 #, javascript-format
@@ -443,7 +443,7 @@ msgstr "Limite de population"
 #: gui/common/gamedescription.js:369
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Par joueur"
 
 #: gui/common/gamedescription.js:376
 msgid "Treasures"
@@ -610,7 +610,7 @@ msgstr "Utilisateurs (%(num)s) : %(users)s"
 #: gui/common/tooltips.js:298 gui/common/tooltips.js:363
 #: gui/common/tooltips.js:413 gui/common/tooltips.js:446
 #: gui/common/tooltips.js:741 gui/common/tooltips.js:775
-#: gui/common/tooltips.js:841 gui/loadgame/SavegameDetails.js:37
+#: gui/common/tooltips.js:841 gui/loadgame/SavegameDetails.js:38
 #: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:283
 msgid ", "
 msgstr ", "
@@ -903,7 +903,7 @@ msgstr "Capter"
 #: gui/common/tooltips.js:283
 #, javascript-format
 msgid "gives %(name)s"
-msgstr ""
+msgstr "donner 1%(nom)s "
 
 #: gui/common/tooltips.js:313
 #, javascript-format
@@ -934,7 +934,7 @@ msgstr "Tir ami : %(enabled)s"
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:295 gui/options/options.js:348
 #: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
-#: gui/pregame/MainMenuItems.js:200 gui/replaymenu/replay_actions.js:169
+#: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Oui"
 
@@ -942,7 +942,7 @@ msgstr "Oui"
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:295 gui/options/options.js:348
 #: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
-#: gui/pregame/MainMenuItems.js:200 gui/replaymenu/replay_actions.js:169
+#: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Non"
 
@@ -1229,7 +1229,7 @@ msgstr "Cette sauvegarde sera supprimée définitivement, êtes-vous sûr(e) ?"
 msgid "DELETE"
 msgstr "SUPPRIMER"
 
-#: gui/loadgame/SavegameDetails.js:39
+#: gui/loadgame/SavegameDetails.js:40
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "Mods : %(mods)s"
@@ -1347,7 +1347,7 @@ msgstr "Apprendre à jouer"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr ""
+msgstr "Apprenez à jouer, démarrez le tutoriel, découvrez les arbres de technologie et l'histoire des civilisations."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -1392,7 +1392,7 @@ msgstr "Solo"
 
 #: gui/pregame/MainMenuItems.js:51
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "Démarrez, chargez ou rejouez une partie solo."
 
 #: gui/pregame/MainMenuItems.js:54
 msgid "Matches"
@@ -1400,7 +1400,7 @@ msgstr "Matchs"
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "Démarrer une nouvelle partie solo."
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Campaigns"
@@ -1518,7 +1518,7 @@ msgstr "Ouvrir l'éditeur de scénario Atlas dans une nouvelle fenêtre. Vous po
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "Êtes-vous sûr de bien vouloir quitter 0 A.D. et ouvrir l'Éditeur de Scénario?"
 
-#: gui/pregame/MainMenuItems.js:182 gui/pregame/MainMenuItems.js:199
+#: gui/pregame/MainMenuItems.js:182 gui/pregame/MainMenuItems.js:206
 msgid "Confirmation"
 msgstr "Confirmation"
 
@@ -1533,14 +1533,22 @@ msgid "Error"
 msgstr "Erreur"
 
 #: gui/pregame/MainMenuItems.js:193
+msgid "Credits"
+msgstr "Générique"
+
+#: gui/pregame/MainMenuItems.js:194
+msgid "Show the 0 A.D. credits."
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:200
 msgid "Exit"
 msgstr "Quitter"
 
-#: gui/pregame/MainMenuItems.js:194
+#: gui/pregame/MainMenuItems.js:201
 msgid "Exit the game."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:198
+#: gui/pregame/MainMenuItems.js:205
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Êtes-vous sûr(e) de vouloir quitter 0 A.D. ?"
 
@@ -1599,14 +1607,6 @@ msgstr "Faire un don"
 #: gui/pregame/ProjectInformation.js:58
 msgid "Help with the project expenses by donating."
 msgstr "Aider aux dépenses du projet en faisant un don."
-
-#: gui/pregame/ProjectInformation.js:65
-msgid "Credits"
-msgstr "Générique"
-
-#: gui/pregame/ProjectInformation.js:66
-msgid "Click to see the 0 A.D. credits."
-msgstr "Cliquez pour voir le générique de 0 A.D."
 
 #: gui/pregame/SplashscreenHandler.js:49
 #, javascript-format

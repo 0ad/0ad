@@ -1,8 +1,8 @@
 class ResetCivsButton
 {
-	constructor(gameSettingsControl)
+	constructor(setupWindow)
 	{
-		this.gameSettingsControl = gameSettingsControl;
+		this.gameSettingsControl = setupWindow.controls.gameSettingsControl;
 		this.gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
 
 		this.civResetButton = Engine.GetGUIObjectByName("civResetButton");

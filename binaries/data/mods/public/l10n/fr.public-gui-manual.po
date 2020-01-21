@@ -31,9 +31,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-13 08:22+0000\n"
-"PO-Revision-Date: 2020-01-13 15:17+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2020-01-17 08:08+0000\n"
+"PO-Revision-Date: 2020-01-19 14:31+0000\n"
+"Last-Translator: benjamin jasse <benuri@hotmail.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,9 +72,9 @@ msgstr "[font=\"sans-bold-16\"]Paramètres graphiques [font=\"sans-14\"]"
 msgid ""
 "You can switch between fullscreen and windowed mode by pressing Alt + Enter."
 " In windowed mode, you can resize the window. If the game runs too slowly, "
-"you can change some settings in the options window: try disabling the \"HQ "
-"Water Effects\" and \"Shadows\" options."
-msgstr "Vous pouvez basculer entre le mode plein-écran et mode fenêtré en appuyant sur Alt + Entrée. En mode fenêtré, vous pouvez redimensionner la fenêtre. Si le jeu tourne trop lentement, vous pouvez modifier certains paramètres dans la fenêtre d'options : essayer de désactiver les options \"Eau haute résolution\" et \"Ombres\". "
+"you can change some settings in the options window: try disabling the “HQ "
+"Water Effects” and “Shadows” options."
+msgstr "Vous pouvez échanger entre le mode plein-écran et le mode fenêtré en appuyant sur Alt + Entrer. En mode fenêtre, vous pouvez redimensionner la fenêtre. Si le jeu se déroule trop lentement, vous pouvez modifier certains réglages dans la fenêtre options: essayez de désactiver les options \"Effets d'eau HD\" et \"Ombres\"."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -113,8 +113,8 @@ msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
 msgstr "•Pour tourner la camera, utilisez les touches Ctrl + touches directionnelles, ou Maj + Molette de souris"
 
 #: gui/manual/intro.txt:16
-msgid "• Mouse wheel, or \"=\"/\"+\" and \"-\"/\"−\" keys, to zoom"
-msgstr "•Pour zoomer, utilisez la Molette de la souris ou les touches \"=\"/\"+\" et \"-\"/\"−\"."
+msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
+msgstr "molette de souris, ou touches \"=\" / \"+\" et \"-\" / \"-\" pour zoomer"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -126,25 +126,25 @@ msgstr "Le menu principal donne accès à deux modes de jeu :"
 
 #: gui/manual/intro.txt:20
 msgid ""
-"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – play a sandbox "
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – Play a sandbox "
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr "• [font = \"sans-bold-14\"] Solo [font = \"sans-14\"] - Jouez à un jeu sandbox ou contre un ou plusieurs joueurs sur ordinateur (AI). L'IA par défaut (Petra) est en cours de développement et n'est peut-être pas toujours à jour sur les nouvelles fonctionnalités, mais vous pouvez néanmoins jouer avec ou contre."
+msgstr "• [font = \"sans-bold-14\"] Solo [font = \"sans-14\"] - Jouez un jeu bac à sable ou contre un ou plusieurs joueurs ordinateur (AI). L'IA par défaut (Petra) est en cours de développement et n'est peut-être pas toujours à jour sur les nouvelles fonctionnalités, mais vous pouvez néanmoins jouer avec ou contre."
 
 #: gui/manual/intro.txt:21
 msgid ""
-"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – jouer contre des adversaires humains sur Internet."
+msgstr "• [font = \"sans-bold-14\"] Multijoueur [font = \"sans-14\"] - Jouez contre des ennemis humains sur Internet."
 
 #: gui/manual/intro.txt:23
 msgid ""
-"To set up a multiplayer game, one player must select the \"Host game\" "
-"option. The game uses UDP port 20595, so the host must configure their "
-"NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
+"To set up a multiplayer game, one player must select the “Host game” option."
+" The game uses UDP port 20595, so the host must configure their "
+"NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr "Pour créer une partie multijoueur, l'un des joueurs doit autoriser la connexion au port UDP 20595 de son NAT/pare-feu/etc pour \"Héberger une partie\". Les autres joueurs peuvent alors \"Rejoindre une partie\" et entrer l'adresse IP de l'hôte."
+msgstr "Pour configurer une partie multijoueur, un joueur doit sélectionner l'option «Partie hébergé». Le jeu utilise le port UDP 20595, donc l'hôte doit configurer son NAT/pare-feu/ etc. pour permettre cela. Les autres joueurs peuvent ensuite sélectionner «Rejoindre le jeu» et entrer l'adresse IP de l'hôte."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -181,26 +181,26 @@ msgid ""
 "Then the maps can be further filtered. The default maps are generally "
 "playable maps. Naval maps are maps where not all opponents can be reached "
 "over land and demo maps are maps used for testing purposes (generally not "
-"useful to play on). The \"All Maps\" filter shows all maps together in one "
+"useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr "Ensuite, les cartes peuvent être filtrées davantage. Les cartes par défaut sont généralement jouables. Les cartes navales sont des cartes où certains adversaires ne peuvent être atteints par les terres. Les cartes de démonstration sont des cartes prévues à des fins de test (offrant généralement peu d'intérêt de jeu). Le filtre « Toutes les cartes » affiche toutes les cartes regroupées en une seule liste."
+msgstr "Ensuite, les cartes peuvent être filtrées davantage. Les cartes par défaut sont généralement des cartes jouables. Les cartes navales sont des cartes où tous les ennemis ne peuvent pas être atteints sur terre et les cartes de démo sont des cartes utilisées à des fins de test (généralement pas utilisés pour jouer). Le filtre «Toutes les cartes» affiche toutes les cartes ensemble dans une seule liste.\n "
 
 #: gui/manual/intro.txt:35
 msgid ""
 "Finally change the settings. For random maps this includes the number of "
 "players, the size of a map, etc. For scenarios you can only select who "
-"controls which player (decides where you start on the map etc). The options "
-"are either a human player, an AI or no player at all (the opponent will just"
-" be idle)."
-msgstr "Pour finir, changez les paramètres. Pour les cartes aléatoires, cela comprend le nombre de joueurs, la taille de la carte, etc. Pour les scénarios, vous pouvez uniquement choisir qui est contrôlé par chaque joueur (pour décider l'emplacement initial sur la carte, etc.). Vous pouvez opter pour un joueur humain, une IA ou aucun joueur du tout (l'ennemi restera inactif)."
+"controls which player (decides where you start on the map etc.). The options"
+" are either a human player, an AI or no player at all (the opponent will "
+"just be idle)."
+msgstr "Enfin, modifiez les réglages. Pour les cartes aléatoires, cela inclut le nombre de joueurs, la taille d'une carte, etc. Pour les scénarios, vous pouvez uniquement sélectionner qui contrôle quel joueur (décide où vous commencez sur la carte, etc.). Les options sont soit un joueur humain, une IA ou aucun joueur (l'ennemi sera juste inactif).\n "
 
 #: gui/manual/intro.txt:37
-msgid "When you are ready to start, click the \"Start game\" button."
-msgstr "Quand vous êtes prêt(e) à commencer, cliquez sur \"Démarrer la partie\"."
+msgid "When you are ready to start, click the “Start game” button."
+msgstr "Lorsque vous êtes prêt à commencer, cliquer sur le bouton «Démarrer le jeu»."
 
 #: gui/manual/intro.txt:39
-msgid "[font=\"sans-bold-16\"]Hotkeys:[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-16\"]Raccourcis :[font=\"sans-14\"]"
+msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
+msgstr "[font = \"sans-bold-16\"] Raccourcis clavier [font = \"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
@@ -230,8 +230,8 @@ msgid ""
 msgstr "F11 - Activer / désactiver le profil en temps réel (bascule entre les affichages d'informations)"
 
 #: gui/manual/intro.txt:46
-msgid "  Shift + F11 – Save current profiler data to \"logs/profile.txt\""
-msgstr "Shift + F11 - Enregistrer les données actuelles du profil dans \"logs / profile.txt\""
+msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
+msgstr "Shift + F11 - Sauver les données actuelles du profil dans \"logs/profile.txt\"\n "
 
 #: gui/manual/intro.txt:47
 msgid ""
@@ -408,9 +408,9 @@ msgstr "Ctrl + F5 (et ainsi de suite jusqu'à F8) - Marquez la position actuelle
 
 #: gui/manual/intro.txt:84
 msgid ""
-"  F5, F6, F7, and F8 – Move the camera to a marked position. Jump back to "
-"the last location if the camera is already over the marked position"
-msgstr "F5, F6, F7 et F8 - Déplacez la caméra vers une position marquée. Revenez au dernier emplacement si la caméra est déjà au-dessus de la position marquée"
+"  F5 (and so on up to F8) – Move the camera to a marked position. Jump back "
+"to the last location if the camera is already over the marked position"
+msgstr ""
 
 #: gui/manual/intro.txt:85
 msgid ""
@@ -420,13 +420,13 @@ msgstr ""
 
 #: gui/manual/intro.txt:86
 msgid ""
-"  PageUp with unit(s) selected – Highlights the unit(s)/structure(s) guarded"
-" by the selection"
+"  PageUp with unit(s) selected – Highlight the unit(s)/structure(s) guarded "
+"by the selection"
 msgstr ""
 
 #: gui/manual/intro.txt:87
 msgid ""
-"  PageDown with unit(s)/structure(s) selected – Highlights the unit(s) "
+"  PageDown with unit(s)/structure(s) selected – Highlight the unit(s) "
 "guarding the selection"
 msgstr ""
 
@@ -484,15 +484,15 @@ msgid "  P + Right Click – Patrol"
 msgstr "P + Clic Droit – Patrouiller"
 
 #: gui/manual/intro.txt:102
-msgid "  Shift + Right Click – Queue the move/build/gather/etc order"
-msgstr "Shift + Clic droit – Mettre en file d'attente l'ordre de déplacement / génération / collecte / etc\n "
+msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
+msgstr ""
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  Alt + Right Click – Order one unit from the current selection to "
-"move/build/gather/etc and unselect it. Used to quickly dispatch units with "
+"move/build/gather/etc. and unselect it. Used to quickly dispatch units with "
 "specific tasks"
-msgstr "Alt + clic droit - Commandez une unité de la sélection actuelle pour la déplacer / construire / rassembler / etc et la désélectionner. Utiliser pour dispatcher rapidement des unités à des tâches spécifiques"
+msgstr ""
 
 #: gui/manual/intro.txt:104
 msgid ""
@@ -536,7 +536,7 @@ msgstr "Ctrl + clic gauche sur l'icône d'unité / groupe avec plusieurs unités
 
 #: gui/manual/intro.txt:112
 msgid ""
-"  Right Click with a structure(s) selected – sets a rally point for units "
+"  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
 msgstr ""
 

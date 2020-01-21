@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<object name="aiConfigPage" hidden="true" z="200">
+
+	<object type="image" sprite="ModernFade"/>
+
+	<object type="image" style="ModernDialog" size="50%-290 50%-200 50%+290 50%+200">
+
+		<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
+			<translatableAttribute id="caption">AI Configuration</translatableAttribute>
+		</object>
+
+		<object size="50%-200 30 50%+200 100">
+			<repeat count="10" var="n">
+				<object name="aiSettingFrame[n]" size="50% 0 50% 28" hidden="true">
+					<object type="text" style="ModernRightLabelText" size="-290 0 -6 100%"/>
+					<object type="dropdown" style="ModernDropDown" size="6 0 190 100%"/>
+					<object type="text" style="ModernLeftLabelText" size="6 0 190 100%"/>
+				</object>
+			</repeat>
+		</object>
+
+		<object name="aiDescription" type="text" style="ModernLabelText" size="8% 110 92% 100%-30"/>
+
+		<object name="aiConfigOkButton" type="button" style="ModernButtonRed" size="100%-220 100%-45 100%-20 100%-17" hotkey="cancel">
+			<translatableAttribute id="caption">OK</translatableAttribute>
+		</object>
+
+	</object>
+
+</object>

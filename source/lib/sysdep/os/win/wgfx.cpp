@@ -173,15 +173,4 @@ Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
 	return INFO::OK;
 }
 
-
-Status GetMonitorSize(int& width_mm, int& height_mm)
-{
-	// (DC for the primary monitor's entire screen)
-	const HDC hDC = GetDC(0);
-	width_mm = GetDeviceCaps(hDC, HORZSIZE);
-	height_mm = GetDeviceCaps(hDC, VERTSIZE);
-	ReleaseDC(0, hDC);
-	return INFO::OK;
-}
-
 }	// namespace gfx

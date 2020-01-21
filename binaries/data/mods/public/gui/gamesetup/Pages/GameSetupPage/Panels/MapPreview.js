@@ -1,15 +1,15 @@
 class MapPreview
 {
-	constructor(gameSettingsControl, mapCache)
+	constructor(setupWindow)
 	{
-		this.gameSettingsControl = gameSettingsControl;
-		this.mapCache = mapCache;
+		this.gameSettingsControl = setupWindow.controls.gameSettingsControl;
+		this.mapCache = setupWindow.controls.mapCache;
 
 		this.mapInfoName = Engine.GetGUIObjectByName("mapInfoName");
 		this.mapPreview = Engine.GetGUIObjectByName("mapPreview");
 
-		gameSettingsControl.registerMapChangeHandler(this.onMapChange.bind(this));
-		gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
+		this.gameSettingsControl.registerMapChangeHandler(this.onMapChange.bind(this));
+		this.gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
 	}
 
 	onMapChange(mapData)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -86,16 +86,6 @@ std::wstring DriverInfo()
 	if(driverInfo.empty())
 		return L"(unknown)";
 	return driverInfo;
-}
-
-
-size_t MemorySizeMiB()
-{
-	// TODO: not implemented, SDL_GetVideoInfo only works on some platforms in SDL 1.2
-	//	and no replacement is available in SDL2, and it can crash with Nvidia Optimus
-	//	see http://trac.wildfiregames.com/ticket/2145
-	debug_warn(L"MemorySizeMiB not implemented");
-	return 0;
 }
 
 }	// namespace gfx

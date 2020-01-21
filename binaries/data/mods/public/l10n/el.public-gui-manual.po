@@ -23,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-13 08:22+0000\n"
-"PO-Revision-Date: 2020-01-16 17:14+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2020-01-17 08:08+0000\n"
+"PO-Revision-Date: 2020-01-17 15:32+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,9 +64,9 @@ msgstr "[font=\"sans-bold-16\"] Ρυθμίσεις γραφικών[font=\"sans-
 msgid ""
 "You can switch between fullscreen and windowed mode by pressing Alt + Enter."
 " In windowed mode, you can resize the window. If the game runs too slowly, "
-"you can change some settings in the options window: try disabling the \"HQ "
-"Water Effects\" and \"Shadows\" options."
-msgstr "Μπορείτε να εναλλάσσεστε μεταξύ πλήρους οθόνης και παραθύρου πατώντας Alt + Enter. Σε κατάσταση παραθύρου, μπορείτε να αλλάξετε το μέγεθος του παραθύρου. Αν το παιχνίδι τρέχει πολύ αργά, μπορείτε να αλλάξετε κάποιες ρυθμίσεις στο παράθυρο επιλογών: δοκιμάστε να απενεργοποιήσετε τις επιλογές \"Υψηλής Ποιότητας Εμφάνισης του Νερού\" και \"Σκιές\"."
+"you can change some settings in the options window: try disabling the “HQ "
+"Water Effects” and “Shadows” options."
+msgstr ""
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -105,8 +105,8 @@ msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
 msgstr "• Ctrl + πλήκτρα βέλους ή shift + τροχός ποντικού, για να περιστρέψετε την κάμερα"
 
 #: gui/manual/intro.txt:16
-msgid "• Mouse wheel, or \"=\"/\"+\" and \"-\"/\"−\" keys, to zoom"
-msgstr "• Τροχός ποντικιού ή τα πλήκτρα \"=\"/\"+\" και \"-\"/\"−\" για μεγέθυνση/σμίκρυνση"
+msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
+msgstr ""
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -118,25 +118,25 @@ msgstr "Το κύριο μενού δίνει πρόσβαση σε δύο τρ�
 
 #: gui/manual/intro.txt:20
 msgid ""
-"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – play a sandbox "
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] – Play a sandbox "
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr "• [font=\"sans-bold-14\"]Ένας παίκτης[font=\"sans-14\"] – Παίξε ένα παιχνίδι δοκιμών ή εναντίον ενός ή περισσοτέρων παικτών υπολογιστή (ΤΝ). Η προεπιλεγμένη Τεχνητή Νοημοσύνη (Πέτρα) βρίσκεται υπό ανάπτυξη και μπορεί να μην είναι πάντοτε ενημερωμένη με τα νέα χαρακτηριστικά, αλλά μπορείς να παίξεις το παιχνίδι μαζί ή ενάντια σε αυτήν παρ' όλα αυτά."
+msgstr ""
 
 #: gui/manual/intro.txt:21
 msgid ""
-"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – play against human "
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Παιχνίδι με πολλούς παίκτες[font=\"sans-14\"] -– παίξτε εναντίων άλλων παικτών στο διαδίκτυο."
+msgstr ""
 
 #: gui/manual/intro.txt:23
 msgid ""
-"To set up a multiplayer game, one player must select the \"Host game\" "
-"option. The game uses UDP port 20595, so the host must configure their "
-"NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
+"To set up a multiplayer game, one player must select the “Host game” option."
+" The game uses UDP port 20595, so the host must configure their "
+"NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr "Για να στήσετε ένα παιχνίδι με πολλούς παίκτες στο διαδίκτυο, ένας παίκτης πρέπει να διαλέξει την επιλογή  \"Στέγαση παιχνιδιού\". Το παιχνίδι χρησημοποιεί την θύρα UDP 20595, οπότε ο οικοδεσπότης του παιχνιδιού πρέπει να ρυθμίσει ρούτερ/τοίχο προστασίας/κλπ ώστε να επιτραπεί η σύνδεση. Οι υπόλοιποι παίκτες μπορούν τότε να επιλέξουν \"Συμμετοχή στο παιχνίδι\" και να εισάγουν την διεύθυνση IP του οικοδεσπότη."
+msgstr ""
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -173,26 +173,26 @@ msgid ""
 "Then the maps can be further filtered. The default maps are generally "
 "playable maps. Naval maps are maps where not all opponents can be reached "
 "over land and demo maps are maps used for testing purposes (generally not "
-"useful to play on). The \"All Maps\" filter shows all maps together in one "
+"useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr "Έπειτα οι χάρτες μπορούν να φιλτραριστούν περαιτέρω. Οι προεπιλεγμένοι χάρτες είναι γενικοι χάρτες. Οι ναυτικοί χάρτες είναι χάρτες όπου δεν μπορούν να προσεγγιστουν  ολοι οι αντίπαλοι από την ξηρά και οι demo χάρτες είναι χάρτες που χρησιμοποιούνται για δοκιμαστικούς σκοπούς (γενικά δεν χρησιμοποιουνται για να παίζει κανεις σε αυτούς). Το φίλτρο \"Όλοι οι χάρτες\" δείχνει όλους τους χάρτες μαζί σε μία λίστα."
+msgstr ""
 
 #: gui/manual/intro.txt:35
 msgid ""
 "Finally change the settings. For random maps this includes the number of "
 "players, the size of a map, etc. For scenarios you can only select who "
-"controls which player (decides where you start on the map etc). The options "
-"are either a human player, an AI or no player at all (the opponent will just"
-" be idle)."
-msgstr "Τέλος άλλαξτε τις ρυθμίσεις. Για τυχαίους χάρτες αυτό περιλαμβάνει τον αριθμό των παικτών, το μέγεθος του χάρτη, κτλ. Για σενάρια μπορείτε μόνο να επιλέξετε ποιος ελέγχει ποιον παίκτη (αποφασίζει σε ποια περιοχή του χάρτη θα ξεκινήσεις κτλ.). Οι επιλογές είναι είτε ένας ανθρώπινος παίκτης, είτε ένας παίκτης ρομπότ ή κανένας παίκτης (οι μονάδες που ήδη υπάρχουν θα επιτεθούν σε εχθρούς που πλησιάζουν στην εμβέλειά τους αλλά δεν θα δημιουργηθούν καινούργιες μονάδες, ούτε θα σταλούν να επιτεθούν)."
+"controls which player (decides where you start on the map etc.). The options"
+" are either a human player, an AI or no player at all (the opponent will "
+"just be idle)."
+msgstr ""
 
 #: gui/manual/intro.txt:37
-msgid "When you are ready to start, click the \"Start game\" button."
-msgstr "Όταν είστε έτοιμοι να ξεκινήσετε, πιέστε το κουμπί \"Εκκίνηση παιχνιδιού\"."
+msgid "When you are ready to start, click the “Start game” button."
+msgstr ""
 
 #: gui/manual/intro.txt:39
-msgid "[font=\"sans-bold-16\"]Hotkeys:[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-16\"]Συντομεύσεις πληκτρολογίου:[font=\"sans-14\"]"
+msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
@@ -222,8 +222,8 @@ msgid ""
 msgstr "F11 – Ενεργοποίηση/απενεργοποίηση προφίλ πραγματικού χρόνου (ενεργοποιεί την ροή εμφάνισης πληροφοριών)"
 
 #: gui/manual/intro.txt:46
-msgid "  Shift + F11 – Save current profiler data to \"logs/profile.txt\""
-msgstr " Shift + F11 – Αποθηκεύει τα τρέχοντα δεδομένα προφίλ στο \"logs/profile.txt\""
+msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
+msgstr ""
 
 #: gui/manual/intro.txt:47
 msgid ""
@@ -400,9 +400,9 @@ msgstr "Ctrl + F5 (και ούτω κάθε εξής μέχρι F8) – Σημε
 
 #: gui/manual/intro.txt:84
 msgid ""
-"  F5, F6, F7, and F8 – Move the camera to a marked position. Jump back to "
-"the last location if the camera is already over the marked position"
-msgstr "F5, F6, F7, και F8 – Μετακίνηση της κάμερας σε μία σημαδεμένη θέση. Μετακίνηση στην τελευταία θέση άμα η κάμερα είναι ήδη σε μία σημαδεμένη θέση"
+"  F5 (and so on up to F8) – Move the camera to a marked position. Jump back "
+"to the last location if the camera is already over the marked position"
+msgstr ""
 
 #: gui/manual/intro.txt:85
 msgid ""
@@ -412,13 +412,13 @@ msgstr ""
 
 #: gui/manual/intro.txt:86
 msgid ""
-"  PageUp with unit(s) selected – Highlights the unit(s)/structure(s) guarded"
-" by the selection"
+"  PageUp with unit(s) selected – Highlight the unit(s)/structure(s) guarded "
+"by the selection"
 msgstr ""
 
 #: gui/manual/intro.txt:87
 msgid ""
-"  PageDown with unit(s)/structure(s) selected – Highlights the unit(s) "
+"  PageDown with unit(s)/structure(s) selected – Highlight the unit(s) "
 "guarding the selection"
 msgstr ""
 
@@ -476,15 +476,15 @@ msgid "  P + Right Click – Patrol"
 msgstr "P + Δεξί κλικ – Περιπολία"
 
 #: gui/manual/intro.txt:102
-msgid "  Shift + Right Click – Queue the move/build/gather/etc order"
-msgstr "Shift + Δεξί Κλικ – Βάλτε σε σειρά προτεραιότητας την εντολή κίνησης/χτισίματος/συλλογής/κτλ"
+msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
+msgstr ""
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  Alt + Right Click – Order one unit from the current selection to "
-"move/build/gather/etc and unselect it. Used to quickly dispatch units with "
+"move/build/gather/etc. and unselect it. Used to quickly dispatch units with "
 "specific tasks"
-msgstr "Alt + Δεξί Κλικ – Δώσε εντολή σε μία από τις τρέχουσες επιλεγμένες μονάδες για να μετακινηθεί/κατασκευάσει/συγκεντρώσει/κλπ και να αποεπιλεγεί. Χρησιμοποιείται για γρήγορη αποστολή μονάδων με συγκεκριμένες εργασίες"
+msgstr ""
 
 #: gui/manual/intro.txt:104
 msgid ""
@@ -528,9 +528,9 @@ msgstr "Ctrl + Αριστερό κλικ σε ένα εικονίδιο μιας
 
 #: gui/manual/intro.txt:112
 msgid ""
-"  Right Click with a structure(s) selected – sets a rally point for units "
+"  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
-msgstr "Δεξί Κλικ με ένα κτίριο(α) επιλεγμένο – Ορίζει ένα σημείο συγκέντρωσης για μονάδες που δημιουργούνται/αποχυρώνονται από αυτό το κτίριο"
+msgstr ""
 
 #: gui/manual/intro.txt:113
 msgid "  Ctrl + Right Click with unit(s) selected:"

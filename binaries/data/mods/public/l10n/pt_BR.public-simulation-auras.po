@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -19,14 +19,14 @@
 # Rafael Monteiro <rafaelimabsb2@hotmail.com>, 2016
 # Renato Cirino <renatimpirei@gmail.com>, 2019
 # Rui <xymarior@yandex.com>, 2018-2019
-# Tiago, 2018-2019
+# Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>, 2018-2020
 # Victor Gregório <vt_marv@hotmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-11-01 21:15+0000\n"
-"Last-Translator: Iksaandry Kral <iksaandry@outlook.com>\n"
+"POT-Creation-Date: 2020-01-17 08:09+0000\n"
+"PO-Revision-Date: 2020-01-19 17:01+0000\n"
+"Last-Translator: Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -129,15 +129,15 @@ msgstr "Tratamento Médico"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
-msgstr ""
+msgstr "Humanos têm +1 de taxa de regeneração de saúde."
 
-#: simulation/data/auras/structures/theatron.jsonauraName
+#: simulation/data/auras/structures/theater.jsonauraName
 msgid "Hellenization"
 msgstr "Helenização"
 
-#: simulation/data/auras/structures/theatron.jsonauraDescription
+#: simulation/data/auras/structures/theater.jsonauraDescription
 msgid "Structures +20% territory influence radius."
-msgstr ""
+msgstr "Estruturas têm +20% de influência de território."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -145,7 +145,7 @@ msgstr "Muralha de Proteção"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid "Garrisoned Soldiers +3 armor and +20 vision range."
-msgstr ""
+msgstr "Soldados guarnecidos oferecem +3 de armadura e +20 de campo de visão."
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraName
 msgid "Symbol of Greatness"
@@ -153,7 +153,7 @@ msgstr "Símbolo de Grandeza"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "+10 maximum population limit."
-msgstr ""
+msgstr "+10 de limite máximo de população."
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion"
@@ -162,7 +162,7 @@ msgstr "Expansão Gloriosa"
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
 "+40 maximum population limit (requires the “Glorious Expansion” technology)."
-msgstr ""
+msgstr "+40 de limite máximo de população (requer a tecnologia \"Expansão Gloriosa\")."
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
@@ -209,8 +209,8 @@ msgid "Saripeko"
 msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
-msgid "Allied Citizen Javelinists −20% resource costs."
-msgstr "Dardeiros Cidadãos Aliados -20% custo de recursos"
+msgid "Allied Citizen Javelinists −10% resource costs."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -259,8 +259,8 @@ msgid "Conscription"
 msgstr "Recrutamento"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "Allied Citizen Infantry −20% training time."
-msgstr "Infantaria Civil Aliada -20% tempo de treino."
+msgid "Allied Citizen Infantry −10% training time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -679,7 +679,7 @@ msgstr "Fervor da Batalha"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
 msgid "Soldiers +1 armor."
-msgstr ""
+msgstr "Soldados têm +1 de armadura."
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
 msgid "Mobilization"
@@ -820,7 +820,7 @@ msgstr "Professor"
 msgid ""
 "When garrisoned, the Structure's technologies have −20% resource cost and "
 "−50% research time."
-msgstr ""
+msgstr "Quando guarnecidos, as tecnologias das Estruturas têm -20% de custo de recursos e -50% de tempo de pesquisa."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
@@ -833,7 +833,7 @@ msgstr "Líder de Frente"
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
 msgid ""
 "Cavalry +1 capture attack strength, +20% melee and ranged attack damage."
-msgstr ""
+msgstr "Cavalaria têm +1 de força de ataque de captura, +20% de dano de ataque de longo alcance e de corpo a corpo."
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
 msgid "Leadership"
@@ -842,7 +842,7 @@ msgstr "Liderança"
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
 msgid ""
 "Soldiers, Siege Engines, Traders, and Merchant Ships +15% movement speed."
-msgstr ""
+msgstr "Soldados, Armas de Cerco, Comerciantes e Navios Mercantes têm +15% de velocidade de movimento."
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
@@ -850,7 +850,7 @@ msgstr "Administrador"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraDescription
 msgid "Workers +15% build rate and gather speed."
-msgstr ""
+msgstr "Trabalhadores têm +15% de taxa de construção e de velocidade de coleta."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot"
@@ -858,7 +858,7 @@ msgstr "Patriota"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraDescription
 msgid "Soldiers and Siege Engines −20% melee and ranged attack repeat time."
-msgstr ""
+msgstr "Soldados e Armas de Cerco têm -20% no tempo de repetição de ataque de longo alcance e de corpo a corpo."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraName
@@ -867,11 +867,11 @@ msgstr "Consorte"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraDescription
 msgid "Allied Heroes +10% health."
-msgstr ""
+msgstr "Heróis Aliados têm +10% de saúde."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraDescription
 msgid "Enemy Heroes −10% health."
-msgstr ""
+msgstr "Heróis Inimigos têm -10% de saúde."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia"
@@ -879,7 +879,7 @@ msgstr "Ráfia"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Pikemen +40% health."
-msgstr ""
+msgstr "Piqueiros têm +40% de saúde."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Patron of Construction"
@@ -887,7 +887,7 @@ msgstr "Patrono da Construção"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraDescription
 msgid "Workers +10% build rate."
-msgstr ""
+msgstr "Trabalhadores têm +10% de taxa de construção."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraName
 msgid "Mercenary Patron"
@@ -895,7 +895,7 @@ msgstr "Patrono dos Mercenários"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
 msgid "Mercenaries −35% resource costs."
-msgstr ""
+msgstr "Mercenários têm -35% de custo de recursos."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
@@ -904,7 +904,7 @@ msgstr "Espada de Roma"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
 msgid "Cavalry +15% melee and ranged attack damage."
-msgstr ""
+msgstr "Cavalaria têm +15% de dano de ataque de longo alcance e de corpo a corpo."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
 msgid "Enemy Infantry −10% melee and ranged attack damage."
@@ -916,7 +916,7 @@ msgstr "Escudo de Roma"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "Humans and Structures +1 armor."
-msgstr ""
+msgstr "Humanos e Estruturas têm +1 de armadura."
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
 msgid "Triumph"
@@ -934,7 +934,7 @@ msgstr "Ilarchès"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraDescription
 msgid "Cavalry +2 armor."
-msgstr ""
+msgstr "Cavalaria têm +2 de armadura."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraName
 msgid "Renowned Conqueror"
@@ -942,7 +942,7 @@ msgstr "Conquistador Renomado"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraDescription
 msgid "Enemy Structures, Ships, and Siege Engines -20% health."
-msgstr ""
+msgstr "Estruturas Inimigas, Navios e Armas de Cerco têm -20% de saúde."
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos"

@@ -1,13 +1,13 @@
 class GameDescription
 {
-	constructor(mapCache, gameSettingTabs, gameSettingsControl)
+	constructor(setupWindow, gameSettingTabs)
 	{
-		this.mapCache = mapCache;
+		this.mapCache = setupWindow.controls.mapCache;
 
 		this.gameDescriptionFrame = Engine.GetGUIObjectByName("gameDescriptionFrame");
 		this.gameDescription = Engine.GetGUIObjectByName("gameDescription");
 
-		gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
+		setupWindow.controls.gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
 		gameSettingTabs.registerTabsResizeHandler(this.onTabsResize.bind(this));
 	}
 

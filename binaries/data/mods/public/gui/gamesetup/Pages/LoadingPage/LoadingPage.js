@@ -3,12 +3,12 @@
  * This is not technically necessary, but only performed to avoid confusion or irritation when showing the clients first the
  * default settings and then switching to the server settings quickly thereafter.
  */
-class LoadingPage
+SetupWindowPages.LoadingPage = class
 {
-	constructor(netMessages)
+	constructor(setupWindow)
 	{
 		if (g_IsNetworked)
-			netMessages.registerNetMessageHandler("gamesetup", this.hideLoadingPage.bind(this));
+			setupWindow.controls.netMessages.registerNetMessageHandler("gamesetup", this.hideLoadingPage.bind(this));
 		else
 			this.hideLoadingPage();
 	}

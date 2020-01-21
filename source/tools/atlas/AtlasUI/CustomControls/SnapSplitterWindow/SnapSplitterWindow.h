@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,17 +20,24 @@
 class SnapSplitterWindow : public wxSplitterWindow
 {
 public:
-	SnapSplitterWindow(wxWindow* parent, long style = wxSP_3D);
+	SnapSplitterWindow(wxWindow* parent, long style = wxSP_3D, const wxString& configPath = wxString());
+
 	void SetDefaultSashPosition(int sashPosition);
+
 	virtual bool SplitVertically(wxWindow* window1, wxWindow* window2, int sashPosition = 0);
 	virtual bool SplitHorizontally(wxWindow* window1, wxWindow* window2, int sashPosition = 0);
 
+	bool LoadSashPositionIfSaved(int* sashPosition);
+	void SaveSashPositionIfChanged();
+
 private:
 	void OnSashPosChanging(wxSplitterEvent& evt);
+	void OnSashPosChanged(wxSplitterEvent& evt);
 	void OnDoubleClick(wxSplitterEvent& evt);
 
 	int m_DefaultSashPosition;
 	int m_SnapTolerance;
+	wxString m_ConfigPath;
 
 	DECLARE_EVENT_TABLE();
 };

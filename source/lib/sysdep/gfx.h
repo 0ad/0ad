@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -42,11 +42,6 @@ LIB_API std::wstring CardName();
 LIB_API std::wstring DriverInfo();
 
 /**
- * not implemented
- **/
-LIB_API size_t MemorySizeMiB();
-
-/**
  * (useful for choosing a new video mode)
  *
  * @param xres, yres (optional out) resolution [pixels]
@@ -55,15 +50,6 @@ LIB_API size_t MemorySizeMiB();
  * @return Status (if negative, outputs were left unchanged)
  **/
 LIB_API Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq);
-
-/**
- * (useful for determining aspect ratio)
- *
- * @param width_mm (out) screen width [mm]
- * @param height_mm (out) screen height [mm]
- * @return Status (if if negative, outputs were left unchanged)
- **/
-LIB_API Status GetMonitorSize(int& width_mm, int& height_mm);
 
 }	// namespace gfx
 

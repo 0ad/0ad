@@ -6,9 +6,9 @@
       <mesh>props/ptol_dock_scaffold.dae</mesh>
       <textures>
         <texture file="props/scaffold.png" name="baseTex"/>
-		    <texture file="structural/ao/ptol_dock.png" name="aoTex"/>
+        <texture file="structural/ao/ptol_dock.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
-  <material>basic_trans_ao.xml</material>
+  <material>no_trans_ao.xml</material>
 </actor>

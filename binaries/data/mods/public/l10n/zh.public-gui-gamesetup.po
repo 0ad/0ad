@@ -47,9 +47,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-13 08:22+0000\n"
-"PO-Revision-Date: 2020-01-14 03:17+0000\n"
-"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
+"POT-Creation-Date: 2020-01-17 08:08+0000\n"
+"PO-Revision-Date: 2020-01-17 14:29+0000\n"
+"Last-Translator: Jason Chen <wonton.cc@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -138,12 +138,12 @@ msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "地图"
 
-#: gui/gamesetup/GameSettings/GameSettingsLayout.js:22
+#: gui/gamesetup/GameSettings/GameSettingsLayout.js:24
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "玩家"
 
-#: gui/gamesetup/GameSettings/GameSettingsLayout.js:32
+#: gui/gamesetup/GameSettings/GameSettingsLayout.js:34
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "游戏类型"
@@ -289,20 +289,20 @@ msgstr "取消宝藏系统"
 msgid "Do not add treasures to the map."
 msgstr "不要在地图上添加宝藏。"
 
-#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:119
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:135
 msgid "Biome"
 msgstr "生物群系"
 
-#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:125
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:141
 msgid "Select the flora and fauna."
 msgstr "选择动植物群落"
 
-#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:128
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:144
 msgctxt "biome"
 msgid "Random"
 msgstr "随机"
 
-#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:131
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Biome.js:147
 msgid "Pick a biome at random."
 msgstr "随机选择生物群落。"
 
@@ -314,6 +314,24 @@ msgstr "停火"
 msgid "Set time where no attacks are possible."
 msgstr "在没有攻击时设置时间是可能的。"
 
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Daytime.js:96
+msgid "Daytime"
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Daytime.js:99
+msgid "Select whether the match takes place at daylight or night."
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Daytime.js:102
+msgctxt "daytime selection"
+msgid "Random"
+msgstr "随机"
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Daytime.js:105
+msgctxt "daytime selection"
+msgid "Randomly pick a time of the day."
+msgstr ""
+
 #: gui/gamesetup/GameSettings/Single/Dropdowns/GameSpeed.js:73
 msgid "Game Speed"
 msgstr "游戏速度"
@@ -321,6 +339,44 @@ msgstr "游戏速度"
 #: gui/gamesetup/GameSettings/Single/Dropdowns/GameSpeed.js:76
 msgid "Select game speed."
 msgstr "选择游戏速度."
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:124
+msgid "Landscape"
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:127
+msgid "Select one of the landscapes of this map."
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:133
+msgctxt "landscape selection"
+msgid "Random Land or Naval"
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:134
+msgctxt "landscape selection"
+msgid "Select a random land or naval map generation."
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:138
+msgctxt "landscape selection"
+msgid "Random Land"
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:139
+msgctxt "landscape selection"
+msgid "Select a random land map generation."
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:143
+msgctxt "landscape selection"
+msgid "Random Naval"
+msgstr ""
+
+#: gui/gamesetup/GameSettings/Single/Dropdowns/Landscape.js:144
+msgctxt "landscape selection"
+msgid "Select a random naval map generation."
+msgstr ""
 
 #: gui/gamesetup/GameSettings/Single/Dropdowns/MapFilter.js:89
 msgid "Map Filter"
@@ -391,11 +447,11 @@ msgid ""
 "%(popCap)s population."
 msgstr "警告：当所有的%(players)s玩家都到达人口上限%(popCap)s时，会有性能问题"
 
-#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicCount.js:77
+#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicCount.js:78
 msgid "Relic Count"
 msgstr "遗迹数"
 
-#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicCount.js:80
+#: gui/gamesetup/GameSettings/Single/Dropdowns/RelicCount.js:81
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
@@ -632,37 +688,37 @@ msgstr "正在连接服务器..."
 msgid "Net message: %(message)s"
 msgstr "网络信息: %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:221
+#: gui/gamesetup_mp/gamesetup_mp.js:223
 msgid "Registering with server..."
 msgstr "正在注册..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:227
+#: gui/gamesetup_mp/gamesetup_mp.js:229
 msgid "Game has already started, rejoining..."
 msgstr "游戏已经开始，正在重新加入..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:298
+#: gui/gamesetup_mp/gamesetup_mp.js:300
 msgid "Game name already in use."
 msgstr "游戏名称现正被使用中。"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:308
+#: gui/gamesetup_mp/gamesetup_mp.js:310
 msgid "Failed to host via STUN."
 msgstr "STUN主机失败"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:322
+#: gui/gamesetup_mp/gamesetup_mp.js:324
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "不能承载游戏 : %(message)s。"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:323 gui/gamesetup_mp/gamesetup_mp.js:352
+#: gui/gamesetup_mp/gamesetup_mp.js:325 gui/gamesetup_mp/gamesetup_mp.js:354
 msgid "Error"
 msgstr "错误"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:351
+#: gui/gamesetup_mp/gamesetup_mp.js:353
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "无法加入游戏 : %(message)s。"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:373
+#: gui/gamesetup_mp/gamesetup_mp.js:375
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "%(playername)s 的游戏"

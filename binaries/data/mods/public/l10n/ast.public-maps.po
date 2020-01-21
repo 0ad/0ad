@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-03 08:09+0000\n"
-"PO-Revision-Date: 2020-01-16 21:59+0000\n"
+"POT-Creation-Date: 2020-01-17 08:09+0000\n"
+"PO-Revision-Date: 2020-01-20 07:22+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -186,14 +186,17 @@ msgid "Canyon"
 msgstr "Cangues"
 
 #: maps/random/continent.jsonsettings.Description
+#: maps/random/unknown.jsonsettings.Landscapes.land[0].Description
 msgid "All players starts on a continent surrounded by water."
 msgstr "Tolos xugadores entamen nun continente arrodiáu d'agua."
 
 #: maps/random/continent.jsonsettings.Name
+#: maps/random/unknown.jsonsettings.Landscapes.land[0].Name
 msgid "Continent"
 msgstr "Continente"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
+#: maps/random/unknown.jsonsettings.Landscapes.land[1].Description
 #: maps/skirmishes/Corinthian Isthmus (2).xml:Description:39
 #: maps/skirmishes/Corinthian Isthmus (4).xml:Description:40
 msgid ""
@@ -236,6 +239,22 @@ msgid ""
 "the Boii were defeated by the rising power of the Dacians, hence leading to "
 "the reemergence of the Geto-Dacian Confederation under King Burebista."
 msgstr "Los xugadores entamen a les veres del ríu Danubiu tres asitiase en Panonia colonizadores de la tribu celta de los boyos. Buscando asegurar control sobro esta tierra, los célticos acaben d'unviar refuercios pa desaniciar los indíxenes que queden. Los xugadores, poro, non solo tienen que s'engarriar pol poder ún al otru, sinón qu'han refugar a esos invasores despiadaos. A lo último, foi la puxanza de los dacios que venció a los boyos, llevando al resurdimientu de la confederación gueto-dacia baxo'l rei Burebista."
+
+#: maps/random/danubius.jsonsettings.Daytime[0].Description
+msgid "Bright daylight illuminates the scene."
+msgstr "La lluz brillante del día alluma l'escenariu."
+
+#: maps/random/danubius.jsonsettings.Daytime[0].Name
+msgid "Day"
+msgstr "Día"
+
+#: maps/random/danubius.jsonsettings.Daytime[1].Description
+msgid "Attackers are covered by the darkness of the night."
+msgstr "La escuridá la nueche envuelve los atacadores."
+
+#: maps/random/danubius.jsonsettings.Daytime[1].Name
+msgid "Night"
+msgstr "Nueche"
 
 #: maps/random/danubius.jsonsettings.Name
 msgid "Danubius"
@@ -533,10 +552,12 @@ msgid "Lower Nubia"
 msgstr "Baxa Nubia"
 
 #: maps/random/mainland.jsonsettings.Description
+#: maps/random/unknown.jsonsettings.Landscapes.land[8].Description
 msgid "A typical map without any water."
 msgstr "Un típicu mapa ensin agua."
 
 #: maps/random/mainland.jsonsettings.Name
+#: maps/random/unknown.jsonsettings.Landscapes.land[8].Name
 msgid "Mainland"
 msgstr "Tierra firme"
 
@@ -669,6 +690,22 @@ msgid ""
 "inadvisable to disable treasures, since there is no gatherable wood. Not "
 "recommended for inexperienced players.[/color]"
 msgstr "Los xugadores entamen nel torbeyu d'una rexón polar ensin vexetación. Na mar averbenen pexe y ballenes, ente que'l xelebreru vidroso ta llaráu de morses pa cazar y llobos xabaces. Los llobos, esgalazaos polo duro del clima y atrayíos pol arume de caza, tán empezando a llegar en balasma. Un caudiellu sabiu y fuerte, arriendes d'acabar col enemigu, caltendrá a raya'l númberu d'estos bichos, nun seya qu'esfarrapen la so corexa comiéndo-y la figura. [color=\"red\"]Avisu: Nun ye aconseyable desactivar les ayalgues, darréu que nun hai madera que recoyer. Nun s'encamienta pa novatos.[/color]"
+
+#: maps/random/polar_sea.jsonsettings.Daytime[0].Description
+msgid "Scattered sunlight illuminates the scenery in a vivid red tone."
+msgstr "El sol de bermeyón alluma l'escenariu colos sos rayos primeros."
+
+#: maps/random/polar_sea.jsonsettings.Daytime[0].Name
+msgid "Dawn"
+msgstr "Madrugada"
+
+#: maps/random/polar_sea.jsonsettings.Daytime[1].Description
+msgid "The scenery is illuminated by direct or indirect sunlight."
+msgstr "L'escenariu allúmalu'l sol direutu o indireutu."
+
+#: maps/random/polar_sea.jsonsettings.Daytime[1].Name
+msgid "Daylight"
+msgstr "Lluz del día"
 
 #: maps/random/polar_sea.jsonsettings.Name
 msgid "Polar Sea"
@@ -851,20 +888,94 @@ msgid "The Nile"
 msgstr "El Nilu"
 
 #: maps/random/unknown.jsonsettings.Description
-msgid "The unknown. Warning: May be a naval map."
-msgstr "Lo descoñocío. Avisu: Pue ser un mapa naval. "
+msgid "The unknown."
+msgstr "Lo descoñocío."
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[1].Name
+msgid "Isthmus"
+msgstr "Ismu"
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[2].Description
+msgid "A small central river."
+msgstr "Un riucu central"
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[2].Name
+msgid "Central River"
+msgstr "Ríu central"
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[3].Description
+msgid ""
+"Players are aligned on a strip of land with seas bordering on one or both "
+"sides that may hold islands."
+msgstr "Los xugadores tán alliniaos nuna faza de tierra. A un llau d'ella o dambos, hai mares que puen contener islles."
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[3].Name
+msgid "Edge Seas"
+msgstr "Mares estremeres"
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[4].Description
+msgid "Land shaped like a concrescent moon around a central lake."
+msgstr "Tierra en forma de lluna creciente al rodiu d'un llagu central."
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[4].Name
+msgid "Gulf"
+msgstr "Golfu"
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[5].Description
+msgid "Mainland style with some small random lakes."
+msgstr "Estilu continental con delles llagunes aisllaes."
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[5].Name
+msgid "Lakes"
+msgstr "Llagos"
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[6].Description
+msgid ""
+"A large hill encompasses the map and leaves players only a small passage to "
+"the two neighboring players."
+msgstr "Una llomba grande arrodia'l mapa & dexa a los xugadores namái un pasín a los dos xugadores vecinos."
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[6].Name
+msgid "Passes"
+msgstr "Caleyones"
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[7].Description
+msgid ""
+"The land is enclosed by a hill that leaves a small area per player connected"
+" to the large central place."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.land[7].Name
+msgid "Lowlands"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.naval[0].Description
+msgid "A huge sea is dividing the map into two halves."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.naval[0].Name
+msgid "Naval: Central Sea"
+msgstr "Naval: Mar central"
+
+#: maps/random/unknown.jsonsettings.Landscapes.naval[1].Description
+msgid "Players are scattered across island chains and disconnected islands."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.naval[1].Name
+msgid "Naval: Archipelago"
+msgstr "Naval: Archipiélagu"
+
+#: maps/random/unknown.jsonsettings.Landscapes.naval[2].Description
+msgid "A central lake with rivers possibly separating neighboring players."
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes.naval[2].Name
+msgid "Naval: Lake and rivers"
+msgstr "Naval: Llagu & ríos"
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
 msgstr "Descoñozse"
-
-#: maps/random/unknown_land.jsonsettings.Description
-msgid "The unknown."
-msgstr "Lo descoñocío."
-
-#: maps/random/unknown_land.jsonsettings.Name
-msgid "Unknown Land"
-msgstr "Tierra descoñocida"
 
 #: maps/random/volcanic_lands.jsonsettings.Description
 msgid "A charred dead land where players start around a smoking volcano."
