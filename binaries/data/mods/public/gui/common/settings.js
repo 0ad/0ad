@@ -38,8 +38,6 @@ function loadSettingsValues()
 		"AIDescriptions": loadAIDescriptions(),
 		"AIDifficulties": loadAIDifficulties(),
 		"AIBehaviors": loadAIBehaviors(),
-		"Ceasefire": loadCeasefire(),
-		"VictoryDurations": loadVictoryDuration(),
 		"GameSpeeds": loadSettingValuesFile("game_speeds.json"),
 		"MapTypes": loadMapTypes(),
 		"MapSizes": loadSettingValuesFile("map_sizes.json"),
@@ -161,50 +159,6 @@ function loadAIBehaviors()
 			"Title": translateWithContext("aiBehavior", "Aggressive")
 		}
 	];
-}
-
-/**
- * Loads available victory times for victory conditions like Wonder and Capture the Relic.
- */
-function loadVictoryDuration()
-{
-	var jsonFile = "victory_times.json";
-	var json = Engine.ReadJSONFile(g_SettingsDirectory + jsonFile);
-
-	if (!json || json.Default === undefined || !json.Times || !Array.isArray(json.Times))
-	{
-		error("Could not load " + jsonFile);
-		return undefined;
-	}
-
-	return json.Times.map(duration => ({
-		"Duration": duration,
-		"Default": duration == json.Default,
-		"Title": sprintf(translatePluralWithContext("victory duration", "%(min)s minute", "%(min)s minutes", duration), { "min": duration })
-	}));
-}
-
-/**
- * Loads available ceasefire settings.
- *
- * @returns {Array|undefined}
- */
-function loadCeasefire()
-{
-	var json = Engine.ReadJSONFile(g_SettingsDirectory + "ceasefire.json");
-
-	if (!json || json.Default === undefined || !json.Times || !Array.isArray(json.Times))
-	{
-		error("Could not load ceasefire.json");
-		return undefined;
-	}
-
-	return json.Times.map(timeout => ({
-		"Duration": timeout,
-		"Default": timeout == json.Default,
-		"Title": timeout == 0 ? translateWithContext("ceasefire", "No ceasefire") :
-			sprintf(translatePluralWithContext("ceasefire", "%(minutes)s minute", "%(minutes)s minutes", timeout), { "minutes": timeout })
-	}));
 }
 
 /**

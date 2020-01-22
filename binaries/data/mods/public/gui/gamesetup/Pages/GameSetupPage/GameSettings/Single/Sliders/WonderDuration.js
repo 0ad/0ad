@@ -1,14 +1,10 @@
-GameSettingControls.WonderDuration = class extends GameSettingControlDropdown
+GameSettingControls.WonderDuration = class extends GameSettingControlSlider
 {
 	constructor(...args)
 	{
 		super(...args);
 
-		this.values = prepareForDropdown(g_Settings.VictoryDurations);
-
-		this.dropdown.list = this.values.Title;
-		this.dropdown.list_data = this.values.Duration;
-
+		this.sprintfValue = {};
 		this.available = false;
 	}
 
@@ -48,7 +44,7 @@ GameSettingControls.WonderDuration = class extends GameSettingControlDropdown
 		{
 			if (g_GameAttributes.settings.WonderDuration === undefined)
 			{
-				g_GameAttributes.settings.WonderDuration = this.values.Duration[this.values.Default];
+				g_GameAttributes.settings.WonderDuration = this.DefaultValue;
 				this.gameSettingsControl.updateGameAttributes();
 			}
 		}
@@ -64,14 +60,26 @@ GameSettingControls.WonderDuration = class extends GameSettingControlDropdown
 		this.setHidden(!this.available);
 
 		if (this.available)
-			this.setSelectedValue(g_GameAttributes.settings.WonderDuration);
+		{
+			let value = Math.round(g_GameAttributes.settings.WonderDuration);
+			this.sprintfValue.min = value;
+			this.setSelectedValue(
+				g_GameAttributes.settings.WonderDuration,
+				value == 0 ? this.InstantVictory : sprintf(this.CaptionVictoryTime(value), this.sprintfValue));
+		}
 	}
 
-	onSelectionChange(itemIdx)
+	onValueChange(value)
 	{
-		g_GameAttributes.settings.WonderDuration = this.values.Duration[itemIdx];
+		g_GameAttributes.settings.WonderDuration = value;
 		this.gameSettingsControl.updateGameAttributes();
 		this.gameSettingsControl.setNetworkGameAttributes();
+	}
+
+	onGameAttributesFinalize()
+	{
+		if (this.available)
+			g_GameAttributes.settings.WonderDuration = Math.round(g_GameAttributes.settings.WonderDuration);
 	}
 };
 
@@ -83,3 +91,15 @@ GameSettingControls.WonderDuration.prototype.Tooltip =
 
 GameSettingControls.WonderDuration.prototype.NameWonderVictory =
 	"wonder";
+
+GameSettingControls.WonderDuration.prototype.CaptionVictoryTime =
+	min => translatePluralWithContext("victory duration", "%(min)s minute", "%(min)s minutes", min);
+
+GameSettingControls.WonderDuration.prototype.InstantVictory =
+	translateWithContext("victory duration", "Immediate Victory.");
+
+GameSettingControls.WonderDuration.prototype.MinValue = 0;
+
+GameSettingControls.WonderDuration.prototype.MaxValue = 60;
+
+GameSettingControls.WonderDuration.prototype.DefaultValue = 20;

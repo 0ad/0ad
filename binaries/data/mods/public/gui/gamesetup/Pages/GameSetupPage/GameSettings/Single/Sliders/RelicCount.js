@@ -1,14 +1,10 @@
-GameSettingControls.RelicCount = class extends GameSettingControlDropdown
+GameSettingControls.RelicCount = class extends GameSettingControlSlider
 {
 	constructor(...args)
 	{
 		super(...args);
 
-		this.values = Object.keys(g_CivData).map((v, i) => i + 1);
-
-		this.dropdown.list = this.values;
-		this.dropdown.list_data = this.values;
-
+		this.sprintfValue = {};
 		this.available = false;
 	}
 
@@ -47,7 +43,7 @@ GameSettingControls.RelicCount = class extends GameSettingControlDropdown
 		{
 			if (g_GameAttributes.settings.RelicCount === undefined)
 			{
-				g_GameAttributes.settings.RelicCount = this.DefaultRelicCount;
+				g_GameAttributes.settings.RelicCount = this.DefaultValue;
 				this.gameSettingsControl.updateGameAttributes();
 			}
 		}
@@ -63,19 +59,34 @@ GameSettingControls.RelicCount = class extends GameSettingControlDropdown
 		this.setHidden(!this.available);
 
 		if (this.available)
-			this.setSelectedValue(g_GameAttributes.settings.RelicCount);
+		{
+			let value = Math.round(g_GameAttributes.settings.RelicCount);
+			this.sprintfValue.number = value;
+			this.setSelectedValue(
+				g_GameAttributes.settings.RelicCount,
+				value == 0 ? this.InstantVictory : sprintf(this.CaptionRelicCount(value), this.sprintfValue));
+		}
 	}
 
-	onSelectionChange(itemIdx)
+	onValueChange(value)
 	{
-		g_GameAttributes.settings.RelicCount = this.values[itemIdx];
+		g_GameAttributes.settings.RelicCount = value;
 		this.gameSettingsControl.updateGameAttributes();
 		this.gameSettingsControl.setNetworkGameAttributes();
+	}
+
+	onGameAttributesFinalize()
+	{
+		if (this.available)
+			g_GameAttributes.settings.RelicCount = Math.round(g_GameAttributes.settings.RelicCount);
 	}
 };
 
 GameSettingControls.RelicCount.prototype.TitleCaption =
 	translate("Relic Count");
+
+GameSettingControls.RelicCount.prototype.CaptionRelicCount =
+	relicCount => translatePlural("%(number)s relic", "%(number)s relics", relicCount);
 
 GameSettingControls.RelicCount.prototype.Tooltip =
 	translate("Total number of relics spawned on the map. Relic victory is most realistic with only one or two relics. With greater numbers, the relics are important to capture to receive aura bonuses.");
@@ -83,4 +94,8 @@ GameSettingControls.RelicCount.prototype.Tooltip =
 GameSettingControls.RelicCount.prototype.NameCaptureTheRelic =
 	"capture_the_relic";
 
-GameSettingControls.RelicCount.prototype.DefaultRelicCount = 2;
+GameSettingControls.RelicCount.prototype.MinValue = 1;
+
+GameSettingControls.RelicCount.prototype.MaxValue = Object.keys(g_CivData).length;
+
+GameSettingControls.RelicCount.prototype.DefaultValue = 2;

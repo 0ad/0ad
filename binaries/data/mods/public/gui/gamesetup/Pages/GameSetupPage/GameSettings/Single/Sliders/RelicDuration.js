@@ -1,14 +1,10 @@
-GameSettingControls.RelicDuration = class extends GameSettingControlDropdown
+GameSettingControls.RelicDuration = class extends GameSettingControlSlider
 {
 	constructor(...args)
 	{
 		super(...args);
 
-		this.values = prepareForDropdown(g_Settings.VictoryDurations);
-
-		this.dropdown.list = this.values.Title;
-		this.dropdown.list_data = this.values.Duration;
-
+		this.sprintfValue = {};
 		this.available = false;
 	}
 
@@ -33,7 +29,6 @@ GameSettingControls.RelicDuration = class extends GameSettingControlDropdown
 			g_GameAttributes.settings.VictoryConditions.push(this.NameCaptureTheRelic);
 
 		g_GameAttributes.settings.RelicDuration = mapValue;
-
 		this.gameSettingsControl.updateGameAttributes();
 	}
 
@@ -48,7 +43,7 @@ GameSettingControls.RelicDuration = class extends GameSettingControlDropdown
 		{
 			if (g_GameAttributes.settings.RelicDuration === undefined)
 			{
-				g_GameAttributes.settings.RelicDuration = this.values.Duration[this.values.Default];
+				g_GameAttributes.settings.RelicDuration = this.DefaultValue;
 				this.gameSettingsControl.updateGameAttributes();
 			}
 		}
@@ -64,14 +59,26 @@ GameSettingControls.RelicDuration = class extends GameSettingControlDropdown
 		this.setHidden(!this.available);
 
 		if (this.available)
-			this.setSelectedValue(g_GameAttributes.settings.RelicDuration);
+		{
+			let value = Math.round(g_GameAttributes.settings.RelicDuration);
+			this.sprintfValue.min = value;
+			this.setSelectedValue(
+				g_GameAttributes.settings.RelicDuration,
+				value == 0 ? this.InstantVictory : sprintf(this.CaptionVictoryTime(value), this.sprintfValue));
+		}
 	}
 
-	onSelectionChange(itemIdx)
+	onValueChange(value)
 	{
-		g_GameAttributes.settings.RelicDuration = this.values.Duration[itemIdx];
+		g_GameAttributes.settings.RelicDuration = value;
 		this.gameSettingsControl.updateGameAttributes();
 		this.gameSettingsControl.setNetworkGameAttributes();
+	}
+
+	onGameAttributesFinalize()
+	{
+		if (this.available)
+			g_GameAttributes.settings.RelicDuration = Math.round(g_GameAttributes.settings.RelicDuration);
 	}
 };
 
@@ -83,3 +90,15 @@ GameSettingControls.RelicDuration.prototype.Tooltip =
 
 GameSettingControls.RelicDuration.prototype.NameCaptureTheRelic =
 	"capture_the_relic";
+
+GameSettingControls.RelicDuration.prototype.CaptionVictoryTime =
+	min => translatePluralWithContext("victory duration", "%(min)s minute", "%(min)s minutes", min);
+
+GameSettingControls.RelicDuration.prototype.InstantVictory =
+	translateWithContext("victory duration", "Immediate Victory.");
+
+GameSettingControls.RelicDuration.prototype.MinValue = 0;
+
+GameSettingControls.RelicDuration.prototype.MaxValue = 60;
+
+GameSettingControls.RelicDuration.prototype.DefaultValue = 20;
