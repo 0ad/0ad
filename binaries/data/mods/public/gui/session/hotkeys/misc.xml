@@ -24,11 +24,11 @@
 	</object>
 
 	<object hotkey="quicksave">
-		<action on="Press">Engine.QuickSave(getSavedGameData());</action>
+		<action on="Press">if (!g_IsNetworked) Engine.QuickSave(getSavedGameData());</action>
 	</object>
 
 	<object hotkey="quickload">
-		<action on="Press">Engine.QuickLoad();</action>
+		<action on="Press">if (!g_IsNetworked) Engine.QuickLoad();</action>
 	</object>
 
 	<object hotkey="session.kill">

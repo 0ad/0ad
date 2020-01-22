@@ -54,7 +54,9 @@ void JSI_SavedGame::SaveGamePrefix(ScriptInterface::CxPrivate* pCxPrivate, const
 
 void JSI_SavedGame::QuickSave(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), JS::HandleValue GUIMetadata)
 {
-	if (g_Game)
+	if (g_NetServer || g_NetClient)
+		LOGERROR("Can't store quicksave during multiplayer!");
+	else if (g_Game)
 		g_Game->GetTurnManager()->QuickSave(GUIMetadata);
 	else
 		LOGERROR("Can't store quicksave if game is not running!");
@@ -62,7 +64,9 @@ void JSI_SavedGame::QuickSave(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), JS
 
 void JSI_SavedGame::QuickLoad(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
-	if (g_Game)
+	if (g_NetServer || g_NetClient)
+		LOGERROR("Can't load quicksave during multiplayer!");
+	else if (g_Game)
 		g_Game->GetTurnManager()->QuickLoad();
 	else
 		LOGERROR("Can't load quicksave if game is not running!");
