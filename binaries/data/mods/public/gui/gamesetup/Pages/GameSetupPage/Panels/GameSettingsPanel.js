@@ -175,7 +175,7 @@ GameSettingsPanel.prototype.SlideSpeed = 1.2;
 /**
  * Vertical size of a setting frame.
  */
-GameSettingsPanel.prototype.SettingHeight = 32;
+GameSettingsPanel.prototype.SettingHeight = 36;
 
 /**
  * Horizontal space between two setting frames.

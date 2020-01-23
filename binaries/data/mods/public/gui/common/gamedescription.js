@@ -196,27 +196,31 @@ function getGameDescription(mapCache)
 
 		let title = translateVictoryCondition(victoryCondition.Name);
 		if (victoryCondition.Name == "wonder")
+		{
+			let wonderDuration = Math.round(g_GameAttributes.settings.WonderDuration);
 			title = sprintf(
 				translatePluralWithContext(
 					"victory condition",
 					"Wonder (%(min)s minute)",
 					"Wonder (%(min)s minutes)",
-					g_GameAttributes.settings.WonderDuration
+					wonderDuration
 				),
-				{ "min": g_GameAttributes.settings.WonderDuration }
-			);
+				{ "min": wonderDuration });
+		}
 
 		let isCaptureTheRelic = victoryCondition.Name == "capture_the_relic";
 		if (isCaptureTheRelic)
+		{
+			let relicDuration = Math.round(g_GameAttributes.settings.RelicDuration);
 			title = sprintf(
 				translatePluralWithContext(
 					"victory condition",
 					"Capture the Relic (%(min)s minute)",
 					"Capture the Relic (%(min)s minutes)",
-					g_GameAttributes.settings.RelicDuration
+					relicDuration
 				),
-				{ "min": g_GameAttributes.settings.RelicDuration }
-			);
+				{ "min": relicDuration });
+		}
 
 		titles.push({
 			"label": title,
@@ -226,7 +230,7 @@ function getGameDescription(mapCache)
 		if (isCaptureTheRelic)
 			titles.push({
 				"label": translate("Relic Count"),
-				"value": g_GameAttributes.settings.RelicCount
+				"value": Math.round(g_GameAttributes.settings.RelicCount)
 			});
 
 		if (victoryCondition.Name == "regicide")
@@ -271,16 +275,17 @@ function getGameDescription(mapCache)
 			"value": translate("If one player wins, his or her allies win too. If one group of allies remains, they win.")
 		});
 
+	let ceasefire = Math.round(g_GameAttributes.settings.Ceasefire);
 	titles.push({
 		"label": translate("Ceasefire"),
 		"value":
-			g_GameAttributes.settings.Ceasefire == 0 ?
+			ceasefire == 0 ?
 				translate("disabled") :
 				sprintf(translatePlural(
 					"For the first minute, other players will stay neutral.",
 					"For the first %(min)s minutes, other players will stay neutral.",
-					g_GameAttributes.settings.Ceasefire),
-				{ "min": g_GameAttributes.settings.Ceasefire })
+					ceasefire),
+				{ "min": ceasefire })
 	});
 
 	if (g_GameAttributes.map == "random")

@@ -17,5 +17,11 @@
 			</object>
 		</repeat>
 
+		<repeat count="15" var="n">
+			<object>
+				<include file="gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlSlider.xml"/>
+			</object>
+		</repeat>
+
 	</object>
 </object>

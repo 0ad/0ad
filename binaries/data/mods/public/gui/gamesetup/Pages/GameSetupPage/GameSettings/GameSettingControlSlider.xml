@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="sliderSettingFrame[n]" size="0 2 100% 36" hidden="true">
+
+	<include file="gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlLabels.xml"/>
+
+	<object
+		name="sliderSettingControl[n]"
+		type="slider"
+		size="175 7 100% 19"
+		style="ModernSlider"
+		tooltip_style="onscreenToolTip"
+		hidden="true"
+		z="1"
+	/>
+
+	<object
+		name="sliderSettingLabel[n]"
+		type="text"
+		style="ModernLabelText"
+		font="sans-bold-12"
+		size="175 22 100% 34"
+		z="1"
+	/>
+
+</object>
