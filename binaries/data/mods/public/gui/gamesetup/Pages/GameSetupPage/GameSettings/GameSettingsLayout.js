@@ -12,6 +12,7 @@ var g_GameSettingsLayout = [
 			"MapSize",
 			"Landscape",
 			"Biome",
+			"SeaLevelRiseTime",
 			"Daytime",
 			"TriggerDifficulty",
 			"Nomad",

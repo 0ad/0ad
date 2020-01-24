@@ -9,6 +9,11 @@
 		"Keywords": ["trigger"],
 		"CircularMap" : true,
 		"Preview" : "extinctvolcano.png",
+		"SeaLevelRise": {
+			"Min": 0,
+			"Max": 60,
+			"Default": 25
+		},
 		"TriggerScripts": [
 			"scripts/TriggerHelper.js",
 			"random/extinct_volcano_triggers.js"

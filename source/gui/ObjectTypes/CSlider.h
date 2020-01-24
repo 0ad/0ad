@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,9 +19,10 @@
 #define INCLUDED_CSLIDER
 
 #include "gui/CGUISprite.h"
+#include "gui/ObjectBases/IGUIButtonBehavior.h"
 #include "gui/ObjectBases/IGUIObject.h"
 
-class CSlider : public IGUIObject
+class CSlider : public IGUIObject, public IGUIButtonBehavior
 {
 	GUI_OBJECT(CSlider)
 
@@ -31,6 +32,11 @@ public:
 
 protected:
 	static const CStr EventNameValueChange;
+
+	/**
+	 * @see IGUIObject#ResetStates()
+	 */
+	virtual void ResetStates();
 
 	/**
 	 * @see IGUIObject#HandleMessage()
@@ -63,7 +69,6 @@ protected:
 	float m_Value;
 
 private:
-	bool m_IsPressed;
 	CPos m_Mouse;
 };
 

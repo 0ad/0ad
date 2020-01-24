@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@ const CStr CSlider::EventNameValueChange = "ValueChange";
 
 CSlider::CSlider(CGUI& pGUI)
 	: IGUIObject(pGUI),
-	  m_IsPressed(),
+	  IGUIButtonBehavior(*static_cast<IGUIObject*>(this)),
 	  m_ButtonSide(),
 	  m_CellID(),
 	  m_MaxValue(),
@@ -50,6 +50,12 @@ CSlider::~CSlider()
 {
 }
 
+void CSlider::ResetStates()
+{
+	IGUIObject::ResetStates();
+	IGUIButtonBehavior::ResetStates();
+}
+
 float CSlider::GetSliderRatio() const
 {
 	return (m_MaxValue - m_MinValue) / (m_CachedActualSize.GetWidth() - m_ButtonSide);
@@ -64,6 +70,7 @@ void CSlider::IncrementallyChangeValue(const float difference)
 void CSlider::HandleMessage(SGUIMessage& Message)
 {
 	IGUIObject::HandleMessage(Message);
+	IGUIButtonBehavior::HandleMessage(Message);
 
 	switch (Message.type)
 	{
@@ -74,40 +81,26 @@ void CSlider::HandleMessage(SGUIMessage& Message)
 	}
 	case GUIM_MOUSE_WHEEL_DOWN:
 	{
-		if (m_IsPressed)
+		if (m_Pressed)
 			break;
 		IncrementallyChangeValue(-0.01f);
 		break;
 	}
 	case GUIM_MOUSE_WHEEL_UP:
 	{
-		if (m_IsPressed)
+		if (m_Pressed)
 			break;
 		IncrementallyChangeValue(0.01f);
 		break;
 	}
 	case GUIM_MOUSE_PRESS_LEFT:
-	{
-		m_Mouse = m_pGUI.GetMousePos();
-		m_IsPressed = true;
-
-		IncrementallyChangeValue((m_Mouse.x - GetButtonRect().CenterPoint().x) * GetSliderRatio());
-		break;
-	}
-	case GUIM_MOUSE_RELEASE_LEFT:
-	{
-		m_IsPressed = false;
-		break;
-	}
+		FALLTHROUGH;
 	case GUIM_MOUSE_MOTION:
 	{
-		if (!IsMouseOver())
-			m_IsPressed = false;
-		if (m_IsPressed)
+		if (m_Pressed)
 		{
-			float difference = float(m_pGUI.GetMousePos().x - m_Mouse.x) * GetSliderRatio();
 			m_Mouse = m_pGUI.GetMousePos();
-			IncrementallyChangeValue(difference);
+			IncrementallyChangeValue((m_Mouse.x - GetButtonRect().CenterPoint().x) * GetSliderRatio());
 		}
 		break;
 	}
