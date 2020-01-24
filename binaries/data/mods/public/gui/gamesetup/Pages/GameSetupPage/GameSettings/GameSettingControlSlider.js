@@ -8,8 +8,11 @@ class GameSettingControlSlider extends GameSettingControl
 		super(...args);
 
 		this.isInGuiUpdate = false;
+		this.isPressing = false;
 
 		this.slider.onValueChange = this.onValueChangeSuper.bind(this);
+		this.slider.onPress = this.onPress.bind(this);
+		this.slider.onRelease = this.onRelease.bind(this);
 
 		if (this.MinValue !== undefined)
 			this.slider.min_value = this.MinValue;
@@ -44,9 +47,12 @@ class GameSettingControlSlider extends GameSettingControl
 
 	setSelectedValue(value, caption)
 	{
-		this.isInGuiUpdate = true;
-		this.slider.value = value;
-		this.isInGuiUpdate = false;
+		if (!this.isPressing)
+		{
+			this.isInGuiUpdate = true;
+			this.slider.value = value;
+			this.isInGuiUpdate = false;
+		}
 
 		this.label.caption = caption;
 		this.valueLabel.caption = caption;
@@ -56,6 +62,16 @@ class GameSettingControlSlider extends GameSettingControl
 	{
 		if (!this.isInGuiUpdate)
 			this.onValueChange(this.slider.value);
+	}
+
+	onPress()
+	{
+		this.isPressing = true;
+	}
+
+	onRelease()
+	{
+		this.isPressing = false;
 	}
 }
 

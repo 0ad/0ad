@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,8 @@ const CStr IGUIButtonBehavior::EventNamePress = "Press";
 const CStr IGUIButtonBehavior::EventNamePressRight = "PressRight";
 const CStr IGUIButtonBehavior::EventNameDoublePress = "DoublePress";
 const CStr IGUIButtonBehavior::EventNameDoublePressRight = "DoublePressRight";
+const CStr IGUIButtonBehavior::EventNameRelease = "Release";
+const CStr IGUIButtonBehavior::EventNameReleaseRight = "ReleaseRight";
 
 IGUIButtonBehavior::IGUIButtonBehavior(IGUIObject& pObject)
 	: m_pObject(pObject),
@@ -49,8 +51,19 @@ IGUIButtonBehavior::~IGUIButtonBehavior()
 
 void IGUIButtonBehavior::ResetStates()
 {
-	m_Pressed = false;
-	m_PressedRight = false;
+	if (m_Pressed)
+	{
+		m_Pressed = false;
+		m_pObject.PlaySound(m_SoundReleased);
+		m_pObject.SendEvent(GUIM_PRESSED_MOUSE_RELEASE, EventNameRelease);
+	}
+
+	if (m_PressedRight)
+	{
+		m_PressedRight = false;
+		m_pObject.PlaySound(m_SoundReleased);
+		m_pObject.SendEvent(GUIM_PRESSED_MOUSE_RELEASE_RIGHT, EventNameReleaseRight);
+	}
 }
 
 void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
@@ -112,25 +125,13 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 		break;
 
 	case GUIM_MOUSE_RELEASE_RIGHT:
-		if (!m_pObject.IsEnabled())
-			break;
-
-		if (m_PressedRight)
-		{
-			m_PressedRight = false;
-			m_pObject.PlaySound(m_SoundReleased);
-		}
+		if (m_pObject.IsEnabled())
+			ResetStates();
 		break;
 
 	case GUIM_MOUSE_RELEASE_LEFT:
-		if (!m_pObject.IsEnabled())
-			break;
-
-		if (m_Pressed)
-		{
-			m_Pressed = false;
-			m_pObject.PlaySound(m_SoundReleased);
-		}
+		if (m_pObject.IsEnabled())
+			ResetStates();
 		break;
 
 	default:
