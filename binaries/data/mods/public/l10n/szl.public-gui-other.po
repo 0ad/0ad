@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-01-17 16:02+0000\n"
+"POT-Creation-Date: 2020-01-20 08:12+0000\n"
+"PO-Revision-Date: 2020-01-20 14:14+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Silesian (http://www.transifex.com/wildfire-games/0ad/language/szl/)\n"
 "MIME-Version: 1.0\n"
@@ -900,16 +900,16 @@ msgstr ""
 
 #: gui/common/tooltips.js:364 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:295 gui/options/options.js:348
-#: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
+#: gui/options/options.js:299 gui/options/options.js:352
+#: gui/options/options.js:378 gui/pregame/MainMenuItems.js:183
 #: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr ""
 
 #: gui/common/tooltips.js:364 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:295 gui/options/options.js:348
-#: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
+#: gui/options/options.js:299 gui/options/options.js:352
+#: gui/options/options.js:378 gui/pregame/MainMenuItems.js:183
 #: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr ""
@@ -1245,8 +1245,8 @@ msgstr ""
 msgid "Do you still want to proceed?"
 msgstr ""
 
-#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:294
-#: gui/options/options.js:347 gui/options/options.js:373
+#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:298
+#: gui/options/options.js:351 gui/options/options.js:377
 msgid "Warning"
 msgstr ""
 
@@ -1293,23 +1293,23 @@ msgctxt "option number"
 msgid "Max: %(max)s"
 msgstr ""
 
-#: gui/options/options.js:158
+#: gui/options/options.js:162
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr ""
 
-#: gui/options/options.js:293
+#: gui/options/options.js:297
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr ""
 
-#: gui/options/options.js:346
+#: gui/options/options.js:350
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr ""
 
-#: gui/options/options.js:372
+#: gui/options/options.js:376
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr ""
 
@@ -3096,6 +3096,20 @@ msgstr ""
 msgid "Default AI behavior"
 msgstr ""
 
+#: gui/options/options.json[3].options[5].list[0].tooltip
+msgid "Players joining the match will be assigned if there is a free slot."
+msgstr ""
+
+#: gui/options/options.json[3].options[5].list[1].tooltip
+msgid ""
+"Players joining the match will only be assigned if they are a buddy of the "
+"host and if there is a free slot."
+msgstr ""
+
+#: gui/options/options.json[3].options[5].list[2].tooltip
+msgid "Players only receive a slot when the host assigns them explicitly."
+msgstr ""
+
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
@@ -3523,7 +3537,7 @@ msgctxt "withinSentence"
 msgid "Tree"
 msgstr ""
 
-#: gui/gamesetup/Panels/Tips.txt:1
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Tips.txt:1
 msgid ""
 "Although reasonably easy for an experienced player, the default AI level is "
 "quite challenging for new players yet to master the basic mechanisms of the "

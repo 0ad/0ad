@@ -49,6 +49,7 @@
 # Rowel <luciomeiradavid@hotmail.com>, 2014
 # Rui <xymarior@yandex.com>, 2018-2019
 # Sturm <gravador202@yahoo.com.br>, 2014
+# Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>, 2020
 # Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>, 2018,2020
 # Washington Ramon Santos nascimento <washington_ramon123@hotmail.com>, 2014
 # Werther Ramalho <werther23@gmail.com>, 2017
@@ -57,7 +58,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-01-19 17:38+0000\n"
+"PO-Revision-Date: 2020-01-23 01:02+0000\n"
 "Last-Translator: Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -438,11 +439,11 @@ msgstr "Selecionar número de jogadores."
 
 #: gui/gamesetup/GameSettings/Single/Dropdowns/PopulationCap.js:82
 msgid "Population Cap"
-msgstr "Capacidade Populacional"
+msgstr "Limite Populacional"
 
 #: gui/gamesetup/GameSettings/Single/Dropdowns/PopulationCap.js:85
 msgid "Select population limit."
-msgstr "Selecione a população limite."
+msgstr "Selecione o limite populacional."
 
 #: gui/gamesetup/GameSettings/Single/Dropdowns/PopulationCap.js:88
 msgctxt "population limit"
@@ -454,7 +455,7 @@ msgstr ""
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "Aviso: pode haver problemas de desempenho se todos os %(players)s atingirem a população %(popCap)s limite. "
+msgstr "Aviso: pode haver problemas de desempenho se todos os %(players)s jogadores atingirem %(popCap)s de população. "
 
 #: gui/gamesetup/GameSettings/Single/Dropdowns/RelicCount.js:78
 msgid "Relic Count"

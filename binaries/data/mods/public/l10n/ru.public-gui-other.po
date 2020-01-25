@@ -5,7 +5,7 @@
 # Translators:
 # Alexander Olkhovskiy, 2016,2018
 # Alexey Solodovnikov <sklent@outlook.com>, 2017
-# Boris Karalnik <eyesucker@gmail.com>, 2015,2018-2019
+# Boris Karalnik <eyesucker@gmail.com>, 2015,2018-2020
 # Dmitriy Kulikov <kulikov@dima.perm.ru>, 2018-2019
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
 # Максим Дронь <dronmax@gmail.com>, 2014
@@ -44,8 +44,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-01-17 16:02+0000\n"
+"POT-Creation-Date: 2020-01-20 08:12+0000\n"
+"PO-Revision-Date: 2020-01-20 14:14+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -952,16 +952,16 @@ msgstr "Огонь по своим: %(enabled)s"
 
 #: gui/common/tooltips.js:364 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:295 gui/options/options.js:348
-#: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
+#: gui/options/options.js:299 gui/options/options.js:352
+#: gui/options/options.js:378 gui/pregame/MainMenuItems.js:183
 #: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Да"
 
 #: gui/common/tooltips.js:364 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:295 gui/options/options.js:348
-#: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
+#: gui/options/options.js:299 gui/options/options.js:352
+#: gui/options/options.js:378 gui/pregame/MainMenuItems.js:183
 #: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Нет"
@@ -1303,8 +1303,8 @@ msgstr "Для этой сохранённой игры необходим др�
 msgid "Do you still want to proceed?"
 msgstr "Вы хотите продолжить?"
 
-#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:294
-#: gui/options/options.js:347 gui/options/options.js:373
+#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:298
+#: gui/options/options.js:351 gui/options/options.js:377
 msgid "Warning"
 msgstr "Предупреждение"
 
@@ -1351,23 +1351,23 @@ msgctxt "option number"
 msgid "Max: %(max)s"
 msgstr "Макс: %(max)s"
 
-#: gui/options/options.js:158
+#: gui/options/options.js:162
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Значение: %(val)s (мин.: %(min)s, макс.: %(max)s)"
 
-#: gui/options/options.js:293
+#: gui/options/options.js:297
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Восстановление удалит сохраненные настройки. Вы уверены, что хотите продолжить?"
 
-#: gui/options/options.js:346
+#: gui/options/options.js:350
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr "Некоторые параметры настроек некорректны! Вы уверены, что хотите сохранить их?"
 
-#: gui/options/options.js:372
+#: gui/options/options.js:376
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "У вас есть не сохраненные изменения, вы уверены, что хотите закрыть окно?"
 
@@ -3156,6 +3156,20 @@ msgstr "Поведение ИИ по умолчанию."
 msgid "Default AI behavior"
 msgstr ""
 
+#: gui/options/options.json[3].options[5].list[0].tooltip
+msgid "Players joining the match will be assigned if there is a free slot."
+msgstr ""
+
+#: gui/options/options.json[3].options[5].list[1].tooltip
+msgid ""
+"Players joining the match will only be assigned if they are a buddy of the "
+"host and if there is a free slot."
+msgstr ""
+
+#: gui/options/options.json[3].options[5].list[2].tooltip
+msgid "Players only receive a slot when the host assigns them explicitly."
+msgstr ""
+
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
@@ -3399,7 +3413,7 @@ msgstr "В игре"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr "Добывайте еду, охотясь на зверей, собирая ягоды, ловя рыбу или обрабатывая поля."
+msgstr "Добывается охотой, рыбалкой, собиранием или земледелием."
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
@@ -3583,7 +3597,7 @@ msgctxt "withinSentence"
 msgid "Tree"
 msgstr "Дерево"
 
-#: gui/gamesetup/Panels/Tips.txt:1
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Tips.txt:1
 msgid ""
 "Although reasonably easy for an experienced player, the default AI level is "
 "quite challenging for new players yet to master the basic mechanisms of the "

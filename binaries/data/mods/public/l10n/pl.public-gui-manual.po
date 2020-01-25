@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-01-17 15:32+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-01-21 20:30+0000\n"
+"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,7 +65,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr ""
+msgstr "Możesz przełączać pomiędzy trybem pełnoekranowym a okienkowym, wciskając Alt + Enter. W trybie okienkowym możesz zmieniać rozmiary okna. Jeśli gra działa za wolno, dostosuj ustawienia w oknie opcji: spróbuj wyłączyć efekty wody i cienie."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -105,7 +105,7 @@ msgstr "• CTRL + strzałki lub SHIFT + kółko myszki obracają kamerę"
 
 #: gui/manual/intro.txt:16
 msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
-msgstr ""
+msgstr "• Kółko myszki lub =/+ i -/− służą do przybliżania"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -121,13 +121,13 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Tryb jednoosobowy[font=\"sans-14\"] – zagraj w trybie piaskownicy albo przeciwko graczom komputerowym (SI). Domyślne SI (Petra) jest w fazie rozwoju i nie zawsze może być zaznajomione z najnowszymi funkcjami, ale mimo to możesz zagrać z nim lub przeciw niemu."
 
 #: gui/manual/intro.txt:21
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Tryb wieloosobowy[font=\"sans-14\"] – zagraj przeciwko graczom w sieci."
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -135,7 +135,7 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr ""
+msgstr "Aby uruchomić tryb rozgrywki dla wielu graczy, jeden z nich musi wybrać opcję \"Załóż grę\". Gra używa protokołu UDP na porcie 20595, więc gospodarz musi odpowiednio skonfigurować NAT/zaporę ogniową/itp., aby można było grać. Pozostali gracze mogą dołączyć do gry, a następnie wpisać adres IP hosta."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -174,7 +174,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "Następnie można dalej filtrować mapy - domyślne z reguły są gotowe do gry. Mapy wodne, gdzie gracze odseparowani są zbiornikami oraz mapy demo wykorzystuje się do testów. Filtr \"Wszystkie mapy\" pokazuje każdą dostępną mapę na jednej liście."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -183,15 +183,15 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr ""
+msgstr "Na końcu zmień ustawienia. Dla losowych map oznacza to dostosowanie liczby graczy, rozmiaru mapy i tak dalej. Dla scenariuszy możesz tylko wybrać, kto kontroluje którego gracza (w jakim miejscu rozpoczynasz na mapie, itd.). Dostępne opcje to człowiek, bot lub brak gracza (przeciwnik nie będzie nic robił)."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr ""
+msgstr "Kliknij \"Rozpocznij\", gdy będziesz gotowy do gry."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Skróty klawiszowe:[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
@@ -222,7 +222,7 @@ msgstr "F11 – włącza/wyłącza profilowanie w czasie rzeczywistym (przełąc
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
-msgstr ""
+msgstr "SHIFT + F11 – zapisz aktualne dane profilowania do pliku \"logs/profile.txt\""
 
 #: gui/manual/intro.txt:47
 msgid ""
@@ -314,13 +314,13 @@ msgstr "Pauza – wstrzymuje/wznawia rozgrywkę"
 msgid ""
 "  Delete – Delete currently selected unit(s)/structure(s), ask for "
 "confirmation"
-msgstr ""
+msgstr "  Delete – zniszcz zaznaczone jednostki/budowle, pyta o potwierdzenie"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "  Shift + Delete – Immediately delete currently selected "
 "unit(s)/structure(s), without asking for confirmation"
-msgstr ""
+msgstr "  SHIFT + Delete – zniszcz zaznaczone jednostki/budowle bez pytania o potwierdzenie"
 
 #: gui/manual/intro.txt:68
 msgid "  / (Slash) – Select idle fighter"
@@ -371,25 +371,25 @@ msgstr "Y – jednostka wróci do pracy"
 
 #: gui/manual/intro.txt:79
 msgid "  U – Unload the garrisoned units of the selected structure(s)"
-msgstr ""
+msgstr "  U – rozkaż jednostkom w garnizonie opuszczenie budynku"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from "
 "the selected unit(s)/structure(s)"
-msgstr ""
+msgstr "  CTRL + 1 (aż do CTRL + 0) – stwórz grupę kontrolną z wybranych jednostek/budynków"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  1 (and so on up to 0) – Select the unit(s)/structure(s) in control group 1"
 " (to 0)"
-msgstr ""
+msgstr "  1 (aż do 0) – wybierz jednostki/budynki z grupy kontrolnej x"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr ""
+msgstr "  SHIFT + 1 (do 0) – dodaj grupę kontrolną do wybranych jednostek/budynków"
 
 #: gui/manual/intro.txt:83
 msgid ""
@@ -401,25 +401,25 @@ msgstr "CTRL + F5 (do F8) – oznacz aktualną pozycję kamery, do której może
 msgid ""
 "  F5 (and so on up to F8) – Move the camera to a marked position. Jump back "
 "to the last location if the camera is already over the marked position"
-msgstr ""
+msgstr "  F5 do F8 – przesuń kamerę na oznaczoną pozycję; skocz do ostatniej lokacji, jeśli kamera znajduje się już w oznaczonej pozycji"
 
 #: gui/manual/intro.txt:85
 msgid ""
 "  Z, X, C, V, B, N, M – With training structure selected. Add the 1st, 2nd, "
 "… unit shown to the training queue for all the selected structures"
-msgstr ""
+msgstr "  Z, X, C, V, B, N, M – z wybranymi budowlami szkolącymi jednostki: dodaj pierwszą, drugą, ... jednostkę do kolejki we wszystkich zaznaczonych budowlach"
 
 #: gui/manual/intro.txt:86
 msgid ""
 "  PageUp with unit(s) selected – Highlight the unit(s)/structure(s) guarded "
 "by the selection"
-msgstr ""
+msgstr "  PageUp z zaznaczoną jednostką – podświetla jednostki/budynki bronione przez zaznaczoną jednostkę"
 
 #: gui/manual/intro.txt:87
 msgid ""
 "  PageDown with unit(s)/structure(s) selected – Highlight the unit(s) "
 "guarding the selection"
-msgstr ""
+msgstr "  PageDown z zaznaczoną jednostką/budowlą – podświetla jednostki broniące zaznaczoną jednostkę/budowlę"
 
 #: gui/manual/intro.txt:88
 msgid ""
@@ -464,11 +464,11 @@ msgstr "[font=\"sans-bold-14\"]Modyfikacja działań myszki[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
 msgid "  Ctrl + Right Click on structure – Garrison"
-msgstr ""
+msgstr "  CTRL + PPM na budowli – garnizon"
 
 #: gui/manual/intro.txt:100
 msgid "  J + Right Click on structure – Repair"
-msgstr ""
+msgstr "  J + PPM na budowli – napraw"
 
 #: gui/manual/intro.txt:101
 msgid "  P + Right Click – Patrol"
@@ -476,14 +476,14 @@ msgstr "P + PPM – patrol"
 
 #: gui/manual/intro.txt:102
 msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
-msgstr ""
+msgstr "  SHIFT + PPM – kolejka ruchu/budowy/zbierania/itd."
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  Alt + Right Click – Order one unit from the current selection to "
 "move/build/gather/etc. and unselect it. Used to quickly dispatch units with "
 "specific tasks"
-msgstr ""
+msgstr "  ALT + PPM – wydaj obecnie zaznaczonej jednostce rozkaz ruchu/budowania/zbierania/itd. i odznacz ją; przydatne, by szybko wysłać jednostki z konkretnymi zadaniami"
 
 #: gui/manual/intro.txt:104
 msgid ""
@@ -529,7 +529,7 @@ msgstr "CTRL + LPM na ikonie jednostki/grupy z wieloma zaznaczonymi jednostkami 
 msgid ""
 "  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
-msgstr ""
+msgstr "  PPM z wybranym budynkiem – tworzy punkt zbiórki dla jednostek stworzonych/niezgarnizowanych z tego budynku"
 
 #: gui/manual/intro.txt:113
 msgid "  Ctrl + Right Click with unit(s) selected:"
@@ -543,7 +543,7 @@ msgstr "    • jeśli kursor znajduje się na własnej lub sprzymierzonej budow
 msgid ""
 "    • If the cursor is over an enemy unit/structure – Attack (instead of "
 "capture or gather)"
-msgstr ""
+msgstr "    • jeśli kursor znajduje się na wrogiej jednostce lub budowli – atak (zamiast przejęcia lub zbierania)"
 
 #: gui/manual/intro.txt:116
 msgid ""
@@ -693,21 +693,21 @@ msgstr "środkowy przycisk myszki – przytrzymaj i ruszaj myszką, aby porusza�
 
 #: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Podczas stawiania budowli[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:151
 msgid "  \\[ (Left Bracket) – Rotate structure 15 degrees counter-clockwise"
-msgstr ""
+msgstr "  [ – obróć budynek o 15 stopni przeciwnie do ruchu wskazówek zegara"
 
 #: gui/manual/intro.txt:152
 msgid "  ] (Right Bracket) – Rotate structure 15 degrees clockwise"
-msgstr ""
+msgstr "  ] – obróć budynek o 15 stopni zgodnie z ruchem wskazówek zegara"
 
 #: gui/manual/intro.txt:153
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
-msgstr ""
+msgstr "  LPM i przeciągnij – obróć budynek przy pomocy myszki (fundamenty zostaną postawione, gdy puścisz przycisk)"
 
 #: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"

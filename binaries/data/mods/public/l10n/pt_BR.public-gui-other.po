@@ -32,6 +32,7 @@
 # dddb155916b6708524139dbbf813fa7c, 2017
 # Rui <xymarior@yandex.com>, 2018-2019
 # Thiago Perrotta <inactive+thiagowfx@transifex.com>, 2015
+# Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>, 2020
 # Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>, 2018-2020
 # Victor Gregório <vt_marv@hotmail.com>, 2017
 # Vinícius Pereira <lameiravinicius24@gmail.com>, 2018
@@ -39,8 +40,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-01-19 17:35+0000\n"
+"POT-Creation-Date: 2020-01-20 08:12+0000\n"
+"PO-Revision-Date: 2020-01-23 01:41+0000\n"
 "Last-Translator: Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -822,7 +823,7 @@ msgstr[1] "flechas"
 #: gui/common/tooltips.js:205
 #, javascript-format
 msgid "%(projectileString)s / %(attackRateString)s"
-msgstr ""
+msgstr "%(projectileString)s / %(attackRateString)s"
 
 #. Translation: For example: Range: 2 to 10 (+2) meters
 #: gui/common/tooltips.js:225
@@ -885,7 +886,7 @@ msgstr ""
 #: gui/common/tooltips.js:274
 msgctxt "damage type"
 msgid "Capture"
-msgstr ""
+msgstr "Captura"
 
 #: gui/common/tooltips.js:283
 #, javascript-format
@@ -895,12 +896,12 @@ msgstr ""
 #: gui/common/tooltips.js:313
 #, javascript-format
 msgid "%(attackType)s Attack"
-msgstr ""
+msgstr "%(attackType)s Ataque"
 
 #: gui/common/tooltips.js:331
 #, javascript-format
 msgid "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s, %(statusEffects)s"
 
 #: gui/common/tooltips.js:354
 #, javascript-format
@@ -919,16 +920,16 @@ msgstr "Fogo Amigo: %(enabled)s"
 
 #: gui/common/tooltips.js:364 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:295 gui/options/options.js:348
-#: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
+#: gui/options/options.js:299 gui/options/options.js:352
+#: gui/options/options.js:378 gui/pregame/MainMenuItems.js:183
 #: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Sim"
 
 #: gui/common/tooltips.js:364 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:295 gui/options/options.js:348
-#: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
+#: gui/options/options.js:299 gui/options/options.js:352
+#: gui/options/options.js:378 gui/pregame/MainMenuItems.js:183
 #: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Não"
@@ -1258,8 +1259,8 @@ msgstr "Este jogo salvo precisa de uma sequência diferente de mods:"
 msgid "Do you still want to proceed?"
 msgstr "Ainda quer continuar?"
 
-#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:294
-#: gui/options/options.js:347 gui/options/options.js:373
+#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:298
+#: gui/options/options.js:351 gui/options/options.js:377
 msgid "Warning"
 msgstr "Aviso"
 
@@ -1306,23 +1307,23 @@ msgctxt "option number"
 msgid "Max: %(max)s"
 msgstr "Máximo:%(max)s"
 
-#: gui/options/options.js:158
+#: gui/options/options.js:162
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Valor: %(val)s (min: %(min)s, max: %(max)s)"
 
-#: gui/options/options.js:293
+#: gui/options/options.js:297
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Restaurar as opções irá apagar suas configurações salvas. Deseja continuar?"
 
-#: gui/options/options.js:346
+#: gui/options/options.js:350
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr "Alguns valores das configurações são inválidos! Você tem certeza que deseja salvá-los?"
 
-#: gui/options/options.js:372
+#: gui/options/options.js:376
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Você possui modificações não salvas, deseja fechar esta janela?"
 
@@ -1489,7 +1490,7 @@ msgstr "Tela de Boas-vindas"
 
 #: gui/pregame/MainMenuItems.js:167
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Mostrar a Tela de Boas-Vindas novamente. Útil se você a ocultou por engano."
 
 #: gui/pregame/MainMenuItems.js:175
 msgid "Scenario Editor"
@@ -1533,7 +1534,7 @@ msgstr "Sair"
 
 #: gui/pregame/MainMenuItems.js:201
 msgid "Exit the game."
-msgstr ""
+msgstr "Sair do jogo."
 
 #: gui/pregame/MainMenuItems.js:205
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -1551,7 +1552,7 @@ msgstr "Alfa XXIV"
 msgid ""
 "Notice: This game is under development and many features have not been added"
 " yet."
-msgstr ""
+msgstr "Aviso: Este jogo está em desenvolvimento e muitos recursos ainda não foram adicionados."
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
@@ -1972,7 +1973,7 @@ msgstr "Maravilhas"
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "Estatísticas da Estrutura (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):88
 msgid "Units"
@@ -2009,7 +2010,7 @@ msgstr "Mercadores"
 #: gui/summary/layout.js:74
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "Estatísticas da Unidade (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):95
 msgid "Resources"
@@ -3105,6 +3106,20 @@ msgstr "Comportamento padrão da IA."
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI behavior"
+msgstr "Comportamento padrão do IA"
+
+#: gui/options/options.json[3].options[5].list[0].tooltip
+msgid "Players joining the match will be assigned if there is a free slot."
+msgstr ""
+
+#: gui/options/options.json[3].options[5].list[1].tooltip
+msgid ""
+"Players joining the match will only be assigned if they are a buddy of the "
+"host and if there is a free slot."
+msgstr ""
+
+#: gui/options/options.json[3].options[5].list[2].tooltip
+msgid "Players only receive a slot when the host assigns them explicitly."
 msgstr ""
 
 #: gui/options/options.json[3].options[5].tooltip
@@ -3172,7 +3187,7 @@ msgstr "Número de unidades treinadas por lote por padrão."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch training size"
-msgstr ""
+msgstr "Tamanho de treinamento em lote"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
@@ -3189,7 +3204,7 @@ msgstr "Mostrar uma notificação de chat se você for atacado por outro jogador
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat notification attack"
-msgstr ""
+msgstr "Notificação de ataque no chat"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
@@ -3240,7 +3255,7 @@ msgstr "Exibe o alcance de ataque de estruturas defensivas selecionadas (também
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
-msgstr ""
+msgstr "Visualização do alcance de ataque"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
@@ -3285,7 +3300,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[12].label
 msgid "Detailed tooltips"
-msgstr ""
+msgstr "Dicas detalhadas"
 
 #: gui/options/options.json[5].options[13].list[0].label
 msgid "Unordered"
@@ -3534,7 +3549,7 @@ msgctxt "withinSentence"
 msgid "Tree"
 msgstr "Árvore"
 
-#: gui/gamesetup/Panels/Tips.txt:1
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Tips.txt:1
 msgid ""
 "Although reasonably easy for an experienced player, the default AI level is "
 "quite challenging for new players yet to master the basic mechanisms of the "

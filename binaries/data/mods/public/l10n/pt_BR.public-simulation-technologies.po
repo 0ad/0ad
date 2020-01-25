@@ -23,6 +23,7 @@
 # Raphael Mendonça, 2014
 # Rui <xymarior@yandex.com>, 2018-2019
 # magalidade <tazer.extreme@gmail.com>, 2014
+# Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>, 2020
 # Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>, 2018-2020
 # Victor Gregório <vt_marv@hotmail.com>, 2017
 # Washington Ramon Santos nascimento <washington_ramon123@hotmail.com>, 2014
@@ -30,7 +31,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2020-01-19 16:31+0000\n"
+"PO-Revision-Date: 2020-01-23 01:42+0000\n"
 "Last-Translator: Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -667,7 +668,7 @@ msgstr "Usar ferro em vez de bronze adiciona poder adicional para as armas."
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry."
-msgstr ""
+msgstr "Treinamento aumenta o dano da infantaria de longo alcance."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
@@ -751,7 +752,7 @@ msgstr "Usar entulho reduz o custo e tempo de construção de muralhas."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
 msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "Muralhas tem -20% de tempo de construção, mas têm -1 de armadura de contra esmagamento."
+msgstr "Muralhas têm -20% de tempo de construção, mas têm -1 de armadura contra esmagamento."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -835,7 +836,7 @@ msgstr "Nutrientes adicionais para campos agrícolas."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% grain gather rate."
-msgstr ""
+msgstr "Trabalhadores têm +25% de taxa de coleta de grãos."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -850,7 +851,7 @@ msgstr ""
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% grain gather rate."
-msgstr ""
+msgstr "Trabalhadores têm +15% de taxa de coleta de grãos."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -1138,7 +1139,7 @@ msgstr "Usando alvenaria geométrica aumenta a robustez das muralhas defensivas.
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
 msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "Muralhas da cidade ganham +2 de armadura contra esmagamento, mas +10% no tempo de construção."
+msgstr "Muralhas da cidade têm +2 de armadura contra esmagamento, mas +10% no tempo de construção."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
@@ -1366,7 +1367,7 @@ msgstr "O estado ou tribo, muitas vezes seria construir um salão de jantar para
 #: simulation/data/technologies/pop_civic_01.jsontooltip
 #: simulation/data/technologies/pop_civic_02.jsontooltip
 msgid "Civic Centers +5 population cap bonus."
-msgstr "Centros cívicos com +5 de capacidade populacional."
+msgstr "Centros Cívicos com +5 de capacidade populacional."
 
 #: simulation/data/technologies/pop_civic_01.jsongenericName
 msgid "Dining Hall"
@@ -1454,7 +1455,7 @@ msgstr "A maravilha atrai muito mais pessoas para a sua civilização."
 msgid ""
 "Enable Glorious Expansion. Further increase the population limit by 40 per "
 "Wonder owned."
-msgstr "Permitir Expansão Gloriosa. Aumenta o limite de população em 40 por maravilha possuída."
+msgstr "Permitir Expansão Gloriosa. Aumenta o limite populacional em 40 por maravilha possuída."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
@@ -1505,7 +1506,7 @@ msgstr ""
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "Siege Engines +25% attack crush damage."
-msgstr ""
+msgstr "Armas de Cerco têm +25% de dano de esmagamento."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"

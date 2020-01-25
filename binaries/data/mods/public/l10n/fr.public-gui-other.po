@@ -52,8 +52,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-01-19 14:44+0000\n"
+"POT-Creation-Date: 2020-01-20 08:12+0000\n"
+"PO-Revision-Date: 2020-01-21 19:29+0000\n"
 "Last-Translator: benjamin jasse <benuri@hotmail.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -843,25 +843,25 @@ msgstr "1%(Seriedeprojectile)s / 2%(FréquenceSeried'attaque)s "
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
 "%(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s%(minRange)sà%(maxRange)s(%(relativeRange)s)%(rangeUnit)s"
 
 #. Translation: For example: Range: 10 (+2) meters
 #: gui/common/tooltips.js:227
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s%(maxRange)s(%(relativeRange)s)%(rangeUnit)s"
 
 #. Translation: For example: Range: 2 to 10 meters
 #: gui/common/tooltips.js:231
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s%(minRange)sà%(maxRange)s%(rangeUnit)s"
 
 #. Translation: For example: Range: 10 meters
 #: gui/common/tooltips.js:233
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s%(maxRange)s%(rangeUnit)s"
 
 #: gui/common/tooltips.js:243 gui/common/tooltips.js:766
 msgid "Range:"
@@ -893,7 +893,7 @@ msgstr "%(damage)s %(damageType)s"
 #: gui/common/tooltips.js:272
 #, javascript-format
 msgid "%(amount)s %(name)s"
-msgstr ""
+msgstr "%(amount)s%(name)s"
 
 #: gui/common/tooltips.js:274
 msgctxt "damage type"
@@ -913,7 +913,7 @@ msgstr "Attaque %(attackType)s"
 #: gui/common/tooltips.js:331
 #, javascript-format
 msgid "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s"
 
 #: gui/common/tooltips.js:354
 #, javascript-format
@@ -923,7 +923,7 @@ msgstr "%(splashShape)s Dégâts de zone"
 #: gui/common/tooltips.js:357
 #, javascript-format
 msgid "%(label)s: %(effects)s"
-msgstr ""
+msgstr "1%(label)s : 2%(effet)s"
 
 #: gui/common/tooltips.js:363
 #, javascript-format
@@ -932,16 +932,16 @@ msgstr "Tir ami : %(enabled)s"
 
 #: gui/common/tooltips.js:364 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:295 gui/options/options.js:348
-#: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
+#: gui/options/options.js:299 gui/options/options.js:352
+#: gui/options/options.js:378 gui/pregame/MainMenuItems.js:183
 #: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Oui"
 
 #: gui/common/tooltips.js:364 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:295 gui/options/options.js:348
-#: gui/options/options.js:374 gui/pregame/MainMenuItems.js:183
+#: gui/options/options.js:299 gui/options/options.js:352
+#: gui/options/options.js:378 gui/pregame/MainMenuItems.js:183
 #: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Non"
@@ -949,7 +949,7 @@ msgstr "Non"
 #: gui/common/tooltips.js:378
 #, javascript-format
 msgid ", %(durName)s: %(duration)s"
-msgstr ""
+msgstr "1 %(nomdefamille)s :  2%(durée)s"
 
 #: gui/common/tooltips.js:379
 msgid "Duration"
@@ -958,7 +958,7 @@ msgstr "Durée"
 #: gui/common/tooltips.js:383
 #, javascript-format
 msgid "%(statusName)s: %(effects)s, %(rate)s%(durationString)s"
-msgstr ""
+msgstr "1%(nomdustatut)s: 2%(effet)s, 3%(vitesse)s 4%(duréedelasérie)s"
 
 #: gui/common/tooltips.js:397
 #, javascript-format
@@ -1271,8 +1271,8 @@ msgstr "Cette sauvegarde nécessite un ensemble de mods différent :"
 msgid "Do you still want to proceed?"
 msgstr "Voulez-vous toujours continuer ?"
 
-#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:294
-#: gui/options/options.js:347 gui/options/options.js:373
+#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:298
+#: gui/options/options.js:351 gui/options/options.js:377
 msgid "Warning"
 msgstr "Avertissement"
 
@@ -1319,23 +1319,23 @@ msgctxt "option number"
 msgid "Max: %(max)s"
 msgstr "Max : %(max)s"
 
-#: gui/options/options.js:158
+#: gui/options/options.js:162
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Valeur : %(val)s (min : %(min)s, max : %(max)s)"
 
-#: gui/options/options.js:293
+#: gui/options/options.js:297
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Remettre les options à zéro va effacer vos paramètres enregistrés. Voulez-vous continuer ?"
 
-#: gui/options/options.js:346
+#: gui/options/options.js:350
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr "Des valeurs dans les options sont invalides ! Êtes-vous sûrs de vouloir les sauvegarder ?"
 
-#: gui/options/options.js:372
+#: gui/options/options.js:376
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Vous avez des modifications non enregistrées, voulez-vous fermer cette fenêtre ?"
 
@@ -3120,6 +3120,20 @@ msgstr "Comportement de l'IA par défaut."
 msgid "Default AI behavior"
 msgstr ""
 
+#: gui/options/options.json[3].options[5].list[0].tooltip
+msgid "Players joining the match will be assigned if there is a free slot."
+msgstr ""
+
+#: gui/options/options.json[3].options[5].list[1].tooltip
+msgid ""
+"Players joining the match will only be assigned if they are a buddy of the "
+"host and if there is a free slot."
+msgstr ""
+
+#: gui/options/options.json[3].options[5].list[2].tooltip
+msgid "Players only receive a slot when the host assigns them explicitly."
+msgstr ""
+
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
@@ -3547,7 +3561,7 @@ msgctxt "withinSentence"
 msgid "Tree"
 msgstr "arbre"
 
-#: gui/gamesetup/Panels/Tips.txt:1
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Tips.txt:1
 msgid ""
 "Although reasonably easy for an experienced player, the default AI level is "
 "quite challenging for new players yet to master the basic mechanisms of the "
