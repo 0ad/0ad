@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -688,25 +688,19 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 						{
 							const CMaterial::TextureSampler& samp = samplers[s];
 
-							CShaderProgram::Binding bind = texBindings[s];
 							// check that the handles are current
 							// and reevaluate them if necessary
-							if (texBindingNames[s] == samp.Name && bind.Active())
+							if (texBindingNames[s] != samp.Name || !texBindings[s].Active())
 							{
-								bind = texBindings[s];
-							}
-							else
-							{
-								bind = shader->GetTextureBinding(samp.Name);
-								texBindings[s] = bind;
+								texBindings[s] = shader->GetTextureBinding(samp.Name);
 								texBindingNames[s] = samp.Name;
 							}
 
 							// same with the actual sampler bindings
 							CTexture* newTex = samp.Sampler.get();
-							if (bind.Active() && newTex != currentTexs[s])
+							if (texBindings[s].Active() && newTex != currentTexs[s])
 							{
-								shader->BindTexture(bind, samp.Sampler->GetHandle());
+								shader->BindTexture(texBindings[s], newTex->GetHandle());
 								currentTexs[s] = newTex;
 							}
 						}

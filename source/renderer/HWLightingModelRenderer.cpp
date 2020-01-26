@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -274,7 +274,7 @@ void ShaderModelVertexRenderer::PrepareModelDef(const CShaderProgramPtr& shader,
 // Render one model
 void ShaderModelVertexRenderer::RenderModel(const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data)
 {
-	CModelDefPtr mdldef = model->GetModelDef();
+	const CModelDefPtr& mdldef = model->GetModelDef();
 	ShaderModel* shadermodel = static_cast<ShaderModel*>(data);
 
 	u8* base = shadermodel->m_Array.Bind();
