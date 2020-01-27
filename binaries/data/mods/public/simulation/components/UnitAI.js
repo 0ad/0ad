@@ -2754,11 +2754,13 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					this.order.data.force = false;
 
-					this.repairTarget = this.order.data.target;	// temporary, deleted in "leave".
-					// Check we can still reach and repair the target
+					// Needed to remove the entity from the builder list when leaving this state.
+					this.repairTarget = this.order.data.target;
+
+					// Check we can still reach and repair the target.
 					if (!this.CanRepair(this.repairTarget))
 					{
-						// Can't reach it, no longer owned by ally, or it doesn't exist any more
+						// Can't reach it, no longer owned by ally, or it doesn't exist any more.
 						this.FinishOrder();
 						return true;
 					}
@@ -2768,8 +2770,8 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.SetNextState("APPROACHING");
 						return true;
 					}
-					// Check if the target is still repairable
-					var cmpHealth = Engine.QueryInterface(this.repairTarget, IID_Health);
+					// Check if the target is still repairable.
+					let cmpHealth = Engine.QueryInterface(this.repairTarget, IID_Health);
 					if (cmpHealth && cmpHealth.GetHitpoints() >= cmpHealth.GetMaxHitpoints())
 					{
 						// The building was already finished/fully repaired before we arrived;
@@ -2784,7 +2786,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (cmpBuilderList)
 						cmpBuilderList.AddBuilder(this.entity);
 
-					this.FaceTowardsTarget(this.order.data.target);
+					this.FaceTowardsTarget(this.repairTarget);
 
 					this.SelectAnimation("build");
 					this.StartTimer(1000, 1000);
@@ -2801,21 +2803,21 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"Timer": function(msg) {
-					// Check we can still reach and repair the target
+					// Check we can still reach and repair the target.
 					if (!this.CanRepair(this.repairTarget))
 					{
-						// No longer owned by ally, or it doesn't exist any more
+						// No longer owned by ally, or it doesn't exist any more.
 						this.FinishOrder();
 						return;
 					}
 
-					this.FaceTowardsTarget(this.order.data.target);
+					this.FaceTowardsTarget(this.repairTarget);
 
 					let cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
 					cmpBuilder.PerformBuilding(this.repairTarget);
-					// if the building is completed, the leave() function will be called
-					// by the ConstructionFinished message
-					// in that case, the repairTarget is deleted, and we can just return
+					// If the building is completed, the leave() function will be called
+					// by the ConstructionFinished message.
+					// In that case, the repairTarget is deleted, and we can just return.
 					if (!this.repairTarget)
 						return;
 					if (!this.CheckTargetRange(this.repairTarget, IID_Builder))
@@ -4093,6 +4095,9 @@ UnitAI.prototype.OnGlobalEntityRenamed = function(msg)
 			order.data.formationTarget = msg.newentity;
 		}
 	}
+	if (this.repairTarget && this.repairTarget == msg.entity)
+		this.repairTarget = msg.newentity;
+
 	if (changed)
 		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 };

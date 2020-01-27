@@ -53,6 +53,11 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 		cmpNewHealth.SetHitpoints(cmpNewHealth.GetMaxHitpoints() * healthLevel);
 	}
 
+	let cmpBuilderList = QueryBuilderListInterface(oldEnt);
+	let cmpNewBuilderList = QueryBuilderListInterface(newEnt);
+	if (cmpBuilderList && cmpNewBuilderList)
+		cmpNewBuilderList.AddBuilders(cmpBuilderList.GetBuilders());
+
 	var cmpUnitAI = Engine.QueryInterface(oldEnt, IID_UnitAI);
 	var cmpNewUnitAI = Engine.QueryInterface(newEnt, IID_UnitAI);
 	if (cmpUnitAI && cmpNewUnitAI)
