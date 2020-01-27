@@ -7,8 +7,12 @@ Formation.prototype.Schema =
 	"<element name='Icon'>" +
 		"<text/>" +
 	"</element>" +
-	"<element name='RequiredMemberCount' a:help='Minimum number of entities the formation should contain'>" +
-		"<data type='nonNegativeInteger'/>" +
+	"<element name='RequiredMemberCount' a:help='Minimum number of entities the formation should contain (at least 2)'>" +
+		"<data type='integer'>" +
+		  "<param name='minInclusive'>"+
+		    "2"+
+		  "</param>"+
+		"</data>" +
 	"</element>" +
 	"<element name='DisabledTooltip' a:help='Tooltip shown when the formation is disabled'>" +
 		"<text/>" +
@@ -319,16 +323,16 @@ Formation.prototype.RemoveMembers = function(ents, renamed = false)
 	this.members = this.members.filter(function(e) { return ents.indexOf(e) == -1; });
 	this.inPosition = this.inPosition.filter(function(e) { return ents.indexOf(e) == -1; });
 
-	for (var ent of ents)
+	for (let ent of ents)
 	{
-		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI.UpdateWorkOrders();
 		cmpUnitAI.SetFormationController(INVALID_ENTITY);
 	}
 
-	for (var ent of this.formationMembersWithAura)
+	for (let ent of this.formationMembersWithAura)
 	{
-		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
+		let cmpAuras = Engine.QueryInterface(ent, IID_Auras);
 		cmpAuras.RemoveFormationAura(ents);
 
 		// the unit with the aura is also removed from the formation
@@ -340,7 +344,7 @@ Formation.prototype.RemoveMembers = function(ents, renamed = false)
 
 	// If there's nobody left, destroy the formation
 	// unless this is a rename where we can have 0 members temporarily.
-	if (this.members.length == 0 && !renamed)
+	if (this.members.length < +this.template.RequiredMemberCount && !renamed)
 	{
 		Engine.DestroyEntity(this.entity);
 		return;

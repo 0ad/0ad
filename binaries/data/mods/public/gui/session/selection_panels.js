@@ -292,24 +292,20 @@ g_SelectionPanels.Formation = {
 		if (unitEntStates.some(state => !hasClass(state, "Unit")))
 			return [];
 
+		if (unitEntStates.every(state => !state.identity || !state.identity.hasSomeFormation))
+			return [];
+
 		if (!g_AvailableFormations.has(unitEntStates[0].player))
 			g_AvailableFormations.set(unitEntStates[0].player, Engine.GuiInterfaceCall("GetAvailableFormations", unitEntStates[0].player));
 
-		let availableFormations = g_AvailableFormations.get(unitEntStates[0].player);
-
-		// Hide the panel if all formations are disabled
-		if (availableFormations.some(formation => canMoveSelectionIntoFormation(formation)))
-			return availableFormations;
-
-		return [];
+		return g_AvailableFormations.get(unitEntStates[0].player).filter(formation => unitEntStates.some(state => !!state.identity &&  state.identity.formations.indexOf(formation) != -1));
 	},
 	"setupButton": function(data)
 	{
 		if (!g_FormationsInfo.has(data.item))
 			g_FormationsInfo.set(data.item, Engine.GuiInterfaceCall("GetFormationInfoFromTemplate", { "templateName": data.item }));
 
-		let formationInfo = g_FormationsInfo.get(data.item);
-		let formationOk = canMoveSelectionIntoFormation(data.item);
+		let formationOk = data.item == "special/formations/null" || canMoveSelectionIntoFormation(data.item);
 		let unitIds = data.unitEntStates.map(state => state.id);
 		let formationSelected = Engine.GuiInterfaceCall("IsFormationSelected", {
 			"ents": unitIds,
@@ -320,6 +316,7 @@ g_SelectionPanels.Formation = {
 			performFormation(unitIds, data.item);
 		};
 
+		let formationInfo = g_FormationsInfo.get(data.item);
 		let tooltip = translate(formationInfo.name);
 		if (!formationOk && formationInfo.tooltip)
 			tooltip += "\n" + coloredText(translate(formationInfo.tooltip), "red");

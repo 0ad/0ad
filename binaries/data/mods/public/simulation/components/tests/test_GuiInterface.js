@@ -544,7 +544,9 @@ AddMock(10, IID_Identity, {
 	GetRank: function() { return "foo"; },
 	GetSelectionGroupName: function() { return "Selection Group Name"; },
 	HasClass: function() { return true; },
-	IsUndeletable: function() { return false; }
+	IsUndeletable: function() { return false; },
+	HasSomeFormation: function() { return false; },
+	GetFormationsList: function() { return []; },
 });
 
 AddMock(10, IID_Position, {
@@ -574,7 +576,9 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 		"classes": ["class1", "class2"],
 		"visibleClasses": ["class3", "class4"],
 		"selectionGroupName": "Selection Group Name",
-		"canDelete": true
+		"canDelete": true,
+		"hasSomeFormation": false,
+		"formations": [],
 	},
 	"position": {x:1, y:2, z:3},
 	"hitpoints": 50,

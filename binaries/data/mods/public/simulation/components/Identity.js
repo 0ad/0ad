@@ -104,6 +104,11 @@ Identity.prototype.Init = function()
 		this.phenotype = "default";
 };
 
+Identity.prototype.HasSomeFormation = function()
+{
+	return this.GetFormationsList().length > 0;
+};
+
 Identity.prototype.GetCiv = function()
 {
 	return this.template.Civ;
