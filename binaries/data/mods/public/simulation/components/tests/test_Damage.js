@@ -103,7 +103,16 @@ function Test_Generic()
 
 	Engine.PostMessage = function(ent, iid, message)
 	{
-		TS_ASSERT_UNEVAL_EQUALS({ "type": type, "target": target, "attacker": attacker, "attackerOwner": attackerOwner, "damage": damage, "capture": 0, "statusEffects": [] }, message);
+		TS_ASSERT_UNEVAL_EQUALS({
+			"type": type,
+			"target": target,
+			"attacker": attacker,
+			"attackerOwner": attackerOwner,
+			"damage": damage,
+			"capture": 0,
+			"statusEffects": [],
+			"fromStatusEffect": false
+		}, message);
 	};
 
 	AddMock(target, IID_Footprint, {

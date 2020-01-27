@@ -4099,6 +4099,9 @@ UnitAI.prototype.OnGlobalEntityRenamed = function(msg)
 
 UnitAI.prototype.OnAttacked = function(msg)
 {
+	if (msg.fromStatusEffect)
+		return;
+
 	this.UnitFsm.ProcessMessage(this, {"type": "Attacked", "data": msg});
 };
 

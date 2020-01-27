@@ -7,6 +7,8 @@ var target = 42;
 var cmpStatusReceiver;
 var cmpTimer;
 var dealtDamage;
+var enemyEntity = 4;
+var enemy = 2;
 
 function setup()
 {
@@ -31,6 +33,10 @@ function testInflictEffects()
 		"Damage": {
 			[statusName]: 1
 		}
+	},
+	{
+		"entity": enemyEntity,
+		"owner": enemy,
 	});
 
 	cmpTimer.OnUpdate({ "turnLength": 1 });
@@ -63,7 +69,7 @@ function testMultipleEffects()
 	Engine.RegisterGlobal("Attacking", Attacking);
 
 	// damage scheduled: 0, 1, 2, 10 sec
-	cmpStatusReceiver.GiveStatus({
+	cmpStatusReceiver.ApplyStatus({
 		"Burn": {
 			"Duration": 20000,
 			"Interval": 10000,
@@ -111,6 +117,10 @@ function testRemoveStatus()
 		"Damage": {
 			[statusName]: 1
 		}
+	},
+	{
+		"entity": enemyEntity,
+		"owner": enemy,
 	});
 
 	cmpTimer.OnUpdate({ "turnLength": 1 });

@@ -94,14 +94,16 @@ function displaySingle(entState)
 
 	if (entState.statusEffects)
 	{
-		let statusIcons = Engine.GetGUIObjectByName("statusEffectsIcons").children;
+		let statusEffectsSection = Engine.GetGUIObjectByName("statusEffectsIcons");
+		statusEffectsSection.hidden = false;
+		let statusIcons = statusEffectsSection.children;
 		let i = 0;
 		for (let effectName in entState.statusEffects)
 		{
 			let effect = entState.statusEffects[effectName];
 			statusIcons[i].hidden = false;
 			statusIcons[i].sprite = "stretched:session/icons/status_effects/" + (effect.Icon || "default") + ".png";
-			statusIcons[i].tooltip = getStatusEffectsTooltip(effectName, effect);
+			statusIcons[i].tooltip = getStatusEffectsTooltip(effect);
 			let size = statusIcons[i].size;
 			size.top = i * 18;
 			size.bottom = i * 18 + 16;
@@ -111,6 +113,8 @@ function displaySingle(entState)
 		for (; i < statusIcons.length; ++i)
 			statusIcons[i].hidden = true;
 	}
+	else
+		Engine.GetGUIObjectByName("statusEffectsIcons").hidden = true;
 
 	let showHealth = entState.hitpoints;
 	let showResource = entState.resourceSupply;

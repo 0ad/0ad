@@ -110,6 +110,20 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 		}
 	}
 
+	let cmpStatusEffectsReceiver = Engine.QueryInterface(oldEnt, IID_StatusEffectsReceiver);
+	let cmpNewStatusEffectsReceiver = Engine.QueryInterface(newEnt, IID_StatusEffectsReceiver);
+	if (cmpStatusEffectsReceiver && cmpNewStatusEffectsReceiver)
+	{
+		let activeStatus = cmpStatusEffectsReceiver.GetActiveStatuses();
+		for (let status in activeStatus)
+		{
+			let newStatus = activeStatus[status];
+			if (newStatus.Duration)
+				newStatus.Duration -= newStatus._timeElapsed;
+			cmpNewStatusEffectsReceiver.ApplyStatus({ [status]: newStatus }, newStatus.source.entity, newStatus.source.owner);
+		}
+	}
+
 	TransferGarrisonedUnits(oldEnt, newEnt);
 
 	Engine.PostMessage(oldEnt, MT_EntityRenamed, { "entity": oldEnt, "newentity": newEnt });

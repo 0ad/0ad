@@ -180,7 +180,9 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 				effects.Damage[damageType] = getEntityValue(path + "/Damage/" + damageType);
 		}
 
-		// TODO: status effects
+		if (temp.ApplyStatus)
+			effects.ApplyStatus = temp.ApplyStatus;
+
 		return effects;
 	};
 
