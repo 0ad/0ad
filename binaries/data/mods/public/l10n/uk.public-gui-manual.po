@@ -12,13 +12,13 @@
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Vladislav Trotsky <flyboooy17@gmail.com>, 2014
 # Андрій Бандура <andriykopanytsia@gmail.com>, 2015-2016
-# Микола Франчук <thekolian1996@gmail.com>, 2018-2019
+# Микола Франчук <thekolian1996@gmail.com>, 2018-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-01-17 15:32+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-01-25 18:16+0000\n"
+"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +40,7 @@ msgstr "Переглянути онлайн"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]Внутрішньоігровий посібник 0 A.D.[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:2
 msgid ""
@@ -51,7 +51,7 @@ msgstr "Дякуємо, що встановили 0 A.D.! Ця сторінка 
 
 #: gui/manual/intro.txt:4
 msgid "[font=\"sans-bold-16\"]Graphics settings[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Налаштування графіки[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:5
 msgid ""
@@ -59,11 +59,11 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr ""
+msgstr "Ви можете переключатись у повноекранний режим чи у віконний натискаючи комбінацію клавіш Alt + Enter. У віконному режимі, Ви можете змінювати розмір вікна. Якщо гра працює дуже повільно, Ви можете змінити деякі налаштування у опціях вікна: спробуйте відключити налаштування “HQ Водяні ефекти” та “Тіні”."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Гра[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:8
 msgid ""
@@ -71,7 +71,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr ""
+msgstr "Гравцям традиційних стратегій реального часу (RTS), швидше за все, знайомі управління та ігровий процес. Наразі є відсутніми багато можливостей і погано збалансована статистика – можливо, ви захочете дочекатися виходу бета-версії, щоб якісно пограти."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls:"
@@ -79,35 +79,35 @@ msgstr "Базове керування:"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr ""
+msgstr "• Лівий клік, щоб вибрати юніта"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr ""
+msgstr "• Лівий клік і виділити, щоб вибрати групу юнітів"
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr ""
+msgstr "• Правий клік, щоб спрямувати юніта до цілі"
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr ""
+msgstr "• Стрілки або WASD-клавіші, щоб пересувати камеру"
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr ""
+msgstr "• Ctrl + стрілки або Shift + коліщатко миші, щоб обертати камеру"
 
 #: gui/manual/intro.txt:16
 msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
-msgstr ""
+msgstr "• Коліщатко миші або “=”/“+” і “-”/“−”, щоб масштабувати"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Моди[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr ""
+msgstr "Головне меню надає доступ до двох режимів гри:"
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -133,11 +133,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Налаштування гри[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr ""
+msgstr "В багатокористувацькому режимі тільки хост може змінювати налаштування гри."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -168,7 +168,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "Потім карти можуть бути додатково відфільтровані. Карти, що доступні за умовчанням, як правило, грабельні. Морські карти – це карти, де не всі супротивники доступні на суші, та демо-карти – це карти, що використовуються в цілях тестування (загалом не рекомендуються для гри). Фільтр “Всі карти” показує усі карти в одному списку."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -181,11 +181,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr ""
+msgstr "Коли ви будете готові розпочати, натисніть на кнопку “Розпочати гру”."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Гарячі клавіші[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
@@ -194,29 +194,29 @@ msgstr ""
 #: gui/manual/intro.txt:41
 msgid ""
 "  Alt + F4 – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr "Alt + F4 – Негайно закрити гру без запиту на підтвердження"
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "Alt + Enter – Перемикає між повноекранним і віконним режимами"
 
 #: gui/manual/intro.txt:43
 msgid "  ~ or F9 – Show/hide console"
-msgstr ""
+msgstr "~ чи F9 – Показати/приховати консоль"
 
 #: gui/manual/intro.txt:44
 msgid "  Alt + F – Show/hide frame counter (FPS)"
-msgstr ""
+msgstr "  Alt + F – Показати/приховати лічильник кадрів (FPS)"
 
 #: gui/manual/intro.txt:45
 msgid ""
 "  F11 – Enable/disable real-time profiler (toggles through the displays of "
 "information)"
-msgstr ""
+msgstr "  F11 – Увімкнути/вимкнути профайлер реального часу (перемикає між відображеннями інформації)"
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
-msgstr ""
+msgstr "  Shift + F11 – Зберегти поточний профіль у “logs/profile.txt”"
 
 #: gui/manual/intro.txt:47
 msgid ""
@@ -361,11 +361,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:78
 msgid "  Y – The unit will go back to work"
-msgstr ""
+msgstr "Y – Юніт повернеться до роботи"
 
 #: gui/manual/intro.txt:79
 msgid "  U – Unload the garrisoned units of the selected structure(s)"
-msgstr ""
+msgstr "  U – Вивести юнітів з гарнізону у вибраних будівлях"
 
 #: gui/manual/intro.txt:80
 msgid ""
@@ -466,7 +466,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:101
 msgid "  P + Right Click – Patrol"
-msgstr ""
+msgstr "  P + ПКМ – Патрулювання"
 
 #: gui/manual/intro.txt:102
 msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
@@ -584,17 +584,17 @@ msgstr ""
 
 #: gui/manual/intro.txt:125
 msgid "  Alt + Z – Toggle sky"
-msgstr ""
+msgstr "  Alt + Z – Перемкнути небо"
 
 #: gui/manual/intro.txt:126
 msgid "  Alt + X – Toggle diplomacy colors"
-msgstr ""
+msgstr "  Alt + X – Перемкнути кольори дипломатії"
 
 #: gui/manual/intro.txt:127
 msgid ""
 "  Alt + C – Toggle attack range visualizations of selected units and "
 "structures"
-msgstr ""
+msgstr "  Alt + C – Перемкнути режим відображення відстані атаки вибраних юнітів та захисних споруд"
 
 #: gui/manual/intro.txt:128
 msgid ""
@@ -608,23 +608,23 @@ msgstr ""
 
 #: gui/manual/intro.txt:131
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Маніпуляції з камерою[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:132
 msgid "  W or ↑ (Up) – Pan screen up"
-msgstr ""
+msgstr "  W або ↑ (Вгору) – Повернути панораму екрану вгору"
 
 #: gui/manual/intro.txt:133
 msgid "  S or ↓ (Down) – Pan screen down"
-msgstr ""
+msgstr "  S або ↓ (Вниз) – Повернути панораму екрану вниз"
 
 #: gui/manual/intro.txt:134
 msgid "  A or ← (Left) – Pan screen left"
-msgstr ""
+msgstr "A або ← (Ліворуч) – Повернути панораму екрану ліворуч"
 
 #: gui/manual/intro.txt:135
 msgid "  D or → (Right) – Pan screen right"
-msgstr ""
+msgstr "  D або → (Праворуч) – Повернути панораму екрану праворуч"
 
 #: gui/manual/intro.txt:136
 msgid "  Ctrl + W or Ctrl + ↑ (Up) – Rotate camera to look upward"
@@ -646,44 +646,44 @@ msgstr ""
 
 #: gui/manual/intro.txt:140
 msgid "  Q – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "  Q – Обертати камеру по годинниковій стрілці над місцевістю"
 
 #: gui/manual/intro.txt:141
 msgid "  E – Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr " E – Обертати камеру проти годинникової стрілки над місцевістю"
 
 #: gui/manual/intro.txt:142
 msgid ""
 "  Shift + Mouse Wheel Rotate Up – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "  Shift + Коліщатко миші вгору – Повертати камеру за годинниковою стрілкою навколо місцевості"
 
 #: gui/manual/intro.txt:143
 msgid ""
 "  Shift + Mouse Wheel Rotate Down – Rotate camera counter-clockwise around "
 "terrain"
-msgstr ""
+msgstr "Shift + Коліщатко миші вниз – Повертати камеру проти годинникової стрілки навколо місцевості"
 
 #: gui/manual/intro.txt:144
 msgid ""
 "  F – Follow the selected unit (move the camera to stop following the unit)"
-msgstr ""
+msgstr "  F – Слідувати за вибраним юнітом (порухайте камеру, щоб зупинити слідування за юнітом)"
 
 #: gui/manual/intro.txt:145
 msgid "  R – Reset camera zoom/orientation"
-msgstr ""
+msgstr "  R – Скинути масштаб/орієнтацію камери"
 
 #: gui/manual/intro.txt:146
 msgid "  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "  = (Дорівнює) або + (Плюс) – Наблизити (утримуйте для тривалого наближення)"
 
 #: gui/manual/intro.txt:147
 msgid ""
 "  - (Hyphen) or − (Minus) – Zoom out (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "  - (Дефіс) або − (Мінус) – Віддалити (утримуйте для тривалого віддалення)"
 
 #: gui/manual/intro.txt:148
 msgid "  Middle Mouse Button – Keep pressed and move the mouse to pan"
-msgstr ""
+msgstr "Середня кнопка миші – Утримуйте кнопку натиснутою і перемістіть мишу для панорамування"
 
 #: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
@@ -695,7 +695,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:152
 msgid "  ] (Right Bracket) – Rotate structure 15 degrees clockwise"
-msgstr ""
+msgstr "] (Права скоба) – Повернути будівлю на 15 градусів за годинниковою стрілкою"
 
 #: gui/manual/intro.txt:153
 msgid ""
@@ -705,18 +705,18 @@ msgstr ""
 
 #: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Під час завантаження збереженої гри[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:156
 msgid "  Esc – Cancel"
-msgstr ""
+msgstr "  Esc – Скасувати"
 
 #: gui/manual/intro.txt:157
 msgid "  Delete – Delete the selected saved game, ask for confirmation"
-msgstr ""
+msgstr "Delete – Видалити виділену збережену гру із запитом на підтвердження"
 
 #: gui/manual/intro.txt:158
 msgid ""
 "  Shift + Delete – Immediately delete the selected saved game, without "
 "asking for confirmation"
-msgstr ""
+msgstr "  Shift + Delete – Видалити виділену збережену гру без запиту на підтвердження"

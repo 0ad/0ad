@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-20 08:12+0000\n"
-"PO-Revision-Date: 2020-01-20 14:14+0000\n"
+"POT-Creation-Date: 2020-01-24 08:08+0000\n"
+"PO-Revision-Date: 2020-01-24 15:36+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -243,201 +243,201 @@ msgstr "无尽的游戏"
 msgid "No winner will be determined, even if everyone is defeated."
 msgstr "没有胜利者"
 
-#: gui/common/gamedescription.js:200
+#: gui/common/gamedescription.js:202
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "奇观分钟数 %(min)s"
 
-#: gui/common/gamedescription.js:212
+#: gui/common/gamedescription.js:216
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
 msgstr[0] "占领遗迹 (%(min)s 分钟)"
 
-#: gui/common/gamedescription.js:228
+#: gui/common/gamedescription.js:232
 msgid "Relic Count"
 msgstr "遗迹数量"
 
-#: gui/common/gamedescription.js:235
+#: gui/common/gamedescription.js:239
 msgid "Hero Garrison"
 msgstr "英雄驻军"
 
-#: gui/common/gamedescription.js:236
+#: gui/common/gamedescription.js:240
 msgid "Heroes can be garrisoned."
 msgstr "英雄可以驻守。"
 
-#: gui/common/gamedescription.js:240
+#: gui/common/gamedescription.js:244
 msgid "Exposed Heroes"
 msgstr "显示英雄位置"
 
-#: gui/common/gamedescription.js:241
+#: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
 msgstr "英雄不能驻守，很容易对手攻击。"
 
-#: gui/common/gamedescription.js:248
+#: gui/common/gamedescription.js:252
 msgid "Rated game"
 msgstr "排位赛"
 
-#: gui/common/gamedescription.js:249
+#: gui/common/gamedescription.js:253
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "当这场比赛的获胜者确定后，大厅的分数将被调整。"
 
-#: gui/common/gamedescription.js:254
+#: gui/common/gamedescription.js:258
 msgid "Locked Teams"
 msgstr "锁定组队"
 
-#: gui/common/gamedescription.js:255
+#: gui/common/gamedescription.js:259
 msgid "Players can't change the initial teams."
 msgstr "玩家不能更改初始团队。"
 
-#: gui/common/gamedescription.js:259
+#: gui/common/gamedescription.js:263
 msgid "Diplomacy"
 msgstr "外交"
 
-#: gui/common/gamedescription.js:260
+#: gui/common/gamedescription.js:264
 msgid "Players can make alliances and declare war on allies."
 msgstr "玩家可结盟，也可对盟友宣战。"
 
-#: gui/common/gamedescription.js:265
+#: gui/common/gamedescription.js:269
 msgid "Last Man Standing"
 msgstr "笑到最后"
 
-#: gui/common/gamedescription.js:266
+#: gui/common/gamedescription.js:270
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "胜者只有一人。如果有同盟存活，游戏继续，直到只剩一家时结束。"
 
-#: gui/common/gamedescription.js:270
+#: gui/common/gamedescription.js:274
 msgid "Allied Victory"
 msgstr "同盟胜利"
 
-#: gui/common/gamedescription.js:271
+#: gui/common/gamedescription.js:275
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "某人获胜时，盟友一起获胜。"
 
-#: gui/common/gamedescription.js:275
+#: gui/common/gamedescription.js:280
 msgid "Ceasefire"
 msgstr "停火"
 
-#: gui/common/gamedescription.js:278 gui/pregame/userreport/userreport.js:26
+#: gui/common/gamedescription.js:283 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
 msgstr "关闭"
 
-#: gui/common/gamedescription.js:279
+#: gui/common/gamedescription.js:284
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "在前 %(min)s 分钟, 其他玩家保持中立。"
 
-#: gui/common/gamedescription.js:288
+#: gui/common/gamedescription.js:293
 msgctxt "Map Selection"
 msgid "Random Map"
 msgstr "随机地图"
 
-#: gui/common/gamedescription.js:289
+#: gui/common/gamedescription.js:294
 msgid "Randomly select a map from the list."
 msgstr "从列表里随机选取地图"
 
-#: gui/common/gamedescription.js:294
+#: gui/common/gamedescription.js:299
 msgid "Map Name"
 msgstr "地图名称"
 
-#: gui/common/gamedescription.js:300
+#: gui/common/gamedescription.js:305
 msgid "Map Description"
 msgstr "地图描述"
 
-#: gui/common/gamedescription.js:306
+#: gui/common/gamedescription.js:311
 msgid "Map Type"
 msgstr "地图类型"
 
-#: gui/common/gamedescription.js:315
+#: gui/common/gamedescription.js:320
 msgid "Map Size"
 msgstr "地图大小"
 
-#: gui/common/gamedescription.js:324
+#: gui/common/gamedescription.js:329
 msgctxt "biome"
 msgid "Random Biome"
 msgstr "随机生物群"
 
-#: gui/common/gamedescription.js:325
+#: gui/common/gamedescription.js:330
 msgid "Randomly select a biome from the list."
 msgstr "从列表里随机挑选生物群"
 
-#: gui/common/gamedescription.js:340
+#: gui/common/gamedescription.js:345
 msgid "Nomad Mode"
 msgstr "游牧模式"
 
-#: gui/common/gamedescription.js:340
+#: gui/common/gamedescription.js:345
 msgid "Civic Centers"
 msgstr "市政中心"
 
-#: gui/common/gamedescription.js:343
+#: gui/common/gamedescription.js:348
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
 msgstr "玩家从少数单位开局并需要找到一个合适的地方来建造他们的城市。"
 
-#: gui/common/gamedescription.js:344
+#: gui/common/gamedescription.js:349
 msgid "Players start with a Civic Center."
 msgstr "玩家以一个市政中心开局。"
 
-#: gui/common/gamedescription.js:349
+#: gui/common/gamedescription.js:354
 msgid "Starting Resources"
 msgstr "初始资源"
 
-#: gui/common/gamedescription.js:353
+#: gui/common/gamedescription.js:358
 msgctxt "starting resources"
 msgid "Per Player"
 msgstr ""
 
-#: gui/common/gamedescription.js:354
+#: gui/common/gamedescription.js:359
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:365
+#: gui/common/gamedescription.js:370
 msgid "Population Limit"
 msgstr "人口上限"
 
-#: gui/common/gamedescription.js:369
+#: gui/common/gamedescription.js:374
 msgctxt "population limit"
 msgid "Per Player"
 msgstr ""
 
-#: gui/common/gamedescription.js:376
+#: gui/common/gamedescription.js:381
 msgid "Treasures"
 msgstr "宝藏"
 
-#: gui/common/gamedescription.js:378
+#: gui/common/gamedescription.js:383
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "禁用"
 
-#: gui/common/gamedescription.js:379
+#: gui/common/gamedescription.js:384
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "由地图定义。"
 
-#: gui/common/gamedescription.js:383
+#: gui/common/gamedescription.js:388
 msgid "Revealed Map"
 msgstr "显示地图"
 
-#: gui/common/gamedescription.js:388
+#: gui/common/gamedescription.js:393
 msgid "Explored Map"
 msgstr "探索地图"
 
-#: gui/common/gamedescription.js:393
+#: gui/common/gamedescription.js:398
 msgid "Cheats"
 msgstr "作弊"
 
-#: gui/common/gamedescription.js:397 gui/common/tooltips.js:136
+#: gui/common/gamedescription.js:402 gui/common/tooltips.js:136
 #: gui/common/tooltips.js:169 gui/common/tooltips.js:211
 #: gui/common/tooltips.js:451 gui/common/tooltips.js:473
 #: gui/common/tooltips.js:557 gui/common/tooltips.js:578
@@ -446,25 +446,25 @@ msgstr "作弊"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:400
+#: gui/common/gamedescription.js:405
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "加载"
 
-#: gui/common/gamedescription.js:401
+#: gui/common/gamedescription.js:406
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "取消"
 
-#: gui/common/gamedescription.js:413
+#: gui/common/gamedescription.js:418
 msgid "Victorious"
 msgstr "胜利"
 
-#: gui/common/gamedescription.js:418
+#: gui/common/gamedescription.js:423
 msgid "Defeated"
 msgstr "失败"
 
-#: gui/common/gamedescription.js:427
+#: gui/common/gamedescription.js:432
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -581,141 +581,122 @@ msgstr "玩家 (%(num)s): %(users)s"
 msgid ", "
 msgstr "，"
 
-#: gui/common/settings.js:117
+#: gui/common/settings.js:115
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "测试"
 
-#: gui/common/settings.js:121
+#: gui/common/settings.js:119
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr "极易"
 
-#: gui/common/settings.js:125
+#: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr "简单"
 
-#: gui/common/settings.js:129
+#: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr "中等"
 
-#: gui/common/settings.js:134
+#: gui/common/settings.js:132
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr "困难"
 
-#: gui/common/settings.js:138
+#: gui/common/settings.js:136
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "极难"
 
-#: gui/common/settings.js:148
+#: gui/common/settings.js:146
 msgctxt "aiBehavior"
 msgid "Random"
 msgstr "随机"
 
-#: gui/common/settings.js:153
+#: gui/common/settings.js:151
 msgctxt "aiBehavior"
 msgid "Balanced"
 msgstr "均衡"
 
-#: gui/common/settings.js:157
+#: gui/common/settings.js:155
 msgctxt "aiBehavior"
 msgid "Defensive"
 msgstr "防守"
 
-#: gui/common/settings.js:161
+#: gui/common/settings.js:159
 msgctxt "aiBehavior"
 msgid "Aggressive"
 msgstr "攻击"
 
-#: gui/common/settings.js:183
-#, javascript-format
-msgctxt "victory duration"
-msgid "%(min)s minute"
-msgid_plural "%(min)s minutes"
-msgstr[0] "%(min)s分钟"
-
-#: gui/common/settings.js:205
-msgctxt "ceasefire"
-msgid "No ceasefire"
-msgstr "无停火"
-
-#: gui/common/settings.js:206
-#, javascript-format
-msgctxt "ceasefire"
-msgid "%(minutes)s minute"
-msgid_plural "%(minutes)s minutes"
-msgstr[0] "%(minutes)s 分钟"
-
-#: gui/common/settings.js:218
+#: gui/common/settings.js:172
 msgctxt "map"
 msgid "Skirmish"
 msgstr "小规模战斗"
 
-#: gui/common/settings.js:219
+#: gui/common/settings.js:173
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
 msgstr "预设地形和玩家数量的地图，其它游戏设置可选。"
 
-#: gui/common/settings.js:227
+#: gui/common/settings.js:181
 msgctxt "map"
 msgid "Random"
 msgstr "随机"
 
-#: gui/common/settings.js:228
+#: gui/common/settings.js:182
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
 msgstr "每次创建一个具有不同资源分布的独特地图。自由选择玩家和队伍的数量。"
 
-#: gui/common/settings.js:235
+#: gui/common/settings.js:189
 msgctxt "map"
 msgid "Scenario"
 msgstr "场景"
 
-#: gui/common/settings.js:236
+#: gui/common/settings.js:190
 msgid "A map with a predefined landscape and matchsettings."
 msgstr "预设地形和比赛设定的地图。"
 
-#: gui/common/settings.js:313
+#: gui/common/settings.js:267
 msgid "Unlimited"
 msgstr "无限制"
 
-#: gui/common/settings.js:361
+#: gui/common/settings.js:315
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/common/settings.js:372
+#: gui/common/settings.js:326
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/common/settings.js:383
+#: gui/common/settings.js:337
 msgctxt "AI behavior"
 msgid "Default"
 msgstr "默认"
 
-#: gui/common/settings.js:395
+#: gui/common/settings.js:349
 msgctxt "map type"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/common/settings.js:407
+#: gui/common/settings.js:361
 msgctxt "map size"
 msgid "Default"
 msgstr "默认"
 
-#: gui/common/settings.js:419
+#: gui/common/settings.js:373
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/common/settings.js:431
+#: gui/common/settings.js:385
 msgid "Unknown Victory Condition"
 msgstr "未知胜利条件"
 

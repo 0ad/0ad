@@ -52,8 +52,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-20 08:12+0000\n"
-"PO-Revision-Date: 2020-01-21 19:29+0000\n"
+"POT-Creation-Date: 2020-01-24 08:08+0000\n"
+"PO-Revision-Date: 2020-01-24 17:45+0000\n"
 "Last-Translator: benjamin jasse <benuri@hotmail.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -274,7 +274,7 @@ msgstr "Partie sans fin"
 msgid "No winner will be determined, even if everyone is defeated."
 msgstr "Aucun vainqueur ne sera déterminé, même si tout le monde est battu."
 
-#: gui/common/gamedescription.js:200
+#: gui/common/gamedescription.js:202
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -282,7 +282,7 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Merveille (%(min)s minute)"
 msgstr[1] "Merveille (%(min)s minutes)"
 
-#: gui/common/gamedescription.js:212
+#: gui/common/gamedescription.js:216
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
@@ -290,188 +290,188 @@ msgid_plural "Capture the Relic (%(min)s minutes)"
 msgstr[0] "Capture la Relique (%(min)s minute)"
 msgstr[1] "Capturez la Relique (%(min)s minutes)"
 
-#: gui/common/gamedescription.js:228
+#: gui/common/gamedescription.js:232
 msgid "Relic Count"
 msgstr "Nombre de reliques"
 
-#: gui/common/gamedescription.js:235
+#: gui/common/gamedescription.js:239
 msgid "Hero Garrison"
 msgstr "Héros en garnison"
 
-#: gui/common/gamedescription.js:236
+#: gui/common/gamedescription.js:240
 msgid "Heroes can be garrisoned."
 msgstr "Les héros peuvent être mis en garnison."
 
-#: gui/common/gamedescription.js:240
+#: gui/common/gamedescription.js:244
 msgid "Exposed Heroes"
 msgstr "Héros exposés"
 
-#: gui/common/gamedescription.js:241
+#: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
 msgstr "Les héros ne peuvent pas être mis en garnison et sont vulnérables aux raids."
 
-#: gui/common/gamedescription.js:248
+#: gui/common/gamedescription.js:252
 msgid "Rated game"
 msgstr "Partie classée"
 
-#: gui/common/gamedescription.js:249
+#: gui/common/gamedescription.js:253
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Quand le vainqueur de cette partie sera déterminé, le tableau des scores sera mis à jour."
 
-#: gui/common/gamedescription.js:254
+#: gui/common/gamedescription.js:258
 msgid "Locked Teams"
 msgstr "Équipes verrouillées."
 
-#: gui/common/gamedescription.js:255
+#: gui/common/gamedescription.js:259
 msgid "Players can't change the initial teams."
 msgstr "Les joueurs ne peuvent pas altérer les équipes de départ."
 
-#: gui/common/gamedescription.js:259
+#: gui/common/gamedescription.js:263
 msgid "Diplomacy"
 msgstr "Diplomatie"
 
-#: gui/common/gamedescription.js:260
+#: gui/common/gamedescription.js:264
 msgid "Players can make alliances and declare war on allies."
 msgstr "Les joueurs peuvent établir des alliances et déclarer la guerre à leurs alliés."
 
-#: gui/common/gamedescription.js:265
+#: gui/common/gamedescription.js:269
 msgid "Last Man Standing"
 msgstr "Mode survie"
 
-#: gui/common/gamedescription.js:266
+#: gui/common/gamedescription.js:270
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "Un seul joueur peut gagner la partie. Si les joueurs restant sont alliés, la partie continue jusqu'à ce qu'il n'en reste plus qu'un."
 
-#: gui/common/gamedescription.js:270
+#: gui/common/gamedescription.js:274
 msgid "Allied Victory"
 msgstr "Victoire alliée"
 
-#: gui/common/gamedescription.js:271
+#: gui/common/gamedescription.js:275
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "Si un joueur gagne, ses allié(e)s gagnent aussi. S'il reste un groupe d'alliés, ceux-ci gagnent."
 
-#: gui/common/gamedescription.js:275
+#: gui/common/gamedescription.js:280
 msgid "Ceasefire"
 msgstr "Cessez-le-feu"
 
-#: gui/common/gamedescription.js:278 gui/pregame/userreport/userreport.js:26
+#: gui/common/gamedescription.js:283 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
 msgstr "désactivé"
 
-#: gui/common/gamedescription.js:279
+#: gui/common/gamedescription.js:284
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "Durant la première minute, les autres joueurs restent neutres."
 msgstr[1] "Durant les %(min)s premières minutes, les autres joueurs restent neutres."
 
-#: gui/common/gamedescription.js:288
+#: gui/common/gamedescription.js:293
 msgctxt "Map Selection"
 msgid "Random Map"
 msgstr "Carte aléatoire"
 
-#: gui/common/gamedescription.js:289
+#: gui/common/gamedescription.js:294
 msgid "Randomly select a map from the list."
 msgstr "Sélectionne aléatoirement une carte dans la liste."
 
-#: gui/common/gamedescription.js:294
+#: gui/common/gamedescription.js:299
 msgid "Map Name"
 msgstr "Nom de la carte"
 
-#: gui/common/gamedescription.js:300
+#: gui/common/gamedescription.js:305
 msgid "Map Description"
 msgstr "Description de la carte"
 
-#: gui/common/gamedescription.js:306
+#: gui/common/gamedescription.js:311
 msgid "Map Type"
 msgstr "Type de carte"
 
-#: gui/common/gamedescription.js:315
+#: gui/common/gamedescription.js:320
 msgid "Map Size"
 msgstr "Taille de la carte"
 
-#: gui/common/gamedescription.js:324
+#: gui/common/gamedescription.js:329
 msgctxt "biome"
 msgid "Random Biome"
 msgstr "Biome aléatoire"
 
-#: gui/common/gamedescription.js:325
+#: gui/common/gamedescription.js:330
 msgid "Randomly select a biome from the list."
 msgstr "Sélectionne aléatoirement un biome dans la liste."
 
-#: gui/common/gamedescription.js:340
+#: gui/common/gamedescription.js:345
 msgid "Nomad Mode"
 msgstr "Mode Nomade"
 
-#: gui/common/gamedescription.js:340
+#: gui/common/gamedescription.js:345
 msgid "Civic Centers"
 msgstr "Centre-villes"
 
-#: gui/common/gamedescription.js:343
+#: gui/common/gamedescription.js:348
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
 msgstr "Les joueurs commencent avec seulement quelques unités et doivent trouver un endroit approprié pour construire leur ville."
 
-#: gui/common/gamedescription.js:344
+#: gui/common/gamedescription.js:349
 msgid "Players start with a Civic Center."
 msgstr "Les joueurs commencent avec un Centre-ville"
 
-#: gui/common/gamedescription.js:349
+#: gui/common/gamedescription.js:354
 msgid "Starting Resources"
 msgstr "Ressources initiales"
 
-#: gui/common/gamedescription.js:353
+#: gui/common/gamedescription.js:358
 msgctxt "starting resources"
 msgid "Per Player"
 msgstr "Par joueur"
 
-#: gui/common/gamedescription.js:354
+#: gui/common/gamedescription.js:359
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:365
+#: gui/common/gamedescription.js:370
 msgid "Population Limit"
 msgstr "Limite de population"
 
-#: gui/common/gamedescription.js:369
+#: gui/common/gamedescription.js:374
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "Par joueur"
 
-#: gui/common/gamedescription.js:376
+#: gui/common/gamedescription.js:381
 msgid "Treasures"
 msgstr "Trésors"
 
-#: gui/common/gamedescription.js:378
+#: gui/common/gamedescription.js:383
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "Désactivés"
 
-#: gui/common/gamedescription.js:379
+#: gui/common/gamedescription.js:384
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "Définis par la carte."
 
-#: gui/common/gamedescription.js:383
+#: gui/common/gamedescription.js:388
 msgid "Revealed Map"
 msgstr "Carte révélée"
 
-#: gui/common/gamedescription.js:388
+#: gui/common/gamedescription.js:393
 msgid "Explored Map"
 msgstr "Carte explorée"
 
-#: gui/common/gamedescription.js:393
+#: gui/common/gamedescription.js:398
 msgid "Cheats"
 msgstr "Triche"
 
-#: gui/common/gamedescription.js:397 gui/common/tooltips.js:136
+#: gui/common/gamedescription.js:402 gui/common/tooltips.js:136
 #: gui/common/tooltips.js:169 gui/common/tooltips.js:211
 #: gui/common/tooltips.js:451 gui/common/tooltips.js:473
 #: gui/common/tooltips.js:557 gui/common/tooltips.js:578
@@ -480,25 +480,25 @@ msgstr "Triche"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:400
+#: gui/common/gamedescription.js:405
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "activé"
 
-#: gui/common/gamedescription.js:401
+#: gui/common/gamedescription.js:406
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "désactivé"
 
-#: gui/common/gamedescription.js:413
+#: gui/common/gamedescription.js:418
 msgid "Victorious"
 msgstr "Victorieux"
 
-#: gui/common/gamedescription.js:418
+#: gui/common/gamedescription.js:423
 msgid "Defeated"
 msgstr "Vaincu(e)"
 
-#: gui/common/gamedescription.js:427
+#: gui/common/gamedescription.js:432
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -615,143 +615,122 @@ msgstr "Utilisateurs (%(num)s) : %(users)s"
 msgid ", "
 msgstr ", "
 
-#: gui/common/settings.js:117
+#: gui/common/settings.js:115
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "Bac-à-sable"
 
-#: gui/common/settings.js:121
+#: gui/common/settings.js:119
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr "Très facile"
 
-#: gui/common/settings.js:125
+#: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr "Facile"
 
-#: gui/common/settings.js:129
+#: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr "Moyen"
 
-#: gui/common/settings.js:134
+#: gui/common/settings.js:132
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr "Difficile"
 
-#: gui/common/settings.js:138
+#: gui/common/settings.js:136
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "Très difficile"
 
-#: gui/common/settings.js:148
+#: gui/common/settings.js:146
 msgctxt "aiBehavior"
 msgid "Random"
 msgstr "Aléatoire"
 
-#: gui/common/settings.js:153
+#: gui/common/settings.js:151
 msgctxt "aiBehavior"
 msgid "Balanced"
 msgstr "Équilibré"
 
-#: gui/common/settings.js:157
+#: gui/common/settings.js:155
 msgctxt "aiBehavior"
 msgid "Defensive"
 msgstr "Défensif"
 
-#: gui/common/settings.js:161
+#: gui/common/settings.js:159
 msgctxt "aiBehavior"
 msgid "Aggressive"
 msgstr "Agressif"
 
-#: gui/common/settings.js:183
-#, javascript-format
-msgctxt "victory duration"
-msgid "%(min)s minute"
-msgid_plural "%(min)s minutes"
-msgstr[0] "%(min)s minute"
-msgstr[1] "%(min)s minutes"
-
-#: gui/common/settings.js:205
-msgctxt "ceasefire"
-msgid "No ceasefire"
-msgstr "Pas de cessez-le-feu"
-
-#: gui/common/settings.js:206
-#, javascript-format
-msgctxt "ceasefire"
-msgid "%(minutes)s minute"
-msgid_plural "%(minutes)s minutes"
-msgstr[0] "%(minutes)s minute"
-msgstr[1] "%(minutes)s minutes"
-
-#: gui/common/settings.js:218
+#: gui/common/settings.js:172
 msgctxt "map"
 msgid "Skirmish"
 msgstr "Escarmouche"
 
-#: gui/common/settings.js:219
+#: gui/common/settings.js:173
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
 msgstr "Une carte avec un paysage et un nombre de joueurs prédéfinis. Les autres options de la partie sont configurables librement."
 
-#: gui/common/settings.js:227
+#: gui/common/settings.js:181
 msgctxt "map"
 msgid "Random"
 msgstr "Aléatoire"
 
-#: gui/common/settings.js:228
+#: gui/common/settings.js:182
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
 msgstr "Créez une carte originale avec une répartition des ressources différente à chaque fois. Choisissez librement le nombre de joueurs et d'équipes."
 
-#: gui/common/settings.js:235
+#: gui/common/settings.js:189
 msgctxt "map"
 msgid "Scenario"
 msgstr "Scénario"
 
-#: gui/common/settings.js:236
+#: gui/common/settings.js:190
 msgid "A map with a predefined landscape and matchsettings."
 msgstr "Une carte avec un paysage et des options prédéfinis."
 
-#: gui/common/settings.js:313
+#: gui/common/settings.js:267
 msgid "Unlimited"
 msgstr "Illimitée"
 
-#: gui/common/settings.js:361
+#: gui/common/settings.js:315
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: gui/common/settings.js:372
+#: gui/common/settings.js:326
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: gui/common/settings.js:383
+#: gui/common/settings.js:337
 msgctxt "AI behavior"
 msgid "Default"
 msgstr "Par défaut"
 
-#: gui/common/settings.js:395
+#: gui/common/settings.js:349
 msgctxt "map type"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: gui/common/settings.js:407
+#: gui/common/settings.js:361
 msgctxt "map size"
 msgid "Default"
 msgstr "Par défaut"
 
-#: gui/common/settings.js:419
+#: gui/common/settings.js:373
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: gui/common/settings.js:431
+#: gui/common/settings.js:385
 msgid "Unknown Victory Condition"
 msgstr "Condition de victoire inconnue"
 
@@ -1384,7 +1363,7 @@ msgstr "Historique"
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Découvrez les civilisations présentées dans 0 A.D. "
 
 #: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:142
 msgid "Single-player"
@@ -1414,7 +1393,7 @@ msgstr "Revivre l'Histoire à travers des campagnes militaires historiques. \\[P
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Load a saved game."
-msgstr ""
+msgstr "Charger une partie sauvegardé "
 
 #: gui/pregame/MainMenuItems.js:73 gui/pregame/MainMenuItems.js:123
 msgid "Replays"
@@ -1470,7 +1449,7 @@ msgstr "Paramètres"
 
 #: gui/pregame/MainMenuItems.js:139
 msgid "Change game options."
-msgstr ""
+msgstr "Changer les options de jeu"
 
 #: gui/pregame/MainMenuItems.js:142
 msgid "Options"
@@ -1502,7 +1481,7 @@ msgstr "Page de bienvenue"
 
 #: gui/pregame/MainMenuItems.js:167
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Affichez à nouveau message de bienvenue. Utile si vous l'avez caché par erreur."
 
 #: gui/pregame/MainMenuItems.js:175
 msgid "Scenario Editor"
