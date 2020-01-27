@@ -4,8 +4,10 @@
   <group>
     <variant frequency="1" name="trees">
       <mesh>props/hele_stoa2_trees.dae</mesh>
-      <textures><texture file="gaia/prop_tree_cypess.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/prop_tree_cypess.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>default.xml</material>
 </actor>

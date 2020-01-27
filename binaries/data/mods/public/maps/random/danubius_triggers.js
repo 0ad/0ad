@@ -14,9 +14,9 @@ const showDebugLog = false;
 
 const danubiusAttackerTemplates = deepfreeze({
 	"ships": TriggerHelper.GetTemplateNamesByClasses("Warship", "gaul", undefined, undefined, true),
-	"siege": TriggerHelper.GetTemplateNamesByClasses("Siege","gaul", undefined, undefined, true),
-	"females": TriggerHelper.GetTemplateNamesByClasses("FemaleCitizen","gaul", undefined, undefined, true),
-	"healers": TriggerHelper.GetTemplateNamesByClasses("Healer","gaul", undefined, undefined, true),
+	"siege": TriggerHelper.GetTemplateNamesByClasses("Siege", "gaul", undefined, undefined, true),
+	"females": TriggerHelper.GetTemplateNamesByClasses("FemaleCitizen", "gaul", undefined, undefined, true),
+	"healers": TriggerHelper.GetTemplateNamesByClasses("Healer", "gaul", undefined, undefined, true),
 	"champions": TriggerHelper.GetTemplateNamesByClasses("Champion", "gaul", undefined, undefined, true),
 	"champion_infantry": TriggerHelper.GetTemplateNamesByClasses("Champion+Infantry", "gaul", undefined, undefined, true),
 	"citizen_soldiers": TriggerHelper.GetTemplateNamesByClasses("CitizenSoldier", "gaul", undefined, "Basic", true),
@@ -610,6 +610,9 @@ Trigger.prototype.InitDanubius = function()
 	// Remember gaia CCs to spawn attackers from
 	this.civicCenters = new Set(TriggerHelper.GetPlayerEntitiesByClass(gaulPlayer, "CivCentre"));
 
+	// Depends on this.heroes
+	Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger).RegisterTrigger("OnOwnershipChanged", "DanubiusOwnershipChange", { "enabled": true });
+
 	// Maps from gaia ship entity ID to ungarrison trigger point entity ID and land patrol triggerpoint name
 	this.shipTarget = {};
 	this.fillShipsTimer = undefined;
@@ -634,7 +637,5 @@ Trigger.prototype.InitDanubius = function()
 };
 
 {
-	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-	cmpTrigger.RegisterTrigger("OnInitGame", "InitDanubius", { "enabled": true });
-	cmpTrigger.RegisterTrigger("OnOwnershipChanged", "DanubiusOwnershipChange", { "enabled": true });
+	Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger).RegisterTrigger("OnInitGame", "InitDanubius", { "enabled": true });
 }

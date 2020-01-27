@@ -9,9 +9,9 @@
         <prop actor="units/ptolemies/siege_spear.xml" attachpoint="shoushe"/>
       </props>
       <textures>
-        <texture file="structural/hele_siege.dds" name="baseTex"/>
+        <texture file="null_white.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>default.xml</material>
 </actor>

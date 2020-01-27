@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -112,7 +112,7 @@ public:
 		 * Returns whether this uniform attribute is active in the shader.
 		 * If not then there's no point calling Uniform() to set its value.
 		 */
-		bool Active() { return first != -1 || second != -1; }
+		bool Active() const { return first != -1 || second != -1; }
 
 		int first;
 		int second;

@@ -5,15 +5,11 @@
   <group>
     <variant frequency="1" name="shipwreck ram side">
       <mesh>props/special/shipwreck_ram_side.dae</mesh>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="texture">
       <textures>
-	    <texture file="props/wooden_shipwreck.png" name="baseTex"/>
-		<texture file="props/ao/shipwreck_ram_side_ao.png" name="aoTex"/>
-	  </textures>
+        <texture file="props/wooden_shipwreck.png" name="baseTex"/>
+        <texture file="props/ao/shipwreck_ram_side_ao.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
-  <material>basic_trans_ao.xml</material>
+  <material>no_trans_ao.xml</material>
 </actor>
