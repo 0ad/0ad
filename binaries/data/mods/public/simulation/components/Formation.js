@@ -346,7 +346,7 @@ Formation.prototype.RemoveMembers = function(ents, renamed = false)
 	// unless this is a rename where we can have 0 members temporarily.
 	if (this.members.length < +this.template.RequiredMemberCount && !renamed)
 	{
-		Engine.DestroyEntity(this.entity);
+		this.Disband();
 		return;
 	}
 
