@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <object name="profilePage" hidden="true">
 
+	<script directory="gui/lobby/ProfilePage/"/>
+
 	<!-- Translucent black background -->
 	<object type="image" z="100" sprite="ModernFade"/>
 

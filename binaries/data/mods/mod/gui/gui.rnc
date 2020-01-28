@@ -132,6 +132,7 @@ object =
       | \include
       | item
       | repeat
+      | script
       | translatableAttribute)*
       | text),
     unique_settings,

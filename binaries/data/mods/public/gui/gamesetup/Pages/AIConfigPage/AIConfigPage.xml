@@ -2,6 +2,9 @@
 
 <object name="aiConfigPage" hidden="true" z="200">
 
+	<script directory="gui/gamesetup/Pages/AIConfigPage/"/>
+	<script directory="gui/gamesetup/Pages/AIConfigPage/Controls/"/>
+
 	<object type="image" sprite="ModernFade"/>
 
 	<object type="image" style="ModernDialog" size="50%-290 50%-200 50%+290 50%+200">

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <object name="filterPanel">
 
+	<script directory="gui/lobby/LobbyPage/GameListFilters/"/>
+
 	<object type="text" size="22 0 52%-10 100%" text_align="left" textcolor="white">
 		<translatableAttribute id="caption">Show only open games</translatableAttribute>
 	</object>

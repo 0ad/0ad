@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <object name="loadingPage" type="image" style="ModernDialog" size="50%-190 50%-80 50%+190 50%+80">
 
+	<script directory="gui/gamesetup/Pages/LoadingPage/"/>
+
 	<object type="text" style="TitleText" size="50%-128 0%-16 50%+128 16">
 		<translatableAttribute id="caption">Loading</translatableAttribute>
 	</object>

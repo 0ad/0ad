@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <object name="leaderboardPage" hidden="true">
 
+	<script directory="gui/lobby/LeaderboardPage/"/>
+
 	<!-- Translucent black background -->
 	<object type="image" z="100" sprite="ModernFade"/>
 
