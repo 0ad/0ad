@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-10 08:09+0000\n"
-"PO-Revision-Date: 2020-01-10 15:41+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2020-01-24 08:09+0000\n"
+"PO-Revision-Date: 2020-01-24 14:27+0000\n"
+"Last-Translator: Gu Hong Min <placidmoon1@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -534,7 +534,7 @@ msgstr "부대를 치료합니다."
 msgid "Slave"
 msgstr "노예"
 
-#: simulation/templates/template_unit_support_slave.xml:42
+#: simulation/templates/template_unit_support_slave.xml:41
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
 msgstr "한정된 수명을 가진 채집자. 광업 및 벌목에 보너스를 제공합니다."
 
@@ -794,12 +794,10 @@ msgid "Toxótēs Skythikós"
 msgstr "토소테스 스키티코스"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:10
-#: simulation/templates/units/athen_hero_xenophon.xml:6
 msgid "Iphicrates"
 msgstr "이피크라테스"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:11
-#: simulation/templates/units/athen_hero_xenophon.xml:7
 msgid "Iphikratēs"
 msgstr "이피크라테스"
 
@@ -816,8 +814,16 @@ msgid "Themistocles"
 msgstr "테미스토클레스"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:11
-msgid "Themistoklês"
-msgstr "테미스토클레스"
+msgid "Themistoklēs"
+msgstr ""
+
+#: simulation/templates/units/athen_hero_xenophon.xml:6
+msgid "Xenophon"
+msgstr "크세노폰"
+
+#: simulation/templates/units/athen_hero_xenophon.xml:7
+msgid "Xenophōn"
+msgstr ""
 
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:20
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:20
@@ -1188,12 +1194,12 @@ msgid "Mašal"
 msgstr "마살"
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:9
-msgid "Ḥimelqart Baraq"
-msgstr "히멜콰르트 바르크"
-
-#: simulation/templates/units/cart_hero_hamilcar.xml:10
 msgid "Hamilcar Barca"
 msgstr "하밀카르 바르카"
+
+#: simulation/templates/units/cart_hero_hamilcar.xml:10
+msgid "Ḥimelqart Baraq"
+msgstr "히멜콰르트 바르크"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:8
 msgid "Hannibal Barca"
@@ -1513,19 +1519,19 @@ msgstr "나파탄 사원 경비대"
 msgid "rs ‘Imn"
 msgstr "나파탄 사원 경비대"
 
-#: simulation/templates/units/kush_champion_infantry_apedemak.xml:24
+#: simulation/templates/units/kush_champion_infantry_apedemak.xml:20
 msgid "Axeman"
 msgstr "부월수"
 
-#: simulation/templates/units/kush_champion_infantry_apedemak.xml:25
+#: simulation/templates/units/kush_champion_infantry_apedemak.xml:21
 msgid "Meroitic Temple Guard"
 msgstr "메로에 사원 경비대"
 
-#: simulation/templates/units/kush_champion_infantry_apedemak.xml:26
+#: simulation/templates/units/kush_champion_infantry_apedemak.xml:22
 msgid "rs ‘Iprmk"
 msgstr "메로아틱 사원 경비대"
 
-#: simulation/templates/units/kush_champion_infantry_apedemak.xml:27
+#: simulation/templates/units/kush_champion_infantry_apedemak.xml:23
 msgid "Armor-piercing Axes: Counters 1.3x vs. Champions and Heroes."
 msgstr "갑옷 깨는 도끼: 카운터 1.3배 대 대표 전사와 영웅."
 
@@ -1722,32 +1728,32 @@ msgid "Hypaspistḗs Argyraspídi"
 msgstr "히파스피스테스 아르기라스피디"
 
 #: simulation/templates/units/mace_hero_alexander.xml:20
-msgid "Alexander The Great"
-msgstr "알렉산더 대왕"
+msgid "Alexander III the Great"
+msgstr ""
 
 #: simulation/templates/units/mace_hero_alexander.xml:21
-msgid "Mégās Aléxandros"
-msgstr "메가스 알렉산드로스"
+msgid "Alexandros ho Megas"
+msgstr ""
 
 #: simulation/templates/units/mace_hero_alexander.xml:22
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
 msgstr "\"영웅 죽이기\" 보너스: 적 영웅에 대해 +20%의 공격 보너스."
 
 #: simulation/templates/units/mace_hero_craterus.xml:9
-msgid "Crateros"
+msgid "Craterus"
 msgstr "크라테로스"
 
 #: simulation/templates/units/mace_hero_craterus.xml:10
-msgid "Kraterós"
+msgid "Krateros"
 msgstr "크라테로스"
 
 #: simulation/templates/units/mace_hero_demetrius.xml:9
-msgid "Demetrius The Besieger"
-msgstr "데메트리오스 포위자(번역확인??)"
+msgid "Demetrius I the Besieger"
+msgstr ""
 
 #: simulation/templates/units/mace_hero_demetrius.xml:10
-msgid "Dēmḗtrios Poliorkḗtēs"
-msgstr "데메트리오스 포리오르케테스"
+msgid "Dēmētrios Poliorkētēs"
+msgstr ""
 
 #: simulation/templates/units/mace_hero_philip.xml:9
 #: simulation/templates/units/mace_hero_philip_pike.xml:9
@@ -1756,16 +1762,16 @@ msgstr "마케도니아 필리포스 2세"
 
 #: simulation/templates/units/mace_hero_philip.xml:10
 #: simulation/templates/units/mace_hero_philip_pike.xml:10
-msgid "Phílippos B' ho Makedṓn"
-msgstr "피리포스 2세 호 마케돈"
+msgid "Philippos B' ho Makedōn"
+msgstr ""
 
 #: simulation/templates/units/mace_hero_pyrrhus.xml:9
-msgid "Pyrrhus of Epirus"
-msgstr "에페이로스의 피로스"
+msgid "Pyrrhus I of Epirus"
+msgstr ""
 
 #: simulation/templates/units/mace_hero_pyrrhus.xml:10
-msgid "Pyrrhos ton Epeiros"
-msgstr "피르르호스 톤 에페이로스"
+msgid "Pyrrhos ho Epeiros"
+msgstr ""
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:14
 msgid "Agrianian Peltast"
@@ -2293,24 +2299,24 @@ msgid "Cleopatra VII"
 msgstr "클레오파트라 7세"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:12
-msgid "Kleopatra H' Philopator"
-msgstr "클레오파트라 7세 필로파토르"
+msgid "Kleopatra H' Philopatōr"
+msgstr ""
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:9
-msgid "Ptolemy I \"Savior\""
-msgstr "프톨레마이오스 1세 \"구원왕\""
+msgid "Ptolemy I"
+msgstr ""
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:10
-msgid "Ptolemaios A' Soter"
-msgstr "프톨레마이오스 1세 소테르"
+msgid "Ptolemaios A' Sōter"
+msgstr ""
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:9
-msgid "Ptolemy IV \"Father Loving\""
-msgstr "프톨레마이오스 4세 \"애부왕\""
+msgid "Ptolemy IV"
+msgstr ""
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:10
-msgid "Ptolemaios D' Philopator"
-msgstr "프톨레마이오스 4세 필로파토르"
+msgid "Ptolemaios D' Philopatōr"
+msgstr ""
 
 #: simulation/templates/units/ptol_infantry_archer_nubian.xml:6
 msgid "Nubian Mercenary Archer"
@@ -2637,28 +2643,28 @@ msgid "Thorakitès Rhomaïkós"
 msgstr "토라키테스 로마이코스"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:9
-msgid "Antiochus III \"The Great\""
-msgstr "안티오코스 3세 \"대왕\""
+msgid "Antiochus III the Great"
+msgstr ""
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:10
-msgid "Antiokhos G' Mégās"
+msgid "Antiokhos G' Megas"
 msgstr "안티오코스 7세 메가스"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:9
-msgid "Antiochus IV \"The Righteous\""
-msgstr "안티오코스 4세 \"현신왕\""
+msgid "Antiochus IV"
+msgstr ""
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:10
-msgid "Antiokhos D' Epiphanes"
-msgstr "안티오코스 4세 에피파네스"
+msgid "Antiokhos D' Epiphanēs"
+msgstr ""
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:9
-msgid "Seleucus I \"The Victor\""
-msgstr "셀레우코스 1세 \"승리왕\""
+msgid "Seleucus I"
+msgstr ""
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:10
-msgid "Seleukos A' Nikator"
-msgstr "셀레우코스 1세 니카토르"
+msgid "Seleukos A' Nikatōr"
+msgstr ""
 
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:21
 msgid "Syrian Archer"
@@ -2782,8 +2788,8 @@ msgid "Leonidas I"
 msgstr "레오니다스 1세"
 
 #: simulation/templates/units/spart_hero_leonidas.xml:10
-msgid "Leōnídēs"
-msgstr "레오니다스"
+msgid "Leōnidēs"
+msgstr ""
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:15
 msgid "Helot Skirmisher"

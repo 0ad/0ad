@@ -75,6 +75,16 @@ Foundation.prototype.GetBuildPercentage = function()
 	return Math.floor(this.GetBuildProgress() * 100);
 };
 
+/**
+ * Returns the current builders.
+ *
+ * @return {number[]} - An array containing the entity IDs of assigned builders.
+ */
+Foundation.prototype.GetBuilders = function()
+{
+	return Array.from(this.builders.keys());
+};
+
 Foundation.prototype.GetNumBuilders = function()
 {
 	return this.builders.size;
@@ -117,22 +127,47 @@ Foundation.prototype.OnDestroy = function()
 };
 
 /**
+ * Adds an array of builders.
+ *
+ * @param {number[]} builders - An array containing the entity IDs of builders to assign.
+ */
+Foundation.prototype.AddBuilders = function(builders)
+{
+	let changed = false;
+	for (let builder of builders)
+		changed = this.AddBuilderHelper(builder) || changed;
+
+	if (changed)
+		this.HandleBuildersChanged();
+};
+
+/**
+ * Adds a single builder to this entity.
+ *
+ * @param {number} builderEnt - The entity to add.
+ * @return {boolean} - Whether the addition was successful.
+ */
+Foundation.prototype.AddBuilderHelper = function(builderEnt)
+{
+	if (this.builders.has(builderEnt))
+		return false;
+
+	let buildRate = Engine.QueryInterface(builderEnt, IID_Builder).GetRate();
+	this.builders.set(builderEnt, buildRate);
+	this.totalBuilderRate += buildRate;
+
+	return true;
+}
+
+/**
  * Adds a builder to the counter.
+ *
+ * @param {number} builderEnt - The entity to add.
  */
 Foundation.prototype.AddBuilder = function(builderEnt)
 {
-	if (this.builders.has(builderEnt))
-		return;
-
-	this.builders.set(builderEnt, Engine.QueryInterface(builderEnt, IID_Builder).GetRate());
-	this.totalBuilderRate += this.builders.get(builderEnt);
-	this.SetBuildMultiplier();
-
-	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
-	if (cmpVisual)
-		cmpVisual.SetVariable("numbuilders", this.builders.size);
-
-	Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": Array.from(this.builders.keys()) });
+	if (this.AddBuilderHelper(builderEnt))
+		this.HandleBuildersChanged();
 };
 
 Foundation.prototype.RemoveBuilder = function(builderEnt)
@@ -142,14 +177,22 @@ Foundation.prototype.RemoveBuilder = function(builderEnt)
 
 	this.totalBuilderRate -= this.builders.get(builderEnt);
 	this.builders.delete(builderEnt);
+	this.HandleBuildersChanged();
+};
+
+/**
+ * This has to be called whenever the number of builders change.
+ */
+Foundation.prototype.HandleBuildersChanged = function()
+{
 	this.SetBuildMultiplier();
 
 	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (cmpVisual)
 		cmpVisual.SetVariable("numbuilders", this.builders.size);
 
-	Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": Array.from(this.builders.keys()) });
-};
+	Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": this.GetBuilders() });
+}
 
 /**
  * The build multiplier is a penalty that is applied to each builder.

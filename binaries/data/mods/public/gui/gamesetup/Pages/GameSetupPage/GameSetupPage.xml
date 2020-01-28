@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <object hidden="true" name="setupWindow">
 
+	<script directory="gui/gamesetup/Pages/GameSetupPage/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/GameSettings/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/"/>
+
+	<script directory="gui/gamesetup/Pages/GameSetupPage/Panels/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/Panels/Chat/"/>
+	<script directory="gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/"/>
+
 	<!-- TODO: Implement Engine.SetNetMessageHandler(msg => handlerFunction); instead of pulling onTick -->
 	<object name="netMessages"/>
 

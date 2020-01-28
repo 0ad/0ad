@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-10 08:09+0000\n"
-"PO-Revision-Date: 2020-01-10 15:41+0000\n"
+"POT-Creation-Date: 2020-01-24 08:09+0000\n"
+"PO-Revision-Date: 2020-01-24 14:27+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Kurdish (http://www.transifex.com/wildfire-games/0ad/language/ku/)\n"
 "MIME-Version: 1.0\n"
@@ -515,7 +515,7 @@ msgstr ""
 msgid "Slave"
 msgstr ""
 
-#: simulation/templates/template_unit_support_slave.xml:42
+#: simulation/templates/template_unit_support_slave.xml:41
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
 msgstr ""
 
@@ -775,12 +775,10 @@ msgid "Toxótēs Skythikós"
 msgstr ""
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:10
-#: simulation/templates/units/athen_hero_xenophon.xml:6
 msgid "Iphicrates"
 msgstr ""
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:11
-#: simulation/templates/units/athen_hero_xenophon.xml:7
 msgid "Iphikratēs"
 msgstr ""
 
@@ -797,7 +795,15 @@ msgid "Themistocles"
 msgstr ""
 
 #: simulation/templates/units/athen_hero_themistocles.xml:11
-msgid "Themistoklês"
+msgid "Themistoklēs"
+msgstr ""
+
+#: simulation/templates/units/athen_hero_xenophon.xml:6
+msgid "Xenophon"
+msgstr ""
+
+#: simulation/templates/units/athen_hero_xenophon.xml:7
+msgid "Xenophōn"
 msgstr ""
 
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:20
@@ -1169,11 +1175,11 @@ msgid "Mašal"
 msgstr ""
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:9
-msgid "Ḥimelqart Baraq"
+msgid "Hamilcar Barca"
 msgstr ""
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:10
-msgid "Hamilcar Barca"
+msgid "Ḥimelqart Baraq"
 msgstr ""
 
 #: simulation/templates/units/cart_hero_hannibal.xml:8
@@ -1494,19 +1500,19 @@ msgstr ""
 msgid "rs ‘Imn"
 msgstr ""
 
-#: simulation/templates/units/kush_champion_infantry_apedemak.xml:24
+#: simulation/templates/units/kush_champion_infantry_apedemak.xml:20
 msgid "Axeman"
 msgstr ""
 
-#: simulation/templates/units/kush_champion_infantry_apedemak.xml:25
+#: simulation/templates/units/kush_champion_infantry_apedemak.xml:21
 msgid "Meroitic Temple Guard"
 msgstr ""
 
-#: simulation/templates/units/kush_champion_infantry_apedemak.xml:26
+#: simulation/templates/units/kush_champion_infantry_apedemak.xml:22
 msgid "rs ‘Iprmk"
 msgstr ""
 
-#: simulation/templates/units/kush_champion_infantry_apedemak.xml:27
+#: simulation/templates/units/kush_champion_infantry_apedemak.xml:23
 msgid "Armor-piercing Axes: Counters 1.3x vs. Champions and Heroes."
 msgstr ""
 
@@ -1703,11 +1709,11 @@ msgid "Hypaspistḗs Argyraspídi"
 msgstr ""
 
 #: simulation/templates/units/mace_hero_alexander.xml:20
-msgid "Alexander The Great"
+msgid "Alexander III the Great"
 msgstr ""
 
 #: simulation/templates/units/mace_hero_alexander.xml:21
-msgid "Mégās Aléxandros"
+msgid "Alexandros ho Megas"
 msgstr ""
 
 #: simulation/templates/units/mace_hero_alexander.xml:22
@@ -1715,19 +1721,19 @@ msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
 msgstr ""
 
 #: simulation/templates/units/mace_hero_craterus.xml:9
-msgid "Crateros"
+msgid "Craterus"
 msgstr ""
 
 #: simulation/templates/units/mace_hero_craterus.xml:10
-msgid "Kraterós"
+msgid "Krateros"
 msgstr ""
 
 #: simulation/templates/units/mace_hero_demetrius.xml:9
-msgid "Demetrius The Besieger"
+msgid "Demetrius I the Besieger"
 msgstr ""
 
 #: simulation/templates/units/mace_hero_demetrius.xml:10
-msgid "Dēmḗtrios Poliorkḗtēs"
+msgid "Dēmētrios Poliorkētēs"
 msgstr ""
 
 #: simulation/templates/units/mace_hero_philip.xml:9
@@ -1737,15 +1743,15 @@ msgstr ""
 
 #: simulation/templates/units/mace_hero_philip.xml:10
 #: simulation/templates/units/mace_hero_philip_pike.xml:10
-msgid "Phílippos B' ho Makedṓn"
+msgid "Philippos B' ho Makedōn"
 msgstr ""
 
 #: simulation/templates/units/mace_hero_pyrrhus.xml:9
-msgid "Pyrrhus of Epirus"
+msgid "Pyrrhus I of Epirus"
 msgstr ""
 
 #: simulation/templates/units/mace_hero_pyrrhus.xml:10
-msgid "Pyrrhos ton Epeiros"
+msgid "Pyrrhos ho Epeiros"
 msgstr ""
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:14
@@ -2274,23 +2280,23 @@ msgid "Cleopatra VII"
 msgstr ""
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:12
-msgid "Kleopatra H' Philopator"
+msgid "Kleopatra H' Philopatōr"
 msgstr ""
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:9
-msgid "Ptolemy I \"Savior\""
+msgid "Ptolemy I"
 msgstr ""
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:10
-msgid "Ptolemaios A' Soter"
+msgid "Ptolemaios A' Sōter"
 msgstr ""
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:9
-msgid "Ptolemy IV \"Father Loving\""
+msgid "Ptolemy IV"
 msgstr ""
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:10
-msgid "Ptolemaios D' Philopator"
+msgid "Ptolemaios D' Philopatōr"
 msgstr ""
 
 #: simulation/templates/units/ptol_infantry_archer_nubian.xml:6
@@ -2618,27 +2624,27 @@ msgid "Thorakitès Rhomaïkós"
 msgstr ""
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:9
-msgid "Antiochus III \"The Great\""
+msgid "Antiochus III the Great"
 msgstr ""
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:10
-msgid "Antiokhos G' Mégās"
+msgid "Antiokhos G' Megas"
 msgstr ""
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:9
-msgid "Antiochus IV \"The Righteous\""
+msgid "Antiochus IV"
 msgstr ""
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:10
-msgid "Antiokhos D' Epiphanes"
+msgid "Antiokhos D' Epiphanēs"
 msgstr ""
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:9
-msgid "Seleucus I \"The Victor\""
+msgid "Seleucus I"
 msgstr ""
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:10
-msgid "Seleukos A' Nikator"
+msgid "Seleukos A' Nikatōr"
 msgstr ""
 
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:21
@@ -2763,7 +2769,7 @@ msgid "Leonidas I"
 msgstr ""
 
 #: simulation/templates/units/spart_hero_leonidas.xml:10
-msgid "Leōnídēs"
+msgid "Leōnidēs"
 msgstr ""
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:15

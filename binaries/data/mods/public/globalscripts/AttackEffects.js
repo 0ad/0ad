@@ -1,5 +1,5 @@
 // TODO: could be worth putting this in json files someday
-const g_EffectTypes = ["Damage", "Capture", "GiveStatus"];
+const g_EffectTypes = ["Damage", "Capture", "ApplyStatus"];
 const g_EffectReceiver = {
 	"Damage": {
 		"IID": "IID_Health",
@@ -9,8 +9,8 @@ const g_EffectReceiver = {
 		"IID": "IID_Capturable",
 		"method": "Capture"
 	},
-	"GiveStatus": {
+	"ApplyStatus": {
 		"IID": "IID_StatusEffectsReceiver",
-		"method": "GiveStatus"
+		"method": "ApplyStatus"
 	}
 };

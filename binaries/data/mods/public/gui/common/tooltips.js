@@ -275,13 +275,13 @@ function captureDetails(captureTemplate)
 	});
 }
 
-function giveStatusDetails(giveStatusTemplate)
+function applyStatusDetails(applyStatusTemplate)
 {
-	if (!giveStatusTemplate)
+	if (!applyStatusTemplate)
 		return "";
 
 	return sprintf(translate("gives %(name)s"), {
-		"name": Object.keys(giveStatusTemplate).map(x => unitFont(translateWithContext("status effect", x))).join(', '),
+		"name": Object.keys(applyStatusTemplate).map(x => unitFont(translateWithContext("status effect", applyStatusTemplate[x].Name))).join(commaFont(translate(", "))),
 	});
 }
 
@@ -293,7 +293,7 @@ function attackEffectsDetails(attackTypeTemplate)
 	let effects = [
 		captureDetails(attackTypeTemplate.Capture || undefined),
 		damageDetails(attackTypeTemplate.Damage || undefined),
-		giveStatusDetails(attackTypeTemplate.GiveStatus || undefined)
+		applyStatusDetails(attackTypeTemplate.ApplyStatus || undefined)
 	];
 	return effects.filter(effect => effect).join(commaFont(translate(", ")));
 }
@@ -323,9 +323,9 @@ function getAttackTooltip(template)
 
 		// Show the effects of status effects below
 		let statusEffectsDetails = [];
-		if (attackTypeTemplate.GiveStatus)
-			for (let status in attackTypeTemplate.GiveStatus)
-				statusEffectsDetails.push("\n    " + getStatusEffectsTooltip(status, attackTypeTemplate.GiveStatus[status]));
+		if (attackTypeTemplate.ApplyStatus)
+			for (let status in attackTypeTemplate.ApplyStatus)
+				statusEffectsDetails.push("\n    " + getStatusEffectsTooltip(attackTypeTemplate.ApplyStatus[status]));
 		statusEffectsDetails = statusEffectsDetails.join("");
 
 		tooltips.push(sprintf(translate("%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s"), {
@@ -371,20 +371,48 @@ function getSplashDamageTooltip(template)
 	return tooltips.join("\n");
 }
 
-function getStatusEffectsTooltip(name, template)
+function getStatusEffectsTooltip(template)
 {
+	let tooltipAttributes = [];
+	let tooltipString = "";
+	if (template.Tooltip)
+	{
+		tooltipAttributes.push("%(tooltip)s");
+		tooltipString = translate(template.Tooltip);
+	}
+
+	let attackEffectsString = "";
+	if (template.Damage || template.Capture)
+	{
+		tooltipAttributes.push("%(effects)s");
+		attackEffectsString = attackEffectsDetails(template);
+	}
+
+	let intervalString = "";
+	if (template.Interval)
+	{
+		tooltipAttributes.push("%(rate)s");
+		intervalString = sprintf(translate("%(interval)s"), {
+			"interval": attackRateDetails(+template.Interval)
+		});
+	}
+
 	let durationString = "";
 	if (template.Duration)
-		durationString = sprintf(translate(", %(durName)s: %(duration)s"), {
+	{
+		tooltipAttributes.push("%(duration)s");
+		durationString = sprintf(translate("%(durName)s: %(duration)s"), {
 			"durName": headerFont(translate("Duration")),
-			"duration": getSecondsString((template.TimeElapsed ? +template.Duration - template.TimeElapsed : +template.Duration) / 1000),
+			"duration": getSecondsString((template._timeElapsed ? +template.Duration - template._timeElapsed : +template.Duration) / 1000),
 		});
+	}
 
-	return sprintf(translate("%(statusName)s: %(effects)s, %(rate)s%(durationString)s"), {
-		"statusName": headerFont(translateWithContext("status effect", name)),
-		"effects": attackEffectsDetails(template),
-		"rate": attackRateDetails(+template.Interval),
-		"durationString": durationString
+	return sprintf(translate("%(statusName)s: " + tooltipAttributes.join(translate(commaFont(", ")))), {
+		"statusName": headerFont(translateWithContext("status effect", template.Name)),
+		"tooltip": tooltipString,
+		"effects": attackEffectsString,
+		"rate": intervalString,
+		"duration": durationString
 	});
 }
 

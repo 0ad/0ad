@@ -3,50 +3,70 @@
  */
 function Attacking() {}
 
+const DirectEffectsSchema =
+	"<element name='Damage'>" +
+		"<oneOrMore>" +
+			"<element a:help='One or more elements describing damage types'>" +
+				"<anyName>" +
+					// Armour requires Foundation to not be a damage type.
+					"<except><name>Foundation</name></except>" +
+				"</anyName>" +
+				"<ref name='nonNegativeDecimal' />" +
+			"</element>" +
+		"</oneOrMore>" +
+	"</element>" +
+	"<element name='Capture' a:help='Capture points value'>" +
+		"<ref name='nonNegativeDecimal'/>" +
+	"</element>";
+
+const StatusEffectsSchema =
+	"<element name='ApplyStatus' a:help='Effects like poisoning or burning a unit.'>" +
+		"<oneOrMore>" +
+			"<element>" +
+				"<anyName/>" +
+				"<interleave>" +
+					"<element name='Name'><text/></element>" +
+					"<optional>" +
+						"<element name='Icon' a:help='Icon for the status effect.'><text/></element>" +
+					"</optional>" +
+					"<optional>" +
+						"<element name='Tooltip'><text/></element>" +
+					"</optional>" +
+					"<optional>" +
+						"<element name='Duration' a:help='The duration of the status while the effect occurs.'><ref name='nonNegativeDecimal'/></element>" +
+					"</optional>" +
+					"<optional>" +
+						"<interleave>" +
+							"<element name='Interval' a:help='Interval between the occurances of the effect.'><ref name='nonNegativeDecimal'/></element>" +
+							"<oneOrMore>" +
+								"<choice>" +
+									DirectEffectsSchema +
+								"</choice>" +
+							"</oneOrMore>" +
+						"</interleave>" +
+					"</optional>" +
+					"<optional>" +
+						ModificationsSchema +
+					"</optional>" +
+				"</interleave>" +
+			"</element>" +
+		"</oneOrMore>" +
+	"</element>";
+
 /**
  * Builds a RelaxRNG schema of possible attack effects.
  * See globalscripts/AttackEffects.js for possible elements.
  * Attacks may also have a "Bonuses" element.
  *
- * @return {string}	- RelaxNG schema string
+ * @return {string} - RelaxNG schema string.
  */
-const DamageSchema = "" +
-	"<oneOrMore>" +
-		"<element a:help='One or more elements describing damage types'>" +
-			"<anyName>" +
-				// Armour requires Foundation to not be a damage type.
-				"<except><name>Foundation</name></except>" +
-			"</anyName>" +
-			"<ref name='nonNegativeDecimal' />" +
-		"</element>" +
-	"</oneOrMore>";
-
 Attacking.prototype.BuildAttackEffectsSchema = function()
 {
 	return "" +
 	"<oneOrMore>" +
 		"<choice>" +
-			"<element name='Damage'>" +
-				DamageSchema +
-			"</element>" +
-			"<element name='Capture' a:help='Capture points value'>" +
-				"<ref name='nonNegativeDecimal'/>" +
-			"</element>" +
-			"<element name='GiveStatus' a:help='Effects like poisoning or burning a unit.'>" +
-				"<oneOrMore>" +
-					"<element>" +
-						"<anyName/>" +
-						"<interleave>" +
-								"<optional>" +
-									"<element name='Icon' a:help='Icon for the status effect'><text/></element>" +
-								"</optional>" +
-								"<element name='Duration' a:help='The duration of the status while the effect occurs.'><ref name='nonNegativeDecimal'/></element>" +
-								"<element name='Interval' a:help='Interval between the occurances of the effect.'><ref name='nonNegativeDecimal'/></element>" +
-								"<element name='Damage' a:help='Damage caused by the effect.'>" + DamageSchema + "</element>" +
-						"</interleave>" +
-					"</element>" +
-				"</oneOrMore>" +
-			"</element>" +
+			DirectEffectsSchema +
+			StatusEffectsSchema +
 		"</choice>" +
 	"</oneOrMore>" +
 	"<optional>" +
@@ -85,8 +105,8 @@ Attacking.prototype.GetAttackEffectsData = function(valueModifRoot, template, en
 	if (template.Capture)
 		ret.Capture = ApplyValueModificationsToEntity(valueModifRoot + "/Capture", +(template.Capture || 0), entity);
 
-	if (template.GiveStatus)
-		ret.GiveStatus = template.GiveStatus;
+	if (template.ApplyStatus)
+		ret.ApplyStatus = template.ApplyStatus;
 
 	if (template.Bonuses)
 		ret.Bonuses = template.Bonuses;
@@ -250,10 +270,6 @@ Attacking.prototype.HandleAttackEffects = function(attackType, attackData, targe
 		Object.assign(targetState, cmpReceiver[receiver.method](attackData[effectType], attacker, attackerOwner, bonusMultiplier));
 	}
 
-	let cmpPromotion = Engine.QueryInterface(attacker, IID_Promotion);
-	if (cmpPromotion && targetState.xp)
-		cmpPromotion.IncreaseXp(targetState.xp);
-
 	if (targetState.killed)
 		this.TargetKilled(attacker, target, attackerOwner);
 
@@ -265,7 +281,16 @@ Attacking.prototype.HandleAttackEffects = function(attackType, attackData, targe
 		"damage": -(targetState.HPchange || 0),
 		"capture": targetState.captureChange || 0,
 		"statusEffects": targetState.inflictedStatuses || [],
+		"fromStatusEffect": !!attackData.StatusEffect,
 	});
+
+	// We do not want an entity to get XP from active Status Effects.
+	if (!!attackData.StatusEffect)
+		return;
+
+	let cmpPromotion = Engine.QueryInterface(attacker, IID_Promotion);
+	if (cmpPromotion && targetState.xp)
+		cmpPromotion.IncreaseXp(targetState.xp);
 };
 
 /**

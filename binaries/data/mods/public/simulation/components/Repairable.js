@@ -33,10 +33,31 @@ Repairable.prototype.GetBuildProgress = function()
 	return hitpoints / maxHitpoints;
 };
 
+/**
+ * Returns the current builders.
+ *
+ * @return {number[]} - An array containing the entity IDs of assigned builders.
+ */
+Repairable.prototype.GetBuilders = function()
+{
+	return Array.from(this.builders.keys());
+};
+
 Repairable.prototype.GetNumBuilders = function()
 {
 	return this.builders.size;
 };
+
+/**
+ * Adds an array of builders.
+ *
+ * @param {number[]} - An array containing the entity IDs of builders to assign.
+ */
+Repairable.prototype.AddBuilders = function(builders)
+{
+	for (let builder of builders)
+		this.AddBuilder(builder);
+}
 
 Repairable.prototype.AddBuilder = function(builderEnt)
 {

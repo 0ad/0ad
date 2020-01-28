@@ -551,6 +551,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)
 	ELMT(object);
 	ELMT(action);
+	ELMT(script);
 	ELMT(repeat);
 	ELMT(translatableAttribute);
 	ELMT(translate);
@@ -679,6 +680,10 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 
 			CStr eventName = child.GetAttributes().GetNamedItem(attr_on);
 			object->RegisterScriptHandler(eventName, code, *this);
+		}
+		else if (child.GetNodeName() == elmt_script)
+		{
+			Xeromyces_ReadScript(child, pFile, Paths);
 		}
 		else if (element_name == elmt_repeat)
 		{
