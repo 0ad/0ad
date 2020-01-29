@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -86,7 +86,7 @@ private:
 class CMapGeneratorWorker
 {
 public:
-	CMapGeneratorWorker();
+	CMapGeneratorWorker(ScriptInterface* scriptInterface);
 	~CMapGeneratorWorker();
 
 	/**
@@ -112,12 +112,18 @@ public:
 	 */
 	shared_ptr<ScriptInterface::StructuredClone> GetResults();
 
+	/**
+	 * Set initial seed, callback data.
+	 * Expose functions, globals and classes defined in this class relevant to the map and test scripts.
+	 */
+	void InitScriptInterface(const u32 seed);
+
 private:
 
 	/**
-	 * Expose functions defined in this class to the script.
+	 * Expose functions defined in this class that are relevant to mapscripts but not the tests.
 	 */
-	void RegisterScriptFunctions();
+	void RegisterScriptFunctions_MapGenerator();
 
 	/**
 	 * Load all scripts of the given library

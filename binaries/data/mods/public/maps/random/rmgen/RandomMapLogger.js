@@ -1,14 +1,16 @@
 function RandomMapLogger()
 {
 	this.lastTime = undefined;
-	this.startTime = Engine.GetMicroseconds();
+	this.startTime = Engine.GetMicroseconds ? Engine.GetMicroseconds() : 0;
 	this.prefix = ""; // seems noisy
 
-	this.printDirectly(
-		this.prefix +
-		"Generating " + g_MapSettings.Name +
-		" of size " + g_MapSettings.Size +
-		" and "  + getNumPlayers() + " players.\n");
+	// Don't print in test cases
+	if (g_MapSettings.Name)
+		this.printDirectly(
+			this.prefix +
+			"Generating " + g_MapSettings.Name +
+			" of size " + g_MapSettings.Size +
+			" and " + (g_MapSettings.PlayerData.length - 1) + " players.\n");
 }
 
 RandomMapLogger.prototype.printDirectly = function(string)
