@@ -1463,8 +1463,8 @@ void CRenderer::OnSwapBuffers()
 	PROFILE3("error check");
 	// We have to check GL errors after SwapBuffer to avoid possible
 	// synchronizations during rendering.
-	//if (GLenum  err = glGetError())
-	//	ONCE(LOGERROR("GL error %s (0x%04x) occurred", ogl_GetErrorName(err), err));
+	if (GLenum  err = glGetError())
+		ONCE(LOGERROR("GL error %s (0x%04x) occurred", ogl_GetErrorName(err), err));
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
