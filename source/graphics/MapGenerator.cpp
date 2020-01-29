@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -57,7 +57,8 @@ MapGeneratorInterruptCallback(JSContext* UNUSED(cx))
 	return true;
 }
 
-CMapGeneratorWorker::CMapGeneratorWorker()
+CMapGeneratorWorker::CMapGeneratorWorker(ScriptInterface* scriptInterface) :
+	m_ScriptInterface(scriptInterface)
 {
 	// If something happens before we initialize, that's a failure
 	m_Progress = -1;
@@ -66,7 +67,8 @@ CMapGeneratorWorker::CMapGeneratorWorker()
 CMapGeneratorWorker::~CMapGeneratorWorker()
 {
 	// Wait for thread to end
-	m_WorkerThread.join();
+	if (m_WorkerThread.joinable())
+		m_WorkerThread.join();
 }
 
 void CMapGeneratorWorker::Initialize(const VfsPath& scriptFile, const std::string& settings)
@@ -116,13 +118,6 @@ bool CMapGeneratorWorker::Run()
 	JSContext* cx = m_ScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
 
-	m_ScriptInterface->SetCallbackData(static_cast<void*> (this));
-
-	// Replace RNG with a seeded deterministic function
-	m_ScriptInterface->ReplaceNondeterministicRNG(m_MapGenRNG);
-
-	RegisterScriptFunctions();
-
 	// Parse settings
 	JS::RootedValue settingsVal(cx);
 	if (!m_ScriptInterface->ParseJSON(m_Settings, &settingsVal) && settingsVal.isUndefined())
@@ -144,7 +139,9 @@ bool CMapGeneratorWorker::Run()
 	    !m_ScriptInterface->GetProperty(settingsVal, "Seed", seed))
 		LOGWARNING("CMapGeneratorWorker::Run: No seed value specified - using 0");
 
-	m_MapGenRNG.seed(seed);
+	InitScriptInterface(seed);
+
+	RegisterScriptFunctions_MapGenerator();
 
 	// Copy settings to global variable
 	JS::RootedValue global(cx, m_ScriptInterface->GetGlobalObject());
@@ -165,8 +162,13 @@ bool CMapGeneratorWorker::Run()
 	return true;
 }
 
-void CMapGeneratorWorker::RegisterScriptFunctions()
+void CMapGeneratorWorker::InitScriptInterface(const u32 seed)
 {
+	m_ScriptInterface->SetCallbackData(static_cast<void*>(this));
+
+	m_ScriptInterface->ReplaceNondeterministicRNG(m_MapGenRNG);
+	m_MapGenRNG.seed(seed);
+
 	// VFS
 	JSI_VFS::RegisterScriptFunctions_Maps(*m_ScriptInterface);
 
@@ -178,17 +180,6 @@ void CMapGeneratorWorker::RegisterScriptFunctions()
 	m_ScriptInterface->RegisterFunction<JS::Value, VfsPath, CMapGeneratorWorker::LoadHeightmap>("LoadHeightmapImage");
 	m_ScriptInterface->RegisterFunction<JS::Value, VfsPath, CMapGeneratorWorker::LoadMapTerrain>("LoadMapTerrain");
 
-	// Progression and profiling
-	m_ScriptInterface->RegisterFunction<void, int, CMapGeneratorWorker::SetProgress>("SetProgress");
-	m_ScriptInterface->RegisterFunction<double, CMapGeneratorWorker::GetMicroseconds>("GetMicroseconds");
-	m_ScriptInterface->RegisterFunction<void, JS::HandleValue, CMapGeneratorWorker::ExportMap>("ExportMap");
-
-	// Template functions
-	m_ScriptInterface->RegisterFunction<CParamNode, std::string, CMapGeneratorWorker::GetTemplate>("GetTemplate");
-	m_ScriptInterface->RegisterFunction<bool, std::string, CMapGeneratorWorker::TemplateExists>("TemplateExists");
-	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindTemplates>("FindTemplates");
-	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindActorTemplates>("FindActorTemplates");
-
 	// Engine constants
 
 	// Length of one tile of the terrain grid in metres.
@@ -197,6 +188,20 @@ void CMapGeneratorWorker::RegisterScriptFunctions()
 
 	// Number of impassable tiles at the map border
 	m_ScriptInterface->SetGlobal("MAP_BORDER_WIDTH", static_cast<int>(MAP_EDGE_TILES));
+}
+
+void CMapGeneratorWorker::RegisterScriptFunctions_MapGenerator()
+{
+	// Template functions
+	m_ScriptInterface->RegisterFunction<CParamNode, std::string, CMapGeneratorWorker::GetTemplate>("GetTemplate");
+	m_ScriptInterface->RegisterFunction<bool, std::string, CMapGeneratorWorker::TemplateExists>("TemplateExists");
+	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindTemplates>("FindTemplates");
+	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindActorTemplates>("FindActorTemplates");
+
+	// Progression and profiling
+	m_ScriptInterface->RegisterFunction<void, int, CMapGeneratorWorker::SetProgress>("SetProgress");
+	m_ScriptInterface->RegisterFunction<double, CMapGeneratorWorker::GetMicroseconds>("GetMicroseconds");
+	m_ScriptInterface->RegisterFunction<void, JS::HandleValue, CMapGeneratorWorker::ExportMap>("ExportMap");
 }
 
 int CMapGeneratorWorker::GetProgress()
@@ -410,7 +415,7 @@ JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CxPrivate* pCxPri
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 
-CMapGenerator::CMapGenerator() : m_Worker(new CMapGeneratorWorker())
+CMapGenerator::CMapGenerator() : m_Worker(new CMapGeneratorWorker(nullptr))
 {
 }
 
