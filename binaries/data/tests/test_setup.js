@@ -8,31 +8,31 @@
 function fail(msg)
 {
 	// Get a list of callers
-	let trace = (new Error).stack.split("\n");
+	let trace = (new Error()).stack.split("\n");
 	// Remove the Error ctor and this function from the stack
 	trace = trace.splice(2);
 	trace = "Stack trace:\n" + trace.join("\n");
 	Engine.TS_FAIL(trace + msg);
 }
 
-global.TS_FAIL = function TS_FAIL(msg)
+global.TS_FAIL = function(msg)
 {
 	fail(msg);
 };
 
-global.TS_ASSERT = function TS_ASSERT(e)
+global.TS_ASSERT = function(e)
 {
 	if (!e)
 		fail("Assert failed");
 };
 
-global.TS_ASSERT_EQUALS = function TS_ASSERT_EQUALS(x, y)
+global.TS_ASSERT_EQUALS = function(x, y)
 {
-	if (!(x === y))
-		fail("Expected equal, got "+uneval(x)+" !== "+uneval(y));
+	if (x !== y)
+		fail("Expected equal, got " + uneval(x) + " !== " + uneval(y));
 };
 
-global.TS_ASSERT_EQUALS_APPROX = function TS_ASSERT_EQUALS_APPROX(x, y, maxDifference)
+global.TS_ASSERT_EQUALS_APPROX = function(x, y, maxDifference)
 {
 	TS_ASSERT_NUMBER(maxDifference);
 
@@ -40,10 +40,10 @@ global.TS_ASSERT_EQUALS_APPROX = function TS_ASSERT_EQUALS_APPROX(x, y, maxDiffe
 		fail("Expected almost equal, got " + uneval(x) + " !== " + uneval(y));
 };
 
-global.TS_ASSERT_UNEVAL_EQUALS = function TS_ASSERT_UNEVAL_EQUALS(x, y)
+global.TS_ASSERT_UNEVAL_EQUALS = function(x, y)
 {
 	if (!(uneval(x) === uneval(y)))
-		fail("Expected equal, got "+uneval(x)+" !== "+uneval(y));
+		fail("Expected equal, got " + uneval(x) + " !== " + uneval(y));
 };
 
 global.TS_ASSERT_EXCEPTION = function(func)
@@ -59,4 +59,28 @@ global.TS_ASSERT_NUMBER = function(value)
 {
 	if (typeof value != "number" || !isFinite(value))
 		fail("The given value must be a real number!");
+};
+
+global.TS_ASSERT_LESS = function(x, y)
+{
+	if (x >= y)
+		fail("Expected less than, got " + uneval(x) + " >= " + uneval(y));
+};
+
+global.TS_ASSERT_GREATER = function(x, y)
+{
+	if (x <= y)
+		fail("Expected greater than, got " + uneval(x) + " <= " + uneval(y));
+};
+
+global.TS_ASSERT_LESS_EQUAL = function(x, y)
+{
+	if (x > y)
+		fail("Expected less than or equal to, got " + uneval(x) + " > " + uneval(y));
+};
+
+global.TS_ASSERT_GREATER_EQUAL = function(x, y)
+{
+	if (x < y)
+		fail("Expected greater than or equal, got " + uneval(x) + " < " + uneval(y));
 };
