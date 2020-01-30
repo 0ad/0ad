@@ -281,6 +281,13 @@ function ownsEntity(ent)
 	return entState && entState.player == g_ViewedPlayer;
 }
 
+function isSnapToEdgesEnabled()
+{
+	let config = Engine.ConfigDB_GetValue("user", "gui.session.snaptoedges");
+	let hotkeyPressed = Engine.HotkeyIsPressed("session.snaptoedges");
+	return hotkeyPressed == (config == "disabled");
+}
+
 function tryPlaceBuilding(queued)
 {
 	if (placementSupport.mode !== "building")
@@ -722,13 +729,12 @@ function handleInputBeforeGui(ev, hoveredObject)
 				placementSupport.SetDefaultAngle();
 			}
 
-			let snapToEdges = Engine.HotkeyIsPressed("session.snaptoedges");
 			let snapData = Engine.GuiInterfaceCall("GetFoundationSnapData", {
  				"template": placementSupport.template,
  				"x": placementSupport.position.x,
 				"z": placementSupport.position.z,
 				"angle": placementSupport.angle,
-				"snapToEdges": snapToEdges && Engine.GetEdgesOfStaticObstructionsOnScreenNearTo(
+				"snapToEdges": isSnapToEdgesEnabled() && Engine.GetEdgesOfStaticObstructionsOnScreenNearTo(
 					placementSupport.position.x, placementSupport.position.z)
  			});
 			if (snapData)
@@ -1049,12 +1055,11 @@ function handleInputAfterGui(ev)
 					return true;
 				}
 
-				let snapToEdges = Engine.HotkeyIsPressed("session.snaptoedges");
 				let snapData = Engine.GuiInterfaceCall("GetFoundationSnapData", {
  					"template": placementSupport.template,
  					"x": placementSupport.position.x,
  					"z": placementSupport.position.z,
-					"snapToEdges": snapToEdges && Engine.GetEdgesOfStaticObstructionsOnScreenNearTo(
+					"snapToEdges": isSnapToEdgesEnabled() && Engine.GetEdgesOfStaticObstructionsOnScreenNearTo(
 						placementSupport.position.x, placementSupport.position.z)
  				});
 				if (snapData)
@@ -1081,8 +1086,7 @@ function handleInputAfterGui(ev)
 				{
 					placementSupport.position = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
 
-					let snapToEdges = Engine.HotkeyIsPressed("session.snaptoedges");
-					if (snapToEdges)
+					if (isSnapToEdgesEnabled())
 					{
 						let snapData = Engine.GuiInterfaceCall("GetFoundationSnapData", {
 							"template": placementSupport.template,

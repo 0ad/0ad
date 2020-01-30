@@ -544,6 +544,24 @@
 				"label": "Diplomacy colors: enemy",
 				"tooltip": "Color of enemies when diplomacy colors are enabled.",
 				"config": "gui.session.diplomacycolors.enemy"
+			},
+			{
+				"type": "dropdown",
+				"label": "Snap to edges",
+				"tooltip": "This option allows to align new structures with nearby structures.",
+				"config": "gui.session.snaptoedges",
+				"list": [
+					{
+						"value": "disabled",
+						"label": "Hotkey to enable snapping",
+						"tooltip": "New structures are aligned with nearby structures while pressing the hotkey."
+					},
+					{
+						"value": "enabled",
+						"label": "Hotkey to disable snapping",
+						"tooltip": "New structures are aligned with nearby structures unless the hotkey is pressed."
+					}
+				]
 			}
 		]
 	}
