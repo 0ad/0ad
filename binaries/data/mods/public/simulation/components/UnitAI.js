@@ -4452,12 +4452,11 @@ UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
 	if (!this.CheckTargetVisible(target) || this.IsTurret())
 		return false;
 
-	var cmpRanged = Engine.QueryInterface(this.entity, iid);
-	if (!cmpRanged)
+	let range = this.GetRange(iid, type);
+	if (!range)
 		return false;
-	var range = cmpRanged.GetRange(type);
 
-	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	return cmpUnitMotion.MoveToTargetRange(target, range.min, range.max);
 };
 
@@ -4486,8 +4485,9 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	if (!this.CheckTargetVisible(target))
 		return false;
 
-	let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-	let range = cmpAttack.GetRange(type);
+	let range = this.GetRange(IID_Attack, type);
+	if (!range)
+		return false;
 
 	let thisCmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (!thisCmpPosition.IsInWorld())
@@ -4568,10 +4568,9 @@ UnitAI.prototype.CheckPointRangeExplicit = function(x, z, min, max)
 
 UnitAI.prototype.CheckTargetRange = function(target, iid, type)
 {
-	var cmpRanged = Engine.QueryInterface(this.entity, iid);
-	if (!cmpRanged)
+	let range = this.GetRange(iid, type);
+	if (!range)
 		return false;
-	var range = cmpRanged.GetRange(type);
 
 	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
 	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, range.max, false);
@@ -4605,8 +4604,9 @@ UnitAI.prototype.CheckTargetAttackRange = function(target, type)
 	if (!targetCmpPosition || !targetCmpPosition.IsInWorld())
 		return false;
 
-	let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-	let range = cmpAttack.GetRange(type);
+	let range = this.GetRange(IID_Attack, type);
+	if (!range)
+		return false;
 
 	let thisCmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (!thisCmpPosition.IsInWorld())
@@ -4735,20 +4735,19 @@ UnitAI.prototype.FaceTowardsTarget = function(target)
 
 UnitAI.prototype.CheckTargetDistanceFromHeldPosition = function(target, iid, type)
 {
-	var cmpRanged = Engine.QueryInterface(this.entity, iid);
-	var range = iid !== IID_Attack ? cmpRanged.GetRange() : cmpRanged.GetRange(type);
+	let range = this.GetRange(iid, type);
 
-	var cmpPosition = Engine.QueryInterface(target, IID_Position);
+	let cmpPosition = Engine.QueryInterface(target, IID_Position);
 	if (!cmpPosition || !cmpPosition.IsInWorld())
 		return false;
 
-	var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
+	let cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
 	if (!cmpVision)
 		return false;
-	var halfvision = cmpVision.GetRange() / 2;
+	let halfvision = cmpVision.GetRange() / 2;
 
-	var pos = cmpPosition.GetPosition();
-	var heldPosition = this.heldPosition;
+	let pos = cmpPosition.GetPosition();
+	let heldPosition = this.heldPosition;
 	if (heldPosition === undefined)
 		heldPosition = { "x": pos.x, "z": pos.z };
 
@@ -4757,12 +4756,12 @@ UnitAI.prototype.CheckTargetDistanceFromHeldPosition = function(target, iid, typ
 
 UnitAI.prototype.CheckTargetIsInVisionRange = function(target)
 {
-	var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
+	let cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
 	if (!cmpVision)
 		return false;
-	var range = cmpVision.GetRange();
 
-	var distance = DistanceBetweenEntities(this.entity, target);
+	let range = cmpVision.GetRange();
+	let distance = DistanceBetweenEntities(this.entity, target);
 
 	return distance < range;
 };
@@ -5787,49 +5786,33 @@ UnitAI.prototype.FindNewHealTargets = function()
 
 UnitAI.prototype.GetQueryRange = function(iid)
 {
-	var ret = { "min": 0, "max": 0 };
+	let ret = { "min": 0, "max": 0 };
+
+	let cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
+	if (!cmpVision)
+		return ret;
+	let visionRange = cmpVision.GetRange();
+
 	if (this.GetStance().respondStandGround)
 	{
-		var cmpRanged = Engine.QueryInterface(this.entity, iid);
-		if (!cmpRanged)
-			return ret;
-		var range = iid !== IID_Attack ? cmpRanged.GetRange() : cmpRanged.GetFullAttackRange();
-		var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
-		if (!cmpVision)
+		let range = this.GetRange(iid);
+		if (!range)
 			return ret;
 		ret.min = range.min;
-		ret.max = Math.min(range.max, cmpVision.GetRange());
+		ret.max = Math.min(range.max, visionRange);
 	}
 	else if (this.GetStance().respondChase)
-	{
-		var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
-		if (!cmpVision)
-			return ret;
-		var range = cmpVision.GetRange();
-		ret.max = range;
-	}
+		ret.max = visionRange;
 	else if (this.GetStance().respondHoldGround)
 	{
-		var cmpRanged = Engine.QueryInterface(this.entity, iid);
-		if (!cmpRanged)
-			return ret;
-		var range = iid !== IID_Attack ? cmpRanged.GetRange() : cmpRanged.GetFullAttackRange();
-		var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
-		if (!cmpVision)
-			return ret;
-		var vision = cmpVision.GetRange();
-		ret.max = Math.min(range.max + vision / 2, vision);
+		let range = this.GetRange(iid);
+		ret.max = Math.min(range.max + visionRange / 2, visionRange);
 	}
 	// We probably have stance 'passive' and we wouldn't have a range,
 	// but as it is the default for healers we need to set it to something sane.
 	else if (iid === IID_Heal)
-	{
-		var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
-		if (!cmpVision)
-			return ret;
-		var range = cmpVision.GetRange();
-		ret.max = range;
-	}
+		ret.max = visionRange;
+
 	return ret;
 };
 
@@ -5911,6 +5894,25 @@ UnitAI.prototype.WalkToHeldPosition = function()
 };
 
 //// Helper functions ////
+
+/**
+ * General getter for ranges.
+ *
+ * @param {number} iid
+ * @param {string} type - [Optional]
+ * @return {Object | undefined} - The range in the form
+ *	{ "min": number, "max": number }
+ *	Object."elevationBonus": number may be present when iid == IID_Attack.
+ *	Returns undefined when the entity does not have the requested component.
+ */
+UnitAI.prototype.GetRange = function(iid, type)
+{
+	let component = Engine.QueryInterface(this.entity, iid);
+	if (!component)
+		return;
+
+	return component.GetRange(type);
+}
 
 UnitAI.prototype.CanAttack = function(target)
 {

@@ -427,6 +427,9 @@ Attack.prototype.GetSplashData = function(type)
 
 Attack.prototype.GetRange = function(type)
 {
+	if (!type)
+		return this.GetFullAttackRange();
+
 	let max = +this.template[type].MaxRange;
 	max = ApplyValueModificationsToEntity("Attack/" + type + "/MaxRange", max, this.entity);
 
