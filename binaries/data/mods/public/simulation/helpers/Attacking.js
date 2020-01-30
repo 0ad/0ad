@@ -303,7 +303,7 @@ Attacking.prototype.HandleAttackEffects = function(attackType, attackData, targe
 Attacking.prototype.EntitiesNearPoint = function(origin, radius, players)
 {
 	// If there is insufficient data return an empty array.
-	if (!origin || !radius || !players)
+	if (!origin || !radius || !players || !players.length)
 		return [];
 
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
@@ -312,8 +312,12 @@ Attacking.prototype.EntitiesNearPoint = function(origin, radius, players)
 	let gaiaEntities = [];
 	let gaiaIndex = players.indexOf(0);
 	if (gaiaIndex !== -1)
+	{
 		// splice() modifies players in-place and returns [0]
 		gaiaEntities = gaiaEntities.concat(cmpRangeManager.ExecuteQueryAroundPos(origin, 0, radius, players.splice(gaiaIndex, 1), IID_Health));
+		if (!players.length)
+			return gaiaEntities;
+	}
 
 	return cmpRangeManager.ExecuteQueryAroundPos(origin, 0, radius, players, 0).concat(gaiaEntities);
 };

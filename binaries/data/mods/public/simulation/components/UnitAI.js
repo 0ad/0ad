@@ -3581,7 +3581,10 @@ UnitAI.prototype.SetupRangeQuery = function(enable = true)
 
 	// Exclude allies, and self
 	// TODO: How to handle neutral players - Special query to attack military only?
-	var players = cmpPlayer.GetEnemies();
+	let players = cmpPlayer.GetEnemies();
+	if (!players.length)
+		return;
+
 	var range = this.GetQueryRange(IID_Attack);
 
 	this.losRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_Resistance, cmpRangeManager.GetEntityFlagMask("normal"));
