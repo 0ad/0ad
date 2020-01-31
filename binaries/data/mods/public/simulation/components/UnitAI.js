@@ -4739,6 +4739,8 @@ UnitAI.prototype.FaceTowardsTarget = function(target)
 UnitAI.prototype.CheckTargetDistanceFromHeldPosition = function(target, iid, type)
 {
 	let range = this.GetRange(iid, type);
+	if (!range)
+		return false;
 
 	let cmpPosition = Engine.QueryInterface(target, IID_Position);
 	if (!cmpPosition || !cmpPosition.IsInWorld())
@@ -5809,6 +5811,8 @@ UnitAI.prototype.GetQueryRange = function(iid)
 	else if (this.GetStance().respondHoldGround)
 	{
 		let range = this.GetRange(iid);
+		if (!range)
+			return ret;
 		ret.max = Math.min(range.max + visionRange / 2, visionRange);
 	}
 	// We probably have stance 'passive' and we wouldn't have a range,
@@ -5912,7 +5916,7 @@ UnitAI.prototype.GetRange = function(iid, type)
 {
 	let component = Engine.QueryInterface(this.entity, iid);
 	if (!component)
-		return;
+		return undefined;
 
 	return component.GetRange(type);
 }
