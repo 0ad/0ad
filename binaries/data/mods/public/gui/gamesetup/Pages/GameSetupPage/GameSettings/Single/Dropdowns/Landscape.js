@@ -90,7 +90,15 @@ GameSettingControls.Landscape = class extends GameSettingControlDropdown
 
 	getAutocompleteEntries()
 	{
-		return this.values.Name;
+		if (!this.values)
+			return undefined;
+
+		let entries = [];
+		for (let i = 0; i < this.values.Id.length; ++i)
+			if (!this.values.Id[i].startsWith("random"))
+				entries.push(this.values.Name[i]);
+
+		return entries;
 	}
 
 	onSelectionChange(itemIdx)

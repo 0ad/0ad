@@ -75,7 +75,7 @@ GameSettingControls.Daytime = class extends GameSettingControlDropdown
 
 	getAutocompleteEntries()
 	{
-		return this.values.Name;
+		return this.values && this.values.Name.slice(1);
 	}
 
 	onSelectionChange(itemIdx)
