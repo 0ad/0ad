@@ -23,7 +23,12 @@ GameSettingControls.Daytime = class extends GameSettingControlDropdown
 					"Description": this.RandomDescription,
 					"Preview": mapData.settings.Preview
 				},
-				...mapData.settings.Daytime
+				...mapData.settings.Daytime.map(item => ({
+					"Id": item.Id,
+					"Name": translate(item.Name),
+					"Description": translate(item.Description),
+					"Preview": item.Preview
+				}))
 			]);
 
 			this.dropdown.list = this.values.Name;

@@ -1,7 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
-const day = g_MapSettings.dayTime !== undefined ? g_MapSettings.dayTime == "day" : randBool(2/3);
+const day = g_MapSettings.Daytime !== undefined ? g_MapSettings.Daytime == "day" : randBool(2/3);
 
 // Spawn ships away from the shoreline, but patrol close to the shoreline
 const triggerPointShipSpawn = "trigger/trigger_point_A";
