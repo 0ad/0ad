@@ -22,8 +22,15 @@ var playerIDs;
 var playerPosition;
 if (!isNomad())
 {
-	let playerbasePattern = randomStartingPositionPattern(getTeamsArray());
-	[playerIDs, playerPosition] = createBasesByPattern(playerbasePattern.setup, playerbasePattern.distance, playerbasePattern.groupedDistance, randomAngle());
+	let pattern = g_MapSettings.TeamPlacement || pickRandom(Object.keys(g_PlayerbaseTypes));
+
+	[playerIDs, playerPosition] =
+		createBasesByPattern(
+			pattern,
+			g_PlayerbaseTypes[pattern].distance,
+			g_PlayerbaseTypes[pattern].groupedDistance,
+			randomAngle());
+
 	markPlayerAvoidanceArea(playerPosition, defaultPlayerBaseRadius());
 }
 Engine.SetProgress(20);

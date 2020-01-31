@@ -10,6 +10,7 @@ var g_GameSettingsLayout = [
 			"MapFilter",
 			"MapSelection",
 			"MapSize",
+			"TeamPlacement",
 			"Landscape",
 			"Biome",
 			"SeaLevelRiseTime",

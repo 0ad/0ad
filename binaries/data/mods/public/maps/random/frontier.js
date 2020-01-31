@@ -19,8 +19,15 @@ createArea(
 
 Engine.SetProgress(20);
 
-const playerbasePattern = randomStartingPositionPattern(getTeamsArray());
-createBasesByPattern(playerbasePattern.setup, playerbasePattern.distance, playerbasePattern.groupedDistance, randomAngle());
+if (!isNomad())
+{
+	let pattern = g_MapSettings.TeamPlacement || pickRandom(Object.keys(g_PlayerbaseTypes));
+	createBasesByPattern(
+		pattern,
+		g_PlayerbaseTypes[pattern].distance,
+		g_PlayerbaseTypes[pattern].groupedDistance,
+		randomAngle());
+}
 Engine.SetProgress(40);
 
 var features = [

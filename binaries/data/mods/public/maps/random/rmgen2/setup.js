@@ -56,31 +56,27 @@ var g_TileClasses;
 
 var g_PlayerbaseTypes = {
 	"line": {
-		"available": () => g_Map.getSize() >= 384 && getTeamsArray().length >= 2 && getNumPlayers() >= 4,
 		"getPosition": (distance, groupedDistance, startAngle) => placeLine(getTeamsArray(), distance, groupedDistance, startAngle),
 		"distance": fractionToTiles(randFloat(0.2, 0.35)),
-		"groupedDistance": fractionToTiles(randFloat(0.05, 0.1)),
+		"groupedDistance": fractionToTiles(randFloat(0.08, 0.1)),
 		"walls": false
 	},
 	"radial": {
-		"available": () => true,
 		"getPosition": (distance, groupedDistance, startAngle) => playerPlacementCircle(distance, startAngle),
 		"distance": fractionToTiles(randFloat(0.25, 0.35)),
-		"groupedDistance": fractionToTiles(randFloat(0.07, 0.1)),
+		"groupedDistance": fractionToTiles(randFloat(0.08, 0.1)),
 		"walls": true
 	},
-	"random": {
-		"available": () => g_Map.getSize() >= 256 && (getTeamsArray().length >= 3 || getNumPlayers() > 4),
+	"randomGroup": {
 		"getPosition": (distance, groupedDistance, startAngle) => playerPlacementRandom(sortAllPlayers()) || playerPlacementCircle(distance, startAngle),
 		"distance": fractionToTiles(randFloat(0.25, 0.35)),
-		"groupedDistance": fractionToTiles(randFloat(0.07, 0.1)),
+		"groupedDistance": fractionToTiles(randFloat(0.08, 0.1)),
 		"walls": true
 	},
 	"stronghold": {
-		"available": () => g_Map.getSize() >= 256 && getTeamsArray().length >= 2 && getNumPlayers() >= 4,
 		"getPosition": (distance, groupedDistance, startAngle) => placeStronghold(getTeamsArray(), distance, groupedDistance, startAngle),
 		"distance": fractionToTiles(randFloat(0.2, 0.35)),
-		"groupedDistance": fractionToTiles(randFloat(0.07, 0.1)),
+		"groupedDistance": fractionToTiles(randFloat(0.08, 0.1)),
 		"walls": false
 	}
 };
@@ -144,7 +140,7 @@ function pickSize(sizes)
 /**
  * Choose starting locations for all players.
  *
- * @param {string} type - "radial", "line", "stronghold", "random"
+ * @param {string} type - "radial", "line", "stronghold", "randomGroup"
  * @param {number} distance - radial distance from the center of the map
  * @param {number} groupedDistance - space between players within a team
  * @param {number} startAngle - determined by the map that might want to place something between players
@@ -238,19 +234,6 @@ function getTeamsArray()
 
 	// Remove unused indices
 	return teams.filter(team => true);
-}
-
-/**
- * Choose a random pattern for placing the bases of the players.
- */
-function randomStartingPositionPattern(teamsArray)
-{
-	let type = pickRandom(Object.keys(g_PlayerbaseTypes).filter(type => g_PlayerbaseTypes[type].available()));
-	return {
-		"setup": type,
-		"distance": g_PlayerbaseTypes[type].distance,
-		"groupedDistance": g_PlayerbaseTypes[type].groupedDistance
-	};
 }
 
 /**
