@@ -45,7 +45,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-24 08:08+0000\n"
-"PO-Revision-Date: 2020-01-26 17:14+0000\n"
+"PO-Revision-Date: 2020-01-29 16:37+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -1200,7 +1200,7 @@ msgstr "Трофеи:"
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:885
 msgid "Right-click to view more information."
-msgstr "Нажмите ПКМ для просмотра дополнительной информации."
+msgstr "Щёлкните правой кнопкой для дополнительной информации."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
@@ -1354,7 +1354,7 @@ msgstr "Обучение"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr ""
+msgstr "Научиться играть, начать обучающую кампанию, изучить древа технологий и историю цивилизаций."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -1381,7 +1381,7 @@ msgstr "Древо зданий"
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr "%(hotkey)s: Посмотреть технологическое дерево цивилизаций, представленных в 0 A.D."
+msgstr "%(hotkey)s: Посмотреть древо зданий цивилизаций, представленных в 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:36
 #: gui/reference/structree/structree.xml:(caption):126
@@ -1391,15 +1391,15 @@ msgstr "История"
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Узнать о цивилизациях, представленных в 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:142
 msgid "Single-player"
-msgstr ""
+msgstr "Одиночная игра"
 
 #: gui/pregame/MainMenuItems.js:51
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "Начать, загрузить или воспроизвести одиночную игру."
 
 #: gui/pregame/MainMenuItems.js:54
 msgid "Matches"
@@ -1407,7 +1407,7 @@ msgstr "Сражения"
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "Начать новую одиночную игру."
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Campaigns"
@@ -1421,7 +1421,7 @@ msgstr "Воспроизведите историю в исторических 
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Load a saved game."
-msgstr ""
+msgstr "Загрузить сохранённую игру."
 
 #: gui/pregame/MainMenuItems.js:73 gui/pregame/MainMenuItems.js:123
 msgid "Replays"
@@ -1477,7 +1477,7 @@ msgstr "Настройки"
 
 #: gui/pregame/MainMenuItems.js:139
 msgid "Change game options."
-msgstr ""
+msgstr "Изменить настройки игры."
 
 #: gui/pregame/MainMenuItems.js:142
 msgid "Options"
@@ -1501,7 +1501,7 @@ msgstr "Выбор модов"
 
 #: gui/pregame/MainMenuItems.js:160
 msgid "Select and download mods for the game."
-msgstr "Выберите и загрузите модификации для этой игры."
+msgstr "Выберите и загрузите моды для игры."
 
 #: gui/pregame/MainMenuItems.js:166
 msgid "Welcome Screen"
@@ -1509,7 +1509,7 @@ msgstr "Экран приветствия"
 
 #: gui/pregame/MainMenuItems.js:167
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Показать приветственный экран — на случай, если его случайно пропустили."
 
 #: gui/pregame/MainMenuItems.js:175
 msgid "Scenario Editor"
@@ -1523,7 +1523,7 @@ msgstr "Открыть редактор сценариев Atlas в новом �
 
 #: gui/pregame/MainMenuItems.js:181
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr "Вы уверены, что хотите выйти из 0 A.D. и открыть Редактор сценариев?"
+msgstr "Вы уверены, что хотите выйти из 0 A.D. и открыть редактор сценариев?"
 
 #: gui/pregame/MainMenuItems.js:182 gui/pregame/MainMenuItems.js:206
 msgid "Confirmation"
@@ -1545,7 +1545,7 @@ msgstr "Внесшие вклад"
 
 #: gui/pregame/MainMenuItems.js:194
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "Показать список внёсших свой вклад в 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:200
 msgid "Exit"
@@ -1553,7 +1553,7 @@ msgstr "Выход"
 
 #: gui/pregame/MainMenuItems.js:201
 msgid "Exit the game."
-msgstr ""
+msgstr "Выйти из игры."
 
 #: gui/pregame/MainMenuItems.js:205
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -2237,7 +2237,7 @@ msgstr "%(mapName)s — %(mapType)s"
 #: gui/summary/summary.js:524
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr "%(hotkey)s: Переключить сетевую комнату в диалоговом окне."
+msgstr "%(hotkey)s: Включить\\отключить сетевую комнату в диалоговом окне."
 
 #: gui/civinfo/civinfo.xml:(caption):18
 msgid "Civilizations"
@@ -3274,7 +3274,7 @@ msgstr ""
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr "Отображать радиус атаки выбранных защитных сооружений (можно переключить в игре при помощи горячей клавиши)."
+msgstr "Отображать радиус атаки выбранных защитных сооружений (можно изменить во время игры с помощью горячей клавиши)."
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
@@ -3284,7 +3284,7 @@ msgstr ""
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr "Отображать радиус ауры выбранных юнитов и зданий (можно также переключить по ходу игры с помощью горячей клавиши)."
+msgstr "Отображать радиус ауры выбранных юнитов и зданий (можно изменить во время игры с помощью горячей клавиши)."
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
@@ -3294,7 +3294,7 @@ msgstr ""
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
-msgstr "Отображать радиус лечения для выбранных единиц (также можно переключить в игре с помощью горячей клавиши)."
+msgstr "Отображать радиус лечения для выбранных юнитов (можно изменить во время игры с помощью горячей клавиши)."
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
@@ -3606,7 +3606,7 @@ msgstr "[imgleft=\"iconLag\"]Игра может иметь проблемы с 
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]Формирования находятся на стадии разработки, но при желании вы можете переключать создание и роспуск формирования."
+msgstr "[imgleft=\"iconFormation\"]Боевые порядки находятся на стадии разработки, но, при желании, вы можете создавать и распускать боевые порядки."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
@@ -3859,7 +3859,7 @@ msgstr "Афинский полководец, реформировавший а
 
 #: gui/text/tips/iphicrates.txt:3
 msgid "Units in his formation are faster and stronger."
-msgstr "Войны в его построении становятся быстрее и сильнее."
+msgstr "Воины в боевом порядке под его началом становятся быстрее и сильнее."
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "Skirmishers move faster while he lives."

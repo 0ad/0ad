@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# GunChleoc, 2014-2019
+# GunChleoc, 2014-2020
 # GunChleoc, 2014
 # GunChleoc, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-24 08:08+0000\n"
-"PO-Revision-Date: 2020-01-24 15:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-01-27 14:07+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +33,7 @@ msgstr "%(hotkey)s: Dùin an eachdraidh."
 #: gui/civinfo/civinfo.js:85
 #, javascript-format
 msgid "• %(string)s"
-msgstr ""
+msgstr "• %(string)s"
 
 #: gui/civinfo/civinfo.js:113
 #, javascript-format
@@ -63,10 +63,10 @@ msgstr "Teicneolasan sònraichte"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Structure"
 msgid_plural "Special Structures"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Togalach sònraichte"
+msgstr[1] "Togalaichean sònraichte"
+msgstr[2] "Togalaichean sònraichte"
+msgstr[3] "Togalaichean sònraichte"
 
 #: gui/civinfo/civinfo.js:141 gui/summary/layout.js:67
 msgid "Heroes"
@@ -400,7 +400,7 @@ msgstr "Stòrasan tòiseachaidh"
 #: gui/common/gamedescription.js:358
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Gach cluicheadair"
 
 #: gui/common/gamedescription.js:359
 #, javascript-format
@@ -414,7 +414,7 @@ msgstr "Tomhas-sluaigh"
 #: gui/common/gamedescription.js:374
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Gach cluicheadair"
 
 #: gui/common/gamedescription.js:381
 msgid "Treasures"
@@ -538,15 +538,15 @@ msgstr "Dh’fhàillig le dearbhadh tèarainte an lobaidh. Gabh pàirt ann sligh
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr ""
+msgstr "Mearachd: Cha deach leis an fhrithealaiche aithnichear àraidh iomruineadh dhan chliant."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
-msgstr ""
+msgstr "Mearachd: Bha àitheantan a’ chliant deis airson cuairt geama air nach robh dùil."
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
-msgstr ""
+msgstr "Mearachd: Dh’àireamhaich an cliant cuairt geama air nach robh dùil."
 
 #: gui/common/network.js:81
 #, javascript-format
@@ -763,7 +763,7 @@ msgstr "(%(armorPercentage)s)"
 
 #: gui/common/tooltips.js:192
 msgid "Garrison to fire arrows"
-msgstr ""
+msgstr "Cuir gearastan ann airson saighdean a thilgeil"
 
 #: gui/common/tooltips.js:195
 msgid "Interval:"
@@ -777,10 +777,10 @@ msgstr "Reat:"
 #, javascript-format
 msgid "%(projectileCount)s %(projectileName)s"
 msgid_plural "%(projectileCount)s %(projectileName)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(projectileCount)s %(projectileName)s"
+msgstr[1] "%(projectileCount)s %(projectileName)s"
+msgstr[2] "%(projectileCount)s %(projectileName)s"
+msgstr[3] "%(projectileCount)s %(projectileName)s"
 
 #: gui/common/tooltips.js:202
 msgid "arrow"
@@ -793,7 +793,7 @@ msgstr[3] "saighead"
 #: gui/common/tooltips.js:205
 #, javascript-format
 msgid "%(projectileString)s / %(attackRateString)s"
-msgstr ""
+msgstr "%(projectileString)s / %(attackRateString)s"
 
 #. Translation: For example: Range: 2 to 10 (+2) meters
 #: gui/common/tooltips.js:225
@@ -801,25 +801,25 @@ msgstr ""
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
 "%(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s gu %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 (+2) meters
 #: gui/common/tooltips.js:227
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 2 to 10 meters
 #: gui/common/tooltips.js:231
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s gu %(maxRange)s %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 meters
 #: gui/common/tooltips.js:233
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
 #: gui/common/tooltips.js:243 gui/common/tooltips.js:766
 msgid "Range:"
@@ -853,37 +853,37 @@ msgstr "%(damage)s %(damageType)s"
 #: gui/common/tooltips.js:272
 #, javascript-format
 msgid "%(amount)s %(name)s"
-msgstr ""
+msgstr "%(amount)s %(name)s"
 
 #: gui/common/tooltips.js:274
 msgctxt "damage type"
 msgid "Capture"
-msgstr ""
+msgstr "Glacadh"
 
 #: gui/common/tooltips.js:283
 #, javascript-format
 msgid "gives %(name)s"
-msgstr ""
+msgstr "bheir e %(name)s dhut"
 
 #: gui/common/tooltips.js:313
 #, javascript-format
 msgid "%(attackType)s Attack"
-msgstr ""
+msgstr "Ionnsaigh %(attackType)s"
 
 #: gui/common/tooltips.js:331
 #, javascript-format
 msgid "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s"
 
 #: gui/common/tooltips.js:354
 #, javascript-format
 msgid "%(splashShape)s Splash Damage"
-msgstr ""
+msgstr "Dochann steallaidh %(splashShape)s"
 
 #: gui/common/tooltips.js:357
 #, javascript-format
 msgid "%(label)s: %(effects)s"
-msgstr ""
+msgstr "%(label)s: %(effects)s"
 
 #: gui/common/tooltips.js:363
 #, javascript-format
@@ -909,7 +909,7 @@ msgstr "Chan eil"
 #: gui/common/tooltips.js:378
 #, javascript-format
 msgid ", %(durName)s: %(duration)s"
-msgstr ""
+msgstr ", %(durName)s: %(duration)s"
 
 #: gui/common/tooltips.js:379
 msgid "Duration"
@@ -918,7 +918,7 @@ msgstr "Faide"
 #: gui/common/tooltips.js:383
 #, javascript-format
 msgid "%(statusName)s: %(effects)s, %(rate)s%(durationString)s"
-msgstr ""
+msgstr "%(statusName)s: %(effects)s, %(rate)s%(durationString)s"
 
 #: gui/common/tooltips.js:397
 #, javascript-format
@@ -1181,12 +1181,12 @@ msgstr "%(nick)s – %(name)s"
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr ""
+msgstr "Sguab às an geama air a shàbhaladh a thagh thu le %(hotkey)s."
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:204
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr ""
+msgstr "Cùm sìos %(hotkey)s a ghearradh leum thairis air còmhradh an dearbhaidh nuair a bhios tu ri sguabadh às."
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
 #, javascript-format
@@ -1319,7 +1319,7 @@ msgstr "Leabhar-mìneachaidh"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr ""
+msgstr "Ionnsaich mar a chluicheas tu, tòisich an t-oideachadh agus faigh a-mach mu chraobhan teicneolais agus eachdraidh nan sìobhaltasan."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -1346,7 +1346,7 @@ msgstr "Craobh nan sìobhaltas"
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr "%(hotkey)s: Seall craobh nan sìobhaltas aig 0 A.D. "
+msgstr "%(hotkey)s: Seall craobh nan sìobhaltas aig 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:36
 #: gui/reference/structree/structree.xml:(caption):126
@@ -1356,15 +1356,15 @@ msgstr "Eachdraidh"
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Fiosrachadh mu na sìobhaltasan ann an 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:142
 msgid "Single-player"
-msgstr ""
+msgstr "Aon-chluicheadair"
 
 #: gui/pregame/MainMenuItems.js:51
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "Tòisich, luchdaich no ath-chluich geama aon-chluicheadair."
 
 #: gui/pregame/MainMenuItems.js:54
 msgid "Matches"
@@ -1372,7 +1372,7 @@ msgstr "Maidsichean"
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "Tòisich air geama aon-chluicheadair ùr."
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Campaigns"
@@ -1386,7 +1386,7 @@ msgstr "Atharrais an eachdraidh le iomairtean an airm eachdraidheil. \\[CHAN EIL
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Load a saved game."
-msgstr ""
+msgstr "Luchdaich geama air a shàbhaladh."
 
 #: gui/pregame/MainMenuItems.js:73 gui/pregame/MainMenuItems.js:123
 msgid "Replays"
@@ -1402,7 +1402,7 @@ msgstr "Ioma-chluicheadair"
 
 #: gui/pregame/MainMenuItems.js:89
 msgid "Fight against one or more human players in a multiplayer game."
-msgstr "Dèan sabaid an aghaidh cluicheadair daonna no dhà ann an geama ioma-chluicheadair"
+msgstr "Dèan sabaid an aghaidh cluicheadair daonna no dhà ann an geama ioma-chluicheadair."
 
 #. Translation: Join a game by specifying the host's IP address.
 #: gui/pregame/MainMenuItems.js:93
@@ -1419,7 +1419,7 @@ msgstr "Òstaich geama"
 
 #: gui/pregame/MainMenuItems.js:103
 msgid "Host a multiplayer game."
-msgstr ""
+msgstr "Òstaich geama ioma-chluicheadair."
 
 #: gui/pregame/MainMenuItems.js:111
 msgid "Game Lobby"
@@ -1442,7 +1442,7 @@ msgstr "Roghainnean"
 
 #: gui/pregame/MainMenuItems.js:139
 msgid "Change game options."
-msgstr ""
+msgstr "Atharraich roghainnean a’ gheama."
 
 #: gui/pregame/MainMenuItems.js:142
 msgid "Options"
@@ -1474,7 +1474,7 @@ msgstr "Sgrìn fàilteachaidh"
 
 #: gui/pregame/MainMenuItems.js:167
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Seall an sgrìn fàilteachaidh a-rithist. Tha seo feumail ma dh’fhalaich thu le mearachd i."
 
 #: gui/pregame/MainMenuItems.js:175
 msgid "Scenario Editor"
@@ -1510,7 +1510,7 @@ msgstr "Urram"
 
 #: gui/pregame/MainMenuItems.js:194
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "Seall urram 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:200
 msgid "Exit"
@@ -1518,7 +1518,7 @@ msgstr "Fàg an-seo"
 
 #: gui/pregame/MainMenuItems.js:201
 msgid "Exit the game."
-msgstr ""
+msgstr "Fàg an geama."
 
 #: gui/pregame/MainMenuItems.js:205
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -1536,7 +1536,7 @@ msgstr "Alpha XXIV"
 msgid ""
 "Notice: This game is under development and many features have not been added"
 " yet."
-msgstr ""
+msgstr "An aire: Tha an geama seo ’ga leasachadh fhathast agus tha iomadh gleus ann nach deach a chur ris fhathast."
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
@@ -1853,7 +1853,7 @@ msgstr "%(min)s - %(max)s mion"
 
 #: gui/replaymenu/replay_filters.js:142
 msgid "Single-player and multiplayer"
-msgstr ""
+msgstr "Aon- is ioma-chluicheadair"
 
 #: gui/replaymenu/replay_filters.js:155
 msgid "Any Victory Condition"
@@ -1879,7 +1879,7 @@ msgstr "Sgrìobh pàirt dhe dh’ainm cluicheadair no cluicheadairean gus na h-a
 #: gui/replaymenu/replay_menu.js:199
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
-msgstr ""
+msgstr "Sguab às ath-chluiche a thagh thu le %(hotkey)s."
 
 #: gui/replaymenu/replay_menu.js:284
 #, javascript-format
@@ -1922,7 +1922,7 @@ msgstr "Rùrachadh"
 
 #: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):81
 msgid "Structures"
-msgstr ""
+msgstr "Togalaichean"
 
 #: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:102
 msgid "Total"
@@ -1961,7 +1961,7 @@ msgstr "Mìorbhailean"
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "Stadastaireachd nan togalach (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):88
 msgid "Units"
@@ -1998,7 +1998,7 @@ msgstr "Fir-mhalairt"
 #: gui/summary/layout.js:74
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "Stadastaireachd nan aonad (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):95
 msgid "Resources"
@@ -2363,7 +2363,7 @@ msgstr "A’ phrìomh chlàr-taice"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Rebuild Cache"
-msgstr ""
+msgstr "Ath-thog an tasgadan"
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
 #: gui/summary/summary.xml:(caption):34
@@ -2560,7 +2560,7 @@ msgstr "Ceann"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr ""
+msgstr "Cothromachadh"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
@@ -2638,27 +2638,27 @@ msgstr "Eadar-theangadairean"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "An t-ainm a bu chòir cur ort ann an geamannan aon-chluicheadair."
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "Ainm cluicheadair (aon-chluicheadair)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr ""
+msgstr "An t-ainm a bu chòir cur ort ann an geamannan ioma-chluicheadair (seach san lobaidh)."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr ""
+msgstr "Ainm cluicheadair (ioma-chluicheadair)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr ""
+msgstr "Cuir geamannan aon-chluicheadair ’nan stad nuair a chailleas an uinneag am fòcas."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
-msgstr ""
+msgstr "’Na stad sa chùlaibh"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
@@ -2668,7 +2668,7 @@ msgstr "Ma chuireas tu seo à comas, thèid an sgrìn fàilteachaidh a shealltai
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
-msgstr ""
+msgstr "Cuir an sgrìn fàilteachaidh an comas"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
@@ -2676,7 +2676,7 @@ msgstr "Seall cò an cluicheadair aig a bheil droch-cheangal ann an geamannan io
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network warnings"
-msgstr ""
+msgstr "Rabhaidhean lìonraidh"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2684,7 +2684,7 @@ msgstr "Seall na frèaman gach diog san oisean deas air a’ bharr."
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS overlay"
-msgstr ""
+msgstr "Nochd FPS"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -2692,7 +2692,7 @@ msgstr "Seall àm làithreach an t-siostaim san oisean deas air a’ bharr."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Real time overlay"
-msgstr ""
+msgstr "Nochd am fìor-àm"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
@@ -2700,7 +2700,7 @@ msgstr "Seall àm làithreach am broinn a’ gheama san oisean deas air a’ bha
 
 #: gui/options/options.json[0].options[7].label
 msgid "Game time overlay"
-msgstr ""
+msgstr "Nochd àm a’ gheama"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -2708,7 +2708,7 @@ msgstr "Seall an ùine a tha air fhàgail air an fhois-losgaidh an-còmhnaidh."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire time overlay"
-msgstr ""
+msgstr "Nochd ùine na foise-losgaidh"
 
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
@@ -2733,7 +2733,7 @@ msgstr "Thoir cead dha na h-uile duine no dha charaidean a-mhàin gun dig iad a-
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late observer joins"
-msgstr ""
+msgstr "Tighinn a-steach anmoch nan amharc"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
@@ -2741,7 +2741,7 @@ msgstr "Na leig le amhairc eile tighinn a-steach nuair a chaidh a’ chrìoch a 
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer limit"
-msgstr ""
+msgstr "Crìoch nan amharc"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid ""
@@ -2750,7 +2750,7 @@ msgstr "Seall an t-àm a thèid teachdaireachdan a phostadh gu cabadaich na loba
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "Stampa-tìde na cabadaich"
 
 #: gui/options/options.json[0].label
 msgid "General"
@@ -2762,7 +2762,7 @@ msgstr "Tòisich 0 A.D. ann an uinneag."
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
-msgstr ""
+msgstr "Am modh uinneagach"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
@@ -2782,11 +2782,11 @@ msgstr "Ceò"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Cleachd criathragan pròiseasadh-sgrìn an dèidh làimh (HDR, Bloom, DOF is msaa)."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
-msgstr ""
+msgstr "Pròiseasadh an dèidh làimh"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -2794,7 +2794,7 @@ msgstr "Àireamh nan èifeachdan sgàileadair. FEUMAIDH TU AN GEAMA A THÒISEACH
 
 #: gui/options/options.json[1].options[4].label
 msgid "Shader effects"
-msgstr ""
+msgstr "Èifeachdan sgàileadair"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Enable shadows."
@@ -2829,11 +2829,11 @@ msgstr "Glè àrd"
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr "An dùmhlachd-bhreacaidh aig mapa nan sgàilean. Dh’fhaoidte gun tuislich luachan àrda an geama mur eil ach beagan cuimhne aig a’ chairt grafaigeachd."
+msgstr "An dùmhlachd-bhreacaidh aig mapa nan sgàilean. Dh’fhaoidte gun tuislich luachan àrda an geama mur eil ach beagan cuimhne aig a’ chairt grafaigeachd!"
 
 #: gui/options/options.json[1].options[6].label
 msgid "Shadow quality"
-msgstr ""
+msgstr "Càileachd nan sgàilean"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Smooth shadows."
@@ -2841,15 +2841,15 @@ msgstr "Sgàilean rèidhe."
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shadow filtering"
-msgstr ""
+msgstr "Criathradh sgàile"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Show outlines of units behind structures."
-msgstr ""
+msgstr "Seall sgàil-riochdan de dh’aonadan a tha air cùlaibh thogalaichean."
 
 #: gui/options/options.json[1].options[8].label
 msgid "Unit silhouettes"
-msgstr ""
+msgstr "Sgàil-riochdan nan aonadan"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Enable particles."
@@ -2867,7 +2867,7 @@ msgstr "Nuair a bhios e DHETH, cleachd an roghainn as ìsle gus uisge a reandara
 
 #: gui/options/options.json[1].options[10].label
 msgid "Water effects"
-msgstr ""
+msgstr "Èifeachdan uisge"
 
 #: gui/options/options.json[1].options[11].tooltip
 msgid ""
@@ -2877,7 +2877,7 @@ msgstr "Cleachd an càileachd as fhearr airson èifeachdan uisge, a’ reandarad
 
 #: gui/options/options.json[1].options[11].label
 msgid "High-quality water effects"
-msgstr ""
+msgstr "Èifeachdan uisge le càileachd àrd"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -2885,7 +2885,7 @@ msgstr "Cleachd fìor-dhoimhne uisge ann an àireamhachadh an reandaraidh."
 
 #: gui/options/options.json[1].options[12].label
 msgid "Real water depth"
-msgstr ""
+msgstr "Fìor-dhoimhne uisge"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid "Allow water to reflect a mirror image."
@@ -2893,7 +2893,7 @@ msgstr "Leig le uisge dealbh faileis a thilgeil air ais."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Water reflections"
-msgstr ""
+msgstr "Faileas uisge"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Use a real water refraction map and not transparency."
@@ -2901,7 +2901,7 @@ msgstr "Cleachd mapa fìor sholas-bhriseadh uisge seach trìd-shoilleireachd."
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water refraction"
-msgstr ""
+msgstr "Solas-bhriseadh uisge"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Cast shadows on water."
@@ -2909,7 +2909,7 @@ msgstr "Tilg sgàilean air uisge."
 
 #: gui/options/options.json[1].options[15].label
 msgid "Shadows on water"
-msgstr ""
+msgstr "Sgàilean air an uisge"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
@@ -2917,7 +2917,7 @@ msgstr "Tog dubhar agus ceò a’ chogaidh gu rèidh."
 
 #: gui/options/options.json[1].options[16].label
 msgid "Smooth vision"
-msgstr ""
+msgstr "Lèirsinn rèidh"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Render Sky."
@@ -2925,7 +2925,7 @@ msgstr "Reandaraich na speuran."
 
 #: gui/options/options.json[1].options[17].label
 msgid "Show sky"
-msgstr ""
+msgstr "Seall na speuran"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
@@ -2969,7 +2969,7 @@ msgstr "Prìomh àirde na fuaime."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master volume"
-msgstr ""
+msgstr "Maighstir àirde na fuaime"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
@@ -2977,7 +2977,7 @@ msgstr "Àirde a’ chiùil sa gheama."
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music volume"
-msgstr ""
+msgstr "Àirde a’ chiùil"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
@@ -2985,7 +2985,7 @@ msgstr "Àirde aig fuaimean na h-àrainneachd sa gheama."
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient volume"
-msgstr ""
+msgstr "Àirde na h-àrainneachd"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
@@ -2993,7 +2993,7 @@ msgstr "Àirde aig fuaimean gnìomhachd nan aonadan sa gheama."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action volume"
-msgstr ""
+msgstr "Àirde nan gnìomhan"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
@@ -3001,7 +3001,7 @@ msgstr "Àirde aig fuaimean na h-eadar-aghaidh."
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI volume"
-msgstr ""
+msgstr "Àirde na h-eadar-aghaidh"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
@@ -3009,7 +3009,7 @@ msgstr "Faigh brath fuaime nuair a sgrìobas cuideigin d’ fhar-ainm."
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick notification"
-msgstr ""
+msgstr "Brath far-ainm"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -3017,7 +3017,7 @@ msgstr "Faigh brath fuaime nuair a thig cliant ùr a-steach gu rèiteachadh a’
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game setup - new player notification"
-msgstr ""
+msgstr "Rèiteachadh geama – brath cluicheadair ùir"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -3025,7 +3025,7 @@ msgstr "Seall gliocasan fhad ’s a tha geama ’ga shuidheachadh."
 
 #: gui/options/options.json[3].options[0].label
 msgid "Enable game setting tips"
-msgstr ""
+msgstr "Cuir an comas gliocasan mu shuidheachadh geama"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
@@ -3033,7 +3033,7 @@ msgstr "Slaighd leòsan nan roghainnean nuair a thèid fhosgladh, a dhùnadh no 
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable settings panel slide"
-msgstr ""
+msgstr "Cuir an comas slaighdeadh air panail nan roghainnean"
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
@@ -3070,7 +3070,7 @@ msgstr "Duilgheas tùsail na h-IF."
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI difficulty"
-msgstr ""
+msgstr "Duilgheas tùsail na h-IF"
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
@@ -3094,21 +3094,21 @@ msgstr "Giùlan tùsail na h-IF."
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI behavior"
-msgstr ""
+msgstr "Giùlan tùsail na h-IF"
 
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
-msgstr ""
+msgstr "Thèid slot falamh iomruineadh do chluicheadairean a thig a-steach dhan geama ma tha gin ann."
 
 #: gui/options/options.json[3].options[5].list[1].tooltip
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
-msgstr ""
+msgstr "Cha dèid slot iomruineadh do chluicheadairean a thig a-steach dhan geama ach ma bhios iad ’nan caraidean dhan òstair ’s ma bhios slot falamh ann."
 
 #: gui/options/options.json[3].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr ""
+msgstr "Chan fhaigh cluicheadairean slot ach ma dh’iomruineas an t-òstair fhèin fear dhaibh."
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
@@ -3118,7 +3118,7 @@ msgstr "Iomruin ionadan saora dha chluicheadairean a thig a-steach rè suidheach
 
 #: gui/options/options.json[3].options[5].label
 msgid "Assign players"
-msgstr ""
+msgstr "Iomruin cluicheadairean"
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
@@ -3131,7 +3131,7 @@ msgstr "Dìon an clàradh a-steach is an dàta a thèid a thar-aiseag le frithea
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
-msgstr ""
+msgstr "Crioptachadh TLS"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
@@ -3139,7 +3139,7 @@ msgstr "An àireamh de theachdaireachdan roimhe a thèid a luchdadh on loga nuai
 
 #: gui/options/options.json[4].options[1].label
 msgid "Chat backlog"
-msgstr ""
+msgstr "Ro-loga na cabadaich"
 
 #: gui/options/options.json[4].options[2].tooltip
 msgid ""
@@ -3149,7 +3149,7 @@ msgstr "Seall rangachadh cuibheasach nan cluicheadairean a ghabhas pàirt ann ai
 
 #: gui/options/options.json[4].options[2].label
 msgid "Game rating column"
-msgstr ""
+msgstr "Colbh rangachadh nan geama"
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
@@ -3167,7 +3167,7 @@ msgstr "Taghaidh grad-iuchair nan aonadan leònta na h-aonadan aig a bheil ceuda
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
-msgstr ""
+msgstr "Slàinte nan aonadan leònta"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
@@ -3175,7 +3175,7 @@ msgstr "An uiread dhe dh’aonadan a thèid a thrèanadh ann an grunn a ghnàth.
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch training size"
-msgstr ""
+msgstr "Meud ghrunnan trèanaidh"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
@@ -3184,7 +3184,7 @@ msgstr "Co meud turas a nì thu sgroladh gus an dèid meud nan grunnan a mheudac
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
-msgstr ""
+msgstr "Astar meudachaidh ghrunnan le sgroladh"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
@@ -3192,7 +3192,7 @@ msgstr "Seall brath na cabadaich nuair a bheir cluicheadair eile ionnsaigh ort."
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat notification attack"
-msgstr ""
+msgstr "Brathan cabadaich air ionnsaighean"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
@@ -3202,7 +3202,7 @@ msgstr "Seall brath na cabadaich ma bheir caidreabhach cìs a stòrasan gu ball 
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat notification tribute"
-msgstr ""
+msgstr "Brathan cabadaich air cìsean"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
@@ -3211,7 +3211,7 @@ msgstr "Seall brath na cabadaich dha na h-amhairc nuair a dh’iomlaidich cluich
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat notification barter"
-msgstr ""
+msgstr "Brathan cabadaich air iomlaideadh"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -3233,7 +3233,7 @@ msgstr "Seall brath na cabadaich nuair a bhios tu fhèin no caidreabhach (no na 
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat notification phase"
-msgstr ""
+msgstr "Brathan cabadaich air linntean"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
@@ -3243,7 +3243,7 @@ msgstr "Seall astar ionnsaighe nan togalaichean dìona a chaidh a thaghadh (gabh
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
-msgstr ""
+msgstr "Samhlaidhean astar na h-ionnsaighe"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
@@ -3253,7 +3253,7 @@ msgstr "Seall astar nan aura airson nan aonadan is togalaichean a chaidh a thagh
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
-msgstr ""
+msgstr "Samhlaidhean astar nan aura"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
@@ -3263,7 +3263,7 @@ msgstr "Seall astar slànachaidh nan aonadan a chaidh a thaghadh (gabhaidh a tho
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
-msgstr ""
+msgstr "Samhlaidhean astar an t-slànachaidh"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
@@ -3284,11 +3284,11 @@ msgstr "Bàr-staide an eòlais"
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr ""
+msgstr "Seall gliocasan-sgrìn mionaideach airson aonadan a ghabhas trèanadh ann an togalaichean a nì aonadan."
 
 #: gui/options/options.json[5].options[12].label
 msgid "Detailed tooltips"
-msgstr ""
+msgstr "Gliocasan-sgrìn mionaideach"
 
 #: gui/options/options.json[5].options[13].list[0].label
 msgid "Unordered"
@@ -3317,7 +3317,7 @@ msgstr "Dath nan aonadan agad nuair a bhios dathan na dioplòmasachd an comas."
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy colors: self"
-msgstr ""
+msgstr "Dathan dioplòmasachd: thusa"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
@@ -3325,7 +3325,7 @@ msgstr "Dath nan aonadan caidreabhach nuair a bhios dathan na dioplòmasachd an 
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy colors: ally"
-msgstr ""
+msgstr "Dathan dioplòmasachd: caidreabhach"
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
@@ -3333,7 +3333,7 @@ msgstr "Dath nan aonadan neo-phàirteach nuair a bhios dathan na dioplòmasachd 
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy colors: neutral"
-msgstr ""
+msgstr "Dathan dioplòmasachd: neo-phàirteach"
 
 #: gui/options/options.json[5].options[17].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
@@ -3341,7 +3341,7 @@ msgstr "Dath nan aonadan nàimhdeil nuair a bhios dathan na dioplòmasachd an co
 
 #: gui/options/options.json[5].options[17].label
 msgid "Diplomacy colors: enemy"
-msgstr ""
+msgstr "Dathan dioplòmasachd: nàmhaid"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -3655,7 +3655,7 @@ msgstr "CRAINN-TABHAILL"
 
 #: gui/text/tips/catapults.txt:2
 msgid "Ranged siege engines that are good against structures."
-msgstr ""
+msgstr "Innealan-sèiste astair a tha math an aghaidh thogalaichean."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
@@ -3753,7 +3753,7 @@ msgstr "DÙN"
 
 #: gui/text/tips/fortress.txt:2
 msgid "The Fortress is usually each faction's strongest structure."
-msgstr ""
+msgstr "’S e an togalach as treasa aig cha mhòr gach sìobhaltas a tha san dùn."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
@@ -3774,7 +3774,7 @@ msgstr "IONAD A LÀIMH"
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "Gain an advantage on the battleground by tactically positioning your units!"
-msgstr "Cuir na h-aonadan agad air a’ bhlàr le deagh ro-innleachd ach am faigh thu buannachd"
+msgstr "Cuir na h-aonadan agad air a’ bhlàr le deagh ro-innleachd ach am faigh thu buannachd!"
 
 #: gui/text/tips/freehand_position.txt:3
 msgid ""
@@ -3784,7 +3784,7 @@ msgstr "Tagh cuid a dh’aonadan, brùth is cum sìos putan deas na luchaige, ta
 
 #: gui/text/tips/freehand_position.txt:4
 msgid "Your units will now spread out on this line."
-msgstr "Sgaoilidh na h-aonadan agad air an loidhne sin a-nis"
+msgstr "Sgaoilidh na h-aonadan agad air an loidhne sin a-nis."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -3872,7 +3872,7 @@ msgstr "Am prìomh neach-polataigs aig Baile na h-Àithne ron 5mh linn RC."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Structures are built faster within his range."
-msgstr ""
+msgstr "Togar togalaichean nas luaithe taobh a-staigh astair."
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."
@@ -3888,7 +3888,7 @@ msgstr "Teicneolas sònraichte airson nam Pearsach."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr ""
+msgstr "Gheibh a h-uile togalach +25% de shlàinte."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
@@ -4074,7 +4074,7 @@ msgstr "CRÌONADH RANNTAIR"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr ""
+msgstr "Thig an crìonadh air togalaichean nuair nach eil e ceangailte ri ionad sìobhalta caidreabhaich."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
@@ -4086,7 +4086,7 @@ msgstr "’S urrainn dhut maille a chur air a’ chrìonadh no an togalach a ch�
 msgid ""
 "When the decay is completed, the structure will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "Nuair a bhios an crìonadh coileanta, thèid an togalach a thoirt dhan nàbaidh as cumhachdaiche."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"

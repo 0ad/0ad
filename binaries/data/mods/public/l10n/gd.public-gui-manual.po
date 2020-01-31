@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-01-17 15:32+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-01-27 14:42+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +34,7 @@ msgstr "Seall air loidhne"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]An leabhar-mìneachaidh aig 0 A.D.[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:2
 msgid ""
@@ -45,7 +45,7 @@ msgstr "Tapadh leat airson 0 A.D. a stàladh! Bheir an duilleag seo foir-shealla
 
 #: gui/manual/intro.txt:4
 msgid "[font=\"sans-bold-16\"]Graphics settings[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Roghainnean na grafaigeachd[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:5
 msgid ""
@@ -53,11 +53,11 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr ""
+msgstr "’S urrainn dhut leum a ghearradh eadar modh làn-sgrìn no uinneige ’s tu a’ brùthadh air Alt + Enter. Sa mhodh uinneagach, ’s urrainn dhut meud na h-uinneige atharrachadh. Ma bhios an geama a’ ruith ro shlaodach, ’s urrainn dhut cuid a roghainnean atharrachadh san uinneag rèiteachaidh: feuch an cuir thu na roghainnean “Èifeachdan uisge le càileachd àrd” is “Sgàilean” à comas."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Mar a chluicheas tu an geama[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:8
 msgid ""
@@ -65,7 +65,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr ""
+msgstr "Bidh thu eòlach air na h-innealan-smachd is an dòigh cluiche ma tha thu air geamannan ro-innleachd fìor-ama (RTS) tradaiseanta a chluich roimhe. Tha iomadh gleus a dhìth fhathast aig an àm seo is chan eil meidh air mar bu chòir – tha sinn an dùil gum bi agad ri feitheamh airson sgaoileadh beta ach an obraich e gu math."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls:"
@@ -73,35 +73,35 @@ msgstr "Stiùireadh bunasach:"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr ""
+msgstr "• Dèan briogadh clì gus aonad a thaghadh"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr ""
+msgstr "• Dèan briogadh clì is slaod gus buidhnean de dh’aonadan a thaghadh"
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr ""
+msgstr "• Dèan briogadh deas ach an tèid aonadan dhan cheann-uidhe"
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr ""
+msgstr "• Cleachd na h‑iuchraichean saighde no WASD gus an camara a ghluasad"
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr ""
+msgstr "• Cleachd Ctrl + iuchraichean saighde no shift + cuibhle na luchaige gus an camara a chuairteachadh"
 
 #: gui/manual/intro.txt:16
 msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
-msgstr ""
+msgstr "• Cleachd cuibhle na luchaige no na h‑iuchraichean “=”/“+” is “-”/“−” airson sùmadh"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=”sans-bold-16”]Modhan[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr ""
+msgstr "Gheibh thu inntrigeadh do dhà mhodh leis a’ phrìomh chlàr-taice:"
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -109,13 +109,13 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Aon chluicheadair[font=\"sans-14\"] – Cluich geama sa bhogsa-ghainmhich no an aghaidh cluicheadair coimpiutair (IF) no dhà. Tha an IF thùsail (Petra) ’ga leasachadh fhathast is ’s dòcha nach eil i eòlach air na gleusan as ùire ach ’s urrainn dhut an geama fheuchainn na h-aghaidh no còmhla rithe co-dhiù."
 
 #: gui/manual/intro.txt:21
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Ioma-chluicheadair[font=\"sans-14\"] – Cluich an aghaidh co-fharpaiseach daonna air an eadar-lìn."
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -123,15 +123,15 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr ""
+msgstr "Feumaidh cluicheadair an roghainn “Òstaich geama” a thaghadh gus geama ioma-chluicheadair a shuidheachadh. Cleachdaidh an geama am port UDP 20595, mar sin feumaidh an t‑òstair a NAT/firewall/etc a rèiteachadh gus seo a cheadachadh. ’S urrainn dha chluicheadairean eile “Gabh pàirt sa gheama” a thaghadh an uairsin is an t‑seòladh IP aig an òstair a chur a-steach."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Rèiteachadh a’ gheama[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr ""
+msgstr "Ann an geama ioma-chluicheadair, chan urrainn ach dhan òstair roghainnean rèiteachaidh a’ gheama atharrachadh."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -162,7 +162,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "’S urrainn dhut barrachd criathraidh a dhèanamh air na mapaichean an uairsin. ’S e mapaichean a ghabhas cluiche a tha sna mapaichean tùsail san fharsaingeachd. ’S e mapaichean far nach ruig thu gach nàmhaid thar tìre a th’ anns na mapaichean mara agus tha na mapaichean taisbeanaidh ann a chum deuchainnean (cha bhi iad gu feum airson cluich mar as trice). Seallaich a’ chriathrag “A h-uile mapa” a h-uile mapa a tha ann air an aon liosta."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -171,546 +171,546 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr ""
+msgstr "Mu dheireadh thall, atharraich na roghainnean. airson mapaichean tuaireamach, gabhaidh seo a-steach an àireamh de chluicheadairean, meud a’ mhapa is msaa. Le cnàmh-sgeulan, chan urrainn dhut taghadh ach cò bhios a stiùireadh gach cluicheadair (suidhichidh seo càite an tòisich thu air a’ mhapa is msaa.). ’S e cluicheadair daonna, IF no gun chluicheadair (cha dèan an cluicheadair sin dad an uairsin) a tha sna roghainnean."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr ""
+msgstr "Nuair a bhios tu deiseil airson tòiseachadh, briog air a’ phutan “Tòisich air geama.”"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=”sans-bold-16”]Grad-iuchraichean[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=”sans-bold-14”]Feadh a’ phrògraim[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:41
 msgid ""
 "  Alt + F4 – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr "  Alt + F4 – Fàg an geama sa bhad is gun dearbhadh"
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "  Alt + Enter – Toglaich eadar làn-sgrìn is modh uinneige"
 
 #: gui/manual/intro.txt:43
 msgid "  ~ or F9 – Show/hide console"
-msgstr ""
+msgstr "  ~ no F9 – Seall/Falaich a’ chonsoil"
 
 #: gui/manual/intro.txt:44
 msgid "  Alt + F – Show/hide frame counter (FPS)"
-msgstr ""
+msgstr "  Alt + F – Seall/Falaich cunntair nam frèam (FPS)"
 
 #: gui/manual/intro.txt:45
 msgid ""
 "  F11 – Enable/disable real-time profiler (toggles through the displays of "
 "information)"
-msgstr ""
+msgstr "  F11 – Cuir am pròifilear fìor-ama an comas/à comas (toglaichidh seo tro na seallaidhean fiosrachaidh)"
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
-msgstr ""
+msgstr "  Shift + F11 – Sàbhail dàta a’ phròifileir làithrich gu “logs/profile.txt”"
 
 #: gui/manual/intro.txt:47
 msgid ""
 "  F2 – Take screenshot (in .png format, location is displayed in the top "
 "left of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr ""
+msgstr "  F2 – Tog glacadh-sgrìn (san fhòrmat .png, thèid an t‑ionad a shealltainn air oisean clì gu h-àrd nuair a bhios am faidhle air a shàbhaladh is chì thu an t-ionad air a’ chonsoil/sna logaichean ma chaill thu e an-sin)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, "
 "location is displayed in the top left of the GUI after the file has been "
 "saved, and can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "  Shift + F2 – Tog glacadh-sgrìn anabarrach mòr (6400×4800 piogsail, san fhòrmat .bmp, thèid an t-ionad a shealltainn air oisean clì gu h-àrd nuair a bhios am faidhle air a shàbhaladh is chì thu an t-ionad air a’ chonsoil/sna logaichean ma chaill thu e an-sin)"
 
 #: gui/manual/intro.txt:49
 msgid "  Tab, Alt + S – Switch to the next tab"
-msgstr ""
+msgstr "  Tab, Alt + S – Geàrr leum dhan ath-thaba"
 
 #: gui/manual/intro.txt:50
 msgid "  Shift + Tab, Alt + W – Switch to the previous tab"
-msgstr ""
+msgstr "  Shift + Tab, Alt + W – Geàrr leum dhan taba roimhe"
 
 #: gui/manual/intro.txt:52
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Am broinn a’ gheama[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:53
 msgid ""
 "  Double Left Click \\[on unit] – Select all of your units of the same kind "
 "on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "  Briogadh clì dùbailte \\[air aonad] – Tagh a h-uile aonad dhen aon seòrsa agad a chì thu (fiù ’s ma tha rang eadar-dhealaichte aca)"
 
 #: gui/manual/intro.txt:54
 msgid ""
 "  Triple Left Click \\[on unit] – Select all of your units of the same kind "
 "and the same rank on the screen"
-msgstr ""
+msgstr "  Briogadh clì trìoblaichte \\[air aonad] – Tagh a h-uile aonad dhen aon seòrsa is rang agad a chì thu"
 
 #: gui/manual/intro.txt:55
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "  Alt + Briogadh clì dùbailte \\[air aonad] – Tagh a h-uile aonad dhen aon seòrsa agad air a’ mhapa gu lèir (fiù ’s ma tha rang eadar-dhealaichte aca)"
 
 #: gui/manual/intro.txt:56
 msgid ""
 "  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
 "kind and rank on the entire map"
-msgstr ""
+msgstr "  Alt + Briogadh clì trìoblaichte \\[air aonad] – Tagh a h-uile aonad dhen aon seòrsa is rang agad air a’ mhapa gu lèir"
 
 #: gui/manual/intro.txt:57
 msgid "  Shift + F5 – Quicksave"
-msgstr ""
+msgstr "  Shift + F5 – Sàbhaladh luath"
 
 #: gui/manual/intro.txt:58
 msgid "  Shift + F8 – Quickload"
-msgstr ""
+msgstr "  Shift + F8 – Luchdadh luath"
 
 #: gui/manual/intro.txt:59
 msgid "  F10 – Open/close menu"
-msgstr ""
+msgstr "  F10 – Fosgail/Dùin an clàr-taice"
 
 #: gui/manual/intro.txt:60
 msgid "  F12 – Show/hide time elapsed counter"
-msgstr ""
+msgstr "  F12 – Seall/Falaich an ùine a dh’fhalbh"
 
 #: gui/manual/intro.txt:61
 msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "  ESC – Dùin a h‑uile còmhradh (cabadaich, clàr-taice) no falamhaich taghadh nan aonadan"
 
 #: gui/manual/intro.txt:62
 msgid "  Enter/Return – Open/send chat"
-msgstr ""
+msgstr "  Enter/Return – Fosgail/Cuir cabadaich"
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
-msgstr ""
+msgstr "  T – Cuir cabadaich gun sgioba"
 
 #: gui/manual/intro.txt:64
 msgid "  L – Chat with the previously selected private chat partner"
-msgstr ""
+msgstr "  L – Dèan cabadaich phrìobhaideach leis an neach mu dheireadh a thagh thu"
 
 #: gui/manual/intro.txt:65
 msgid "  Pause – Pause/resume the game"
-msgstr ""
+msgstr "  Pause – Cuir an geama ’na stad/a’ dol"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "  Delete – Delete currently selected unit(s)/structure(s), ask for "
 "confirmation"
-msgstr ""
+msgstr "  Delete – Sguab às na h‑aonadan no togalaichean a thagh thu"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "  Shift + Delete – Immediately delete currently selected "
 "unit(s)/structure(s), without asking for confirmation"
-msgstr ""
+msgstr "  Shift + Delete – Sguab às na h‑aonadan no togalaichean a thagh thu sa bhad is gun dearbhadh"
 
 #: gui/manual/intro.txt:68
 msgid "  / (Slash) – Select idle fighter"
-msgstr ""
+msgstr "  / (slais) – Tagh saighdear ’na thàmh"
 
 #: gui/manual/intro.txt:69
 msgid "  Shift + / (Slash) – Add idle fighter to selection"
-msgstr ""
+msgstr "  Shift + / (slais) –  Cuir saighdear ’na thàmh ris an taghadh"
 
 #: gui/manual/intro.txt:70
 msgid "  Alt + / (Slash) – Select all idle fighters"
-msgstr ""
+msgstr "  Alt + / (slais) – Tagh a h-uile saighdear a tha ’na thàmh"
 
 #: gui/manual/intro.txt:71
 msgid "  . (Period) – Select idle worker (including citizen-soldiers)"
-msgstr ""
+msgstr "  . (puing) – Tagh obraiche ’na thàmh (a’ gabhail a-steach saighdearan-dùthcha)"
 
 #: gui/manual/intro.txt:72
 msgid ""
 "  Shift + . (Period) – Add idle worker to selection (including citizen-"
 "soldiers)"
-msgstr ""
+msgstr "  Shift + . (puing) – Cuir obraiche ’na thàmh ris an taghadh (a’ gabhail a-steach saighdearan-dùthcha)"
 
 #: gui/manual/intro.txt:73
 msgid ""
 "  Alt + . (Period) – Select all idle workers (including citizen-soldiers)"
-msgstr ""
+msgstr "  Alt + . (puing) – Tagh a h-uile obraiche a tha ’na thàmh (a’ gabhail a-steach saighdearan-dùthcha)"
 
 #: gui/manual/intro.txt:74
 msgid "  \\\\ (Backslash) – Select idle unit"
-msgstr ""
+msgstr "  \\\\ (slais air ais) – Tagh aonad ’na thàmh"
 
 #: gui/manual/intro.txt:75
 msgid "  Shift + \\\\ (Backslash) – Add idle unit to selection"
-msgstr ""
+msgstr "  Shift + \\\\ (slais air ais) – Cuir aonad ’na thàmh ris an taghadh"
 
 #: gui/manual/intro.txt:76
 msgid "  Alt + \\\\ (Backslash) – Select all idle units"
-msgstr ""
+msgstr "  Alt + \\\\ (slais air ais) – Tagh a h-uile aonad a tha ’na thàmh"
 
 #: gui/manual/intro.txt:77
 msgid "  H – Stop (halt) the currently selected units"
-msgstr ""
+msgstr "  H – Cuir stad air na h‑aonadan a thagh thu"
 
 #: gui/manual/intro.txt:78
 msgid "  Y – The unit will go back to work"
-msgstr ""
+msgstr "  Y – Tillidh an t-aonad dhan obair"
 
 #: gui/manual/intro.txt:79
 msgid "  U – Unload the garrisoned units of the selected structure(s)"
-msgstr ""
+msgstr "  U – Falbhaidh na h-aonadan a tha ’nan gearastan sna togalaichean a thagh thu"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from "
 "the selected unit(s)/structure(s)"
-msgstr ""
+msgstr "  Ctrl + 1 (’s mar sin air adhart gu ruige Ctrl + 0)– Dèan buidheann-smachd 1 (gu 0) dhe na h‑aonadan/togalaichean a thagh thu"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  1 (and so on up to 0) – Select the unit(s)/structure(s) in control group 1"
 " (to 0)"
-msgstr ""
+msgstr "  1 (’s mar sin air adhart gu ruige 0) – Tagh na h‑aonadan/togalaichean sa bhuidheann-smachd 1 (gu 0)"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr ""
+msgstr "  Shift + 1 (gu ruige 0) – Cuir buidheann-smachd 1 (gu 0) ris na togalaichean/na h‑aonadan a thagh thu"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "  Ctrl + F5 (and so on up to F8) – Mark the current camera position, for "
 "jumping back to later"
-msgstr ""
+msgstr "  Ctrl + F5 (’s mar sin air adhart gu ruige F8) – Comharraich ionad làithreach a’ chamara ach an urrainn dhut leum a ghearradh dha an uairsin"
 
 #: gui/manual/intro.txt:84
 msgid ""
 "  F5 (and so on up to F8) – Move the camera to a marked position. Jump back "
 "to the last location if the camera is already over the marked position"
-msgstr ""
+msgstr "  F5, F6, F7 is F8 – Gluais an camara gu ionad comharraichte. Gearr leum air ais dhan ionad roimhe ma tha an camara air an ionad chomharraichte mar-thà"
 
 #: gui/manual/intro.txt:85
 msgid ""
 "  Z, X, C, V, B, N, M – With training structure selected. Add the 1st, 2nd, "
 "… unit shown to the training queue for all the selected structures"
-msgstr ""
+msgstr "  Z, X, C, V, B, N, M – Le togalach trèanaidh no dhà air a thaghadh. Cuir a’ chiad, an dàrna, … aonad a chì thu air a’ chiudha trèanaidh sa h‑uile togalach a thagh thu"
 
 #: gui/manual/intro.txt:86
 msgid ""
 "  PageUp with unit(s) selected – Highlight the unit(s)/structure(s) guarded "
 "by the selection"
-msgstr ""
+msgstr "  PageUp le aonadan air an taghadh – Soillsichidh seo na h-aonadan agus na togalaich a tha ’gan dìon leis na thagh thu"
 
 #: gui/manual/intro.txt:87
 msgid ""
 "  PageDown with unit(s)/structure(s) selected – Highlight the unit(s) "
 "guarding the selection"
-msgstr ""
+msgstr "  PageDown le aonad(s)/structure(s) no togalaichean air an taghadh – Soillsichidh seo na h-aonadan a tha a’ dìon na thagh thu"
 
 #: gui/manual/intro.txt:88
 msgid ""
 "  Tab – See all status bars (which would also show the building progress)"
-msgstr ""
+msgstr "  Tab –  Seall a h-uile bàr-inbhe (seallaidh seo adhartas an togail cuideachd)"
 
 #: gui/manual/intro.txt:89
 msgid "  Ctrl + Tab – Toggle summary window"
-msgstr ""
+msgstr "  Ctrl + Tab – Toglaich uinneag a’ ghearr-chunntais"
 
 #: gui/manual/intro.txt:90
 msgid "  Alt + L – Show the multiplayer lobby in a dialog window"
-msgstr ""
+msgstr "  Alt + L – Seall an lobaidh ioma-chluicheadair ann an uinneag còmhraidh"
 
 #: gui/manual/intro.txt:91
 msgid "  Ctrl + H – Toggle in-game diplomacy panel"
-msgstr ""
+msgstr "  Ctrl + H – Toglaich panail na dioplòmasachd am broinn a’ gheama"
 
 #: gui/manual/intro.txt:92
 msgid "  Ctrl + B – Toggle in-game barter and trade panel"
-msgstr ""
+msgstr "  Ctrl + B – Toglaich panail iomlaididh is malairt am broinn a’ gheama"
 
 #: gui/manual/intro.txt:93
 msgid "  Ctrl + O – Toggle in-game objectives panel"
-msgstr ""
+msgstr "  CTRL + O – Toglaich panail nan amasan am broinn a’ gheama"
 
 #: gui/manual/intro.txt:94
 msgid "  Ctrl + P – Toggle in-game tutorial panel"
-msgstr ""
+msgstr "  Ctrl + P – Toglaich panail an oideachaidh am broinn a’ gheama"
 
 #: gui/manual/intro.txt:95
 msgid "  Alt + Shift + T – Toggle structure tree panel"
-msgstr ""
+msgstr "  Alt + Shift + T – Toglaich panail craobh nan togalaichean"
 
 #: gui/manual/intro.txt:96
 msgid "  Alt + Shift + H – Toggle civilization info panel"
-msgstr ""
+msgstr "  Alt + Shift+ H – Toglaich panail fiosrachadh an t-sìobhaltais"
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Atharraich gnìomh na luchaige[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
 msgid "  Ctrl + Right Click on structure – Garrison"
-msgstr ""
+msgstr "  Ctrl + briogadh deas air togalach – Rach ’nad ghearastan"
 
 #: gui/manual/intro.txt:100
 msgid "  J + Right Click on structure – Repair"
-msgstr ""
+msgstr "  J + briogadh deas air togalach – Càraich"
 
 #: gui/manual/intro.txt:101
 msgid "  P + Right Click – Patrol"
-msgstr ""
+msgstr "  P + briogadh deas – Cuairteachan"
 
 #: gui/manual/intro.txt:102
 msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
-msgstr ""
+msgstr "  Shift + briogadh deas – Cuir an t‑òrdugh gluais/tog/cruinnich/msaa. air a’ chiudha"
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  Alt + Right Click – Order one unit from the current selection to "
 "move/build/gather/etc. and unselect it. Used to quickly dispatch units with "
 "specific tasks"
-msgstr ""
+msgstr "  Alt + briogadh deas – cuir òrdugh air aon aonad a-mhàin dhen taghadh làithreach airson gluasad/togail/cruinneachadh is msaa. agus neo-thagh e. Cleachd seo gus òrduighean airson saothraichean sònraichte a chur air aonadan gu luath"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "  Shift + Left Click when training units – Add units in batches (the batch "
 "size is 5 by default and can be changed in the options)"
-msgstr ""
+msgstr "  Shift + briogadh deas le trèanadh aonadan – cuir aonadan ris ’nan grunnan (’S e grunnan de chòignear a bhios annta a ghnàth ach gabhaidh seo atharrachadh sna roghainnean)"
 
 #: gui/manual/intro.txt:105
 msgid ""
 "  Shift + Left Click or Left Drag over unit on map – Add unit to selection"
-msgstr ""
+msgstr "  Shift + briogadh clì no slaodadh thar an aonaid air a’ mhapa – cuir an t‑aonad ris an taghadh"
 
 #: gui/manual/intro.txt:106
 msgid ""
 "  Ctrl + Left Click or Left Drag over unit on map – Remove unit from "
 "selection"
-msgstr ""
+msgstr "  Ctrl + briogadh clì no slaodadh clì thar an aonaid air a’ mhap – thoir an t‑aonad far an taghadh"
 
 #: gui/manual/intro.txt:107
 msgid "  Alt + Left Drag over units on map – Only select military units"
-msgstr ""
+msgstr "  Alt + slaodadh clì thar aonadan air a’ mhapa – Na tagh ach aonadan an airm"
 
 #: gui/manual/intro.txt:108
 msgid ""
 "  Alt + Y + Left Drag over units on map – Only select non-military units"
-msgstr ""
+msgstr "  Alt + Y + slaodadh clì thar aonadan air a’ mhapa – Na tagh ach aonadan sìobhalta"
 
 #: gui/manual/intro.txt:109
 msgid "  I + Left Drag over units on map – Only select idle units"
-msgstr ""
+msgstr "  I + slaodadh clì thar aonadan air a’ mhapa – Na tagh ach aonadan nan tàmh"
 
 #: gui/manual/intro.txt:110
 msgid "  O + Left Drag over units on map – Only select wounded units"
-msgstr ""
+msgstr "  O + slaodadh clì thar aonadan air a’ mhapa – Na tagh ach aonadan leònta"
 
 #: gui/manual/intro.txt:111
 msgid ""
 "  Ctrl + Left Click on unit/group icon with multiple units selected – "
 "Deselect"
-msgstr ""
+msgstr "  Ctrl + briogadh clì air ìomhaigheag an aonaid/a’ bhuidhinn le iomad aonad air a thaghadh – Neo-thagh"
 
 #: gui/manual/intro.txt:112
 msgid ""
 "  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
-msgstr ""
+msgstr "  Briogadh deas le togalach/togalaichean air an taghadh – suidhich ceann-cruinneachaidh airson aonadan a thèid a chruthachadh san togalach ud no a dh’fhalbhas an gearastan"
 
 #: gui/manual/intro.txt:113
 msgid "  Ctrl + Right Click with unit(s) selected:"
-msgstr ""
+msgstr "  Ctrl + briogadh deas le aonad(an) air an taghadh:"
 
 #: gui/manual/intro.txt:114
 msgid "    • If the cursor is over an own or allied structure – Garrison"
-msgstr ""
+msgstr "    • Ma tha an cùrsair os cionn structar caidreabhach – Rach ’nad ghearastan"
 
 #: gui/manual/intro.txt:115
 msgid ""
 "    • If the cursor is over an enemy unit/structure – Attack (instead of "
 "capture or gather)"
-msgstr ""
+msgstr "    • Ma tha an cùrsair os cionn aonaid no togalaich an nàmhad – Thoir ionnsaigh (seach glacadh no cruinneachadh)"
 
 #: gui/manual/intro.txt:116
 msgid ""
 "    • Otherwise – Attack move (by default all enemy units and structures "
 "along the way are targeted)"
-msgstr ""
+msgstr "    • Mur eil – Gluasad ionnsaighe (thèid amas air gach aonad ’s structar an nàmhad air an rathad o thùs)"
 
 #: gui/manual/intro.txt:117
 msgid ""
 "  Ctrl + Q + Right Click with unit(s) selected – Attack move, only units "
 "along the way are targeted"
-msgstr ""
+msgstr "  Ctrl + Q + briogadh deas le aonad(an) air an taghadh – Gluasad ionnsaighe is dha dèid amas ach air aonadan"
 
 #: gui/manual/intro.txt:118
 msgid ""
 "  Ctrl + Mouse Move near structures – Align the new structure with an "
 "existing nearby structure"
-msgstr ""
+msgstr "  Ctrl + gluasad luchaige faisg air togalaichean – Co-thaobhaich an togalach ùr le togalach eile faisg air"
 
 #: gui/manual/intro.txt:120
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=”sans-bold-14”]Tar-chòmhdachaidhean[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:121
 msgid "  Alt + G – Hide/show the GUI"
-msgstr ""
+msgstr "  Alt + G – Falaich/Seall an eadar-aghaidh"
 
 #: gui/manual/intro.txt:122
 msgid "  Alt + D – Show/hide developer overlay (with developer options)"
-msgstr ""
+msgstr "  Alt + D – Seall/Falaich tar-chòmhdachadh nan leasaichear (le roghainnean nan leasaichear)"
 
 #: gui/manual/intro.txt:123
 msgid ""
 "  Alt + Shift + W – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "  Alt + Shift + W – Toglaich modh frèam-uèir (brùth air aon turas gus frèaman-uèir a thar-chòmhdachadh air bàrr nam modalan le innich, dà thuras gus frèaman-uèir le dathan nan inneach a-mhàin fhaighinn is trì tursan gus tilleadh dhan mhodh àbhaisteach le innich)"
 
 #: gui/manual/intro.txt:124
 msgid ""
 "  Alt + Shift + S – Toggle unit silhouettes (might give a small performance "
 "boost)"
-msgstr ""
+msgstr "  Alt + Shift + S – Toglaich sgàil-riochdan nan aonadan (dh’fhaoidte gum faigh thu beagan dèanadais a bharrachd às)"
 
 #: gui/manual/intro.txt:125
 msgid "  Alt + Z – Toggle sky"
-msgstr ""
+msgstr "  Alt + Z – Toglaich na speuran"
 
 #: gui/manual/intro.txt:126
 msgid "  Alt + X – Toggle diplomacy colors"
-msgstr ""
+msgstr "  Alt + X – Toglaich dathan na dioplòmasachd"
 
 #: gui/manual/intro.txt:127
 msgid ""
 "  Alt + C – Toggle attack range visualizations of selected units and "
 "structures"
-msgstr ""
+msgstr "  Alt + C – Toglaich samhlaidhean astair nan ionnsaighean airson nan aonadan is togalaichean a chaidh a thaghadh"
 
 #: gui/manual/intro.txt:128
 msgid ""
 "  Alt + V – Toggle aura range visualizations of selected units and "
 "structures"
-msgstr ""
+msgstr "  Alt + V – Toglaich samhlaidhean astair nan aura airson nan aonadan is togalaichean a chaidh a thaghadh"
 
 #: gui/manual/intro.txt:129
 msgid "  Alt + B – Toggle heal range visualizations of selected units"
-msgstr ""
+msgstr "  Alt + B – Toglaich samhlaidhean astair an t-slànachaidh airson nan aonadan a chaidh a thaghadh"
 
 #: gui/manual/intro.txt:131
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Gluasad a’ chamara[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:132
 msgid "  W or ↑ (Up) – Pan screen up"
-msgstr ""
+msgstr "  W no ↑ (suas) – Panaich an sgrìn suas"
 
 #: gui/manual/intro.txt:133
 msgid "  S or ↓ (Down) – Pan screen down"
-msgstr ""
+msgstr "  S no ↓ (sìos) – Panaich an sgrìn sìos"
 
 #: gui/manual/intro.txt:134
 msgid "  A or ← (Left) – Pan screen left"
-msgstr ""
+msgstr "  A no ← (clì) – Panaich an sgrìn gu clì"
 
 #: gui/manual/intro.txt:135
 msgid "  D or → (Right) – Pan screen right"
-msgstr ""
+msgstr "  D no → (deas) – Panaich an sgrìn gu deas"
 
 #: gui/manual/intro.txt:136
 msgid "  Ctrl + W or Ctrl + ↑ (Up) – Rotate camera to look upward"
-msgstr ""
+msgstr "  Ctrl + W no Ctrl + ↑ (suas) – Cuairtich an camara airson sealltainn suas"
 
 #: gui/manual/intro.txt:137
 msgid "  Ctrl + S or Ctrl + ↓ (Down) – Rotate camera to look downward"
-msgstr ""
+msgstr "  Ctrl + S no Ctrl + ↓ (sìos) – Cuairtich an camara airson sealltainn sìos"
 
 #: gui/manual/intro.txt:138
 msgid "  Ctrl + A or Ctrl + ← (Left) – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "  Ctrl + A no Ctrl + ← (clì) – Cuairtich an camara gu deiseil"
 
 #: gui/manual/intro.txt:139
 msgid ""
 "  Ctrl + D or Ctrl + → (Right) – Rotate camera counter-clockwise around "
 "terrain"
-msgstr ""
+msgstr "  Ctrl + D no Ctrl + →  (deas) – Cuairtich an camara gu tuathal"
 
 #: gui/manual/intro.txt:140
 msgid "  Q – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "  Q – Cuairtich an camara gu deiseil"
 
 #: gui/manual/intro.txt:141
 msgid "  E – Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr "  E – Cuairtich an camara gu tuathail"
 
 #: gui/manual/intro.txt:142
 msgid ""
 "  Shift + Mouse Wheel Rotate Up – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "  Shift + cuibhle na luchaige suas – Cuairtich an camara gu deiseil"
 
 #: gui/manual/intro.txt:143
 msgid ""
 "  Shift + Mouse Wheel Rotate Down – Rotate camera counter-clockwise around "
 "terrain"
-msgstr ""
+msgstr "  Shift + cuibhle na luchaige sìos – Cuairtich an camara gu tuathal"
 
 #: gui/manual/intro.txt:144
 msgid ""
 "  F – Follow the selected unit (move the camera to stop following the unit)"
-msgstr ""
+msgstr "  F – Lean air an aonad air a thaghadh (gluais an camara ach nach lean e air an aonad tuilleadh)"
 
 #: gui/manual/intro.txt:145
 msgid "  R – Reset camera zoom/orientation"
-msgstr ""
+msgstr "  R – Ath-shuidhich sùm/cuairteachadh a’ chamara"
 
 #: gui/manual/intro.txt:146
 msgid "  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "  = (co-ionnannachd) no + (cur ris) – Sùm a-steach (cùm sìos e airson sùm gun sgur)"
 
 #: gui/manual/intro.txt:147
 msgid ""
 "  - (Hyphen) or − (Minus) – Zoom out (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "  - (tàthan) no − (toirt air falbh) – Sùm a-mach (cùm sìos e airson sùm gun sgur)"
 
 #: gui/manual/intro.txt:148
 msgid "  Middle Mouse Button – Keep pressed and move the mouse to pan"
-msgstr ""
+msgstr "  Putan meadhanach na luchaige – Cùm sìos e is gluais an luchag airson panachadh"
 
 #: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=”sans-bold-14”]Nuair a chuireas tu togalach ris[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:151
 msgid "  \\[ (Left Bracket) – Rotate structure 15 degrees counter-clockwise"
-msgstr ""
+msgstr "  \\[ (bracaid chlì) – Cuairtich an togalach gu tuathail le 15 ceuman"
 
 #: gui/manual/intro.txt:152
 msgid "  ] (Right Bracket) – Rotate structure 15 degrees clockwise"
-msgstr ""
+msgstr "  \\] (bracaid dheas) – Cuairtich an togalach gu deiseil le 15 ceuman"
 
 #: gui/manual/intro.txt:153
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
-msgstr ""
+msgstr "  Slaod le putan clì na luchaige – Cuairtich an togalach leis an luchag (thèid a’ bhonn a shuidheachadh nuair a leigeas tu às an luchag)"
 
 #: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Nuair a luchdaicheas tu geama air a shàbhaladh[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:156
 msgid "  Esc – Cancel"
-msgstr ""
+msgstr "  Esc – Sguir dheth"
 
 #: gui/manual/intro.txt:157
 msgid "  Delete – Delete the selected saved game, ask for confirmation"
-msgstr ""
+msgstr "  Delete – Sguab às an geama air a shàbhaladh a thagh thu ’s thèid dearbhadh iarraidh ort"
 
 #: gui/manual/intro.txt:158
 msgid ""
 "  Shift + Delete – Immediately delete the selected saved game, without "
 "asking for confirmation"
-msgstr ""
+msgstr "  Shift + Delete – Sguab às an geama air a shàbhaladh a thagh thu sa bhad is gun dearbhadh"

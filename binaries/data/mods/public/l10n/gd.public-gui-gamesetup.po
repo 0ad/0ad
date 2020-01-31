@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-24 08:08+0000\n"
-"PO-Revision-Date: 2020-01-24 14:28+0000\n"
+"PO-Revision-Date: 2020-01-27 14:50+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -74,7 +74,7 @@ msgstr "Thèid an IF a chur à comas airson a’ chluicheadair seo."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:93
 msgid "AI Behavior"
-msgstr ""
+msgstr "Giùlan na h-IF"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:87
 msgid "AI Difficulty"
@@ -284,11 +284,11 @@ msgstr "Tagh gnàth-shìde air thuaiream."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:96
 msgid "Daytime"
-msgstr ""
+msgstr "Latha no oidhche"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:99
 msgid "Select whether the match takes place at daylight or night."
-msgstr ""
+msgstr "Tagh an bheil solas an latha no dorchadas na h-oidhche air a’ mhapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:102
 msgctxt "daytime selection"
@@ -298,7 +298,7 @@ msgstr "Air thuaiream"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:105
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr ""
+msgstr "Tagh latha no oidhche air thuaiream."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:73
 msgid "Game Speed"
@@ -310,41 +310,41 @@ msgstr "Tagh luaths a’ gheama."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:124
 msgid "Landscape"
-msgstr ""
+msgstr "Cruth-tìre"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:127
 msgid "Select one of the landscapes of this map."
-msgstr ""
+msgstr "Tagh cruth-tìre dhan mhapa seo."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:133
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
-msgstr ""
+msgstr "Tìr no muir air thuaiream"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:134
 msgctxt "landscape selection"
 msgid "Select a random land or naval map generation."
-msgstr ""
+msgstr "Tagh gintinn mapa tìre no mara air thuaiream."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:138
 msgctxt "landscape selection"
 msgid "Random Land"
-msgstr ""
+msgstr "Tìr thuaireamach"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:139
 msgctxt "landscape selection"
 msgid "Select a random land map generation."
-msgstr ""
+msgstr "Tagh gintinn mapa tìre air thuaiream."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:143
 msgctxt "landscape selection"
 msgid "Random Naval"
-msgstr ""
+msgstr "Muir tuaireamach"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:144
 msgctxt "landscape selection"
 msgid "Select a random naval map generation."
-msgstr ""
+msgstr "Tagh gintinn mapa mara air thuaiream."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:89
 msgid "Map Filter"
@@ -406,7 +406,7 @@ msgstr "Tagh an tomhas-sluaigh as motha."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:88
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Gach cluicheadair"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:91
 #, javascript-format
@@ -431,7 +431,7 @@ msgstr "Uiread tùsail gach stòrais: %(resources)s."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:90
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Gach cluicheadair"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
@@ -459,10 +459,10 @@ msgstr "Gun fhois-losgaidh"
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(minutes)s mhionaid"
+msgstr[1] "%(minutes)s mhionaid"
+msgstr[2] "%(minutes)s mionaidean"
+msgstr[3] "%(minutes)s mionaid"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:86
 msgid "Relic Count"
@@ -472,10 +472,10 @@ msgstr "Àireamh de thaisean"
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(number)s taise"
+msgstr[1] "%(number)s thaise"
+msgstr[2] "%(number)s taisean"
+msgstr[3] "%(number)s taise"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:92
 msgid ""
@@ -498,34 +498,34 @@ msgstr "Na mionaidean a dh’fhalbhas gus am buannaich cluicheadair le taise."
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(min)s mhionaid"
+msgstr[1] "%(min)s mhionaid"
+msgstr[2] "%(min)s mionaidean"
+msgstr[3] "%(min)s mionaid"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:98
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:99
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr ""
+msgstr "Buaidh sa bhad."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"
-msgstr ""
+msgstr "An t-àm ’s a dh’èireas am muir"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:76
 msgid "Set the time when the water will start to rise."
-msgstr ""
+msgstr "Suidhich an t-àm a thòisicheas am muir air èirigh."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:79
 #, javascript-format
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(minutes)s mhionaid"
+msgstr[1] "%(minutes)s mhionaid"
+msgstr[2] "%(minutes)s mionaidean"
+msgstr[3] "%(minutes)s mionaid"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:87
 msgid "Wonder Duration"
@@ -533,7 +533,7 @@ msgstr "Fad nam mìorbhailean"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:90
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr ""
+msgstr "Na mionaidean a dh’fhalbhas gus am buannaich cluicheadair le mìorbhail"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
 msgid "Cheats enabled."
@@ -541,7 +541,7 @@ msgstr "Tha a’ chealgaireachd an comas."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
 msgid "Rated game."
-msgstr ""
+msgstr "Geama rangaichte."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:76
 #, javascript-format
@@ -599,7 +599,7 @@ msgstr "Innis gu bheil thu deiseil airson cluiche."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:86
 msgid "Stay ready even when the game settings change."
-msgstr "Fan deiseil fiù ’s nuair a dh’atharraicheas roghainnean a’ gheama"
+msgstr "Fan deiseil fiù ’s nuair a dh’atharraicheas roghainnean a’ gheama."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:87
 msgid "State that you are not ready to play."
@@ -874,7 +874,7 @@ msgstr "Sguir dheth"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
-msgstr "Fàg bàn e gus am port tùsail a chleachdadh"
+msgstr "Fàg bàn e gus am port tùsail a chleachdadh."
 
 #: gui/text/quotes.txt:1
 msgid ""
