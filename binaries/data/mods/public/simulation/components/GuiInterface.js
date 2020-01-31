@@ -567,7 +567,7 @@ GuiInterface.prototype.GetAverageRangeForBuildings = function(player, cmd)
 GuiInterface.prototype.GetTemplateData = function(player, data)
 {
 	let templateName = data.templateName;
-	let owner = !!data.owner ? data.owner : player;
+	let owner = data.player !== undefined ? data.player : player;
 	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	let template = cmpTemplateManager.GetTemplate(templateName);
 
@@ -592,7 +592,7 @@ GuiInterface.prototype.IsTechnologyResearched = function(player, data)
 	if (!data.tech)
 		return true;
 
-	let cmpTechnologyManager = QueryPlayerIDInterface(data.player || player, IID_TechnologyManager);
+	let cmpTechnologyManager = QueryPlayerIDInterface(data.player !== undefined ? data.player : player, IID_TechnologyManager);
 
 	if (!cmpTechnologyManager)
 		return false;
@@ -603,7 +603,7 @@ GuiInterface.prototype.IsTechnologyResearched = function(player, data)
 // Checks whether the requirements for this technology have been met
 GuiInterface.prototype.CheckTechnologyRequirements = function(player, data)
 {
-	let cmpTechnologyManager = QueryPlayerIDInterface(data.player || player, IID_TechnologyManager);
+	let cmpTechnologyManager = QueryPlayerIDInterface(data.player !== undefined ? data.player : player, IID_TechnologyManager);
 
 	if (!cmpTechnologyManager)
 		return false;
@@ -658,7 +658,7 @@ GuiInterface.prototype.GetIncomingAttacks = function(player)
 // Used to show a red square over GUI elements you can't yet afford.
 GuiInterface.prototype.GetNeededResources = function(player, data)
 {
-	return QueryPlayerIDInterface(data.player || player).GetNeededResources(data.cost);
+	return QueryPlayerIDInterface(data.player !== undefined ? data.player : player).GetNeededResources(data.cost);
 };
 
 /**

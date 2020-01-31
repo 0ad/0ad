@@ -2,7 +2,7 @@
 <Entity parent="template_formation">
   <Formation>
     <Icon>formations/skirmish.png</Icon>
-    <DisabledTooltip>At least 2 units are required (only ranged).</DisabledTooltip>
+    <DisabledTooltip>Ranged Soldiers only, requires at least 2.</DisabledTooltip>
     <FormationName>Skirmish</FormationName>
     <ShiftRows>true</ShiftRows>
     <UnitSeparationWidthMultiplier>2</UnitSeparationWidthMultiplier>
