@@ -19,13 +19,14 @@
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2017
 # Samuel <srandiny@gmail.com>, 2014-2016
 # Samuel <srandiny@gmail.com>, 2017
+# Ulzeta Ulzeta <julyusputra@gmail.com>, 2020
 # Yusufabdiauzan <yusufabdiauzan@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-24 08:08+0000\n"
-"PO-Revision-Date: 2020-01-24 14:28+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-01-28 13:42+0000\n"
+"Last-Translator: Ulzeta Ulzeta <julyusputra@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -244,11 +245,11 @@ msgstr "Aktifkan/nonaktifkan apabila permainan ini akan diperingkat untuk papan 
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:61
 msgid "Hero Garrison"
-msgstr "Masuknya Pahlawan"
+msgstr "Penempatan Pahlawan"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:64
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "Aktifkan/nonaktifkan apakah pahlawan dapat dimasukkan atau tidak."
+msgstr "Aktifkan/nonaktifkan apakah pahlawan dapat menempati atau tidak."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -430,16 +431,16 @@ msgstr "Peringatan: Masalah performa mungkin terjadi bila %(players)s pemain men
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:81
 msgid "Starting Resources"
-msgstr "Sumberdaya Awal"
+msgstr "Sumber Daya Awal"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:84
 msgid "Select the game's starting resources."
-msgstr "Pilih jumlah sumberdaya di awal permainan."
+msgstr "Pilih jumlah sumber daya di awal permainan."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:87
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr "Jumlah tiap sumberdaya awal: %(resources)s."
+msgstr "Jumlah tiap sumber daya awal: %(resources)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:90
 msgctxt "starting resources"
@@ -530,11 +531,11 @@ msgstr[0] ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:87
 msgid "Wonder Duration"
-msgstr "Durasi Keajaiban"
+msgstr "Durasi Keajaiban Dunia"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:90
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr ""
+msgstr "Menit hingga pemain mencapai kemenangan Keajaiban Dunia"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
 msgid "Cheats enabled."
@@ -1206,7 +1207,7 @@ msgid ""
 " gold, but not without using false weights and adding the weight of his "
 "sword on the scale when the Romans complained (Polybius, “Histories”, II. "
 "18)"
-msgstr ""
+msgstr "\"Celakalah kepada yang dikalahkan!\" \\n— Brennus, kepala suku Gaul yang menguasai Roma (dengan pengecualian pertahanan di Bukit Capitoline). Ketika Camillus datang dari Veii dan mengepung dirinya, dia menegosiasikan penarikan pasukannya untuk 1000 pon emas, tapi tidak tanpa menggunakan bobot palsu dan menambahkan berat pedangnya di atas skala ketika orang Romawi mengeluh (Polybius, “Histories”, II. 18)"
 
 #: gui/text/quotes.txt:50
 msgid ""

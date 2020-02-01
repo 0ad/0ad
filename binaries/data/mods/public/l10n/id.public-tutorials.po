@@ -34,7 +34,7 @@ msgid ""
 msgstr ""
 "Klik-kiri pada rakyat wanita kemudian klik kanan pada sema berry untuk "
 "membuatnya mengumpulkan makanan. Rakyat wanita mengumpulkan sayuran lebih "
-"cepat daripada unit lain"
+"cepat daripada unit lain."
 
 #: maps/tutorials/Introductory_Tutorial.js:15
 msgid ""
@@ -42,8 +42,8 @@ msgid ""
 "begin gathering Wood. Citizen Soldiers gather Wood faster than female "
 "citizens."
 msgstr ""
-"Pilih Rakyat-prajurit, klik kanan pada pohon dekat Pusat Peradaban untuk "
-"memulai mengumpulkan Kayu. Rakyat-tentara mengumpulkan kayu lebih cepat "
+"Pilih prajurit-rakyat, klik kanan pada pohon dekat Pusat Peradaban untuk "
+"memulai mengumpulkan Kayu. Prajurit Rakyat mengumpulkan kayu lebih cepat "
 "daripada Rakyat Wanita."
 
 #: maps/tutorials/Introductory_Tutorial.js:26
@@ -111,7 +111,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:100
 msgid "Let's wait for the farmstead to be built."
-msgstr "Mari kita tunggu sampai persawahan selesai dibangun."
+msgstr "Mari kita tunggu sampai lumbung selesai dibangun."
 
 #: maps/tutorials/Introductory_Tutorial.js:112
 msgid ""
@@ -119,9 +119,9 @@ msgid ""
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a field beside the farmstead."
 msgstr ""
-"Setelah persawahan dibangun, pembangunnya akan otomatis mulai mengumpulkan "
+"Setelah lumbung dibangun, pembangunnya akan otomatis mulai mengumpulkan "
 "makanan jika ada di sekitarnya. Pilih Orang orang tersebut dan suruh mereka "
-"membangun ladang di sebelah persawahan."
+"membangun ladang di sebelah lumbung."
 
 #: maps/tutorials/Introductory_Tutorial.js:136
 msgid ""
@@ -222,7 +222,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:282
 msgid "The enemy is coming. Train more soldiers to fight off the enemies."
-msgstr ""
+msgstr "Musuh datang. Latih lebih banyak prajurit untuk melawan musuh."
 
 #: maps/tutorials/Introductory_Tutorial.js:290
 msgid "Try to repel the attack."
@@ -233,24 +233,34 @@ msgid ""
 "The enemy attack has been thwarted. Now build a market and a temple while "
 "you assign new units to gather required resources."
 msgstr ""
+"Serangan musuh telah digagalkan. Bangun sebuah pasar dan sebuah kuil "
+"sementara anda menugaskan unit baru mengumpulkan sumber daya yang "
+"dibutuhkan."
 
 #: maps/tutorials/Introductory_Tutorial.js:321
 msgid ""
 "Once you meet the City Phase requirements, select your Civic Center and "
 "advance to City Phase."
 msgstr ""
+"Ketika anda telah mencapai persyaratan Fase Metropolis, pilih Pusat "
+"Peradaban dan maju ke Fase Metropolis."
 
 #: maps/tutorials/Introductory_Tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "Barracks."
 msgstr ""
+"Sementara menunggu perubahan fase, anda dapat melatih lebih banyak prajurit "
+"di Barak."
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
 "Now that you are in City Phase, build a fortress nearby (gather some stone "
 "first if needed) and then use it to construct 2 Battering Rams."
 msgstr ""
+"Anda telah mencapai Fase Metropolis, bangun sebuah benteng di dekat situ "
+"(kumpulkan batu jika dibutuhkan) dan gunakan untuk membangun 2 Pelantak "
+"Tubruk."
 
 #: maps/tutorials/Introductory_Tutorial.js:359
 msgid ""
@@ -258,6 +268,10 @@ msgid ""
 "find the enemy Civic Center on the map. Once The enemy's base has been "
 "spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
 msgstr ""
+"Hentikan semua pengumpulan yang dilakukan prajuritmu dan kirim grup kecil "
+"untuk menemukan Pusat Peradaban musuhmu di peta. Ketika markas musuhmu telah"
+" ditemukan, kirimkan mesin kepungmu dan semua prajuritmu untuk "
+"menghancurkannya."
 
 #: maps/tutorials/Introductory_Tutorial.js:360
 msgid "Female citizens should continue to gather resources."
@@ -274,6 +288,10 @@ msgid ""
 "ultimately, your goal will be to develop and expand your empire, often by "
 "evolving to Town Phase and City Phase afterward.\n"
 msgstr ""
+"Tutorial ini akan mengajari dasar dari pengembangan ekonomimu. Biasanya, "
+"kamu akan memulai dengan Pusat Peradaban dan beberapa unit di Fase Desa dan "
+"tujuan akhirmu adalah mengembangkan dan memperluas kekaisaranmu, biasanya "
+"dengan berkembang ke Fase Kota dan Fase Metropolis."
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -289,10 +307,14 @@ msgid ""
 "You can change the level of zoom using the mouse wheel and the camera view "
 "using any of your keyboard's arrow keys.\n"
 msgstr ""
+"Anda bisa mengubah tingkat pembesaran menggunakan roda tetikus dan tampilan "
+"kamera menggunakan tombol panah di papan tombol."
 
 #: maps/tutorials/starting_economy_walkthrough.js:10
 msgid "Adjust the game window to your preferences.\n"
 msgstr ""
+"Sesuaikan jendela permainan sesuai preferensi anda.\n"
+"\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:12
 #, javascript-format
@@ -323,6 +345,14 @@ msgid ""
 "sufficient resources to perform that action, respectively. Additionally, you"
 " can hover the cursor over any icon to show a tooltip with more details.\n"
 msgstr ""
+"Pusat Peradaban telah dipilih, anda akan melihat sebuah panel produksi "
+"muncul di bagian kanan bawah dari layar yang merincikan aksi yang dapat "
+"ditunjang oleh bangunan. Untuk panel produksi, aksi yang tersedia tidak "
+"ditutupi oleh warna apa pun, sementara ikon yang ditutupi oleh warna abu-abu"
+" atau merah mengindikasikan, secara berturut-turut, aksi belum terbuka atau "
+"tidak memiliki sumber daya yang cukup untuk melakukan aksi tersebut. Selain "
+"itu, anda bisa melayangkan kursor di atas ikon mana saja untuk menampilkan "
+"tooltip dengan rincian lebih lanjut."
 
 #: maps/tutorials/starting_economy_walkthrough.js:25
 msgid ""
@@ -332,6 +362,11 @@ msgid ""
 "that advancing to Town Phase requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
+"Tombol barisan atas berisi potret dari unit yang bisa dilatih di bangunan "
+"sementara barisan bawah pertama atau kedua berisi teknologi yang bisa "
+"diteliti. Layangkan kursor di atas ikon II. Tooltip akan memberitahu kita "
+"untuk maju ke Fase Kota membutuhkan lebih banyak struktur yang telah "
+"dibangun dan juga lebih banyak sumber daya Makanan atau Kayu."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -343,6 +378,14 @@ msgid ""
 "citizen soldiers can gather any land resources while cavalry citizen "
 "soldiers can only gather meat from hunted animals.\n"
 msgstr ""
+"Anda memiliki dua jenis unit awal: rakyat wanita dan prajurit rakyat. Rakyat"
+" wanita hanyalah unit ekonomi; mereka memiliki HP rendah, tanpa pertahanan, "
+"and serangan yang nyaris tidak ada. Prajurit rakyat pada dasarnya adalah "
+"pekerja, tapi ketika dibutuhkan, dapat menggunakan senjata untuk bertarung. "
+"Anda memiliki dua kategori prajurit rakyat: infanteri dan kavaleri. Rakyat "
+"wanita dan prajurit rakyat infanteri dapat mengumpulkan sumber daya darat "
+"mana saja sementara prajurit rakyat kavaleri hanya dapat mengumpulkan daging"
+" dari hewan buruan."
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
@@ -359,6 +402,9 @@ msgid ""
 " your economy, so let's start with gathering food. Female citizens gather "
 "vegetables faster than other units.\n"
 msgstr ""
+"Pada saat ini, makanan dan kayu adalah sumber daya paling penting untuk "
+"perkembangan ekonomimu, jadi mari mulai dengan mengumpulkan makanan. Rakyat "
+"wanita mengumpulkan sayuran lebih cepat dari unit lain."
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
@@ -398,15 +444,18 @@ msgid ""
 " Infantry Citizen Soldiers and order them to gather Wood by right-clicking "
 "on the nearest tree."
 msgstr ""
-"Sekarang, mari mengumpulkan beberapa Kayu dengan Infanteri Rakyat Anda. "
-"Pilih Infanteri Rakyat Anda dan suruh mereka untuk mengumpulkan Kayu dengan "
-"mengklik kanan pada pohon terdekat."
+"Sekarang, mari mengumpulkan beberapa Kayu dengan Prajurit Rakyat Infanteri "
+"Anda. Pilih Prajurit Rakyat Infanteri Anda dan suruh mereka untuk "
+"mengumpulkan Kayu dengan mengklik kanan pada pohon terdekat."
 
 #: maps/tutorials/starting_economy_walkthrough.js:67
 msgid ""
 "Cavalry Citizen Soldiers are good for hunting. Select your cavalry and order"
 " him to hunt the chickens around your Civic Center in similar fashion."
 msgstr ""
+"Prajurit Rakyat Kavaleri bagus untuk berburu. Pilih kavalerimu dan "
+"perintahkan dia untuk berburu ayam di sekitar Pusat Peradaban dengan cara "
+"yang sama."
 
 #: maps/tutorials/starting_economy_walkthrough.js:78
 msgid ""
@@ -448,6 +497,11 @@ msgid ""
 "individually by simply clicking, but training 5 units together takes less "
 "time than training 5 units individually."
 msgstr ""
+"Prajurit rakyat mengumpulkan kayu lebih cepat dari rakyat wanita. Pilih "
+"Pusat Peradaban dan, sambil menekan Shift, pilih ikon unit kedua, Hoplites "
+"(tahan Shift untuk melatih grup sebanyak 5 unit). Anda bisa melatih unit "
+"satu-persatu dengan mengklik, tapi melatih 5 unit sekaligus membutuhkan "
+"waktu yang lebih sedikit dibandingkan melatih 5 unit satu-persatu."
 
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
@@ -495,6 +549,14 @@ msgid ""
 "the mouse as close as possible to the trees you want to gather and click on "
 "a valid place to build the dropsite.\n"
 msgstr ""
+"Tapi ketika mereka membawanya kembali ke Pusat Peradaban untuk menyimpannya,"
+" efisiensi pengumpulan mereka akan berkurang karena jarak. Untuk "
+"memperbaikinya, kita bisa membuat sebuah gudang, tempat pengumpulan untuk "
+"Kayu, Batu, dan Logam, di dekat pepohonan. Untuk melakukannya, pilih lima "
+"prajurit rakyatmu yang baru dilatih dan cari panel konstruksi di bagian "
+"kanan bawah, klik ikon gudang, gerakkan tetikus sedekat mungkin ke pepohonan"
+" yang ingin Anda kumpulkan dan klik tempat yang tepat untuk membangun tempat"
+" pengumpulan."
 
 #: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
@@ -595,6 +657,8 @@ msgid ""
 "But to minimize the distance between a farm and its corresponding food "
 "dropsite, we will first build a farmstead."
 msgstr ""
+"Tapi untuk meminimalisir jarak antara ladang dan tempat pengumpulan "
+"makanannya, kita pertama akan membuat lumbung."
 
 #: maps/tutorials/starting_economy_walkthrough.js:258
 msgid ""
@@ -602,6 +666,9 @@ msgid ""
 "farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
+"Pilih tiga rakyat wanita yang menganggur dan perintahkan mereka untuk "
+"membangun sebuah lumbung di tengah area terbuka yang luas di arah barat dari"
+" Pusat Peradaban."
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
@@ -609,6 +676,10 @@ msgid ""
 "In addition, we can see goats on the west side to further improve our food "
 "gathering efficiency should we ever decide to hunt them.\n"
 msgstr ""
+"Kita akan membutuhkan daerah yang luas di sekitar lumbung untuk membangun "
+"ladang. Selain itu, kita dapat melihat kambing di bagian barat untuk "
+"meningkatkan efisiensi pengumpulan makanan lebih jauh lagi jika kita "
+"memutuskan untuk memburu mereka."
 
 #: maps/tutorials/starting_economy_walkthrough.js:260
 msgid ""
@@ -625,6 +696,8 @@ msgid ""
 "When the farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
 msgstr ""
+"Ketika lumbung selesai dibangun, pembangunnya akan secara otomatis mencari "
+"makanan, dan untuk kali ini, mereka akan pergi ke kambing terdekat.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:276
 msgid ""
@@ -638,6 +711,9 @@ msgid ""
 "to build a field as close as possible to the farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"Ketika kedua rumah telah dibangun, pilih dua rakyat wanita dan perintahkan "
+"mereka untuk membangun ladang sedekat mungkin dengan lumbung, yang merupakan"
+" tempat pengumpulan untuk semua jenis makanan."
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
@@ -685,6 +761,8 @@ msgid ""
 "You can increase the gather rates of your workers by researching new "
 "technologies available in some buildings.\n"
 msgstr ""
+"Anda dapat meningkatkan tingkat pengumpulan pekerja dengan cara meneliti "
+"teknologi baru yang tersedia di beberapa bangunan."
 
 #: maps/tutorials/starting_economy_walkthrough.js:356
 msgid ""
@@ -694,6 +772,11 @@ msgid ""
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
+"Tingkat pertanian, contohnya, dapat ditingkatkan dengan teknologi yang dapat"
+" diteliti di lumbung. Pilih lumbung dan lihat panel produksi di bagian bawah"
+" kanan. Anda dapat melihat beberapa teknologi yang dapat diteliti. Layangkan"
+" kursor di atas mereka untuk melihat biaya dan efek dan klik ke teknologi "
+"yang ingin diteliti."
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
@@ -731,6 +814,8 @@ msgid ""
 "You should now be able to research Town Phase. Select the Civic Center and "
 "click on the technology icon.\n"
 msgstr ""
+"Sekarang anda seharusnya bisa meneliti Fase Kota. Pilih Pusat Peradaban dan "
+"klik ikon teknologinya.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:395
 msgid ""
@@ -745,6 +830,11 @@ msgid ""
 "done, you will send half of your idle Citizen Soldiers (who have finished "
 "building the Barracks) to gather Stone and the other half to gather Metal.\n"
 msgstr ""
+"Di fase selanjutnya, Anda biasanya akan membutuhkan Batu dan Logam untuk "
+"membangun struktur yang lebih besar dan melatih prajurit yang lebih baik. "
+"Karena itu, selama menunggu riset selesai, Anda akan mengirimkan setengah "
+"dari Prajurit Rakyat yang menganggur (yang telah selesai membangun Barak) "
+"untuk mengumpulkan Batu dan setengah lainnya untuk mengumpulkan Logam."
 
 #: maps/tutorials/starting_economy_walkthrough.js:410
 msgid ""
@@ -754,6 +844,11 @@ msgid ""
 "were gathering Wood, so they may still carry some Wood which would be lost "
 "when starting to gather another resource."
 msgstr ""
+"Untuk melakukannya, kita bisa memilih tiga Prajurit-Rakyat dan klik kanan ke"
+" tambang Batu di arah barat dari Pusat Peradaban (kursor berubah ketika "
+"dilayangkan di atas tambang Batu ketika prajuritmu dipilih). Namun, prajurit"
+" ini dulunya mengumpulkan Kayu, jadi mereka mungkin masih membawa Kayu yang "
+"akan hilang ketika mereka mulai mengumpulkan sumber daya lain."
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
@@ -803,7 +898,7 @@ msgid ""
 msgstr ""
 "Peta ini akan memberikan panduan kasar untuk memulai permainan dengan "
 "efektif. Pada awalan permainan yang paling penting adalah mengumpulkan "
-"sumberdaya secepatnya agar Anda dapat membuat prajurit cukup nanti."
+"sumber daya secepatnya agar Anda dapat membuat prajurit cukup nanti."
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"

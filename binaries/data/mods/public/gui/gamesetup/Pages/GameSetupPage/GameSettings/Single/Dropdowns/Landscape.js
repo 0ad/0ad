@@ -34,8 +34,8 @@ GameSettingControls.Landscape = class extends GameSettingControlDropdown
 
 			this.values = prepareForDropdown([
 				...randomItems,
-				...mapData.settings.Landscapes.land.sort(sort),
-				...mapData.settings.Landscapes.naval.sort(sort)
+				...mapData.settings.Landscapes.land.map(this.translateItem).sort(sort),
+				...mapData.settings.Landscapes.naval.map(this.translateItem).sort(sort)
 			]);
 
 			this.dropdown.list = this.values.Name;
@@ -47,6 +47,16 @@ GameSettingControls.Landscape = class extends GameSettingControlDropdown
 		this.lastLandscape = undefined;
 
 		this.setHidden(!this.values);
+	}
+
+	translateItem(item)
+	{
+		return {
+			"Id": item.Id,
+			"Name": translate(item.Name),
+			"Description": translate(item.Description),
+			"Preview": item.Preview
+		};
 	}
 
 	onGameAttributesChange()
@@ -80,7 +90,15 @@ GameSettingControls.Landscape = class extends GameSettingControlDropdown
 
 	getAutocompleteEntries()
 	{
-		return this.values.Name;
+		if (!this.values)
+			return undefined;
+
+		let entries = [];
+		for (let i = 0; i < this.values.Id.length; ++i)
+			if (!this.values.Id[i].startsWith("random"))
+				entries.push(this.values.Name[i]);
+
+		return entries;
 	}
 
 	onSelectionChange(itemIdx)

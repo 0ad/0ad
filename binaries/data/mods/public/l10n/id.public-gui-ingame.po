@@ -20,13 +20,14 @@
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2017
 # Samuel <srandiny@gmail.com>, 2014-2016
 # Samuel <srandiny@gmail.com>, 2017
+# Ulzeta Ulzeta <julyusputra@gmail.com>, 2020
 # Yusufabdiauzan <yusufabdiauzan@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-01-17 15:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-01-28 12:16+0000\n"
+"Last-Translator: Ulzeta Ulzeta <julyusputra@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -507,7 +508,7 @@ msgstr "Klik kanan untuk menetapkan sebagai pasar tujuan."
 #: gui/session/unit_actions.js:660 gui/session/unit_actions.js:876
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
-msgstr "Terisi: %(garrisoned)s/%(capacity)s"
+msgstr "Diisi: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:929
 msgid "Right-click to establish a default route for new traders."
@@ -537,7 +538,7 @@ msgstr "Batalkan perintah saat ini."
 
 #: gui/session/unit_actions.js:1157
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr ""
+msgstr "Perintahkan unit terpilih untuk menempati sebuah struktur atau unit."
 
 #: gui/session/unit_actions.js:1180
 msgid "Unload"
@@ -600,7 +601,7 @@ msgstr "Entitas ini harus dibunuh dahulu sebelum bisa dikumpulkan"
 #: gui/session/unit_actions.js:1502
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr "Anda tidak dapat menghancurkan ini karena anda hanya memiliki kurang dari setengah poin ambil alih."
+msgstr "Anda tidak dapat menghancurkan ini karena anda hanya memiliki kurang dari setengah poin penguasaan."
 
 #: gui/session/unit_actions.js:1505
 msgid "This entity is undeletable"
@@ -1319,7 +1320,7 @@ msgstr[0] "%(numberOfLandTraders)s pedagang darat tidak aktif"
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] "%(numberGarrisoned)s berada di dalam sebuah kapal dagang"
+msgstr[0] "%(numberGarrisoned)s ditempatkan di dalam sebuah kapal dagang"
 
 #: gui/session/trade/TraderStatusTextLand.js:45
 #, javascript-format
@@ -1507,7 +1508,7 @@ msgstr "Nyawa:"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):32
 msgid "Capture points:"
-msgstr "Poin ambil alih:"
+msgstr "Poin penguasaan:"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):60
 msgid "Attack and Armor"

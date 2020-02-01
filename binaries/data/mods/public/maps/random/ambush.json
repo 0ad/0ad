@@ -5,6 +5,7 @@
     "Description" : "High bluffs overlook the terrain below. Bountiful resources await on the cliffs, but beware of enemies planning an ambush.",
     "Preview" : "ambush.png",
     "SupportedBiomes": "generic/",
-    "CircularMap" : true
+    "CircularMap" : true,
+    "TeamPlacements": ["radial", "line", "randomGroup", "stronghold"]
   }
 }

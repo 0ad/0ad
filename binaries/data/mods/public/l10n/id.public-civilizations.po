@@ -16,13 +16,14 @@
 # La Ode Muh. Fadlun Akbar <fadlun.net@gmail.com>, 2014
 # Samuel <srandiny@gmail.com>, 2016
 # Samuel <srandiny@gmail.com>, 2017
+# Ulzeta Ulzeta <julyusputra@gmail.com>, 2020
 # Yusufabdiauzan <yusufabdiauzan@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-01-17 15:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-01-28 13:43+0000\n"
+"Last-Translator: Ulzeta Ulzeta <julyusputra@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -399,7 +400,7 @@ msgstr "Kaum Briton memiliki praktek membuat tanda permanen pada tubuh mereka da
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr "Meningkatkan bonus ketinggian pada unit yang ada didalam menara."
+msgstr "Meningkatkan bonus ketinggian pada unit yang menempati menara."
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Name
 msgid "Turos Maros"
@@ -537,7 +538,7 @@ msgstr "Kartago"
 msgid ""
 "Carthaginian walls, gates, and towers have 3x health of a standard wall, but"
 " also 2x build time."
-msgstr "Dinding, gerbang, dan menara Kartago memiliki 3x nyawa dari dinding biasa, namun juga 2x waktu pembangunan."
+msgstr "Dinding, gerbang, dan menara Kartago memiliki 3x nyawa dari dinding biasa, namun juga 2x waktu bangun."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -552,7 +553,7 @@ msgid ""
 "The resource cost of training elephant-mounted (war elephant) or horse-"
 "mounted units (cavalry) is reduced by 5% per animal corralled (as "
 "appropriate)."
-msgstr "Biaya sumberdaya pelatihan unit penunggang gajah (gajah perang) atau penunggang kuda (kavaleri) berkurang sebesar 5% per hewan yang dikandangi (yang sesuai)."
+msgstr "Biaya sumber daya pelatihan unit penunggang gajah (gajah perang) atau penunggang kuda (kavaleri) berkurang sebesar 5% per hewan yang dikandangi (yang sesuai)."
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Name
 #: simulation/data/civs/ptol.jsonCivBonuses[2].Name
@@ -664,7 +665,7 @@ msgstr "Bangsa Kartago paling mengerti di dunia kuno kemana mereka pergi; saudag
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[1].Description
 msgid "Civic Centers, Temples, and Houses -25% build time."
-msgstr "Pusat Peradaban, Kuil, dan Rumah -25% waktu membangun."
+msgstr "Pusat Peradaban, Kuil, dan Rumah -25% waktu bangun."
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[1].Name
 msgid "Colonization"
@@ -775,7 +776,7 @@ msgstr "Galia"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Allied Structures −20% technology research time."
-msgstr "Waktu riset tehnologi struktur Sekutu berkurang 20%"
+msgstr "Waktu penelitian teknologi struktur Sekutu berkurang 20%"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -846,7 +847,7 @@ msgid ""
 " a relief force from Veii, he negotiated his surrender for 1000 pounds of "
 "gold, and adding the weight of his sword on the scale when the Romans "
 "complained that he used false weights he uttered those famous words."
-msgstr ""
+msgstr "Celakalah pada yang dikalahkan! Kepala suku Gaul Brennus menguasai Roma (dengan pengecualian pertahanan di Bukit Capitoline). Ketika Camillus mengepung dirinya dengan pasukan bantuan dari Veii, dia menegosiasikan penyerahan dirinya sebesar 1000 pon emas, dan menambahkan berat pedangnya ke neraca ketika orang Romawi mengeluh dia menggunakan timbangan palsu ketika dia mengutarakan kata-kata terkenalnya itu."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
@@ -961,7 +962,7 @@ msgstr "Dengan pengecualian untuk aluvial dataran dan lembah sungai, bebatuan me
 msgid ""
 "The resource cost of training horse-mounted units (cavalry) is reduced by 5%"
 " per animal corralled."
-msgstr "Biaya sumberdaya pelatihan unit berkuda (kavaleri) berkurang sebesar 5% per hewan yang dikandangi."
+msgstr "Biaya sumber daya pelatihan unit berkuda (kavaleri) berkurang sebesar 5% per hewan yang dikandangi."
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Zaldi Saldoa"
@@ -1166,7 +1167,7 @@ msgstr "Penangkapan Gajah"
 msgid ""
 "Can capture Gaia elephants and garrison them into a corral to reduce "
 "training costs for War Elephants."
-msgstr ""
+msgstr "Dapat menangkap gajah Gaia dan menempatkan mereka ke dalam sebuah kandang untuk mengurangi biaya pelatihan Gajah Perang."
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Name
 msgid "Elephant Suppliers"
@@ -1174,7 +1175,7 @@ msgstr "Penyuplai Gajah"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
 msgid "Allied Elephants −20% resource costs and training time."
-msgstr "Waktu dan biaya latihan Gajah Sekutu -20%"
+msgstr "Waktu dan biaya pelatihan Gajah Sekutu -20%"
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1240,7 +1241,7 @@ msgstr ""
 msgid ""
 "+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr ""
+msgstr "+50% HP and -50% waktu bangun untuk Pusat Peradaban, Kuil, Piramida dan Keajaiban Dunia."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid "Allow to train elite rank healers"
@@ -1334,7 +1335,7 @@ msgid ""
 "Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
 " the 4th century AD, when it weakened and disintegrated due to internal "
 "rebellion, eventually succumbing to the rising power of Axum."
-msgstr ""
+msgstr "Kerajaan Kush merupakan kerajaan Afrika kuno yang terletak di pertemuan, Nil Biru, Nil Putih dan Sungai Atbara di tempat yang sekarang dikenal sebagai Republik Sudan. Era pemerintahan Kush di daerah tersebut dimulai setelah Jaman Perunggu meruntuhkan Kerajaan Mesir Baru, dan berpusat di Napata pada permulaannya. Mereka menginvasi Mesir pada abad ke-8 SM, dan kaisar Kush memerintah sebagai Pharaoh dinasti kedua puluh lima Mesir selama seabad, sampai mereka diusir oleh bangsa Asyur. Budaya Kush dipengaruhi secara kuat oleh bangsa Mesir, dengan arsitektur piramida dan kuil monumental Kush masih berdiri. Bangsa Kush bahkan menyembah banyak dewa Mesir, termasuk Amun. Di Zaman Klasik, Ibu Kota Kekaisaran Kush berada di Meroë. Pada awal geografis Yunani, Kerajaan Meroë dikenal sebagai Ethiopia. Kerajaan Kush bertahan hingga abad keempat SM, ketika dia melemah dan terpisah-pisah karena pemberontakan internal, hingga akhirnya takluk ke kekuatan baru, Axum."
 
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name
@@ -1401,7 +1402,7 @@ msgstr "Bangsa Makedon dan Diokhoi mencetak koin berkualitas tinggi. Pada mata u
 #: simulation/data/civs/mace.jsonAINames[0]
 #: simulation/data/civs/mace.jsonFactions[0].Heroes[1].Name
 msgid "Alexander the Great"
-msgstr "Alexander the Great"
+msgstr "Iskandar Agung"
 
 #: simulation/data/civs/mace.jsonAINames[1]
 msgid "Philip II"
@@ -1635,7 +1636,7 @@ msgstr "Ksatria atau Kashtriya adalah salahsatu warna (kasta) dalam Hindu. Secar
 msgid ""
 "Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
-msgstr "Biaya dan waktu pembuatan candi sekutu -50%: biaya dan waktu riset tehnologi Candi -50%"
+msgstr "Biaya dan waktu pembuatan candi sekutu -50%: biaya dan waktu penelitian teknologi Candi -50%"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1688,7 +1689,7 @@ msgstr "Brihadratha Maurya"
 msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
-msgstr "Menangkap hingga 5 gajah Gaia dan masukkan mereka ke dalam Kandang Gajah untuk memperoleh hingga 25% bonus biaya dan waktu latih unit gajah."
+msgstr "Menangkap hingga 5 gajah Gaia dan menempatkan mereka ke dalam Kandang Gajah untuk memperoleh hingga 25% bonus biaya dan waktu latih unit gajah."
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
@@ -1743,7 +1744,7 @@ msgid ""
 "Contentment: +10% Health and +10% resource gathering rates for all citizens "
 "and allied citizens within its range. Can be built anywhere except in enemy "
 "territory. Max Built: 10."
-msgstr "Syukur: +10% Nyawa dan +10% tingkat pengumpulan sumberdaya untuk semua rakyat dan rakyat sekutu pada jarak pandangnya. Dapat dibangun di manapun kecuali wilayah musuh. Bangun Maks: 10."
+msgstr "Syukur: +10% Nyawa dan +10% tingkat pengumpulan sumber daya untuk semua rakyat dan rakyat sekutu pada jarak pandangnya. Dapat dibangun di manapun kecuali wilayah musuh. Bangun Maks: 10."
 
 #: simulation/data/civs/maur.jsonHistory
 msgid ""
@@ -1765,7 +1766,7 @@ msgstr "Persia"
 msgid ""
 "The resource cost of training camel-mounted (trader) or horse-mounted units "
 "(cavalry) is reduced by 5% per animal (as appropriate) corralled."
-msgstr "Biaya sumberdaya pelatihan unit berunta (pedagang) atau unit berkuda (kavaleri) berkurang sebesar 5% per hewan (masing-masing) yang dikandangi."
+msgstr "Biaya sumber daya pelatihan unit berunta (pedagang) atau unit berkuda (kavaleri) berkurang sebesar 5% per hewan (masing-masing) yang dikandangi."
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Corral Camels and Horses"
@@ -1787,7 +1788,7 @@ msgstr "Bangsa Persia memiliki +10% bonus kapasitas populasi (contohnya 330 popu
 
 #: simulation/data/civs/pers.jsonCivBonuses[1].Name
 msgid "Great King's Levy"
-msgstr "Pajak Raja Agung"
+msgstr "Retribusi Raja Agung"
 
 #: simulation/data/civs/pers.jsonCivBonuses[1].History
 msgid ""
@@ -1797,7 +1798,7 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr "Bangsa Persia pernah menerapkan pajak untuk sejumlah besar infanteri pada masa perang karena luasnya Kekaisaran Akhemeniyah dan cara pemungutannya. Secara umum infanteri Persia dilatih dengan baik dan bertarung dengan gigih. Akan tetapi infanteri mereka lemah dalam peperangan jarak dekat. Selain itu infanteri Persia bukanlah pasukan ahli, kecuali resimen elit mereka."
+msgstr "Bangsa Persia pernah menerapkan retribusi untuk sejumlah besar infanteri pada masa perang karena luasnya Kekaisaran Akhemeniyah dan cara pemungutannya. Secara umum infanteri Persia dilatih dengan baik dan bertarung dengan gigih. Akan tetapi infanteri mereka lemah dalam peperangan jarak dekat. Selain itu infanteri Persia bukanlah pasukan ahli, kecuali resimen elit mereka."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
 msgid "Allied Land Traders +15% trade gain."
@@ -1964,7 +1965,7 @@ msgstr "Kandang Kavaleri"
 
 #: simulation/data/civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry citizen-soldiers."
-msgstr "Melatih prajurit rakyat berkuda."
+msgstr "Melatih prajurit rakyat Kavaleri."
 
 #: simulation/data/civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
@@ -1978,7 +1979,7 @@ msgstr "Apadana"
 msgid ""
 "Train heroes and Persian Immortals. Gives a slow trickle of all resources as"
 " 'Satrapy Tribute.'"
-msgstr "Melatih pahlawan dan Pasukan Abadi Persia. Memberi percikan kecil seluruh sumberdaya sebagai 'Upeti Satrap.'"
+msgstr "Melatih pahlawan dan Pasukan Abadi Persia. Memberi percikan kecil seluruh sumber daya sebagai 'Upeti Satrap.'"
 
 #: simulation/data/civs/pers.jsonStructures[1].History
 msgid ""
@@ -2268,7 +2269,7 @@ msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Infantry −10% training time."
-msgstr ""
+msgstr "Rakyat Infanteri Sekutu −10% waktu pelatihan."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2403,7 +2404,7 @@ msgstr "Perkemahan Berparit"
 
 #: simulation/data/civs/rome.jsonStructures[0].Special
 msgid "Trains citizen-soldiers from neutral or enemy territory."
-msgstr "- Melatih prajurit-rakyat di wilayah netral atau musuh"
+msgstr "Melatih prajurit-rakyat di wilayah netral atau musuh"
 
 #: simulation/data/civs/rome.jsonStructures[0].History
 msgid ""
@@ -2417,7 +2418,7 @@ msgid ""
 "execution. It has a turf wall, and it's surrounded by a canal filled with "
 "water whenever possible for extra defense. Many towns started up as bigger "
 "military camps to evolve to more complicated cities."
-msgstr ""
+msgstr "Kadang kala kamp sementara dibuat menatap rute yang akan dijalani oleh prajurit, kadang kala menatap sebuah struktur defensif atau ofensif (untuk pengepungan). Di dalam Gerbang Praetorian, yang seharusnya menatap timur atau musuh, kemah dari centurion pertama atau divisi didirikan, dan draco (bendera divisi) dan bendera lainnya ditanam. Gerbang Decumane berada tepat berseberangan dengan Praetorian di belakang kamp, dan melalui gerbang ini para prajurit diarahkan ke tempat yang ditujukan untuk hukuman atau eksekusi. Gerbang ini memiliki dinding rumput, dan dikelilingi oleh kanal diisi dengan air setiap kali dimungkinkan untuk pertahanan ekstra. Banyak kota mulai sebagai kamp militer besar yang berubah menjadi kota yang lebih kompleks."
 
 #: simulation/data/civs/rome.jsonStructures[1].Name
 msgid "Murus Latericius"
@@ -2496,11 +2497,11 @@ msgstr "Seleucus I Nicator"
 
 #: simulation/data/civs/sele.jsonAINames[1]
 msgid "Antiochus I Soter"
-msgstr "Antiochus I Soter"
+msgstr "Antiokhus I Soter"
 
 #: simulation/data/civs/sele.jsonAINames[2]
 msgid "Antiochus II Theos"
-msgstr "Antiochus II Theos"
+msgstr "Antiokhus II Theos"
 
 #: simulation/data/civs/sele.jsonAINames[3]
 msgid "Seleucus II Callinicus"
@@ -2512,7 +2513,7 @@ msgstr "Seleucus III Ceraunus"
 
 #: simulation/data/civs/sele.jsonAINames[5]
 msgid "Antiochus III Megas"
-msgstr "Antiochus III Megas"
+msgstr "Antiokhus III Megas"
 
 #: simulation/data/civs/sele.jsonAINames[6]
 msgid "Seleucus IV Philopator"
@@ -2520,11 +2521,11 @@ msgstr "Seleucus IV Philopator"
 
 #: simulation/data/civs/sele.jsonAINames[7]
 msgid "Antiochus IV Epiphanes"
-msgstr "Antiochus IV Epiphanes"
+msgstr "Antiokhus IV Epiphanes"
 
 #: simulation/data/civs/sele.jsonAINames[8]
 msgid "Antiochus V Eupator"
-msgstr "Antiochus V Eupator"
+msgstr "Antiokhus V Eupator"
 
 #: simulation/data/civs/sele.jsonAINames[9]
 msgid "Demetrius I Soter"
@@ -2541,7 +2542,7 @@ msgstr "Demetrius II Nicator"
 
 #: simulation/data/civs/sele.jsonAINames[12]
 msgid "Antiochus VI Dionysus"
-msgstr "Antiochus VI Dionysus"
+msgstr "Antiokhus VI Dionysus"
 
 #: simulation/data/civs/sele.jsonAINames[13]
 msgid "Diodotus Tryphon"
@@ -2549,7 +2550,7 @@ msgstr "Diodotus Tryphon"
 
 #: simulation/data/civs/sele.jsonAINames[14]
 msgid "Antiochus VII Sidetes"
-msgstr "Antiochus VII Sidetes"
+msgstr "Antiokhus VII Sidetes"
 
 #: simulation/data/civs/sele.jsonAINames[16]
 msgid "Alexander II Zabinas"
@@ -2565,11 +2566,11 @@ msgstr "Seleucus V Philometor"
 
 #: simulation/data/civs/sele.jsonAINames[19]
 msgid "Antiochus VIII Grypus"
-msgstr "Antiochus VIII Grypus"
+msgstr "Antiokhus VIII Grypus"
 
 #: simulation/data/civs/sele.jsonAINames[20]
 msgid "Antiochus IX Cyzicenus"
-msgstr "Antiochus IX Cyzicenus"
+msgstr "Antiokhus IX Cyzicenus"
 
 #: simulation/data/civs/sele.jsonAINames[21]
 msgid "Seleucus VI Epiphanes"
@@ -2577,7 +2578,7 @@ msgstr "Seleucus VI Epiphanes"
 
 #: simulation/data/civs/sele.jsonAINames[22]
 msgid "Antiochus X Eusebes"
-msgstr "Antiochus X Eusebes"
+msgstr "Antiokhus X Eusebes"
 
 #: simulation/data/civs/sele.jsonAINames[23]
 msgid "Demetrius III Eucaerus"
@@ -2585,7 +2586,7 @@ msgstr "Demetrius III Eucaerus"
 
 #: simulation/data/civs/sele.jsonAINames[24]
 msgid "Antiochus XI Epiphanes"
-msgstr "Antiochus XI Epiphanes"
+msgstr "Antiokhus XI Epiphanes"
 
 #: simulation/data/civs/sele.jsonAINames[25]
 msgid "Philip I Philadelphus"
@@ -2593,7 +2594,7 @@ msgstr "Philip I Philadelphus"
 
 #: simulation/data/civs/sele.jsonAINames[26]
 msgid "Antiochus XII Dionysus"
-msgstr "Antiochus XII Dionysus"
+msgstr "Antiokhus XII Dionysus"
 
 #: simulation/data/civs/sele.jsonAINames[27]
 msgid "Seleucus VII Kybiosaktes"
@@ -2601,7 +2602,7 @@ msgstr "Seleucus VII Kybiosaktes"
 
 #: simulation/data/civs/sele.jsonAINames[28]
 msgid "Antiochus XIII Asiaticus"
-msgstr "Antiochus XIII Asiaticus"
+msgstr "Antiokhus XIII Asiaticus"
 
 #: simulation/data/civs/sele.jsonAINames[29]
 msgid "Philip II Philoromaeus"
@@ -2700,7 +2701,7 @@ msgstr "Dinasti Makedon-Yunani yang memerintah bagian timur dari bekas kekaisara
 
 #: simulation/data/civs/sele.jsonStructures[1].Special
 msgid "Trains all cavalry except citizen-soldier cavalry."
-msgstr ""
+msgstr "Melatih semua kavaleri kecuali prajurit-rakyat kavaleri."
 
 #: simulation/data/civs/sele.jsonStructures[2].Name
 msgid "Military Colony"
@@ -2753,7 +2754,7 @@ msgstr "Bangsa Sparta adalah master dari formasi falang yang tidak tertandingi. 
 #: simulation/data/civs/spart.jsonCivBonuses[1].Description
 msgid ""
 "The Spartan rank upgrades at the Barracks cost no resources, except time."
-msgstr "Peningkatan pangkat Sparta di Barak tidak menghabiskan sumberdaya selain waktu."
+msgstr "Peningkatan pangkat Sparta di Barak tidak menghabiskan sumber daya selain waktu."
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].Name
 msgid "Laws of Lycurgus"
@@ -2847,7 +2848,7 @@ msgid ""
 "lost battle against Pyrrhus of Epirus they overnight built an earthen "
 "rampart to protect the city while their men slept in preparation for the "
 "next day's siege."
-msgstr "Wanita Sparta adalah salah satu yang terbebas di dunia kuno. Mereka boleh memiliki tanah dan budak bahkan berlatih telanjang seperti lelaki Sparta. Dikatakan bahwa hanya wanita Sparta yang melahirkan lelaki sejati. Wanita kuat seperti itu lebih dari sekali menyelamatkan kota dari bencana, misalnya ketika kalah dalam pertempuran melawan Piros dari Epiros mereka semalaman membangun benteng tanah untuk melindungi kota ketika lelaki mereka tidur dalam persiapan pengepungan esok hari."
+msgstr "Wanita Sparta adalah salah satu yang terbebas di dunia kuno. Mereka boleh memiliki tanah dan budak bahkan berlatih telanjang seperti lelaki Sparta. Dikatakan bahwa hanya wanita Sparta yang melahirkan lelaki sejati. Wanita kuat seperti itu lebih dari sekali menyelamatkan kota dari bencana, misalnya ketika kalah dalam pertempuran melawan Pyrrhus dari Epirus mereka semalaman membangun benteng tanah untuk melindungi kota ketika lelaki mereka tidur dalam persiapan pengepungan esok hari."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[1].Description
 msgid "Units in phalanx formation move faster."

@@ -7,7 +7,7 @@
 # Alexander Olkhovskiy, 2016
 # Alexander Serov <sekachinsky@gmail.com>, 2014
 # Alex <yanebotan@ngs.ru>, 2015
-# Boris Karalnik <eyesucker@gmail.com>, 2015,2018-2019
+# Boris Karalnik <eyesucker@gmail.com>, 2015,2018-2020
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # Dmitriy Kulikov <kulikov@dima.perm.ru>, 2019
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
@@ -48,7 +48,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-11-04 16:07+0000\n"
+"PO-Revision-Date: 2020-01-29 11:28+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -1351,7 +1351,7 @@ msgstr "Переход на этап небольшого города, откр
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid ""
 "Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Требуются 5 строений этапа деревни (не считая частоколы и поля)."
+msgstr "Требуются 5 зданий этапа деревни (частоколы и поля не учитываются)."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1362,7 +1362,7 @@ msgstr "Комополис"
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "Расширение из деревни до небольшого города, готового расти дальше."
+msgstr "Развитие деревни до небольшого города, готового к быстрому росту."
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""

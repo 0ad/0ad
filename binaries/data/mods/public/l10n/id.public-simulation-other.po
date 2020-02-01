@@ -10,12 +10,13 @@
 # Samuel <srandiny@gmail.com>, 2016
 # Samuel <srandiny@gmail.com>, 2017
 # Eggar Tirtayasa <eggar4tirtayasa@gmail.com>, 2014
+# Ulzeta Ulzeta <julyusputra@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-05-24 09:43+0200\n"
-"PO-Revision-Date: 2019-05-24 14:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-01-28 13:41+0000\n"
+"Last-Translator: Ulzeta Ulzeta <julyusputra@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -373,7 +374,7 @@ msgstr "%(name)s tak dapat dibangun di daerah tak terjelajahi"
 #: simulation/components/BuildRestrictions.js:156
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
-msgstr "%(name)s tak dapat dibangun di atas bangunan lain atau sumberdaya"
+msgstr "%(name)s tak dapat dibangun di atas bangunan lain atau sumber daya"
 
 #: simulation/components/BuildRestrictions.js:160
 #, javascript-format
@@ -517,21 +518,21 @@ msgstr "Batas %(category)s sebanyak %(limit)s dicapai"
 #: simulation/components/Player.js:352
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
-msgstr "Sumberdaya kurang - %(resourceAmount1)s %(resourceType1)s"
+msgstr "Sumber daya kurang - %(resourceAmount1)s %(resourceType1)s"
 
 #: simulation/components/Player.js:354
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
-msgstr "Sumberdaya kurang - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
+msgstr "Sumber daya kurang - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
 #: simulation/components/Player.js:356
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
-msgstr "Sumberdaya kurang - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
+msgstr "Sumber daya kurang - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
 #: simulation/components/Player.js:358
 #, javascript-format
@@ -539,7 +540,7 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
-msgstr "Sumberdaya kurang - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
+msgstr "Sumber daya kurang - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
 #: simulation/components/ProductionQueue.js:394
 msgid "The production queue is full."
@@ -583,7 +584,7 @@ msgstr ""
 
 #: simulation/helpers/Commands.js:732
 msgid "Cannot upgrade a garrisoned entity."
-msgstr ""
+msgstr "Tidak dapat meningkatkan entitas yang ditempati."
 
 #: simulation/helpers/Commands.js:775
 #, javascript-format
@@ -596,7 +597,7 @@ msgstr "Tidak ada unit yang bisa disogok"
 
 #: simulation/helpers/Commands.js:860
 msgid "Unable to ungarrison unit(s)"
-msgstr "Tidak dapat mengeluarkan unit(-unit)"
+msgstr "Tidak dapat mengeluarkan unit"
 
 #: simulation/helpers/Commands.js:874
 msgid "Some unit(s) can't go back to work"
@@ -736,11 +737,11 @@ msgid ""
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
-msgstr ""
+msgstr "Jadilah yang pertama kali membangun atau mengambil alih sebuah Keajaiban Dunia dan menjaganya untuk waktu tertentu akan memenangkan permainan. Hitungan mundur akan diatur ulang ketika Keajaiban Dunia dihancurkan atau diambil alih. Jika kemenangan sekutu diaktifkan, hitungan mundur juga akan diatur ulang ketika persekutuan pemiliknya berubah."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr "Bangunan Keajaiban"
+msgstr "Keajaiban Dunia"
 
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
@@ -882,4 +883,4 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra adalah Bot AI Standar 0 A.D. Tolong laporkan masalah ke Wildfire Games (lihat pranala di menu utama).\n\nTingkat pengumpulan sumber daya AI dan pendapatan perdagangan tergantung tingkat kesulitan (Sandbox −58%, Sangat Mudah −44%, Mudah −25%, Sedang ±0%, Susah +25%, Sangat Susah +56%). Tingkat kesulitan termudah juga memiliki tingkat penelitian, pelatihan dan pembangunan yang lebih lambat. Selain itu, tingkat kesulitan Sandbox tidak memperluas dirinya atau menyerang."

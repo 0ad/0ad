@@ -15,7 +15,7 @@
 # Homunkul <Behal.inc@gmail.com>, 2014
 # bigaltum <bigaltum@gmail.com>, 2014
 # Bogdan Artemyev <bogarto@mail.ru>, 2014
-# Boris Karalnik <eyesucker@gmail.com>, 2015,2019
+# Boris Karalnik <eyesucker@gmail.com>, 2015,2019-2020
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # Cергей Исаченко <vortexius@gmail.com>, 2014
 # Владимир Смирнов <delpfine2012@gmail.com>, 2014
@@ -83,8 +83,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-24 08:08+0000\n"
-"PO-Revision-Date: 2020-01-24 14:28+0000\n"
-"Last-Translator: Vitalii Mostipaka <imprtat@gmail.com>\n"
+"PO-Revision-Date: 2020-01-29 16:38+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -159,7 +159,7 @@ msgstr "Нет"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:91
 msgid "AI Player"
-msgstr "ИИ игрок"
+msgstr "ИИ-игрок"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:172
 #, javascript-format
@@ -251,7 +251,7 @@ msgstr "Чит-коды"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:43
 msgid "Toggle the usability of cheats."
-msgstr "Включить / выключить возможность использования читов."
+msgstr "Включить\\отключить возможность использования читов."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -263,7 +263,7 @@ msgstr "Исследованная карта"
 #. explored map settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:58
 msgid "Toggle explored map (see initial map)."
-msgstr "Использовать исследованную карту (вся карта исследована)."
+msgstr "Включить исследованную карту (вся карта исследована)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:58
 msgid "Last Man Standing"
@@ -273,7 +273,7 @@ msgstr "Последний герой"
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr "Переключает, выигрывает ли последний оставшийся игрок или последний оставшийся альянс."
+msgstr "Переключение между победой последнего игрока и победой последнего альянса."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:52
 msgid "Teams Locked"
@@ -281,7 +281,7 @@ msgstr "Фиксированные команды"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:55
 msgid "Toggle locked teams."
-msgstr "Включить / выключить фиксированные команды."
+msgstr "Включить\\отключить фиксированные команды."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:60
 msgid "Nomad"
@@ -299,7 +299,7 @@ msgstr "Рейтинговая игра"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:54
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "Включите, если игру нужно оценить для доски почёта."
+msgstr "Включить\\отключить учёт итогов для доски почёта."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:61
 msgid "Hero Garrison"
@@ -307,7 +307,7 @@ msgstr "Гарнизон Героев"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:64
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "Переключить, могут ли герои быть гарнизонами."
+msgstr "Разрешение или запрет героям на размещение в гарнизоне."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -319,7 +319,7 @@ msgstr "Открытая карта"
 #. explored map settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:53
 msgid "Toggle revealed map (see everything)."
-msgstr "Использовать открытую карту (видима вся карта)."
+msgstr "Включить\\отключить открытую карту (видима вся карта)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:42
 msgid "Disable Spies"
@@ -524,7 +524,7 @@ msgstr "Установите время, в течение которого ат
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:67
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr "Без прекращения"
+msgstr "Без перемирий"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:70
 #, javascript-format
@@ -618,7 +618,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:76
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr "Переключить %(name)s вкладку настроек."
+msgstr "Включить\\отключить вкладку настроек %(name)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:79
 #, javascript-format
@@ -846,12 +846,12 @@ msgstr "• %(tiptext)s"
 #: gui/loading/TitleDisplay.js:15
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr "Генерация “%(map)s”"
+msgstr "Генерация карты «%(map)s»"
 
 #: gui/loading/TitleDisplay.js:17
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr "Загрузка “%(map)s”"
+msgstr "Загрузка карты «%(map)s»"
 
 #: gui/gamesetup/gamesetup.xml:(caption):27
 msgid "Match Setup"

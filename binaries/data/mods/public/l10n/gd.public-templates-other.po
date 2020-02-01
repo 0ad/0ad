@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-15 08:09+0000\n"
-"PO-Revision-Date: 2019-11-15 14:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-01-27 14:07+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,11 +30,11 @@ msgstr "Iasg"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
-msgstr ""
+msgstr "Glac èisg airson bìdh."
 
 #: simulation/templates/template_gaia_flora.xml:6
 msgid "Chop trees for wood."
-msgstr ""
+msgstr "Leag craobhan airson fiodh."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
@@ -46,7 +46,7 @@ msgstr "Preas"
 #: simulation/templates/template_gaia_flora_bush_berry.xml:4
 #: simulation/templates/template_gaia_flora_tree_fruit.xml:8
 msgid "Pick fruit for food."
-msgstr ""
+msgstr "Cruinnich measan airson bìdh."
 
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
@@ -62,7 +62,7 @@ msgstr "Mèinn meatailt"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
 msgid "Mine ore for metal."
-msgstr ""
+msgstr "Tochail clach-mhèinnir airson meatailt."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
@@ -70,7 +70,7 @@ msgstr "Cuaraidh cloiche"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Quarry rock for stone."
-msgstr ""
+msgstr "Tochail creagan airson clach."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
@@ -78,7 +78,7 @@ msgstr "Làrach"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr ""
+msgstr "Leag làrach airson clach."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
@@ -86,7 +86,7 @@ msgstr "Ulaidh"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr ""
+msgstr "Cruinnich ulaidhean airson stòrasan."
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
@@ -203,24 +203,24 @@ msgstr "Camelus dromedarius"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:4
 msgid "Bull"
-msgstr ""
+msgstr "Tarbh"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:5
 #: simulation/templates/gaia/fauna_cattle_cow.xml:5
 msgid "Bos taurus taurus"
-msgstr ""
+msgstr "Bos taurus taurus"
 
 #: simulation/templates/gaia/fauna_cattle_cow.xml:4
 msgid "Cow"
-msgstr ""
+msgstr "Bò"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:4
 msgid "Sanga Cattle"
-msgstr ""
+msgstr "Crodh Sanga"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:5
 msgid "Bos taurus africanus"
-msgstr ""
+msgstr "Bos taurus africanus"
 
 #: simulation/templates/gaia/fauna_cattle_zebu.xml:4
 msgid "Zebu"
@@ -536,11 +536,11 @@ msgstr "Cuilc-Fhrangach"
 
 #: simulation/templates/gaia/flora_tree_bamboo_dragon.xml:8
 msgid "Dragon Bamboo"
-msgstr ""
+msgstr "Cuilc-Fhrangach dràgoin"
 
 #: simulation/templates/gaia/flora_tree_banana.xml:4
 msgid "Banana"
-msgstr ""
+msgstr "Banana"
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
@@ -606,12 +606,12 @@ msgstr "Pailm deite le measan"
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
 msgid "Dead Deciduous Tree"
-msgstr ""
+msgstr "Craobh sheargach mharbh"
 
 #: simulation/templates/gaia/flora_tree_elm.xml:4
 #: simulation/templates/gaia/flora_tree_elm_dead.xml:4
 msgid "Elm Tree"
-msgstr ""
+msgstr "Ailm"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
@@ -620,7 +620,7 @@ msgstr "Beithe Eòrpach"
 
 #: simulation/templates/gaia/flora_tree_euro_birch.xml:4
 msgid "Silver Birch"
-msgstr ""
+msgstr "Beith-gheal"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
@@ -629,7 +629,7 @@ msgstr "Fìge"
 #: simulation/templates/gaia/flora_tree_fir.xml:4
 #: simulation/templates/gaia/flora_tree_fir_winter.xml:4
 msgid "Fir Tree"
-msgstr ""
+msgstr "Giuthas"
 
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
@@ -637,7 +637,7 @@ msgstr "Fiùran giuthais"
 
 #: simulation/templates/gaia/flora_tree_juniper_prickly.xml:4
 msgid "Prickly Juniper"
-msgstr ""
+msgstr "Aiteann"
 
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
@@ -645,7 +645,7 @@ msgstr "Mangrobh"
 
 #: simulation/templates/gaia/flora_tree_maple.xml:4
 msgid "Maple"
-msgstr ""
+msgstr "Malpas"
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -661,12 +661,12 @@ msgstr "Darach"
 
 #: simulation/templates/gaia/flora_tree_oak_holly.xml:4
 msgid "Holly Oak"
-msgstr ""
+msgstr "Craobh-thuilm"
 
 #: simulation/templates/gaia/flora_tree_oak_hungarian.xml:4
 #: simulation/templates/gaia/flora_tree_oak_hungarian_autumn.xml:4
 msgid "Hungarian Oak"
-msgstr ""
+msgstr "Darach Ungaireach"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak Tree"
@@ -678,7 +678,7 @@ msgstr "Craobh dhearcan-ola"
 
 #: simulation/templates/gaia/flora_tree_palm_areca.xml:4
 msgid "Areca Palm"
-msgstr ""
+msgstr "Pailm Areca"
 
 #: simulation/templates/gaia/flora_tree_palm_doum.xml:4
 msgid "Doum Palm"
@@ -709,7 +709,7 @@ msgstr "Giuthas dubh"
 #: simulation/templates/gaia/flora_tree_pine_maritime.xml:4
 #: simulation/templates/gaia/flora_tree_pine_maritime_short.xml:4
 msgid "Maritime Pine"
-msgstr ""
+msgstr "Crann-giuthais"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
@@ -725,21 +725,21 @@ msgstr "Pailm deite Sheanagalach"
 
 #: simulation/templates/gaia/flora_tree_strangler.xml:8
 msgid "Strangler Fig"
-msgstr ""
+msgstr "Fiogag"
 
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
-msgstr "craobh-sheudair salainn"
+msgstr "Craobh-sheudair salainn"
 
 #: simulation/templates/gaia/flora_tree_teak.xml:8
 msgid "Teak"
-msgstr ""
+msgstr "Tìoc"
 
 #: simulation/templates/gaia/flora_tree_temperate.xml:4
 #: simulation/templates/gaia/flora_tree_temperate_autumn.xml:4
 #: simulation/templates/gaia/flora_tree_temperate_winter.xml:4
 msgid "Deciduous Tree"
-msgstr ""
+msgstr "Craobh sheargach"
 
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona Tree"
@@ -747,7 +747,7 @@ msgstr "Craobh-sheudair dhearg"
 
 #: simulation/templates/gaia/flora_tree_tropic_rainforest.xml:4
 msgid "Rainforest Tree"
-msgstr ""
+msgstr "Craobh coille-uisge"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
@@ -1000,7 +1000,7 @@ msgstr "Brathadair"
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Requires at least 16 Melee Infantry."
-msgstr ""
+msgstr "Tha feum air 16 aonadan coisridh dlùithe air a char as lugha."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1012,7 +1012,7 @@ msgstr "Loidhne-chatha"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
-msgstr ""
+msgstr "Tha feum air 4 saighdearan no innealan-sèiste air a char as lugha."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1028,7 +1028,7 @@ msgstr "Colbh fosgailte"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr ""
+msgstr "Tha feum air 8 saighdearan no innealan-sèiste air a char as lugha."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1048,7 +1048,7 @@ msgstr "Chan eil gin"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Requires at least 10 Infantry Hoplites."
-msgstr ""
+msgstr "Tha feum air 10 hoiplidean coisridh air a char as lugha."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1060,7 +1060,7 @@ msgstr "Sgapte"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Requires a Ranged Soldier."
-msgstr ""
+msgstr "Tha feum air saighdear astair."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -1068,7 +1068,7 @@ msgstr "Streup"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Requires at least 16 Infantry Pikemen."
-msgstr ""
+msgstr "Tha feum air 16 pìcearan coisridh air a char as lugha."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1080,7 +1080,7 @@ msgstr "Sligeanach"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Requires at least 6 Cavalry."
-msgstr ""
+msgstr "Tha feum air 6 aonadan eachraidh air a char as lugha."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

@@ -12,12 +12,13 @@
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2017
 # Samuel <srandiny@gmail.com>, 2015-2016
 # Samuel <srandiny@gmail.com>, 2017
+# Ulzeta Ulzeta <julyusputra@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-24 08:08+0000\n"
-"PO-Revision-Date: 2020-01-24 15:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-01-28 13:49+0000\n"
+"Last-Translator: Ulzeta Ulzeta <julyusputra@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -238,7 +239,7 @@ msgstr ""
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] "Keajaiban (%(min)s menit)"
+msgstr[0] "Keajaiban Dunia (%(min)s menit)"
 
 #: gui/common/gamedescription.js:216
 #, javascript-format
@@ -253,11 +254,11 @@ msgstr "Jumlah Relikui"
 
 #: gui/common/gamedescription.js:239
 msgid "Hero Garrison"
-msgstr "Masuknya Pahlawan"
+msgstr "Penempatan Pahlawan"
 
 #: gui/common/gamedescription.js:240
 msgid "Heroes can be garrisoned."
-msgstr "Pahlawan dapat dimasukkan."
+msgstr "Pahlawan dapat ditempatkan"
 
 #: gui/common/gamedescription.js:244
 msgid "Exposed Heroes"
@@ -265,7 +266,7 @@ msgstr "Tunjukkan Pahlawan"
 
 #: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr ""
+msgstr "Pahlawan tidak bisa menempati bangunan dan rentan terhadap serangan."
 
 #: gui/common/gamedescription.js:252
 msgid "Rated game"
@@ -641,7 +642,7 @@ msgstr "Acak"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr "Membuat sebuah peta unik dengan distribusi sumberdaya berbeda tiap kali. Pilih dengan bebas jumlah pemain dan regu."
+msgstr "Membuat sebuah peta unik dengan distribusi sumber daya berbeda tiap kali. Pilih dengan bebas jumlah pemain dan regu."
 
 #: gui/common/settings.js:189
 msgctxt "map"
@@ -742,7 +743,7 @@ msgstr "(%(armorPercentage)s)"
 
 #: gui/common/tooltips.js:192
 msgid "Garrison to fire arrows"
-msgstr ""
+msgstr "Tempati untuk menembakkan panah"
 
 #: gui/common/tooltips.js:195
 msgid "Interval:"
@@ -897,7 +898,7 @@ msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:398
 msgid "Garrison Limit"
-msgstr "Batas Unit Didalam"
+msgstr "Batas Unit yang Ditempatkan"
 
 #: gui/common/tooltips.js:405
 #, javascript-format
@@ -1069,7 +1070,7 @@ msgstr[0] "%(label)s %(val)s %(unit)s"
 #: gui/common/tooltips.js:763
 msgid "HP"
 msgid_plural "HP"
-msgstr[0] "Nyawa"
+msgstr[0] "HP"
 
 #: gui/common/tooltips.js:787
 #, javascript-format
@@ -1271,7 +1272,7 @@ msgstr "Belajar Cara Bermain"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr ""
+msgstr "Belajar cara bermain, memulai tutorial, menemukan pohon teknologi dan sejarah dibalik peradaban."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -1689,7 +1690,7 @@ msgstr ""
 #. research the technology selected.
 #: gui/reference/viewer/viewer.js:155
 msgid "Researched at:"
-msgstr ""
+msgstr "Diteliti di:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
@@ -1701,7 +1702,7 @@ msgstr ""
 #. unit or structure can research.
 #: gui/reference/viewer/viewer.js:188
 msgid "Researches:"
-msgstr ""
+msgstr "Meneliti:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
@@ -1900,7 +1901,7 @@ msgstr "Pusat peradaban"
 
 #: gui/summary/layout.js:31
 msgid "Wonders"
-msgstr "Keajaiban"
+msgstr "Keajaiban Dunia"
 
 #: gui/summary/layout.js:35
 #, javascript-format
@@ -2245,7 +2246,7 @@ msgstr "Kode Lokal:"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr "Tinggi"
+msgstr "Berpangkat"
 
 #: gui/locale/locale.xml:(caption):46
 msgid "Accept"
@@ -3521,7 +3522,7 @@ msgstr "[imgleft=\"iconFormation\"]Formasi masih dalam proses pembuatan, tapi an
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
-msgstr "TENDA TENTARA ROMA"
+msgstr "KAMP PRAJURIT ROMA"
 
 #: gui/text/tips/army_camp.txt:2
 msgid ""
@@ -3531,13 +3532,13 @@ msgstr ""
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct siege weapons and train citizen-soldiers."
-msgstr ""
+msgstr "Membangun mesin kepung dan melatih prajurit-rakyat."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr ""
+msgstr "Penempatan pasukan untuk menyembuhkan mereka secara perlahan dan melindungi kamp prajurit dari serangan dan penurunan."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -3547,17 +3548,17 @@ msgstr "BARAK"
 msgid ""
 "Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "Melatih semua prajurit-rakyat. Beberapa bangsa dapat membuka pelatihan jawara."
 
 #: gui/text/tips/barracks.txt:3
 msgid "Research military technologies unique to each faction."
-msgstr ""
+msgstr "Teliti teknologi militer yang unik untuk setiap bangsa."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
 "Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "Bangun satu lebih awal untuk melatih prajurit-rakyat sementara pemukimanmu naik fase."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
@@ -3569,11 +3570,11 @@ msgstr "PANDAI BESI"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "Research structure for all factions."
-msgstr ""
+msgstr "Struktur penelitian untuk semua bangsa."
 
 #: gui/text/tips/blacksmith.txt:3
 msgid "Research weapon and armor upgrades for your units."
-msgstr ""
+msgstr "Meneliti peningkatan senjata dan zirah untuk unit."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -3631,7 +3632,7 @@ msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
-msgstr ""
+msgstr "Kekuatan meningkat selama ditempati oleh infanteri."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -3653,7 +3654,7 @@ msgstr ""
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr ""
+msgstr "Melatih rakyat: rakyat wanita, prajurit-rakyat infanteri, dan prajurit-rakyat kavaleri."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3671,7 +3672,7 @@ msgstr ""
 msgid ""
 "Mercenary citizen-soldiers have their normal Food cost converted to Metal "
 "cost."
-msgstr ""
+msgstr "Prajurit-rakyat bayaran diubah biaya Makanan menjadi biaya Logam."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -3711,7 +3712,7 @@ msgstr ""
 
 #: gui/text/tips/fortress.txt:5
 msgid "Garrison soldiers inside to add more firepower to its defense."
-msgstr ""
+msgstr "Tempati prajurit di dalamnya untuk menambah kekuatan pada pertahanannya."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -3734,29 +3735,29 @@ msgstr ""
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
-msgstr "PENGUMPULAN SUMBERDAYA"
+msgstr "PENGUMPULAN SUMBER DAYA"
 
 #: gui/text/tips/gathering.txt:2
 msgid "Use citizen-soldiers and female citizens to gather resources."
-msgstr ""
+msgstr "Gunakan prajurit-rakyat dan rakyat wanita untuk mengumpulkan sumber daya."
 
 #: gui/text/tips/gathering.txt:3
 msgid "Female citizens gather vegetable resources faster."
-msgstr ""
+msgstr "Rakyat wanita mengumpulkan sayuran lebih cepat dari unit lain."
 
 #: gui/text/tips/gathering.txt:4
 msgid "Infantry citizen-soldiers are faster gathering minerals."
-msgstr ""
+msgstr "Prajurit-bayaran infanteri lebih cepat mengumpulkan mineral."
 
 #: gui/text/tips/gathering.txt:5
 msgid "Cavalry citizen-soldiers are faster gathering meat."
-msgstr ""
+msgstr "Prajurit-rakyat kavaleri mengumpulkan daging lebih cepat."
 
 #: gui/text/tips/gathering.txt:6
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr ""
+msgstr "Semakin tinggi tingkat prajurit-rakyat (berpangkat, elit), dia akan semaking ahli bertarung, tapi kurang efisien dalam mengumpulkan sumber daya."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -3794,7 +3795,7 @@ msgstr ""
 
 #: gui/text/tips/outposts.txt:5
 msgid "Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr ""
+msgstr "Tempati unit di dalamnya untuk mencegah penurunan mereka di wilayah netral."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -3830,7 +3831,7 @@ msgstr "ARSITEKTUR PERSIA"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
-msgstr ""
+msgstr "Teknologi spesial untuk Persia."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
@@ -3838,13 +3839,13 @@ msgstr ""
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "Waktu bangun diperpanjang sebesar +20% sebagai akibatnya."
 
 #: gui/text/tips/persian_architecture.txt:5
 msgid ""
 "Persians also have access to a great number of structural and defensive "
 "technologies."
-msgstr ""
+msgstr "Persia memiliki akses ke teknologi struktur dan defensif yang besar."
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
@@ -3879,7 +3880,7 @@ msgstr ""
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "Increases firepower with garrisoned catapults."
-msgstr ""
+msgstr "Meningkatkan kekuatan dengan penempatan ketapel."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -3917,7 +3918,7 @@ msgstr ""
 
 #: gui/text/tips/scout_towers.txt:4
 msgid "Has a ranged attack that increases for each garrisoned unit."
-msgstr ""
+msgstr "Memiliki serangan jarak jauh yang meningkat untuk setiap unit yang menempatinya."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -3987,7 +3988,7 @@ msgstr ""
 msgid ""
 "Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr ""
+msgstr "Teliti teknologi untuk meningkatkan kemampuan pengumpulan dari rakyatmu."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -4003,7 +4004,7 @@ msgstr ""
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
-msgstr ""
+msgstr "Meneliti teknologi penyembuhan."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
@@ -4011,7 +4012,7 @@ msgstr ""
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
-msgstr ""
+msgstr "Penempatan unit yang terluka di dalam untuk penyembuhan yang lebih cepat."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
@@ -4026,7 +4027,7 @@ msgstr ""
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr ""
+msgstr "Proses penurunan dapat diperlambat atau dibalikkan dengan menempatkan beberapa unit di dalam struktur."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
@@ -4050,7 +4051,7 @@ msgstr ""
 
 #: gui/text/tips/themistocles.txt:4
 msgid "The ship he is garrisoned inside sails much faster."
-msgstr ""
+msgstr "Kapal yang ditempati olehnya berlayar lebih cepat."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -4066,7 +4067,7 @@ msgstr ""
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "Penempatan pasukan untuk meningkatkan kekuatan."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
