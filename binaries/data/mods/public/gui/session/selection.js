@@ -474,12 +474,18 @@ function EntityGroupsContainer()
 		this.groups[i] = new EntityGroups();
 }
 
+/**
+ * Add entities to a group.
+ * @param {string} groupName - The number of the group to add the entities to.
+ * @param {number[]} ents - The entities to add to the group.
+ */
 EntityGroupsContainer.prototype.addEntities = function(groupName, ents)
 {
-	for (let ent of ents)
-		for (let group of this.groups)
-			if (ent in group.ents)
-				group.removeEnt(ent);
+	if (Engine.ConfigDB_GetValue("user", "gui.session.disjointcontrolgroups") == "true")
+		for (let ent of ents)
+			for (let group of this.groups)
+				if (ent in group.ents)
+					group.removeEnt(ent);
 
 	this.groups[groupName].add(ents);
 };

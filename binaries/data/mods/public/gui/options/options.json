@@ -562,6 +562,24 @@
 						"tooltip": "New structures are aligned with nearby structures unless the hotkey is pressed."
 					}
 				]
+			},
+			{
+				"type": "dropdown",
+				"label": "Control Group Membership",
+				"tooltip": "Decide whether units can be part of multiple control groups.",
+				"config": "gui.session.disjointcontrolgroups",
+				"list": [
+					{
+						"value": "true",
+						"label": "Single",
+						"tooltip": "When adding a Unit or Structure to a control group, they are removed from other control groups. Use this choice if you want control groups to refer to distinct armies."
+					},
+					{
+						"value": "false",
+						"label": "Multiple",
+						"tooltip": "Units and Structures can be part of multiple control groups. This is useful to keep control groups for distinct armies and a control group for the entire army simultaneously."
+					}
+				]
 			}
 		]
 	}
