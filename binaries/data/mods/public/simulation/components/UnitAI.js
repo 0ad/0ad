@@ -2144,6 +2144,11 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"GATHER": {
+			"leave": function() {
+				// Show the carried resource, if we've gathered anything.
+				this.SetDefaultAnimationVariant();
+			},
+
 			"APPROACHING": {
 				"enter": function() {
 					this.gatheringTarget = this.order.data.target;	// temporary, deleted in "leave".
@@ -2186,7 +2191,6 @@ UnitAI.prototype.UnitFsmSpec = {
 				"leave": function() {
 					this.StopMoving();
 
-					this.SetDefaultAnimationVariant();
 					if (!this.gatheringTarget)
 						return;
 					// don't use ownership because this is called after a conversion/resignation
@@ -2211,7 +2215,6 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"leave": function() {
-					this.SetDefaultAnimationVariant();
 					this.StopMoving();
 				},
 
@@ -2294,9 +2297,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						cmpSupply.RemoveGatherer(this.entity);
 					delete this.gatheringTarget;
 
-					// Show the carried resource, if we've gathered anything.
 					this.ResetAnimation();
-					this.SetDefaultAnimationVariant();
 				},
 
 				"Timer": function(msg) {
