@@ -5,6 +5,7 @@
 # Translators:
 # Jacob Carlsson <yejcob@gmail.com>, 2015
 # Jonatan Nyberg, 2016
+# Jonatan Nyberg, 2020
 # Kristoffer Grundström <hamnisdude@gmail.com>, 2016
 # pilino1234 <pilino1234@zoho.eu>, 2016
 # pilino1234 <pilino1234@zoho.eu>, 2015-2016
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-22 08:08+0000\n"
-"PO-Revision-Date: 2019-11-22 15:16+0000\n"
-"Last-Translator: pilino1234 <pilino1234@zoho.eu>\n"
+"PO-Revision-Date: 2020-02-01 01:58+0000\n"
+"Last-Translator: Jonatan Nyberg\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -622,7 +623,7 @@ msgstr "Visa bara öppna spel"
 #: gui/lobby/LobbyPage/LobbyPage.xml:(caption):10
 #: gui/prelobby/entrance/entrance.xml:(caption):14
 msgid "Multiplayer Lobby"
-msgstr "Multiplayer Lobby"
+msgstr "Flerspelarlobby"
 
 #: gui/lobby/LobbyPage/PlayerList.xml:(heading):12
 msgid "Status"
@@ -715,7 +716,7 @@ msgstr "Registrering"
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy "
 "Policy[/font]"
-msgstr "[font = \"Sans-Bold-18\"] 0 A.D. Empires ascendant multiplayer lobbyn sekretess policy [/font]"
+msgstr "[font = \"Sans-Bold-18\"] 0 A.D. Empires Ascendant flerspelarlobbyn sekretesspolicy [/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
 #: gui/prelobby/common/terms/Terms_of_Service.txt:3
@@ -781,7 +782,7 @@ msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr "När en spelare är värd för en match i multiplayer lobbyn, är IP-adressen för den spelaren skickas till alla spelare som är online, så att andra spelare kan ansluta sig till det spelet."
+msgstr "När en spelare är värd för en match i flerspelarlobbyn, är IP-adressen för den spelaren skickas till alla spelare som är online, så att andra spelare kan ansluta sig till det spelet."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
@@ -825,7 +826,7 @@ msgstr "[font = \"Sans-fet-14\"] 4. online-närvaro [/font]"
 msgid ""
 "Which players are currently connected to the Multiplayer Lobby and which "
 "match they joined is shown to all online players."
-msgstr "Vilka spelare som för närvarande är anslutna till multiplayer lobbyn och som matchar de anslöt visas för alla online-spelare."
+msgstr "Vilka spelare som för närvarande är anslutna till flerspelarlobbyn och som matchar de anslöt visas för alla online-spelare."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
@@ -835,7 +836,7 @@ msgstr "[font = \"Sans-fet-14\"] 5. chattmeddelanden [/font]"
 msgid ""
 "The Multiplayer Lobby features a public chat room that enables players to "
 "discuss the game and organize multiplayer matches."
-msgstr "Multiplayer lobby har ett offentligt chattrum som gör det möjligt för spelare att diskutera spelet och organisera multiplayer matcher."
+msgstr "Flerspelarlobbyn har ett offentligt chattrum som gör det möjligt för spelare att diskutera spelet och organisera flerspelarmatcher."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:28
 msgid ""
@@ -868,7 +869,7 @@ msgstr "[font = \"Sans-fet-14\"] 6. match statistik [/font]"
 msgid ""
 "Players can gain a rating on the Multiplayer Lobby that reflects their skill"
 " at the game."
-msgstr "Spelare kan få ett betyg i multiplayer lobby som återspeglar deras skicklighet i spelet."
+msgstr "Spelare kan få ett betyg i flerspelarlobbyn som återspeglar deras skicklighet i spelet."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:35
 msgid ""
@@ -945,14 +946,14 @@ msgid ""
 "Lobby, in the development and improvement of 0 A.D. and the Multiplayer "
 "Lobby, in enforcing the Terms of Use and in the protection against "
 "cyberattacks (GDPR 6.1.f)."
-msgstr "2. Wildfire Games har legitima intressen i att tillhandahålla multiplayer lobby, i utvecklingen och förbättringen av 0 A.D. och multiplayer lobby, att genomdriva användar villkoren och i skydd mot cyberattacker (GDPR 6.1. f)."
+msgstr "2. Wildfire Games har legitima intressen i att tillhandahålla flerspelarlobby, i utvecklingen och förbättringen av 0 A.D. och flerspelarlobbyn, att genomdriva användarvillkoren och i skydd mot cyberattacker (GDPR 6.1. f)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:51
 msgid ""
 "3. Wildfire Games does not process any further data for the Multiplayer "
 "Lobby and does not ask for consent to process data (GDPR 6.1.a, GDPR 7, GDPR"
 " 8, GDPR 13.2.c)."
-msgstr "3. Wildfire Games behandlar inte ytterligare data för multiplayer lobby och ber inte om samtycke till att behandla data (GDPR 6.1. a, GDPR 7, GDPR 8, GDPR 13.2. c)."
+msgstr "3. Wildfire Games behandlar inte ytterligare data för flerspelarlobby och ber inte om samtycke till att behandla data (GDPR 6.1. a, GDPR 7, GDPR 8, GDPR 13.2. c)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:53
 msgid "[font=\"sans-bold-16\"]User rights:[/font]"
@@ -1121,7 +1122,7 @@ msgstr "För ytterligare information om Wildfire Games sekretess policy, besök 
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Service[/font]"
-msgstr "[font = \"Sans-Bold-18\"] 0 A.D. Empires Ascendenten multiplayer lobby användar villkor [/font]"
+msgstr "[font = \"Sans-Bold-18\"] 0 A.D. Empires Ascendenten flerspelarlobby användarvillkor [/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:5
 msgid ""
@@ -1129,25 +1130,25 @@ msgid ""
 " by Wildfire Games that allows players to setup online multiplayer matches, "
 "discuss the game in a public chat room and gain a rating that reflects their"
 " skill."
-msgstr "Den 0 A.D. Empires Ascendenten multiplayer lobby är en online tjänst som tillhandahålls av Wildfire spel som tillåter spelare att ställa in online multiplayer matcher, diskutera spelet i ett offentligt chattrum och få en rating som återspeglar deras skicklighet."
+msgstr "0 A.D. Empires Ascendenten flerspelarlobbyn är en online tjänst som tillhandahålls av Wildfire Games som tillåter spelare att ställa in flerspelarmatcher online, diskutera spelet i ett offentligt chattrum och få en rating som återspeglar deras skicklighet."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""
 "Due to the subject matter of historic warfare, description and depiction of "
 "violence and the language on the Multiplayer Lobby, 0 A.D. and the "
 "Multiplayer Lobby are not directed to young children (COPPA §312.2)."
-msgstr "På grund av föremålet för historisk krigföring, beskrivning och skildring av våld och språket i multiplayer lobby, är 0 A.D. och multiplayer lobbyn inte riktade till små barn (COPPA § 312,2)."
+msgstr "På grund av föremålet för historisk krigföring, beskrivning och skildring av våld och språket i flerspelarlobbyn, är 0 A.D. och flerspelarlobbyn inte riktade till små barn (COPPA § 312,2)."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid "The minimum age to use the Multiplayer Lobby is 13."
-msgstr "Minimiåldern för att använda multiplayer-lobbyn är 13."
+msgstr "Minimiåldern för att använda flerspelarlobbyn är 13."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:10
 #: gui/prelobby/common/terms/Terms_of_Use.txt:5
 msgid ""
 "[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree "
 "to:[/font]"
-msgstr "[font = \"Sans-fet-14\"] Genom att använda 0 A.D. multiplayer lobbyn, samtycker du till: [/font]"
+msgstr "[font = \"Sans-fet-14\"] Genom att använda 0 A.D. flerspelarlobbyn, samtycker du till: [/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:11
 msgid " 1. Follow all usage policies."
@@ -1209,7 +1210,7 @@ msgstr "Om delar av villkoren anses vara olagliga eller på annat sätt omöjlig
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Use[/font]"
-msgstr "[font = \"Sans-Bold-18\"] 0 A.D. Empires ascendant multiplayer lobby användar villkor [/font]"
+msgstr "[font = \"Sans-Bold-18\"] 0 A.D. Empires Ascendant flerspelarlobby användarvillkor [/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-13"
@@ -1225,7 +1226,7 @@ msgstr " 1. endast skapa ett konto per person på tjänsten om inte godkänts av
 msgid ""
 " 2. Not impersonate other users of the service and only use your registered "
 "username in multiplayer matches."
-msgstr " 2. inte personifiera andra användare av tjänsten och endast använda ditt registrerade användar namn i multiplayer matcher."
+msgstr " 2. Inte personifiera andra användare av tjänsten och endast använda ditt registrerade användarnamn i matcher med flera spelare."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:8
 msgid " 3. Not post profanity, pejorative terms or pornographic content."
@@ -1263,7 +1264,7 @@ msgid ""
 " 8. Not undermine the intended gameplay or purposefully gain unfair "
 "advantages in multiplayer matches (for example cheating, using exploits or "
 "bugs)."
-msgstr " 8. inte undergräva den avsedda gameplay eller mål medvetet få orättvisa fördelar i multiplayer matcher (till exempel fusk, med hjälp av kryp hål eller buggar)."
+msgstr " 8. Inte undergräva den avsedda spelet eller uppnå otillbörliga fördelar i flerspelarmatcher (till exempel fuska, med hjälp av kryphål eller fel)."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:14
 msgid ""

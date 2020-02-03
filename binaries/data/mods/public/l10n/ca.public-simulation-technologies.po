@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -15,13 +15,13 @@
 # Miguel Molina <miguigana12@hotmail.com>, 2015
 # Peredelgrau, 2014,2016
 # Peredelgrau, 2014,2016
-# Haommin <tfs.msimangu@gmail.com>, 2014-2016
+# Haommin <tfs.msimangu@gmail.com>, 2014-2016,2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-09-16 14:21+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2020-01-31 08:09+0000\n"
+"PO-Revision-Date: 2020-02-02 23:15+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -825,7 +825,7 @@ msgstr "Més nutrients per als horts."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% grain gather rate."
-msgstr ""
+msgstr "Els treballadors augmenten un +25 % la velocitat de recol·lecció del gra."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -1103,8 +1103,8 @@ msgid ""
 msgstr "El teler va permetre la creació de peces més fines per als colons. Les dones de la llar aprenien de molt joves com fer servir un teler i com a conseqüència hi dedicaven una gran part de les seves vides."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
-msgid "+50% health for female citizens."
-msgstr "+50% de vida per a les dones."
+msgid "+100% health for female citizens."
+msgstr ""
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1604,7 +1604,7 @@ msgstr "Els merlets permeten que els soldats disparin més lluny per a defensar 
 msgid ""
 "Install crenellations and murder holes to have 40% more arrows fired per "
 "garrisoned soldier."
-msgstr "Instal·leu merlets i espitlleres per fer que cada soldat refugiat dispari +40% més de fletxes."
+msgstr "Instal·la merlets i espitlleres per fer que cada soldat refugiat dispari 40% més fletxes."
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1624,7 +1624,7 @@ msgstr "Fonaments de pedra"
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr "Les lladroneres permeten atacar els enemics al peu de la torre."
+msgstr "Les espitlleres permeten atacar els enemics al peu de la torre."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Removes defensive towers' minimum range."
@@ -1632,7 +1632,7 @@ msgstr "Elimina l'abast mínim de les torres defensives."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
-msgstr "Lladroneres"
+msgstr "Espitlleres"
 
 #: simulation/data/technologies/tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."

@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -28,15 +28,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-15 08:09+0000\n"
-"PO-Revision-Date: 2019-12-01 12:17+0000\n"
-"Last-Translator: AAAAA BBBBB <laray.laray@outlook.fr>\n"
+"POT-Creation-Date: 2020-01-31 08:09+0000\n"
+"PO-Revision-Date: 2020-01-31 16:07+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: simulation/templates/template_formation.xml:25
+msgid "Requires at least 2 Soldiers or Siege engines."
+msgstr ""
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -1018,8 +1022,8 @@ msgstr "Espion"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
-msgid "Requires at least 16 Melee Infantry."
-msgstr "Requiert au moins 16 unités d'infanterie mêlée."
+msgid "Melee Infantry only, requires at least 16."
+msgstr ""
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1066,8 +1070,8 @@ msgid "None"
 msgstr "Aucune"
 
 #: simulation/templates/special/formations/phalanx.xml:6
-msgid "Requires at least 10 Infantry Hoplites."
-msgstr "Requiert au moins 10 unités d'infanterie Hoplites."
+msgid "Infantry Hoplites only, requires at least 10."
+msgstr ""
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1078,16 +1082,16 @@ msgid "Scatter"
 msgstr "Dispersion"
 
 #: simulation/templates/special/formations/skirmish.xml:5
-msgid "Requires a Ranged Soldier."
-msgstr "Requiert au moins 1 soldat distance."
+msgid "Ranged Soldiers only, requires at least 2."
+msgstr ""
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
 msgstr "Escarmouche"
 
 #: simulation/templates/special/formations/syntagma.xml:6
-msgid "Requires at least 16 Infantry Pikemen."
-msgstr "Requiert au moins 16 unités d'infanterie Piquiers"
+msgid "Infantry Pikemen only, requires at least 16."
+msgstr ""
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1098,13 +1102,13 @@ msgid "Testudo"
 msgstr "Tortue"
 
 #: simulation/templates/special/formations/wedge.xml:6
-msgid "Requires at least 6 Cavalry."
-msgstr "Requiert au moins 6 unités de Cavalerie."
+msgid "Cavalry only, requires at least 6."
+msgstr ""
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
 msgstr "Fer de lance"
 
-#: simulation/templates/special/player/player.xml:60
+#: simulation/templates/special/player/player.xml:64
 msgid "Player"
 msgstr "Joueur"

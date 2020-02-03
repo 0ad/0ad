@@ -189,7 +189,7 @@ msgid ""
 "rally point to the farm (right click on it)."
 msgstr ""
 "Mulai melatih sekelompok rakyat wanita dalam Pusat Peradaban dan mengatur "
-"arahnya untuk bertani (klik kanan)"
+"titik kumpulnya untuk bertani (klik kanan)"
 
 #: maps/tutorials/Introductory_Tutorial.js:238
 msgid "Click on the female citizen icon."
@@ -408,13 +408,15 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
-msgstr ""
+msgstr "Ada tiga cara untuk memilih unit:\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:42
 msgid ""
 "1) Hold the left mouse button and drag a selection rectangle that encloses "
 "the units you want to select.\n"
 msgstr ""
+"1) Klik kiri tetikus dan tahan lalu seret kotak pemilihan hingga meliputi "
+"semua unit yang ingin anda pilih.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:43
 msgid ""
@@ -422,6 +424,9 @@ msgid ""
 "holding Shift and clicking each additional unit (or also via the above "
 "selection rectangle).\n"
 msgstr ""
+"2) Pilih salah satu unit dan tambahkan unit ke pilihanmu dengan menahan "
+"Shift dan klik tiap-tiap unit yang ingin ditambahkan (atau juga bisa dengan "
+"kotak pemilihan di atas).\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:44
 msgid ""
@@ -429,6 +434,9 @@ msgid ""
 "the specified unit in your visible window. Triple-click will select all "
 "units of the same type on the entire map.\n"
 msgstr ""
+"3) Klik sebuah unit dua kali. Aksi ini akan memilih semua unit dengan tipe "
+"yang sama di dalam area layar yang terlihat. Klik tiga kali akan memilih "
+"semua unit dengan tipe yang sama di seluruh peta.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:45
 msgid ""
@@ -437,6 +445,10 @@ msgid ""
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
 " when you have all the female citizens selected."
 msgstr ""
+"Anda bisa klik area yang kosong untuk menghapus pemilihan. Coba semua metode"
+" ini sebelum memerintahkan semua rakyat wanitamu untuk mengumpulkan anggur "
+"di arah tenggara dari Pusat Peradabanmu dengan cara klik kanan di anggur "
+"ketika rakyat wanita sedang dipilih."
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
@@ -461,6 +473,8 @@ msgstr ""
 msgid ""
 "All your units are now gathering resources. We should train more units!\n"
 msgstr ""
+"Semua unitmu sedang mengumpulkan sumber daya. Kita sebaiknya melatih lebih "
+"banyak unit!"
 
 #: maps/tutorials/starting_economy_walkthrough.js:79
 msgid ""
@@ -471,23 +485,34 @@ msgid ""
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
+"Pertama, mari kita buat titik kumpul. Membuat titik kumpul pada sebuah "
+"bangunan yang melatih unit akan secara otomatis memberikan tugas kepada unit"
+" setelah pelatihan selesai. Kita ingin mengirimkan unit yang baru dilatih "
+"untuk mengumpulkan Kayu di pepohonan di arah selatan dari Pusat Peradaban. "
+"Untuk melakukannya, klik Pusat Peradaban dan klik kanan salah satu pepohonan"
+" tersebut.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
 "Rally points are indicated by a small flag at the end of the blue line."
 msgstr ""
+"Titik kumpul diindikasikan dengan sebuah bendera kecil di akhir garis biru."
 
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
 "when you see the cursor change into a Wood icon."
 msgstr ""
+"Pilih Pusat Peradaban, lalu layangkan kursor di atas sebuah pohon dan klik "
+"kanan ketika anda melihat kursor berubah menjadi ikon Kayu."
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
 "Now that the rally point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
 msgstr ""
+"Titik kumpul telah dibuat, kita bisa memproduksi unit tambahan dan mereka "
+"akan melakukan tugas yang telah ditetapkan secara otomatis.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:98
 msgid ""
@@ -506,15 +531,16 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
 msgstr ""
+"Jangan lupa untuk menahan Shift ketika mengklik untuk melatih beberapa unit."
 
 #: maps/tutorials/starting_economy_walkthrough.js:109
 msgid "Hold Shift and click on the Hoplite icon."
-msgstr ""
+msgstr "Tahan Shift dan klik ikon Hoplites."
 
 #: maps/tutorials/starting_economy_walkthrough.js:118
 #: maps/tutorials/starting_economy_walkthrough.js:177
 msgid "Let's wait for the units to be trained.\n"
-msgstr ""
+msgstr "Mari kita tunggu unit selesai dilatih.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:119
 msgid ""
@@ -524,6 +550,11 @@ msgid ""
 "(or another dropsite), you will see the amount of the corresponding resource"
 " increase.\n"
 msgstr ""
+"Ketika menunggu, arahkan perhatianmu ke panel di bagian atas layarmu. Di "
+"bagian kiri atas, anda bisa melihat persediaan sumber daya (Makanan, Kayu, "
+"Batu, dan Logam). Selagi setiap pekerja membawa sumber daya ke Pusat "
+"Peradaban (atau tempat penyimpanan lainnya). anda akan melihat jumlah dari "
+"sumber daya terkait meningkat.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:120
 msgid ""
@@ -532,12 +563,18 @@ msgid ""
 " minimize the distance between resource and nearest dropsite to improve your"
 " gathering efficiency."
 msgstr ""
+"Ini adalah konsep yang sangat penting untuk diingat: sumber daya yang "
+"dikumpulkan harus dibawa kembali ke sebuah penyimpanan untuk bisa digunakan,"
+" anda sebaiknya selalu berusaha meminimalisir jarak antara sumber daya dan "
+"penyimpanan terdekat untuk meningkatkan efisiensi pengumpulanmu."
 
 #: maps/tutorials/starting_economy_walkthrough.js:129
 msgid ""
 "The newly trained units automatically go to the trees and start gathering "
 "Wood.\n"
 msgstr ""
+"Unit yang baru dilatih secara otomatis akan pergi ke pepohonan dan "
+"mengumpulkan Kayu.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:130
 msgid ""
@@ -563,18 +600,24 @@ msgid ""
 "Invalid (obstructed) positions will show the building preview overlay in "
 "red."
 msgstr ""
+"Posisi yang tidak sah (terhalang) akan memperlihatkan pratinjau bangunan "
+"dilapisi warna merah."
 
 #: maps/tutorials/starting_economy_walkthrough.js:141
 msgid ""
 "The selected citizens will automatically start constructing the building "
 "once you place the foundation."
 msgstr ""
+"Rakyat yang dipilih akan secara otomatis membangun bangunan ketika anda "
+"meletakkan pondasi."
 
 #: maps/tutorials/starting_economy_walkthrough.js:152
 msgid ""
 "When construction finishes, the builders default to gathering Wood "
 "automatically.\n"
 msgstr ""
+"Ketika konstruksi selesai, aksi standar pembangun adalah secara otomatis "
+"mengumpulkan Kayu.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:153
 msgid ""
@@ -582,14 +625,17 @@ msgid ""
 "Center, hold Shift and click on the female citizen icon to train 5 female "
 "citizens."
 msgstr ""
+"Mari kita latih beberapa rakyat wanita untuk mengumpulkan lebih banyak "
+"makanan. Pilih Pusat Peradaban, tahan Shift dan klik ikon rakyat wanita "
+"untuk melatih 5 rakyat wanita."
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
-msgstr ""
+msgstr "Jangan lupa untuk menahan Shift dan klik untuk melatih beberapa unit."
 
 #: maps/tutorials/starting_economy_walkthrough.js:168
 msgid "Hold shift and click on the Female Citizen icon."
-msgstr ""
+msgstr "Tahan shift dan klik ikon Rakyat Wanita."
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
@@ -598,10 +644,15 @@ msgid ""
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally point is crossed out)."
 msgstr ""
+"Sementara itu, kita sepertinya punya cukup pekerja yang mengumpulkan Kayu. "
+"Kita sebaiknya menghapus titik kumpul Pusat Peradaban yang mengarah pada "
+"pengumpulan Kayu. Untuk melakukannya, klik kanan Pusat Peradaban ketika "
+"bangunan itu terpilih (dan ikon bendera yang mengindikasikan titik kumpul "
+"dicoret)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
-msgstr ""
+msgstr "Unit sebentar lagi akan selesai dilatih.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:193
 msgid ""
@@ -611,6 +662,11 @@ msgid ""
 "(including those being trained) and the current population limit, which is "
 "determined by your built structures."
 msgstr ""
+"Sementara itu, arahkan perhatianmu pada hitungan populasi di panel bagian "
+"atas. Terletak di butir kelima dari kiri, setelah sumber daya. Sebaiknya "
+"hitungan ini diperhatikan. Itu mengindikasikan populasimu saat ini (termasuk"
+" yang sedang dilatih) dan batas populasi, yang ditentukan dari struktur yang"
+" telah dibuat."
 
 #: maps/tutorials/starting_economy_walkthrough.js:206
 msgid ""
@@ -618,12 +674,18 @@ msgid ""
 "building some new structures if you want to train more units. The most cost "
 "effective structure to increase your population limit is the house.\n"
 msgstr ""
+"Ketika anda mencapai batas populasi, anda harus meningkatkannya dengan "
+"membangun struktur baru jika anda ingin melatih lebih banyak unit. Struktur "
+"yang biayanya paling efektif untuk meningkatkan batas populasimu adalah "
+"rumah.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:207
 msgid ""
 "Now that the units are ready, let's see how to build several houses in a "
 "row."
 msgstr ""
+"Unit telah selesai dilatih, mari kita lihat cara membuat beberapa rumah "
+"secara berturut-turut."
 
 #: maps/tutorials/starting_economy_walkthrough.js:212
 msgid ""

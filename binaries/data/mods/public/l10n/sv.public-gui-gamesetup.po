@@ -10,7 +10,7 @@
 # Erik Johansson <erik@feneur.com>, 2013
 # Jacob Carlsson <yejcob@gmail.com>, 2015-2016
 # Jonatan Nyberg, 2016
-# Jonatan Nyberg, 2018
+# Jonatan Nyberg, 2018,2020
 # Kristoffer Grundström <hamnisdude@gmail.com>, 2018
 # liothe <lucy@liothe.se>, 2013
 # magicae, 2014
@@ -28,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-24 08:08+0000\n"
-"PO-Revision-Date: 2020-01-24 14:28+0000\n"
-"Last-Translator: pilino1234 <pilino1234@zoho.eu>\n"
+"PO-Revision-Date: 2020-02-01 01:59+0000\n"
+"Last-Translator: Jonatan Nyberg\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,7 +71,7 @@ msgstr "Kartor som är nya i denna version av spelet"
 
 #: gui/gamesetup/Controls/MapFilters.js:109
 msgid "Trigger Maps"
-msgstr "Trigger Kartor"
+msgstr "Utlösarkartor"
 
 #: gui/gamesetup/Controls/MapFilters.js:110
 msgid "Maps that come with scripted events and potentially spawn enemy units."
@@ -276,7 +276,7 @@ msgstr "Inaktivera spioner under spelet."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:42
 msgid "Disable Treasures"
-msgstr "Inaktivera Skatter"
+msgstr "Inaktivera skatter"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:45
 msgid "Do not add treasures to the map."
@@ -373,7 +373,7 @@ msgstr "Välj ett kartfilter."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:146
 msgid "Select Map"
-msgstr "Välj Karta"
+msgstr "Välj karta"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:149
 msgid "Select a map to play on."
@@ -588,7 +588,7 @@ msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Visa Historik / Strukturträd
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "Visa multiplayerlobbyn i en dialogruta."
+msgstr "Visa flerspelarlobbyn i en dialogruta."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:79
 msgid "I'm ready"
@@ -625,7 +625,7 @@ msgstr "Återställ alla lag to grundinställningarna."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:65
 msgid "Start Game!"
-msgstr "Starta Spelet!"
+msgstr "Starta spelet!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:68
 msgid "Start a new game with the current settings."
@@ -788,7 +788,7 @@ msgstr "Genererar “%(map)s”"
 #: gui/loading/TitleDisplay.js:17
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr "Laddar \"%(map)s”"
+msgstr "Läser in \"%(map)s”"
 
 #: gui/gamesetup/gamesetup.xml:(caption):27
 msgid "Match Setup"
@@ -796,7 +796,7 @@ msgstr "Spelinställningar"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):10
 msgid "AI Configuration"
-msgstr "AI-Konfiguration"
+msgstr "AI-konfiguration"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):26
 msgid "OK"
@@ -832,7 +832,7 @@ msgstr "Skicka"
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):5
 msgid "Loading"
-msgstr "Laddar"
+msgstr "Läser in"
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):9
 msgid "Loading map data. Please wait…"
@@ -844,7 +844,7 @@ msgstr "Flera spelare"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
-msgstr "Ansluter till ett existerande spel."
+msgstr "Ansluter till ett befintligt spel."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70

@@ -3,10 +3,11 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
-# Anders Persson <anders@utophia.se>, 2014
+# 0a7f9ff4c411567131ab21a7587f6066, 2014
 # Erik Johansson <erik@feneur.com>, 2014,2016
 # Hans Kunkell <hanzukun@gmail.com>, 2019
 # Jacob Carlsson <yejcob@gmail.com>, 2015
+# Jonatan Nyberg, 2020
 # pilino1234 <pilino1234@zoho.eu>, 2016
 # pilino1234 <pilino1234@zoho.eu>, 2016
 # pilino1234 <pilino1234@zoho.eu>, 2017-2019
@@ -15,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-13 07:08+0000\n"
-"PO-Revision-Date: 2019-09-27 12:26+0000\n"
-"Last-Translator: Hans Kunkell <hanzukun@gmail.com>\n"
+"PO-Revision-Date: 2020-02-01 02:01+0000\n"
+"Last-Translator: Jonatan Nyberg\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +27,7 @@ msgstr ""
 
 #: i18n/L10n.cpp:251
 msgid "Long strings"
-msgstr "Long strings"
+msgstr "Långa strängar"
 
 #: lobby/XmppClient.cpp:855
 msgid "unknown subtype (see logs)"
@@ -145,7 +146,7 @@ msgstr "Servern erbjuder ej den krävda TLS-krypteringen"
 
 #: lobby/XmppClient.cpp:1260
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Autentisering misslyckades. Felaktigt lösenord eller kontot existerar inte."
+msgstr "Autentisering misslyckades. Felaktigt lösenord eller kontot finns inte."
 
 #: lobby/XmppClient.cpp:1261
 msgid "The user or system requested a disconnect"
@@ -185,22 +186,22 @@ msgstr "Kunde inte skapa mod-mapp: %s."
 #: ps/ModIo.cpp:342
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "Kunde inte öppna temporär fil för modnedladdning: %s."
+msgstr "Kunde inte öppna temporär fil för mod-hämtning: %s."
 
 #: ps/ModIo.cpp:352
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "Kunde inte starta nedladdningen: Fel %s; %s."
+msgstr "Det gick inte att starta hämtningen: Fel %s; %s."
 
 #: ps/ModIo.cpp:397
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr "Asynkron nedladdning misslyckades: %s, %s."
+msgstr "Asynkron hämtning misslyckades: %s, %s."
 
 #: ps/ModIo.cpp:426
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Nedladdningsfel. Serverrespons: %s; %s."
+msgstr "Hämtningsfel. Serverrespons: %s; %s."
 
 #: ps/ModIo.cpp:529
 msgid "Mismatched filesize."
@@ -231,4 +232,4 @@ msgstr "Skärmdump sparad till '%s'"
 
 #: ps/scripting/JSInterface_Debug.cpp:83
 msgid "custom build"
-msgstr "Egenkompilerad"
+msgstr "egenkompilerad"
