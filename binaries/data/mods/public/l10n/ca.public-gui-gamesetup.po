@@ -9,6 +9,7 @@
 # Albert F. <alb.fontquerni@gmail.com>, 2017,2019
 # Arnau Barrabeig <arnaubrossa@hotmail.com>, 2017
 # Catalanoic <catalanoic@gmail.com>, 2016
+# Esteve Blanch <esteve.blanch@live.com>, 2020
 # Francesc Famadas <kiski97@gmail.com>, 2015
 # Francesc Famadas <kiski97@gmail.com>, 2015
 # Francesc Saló <whitrix@hotmail.es>, 2017
@@ -32,8 +33,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-24 08:08+0000\n"
-"PO-Revision-Date: 2020-01-24 14:28+0000\n"
-"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
+"PO-Revision-Date: 2020-02-02 23:32+0000\n"
+"Last-Translator: Esteve Blanch <esteve.blanch@live.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -95,7 +96,7 @@ msgstr "La IA es desactivarà per a aquest jugador."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:93
 msgid "AI Behavior"
-msgstr ""
+msgstr "Comportament de la IA"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:87
 msgid "AI Difficulty"
@@ -170,7 +171,7 @@ msgstr "No assignat"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:131
 msgid "Choose the civilization for this player."
-msgstr ""
+msgstr "Trieu la civilització per aquest jugador."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:134
 msgctxt "civilization"
@@ -319,7 +320,7 @@ msgstr "Aleatori"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:105
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr ""
+msgstr "Selecciona aleatòriament una hora del dia."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:73
 msgid "Game Speed"
@@ -350,7 +351,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:138
 msgctxt "landscape selection"
 msgid "Random Land"
-msgstr ""
+msgstr "Terra aleatòria"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:139
 msgctxt "landscape selection"
@@ -427,7 +428,7 @@ msgstr "Trieu el límit de població"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:88
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Per Jugador"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:91
 #, javascript-format
@@ -452,7 +453,7 @@ msgstr "Quantitat inicial de cada recurs: %(resources)s."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:90
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Per Jugador"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
@@ -480,8 +481,8 @@ msgstr "Sense alto el foc"
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s minut"
+msgstr[1] "%(minutes)s minuts"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:86
 msgid "Relic Count"
@@ -491,8 +492,8 @@ msgstr "Número de relíquies"
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s relíquia"
+msgstr[1] "%(number)s relíquies"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:92
 msgid ""
@@ -515,8 +516,8 @@ msgstr "Minuts fins que el jugador ha obtingut la victòria per relíquia."
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s minut"
+msgstr[1] "%(min)s minuts"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:98
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:99
@@ -537,8 +538,8 @@ msgstr ""
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s minut"
+msgstr[1] "%(minutes)s minuts"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:87
 msgid "Wonder Duration"
@@ -546,7 +547,7 @@ msgstr "Duració de la meravella"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:90
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr ""
+msgstr "Minuts fins que el jugador ha obtingut la victòria per meravella"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
 msgid "Cheats enabled."
@@ -554,7 +555,7 @@ msgstr "Trucs habilitats."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
 msgid "Rated game."
-msgstr ""
+msgstr "Partida puntuada."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:76
 #, javascript-format
@@ -621,7 +622,7 @@ msgstr "Digueu que no esteu a punt per jugar."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:33
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr ""
+msgstr "Restableix totes les civilitzacions que s'hagin seleccionat als valors per defecte (aleatori)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:35
 msgid "Reset all teams to the default."
@@ -639,12 +640,12 @@ msgstr "Comenceu una partida nova amb aquestes preferències."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr ""
+msgstr "Comenceu un joc nou amb la configuració actual (estarà desactivat fins que tots els jugadors estiguin a punt)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatInputPanel.js:55
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr ""
+msgstr "Premeu %(hotkey)s per auto-completar els noms dels jugadors o les opcions."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/StatusMessageFormat.js:24
 #, javascript-format
@@ -782,7 +783,7 @@ msgstr "%(percentage)s%%"
 #: gui/loading/TipDisplay.js:52
 #, javascript-format
 msgid "• %(tiptext)s"
-msgstr ""
+msgstr "• %(tiptext)s"
 
 #: gui/loading/TitleDisplay.js:15
 #, javascript-format
@@ -828,7 +829,7 @@ msgstr "Equip"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
-msgstr ""
+msgstr "Mostra aquest missatge en el futur."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatPanel.xml:(caption):9
 msgid "Send"
@@ -912,13 +913,13 @@ msgstr ""
 msgid ""
 "“Time in the long run teaches all things.” \\n— Aeschylus (“Prometheus "
 "Bound”, 981)"
-msgstr ""
+msgstr "“El temps, a la llarga, ensenya totes les coses.” \\n— Èsquil (\"Prometeu encadenat\", 981)"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "“His resolve is not to seem, but to be, the best.” \\n— Aeschylus (“Seven "
 "Against Thebes”, 592)"
-msgstr ""
+msgstr "“La seva determinació no semblar ser, sinó que és el millor.” \\n— Èsquil (\"Els set contra Tebes\", 592)"
 
 #: gui/text/quotes.txt:6
 msgid "“A prosperous fool is a grievous burden.” \\n— Aeschylus (fragment 383)"
@@ -2128,13 +2129,13 @@ msgid ""
 "“The growth of the power of Athens, and the alarm which this caused in "
 "Sparta, made war inevitable.” \\n— Thucydides (“History of the Peloponnesian"
 " War”, I. 23.6)"
-msgstr ""
+msgstr "“El creixement del poder d'Atenes, i l'alarma que va provocar a Esparta, van fer la guerra inevitable.” \\n— Tucídides (\"Història de la guerra del Peloponès\", I. 23.6)"
 
 #: gui/text/quotes.txt:177
 msgid ""
 "“War is a matter not so much of arms as of money.” \\n— Thucydides (“History"
 " of the Peloponnesian War”, I. 83.2)"
-msgstr ""
+msgstr "“La guerra no és tan un afer d'armes, sinó de diners.” \\n— Tucídides (\"Història de la guerra del Peloponès\", I. 83.2)"
 
 #: gui/text/quotes.txt:178
 msgid ""
@@ -2195,11 +2196,11 @@ msgstr ""
 msgid ""
 "“Do not trust the horse, Trojans! I fear the Greeks even when they bring "
 "gifts.” \\n— Virgil (“Aeneid”, II. 48–49)"
-msgstr ""
+msgstr "“No us refieu del cavall, troians! Temo els grecs fins i tot quan porten regals.” \\n— Virgili (\"L'Eneida\", II. 48–49)"
 
 #: gui/text/quotes.txt:185
 msgid "“Prepared for either alternative.” \\n— Virgil (“Aeneid”, II. 61)"
-msgstr ""
+msgstr "“Prepareu-vos per a qualsevol alternativa.” \\n— Virgili (\"L'Eneida\", II. 61)"
 
 #: gui/text/quotes.txt:186
 msgid ""
@@ -2257,7 +2258,7 @@ msgid ""
 "“People are glad to obey the man whom they believe to be wiser than "
 "themselves in pursuing their interests.” \\n— Xenophon (“The Education of "
 "Cyrus”, 1.6.22)"
-msgstr ""
+msgstr "“La gent està contenta d'obeir un home al qui creuen més savi que ells en la recerca dels seus interessos” \\n— Xenofont (\"L'educació de Cir\", 1.6.22)"
 
 #: gui/text/quotes.txt:194
 msgid ""
@@ -2266,13 +2267,13 @@ msgid ""
 "better; and throughout all difficulties that he can endure hardships better."
 " This will help to make him loved by his men.” \\n— Xenophon (“The Education"
 " of Cyrus”, 1.6.25)"
-msgstr ""
+msgstr "“En les campanyes d'estiu, el general ha de demostrar que pot suportar el sol millor que els soldats; a l'hivern, que pot suportar millor fred; i en totes les dificultats, que pot suportar les penúries millor que ningú. Així serà més fàcil que els homes l'adorin.” \\n— Xenofont (\"L'educació de Cir\", 1.6.25)"
 
 #: gui/text/quotes.txt:195
 msgid ""
 "“Battles are decided more by the morale of men than their physical "
 "strength.” \\n— Xenophon (“The Education of Cyrus”, 3.3.20)"
-msgstr ""
+msgstr "“Les batalles es decideixen per l'estat d'ànim dels soldats, no per la seva força física.” \\n— Xenofont (\"L'educació de Cir\", 3.3.20)"
 
 #: gui/text/quotes.txt:196
 msgid ""
@@ -2280,7 +2281,7 @@ msgid ""
 "that we are human beings! We've got to appear to them like an uncontrollable"
 " nightmare of shields, swords, battle-axes and spears!” \\n— Xenophon (“The "
 "Education of Cyrus”, 4.2.22)"
-msgstr ""
+msgstr "“No els donem el temps suficient per organitzar una defensa, o fins i tot reconèixer que som éssers humans! Hem de semblar un malson incontrolable d'escuts, espases, destrals i llances!” \\n— Xenofont (\"L'educació de Cir\", 4.2.22)"
 
 #: gui/text/quotes.txt:197
 msgid ""
@@ -2288,7 +2289,7 @@ msgid ""
 "plunder, fame, freedom, power – all these are prizes for the winners; the "
 "cowardly, of course, suffer the reverse.” \\n— Xenophon (“The Education of "
 "Cyrus”, 7.1.13)"
-msgstr ""
+msgstr "“Suposo que enteneu, homes, que les persecucions, evitar els cops i la mort, el saqueig, la fama, la llibertat, el poder – són el premi dels vencedors; els covards, per suposat, en pateixen el contrari” \\n— Xenofont (\"L'educació de Cir\", 7.1.13)"
 
 #: gui/text/quotes.txt:198
 msgid ""
@@ -2296,7 +2297,7 @@ msgid ""
 "thief and a robber, overreaching the enemy at every point.” \\n— Xenophon on"
 " how best to gain advantage over the enemy (“The Education of Cyrus”, "
 "1.6.26)"
-msgstr ""
+msgstr "“L'home que ho vulgui ha de esquemàtic i astut, intel·ligent i enganyós, un lladre i un atracador, i superar l'enemic en cada punt .” \\n— Xenofont sobre la millor manera de tenir avantatge davant l'enemic (\"L'educació de Cir\", 1.6.26)"
 
 #: gui/text/quotes.txt:199
 msgid ""
@@ -2304,7 +2305,7 @@ msgid ""
 "watching Artemisia ram a ship while most of his fleet suffered the reverse, "
 "not knowing that the sunk vessel was his own (Herodotus, “The Histories”, "
 "VIII. 88)"
-msgstr ""
+msgstr "“Els meus homes s'han tornat dones, i les dones, homes!” \\n— Xerxes, veient Artemísia fent xocar un vaixell mentre la majoria de la seva flota patia el revés, sense saber que la nau que s'enfonsava era de les seves (Heròdot, \"Les històries\", VIII. 88)"
 
 #: gui/text/quotes.txt:200
 msgid ""

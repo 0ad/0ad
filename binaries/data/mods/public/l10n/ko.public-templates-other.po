@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -26,15 +26,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-15 08:09+0000\n"
-"PO-Revision-Date: 2019-11-20 13:14+0000\n"
-"Last-Translator: ks k\n"
+"POT-Creation-Date: 2020-01-31 08:09+0000\n"
+"PO-Revision-Date: 2020-01-31 16:07+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: simulation/templates/template_formation.xml:25
+msgid "Requires at least 2 Soldiers or Siege engines."
+msgstr ""
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -1016,8 +1020,8 @@ msgstr "첩자"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
-msgid "Requires at least 16 Melee Infantry."
-msgstr "최소 16기의 근접 보병 유닛이 필요합니다."
+msgid "Melee Infantry only, requires at least 16."
+msgstr ""
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1064,8 +1068,8 @@ msgid "None"
 msgstr "없음"
 
 #: simulation/templates/special/formations/phalanx.xml:6
-msgid "Requires at least 10 Infantry Hoplites."
-msgstr "최소 10명의 장갑 보병이 필요합니다."
+msgid "Infantry Hoplites only, requires at least 10."
+msgstr ""
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1076,16 +1080,16 @@ msgid "Scatter"
 msgstr "흩뜨림"
 
 #: simulation/templates/special/formations/skirmish.xml:5
-msgid "Requires a Ranged Soldier."
-msgstr "원거리 공격 병사가 필요합니다."
+msgid "Ranged Soldiers only, requires at least 2."
+msgstr ""
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
 msgstr "접전지역"
 
 #: simulation/templates/special/formations/syntagma.xml:6
-msgid "Requires at least 16 Infantry Pikemen."
-msgstr "최소 16명의 장창 보병이 필요합니다."
+msgid "Infantry Pikemen only, requires at least 16."
+msgstr ""
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1096,13 +1100,13 @@ msgid "Testudo"
 msgstr "바다거북이EHSMS귀갑(龜甲)모양의 큰 방패"
 
 #: simulation/templates/special/formations/wedge.xml:6
-msgid "Requires at least 6 Cavalry."
-msgstr "최소 6명의 기병이 필요합니다."
+msgid "Cavalry only, requires at least 6."
+msgstr ""
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
 msgstr "쐐기"
 
-#: simulation/templates/special/player/player.xml:60
+#: simulation/templates/special/player/player.xml:64
 msgid "Player"
 msgstr "선수"

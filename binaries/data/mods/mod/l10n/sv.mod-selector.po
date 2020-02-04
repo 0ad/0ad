@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:46+0100\n"
-"PO-Revision-Date: 2020-01-18 14:11+0000\n"
+"PO-Revision-Date: 2020-02-01 02:02+0000\n"
 "Last-Translator: Jonatan Nyberg\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -138,12 +138,12 @@ msgid ""
 "File download failed.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Filnedladdning misslyckades.\n\n%(technicalDetails)s"
+msgstr "Filhämtning misslyckades.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr "Nedladdningsfel"
+msgstr "Hämtningsfel"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -186,15 +186,15 @@ msgstr "Avbryt uppdatering"
 #: gui/modio/modio.js:248
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr "Laddar ner “%(modname)s”"
+msgstr "Hämtar “%(modname)s”"
 
 #: gui/modio/modio.js:251
 msgid "Downloading"
-msgstr "Laddar ner"
+msgstr "Hämtar"
 
 #: gui/modio/modio.js:253
 msgid "Cancel Download"
-msgstr "Avbryt nedladdning"
+msgstr "Avbryt hämtning"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with percentage complete.
@@ -293,7 +293,7 @@ msgstr "Uppdatera lista"
 
 #: gui/modio/modio.xml:(caption):83
 msgid "Download"
-msgstr "Ladda ner"
+msgstr "Hämta"
 
 #: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
 #: gui/modmod/modmod.xml:(heading):116
@@ -341,7 +341,7 @@ msgstr "Aktivera/Inaktivera"
 
 #: gui/modmod/modmod.xml:(caption):170
 msgid "Visit Website"
-msgstr "Besök hemsidan"
+msgstr "Besök webbplats"
 
 #: gui/modmod/modmod.xml:(caption):179
 msgid "Quit"
@@ -353,7 +353,7 @@ msgstr "Hjälp"
 
 #: gui/modmod/modmod.xml:(caption):194
 msgid "Download Mods"
-msgstr "Ladda ner mods"
+msgstr "Hämta mods"
 
 #: gui/modmod/modmod.xml:(caption):199
 msgid "Save Configuration"
@@ -369,13 +369,13 @@ msgstr "(Mapp)"
 
 #: gui/modmod/modmod.xml:(heading):91 gui/modmod/modmod.xml:(heading):131
 msgid "Website"
-msgstr "Hemsida"
+msgstr "Webbplats"
 
 #: gui/modmod/modmod.xml:(tooltip):146 gui/modmod/modmod.xml:(tooltip):160
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr "Ändra ordningen i vilken mods laddas ner. Denna bör överensstämma med mods beroenden."
+msgstr "Ändra ordningen i vilken mods startas. Detta bör överensstämma med mods beroenden."
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"

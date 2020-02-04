@@ -6,6 +6,7 @@
 # Adrià Palouzié <adriapalouzie@gmail.com>, 2018
 # Albert F. <alb.fontquerni@gmail.com>, 2017,2019
 # Catalanoic <catalanoic@gmail.com>, 2016
+# Esteve Blanch <esteve.blanch@live.com>, 2020
 # Francesc Famadas <kiski97@gmail.com>, 2015
 # Haommin <tfs.msimangu@gmail.com>, 2014
 # ignius <ividiella@hotmail.es>, 2014
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-01-17 15:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-02-01 22:17+0000\n"
+"Last-Translator: Esteve Blanch <esteve.blanch@live.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +35,7 @@ msgstr ""
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "Premeu %(hotkey)s per commutar aquest menú."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -51,7 +52,7 @@ msgstr "Resum"
 #: gui/session/MenuButtons.js:87
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr ""
+msgstr "Premeu %(hotkey)s per obrir la finestra de resum."
 
 #: gui/session/MenuButtons.js:130
 msgid "Lobby"
@@ -62,7 +63,7 @@ msgstr "Sala"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr ""
+msgstr "Premeu %(hotkey)s per obrir la pàgina de la sala multijugador sense deixar el joc."
 
 #: gui/session/MenuButtons.js:158
 msgid "Options"
@@ -79,7 +80,7 @@ msgstr "Pausa"
 #: gui/session/MenuButtons.js:197
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr ""
+msgstr "Premeu %(hotkey)s per posar en pausa o reprendre el joc."
 
 #: gui/session/MenuButtons.js:213
 msgid "Resign"
@@ -374,12 +375,12 @@ msgstr ","
 #: gui/session/selection_panels.js:1064
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "Actualitza a %(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1069
 #, javascript-format
 msgid "Upgrade to %(name)s."
-msgstr ""
+msgstr "Actualitza a %(name)s."
 
 #: gui/session/selection_panels.js:1086
 msgid "Cancel Upgrading"
@@ -498,7 +499,7 @@ msgstr "Feu clic dret per assignar-lo com a mercat d'origen"
 
 #: gui/session/unit_actions.js:595 gui/session/unit_actions.js:938
 msgid "This market is too close to the origin market."
-msgstr ""
+msgstr "El mercat es troba massa aprop del mercat d'origen."
 
 #: gui/session/unit_actions.js:599
 msgid "Right-click to set as destination trade market."
@@ -524,7 +525,7 @@ msgstr "Expulsa'ls tots."
 
 #: gui/session/unit_actions.js:1089
 msgid "Destroy the selected units or structures."
-msgstr ""
+msgstr "Destrueix les unitats o estructures seleccionades."
 
 #: gui/session/unit_actions.js:1091
 #, javascript-format
@@ -537,7 +538,7 @@ msgstr "Cancel·la l'ordre actual."
 
 #: gui/session/unit_actions.js:1157
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr ""
+msgstr "Ordena a les unitats seleccionades refugiar-se en una estructura o unitat."
 
 #: gui/session/unit_actions.js:1180
 msgid "Unload"
@@ -545,7 +546,7 @@ msgstr "Expulsa"
 
 #: gui/session/unit_actions.js:1198
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr ""
+msgstr "Ordena a les unitats seleccionades que reparin una estructura, vaixell o màquina de setge."
 
 #: gui/session/unit_actions.js:1217
 msgid "Focus on Rally Point."
@@ -557,7 +558,7 @@ msgstr "Torna a la feina"
 
 #: gui/session/unit_actions.js:1271
 msgid "Order the selected units to guard a structure or unit."
-msgstr ""
+msgstr "Ordena a les unitats seleccionades que defensin una estructura o unitat."
 
 #: gui/session/unit_actions.js:1289
 msgid "Remove guard"
@@ -575,7 +576,7 @@ msgstr "Patrulla"
 
 #: gui/session/unit_actions.js:1325
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr ""
+msgstr "Ataca totes les unitats enemigues evitant els edificis."
 
 #: gui/session/unit_actions.js:1351
 msgid "Press to allow allies to use this dropsite"
@@ -698,12 +699,12 @@ msgstr "Xat privat"
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr ""
+msgstr "Notificacions del joc"
 
 #: gui/session/chat/ChatHistory.js:130
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr ""
+msgstr "Notificacions de connexió"
 
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
@@ -771,7 +772,7 @@ msgstr "%(player)s s'ha unit a la partida."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:57
 msgid "no-context"
-msgstr ""
+msgstr "sense context"
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:61
 #, javascript-format
@@ -956,7 +957,7 @@ msgstr "Ascendeix les unitats seleccionades"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:229
 msgid "Enable culling"
-msgstr ""
+msgstr "Activa el sacrifici"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:247
 msgid "Lock cull camera"
@@ -1266,19 +1267,19 @@ msgstr "Ven %(resource)s"
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
-msgstr ""
+msgstr "+%(amount)s"
 
 #: gui/session/trade/BarterButton.js:103
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"
-msgstr ""
+msgstr "-%(amount)s"
 
 #: gui/session/trade/TradeButton.js:56
 #, javascript-format
 msgctxt "trading good ratio"
 msgid "%(amount)s%%"
-msgstr ""
+msgstr "%(amount)s%%"
 
 #: gui/session/trade/TradeButtonManager.js:76
 #, javascript-format
@@ -1588,4 +1589,4 @@ msgstr "Comerç"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
-msgstr ""
+msgstr "Recursos:"

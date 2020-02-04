@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-15 08:09+0000\n"
-"PO-Revision-Date: 2019-11-15 14:23+0000\n"
+"POT-Creation-Date: 2020-01-31 08:09+0000\n"
+"PO-Revision-Date: 2020-01-31 16:07+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/wildfire-games/0ad/language/eo/)\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: eo\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simulation/templates/template_formation.xml:25
+msgid "Requires at least 2 Soldiers or Siege engines."
+msgstr ""
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -998,7 +1002,7 @@ msgstr ""
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
-msgid "Requires at least 16 Melee Infantry."
+msgid "Melee Infantry only, requires at least 16."
 msgstr ""
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
@@ -1046,7 +1050,7 @@ msgid "None"
 msgstr "Neniu"
 
 #: simulation/templates/special/formations/phalanx.xml:6
-msgid "Requires at least 10 Infantry Hoplites."
+msgid "Infantry Hoplites only, requires at least 10."
 msgstr ""
 
 #: simulation/templates/special/formations/phalanx.xml:7
@@ -1058,7 +1062,7 @@ msgid "Scatter"
 msgstr ""
 
 #: simulation/templates/special/formations/skirmish.xml:5
-msgid "Requires a Ranged Soldier."
+msgid "Ranged Soldiers only, requires at least 2."
 msgstr ""
 
 #: simulation/templates/special/formations/skirmish.xml:6
@@ -1066,7 +1070,7 @@ msgid "Skirmish"
 msgstr ""
 
 #: simulation/templates/special/formations/syntagma.xml:6
-msgid "Requires at least 16 Infantry Pikemen."
+msgid "Infantry Pikemen only, requires at least 16."
 msgstr ""
 
 #: simulation/templates/special/formations/syntagma.xml:8
@@ -1078,13 +1082,13 @@ msgid "Testudo"
 msgstr ""
 
 #: simulation/templates/special/formations/wedge.xml:6
-msgid "Requires at least 6 Cavalry."
+msgid "Cavalry only, requires at least 6."
 msgstr ""
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
 msgstr ""
 
-#: simulation/templates/special/player/player.xml:60
+#: simulation/templates/special/player/player.xml:64
 msgid "Player"
 msgstr ""

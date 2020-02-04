@@ -1,30 +1,35 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # ali topçu <ali134636@gmail.com>, 2018
 # Cem Aktas <cemwstone@gmail.com>, 2018
 # Hüseyin Cem KOÇ <hckweb@gmail.com>, 2015
-# Günay Yılmaz <turkoman07@gmail.com>, 2019
+# Togarma, 2019
 # Hüseyin Cem Aras <hcemaras@gmail.com>, 2016
 # Hüseyin Cem Aras <hcemaras@gmail.com>, 2015
 # İrfan Sunay <irfan_sunay@hotmail.com>, 2018
 # Muha Aliss <muhaaliss@gmail.com>, 2017
+# Togarma, 2020
 # yakup <mutouk@yandex.ru>, 2014-2017
 # Yasin Uysal <yasinuysal22@outlook.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-15 08:09+0000\n"
-"PO-Revision-Date: 2019-11-16 04:25+0000\n"
-"Last-Translator: Günay Yılmaz <turkoman07@gmail.com>\n"
+"POT-Creation-Date: 2020-01-31 08:09+0000\n"
+"PO-Revision-Date: 2020-02-01 09:35+0000\n"
+"Last-Translator: Togarma\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: simulation/templates/template_formation.xml:25
+msgid "Requires at least 2 Soldiers or Siege engines."
+msgstr "En az 2 Asker veya Kuşatma motoru gerektirir."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -1006,8 +1011,8 @@ msgstr "Casus"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
-msgid "Requires at least 16 Melee Infantry."
-msgstr "En az !6 Yakın Dövüş Ğiyadesi gerektirir."
+msgid "Melee Infantry only, requires at least 16."
+msgstr "Sadece Yakın Piyade, en az 16 tane gerektirir."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1054,8 +1059,8 @@ msgid "None"
 msgstr "Yok"
 
 #: simulation/templates/special/formations/phalanx.xml:6
-msgid "Requires at least 10 Infantry Hoplites."
-msgstr "En az 10 Hoplit Piyadesi gerektirir."
+msgid "Infantry Hoplites only, requires at least 10."
+msgstr "Sadece Piyade Hoplitleri en az 10 gerektirir."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1066,16 +1071,16 @@ msgid "Scatter"
 msgstr "Dağınık"
 
 #: simulation/templates/special/formations/skirmish.xml:5
-msgid "Requires a Ranged Soldier."
-msgstr "Menzilli bir asker gerektirir."
+msgid "Ranged Soldiers only, requires at least 2."
+msgstr "Sadece Menzilli Askerler, en az 2 tane gerektirir."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
 msgstr "Çatışma"
 
 #: simulation/templates/special/formations/syntagma.xml:6
-msgid "Requires at least 16 Infantry Pikemen."
-msgstr "En az 16 Kargıcı Piyade gerektirir."
+msgid "Infantry Pikemen only, requires at least 16."
+msgstr "Sadece Piyade Kargıcılar için en az 16 tane gerekir."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1086,13 +1091,13 @@ msgid "Testudo"
 msgstr "Kaplumbağa Düzeni"
 
 #: simulation/templates/special/formations/wedge.xml:6
-msgid "Requires at least 6 Cavalry."
-msgstr "En az 6 süvari gerektirir."
+msgid "Cavalry only, requires at least 6."
+msgstr "Sadece süvari en az 6 gerektirir."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
 msgstr "Kama"
 
-#: simulation/templates/special/player/player.xml:60
+#: simulation/templates/special/player/player.xml:64
 msgid "Player"
 msgstr "Oyuncu"

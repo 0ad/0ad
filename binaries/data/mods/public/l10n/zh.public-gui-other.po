@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-24 08:08+0000\n"
-"PO-Revision-Date: 2020-01-24 15:36+0000\n"
+"POT-Creation-Date: 2020-01-31 08:08+0000\n"
+"PO-Revision-Date: 2020-01-31 15:42+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -439,9 +439,9 @@ msgstr "作弊"
 
 #: gui/common/gamedescription.js:402 gui/common/tooltips.js:136
 #: gui/common/tooltips.js:169 gui/common/tooltips.js:211
-#: gui/common/tooltips.js:451 gui/common/tooltips.js:473
-#: gui/common/tooltips.js:557 gui/common/tooltips.js:578
-#: gui/common/tooltips.js:876
+#: gui/common/tooltips.js:479 gui/common/tooltips.js:501
+#: gui/common/tooltips.js:585 gui/common/tooltips.js:606
+#: gui/common/tooltips.js:904
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -573,11 +573,12 @@ msgstr "玩家 (%(num)s): %(users)s"
 
 #: gui/common/network.js:161 gui/common/tooltips.js:55
 #: gui/common/tooltips.js:182 gui/common/tooltips.js:264
-#: gui/common/tooltips.js:298 gui/common/tooltips.js:363
-#: gui/common/tooltips.js:413 gui/common/tooltips.js:446
-#: gui/common/tooltips.js:741 gui/common/tooltips.js:775
-#: gui/common/tooltips.js:841 gui/loadgame/SavegameDetails.js:38
-#: gui/reference/common/draw.js:51 gui/replaymenu/replay_menu.js:283
+#: gui/common/tooltips.js:284 gui/common/tooltips.js:298
+#: gui/common/tooltips.js:363 gui/common/tooltips.js:441
+#: gui/common/tooltips.js:474 gui/common/tooltips.js:769
+#: gui/common/tooltips.js:803 gui/common/tooltips.js:869
+#: gui/loadgame/SavegameDetails.js:38 gui/reference/common/draw.js:51
+#: gui/replaymenu/replay_menu.js:283
 msgid ", "
 msgstr "，"
 
@@ -716,8 +717,8 @@ msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
 msgstr[0] "%(time)s %(second)s"
 
-#: gui/common/tooltips.js:84 gui/common/tooltips.js:409
-#: gui/common/tooltips.js:773
+#: gui/common/tooltips.js:84 gui/common/tooltips.js:437
+#: gui/common/tooltips.js:801
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "秒"
@@ -758,7 +759,7 @@ msgstr "驻军发射火箭"
 msgid "Interval:"
 msgstr "间隔："
 
-#: gui/common/tooltips.js:199 gui/common/tooltips.js:771
+#: gui/common/tooltips.js:199 gui/common/tooltips.js:799
 msgid "Rate:"
 msgstr "频率："
 
@@ -804,7 +805,7 @@ msgstr ""
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr ""
 
-#: gui/common/tooltips.js:243 gui/common/tooltips.js:766
+#: gui/common/tooltips.js:243 gui/common/tooltips.js:794
 msgid "Range:"
 msgstr "范围："
 
@@ -819,8 +820,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "米"
 
-#: gui/common/tooltips.js:251 gui/common/tooltips.js:768
-#: gui/common/tooltips.js:798
+#: gui/common/tooltips.js:251 gui/common/tooltips.js:796
+#: gui/common/tooltips.js:826
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "米"
@@ -886,189 +887,194 @@ msgstr "是"
 msgid "No"
 msgstr "否"
 
-#: gui/common/tooltips.js:378
+#: gui/common/tooltips.js:395
 #, javascript-format
-msgid ", %(durName)s: %(duration)s"
+msgid "%(interval)s"
 msgstr ""
 
-#: gui/common/tooltips.js:379
+#: gui/common/tooltips.js:404
+#, javascript-format
+msgid "%(durName)s: %(duration)s"
+msgstr ""
+
+#: gui/common/tooltips.js:405
 msgid "Duration"
 msgstr "时长"
 
-#: gui/common/tooltips.js:383
+#: gui/common/tooltips.js:410
 #, javascript-format
-msgid "%(statusName)s: %(effects)s, %(rate)s%(durationString)s"
+msgid "%(statusName)s: "
 msgstr ""
 
-#: gui/common/tooltips.js:397
+#: gui/common/tooltips.js:425
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
 msgstr "%(label)s：%(garrisonLimit)s"
 
-#: gui/common/tooltips.js:398
+#: gui/common/tooltips.js:426
 msgid "Garrison Limit"
 msgstr "驻军上限"
 
-#: gui/common/tooltips.js:405
+#: gui/common/tooltips.js:433
 #, javascript-format
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:406 gui/common/tooltips.js:760
+#: gui/common/tooltips.js:434 gui/common/tooltips.js:788
 msgid "Heal:"
 msgstr "治疗："
 
-#: gui/common/tooltips.js:408
+#: gui/common/tooltips.js:436
 msgid "Health"
 msgstr "生命值"
 
-#: gui/common/tooltips.js:432 gui/common/tooltips.js:437
-#: gui/common/tooltips.js:442
+#: gui/common/tooltips.js:460 gui/common/tooltips.js:465
+#: gui/common/tooltips.js:470
 #, javascript-format
 msgid "%(label)s: %(value)s"
 msgstr "%(label)s：%(value)s"
 
-#: gui/common/tooltips.js:433
+#: gui/common/tooltips.js:461
 msgid "Projectile Limit"
 msgstr "弹药上限"
 
-#: gui/common/tooltips.js:438
+#: gui/common/tooltips.js:466
 msgctxt "projectiles"
 msgid "Default"
 msgstr "默认"
 
-#: gui/common/tooltips.js:443
+#: gui/common/tooltips.js:471
 msgctxt "projectiles"
 msgid "Per Unit"
 msgstr "每单位"
 
-#: gui/common/tooltips.js:452
+#: gui/common/tooltips.js:480
 msgid "Number of repairers:"
 msgstr "修理工数量："
 
-#: gui/common/tooltips.js:458
+#: gui/common/tooltips.js:486
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
 msgstr[0] "增加工人，加快%(second)s秒"
 
-#: gui/common/tooltips.js:465
+#: gui/common/tooltips.js:493
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
 msgstr[0] "增加一个工人，在 %(second)s 秒后修复。"
 
-#: gui/common/tooltips.js:474
+#: gui/common/tooltips.js:502
 msgid "Number of builders:"
 msgstr "建筑工数量："
 
-#: gui/common/tooltips.js:480
+#: gui/common/tooltips.js:508
 #, javascript-format
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
 msgstr[0] "增加工人，加快%(second)s秒"
 
-#: gui/common/tooltips.js:487
+#: gui/common/tooltips.js:515
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] "增加一个工人，%(second)s秒后完成。"
 
-#: gui/common/tooltips.js:522 gui/common/tooltips.js:713
+#: gui/common/tooltips.js:550 gui/common/tooltips.js:741
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
-#: gui/common/tooltips.js:558
+#: gui/common/tooltips.js:586
 msgid "Gather Rates:"
 msgstr "采集效率："
 
-#: gui/common/tooltips.js:561 gui/common/tooltips.js:583
+#: gui/common/tooltips.js:589 gui/common/tooltips.js:611
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/common/tooltips.js:579
+#: gui/common/tooltips.js:607
 msgid "Resource Trickle:"
 msgstr "资源流："
 
-#: gui/common/tooltips.js:580
+#: gui/common/tooltips.js:608
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr "%(resources)s/%(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:632
+#: gui/common/tooltips.js:660
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s 到 %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:661
+#: gui/common/tooltips.js:689
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "城墙:  %(costs)s"
 
-#: gui/common/tooltips.js:662
+#: gui/common/tooltips.js:690
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "塔楼:  %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
-#: gui/common/tooltips.js:670
+#: gui/common/tooltips.js:698
 #, javascript-format
 msgid "%(label)s %(costs)s"
 msgstr "%(label)s %(costs)s"
 
-#: gui/common/tooltips.js:671
+#: gui/common/tooltips.js:699
 msgid "Cost:"
 msgstr "花费："
 
-#: gui/common/tooltips.js:684
+#: gui/common/tooltips.js:712
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "需要 %(technology)s"
 
-#: gui/common/tooltips.js:696
+#: gui/common/tooltips.js:724
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:697
+#: gui/common/tooltips.js:725
 msgid "Population Bonus:"
 msgstr "人口奖励："
 
-#: gui/common/tooltips.js:718
+#: gui/common/tooltips.js:746
 msgid "Insufficient resources:"
 msgstr "缺乏资源:"
 
-#: gui/common/tooltips.js:734
+#: gui/common/tooltips.js:762
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:735
+#: gui/common/tooltips.js:763
 msgid "Speed:"
 msgstr "速度:"
 
-#: gui/common/tooltips.js:737 gui/common/tooltips.js:742
+#: gui/common/tooltips.js:765 gui/common/tooltips.js:770
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:739
+#: gui/common/tooltips.js:767
 msgid "Walk"
 msgstr "走"
 
-#: gui/common/tooltips.js:744
+#: gui/common/tooltips.js:772
 msgid "Run"
 msgstr "跑"
 
-#: gui/common/tooltips.js:759 gui/common/tooltips.js:765
-#: gui/common/tooltips.js:770 gui/common/tooltips.js:795
+#: gui/common/tooltips.js:787 gui/common/tooltips.js:793
+#: gui/common/tooltips.js:798 gui/common/tooltips.js:823
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -1076,62 +1082,62 @@ msgstr[0] "%(label)s %(val)s %(unit)s"
 
 #. Translation: Short for hit points (or health points) that are healed in one
 #. healing action
-#: gui/common/tooltips.js:763
+#: gui/common/tooltips.js:791
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] "HP"
 
-#: gui/common/tooltips.js:787
+#: gui/common/tooltips.js:815
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:788
+#: gui/common/tooltips.js:816
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:796
+#: gui/common/tooltips.js:824
 msgctxt "aura"
 msgid "Range:"
 msgstr "范围: "
 
-#: gui/common/tooltips.js:813
+#: gui/common/tooltips.js:841
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:825
+#: gui/common/tooltips.js:853
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:840
+#: gui/common/tooltips.js:868
 msgid "Classes:"
 msgstr "类型："
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
-#: gui/common/tooltips.js:867
+#: gui/common/tooltips.js:895
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:877
+#: gui/common/tooltips.js:905
 msgid "Loot:"
 msgstr "战利品："
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI element will open the Template Details GUI page.
-#: gui/common/tooltips.js:885
+#: gui/common/tooltips.js:913
 msgid "Right-click to view more information."
 msgstr "右击获取更多消息"
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
-#: gui/common/tooltips.js:891
+#: gui/common/tooltips.js:919
 msgid "Click to view more information."
 msgstr "点击获取更多消息"
 
@@ -3298,6 +3304,33 @@ msgstr "启用外交颜色时，为敌方颜色"
 #: gui/options/options.json[5].options[17].label
 msgid "Diplomacy colors: enemy"
 msgstr "外交颜色：敌人"
+
+#: gui/options/options.json[5].options[18].list[0].tooltip
+msgid ""
+"New structures are aligned with nearby structures while pressing the hotkey."
+msgstr ""
+
+#: gui/options/options.json[5].options[18].list[0].label
+msgid "Hotkey to enable snapping"
+msgstr ""
+
+#: gui/options/options.json[5].options[18].list[1].tooltip
+msgid ""
+"New structures are aligned with nearby structures unless the hotkey is "
+"pressed."
+msgstr ""
+
+#: gui/options/options.json[5].options[18].list[1].label
+msgid "Hotkey to disable snapping"
+msgstr ""
+
+#: gui/options/options.json[5].options[18].tooltip
+msgid "This option allows to align new structures with nearby structures."
+msgstr ""
+
+#: gui/options/options.json[5].options[18].label
+msgid "Snap to edges"
+msgstr ""
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."

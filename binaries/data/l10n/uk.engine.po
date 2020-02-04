@@ -7,6 +7,7 @@
 # Andriy Nahirnjak <andriy.nagirnjak@gmail.com>, 2014
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2018
 # Victor Butko <victor.butko@gmail.com>, 2014
+# Zeldt Herb <bkelfarat@bk.ru>, 2020
 # Андрій Бандура <andriykopanytsia@gmail.com>, 2016
 # Микола Франчук <thekolian1996@gmail.com>, 2018
 # Сергій Дубик <dubyk@ukr.net>, 2014
@@ -15,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-13 07:08+0000\n"
-"PO-Revision-Date: 2019-09-13 12:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-02-02 22:15+0000\n"
+"Last-Translator: Zeldt Herb <bkelfarat@bk.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,35 +31,35 @@ msgstr "довгі рядки"
 
 #: lobby/XmppClient.cpp:855
 msgid "unknown subtype (see logs)"
-msgstr "невідомий підтип (див. журнали)"
+msgstr "Невідомий підтип (дивись журнали)"
 
 #: lobby/XmppClient.cpp:1169
 msgid "The certificate is not trusted."
-msgstr ""
+msgstr "Сертифікат не є довіреним."
 
 #: lobby/XmppClient.cpp:1170
 msgid "The certificate hasn't got a known issuer."
-msgstr ""
+msgstr "Сертифікат не має відомого видавця."
 
 #: lobby/XmppClient.cpp:1171
 msgid "The certificate has been revoked."
-msgstr ""
+msgstr "Сертифікат відкликаний."
 
 #: lobby/XmppClient.cpp:1172
 msgid "The certificate has expired."
-msgstr ""
+msgstr "Термін дії сертифікату минув."
 
 #: lobby/XmppClient.cpp:1173
 msgid "The certifiacte is not yet active."
-msgstr ""
+msgstr "Сертифікат ще не активний."
 
 #: lobby/XmppClient.cpp:1174
 msgid "The certificate has not been issued for the peer connected to."
-msgstr ""
+msgstr "Сертифікат не виданий для однорангового підключеного."
 
 #: lobby/XmppClient.cpp:1175
 msgid "The certificate signer is not a certificate authority."
-msgstr ""
+msgstr "Підписант сертифіката не є органом сертифікації."
 
 #: lobby/XmppClient.cpp:1197 lobby/XmppClient.cpp:1241
 #: lobby/XmppClient.cpp:1280
@@ -67,11 +68,11 @@ msgstr "Помилка"
 
 #: lobby/XmppClient.cpp:1200 lobby/XmppClient.cpp:1244
 msgid "No error"
-msgstr "Без помилки"
+msgstr "Немає помилок"
 
 #: lobby/XmppClient.cpp:1202
 msgid "Player already logged in"
-msgstr "Гравець вже увійшов"
+msgstr "Гравець уже ввійшов у систему"
 
 #: lobby/XmppClient.cpp:1204
 msgid "Forbidden"
@@ -83,15 +84,15 @@ msgstr "Внутрішня помилка сервера"
 
 #: lobby/XmppClient.cpp:1210
 msgid "Not allowed"
-msgstr "Забороняється"
+msgstr "Не дозволено"
 
 #: lobby/XmppClient.cpp:1211
 msgid "Not authorized"
-msgstr "Не авторизовано"
+msgstr "Не авторізовано"
 
 #: lobby/XmppClient.cpp:1214
 msgid "Recipient temporarily unavailable"
-msgstr "Одержувач тимчасово не доступний"
+msgstr "Одержувач тимчасово недоступний"
 
 #: lobby/XmppClient.cpp:1216
 msgid "Registration required"
@@ -115,45 +116,45 @@ msgstr "Версія вхідного потоку не підтримуєтьс
 
 #: lobby/XmppClient.cpp:1247
 msgid "The stream has been closed by the server"
-msgstr "Потік закритий сервером"
+msgstr "Потік був закритий сервером"
 
 #: lobby/XmppClient.cpp:1251
 msgid "An I/O error occurred"
-msgstr "Трапилася помилка вводу/виводу"
+msgstr "Виникла помилка вводу/виводу"
 
 #: lobby/XmppClient.cpp:1253
 msgid "The connection was refused by the server"
-msgstr "З'єднання розірвано сервером"
+msgstr "З'єднання було розірвано сервером"
 
 #: lobby/XmppClient.cpp:1254
 msgid "Resolving the server's hostname failed"
-msgstr "Вирішення назв вузлів сервера не вдалося"
+msgstr "Не вдалося вирішити ім'я хоста сервера"
 
 #: lobby/XmppClient.cpp:1255
 msgid "This system is out of memory"
-msgstr "Цій системі бракує пам'яті"
+msgstr "Ця система не має достатньої кількості пам’яті"
 
 #: lobby/XmppClient.cpp:1257
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr "Сертифікат сервера не можна перевірити або TLS handshake не вдалося успішно завершити"
+msgstr "Сертифікат сервера не вдалося перевірити або успішно виконати рукостискання TLS"
 
 #: lobby/XmppClient.cpp:1258
 msgid "The server did not offer required TLS encryption"
-msgstr "Сервер не запропонував потрібне шифрування TLS"
+msgstr "Сервер не запропонував необхідне шифрування TLS"
 
 #: lobby/XmppClient.cpp:1260
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Вхід не вдався. Неправильний пароль або профіль не існує"
+msgstr "Помилка аутентифікації. Неправильний пароль або обліковий запис не існує"
 
 #: lobby/XmppClient.cpp:1261
 msgid "The user or system requested a disconnect"
-msgstr "Користувач або система попросили роз'єднатися"
+msgstr "Користувач або система вимагали відключення"
 
 #: lobby/XmppClient.cpp:1262
 msgid "There is no active connection"
-msgstr "Не має активного з'єднання"
+msgstr "Там немає активного з'єднання"
 
 #: lobby/XmppClient.cpp:1283
 msgid "Your account has been successfully registered"
@@ -161,7 +162,7 @@ msgstr "Ваш обліковий запис був успішно зареєс�
 
 #: lobby/XmppClient.cpp:1284
 msgid "Not all necessary information provided"
-msgstr "Не надано усіх необхідних даних"
+msgstr "Надана не вся необхідна інформація"
 
 #: lobby/XmppClient.cpp:1285
 msgid "Username already exists"
@@ -170,12 +171,12 @@ msgstr "Користувач з таким ім'ям вже існує"
 #: ps/ModIo.cpp:261
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Збій при запиті id гри. Помилка: %s; %s."
+msgstr "Помилка під час запуску запиту на ідентифікатор гри. Помилка: %s; %s."
 
 #: ps/ModIo.cpp:291
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "Збій при запиті модифікацій. Помилка: %s; %s."
+msgstr "Помилка під час запуску запитів для модифікацій. Помилка: %s; %s."
 
 #: ps/ModIo.cpp:317
 #, c-format
@@ -185,22 +186,22 @@ msgstr "Не вдалося створити каталог модифікаці
 #: ps/ModIo.cpp:342
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "Не вдається відкрити тимчасовий файл для завантаження модифікацій: %s."
+msgstr "Не вдалося відкрити тимчасовий файл для завантаження модифікацій: %s."
 
 #: ps/ModIo.cpp:352
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "Неможливо почати завантаження. Помилка: %s; %s."
+msgstr "Не вдалося розпочати завантаження. Помилка: %s; %s."
 
 #: ps/ModIo.cpp:397
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr "Збій асинхронного завантаження: %s, %s."
+msgstr "Помилка асинхронного завантаження: %s, %s."
 
 #: ps/ModIo.cpp:426
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Збій завантаження. Відповідь сервера: %s; %s."
+msgstr "Помилка завантаження. Відповідь сервера: %s; %s."
 
 #: ps/ModIo.cpp:529
 msgid "Mismatched filesize."
@@ -209,25 +210,25 @@ msgstr "Невідповідний розмір файлу."
 #: ps/ModIo.cpp:547
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr "Файл пошкоджений. Очікувана md5 %s, отримана %s."
+msgstr "Невірний файл. Очікуваний md5 %s, отриманий %s."
 
 #: ps/ModIo.cpp:562
 msgid "Failed to compute final hash."
-msgstr "Збій розрахунку фінального хешу."
+msgstr "Не вдалося розрахувати остаточний хеш."
 
 #: ps/ModIo.cpp:568
 msgid "Failed to verify signature."
-msgstr "Збій перевірки підпису."
+msgstr "Не вдалося перевірити підпис."
 
 #: ps/SavedGame.cpp:139
 #, c-format
 msgid "Saved game to '%s'"
-msgstr "Гру збережено до '%s'"
+msgstr "Збережена гра в '%s'"
 
 #: ps/Util.cpp:279 ps/Util.cpp:282 ps/Util.cpp:417 ps/Util.cpp:420
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "Знімок екрану записаний у „%s“"
+msgstr "Знімок екрану записується '%s'"
 
 #: ps/scripting/JSInterface_Debug.cpp:83
 msgid "custom build"

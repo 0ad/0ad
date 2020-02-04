@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -8,6 +8,7 @@
 # Henrik Mattsson-Mårn <h@reglage.net>, 2016
 # Jacob Carlsson <yejcob@gmail.com>, 2015-2016
 # Jonatan Nyberg, 2016
+# Jonatan Nyberg, 2020
 # Kristoffer Grundström <hamnisdude@gmail.com>, 2015-2016
 # Marco tom Suden, 2014
 # Marco tom Suden, 2014
@@ -21,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-16 07:11+0000\n"
-"PO-Revision-Date: 2019-09-29 15:17+0000\n"
-"Last-Translator: Mattias Münster <mattiasmun@gmail.com>\n"
+"POT-Creation-Date: 2020-01-31 08:09+0000\n"
+"PO-Revision-Date: 2020-02-01 01:16+0000\n"
+"Last-Translator: Jonatan Nyberg\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1105,8 +1106,8 @@ msgid ""
 msgstr "Vävstolen tillät tillverkandet av finare kläder för bosättare. Kvinnor i hushållet lärdes från en ung ålder hur man väver på vävstolen, och tillbringade därefter en stor del av sitt liv med vävning."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
-msgid "+50% health for female citizens."
-msgstr "+50% hälsa för kvinnliga medborgare"
+msgid "+100% health for female citizens."
+msgstr ""
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1937,7 +1938,7 @@ msgstr "Zeugítai"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
-msgstr "Lej professionella legosoldater att kämpa i din armé."
+msgstr "Leja professionella legosoldater att kämpa i din armé."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid ""
@@ -1999,7 +2000,7 @@ msgstr "Keltisk Legosoldat Befälhavare"
 msgid ""
 "Hire a Gallic mercenary general to reduce cost -20 metal for Celtic "
 "mercenaries."
-msgstr "Lej en Gallisk legosoldatgeneral för att minska kostnaden för Keltiska legosoldater med -20 metall."
+msgstr "Leja en gallisk legosoldatgeneral för att minska kostnaden för keltiska legosoldater med -20 metall."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsongenericName
 msgid "Gallic Mercenary General"
@@ -2014,7 +2015,7 @@ msgstr "Iberiska legosoldater har en reducerad metallkostnad."
 msgid ""
 "Hire a Lusitanian mercenary captain to reduce cost -20 metal for Iberian "
 "mercenaries."
-msgstr "Lej en Lusitanisk legosoldatkapten för att minska kostnaderna för iberiska legosoldater med -20 metall."
+msgstr "Leja en lusitanisk legosoldatkapten för att minska kostnaderna för iberiska legosoldater med -20 metall."
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsongenericName
 msgid "Lusitanian Mercenary Captain"
@@ -2024,7 +2025,7 @@ msgstr "Lusitanisk Legosoldat Kapten"
 msgid ""
 "Hire a Celtiberian mercenary general to reduce cost -20 metal for Iberian "
 "mercenaries."
-msgstr "Lej en Keltiberisk legosoldatgeneral för att minska kostnaden för iberiska legosoldater med -20 metall."
+msgstr "Leja en keltiberisk legosoldatgeneral för att minska kostnaden för iberiska legosoldater med -20 metall."
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsongenericName
 msgid "Celtiberian Mercenary General"
@@ -2039,7 +2040,7 @@ msgstr "Italienska legosoldater kostar mindre metall."
 msgid ""
 "Hire an Italiote mercenary captain to reduce cost -20 metal for Italian "
 "mercenaries."
-msgstr "Lej en Italisk legosoldatkapten för att minska kostnaden för italienska legosoldater med -20 metall."
+msgstr "Leja en italiotsk legosoldatkapten för att minska kostnaden för italienska legosoldater med -20 metall."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsongenericName
 msgid "Italiote Mercenary Captain"
@@ -2049,7 +2050,7 @@ msgstr "Italisk Legosoldat Kapten"
 msgid ""
 "Hire an Italiote mercenary general to reduce cost -20 metal for Italian "
 "mercenaries."
-msgstr "Lej en Italisk legosoldatgeneral för att minska kostnaden för Italienska legosoldater med -20 metall."
+msgstr "Leja en italiotsk legosoldatgeneral för att minska kostnaden för italienska legosoldater med -20 metall."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsongenericName
 msgid "Italiote Mercenary General"
