@@ -25,11 +25,13 @@
 #include "lib/bits.h"
 #include "lib/ogl.h"
 #include "maths/MathUtil.h"
+#include "ps/ConfigDB.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
+#include "renderer/RenderingOptions.h"
 
 #if !CONFIG2_GLES
 
@@ -78,6 +80,7 @@ void CPostprocManager::Initialize()
 	m_Width = g_Renderer.GetWidth();
 	m_Height = g_Renderer.GetHeight();
 
+	UpdateAntiAliasingTechnique();
 	RecreateBuffers();
 	m_IsInitialized = true;
 
@@ -495,6 +498,12 @@ void CPostprocManager::ApplyPostproc()
 	for (int pass = 0; pass < m_PostProcTech->GetNumPasses(); ++pass)
 		ApplyEffect(m_PostProcTech, pass);
 
+	if (m_AATech)
+	{
+		for (int pass = 0; pass < m_AATech->GetNumPasses(); ++pass)
+			ApplyEffect(m_AATech, pass);
+	}
+
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthTex, 0);
 
@@ -538,6 +547,27 @@ void CPostprocManager::SetPostEffect(const CStrW& name)
 	}
 
 	m_PostProcEffect = name;
+}
+
+void CPostprocManager::UpdateAntiAliasingTechnique()
+{
+	if (!g_RenderingOptions.GetPreferGLSL())
+		return;
+
+	CStr newAAName;
+	CFG_GET_VAL("antialiasing", newAAName);
+	if (m_AAName == newAAName)
+		return;
+	m_AAName = newAAName;
+	m_AATech.reset();
+
+	// We have to hardcode names in the engine, because anti-aliasing
+	// techinques strongly depend on the graphics pipeline.
+	// We might use enums in future though.
+	if (m_AAName == "fxaa")
+	{
+		m_AATech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("fxaa"));
+	}
 }
 
 void CPostprocManager::SetDepthBufferClipPlanes(float nearPlane, float farPlane)
@@ -596,6 +626,10 @@ void CPostprocManager::SetPostEffect(const CStrW& UNUSED(name))
 }
 
 void CPostprocManager::SetDepthBufferClipPlanes(float UNUSED(nearPlane), float UNUSED(farPlane))
+{
+}
+
+void CPostprocManager::UpdateAntiAliasingTechnique()
 {
 }
 
