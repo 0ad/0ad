@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -173,7 +173,7 @@ void TerrainRenderer::EndFrame()
 
 ///////////////////////////////////////////////////////////////////
 // Full-featured terrain rendering with blending and everything
-void TerrainRenderer::RenderTerrain(int cullGroup)
+void TerrainRenderer::RenderTerrainFixed(int cullGroup)
 {
 #if CONFIG2_GLES
 	UNUSED2(cullGroup);

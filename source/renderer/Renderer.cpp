@@ -769,7 +769,7 @@ void CRenderer::RenderPatches(const CShaderDefines& context, int cullGroup)
 	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
 		m->terrainRenderer.RenderTerrainShader(context, cullGroup, (m_Caps.m_Shadows && g_RenderingOptions.GetShadows()) ? &m->shadow : 0);
 	else
-		m->terrainRenderer.RenderTerrain(cullGroup);
+		m->terrainRenderer.RenderTerrainFixed(cullGroup);
 
 
 #if !CONFIG2_GLES

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -88,10 +88,10 @@ public:
 	 * preconditions  : PrepareForRendering must have been called this
 	 * frame before calling RenderTerrain.
 	 */
-	void RenderTerrain(int cullGroup);
+	void RenderTerrainFixed(int cullGroup);
 
 	/**
-	 * Render textured terrain, as with RenderTerrain, but using shaders
+	 * Render textured terrain, as with RenderTerrainFixed, but using shaders
 	 * instead of multitexturing.
 	 *
 	 * @param shadow A prepared shadow map, in case rendering with shadows is enabled.
