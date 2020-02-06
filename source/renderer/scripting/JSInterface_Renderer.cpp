@@ -20,6 +20,7 @@
 #include "JSInterface_Renderer.h"
 
 #include "graphics/TextureManager.h"
+#include "renderer/PostprocManager.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/Renderer.h"
 #include "renderer/ShadowMap.h"
@@ -66,6 +67,11 @@ void JSI_Renderer::SetRenderPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate),
 	g_RenderingOptions.SetRenderPath(RenderPathEnum::FromString(name));
 }
 
+void JSI_Renderer::UpdateAntiAliasingTechnique(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	g_Renderer.GetPostprocManager().UpdateAntiAliasingTechnique();
+}
+
 void JSI_Renderer::RecreateShadowMap(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	g_Renderer.GetShadowMap().RecreateTexture();
@@ -85,6 +91,7 @@ void JSI_Renderer::RegisterScriptFunctions(const ScriptInterface& scriptInterfac
 	scriptInterface.RegisterFunction<std::string, &JSI_Renderer::GetRenderPath>("Renderer_GetRenderPath");
 	scriptInterface.RegisterFunction<void, std::string, &JSI_Renderer::SetRenderPath>("Renderer_SetRenderPath");
 	scriptInterface.RegisterFunction<void, &JSI_Renderer::RecreateShadowMap>("Renderer_RecreateShadowMap");
+	scriptInterface.RegisterFunction<void, &JSI_Renderer::UpdateAntiAliasingTechnique>("Renderer_UpdateAntiAliasingTechnique");
 	scriptInterface.RegisterFunction<bool, std::wstring, &JSI_Renderer::TextureExists>("TextureExists");
 	REGISTER_BOOLEAN_SCRIPT_SETTING(Shadows);
 	REGISTER_BOOLEAN_SCRIPT_SETTING(ShadowPCF);

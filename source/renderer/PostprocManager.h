@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,6 +48,9 @@ public:
 	// Sets the current effect.
 	void SetPostEffect(const CStrW& name);
 
+	// Triggers update of shaders and FBO if needed.
+	void UpdateAntiAliasingTechnique();
+
 	void SetDepthBufferClipPlanes(float nearPlane, float farPlane);
 
 	// Clears the two color buffers and depth buffer, and redirects all rendering
@@ -87,6 +90,9 @@ private:
 	// (i.e. while we do allocate the buffers, no effects are rendered).
 	CStrW m_PostProcEffect;
 	CShaderTechniquePtr m_PostProcTech;
+
+	CStr m_AAName;
+	CShaderTechniquePtr m_AATech;
 
 	// The current screen dimensions in pixels.
 	int m_Width, m_Height;

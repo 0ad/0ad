@@ -118,6 +118,18 @@
 				"function": "Renderer_SetPostProcEnabled"
 			},
 			{
+				"type": "dropdown",
+				"label": "Anti-Aliasing",
+				"tooltip": "Reduce aliasing effect on edges.",
+				"dependencies": ["postproc"],
+				"config": "antialiasing",
+				"list": [
+					{ "value": "disabled", "label": "Disabled", "tooltip": "Do not use anti-aliasing." },
+					{ "value": "fxaa", "label": "FXAA", "tooltip": "Fast, but simple anti-aliasing." }
+				],
+				"function": "Renderer_UpdateAntiAliasingTechnique"
+			},
+			{
 				"type": "slider",
 				"label": "Shader effects",
 				"tooltip": "Number of shader effects. REQUIRES GAME RESTART",

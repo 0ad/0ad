@@ -8,6 +8,6 @@
         <attrib name="a_uv0" semantics="gl_MultiTexCoord0"/>
     </vertex>
 
-    <fragment file="glsl/bloom.fs"/>
+    <fragment file="glsl/fxaa.fs"/>
 
 </program>

@@ -1414,7 +1414,8 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 #if !CONFIG2_GLES
 	// Clean up texture blend mode so particles and other things render OK
 	// (really this should be cleaned up by whoever set it)
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	if (g_RenderingOptions.GetRenderPath() == RenderPath::FIXED)
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 #endif
 
 	// render debug lines
