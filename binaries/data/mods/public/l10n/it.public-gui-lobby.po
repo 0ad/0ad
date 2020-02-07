@@ -16,6 +16,7 @@
 # Matteo Sechi <inactive+tomateschie.transifex@transifex.com>, 2016
 # mattia_b89 <mattia.b89@gmail.com>, 2018
 # Me Lazzi, 2014-2017
+# ., 2020
 # Michele Lasala <michi.android1012@gmail.com>, 2016
 # Nicola Jelmorini, 2014
 # Nicolas Auvray <na.itms76@gmail.com>, 2018
@@ -25,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-22 08:08+0000\n"
-"PO-Revision-Date: 2019-11-22 15:16+0000\n"
-"Last-Translator: Christian Bellagamba <christiandes00@gmail.com>\n"
+"PO-Revision-Date: 2020-02-05 10:49+0000\n"
+"Last-Translator: .\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,13 +75,13 @@ msgstr "Sì"
 #: gui/lobby/LobbyPage/Game.js:298
 #, javascript-format
 msgid "%(current)s/%(max)s +%(observercount)s"
-msgstr ""
+msgstr "%(current)s/%(max)s +%(observercount)s"
 
 #. Translation: The number of players in this game
 #: gui/lobby/LobbyPage/Game.js:301
 #, javascript-format
 msgid "%(current)s/%(max)s"
-msgstr ""
+msgstr "%(current)s/%(max)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:65
 msgctxt "victory condition"
@@ -376,7 +377,7 @@ msgstr "Privato"
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:25
 #, javascript-format
 msgid "(%(private)s) %(message)s"
-msgstr ""
+msgstr "(%(private)s) %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:47
 #, javascript-format
@@ -461,7 +462,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
 #, javascript-format
 msgid "=== %(system)s %(message)s"
-msgstr ""
+msgstr "=== %(system)s %(message)s"
 
 #: gui/lobby/LobbyPage/GameListFilters/MapSize.js:9
 msgctxt "map size"

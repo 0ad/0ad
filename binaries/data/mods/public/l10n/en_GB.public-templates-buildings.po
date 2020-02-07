@@ -9,13 +9,15 @@
 # leper <leper@wildfiregames.com>, 2014-2016
 # pilino1234 <pilino1234@zoho.eu>, 2016
 # pilino1234 <pilino1234@zoho.eu>, 2016-2017
+# ., 2020
+# ., 2020
 # pilino1234 <pilino1234@zoho.eu>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-10 08:09+0000\n"
-"PO-Revision-Date: 2020-01-10 15:21+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-02-05 14:05+0000\n"
+"Last-Translator: .\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -102,7 +104,7 @@ msgstr "Town"
 msgid ""
 "Train Healers and research healing technologies. Garrison units to heal them"
 " at a quick rate."
-msgstr ""
+msgstr "Train Healers and research healing technologies. Garrison units to heal them at a quick rate."
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -129,15 +131,15 @@ msgstr "Wall off your town for a stout defence."
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "DefenseTower"
-msgstr "DefenceTower"
+msgstr "Defence Tower"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:57
 msgid "Artillery Tower"
-msgstr ""
+msgstr "Artillery Tower"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:58
 msgid "Catapults stones. Needs the murder holes tech to protect its foot."
-msgstr ""
+msgstr "Catapults stones. Needs the murder holes tech to protect its foot."
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:60
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:59
@@ -158,14 +160,14 @@ msgstr "StoneTower"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
-msgstr ""
+msgstr "Bolt Tower"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:57
 msgid ""
 "Shoots bolts. Faster reaction time against raiding units than the artillery "
 "tower, weak to all siege weapons and mass melee. Needs the murder holes tech"
 " to protect its foot."
-msgstr ""
+msgstr "Shoots bolts. Faster reaction time against raiding units than the artillery tower, weak to all siege weapons and mass melee. Needs the murder holes tech to protect its foot."
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:52
 msgid ""
@@ -294,7 +296,7 @@ msgstr "Military"
 
 #: simulation/templates/template_structure_military_barracks.xml:23
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr "Train citizen-soldiers. Research training improvements."
+msgstr "Train citizen soldiers. Research training improvements."
 
 #: simulation/templates/template_structure_military_barracks.xml:24
 #: simulation/templates/template_structure_military_barracks.xml:22
@@ -308,7 +310,7 @@ msgstr "Research weapons and armour improvements."
 #: simulation/templates/template_structure_military_blacksmith.xml:27
 #: simulation/templates/template_structure_military_blacksmith.xml:23
 msgid "Blacksmith"
-msgstr "Blacksmith"
+msgstr "Smithy"
 
 #: simulation/templates/template_structure_military_dock.xml:26
 msgid ""
@@ -331,7 +333,7 @@ msgstr "Train elephant units."
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
 msgid "ElephantStable"
-msgstr ""
+msgstr "Elephant Stable"
 
 #: simulation/templates/template_structure_military_embassy.xml:38
 #: simulation/templates/template_structure_military_embassy.xml:39
@@ -348,7 +350,7 @@ msgstr "Fortress"
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
-msgstr ""
+msgstr "Train Champions and Heroes and research technologies. Garrison Soldiers for additional arrows."
 
 #: simulation/templates/template_structure_military_kennel.xml:38
 msgid "Kennel"
@@ -364,7 +366,7 @@ msgstr "Practice Range"
 
 #: simulation/templates/template_structure_military_range.xml:23
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
-msgstr "Train citizen-soldier ranged infantry. Research training improvements."
+msgstr "Train citizen soldier ranged infantry. Research training improvements."
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Range"
@@ -372,12 +374,12 @@ msgstr "Range"
 
 #: simulation/templates/template_structure_military_stable.xml:25
 msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr "Train citizen-soldier cavalry. Research training improvements."
+msgstr "Train citizen soldier cavalry. Research training improvements."
 
 #: simulation/templates/template_structure_military_stable.xml:26
 #: simulation/templates/template_structure_military_stable.xml:22
 msgid "Stable"
-msgstr ""
+msgstr "Stable"
 
 #: simulation/templates/template_structure_military_workshop.xml:25
 msgid "Siege Workshop"
@@ -385,7 +387,7 @@ msgstr "Siege Workshop"
 
 #: simulation/templates/template_structure_military_workshop.xml:28
 msgid "Construct Siege Engines and research Siege Engine technologies."
-msgstr ""
+msgstr "Construct Siege Engines and research Siege Engine technologies."
 
 #: simulation/templates/template_structure_military_workshop.xml:29
 msgid "Workshop"
@@ -418,7 +420,7 @@ msgstr "Field"
 #: simulation/templates/template_structure_resource_field.xml:28
 msgid ""
 "Harvest grain for food. Each subsequent gatherer works less efficiently."
-msgstr ""
+msgstr "Harvest grain for food. Each subsequent gatherer works less efficiently."
 
 #: simulation/templates/template_structure_special.xml:42
 msgid "Special Building"
@@ -426,12 +428,12 @@ msgstr "Special Building"
 
 #: simulation/templates/template_structure_special.xml:43
 msgid "This is a special building unique to a particular civilization."
-msgstr "This is a special building unique to a particular civilization."
+msgstr "This is a special building unique to a particular civilisation."
 
 #: simulation/templates/template_structure_special_amphitheater.xml:22
 #: simulation/templates/structures/rome_amphitheater_pompeii.xml:5
 msgid "Amphitheater"
-msgstr ""
+msgstr "Amphitheatre"
 
 #: simulation/templates/template_structure_special_library.xml:17
 msgid "Library"
@@ -447,13 +449,13 @@ msgstr "Rotary Mill"
 
 #: simulation/templates/template_structure_special_theater.xml:26
 msgid "Theater"
-msgstr ""
+msgstr "Theatre"
 
 #: simulation/templates/template_structure_wonder.xml:52
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr "Bring glory to your civilization and add large tracts of land to your empire."
+msgstr "Bring glory to your civilisation and add large tracts of land to your empire."
 
 #: simulation/templates/template_structure_wonder.xml:53
 #: simulation/templates/template_structure_wonder.xml:51
@@ -466,7 +468,7 @@ msgstr "Wonder"
 #: simulation/templates/structures/sele_barracks.xml:18
 #: simulation/templates/structures/spart_barracks.xml:18
 msgid "Stratopedon"
-msgstr ""
+msgstr "Stratopedon"
 
 #: simulation/templates/structures/athen_blacksmith.xml:5
 #: simulation/templates/structures/mace_blacksmith.xml:5
@@ -474,7 +476,7 @@ msgstr ""
 #: simulation/templates/structures/sele_blacksmith.xml:5
 #: simulation/templates/structures/spart_blacksmith.xml:5
 msgid "Chalkeōn"
-msgstr ""
+msgstr "Chalkeōn"
 
 #: simulation/templates/structures/athen_civil_centre.xml:8
 #: simulation/templates/structures/mace_civil_centre.xml:8
@@ -482,7 +484,7 @@ msgstr ""
 #: simulation/templates/structures/sele_civil_centre.xml:5
 #: simulation/templates/structures/spart_civil_centre.xml:8
 msgid "Agora"
-msgstr ""
+msgstr "Agora"
 
 #: simulation/templates/structures/athen_corral.xml:5
 #: simulation/templates/structures/mace_corral.xml:5
@@ -490,7 +492,7 @@ msgstr ""
 #: simulation/templates/structures/sele_corral.xml:5
 #: simulation/templates/structures/spart_corral.xml:5
 msgid "Epaulos"
-msgstr ""
+msgstr "Epaulos"
 
 #: simulation/templates/structures/athen_defense_tower.xml:9
 #: simulation/templates/structures/mace_defense_tower.xml:9
@@ -498,7 +500,7 @@ msgstr ""
 #: simulation/templates/structures/sele_defense_tower.xml:9
 #: simulation/templates/structures/spart_defense_tower.xml:9
 msgid "Pyrgion"
-msgstr ""
+msgstr "Pyrgion"
 
 #: simulation/templates/structures/athen_defense_tower.xml:23
 #: simulation/templates/structures/cart_defense_tower.xml:24
@@ -509,7 +511,7 @@ msgid ""
 "Reinforce with stone block, and install small stone throwers to upgrade this"
 " defense tower into a slow, area of effect, and siege resistant artillery "
 "tower."
-msgstr ""
+msgstr "Reinforce with stone block, and install small stone-throwers to upgrade this defence tower into a slow, area-of-effect, and siege-resistant artillery tower."
 
 #: simulation/templates/structures/athen_defense_tower.xml:34
 #: simulation/templates/structures/cart_defense_tower.xml:35
@@ -519,7 +521,7 @@ msgstr ""
 msgid ""
 "Reinforce with stone block, and install scorpions to upgrade this defense "
 "tower into a prompt, long range, and accurate bolt tower."
-msgstr ""
+msgstr "Reinforce with stone block, and install scorpions to upgrade this defence tower into a prompt, long range, and accurate bolt tower."
 
 #: simulation/templates/structures/athen_dock.xml:12
 #: simulation/templates/structures/mace_dock.xml:12
@@ -527,7 +529,7 @@ msgstr ""
 #: simulation/templates/structures/sele_dock.xml:9
 #: simulation/templates/structures/spart_dock.xml:12
 msgid "Limēn"
-msgstr ""
+msgstr "Limēn"
 
 #: simulation/templates/structures/athen_farmstead.xml:11
 #: simulation/templates/structures/mace_farmstead.xml:11
@@ -535,7 +537,7 @@ msgstr ""
 #: simulation/templates/structures/sele_farmstead.xml:8
 #: simulation/templates/structures/spart_farmstead.xml:11
 msgid "Epoikion"
-msgstr ""
+msgstr "Epoikion"
 
 #: simulation/templates/structures/athen_field.xml:5
 #: simulation/templates/structures/mace_field.xml:5
@@ -543,7 +545,7 @@ msgstr ""
 #: simulation/templates/structures/sele_field.xml:5
 #: simulation/templates/structures/spart_field.xml:5
 msgid "Agros"
-msgstr ""
+msgstr "Agros"
 
 #: simulation/templates/structures/athen_fortress.xml:9
 #: simulation/templates/structures/mace_fortress.xml:9
@@ -556,7 +558,7 @@ msgstr "Phrourion"
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid "Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Garrison Soldiers for additional arrows."
 
 #: simulation/templates/structures/athen_gymnasium.xml:24
 msgid "Gymnasium"
@@ -569,7 +571,7 @@ msgstr "Gymnasion"
 #: simulation/templates/structures/athen_gymnasium.xml:26
 #: simulation/templates/structures/pers_hall.xml:32
 msgid "Train Champions."
-msgstr ""
+msgstr "Train Champions."
 
 #: simulation/templates/structures/athen_house.xml:5
 #: simulation/templates/structures/mace_house.xml:5
@@ -577,7 +579,7 @@ msgstr ""
 #: simulation/templates/structures/sele_house.xml:8
 #: simulation/templates/structures/spart_house.xml:5
 msgid "Oikos"
-msgstr ""
+msgstr "Oikos"
 
 #: simulation/templates/structures/athen_market.xml:5
 #: simulation/templates/structures/mace_market.xml:5
@@ -585,7 +587,7 @@ msgstr ""
 #: simulation/templates/structures/sele_market.xml:5
 #: simulation/templates/structures/spart_market.xml:5
 msgid "Emporion"
-msgstr ""
+msgstr "Emporion"
 
 #: simulation/templates/structures/athen_outpost.xml:5
 #: simulation/templates/structures/mace_outpost.xml:5
@@ -593,7 +595,7 @@ msgstr ""
 #: simulation/templates/structures/sele_outpost.xml:5
 #: simulation/templates/structures/spart_outpost.xml:5
 msgid "Prophylagma"
-msgstr ""
+msgstr "Prophylagma"
 
 #: simulation/templates/structures/athen_prytaneion.xml:25
 msgid "Council Chamber"
@@ -605,7 +607,7 @@ msgstr "Prytaneion"
 
 #: simulation/templates/structures/athen_prytaneion.xml:27
 msgid "Train Heroes and research technologies."
-msgstr ""
+msgstr "Train Heroes and research technologies."
 
 #: simulation/templates/structures/athen_range.xml:8
 #: simulation/templates/structures/mace_range.xml:8
@@ -613,7 +615,7 @@ msgstr ""
 #: simulation/templates/structures/sele_range.xml:8
 #: simulation/templates/structures/spart_range.xml:5
 msgid "Stratopedon tōn Psilōn"
-msgstr ""
+msgstr "Stratopedon tōn Psilōn"
 
 #: simulation/templates/structures/athen_sentry_tower.xml:5
 #: simulation/templates/structures/mace_sentry_tower.xml:5
@@ -621,7 +623,7 @@ msgstr ""
 #: simulation/templates/structures/sele_sentry_tower.xml:5
 #: simulation/templates/structures/spart_sentry_tower.xml:5
 msgid "Pyrgidion"
-msgstr ""
+msgstr "Pyrgidion"
 
 #: simulation/templates/structures/athen_stable.xml:5
 #: simulation/templates/structures/mace_stable.xml:5
@@ -629,7 +631,7 @@ msgstr ""
 #: simulation/templates/structures/sele_stable.xml:5
 #: simulation/templates/structures/spart_stable.xml:5
 msgid "Hippōn"
-msgstr ""
+msgstr "Hippōn"
 
 #: simulation/templates/structures/athen_storehouse.xml:8
 #: simulation/templates/structures/mace_storehouse.xml:8
@@ -637,7 +639,7 @@ msgstr ""
 #: simulation/templates/structures/sele_storehouse.xml:8
 #: simulation/templates/structures/spart_storehouse.xml:8
 msgid "Apothēkē"
-msgstr ""
+msgstr "Apothēkē"
 
 #: simulation/templates/structures/athen_temple.xml:9
 #: simulation/templates/structures/mace_temple.xml:9
@@ -645,7 +647,7 @@ msgstr ""
 #: simulation/templates/structures/sele_temple.xml:9
 #: simulation/templates/structures/spart_temple.xml:9
 msgid "Naos"
-msgstr ""
+msgstr "Naos"
 
 #: simulation/templates/structures/athen_theater.xml:5
 #: simulation/templates/structures/mace_theater.xml:5
@@ -669,7 +671,7 @@ msgstr "Pyrgíon"
 #: simulation/templates/structures/sele_wall_gate.xml:9
 #: simulation/templates/structures/spart_wall_gate.xml:9
 msgid "Pylai"
-msgstr ""
+msgstr "Pylai"
 
 #: simulation/templates/structures/athen_wall_long.xml:10
 #: simulation/templates/structures/athen_wall_medium.xml:10
@@ -692,7 +694,7 @@ msgstr ""
 #: simulation/templates/structures/spart_wall_short.xml:10
 #: simulation/templates/structures/spart_wallset_stone.xml:5
 msgid "Teichos"
-msgstr ""
+msgstr "Teichos"
 
 #: simulation/templates/structures/athen_wall_tower.xml:9
 #: simulation/templates/structures/mace_wall_tower.xml:9
@@ -700,11 +702,11 @@ msgstr ""
 #: simulation/templates/structures/sele_wall_tower.xml:9
 #: simulation/templates/structures/spart_wall_tower.xml:9
 msgid "Pyrgos"
-msgstr ""
+msgstr "Pyrgos"
 
 #: simulation/templates/structures/athen_wonder.xml:15
 msgid "Parthenōn﻿﻿"
-msgstr ""
+msgstr "Parthenōn"
 
 #: simulation/templates/structures/athen_wonder.xml:16
 #: simulation/templates/structures/cart_wonder.xml:16
@@ -714,7 +716,7 @@ msgstr ""
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
-msgstr "Bring glory to your civilization and add large tracts of land to your empire. Garrison units to heal them at an extremely quick rate."
+msgstr "Bring glory to your civilisation and add large tracts of land to your empire. Garrison units to heal them at an extremely quick rate."
 
 #: simulation/templates/structures/athen_workshop.xml:5
 #: simulation/templates/structures/mace_workshop.xml:5
@@ -722,7 +724,7 @@ msgstr "Bring glory to your civilization and add large tracts of land to your em
 #: simulation/templates/structures/sele_workshop.xml:5
 #: simulation/templates/structures/spart_workshop.xml:5
 msgid "Hoplothēkē"
-msgstr ""
+msgstr "Hoplothēkē"
 
 #: simulation/templates/structures/brit_barracks.xml:15
 msgid "Coriosessa"
@@ -849,7 +851,7 @@ msgstr "Does not shoot or garrison."
 
 #: simulation/templates/structures/brit_wonder.xml:10
 msgid "Uffington White Horse"
-msgstr ""
+msgstr "Uffington White Horse"
 
 #: simulation/templates/structures/brit_workshop.xml:5
 #: simulation/templates/structures/gaul_workshop.xml:5
@@ -868,7 +870,7 @@ msgstr "Maḥanēt"
 msgid ""
 "Train North African citizen-soldiers. Research improvements for North "
 "African units."
-msgstr "Train North African citizen-soldiers. Research improvements for North African units."
+msgstr "Train North African citizen soldiers. Research improvements for North African units."
 
 #: simulation/templates/structures/cart_civil_centre.xml:8
 msgid "Merkāz"
@@ -983,7 +985,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train Healers and Champions and research healing technologies. Garrison "
 "units to heal them at a quick rate."
-msgstr ""
+msgstr "Train Healers and Champions and research healing technologies. Garrison units to heal them at a quick rate."
 
 #: simulation/templates/structures/cart_tophet.xml:22
 msgid "Sacrificial Temple"
@@ -997,7 +999,7 @@ msgstr "Tophet"
 msgid ""
 "Train Healers and Champion Cavalry and research healing technologies. "
 "Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Train Healers and Champion Cavalry and research healing technologies. Garrison units to heal them at a quick rate."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -1043,7 +1045,7 @@ msgstr "Recruit Naked Fanatics."
 
 #: simulation/templates/structures/gaul_theater.xml:10
 msgid "Assembly of Princes"
-msgstr ""
+msgstr "Assembly of Princes"
 
 #: simulation/templates/structures/gaul_theater.xml:11
 msgid "Remogantion"
@@ -1315,11 +1317,11 @@ msgstr "Pr-ỉwn n ms"
 #: simulation/templates/structures/ptol_library.xml:5
 #: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothēkē"
-msgstr ""
+msgstr "Bibliothēkē"
 
 #: simulation/templates/structures/mace_wonder.xml:15
 msgid "Hieron tou Dios tou Olympiou"
-msgstr ""
+msgstr "Hieron tou Dios tou Olympiou"
 
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"
@@ -1347,7 +1349,7 @@ msgid ""
 "Reinforce with stone block, and add a second rampart for up to 16 archers to"
 " stand upon. Infantry Archer exclusive tower. Devastating against melee "
 "troops, weak to siege and massed ranged units"
-msgstr ""
+msgstr "Reinforce with stone block, and add a second rampart for up to 16 archers to stand upon. Infantry Archer exclusive tower. Devastating against melee troops, weak to siege and massed ranged units"
 
 #: simulation/templates/structures/maur_dock.xml:9
 msgid "Naukasthanaka"
@@ -1387,7 +1389,7 @@ msgstr "Harmya"
 
 #: simulation/templates/structures/maur_palace.xml:15
 msgid "Train Female Citizens, Champions, and Heroes."
-msgstr ""
+msgstr "Train Female Citizens, Champions, and Heroes."
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:9
 msgid "Pillar"
@@ -1417,14 +1419,14 @@ msgstr "Devalaya"
 
 #: simulation/templates/structures/maur_tower_double.xml:8
 msgid "Rampart Tower"
-msgstr ""
+msgstr "Rampart Tower"
 
 #: simulation/templates/structures/maur_tower_double.xml:9
 msgid ""
 "Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
 "archers recieve a range and armor bonus. Only archers can garrison. Needs "
 "the murder holes tech to protect its foot."
-msgstr ""
+msgstr "Higher health tower with ramparts for up to 16 archers. Visibly garrisoned archers recieve a range and armour bonus. Only archers can garrison. Needs the murder holes tech to protect its foot."
 
 #: simulation/templates/structures/maur_wall_gate.xml:9
 msgid "Dwara"
@@ -1452,12 +1454,12 @@ msgstr "MercenaryCamp"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 msgid "Egyptian Mercenary Camp"
-msgstr ""
+msgstr "Egyptian Mercenary Camp"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:30
 #: simulation/templates/structures/ptol_mercenary_camp.xml:30
 msgid "Stratopedeia Misthophorōn"
-msgstr ""
+msgstr "Stratopedeia Misthophorōn"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:32
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
@@ -1486,7 +1488,7 @@ msgstr "Palisade Gate"
 #: simulation/templates/structures/palisades_gate.xml:23
 msgid ""
 "Allow units access through a palisade wall. Can be locked to prevent access."
-msgstr ""
+msgstr "Allow units access through a palisade wall. Can be locked to prevent access."
 
 #: simulation/templates/structures/palisades_long.xml:18
 #: simulation/templates/structures/palisades_medium.xml:18
@@ -1499,7 +1501,7 @@ msgstr "Palisade"
 
 #: simulation/templates/structures/palisades_spike_angle.xml:17
 msgid "Angle Spike"
-msgstr ""
+msgstr "Angle Spike"
 
 #: simulation/templates/structures/palisades_spikes_small.xml:17
 msgid "Small Spikes"
@@ -1515,17 +1517,17 @@ msgstr "Watchtower"
 
 #: simulation/templates/structures/pers_apadana.xml:29
 msgid "Throne Hall"
-msgstr ""
+msgstr "Throne Hall"
 
 #: simulation/templates/structures/pers_apadana.xml:30
 msgid "Apadāna"
-msgstr ""
+msgstr "Apadāna"
 
 #: simulation/templates/structures/pers_apadana.xml:33
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Champions and Heroes."
-msgstr ""
+msgstr "‘Satrapy Tribute’: Gain a trickle of food, wood, stone, and metal resources. Train Champions and Heroes."
 
 #: simulation/templates/structures/pers_apartment_block.xml:15
 msgid "Apartment Block"
@@ -1537,7 +1539,7 @@ msgstr "Padgan"
 
 #: simulation/templates/structures/pers_barracks.xml:6
 msgid "Levy citizen-soldier infantry."
-msgstr ""
+msgstr "Levy citizen soldier infantry."
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1583,15 +1585,15 @@ msgstr "Didā"
 msgid ""
 "Train Champions and research technologies. Garrison Soldiers for additional "
 "arrows."
-msgstr ""
+msgstr "Train Champions and research technologies. Garrison Soldiers for additional arrows."
 
 #: simulation/templates/structures/pers_hall.xml:29
 msgid "Gate of All Nations"
-msgstr ""
+msgstr "Gate of All Nations"
 
 #: simulation/templates/structures/pers_hall.xml:30
 msgid "Duvarθi Visadahyu"
-msgstr ""
+msgstr "Duvarθi Visadahyu"
 
 #: simulation/templates/structures/pers_house.xml:8
 msgid "Huvādā"
@@ -1642,11 +1644,11 @@ msgstr "Taçara"
 
 #: simulation/templates/structures/pers_temple.xml:12
 msgid "Āyadanam"
-msgstr ""
+msgstr "Āyadanam"
 
 #: simulation/templates/structures/pers_wall_gate.xml:9
 msgid "Duvarθiš"
-msgstr ""
+msgstr "Duvarθiš"
 
 #: simulation/templates/structures/pers_wall_long.xml:29
 #: simulation/templates/structures/pers_wall_medium.xml:23
@@ -1667,12 +1669,12 @@ msgstr "Hanging Gardens of Babylon"
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements."
-msgstr "Train Egyptian and Middle-Eastern citizen-soldiers. Research training improvements."
+msgstr "Train Egyptian and Middle Eastern citizen soldiers. Research training improvements."
 
 #: simulation/templates/structures/ptol_elephant_stables.xml:5
 #: simulation/templates/structures/sele_elephant_stables.xml:5
 msgid "Stathmos tōn Elepantōn"
-msgstr ""
+msgstr "Stathmos tōn Elepantōn"
 
 #: simulation/templates/structures/ptol_house.xml:19
 msgid ""
@@ -1707,14 +1709,14 @@ msgstr "Cheap Barracks-like structure that is buildable in neutral territory, bu
 #: simulation/templates/structures/ptol_military_colony.xml:9
 #: simulation/templates/structures/sele_military_colony.xml:9
 msgid "Klērouchia"
-msgstr ""
+msgstr "Klērouchia"
 
 #: simulation/templates/structures/ptol_military_colony.xml:10
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster. Train settler-soldiers of various nationalities."
+msgstr "This is the Ptolemaic expansion building, similar to Civic Centres for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster. Train settler-soldiers of various nationalities."
 
 #: simulation/templates/structures/ptol_tower_artillery.xml:9
 msgid "mktr-n-ḏw"
@@ -1722,11 +1724,11 @@ msgstr "mktr-n-ḏw"
 
 #: simulation/templates/structures/ptol_wonder.xml:15
 msgid "Hieron tou Hōrou"
-msgstr ""
+msgstr "Hieron tou Hōrou"
 
 #: simulation/templates/structures/rome_amphitheater_pompeii.xml:6
 msgid "Amphitheātrum"
-msgstr ""
+msgstr "Amphitheātrum"
 
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
@@ -1734,7 +1736,7 @@ msgstr "Triumphal Arch"
 
 #: simulation/templates/structures/rome_arch.xml:23
 msgid "Arcus Triumphālis"
-msgstr ""
+msgstr "Arcus Triumphālis"
 
 #: simulation/templates/structures/rome_army_camp.xml:47
 msgid "ArmyCamp"
@@ -1742,17 +1744,17 @@ msgstr "ArmyCamp"
 
 #: simulation/templates/structures/rome_army_camp.xml:80
 msgid "Army Camp"
-msgstr ""
+msgstr "Army Camp"
 
 #: simulation/templates/structures/rome_army_camp.xml:81
 msgid "Castra"
-msgstr ""
+msgstr "Castra"
 
 #: simulation/templates/structures/rome_army_camp.xml:84
 msgid ""
 "Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
 "Siege Engines. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Build in neutral or enemy territory. Train Citizen Soldiers and construct Siege Engines. Garrison Soldiers for additional arrows."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1760,7 +1762,7 @@ msgstr "Castrum"
 
 #: simulation/templates/structures/rome_blacksmith.xml:5
 msgid "Armāmentārium"
-msgstr ""
+msgstr "Armāmentārium"
 
 #: simulation/templates/structures/rome_civil_centre.xml:12
 msgid "Forum"
@@ -1774,7 +1776,7 @@ msgstr "Saeptum"
 #: simulation/templates/structures/rome_tower_artillery.xml:9
 #: simulation/templates/structures/rome_tower_bolt.xml:9
 msgid "Turris Laterīcia"
-msgstr ""
+msgstr "Turris Laterīcia"
 
 #: simulation/templates/structures/rome_dock.xml:12
 msgid "Portus"
@@ -1782,7 +1784,7 @@ msgstr "Portus"
 
 #: simulation/templates/structures/rome_farmstead.xml:8
 msgid "Vīlla"
-msgstr ""
+msgstr "Vīlla"
 
 #: simulation/templates/structures/rome_field.xml:5
 msgid "Ager"
@@ -1798,15 +1800,15 @@ msgstr "Domus"
 
 #: simulation/templates/structures/rome_market.xml:12
 msgid "Mercātus"
-msgstr ""
+msgstr "Mercātus"
 
 #: simulation/templates/structures/rome_outpost.xml:5
 msgid "Vigilārium"
-msgstr ""
+msgstr "Vigilārium"
 
 #: simulation/templates/structures/rome_sentry_tower.xml:5
 msgid "Turris Līgnea"
-msgstr ""
+msgstr "Turris Līgnea"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:25
 msgid "Siege Wall Gate"
@@ -1814,7 +1816,7 @@ msgstr "Siege Wall Gate"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:26
 msgid "Porta Circummūnītiōnis"
-msgstr ""
+msgstr "Porta Circummūnītiōnis"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:61
 #: simulation/templates/structures/rome_siege_wall_medium.xml:45
@@ -1828,7 +1830,7 @@ msgstr "Siege Wall"
 #: simulation/templates/structures/rome_siege_wall_short.xml:33
 #: simulation/templates/structures/rome_wallset_siege.xml:6
 msgid "Mūrus Circummūnītiōnis"
-msgstr ""
+msgstr "Mūrus Circummūnītiōnis"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:65
 #: simulation/templates/structures/rome_siege_wall_medium.xml:49
@@ -1843,19 +1845,19 @@ msgstr "Siege Wall Tower"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:32
 msgid "Turris Circummūnītiōnis"
-msgstr ""
+msgstr "Turris Circummūnītiōnis"
 
 #: simulation/templates/structures/rome_stable.xml:5
 msgid "Equīle"
-msgstr ""
+msgstr "Equīle"
 
 #: simulation/templates/structures/rome_storehouse.xml:8
 msgid "Receptāculum"
-msgstr ""
+msgstr "Receptāculum"
 
 #: simulation/templates/structures/rome_temple.xml:9
 msgid "Aedēs"
-msgstr ""
+msgstr "Aedēs"
 
 #: simulation/templates/structures/rome_temple_mars.xml:12
 msgid "Temple of Mars"
@@ -1863,7 +1865,7 @@ msgstr "Temple of Mars"
 
 #: simulation/templates/structures/rome_temple_mars.xml:13
 msgid "Aedēs Mārtiālis"
-msgstr ""
+msgstr "Aedēs Mārtiālis"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Temple of Vesta"
@@ -1871,7 +1873,7 @@ msgstr "Temple of Vesta"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:19
 msgid "Aedēs Vestālis"
-msgstr ""
+msgstr "Aedēs Vestālis"
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1902,34 +1904,34 @@ msgstr "Turris Lapidea"
 
 #: simulation/templates/structures/rome_wonder.xml:15
 msgid "Aedēs Iovis Optimi Maximi"
-msgstr ""
+msgstr "Aedēs Iovis Optimi Maximi"
 
 #: simulation/templates/structures/rome_workshop.xml:5
 msgid "Ballistārium"
-msgstr ""
+msgstr "Ballistārium"
 
 #: simulation/templates/structures/sele_defense_tower.xml:23
 msgid ""
 "Reinforce with stone block, and install small torsion engines to upgrade "
 "this defense tower into an artillery tower."
-msgstr ""
+msgstr "Reinforce with stone block, and install small torsion engines to upgrade this defence tower into an artillery tower."
 
 #: simulation/templates/structures/sele_military_colony.xml:10
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster. Train settler-soldiers of various nationalities."
+msgstr "This is the Seleucid expansion building, similar to Civic Centres for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster. Train settler-soldiers of various nationalities."
 
 #: simulation/templates/structures/sele_wonder.xml:9
 msgid "Hieron tou Apollōnos Pythiou"
-msgstr ""
+msgstr "Hieron tou Apollōnos Pythiou"
 
 #: simulation/templates/structures/spart_defense_tower.xml:23
 msgid ""
 "Reinforce with stone block, and install small oxybeles to upgrade this "
 "defense tower into a prompt, long range, and accurate bolt tower."
-msgstr ""
+msgstr "Reinforce with stone block, and install small oxybeles to upgrade this defence tower into a prompt, long range, and accurate bolt tower."
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Spartan Senate"
@@ -1941,7 +1943,7 @@ msgstr "Gerousia"
 
 #: simulation/templates/structures/spart_gerousia.xml:24
 msgid "Train Heroes."
-msgstr ""
+msgstr "Train Heroes."
 
 #: simulation/templates/structures/spart_syssiton.xml:25
 msgid "Military Mess Hall"
@@ -1953,14 +1955,14 @@ msgstr "Syssition"
 
 #: simulation/templates/structures/spart_syssiton.xml:27
 msgid "Train Champions and Heroes."
-msgstr ""
+msgstr "Train Champions and Heroes."
 
 #: simulation/templates/structures/spart_wonder.xml:15
 msgid "Hieron tēs Artemidos Orthias"
-msgstr ""
+msgstr "Hieron tēs Artemidos Orthias"
 
 #: simulation/templates/structures/spart_wonder.xml:16
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
-msgstr "Bring glory to your civilization and add large tracts of land to your empire. Garrison units to heal them at a quick rate."
+msgstr "Bring glory to your civilisation and add large tracts of land to your empire. Garrison units to heal them at a quick rate."

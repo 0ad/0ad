@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-31 08:09+0000\n"
-"PO-Revision-Date: 2020-02-02 23:15+0000\n"
+"PO-Revision-Date: 2020-02-04 21:56+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr "Tradició de tir amb arc"
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr "Es desbloqueja a la Fase Poblat."
+msgstr "Es desbloqueja a la Fase de Poblat."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -135,7 +135,7 @@ msgstr "Barda"
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "Es desbloqueja a la Fase Vila."
+msgstr "Es desbloqueja a la Fase de Vila."
 
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
@@ -228,7 +228,7 @@ msgstr "Armadura de metall per al cos dels cavalls."
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "Es desbloqueja a la Fase Ciutat."
+msgstr "Es desbloqueja a la Fase de Ciutat."
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
@@ -657,7 +657,7 @@ msgstr "Utilitzar ferro en lloc de bronze va fer les armes més resistents."
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry."
-msgstr ""
+msgstr "L'entrenament augmenta l'atac de la infanteria a distància."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
@@ -757,11 +757,11 @@ msgstr "Les unitat ascendides a la classe d'elit guanyen molta qualitat: 20% de 
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
-msgstr ""
+msgstr "Cria bestiar (ovelles, cabres, vaques, etc.) per menjar."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Domestic Animals −25% breeding time."
-msgstr ""
+msgstr "-25% al temps de cria dels animals domèstics."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
@@ -769,12 +769,12 @@ msgstr "Ramaderia"
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
 msgid "Workers use baskets. Increases shuttling capacity for all resources."
-msgstr ""
+msgstr "Els treballadors utilitzen cabassos. Augmenta la capacitat de transport de tots els recursos."
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers +5 resource capacity."
-msgstr ""
+msgstr "Els treballadors guanyen +5 de capacitat de portar recursos."
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -784,11 +784,11 @@ msgstr "Cabassos"
 msgid ""
 "Workers use horse-drawn carts. Increases shuttling capacity for all "
 "resources."
-msgstr ""
+msgstr "Els treballadors utilitzen carros tirats per cavalls. Augmenta la capacitat de transport de tots els recursos."
 
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 msgid "Workers +10 resource capacity."
-msgstr ""
+msgstr "Els treballadors guanyen +10 de capacitat de portar recursos."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -808,12 +808,12 @@ msgstr "Salaó del peix"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr "Es desbloqueja a la Fase Vila. Es necessita xarxa de pescar."
+msgstr "Es desbloqueja a la Fase de Vila. Necessita \"Pesca amb xarxa\"."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid ""
 "Workers use wheelbarrows. Increases shuttling capacity for all resources."
-msgstr ""
+msgstr "Els treballadors fan servir carretons. Augmenta la capacitat de transport de tots els recursos."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
@@ -835,12 +835,12 @@ msgstr "Fertilitzant"
 msgid ""
 "Equip your workers with iron plows, animal-drawn instruments to turn the "
 "sod."
-msgstr ""
+msgstr "Proporciona als treballadors arades de ferro, eines que aprofiten la tracció animal per llaurar la terra."
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% grain gather rate."
-msgstr ""
+msgstr "Els treballadors augmenten un 15% la velocitat de recol·lecció del gra."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -856,11 +856,11 @@ msgstr "Formació agrícola"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Use nets to improve the productivity of fishing boats."
-msgstr ""
+msgstr "Les xarxes milloren la productivitat pesquera."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid "Fishing Boats +30% fish gather rate."
-msgstr ""
+msgstr "Les barques de pesca pesquen un 30% més ràpid."
 
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
@@ -875,7 +875,7 @@ msgstr "Augmenta la velocitat de recollida de fusta dels arbres."
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +15% wood gather rate."
-msgstr ""
+msgstr "Els treballadors recullen fusta un 15% més ràpid."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
@@ -883,7 +883,7 @@ msgstr "Destrals amb cap de ferro"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 msgid "Workers +50% wood gather rate."
-msgstr ""
+msgstr "Els treballadors recullen fusta un 50% més ràpid."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -897,12 +897,12 @@ msgstr "Destral més forta"
 msgid ""
 "Compel serfs to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr ""
+msgstr "Obliga els serfs a treballar a la pedrera. Augmenta la velocitat de recollida de pedra."
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "Workers +15% stone gather rate."
-msgstr ""
+msgstr "Els treballadors recullen pedra un 15% més ràpid."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -916,7 +916,7 @@ msgstr "Heílōtes"
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
-msgstr ""
+msgstr "Contracta servents per ajudar a picar pedra. Augmenta la velocitat de recollida de pedra."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -930,12 +930,12 @@ msgstr "Doûloi"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
 msgid "Develop shaft mining. Increases metal gathering rates."
-msgstr ""
+msgstr "Desenvolupa la mineria en pous. Augmenta la velocitat de recollida de metall."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +15% metal gather rate."
-msgstr ""
+msgstr "Els treballadors recullen metall un 15% més ràpid."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -943,11 +943,11 @@ msgstr "Pous miners"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
-msgstr ""
+msgstr "Troba una veta de plata preciosa. Augmenta la velocitat de recollida de metall."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 msgid "Workers +50% metal gather rate."
-msgstr ""
+msgstr "Els treballadors recullen metall un 50% més ràpid."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -965,11 +965,11 @@ msgstr "Mines de Laureion"
 msgid ""
 "Buy slaves to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr ""
+msgstr "Compra esclaus per ajudar els treballadors a picar pedra. Augmenta la velocitat de recollida de pedra."
 
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +50% stone gather rate."
-msgstr ""
+msgstr "Els treballadors recullen pedra un 50% més ràpid."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -984,7 +984,7 @@ msgstr "Andrápoda"
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid ""
 "Equip your workers with helpful tools. Increases metal gathering rates."
-msgstr ""
+msgstr "Equipa els treballadors amb estris útils. Augmenta la velocitat de recollida de metall."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -992,11 +992,11 @@ msgstr "Mall i falca"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Equip your foragers with wicker baskets for foraging."
-msgstr ""
+msgstr "Proporciona cistells de vímet als recol·lectors."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Workers +50% fruit gather rate."
-msgstr ""
+msgstr "Els treballadors recullen fruita un 50% més ràpid."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
@@ -1104,7 +1104,7 @@ msgstr "El teler va permetre la creació de peces més fines per als colons. Les
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "+100% health for female citizens."
-msgstr ""
+msgstr "+100% de salut per a les ciutadanes."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1245,20 +1245,20 @@ msgstr "Temps de construcció de les muralles vs Salut"
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 #: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
-msgstr "Fase Ciutat"
+msgstr "Fase de Ciutat"
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr "Tecnologia simulada per a usar en requisits de plantilles, reemplaçada per phase_city_generic or phase_city_{civ}."
+msgstr "Tecnologia genèrica per utilitzar en plantilles, reemplaçada per phase_city_generic or phase_city_{civ}."
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
-msgstr "Avança d'una vila bulliciosa a una veritable metròpoli, plena de les meravelles de la tecnologia moderna. Aquesta és la fase de la ciutat atenenca, on els índexs de recol·lecció del metall s'han disparat a cause de la bonificació \"Òlibes de plata\"."
+msgstr "Avança d'una vila bulliciosa a una veritable metròpoli, plena de les meravelles de la tecnologia moderna. Aquesta és la Fase de Ciutat atenesa, on la velocitat de recollida de metall ha augmentat a causa de la bonificació \"Òlibes de plata\"."
 
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
@@ -1266,12 +1266,12 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
 " health. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Avança a la Fase de Ciutat, que desbloqueja més estructures i unitats. El radi de territori per als centres cívics augmenta un altre 50%. La bonificació \"Òlibes de plata\" augmenta un 10% la velocitat d'obtenció de metall per a tots els treballadors. +10% de salut per als soldats ciutadans. Totes les estructures augmenten +9 la velocitat de regeneració de les unitats refugiades."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Es necessiten 4 noves estructures de Fase Vila (excepte muralles i Centres Cívics)."
+msgstr "Es necessiten 4 noves estructures de Fase de Vila (excepte muralles i centres cívics)."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -1290,26 +1290,26 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
 "health. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Avança a la Fase de Ciutat, que desbloqueja més estructures i unitats. El radi de territori dels centres cívics augmenta un altre 50%. La salut dels soldats ciutadans augmenta un 10%. Totes les estructures augmenten +9 la velocitat de regeneració de les unitats refugiades."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
 #: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
-msgstr "Fase Vila"
+msgstr "Fase de Vila"
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr "Tecnologia simulada per a usar en requisits de plantilles, reemplaçada per phase_city_generic or phase_city_{civ}."
+msgstr "Tecnologia genèrica per utilitzar en plantilles, reemplaçada per phase_town_generic or phase_town_{civ}."
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr "Avanceu d'un petit poblat a una vila bulliciosa, preparada per a créixer ràpidament. Aquesta és la fase de la ciutat atenenca, on els índexs de recol·lecció del metall s'han disparat a cause de la bonificació \"Òlibes de plata\"."
+msgstr "Avança d'un petit poblat a una vila bulliciosa, preparada per créixer ràpidament. Aquesta és la Fase de Vila atenesa,  on la velocitat de recollida de metall ha augmentat a causa de la bonificació \"Òlibes de plata\"."
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
@@ -1317,13 +1317,13 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
 "health. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Avança a la Fase de Vila, que desbloqueja més estructures i unitats. El radi de territori per als centres cívics augmenta un 30%. La bonificació \"Òlibes de plata\" augmenta un 10% la velocitat d'obtenció de metall per a tots els treballadors. +20% de salut per als soldats ciutadans. Totes les estructures augmenten +7 la velocitat de regeneració de les unitats refugiades."
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid ""
 "Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Es necessiten 5 noves estructures de Fase Poblat (excepte palissades i camps)."
+msgstr "Es necessiten 5 estructures de Fase de Poblat (excepte palissades i horts)."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1341,11 +1341,11 @@ msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
 "All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Avança a la Fase de Vila, que desbloqueja més estructures i unitats. El radi de territori dels centres cívics augmenta un 30%. La salut dels soldats ciutadans augmenta un 20%. Totes les estructures augmenten +7 la velocitat de regeneració de les unitats refugiades."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
-msgstr "Fase Poblat"
+msgstr "Fase de Poblat"
 
 #: simulation/data/technologies/pop_civic_01.jsondescription
 msgid ""
@@ -1479,11 +1479,11 @@ msgstr "Amentum"
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege engines."
-msgstr ""
+msgstr "Més armadura per a les màquines de setge."
 
 #: simulation/data/technologies/siege_armor.jsontooltip
 msgid "Siege Engines +2 hack armor."
-msgstr ""
+msgstr "Les màquines de setge guanyen +2 d'armadura de tall."
 
 #: simulation/data/technologies/siege_armor.jsongenericName
 msgid "Armor plating"
@@ -1491,11 +1491,11 @@ msgstr "Armadura de plaques"
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
-msgstr ""
+msgstr "Les tecnologies avançades milloren l'eficiència del setge."
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "Siege Engines +25% attack crush damage."
-msgstr ""
+msgstr "Les màquines de setge guanyen +25% d'atac d'impacte."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
@@ -1503,7 +1503,7 @@ msgstr "Setge avançat"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy."
-msgstr ""
+msgstr "Millora de la precisió dels projectils."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt Shooters −20% ranged attack spread."
@@ -1515,11 +1515,11 @@ msgstr "Precisió dels projectils"
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
 msgid "Siege engines require less metal."
-msgstr ""
+msgstr "Les màquines de setge costen menys metall."
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
 msgid "Siege Engines −20% metal cost."
-msgstr ""
+msgstr "Les màquines de setge costen un 20% menys metall."
 
 #: simulation/data/technologies/siege_cost_metal.jsongenericName
 msgid "Metalworker"
@@ -1527,11 +1527,11 @@ msgstr "Artesà del metall"
 
 #: simulation/data/technologies/siege_cost_wood.jsondescription
 msgid "Siege engines require less wood."
-msgstr ""
+msgstr "Les màquines de setge costen menys fusta."
 
 #: simulation/data/technologies/siege_cost_wood.jsontooltip
 msgid "Siege Engines −20% wood cost."
-msgstr ""
+msgstr "Les màquines de setge costen un 20% menys fusta."
 
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
@@ -1539,11 +1539,11 @@ msgstr "Instructors d'artilleria"
 
 #: simulation/data/technologies/siege_packing.jsondescription
 msgid "Immobile siege engines are assembled and disassembled faster."
-msgstr ""
+msgstr "Les màquines de setge immòbils es munten i es desmunten més ràpid."
 
 #: simulation/data/technologies/siege_packing.jsontooltip
 msgid "Siege Engines −25% pack and unpack time."
-msgstr ""
+msgstr "Les màquines de setge es munten i desmunten un 25% més ràpid."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -2336,7 +2336,7 @@ msgstr "L'imperi Màuria abastava dotzenes de regnes independents anteriors sobr
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 msgid "Mauryas +10% maximum population limit."
-msgstr ""
+msgstr "Els màuries tenen el límit de població màxim un 10% més alt."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -2372,7 +2372,7 @@ msgstr "Els perses van imposar una gran quantitat d'infanteria durant temps de g
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "Persians +10% maximum population limit."
-msgstr ""
+msgstr "Els perses tenen el límit de població màxim un 10% més alt."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2388,7 +2388,7 @@ msgstr "Els espartans no tenien l'exèrcit més gran del món però sí el millo
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
 msgid "Spartans −10% maximum population limit."
-msgstr ""
+msgstr "Els espartans tenen el límit de població màxim un 10% més baix."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"
@@ -2474,7 +2474,7 @@ msgstr "El teu Sacerdot és instruït pel Gran Sacerdot - que Amon el beneïsca.
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
-msgstr "Entrenar sanadors d'elit."
+msgstr "Recluta guaridors d'elit."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
@@ -2525,7 +2525,7 @@ msgstr "Els primers governants de l'imperi aquemènida van fer possible que Pèr
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry."
-msgstr ""
+msgstr "Els trirrems fenicis guanyen la capacitat de reclutar cavalleria."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"
@@ -2616,7 +2616,7 @@ msgstr "Metròpoli hel·lenística"
 msgid ""
 "Significantly increase training speed of champions and siege engines at the "
 "fortress when training them in large batches."
-msgstr ""
+msgstr "Augmenta significativament la velocitat de reclutament dels campions i màquines de setge a la fortalesa reclutant-los en grups grans."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."

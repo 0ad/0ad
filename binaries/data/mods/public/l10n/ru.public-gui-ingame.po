@@ -65,7 +65,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-01-29 16:41+0000\n"
+"PO-Revision-Date: 2020-02-04 16:41+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -77,7 +77,7 @@ msgstr ""
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr "Нажмите %(hotkey)s для включения\\отключения этого меню."
+msgstr "Нажмите %(hotkey)s для открытия этого меню."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -186,19 +186,19 @@ msgstr "m:ss"
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] "Базовая дальность: %(range)s метра"
-msgstr[1] "Базовая дальность: %(range)s метров"
-msgstr[2] "Базовая дальность: %(range)s метров"
-msgstr[3] "Базовая дальность: %(range)s метра"
+msgstr[0] "Базовая дальность: %(range)s м."
+msgstr[1] "Базовая дальность: %(range)s м."
+msgstr[2] "Базовая дальность: %(range)s м."
+msgstr[3] "Базовая дальность: %(range)s м."
 
 #: gui/session/input.js:177
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] "Средняя бонусная дальность: %(range)s метра"
-msgstr[1] "Средняя бонусная дальность: %(range)s метров"
-msgstr[2] "Средняя бонусная дальность: %(range)s метров"
-msgstr[3] "Средняя бонусная дальность: %(range)s метров"
+msgstr[0] "Средняя бонусная дальность: %(range)s м."
+msgstr[1] "Средняя бонусная дальность: %(range)s м."
+msgstr[2] "Средняя бонусная дальность: %(range)s м."
+msgstr[3] "Средняя бонусная дальность: %(range)s м."
 
 #: gui/session/input.js:691
 msgid "Cannot build wall here!"
@@ -304,7 +304,7 @@ msgstr "(%(genericName)s)"
 
 #: gui/session/selection_details.js:424
 msgid "Capture Points:"
-msgstr "Точки захвата:"
+msgstr "Очки захвата:"
 
 #: gui/session/selection_details.js:432
 #, javascript-format
@@ -361,7 +361,7 @@ msgstr "Выгрузить %(name)s"
 
 #: gui/session/selection_panels.js:380
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "Нажмите ЛКМ для выгрузки 1-ой единицы. Shift+ЛКМ для выгрузки всей продукции этого типа. "
+msgstr "Щёлкните для выгрузки одной единицы. Зажмите Shift и щёлкните для выгрузки всех этого типа. "
 
 #: gui/session/selection_panels.js:382 gui/session/selection_panels.js:872
 #, javascript-format
@@ -762,7 +762,7 @@ msgstr "Введите сообщение для отправки."
 #: gui/session/chat/ChatInput.js:37
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr "Нажмите %(hotkey)s, чтобы открыть общий чат."
+msgstr "Нажмите %(hotkey)s для открытия публичного чата."
 
 #: gui/session/chat/ChatInput.js:40
 #, javascript-format
@@ -777,7 +777,7 @@ msgstr "Нажмите %(hotkey)s для открытия чата союзни�
 #: gui/session/chat/ChatInput.js:43
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr "Нажмите %(hotkey)s для открытия предыдущего выбранного приватного чата."
+msgstr "Нажмите %(hotkey)s для открытия выбранного ранее личного чата."
 
 #. Translation: A player that left the game joins again
 #: gui/session/chat/ChatMessageFormatNetwork.js:23
@@ -1583,7 +1583,7 @@ msgstr "Здоровье:"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):32
 msgid "Capture points:"
-msgstr "Точки захвата:"
+msgstr "Очки захвата:"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):60
 msgid "Attack and Armor"

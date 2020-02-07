@@ -4,13 +4,15 @@
 # 
 # Translators:
 # leper <leper@wildfiregames.com>, 2014
+# ., 2020
+# ., 2020
 # pilino1234 <pilino1234@zoho.eu>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2018-12-31 09:46+0100\n"
-"PO-Revision-Date: 2018-12-31 15:46+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"PO-Revision-Date: 2020-02-05 16:01+0000\n"
+"Last-Translator: .\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +25,7 @@ msgstr ""
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "Opening %(url)s\n in default web browser. Please wait…"
 
 #: gui/common/functions_msgbox.js:60
 msgid "Opening page"
@@ -32,28 +34,28 @@ msgstr "Opening page"
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #: gui/common/l10n.js:10
 msgctxt "filesize unit"
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #: gui/common/l10n.js:11
 msgctxt "filesize unit"
 msgid "MiB"
-msgstr ""
+msgstr "MiB"
 
 #: gui/common/l10n.js:12
 msgctxt "filesize unit"
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 #. Translation: For example: 123.4 KiB
 #: gui/common/l10n.js:33
 #, javascript-format
 msgid "%(filesize)s %(unit)s"
-msgstr ""
+msgstr "%(filesize)s %(unit)s"
 
 #. Translation: Time-format string. See http://userguide.icu-
 #. project.org/formatparse/datetime for a guide to the meaning of the letters.
@@ -74,7 +76,7 @@ msgstr ","
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
-msgstr ""
+msgstr "%(mod)s (%(version)s)"
 
 #: gui/common/mod.js:20
 msgid ", "
@@ -99,12 +101,12 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "Game ID could not be retrieved.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr ""
+msgstr "Initialisation Error"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 #: gui/modio/modio.js:117
@@ -122,12 +124,12 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "Mod List could not be retrieved.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr ""
+msgstr "Fetch Error"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -136,12 +138,12 @@ msgid ""
 "File download failed.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "File download failed.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr ""
+msgstr "Download Error"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -150,20 +152,20 @@ msgid ""
 "File verification error.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "File verification error.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
 msgid "Verification Error"
-msgstr ""
+msgstr "Verification Error"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr ""
+msgstr "Initialising mod.io interface."
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
-msgstr ""
+msgstr "Initialising"
 
 #: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):184
 msgid "Cancel"
@@ -171,35 +173,35 @@ msgstr "Cancel"
 
 #: gui/modio/modio.js:232
 msgid "Fetching and updating list of available mods."
-msgstr ""
+msgstr "Fetching and updating list of available mods."
 
 #: gui/modio/modio.js:233
 msgid "Updating"
-msgstr ""
+msgstr "Updating"
 
 #: gui/modio/modio.js:235
 msgid "Cancel Update"
-msgstr ""
+msgstr "Cancel Update"
 
 #: gui/modio/modio.js:248
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr ""
+msgstr "Downloading “%(modname)s”"
 
 #: gui/modio/modio.js:251
 msgid "Downloading"
-msgstr ""
+msgstr "Downloading"
 
 #: gui/modio/modio.js:253
 msgid "Cancel Download"
-msgstr ""
+msgstr "Cancel Download"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with percentage complete.
 #: gui/modio/modio.js:320
 #, javascript-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
-msgstr ""
+msgstr "%(current)s / %(total)s (%(percent)s%%)"
 
 #. Translation: Mod file download status message.
 #: gui/modio/modio.js:330
@@ -208,7 +210,7 @@ msgid ""
 "Time Elapsed: %(elapsed)s\n"
 "Estimated Time Remaining: %(remaining)s\n"
 "Average Speed: %(avgSpeed)s"
-msgstr ""
+msgstr "Time Elapsed: %(elapsed)s\nEstimated Time Remaining: %(remaining)s\nAverage Speed: %(avgSpeed)s"
 
 #: gui/modio/modio.js:332
 msgid "∞"
@@ -219,7 +221,7 @@ msgstr "∞"
 #: gui/modio/modio.js:334
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
-msgstr ""
+msgstr "%(number)s %(unit)s/s"
 
 #: gui/modmod/modmod.js:102 gui/modmod/modmod.js:233
 msgid "Filter"
@@ -248,15 +250,15 @@ msgstr "No mod has been selected."
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
-msgstr ""
+msgstr "Disclaimer"
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
-msgstr ""
+msgstr "mod.io Terms"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr ""
+msgstr "mod.io Privacy Policy"
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
@@ -266,16 +268,16 @@ msgstr "OK"
 #. Conditions in the default webbrowser.
 #: gui/termsdialog/termsdialog.js:30
 msgid "View online"
-msgstr ""
+msgstr "View online"
 
 #: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
-msgstr ""
+msgstr "Open %(url)s in the browser."
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr ""
+msgstr "mod.io Mods"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
 msgid "Available Mods"
@@ -287,11 +289,11 @@ msgstr "Back"
 
 #: gui/modio/modio.xml:(caption):78
 msgid "Refresh List"
-msgstr ""
+msgstr "Refresh List"
 
 #: gui/modio/modio.xml:(caption):83
 msgid "Download"
-msgstr ""
+msgstr "Download"
 
 #: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
 #: gui/modmod/modmod.xml:(heading):116
@@ -310,7 +312,7 @@ msgstr "Mod Label"
 
 #: gui/modio/modio.xml:(heading):62
 msgid "File Size"
-msgstr ""
+msgstr "File Size"
 
 #: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
 #: gui/modmod/modmod.xml:(heading):128
@@ -335,7 +337,7 @@ msgstr "Enabled Mods"
 
 #: gui/modmod/modmod.xml:(caption):167
 msgid "Enable/Disable"
-msgstr ""
+msgstr "Enable/Disable"
 
 #: gui/modmod/modmod.xml:(caption):170
 msgid "Visit Website"
@@ -347,11 +349,11 @@ msgstr "Quit"
 
 #: gui/modmod/modmod.xml:(caption):189
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: gui/modmod/modmod.xml:(caption):194
 msgid "Download Mods"
-msgstr ""
+msgstr "Download Mods"
 
 #: gui/modmod/modmod.xml:(caption):199
 msgid "Save Configuration"
@@ -373,11 +375,11 @@ msgstr "Website"
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr ""
+msgstr "Change the order in which mods are launched. This should match the mods dependencies."
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr ""
+msgstr "Pyrogenesis Mod Selector"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
@@ -385,11 +387,11 @@ msgstr "Close"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr ""
+msgstr "Modding Guide"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr ""
+msgstr "Visit mod.io"
 
 #: gui/termsdialog/termsdialog.xml:(caption):15
 msgid "Language"
@@ -397,7 +399,7 @@ msgstr "Language"
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr ""
+msgstr "Decline"
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"
@@ -405,46 +407,46 @@ msgstr "Accept"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr ""
+msgstr "0 A.D. Empires Ascendant mod.io Disclaimer"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr ""
+msgstr "Document Date: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr ""
+msgstr "You are about to connect to the mod.io online service."
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr ""
+msgstr "This service provides an easy way to download and install community-made mods and is provided by DBolical Pty Ltd, the company behind IndieDB and ModDB."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
-msgstr ""
+msgstr "The service is for users age 13 and over."
 
 #: gui/modio/Disclaimer.txt:9
 msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr ""
+msgstr "Wildfire Games has taken care to make this connection secure and reviewed the mods for security flaws, but cannot guarantee that this does not pose any risks."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr ""
+msgstr "By using the service, you understand that mod.io's Terms of Use and Privacy Policy apply and that Wildfire Games is not liable for any damages resulting from this service."
 
 #: gui/modmod/help/help.txt:1
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr ""
+msgstr "0 A.D. is designed to be easily modded. Mods are distributed in the form of .pyromod files, which can be opened like .zip files."
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -454,13 +456,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr ""
+msgstr "In order to install a mod, just open the file with 0 A.D. (either double-click on the file and choose to open it with the game, or run ‘pyrogenesis file.pyromod’ in a terminal). The mod will then be available in the mod selector. You can enable it and disable it at will. You can delete the mod manually using your file browser if needed (see https://trac.wildfiregames.com/wiki/GameDataPaths)."
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr ""
+msgstr "For more information about modding the game, see the Modding Guide online (click the Modding Guide button below)."
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -469,4 +471,4 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr ""
+msgstr "The mod.io service is developed by DBolical, the company behind IndieDB and ModDB. Those websites have spread the word about 0 A.D. and other indie projects for a long time! Today, mod.io allows us to list and download all the mods that were verified by the team. Click ‘Download Mods’ to try it out and install some!"

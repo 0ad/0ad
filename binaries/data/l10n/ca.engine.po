@@ -12,12 +12,12 @@
 # Juanjo, 2016
 # Marco tom Suden, 2014
 # Marco tom Suden, 2014
-# Haommin <tfs.msimangu@gmail.com>, 2014-2016
+# Haommin <tfs.msimangu@gmail.com>, 2014-2016,2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-13 07:08+0000\n"
-"PO-Revision-Date: 2020-02-01 22:24+0000\n"
+"PO-Revision-Date: 2020-02-03 23:22+0000\n"
 "Last-Translator: Esteve Blanch <esteve.blanch@live.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -36,11 +36,11 @@ msgstr "subtipus desconegut (consulteu el registre)"
 
 #: lobby/XmppClient.cpp:1169
 msgid "The certificate is not trusted."
-msgstr "El certificat no es de confiança."
+msgstr "El certificat no és de confiança."
 
 #: lobby/XmppClient.cpp:1170
 msgid "The certificate hasn't got a known issuer."
-msgstr ""
+msgstr "L'emissor del certificat no és conegut."
 
 #: lobby/XmppClient.cpp:1171
 msgid "The certificate has been revoked."
@@ -48,7 +48,7 @@ msgstr "El certificat ha estat revocat."
 
 #: lobby/XmppClient.cpp:1172
 msgid "The certificate has expired."
-msgstr "El certificat ha expirat."
+msgstr "El certificat ha caducat."
 
 #: lobby/XmppClient.cpp:1173
 msgid "The certifiacte is not yet active."
@@ -56,11 +56,11 @@ msgstr "El certificat encara no es troba actiu."
 
 #: lobby/XmppClient.cpp:1174
 msgid "The certificate has not been issued for the peer connected to."
-msgstr ""
+msgstr "El certificat no ha estat emès per l'interlocutor amb que s'ha connectat."
 
 #: lobby/XmppClient.cpp:1175
 msgid "The certificate signer is not a certificate authority."
-msgstr "El signant del certificat no es una autoritat certificadora."
+msgstr "El signant del certificat no és una autoritat certificadora."
 
 #: lobby/XmppClient.cpp:1197 lobby/XmppClient.cpp:1241
 #: lobby/XmppClient.cpp:1280
@@ -93,7 +93,7 @@ msgstr "No està autoritzat"
 
 #: lobby/XmppClient.cpp:1214
 msgid "Recipient temporarily unavailable"
-msgstr "El destinatari està temporalment no disponible"
+msgstr "El destinatari no està disponible temporalment"
 
 #: lobby/XmppClient.cpp:1216
 msgid "Registration required"
@@ -113,7 +113,7 @@ msgstr "Error de transmissió"
 
 #: lobby/XmppClient.cpp:1246
 msgid "The incoming stream version is unsupported"
-msgstr "La versió de la transmissió no és compatible"
+msgstr "La versió de la transmissió entrant no és compatible"
 
 #: lobby/XmppClient.cpp:1247
 msgid "The stream has been closed by the server"
@@ -121,7 +121,7 @@ msgstr "El servidor ha aturat la transmissió"
 
 #: lobby/XmppClient.cpp:1251
 msgid "An I/O error occurred"
-msgstr "Error en la lectura dels fitxers"
+msgstr "S'ha produït un error d'E/S"
 
 #: lobby/XmppClient.cpp:1253
 msgid "The connection was refused by the server"
@@ -159,7 +159,7 @@ msgstr "No hi ha cap connexió activa"
 
 #: lobby/XmppClient.cpp:1283
 msgid "Your account has been successfully registered"
-msgstr "S'ha registrat el teu compte exitosament"
+msgstr "El compte s'ha registrat correctament"
 
 #: lobby/XmppClient.cpp:1284
 msgid "Not all necessary information provided"
@@ -206,12 +206,12 @@ msgstr "Errada de descàrrega. Resposta del servidor: %s;%s."
 
 #: ps/ModIo.cpp:529
 msgid "Mismatched filesize."
-msgstr "Tamany del fitxer no coincident."
+msgstr "La mida del fitxer no coincideix."
 
 #: ps/ModIo.cpp:547
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr "Arxiu no vàlid. Esperat md5 %s, s'ha obtingut%s."
+msgstr "El fitxer no és vàlid. S'esperava md5 %s, s'ha obtingut%s."
 
 #: ps/ModIo.cpp:562
 msgid "Failed to compute final hash."
@@ -219,7 +219,7 @@ msgstr "Errada al computar el hash final."
 
 #: ps/ModIo.cpp:568
 msgid "Failed to verify signature."
-msgstr "Errada al verificar signatura."
+msgstr "No s'ha pogut verificar la signatura."
 
 #: ps/SavedGame.cpp:139
 #, c-format

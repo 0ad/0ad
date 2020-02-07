@@ -14,15 +14,16 @@
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Victor Ptah, 2015
 # Victor Ptah, 2015
+# Zeldt Herb <bkelfarat@bk.ru>, 2020
 # Андрій Бандура <andriykopanytsia@gmail.com>, 2016
 # Микола Франчук <thekolian1996@gmail.com>, 2018-2019
 # Сергій Дубик <dubyk@ukr.net>, 2014,2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-24 08:08+0000\n"
-"PO-Revision-Date: 2020-01-24 14:28+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2020-02-03 08:10+0000\n"
+"PO-Revision-Date: 2020-02-06 15:28+0000\n"
+"Last-Translator: Zeldt Herb <bkelfarat@bk.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +37,7 @@ msgstr "За замовчуванням"
 
 #: gui/gamesetup/Controls/MapFilters.js:86
 msgid "All maps except naval and demo maps."
-msgstr "Всі мапи, окрім морських та демо."
+msgstr "Усі мапи, крім морських та демонстраційних."
 
 #: gui/gamesetup/Controls/MapFilters.js:91
 msgid "Naval Maps"
@@ -44,11 +45,11 @@ msgstr "Морські мапи"
 
 #: gui/gamesetup/Controls/MapFilters.js:92
 msgid "Maps where ships are needed to reach the enemy."
-msgstr "Мапи на яких кораблі необхідні щоб дістатися до ворога."
+msgstr "Мапи, де кораблі потрібні для досягнення ворога."
 
 #: gui/gamesetup/Controls/MapFilters.js:97
 msgid "Demo Maps"
-msgstr "Демо мапи"
+msgstr "Демонстраційні мапи"
 
 #: gui/gamesetup/Controls/MapFilters.js:98
 msgid "These maps are not playable but for demonstration purposes only."
@@ -56,48 +57,48 @@ msgstr "Ці неігрові мапи призначені виключно д�
 
 #: gui/gamesetup/Controls/MapFilters.js:103
 msgid "New Maps"
-msgstr "Нова Мапа"
+msgstr "Нові мапи"
 
 #: gui/gamesetup/Controls/MapFilters.js:104
 msgid "Maps that are brand new in this release of the game."
-msgstr "Мапи які є новими для даного релізу гри."
+msgstr "Мапи, які є новими для цього випуску гри."
 
 #: gui/gamesetup/Controls/MapFilters.js:109
 msgid "Trigger Maps"
-msgstr "Тригер Карт"
+msgstr "Мапи з тріггерами"
 
 #: gui/gamesetup/Controls/MapFilters.js:110
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "Карти, що поставляються із скриптованими подіями та потенційно можуть призвести до ворога."
+msgstr "Мапи, які надходять зі сценаріями подій та можуть створювати ворожі підрозділи."
 
 #: gui/gamesetup/Controls/MapFilters.js:115
 msgid "All Maps"
-msgstr "Всі мапи"
+msgstr "Усі мапи"
 
 #: gui/gamesetup/Controls/MapFilters.js:116
 msgid "Every map of the chosen maptype."
-msgstr "Кожна мапа обраного типу."
+msgstr "Кожна мапа з обраного типу мап."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:37
 msgid "AI will be disabled for this player."
-msgstr "Штучний Інтелект буде відключено для цього гравця."
+msgstr "Штучний інтелект буде відключено для цього гравця."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:93
 msgid "AI Behavior"
-msgstr ""
+msgstr "Поведінка штучного інтелекту"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:87
 msgid "AI Difficulty"
-msgstr "Рівень"
+msgstr "Складність штучного інтелекту"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:86
 msgctxt "ai"
 msgid "None"
-msgstr "Пусто"
+msgstr "Немає гравця"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:91
 msgid "AI Player"
-msgstr "Бот"
+msgstr "Гравець штучного інтелекту"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:172
 #, javascript-format
@@ -122,14 +123,14 @@ msgstr "Невідомо"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:7
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr "Карта"
+msgstr "Мапа"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:25
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:26
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "Гравець"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:35
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:36
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "Тип гри"
@@ -137,7 +138,7 @@ msgstr "Тип гри"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/AIConfigButton.js:32
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr "Налаштувати ШІ: %(description)s."
+msgstr "Налаштувати штучний інтелект: %(description)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayerName.js:114
 #, javascript-format
@@ -146,20 +147,20 @@ msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:153
 msgid "Select player."
-msgstr "Виберіть гравця."
+msgstr "Вибрати гравця."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:230
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr "Штучний Інтелект: %(ai)s"
+msgstr "Штучний інтелект: %(ai)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:265
 msgid "Unassigned"
-msgstr "Непризначено"
+msgstr "Не призначено"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:131
 msgid "Choose the civilization for this player."
-msgstr "Виберіть цивілізацію для цього гравця."
+msgstr "Вибрати цивілізацію для цього гравця."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:134
 msgctxt "civilization"
@@ -168,112 +169,112 @@ msgstr "Випадково"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:140
 msgid "Picks one civilization at random when the game starts."
-msgstr "Вибір однієї цивілізації випадковим чином, коли починається гра."
+msgstr "Вибирає одну цівілізацію випадково, коли починається гра."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:172
 msgid "Pick a color."
-msgstr "Виберіть колір."
+msgstr "Вибрати колір."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:73
 msgid "Select player's team."
-msgstr "Виберіть команду гравця."
+msgstr "Вибрати команду гравця."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:76
 msgctxt "team"
 msgid "None"
-msgstr "Нема"
+msgstr "Немає команди"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
-msgstr "Чіти"
+msgstr "Шахрайство"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:43
 msgid "Toggle the usability of cheats."
-msgstr "Перемкнути можливість використання кодів."
+msgstr "Перемиканням вибрати можливість використання шахрайства."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:54
 msgid "Explored Map"
-msgstr "Досліджена карта"
+msgstr "Досліджена мапа"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:58
 msgid "Toggle explored map (see initial map)."
-msgstr "Перемкнути розвідану карту (побачити початкову карту)."
+msgstr "Перемиканням вибрати чи досліджена мапа (дивитися початкову мапу)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:58
 msgid "Last Man Standing"
-msgstr "До останнього гравця"
+msgstr "Битися до останнього гравця"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:61
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr "Переключення до останнього гравця, що залишився або останнього із союзників для перемоги."
+msgstr "Перемиканням вибрати чи виграє останній гравець, що залишився, чи останній набір союзників."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:52
 msgid "Teams Locked"
-msgstr "Пов'язані команди"
+msgstr "Команди гравців незмінні"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:55
 msgid "Toggle locked teams."
-msgstr "Перемкнути замкнуті команди."
+msgstr "Перемиканням вибрати можливість змінювати команди гравців."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:60
 msgid "Nomad"
-msgstr "Кочівник"
+msgstr "Режим мандрівника"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:63
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "У режимі Кочівника, гравці починають лише з декількома юнітами й мусять знайти придатне місце для будівництва їхнього міста. Рекомендовано припинення бойових дій."
+msgstr "У режимі мандрівника, гравці починають лише з декількома підрозділами та повинні знайти підходяще місце для спорудження їхнього міста. Рекомендується призупинення бойових дій."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:51
 msgid "Rated Game"
-msgstr "Оцінена Гра"
+msgstr "Оціночна гра."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:54
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "Перемкнути, якщо гра буде оцінена для дошки пошани."
+msgstr "Перемиканням вибрати чи оцінюватиметься гра для таблиці лідерів."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:61
 msgid "Hero Garrison"
-msgstr "Герой у гарнізоні"
+msgstr "Геройський гарнізон"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:64
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "Переключіть, для розміщення героїв у гарнізоні."
+msgstr "Перемиканням вибрати можливість розміщення героїв у гарнізоні."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:49
 msgid "Revealed Map"
-msgstr "Розвідана карта"
+msgstr "Відкрита мапа"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:53
 msgid "Toggle revealed map (see everything)."
-msgstr "Перемкнути виявлену мапу (побачити все)."
+msgstr "Перемиканням вибрати чи відкрита мапа (бачити все)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:42
 msgid "Disable Spies"
-msgstr "Відключити Шпигунів"
+msgstr "Вимкнути шпигунів"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:45
 msgid "Disable spies during the game."
-msgstr "вимкнути шпигунів протягом гри."
+msgstr "Вимкнути шпигунів під час гри."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:42
 msgid "Disable Treasures"
-msgstr "Відключити скарби"
+msgstr "Вимкнути скарби"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:45
 msgid "Do not add treasures to the map."
-msgstr "Не додавати скарби на карту."
+msgstr "Не додавати скарбів на мапу."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:135
 msgid "Biome"
@@ -281,7 +282,7 @@ msgstr "Біом"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:141
 msgid "Select the flora and fauna."
-msgstr "Виберіть флору та фауну."
+msgstr "Вибрати флору та фауну."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:144
 msgctxt "biome"
@@ -290,25 +291,25 @@ msgstr "Випадково"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:147
 msgid "Pick a biome at random."
-msgstr "Виберіть біом випадковим чином."
+msgstr "Вибрати біом у випадковому порядку."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:96
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:101
 msgid "Daytime"
-msgstr ""
+msgstr "Денний час"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:99
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
-msgstr ""
+msgstr "Вибрати, чи відбудеться змагання у денний або нічний час."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:102
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
 msgid "Random"
 msgstr "Випадково"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:105
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr ""
+msgstr "Вибрати час дня у випадковому порядку."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:73
 msgid "Game Speed"
@@ -316,61 +317,61 @@ msgstr "Швидкість гри"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:76
 msgid "Select game speed."
-msgstr "Виберіть швидкість гри."
+msgstr "Вибрати швидкість гри."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:124
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:142
 msgid "Landscape"
-msgstr ""
+msgstr "Ландшафт"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:127
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:145
 msgid "Select one of the landscapes of this map."
-msgstr ""
+msgstr "Вибрати один з ландшафтів цієї мапи."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:133
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:151
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
-msgstr ""
+msgstr "Випадкова земля або морський простір."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:134
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
 msgctxt "landscape selection"
 msgid "Select a random land or naval map generation."
-msgstr ""
+msgstr "Вибрати випадкове створення мапи із землею або морським простором."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:138
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:156
 msgctxt "landscape selection"
 msgid "Random Land"
-msgstr ""
+msgstr "Випадкова земля"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:139
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
 msgid "Select a random land map generation."
-msgstr ""
+msgstr "Вибрати випадкове створення мапи із землею."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:143
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:161
 msgctxt "landscape selection"
 msgid "Random Naval"
-msgstr ""
+msgstr "Випадковий морський простір"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:144
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:162
 msgctxt "landscape selection"
 msgid "Select a random naval map generation."
-msgstr ""
+msgstr "Вибрати випадкове створення мапи із морським простором."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:89
 msgid "Map Filter"
-msgstr "Фільтр карти"
+msgstr "Фільтр мапи"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:92
 msgid "Select a map filter."
-msgstr "Виберіть фільтр мапи."
+msgstr "Вибрати фільтр мапи."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:146
 msgid "Select Map"
-msgstr "Виберіть карту"
+msgstr "Вибрати мапу"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:149
 msgid "Select a map to play on."
-msgstr "Виберіть мапу для гри."
+msgstr "Вибрати мапу, на якій слід грати."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:155
 msgctxt "map selection"
@@ -379,23 +380,23 @@ msgstr "Випадково"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:158
 msgid "Pick any of the given maps at random."
-msgstr "Виберіть будь-яку з даних карт випадковим чином."
+msgstr "Вибрати будь-яку із зазначених мап у випадковому порядку."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:74
 msgid "Map Size"
-msgstr "Розмір карти"
+msgstr "Розмір мапи"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:77
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "Виберіть розмір мапи. (Великі можуть зменшити продуктивність.)"
+msgstr "Вибрати розмір мапи. (Більші розміри можуть привести до зниження продуктивності.)"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:61
 msgid "Map Type"
-msgstr "Тип карти"
+msgstr "Тип мапи"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:64
 msgid "Select a map type."
-msgstr "Виберіть тип мапи."
+msgstr "Вибрати тип мапи."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:49
 msgid "Number of Players"
@@ -403,7 +404,7 @@ msgstr "Кількість гравців"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:52
 msgid "Select number of players."
-msgstr "Виберіть кількість гравців."
+msgstr "Вибрати кількість гравців."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:82
 msgid "Population Cap"
@@ -411,19 +412,19 @@ msgstr "Ліміт населення"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:85
 msgid "Select population limit."
-msgstr "Оберіть значення ліміту населення."
+msgstr "Вибрати значення ліміту населення."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:88
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "На гравця"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:91
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "Попередження: Можуть виникнути проблеми з швидкодією якщо всі %(players)s гравці досягнуть %(popCap)s населення."
+msgstr "Попередження: Можуть бути проблеми з продуктивністю, якщо всі %(players)s гравці досягнуть %(popCap)s населення."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:81
 msgid "Starting Resources"
@@ -431,17 +432,73 @@ msgstr "Початкові ресурси"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:84
 msgid "Select the game's starting resources."
-msgstr "Виберіть початкові ресурси."
+msgstr "Вибрати початкові ігрові ресурси."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:87
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr "Початкова кількість кожного з ресурсів:  %(resources)s."
+msgstr "Початкова кількість кожного ресурсу:  %(resources)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:90
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "На гравця"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
+msgid "Team Placement"
+msgstr "Розміщення команди"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:94
+msgid "Select one of the starting position patterns of this map."
+msgstr "Вибрати один із зразків початкової позиції цієї мапи."
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
+msgctxt "team placement"
+msgid "Random"
+msgstr "Випадково"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
+msgctxt "team placement"
+msgid "Select a random team placement pattern when starting the game."
+msgstr "Вибрати випадковий зразкок початкової позиції команди, при запуску гри."
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
+msgctxt "team placement"
+msgid "Circle"
+msgstr "Коло"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:106
+msgid ""
+"Allied players are grouped and placed with opposing players on one circle "
+"spanning the map."
+msgstr "Союзні гравці згруповані та розташовані із протилежними гравцями на одному колі, що охоплює мапу."
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
+msgctxt "team placement"
+msgid "Line"
+msgstr "Лінія"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
+msgid "Allied players are placed in a linear pattern."
+msgstr "Союзні гравці розташовані у лінійному зразку."
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:115
+msgctxt "team placement"
+msgid "Random Group"
+msgstr "Випадкова група"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:116
+msgid "Allied players are grouped, but otherwise placed randomly on the map."
+msgstr "Союзні гравці згруповані, але інакше розташовані випадковим чином на мапі."
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:120
+msgctxt "team placement"
+msgid "Stronghold"
+msgstr "Цитадель"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:121
+msgid "Allied players are grouped in one random place of the map."
+msgstr "Союзні гравці згруповані в одному випадковому місці мапи."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
@@ -449,20 +506,20 @@ msgstr "Складність"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:84
 msgid "Select the difficulty of this scenario."
-msgstr "Виберіть складність даного сценарію."
+msgstr "Вибрати складність цього сценарію."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:61
 msgid "Ceasefire"
-msgstr "Припинити бій"
+msgstr "Призупинення бойових дій"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:64
 msgid "Set time where no attacks are possible."
-msgstr "Вкажіть час на протязі якого атаки неможливі."
+msgstr "Встановити час, коли не можливі напади."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:67
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr "Без перемир'я"
+msgstr "Без призупинення бойових дій."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:70
 #, javascript-format
@@ -492,7 +549,7 @@ msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr "Загальна кількість реліквій, розміщених на карті. Перемога з реліквіями є найбільш реалістичною лише з однією або двома реліквіями. З більшою кількістю, реліквії важливо захопити, щоб отримувати аура бонусів."
+msgstr "Загальна кількість реліквій, створених на мапі. Перемога із реліквією є найбільш реалістичною лише з однією або двома реліквіями. При більшій кількості, реліквії важливо захопити, щоб отримати бонуси від аури."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:86
 msgid "Relic Duration"
@@ -500,7 +557,7 @@ msgstr "Тривалість часу утримання реліквії"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:89
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr "Час, доки гравець не досяг перемоги за реліквіями."
+msgstr "Хвилини, до того як гравець здобуде перемогу із реліквією"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:95
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:96
@@ -517,15 +574,15 @@ msgstr[3] ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:99
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr ""
+msgstr "Негайна перемога."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"
-msgstr ""
+msgstr "Час підвищення рівня моря"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:76
 msgid "Set the time when the water will start to rise."
-msgstr ""
+msgstr "Встановити час, коли вода почне підніматися."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:79
 #, javascript-format
@@ -539,34 +596,34 @@ msgstr[3] ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:87
 msgid "Wonder Duration"
-msgstr "Тривалість часу збереження Чуда."
+msgstr "Тривалість часу збереження чуда"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:90
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr ""
+msgstr "Хвилини, до того як гравець здобуде перемогу із чудом"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
 msgid "Cheats enabled."
-msgstr "Шахраювання включено"
+msgstr "Шахрайство увімкнено."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
 msgid "Rated game."
-msgstr ""
+msgstr "Оціночна гра."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:76
 #, javascript-format
 msgid "Toggle the %(name)s settings tab."
-msgstr "Переключіть %(name)s вкладку налаштувань."
+msgstr "Перемкнути %(name)s вкладку налаштувань."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:79
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab up."
-msgstr "Використовуйте, %(hotkey)s щоб перемістити вкладку налаштувань догори."
+msgstr "Застосувати %(hotkey)s, щоб перемістити вкладку налаштувань вгору."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:82
 #, javascript-format
 msgid "Use %(hotkey)s to move a settings tab down."
-msgstr "Використовуйте, %(hotkey)s щоб перемістити вкладку налаштувань донизу."
+msgstr "Застосувати %(hotkey)s, щоб перемістити вкладку налаштувань вниз."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -574,7 +631,7 @@ msgstr "Повернутися"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:39
 msgid "Return to the lobby."
-msgstr "Повернутися до кімнати."
+msgstr "Повернутися до лобі."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:42
 msgid "Return to the main menu."
@@ -585,52 +642,52 @@ msgstr "Повернутися до головного меню."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Переглянути Історію / Дерево Структур\nПо натиску буде відкрито останнє активне вікно."
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Переглянути історію / структурне дерево\nЗа клацанням буде відкиватися останнє переглянуте."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "Показати загальний чат у діалоговому вікні"
+msgstr "Показати багатокористувальницьке лобі у діалоговому вікні."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:79
 msgid "I'm ready"
-msgstr "Я готовий"
+msgstr "Я готовий (-ва)"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:80
 msgid "Stay ready"
-msgstr "Будьте готові"
+msgstr "Бути в готовності"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:81
 msgid "I'm not ready!"
-msgstr "Я не готовий!"
+msgstr "Я не готовий (-ва)!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:85
 msgid "State that you are ready to play."
-msgstr "Скажіть що Ви готові до гри!"
+msgstr "Заявити про готовність до гри."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:86
 msgid "Stay ready even when the game settings change."
-msgstr "Будьте готові, навіть якщо налаштування гри зміняться."
+msgstr "Бути в готовності, навіть якщо налаштування гри зміняться."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:87
 msgid "State that you are not ready to play."
-msgstr "Скажіть що ви не готові грати"
+msgstr "Заявити про неготовність до гри."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:33
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr "Скидання будь-якої цивілізації, яка була обрана, до значення за замовчуванням (випадкова)."
+msgstr "Скинути за замовчуванням будь-які вибрані цивілізації (випадково)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:35
 msgid "Reset all teams to the default."
-msgstr "Скидання всіх команд за замовчуванням."
+msgstr "Скинути за замовчуванням всі команди."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:65
 msgid "Start Game!"
-msgstr "Розпочати!"
+msgstr "Почати гру!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:68
 msgid "Start a new game with the current settings."
-msgstr "Розпочати нову гру з поточними налаштунками."
+msgstr "Почати нову гру з поточними налаштуваннями."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:71
 msgid ""
@@ -641,7 +698,7 @@ msgstr "Почати нову гру з поточними налаштуван�
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatInputPanel.js:55
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr "Натисніть  %(hotkey)s для автоматичного доповнення імені користувача чи налаштувань."
+msgstr "Натиснути %(hotkey)s для автозаповнення імен користувача чи налаштувань."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/StatusMessageFormat.js:24
 #, javascript-format
@@ -660,7 +717,7 @@ msgstr "\\[%(time)s]"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:31
 msgid "HH:mm"
-msgstr "HH:mm"
+msgstr "ГГ:хх"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:27
 msgid "Unknown Player"
@@ -679,45 +736,45 @@ msgstr "%(username)s %(message)s"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientConnection.js:27
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr "%(username)s приєднався"
+msgstr "%(username)s приєднуется"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientConnection.js:30
 #, javascript-format
 msgid "%(username)s has left"
-msgstr "%(username)s вийшов"
+msgstr "%(username)s залишає"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientKicked.js:22
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr "%(username)s був викинутий"
+msgstr "%(username)s було вигнано"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientKicked.js:25
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s забанений"
+msgstr "%(username)s було заблоковано"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientReady.js:28
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr "* %(username)s не готовий."
+msgstr "* %(username)s не готовий (-ва)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientReady.js:29
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr "* %(username)s готовий!"
+msgstr "* %(username)s готовий (-ва)!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/GameSettingsChanged.js:22
 msgid "Game settings have been changed"
-msgstr "Ігрові налаштування були змінені"
+msgstr "Налаштування гри були змінені"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:55
 #, javascript-format
 msgid "%(name)s's game"
-msgstr "%(name)s гра"
+msgstr "Гра від %(name)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:114
 msgid "Please enter a valid server name."
-msgstr "Будь ласка введіть дійсне ім'я сервера."
+msgstr "Потрібно ввести дійсне ім’я сервера."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:121
 #, javascript-format
@@ -735,11 +792,11 @@ msgstr "Мережеве повідомлення: %(message)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:223
 msgid "Registering with server..."
-msgstr "Реєстрація на сервері ..."
+msgstr "Реєстрація з сервером..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:229
 msgid "Game has already started, rejoining..."
-msgstr "Гра вже запущена, заходимо..."
+msgstr "Гра вже розпочалася, повторне з'єднання..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:300
 msgid "Game name already in use."
@@ -747,12 +804,12 @@ msgstr "Назва гри вже використовується."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:310
 msgid "Failed to host via STUN."
-msgstr "Збій створення хосту через STUN."
+msgstr "Помилка розміщення через STUN."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:324
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr "Неможливо створити гру: %(message)s."
+msgstr "Неможливо провести гру: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:325 gui/gamesetup_mp/gamesetup_mp.js:354
 msgid "Error"
@@ -761,12 +818,12 @@ msgstr "Помилка"
 #: gui/gamesetup_mp/gamesetup_mp.js:353
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr "Неможливо приєднатись ло гри: %(message)s."
+msgstr "Неможливо приєднатися до гри: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:375
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr "гра гравця %(playername)s"
+msgstr "Гра від %(playername)s"
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format
@@ -791,21 +848,21 @@ msgstr "Створення “%(map)s”"
 msgid "Loading “%(map)s”"
 msgstr "Завантаження “%(map)s”"
 
-#: gui/gamesetup/gamesetup.xml:(caption):27
+#: gui/gamesetup/gamesetup.xml:(caption):12
 msgid "Match Setup"
-msgstr "Налаштування бою"
+msgstr "Налаштування змагання"
 
-#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):10
+#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
-msgstr "Налаштування ШІ"
+msgstr "Налаштування штучного інтелекту"
 
-#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):26
+#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
 msgid "OK"
-msgstr "Гаразд"
+msgstr "Прийняти"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):6
 msgid "Player Name"
-msgstr "Ім'я Гравця"
+msgstr "Ім'я гравця"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):10
 msgid "Color"
@@ -825,36 +882,36 @@ msgstr "Команда"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
-msgstr "Показувати це повідомлення у майбутньому."
+msgstr "Показати це повідомлення в майбутньому."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatPanel.xml:(caption):9
 msgid "Send"
-msgstr "Відправити"
+msgstr "Надіслати"
 
-#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):5
+#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
 msgid "Loading"
 msgstr "Завантаження"
 
-#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):9
+#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):11
 msgid "Loading map data. Please wait…"
-msgstr "Завантаження даних мапи. Будь ласка зачекайте..."
+msgstr "Завантаження даних мапи. Потрібно зачекати…"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
-msgstr "Багатокористувацька гра"
+msgstr "Багатокористувальницька гра"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
-msgstr "Приєднатися до існуючої гри."
+msgstr "Приєднання до існуючої гри."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr "Ім'я Гравця:"
+msgstr "Ім'я гравця:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
-msgstr "Ім’я серверу або IP-адреса:"
+msgstr "Ім'я хоста або IP-адреса сервера:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):48
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):95
@@ -863,15 +920,15 @@ msgstr "Порт сервера:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
 msgid "Set up your server to host."
-msgstr "Налаштуйте свій сервер."
+msgstr "Налаштувати сервер для розміщення."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr "Ім'я Серверу:"
+msgstr "Ім'я сервера:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"
-msgstr "Використовуйте STUN щоб обійти мережеві екрани"
+msgstr "Застосувати STUN щоб обійти брандмауери."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
 msgid "Continue"
@@ -884,7 +941,7 @@ msgstr "Скасувати"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
-msgstr "Залиште порожнім, щоб використовувати порт за замовчуванням."
+msgstr "Залишити порожнім, щоб використовувати порт за замовчуванням."
 
 #: gui/text/quotes.txt:1
 msgid ""
@@ -897,7 +954,7 @@ msgstr "“Зевс \\[...] встановив свій закон: мудріс
 msgid ""
 "“She \\[Helen] brought to Ilium her dowry, destruction.” \\n— Aeschylus "
 "(“Agamemnon”, 406)"
-msgstr "“А Трої погибель понесла [Єлена] в придане.” \\n— Есхіл (\"Агамемнон\", 406)"
+msgstr "“А Іліону погибель понесла \\[Єлена] в придане.” \\n— Есхіл (\"Агамемнон\", 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
@@ -931,7 +988,7 @@ msgstr "“Боги допомагають тим, які допомагають
 msgid ""
 "“It is thrifty to prepare today for the wants of tomorrow.” \\n— Aesop (“The"
 " Ant and the Grasshopper”)"
-msgstr "“Розумно готуватися до потреб завтрашніх сьогодні.\"” \\n— Езоп (\"Мурашка і Жук\")"
+msgstr "“Розумно готуватися до потреб завтрашніх сьогодні.” \\n— Езоп (\"Мурашка і Коник\")"
 
 #: gui/text/quotes.txt:9
 msgid "“Union gives strength.” \\n— Aesop (“The Bundle of Sticks”)"
@@ -947,7 +1004,7 @@ msgstr "“Ніколи не довіряй пораді людини, яка з
 msgid ""
 "“Familiarity breeds contempt; acquaintance softens prejudices.” \\n— Aesop "
 "(“The Fox and the Lion”)"
-msgstr "“Панібратство породжує неповагу; Знайомство пом'якшує упередження.” \\n— Езоп (“Лисиця та Лев”)"
+msgstr "“Панібратство породжує неповагу; знайомство пом'якшує упередження.” \\n— Езоп (“Лисиця та Лев”)"
 
 #: gui/text/quotes.txt:12
 msgid ""
@@ -970,18 +1027,18 @@ msgstr "“Краще вчитись на невдачах інших, ніж н
 msgid ""
 "“Enemies' promises were made to be broken.” \\n— Aesop (“The Nurse and the "
 "Wolf”)"
-msgstr ""
+msgstr "“Обіцянки ворогів були зроблені щоб бути порушеними.” \\n— Езоп (“Нянька і Волк”)"
 
 #: gui/text/quotes.txt:16
 msgid "“Any excuse will serve a tyrant.” \\n— Aesop (“The Wolf and the Lamb”)"
-msgstr ""
+msgstr "“Будь-який привід буде служити тирану.“ \\n— Езоп ( “Вовк і Ягня“)"
 
 #: gui/text/quotes.txt:17
 msgid ""
 "“If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.” \\n— "
 "Agesilaus II of Sparta (Plutarch, “Moralia”, “Sayings of Spartans”, 215a)"
-msgstr ""
+msgstr "“Якщо я зробив щось благородне, це достатня пам’ятка; якщо я цього не зробив, усі статуї в світі не збережуть моєї пам’яті.” \\n— Агесілай II зі Спарти (Плутарх, ”Моралія”, “Казання спартанців“, 215а)"
 
 #: gui/text/quotes.txt:18
 msgid ""

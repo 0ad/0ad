@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-24 08:08+0000\n"
-"PO-Revision-Date: 2020-01-27 14:50+0000\n"
+"POT-Creation-Date: 2020-02-03 08:10+0000\n"
+"PO-Revision-Date: 2020-02-03 15:46+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -114,12 +114,12 @@ msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "Mapa"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:25
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:26
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "Cluicheadair"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:35
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:36
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "Seòrsa a’ gheama"
@@ -282,20 +282,20 @@ msgstr "Air thuaiream"
 msgid "Pick a biome at random."
 msgstr "Tagh gnàth-shìde air thuaiream."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:96
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:101
 msgid "Daytime"
 msgstr "Latha no oidhche"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:99
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
 msgstr "Tagh an bheil solas an latha no dorchadas na h-oidhche air a’ mhapa."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:102
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
 msgid "Random"
 msgstr "Air thuaiream"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:105
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
 msgstr "Tagh latha no oidhche air thuaiream."
@@ -308,40 +308,40 @@ msgstr "Luaths a’ gheama"
 msgid "Select game speed."
 msgstr "Tagh luaths a’ gheama."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:124
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:142
 msgid "Landscape"
 msgstr "Cruth-tìre"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:127
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:145
 msgid "Select one of the landscapes of this map."
 msgstr "Tagh cruth-tìre dhan mhapa seo."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:133
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:151
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
 msgstr "Tìr no muir air thuaiream"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:134
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
 msgctxt "landscape selection"
 msgid "Select a random land or naval map generation."
 msgstr "Tagh gintinn mapa tìre no mara air thuaiream."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:138
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:156
 msgctxt "landscape selection"
 msgid "Random Land"
 msgstr "Tìr thuaireamach"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:139
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
 msgid "Select a random land map generation."
 msgstr "Tagh gintinn mapa tìre air thuaiream."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:143
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:161
 msgctxt "landscape selection"
 msgid "Random Naval"
 msgstr "Muir tuaireamach"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:144
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:162
 msgctxt "landscape selection"
 msgid "Select a random naval map generation."
 msgstr "Tagh gintinn mapa mara air thuaiream."
@@ -432,6 +432,62 @@ msgstr "Uiread tùsail gach stòrais: %(resources)s."
 msgctxt "starting resources"
 msgid "Per Player"
 msgstr "Gach cluicheadair"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
+msgid "Team Placement"
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:94
+msgid "Select one of the starting position patterns of this map."
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
+msgctxt "team placement"
+msgid "Random"
+msgstr "Air thuaiream"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
+msgctxt "team placement"
+msgid "Select a random team placement pattern when starting the game."
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
+msgctxt "team placement"
+msgid "Circle"
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:106
+msgid ""
+"Allied players are grouped and placed with opposing players on one circle "
+"spanning the map."
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
+msgctxt "team placement"
+msgid "Line"
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
+msgid "Allied players are placed in a linear pattern."
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:115
+msgctxt "team placement"
+msgid "Random Group"
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:116
+msgid "Allied players are grouped, but otherwise placed randomly on the map."
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:120
+msgctxt "team placement"
+msgid "Stronghold"
+msgstr "Daingeann"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:121
+msgid "Allied players are grouped in one random place of the map."
+msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
@@ -781,15 +837,15 @@ msgstr "A’ gintinn “%(map)s”"
 msgid "Loading “%(map)s”"
 msgstr "A’ luchdadh “%(map)s”"
 
-#: gui/gamesetup/gamesetup.xml:(caption):27
+#: gui/gamesetup/gamesetup.xml:(caption):12
 msgid "Match Setup"
 msgstr "Suidheachadh a’ mhaids"
 
-#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):10
+#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
 msgstr "Rèiteachadh na IF"
 
-#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):26
+#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
 msgid "OK"
 msgstr "Ceart ma-thà"
 
@@ -821,11 +877,11 @@ msgstr "Seall an teachdaireachd seo a-rithist."
 msgid "Send"
 msgstr "Cuir"
 
-#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):5
+#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
 msgid "Loading"
 msgstr "’Ga luchdadh"
 
-#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):9
+#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):11
 msgid "Loading map data. Please wait…"
 msgstr "A’ luchdadh dàta a’ mhapa. Fuirich greis…"
 

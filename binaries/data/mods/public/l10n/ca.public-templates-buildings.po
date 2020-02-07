@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-10 08:09+0000\n"
-"PO-Revision-Date: 2020-02-03 00:19+0000\n"
+"PO-Revision-Date: 2020-02-04 22:59+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -106,7 +106,7 @@ msgstr "Vila"
 msgid ""
 "Train Healers and research healing technologies. Garrison units to heal them"
 " at a quick rate."
-msgstr "Recluta sanadors i investiga tecnologies de curació. Permet refugiar-hi unitats per curar-les ràpidament."
+msgstr "Recluta guaridors i investiga tecnologies de curació. Refugieu-hi unitats per curar-les ràpidament."
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -158,24 +158,24 @@ msgstr "Ciutat"
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:59
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "StoneTower"
-msgstr "Torre de Pedra"
+msgstr "Torre de pedra"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
-msgstr ""
+msgstr "Torre de ballesta"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:57
 msgid ""
 "Shoots bolts. Faster reaction time against raiding units than the artillery "
 "tower, weak to all siege weapons and mass melee. Needs the murder holes tech"
 " to protect its foot."
-msgstr ""
+msgstr "Dispara dards. Temps de reacció més ràpid contra tropes d'assalt que la torre d'artilleria. Dèbil contra maquinària de setge i unitats cos a cos. Necessita la tecnologia \"Espitlleres\" per protegir el peu de la torre."
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:52
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr "Es pot construir en territori neutral i propi per explorar àrees del mapa. Passa gradualment a pertànyer a la Natura en territori neutral."
+msgstr "Es pot construir tant en territori neutral com en propi per tal d'explorar àrees del mapa. Passa gradualment a pertànyer a la Natura en territori neutral."
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:29
@@ -200,7 +200,7 @@ msgstr "Dispara fletxes. Refugieu-hi unitats per millorar-ne la defensa. Necessi
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:60
 msgid "Reinforce with stone and upgrade to a defense tower."
-msgstr "Reforçar amb pedra i actualitzar a una torre defensiva."
+msgstr "Reforça la torre amb pedra per millorar-la a torre defensiva."
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:31
 msgid "Defense Tower"
@@ -360,23 +360,23 @@ msgstr "Gossera"
 
 #: simulation/templates/template_structure_military_kennel.xml:41
 msgid "Train war dogs."
-msgstr "Entrena gossos de guerra."
+msgstr "Recluta gossos de guerra."
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
-msgstr ""
+msgstr "Camp d'entrenament"
 
 #: simulation/templates/template_structure_military_range.xml:23
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
-msgstr "Entrena infanteria de milícia a distància. Investiga millores d'entrenament."
+msgstr "Recluta soldats ciutadans d'infanteria a distància. Investiga millores del reclutament."
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Range"
-msgstr "Abast"
+msgstr "Camp d'entrenament"
 
 #: simulation/templates/template_structure_military_stable.xml:25
 msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr "Entrena cavalleria de milícia. Investiga millores d'entrenament."
+msgstr "Entrena soldats ciutadans de cavalleria. Investiga millores del reclutament."
 
 #: simulation/templates/template_structure_military_stable.xml:26
 #: simulation/templates/template_structure_military_stable.xml:22
@@ -422,7 +422,7 @@ msgstr "Hort"
 #: simulation/templates/template_structure_resource_field.xml:28
 msgid ""
 "Harvest grain for food. Each subsequent gatherer works less efficiently."
-msgstr "Recolliu gra per menjar. Cada recol·lector posterior funciona menys eficientment."
+msgstr "Cultiva gra per menjar. Cada recol·lector addicional treballarà amb menys eficiència."
 
 #: simulation/templates/template_structure_special.xml:42
 msgid "Special Building"
@@ -513,7 +513,7 @@ msgid ""
 "Reinforce with stone block, and install small stone throwers to upgrade this"
 " defense tower into a slow, area of effect, and siege resistant artillery "
 "tower."
-msgstr ""
+msgstr "Reforça la torre amb blocs de pedra i hi instal·la petites catapultes per millorar aquesta torre defensiva en una torre d'artilleria lenta, amb efecte d'àrea i resistent al setge."
 
 #: simulation/templates/structures/athen_defense_tower.xml:34
 #: simulation/templates/structures/cart_defense_tower.xml:35
@@ -523,7 +523,7 @@ msgstr ""
 msgid ""
 "Reinforce with stone block, and install scorpions to upgrade this defense "
 "tower into a prompt, long range, and accurate bolt tower."
-msgstr ""
+msgstr "Reforça la torre amb blocs de pedra i hi instal·la escorpins per millorar la torre en una torre de ballesta ràpida, precisa i de llarg abast."
 
 #: simulation/templates/structures/athen_dock.xml:12
 #: simulation/templates/structures/mace_dock.xml:12
@@ -605,7 +605,7 @@ msgstr "Sala del Consell"
 
 #: simulation/templates/structures/athen_prytaneion.xml:26
 msgid "Prytaneion"
-msgstr "Pritaneu"
+msgstr "Prytaneion"
 
 #: simulation/templates/structures/athen_prytaneion.xml:27
 msgid "Train Heroes and research technologies."
@@ -901,7 +901,7 @@ msgstr "Namel"
 msgid ""
 "Construct fishing boats to gather meat and merchant ships to trade with "
 "other docks."
-msgstr "Construïu barques de pesca per recollir menjar i vaixells mercants per comerciar amb altres ports."
+msgstr "Construeix barques de pesca per obtenir menjar i vaixells mercants per comerciar amb altres ports."
 
 #: simulation/templates/structures/cart_embassy.xml:20
 msgid "Hire mercenaries."
@@ -987,7 +987,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train Healers and Champions and research healing technologies. Garrison "
 "units to heal them at a quick rate."
-msgstr "Recluta sanadors i campions i investiga tecnologies de curació. Permet refugiar-hi unitats per curar-les ràpidament."
+msgstr "Recluta guaridors i campions i investiga tecnologies de curació. Permet refugiar-hi unitats per curar-les ràpidament."
 
 #: simulation/templates/structures/cart_tophet.xml:22
 msgid "Sacrificial Temple"
@@ -1001,7 +1001,7 @@ msgstr "Tophet"
 msgid ""
 "Train Healers and Champion Cavalry and research healing technologies. "
 "Garrison units to heal them at a quick rate."
-msgstr "Recluta sanadors i cavalleria campiona i investiga tecnologies de curació. Permet refugiar-hi unitats per curar-les ràpidament."
+msgstr "Recluta guaridors i cavalleria campiona i investiga tecnologies de curació. Permet refugiar-hi unitats per curar-les ràpidament."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -1118,7 +1118,7 @@ msgstr "Gur Oroigarri"
 msgid ""
 "All units within vision of this monument will fight harder. Buildings in the"
 " territory of the monument do not decay."
-msgstr "Totes les unitats dins del camp de visió del monument lluiten millor. Els edificis dins del territori del monument no es deterioren."
+msgstr "Totes les unitats dins del camp de visió del monument lluiten millor. Els edificis dins del territori del monument no perden salut."
 
 #: simulation/templates/structures/iber_storehouse.xml:5
 msgid "Ola"
@@ -1154,11 +1154,11 @@ msgstr "hmw h’y n r3-‘"
 #: simulation/templates/structures/kush_blemmye_camp.xml:21
 #: simulation/templates/structures/kush_blemmye_camp.xml:22
 msgid "Blemmye Camp"
-msgstr "Campament blèmia"
+msgstr "Campament blemi"
 
 #: simulation/templates/structures/kush_blemmye_camp.xml:23
 msgid "Train Blemmye Desert Raiders."
-msgstr "Recluta assaltants del desert blèmies"
+msgstr "Recluta saquejador del desert blemis"
 
 #: simulation/templates/structures/kush_civil_centre.xml:9
 msgid "Pr-nsw"
@@ -1203,11 +1203,11 @@ msgstr "Pr-sbt"
 #: simulation/templates/structures/kush_nuba_village.xml:21
 #: simulation/templates/structures/kush_nuba_village.xml:22
 msgid "Nuba Village"
-msgstr "Vila Nuba"
+msgstr "Poblat nuba"
 
 #: simulation/templates/structures/kush_nuba_village.xml:23
 msgid "Train the Nuba Clubman and Nuba Hunter."
-msgstr "Entrena al clubman Nuba i al caçador Nuba"
+msgstr "Recluta soldats amb garrot nuba i caçadors nuba."
 
 #: simulation/templates/structures/kush_outpost.xml:5
 msgid "trtr"
@@ -1215,7 +1215,7 @@ msgstr "trtr"
 
 #: simulation/templates/structures/kush_pyramid.xml:26
 msgid "Kushite Pyramid"
-msgstr "Piràmide Cuixita"
+msgstr "Piràmide cuixita"
 
 #: simulation/templates/structures/kush_pyramid.xml:27
 #: simulation/templates/structures/kush_pyramid_large.xml:30
@@ -1351,7 +1351,7 @@ msgid ""
 "Reinforce with stone block, and add a second rampart for up to 16 archers to"
 " stand upon. Infantry Archer exclusive tower. Devastating against melee "
 "troops, weak to siege and massed ranged units"
-msgstr ""
+msgstr "Reforça la torre amb blocs de pedra i hi instal·la més merlets per allotjar fins a 16 arquers. Torre exclusiva per a arquers d'infanteria. Devastadora contra tropes cos a cos, dèbil contra maquinària de setge i tropes a distància."
 
 #: simulation/templates/structures/maur_dock.xml:9
 msgid "Naukasthanaka"
@@ -1409,7 +1409,7 @@ msgstr "Śāsana Stambha Aśokā"
 msgid ""
 "The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
 "in the territory of the monument do not decay."
-msgstr "El famós pilar d'Aixoka. Augmenta la velocitat dels mercaders. Els edificis dins del territori del monument no es deterioren."
+msgstr "El famós pilar d'Aixoka. Augmenta la velocitat dels mercaders. Els edificis dins del territori del monument no perden salut."
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"
@@ -1718,7 +1718,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr "Aquest és l'edifici d'expansió ptolemaic, similar als centres cívics d'altres faccions. És més feble i porta una influència de territori menor, però és més barat i més ràpid de construir. Recluta soldats colons de diverses nacionalitats."
+msgstr "Aquest és l'edifici ptolemaic d'expansió de territori, similar als centres cívics d'altres faccions. És menys resistent i porta una influència de territori menor, però és més barat i més ràpid de construir. Recluta soldats colons de diverses nacionalitats."
 
 #: simulation/templates/structures/ptol_tower_artillery.xml:9
 msgid "mktr-n-ḏw"
@@ -1742,7 +1742,7 @@ msgstr "Arcus Triumphālis"
 
 #: simulation/templates/structures/rome_army_camp.xml:47
 msgid "ArmyCamp"
-msgstr "Campament militar"
+msgstr "CampamentMilitar"
 
 #: simulation/templates/structures/rome_army_camp.xml:80
 msgid "Army Camp"
@@ -1916,14 +1916,14 @@ msgstr "Ballistārium"
 msgid ""
 "Reinforce with stone block, and install small torsion engines to upgrade "
 "this defense tower into an artillery tower."
-msgstr ""
+msgstr "Reforça la torre amb blocs de pedra i hi instal·la petites màquines de guerra de torsió per millorar la torre en una torre d'artilleria."
 
 #: simulation/templates/structures/sele_military_colony.xml:10
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr "Aquest és l'edifici d'expansió de l'Imperi Selèucida, similar als centres cívics d'altres faccions. És més feble i porta una influència territori menor, però és més barat i més ràpid de construir. Formeu els colons-soldats de diverses nacionalitats."
+msgstr "Aquest és l'edifici selèucida d'expansió de territori, similar als centres cívics d'altres faccions. És menys resistent i porta una influència territori menor, però és més barat i més ràpid de construir. Recluta soldats colons de diverses nacionalitats."
 
 #: simulation/templates/structures/sele_wonder.xml:9
 msgid "Hieron tou Apollōnos Pythiou"
@@ -1933,7 +1933,7 @@ msgstr "Hieron tou Apollōnos Pythiou"
 msgid ""
 "Reinforce with stone block, and install small oxybeles to upgrade this "
 "defense tower into a prompt, long range, and accurate bolt tower."
-msgstr ""
+msgstr "Reforça la torre amb blocs de pedra i hi instal·la petits oxibeles per millorar la torre en una torre de ballesta ràpida, precisa i de llarg abast."
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Spartan Senate"
