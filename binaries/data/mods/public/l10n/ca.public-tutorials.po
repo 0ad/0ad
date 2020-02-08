@@ -4,7 +4,6 @@
 # 
 # Translators:
 # Francesc Saló <whitrix@hotmail.es>, 2017
-# Haommin <tfs.msimangu@gmail.com>, 2017
 # Albert F., 2017
 # Arnau Barrabeig <arnaubrossa@hotmail.com>, 2017
 # Marc Miró <mmirosanchez@gmail.com>, 2017
@@ -12,13 +11,14 @@
 # juan Aragó <juan_arago@yahoo.es>, 2018
 # Albert F. <alb.fontquerni@gmail.com>, 2019
 # Marc Masip Compte <marcmc421@gmail.com>, 2019
+# Haommin <tfs.msimangu@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2019-03-22 09:45+0100\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: Marc Masip Compte <marcmc421@gmail.com>, 2019\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>, 2020\n"
 "Language-Team: Catalan (https://www.transifex.com/wildfire-games/teams/17418/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +28,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:3
 msgid "Welcome to the 0 A.D. tutorial."
-msgstr "Benvinguts al tutorial de 0 A.D."
+msgstr "Benvinguts al tutorial del 0 A.D."
 
 #: maps/tutorials/Introductory_Tutorial.js:6
 msgid ""
@@ -167,9 +167,10 @@ msgid ""
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
 msgstr ""
-"Feu que els soldats avançats desocupats construeixin un post avançat a la "
-"frontera del vostre territori.  Aquesta serà la cinquena estructura de la "
-"Fase Poble que construireu, per tant, ja podreu passar a la Fase Ciutat."
+"Ordeneu als soldats d'infanteria lleugera inactius que construeixin un "
+"destacament a l'extrem nord-est del vostre territori. Serà la cinquena "
+"estructura de la Fase de Poblat que necessiteu per avançar a la Fase de "
+"Vila."
 
 #: maps/tutorials/Introductory_Tutorial.js:193
 msgid ""
@@ -177,9 +178,9 @@ msgid ""
 "II icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
-"Selecciona el centre cívic altra volta i avança a la Fase Ciutat prement la "
-"icona \"ll\" (has d'esperar que el post avançat siga construït primer). Açò "
-"et permetrà construïr edificis de la Fase Ciutat"
+"Un cop s'hagi acabat de construir el destacament, seleccioneu el centre "
+"cívic altre cop i avanceu a la Fase de Vila prement la icona \"ll\". Això us"
+" permetrà construir edificis de la Fase de Vila."
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
@@ -247,24 +248,23 @@ msgid ""
 "Once you meet the City Phase requirements, select your Civic Center and "
 "advance to City Phase."
 msgstr ""
-"Una volta complisques els requisits per a la Fase Ciutat, selecciona el teu "
-"Centre Cívic i avança a la Fase Ciutat."
+"Quan tingueu els requisits, seleccioneu el centre cívic i avanceu a Fase de "
+"Ciutat."
 
 #: maps/tutorials/Introductory_Tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "Barracks."
 msgstr ""
-"Mentre esperes al canvi de fase, pots entrenar més soldats a la caserna."
+"Mentre espereu el canvi de fase, podeu reclutar més soldats a la caserna."
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
 "Now that you are in City Phase, build a fortress nearby (gather some stone "
 "first if needed) and then use it to construct 2 Battering Rams."
 msgstr ""
-"Ara que estàs a la Fase Ciutat, construïx una fortalesa a prop (arreplega un"
-" poc de pedra primer si en necessites) i aleshores empra-la per a construir "
-"2 ariets"
+"Ara que sou a la Fase de Ciutat, construïu una fortalesa (recolliu més pedra"
+" si cal) i recluteu-hi 2 ariets."
 
 #: maps/tutorials/Introductory_Tutorial.js:359
 msgid ""
@@ -293,9 +293,9 @@ msgid ""
 "evolving to Town Phase and City Phase afterward.\n"
 msgstr ""
 "Aquest tutorial us ensenyarà com desenvolupar la vostra economia. "
-"Normalment, començareu amb un Centre Cívic i un parell d'unitats a la Fase "
-"Poble i, bàsicament, el vostre objectiu serà desenvolupar i expandir "
-"l'imperi, normalment passant de la Fase Poble a la Fase Ciutat.\n"
+"Normalment, començareu amb un centre cívic i un parell d'unitats a la Fase "
+"de Poblat i el vostre objectiu serà desenvolupar i expandir l'imperi, "
+"normalment avançant a les fases de Vila i Ciutat.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -364,12 +364,11 @@ msgid ""
 "that advancing to Town Phase requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
-"La fila superior de botons conté retrats de les unitats que es poden formar "
-"als edificis mentre que les inferiors tindran les tecnologies "
-"desenvolupables. Passeu el ratolí per sobre de la icona 'II'. La informació "
-"de les eines us advertirà que per a progressar cap a la \"Fase Ciutat\" "
-"necessitareu per una banda més estructures construïdes i per l'altra, menjar"
-" i fusta."
+"La fila superior de botons conté les icones de les unitats que es poden "
+"reclutar a l'edifici, i les files inferiors tenen les tecnologies que es "
+"poden investigar. Passeu el ratolí per sobre de la icona \"II\". Veureu que "
+"per avançar a la Fase de Vila cal construir més estructures i obtenir més "
+"menjar i fusta."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -893,10 +892,9 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the Town Phase icon to see what is still needed.\n"
 msgstr ""
-"Ens hauríem de començar a preparar per a pujar a la Fase Ciutat, la qual "
-"desblocarà moltes més unitats i edificis. Seleccioneu el Centre Cívic i "
-"passeu el ratolí per sobre de la icona de la Fase Ciutat per a veure què us "
-"falta encara.\n"
+"Cal que us prepareu per avançar a la Fase de Vila, que desbloqueja moltes "
+"més unitats i edificis. Seleccioneu el centre cívic i passeu el ratolí per "
+"sobre de la icona de la Fase de Vila per veure què us falta encara.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -940,8 +938,8 @@ msgid ""
 "You should now be able to research Town Phase. Select the Civic Center and "
 "click on the technology icon.\n"
 msgstr ""
-"Ara, ja hauríeu de poder entrar a la Fase Ciutat. Seleccioneu el Centre "
-"Cívic i cliqueu la icona de la tecnologia.\n"
+"Ara ja hauríeu de poder avançar a la Fase de Vila. Seleccioneu el centre "
+"cívic i feu clic a la icona de la tecnologia.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:395
 msgid ""

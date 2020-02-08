@@ -10,6 +10,7 @@
 # Catalanoic <catalanoic@gmail.com>, 2016
 # Cesc Miralles <xesc87@gmail.com>, 2017
 # Eduard Zorita <inactive+ezorita@transifex.com>, 2017
+# Esteve Blanch <esteve.blanch@live.com>, 2020
 # Haommin <tfs.msimangu@gmail.com>, 2016
 # Jorge Romero <jorge13romero@gmail.com>, 2018
 # José Verdú Díaz <pepv@hotmail.es>, 2017
@@ -27,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:09+0000\n"
-"PO-Revision-Date: 2020-02-02 23:59+0000\n"
+"PO-Revision-Date: 2020-02-05 21:50+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -107,7 +108,7 @@ msgstr "Lleialtat"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
-msgstr ""
+msgstr "Les estructures regeneren els punts de captura un 50% més ràpid quan hi ha unitats refugiades."
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
@@ -147,7 +148,7 @@ msgstr "Protecció de la muralla"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid "Garrisoned Soldiers +3 armor and +20 vision range."
-msgstr ""
+msgstr "Els soldats refugiats augmenten en +3 la defensa i en +20 el rang de visió."
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraName
 msgid "Symbol of Greatness"
@@ -172,7 +173,7 @@ msgstr "Reparacions del taller"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "Augmenta en +3 la velocitat de regeneració de salut de les màquines de setge refugiats."
+msgstr "Augmenta en +3 la velocitat de regeneració de salut de les màquines de setge refugiades."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -188,7 +189,7 @@ msgstr "Druides"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allied Healers −20% resource costs."
-msgstr "Els sanadors aliats costen un -20% menys."
+msgstr "Els guaridors aliats costen un -20% menys."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -212,7 +213,7 @@ msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Javelinists −10% resource costs."
-msgstr ""
+msgstr "Els soldats amb javelina aliats costen un 20% menys recursos."
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -512,7 +513,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "Champion Infantry Spearmen −5% resource costs."
-msgstr ""
+msgstr "Els llancers campions costen un 5% menys."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraName
 msgid "Iron Pelanors"
@@ -530,7 +531,7 @@ msgstr "Reformes de formació"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid "Soldiers in his formation +3 armor, +15% movement speed."
-msgstr ""
+msgstr "Els soldats en la seva formació +3 d'armadura, +15% de velocitat."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
@@ -538,7 +539,7 @@ msgstr "Reformes dels peltastes"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraDescription
 msgid "Infantry Javelinists +15% movement speed."
-msgstr ""
+msgstr "Incrementa un +15% la velocitat de moviment dels soldats amb javelines."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
@@ -546,7 +547,7 @@ msgstr "Programa de construcció de Pèricles"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "Workers +15% build rate."
-msgstr ""
+msgstr "Els treballadors construeixen un +15%."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Temple of Athena Nike"
@@ -554,7 +555,7 @@ msgstr "Temple de Nike Àptera"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Temples −25% stone cost, +2 garrisoned heal rate."
-msgstr ""
+msgstr "Els temples costen un 25 % menys de pedra. Augmenta en 2 la velocitat de curació de les unitats refugiades."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
@@ -599,7 +600,7 @@ msgstr "Britannorum Rex"
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraDescription
 msgid "Humans +0.8 health regeneration rate."
-msgstr ""
+msgstr "La velocitat de regeneració de la salut dels humans augmenta en +0.8."
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
 msgid "Lightning General"
@@ -681,7 +682,7 @@ msgstr "Fervor de la batalla"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
 msgid "Soldiers +1 armor."
-msgstr ""
+msgstr "Els soldats guanyen +1 en armadura."
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
 msgid "Mobilization"
@@ -693,7 +694,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraDescription
 msgid "Soldiers +20% movement speed."
-msgstr ""
+msgstr "Els soldats guanyen +20% en velocitat de desplaçament."
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraName
 msgid "Swag"

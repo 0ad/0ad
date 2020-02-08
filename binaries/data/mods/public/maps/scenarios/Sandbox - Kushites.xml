@@ -12755,11 +12755,11 @@
 			<Actor seed="32542"/>
 		</Entity>
 		<Entity uid="2456">
-			<Template>units/kush_champion_cavalry</Template>
+			<Template>units/kush_siege_tower</Template>
 			<Player>1</Player>
-			<Position x="367.31974" z="405.05805"/>
-			<Orientation y="-2.31106"/>
-			<Actor seed="29290"/>
+			<Position x="406.90735" z="403.27741"/>
+			<Orientation y="2.41691"/>
+			<Actor seed="34130"/>
 		</Entity>
 		<Entity uid="2457">
 			<Template>units/kush_champion_cavalry</Template>
@@ -12832,18 +12832,18 @@
 			<Actor seed="14664"/>
 		</Entity>
 		<Entity uid="2467">
-			<Template>units/kush_siege_tower</Template>
-			<Player>1</Player>
-			<Position x="406.90735" z="403.27741"/>
-			<Orientation y="2.41691"/>
-			<Actor seed="34130"/>
-		</Entity>
-		<Entity uid="2468">
 			<Template>units/kush_hero_arakamani</Template>
 			<Player>1</Player>
 			<Position x="364.98179" z="393.61"/>
 			<Orientation y="3.57139"/>
 			<Actor seed="45524"/>
+		</Entity>
+		<Entity uid="2468">
+			<Template>units/kush_hero_harsiotef</Template>
+			<Player>1</Player>
+			<Position x="367.31974" z="405.05805"/>
+			<Orientation y="-2.31106"/>
+			<Actor seed="29290"/>
 		</Entity>
 		<Entity uid="2469">
 			<Template>units/kush_hero_nastasen</Template>

@@ -19,7 +19,7 @@
 # mahmut özcan <faradundamarti@yandex.com>, 2013
 # Ferhat Olçum <ferhatolcum@gmail.com>, 2018
 # Furkan Çevik <furkan_ts1967@hotmail.com>, 2013
-# Togarma, 2019
+# Günay Yılmaz, 2019
 # Kemal Oktay Aktoğan <oktayaktogan@gmail.com>, 2017
 # Kudret <kudretemre@hotmail.com.tr>, 2014
 # mehmet akar <mehmettakar.35@gmail.com>, 2013
@@ -33,7 +33,7 @@
 # Serkan <fkserkank@gmail.com>, 2013
 # Sinan Özgün <ozgunsinan@gmail.com>, 2014
 # Taha Karadoğan <tahakaradogan@gmail.com>, 2016
-# Togarma, 2020
+# Günay Yılmaz, 2020
 # Tayfun Toprakcıoğlu, 2017
 # ubuntuki <aleverzurumlu@gmail.com>, 2014
 # Umut Yasar <ucyucyy@gmail.com>, 2017
@@ -49,9 +49,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-24 08:08+0000\n"
-"PO-Revision-Date: 2020-01-25 04:18+0000\n"
-"Last-Translator: Togarma\n"
+"POT-Creation-Date: 2020-02-03 08:10+0000\n"
+"PO-Revision-Date: 2020-02-04 08:08+0000\n"
+"Last-Translator: Günay Yılmaz\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -153,12 +153,12 @@ msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "Harita"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:25
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:26
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "Oyuncu"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:35
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:36
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "Oyun Türü"
@@ -321,20 +321,20 @@ msgstr "Rastgele"
 msgid "Pick a biome at random."
 msgstr "Rastgele bir biyom seç."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:96
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:101
 msgid "Daytime"
 msgstr "Gündüz"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:99
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
 msgstr "Eşleşmenin gündüz veya gece olmasını seçiniz."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:102
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
 msgid "Random"
 msgstr "Rastgele"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:105
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
 msgstr "Günün rastgele bir saatini seçiniz."
@@ -347,40 +347,40 @@ msgstr "Oyun Hızı"
 msgid "Select game speed."
 msgstr "Oyun hızını seçin."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:124
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:142
 msgid "Landscape"
 msgstr "Manzara"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:127
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:145
 msgid "Select one of the landscapes of this map."
 msgstr "Bu haritadaki manzaralardan birini seçiniz."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:133
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:151
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
 msgstr "Rastgele Yer veya Deniz"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:134
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
 msgctxt "landscape selection"
 msgid "Select a random land or naval map generation."
 msgstr "Rastgele bir yer veya deniz harita üretimine tıklayınız."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:138
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:156
 msgctxt "landscape selection"
 msgid "Random Land"
 msgstr "Rastgele Yer"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:139
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
 msgid "Select a random land map generation."
 msgstr "Rastgele bir yer haritası üretimine tıklayınız."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:143
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:161
 msgctxt "landscape selection"
 msgid "Random Naval"
 msgstr "Rastgele Deniz"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:144
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:162
 msgctxt "landscape selection"
 msgid "Select a random naval map generation."
 msgstr "Rastgele bir deniz haritası üretimine tıklayınız."
@@ -471,6 +471,62 @@ msgstr "Her bir kaynağın baştaki miktari: %(resources)s"
 msgctxt "starting resources"
 msgid "Per Player"
 msgstr "Oyuncu Başına"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
+msgid "Team Placement"
+msgstr "Takım Yerleşimi"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:94
+msgid "Select one of the starting position patterns of this map."
+msgstr "Bu haritanın başlangıç ​​konumu düzenlerinden birini seçin."
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
+msgctxt "team placement"
+msgid "Random"
+msgstr "Rastgele"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
+msgctxt "team placement"
+msgid "Select a random team placement pattern when starting the game."
+msgstr "Oyuna başlarken rastgele bir takım yerleştirme modeli seçin."
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
+msgctxt "team placement"
+msgid "Circle"
+msgstr "Çember"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:106
+msgid ""
+"Allied players are grouped and placed with opposing players on one circle "
+"spanning the map."
+msgstr "Müttefik oyuncular gruplandırılır ve haritayı kapsayan bir çembere karşı oyuncularla yerleştirilir."
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
+msgctxt "team placement"
+msgid "Line"
+msgstr "Hat"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
+msgid "Allied players are placed in a linear pattern."
+msgstr "Müttefik oyuncular doğrusal bir düzende yerleştirilir."
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:115
+msgctxt "team placement"
+msgid "Random Group"
+msgstr "Rastgele Grup"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:116
+msgid "Allied players are grouped, but otherwise placed randomly on the map."
+msgstr "Müttefik oyuncular gruplandırılır, ancak aksi takdirde rastgele haritaya yerleştirilir."
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:120
+msgctxt "team placement"
+msgid "Stronghold"
+msgstr "Kale"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:121
+msgid "Allied players are grouped in one random place of the map."
+msgstr "Müttefik oyuncular haritanın rastgele bir yerinde gruplanır."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
@@ -812,15 +868,15 @@ msgstr "Hazırlanıyor \"%(map)s\""
 msgid "Loading “%(map)s”"
 msgstr "Yükleniyor \"%(map)s\""
 
-#: gui/gamesetup/gamesetup.xml:(caption):27
+#: gui/gamesetup/gamesetup.xml:(caption):12
 msgid "Match Setup"
 msgstr "Karşılaşma ayarla"
 
-#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):10
+#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
 msgstr "Yapay Zeka Ayarları"
 
-#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):26
+#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
 msgid "OK"
 msgstr "Tamam"
 
@@ -852,11 +908,11 @@ msgstr "Bu iletiyi gelecekte göster."
 msgid "Send"
 msgstr "Gönder"
 
-#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):5
+#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
 msgid "Loading"
 msgstr "Yükleniyor"
 
-#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):9
+#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):11
 msgid "Loading map data. Please wait…"
 msgstr "Harita verisi yükleniyor. Lütfen bekleyin..."
 
