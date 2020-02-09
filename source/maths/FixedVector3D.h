@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -82,12 +82,9 @@ public:
 	fixed Length() const
 	{
 		// Do intermediate calculations with 64-bit ints to avoid overflows
-		i32 x = X.GetInternalValue();
-		i32 y = Y.GetInternalValue();
-		i32 z = Z.GetInternalValue();
-		u64 xx = (u64)FIXED_MUL_I64_I32_I32(x, x);
-		u64 yy = (u64)FIXED_MUL_I64_I32_I32(y, y);
-		u64 zz = (u64)FIXED_MUL_I64_I32_I32(z, z);
+		u64 xx = SQUARE_U64_FIXED(X);
+		u64 yy = SQUARE_U64_FIXED(Y);
+		u64 zz = SQUARE_U64_FIXED(Z);
 		u64 t = xx + yy;
 		CheckUnsignedAdditionOverflow(t, xx, L"Overflow in CFixedVector3D::Length() part 1")
 
@@ -137,20 +134,20 @@ public:
 	 */
 	CFixedVector3D Cross(const CFixedVector3D& v)
 	{
-		i64 y_vz = FIXED_MUL_I64_I32_I32(Y.GetInternalValue(), v.Z.GetInternalValue());
-		i64 z_vy = FIXED_MUL_I64_I32_I32(Z.GetInternalValue(), v.Y.GetInternalValue());
+		i64 y_vz = MUL_I64_I32_I32(Y.GetInternalValue(), v.Z.GetInternalValue());
+		i64 z_vy = MUL_I64_I32_I32(Z.GetInternalValue(), v.Y.GetInternalValue());
 		CheckSignedSubtractionOverflow(i64, y_vz, z_vy, L"Overflow in CFixedVector3D::Cross() part 1", L"Underflow in CFixedVector3D::Cross() part 1")
 		i64 x = y_vz - z_vy;
 		x >>= fixed::fract_bits;
 
-		i64 z_vx = FIXED_MUL_I64_I32_I32(Z.GetInternalValue(), v.X.GetInternalValue());
-		i64 x_vz = FIXED_MUL_I64_I32_I32(X.GetInternalValue(), v.Z.GetInternalValue());
+		i64 z_vx = MUL_I64_I32_I32(Z.GetInternalValue(), v.X.GetInternalValue());
+		i64 x_vz = MUL_I64_I32_I32(X.GetInternalValue(), v.Z.GetInternalValue());
 		CheckSignedSubtractionOverflow(i64, z_vx, x_vz, L"Overflow in CFixedVector3D::Cross() part 2", L"Underflow in CFixedVector3D::Cross() part 2")
 		i64 y = z_vx - x_vz;
 		y >>= fixed::fract_bits;
 
-		i64 x_vy = FIXED_MUL_I64_I32_I32(X.GetInternalValue(), v.Y.GetInternalValue());
-		i64 y_vx = FIXED_MUL_I64_I32_I32(Y.GetInternalValue(), v.X.GetInternalValue());
+		i64 x_vy = MUL_I64_I32_I32(X.GetInternalValue(), v.Y.GetInternalValue());
+		i64 y_vx = MUL_I64_I32_I32(Y.GetInternalValue(), v.X.GetInternalValue());
 		CheckSignedSubtractionOverflow(i64, x_vy, y_vx, L"Overflow in CFixedVector3D::Cross() part 3", L"Underflow in CFixedVector3D::Cross() part 3")
 		i64 z = x_vy - y_vx;
 		z >>= fixed::fract_bits;
@@ -170,9 +167,9 @@ public:
 	 */
 	fixed Dot(const CFixedVector3D& v)
 	{
-		i64 x = FIXED_MUL_I64_I32_I32(X.GetInternalValue(), v.X.GetInternalValue());
-		i64 y = FIXED_MUL_I64_I32_I32(Y.GetInternalValue(), v.Y.GetInternalValue());
-		i64 z = FIXED_MUL_I64_I32_I32(Z.GetInternalValue(), v.Z.GetInternalValue());
+		i64 x = MUL_I64_I32_I32(X.GetInternalValue(), v.X.GetInternalValue());
+		i64 y = MUL_I64_I32_I32(Y.GetInternalValue(), v.Y.GetInternalValue());
+		i64 z = MUL_I64_I32_I32(Z.GetInternalValue(), v.Z.GetInternalValue());
 		CheckSignedAdditionOverflow(i64, x, y, L"Overflow in CFixedVector3D::Dot() part 1", L"Underflow in CFixedVector3D::Dot() part 1")
 		i64 t = x + y;
 

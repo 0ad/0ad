@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -64,6 +64,26 @@ public:
 		large.SetInternalValue((i32)((double)0x7fffffff/sqrt(2.0))); // largest value that shouldn't cause overflow
 		CFixedVector2D v3 (large, large);
 		TS_ASSERT_DELTA(v3.Length().ToDouble(), sqrt(2.0)*large.ToDouble(), 0.01);
+	}
+
+	void test_CompareLength()
+	{
+		CFixedVector2D v1(fixed::FromInt(3), fixed::FromInt(4));
+		TS_ASSERT_EQUALS(v1.CompareLength(fixed::FromInt(4)), 1);
+		TS_ASSERT_EQUALS(v1.CompareLength(fixed::FromInt(5)), 0);
+		TS_ASSERT_EQUALS(v1.CompareLength(fixed::FromInt(6)), -1);
+
+		CFixedVector2D v2(fixed::FromInt(2), fixed::FromInt(3));
+		CFixedVector2D v3(fixed::FromInt(4), fixed::FromInt(5));
+		TS_ASSERT_EQUALS(v1.CompareLength(v2), 1);
+		TS_ASSERT_EQUALS(v1.CompareLength(v1), 0);
+		TS_ASSERT_EQUALS(v1.CompareLength(v3), -1);
+
+		TS_ASSERT_EQUALS(v1.CompareLengthSquared(SQUARE_U64_FIXED(fixed::FromDouble(4.00))), 1);
+		TS_ASSERT_EQUALS(v1.CompareLengthSquared(SQUARE_U64_FIXED(fixed::FromDouble(4.99))), 1);
+		TS_ASSERT_EQUALS(v1.CompareLengthSquared(SQUARE_U64_FIXED(fixed::FromDouble(5.00))), 0);
+		TS_ASSERT_EQUALS(v1.CompareLengthSquared(SQUARE_U64_FIXED(fixed::FromDouble(5.01))), -1);
+		TS_ASSERT_EQUALS(v1.CompareLengthSquared(SQUARE_U64_FIXED(fixed::FromDouble(6.00))), -1);
 	}
 
 	void test_Normalize()

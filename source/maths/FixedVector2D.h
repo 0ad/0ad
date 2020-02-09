@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -101,10 +101,8 @@ public:
 	fixed Length() const
 	{
 		// Do intermediate calculations with 64-bit ints to avoid overflows
-		i32 x = X.GetInternalValue();
-		i32 y = Y.GetInternalValue();
-		u64 xx = (u64)FIXED_MUL_I64_I32_I32(x, x);
-		u64 yy = (u64)FIXED_MUL_I64_I32_I32(y, y);
+		u64 xx = SQUARE_U64_FIXED(X);
+		u64 yy = SQUARE_U64_FIXED(Y);
 		u64 d2 = xx + yy;
 		CheckUnsignedAdditionOverflow(d2, xx, L"Overflow in CFixedVector2D::Length() part 1")
 
@@ -112,7 +110,7 @@ public:
 
 		CheckU32CastOverflow(d, i32, L"Overflow in CFixedVector2D::Length() part 2")
 		fixed r;
-		r.SetInternalValue((i32)d);
+		r.SetInternalValue(static_cast<i32>(d));
 		return r;
 	}
 
@@ -123,20 +121,33 @@ public:
 	 */
 	int CompareLength(fixed cmp) const
 	{
-		i32 x = X.GetInternalValue(); // abs(x) <= 2^31
-		i32 y = Y.GetInternalValue();
-		u64 xx = (u64)FIXED_MUL_I64_I32_I32(x, x); // xx <= 2^62
-		u64 yy = (u64)FIXED_MUL_I64_I32_I32(y, y);
-		u64 d2 = xx + yy; // d2 <= 2^63 (no overflow)
+		u64 d2 = SQUARE_U64_FIXED(X) + SQUARE_U64_FIXED(Y); // d2 <= 2^63 (no overflow)
+		u64 cmpSquared = SQUARE_U64_FIXED(cmp);
 
-		i32 c = cmp.GetInternalValue();
-		u64 c2 = (u64)FIXED_MUL_I64_I32_I32(c, c);
-		if (d2 < c2)
+		if (d2 < cmpSquared)
 			return -1;
-		else if (d2 > c2)
+
+		if (d2 > cmpSquared)
 			return +1;
-		else
-			return 0;
+
+		return 0;
+	}
+
+	/**
+	 * Same as above, but avoids squaring the compared value.
+	 * The argument must be the result of an SQUARE_U64_FIXED operation.
+	 */
+	int CompareLengthSquared(u64 cmpSquared) const
+	{
+		u64 d2 = SQUARE_U64_FIXED(X) + SQUARE_U64_FIXED(Y); // d2 <= 2^63 (no overflow)
+
+		if (d2 < cmpSquared)
+			return -1;
+
+		if (d2 > cmpSquared)
+			return +1;
+
+		return 0;
 	}
 
 	/**
@@ -146,25 +157,21 @@ public:
 	 */
 	int CompareLength(const CFixedVector2D& other) const
 	{
-		i32 x = X.GetInternalValue();
-		i32 y = Y.GetInternalValue();
-		u64 d2 = (u64)FIXED_MUL_I64_I32_I32(x, x) + (u64)FIXED_MUL_I64_I32_I32(y, y);
-
-		i32 ox = other.X.GetInternalValue();
-		i32 oy = other.Y.GetInternalValue();
-		u64 od2 = (u64)FIXED_MUL_I64_I32_I32(ox, ox) + (u64)FIXED_MUL_I64_I32_I32(oy, oy);
+		u64 d2 = SQUARE_U64_FIXED(X) + SQUARE_U64_FIXED(Y);
+		u64 od2 = SQUARE_U64_FIXED(other.X) + SQUARE_U64_FIXED(other.Y);
 
 		if (d2 < od2)
 			return -1;
-		else if (d2 > od2)
+
+		if (d2 > od2)
 			return +1;
-		else
-			return 0;
+
+		return 0;
 	}
 
 	bool IsZero() const
 	{
-		return (X.IsZero() && Y.IsZero());
+		return X.IsZero() && Y.IsZero();
 	}
 
 	/**
@@ -200,15 +207,15 @@ public:
 	 */
 	fixed Dot(const CFixedVector2D& v) const
 	{
-		i64 x = FIXED_MUL_I64_I32_I32(X.GetInternalValue(), v.X.GetInternalValue());
-		i64 y = FIXED_MUL_I64_I32_I32(Y.GetInternalValue(), v.Y.GetInternalValue());
+		i64 x = MUL_I64_I32_I32(X.GetInternalValue(), v.X.GetInternalValue());
+		i64 y = MUL_I64_I32_I32(Y.GetInternalValue(), v.Y.GetInternalValue());
 		CheckSignedAdditionOverflow(i64, x, y, L"Overflow in CFixedVector2D::Dot() part 1", L"Underflow in CFixedVector2D::Dot() part 1")
 		i64 sum = x + y;
 		sum >>= fixed::fract_bits;
 
 		CheckCastOverflow(sum, i32, L"Overflow in CFixedVector2D::Dot() part 2", L"Underflow in CFixedVector2D::Dot() part 2")
 		fixed ret;
-		ret.SetInternalValue((i32)sum);
+		ret.SetInternalValue(static_cast<i32>(sum));
 		return ret;
 	}
 

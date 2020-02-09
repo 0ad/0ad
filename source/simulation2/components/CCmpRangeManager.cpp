@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -161,17 +161,15 @@ static inline u16 CalcVisionSharingMask(player_id_t player)
  */
 static bool InParabolicRange(CFixedVector3D v, fixed range)
 {
-	i32 x = v.X.GetInternalValue(); // abs(x) <= 2^31
-	i32 z = v.Z.GetInternalValue();
-	u64 xx = (u64)FIXED_MUL_I64_I32_I32(x, x); // xx <= 2^62
-	u64 zz = (u64)FIXED_MUL_I64_I32_I32(z, z);
+	u64 xx = SQUARE_U64_FIXED(v.X); // xx <= 2^62
+	u64 zz = SQUARE_U64_FIXED(v.Z);
 	i64 d2 = (xx + zz) >> 1; // d2 <= 2^62 (no overflow)
 
 	i32 y = v.Y.GetInternalValue();
 	i32 c = range.GetInternalValue();
 	i32 c_2 = c >> 1;
 
-	i64 c2 = FIXED_MUL_I64_I32_I32(c_2 - y, c);
+	i64 c2 = MUL_I64_I32_I32(c_2 - y, c);
 
 	if (d2 <= c2)
 		return true;
@@ -1295,7 +1293,7 @@ public:
 			return r;
 
 		// angle = 0 goes in the positive Z direction
-		entity_pos_t precision = entity_pos_t::FromInt((int)TERRAIN_TILE_SIZE)/8;
+		u64 precisionSquared = SQUARE_U64_FIXED(entity_pos_t::FromInt(static_cast<int>(TERRAIN_TILE_SIZE)) / 8);
 
 		CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
 		entity_pos_t waterLevel = cmpWaterManager ? cmpWaterManager->GetWaterLevel(pos.X, pos.Z) : entity_pos_t::Zero();
@@ -1324,7 +1322,7 @@ public:
 			}
 
 			// Loop until vectors come close enough
-			while ((maxVector - minVector).CompareLength(precision) > 0)
+			while ((maxVector - minVector).CompareLengthSquared(precisionSquared) > 0)
 			{
 				// difference still bigger than precision, bisect to get smaller difference
 				entity_pos_t newDistance = (minDistance+maxDistance)/entity_pos_t::FromInt(2);

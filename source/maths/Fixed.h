@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,9 +31,15 @@ class CStrW;
 #if MSC_VERSION
 // i32*i32 -> i64 multiply: MSVC x86 doesn't optimise i64 multiplies automatically, so use the intrinsic
 #include <intrin.h>
-#define FIXED_MUL_I64_I32_I32(a, b) (__emul((a), (b)))
+#define MUL_I64_I32_I32(a, b)\
+	(__emul((a), (b)))
+#define SQUARE_U64_FIXED(a)\
+	static_cast<u64>(__emul((a).GetInternalValue(), (a).GetInternalValue()))
 #else
-#define FIXED_MUL_I64_I32_I32(a, b) ((i64)(a) * (i64)(b))
+#define MUL_I64_I32_I32(a, b)\
+	static_cast<i64>(a) * static_cast<i64>(b)
+#define SQUARE_U64_FIXED(a)\
+	static_cast<u64>(static_cast<i64>((a).GetInternalValue()) * static_cast<i64>((a).GetInternalValue()))
 #endif
 
 //define overflow macros
@@ -310,7 +316,7 @@ public:
 	 */
 	CFixed Multiply(CFixed n) const
 	{
-		i64 t = FIXED_MUL_I64_I32_I32(value, n.value);
+		i64 t = MUL_I64_I32_I32(value, n.value);
 		t >>= fract_bits;
 
 		CheckCastOverflow(t, T, L"Overflow in CFixed::Multiply(CFixed n)", L"Underflow in CFixed::Multiply(CFixed n)")
@@ -330,7 +336,7 @@ public:
 	 */
 	CFixed MulDiv(CFixed m, CFixed d) const
 	{
-		i64 t = FIXED_MUL_I64_I32_I32(value, m.value) / (i64)d.value;
+		i64 t = MUL_I64_I32_I32(value, m.value) / static_cast<i64>(d.value);
 		CheckCastOverflow(t, T, L"Overflow in CFixed::Multiply(CFixed n)", L"Underflow in CFixed::Multiply(CFixed n)")
 		return CFixed((T)t);
 	}
