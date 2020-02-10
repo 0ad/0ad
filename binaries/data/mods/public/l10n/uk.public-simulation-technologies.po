@@ -10,12 +10,13 @@
 # Olexandr Yaremenko <ua.limitless@gmail.com>, 2016
 # SkiDo <skidoster@gmail.com>, 2015
 # Vitalii Mostipaka <imprtat@gmail.com>, 2016
+# Zeldt Herb <bkelfarat@bk.ru>, 2020
 # Микола Франчук <thekolian1996@gmail.com>, 2018-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-31 08:09+0000\n"
-"PO-Revision-Date: 2020-02-01 18:25+0000\n"
+"PO-Revision-Date: 2020-02-10 08:11+0000\n"
 "Last-Translator: Zeldt Herb <bkelfarat@bk.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -30,23 +31,23 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
-msgstr "Юніти, підвищені до вдосконаленого класу, отримують + 20% до здоров'я, +1 до обладунків для кожного типу, + 20% до награбованого, + 20% до атаки рукопашних юнітів, збільшення радіусу дії на 4м і підвищену влучність для далекобійних юнітів, збільшення швидкості пересування, а також збільшення швидкості зцілення і радіусу дії у цілителів."
+msgstr "Підрозділи, підвищені до просунутої категорії, мають більшу якість: 20% до здоров'я, 1 рівень до броні кожного типу, 20% до трофеїв, 20% до атаки для підрозділів ближнього бою, 4 м до дистанції та кращу точність для підрозділів дальнього бою, збільшені швидкості руху, та додаткову швидкість зцілення, та дистанцію для цілителів."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
 "The Indian and Iranian peoples had a tradition of fine archery and a "
 "penchant for using massed archers in battle."
-msgstr "Індуси та Іранці традиційно були хорошими лучниками та зазвичай використовували в боях велику кількість лучників."
+msgstr "Індійські та іранські народи мають чудову стрілецьку традицію і схильність до масового використання стрільців у бою."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
-msgstr "Дальність атаки юнітів, що володіють луком, збільшується на +10 метрів. Лучники стають точнішими, час їх навчання знижується на -20%, але при цьому здоров'я знижується на -20%."
+msgstr "Дистанція +10 метрів для підрозділів, що володіють луком. Стрілецькі підрозділи більш точні та потребують -20% часу тренування, але також мають -20% здоров'я."
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
-msgstr "Традиції стрільби з лука"
+msgstr "Стрілецька традиція"
 
 #: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
@@ -57,19 +58,19 @@ msgstr "Традиції стрільби з лука"
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr "Розблокована фаза села"
+msgstr "Розблоковано у фазі села."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
 msgid "Metal armor for a horse's face."
-msgstr "Металева броня для голови коня."
+msgstr "Металева броня для морди коня."
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr "Спорядіть вашу кавалерію бронею. Всій кавалерії +1 до захисту від рублячих і колючих ударів."
+msgstr "Оснастити власні кавалерійські кріплення бронею. Вся кавалерія має +1 рівень броні від рубаючої та колючої атаки."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -130,7 +131,7 @@ msgstr "Шамфрон"
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "Доступно в Фазі Містечка."
+msgstr "Розблоковано у фазі містечка."
 
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
@@ -223,23 +224,23 @@ msgstr "Металевий обладунок для тіла коня."
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "Доступно в Фазі Міста."
+msgstr "Розблоковано у фазі міста."
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
-msgstr "Спорядіть вашу кавалерію бронею. Всій кавалерії +1 до захисту від рубаючих ударів."
+msgstr "Оснастити власні кавалерійські кріплення бронею. Вся кавалерія має +1 рівень броні від рубаючої атаки."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
 "Body armor fashioned completely of iron, the hardest workable metal known to"
 " the ancients."
-msgstr "Нагрудник виготовлений повністю із заліза, найважчого металу, який був відомий і міг оброблятись стародавніми народами."
+msgstr "Обладунок, повністю виготовлений із заліза – найважкішого у обробленні металу, відомого стародавнім."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
 msgid ""
 "All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
 "Metal Cost."
-msgstr "Усі герої отримують +2 до захисту від рубаючих та +2 до захисту від колючих ударів, але також +50 до вартості у металі."
+msgstr "Всі герої мають +2 рівня броні від рубаючої атаки та мають +2 рівня броні від колючої атаки, але також потребують +50 вартості металу."
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -251,26 +252,26 @@ msgstr "Залізна броня героя"
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.mace
 msgid "Sidḗrea Panoplía"
-msgstr "Сідерея Паноплія"
+msgstr "Сідереа Панопліа"
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
 msgid "Lorica Ferrea"
-msgstr "Лорика Ферреа"
+msgstr "Лоріка Ферреа"
 
 #: simulation/data/technologies/armor_infantry_01.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
-msgstr "Стьобані або шкіряні нагрудники для піхотинців."
+msgstr "Стьобаний лляний або шкіряний обладунок для піхотинців."
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
 msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "Уся піхота отримує +1 до захисту від рубаючих та колючих ударів."
+msgstr "Всі піхотинці мають +1 рівень броні від рубаючої та колючої атаки."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_01.jsongenericName
 msgid "Quilted Body Armor"
-msgstr "Стьобаний нагрудник"
+msgstr "Стьобаний обладунок"
 
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.maur
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.spart
@@ -300,12 +301,12 @@ msgstr "Сполас"
 #: simulation/data/technologies/armor_infantry_02.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_02.jsondescription
 msgid "Laminated linen body armor for infantrymen."
-msgstr "Пластинчасті нагрудники для піхоти."
+msgstr "Пластинчастий лляний обладунок для піхотинців."
 
 #: simulation/data/technologies/armor_infantry_02.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_02.jsongenericName
 msgid "Laminated Linen Body Armor"
-msgstr "Пластинчастий нагрудник"
+msgstr "Пластинчастий лляний обладунок"
 
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.spart
@@ -324,56 +325,56 @@ msgstr "Пластинчастий нагрудник"
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.rome
 msgid "Linothorakes"
-msgstr "Ліноторакс"
+msgstr "Ліноторакес"
 
 #: simulation/data/technologies/armor_infantry_hack_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_hack_02.jsontooltip
 #: simulation/data/technologies/armor_infantry_hack_03.jsontooltip
 msgid "All Infantry +1 Hack Armor Level."
-msgstr "Уся піхота отримує +1 до захисту від рубаючих ударів."
+msgstr "Всі піхотинці мають +1 рівень броні від рубаючої атаки."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsondescription
 msgid "Body armor reinforced with bronze scales."
-msgstr "Нагрудники посилені бронзовою лускою."
+msgstr "Обладунок, зміцнений бронзовою лускою."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
 msgid "Scale Body Armor"
-msgstr "Лускатий нагрудник"
+msgstr "Лускатий обладунок"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
 msgid "Lorica Squamata"
-msgstr "Лорика Скумата"
+msgstr "Лоріка Сквамата"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsondescription
 msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
 "equipped with such body armor, as it was very expensive and time-consuming "
 "to fabricate."
-msgstr "Нагрудники виготовлялись повністю з бронзи. Тільки найкращі солдати були оснащені такими обладунками, так як коштували вони дуже дорого і забирали багато часу для виготовлення."
+msgstr "Обладунок, повністю виготовлений із бронзи. Тільки найкращі солдати були оснащені таким обладунком, так як він був дуже дорогим та трудомістким у виготовлені."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr "Усі чемпіони отримують +2 до захисту від рубаючих ударів, але також +10 до вартості у металі."
+msgstr "Чемпіони мають +2 рівня броні від рубаючої атаки, але також потребують +10 вартості металу."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
-msgstr "Бронзовий панцирний нагрудник"
+msgstr "Бронзовий панцирний обладунок"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsonspecificName.rome
 msgid "Lorica Musculata"
-msgstr "Лорика Мускулята"
+msgstr "Лоріка Мускулата"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsondescription
 msgid "Plywood construction for large shields."
-msgstr "Дерев'яна конструкція для великих щитів."
+msgstr "Фанерний каркас для великих щитів."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
 msgid "Infantry Spearmen +2 Pierce Armor Levels."
-msgstr "Пікінери-піхотинці отримують +2 до захисту від колючих ударів."
+msgstr "Піхотинці списоносці мають +2 рівня броні від колючої атаки."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
 msgid "Plywood Shield Construction"
-msgstr "Дерев'яна конструкція щита"
+msgstr "Фанерний каркас щита"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.ptol
@@ -387,16 +388,16 @@ msgstr "Аспідіскос"
 msgid ""
 "The best shields have reinforcements either on the corners (Roman scutum) or"
 " around the rim (Greek aspis)."
-msgstr "Найкращі щити мають укріплення або по кутах (Roman scutum), або навколо обода (грецький аспис)."
+msgstr "Найкращі щити мають укріплення або на кутах (римський скутум), або навколо обода (грецький аспіс)."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr "Піхота Списники +1 рівень броні пірсу"
+msgstr "Піхотинці списоносці мають +1 рівень броні від колючої атаки."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
-msgstr "Броньовані щити"
+msgstr "Зміцнений щит"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.ptol
@@ -412,18 +413,18 @@ msgstr "Бронзовий зі шкіряною окантовкою щит."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
 msgid "Bronze Shield Facing"
-msgstr "Облицьований бронзовий щит"
+msgstr "Бронзове зовнішнє покриття щита"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
 msgid "Khalkaspís"
-msgstr "Халкаспис"
+msgstr "Халкаспіс"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.mace
 msgid "Khrysaspís"
-msgstr "Хрисаспис"
+msgstr "Хрісаспіс"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsondescription
 msgid ""
@@ -484,7 +485,7 @@ msgstr "Дерев'яні підсилювальні балки для кора�
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
-msgstr "Посилений корпус"
+msgstr "Зміцнений корпус"
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
@@ -1210,7 +1211,7 @@ msgstr "Пікінери та застрільники"
 #: simulation/data/technologies/pair_inf_armor_03.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_04.jsongenericName
 msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr "Захист піхотинців від розрубування та пікінерів від проколювання"
+msgstr "Броня від рубаючої атаки піхотинців проти броні від колючої атаки списоносців."
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
@@ -1627,7 +1628,7 @@ msgstr "Забирає мінімальний радіус дії башт."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
-msgstr "Бійниці"
+msgstr "Діри-вбивці"
 
 #: simulation/data/technologies/tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."

@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-02-03 08:11+0000\n"
-"PO-Revision-Date: 2020-02-03 14:33+0000\n"
+"POT-Creation-Date: 2020-02-07 08:09+0000\n"
+"PO-Revision-Date: 2020-02-07 15:12+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -2694,6 +2694,7 @@ msgid "Buddies"
 msgstr "Приятелите"
 
 #: gui/options/options.json[0].options[9].list[2].label
+#: gui/options/options.json[1].options[4].list[0].label
 #: gui/options/options.json[3].options[5].list[2].label
 msgid "Disabled"
 msgstr "Изключено"
@@ -2761,170 +2762,190 @@ msgstr ""
 msgid "Post-processing"
 msgstr ""
 
+#: gui/options/options.json[1].options[4].list[0].tooltip
+msgid "Do not use anti-aliasing."
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[1].tooltip
+msgid "Fast, but simple anti-aliasing."
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[1].label
+msgid "FXAA"
+msgstr ""
+
 #: gui/options/options.json[1].options[4].tooltip
-msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "Брой шейдърни ефекти. ИЗИСКВА РЕСТАРТИРАНЕ НА ИГРАТА"
+msgid "Reduce aliasing effect on edges."
+msgstr ""
 
 #: gui/options/options.json[1].options[4].label
-msgid "Shader effects"
+msgid "Anti-Aliasing"
 msgstr ""
 
 #: gui/options/options.json[1].options[5].tooltip
+msgid "Number of shader effects. REQUIRES GAME RESTART"
+msgstr "Брой шейдърни ефекти. ИЗИСКВА РЕСТАРТИРАНЕ НА ИГРАТА"
+
+#: gui/options/options.json[1].options[5].label
+msgid "Shader effects"
+msgstr ""
+
+#: gui/options/options.json[1].options[6].tooltip
 msgid "Enable shadows."
 msgstr "Включване на сенките."
 
-#: gui/options/options.json[1].options[5].label
+#: gui/options/options.json[1].options[6].label
 msgid "Shadows"
 msgstr "Сенки"
 
-#: gui/options/options.json[1].options[6].list[0].label
+#: gui/options/options.json[1].options[7].list[0].label
 msgid "Very Low"
 msgstr "Много ниско"
 
-#: gui/options/options.json[1].options[6].list[1].label
+#: gui/options/options.json[1].options[7].list[1].label
 msgid "Low"
 msgstr "Ниско"
 
-#: gui/options/options.json[1].options[6].list[2].label
+#: gui/options/options.json[1].options[7].list[2].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
 msgstr "Средно"
 
-#: gui/options/options.json[1].options[6].list[3].label
+#: gui/options/options.json[1].options[7].list[3].label
 msgid "High"
 msgstr "Високо"
 
-#: gui/options/options.json[1].options[6].list[4].label
+#: gui/options/options.json[1].options[7].list[4].label
 msgid "Very High"
 msgstr "Много високо"
 
-#: gui/options/options.json[1].options[6].tooltip
+#: gui/options/options.json[1].options[7].tooltip
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
 msgstr "Резолюция на картите за сенките. Високите стойности могат да причинят срив на играта, ако използвате видео карта с малко памет!"
 
-#: gui/options/options.json[1].options[6].label
+#: gui/options/options.json[1].options[7].label
 msgid "Shadow quality"
 msgstr ""
 
-#: gui/options/options.json[1].options[7].tooltip
+#: gui/options/options.json[1].options[8].tooltip
 msgid "Smooth shadows."
 msgstr "Гладки сенки."
 
-#: gui/options/options.json[1].options[7].label
+#: gui/options/options.json[1].options[8].label
 msgid "Shadow filtering"
 msgstr ""
 
-#: gui/options/options.json[1].options[8].tooltip
+#: gui/options/options.json[1].options[9].tooltip
 msgid "Show outlines of units behind structures."
 msgstr ""
 
-#: gui/options/options.json[1].options[8].label
+#: gui/options/options.json[1].options[9].label
 msgid "Unit silhouettes"
 msgstr ""
 
-#: gui/options/options.json[1].options[9].tooltip
+#: gui/options/options.json[1].options[10].tooltip
 msgid "Enable particles."
 msgstr "Включване на частиците."
 
-#: gui/options/options.json[1].options[9].label
+#: gui/options/options.json[1].options[10].label
 msgid "Particles"
 msgstr "Частици"
 
-#: gui/options/options.json[1].options[10].tooltip
+#: gui/options/options.json[1].options[11].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Когато е изключено, ще се използват най-ниските възможни настройки за изчертаване на водата. Ако това бъде включено, другите настройки за водата ще бъдат пренебрегнати."
 
-#: gui/options/options.json[1].options[10].label
+#: gui/options/options.json[1].options[11].label
 msgid "Water effects"
 msgstr ""
 
-#: gui/options/options.json[1].options[11].tooltip
+#: gui/options/options.json[1].options[12].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Използване на по-качествени ефекти за водата, вълните, морската пяна и следите на корабите."
 
-#: gui/options/options.json[1].options[11].label
+#: gui/options/options.json[1].options[12].label
 msgid "High-quality water effects"
 msgstr ""
 
-#: gui/options/options.json[1].options[12].tooltip
+#: gui/options/options.json[1].options[13].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Използване на истинската дълбочина на водата по време на изчисленията за изчертаването."
 
-#: gui/options/options.json[1].options[12].label
+#: gui/options/options.json[1].options[13].label
 msgid "Real water depth"
 msgstr ""
 
-#: gui/options/options.json[1].options[13].tooltip
+#: gui/options/options.json[1].options[14].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Позволяване на водата да отразява огледално изображение."
 
-#: gui/options/options.json[1].options[13].label
+#: gui/options/options.json[1].options[14].label
 msgid "Water reflections"
 msgstr ""
 
-#: gui/options/options.json[1].options[14].tooltip
+#: gui/options/options.json[1].options[15].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Използване на истинска карта на пречупване на светлината във водата, а не само прозрачност."
 
-#: gui/options/options.json[1].options[14].label
+#: gui/options/options.json[1].options[15].label
 msgid "Water refraction"
 msgstr ""
 
-#: gui/options/options.json[1].options[15].tooltip
+#: gui/options/options.json[1].options[16].tooltip
 msgid "Cast shadows on water."
 msgstr "Хвърляне на сенки върху водата."
 
-#: gui/options/options.json[1].options[15].label
+#: gui/options/options.json[1].options[16].label
 msgid "Shadows on water"
 msgstr ""
 
-#: gui/options/options.json[1].options[16].tooltip
+#: gui/options/options.json[1].options[17].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
 msgstr "Плавно повдигане на тъмнината и мъглата на войната."
 
-#: gui/options/options.json[1].options[16].label
+#: gui/options/options.json[1].options[17].label
 msgid "Smooth vision"
 msgstr ""
 
-#: gui/options/options.json[1].options[17].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Render Sky."
 msgstr "Изчертаване на небето."
 
-#: gui/options/options.json[1].options[17].label
+#: gui/options/options.json[1].options[18].label
 msgid "Show sky"
 msgstr ""
 
-#: gui/options/options.json[1].options[18].tooltip
+#: gui/options/options.json[1].options[19].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Вертикалната синхронизация предотвратява разкъсването на картината. ИЗИСКВА РЕСТАРТИРАНЕ НА ИГРАТА"
 
-#: gui/options/options.json[1].options[18].label
+#: gui/options/options.json[1].options[19].label
 msgid "VSync"
 msgstr "Вертикална синхронизация"
 
-#: gui/options/options.json[1].options[19].tooltip
+#: gui/options/options.json[1].options[20].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Намаляване на натоварването на процесора чрез ограничаване на честотата на изчертаване, когато сте из менютата на играта. Задайте на максимум, за да изключите ограничението."
 
-#: gui/options/options.json[1].options[19].label
+#: gui/options/options.json[1].options[20].label
 msgid "FPS throttling in menus"
 msgstr "Ограничаване на кадрите/сек в менютата"
 
-#: gui/options/options.json[1].options[20].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "Намаляване на натоварването на процесора чрез забавяне на честотата на изчертаване по време на игра. Задайте на максимум, за да изключите забавянето."
 
-#: gui/options/options.json[1].options[20].label
+#: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
 msgstr "Ограничаване на кадрите/сек в игра"
 
