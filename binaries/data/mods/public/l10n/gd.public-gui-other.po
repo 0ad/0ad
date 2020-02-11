@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-02-03 08:11+0000\n"
-"PO-Revision-Date: 2020-02-03 14:33+0000\n"
+"POT-Creation-Date: 2020-02-07 08:09+0000\n"
+"PO-Revision-Date: 2020-02-07 15:12+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -2727,6 +2727,7 @@ msgid "Buddies"
 msgstr "Caraidean"
 
 #: gui/options/options.json[0].options[9].list[2].label
+#: gui/options/options.json[1].options[4].list[0].label
 #: gui/options/options.json[3].options[5].list[2].label
 msgid "Disabled"
 msgstr "À comas"
@@ -2794,170 +2795,190 @@ msgstr "Cleachd criathragan pròiseasadh-sgrìn an dèidh làimh (HDR, Bloom, DO
 msgid "Post-processing"
 msgstr "Pròiseasadh an dèidh làimh"
 
+#: gui/options/options.json[1].options[4].list[0].tooltip
+msgid "Do not use anti-aliasing."
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[1].tooltip
+msgid "Fast, but simple anti-aliasing."
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[1].label
+msgid "FXAA"
+msgstr ""
+
 #: gui/options/options.json[1].options[4].tooltip
+msgid "Reduce aliasing effect on edges."
+msgstr ""
+
+#: gui/options/options.json[1].options[4].label
+msgid "Anti-Aliasing"
+msgstr ""
+
+#: gui/options/options.json[1].options[5].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "Àireamh nan èifeachdan sgàileadair. FEUMAIDH TU AN GEAMA A THÒISEACHADH ÀS ÙR"
 
-#: gui/options/options.json[1].options[4].label
+#: gui/options/options.json[1].options[5].label
 msgid "Shader effects"
 msgstr "Èifeachdan sgàileadair"
 
-#: gui/options/options.json[1].options[5].tooltip
+#: gui/options/options.json[1].options[6].tooltip
 msgid "Enable shadows."
 msgstr "Cuir sgàilean an comas."
 
-#: gui/options/options.json[1].options[5].label
+#: gui/options/options.json[1].options[6].label
 msgid "Shadows"
 msgstr "Sgàilean"
 
-#: gui/options/options.json[1].options[6].list[0].label
+#: gui/options/options.json[1].options[7].list[0].label
 msgid "Very Low"
 msgstr "Glè ìosal"
 
-#: gui/options/options.json[1].options[6].list[1].label
+#: gui/options/options.json[1].options[7].list[1].label
 msgid "Low"
 msgstr "Ìosal"
 
-#: gui/options/options.json[1].options[6].list[2].label
+#: gui/options/options.json[1].options[7].list[2].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
 msgstr "Meadhanach"
 
-#: gui/options/options.json[1].options[6].list[3].label
+#: gui/options/options.json[1].options[7].list[3].label
 msgid "High"
 msgstr "Àrd"
 
-#: gui/options/options.json[1].options[6].list[4].label
+#: gui/options/options.json[1].options[7].list[4].label
 msgid "Very High"
 msgstr "Glè àrd"
 
-#: gui/options/options.json[1].options[6].tooltip
+#: gui/options/options.json[1].options[7].tooltip
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
 msgstr "An dùmhlachd-bhreacaidh aig mapa nan sgàilean. Dh’fhaoidte gun tuislich luachan àrda an geama mur eil ach beagan cuimhne aig a’ chairt grafaigeachd!"
 
-#: gui/options/options.json[1].options[6].label
+#: gui/options/options.json[1].options[7].label
 msgid "Shadow quality"
 msgstr "Càileachd nan sgàilean"
 
-#: gui/options/options.json[1].options[7].tooltip
+#: gui/options/options.json[1].options[8].tooltip
 msgid "Smooth shadows."
 msgstr "Sgàilean rèidhe."
 
-#: gui/options/options.json[1].options[7].label
+#: gui/options/options.json[1].options[8].label
 msgid "Shadow filtering"
 msgstr "Criathradh sgàile"
 
-#: gui/options/options.json[1].options[8].tooltip
+#: gui/options/options.json[1].options[9].tooltip
 msgid "Show outlines of units behind structures."
 msgstr "Seall sgàil-riochdan de dh’aonadan a tha air cùlaibh thogalaichean."
 
-#: gui/options/options.json[1].options[8].label
+#: gui/options/options.json[1].options[9].label
 msgid "Unit silhouettes"
 msgstr "Sgàil-riochdan nan aonadan"
 
-#: gui/options/options.json[1].options[9].tooltip
+#: gui/options/options.json[1].options[10].tooltip
 msgid "Enable particles."
 msgstr "Cuir mìrean an comas."
 
-#: gui/options/options.json[1].options[9].label
+#: gui/options/options.json[1].options[10].label
 msgid "Particles"
 msgstr "Mìrean"
 
-#: gui/options/options.json[1].options[10].tooltip
+#: gui/options/options.json[1].options[11].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Nuair a bhios e DHETH, cleachd an roghainn as ìsle gus uisge a reandaradh. Cha bhi ciall sna roghainnean eile an uairsin."
 
-#: gui/options/options.json[1].options[10].label
+#: gui/options/options.json[1].options[11].label
 msgid "Water effects"
 msgstr "Èifeachdan uisge"
 
-#: gui/options/options.json[1].options[11].tooltip
+#: gui/options/options.json[1].options[12].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Cleachd an càileachd as fhearr airson èifeachdan uisge, a’ reandaradh stuadhan cladaich, cop na mara ’s lorgan nan long."
 
-#: gui/options/options.json[1].options[11].label
+#: gui/options/options.json[1].options[12].label
 msgid "High-quality water effects"
 msgstr "Èifeachdan uisge le càileachd àrd"
 
-#: gui/options/options.json[1].options[12].tooltip
+#: gui/options/options.json[1].options[13].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Cleachd fìor-dhoimhne uisge ann an àireamhachadh an reandaraidh."
 
-#: gui/options/options.json[1].options[12].label
+#: gui/options/options.json[1].options[13].label
 msgid "Real water depth"
 msgstr "Fìor-dhoimhne uisge"
 
-#: gui/options/options.json[1].options[13].tooltip
+#: gui/options/options.json[1].options[14].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Leig le uisge dealbh faileis a thilgeil air ais."
 
-#: gui/options/options.json[1].options[13].label
+#: gui/options/options.json[1].options[14].label
 msgid "Water reflections"
 msgstr "Faileas uisge"
 
-#: gui/options/options.json[1].options[14].tooltip
+#: gui/options/options.json[1].options[15].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Cleachd mapa fìor sholas-bhriseadh uisge seach trìd-shoilleireachd."
 
-#: gui/options/options.json[1].options[14].label
+#: gui/options/options.json[1].options[15].label
 msgid "Water refraction"
 msgstr "Solas-bhriseadh uisge"
 
-#: gui/options/options.json[1].options[15].tooltip
+#: gui/options/options.json[1].options[16].tooltip
 msgid "Cast shadows on water."
 msgstr "Tilg sgàilean air uisge."
 
-#: gui/options/options.json[1].options[15].label
+#: gui/options/options.json[1].options[16].label
 msgid "Shadows on water"
 msgstr "Sgàilean air an uisge"
 
-#: gui/options/options.json[1].options[16].tooltip
+#: gui/options/options.json[1].options[17].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
 msgstr "Tog dubhar agus ceò a’ chogaidh gu rèidh."
 
-#: gui/options/options.json[1].options[16].label
+#: gui/options/options.json[1].options[17].label
 msgid "Smooth vision"
 msgstr "Lèirsinn rèidh"
 
-#: gui/options/options.json[1].options[17].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Render Sky."
 msgstr "Reandaraich na speuran."
 
-#: gui/options/options.json[1].options[17].label
+#: gui/options/options.json[1].options[18].label
 msgid "Show sky"
 msgstr "Seall na speuran"
 
-#: gui/options/options.json[1].options[18].tooltip
+#: gui/options/options.json[1].options[19].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Ruith sioncronachadh inghearach gus sracadh na sgrìn a chàradh. FEUMAIDH TU AN GEAMA A THÒISEACHADH ÀS ÙR"
 
-#: gui/options/options.json[1].options[18].label
+#: gui/options/options.json[1].options[19].label
 msgid "VSync"
 msgstr "Sioncronachadh-V"
 
-#: gui/options/options.json[1].options[19].tooltip
+#: gui/options/options.json[1].options[20].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Gus an eallach air a’ CPU ìsleachadh, tachd dè cho tric ’s a thèid na clàran-taice a reandaradh. Suidhich air an luach as motha gus an tachdadh a chur às comas."
 
-#: gui/options/options.json[1].options[19].label
+#: gui/options/options.json[1].options[20].label
 msgid "FPS throttling in menus"
 msgstr "Tachdadh an FPS sna clàra-taice"
 
-#: gui/options/options.json[1].options[20].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "Gus an eallach air a’ CPU ìsleachadh, tachd dè cho tric ’s a thèid nithean a’ gheama a reandaradh. Suidhich air an luach as motha gus an tachdadh a chur às comas."
 
-#: gui/options/options.json[1].options[20].label
+#: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
 msgstr "Tachdadh an FPS sna geamannan"
 

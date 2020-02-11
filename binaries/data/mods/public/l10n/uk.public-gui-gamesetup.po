@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-03 08:10+0000\n"
-"PO-Revision-Date: 2020-02-06 15:28+0000\n"
+"PO-Revision-Date: 2020-02-09 21:47+0000\n"
 "Last-Translator: Zeldt Herb <bkelfarat@bk.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -94,7 +94,7 @@ msgstr "Складність штучного інтелекту"
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:86
 msgctxt "ai"
 msgid "None"
-msgstr "Немає гравця"
+msgstr "Немає"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:91
 msgid "AI Player"
@@ -182,7 +182,7 @@ msgstr "Вибрати команду гравця."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:76
 msgctxt "team"
 msgid "None"
-msgstr "Немає команди"
+msgstr "Немає"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
@@ -526,10 +526,10 @@ msgstr "Без призупинення бойових дій."
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(minutes)s хвилина"
+msgstr[1] "%(minutes)s хвилин"
+msgstr[2] "%(minutes)s хвилин"
+msgstr[3] "%(minutes)s хвилин"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:86
 msgid "Relic Count"
@@ -539,10 +539,10 @@ msgstr "Кількість реліквій"
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(number)s реліквія"
+msgstr[1] "%(number)s реліквій"
+msgstr[2] "%(number)s реліквій"
+msgstr[3] "%(number)s реліквій"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:92
 msgid ""
@@ -565,10 +565,10 @@ msgstr "Хвилини, до того як гравець здобуде пер�
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(min)s хвилина"
+msgstr[1] "%(min)s хвилин"
+msgstr[2] "%(min)s хвилин"
+msgstr[3] "%(min)s хвилин"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:98
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:99
@@ -589,10 +589,10 @@ msgstr "Встановити час, коли вода почне підніма
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(minutes)s хвилина"
+msgstr[1] "%(minutes)s хвилин"
+msgstr[2] "%(minutes)s хвилин"
+msgstr[3] "%(minutes)s хвилин"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:87
 msgid "Wonder Duration"
@@ -650,15 +650,15 @@ msgstr "Показати багатокористувальницьке лобі
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:79
 msgid "I'm ready"
-msgstr "Я готовий (-ва)"
+msgstr "Маю готовність"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:80
 msgid "Stay ready"
-msgstr "Бути в готовності"
+msgstr "Залишатися напоготові"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:81
 msgid "I'm not ready!"
-msgstr "Я не готовий (-ва)!"
+msgstr "Не маю готовності!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:85
 msgid "State that you are ready to play."
@@ -666,7 +666,7 @@ msgstr "Заявити про готовність до гри."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:86
 msgid "Stay ready even when the game settings change."
-msgstr "Бути в готовності, навіть якщо налаштування гри зміняться."
+msgstr "Залишатися напоготові, навіть якщо налаштування гри зміняться."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:87
 msgid "State that you are not ready to play."
@@ -756,12 +756,12 @@ msgstr "%(username)s було заблоковано"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientReady.js:28
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr "* %(username)s не готовий (-ва)."
+msgstr "* %(username)s не має готовності."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientReady.js:29
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr "* %(username)s готовий (-ва)!"
+msgstr "* %(username)s має готовність!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/GameSettingsChanged.js:22
 msgid "Game settings have been changed"
@@ -920,7 +920,7 @@ msgstr "Порт сервера:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
 msgid "Set up your server to host."
-msgstr "Налаштувати сервер для розміщення."
+msgstr "Налаштувати власний сервер для розміщення."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"

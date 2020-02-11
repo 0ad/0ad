@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-02-04 11:41+0000\n"
+"PO-Revision-Date: 2020-02-09 18:29+0000\n"
 "Last-Translator: Zeldt Herb <bkelfarat@bk.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "Афіняни"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "Рівень видобутку металу підвищується на +10% відсотків за кожну минулу добу."
+msgstr "Темпи видобутку металу зростають на +10% за кожен пройдений період."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
@@ -44,7 +44,7 @@ msgstr "Срібні сови"
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr "Копальні в Лауріоні і Аттіці забезпечували Афіни багатством срібла, з якого робилися широко відомі та цінні монети, Афінські Сови."
+msgstr "Копальні в Лавріоні у Аттиці постачали до Афін багатства срібла, з якого карбувалась її відома і високо цінувана монета, афінська сова."
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].Description
 #: simulation/data/civs/mace.jsonCivBonuses[2].Description
@@ -58,7 +58,7 @@ msgstr "Спорудження театрону збільшує терріто�
 #: simulation/data/civs/mace.jsonCivBonuses[2].Name
 #: simulation/data/civs/spart.jsonCivBonuses[2].Name
 msgid "Hellenization"
-msgstr "Еллінізація."
+msgstr "Еллінізація"
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].History
 #: simulation/data/civs/spart.jsonCivBonuses[2].History
@@ -66,7 +66,7 @@ msgid ""
 "The Greeks were highly successful in Hellenising various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr "Греки були дуже успішними в Еллінізації кількох іноземних націй. Впродовж Еллінської ери, грецька було вільною мовою Античного Світу, широко використовуваною він Іспанії до Індії."
+msgstr "Греки були вельми успішними у еллінізації різних іноземців. В період еллінізму грецька була спільною мовою Стародавнього світу, якою широко спілкувались від Іспанії до Індії."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Allied Warships −25% construction time."
@@ -74,7 +74,7 @@ msgstr "Союзні військові кораблі потребують −2
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
-msgstr "Делійська Ліга"
+msgstr "Афінський морський союз"
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].History
 msgid ""
@@ -87,7 +87,7 @@ msgstr "Невдовзі після великих військово-морсь
 #: simulation/data/civs/athen.jsonAINames[0]
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[0].Name
 msgid "Themistocles"
-msgstr "Темістокл"
+msgstr "Фемістокл"
 
 #: simulation/data/civs/athen.jsonAINames[1]
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].Name
@@ -100,7 +100,7 @@ msgstr "Кімон"
 
 #: simulation/data/civs/athen.jsonAINames[3]
 msgid "Aristides"
-msgstr "Аристид"
+msgstr "Арістід"
 
 #: simulation/data/civs/athen.jsonAINames[4]
 msgid "Xenophon"
@@ -132,7 +132,7 @@ msgstr "Клеон"
 
 #: simulation/data/civs/athen.jsonAINames[11]
 msgid "Cleophon"
-msgstr "Клеофон"
+msgstr "Клеофонт"
 
 #: simulation/data/civs/athen.jsonAINames[12]
 msgid "Thrasybulus"
@@ -149,21 +149,21 @@ msgstr "Демосфен"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr "Афінські триреми можуть тренувати Морський десант (Афінські Еспібати)."
+msgstr "Афінські триреми можуть тренувати морських піхотинців (Епібастес Атенаікос)."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Name
 msgid "Iphicratean Reforms"
-msgstr "Іфікратенські реформи"
+msgstr "Іфікратові реформи"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Stone walls can be built in neutral territory. Construction time for walls "
 "is reduced by 50%."
-msgstr "Кам'яні стіни можуть бути побудовані на нейтральній території. Побудова займе на 50% часу більше."
+msgstr "Кам’яні мури можна споруджувати на нейтральній території. Час конструювання мурів скорочується на 50%."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
-msgstr "Довгі стіни"
+msgstr "Довгі мури"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].History
 msgid ""
