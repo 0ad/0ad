@@ -2195,7 +2195,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						return;
 					// don't use ownership because this is called after a conversion/resignation
 					// and the ownership would be invalid then.
-					var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
+					let cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
 					if (cmpSupply)
 						cmpSupply.RemoveGatherer(this.entity);
 					delete this.gatheringTarget;
@@ -2249,8 +2249,8 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					// Calculate timing based on gather rates
 					// This allows the gather rate to control how often we gather, instead of how much.
-					var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-					var rate = cmpResourceGatherer.GetTargetGatherRate(this.gatheringTarget);
+					let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+					let rate = cmpResourceGatherer.GetTargetGatherRate(this.gatheringTarget);
 
 					if (!rate)
 					{
@@ -2268,9 +2268,8 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					// Scale timing interval based on rate, and start timer
 					// The offset should be at least as long as the repeat time so we use the same value for both.
-					var offset = 1000/rate;
-					var repeat = offset;
-					this.StartTimer(offset, repeat);
+					let offset = 1000 / rate;
+					this.StartTimer(offset, offset);
 
 					// We want to start the gather animation as soon as possible,
 					// but only if we're actually at the target and it's still alive
@@ -2290,9 +2289,9 @@ UnitAI.prototype.UnitFsmSpec = {
 				"leave": function() {
 					this.StopTimer();
 
-					// don't use ownership because this is called after a conversion/resignation
+					// Don't use ownership because this is called after a conversion/resignation
 					// and the ownership would be invalid then.
-					var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
+					let cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
 					if (cmpSupply)
 						cmpSupply.RemoveGatherer(this.entity);
 					delete this.gatheringTarget;
@@ -2362,8 +2361,8 @@ UnitAI.prototype.UnitFsmSpec = {
 					// return to the nearest dropsite
 					if (status.filled)
 					{
-						let nearby = this.FindNearestDropsite(resourceType.generic);
-						if (nearby)
+						let nearestDropsite = this.FindNearestDropsite(resourceType.generic);
+						if (nearestDropsite)
 						{
 							// (Keep this Gather order on the stack so we'll
 							// continue gathering after returning)
@@ -2371,7 +2370,7 @@ UnitAI.prototype.UnitFsmSpec = {
 							// trying to gather from it.
 							if (status.exhausted)
 								this.order.data.target = INVALID_ENTITY;
-							this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
+							this.PushOrderFront("ReturnResource", { "target": nearestDropsite, "force": false });
 							return;
 						}
 
@@ -2399,9 +2398,9 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.orderQueue.length > 1 && this.orderQueue[1] !== "ReturnResource" &&
 						(this.orderQueue[1].type !== "Gather" || this.orderQueue[1].data.type.generic !== resourceType.generic))
 					{
-						let nearby = this.FindNearestDropsite(resourceType.generic);
-						if (nearby)
-							this.orderQueue.splice(1, 0, { "type": "ReturnResource", "data": { "target": nearby, "force": false } });
+						let nearestDropsite = this.FindNearestDropsite(resourceType.generic);
+						if (nearestDropsite)
+							this.orderQueue.splice(1, 0, { "type": "ReturnResource", "data": { "target": nearestDropsite, "force": false } });
 					}
 
 					// Must go before FinishOrder or this.order will be undefined.
@@ -2428,7 +2427,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					{
 						// Try to find a new resource of the same specific type near the initial resource position:
 						// Also don't switch to a different type of huntable animal
-						let nearby = this.FindNearbyResource((ent, type, template) => {
+						let nearbyResource = this.FindNearbyResource((ent, type, template) => {
 							if (previousTarget == ent)
 								return false;
 
@@ -2439,9 +2438,9 @@ UnitAI.prototype.UnitFsmSpec = {
 							    (type.specific != "meat" || resourceTemplate == template);
 						}, new Vector2D(initPos.x, initPos.z));
 
-						if (nearby)
+						if (nearbyResource)
 						{
-							this.PerformGather(nearby, false, false);
+							this.PerformGather(nearbyResource, false, false);
 							return true;
 						}
 
@@ -2458,10 +2457,10 @@ UnitAI.prototype.UnitFsmSpec = {
 					// drop it off, and if not then we might as well head to the dropsite
 					// anyway because that's a nice enough place to congregate and idle
 
-					let nearby = this.FindNearestDropsite(resourceType.generic);
-					if (nearby)
+					let nearestDropsite = this.FindNearestDropsite(resourceType.generic);
+					if (nearestDropsite)
 					{
-						this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
+						this.PushOrderFront("ReturnResource", { "target": nearestDropsite, "force": false });
 						return true;
 					}
 
@@ -4253,11 +4252,11 @@ UnitAI.prototype.FindNearestDropsite = function(genericType)
 	let owner = cmpOwnership.GetOwner();
 	let cmpPlayer = QueryOwnerInterface(this.entity);
 	let players = cmpPlayer && cmpPlayer.HasSharedDropsites() ? cmpPlayer.GetMutualAllies() : [owner];
-	let nearbyDropsites = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).ExecuteQuery(this.entity, 0, -1, players, IID_ResourceDropsite);
+	let nearestDropsites = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).ExecuteQuery(this.entity, 0, -1, players, IID_ResourceDropsite);
 
 	let isShip = Engine.QueryInterface(this.entity, IID_Identity).HasClass("Ship");
 	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
-	for (let dropsite of nearbyDropsites)
+	for (let dropsite of nearestDropsites)
 	{
 		// Ships are unable to reach land dropsites and shouldn't attempt to do so.
 		if (isShip && !Engine.QueryInterface(dropsite, IID_Identity).HasClass("Naval"))
