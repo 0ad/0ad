@@ -8,6 +8,7 @@
 # Alex Rodrigo <inactive+alexrn@transifex.com>, 2016
 # mondeja <mondejar1994@gmail.com>, 2019
 # Antonio Martín <antonio.martinperez1991@gmail.com>, 2018
+# Ampaex <antoniovavazquez@gmail.com>, 2020
 # Camilo Zuluaga <czuluagaz@gmail.com>, 2017
 # Diego Bruschetti <d.bruschetti@hotmail.com>, 2014
 # Emilio Romero <milioe25@yahoo.es>, 2017
@@ -30,8 +31,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-01-17 15:32+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-02-12 15:42+0000\n"
+"Last-Translator: Ampaex <antoniovavazquez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +54,7 @@ msgstr "Verlo en línea"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]Manual de juego de 0 A.D.[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:2
 msgid ""
@@ -64,7 +65,7 @@ msgstr "¡Gracias por instalar 0 A.D.! Esta página te dará una breve explicaci
 
 #: gui/manual/intro.txt:4
 msgid "[font=\"sans-bold-16\"]Graphics settings[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Ajustes gráficos[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:5
 msgid ""
@@ -72,11 +73,11 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr ""
+msgstr "Puedes cambiar entre pantalla completa y modo ventana al presionar Alt + Enter. En modo ventana, puedes cambiar el tamaño de la ventana. Si el juego ejecuta de forma lenta, puedes cambiar la configuración en la ventana de opciones: intenta desactivar las características \"Efectos de agua HQ\" y \"Sombras\"."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Durante el juego[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:8
 msgid ""
@@ -84,7 +85,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr ""
+msgstr "Los controles y la jugabilidad deberían ser familiares para los jugadores de los juegos de estrategia en tiempo real tradicionales (RTS). Ahora mismo faltan un gran número de características, y el juego se encuentra poco equilibrado, probablemente tengas que esperar hasta el lanzamiento de la beta para esperar un correcto funcionamiento. "
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls:"
@@ -92,35 +93,35 @@ msgstr "Controles básicos:"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr ""
+msgstr "• Click izquierdo para seleccionar unidades"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr ""
+msgstr "• Mantén click izquierdo y arrastra para seleccionar un grupo de unidades"
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr ""
+msgstr "• Click derecho para mover unidades hasta el objetivoº"
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr ""
+msgstr "• Flechas direccionales o WASD para mover la cámara."
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr ""
+msgstr "• Ctrl + flechas, o shift + rueda del ratón, para rotar la cámara"
 
 #: gui/manual/intro.txt:16
 msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
-msgstr ""
+msgstr "• Rueda del ratón, o “=” / “+” y “-” / “−” para acercar/alejar"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Modalidades[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr ""
+msgstr "El menú principal da paso a dos modos de juego:"
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -128,13 +129,13 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Un jugador[font=\"sans-14\"] — Juega una partida de prueba, o contra uno o más oponentes de la IA. La IA (Petra) está en desarrollo y podría no funcionar con las últimas características, pero al menos te dejaría probar el juego contra otro oponente en caso de que no puedas jugar con otra persona."
 
 #: gui/manual/intro.txt:21
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Multijugador[font=\"sans-14\"] — Jugar contra oponentes humanos a través de Internet."
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -142,15 +143,15 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr ""
+msgstr "Para configurar una partida en multijugador, uno de los jugadores debe seleccionar la opción «Crear partida». El juego usa el puerto UDP 20595, por lo que el anfitrión deberá configurar su NAT/Firewall/otro para permitir el acceso. Los demás jugadores podrán seleccionar  «Unirse a una partida» e introducir la dirección IP del servidor."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Ajustes de partida[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr ""
+msgstr "En una partida multijugador sólo el anfitrión puede cambiar los ajustes de partida."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -181,7 +182,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "Los mapas se pueden filtrar aún más. Los originales suelen ser los más divertidos. En los mapas navales no se puede acceder a muchos enemigos por tierra, y los mapas de demostración son sólo de prueba (no para jugar). Al filtrar los mapas por «todos» tendrás acceso a cualquier mapa que no se muestre de cualquier otra forma."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -190,19 +191,19 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr ""
+msgstr "Y por último el cambio de configuraciones. Para mapas aleatorios se incluye el número de jugadores, el tamaño del mapa, etc. Para escenarios solo puedes seleccionar quien controla cada jugador (decidir donde inicias en el mapa, etc). Las opciones son un jugador humano, IA o sin jugador asignado (las unidades existentes atacarán enemigos que estén a su alcance, pero no se crearán nuevas unidades ni atacarán a nadie)."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr ""
+msgstr "Cuando estés listo para empezar, haz clic en el botón de «Comenzar partida»."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Atajos[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Generales[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:41
 msgid ""

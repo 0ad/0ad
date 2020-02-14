@@ -5,6 +5,7 @@
 # Translators:
 # Adam Kol <adam.kolanowski@tlen.pl>, 2019
 # Adrian Budasz <adrianbudasz@gmail.com>, 2014,2016
+# Andrzej Dąbrowski <newaadd@gmail.com>, 2020
 # Arthur Glovchynski <kontakt.artix@gmail.com>, 2015
 # Bartłomiej Prokop <kuad@o2.pl>, 2017
 # Bartosz Bobin <bartosz@bobin.eu>, 2017-2018
@@ -28,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-31 08:09+0000\n"
-"PO-Revision-Date: 2020-01-31 16:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-02-08 02:44+0000\n"
+"Last-Translator: Andrzej Dąbrowski <newaadd@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +40,7 @@ msgstr ""
 
 #: simulation/templates/template_formation.xml:25
 msgid "Requires at least 2 Soldiers or Siege engines."
-msgstr ""
+msgstr "Wymaga przynajmniej 2 Żołnierzy lub Maszyn Oblężniczych."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -1022,7 +1023,7 @@ msgstr "Szpieg"
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
-msgstr ""
+msgstr "Tylko piechota walcząca wręcz, wymaga przynajmniej 16."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1070,7 +1071,7 @@ msgstr "Żaden"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Infantry Hoplites only, requires at least 10."
-msgstr ""
+msgstr "Tylko Hoplici, wymaga przynajmniej 10."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1082,7 +1083,7 @@ msgstr "Rozproszenie"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Ranged Soldiers only, requires at least 2."
-msgstr ""
+msgstr "Tylko Żołnierze walczący na dystans, wymaga przynajmniej 2."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -1090,7 +1091,7 @@ msgstr "Potyczka"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr ""
+msgstr "Tylko piesi Pikinierzy, wymaga przynajmniej 16."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1102,7 +1103,7 @@ msgstr "Testudo"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Cavalry only, requires at least 6."
-msgstr ""
+msgstr "Tylko kawaleria, wymaga przynajmniej 6."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

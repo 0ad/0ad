@@ -5,6 +5,7 @@
 # Translators:
 # Alberto Verde <edgaralbertolv@gmail.com>, 2019
 # Antón Chinaev <Chinaev_Anton@outlook.es>, 2018
+# Ampaex <antoniovavazquez@gmail.com>, 2020
 # David Fernandez Carhuas <deivyelintelecto23@gmail.com>, 2015
 # Jesus A <jasenjot@gmail.com>, 2017
 # Joseba Uranga <shadowjosebau@gmail.com>, 2019
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-31 08:09+0000\n"
-"PO-Revision-Date: 2020-01-31 16:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-02-11 00:08+0000\n"
+"Last-Translator: Ampaex <antoniovavazquez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +28,7 @@ msgstr ""
 
 #: simulation/templates/template_formation.xml:25
 msgid "Requires at least 2 Soldiers or Siege engines."
-msgstr ""
+msgstr "Requiere al menos 2 soldados o máquinas de asedio."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -40,11 +41,11 @@ msgstr "Pescado"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
-msgstr ""
+msgstr "Pesca para conseguir comida."
 
 #: simulation/templates/template_gaia_flora.xml:6
 msgid "Chop trees for wood."
-msgstr ""
+msgstr "Tala árboles para conseguir madera"
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
@@ -56,7 +57,7 @@ msgstr "Arbusto"
 #: simulation/templates/template_gaia_flora_bush_berry.xml:4
 #: simulation/templates/template_gaia_flora_tree_fruit.xml:8
 msgid "Pick fruit for food."
-msgstr ""
+msgstr "Recoge fruta para conseguir comida."
 
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
@@ -72,7 +73,7 @@ msgstr "Mina de metal"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
 msgid "Mine ore for metal."
-msgstr ""
+msgstr "Mina minerales para obtener metal."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
@@ -80,7 +81,7 @@ msgstr "Cantera de piedra"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Quarry rock for stone."
-msgstr ""
+msgstr "Extrae rocas para obtener piedra."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
