@@ -450,7 +450,7 @@ void CModel::ValidatePosition()
 // return false on error, else true
 bool CModel::SetAnimation(CSkeletonAnim* anim, bool once)
 {
-	m_Anim = NULL; // in case something fails
+	m_Anim = nullptr; // in case something fails
 
 	if (anim)
 	{
@@ -459,22 +459,12 @@ bool CModel::SetAnimation(CSkeletonAnim* anim, bool once)
 		if (once)
 			m_Flags |= MODELFLAG_NOLOOPANIMATION;
 
-		if (!m_BoneMatrices && anim->m_AnimDef)
-		{
-			// not boned, can't animate
+		// Not rigged or animation is not valid.
+		if (!m_BoneMatrices || !anim->m_AnimDef)
 			return false;
-		}
 
-		if (m_BoneMatrices && !anim->m_AnimDef)
+		if (anim->m_AnimDef->GetNumKeys() != m_pModelDef->GetNumBones())
 		{
-			// boned, but animation isn't valid
-			// (e.g. the default (static) idle animation on an animated unit)
-			return false;
-		}
-
-		if (anim->m_AnimDef && anim->m_AnimDef->GetNumKeys() != m_pModelDef->GetNumBones())
-		{
-			// mismatch between model's skeleton and animation's skeleton
 			LOGERROR("Mismatch between model's skeleton and animation's skeleton (%s.dae has %lu model bones while the animation %s has %lu animation keys.)",
 				m_pModelDef->GetName().string8().c_str() ,
 				static_cast<unsigned long>(m_pModelDef->GetNumBones()), 
@@ -483,11 +473,11 @@ bool CModel::SetAnimation(CSkeletonAnim* anim, bool once)
 			return false;
 		}
 
-		// reset the cached bounds when the animation is changed
+		// Reset the cached bounds when the animation is changed.
 		m_ObjectBounds.SetEmpty();
 		InvalidateBounds();
 
-		// start anim from beginning
+		// Start anim from beginning.
 		m_AnimTime = 0;
 	}
 

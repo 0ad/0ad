@@ -478,6 +478,12 @@ private:
 		return m_MoveRequest.m_Type == MoveRequest::OFFSET;
 	}
 
+	bool IsFormationControllerNotMoving() const
+	{
+		CmpPtr<ICmpUnitMotion> cmpControllerMotion(GetSimContext(), m_MoveRequest.m_Entity);
+		return cmpControllerMotion && !cmpControllerMotion->IsMoveRequested();
+	}
+
 	entity_id_t GetGroup() const
 	{
 		return IsFormationMember() ? m_MoveRequest.m_Entity : GetEntityId();
@@ -758,7 +764,8 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 
 	// Don't notify if we are a formation member - we can occasionally be stuck for a long time
 	// if our current offset is unreachable.
-	if (!IsFormationMember())
+	// Unless the formationcontroller has reached final destination and we are stuck
+	if (!IsFormationMember() || IsFormationControllerNotMoving())
 		IncrementFailedPathComputationAndMaybeNotify();
 
 	// If there's no waypoints then we couldn't get near the target
