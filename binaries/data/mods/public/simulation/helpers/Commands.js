@@ -733,11 +733,13 @@ var g_Commands = {
 				continue;
 			}
 
-			var cmpTechnologyManager = QueryOwnerInterface(ent, IID_TechnologyManager);
-			if (cmpUpgrade.GetRequiredTechnology(cmd.template) && !cmpTechnologyManager.IsTechnologyResearched(cmpUpgrade.GetRequiredTechnology(cmd.template)))
+			let cmpTechnologyManager = QueryOwnerInterface(ent, IID_TechnologyManager);
+			let requiredTechnology = cmpUpgrade.GetRequiredTechnology(cmd.template);
+
+			if (requiredTechnology && (!cmpTechnologyManager || !cmpTechnologyManager.IsTechnologyResearched(requiredTechnology)))
 			{
 				if (g_DebugCommands)
-					warn("Invalid command: upgrading requires unresearched technology: " + uneval(cmd));
+					warn("Invalid command: upgrading is not possible for this player or requires unresearched technology: " + uneval(cmd));
 				continue;
 			}
 
