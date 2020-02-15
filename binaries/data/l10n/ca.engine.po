@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-13 07:08+0000\n"
-"PO-Revision-Date: 2020-02-03 23:22+0000\n"
-"Last-Translator: Esteve Blanch <esteve.blanch@live.com>\n"
+"PO-Revision-Date: 2020-02-10 23:17+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -172,37 +172,37 @@ msgstr "El nom d'usuari ja existeix"
 #: ps/ModIo.cpp:261
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Errada mentre es començava a preguntar per la id del joc. Errada: %s;%s."
+msgstr "Hi ha hagut un error en la consulta de la identificació del joc. Error: %s;%s."
 
 #: ps/ModIo.cpp:291
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "Errada mentre es començava a preguntar pels mods. Errada: %s;%s."
+msgstr "Hi ha hagut un error en la consulta dels mods. Error: %s;%s."
 
 #: ps/ModIo.cpp:317
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr "No ha estat possible crear el directori del mod: %s."
+msgstr "No s'ha pogut crear el directori del mod: %s."
 
 #: ps/ModIo.cpp:342
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "No ha estat possible obrir un arxiu temporal per a la descàrrega del mod: %s."
+msgstr "No s'ha pogut obrir un arxiu temporal per a la baixada del mod: %s."
 
 #: ps/ModIo.cpp:352
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "Errada al començar la descàrrega. Errada: %s;%s."
+msgstr "Hi ha hagut un error en començar la baixada. Error: %s;%s."
 
 #: ps/ModIo.cpp:397
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr "Errada de descàrrega asincrònica: %s,%s."
+msgstr "Error de baixada asincrònica: %s,%s."
 
 #: ps/ModIo.cpp:426
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Errada de descàrrega. Resposta del servidor: %s;%s."
+msgstr "Hi ha hagut un error en la baixada. La resposta del servidor és: %s;%s."
 
 #: ps/ModIo.cpp:529
 msgid "Mismatched filesize."
@@ -215,7 +215,7 @@ msgstr "El fitxer no és vàlid. S'esperava md5 %s, s'ha obtingut%s."
 
 #: ps/ModIo.cpp:562
 msgid "Failed to compute final hash."
-msgstr "Errada al computar el hash final."
+msgstr "Hi ha hagut un error en computar el valor final del hash."
 
 #: ps/ModIo.cpp:568
 msgid "Failed to verify signature."
