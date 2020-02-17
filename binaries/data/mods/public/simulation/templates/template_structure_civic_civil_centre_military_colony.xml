@@ -19,10 +19,6 @@
       <metal>200</metal>
     </Resources>
   </Cost>
-  <Footprint>
-    <Square width="25.0" depth="25.0"/>
-    <Height>12.0</Height>
-  </Footprint>
   <Health>
     <Max>2000</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_5x5</SpawnEntityOnDeath>
@@ -33,9 +29,6 @@
     <Icon>structures/military_settlement.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
-  <Obstruction>
-    <Static width="23.0" depth="23.0"/>
-  </Obstruction>
   <ProductionQueue>
     <Technologies datatype="tokens">
       -phase_town_{civ}

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_civil_centre_military_colony">
   <Footprint>
-    <Square width="31.0" depth="31.0"/>
-    <Height>8.0</Height>
+    <Square width="31" depth="31"/>
+    <Height>8</Height>
   </Footprint>
   <Identity>
     <Civ>sele</Civ>
@@ -10,7 +10,7 @@
     <Tooltip>This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster. Train settler-soldiers of various nationalities.</Tooltip>
   </Identity>
   <Obstruction>
-    <Static width="30.0" depth="29.0"/>
+    <Static width="29" depth="29"/>
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
