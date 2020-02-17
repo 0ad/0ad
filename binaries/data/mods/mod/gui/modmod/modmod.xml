@@ -162,9 +162,7 @@
 		</object>
 
 		<!-- MOD-SPECIFIC BUTTONS -->
-		<object name="toggleModButton" type="button" style="ModernButtonRed" size="16 100%-80 196 100%-52" enabled="false">
-			<translatableAttribute id="caption">Enable/Disable</translatableAttribute>
-		</object>
+		<object name="toggleModButton" type="button" style="ModernButtonRed" size="16 100%-80 196 100%-52" enabled="false"/>
 		<object name="visitWebButton" type="button" style="ModernButtonRed" size="200 100%-80 380 100%-52" enabled="false">
 			<translatableAttribute id="caption">Visit Website</translatableAttribute>
 			<action on="Press">visitModWebsite();</action>
