@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-07 08:09+0000\n"
-"PO-Revision-Date: 2020-02-14 05:24+0000\n"
+"PO-Revision-Date: 2020-02-17 01:34+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -2757,23 +2757,23 @@ msgstr "Posprocesamientu"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use anti-aliasing."
-msgstr ""
+msgstr "Nun usar anti-escalonáu."
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid "Fast, but simple anti-aliasing."
-msgstr ""
+msgstr "Anti-escalonáu rápidu & cenciellu."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
-msgstr ""
+msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
-msgstr ""
+msgstr "Amenorgar l'efeutu escalonáu nos berbesos."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Anti-Aliasing"
-msgstr ""
+msgstr "Anti-escalonáu"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -3136,7 +3136,7 @@ msgstr "Amosar la clasificación media de los xugadores participantes nuna colum
 
 #: gui/options/options.json[4].options[2].label
 msgid "Game rating column"
-msgstr ""
+msgstr "Columna de clasificación de partíes"
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
@@ -3154,7 +3154,7 @@ msgstr "L'atayu de tecláu «unidaes mancaes» tien les unidaes esbillaes por ma
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
-msgstr ""
+msgstr "Salú d'unidaes mancaes"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
@@ -3162,7 +3162,7 @@ msgstr "Cuantes unidaes s'allisten per allistamientu por defeutu."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch training size"
-msgstr ""
+msgstr "Tamañu del allistamientu"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
@@ -3171,7 +3171,7 @@ msgstr "Cuantes vegaes hai que mover la rueda del mur p'aumentar/amenorgar en 1 
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
-msgstr ""
+msgstr "Razón de medría d'allistamientos per desplazamientu"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
@@ -3179,26 +3179,26 @@ msgstr "Amosar una notificación na charra si t'ataca otru xugador."
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat notification attack"
-msgstr ""
+msgstr "Avisos na charra sobre ataques"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr "Amosar una notificación na charra cuando cualquier aliáu apurra recursos a otru miembru del equipu si los equipos tán fixos y tolos tributos tán en mou espeutador."
+msgstr "Amosar una notificación na charra cuando cualquier aliáu apurra recursos a otru miembru del equipu si los equipos tán fixos & tolos tributos tán en mou espeutador."
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat notification tribute"
-msgstr ""
+msgstr "Avisos na charra sobre tributos"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
-msgstr "Amosar una notificación na charra pa espeutadores cuando daqué xugador entrocare recursos."
+msgstr "Amosar una notificación na charra pa espeutadores si un xugador entroca recursos."
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat notification barter"
-msgstr ""
+msgstr "Avisos na charra sobre troqueos"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -3216,11 +3216,11 @@ msgstr "Too amosao"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr "Amosar una notificación na charra si tu o daqué aliáu entama, suspende o perfái una fas nueva, y les fases de tolos xugadores en mou espeutador."
+msgstr "Amosar una notificación na charra si tu o un aliáu entama, suspende o perfái una fas nueva, & les fases de tolos xugadores tán en mou espeutador."
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat notification phase"
-msgstr ""
+msgstr "Avisos na charra sobre fases"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
@@ -3271,11 +3271,11 @@ msgstr "Barra d'estáu d'esperiencia"
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr ""
+msgstr "Amosar conseyos detallaos pa unidaes allistables en construcciones que producen unidaes."
 
 #: gui/options/options.json[5].options[12].label
 msgid "Detailed tooltips"
-msgstr ""
+msgstr "Conseyos detallaos"
 
 #: gui/options/options.json[5].options[13].list[0].label
 msgid "Unordered"
@@ -3304,7 +3304,7 @@ msgstr "Color de les unidaes tos cuando colores diplomátiques tán activaes."
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy colors: self"
-msgstr ""
+msgstr "Colores diplomátiques: yo"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
@@ -3312,7 +3312,7 @@ msgstr "Color d'aliaos cuando colores diplomátiques tán activaes."
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy colors: ally"
-msgstr ""
+msgstr "Colores diplomátiques: aliáu"
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
@@ -3320,7 +3320,7 @@ msgstr "Color de xugadores neutrales cuando colores diplomátiques tán activaes
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy colors: neutral"
-msgstr ""
+msgstr "Colores diplomátiques: neutral"
 
 #: gui/options/options.json[5].options[17].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
@@ -3328,34 +3328,34 @@ msgstr "Color d'enemigos cuando colores diplomátiques tán activaes."
 
 #: gui/options/options.json[5].options[17].label
 msgid "Diplomacy colors: enemy"
-msgstr ""
+msgstr "Colores diplomátiques: enemigu"
 
 #: gui/options/options.json[5].options[18].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr ""
+msgstr "Les construcciones nueves allíniense con construcciones cercanes al primir l'atayu de tecláu."
 
 #: gui/options/options.json[5].options[18].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr ""
+msgstr "Atayu de tecláu p'activar alliniamientu"
 
 #: gui/options/options.json[5].options[18].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr ""
+msgstr "Les construcciones nueves allíniense con construcciones cercanes sacante que primas l'atayu de tecláu."
 
 #: gui/options/options.json[5].options[18].list[1].label
 msgid "Hotkey to disable snapping"
-msgstr ""
+msgstr "Atayu de tecláu pa desactivar alliniamientu"
 
 #: gui/options/options.json[5].options[18].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr ""
+msgstr "Esta opción permítete alliniar construcciones nueves con construcciones cercanes."
 
 #: gui/options/options.json[5].options[18].label
 msgid "Snap to edges"
-msgstr ""
+msgstr "Alliniar berbesos"
 
 #: gui/options/options.json[5].options[19].list[0].tooltip
 msgid ""
@@ -3381,11 +3381,11 @@ msgstr ""
 
 #: gui/options/options.json[5].options[19].tooltip
 msgid "Decide whether units can be part of multiple control groups."
-msgstr ""
+msgstr "Decidi si les unidaes puen formar parte de dellos grupos de control."
 
 #: gui/options/options.json[5].options[19].label
 msgid "Control Group Membership"
-msgstr ""
+msgstr "Venceyamientu a grupos de control"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -3797,7 +3797,7 @@ msgstr "FORTALEZA"
 
 #: gui/text/tips/fortress.txt:2
 msgid "The Fortress is usually each faction's strongest structure."
-msgstr ""
+msgstr "La fortaleza suel ser la construcción más fuerte de cada faición."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
@@ -3916,7 +3916,7 @@ msgstr "El principal políticu ateniense del sieglu V e.d.n. "
 
 #: gui/text/tips/pericles.txt:3
 msgid "Structures are built faster within his range."
-msgstr ""
+msgstr "Les construcciones fáense más rápido dientro del so algame."
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."
@@ -3932,7 +3932,7 @@ msgstr "La teunoloxía especial de los perses. "
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr ""
+msgstr "Construcciones +25% de salú."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
@@ -4118,7 +4118,7 @@ msgstr "ESCAYENCIA TERRITORIAL"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr ""
+msgstr "Les construcciones escayen cuando nun tán venceyaos a nengún centru civil aliáu. "
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""

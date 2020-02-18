@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -622,10 +622,13 @@ private:
 	static const CStr EventNameRelease;
 	static const CStr EventNameMouseRightPress;
 	static const CStr EventNameMouseLeftPress;
+	static const CStr EventNameMouseMiddlePress;
 	static const CStr EventNameMouseWheelDown;
 	static const CStr EventNameMouseWheelUp;
 	static const CStr EventNameMouseLeftDoubleClick;
 	static const CStr EventNameMouseLeftRelease;
+	static const CStr EventNameMouseMiddleDoubleClick;
+	static const CStr EventNameMouseMiddleRelease;
 	static const CStr EventNameMouseRightDoubleClick;
 	static const CStr EventNameMouseRightRelease;
 

@@ -53,12 +53,15 @@ const CStr CGUI::EventNamePress = "Press";
 const CStr CGUI::EventNameRelease = "Release";
 const CStr CGUI::EventNameMouseRightPress = "MouseRightPress";
 const CStr CGUI::EventNameMouseLeftPress = "MouseLeftPress";
+const CStr CGUI::EventNameMouseMiddlePress = "MouseMiddlePress";
 const CStr CGUI::EventNameMouseWheelDown = "MouseWheelDown";
 const CStr CGUI::EventNameMouseWheelUp = "MouseWheelUp";
 const CStr CGUI::EventNameMouseLeftDoubleClick = "MouseLeftDoubleClick";
 const CStr CGUI::EventNameMouseLeftRelease = "MouseLeftRelease";
 const CStr CGUI::EventNameMouseRightDoubleClick = "MouseRightDoubleClick";
 const CStr CGUI::EventNameMouseRightRelease = "MouseRightRelease";
+const CStr CGUI::EventNameMouseMiddleDoubleClick = "MouseMiddleDoubleClick";
+const CStr CGUI::EventNameMouseMiddleRelease = "MouseMiddleRelease";
 
 CGUI::CGUI(const shared_ptr<ScriptRuntime>& runtime)
 	: m_BaseObject(*this),
@@ -179,6 +182,11 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 					ret = pNearest->SendMouseEvent(GUIM_MOUSE_PRESS_RIGHT, EventNameMouseRightPress);
 				break;
 
+			case SDL_BUTTON_MIDDLE:
+				if (pNearest)
+					ret = pNearest->SendEvent(GUIM_MOUSE_PRESS_MIDDLE, EventNameMouseMiddlePress);
+				break;
+
 			default:
 				break;
 			}
@@ -214,6 +222,18 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 						ret = pNearest->SendMouseEvent(GUIM_MOUSE_DBLCLICK_RIGHT, EventNameMouseRightDoubleClick);
 					else
 						ret = pNearest->SendMouseEvent(GUIM_MOUSE_RELEASE_RIGHT, EventNameMouseRightRelease);
+				}
+				break;
+			case SDL_BUTTON_MIDDLE:
+				if (pNearest)
+				{
+					double timeElapsed = timer_Time() - pNearest->m_LastClickTime[SDL_BUTTON_MIDDLE];
+					pNearest->m_LastClickTime[SDL_BUTTON_MIDDLE] = timer_Time();
+
+					if (timeElapsed < SELECT_DBLCLICK_RATE)
+						ret = pNearest->SendEvent(GUIM_MOUSE_DBLCLICK_MIDDLE, EventNameMouseMiddleDoubleClick);
+					else
+						ret = pNearest->SendEvent(GUIM_MOUSE_RELEASE_MIDDLE, EventNameMouseMiddleRelease);
 				}
 				break;
 			}
