@@ -7,6 +7,7 @@
 # Felix Häuslmann <felix.haeuslmann@gmx.at>, 2018
 # Filip Bengtsson, 2019
 # Jacob Carlsson <yejcob@gmail.com>, 2015
+# Jonatan Nyberg, 2020
 # Kristoffer Grundström <hamnisdude@gmail.com>, 2015-2016
 # leper <leper@wildfiregames.com>, 2015
 # Marco tom Suden, 2014
@@ -23,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-10 08:09+0000\n"
-"PO-Revision-Date: 2020-01-10 15:21+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-02-18 07:51+0000\n"
+"Last-Translator: Jonatan Nyberg\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -232,7 +233,7 @@ msgstr "Stadsport"
 #: simulation/templates/template_structure_defensive_wall_gate.xml:22
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
-msgstr "Låter enheter komma igenom en stadsmur. Kan låsas för att förhindra åtkomst."
+msgstr "Låter soldater komma igenom en stadsmur. Kan låsas för att förhindra åtkomst."
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:43
 msgid "Long wall segments can be converted to gates."
@@ -274,7 +275,7 @@ msgstr "Bondgård"
 msgid ""
 "Create trade units to trade between other markets. Barter resources. "
 "Research trading and bartering improvements."
-msgstr "Skapa handelsenheter för att handla med andra marknader. Driv byteshandel med resurser. Forska fram handels- och bytesförbättringar."
+msgstr "Skapa handelsmän för att handla med andra marknader. Driv byteshandel med resurser. Forska fram handels- och bytesförbättringar."
 
 #: simulation/templates/template_structure_economic_market.xml:32
 #: simulation/templates/template_structure_economic_market.xml:28
@@ -336,7 +337,7 @@ msgstr "Elefantstall"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:29
 msgid "Train elephant units."
-msgstr "Träna elefantenheter."
+msgstr "Träna elefantsoldater."
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
 msgid "ElephantStable"
@@ -440,7 +441,7 @@ msgstr "Detta är en speciell byggnad, unik för enskild civilisation."
 #: simulation/templates/template_structure_special_amphitheater.xml:22
 #: simulation/templates/structures/rome_amphitheater_pompeii.xml:5
 msgid "Amphitheater"
-msgstr ""
+msgstr "Amfiteater"
 
 #: simulation/templates/template_structure_special_library.xml:17
 msgid "Library"
@@ -456,7 +457,7 @@ msgstr "Roterande kvarn"
 
 #: simulation/templates/template_structure_special_theater.xml:26
 msgid "Theater"
-msgstr ""
+msgstr "Teater"
 
 #: simulation/templates/template_structure_wonder.xml:52
 msgid ""
@@ -507,7 +508,7 @@ msgstr ""
 #: simulation/templates/structures/sele_defense_tower.xml:9
 #: simulation/templates/structures/spart_defense_tower.xml:9
 msgid "Pyrgion"
-msgstr ""
+msgstr "Pyrgion"
 
 #: simulation/templates/structures/athen_defense_tower.xml:23
 #: simulation/templates/structures/cart_defense_tower.xml:24
@@ -709,7 +710,7 @@ msgstr ""
 #: simulation/templates/structures/sele_wall_tower.xml:9
 #: simulation/templates/structures/spart_wall_tower.xml:9
 msgid "Pyrgos"
-msgstr ""
+msgstr "Pyrgos"
 
 #: simulation/templates/structures/athen_wonder.xml:15
 msgid "Parthenōn﻿﻿"
@@ -877,7 +878,7 @@ msgstr "Maḥanēt"
 msgid ""
 "Train North African citizen-soldiers. Research improvements for North "
 "African units."
-msgstr "Träna nordafrikanska medborgarsoldater. Forska fram förbättringar för nordafrikanska enheter."
+msgstr "Träna nordafrikanska medborgarsoldater. Forska fram förbättringar för nordafrikanska soldater."
 
 #: simulation/templates/structures/cart_civil_centre.xml:8
 msgid "Merkāz"

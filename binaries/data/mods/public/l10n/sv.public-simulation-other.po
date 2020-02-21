@@ -6,6 +6,7 @@
 # Jacob Carlsson <yejcob@gmail.com>, 2015
 # Jimmi Elofsson <jimmielofsson@gmail.com>, 2017
 # Jonatan Nyberg, 2016
+# Jonatan Nyberg, 2020
 # Kristoffer Grundström <hamnisdude@gmail.com>, 2015-2016
 # pilino1234 <pilino1234@zoho.eu>, 2016
 # pilino1234 <pilino1234@zoho.eu>, 2015-2016
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-05-24 09:43+0200\n"
-"PO-Revision-Date: 2019-06-16 17:37+0000\n"
-"Last-Translator: Mattias Münster <mattiasmun@gmail.com>\n"
+"PO-Revision-Date: 2020-02-18 07:51+0000\n"
+"Last-Translator: Jonatan Nyberg\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -554,7 +555,7 @@ msgstr "Produktionskön är full"
 
 #: simulation/components/ProductionQueue.js:769
 msgid "Can't find free space to spawn trained units"
-msgstr "Kan inte hitta ledigt utrymme att placera tränade enheter"
+msgstr "Kan inte hitta ledigt utrymme att placera tränade soldater"
 
 #: simulation/helpers/Cheat.js:53
 #, javascript-format
@@ -563,7 +564,7 @@ msgstr "%(player)s har blivit besegrad (fusk)."
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
-msgstr "Du måste markera en byggnad som kan träna enheter."
+msgstr "Du måste markera en byggnad som kan träna soldater."
 
 #: simulation/helpers/Commands.js:124
 msgid "(Cheat - control all units)"
@@ -727,7 +728,7 @@ msgstr "Besegra motståndare genom att döda alla deras enheter."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr "Erövring Enheter"
+msgstr "Erövring soldater"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero."
