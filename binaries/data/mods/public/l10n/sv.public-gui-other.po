@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Hans Kunkell <hanzukun@gmail.com>, 2019
+# Hans Kunkell <hansk@mailfence.com>, 2019
 # Jacob Carlsson <yejcob@gmail.com>, 2015
 # Jonatan Nyberg, 2016
 # Jonatan Nyberg, 2020
@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-07 08:09+0000\n"
-"PO-Revision-Date: 2020-02-07 15:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-02-18 07:51+0000\n"
+"Last-Translator: Jonatan Nyberg\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -398,7 +398,7 @@ msgstr "Startresurser"
 #: gui/common/gamedescription.js:358
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Per spelare"
 
 #: gui/common/gamedescription.js:359
 #, javascript-format
@@ -412,7 +412,7 @@ msgstr "Befolkningsgräns"
 #: gui/common/gamedescription.js:374
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Per spelare"
 
 #: gui/common/gamedescription.js:381
 msgid "Treasures"
@@ -1338,11 +1338,11 @@ msgstr "Historia"
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Läs om civilisationerna som är med i 0 A. D."
 
 #: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:142
 msgid "Single-player"
-msgstr ""
+msgstr "Enspelarläge"
 
 #: gui/pregame/MainMenuItems.js:51
 msgid "Start, load, or replay a single-player game."
@@ -1939,11 +1939,11 @@ msgstr "Underverk"
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "Strukturstatistik (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):88
 msgid "Units"
-msgstr "Enheter"
+msgstr "Soldater"
 
 #: gui/summary/layout.js:63
 msgid "Infantry"
@@ -2317,7 +2317,7 @@ msgstr "Civilisation:"
 
 #: gui/reference/structree/structree.xml:(caption):98
 msgid "Trainer Units"
-msgstr "Tränareneheter"
+msgstr "Tränarsoldater"
 
 #: gui/reference/viewer/viewer.xml:(caption):13
 msgid "Information"
@@ -2538,7 +2538,7 @@ msgstr "Ledare"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr ""
+msgstr "Balanserar"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
@@ -2616,7 +2616,7 @@ msgstr "Översättare"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "Hur du vill bli adresserad i enspelarmatcher."
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
@@ -2632,7 +2632,7 @@ msgstr "Spelarens namn (spel med flera spelare)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr ""
+msgstr "Pausa enspelarspel när fönstret förlorar fokus."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
@@ -2662,7 +2662,7 @@ msgstr "Visa FPS i hörnet uppe till höger."
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS overlay"
-msgstr ""
+msgstr "FPS-överlägg"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -2686,7 +2686,7 @@ msgstr "Visa alltid kvarstående tid av vapenvila."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire time overlay"
-msgstr ""
+msgstr "Vapenvila tidsöverlägg"
 
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
@@ -2761,7 +2761,7 @@ msgstr "Dimma"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Använd efterbehandlingsfilter för skärmutrymme (HDR, Bloom, DOF, o.s.v.)."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
@@ -2844,11 +2844,11 @@ msgstr ""
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Show outlines of units behind structures."
-msgstr ""
+msgstr "Visa konturer av enheter bakom strukturer."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Unit silhouettes"
-msgstr ""
+msgstr "Enhetssiluetter"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid "Enable particles."
@@ -3130,7 +3130,7 @@ msgstr "Skydda inloggning och data som byts ut med lobbyservern med TLS-krypteri
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
-msgstr ""
+msgstr "TLS-kryptering"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
@@ -3148,7 +3148,7 @@ msgstr "Visa genomsnittliga värderingen av deltagande spelare i en kolumn i lis
 
 #: gui/options/options.json[4].options[2].label
 msgid "Game rating column"
-msgstr ""
+msgstr "Spelbetygskolumn"
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
@@ -3262,7 +3262,7 @@ msgstr "Visa läkningsräckvidd av valda enheter (kan även ändras i spelet med
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
-msgstr ""
+msgstr "Läkningsräckviddsvisualisering"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
@@ -3621,7 +3621,7 @@ msgstr "[imgleft=\"constructionIcon\"]Detta spel utvecklas fortfarande. Vissa fu
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr "[imgleft=\"iconLag\"]Spelet kan ha prestandaproblem, framförallt med stora kartor och stora antal enheter."
+msgstr "[imgleft=\"iconLag\"]Spelet kan ha prestandaproblem, framförallt med stora kartor och stora antal soldater."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
@@ -3944,7 +3944,7 @@ msgstr "Unik teknologi för Perserna."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr ""
+msgstr "Strukturer + 25% hälsa."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."

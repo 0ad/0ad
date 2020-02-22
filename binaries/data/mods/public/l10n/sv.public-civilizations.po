@@ -8,7 +8,7 @@
 # 0a7f9ff4c411567131ab21a7587f6066, 2014
 # Daniel Sandman <revoltism@gmail.com>, 2013
 # Erik Johansson <erik@feneur.com>, 2013,2015
-# Hans Kunkell <hanzukun@gmail.com>, 2019
+# Hans Kunkell <hansk@mailfence.com>, 2019
 # Jacob Carlsson <yejcob@gmail.com>, 2015
 # Jonatan Nyberg, 2016
 # Jonatan Nyberg, 2020
@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-02-01 01:31+0000\n"
+"PO-Revision-Date: 2020-02-18 07:40+0000\n"
 "Last-Translator: Jonatan Nyberg\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -262,7 +262,7 @@ msgstr "Gymnasion"
 #: simulation/data/civs/athen.jsonStructures[1].Special
 msgid ""
 "Train champion units and research technologies pertaining to champion units."
-msgstr "Träna Mästarenheter och forska fram teknologier för mästarenheter."
+msgstr "Träna mästarsoldater och forska fram teknologier för mästarsoldater."
 
 #: simulation/data/civs/athen.jsonStructures[1].History
 msgid ""
@@ -329,7 +329,7 @@ msgstr "Keltiska religionen och druider inspirerade deras krigiska tänkande."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "Allied Healers −20% resource costs."
-msgstr ""
+msgstr "Allierade läkare −20% resurskostnader."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -405,7 +405,7 @@ msgstr "Britterna tog upp bruket att antingen göra permanenta märken på kropp
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr "Ökar höjdbonusen för enheter som är garnisonerade i ett torn."
+msgstr "Ökar höjdbonusen för soldater som är garnisonerade i ett torn."
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Name
 msgid "Turos Maros"
@@ -558,7 +558,7 @@ msgid ""
 "The resource cost of training elephant-mounted (war elephant) or horse-"
 "mounted units (cavalry) is reduced by 5% per animal corralled (as "
 "appropriate)."
-msgstr "Resurskostnaden för att utbilda elefantburna (krigselefanter) eller hästburna enheter (kavalleri) minskas med 5% per djur som vallas (i lämpliga fall)."
+msgstr "Resurskostnaden för att utbilda elefantburna (krigselefanter) eller hästburna soldater (kavalleri) minskas med 5% per djur som vallas (i förekommande fall)."
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Name
 #: simulation/data/civs/ptol.jsonCivBonuses[2].Name
@@ -967,7 +967,7 @@ msgstr "Med undantag av alluviala slätter och floddalar är sten rik på den ib
 msgid ""
 "The resource cost of training horse-mounted units (cavalry) is reduced by 5%"
 " per animal corralled."
-msgstr "Resurskostnaden för att utbilda hästburna enheter (kavalleri) minskas med 5% för varje djur som vallas."
+msgstr "Resurskostnaden för att utbilda hästburna soldater (kavalleri) minskas med 5% för varje djur som vallas."
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Zaldi Saldoa"
@@ -1046,7 +1046,7 @@ msgstr "Iberiska stammarmän noterades för att förpacka gräsbuntar om axlarna
 
 #: simulation/data/civs/iber.jsonFactions[0].Technologies[1].Description
 msgid "Metal costs for units and technologies reduced by 50%."
-msgstr "Metall kostnaden för soldater och teknologier reduceras med 50%."
+msgstr "Metallkostnaden för soldater och teknologier reduceras med 50%."
 
 #: simulation/data/civs/iber.jsonFactions[0].Technologies[1].Name
 msgid "Maisu Burdina Langileak"
@@ -1120,7 +1120,7 @@ msgid ""
 "Defensive Aura - Gives all Iberian units and buildings within vision range "
 "of the monument a 10-15% attack boost. Build Limit: Only 5 may be built per "
 "map."
-msgstr "Defensiv Aura - ger alla iberiska enheter och byggnader inom monumentets synområde en 10-15% attack boost. Bygggräns: Endast 5 kan byggas per karta."
+msgstr "Defensiv Aura - ger alla iberiska soldater och byggnader inom monumentets synområde en 10-15% attack boost. Byggräns: endast 5 kan byggas per karta."
 
 #: simulation/data/civs/iber.jsonStructures[0].History
 msgid ""
@@ -1351,7 +1351,7 @@ msgstr "Makedonier"
 msgid ""
 "Macedonian units have +10% attack bonus vs. Persian and Hellenic factions, "
 "but -5% attack debonus vs. Romans."
-msgstr "Makedonska enheter har + 10% attack bonus vs persiska och hellenska fraktioner, men -5% attack debonus vs romare."
+msgstr "Makedonska soldater har + 10% attack bonus vs persiska och hellenska fraktioner, men -5% attack debonus vs romare."
 
 #: simulation/data/civs/mace.jsonCivBonuses[0].Name
 msgid "Hellenic League"
@@ -1464,7 +1464,7 @@ msgid ""
 "military units. This also applies to the Barracks of allied players (they "
 "receive 5 free units of their own culture for each new Barracks "
 "constructed)."
-msgstr "Varje efterföljande kasern byggs kommer med 5 gratis (slumpmässiga) makedonska militära enheter. Detta gäller också kaserner av allierade spelare (de får 5 gratis enheter av sin egen kultur för varje ny Barack konstruerad)."
+msgstr "Varje efterföljande kaserner konstruerade kommer med 5 gratis (slumpmässiga) makedonska militära soldater. Detta gäller också kasernerna av allierade spelare (de får 5 gratis soldater av sin egen kultur för varje ny kasernkonstruktion)."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/sele.jsonCivBonuses[1].Name
@@ -1551,7 +1551,7 @@ msgid ""
 "his Asian possessions after the battle of Ipsos, he later won the Macedonian"
 " throne. Fearing lest they should be overpowered by Demetrios, the other "
 "Diadochi united against him and defeated him."
-msgstr "En av Diadochi, Makedoniens Konung (294-288 B.C.), Demetrios var känd som en av Alexanders modigaste och mest möjliga efterträdare. Som son till Antigonus I Monophthalmus kämpade han och vann många viktiga strider tidigt och proklamerades kungen tillsammans med sin far i 306 B.C. Förlorade sina asiatiska ägodelar efter slaget i Ipsos, vann han senare den makedonska tronen. Rädsla för att de inte skulle övermanas av Demetrios, den andra Diadochi förenade sig mot honom och besegrade honom."
+msgstr "En av Diadochi, Makedoniens konung (294-288 B.C.), Demetrios var känd som en av Alexanders modigaste och mest möjliga efterträdare. Som son till Antigonus I Monophthalmus kämpade han och vann många viktiga strider tidigt och proklamerades kung, tillsammans med sin far i 306 f.Kr. Förlorade sina asiatiska ägodelar efter slaget vid Ipsos,  han vann senare den makedonska tronen. Fruktar för att de inte skulle övermannas av Demetrios, den andra Diadochi förenade sig mot honom och besegrade honom."
 
 #: simulation/data/civs/mace.jsonFactions[0].Heroes[2].Name
 msgid "Demetrios the Besieger"
@@ -1694,7 +1694,7 @@ msgstr "Brihadratha Maurya"
 msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
-msgstr "Fånga upp till 5 Gaia elefanter och garnisonera dem i Elephant Stables för att få upp till 25% bonus på kostnad och tågtid för elefantenheter."
+msgstr "Fånga upp till 5 Gaia elefanter och garnisonera dem i Elefantstallet för att få upp till 25% bonus på kostnad och träningstid för elefantsoldater."
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
@@ -1771,7 +1771,7 @@ msgstr "Perser"
 msgid ""
 "The resource cost of training camel-mounted (trader) or horse-mounted units "
 "(cavalry) is reduced by 5% per animal (as appropriate) corralled."
-msgstr "Resurskostnaden för att utbilda kamelburna (handelsmän) eller hästburna (kavalleri) enheter minskas med 5% per djur som vallas (i lämpliga fall)."
+msgstr "Resurskostnaden för att utbilda kamelburna (handelsmän) eller hästburna soldater (kavalleri) minskas med 5% per djur som vallas (i förekommande fall)."
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Corral Camels and Horses"
@@ -2349,7 +2349,7 @@ msgstr "Marcus Licinius Crassus"
 
 #: simulation/data/civs/rome.jsonFactions[0].Technologies[0].Description
 msgid "Roman heroes can convert enemy units with great cost."
-msgstr "Romerska hjältar kan konvertera fientliga enheter till en stor kostnad"
+msgstr "Romerska hjältar kan konvertera fiendens soldater till en stor kostnad."
 
 #: simulation/data/civs/rome.jsonFactions[0].Technologies[0].Name
 msgid "Divide et Impera"
@@ -2857,7 +2857,7 @@ msgstr "Spartanska kvinnor var några av de fria i den gamla världen. De kunde 
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[1].Description
 msgid "Units in phalanx formation move faster."
-msgstr "Enheter i en falangformation går snabbare."
+msgstr "Soldater i en falangformation rör sig snabbare."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[1].Name
 msgid "Tyrtean Paeans"

@@ -5,7 +5,7 @@
 # Translators:
 # AlexKR <alexkr.post@gmail.com>, 2015
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2018
-# Lion-Tailed Macaque <lion-tailed.macaque@mail.ru>, 2020
+# 504fc1cf9150c6eb2ead15f639dc2c0a, 2020
 # Nicolas Auvray <na.itms76@gmail.com>, 2018
 # Oleg Adept <adeptoleg@gmail.com>, 2016
 # Olexandr Yaremenko <ua.limitless@gmail.com>, 2016
@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-31 08:09+0000\n"
-"PO-Revision-Date: 2020-02-17 08:22+0000\n"
-"Last-Translator: Lion-Tailed Macaque <lion-tailed.macaque@mail.ru>\n"
+"PO-Revision-Date: 2020-02-17 11:24+0000\n"
+"Last-Translator: 504fc1cf9150c6eb2ead15f639dc2c0a\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1263,12 +1263,12 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
 " health. All structures +9 garrisoned regeneration rate."
-msgstr "Просування до етапу міста, яке відкриває більше споруд та підроздфілів. Територіальний радіус для громадських центрів збільшено на ще +50%. Цивілізаційний бонус срібних сов надає +10% до темпу видобутку металу для всіх працівників. Громадяни солдати мають +10% здоров'я. Всі споруди мають +9 темпу відновлення гарнізону."
+msgstr "Просування до етапу міста, яке відкриває більше споруд та підрозділів. Територіальний радіус для громадських центрів збільшено ще на +50%. Цивілізаційний бонус срібних сов надає +10% до темпу видобутку металу для всіх працівників. Громадяни солдати мають +10% здоров'я. Всі споруди мають +9 темпу відновлення гарнізону."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Вимагається 4 нових будівлі з фази містечка (за виключенням стін та громадських центрів)."
+msgstr "Потребує 4 нових споруди етапу містечка (за винятком мурів та громадських центрів)."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -1280,33 +1280,33 @@ msgstr "Мегалополіс"
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology."
-msgstr "Перехід від містечка до метрополії повній чудес та сучасних технологій."
+msgstr "Просуває з метушливого містечка до справжньої метрополії, наповненої дивами новітньої технології."
 
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
 "health. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Просування до етапу міста, яке відкриває більше споруд та підрозділів. Територіальний радіус для громадських центрів збільшено ще на +50%. Громадяни солдати мають +10% здоров'я. Всі споруди мають +9 темпу відновлення гарнізону."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
 #: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
-msgstr "Фаза Містечка"
+msgstr "Етап містечка"
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr "Фіктивна технологія для використання в шаблонах, замінює phase_town_generic або phase_town_{civ}."
+msgstr "Макетна технологія для використання у шаблонних вимогах, замінена phase_town_generic або phase_town_{civ}."
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr "Збільшість невелике селище до шумного містечка, яке в подальшому буде розростатись. Цей етап афінського міста, де видобування металу збільшується за рахунок бонусу 'Срібні сови'."
+msgstr "Просуває з невеликого села до метушливого містечка, готового швидко розширюватися. Це є афінський етап містечка, у якому темпи видобутку металу підвищено завдяки бонусу 'срібних сов'."
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
@@ -1314,13 +1314,13 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
 "health. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Просування до етапу містечка, яке відкриває більше споруд та підрозділів. Територіальний радіус для громадських центрів збільшено на +30%. Цивілізаційний бонус срібних сов надає +10% до темпу видобутку металу для всіх працівників. Громадяни солдати мають +20% здоров'я. Всі споруди мають +7 темпу відновлення гарнізону."
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid ""
 "Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Вимагається 5 будівель з фази селища (за винятком частоколів та ферм)."
+msgstr "Потребує 5 нових споруди етапу села (за винятком частоколів та фермерських полей)."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1331,29 +1331,29 @@ msgstr "Комополіс"
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "Розширення селища у містечко, яке в подальшому також буде збільшуватись."
+msgstr "Просуває з невеликого села до метушливого містечка, готового швидко розширюватися."
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
 "All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Просування до етапу містечка, яке відкриває більше споруд та підрозділів. Територіальний радіус для громадських центрів збільшено на +30%. Громадяни солдати мають +20% здоров'я. Всі споруди мають +7 темпу відновлення гарнізону."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
-msgstr "Фаза Селища"
+msgstr "Етап села"
 
 #: simulation/data/technologies/pop_civic_01.jsondescription
 msgid ""
 "The state or tribe would often construct a dining hall for public feasts or "
 "to receive foreign emissaries."
-msgstr "Держава чи плем'я часто будує залу для церемоній, щоб проводити загальні свята чи приймати послів."
+msgstr "Держава або плем'я часто споруджувало обідню залу для публічних бенкетів або для прийому іноземних послів."
 
 #: simulation/data/technologies/pop_civic_01.jsontooltip
 #: simulation/data/technologies/pop_civic_02.jsontooltip
 msgid "Civic Centers +5 population cap bonus."
-msgstr "Громадські центри збільшують населення +5."
+msgstr "Громадські центри мають +5 бонусу місткості населення."
 
 #: simulation/data/technologies/pop_civic_01.jsongenericName
 msgid "Dining Hall"
@@ -1371,7 +1371,7 @@ msgid ""
 "open-aired assembly place in the great Forum Romanum called the Comitium. "
 "Here citizens could air grievances and present petitions to the patrician "
 "politicians who ruled their city in the Senate."
-msgstr "Місця громадських зборів були також центрами громадського життя давніх спільнот. В Афінах існувала екклезія - народні збори громадян на горбі Пнікс неподалік від агори з видом на Акрополь. Римляни збирались під відкритим небом на Римському Форумі, в місці що називалось Коміцій. Тут громадяни могли висловлювати образи та заявляти клопотання патриціям - політикам, що правили своїм містом у Сенаті."
+msgstr "Місця народних зборів були часто центром громадського життя для стародавніх суспільств. Афіни мали екклесію – збори громадян, що зустрічалися на пагорбі Пнікс, біля агори в повному огляді акрополя. Римляни збирались під відкритим небом на Римському Форумі, в місці що називалось Коміцій. Тут громадяни могли висловлювати образи та заявляти клопотання патриціям - політикам, що правили своїм містом у Сенаті."
 
 #: simulation/data/technologies/pop_civic_02.jsongenericName
 msgid "Public Assembly"
@@ -1383,7 +1383,7 @@ msgstr "Коміцій"
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.athen
 msgid "Ekklēsía"
-msgstr "Екклезія"
+msgstr "Екклесіа"
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
