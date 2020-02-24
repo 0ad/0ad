@@ -5,12 +5,13 @@
 # Translators:
 # Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
 # Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
-# 이정희 <daemul72@gmail.com>, 2019-2020
+# MarongHappy <daemul72@gmail.com>, 2019-2020
 # Dalrae Jin <lovely.serotonin@gmail.com>, 2014
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # GyuTae Park <h1161304@gmail.com>, 2019
+# Hong Won Gi <timmy080736@gmail.com>, 2016
 # Hong Won Gi <timmy080736@gmail.com>, 2016
 # jasonkimik <jasonkim@linux.com>, 2014
 # jjj <triplej03@nate.com>, 2014
@@ -27,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-01-17 15:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-02-22 16:26+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -500,7 +501,7 @@ msgstr "원산지 교역 시장으로 지정할 시장을 마우스 오른쪽 �
 
 #: gui/session/unit_actions.js:595 gui/session/unit_actions.js:938
 msgid "This market is too close to the origin market."
-msgstr "This market is too close to the origin market."
+msgstr "이 시장은 원산지 시장에 너무 가깝습니다."
 
 #: gui/session/unit_actions.js:599
 msgid "Right-click to set as destination trade market."
@@ -526,7 +527,7 @@ msgstr "모두 내립니다."
 
 #: gui/session/unit_actions.js:1089
 msgid "Destroy the selected units or structures."
-msgstr ""
+msgstr "선택한 유닛 또는 건축물을 파괴합니다."
 
 #: gui/session/unit_actions.js:1091
 #, javascript-format
@@ -539,7 +540,7 @@ msgstr "현재 명령을 취소합니다."
 
 #: gui/session/unit_actions.js:1157
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr ""
+msgstr "선택한 유닛이 건축물이나 유닛에 주둔 할 것을 명령합니다."
 
 #: gui/session/unit_actions.js:1180
 msgid "Unload"
@@ -547,7 +548,7 @@ msgstr "내리기"
 
 #: gui/session/unit_actions.js:1198
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr ""
+msgstr "선택한 유닛이 건축물, 배, 공성 전차의 수리를 명령합니다."
 
 #: gui/session/unit_actions.js:1217
 msgid "Focus on Rally Point."
@@ -559,7 +560,7 @@ msgstr "하던 일로 돌아가기"
 
 #: gui/session/unit_actions.js:1271
 msgid "Order the selected units to guard a structure or unit."
-msgstr ""
+msgstr "선택한 유닛에 건축물이나 유닛의 호위를 명령합니다."
 
 #: gui/session/unit_actions.js:1289
 msgid "Remove guard"
@@ -577,7 +578,7 @@ msgstr "순찰"
 
 #: gui/session/unit_actions.js:1325
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr ""
+msgstr "건축물을 피하면서 맞닥뜨린 모든 적 유닛을 공격합니다."
 
 #: gui/session/unit_actions.js:1351
 msgid "Press to allow allies to use this dropsite"
@@ -970,7 +971,7 @@ msgstr "카메라 원뿔 표시"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:283
 msgid "Display shadows frustum"
-msgstr ""
+msgstr "그림자 절두체 표시"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"

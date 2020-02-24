@@ -13,7 +13,7 @@
 # karubabu <karubabu@protonmail.com>, 2018
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2019
-# ks k, 2019
+# ks k, 2019-2020
 # llen_llen, 2014,2016
 # naoki yoshida <oimotanaka1122@gmail.com>, 2015
 # Nicolas Auvray <na.itms76@gmail.com>, 2019
@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-07 08:09+0000\n"
-"PO-Revision-Date: 2020-02-07 15:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-02-22 20:05+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,7 +71,7 @@ msgstr "특수 기술"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Structure"
 msgid_plural "Special Structures"
-msgstr[0] ""
+msgstr[0] "특수 건축물"
 
 #: gui/civinfo/civinfo.js:141 gui/summary/layout.js:67
 msgid "Heroes"
@@ -393,7 +393,7 @@ msgstr "기본 자원"
 #: gui/common/gamedescription.js:358
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "/선수 당"
 
 #: gui/common/gamedescription.js:359
 #, javascript-format
@@ -407,7 +407,7 @@ msgstr "인구 제한"
 #: gui/common/gamedescription.js:374
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "/선수 당"
 
 #: gui/common/gamedescription.js:381
 msgid "Treasures"
@@ -888,12 +888,12 @@ msgstr "아니오"
 #: gui/common/tooltips.js:395
 #, javascript-format
 msgid "%(interval)s"
-msgstr ""
+msgstr "%(interval)s"
 
 #: gui/common/tooltips.js:404
 #, javascript-format
 msgid "%(durName)s: %(duration)s"
-msgstr ""
+msgstr "%(durName)s: %(duration)s"
 
 #: gui/common/tooltips.js:405
 msgid "Duration"
@@ -902,7 +902,7 @@ msgstr "기한"
 #: gui/common/tooltips.js:410
 #, javascript-format
 msgid "%(statusName)s: "
-msgstr ""
+msgstr "%(statusName)s: "
 
 #: gui/common/tooltips.js:425
 #, javascript-format
@@ -1285,7 +1285,7 @@ msgstr "게임 배우기"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr ""
+msgstr "놀이 방법, 자습서를 시작, 기술 나무를 발견, 문명의 숨겨진 역사를 배웁니다."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -1322,7 +1322,7 @@ msgstr "역사"
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: 0 A.D. 에 나타난 문명들에 대해 배웁니다"
 
 #: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:142
 msgid "Single-player"
@@ -1330,7 +1330,7 @@ msgstr "싱글 플레이어"
 
 #: gui/pregame/MainMenuItems.js:51
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "혼자 놀기의 시작, 불러오기, 다시보기를 합니다."
 
 #: gui/pregame/MainMenuItems.js:54
 msgid "Matches"
@@ -1338,7 +1338,7 @@ msgstr "경기"
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "새로운 혼자 놀기 게임을 시작합니다."
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Campaigns"
@@ -1352,7 +1352,7 @@ msgstr "역사적 군사 캠페인을 통해 역사를 재현합니다. \\[아�
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Load a saved game."
-msgstr ""
+msgstr "저장된 게임을 불러옵니다."
 
 #: gui/pregame/MainMenuItems.js:73 gui/pregame/MainMenuItems.js:123
 msgid "Replays"
@@ -1408,7 +1408,7 @@ msgstr "설정"
 
 #: gui/pregame/MainMenuItems.js:139
 msgid "Change game options."
-msgstr ""
+msgstr "놀이 선택사항을 바꿉니다."
 
 #: gui/pregame/MainMenuItems.js:142
 msgid "Options"
@@ -1440,7 +1440,7 @@ msgstr "환영 화면"
 
 #: gui/pregame/MainMenuItems.js:167
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr ""
+msgstr "시작 화면을 다시 보여줍니다. 실수로 숨겼다면 유용할것입니다."
 
 #: gui/pregame/MainMenuItems.js:175
 msgid "Scenario Editor"
@@ -1476,7 +1476,7 @@ msgstr "제작진"
 
 #: gui/pregame/MainMenuItems.js:194
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "0 A.D 제작에 참여하신 분들의 명단을 표시합니다."
 
 #: gui/pregame/MainMenuItems.js:200
 msgid "Exit"
@@ -1484,7 +1484,7 @@ msgstr "끝내기"
 
 #: gui/pregame/MainMenuItems.js:201
 msgid "Exit the game."
-msgstr ""
+msgstr "놀이를 끝냅니다."
 
 #: gui/pregame/MainMenuItems.js:205
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -1882,7 +1882,7 @@ msgstr "탐험 점수"
 
 #: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):81
 msgid "Structures"
-msgstr ""
+msgstr "건축물"
 
 #: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:102
 msgid "Total"
@@ -1921,7 +1921,7 @@ msgstr "상징"
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "건축물 통계 (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):88
 msgid "Units"
@@ -1958,7 +1958,7 @@ msgstr "상인"
 #: gui/summary/layout.js:74
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "유닛 통계 (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):95
 msgid "Resources"
@@ -2602,7 +2602,7 @@ msgstr "싱글 플레이어 매치에서 어떻게 다루어야 할지."
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "선수이름 (혼자 놀기)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
@@ -2610,7 +2610,7 @@ msgstr "멀티 플레이어 경기에서 어떻게 대응하고 싶은지 (로�
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr ""
+msgstr "선수이름 (함께 놀기)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
@@ -2618,7 +2618,7 @@ msgstr "게임창이 마우스 초점을 잃으면 싱글 플레이어 게임을
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
-msgstr ""
+msgstr "배경 일시 정지"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
@@ -2628,7 +2628,7 @@ msgstr "이 기능을 사용 중지하면 새로운 버전을 사용할 때마�
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
-msgstr ""
+msgstr "환영 화면 사용"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
@@ -2636,7 +2636,7 @@ msgstr "함께 놀기 놀이에서 어떤 선수가 연결 상태가 좋지 않�
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network warnings"
-msgstr ""
+msgstr "네트워크 경고"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2644,7 +2644,7 @@ msgstr "오른쪽 상단 모서리에 초당 프레임을 표시합니다."
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS overlay"
-msgstr ""
+msgstr "FPS 덧판 보이기"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -2652,7 +2652,7 @@ msgstr "오른쪽 상단 모서리에 현재 시스템 시간을 표시합니다
 
 #: gui/options/options.json[0].options[6].label
 msgid "Real time overlay"
-msgstr ""
+msgstr "현재 시간 덧판 보이기"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
@@ -2660,7 +2660,7 @@ msgstr "오른쪽 상단 모서리에 현재 모의실험 시간을 표시합니
 
 #: gui/options/options.json[0].options[7].label
 msgid "Game time overlay"
-msgstr ""
+msgstr "놀이 시간 덧판 보이기"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -2668,7 +2668,7 @@ msgstr "항상 남은 휴전시간을 표시합니다."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire time overlay"
-msgstr ""
+msgstr "휴전 시간 덧판 보이기"
 
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
@@ -2694,7 +2694,7 @@ msgstr "모든 사람 또는 친구들이 놀이를 시작한 후에는 관찰�
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late observer joins"
-msgstr ""
+msgstr "늦은 관찰자 합류"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
@@ -2702,7 +2702,7 @@ msgstr "한계에 도달한 경우 추가 관찰자가 참여하지 못하게 �
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer limit"
-msgstr ""
+msgstr "관찰자 한계"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid ""
@@ -2711,7 +2711,7 @@ msgstr "앞마당, 놀이 설정 및 대화에 메시지가 게시되는 시간�
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "대화 시간 출력"
 
 #: gui/options/options.json[0].label
 msgid "General"
@@ -2723,7 +2723,7 @@ msgstr "0 A.D를 창 모드로 시작합니다."
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
-msgstr ""
+msgstr "창 모드"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
@@ -2743,31 +2743,31 @@ msgstr "안개"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "화면 공간 후 처리 거르개 (HDR, 꽃핌현상, DOF 등) 사용"
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
-msgstr ""
+msgstr "후 처리"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use anti-aliasing."
-msgstr ""
+msgstr "안티 알리어싱을 사용하지 않습니다."
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid "Fast, but simple anti-aliasing."
-msgstr ""
+msgstr "빠르고 간단한 앤티 앨리어싱입니다."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
-msgstr ""
+msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
-msgstr ""
+msgstr "가장자리의 앨리어싱 효과를 줄입니다."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Anti-Aliasing"
-msgstr ""
+msgstr "안티 알리어싱"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -2775,7 +2775,7 @@ msgstr "그림자 효과의 수입니다. 이 기능을 사용하시려면 놀�
 
 #: gui/options/options.json[1].options[5].label
 msgid "Shader effects"
-msgstr ""
+msgstr "그림자 효과"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "Enable shadows."
@@ -2814,7 +2814,7 @@ msgstr "그림자 지도 해상도. 메모리가 부족한 그래픽 카드를 �
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shadow quality"
-msgstr ""
+msgstr "그림자 품질"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Smooth shadows."
@@ -2822,15 +2822,15 @@ msgstr "부드러운 그림자."
 
 #: gui/options/options.json[1].options[8].label
 msgid "Shadow filtering"
-msgstr ""
+msgstr "그림자 거르는 중"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Show outlines of units behind structures."
-msgstr ""
+msgstr "건축물 뒤에 유닛 윤곽을 표시합니다."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Unit silhouettes"
-msgstr ""
+msgstr "유닛 윤곽"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid "Enable particles."
@@ -2848,7 +2848,7 @@ msgstr "OFF인 경우, 가능한 가장 낮은 설정을 사용하여 물을 렌
 
 #: gui/options/options.json[1].options[11].label
 msgid "Water effects"
-msgstr ""
+msgstr "물 효과"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid ""
@@ -2858,7 +2858,7 @@ msgstr "물, 해안파도 렌더링, 해안의 파도거품, 선박 노선 등�
 
 #: gui/options/options.json[1].options[12].label
 msgid "High-quality water effects"
-msgstr ""
+msgstr "높은 품질의 물 효과"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -2866,7 +2866,7 @@ msgstr "렌더링 계산에 실제 수심을 사용합니다."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Real water depth"
-msgstr ""
+msgstr "실제 수심"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Allow water to reflect a mirror image."
@@ -2874,7 +2874,7 @@ msgstr "물이 반사 이미지를 반영하도록 합니다."
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water reflections"
-msgstr ""
+msgstr "물위 반사"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Use a real water refraction map and not transparency."
@@ -2882,7 +2882,7 @@ msgstr "투명도가 아닌 실제 물의 굴절 지도를 사용합니다."
 
 #: gui/options/options.json[1].options[15].label
 msgid "Water refraction"
-msgstr ""
+msgstr "물위 반사"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Cast shadows on water."
@@ -2890,7 +2890,7 @@ msgstr "물 위에 그림자를 드립니다."
 
 #: gui/options/options.json[1].options[16].label
 msgid "Shadows on water"
-msgstr ""
+msgstr "물 위의 그림자"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
@@ -2898,7 +2898,7 @@ msgstr "어둠과 전쟁의 안개를 부드럽게 들어올립니다."
 
 #: gui/options/options.json[1].options[17].label
 msgid "Smooth vision"
-msgstr ""
+msgstr "부드러운 시야 이동"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Render Sky."
@@ -2906,7 +2906,7 @@ msgstr "하늘 렌더링합니다."
 
 #: gui/options/options.json[1].options[18].label
 msgid "Show sky"
-msgstr ""
+msgstr "하늘 표시"
 
 #: gui/options/options.json[1].options[19].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
@@ -2924,7 +2924,7 @@ msgstr "CPU 작업량을 절약하려면 모든 차림표에서 렌더링 빈도
 
 #: gui/options/options.json[1].options[20].label
 msgid "FPS throttling in menus"
-msgstr ""
+msgstr "차림표에서 FPS 조절"
 
 #: gui/options/options.json[1].options[21].tooltip
 msgid ""
@@ -2934,7 +2934,7 @@ msgstr "CPU 작업량을 줄이려면 실행중인 놀이에서 렌더링 빈도
 
 #: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
-msgstr ""
+msgstr "놀이에서 FPS 조절"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -2950,7 +2950,7 @@ msgstr "주요 음량을 조절합니다."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master volume"
-msgstr ""
+msgstr "기본 음량"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
@@ -2958,7 +2958,7 @@ msgstr "놀이 음악에서 조절합니다."
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music volume"
-msgstr ""
+msgstr "음악 음량"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
@@ -2966,7 +2966,7 @@ msgstr "놀이에서 배경 음 조절."
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient volume"
-msgstr ""
+msgstr "배경 음량"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
@@ -2974,7 +2974,7 @@ msgstr "놀이에서 유닛 행동 소리 조절."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action volume"
-msgstr ""
+msgstr "동작 음량"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
@@ -2982,7 +2982,7 @@ msgstr "UI 소리를 조정합니다."
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI volume"
-msgstr ""
+msgstr "UI 음량"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
@@ -2990,7 +2990,7 @@ msgstr "누군가가 별칭을 입력하면 오디오 알림을 받습니다."
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick notification"
-msgstr ""
+msgstr "별칭 알림"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -2998,7 +2998,7 @@ msgstr "새 클라이언트가 놀이 설정에 참여하면 오디오 알림을
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game setup - new player notification"
-msgstr ""
+msgstr "놀이 설정 - 새로운 선수 알림"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -3006,7 +3006,7 @@ msgstr "놀이를 설정할 때 도움말ehsms 유용한 정보를 표시합니�
 
 #: gui/options/options.json[3].options[0].label
 msgid "Enable game setting tips"
-msgstr ""
+msgstr "놀이 설정 도움말 사용"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
@@ -3014,7 +3014,7 @@ msgstr "열기, 닫기, 크기 조정 시 설정판을 밀어 넣으십시오."
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable settings panel slide"
-msgstr ""
+msgstr "설정 판밀어넣기 사용"
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
@@ -3023,7 +3023,7 @@ msgstr "다른 놀이를 주최할 때 빠르게 다시 사용할 수 있도록 
 
 #: gui/options/options.json[3].options[2].label
 msgid "Persist match settings"
-msgstr ""
+msgstr "경기 설정 유지"
 
 #: gui/options/options.json[3].options[3].list[0].label
 msgid "Sandbox"
@@ -3051,7 +3051,7 @@ msgstr "AI의 기본 난이도."
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI difficulty"
-msgstr ""
+msgstr "기본 인공 지능의 어려움 정도"
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
@@ -3075,21 +3075,21 @@ msgstr "인공 지능의 기본 동작입니다."
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI behavior"
-msgstr ""
+msgstr "기본 인공지능 행동"
 
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
-msgstr ""
+msgstr "빈 슬롯이 있으면 경기에 참가하는 선수들에게 배정됩니다."
 
 #: gui/options/options.json[3].options[5].list[1].tooltip
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
-msgstr ""
+msgstr "경기에 참가하는 선수들은 주인의 친구이고, 빈 슬롯이있는 경우에만 배정됩니다."
 
 #: gui/options/options.json[3].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr ""
+msgstr "선수는 주인이 명시적으로 할당할때만 슬롯을 받습니다."
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
@@ -3099,7 +3099,7 @@ msgstr "경기 설정 중 선수 공간을 확보하기 위해 합류하는 클�
 
 #: gui/options/options.json[3].options[5].label
 msgid "Assign players"
-msgstr ""
+msgstr "선수 할당"
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
@@ -3112,7 +3112,7 @@ msgstr "TLS 암호화를 사용하여 앞마당 서버와 교환되는 로그인
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
-msgstr ""
+msgstr "TLS 암호화"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
@@ -3120,7 +3120,7 @@ msgstr "앞마당에 참여할 때 불러올 역 기록된 메시지 수입니�
 
 #: gui/options/options.json[4].options[1].label
 msgid "Chat backlog"
-msgstr ""
+msgstr "과거 대화 내용"
 
 #: gui/options/options.json[4].options[2].tooltip
 msgid ""
@@ -3130,7 +3130,7 @@ msgstr "놀이 목록의 열에 참여한 선수의 평균 등급을 표시합�
 
 #: gui/options/options.json[4].options[2].label
 msgid "Game rating column"
-msgstr ""
+msgstr "놀이 등급 줄"
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
@@ -3148,7 +3148,7 @@ msgstr "부상당한 유닛 단축키는 선택한 유닛의 체력 비율이 �
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
-msgstr ""
+msgstr "부상당한 유닛 체력"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
@@ -3156,7 +3156,7 @@ msgstr "기본적으로 한꺼번에 훈련되는 유닛 수입니다."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch training size"
-msgstr ""
+msgstr "한꺼번에 훈련할 수 있는 유닛 수"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
@@ -3165,7 +3165,7 @@ msgstr "한꺼번에 처리할 크기를 1씩 늘리거나 줄일때 스크롤�
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
-msgstr ""
+msgstr "스크롤때 일괄처리로 늘리고 줄이는 비율"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
@@ -3173,7 +3173,7 @@ msgstr "다른 선수의 공격을 받은 경우 대화 알림을 표시합니�
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat notification attack"
-msgstr ""
+msgstr "대화 알림 공격"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
@@ -3183,7 +3183,7 @@ msgstr "같은 편이 잠긴 경우 동료가 다른 편 구성원에게 자원�
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat notification tribute"
-msgstr ""
+msgstr "대화 알림 부족"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
@@ -3192,7 +3192,7 @@ msgstr "선수가 자원을 교환할 때 관찰자에게 대화 알림을 표�
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat notification barter"
-msgstr ""
+msgstr "대화 알림 교환"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -3214,7 +3214,7 @@ msgstr "관찰자 모드에서 본인 또는 동맹이 새로운 단계 및 모�
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat notification phase"
-msgstr ""
+msgstr "대화 알림 단계"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
@@ -3224,7 +3224,7 @@ msgstr "선택한 방어 건축물의 공격 범위를 표시합니다(단축키
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
-msgstr ""
+msgstr "공격 범위 시각화"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
@@ -3234,7 +3234,7 @@ msgstr "선택한 유닛 및 건축물의 기운 범위를 표시합니다(단�
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
-msgstr ""
+msgstr "기운 범위 시각화"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
@@ -3244,7 +3244,7 @@ msgstr "선택한 유닛의 치유 범위를 표시합니다(단축키를 사용
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
-msgstr ""
+msgstr "치유 범위 시각화"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
@@ -3265,11 +3265,11 @@ msgstr "경험 상태 표시줄"
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr ""
+msgstr "유닛 양성 건축물에서 양성이 가능한 유닛의 상세 도움말을 표시합니다."
 
 #: gui/options/options.json[5].options[12].label
 msgid "Detailed tooltips"
-msgstr ""
+msgstr "상세 도움말"
 
 #: gui/options/options.json[5].options[13].list[0].label
 msgid "Unordered"
@@ -3298,7 +3298,7 @@ msgstr "외교 색상을 사용할때 자신 유닛의 색상입니다."
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy colors: self"
-msgstr ""
+msgstr "국경선 색: 자신"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
@@ -3306,7 +3306,7 @@ msgstr "외교 색상을 사용할때 동맹국의 색상입니다."
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy colors: ally"
-msgstr ""
+msgstr "국경선 색상: 동맹"
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
@@ -3314,7 +3314,7 @@ msgstr "외교 색상을 사용할때 중립적인 선수의 색상입니다."
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy colors: neutral"
-msgstr ""
+msgstr "국경선 색상: 중립"
 
 #: gui/options/options.json[5].options[17].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
@@ -3322,64 +3322,64 @@ msgstr "외교 색상을 사용할때 적의 색상입니다."
 
 #: gui/options/options.json[5].options[17].label
 msgid "Diplomacy colors: enemy"
-msgstr ""
+msgstr "국경선 색상: 적"
 
 #: gui/options/options.json[5].options[18].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr ""
+msgstr "새로운 건축물은 단축키를 누르는 동안 근처의 건축물과 정렬됩니다."
 
 #: gui/options/options.json[5].options[18].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr ""
+msgstr "스냅을 활성화하는 단축키"
 
 #: gui/options/options.json[5].options[18].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr ""
+msgstr "단축키를 누르지 않으면 새 건축물이 근처 건축물과 정렬됩니다."
 
 #: gui/options/options.json[5].options[18].list[1].label
 msgid "Hotkey to disable snapping"
-msgstr ""
+msgstr "스냅을 비활성화 하는 단축키"
 
 #: gui/options/options.json[5].options[18].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr ""
+msgstr "이 선택사항을 사용하면 새로운 건축물을 근처 건축물과 맞출 수 있습니다."
 
 #: gui/options/options.json[5].options[18].label
 msgid "Snap to edges"
-msgstr ""
+msgstr "모서리에 스냅"
 
 #: gui/options/options.json[5].options[19].list[0].tooltip
 msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
-msgstr ""
+msgstr "통제 무리에 유닛 또는 건축물을 추가하면 다른 통제 무리에서 제거됩니다. 통제 무리가 서로 다른 군대를 참조하도록 하라면 이 선택사항을 사용하십시오."
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
-msgstr ""
+msgstr "혼자"
 
 #: gui/options/options.json[5].options[19].list[1].tooltip
 msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
-msgstr ""
+msgstr "유닛과 건축물은 여러 통제 무리에 속할 수 잇습니다. 이것은 서로 다른 군대에 대한 통제 무리와 전체 군대에 대한 통제 무리를 동시에 유지하는 데 유용합니다."
 
 #: gui/options/options.json[5].options[19].list[1].label
 msgid "Multiple"
-msgstr ""
+msgstr "여럿"
 
 #: gui/options/options.json[5].options[19].tooltip
 msgid "Decide whether units can be part of multiple control groups."
-msgstr ""
+msgstr "유닛이 여러 통제 무리에 속할 수 있는지 여부를 결정하십시오."
 
 #: gui/options/options.json[5].options[19].label
 msgid "Control Group Membership"
-msgstr ""
+msgstr "통제 무리 자격"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -3693,7 +3693,7 @@ msgstr "투석기"
 
 #: gui/text/tips/catapults.txt:2
 msgid "Ranged siege engines that are good against structures."
-msgstr ""
+msgstr "건축물에 적합한 원거리 공성 전차입니다."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
@@ -3791,7 +3791,7 @@ msgstr "요새"
 
 #: gui/text/tips/fortress.txt:2
 msgid "The Fortress is usually each faction's strongest structure."
-msgstr ""
+msgstr "요새는 대개 각 진영에서 가장 강력한 건축물입니다."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
@@ -3910,7 +3910,7 @@ msgstr "기원전 5 세기의 최고의 아테네 정치인."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Structures are built faster within his range."
-msgstr ""
+msgstr "그의 범위 내에서 건축물이 더 빨리 만들어집니다."
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."
@@ -3926,7 +3926,7 @@ msgstr "페르시아를 위한 특별한 기술."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr ""
+msgstr "건축물의 내구력이 +25% 중가합니다."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
@@ -4112,19 +4112,19 @@ msgstr "영지 붕괴??"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr ""
+msgstr "건축물이 연합 시민 회관에 연결되어 있지 않을 때 붕괴가 일어납니다."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr "구조물에 일부 유닛들이 주둔함으로써 붕괴 과정을 늦추거나 되돌릴 수 있습니다."
+msgstr "건축물에 일부 유닛들이 주둔함으로써 붕괴 과정을 늦추거나 되돌릴 수 있습니다."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
 "When the decay is completed, the structure will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "붕괴가 완료되면 그 건축물은 가장 영향력 있는 이웃에게 주어질 것입니다."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"

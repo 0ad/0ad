@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:46+0100\n"
-"PO-Revision-Date: 2019-04-29 19:01+0000\n"
-"Last-Translator: Tom Hanax\n"
+"POT-Creation-Date: 2020-02-21 08:09+0000\n"
+"PO-Revision-Date: 2020-02-21 14:00+0000\n"
+"Last-Translator: MiroslavR <miroslavr256@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,14 +22,14 @@ msgstr ""
 "Language: sk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
-#: gui/common/functions_msgbox.js:57
+#: gui/common/functions_msgbox.js:25
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
 msgstr "Otvára sa %(url)s\n v predvolenom prehliadači. Počkajte, prosím..."
 
-#: gui/common/functions_msgbox.js:60
+#: gui/common/functions_msgbox.js:28
 msgid "Opening page"
 msgstr "Otvára sa stránka"
 
@@ -169,7 +169,7 @@ msgstr "Inicializácia mod.io rozhrania."
 msgid "Initializing"
 msgstr "Inicializácia"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):184
+#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):181
 msgid "Cancel"
 msgstr "Zrušiť"
 
@@ -225,28 +225,30 @@ msgstr "∞"
 msgid "%(number)s %(unit)s/s"
 msgstr "%(number)s %(unit)s/s"
 
-#: gui/modmod/modmod.js:102 gui/modmod/modmod.js:233
+#: gui/modmod/modmod.js:107 gui/modmod/modmod.js:254 gui/modmod/modmod.js:275
 msgid "Filter"
 msgstr "Filter"
 
-#: gui/modmod/modmod.js:286
+#: gui/modmod/modmod.js:118 gui/modmod/modmod.js:407
+msgctxt "mod activation"
+msgid "Enable"
+msgstr "Povoliť"
+
+#: gui/modmod/modmod.js:317
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
 msgstr "Požiadavky nesplnené: %(dep)s"
 
-#: gui/modmod/modmod.js:292
+#: gui/modmod/modmod.js:323
 msgid "All dependencies met"
 msgstr "Všetky závislosti splnené"
 
-#: gui/modmod/modmod.js:370
-msgid "Enable"
-msgstr "Povoliť"
-
-#: gui/modmod/modmod.js:370
+#: gui/modmod/modmod.js:408
+msgctxt "mod activation"
 msgid "Disable"
 msgstr "Znemožni"
 
-#: gui/modmod/modmod.js:380
+#: gui/modmod/modmod.js:416
 msgid "No mod has been selected."
 msgstr "Nie je vybratý žiaden mod."
 
@@ -281,7 +283,7 @@ msgstr "Otvor %(url)sv prehliadači."
 msgid "mod.io Mods"
 msgstr "mod.io módy"
 
-#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
+#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):55
 msgid "Available Mods"
 msgstr "Dostupné mody"
 
@@ -297,18 +299,18 @@ msgstr "Znovu načítaj zoznam"
 msgid "Download"
 msgstr "Stiahnuť"
 
-#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
-#: gui/modmod/modmod.xml:(heading):116
+#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):75
+#: gui/modmod/modmod.xml:(heading):115
 msgid "Name"
 msgstr "Názov"
 
-#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):79
-#: gui/modmod/modmod.xml:(heading):119
+#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):78
+#: gui/modmod/modmod.xml:(heading):118
 msgid "Version"
 msgstr "Verzia"
 
-#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):85
-#: gui/modmod/modmod.xml:(heading):125
+#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):84
+#: gui/modmod/modmod.xml:(heading):124
 msgid "Mod Label"
 msgstr "Označenie módu"
 
@@ -316,8 +318,8 @@ msgstr "Označenie módu"
 msgid "File Size"
 msgstr "Veľkosť súboru"
 
-#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
-#: gui/modmod/modmod.xml:(heading):128
+#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):87
+#: gui/modmod/modmod.xml:(heading):127
 msgid "Dependencies"
 msgstr "Závislosti"
 
@@ -325,55 +327,51 @@ msgstr "Závislosti"
 msgid "Modifications"
 msgstr "Modifikácie"
 
-#: gui/modmod/modmod.xml:(caption):37
+#: gui/modmod/modmod.xml:(caption):36
 msgid "Negate"
 msgstr "Negovať"
 
-#: gui/modmod/modmod.xml:(caption):49
+#: gui/modmod/modmod.xml:(caption):48
 msgid "Description"
 msgstr "Popis"
 
-#: gui/modmod/modmod.xml:(caption):100
+#: gui/modmod/modmod.xml:(caption):99
 msgid "Enabled Mods"
 msgstr "Povolené módy"
 
 #: gui/modmod/modmod.xml:(caption):167
-msgid "Enable/Disable"
-msgstr "Povoliť/Zakázať"
-
-#: gui/modmod/modmod.xml:(caption):170
 msgid "Visit Website"
 msgstr "Navštív Web"
 
-#: gui/modmod/modmod.xml:(caption):179
+#: gui/modmod/modmod.xml:(caption):176
 msgid "Quit"
 msgstr "Ukončiť"
 
-#: gui/modmod/modmod.xml:(caption):189
+#: gui/modmod/modmod.xml:(caption):186
 msgid "Help"
 msgstr "Pomoc"
 
-#: gui/modmod/modmod.xml:(caption):194
+#: gui/modmod/modmod.xml:(caption):191
 msgid "Download Mods"
 msgstr "Stiahnuť módy"
 
-#: gui/modmod/modmod.xml:(caption):199
+#: gui/modmod/modmod.xml:(caption):196
 msgid "Save Configuration"
 msgstr "Uložiť konfiguráciu"
 
-#: gui/modmod/modmod.xml:(caption):204
+#: gui/modmod/modmod.xml:(caption):201
 msgid "Start Mods"
 msgstr "Spustiť módy"
 
-#: gui/modmod/modmod.xml:(heading):82 gui/modmod/modmod.xml:(heading):122
+#: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):121
 msgid "(Folder)"
 msgstr "(Priečinok)"
 
-#: gui/modmod/modmod.xml:(heading):91 gui/modmod/modmod.xml:(heading):131
+#: gui/modmod/modmod.xml:(heading):90 gui/modmod/modmod.xml:(heading):130
 msgid "Website"
 msgstr "Webová stránka"
 
-#: gui/modmod/modmod.xml:(tooltip):146 gui/modmod/modmod.xml:(tooltip):160
+#: gui/modmod/modmod.xml:(tooltip):145 gui/modmod/modmod.xml:(tooltip):159
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."

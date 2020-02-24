@@ -5,13 +5,15 @@
 # Translators:
 # 이민학, 2019
 # moolow <copyhyeon@gmail.com>, 2019
-# 이정희 <daemul72@gmail.com>, 2019
+# MarongHappy <daemul72@gmail.com>, 2019
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
+# Hong Won Gi <timmy080736@gmail.com>, 2016
 # Hong Won Gi <timmy080736@gmail.com>, 2016
 # jjj <triplej03@nate.com>, 2014
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2019
 # ks k, 2019
+# MarongHappy <daemul72@gmail.com>, 2019
 # Minhak Lee, 2019
 # 이민학, 2019
 # moolow <copyhyeon@gmail.com>, 2019
@@ -21,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-31 08:09+0000\n"
-"PO-Revision-Date: 2020-01-31 15:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-02-22 20:08+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1105,7 +1107,7 @@ msgstr "베틀은 정착민들을 위한 질 높은 옷을 생산 가능하게 �
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "+100% health for female citizens."
-msgstr ""
+msgstr "여성 시민의 체력이 +100% 증가합니다."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1272,7 +1274,7 @@ msgstr "더 많은 건축물과 유닛을 열수있는 대도시 단계로 나�
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "4개의 새로운 작은 도시 단계 구조물이 필요합니다(성벽과 시민 회관은 제외)."
+msgstr "4개의 새로운 작은 도시 단계 건축물이 필요합니다(성벽과 시민 회관은 제외)."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -1291,7 +1293,7 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
 "health. All structures +9 garrisoned regeneration rate."
-msgstr "더 많은 건축물과 유닛을 열수있는 대도시 단계로 나갑니다. 시민회관의 영토 반경이 +50% 더 증가합니다. 시민 군인의 체력이 +10% 증가합니다. 모든 구조물에 주둔시 복구율이 +9% 증가합니다."
+msgstr "더 많은 건축물과 유닛을 열수있는 대도시 단계로 나갑니다. 시민회관의 영토 반경이 +50% 더 증가합니다. 시민 군인의 체력이 +10% 증가합니다. 모든 건축물에 주둔시 복구율이 +9% 증가합니다."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1318,7 +1320,7 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
 "health. All structures +7 garrisoned regeneration rate."
-msgstr "다양한 건축물과 유닛을 열 수 있는 작은도시 단계로 발전합니다. 시민 회관의 영토 반경이 +30% 증가했습니다. '은 올빼미' 문명 보너스는 모든 노동자에게 +10% 의 추가 금속 채집률을 부여합니다. 시민 군인의 건강이 +20% 증가됩니다. 모든 구조물에 주둔시 복구율이 +7 증가합니다."
+msgstr "다양한 건축물과 유닛을 열 수 있는 작은도시 단계로 발전합니다. 시민 회관의 영토 반경이 +30% 증가했습니다. '은 올빼미' 문명 보너스는 모든 노동자에게 +10% 의 추가 금속 채집률을 부여합니다. 시민 군인의 건강이 +20% 증가됩니다. 모든 건축물에 주둔시 복구율이 +7 증가합니다."
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -2134,7 +2136,7 @@ msgstr "켈트 마을과 동맹을 맺으면 켈트 용병의 모집 시간이 -
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsongenericName
 msgid "Celtic Alliance"
-msgstr "켈트 연합"
+msgstr "켈트 동맹"
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsontooltip
 msgid ""
@@ -2157,7 +2159,7 @@ msgstr "이베리아 마을과 동맹을 맺으면 이베리아 용병의 모집
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsongenericName
 msgid "Iberian Alliance"
-msgstr "이베리아 연합"
+msgstr "이베리아 동맹"
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
 msgid ""

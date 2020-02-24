@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:46+0100\n"
-"PO-Revision-Date: 2019-02-03 10:49+0000\n"
+"POT-Creation-Date: 2020-02-21 08:09+0000\n"
+"PO-Revision-Date: 2020-02-21 14:00+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -19,14 +19,14 @@ msgstr ""
 "Language: gd\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
 
-#: gui/common/functions_msgbox.js:57
+#: gui/common/functions_msgbox.js:25
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
 msgstr "A’ fosgladh %(url)s\nsa bhrabhsair-lìn bhunaiteach. Fuirich ort…"
 
-#: gui/common/functions_msgbox.js:60
+#: gui/common/functions_msgbox.js:28
 msgid "Opening page"
 msgstr "A’ fosgladh duilleige"
 
@@ -166,7 +166,7 @@ msgstr "A’ cur eadar-aghaidh mod.io gu dol."
 msgid "Initializing"
 msgstr "’Ga thòiseachadh"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):184
+#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):181
 msgid "Cancel"
 msgstr "Sguir dheth"
 
@@ -222,28 +222,30 @@ msgstr "∞"
 msgid "%(number)s %(unit)s/s"
 msgstr "%(number)s %(unit)s/s"
 
-#: gui/modmod/modmod.js:102 gui/modmod/modmod.js:233
+#: gui/modmod/modmod.js:107 gui/modmod/modmod.js:254 gui/modmod/modmod.js:275
 msgid "Filter"
 msgstr "Criathrag"
 
-#: gui/modmod/modmod.js:286
+#: gui/modmod/modmod.js:118 gui/modmod/modmod.js:407
+msgctxt "mod activation"
+msgid "Enable"
+msgstr "Cuir an comas"
+
+#: gui/modmod/modmod.js:317
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
 msgstr "Cha deach gach eisimeileachd a choileanadh: %(dep)s"
 
-#: gui/modmod/modmod.js:292
+#: gui/modmod/modmod.js:323
 msgid "All dependencies met"
 msgstr "Chaidh gach eisimeileachd a choileanadh"
 
-#: gui/modmod/modmod.js:370
-msgid "Enable"
-msgstr "Cuir an comas"
-
-#: gui/modmod/modmod.js:370
+#: gui/modmod/modmod.js:408
+msgctxt "mod activation"
 msgid "Disable"
 msgstr "Cuir à comas"
 
-#: gui/modmod/modmod.js:380
+#: gui/modmod/modmod.js:416
 msgid "No mod has been selected."
 msgstr "Cha deach tuilleadan a thaghadh."
 
@@ -278,7 +280,7 @@ msgstr "Fosgail %(url)s sa bhrabhsair."
 msgid "mod.io Mods"
 msgstr "Tuilleadain mod.io"
 
-#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
+#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):55
 msgid "Available Mods"
 msgstr "Tuilleadain ri am faighinn"
 
@@ -294,18 +296,18 @@ msgstr "Ath-nuadhaich an liosta"
 msgid "Download"
 msgstr "Luchdaich a-nuas"
 
-#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
-#: gui/modmod/modmod.xml:(heading):116
+#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):75
+#: gui/modmod/modmod.xml:(heading):115
 msgid "Name"
 msgstr "Ainm"
 
-#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):79
-#: gui/modmod/modmod.xml:(heading):119
+#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):78
+#: gui/modmod/modmod.xml:(heading):118
 msgid "Version"
 msgstr "Tionndadh"
 
-#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):85
-#: gui/modmod/modmod.xml:(heading):125
+#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):84
+#: gui/modmod/modmod.xml:(heading):124
 msgid "Mod Label"
 msgstr "Leubail an tuilleadain"
 
@@ -313,8 +315,8 @@ msgstr "Leubail an tuilleadain"
 msgid "File Size"
 msgstr "Meud an fhaidhle"
 
-#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
-#: gui/modmod/modmod.xml:(heading):128
+#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):87
+#: gui/modmod/modmod.xml:(heading):127
 msgid "Dependencies"
 msgstr "Eisimeileachdan"
 
@@ -322,55 +324,51 @@ msgstr "Eisimeileachdan"
 msgid "Modifications"
 msgstr "Tuilleadain"
 
-#: gui/modmod/modmod.xml:(caption):37
+#: gui/modmod/modmod.xml:(caption):36
 msgid "Negate"
 msgstr "Àicheadh"
 
-#: gui/modmod/modmod.xml:(caption):49
+#: gui/modmod/modmod.xml:(caption):48
 msgid "Description"
 msgstr "Tuairisgeul"
 
-#: gui/modmod/modmod.xml:(caption):100
+#: gui/modmod/modmod.xml:(caption):99
 msgid "Enabled Mods"
 msgstr "Tuilleadain ghnìomhach"
 
 #: gui/modmod/modmod.xml:(caption):167
-msgid "Enable/Disable"
-msgstr "Cuir an comas/à comas"
-
-#: gui/modmod/modmod.xml:(caption):170
 msgid "Visit Website"
 msgstr "Tadhail air an làrach-lìn"
 
-#: gui/modmod/modmod.xml:(caption):179
+#: gui/modmod/modmod.xml:(caption):176
 msgid "Quit"
 msgstr "Fàg an-seo"
 
-#: gui/modmod/modmod.xml:(caption):189
+#: gui/modmod/modmod.xml:(caption):186
 msgid "Help"
 msgstr "Cobhair"
 
-#: gui/modmod/modmod.xml:(caption):194
+#: gui/modmod/modmod.xml:(caption):191
 msgid "Download Mods"
 msgstr "Luchdaich a-nuas tuilleadain"
 
-#: gui/modmod/modmod.xml:(caption):199
+#: gui/modmod/modmod.xml:(caption):196
 msgid "Save Configuration"
 msgstr "Sàbhail an rèiteachadh"
 
-#: gui/modmod/modmod.xml:(caption):204
+#: gui/modmod/modmod.xml:(caption):201
 msgid "Start Mods"
 msgstr "Tòisich na tuilleadain"
 
-#: gui/modmod/modmod.xml:(heading):82 gui/modmod/modmod.xml:(heading):122
+#: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):121
 msgid "(Folder)"
 msgstr "(Pasgan)"
 
-#: gui/modmod/modmod.xml:(heading):91 gui/modmod/modmod.xml:(heading):131
+#: gui/modmod/modmod.xml:(heading):90 gui/modmod/modmod.xml:(heading):130
 msgid "Website"
 msgstr "Làrach-lìn"
 
-#: gui/modmod/modmod.xml:(tooltip):146 gui/modmod/modmod.xml:(tooltip):160
+#: gui/modmod/modmod.xml:(tooltip):145 gui/modmod/modmod.xml:(tooltip):159
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."

@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-13 07:08+0000\n"
-"PO-Revision-Date: 2020-02-10 23:17+0000\n"
+"PO-Revision-Date: 2020-02-23 12:33+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr "El certificat ha estat revocat."
 
 #: lobby/XmppClient.cpp:1172
 msgid "The certificate has expired."
-msgstr "El certificat ha caducat."
+msgstr "El certificat ha expirat."
 
 #: lobby/XmppClient.cpp:1173
 msgid "The certifiacte is not yet active."
@@ -56,7 +56,7 @@ msgstr "El certificat encara no es troba actiu."
 
 #: lobby/XmppClient.cpp:1174
 msgid "The certificate has not been issued for the peer connected to."
-msgstr "El certificat no ha estat emès per l'interlocutor amb que s'ha connectat."
+msgstr "El certificat no ha estat emès per l'interlocutor amb què s'ha connectat."
 
 #: lobby/XmppClient.cpp:1175
 msgid "The certificate signer is not a certificate authority."
@@ -147,7 +147,7 @@ msgstr "El servidor no ofereix el xifrat TLS necessari"
 
 #: lobby/XmppClient.cpp:1260
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Ha fallat l'autenticació. La contrasenya no és correcta o el compte no existeix"
+msgstr "Autenticació fallida. La contrasenya no és correcta o el compte no existeix"
 
 #: lobby/XmppClient.cpp:1261
 msgid "The user or system requested a disconnect"
@@ -159,7 +159,7 @@ msgstr "No hi ha cap connexió activa"
 
 #: lobby/XmppClient.cpp:1283
 msgid "Your account has been successfully registered"
-msgstr "El compte s'ha registrat correctament"
+msgstr "El vostre compte s'ha registrat correctament"
 
 #: lobby/XmppClient.cpp:1284
 msgid "Not all necessary information provided"
@@ -192,7 +192,7 @@ msgstr "No s'ha pogut obrir un arxiu temporal per a la baixada del mod: %s."
 #: ps/ModIo.cpp:352
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "Hi ha hagut un error en començar la baixada. Error: %s;%s."
+msgstr "Error en començar la baixada. Error: %s;%s."
 
 #: ps/ModIo.cpp:397
 #, c-format
@@ -202,7 +202,7 @@ msgstr "Error de baixada asincrònica: %s,%s."
 #: ps/ModIo.cpp:426
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Hi ha hagut un error en la baixada. La resposta del servidor és: %s;%s."
+msgstr "Error en la baixada. La resposta del servidor és: %s;%s."
 
 #: ps/ModIo.cpp:529
 msgid "Mismatched filesize."

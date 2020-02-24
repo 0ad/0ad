@@ -1,9 +1,9 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
-# Jeff Huang <s8321414@gmail.com>, 2014,2018
+# 黃柏諺 <s8321414@gmail.com>, 2014,2018
 # Po-Chun Huang <aphroteus@gmail.com>, 2014
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # 林建霖 <johhycain@gmail.com>, 2018
@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:46+0100\n"
-"PO-Revision-Date: 2018-12-31 15:46+0000\n"
-"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
+"POT-Creation-Date: 2020-02-21 08:09+0000\n"
+"PO-Revision-Date: 2020-02-21 14:00+0000\n"
+"Last-Translator: 黃柏諺 <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,14 +22,14 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gui/common/functions_msgbox.js:57
+#: gui/common/functions_msgbox.js:25
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
 msgstr "即將使用預設的網頁瀏覽器開啟 %(url)s，請稍候..."
 
-#: gui/common/functions_msgbox.js:60
+#: gui/common/functions_msgbox.js:28
 msgid "Opening page"
 msgstr "正在開啟頁面"
 
@@ -169,7 +169,7 @@ msgstr "安裝 mod.io 介面。"
 msgid "Initializing"
 msgstr "正在安裝"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):184
+#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):181
 msgid "Cancel"
 msgstr "取消"
 
@@ -225,28 +225,30 @@ msgstr "∞"
 msgid "%(number)s %(unit)s/s"
 msgstr "%(number)s%(unit)s/s"
 
-#: gui/modmod/modmod.js:102 gui/modmod/modmod.js:233
+#: gui/modmod/modmod.js:107 gui/modmod/modmod.js:254 gui/modmod/modmod.js:275
 msgid "Filter"
 msgstr "過濾器"
 
-#: gui/modmod/modmod.js:286
+#: gui/modmod/modmod.js:118 gui/modmod/modmod.js:407
+msgctxt "mod activation"
+msgid "Enable"
+msgstr "啟用"
+
+#: gui/modmod/modmod.js:317
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
 msgstr "無法相容:%(dep)s"
 
-#: gui/modmod/modmod.js:292
+#: gui/modmod/modmod.js:323
 msgid "All dependencies met"
 msgstr "所有相依性皆已滿足"
 
-#: gui/modmod/modmod.js:370
-msgid "Enable"
-msgstr "啟用"
-
-#: gui/modmod/modmod.js:370
+#: gui/modmod/modmod.js:408
+msgctxt "mod activation"
 msgid "Disable"
 msgstr "停用"
 
-#: gui/modmod/modmod.js:380
+#: gui/modmod/modmod.js:416
 msgid "No mod has been selected."
 msgstr "沒有已被選取的 mod。"
 
@@ -281,7 +283,7 @@ msgstr "在瀏覽器開啟 %(url)s 。"
 msgid "mod.io Mods"
 msgstr "mod.io Mods"
 
-#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
+#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):55
 msgid "Available Mods"
 msgstr "可用的 Mods"
 
@@ -297,18 +299,18 @@ msgstr "更新列表"
 msgid "Download"
 msgstr "下載"
 
-#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
-#: gui/modmod/modmod.xml:(heading):116
+#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):75
+#: gui/modmod/modmod.xml:(heading):115
 msgid "Name"
 msgstr "名稱"
 
-#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):79
-#: gui/modmod/modmod.xml:(heading):119
+#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):78
+#: gui/modmod/modmod.xml:(heading):118
 msgid "Version"
 msgstr "版本"
 
-#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):85
-#: gui/modmod/modmod.xml:(heading):125
+#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):84
+#: gui/modmod/modmod.xml:(heading):124
 msgid "Mod Label"
 msgstr "Mod 標籤"
 
@@ -316,8 +318,8 @@ msgstr "Mod 標籤"
 msgid "File Size"
 msgstr "檔案大小"
 
-#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
-#: gui/modmod/modmod.xml:(heading):128
+#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):87
+#: gui/modmod/modmod.xml:(heading):127
 msgid "Dependencies"
 msgstr "相依性"
 
@@ -325,55 +327,51 @@ msgstr "相依性"
 msgid "Modifications"
 msgstr "修改"
 
-#: gui/modmod/modmod.xml:(caption):37
+#: gui/modmod/modmod.xml:(caption):36
 msgid "Negate"
 msgstr "取消"
 
-#: gui/modmod/modmod.xml:(caption):49
+#: gui/modmod/modmod.xml:(caption):48
 msgid "Description"
 msgstr "描述"
 
-#: gui/modmod/modmod.xml:(caption):100
+#: gui/modmod/modmod.xml:(caption):99
 msgid "Enabled Mods"
 msgstr "已啟用的 Mods"
 
 #: gui/modmod/modmod.xml:(caption):167
-msgid "Enable/Disable"
-msgstr "啟用/停用"
-
-#: gui/modmod/modmod.xml:(caption):170
 msgid "Visit Website"
 msgstr "拜訪網站"
 
-#: gui/modmod/modmod.xml:(caption):179
+#: gui/modmod/modmod.xml:(caption):176
 msgid "Quit"
 msgstr "離開"
 
-#: gui/modmod/modmod.xml:(caption):189
+#: gui/modmod/modmod.xml:(caption):186
 msgid "Help"
 msgstr "幫助"
 
-#: gui/modmod/modmod.xml:(caption):194
+#: gui/modmod/modmod.xml:(caption):191
 msgid "Download Mods"
 msgstr "下載 Mods"
 
-#: gui/modmod/modmod.xml:(caption):199
+#: gui/modmod/modmod.xml:(caption):196
 msgid "Save Configuration"
 msgstr "儲存設定"
 
-#: gui/modmod/modmod.xml:(caption):204
+#: gui/modmod/modmod.xml:(caption):201
 msgid "Start Mods"
 msgstr "啟動 Mods"
 
-#: gui/modmod/modmod.xml:(heading):82 gui/modmod/modmod.xml:(heading):122
+#: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):121
 msgid "(Folder)"
 msgstr "(資料夾)"
 
-#: gui/modmod/modmod.xml:(heading):91 gui/modmod/modmod.xml:(heading):131
+#: gui/modmod/modmod.xml:(heading):90 gui/modmod/modmod.xml:(heading):130
 msgid "Website"
 msgstr "網站"
 
-#: gui/modmod/modmod.xml:(tooltip):146 gui/modmod/modmod.xml:(tooltip):160
+#: gui/modmod/modmod.xml:(tooltip):145 gui/modmod/modmod.xml:(tooltip):159
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."

@@ -32,9 +32,9 @@ msgid ""
 "that female citizen gather food. Female citizens gather vegetables faster "
 "than other units."
 msgstr ""
-"Feu clic esquerre sobre una ciutadana, després feu clic dret en un arbust de"
-" baies per fer que reculli menjar. Les dones recullen menjar més ràpid que "
-"les altres unitats."
+"Feu clic esquerre sobre una ciutadana i després feu clic dret en un arbust "
+"de baies per fer que reculli menjar. Les dones recullen menjar més "
+"ràpidament que les altres unitats."
 
 #: maps/tutorials/Introductory_Tutorial.js:15
 msgid ""
@@ -53,7 +53,7 @@ msgid ""
 "Hoplite icon once to begin training a batch of Hoplites."
 msgstr ""
 "Seleccioneu el centre cívic i mantingueu %(hotkey)s mentre feu clic sobre la"
-" icona de l'hoplita per començar a reclutar un batalló d'hoplites."
+" icona d'Hoplita per començar a reclutar un batalló d'hoplites."
 
 #: maps/tutorials/Introductory_Tutorial.js:37
 #: maps/tutorials/Introductory_Tutorial.js:79
@@ -94,8 +94,8 @@ msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
 msgstr ""
-"Recluteu un grup de soldats d'infanteria lleugera fent %(hotkey)s + clic a "
-"la icona de la infanteria lleugera del centre cívic."
+"Recluteu un batalló de soldats d'infanteria lleugera fent %(hotkey)s + clic "
+"a la icona de la infanteria lleugera del centre cívic."
 
 #: maps/tutorials/Introductory_Tutorial.js:80
 msgid "Click on the Skirmisher icon."
@@ -105,7 +105,9 @@ msgstr "Feu clic sobre la icona de la infanteria lleugera."
 msgid ""
 "Build a farmstead in an open space beside the Civic Center using any idle "
 "builders."
-msgstr "Construïu una masia en un espai obert al costat del centre cívic."
+msgstr ""
+"Construïu una masia en un espai obert al costat del centre cívic utilitzant "
+"qualsevol dels treballadors inactius."
 
 #: maps/tutorials/Introductory_Tutorial.js:100
 msgid "Let's wait for the farmstead to be built."
@@ -117,9 +119,9 @@ msgid ""
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a field beside the farmstead."
 msgstr ""
-"Un cop acabada, els constructors començaran a recollir fusta automàticament "
-"si n'hi ha a la vora. Seleccioneu els constructors i feu que construeixin un"
-" hort al costat de la masia."
+"Un cop acabada, els constructors començaran a recollir menjar "
+"automàticament, si n'hi ha a la vora. Seleccioneu els constructors i feu que"
+" construeixin un hort al costat de la masia."
 
 #: maps/tutorials/Introductory_Tutorial.js:136
 msgid ""
@@ -127,8 +129,9 @@ msgid ""
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
 msgstr ""
-"Els constructors de l'hort començaran a treballar-hi automàticament. "
-"Assigneu els soldats d'infanteria lleugera a construir una altra casa."
+"Els constructors de l'hort començaran a treballar-hi automàticament. Amb els"
+" soldats d'infanteria lleugera recent entrenats, construïu una altra casa a "
+"la vora."
 
 #: maps/tutorials/Introductory_Tutorial.js:144
 msgid ""
@@ -199,7 +202,7 @@ msgid ""
 " extra house using any available builder units."
 msgstr ""
 "Construïu una caserna a prop. Sempre que arribeu al límit de població, "
-"construïu una altra casa."
+"construïu una altra casa utilitzant qualsevol constructor disponible."
 
 #: maps/tutorials/Introductory_Tutorial.js:266
 msgid ""
@@ -225,7 +228,7 @@ msgstr "L'enemic s'acosta. Recluteu més soldats per derrotar els enemics."
 
 #: maps/tutorials/Introductory_Tutorial.js:290
 msgid "Try to repel the attack."
-msgstr "Proveu de repel·lir l'atac."
+msgstr "Intenteu repel·lir l'atac."
 
 #: maps/tutorials/Introductory_Tutorial.js:300
 msgid ""
@@ -284,8 +287,8 @@ msgid ""
 "evolving to Town Phase and City Phase afterward.\n"
 msgstr ""
 "Aquest tutorial us ensenyarà com desenvolupar la vostra economia. "
-"Normalment, començareu amb un centre cívic i un parell d'unitats a la Fase "
-"de Poblat i el vostre objectiu serà desenvolupar i expandir l'imperi, "
+"Habitualment, començareu amb un centre cívic i un parell d'unitats a la Fase"
+" de Poblat i el vostre objectiu serà desenvolupar i expandir l'imperi, "
 "normalment avançant a les fases de Vila i Ciutat.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
@@ -303,7 +306,7 @@ msgid ""
 "using any of your keyboard's arrow keys.\n"
 msgstr ""
 "Podeu canviar el nivell de zoom amb la rodeta del ratolí, i la vista de la "
-"càmera amb les tecles de fletxa.\n"
+"càmera amb les tecles de cursor.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:10
 msgid "Adjust the game window to your preferences.\n"
@@ -666,7 +669,9 @@ msgstr ""
 msgid ""
 "Now that the units are ready, let's see how to build several houses in a "
 "row."
-msgstr "Ara que les unitats estan a punt, construïu diverses cases seguides."
+msgstr ""
+"Ara que les unitats estan a punt, vegem com construir diverses cases "
+"seguides."
 
 #: maps/tutorials/starting_economy_walkthrough.js:212
 msgid ""
