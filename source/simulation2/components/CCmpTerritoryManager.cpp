@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -581,12 +581,13 @@ std::vector<STerritoryBoundary> CCmpTerritoryManager::ComputeBoundaries()
 
 u8 CCmpTerritoryManager::GetTerritoryPercentage(player_id_t player)
 {
-	if (player <= 0 || (size_t)player > m_TerritoryCellCounts.size())
+	if (player <= 0 || static_cast<size_t>(player) >= m_TerritoryCellCounts.size())
 		return 0;
 
 	CalculateTerritories();
 
-	if (m_TerritoryTotalPassableCellCount == 0)
+	// Territories may have been recalculated, check whether player is still there.
+	if (m_TerritoryTotalPassableCellCount == 0 || static_cast<size_t>(player) >= m_TerritoryCellCounts.size())
 		return 0;
 
 	u8 percentage = (m_TerritoryCellCounts[player] * 100) / m_TerritoryTotalPassableCellCount;
