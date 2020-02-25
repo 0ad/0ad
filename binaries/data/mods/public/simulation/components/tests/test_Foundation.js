@@ -1,24 +1,29 @@
 Engine.LoadHelperScript("Player.js");
+Engine.LoadHelperScript("ValueModification.js");
+Engine.LoadComponentScript("interfaces/AutoBuildable.js");
 Engine.LoadComponentScript("interfaces/Builder.js");
 Engine.LoadComponentScript("interfaces/Cost.js");
 Engine.LoadComponentScript("interfaces/Foundation.js");
 Engine.LoadComponentScript("interfaces/Health.js");
+Engine.LoadComponentScript("interfaces/ModifiersManager.js");
 Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
 Engine.LoadComponentScript("interfaces/TerritoryDecay.js");
 Engine.LoadComponentScript("interfaces/Trigger.js");
+Engine.LoadComponentScript("interfaces/Timer.js");
+Engine.LoadComponentScript("AutoBuildable.js");
 Engine.LoadComponentScript("Foundation.js");
-
+Engine.LoadComponentScript("Timer.js");
 let player = 1;
 let playerEnt = 3;
 let foundationEnt = 20;
 let previewEnt = 21;
 let newEnt = 22;
+let finalTemplate = "structures/athen_civil_centre.xml";
 
 function testFoundation(...mocks)
 {
 	ResetState();
 
-	let finalTemplate = "structures/athen_civil_centre.xml";
 	let foundationHP = 1;
 	let maxHP = 100;
 	let rot = new Vector3D(1, 2, 3);
@@ -209,3 +214,53 @@ testFoundation([playerEnt, IID_StatisticsTracker, {
 	},
 }]);
 
+// Test autobuild feature.
+const foundationEnt2 = 42;
+let turnLength = 0.2;
+let currentFoundationHP = 1;
+let cmpTimer = ConstructComponent(SYSTEM_ENTITY, "Timer");
+
+AddMock(foundationEnt2, IID_Cost, {
+	"GetBuildTime": () => 50,
+	"GetResourceCosts": () => ({ "wood": 100 }),
+});
+
+
+
+const cmpAutoBuildingFoundation = ConstructComponent(foundationEnt2, "Foundation", {});
+AddMock(foundationEnt2, IID_Health, {
+	"GetHitpoints": () => currentFoundationHP,
+	"GetMaxHitpoints": () => 100,
+	"Increase": hp => {
+		currentFoundationHP = Math.min(currentFoundationHP + hp, 100);
+		cmpAutoBuildingFoundation.OnHealthChanged();
+	},
+});
+
+const cmpBuildableAuto = ConstructComponent(foundationEnt2, "AutoBuildable", {
+	"Rate": "1.0"
+});
+
+cmpAutoBuildingFoundation.InitialiseConstruction(player, finalTemplate);
+
+// We start at 3 cause there is no delay on the first run.
+cmpTimer.OnUpdate({ "turnLength": turnLength });
+
+for (let i = 0; i < 10; ++i)
+{
+	if (i == 8)
+	{
+		cmpBuildableAuto.CancelTimer();
+		TS_ASSERT_EQUALS(cmpAutoBuildingFoundation.GetNumBuilders(), 0);
+	}
+
+	let currentPercentage = cmpAutoBuildingFoundation.GetBuildPercentage();
+	cmpTimer.OnUpdate({ "turnLength": turnLength * 5 });
+	let newPercentage = cmpAutoBuildingFoundation.GetBuildPercentage();
+
+	if (i >= 8)
+		TS_ASSERT_EQUALS(currentPercentage, newPercentage);
+	else
+		// Rate * Max Health / Cost.
+		TS_ASSERT_EQUALS(currentPercentage + 2, newPercentage);
+}

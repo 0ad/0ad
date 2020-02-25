@@ -152,7 +152,12 @@ Foundation.prototype.AddBuilderHelper = function(builderEnt)
 	if (this.builders.has(builderEnt))
 		return false;
 
-	let buildRate = Engine.QueryInterface(builderEnt, IID_Builder).GetRate();
+	let cmpBuilder = Engine.QueryInterface(builderEnt, IID_Builder) ||
+		Engine.QueryInterface(this.entity, IID_AutoBuildable);
+	if (!cmpBuilder)
+		return false;
+
+	let buildRate = cmpBuilder.GetRate();
 	this.builders.set(builderEnt, buildRate);
 	this.totalBuilderRate += buildRate;
 
