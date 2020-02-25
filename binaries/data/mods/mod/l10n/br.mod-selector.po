@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright (C) 2018 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2018-12-31 09:46+0100\n"
-"PO-Revision-Date: 2018-12-31 15:46+0000\n"
+"POT-Creation-Date: 2020-02-21 08:09+0000\n"
+"PO-Revision-Date: 2020-02-21 14:00+0000\n"
 "Last-Translator: Thierry Vignaud <thierry.vignaud@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -21,14 +21,14 @@ msgstr ""
 "Language: br\n"
 "Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 && n % 1000000 == 0) ? 3 : 4);\n"
 
-#: gui/common/functions_msgbox.js:57
+#: gui/common/functions_msgbox.js:25
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
 msgstr "O tigeriñ %(url)s\n gant ar merdeer dre-ziouer. Gortozit mar plij..."
 
-#: gui/common/functions_msgbox.js:60
+#: gui/common/functions_msgbox.js:28
 msgid "Opening page"
 msgstr "O tigeriñ ur bajenn"
 
@@ -168,7 +168,7 @@ msgstr "Deraouekadur etrefas mod.io."
 msgid "Initializing"
 msgstr "Derouekadur"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):184
+#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):181
 msgid "Cancel"
 msgstr "Nullañ"
 
@@ -224,28 +224,30 @@ msgstr "∞"
 msgid "%(number)s %(unit)s/s"
 msgstr "%(number)s %(unit)s/e"
 
-#: gui/modmod/modmod.js:102 gui/modmod/modmod.js:233
+#: gui/modmod/modmod.js:107 gui/modmod/modmod.js:254 gui/modmod/modmod.js:275
 msgid "Filter"
 msgstr "Sil"
 
-#: gui/modmod/modmod.js:286
+#: gui/modmod/modmod.js:118 gui/modmod/modmod.js:407
+msgctxt "mod activation"
+msgid "Enable"
+msgstr "Gweredekaat"
+
+#: gui/modmod/modmod.js:317
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
 msgstr "Dalc'hidigezhioù am-dizhet: %(dep)s"
 
-#: gui/modmod/modmod.js:292
+#: gui/modmod/modmod.js:323
 msgid "All dependencies met"
 msgstr "An holl dalc'hiadigezh bet kejet outo"
 
-#: gui/modmod/modmod.js:370
-msgid "Enable"
-msgstr "Gweredekaat"
-
-#: gui/modmod/modmod.js:370
+#: gui/modmod/modmod.js:408
+msgctxt "mod activation"
 msgid "Disable"
 msgstr "Diweredekaat"
 
-#: gui/modmod/modmod.js:380
+#: gui/modmod/modmod.js:416
 msgid "No mod has been selected."
 msgstr "N'eus bet diuzet mod ebet."
 
@@ -280,7 +282,7 @@ msgstr "Digeriñ %(url)s er merdeer."
 msgid "mod.io Mods"
 msgstr "mod.io Modoù"
 
-#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
+#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):55
 msgid "Available Mods"
 msgstr "Modoù hegerzus"
 
@@ -296,18 +298,18 @@ msgstr "Freskaat al Listenn"
 msgid "Download"
 msgstr "Pellgargañ"
 
-#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
-#: gui/modmod/modmod.xml:(heading):116
+#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):75
+#: gui/modmod/modmod.xml:(heading):115
 msgid "Name"
 msgstr "Anv"
 
-#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):79
-#: gui/modmod/modmod.xml:(heading):119
+#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):78
+#: gui/modmod/modmod.xml:(heading):118
 msgid "Version"
 msgstr "Stumm"
 
-#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):85
-#: gui/modmod/modmod.xml:(heading):125
+#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):84
+#: gui/modmod/modmod.xml:(heading):124
 msgid "Mod Label"
 msgstr "Liketenn ar Mod"
 
@@ -315,8 +317,8 @@ msgstr "Liketenn ar Mod"
 msgid "File Size"
 msgstr "Ment ar Restr"
 
-#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
-#: gui/modmod/modmod.xml:(heading):128
+#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):87
+#: gui/modmod/modmod.xml:(heading):127
 msgid "Dependencies"
 msgstr "Dalc'hiadigezh"
 
@@ -324,55 +326,51 @@ msgstr "Dalc'hiadigezh"
 msgid "Modifications"
 msgstr "Cheñchamantoù"
 
-#: gui/modmod/modmod.xml:(caption):37
+#: gui/modmod/modmod.xml:(caption):36
 msgid "Negate"
 msgstr "Nac'hañ"
 
-#: gui/modmod/modmod.xml:(caption):49
+#: gui/modmod/modmod.xml:(caption):48
 msgid "Description"
 msgstr "Diskrivadur"
 
-#: gui/modmod/modmod.xml:(caption):100
+#: gui/modmod/modmod.xml:(caption):99
 msgid "Enabled Mods"
 msgstr "Modoù enaouet"
 
 #: gui/modmod/modmod.xml:(caption):167
-msgid "Enable/Disable"
-msgstr "Enaouiñ/Lazhañ"
-
-#: gui/modmod/modmod.xml:(caption):170
 msgid "Visit Website"
 msgstr "Mont war al lec'hienn web"
 
-#: gui/modmod/modmod.xml:(caption):179
+#: gui/modmod/modmod.xml:(caption):176
 msgid "Quit"
 msgstr "Kuitaat"
 
-#: gui/modmod/modmod.xml:(caption):189
+#: gui/modmod/modmod.xml:(caption):186
 msgid "Help"
 msgstr "Skoazell"
 
-#: gui/modmod/modmod.xml:(caption):194
+#: gui/modmod/modmod.xml:(caption):191
 msgid "Download Mods"
 msgstr "Pellgargañ Modoù"
 
-#: gui/modmod/modmod.xml:(caption):199
+#: gui/modmod/modmod.xml:(caption):196
 msgid "Save Configuration"
 msgstr "Enrollañ ar C'hefluniadur"
 
-#: gui/modmod/modmod.xml:(caption):204
+#: gui/modmod/modmod.xml:(caption):201
 msgid "Start Mods"
 msgstr "Stadegoù ar Modoù"
 
-#: gui/modmod/modmod.xml:(heading):82 gui/modmod/modmod.xml:(heading):122
+#: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):121
 msgid "(Folder)"
 msgstr "(Teuliad)"
 
-#: gui/modmod/modmod.xml:(heading):91 gui/modmod/modmod.xml:(heading):131
+#: gui/modmod/modmod.xml:(heading):90 gui/modmod/modmod.xml:(heading):130
 msgid "Website"
 msgstr "Lec'hienn web"
 
-#: gui/modmod/modmod.xml:(tooltip):146 gui/modmod/modmod.xml:(tooltip):160
+#: gui/modmod/modmod.xml:(tooltip):145 gui/modmod/modmod.xml:(tooltip):159
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."

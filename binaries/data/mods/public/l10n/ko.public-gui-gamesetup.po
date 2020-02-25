@@ -4,18 +4,20 @@
 # 
 # Translators:
 # Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
-# 이정희 <daemul72@gmail.com>, 2019
+# MarongHappy <daemul72@gmail.com>, 2019
 # Dalrae Jin <lovely.serotonin@gmail.com>, 2014
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
+# Hong Won Gi <timmy080736@gmail.com>, 2016
 # Hong Won Gi <timmy080736@gmail.com>, 2016
 # moolow <copyhyeon@gmail.com>, 2018
 # jasonkimik <jasonkim@linux.com>, 2014
 # jjj <triplej03@nate.com>, 2014
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2019
-# ks k, 2019
+# ks k, 2019-2020
+# MarongHappy <daemul72@gmail.com>, 2019
 # moolow <copyhyeon@gmail.com>, 2018
 # Suhyeon Park <qkr5145@gmail.com>, 2018
 # Taejin Kim <manowar72@gmail.com>, 2015
@@ -28,7 +30,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-03 08:10+0000\n"
-"PO-Revision-Date: 2020-02-03 15:46+0000\n"
+"PO-Revision-Date: 2020-02-22 20:03+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +93,7 @@ msgstr "이 선수에게는 인공지능을 사용하지 않습니다."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:93
 msgid "AI Behavior"
-msgstr ""
+msgstr "인공지능 행동"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:87
 msgid "AI Difficulty"
@@ -301,11 +303,11 @@ msgstr "무작위로 생물군집을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:101
 msgid "Daytime"
-msgstr ""
+msgstr "대낮"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
-msgstr ""
+msgstr "경기가 대낮 또는 밤중 언제 수행되는지 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
@@ -315,7 +317,7 @@ msgstr "아무거나"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr ""
+msgstr "하루 중 시간을 아무거나 선택한다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:73
 msgid "Game Speed"
@@ -327,41 +329,41 @@ msgstr "놀이 속도를 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:142
 msgid "Landscape"
-msgstr ""
+msgstr "풍경"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:145
 msgid "Select one of the landscapes of this map."
-msgstr ""
+msgstr "이 지도의 풍경 중 하나를 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:151
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
-msgstr ""
+msgstr "아무 육지 또는 해군"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
 msgctxt "landscape selection"
 msgid "Select a random land or naval map generation."
-msgstr ""
+msgstr "아무렇게 생성된 육지 또는 해군 지도를 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:156
 msgctxt "landscape selection"
 msgid "Random Land"
-msgstr ""
+msgstr "아무 육지"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
 msgid "Select a random land map generation."
-msgstr ""
+msgstr "아무렇게 만들어진 육지 지도를 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:161
 msgctxt "landscape selection"
 msgid "Random Naval"
-msgstr ""
+msgstr "아무 해군"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:162
 msgctxt "landscape selection"
 msgid "Select a random naval map generation."
-msgstr ""
+msgstr "아무렇게 만들어진 해군 지도를 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:89
 msgid "Map Filter"
@@ -423,7 +425,7 @@ msgstr "인구 제한을 선택하세요."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:88
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "/ 선수당"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:91
 #, javascript-format
@@ -448,15 +450,15 @@ msgstr "각 자원의 초기 양: %(resources)s."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:90
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "/ 선수"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
 msgid "Team Placement"
-msgstr ""
+msgstr "편 자리"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:94
 msgid "Select one of the starting position patterns of this map."
-msgstr ""
+msgstr "이 지도의 시작 위치 무늬 중 하나를 선택하십시오."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
 msgctxt "team placement"
@@ -466,36 +468,36 @@ msgstr "아무거나"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr ""
+msgstr "놀이 시작할 때 아무 편으로 짜이고 무늬를 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
 msgctxt "team placement"
 msgid "Circle"
-msgstr ""
+msgstr "동그라미"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:106
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr ""
+msgstr "동맹 선수는 지도에 걸쳐 있는 하나의 동그라미에 묶이게되고 상대 선수와 함께 배치됩니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
 msgctxt "team placement"
 msgid "Line"
-msgstr ""
+msgstr "선"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
 msgid "Allied players are placed in a linear pattern."
-msgstr ""
+msgstr "동맹 선수는 줄 무늬로 배치됩니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:115
 msgctxt "team placement"
 msgid "Random Group"
-msgstr ""
+msgstr "아무 묶음"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:116
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr ""
+msgstr "동맹 선수는 한 무리가 되지만, 그렇지 않으면 아무곳에 배치됩니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:120
 msgctxt "team placement"
@@ -504,7 +506,7 @@ msgstr "요새"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:121
 msgid "Allied players are grouped in one random place of the map."
-msgstr ""
+msgstr "동맹 선수는 지도의 아무곳에 한 무리가 됩니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
@@ -532,7 +534,7 @@ msgstr "휴전 없음"
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
+msgstr[0] "%(minutes)s 분 남음"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:86
 msgid "Relic Count"
@@ -542,7 +544,7 @@ msgstr "유물 개수"
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] ""
+msgstr[0] "유물 %(number)s 개"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:92
 msgid ""
@@ -565,28 +567,28 @@ msgstr "선수가 유물 승리를 획득 할 때까지의 시간."
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
+msgstr[0] "%(min)s 분"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:98
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:99
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr ""
+msgstr "곧바로 승리했습니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"
-msgstr ""
+msgstr "해수면 상승 시간"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:76
 msgid "Set the time when the water will start to rise."
-msgstr ""
+msgstr "물이 상승하기 시작하는 시간을 설정하십시오. (만조 시간 설정)"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:79
 #, javascript-format
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
+msgstr[0] "%(minutes)s 분 남음"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:87
 msgid "Wonder Duration"
@@ -594,7 +596,7 @@ msgstr "불가사의 지속시간"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:90
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr ""
+msgstr "선수가 불가사의 승리를 달성할 때까지 몇 분 동안 기다립니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
 msgid "Cheats enabled."
@@ -602,7 +604,7 @@ msgstr "치트를 사용합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
 msgid "Rated game."
-msgstr ""
+msgstr "등급 놀이입니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:76
 #, javascript-format
