@@ -125,9 +125,6 @@ GameSettingControls.MapSelection = class extends GameSettingControlDropdown
 		// Copy map well known properties (and only well known properties)
 		let mapData = this.mapCache.getMapData(g_GameAttributes.mapType, g_GameAttributes.map);
 
-		g_GameAttributes.settings.CircularMap =
-			mapData.settings.CircularMap || true;
-
 		if (g_GameAttributes.mapType == "random")
 			g_GameAttributes.script = mapData.settings.Script;
 
@@ -160,6 +157,7 @@ GameSettingControls.MapSelection.prototype.RandomMapDescription =
 GameSettingControls.MapSelection.prototype.AutocompleteOrder = 0;
 
 GameSettingControls.MapSelection.prototype.MapSettings = [
+	"CircularMap",
 	"StartingTechnologies",
 	"DisabledTechnologies",
 	"DisabledTemplates",
