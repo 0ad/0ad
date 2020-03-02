@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-10 08:09+0000\n"
-"PO-Revision-Date: 2020-02-24 00:56+0000\n"
+"PO-Revision-Date: 2020-02-28 23:58+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -84,11 +84,11 @@ msgstr "Básicu"
 #: simulation/templates/template_unit_ship_fire.xml:45
 #: simulation/templates/template_unit_siege_ram.xml:36
 msgid "Melee"
-msgstr "Cutiente"
+msgstr "Cuerpu a cuerpu"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:22
 msgid "Melee Cavalry"
-msgstr "Caballería cutiente"
+msgstr "Caballería cuerpu a cuerpu"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:25
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:35
@@ -142,11 +142,11 @@ msgstr "Espadachín d'a caballu"
 #: simulation/templates/template_unit_siege_stonethrower.xml:54
 #: simulation/templates/template_unit_siege_tower.xml:59
 msgid "Ranged"
-msgstr "Distante"
+msgstr "A distancia"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:29
 msgid "Ranged Cavalry"
-msgstr "Caballería distante"
+msgstr "Caballería a distancia"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:27
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:30
@@ -358,7 +358,7 @@ msgstr "Trabayador"
 
 #: simulation/templates/template_unit_infantry_melee.xml:20
 msgid "Melee Infantry"
-msgstr "Infantería cutiente"
+msgstr "Infantería cuerpu a cuerpu"
 
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:32
 msgid "Skirmisher"
@@ -397,7 +397,7 @@ msgstr "Barcu de guerra llixeru"
 #: simulation/templates/template_unit_ship_trireme.xml:58
 #: simulation/templates/template_unit_siege_tower.xml:61
 msgid "Garrison units for transport and to increase firepower."
-msgstr "Guarez unidaes pa tresportales y aumentar la potencia de fueu."
+msgstr "Guarez unidaes pa tresportales & aumentar la potencia de fueu."
 
 #: simulation/templates/template_unit_ship_fire.xml:45
 msgid "Fireship"
@@ -518,11 +518,11 @@ msgstr "Esclavu"
 
 #: simulation/templates/template_unit_support_slave.xml:41
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr "Coyedor de duración de vida llendada. Tien una bonificación n'estrayer minerales y valtar árboles."
+msgstr "Coyedor de duración de vida llendada. Tien una bonificación n'estrayer minerales & valtar árboles."
 
 #: simulation/templates/template_unit_support_trader.xml:17
 msgid "Trade resources between your own markets and those of your allies."
-msgstr "Cambia recursos ente los tos mercaos y los de los tos aliaos. "
+msgstr "Cambia recursos ente los tos mercaos & los de los tos aliaos. "
 
 #: simulation/templates/units/athen_catafalque.xml:9
 msgid "Solon"
@@ -1515,7 +1515,7 @@ msgstr "rs ‘Iprmk"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:23
 msgid "Armor-piercing Axes: Counters 1.3x vs. Champions and Heroes."
-msgstr "Brueses antiarmadura: Aventayen 1.3x escontra Campeones y Héroes."
+msgstr "Brueses antiarmadura: Aventayen 1.3x escontra Campeones & Héroes."
 
 #: simulation/templates/units/kush_hero_amanirenas.xml:8
 #: simulation/templates/units/kush_hero_amanirenas_chariot.xml:8
@@ -1664,7 +1664,7 @@ msgid ""
 "Financial Reorganization: Allied with Rome, Philip reorganized the country's"
 " internal affairs and finances, leaving as a legacy reopened mines and a new"
 " currency. Gain a slow trickle of metal."
-msgstr "Igua financiera: Aliáu con Roma, Felipe reorganizó les finances y asuntos internos del país, dexando como legáu mines reabiertes y una divisa nueva. Gana un pingayu de metal."
+msgstr "Igua financiera: Aliáu con Roma, Felipe reorganizó les finances & asuntos internos del país, dexando como legáu mines reabiertes & una divisa nueva. Gana un pingayu de metal."
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:14
 msgid "Odrysian Skirmish Cavalry"
@@ -2212,7 +2212,7 @@ msgstr "Tamkarum Arami"
 msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
-msgstr "Cambia recursos ente los tos mercaos y los de los tos aliaos. Los perses reciben +25% de bonificación nel comerciu terrestre."
+msgstr "Cambia recursos ente los tos mercaos & los de los tos aliaos. Los perses reciben +25% de bonificación nel comerciu terrestre."
 
 #: simulation/templates/units/plane.xml:47
 msgid "P-51 Mustang"

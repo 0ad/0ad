@@ -19,6 +19,7 @@
 # TonyChyi <tonychee1989@gmail.com>, 2016
 # TonyChyi <tonychee1989@gmail.com>, 2016
 # volcano song <1677559@qq.com>, 2018
+# Wolfson Liu <wolfsonliu@live.com>, 2020
 # liulitchi <xingzuo88@qq.com>, 2018-2019
 # Zou Yi <zouyi100@outlook.com>, 2017
 # 武军 李 <lwj7863439@gmail.com>, 2017
@@ -28,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:09+0000\n"
-"PO-Revision-Date: 2020-01-27 10:19+0000\n"
-"Last-Translator: chaofeng sun <449003613@qq.com>\n"
+"PO-Revision-Date: 2020-02-29 11:26+0000\n"
+"Last-Translator: Wolfson Liu <wolfsonliu@live.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -565,7 +566,7 @@ msgstr "海军指挥官"
 msgid ""
 "When garrisoned, the Ship has −30% batch training time and +50% movement "
 "speed."
-msgstr ""
+msgstr "驻军后，战舰批量训练时间 -30% 移动速度 +50%。"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Naval Architect"
@@ -626,7 +627,7 @@ msgstr "战术家"
 msgid ""
 "Own and Allied Soldiers and Siege Engines +1 capture attack strength, +20% "
 "melee and ranged attack damage."
-msgstr ""
+msgstr "己方和结盟的士兵和攻城机械占领攻击力 +1，近战和远程攻击伤害 +20%。"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
 msgid "Cavalry Commander"
@@ -652,7 +653,7 @@ msgstr "凯尔特战神"
 msgid ""
 "Soldiers and Siege Engines +1 capture attack strength, +20% melee and ranged"
 " attack damage."
-msgstr ""
+msgstr "士兵和攻城机械占领攻击力 +1，近战和远程攻击伤害 +20%。"
 
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
 msgid "Preparation for War"
@@ -666,7 +667,7 @@ msgstr "增强防御"
 msgid ""
 "When garrisoned, the Structure or Siege Engine has +2 capture points "
 "garrison regeneration rate."
-msgstr ""
+msgstr "驻军后，建筑或者攻城机械占领点数和驻军生命回复率 +2。"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraName
 msgid "Valiant Defender"
@@ -674,7 +675,7 @@ msgstr "勇敢的捍卫者"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraDescription
 msgid "When garrisoned, the Structure or Siege Tower has +75% arrow count."
-msgstr ""
+msgstr "驻军后，建筑或者攻城塔攻击箭数 +75%。"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
 msgid "Battle Fervor"
@@ -781,7 +782,7 @@ msgstr "塔希亚克斯"
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
 msgid ""
 "Infantry Pikemen +20% capture attack strength, +20% melee attack damage."
-msgstr ""
+msgstr "长枪兵占领攻击力 +20%，近战攻击伤害 +20%。"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
 msgid "Besieger"
@@ -791,7 +792,7 @@ msgstr "围城者"
 msgid ""
 "Siege Engines +1 armor, +20% melee and ranged attack damage, +10% ranged "
 "attack range, +10% vision range."
-msgstr ""
+msgstr "攻城机械装甲 +1，近战和远程攻击伤害 +20%，远程攻击范围 +10%，视野 +10%。"
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
 msgid "Rise of Macedon"
@@ -836,7 +837,7 @@ msgstr "先知"
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
 msgid ""
 "Cavalry +1 capture attack strength, +20% melee and ranged attack damage."
-msgstr "骑兵占领建筑能力 +1 ，远程和近战 +20% 。"
+msgstr "骑兵占领建筑能力 +1 ，近战和远程攻击伤害 +20% 。"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
 msgid "Leadership"
@@ -861,7 +862,7 @@ msgstr "爱国者"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraDescription
 msgid "Soldiers and Siege Engines −20% melee and ranged attack repeat time."
-msgstr ""
+msgstr "士兵和攻城机械近战和远程攻击重复时间 - 20%。"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraName
@@ -929,7 +930,7 @@ msgstr "胜利"
 msgid ""
 "Soldiers and Siege Engines +2 capture attack strength, +20% melee and ranged"
 " attack damage."
-msgstr ""
+msgstr "士兵和攻城机械占领攻击力 +2，近战和远程攻击伤害 +20%。"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
 msgid "Ilarchès"
@@ -953,7 +954,7 @@ msgstr "苏阿拉克"
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraDescription
 msgid "Champion Elephants +20% melee attack damage, +20% movement speed."
-msgstr "冠勇象兵近战攻击 +20% ，移动速度 +20% 。"
+msgstr "冠勇象兵近战攻击伤害 +20% ，移动速度 +20% 。"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
@@ -970,4 +971,4 @@ msgstr "屹立不倒"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
-msgstr ""
+msgstr "长矛兵占领攻击力 +1，近战攻击伤害 +25%。"

@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# David Sowa <isithere2@yahoo.com>, 2017-2019
+# David Sowa <isithere2@yahoo.com>, 2017-2020
 # enolp <enolp@softastur.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-05-24 09:43+0200\n"
-"PO-Revision-Date: 2019-07-11 02:35+0000\n"
+"PO-Revision-Date: 2020-02-28 22:32+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "Toi entamando una gran campaña militar escontra %(_player_)s, ven conmi
 msgid ""
 "I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
-msgstr "To aperiao un exercitón p'aplastar a %(_player_)s. Súmate y vas tener una parte del botín."
+msgstr "To aperiao un exercitón p'aplastar a %(_player_)s. Súmate & vas tener una parte del botín."
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
@@ -45,7 +45,7 @@ msgstr "Toi acabante d'unviar un exércitu escontra %(_player_)s."
 #: simulation/ai/petra/chatHelper.js:17
 #, javascript-format
 msgid "Let me regroup my army and I will then join you against %(_player_)s."
-msgstr "Dexa que recomponga l'exércitu y llueu voi contigo escontra %(_player_)s."
+msgstr "Dexa que recomponga l'exércitu & llueu voi contigo escontra %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
@@ -125,17 +125,17 @@ msgstr "Una ruta comercial nueva ta afitada con %(_player_)s. Aprovéchate de le
 #: simulation/ai/petra/chatHelper.js:48
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
-msgstr "Agora %(_player_)s y yo tamos aliaos."
+msgstr "Agora %(_player_)s & yo tamos aliaos."
 
 #: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
 msgid "%(_player_)s and I are now neutral."
-msgstr "Agora %(_player_)s y yo tamos neutrales."
+msgstr "Agora %(_player_)s & yo tamos neutrales."
 
 #: simulation/ai/petra/chatHelper.js:54
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
-msgstr "Agora %(_player_)s y yo somos enemigos."
+msgstr "Agora %(_player_)s & yo somos enemigos."
 
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
@@ -387,7 +387,7 @@ msgstr "propio"
 #: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "unconnected own"
-msgstr "propio y non axacente"
+msgstr "propio & non axacente"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -401,7 +401,7 @@ msgstr "aliao"
 #: simulation/components/BuildRestrictions.js:196
 msgctxt "Territory type"
 msgid "unconnected allied"
-msgstr "aliao y non axacente"
+msgstr "aliao & non axacente"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -491,7 +491,7 @@ msgstr "¡Agora pues atacar!"
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
 msgstr[0] "%(lastPlayer)s gana (el caberu xugador vivu)."
-msgstr[1] "%(players)s y %(lastPlayer)s ganen (los caberos xugadores vivos)."
+msgstr[1] "%(players)s & %(lastPlayer)s ganen (los caberos xugadores vivos)."
 
 #: simulation/components/EndGameManager.js:179
 msgid "Last remaining player wins."
@@ -688,7 +688,7 @@ msgstr "Avance rápidu (20x)"
 msgid ""
 "Capture all relics spread across the map and keep them for a certain time to"
 " win the game."
-msgstr "Prinda toles reliquies espardíes nel mapa y calténles un tiempu determináu pa ganar la partida."
+msgstr "Prinda toles reliquies espardíes nel mapa & calténles un tiempu determináu pa ganar la partida."
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture the Relic"
@@ -698,7 +698,7 @@ msgstr "Prindar la reliquia"
 msgid ""
 "Defeat opponents by killing all their units and destroying all their "
 "structures."
-msgstr "Venci oponentes matando toles sos unidaes y esbarrumbando toles sos construcciones."
+msgstr "Venci oponentes matando toles sos unidaes & esbarrumbando toles sos construcciones."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
@@ -734,7 +734,7 @@ msgid ""
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
-msgstr "Sé'l primeru en construyir o tomar una maraviya y calténla un tiempu determináu pa ganar la partida. El temporizador va reafitase si la maraviya se desfái o se toma. Si'l mou victoria aliada ta activada, el temporizador tamién va reafitase cuando los amos cambien d'alianza."
+msgstr "Sé'l primeru en construyir o tomar una maraviya & calténla un tiempu determináu pa ganar la partida. El temporizador va reafitase si la maraviya se desfái o se toma. Si'l mou victoria aliada ta activada, el temporizador tamién va reafitase cuando los amos cambien d'alianza."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -865,7 +865,7 @@ msgstr "Pergrande"
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr "Los mapes pergrandes nun s'aconseyen darréu que s'entarda muncho en llegar al enemigu y pue amenorgar el rindimientu'l xuegu."
+msgstr "Los mapes pergrandes nun s'aconseyen darréu que s'entarda muncho en llegar al enemigu & pue amenorgar el rindimientu'l xuegu."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
@@ -880,4 +880,4 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra ye'l robó d'IA por defeutu de 0 A.D. Informa de problemes a Wildfire Games (mira l'enllaz nel menú principal), por favor.\n\nLa tasa de recoyida de recursos y ganancia comercial de la IA manen nel nivel de dificultá, (Quedu −58%, Perfácil −44%, Fácil −25%, Normal ±0%, Difícil +25%, Perdifícil +56%). Los niveles más fáciles tamién lleven arreyaos tases d'investigación, allistamientu y construcción más lentos. Amás, nel nivel Quedu la IA nun medra nin ataca. "
+msgstr "Petra ye'l robó d'IA por defeutu de 0 A.D. Informa de problemes a Wildfire Games (mira l'enllaz nel menú principal), por favor.\n\nLa tasa de recoyida de recursos & ganancia comercial de la IA manen nel nivel de dificultá, (Quedu −58%, Perfácil −44%, Fácil −25%, Normal ±0%, Difícil +25%, Perdifícil +56%). Los niveles más fáciles tamién lleven arreyaos tases d'investigación, allistamientu & construcción más lentos. Amás, nel nivel Quedu la IA nun medra nin ataca. "

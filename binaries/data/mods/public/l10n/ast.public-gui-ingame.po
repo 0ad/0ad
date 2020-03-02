@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-01-17 18:18+0000\n"
+"PO-Revision-Date: 2020-02-28 21:43+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -404,7 +404,7 @@ msgstr "Fincase"
 #: gui/session/selection_panels_helpers.js:71
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr "Atacar enemigos averaos, centrase n'atacadores y persiguilos mentanto se vean"
+msgstr "Atacar enemigos averaos, centrase n'atacadores & persiguilos mentanto se vean"
 
 #: gui/session/selection_panels_helpers.js:73
 msgctxt "stance"
@@ -416,7 +416,7 @@ msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr "Atacar enemigos averaos, escorripialos una distancia curtia y volver al allugamientu orixinal"
+msgstr "Atacar enemigos averaos, escorrelos cierta distancia & volver al allugamientu orixinal"
 
 #: gui/session/selection_panels_helpers.js:77
 msgctxt "stance"
@@ -650,7 +650,7 @@ msgstr "HH:mm"
 #: gui/session/chat/ChatHistory.js:82
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr "Charra y avisos"
+msgstr "Charra & avisos"
 
 #: gui/session/chat/ChatHistory.js:87
 msgctxt "chat history filter"
@@ -966,7 +966,7 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr "Nota: El mou deformación del tiempu ye una opción desendolcadora y nun ta pensáu pal usu demientres periodos llargos de tiempu. Nun emplegalu correchamente pue facer que'l xuegu quede ensin memoria o falle."
+msgstr "Nota: El mou deformación del tiempu ye una opción desendolcadora & nun ta pensáu pal usu demientres periodos llargos de tiempu. Nun emplegalu correchamente pue facer que'l xuegu quede ensin memoria o falle."
 
 #: gui/session/diplomacy/DiplomacyDialogCeasefireCounter.js:27
 #, javascript-format
@@ -1008,7 +1008,7 @@ msgstr "Enemigu"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr "Sobornar una unidá d'esti xugador al debalu y aprovechar la so vista un periodu llendáu."
+msgstr "Sobornar una unidá d'esti xugador al debalu & aprovechar la so vista un periodu llendáu."
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
 msgid "A failed bribe will cost you:"
@@ -1273,7 +1273,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "Esbilla un tipu de bienes que quieras camudar calcando nelli, y llueu emplega les fleches de los otros tipos pa camudar les sos proporciones. Tamién pues primir %(hotkey)s al esbillar un tipu de bienes pa xubir la so proporción al 100 %%."
+msgstr "Esbilla un tipu de bienes que quieras camudar calcando nelli, & llueu emplega les fleches de los otros tipos pa camudar les sos proporciones. Tamién pues primir %(hotkey)s al esbillar un tipu de bienes pa xubir la so proporción al 100 %%."
 
 #: gui/session/trade/TradeDialogBarterPanel.js:45
 #, javascript-format
@@ -1282,7 +1282,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr "Entama escoyendo'l recursu que quieras vender de la fila cimera. Cada vegada que se calquen los botones baxeros, %(quantity)s de los recursos arriberos va (van) vendese pola cantidá amosada de los baxeros. Primi y caltén primíu (-ida) %(hotkey)s pa multiplicar temporalmente la cantidá entrocada por %(multiplier)s."
+msgstr "Entama escoyendo'l recursu que quieras vender de la fila cimera. Cada vegada que se calquen los botones baxeros, %(quantity)s de los recursos arriberos va (van) vendese pola cantidá amosada de los baxeros. Primi & caltén primíu (-ida) %(hotkey)s pa multiplicar temporalmente la cantidá entrocada por %(multiplier)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:15
 #, javascript-format
@@ -1326,13 +1326,13 @@ msgstr[1] "Hai %(numberGarrisoned)s comerciantes terrestres guarecíos nun merca
 #: gui/session/trade/TraderStatusTextLand.js:65
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr "%(openingTradingString)s y %(garrisonedString)s."
+msgstr "%(openingTradingString)s & %(garrisonedString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:66
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s, %(garrisonedString)s y %(inactiveString)s."
+msgstr "%(openingTradingString)s, %(garrisonedString)s & %(inactiveString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:69
 #: gui/session/trade/TraderStatusTextShip.js:47
@@ -1344,7 +1344,7 @@ msgstr "%(openingTradingString)s."
 #: gui/session/trade/TraderStatusTextShip.js:46
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s y %(inactiveString)s."
+msgstr "%(openingTradingString)s & %(inactiveString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:75
 #, javascript-format
@@ -1354,7 +1354,7 @@ msgstr "%(openingGarrisonedString)s."
 #: gui/session/trade/TraderStatusTextLand.js:76
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr "%(openingGarrisonedString)s y %(inactiveString)s."
+msgstr "%(openingGarrisonedString)s & %(inactiveString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:79
 #: gui/session/trade/TraderStatusTextShip.js:50
@@ -1507,7 +1507,7 @@ msgstr "Puntos de captura:"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):60
 msgid "Attack and Armor"
-msgstr "Ataque y armadura"
+msgstr "Ataque & armadura"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):75
 msgid "Experience"
@@ -1525,7 +1525,7 @@ msgstr "Cola de producción"
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr "Calca pa esbillar unidaes agrupaes, calca dos vegaes pa enfocar les unidaes agrupaes y calca col botón derechu pa dixebrar el grupu."
+msgstr "Calca pa esbillar unidaes agrupaes, calca dos vegaes pa enfocar les unidaes agrupaes & calca col botón derechu pa dixebrar el grupu."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "ALPHA XXIV"
