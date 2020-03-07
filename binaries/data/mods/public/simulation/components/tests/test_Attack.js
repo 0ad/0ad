@@ -78,7 +78,8 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 			"Projectile": {
 				"Speed": 10,
 				"Spread": 2,
-				"Gravity": 1
+				"Gravity": 1,
+				"FriendlyFire": "false"
 			},
 			"PreferredClasses": {
 				"_string": "Archer"

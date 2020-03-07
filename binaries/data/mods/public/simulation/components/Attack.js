@@ -71,6 +71,7 @@ Attack.prototype.Schema =
 				"<ActorName>props/units/weapons/rock_flaming.xml</ActorName>" +
 				"<ImpactActorName>props/units/weapons/rock_explosion.xml</ImpactActorName>" +
 				"<ImpactAnimationLifetime>0.1</ImpactAnimationLifetime>" +
+				"<FriendlyFire>false</FriendlyFire>" +
 			"</Projectile>" +
 			"<RestrictedClasses datatype=\"tokens\">Champion</RestrictedClasses>" +
 			"<Splash>" +
@@ -153,6 +154,7 @@ Attack.prototype.Schema =
 						"<element name='Gravity' a:help='The gravity affecting the projectile. This affects the shape of the flight curve.'>" +
 							"<ref name='nonNegativeDecimal'/>" +
 						"</element>" +
+						"<element name='FriendlyFire' a:help='Whether stray missiles can hurt non enemy units.'><data type='boolean'/></element>" +
 						"<optional>" +
 							"<element name='LaunchPoint' a:help='Delta from the unit position where to launch the projectile.'>" +
 								"<attribute name='y'>" +
@@ -419,7 +421,7 @@ Attack.prototype.GetSplashData = function(type)
 
 	return {
 		"attackData": this.GetAttackEffectsData(type, true),
-		"friendlyFire": this.template[type].Splash.FriendlyFire != "false",
+		"friendlyFire": this.template[type].Splash.FriendlyFire == "true",
 		"radius": ApplyValueModificationsToEntity("Attack/" + type + "/Splash/Range", +this.template[type].Splash.Range, this.entity),
 		"shape": this.template[type].Splash.Shape,
 	};
@@ -541,6 +543,7 @@ Attack.prototype.PerformAttack = function(type, target)
 			"projectileId": id,
 			"attackImpactSound": attackImpactSound,
 			"splash": this.GetSplashData(type),
+			"friendlyFire": this.template[type].Projectile.FriendlyFire == "true",
 		};
 
 		cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_DelayedDamage, "MissileHit", +this.template[type].Delay + timeToTarget * 1000, data);
