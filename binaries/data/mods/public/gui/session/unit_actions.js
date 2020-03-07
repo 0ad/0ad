@@ -528,6 +528,58 @@ var g_UnitActions =
 		"specificness": 2,
 	},
 
+	"cancel-setup-trade-route":
+	{
+		"execute":function(target, action, selection, queued)
+		{
+			Engine.PostNetworkCommand({
+				"type": "cancel-setup-trade-route",
+				"entities": selection,
+				"target": action.target,
+				"queued": queued
+			});
+
+			return true;
+		},
+		"getActionInfo": function(entState, targetState)
+		{
+			if (targetState.foundation || !entState.trader || !targetState.market ||
+			    playerCheck(entState, targetState, ["Enemy"]) ||
+			    !(targetState.market.land && hasClass(entState, "Organic") ||
+			      targetState.market.naval && hasClass(entState, "Ship")))
+				return false;
+
+			let tradingDetails = Engine.GuiInterfaceCall("GetTradingDetails", {
+				"trader": entState.id,
+				"target": targetState.id
+			});
+
+			if (!tradingDetails || !tradingDetails.type)
+				return false;
+
+			if (tradingDetails.type == "is first" && !tradingDetails.hasBothMarkets)
+				return {
+					"possible": true,
+					"tooltip": translate("This is the origin trade market.\nRight-click to cancel trade route.")
+				};
+			return false;
+		},
+		"actionCheck": function(target, selection)
+		{
+			let actionInfo = getActionInfo("cancel-setup-trade-route", target, selection);
+
+			if (!actionInfo.possible)
+				return false;
+			return {
+				"type": "cancel-setup-trade-route",
+				"cursor": "action-cancel-setup-trade-route",
+				"tooltip": actionInfo.tooltip,
+				"target": target
+			}
+		},
+		"specificness": 2,
+	},
+
 	"setup-trade-route":
 	{
 		"execute": function(target, action, selection, queued)
@@ -574,7 +626,7 @@ var g_UnitActions =
 						"gain": getTradingTooltip(tradingDetails.gain)
 					});
 				else
-					tooltip += translate("Right-click on another market to set it as a destination trade market.");
+					return false;
 				break;
 
 			case "is second":

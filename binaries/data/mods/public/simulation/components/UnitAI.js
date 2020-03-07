@@ -5400,6 +5400,16 @@ UnitAI.prototype.ReturnResource = function(target, queued)
 	this.AddOrder("ReturnResource", { "target": target, "force": true }, queued);
 };
 
+UnitAI.prototype.CancelSetupTradeRoute = function(target)
+{
+	let cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
+	if (!cmpTrader)
+		return;
+	cmpTrader.RemoveTargetMarket(target);
+
+	if (this.IsFormationController())
+		this.CallMemberFunction("CancelSetupTradeRoute", [target]);
+}
 /**
  * Adds trade order to the queue. Either walk to the first market, or
  * start a new route. Not forced, so it can be interrupted by attacks.
