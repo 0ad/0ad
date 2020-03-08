@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Seleucid_Civic_Centre">
+    <variant frequency="1" name="Seleucid Wall Tower">
       <animations>
         <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
       </animations>
@@ -16,7 +16,7 @@
         <texture file="structural/Sele_struct_2.png" name="baseTex"/>
         <texture file="structural/Sele_struct_2_norm.png" name="normTex"/>
         <texture file="structural/Sele_struct_2_spec.png" name="specTex"/>
-        <texture file="structural/ao/sele_wall_tower_AO.png" name="aoTex"/>
+        <texture file="structural/ao/sele_wall_tower.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
