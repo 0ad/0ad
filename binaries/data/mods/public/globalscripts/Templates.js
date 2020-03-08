@@ -205,13 +205,14 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 				(2 * ret.attack[type].elevationBonus + ret.attack[type].maxRange));
 
 			ret.attack[type].repeatTime = getAttackStat("RepeatTime");
+			if (template.Attack[type].Projectile)
+				ret.attack[type].friendlyFire = template.Attack[type].Projectile.FriendlyFire == "true";
 
 			Object.assign(ret.attack[type], getAttackEffects(template.Attack[type], "Attack/" + type));
 
 			if (template.Attack[type].Splash)
 			{
 				ret.attack[type].splash = {
-					// true if undefined
 					"friendlyFire": template.Attack[type].Splash.FriendlyFire != "false",
 					"shape": template.Attack[type].Splash.Shape,
 				};

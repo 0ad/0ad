@@ -639,6 +639,13 @@ var g_Commands = {
 		});
 	},
 
+	"cancel-setup-trade-route": function(player, cmd, data)
+	{
+		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
+			cmpUnitAI.CancelSetupTradeRoute(cmd.target);
+		});
+	},
+
 	"set-trading-goods": function(player, cmd, data)
 	{
 		data.cmpPlayer.SetTradingGoods(cmd.tradingGoods);

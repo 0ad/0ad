@@ -40,6 +40,7 @@ function Test_Generic()
 					"Speed": 75.0,
 					"Spread": 0.5,
 					"Gravity": 9.81,
+					"FriendlyFire": "false",
 					"LaunchPoint": { "@y": 3 }
 				}
 			}
@@ -384,6 +385,7 @@ function Test_MissileHit()
 		"position": targetPos,
 		"direction": new Vector3D(1, 0, 0),
 		"projectileId": 9,
+		"friendlyFire": "false",
 	};
 
 	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
@@ -569,6 +571,52 @@ function Test_MissileHit()
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT_EQUALS(dealtDamage, 100 + 10000 * 200);
 	dealtDamage = 0;
+	hitEnts.clear();
+
+	// Test splash damage with friendly fire.
+	data.splash = {};
+	data.splash.friendlyFire = true;
+	data.splash.radius = 10;
+	data.splash.shape = "Circular";
+	data.splash.attackData = { "Damage": { "Pierce": 0, "Crush": 200 } };
+
+	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
+		"ExecuteQueryAroundPos": () => [61, 62]
+	});
+
+	dealtDamage = 0;
+	AddMock(61, IID_Health, {
+		"TakeDamage": (effectData, __, ___, mult) => {
+			hitEnts.add(61);
+			dealtDamage += mult * (effectData.Pierce + effectData.Crush);
+			return { "killed": false, "change": -mult * (effectData.Pierce + effectData.Crush) };
+		}
+	});
+
+	AddMock(62, IID_Position, {
+		"GetPosition": () => new Vector3D(8, 10, 0),
+		"GetPreviousPosition": () => new Vector3D(8, 10, 0),
+		"GetPosition2D": () => new Vector2D(8, 0),
+		"IsInWorld": () => true,
+	});
+
+	AddMock(62, IID_Health, {
+		"TakeDamage": (effectData, __, ___, mult) => {
+			hitEnts.add(62);
+			TS_ASSERT_EQUALS(mult * (effectData.Pierce + effectData.Crush), 200 * 0.75);
+			return { "killed": false, "change": -mult * (effectData.Pierce + effectData.Crush) };
+		}
+	});
+
+	AddMock(62, IID_Footprint, {
+		"GetShape": () => ({ "type": "circle", "radius": 20 }),
+	});
+
+	cmpDelayedDamage.MissileHit(data, 0);
+	TS_ASSERT(hitEnts.has(61));
+	TS_ASSERT_EQUALS(dealtDamage, 100 + 2 * 200);
+	dealtDamage = 0;
+	TS_ASSERT(hitEnts.has(62));
 	hitEnts.clear();
 }
 

@@ -20,6 +20,7 @@ DelayedDamage.prototype.Init = function()
  * @param {number}   data.projectileId - The id of the projectile.
  * @param {Vector3D} data.direction - The unit vector defining the direction.
  * @param {string}   data.attackImpactSound - The name of the sound emited on impact.
+ * @param {boolean}  data.friendlyFire - A flag indicating whether allied entities can also be damaged.
  * ***When splash damage***
  * @param {boolean}  data.splash.friendlyFire - A flag indicating if allied entities are also damaged.
  * @param {number}   data.splash.radius - The radius of the splash damage.
@@ -67,9 +68,11 @@ DelayedDamage.prototype.MissileHit = function(data, lateness)
 	if (!targetPosition)
 		return;
 
-	// If we didn't hit the main target look for nearby units
-	let cmpPlayer = QueryPlayerIDInterface(data.attackerOwner);
-	let ents = Attacking.EntitiesNearPoint(Vector2D.from3D(data.position), targetPosition.horizDistanceTo(data.position) * 2, cmpPlayer.GetEnemies());
+	// If we didn't hit the main target look for nearby units.
+	let ents = Attacking.EntitiesNearPoint(Vector2D.from3D(data.position),
+		targetPosition.horizDistanceTo(data.position) * 2,
+		Attacking.GetPlayersToDamage(data.attackerOwner, data.friendlyFire));
+
 	for (let ent of ents)
 	{
 		if (!Attacking.TestCollision(ent, data.position, lateness))

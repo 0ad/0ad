@@ -176,6 +176,18 @@ sub add_entities
                 push @deps, [ $path, "art/textures/ui/session/portraits/" . $ent->{Entity}{Identity}{Icon}{' content'} ] if $ent->{Entity}{Identity}{Icon} and $ent->{Entity}{Identity}{Icon}{' content'} ne '';
             }
 
+            if ($ent->{Entity}{Heal} and $ent->{Entity}{Heal}{RangeOverlay})
+            {
+                push @deps, [ $path, "art/textures/selection/" . $ent->{Entity}{Heal}{RangeOverlay}{LineTexture}{' content'} ] if $ent->{Entity}{Heal}{RangeOverlay}{LineTexture} and $ent->{Entity}{Heal}{RangeOverlay}{LineTexture}{' content'} ne '';
+                push @deps, [ $path, "art/textures/selection/" . $ent->{Entity}{Heal}{RangeOverlay}{LineTextureMask}{' content'} ] if $ent->{Entity}{Heal}{RangeOverlay}{LineTextureMask} and $ent->{Entity}{Heal}{RangeOverlay}{LineTextureMask}{' content'} ne '';
+            }
+
+            if ($ent->{Entity}{Selectable} and $ent->{Entity}{Selectable}{Overlay} and $ent->{Entity}{Selectable}{Overlay}{Texture})
+            {
+                push @deps, [ $path, "art/textures/selection/" . $ent->{Entity}{Selectable}{Overlay}{Texture}{MainTexture}{' content'} ] if $ent->{Entity}{Selectable}{Overlay}{Texture}{MainTexture} and $ent->{Entity}{Selectable}{Overlay}{Texture}{MainTexture}{' content'} ne '';
+                push @deps, [ $path, "art/textures/selection/" . $ent->{Entity}{Selectable}{Overlay}{Texture}{MainTextureMask}{' content'} ] if $ent->{Entity}{Selectable}{Overlay}{Texture}{MainTextureMask} and $ent->{Entity}{Selectable}{Overlay}{Texture}{MainTextureMask}{' content'} ne '';
+            }
+
             if ($ent->{Entity}{Formation})
             {
                 push @deps, [ $path, "art/textures/ui/session/icons/" . $ent->{Entity}{Formation}{Icon}{' content'} ] if $ent->{Entity}{Formation}{Icon} and $ent->{Entity}{Formation}{Icon}{' content'} ne '';

@@ -65,6 +65,24 @@ Trader.prototype.CalculateGain = function(currentMarket, nextMarket)
 	return gain;
 };
 
+/**
+ * Remove market from trade route iff only first market is set.
+ * @param {number} id of market to be removed.
+ * @return {boolean} true iff removal was successful.
+ */
+Trader.prototype.RemoveTargetMarket = function(target)
+{
+	if (this.markets.length != 1 || this.markets[0] != target)
+		return false;
+	let cmpTargetMarket = QueryMiragedInterface(target, IID_Market);
+	if (!cmpTargetMarket)
+		return false;
+	cmpTargetMarket.RemoveTrader(this.entity);
+	this.index = -1;
+	this.markets = [];
+	return true;
+}
+
 // Set target as target market.
 // Return true if at least one of markets was changed.
 Trader.prototype.SetTargetMarket = function(target, source)
