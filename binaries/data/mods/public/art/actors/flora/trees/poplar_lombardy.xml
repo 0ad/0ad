@@ -2,21 +2,17 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Poplar">
-      <props>
-        <prop actor="props/special/eyecandy/tree_elm_base.xml" attachpoint="root"/>
-      </props>
-    </variant>
-  </group>
-  <group>
     <variant frequency="1" name="Mesh 01">
-      <mesh>gaia/poplar_01.dae</mesh>
+      <mesh>gaia/lombardy_poplar_01.dae</mesh>
     </variant>
     <variant frequency="1" name="Mesh 02">
-      <mesh>gaia/poplar_02.dae</mesh>
+      <mesh>gaia/lombardy_poplar_02.dae</mesh>
     </variant>
     <variant frequency="1" name="Mesh 03">
-      <mesh>gaia/poplar_03.dae</mesh>
+      <mesh>gaia/lombardy_poplar_03.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Mesh 04">
+      <mesh>gaia/lombardy_poplar_04.dae</mesh>
     </variant>
   </group>
   <group>

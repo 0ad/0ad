@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Mesh 01">
+      <mesh>gaia/lombardy_poplar_01.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Mesh 02">
+      <mesh>gaia/lombardy_poplar_02.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Mesh 03">
+      <mesh>gaia/lombardy_poplar_03.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Mesh 04">
+      <mesh>gaia/lombardy_poplar_04.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Texture 01">
+      <textures>
+        <texture file="gaia/poplar_dead.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>
