@@ -1,41 +1,35 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="1" name="trunk-mesh-a">
-      <mesh>gaia/tree_poplar_a.dae</mesh>
+    <variant frequency="1" name="Poplar">
       <props>
-        <prop actor="flora/trees/poplar_top.xml" attachpoint="tree"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="trunk-mesh-b">
-      <mesh>gaia/tree_poplar_b.dae</mesh>
-      <props>
-        <prop actor="flora/trees/poplar_top.xml" attachpoint="tree"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="trunk-mesh-c">
-      <mesh>gaia/tree_poplar_c.dae</mesh>
-      <props>
-        <prop actor="flora/trees/poplar_top.xml" attachpoint="tree"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="trunk-mesh-d">
-      <mesh>gaia/tree_poplar_d.dae</mesh>
-      <props>
-        <prop actor="flora/trees/poplar_top.xml" attachpoint="tree"/>
+        <prop actor="props/special/eyecandy/tree_elm_base.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
-
   <group>
-    <variant name="trunk-texture">
-      <textures><texture file="gaia/trunk_deciduous_b.dds" name="baseTex"/></textures>
+    <variant frequency="1" name="Mesh 01">
+      <mesh>gaia/poplar_01.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Mesh 02">
+      <mesh>gaia/poplar_02.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Mesh 03">
+      <mesh>gaia/poplar_03.dae</mesh>
     </variant>
   </group>
-  
+  <group>
+    <variant frequency="1" name="Texture 01">
+      <textures>
+        <texture file="gaia/poplar_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Texture 02">
+      <textures>
+        <texture file="gaia/poplar_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
   <material>basic_trans_wind.xml</material>
-
 </actor>
