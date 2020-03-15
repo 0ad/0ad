@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,6 +39,7 @@
 #include "renderer/WaterManager.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpCinemaManager.h"
+#include "simulation2/components/ICmpGarrisonHolder.h"
 #include "simulation2/components/ICmpObstruction.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPosition.h"
@@ -340,6 +341,19 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				CmpPtr<ICmpOwnership> cmpOwnership(sim, ent);
 				if (cmpOwnership)
 					entityTag.Setting("Player", static_cast<int>(cmpOwnership->GetOwner()));
+
+				CmpPtr<ICmpGarrisonHolder> cmpGarrisonHolder(sim, ent);
+				if (cmpGarrisonHolder)
+				{
+					XMLWriter_Element garrisonTag(xmlMapFile, "Garrison");
+					std::vector<entity_id_t> garrison = cmpGarrisonHolder->GetEntities();
+					for (const entity_id_t garr_ent_id : garrison)
+					{
+						XMLWriter_Element garrisonedEntityTag(xmlMapFile, "GarrisonedEntity");
+						garrisonedEntityTag.Attribute("uid", static_cast<int>(garr_ent_id));
+						// ToDo: We can store turret position as well.
+					}
+				}
 
 				CmpPtr<ICmpPosition> cmpPosition(sim, ent);
 				if (cmpPosition)
