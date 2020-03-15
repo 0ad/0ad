@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -170,13 +170,10 @@ static AtObj ConvertToLatestFormat(AtObj in)
 	if (version == -1)
 	{
 		AtObj actor;
-
+		AtIter castShadows = in["Object"]["Properties"]["@castshadows"];
 		// Handle the global actor properties
-		if (in["Object"]["Properties"]["@autoflatten"] == "1")
-			actor.add("autoflatten", "");
-
-		if (in["Object"]["Properties"]["@castshadows"] == "1")
-			actor.add("castshadow", "");
+		if (castShadows.defined() && (*castShadows).getInt() == 1)
+			actor.set("castshadow", "");
 
 		// Things to strip leading strings (for converting filenames, since the
 		// new format doesn't store the entire path)
