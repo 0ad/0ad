@@ -5,11 +5,12 @@
 # Translators:
 # Alberto Verde <edgaralbertolv@gmail.com>, 2019
 # Antón Chinaev <Chinaev_Anton@outlook.es>, 2018
-# Ampaex <antoniovavazquez@gmail.com>, 2020
+# Antonio Vazquez <antoniovavazquez@gmail.com>, 2020
 # David Fernandez Carhuas <deivyelintelecto23@gmail.com>, 2015
 # Jesus A <jasenjot@gmail.com>, 2017
 # Joseba Uranga <shadowjosebau@gmail.com>, 2019
-# juanda097 <juanda097@protonmail.ch>, 2017
+# Juan Jaramillo <juanda097@protonmail.ch>, 2017
+# juan pablo Ferraro <ferrarojuanpablo@yahoo.es>, 2020
 # Luis Torrecilla <l_torrecilla@yahoo.es>, 2016
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
 # Swyter <Swyterzone@gmail.com>, 2014-2018
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-31 08:09+0000\n"
-"PO-Revision-Date: 2020-02-11 00:08+0000\n"
-"Last-Translator: Ampaex <antoniovavazquez@gmail.com>\n"
+"PO-Revision-Date: 2020-03-15 12:00+0000\n"
+"Last-Translator: juan pablo Ferraro <ferrarojuanpablo@yahoo.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -89,7 +90,7 @@ msgstr "Ruinas"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr ""
+msgstr "Demolish ruins for stone."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
@@ -97,7 +98,7 @@ msgstr "Tesoro"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr ""
+msgstr "Collect treasures for resources."
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
@@ -358,7 +359,7 @@ msgstr "Cabra"
 
 #: simulation/templates/gaia/fauna_goat.xml:9
 msgid "Capra aegagrus hircus"
-msgstr ""
+msgstr "Capra aegagrus hircus"
 
 #: simulation/templates/gaia/fauna_horse.xml:8
 msgid "Horse"
@@ -366,7 +367,7 @@ msgstr "Caballo"
 
 #: simulation/templates/gaia/fauna_horse.xml:9
 msgid "Equus ferus caballus"
-msgstr ""
+msgstr "Equus ferus caballus"
 
 #: simulation/templates/gaia/fauna_lion.xml:19
 msgid "Lion"
@@ -374,7 +375,7 @@ msgstr "León"
 
 #: simulation/templates/gaia/fauna_lion.xml:20
 msgid "Panthera leo"
-msgstr ""
+msgstr "Panthera leo"
 
 #: simulation/templates/gaia/fauna_lioness.xml:4
 msgid "Lioness"
@@ -395,7 +396,7 @@ msgstr "Buey almizclero"
 
 #: simulation/templates/gaia/fauna_muskox.xml:9
 msgid "Ovibos moschatus"
-msgstr ""
+msgstr "Ovibos moschatus"
 
 #: simulation/templates/gaia/fauna_peacock.xml:7
 msgid "Peacock"
@@ -411,7 +412,7 @@ msgstr "Cerdo"
 
 #: simulation/templates/gaia/fauna_pig.xml:9
 msgid "Sus scrofa domesticus"
-msgstr ""
+msgstr "Sus scrofa domesticus"
 
 #: simulation/templates/gaia/fauna_pig_flaming.xml:18
 msgid "Flaming Pig"
@@ -431,7 +432,7 @@ msgstr "Conejo"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:12
 msgid "Oryctolagus cuniculus"
-msgstr ""
+msgstr "Oryctolagus cuniculus"
 
 #: simulation/templates/gaia/fauna_rhino.xml:19
 msgid "White Rhinoceros"
@@ -439,15 +440,15 @@ msgstr "Rinoceronte blanco"
 
 #: simulation/templates/gaia/fauna_rhino.xml:20
 msgid "Ceratotherium simum"
-msgstr ""
+msgstr "Ceratotherium simum"
 
 #: simulation/templates/gaia/fauna_shark.xml:12
 msgid "Great White Shark"
-msgstr ""
+msgstr "Great White Shark"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Carcharodon carcharias"
-msgstr ""
+msgstr "Carcharodon carcharias"
 
 #: simulation/templates/gaia/fauna_sheep.xml:8
 msgid "Sheep"
@@ -455,7 +456,7 @@ msgstr "Oveja"
 
 #: simulation/templates/gaia/fauna_sheep.xml:9
 msgid "Ovis aries"
-msgstr ""
+msgstr "Ovis aries"
 
 #: simulation/templates/gaia/fauna_tiger.xml:19
 msgid "Tiger"
@@ -463,7 +464,7 @@ msgstr "Tigre"
 
 #: simulation/templates/gaia/fauna_tiger.xml:20
 msgid "Panthera tigris"
-msgstr ""
+msgstr "Panthera tigris"
 
 #: simulation/templates/gaia/fauna_walrus.xml:26
 msgid "Walrus"
@@ -471,7 +472,7 @@ msgstr "Morsa"
 
 #: simulation/templates/gaia/fauna_walrus.xml:27
 msgid "Odobenus rosmarus"
-msgstr ""
+msgstr "Odobenus rosmarus"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:8
 msgid "Fin Whale"
@@ -479,7 +480,7 @@ msgstr "Ballena rorcual"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:9
 msgid "Balaenoptera physalus"
-msgstr ""
+msgstr "Balaenoptera physalus"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:8
 msgid "Humpback Whale"
@@ -487,15 +488,15 @@ msgstr "Ballena jorobada"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:9
 msgid "Megaptera novaeangliae"
-msgstr ""
+msgstr "Megaptera novaeangliae"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:8
 msgid "Blue Wildebeest"
-msgstr ""
+msgstr "Blue Wildebeest"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:9
 msgid "Connochaetes taurinus"
-msgstr ""
+msgstr "Connochaetes taurinus"
 
 #: simulation/templates/gaia/fauna_wolf.xml:4
 msgid "Wolf"
@@ -511,7 +512,7 @@ msgstr "Cebra común"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Equus quagga"
-msgstr ""
+msgstr "Equus quagga"
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
@@ -547,7 +548,7 @@ msgstr "Bambú"
 
 #: simulation/templates/gaia/flora_tree_bamboo_dragon.xml:8
 msgid "Dragon Bamboo"
-msgstr ""
+msgstr "Dragon Bamboo"
 
 #: simulation/templates/gaia/flora_tree_banana.xml:4
 msgid "Banana"
@@ -555,7 +556,7 @@ msgstr "Plátano"
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
-msgstr ""
+msgstr "Banyan"
 
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
 #: simulation/templates/gaia/flora_tree_baobab_3_mature.xml:8
@@ -564,7 +565,7 @@ msgstr "Baobab"
 
 #: simulation/templates/gaia/flora_tree_baobab_1_sapling.xml:4
 msgid "Baobab Sapling"
-msgstr ""
+msgstr "Baobab Sapling"
 
 #: simulation/templates/gaia/flora_tree_baobab_2_young.xml:4
 msgid "Young Baobab"
@@ -572,7 +573,7 @@ msgstr "Baobab Joven"
 
 #: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
 msgid "Dead Baobab"
-msgstr ""
+msgstr "Dead Baobab"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
@@ -580,16 +581,16 @@ msgstr "Algarrobo"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
-msgstr ""
+msgstr "Atlas Cedar Sapling"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_2_young.xml:4
 #: simulation/templates/gaia/flora_tree_cedar_atlas_3_mature.xml:4
 msgid "Atlas Cedar"
-msgstr ""
+msgstr "Atlas Cedar"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_4_dead.xml:4
 msgid "Dead Atlas Cedar"
-msgstr ""
+msgstr "Dead Atlas Cedar"
 
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
@@ -613,16 +614,16 @@ msgstr "Palmera muerta"
 
 #: simulation/templates/gaia/flora_tree_date_palm_fruit.xml:4
 msgid "Fruiting Date Palm"
-msgstr ""
+msgstr "Fruiting Date Palm"
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
 msgid "Dead Deciduous Tree"
-msgstr ""
+msgstr "Dead Deciduous Tree"
 
 #: simulation/templates/gaia/flora_tree_elm.xml:4
 #: simulation/templates/gaia/flora_tree_elm_dead.xml:4
 msgid "Elm Tree"
-msgstr ""
+msgstr "Elm Tree"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
@@ -631,7 +632,7 @@ msgstr "Haya europea"
 
 #: simulation/templates/gaia/flora_tree_euro_birch.xml:4
 msgid "Silver Birch"
-msgstr ""
+msgstr "Silver Birch"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
@@ -640,23 +641,23 @@ msgstr "Higuera"
 #: simulation/templates/gaia/flora_tree_fir.xml:4
 #: simulation/templates/gaia/flora_tree_fir_winter.xml:4
 msgid "Fir Tree"
-msgstr ""
+msgstr "Fir Tree"
 
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
-msgstr ""
+msgstr "Fir Sapling"
 
 #: simulation/templates/gaia/flora_tree_juniper_prickly.xml:4
 msgid "Prickly Juniper"
-msgstr ""
+msgstr "Prickly Juniper"
 
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
-msgstr ""
+msgstr "Mangrove"
 
 #: simulation/templates/gaia/flora_tree_maple.xml:4
 msgid "Maple"
-msgstr ""
+msgstr "Maple"
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -672,12 +673,12 @@ msgstr "Roble"
 
 #: simulation/templates/gaia/flora_tree_oak_holly.xml:4
 msgid "Holly Oak"
-msgstr ""
+msgstr "Holly Oak"
 
 #: simulation/templates/gaia/flora_tree_oak_hungarian.xml:4
 #: simulation/templates/gaia/flora_tree_oak_hungarian_autumn.xml:4
 msgid "Hungarian Oak"
-msgstr ""
+msgstr "Hungarian Oak"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak Tree"
@@ -689,15 +690,15 @@ msgstr "Olivo"
 
 #: simulation/templates/gaia/flora_tree_palm_areca.xml:4
 msgid "Areca Palm"
-msgstr ""
+msgstr "Areca Palm"
 
 #: simulation/templates/gaia/flora_tree_palm_doum.xml:4
 msgid "Doum Palm"
-msgstr ""
+msgstr "Doum Palm"
 
 #: simulation/templates/gaia/flora_tree_palm_palmyra.xml:4
 msgid "Palmyra Palm"
-msgstr ""
+msgstr "Palmyra Palm"
 
 #: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
 msgid "Palm"
@@ -720,7 +721,7 @@ msgstr "Pino negro"
 #: simulation/templates/gaia/flora_tree_pine_maritime.xml:4
 #: simulation/templates/gaia/flora_tree_pine_maritime_short.xml:4
 msgid "Maritime Pine"
-msgstr ""
+msgstr "Maritime Pine"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
@@ -736,7 +737,7 @@ msgstr "Palmera de dátiles senegalesa"
 
 #: simulation/templates/gaia/flora_tree_strangler.xml:8
 msgid "Strangler Fig"
-msgstr ""
+msgstr "Strangler Fig"
 
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
@@ -750,7 +751,7 @@ msgstr "Teca"
 #: simulation/templates/gaia/flora_tree_temperate_autumn.xml:4
 #: simulation/templates/gaia/flora_tree_temperate_winter.xml:4
 msgid "Deciduous Tree"
-msgstr ""
+msgstr "Deciduous Tree"
 
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona Tree"
@@ -758,7 +759,7 @@ msgstr "Árbol toona"
 
 #: simulation/templates/gaia/flora_tree_tropic_rainforest.xml:4
 msgid "Rainforest Tree"
-msgstr ""
+msgstr "Rainforest Tree"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
@@ -1011,7 +1012,7 @@ msgstr "Espía"
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
-msgstr ""
+msgstr "Melee Infantry only, requires at least 16."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1023,7 +1024,7 @@ msgstr "En línea"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
-msgstr ""
+msgstr "Requires at least 4 Soldiers or Siege engines."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1039,7 +1040,7 @@ msgstr "Columna abierta"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr ""
+msgstr "Requires at least 8 Soldiers or Siege engines."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1059,7 +1060,7 @@ msgstr "Ninguno"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Infantry Hoplites only, requires at least 10."
-msgstr ""
+msgstr "Infantry Hoplites only, requires at least 10."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1071,7 +1072,7 @@ msgstr "Dispersión"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Ranged Soldiers only, requires at least 2."
-msgstr ""
+msgstr "Ranged Soldiers only, requires at least 2."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -1079,7 +1080,7 @@ msgstr "Escaramuza"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr ""
+msgstr "Infantry Pikemen only, requires at least 16."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1091,7 +1092,7 @@ msgstr "Tortuga"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Cavalry only, requires at least 6."
-msgstr ""
+msgstr "Cavalry only, requires at least 6."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
