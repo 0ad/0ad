@@ -257,6 +257,17 @@
                     </element>
                   </optional>
                   <optional>
+                    <element name="Garrison">
+                      <zeroOrMore>
+                        <element name="GarrisonedEntity">
+                          <attribute name="uid">
+                            <data type="positiveInteger"/>
+                          </attribute>
+                        </element>
+                      </zeroOrMore>
+                    </element>
+                  </optional>
+                  <optional>
                     <element name="Actor">
                       <attribute name="seed">
                         <data type="integer"/>

@@ -43,10 +43,6 @@
     {},
     {}
   ],
-  "Garrison": {
-    "3434": [3435, 3436, 3437, 3438, 3439, 3440, 3441, 3442, 3443, 3444, 3429, 3430, 3431, 3432, 3433],
-    "3445": [3446, 3447, 3448, 3449, 3450, 3451, 3452, 3453, 3454, 3455, 3456, 3457, 3458, 3459, 3460]
-  },
   "VictoryConditions": [
     "conquest"
   ]
@@ -15599,6 +15595,23 @@
 		<Entity uid="3434">
 			<Template>skirmish/units/default_ship_trireme</Template>
 			<Player>1</Player>
+			<Garrison>
+				<GarrisonedEntity uid="3429"/>
+				<GarrisonedEntity uid="3430"/>
+				<GarrisonedEntity uid="3431"/>
+				<GarrisonedEntity uid="3432"/>
+				<GarrisonedEntity uid="3433"/>
+				<GarrisonedEntity uid="3435"/>
+				<GarrisonedEntity uid="3436"/>
+				<GarrisonedEntity uid="3437"/>
+				<GarrisonedEntity uid="3438"/>
+				<GarrisonedEntity uid="3439"/>
+				<GarrisonedEntity uid="3440"/>
+				<GarrisonedEntity uid="3441"/>
+				<GarrisonedEntity uid="3442"/>
+				<GarrisonedEntity uid="3443"/>
+				<GarrisonedEntity uid="3444"/>
+			</Garrison>
 			<Position x="639" z="43"/>
 			<Orientation y="5.35621"/>
 			<Actor seed="61012"/>
@@ -15676,6 +15689,23 @@
 		<Entity uid="3445">
 			<Template>skirmish/units/default_ship_trireme</Template>
 			<Player>2</Player>
+			<Garrison>
+				<GarrisonedEntity uid="3446"/>
+				<GarrisonedEntity uid="3447"/>
+				<GarrisonedEntity uid="3448"/>
+				<GarrisonedEntity uid="3449"/>
+				<GarrisonedEntity uid="3450"/>
+				<GarrisonedEntity uid="3451"/>
+				<GarrisonedEntity uid="3452"/>
+				<GarrisonedEntity uid="3453"/>
+				<GarrisonedEntity uid="3454"/>
+				<GarrisonedEntity uid="3455"/>
+				<GarrisonedEntity uid="3456"/>
+				<GarrisonedEntity uid="3457"/>
+				<GarrisonedEntity uid="3458"/>
+				<GarrisonedEntity uid="3459"/>
+				<GarrisonedEntity uid="3460"/>
+			</Garrison>
 			<Position x="652" z="951"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="25760"/>

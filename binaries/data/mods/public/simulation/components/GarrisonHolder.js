@@ -691,6 +691,16 @@ GarrisonHolder.prototype.IsEjectable = function(entity)
 };
 
 /**
+ * Sets the intitGarrison to the specified entities. Used by the mapreader.
+ *
+ * @param {number[]} entities - The entity IDs to garrison on init.
+ */
+GarrisonHolder.prototype.SetInitGarrison = function(entities)
+{
+	this.initGarrison = clone(entities);
+};
+
+/**
  * Initialise the garrisoned units.
  */
 GarrisonHolder.prototype.OnGlobalInitGame = function(msg)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -97,6 +97,9 @@ COMPONENT(FoggingScripted)
 // see VisualActor's Init method for a description of how you can avoid it.
 INTERFACE(Footprint)
 COMPONENT(Footprint)
+
+INTERFACE(GarrisonHolder)
+COMPONENT(GarrisonHolderScripted)
 
 INTERFACE(GuiInterface)
 COMPONENT(GuiInterfaceScripted)

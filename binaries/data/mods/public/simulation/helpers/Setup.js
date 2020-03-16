@@ -64,16 +64,6 @@ function LoadMapSettings(settings)
 	if (settings.LockTeams && settings.LastManStanding)
 		warn("Last man standing is only available in games with unlocked teams!");
 
-	if (settings.Garrison)
-		for (let holder in settings.Garrison)
-		{
-			let cmpGarrisonHolder = Engine.QueryInterface(+holder, IID_GarrisonHolder);
-			if (!cmpGarrisonHolder)
-				warn("Map error in Setup.js: entity " + holder + " can not garrison units");
-			else
-				cmpGarrisonHolder.initGarrison = settings.Garrison[holder];
-		}
-
 	let cmpCeasefireManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager);
 	if (settings.Ceasefire)
 		cmpCeasefireManager.StartCeasefire(settings.Ceasefire * 60 * 1000);

@@ -8,13 +8,12 @@
       </animations>
       <mesh>structural/ptol_military_settlement_struct_ptolemaic.dae</mesh>
       <props>
-        <prop actor="props/structures/ptolemies/ptol_military_settlement_struct_seleucid.xml" attachpoint="root"/> 
-        <prop actor="props/structures/ptolemies/ptol_military_settlement_struct_helenistic.xml" attachpoint="root"/> 
+        <prop actor="props/structures/ptolemies/ptol_military_settlement_struct_seleucid.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/ptol_military_settlement_struct_helenistic.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/ptol_military_settlement_leaves.xml" attachpoint="root" />
         <prop actor="props/structures/ptolemies/ptol_military_settlement_trunks.xml" attachpoint="root"/>
-        <prop actor="props/structures/ptolemies/ptol_military_settlement_obelisk.xml" attachpoint="root"/>
+        <prop actor="props/special/eyecandy/obelisk_03.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/ptol_military_settlement_flowers.xml" attachpoint="root"/>
-        <prop actor="props/structures/ptolemies/ptol_military_settlement_trunks.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/ptol_military_settlement_door.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
@@ -35,7 +34,6 @@
         <prop actor="props/special/common/garrison_flag_ptol.xml" attachpoint="garrisoned2"/>
         <prop actor="props/special/common/garrison_flag_ptol.xml" attachpoint="garrisoned3"/>
         <prop actor="props/special/common/garrison_flag_ptol.xml" attachpoint="garrisoned4"/>
-		
       </props>
     </variant>
   </group>
@@ -50,6 +48,13 @@
         <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/ptol_military_settlement_struct_seleucid.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/ptol_military_settlement_struct_helenistic.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/ptol_military_settlement_leaves.xml" attachpoint="root" />
+        <prop actor="props/structures/ptolemies/ptol_military_settlement_trunks.xml" attachpoint="root"/>
+        <prop actor="props/special/eyecandy/obelisk_03.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/ptol_military_settlement_flowers.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/ptol_military_settlement_door.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

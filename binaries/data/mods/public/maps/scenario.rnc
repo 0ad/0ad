@@ -103,6 +103,11 @@ Scenario = element Scenario {
                 attribute group { xsd:positiveInteger },
                 attribute group2 { xsd:positiveInteger }?
             }? &
+            element Garrison {
+                element GarrisonedEntity {
+                    attribute uid { xsd:positiveInteger } &
+                } &
+            } &
             element Actor {
                 attribute seed { xsd:integer }
             }?
