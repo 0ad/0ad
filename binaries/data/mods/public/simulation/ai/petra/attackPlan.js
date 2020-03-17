@@ -319,6 +319,20 @@ PETRA.AttackPlan.prototype.forceStart = function()
 	this.forced = true;
 };
 
+PETRA.AttackPlan.prototype.emptyQueues = function()
+{
+	this.queue.empty();
+	this.queueChamp.empty();
+	this.queueSiege.empty();
+};
+
+PETRA.AttackPlan.prototype.removeQueues = function(gameState)
+{
+	gameState.ai.queueManager.removeQueue("plan_" + this.name);
+	gameState.ai.queueManager.removeQueue("plan_" + this.name + "_champ");
+	gameState.ai.queueManager.removeQueue("plan_" + this.name + "_siege");
+};
+
 /** Adds a build order. If resetQueue is true, this will reset the queue. */
 PETRA.AttackPlan.prototype.addBuildOrder = function(gameState, name, unitStats, resetQueue)
 {
@@ -331,11 +345,7 @@ PETRA.AttackPlan.prototype.addBuildOrder = function(gameState, name, unitStats, 
 		this.unit[name].registerUpdates();
 		this.buildOrders.push([0, Unit.classes, this.unit[name], Unit, name]);
 		if (resetQueue)
-		{
-			this.queue.empty();
-			this.queueChamp.empty();
-			this.queueSiege.empty();
-		}
+			this.emptyQueues();
 	}
 };
 
@@ -451,9 +461,7 @@ PETRA.AttackPlan.prototype.updatePreparation = function(gameState)
 			lengthMin -= Math.floor(8 * (300 - gameState.getPopulationMax()) / 300);
 		if (this.canStart() || this.unitCollection.length > lengthMin)
 		{
-			this.queue.empty();
-			this.queueChamp.empty();
-			this.queueSiege.empty();
+			this.emptyQueues();
 		}
 		else	// Abort the plan so that its units will be reassigned to other plans.
 		{
@@ -477,9 +485,7 @@ PETRA.AttackPlan.prototype.updatePreparation = function(gameState)
 		if (gameState.countOwnQueuedEntitiesWithMetadata("plan", +this.name) > 0)
 		{
 			// keep on while the units finish being trained, then we'll start
-			this.queue.empty();
-			this.queueChamp.empty();
-			this.queueSiege.empty();
+			this.emptyQueues();
 			return 1;
 		}
 	}
@@ -556,13 +562,9 @@ PETRA.AttackPlan.prototype.updatePreparation = function(gameState)
 	}
 
 	// reset all queued units
-	let plan = this.name;
-	gameState.ai.queueManager.removeQueue("plan_" + plan);
-	gameState.ai.queueManager.removeQueue("plan_" + plan + "_champ");
-	gameState.ai.queueManager.removeQueue("plan_" + plan + "_siege");
+	this.removeQueues(gameState);
 	return	1;
 };
-
 
 PETRA.AttackPlan.prototype.trainMoreUnits = function(gameState)
 {
@@ -1216,9 +1218,7 @@ PETRA.AttackPlan.prototype.StartAttack = function(gameState)
 		return false;
 
 	// erase our queue. This will stop any leftover unit from being trained.
-	gameState.ai.queueManager.removeQueue("plan_" + this.name);
-	gameState.ai.queueManager.removeQueue("plan_" + this.name + "_champ");
-	gameState.ai.queueManager.removeQueue("plan_" + this.name + "_siege");
+	this.removeQueues(gameState);
 
 	for (let ent of this.unitCollection.values())
 	{
@@ -1999,9 +1999,7 @@ PETRA.AttackPlan.prototype.Abort = function(gameState)
 	for (let unitCat in this.unitStat)
 		this.unit[unitCat].unregister();
 
-	gameState.ai.queueManager.removeQueue("plan_" + this.name);
-	gameState.ai.queueManager.removeQueue("plan_" + this.name + "_champ");
-	gameState.ai.queueManager.removeQueue("plan_" + this.name + "_siege");
+	this.removeQueues(gameState);
 };
 
 PETRA.AttackPlan.prototype.removeUnit = function(ent, update)
