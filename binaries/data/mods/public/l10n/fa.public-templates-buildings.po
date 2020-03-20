@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-10 08:09+0000\n"
-"PO-Revision-Date: 2020-01-10 15:21+0000\n"
+"POT-Creation-Date: 2020-03-16 08:11+0000\n"
+"PO-Revision-Date: 2020-03-16 11:17+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -33,21 +33,21 @@ msgstr "ساختار تمدن"
 msgid "Civic"
 msgstr "تمدن"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:87
+#: simulation/templates/template_structure_civic_civil_centre.xml:88
 msgid "Civic Center"
 msgstr "مرکز تمدن"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:88
+#: simulation/templates/template_structure_civic_civil_centre.xml:89
 msgid "Build to acquire large tracts of territory. Train citizens."
 msgstr "ساختمان های بیشتری برای گسترش قلمرو بسازید . شهروندان را پرورش دهید."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:90
-#: simulation/templates/template_structure_civic_civil_centre.xml:52
+#: simulation/templates/template_structure_civic_civil_centre.xml:91
+#: simulation/templates/template_structure_civic_civil_centre.xml:53
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
 msgstr "مرکز تمدن"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:31
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:27
 msgid "Military Colony"
 msgstr "مهاجرنشین نظامی"
 
@@ -125,7 +125,7 @@ msgstr "دیوار چوبی"
 msgid "Wall off your town for a stout defense."
 msgstr "برای دفاع قویتر دور شهر خود دیوار بکشید"
 
-#: simulation/templates/template_structure_defensive_tower.xml:35
+#: simulation/templates/template_structure_defensive_tower.xml:36
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:60
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:59
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:38
@@ -144,7 +144,7 @@ msgstr ""
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:60
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:59
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
-#: simulation/templates/template_structure_military_fortress.xml:74
+#: simulation/templates/template_structure_military_fortress.xml:75
 #: simulation/templates/template_structure_military_workshop.xml:29
 #: simulation/templates/template_structure_special.xml:45
 #: simulation/templates/template_structure_wonder.xml:53
@@ -237,11 +237,11 @@ msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "این اجازه خواهد داد که به نیروهای خود اجازه دهید از استحکامات شما عبور کنند"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:53
+#: simulation/templates/template_structure_defensive_wall_tower.xml:54
 msgid "Wall Turret"
 msgstr "برجک دیوار"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:54
+#: simulation/templates/template_structure_defensive_wall_tower.xml:55
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "تیر شلیک می کند. سربازان را در آن مستقر کنید تا از دیوار شهر علیه مهاجمان دفاع کنید."
 
@@ -341,12 +341,12 @@ msgstr ""
 msgid "Embassy"
 msgstr "سفارت"
 
-#: simulation/templates/template_structure_military_fortress.xml:41
-#: simulation/templates/template_structure_military_fortress.xml:72
+#: simulation/templates/template_structure_military_fortress.xml:42
+#: simulation/templates/template_structure_military_fortress.xml:73
 msgid "Fortress"
 msgstr "قلعه"
 
-#: simulation/templates/template_structure_military_fortress.xml:77
+#: simulation/templates/template_structure_military_fortress.xml:78
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
@@ -1142,12 +1142,12 @@ msgid "Cancho Roano"
 msgstr "کانچو روآنو"
 
 #: simulation/templates/structures/kush_barracks.xml:15
-msgid "pr-ms’yw"
-msgstr "pr-ms’yw"
+msgid "pr-msʿyw"
+msgstr ""
 
 #: simulation/templates/structures/kush_blacksmith.xml:5
-msgid "hmw h’y n r3-‘"
-msgstr "hmw h’y n r3-‘"
+msgid "hmw hʿy n rȝ-ʿ"
+msgstr ""
 
 #: simulation/templates/structures/kush_blemmye_camp.xml:21
 #: simulation/templates/structures/kush_blemmye_camp.xml:22
@@ -1167,8 +1167,8 @@ msgid "ihy"
 msgstr "ihy"
 
 #: simulation/templates/structures/kush_defense_tower.xml:5
-msgid "tsmt ‘3"
-msgstr "tsmt ‘3"
+msgid "tsmt ʿȝ"
+msgstr ""
 
 #: simulation/templates/structures/kush_dock.xml:9
 msgid "Mryt"
@@ -1217,8 +1217,8 @@ msgstr "هرم کوشی"
 
 #: simulation/templates/structures/kush_pyramid.xml:27
 #: simulation/templates/structures/kush_pyramid_large.xml:30
-msgid "mr ‘3"
-msgstr "mr ‘3"
+msgid "mr ʿȝ"
+msgstr ""
 
 #: simulation/templates/structures/kush_pyramid.xml:28
 #: simulation/templates/structures/kush_pyramid_large.xml:31
@@ -1259,16 +1259,16 @@ msgid "Ỉḥ Ssmt"
 msgstr ""
 
 #: simulation/templates/structures/kush_storehouse.xml:5
-msgid "wd3t"
-msgstr "wd3t"
+msgid "wdȝt"
+msgstr ""
 
 #: simulation/templates/structures/kush_temple.xml:8
 msgid "Temple of Apedemak"
 msgstr "معبد آپدماک"
 
 #: simulation/templates/structures/kush_temple.xml:9
-msgid "Pr-‘Iprmk"
-msgstr "Pr-‘Iprmk"
+msgid "Pr-ʿIprmk"
+msgstr ""
 
 #: simulation/templates/structures/kush_temple.xml:10
 msgid ""
@@ -1281,8 +1281,8 @@ msgid "Grand Temple of Amun"
 msgstr "معبد بزرگ آمون"
 
 #: simulation/templates/structures/kush_temple_amun.xml:29
-msgid "Pr-‘Imn"
-msgstr "Pr-‘Imn"
+msgid "Pr-ʿImn"
+msgstr ""
 
 #: simulation/templates/structures/kush_temple_amun.xml:30
 msgid ""
@@ -1291,8 +1291,8 @@ msgid ""
 msgstr "پرورش کشیش برای درمان نیروهای شما. پرورش محافظان معبد ناپاتان و تحقیق برای فناوری های خاص. مستقر کردن نیروها برای درمان آنها با سرعت زیاد"
 
 #: simulation/templates/structures/kush_wall_gate.xml:9
-msgid "’ryt"
-msgstr "’ryt"
+msgid "ʿryt"
+msgstr ""
 
 #: simulation/templates/structures/kush_wall_long.xml:39
 #: simulation/templates/structures/kush_wall_medium.xml:29
@@ -1302,8 +1302,8 @@ msgid "sbty"
 msgstr "sbty"
 
 #: simulation/templates/structures/kush_wall_tower.xml:9
-msgid "s3wt"
-msgstr "s3wt"
+msgid "sȝwt"
+msgstr ""
 
 #: simulation/templates/structures/kush_wonder.xml:15
 msgid "Mnw nht"
@@ -1738,19 +1738,19 @@ msgstr "تاق پیروزی"
 msgid "Arcus Triumphālis"
 msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:47
+#: simulation/templates/structures/rome_army_camp.xml:48
 msgid "ArmyCamp"
 msgstr "اردوگاه نظامی"
 
-#: simulation/templates/structures/rome_army_camp.xml:80
+#: simulation/templates/structures/rome_army_camp.xml:81
 msgid "Army Camp"
 msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:81
+#: simulation/templates/structures/rome_army_camp.xml:82
 msgid "Castra"
 msgstr "اردوگاه"
 
-#: simulation/templates/structures/rome_army_camp.xml:84
+#: simulation/templates/structures/rome_army_camp.xml:85
 msgid ""
 "Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
 "Siege Engines. Garrison Soldiers for additional arrows."

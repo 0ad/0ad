@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
-# MarongHappy <daemul72@gmail.com>, 2019-2020
+# 이정희 <daemul72@gmail.com>, 2019-2020
 # dalrae jin <greenpolidol@gmail.com>, 2014
 # EK lee <sodadida@gmail.com>, 2019
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-10 08:09+0000\n"
-"PO-Revision-Date: 2020-02-22 20:08+0000\n"
-"Last-Translator: ks k\n"
+"POT-Creation-Date: 2020-03-16 08:11+0000\n"
+"PO-Revision-Date: 2020-03-16 11:17+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,21 +40,21 @@ msgstr "시민 건축물"
 msgid "Civic"
 msgstr "시민"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:87
+#: simulation/templates/template_structure_civic_civil_centre.xml:88
 msgid "Civic Center"
 msgstr "시민 회관"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:88
+#: simulation/templates/template_structure_civic_civil_centre.xml:89
 msgid "Build to acquire large tracts of territory. Train citizens."
 msgstr "넓은 지역을 차지하기 위해 건설합니다. 시민을 양성합니다."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:90
-#: simulation/templates/template_structure_civic_civil_centre.xml:52
+#: simulation/templates/template_structure_civic_civil_centre.xml:91
+#: simulation/templates/template_structure_civic_civil_centre.xml:53
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
 msgstr "시빌센트레"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:31
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:27
 msgid "Military Colony"
 msgstr "군사 식민지"
 
@@ -132,7 +132,7 @@ msgstr "목조 방벽"
 msgid "Wall off your town for a stout defense."
 msgstr "튼튼한 방어를 위해 마을에 벽을 쌓습니다."
 
-#: simulation/templates/template_structure_defensive_tower.xml:35
+#: simulation/templates/template_structure_defensive_tower.xml:36
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:60
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:59
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:38
@@ -151,7 +151,7 @@ msgstr "투석기 돌. 발을 보호하기 위해 근총안 기술이 필요합�
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:60
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:59
 #: simulation/templates/template_structure_military_elephant_stables.xml:30
-#: simulation/templates/template_structure_military_fortress.xml:74
+#: simulation/templates/template_structure_military_fortress.xml:75
 #: simulation/templates/template_structure_military_workshop.xml:29
 #: simulation/templates/template_structure_special.xml:45
 #: simulation/templates/template_structure_wonder.xml:53
@@ -244,11 +244,11 @@ msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "이것은 유닛이 요새를 왔다갔다할 수 있게 합니다."
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:53
+#: simulation/templates/template_structure_defensive_wall_tower.xml:54
 msgid "Wall Turret"
 msgstr "성벽 망루"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:54
+#: simulation/templates/template_structure_defensive_wall_tower.xml:55
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "화살을 쏩니다. 적으로부터 성벽을 보호하기 위해 군인들을 주둔합니다."
 
@@ -348,12 +348,12 @@ msgstr "코끼리 마굿간"
 msgid "Embassy"
 msgstr "대사관"
 
-#: simulation/templates/template_structure_military_fortress.xml:41
-#: simulation/templates/template_structure_military_fortress.xml:72
+#: simulation/templates/template_structure_military_fortress.xml:42
+#: simulation/templates/template_structure_military_fortress.xml:73
 msgid "Fortress"
 msgstr "요새"
 
-#: simulation/templates/template_structure_military_fortress.xml:77
+#: simulation/templates/template_structure_military_fortress.xml:78
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
@@ -1149,12 +1149,12 @@ msgid "Cancho Roano"
 msgstr "칸초 로아노"
 
 #: simulation/templates/structures/kush_barracks.xml:15
-msgid "pr-ms’yw"
-msgstr "막사qjsdur"
+msgid "pr-msʿyw"
+msgstr ""
 
 #: simulation/templates/structures/kush_blacksmith.xml:5
-msgid "hmw h’y n r3-‘"
-msgstr "대장장이qjsdur"
+msgid "hmw hʿy n rȝ-ʿ"
+msgstr ""
 
 #: simulation/templates/structures/kush_blemmye_camp.xml:21
 #: simulation/templates/structures/kush_blemmye_camp.xml:22
@@ -1174,8 +1174,8 @@ msgid "ihy"
 msgstr "가축 울타리qjsdur"
 
 #: simulation/templates/structures/kush_defense_tower.xml:5
-msgid "tsmt ‘3"
-msgstr "방어탑qjsdur"
+msgid "tsmt ʿȝ"
+msgstr ""
 
 #: simulation/templates/structures/kush_dock.xml:9
 msgid "Mryt"
@@ -1224,8 +1224,8 @@ msgstr "쿠시 피라미드"
 
 #: simulation/templates/structures/kush_pyramid.xml:27
 #: simulation/templates/structures/kush_pyramid_large.xml:30
-msgid "mr ‘3"
-msgstr "쿠시테(거대한) 피라미드qjsdur"
+msgid "mr ʿȝ"
+msgstr ""
 
 #: simulation/templates/structures/kush_pyramid.xml:28
 #: simulation/templates/structures/kush_pyramid_large.xml:31
@@ -1266,16 +1266,16 @@ msgid "Ỉḥ Ssmt"
 msgstr "기병대 마구간qjsdur"
 
 #: simulation/templates/structures/kush_storehouse.xml:5
-msgid "wd3t"
-msgstr "창고qjsdur"
+msgid "wdȝt"
+msgstr ""
 
 #: simulation/templates/structures/kush_temple.xml:8
 msgid "Temple of Apedemak"
 msgstr "아페데마크 사원"
 
 #: simulation/templates/structures/kush_temple.xml:9
-msgid "Pr-‘Iprmk"
-msgstr "아페데막 신전qjsdur"
+msgid "Pr-ʿIprmk"
+msgstr ""
 
 #: simulation/templates/structures/kush_temple.xml:10
 msgid ""
@@ -1288,8 +1288,8 @@ msgid "Grand Temple of Amun"
 msgstr "아문의 대 사원"
 
 #: simulation/templates/structures/kush_temple_amun.xml:29
-msgid "Pr-‘Imn"
-msgstr "아문(Amun)의 거대사원qjsdur"
+msgid "Pr-ʿImn"
+msgstr ""
 
 #: simulation/templates/structures/kush_temple_amun.xml:30
 msgid ""
@@ -1298,8 +1298,8 @@ msgid ""
 msgstr "병사들을 치료하기 위해 사제들을 양성합니다. 나파탄 사원 경비대를 양성시키고 고유의 기술을 연구합니다. 빠른 속도로 그들을 치료하기 위한 주둔 유닛입니다."
 
 #: simulation/templates/structures/kush_wall_gate.xml:9
-msgid "’ryt"
-msgstr "성문qjsdur"
+msgid "ʿryt"
+msgstr ""
 
 #: simulation/templates/structures/kush_wall_long.xml:39
 #: simulation/templates/structures/kush_wall_medium.xml:29
@@ -1309,8 +1309,8 @@ msgid "sbty"
 msgstr "성벽qjsdur"
 
 #: simulation/templates/structures/kush_wall_tower.xml:9
-msgid "s3wt"
-msgstr "성벽 탑qjsdur"
+msgid "sȝwt"
+msgstr ""
 
 #: simulation/templates/structures/kush_wonder.xml:15
 msgid "Mnw nht"
@@ -1745,19 +1745,19 @@ msgstr "개선문"
 msgid "Arcus Triumphālis"
 msgstr "아르쿠스 트리움파리스"
 
-#: simulation/templates/structures/rome_army_camp.xml:47
+#: simulation/templates/structures/rome_army_camp.xml:48
 msgid "ArmyCamp"
 msgstr "아미캠프"
 
-#: simulation/templates/structures/rome_army_camp.xml:80
+#: simulation/templates/structures/rome_army_camp.xml:81
 msgid "Army Camp"
 msgstr "육군 병영"
 
-#: simulation/templates/structures/rome_army_camp.xml:81
+#: simulation/templates/structures/rome_army_camp.xml:82
 msgid "Castra"
 msgstr "카스트라"
 
-#: simulation/templates/structures/rome_army_camp.xml:84
+#: simulation/templates/structures/rome_army_camp.xml:85
 msgid ""
 "Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
 "Siege Engines. Garrison Soldiers for additional arrows."
