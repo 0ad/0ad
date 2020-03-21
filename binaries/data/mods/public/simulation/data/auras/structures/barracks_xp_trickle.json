@@ -1,0 +1,9 @@
+{
+	"type": "garrisonedUnits",
+	"affects": ["Unit"],
+	"modifications": [
+		{ "value": "Promotion/TrickleRate", "add": 1 }
+	],
+	"auraName": "Rigorous Training",
+	"auraDescription": "Units gain experience while garrisoned in barracks."
+}
