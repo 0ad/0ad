@@ -6,20 +6,20 @@
 # ali topçu <ali134636@gmail.com>, 2018
 # Cem Aktas <cemwstone@gmail.com>, 2018
 # Hüseyin Cem KOÇ <hckweb@gmail.com>, 2015
-# Togarma, 2019
+# Günay Yılmaz, 2019-2020
 # Hüseyin Cem Aras <hcemaras@gmail.com>, 2016
 # Hüseyin Cem Aras <hcemaras@gmail.com>, 2015
 # İrfan Sunay <irfan_sunay@hotmail.com>, 2018
 # Muha Aliss <muhaaliss@gmail.com>, 2017
-# Togarma, 2020
+# Günay Yılmaz, 2020
 # yakup <mutouk@yandex.ru>, 2014-2017
 # Yasin Uysal <yasinuysal22@outlook.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-31 08:09+0000\n"
-"PO-Revision-Date: 2020-02-01 09:35+0000\n"
-"Last-Translator: Togarma\n"
+"POT-Creation-Date: 2020-03-16 08:11+0000\n"
+"PO-Revision-Date: 2020-03-16 08:54+0000\n"
+"Last-Translator: Günay Yılmaz\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -146,29 +146,29 @@ msgstr " I. Leonidas'ın Ordusu."
 msgid "Army of Leonidas I"
 msgstr " I. Leonidas'ın Ordusu"
 
-#: simulation/templates/campaigns/campaign_city_minor_test.xml:29
-#: simulation/templates/campaigns/campaign_city_test.xml:29
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:30
+#: simulation/templates/campaigns/campaign_city_test.xml:30
 msgid "Market"
 msgstr "Pazar"
 
-#: simulation/templates/campaigns/campaign_city_minor_test.xml:30
-#: simulation/templates/campaigns/campaign_city_test.xml:30
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:31
+#: simulation/templates/campaigns/campaign_city_test.xml:31
 msgid "Settlement"
 msgstr "Yerleşim"
 
-#: simulation/templates/campaigns/campaign_city_minor_test.xml:31
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:32
 msgid "Minor Greek Polis"
 msgstr "Küçük Yunan Şehri"
 
-#: simulation/templates/campaigns/campaign_city_minor_test.xml:32
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:33
 msgid "This is a minor Greek city."
 msgstr "Bu önemli Yunan şehri."
 
-#: simulation/templates/campaigns/campaign_city_test.xml:31
+#: simulation/templates/campaigns/campaign_city_test.xml:32
 msgid "Greek Polis"
 msgstr "Yunan Şehiri"
 
-#: simulation/templates/campaigns/campaign_city_test.xml:32
+#: simulation/templates/campaigns/campaign_city_test.xml:33
 msgid "This is a major Greek city."
 msgstr "Bu büyük Yunan şehri."
 
@@ -727,9 +727,21 @@ msgstr "Deniz Çamı"
 msgid "Poplar Tree"
 msgstr "Kavak Ağacı"
 
+#: simulation/templates/gaia/flora_tree_poplar_dead.xml:4
+msgid "Dead Poplar"
+msgstr "Ölü Kavak"
+
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 msgid "Black Poplar Tree"
 msgstr "Siyah Kavak Ağacı"
+
+#: simulation/templates/gaia/flora_tree_poplar_lombardy_autumn.xml:4
+msgid "Poplar"
+msgstr "Kavak"
+
+#: simulation/templates/gaia/flora_tree_poplar_lombardy_dead.xml:4
+msgid "Dead Black Poplar Tree"
+msgstr "Ölü Kara Kavak Ağacı"
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"

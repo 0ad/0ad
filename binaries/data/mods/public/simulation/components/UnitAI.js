@@ -4402,8 +4402,9 @@ UnitAI.prototype.SetAnimationSync = function(actiontime, repeattime)
 
 UnitAI.prototype.StopMoving = function()
 {
-	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	cmpUnitMotion.StopMoving();
+	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	if (cmpUnitMotion)
+		cmpUnitMotion.StopMoving();
 };
 
 /**
@@ -4431,14 +4432,14 @@ UnitAI.prototype.MoveTo = function(data, iid, type)
 
 UnitAI.prototype.MoveToPoint = function(x, z)
 {
-	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpUnitMotion.MoveToPointRange(x, z, 0, 0); // For point goals, allow a max range of 0.
+	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion && cmpUnitMotion.MoveToPointRange(x, z, 0, 0); // For point goals, allow a max range of 0.
 };
 
 UnitAI.prototype.MoveToPointRange = function(x, z, rangeMin, rangeMax)
 {
-	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpUnitMotion.MoveToPointRange(x, z, rangeMin, rangeMax);
+	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion && cmpUnitMotion.MoveToPointRange(x, z, rangeMin, rangeMax);
 };
 
 UnitAI.prototype.MoveToTarget = function(target)
@@ -4446,8 +4447,8 @@ UnitAI.prototype.MoveToTarget = function(target)
 	if (!this.CheckTargetVisible(target))
 		return false;
 
-	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpUnitMotion.MoveToTargetRange(target, 0, 1);
+	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion && cmpUnitMotion.MoveToTargetRange(target, 0, 1);
 };
 
 UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
@@ -4460,7 +4461,7 @@ UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
 		return false;
 
 	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpUnitMotion.MoveToTargetRange(target, range.min, range.max);
+	return cmpUnitMotion && cmpUnitMotion.MoveToTargetRange(target, range.min, range.max);
 };
 
 /**
@@ -4515,7 +4516,7 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	let guessedMaxRange = parabolicMaxRange > range.max ? (range.max + parabolicMaxRange) / 2 : parabolicMaxRange;
 
 	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpUnitMotion.MoveToTargetRange(target, range.min, guessedMaxRange);
+	return cmpUnitMotion && cmpUnitMotion.MoveToTargetRange(target, range.min, guessedMaxRange);
 };
 
 UnitAI.prototype.MoveToTargetRangeExplicit = function(target, min, max)
@@ -4523,8 +4524,8 @@ UnitAI.prototype.MoveToTargetRangeExplicit = function(target, min, max)
 	if (!this.CheckTargetVisible(target))
 		return false;
 
-	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpUnitMotion.MoveToTargetRange(target, min, max);
+	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion && cmpUnitMotion.MoveToTargetRange(target, min, max);
 };
 
 UnitAI.prototype.MoveToGarrisonRange = function(target)
@@ -4537,8 +4538,8 @@ UnitAI.prototype.MoveToGarrisonRange = function(target)
 		return false;
 	var range = cmpGarrisonHolder.GetLoadingRange();
 
-	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpUnitMotion.MoveToTargetRange(target, range.min, range.max);
+	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion && cmpUnitMotion.MoveToTargetRange(target, range.min, range.max);
 };
 
 /**
