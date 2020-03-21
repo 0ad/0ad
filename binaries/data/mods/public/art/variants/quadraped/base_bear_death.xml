@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variant name="Death">
+  <animations>
+    <animation file="quadraped/bear_death_01.dae" name="Death" speed="120"/>
+  </animations>
+  <props>
+    <prop actor="props/units/blood_01.xml" attachpoint="decals"/>
+  </props>
+</variant>

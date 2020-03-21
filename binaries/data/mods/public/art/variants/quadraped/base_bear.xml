@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="Base" frequency="1">
+  <animations>
+    <animation file="quadraped/bear_idle_01.dae" name="Idle" id="idle1" frequency="10" speed="80"/>
+    <animation file="quadraped/bear_idle_02.dae" name="Idle" id="idle2" frequency="5" speed="80"/>
+    <animation file="quadraped/bear_idle_03.dae" name="Idle" id="idle3" frequency="1" speed="80"/>
+    <animation file="quadraped/bear_idle_04.dae" name="Idle" id="idle4" frequency="5" speed="80"/>
+    <animation file="quadraped/bear_attack_01.dae" name="Attack_Melee" id="attack1" speed="100"/>
+    <animation file="quadraped/bear_attack_02.dae" name="Attack_Melee" id="attack2" speed="100"/>
+    <animation file="quadraped/bear_attack_03.dae" name="Attack_Melee" id="attack3" speed="100"/>
+    <animation file="quadraped/bear_death_01.dae" name="Death" speed="120"/>
+    <animation file="quadraped/bear_walk.dae" name="Walk" speed="35"/>
+    <animation file="quadraped/bear_run.dae" name="Run" speed="5"/>
+  </animations>
+</variant>
