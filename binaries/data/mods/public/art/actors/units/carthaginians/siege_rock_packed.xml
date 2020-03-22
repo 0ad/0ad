@@ -4,9 +4,7 @@
   <group>
     <variant frequency="1" name="wagon hele rock">
       <animations>
-        <animation file="mechanical/wagon_four_wheel_empty_idle.dae" id="idle1" name="Idle" speed="80"/>
-        <animation file="mechanical/wagon_four_wheel_empty_idle.dae" id="idle2" name="Idle" speed="80"/>
-        <animation file="mechanical/wagon_four_wheel_empty_idle.dae" id="idle3" name="Idle" speed="80"/>
+        <animation file="mechanical/wagon_four_wheel_empty_idle.dae" name="Idle" speed="80"/>
         <animation file="mechanical/wagon_four_wheel_empty_move.dae" name="Walk" speed="10"/>
         <animation file="mechanical/wagon_four_wheel_empty_move.dae" name="Run" speed="10"/>
       </animations>
