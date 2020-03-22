@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_fauna_hunt_aggressive">
+  <Attack>
+    <Melee>
+      <Damage>
+        <Hack>20.0</Hack>
+        <Pierce>0.0</Pierce>
+        <Crush>20.0</Crush>
+      </Damage>
+      <MaxRange>6.0</MaxRange>
+      <RepeatTime>2000</RepeatTime>
+    </Melee>
+  </Attack>
+  <Footprint>
+    <Square width="2.0" depth="4.0"/>
+    <Height>2.0</Height>
+  </Footprint>
+  <Position>
+    <Anchor>pitch</Anchor>
+  </Position>
+  <ResourceSupply>
+    <Amount>300</Amount>
+    <Type>food.meat</Type>
+  </ResourceSupply>
+  <Sound>
+    <SoundGroups>
+      <select>actor/fauna/animal/lion_select.xml</select>
+      <attack_melee>actor/fauna/animal/lion_attack.xml</attack_melee>
+      <death>actor/fauna/animal/lion_death.xml</death>
+    </SoundGroups>
+  </Sound>
+</Entity>

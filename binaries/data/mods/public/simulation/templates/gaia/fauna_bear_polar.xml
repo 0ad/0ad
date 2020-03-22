@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_fauna_bear">
+  <Identity>
+    <GenericName>Polar Bear</GenericName>
+    <SpecificName>Ursus maritimus</SpecificName>
+    <Icon>gaia/fauna_bear_polar.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>fauna/bear_white.xml</Actor>
+  </VisualActor>
+</Entity>

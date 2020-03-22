@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="Ursidae_Armature" title="Ursidae Armature">
+    <bone name="Ursidae_root">
+      <bone name="Ursidae_Pelvis">
+        <bone name="Ursidae_Spine">
+          <bone name="Ursidae_Spine_1">
+            <bone name="Ursidae_Spine_2">
+              <bone name="Ursidae_Spine_3">
+                <bone name="Ursidae_Neck">
+                  <bone name="Ursidae_Head">
+                    <bone name="Ursidae_ear_R">
+                      <bone name="Ursidae_ear_2_R" />
+                    </bone>
+                    <bone name="Ursidae_ear_L">
+                      <bone name="Ursidae_ear_2_L" />
+                    </bone>
+                    <bone name="Ursidae_Jaw_01">
+                      <bone name="Ursidae_Jaw_02" />
+                    </bone>
+                    <bone name="Ursidae_Head_Bottom" />
+                  </bone>
+                </bone>
+              </bone>
+              <bone name="Ursidae_Upperarm_R">
+                <bone name="Ursidae_Arm_R">
+                  <bone name="Ursidae_Forearm_R">
+                    <bone name="Ursidae_Paw_R">
+                      <bone name="Ursidae_Claw_R" />
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+              <bone name="Ursidae_Upperarm_L">
+                <bone name="Ursidae_Arm_L">
+                  <bone name="Ursidae_Forearm_L">
+                    <bone name="Ursidae_Paw_L">
+                      <bone name="Ursidae_Claw_L" />
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+              <bone name="Ursidae_Belly_3" />
+            </bone>
+            <bone name="Ursidae_Belly_2" />
+          </bone>
+          <bone name="Ursidae_Spine_1_R">
+            <bone name="Ursidae_Spine_2_R" />
+          </bone>
+          <bone name="Ursidae_Spine_1_L">
+            <bone name="Ursidae_Spine_2_L" />
+          </bone>
+        </bone>
+        <bone name="Ursidae_Belly_1" />
+        <bone name="Ursidae_Leg_R">
+          <bone name="Ursidae_Foreleg_R">
+            <bone name="Ursidae_Shin_R">
+              <bone name="Ursidae_Ankle_R">
+                <bone name="Ursidae_Foot_R">
+                  <bone name="Ursidae_Toe_R" />
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Ursidae_Leg_L">
+          <bone name="Ursidae_Foreleg_L">
+            <bone name="Ursidae_Shin_L">
+              <bone name="Ursidae_Ankle_L">
+                <bone name="Ursidae_Foot_L">
+                  <bone name="Ursidae_Toe_L" />
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+  </standard_skeleton>
+  <skeleton target="Ursidae_Armature" title="Ursidae Armature">
+    <identifier>
+      <root>Ursidae_root</root>
+    </identifier>
+    <bone name="Ursidae_root">
+      <target>Ursidae_root</target>
+      <bone name="Ursidae_Pelvis">
+        <target>Ursidae_Pelvis</target>
+        <bone name="Ursidae_Spine">
+          <target>Ursidae_Spine</target>
+          <bone name="Ursidae_Spine_1">
+            <target>Ursidae_Spine_1</target>
+            <bone name="Ursidae_Spine_2">
+              <target>Ursidae_Spine_2</target>
+              <bone name="Ursidae_Spine_3">
+                <target>Ursidae_Spine_3</target>
+                <bone name="Ursidae_Neck">
+                  <target>Ursidae_Neck</target>
+                  <bone name="Ursidae_Head">
+                    <target>Ursidae_Head</target>
+                    <bone name="Ursidae_ear_R">
+                      <target>Ursidae_ear_R</target>
+                      <bone name="Ursidae_ear_2_R">
+                        <target>Ursidae_ear_2_R</target>
+                      </bone>
+                    </bone>
+                    <bone name="Ursidae_ear_L">
+                      <target>Ursidae_ear_L</target>
+                      <bone name="Ursidae_ear_2_L">
+                        <target>Ursidae_ear_2_L</target>
+                      </bone>
+                    </bone>
+                    <bone name="Ursidae_Jaw_01">
+                      <target>Ursidae_Jaw_01</target>
+                      <bone name="Ursidae_Jaw_02">
+                        <target>Ursidae_Jaw_02</target>
+                      </bone>
+                    </bone>
+                    <bone name="Ursidae_Head_Bottom">
+                      <target>Ursidae_Head_Bottom</target>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+              <bone name="Ursidae_Upperarm_R">
+                <target>Ursidae_Upperarm_R</target>
+                <bone name="Ursidae_Arm_R">
+                  <target>Ursidae_Arm_R</target>
+                  <bone name="Ursidae_Forearm_R">
+                    <target>Ursidae_Forearm_R</target>
+                    <bone name="Ursidae_Paw_R">
+                      <target>Ursidae_Paw_R</target>
+                      <bone name="Ursidae_Claw_R">
+                        <target>Ursidae_Claw_R</target>
+                      </bone>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+              <bone name="Ursidae_Upperarm_L">
+                <target>Ursidae_Upperarm_L</target>
+                <bone name="Ursidae_Arm_L">
+                  <target>Ursidae_Arm_L</target>
+                  <bone name="Ursidae_Forearm_L">
+                    <target>Ursidae_Forearm_L</target>
+                    <bone name="Ursidae_Paw_L">
+                      <target>Ursidae_Paw_L</target>
+                      <bone name="Ursidae_Claw_L">
+                        <target>Ursidae_Claw_L</target>
+                      </bone>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+              <bone name="Ursidae_Belly_3">
+                <target>Ursidae_Belly_3</target>
+              </bone>
+            </bone>
+            <bone name="Ursidae_Belly_2">
+              <target>Ursidae_Belly_2</target>
+            </bone>
+          </bone>
+          <bone name="Ursidae_Spine_1_R">
+            <target>Ursidae_Spine_1_R</target>
+            <bone name="Ursidae_Spine_2_R">
+              <target>Ursidae_Spine_2_R</target>
+            </bone>
+          </bone>
+          <bone name="Ursidae_Spine_1_L">
+            <target>Ursidae_Spine_1_L</target>
+            <bone name="Ursidae_Spine_2_L">
+              <target>Ursidae_Spine_2_L</target>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Ursidae_Belly_1">
+          <target>Ursidae_Belly_1</target>
+        </bone>
+        <bone name="Ursidae_Leg_R">
+          <target>Ursidae_Leg_R</target>
+          <bone name="Ursidae_Foreleg_R">
+            <target>Ursidae_Foreleg_R</target>
+            <bone name="Ursidae_Shin_R">
+              <target>Ursidae_Shin_R</target>
+              <bone name="Ursidae_Ankle_R">
+                <target>Ursidae_Ankle_R</target>
+                <bone name="Ursidae_Foot_R">
+                  <target>Ursidae_Foot_R</target>
+                  <bone name="Ursidae_Toe_R">
+                    <target>Ursidae_Toe_R</target>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Ursidae_Leg_L">
+          <target>Ursidae_Leg_L</target>
+          <bone name="Ursidae_Foreleg_L">
+            <target>Ursidae_Foreleg_L</target>
+            <bone name="Ursidae_Shin_L">
+              <target>Ursidae_Shin_L</target>
+              <bone name="Ursidae_Ankle_L">
+                <target>Ursidae_Ankle_L</target>
+                <bone name="Ursidae_Foot_L">
+                  <target>Ursidae_Foot_L</target>
+                  <bone name="Ursidae_Toe_L">
+                    <target>Ursidae_Toe_L</target>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+  </skeleton>
+</skeletons>

@@ -4,6 +4,11 @@ Promotion.prototype.Schema =
 	"<element name='Entity'>" +
 		"<text/>" +
 	"</element>" +
+	"<optional>" +
+		"<element name='TrickleRate' a:help='Trickle of XP gained each second.'>" +
+			"<ref name='nonNegativeDecimal'/>" +
+		"</element>" +
+	"</optional>" +
 	"<element name='RequiredXp'>" +
 		"<data type='positiveInteger'/>" +
 	"</element>";
@@ -11,6 +16,7 @@ Promotion.prototype.Schema =
 Promotion.prototype.Init = function()
 {
 	this.currentXp = 0;
+	this.ComputeTrickleRate();
 };
 
 Promotion.prototype.GetRequiredXp = function()
@@ -91,10 +97,44 @@ Promotion.prototype.IncreaseXp = function(amount)
 	Engine.PostMessage(this.entity, MT_ExperienceChanged, {});
 };
 
+Promotion.prototype.ComputeTrickleRate = function()
+{
+	this.trickleRate = ApplyValueModificationsToEntity("Promotion/TrickleRate", +(this.template.TrickleRate || 0), this.entity);
+	this.CheckTrickleTimer();
+};
+
+Promotion.prototype.CheckTrickleTimer = function()
+{
+	if (!this.trickleRate)
+	{
+		if (this.trickleTimer)
+		{
+			let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+			cmpTimer.CancelTimer(this.trickleTimer);
+			delete this.trickleTimer;
+		}
+		return;
+	}
+
+	if (this.trickleTimer)
+		return;
+
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	this.trickleTimer = cmpTimer.SetInterval(this.entity, IID_Promotion, "TrickleTick", 1000, 1000, null);
+};
+
+Promotion.prototype.TrickleTick = function()
+{
+	this.IncreaseXp(this.trickleRate);
+};
+
 Promotion.prototype.OnValueModification = function(msg)
 {
-	if (msg.component == "Promotion")
-		this.IncreaseXp(0);
+	if (msg.component != "Promotion")
+		return;
+
+	this.ComputeTrickleRate();
+	this.IncreaseXp(0);
 };
 
 Engine.RegisterComponentType(IID_Promotion, "Promotion", Promotion);

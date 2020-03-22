@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Mesh">
+      <mesh>skeletal/bear.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Fur-Black">
+      <textures>
+        <texture file="skeletal/animal_bear_black.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="quadraped/base_bear.xml"/>
+    <variant file="quadraped/base_bear_death.xml"/>
+  </group>
+  <material>default.xml</material>
+</actor>
