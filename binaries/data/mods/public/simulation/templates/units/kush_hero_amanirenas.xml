@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_hero_infantry_archer">
+<Entity parent="template_unit_hero_cavalry_archer">
   <Auras datatype="tokens">
     units/heroes/kush_hero_amanirenas
   </Auras>
@@ -11,6 +11,6 @@
     <Icon>units/kush_hero_amanirenas.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>units/kushites/hero_infantry_archer_amanirenas.xml</Actor>
+    <Actor>units/kushites/hero_chariot_archer_amanirenas_m.xml</Actor>
   </VisualActor>
 </Entity>
