@@ -26,6 +26,9 @@
   <Builder>
     <Rate>1.0</Rate>
     <Entities datatype="tokens">
+      structures/{civ}_civil_centre
+      structures/{civ}_crannog
+      structures/{civ}_military_colony
       structures/{civ}_house
       structures/{civ}_storehouse
       structures/{civ}_farmstead
@@ -34,7 +37,6 @@
       structures/{civ}_dock
       structures/{civ}_temple
       structures/{civ}_market
-      structures/{civ}_civil_centre
       structures/{civ}_wonder
     </Entities>
   </Builder>
