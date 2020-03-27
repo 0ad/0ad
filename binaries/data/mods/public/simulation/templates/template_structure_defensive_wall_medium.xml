@@ -32,6 +32,9 @@
     <Max>2000</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_wall_medium</SpawnEntityOnDeath>
   </Health>
+  <Loot>
+    <stone>4</stone>
+  </Loot>
   <ProductionQueue disable=""/>
   <VisualActor>
     <FoundationActor>structures/fndn_6x3_wall.xml</FoundationActor>

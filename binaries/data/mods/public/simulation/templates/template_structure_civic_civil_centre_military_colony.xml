@@ -29,6 +29,11 @@
     <Icon>structures/military_settlement.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
+  <Loot>
+    <wood>40</wood>
+    <stone>40</stone>
+    <metal>40</metal>
+  </Loot>
   <ProductionQueue>
     <Technologies datatype="tokens">
       -phase_town_{civ}

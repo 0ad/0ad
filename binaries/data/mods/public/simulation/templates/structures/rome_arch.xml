@@ -3,7 +3,6 @@
   <Cost>
     <BuildTime>200</BuildTime>
     <Resources>
-      <wood>0</wood>
       <stone>200</stone>
       <metal>400</metal>
     </Resources>
@@ -24,6 +23,10 @@
     <Classes datatype="tokens">ConquestCritical</Classes>
     <Icon>structures/arch.png</Icon>
   </Identity>
+  <Loot>
+    <stone>40</stone>
+    <metal>80</metal>
+  </Loot>
   <Obstruction>
     <Static width="18.0" depth="9.0"/>
   </Obstruction>

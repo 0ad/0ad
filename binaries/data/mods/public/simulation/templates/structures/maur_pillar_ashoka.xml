@@ -14,8 +14,6 @@
   <Cost>
     <BuildTime>80</BuildTime>
     <Resources>
-      <food>0</food>
-      <wood>0</wood>
       <stone>100</stone>
       <metal>100</metal>
     </Resources>
@@ -38,9 +36,8 @@
     <Tooltip>The famous pillar of Ashoka. Increases the walk speed of traders. Buildings in the territory of the monument do not decay.</Tooltip>
   </Identity>
   <Loot>
-    <wood>0</wood>
-    <stone>25</stone>
-    <metal>25</metal>
+    <stone>20</stone>
+    <metal>20</metal>
   </Loot>
   <Obstruction>
     <Static width="4" depth="4"/>

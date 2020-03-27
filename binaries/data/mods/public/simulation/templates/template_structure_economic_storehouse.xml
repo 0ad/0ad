@@ -33,6 +33,9 @@
     <Tooltip>Dropsite for wood, stone, and metal resources. Research gathering improvements for these resources.</Tooltip>
     <VisibleClasses datatype="tokens">Village Storehouse</VisibleClasses>
   </Identity>
+  <Loot>
+    <wood>20</wood>
+  </Loot>
   <Obstruction>
     <Static width="13.0" depth="13.0"/>
   </Obstruction>

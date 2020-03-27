@@ -21,6 +21,9 @@
     <Icon>structures/gate.png</Icon>
     <Tooltip>Allow units access through a city wall. Can be locked to prevent access.</Tooltip>
   </Identity>
+  <Loot>
+    <stone>12</stone>
+  </Loot>
   <Obstruction>
     <Static disable=""/>
     <Obstructions>

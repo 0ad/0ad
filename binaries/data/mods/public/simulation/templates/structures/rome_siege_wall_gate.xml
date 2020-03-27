@@ -13,6 +13,12 @@
   <BuildRestrictions>
     <Territory>own neutral enemy</Territory>
   </BuildRestrictions>
+  <Cost>
+    <Resources>
+      <wood>80</wood>
+      <stone>0</stone>
+    </Resources>
+  </Cost>
   <Footprint>
     <Square width="40.0" depth="8.0"/>
     <Height>7.0</Height>
@@ -28,7 +34,7 @@
     <Icon>structures/wooden_gate.png</Icon>
   </Identity>
   <Loot>
-    <wood>15</wood>
+    <wood>16</wood>
     <stone>0</stone>
   </Loot>
   <Obstruction>

@@ -6,7 +6,6 @@
   <Cost>
     <BuildTime>500</BuildTime>
     <Resources>
-      <wood>0</wood>
       <stone>500</stone>
       <metal>500</metal>
     </Resources>
@@ -24,9 +23,8 @@
     <Icon>structures/theater.png</Icon>
   </Identity>
   <Loot>
-    <wood>0</wood>
-    <stone>125</stone>
-    <metal>125</metal>
+    <stone>100</stone>
+    <metal>100</metal>
   </Loot>
   <Obstruction>
     <Static width="62" depth="86"/>

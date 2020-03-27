@@ -7,10 +7,8 @@
     <BuildTime>100</BuildTime>
     <PopulationBonus>2</PopulationBonus>
     <Resources>
-      <food>0</food>
       <wood>200</wood>
       <stone>100</stone>
-      <metal>0</metal>
     </Resources>
   </Cost>
   <Footprint replace="">
@@ -23,9 +21,8 @@
     <Icon>structures/rotarymill.png</Icon>
   </Identity>
   <Loot>
-    <food>50</food>
-    <wood>25</wood>
-    <stone>15</stone>
+    <wood>40</wood>
+    <stone>20</stone>
   </Loot>
   <Obstruction>
     <Static width="16.0" depth="16.0"/>

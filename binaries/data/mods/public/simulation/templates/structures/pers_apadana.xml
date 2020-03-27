@@ -7,8 +7,6 @@
     <BuildTime>300</BuildTime>
     <PopulationBonus>10</PopulationBonus>
     <Resources>
-      <food>0</food>
-      <wood>0</wood>
       <stone>300</stone>
       <metal>200</metal>
     </Resources>
@@ -33,9 +31,8 @@
     <Tooltip>"Satrapy Tribute": Gain a trickle of food, wood, stone, and metal resources. Train Champions and Heroes.</Tooltip>
   </Identity>
   <Loot>
-    <wood>0</wood>
-    <stone>75</stone>
-    <metal>50</metal>
+    <stone>60</stone>
+    <metal>40</metal>
   </Loot>
   <Obstruction>
     <Static width="30.0" depth="30.0"/>

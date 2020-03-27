@@ -21,7 +21,6 @@
     <Resources>
       <wood>300</wood>
       <stone>200</stone>
-      <metal>0</metal>
     </Resources>
   </Cost>
   <Footprint>
@@ -50,8 +49,8 @@
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
-    <wood>75</wood>
-    <stone>50</stone>
+    <wood>60</wood>
+    <stone>40</stone>
   </Loot>
   <Obstruction>
     <Static width="42.0" depth="58.0"/>
