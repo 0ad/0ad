@@ -2,22 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="0" name="celtic corral">
-      <mesh>structural/celt_corral_base.dae</mesh>
-      <props>
-        <prop actor="props/structures/decals/celt_corral_mud.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/corral_props_new.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/corral_props_1.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/corral_food.xml" attachpoint="food" maxheight="20" minheight="-20"/>
-      </props>
-      <textures>
-        <texture file="structural/celt_struct_1.dds" name="baseTex"/>
-        <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
-        <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
-        <texture file="structural/ao/celt_corral.png" name="aoTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="celtic corral test">
+    <variant frequency="1" name="Briton Corral">
       <mesh>structural/celt_corral_base.dae</mesh>
       <props>
         <prop actor="props/structures/decals/celt_corral_mud.xml" attachpoint="root"/>

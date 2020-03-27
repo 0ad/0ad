@@ -2,20 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="0" name="roof">
-      <mesh>structural/brit_wall_tower.dae</mesh>
-      <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-      </props>
-      <textures>
-        <texture file="structural/celt_struct.dds" name="baseTex"/>
-        <texture file="structural/celt_struct_norm.png" name="normTex"/>
-        <texture file="structural/celt_struct_spec.png" name="specTex"/>
-        <texture file="structural/ao/brit_wall_tower_AO.png" name="aoTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="roof test">
+    <variant frequency="1" name="Briton Wall Tower">
       <mesh>structural/brit_wall_tower.dae</mesh>
       <props>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
@@ -28,7 +15,7 @@
         <texture file="structural/ao/brit_wall_tower_AO.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="0" name="no roof">
+    <variant frequency="0" name="Briton Wall Tower Roofless">
       <mesh>structural/brit_wall_tower_b.dae</mesh>
       <props>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>

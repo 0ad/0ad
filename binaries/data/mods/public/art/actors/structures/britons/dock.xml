@@ -2,20 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="0" name="norm">
-      <mesh>structural/celt_dock.dae</mesh>
-      <props>
-        <prop actor="props/structures/celts/dock_shields.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/dock_props.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="structural/celt_struct_1.dds" name="baseTex"/>
-        <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
-        <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
-        <texture file="structural/ao/celt_dock.png" name="aoTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="test">
+    <variant frequency="1" name="Briton Dock">
       <mesh>structural/celt_dock.dae</mesh>
       <props>
         <prop actor="props/structures/celts/dock_shields.xml" attachpoint="root"/>

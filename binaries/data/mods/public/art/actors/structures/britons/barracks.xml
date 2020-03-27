@@ -2,24 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="0" name="Celtic Barracks">
-      <mesh>structural/brit_barracks_struct.dae</mesh>
-      <props>
-        <prop actor="props/structures/britons/barracks_props_new.xml" attachpoint="root"/>
-        <prop actor="props/structures/britons/barracks_palisade.xml" attachpoint="root"/>
-        <prop actor="props/structures/britons/barracks_props_1.xml" attachpoint="root"/>
-        <prop actor="props/structures/britons/barracks_struct1.xml" attachpoint="root"/>
-        <prop actor="props/structures/britons/barracks_weapons.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/celt_barracks.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="structural/celt_struct.dds" name="baseTex"/>
-        <texture file="structural/celt_struct_norm.png" name="normTex"/>
-        <texture file="structural/celt_struct_spec.png" name="specTex"/>
-        <texture file="structural/ao/brit_barracks.png" name="aoTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Celtic Barracks test">
+    <variant frequency="1" name="Briton Barracks">
       <mesh>structural/brit_barracks_struct.dae</mesh>
       <props>
         <prop actor="props/structures/britons/barracks_props_new.xml" attachpoint="root"/>
