@@ -4,13 +4,13 @@
 	"affects": ["Soldier", "Siege"],
 	"affectedPlayers": ["Ally"],
 	"modifications": [
-		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.20 },
-		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.20 },
-		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.20 },
-		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.20 },
-		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.20 },
-		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.20 },
-		{ "value": "Attack/Capture/Capture", "add": 1 }
+		{ "value": "Attack/Capture/Capture", "add": 1 },
+		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.2 }
 	],
 	"auraName": "Tactician",
 	"auraDescription": "Own and Allied Soldiers and Siege Engines +1 capture attack strength, +20% melee and ranged attack damage.",

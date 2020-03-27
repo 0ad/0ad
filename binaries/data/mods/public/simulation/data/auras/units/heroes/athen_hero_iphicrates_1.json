@@ -2,8 +2,8 @@
 	"type": "formation",
 	"affects": ["Soldier"],
 	"modifications": [
-		{ "value": "Armour/Pierce", "add": 3 },
 		{ "value": "Armour/Hack", "add": 3 },
+		{ "value": "Armour/Pierce", "add": 3 },
 		{ "value": "Armour/Crush", "add": 3 },
 		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.15 }
 	],

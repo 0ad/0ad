@@ -3,10 +3,10 @@
 	"radius": 60,
 	"affects": ["Elephant Champion"],
 	"modifications": [
-		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.2 },
-		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2 }
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2 },
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.2 }
 	],
 	"auraName": "Zooiarchos",
 	"auraDescription": "Champion Elephants +20% melee attack damage, +20% movement speed.",

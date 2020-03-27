@@ -3,10 +3,10 @@
 	"radius": 60,
 	"affects": ["Soldier", "Siege"],
 	"modifications": [
-		{ "value": "Looter/Resource/food", "multiply": 2.0 },
-		{ "value": "Looter/Resource/wood", "multiply": 2.0 },
-		{ "value": "Looter/Resource/stone", "multiply": 2.0 },
-		{ "value": "Looter/Resource/metal", "multiply": 2.0 }
+		{ "value": "Looter/Resource/food", "multiply": 2 },
+		{ "value": "Looter/Resource/wood", "multiply": 2 },
+		{ "value": "Looter/Resource/stone", "multiply": 2 },
+		{ "value": "Looter/Resource/metal", "multiply": 2 }
 	],
 	"auraName": "Swag",
 	"auraDescription": "Soldiers and Siege Engines gain +100% resource loot."

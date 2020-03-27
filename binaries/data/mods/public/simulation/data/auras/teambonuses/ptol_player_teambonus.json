@@ -3,7 +3,7 @@
 	"affects": ["Player"],
 	"affectedPlayers": ["ExclusiveMutualAlly"],
 	"modifications": [
-		{ "value": "ResourceTrickle/Rates/food", "add": 1.0 }
+		{ "value": "ResourceTrickle/Rates/food", "add": 1 }
 	],
 	"auraName": "Breadbasket of the Mediterranean",
 	"auraDescription": "Allies +1.0 food trickle rate."

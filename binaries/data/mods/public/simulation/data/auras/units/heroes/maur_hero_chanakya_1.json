@@ -2,10 +2,10 @@
 	"type": "garrison",
 	"affects": ["Structure"],
 	"modifications": [
-		{ "value": "ProductionQueue/TechCostMultiplier/wood", "multiply": 0.8 },
 		{ "value": "ProductionQueue/TechCostMultiplier/food", "multiply": 0.8 },
-		{ "value": "ProductionQueue/TechCostMultiplier/metal", "multiply": 0.8 },
+		{ "value": "ProductionQueue/TechCostMultiplier/wood", "multiply": 0.8 },
 		{ "value": "ProductionQueue/TechCostMultiplier/stone", "multiply": 0.8 },
+		{ "value": "ProductionQueue/TechCostMultiplier/metal", "multiply": 0.8 },
 		{ "value": "ProductionQueue/TechCostMultiplier/time", "multiply": 0.5 }
 	],
 	"auraDescription": "When garrisoned, the Structure's technologies have −20% resource cost and −50% research time.",

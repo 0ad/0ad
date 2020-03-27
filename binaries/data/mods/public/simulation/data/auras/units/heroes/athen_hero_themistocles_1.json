@@ -3,8 +3,8 @@
 	"affects": ["Ship"],
 	"affectedPlayers": ["MutualAlly"],
 	"modifications": [
-		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.5 },
-		{ "value": "ProductionQueue/BatchTimeModifier", "multiply": 0.7 }
+		{ "value": "ProductionQueue/BatchTimeModifier", "multiply": 0.7 },
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.5 }
 	],
 	"auraName": "Naval Commander",
 	"auraDescription": "When garrisoned, the Ship has −30% batch training time and +50% movement speed."

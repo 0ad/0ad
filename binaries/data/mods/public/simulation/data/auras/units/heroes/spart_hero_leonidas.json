@@ -3,10 +3,10 @@
 	"radius": 30,
 	"affects": ["Spearman"],
 	"modifications": [
+		{ "value": "Attack/Capture/Capture", "add": 1 },
 		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.25 },
 		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.25 },
-		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.25 },
-		{ "value": "Attack/Capture/Capture", "add": 1 }
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.25 }
 	],
 	"auraName": "Last Stand",
 	"auraDescription": "Spearmen +1 capture attack strength, +25% melee attack damage.",
