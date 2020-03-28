@@ -3,14 +3,14 @@
 	"radius": 40,
 	"affects": ["Champion"],
 	"modifications": [
-		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.1 },
+		{ "value": "Attack/Capture/Capture", "add": 2 },
 		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2 },
 		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.2 },
 		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.2 },
 		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.2 },
-		{ "value": "Attack/Capture/Capture", "add": 2 }
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.1 }
 	],
 	"auraName": "Champion Army",
 	"auraDescription": "Champions +2 capture attack strength, +20% melee and ranged attack damage, +10% movement speed.",

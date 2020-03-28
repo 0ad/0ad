@@ -2,26 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="0" name="CeltTemple">
-      <mesh>structural/celt_temple.dae</mesh>
-      <props>
-        <prop actor="props/structures/celts/temple_color.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/temple_palisade.xml" attachpoint="root"/>
-        <prop actor="particle/smoke_light_delay.xml" attachpoint="fire"/>
-        <prop actor="particle/flame.xml" attachpoint="fire"/>
-        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/temple_prop_1.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/temple_turf.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/temple_celt_wall.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="structural/celt_struct_1.dds" name="baseTex"/>
-        <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
-        <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
-        <texture file="structural/ao/celt_temple.png" name="aoTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="CeltTemple test">
+    <variant frequency="1" name="Briton Temple">
       <mesh>structural/celt_temple.dae</mesh>
       <props>
         <prop actor="props/structures/celts/temple_color.xml" attachpoint="root"/>

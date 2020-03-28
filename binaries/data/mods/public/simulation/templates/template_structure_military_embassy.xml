@@ -13,13 +13,6 @@
   </BuildRestrictions>
   <Cost>
     <BuildTime>150</BuildTime>
-    <PopulationBonus>0</PopulationBonus>
-    <Resources>
-      <food>0</food>
-      <wood>100</wood>
-      <stone>100</stone>
-      <metal>200</metal>
-    </Resources>
   </Cost>
   <Footprint>
     <Square width="16.0" depth="16.0"/>
@@ -39,9 +32,6 @@
     <GenericName>Embassy</GenericName>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
-  <Loot>
-    <stone>20</stone>
-  </Loot>
   <Obstruction>
     <Static width="16.0" depth="16.0"/>
   </Obstruction>

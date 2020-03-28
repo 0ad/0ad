@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
   <Cost>
+    <BuildTime>200</BuildTime>
     <PopulationBonus>10</PopulationBonus>
+    <Resources>
+      <stone>200</stone>
+      <metal>200</metal>
+    </Resources>
   </Cost>
   <Footprint>
     <Square width="40.0" depth="16.0"/>
@@ -15,9 +20,8 @@
     <Tooltip>Train Female Citizens, Champions, and Heroes.</Tooltip>
   </Identity>
   <Loot>
-    <wood>0</wood>
-    <stone>50</stone>
-    <metal>50</metal>
+    <stone>40</stone>
+    <metal>40</metal>
   </Loot>
   <Obstruction>
     <Static width="36.0" depth="12.0"/>

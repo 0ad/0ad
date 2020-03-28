@@ -3,33 +3,7 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="0" name="crannog">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
-      <mesh>structural/brit_crannog_struct1.dae</mesh>
-      <props>
-        <prop actor="props/structures/britons/crannog_props.xml" attachpoint="root"/>
-        <prop actor="props/structures/britons/crannog_dirt.xml" attachpoint="root"/>
-        <prop actor="props/structures/britons/crannog_wall.xml" attachpoint="root"/>
-        <prop actor="particle/smoke_jav.xml" attachpoint="chimney"/>
-        <prop actor="props/special/eyecandy/campfire_prop.xml" attachpoint="campfire"/>
-        <prop actor="props/flora/grass_tufts_a.xml" attachpoint="tufta"/>
-        <prop actor="props/flora/grass_tufts_a.xml" attachpoint="tuftb"/>
-        <prop actor="props/flora/grass_tufts_a.xml" attachpoint="tuftc"/>
-        <prop actor="props/flora/reeds_beach_mythos.xml" attachpoint="watergrassa"/>
-        <prop actor="props/flora/reeds_beach_mythos.xml" attachpoint="watergrassb"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-      </props>
-      <textures>
-        <texture file="structural/celt_struct_1.dds" name="baseTex"/>
-        <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
-        <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
-        <texture file="structural/ao/brit_crannog.png" name="aoTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="crannog test">
+    <variant frequency="1" name="Briton Crannog">
       <animations>
         <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
       </animations>

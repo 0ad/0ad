@@ -22,6 +22,9 @@
     <Icon>structures/wooden_gate.png</Icon>
     <Tooltip>Allow units access through a palisade wall. Can be locked to prevent access.</Tooltip>
   </Identity>
+  <Loot>
+    <wood>4</wood>
+  </Loot>
   <Obstruction>
     <Obstructions>
       <Right width="2" depth="2" x="6" z="0"/>

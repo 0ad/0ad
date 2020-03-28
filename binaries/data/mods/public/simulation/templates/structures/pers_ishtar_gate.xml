@@ -10,7 +10,6 @@
   <Cost>
     <BuildTime>200</BuildTime>
     <Resources>
-      <wood>0</wood>
       <stone>250</stone>
       <metal>500</metal>
     </Resources>
@@ -34,9 +33,8 @@
     <Icon>structures/pers_gate.png</Icon>
   </Identity>
   <Loot>
-    <wood>0</wood>
     <stone>50</stone>
-    <metal>125</metal>
+    <metal>100</metal>
   </Loot>
   <Obstruction>
     <Static disable=""/>

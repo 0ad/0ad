@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-03-16 08:11+0000\n"
-"PO-Revision-Date: 2020-03-16 22:35+0000\n"
+"PO-Revision-Date: 2020-03-27 05:45+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -28,17 +28,17 @@ msgstr "Civil"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:88
 msgid "Civic Center"
-msgstr "Centru civil"
+msgstr "Centru cívicu"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:89
 msgid "Build to acquire large tracts of territory. Train citizens."
-msgstr "Constrúi pa llograr grandes trechos de territoriu. Allista ciudadanos."
+msgstr "Constrúilu pa posiate de tierres. Allista ciudadanos."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:91
 #: simulation/templates/template_structure_civic_civil_centre.xml:53
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
-msgstr "CentruCivil"
+msgstr "CentruCívicu"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:27
 msgid "Military Colony"
@@ -97,7 +97,7 @@ msgstr "Villa"
 msgid ""
 "Train Healers and research healing technologies. Garrison units to heal them"
 " at a quick rate."
-msgstr "Allista Curadores & investiga teunoloxíes curatibles. Guarez unidaes pa curales rápido."
+msgstr "Allista Curadores y investiga teunoloxíes curatibles. Guarez unidaes pa curales rápido."
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -116,7 +116,7 @@ msgstr "Muria de madera"
 #: simulation/templates/template_structure_defensive_palisade.xml:22
 #: simulation/templates/template_structure_defensive_wall.xml:17
 msgid "Wall off your town for a stout defense."
-msgstr "Cerca la ciudá pa una defensa fuerte."
+msgstr "Cerca la ciudá pa una defensa sólida."
 
 #: simulation/templates/template_structure_defensive_tower.xml:36
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:60
@@ -132,7 +132,7 @@ msgstr "Torre artillada"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:58
 msgid "Catapults stones. Needs the murder holes tech to protect its foot."
-msgstr "Piedres de catapulta. Precisa la teunoloxía de buracos asesinos pa protexese'l pie."
+msgstr "Piedres de catapulta. Precisa la teunoloxía buracos asesinos pa protexese'l pie."
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:60
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:59
@@ -160,13 +160,13 @@ msgid ""
 "Shoots bolts. Faster reaction time against raiding units than the artillery "
 "tower, weak to all siege weapons and mass melee. Needs the murder holes tech"
 " to protect its foot."
-msgstr "Llanza saetes grueses. Reaiciona más rápido a unidaes asaltantes que la torre artillada, débil énte toles armes d'asediu & ensames d'atacantes cuerpu a cuerpu. Prescisa la teunoloxía buracos asesinos pa protexese'l pie."
+msgstr "Llanza saetes. Respuede a asaltantes más rápido que la torre artillada, pero ye endébile frente a toles armes d'asediu y ensames d'atacantes cuerpu a cuerpu. Prescisa la teunoloxía buracos asesinos pa protexese'l pie."
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:52
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr "Constrúi en territoriu neutral o propio pa reconocer fasteres del mapa. Tórnase amodo en Gaya en territoriu neutral."
+msgstr "Constrúila en territoriu neutral o propiu pa velar fasteres del mapa. En territoriu neutral, col tiempu, pasa a formar parte de la Gaia."
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:29
@@ -187,11 +187,11 @@ msgstr "TorreVixilancia"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot. Upgradeable to stone tower."
-msgstr "Tira fleches. Guarez p'apurrir más defensa. Precisa la teunoloxía buracos asesinos pa protexese'l pie. Pue ameyorar & facese una torre de piedra."
+msgstr "Tira fleches. Guarezla p'apurri-y más defensa. Precisa la teunoloxía buracos asesinos pa protexese'l pie. Pues ameyorala faciendo d'ella una torre de piedra."
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:60
 msgid "Reinforce with stone and upgrade to a defense tower."
-msgstr "Ameyórala, reforciándola con piedra & faciendo d'ella una torre fortificada."
+msgstr "Refuérciala con piedra y tresfórmala nuna torre fortificada."
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:31
 msgid "Defense Tower"
@@ -201,7 +201,7 @@ msgstr "Torre fortificada"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot."
-msgstr "Tira fleches. Guarez p'apurrir más defensa. Precisa la teunoloxía de los buracos asesinos pa protexese'l pie."
+msgstr "Tira fleches. Guarezla p'apurri-y más defensa. Precisa la teunoloxía buracos asesinos pa protexese'l pie."
 
 #: simulation/templates/template_structure_defensive_wall.xml:16
 #: simulation/templates/structures/cart_s_wall_long.xml:7
@@ -213,22 +213,22 @@ msgstr "Muralla de piedra"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:20
 msgid "City Gate"
-msgstr "Puerta de la ciudá"
+msgstr "Puerta"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:22
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
-msgstr "Permite a les unidaes pasar pela muralla. Pue pesllase pa torgar la entrada."
+msgstr "Dexa que les unidaes pasen al otru llau d'una muralla. Pues pesllala pa torgar la entrada."
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:43
 msgid "Long wall segments can be converted to gates."
-msgstr "Les seiciones de muralla llargues puen tornase en puertes."
+msgstr "Los tramos allongaos de muralla puen convertise en puertes."
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:49
 #: simulation/templates/structures/palisades_long.xml:33
 msgid ""
 "This will allow you to let units circulate through your fortifications."
-msgstr "Esto va permitir a les unidaes pasar peles fortificaciones."
+msgstr "Dexa que les unidaes pisen peles fortificaciones."
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:54
 msgid "Wall Turret"
@@ -236,7 +236,7 @@ msgstr "Torreta"
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:55
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "Tira fleches. Guarez pa defender la muralla d'atacadores."
+msgstr "Tira fleches. Guarezla pa protexer la muralla d'atacadores."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -1709,7 +1709,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr "Esta ye la construcción d'espansión ptolemaica. Asemeya'l centru civil d'otres faiciones. Ye más sonce & tien menos influyencia nel territoriu, pero cuesta menos & constrúise más rápido. Allista colonos-milicianos de delles nacionalidaes."
+msgstr "Esta ye la construcción ptolemaica d'espansión. Asemeya'l Centru cívicu d'otres faiciones. Ye más sonce y menos influyente nel territoriu, pero cuesta menos y faise más rápido. Allista colonos-milicianos de delles nacionalidaes."
 
 #: simulation/templates/structures/ptol_tower_artillery.xml:9
 msgid "mktr-n-ḏw"
@@ -1914,7 +1914,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr "Esta ye la construcción d'espansión seléucida. Asemeya'l centru civil d'otres faiciones. Ye más sonce & tien menos influyencia nel territoriu, pero cuesta menos & constrúise más rápido. Allista colonos-milicianos de delles nacionalidaes."
+msgstr "Esta ye la construcción seléucida d'espansión. Asemeya'l Centru cívicu d'otres faiciones. Ye más sonce y menos influyente nel territoriu, pero cuesta menos y faise más rápido. Allista colonos-milicianos de delles nacionalidaes."
 
 #: simulation/templates/structures/sele_wonder.xml:9
 msgid "Hieron tou Apollōnos Pythiou"

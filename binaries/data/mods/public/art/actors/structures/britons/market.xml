@@ -2,23 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="0" name="Brit Market">
-      <mesh>structural/brit_market_struct_1.dae</mesh>
-      <props>
-        <prop actor="props/structures/britons/market_props_1.xml" attachpoint="root"/>
-        <prop actor="props/structures/britons/market_props_new.xml" attachpoint="root"/>
-        <prop actor="props/structures/britons/market_wood_c.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
-        <prop actor="particle/smoke_light_delay.xml" attachpoint="smoke"/>
-      </props>
-      <textures>
-        <texture file="structural/celt_struct_1.dds" name="baseTex"/>
-        <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
-        <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
-        <texture file="structural/ao/brit_market.png" name="aoTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Brit Market test">
+    <variant frequency="1" name="Briton Market">
       <mesh>structural/brit_market_struct_1.dae</mesh>
       <props>
         <prop actor="props/structures/britons/market_props_1.xml" attachpoint="root"/>

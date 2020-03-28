@@ -62,7 +62,6 @@
     <PopulationBonus>20</PopulationBonus>
     <BuildTime>500</BuildTime>
     <Resources>
-      <food>0</food>
       <wood>500</wood>
       <stone>500</stone>
       <metal>500</metal>
@@ -93,10 +92,9 @@
   </Identity>
   <Loot>
     <xp>200</xp>
-    <food>0</food>
-    <wood>200</wood>
-    <stone>200</stone>
-    <metal>200</metal>
+    <wood>100</wood>
+    <stone>100</stone>
+    <metal>100</metal>
   </Loot>
   <Obstruction>
     <Static width="30.0" depth="30.0"/>

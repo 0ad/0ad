@@ -11,6 +11,8 @@
 # Denis Cherean <denis.cherean@gmail.com>, 2019
 # Gabriel D <dincuta.gabriel@gmail.com>, 2016
 # Gurea Veronel <wolf_grv@yahoo.com>, 2018
+# Jarcalau Andrei <andreicosmin820@yahoo.com>, 2020
+# Jipa Leo <jipa.leo64@gmail.com>, 2020
 # Mercer Traieste <mercer.traieste@gmail.com>, 2018
 # killtur <mihaitanasastefan@gmail.com>, 2017
 # Nicolae Crefelean, 2016
@@ -23,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-17 08:09+0000\n"
-"PO-Revision-Date: 2020-01-17 18:09+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2020-03-23 08:32+0000\n"
+"PO-Revision-Date: 2020-03-25 18:05+0000\n"
+"Last-Translator: Jarcalau Andrei <andreicosmin820@yahoo.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,13 +35,21 @@ msgstr ""
 "Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
+#: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
+msgid "Rigorous Training"
+msgstr "Antrenament Riguros"
+
+#: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
+msgid "Units gain experience while garrisoned in barracks."
+msgstr "Unităţile obţin experienţă cât timp sunt staţionate în cazarmă."
+
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
 msgstr "Reparații navale"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr ""
+msgstr "Navele staţionate +10 rată regenerare vitală"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -47,7 +57,7 @@ msgstr "Binecuvântarea Zeilor"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Humans +3 health regeneration rate."
-msgstr ""
+msgstr "Oameni +3 rată regenerare vitală"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -55,7 +65,7 @@ msgstr "Fervoare Religioasă"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr ""
+msgstr "Soldaţii +20% atacuri corp la corp şi la distanţă"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -64,7 +74,7 @@ msgstr "Patriotism"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr ""
+msgstr "Lucrătorii +15% rată de culegere a resurselor."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -72,7 +82,7 @@ msgstr "Prezență Încurajatoare"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers +10% melee and ranged attack damage."
-msgstr ""
+msgstr "Soldaţii +10% atacuri corp la corp şi la distanţă"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
@@ -88,7 +98,7 @@ msgstr "Parohie puternică"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
-msgstr ""
+msgstr "Eroi -5% vitalitate"
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"

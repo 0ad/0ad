@@ -3,8 +3,6 @@
   <Cost>
     <Resources>
       <wood>200</wood>
-      <stone>0</stone>
-      <metal>0</metal>
     </Resources>
   </Cost>
   <Footprint>
@@ -20,6 +18,9 @@
     <Tooltip>Hire Celtic mercenaries. Research improvements for these mercenaries.</Tooltip>
     <Icon>structures/celtic_embassy.png</Icon>
   </Identity>
+  <Loot>
+    <wood>40</wood>
+  </Loot>
   <Obstruction>
     <Static width="15.0" depth="12.0"/>
   </Obstruction>

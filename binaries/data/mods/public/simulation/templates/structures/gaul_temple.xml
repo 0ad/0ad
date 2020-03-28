@@ -2,8 +2,8 @@
 <Entity parent="template_structure_civic_temple">
   <Cost>
     <Resources>
-      <stone>0</stone>
       <wood>300</wood>
+      <stone>0</stone>
     </Resources>
   </Cost>
   <Footprint>
@@ -17,6 +17,10 @@
     <Civ>gaul</Civ>
     <SpecificName>Nemeton</SpecificName>
   </Identity>
+  <Loot>
+    <wood>60</wood>
+    <stone>0</stone>
+  </Loot>
   <Obstruction>
     <Static width="22.5" depth="22.5"/>
   </Obstruction>

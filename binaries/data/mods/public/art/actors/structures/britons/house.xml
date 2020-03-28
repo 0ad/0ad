@@ -2,14 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="0" name="base">
-      <textures>
-        <texture file="structural/celt_struct_1.dds" name="baseTex"/>
-        <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
-        <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="base test">
+    <variant frequency="1" name="Briton House">
       <textures>
         <texture file="structural/brit_struct_1.png" name="baseTex"/>
         <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
@@ -18,7 +11,7 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="brit house a">
+    <variant frequency="1" name="Briton House A">
       <mesh>structural/brit_house_a.dae</mesh>
       <props>
         <prop actor="props/structures/britons/house_a_props_1.xml" attachpoint="root"/>
@@ -28,7 +21,7 @@
         <texture file="structural/ao/brit_house_a.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="brit house b">
+    <variant frequency="1" name="Briton House B">
       <mesh>structural/brit_house_b.dae</mesh>
       <props>
         <prop actor="props/structures/britons/house_b_props_new.xml" attachpoint="root"/>
@@ -38,7 +31,7 @@
         <texture file="structural/ao/brit_house_b.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="brit house c">
+    <variant frequency="1" name="Briton House C">
       <mesh>structural/brit_house_c.dae</mesh>
       <props>
         <prop actor="props/structures/britons/house_c_props_new.xml" attachpoint="root"/>
@@ -48,7 +41,7 @@
         <texture file="structural/ao/brit_house_c.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="brit house d">
+    <variant frequency="1" name="Briton House D">
       <mesh>structural/brit_house_d.dae</mesh>
       <props>
         <prop actor="props/structures/britons/house_d_props_new.xml" attachpoint="root"/>

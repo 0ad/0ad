@@ -2,22 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="0" name="Celt Farmstead">
-      <mesh>structural/celt_farmstead.dae</mesh>
-      <props>
-        <prop actor="props/structures/celts/farmstead.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/farmstead_shield.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/farmstead_hoe.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/farmstead_mud.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="structural/celt_struct_1.dds" name="baseTex"/>
-        <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
-        <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
-        <texture file="structural/ao/celt_farmstead.png" name="aoTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Celt Farmstead test">
+    <variant frequency="1" name="Briton Farmstead">
       <mesh>structural/celt_farmstead.dae</mesh>
       <props>
         <prop actor="props/structures/celts/farmstead.xml" attachpoint="root"/>

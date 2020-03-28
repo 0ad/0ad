@@ -3,10 +3,10 @@
 	"radius": 60,
 	"affects": ["Infantry Pikeman"],
 	"modifications": [
+		{ "value": "Attack/Capture/Capture", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.2 },
-		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2 },
-		{ "value": "Attack/Capture/Capture", "multiply": 1.2 }
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2 }
 	],
 	"auraName": "Taxiarchès",
 	"auraDescription": "Infantry Pikemen +20% capture attack strength, +20% melee attack damage.",

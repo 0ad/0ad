@@ -2,8 +2,6 @@
 <Entity parent="template_structure_military_embassy">
   <Cost>
     <Resources>
-      <wood>0</wood>
-      <stone>0</stone>
       <metal>200</metal>
     </Resources>
   </Cost>
@@ -20,6 +18,9 @@
     <Tooltip>Hire Italian mercenaries. Research improvements for these mercenaries.</Tooltip>
     <Icon>structures/italian_embassy.png</Icon>
   </Identity>
+  <Loot>
+    <metal>40</metal>
+  </Loot>
   <Obstruction>
     <Static width="11.0" depth="14.0"/>
   </Obstruction>

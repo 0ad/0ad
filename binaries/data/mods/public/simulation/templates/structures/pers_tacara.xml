@@ -4,10 +4,8 @@
     <BuildTime>300</BuildTime>
     <PopulationBonus>10</PopulationBonus>
     <Resources>
-      <food>0</food>
       <wood>200</wood>
       <stone>400</stone>
-      <metal>0</metal>
     </Resources>
   </Cost>
   <Footprint>
@@ -29,8 +27,8 @@
     <Icon>structures/palace.png</Icon>
   </Identity>
   <Loot>
-    <wood>50</wood>
-    <stone>100</stone>
+    <wood>40</wood>
+    <stone>80</stone>
   </Loot>
   <Obstruction>
     <Static width="38.5" depth="22.5"/>

@@ -4,10 +4,8 @@
     <PopulationBonus>10</PopulationBonus>
     <BuildTime>200</BuildTime>
     <Resources>
-      <food>0</food>
       <wood>100</wood>
       <stone>100</stone>
-      <metal>0</metal>
     </Resources>
   </Cost>
   <Footprint>
@@ -27,6 +25,10 @@
     <RequiredTechnology>phase_town</RequiredTechnology>
     <VisibleClasses datatype="tokens">-Village Town</VisibleClasses>
   </Identity>
+  <Loot>
+    <wood>20</wood>
+    <stone>20</stone>
+  </Loot>
   <Obstruction>
     <Static width="20.0" depth="20.0"/>
   </Obstruction>

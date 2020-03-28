@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_barracks">
+  <Cost>
+    <Resources>
+      <wood>300</wood>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>pers</Civ>
     <SpecificName>Padgan</SpecificName>
     <Tooltip>Levy citizen-soldier infantry.</Tooltip>
     <Icon>structures/pers_barracks.png</Icon>
   </Identity>
+  <Loot>
+    <wood>60</wood>
+  </Loot>
   <ProductionQueue>
     <Entities datatype="tokens">
       -units/{civ}_cavalry_swordsman_b
