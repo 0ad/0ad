@@ -19,6 +19,7 @@
 # foufy much <foufy68@hotmail.com>, 2016
 # François Magimel, 2018-2019
 # François Poirotte <clicky@erebot.net>, 2016
+# gab tes, 2020
 # Glorfindel Of Gondolin, 2019
 # tavariz <guipoi@yahoo.fr>, 2016
 # Hadri man <hadriman@live.fr>, 2017-2018
@@ -55,8 +56,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-07 08:09+0000\n"
-"PO-Revision-Date: 2020-02-12 16:55+0000\n"
-"Last-Translator: benjamin jasse <benuri@hotmail.fr>\n"
+"PO-Revision-Date: 2020-03-29 07:45+0000\n"
+"Last-Translator: gab tes\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2669,7 +2670,7 @@ msgstr "Mettez en pause les jeux solo lorsque la fenêtre passe en arrière plan
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
-msgstr ""
+msgstr "Tâche de fond en pause"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
@@ -2679,7 +2680,7 @@ msgstr "Si désactivé, l'écran d'accueil apparaît tout de même lors de l'uti
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
-msgstr ""
+msgstr "Activer la page de bienvenue"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
@@ -2687,7 +2688,7 @@ msgstr "Afficher quel joueur a une mauvaise connexion dans les parties multijoue
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network warnings"
-msgstr ""
+msgstr "Erreurs réseau"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2695,7 +2696,7 @@ msgstr "Affiche le nombre d'images par seconde en haut à droite."
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS overlay"
-msgstr ""
+msgstr "Surcouche FPS"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -2703,7 +2704,7 @@ msgstr "Affiche l'heure système actuelle en haut à droite."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Real time overlay"
-msgstr ""
+msgstr "Surcouche temps réel"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
@@ -2711,7 +2712,7 @@ msgstr "Affiche le temps de jeu actuel en haut à droite."
 
 #: gui/options/options.json[0].options[7].label
 msgid "Game time overlay"
-msgstr ""
+msgstr "Surcouche temps de jeu"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -2719,7 +2720,7 @@ msgstr "Toujours afficher la durée de cessez-le-feu restante."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire time overlay"
-msgstr ""
+msgstr "Décompte du cessez-le-feu"
 
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
@@ -2745,7 +2746,7 @@ msgstr "Autoriser tout le monde ou seulement ses amis à rejoindre la partie apr
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late observer joins"
-msgstr ""
+msgstr "Spectateurs tardifs"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
@@ -2753,7 +2754,7 @@ msgstr "Empêche d'autres spectateurs de rejoindre la partie si la limite est at
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer limit"
-msgstr ""
+msgstr "Limite de spectateurs"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid ""
@@ -2762,7 +2763,7 @@ msgstr "Afficher l'heure d'envoi des messages dans le canal de discussion : du h
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "Horodatage du chat"
 
 #: gui/options/options.json[0].label
 msgid "General"
@@ -2774,7 +2775,7 @@ msgstr "Démarrer 0 A.D. en mode fenêtré."
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
-msgstr ""
+msgstr "Mode fenêtré"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
@@ -2794,15 +2795,15 @@ msgstr "Brouillard"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Utiliser les filtres de post-traitement (HDR, Bloom, DOF, etc) sur la largeur de l'écran."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
-msgstr ""
+msgstr "Post-traitement"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use anti-aliasing."
-msgstr ""
+msgstr "Ne pas utiliser l'anticrénelage."
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid "Fast, but simple anti-aliasing."
@@ -2818,7 +2819,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[4].label
 msgid "Anti-Aliasing"
-msgstr ""
+msgstr "Anticrénelage"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -2865,7 +2866,7 @@ msgstr "Résolution des ombres des cartes. Utiliser des valeurs élevées avec u
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shadow quality"
-msgstr ""
+msgstr "Qualité des ombres"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Smooth shadows."
@@ -2873,15 +2874,15 @@ msgstr "Ombres douces."
 
 #: gui/options/options.json[1].options[8].label
 msgid "Shadow filtering"
-msgstr ""
+msgstr "Filtrage des ombres"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Show outlines of units behind structures."
-msgstr ""
+msgstr "Afficher le contour des unités derrière les bâtiments."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Unit silhouettes"
-msgstr ""
+msgstr "Silhouettes des unités"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid "Enable particles."
@@ -2899,7 +2900,7 @@ msgstr "Lorsque ce paramètre est désactivé; utilise les paramètres les plus 
 
 #: gui/options/options.json[1].options[11].label
 msgid "Water effects"
-msgstr ""
+msgstr "Effets de l'eau"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid ""
@@ -2909,7 +2910,7 @@ msgstr "Utiliser les effets haute qualité pour l'eau, générant des vagues cô
 
 #: gui/options/options.json[1].options[12].label
 msgid "High-quality water effects"
-msgstr ""
+msgstr "Eau en haute résolution"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -2917,7 +2918,7 @@ msgstr "Utilise la vraie profondeur de l'eau dans les calculs de rendu."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Real water depth"
-msgstr ""
+msgstr "Profondeur réelle de l'eau"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Allow water to reflect a mirror image."
@@ -2925,7 +2926,7 @@ msgstr "Permet à l'eau de refléter les objets."
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water reflections"
-msgstr ""
+msgstr "Reflets sur l'eau"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Use a real water refraction map and not transparency."
@@ -2933,7 +2934,7 @@ msgstr "Utilise une vraie carte de réfraction pour l'eau et non de la transpare
 
 #: gui/options/options.json[1].options[15].label
 msgid "Water refraction"
-msgstr ""
+msgstr "Réfraction de l'eau"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Cast shadows on water."
@@ -2941,7 +2942,7 @@ msgstr "Projette les ombres sur l'eau."
 
 #: gui/options/options.json[1].options[16].label
 msgid "Shadows on water"
-msgstr ""
+msgstr "Ombres sur l'eau"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
@@ -2957,7 +2958,7 @@ msgstr "Active l'affichage du ciel."
 
 #: gui/options/options.json[1].options[18].label
 msgid "Show sky"
-msgstr ""
+msgstr "Afficher le ciel"
 
 #: gui/options/options.json[1].options[19].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
@@ -3001,7 +3002,7 @@ msgstr "Niveau du volume de l'audio principal."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master volume"
-msgstr ""
+msgstr "Volume principal"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
@@ -3009,7 +3010,7 @@ msgstr "Niveau du volume de la musique du jeu."
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music volume"
-msgstr ""
+msgstr "Volume de la musique"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
@@ -3017,7 +3018,7 @@ msgstr "Niveau du volume d'ambiance émit en jeu."
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient volume"
-msgstr ""
+msgstr "Volume ambiant"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
@@ -3025,7 +3026,7 @@ msgstr "Niveau du volume émit par les unités en jeu."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action volume"
-msgstr ""
+msgstr "Volume des actions"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
@@ -3033,7 +3034,7 @@ msgstr "Niveau du volume de l'interface graphique."
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI volume"
-msgstr ""
+msgstr "Volume de l'interface"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
@@ -3041,7 +3042,7 @@ msgstr "Recevoir une notification audio lorsqu'une personne écrit votre pseudon
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick notification"
-msgstr ""
+msgstr "Notification de nom d'utilisateur"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -3049,7 +3050,7 @@ msgstr "Recevoir une notification audio lorsqu'un nouveau client rejoint le salo
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game setup - new player notification"
-msgstr ""
+msgstr "Notification de nouveau joueur (configuration du jeu)"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -3057,7 +3058,7 @@ msgstr "Afficher les conseils lors de la configuration d'une partie."
 
 #: gui/options/options.json[3].options[0].label
 msgid "Enable game setting tips"
-msgstr ""
+msgstr "Activer les conseils (configuration du jeu)"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
@@ -3065,7 +3066,7 @@ msgstr "Fait glisser le panneau des paramètres lors de l'ouverture, la fermetur
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable settings panel slide"
-msgstr ""
+msgstr "Active le glissement du panneau des paramètres."
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
@@ -3102,7 +3103,7 @@ msgstr "Difficulté par défaut de l’IA."
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI difficulty"
-msgstr ""
+msgstr "Difficulté par défaut de l’IA"
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
@@ -3126,7 +3127,7 @@ msgstr "Comportement de l'IA par défaut."
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI behavior"
-msgstr ""
+msgstr "Comportement de l'IA par défaut."
 
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
@@ -3150,7 +3151,7 @@ msgstr "Affecter automatiquement les clients à des emplacements de joueurs libr
 
 #: gui/options/options.json[3].options[5].label
 msgid "Assign players"
-msgstr ""
+msgstr "Assigner des joueurs"
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
@@ -3163,7 +3164,7 @@ msgstr "Protège les identifiants et les données échangées avec le serveur de
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
-msgstr ""
+msgstr "Chiffrement TLS"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
@@ -3171,7 +3172,7 @@ msgstr "Nombre de messages d'historique à charger en rejoignant le lobby."
 
 #: gui/options/options.json[4].options[1].label
 msgid "Chat backlog"
-msgstr ""
+msgstr "Historique de la discussion"
 
 #: gui/options/options.json[4].options[2].tooltip
 msgid ""
@@ -3199,7 +3200,7 @@ msgstr "Le raccourci Unités Blessées considère les unités sélectionnées co
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
-msgstr ""
+msgstr "Santé des unités blessées"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
@@ -3207,7 +3208,7 @@ msgstr "Nombre d’unités entraînées par groupe, par défaut."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch training size"
-msgstr ""
+msgstr "Taille du groupe d'unités entraînées."
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
@@ -3224,7 +3225,7 @@ msgstr "Affiche une notification dans la discussion lorsque vous êtes attaqué 
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat notification attack"
-msgstr ""
+msgstr "Notification du chat lors d'attaque."
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
@@ -3234,7 +3235,7 @@ msgstr "Affiche une notification dans la discussion si un allié donne des resso
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat notification tribute"
-msgstr ""
+msgstr "Notification du chat lors de tribut."
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
@@ -3275,7 +3276,7 @@ msgstr "Affiche la portée des attaques des structures défensives sélectionné
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
-msgstr ""
+msgstr "Visualisation des portées d'attaque"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
@@ -3285,7 +3286,7 @@ msgstr "Afficher la portée des auras des unités et structures sélectionnées 
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
-msgstr ""
+msgstr "Visualisation des portées des auras"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
@@ -3295,7 +3296,7 @@ msgstr "Afficher la portée de guérison des unités sélectionnées (peut aussi
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
-msgstr ""
+msgstr "Visualisation des portées de guérison"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
@@ -3316,11 +3317,11 @@ msgstr "Barre d'état d'expérience."
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr ""
+msgstr "Afficher des infobulles détaillées sur les unités entraînables dans les bâtiments de production d'unités"
 
 #: gui/options/options.json[5].options[12].label
 msgid "Detailed tooltips"
-msgstr ""
+msgstr "Infobulles détaillées"
 
 #: gui/options/options.json[5].options[13].list[0].label
 msgid "Unordered"
@@ -3349,7 +3350,7 @@ msgstr "La couleur de vos unités lorsque les couleurs de diplomatie sont activ�
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy colors: self"
-msgstr ""
+msgstr "Couleurs diplomatiques : Soi-même"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
@@ -3357,7 +3358,7 @@ msgstr "La couleur de vos alliés lorsque les couleurs diplomatiques sont activ�
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy colors: ally"
-msgstr ""
+msgstr "Couleurs diplomatiques : Allié"
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
@@ -3365,7 +3366,7 @@ msgstr "La couleur des joueurs neutres lorsque les couleurs diplomatiques sont a
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy colors: neutral"
-msgstr ""
+msgstr "Couleurs diplomatiques : Neutre"
 
 #: gui/options/options.json[5].options[17].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
@@ -3373,34 +3374,34 @@ msgstr "La couleur de vos ennemis lorsque les couleurs diplomatiques sont activ�
 
 #: gui/options/options.json[5].options[17].label
 msgid "Diplomacy colors: enemy"
-msgstr ""
+msgstr "Couleurs diplomatiques : Ennemi"
 
 #: gui/options/options.json[5].options[18].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr ""
+msgstr "Les nouvelles structures seront alignées avec les structures adjacentes, lorsque le raccourci clavier est utilisé."
 
 #: gui/options/options.json[5].options[18].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr ""
+msgstr "Raccourci clavier pour activer l'alignement"
 
 #: gui/options/options.json[5].options[18].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr ""
+msgstr "Les nouvelles structures seront alignées avec les structures adjacentes, sauf si le raccourci clavier est utilisé."
 
 #: gui/options/options.json[5].options[18].list[1].label
 msgid "Hotkey to disable snapping"
-msgstr ""
+msgstr "Raccourci clavier pour désactiver l'alignement"
 
 #: gui/options/options.json[5].options[18].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr ""
+msgstr "Cette option permet d'aligner les nouvelles structures avec les structures voisines existante"
 
 #: gui/options/options.json[5].options[18].label
 msgid "Snap to edges"
-msgstr ""
+msgstr "Aligner aux bords"
 
 #: gui/options/options.json[5].options[19].list[0].tooltip
 msgid ""
@@ -3411,7 +3412,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
-msgstr ""
+msgstr "Solo"
 
 #: gui/options/options.json[5].options[19].list[1].tooltip
 msgid ""
@@ -3422,7 +3423,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[19].list[1].label
 msgid "Multiple"
-msgstr ""
+msgstr "A plusieurs"
 
 #: gui/options/options.json[5].options[19].tooltip
 msgid "Decide whether units can be part of multiple control groups."
@@ -3933,7 +3934,7 @@ msgstr ""
 
 #: gui/text/tips/outposts.txt:4
 msgid "They construct quickly, but are weak."
-msgstr ""
+msgstr "Ils sont construits rapidement, mais ne sont pas solide."
 
 #: gui/text/tips/outposts.txt:5
 msgid "Garrison a unit in it to stop them from decaying in neutral territory."
@@ -3965,7 +3966,7 @@ msgstr ""
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."
-msgstr ""
+msgstr "Les temples sont moins chers quand il est en vie."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -3973,15 +3974,15 @@ msgstr "ARCHITECTURE PERSE"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
-msgstr ""
+msgstr "Technologie spéciale pour les Perses."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr ""
+msgstr "Structures +25% de vie."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "Augmentation du temps de construction de +20% en conséquence."
 
 #: gui/text/tips/persian_architecture.txt:5
 msgid ""
@@ -3995,7 +3996,7 @@ msgstr "PIQUIERS"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "Lourdement blindé et lent. Attaque faible."
 
 #: gui/text/tips/pikemen.txt:3
 msgid ""
@@ -4004,7 +4005,7 @@ msgstr ""
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr ""
+msgstr "Disponible pour: les Koushites, les Macédoniens, les Ptolémées et les Séleucides."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
@@ -4038,7 +4039,7 @@ msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "Rich in all types of mining."
-msgstr ""
+msgstr "Riche en tous types d'exploitations minières."
 
 #: gui/text/tips/savanna_biome.txt:5
 msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
@@ -4072,7 +4073,7 @@ msgstr "L'unité d'infanterie la plus forte du jeu."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr ""
+msgstr "Infanterie championne disponible pour les Spartiates."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
@@ -4090,7 +4091,7 @@ msgstr ""
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
-msgstr ""
+msgstr "Utilisé contre la cavalerie pour un bonus d'attaque."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
@@ -4116,7 +4117,7 @@ msgstr ""
 
 #: gui/text/tips/stoa.txt:4
 msgid "Grants +10 Population."
-msgstr ""
+msgstr "Alloue +10 de population."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
@@ -4138,11 +4139,11 @@ msgstr "TEMPLES"
 
 #: gui/text/tips/temples.txt:2
 msgid "Town Phase structure."
-msgstr ""
+msgstr "Structure de la Phase des Villes."
 
 #: gui/text/tips/temples.txt:3
 msgid "Recruit Healers to heal your troops on the battlefield."
-msgstr ""
+msgstr "Formez-y des guérisseurs pour soigner vos troupes sur le champ de bataille."
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
@@ -4150,7 +4151,7 @@ msgstr ""
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
-msgstr ""
+msgstr "Son \"aura\" soigne les unités proches."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
@@ -4185,15 +4186,15 @@ msgstr "THÉMISTOCLE"
 msgid ""
 "Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr ""
+msgstr "Héro Athénien qui commandait les Grecs aux grandes batailles navales de l'Artémision et de Salamine."
 
 #: gui/text/tips/themistocles.txt:3
 msgid "All ships are built faster while he lives."
-msgstr ""
+msgstr "Tous les bateaux sont construits plus rapidement quand il est en vie."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "The ship he is garrisoned inside sails much faster."
-msgstr ""
+msgstr "Le navire dans lequel il est en garnison navigue beaucoup plus rapidement."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -4201,15 +4202,15 @@ msgstr "TRIRÈME"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The Medium Warship."
-msgstr ""
+msgstr "Navire de guerre moyen."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Good for transporting or fighting."
-msgstr ""
+msgstr "Bon pour le transport ou le combat."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "Mettre des troupes en garnison pour augmenter la puissance de feu."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
@@ -4217,19 +4218,19 @@ msgstr "VIRIATE"
 
 #: gui/text/tips/viriato.txt:2
 msgid "Iberian hero of the Lusitani tribe."
-msgstr ""
+msgstr "Héros ibère de la tribu des Lusitaniens."
 
 #: gui/text/tips/viriato.txt:3
 msgid ""
 "At least seven campaigns against the Romans during the Lusitani Wars from "
 "147 to 139 BC."
-msgstr ""
+msgstr "Au moins 7 campagnes contre les Romains pendant les \"guerres lusitaniennes\" entre 147 et 139 av J-C."
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
 "Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
 "their opponents."
-msgstr ""
+msgstr "Possède l'aura \"Tactique de guérilla\" qui permet aux Ibères à proximité de tendre une embuscade."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -4237,17 +4238,17 @@ msgstr "ÉLÉPHANTS DE GUERRE"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
-msgstr ""
+msgstr "Bêtes énormes d'Afrique et d'Inde, dressées pour la guerre."
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
-msgstr ""
+msgstr "Coûtent cher en nourriture et en métal, mais sont très puissants."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "Disponible pour: les Carthaginois, les Koushites, les Mauryas, les Perses, les Ptolémées et les Séleucides."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
@@ -4263,8 +4264,8 @@ msgstr "2000 de nourriture."
 
 #: gui/text/tips/whales.txt:4
 msgid "Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "Récupérable par des bateaux de pêche une fois la baleine tuée."
 
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "Migrent dans les océans du jeu et fuient lorsqu'elles sont attaquées."
