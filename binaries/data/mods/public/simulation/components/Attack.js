@@ -417,7 +417,7 @@ Attack.prototype.GetTimers = function(type)
 Attack.prototype.GetSplashData = function(type)
 {
 	if (!this.template[type].Splash)
-		return;
+		return undefined;
 
 	return {
 		"attackData": this.GetAttackEffectsData(type, true),
