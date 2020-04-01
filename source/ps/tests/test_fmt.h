@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,9 +17,9 @@
 
 #include "lib/self_test.h"
 
-#include "third_party/cppformat/format.h"
+#include "third_party/fmt/format.h"
 
-class TestCppformat : public CxxTest::TestSuite
+class TestFmt : public CxxTest::TestSuite
 {
 public:
 	void test_basic()

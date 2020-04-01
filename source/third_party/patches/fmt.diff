@@ -1,0 +1,221 @@
+--- format.h	2020-02-09 20:52:31.892811631 +0100
++++ 0ad/source/third_party/fmt/format.h	2020-03-04 21:53:39.475417249 +0100
+@@ -1,4 +1,9 @@
+ /*
++ * Slightly modified version of fmt, by Wildfire Games, for 0 A.D.
++ * Based on fmt v1.1.0 from https://github.com/fmtlib/fmt
++ */
++
++/*
+  Formatting library for C++
+ 
+  Copyright (c) 2012 - 2015, Victor Zverovich
+@@ -37,10 +42,11 @@
+ #include <algorithm>
+ #include <limits>
+ #include <stdexcept>
+-#include <string>
+ #include <sstream>
+ 
+-#if _SECURE_SCL
++#include "ps/CStr.h"
++
++#if defined(_SECURE_SCL) && _SECURE_SCL
+ # include <iterator>
+ #endif
+ 
+@@ -129,9 +135,13 @@
+ // Variadic templates are available in GCC since version 4.4
+ // (http://gcc.gnu.org/projects/cxx0x.html) and in Visual C++
+ // since version 2013.
++# if defined(_MSC_VER)
++#  define FMT_USE_VARIADIC_TEMPLATES 1
++# else
+ # define FMT_USE_VARIADIC_TEMPLATES \
+    (FMT_HAS_FEATURE(cxx_variadic_templates) || \
+-       (FMT_GCC_VERSION >= 404 && FMT_HAS_GXX_CXX11) || _MSC_VER >= 1800)
++       (FMT_GCC_VERSION >= 404 && FMT_HAS_GXX_CXX11))
++# endif
+ #endif
+ 
+ #ifndef FMT_USE_RVALUE_REFERENCES
+@@ -139,10 +149,12 @@
+ // as the latter doesn't provide std::move.
+ # if defined(FMT_GNUC_LIBSTD_VERSION) && FMT_GNUC_LIBSTD_VERSION <= 402
+ #  define FMT_USE_RVALUE_REFERENCES 0
++# elif defined(_MSC_VER)
++#  define FMT_USE_RVALUE_REFERENCES 1
+ # else
+ #  define FMT_USE_RVALUE_REFERENCES \
+     (FMT_HAS_FEATURE(cxx_rvalue_references) || \
+-        (FMT_GCC_VERSION >= 403 && FMT_HAS_GXX_CXX11) || _MSC_VER >= 1600)
++        (FMT_GCC_VERSION >= 403 && FMT_HAS_GXX_CXX11))
+ # endif
+ #endif
+ 
+@@ -151,7 +163,7 @@
+ #endif
+ 
+ // Define FMT_USE_NOEXCEPT to make C++ Format use noexcept (C++11 feature).
+-#if FMT_USE_NOEXCEPT || FMT_HAS_FEATURE(cxx_noexcept) || \
++#if (defined(FMT_USE_NOEXCEPT) && FMT_USE_NOEXCEPT) || FMT_HAS_FEATURE(cxx_noexcept) || \
+   (FMT_GCC_VERSION >= 408 && FMT_HAS_GXX_CXX11)
+ # define FMT_NOEXCEPT noexcept
+ #else
+@@ -160,7 +172,7 @@
+ 
+ // A macro to disallow the copy constructor and operator= functions
+ // This should be used in the private: declarations for a class
+-#if FMT_USE_DELETED_FUNCTIONS || FMT_HAS_FEATURE(cxx_deleted_functions) || \
++#if (defined(FMT_USE_DELETED_FUNCTIONS) && FMT_USE_DELETED_FUNCTIONS) || FMT_HAS_FEATURE(cxx_deleted_functions) || \
+   (FMT_GCC_VERSION >= 404 && FMT_HAS_GXX_CXX11) || _MSC_VER >= 1800
+ # define FMT_DISALLOW_COPY_AND_ASSIGN(TypeName) \
+     TypeName(const TypeName&) = delete; \
+@@ -287,7 +299,7 @@
+ // to avoid dynamic memory allocation.
+ enum { INLINE_BUFFER_SIZE = 500 };
+ 
+-#if _SECURE_SCL
++#if defined(_SECURE_SCL) && _SECURE_SCL
+ // Use checked iterator to avoid warnings on MSVC.
+ template <typename T>
+ inline stdext::checked_array_iterator<T*> make_ptr(T *ptr, std::size_t size) {
+@@ -483,7 +495,7 @@
+ template <typename Char>
+ class BasicCharTraits {
+  public:
+-#if _SECURE_SCL
++#if defined(_SECURE_SCL) && _SECURE_SCL
+   typedef stdext::checked_array_iterator<Char*> CharPtr;
+ #else
+   typedef Char *CharPtr;
+@@ -869,6 +881,7 @@
+   FMT_MAKE_VALUE(const unsigned char *, ustring.value, CSTRING)
+   FMT_MAKE_STR_VALUE(const std::string &, STRING)
+   FMT_MAKE_STR_VALUE(StringRef, STRING)
++  FMT_MAKE_STR_VALUE(const CStr &, STRING)
+ 
+ #define FMT_MAKE_WSTR_VALUE(Type, TYPE) \
+   MakeValue(typename WCharHelper<Type, Char>::Supported value) { \
+@@ -1567,7 +1580,7 @@
+ 
+   typedef typename internal::CharTraits<Char>::CharPtr CharPtr;
+ 
+-#if _SECURE_SCL
++#if defined(_SECURE_SCL) && _SECURE_SCL
+   // Returns pointer value.
+   static Char *get(CharPtr p) { return p.base(); }
+ #else
+@@ -2074,7 +2087,7 @@
+   Char fill = static_cast<Char>(spec.fill());
+   for (;;) {
+     std::size_t buffer_size = buffer_.capacity() - offset;
+-#if _MSC_VER
++#if defined(_MSC_VER) && _MSC_VER
+     // MSVC's vsnprintf_s doesn't work with zero size, so reserve
+     // space for at least one extra character to make the size non-zero.
+     // Note that the buffer's capacity will increase by more than 1.
+--- format.cpp	2020-02-09 20:52:10.936425878 +0100
++++ 0ad/source/third_party/fmt/format.cpp	2020-03-04 21:36:15.755684084 +0100
+@@ -1,4 +1,9 @@
+ /*
++ * Slightly modified version of fmt, by Wildfire Games, for 0 A.D.
++ * Based on fmt v1.1.0 from https://github.com/fmtlib/fmt
++ */
++
++/*
+  Formatting library for C++
+ 
+  Copyright (c) 2012 - 2015, Victor Zverovich
+@@ -24,6 +29,7 @@
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
++#include "precompiled.h"
+ 
+ #include "format.h"
+ 
+@@ -48,7 +54,7 @@
+ #if __GNUC__ && !__EXCEPTIONS
+ # define FMT_EXCEPTIONS 0
+ #endif
+-#if _MSC_VER && !_HAS_EXCEPTIONS
++#if defined(_MSC_VER) && _MSC_VER && !_HAS_EXCEPTIONS
+ # define FMT_EXCEPTIONS 0
+ #endif
+ #ifndef FMT_EXCEPTIONS
+@@ -79,17 +85,17 @@
+ # define FMT_FUNC
+ #endif
+ 
+-#if _MSC_VER
+-# pragma warning(push)
+-# pragma warning(disable: 4127)  // conditional expression is constant
+-# pragma warning(disable: 4702)  // unreachable code
+-#endif
+-
+ namespace {
+ 
+ #ifndef _MSC_VER
+ # define FMT_SNPRINTF snprintf
+ #else  // _MSC_VER
++
++# pragma warning(push)
++# pragma warning(disable: 4127) // conditional expression is constant
++# pragma warning(disable: 4702) // unreachable code
++# pragma warning(disable: 4456) // hides previous local declaration
++
+ inline int fmt_snprintf(char *buffer, size_t size, const char *format, ...) {
+   va_list args;
+   va_start(args, format);
+@@ -136,24 +142,24 @@
+     int error_code, char *&buffer, std::size_t buffer_size) FMT_NOEXCEPT {
+   assert(buffer != 0 && buffer_size != 0);
+   int result = 0;
+-#if ((_POSIX_C_SOURCE >= 200112L || _XOPEN_SOURCE >= 600) && !_GNU_SOURCE) || __ANDROID__
++#if ((_POSIX_C_SOURCE >= 200112L || _XOPEN_SOURCE >= 600) && !_GNU_SOURCE) || (defined(__ANDROID__) && __ANDROID__)
+   // XSI-compliant version of strerror_r.
+   result = strerror_r(error_code, buffer, buffer_size);
+   if (result != 0)
+     result = errno;
+-#elif _GNU_SOURCE
++#elif defined(_GNU_SOURCE) && !defined(__BIONIC__)
+   // GNU-specific version of strerror_r.
+   char *message = strerror_r(error_code, buffer, buffer_size);
+   // If the buffer is full then the message is probably truncated.
+   if (message == buffer && strlen(buffer) == buffer_size - 1)
+     result = ERANGE;
+   buffer = message;
+-#elif __MINGW32__
++#elif defined(__MINGW32__)
+   errno = 0;
+   (void)buffer_size;
+   buffer = strerror(error_code);
+   result = errno;
+-#elif _WIN32
++#elif defined(_WIN32)
+   result = strerror_s(buffer, buffer_size, error_code);
+   // If the buffer is full then the message is probably truncated.
+   if (result == 0 && std::strlen(buffer) == buffer_size - 1)
+@@ -627,8 +633,11 @@
+   const StrChar *str_value = s.value;
+   std::size_t str_size = s.size;
+   if (str_size == 0) {
+-    if (!str_value)
+-      FMT_THROW(FormatError("string pointer is null"));
++    if (!str_value) {
++        Char err[] = { '(', 'n', 'u', 'l', 'l', ')' };
++        write_str(err, sizeof(err)/sizeof(Char), spec);
++        return;
++    }
+     if (*str_value)
+       str_size = std::char_traits<StrChar>::length(str_value);
+   }
+@@ -1164,6 +1173,6 @@
+ 
+ #endif  // FMT_HEADER_ONLY
+ 
+-#if _MSC_VER
++#if defined(_MSC_VER) && _MSC_VER
+ # pragma warning(pop)
+ #endif
