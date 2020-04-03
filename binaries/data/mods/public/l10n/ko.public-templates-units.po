@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# 이정희 <daemul72@gmail.com>, 2019-2020
+# MarongHappy <daemul72@gmail.com>, 2019-2020
 # 미워하지 않아 <eustaph7725@gmail.com>, 2017
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
 # Gr Nada <inactive+Granada45621@transifex.com>, 2016
@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-16 08:11+0000\n"
-"PO-Revision-Date: 2020-03-16 10:10+0000\n"
-"Last-Translator: ks k\n"
+"POT-Creation-Date: 2020-03-30 15:03+0000\n"
+"PO-Revision-Date: 2020-03-30 21:54+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,15 +49,15 @@ msgid "A catafalque that holds the remains of a great leader."
 msgstr "위대한 지도자의 유골을 보관하는 카타팔크."
 
 #: simulation/templates/template_unit_cavalry.xml:40
-#: simulation/templates/template_unit_infantry.xml:66
-#: simulation/templates/template_unit_support_female_citizen.xml:51
+#: simulation/templates/template_unit_infantry.xml:68
+#: simulation/templates/template_unit_support_female_citizen.xml:53
 msgid "Citizen"
 msgstr "시민"
 
 #: simulation/templates/template_unit_cavalry.xml:40
 #: simulation/templates/template_unit_champion.xml:13
 #: simulation/templates/template_unit_hero.xml:32
-#: simulation/templates/template_unit_infantry.xml:66
+#: simulation/templates/template_unit_infantry.xml:68
 msgid "Soldier"
 msgstr "군인"
 
@@ -70,7 +70,7 @@ msgstr "기병"
 
 #: simulation/templates/template_unit_cavalry.xml:42
 #: simulation/templates/template_unit_dog.xml:42
-#: simulation/templates/template_unit_infantry.xml:68
+#: simulation/templates/template_unit_infantry.xml:70
 #: simulation/templates/template_unit_support_healer.xml:27
 #: simulation/templates/units/brit_support_healer_b.xml:9
 #: simulation/templates/units/cart_support_healer_b.xml:9
@@ -236,8 +236,8 @@ msgstr "전투 코끼리"
 
 #: simulation/templates/template_unit_champion_infantry.xml:21
 #: simulation/templates/template_unit_hero_infantry.xml:24
-#: simulation/templates/template_unit_infantry.xml:66
-#: simulation/templates/template_unit_infantry.xml:67
+#: simulation/templates/template_unit_infantry.xml:68
+#: simulation/templates/template_unit_infantry.xml:69
 msgid "Infantry"
 msgstr "보병"
 
@@ -368,8 +368,8 @@ msgstr "영웅 창병"
 msgid "Hero Swordsman"
 msgstr "영웅 검병"
 
-#: simulation/templates/template_unit_infantry.xml:66
-#: simulation/templates/template_unit_support_female_citizen.xml:51
+#: simulation/templates/template_unit_infantry.xml:68
+#: simulation/templates/template_unit_support_female_citizen.xml:53
 #: simulation/templates/template_unit_support_slave.xml:39
 msgid "Worker"
 msgstr "노동자"
@@ -520,7 +520,7 @@ msgstr "공성 탑"
 msgid "Siege Tower"
 msgstr "공성 탑"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:52
+#: simulation/templates/template_unit_support_female_citizen.xml:54
 msgid "Female Citizen"
 msgstr "여성 시민"
 
@@ -847,16 +847,16 @@ msgstr "크세노폰"
 #: simulation/templates/units/pers_kardakes_skirmisher.xml:11
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:11
 #: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:11
-#: simulation/templates/units/ptol_infantry_archer_b.xml:19
-#: simulation/templates/units/ptol_infantry_javelinist_b.xml:19
-#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:19
-#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:20
+#: simulation/templates/units/ptol_infantry_archer_b.xml:18
+#: simulation/templates/units/ptol_infantry_javelinist_b.xml:18
+#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:18
+#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:19
 #: simulation/templates/units/samnite_skirmisher.xml:4
 #: simulation/templates/units/samnite_spearman.xml:4
 #: simulation/templates/units/samnite_swordsman.xml:4
 #: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:11
-#: simulation/templates/units/sele_infantry_archer_merc_b.xml:18
-#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:18
+#: simulation/templates/units/sele_infantry_archer_merc_b.xml:17
+#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:17
 msgid "Mercenary"
 msgstr "용병"
 
@@ -870,13 +870,13 @@ msgstr "펠타스테스 트락스"
 
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:23
 #: simulation/templates/units/mace_infantry_archer_b.xml:21
-#: simulation/templates/units/ptol_infantry_archer_b.xml:21
+#: simulation/templates/units/ptol_infantry_archer_b.xml:20
 msgid "Cretan Mercenary Archer"
 msgstr "크레타 궁용병"
 
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:24
 #: simulation/templates/units/mace_infantry_archer_b.xml:22
-#: simulation/templates/units/ptol_infantry_archer_b.xml:22
+#: simulation/templates/units/ptol_infantry_archer_b.xml:21
 msgid "Toxótēs Krētikós"
 msgstr "토소테스 크레티코스"
 
@@ -1006,7 +1006,8 @@ msgstr "켈트 기병"
 #: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/maur_champion_chariot.xml:9
 #: simulation/templates/units/maur_hero_ashoka.xml:13
-#: simulation/templates/units/pers_cavalry_archer_b.xml:9
+#: simulation/templates/units/pers_cavalry_archer_b.xml:5
+#: simulation/templates/units/pers_chariot.xml:9
 #: simulation/templates/units/pers_hero_darius.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
 #: simulation/templates/units/sele_champion_chariot.xml:9
@@ -1059,26 +1060,26 @@ msgstr ""
 msgid "Cunobelinos"
 msgstr ""
 
-#: simulation/templates/units/brit_infantry_javelinist_b.xml:20
+#: simulation/templates/units/brit_infantry_javelinist_b.xml:19
 #: simulation/templates/units/gaul_infantry_javelinist_b.xml:12
 msgid "Adretos"
 msgstr ""
 
-#: simulation/templates/units/brit_infantry_slinger_b.xml:13
+#: simulation/templates/units/brit_infantry_slinger_b.xml:12
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:12
 msgid "Celtic Slinger"
 msgstr "켈트 투석병"
 
-#: simulation/templates/units/brit_infantry_slinger_b.xml:14
+#: simulation/templates/units/brit_infantry_slinger_b.xml:13
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:13
 msgid "Talmoris"
 msgstr ""
 
-#: simulation/templates/units/brit_infantry_spearman_b.xml:13
+#: simulation/templates/units/brit_infantry_spearman_b.xml:12
 msgid "Celtic Spearman"
 msgstr "켈트 창병"
 
-#: simulation/templates/units/brit_infantry_spearman_b.xml:14
+#: simulation/templates/units/brit_infantry_spearman_b.xml:13
 #: simulation/templates/units/gaul_infantry_spearman_b.xml:12
 msgid "Catucos"
 msgstr ""
@@ -1103,12 +1104,12 @@ msgstr ""
 msgid "Molton"
 msgstr ""
 
-#: simulation/templates/units/brit_support_female_citizen.xml:11
+#: simulation/templates/units/brit_support_female_citizen.xml:10
 #: simulation/templates/units/gaul_support_female_citizen.xml:10
 msgid "Celtic Woman"
 msgstr "켈트 여자"
 
-#: simulation/templates/units/brit_support_female_citizen.xml:12
+#: simulation/templates/units/brit_support_female_citizen.xml:11
 #: simulation/templates/units/gaul_support_female_citizen.xml:11
 msgid "Bena"
 msgstr ""
@@ -1251,7 +1252,7 @@ msgid "Sǝḫīr Ḥanīt"
 msgstr "서히르 하니트"
 
 #: simulation/templates/units/cart_infantry_swordsman_gaul_b.xml:22
-#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:22
+#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:21
 msgid "Gallic Mercenary Swordsman"
 msgstr "갈리아 검 용병"
 
@@ -1550,12 +1551,12 @@ msgid "Armor-piercing Axes: Counters 1.3x vs. Champions and Heroes."
 msgstr "갑옷 깨는 도끼: 카운터 1.3배 대 대표 전사와 영웅."
 
 #: simulation/templates/units/kush_hero_amanirenas.xml:8
-#: simulation/templates/units/kush_hero_amanirenas_chariot.xml:8
+#: simulation/templates/units/kush_hero_amanirenas_infantry.xml:8
 msgid "Amanirenas"
 msgstr "아마니레나스"
 
 #: simulation/templates/units/kush_hero_amanirenas.xml:9
-#: simulation/templates/units/kush_hero_amanirenas_chariot.xml:9
+#: simulation/templates/units/kush_hero_amanirenas_infantry.xml:9
 msgid "Amnirense qore li kdwe li"
 msgstr "암니렌세 코레 리 크드위 리"
 
@@ -2057,13 +2058,13 @@ msgstr "아르스티바라"
 msgid "Artaxšaçā"
 msgstr "아르탁사카"
 
-#: simulation/templates/units/pers_cavalry_archer_b.xml:12
-msgid "Babylonian Scythed Chariot"
-msgstr "바빌로니아 큰낫 전차"
+#: simulation/templates/units/pers_cavalry_archer_b.xml:8
+msgid "Parthian Horse Archer"
+msgstr ""
 
-#: simulation/templates/units/pers_cavalry_archer_b.xml:13
-msgid "Raθa Bābiruviya"
-msgstr "라따 바비루비야"
+#: simulation/templates/units/pers_cavalry_archer_b.xml:9
+msgid "Asabāra Parθava"
+msgstr ""
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:7
 msgid "Median Light Cavalry"
@@ -2113,6 +2114,14 @@ msgstr "페르시아 불사 부대"
 #: simulation/templates/units/pers_champion_infantry.xml:8
 msgid "Anušiya"
 msgstr "아누시야"
+
+#: simulation/templates/units/pers_chariot.xml:11
+msgid "Babylonian Scythed Chariot"
+msgstr "바빌로니아 큰낫 전차"
+
+#: simulation/templates/units/pers_chariot.xml:12
+msgid "Raθa Bābiruviya"
+msgstr "라따 바비루비야"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:9
 msgid "Cyrus II The Great"
@@ -2346,39 +2355,39 @@ msgstr "누비아 궁용병"
 msgid "Kousít Misthophóros Toxótēs"
 msgstr "코우시트 미스토프호로스 토소테스"
 
-#: simulation/templates/units/ptol_infantry_javelinist_b.xml:21
+#: simulation/templates/units/ptol_infantry_javelinist_b.xml:20
 msgid "Mercenary Thureos Skirmisher"
 msgstr "투레오스 척후용병"
 
-#: simulation/templates/units/ptol_infantry_javelinist_b.xml:22
+#: simulation/templates/units/ptol_infantry_javelinist_b.xml:21
 msgid "Thureophóros Akrobolistḗs"
 msgstr "투레오포로스 아크로보리스테스"
 
-#: simulation/templates/units/ptol_infantry_pikeman_b.xml:14
+#: simulation/templates/units/ptol_infantry_pikeman_b.xml:13
 msgid "Egyptian Pikeman"
 msgstr "이집트 장창병"
 
-#: simulation/templates/units/ptol_infantry_pikeman_b.xml:15
+#: simulation/templates/units/ptol_infantry_pikeman_b.xml:14
 msgid "Phalaggomákhimos"
 msgstr "파라그고마키모스"
 
-#: simulation/templates/units/ptol_infantry_slinger_b.xml:14
+#: simulation/templates/units/ptol_infantry_slinger_b.xml:13
 msgid "Judean Slinger"
 msgstr "유대인 투석병"
 
-#: simulation/templates/units/ptol_infantry_slinger_b.xml:15
+#: simulation/templates/units/ptol_infantry_slinger_b.xml:14
 msgid "Hebraikós Sphendonḗtēs"
 msgstr "헤브라이코스 스펜도네테스"
 
-#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:21
+#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:20
 msgid "Mercenary Thureos Spearman"
 msgstr "투레오스 창용병"
 
-#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:22
+#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:21
 msgid "Thureophóros Misthophóros"
 msgstr "투레오포로스 미스테포로스"
 
-#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:23
+#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:22
 msgid "Gallikós Mistophorós"
 msgstr "갈리코스 미스토포로스"
 
@@ -2686,43 +2695,43 @@ msgstr "셀레우코스 1세"
 msgid "Seleukos A' Nikatōr"
 msgstr "셀레우코스 1세 니카토르"
 
-#: simulation/templates/units/sele_infantry_archer_merc_b.xml:21
+#: simulation/templates/units/sele_infantry_archer_merc_b.xml:20
 msgid "Syrian Archer"
 msgstr "시리아 궁수"
 
-#: simulation/templates/units/sele_infantry_archer_merc_b.xml:22
+#: simulation/templates/units/sele_infantry_archer_merc_b.xml:21
 msgid "Toxótēs Syrías"
 msgstr "토소테스 시리아스"
 
-#: simulation/templates/units/sele_infantry_javelinist_b.xml:14
+#: simulation/templates/units/sele_infantry_javelinist_b.xml:13
 msgid "Arab Javelineer"
 msgstr "아랍 투창병"
 
-#: simulation/templates/units/sele_infantry_javelinist_b.xml:15
+#: simulation/templates/units/sele_infantry_javelinist_b.xml:14
 msgid "Pezakontistès Aravikós"
 msgstr "페자콘티스테스 아라비코스"
 
-#: simulation/templates/units/sele_infantry_pikeman_b.xml:14
+#: simulation/templates/units/sele_infantry_pikeman_b.xml:13
 msgid "Bronze Shield Pikeman"
 msgstr "청동방패 장창병"
 
-#: simulation/templates/units/sele_infantry_pikeman_b.xml:15
+#: simulation/templates/units/sele_infantry_pikeman_b.xml:14
 msgid "Chalkaspides"
 msgstr "찰카스피데스"
 
-#: simulation/templates/units/sele_infantry_spearman_b.xml:14
+#: simulation/templates/units/sele_infantry_spearman_b.xml:13
 msgid "Militia Thureos Spearman"
 msgstr "시민 투레오스 창병"
 
-#: simulation/templates/units/sele_infantry_spearman_b.xml:15
+#: simulation/templates/units/sele_infantry_spearman_b.xml:14
 msgid "Thureophóros Politès"
 msgstr "투레오포로스 포리테스"
 
-#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:21
+#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:20
 msgid "Thracian Mercenary Swordsman"
 msgstr "트라키아 검용병"
 
-#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:22
+#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:21
 msgid "Rhomphaiaphoros Thrakikós"
 msgstr "롬파이아포로스 트라키코스"
 

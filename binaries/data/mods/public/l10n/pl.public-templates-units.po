@@ -43,9 +43,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-16 08:11+0000\n"
-"PO-Revision-Date: 2020-03-16 10:10+0000\n"
-"Last-Translator: tomekpg <tomekpg@op.pl>\n"
+"POT-Creation-Date: 2020-03-30 15:03+0000\n"
+"PO-Revision-Date: 2020-03-31 14:15+0000\n"
+"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,15 +66,15 @@ msgid "A catafalque that holds the remains of a great leader."
 msgstr "Katafalk, w którym znajdują się szczątki wielkiego przywódcy."
 
 #: simulation/templates/template_unit_cavalry.xml:40
-#: simulation/templates/template_unit_infantry.xml:66
-#: simulation/templates/template_unit_support_female_citizen.xml:51
+#: simulation/templates/template_unit_infantry.xml:68
+#: simulation/templates/template_unit_support_female_citizen.xml:53
 msgid "Citizen"
 msgstr "Obywatel"
 
 #: simulation/templates/template_unit_cavalry.xml:40
 #: simulation/templates/template_unit_champion.xml:13
 #: simulation/templates/template_unit_hero.xml:32
-#: simulation/templates/template_unit_infantry.xml:66
+#: simulation/templates/template_unit_infantry.xml:68
 msgid "Soldier"
 msgstr "Żołnierz"
 
@@ -87,7 +87,7 @@ msgstr "Kawaleria"
 
 #: simulation/templates/template_unit_cavalry.xml:42
 #: simulation/templates/template_unit_dog.xml:42
-#: simulation/templates/template_unit_infantry.xml:68
+#: simulation/templates/template_unit_infantry.xml:70
 #: simulation/templates/template_unit_support_healer.xml:27
 #: simulation/templates/units/brit_support_healer_b.xml:9
 #: simulation/templates/units/cart_support_healer_b.xml:9
@@ -253,8 +253,8 @@ msgstr "Słoń bojowy"
 
 #: simulation/templates/template_unit_champion_infantry.xml:21
 #: simulation/templates/template_unit_hero_infantry.xml:24
-#: simulation/templates/template_unit_infantry.xml:66
-#: simulation/templates/template_unit_infantry.xml:67
+#: simulation/templates/template_unit_infantry.xml:68
+#: simulation/templates/template_unit_infantry.xml:69
 msgid "Infantry"
 msgstr "Piechota"
 
@@ -385,8 +385,8 @@ msgstr "Bohater - włócznik"
 msgid "Hero Swordsman"
 msgstr "Bohater - szermierz"
 
-#: simulation/templates/template_unit_infantry.xml:66
-#: simulation/templates/template_unit_support_female_citizen.xml:51
+#: simulation/templates/template_unit_infantry.xml:68
+#: simulation/templates/template_unit_support_female_citizen.xml:53
 #: simulation/templates/template_unit_support_slave.xml:39
 msgid "Worker"
 msgstr "Robotnik"
@@ -537,7 +537,7 @@ msgstr "Wieża oblężnicza"
 msgid "Siege Tower"
 msgstr "Wieża oblężnicza"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:52
+#: simulation/templates/template_unit_support_female_citizen.xml:54
 msgid "Female Citizen"
 msgstr "Obywatelka"
 
@@ -864,16 +864,16 @@ msgstr "Xenophōn"
 #: simulation/templates/units/pers_kardakes_skirmisher.xml:11
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:11
 #: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:11
-#: simulation/templates/units/ptol_infantry_archer_b.xml:19
-#: simulation/templates/units/ptol_infantry_javelinist_b.xml:19
-#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:19
-#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:20
+#: simulation/templates/units/ptol_infantry_archer_b.xml:18
+#: simulation/templates/units/ptol_infantry_javelinist_b.xml:18
+#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:18
+#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:19
 #: simulation/templates/units/samnite_skirmisher.xml:4
 #: simulation/templates/units/samnite_spearman.xml:4
 #: simulation/templates/units/samnite_swordsman.xml:4
 #: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:11
-#: simulation/templates/units/sele_infantry_archer_merc_b.xml:18
-#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:18
+#: simulation/templates/units/sele_infantry_archer_merc_b.xml:17
+#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:17
 msgid "Mercenary"
 msgstr "Najemnik"
 
@@ -887,13 +887,13 @@ msgstr "Peltastḗs Thrâx"
 
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:23
 #: simulation/templates/units/mace_infantry_archer_b.xml:21
-#: simulation/templates/units/ptol_infantry_archer_b.xml:21
+#: simulation/templates/units/ptol_infantry_archer_b.xml:20
 msgid "Cretan Mercenary Archer"
 msgstr "Kreteński łucznik najemny"
 
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:24
 #: simulation/templates/units/mace_infantry_archer_b.xml:22
-#: simulation/templates/units/ptol_infantry_archer_b.xml:22
+#: simulation/templates/units/ptol_infantry_archer_b.xml:21
 msgid "Toxótēs Krētikós"
 msgstr "Toxótēs Krētikós"
 
@@ -999,12 +999,12 @@ msgstr "Émporos"
 
 #: simulation/templates/units/brit_catafalque.xml:9
 msgid "Cassiuellaunos"
-msgstr ""
+msgstr "Cassivellaunus"
 
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/gaul_cavalry_javelinist_b.xml:6
 msgid "Marcacos"
-msgstr ""
+msgstr "Markakus"
 
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:7
 msgid "Raiding Cavalry"
@@ -1013,7 +1013,7 @@ msgstr "Konnica podjazdowa"
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/gaul_cavalry_swordsman_b.xml:6
 msgid "Eporedos"
-msgstr ""
+msgstr "Eporedus"
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:7
 msgid "Celtic Cavalry"
@@ -1023,7 +1023,8 @@ msgstr "Celtycka konnica"
 #: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/maur_champion_chariot.xml:9
 #: simulation/templates/units/maur_hero_ashoka.xml:13
-#: simulation/templates/units/pers_cavalry_archer_b.xml:9
+#: simulation/templates/units/pers_cavalry_archer_b.xml:5
+#: simulation/templates/units/pers_chariot.xml:9
 #: simulation/templates/units/pers_hero_darius.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
 #: simulation/templates/units/sele_champion_chariot.xml:9
@@ -1036,15 +1037,15 @@ msgstr "Celtycki rydwan"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:11
 msgid "Essedon"
-msgstr ""
+msgstr "Essedon"
 
 #: simulation/templates/units/brit_champion_infantry.xml:5
 msgid "Brythonic Champion"
-msgstr ""
+msgstr "Bretoński czempion"
 
 #: simulation/templates/units/brit_champion_infantry.xml:6
 msgid "Argos"
-msgstr ""
+msgstr "Argos"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:13
 #: simulation/templates/units/brit_hero_boudicca_cavalry_javelinist.xml:8
@@ -1056,11 +1057,11 @@ msgstr "Boudika"
 #: simulation/templates/units/brit_hero_boudicca_cavalry_javelinist.xml:9
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:9
 msgid "Boudica"
-msgstr ""
+msgstr "Boudika"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:8
 msgid "Caratacus"
-msgstr ""
+msgstr "Caratacus"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:9
 msgid "Caratacos"
@@ -1069,66 +1070,66 @@ msgstr "Caratacos"
 #: simulation/templates/units/brit_hero_cunobelin.xml:8
 #: simulation/templates/units/brit_hero_cunobelin_infantry.xml:8
 msgid "Cunobeline"
-msgstr ""
+msgstr "Cunobelinus"
 
 #: simulation/templates/units/brit_hero_cunobelin.xml:9
 #: simulation/templates/units/brit_hero_cunobelin_infantry.xml:9
 msgid "Cunobelinos"
-msgstr ""
+msgstr "Cunobelinos"
 
-#: simulation/templates/units/brit_infantry_javelinist_b.xml:20
+#: simulation/templates/units/brit_infantry_javelinist_b.xml:19
 #: simulation/templates/units/gaul_infantry_javelinist_b.xml:12
 msgid "Adretos"
-msgstr ""
+msgstr "Adretus"
 
-#: simulation/templates/units/brit_infantry_slinger_b.xml:13
+#: simulation/templates/units/brit_infantry_slinger_b.xml:12
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:12
 msgid "Celtic Slinger"
 msgstr "Celtycki procarz"
 
-#: simulation/templates/units/brit_infantry_slinger_b.xml:14
+#: simulation/templates/units/brit_infantry_slinger_b.xml:13
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:13
 msgid "Talmoris"
-msgstr ""
+msgstr "Talmoris"
 
-#: simulation/templates/units/brit_infantry_spearman_b.xml:13
+#: simulation/templates/units/brit_infantry_spearman_b.xml:12
 msgid "Celtic Spearman"
 msgstr "Celtycki włócznik"
 
-#: simulation/templates/units/brit_infantry_spearman_b.xml:14
+#: simulation/templates/units/brit_infantry_spearman_b.xml:13
 #: simulation/templates/units/gaul_infantry_spearman_b.xml:12
 msgid "Catucos"
-msgstr ""
+msgstr "Catucos"
 
 #: simulation/templates/units/brit_ship_fishing.xml:5
 #: simulation/templates/units/gaul_ship_fishing.xml:5
 msgid "Longos"
-msgstr ""
+msgstr "Longos"
 
 #: simulation/templates/units/brit_ship_merchant.xml:9
 #: simulation/templates/units/gaul_ship_merchant.xml:9
 msgid "Nauson"
-msgstr ""
+msgstr "Nauson"
 
 #: simulation/templates/units/brit_ship_trireme.xml:18
 #: simulation/templates/units/gaul_ship_trireme.xml:18
 msgid "Pontos"
-msgstr ""
+msgstr "Pontos"
 
 #: simulation/templates/units/brit_siege_ram.xml:9
 #: simulation/templates/units/gaul_siege_ram.xml:9
 msgid "Molton"
-msgstr ""
+msgstr "Molton"
 
-#: simulation/templates/units/brit_support_female_citizen.xml:11
+#: simulation/templates/units/brit_support_female_citizen.xml:10
 #: simulation/templates/units/gaul_support_female_citizen.xml:10
 msgid "Celtic Woman"
 msgstr "Celtka"
 
-#: simulation/templates/units/brit_support_female_citizen.xml:12
+#: simulation/templates/units/brit_support_female_citizen.xml:11
 #: simulation/templates/units/gaul_support_female_citizen.xml:11
 msgid "Bena"
-msgstr ""
+msgstr "Bena"
 
 #: simulation/templates/units/brit_support_healer_b.xml:6
 #: simulation/templates/units/brit_support_healer_b.xml:7
@@ -1140,11 +1141,11 @@ msgstr "Druid"
 #: simulation/templates/units/brit_support_trader.xml:9
 #: simulation/templates/units/gaul_support_trader.xml:9
 msgid "Uogition"
-msgstr ""
+msgstr "Uogition"
 
 #: simulation/templates/units/brit_war_dog_b.xml:6
 msgid "Agrocuna"
-msgstr ""
+msgstr "Agrocuna"
 
 #: simulation/templates/units/cart_catafalque.xml:8
 msgid "Hasdrubal (Quartermaster)"
@@ -1268,7 +1269,7 @@ msgid "Sǝḫīr Ḥanīt"
 msgstr "Sǝḫīr Ḥanīt"
 
 #: simulation/templates/units/cart_infantry_swordsman_gaul_b.xml:22
-#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:22
+#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:21
 msgid "Gallic Mercenary Swordsman"
 msgstr "Najemny szermierz galijski"
 
@@ -1344,7 +1345,7 @@ msgstr "Szlachetna konnica galijska"
 
 #: simulation/templates/units/gaul_champion_cavalry.xml:6
 msgid "Uerouicos"
-msgstr ""
+msgstr "Uerouicos"
 
 #: simulation/templates/units/gaul_champion_fanatic.xml:16
 msgid "Naked Fanatic"
@@ -1352,15 +1353,15 @@ msgstr "Nagi fanatyk"
 
 #: simulation/templates/units/gaul_champion_fanatic.xml:17
 msgid "Bariogaisatos"
-msgstr ""
+msgstr "Bariogaisatos"
 
 #: simulation/templates/units/gaul_champion_infantry.xml:5
 msgid "Gallic Champion"
-msgstr ""
+msgstr "Galijski czempion"
 
 #: simulation/templates/units/gaul_champion_infantry.xml:6
 msgid "Soliduros"
-msgstr ""
+msgstr "Soliduros"
 
 #: simulation/templates/units/gaul_hero_brennus.xml:8
 msgid "Brennus"
@@ -1378,7 +1379,7 @@ msgstr "Wercyngetoryks"
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:9
 #: simulation/templates/units/gaul_hero_vercingetorix_infantry.xml:9
 msgid "Uercingetorix"
-msgstr ""
+msgstr "Wercyngetoryks"
 
 #: simulation/templates/units/gaul_hero_viridomarus.xml:8
 msgid "Viridomarus"
@@ -1386,7 +1387,7 @@ msgstr "Viridomarus"
 
 #: simulation/templates/units/gaul_hero_viridomarus.xml:9
 msgid "Britomaros"
-msgstr ""
+msgstr "Britomaros"
 
 #: simulation/templates/units/iber_catafalque.xml:9
 msgid "Mandonius"
@@ -1524,7 +1525,7 @@ msgstr "Szlachetna kawaleria"
 
 #: simulation/templates/units/kush_champion_cavalry.xml:6
 msgid "Htr Msʿ n mh-ib"
-msgstr ""
+msgstr "Htr Msʿ n mh-ib"
 
 #: simulation/templates/units/kush_champion_elephant.xml:5
 msgid "Meroitic War Elephant"
@@ -1532,7 +1533,7 @@ msgstr "Meroicki słoń bojowy"
 
 #: simulation/templates/units/kush_champion_elephant.xml:6
 msgid "Abore ʿhȝ"
-msgstr ""
+msgstr "Abore ʿhȝ"
 
 #: simulation/templates/units/kush_champion_infantry.xml:5
 msgid "Noble Archer"
@@ -1548,7 +1549,7 @@ msgstr "Napatańska strażniczka świątyni"
 
 #: simulation/templates/units/kush_champion_infantry_amun.xml:7
 msgid "rs ʿImn"
-msgstr ""
+msgstr "rs ʿImn"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:20
 msgid "Axeman"
@@ -1560,19 +1561,19 @@ msgstr "Meroicki strażnik świątyni"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:22
 msgid "rs ʿIprmk"
-msgstr ""
+msgstr "rs ʿIprmk"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:23
 msgid "Armor-piercing Axes: Counters 1.3x vs. Champions and Heroes."
 msgstr "Przeciwpancerne topory: Licznik 1.3x vs. Czempionom i Bohaterom"
 
 #: simulation/templates/units/kush_hero_amanirenas.xml:8
-#: simulation/templates/units/kush_hero_amanirenas_chariot.xml:8
+#: simulation/templates/units/kush_hero_amanirenas_infantry.xml:8
 msgid "Amanirenas"
 msgstr "Królowa Amanirenas"
 
 #: simulation/templates/units/kush_hero_amanirenas.xml:9
-#: simulation/templates/units/kush_hero_amanirenas_chariot.xml:9
+#: simulation/templates/units/kush_hero_amanirenas_infantry.xml:9
 msgid "Amnirense qore li kdwe li"
 msgstr "Amnirense qore li kdwe li"
 
@@ -1626,7 +1627,7 @@ msgstr "Nubijski oszczepnik"
 
 #: simulation/templates/units/kush_infantry_javelinist_merc_b.xml:23
 msgid "nhw ʿhȝw Noba"
-msgstr ""
+msgstr "nhw ʿhȝw Noba"
 
 #: simulation/templates/units/kush_infantry_pikeman_b.xml:15
 msgid "Meroitic Pikeman"
@@ -1634,7 +1635,7 @@ msgstr "Meroicki pikinier"
 
 #: simulation/templates/units/kush_infantry_pikeman_b.xml:16
 msgid "siȝwrd"
-msgstr ""
+msgstr "siȝwrd"
 
 #: simulation/templates/units/kush_infantry_spearman_b.xml:15
 msgid "Nubian Spearman"
@@ -1654,7 +1655,7 @@ msgstr "knw hps"
 
 #: simulation/templates/units/kush_ship_fishing.xml:6
 msgid "Whʿ-rmw"
-msgstr ""
+msgstr "Whʿ-rmw"
 
 #: simulation/templates/units/kush_ship_merchant.xml:9
 msgid "Nile Trading Barge"
@@ -1662,7 +1663,7 @@ msgstr "Nilowa barka handlowa"
 
 #: simulation/templates/units/kush_ship_merchant.xml:10
 msgid "Dȝy sbt"
-msgstr ""
+msgstr "Dȝy sbt"
 
 #: simulation/templates/units/kush_ship_trireme.xml:12
 msgid "Ptolemaic Mercenary Trireme"
@@ -1670,7 +1671,7 @@ msgstr "Ptolemejska najemna triera"
 
 #: simulation/templates/units/kush_ship_trireme.xml:13
 msgid "shry ʿȝ"
-msgstr ""
+msgstr "shry ʿȝ"
 
 #: simulation/templates/units/kush_siege_tower.xml:5
 msgid "Kushite Siege Tower"
@@ -1694,7 +1695,7 @@ msgstr "Kapłan"
 
 #: simulation/templates/units/kush_support_healer_b.xml:7
 msgid "wʿb nsw"
-msgstr ""
+msgstr "wʿb nsw"
 
 #: simulation/templates/units/kush_support_trader.xml:5
 msgid "Nilotic Merchant"
@@ -2074,13 +2075,13 @@ msgstr "Arštibara"
 msgid "Artaxšaçā"
 msgstr "Artaxšaçā"
 
-#: simulation/templates/units/pers_cavalry_archer_b.xml:12
-msgid "Babylonian Scythed Chariot"
-msgstr "Babiloński rydwan z kosami"
+#: simulation/templates/units/pers_cavalry_archer_b.xml:8
+msgid "Parthian Horse Archer"
+msgstr "Partyjski łucznik konny"
 
-#: simulation/templates/units/pers_cavalry_archer_b.xml:13
-msgid "Raθa Bābiruviya"
-msgstr "Raθa Bābiruviya"
+#: simulation/templates/units/pers_cavalry_archer_b.xml:9
+msgid "Asabāra Parθava"
+msgstr "Asabāra Parθava"
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:7
 msgid "Median Light Cavalry"
@@ -2130,6 +2131,14 @@ msgstr "Perski nieśmiertelny"
 #: simulation/templates/units/pers_champion_infantry.xml:8
 msgid "Anušiya"
 msgstr "Anušiya"
+
+#: simulation/templates/units/pers_chariot.xml:11
+msgid "Babylonian Scythed Chariot"
+msgstr "Babiloński rydwan z kosami"
+
+#: simulation/templates/units/pers_chariot.xml:12
+msgid "Raθa Bābiruviya"
+msgstr "Raθa Bābiruviya"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:9
 msgid "Cyrus II The Great"
@@ -2363,39 +2372,39 @@ msgstr "Najemny łucznik nubijski"
 msgid "Kousít Misthophóros Toxótēs"
 msgstr "Kousít Misthophóros Toxótēs"
 
-#: simulation/templates/units/ptol_infantry_javelinist_b.xml:21
+#: simulation/templates/units/ptol_infantry_javelinist_b.xml:20
 msgid "Mercenary Thureos Skirmisher"
 msgstr "Najemny oszczepnik z tyreos"
 
-#: simulation/templates/units/ptol_infantry_javelinist_b.xml:22
+#: simulation/templates/units/ptol_infantry_javelinist_b.xml:21
 msgid "Thureophóros Akrobolistḗs"
 msgstr "Thureophóros Akrobolistḗs"
 
-#: simulation/templates/units/ptol_infantry_pikeman_b.xml:14
+#: simulation/templates/units/ptol_infantry_pikeman_b.xml:13
 msgid "Egyptian Pikeman"
 msgstr "Egipski falangita"
 
-#: simulation/templates/units/ptol_infantry_pikeman_b.xml:15
+#: simulation/templates/units/ptol_infantry_pikeman_b.xml:14
 msgid "Phalaggomákhimos"
 msgstr "Phalaggomákhimos"
 
-#: simulation/templates/units/ptol_infantry_slinger_b.xml:14
+#: simulation/templates/units/ptol_infantry_slinger_b.xml:13
 msgid "Judean Slinger"
 msgstr "Hebrajski procarz"
 
-#: simulation/templates/units/ptol_infantry_slinger_b.xml:15
+#: simulation/templates/units/ptol_infantry_slinger_b.xml:14
 msgid "Hebraikós Sphendonḗtēs"
 msgstr "Hebraikós Sphendonḗtēs"
 
-#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:21
+#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:20
 msgid "Mercenary Thureos Spearman"
 msgstr "Najemny włócznik z tyreos"
 
-#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:22
+#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:21
 msgid "Thureophóros Misthophóros"
 msgstr "Thureophóros Misthophóros"
 
-#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:23
+#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:22
 msgid "Gallikós Mistophorós"
 msgstr "Gallikós Mistophorós"
 
@@ -2703,43 +2712,43 @@ msgstr "Seleukos I Nikator"
 msgid "Seleukos A' Nikatōr"
 msgstr "Seleukos A' Nikatōr"
 
-#: simulation/templates/units/sele_infantry_archer_merc_b.xml:21
+#: simulation/templates/units/sele_infantry_archer_merc_b.xml:20
 msgid "Syrian Archer"
 msgstr "Syryjski łucznik"
 
-#: simulation/templates/units/sele_infantry_archer_merc_b.xml:22
+#: simulation/templates/units/sele_infantry_archer_merc_b.xml:21
 msgid "Toxótēs Syrías"
 msgstr "Toxótēs Syrías"
 
-#: simulation/templates/units/sele_infantry_javelinist_b.xml:14
+#: simulation/templates/units/sele_infantry_javelinist_b.xml:13
 msgid "Arab Javelineer"
 msgstr "Arabski oszczepnik"
 
-#: simulation/templates/units/sele_infantry_javelinist_b.xml:15
+#: simulation/templates/units/sele_infantry_javelinist_b.xml:14
 msgid "Pezakontistès Aravikós"
 msgstr "Pezakontistès Aravikós"
 
-#: simulation/templates/units/sele_infantry_pikeman_b.xml:14
+#: simulation/templates/units/sele_infantry_pikeman_b.xml:13
 msgid "Bronze Shield Pikeman"
 msgstr "Falangita Brązowej Tarczy"
 
-#: simulation/templates/units/sele_infantry_pikeman_b.xml:15
+#: simulation/templates/units/sele_infantry_pikeman_b.xml:14
 msgid "Chalkaspides"
 msgstr "Chalkaspides"
 
-#: simulation/templates/units/sele_infantry_spearman_b.xml:14
+#: simulation/templates/units/sele_infantry_spearman_b.xml:13
 msgid "Militia Thureos Spearman"
 msgstr "Włócznik z tyreos"
 
-#: simulation/templates/units/sele_infantry_spearman_b.xml:15
+#: simulation/templates/units/sele_infantry_spearman_b.xml:14
 msgid "Thureophóros Politès"
 msgstr "Thureophóros Politès"
 
-#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:21
+#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:20
 msgid "Thracian Mercenary Swordsman"
 msgstr "Tracki wojownik najemny"
 
-#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:22
+#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:21
 msgid "Rhomphaiaphoros Thrakikós"
 msgstr "Rhomphaiaphoros Thrakikós"
 
