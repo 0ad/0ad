@@ -2084,6 +2084,17 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"CHASING": {
+				"Order.MoveToChasingPoint": function(msg) {
+					if (this.CheckPointRangeExplicit(msg.data.x, msg.data.z, 0, msg.data.max))
+					{
+						this.StopMoving();
+						this.FinishOrder();
+						return;
+					}
+					this.order.data.relaxed = true;
+					this.StopTimer();
+					this.SetNextState("MOVINGTOPOINT");
+				},
 				"enter": function() {
 					if (!this.MoveToTargetAttackRange(this.order.data.target, this.order.data.attackType))
 					{
@@ -2096,10 +2107,8 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					var cmpUnitAI = Engine.QueryInterface(this.order.data.target, IID_UnitAI);
 					if (cmpUnitAI && cmpUnitAI.IsFleeing())
-					{
-						// Run after a fleeing target
 						this.SetSpeedMultiplier(this.GetRunMultiplier());
-					}
+
 					this.StartTimer(1000, 1000);
 					return false;
 				},
@@ -2121,9 +2130,42 @@ UnitAI.prototype.UnitFsmSpec = {
 						if (this.GetStance().respondHoldGround)
 							this.WalkToHeldPosition();
 					}
+					else
+					{
+						this.RememberTargetPosition();
+						if (this.order.data.hunting && this.orderQueue.length > 1 &&
+						     this.orderQueue[1].type === "Gather")
+							this.RememberTargetPosition(this.orderQueue[1].data);
+					}
 				},
 
 				"MovementUpdate": function(msg) {
+					if (msg.likelyFailure)
+					{
+						// This also handles hunting.
+						if (this.orderQueue.length > 1)
+						{
+							this.FinishOrder();
+							return;
+						}
+						else if (!this.order.data.force)
+						{
+							this.SetNextState("COMBAT.FINDINGNEWTARGET");
+							return;
+						}
+						else if (this.order.data.lastPos)
+						{
+							let lastPos = this.order.data.lastPos;
+							let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+							this.PushOrder("MoveToChasingPoint", {
+								"x": lastPos.x,
+								"z": lastPos.z,
+								"max": cmpAttack.GetRange(this.order.data.attackType).max,
+								"force": true
+							});
+							return;
+						}
+					}
 					if (this.CheckTargetAttackRange(this.order.data.target, this.order.data.attackType))
 					{
 						// If the unit needs to unpack, do so
@@ -2139,6 +2181,27 @@ UnitAI.prototype.UnitFsmSpec = {
 						// attack range uses a height-related formula and our actual max range might have changed.
 						if (!this.MoveToTargetAttackRange(this.order.data.target, this.order.data.attackType))
 							this.FinishOrder();
+				},
+				"MOVINGTOPOINT": {
+					"enter": function() {
+						if (!this.MoveTo(this.order.data))
+						{
+							this.FinishOrder();
+							return true;
+						}
+						return false;
+					},
+					"leave": function() {
+						this.StopMoving();
+					},
+					"MovementUpdate": function(msg) {
+						// If it looks like the path is failing, and we are close enough (3 tiles) from wanted range
+						// stop anyways. This avoids pathing for an unreachable goal and reduces lag considerably.
+						if (msg.likelyFailure || 
+							msg.obstructed && this.RelaxedMaxRangeCheck(this.order.data, this.order.data.max + this.DefaultRelaxedMaxRange) ||
+							!msg.obstructed && this.CheckRange(this.order.data))
+							this.FinishOrder();
+					},
 				},
 			},
 		},
