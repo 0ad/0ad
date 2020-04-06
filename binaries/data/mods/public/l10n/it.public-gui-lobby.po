@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Andrea D'Annibale <andreadannibale87@gmail.com>, 2020
 # Christian Bellagamba <christiandes00@gmail.com>, 2017
 # Davide Redana <davide.redana@gmail.com>, 2018
 # SecondCloud500 <eddieven2000@gmail.com>, 2014
@@ -26,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-22 08:08+0000\n"
-"PO-Revision-Date: 2020-02-05 10:49+0000\n"
-"Last-Translator: .\n"
+"PO-Revision-Date: 2020-04-03 11:03+0000\n"
+"Last-Translator: Andrea D'Annibale <andreadannibale87@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,7 +101,7 @@ msgstr "Giocatori: %(current)s/%(total)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:121
 msgid "Victory Conditions:"
-msgstr ""
+msgstr "Condizioni per la vittoria:"
 
 #. Translation: Comma used to concatenate victory conditions
 #: gui/lobby/LobbyPage/GameDetails.js:124
@@ -109,7 +110,7 @@ msgstr ", "
 
 #: gui/lobby/LobbyPage/GameDetails.js:126
 msgid "Mods:"
-msgstr ""
+msgstr "Mods:"
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/LobbyPage/GameDetails.js:129
@@ -132,7 +133,7 @@ msgstr "Dimensione Mappa:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:137
 msgid "Map Description:"
-msgstr ""
+msgstr "Descrizione Mappa:"
 
 #: gui/lobby/LobbyPage/KickStrings.js:39
 msgid "You have been kicked from the lobby!"
@@ -260,7 +261,7 @@ msgstr "Classifica"
 #: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):10
 msgid "Player Profile Lookup"
-msgstr ""
+msgstr "Panoramica Profilo Giocatore"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
 msgctxt "previous page"
@@ -448,7 +449,7 @@ msgstr "== %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
 msgid "Connected."
-msgstr ""
+msgstr "Connesso."
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:56
 msgid "Disconnected."
@@ -457,7 +458,7 @@ msgstr "Disconnesso"
 #. Translation: Caption for system notifications shown in the chat panel
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:25
 msgid "System:"
-msgstr ""
+msgstr "Sistema:"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
 #, javascript-format
@@ -673,7 +674,7 @@ msgstr "Invia"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):14
 msgid "Enter playername:"
-msgstr ""
+msgstr "Inserisci il nome del giocatore:"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):20
 msgid "View Profile"

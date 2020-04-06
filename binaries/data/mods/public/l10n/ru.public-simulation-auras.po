@@ -20,7 +20,7 @@
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016,2018
 # Woratiklis, 2016
 # Дмитрий <polsha_d@mail.ru>, 2016
-# Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018-2019
+# Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018-2020
 # Максим Дронь <dronmax@gmail.com>, 2016
 # Никита Троцюк <trotsyuk2001@gmail.com>, 2020
 # Николай Авдеев <nickkolok@mail.ru>, 2016
@@ -29,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-03-23 08:32+0000\n"
-"PO-Revision-Date: 2020-04-02 05:47+0000\n"
-"Last-Translator: Mikhail Grebelnick <oers92@mail.ru>\n"
+"PO-Revision-Date: 2020-04-05 21:32+0000\n"
+"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -121,7 +121,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
-msgstr ""
+msgstr "Эдикт Ашоки"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
@@ -145,7 +145,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/theater.jsonauraName
 msgid "Hellenization"
-msgstr ""
+msgstr "Эллинизация"
 
 #: simulation/data/auras/structures/theater.jsonauraDescription
 msgid "Structures +20% territory influence radius."
@@ -194,7 +194,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
-msgstr ""
+msgstr "Друиды"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allied Healers −20% resource costs."
@@ -210,7 +210,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
-msgstr ""
+msgstr "Мудрость друидов"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Allied Structures −20% technology research time."
@@ -252,7 +252,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
-msgstr ""
+msgstr "Царская дорога"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Allied Land Traders +15% trade gain."
@@ -268,7 +268,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
-msgstr ""
+msgstr "Воинская повинность"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Infantry −10% training time."
@@ -300,13 +300,13 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
-msgstr ""
+msgstr "Экономические реформы"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraDescription
 msgid ""
 "Solon instituted several economic reforms encouraging commerce and agriculture.\n"
 "Workers +15% gather speed."
-msgstr ""
+msgstr "Солон предложил несколько экономических преобразований, направленных на поддержку торговли и сельского хозяйства.\n+15% к скорости сбора ресурсов работниками."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
@@ -316,12 +316,12 @@ msgstr ""
 msgid ""
 "Solon brought in a new system of weights and measures, fathers were encouraged to find trades for their sons.\n"
 "Economic technologies −10% resource costs."
-msgstr ""
+msgstr "Солон ввёл новую систему мер и весов.\n-10% к стоимости исследования экономических технологий."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraName
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraName
 msgid "Guerrilla Tactics"
-msgstr ""
+msgstr "Партизанская тактика"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraDescription
 msgid ""
@@ -431,7 +431,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_2.jsonauraName
 msgid "Vamba Moriyar"
-msgstr ""
+msgstr "Вамба Морияр"
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_2.jsonauraDescription
 msgid ""
@@ -457,7 +457,7 @@ msgstr ""
 msgid ""
 "Continuing his predecessors' work on the Great Library of Alexandria, he seized every book brought to the city, thus leaving to his people a vast amount of hoarded wisdom.\n"
 "Structure technologies −10% resource costs."
-msgstr ""
+msgstr "Продолжая работу своих предшественников в Великой Александрийской библиотеке, он захватил каждую книгу, привезенную в город, тем самым оставляя своим людям огромное количество накопленной мудрости.\n-10% к стоимости исследования технологий строительства."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraName
 msgid "Avenger of Lucretia"
@@ -481,7 +481,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraName
 msgid "Founder of the Ezida Temple"
-msgstr ""
+msgstr "Основатель храма Изиды"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraDescription
 msgid ""
@@ -753,7 +753,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
-msgstr ""
+msgstr "Спаситель Куша"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraDescription
 msgid "Soldiers +10 melee and ranged attack damage, gain +50% resource loot."
@@ -769,7 +769,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
 msgid "Imperialism"
-msgstr ""
+msgstr "Империализм"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraDescription
 msgid "Structures +10% territory influence radius."
@@ -777,7 +777,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraName
 msgid "Conqueror"
-msgstr ""
+msgstr "Завоеватель"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
@@ -826,7 +826,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
-msgstr ""
+msgstr "Учитель"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
 msgid ""
@@ -849,7 +849,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
 msgid "Leadership"
-msgstr ""
+msgstr "Лидерство"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
 msgid ""
@@ -858,7 +858,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
-msgstr ""
+msgstr "Управляющий"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraDescription
 msgid "Workers +15% build rate and gather speed."
@@ -866,7 +866,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot"
-msgstr ""
+msgstr "Патриот"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraDescription
 msgid "Soldiers and Siege Engines −20% melee and ranged attack repeat time."
@@ -875,7 +875,7 @@ msgstr ""
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraName
 msgid "Consort"
-msgstr ""
+msgstr "Консорт"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraDescription
 msgid "Allied Heroes +10% health."
@@ -887,7 +887,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia"
-msgstr ""
+msgstr "Рафия"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Pikemen +40% health."
@@ -932,7 +932,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
 msgid "Triumph"
-msgstr ""
+msgstr "Триумф"
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraDescription
 msgid ""
