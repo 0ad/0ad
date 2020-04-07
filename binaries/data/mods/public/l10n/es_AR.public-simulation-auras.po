@@ -5,7 +5,7 @@
 # Translators:
 # Auka Raiken, 2017
 # Axel Chicahuala Fereyra <axchfe@gmail.com>, 2016
-# Facundo Abiega <abiegafacundo@gmail.com>, 2018
+# Facundo Abiega <abiegafacundo@gmail.com>, 2018,2020
 # Facundo Decena <facundo.decena@gmail.com>, 2019
 # Franco Falleti <ezefran256@gmail.com>, 2016-2017
 # Iván Pstyga <ivanpstyga@gmail.com>, 2017
@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-03-23 08:32+0000\n"
-"PO-Revision-Date: 2020-03-23 12:13+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-04-05 07:06+0000\n"
+"Last-Translator: Facundo Abiega <abiegafacundo@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,11 +28,11 @@ msgstr ""
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
 msgid "Rigorous Training"
-msgstr ""
+msgstr "Entrenamiento riguroso"
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned in barracks."
-msgstr ""
+msgstr "Las unidades adquieren experiencia cuando están guarecidas en el cuartel."
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
@@ -40,7 +40,7 @@ msgstr "Reparaciones del Astillero"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr ""
+msgstr "Las embarcaciones guarecidas obtienen +10 en la tasa de regeneración de salud."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -48,7 +48,7 @@ msgstr "Bendiciones de los Dioses"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Humans +3 health regeneration rate."
-msgstr ""
+msgstr "Los humanos obtienen +3 en la tasa de regeneración de salud."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -56,7 +56,7 @@ msgstr "Fervor Religioso"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr ""
+msgstr "Los soldados ganan +20 % de daño en ataque cuerpo a cuerpo y a distancia. "
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -65,7 +65,7 @@ msgstr "Patriotismo"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr ""
+msgstr "Los trabajadores obtienen +15 % de velocidad de recolección."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -73,7 +73,7 @@ msgstr "Presencia Exhortativa."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers +10% melee and ranged attack damage."
-msgstr ""
+msgstr "Los soldados ganan +10 % de daño en ataque cuerpo a cuerpo y a distancia. "
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
@@ -81,7 +81,7 @@ msgstr "Pirámides Meroíticas"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
 msgid "Civic Centers +10% territory influence radius."
-msgstr ""
+msgstr "Los Centros Cívicos tienen +10 % de influencia sobre el territorio. "
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -89,7 +89,7 @@ msgstr "Sacerdocio Poderoso"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
-msgstr ""
+msgstr "Los Héroes pierden -5 % de salud."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"

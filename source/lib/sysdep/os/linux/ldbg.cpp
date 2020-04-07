@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -32,6 +32,10 @@
 
 #include "lib/sysdep/sysdep.h"
 #include "lib/debug.h"
+
+#include <algorithm>
+#include <cstring>
+#include <sys/syscall.h>
 
 #if OS_ANDROID
 
@@ -147,7 +151,30 @@ Status debug_ResolveSymbol(void* ptr_of_interest, wchar_t* sym_name, wchar_t* fi
 
 #endif
 
-void debug_SetThreadName(char const* UNUSED(name))
+/* This is basically a reimplementation of the pthread_setname_np() glibc
+ * function, to make it work on every Linux distribution, no matter the libc
+ * used.
+ *
+ * The thread name limit is 16 (including the terminating null byte) on Linux,
+ * so we have to cut the provided name at 15 bytes.
+ *
+ * This API exists since Linux 2.6.33, on older kernels the user will just not
+ * get thread names.
+ */
+void debug_SetThreadName(const char* name)
 {
-    // Currently unimplemented
+	constexpr size_t MAX_THREAD_NAME_LEN = 15;
+	constexpr size_t MAX_FILE_PATH_LEN = 32;
+
+	char pathname[MAX_FILE_PATH_LEN];
+	pid_t tid = syscall(SYS_gettid);
+	snprintf(pathname, MAX_FILE_PATH_LEN, "/proc/self/task/%d/comm", tid);
+
+	FILE* comm = fopen(pathname, "w");
+	if (!comm)
+		return;
+
+	std::string limited_name(name, std::min(strlen(name), MAX_THREAD_NAME_LEN));
+	fputs(limited_name.c_str(), comm);
+	fclose(comm);
 }

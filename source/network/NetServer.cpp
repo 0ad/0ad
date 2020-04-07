@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -218,6 +218,8 @@ bool CNetServerWorker::SetupConnection(const u16 port)
 #if CONFIG2_MINIUPNPC
 void CNetServerWorker::SetupUPnP()
 {
+	debug_SetThreadName("UPnP");
+
 	// Values we want to set.
 	char psPort[6];
 	sprintf_s(psPort, ARRAY_SIZE(psPort), "%d", PS_DEFAULT_PORT);
