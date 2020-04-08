@@ -749,15 +749,14 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"Order.Attack": function(msg) {
-			var target = msg.data.target;
-			var allowCapture = msg.data.allowCapture;
-			var cmpTargetUnitAI = Engine.QueryInterface(target, IID_UnitAI);
+			let target = msg.data.target;
+			let allowCapture = msg.data.allowCapture;
+			let cmpTargetUnitAI = Engine.QueryInterface(target, IID_UnitAI);
 			if (cmpTargetUnitAI && cmpTargetUnitAI.IsFormationMember())
 				target = cmpTargetUnitAI.GetFormationController();
 
-			var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 			// Check if we are already in range, otherwise walk there
-			if (!this.CheckTargetAttackRange(target, target))
+			if (!this.CheckFormationTargetAttackRange(target))
 			{
 				if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
 				{
@@ -768,7 +767,8 @@ UnitAI.prototype.UnitFsmSpec = {
 				return;
 			}
 			this.CallMemberFunction("Attack", [target, allowCapture, false]);
-			if (cmpAttack.CanAttackAsFormation())
+			let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+			if (cmpAttack && cmpAttack.CanAttackAsFormation())
 				this.SetNextState("COMBAT.ATTACKING");
 			else
 				this.SetNextState("MEMBER");
@@ -1143,7 +1143,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		"COMBAT": {
 			"APPROACHING": {
 				"enter": function() {
-					if (!this.MoveTo(this.order.data))
+					if (!this.MoveFormationToTargetAttackRange(this.order.data.target))
 					{
 						this.FinishOrder();
 						return true;
@@ -1171,10 +1171,10 @@ UnitAI.prototype.UnitFsmSpec = {
 			"ATTACKING": {
 				// Wait for individual members to finish
 				"enter": function(msg) {
-					var target = this.order.data.target;
-					var allowCapture = this.order.data.allowCapture;
+					let target = this.order.data.target;
+					let allowCapture = this.order.data.allowCapture;
 					// Check if we are already in range, otherwise walk there
-					if (!this.CheckTargetAttackRange(target, target))
+					if (!this.CheckFormationTargetAttackRange(target))
 					{
 						if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
 						{
@@ -1186,7 +1186,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						return true;
 					}
 
-					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+					let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 					// TODO fix the rearranging while attacking as formation
 					cmpFormation.SetRearrange(!this.IsAttackingAsFormation());
 					cmpFormation.MoveMembersIntoFormation(false, false, "combat");
@@ -1195,10 +1195,10 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"Timer": function(msg) {
-					var target = this.order.data.target;
-					var allowCapture = this.order.data.allowCapture;
+					let target = this.order.data.target;
+					let allowCapture = this.order.data.allowCapture;
 					// Check if we are already in range, otherwise walk there
-					if (!this.CheckTargetAttackRange(target, target))
+					if (!this.CheckFormationTargetAttackRange(target))
 					{
 						if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
 						{
@@ -4591,6 +4591,30 @@ UnitAI.prototype.MoveToTargetRangeExplicit = function(target, min, max)
 	return cmpUnitMotion && cmpUnitMotion.MoveToTargetRange(target, min, max);
 };
 
+/**
+ * Move unit so we hope the target is in the attack range of the formation.
+ *
+ * @param {number} target - The target entity ID to attack.
+ * @return {boolean} - Whether the order to move has succeeded.
+ */
+UnitAI.prototype.MoveFormationToTargetAttackRange = function(target)
+{
+	let cmpTargetFormation = Engine.QueryInterface(target, IID_Formation);
+	if (cmpTargetFormation)
+		target = cmpTargetFormation.GetClosestMember(this.entity);
+
+	if (!this.CheckTargetVisible(target) || this.IsTurret())
+		return false;
+
+	let cmpFormationAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	if (!cmpFormationAttack)
+		return false;
+	let range = cmpFormationAttack.GetRange(target);
+
+	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion && cmpUnitMotion.MoveToTargetRange(target, range.min, range.max);
+};
+
 UnitAI.prototype.MoveToGarrisonRange = function(target)
 {
 	if (!this.CheckTargetVisible(target))
@@ -4697,6 +4721,27 @@ UnitAI.prototype.CheckTargetRangeExplicit = function(target, min, max)
 {
 	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
 	return cmpObstructionManager.IsInTargetRange(this.entity, target, min, max, false);
+};
+
+/**
+ * Check if the target is inside the attack range of the formation.
+ *
+ * @param {number} target - The target entity ID to attack.
+ * @return {boolean} - Whether the entity is within attacking distance.
+ */
+UnitAI.prototype.CheckFormationTargetAttackRange = function(target)
+{
+	let cmpTargetFormation = Engine.QueryInterface(target, IID_Formation);
+	if (cmpTargetFormation)
+		target = cmpTargetFormation.GetClosestMember(this.entity);
+
+	let cmpFormationAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	if (!cmpFormationAttack)
+		return false;
+	let range = cmpFormationAttack.GetRange(target);
+
+	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, range.max, false);
 };
 
 UnitAI.prototype.CheckGarrisonRange = function(target)
