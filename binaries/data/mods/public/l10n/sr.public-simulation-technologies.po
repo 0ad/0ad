@@ -6,13 +6,14 @@
 # Aca G. <martel.gilgames@gmail.com>, 2016
 # acac97 <aleksandar.cvetic97@gmail.com>, 2014,2017
 # Damjan Obradović <damjanobradovic@hotmail.com>, 2016
+# Dusan Resin <dusan.s.resin@gmail.com>, 2020
 # MIlosSD <pirisd@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-03-23 08:32+0000\n"
-"PO-Revision-Date: 2020-03-23 09:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-04-08 16:00+0000\n"
+"Last-Translator: Dusan Resin <dusan.s.resin@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +27,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Јединице унапређене у напредне класе добијају многе квалитете: 20% додатног здравља, 1 додатни ниво оклопа сваког типа, 20% додатног плена, 20% додатног напада прса у прса за јединице, 4м додатног домета и бољу прецизност за далекометне јединице, веће брзине кретања и додатну брзину лечења и домет за исцелитеље. "
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -744,7 +745,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Јединице унапређене у елитне класе добијају многе квалитете: 20% додатног здравља, 1 додатни ниво оклопа сваког типа, 20% додатног плена, 20% додатног напада прса у прса за јединице, 4м додатног домета и бољу прецизност за далекометне јединице, веће брзине кретања и додатну брзину лечења и домет за исцелитеље. "
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -816,7 +817,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% grain gather rate."
-msgstr ""
+msgstr "Радници +25% стопа сакупљања жита."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -1008,12 +1009,12 @@ msgstr "Здравље"
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing and vision range of all healers."
-msgstr ""
+msgstr "Увећава домет лечења и вида свих исцелитеља."
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +5 Healing and Vision Range."
-msgstr ""
+msgstr "Исцелитељи +5% домет лечења и вида."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
@@ -1038,12 +1039,12 @@ msgstr "Akadḗmeia"
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
 msgid "Increases the Healing Rate of all healers."
-msgstr ""
+msgstr "Увећава стопу лечења свих исцелитеља."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers +25% healing rate."
-msgstr ""
+msgstr "Исцелитељи +25% стопа лечења."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -2465,7 +2466,7 @@ msgstr ""
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
-msgstr ""
+msgstr "Обучавај елитне чинове исцелитеља."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
