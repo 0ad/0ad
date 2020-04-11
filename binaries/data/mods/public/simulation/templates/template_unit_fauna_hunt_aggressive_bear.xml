@@ -3,17 +3,17 @@
   <Attack>
     <Melee>
       <Damage>
-        <Hack>20.0</Hack>
-        <Pierce>0.0</Pierce>
-        <Crush>20.0</Crush>
+        <Hack>20</Hack>
+        <Pierce>0</Pierce>
+        <Crush>20</Crush>
       </Damage>
-      <MaxRange>6.0</MaxRange>
+      <MaxRange>6</MaxRange>
       <RepeatTime>2000</RepeatTime>
     </Melee>
   </Attack>
   <Footprint>
-    <Square width="2.0" depth="4.0"/>
-    <Height>2.0</Height>
+    <Square width="2" depth="4"/>
+    <Height>2</Height>
   </Footprint>
   <Position>
     <Anchor>pitch</Anchor>

@@ -11,7 +11,7 @@ const tGrassPatch = ["alpine_grass_a", "alpine_grass_b"];
 
 const oBoar = "gaia/fauna_boar";
 const oDeer = "gaia/fauna_deer";
-const oBear = "gaia/fauna_bear";
+const oBear = "gaia/fauna_bear_brown";
 const oPig = "gaia/fauna_pig";
 const oBerryBush = "gaia/flora_bush_berry";
 const oMetalSmall = "gaia/geology_metal_alpine";
