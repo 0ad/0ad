@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-07 08:09+0000\n"
-"PO-Revision-Date: 2020-02-07 15:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-04-06 18:08+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -896,12 +896,12 @@ msgstr "Όχι"
 #: gui/common/tooltips.js:395
 #, javascript-format
 msgid "%(interval)s"
-msgstr ""
+msgstr "%(interval)s"
 
 #: gui/common/tooltips.js:404
 #, javascript-format
 msgid "%(durName)s: %(duration)s"
-msgstr ""
+msgstr "%(durName)s: %(duration)s"
 
 #: gui/common/tooltips.js:405
 msgid "Duration"
@@ -910,7 +910,7 @@ msgstr "Διάρκεια"
 #: gui/common/tooltips.js:410
 #, javascript-format
 msgid "%(statusName)s: "
-msgstr ""
+msgstr "%(statusName)s: "
 
 #: gui/common/tooltips.js:425
 #, javascript-format
@@ -1336,7 +1336,7 @@ msgstr "Ιστορία"
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Μάθε για τους πολιτισμούς που εμφανίζονται στο 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:142
 msgid "Single-player"
@@ -1352,7 +1352,7 @@ msgstr "Αναμετρήσεις"
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "Εκκίνηση ενός νέου παιχνιδιού για έναν παίκτη."
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Campaigns"
@@ -1366,7 +1366,7 @@ msgstr "Αναβιώστε την Ιστορία μέσω ιστορικών π�
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Load a saved game."
-msgstr ""
+msgstr "Φόρτωση αποθηκευμένου παιχνιδιού."
 
 #: gui/pregame/MainMenuItems.js:73 gui/pregame/MainMenuItems.js:123
 msgid "Replays"
@@ -1498,7 +1498,7 @@ msgstr "Έξοδος"
 
 #: gui/pregame/MainMenuItems.js:201
 msgid "Exit the game."
-msgstr ""
+msgstr "Έξοδος από το παιχνίδι."
 
 #: gui/pregame/MainMenuItems.js:205
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -1974,7 +1974,7 @@ msgstr "Εμπόροι"
 #: gui/summary/layout.js:74
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "Στατιστικά Μονάδας (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):95
 msgid "Resources"
@@ -2618,7 +2618,7 @@ msgstr "Πώς θέλετε να αντιμετωπιστούν οι αγώνε�
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "Όνομα παίχτη (Παιχνίδι για έναν παίχτη)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
@@ -2652,7 +2652,7 @@ msgstr "Εμφανίζει ποιοι παίχτες έχουν κακή σύν�
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network warnings"
-msgstr ""
+msgstr "Προειδοποιήσεις δικτύου"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2660,7 +2660,7 @@ msgstr "Δείτε τα καρέ ανά δευτερόλεπτο στην πάν
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS overlay"
-msgstr ""
+msgstr "Εμφάνιση Ρυθμού Καρέ Ανά Δευτερόλεπτο (FPS)"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -2759,7 +2759,7 @@ msgstr "Ομίχλη"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Χρήση προεπεξεργασμένων screen-space φίλτρων (HDR, Bloom, DOF, κλπ)."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
@@ -2846,7 +2846,7 @@ msgstr "Εμφάνιση του περιγράμματος των μονάδων
 
 #: gui/options/options.json[1].options[9].label
 msgid "Unit silhouettes"
-msgstr ""
+msgstr "Σκιαγραφία μονάδων"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid "Enable particles."
@@ -2966,7 +2966,7 @@ msgstr "Ένταση κεντρικού ήχου."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master volume"
-msgstr ""
+msgstr "Γενική ένταση"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
@@ -2998,7 +2998,7 @@ msgstr "Ένταση ήχου διεπαφής χρήστη."
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI volume"
-msgstr ""
+msgstr "Ένταση διεπαφής χρήστη"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
@@ -3014,7 +3014,7 @@ msgstr "Λήψη ηχητικής ειδοποίησης όταν ένας νέ�
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game setup - new player notification"
-msgstr ""
+msgstr "Ρύθμιση παιχνιδιού - ειδοποίηση νέου παίκτη"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -3091,7 +3091,7 @@ msgstr "Η προκαθορισμένη συμπεριφορά της Τεχνη
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI behavior"
-msgstr ""
+msgstr "Προκαθορισμένη συμπεριφορά Τεχνητής Νοημοσύνης"
 
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
@@ -3128,7 +3128,7 @@ msgstr "Προστάτευσε τα στοιχεία σύνδεσης και τ�
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
-msgstr ""
+msgstr "Κρυπτογράφηση TLS"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
@@ -3146,7 +3146,7 @@ msgstr "Εμφάνιση τη μέση βαθμολογία των συμμετ�
 
 #: gui/options/options.json[4].options[2].label
 msgid "Game rating column"
-msgstr ""
+msgstr "Στήλη βαθμολογίας παιχνιδιού"
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
@@ -3172,7 +3172,7 @@ msgstr "Αριθμός των μονάδων που θα εκπαιδεύοντ�
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch training size"
-msgstr ""
+msgstr "Μέγεθος ομάδας εκπαίδευσης"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
@@ -3181,7 +3181,7 @@ msgstr "Αριθμός φορών που πρέπει να κυλήσεις τη
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
-msgstr ""
+msgstr "Ολισθήριο βαθμού αύξησης ομάδας"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
@@ -3240,7 +3240,7 @@ msgstr "Εμφάνιση του εύρους επίθεσης των επιλε�
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
-msgstr ""
+msgstr "Οπτικοποίηση βεληνεκές επίθεσης"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
@@ -3260,7 +3260,7 @@ msgstr "Εμφάνιση του βεληνεκές της θεραπείας τ�
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
-msgstr ""
+msgstr "Οπτικοποίηση βεληνεκές θεραπείας"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
@@ -3281,11 +3281,11 @@ msgstr "Μπάρα προόδου εμπειρίας"
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr ""
+msgstr "Εμφάνιση λεπτομερών επεξηγήσεων για εκπαιδεύσιμες μονάδες σε κτίρια παραγωγής μονάδων."
 
 #: gui/options/options.json[5].options[12].label
 msgid "Detailed tooltips"
-msgstr ""
+msgstr "Λεπτομερείς επεξηγήσεις"
 
 #: gui/options/options.json[5].options[13].list[0].label
 msgid "Unordered"
@@ -3338,7 +3338,7 @@ msgstr "Χρωματισμός των εχθρών σου όταν είναι ε
 
 #: gui/options/options.json[5].options[17].label
 msgid "Diplomacy colors: enemy"
-msgstr ""
+msgstr "Χρώματα διπλωματίας: Εχθροί"
 
 #: gui/options/options.json[5].options[18].list[0].tooltip
 msgid ""
@@ -3372,7 +3372,7 @@ msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
-msgstr ""
+msgstr "Όταν προσθέτετε μια Μονάδα ή Κτίριο σε μια ομάδα ελέγχου, αφαιρούνται από άλλες ομάδες ελέγχου. Χρησιμοποιήστε αυτήν την επιλογή εάν θέλετε οι ομάδες ελέγχου να αναφέρονται σε συγκεκριμένα στρατεύματα."
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
@@ -3383,7 +3383,7 @@ msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
-msgstr ""
+msgstr "Οι μονάδες και τα Κτίρια μπορούν να είναι μέρος πολλών ομάδων ελέγχου. Αυτό είναι χρήσιμο για να διατηρήσετε ομάδες ελέγχου για διαφορετικά στρατεύματα και μια ομάδα ελέγχου για ολόκληρο τον στρατό ταυτόχρονα."
 
 #: gui/options/options.json[5].options[19].list[1].label
 msgid "Multiple"
@@ -3395,7 +3395,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[19].label
 msgid "Control Group Membership"
-msgstr ""
+msgstr "Μέλος Μονάδας Ελέγχου"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -3807,7 +3807,7 @@ msgstr "ΦΡΟΥΡΙΟ"
 
 #: gui/text/tips/fortress.txt:2
 msgid "The Fortress is usually each faction's strongest structure."
-msgstr ""
+msgstr "Τα Κάστρα είναι συνήθως τα ισχυρότερα κτήρια κάθε φατρίας."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
@@ -3926,7 +3926,7 @@ msgstr "Ο κύριος Αθηναίος πολιτικός του 5ου αιώ�
 
 #: gui/text/tips/pericles.txt:3
 msgid "Structures are built faster within his range."
-msgstr ""
+msgstr "Τα κτίρια κατασκευάζονται γρηγορότερα μέσα στην εμβέλειά του."
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."

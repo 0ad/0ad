@@ -3,8 +3,9 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Ács Zoltán <acszoltan111@gmail.com>, 2020
 # Hammer Andrew <andrewhammer87@gmail.com>, 2017
-# Balázs Meskó <meskobalazs@gmail.com>, 2015-2019
+# Balázs Meskó <mesko.balazs@fsf.hu>, 2015-2019
 # Balázs Úr, 2015-2017
 # Boross Péter <borosspet@web.de>, 2016
 # Gyuris Gellért <bubu@ujevangelizacio.hu>, 2015-2016
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-07 08:09+0000\n"
-"PO-Revision-Date: 2020-02-07 15:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-04-09 19:54+0000\n"
+"Last-Translator: Ács Zoltán <acszoltan111@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1500,7 +1501,7 @@ msgstr "Kilépés"
 
 #: gui/pregame/MainMenuItems.js:201
 msgid "Exit the game."
-msgstr ""
+msgstr "Kilépés a játékból."
 
 #: gui/pregame/MainMenuItems.js:205
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -2654,7 +2655,7 @@ msgstr "Jelenítse meg melyik játékosnak van rossz kapcsolata a többjátékos
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network warnings"
-msgstr ""
+msgstr "Hálózati figyelmeztetések"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2741,7 +2742,7 @@ msgstr "0 A.D. indítása ablakos módban."
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
-msgstr ""
+msgstr "Ablakos mód"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
@@ -2777,7 +2778,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
-msgstr ""
+msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
@@ -2848,7 +2849,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[9].label
 msgid "Unit silhouettes"
-msgstr ""
+msgstr "Egység sziluettek"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid "Enable particles."
@@ -2866,7 +2867,7 @@ msgstr "Ha kikapcsolt, akkor a legalacsonyabb beállítások kerülnek használa
 
 #: gui/options/options.json[1].options[11].label
 msgid "Water effects"
-msgstr ""
+msgstr "Vízeffektek"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid ""
@@ -2876,7 +2877,7 @@ msgstr "Magasabb minőségű effektek használata a víz, a tengerparti hullámo
 
 #: gui/options/options.json[1].options[12].label
 msgid "High-quality water effects"
-msgstr ""
+msgstr "Jó minőségű vízeffektek"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -2884,7 +2885,7 @@ msgstr "Tényleges vízmélység használata renderelési számításoknál."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Real water depth"
-msgstr ""
+msgstr "Tényleges vízmélység"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Allow water to reflect a mirror image."
@@ -2892,7 +2893,7 @@ msgstr "A víz tükörként verheti vissza a képet."
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water reflections"
-msgstr ""
+msgstr "Víz Tükröződése"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Use a real water refraction map and not transparency."
@@ -2900,7 +2901,7 @@ msgstr "Tényleges fénytörés használata víznél a átlátszóság helyett."
 
 #: gui/options/options.json[1].options[15].label
 msgid "Water refraction"
-msgstr ""
+msgstr "Víz fénytörése"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Cast shadows on water."
@@ -2908,7 +2909,7 @@ msgstr "Árnyékok vetése a vízre."
 
 #: gui/options/options.json[1].options[16].label
 msgid "Shadows on water"
-msgstr ""
+msgstr "Árnyékok a vízen"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
@@ -2924,7 +2925,7 @@ msgstr "Ég megjelenítése."
 
 #: gui/options/options.json[1].options[18].label
 msgid "Show sky"
-msgstr ""
+msgstr "Ég megjelenítése"
 
 #: gui/options/options.json[1].options[19].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
@@ -2968,7 +2969,7 @@ msgstr "Fő hangerősítés."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master volume"
-msgstr ""
+msgstr "Fő hangerő"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
@@ -2976,7 +2977,7 @@ msgstr "Játékbeli zene erősítése."
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music volume"
-msgstr ""
+msgstr "Zene hangereje"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
@@ -2984,7 +2985,7 @@ msgstr "Játékbeli környezet hangjainak erősítése."
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient volume"
-msgstr ""
+msgstr "Környezet hangereje"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
@@ -3000,7 +3001,7 @@ msgstr "Kezelőfelület hangjainak erősítése"
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI volume"
-msgstr ""
+msgstr "Felület hangereje"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
@@ -3008,7 +3009,7 @@ msgstr "Értesítő hang lejátszása, ha valaki beírja a beceneved."
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick notification"
-msgstr ""
+msgstr "Becenév értesítés"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -3093,7 +3094,7 @@ msgstr "Az MI alapértelmezett viselkedése."
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI behavior"
-msgstr ""
+msgstr "Alapértelmezett MI viselkedés."
 
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
@@ -3138,7 +3139,7 @@ msgstr "Betöltendő naplózott üzenetek száma a váróhoz csatlakozáskor."
 
 #: gui/options/options.json[4].options[1].label
 msgid "Chat backlog"
-msgstr ""
+msgstr "Csevegésnapló"
 
 #: gui/options/options.json[4].options[2].tooltip
 msgid ""
