@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Mausoleum Chariot Statue">
+      <mesh>props/structural/mausoleum_chariot_gold.dae</mesh>
+      <textures>
+        <texture file="props/quadriga_statue.png" name="baseTex"/>
+        <texture file="props/quadriga_statue_norm.png" name="normTex"/>
+        <texture file="props/quadriga_statue_spec.png" name="specTex"/>
+        <texture file="structural/ao/mausoleum.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

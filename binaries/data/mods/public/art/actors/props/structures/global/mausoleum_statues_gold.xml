@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Mausoleum Chariot Statue">
+      <mesh>props/structural/mausoleum_statues_gold.dae</mesh>
+      <textures>
+        <texture file="props/rome_cc_statues_gold.png" name="baseTex"/>
+        <texture file="structural/ao/mausoleum.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>
