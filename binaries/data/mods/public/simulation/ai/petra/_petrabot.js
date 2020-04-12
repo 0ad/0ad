@@ -136,7 +136,7 @@ PETRA.PetraBot.prototype.Serialize = function()
 		savedEvents[key] = this.savedEvents[key].slice();
 		for (let i in savedEvents[key])
 		{
-			if (!savedEvents[key][i].entityObj)
+			if (!savedEvents[key][i] || !savedEvents[key][i].entityObj)
 				continue;
 			let evt = savedEvents[key][i];
 			let evtmod = {};
