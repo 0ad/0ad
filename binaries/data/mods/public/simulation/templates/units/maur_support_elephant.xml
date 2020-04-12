@@ -5,10 +5,9 @@
     <Pierce>8</Pierce>
     <Crush>10</Crush>
   </Armour>
-  <Builder>
-    <Rate>2.0</Rate>
-    <Entities datatype="tokens"/>
-  </Builder>
+  <Auras datatype="tokens">
+    units/elephant_worker
+  </Auras>
   <Cost>
     <BuildTime>20</BuildTime>
     <Resources>
@@ -28,7 +27,7 @@
     <GenericName>Worker Elephant</GenericName>
     <SpecificName>Karmākara Gaja</SpecificName>
     <Icon>units/maur_support_elephant.png</Icon>
-    <Tooltip>Mobile dropsite. Can also assist in constructing buildings.</Tooltip>
+    <Tooltip>Mobile dropsite for food, wood, stone, and metal.</Tooltip>
     <Formations disable=""/>
   </Identity>
   <Loot>
