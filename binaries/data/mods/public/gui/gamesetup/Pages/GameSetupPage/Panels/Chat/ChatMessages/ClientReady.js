@@ -19,8 +19,8 @@ ChatMessageEvents.ClientReady = class
 		if (!text)
 			return;
 
-		this.args.username = playerAssignment.name;
-		this.chatMessagesPanel.addText(sprintf(text, this.args));
+		this.args.username = colorizePlayernameByGUID(message.guid);
+		this.chatMessagesPanel.addText(setStringTags(sprintf(text, this.args), this.MessageTags));
 	}
 };
 
@@ -28,3 +28,7 @@ ChatMessageEvents.ClientReady.prototype.ReadyMessage = [
 	translate("* %(username)s is not ready."),
 	translate("* %(username)s is ready!")
 ];
+
+ChatMessageEvents.ClientReady.prototype.MessageTags = {
+	"font": "sans-bold-13"
+};
