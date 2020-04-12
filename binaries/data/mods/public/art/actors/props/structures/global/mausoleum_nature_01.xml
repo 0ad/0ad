@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Mausoleum Nature">
+      <mesh>props/structural/mausoleum_nature_01.dae</mesh>
+      <textures>
+        <texture file="props/structs_nature.png" name="baseTex"/>
+        <texture file="props/structs_nature_norm.png" name="normTex"/>
+        <texture file="props/structs_nature_spec.png" name="specTex"/>
+        <texture file="structural/ao/mausoleum.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_ao_parallax_spec.xml</material>
+</actor>

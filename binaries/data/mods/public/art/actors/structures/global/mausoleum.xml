@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Mausoleum Main Struct">
+      <animations>
+        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
+      </animations>
+      <mesh>structural/mausoleum_struct.dae</mesh>
+      <props>
+        <prop actor="props/structures/global/mausoleum_nature_01.xml" attachpoint="root"/>
+        <prop actor="props/structures/global/mausoleum_chariot_gold.xml" attachpoint="root"/>
+        <prop actor="props/structures/global/mausoleum_statues_gold.xml" attachpoint="root"/>
+        <prop actor="props/structures/global/mausoleum_cypress_01.xml" attachpoint="root"/>
+        <prop actor="props/structures/global/mausoleum_props_01.xml" attachpoint="root"/>
+        <prop actor="props/structures/global/mausoleum_props_02.xml" attachpoint="root"/>
+        <prop actor="props/structures/global/mausoleum_relief_01.xml" attachpoint="root"/>
+        <prop actor="props/structures/global/mausoleum_relief_02.xml" attachpoint="root"/>
+        <prop actor="particle/smoke_light_delay.xml" attachpoint="smoke_01"/>
+        <prop actor="particle/smoke_light_delay.xml" attachpoint="smoke_02"/>
+        <prop actor="particle/flame.xml" attachpoint="flame_01"/>
+        <prop actor="particle/flame.xml" attachpoint="flame_02"/>
+      </props>
+      <textures>
+        <texture file="structural/hele_struct.dds" name="baseTex"/>
+        <texture file="structural/hele_struct_norm.png" name="normTex"/>
+        <texture file="structural/hele_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/mausoleum.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant frequency="0" name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned_01"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

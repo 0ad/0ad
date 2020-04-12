@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Mausoleum Relief 01">
+      <mesh>props/structural/mausoleum_relief_01.dae</mesh>
+      <textures>
+        <texture file="props/rome_prop_1.dds" name="baseTex"/>
+        <texture file="structural/ao/mausoleum.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>

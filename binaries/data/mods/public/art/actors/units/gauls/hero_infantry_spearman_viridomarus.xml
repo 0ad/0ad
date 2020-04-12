@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_spearman_ready.xml">
+    <variant file="biped/base_spearman_shield_ready.xml">
       <mesh>skeletal/new/m_hero_tunic.dae</mesh>
       <props>
         <prop actor="props/units/helmets/celt_helmet_ciumesti_raven.xml" attachpoint="helmet"/>
@@ -11,7 +11,9 @@
         <prop actor="props/units/weapons/spear_gold.xml" attachpoint="weapon_R"/>
         <prop actor="props/temp/l_sheath.xml" attachpoint="sheath_L"/>
       </props>
-      <textures><texture file="skeletal/celt_viridomarus.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/celt_viridomarus.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
