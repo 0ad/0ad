@@ -29,6 +29,7 @@
   </Health>
   <Identity>
     <GenericName>Defense Tower</GenericName>
+    <SelectionGroupName>template_structure_defensive_tower_stone</SelectionGroupName>
     <Tooltip>Shoots arrows. Garrison to provide extra defence. Needs the murder holes tech to protect its foot.</Tooltip>
     <Classes datatype="tokens">GarrisonTower</Classes>
     <VisibleClasses datatype="tokens">Town DefenseTower StoneTower</VisibleClasses>

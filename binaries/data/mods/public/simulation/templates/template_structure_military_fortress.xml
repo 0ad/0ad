@@ -69,9 +69,10 @@
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_6x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <GenericName>Fortress</GenericName>
     <Classes datatype="tokens">Defensive Fortress GarrisonFortress</Classes>
     <VisibleClasses datatype="tokens">City</VisibleClasses>
+    <GenericName>Fortress</GenericName>
+    <SelectionGroupName>template_structure_military_fortress</SelectionGroupName>
     <Icon>structures/fortress.png</Icon>
     <RequiredTechnology>phase_city</RequiredTechnology>
     <Tooltip>Train Champions and Heroes and research technologies. Garrison Soldiers for additional arrows.</Tooltip>
