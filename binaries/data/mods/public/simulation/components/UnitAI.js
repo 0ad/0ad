@@ -1159,8 +1159,12 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"MovementUpdate": function(msg) {
+					let target = this.order.data.target;
+					let cmpTargetUnitAI = Engine.QueryInterface(target, IID_UnitAI);
+					if (cmpTargetUnitAI && cmpTargetUnitAI.IsFormationMember())
+						target = cmpTargetUnitAI.GetFormationController();
 					let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-					this.CallMemberFunction("Attack", [this.order.data.target, this.order.data.allowCapture, false]);
+					this.CallMemberFunction("Attack", [target, this.order.data.allowCapture, false]);
 					if (cmpAttack.CanAttackAsFormation())
 						this.SetNextState("COMBAT.ATTACKING");
 					else

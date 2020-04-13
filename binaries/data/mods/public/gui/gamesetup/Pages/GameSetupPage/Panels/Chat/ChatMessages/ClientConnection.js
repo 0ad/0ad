@@ -18,7 +18,7 @@ ChatMessageEvents.ClientConnection = class
 
 	onClientLeave(guid)
 	{
-		this.args.username = g_PlayerAssignments[guid].name;
+		this.args.username = colorizePlayernameByGUID(guid);
 		this.chatMessagesPanel.addStatusMessage(sprintf(this.LeaveText, this.args));
 	}
 };

@@ -35,9 +35,10 @@
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_2x2</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <GenericName>Kennel</GenericName>
     <Classes datatype="tokens">Kennel</Classes>
     <VisibleClasses datatype="tokens">Town</VisibleClasses>
+    <GenericName>Kennel</GenericName>
+    <SelectionGroupName>template_structure_military_kennel</SelectionGroupName>
     <Tooltip>Train war dogs.</Tooltip>
     <Icon>structures/kennel.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
