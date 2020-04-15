@@ -207,15 +207,20 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function(msg)
 	}
 };
 
-// Marks a technology as researched.  Note that this does not verify that the requirements are met.
+/**
+ * Marks a technology as researched.
+ * Note that this does not verify that the requirements are met.
+ *
+ * @param {String} tech - The technology to mark as researched.
+ */
 TechnologyManager.prototype.ResearchTechnology = function(tech)
 {
 	this.StoppedResearch(tech, false);
 
-	var modifiedComponents = {};
+	let modifiedComponents = {};
 	this.researchedTechs.add(tech);
 
-	// store the modifications in an easy to access structure
+	// Store the modifications in an easy to access structure.
 	let template = TechnologyTemplates.Get(tech);
 	if (template.modifications)
 	{
@@ -225,14 +230,14 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 
 	if (template.replaces && template.replaces.length > 0)
 	{
-		for (var i of template.replaces)
+		for (let i of template.replaces)
 		{
 			if (!i || this.IsTechnologyResearched(i))
 				continue;
 
 			this.researchedTechs.add(i);
 
-			// Change the EntityLimit if any
+			// Change the EntityLimit if any.
 			let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
 			if (cmpPlayer && cmpPlayer.GetPlayerID() !== undefined)
 			{
@@ -246,16 +251,13 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 
 	this.UpdateAutoResearch();
 
-	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
 	if (!cmpPlayer || cmpPlayer.GetPlayerID() === undefined)
 		return;
-	var playerID = cmpPlayer.GetPlayerID();
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var ents = cmpRangeManager.GetEntitiesByPlayer(playerID);
-	ents.push(this.entity);
+	let playerID = cmpPlayer.GetPlayerID();
 
-	// Change the EntityLimit if any
-	var cmpPlayerEntityLimits = QueryPlayerIDInterface(playerID, IID_EntityLimits);
+	// Change the EntityLimit if any.
+	let cmpPlayerEntityLimits = QueryPlayerIDInterface(playerID, IID_EntityLimits);
 	if (cmpPlayerEntityLimits)
 		cmpPlayerEntityLimits.UpdateLimitsFromTech(tech);
 
