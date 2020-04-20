@@ -475,7 +475,7 @@ PETRA.HQ.prototype.configFirstBase = function(gameState)
 	else
 		this.maxFields = false;
 
-	// - count the available wood resource, and react accordingly
+	// - count the available food resource, and react accordingly
 	let startingFood = gameState.getResources().food;
 	let check = {};
 	for (let proxim of ["nearby", "medium", "faraway"])

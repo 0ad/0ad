@@ -622,13 +622,10 @@ private:
 	static const CStr EventNameRelease;
 	static const CStr EventNameMouseRightPress;
 	static const CStr EventNameMouseLeftPress;
-	static const CStr EventNameMouseMiddlePress;
 	static const CStr EventNameMouseWheelDown;
 	static const CStr EventNameMouseWheelUp;
 	static const CStr EventNameMouseLeftDoubleClick;
 	static const CStr EventNameMouseLeftRelease;
-	static const CStr EventNameMouseMiddleDoubleClick;
-	static const CStr EventNameMouseMiddleRelease;
 	static const CStr EventNameMouseRightDoubleClick;
 	static const CStr EventNameMouseRightRelease;
 
