@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,6 +48,7 @@
 #include "renderer/WaterManager.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpAttack.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpRangeManager.h"
@@ -377,19 +378,19 @@ void ActorViewer::SetActor(const CStrW& name, const CStr& animation, player_id_t
 
 	if (needsAnimReload)
 	{
+		// Emulate the typical simulation animation behaviour.
 		CStr anim = animation.LowerCase();
-
-		// Emulate the typical simulation animation behaviour
-		float speed;
-		float repeattime = 0.f;
+		float speed = 1.0f;
+		// Speed will be ignored if we have a repeat time.
+		float repeattime = 0.0f;
+		m.CurrentSpeed = 0.0f;
 		if (anim == "walk")
 		{
 			CmpPtr<ICmpUnitMotion> cmpUnitMotion(m.Simulation2, m.Entity);
 			if (cmpUnitMotion)
-				speed = cmpUnitMotion->GetWalkSpeed().ToFloat();
+				speed  = cmpUnitMotion->GetWalkSpeed().ToFloat();
 			else
-				speed = 7.f; // typical unit speed
-
+				speed = 7.f; // Typical unit walk speed.
 			m.CurrentSpeed = speed;
 		}
 		else if (anim == "run")
@@ -398,33 +399,18 @@ void ActorViewer::SetActor(const CStrW& name, const CStr& animation, player_id_t
 			if (cmpUnitMotion)
 				speed = cmpUnitMotion->GetWalkSpeed().ToFloat() * cmpUnitMotion->GetRunMultiplier().ToFloat();
 			else
-				speed = 12.f; // typical unit speed
+				speed = 12.f; // Typical unit run speed.
 
 			m.CurrentSpeed = speed;
 		}
-		else if (anim == "melee")
-		{
-			speed = 1.f; // speed will be ignored if we have a repeattime
-			m.CurrentSpeed = 0.f;
-
-			CStr code = "var cmp = Engine.QueryInterface("+CStr::FromUInt(m.Entity)+", IID_Attack); " +
-				"if (cmp) cmp.GetTimers(cmp.GetBestAttack()).repeat; else 0;";
-			m.Simulation2.GetScriptInterface().Eval(code.c_str(), repeattime);
-		}
-		else
-		{
-			// Play the animation at normal speed, but movement speed is zero
-			speed = 1.f;
-			m.CurrentSpeed = 0.f;
-		}
-
-		CStr sound;
-		if (anim == "melee")
-			sound = "attack";
-		else if (anim == "build")
-			sound = "build";
-		else if (anim.Find("gather_") == 0)
-			sound = anim;
+		else if (anim == "attack_melee")
+			repeattime = GetRepeatTimeByAttackType("Melee");
+		else if (anim == "attack_ranged")
+			repeattime = GetRepeatTimeByAttackType("Ranged");
+		else if (anim == "attack_slaughter")
+			repeattime = GetRepeatTimeByAttackType("Slaughter");
+		else if (anim == "attack_capture")
+			repeattime = GetRepeatTimeByAttackType("Capture");
 
 		CmpPtr<ICmpVisual> cmpVisual(m.Simulation2, m.Entity);
 		if (cmpVisual)
@@ -494,6 +480,15 @@ void ActorViewer::SetStatsEnabled(bool enabled)
 		g_ProfileViewer.ShowTable("renderer");
 	else
 		g_ProfileViewer.ShowTable("");
+}
+
+float ActorViewer::GetRepeatTimeByAttackType(const std::string& type) const
+{
+	CmpPtr<ICmpAttack> cmpAttack(m.Simulation2, m.Entity);
+	if (cmpAttack)
+		return cmpAttack->GetRepeatTime(type);
+
+	return 0.0f;
 }
 
 void ActorViewer::Render()

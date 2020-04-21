@@ -403,15 +403,22 @@ Attack.prototype.CompareEntitiesByPreference = function(a, b)
 	return aPreference - bPreference;
 };
 
+Attack.prototype.GetRepeatTime = function(type)
+{
+	let repeatTime = 1000;
+
+	if (this.template[type] && this.template[type].RepeatTime)
+		repeatTime = +this.template[type].RepeatTime;
+
+	return ApplyValueModificationsToEntity("Attack/" + type + "/RepeatTime", repeatTime, this.entity);
+};
+
 Attack.prototype.GetTimers = function(type)
 {
-	let prepare = +(this.template[type].PrepareTime || 0);
-	prepare = ApplyValueModificationsToEntity("Attack/" + type + "/PrepareTime", prepare, this.entity);
-
-	let repeat = +(this.template[type].RepeatTime || 1000);
-	repeat = ApplyValueModificationsToEntity("Attack/" + type + "/RepeatTime", repeat, this.entity);
-
-	return { "prepare": prepare, "repeat": repeat };
+	return {
+		"prepare": ApplyValueModificationsToEntity("Attack/" + type + "/PrepareTime", +(this.template[type].PrepareTime || 0), this.entity),
+		"repeat": this.GetRepeatTime(type)
+	};
 };
 
 Attack.prototype.GetSplashData = function(type)
