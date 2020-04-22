@@ -131,7 +131,7 @@ PETRA.DiplomacyManager.prototype.checkEvents = function(gameState, events)
 		if (evt.to === PlayerID && !gameState.isPlayerAlly(evt.from) && this.receivedDiplomacyRequests.has(evt.from))
 		{
 			let request = this.receivedDiplomacyRequests.get(evt.from);
-			if (request.status === "waitingForTribute")
+			if (request.status === "waitingForTribute" && request.type in evt.amounts)
 			{
 				request.wanted -= evt.amounts[request.type];
 
