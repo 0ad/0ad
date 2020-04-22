@@ -6,7 +6,8 @@
       <mesh>skeletal/elephant_asian_male.dae</mesh>
       <props>
         <prop actor="units/carthaginians/hero_elephantry_hannibal_r.xml" attachpoint="rider"/>
-        <prop actor="props/units/turret_hannibal.xml" attachpoint="turret"/>
+        <prop actor="units/carthaginians/hero_elephantry_hannibal_d.xml" attachpoint="turret"/>
+        <prop actor="props/units/elephant/howdah_cart_02.xml" attachpoint="turret"/>
       </props>
       <textures>
         <texture file="skeletal/maur_elephant_worker.png" name="baseTex"/>
