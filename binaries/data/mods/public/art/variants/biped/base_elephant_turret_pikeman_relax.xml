@@ -1,0 +1,12 @@
+<variant name="Base" frequency="1">
+  <animations>
+    <animation file="biped/infantry/pikeman/idle_relax_01.dae" name="Idle" speed="25"/>
+    <animation file="biped/infantry/pikeman/idle_relax_01.dae" name="Walk" speed="15"/>
+    <animation file="biped/infantry/pikeman/idle_relax_01.dae" name="Run" speed="10"/>
+    <animation event="0.5" file="biped/rider/elephantry/turret/attack_melee_front_01.dae" name="attack_melee" id="Attack1" speed="120"/>
+    <animation event="0.5" file="biped/rider/elephantry/turret/attack_melee_front_02.dae" name="attack_melee" id="Attack2" speed="120"/>
+    <animation event="0.5" file="biped/rider/elephantry/turret/attack_melee_front_03.dae" name="attack_melee" id="Attack3" speed="120"/>
+    <animation event="0.5" file="biped/rider/elephantry/turret/attack_melee_front_04.dae" name="attack_melee" id="Attack4" speed="120"/>
+    <animation file="biped/infantry/pikeman/idle_relax_01.dae" name="attack_ranged" speed="25"/>
+  </animations>
+</variant>

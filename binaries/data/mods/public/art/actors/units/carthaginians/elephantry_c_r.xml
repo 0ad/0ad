@@ -5,7 +5,7 @@
     <variant>
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/shields/aspis_kart_e.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/shields/pelte_cart_c.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
       </props>
@@ -66,7 +66,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/rider/elephantry/turret_idle.xml"/>
+    <variant file="biped/base_elephant_turret_pikeman_relax.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/rider/elephantry/african_turret_death.xml"/>
   </group>

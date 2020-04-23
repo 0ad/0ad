@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant frequency="1" name="elephant-infant">
+  <animations>
+    <animation file="quadraped/elephant_infant_idle_01.dae" frequency="10" name="Idle" id="idle1" speed="25"/>
+    <animation file="quadraped/elephant_infant_idle_02.dae" frequency="2" name="Idle" id="idle2" speed="25"/>
+    <animation file="quadraped/elephant_infant_idle_03.dae" frequency="3" name="Idle" id="idle3" speed="75"/>
+    <animation file="quadraped/elephant_infant_walk.dae" name="Walk" speed="20"/>
+    <animation file="quadraped/elephant_infant_run.dae" name="Run" speed="16"/>
+    <animation file="quadraped/elephant_infant_run.dae" name="Flee" speed="16"/>
+    <animation file="quadraped/elephant_infant_death.dae" id="death1" name="Death" speed="145"/>
+    <animation file="quadraped/elephant_infant_death.dae" id="death2" name="Death" speed="145"/>
+  </animations>
+</variant>

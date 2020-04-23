@@ -6,7 +6,7 @@
       <mesh>skeletal/elephant_asian_armored_04.dae</mesh>
       <props>
         <prop actor="units/seleucids/elephantry_c_d.xml" attachpoint="rider"/>
-        <prop actor="props/units/turret_sele_champ_ele.xml" attachpoint="turret"/>
+        <prop actor="props/units/elephant/howdah_sele_01.xml" attachpoint="turret"/>
       </props>
       <textures>
         <texture file="skeletal/sele_champion_elephant.png" name="baseTex"/>
@@ -16,7 +16,7 @@
     </variant>
   </group>
   <group>
-    <variant file="quadraped/base_elephant_asian.xml"/>
+    <variant file="quadraped/base_elephant_asian_sele.xml"/>
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
