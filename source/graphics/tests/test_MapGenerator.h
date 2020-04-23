@@ -38,6 +38,12 @@ public:
 
 	void test_mapgen_scripts()
 	{
+		if (!VfsDirectoryExists(L"maps/random/tests/"))
+		{
+			debug_printf("Skipping map generator tests (can't find binaries/data/mods/public/maps/random/tests/)\n");
+			return;
+		}
+
 		VfsPaths paths;
 		TS_ASSERT_OK(vfs::GetPathnames(g_VFS, L"maps/random/tests/", L"test_*.js", paths));
 
