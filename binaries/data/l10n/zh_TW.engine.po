@@ -11,13 +11,14 @@
 # neil000 <neil200063@gmail.com>, 2017
 # 上官良治 <shangkuanlc@gmail.com>, 2017
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
+# WY Liu <amberwyliu@icloud.com>, 2020
 # 黃柏諺 <s8321414@gmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-13 07:08+0000\n"
-"PO-Revision-Date: 2019-09-13 12:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-04-23 14:24+0000\n"
+"Last-Translator: WY Liu <amberwyliu@icloud.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,23 +36,23 @@ msgstr "未知的子類型(見記錄檔)"
 
 #: lobby/XmppClient.cpp:1169
 msgid "The certificate is not trusted."
-msgstr ""
+msgstr "不信任憑證"
 
 #: lobby/XmppClient.cpp:1170
 msgid "The certificate hasn't got a known issuer."
-msgstr ""
+msgstr "憑證無已知的發行人"
 
 #: lobby/XmppClient.cpp:1171
 msgid "The certificate has been revoked."
-msgstr ""
+msgstr "憑證已被吊銷"
 
 #: lobby/XmppClient.cpp:1172
 msgid "The certificate has expired."
-msgstr ""
+msgstr "憑證已失效"
 
 #: lobby/XmppClient.cpp:1173
 msgid "The certifiacte is not yet active."
-msgstr ""
+msgstr "憑證尚未被啟用"
 
 #: lobby/XmppClient.cpp:1174
 msgid "The certificate has not been issued for the peer connected to."
@@ -59,7 +60,7 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1175
 msgid "The certificate signer is not a certificate authority."
-msgstr ""
+msgstr "憑證簽署人非官方發證人"
 
 #: lobby/XmppClient.cpp:1197 lobby/XmppClient.cpp:1241
 #: lobby/XmppClient.cpp:1280

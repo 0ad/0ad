@@ -5,6 +5,7 @@
 # Translators:
 # Aristomahos Nikiforakis <barbounism@gmail.com>, 2016-2017
 # Costas Sachos <konssach7@gmail.com>, 2016
+# Evripidis Papaevripidis <panaevri@gmail.com>, 2020
 # Jim Chr <jimchrmodder@gmail.com>, 2019
 # Kostas Kolivas <kwstaskolivas@gmail.com>, 2020
 # Lampros Lampreas <marbiourd@hotmail.com>, 2016
@@ -18,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-23 08:32+0000\n"
-"PO-Revision-Date: 2020-03-23 12:13+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-04-13 07:18+0000\n"
+"PO-Revision-Date: 2020-04-23 23:48+0000\n"
+"Last-Translator: Evripidis Papaevripidis <panaevri@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,11 +31,11 @@ msgstr ""
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
 msgid "Rigorous Training"
-msgstr ""
+msgstr "Αυστηρά εκπαίδευση"
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned in barracks."
-msgstr ""
+msgstr "Οι μονάδες αποκτούν εμπειρία όσο είναι στην φρουρά ενός στρατώνα."
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
@@ -42,7 +43,7 @@ msgstr "Επισκευές Ναυπηγείου"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr "+10 στο ρυθμό ανάκτησης υγείας για τα φρουρούμενα πλοία."
+msgstr "Φρουρούμενα πλοία: +10 στον ρυθμό ανάρρωσης."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -50,7 +51,7 @@ msgstr "Ευλογία των Θεών"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Humans +3 health regeneration rate."
-msgstr "Αύξηση ρυθμού ανάκτησης υγείας +3 για τους ανθρώπους"
+msgstr "Άνθρωποι: +3 στον ρυθμό ανάρρωσης."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -58,7 +59,7 @@ msgstr "Θρησκευτική Θέρμη"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr "Στρατιώτες +20% στην αγχέμαχη και εκήβολη επίθεση."
+msgstr "Στρατιώτες: +20% στην αγχέμαχη και εκήβολη ζημιά επίθεσης."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -67,15 +68,15 @@ msgstr "Φιλοπατρία"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr "+15% αύξηση ταχύτητας συγκομιδής για τους εργάτες"
+msgstr "Εργάτες: +15% στην ταχύτητα συγκομιδής."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
-msgstr "Προτρεπόμενη Παρουσία"
+msgstr "Προτρεπτική Παρουσία"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers +10% melee and ranged attack damage."
-msgstr "Στρατιώτες +10% στην αγχέμαχη και εκήβολη επίθεση."
+msgstr "Στρατιώτες: +10% στην αγχέμαχη και εκήβολη ζημιά επίθεσης"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
@@ -83,7 +84,7 @@ msgstr "Μεροϊτικές Πυραμίδες"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
 msgid "Civic Centers +10% territory influence radius."
-msgstr "Αύξηση της ακτίνας εδαφικής επιρροής του αστικού κέντρου κατά +10% "
+msgstr "Αστικά Κέντρα: +10% στην ακτίνα εδαφικής επιρροής."
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -91,7 +92,7 @@ msgstr "Ισχυρή Ιεροσύνη"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
-msgstr "Μείωση υγέιας -5% για τους ήρωες"
+msgstr "Ήρωες: -5% στην υγεία."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
@@ -99,7 +100,7 @@ msgstr "Η Δύναμη της Γνώσης"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −10% technology resource costs and research time."
-msgstr "Μείωση κατά 10% στο κόστος των τεχνολογικών πόρων και του χρόνου έρευνας, για τα κτίσματα"
+msgstr "Κτίσματα: -10% στο κόστος τεχνολογικών πόρων και χρόνος έρευνας."
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -107,7 +108,7 @@ msgstr "Αφοσίωση"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
-msgstr "Κτίρια +50% στο ρυθμό αναγέννησες των βαθμών αιχμαλωσίας."
+msgstr "Κτίρια: +50% στον ρυθμό αναπλήρωσης των βαθμών άλωσης."
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
@@ -115,7 +116,7 @@ msgstr "Διάταγμα του Ασόκα"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
-msgstr "Αύξηση ταχύτητας των εμπόρων κατά +20%"
+msgstr "Έμποροι: +20% στην ταχύτητα κίνησης."
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
@@ -123,7 +124,7 @@ msgstr "Μπόνους στη καλλιέργεια"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "Workers +25% grain gather rate."
-msgstr "Εργάτες +25% στο ρυθμό συγκομιδής."
+msgstr "Εργάτες: +25% στον ρυθμό συγκομιδής σιτηρών."
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
@@ -131,7 +132,7 @@ msgstr "Ιατρική Περίθαλψη"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
-msgstr "+1 αύξηση του ρυθμού ανάκτησης υγείας για τους ανθώπους"
+msgstr "Άνθρωποι: +1 στον ρυθμό ανάρρωσης."
 
 #: simulation/data/auras/structures/theater.jsonauraName
 msgid "Hellenization"
@@ -139,15 +140,15 @@ msgstr "Ελληνισμός"
 
 #: simulation/data/auras/structures/theater.jsonauraDescription
 msgid "Structures +20% territory influence radius."
-msgstr "Αύξηση κατά +20% της εδαφικής επιρροής των κτισμάτων"
+msgstr "Κτίσματα: +20% στην ακτίνα εδαφικής επιρροής."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
-msgstr "Προστασία Τοίχους"
+msgstr "Προστασία Τείχους"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid "Garrisoned Soldiers +3 armor and +20 vision range."
-msgstr "Οχυρωμένοι Στρατιώτες +3 πανοπλία και +20 οπτικό πεδίο."
+msgstr "Φρουρούντες στρατιώτες: +3 στην πανοπλία και +20  στο πεδίο οράσεως."
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraName
 msgid "Symbol of Greatness"
@@ -155,7 +156,7 @@ msgstr "Σύμβολο του Μεγαλείου"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "+10 maximum population limit."
-msgstr "+10 στο μέγιστο όριο του πληθυσμού."
+msgstr "+10 στο μέγιστο όριο πληθυσμού."
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion"
@@ -164,7 +165,7 @@ msgstr "Ένδοξη Επέκταση"
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
 "+40 maximum population limit (requires the “Glorious Expansion” technology)."
-msgstr " +40 στο μέγιστο όριο του πληθυσμού (απαιτείται η τεχνολογία “Ένδοξη Επέκταση”)."
+msgstr " +40 στο μέγιστο όριο πληθυσμού (απαιτείται η τεχνολογία «Ένδοξη Επέκταση»)."
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
@@ -279,6 +280,14 @@ msgstr "Πελοποννησιακή Συμμαχία"
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Infantry Spearmen +10% health."
 msgstr "Συμμαχικό Πολίτες Λογχομφόροι Πεζικό +10% υγεία."
+
+#: simulation/data/auras/units/elephant_worker.jsonauraName
+msgid "Elephant Workers"
+msgstr ""
+
+#: simulation/data/auras/units/elephant_worker.jsonauraDescription
+msgid "Workers +25% build rate."
+msgstr ""
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"

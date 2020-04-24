@@ -2,11 +2,15 @@
 # Copyright (C) 2019 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
+# Translators:
+# Alexandre Garreau <galex-713@galex-713.eu>, 2020
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2019-03-22 09:45+0100\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
+"Last-Translator: Alexandre Garreau <galex-713@galex-713.eu>, 2020\n"
 "Language-Team: Esperanto (https://www.transifex.com/wildfire-games/teams/17418/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,7 +20,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:3
 msgid "Welcome to the 0 A.D. tutorial."
-msgstr ""
+msgstr "Bonvenon en la 0 A.D. instruilo."
 
 #: maps/tutorials/Introductory_Tutorial.js:6
 msgid ""
@@ -24,6 +28,9 @@ msgid ""
 "that female citizen gather food. Female citizens gather vegetables faster "
 "than other units."
 msgstr ""
+"Maldekstre-klaku sur Civitaninon kaj poste dekstre-klaku sur bera arbeton "
+"por igi tiun civitaninon kolekti manĝaĵon. Civitaninoj kolektas legomojn pli"
+" rapide ol aliaj unuoj."
 
 #: maps/tutorials/Introductory_Tutorial.js:15
 msgid ""
@@ -31,6 +38,9 @@ msgid ""
 "begin gathering Wood. Citizen Soldiers gather Wood faster than female "
 "citizens."
 msgstr ""
+"Elektu la civitana-soldato, dekstre-klaku sur arbon proksiman al la Civita "
+"centro por komenci kolekti Lignon. Civitanaj Soldatoj kolektas Lignon pli "
+"rapide ol Civitaninoj."
 
 #: maps/tutorials/Introductory_Tutorial.js:26
 #, javascript-format
@@ -38,6 +48,8 @@ msgid ""
 "Select the Civic Center building and hold %(hotkey)s while clicking on the "
 "Hoplite icon once to begin training a batch of Hoplites."
 msgstr ""
+"Elektu la konstruaĵon «Civita Centro» kaj mantenu %(hotkey)s dum klakante "
+"sur la bildeto «Hoplito» unufoje, por komenci trejni staplon de Hoplitoj."
 
 #: maps/tutorials/Introductory_Tutorial.js:37
 #: maps/tutorials/Introductory_Tutorial.js:79
@@ -47,16 +59,20 @@ msgid ""
 "Do not forget to press the batch training hotkey while clicking to produce "
 "multiple units."
 msgstr ""
+"Ne forgesu presi la stapla-trejna rapidklavo dum klakante por elfarigi "
+"multoblajn unuojn."
 
 #: maps/tutorials/Introductory_Tutorial.js:38
 msgid "Click on the HOPLITE icon."
-msgstr ""
+msgstr "Klaku sur la bildeton «Hoplito»."
 
 #: maps/tutorials/Introductory_Tutorial.js:46
 msgid ""
 "Select the two idle female citizens and build a house nearby by selecting "
 "the house icon. Place the house by left-clicking on a piece of land."
 msgstr ""
+"Elektu la du senfarajn civitaninojn kaj konstruu domon proksime per elektado"
+" de la bildeto «Domo». Loku la domon per maldekstra-klako sur terpecon."
 
 #: maps/tutorials/Introductory_Tutorial.js:54
 msgid ""
@@ -64,6 +80,9 @@ msgid ""
 "build a storehouse beside some nearby trees. They will begin to gather Wood "
 "when it's constructed."
 msgstr ""
+"Kiam ili pretas, elektu la nove trejnitajn Hoplitojn kaj tasku al ilin "
+"konstrui tenejon ĉe kelkaj proksimaj arboj. Ili komencos kolekti Lignon, "
+"kiam ĝi estas konstruita."
 
 #: maps/tutorials/Introductory_Tutorial.js:64
 #, javascript-format
@@ -71,20 +90,24 @@ msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
 msgstr ""
+"Trejnu staplon de Bataletistoj per manteno de %(hotkey)s kaj klako sur la "
+"bildeton «Bataletisto» en la Civita-centro."
 
 #: maps/tutorials/Introductory_Tutorial.js:80
 msgid "Click on the Skirmisher icon."
-msgstr ""
+msgstr "Klaku sur la bildeton «Bataletisto»."
 
 #: maps/tutorials/Introductory_Tutorial.js:88
 msgid ""
 "Build a farmstead in an open space beside the Civic Center using any idle "
 "builders."
 msgstr ""
+"Konstruu farmejon en neokupita spaco apud la Civitacentro per senfaraj "
+"konstruistoj."
 
 #: maps/tutorials/Introductory_Tutorial.js:100
 msgid "Let's wait for the farmstead to be built."
-msgstr ""
+msgstr "Ni atendu, ke la farmejo estas konstruita."
 
 #: maps/tutorials/Introductory_Tutorial.js:112
 msgid ""
@@ -92,6 +115,9 @@ msgid ""
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a field beside the farmstead."
 msgstr ""
+"Ĵus post la farmejo estas konstruita, ĝiaj konstruintoj aŭtomate komencos "
+"kolekti manĝaĵon se estas proksime. Elektu la konstruintoj kaj anstataŭe igu"
+" ilin konstrui agron ĉe la farmejo."
 
 #: maps/tutorials/Introductory_Tutorial.js:136
 msgid ""
@@ -99,6 +125,9 @@ msgid ""
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
 msgstr ""
+"La konstruintoj de la agro nun aŭtomate komencos kolekti manĝaĵon el la "
+"agro. Per uzo de la nove kreita aro de bataletistoj, igu ilin konstrui alian"
+" domon proksime."
 
 #: maps/tutorials/Introductory_Tutorial.js:144
 msgid ""
@@ -106,16 +135,21 @@ msgid ""
 "with it selected right-click on a tree nearby. Units from the Civic Center "
 "will now automatically gather Wood."
 msgstr ""
+"Trejnu staplon de Hoplitojn ĉe la Civitacentro. Elektu la Civitacentron kaj,"
+" kun ĝi elektata, dekstre-klaku sur arbon proksime. Unuoj el la Civitacentro"
+" nun aŭtomate komencos kolekti Lignon."
 
 #: maps/tutorials/Introductory_Tutorial.js:162
 msgid "Click on the Hoplite icon."
-msgstr ""
+msgstr "Klaku sur la bildeton «Hoplito»."
 
 #: maps/tutorials/Introductory_Tutorial.js:176
 msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a Wood icon."
 msgstr ""
+"Elektu la Civitacentron, poste loku la kursoro super la arbo kaj dekstre-"
+"klaku, kiam vi vidas, ke via kursoro fariĝas bildeto «Ligno»."
 
 #: maps/tutorials/Introductory_Tutorial.js:185
 msgid ""
@@ -123,6 +157,9 @@ msgid ""
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
 msgstr ""
+"Komandu al la senfaraj Bataletistoj konstrui Antaŭposteno en la nord-oriento"
+" en la bordo de via teritorio.  Tio estos la kvina konstruaĵo Urbafaza, kiun"
+" vi konstruos, ebligante al vi antaŭeniri Urbafazen."
 
 #: maps/tutorials/Introductory_Tutorial.js:193
 msgid ""
@@ -130,72 +167,94 @@ msgid ""
 "II icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"Elektu la Civitacentro ankoraŭe kaj antaŭeniru al la Urbafazo per klako sur "
+"la bildeton «II» (vi devas atendi, ke la antaŭposteno estas konstruita "
+"antaŭe). Tiel Urbafazaj konstruaĵoj konstrueblos."
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
 "While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
+"Dum vi atendas la fazpliigon, vi povus retaski al viaj senfaraj laboristoj "
+"kolekti la resursojn mankantajn."
 
 #: maps/tutorials/Introductory_Tutorial.js:220
 msgid ""
 "Start training a batch of female citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
 msgstr ""
+"Ektrejnu staplon de civitaninoj en la Civitacentro kaj loku ĝian ariĝejon ĉe"
+" la farmejo (dekstre-klaku sur la farmon)."
 
 #: maps/tutorials/Introductory_Tutorial.js:238
 msgid "Click on the female citizen icon."
-msgstr ""
+msgstr "Klaku sur la bildon «civitanino»."
 
 #: maps/tutorials/Introductory_Tutorial.js:258
 msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
 " extra house using any available builder units."
 msgstr ""
+"Konstruu soldatejon proksime. Kiam ajn via popola-limo atingiĝas, konstruu "
+"pluan domon per ajna haveblaj konstruaj unuoj."
 
 #: maps/tutorials/Introductory_Tutorial.js:266
 msgid ""
 "Prepare for an attack by an enemy player. Train more soldiers using the "
 "Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
 msgstr ""
+"Pretiĝu por atako de malamika ludanto. Trejnu pli da soldatoj per la "
+"Soldatejoj, kaj igu senfarajn soldatojn konstrui Defendaturon apud via "
+"Antaŭposteno."
 
 #: maps/tutorials/Introductory_Tutorial.js:274
 msgid ""
 "Build a Blacksmith and research the Infantry Training technology (sword "
 "icon) to improve infantry hack attack."
 msgstr ""
+"Konstruu Forĝejon kaj esploru la teĥnologion de trejno de infanterio "
+"(bildeto «glavo») por plibonigi haka atakon de infanterio."
 
 #: maps/tutorials/Introductory_Tutorial.js:282
 msgid "The enemy is coming. Train more soldiers to fight off the enemies."
 msgstr ""
+"La malamiko venas. Trejnu plu da soldatoj por superbatali la malamikojn."
 
 #: maps/tutorials/Introductory_Tutorial.js:290
 msgid "Try to repel the attack."
-msgstr ""
+msgstr "Provu repuŝi la atakon."
 
 #: maps/tutorials/Introductory_Tutorial.js:300
 msgid ""
 "The enemy attack has been thwarted. Now build a market and a temple while "
 "you assign new units to gather required resources."
 msgstr ""
+"La malamika atako estis vanigita. Nun konstruu bazaron kaj templon dum vi "
+"taskas al novaj unuoj kolekti bezonajn resursojn."
 
 #: maps/tutorials/Introductory_Tutorial.js:321
 msgid ""
 "Once you meet the City Phase requirements, select your Civic Center and "
 "advance to City Phase."
 msgstr ""
+"Post vi plenigis la Urbafazajn bezonojn, elektu vian Civitacentron kaj "
+"antaŭeniru Urbafazon."
 
 #: maps/tutorials/Introductory_Tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "Barracks."
 msgstr ""
+"Dum atendo de faza ŝanĝo, vi povus trejni pli da soldatoj en la Soldatejoj."
 
 #: maps/tutorials/Introductory_Tutorial.js:337
 msgid ""
 "Now that you are in City Phase, build a fortress nearby (gather some stone "
 "first if needed) and then use it to construct 2 Battering Rams."
 msgstr ""
+"Nun, ke vi estas en Urbafazo, konstruu fortikaĵon proksime (kolektu kelke da"
+" ŝtono antaŭe se bezonas) kaj poste uzu ĝin por konstrui 2 Murrompilojn."
 
 #: maps/tutorials/Introductory_Tutorial.js:359
 msgid ""
@@ -203,14 +262,18 @@ msgid ""
 "find the enemy Civic Center on the map. Once The enemy's base has been "
 "spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
 msgstr ""
+"Haltigu ĉiujn viajn soldatojn kolektantajn resursojn kaj anstataŭe taski al "
+"malgrandaj grupoj trovi la malamika Civitacentro sur la mapo. Post la "
+"malamika bazo estas trovita, sendu viajn sieĝajn batalilojn kaj ĉiujn "
+"ceterajn soldatojn por detrui ĝin.\n"
 
 #: maps/tutorials/Introductory_Tutorial.js:360
 msgid "Female citizens should continue to gather resources."
-msgstr ""
+msgstr "Civitaninoj devus plu kolekti resursojn."
 
 #: maps/tutorials/Introductory_Tutorial.js:371
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
-msgstr ""
+msgstr "La malamiko estas malvenkita. Tiuj instruilaj taskoj nun pleniĝis."
 
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
@@ -219,6 +282,10 @@ msgid ""
 "ultimately, your goal will be to develop and expand your empire, often by "
 "evolving to Town Phase and City Phase afterward.\n"
 msgstr ""
+"Tiu instruilo instruos al vi la fundamentojn de disvolvo de via ekonomio. "
+"Tipe, vi komencos kun Civitacentro kaj kelkaj unuojn en Vilaĝafazo kaj fine,"
+" via celo estos disvolvi kaj disvasti via imperion, ofte per disvolvo al "
+"Urbafazo kaj Civitafazo poste.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -226,16 +293,20 @@ msgid ""
 "\n"
 "Before starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."
 msgstr ""
+"\n"
+"Antaù komenco, vi povas baskuligi inter plenekrana kaj fenestra modoj per %(hotkey)s."
 
 #: maps/tutorials/starting_economy_walkthrough.js:9
 msgid ""
 "You can change the level of zoom using the mouse wheel and the camera view "
 "using any of your keyboard's arrow keys.\n"
 msgstr ""
+"Vi povas aliigi la livelon de aligrandigo per la klakila rado kaj la vido "
+"per iu ajn de viaj sagklavoj.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:10
 msgid "Adjust the game window to your preferences.\n"
-msgstr ""
+msgstr "Adaptu la luda fenestro laŭ viaj preferoj.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:12
 #, javascript-format
@@ -243,6 +314,8 @@ msgid ""
 "\n"
 "You may also toggle between showing and hiding this tutorial panel at any moment using %(hotkey)s.\n"
 msgstr ""
+"\n"
+"Vi povus ankaŭ baskuligi inter montro kaj malmontro de tiu instruilo ĉiam ajn per %(hotkey)s.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:19
 msgid ""
@@ -250,6 +323,8 @@ msgid ""
 "selection ring in the color of your civilization will be displayed after "
 "clicking."
 msgstr ""
+"Por ekkomenci, elektu vian konstruaĵon, la Civitacentron, per klako sur ĝin."
+" Elekta rondo en via civiliza koloro aperos post klako."
 
 #: maps/tutorials/starting_economy_walkthrough.js:24
 msgid ""
@@ -261,6 +336,13 @@ msgid ""
 "sufficient resources to perform that action, respectively. Additionally, you"
 " can hover the cursor over any icon to show a tooltip with more details.\n"
 msgstr ""
+"Nun, ke via Civitacentro estas elektita, vi rimarkos, ke produkta panelo "
+"aperos en en la dekstra-baso de via ekrano, detalante la agojn, kiujn la "
+"konstruaĵo subtenas. En la produkta panelo, fareblaj agoj estas ne kovrita "
+"de ajna koloro, kvankam bildeto kovrita per ĉu grizo ĉu ruĝa indikas, ke la "
+"ago ne estas ankoraŭ malŝlosita aŭ vi ne havas sufiĉajn resursojn por "
+"perfari tiun agon, laŭorde. Plue, vi povas povas loki vian kursoron super iu"
+" ajn bildeto por aperigi ŝpruchelpon kun plu da detaloj.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:25
 msgid ""
@@ -270,6 +352,11 @@ msgid ""
 "that advancing to Town Phase requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
+"La vico de la alto de la butonoj enhavas portretojn de unuojn, kiuj povus "
+"trejniĝi ĉe la konstruaĵo, kvankam la unu aŭ du vicoj de la malalto enhavos "
+"esploreblajn teĥnologiojn. Loku la kursoro super la bildeton «II». La "
+"ŝpruchelpo diros al ni, ke antaŭeniri Urbafaze bezonos ambaŭ pli da "
+"konstruitaĵoj kaj pli da manĝaĵaj kaj lignaj resursoj."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -281,6 +368,14 @@ msgid ""
 "citizen soldiers can gather any land resources while cavalry citizen "
 "soldiers can only gather meat from hunted animals.\n"
 msgstr ""
+"Vi havas du ĉefajn tipojn de komencaj unuoj: civitaninoj kaj civitanaj "
+"soldatoj. Civitaninoj estas pure ekonomikaj unuoj; ili havas malmultajn PV-"
+"ojn, neniun armaĵon, kaj malmultan aŭ neniun atakojn. Civitanaj soldatoj "
+"estas laboristo defaŭlte, sed en tempo de bezono, povas uzi armilon por "
+"batali. Vi havas du kategoriojn de civitanaj soldatoj: infanterio kaj "
+"kavalerio. Civitaninoj kaj infanteriaj civitanaj soldatoj povas kolekti ĉian"
+" teran risurson, kvankam kavaleriaj civitanaj soldatoj povas nur kolekti "
+"viandon el ĉasitaj bestoj.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
@@ -288,6 +383,8 @@ msgid ""
 "clicking with an entity selected represents an order (gather, build, fight, "
 "etc.).\n"
 msgstr ""
+"Iom regulare, maldekstre-klaki reprezentas elektadon, kvankam dekstre-klaki "
+"kun elektita aĵo reprezentas komandon (kolekti, konstrui, batali, ktp.).\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:40
 msgid ""
@@ -295,16 +392,21 @@ msgid ""
 " your economy, so let's start with gathering food. Female citizens gather "
 "vegetables faster than other units.\n"
 msgstr ""
+"Ĉi-punkte, manĝaĵo kaj ligno estas la plej gravaj resursoj por disvolvi vian"
+" ekonomion, do ni komencu per manĝaĵa kolekto. Civitaninoj kolektas legomojn"
+" pli rapide ol aliaj unuoj.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
-msgstr ""
+msgstr "Estas ĉefe tri kieloj elekti unuojn:\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:42
 msgid ""
 "1) Hold the left mouse button and drag a selection rectangle that encloses "
 "the units you want to select.\n"
 msgstr ""
+"1) Daŭre premu la maldekstran klakilan butonon kaj tiri elektan rektangulon,"
+" kiu ĉirkaŭfermas la unuojn, kiujn vi volas elekti.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:43
 msgid ""
@@ -312,6 +414,9 @@ msgid ""
 "holding Shift and clicking each additional unit (or also via the above "
 "selection rectangle).\n"
 msgstr ""
+"2) Klaku sur unu el ili kaj poste aldonu pliajn unuojn al via elekto per "
+"manteno de la Maj.iga klavo kaj klako ĉiu plia unuo (aŭ ankaŭ per la supere-"
+"dirita elekta rektangulo).\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:44
 msgid ""
@@ -319,6 +424,9 @@ msgid ""
 "the specified unit in your visible window. Triple-click will select all "
 "units of the same type on the entire map.\n"
 msgstr ""
+"3) Duoble-klaku sur unuon. Tio elektos ĉiun tian unuon, kia la klakita, en "
+"via videbla fenestro. Trioble-klaku elektos ĉiujn tiajn unuojn sur la tuta "
+"mapo.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:45
 msgid ""
@@ -327,6 +435,9 @@ msgid ""
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
 " when you have all the female citizens selected."
 msgstr ""
+"Vi povas klaki sur malplena loko sur la mapo por malplenigi la elekton. "
+"Provu ĉiun de tiuj kieloj antaŭ taski al ĉiuj viaj civitaninoj kolekti la "
+"berarojn, kiam ĉiuj civitaninoj estas elektita."
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
@@ -334,17 +445,22 @@ msgid ""
 " Infantry Citizen Soldiers and order them to gather Wood by right-clicking "
 "on the nearest tree."
 msgstr ""
+"Nun, ni kolektu kelke da ligno per viaj Infanteriaj Civitanaj Soldatoj. "
+"Elektu viaj Infanteriajn Civitanajn Soldatojn kaj komandu al ili kolekti "
+"lignon per dekstra-klako sur la plej proksiman arbon."
 
 #: maps/tutorials/starting_economy_walkthrough.js:67
 msgid ""
 "Cavalry Citizen Soldiers are good for hunting. Select your cavalry and order"
 " him to hunt the chickens around your Civic Center in similar fashion."
 msgstr ""
+"Kavaleriaj Civitanaj Soldatoj ĉasas bone. Elektu vian kavalerion kaj komandu"
+" al li ĉasi la kokidoj ĉirkaŭ via Civitacentro simile."
 
 #: maps/tutorials/starting_economy_walkthrough.js:78
 msgid ""
 "All your units are now gathering resources. We should train more units!\n"
-msgstr ""
+msgstr "Ĉiuj viaj unuoj nun kolektas resursojn. Ni devus trejni pli da unuoj!\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:79
 msgid ""
@@ -355,23 +471,32 @@ msgid ""
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
+"Unue, ni loku ariĝejon. Loki ariĝejon de konstruaĵo, kiu povas trejni "
+"unuojn, aŭtomate taskos trejnotajn unuojn. Ni volas sendi la nove trejnitajn"
+" unuojn al kolekto de Ligno en la arbaro ĉe la sudo de la Civitacentro. Por "
+"fari tiel, elektu la Civitacentro per klako sur ĝin kaj poste dekstre-klako "
+"sur unu el la arboj.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
 "Rally points are indicated by a small flag at the end of the blue line."
-msgstr ""
+msgstr "Ariĝejoj estas indikataj per flageto ĉe la fino de la blua linio."
 
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
 "when you see the cursor change into a Wood icon."
 msgstr ""
+"Elektu la Civitacentro, poste loku la kursoro super arbon kaj dekstre-klaku,"
+" kiam vi vidas, ke la kursoro fariĝas bildeto «Ligno»."
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
 "Now that the rally point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
 msgstr ""
+"Nun, ke la ariĝejo estas lokita, ni povas produkti pluajn unuojn kaj ili "
+"faros ilian taskitaĵon aŭtomate.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:98
 msgid ""
@@ -381,19 +506,24 @@ msgid ""
 "individually by simply clicking, but training 5 units together takes less "
 "time than training 5 units individually."
 msgstr ""
+"Civitanaj soldatoj kolektas lignon pli rapide ol civitaninoj. Elektu la "
+"Civitacentro kaj, premante Maj.-klavon, klaku sur la bildeton de la dua "
+"unuo, la Hoplitoj (manteni Maj.-klavon trejnas po staplo de kvin unuoj). Vi "
+"ankaŭ povas trejni unuojn unuope per unuobla klako, sed trejni po 5 unuoj "
+"kune uzas malpli da tempo ol trejni 5 unuojn unuope."
 
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
-msgstr ""
+msgstr "Ne forgesu manteni Maj., kiam klakanta por trejni plurajn unuojn."
 
 #: maps/tutorials/starting_economy_walkthrough.js:109
 msgid "Hold Shift and click on the Hoplite icon."
-msgstr ""
+msgstr "Daŭre premu Maj. kaj klaku sur la Hoplita bildeton."
 
 #: maps/tutorials/starting_economy_walkthrough.js:118
 #: maps/tutorials/starting_economy_walkthrough.js:177
 msgid "Let's wait for the units to be trained.\n"
-msgstr ""
+msgstr "Ni atendu, ke la unuoj estas trejnitaj.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:119
 msgid ""
@@ -403,6 +533,11 @@ msgid ""
 "(or another dropsite), you will see the amount of the corresponding resource"
 " increase.\n"
 msgstr ""
+"Dum atendo, direktu vian atenton al la panelo ĉe la alto de via ekrano. Sur "
+"la alta maldekstro, vi vidos vian nunan provizon de resursaj (Manĝaĵo, "
+"Ligno, Ŝtono, kaj Metalo). Dum ĉiu laboristo resursojn al la Civitacentro "
+"(aŭ alia demetejo) realportas, vi vidos la kvanton de la rilata resurso "
+"pligrandigi.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:120
 msgid ""
@@ -411,12 +546,17 @@ msgid ""
 " minimize the distance between resource and nearest dropsite to improve your"
 " gathering efficiency."
 msgstr ""
+"Tio estas tre grava koncepto restigi enmense: kolektitaj resursoj devas esti"
+" realportataj al demetejo por kunkalkuli ilin, kaj vi devus ĉiam provi de "
+"malplejigi la malproksimo inter resurso kaj plej proksima demetejo por "
+"plibonigi vian kolektan rendimenton."
 
 #: maps/tutorials/starting_economy_walkthrough.js:129
 msgid ""
 "The newly trained units automatically go to the trees and start gathering "
 "Wood.\n"
 msgstr ""
+"La nove trejnita unuoj aŭtomate iras al la arboj kaj ekkolektas Lignon.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:130
 msgid ""
@@ -428,24 +568,35 @@ msgid ""
 "the mouse as close as possible to the trees you want to gather and click on "
 "a valid place to build the dropsite.\n"
 msgstr ""
+"Sed kvankam ili devas ĝin realporti al la Civitacentro por demeti ĝin, ilia "
+"kolekta rendimento suferas de malproksimo. Por solvi tion, ni povas konstrui"
+" tenejon, kiu estas demeto por Ligno, Ŝtono, kaj Metalo, proksime de la "
+"arboj. Por fari tiel, elektu viajn kvin nove trejnitaj Civitanaj Soldatoj "
+"kaj trafu la konstruaĵan panelon en la malalta dekstro, klaku sur la bildeto"
+" «Tenejo», movu la klakila kursoro plej preksime de la arboj, kiujn vi volas"
+" kolekti kaj klaku sur ĝusta loko por konstrui la tenejo.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
 "Invalid (obstructed) positions will show the building preview overlay in "
 "red."
-msgstr ""
+msgstr "Neĝustaj (baritaj) lokoj igos la antaŭvidon de la konstruaĵo ruĝa."
 
 #: maps/tutorials/starting_economy_walkthrough.js:141
 msgid ""
 "The selected citizens will automatically start constructing the building "
 "once you place the foundation."
 msgstr ""
+"La elektitaj civitanoj aŭtomate ekkonstruos la konstruaĵon post la lokado de"
+" ĝia fundamento."
 
 #: maps/tutorials/starting_economy_walkthrough.js:152
 msgid ""
 "When construction finishes, the builders default to gathering Wood "
 "automatically.\n"
 msgstr ""
+"Kiam konstruado finiĝas, la konstruintoj defaŭlte kolektas Lignon "
+"aŭtomate.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:153
 msgid ""
@@ -453,14 +604,18 @@ msgid ""
 "Center, hold Shift and click on the female citizen icon to train 5 female "
 "citizens."
 msgstr ""
+"Ni trejnu kelkajn civitaninojn por kolekti pli da manĝaĵo. Elektu la "
+"Civitacentro, premu Maj. daŭre kaj klaku sur la bildon «Civitanino» por "
+"trejni kvin Civitaninojn."
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
 msgstr ""
+"Ne forgesu daŭre premi Maj.-klavon kaj klaki por trejni plurajn unuojn."
 
 #: maps/tutorials/starting_economy_walkthrough.js:168
 msgid "Hold shift and click on the Female Citizen icon."
-msgstr ""
+msgstr "Premu Maj. kaj klaku sur la bildon «Civitanino»."
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
@@ -469,10 +624,14 @@ msgid ""
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally point is crossed out)."
 msgstr ""
+"Dume, ni verŝajne havas sufiĉe da laboristoj kolektantaj Lignon. Ni devus "
+"forigi la nuna ariĝejo de la Civitacentro fore el kolektado de Ligno. Por "
+"tiu celo, dekstre-klaku sur la Civitacentron, kiam ĝi estas elektita (kaj la"
+" flaga bildeto indikanta la ariĝejon estas forkrucita)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
-msgstr ""
+msgstr "La unuoj verŝajne baldaŭ pretos.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:193
 msgid ""
@@ -482,6 +641,10 @@ msgid ""
 "(including those being trained) and the current population limit, which is "
 "determined by your built structures."
 msgstr ""
+"Dume, direktu vian atenton al via popola nombro en la alta panelo. Ĝi estas "
+"la kvina elemento el la maldekstra, post la resursoj. Estus prudente daŭre "
+"atenti ĝin. Ĝi indikas via nuna popolnombro (inkluzivante la trejnatojn), "
+"kaj la nuna popolnombra limo, kiu estas decidata de viaj konstruitaĵon."
 
 #: maps/tutorials/starting_economy_walkthrough.js:206
 msgid ""
@@ -489,12 +652,16 @@ msgid ""
 "building some new structures if you want to train more units. The most cost "
 "effective structure to increase your population limit is the house.\n"
 msgstr ""
+"Ĉar vi preskaŭ atingas la popolnombran limon, vi devas pligrandigi ĝin, per "
+"konstruo de kelkaj novaj konstruaĵoj, se vi volas trejni plu unuojn. La plej"
+" efika laŭ kosto konstruaĵo estas la domo.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:207
 msgid ""
 "Now that the units are ready, let's see how to build several houses in a "
 "row."
 msgstr ""
+"Nun, ke la unuoj pretas, ni vidu kiel konstrui plurajn domojn vicorde."
 
 #: maps/tutorials/starting_economy_walkthrough.js:212
 msgid ""
@@ -509,12 +676,23 @@ msgid ""
 "Escape to get rid of the house cursor so you don't spam houses all over the "
 "map.\n"
 msgstr ""
+"Elektu du el viaj nove-trejnitaj civitaninoj kaj petu al ili konstrui tiuj "
+"domoj en la malplena spaco, oriente de via Civitacentro. Por fari tiel, post"
+" elektinta la civitaninojn, klaku sur la bildeton «Domo» en la malalta "
+"dekstra panelo, kaj, dum premanta Maj.-klavon, klaku antaŭe sur la lokon, "
+"kie vi volas konstrui la unuan domon, kaj poste klaku sur la lokon, kie vi "
+"volas konstrui la duan domon (kiam vi faras komandon, dum premanta Maj., vi "
+"envicigas ĝin en atendovicon; unuoj aŭtomate obeos la sekvantajn komandojn "
+"kiam ili finigos iliajn laborojn). Premu ordonnuliga-klavon por liberiĝi de "
+"la kursoro «Domo», por eviti krei domojn sur tutan la mapon.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
 "Reminder: to select only two female citizens, click on the first one and "
 "then hold Shift and click on the second one."
 msgstr ""
+"Rememorigo: por elekti nur du civitaninojn, klaku sur la unuan kaj poste "
+"premu Maj. kaj klaku sur la duan."
 
 #: maps/tutorials/starting_economy_walkthrough.js:246
 msgid ""
@@ -522,12 +700,17 @@ msgid ""
 " lasting food source. Fields produce an unlimited food resource, but are "
 "slower to gather than forageable fruits.\n"
 msgstr ""
+"Vi povus rimarki, ke la beroj estas limhava provizo de manĝaĵo. Ni bezonos "
+"pli daŭran fonton de manĝaĵo. Agroj produktas senliman manĝaĵaj resurson, "
+"sed estas pli malrapide kolektitaj ol furaĝeblaj fruktoj.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:247
 msgid ""
 "But to minimize the distance between a farm and its corresponding food "
 "dropsite, we will first build a farmstead."
 msgstr ""
+"Sed por malplejigi la malproksimon inter farmejo kaj ĝia rilata manĝaĵa "
+"demetejo, ni antaŭe konstruos farmejon."
 
 #: maps/tutorials/starting_economy_walkthrough.js:258
 msgid ""
@@ -535,6 +718,9 @@ msgid ""
 "farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
+"Elektu la tri ceterajn (senfarajn) civitaninojn kaj komandu al ili konstrui "
+"farmejon en la centro de la vasta malferma areo en la okcidento de la "
+"Civitacentro.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
@@ -542,6 +728,9 @@ msgid ""
 "In addition, we can see goats on the west side to further improve our food "
 "gathering efficiency should we ever decide to hunt them.\n"
 msgstr ""
+"Ni bezonos decan pecon de spaco ĉirkaŭ la farmejo por konstrui agrojn. Plue,"
+" ni povas ekvidi kaprojn en la okcidenta flanko por plue plibonigi nian "
+"manĝaĵan kolektan efikon, se nur ni eĉ decidos de ĉasi ilin.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:260
 msgid ""
@@ -552,18 +741,28 @@ msgid ""
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
+"Se vi provas elekti la tri senfarajn civitaninojn per klako kaj tiro de "
+"elekta rektangulo super ili, vi povus senvole elekti aliajn unuojn.  Por "
+"eviti ĝin, premu la klavon I, dum elektado, tiel ke nur senfaraj unuoj estas"
+" elektitaj.  Se vi senvole elektas kavalerian unuon, premu Stira-klavon kaj "
+"klaku sur la bildeton de la kavaleria unuo en la elekta panelo en la malalto"
+" de la ekrano por forigi la kavalerian unuon el la nuna elekto."
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
 "When the farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
 msgstr ""
+"Kiam la farmeja konstruado finas, ĝiaj konstruintoj aŭtomate serĉos "
+"manĝaĵon, kaj tie, ili postkuris kaprojn proksimajn.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:276
 msgid ""
 "But your house builders will only look for something else to build and, if "
 "nothing found, become idle. Let's wait for them to build the houses."
 msgstr ""
+"Sed via domaj konstruintoj nur serĉos ion alian konstrui, kaj, se nenio "
+"troveblas, iĝos senfaraj.  Ni atendu ke ili konstruas domojn."
 
 #: maps/tutorials/starting_economy_walkthrough.js:292
 msgid ""
@@ -571,12 +770,15 @@ msgid ""
 "to build a field as close as possible to the farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"Kiam ambaŭ domoj estas konstruita, elektu viajn du civitaninojn kaj komandu "
+"ilin konstrui agron plejproksime kiel eble de la farmejo, kiu estas demetejo"
+" por ĉiaj manĝaĵoj."
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
 "When the field is ready, the builders will automatically start gathering "
 "it.\n"
-msgstr ""
+msgstr "Kiam la agro pretas, la konstruintoj aŭtomate ekkolektos ĝin.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -585,6 +787,11 @@ msgid ""
 "your cavalry by right-clicking on the point you want to go, and when you see"
 " a herd of camels, right-click on one of them to start hunting for food."
 msgstr ""
+"La kavaleria unuo verŝajne buĉis ĉiujn kokidojn nuntempe.  Elektu ĝi kaj "
+"esploras la sud-okcidentan areon: estas lago kun kelkaj kameloj ĉirkaŭe.  "
+"Movu vian kavalerion per dekstre-klako sur la lokon, kien vi volas iri, kaj,"
+" kiam vi vidas kamelaron, dekstre-klaku sur unu el ili por ekĉasi por "
+"manĝaĵo."
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
@@ -594,30 +801,39 @@ msgid ""
 "sent by a rally point will help building it, while they will gather it when "
 "built."
 msgstr ""
+"Agro povas enhavi ĝis kvin farmistojn laborantajn sur ĝi.  Por aldoni pluajn"
+" kolektantojn, elektu la Civitacentro kaj loku ariĝejo sur agro per dekstre-"
+"klako sur ĝin.  Dum la agro ne estas ankoraŭ konstruita, novaj laboristoj "
+"senditaj de la ariĝejo helpos konstrui ĝin, kvankam ili kolektos ĝin, kiam "
+"ĝi estos konstruita."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
-msgstr ""
+msgstr "Elektu la Civitacentro kaj dekstre-klaku sur la agron."
 
 #: maps/tutorials/starting_economy_walkthrough.js:330
 msgid ""
 "Now click three times on the female citizen icon in the bottom right panel "
 "to train three additional farmers."
 msgstr ""
+"Nun klaku trifoje sur la bildeto «Civitanino» en la malalta dekstra panelo "
+"por trejni tri pluajn farmistojn."
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
-msgstr ""
+msgstr "Klaku sen premi Maj.-klavon por trejni ununuran unuon."
 
 #: maps/tutorials/starting_economy_walkthrough.js:345
 msgid "Click on the Female Citizen icon."
-msgstr ""
+msgstr "Klaku sur la bildeton «Civitanino»."
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
 "You can increase the gather rates of your workers by researching new "
 "technologies available in some buildings.\n"
 msgstr ""
+"Vi povas pligrandigi la kolektan rapidon de viaj laboristoj per esploro de "
+"novaj teĥnologioj havigeblaj en kelkaj konstruaĵoj.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:356
 msgid ""
@@ -627,6 +843,11 @@ msgid ""
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
+"La farmada rapido, ekzemple, povas esti plibonigita kun esplorebla "
+"teĥnologio en la farmejo.  Elektu la farmejo kaj rigardu ĝian produktan "
+"panelon sur la malalta dekstro.  Vi vidos plurajn esploreblajn teĥnologiojn."
+"  Loku la kursoro super ilin por vidi iliajn kostojn kaj efiko kaj klaku sur"
+" unu, kiu vi volas esplori."
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
@@ -634,6 +855,10 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the Town Phase icon to see what is still needed.\n"
 msgstr ""
+"Ni devus komenci pretigi la fazenigon en Urbafazon, kiu malŝlosos multajn "
+"pliajn unuojn kaj konstruaĵojn.  Elektu la Civitacentron kaj loku la "
+"kursoron super la bildeton «Urbafazo» por vidi, kion ankoraŭ estas "
+"bezonata.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -641,6 +866,9 @@ msgid ""
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
 "in case of attack, so let's build Barracks.\n"
 msgstr ""
+"Ni nun havas sufiĉajn resursojn, sed unu konstruaĵo mankas.  Kvankam tio "
+"estas ekonomia instruilo, estas tamen utila preti por defendo okaze de "
+"atakoj, do ni konstruu Soldatejojn.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
@@ -649,6 +877,10 @@ msgid ""
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
+"Elektu kvar el viaj soldatoj kaj petu al ili konstrui Soldatejojn: kiel "
+"antaŭe, komencu per elekto de soldatoj, klaku sur la bildeton «Soldatejo» en"
+" la produkta panelo kaj poste metu fundamenton ne malproksime el via "
+"Civitacentro, kie vi volas konstrui."
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
@@ -658,18 +890,27 @@ msgid ""
 " on it (you should see a hammer icon). Then produce two more builders by "
 "clicking on the hoplite icon twice."
 msgstr ""
+"Ni atendu ke la Soldatejoj konstruiĝas.  Ĉar tia konstruado longas, vi povas"
+" aldoni du soldatojn por konstrui ĝin pli rapide.  Por fari tiel, elektu "
+"vian Civitacentron kaj loku ariĝejon sur la fundamenton de la Soldatejo per "
+"dekstre-klako sur ĝin (vi devus vidi bildeton de martelo).  Poste produktu "
+"du pluajn konstruistojn per klako sur la bildeton «Hoplito» dufoje."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
 "You should now be able to research Town Phase. Select the Civic Center and "
 "click on the technology icon.\n"
 msgstr ""
+"Vi devus nun esti kapabla esplori Urbafazon.  Elektu la Civitacentron kaj "
+"klaku sur la teĥnologian bildeton.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:395
 msgid ""
 "If you still miss some resources (icon with red overlay), wait for them to "
 "be gathered by your workers."
 msgstr ""
+"Se al vi ankoraŭ mankas kelkaj resursoj (bildeto kun ruĝa kovro), atendu ke "
+"ilin via laboristo kolektos."
 
 #: maps/tutorials/starting_economy_walkthrough.js:409
 msgid ""
@@ -678,6 +919,11 @@ msgid ""
 "done, you will send half of your idle Citizen Soldiers (who have finished "
 "building the Barracks) to gather Stone and the other half to gather Metal.\n"
 msgstr ""
+"En sekvaj fazoj, vi kutime bezonos Ŝtono kaj Metalo por konstrui pli "
+"grandajn konstruaĵojn kaj trejni pli bonajn soldatojn.  Do, dum atendo de "
+"fino de la esploro, vi sendos la duonon de via senfaraj Civitanaj Soldatoj "
+"(kiu finis konstrui la Soldatejojn) al rekolto de Ŝtonon kaj la alian duonon"
+" al la kolekto de Metalo.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:410
 msgid ""
@@ -687,6 +933,11 @@ msgid ""
 "were gathering Wood, so they may still carry some Wood which would be lost "
 "when starting to gather another resource."
 msgstr ""
+"Por fari tiel, ni povus elekti tri Civitanajn Soldatojn kaj dekstre-klaku "
+"sur la Ŝtona mino en la okcidento de la Civitacentro (la kursoro ŝanĝas, "
+"kiam vi igas ĝin super la Ŝtona mino dum viaj soldatoj estas elektitaj).  "
+"Tamen, tiuj soldatoj kolektis Lignon, do ili povus ankoraŭ porti kelke da "
+"Ligno, kiu povus esti perdita, kiam ili ekkolektas alian resurson."
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
@@ -696,35 +947,44 @@ msgid ""
 "their Wood and then hold Shift and right-click on the Stone mine to gather "
 "it.\n"
 msgstr ""
+"De ĉi tie, ni devus komandi al ili demeti ilian Lignon en la Civitacentron "
+"laŭ la iro.  Por fari tiel, ni premos Maj. dum ni klakos por envicigi "
+"komandojn: elektu viajn soldatojn, premu Maj. kaj dekstre-klaku sur la "
+"Civitacentron por demeti ilian Lignon kaj poste premu Maj. kaj dekstre-klaku"
+" sur la Ŝtonan minon por kolekti ĝin.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""
 "Perform a similar order queue with the remaining soldiers and the Metal mine"
 " in the west."
 msgstr ""
+"Faru similan komandan vicon per la ceteraj soldatoj kaj la metala mino en la"
+" okcidento."
 
 #: maps/tutorials/starting_economy_walkthrough.js:450
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of the "
 "basics of setting up your economy."
 msgstr ""
+"Tio estas la fino de la lernilo. Tio devus doni al vi bonan ideon de la "
+"fundamentoj de farigo de via ekonomio."
 
 #: maps/tutorials/Introductory_Tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
+msgstr "Ĉi tio estas baza instruilo por ekludigi vin al 0 A.D."
 
 #: maps/tutorials/Introductory_Tutorial.xml:PlayerData[0].Name:39
 #: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
 msgid "Player 1"
-msgstr ""
+msgstr "Ludanto 1"
 
 #: maps/tutorials/Introductory_Tutorial.xml:PlayerData[1].Name:39
 msgid "Player 2"
-msgstr ""
+msgstr "Ludanto 2"
 
 #: maps/tutorials/Introductory_Tutorial.xml:Name:39
 msgid "Introductory Tutorial"
-msgstr ""
+msgstr "Komenciga Instruilo"
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Description:39
 msgid ""
@@ -732,7 +992,10 @@ msgid ""
 "in the game the most important thing is to gather resources as fast as "
 "possible so you are able to build enough troops later."
 msgstr ""
+"Tiu mapo donus al vi facileta gvido por komenci la ludon efike.  Frue en la "
+"ludo la plej grava afero estas kolekti resursojn plej rapide kiel ebla, tiel"
+" ke vi povas konstrui sufiĉe grandan armeon poste."
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"
-msgstr ""
+msgstr "Komencanta Ekonomia Lernilo"

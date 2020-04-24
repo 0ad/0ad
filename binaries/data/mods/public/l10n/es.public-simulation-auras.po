@@ -25,6 +25,7 @@
 # Juan Rivera <juanit.900@gmail.com>, 2019
 # Martin Santiago <martinsape2015@gmail.com>, 2019
 # Mauricio Luque <email@mauricioluque.com>, 2019
+# Max Montlleo <zeligmax@gmail.com>, 2020
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
 # Raúl Fdez. <raulferval@hotmail.com>, 2017
 # Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018
@@ -34,9 +35,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-23 08:32+0000\n"
-"PO-Revision-Date: 2020-03-23 12:13+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-04-13 07:18+0000\n"
+"PO-Revision-Date: 2020-04-23 23:27+0000\n"
+"Last-Translator: Max Montlleo <zeligmax@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,11 +47,11 @@ msgstr ""
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
 msgid "Rigorous Training"
-msgstr ""
+msgstr "Entrenamiento Rigoroso"
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned in barracks."
-msgstr ""
+msgstr "Las unidades ganan experiencia cuando están en los barracones"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
@@ -295,6 +296,14 @@ msgstr "Liga del Peloponeso"
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Infantry Spearmen +10% health."
 msgstr "Lanceros de Infantería Ciudadanos Aliados +10% de Vida."
+
+#: simulation/data/auras/units/elephant_worker.jsonauraName
+msgid "Elephant Workers"
+msgstr "Elefantes trabajadores"
+
+#: simulation/data/auras/units/elephant_worker.jsonauraDescription
+msgid "Workers +25% build rate."
+msgstr "Los trabajadores tienen +25% de obtención de material"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"

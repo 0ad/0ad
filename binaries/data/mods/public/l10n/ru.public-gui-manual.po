@@ -26,6 +26,7 @@
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2015
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016-2017
 # Woratiklis, 2015
+# Георгий Морозов <moroz.ger@gmail.com>, 2020
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018-2019
 # Николай Авдеев <nickkolok@mail.ru>, 2016
 # Олег Шевченко <olegrock@gmail.com>, 2017
@@ -33,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-04-02 07:15+0000\n"
-"Last-Translator: Mikhail Grebelnick <oers92@mail.ru>\n"
+"PO-Revision-Date: 2020-04-17 17:04+0000\n"
+"Last-Translator: Георгий Морозов <moroz.ger@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,14 +57,14 @@ msgstr "Посмотреть онлайн"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]Руководство по 0 A.D.[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:2
 msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "Благодарим Вас за установку 0 A.D.! На этой странице приведен краткий обзор возможностей, доступных в этой ещё не завершенной, находящейся в процессе разработки, альфа-версии игры."
+msgstr "Благодарим Вас за установку 0 A.D.! На этой странице приведен краткий обзор возможностей, доступных в игре, находящейся в данный момент в стадии альфа-версии. "
 
 #: gui/manual/intro.txt:4
 msgid "[font=\"sans-bold-16\"]Graphics settings[font=\"sans-14\"]"
@@ -75,7 +76,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr ""
+msgstr "Вы можете переключаться между полноэкранным и оконным режимом комбинацией клавиш Alt + Enter. В оконном режиме вы можете изменять размер окна. Также, вы можете попробовать отключить \"Эффекты воды в высоком качестве\" и \"Тени\", если игра идёт с тормозами."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -87,7 +88,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr ""
+msgstr "Управление и геймплей определённо будут знакомы игрокам классических стратегий в реальном времени. В данный момент отсутствует множество функций и плохо сбалансирована статистика, поэтому вам, вероятно, придется подождать до бета – релиза, чтобы всё работало стабильно."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls:"
@@ -99,11 +100,11 @@ msgstr "• ЛКМ — для выбора юнитов"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr ""
+msgstr "• Выделение ЛКМ - выбор группы юнитов"
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr ""
+msgstr "• ПКМ - приказать юнитам идти к цели"
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
@@ -115,15 +116,15 @@ msgstr "• Ctrl + стрелки или Shift + колесо мыши — дл�
 
 #: gui/manual/intro.txt:16
 msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
-msgstr ""
+msgstr "• Прокрутка полесом мыши, \"=\" и Shift + \"=\", \"-\" и Shift + \"-\" - изменить масштаб"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Режимы[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr ""
+msgstr "Главное меню предоставляет доступ к двум игровым режимам:"
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -169,13 +170,13 @@ msgstr "• [font=\"sans-bold-14\"]Случайная карта[font=\"sans-14\
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
-msgstr "• [font=\"sans-bold-14\"]Сценарий[font=\"sans-14\"] — карта, разработанная дизайнером карт, с фиксированными цивилизациями"
+msgstr "• [font=\"sans-bold-14\"]Сценарная карта[font=\"sans-14\"] — карта, разработанная дизайнером с фиксированным количеством цивилизаций"
 
 #: gui/manual/intro.txt:31
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr "• [font=\"sans-bold-14\"]Схватка[font=\"sans-14\"] — карта, разработанная дизайнером карт, с возможностью выбора цивилизаций"
+msgstr "• [font=\"sans-bold-14\"]Схватка[font=\"sans-14\"] — карта с возможностью выбора цивилизаций"
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -228,7 +229,7 @@ msgstr ""
 msgid ""
 "  F11 – Enable/disable real-time profiler (toggles through the displays of "
 "information)"
-msgstr "F11 — Включить\\отключить профилировщик реального времени (переключение между способами отображением информации)"
+msgstr "F11 — Включить\\отключить профилировщик реального времени (переключение между способами отображения информации)"
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"

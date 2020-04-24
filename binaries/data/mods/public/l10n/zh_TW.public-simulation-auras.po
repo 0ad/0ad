@@ -12,6 +12,7 @@
 # JerryShen <jerry82422@gmail.com>, 2018
 # Money <abc12207@gmail.com>, 2018
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
+# WY Liu <amberwyliu@icloud.com>, 2020
 # Yuan <daan0014119@gmail.com>, 2019
 # Zou Yi <zouyi100@outlook.com>, 2017
 # 又齊 劉 <bill19981002@gmail.com>, 2018
@@ -21,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-23 08:32+0000\n"
-"PO-Revision-Date: 2020-03-23 12:13+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-04-13 07:18+0000\n"
+"PO-Revision-Date: 2020-04-23 14:17+0000\n"
+"Last-Translator: WY Liu <amberwyliu@icloud.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -223,7 +224,7 @@ msgstr "大象供應商"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
 msgid "Allied Elephants −20% resource costs and training time."
-msgstr ""
+msgstr "同盟大象-20%生產成本和時間"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
@@ -241,7 +242,7 @@ msgstr "阿育王的宗教支持"
 msgid ""
 "Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
-msgstr ""
+msgstr "同盟神廟-50%建造成本和時間; 神廟技術-50研發成本和時間"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
@@ -249,7 +250,7 @@ msgstr "皇家大道"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Allied Land Traders +15% trade gain."
-msgstr ""
+msgstr "同盟陸上貿易+15%獲利"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
@@ -273,7 +274,7 @@ msgstr "敘利亞四城"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid "Allied Civil Centers −20% resource costs."
-msgstr ""
+msgstr "同盟城鎮中心-20健造成本"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
@@ -283,13 +284,21 @@ msgstr "伯羅奔尼撒聯盟"
 msgid "Allied Citizen Infantry Spearmen +10% health."
 msgstr ""
 
+#: simulation/data/auras/units/elephant_worker.jsonauraName
+msgid "Elephant Workers"
+msgstr "象工"
+
+#: simulation/data/auras/units/elephant_worker.jsonauraDescription
+msgid "Workers +25% build rate."
+msgstr "工人+25%建造速度"
+
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
 msgstr "鼓舞"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraDescription
 msgid "Citizen Soldiers +10% build rate and gather speed."
-msgstr ""
+msgstr "民兵建造和採集速度+10%"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"

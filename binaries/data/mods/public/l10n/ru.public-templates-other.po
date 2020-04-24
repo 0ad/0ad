@@ -14,6 +14,7 @@
 # Uzumaker Uzumaki <uzumaki1337pro@gmail.com>, 2017
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
 # Woratiklis, 2015-2017
+# Георгий Морозов <moroz.ger@gmail.com>, 2020
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018-2020
 # Николай Авдеев <nickkolok@mail.ru>, 2016
 # Олег Шевченко <olegrock@gmail.com>, 2017
@@ -21,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-03-23 08:32+0000\n"
-"PO-Revision-Date: 2020-04-05 21:21+0000\n"
-"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
+"PO-Revision-Date: 2020-04-17 17:38+0000\n"
+"Last-Translator: Георгий Морозов <moroz.ger@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +33,7 @@ msgstr ""
 
 #: simulation/templates/template_formation.xml:25
 msgid "Requires at least 2 Soldiers or Siege engines."
-msgstr ""
+msgstr "Требуется не менее 2-х пехотинцев или осадных орудий."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -697,7 +698,7 @@ msgstr "Священный дуб"
 #: simulation/templates/gaia/flora_tree_oak_hungarian.xml:4
 #: simulation/templates/gaia/flora_tree_oak_hungarian_autumn.xml:4
 msgid "Hungarian Oak"
-msgstr ""
+msgstr "Венгерский дуб"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak Tree"
@@ -748,7 +749,7 @@ msgstr "Тополь"
 
 #: simulation/templates/gaia/flora_tree_poplar_dead.xml:4
 msgid "Dead Poplar"
-msgstr ""
+msgstr "Погибший тополь"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 msgid "Black Poplar Tree"
@@ -756,11 +757,11 @@ msgstr "Чёрный тополь"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy_autumn.xml:4
 msgid "Poplar"
-msgstr ""
+msgstr "Тополь"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy_dead.xml:4
 msgid "Dead Black Poplar Tree"
-msgstr ""
+msgstr "Мёртвый куст чёрного тополя"
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -1043,7 +1044,7 @@ msgstr "Шпион"
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
-msgstr ""
+msgstr "Только пехота ближнего боя, требуется не менее 16."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1091,7 +1092,7 @@ msgstr "Нет"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Infantry Hoplites only, requires at least 10."
-msgstr ""
+msgstr "Только пехота гоплитов, требуется не менее 10."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1103,7 +1104,7 @@ msgstr "Рассредоточить"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Ranged Soldiers only, requires at least 2."
-msgstr ""
+msgstr "Только солдаты дальнего боя, требуется не менее 2-х."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -1111,7 +1112,7 @@ msgstr "Схватка"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr ""
+msgstr "Только пехота пикинеров, требуется не менее 16."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1123,7 +1124,7 @@ msgstr "Черепаха"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Cavalry only, requires at least 6."
-msgstr ""
+msgstr "Только кавалерия, требуется не менее 6."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

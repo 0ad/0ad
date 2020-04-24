@@ -4,7 +4,9 @@
 # 
 # Translators:
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2017
+# Paruru Slowlegs <paruru@inbox.ru>, 2020
 # 504fc1cf9150c6eb2ead15f639dc2c0a, 2020
+# Paruru Slowlegs <paruru@inbox.ru>, 2020
 # Антон Курило, 2017
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Victor Ptah, 2015
@@ -18,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-30 15:03+0000\n"
-"PO-Revision-Date: 2020-03-30 21:54+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-04-13 07:18+0000\n"
+"PO-Revision-Date: 2020-04-23 09:05+0000\n"
+"Last-Translator: Paruru Slowlegs <paruru@inbox.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,14 +65,7 @@ msgstr "Кавалерист"
 #: simulation/templates/template_unit_cavalry.xml:42
 #: simulation/templates/template_unit_dog.xml:42
 #: simulation/templates/template_unit_infantry.xml:70
-#: simulation/templates/template_unit_support_healer.xml:27
-#: simulation/templates/units/brit_support_healer_b.xml:9
-#: simulation/templates/units/cart_support_healer_b.xml:9
-#: simulation/templates/units/gaul_support_healer_b.xml:9
-#: simulation/templates/units/iber_support_healer_b.xml:10
-#: simulation/templates/units/maur_support_healer_b.xml:9
-#: simulation/templates/units/pers_support_healer_b.xml:10
-#: simulation/templates/units/rome_support_healer_b.xml:10
+#: simulation/templates/template_unit_support_healer.xml:28
 msgctxt "Rank"
 msgid "Basic"
 msgstr "Основний"
@@ -218,7 +213,7 @@ msgstr "Чемпіон кавалеріських мечників"
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:13
 #: simulation/templates/template_unit_hero_elephant_melee.xml:37
 #: simulation/templates/units/maur_elephant_archer_b.xml:34
-#: simulation/templates/units/maur_support_elephant.xml:27
+#: simulation/templates/units/maur_support_elephant.xml:26
 msgid "Elephant"
 msgstr "Слон"
 
@@ -432,7 +427,7 @@ msgstr "Рибальський човен"
 msgid "Fishing Boat"
 msgstr "Рибальський човен"
 
-#: simulation/templates/template_unit_ship_fishing.xml:39
+#: simulation/templates/template_unit_ship_fishing.xml:40
 msgid "Fish the waters for food."
 msgstr "Рибальте у водах заради їжі."
 
@@ -451,7 +446,7 @@ msgstr "Коррупціонер"
 msgid "Merchantman"
 msgstr "Купець"
 
-#: simulation/templates/template_unit_ship_merchant.xml:32
+#: simulation/templates/template_unit_ship_merchant.xml:33
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
@@ -516,7 +511,7 @@ msgstr "Облогова вежа"
 msgid "Female Citizen"
 msgstr "Громадянка"
 
-#: simulation/templates/template_unit_support_healer.xml:29
+#: simulation/templates/template_unit_support_healer.xml:30
 msgid "Heal units."
 msgstr "Зцілити підрозділи."
 
@@ -526,11 +521,11 @@ msgstr "Зцілити підрозділи."
 msgid "Slave"
 msgstr "Невільник"
 
-#: simulation/templates/template_unit_support_slave.xml:41
+#: simulation/templates/template_unit_support_slave.xml:42
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
 msgstr "Збирач, із обмеженою тривалістю життя. Отримує бонуси в гірництві та лісозаготовці."
 
-#: simulation/templates/template_unit_support_trader.xml:17
+#: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
 msgstr "Торгує ресурсами між власними ринками та ринками власних союзників."
 
@@ -945,19 +940,19 @@ msgstr "Гіне атенаіа"
 msgid "Athenian Woman"
 msgstr "Афінська жінка"
 
+#: simulation/templates/units/athen_support_healer_b.xml:6
+#: simulation/templates/units/mace_support_healer_b.xml:6
+#: simulation/templates/units/ptol_support_healer_b.xml:5
+#: simulation/templates/units/sele_support_healer_b.xml:6
+#: simulation/templates/units/spart_support_healer_b.xml:6
+msgid "Surgeon"
+msgstr "Хірург"
+
 #: simulation/templates/units/athen_support_healer_b.xml:7
 #: simulation/templates/units/mace_support_healer_b.xml:7
 #: simulation/templates/units/ptol_support_healer_b.xml:6
 #: simulation/templates/units/sele_support_healer_b.xml:7
 #: simulation/templates/units/spart_support_healer_b.xml:7
-msgid "Surgeon"
-msgstr "Хірург"
-
-#: simulation/templates/units/athen_support_healer_b.xml:8
-#: simulation/templates/units/mace_support_healer_b.xml:8
-#: simulation/templates/units/ptol_support_healer_b.xml:7
-#: simulation/templates/units/sele_support_healer_b.xml:8
-#: simulation/templates/units/spart_support_healer_b.xml:8
 msgid "Iatros"
 msgstr "Іатрос"
 
@@ -1016,7 +1011,7 @@ msgstr ""
 
 #: simulation/templates/units/brit_champion_infantry.xml:5
 msgid "Brythonic Champion"
-msgstr ""
+msgstr "Бритський чемпіон"
 
 #: simulation/templates/units/brit_champion_infantry.xml:6
 msgid "Argos"
@@ -1036,7 +1031,7 @@ msgstr ""
 
 #: simulation/templates/units/brit_hero_caratacos.xml:8
 msgid "Caratacus"
-msgstr ""
+msgstr "Каратак"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:9
 msgid "Caratacos"
@@ -1055,7 +1050,7 @@ msgstr ""
 #: simulation/templates/units/brit_infantry_javelinist_b.xml:19
 #: simulation/templates/units/gaul_infantry_javelinist_b.xml:12
 msgid "Adretos"
-msgstr ""
+msgstr "Адретос"
 
 #: simulation/templates/units/brit_infantry_slinger_b.xml:12
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:12
@@ -1065,7 +1060,7 @@ msgstr "Кельтський пращник"
 #: simulation/templates/units/brit_infantry_slinger_b.xml:13
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:13
 msgid "Talmoris"
-msgstr ""
+msgstr "Талморіс"
 
 #: simulation/templates/units/brit_infantry_spearman_b.xml:12
 msgid "Celtic Spearman"
@@ -1079,7 +1074,7 @@ msgstr ""
 #: simulation/templates/units/brit_ship_fishing.xml:5
 #: simulation/templates/units/gaul_ship_fishing.xml:5
 msgid "Longos"
-msgstr ""
+msgstr "Лонгос"
 
 #: simulation/templates/units/brit_ship_merchant.xml:9
 #: simulation/templates/units/gaul_ship_merchant.xml:9
@@ -1089,12 +1084,12 @@ msgstr ""
 #: simulation/templates/units/brit_ship_trireme.xml:18
 #: simulation/templates/units/gaul_ship_trireme.xml:18
 msgid "Pontos"
-msgstr ""
+msgstr "Понтос"
 
 #: simulation/templates/units/brit_siege_ram.xml:9
 #: simulation/templates/units/gaul_siege_ram.xml:9
 msgid "Molton"
-msgstr ""
+msgstr "Молтон"
 
 #: simulation/templates/units/brit_support_female_citizen.xml:10
 #: simulation/templates/units/gaul_support_female_citizen.xml:10
@@ -1104,12 +1099,12 @@ msgstr "Кельтська жінка"
 #: simulation/templates/units/brit_support_female_citizen.xml:11
 #: simulation/templates/units/gaul_support_female_citizen.xml:11
 msgid "Bena"
-msgstr ""
+msgstr "Бена"
 
+#: simulation/templates/units/brit_support_healer_b.xml:5
 #: simulation/templates/units/brit_support_healer_b.xml:6
-#: simulation/templates/units/brit_support_healer_b.xml:7
+#: simulation/templates/units/gaul_support_healer_b.xml:5
 #: simulation/templates/units/gaul_support_healer_b.xml:6
-#: simulation/templates/units/gaul_support_healer_b.xml:7
 msgid "Druid"
 msgstr "Друїд"
 
@@ -1120,7 +1115,7 @@ msgstr ""
 
 #: simulation/templates/units/brit_war_dog_b.xml:6
 msgid "Agrocuna"
-msgstr ""
+msgstr "Агрокуна"
 
 #: simulation/templates/units/cart_catafalque.xml:8
 msgid "Hasdrubal (Quartermaster)"
@@ -1302,7 +1297,7 @@ msgstr "Аштах"
 msgid "Carthaginian Woman"
 msgstr "Карфагенська жінка"
 
-#: simulation/templates/units/cart_support_healer_b.xml:7
+#: simulation/templates/units/cart_support_healer_b.xml:6
 msgid "Kehinit"
 msgstr "Кехініт"
 
@@ -1328,15 +1323,15 @@ msgstr "Голий фанатик"
 
 #: simulation/templates/units/gaul_champion_fanatic.xml:17
 msgid "Bariogaisatos"
-msgstr ""
+msgstr "Баріогаісатос"
 
 #: simulation/templates/units/gaul_champion_infantry.xml:5
 msgid "Gallic Champion"
-msgstr ""
+msgstr "Гальський чемпіон"
 
 #: simulation/templates/units/gaul_champion_infantry.xml:6
 msgid "Soliduros"
-msgstr ""
+msgstr "Солідурос"
 
 #: simulation/templates/units/gaul_hero_brennus.xml:8
 msgid "Brennus"
@@ -1362,7 +1357,7 @@ msgstr "Вірідомар"
 
 #: simulation/templates/units/gaul_hero_viridomarus.xml:9
 msgid "Britomaros"
-msgstr ""
+msgstr "Брітомарос"
 
 #: simulation/templates/units/iber_catafalque.xml:9
 msgid "Mandonius"
@@ -1449,11 +1444,11 @@ msgstr "Емастекі"
 msgid "Iberian Woman"
 msgstr "Іберійська жінка"
 
-#: simulation/templates/units/iber_support_healer_b.xml:7
+#: simulation/templates/units/iber_support_healer_b.xml:6
 msgid "Priestess of Ataekina"
 msgstr "Жриця Атегіни"
 
-#: simulation/templates/units/iber_support_healer_b.xml:8
+#: simulation/templates/units/iber_support_healer_b.xml:7
 msgid "Emakumezko Apaiz de Ataekina"
 msgstr "Емакумеско апаіс де Атекіна"
 
@@ -1500,7 +1495,7 @@ msgstr "Шляхетний кавалерист"
 
 #: simulation/templates/units/kush_champion_cavalry.xml:6
 msgid "Htr Msʿ n mh-ib"
-msgstr ""
+msgstr "Хетер меса ні мех-іб"
 
 #: simulation/templates/units/kush_champion_elephant.xml:5
 msgid "Meroitic War Elephant"
@@ -1508,7 +1503,7 @@ msgstr "Мероїтський бойовий слон"
 
 #: simulation/templates/units/kush_champion_elephant.xml:6
 msgid "Abore ʿhȝ"
-msgstr ""
+msgstr "Отвір аха"
 
 #: simulation/templates/units/kush_champion_infantry.xml:5
 msgid "Noble Archer"
@@ -1524,7 +1519,7 @@ msgstr "Напатанський храмовий охоронець"
 
 #: simulation/templates/units/kush_champion_infantry_amun.xml:7
 msgid "rs ʿImn"
-msgstr ""
+msgstr "Рес Іамен"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:20
 msgid "Axeman"
@@ -1536,7 +1531,7 @@ msgstr "Мероїтська храмова охорона"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:22
 msgid "rs ʿIprmk"
-msgstr ""
+msgstr "Рес Іаперемек"
 
 #: simulation/templates/units/kush_champion_infantry_apedemak.xml:23
 msgid "Armor-piercing Axes: Counters 1.3x vs. Champions and Heroes."
@@ -1602,7 +1597,7 @@ msgstr "Нубійський застрільник"
 
 #: simulation/templates/units/kush_infantry_javelinist_merc_b.xml:23
 msgid "nhw ʿhȝw Noba"
-msgstr ""
+msgstr "Неху ахау ноба"
 
 #: simulation/templates/units/kush_infantry_pikeman_b.xml:15
 msgid "Meroitic Pikeman"
@@ -1610,7 +1605,7 @@ msgstr "Мероїтський пікінер"
 
 #: simulation/templates/units/kush_infantry_pikeman_b.xml:16
 msgid "siȝwrd"
-msgstr ""
+msgstr "Сіауред"
 
 #: simulation/templates/units/kush_infantry_spearman_b.xml:15
 msgid "Nubian Spearman"
@@ -1630,7 +1625,7 @@ msgstr "Кену хепес"
 
 #: simulation/templates/units/kush_ship_fishing.xml:6
 msgid "Whʿ-rmw"
-msgstr ""
+msgstr "Уеха-рему"
 
 #: simulation/templates/units/kush_ship_merchant.xml:9
 msgid "Nile Trading Barge"
@@ -1638,7 +1633,7 @@ msgstr "Нільський торгівельний баркас"
 
 #: simulation/templates/units/kush_ship_merchant.xml:10
 msgid "Dȝy sbt"
-msgstr ""
+msgstr "Даі себет"
 
 #: simulation/templates/units/kush_ship_trireme.xml:12
 msgid "Ptolemaic Mercenary Trireme"
@@ -1646,7 +1641,7 @@ msgstr "Птолемейська найманська трирема"
 
 #: simulation/templates/units/kush_ship_trireme.xml:13
 msgid "shry ʿȝ"
-msgstr ""
+msgstr "Сехері аа"
 
 #: simulation/templates/units/kush_siege_tower.xml:5
 msgid "Kushite Siege Tower"
@@ -1664,13 +1659,13 @@ msgstr "Сехемет"
 msgid "Kushite Woman"
 msgstr "Кушитська жінка"
 
-#: simulation/templates/units/kush_support_healer_b.xml:6
+#: simulation/templates/units/kush_support_healer_b.xml:5
 msgid "Priest"
 msgstr "Жрець"
 
-#: simulation/templates/units/kush_support_healer_b.xml:7
+#: simulation/templates/units/kush_support_healer_b.xml:6
 msgid "wʿb nsw"
-msgstr ""
+msgstr "Уаб несу"
 
 #: simulation/templates/units/kush_support_trader.xml:5
 msgid "Nilotic Merchant"
@@ -1978,17 +1973,17 @@ msgstr "Торгівельний корабель"
 msgid "Vanijyik Nauka"
 msgstr "Ванідж'їк наука"
 
-#: simulation/templates/units/maur_support_elephant.xml:28
+#: simulation/templates/units/maur_support_elephant.xml:27
 msgid "Worker Elephant"
 msgstr "Робочий слон"
 
-#: simulation/templates/units/maur_support_elephant.xml:29
+#: simulation/templates/units/maur_support_elephant.xml:28
 msgid "Karmākara Gaja"
 msgstr "Кармакара гаджа"
 
-#: simulation/templates/units/maur_support_elephant.xml:31
-msgid "Mobile dropsite. Can also assist in constructing buildings."
-msgstr "Місце збору, що пересувається. Може також допомогати в конструюванні споруд."
+#: simulation/templates/units/maur_support_elephant.xml:30
+msgid "Mobile dropsite for food, wood, stone, and metal."
+msgstr "Рухоме місце збору для їжі, деревини, каменю та металу."
 
 #: simulation/templates/units/maur_support_female_citizen.xml:5
 msgid "Naari"
@@ -1998,11 +1993,11 @@ msgstr "Наарі"
 msgid "Indian Woman"
 msgstr "Індійська жінка"
 
-#: simulation/templates/units/maur_support_healer_b.xml:6
+#: simulation/templates/units/maur_support_healer_b.xml:5
 msgid "Brahmin Priest"
 msgstr "Брахманський жрець"
 
-#: simulation/templates/units/maur_support_healer_b.xml:7
+#: simulation/templates/units/maur_support_healer_b.xml:6
 msgid "Brāhmaṇa Pujari"
 msgstr "Брахмана пуджарі"
 
@@ -2052,11 +2047,11 @@ msgstr "Артахшасса"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:8
 msgid "Parthian Horse Archer"
-msgstr ""
+msgstr "Парфянський кінний стрілець"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:9
 msgid "Asabāra Parθava"
-msgstr ""
+msgstr "Асабара партава"
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:7
 msgid "Median Light Cavalry"
@@ -2225,11 +2220,11 @@ msgstr "Бану міянрудані"
 msgid "Mesopotamian Woman"
 msgstr "Месопотамська жінка"
 
-#: simulation/templates/units/pers_support_healer_b.xml:7
+#: simulation/templates/units/pers_support_healer_b.xml:6
 msgid "Median Magus"
 msgstr "Мідійський маг"
 
-#: simulation/templates/units/pers_support_healer_b.xml:8
+#: simulation/templates/units/pers_support_healer_b.xml:7
 msgid "Maguš Māda"
 msgstr "Магуш мада"
 
@@ -2573,11 +2568,11 @@ msgstr "Романа"
 msgid "Roman Woman"
 msgstr "Римська жінка"
 
-#: simulation/templates/units/rome_support_healer_b.xml:7
+#: simulation/templates/units/rome_support_healer_b.xml:6
 msgid "Doctor"
 msgstr "Лікар"
 
-#: simulation/templates/units/rome_support_healer_b.xml:8
+#: simulation/templates/units/rome_support_healer_b.xml:7
 msgid "Medicus"
 msgstr "Медікус"
 

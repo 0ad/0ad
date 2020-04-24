@@ -37,7 +37,7 @@
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Oleg Ekhlakov <subspam@mail.ru>, 2014
 # Pavel Kyzmin <Virus191288@gmail.com>, 2013
-# Павел Монахов <mpolr21@gmail.com>, 2014
+# Павел Монахов, 2014
 # Prince Moth <princemoth@rambler.ru>, 2016
 # Roman M. Yagodin <roman.yagodin@gmail.com>, 2017
 # Константин <sad.2.shade@gmail.com>, 2014
@@ -55,6 +55,7 @@
 # Александр Волосников <Volosnikov.aleksandr@bk.ru>, 2018
 # Vitalii Mostipaka <imprtat@gmail.com>, 2013
 # Владимир Бочкарёв <zacharovannyu@gmail.com>, 2016
+# Георгий Морозов <moroz.ger@gmail.com>, 2020
 # Дмитрий <polsha_d@mail.ru>, 2016
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018-2019
 # Кваша Владислав <vladislav.kwasha@yandex.ua>, 2014
@@ -66,8 +67,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-03-09 08:13+0000\n"
-"PO-Revision-Date: 2020-04-02 06:20+0000\n"
-"Last-Translator: Mikhail Grebelnick <oers92@mail.ru>\n"
+"PO-Revision-Date: 2020-04-18 16:10+0000\n"
+"Last-Translator: Георгий Морозов <moroz.ger@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -95,7 +96,7 @@ msgstr "Итог"
 #: gui/session/MenuButtons.js:87
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr ""
+msgstr "Нажмите %(hotkey)s для открытия краткой сводки."
 
 #: gui/session/MenuButtons.js:130
 msgid "Lobby"
@@ -106,7 +107,7 @@ msgstr "Комната"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr ""
+msgstr "Нажмите %(hotkey)s для открытия страницы лобби мультиплеера, не выходя из игры."
 
 #: gui/session/MenuButtons.js:158
 msgid "Options"
@@ -123,7 +124,7 @@ msgstr "Пауза"
 #: gui/session/MenuButtons.js:197
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr ""
+msgstr "Нажмите %(hotkey)s для приостановки или продолжения игры."
 
 #: gui/session/MenuButtons.js:213
 msgid "Resign"
@@ -534,7 +535,7 @@ msgstr "Shift-клик"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr ""
+msgstr "Это основной рынок.\nНажмите ПКМ чтобы отменить торговый маршрут."
 
 #: gui/session/unit_actions.js:623
 msgid "Origin trade market."
@@ -550,7 +551,7 @@ msgstr "Щёлкните правой кнопкой на первом рынк�
 
 #: gui/session/unit_actions.js:647 gui/session/unit_actions.js:990
 msgid "This market is too close to the origin market."
-msgstr ""
+msgstr "Этот рынок слишком близко расположен к основному рынку."
 
 #: gui/session/unit_actions.js:651
 msgid "Right-click to set as destination trade market."
@@ -589,7 +590,7 @@ msgstr "Отменить текущий приказ."
 
 #: gui/session/unit_actions.js:1209
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr ""
+msgstr "Приказать выбранным юнитам или юниту расположиться гарнизоном в здании."
 
 #: gui/session/unit_actions.js:1232
 msgid "Unload"
@@ -597,7 +598,7 @@ msgstr "Вывести"
 
 #: gui/session/unit_actions.js:1250
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr ""
+msgstr "Приказать выбранным юнитам ремонтировать здание, корабль или осадное орудие."
 
 #: gui/session/unit_actions.js:1269
 msgid "Focus on Rally Point."
@@ -609,7 +610,7 @@ msgstr "Вернуть к работе"
 
 #: gui/session/unit_actions.js:1323
 msgid "Order the selected units to guard a structure or unit."
-msgstr ""
+msgstr "Приказать выбранным юнитам охранять здание или юнита."
 
 #: gui/session/unit_actions.js:1341
 msgid "Remove guard"
@@ -627,7 +628,7 @@ msgstr "Патруль"
 
 #: gui/session/unit_actions.js:1377
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr ""
+msgstr "Атакуйте всех встречных вражеских юнитов, избегая при этом строений."
 
 #: gui/session/unit_actions.js:1403
 msgid "Press to allow allies to use this dropsite"
@@ -823,7 +824,7 @@ msgstr "%(player)s присоединился к игре."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:57
 msgid "no-context"
-msgstr ""
+msgstr "Без контекста"
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:61
 #, javascript-format
@@ -1020,7 +1021,7 @@ msgstr "Показать поле зрения камеры"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:283
 msgid "Display shadows frustum"
-msgstr ""
+msgstr "Показать слепые зоны"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -1172,7 +1173,7 @@ msgstr "Рассинхронизация"
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr ""
+msgstr "Синхронизация отсутсвует"
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:63
@@ -1318,19 +1319,19 @@ msgstr "Продать %(resource)s"
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
-msgstr ""
+msgstr "+%(amount)s"
 
 #: gui/session/trade/BarterButton.js:103
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"
-msgstr ""
+msgstr "-%(amount)s"
 
 #: gui/session/trade/TradeButton.js:56
 #, javascript-format
 msgctxt "trading good ratio"
 msgid "%(amount)s%%"
-msgstr ""
+msgstr "%(amount)s%%"
 
 #: gui/session/trade/TradeButtonManager.js:76
 #, javascript-format
