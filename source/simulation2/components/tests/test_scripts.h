@@ -58,6 +58,12 @@ public:
 
 	void test_global_scripts()
 	{
+		if (!VfsDirectoryExists(L"globalscripts/tests/"))
+		{
+			debug_printf("Skipping globalscripts tests (can't find binaries/data/mods/public/globalscripts/tests/)\n");
+			return;
+		}
+
 		VfsPaths paths;
 		TS_ASSERT_OK(vfs::GetPathnames(g_VFS, L"globalscripts/tests/", L"test_*.js", paths));
 		for (const VfsPath& path : paths)
@@ -73,7 +79,7 @@ public:
 	{
 		if (!VfsFileExists(L"simulation/components/tests/setup.js"))
 		{
-			debug_printf("WARNING: Skipping component scripts tests (can't find binaries/data/mods/public/simulation/components/tests/setup.js)\n");
+			debug_printf("Skipping component scripts tests (can't find binaries/data/mods/public/simulation/components/tests/setup.js)\n");
 			return;
 		}
 
