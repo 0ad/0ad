@@ -263,12 +263,7 @@ Health.prototype.HandleDeath = function()
 		break;
 
 	case "remain":
-	{
-		let resource = this.CreateCorpse(true);
-		if (resource != INVALID_ENTITY)
-			Engine.PostMessage(this.entity, MT_EntityRenamed, { "entity": this.entity, "newentity": resource });
-		break;
-	}
+		return;
 
 	case "vanish":
 		break;
@@ -310,45 +305,54 @@ Health.prototype.Increase = function(amount)
 	return { "old": old, "new": this.hitpoints };
 };
 
-Health.prototype.CreateCorpse = function(leaveResources)
+Health.prototype.CreateCorpse = function()
 {
 	// If the unit died while not in the world, don't create any corpse for it
-	// since there's nowhere for the corpse to be placed
+	// since there's nowhere for the corpse to be placed.
 	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	if (!cmpPosition.IsInWorld())
-		return INVALID_ENTITY;
+	if (!cmpPosition || !cmpPosition.IsInWorld())
+		return;
 
 	// Either creates a static local version of the current entity, or a
 	// persistent corpse retaining the ResourceSupply element of the parent.
-	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	let templateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);
-	let corpse;
-	if (leaveResources)
-		corpse = Engine.AddEntity("resource|" + templateName);
+	let templateName = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetCurrentTemplateName(this.entity);
+
+	let entCorpse;
+	let cmpResourceSupply = Engine.QueryInterface(this.entity, IID_ResourceSupply);
+	let resource = cmpResourceSupply && cmpResourceSupply.GetKillBeforeGather();
+	if (resource)
+		entCorpse = Engine.AddEntity("resource|" + templateName);
 	else
-		corpse = Engine.AddLocalEntity("corpse|" + templateName);
+		entCorpse = Engine.AddLocalEntity("corpse|" + templateName);
 
-	// Copy various parameters so it looks just like us
-
-	let cmpCorpsePosition = Engine.QueryInterface(corpse, IID_Position);
+	// Copy various parameters so it looks just like us.
+	let cmpPositionCorpse = Engine.QueryInterface(entCorpse, IID_Position);
 	let pos = cmpPosition.GetPosition();
-	cmpCorpsePosition.JumpTo(pos.x, pos.z);
+	cmpPositionCorpse.JumpTo(pos.x, pos.z);
 	let rot = cmpPosition.GetRotation();
-	cmpCorpsePosition.SetYRotation(rot.y);
-	cmpCorpsePosition.SetXZRotation(rot.x, rot.z);
+	cmpPositionCorpse.SetYRotation(rot.y);
+	cmpPositionCorpse.SetXZRotation(rot.x, rot.z);
 
 	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	let cmpCorpseOwnership = Engine.QueryInterface(corpse, IID_Ownership);
-	cmpCorpseOwnership.SetOwner(cmpOwnership.GetOwner());
+	let cmpOwnershipCorpse = Engine.QueryInterface(entCorpse, IID_Ownership);
+	if (cmpOwnership && cmpOwnershipCorpse)
+		cmpOwnershipCorpse.SetOwner(cmpOwnership.GetOwner());
 
-	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
-	let cmpCorpseVisual = Engine.QueryInterface(corpse, IID_Visual);
-	cmpCorpseVisual.SetActorSeed(cmpVisual.GetActorSeed());
+	let cmpVisualCorpse = Engine.QueryInterface(entCorpse, IID_Visual);
+	if (cmpVisualCorpse)
+	{
+		let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+		if (cmpVisual)
+			cmpVisualCorpse.SetActorSeed(cmpVisual.GetActorSeed());
 
-	// Make it fall over
-	cmpCorpseVisual.SelectAnimation("death", true, 1.0);
+		cmpVisualCorpse.SelectAnimation("death", true, 1);
+	}
 
-	return corpse;
+	if (resource)
+		Engine.PostMessage(this.entity, MT_EntityRenamed, {
+			"entity": this.entity,
+			"newentity": entCorpse
+		});
 };
 
 Health.prototype.CreateDeathSpawnedEntity = function()
@@ -428,7 +432,7 @@ Health.prototype.RecalculateValues = function()
 
 	if (this.regenRate != oldRegenRate || this.idleRegenRate != oldIdleRegenRate)
 		this.CheckRegenTimer();
-}
+};
 
 Health.prototype.OnValueModification = function(msg)
 {
@@ -440,7 +444,7 @@ Health.prototype.OnOwnershipChanged = function(msg)
 {
 	if (msg.to != INVALID_PLAYER)
 		this.RecalculateValues();
-}
+};
 
 Health.prototype.RegisterHealthChanged = function(from)
 {

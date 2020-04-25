@@ -1,4 +1,5 @@
 Engine.LoadComponentScript("interfaces/ModifiersManager.js");
+Engine.LoadComponentScript("interfaces/ResourceSupply.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("ValueModification.js");
 
