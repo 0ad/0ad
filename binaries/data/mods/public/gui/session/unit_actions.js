@@ -1101,6 +1101,8 @@ var g_UnitActions =
 	},
 };
 
+var g_UnitActionsSortedKeys = Object.keys(g_UnitActions).sort((a, b) => g_UnitActions[a].specificness - g_UnitActions[b].specificness);
+
 /**
  * Info and actions for the entity commands
  * Currently displayed in the bottom of the central panel

@@ -208,47 +208,43 @@ function updateBuildingPlacementPreview()
  */
 function determineAction(x, y, fromMinimap)
 {
-	var selection = g_Selection.toList();
-
-	// No action if there's no selection
+	let selection = g_Selection.toList();
 	if (!selection.length)
 	{
 		preSelectedAction = ACTION_NONE;
 		return undefined;
 	}
 
-	// If the selection doesn't exist, no action
-	var entState = GetEntityState(selection[0]);
+	// If the selection doesn't exist, no action.
+	let entState = GetEntityState(selection[0]);
 	if (!entState)
 		return undefined;
 
-	// If the selection isn't friendly units, no action
+	// If the selection isn't friendly units, no action.
 	if (!selection.every(ownsEntity) &&
 	    !(g_SimState.players[g_ViewedPlayer] &&
 	      g_SimState.players[g_ViewedPlayer].controlsAll))
 		return undefined;
 
-	var target = undefined;
+	let target;
 	if (!fromMinimap)
 	{
-		var ent = Engine.PickEntityAtPoint(x, y);
+		let ent = Engine.PickEntityAtPoint(x, y);
 		if (ent != INVALID_ENTITY)
 			target = ent;
 	}
 
-	// decide between the following ordered actions
+	// Decide between the following ordered actions,
 	// if two actions are possible, the first one is taken
-	// so the most specific should appear first
-	var actions = Object.keys(g_UnitActions).slice();
-	actions.sort((a, b) => g_UnitActions[a].specificness - g_UnitActions[b].specificness);
+	// thus the most specific should appear first.
 
-	var actionInfo = undefined;
+	let actionInfo = undefined;
 	if (preSelectedAction != ACTION_NONE)
 	{
-		for (var action of actions)
+		for (let action of g_UnitActionsSortedKeys)
 			if (g_UnitActions[action].preSelectedActionCheck)
 			{
-				var r = g_UnitActions[action].preSelectedActionCheck(target, selection);
+				let r = g_UnitActions[action].preSelectedActionCheck(target, selection);
 				if (r)
 					return r;
 			}
@@ -256,18 +252,18 @@ function determineAction(x, y, fromMinimap)
 		return { "type": "none", "cursor": "", "target": target };
 	}
 
-	for (var action of actions)
+	for (let action of g_UnitActionsSortedKeys)
 		if (g_UnitActions[action].hotkeyActionCheck)
 		{
-			var r = g_UnitActions[action].hotkeyActionCheck(target, selection);
+			let r = g_UnitActions[action].hotkeyActionCheck(target, selection);
 			if (r)
 				return r;
 		}
 
-	for (var action of actions)
+	for (let action of g_UnitActionsSortedKeys)
 		if (g_UnitActions[action].actionCheck)
 		{
-			var r = g_UnitActions[action].actionCheck(target, selection);
+			let r = g_UnitActions[action].actionCheck(target, selection);
 			if (r)
 				return r;
 		}
