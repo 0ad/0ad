@@ -20,6 +20,7 @@
 # Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016,2018
 # Woratiklis, 2016
+# Георгий Морозов <moroz.ger@gmail.com>, 2020
 # Дмитрий <polsha_d@mail.ru>, 2016
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018-2020
 # Максим Дронь <dronmax@gmail.com>, 2016
@@ -29,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-23 08:32+0000\n"
-"PO-Revision-Date: 2020-04-07 20:39+0000\n"
-"Last-Translator: Ivan Levin <spite39169@gmail.com>\n"
+"POT-Creation-Date: 2020-04-13 07:18+0000\n"
+"PO-Revision-Date: 2020-04-18 20:45+0000\n"
+"Last-Translator: Георгий Морозов <moroz.ger@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -130,7 +131,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
-msgstr ""
+msgstr "Бонус фермы"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "Workers +25% grain gather rate."
@@ -154,7 +155,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
-msgstr ""
+msgstr "Защита стен"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid "Garrisoned Soldiers +3 armor and +20 vision range."
@@ -162,7 +163,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraName
 msgid "Symbol of Greatness"
-msgstr ""
+msgstr "Символ величия"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "+10 maximum population limit."
@@ -170,7 +171,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion"
-msgstr ""
+msgstr "Славное расширение"
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
@@ -187,7 +188,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
-msgstr ""
+msgstr "Первый Афинский морской союз"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Allied Warships −25% construction time."
@@ -203,7 +204,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
-msgstr ""
+msgstr "Мастера торговли"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Allied Markets +10% international trade bonus."
@@ -219,7 +220,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
-msgstr ""
+msgstr "Сарипеко"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Javelinists −10% resource costs."
@@ -243,7 +244,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
-msgstr ""
+msgstr "Религиозная поддержка Ашоки"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
@@ -261,7 +262,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
-msgstr ""
+msgstr "Житница Средиземноморья"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "Allies +1.0 food trickle rate."
@@ -273,11 +274,11 @@ msgstr "Воинская повинность"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Infantry −10% training time."
-msgstr ""
+msgstr "Союзная пехота воинов граждан: -10% время обучения."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
-msgstr ""
+msgstr "Сирийский тетраполис(Антиохия)"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid "Allied Civil Centers −20% resource costs."
@@ -285,10 +286,18 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
-msgstr ""
+msgstr "Пелопоннесский союз"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Infantry Spearmen +10% health."
+msgstr ""
+
+#: simulation/data/auras/units/elephant_worker.jsonauraName
+msgid "Elephant Workers"
+msgstr ""
+
+#: simulation/data/auras/units/elephant_worker.jsonauraDescription
+msgid "Workers +25% build rate."
 msgstr ""
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
@@ -311,7 +320,7 @@ msgstr "Солон предложил несколько экономическ�
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
-msgstr ""
+msgstr "Экономическое Состояние"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraDescription
 msgid ""
@@ -332,7 +341,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
 msgid "Skirmisher Harassment"
-msgstr ""
+msgstr "Преследование стрелявшего"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraDescription
 msgid ""
@@ -342,7 +351,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
-msgstr ""
+msgstr "Командир тяжелой кавалерии"
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraDescription
 msgid ""
@@ -352,7 +361,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraName
 msgid "Ambush Slaughter"
-msgstr ""
+msgstr "Резня из засады"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraDescription
 msgid ""
@@ -362,7 +371,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
-msgstr ""
+msgstr "Дань Риму"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraDescription
 msgid ""
@@ -372,7 +381,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraName
 msgid "Mercenary Commander"
-msgstr ""
+msgstr "Командир наёмников"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraDescription
 msgid ""
@@ -382,7 +391,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
-msgstr ""
+msgstr "Спасительница жизней"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraDescription
 msgid ""
@@ -412,7 +421,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
-msgstr ""
+msgstr "Разоритель городов"
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraDescription
 msgid ""
@@ -422,7 +431,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraName
 msgid "Consolidator of the Empire"
-msgstr ""
+msgstr "Объединитель Империи"
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraDescription
 msgid ""
@@ -442,7 +451,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
-msgstr ""
+msgstr "Великий строитель"
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraDescription
 msgid ""
@@ -452,7 +461,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
-msgstr ""
+msgstr "Великий Библиотекарь"
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraDescription
 msgid ""
@@ -462,7 +471,7 @@ msgstr "Продолжая работу своих предшественник�
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraName
 msgid "Avenger of Lucretia"
-msgstr ""
+msgstr "Мститель Лукреции"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraDescription
 msgid ""
@@ -472,7 +481,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
-msgstr ""
+msgstr "Основатель и Защитник Республики"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraDescription
 msgid ""
@@ -492,7 +501,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_2.jsonauraName
 msgid "Immigration"
-msgstr ""
+msgstr "Иммиграция"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_2.jsonauraDescription
 msgid ""
@@ -502,7 +511,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraName
 msgid "Basileus Megas"
-msgstr ""
+msgstr "Басилевс Мегас"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraDescription
 msgid ""
@@ -513,7 +522,7 @@ msgstr ""
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
 msgid "Lycurgan Military Reforms"
-msgstr ""
+msgstr "Военные реформы Ликурга"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraDescription
 msgid ""
@@ -527,7 +536,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraName
 msgid "Iron Pelanors"
-msgstr ""
+msgstr "Железные пеланоры"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraDescription
 msgid ""
@@ -545,7 +554,7 @@ msgstr "Воины в боевом порядке под его началом �
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
-msgstr ""
+msgstr "Улучшения пельтастов"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraDescription
 msgid "Infantry Javelinists +15% movement speed."
@@ -553,7 +562,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
-msgstr ""
+msgstr "Строительная программа Перикла"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "Workers +15% build rate."
@@ -569,7 +578,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
-msgstr ""
+msgstr "Военно-морской командир"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid ""
@@ -579,7 +588,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Naval Architect"
-msgstr ""
+msgstr "Корабельный инженер"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "Ships −50% metal cost, −20% construction time."
@@ -587,7 +596,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraName
 msgid "Champion Army"
-msgstr ""
+msgstr "Воинствующая армия"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid ""
@@ -597,7 +606,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
-msgstr ""
+msgstr "Вождь партизан"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
 msgid "Soldiers and Siege Engines +1 armor, +15% movement speed."
@@ -614,7 +623,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
 msgid "Lightning General"
-msgstr ""
+msgstr "Генерал Молния"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraDescription
 msgid "Soldiers and Siege Engines +15% movement speed."
@@ -630,7 +639,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
-msgstr ""
+msgstr "Тактик"
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraDescription
 msgid ""
@@ -640,7 +649,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
 msgid "Cavalry Commander"
-msgstr ""
+msgstr "Кавалерийский командир"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
 msgid "Melee Cavalry +30% melee attack damage."
@@ -656,7 +665,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
-msgstr ""
+msgstr "Кельтский военачальник"
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
 msgid ""
@@ -666,11 +675,11 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
 msgid "Preparation for War"
-msgstr ""
+msgstr "Подготовка к войне"
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
-msgstr ""
+msgstr "Вдохновенная защита"
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraDescription
 msgid ""
@@ -786,7 +795,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
-msgstr ""
+msgstr "Таксиарх"
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
 msgid ""
@@ -795,7 +804,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
 msgid "Besieger"
-msgstr ""
+msgstr "Осаждённый"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraDescription
 msgid ""
@@ -805,11 +814,11 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
 msgid "Rise of Macedon"
-msgstr ""
+msgstr "Возвышение Македонии"
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus.jsonauraName
 msgid "Pyrrhic Victory"
-msgstr ""
+msgstr "Пиррова победа"
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage, −15% health."
@@ -817,7 +826,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraName
 msgid "Buddhism"
-msgstr ""
+msgstr "Буддизм"
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraDescription
 msgid ""
@@ -896,7 +905,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Patron of Construction"
-msgstr ""
+msgstr "Покровитель Строительства"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraDescription
 msgid "Workers +10% build rate."
@@ -904,7 +913,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraName
 msgid "Mercenary Patron"
-msgstr ""
+msgstr "Покровитель наёмничества"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
 msgid "Mercenaries −35% resource costs."
@@ -913,7 +922,7 @@ msgstr ""
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
 msgid "Sword of Rome"
-msgstr ""
+msgstr "Меч Рима"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
 msgid "Cavalry +15% melee and ranged attack damage."
@@ -925,7 +934,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
-msgstr ""
+msgstr "Щит Рима"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "Humans and Structures +1 armor."
@@ -943,7 +952,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
 msgid "Ilarchès"
-msgstr ""
+msgstr "Командир Крыла"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraDescription
 msgid "Cavalry +2 armor."
@@ -959,7 +968,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos"
-msgstr ""
+msgstr "Погонщик слонов"
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraDescription
 msgid "Champion Elephants +20% melee attack damage, +20% movement speed."
@@ -967,7 +976,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
-msgstr ""
+msgstr "Улучшение илотов"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid ""
@@ -976,7 +985,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"
-msgstr ""
+msgstr "Последний бой"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."

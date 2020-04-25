@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-30 15:03+0000\n"
-"PO-Revision-Date: 2020-03-30 21:54+0000\n"
+"POT-Creation-Date: 2020-04-13 07:18+0000\n"
+"PO-Revision-Date: 2020-04-13 10:46+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -68,14 +68,7 @@ msgstr "骑兵"
 #: simulation/templates/template_unit_cavalry.xml:42
 #: simulation/templates/template_unit_dog.xml:42
 #: simulation/templates/template_unit_infantry.xml:70
-#: simulation/templates/template_unit_support_healer.xml:27
-#: simulation/templates/units/brit_support_healer_b.xml:9
-#: simulation/templates/units/cart_support_healer_b.xml:9
-#: simulation/templates/units/gaul_support_healer_b.xml:9
-#: simulation/templates/units/iber_support_healer_b.xml:10
-#: simulation/templates/units/maur_support_healer_b.xml:9
-#: simulation/templates/units/pers_support_healer_b.xml:10
-#: simulation/templates/units/rome_support_healer_b.xml:10
+#: simulation/templates/template_unit_support_healer.xml:28
 msgctxt "Rank"
 msgid "Basic"
 msgstr "基础"
@@ -223,7 +216,7 @@ msgstr "精锐持剑骑兵"
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:13
 #: simulation/templates/template_unit_hero_elephant_melee.xml:37
 #: simulation/templates/units/maur_elephant_archer_b.xml:34
-#: simulation/templates/units/maur_support_elephant.xml:27
+#: simulation/templates/units/maur_support_elephant.xml:26
 msgid "Elephant"
 msgstr "大象"
 
@@ -437,7 +430,7 @@ msgstr "渔船"
 msgid "Fishing Boat"
 msgstr "渔船"
 
-#: simulation/templates/template_unit_ship_fishing.xml:39
+#: simulation/templates/template_unit_ship_fishing.xml:40
 msgid "Fish the waters for food."
 msgstr "打渔获取食物。"
 
@@ -456,7 +449,7 @@ msgstr "可收买"
 msgid "Merchantman"
 msgstr "商船"
 
-#: simulation/templates/template_unit_ship_merchant.xml:32
+#: simulation/templates/template_unit_ship_merchant.xml:33
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
@@ -521,7 +514,7 @@ msgstr "楼车"
 msgid "Female Citizen"
 msgstr "妇女"
 
-#: simulation/templates/template_unit_support_healer.xml:29
+#: simulation/templates/template_unit_support_healer.xml:30
 msgid "Heal units."
 msgstr "治疗单位。"
 
@@ -531,11 +524,11 @@ msgstr "治疗单位。"
 msgid "Slave"
 msgstr "奴隶"
 
-#: simulation/templates/template_unit_support_slave.xml:41
+#: simulation/templates/template_unit_support_slave.xml:42
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
 msgstr "生命有限的采集者。在采矿和伐木上有加成。"
 
-#: simulation/templates/template_unit_support_trader.xml:17
+#: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
 msgstr "和盟友的市场间贸易。"
 
@@ -950,19 +943,19 @@ msgstr "妇女"
 msgid "Athenian Woman"
 msgstr "雅典女性"
 
+#: simulation/templates/units/athen_support_healer_b.xml:6
+#: simulation/templates/units/mace_support_healer_b.xml:6
+#: simulation/templates/units/ptol_support_healer_b.xml:5
+#: simulation/templates/units/sele_support_healer_b.xml:6
+#: simulation/templates/units/spart_support_healer_b.xml:6
+msgid "Surgeon"
+msgstr ""
+
 #: simulation/templates/units/athen_support_healer_b.xml:7
 #: simulation/templates/units/mace_support_healer_b.xml:7
 #: simulation/templates/units/ptol_support_healer_b.xml:6
 #: simulation/templates/units/sele_support_healer_b.xml:7
 #: simulation/templates/units/spart_support_healer_b.xml:7
-msgid "Surgeon"
-msgstr ""
-
-#: simulation/templates/units/athen_support_healer_b.xml:8
-#: simulation/templates/units/mace_support_healer_b.xml:8
-#: simulation/templates/units/ptol_support_healer_b.xml:7
-#: simulation/templates/units/sele_support_healer_b.xml:8
-#: simulation/templates/units/spart_support_healer_b.xml:8
 msgid "Iatros"
 msgstr ""
 
@@ -1111,10 +1104,10 @@ msgstr "凯尔特女性"
 msgid "Bena"
 msgstr ""
 
+#: simulation/templates/units/brit_support_healer_b.xml:5
 #: simulation/templates/units/brit_support_healer_b.xml:6
-#: simulation/templates/units/brit_support_healer_b.xml:7
+#: simulation/templates/units/gaul_support_healer_b.xml:5
 #: simulation/templates/units/gaul_support_healer_b.xml:6
-#: simulation/templates/units/gaul_support_healer_b.xml:7
 msgid "Druid"
 msgstr ""
 
@@ -1307,7 +1300,7 @@ msgstr "妇女"
 msgid "Carthaginian Woman"
 msgstr "迦太基女性"
 
-#: simulation/templates/units/cart_support_healer_b.xml:7
+#: simulation/templates/units/cart_support_healer_b.xml:6
 msgid "Kehinit"
 msgstr "医师"
 
@@ -1454,11 +1447,11 @@ msgstr "妇女"
 msgid "Iberian Woman"
 msgstr "妇女"
 
-#: simulation/templates/units/iber_support_healer_b.xml:7
+#: simulation/templates/units/iber_support_healer_b.xml:6
 msgid "Priestess of Ataekina"
 msgstr "女祭司"
 
-#: simulation/templates/units/iber_support_healer_b.xml:8
+#: simulation/templates/units/iber_support_healer_b.xml:7
 msgid "Emakumezko Apaiz de Ataekina"
 msgstr "女祭司"
 
@@ -1669,11 +1662,11 @@ msgstr "妇女"
 msgid "Kushite Woman"
 msgstr "库什女性"
 
-#: simulation/templates/units/kush_support_healer_b.xml:6
+#: simulation/templates/units/kush_support_healer_b.xml:5
 msgid "Priest"
 msgstr "祭司"
 
-#: simulation/templates/units/kush_support_healer_b.xml:7
+#: simulation/templates/units/kush_support_healer_b.xml:6
 msgid "wʿb nsw"
 msgstr ""
 
@@ -1983,17 +1976,17 @@ msgstr "商船"
 msgid "Vanijyik Nauka"
 msgstr "商船"
 
-#: simulation/templates/units/maur_support_elephant.xml:28
+#: simulation/templates/units/maur_support_elephant.xml:27
 msgid "Worker Elephant"
 msgstr "苦力象"
 
-#: simulation/templates/units/maur_support_elephant.xml:29
+#: simulation/templates/units/maur_support_elephant.xml:28
 msgid "Karmākara Gaja"
 msgstr "苦力象"
 
-#: simulation/templates/units/maur_support_elephant.xml:31
-msgid "Mobile dropsite. Can also assist in constructing buildings."
-msgstr "移动的资源收集处。可辅助修建建筑。"
+#: simulation/templates/units/maur_support_elephant.xml:30
+msgid "Mobile dropsite for food, wood, stone, and metal."
+msgstr ""
 
 #: simulation/templates/units/maur_support_female_citizen.xml:5
 msgid "Naari"
@@ -2003,11 +1996,11 @@ msgstr "妇女"
 msgid "Indian Woman"
 msgstr "印度妇女"
 
-#: simulation/templates/units/maur_support_healer_b.xml:6
+#: simulation/templates/units/maur_support_healer_b.xml:5
 msgid "Brahmin Priest"
 msgstr "婆罗门祭司"
 
-#: simulation/templates/units/maur_support_healer_b.xml:7
+#: simulation/templates/units/maur_support_healer_b.xml:6
 msgid "Brāhmaṇa Pujari"
 msgstr "祭司"
 
@@ -2230,11 +2223,11 @@ msgstr "妇女"
 msgid "Mesopotamian Woman"
 msgstr "妇女"
 
-#: simulation/templates/units/pers_support_healer_b.xml:7
+#: simulation/templates/units/pers_support_healer_b.xml:6
 msgid "Median Magus"
 msgstr "米底祭司"
 
-#: simulation/templates/units/pers_support_healer_b.xml:8
+#: simulation/templates/units/pers_support_healer_b.xml:7
 msgid "Maguš Māda"
 msgstr ""
 
@@ -2578,11 +2571,11 @@ msgstr ""
 msgid "Roman Woman"
 msgstr "罗马女性"
 
-#: simulation/templates/units/rome_support_healer_b.xml:7
+#: simulation/templates/units/rome_support_healer_b.xml:6
 msgid "Doctor"
 msgstr ""
 
-#: simulation/templates/units/rome_support_healer_b.xml:8
+#: simulation/templates/units/rome_support_healer_b.xml:7
 msgid "Medicus"
 msgstr ""
 

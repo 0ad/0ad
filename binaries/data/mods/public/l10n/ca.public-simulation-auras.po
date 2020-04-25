@@ -19,6 +19,7 @@
 # Klan Ruiz Martin <rodamit@gmail.com>, 2017
 # Marc Masip Compte <marcmc421@gmail.com>, 2019
 # Marc Miró <mmirosanchez@gmail.com>, 2017
+# Max Montlleo <zeligmax@gmail.com>, 2020
 # Pau Domènech <pdomenechb@gmail.com>, 2017
 # Pau Soliva <psoliva@naralabs.com>, 2017
 # Peredelgrau, 2016
@@ -27,9 +28,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-23 08:32+0000\n"
-"PO-Revision-Date: 2020-03-28 21:48+0000\n"
-"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
+"POT-Creation-Date: 2020-04-13 07:18+0000\n"
+"PO-Revision-Date: 2020-04-23 23:21+0000\n"
+"Last-Translator: Max Montlleo <zeligmax@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -289,6 +290,14 @@ msgstr "Lliga del Peloponès"
 msgid "Allied Citizen Infantry Spearmen +10% health."
 msgstr "Augmenta la salut dels llancers ciutadans dels aliats en un 10%."
 
+#: simulation/data/auras/units/elephant_worker.jsonauraName
+msgid "Elephant Workers"
+msgstr "Elefants Treballadors"
+
+#: simulation/data/auras/units/elephant_worker.jsonauraDescription
+msgid "Workers +25% build rate."
+msgstr "Els treballadors tenen +25% de benefici"
+
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
 msgstr "Inspiració"
@@ -330,13 +339,13 @@ msgstr "En veure que la defensa atrinxerada era inútil contra l'exèrcit romà,
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
 msgid "Skirmisher Harassment"
-msgstr ""
+msgstr "Escaramss Asstejadora"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraDescription
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
 "Javelinists +20% attack range."
-msgstr ""
+msgstr "Cassivellaunus desplega escaramusses ràpides per assejtar les tropes i forjadors Romans.\nJavelinistes  +20% de rang d'atac."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"

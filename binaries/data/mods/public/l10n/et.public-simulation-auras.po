@@ -6,12 +6,13 @@
 # Dark Abus <pitsavares@gmail.com>, 2017
 # Sten Kaart <kaart626@gmail.com>, 2017
 # Tõnis Paluoja <dataplayer@gmail.com>, 2016
+# Toomas Ginter <toomas.ginter@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-23 08:32+0000\n"
-"PO-Revision-Date: 2020-03-23 12:13+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-04-13 07:18+0000\n"
+"PO-Revision-Date: 2020-04-19 19:52+0000\n"
+"Last-Translator: Toomas Ginter <toomas.ginter@gmail.com>\n"
 "Language-Team: Estonian (http://www.transifex.com/wildfire-games/0ad/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned in barracks."
-msgstr ""
+msgstr "Üksused omandavad kogemust kasarmu garnisonis."
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
@@ -53,7 +54,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
-msgstr ""
+msgstr "Patriotism"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
@@ -94,7 +95,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
-msgstr ""
+msgstr "Lojaalsus"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
@@ -126,7 +127,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/theater.jsonauraName
 msgid "Hellenization"
-msgstr ""
+msgstr "Hellenisatsioon"
 
 #: simulation/data/auras/structures/theater.jsonauraDescription
 msgid "Structures +20% territory influence radius."
@@ -171,11 +172,11 @@ msgstr "Delose Liit"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Allied Warships −25% construction time."
-msgstr ""
+msgstr "Liitlastel sõjalaevade ehitus 25% kiirem."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
-msgstr ""
+msgstr "Druiidid"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allied Healers −20% resource costs."
@@ -271,6 +272,14 @@ msgstr ""
 msgid "Allied Citizen Infantry Spearmen +10% health."
 msgstr ""
 
+#: simulation/data/auras/units/elephant_worker.jsonauraName
+msgid "Elephant Workers"
+msgstr "Elevant-tööjõud"
+
+#: simulation/data/auras/units/elephant_worker.jsonauraDescription
+msgid "Workers +25% build rate."
+msgstr ""
+
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
 msgstr ""
@@ -362,7 +371,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
-msgstr ""
+msgstr "Elupäästja"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraDescription
 msgid ""
@@ -422,7 +431,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
-msgstr ""
+msgstr "Võimas ehitaja"
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraDescription
 msgid ""
@@ -472,7 +481,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_2.jsonauraName
 msgid "Immigration"
-msgstr ""
+msgstr "Sisseränne"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_2.jsonauraDescription
 msgid ""
@@ -636,7 +645,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
-msgstr ""
+msgstr "Keldi sõjapealik"
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
 msgid ""
@@ -797,7 +806,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraName
 msgid "Buddhism"
-msgstr ""
+msgstr "Budism"
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraDescription
 msgid ""
@@ -847,7 +856,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot"
-msgstr ""
+msgstr "Patrioot"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraDescription
 msgid "Soldiers and Siege Engines −20% melee and ranged attack repeat time."

@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Toomas Ginter <toomas.ginter@gmail.com>, 2020
 # unserializable <unserializable@freenet.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-30 15:03+0000\n"
-"PO-Revision-Date: 2020-03-30 21:54+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-04-13 07:18+0000\n"
+"PO-Revision-Date: 2020-04-19 19:23+0000\n"
+"Last-Translator: Toomas Ginter <toomas.ginter@gmail.com>\n"
 "Language-Team: Estonian (http://www.transifex.com/wildfire-games/0ad/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +20,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_catafalque.xml:15
 msgid "Relic"
-msgstr ""
+msgstr "Reliikiva"
 
 #: simulation/templates/template_unit_catafalque.xml:17
 msgid "Catafalque"
@@ -52,14 +53,7 @@ msgstr "Ratsur"
 #: simulation/templates/template_unit_cavalry.xml:42
 #: simulation/templates/template_unit_dog.xml:42
 #: simulation/templates/template_unit_infantry.xml:70
-#: simulation/templates/template_unit_support_healer.xml:27
-#: simulation/templates/units/brit_support_healer_b.xml:9
-#: simulation/templates/units/cart_support_healer_b.xml:9
-#: simulation/templates/units/gaul_support_healer_b.xml:9
-#: simulation/templates/units/iber_support_healer_b.xml:10
-#: simulation/templates/units/maur_support_healer_b.xml:9
-#: simulation/templates/units/pers_support_healer_b.xml:10
-#: simulation/templates/units/rome_support_healer_b.xml:10
+#: simulation/templates/template_unit_support_healer.xml:28
 msgctxt "Rank"
 msgid "Basic"
 msgstr ""
@@ -97,11 +91,11 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:28
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:29
 msgid "Spearman"
-msgstr ""
+msgstr "Odamees"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:26
 msgid "Cavalry Spearman"
-msgstr ""
+msgstr "Ratsur odamees"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:27
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:37
@@ -207,9 +201,9 @@ msgstr ""
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:13
 #: simulation/templates/template_unit_hero_elephant_melee.xml:37
 #: simulation/templates/units/maur_elephant_archer_b.xml:34
-#: simulation/templates/units/maur_support_elephant.xml:27
+#: simulation/templates/units/maur_support_elephant.xml:26
 msgid "Elephant"
-msgstr ""
+msgstr "Elevant"
 
 #: simulation/templates/template_unit_champion_elephant.xml:27
 msgid "War Elephant"
@@ -224,7 +218,7 @@ msgstr "Jalavägi"
 
 #: simulation/templates/template_unit_champion_infantry.xml:22
 msgid "Champion Infantry"
-msgstr ""
+msgstr "Meister-jalaväelane"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:35
 msgid "Champion Archer"
@@ -247,7 +241,7 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:29
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
 msgid "Pikeman"
-msgstr ""
+msgstr "Piigimees"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:37
 msgid "Champion Pikeman"
@@ -280,7 +274,7 @@ msgstr "Sõjakoer"
 
 #: simulation/templates/template_unit_dog.xml:43
 msgid "Cannot attack structures."
-msgstr ""
+msgstr "Ei saa ehitisi rünnata."
 
 #: simulation/templates/template_unit_fauna_herd.xml:7
 #: simulation/templates/template_unit_fauna_hunt.xml:8
@@ -343,7 +337,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:28
 msgid "Hero Spearman"
-msgstr ""
+msgstr "Sangar odamees"
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:28
 msgid "Hero Swordsman"
@@ -421,7 +415,7 @@ msgstr ""
 msgid "Fishing Boat"
 msgstr "Kalapaat"
 
-#: simulation/templates/template_unit_ship_fishing.xml:39
+#: simulation/templates/template_unit_ship_fishing.xml:40
 msgid "Fish the waters for food."
 msgstr ""
 
@@ -438,9 +432,9 @@ msgstr ""
 
 #: simulation/templates/template_unit_ship_merchant.xml:30
 msgid "Merchantman"
-msgstr ""
+msgstr "Kaupleja"
 
-#: simulation/templates/template_unit_ship_merchant.xml:32
+#: simulation/templates/template_unit_ship_merchant.xml:33
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
@@ -505,7 +499,7 @@ msgstr "Piiramistorn"
 msgid "Female Citizen"
 msgstr "Naiskodanik"
 
-#: simulation/templates/template_unit_support_healer.xml:29
+#: simulation/templates/template_unit_support_healer.xml:30
 msgid "Heal units."
 msgstr ""
 
@@ -515,11 +509,11 @@ msgstr ""
 msgid "Slave"
 msgstr "Ori"
 
-#: simulation/templates/template_unit_support_slave.xml:41
+#: simulation/templates/template_unit_support_slave.xml:42
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
 msgstr ""
 
-#: simulation/templates/template_unit_support_trader.xml:17
+#: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
 msgstr ""
 
@@ -740,7 +734,7 @@ msgstr ""
 #: simulation/templates/units/spart_support_healer_e.xml:4
 msgctxt "Rank"
 msgid "Elite"
-msgstr ""
+msgstr "Eliit"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:7
 msgid "Greek Cavalry"
@@ -839,7 +833,7 @@ msgstr ""
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:17
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:17
 msgid "Mercenary"
-msgstr ""
+msgstr "Palgasõdur"
 
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:23
 msgid "Thracian Peltast"
@@ -934,19 +928,19 @@ msgstr ""
 msgid "Athenian Woman"
 msgstr "Ateenlanna"
 
+#: simulation/templates/units/athen_support_healer_b.xml:6
+#: simulation/templates/units/mace_support_healer_b.xml:6
+#: simulation/templates/units/ptol_support_healer_b.xml:5
+#: simulation/templates/units/sele_support_healer_b.xml:6
+#: simulation/templates/units/spart_support_healer_b.xml:6
+msgid "Surgeon"
+msgstr "Kirurg"
+
 #: simulation/templates/units/athen_support_healer_b.xml:7
 #: simulation/templates/units/mace_support_healer_b.xml:7
 #: simulation/templates/units/ptol_support_healer_b.xml:6
 #: simulation/templates/units/sele_support_healer_b.xml:7
 #: simulation/templates/units/spart_support_healer_b.xml:7
-msgid "Surgeon"
-msgstr ""
-
-#: simulation/templates/units/athen_support_healer_b.xml:8
-#: simulation/templates/units/mace_support_healer_b.xml:8
-#: simulation/templates/units/ptol_support_healer_b.xml:7
-#: simulation/templates/units/sele_support_healer_b.xml:8
-#: simulation/templates/units/spart_support_healer_b.xml:8
 msgid "Iatros"
 msgstr ""
 
@@ -993,7 +987,7 @@ msgstr "Kelti ratsur"
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
 #: simulation/templates/units/sele_champion_chariot.xml:9
 msgid "Chariot"
-msgstr ""
+msgstr "Kaarik"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:10
 msgid "Celtic Chariot"
@@ -1088,19 +1082,19 @@ msgstr ""
 #: simulation/templates/units/brit_support_female_citizen.xml:10
 #: simulation/templates/units/gaul_support_female_citizen.xml:10
 msgid "Celtic Woman"
-msgstr ""
+msgstr "Keldi naine"
 
 #: simulation/templates/units/brit_support_female_citizen.xml:11
 #: simulation/templates/units/gaul_support_female_citizen.xml:11
 msgid "Bena"
 msgstr ""
 
+#: simulation/templates/units/brit_support_healer_b.xml:5
 #: simulation/templates/units/brit_support_healer_b.xml:6
-#: simulation/templates/units/brit_support_healer_b.xml:7
+#: simulation/templates/units/gaul_support_healer_b.xml:5
 #: simulation/templates/units/gaul_support_healer_b.xml:6
-#: simulation/templates/units/gaul_support_healer_b.xml:7
 msgid "Druid"
-msgstr ""
+msgstr "Druiid"
 
 #: simulation/templates/units/brit_support_trader.xml:9
 #: simulation/templates/units/gaul_support_trader.xml:9
@@ -1291,7 +1285,7 @@ msgstr ""
 msgid "Carthaginian Woman"
 msgstr "Kartaagolanna"
 
-#: simulation/templates/units/cart_support_healer_b.xml:7
+#: simulation/templates/units/cart_support_healer_b.xml:6
 msgid "Kehinit"
 msgstr ""
 
@@ -1438,11 +1432,11 @@ msgstr ""
 msgid "Iberian Woman"
 msgstr ""
 
-#: simulation/templates/units/iber_support_healer_b.xml:7
+#: simulation/templates/units/iber_support_healer_b.xml:6
 msgid "Priestess of Ataekina"
 msgstr ""
 
-#: simulation/templates/units/iber_support_healer_b.xml:8
+#: simulation/templates/units/iber_support_healer_b.xml:7
 msgid "Emakumezko Apaiz de Ataekina"
 msgstr ""
 
@@ -1653,11 +1647,11 @@ msgstr ""
 msgid "Kushite Woman"
 msgstr ""
 
-#: simulation/templates/units/kush_support_healer_b.xml:6
+#: simulation/templates/units/kush_support_healer_b.xml:5
 msgid "Priest"
 msgstr ""
 
-#: simulation/templates/units/kush_support_healer_b.xml:7
+#: simulation/templates/units/kush_support_healer_b.xml:6
 msgid "wʿb nsw"
 msgstr ""
 
@@ -1967,16 +1961,16 @@ msgstr ""
 msgid "Vanijyik Nauka"
 msgstr ""
 
-#: simulation/templates/units/maur_support_elephant.xml:28
+#: simulation/templates/units/maur_support_elephant.xml:27
 msgid "Worker Elephant"
 msgstr "Tööelevant"
 
-#: simulation/templates/units/maur_support_elephant.xml:29
+#: simulation/templates/units/maur_support_elephant.xml:28
 msgid "Karmākara Gaja"
 msgstr ""
 
-#: simulation/templates/units/maur_support_elephant.xml:31
-msgid "Mobile dropsite. Can also assist in constructing buildings."
+#: simulation/templates/units/maur_support_elephant.xml:30
+msgid "Mobile dropsite for food, wood, stone, and metal."
 msgstr ""
 
 #: simulation/templates/units/maur_support_female_citizen.xml:5
@@ -1987,11 +1981,11 @@ msgstr ""
 msgid "Indian Woman"
 msgstr ""
 
-#: simulation/templates/units/maur_support_healer_b.xml:6
+#: simulation/templates/units/maur_support_healer_b.xml:5
 msgid "Brahmin Priest"
 msgstr ""
 
-#: simulation/templates/units/maur_support_healer_b.xml:7
+#: simulation/templates/units/maur_support_healer_b.xml:6
 msgid "Brāhmaṇa Pujari"
 msgstr ""
 
@@ -2214,11 +2208,11 @@ msgstr ""
 msgid "Mesopotamian Woman"
 msgstr ""
 
-#: simulation/templates/units/pers_support_healer_b.xml:7
+#: simulation/templates/units/pers_support_healer_b.xml:6
 msgid "Median Magus"
 msgstr ""
 
-#: simulation/templates/units/pers_support_healer_b.xml:8
+#: simulation/templates/units/pers_support_healer_b.xml:7
 msgid "Maguš Māda"
 msgstr ""
 
@@ -2436,7 +2430,7 @@ msgstr ""
 #: simulation/templates/units/rome_champion_infantry_spear_gladiator.xml:26
 #: simulation/templates/units/rome_champion_infantry_sword_gladiator.xml:27
 msgid "Gladiator"
-msgstr ""
+msgstr "Gladiaator"
 
 #: simulation/templates/units/rome_champion_infantry_spear_gladiator.xml:29
 msgid "Gladiator Spearman"
@@ -2562,11 +2556,11 @@ msgstr ""
 msgid "Roman Woman"
 msgstr "Roomlanna"
 
-#: simulation/templates/units/rome_support_healer_b.xml:7
+#: simulation/templates/units/rome_support_healer_b.xml:6
 msgid "Doctor"
 msgstr ""
 
-#: simulation/templates/units/rome_support_healer_b.xml:8
+#: simulation/templates/units/rome_support_healer_b.xml:7
 msgid "Medicus"
 msgstr ""
 
@@ -2734,7 +2728,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_support_female_citizen.xml:7
 msgid "Syrian Woman"
-msgstr ""
+msgstr "Süürlanna"
 
 #: simulation/templates/units/spart_catafalque.xml:10
 msgid "Lycurgus"

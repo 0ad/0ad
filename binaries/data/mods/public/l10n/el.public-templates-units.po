@@ -6,6 +6,7 @@
 # LOUKAS SKOUROLIAKOS, 2015
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # crippledmoon <domas392@in.gr>, 2016
+# Evripidis Papaevripidis <panaevri@gmail.com>, 2020
 # Lampros Lampreas <marbiourd@hotmail.com>, 2016
 # LOUKAS SKOUROLIAKOS, 2015
 # LOUKAS SKOUROLIAKOS, 2020
@@ -20,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-30 15:03+0000\n"
-"PO-Revision-Date: 2020-04-06 17:32+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2020-04-13 07:18+0000\n"
+"PO-Revision-Date: 2020-04-13 10:46+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,14 +66,7 @@ msgstr "Ιππικό"
 #: simulation/templates/template_unit_cavalry.xml:42
 #: simulation/templates/template_unit_dog.xml:42
 #: simulation/templates/template_unit_infantry.xml:70
-#: simulation/templates/template_unit_support_healer.xml:27
-#: simulation/templates/units/brit_support_healer_b.xml:9
-#: simulation/templates/units/cart_support_healer_b.xml:9
-#: simulation/templates/units/gaul_support_healer_b.xml:9
-#: simulation/templates/units/iber_support_healer_b.xml:10
-#: simulation/templates/units/maur_support_healer_b.xml:9
-#: simulation/templates/units/pers_support_healer_b.xml:10
-#: simulation/templates/units/rome_support_healer_b.xml:10
+#: simulation/templates/template_unit_support_healer.xml:28
 msgctxt "Rank"
 msgid "Basic"
 msgstr "Βασικό"
@@ -96,11 +90,11 @@ msgstr "Βασικό"
 #: simulation/templates/template_unit_ship_fire.xml:45
 #: simulation/templates/template_unit_siege_ram.xml:36
 msgid "Melee"
-msgstr "Σώμα με σώμα"
+msgstr "Αγχέμαχο"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:22
 msgid "Melee Cavalry"
-msgstr "Σώμα με σώμα Ιππικό"
+msgstr "Αγχέμαχο ιππικό"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:25
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:35
@@ -154,11 +148,11 @@ msgstr "Έφιππος ξιφομάχος"
 #: simulation/templates/template_unit_siege_stonethrower.xml:55
 #: simulation/templates/template_unit_siege_tower.xml:60
 msgid "Ranged"
-msgstr "Επίθεση εξ' αποστάσεως"
+msgstr "Εκήβολο"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:30
 msgid "Ranged Cavalry"
-msgstr "Έφιππος με επίθεση εξ' αποστάσεως"
+msgstr "Εκήβολο ιππικό"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:27
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:31
@@ -185,7 +179,7 @@ msgstr "Ακοντιστής"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:28
 msgid "Cavalry Skirmisher"
-msgstr "Ιππέας Ακροβολιστής"
+msgstr "Έφιππος Ακροβολιστής"
 
 #: simulation/templates/template_unit_champion.xml:13
 msgid "Champion"
@@ -220,7 +214,7 @@ msgstr "Πρωταθλητής Έφιππος ξιφομάχος"
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:13
 #: simulation/templates/template_unit_hero_elephant_melee.xml:37
 #: simulation/templates/units/maur_elephant_archer_b.xml:34
-#: simulation/templates/units/maur_support_elephant.xml:27
+#: simulation/templates/units/maur_support_elephant.xml:26
 msgid "Elephant"
 msgstr "Ελέφαντας"
 
@@ -237,15 +231,15 @@ msgstr "Πεζικό"
 
 #: simulation/templates/template_unit_champion_infantry.xml:22
 msgid "Champion Infantry"
-msgstr "Πρόμαχος πεζικάριος"
+msgstr "Πρωτοπαλλήκαρο πεζικάριος"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:35
 msgid "Champion Archer"
-msgstr "Πρωταθλητής Τοξότης"
+msgstr "Πρωτοπαλλήκαρο Τοξότης"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:35
 msgid "Champion Skirmisher"
-msgstr "Πρωταθλητής Ακροβολιστής"
+msgstr "Πρωτοπαλλήκαρο Ακροβολιστής"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:30
 msgid "Maceman"
@@ -253,18 +247,18 @@ msgstr "Ροπαλοφόρος"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:31
 msgid "Champion Maceman"
-msgstr "Πρωταθλητής Ροπαλοφόρος"
+msgstr "Πρωτοπαλλήκαρο Ροπαλοφόρος"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:36
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:27
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:29
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
 msgid "Pikeman"
-msgstr "Λογχοφόρος με μακρύ δόρυ"
+msgstr "Σαρισοφόρος"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:37
 msgid "Champion Pikeman"
-msgstr "Πρωταθλητής Λογχοφόρος"
+msgstr "Πρωτοπαλλήκαρο Σαρισοφόρος"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:38
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:37
@@ -273,15 +267,15 @@ msgstr "Πρωταθλητής Λογχοφόρος"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:31
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:30
 msgid "Counters: 3x vs. Cavalry."
-msgstr "Μετρητές: 3x vs. Ιππικό."
+msgstr "Μετρητές: 3x εναντίον Ιππικού."
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:36
 msgid "Champion Spearman"
-msgstr "Πρωταθλητής λογχοφόρος"
+msgstr "Πρωτοπαλλήκαρο λογχοφόρος"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:31
 msgid "Champion Swordsman"
-msgstr "Πρωταθλητής Ξιφομάχος"
+msgstr "Πρωτοπαλλήκαρο Ξιφομάχος"
 
 #: simulation/templates/template_unit_dog.xml:40
 msgid "Dog"
@@ -298,11 +292,11 @@ msgstr "Δεν μπορεί να επιτεθεί σε κατασκευές"
 #: simulation/templates/template_unit_fauna_herd.xml:7
 #: simulation/templates/template_unit_fauna_hunt.xml:8
 msgid "Kill to gather meat for food."
-msgstr "Σκότωσε για να μαζέψεις τροφή."
+msgstr "Σκότωσε για να συλλέξεις κρέας για τροφή."
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:9
 msgid "Kill to butcher for food."
-msgstr "Σκότωσέ την για να την τεμαχίσεις για φαγητό."
+msgstr "Σκότωσε για να τεμαχίσεις για φαγητό"
 
 #: simulation/templates/template_unit_hero.xml:32
 #: simulation/templates/template_unit_hero.xml:33
@@ -352,7 +346,7 @@ msgstr "Ήρωας Ακροβολιστής"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:28
 msgid "Hero Pikeman"
-msgstr "Λογχοφόρος Ήρωας"
+msgstr "Ήρωας Σαρισοφόρος"
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:28
 msgid "Hero Spearman"
@@ -370,7 +364,7 @@ msgstr "Εργάτης"
 
 #: simulation/templates/template_unit_infantry_melee.xml:20
 msgid "Melee Infantry"
-msgstr "Σώμα με σώμα πεζικό"
+msgstr "Αγχέμαχο πεζικό"
 
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:32
 msgid "Skirmisher"
@@ -379,7 +373,7 @@ msgstr "Ακροβολιστής"
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:32
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:33
 msgid "Slinger"
-msgstr "Σφενδονίτης"
+msgstr "Σφενδονήτης"
 
 #: simulation/templates/template_unit_ship.xml:35
 #: simulation/templates/template_unit_ship.xml:36
@@ -409,7 +403,7 @@ msgstr "Ελαφρύ Πολεμικό Πλοίο"
 #: simulation/templates/template_unit_ship_trireme.xml:59
 #: simulation/templates/template_unit_siege_tower.xml:62
 msgid "Garrison units for transport and to increase firepower."
-msgstr "Τοποθετεί άτομα για μετακίνηση και για αύξηση της δύναμης πυρός τους."
+msgstr "Επάνδρωσε με μονάδες για μεταφορά και για αύξηση ισχύος πυρός."
 
 #: simulation/templates/template_unit_ship_fire.xml:45
 msgid "Fireship"
@@ -423,7 +417,7 @@ msgstr "Πυρπολικό Πλοίο"
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
-msgstr "Μειώνει δραστικά την υγεία των εχθρικών πλοίων. Χάνεις σταδιακά υγεία λόγω του ότι καίγεσαι, οπότε χρησιμοποίησε το πυρπολικό πλοίο γρήγορα."
+msgstr "Μειώνει δραστικά την υγεία των εχθρικών πλοίων. Χάνει σταδιακά υγεία λόγω του ότι καίγεται, οπότε χρησιμοποίησε το πυρπολικό πλοίο γρήγορα."
 
 #: simulation/templates/template_unit_ship_fishing.xml:36
 msgid "FishingBoat"
@@ -434,7 +428,7 @@ msgstr "Ψαρόβαρκα"
 msgid "Fishing Boat"
 msgstr "Αλιευτικό"
 
-#: simulation/templates/template_unit_ship_fishing.xml:39
+#: simulation/templates/template_unit_ship_fishing.xml:40
 msgid "Fish the waters for food."
 msgstr "Αλίευσε στα νερά για τροφή."
 
@@ -453,11 +447,11 @@ msgstr "Δωροδοκήσιμος"
 msgid "Merchantman"
 msgstr "Έμπορος"
 
-#: simulation/templates/template_unit_ship_merchant.xml:32
+#: simulation/templates/template_unit_ship_merchant.xml:33
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
-msgstr "Εμπόριο μεταξύ αποβαθρών. Φύλαξε έναν έμπορο μέσα για πρόσθετο κέρδος (+20% για κάθε έμπορο). Μάζεψε μεγάλης αξίας θαλάσσιους θησαυρούς.  "
+msgstr "Εμπορεύσου μεταξύ αποβαθρών. Επάνδρωσε με έναν έμπορο για επιπρόσθετο κέρδος (+20% για κάθε έμπορο). Μάζεψε κερδοφόρους θαλάσσιους θησαυρούς.  "
 
 #: simulation/templates/template_unit_ship_quinquereme.xml:67
 #: simulation/templates/units/cart_ship_quinquereme.xml:5
@@ -484,11 +478,11 @@ msgstr "Πολιορκία"
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:54
 msgid "BoltShooter"
-msgstr "Εκσφενδονιστής Στουπιών"
+msgstr "Οξυβόλος"
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:55
 msgid "Bolt Shooter"
-msgstr "Εκσφενδονιστής Στουπιών"
+msgstr "Οξυβόλος"
 
 #: simulation/templates/template_unit_siege_ram.xml:36
 msgid "Ram"
@@ -518,7 +512,7 @@ msgstr "Πολιορκητικός Πύργος"
 msgid "Female Citizen"
 msgstr "Γυναίκα πολίτης"
 
-#: simulation/templates/template_unit_support_healer.xml:29
+#: simulation/templates/template_unit_support_healer.xml:30
 msgid "Heal units."
 msgstr "Γιατρεύει μονάδες."
 
@@ -528,17 +522,17 @@ msgstr "Γιατρεύει μονάδες."
 msgid "Slave"
 msgstr "Δούλος"
 
-#: simulation/templates/template_unit_support_slave.xml:41
+#: simulation/templates/template_unit_support_slave.xml:42
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr "Συλλέκτης με συγκεκριμένη ζωή. Έχει υπεροχή στην εξόρυξη και στην ξύλευση."
+msgstr "Συλλέκτης με πεπερασμένη διάρκεια ζωής. Υπερέχει στην εξόρυξη και στην υλοτομία."
 
-#: simulation/templates/template_unit_support_trader.xml:17
+#: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
-msgstr "Αντάλλαξε πόρους μεταξύ των αγορών σου και αυτών των συμμάχων σου. "
+msgstr "Εμπορεύσου πόρους μεταξύ των αγορών σου και αυτών των συμμάχων σου. "
 
 #: simulation/templates/units/athen_catafalque.xml:9
 msgid "Solon"
-msgstr "Σόλωνας"
+msgstr "Σόλων"
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:4
@@ -761,7 +755,7 @@ msgstr "Ελληνικό Ιππικό"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:8
 msgid "Hippeús"
-msgstr "Ιππεύς"
+msgstr "Ἱππεύς"
 
 #: simulation/templates/units/athen_champion_infantry.xml:6
 msgid "City Guard"
@@ -769,7 +763,7 @@ msgstr "Αστυφύλακας"
 
 #: simulation/templates/units/athen_champion_infantry.xml:7
 msgid "Epílektos"
-msgstr "Επίλεκτος"
+msgstr "Ἐπίλεκτος"
 
 #: simulation/templates/units/athen_champion_marine.xml:6
 msgid "Athenian Marine"
@@ -777,15 +771,15 @@ msgstr "Αθηναίος πεζοναύτης"
 
 #: simulation/templates/units/athen_champion_marine.xml:7
 msgid "Epibátēs Athēnaîos"
-msgstr "Επιβάτης Αθηναίος"
+msgstr "Ἐπιβάτης Ἀθηναῖος"
 
 #: simulation/templates/units/athen_champion_ranged.xml:6
 msgid "Scythian Archer"
-msgstr "σκυθες τοξοτες"
+msgstr "Σκύθης Τοξότης"
 
 #: simulation/templates/units/athen_champion_ranged.xml:7
 msgid "Toxótēs Skythikós"
-msgstr "Τοξότης Σκυνθικος"
+msgstr "Τοξότης Σκυθικός"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:10
 msgid "Iphicrates"
@@ -793,7 +787,7 @@ msgstr "Ιφικράτης"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:11
 msgid "Iphikratēs"
-msgstr "Ιφικράτης"
+msgstr "Ἰφικράτης"
 
 #: simulation/templates/units/athen_hero_pericles.xml:10
 msgid "Pericles"
@@ -801,7 +795,7 @@ msgstr "Περικλής"
 
 #: simulation/templates/units/athen_hero_pericles.xml:11
 msgid "Periklēs"
-msgstr "Περικλής"
+msgstr "Περικλῆς"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:10
 msgid "Themistocles"
@@ -809,7 +803,7 @@ msgstr "Θεμιστοκλής"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:11
 msgid "Themistoklēs"
-msgstr "Θεμιστοκλής"
+msgstr "Θεμιστοκλῆς"
 
 #: simulation/templates/units/athen_hero_xenophon.xml:6
 msgid "Xenophon"
@@ -817,7 +811,7 @@ msgstr "Ξενοφών"
 
 #: simulation/templates/units/athen_hero_xenophon.xml:7
 msgid "Xenophōn"
-msgstr "Ξενοφών"
+msgstr "Ξενοφῶν"
 
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:20
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:20
@@ -860,7 +854,7 @@ msgstr "Θράκας πελταστής"
 
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:24
 msgid "Peltastḗs Thrâx"
-msgstr "Θράκας πελταστής"
+msgstr "Πελταστής Θρᾶξ"
 
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:23
 #: simulation/templates/units/mace_infantry_archer_b.xml:21
@@ -872,15 +866,15 @@ msgstr "Κρητικός Μισθοφόρος Τοξότης"
 #: simulation/templates/units/mace_infantry_archer_b.xml:22
 #: simulation/templates/units/ptol_infantry_archer_b.xml:21
 msgid "Toxótēs Krētikós"
-msgstr "Κρητικός Τοξότης"
+msgstr "Τοξότης Κρητικός"
 
 #: simulation/templates/units/athen_infantry_slinger_b.xml:16
 msgid "Athenian Slinger Militia"
-msgstr "Αθηναίος Εκσφενδονιστής πολιτοφυλακής"
+msgstr "Αθηναίος Σφενδονήτης Πολιτοφυλακής"
 
 #: simulation/templates/units/athen_infantry_slinger_b.xml:17
 msgid "Psilòs Athēnaîos"
-msgstr "Ψίλος Αθηναίος  "
+msgstr "Ψίλος Ἀθηναῖος  "
 
 #: simulation/templates/units/athen_infantry_spearman_b.xml:16
 msgid "Athenian Hoplite"
@@ -888,7 +882,7 @@ msgstr "Αθηναίος Οπλίτης"
 
 #: simulation/templates/units/athen_infantry_spearman_b.xml:17
 msgid "Hoplítēs Athēnaîos"
-msgstr "Οπλίτης Αθηναίος"
+msgstr "Ὁπλίτης Ἀθηναῖος"
 
 #: simulation/templates/units/athen_ship_bireme.xml:5
 msgid "Penteconter"
@@ -905,7 +899,7 @@ msgstr "Πεντηκόντορος"
 #: simulation/templates/units/sele_ship_fishing.xml:5
 #: simulation/templates/units/spart_ship_fishing.xml:5
 msgid "Ploîon Halieutikón"
-msgstr "Αλλιευτικό"
+msgstr "Πλοῖον Ἁλιευτικόν"
 
 #: simulation/templates/units/athen_ship_merchant.xml:9
 #: simulation/templates/units/mace_ship_merchant.xml:9
@@ -913,13 +907,13 @@ msgstr "Αλλιευτικό"
 #: simulation/templates/units/sele_ship_merchant.xml:9
 #: simulation/templates/units/spart_ship_merchant.xml:9
 msgid "Ploîon Phortēgikón"
-msgstr "Φορτηγό Πλοίο"
+msgstr "Πλοῖον Φορτηγικόν"
 
 #: simulation/templates/units/athen_ship_trireme.xml:5
 #: simulation/templates/units/mace_ship_trireme.xml:5
 #: simulation/templates/units/spart_ship_trireme.xml:5
 msgid "Triḗrēs Athēnaía"
-msgstr "Αθηναϊκές Τριήρεις"
+msgstr "Τριήρης Ἀθηναία"
 
 #: simulation/templates/units/athen_ship_trireme.xml:6
 msgid "Athenian Trireme"
@@ -937,60 +931,60 @@ msgstr "Λιθοβόλος"
 #: simulation/templates/units/mace_siege_oxybeles_packed.xml:5
 #: simulation/templates/units/spart_siege_oxybeles_packed.xml:5
 msgid "Oxybelḗs"
-msgstr "Οξυβόλος"
+msgstr "Οξυβελής"
 
 #: simulation/templates/units/athen_support_female_citizen.xml:5
 msgid "Gýnē Athēnaía"
-msgstr "Γυναίκα Αθηναία"
+msgstr "Γύνη Ἀθηναία"
 
 #: simulation/templates/units/athen_support_female_citizen.xml:6
 msgid "Athenian Woman"
 msgstr "Αθηναία Γυναίκα"
+
+#: simulation/templates/units/athen_support_healer_b.xml:6
+#: simulation/templates/units/mace_support_healer_b.xml:6
+#: simulation/templates/units/ptol_support_healer_b.xml:5
+#: simulation/templates/units/sele_support_healer_b.xml:6
+#: simulation/templates/units/spart_support_healer_b.xml:6
+msgid "Surgeon"
+msgstr "Χειρουργός"
 
 #: simulation/templates/units/athen_support_healer_b.xml:7
 #: simulation/templates/units/mace_support_healer_b.xml:7
 #: simulation/templates/units/ptol_support_healer_b.xml:6
 #: simulation/templates/units/sele_support_healer_b.xml:7
 #: simulation/templates/units/spart_support_healer_b.xml:7
-msgid "Surgeon"
-msgstr "Χειρουργός"
-
-#: simulation/templates/units/athen_support_healer_b.xml:8
-#: simulation/templates/units/mace_support_healer_b.xml:8
-#: simulation/templates/units/ptol_support_healer_b.xml:7
-#: simulation/templates/units/sele_support_healer_b.xml:8
-#: simulation/templates/units/spart_support_healer_b.xml:8
 msgid "Iatros"
-msgstr "Ιατρός"
+msgstr "Ἰατρός"
 
 #: simulation/templates/units/athen_support_slave.xml:5
 msgid "Doûlos"
-msgstr "Δούλος "
+msgstr "Δοῦλος "
 
 #: simulation/templates/units/athen_support_trader.xml:10
 #: simulation/templates/units/mace_support_trader.xml:10
 #: simulation/templates/units/ptol_support_trader.xml:9
 #: simulation/templates/units/sele_support_trader.xml:10
 msgid "Émporos"
-msgstr "Έμπορος"
+msgstr "Ἔμπορος"
 
 #: simulation/templates/units/brit_catafalque.xml:9
 msgid "Cassiuellaunos"
-msgstr ""
+msgstr "Κασσιουελλαύνος"
 
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/gaul_cavalry_javelinist_b.xml:6
 msgid "Marcacos"
-msgstr ""
+msgstr "Μαρκάκος"
 
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:7
 msgid "Raiding Cavalry"
-msgstr "Ιππικό επιδρομών"
+msgstr "Ιππικό Επιδρομών"
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/gaul_cavalry_swordsman_b.xml:6
 msgid "Eporedos"
-msgstr ""
+msgstr "Επορέδος"
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:7
 msgid "Celtic Cavalry"
@@ -1108,10 +1102,10 @@ msgstr "Κέλτισσα Γυναίκα"
 msgid "Bena"
 msgstr ""
 
+#: simulation/templates/units/brit_support_healer_b.xml:5
 #: simulation/templates/units/brit_support_healer_b.xml:6
-#: simulation/templates/units/brit_support_healer_b.xml:7
+#: simulation/templates/units/gaul_support_healer_b.xml:5
 #: simulation/templates/units/gaul_support_healer_b.xml:6
-#: simulation/templates/units/gaul_support_healer_b.xml:7
 msgid "Druid"
 msgstr "Δρυίδις"
 
@@ -1304,7 +1298,7 @@ msgstr "Άστα"
 msgid "Carthaginian Woman"
 msgstr "Καρχηδόνια"
 
-#: simulation/templates/units/cart_support_healer_b.xml:7
+#: simulation/templates/units/cart_support_healer_b.xml:6
 msgid "Kehinit"
 msgstr "Κέχινιτ"
 
@@ -1451,11 +1445,11 @@ msgstr "Εμαζτέκι"
 msgid "Iberian Woman"
 msgstr "Ιβήρισσα"
 
-#: simulation/templates/units/iber_support_healer_b.xml:7
+#: simulation/templates/units/iber_support_healer_b.xml:6
 msgid "Priestess of Ataekina"
 msgstr "Ιέρεια της Αταικίνας"
 
-#: simulation/templates/units/iber_support_healer_b.xml:8
+#: simulation/templates/units/iber_support_healer_b.xml:7
 msgid "Emakumezko Apaiz de Ataekina"
 msgstr "Ιέρειες της Αταετζίνα"
 
@@ -1666,11 +1660,11 @@ msgstr "Σχμτ"
 msgid "Kushite Woman"
 msgstr "Κουσιτική Γυναίκα"
 
-#: simulation/templates/units/kush_support_healer_b.xml:6
+#: simulation/templates/units/kush_support_healer_b.xml:5
 msgid "Priest"
 msgstr "Ιερέας"
 
-#: simulation/templates/units/kush_support_healer_b.xml:7
+#: simulation/templates/units/kush_support_healer_b.xml:6
 msgid "wʿb nsw"
 msgstr ""
 
@@ -1980,17 +1974,17 @@ msgstr "Εμπορικό πλοίο"
 msgid "Vanijyik Nauka"
 msgstr "Βανιτζιούν Νούκα"
 
-#: simulation/templates/units/maur_support_elephant.xml:28
+#: simulation/templates/units/maur_support_elephant.xml:27
 msgid "Worker Elephant"
 msgstr "Ελέφαντας εργάτης"
 
-#: simulation/templates/units/maur_support_elephant.xml:29
+#: simulation/templates/units/maur_support_elephant.xml:28
 msgid "Karmākara Gaja"
 msgstr "Καρμακάρα Γκάτσα"
 
-#: simulation/templates/units/maur_support_elephant.xml:31
-msgid "Mobile dropsite. Can also assist in constructing buildings."
-msgstr "Κινητό εναποθετήριο. Μπορεί επίσης να βοηθήσει στην κατασκευή κτιρίων."
+#: simulation/templates/units/maur_support_elephant.xml:30
+msgid "Mobile dropsite for food, wood, stone, and metal."
+msgstr ""
 
 #: simulation/templates/units/maur_support_female_citizen.xml:5
 msgid "Naari"
@@ -2000,11 +1994,11 @@ msgstr "Ναάρι"
 msgid "Indian Woman"
 msgstr "Ινδή Γυναίκα"
 
-#: simulation/templates/units/maur_support_healer_b.xml:6
+#: simulation/templates/units/maur_support_healer_b.xml:5
 msgid "Brahmin Priest"
 msgstr "Βραχμάνος Ιερέας"
 
-#: simulation/templates/units/maur_support_healer_b.xml:7
+#: simulation/templates/units/maur_support_healer_b.xml:6
 msgid "Brāhmaṇa Pujari"
 msgstr "Βραχμάνος Πούτζαρι"
 
@@ -2227,11 +2221,11 @@ msgstr "Μπάνου Μαγανρουντάνι"
 msgid "Mesopotamian Woman"
 msgstr "Μεσοποτάμια Γυναίκα"
 
-#: simulation/templates/units/pers_support_healer_b.xml:7
+#: simulation/templates/units/pers_support_healer_b.xml:6
 msgid "Median Magus"
 msgstr "Μήδιος Μάγος"
 
-#: simulation/templates/units/pers_support_healer_b.xml:8
+#: simulation/templates/units/pers_support_healer_b.xml:7
 msgid "Maguš Māda"
 msgstr "Μάγος Μάντα"
 
@@ -2575,11 +2569,11 @@ msgstr "Ρωμαία"
 msgid "Roman Woman"
 msgstr "Ρωμαία Γυναίκα"
 
-#: simulation/templates/units/rome_support_healer_b.xml:7
+#: simulation/templates/units/rome_support_healer_b.xml:6
 msgid "Doctor"
 msgstr "Γιατρός"
 
-#: simulation/templates/units/rome_support_healer_b.xml:8
+#: simulation/templates/units/rome_support_healer_b.xml:7
 msgid "Medicus"
 msgstr "Μέντικους"
 

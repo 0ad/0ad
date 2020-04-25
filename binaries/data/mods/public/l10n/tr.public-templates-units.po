@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-30 15:03+0000\n"
-"PO-Revision-Date: 2020-03-31 04:59+0000\n"
+"POT-Creation-Date: 2020-04-13 07:18+0000\n"
+"PO-Revision-Date: 2020-04-14 03:50+0000\n"
 "Last-Translator: Günay Yılmaz\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -71,14 +71,7 @@ msgstr "Süvari"
 #: simulation/templates/template_unit_cavalry.xml:42
 #: simulation/templates/template_unit_dog.xml:42
 #: simulation/templates/template_unit_infantry.xml:70
-#: simulation/templates/template_unit_support_healer.xml:27
-#: simulation/templates/units/brit_support_healer_b.xml:9
-#: simulation/templates/units/cart_support_healer_b.xml:9
-#: simulation/templates/units/gaul_support_healer_b.xml:9
-#: simulation/templates/units/iber_support_healer_b.xml:10
-#: simulation/templates/units/maur_support_healer_b.xml:9
-#: simulation/templates/units/pers_support_healer_b.xml:10
-#: simulation/templates/units/rome_support_healer_b.xml:10
+#: simulation/templates/template_unit_support_healer.xml:28
 msgctxt "Rank"
 msgid "Basic"
 msgstr "Basit"
@@ -226,7 +219,7 @@ msgstr "Şampiyon Kılıçlı Süvari"
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:13
 #: simulation/templates/template_unit_hero_elephant_melee.xml:37
 #: simulation/templates/units/maur_elephant_archer_b.xml:34
-#: simulation/templates/units/maur_support_elephant.xml:27
+#: simulation/templates/units/maur_support_elephant.xml:26
 msgid "Elephant"
 msgstr "Fil"
 
@@ -440,7 +433,7 @@ msgstr "BalıkçıTeknesi"
 msgid "Fishing Boat"
 msgstr "Balıkçı Kayığı"
 
-#: simulation/templates/template_unit_ship_fishing.xml:39
+#: simulation/templates/template_unit_ship_fishing.xml:40
 msgid "Fish the waters for food."
 msgstr "Yiyecek için sudaki balıkları tut."
 
@@ -459,7 +452,7 @@ msgstr "Rüşvet verilebilir"
 msgid "Merchantman"
 msgstr "Ticaret Gemisi"
 
-#: simulation/templates/template_unit_ship_merchant.xml:32
+#: simulation/templates/template_unit_ship_merchant.xml:33
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
@@ -524,7 +517,7 @@ msgstr "Kuşatma Kulesi"
 msgid "Female Citizen"
 msgstr "Kadın Vatandaş"
 
-#: simulation/templates/template_unit_support_healer.xml:29
+#: simulation/templates/template_unit_support_healer.xml:30
 msgid "Heal units."
 msgstr "İyileşme birimleri."
 
@@ -534,11 +527,11 @@ msgstr "İyileşme birimleri."
 msgid "Slave"
 msgstr "Köle"
 
-#: simulation/templates/template_unit_support_slave.xml:41
+#: simulation/templates/template_unit_support_slave.xml:42
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
 msgstr "Kısa ömürlü toplayıcı. Madencilik ve kerestecilik de daha verimlidir."
 
-#: simulation/templates/template_unit_support_trader.xml:17
+#: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
 msgstr "Kendi ve müttefik pazarların arasında ticaret yap."
 
@@ -953,19 +946,19 @@ msgstr "Gýnē Athēnaía"
 msgid "Athenian Woman"
 msgstr "Atinalı Kadın"
 
+#: simulation/templates/units/athen_support_healer_b.xml:6
+#: simulation/templates/units/mace_support_healer_b.xml:6
+#: simulation/templates/units/ptol_support_healer_b.xml:5
+#: simulation/templates/units/sele_support_healer_b.xml:6
+#: simulation/templates/units/spart_support_healer_b.xml:6
+msgid "Surgeon"
+msgstr "Cerrah"
+
 #: simulation/templates/units/athen_support_healer_b.xml:7
 #: simulation/templates/units/mace_support_healer_b.xml:7
 #: simulation/templates/units/ptol_support_healer_b.xml:6
 #: simulation/templates/units/sele_support_healer_b.xml:7
 #: simulation/templates/units/spart_support_healer_b.xml:7
-msgid "Surgeon"
-msgstr "Cerrah"
-
-#: simulation/templates/units/athen_support_healer_b.xml:8
-#: simulation/templates/units/mace_support_healer_b.xml:8
-#: simulation/templates/units/ptol_support_healer_b.xml:7
-#: simulation/templates/units/sele_support_healer_b.xml:8
-#: simulation/templates/units/spart_support_healer_b.xml:8
 msgid "Iatros"
 msgstr "Iatros"
 
@@ -1114,10 +1107,10 @@ msgstr "Kelt Kadını"
 msgid "Bena"
 msgstr "Bena"
 
+#: simulation/templates/units/brit_support_healer_b.xml:5
 #: simulation/templates/units/brit_support_healer_b.xml:6
-#: simulation/templates/units/brit_support_healer_b.xml:7
+#: simulation/templates/units/gaul_support_healer_b.xml:5
 #: simulation/templates/units/gaul_support_healer_b.xml:6
-#: simulation/templates/units/gaul_support_healer_b.xml:7
 msgid "Druid"
 msgstr "Druid"
 
@@ -1310,7 +1303,7 @@ msgstr "Aštāh"
 msgid "Carthaginian Woman"
 msgstr "Kartacalı Kadın"
 
-#: simulation/templates/units/cart_support_healer_b.xml:7
+#: simulation/templates/units/cart_support_healer_b.xml:6
 msgid "Kehinit"
 msgstr "Kehinit"
 
@@ -1457,11 +1450,11 @@ msgstr "Emazteki"
 msgid "Iberian Woman"
 msgstr "İberyalı Kadın"
 
-#: simulation/templates/units/iber_support_healer_b.xml:7
+#: simulation/templates/units/iber_support_healer_b.xml:6
 msgid "Priestess of Ataekina"
 msgstr "Ataekina Rahibesi"
 
-#: simulation/templates/units/iber_support_healer_b.xml:8
+#: simulation/templates/units/iber_support_healer_b.xml:7
 msgid "Emakumezko Apaiz de Ataekina"
 msgstr "Emakumezko Apaiz de Ataekina"
 
@@ -1672,11 +1665,11 @@ msgstr "Shmt"
 msgid "Kushite Woman"
 msgstr "Kuşitli Kadın"
 
-#: simulation/templates/units/kush_support_healer_b.xml:6
+#: simulation/templates/units/kush_support_healer_b.xml:5
 msgid "Priest"
 msgstr "Rahip"
 
-#: simulation/templates/units/kush_support_healer_b.xml:7
+#: simulation/templates/units/kush_support_healer_b.xml:6
 msgid "wʿb nsw"
 msgstr "wʿb nsw"
 
@@ -1986,17 +1979,17 @@ msgstr "Ticaret Gemisi"
 msgid "Vanijyik Nauka"
 msgstr "Vanijyik Nauka"
 
-#: simulation/templates/units/maur_support_elephant.xml:28
+#: simulation/templates/units/maur_support_elephant.xml:27
 msgid "Worker Elephant"
 msgstr "İşçi Fil"
 
-#: simulation/templates/units/maur_support_elephant.xml:29
+#: simulation/templates/units/maur_support_elephant.xml:28
 msgid "Karmākara Gaja"
 msgstr "Karmākara Gaja"
 
-#: simulation/templates/units/maur_support_elephant.xml:31
-msgid "Mobile dropsite. Can also assist in constructing buildings."
-msgstr "Taşınabilir Depolama Alanı. Ayrıca, binaların yapımında yardımcı olabilir."
+#: simulation/templates/units/maur_support_elephant.xml:30
+msgid "Mobile dropsite for food, wood, stone, and metal."
+msgstr "Besin, odun, taş ve metal için taşınabilir bırakma yeri."
 
 #: simulation/templates/units/maur_support_female_citizen.xml:5
 msgid "Naari"
@@ -2006,11 +1999,11 @@ msgstr "Naari"
 msgid "Indian Woman"
 msgstr "Hintli Kadın"
 
-#: simulation/templates/units/maur_support_healer_b.xml:6
+#: simulation/templates/units/maur_support_healer_b.xml:5
 msgid "Brahmin Priest"
 msgstr "Brahman Rahibi"
 
-#: simulation/templates/units/maur_support_healer_b.xml:7
+#: simulation/templates/units/maur_support_healer_b.xml:6
 msgid "Brāhmaṇa Pujari"
 msgstr "Brāhmaṇa Pujari"
 
@@ -2233,11 +2226,11 @@ msgstr "Banu Miyanrudani"
 msgid "Mesopotamian Woman"
 msgstr "Mezapotamyalı Kadın"
 
-#: simulation/templates/units/pers_support_healer_b.xml:7
+#: simulation/templates/units/pers_support_healer_b.xml:6
 msgid "Median Magus"
 msgstr "Med Rahip"
 
-#: simulation/templates/units/pers_support_healer_b.xml:8
+#: simulation/templates/units/pers_support_healer_b.xml:7
 msgid "Maguš Māda"
 msgstr "Maguš Māda"
 
@@ -2581,11 +2574,11 @@ msgstr "Rōmāna"
 msgid "Roman Woman"
 msgstr "Romalı Kadın"
 
-#: simulation/templates/units/rome_support_healer_b.xml:7
+#: simulation/templates/units/rome_support_healer_b.xml:6
 msgid "Doctor"
 msgstr "Doktor"
 
-#: simulation/templates/units/rome_support_healer_b.xml:8
+#: simulation/templates/units/rome_support_healer_b.xml:7
 msgid "Medicus"
 msgstr "Medicus"
 
