@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton title="Hippo Armature" id="Hippo_Armature">
+    <bone name="Hippopotamidae_root">
+      <bone name="Leg_Target_R" />
+      <bone name="Knee_B_R" />
+      <bone name="Knee_F_L" />
+      <bone name="Shoulder_Target_L" />
+      <bone name="Leg_Target_L" />
+      <bone name="Knee_B_L" />
+      <bone name="Hippopotamidae_Pelvis">
+        <bone name="Hippopotamidae_Spine">
+          <bone name="Hippopotamidae_Spine_1">
+            <bone name="Hippopotamidae_Spine_2">
+              <bone name="Hippopotamidae_Neck">
+                <bone name="Hippopotamidae_Head">
+                  <bone name="Hippopotamidae_ear_R" />
+                  <bone name="Hippopotamidae_ear_L" />
+                  <bone name="Hippopotamidae_Jaw_01">
+                    <bone name="Hippopotamidae_Jaw_02" />
+                  </bone>
+                  <bone name="Hippopotamidae_Head_Bottom">
+                    <bone name="Hippopotamidae_Jaw_Bottom" />
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+            <bone name="Hippopotamidae_Belly" />
+          </bone>
+          <bone name="Hippopotamidae_Spine_L">
+            <bone name="Hippopotamidae_Shoulder_L" />
+          </bone>
+          <bone name="Hippopotamidae_Spine_R">
+            <bone name="Hippopotamidae_Shoulder_R" />
+          </bone>
+          <bone name="Hippopotamidae_Lower_Spine_1_L">
+            <bone name="Hippopotamidae_Lower_Spine_2_L" />
+          </bone>
+          <bone name="Hippopotamidae_Lower_Spine_1_R">
+            <bone name="Hippopotamidae_Lower_Spine_2_R" />
+          </bone>
+        </bone>
+        <bone name="Hippopotamidae_Leg_R">
+          <bone name="Hippopotamidae_Foreleg_R">
+            <bone name="Hippopotamidae_Ankle_R">
+              <bone name="Hippopotamidae_Foot_R">
+                <bone name="Hippopotamidae_Toe_R" />
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Hippopotamidae_Leg_L">
+          <bone name="Hippopotamidae_Foreleg_L">
+            <bone name="Hippopotamidae_Ankle_L">
+              <bone name="Hippopotamidae_Foot_L">
+                <bone name="Hippopotamidae_Toe_L" />
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Knee_F_R" />
+      <bone name="Shoulder_Target_R" />
+    </bone>
+    <bone name="Hippopotamidae_Upperarm_L">
+      <bone name="Hippopotamidae_Arm_L">
+        <bone name="Hippopotamidae_Forearm_L">
+          <bone name="Hippopotamidae_Paw_L" />
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Hippopotamidae_Upperarm_R">
+      <bone name="Hippopotamidae_Arm_R">
+        <bone name="Hippopotamidae_Forearm_R">
+          <bone name="Hippopotamidae_Paw_R" />
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Hippo" />
+  </standard_skeleton>
+  <skeleton title="Hippo Armature" target="Hippo_Armature">
+    <identifier>
+      <root>Hippopotamidae_root</root>
+    </identifier>
+    <bone name="Hippopotamidae_root">
+      <target>Hippopotamidae_root</target>
+      <bone name="Leg_Target_R">
+        <target>Leg_Target_R</target>
+      </bone>
+      <bone name="Knee_B_R">
+        <target>Knee_B_R</target>
+      </bone>
+      <bone name="Knee_F_L">
+        <target>Knee_F_L</target>
+      </bone>
+      <bone name="Shoulder_Target_L">
+        <target>Shoulder_Target_L</target>
+      </bone>
+      <bone name="Leg_Target_L">
+        <target>Leg_Target_L</target>
+      </bone>
+      <bone name="Knee_B_L">
+        <target>Knee_B_L</target>
+      </bone>
+      <bone name="Hippopotamidae_Pelvis">
+        <target>Hippopotamidae_Pelvis</target>
+        <bone name="Hippopotamidae_Spine">
+          <target>Hippopotamidae_Spine</target>
+          <bone name="Hippopotamidae_Spine_1">
+            <target>Hippopotamidae_Spine_1</target>
+            <bone name="Hippopotamidae_Spine_2">
+              <target>Hippopotamidae_Spine_2</target>
+              <bone name="Hippopotamidae_Neck">
+                <target>Hippopotamidae_Neck</target>
+                <bone name="Hippopotamidae_Head">
+                  <target>Hippopotamidae_Head</target>
+                  <bone name="Hippopotamidae_ear_R">
+                    <target>Hippopotamidae_ear_R</target>
+                  </bone>
+                  <bone name="Hippopotamidae_ear_L">
+                    <target>Hippopotamidae_ear_L</target>
+                  </bone>
+                  <bone name="Hippopotamidae_Jaw_01">
+                    <target>Hippopotamidae_Jaw_01</target>
+                    <bone name="Hippopotamidae_Jaw_02">
+                      <target>Hippopotamidae_Jaw_02</target>
+                    </bone>
+                  </bone>
+                  <bone name="Hippopotamidae_Head_Bottom">
+                    <target>Hippopotamidae_Head_Bottom</target>
+                    <bone name="Hippopotamidae_Jaw_Bottom">
+                      <target>Hippopotamidae_Jaw_Bottom</target>
+                    </bone>
+                  </bone>
+                </bone>
+              </bone>
+            </bone>
+            <bone name="Hippopotamidae_Belly">
+              <target>Hippopotamidae_Belly</target>
+            </bone>
+          </bone>
+          <bone name="Hippopotamidae_Spine_L">
+            <target>Hippopotamidae_Spine_L</target>
+            <bone name="Hippopotamidae_Shoulder_L">
+              <target>Hippopotamidae_Shoulder_L</target>
+            </bone>
+          </bone>
+          <bone name="Hippopotamidae_Spine_R">
+            <target>Hippopotamidae_Spine_R</target>
+            <bone name="Hippopotamidae_Shoulder_R">
+              <target>Hippopotamidae_Shoulder_R</target>
+            </bone>
+          </bone>
+          <bone name="Hippopotamidae_Lower_Spine_1_L">
+            <target>Hippopotamidae_Lower_Spine_1_L</target>
+            <bone name="Hippopotamidae_Lower_Spine_2_L">
+              <target>Hippopotamidae_Lower_Spine_2_L</target>
+            </bone>
+          </bone>
+          <bone name="Hippopotamidae_Lower_Spine_1_R">
+            <target>Hippopotamidae_Lower_Spine_1_R</target>
+            <bone name="Hippopotamidae_Lower_Spine_2_R">
+              <target>Hippopotamidae_Lower_Spine_2_R</target>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Hippopotamidae_Leg_R">
+          <target>Hippopotamidae_Leg_R</target>
+          <bone name="Hippopotamidae_Foreleg_R">
+            <target>Hippopotamidae_Foreleg_R</target>
+            <bone name="Hippopotamidae_Ankle_R">
+              <target>Hippopotamidae_Ankle_R</target>
+              <bone name="Hippopotamidae_Foot_R">
+                <target>Hippopotamidae_Foot_R</target>
+                <bone name="Hippopotamidae_Toe_R">
+                  <target>Hippopotamidae_Toe_R</target>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Hippopotamidae_Leg_L">
+          <target>Hippopotamidae_Leg_L</target>
+          <bone name="Hippopotamidae_Foreleg_L">
+            <target>Hippopotamidae_Foreleg_L</target>
+            <bone name="Hippopotamidae_Ankle_L">
+              <target>Hippopotamidae_Ankle_L</target>
+              <bone name="Hippopotamidae_Foot_L">
+                <target>Hippopotamidae_Foot_L</target>
+                <bone name="Hippopotamidae_Toe_L">
+                  <target>Hippopotamidae_Toe_L</target>
+                </bone>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Knee_F_R">
+        <target>Knee_F_R</target>
+      </bone>
+      <bone name="Shoulder_Target_R">
+        <target>Shoulder_Target_R</target>
+      </bone>
+    </bone>
+    <bone name="Hippopotamidae_Upperarm_L">
+      <target>Hippopotamidae_Upperarm_L</target>
+      <bone name="Hippopotamidae_Arm_L">
+        <target>Hippopotamidae_Arm_L</target>
+        <bone name="Hippopotamidae_Forearm_L">
+          <target>Hippopotamidae_Forearm_L</target>
+          <bone name="Hippopotamidae_Paw_L">
+            <target>Hippopotamidae_Paw_L</target>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Hippopotamidae_Upperarm_R">
+      <target>Hippopotamidae_Upperarm_R</target>
+      <bone name="Hippopotamidae_Arm_R">
+        <target>Hippopotamidae_Arm_R</target>
+        <bone name="Hippopotamidae_Forearm_R">
+          <target>Hippopotamidae_Forearm_R</target>
+          <bone name="Hippopotamidae_Paw_R">
+            <target>Hippopotamidae_Paw_R</target>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Hippo">
+      <target>Hippo</target>
+    </bone>
+  </skeleton>
+</skeletons>

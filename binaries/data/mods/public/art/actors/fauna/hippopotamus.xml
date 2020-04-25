@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="quadraped/base_hippopotamus.xml">
+      <mesh>skeletal/fauna_hippopotamus.dae</mesh>
+      <textures>
+        <texture file="skeletal/fauna_hippopotamus_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="Black" frequency="1">
+      <textures>
+        <texture file="skeletal/fauna_hippopotamus_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="Brown" frequency="1">
+      <textures>
+        <texture file="skeletal/fauna_hippopotamus_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>no_trans_spec.xml</material>
+</actor>
