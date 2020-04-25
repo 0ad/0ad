@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_stable">
+  <Identity>
+    <Civ>yolon</Civ>
+    <SpecificName>Hippōn</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="23.0" depth="23.0"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/hellenes/stable.xml</Actor>
+    <FoundationActor>structures/fndn_7x7.xml</FoundationActor>
+  </VisualActor>
+</Entity>

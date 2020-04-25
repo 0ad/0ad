@@ -1,0 +1,9 @@
+{
+  "genericName": "crazy expansion",
+  "autoResearch": true,
+  "description": "Because everything is so well in Yolo kingdom people have started to expand in a massive scale. Max population has been increased by 10x",
+  "requirements": { "civ": "yolon" },
+  "icon": "population.png",
+  "tooltip": "Yolomons have 10x population limit.",
+  "modifications": [{ "value": "Player/MaxPopulation", "multiply": 10 }]
+}

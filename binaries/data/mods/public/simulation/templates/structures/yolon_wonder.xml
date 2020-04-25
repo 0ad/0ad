@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_wonder">
+  <Auras datatype="tokens">
+    structures/epic_temple_heal
+  </Auras>
+  <Footprint>
+    <Square width="28.0" depth="58.0"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <BuffHeal>8</BuffHeal>
+  </GarrisonHolder>
+  <Identity>
+    <Civ>yolon</Civ>
+    <SpecificName>Parthenōn﻿﻿</SpecificName>
+    <Tooltip>Bring glory to your civilization and add large tracts of land to your empire. Garrison units to heal them at an extremely quick rate.</Tooltip>
+  </Identity>
+  <Obstruction>
+    <Static width="27.0" depth="57.0"/>
+  </Obstruction>
+  <VisualActor>
+    <FoundationActor>structures/fndn_8x8.xml</FoundationActor>
+    <Actor>structures/hellenes/temple_epic.xml</Actor>
+  </VisualActor>
+</Entity>

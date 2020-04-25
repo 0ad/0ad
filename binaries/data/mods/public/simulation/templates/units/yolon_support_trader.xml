@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_support_trader">
+  <Footprint replace="">
+    <Square width="4.0" depth="8.0"/>
+    <Height>3.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>yolon</Civ>
+    <Lang>greek</Lang>
+    <SpecificName>Émporos</SpecificName>
+    <Icon>units/hele_support_trader.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/athenians/trader.xml</Actor>
+  </VisualActor>
+</Entity>

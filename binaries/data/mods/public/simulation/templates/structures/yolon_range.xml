@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_range">
+  <Footprint>
+    <Square width="27.0" depth="25.0"/>
+  </Footprint>
+  <Identity>
+    <Civ>yolon</Civ>
+    <SpecificName>Stratopedon tōn Psilōn</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="26.0" depth="24.0"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/hellenes/range.xml</Actor>
+  </VisualActor>
+</Entity>

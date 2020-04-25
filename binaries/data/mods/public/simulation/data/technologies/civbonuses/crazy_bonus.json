@@ -1,0 +1,16 @@
+{
+  "genericName": "crazy bonus",
+  "autoResearch": true,
+  "description": "As everyone is so happy and efficient everything is built very fast.",
+  "requirements": {
+    "any": [{ "civ": "yolon" }]
+  },
+  "icon": "ionic_column.png",
+  "tooltip": "Structures are built instantly as consequence of epic efficiency.",
+  "modifications": [
+    { "value": "Health/Max", "multiply": 1.1 },
+    { "value": "Capturable/CapturePoints", "multiply": 1.1 },
+    { "value": "Cost/BuildTime", "multiply": 0.01 }
+  ],
+  "affects": ["Structure"]
+}

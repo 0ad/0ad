@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_ship_merchant">
+  <Footprint>
+    <Square width="8.0" depth="24.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>yolon</Civ>
+    <SpecificName>Ploîon Phortēgikón</SpecificName>
+    <Icon>units/hele_ship_merchant.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/hellenes/merchant.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry_swordsman">
+  <Identity>
+    <Civ>yolon</Civ>
+    <Lang>greek</Lang>
+    <GenericName>Athenian Marine</GenericName>
+    <SpecificName>Epibátēs Athēnaîos</SpecificName>
+    <Icon>units/athen_champion_marine.png</Icon>
+    <RequiredTechnology>hellenes/special_iphicratean_reforms</RequiredTechnology>
+  </Identity>
+  <VisualActor>
+    <Actor>units/athenians/infantry_swordsman_c.xml</Actor>
+  </VisualActor>
+</Entity>

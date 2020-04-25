@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry_archer">
+  <Identity>
+    <Civ>yolon</Civ>
+    <Lang>greek</Lang>
+    <GenericName>Scythian Archer</GenericName>
+    <SpecificName>Toxótēs Skythikós</SpecificName>
+    <Icon>units/athen_champion_ranged.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/athenians/infantry_archer_c.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry_spearman_hoplite">
+  <Identity>
+    <Civ>yolon</Civ>
+    <Lang>greek</Lang>
+    <GenericName>City Guard</GenericName>
+    <SpecificName>Epílektos</SpecificName>
+    <Icon>units/athen_champion_infantry.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/athenians/infantry_spearman_c.xml</Actor>
+  </VisualActor>
+</Entity>

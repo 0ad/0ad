@@ -1,0 +1,19 @@
+{
+  "genericName": "epic troops",
+  "autoResearch": true,
+  "description": "Totally spearmen are totally over powered. Trains almost instantly and has 5x health. Also costs nothing and doesn't have any requirements",
+  "cost": { "food": 0, "wood": 0, "stone": 0, "metal": 0 },
+
+  "requirements": { "civ": "yolon" },
+  "requirementsTooltip": "Over powered troops. Use these",
+  "icon": "fist_spear.png",
+  "researchTime": 0.1,
+  "tooltip": "Anusiya Champion Infantry but doesn't cost anything and has huge amounts of health.",
+  "modifications": [
+    { "value": "Cost/BuildTime", "multiply": 0.1 },
+    { "value": "Health/Max", "multiply": 5 },
+    { "value": "Attack/Melee/Damage/Hack", "multiply": 50 }
+  ],
+  "affects": ["Infantry Spearman"],
+  "soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_support_slave">
+  <Identity>
+    <Civ>yolon</Civ>
+    <SpecificName>Doûlos</SpecificName>
+    <Icon>units/global_slave.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/global/slave.xml</Actor>
+  </VisualActor>
+</Entity>
