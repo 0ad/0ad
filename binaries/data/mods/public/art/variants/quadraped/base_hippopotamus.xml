@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="Base" frequency="1">
+  <animations>
+    <animation file="quadraped/hippopotamus_attack.dae" name="attack_melee" id="attack_melee1" event="0.5" frequency="10" speed="80"/>
+    <animation file="quadraped/hippopotamus_idle_01.dae" name="Idle" id="idle1" frequency="10" speed="80"/>
+    <animation file="quadraped/hippopotamus_idle_02.dae" name="Idle" id="idle2" frequency="1" speed="80"/>
+    <animation file="quadraped/hippopotamus_idle_03.dae" name="Idle" id="idle3" frequency="1" speed="80"/>
+    <animation file="quadraped/hippopotamus_idle_04.dae" name="Idle" id="idle4" frequency="1" speed="80"/>
+    <animation file="quadraped/hippopotamus_idle_05.dae" name="Idle" id="idle5" frequency="1" speed="80"/>
+    <animation file="quadraped/hippopotamus_idle_01.dae" name="feeding" id="feeding1" frequency="10" speed="80"/>
+    <animation file="quadraped/hippopotamus_idle_02.dae" name="feeding" id="feeding2" frequency="1" speed="80"/>
+    <animation file="quadraped/hippopotamus_idle_03.dae" name="feeding" id="feeding3" frequency="2" speed="80"/>
+    <animation file="quadraped/hippopotamus_idle_04.dae" name="feeding" id="feeding4" frequency="1" speed="80"/>
+    <animation file="quadraped/hippopotamus_idle_05.dae" name="feeding" id="feeding5" frequency="1" speed="80"/>
+    <animation file="quadraped/hippopotamus_idle_06.dae" name="feeding" id="feeding6" frequency="1" speed="80"/>
+    <animation file="quadraped/hippopotamus_walk.dae" name="Walk" speed="40"/>
+    <animation file="quadraped/hippopotamus_trot.dae" name="Run" speed="30"/>
+    <animation file="quadraped/hippopotamus_death.dae" name="Death" speed="80"/>
+  </animations>
+</variant>
