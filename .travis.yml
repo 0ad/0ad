@@ -26,6 +26,6 @@ before_install:
 script:
   - export CXX=$CXX$Tr_Compiler_Version
   - export CC=$CC$Tr_Compiler_Version
-  - build/workspaces/update-workspaces.sh --with-system-nvtt
+  - build/workspaces/update-workspaces.sh --with-system-nvtt > /dev/null
   - make build/workspaces/gcc/test
   - ./binaries/system/test
