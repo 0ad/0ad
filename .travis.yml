@@ -18,7 +18,7 @@ matrix:
       env: Tr_Compiler_Version="-9"
 
 before_install:
-  - sh ./.travis_before_linux_install.sh; fi
+  - sh ./.travis_pre_job.sh
 
 script:
   - export CXX=$CXX$Tr_Compiler_Version
