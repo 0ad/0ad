@@ -16,9 +16,9 @@ matrix:
           sources:
           - ubuntu-toolchain-r-test
           packages:
-          - gcc-9
-          - g++-9
-      env: Tr_Compiler_Version="-9"
+          - gcc-8
+          - g++-8
+      env: Tr_Compiler_Version="-8"
 
 before_install:
   - sh ./.travis_pre_job.sh
@@ -26,6 +26,7 @@ before_install:
 script:
   - export CXX=$CXX$Tr_Compiler_Version
   - export CC=$CC$Tr_Compiler_Version
-  - build/workspaces/update-workspaces.sh --with-system-nvtt > /dev/null
+  - gcc --version
+  - build/workspaces/update-workspaces.sh
   - make build/workspaces/gcc/test
   - ./binaries/system/test
