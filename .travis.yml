@@ -1,0 +1,28 @@
+# https://docs.travis-ci.com/user/customizing-the-build/
+language: cpp
+
+sudo: required
+
+matrix:
+  include:
+# linux
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+          - ubuntu-toolchain-r-test
+          packages:
+          - gcc-9
+          - g++-9
+      env: Tr_Compiler_Version="-9"
+
+before_install:
+  - sh ./.travis_before_linux_install.sh; fi
+
+script:
+  - export CXX=$CXX$Tr_Compiler_Version
+  - export CC=$CC$Tr_Compiler_Version
+  - build/workspaces/update-workspaces.sh --with-system-nvtt
+  - make build/workspaces/gcc/test
+  - ./binaries/system/test
