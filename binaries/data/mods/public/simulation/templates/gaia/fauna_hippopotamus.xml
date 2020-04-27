@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_fauna_wild_aggressive">
+<Entity parent="template_unit_fauna_hunt_aggressive">
   <Armour>
     <Hack>3</Hack>
     <Pierce>4</Pierce>
@@ -10,20 +10,16 @@
       <Damage>
         <Hack>12</Hack>
         <Pierce>12</Pierce>
-        <Crush>0</Crush>
       </Damage>
-      <MaxRange>2</MaxRange>
-      <RepeatTime>1000</RepeatTime>
-      <PrepareTime>0</PrepareTime>
+      <MaxRange>3</MaxRange>
     </Melee>
   </Attack>
   <Footprint>
-    <Square width="3.5" depth="6"/>
+    <Square width="2.5" depth="5"/>
     <Height>1.5</Height>
   </Footprint>
   <Health>
     <Max>200</Max>
-    <DeathType>remain</DeathType>
   </Health>
   <Identity>
     <GenericName>Hippopotamus</GenericName>
@@ -38,9 +34,6 @@
   </Position>
   <ResourceSupply>
     <Amount>400</Amount>
-    <KillBeforeGather>true</KillBeforeGather>
-    <MaxGatherers>8</MaxGatherers>
-    <Type>food.meat</Type>
   </ResourceSupply>
   <Selectable>
     <Overlay>

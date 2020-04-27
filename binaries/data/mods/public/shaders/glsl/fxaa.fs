@@ -1,4 +1,4 @@
-#version 120
+#version 130
 
 // Our GLSL adoptation of:
 //
@@ -239,8 +239,8 @@
     #define FXAA_QUALITY__P11 8.0
 #endif
 
-#define FxaaTexTop(t, p) texture2DLod((t), (p), 0.0)
-#define FxaaTexOff(t, p, o, r) texture2DLod((t), (p) + (o) * (r), 0.0)
+#define FxaaTexTop(t, p) textureLod((t), (p), 0.0)
+#define FxaaTexOff(t, p, o, r) textureLod((t), (p) + (o) * (r), 0.0)
 #define FxaaLuma(rgba) dot((rgba).rgb, vec3(0.299, 0.587, 0.114))
 
 vec4 FxaaPixelShader(
