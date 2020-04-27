@@ -27,6 +27,6 @@ script:
   - export CXX=$CXX$Tr_Compiler_Version
   - export CC=$CC$Tr_Compiler_Version
   - gcc --version
-  - build/workspaces/update-workspaces.sh
+  - build/workspaces/update-workspaces.sh &> /dev/null
   - make build/workspaces/gcc/test
   - ./binaries/system/test
