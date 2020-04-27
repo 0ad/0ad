@@ -3,6 +3,9 @@ language: cpp
 
 sudo: required
 
+git:
+  depth: 5
+
 matrix:
   include:
 # linux
