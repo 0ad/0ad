@@ -284,6 +284,7 @@ static const LanguageSpec languages[] = {
   { "zh", "HK", 0, "Chinese (Hong Kong)"         },
   { "zh", "TW", 0, "Chinese (traditional)"       },
   { "zu", 0,    0, "Zulu"                        },
+  { "tlh", 0,   0, "Klingonese"                  },
   { NULL, 0,    0, NULL                          }
 };
 //*}
