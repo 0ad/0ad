@@ -7,8 +7,8 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="3.5" depth="8.5"/>
-    <Height>9.0</Height>
+    <Square width="4" depth="10"/>
+    <Height>6</Height>
   </Footprint>
   <Identity>
     <SpecificName>Palisade Curve</SpecificName>
@@ -17,13 +17,16 @@
     <wood>2</wood>
   </Loot>
   <Obstruction>
-    <Static width="3.0" depth="8.0"/>
+    <Static width="3" depth="9"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>7</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>props/special/palisade_rocks_curve.xml</Actor>
   </VisualActor>
   <WallPiece>
-    <Length>8.0</Length>
+    <Length>8</Length>
     <Orientation>0.75</Orientation>
     <Indent>2.8</Indent>
     <Bend>0.5</Bend>

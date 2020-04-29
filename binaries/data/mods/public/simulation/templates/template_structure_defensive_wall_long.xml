@@ -16,23 +16,6 @@
     <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
     <BuffHeal>0</BuffHeal>
     <LoadingRange>2</LoadingRange>
-    <VisibleGarrisonPoints>
-      <Archer1>
-        <X>0</X><Y>11.5</Y><Z>0</Z>
-      </Archer1>
-      <Archer2>
-        <X>8</X><Y>11.5</Y><Z>0</Z>
-      </Archer2>
-      <Archer3>
-        <X>-8</X><Y>11.5</Y><Z>0</Z>
-      </Archer3>
-      <Archer4>
-        <X>4</X><Y>11.5</Y><Z>0</Z>
-      </Archer4>
-      <Archer5>
-        <X>-4</X><Y>11.5</Y><Z>0</Z>
-      </Archer5>
-    </VisibleGarrisonPoints>
   </GarrisonHolder>
   <Health>
     <Max>3000</Max>
@@ -60,4 +43,7 @@
   <VisualActor>
     <FoundationActor>structures/fndn_9x3_wall.xml</FoundationActor>
   </VisualActor>
+  <WallPiece>
+    <Length>36</Length>
+  </WallPiece>
 </Entity>

@@ -2,13 +2,13 @@
 <Entity parent="template_structure_defensive_wall_long">
   <Footprint>
     <Square width="37" depth="9"/>
-    <Height>9.0</Height>
+    <Height>13</Height>
   </Footprint>
   <Identity>
     <Civ>skirm</Civ>
   </Identity>
   <Obstruction>
-    <Static width="36.0" depth="8"/>
+    <Static width="36" depth="8"/>
   </Obstruction>
   <SkirmishReplacer>
     <general>structures/{civ}_wall_long</general>
@@ -16,7 +16,4 @@
   <VisualActor>
     <Actor>structures/hellenes/wall_long.xml</Actor>
   </VisualActor>
-  <WallPiece>
-    <Length>36.0</Length>
-  </WallPiece>
 </Entity>

@@ -1,20 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_medium">
   <Footprint>
-    <Square width="26.0" depth="7.0"/>
-    <Height>9.0</Height>
+    <Square width="22" depth="6"/>
+    <Height>11.4</Height>
   </Footprint>
+  <GarrisonHolder>
+    <VisibleGarrisonPoints>
+      <Archer1>
+        <X>0</X>
+        <Y>10.4</Y>
+        <Z>0</Z>
+      </Archer1>
+      <Archer2>
+        <X>4</X>
+        <Y>10.4</Y>
+        <Z>0</Z>
+      </Archer2>
+      <Archer3>
+        <X>-4</X>
+        <Y>10.4</Y>
+        <Z>0</Z>
+      </Archer3>
+    </VisibleGarrisonPoints>
+  </GarrisonHolder>
   <Identity>
     <Civ>sele</Civ>
     <SpecificName>Teichos</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="24.0" depth="6.0"/>
+    <Static width="21" depth="5"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>12.4</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>structures/seleucids/wall_medium.xml</Actor>
   </VisualActor>
   <WallPiece>
-    <Length>21.1</Length>
+    <Length>21</Length>
   </WallPiece>
 </Entity>

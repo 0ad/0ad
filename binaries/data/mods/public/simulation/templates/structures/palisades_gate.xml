@@ -7,8 +7,8 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="16" depth="3.0"/>
-    <Height>9.0</Height>
+    <Square width="15" depth="3"/>
+    <Height>7</Height>
   </Footprint>
   <Gate>
     <PassRange>20</PassRange>
@@ -44,13 +44,13 @@
     </SoundGroups>
   </Sound>
   <StatusBars>
-    <HeightOffset>9.0</HeightOffset>
+    <HeightOffset>8</HeightOffset>
   </StatusBars>
   <VisualActor>
     <FoundationActor>structures/fndn_3x1.xml</FoundationActor>
     <Actor>props/special/palisade_rocks_gate.xml</Actor>
   </VisualActor>
   <WallPiece>
-    <Length>11.0</Length>
+    <Length>14</Length>
   </WallPiece>
 </Entity>

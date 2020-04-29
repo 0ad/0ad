@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_gate">
   <Footprint>
-    <Square width="39.0" depth="8.0"/>
-    <Height>9.0</Height>
+    <Square width="37" depth="8"/>
+    <Height>15.5</Height>
   </Footprint>
   <Identity>
     <Civ>athen</Civ>
@@ -10,15 +10,15 @@
   </Identity>
   <Obstruction>
     <Obstructions>
-      <Right width="12" depth="6.5" x="12.5" z="0"/>
-      <Left width="12" depth="6.5" x="-12.5" z="0"/>
-      <Door width="13" depth="6.5" x="0" z="0"/>
+      <Right width="10.5" depth="6.5" x="12.75" z="0"/>
+      <Left width="10.5" depth="6.5" x="-12.75" z="0"/>
+      <Door width="15" depth="6.5" x="0" z="0"/>
     </Obstructions>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>16.5</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>structures/hellenes/wall_gate.xml</Actor>
   </VisualActor>
-  <WallPiece>
-    <Length>37.0</Length>
-  </WallPiece>
 </Entity>

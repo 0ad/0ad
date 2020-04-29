@@ -7,8 +7,8 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="11" depth="3.0"/>
-    <Height>9.0</Height>
+    <Square width="10" depth="3"/>
+    <Height>6</Height>
   </Footprint>
   <Health>
     <Max op="mul">0.5</Max>
@@ -20,16 +20,16 @@
     <wood>2</wood>
   </Loot>
   <Obstruction>
-    <Static width="10" depth="2.0"/>
+    <Static width="9" depth="2"/>
   </Obstruction>
   <StatusBars>
-    <HeightOffset>9.0</HeightOffset>
+    <HeightOffset>7</HeightOffset>
   </StatusBars>
   <VisualActor>
     <Actor>props/special/palisade_rocks_medium.xml</Actor>
     <FoundationActor>structures/fndn_3x1.xml</FoundationActor>
   </VisualActor>
   <WallPiece>
-    <Length>9.2</Length>
+    <Length>9</Length>
   </WallPiece>
 </Entity>

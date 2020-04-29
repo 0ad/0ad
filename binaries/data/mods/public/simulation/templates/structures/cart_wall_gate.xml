@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_gate">
   <Footprint>
-    <Square width="46.0" depth="11.0"/>
-    <Height>9.0</Height>
+    <Square width="37" depth="9"/>
+    <Height>16.5</Height>
   </Footprint>
   <Identity>
     <Civ>cart</Civ>
@@ -10,15 +10,15 @@
   </Identity>
   <Obstruction>
     <Obstructions>
-      <Right width="13" depth="10" x="15" z="0"/>
-      <Left width="13" depth="10" x="-15" z="0"/>
-      <Door width="20" depth="10" x="0" z="0"/>
+      <Right width="8.5" depth="8" x="13.75" z="0"/>
+      <Left width="8.5" depth="8" x="-13.75" z="0"/>
+      <Door width="19" depth="8" x="0" z="0"/>
     </Obstructions>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>17.5</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>structures/carthaginians/wall_gate.xml</Actor>
   </VisualActor>
-  <WallPiece>
-    <Length>38.0</Length>
-  </WallPiece>
 </Entity>

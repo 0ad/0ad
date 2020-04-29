@@ -20,8 +20,8 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="40.0" depth="8.0"/>
-    <Height>7.0</Height>
+    <Square width="37" depth="5"/>
+    <Height>6.7</Height>
   </Footprint>
   <GarrisonHolder>
     <VisibleGarrisonPoints>
@@ -69,8 +69,11 @@
     <stone>0</stone>
   </Loot>
   <Obstruction>
-    <Static width="37.0" depth="5.0"/>
+    <Static width="36" depth="4"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>7.7</HeightOffset>
+  </StatusBars>
   <TerritoryInfluence disable=""/>
   <Upgrade>
     <Gate>
@@ -85,7 +88,4 @@
   <VisualActor>
     <Actor>structures/romans/siege_wall_long.xml</Actor>
   </VisualActor>
-  <WallPiece>
-    <Length>36.0</Length>
-  </WallPiece>
 </Entity>

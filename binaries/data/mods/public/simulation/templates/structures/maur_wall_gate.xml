@@ -7,8 +7,8 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="38.5" depth="8.5"/>
-    <Height>9.0</Height>
+    <Square width="37" depth="8"/>
+    <Height>22</Height>
   </Footprint>
   <Identity>
     <Civ>maur</Civ>
@@ -20,15 +20,15 @@
   </Loot>
   <Obstruction>
     <Obstructions>
-      <Right width="12" depth="6.5" x="12.5" z="0"/>
-      <Left width="12" depth="6.5" x="-12.5" z="0"/>
-      <Door width="13" depth="6.5" x="0" z="0"/>
+      <Right width="11" depth="7" x="12.5" z="0"/>
+      <Left width="11" depth="7" x="-12.5" z="0"/>
+      <Door width="14" depth="7" x="0" z="0"/>
     </Obstructions>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>23</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>structures/mauryas/wall_gate.xml</Actor>
   </VisualActor>
-  <WallPiece>
-    <Length>36.2</Length>
-  </WallPiece>
 </Entity>

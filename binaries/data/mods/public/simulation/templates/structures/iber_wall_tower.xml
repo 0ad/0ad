@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_tower">
   <Footprint replace="">
-    <Circle radius="6.2"/>
-    <Height>15.0</Height>
+    <Circle radius="6"/>
+    <Height>13</Height>
   </Footprint>
   <Identity>
     <Civ>iber</Civ>
@@ -16,10 +16,13 @@
       -pair_walls_01
     </Technologies>
   </ProductionQueue>
+  <StatusBars>
+    <HeightOffset>14</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>structures/iberians/wall_tower.xml</Actor>
   </VisualActor>
   <WallPiece>
-    <Length>10.0</Length>
+    <Length>10</Length>
   </WallPiece>
 </Entity>

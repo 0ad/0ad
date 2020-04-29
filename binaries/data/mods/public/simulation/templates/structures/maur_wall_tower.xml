@@ -7,8 +7,8 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="12.5" depth="12.5"/>
-    <Height>18.0</Height>
+    <Square width="8" depth="8"/>
+    <Height>20</Height>
   </Footprint>
   <Health>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_wall_tower</SpawnEntityOnDeath>
@@ -22,12 +22,15 @@
     <stone>0</stone>
   </Loot>
   <Obstruction>
-    <Static width="9.5" depth="9.5"/>
+    <Static width="7" depth="7"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>21</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>structures/mauryas/wall_tower.xml</Actor>
   </VisualActor>
   <WallPiece>
-    <Length>7.8</Length>
+    <Length>7</Length>
   </WallPiece>
 </Entity>

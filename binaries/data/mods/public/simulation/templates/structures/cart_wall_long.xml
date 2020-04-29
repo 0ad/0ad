@@ -1,25 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_long">
   <Footprint>
-    <Square width="45.0" depth="11.0"/>
-    <Height>9.0</Height>
+    <Square width="37" depth="8"/>
+    <Height>13</Height>
   </Footprint>
   <GarrisonHolder>
     <VisibleGarrisonPoints>
       <Archer1>
-        <X>0</X><Y>12.5</Y><Z>0</Z>
+        <X>0</X>
+        <Y>12</Y>
+        <Z>0</Z>
       </Archer1>
       <Archer2>
-        <X>8</X><Y>12.5</Y><Z>0</Z>
+        <X>8</X>
+        <Y>12</Y>
+        <Z>0</Z>
       </Archer2>
       <Archer3>
-        <X>-8</X><Y>12.5</Y><Z>0</Z>
+        <X>-8</X>
+        <Y>12</Y>
+        <Z>0</Z>
       </Archer3>
       <Archer4>
-        <X>4</X><Y>12.5</Y><Z>0</Z>
+        <X>4</X>
+        <Y>12</Y>
+        <Z>0</Z>
       </Archer4>
       <Archer5>
-        <X>-4</X><Y>12.5</Y><Z>0</Z>
+        <X>-4</X>
+        <Y>12</Y>
+        <Z>0</Z>
       </Archer5>
     </VisibleGarrisonPoints>
   </GarrisonHolder>
@@ -28,13 +38,13 @@
     <SpecificName>Homah</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="46.0" depth="9.0"/>
+    <Static width="36" depth="7"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>14</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>structures/carthaginians/wall_long.xml</Actor>
     <FoundationActor>structures/carthaginians/fndn_wall_long.xml</FoundationActor>
   </VisualActor>
-  <WallPiece>
-    <Length>37.0</Length>
-  </WallPiece>
 </Entity>

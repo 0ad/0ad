@@ -7,8 +7,8 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="3.0" depth="15.0"/>
-    <Height>9.0</Height>
+    <Square width="3" depth="10"/>
+    <Height>6</Height>
   </Footprint>
   <Identity>
     <SpecificName>Palisade</SpecificName>
@@ -17,8 +17,11 @@
     <wood>2</wood>
   </Loot>
   <Obstruction>
-    <Static width="3.0" depth="15.0"/>
+    <Static width="2" depth="9"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>7</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>props/special/palisade_rocks_straight.xml</Actor>
   </VisualActor>

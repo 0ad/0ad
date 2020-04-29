@@ -1,25 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_long">
   <Footprint>
-    <Square width="37" depth="9"/>
-    <Height>9.0</Height>
+    <Square width="37" depth="8"/>
+    <Height>10</Height>
   </Footprint>
   <GarrisonHolder>
     <VisibleGarrisonPoints>
       <Archer1>
-        <X>0</X><Y>9.0</Y><Z>0</Z>
+        <X>0</X>
+        <Y>9</Y>
+        <Z>0</Z>
       </Archer1>
       <Archer2>
-        <X>8</X><Y>9.0</Y><Z>0</Z>
+        <X>8</X>
+        <Y>9</Y>
+        <Z>0</Z>
       </Archer2>
       <Archer3>
-        <X>-8</X><Y>9.0</Y><Z>0</Z>
+        <X>-8</X>
+        <Y>9</Y>
+        <Z>0</Z>
       </Archer3>
       <Archer4>
-        <X>4</X><Y>9.0</Y><Z>0</Z>
+        <X>4</X>
+        <Y>9</Y>
+        <Z>0</Z>
       </Archer4>
       <Archer5>
-        <X>-4</X><Y>9.0</Y><Z>0</Z>
+        <X>-4</X>
+        <Y>9</Y>
+        <Z>0</Z>
       </Archer5>
     </VisibleGarrisonPoints>
   </GarrisonHolder>
@@ -28,12 +38,12 @@
     <SpecificName>Zabal Horma</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="36.0" depth="8"/>
+    <Static width="36" depth="7"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>11</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>structures/iberians/wall_long.xml</Actor>
   </VisualActor>
-  <WallPiece>
-    <Length>36.0</Length>
-  </WallPiece>
 </Entity>

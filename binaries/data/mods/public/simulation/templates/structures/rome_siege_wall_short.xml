@@ -20,8 +20,8 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="16.0" depth="8.0"/>
-    <Height>7.0</Height>
+    <Square width="13" depth="5"/>
+    <Height>6.7</Height>
   </Footprint>
   <Health>
     <Max op="mul">0.75</Max>
@@ -40,14 +40,14 @@
     <stone>0</stone>
   </Loot>
   <Obstruction>
-    <Static width="13.0" depth="5.0"/>
+    <Static width="12" depth="4"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>7.7</HeightOffset>
+  </StatusBars>
   <TerritoryInfluence disable=""/>
   <VisualActor>
     <Actor>structures/romans/siege_wall_short.xml</Actor>
     <FoundationActor>structures/fndn_1x1.xml</FoundationActor>
   </VisualActor>
-  <WallPiece>
-    <Length>12.0</Length>
-  </WallPiece>
 </Entity>

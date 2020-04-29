@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_short">
   <Footprint>
-    <Square width="16.0" depth="10.0"/>
-    <Height>9.0</Height>
+    <Square width="16" depth="6"/>
+    <Height>10.8</Height>
   </Footprint>
   <Identity>
     <Civ>ptol</Civ>
     <SpecificName>Teichos</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="14.0" depth="8.0"/>
+    <Static width="15" depth="5"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>11.8</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>structures/ptolemies/wall_short.xml</Actor>
   </VisualActor>
   <WallPiece>
-    <Length>14.0</Length>
+    <Length>15</Length>
   </WallPiece>
 </Entity>
