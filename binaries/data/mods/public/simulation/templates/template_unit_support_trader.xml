@@ -18,6 +18,9 @@
     <Tooltip>Trade resources between your own markets and those of your allies.</Tooltip>
     <Formations disable=""/>
   </Identity>
+  <Position>
+    <Anchor>pitch</Anchor>
+  </Position>
   <Sound>
     <SoundGroups>
       <select>voice/{lang}/civ/civ_{phenotype}_select.xml</select>
