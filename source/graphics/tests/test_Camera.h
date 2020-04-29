@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -126,6 +126,17 @@ public:
 			std::fabs(p1.m_Norm.Z - p2.m_Norm.Z) < EPS;
 	}
 
+	void CompareQuads(const CCamera::Quad& quad, const CCamera::Quad& expected_quad)
+	{
+		const float EPS = 1e-4;
+		for (size_t index = 0; index < expected_quad.size(); ++index)
+		{
+			TS_ASSERT_DELTA(quad[index].X, expected_quad[index].X, EPS);
+			TS_ASSERT_DELTA(quad[index].Y, expected_quad[index].Y, EPS);
+			TS_ASSERT_DELTA(quad[index].Z, expected_quad[index].Z, EPS);
+		}
+	}
+
 	void test_persepctive_plane_points()
 	{
 		SViewPort viewPort;
@@ -160,6 +171,6 @@ public:
 			CVector3D(-101.0f, 101.0f, 101.0f)
 		};
 		camera.GetViewQuad(camera.GetFarPlane(), quad);
-		TS_ASSERT_EQUALS(quad, expectedFarQuad);
+		CompareQuads(quad, expectedFarQuad);
 	}
 };
