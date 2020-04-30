@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_gate">
   <Footprint>
-    <Square width="38.5" depth="8.5"/>
-    <Height>9.0</Height>
+    <Square width="37" depth="7"/>
+    <Height>11.9</Height>
   </Footprint>
   <Identity>
     <Civ>rome</Civ>
@@ -10,15 +10,15 @@
   </Identity>
   <Obstruction>
     <Obstructions>
-      <Right width="14" depth="7" x="12" z="0"/>
-      <Left width="14" depth="7" x="-12" z="0"/>
-      <Door width="10" depth="7" x="0" z="0"/>
+      <Right width="12" depth="6" x="12" z="0"/>
+      <Left width="12" depth="6" x="-12" z="0"/>
+      <Door width="12" depth="6" x="0" z="0"/>
     </Obstructions>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>12.9</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>structures/romans/wall_gate.xml</Actor>
   </VisualActor>
-  <WallPiece>
-    <Length>37.0</Length>
-  </WallPiece>
 </Entity>

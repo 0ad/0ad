@@ -27,11 +27,6 @@
   </Loot>
   <Obstruction>
     <Static disable=""/>
-    <Obstructions>
-      <Right width="5" depth="5" x="10" z="0"/>
-      <Left width="5" depth="5" x="-10" z="0"/>
-      <Door width="20.0" depth="6.5" x="0" z="0"/>
-    </Obstructions>
   </Obstruction>
   <ProductionQueue disable=""/>
   <RallyPoint disable=""/>
@@ -48,4 +43,7 @@
   <VisualActor>
     <FoundationActor>structures/fndn_9x3_wall.xml</FoundationActor>
   </VisualActor>
+  <WallPiece>
+    <Length>36</Length>
+  </WallPiece>
 </Entity>

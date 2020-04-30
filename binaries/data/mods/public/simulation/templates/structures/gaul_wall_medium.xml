@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_medium">
   <Footprint>
-    <Square width="26.5" depth="8.5"/>
-    <Height>9.0</Height>
+    <Square width="25" depth="7"/>
+    <Height>10.3</Height>
   </Footprint>
   <GarrisonHolder>
     <VisibleGarrisonPoints>
       <Archer1>
-        <X>0</X><Y>9.3</Y><Z>0</Z>
+        <X>0</X>
+        <Y>9.3</Y>
+        <Z>0</Z>
       </Archer1>
       <Archer2>
-        <X>4</X><Y>9.3</Y><Z>0</Z>
+        <X>4</X>
+        <Y>9.3</Y>
+        <Z>0</Z>
       </Archer2>
       <Archer3>
-        <X>-4</X><Y>9.3</Y><Z>0</Z>
+        <X>-4</X>
+        <Y>9.3</Y>
+        <Z>0</Z>
       </Archer3>
     </VisibleGarrisonPoints>
   </GarrisonHolder>
@@ -22,12 +28,12 @@
     <SpecificName>Rate</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="25.0" depth="7.0"/>
+    <Static width="24" depth="6"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>11.3</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>structures/gauls/wall_medium.xml</Actor>
   </VisualActor>
-  <WallPiece>
-    <Length>25.0</Length>
-  </WallPiece>
 </Entity>

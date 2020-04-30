@@ -7,8 +7,8 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="14.5" depth="9.0"/>
-    <Height>9.0</Height>
+    <Square width="13" depth="5"/>
+    <Height>10.5</Height>
   </Footprint>
   <Identity>
     <Civ>maur</Civ>
@@ -19,12 +19,12 @@
     <stone>0</stone>
   </Loot>
   <Obstruction>
-    <Static width="13.0" depth="7.5"/>
+    <Static width="12" depth="4"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>18</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>structures/mauryas/wall_short.xml</Actor>
   </VisualActor>
-  <WallPiece>
-    <Length>12.2</Length>
-  </WallPiece>
 </Entity>

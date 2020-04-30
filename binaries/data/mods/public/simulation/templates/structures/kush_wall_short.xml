@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_short">
   <Footprint>
-    <Square width="16.0" depth="10.0"/>
-    <Height>9.0</Height>
+    <Square width="13" depth="6"/>
+    <Height>12.6</Height>
   </Footprint>
   <Identity>
     <Civ>kush</Civ>
     <SpecificName>sbty</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="14.0" depth="8.0"/>
+    <Static width="12" depth="5"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>13.6</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>structures/kushites/wall_short.xml</Actor>
   </VisualActor>
-  <WallPiece>
-    <Length>11</Length>
-  </WallPiece>
 </Entity>

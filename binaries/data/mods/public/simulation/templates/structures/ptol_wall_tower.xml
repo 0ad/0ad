@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_tower">
   <Footprint>
-    <Square width="12" depth="12"/>
-    <Height>15.0</Height>
+    <Square width="10" depth="10"/>
+    <Height>16</Height>
   </Footprint>
   <Identity>
     <Civ>ptol</Civ>
     <SpecificName>Pyrgos</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="10" depth="10"/>
+    <Static width="9" depth="9"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>17</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>structures/ptolemies/wall_tower.xml</Actor>
   </VisualActor>
   <WallPiece>
-    <Length>9.6</Length>
+    <Length>9</Length>
   </WallPiece>
 </Entity>

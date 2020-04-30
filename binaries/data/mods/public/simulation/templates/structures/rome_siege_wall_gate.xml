@@ -20,8 +20,8 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="40.0" depth="8.0"/>
-    <Height>7.0</Height>
+    <Square width="37" depth="7"/>
+    <Height>12.5</Height>
   </Footprint>
   <Health>
     <Max op="mul">0.75</Max>
@@ -39,16 +39,16 @@
   </Loot>
   <Obstruction>
     <Obstructions>
-      <Right width="13" depth="5" x="12" z="0"/>
-      <Left width="13" depth="5" x="-12" z="0"/>
-      <Door width="11" depth="5" x="0" z="0"/>
+      <Right width="11.5" depth="5" x="12.25" z="0"/>
+      <Left width="11.5" depth="5" x="-12.25" z="0"/>
+      <Door width="13" depth="5" x="0" z="0"/>
     </Obstructions>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>13.5</HeightOffset>
+  </StatusBars>
   <TerritoryInfluence disable=""/>
   <VisualActor>
     <Actor>structures/romans/siege_wall_gate.xml</Actor>
   </VisualActor>
-  <WallPiece>
-    <Length>36.0</Length>
-  </WallPiece>
 </Entity>

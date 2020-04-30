@@ -7,25 +7,35 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="36.5" depth="9.0"/>
-    <Height>9.0</Height>
+    <Square width="37" depth="5"/>
+    <Height>10.5</Height>
   </Footprint>
   <GarrisonHolder>
     <VisibleGarrisonPoints>
       <Archer1>
-        <X>0</X><Y>9.5</Y><Z>0</Z>
+        <X>0</X>
+        <Y>9.5</Y>
+        <Z>0</Z>
       </Archer1>
       <Archer2>
-        <X>8</X><Y>9.5</Y><Z>0</Z>
+        <X>8</X>
+        <Y>9.5</Y>
+        <Z>0</Z>
       </Archer2>
       <Archer3>
-        <X>-8</X><Y>9.5</Y><Z>0</Z>
+        <X>-8</X>
+        <Y>9.5</Y>
+        <Z>0</Z>
       </Archer3>
       <Archer4>
-        <X>4</X><Y>9.5</Y><Z>0</Z>
+        <X>4</X>
+        <Y>9.5</Y>
+        <Z>0</Z>
       </Archer4>
       <Archer5>
-        <X>-4</X><Y>9.5</Y><Z>0</Z>
+        <X>-4</X>
+        <Y>9.5</Y>
+        <Z>0</Z>
       </Archer5>
     </VisibleGarrisonPoints>
   </GarrisonHolder>
@@ -38,8 +48,11 @@
     <stone>0</stone>
   </Loot>
   <Obstruction>
-    <Static width="35.0" depth="7.5"/>
+    <Static width="36" depth="4"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>18</HeightOffset>
+  </StatusBars>
   <Upgrade>
     <Gate>
       <Cost>
@@ -51,7 +64,4 @@
   <VisualActor>
     <Actor>structures/mauryas/wall_long.xml</Actor>
   </VisualActor>
-  <WallPiece>
-    <Length>36.1</Length>
-  </WallPiece>
 </Entity>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_long">
   <Footprint>
-    <Square width="40" depth="10.0"/>
-    <Height>9.0</Height>
+    <Square width="37" depth="6"/>
+    <Height>12.6</Height>
   </Footprint>
   <GarrisonHolder>
     <VisibleGarrisonPoints>
@@ -38,12 +38,12 @@
     <SpecificName>sbty</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="38.0" depth="8.0"/>
+    <Static width="36" depth="5"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>13.6</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>structures/kushites/wall_long.xml</Actor>
   </VisualActor>
-  <WallPiece>
-    <Length>34.9</Length>
-  </WallPiece>
 </Entity>

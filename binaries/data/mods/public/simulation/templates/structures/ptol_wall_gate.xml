@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_gate">
   <Footprint>
-    <Square width="42.0" depth="14.0"/>
-    <Height>9.0</Height>
+    <Square width="40" depth="12"/>
+    <Height>17.8</Height>
   </Footprint>
   <Identity>
     <Civ>ptol</Civ>
@@ -10,15 +10,18 @@
   </Identity>
   <Obstruction>
     <Obstructions>
-      <Right width="14.5" depth="12.5" x="13.5" z="0"/>
-      <Left width="14.5" depth="12.5" x="-13.5" z="0"/>
-      <Door width="11" depth="12.5" x="0" z="0"/>
+      <Right width="12" depth="11" x="13.5" z="0"/>
+      <Left width="12" depth="11" x="-13.5" z="0"/>
+      <Door width="15" depth="11" x="0" z="0"/>
     </Obstructions>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>18.8</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>structures/ptolemies/wall_gate.xml</Actor>
   </VisualActor>
   <WallPiece>
-    <Length>38.6</Length>
+    <Length>39</Length>
   </WallPiece>
 </Entity>
