@@ -5,9 +5,10 @@
 # Translators:
 # AlexKR <alexkr.post@gmail.com>, 2015
 # Andriy Nahirnjak <andriy.nagirnjak@gmail.com>, 2014
+# Chindu the Manduri <mandurilooter210770@mail.ru>, 2020
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2018
 # Victor Butko <victor.butko@gmail.com>, 2014
-# Zeldt Herb <bkelfarat@bk.ru>, 2020
+# 85c91c3444bcf82d63b07801f727e341, 2020
 # Андрій Бандура <andriykopanytsia@gmail.com>, 2016
 # Микола Франчук <thekolian1996@gmail.com>, 2018
 # Сергій Дубик <dubyk@ukr.net>, 2014
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-13 07:08+0000\n"
-"PO-Revision-Date: 2020-02-09 17:02+0000\n"
-"Last-Translator: Zeldt Herb <bkelfarat@bk.ru>\n"
+"PO-Revision-Date: 2020-04-29 17:24+0000\n"
+"Last-Translator: Chindu the Manduri <mandurilooter210770@mail.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -158,7 +159,7 @@ msgstr "Там немає активного з'єднання"
 
 #: lobby/XmppClient.cpp:1283
 msgid "Your account has been successfully registered"
-msgstr "Обліковий запис було успішно зареєстровано"
+msgstr "Ваш обліковий запис було успішно зареєстровано"
 
 #: lobby/XmppClient.cpp:1284
 msgid "Not all necessary information provided"
@@ -223,12 +224,12 @@ msgstr "Не вдалося перевірити підпис."
 #: ps/SavedGame.cpp:139
 #, c-format
 msgid "Saved game to '%s'"
-msgstr "Збережена гра в '%s'"
+msgstr "Збережено гру до '%s'"
 
 #: ps/Util.cpp:279 ps/Util.cpp:282 ps/Util.cpp:417 ps/Util.cpp:420
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "Знімок екрану записується до '%s'"
+msgstr "Знімок екрану записаний до '%s'"
 
 #: ps/scripting/JSInterface_Debug.cpp:83
 msgid "custom build"

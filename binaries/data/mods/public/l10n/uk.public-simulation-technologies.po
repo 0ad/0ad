@@ -4,12 +4,14 @@
 # 
 # Translators:
 # AlexKR <alexkr.post@gmail.com>, 2015
+# Chindu the Manduri <mandurilooter210770@mail.ru>, 2020
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2018
 # 504fc1cf9150c6eb2ead15f639dc2c0a, 2020
+# Chindu the Manduri <mandurilooter210770@mail.ru>, 2020
 # Nicolas Auvray <na.itms76@gmail.com>, 2018
 # Oleg Adept <adeptoleg@gmail.com>, 2016
 # Olexandr Yaremenko <ua.limitless@gmail.com>, 2016
-# Paruru Slowlegs <paruru@inbox.ru>, 2020
+# Chindu the Manduri <mandurilooter210770@mail.ru>, 2020
 # SkiDo <skidoster@gmail.com>, 2015
 # Vitalii Mostipaka <imprtat@gmail.com>, 2016
 # 85c91c3444bcf82d63b07801f727e341, 2020
@@ -18,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-03-23 08:32+0000\n"
-"PO-Revision-Date: 2020-04-24 07:15+0000\n"
-"Last-Translator: Paruru Slowlegs <paruru@inbox.ru>\n"
+"PO-Revision-Date: 2020-04-30 10:05+0000\n"
+"Last-Translator: Chindu the Manduri <mandurilooter210770@mail.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +35,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster movement speeds and extra heal speed and range for healers."
-msgstr "Підрозділи, підвищені до просунутої категорії, мають більшу якість: 20% до здоров'я, 1 рівень до броні кожного типу, 20% до трофеїв, 20% до атаки для підрозділів ближнього бою, 4 м до дистанції та кращу точність для підрозділів дальнього бою, збільшені швидкості руху, та додаткову швидкість зцілення, та дистанцію для цілителів."
+msgstr "Підрозділи, підвищені до просунутої категорії, мають більше якості: 20% до здоров'я, 1 рівень до броні кожного типу, 20% до трофеїв, 20% до атаки для підрозділів ближнього бою, 4 м до дистанції та кращу точність для підрозділів дальнього бою, збільшені швидкості руху, та додаткову швидкість зцілення, та дистанцію для цілителів."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -60,7 +62,7 @@ msgstr "Стрілецька традиція"
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr "Розблоковано у фазі села."
+msgstr "Відкрито на етапі села."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -133,7 +135,7 @@ msgstr "Шамфрон"
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "Розблоковано у фазі містечка."
+msgstr "Відкрито на етапі містечка."
 
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
@@ -226,7 +228,7 @@ msgstr "Металевий обладунок для тіла коня."
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "Розблоковано у фазі міста."
+msgstr "Відкрито на етапі міста."
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
@@ -268,7 +270,7 @@ msgstr "Стьобаний лляний або шкіряний обладуно
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
 msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "Всі піхотинці мають +1 рівень броні від рубаючої та колючої атаки."
+msgstr "Вся піхота має +1 рівень броні від рубаючої та колючої атаки."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_01.jsongenericName
@@ -333,7 +335,7 @@ msgstr "Ліноторакес"
 #: simulation/data/technologies/armor_infantry_hack_02.jsontooltip
 #: simulation/data/technologies/armor_infantry_hack_03.jsontooltip
 msgid "All Infantry +1 Hack Armor Level."
-msgstr "Всі піхотинці мають +1 рівень броні від рубаючої атаки."
+msgstr "Вся піхота має +1 рівень броні від рубаючої атаки."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsondescription
 msgid "Body armor reinforced with bronze scales."
@@ -372,7 +374,7 @@ msgstr "Фанерний каркас для великих щитів."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
 msgid "Infantry Spearmen +2 Pierce Armor Levels."
-msgstr "Піхотинці списоносці мають +2 рівня броні від колючої атаки."
+msgstr "Піхотні списоносці мають +2 рівня броні від колючої атаки."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
 msgid "Plywood Shield Construction"
@@ -395,7 +397,7 @@ msgstr "Найкращі щити мають зміцнення або на ку
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr "Піхотинці списоносці мають +1 рівень броні від колючої атаки."
+msgstr "Піхотні списоносці мають +1 рівень броні від колючої атаки."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
@@ -496,7 +498,7 @@ msgstr "Довгий спис, зроблений спеціально для к
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr "Оснастити власну кавалерію ближнього бою кращою зброєю. Кавалерія ближнього бою має +2 рубаючої атаки."
+msgstr "Оснастити Вашу кавалерію ближнього бою кращою зброєю. Кавалерія ближнього бою має +2 рубаючої атаки."
 
 #: simulation/data/technologies/attack_cav_lance.jsongenericName
 msgid "Cavalry Lance"
@@ -561,7 +563,7 @@ msgstr "Замінює бронзову зброю на залізну."
 #: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr "Оснастити власну кавалерію ближнього бою кращою зброєю. +20% кавалерійської атаки ближнього бою."
+msgstr "Оснастити Вашу кавалерію ближнього бою кращою зброєю. +20% кавалерійської атаки ближнього бою."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
@@ -584,7 +586,7 @@ msgstr "Тренування кавалерії в дистанційному б
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr "Оснастити власну кавалерію дистанційного бою кращою зброєю. +20% кавалерійської атаки дистанційного бою."
+msgstr "Оснастити Вашу кавалерію дистанційного бою кращою зброєю. +20% кавалерійської атаки дистанційного бою."
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
@@ -622,7 +624,7 @@ msgstr "Часто піхотинець носив додаткове озбро
 #: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
 msgid "+20% melee infantry attack."
-msgstr "+20% атаки піхотинців ближнього бою."
+msgstr "+20% атаки піхоти ближнього бою."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
 #: simulation/data/technologies/melee_inf_sidearms.jsongenericName
@@ -655,18 +657,18 @@ msgstr "Використання заліза замість бронзи над
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry."
-msgstr "Тренування збільшує нанесення пошкодження піхотинцями дистанційного бою."
+msgstr "Тренування збільшує нанесення пошкодження піхотою дистанційного бою."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsontooltip
 msgid "+20% ranged infantry attack."
-msgstr "+20% атаки піхотинців дистанційного бою."
+msgstr "+20% атаки піхоти дистанційного бою."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
 #: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
 msgid "Ranged Infantry Irregulars"
-msgstr "Нерегулярні піхотинці дистанційного бою."
+msgstr "Нерегулярна піхота дистанційного бою."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.mace
@@ -688,7 +690,7 @@ msgstr "Атактоі"
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
-msgstr "Майстер-клас для піхотинців дистанційного бою."
+msgstr "Майстер-клас для піхоти дистанційного бою."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid "The will to fight is crucial to victory."
@@ -697,7 +699,7 @@ msgstr "Воля до боротьби має вирішальне значен�
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid ""
 "Inspire your troops with higher pay. All land and naval army +25% attack."
-msgstr "Надихнути власні війська більш високою оплатою. Вся сухопутна та морська армія має +25% атаки."
+msgstr "Надихнути Ваші війська більш високою оплатою. Вся сухопутна та морська армія має +25% атаки."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
@@ -735,7 +737,7 @@ msgstr "Толедська сталь"
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsondescription
 msgid "Using rubble materials reduces the costs and build times of walls."
-msgstr "Використання бутових матеріалів скорочує витрати та час зведення мурів."
+msgstr "Використання бутових матеріалів скорочує витрати та часи спорудження мурів."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
 msgid "City walls -20% build time, but -1 crush armor level."
@@ -751,7 +753,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr "Підрозділи, підвищені до елітної категорії, мають більшу якість: 20% до здоров'я, 1 рівень до броні кожного типу, 20% до трофеїв, 20% до атаки для підрозділів ближнього бою, 4 м до дистанції та кращу точність для підрозділів дальнього бою, збільшені швидкості руху, та додаткову швидкість зцілення, та дистанцію для цілителів."
+msgstr "Підрозділи, підвищені до елітної категорії, мають більше якості: 20% до здоров'я, 1 рівень до броні кожного типу, 20% до трофеїв, 20% до атаки для підрозділів ближнього бою, 4 м до дистанції та кращу точність для підрозділів дальнього бою, збільшені швидкості руху, та додаткову швидкість зцілення, та дистанцію для цілителів."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -806,7 +808,7 @@ msgstr "Соління риби"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr "Розблоковано у фазі містечка. Потребує рибальську сітку."
+msgstr "Відкрито на етапі містечка. Потребує рибальську сітку."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid ""
@@ -833,7 +835,7 @@ msgstr "Добриво"
 msgid ""
 "Equip your workers with iron plows, animal-drawn instruments to turn the "
 "sod."
-msgstr "Оснастити власних працівників залізними плугами, знаряддям, запряженим тваринами, щоб перегортати дерен."
+msgstr "Оснастити Ваших працівників залізними плугами — знаряддям, запряженим тваринами, щоб перегортати дерен."
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
@@ -889,13 +891,13 @@ msgstr "Гострі голови сокир"
 
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsongenericName
 msgid "Stronger Ax"
-msgstr "Сильніша сокира"
+msgstr "Міцніша сокира"
 
 #: simulation/data/technologies/gather_mining_serfs.jsondescription
 msgid ""
 "Compel serfs to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr "Примушувати рабів допомогати власним працівникам видобувати камінь. Збільшує темпи видобутку каменю."
+msgstr "Примушувати рабів допомогати Вашим працівникам видобувати камінь. Збільшує темпи видобутку каменю."
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
@@ -963,7 +965,7 @@ msgstr "Копальні Лавріону"
 msgid ""
 "Buy slaves to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr "Купити невільників, щоб допомогти власним працівникам видобувати камінь. Збільшує темпи видобутку каменю."
+msgstr "Купити невільників, щоб допомогти Вашим працівникам видобувати камінь. Збільшує темпи видобутку каменю."
 
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +50% stone gather rate."
@@ -982,7 +984,7 @@ msgstr "Андрапода"
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid ""
 "Equip your workers with helpful tools. Increases metal gathering rates."
-msgstr "Оснастити власних працівників корисними інструментами. Збільшує темпи видобутку металу."
+msgstr "Оснастити Ваших працівників допоміжними інструментами. Збільшує темпи видобутку металу."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -990,7 +992,7 @@ msgstr "Клин та молоток"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Equip your foragers with wicker baskets for foraging."
-msgstr "Оснастити власних фуражирів плетеними кошиками для фуражування."
+msgstr "Оснастити Ваших фуражирів плетеними кошиками для фуражування."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Workers +50% fruit gather rate."
@@ -1010,7 +1012,7 @@ msgstr "Підрозділи набувають здоров’я з часом,
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
-msgstr "Умови життя"
+msgstr "Житлові умови"
 
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
@@ -1134,7 +1136,7 @@ msgstr "Геометрична кладка"
 
 #: simulation/data/technologies/melee_inf_sidearms.jsontooltip
 msgid "Melee infantry +1 hack attack."
-msgstr "Піхотинці ближнього бою мають +1 рубаючої атаки."
+msgstr "Піхота ближнього бою має +1 рубаючої атаки."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsondescription
 msgid "Using iron instead of bronze gave spears additional piercing power."
@@ -1154,7 +1156,7 @@ msgstr "Залізні наконечники списів"
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.spart
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.athen
 msgid "Sidḗreai Aikhmaí"
-msgstr "Сідереаі аікхмаі"
+msgstr "Сідереаі аіхмаі"
 
 #: simulation/data/technologies/pair_cav_01.jsongenericName
 msgid "Lance vs. Chamfron"
@@ -1213,11 +1215,11 @@ msgstr "Боротьба зі списом проти перестрілки"
 #: simulation/data/technologies/pair_inf_armor_03.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_04.jsongenericName
 msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr "Броня від рубаючої атаки піхотинців проти броні від колючої атаки списоносців."
+msgstr "Броня від рубаючої атаки піхоти проти броні від колючої атаки списоносців."
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
-msgstr "Набирати піхотинців проти набирання кавалерії"
+msgstr "Набирати піхоту проти набирання кавалерії"
 
 #: simulation/data/technologies/pair_siege_attack_cost.jsongenericName
 msgid "Attack vs. Cost"
@@ -1321,7 +1323,7 @@ msgstr "Просування до етапу містечка, яке відкр
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid ""
 "Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Потребує 5 нових споруди етапу села (за винятком частоколів та фермерських полей)."
+msgstr "Потребує 5 нових споруд етапу села (за винятком частоколів та фермерських полей)."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1562,7 +1564,7 @@ msgstr "Кавалерійське розведення"
 
 #: simulation/data/technologies/speed_cavalry_02.jsondescription
 msgid "Train your horses to move faster."
-msgstr "Тренувати власних коней рухатися швидше."
+msgstr "Тренувати Ваших коней рухатися швидше."
 
 #: simulation/data/technologies/speed_cavalry_02.jsongenericName
 msgid "Cavalry Speed Training"
@@ -1634,7 +1636,7 @@ msgstr "Діри-вбивці"
 
 #: simulation/data/technologies/tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
-msgstr "Пускачі стріли збільшують максимальну дистанцію вогню стрілами."
+msgstr "Метальники стріли збільшують максимальну дистанцію вогню стрілами."
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Increases defensive towers' maximum range by 8 meters."
@@ -1642,11 +1644,11 @@ msgstr "Збільшує максимальну дистанцію захисн�
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
-msgstr "Пускачі стріли"
+msgstr "Метальники стріли"
 
 #: simulation/data/technologies/tower_vision.jsondescription
 msgid "Outposts gain longer vision for scouting."
-msgstr "Застави одержують більше зору для розвідки."
+msgstr "Застави одержують більше бачення для розвідки."
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
@@ -1773,17 +1775,17 @@ msgstr "Набирати кавалерію"
 msgid ""
 "Calling up infantry levies in time of war helps bolster the ranks of a "
 "king's army."
-msgstr "Призов піхотинців новобранців під час війни допомагає підтримувати порядки царської армії."
+msgstr "Призов піхотних новобранців під час війни допомагає підтримувати порядки царської армії."
 
 #: simulation/data/technologies/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -10% train time, but also -5 health. Unlocks Conscription."
-msgstr "Всі піхотинці потребують -10% часу тренування, але також мають -5 здоров'я. Відкриває військову повинність."
+msgstr "Вся піхота потребує -10% часу тренування, але також має -5 здоров'я. Відкриває військову повинність."
 
 #: simulation/data/technologies/training_levy_infantry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
 msgid "Levy Infantry"
-msgstr "Набирати піхотинців"
+msgstr "Набирати піхоту"
 
 #: simulation/data/technologies/training_naval_architects.jsondescription
 msgid "Significantly increase build speed of batches of ships at the Dock."
@@ -1897,14 +1899,14 @@ msgstr "Шпигунство"
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
 msgid "Promote all of your citizen-soldier cavalrymen to Advanced rank."
-msgstr "Підвищити всіх Ваших громадян-солдатів кавалерійських вояків до просунутого рангу."
+msgstr "Підвищити всіх Ваших громадян-солдатів кавалерійців до просунутого рангу."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsontooltip
 msgid ""
 "Promote all of your citizen-soldier cavalrymen to Advanced rank. This "
 "increases their military prowess, but decreases their meat gathering rates "
 "-25%. Unlocks Elite Citizen-Cavalry technology."
-msgstr "Підвищити всіх Ваших громадян-солдатів кавалерійських вояків до просунутого рангу. Це збільшує їх військову відвагу, але знижує їхні темпи збирання м'яса на -25%. Відкриває технологію елітної громадянської кавалерії."
+msgstr "Підвищити всіх Ваших громадян-солдатів кавалерійців до просунутого рангу. Це збільшує їх військову відвагу, але знижує їхні темпи збирання м'яса на -25%. Відкриває технологію елітної громадянської кавалерії."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsongenericName
 msgid "Advanced Citizen-Cavalry"
@@ -2053,39 +2055,39 @@ msgstr "Найманський полководець італіотів"
 
 #: simulation/data/technologies/carthaginians/pair_celt_mercs_1.jsongenericName
 msgid "Celtic merc cost vs. recruit time #1"
-msgstr "Вартість кельтського найманця та час набору №1"
+msgstr "Витрата кельтського найманця проти часу вербування #1"
 
 #: simulation/data/technologies/carthaginians/pair_celt_mercs_2.jsongenericName
 msgid "Celtic merc cost vs. recruit time #2"
-msgstr "Вартість кельтського найманця та час набору №2"
+msgstr "Витрата кельтського найманця проти часу вербування #2"
 
 #: simulation/data/technologies/carthaginians/pair_iberian_mercs_1.jsongenericName
 msgid "Iberian merc cost vs. recruit time #1"
-msgstr "Вартість іберійського найманця та час набору №1"
+msgstr "Витрата іберійського найманця проти часу вербування #1"
 
 #: simulation/data/technologies/carthaginians/pair_iberian_mercs_2.jsongenericName
 msgid "Iberian merc cost vs. recruit time #2"
-msgstr "Вартість іберійського найманця та час набору №2"
+msgstr "Витрата іберійського найманця проти часу вербування #2"
 
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_1.jsongenericName
 msgid "Italian merc cost vs. recruit time #1"
-msgstr "Вартість італійського найманця та час набору №1"
+msgstr "Витрата італійського найманця проти часу вербування #1"
 
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_2.jsongenericName
 msgid "Italian merc cost vs. recruit time #2"
-msgstr "Вартість італійського найманця та час набору №2"
+msgstr "Витрата італійського найманця проти часу вербування #2"
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr "Карфагеняни заснували багато торговельних центрів-колоній і самостійно володіли більше ніж 300 містами та містечками у Північній Африці."
+msgstr "Карфагеняни заснували багато торгових центрів у якості колоній та, зрештою, утримували домініон із понад 300 міст, та містечок тільки в Північній Африці."
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsontooltip
 msgid ""
 "Carthaginians were colonizers. Civic Centers, Temples, and Houses -25% build"
 " time."
-msgstr "Карфагеняни були колонізаторами. Громадські центри, храми і будинки на -25% швидше будуються."
+msgstr "Карфагеняни були колонізаторами. Громадські центри, храми та будинки потребують -25% часу спорудження."
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsongenericName
 msgid "Colonization"
@@ -2096,15 +2098,15 @@ msgid ""
 "Nobody knew better than the Carthaginians where in the ancient world they "
 "were going and going to go; their merchant traders had missions to "
 "everywhere."
-msgstr "Ніхто краще Карфагенян не знав, куди вони прямували чи збиралися відправитися у античному світі; їхні торговці мали місії повсюди."
+msgstr "Ніхто не знав краще за карфагенян, куди у стародавньому світі вони прямували та збиралися йти; їх комерційні торговці мали доручення повсюди."
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsontooltip
 msgid "Carthaginians were explorers. All Traders and Ships +25% vision range."
-msgstr "Карфагеняни були дослідниками. Дальність огляду купців і кораблів збільшена на +25%."
+msgstr "Карфагеняни були дослідниками. Всі торговці та кораблі мають +25% дистанції та зору."
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsongenericName
 msgid "Exploration"
-msgstr "Розвідка"
+msgstr "Дослідження"
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsondescription
 msgid ""
@@ -2127,20 +2129,20 @@ msgstr "Кельтські найманці‎ мають знижений ча�
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsontooltip
 msgid ""
 "Ally with Celtic towns to reduce recruit time -20% for Celtic mercenaries."
-msgstr "Укладіть союз з кельтськими поселеннями, щоб скоротити час вербування кельтських найманців на -20%."
+msgstr "Укласти союз із кельтськими містечками, щоб скоротити час вербування на -20% для кельтських найманців."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsongenericName
 msgid "Celtic Alliance"
-msgstr "Альянс кельтів"
+msgstr "Кельтський союз"
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsontooltip
 msgid ""
 "Subjugate Gallic tribes to reduce recruit time -20% for Celtic mercenaries."
-msgstr "Підкоріть племена галлів щоб скоротити час вербування на -20% для кельтських найманців."
+msgstr "Підкорити галльські племена, щоб скоротити час вербування на -20% для кельтських найманців."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsongenericName
 msgid "Gallic Hegemony"
-msgstr "Панування над галлами"
+msgstr "Галльська гегемонія"
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsondescription
@@ -2150,20 +2152,20 @@ msgstr "Іберійські найманці‎ мають знижений ч�
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsontooltip
 msgid ""
 "Ally with Iberian towns to reduce recruit time -20% for Iberian mercenaries."
-msgstr "Укладіть союз з іберійськими містами, щоб скоротити час вербування іберійських найманців на -20%."
+msgstr "Укласти союз із іберійськими містечками, щоб скоротити час вербування на -20% для іберійських найманців."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsongenericName
 msgid "Iberian Alliance"
-msgstr "Союз із іберами"
+msgstr "Іберійський союз"
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
 msgid ""
 "Subjugate Hispania to reduce recruit time -20% for Iberian mercenaries."
-msgstr "Підкоріть Іспанію щоб скоротити час вербування іберійських найманців на -20%."
+msgstr "Підкорити Римську Іспанію, щоб скоротити час вербування на -20% для іберійських найманців. "
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsongenericName
 msgid "Iberian Hegemony"
-msgstr "Панування над іберами"
+msgstr "Іберійська гегемонія"
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsondescription
@@ -2174,21 +2176,21 @@ msgstr "Італійські найманці‎ мають знижений ч�
 msgid ""
 "Ally with Italiote towns to reduce recruit time -20% for Italian "
 "mercenaries."
-msgstr "Укладіть союз з італіотськими містами, щоб скоротити час вербування італійських найманців на -20%."
+msgstr "Укласти союз із містечками італіотів, щоб скоротити час вербування на -20% для італійських найманців."
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsongenericName
 msgid "Italiote Alliance"
-msgstr "Союз з італиками"
+msgstr "Союз італіотів"
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsontooltip
 msgid ""
 "Subjugate Italiote towns to reduce recruit time -20% for Italian "
 "mercenaries."
-msgstr "Підкоріть італіотські міста щоб скоротити швидкість вербування італійських найманців на -20%."
+msgstr "Підкорити містечка італіотів, щоб скоротити час вербування на -20% для італійських найманців"
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsongenericName
 msgid "Italiote Hegemony"
-msgstr "Панування над італиками"
+msgstr "Гегемонія італіотів"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsondescription
 msgid "Upgrade all of your Celtic mercenaries to Advanced rank."
@@ -2203,47 +2205,47 @@ msgstr "Удосконалити всіх Ваших кельтських най
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsongenericName
 msgid "Advanced Celtic Mercenaries"
-msgstr "Поліпшений кельтський найманець"
+msgstr "Просунуті кельтські найманці"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsondescription
 msgid "Upgrade all of your Iberian mercenaries to Advanced rank."
-msgstr "Вдоскональте іберійських найманців до поліпшеного рангу."
+msgstr "Удосконалити всіх Ваших іберійських найманців до просунутого рангу."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Iberian Mercenaries technology."
-msgstr "Вдоскональте іберійських найманців до поліпшеного рангу. Це збільшить їх доблесть, але зменшить збір ресурсів на -25%. Відкриває технологію \"Елітний іберійський найманець\"."
+msgstr "Удосконалити всіх Ваших іберійських найманців до просунутого рангу. Це збільшує їх військову відвагу, але знижує їхні темпи збирання ресурсу на -25%. Відкриває технологію елітних іберійських найманців."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsongenericName
 msgid "Advanced Iberian Mercenaries"
-msgstr "Поліпшений іберійський найманець"
+msgstr "Просунуті іберійські найманці"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsondescription
 msgid "Upgrade all of your Italiote mercenaries to Advanced rank."
-msgstr "Вдоскональте італіотських найманців до поліпшеного рангу."
+msgstr "Удосконалити всіх Ваших найманців італіотів до просунутого рангу."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsontooltip
 msgid ""
 "Upgrade all of your Italiote mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Italiote Mercenaries technology."
-msgstr "Вдоскональте італіотських найманців до поліпшеного рангу. Це збільшить їх доблесть, але зменшить збір ресурсів на -25%. Відкриває технологію \"Елітний італіотський найманець\"."
+msgstr "Удосконалити всіх Ваших найманців італіотів до просунутого рангу. Це збільшує їх військову відвагу, але знижує їхні темпи збирання ресурсу на -25%. Відкриває технологію елітних найманців італіотів."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsongenericName
 msgid "Advanced Italiote Mercenaries"
-msgstr "Поліпшений італіотський найманець"
+msgstr "Просунуті найманці італіоти"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsondescription
 msgid "Upgrade all of your Celtic Mercenaries to Elite rank."
-msgstr "Вдоскональте кельтських найманців до елітного рангу."
+msgstr "Удосконалити всіх Ваших кельтських найманців до елітного рангу."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsontooltip
 msgid ""
 "Upgrade all of your Celtic mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Вдоскональте кельтських найманців до елітного рангу. Це збільшить їх доблесть, але зменшить збір ресурсів на -25%."
+msgstr "Удосконалити всіх Ваших кельтських найманців до елітного рангу. Це збільшує їх військову відвагу, але знижує їхні темпи збирання ресурсу ще на -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsongenericName
 msgid "Elite Celtic Mercenaries"
@@ -2251,13 +2253,13 @@ msgstr "Елітні кельтські найманці"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsondescription
 msgid "Upgrade all of your Iberian Mercenaries to Elite rank."
-msgstr "Вдоскональте іберійських найманців до елітного рангу."
+msgstr "Удосконалити всіх Ваших іберійських найманців до елітного рангу."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Вдоскональте іберійських найманців до елітного рангу. Це збільшить їх доблесть, але зменшить збір ресурсів на -25%."
+msgstr "Удосконалити всіх Ваших іберійських найманців до елітного рангу. Це збільшує їх військову відвагу, але знижує їхні темпи збирання ресурсу ще на -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
 msgid "Elite Iberian Mercenaries"
@@ -2265,58 +2267,58 @@ msgstr "Елітні іберійські найманці"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsondescription
 msgid "Upgrade all of your Italiote Mercenaries to Elite rank."
-msgstr "Вдоскональте італіотських найманців до елітного рангу."
+msgstr "Удосконалити всіх Ваших найманців італіотів до елітного рангу."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsontooltip
 msgid ""
 "Upgrade all of your Italiote mercenaries to Elite rank. This increases their"
 " military prowess, but decreases their resource gathering rates another "
 "-25%."
-msgstr "Вдоскональте італіотських найманців до елітного рангу. Це збільшить їх доблесть, але зменшить збір ресурсів на -25%."
+msgstr "Удосконалити всіх Ваших найманців італіотів до елітного рангу. Це збільшує їх військову відвагу, але знижує їхні темпи збирання ресурсу ще на -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
 msgid "Elite Italiote Mercenaries"
-msgstr "Елітні італіотські найманці"
+msgstr "Елітні найманці італіоти"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
 "was via the city's harbor, not by storming its walls."
-msgstr "Карфагеняни побудували свої стіни у вигляді трьох концентричних контурів. Вони залишились неприступні. Навіть коли місто взяли римляни, це здійснювалось через гавань, а не під час штурму стін."
+msgstr "Карфагеняни споруджували власні міські мури у три концентричні окружності. Ці мури ніколи не були проламані. Навіть коли місто було захоплено римлянами, це відбулося через гавань міста, а не штурмом його мурів."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid ""
 "Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
-msgstr ""
+msgstr "Карфагенські мури потребують +100% часу спорудження, +100% витрати каменю та мають +200% здоров'я."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
-msgstr "Потрійні стіни"
+msgstr "Потрійні мури"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
-msgstr "Кельтські будівлі будувались в основному з деревини на кам'яному фундаменті."
+msgstr "Кельтські споруди здебільшого були зроблені із дерева на бутових фундаментах."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
 "Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
 " points."
-msgstr ""
+msgstr "Бритські та гальські споруди потребують −20% часу спорудження, мають −20% здоров'я та мають −20% очків захоплення."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
-msgstr "Дерев'яна будівля."
+msgstr "Дерев’яна конструкція"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "Греки будували у камені з часів Мікенської цивілізації."
+msgstr "Греки використовували кам'яну конструкцію з ранніх мікенських часів."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid ""
 "Athenian, Macedonian, and Spartan Structures +10% build time, +10% health, "
 "and +10% capture points."
-msgstr ""
+msgstr "Афінські, македонські та спартанські споруди потребують +10% часу спорудження, мають +10% здоров'я, та мають +10% очків захоплення."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -2330,33 +2332,33 @@ msgid ""
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr "Імперія Маур'їв охоплювала десятки раніше незалежних царств на площі понад 5 мільйонів квадратних кілометрів з населенням близько 60 мільйонів осіб. Правителі Маур'їв носили титул \"імператора імператорів\" і керували регулярною армією з 600000 піхотинців, 9000 слонів, 8000 колісниць, і 30000 кінноти, що робить її, мабуть, найбільшою армією свого часу."
+msgstr "Імперія Маур'їв охоплювала дюжини раніше незалежних царств на площі понад 5 мільйонів квадратних кілометрів із населенням близько 60 мільйонів чоловік. Правителі Маур'їв мали титул імператора імператорів і командували постійною армією з 600,000 піхоти, 9000 слонів, 8000 колісниць, та 30,000 кавалерійців, що робить її, мабуть, найбільшою армією свого часу."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 msgid "Mauryas +10% maximum population limit."
-msgstr ""
+msgstr "Маур'ї мають +10% максимального ліміту населення."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
-msgstr "Цар серед царів"
+msgstr "Імператор імператорів"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
-msgstr "Чакраварті Самрат"
+msgstr "Чакраварті самрат"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsondescription
 msgid ""
 "The Mauryas built their city walls out of wood, an abundant natural resource"
 " in India."
-msgstr "Маур'ї будували стіни з дерева як найдоступнішого матеріалу в Індії."
+msgstr "Маур'ї споруджували власні міські мури із дерева — незліченного природного ресурсу у Індії."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "Mauryan City Walls −20% build time and −20% health."
-msgstr ""
+msgstr "Міські мури Маур'їв потребують −20% часу спорудження та мають −20% здоров'я."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
-msgstr "Дерев'яні стіни"
+msgstr "Дерев'яні мури"
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -2366,15 +2368,15 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr "Перси могли і користувалися можливістю набирати велику кількість піхоти під час військових дій через величезні розміри Ахеменідської імперії та її організації. В цілому перська піхота була добре натренована і билася з великим завзяттям. Незважаючи на це, піхота була погано підготовлена для близького бою. Також за винятком елітних полків перська піхота не відносилася до професійних військ."
+msgstr "Перси могли та проводили набір великої кількості піхоти у воєнний час завдяки великому розміру Ахеменідської імперії та шляху, у який було її створено. Загалом, перська піхота була добре тренованою і билася з великою завзятістю. Однак, хоча це було правдою, піхотинці були слабкими рукопашними бійцями близького бою. Також, за винятком елітних полків, перська піхота не була постійною професійною силою."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "Persians +10% maximum population limit."
-msgstr ""
+msgstr "Перси мають +10% максимального ліміту населення."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
-msgstr "Великий королівський податок."
+msgstr "Великий царський набір"
 
 #: simulation/data/technologies/civbonuses/spart_population.jsondescription
 msgid ""
@@ -2382,27 +2384,27 @@ msgid ""
 "the best army in the world for their time. What they didn't have in "
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
-msgstr "У спартанців не було найбільшої армії в світі, але у них була найкраща армія у тогочасному світі. Нестачу кількості вони поповнювали якістю. Казали що Спарті не потрібні стіни тому, що стінами були їх чоловіки."
+msgstr "Спартанці не володіли найбільшою армією в світі, але вони мали найкраще військо у світі для свого часу. Те, чого вони не мали в кількості, вони відшкодовували у якості. Говорили, що Спарта не потребує міцних міських мурів, бо її люди були їй стінами."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
 msgid "Spartans −10% maximum population limit."
-msgstr ""
+msgstr "Спартанці мають −10% максимального ліміту населення."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"
-msgstr "Підкорені"
+msgstr "Аутсайдери"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
-msgstr "Бої на списах збільшують пошкодження юнітів-пікінерів."
+msgstr "Тренування боротьбі зі списом збільшує нанесення пошкодження піхотними підрозділами зі списом."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
 msgid "Spearmen +2 hack attack."
-msgstr "Пікінери отримують +2 до атаки."
+msgstr "Списоносці мають +2 рубаючої атаки."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
 msgid "Infantry Spear Fighting"
-msgstr "Бої пікінерів-піхотинців"
+msgstr "Піхотна боротьба зі списом"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.spart
@@ -2414,11 +2416,11 @@ msgstr "Доратісмос"
 msgid ""
 "Spartans were housed and trained from a young age to be superlative warriors"
 " and to endure any hardship a military life can give them."
-msgstr "Спартанці з дитинства навчалися бути чудовими воїнами і стійко переносити будь-які негоди військового життя."
+msgstr "Спартанцям надавали житло та тренували з раннього віку бути найвизначнішими воїнами, і витримувати будь-які труднощі, які може влаштовувати їм військове життя."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "Додає +25% здоров'я пішим списоносцям, але на +10% збільшує час навчання."
+msgstr "+25% здоров'я для піхоти зі списом, але також +10% часу тренування."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -2428,15 +2430,15 @@ msgstr "Агоге"
 msgid ""
 "Athenian triremes can train Marines (Epibates Athenaikos) and Cretan "
 "Mercenary Archers (Toxotes Kretikos)."
-msgstr "Афінські триреми можуть тренувати Морський десант (Афінські Еспібати) та критський лучників-найманців (Токсотес Кретікос)."
+msgstr "Афінські триреми можуть тренувати морських піхотинців (епібатес атенаікос) та критських найманих стрільців (токсотес кретікос)."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsontooltip
 msgid "Athenian triremes can train Marines and Cretan Mercenary Archers."
-msgstr "Афінські триреми можуть тренувати морський десант та критських лучників-найманців."
+msgstr "Афінські триреми можуть тренувати морських піхотинців та критських найманих стрільців."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
-msgstr "Іфікратенські реформи"
+msgstr "Іфікратові реформи"
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsondescription
 msgid ""
@@ -2444,11 +2446,11 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr "Довгі мури Афін були побудовані під егідою хитрого Фемистокла і розширені на 6 км від міста до порту Пірей. Це забезпечило місту морські шляхи постачань і захистило від голоду під час облоги."
+msgstr "Довгі мури Афін були сконструйовані під егідою хитрого Фемистокла і протягнулися на 6 км від міста до порту Пірею. Це захистило морські шляхи постачання і перешкоджало ворогам морити місто голодом під час облоги."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
 msgid "Build stone walls in neutral territory."
-msgstr "Будуйте кам'яні стіни на нейтральній території."
+msgstr "Спорудити кам'яні мури на нейтральній території."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
@@ -2458,7 +2460,7 @@ msgstr "Афінські довгі мури"
 msgid ""
 "+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "+25% одиниць здоров'я і -50% часу на будівництво для міських центрів, храмів, пірамід і Чудес."
+msgstr "+25% HP та -50% часу спорудження для громадських центрів, храмів, пірамід та див."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -2468,25 +2470,25 @@ msgstr "Монументальна архітектура"
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
-msgstr "Нехай ваші священики проінструктовані самим Верховним жерцем - може Амон благословить його."
+msgstr "Підтримувати Ваших жерців освіченими самим верховним жерцем — нехай Амон благословить його."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
-msgstr "Тренує елітних цілителів."
+msgstr "Тренувати жерців елітного рангу."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
-msgstr "Божественне Вчення"
+msgstr "Божественна освіченість"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
 "The Anusiya champion infantry train twice as fast, but lose a little max "
 "health."
-msgstr "Анузійська елітна піхота тренується вдвічі швидше, але втрачає при цьому частинку максимального здоров'я."
+msgstr "Чемпіонська піхота анушія тренується вдвічі швидше, але втрачає трохи максимального здоров’я."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr "Анузійська елітна піхота, -50% від часу тренування, але також -10% здоров'я."
+msgstr "Чемпіонська піхота анушія потребує -50% часу тренування, але також має -10% здоров'я."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2498,13 +2500,13 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr "Перси побудували чудову 1677-мильну королівську дорогу з Сард у Сузи; Дарій Великий і Ксеркс побудували чудовий Персеполь; Кир Великий значно поліпшив Екбатану і фактично заново відбудував стару еламську столицю - Сузи."
+msgstr "Перси спорудили чудовий царський тракт, завдовжки 1677 миль, від Сард до Суз; Дарій Великий і Ксеркс також побудували розкішний Персеполіс; Кир Великий значно покращив Екбатану та фактично 'відбудував' стару еламську столицю — Сузи."
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
 msgid ""
 "All Persian structures +25% health and capture points, but also +20% build "
 "time."
-msgstr "Усі перські будівлі на +25% міцніші, але й будуються на +20% довше."
+msgstr "Всі перські споруди мають +25% здоров'я та очків захоплення, але також потребують +20% часу спорудження."
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -2519,15 +2521,15 @@ msgid ""
 "example, a canal was built in Egypt and a Persian navy was sent exploring "
 "the Indus river. According to Herodotus, some 300 ships in the Persian navy "
 "were retrofitted to carry horses and their riders."
-msgstr "Перші Ахеменідські правителі прагнули зробити Персію найбільшою азійською імперією, яка править морями. Великий цар прихильно ставився до різних народів морів, захищаючи їхнє життя, а також впроваджуючи в життя різноманітні морські проекти. У часи правління Дарія Великого, наприклад, був побудований канал в Єгипті, а перський флот був відправлений для дослідження річки Інд. По записах Геродота близько 300 кораблів перського флоту були модифіковані для перевезення коней і їхніх вершників."
+msgstr "Ранні ахеменідські правителі працювали в напрямку того, щоб зробити Персію першою великою азіатською імперією, щоб панувати над морями. Великий цар прихильно ставився до різних морських народів, щоб заручитися їхніми послугами, але також проваджував різні морські починання. Наприклад, під час правління Дарія Великого було споруджено канал у Єгипті і перський військово-морський флот було відправлено досліджувати ріку Інд. Згідно з Геродотом, близько 300 кораблів перського військово-морського флоту були модернізовані для перевезення коней та їх вершників."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry."
-msgstr "Фінікійські Триреми отримують здатність тренувати кавалерію."
+msgstr "Фінікійські триреми одержують здатність тренувати кавалерію."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"
-msgstr "Транспортування коней"
+msgstr "Перевезення коней"
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsondescription
 msgid ""
@@ -2541,31 +2543,31 @@ msgstr "Прискорена швидкість тренування групо�
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
 msgid "Cavalry Conscription"
-msgstr "Призов кінноти"
+msgstr "Військова повинність кавалерії"
 
 #: simulation/data/technologies/persians/training_conscription_infantry.jsongenericName
 msgid "Infantry Conscription"
-msgstr "Призов піхоти"
+msgstr "Військова повинність піхоти"
 
 #: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr "Час підготовки всієї кінноти знижується на -20%, однак також на -5% зменшується здоров'я. Доступно при відкритті \"Призов кінноти\"."
+msgstr "Вся кавалерія потребує -20% часу тренування, але також має -5% здоров'я. Відкриває військову повинність кавалерії."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr "Час підготовки всієї піхоти знижується на -10%, однак також на -5% зменшується здоров'я. Доступно при відкритті \"Призов піхоти\"."
+msgstr "Вся піхота потребує -20% часу тренування, але також має -5% здоров'я. Відкриває військову повинність піхоти. "
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."
-msgstr "Римляни були майстрами військової логістики."
+msgstr "Римляни були майстрами логістики ведення війни."
 
 #: simulation/data/technologies/romans/decay_logistics.jsontooltip
 msgid "Entrenched Camps and Siege Walls decay 50% slower."
-msgstr "Вкорінені табори і облогові стіни руйнуються на 50% повільніше."
+msgstr "Укріплені траншеями табори та облогові мури занепадають 50% повільніше."
 
 #: simulation/data/technologies/romans/decay_logistics.jsongenericName
 msgid "Roman Logistics"
@@ -2577,11 +2579,11 @@ msgid ""
 "utterances, set out in Greek hexameters, purchased from a sibyl by the last "
 "king of Rome, Tarquinius Superbus, and consulted at momentous crises through"
 " the history of the Republic and the Empire."
-msgstr "Книги Сивіл чи \"Лібрі Сибіліні\" були збіркою пророцтв, які були написані грецьким гексаметром та придбані останнім римським царем Тарквінієм Гордим. До їх мудрості звертались під час доленосних історичних криз Республіки та Імперії."
+msgstr "Сивілині книги або 'Libri Sibyllini' були зібранням пророчих висловлювань, написаних у грецьких гекзаметрах, придбаними у сивіли останнім царем Риму — Тарквінієм Гордим, з якими радилися у моменти знакових криз в історії  республіки та імперії."
 
 #: simulation/data/technologies/romans/vision_sibylline.jsontooltip
 msgid "+25% Vision range for all units."
-msgstr "Радіус видимості всіх юнітів +25%."
+msgstr "+25% дистанції зору для всіх підрозділів."
 
 #: simulation/data/technologies/romans/vision_sibylline.jsongenericName
 msgid "Sibylline Books"
@@ -2593,7 +2595,7 @@ msgstr "Лібрі Сібілліні"
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
 msgid "Traditional Army vs. Reform Army"
-msgstr "Традиційна і реформована армія"
+msgstr "Традиційна армія проти реформованої армії"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsondescription
 msgid ""
@@ -2641,7 +2643,7 @@ msgstr "Нісейські бойові коні"
 
 #: simulation/data/technologies/successors/special_war_horses.jsonspecificName.sele
 msgid "Nisioi"
-msgstr "Нісіой"
+msgstr "Нісіоі"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsondescription
 msgid "The reform army of the Seleucids."
@@ -2677,7 +2679,7 @@ msgstr "Срібні щити чи Аргираспиди, були елітно
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "health and armor."
-msgstr "Вдоскональте чемпіона-щитоносця до Срібних щитів, які мають кращу броню та міцніше здоров'я."
+msgstr "Удоскональте чемпіона-щитоносця до Срібних щитів, які мають кращу броню та міцніше здоров'я."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

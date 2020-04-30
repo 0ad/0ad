@@ -7,6 +7,7 @@
 # Andrii Puzan <doctrina.90@mail.ru>, 2013
 # Andriy Nahirnjak <andriy.nagirnjak@gmail.com>, 2014
 # Bohdan Lepky <ntrxhm@gmail.com>, 2013
+# Chindu the Manduri <mandurilooter210770@mail.ru>, 2020
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2018
 # Oleg Adept <adeptoleg@gmail.com>, 2016
 # Olexandr Yaremenko <ua.limitless@gmail.com>, 2016
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-03 08:10+0000\n"
-"PO-Revision-Date: 2020-02-10 11:26+0000\n"
-"Last-Translator: 85c91c3444bcf82d63b07801f727e341\n"
+"PO-Revision-Date: 2020-04-29 16:39+0000\n"
+"Last-Translator: Chindu the Manduri <mandurilooter210770@mail.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -224,7 +225,7 @@ msgstr "Перемиканням вибрати можливість зміню�
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:60
 msgid "Nomad"
-msgstr "Режим мандрівника"
+msgstr "Мандрівник"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:63
 msgid ""
@@ -408,7 +409,7 @@ msgstr "Вибрати кількість гравців."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:82
 msgid "Population Cap"
-msgstr "Ліміт населення"
+msgstr "Місткість населення"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:85
 msgid "Select population limit."
@@ -596,11 +597,11 @@ msgstr[3] "%(minutes)s хвилин"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:87
 msgid "Wonder Duration"
-msgstr "Тривалість часу збереження чуда"
+msgstr "Тривалість часу збереження дива"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:90
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr "Хвилини, до того як гравець здобуде перемогу із чудом"
+msgstr "Хвилини, до того як гравець здобуде перемогу із дивом"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
 msgid "Cheats enabled."
@@ -662,7 +663,7 @@ msgstr "Не маю готовності!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:85
 msgid "State that you are ready to play."
-msgstr "Заявити про готовність до гри."
+msgstr "Заявити, що Ви готові до гри."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:86
 msgid "Stay ready even when the game settings change."
@@ -670,7 +671,7 @@ msgstr "Залишатися напоготові, навіть якщо нал�
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:87
 msgid "State that you are not ready to play."
-msgstr "Заявити про неготовність до гри."
+msgstr "Заявити, що Ви не готові до гри."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:33
 msgid ""
@@ -717,7 +718,7 @@ msgstr "\\[%(time)s]"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:31
 msgid "HH:mm"
-msgstr "ГГ:хх"
+msgstr "HH:mm"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:27
 msgid "Unknown Player"

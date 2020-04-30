@@ -6,6 +6,7 @@
 # Aca G. <martel.gilgames@gmail.com>, 2016
 # acac97 <aleksandar.cvetic97@gmail.com>, 2017
 # Janko Bosnjakovic <jankoeve@gmail.com>, 2016
+# Milisav Radovanovic <cykablyad6@gmail.com>, 2020
 # Nemanja Mihailovic <nmihailovic96@gmail.com>, 2016
 # MIlosSD <pirisd@gmail.com>, 2014-2015
 # Smarty <kidsmart33@gmail.com>, 2018
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-09-13 07:08+0000\n"
-"PO-Revision-Date: 2019-09-13 12:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-04-27 18:42+0000\n"
+"Last-Translator: Milisav Radovanovic <cykablyad6@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,31 +34,31 @@ msgstr "непознати подтип (видети белешке)"
 
 #: lobby/XmppClient.cpp:1169
 msgid "The certificate is not trusted."
-msgstr ""
+msgstr "Сертификат није сигуран."
 
 #: lobby/XmppClient.cpp:1170
 msgid "The certificate hasn't got a known issuer."
-msgstr ""
+msgstr "Издавач сертификата је непознат."
 
 #: lobby/XmppClient.cpp:1171
 msgid "The certificate has been revoked."
-msgstr ""
+msgstr "Сертификат је опозван."
 
 #: lobby/XmppClient.cpp:1172
 msgid "The certificate has expired."
-msgstr ""
+msgstr "Сертификат је истекао."
 
 #: lobby/XmppClient.cpp:1173
 msgid "The certifiacte is not yet active."
-msgstr ""
+msgstr "Сертификат није активан."
 
 #: lobby/XmppClient.cpp:1174
 msgid "The certificate has not been issued for the peer connected to."
-msgstr ""
+msgstr "Сертификат није издат повезаном примаоцу."
 
 #: lobby/XmppClient.cpp:1175
 msgid "The certificate signer is not a certificate authority."
-msgstr ""
+msgstr "Потписник сертификата није ауторитет сертификата."
 
 #: lobby/XmppClient.cpp:1197 lobby/XmppClient.cpp:1241
 #: lobby/XmppClient.cpp:1280
@@ -169,32 +170,32 @@ msgstr "Корисничко име већ постоји"
 #: ps/ModIo.cpp:261
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr ""
+msgstr "Грешка у покретању чекања за ид игре. Грешка %s;%s."
 
 #: ps/ModIo.cpp:291
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr ""
+msgstr "Грешка у покретању чекања за модове. Грешка: %s; %s."
 
 #: ps/ModIo.cpp:317
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr ""
+msgstr "Немогуће креирати директоријум за мод.%s"
 
 #: ps/ModIo.cpp:342
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr ""
+msgstr "Неуспело отварање привременог фајла за преузимање мода:%s."
 
 #: ps/ModIo.cpp:352
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr ""
+msgstr "Неуспео почетак преузимања. Грешка: %s;%s."
 
 #: ps/ModIo.cpp:397
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr ""
+msgstr "Асинхрона грешка у преузимању:%s,%s."
 
 #: ps/ModIo.cpp:426
 #, c-format
@@ -203,20 +204,20 @@ msgstr "Преузимање неуспешно. Одговор сервера: 
 
 #: ps/ModIo.cpp:529
 msgid "Mismatched filesize."
-msgstr ""
+msgstr "Неусклађена величина фајла."
 
 #: ps/ModIo.cpp:547
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr ""
+msgstr "Лош фајл. Очекиван md5%s, добијен %s."
 
 #: ps/ModIo.cpp:562
 msgid "Failed to compute final hash."
-msgstr ""
+msgstr "Неуспело израчунавање коначног хеша."
 
 #: ps/ModIo.cpp:568
 msgid "Failed to verify signature."
-msgstr ""
+msgstr "Неуспела верификација потписа."
 
 #: ps/SavedGame.cpp:139
 #, c-format

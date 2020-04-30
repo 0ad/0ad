@@ -3,10 +3,11 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Chindu the Manduri <mandurilooter210770@mail.ru>, 2020
 # Dimaver <dimaver@ukr.net>, 2014
 # Dimaver <dimaver@ukr.net>, 2014
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
-# Paruru Slowlegs <paruru@inbox.ru>, 2020
+# Chindu the Manduri <mandurilooter210770@mail.ru>, 2020
 # Igor Marchuk <jigorua@gmail.com>, 2018
 # Oleg Adept <adeptoleg@gmail.com>, 2016
 # Victor Butko <victor.butko@gmail.com>, 2014
@@ -21,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-04-13 07:18+0000\n"
-"PO-Revision-Date: 2020-04-17 05:25+0000\n"
-"Last-Translator: Paruru Slowlegs <paruru@inbox.ru>\n"
+"PO-Revision-Date: 2020-04-29 18:25+0000\n"
+"Last-Translator: Chindu the Manduri <mandurilooter210770@mail.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,7 +110,7 @@ msgstr "Містечко"
 msgid ""
 "Train Healers and research healing technologies. Garrison units to heal them"
 " at a quick rate."
-msgstr "Тренує цілителів та досліджує зцілювальні технології. Розташувати підрозділи у гарнізоні, щоб зцілити їх у швидкому темпі."
+msgstr "Тренує цілителів та досліджує зцілювальні технології. Розмістити підрозділи у гарнізоні, щоб зцілити їх у швидкому темпі."
 
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -144,7 +145,7 @@ msgstr "Артилерійська вежа"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 msgid "Catapults stones. Needs the murder holes tech to protect its foot."
-msgstr "Катапультує каміння. Потребує технологію дірок-вбивць, щоб захистити підніжжя."
+msgstr "Катапультує каміння. Потребує технологію дір-вбивць, щоб захистити підніжжя."
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:61
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:60
@@ -172,7 +173,7 @@ msgid ""
 "Shoots bolts. Faster reaction time against raiding units than the artillery "
 "tower, weak to all siege weapons and mass melee. Needs the murder holes tech"
 " to protect its foot."
-msgstr "Стріляє болтами. Більш прискорений час дії проти верхових підрозділів ніж у артилерійської вежі, слабка проти всіх облогових знарядь та зосередженої ближньої атаки. Потребує технологію дірок-вбивць, щоб захистити підніжжя."
+msgstr "Стріляє болтами. Більш прискорений час дії проти верхових підрозділів ніж у артилерійської вежі, слабка проти всіх облогових знарядь та зосередженої ближньої атаки. Потребує технологію дір-вбивць, щоб захистити підніжжя."
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 msgid ""
@@ -199,7 +200,7 @@ msgstr "Сторожова вежа"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot. Upgradeable to stone tower."
-msgstr "Метає стріли. Розташувати гарнізон, щоб забезпечити додатковий захист. Потребує технологію дірок-вбивць, щоб захистити підніжжя. Вдосконалюєтся до кам'яної вежі."
+msgstr "Метає стріли. Розмістити гарнізон, щоб забезпечити додатковий захист. Потребує технологію дір-вбивць, щоб захистити підніжжя. Удосконалюєтся до кам'яної вежі."
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:61
 msgid "Reinforce with stone and upgrade to a defense tower."
@@ -213,7 +214,7 @@ msgstr "Захисна вежа"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot."
-msgstr "Метає стріли. Розташувати гарнізон, щоб забезпечити додатковий захист. Потребує технологію дірок-вбивць, щоб захистити підніжжя."
+msgstr "Метає стріли. Розмістити гарнізон, щоб забезпечити додатковий захист. Потребує технологію дір-вбивць, щоб захистити підніжжя."
 
 #: simulation/templates/template_structure_defensive_wall.xml:16
 #: simulation/templates/structures/cart_s_wall_long.xml:7
@@ -240,7 +241,7 @@ msgstr "Довгі ділянки мура можуть бути перетво�
 #: simulation/templates/structures/palisades_long.xml:35
 msgid ""
 "This will allow you to let units circulate through your fortifications."
-msgstr "Надає підрозділам можливість обходити власні укріплення."
+msgstr "Це дозволить Вам надати можливість підрозділам обходити Ваші укріплення."
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:54
 msgid "Wall Turret"
@@ -248,7 +249,7 @@ msgstr "Настінна башта"
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:56
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "Метає стріли. Розташувати гарнізон для захисту міського муру від нападників."
+msgstr "Метає стріли. Розмістити гарнізон для захисту міського муру від нападників."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -266,7 +267,7 @@ msgstr "Місце збору харчів. Досліджує вдоскона�
 #: simulation/templates/template_structure_economic_farmstead.xml:34
 #: simulation/templates/template_structure_economic_farmstead.xml:30
 msgid "Farmstead"
-msgstr "Садиба"
+msgstr "Господарство"
 
 #: simulation/templates/template_structure_economic_market.xml:32
 msgid ""
@@ -284,7 +285,7 @@ msgstr "Ринок"
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr "Місце збору деревини, каміння та металевих ресурсів. Досліджує видобувні вдосконалення для цих ресурсів."
+msgstr "Місце збору деревини, каменю та металевих ресурсів. Досліджує видобувні вдосконалення для цих ресурсів."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:35
 #: simulation/templates/template_structure_economic_storehouse.xml:31
@@ -326,7 +327,7 @@ msgstr "Споруджується на береговій лінії для к�
 #: simulation/templates/template_structure_military_dock.xml:29
 #: simulation/templates/template_structure_military_dock.xml:25
 msgid "Dock"
-msgstr "Верф"
+msgstr "Док"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:24
 msgid "Elephant Stables"
@@ -355,7 +356,7 @@ msgstr "Фортеця"
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
-msgstr "Тренує чемпіонів та героїв, та досліджує технології. Розташувати солдатів у гарнізоні для додаткових стріл."
+msgstr "Тренує чемпіонів та героїв, та досліджує технології. Розмістити солдатів у гарнізоні для додаткових стріл."
 
 #: simulation/templates/template_structure_military_kennel.xml:40
 msgid "Kennel"
@@ -371,7 +372,7 @@ msgstr "Тренувальний полігон"
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
-msgstr "Тренує громадян-солдатів піхотинців дистанційного бою. Досліджує тренувальні вдосконалення."
+msgstr "Тренує піхотних громадян-солдатів дистанційного бою. Досліджує тренувальні вдосконалення."
 
 #: simulation/templates/template_structure_military_range.xml:25
 msgid "Range"
@@ -379,7 +380,7 @@ msgstr "Полігон"
 
 #: simulation/templates/template_structure_military_stable.xml:26
 msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr "Тренує громадян-солдат кавалеристів. Досліджує тренувальні вдосконалення."
+msgstr "Тренує кавалерію громадян-солдатів. Досліджує тренувальні вдосконалення."
 
 #: simulation/templates/template_structure_military_stable.xml:27
 #: simulation/templates/template_structure_military_stable.xml:22
@@ -460,7 +461,7 @@ msgstr "Театр"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr "Приносить славу власній цивілізації та додає більше земель до власної імперії."
+msgstr "Принести славу Вашій цивілізації та додати більше земель до Вашої імперії."
 
 #: simulation/templates/template_structure_wonder.xml:54
 #: simulation/templates/template_structure_wonder.xml:51
@@ -563,7 +564,7 @@ msgstr "Фроуріон"
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid "Garrison Soldiers for additional arrows."
-msgstr "Розташувати солдатів у гарнізоні для додаткових стріл."
+msgstr "Розмістити солдатів у гарнізоні для додаткових стріл."
 
 #: simulation/templates/structures/athen_gymnasium.xml:23
 msgid "Gymnasium"
@@ -721,7 +722,7 @@ msgstr "Партенон"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
-msgstr "Приносить славу власній цивілізації та додає великі території до власної імперії. Розташувати підрозділи у гарнізоні, щоб зцілити їх у швидкому темпі."
+msgstr "Принести славу Вашій цивілізації та додати більше земель до Вашої імперії. Розмістити підрозділи у гарнізоні, щоб зцілити їх у швидкому темпі."
 
 #: simulation/templates/structures/athen_workshop.xml:5
 #: simulation/templates/structures/mace_workshop.xml:5
@@ -751,7 +752,7 @@ msgstr "Кагіон"
 
 #: simulation/templates/structures/brit_crannog.xml:12
 msgid "Island Settlement"
-msgstr "Острівне селище"
+msgstr "Острівне поселення"
 
 #: simulation/templates/structures/brit_crannog.xml:16
 msgid "Increase population limit and defend waterways."
@@ -904,7 +905,7 @@ msgstr "Намел"
 msgid ""
 "Construct fishing boats to gather meat and merchant ships to trade with "
 "other docks."
-msgstr "Конструює рибальські човни для вилову риби та торгові судна для торгівлі з іншими верфями."
+msgstr "Конструює рибальські човни для вилову риби та торгові судна для торгівлі з іншими доками."
 
 #: simulation/templates/structures/cart_embassy.xml:19
 msgid "Hire mercenaries."
@@ -912,7 +913,7 @@ msgstr "Завербувати найманців."
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:17
 msgid "Celtic Embassy"
-msgstr "Кельтійське посольство"
+msgstr "Кельтське посольство"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:18
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
@@ -990,7 +991,7 @@ msgstr "Макдаш"
 msgid ""
 "Train Healers and Champions and research healing technologies. Garrison "
 "units to heal them at a quick rate."
-msgstr "Тренує цілителів та чемпіонів, та досліджує зцілювальні технології. Розташувати підрозділи у гарнізоні, щоб зцілити їх у швидкому темпі."
+msgstr "Тренує цілителів та чемпіонів, та досліджує зцілювальні технології. Розмістити підрозділи у гарнізоні, щоб зцілити їх у швидкому темпі."
 
 #: simulation/templates/structures/cart_tophet.xml:20
 msgid "Sacrificial Temple"
@@ -1004,7 +1005,7 @@ msgstr "Тофет"
 msgid ""
 "Train Healers and Champion Cavalry and research healing technologies. "
 "Garrison units to heal them at a quick rate."
-msgstr "Тренує цілителів та чемпіонів кавалерії, та досліджує зцілювальні технології. Розташувати підрозділи у гарнізоні, щоб зцілити їх у швидкому темпі."
+msgstr "Тренує цілителів та чемпіонську кавалерію, та досліджує зцілювальні технології. Розмістити підрозділи у гарнізоні, щоб зцілити їх у швидкому темпі."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -1046,7 +1047,7 @@ msgstr "Таберна"
 
 #: simulation/templates/structures/gaul_tavern.xml:23
 msgid "Recruit Naked Fanatics."
-msgstr "Вербує голих фанатиків."
+msgstr "Вербувати голих фанатиків."
 
 #: simulation/templates/structures/gaul_theater.xml:10
 msgid "Assembly of Princes"
@@ -1210,7 +1211,7 @@ msgstr "Село народу нуба"
 
 #: simulation/templates/structures/kush_nuba_village.xml:21
 msgid "Train the Nuba Clubman and Nuba Hunter."
-msgstr "Тренує вояка з палицею нуба та мисливця нуба."
+msgstr "Тренує воїна нуба з палицею та мисливця нуба."
 
 #: simulation/templates/structures/kush_outpost.xml:5
 msgid "trtr"
@@ -1279,7 +1280,7 @@ msgstr "Пер-Іаперемек"
 msgid ""
 "Train priests to heal your troops. Train Meroitic Temple Guards. Garrison "
 "units to heal them at a quick rate."
-msgstr "Тренує жерців, які зцілюють власні війська. Тренує мероїтських храмових охоронців. Розташувати підрозділи у гарнізоні, щоб зцілити їх у швидкому темпі."
+msgstr "Тренує жерців, які зцілюють Ваші війська. Тренує мероїтських храмових охоронців. Розмістити підрозділи у гарнізоні, щоб зцілити їх у швидкому темпі."
 
 #: simulation/templates/structures/kush_temple_amun.xml:28
 msgid "Grand Temple of Amun"
@@ -1293,7 +1294,7 @@ msgstr "Пер-Іамен"
 msgid ""
 "Train priests to heal your troops. Train Napatan Temple Guards and research "
 "unique technologies. Garrison units to heal them at a quick rate."
-msgstr "Тренує жерців, які зцілюють власні війська. Тренує напатанських храмових охоронців та досліджує унікальні технології. Розташувати підрозділи у гарнізоні, щоб зцілити їх у швидкому темпі."
+msgstr "Тренує жерців, які зцілюють Ваші війська. Тренує напатанських храмових охоронців та досліджує унікальні технології. Розмістити підрозділи у гарнізоні, щоб зцілити їх у швидкому темпі."
 
 #: simulation/templates/structures/kush_wall_gate.xml:9
 msgid "ʿryt"
@@ -1330,7 +1331,7 @@ msgstr "Хіерон тоу Діос тоу Олімпіоу"
 
 #: simulation/templates/structures/maur_barracks.xml:14
 msgid "Sainyavasa"
-msgstr "Сайняваса"
+msgstr "Сайн'яваса"
 
 #: simulation/templates/structures/maur_blacksmith.xml:5
 msgid "Lohakāra"
@@ -1354,7 +1355,7 @@ msgid ""
 "Reinforce with stone block, and add a second rampart for up to 16 archers to"
 " stand upon. Infantry Archer exclusive tower. Devastating against melee "
 "troops, weak to siege and massed ranged units"
-msgstr "Зміцнити кам'яним блоком та додати другий фортечний вал зі збільшеним розміщенням до 16 стрільців. Вежа винятково для піхотинців стрільців. Руйнівна проти піхоти ближнього бою, слабка проти облогових та зосереджених дистанційних підрозділів."
+msgstr "Зміцнити кам'яним блоком та додати другий фортечний вал зі збільшеним розміщенням до 16 стрільців. Вежа винятково для піхотних стрільців. Руйнівна проти піхоти ближнього бою, слабка проти облогових та зосереджених дистанційних підрозділів."
 
 #: simulation/templates/structures/maur_dock.xml:9
 msgid "Naukasthanaka"
@@ -1431,7 +1432,7 @@ msgid ""
 "Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
 "archers recieve a range and armor bonus. Only archers can garrison. Needs "
 "the murder holes tech to protect its foot."
-msgstr "Збільшити здоров'я вежі та кількість місць розміщення на фортечних валах до 16 стрільців. Помітно розміщені стрільці отримують дистанційний та захисний бонус. Тільки стрільці можуть бути розташовані у гарнизоні. Потребує технологію дірок-вбивць, щоб захистити підніжжя."
+msgstr "Збільшити здоров'я вежі та кількість місць розміщення на фортечних валах до 16 стрільців. Помітно розміщені стрільці отримують дистанційний та захисний бонус. Тільки стрільці можуть бути розміщені у гарнизоні. Потребує технологію дір-вбивць, щоб захистити підніжжя."
 
 #: simulation/templates/structures/maur_wall_gate.xml:15
 msgid "Dwara"
@@ -1540,7 +1541,7 @@ msgstr "Ападана"
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Champions and Heroes."
-msgstr "\"Підношення сатрапії\": збільшуе надходження їжі, деревини, каміння та металевих ресурсів. Тренує чемпіонів та героїв."
+msgstr "\"Підношення сатрапії\": збільшуе надходження їжі, деревини, каменю та металевих ресурсів. Тренує чемпіонів та героїв."
 
 #: simulation/templates/structures/pers_apartment_block.xml:15
 msgid "Apartment Block"
@@ -1552,7 +1553,7 @@ msgstr "Падган"
 
 #: simulation/templates/structures/pers_barracks.xml:11
 msgid "Levy citizen-soldier infantry."
-msgstr "Набір громадян-солдатів піхотинців."
+msgstr "Набір піхотних громадян-солдатів."
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1586,7 +1587,7 @@ msgstr "Кашташта"
 
 #: simulation/templates/structures/pers_field.xml:5
 msgid "Kaštrya"
-msgstr "Каштря"
+msgstr "Каштр'я"
 
 #: simulation/templates/structures/pers_fortress.xml:5
 msgid "Didā"
@@ -1598,7 +1599,7 @@ msgstr "Діда"
 msgid ""
 "Train Champions and research technologies. Garrison Soldiers for additional "
 "arrows."
-msgstr "Тренує чемпіонів та досліджує технології. Розташувати солдатів у гарнізоні для додаткових стріл."
+msgstr "Тренує чемпіонів та досліджує технології. Розмістити солдатів у гарнізоні для додаткових стріл."
 
 #: simulation/templates/structures/pers_hall.xml:27
 msgid "Gate of All Nations"
@@ -1619,7 +1620,7 @@ msgstr "Готель"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:29
 msgid "Persian Special Building"
-msgstr "Особлива персидська споруда"
+msgstr "Особлива перська споруда"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:30
 msgid "Ishtar Gate of Babylon"
@@ -1729,7 +1730,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr "Це експансивна споруда Птолемеїв, аналогічна громадським центрам інших фракцій. Вона слабкіша та менш впливає на розширення зони территоріального впливу, але дешевша та споруджується швидше. Тренує поселенців-солдат різних націй."
+msgstr "Це експансивна споруда Птолемеїв, аналогічна громадським центрам інших фракцій. Вона слабкіша та менш впливає на розширення зони территоріального впливу, але дешевша та споруджується швидше. Тренує поселенців-солдатів різних націй."
 
 #: simulation/templates/structures/ptol_tower_artillery.xml:9
 msgid "mktr-n-ḏw"
@@ -1767,7 +1768,7 @@ msgstr "Кастра"
 msgid ""
 "Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
 "Siege Engines. Garrison Soldiers for additional arrows."
-msgstr "Споруджується на нейтральній або ворожій території. Тренує громадян-солдатів та конструює облогове знаряддя. Розташувати солдатів у гарнізоні для додаткових стріл."
+msgstr "Споруджується на нейтральній або ворожій території. Тренує громадян-солдатів та конструює облогове знаряддя. Розмістити солдатів у гарнізоні для додаткових стріл."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1934,7 +1935,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr "Це експансивна споруда Селевкідів, аналогічна громадським центрам інших фракцій. Вона слабкіша та менш впливає на розширення зони территоріального впливу, але дешевша та споруджується швидше. Тренує поселенців-солдат різних націй."
+msgstr "Це експансивна споруда Селевкідів, аналогічна громадським центрам інших фракцій. Вона слабкіша та менш впливає на розширення зони территоріального впливу, але дешевша та споруджується швидше. Тренує поселенців-солдатів різних націй."
 
 #: simulation/templates/structures/sele_wonder.xml:9
 msgid "Hieron tou Apollōnos Pythiou"
@@ -1978,4 +1979,4 @@ msgstr "Хіерон тес Артемідос Ортіас"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
-msgstr "Приносить славу власній цивілізації та додає великі території до власної імперії. Розташувати підрозділи у гарнізоні, щоб зцілити їх у швидкому темпі."
+msgstr "Принести славу Вашій цивілізації та додати більше земель до Вашої імперії. Розмістити підрозділи у гарнізоні, щоб зцілити їх у швидкому темпі."

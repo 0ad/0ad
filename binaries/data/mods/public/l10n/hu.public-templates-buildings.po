@@ -13,7 +13,7 @@
 # Gábor P., 2019
 # Gyuris Gellért <bubu@ujevangelizacio.hu>, 2015-2016
 # Mór Kárpáty <karpatymor@gmail.com>, 2019
-# Nagy András <asd0707@freemail.hu>, 2014,2017-2018
+# Nagy András <asd0707@freemail.hu>, 2014,2017-2018,2020
 # ricsipontaz <ricsipontaz@googlemail.com>, 2014
 # Tibor Buzási, 2014-2016
 # Ács Zoltán <acszoltan111@gmail.com>, 2019
@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-04-13 07:18+0000\n"
-"PO-Revision-Date: 2020-04-13 12:13+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-04-29 00:02+0000\n"
+"Last-Translator: Nagy András <asd0707@freemail.hu>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,7 +123,7 @@ msgstr "Védelmi épület"
 #: simulation/templates/template_structure_defensive_palisade.xml:21
 #: simulation/templates/structures/wallset_palisade.xml:4
 msgid "Wooden Wall"
-msgstr "Fafal"
+msgstr "Fa fal"
 
 #: simulation/templates/template_structure_defensive_palisade.xml:23
 #: simulation/templates/template_structure_defensive_wall.xml:18
@@ -355,7 +355,7 @@ msgstr "Erőd"
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
-msgstr "Bajnokok és hősök kiképzése, valamint technológiák fejlesztése. Katonák beszállásolása az erősebb védelemhez."
+msgstr "Bajnokok és hősök kiképzése, valamint technológiák kutatása. Katonák beszállásolása az erősebb védelemhez."
 
 #: simulation/templates/template_structure_military_kennel.xml:40
 msgid "Kennel"
@@ -392,7 +392,7 @@ msgstr "Ostromgépgyár"
 
 #: simulation/templates/template_structure_military_workshop.xml:29
 msgid "Construct Siege Engines and research Siege Engine technologies."
-msgstr "Ostromgépek kiképzése, ostromgép fejlesztések kutatása."
+msgstr "Ostromgépek készítése, Ostromgép fejlesztések kutatása."
 
 #: simulation/templates/template_structure_military_workshop.xml:30
 msgid "Workshop"
@@ -526,7 +526,7 @@ msgstr "Megerősítés kőtömbökkel, és apró kőhajítók telepítése, hogy
 msgid ""
 "Reinforce with stone block, and install scorpions to upgrade this defense "
 "tower into a prompt, long range, and accurate bolt tower."
-msgstr "Megerősítés kőtömbökkel, és skorpiók telepítése, hogy egy azonnali, nagy hatótávolságú és pontos nyílvető torony legyen."
+msgstr "Megerősítés kőtömbökkel, és skorpiók telepítése, hogy egy gyors, nagy hatótávolságú és pontos nyílvető torony legyen."
 
 #: simulation/templates/structures/athen_dock.xml:12
 #: simulation/templates/structures/mace_dock.xml:12
@@ -856,7 +856,7 @@ msgstr "Nem lő és nem szállásol be."
 
 #: simulation/templates/structures/brit_wonder.xml:10
 msgid "Uffington White Horse"
-msgstr "Uffingtoni fehér ló"
+msgstr "Uffington-i Fehér Ló"
 
 #: simulation/templates/structures/brit_workshop.xml:5
 #: simulation/templates/structures/gaul_workshop.xml:5
@@ -1454,11 +1454,11 @@ msgstr "Nagy sztúpa"
 
 #: simulation/templates/structures/mausoleum.xml:8
 msgid "Mausoleum at Halicarnassus"
-msgstr ""
+msgstr "Halikarnasszoszi mauzóleum"
 
 #: simulation/templates/structures/mausoleum.xml:9
 msgid "Mausōleion"
-msgstr ""
+msgstr "Mausōleion"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:7
 #: simulation/templates/structures/ptol_mercenary_camp.xml:7
@@ -1602,7 +1602,7 @@ msgstr "Bajnokok kiképzése és technológiák fejlesztése. Katonák beszáll�
 
 #: simulation/templates/structures/pers_hall.xml:27
 msgid "Gate of All Nations"
-msgstr "Népek kapuja"
+msgstr "Népek Kapuja"
 
 #: simulation/templates/structures/pers_hall.xml:28
 msgid "Duvarθi Visadahyu"
@@ -1944,7 +1944,7 @@ msgstr "Hieron tou Apollōnos Pythiou"
 msgid ""
 "Reinforce with stone block, and install small oxybeles to upgrade this "
 "defense tower into a prompt, long range, and accurate bolt tower."
-msgstr "Megerősítés kőtömbökkel, és kis oxübelészek telepítése, hogy egy azonnali, nagy hatótávolságú és pontos nyílvető torony legyen."
+msgstr "Megerősítés kőtömbökkel, és kis oxübelészek telepítése, hogy egy gyors, nagy hatótávolságú és pontos nyílvető torony legyen."
 
 #: simulation/templates/structures/spart_gerousia.xml:20
 msgid "Spartan Senate"
