@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-04-13 07:18+0000\n"
-"PO-Revision-Date: 2020-04-23 23:48+0000\n"
+"PO-Revision-Date: 2020-04-29 01:52+0000\n"
 "Last-Translator: Evripidis Papaevripidis <panaevri@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -173,7 +173,7 @@ msgstr "Επισκευές Εργαστηρίου"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "Στις φρουρούμενες Πολιορκητικές Μηχανές +3 στο ρυθμό αναγέννησης ζωής."
+msgstr "Φρουρούμενες Πολιορκητικές Μηχανές: +3 στον ρυθμό ανάρρωσης."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -181,7 +181,7 @@ msgstr "Δηλιακή Συμμαχία"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Allied Warships −25% construction time."
-msgstr " Πολεμικά Πλοία Συμμάχων -25% χρόνος κατασκευής"
+msgstr "Σύμμαχα Πολεμικά Πλοία: -25% στον χρόνο κατασκευής."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -189,7 +189,7 @@ msgstr "Δρυίδες"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allied Healers −20% resource costs."
-msgstr "Συμμαχικοί Θεραπευτές -20% κόστος πόρων."
+msgstr "Σύμμαχοι Θεραπευτές: -20% στο κόστος πόρων."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -197,23 +197,23 @@ msgstr "Μεγαλέμποροι"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Allied Markets +10% international trade bonus."
-msgstr "Οι Συμμαχικές Αγορές αποκτούν +10% παγκόσμιο μπόνους ανταλλαγής."
+msgstr "Συμμαχικές Αγορές: +10% στο διεθνές μπόνους εμπορίου."
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
-msgstr "Σοφία του Δρυίδη"
+msgstr "Δρυιδική Σοφία"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Allied Structures −20% technology research time."
-msgstr "Ο χρόνος έρευνας τεχνολογίας μειώνεται κατά -20% στα συμμαχικά κτίρια."
+msgstr "Συμμαχικά Κτήρια: -20% στον χρόνο έρευνας τεχνολογιών."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
-msgstr "Μισθοφόρος"
+msgstr "Σαριπέκο"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Javelinists −10% resource costs."
-msgstr "Συμμαχικοί Ποίτες Ακοντιστές -10% κόστος υλών"
+msgstr "Σύμμαχοι Πολίτες Ακοντιστές: -10% στο κόστος πόρων."
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -221,25 +221,25 @@ msgstr "Προμηθευτές Ελεφάντων"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
 msgid "Allied Elephants −20% resource costs and training time."
-msgstr "Συμμαχικοί Ελέφαντες -20% κόστος πόρων και χρόνος εκπαίδευσης."
+msgstr "Σύμμαχοι Ελέφαντες: -20% στο κόστος πόρων και στον χρόνο εκπαίδευσης."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
-msgstr "Τυποποιημένο νόμισμα"
+msgstr "Τυποποιημένο Νόμισμα"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
 msgid "Allies +20% barter sell prices."
-msgstr "Οι σύμμαχοι έχουν +20% στις τιμές πώλησης ανταλλαγής εμπορευμάτων."
+msgstr "Σύμμαχοι: +20% στις τιμές πώλησης ανταλλασσομένων."
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
-msgstr "Θρησκευτικές Υποστηρίξεις του Ασόκα"
+msgstr "Θρησκευτική Υποστήριξη του Ασόκα"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
 "Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
-msgstr "Οι συμμαχικοί ναοί έχουν -50% κόστος πώρων και χρόνο κατασκευής. Οι τεχνολογίες του ναού έχουν -50% κόστος πώρων και χρόνο έρευνας."
+msgstr "Συμμαχικοί Ναοί: -50% στο κόστος πόρων και στον χρόνο κατασκευής· Τεχνολογίες Ναών: -50% στο κόστος πόρων και στον χρόνο έρευνας."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
@@ -247,7 +247,7 @@ msgstr "Η Βασιλική Οδός"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Allied Land Traders +15% trade gain."
-msgstr "Οι συμμαχικοί Έμποροι +15% εμπορικό κέρδος."
+msgstr "Σύμμαχοι Έμποροι Ξηράς: +15% εμπορικό κέρδος."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
@@ -255,7 +255,7 @@ msgstr "Σιτοβολώνας της Μεσογείου"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "Allies +1.0 food trickle rate."
-msgstr "Οι σύμμαχοι έχουν +1,0 στο ρυθμό εναπόθεσης φαγητού."
+msgstr "Σύμμαχοι: +1,0 στον ρυθμό αποταμίευσης φαγητού."
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
@@ -263,15 +263,15 @@ msgstr "Στρατολόγηση"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Infantry −10% training time."
-msgstr "Συμμαχικό Πολίτες Πεζικό -10% στο χρόνο εκπαίδευσης."
+msgstr "Συμμαχικό Πεζικό Πολιτών: -10% στον χρόνο εκπαίδευσης."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
-msgstr "Συριακή Τετράπολη"
+msgstr "Τετράπολις Συρίας"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid "Allied Civil Centers −20% resource costs."
-msgstr "Συμμαχικά Αστικά Κέντρα -20% στο κόστος πόρων."
+msgstr "Συμμαχικά Αστικά Κέντρα: -20% στο κόστος πόρων."
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
@@ -283,11 +283,11 @@ msgstr "Συμμαχικό Πολίτες Λογχομφόροι Πεζικό +1
 
 #: simulation/data/auras/units/elephant_worker.jsonauraName
 msgid "Elephant Workers"
-msgstr ""
+msgstr "Ελέφαντες Εργάτες"
 
 #: simulation/data/auras/units/elephant_worker.jsonauraDescription
 msgid "Workers +25% build rate."
-msgstr ""
+msgstr "Εργάτες: +25% ρυθμός οικοδόμησης."
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
@@ -295,7 +295,7 @@ msgstr "Έμπνευση"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraDescription
 msgid "Citizen Soldiers +10% build rate and gather speed."
-msgstr "+10% στο ρυθμό κατασκευής και συγκομιδής για τους Πολίτες Οπλίτες."
+msgstr "Πολίτες Οπλίτες: +10% στους ρυθμούς κατασκευής και συγκομιδής."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
@@ -305,7 +305,7 @@ msgstr "Οικονομικές Μεταρρυθμίσεις"
 msgid ""
 "Solon instituted several economic reforms encouraging commerce and agriculture.\n"
 "Workers +15% gather speed."
-msgstr "Ο Σόλων καθιέρωσε διάφορες οικονομικές μεταρρυθμίσεις για την ενθάρρυνση του εμπορίου και της γεωργίας.\n+15% στο ποσοστό συγκομιδής των Εργατών."
+msgstr "Ο Σόλων καθιέρωσε αρκετές οικονομικές μεταρρυθμίσεις ενθαρρύνοντας το εμπόριο και την γεωργία.\nΕργάτες: +15% στην ταχύτητα συγκομιδής."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
@@ -315,7 +315,7 @@ msgstr "Οικονομική Περιουσία"
 msgid ""
 "Solon brought in a new system of weights and measures, fathers were encouraged to find trades for their sons.\n"
 "Economic technologies −10% resource costs."
-msgstr "Ο Σόλων έφερε σε ένα νέο σύστημα μέτρων και σταθμών, οι πατέρες ενθαρρυνονται να βρίσκουν εμπόρους για τους γιους τους.\n-10% στο κόστος για τις οικονομικές τεχνολογίες."
+msgstr "Ο Σόλων έφερε ένα νέο σύστημα μέτρων και σταθμών, οι πατέρες ενθαρρύνονταν να βρίσκουν εμπόρους για τους υιούς τους.\nΟικονομικές Τεχνολογίες: -10% στο κόστος πόρων."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraName
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraName
@@ -326,47 +326,47 @@ msgstr "Τακτικές Ανταρτών"
 msgid ""
 "Seeing entrenched defense to be useless against the Roman army, Cassivellaunus resorted to guerrilla tactics. This was later employed by other chieftains too.\n"
 "Soldiers +15% movement speed and +15% vision range."
-msgstr "Βλέποντας πως η εδραιωμένη άμυνα ήταν  άχρηστη κατά του ρωμαϊκού στρατού, ο Κασιβέλανος κατέφυγε σε αντάρτικη τακτική. Αυτή αργότερα υιοθετήθηκε και από άλλους οπλαρχηγούς επίσης.\n+15% στη ταχύτητα κίνησης και +15% στο εύρος όρασης για τους Στρατιώτες."
+msgstr "Βλέποντας πως η εδραιωμένη άμυνα ήταν άχρηστη έναντι στον ρωμαϊκό στρατό, ο Κασσιβελλαύνος κατέφυγε στον ανταρτοπόλεμο. Αυτή η τακτική αργότερα υιοθετήθηκε και από άλλους οπλαρχηγούς.\nΣτρατιώτες: +15% στην ταχύτητα κίνησης και στο εύρος οράσεως."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
 msgid "Skirmisher Harassment"
-msgstr "Παρενόχληση Ακροβοληστή"
+msgstr "Παρενοχλούντες Ακροβολιστές"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraDescription
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
 "Javelinists +20% attack range."
-msgstr "Ο Κασιβέλανος ανέπτυξε ταχέως κινούμενους ακροβολιστές για να παρενοχλούν τα ρωμαϊκά στρατεύματα και τους τροφοσυλλέκτες τους.\n+20% στο βεληνεκές επίθεσης για τους ακοντιστές."
+msgstr "Ο Κασσιβελλαύνος ανέπτυξε ταχέως κινούμενους ακροβολιστές για να παρενοχλούν τα ρωμαϊκά στρατεύματα και τους τροφοσυλλέκτες τους.\nΑκοντιστές: +20% στο βεληνεκές επίθεσης."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
-msgstr "Αρχηγός του Βαρύ Ιππικού"
+msgstr "Διοικητής του Βαρέως Ιππικού"
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraDescription
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
 "Melee Cavalry +1 armor and +10% health."
-msgstr "Ηγέτης του Καρχηδόνιου βαρύ ιππικού στη Τρέβια και στη Καννές, όπου κατάφερε τριπλό πλήγμα που είχε καταστροφικές συνέπειες για τον εχθρό.\n+1 στη θωράκιση και +10% στην υγεία για το εκ του συστάδην ιππικό."
+msgstr "Ηγέτης του Καρχηδονιακού βαρέως ιππικού στον ποταμό Τρεβία και στη Κάννες, όπου με την τριπλή του έφοδο κατέφερε καίριο πλήγμα στον εχθρό.\nΑγχέμαχο Ιππικό: +1 στην θωράκιση και +10% στην υγεία."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraName
 msgid "Ambush Slaughter"
-msgstr "Ενέδρα Σφαγής"
+msgstr "Σφαγή μέσω Ενέδρας"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraDescription
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
 "Soldiers +5% melee and ranged attack damage and −25% promotion experience."
-msgstr "Αντιμαχόμενος με τους Ρωμαίους, ο Αμπιορίξ συνειδητοποίησε τη ματαιότητα του να πολεμά ανοιχτά και έτσι κατέφυγε στη τακτική της ενέδρας. Οι Γαλάτες έμαθαν γρήγορα πού και πότε να εκτελέσουν αιφνίδιες επιθέσεις.\nΟι στρατιώτες +5% αγχέμαχη και εκήβολη επίθεση και -25% εμπειρία για να εξελιχθούν."
+msgstr "Αντιμαχόμενος με τους Ρωμαίους, ο Αμβιορίξ συνειδητοποίησε την ματαιότητα του ανοικτού πολέμου και έτσι κατέφυγε στην τακτική της ενέδρας. Οι Γαλάτες έμαθαν γρήγορα πού και πότε να εκτελούν αιφνιδιαστικές επιθέσεις.\nΣτρατιώτες: +5% στην αγχέμαχη και στην εκήβολη ζημιά επίθεσης και -25% στο όριο εμπειρίας προαγωγής."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
-msgstr "Φόρος υποτέλειας στη Ρώμη"
+msgstr "Φόρος υποτελείας στην Ρώμη"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraDescription
 msgid ""
 "When the Roman army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by force.\n"
 "Workers −10% grain gather rate."
-msgstr "Όταν ο ρωμαϊκός στρατός υπολείπονταν σε προμήθειες τροφίμων, οι γαλατικές φυλές διατάχθηκαν να εγκαταλείψουν ένα μέρος που ήδη είχε δώσει μια πενιχρή συγκομιδή. Οι Εβύρωνες υπό τον Αμπιορίξ ήταν απρόθυμοι να το πράξουν, ως εκ τούτου, ο Καίσαρας έστειλε στρατεύματα για να τους εκδιώξει με τη βία.\n-10% στο ποσοστό συγκομιδής για τους Εργάτες."
+msgstr "Όταν οι προμήθειες τροφίμων του ρωμαϊκού στρατού ήταν σε έλλειψη, οι γαλατικές φυλές διετάχθησαν να τους παραχωρήσουν μέρος της ήδη γλίσχρας σοδειάς τους. Οι Εβούρωνες υπό τον Αμβιορίξ ήταν απρόθυμοι να το πράξουν και ως εκ τούτου ο Καίσαρας απέστειλε στρατεύματα για να πάρει τις προμήθειές τους με την βία.\nΕργάτες: -10% στον ρυθμό συγκομιδής σιτηρών."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraName
 msgid "Mercenary Commander"
@@ -376,7 +376,7 @@ msgstr "Μισθοφόρος Διοικητής"
 msgid ""
 "Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
 "Allied Citizen Mercenaries −25% metal cost."
-msgstr "Μαζί με τον αδελφό του Ανδοβάλη, ο Μανδόνιος διέταξε τους Ίβηρες νεοσύλλεκτους και μισθοφόρους να συμμετάσχουν στους Καρχηδονιακούς Πολέμους.\n-25% στο κόστος μέταλλου για όλους τους συμμαχικούς πολίτες-στρατιώτες μισθοφόρους."
+msgstr "Μαζί με τον αδελφό του Ανδοβάλη, ο Μανδόνιος ηγήθηκ των Ιβήρων νεοσυλλέκτων και μισθοφόρων που συμμετείχαν στους Καρχηδονιακούς Πολέμους.\nΣύμμαχοι Πολίτες Μισθοφόροι: -25% στο κόστος μέταλλου."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
@@ -386,17 +386,17 @@ msgstr "Σωτήρας των Ζωών"
 msgid ""
 "Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
 "Soldiers +10% health."
-msgstr "Μετά την πτώση του Ανδοβάλη στη μάχη, ο Μανδόνιος οδήγησε τους επιζώντες στην ασφάλεια.\n+10% υγεία για όλους τους στρατιώτες."
+msgstr "Μετά την πτώση του Ανδοβάλη στη μάχη, ο Μανδόνιος οδήγησε τους επιζώντες σε ασφαλές μέρος.\nΣτρατιώτες: +10% στην υγεία."
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraName
 msgid "Earliest Nubian Queen"
-msgstr "Νεώτερη Βασίλισσα της Νούβιας"
+msgstr "Αρχαιότερη Νούβια Βασίλισσα"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraDescription
 msgid ""
 "Ruling with full power in the Meroë Empire and also playing a significant role in the Meroitic religion, Shanakdakheto represented the might of Kush, something not to be taken lightly.\n"
 "Enemy Female Citizens −15% gather speed."
-msgstr "Έχοντας την πλήρη δύναμη στην αυτοκρατορία Μερόη και επίσης παίζοντας σημαντικό ρόλο στη Μεροήτικη θρησκεία, ο Σανακκάκετο αντιπροσώπευε τη δύναμη του Κους, κάτι που δεν πρέπει να θεωρηθεί ασήμαντο.\nΟι εχθρικές Γυναίκες Πολίτες -15% στο ταχύτητα συγκομιδής."
+msgstr "Έχοντας την πλήρη εξουσία στην Αυτοκρατορία της Μερόης, αλλά και κατέχοντας σημαντικό ρόλο στη μεροϊτική θρησκεία, η Σανακδακέτη αντιπροσώπευε την ισχύ του Κους, κάτι που δεν πρέπει να θεωρείται ασήμαντο.\nΕχθρικές Γυναίκες Πολίτες: -15% στην ταχύτητα συγκομιδής."
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
 msgid "Temple at Naqa"
@@ -406,7 +406,7 @@ msgstr "Ναός της Νακά"
 msgid ""
 "As in all cultures, religion played a significant part in Kush. Shanakdakheto had the temple built around 160 BC as a symbol of the advancedness of Meroë.\n"
 "Temples +1 garrison heal rate."
-msgstr "Όπως σε όλες τις κουλτούρες, η θρησκεία έπαιξε σημαντικό ρόλο στην Κους. Ο Σανακκάκετο είχε κτίσει το Ναό περίπου το 160 π.Χ. ως σύμβολο της προόδου της Μερόη.\n+1 στο ρυθμό θεραπείας στις οχυρωμένες μονάδες στους ναούς."
+msgstr "Όπως και σε όλους τους πολιτισμούς, η θρησκεία έπαιξε σημαντικό ρόλο στο Βασίλειο του Κους. Η Σανακδακέτη οικοδόμησε τον Ναό περί το 160 π.Χ. ως σύμβολο της προόδου της Μερόης.\nΝαοί: +1 στον ρυθμό θεραπείας φρουράς."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -416,7 +416,7 @@ msgstr "Συλητής Πόλεων"
 msgid ""
 "During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political center of Aetolia.\n"
 "Humans, Siege Engines, Ships, and Structures gain +5 food and wood loot."
-msgstr "Κατά τον πρώτο Μακεδονικό Πόλεμο, ο Φίλιππος και ο στρατός του επιτέθηκαν στο Θερμό, το θρησκευτικό και πολιτικό κέντρο της Αιτωλίας\n+5 τροφή και ξύλο ως λάφυρο για κάθε Άνθρωπο, Πολιορκητική Μηχανή, Πλοία και Κατασκευές."
+msgstr "Κατά τον πρώτο Μακεδονικό Πόλεμο, ο Φίλιππος και τα στρατεύματά του επιτέθηκαν στο Θερμό, το θρησκευτικό και πολιτικό κέντρο της Αιτωλίας\nΆνθρωποι, Πολιορκητικές Μηχανές, Πλοία και Κατασκευές: +5 στα λάφυρα τροφής και ξύλου."
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraName
 msgid "Consolidator of the Empire"
