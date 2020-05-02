@@ -470,8 +470,9 @@ void CPostprocManager::ApplyPostproc()
 {
 	ENSURE(m_IsInitialized);
 
-	// Don't do anything if we are using the default effect.
-	if (m_PostProcEffect == L"default")
+	// Don't do anything if we are using the default effect and no AA.
+	const bool hasEffects = m_PostProcEffect != L"default";
+	if (!hasEffects && !m_AATech)
 		return;
 
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
@@ -490,13 +491,15 @@ void CPostprocManager::ApplyPostproc()
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, 0, 0);
 
-	// First render blur textures. Note that this only happens ONLY ONCE, before any effects are applied!
-	// (This may need to change depending on future usage, however that will have a fps hit)
-	ApplyBlur();
-
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
-	for (int pass = 0; pass < m_PostProcTech->GetNumPasses(); ++pass)
-		ApplyEffect(m_PostProcTech, pass);
+	if (hasEffects)
+	{
+		// First render blur textures. Note that this only happens ONLY ONCE, before any effects are applied!
+		// (This may need to change depending on future usage, however that will have a fps hit)
+		ApplyBlur();
+		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
+		for (int pass = 0; pass < m_PostProcTech->GetNumPasses(); ++pass)
+			ApplyEffect(m_PostProcTech, pass);
+	}
 
 	if (m_AATech)
 	{
