@@ -206,7 +206,7 @@ function updateBuildingPlacementPreview()
 /**
  * Determine the context-sensitive action that should be performed when the mouse is at (x,y)
  */
-function determineAction(x, y, fromMinimap)
+function determineAction(x, y, fromMiniMap)
 {
 	let selection = g_Selection.toList();
 	if (!selection.length)
@@ -227,7 +227,7 @@ function determineAction(x, y, fromMinimap)
 		return undefined;
 
 	let target;
-	if (!fromMinimap)
+	if (!fromMiniMap)
 	{
 		let ent = Engine.PickEntityAtPoint(x, y);
 		if (ent != INVALID_ENTITY)
