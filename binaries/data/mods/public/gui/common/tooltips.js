@@ -576,7 +576,7 @@ function getGatherTooltip(template)
 		}, [0, 0]);
 
 		if (rate > 0)
-			rates[resource.code] = +(rate / count).toFixed(1);
+			rates[resource.code] = +(rate / count).toFixed(2);
 	}
 
 	if (!Object.keys(rates).length)

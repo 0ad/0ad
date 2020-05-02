@@ -749,9 +749,9 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 	// sort the available places in certain ways
 	// the places first in the list will contain the heaviest units as defined by the order
 	// of the types list
-	if (this.sortingOrder == "fillFromTheSides")
+	if (sortingOrder == "fillFromTheSides")
 		offsets.sort(function(o1, o2) { return Math.abs(o1.x) < Math.abs(o2.x);});
-	else if (this.sortingOrder == "fillToTheCenter")
+	else if (sortingOrder == "fillToTheCenter")
 		offsets.sort(function(o1, o2) {
 			return Math.max(Math.abs(o1.x), Math.abs(o1.y)) < Math.max(Math.abs(o2.x), Math.abs(o2.y));
 		});
