@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Gaul Cult Statue">
+      <mesh>structural/gaul_cult_statue.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_01.xml" attachpoint="shield_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/gauls/cult_statue_skulls.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/cult_statue_nature.xml" attachpoint="root"/>
+        <prop actor="props/units/helmets/celt_helmet_alesia_03.xml" attachpoint="helmet_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="spear_01" maxheight="20" minheight="-20"/>
+      </props>
+      <textures>
+        <texture file="structural/gaul_cult_statue.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>default.xml</material>
+</actor>

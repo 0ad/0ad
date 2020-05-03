@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Gaul Cult Statue Skulls">
+      <mesh>props/structural/gaul_cult_statue_skulls.dae</mesh>
+      <textures>
+        <texture file="props/head/skull.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>default.xml</material>
+</actor>
