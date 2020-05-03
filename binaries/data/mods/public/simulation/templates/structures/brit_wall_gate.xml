@@ -2,7 +2,7 @@
 <Entity parent="template_structure_defensive_wall_gate">
   <Footprint>
     <Square width="37" depth="8"/>
-    <Height>10.3</Height>
+    <Height>18</Height>
   </Footprint>
   <Identity>
     <Civ>brit</Civ>
@@ -16,7 +16,7 @@
     </Obstructions>
   </Obstruction>
   <StatusBars>
-    <HeightOffset>11.3</HeightOffset>
+    <HeightOffset>19</HeightOffset>
   </StatusBars>
   <VisualActor>
     <Actor>structures/britons/wall_gate.xml</Actor>

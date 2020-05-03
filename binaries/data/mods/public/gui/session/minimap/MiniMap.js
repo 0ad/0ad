@@ -2,7 +2,7 @@
  * This class is concerned with handling events occurring when the interacts with the minimap,
  * except for changing the camera position on leftclick.
  */
-class Minimap
+class MiniMap
 {
 	constructor()
 	{
@@ -12,7 +12,7 @@ class Minimap
 	onWorldClick(target)
 	{
 		if (!controlsPlayer(g_ViewedPlayer))
-			return;
+			return false;
 
 		// Partly duplicated from handleInputAfterGui(), but with the input being
 		// world coordinates instead of screen coordinates.
