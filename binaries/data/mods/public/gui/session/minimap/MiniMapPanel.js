@@ -9,4 +9,9 @@ class MiniMapPanel
 		this.idleWorkerButton = new MiniMapIdleWorkerButton(playerViewControl, idleWorkerClasses);
 		this.miniMap = new MiniMap();
 	}
+
+	isMouseOverMiniMap()
+	{
+		return this.miniMap.isMouseOverMiniMap();
+	}
 }

@@ -7,6 +7,9 @@ class MiniMap
 	constructor()
 	{
 		Engine.GetGUIObjectByName("minimap").onWorldClick = this.onWorldClick.bind(this);
+		Engine.GetGUIObjectByName("minimap").onMouseEnter = this.onMouseEnter.bind(this);
+		Engine.GetGUIObjectByName("minimap").onMouseLeave = this.onMouseLeave.bind(this);
+		this.mouseIsOverMiniMap = false;
 	}
 
 	onWorldClick(target)
@@ -22,5 +25,20 @@ class MiniMap
 
 		let action = determineAction(undefined, undefined, true);
 		return action && handleUnitAction(target, action);
+	}
+
+	onMouseEnter()
+	{
+		this.mouseIsOverMiniMap = true;
+	}
+
+	onMouseLeave()
+	{
+		this.mouseIsOverMiniMap = false;
+	}
+
+	isMouseOverMiniMap()
+	{
+		return this.mouseIsOverMiniMap;
 	}
 }
