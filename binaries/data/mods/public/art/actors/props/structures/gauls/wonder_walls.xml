@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Gaul Wonder Walls">
+      <mesh>props/structural/gaul_wonder_walls.dae</mesh>
+      <textures>
+        <texture file="structural/gaul_wonder_wall.png" name="baseTex"/>
+        <texture file="structural/gaul_wonder_wall_norm.png" name="normTex"/>
+        <texture file="structural/gaul_wonder_wall_spec.png" name="specTex"/>
+        <texture file="structural/ao/gaul_wonder.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

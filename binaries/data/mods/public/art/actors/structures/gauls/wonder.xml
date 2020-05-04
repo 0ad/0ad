@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Wonder Main Struct">
+      <animations>
+        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
+      </animations>
+      <mesh>structural/gaul_wonder.dae</mesh>
+      <props>
+        <prop actor="props/structures/gauls/wonder_roof.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/wonder_walls.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/wonder_bones.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/wonder_nature.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/wonder_fence.xml" attachpoint="fence_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/gauls/wonder_amphorae.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_gaul_wonder.xml" attachpoint="root"/>
+        <prop actor="fauna/sheep1.xml" attachpoint="sheep_01" maxheight="20" minheight="-20"/>
+        <prop actor="fauna/sheep1.xml" attachpoint="sheep_02" maxheight="20" minheight="-20"/>
+        <prop actor="fauna/sheep1.xml" attachpoint="sheep_03" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/blacksmith_armorstand_armor.xml" attachpoint="armor_stand_01"/>
+        <prop actor="props/structures/celts/blacksmith_armorstand_wood.xml" attachpoint="armor_stand_01"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="barrel_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="barrel_02" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="barrel_03" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="barrel_04" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/gaul_shield_oval_b_03.xml" attachpoint="shield_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_03.xml" attachpoint="shield_02" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_01.xml" attachpoint="shield_03" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_03.xml" attachpoint="shield_04" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/gaul_shield_spear_hex_a_01.xml" attachpoint="shield_05" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/gaul_shield_jav_oval_h_03.xml" attachpoint="shield_06" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/gauls/wonder_cauldron.xml" attachpoint="cauldron_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/gauls/wonder_cauldron.xml" attachpoint="cauldron_02" maxheight="20" minheight="-20"/>
+        <prop actor="structures/gauls/cult_statue.xml" attachpoint="statue_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/gauls/theater_standard_boar.xml" attachpoint="standard_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/gauls/theater_standard_boar.xml" attachpoint="standard_02" maxheight="20" minheight="-20"/>
+      </props>
+      <textures>
+        <texture file="structural/celt_struct.dds" name="baseTex"/>
+        <texture file="structural/celt_struct_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/gaul_wonder.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant frequency="0" name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned_01"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

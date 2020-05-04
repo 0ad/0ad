@@ -88,9 +88,9 @@ function updateCursorAndTooltip()
 	var cursorSet = false;
 	var tooltipSet = false;
 	var informationTooltip = Engine.GetGUIObjectByName("informationTooltip");
-	if (!mouseIsOverObject && (inputState == INPUT_NORMAL || inputState == INPUT_PRESELECTEDACTION))
+	if (!mouseIsOverObject && (inputState == INPUT_NORMAL || inputState == INPUT_PRESELECTEDACTION) || g_MiniMapPanel.isMouseOverMiniMap())
 	{
-		let action = determineAction(mouseX, mouseY);
+		let action = determineAction(mouseX, mouseY, g_MiniMapPanel.isMouseOverMiniMap());
 		if (action)
 		{
 			if (action.cursor)
@@ -239,7 +239,9 @@ function determineAction(x, y, fromMiniMap)
 	// thus the most specific should appear first.
 
 	let actionInfo = undefined;
-	if (preSelectedAction != ACTION_NONE)
+	// Disable preselected actions on the minimap because their
+	// left-click interferes with the minimap left-click anyways.
+	if (preSelectedAction != ACTION_NONE && !fromMiniMap)
 	{
 		for (let action of g_UnitActionsSortedKeys)
 			if (g_UnitActions[action].preSelectedActionCheck)

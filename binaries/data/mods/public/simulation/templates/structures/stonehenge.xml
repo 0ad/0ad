@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_wonder">
+  <Footprint replace="">
+    <Circle radius="30.0"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <Identity>
+    <SpecificName>Stonehenge</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="55.0" depth="55.0"/>
+  </Obstruction>
+  <VisualActor>
+    <FoundationActor>structures/fndn_theater.xml</FoundationActor>
+    <Actor>structures/celts/stone_monument.xml</Actor>
+  </VisualActor>
+</Entity>

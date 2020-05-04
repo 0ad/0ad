@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_wonder">
-  <Footprint replace="">
-    <Circle radius="30.0"/>
-    <Height>10.0</Height>
+  <Footprint>
+    <Square width="41" depth="42"/>
+    <Height>10</Height>
   </Footprint>
   <Identity>
     <Civ>gaul</Civ>
-    <SpecificName>Stonehenge</SpecificName>
+    <GenericName>Sanctuary of Corent</GenericName>
+    <SpecificName>Celicnon</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="55.0" depth="55.0"/>
+    <Static width="40" depth="41"/>
   </Obstruction>
   <VisualActor>
-    <FoundationActor>structures/fndn_theater.xml</FoundationActor>
-    <Actor>structures/celts/stone_monument.xml</Actor>
+    <FoundationActor>structures/fndn_9x9.xml</FoundationActor>
+    <Actor>structures/gauls/wonder.xml</Actor>
   </VisualActor>
 </Entity>
