@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-23 08:32+0000\n"
-"PO-Revision-Date: 2020-04-29 19:43+0000\n"
+"POT-Creation-Date: 2020-04-30 10:46+0000\n"
+"PO-Revision-Date: 2020-05-03 14:30+0000\n"
 "Last-Translator: Chindu the Manduri <mandurilooter210770@mail.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr ""
 
 #: simulation/templates/template_formation.xml:25
 msgid "Requires at least 2 Soldiers or Siege engines."
-msgstr "Потребує принаймні не менш 2 солдатів або облогового знаряддя."
+msgstr "Потребує принаймні не менш 2 солдатів або облогових знарядь."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -92,7 +92,7 @@ msgstr "Руїни"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr "Зносити руїни для каменю."
+msgstr "Знести руїни для каменю."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
@@ -100,7 +100,7 @@ msgstr "Скарб"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr "Збирати скарби для ресурсів."
+msgstr "Зібрати скарби заради ресурсів."
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
@@ -116,11 +116,11 @@ msgstr "Міський мур"
 
 #: simulation/templates/template_wallset.xml:13
 msgid "Wall off your town for a stout defense."
-msgstr "Обнести власне містечко муром для посиленої оборони."
+msgstr "Обнести власне містечко стіною для посиленої оборони."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
-msgstr "Армія Александра Великого"
+msgstr "Армія Александра Великого."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
 msgid "Army of Alexander the Great"
@@ -191,14 +191,6 @@ msgstr "Вовк арктичний"
 msgid "Canis lupus"
 msgstr "Каніс лупус"
 
-#: simulation/templates/gaia/fauna_bear.xml:4
-msgid "Brown Bear"
-msgstr "Ведмідь бурий"
-
-#: simulation/templates/gaia/fauna_bear.xml:5
-msgid "Ursus arctos"
-msgstr "Урсус арктос"
-
 #: simulation/templates/gaia/fauna_bear_black.xml:4
 msgid "Black Bear"
 msgstr "Ведмідь чорний"
@@ -207,9 +199,17 @@ msgstr "Ведмідь чорний"
 msgid "Ursus americanus"
 msgstr "Урсус амеріканус"
 
+#: simulation/templates/gaia/fauna_bear_brown.xml:4
+msgid "Brown Bear"
+msgstr "Ведмідь бурий"
+
+#: simulation/templates/gaia/fauna_bear_brown.xml:5
+msgid "Ursus arctos"
+msgstr "Урсус арктос"
+
 #: simulation/templates/gaia/fauna_bear_polar.xml:4
 msgid "Polar Bear"
-msgstr "Ведмідь білий"
+msgstr "Полярний ведмідь"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:5
 msgid "Ursus maritimus"
@@ -217,7 +217,7 @@ msgstr "Урсус марітімус"
 
 #: simulation/templates/gaia/fauna_boar.xml:19
 msgid "Wild Boar"
-msgstr "Свиня дика"
+msgstr "Дикий вепер"
 
 #: simulation/templates/gaia/fauna_boar.xml:20
 msgid "Sus scrofa"
@@ -378,6 +378,14 @@ msgstr "Козел"
 #: simulation/templates/gaia/fauna_goat.xml:9
 msgid "Capra aegagrus hircus"
 msgstr "Капра егагрус хіркус"
+
+#: simulation/templates/gaia/fauna_hippopotamus.xml:25
+msgid "Hippopotamus"
+msgstr "Бегемот звичайний"
+
+#: simulation/templates/gaia/fauna_hippopotamus.xml:26
+msgid "Hippopotamus amphibius"
+msgstr "Хіппопотамус амфібіус"
 
 #: simulation/templates/gaia/fauna_horse.xml:8
 msgid "Horse"
@@ -620,7 +628,7 @@ msgstr "Фінікова пальма Теофраста"
 #: simulation/templates/gaia/flora_tree_cypress_wild.xml:4
 #: simulation/templates/gaia/flora_tree_cypress_windswept.xml:4
 msgid "Cypress Tree"
-msgstr "Дерево кіпарису"
+msgstr "Кіпарисове дерево"
 
 #: simulation/templates/gaia/flora_tree_date_palm.xml:4
 msgid "Date Palm"
@@ -1054,7 +1062,7 @@ msgstr "Лінія бою"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
-msgstr "Потребує принаймні не менш 4 солдатів або облогового знаряддя."
+msgstr "Потребує принаймні не менш 4 солдатів або облогових знарядь."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1070,7 +1078,7 @@ msgstr "Відкрита колона"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr "Потребує принаймні не менш 8 солдатів або облогового знаряддя."
+msgstr "Потребує принаймні не менш 8 солдатів або облогових знарядь."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"

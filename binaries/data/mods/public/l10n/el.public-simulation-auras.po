@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-04-13 07:18+0000\n"
-"PO-Revision-Date: 2020-04-29 01:52+0000\n"
+"PO-Revision-Date: 2020-05-04 01:41+0000\n"
 "Last-Translator: Evripidis Papaevripidis <panaevri@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -426,17 +426,17 @@ msgstr "Παγιωτής της Αυτοκρατορίας"
 msgid ""
 "Son of Chandragupta Maurya, Bindusara consolidated the empire, creating a stable state for his son Ashoka to inherit.\n"
 "Structures +20% territory influence radius."
-msgstr "Ο γιος του Τσαντραγκούπτα Μαουρύα, Μπιντουσάρα ενοποίησε την αυτοκρατορία, δημιουργώντας μια σταθερή κατάσταση για να κληρονόμησε ο γιος του Ασόκα.\n+20% στην ακτίνα επιρροής εδάφους των Κτιρίων."
+msgstr "Ο γιος του Τσαντραγκούπτα Μαουρύα, ο Μπιντουσάρα, ενοποίησε την αυτοκρατορία, κληροδοτώντας την έτσι στον γιο του, Ασόκα, σε μια κατάσταση σταθερότητας.\nΚτίρια: +20% στην ακτίνα επιρροής περιοχής."
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_2.jsonauraName
 msgid "Vamba Moriyar"
-msgstr "Βάμπα Μόρυα"
+msgstr "Βάμπα Μοριγιάρ (Μαουρυανική Κατάκτηση)"
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_2.jsonauraDescription
 msgid ""
 "Bindusara is said to have conquered lands to the south of the empire.\n"
 "Soldiers +15% capture attack strength."
-msgstr "Ο Μπιντουσάρα λέγεται ότι είχε κατακτήσει τα εδάφη στα νότια της αυτοκρατορίας.\n+15% στη δύναμη αιχμαλώτισης για τους στρατιώτες."
+msgstr "Ο Μπιντουσάρα λέγεται ότι κατέκτησε εδάφη στα νότια της αυτοκρατορίας.\nΣτρατιώτες: +15% στον ρυθμό άλωσης."
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
@@ -446,7 +446,7 @@ msgstr "Μέγας Οικοδόμος"
 msgid ""
 "Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa and restored the ancient city of Ecbatana.\n"
 "Structures −10% resource costs and +5% health."
-msgstr "Κατά τη διάρκεια της βασιλείας του, ένα μεγάλο μέρος του πλούτου του Αρταξέρξη δαπανήθηκε για οικοδομικά έργα. Αποκατέστησε το παλάτι του Δαρείου Α στα Σούσα, και αποκατέστησε την αρχαία πόλη της Εκβάτανα.\n-10% στο κόστος των πόρων και +5% στην υγεία για όλα τα Κτίρια."
+msgstr "Επί βασιλείας του Αρταξέρξη, ένα μεγάλο μέρος του πλούτου του δαπανήθηκε σε οικοδομικά έργα. Αναστήλωσε το παλάτι του Δαρείου Α' στα Σούσα, και την αρχαία πόλη των Εκβατάνων.\nΚτίρια: -10% στο κόστος πόρων και +5% στην υγεία."
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
@@ -456,7 +456,7 @@ msgstr "Μέγας Βιβλιοθηκάριος"
 msgid ""
 "Continuing his predecessors' work on the Great Library of Alexandria, he seized every book brought to the city, thus leaving to his people a vast amount of hoarded wisdom.\n"
 "Structure technologies −10% resource costs."
-msgstr "Συνεχίζοντας το έργο των προκατόχων του για τη Μεγάλη Βιβλιοθήκη της Αλεξάνδρειας, έφερε κάθε βιβλίο στην πόλη, αφήνοντας έτσι στο λαό του ένα τεράστιο ποσό συσσωρευμένης σοφίας.\n-10% στο κόστος των πόρων για όλες τις τεχνολογίες."
+msgstr "Συνεχίζοντας το έργο των προκατόχων του στην Βιβλιοθήκη της Αλεξάνδρειας, κατέσχε κάθε βιβλίο που φερόταν στην πόλη, αφήνοντας έτσι στον λαό του αμέτρητες ποσότητες συσσωρευμένης σοφίας.\nΤεχνολογίες Κτιρίων: -10% στο κόστος πόρων."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraName
 msgid "Avenger of Lucretia"
@@ -466,7 +466,7 @@ msgstr "Εκδικητής της Λουκρητίας"
 msgid ""
 "After the rape of Lucretia by the son of King Tarquinius Superbus and her subsequent suicide, Brutus vowed to avenge her and overthrow the monarchy.\n"
 "Female Citizens −20% food cost and +10% gather speed."
-msgstr "Μετά το βιασμό της Λουκρητίας από το γιο του βασιλιά Ταρκύνιου Σέρβερου και μετέπειτα αυτοκτονία της, ο Βρούτος υποσχέθηκε να την εκδικηθεί και να ανατρέψει τη μοναρχία.\nΟι Γυναίκες Πολίτες κοστίζουν -20% λιγότερο φαγητό και συλλέγουν +10% γρηγορότερα."
+msgstr "Μετά το βιασμό της Λουκρητίας από το γιο του βασιλιά Ταρκυνίου του Υπερηφάνου και την συνεπακόλουθη αυτοκτονία της, ο Βρούτος ορκίστηκε να την εκδικηθεί και να ανατρέψει την μοναρχία.\nΓυναίκες Πολίτες: -20% κόστος φαγητού και +10% ταχύτητα συγκομιδής.."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
@@ -476,7 +476,7 @@ msgstr "Ιδρυτής και Υπερασπιστής της Δημοκρατί
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
 "Humans and Siege Engines +1 armor."
-msgstr "Ο Βρούτος ήταν ένας από τους βασικούς πρωτεργάτες στην ανατροπή της μοναρχίας και την ίδρυση της Ρωμαϊκής Δημοκρατίας. Αργότερα, ως πρόξενος οδήγησε ένα ρωμαϊκό στρατό στη νίκη κατά του Ετρούσκου βασιλιά Ταρκύνιου ο οποίος προσπάθησε να ξαναπάρει το θρόνο.\n+1 πανοπλία για όλες τις μονάδες και τις πολιορκητικές μηχανές."
+msgstr "Ο Λούκιος Ιούνιος Βρούτος ήταν ένας από τους πρωτεργάτες στην ανατροπή της μοναρχίας και στην ίδρυση της Ρωμαϊκής Δημοκρατίας. Αργότερα ως ύπατος ηγήθηκε του ρωμαϊκού στρατού στην νίκη κατά του Ετρούσκου βασιλιά Ταρκυνίου ο οποίος αποσκοπούσε στην επάνοδό του στον θρόνο.\nΆνθρωποι και Πολιορκητικές Μηχανές: +1 στην πανοπλία."
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraName
 msgid "Founder of the Ezida Temple"

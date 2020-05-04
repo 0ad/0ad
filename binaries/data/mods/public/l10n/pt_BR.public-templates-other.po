@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-23 08:32+0000\n"
-"PO-Revision-Date: 2020-03-23 20:36+0000\n"
+"POT-Creation-Date: 2020-04-30 10:46+0000\n"
+"PO-Revision-Date: 2020-04-30 20:52+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -195,14 +195,6 @@ msgstr "Raposa do Artico"
 msgid "Canis lupus"
 msgstr "Canis lupus"
 
-#: simulation/templates/gaia/fauna_bear.xml:4
-msgid "Brown Bear"
-msgstr "Urso-pardo"
-
-#: simulation/templates/gaia/fauna_bear.xml:5
-msgid "Ursus arctos"
-msgstr "Ursus arctos"
-
 #: simulation/templates/gaia/fauna_bear_black.xml:4
 msgid "Black Bear"
 msgstr ""
@@ -210,6 +202,14 @@ msgstr ""
 #: simulation/templates/gaia/fauna_bear_black.xml:5
 msgid "Ursus americanus"
 msgstr ""
+
+#: simulation/templates/gaia/fauna_bear_brown.xml:4
+msgid "Brown Bear"
+msgstr "Urso-pardo"
+
+#: simulation/templates/gaia/fauna_bear_brown.xml:5
+msgid "Ursus arctos"
+msgstr "Ursus arctos"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:4
 msgid "Polar Bear"
@@ -382,6 +382,14 @@ msgstr "Cabra"
 #: simulation/templates/gaia/fauna_goat.xml:9
 msgid "Capra aegagrus hircus"
 msgstr "Capra aegagrus hircus"
+
+#: simulation/templates/gaia/fauna_hippopotamus.xml:25
+msgid "Hippopotamus"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_hippopotamus.xml:26
+msgid "Hippopotamus amphibius"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_horse.xml:8
 msgid "Horse"

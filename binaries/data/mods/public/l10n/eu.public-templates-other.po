@@ -5,12 +5,12 @@
 # Translators:
 # Mielanjel Iraeta <pospolos@gmail.com>, 2017-2020
 # Osoitz <oelkoro@gmail.com>, 2015,2019-2020
-# Gontzal Manuel Pujana Onaindia <juchuf@gmail.com>, 2016
+# Thadah D. Denyse <juchuf@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-23 08:32+0000\n"
-"PO-Revision-Date: 2020-04-06 14:46+0000\n"
+"POT-Creation-Date: 2020-04-30 10:46+0000\n"
+"PO-Revision-Date: 2020-05-01 18:05+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -181,14 +181,6 @@ msgstr "Otso Artikoa"
 msgid "Canis lupus"
 msgstr "Canis lupus"
 
-#: simulation/templates/gaia/fauna_bear.xml:4
-msgid "Brown Bear"
-msgstr "Hartz arrea"
-
-#: simulation/templates/gaia/fauna_bear.xml:5
-msgid "Ursus arctos"
-msgstr "Ursus arctos"
-
 #: simulation/templates/gaia/fauna_bear_black.xml:4
 msgid "Black Bear"
 msgstr "Hartz beltza"
@@ -196,6 +188,14 @@ msgstr "Hartz beltza"
 #: simulation/templates/gaia/fauna_bear_black.xml:5
 msgid "Ursus americanus"
 msgstr "Ursus americanus"
+
+#: simulation/templates/gaia/fauna_bear_brown.xml:4
+msgid "Brown Bear"
+msgstr "Hartz arrea"
+
+#: simulation/templates/gaia/fauna_bear_brown.xml:5
+msgid "Ursus arctos"
+msgstr "Ursus arctos"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:4
 msgid "Polar Bear"
@@ -368,6 +368,14 @@ msgstr "Ahuntza"
 #: simulation/templates/gaia/fauna_goat.xml:9
 msgid "Capra aegagrus hircus"
 msgstr "Capra aegagrus hircus"
+
+#: simulation/templates/gaia/fauna_hippopotamus.xml:25
+msgid "Hippopotamus"
+msgstr "Hipopotamoa"
+
+#: simulation/templates/gaia/fauna_hippopotamus.xml:26
+msgid "Hippopotamus amphibius"
+msgstr "Hippopotamus amphibius"
 
 #: simulation/templates/gaia/fauna_horse.xml:8
 msgid "Horse"

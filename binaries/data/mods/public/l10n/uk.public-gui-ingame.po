@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-03-09 08:13+0000\n"
-"PO-Revision-Date: 2020-04-29 17:25+0000\n"
+"PO-Revision-Date: 2020-05-03 18:50+0000\n"
 "Last-Translator: Chindu the Manduri <mandurilooter210770@mail.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgstr "Лобі"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr "Натиснути %(hotkey)s, щоб відкрити сторінку багатокористувальницького лобі, не виходячи з гри."
+msgstr "Натиснути %(hotkey)s, щоб відкрити сторінку багатокористувацького лобі, не виходячи з гри."
 
 #: gui/session/MenuButtons.js:158
 msgid "Options"
@@ -117,7 +117,7 @@ msgstr "Синхронізація гри з іншими гравцями…"
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ","
+msgstr ", "
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
@@ -130,7 +130,7 @@ msgstr "%(time)s (%(speed)sx)"
 #: gui/session/message_box/OutOfSyncNetwork.js:20
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ","
+msgstr ", "
 
 #: gui/session/PauseOverlay.js:45
 #, javascript-format
@@ -141,7 +141,7 @@ msgstr "Призупинено гравцем %(players)s"
 #: gui/session/selection_details.js:282 gui/session/selection_panels.js:594
 msgctxt "countdown format"
 msgid "m:ss"
-msgstr "х:сс"
+msgstr "m:ss"
 
 #: gui/session/input.js:176
 #, javascript-format
@@ -183,11 +183,11 @@ msgstr "Завершити"
 
 #: gui/session/messages.js:363
 msgid "Click when ready."
-msgstr "Клацнути, коли буде готово."
+msgstr "Клацнути, коли будете готові."
 
 #: gui/session/messages.js:367
 msgid "Follow the instructions."
-msgstr "Дотримуватися інструкцій."
+msgstr "Дотримуйтесь інструкцій."
 
 #: gui/session/messages.js:492
 msgid "Unknown Player"
@@ -991,7 +991,7 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr "Примітка: режим викривлення часу - це опція для розробників і не призначена для використання протягом тривалих періодів часу. Невірне використання може спричинити переповнення пам’яті або поломку гри."
+msgstr "Примітка: режим викривлення часу — це опція для розробників і не призначена для використання протягом тривалих періодів часу. Невірне використання може спричинити переповнення пам’яті або поломку гри."
 
 #: gui/session/diplomacy/DiplomacyDialogCeasefireCounter.js:27
 #, javascript-format
