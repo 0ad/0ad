@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-03-23 08:32+0000\n"
-"PO-Revision-Date: 2020-04-23 02:10+0000\n"
+"PO-Revision-Date: 2020-05-03 23:00+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -1255,12 +1255,12 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
 " health. All structures +9 garrisoned regeneration rate."
-msgstr "Avanza a la Fas de la ciudá, que desbloquia más construcciones y unidaes. El radiu territorial de los Centros cívicos aumenta otru +50%. La bonificación cultural de les Curuxes de plata apurre +10% de tasa de recueya de metal a tolos trabayadores. Milicianos +10% salú. Toles construcciones +9 tasa de rexeneración por guarecimientu."
+msgstr "Avanza a la Fas de la ciudá, que desbloquia más construcciones ya unidaes. El territoriu de la Plaza enanta otru +50%. La bonificación cultural Curuxes de plata aumenta en +10% la tasa de recueya de metal a tolos trabayadores. Los milicianos: salú +10%. Toles construcciones guarecíes: tasa d'alitamientu +9."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Rique 4 construcciones nueves de la Fas de la villa (sacantes Muralles y Centros cívicos)."
+msgstr "Rique 4 construcciones nueves de la Fas de la villa (sacantes les Muralles ya les Places)."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -1279,7 +1279,7 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
 "health. All structures +9 garrisoned regeneration rate."
-msgstr "Avanza a la Fas de la ciudá, que desbloquia más construcciones y unidaes. El radiu territorial de los Centros cívicos aumenta otru +50%. Milicianos +10% de salú. Toles construcciones +9 a la tasa de rexeneración por guarecimientu."
+msgstr "Avanza a la Fas de la ciudá, que desbloquia más construcciones ya unidaes. El territoriu de la Plaza enanta otru +50%. Los milicianos: salú +10%. Toles construcciones guarecíes: tasa d'alitamientu +9."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1306,7 +1306,7 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
 "health. All structures +7 garrisoned regeneration rate."
-msgstr "Avanza a la Fas de la villa, que desbloquia más construcciones y unidaes. El radiu territorial de los Centros cívicos aumenta en +30%. La bonificación cultural de les «Curuxes de plata» apurre +10% de tasa de recueya de metal a tolos trabayadores. Milicianos +20% de salú. Toles construcciones +7 a la tasa de rexeneración por guarecimientu."
+msgstr "Avanza a la Fas de la villa, que desbloquia más construcciones ya unidaes. El territoriu de la Plaza enanta un +30%. La bonificación cultural «Curuxes de plata» aumenta en +10% la tasa de recueya de metal a tolos trabayadores. Los milicianos: salú +20%. Toles construcciones guarecíes: tasa d'alitamientu +7."
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1330,7 +1330,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
 "All structures +7 garrisoned regeneration rate."
-msgstr "Avanza a la Fas de la villa, que desbloquia más construcciones y unidaes. El radiu territorial de los Centros cívicos aumenta en +30%. Milicianos +20% de salú. Toles construcciones +7 a la tasa de rexeneración por guarecimientu."
+msgstr "Avanza a la Fas de la villa, que desbloquia más construcciones ya unidaes. El territoriu de la Plaza enanta un +30%. Los milicianos: salú +20%. Toles construcciones guarecíes: tasa d'alitamientu +7."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1345,7 +1345,7 @@ msgstr "L'estáu o tribu facía de cutiu un comedor pa llacuaes públiques o p'a
 #: simulation/data/technologies/pop_civic_01.jsontooltip
 #: simulation/data/technologies/pop_civic_02.jsontooltip
 msgid "Civic Centers +5 population cap bonus."
-msgstr "Centros cívicos +5 de bonificación na llende de población."
+msgstr "Les places: bonificación na llende de la población +5."
 
 #: simulation/data/technologies/pop_civic_01.jsongenericName
 msgid "Dining Hall"
@@ -2076,7 +2076,7 @@ msgstr "Los cartaxineses establecieron munchos centros comerciales como colonies
 msgid ""
 "Carthaginians were colonizers. Civic Centers, Temples, and Houses -25% build"
 " time."
-msgstr "Los cartaxineses yeren colonizadores. Centros cívicos, Templos & Cases: -25% tiempu de construcción."
+msgstr "Los cartaxineses yeren colonizadores. Les places, templos ya cases: tiempu de construcción -25%."
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsongenericName
 msgid "Colonization"
@@ -2449,7 +2449,7 @@ msgstr "Muralles llongues atenienses"
 msgid ""
 "+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr "+25% PS ya -50% tiempu de construcción pa Centros cívicos, Templos, Pirámides ya Maravíes."
+msgstr "Les places, templos, pirámides ya maravíes: PS +25%, tiempu de construcción -50%."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -2595,7 +2595,7 @@ msgstr "Entamando con Alexandru, los monarques helenistes fundaron munches ciuda
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr "Centros cívicos +100% salú y puntos de captura, el doblu de fleches por defeutu."
+msgstr "Les places: salú ya puntos de captura +100%, el doblu de les fleches por defeutu."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"

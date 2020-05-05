@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Alexander Olkhovskiy, 2016,2018
+# Alexey, 2020
 # Alexey Solodovnikov <sklent@outlook.com>, 2017
 # Boris Karalnik <eyesucker@gmail.com>, 2015,2018-2020
 # Dmitriy Kulikov <kulikov@dima.perm.ru>, 2018-2019
@@ -45,8 +46,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-07 08:09+0000\n"
-"PO-Revision-Date: 2020-04-18 16:22+0000\n"
-"Last-Translator: Георгий Морозов <moroz.ger@gmail.com>\n"
+"PO-Revision-Date: 2020-04-30 21:54+0000\n"
+"Last-Translator: Alexey\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -101,7 +102,7 @@ msgid_plural "Special Structures"
 msgstr[0] "Особая постройка"
 msgstr[1] "Особых постройки"
 msgstr[2] "Особых построек"
-msgstr[3] "Особые постройки"
+msgstr[3] "Особые постройки "
 
 #: gui/civinfo/civinfo.js:141 gui/summary/layout.js:67
 msgid "Heroes"
@@ -1222,7 +1223,7 @@ msgstr "%(nick)s - %(name)s"
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr ""
+msgstr "Удалить выбранную запись используя %(hotkey)s"
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:204
 #, javascript-format
@@ -2683,7 +2684,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "Имя игрока (одиночная игра)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
@@ -2691,7 +2692,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr ""
+msgstr "Имя игрока (сетевая игра)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
@@ -2699,7 +2700,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
-msgstr ""
+msgstr "Фоновая пауза"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
@@ -2709,7 +2710,7 @@ msgstr "При отключении экран приветствия будет
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
-msgstr ""
+msgstr "Включить экран приветствия"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
@@ -2939,7 +2940,7 @@ msgstr "Использовать наилучшие эффекты для вод
 
 #: gui/options/options.json[1].options[12].label
 msgid "High-quality water effects"
-msgstr ""
+msgstr "Высокое качество воды"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -2955,7 +2956,7 @@ msgstr "Разрешить воде отражать изображение."
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water reflections"
-msgstr ""
+msgstr "Водные отражения"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Use a real water refraction map and not transparency."
@@ -3031,7 +3032,7 @@ msgstr "Общая громкость."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master volume"
-msgstr ""
+msgstr "Общая громкость "
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
@@ -3039,7 +3040,7 @@ msgstr "Уровень громкости музыки в игре."
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music volume"
-msgstr ""
+msgstr "Громкость музыки"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
@@ -3047,7 +3048,7 @@ msgstr "Уровень громкости фоновых звуков в игр�
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient volume"
-msgstr ""
+msgstr "Громкость окружения"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
@@ -3063,7 +3064,7 @@ msgstr "Громкость звуков интерфейса."
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI volume"
-msgstr ""
+msgstr "Громкость интерфейса"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."

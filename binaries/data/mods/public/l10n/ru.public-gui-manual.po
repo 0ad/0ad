@@ -6,6 +6,7 @@
 # Alexander Olkhovskiy, 2016
 # Alexander Rusakevich <mr.alexander.rusakevich@gmail.com>, 2017
 # Alexander Serov <sekachinsky@gmail.com>, 2014
+# Alexey, 2020
 # Alexey Solodovnikov <sklent@outlook.com>, 2017
 # anton.tsyganenko <anton-tsyganenko@yandex.ru>, 2015
 # Boris Karalnik <eyesucker@gmail.com>, 2015,2018-2020
@@ -34,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-04-17 17:04+0000\n"
-"Last-Translator: Георгий Морозов <moroz.ger@gmail.com>\n"
+"PO-Revision-Date: 2020-04-30 22:12+0000\n"
+"Last-Translator: Alexey\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -154,7 +155,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr ""
+msgstr "В сетевой игре только хост может менять параметры игры."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -198,11 +199,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr ""
+msgstr "Когда вы будете готовы начать, нажмите кнопку \"Начать игру\""
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Горячие клавиши[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
@@ -211,7 +212,7 @@ msgstr ""
 #: gui/manual/intro.txt:41
 msgid ""
 "  Alt + F4 – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr "Alt + F4 –  немедленно закрыть игру не спрашивая разрешения "
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter – Toggle between fullscreen and windowed"
@@ -219,11 +220,11 @@ msgstr "Alt + Enter — Переключиться между полноэкра
 
 #: gui/manual/intro.txt:43
 msgid "  ~ or F9 – Show/hide console"
-msgstr ""
+msgstr "~ или F9 – Показать/скрыть консоль"
 
 #: gui/manual/intro.txt:44
 msgid "  Alt + F – Show/hide frame counter (FPS)"
-msgstr ""
+msgstr "Alt + F – Показать/скрыть счётчик кадров (FPS)"
 
 #: gui/manual/intro.txt:45
 msgid ""
@@ -259,19 +260,19 @@ msgstr "Shift + Tab, Alt + W – Переключиться на предыду�
 
 #: gui/manual/intro.txt:52
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]В Игре[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:53
 msgid ""
 "  Double Left Click \\[on unit] – Select all of your units of the same kind "
 "on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "двойной левый щелчок [на юните]: Выбрать всех юнитов этого же типа на экране (даже если они разного ранга)"
 
 #: gui/manual/intro.txt:54
 msgid ""
 "  Triple Left Click \\[on unit] – Select all of your units of the same kind "
 "and the same rank on the screen"
-msgstr ""
+msgstr "Тройной щеллчок [по юниту] – Выбрать всех ваших юнитов того же типа и ранга на экране"
 
 #: gui/manual/intro.txt:55
 msgid ""
@@ -311,7 +312,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
-msgstr ""
+msgstr "T – Отправить в чат союзников"
 
 #: gui/manual/intro.txt:64
 msgid "  L – Chat with the previously selected private chat partner"
@@ -580,7 +581,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:121
 msgid "  Alt + G – Hide/show the GUI"
-msgstr ""
+msgstr "Alt + G – Скрыть/показать интерфейс"
 
 #: gui/manual/intro.txt:122
 msgid "  Alt + D – Show/hide developer overlay (with developer options)"
@@ -726,7 +727,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:156
 msgid "  Esc – Cancel"
-msgstr ""
+msgstr "Esc – отменить"
 
 #: gui/manual/intro.txt:157
 msgid "  Delete – Delete the selected saved game, ask for confirmation"
@@ -736,4 +737,4 @@ msgstr ""
 msgid ""
 "  Shift + Delete – Immediately delete the selected saved game, without "
 "asking for confirmation"
-msgstr ""
+msgstr " клавиша Shift + Delete – Немедленно удалить выделенную сохранённую игру, не спрашивая tрешения"

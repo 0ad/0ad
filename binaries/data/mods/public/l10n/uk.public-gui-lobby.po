@@ -3,9 +3,10 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Chindu the Manduri <mandurilooter210770@mail.ru>, 2020
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
-# Lion-Tailed Macaque <lion-tailed.macaque@mail.ru>, 2020
-# Lion-Tailed Macaque <lion-tailed.macaque@mail.ru>, 2020
+# 504fc1cf9150c6eb2ead15f639dc2c0a, 2020
+# 504fc1cf9150c6eb2ead15f639dc2c0a, 2020
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Olexandr Yaremenko <ua.limitless@gmail.com>, 2016
 # Victor Butko <victor.butko@gmail.com>, 2014
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-22 08:08+0000\n"
-"PO-Revision-Date: 2020-02-13 16:21+0000\n"
-"Last-Translator: Lion-Tailed Macaque <lion-tailed.macaque@mail.ru>\n"
+"PO-Revision-Date: 2020-05-03 12:49+0000\n"
+"Last-Translator: Chindu the Manduri <mandurilooter210770@mail.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,15 +34,15 @@ msgstr "Сповіщення"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:45
 msgid "BANNED"
-msgstr "Заблоковано"
+msgstr "ЗАБЛОКОВАНО"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:45
 msgid "KICKED"
-msgstr "Вигнано"
+msgstr "ВИГНАНО"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:61
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr "Вас було роз'єднано із лобі. Бажаєте перепідключитися?"
+msgstr "Вас було роз'єднано із лобі. Чи хочете Ви перепідключитися?"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:62
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
@@ -97,7 +98,7 @@ msgstr "Умови перемоги:"
 #. Translation: Comma used to concatenate victory conditions
 #: gui/lobby/LobbyPage/GameDetails.js:124
 msgid ", "
-msgstr ","
+msgstr ", "
 
 #: gui/lobby/LobbyPage/GameDetails.js:126
 msgid "Mods:"
@@ -220,7 +221,7 @@ msgstr "Ваші активні модифікації не відповідаю
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
 msgid "Do you want to switch to the mod selection page?"
-msgstr "Бажаєте перемкнутися до сторінки вибору модифікації?"
+msgstr "Чи хочете Ви перемкнутися до сторінки вибору модифікації?"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
 msgid "Incompatible mods"
@@ -228,7 +229,7 @@ msgstr "Несумісні модифікації"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
 msgid "The game has already started. Do you want to join as observer?"
-msgstr "Гра вже розпочалася. Бажаєте приєднатися у якості спостерігача?"
+msgstr "Гра вже розпочалася. Чи хочете Ви приєднатися у якості спостерігача?"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:89
 #, javascript-format
@@ -397,7 +398,7 @@ msgstr "%(nick)s було приглушено."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:112
 msgid "You are now a moderator."
-msgstr "Вас було призначено модератором."
+msgstr "Вас призначено модератором."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:113
 #, javascript-format
@@ -406,7 +407,7 @@ msgstr "%(nick)s зараз модератор."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:118
 msgid "You have been unmuted."
-msgstr "Ви знову може вести бесіду."
+msgstr "Ви знову можете вести бесіду."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:119
 #, javascript-format
@@ -521,7 +522,7 @@ msgstr "Паролі не співпадають"
 
 #: gui/prelobby/common/credentials/credentials.js:54
 msgid "Are you sure you want to delete the password after connecting?"
-msgstr "Дійсно видалити пароль після підключення?"
+msgstr "Чи впевнені Ви, що Ви хочете видалити пароль після підключення?"
 
 #: gui/prelobby/common/feedback/feedback.js:4
 msgid ""
@@ -623,7 +624,7 @@ msgstr "Показати лише відкриті ігри"
 #: gui/lobby/LobbyPage/LobbyPage.xml:(caption):10
 #: gui/prelobby/entrance/entrance.xml:(caption):14
 msgid "Multiplayer Lobby"
-msgstr "Багатокористувальницьке лобі"
+msgstr "Багатокористувацьке лобі"
 
 #: gui/lobby/LobbyPage/PlayerList.xml:(heading):12
 msgid "Status"
@@ -716,7 +717,7 @@ msgstr "Реєстрація"
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy "
 "Policy[/font]"
-msgstr "[font=\"sans-bold-18\"]Політика конфіденційності багатокористувальницького лобі 0 A.D. Empires Ascendant[/font]"
+msgstr "[font=\"sans-bold-18\"]Політика конфіденційності багатокористувацького лобі 0 A.D. Empires Ascendant[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
 #: gui/prelobby/common/terms/Terms_of_Service.txt:3
@@ -782,7 +783,7 @@ msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr "Коли гравець створює змагання у багатокористувальницькому лобі, IP-адреса цього гравця надсилається кожному гравцеві, який перебуває в мережі, щоб інші гравці могли приєднатися до цієї гри."
+msgstr "Коли гравець створює змагання у багатокористувацькому лобі, IP-адреса цього гравця надсилається кожному гравцеві, який перебуває в мережі, щоб інші гравці могли приєднатися до цієї гри."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
@@ -826,7 +827,7 @@ msgstr "[font=\"sans-bold-14\"]4. Присутність в мережі[/font]"
 msgid ""
 "Which players are currently connected to the Multiplayer Lobby and which "
 "match they joined is shown to all online players."
-msgstr "Які гравці на даний момент підключені до багатокористувальницького лобі та до якого змагання вони приєдналися, показано всім гравцям в мережі."
+msgstr "Які гравці на даний момент підключені до багатокористувацького лобі та до якого змагання вони приєдналися, показано всім гравцям в мережі."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
@@ -836,7 +837,7 @@ msgstr "[font=\"sans-bold-14\"]5. Повідомлення бесіди[/font]"
 msgid ""
 "The Multiplayer Lobby features a public chat room that enables players to "
 "discuss the game and organize multiplayer matches."
-msgstr "У багатокористувальницьке лобі функціонує як публічна кімната для бесіди, яка дозволяє гравцям обговорювати гру та організовувати багатокористувальницькі змагання."
+msgstr "Багатокористувацьке лобі функціонує як публічна кімната для бесіди, яка дозволяє гравцям обговорювати гру та організовувати багатокористувацькі змагання."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:28
 msgid ""
@@ -869,7 +870,7 @@ msgstr "[font=\"sans-bold-14\"]6. Статистика змагання[/font]"
 msgid ""
 "Players can gain a rating on the Multiplayer Lobby that reflects their skill"
 " at the game."
-msgstr "Гравці можуть отримати оцінювання у багатокористувальницькому лобі, яке відображає їхню майстерність у грі."
+msgstr "Гравці можуть отримати оцінювання у багатокористувацькому лобі, яке відображає їхню майстерність у грі."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:35
 msgid ""
@@ -946,14 +947,14 @@ msgid ""
 "Lobby, in the development and improvement of 0 A.D. and the Multiplayer "
 "Lobby, in enforcing the Terms of Use and in the protection against "
 "cyberattacks (GDPR 6.1.f)."
-msgstr "2. Wildfire Games має законні інтереси у забезпеченні багатокористувальницького лобі, у розробці та вдосконаленні 0 A.D., та багатокористувальницького лобі, у забезпечінні дотримання умов використання, та захисті від кібератак (GDPR 6.1.f)."
+msgstr "2. Wildfire Games має законні інтереси у забезпеченні багатокористувацького лобі, у розробці та вдосконаленні 0 A.D., та багатокористувацького лобі, у забезпечінні дотримання умов використання, та захисті від кібератак (GDPR 6.1.f)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:51
 msgid ""
 "3. Wildfire Games does not process any further data for the Multiplayer "
 "Lobby and does not ask for consent to process data (GDPR 6.1.a, GDPR 7, GDPR"
 " 8, GDPR 13.2.c)."
-msgstr "3. Wildfire Games не обробляє жодних додаткових даних для багатокористувальницького лобі, та не просить згоди на обробку даних (GDPR 6.1.a, GDPR 7, GDPR 8, GDPR 13.2.c)."
+msgstr "3. Wildfire Games не обробляє жодних додаткових даних для багатокористувацького лобі, та не просить згоди на обробку даних (GDPR 6.1.a, GDPR 7, GDPR 8, GDPR 13.2.c)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:53
 msgid "[font=\"sans-bold-16\"]User rights:[/font]"
@@ -1000,7 +1001,7 @@ msgstr "6. Мати право на обмеження обробки особи
 msgid ""
 "7. Right to object to the processing of personal data concerning him or her "
 "on grounds relating to their particular situation (GDPR 21)."
-msgstr "7. Мати право заперечити оброблення персональних даних, що стосуються його чи неї, на підставах, пов'язаних з їхньою конкретною ситуацією (GDPR 21)."
+msgstr "7. Мати право заперечити оброблення особистих даних, що стосуються нього чи неї, на підставах, пов'язаних з їхньою конкретною ситуацією (GDPR 21)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:62
 msgid ""
@@ -1029,13 +1030,13 @@ msgid ""
 " 2. Wildfire Games documents their processing activities appropriately, in "
 "particular the categories of processed personal data and security measures "
 "to protect it (GDPR 30)."
-msgstr "2. Wildfire Games документально підтверджує свою діяльність з обробки, зокрема категорії оброблюваних персональних даних та заходи безпеки для їх захисту (GDPR 30)."
+msgstr "2. Wildfire Games документально підтверджує свою діяльність з обробки, зокрема категорії оброблюваних особистих даних та заходи безпеки для їх захисту (GDPR 30)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:68
 msgid ""
 " 3. Wildfire Games processes personal data lawfully, fairly and "
 "transparently (GDPR 5.1.a, GDPR 12.1)."
-msgstr "3. Wildfire Games обробляє персональні дані законно, справедливо та зрозуміло (GDPR 5.1.a, GDPR 12.1)."
+msgstr "3. Wildfire Games обробляє особисті дані законно, справедливо та зрозуміло (GDPR 5.1.a, GDPR 12.1)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:69
 msgid ""
@@ -1044,19 +1045,19 @@ msgid ""
 "is processed, recipients of personal data and where applicable, transfer of "
 "personal data to third countries and automated decision-making (GDPR "
 "13.1.c-f, GDPR 13.2.a, GDPR 13.2.e-f, GDPR 15.1, GDPR 15.4)."
-msgstr "4. Wildfire Games інформує користувачів про цілі, правові підстави, законні інтереси та терміни зберігання персональних даних під час їх обробки, одержувачів персональних даних та, де це застосовано, передачу персональних даних у сторонні країни та автоматизоване прийняття рішень (GDPR 13.1.c-f, GDPR 13.2.a, GDPR 13.2.e-f, GDPR 15.1, GDPR 15.4)."
+msgstr "4. Wildfire Games інформує користувачів про цілі, правові підстави, законні інтереси та терміни зберігання особистих даних під час їх обробки, одержувачів особистих даних та, де це застосовано, передачу особистих даних у сторонні країни та автоматизоване прийняття рішень (GDPR 13.1.c-f, GDPR 13.2.a, GDPR 13.2.e-f, GDPR 15.1, GDPR 15.4)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:70
 msgid ""
 " 5. Wildfire Games does not processes personal data for purposes other than "
 "the specified ones (GDPR 5.1.b, 'purpose limitation', GDPR 13.3)."
-msgstr "5. Wildfire Games не обробляє персональні дані для інших цілей, ніж зазначені (GDPR 5.1.b, 'purpose limitation', GDPR 13.3)."
+msgstr "5. Wildfire Games не обробляє особисті дані для інших цілей, ніж зазначені (GDPR 5.1.b, 'purpose limitation', GDPR 13.3)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:71
 msgid ""
 " 6. Wildfire Games does not process personal data that is not needed for the"
 " specified purposes (GDPR 5.1.c, 'data minimization')."
-msgstr "6. Wildfire Games не обробляє персональні дані, які не потрібні для визначених цілей (GDPR 5.1.c, 'data minimization')."
+msgstr "6. Wildfire Games не обробляє особисті дані, які не потрібні для визначених цілей (GDPR 5.1.c, 'data minimization')."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:72
 msgid ""
@@ -1070,7 +1071,7 @@ msgid ""
 " 8. Wildfire Games secures personal data processing to prevent unauthorised "
 "or unlawful processing and accidental loss (GDPR 5.1.f. 'integrity and "
 "confidentiality')."
-msgstr "8. Wildfire Games захищає обробку персональних даних, щоб запобігти несанкціонованій чи незаконній обробці та випадковій втраті (GDPR 5.1.f. 'integrity and confidentiality')."
+msgstr "8. Wildfire Games захищає обробку особистих даних, щоб запобігти несанкціонованій чи незаконній обробці та випадковій втраті (GDPR 5.1.f. 'integrity and confidentiality')."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:74
 msgid ""
@@ -1078,7 +1079,7 @@ msgid ""
 "erase personal data and the right to restrict, to withdraw consent to, to "
 "object to personal data processing and to complain at a supervisory "
 "authority (GDPR 13.2.b, GDPR 13.2.c, GDPR 13.2.d)."
-msgstr "9. Wildfire Games інформує користувачів про їх право на доступ, виправлення, стирання персональні дані та право обмежувати, відкликати згоду на, заперечувати проти обробки персональних даних та подавати скаргу в наглядовий орган (GDPR 13.2.b, GDPR 13.2.c, GDPR 13.2.d)."
+msgstr "9. Wildfire Games інформує користувачів про їх право на доступ, виправлення, стирання особистих даних та право обмежувати, відкликати згоду на, заперечувати проти обробки особистих даних та подавати скаргу в наглядовий орган (GDPR 13.2.b, GDPR 13.2.c, GDPR 13.2.d)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:75
 msgid ""
@@ -1099,7 +1100,7 @@ msgid ""
 "under the age of 13 (Children's Online Privacy Protection Act). If you "
 "believe Wildfire Games received any personal data from or about a child "
 "under 13, please contact Wildfire Games."
-msgstr "12. Wildfire Games не буде свідомо збирати особисті дані від дітей до цього віку (Children's Online Privacy Protection Act). Якщо Ви вважаєте, що Wildfire Games було одержано будь-які особисті дані від дитини до 13 років або про неї, будь ласка, звертайтеся до Wildfire Games."
+msgstr "12. Wildfire Games не буде свідомо збирати особисті дані від дітей до цього віку (Children's Online Privacy Protection Act). Якщо Ви вважаєте, що Wildfire Games було одержано будь-які особисті дані від дитини до 13 років або про неї, будь ласка, зверніться до Wildfire Games."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:78
 msgid ""
@@ -1110,7 +1111,7 @@ msgid ""
 "interests do not override Wildfire Games legitimate interests, and that "
 "Wildfire Games is not using personal data in intrusive ways unless there is "
 "a very good reason to."
-msgstr "13. Там, де Wildfire Games обробляє конфіденційні персональні дані на основі законних інтересів, Wildfire Games розглядає можливість виконання, запис та періодичний перегляд оцінювання законних інтересів, та оцінювання впливу захисту даних (GDPR 35), щоб переконатися, що інтереси особи не переважають законних інтересів Wildfire Games, та що Wildfire Games не використовує особисті дані нав'язливими способами, якщо немає дуже вагомих причин."
+msgstr "13. Там, де Wildfire Games обробляє конфіденційні особисті дані на основі законних інтересів, Wildfire Games розглядає можливість виконання, запис та періодичний перегляд оцінювання законних інтересів, та оцінювання впливу захисту даних (GDPR 35), щоб переконатися, що інтереси особи не переважають законних інтересів Wildfire Games, та що Wildfire Games не використовує особисті дані нав'язливими способами, якщо немає дуже вагомих причин."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:80
 msgid ""
@@ -1122,7 +1123,7 @@ msgstr "Для отримання додаткової інформації що
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Service[/font]"
-msgstr "[font=\"sans-bold-18\"]Умови послуги багатокористувальницького лобі 0 A.D. Empires Ascendant[/font]"
+msgstr "[font=\"sans-bold-18\"]Умови послуги багатокористувацького лобі 0 A.D. Empires Ascendant[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:5
 msgid ""
@@ -1130,18 +1131,18 @@ msgid ""
 " by Wildfire Games that allows players to setup online multiplayer matches, "
 "discuss the game in a public chat room and gain a rating that reflects their"
 " skill."
-msgstr "Багатокористувальницьке лобі 0 A.D. Empires Ascendant – це мережева послуга, забезпечена Wildfire Games, що дозволяє гравцям налаштувати мережеві багатокористувальницькі змагання, обговорювати гру в кімнаті публічної бесіди та отримати оцінювання, яке відображає їхню майстерність у грі."
+msgstr "Багатокористувацьке лобі 0 A.D. Empires Ascendant – це мережева послуга, забезпечена Wildfire Games, що дозволяє гравцям налаштувати мережеві багатокористувацькі змагання, обговорювати гру в кімнаті публічної бесіди та отримати оцінювання, яке відображає їхню майстерність у грі."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""
 "Due to the subject matter of historic warfare, description and depiction of "
 "violence and the language on the Multiplayer Lobby, 0 A.D. and the "
 "Multiplayer Lobby are not directed to young children (COPPA §312.2)."
-msgstr "Зважаючи на тематику історичної війни, опис та змалювання насильства, та мову в багатокористувальницькому лобі, 0 A.D. та багатокористувальницьке лобі не призначені для дітей дітей молодшого віку (COPPA §312.2)."
+msgstr "Зважаючи на тематику історичної війни, опис та змалювання насильства, та мову в багатокористувацькому лобі, 0 A.D. та багатокористувацьке лобі не призначені для дітей молодшого віку (COPPA §312.2)."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid "The minimum age to use the Multiplayer Lobby is 13."
-msgstr "Мінімальний вік для використання багатокористувальницького лобі – 13 років."
+msgstr "Мінімальний вік для використання багатокористувацького лобі – 13 років."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:10
 #: gui/prelobby/common/terms/Terms_of_Use.txt:5
@@ -1166,7 +1167,7 @@ msgid ""
 " 3. Use the service at your own risk. Wildfire Games does not take "
 "responsibility for the content posted by users or damages resulting from "
 "this service."
-msgstr "3. Використанням послуги на власний ризик. Wildfire Games не несе відповідальності за вміст, розміщений користувачами або збитки внаслідок цієї послуги."
+msgstr "3. Використанням послуги на Ваш власний ризик. Wildfire Games не несе відповідальності за вміст, розміщений користувачами або збитки внаслідок цієї послуги."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:15
 msgid "[font=\"sans-bold-14\"]Wildfire Games reserves the right to:[/font]"
@@ -1204,13 +1205,13 @@ msgstr "5. Обробляти особисті дані відповідно д�
 msgid ""
 "If parts of the terms are held to be illegal or otherwise unenforceable, the"
 " remainder of the terms shall still apply ('severability')."
-msgstr "Якщо частина термінів вважається незаконною або іншим чином не підлягає виконанню, решта термінів все ще застосовується ('severability')."
+msgstr "Якщо частина умов вважається незаконною або іншим чином не підлягає виконанню, решта умов все ще застосовується ('severability')."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:1
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Use[/font]"
-msgstr "[font=\"sans-bold-18\"]Умови використання багатокористувальницького лобі 0 A.D. Empires Ascendant[/font]"
+msgstr "[font=\"sans-bold-18\"]Умови використання багатокористувацького лобі 0 A.D. Empires Ascendant[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-13"
@@ -1226,7 +1227,7 @@ msgstr "1. Створювати лише один обліковий запис 
 msgid ""
 " 2. Not impersonate other users of the service and only use your registered "
 "username in multiplayer matches."
-msgstr "2. Не видавати себе за інших користувачів сервісу та використовати лише зареєстроване ім’я користувача у багатокористувацьких змаганнях."
+msgstr "2. Не видавати себе за інших користувачів сервісу та використовати лише Ваше зареєстроване ім’я користувача у багатокористувацьких змаганнях."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:8
 msgid " 3. Not post profanity, pejorative terms or pornographic content."

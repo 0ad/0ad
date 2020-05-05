@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-07 08:09+0000\n"
-"PO-Revision-Date: 2020-04-29 17:29+0000\n"
+"PO-Revision-Date: 2020-05-03 16:28+0000\n"
 "Last-Translator: Chindu the Manduri <mandurilooter210770@mail.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -243,7 +243,7 @@ msgstr[3] "Спостерігачів"
 #: gui/common/gamedescription.js:188
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr "Безкінечна Гра"
+msgstr "Нескінченна гра"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
@@ -257,7 +257,7 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Чудо (%(min)s хвилина)"
 msgstr[1] "Чудо (%(min)s хвилини)"
 msgstr[2] "Чудо (%(min)s хвилин)"
-msgstr[3] "Чудо (%(min)s хвилин)"
+msgstr[3] "Диво (%(min)s хвилин)"
 
 #: gui/common/gamedescription.js:216
 #, javascript-format
@@ -1414,7 +1414,7 @@ msgstr "Відтворення попередніх ігор."
 
 #: gui/pregame/MainMenuItems.js:88 gui/replaymenu/replay_filters.js:142
 msgid "Multiplayer"
-msgstr "Багато гравців"
+msgstr "Багатокористувацька гра"
 
 #: gui/pregame/MainMenuItems.js:89
 msgid "Fight against one or more human players in a multiplayer game."
@@ -1427,11 +1427,11 @@ msgstr "Приєднатися до гри"
 
 #: gui/pregame/MainMenuItems.js:94
 msgid "Joining an existing multiplayer game."
-msgstr "Приєднатися до існуючої гри"
+msgstr "Приєднання до існуючої багатокористувацької гри."
 
 #: gui/pregame/MainMenuItems.js:102
 msgid "Host Game"
-msgstr "Сервер"
+msgstr "Власна гра"
 
 #: gui/pregame/MainMenuItems.js:103
 msgid "Host a multiplayer game."
@@ -1462,7 +1462,7 @@ msgstr "Змінити налаштування гри."
 
 #: gui/pregame/MainMenuItems.js:142
 msgid "Options"
-msgstr "Опції"
+msgstr "Налаштунки"
 
 #: gui/pregame/MainMenuItems.js:143
 msgid "Adjust game settings."
@@ -1970,7 +1970,7 @@ msgstr "Громадські центри"
 
 #: gui/summary/layout.js:31
 msgid "Wonders"
-msgstr "Чудеса світу"
+msgstr "Дива"
 
 #: gui/summary/layout.js:35
 #, javascript-format
@@ -3689,7 +3689,7 @@ msgstr ""
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
-msgstr "Казарма"
+msgstr "КАЗАРМИ"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""

@@ -13,6 +13,8 @@
 # Jakub Jelen <jakuje@gmail.com>, 2017
 # Katie Trochimovičová <Kattienika@gmail.com>, 2018
 # LiberteCzech <liberte.czech@gmail.com>, 2018
+# Lukáš Bačovský <l.bacovsky@gmail.com>, 2020
+# Lukáš Bačovský <l.bacovsky@gmail.com>, 2020
 # LiberteCzech <liberte.czech@gmail.com>, 2015
 # OndraK <ondrej.kajinek@gmail.com>, 2014
 # fri, 2014-2020
@@ -26,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-03 08:10+0000\n"
-"PO-Revision-Date: 2020-02-03 15:46+0000\n"
-"Last-Translator: Jakub Jelen <jakuje@gmail.com>\n"
+"PO-Revision-Date: 2020-05-02 12:05+0000\n"
+"Last-Translator: Lukáš Bačovský <l.bacovsky@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -89,7 +91,7 @@ msgstr "Umělá inteligence bude pro tohoto hráče zakázána."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:93
 msgid "AI Behavior"
-msgstr ""
+msgstr "Chování umělé inteligence"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:87
 msgid "AI Difficulty"
@@ -299,11 +301,11 @@ msgstr "Vyberte náhodně bióm."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:101
 msgid "Daytime"
-msgstr ""
+msgstr "denní doba"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
-msgstr ""
+msgstr "Zvolte zda se zápas bude odehrávat ve dne nebo v noci."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
@@ -313,7 +315,7 @@ msgstr "Náhodná"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr ""
+msgstr "Náhodně vybrat denní dobu."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:73
 msgid "Game Speed"
@@ -578,7 +580,7 @@ msgstr[3] ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:99
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr ""
+msgstr "Okamžité vítězství"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"

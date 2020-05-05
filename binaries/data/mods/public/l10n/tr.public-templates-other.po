@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-23 08:32+0000\n"
-"PO-Revision-Date: 2020-03-24 05:26+0000\n"
+"POT-Creation-Date: 2020-04-30 10:46+0000\n"
+"PO-Revision-Date: 2020-05-01 03:21+0000\n"
 "Last-Translator: Günay Yılmaz\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -189,14 +189,6 @@ msgstr "Kutup Kurdu"
 msgid "Canis lupus"
 msgstr "Kurt"
 
-#: simulation/templates/gaia/fauna_bear.xml:4
-msgid "Brown Bear"
-msgstr "Kahverengi Ayı"
-
-#: simulation/templates/gaia/fauna_bear.xml:5
-msgid "Ursus arctos"
-msgstr "Boz Ayı"
-
 #: simulation/templates/gaia/fauna_bear_black.xml:4
 msgid "Black Bear"
 msgstr "Kara Ayı"
@@ -204,6 +196,14 @@ msgstr "Kara Ayı"
 #: simulation/templates/gaia/fauna_bear_black.xml:5
 msgid "Ursus americanus"
 msgstr "Ursus americanus"
+
+#: simulation/templates/gaia/fauna_bear_brown.xml:4
+msgid "Brown Bear"
+msgstr "Kahverengi Ayı"
+
+#: simulation/templates/gaia/fauna_bear_brown.xml:5
+msgid "Ursus arctos"
+msgstr "Boz Ayı"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:4
 msgid "Polar Bear"
@@ -376,6 +376,14 @@ msgstr "Keçi"
 #: simulation/templates/gaia/fauna_goat.xml:9
 msgid "Capra aegagrus hircus"
 msgstr "Keçi"
+
+#: simulation/templates/gaia/fauna_hippopotamus.xml:25
+msgid "Hippopotamus"
+msgstr "Hippopotamus"
+
+#: simulation/templates/gaia/fauna_hippopotamus.xml:26
+msgid "Hippopotamus amphibius"
+msgstr "Hippopotamus amphibius"
 
 #: simulation/templates/gaia/fauna_horse.xml:8
 msgid "Horse"
