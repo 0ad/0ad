@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -29,13 +29,13 @@
 
 #include "lib/alignment.h"
 #include "lib/sysdep/os/win/win.h"	// includes windows.h; must come before shlobj
+#include <SDL_clipboard.h>	// SDL_SetClipboardText
 #include <shlobj.h>	// pick_dir
 #include <shellapi.h>	// open_url
 #include <Wincrypt.h>
 #include <WindowsX.h>	// message crackers
 #include <winhttp.h>
 
-#include "lib/sysdep/clipboard.h"
 #include "lib/sysdep/os/win/error_dialog.h"
 #include "lib/sysdep/os/win/wutil.h"
 
@@ -214,7 +214,8 @@ static void dlg_OnCommand(HWND hDlg, int id, HWND UNUSED(hWndCtl), UINT UNUSED(c
 	{
 		std::vector<wchar_t> buf(128*KiB);	// (too big for stack)
 		GetDlgItemTextW(hDlg, IDC_EDIT1, &buf[0], (int)buf.size());
-		sys_clipboard_set(&buf[0]);
+		std::string string = utf8_from_wstring(&buf[0]);
+		SDL_SetClipboardText(string.c_str());
 		break;
 	}
 

@@ -26,21 +26,6 @@
 
 #include "lib/external_libraries/libsdl.h"
 
-Status sys_clipboard_set(const wchar_t* UNUSED(text))
-{
-	return INFO::OK;
-}
-
-wchar_t* sys_clipboard_get()
-{
-	return NULL;
-}
-
-Status sys_clipboard_free(wchar_t* UNUSED(copy))
-{
-	return INFO::OK;
-}
-
 namespace gfx {
 
 Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
