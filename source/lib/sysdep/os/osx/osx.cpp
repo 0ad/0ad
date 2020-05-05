@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,7 +27,6 @@
 #include "lib/sysdep/gfx.h"
 #include "lib/utf8.h"
 #include "osx_bundle.h"
-#include "osx_pasteboard.h"
 
 #include <ApplicationServices/ApplicationServices.h>
 #include <AvailabilityMacros.h> // MAC_OS_X_VERSION_MIN_REQUIRED
