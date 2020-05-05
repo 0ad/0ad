@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="Base" frequency="1">
+  <animations>
+    <animation file="others/props/shields/apron_hoplite_idle_relax_01.dae" name="Idle" id="idle1" frequency="8" speed="80"/>
+    <animation file="others/props/shields/apron_hoplite_idle_relax_02.dae" name="Idle" id="idle2" frequency="1" speed="80"/>
+    <animation file="others/props/shields/apron_hoplite_idle_relax_03.dae" name="Idle" id="idle3" frequency="1" speed="80"/>
+    <animation file="others/props/shields/apron_hoplite_idle_relax_04.dae" name="Idle" id="idle4" frequency="3" speed="80"/>
+    <animation file="others/props/shields/apron_hoplite_idle_relax_05.dae" name="Idle" id="idle5" frequency="3" speed="80"/>
+    <animation file="others/props/shields/apron_hoplite_idle_relax_06.dae" name="Idle" id="idle6" frequency="1" speed="80"/>
+    <animation file="others/props/shields/apron_hoplite_idle_relax_07.dae" name="Idle" id="idle7" frequency="1" speed="80"/>
+    <animation file="others/props/shields/apron_hoplite_walk_relax.dae" name="Walk" id="walk1" speed="30"/>
+    <animation file="others/props/shields/apron_hoplite_walk_relax.dae" name="Walk" id="walk2" speed="32"/>
+    <animation file="others/props/shields/apron_hoplite_run_ready.dae" name="Run" id="run1" speed="8"/>
+    <animation file="others/props/shields/apron_hoplite_run_ready.dae" name="Run" id="run2" speed="9"/>
+    <animation file="others/props/shields/apron_hoplite_run_ready.dae" name="Run" id="run3" speed="10"/>
+    <animation event="0.5" file="others/props/shields/apron_hoplite_attack_melee_04.dae" name="Attack_melee" id="attack1" speed="30"/>
+    <animation event="0.5" file="others/props/shields/apron_hoplite_attack_melee_05.dae" name="Attack_melee" id="attack2" speed="30"/>
+    <animation file="others/props/shields/apron_promotion.dae" name="promotion" speed="80"/>
+    <animation file="others/props/shields/apron_capturing.dae" name="attack_capture" speed="100"/>
+  </animations>
+</variant>
