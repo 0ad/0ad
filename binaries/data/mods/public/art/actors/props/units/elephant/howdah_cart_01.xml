@@ -4,14 +4,14 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/elephant/howdah_01.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/aspis_kart_h.xml" attachpoint="shield1"/>
+        <prop actor="props/units/shields/aspis_kart_h.xml" attachpoint="shield2"/>
+      </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Carthaginian elephant champion howdah gray">
-      <props>
-        <prop actor="props/units/shields/kart_round_isp_e.xml" attachpoint="shield1"/>
-        <prop actor="props/units/shields/kart_round_isp_e.xml" attachpoint="shield2"/>
-      </props>
       <textures>
         <texture file="props/ptol_howdah_a.png" name="baseTex"/>
         <texture file="props/ptol_howdah_a_norm.png" name="normTex"/>
@@ -19,10 +19,6 @@
       </textures>
     </variant>
     <variant frequency="1" name="Carthaginian elephant champion howdah brown">
-      <props>
-        <prop actor="props/units/shields/kart_round_isp_e.xml" attachpoint="shield1"/>
-        <prop actor="props/units/shields/kart_round_isp_e.xml" attachpoint="shield2"/>
-      </props>
       <textures>
         <texture file="props/ptol_howdah_b.png" name="baseTex"/>
         <texture file="props/ptol_howdah_b_norm.png" name="normTex"/>
@@ -30,10 +26,6 @@
       </textures>
     </variant>
     <variant frequency="1" name="Carthaginian elephant champion howdah white">
-      <props>
-        <prop actor="props/units/shields/kart_round_isp_e.xml" attachpoint="shield1"/>
-        <prop actor="props/units/shields/kart_round_isp_e.xml" attachpoint="shield2"/>
-      </props>
       <textures>
         <texture file="props/ptol_howdah_c.png" name="baseTex"/>
         <texture file="props/ptol_howdah_a_norm.png" name="normTex"/>
@@ -41,10 +33,6 @@
       </textures>
     </variant>
     <variant frequency="1" name="Carthaginian elephant champion howdah white 2">
-      <props>
-        <prop actor="props/units/shields/kart_round_isp_e.xml" attachpoint="shield1"/>
-        <prop actor="props/units/shields/kart_round_isp_e.xml" attachpoint="shield2"/>
-      </props>
       <textures>
         <texture file="props/kush_howdah_01.png" name="baseTex"/>
         <texture file="props/ptol_howdah_a_norm.png" name="normTex"/>

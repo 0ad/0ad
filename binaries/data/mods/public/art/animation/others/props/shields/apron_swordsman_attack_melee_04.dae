@@ -1,0 +1,1060 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.81.16 commit date:2019-11-20, commit time:14:27, hash:26bd5ebd42e3</authoring_tool>
+    </contributor>
+    <created>2020-05-04T20:08:38</created>
+    <modified>2020-05-04T20:08:38</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="Aspis_Aspron-01-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <color sid="diffuse">0.8 0.8 0.8 1</color>
+            </diffuse>
+            <reflectivity>
+              <float sid="specular">0.5</float>
+            </reflectivity>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images/>
+  <library_materials>
+    <material id="Aspis_Aspron-01-material" name="Aspis_Aspron-01">
+      <instance_effect url="#Aspis_Aspron-01-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Plano_001-mesh" name="Plano.001">
+      <mesh>
+        <source id="Plano_001-mesh-positions">
+          <float_array id="Plano_001-mesh-positions-array" count="150">0 -0.0349282 -2 0 -0.03492802 0 0 -0.03492814 -1 0 -0.03492808 -0.5 0 -0.03492814 -1.5 0.75 -0.0349282 -2 -0.75 -0.03492802 0 -0.75 -0.03492814 -1 -0.75 -0.0349282 -2 0.75 -0.03492802 0 0.75 -0.03492814 -1 0.75 -0.03492814 -1.5 -0.75 -0.03492814 -1.5 0.375 -0.03492808 -0.5 0.375 -0.03492814 -1.5 -0.75 -0.03492808 -0.5 0.375 -0.03492814 -1 0.375 -0.03492802 0 0.375 -0.0349282 -2 0.75 -0.03492808 -0.5 -0.375 -0.03492808 -0.5 -0.375 -0.03492814 -1.5 -0.375 -0.03492814 -1 -0.375 -0.0349282 -2 -0.375 -0.03492802 0 0 -0.0349282 -2 0 -0.03492802 0 0 -0.03492814 -1 0 -0.03492808 -0.5 0 -0.03492814 -1.5 0.75 -0.0349282 -2 -0.75 -0.03492802 0 -0.75 -0.03492814 -1 -0.75 -0.0349282 -2 0.75 -0.03492802 0 0.75 -0.03492814 -1 0.75 -0.03492814 -1.5 -0.75 -0.03492814 -1.5 0.375 -0.03492808 -0.5 0.375 -0.03492814 -1.5 -0.75 -0.03492808 -0.5 0.375 -0.03492814 -1 0.375 -0.03492802 0 0.375 -0.0349282 -2 0.75 -0.03492808 -0.5 -0.375 -0.03492808 -0.5 -0.375 -0.03492814 -1.5 -0.375 -0.03492814 -1 -0.375 -0.0349282 -2 -0.375 -0.03492802 0</float_array>
+          <technique_common>
+            <accessor source="#Plano_001-mesh-positions-array" count="50" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plano_001-mesh-normals">
+          <float_array id="Plano_001-mesh-normals-array" count="6">0 -1 0 0 1 0</float_array>
+          <technique_common>
+            <accessor source="#Plano_001-mesh-normals-array" count="2" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plano_001-mesh-map-0">
+          <float_array id="Plano_001-mesh-map-0-array" count="384">0.5 1 0.6875 0.75 0.6875 1 0.125 1 0.3125 0.75 0.3125 1 0.875 0 0.6875 0.25 0.6875 0 0.3125 0.25 0.125 0 0.3125 0 0.6875 0.5 0.5 0.25 0.6875 0.25 0.3125 0.75 0.5 0.5 0.5 0.75 0.6875 0.5 0.875 0.25 0.875 0.5 0.5 0 0.3125 0.25 0.3125 0 0.125 0.75 0.3125 0.5 0.3125 0.75 0.5 0.25 0.6875 0 0.6875 0.25 0.5 0.5 0.3125 0.25 0.5 0.25 0.3125 1 0.5 0.75 0.5 1 0.125 0.5 0.3125 0.25 0.3125 0.5 0.5 0.75 0.6875 0.5 0.6875 0.75 0.6875 0.75 0.875 0.5 0.875 0.75 0.6875 1 0.875 0.75 0.875 1 0.6875 0.75 0.5 1 0.6875 1 0.3125 0.75 0.125 1 0.3125 1 0.6875 0.25 0.875 0 0.6875 0 0.125 0 0.3125 0.25 0.3125 0 0.5 0.25 0.6875 0.5 0.6875 0.25 0.5 0.5 0.3125 0.75 0.5 0.75 0.875 0.25 0.6875 0.5 0.875 0.5 0.3125 0.25 0.5 0 0.3125 0 0.3125 0.5 0.125 0.75 0.3125 0.75 0.6875 0 0.5 0.25 0.6875 0.25 0.3125 0.25 0.5 0.5 0.5 0.25 0.5 0.75 0.3125 1 0.5 1 0.3125 0.25 0.125 0.5 0.3125 0.5 0.6875 0.5 0.5 0.75 0.6875 0.75 0.875 0.5 0.6875 0.75 0.875 0.75 0.875 0.75 0.6875 1 0.875 1 0.5 1 0.5 0.75 0.6875 0.75 0.125 1 0.125 0.75 0.3125 0.75 0.875 0 0.875 0.25 0.6875 0.25 0.3125 0.25 0.125 0.25 0.125 0 0.6875 0.5 0.5 0.5 0.5 0.25 0.3125 0.75 0.3125 0.5 0.5 0.5 0.6875 0.5 0.6875 0.25 0.875 0.25 0.5 0 0.5 0.25 0.3125 0.25 0.125 0.75 0.125 0.5 0.3125 0.5 0.5 0.25 0.5 0 0.6875 0 0.5 0.5 0.3125 0.5 0.3125 0.25 0.3125 1 0.3125 0.75 0.5 0.75 0.125 0.5 0.125 0.25 0.3125 0.25 0.5 0.75 0.5 0.5 0.6875 0.5 0.6875 0.75 0.6875 0.5 0.875 0.5 0.6875 1 0.6875 0.75 0.875 0.75 0.6875 0.75 0.5 0.75 0.5 1 0.3125 0.75 0.125 0.75 0.125 1 0.6875 0.25 0.875 0.25 0.875 0 0.125 0 0.125 0.25 0.3125 0.25 0.5 0.25 0.5 0.5 0.6875 0.5 0.5 0.5 0.3125 0.5 0.3125 0.75 0.875 0.25 0.6875 0.25 0.6875 0.5 0.3125 0.25 0.5 0.25 0.5 0 0.3125 0.5 0.125 0.5 0.125 0.75 0.6875 0 0.5 0 0.5 0.25 0.3125 0.25 0.3125 0.5 0.5 0.5 0.5 0.75 0.3125 0.75 0.3125 1 0.3125 0.25 0.125 0.25 0.125 0.5 0.6875 0.5 0.5 0.5 0.5 0.75 0.875 0.5 0.6875 0.5 0.6875 0.75 0.875 0.75 0.6875 0.75 0.6875 1</float_array>
+          <technique_common>
+            <accessor source="#Plano_001-mesh-map-0-array" count="192" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plano_001-mesh-vertices">
+          <input semantic="POSITION" source="#Plano_001-mesh-positions"/>
+        </vertices>
+        <triangles material="Aspis_Aspron-01-material" count="64">
+          <input semantic="VERTEX" source="#Plano_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plano_001-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Plano_001-mesh-map-0" offset="2" set="0"/>
+          <p>1 0 0 13 0 1 17 0 2 6 0 3 20 0 4 24 0 5 5 0 6 14 0 7 18 0 8 21 0 9 8 0 10 23 0 11 16 0 12 4 0 13 14 0 14 20 0 15 2 0 16 3 0 17 16 0 18 11 0 19 10 0 20 0 0 21 21 0 22 23 0 23 15 0 24 22 0 25 20 0 26 4 0 27 18 0 28 14 0 29 2 0 30 21 0 31 4 0 32 24 0 33 3 0 34 1 0 35 7 0 36 21 0 37 22 0 38 3 0 39 16 0 40 13 0 41 13 0 42 10 0 43 19 0 44 17 0 45 19 0 46 9 0 47 38 1 48 26 1 49 42 1 50 45 1 51 31 1 52 49 1 53 39 1 54 30 1 55 43 1 56 33 1 57 46 1 58 48 1 59 29 1 60 41 1 61 39 1 62 27 1 63 45 1 64 28 1 65 36 1 66 41 1 67 35 1 68 46 1 69 25 1 70 48 1 71 47 1 72 40 1 73 45 1 74 43 1 75 29 1 76 39 1 77 46 1 78 27 1 79 29 1 80 28 1 81 49 1 82 26 1 83 46 1 84 32 1 85 47 1 86 41 1 87 28 1 88 38 1 89 35 1 90 38 1 91 44 1 92 44 1 93 42 1 94 34 1 95 1 0 96 3 0 97 13 0 98 6 0 99 15 0 100 20 0 101 5 0 102 11 0 103 14 0 104 21 0 105 12 0 106 8 0 107 16 0 108 2 0 109 4 0 110 20 0 111 22 0 112 2 0 113 16 0 114 14 0 115 11 0 116 0 0 117 4 0 118 21 0 119 15 0 120 7 0 121 22 0 122 4 0 123 0 0 124 18 0 125 2 0 126 22 0 127 21 0 128 24 0 129 20 0 130 3 0 131 7 0 132 12 0 133 21 0 134 3 0 135 2 0 136 16 0 137 13 0 138 16 0 139 10 0 140 17 0 141 13 0 142 19 0 143 38 1 144 28 1 145 26 1 146 45 1 147 40 1 148 31 1 149 39 1 150 36 1 151 30 1 152 33 1 153 37 1 154 46 1 155 29 1 156 27 1 157 41 1 158 27 1 159 47 1 160 45 1 161 36 1 162 39 1 163 41 1 164 46 1 165 29 1 166 25 1 167 47 1 168 32 1 169 40 1 170 43 1 171 25 1 172 29 1 173 46 1 174 47 1 175 27 1 176 28 1 177 45 1 178 49 1 179 46 1 180 37 1 181 32 1 182 41 1 183 27 1 184 28 1 185 35 1 186 41 1 187 38 1 188 44 1 189 38 1 190 42 1 191</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers>
+    <controller id="Aspron_Armature_Plano_006-skin" name="Aspron_Armature">
+      <skin source="#Plano_001-mesh">
+        <bind_shape_matrix>1.104488 0 0 0 0 1.104487 0 0 0 0 1.104487 0 0 0 0 1</bind_shape_matrix>
+        <source id="Aspron_Armature_Plano_006-skin-joints">
+          <Name_array id="Aspron_Armature_Plano_006-skin-joints-array" count="21">Aspron_Root Aspron_C1 Aspron_C2 Aspron_C3 Aspron_C4 Aspron_A1 Aspron_A2 Aspron_A3 Aspron_A4 Aspron_B1 Aspron_B2 Aspron_B3 Aspron_B4 Aspron_D1 Aspron_D2 Aspron_D3 Aspron_D4 Aspron_E1 Aspron_E2 Aspron_E3 Aspron_E4</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Plano_006-skin-joints-array" count="21" stride="1">
+              <param name="JOINT" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Plano_006-skin-bind_poses">
+          <float_array id="Aspron_Armature_Plano_006-skin-bind_poses-array" count="336">1 0 0 0 0 -1.19209e-7 -1 1 0 1 -1.49012e-7 0.03857773 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 -1.48406e-7 0.03857761 0 0 0 1 -1 -1.34309e-6 0 0 0 0 -1 -0.5522437 1.34309e-6 -1 0 -0.03857767 0 0 0 1 1 0 0 0 0 0 -1 -1.104487 0 1 0 0.03857767 0 0 0 1 1 0 0 0 0 0 -1 -1.656731 0 1 0 0.03857767 0 0 0 1 1 0 0 0.8283657 0 0 -1 0 0 1 -1.48406e-7 0.03857761 0 0 0 1 -1 -1.34309e-6 0 -0.8283658 0 0 -1 -0.5522437 1.34309e-6 -1 0 -0.03857654 0 0 0 1 1 0 0 0.8283657 0 0 -1 -1.104487 0 1 0 0.03857767 0 0 0 1 1 0 0 0.8283657 0 0 -1 -1.656731 0 1 0 0.03857767 0 0 0 1 1 0 0 0.4141829 0 0 -1 0 0 1 -1.48406e-7 0.03857761 0 0 0 1 -1 -1.34309e-6 0 -0.4141829 0 0 -1 -0.5522437 1.34309e-6 -1 0 -0.03857713 0 0 0 1 1 0 0 0.4141829 0 0 -1 -1.104487 0 1 0 0.03857767 0 0 0 1 1 0 0 0.4141829 0 0 -1 -1.656731 0 1 0 0.03857767 0 0 0 1 1 0 0 -0.4141829 0 0 -1 0 0 1 -1.48406e-7 0.03857761 0 0 0 1 -1 -1.34309e-6 0 0.4141828 0 0 -1 -0.5522437 1.34309e-6 -1 0 -0.03857821 0 0 0 1 1 0 0 -0.4141829 0 0 -1 -1.104487 0 1 0 0.03857767 0 0 0 1 1 0 0 -0.4141829 0 0 -1 -1.656731 0 1 0 0.03857767 0 0 0 1 1 0 0 -0.8283657 0 0 -1 0 0 1 -1.48406e-7 0.03857761 0 0 0 1 -1 -1.34309e-6 0 0.8283656 0 0 -1 -0.5522437 1.34309e-6 -1 0 -0.0385788 0 0 0 1 1 0 0 -0.8283657 0 0 -1 -1.104487 0 1 0 0.03857767 0 0 0 1 1 0 0 -0.8283657 0 0 -1 -1.656731 0 1 0 0.03857767 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Plano_006-skin-bind_poses-array" count="21" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Plano_006-skin-weights">
+          <float_array id="Aspron_Armature_Plano_006-skin-weights-array" count="72">1 0.5 0.5 0.5 0.5 1 0.5 0.5 1 1 0.5 0.5 1 1 0.5 0.5 0.5 0.5 0.5 0.5 1 0.5 0.5 1 0.5 0.5 1 1 1 1 0.5 0.5 0.5 0.5 1 1 1 0.5 0.5 0.5 0.5 1 0.5 0.5 1 1 0.5 0.5 1 1 0.5 0.5 0.5 0.5 0.5 0.5 1 0.5 0.5 1 0.5 0.5 1 1 1 1 0.5 0.5 0.5 0.5 1 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Plano_006-skin-weights-array" count="72" stride="1">
+              <param name="WEIGHT" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <joints>
+          <input semantic="JOINT" source="#Aspron_Armature_Plano_006-skin-joints"/>
+          <input semantic="INV_BIND_MATRIX" source="#Aspron_Armature_Plano_006-skin-bind_poses"/>
+        </joints>
+        <vertex_weights count="50">
+          <input semantic="JOINT" source="#Aspron_Armature_Plano_006-skin-joints" offset="0"/>
+          <input semantic="WEIGHT" source="#Aspron_Armature_Plano_006-skin-weights" offset="1"/>
+          <vcount>1 2 2 1 2 1 1 2 1 1 2 2 2 1 2 1 2 1 1 1 1 2 2 1 1 1 2 2 1 2 1 1 2 1 1 2 2 2 1 2 1 2 1 1 1 1 2 2 1 1 </vcount>
+          <v>4 0 0 1 1 2 2 3 3 4 2 5 3 6 4 7 20 8 5 9 6 10 7 11 8 12 17 13 18 14 19 15 19 16 20 17 7 18 8 19 14 20 15 21 16 22 6 23 14 24 15 25 13 26 16 27 18 28 10 29 11 30 12 31 10 32 11 33 12 34 9 35 4 36 0 37 1 38 2 39 3 40 2 41 3 42 4 43 20 44 5 45 6 46 7 47 8 48 17 49 18 50 19 51 19 52 20 53 7 54 8 55 14 56 15 57 16 58 6 59 14 60 15 61 13 62 16 63 18 64 10 65 11 66 12 67 10 68 11 69 12 70 9 71</v>
+        </vertex_weights>
+      </skin>
+    </controller>
+  </library_controllers>
+  <library_animations>
+    <animation id="action_container-Aspron_Armature" name="Aspron_Armature">
+      <animation id="Aspron_Armature_Action_001_transform" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_transform-input">
+          <float_array id="Aspron_Armature_Action_001_transform-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_transform-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_transform-output">
+          <float_array id="Aspron_Armature_Action_001_transform-output-array" count="416">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_transform-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_transform-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_transform-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_transform-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_transform-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_transform-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_transform-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_transform-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_transform-sampler" target="Aspron_Armature/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_Root_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_Root_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_Root_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_Root_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_Root_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_Root_pose_matrix-output-array" count="416">1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1 1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_Root_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_Root_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_Root_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_Root_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_Root_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_Root_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_Root_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_Root_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_Root_pose_matrix-sampler" target="Aspron_Armature_Aspron_Root/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_C1_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_C1_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_C1_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_C1_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_C1_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_C1_pose_matrix-output-array" count="416">0.9848074 -6.96018e-4 -0.1736468 -4.14073e-4 -1.0513e-10 0.9999917 -0.004008212 0.9998468 0.1736481 0.003947318 0.9847997 0.005171929 0 0 0 1 0.9848074 -0.01948042 -0.172552 -4.14073e-4 -1.0513e-10 0.9936873 -0.1121833 0.9998468 0.1736481 0.1104789 0.9785911 0.005171929 0 0 0 1 0.9848074 -0.03015368 -0.17101 -4.14073e-4 -1.0513e-10 0.9848074 -0.1736482 0.9998468 0.1736481 0.17101 0.9698462 0.005171929 0 0 0 1 0.9848074 -0.03015368 -0.17101 -4.14073e-4 -1.0513e-10 0.9848074 -0.1736482 0.9998468 0.1736481 0.17101 0.9698462 0.005171929 0 0 0 1 0.9848074 -0.03015368 -0.17101 -4.14073e-4 -1.0513e-10 0.9848074 -0.1736482 0.9998468 0.1736481 0.17101 0.9698462 0.005171929 0 0 0 1 0.9848074 -0.03015368 -0.17101 -4.14073e-4 -1.0513e-10 0.9848074 -0.1736482 0.9998468 0.1736481 0.17101 0.9698462 0.005171929 0 0 0 1 0.9848074 -0.03015368 -0.17101 -4.14073e-4 -1.0513e-10 0.9848074 -0.1736482 0.9998468 0.1736481 0.17101 0.9698462 0.005171929 0 0 0 1 0.9848074 -0.03015368 -0.17101 -4.14073e-4 -1.0513e-10 0.9848074 -0.1736482 0.9998468 0.1736481 0.17101 0.9698462 0.005171929 0 0 0 1 0.9848074 -0.03015368 -0.17101 -4.14073e-4 -1.0513e-10 0.9848074 -0.1736482 0.9998468 0.1736481 0.17101 0.9698462 0.005171929 0 0 0 1 0.9848074 -0.03015368 -0.17101 -4.14073e-4 -1.0513e-10 0.9848074 -0.1736482 0.9998468 0.1736481 0.17101 0.9698462 0.005171929 0 0 0 1 0.9848074 -0.03015368 -0.17101 -4.14073e-4 -1.0513e-10 0.9848074 -0.1736482 0.9998468 0.1736481 0.17101 0.9698462 0.005171929 0 0 0 1 0.9848074 -0.03015368 -0.17101 -4.14073e-4 -1.0513e-10 0.9848074 -0.1736482 0.9998468 0.1736481 0.17101 0.9698462 0.005171929 0 0 0 1 0.9848074 -0.03015368 -0.17101 -4.14073e-4 -1.0513e-10 0.9848074 -0.1736482 0.9998468 0.1736481 0.17101 0.9698462 0.005171929 0 0 0 1 0.9848074 -0.03015368 -0.17101 -4.14073e-4 -1.0513e-10 0.9848074 -0.1736482 0.9998468 0.1736481 0.17101 0.9698462 0.005171929 0 0 0 1 0.9848074 -0.02460486 -0.1718961 -4.14073e-4 -1.0513e-10 0.9899103 -0.1416937 0.9998468 0.1736481 0.1395411 0.9748715 0.005171929 0 0 0 1 0.9848074 -1.89214e-4 -0.1736481 -4.14073e-4 -1.0513e-10 0.9999992 -0.00108964 0.9998468 0.1736481 0.001073086 0.9848071 0.005171929 0 0 0 1 0.9848074 0 -0.1736481 -4.14073e-4 -1.0513e-10 0.9999998 -5.96224e-10 0.9998468 0.1736481 6.05425e-10 0.9848076 0.005171929 0 0 0 1 0.9848074 0 -0.1736481 -4.14073e-4 -1.0513e-10 0.9999998 -5.96224e-10 0.9998468 0.1736481 6.05425e-10 0.9848076 0.005171929 0 0 0 1 0.9848074 0 -0.1736482 -4.14073e-4 -1.0513e-10 0.9999998 -5.96224e-10 0.9998468 0.1736481 6.05425e-10 0.9848076 0.005171929 0 0 0 1 0.9848074 0 -0.1736482 -4.14073e-4 -1.0513e-10 0.9999998 -5.96224e-10 0.9998468 0.1736481 6.05425e-10 0.9848076 0.005171929 0 0 0 1 0.9848074 0 -0.1736482 -4.14073e-4 -1.0513e-10 0.9999998 -5.96224e-10 0.9998468 0.1736481 6.05425e-10 0.9848076 0.005171929 0 0 0 1 0.9848074 0 -0.1736482 -4.14073e-4 -1.0513e-10 0.9999998 -5.96224e-10 0.9998468 0.1736481 6.05425e-10 0.9848076 0.005171929 0 0 0 1 0.9848074 0 -0.1736482 -4.14073e-4 -1.0513e-10 0.9999998 -5.96224e-10 0.9998468 0.1736481 6.05425e-10 0.9848076 0.005171929 0 0 0 1 0.9848074 0 -0.1736481 -4.14073e-4 -1.0513e-10 0.9999998 -5.96224e-10 0.9998468 0.1736481 6.05425e-10 0.9848076 0.005171929 0 0 0 1 0.9848074 -0.003158562 -0.1736194 -4.14073e-4 -1.0513e-10 0.9998342 -0.01818943 0.9998468 0.1736481 0.01791309 0.9846447 0.005171929 0 0 0 1 0.9848074 -0.00296132 -0.1736229 -4.14073e-4 -1.0513e-10 0.9998543 -0.01705356 0.9998468 0.1736481 0.01679448 0.9846644 0.005171929 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_C1_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_C1_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_C1_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_C1_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_C1_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_C1_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_C1_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_C1_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_C1_pose_matrix-sampler" target="Aspron_Armature_Aspron_C1/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_C2_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_C2_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_C2_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_C2_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_C2_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_C2_pose_matrix-output-array" count="416">-0.9899527 -0.1053726 0.09428561 4.65661e-10 -0.1102636 0.9927306 -0.04824853 0.5522437 -0.08851617 -0.05816005 -0.9943753 -1.86265e-9 0 0 0 1 -0.9848657 -0.1584434 0.0702488 -9.31323e-10 -0.1544491 0.9862328 0.05908123 0.5522438 -0.0786427 0.04733723 -0.9957783 7.45058e-9 0 0 0 1 -0.9797729 -0.1952235 0.0439632 4.65661e-10 -0.1852031 0.9678327 0.1702931 0.5522438 -0.07579425 0.1587065 -0.9844123 7.45058e-9 0 0 0 1 -0.9765257 -0.214028 0.02427724 4.65661e-10 -0.2002727 0.943651 0.2634652 0.5522438 -0.07929818 0.2524186 -0.9643634 7.45058e-9 0 0 0 1 -0.9759665 -0.2171985 0.01772429 4.65661e-10 -0.2001154 0.9254565 0.3216895 0.5522438 -0.08627352 0.3104113 -0.9466793 7.45058e-9 0 0 0 1 -0.9781068 -0.2065703 0.02521027 4.65661e-10 -0.1860942 0.9224437 0.3383294 0.5522438 -0.09314385 0.3262308 -0.94069 7.45058e-9 0 0 0 1 -0.9823209 -0.1823566 0.04232411 4.65661e-10 -0.1600324 0.9353085 0.3155753 0.5522438 -0.09713338 0.3032231 -0.9479561 7.45058e-9 0 0 0 1 -0.987954 -0.1420018 0.0614998 4.65661e-10 -0.1221927 0.9597147 0.2530153 0.5522438 -0.09495088 0.2424527 -0.9655056 7.45058e-9 0 0 0 1 -0.9862335 -0.1562629 0.05408395 4.65661e-10 -0.1430049 0.9702218 0.1954983 0.5522438 -0.08302254 0.1850727 -0.9792116 7.45058e-9 0 0 0 1 -0.9651198 -0.261746 0.005705708 4.65661e-10 -0.2550167 0.9447927 0.205751 0.5522438 -0.0592452 0.1971193 -0.9785877 7.45058e-9 0 0 0 1 -0.9595758 -0.2793756 -0.03410785 4.65661e-10 -0.2791251 0.9290925 0.242645 0.5522438 -0.03609975 0.2423567 -0.9695154 7.45058e-9 0 0 0 1 -0.9739679 -0.2262803 -0.01354433 4.65661e-10 -0.22255 0.9431316 0.2469301 0.5522438 -0.04310134 0.2435163 -0.9689386 7.45058e-9 0 0 0 1 -0.9850268 -0.1689925 0.03410975 4.65661e-10 -0.1586663 0.9660202 0.2040348 0.5522438 -0.06743106 0.1955677 -0.9783692 7.45058e-9 0 0 0 1 -0.9889567 -0.1265442 0.07714238 4.65661e-10 -0.1139664 0.9820968 0.1499925 0.5522438 -0.09474197 0.1395444 -0.985673 7.45058e-9 0 0 0 1 -0.9907668 -0.08217954 0.1078299 4.65661e-10 -0.0723775 0.9931373 0.09186977 0.5522437 -0.1146397 0.08321708 -0.9899155 0 0 0 0 1 -0.991394 -0.02579532 0.1283444 9.31323e-10 -0.02309754 0.999481 0.02246423 0.5522438 -0.1288572 0.01930647 -0.9914752 -3.72529e-9 0 0 0 1 -0.9899461 0.02009106 0.1400102 4.65661e-10 0.01399818 0.9989173 -0.04436712 0.5522436 -0.1407499 -0.04196118 -0.9891555 0 0 0 0 1 -0.9889205 0.02998519 0.1453853 4.65661e-10 0.01919093 0.9969923 -0.07508795 0.5522436 -0.1471995 -0.07146595 -0.9865215 0 0 0 0 1 -0.9888259 0.003398505 0.1490346 9.31323e-10 -0.006023184 0.998013 -0.06272123 0.5522436 -0.1489516 -0.06291806 -0.9868407 0 0 0 0 1 -0.9877451 -0.05185409 0.1472088 9.31323e-10 -0.0543433 0.9984387 -0.01293562 0.5522436 -0.1463082 -0.02077692 -0.9890208 0 0 0 0 1 -0.9847539 -0.1082447 0.136171 9.31323e-10 -0.1032891 0.993723 0.04296698 0.5522436 -0.1399672 0.02824695 -0.9897531 0 0 0 0 1 -0.982896 -0.1373658 0.1226609 9.31323e-10 -0.1286904 0.9887619 0.07608518 0.5522436 -0.1317339 0.05899857 -0.9895278 0 0 0 0 1 -0.98456 -0.1326673 0.1141963 9.31323e-10 -0.1266332 0.9902175 0.05859635 0.5522436 -0.1208529 0.0432306 -0.9917286 0 0 0 0 1 -0.9867895 -0.1209638 0.1077682 4.65661e-10 -0.1201754 0.9926568 0.01380391 0.5522436 -0.1086466 6.70455e-4 -0.9940802 0 0 0 0 1 -0.9887877 -0.1095233 0.1015057 -4.65661e-10 -0.1131744 0.993094 -0.03092024 0.5522437 -0.09741817 -0.04206142 -0.9943542 1.86265e-9 0 0 0 1 -0.9899527 -0.1053727 0.09428565 0 -0.1102636 0.9927307 -0.04824853 0.5522437 -0.08851615 -0.05816006 -0.9943752 -1.86265e-9 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_C2_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_C2_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_C2_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_C2_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_C2_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_C2_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_C2_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_C2_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_C2_pose_matrix-sampler" target="Aspron_Armature_Aspron_C2/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_C3_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_C3_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_C3_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_C3_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_C3_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_C3_pose_matrix-output-array" count="416">-0.9940789 0.01836001 0.1070985 0 0.04379081 0.9697303 0.2402206 0.5522438 -0.09944621 0.2434881 -0.9647922 -7.45058e-9 0 0 0 1 -0.9873462 0.1149784 0.1092136 1.49012e-8 0.1344181 0.972209 0.1916813 0.5522436 -0.08413924 0.2039362 -0.9753618 0 0 0 0 1 -0.9707872 0.2158755 0.1047403 -2.23517e-8 0.2273695 0.9670968 0.1141377 0.5522438 -0.07665445 0.1346181 -0.9879282 1.49012e-8 0 0 0 1 -0.9467371 0.3099832 0.08717617 1.49012e-8 0.312908 0.9495329 0.02182159 0.5522437 -0.0760123 0.04793745 -0.9959539 0 0 0 0 1 -0.9231028 0.3799446 0.05935994 -7.45058e-9 0.3762063 0.924229 -0.06534299 0.5522438 -0.07968889 -0.0379867 -0.9960957 0 0 0 0 1 -0.9102966 0.4125476 0.03413123 2.23517e-8 0.4051118 0.904766 -0.1314663 0.5522437 -0.08511688 -0.1058464 -0.9907329 0 0 0 0 1 -0.914013 0.4049547 0.0243329 1.49012e-8 0.3955064 0.9028275 -0.1687529 0.5522436 -0.0903057 -0.1446185 -0.9853579 0 0 0 0 1 -0.9328933 0.3584422 0.03506227 1.86265e-8 0.3482618 0.9226167 -0.1658077 0.5522437 -0.09178147 -0.14247 -0.9855345 -2.98023e-8 0 0 0 1 -0.9532472 0.2999822 0.03647837 -2.98023e-8 0.2923347 0.9459893 -0.1401603 0.5522435 -0.0765537 -0.1229435 -0.9894567 -2.98023e-8 0 0 0 1 -0.9667551 0.255705 -2.54765e-4 0 0.2523554 0.9539294 -0.1622829 0.5522436 -0.04125351 -0.1569521 -0.9867442 -2.98023e-8 0 0 0 1 -0.9837329 0.1789057 -0.01620829 -2.98023e-8 0.1786148 0.9645183 -0.1944262 0.5522437 -0.01915073 -0.1941585 -0.9807833 -2.98023e-8 0 0 0 1 -0.9886935 0.1496056 0.0101836 7.45058e-9 0.1457885 0.9749157 -0.1681828 0.5522437 -0.03508925 -0.1647965 -0.9857032 0 0 0 0 1 -0.9839332 0.1716051 0.04926907 1.49012e-8 0.1652016 0.9797351 -0.113261 0.5522438 -0.06770679 -0.1033018 -0.9923429 -1.49012e-8 0 0 0 1 -0.9734445 0.2113328 0.08800121 -1.86265e-8 0.2056615 0.9761683 -0.06927475 0.5522438 -0.1005441 -0.04933673 -0.9937086 0 0 0 0 1 -0.9662544 0.2266476 0.1224077 -1.86265e-9 0.2244184 0.9739713 -0.03188513 0.5522438 -0.1264483 -0.003338605 -0.9919677 0 0 0 0 1 -0.9677613 0.1970927 0.1568213 1.86265e-9 0.2036243 0.9786885 0.02657398 0.5522436 -0.1482417 0.0576499 -0.9872695 0 0 0 0 1 -0.9735044 0.1360859 0.1837665 3.72529e-9 0.1572523 0.9818597 0.105942 0.5522437 -0.1660157 0.1320327 -0.9772441 3.72529e-9 0 0 0 1 -0.9781608 0.07756932 0.1928338 1.86265e-9 0.113413 0.9766573 0.1824241 0.5522439 -0.174182 0.2003099 -0.9641249 -7.45058e-9 0 0 0 1 -0.9808899 0.04158023 0.1900684 3.72529e-9 0.08770804 0.966504 0.2411999 0.5522437 -0.1736728 0.2532611 -0.9516808 -7.45058e-9 0 0 0 1 -0.9822407 0.03764175 0.1838113 0 0.08744367 0.9586084 0.2709682 0.5522438 -0.1660034 0.2822291 -0.9448755 -7.45058e-9 0 0 0 1 -0.9830146 0.05075006 0.1763716 -7.45058e-9 0.09900638 0.9558183 0.2767842 0.5522437 -0.1545324 0.2895448 -0.9446076 5.58794e-9 0 0 0 1 -0.9840199 0.06068555 0.1673984 -7.45058e-9 0.1050639 0.9569146 0.270696 0.5522438 -0.1437587 0.2839578 -0.9479988 1.49012e-8 0 0 0 1 -0.9865528 0.05578399 0.1536295 1.49012e-8 0.09572078 0.9590892 0.2664319 0.5522436 -0.1324817 0.2775547 -0.9515315 -5.58794e-9 0 0 0 1 -0.9898316 0.03928593 0.1367121 2.98023e-8 0.07466857 0.9615436 0.2643085 0.5522435 -0.1210711 0.271829 -0.9546993 3.72529e-9 0 0 0 1 -0.9924966 0.02296653 0.1200962 0 0.0534376 0.9649079 0.257094 0.5522438 -0.1099773 0.2615826 -0.9588949 0 0 0 0 1 -0.9940789 0.01836 0.1070985 7.45058e-9 0.04379083 0.9697302 0.2402206 0.5522436 -0.09944621 0.2434881 -0.9647921 0 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_C3_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_C3_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_C3_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_C3_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_C3_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_C3_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_C3_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_C3_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_C3_pose_matrix-sampler" target="Aspron_Armature_Aspron_C3/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_C4_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_C4_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_C4_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_C4_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_C4_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_C4_pose_matrix-output-array" count="416">0.9793985 0.1869827 -0.07626278 0 -0.1660755 0.9606667 0.2225723 0.5522438 0.1148803 -0.2053216 0.9719288 2.98023e-8 0 0 0 1 0.9921445 0.08442931 -0.09231044 -1.49012e-8 -0.05839396 0.9651421 0.2551287 0.5522437 0.110633 -0.2477341 0.9624906 0 0 0 0 1 0.9909508 -0.04204369 -0.1274714 2.98023e-8 0.07169104 0.9686579 0.2378285 0.5522438 0.1134771 -0.2448149 0.9629065 -2.98023e-8 0 0 0 1 0.9682598 -0.1929722 -0.1588552 8.9407e-8 0.219354 0.9607291 0.1699512 0.5522438 0.119821 -0.1994024 0.9725645 -5.96046e-8 0 0 0 1 0.9253135 -0.3455601 -0.1561513 2.98023e-8 0.358037 0.9318053 0.05956793 0.5522438 0.1249183 -0.111027 0.9859353 -5.96046e-8 0 0 0 1 0.880688 -0.4613872 -0.1072871 2.98023e-8 0.4564694 0.8871307 -0.06807724 0.5522438 0.1265877 0.0109815 0.9918947 0 0 0 0 1 0.8575172 -0.5132518 -0.03516868 2.98023e-8 0.498952 0.8463856 -0.1862203 0.5522436 0.1253442 0.1421396 0.9818783 -5.96046e-8 0 0 0 1 0.865664 -0.5001456 0.02191734 -5.96046e-8 0.4861847 0.8294478 -0.2750289 0.5522437 0.1193751 0.2487385 0.9611862 2.98023e-8 0 0 0 1 0.9098801 -0.4129736 0.03963834 -1.04308e-7 0.4022076 0.8546442 -0.3283477 0.5522436 0.1017222 0.3146998 0.9437249 0 0 0 0 1 0.9706178 -0.2397445 0.0205833 1.19209e-7 0.2296875 0.8975987 -0.3762445 0.5522437 0.07172704 0.3699173 0.9262916 2.98023e-8 0 0 0 1 0.9962747 -0.08462261 -0.01660776 0 0.07174818 0.9202161 -0.3847781 0.5522436 0.04784366 0.382153 0.9228595 0 0 0 0 1 0.9967625 -0.06925237 -0.04084718 -1.49012e-8 0.05162203 0.9407259 -0.3352157 0.5522436 0.06164047 0.3320219 0.9412553 5.96046e-8 0 0 0 1 0.989236 -0.1338171 -0.05920522 -1.49012e-8 0.1115607 0.9515226 -0.2866334 0.5522438 0.09469154 0.2769431 0.9562091 0 0 0 0 1 0.9758996 -0.202355 -0.0816844 1.49012e-8 0.1758398 0.9508749 -0.2547885 0.5522438 0.1292293 0.2342846 0.9635406 0 0 0 0 1 0.9673205 -0.2287616 -0.1093581 3.72529e-8 0.1998959 0.9533646 -0.226136 0.5522437 0.1559894 0.1968857 0.9679376 0 0 0 0 1 0.9681086 -0.2038974 -0.1455748 0 0.1786113 0.9691815 -0.1696622 0.5522439 0.175682 0.1382501 0.9746912 5.58794e-9 0 0 0 1 0.9741451 -0.1349233 -0.1812103 -2.23517e-8 0.1232462 0.9895925 -0.0742752 0.5522436 0.1893458 0.05002135 0.9806355 0 0 0 0 1 0.9787726 -0.05253185 -0.1981031 -2.23517e-8 0.06481716 0.996322 0.05604449 0.5522437 0.1944304 -0.06769527 0.9785776 -2.98023e-8 0 0 0 1 0.9808608 0.01474387 -0.1941525 -1.49012e-8 0.02551565 0.9787975 0.2032349 0.5522437 0.1930325 -0.204299 0.9596876 0 0 0 0 1 0.9821779 0.04730132 -0.1819055 2.98023e-8 0.01621355 0.942885 0.332724 0.5522439 0.1872541 -0.3297433 0.9253136 2.98023e-8 0 0 0 1 0.9835988 0.0513892 -0.1728947 -1.49012e-8 0.0247498 0.9110343 0.4115871 0.5522437 0.1786642 -0.4091156 0.8948203 -1.49012e-8 0 0 0 1 0.9848341 0.04061596 -0.1686783 1.49012e-8 0.03639613 0.902217 0.4297439 0.5522437 0.1696389 -0.4293655 0.8870556 7.45058e-9 0 0 0 1 0.9872913 0.05905654 -0.147542 -1.49012e-8 0.007286817 0.910592 0.4132425 0.5522438 0.1587552 -0.4090657 0.8985889 0 0 0 0 1 0.9869651 0.1127679 -0.1148195 -1.49012e-8 -0.06436697 0.9305009 0.3605895 0.5522437 0.1475025 -0.3484986 0.9256303 -1.49012e-8 0 0 0 1 0.9819576 0.1674548 -0.08785468 0 -0.1359899 0.9481527 0.2872515 0.5522438 0.1314013 -0.2701213 0.9538177 -1.49012e-8 0 0 0 1 0.9793988 0.1869827 -0.07626279 0 -0.1660755 0.9606667 0.2225723 0.5522437 0.1148803 -0.2053216 0.9719287 0 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_C4_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_C4_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_C4_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_C4_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_C4_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_C4_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_C4_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_C4_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_C4_pose_matrix-sampler" target="Aspron_Armature_Aspron_C4/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_A1_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_A1_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_A1_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_A1_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_A1_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_A1_pose_matrix-output-array" count="416">0.9848074 -2.83278e-10 -0.1736481 -0.8525003 -1.0513e-10 0.9999998 -2.22756e-9 0.9405037 0.1736481 2.21198e-9 0.9848073 0.1951193 0 0 0 1 0.9848074 -0.02140263 -0.1723241 -0.8525003 -1.0513e-10 0.9923751 -0.1232528 0.9405037 0.1736481 0.1213804 0.9772985 0.1951193 0 0 0 1 0.9848074 -0.0396527 -0.1690601 -0.8525003 -1.0513e-10 0.9735788 -0.2283508 0.9405037 0.1736481 0.2248816 0.9587876 0.1951193 0 0 0 1 0.9848074 -0.0396527 -0.1690601 -0.8525003 -1.0513e-10 0.9735788 -0.2283508 0.9405037 0.1736481 0.2248816 0.9587876 0.1951193 0 0 0 1 0.9848074 -0.0396527 -0.1690601 -0.8525003 -1.0513e-10 0.9735788 -0.2283508 0.9405037 0.1736481 0.2248816 0.9587876 0.1951193 0 0 0 1 0.9848074 -0.0396527 -0.1690601 -0.8525003 -1.0513e-10 0.9735788 -0.2283508 0.9405037 0.1736481 0.2248816 0.9587876 0.1951193 0 0 0 1 0.9848074 -0.0396527 -0.1690601 -0.8525003 -1.0513e-10 0.9735788 -0.2283508 0.9405037 0.1736481 0.2248816 0.9587876 0.1951193 0 0 0 1 0.9848074 -0.0396527 -0.1690601 -0.8525003 -1.0513e-10 0.9735788 -0.2283508 0.9405037 0.1736481 0.2248816 0.9587876 0.1951193 0 0 0 1 0.9848074 -0.0396527 -0.1690601 -0.8525003 -1.0513e-10 0.9735788 -0.2283508 0.9405037 0.1736481 0.2248816 0.9587876 0.1951193 0 0 0 1 0.9848074 -0.0396527 -0.1690601 -0.8525003 -1.0513e-10 0.9735788 -0.2283508 0.9405037 0.1736481 0.2248816 0.9587876 0.1951193 0 0 0 1 0.9848074 -0.0396527 -0.1690601 -0.8525003 -1.0513e-10 0.9735788 -0.2283508 0.9405037 0.1736481 0.2248816 0.9587876 0.1951193 0 0 0 1 0.9848074 -0.0396527 -0.1690601 -0.8525003 -1.0513e-10 0.9735788 -0.2283508 0.9405037 0.1736481 0.2248816 0.9587876 0.1951193 0 0 0 1 0.9848074 -0.0396527 -0.1690601 -0.8525003 -1.0513e-10 0.9735788 -0.2283507 0.9405037 0.1736481 0.2248816 0.9587876 0.1951193 0 0 0 1 0.9848074 -0.03539994 -0.1700015 -0.8525003 -1.0513e-10 0.9789999 -0.2038601 0.9405037 0.1736481 0.200763 0.9641265 0.1951193 0 0 0 1 0.9848074 -1.31382e-10 -0.1736481 -0.8525003 -1.0513e-10 0.9999998 -1.35282e-9 0.9405037 0.1736481 1.35053e-9 0.9848073 0.1951193 0 0 0 1 0.9848074 -1.31382e-10 -0.1736481 -0.8525003 -1.0513e-10 0.9999998 -1.35282e-9 0.9405037 0.1736481 1.35053e-9 0.9848073 0.1951193 0 0 0 1 0.9848074 -1.31382e-10 -0.1736481 -0.8525003 -1.0513e-10 0.9999998 -1.35282e-9 0.9405037 0.1736481 1.35053e-9 0.9848073 0.1951193 0 0 0 1 0.9848074 -1.31382e-10 -0.1736481 -0.8525003 -1.0513e-10 0.9999998 -1.35282e-9 0.9405037 0.1736481 1.35053e-9 0.9848073 0.1951193 0 0 0 1 0.9848074 -1.31382e-10 -0.1736481 -0.8525003 -1.0513e-10 0.9999998 -1.35282e-9 0.9405037 0.1736481 1.35053e-9 0.9848073 0.1951193 0 0 0 1 0.9848074 -1.31382e-10 -0.1736481 -0.8525003 -1.0513e-10 0.9999998 -1.35282e-9 0.9405037 0.1736481 1.35053e-9 0.9848073 0.1951193 0 0 0 1 0.9848074 -1.31382e-10 -0.1736481 -0.8525003 -1.0513e-10 0.9999998 -1.35282e-9 0.9405037 0.1736481 1.35053e-9 0.9848073 0.1951193 0 0 0 1 0.9848074 -1.31382e-10 -0.1736481 -0.8525003 -1.0513e-10 0.9999998 -1.35282e-9 0.9405037 0.1736481 1.35053e-9 0.9848073 0.1951193 0 0 0 1 0.9848074 -1.31382e-10 -0.1736481 -0.8525003 -1.0513e-10 0.9999998 -1.35282e-9 0.9405037 0.1736481 1.35053e-9 0.9848073 0.1951193 0 0 0 1 0.9848074 -1.31382e-10 -0.1736481 -0.8525003 -1.0513e-10 0.9999998 -1.35282e-9 0.9405037 0.1736481 1.35053e-9 0.9848073 0.1951193 0 0 0 1 0.9848074 -1.31382e-10 -0.1736481 -0.8525003 -1.0513e-10 0.9999998 -1.35282e-9 0.9405037 0.1736481 1.35053e-9 0.9848073 0.1951193 0 0 0 1 0.9848074 -1.31382e-10 -0.1736481 -0.8525003 -1.0513e-10 0.9999998 -1.35282e-9 0.9405037 0.1736481 1.35053e-9 0.9848073 0.1951193 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_A1_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_A1_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_A1_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_A1_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_A1_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_A1_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_A1_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_A1_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_A1_pose_matrix-sampler" target="Aspron_Armature_Aspron_A1/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_A2_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_A2_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_A2_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_A2_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_A2_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_A2_pose_matrix-output-array" count="416">-0.9951367 -0.09033407 0.03927867 5.96046e-8 -0.09381244 0.9907288 -0.09826211 0.5522436 -0.03003809 -0.101469 -0.9943852 0 0 0 0 1 -0.9922785 -0.1230656 0.01545795 -5.96046e-8 -0.122776 0.9922627 0.01846316 0.5522438 -0.01761052 0.01642273 -0.9997104 2.98023e-8 0 0 0 1 -0.9891229 -0.1469627 -0.006201869 -5.96046e-8 -0.146508 0.980551 0.1305962 0.5522438 -0.01311151 0.1300842 -0.9914165 0 0 0 0 1 -0.9868305 -0.1604318 -0.02068292 -5.96046e-8 -0.1610049 0.9618277 0.2212807 0.5522438 -0.01560705 0.2216965 -0.974991 0 0 0 0 1 -0.9865829 -0.1615386 -0.02366349 -5.96046e-8 -0.1617768 0.9477699 0.2748831 0.5522438 -0.0219767 0.275023 -0.9611867 0 0 0 0 1 -0.988881 -0.1480339 -0.0141674 -5.96046e-8 -0.145937 0.9477121 0.2838036 0.5522438 -0.02858594 0.2827153 -0.958778 0 0 0 0 1 -0.9929238 -0.1187128 0.00319114 -5.96046e-8 -0.1141629 0.9615788 0.2496664 0.5522438 -0.03270711 0.2475352 -0.9683269 0 0 0 0 1 -0.9973343 -0.07040527 0.01917891 -5.96046e-8 -0.06603654 0.9826541 0.1732922 0.5522438 -0.03104692 0.1715638 -0.9846839 0 0 0 0 1 -0.9966077 -0.08207319 0.006141746 -5.96046e-8 -0.08040672 0.9868594 0.1401548 0.5522438 -0.01756398 0.1391854 -0.9901108 0 0 0 0 1 -0.979898 -0.1909219 -0.05787307 -5.96046e-8 -0.1992293 0.9516081 0.2339875 0.5522438 0.01039918 0.2408137 -0.9705159 0 0 0 0 1 -0.9744443 -0.1973893 -0.1072207 -5.96046e-8 -0.2217152 0.9218103 0.3179755 0.5522438 0.03607214 0.3336217 -0.9420168 0 0 0 0 1 -0.9860467 -0.1478859 -0.07643426 -5.96046e-8 -0.1641281 0.9403927 0.2978655 0.5522438 0.02782812 0.3062541 -0.9515433 0 0 0 0 1 -0.9929653 -0.1157245 -0.02506532 -5.96046e-8 -0.1184036 0.9686038 0.2186037 0.5522438 -0.001019455 0.2200336 -0.975492 2.98023e-8 0 0 0 1 -0.9944196 -0.103513 0.02037142 0 -0.09997639 0.9862863 0.1313155 0.5522437 -0.03368495 0.128546 -0.9911314 0 0 0 0 1 -0.9954009 -0.0783409 0.05513649 5.96046e-8 -0.07606402 0.9962072 0.04225165 0.5522436 -0.05823741 0.03786341 -0.9975846 0 0 0 0 1 -0.9965289 -0.0294277 0.07787278 5.96046e-8 -0.0341113 0.9976444 -0.05951398 0.5522436 -0.07593798 -0.06196375 -0.9951853 0 0 0 0 1 -0.9959118 0.0110616 0.0896514 5.96046e-8 -0.002473734 0.9887618 -0.149478 0.5522436 -0.09029734 -0.1490887 -0.9846923 0 0 0 0 1 -0.9952399 0.02091827 0.09518395 5.96046e-8 0.002316503 0.9814939 -0.1914786 0.5522436 -0.09742787 -0.1903466 -0.9768705 0 0 0 0 1 -0.9950514 0.003750242 0.09929086 5.96046e-8 -0.01552764 0.9811407 -0.1926695 0.5522436 -0.09814087 -0.1932578 -0.9762273 0 0 0 0 1 -0.9943932 -0.03353038 0.1002887 5.96046e-8 -0.04984108 0.985059 -0.1648462 0.5522436 -0.09326295 -0.1689204 -0.9812074 0 0 0 0 1 -0.9926755 -0.07452501 0.09508552 5.96046e-8 -0.08608294 0.9885545 -0.1238925 0.5522436 -0.08476415 -0.1311702 -0.9877295 0 0 0 0 1 -0.9916456 -0.09761629 0.08432113 5.96046e-8 -0.1046969 0.9909431 -0.08408367 0.5522436 -0.07534952 -0.09220936 -0.9928847 0 0 0 0 1 -0.9926146 -0.09680463 0.07311 5.96046e-8 -0.1029981 0.9909288 -0.08632007 0.5522436 -0.06409064 -0.09321275 -0.9935813 0 0 0 0 1 -0.9936938 -0.09393249 0.06123168 5.96046e-8 -0.09928782 0.9908662 -0.09124622 0.5522436 -0.05210142 -0.09675036 -0.993944 0 0 0 0 1 -0.9946027 -0.09109626 0.04966905 5.96046e-8 -0.0955457 0.9907731 -0.09612126 0.5522436 -0.04045449 -0.1003481 -0.9941295 0 0 0 0 1 -0.9951366 -0.09033407 0.03927867 5.96046e-8 -0.09381243 0.9907288 -0.09826209 0.5522436 -0.03003809 -0.101469 -0.9943851 0 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_A2_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_A2_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_A2_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_A2_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_A2_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_A2_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_A2_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_A2_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_A2_pose_matrix-sampler" target="Aspron_Armature_Aspron_A2/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_A3_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_A3_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_A3_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_A3_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_A3_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_A3_pose_matrix-output-array" count="416">-0.9998967 0.01435009 7.5949e-4 -1.19209e-7 0.01435835 0.9955351 0.09329295 0.5522438 5.82653e-4 0.09329423 -0.9956385 2.98023e-8 0 0 0 1 -0.9940922 0.1085312 0.001338344 0 0.1085369 0.9940774 0.005486548 0.5522438 -7.34929e-4 0.005599409 -0.9999841 5.96046e-8 0 0 0 1 -0.9779054 0.2087745 -0.0107037 -5.96046e-8 0.2087143 0.9721662 -0.1064491 0.5522436 -0.01181802 -0.1063311 -0.9942605 0 0 0 0 1 -0.9530857 0.2997742 -0.04198891 5.96046e-8 0.3012842 0.9260522 -0.2272782 0.5522437 -0.02924816 -0.2292661 -0.9729243 0 0 0 0 1 -0.929329 0.359595 -0.08389875 -5.96046e-8 0.3663208 0.8692625 -0.3319514 0.5522436 -0.04643802 -0.339226 -0.939558 0 0 0 0 1 -0.9199463 0.3753547 -0.1131698 -1.19209e-7 0.3878584 0.8293108 -0.4022556 0.5522438 -0.05713552 -0.4139475 -0.908506 0 0 0 0 1 -0.9308863 0.3479108 -0.1113945 5.96046e-8 0.3606946 0.8270406 -0.431165 0.5522436 -0.05787911 -0.4415449 -0.8953703 -5.96046e-8 0 0 0 1 -0.9576277 0.2774296 -0.07734389 0 0.2844285 0.8687696 -0.4053884 0.5522438 -0.04527267 -0.4102099 -0.9108667 0 0 0 0 1 -0.9754235 0.2116308 -0.06133116 5.96046e-8 0.2196421 0.9117992 -0.3469578 0.5522438 -0.01750529 -0.3519017 -0.9358734 0 0 0 0 1 -0.9811151 0.1724924 -0.08751847 1.78814e-7 0.1919484 0.9240563 -0.3305687 0.5522437 0.02385144 -0.341125 -0.9397154 0 0 0 0 1 -0.9931283 0.07219812 -0.09210704 5.96046e-8 0.09807453 0.9428681 -0.3184042 0.5522438 0.0638566 -0.3252496 -0.9434696 0 0 0 0 1 -0.9962877 0.04693053 -0.07216928 -5.96046e-8 0.06651849 0.9518321 -0.2993178 0.5522437 0.05464588 -0.3030073 -0.9514202 -5.96046e-8 0 0 0 1 -0.9937082 0.1019216 -0.04643295 0 0.1110386 0.9507313 -0.2894487 0.5522438 0.01464418 -0.2927835 -0.9560667 0 0 0 0 1 -0.9823257 0.1855865 -0.02436366 1.19209e-7 0.1845449 0.9385051 -0.291807 0.5522436 -0.03129001 -0.2911457 -0.9561667 0 0 0 0 1 -0.9712047 0.2382343 -0.002393944 0 0.2292142 0.9315981 -0.2821094 0.5522438 -0.06497789 -0.2745347 -0.9593793 -2.98023e-8 0 0 0 1 -0.9735697 0.2260015 0.0329427 -5.96046e-8 0.2125948 0.9494711 -0.230885 0.5522436 -0.08345853 -0.2177792 -0.9724232 2.98023e-8 0 0 0 1 -0.9830344 0.1700089 0.06884919 0 0.1589333 0.9768851 -0.1429537 0.5522439 -0.09156112 -0.129586 -0.9873318 0 0 0 0 1 -0.9891824 0.1183179 0.08671332 0 0.1145018 0.9922749 -0.0477511 0.5522437 -0.09169322 -0.03730574 -0.9950883 0 0 0 0 1 -0.9921954 0.08543745 0.09082379 0 0.08953698 0.9950953 0.04205687 0.5522438 -0.08678506 0.04986069 -0.9949786 0 0 0 0 1 -0.9929534 0.07833458 0.08892283 0 0.08828753 0.9895325 0.1141527 0.5522438 -0.07904985 0.1211991 -0.9894755 0 0 0 0 1 -0.9929014 0.08330756 0.08489096 0 0.09670027 0.9809728 0.1683501 0.5522438 -0.06925086 0.175364 -0.9820651 0 0 0 0 1 -0.9939324 0.07943176 0.07608369 -5.96046e-8 0.09338374 0.9748943 0.2021405 0.5522437 -0.0581172 0.2080189 -0.9763968 0 0 0 0 1 -0.9961154 0.06564041 0.05869651 5.96046e-8 0.07594364 0.9777896 0.1953457 0.5522436 -0.04457026 0.1990444 -0.9789764 0 0 0 0 1 -0.9984269 0.042416 0.03666396 -5.96046e-8 0.04808088 0.9841313 0.1708036 0.5522436 -0.02883734 0.1722977 -0.9846227 0 0 0 0 1 -0.9996402 0.02163688 0.01585219 5.96046e-8 0.02355575 0.9908326 0.1330256 0.5522436 -0.01282861 0.1333511 -0.9909859 0 0 0 0 1 -0.9998967 0.01435009 7.5949e-4 -5.96046e-8 0.01435835 0.9955351 0.09329294 0.5522438 5.82638e-4 0.09329424 -0.9956385 0 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_A3_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_A3_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_A3_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_A3_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_A3_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_A3_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_A3_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_A3_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_A3_pose_matrix-sampler" target="Aspron_Armature_Aspron_A3/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_A4_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_A4_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_A4_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_A4_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_A4_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_A4_pose_matrix-output-array" count="416">0.9812846 0.1791996 0.07048343 5.96046e-8 -0.1842303 0.9801797 0.07284869 0.5522439 -0.05603198 -0.08447048 0.9948493 1.49012e-8 0 0 0 1 0.9951169 0.08321767 0.05307625 -1.19209e-7 -0.08768244 0.9922335 0.08823048 0.5522437 -0.04532167 -0.09245351 0.9946849 0 0 0 0 1 0.9988776 -0.04461756 0.01589787 -5.96046e-8 0.0438742 0.9980508 0.04438075 0.5522438 -0.01784702 -0.0436334 0.9988882 -5.96046e-8 0 0 0 1 0.9782749 -0.2070194 -0.0109897 5.96046e-8 0.2059954 0.9766628 -0.06079179 0.5522435 0.02331835 0.05720729 0.9980899 0 0 0 0 1 0.9285604 -0.370964 0.01268506 5.96046e-8 0.3651734 0.9068749 -0.2103002 0.5522436 0.06651014 0.1999088 0.9775546 0 0 0 0 1 0.8735274 -0.4780478 0.09175888 0 0.476846 0.8024918 -0.3586423 0.5522435 0.09781241 0.3570389 0.9289542 0 0 0 0 1 0.8495874 -0.4978317 0.1742536 0 0.5159934 0.7159954 -0.470214 0.5522437 0.1093225 0.4894017 0.8651787 2.98023e-8 0 0 0 1 0.8724772 -0.4445474 0.2028813 -5.96046e-8 0.4788938 0.695303 -0.5359237 0.5522437 0.0971795 0.5647399 0.8195271 -1.78814e-7 0 0 0 1 0.9199768 -0.3480923 0.1802062 -5.96046e-8 0.3880006 0.7434264 -0.5447686 0.5522438 0.05565968 0.5710946 0.818995 5.96046e-8 0 0 0 1 0.976271 -0.1745889 0.1281143 0 0.2155332 0.840698 -0.4967618 0.5522436 -0.02097639 0.5125871 0.8583789 0 0 0 0 1 0.9959615 0.02535696 0.08612329 0 0.01114741 0.9169344 -0.3988823 0.5522437 -0.08908381 0.3982316 0.912949 -2.98023e-8 0 0 0 1 0.9972525 0.02353834 0.07023555 5.96046e-8 0.004138783 0.9289831 -0.3700987 0.5522436 -0.07395911 0.3693727 0.9263335 0 0 0 0 1 0.9954494 -0.07696565 0.05618273 -1.19209e-7 0.09305598 0.9120947 -0.3992791 0.5522436 -0.02051318 0.4026903 0.9151063 5.96046e-8 0 0 0 1 0.9831694 -0.1760745 0.04873797 -1.19209e-7 0.1796834 0.8836761 -0.4322388 0.5522438 0.03303763 0.4337215 0.9004411 5.96046e-8 0 0 0 1 0.9732417 -0.2273335 0.03346376 5.96046e-8 0.2192465 0.8751194 -0.4313893 0.5522437 0.06878446 0.427183 0.9015449 2.98023e-8 0 0 0 1 0.9772865 -0.2119021 -0.00292927 -1.78814e-7 0.1944043 0.9019186 -0.3856809 0.5522438 0.0843685 0.3763513 0.9226276 5.96046e-8 0 0 0 1 0.9876726 -0.1509256 -0.04151847 0 0.1310919 0.9424723 -0.3075072 0.5522437 0.08554075 0.2982738 0.9506394 -2.98023e-8 0 0 0 1 0.9932471 -0.09825008 -0.06170086 0 0.08361793 0.9749025 -0.2063333 0.5522437 0.08042456 0.1997806 0.9765345 0 0 0 0 1 0.9957744 -0.06279364 -0.0670059 -5.96046e-8 0.05709253 0.9948414 -0.08384968 0.5522436 0.07192546 0.07966988 0.9942229 2.98023e-8 0 0 0 1 0.9966208 -0.05030559 -0.06492977 0 0.05334902 0.9975148 0.04602192 0.5522436 0.06245328 -0.04933029 0.9968279 1.19209e-7 0 0 0 1 0.9968519 -0.04965915 -0.06180386 5.96046e-8 0.05968891 0.9831496 0.1727828 0.5522436 0.05218219 -0.1759279 0.9830189 2.98023e-8 0 0 0 1 0.9974443 -0.04497124 -0.0555178 0 0.05833185 0.9612782 0.2693351 0.5522436 0.04125566 -0.2718852 0.9614449 -4.47035e-8 0 0 0 1 0.9996374 -0.01217881 -0.0240028 0 0.01791184 0.966642 0.255504 0.5522438 0.02009042 -0.2558413 0.9665099 0 0 0 0 1 0.9974524 0.06738423 0.0234056 -5.96046e-8 -0.07078535 0.9755872 0.2078923 0.5522438 -0.008825559 -0.2090195 0.9778717 0 0 0 0 1 0.9872673 0.1472702 0.06011973 5.96046e-8 -0.1543356 0.9783528 0.1378631 0.5522437 -0.03851514 -0.1453864 0.988625 2.98023e-8 0 0 0 1 0.9812846 0.1791996 0.07048345 5.96046e-8 -0.1842304 0.9801798 0.07284871 0.5522437 -0.05603197 -0.08447047 0.9948493 7.45058e-8 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_A4_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_A4_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_A4_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_A4_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_A4_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_A4_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_A4_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_A4_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_A4_pose_matrix-sampler" target="Aspron_Armature_Aspron_A4/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_B1_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_B1_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_B1_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_B1_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_B1_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_B1_pose_matrix-output-array" count="416">0.9848073 -2.21699e-10 -0.1736481 -0.4436821 -1.0513e-10 0.9999998 -1.87294e-9 0.9980204 0.1736481 1.86274e-9 0.9848075 0.04362306 0 0 0 1 0.9848073 -0.01931827 -0.1725702 -0.4436821 -1.0513e-10 0.9937923 -0.1112495 0.9980204 0.1736481 0.1095594 0.9786944 0.04362306 0 0 0 1 0.9848073 -0.03015368 -0.17101 -0.4436821 -1.0513e-10 0.9848074 -0.1736481 0.9980204 0.1736481 0.17101 0.9698461 0.04362306 0 0 0 1 0.9848073 -0.03015368 -0.17101 -0.4436821 -1.0513e-10 0.9848074 -0.1736481 0.9980204 0.1736481 0.17101 0.9698461 0.04362306 0 0 0 1 0.9848073 -0.03015368 -0.17101 -0.4436821 -1.0513e-10 0.9848074 -0.1736481 0.9980204 0.1736481 0.17101 0.9698461 0.04362306 0 0 0 1 0.9848073 -0.03015368 -0.17101 -0.4436821 -1.0513e-10 0.9848074 -0.1736481 0.9980204 0.1736481 0.17101 0.9698461 0.04362306 0 0 0 1 0.9848073 -0.03015368 -0.17101 -0.4436821 -1.0513e-10 0.9848074 -0.1736481 0.9980204 0.1736481 0.17101 0.9698461 0.04362306 0 0 0 1 0.9848073 -0.03015368 -0.17101 -0.4436821 -1.0513e-10 0.9848074 -0.1736481 0.9980204 0.1736481 0.17101 0.9698461 0.04362306 0 0 0 1 0.9848073 -0.03015368 -0.17101 -0.4436821 -1.0513e-10 0.9848074 -0.1736481 0.9980204 0.1736481 0.17101 0.9698461 0.04362306 0 0 0 1 0.9848073 -0.03015368 -0.17101 -0.4436821 -1.0513e-10 0.9848074 -0.1736481 0.9980204 0.1736481 0.17101 0.9698461 0.04362306 0 0 0 1 0.9848073 -0.03015368 -0.17101 -0.4436821 -1.0513e-10 0.9848074 -0.1736481 0.9980204 0.1736481 0.17101 0.9698461 0.04362306 0 0 0 1 0.9848073 -0.03015368 -0.17101 -0.4436821 -1.0513e-10 0.9848074 -0.1736481 0.9980204 0.1736481 0.17101 0.9698461 0.04362306 0 0 0 1 0.9848073 -0.03015368 -0.17101 -0.4436821 -1.0513e-10 0.9848074 -0.1736481 0.9980204 0.1736481 0.17101 0.9698461 0.04362306 0 0 0 1 0.9848073 -0.03015368 -0.17101 -0.4436821 -1.0513e-10 0.9848074 -0.1736481 0.9980204 0.1736481 0.17101 0.9698461 0.04362306 0 0 0 1 0.9848073 -0.007598485 -0.1734818 -0.4436821 -1.0513e-10 0.9990419 -0.04375794 0.9980204 0.1736481 0.04309315 0.9838643 0.04362306 0 0 0 1 0.9848073 -2.25843e-11 -0.1736481 -0.4436821 -1.0513e-10 0.9999998 -7.26281e-10 0.9980204 0.1736481 7.33507e-10 0.9848076 0.04362306 0 0 0 1 0.9848074 -2.25843e-11 -0.1736481 -0.4436821 -1.0513e-10 0.9999998 -7.26281e-10 0.9980204 0.1736481 7.33507e-10 0.9848076 0.04362306 0 0 0 1 0.9848074 -2.25843e-11 -0.1736481 -0.4436821 -1.0513e-10 0.9999998 -7.26281e-10 0.9980204 0.1736481 7.33507e-10 0.9848076 0.04362306 0 0 0 1 0.9848073 -2.25843e-11 -0.1736481 -0.4436821 -1.0513e-10 0.9999998 -7.26281e-10 0.9980204 0.1736481 7.33507e-10 0.9848075 0.04362306 0 0 0 1 0.9848074 -2.25844e-11 -0.1736481 -0.4436821 -1.0513e-10 0.9999998 -7.26281e-10 0.9980204 0.1736481 7.33507e-10 0.9848076 0.04362306 0 0 0 1 0.9848074 -2.25844e-11 -0.1736481 -0.4436821 -1.0513e-10 0.9999998 -7.26281e-10 0.9980204 0.1736481 7.33507e-10 0.9848076 0.04362306 0 0 0 1 0.9848074 -2.25844e-11 -0.1736481 -0.4436821 -1.0513e-10 0.9999998 -7.26281e-10 0.9980204 0.1736481 7.33507e-10 0.9848076 0.04362306 0 0 0 1 0.9848074 -2.25844e-11 -0.1736481 -0.4436821 -1.0513e-10 0.9999998 -7.26281e-10 0.9980204 0.1736481 7.33507e-10 0.9848076 0.04362306 0 0 0 1 0.9848073 -2.25844e-11 -0.1736481 -0.4436821 -1.0513e-10 0.9999998 -7.26281e-10 0.9980204 0.1736481 7.33507e-10 0.9848076 0.04362306 0 0 0 1 0.9848074 -6.36387e-11 -0.1736481 -0.4436821 -1.0513e-10 0.9999998 -9.62707e-10 0.9980204 0.1736481 9.66338e-10 0.9848076 0.04362306 0 0 0 1 0.9848073 -6.36387e-11 -0.1736481 -0.4436821 -1.0513e-10 0.9999998 -9.62707e-10 0.9980204 0.1736481 9.66338e-10 0.9848075 0.04362306 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_B1_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_B1_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_B1_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_B1_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_B1_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_B1_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_B1_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_B1_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_B1_pose_matrix-sampler" target="Aspron_Armature_Aspron_B1/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_B2_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_B2_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_B2_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_B2_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_B2_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_B2_pose_matrix-output-array" count="416">-0.9850714 -0.1410009 0.09875789 2.98023e-8 -0.1491504 0.9855202 -0.08064718 0.5522437 -0.0859566 -0.094173 -0.9918382 7.45058e-9 0 0 0 1 -0.9789192 -0.1919897 0.0696933 0 -0.1898265 0.981139 0.03650008 0.5522437 -0.07538641 0.02250099 -0.9969007 1.49012e-8 0 0 0 1 -0.9729076 -0.22782 0.03935703 0 -0.2195258 0.9637182 0.1518419 0.5522437 -0.07252172 0.1390882 -0.9876211 -1.49012e-8 0 0 0 1 -0.9689596 -0.2466516 0.01674907 0 -0.2351543 0.9404593 0.2454365 0.5522437 -0.07628915 0.2338794 -0.9692681 -1.49012e-8 0 0 0 1 -0.9684151 -0.2491847 0.008914989 0 -0.2349914 0.9240431 0.3015355 0.5522437 -0.08337584 0.2899165 -0.9534134 -1.49012e-8 0 0 0 1 -0.9716159 -0.235935 0.0172441 0 -0.218778 0.9239038 0.3139078 0.5522437 -0.08999373 0.3012251 -0.9492971 -1.49012e-8 0 0 0 1 -0.9776812 -0.2068675 0.03668131 0 -0.1881984 0.9399423 0.2847631 0.5522437 -0.09338655 0.2715041 -0.957896 -1.49012e-8 0 0 0 1 -0.9855036 -0.1594163 0.05804431 0 -0.1436869 0.966199 0.2140415 0.5522437 -0.09020404 0.2025985 -0.9750987 -1.49012e-8 0 0 0 1 -0.9836304 -0.1736613 0.04809505 0 -0.1634237 0.972156 0.1679458 0.5522437 -0.07592157 0.1573367 -0.9846225 -1.49012e-8 0 0 0 1 -0.9571985 -0.2889968 -0.01587755 0 -0.2852752 0.9327636 0.2203872 0.5522437 -0.04888122 0.2154837 -0.9752834 -1.49012e-8 0 0 0 1 -0.9509859 -0.3018845 -0.06701915 0 -0.308327 0.9090699 0.2802259 0.5522437 -0.02367079 0.2871546 -0.9575918 -1.49012e-8 0 0 0 1 -0.9685661 -0.2458684 -0.03779567 0 -0.2466925 0.9298465 0.272999 0.5522437 -0.03197765 0.2737414 -0.9612718 -1.49012e-8 0 0 0 1 -0.980458 -0.195711 0.01998582 0 -0.1873655 0.9599302 0.2083949 0.5522437 -0.05997016 0.2005776 -0.9778407 -1.49012e-8 0 0 0 1 -0.9840593 -0.1629573 0.0712216 0 -0.1524808 0.979223 0.1336872 0.5522437 -0.09152714 0.1206962 -0.9884611 -1.49012e-8 0 0 0 1 -0.9864375 -0.1229095 0.1087872 -2.98023e-8 -0.1171317 0.9914201 0.05802016 0.5522437 -0.1149851 0.04449081 -0.9923706 0 0 0 0 1 -0.9888808 -0.06497475 0.1337653 0 -0.06953785 0.9971364 -0.02972342 0.5522437 -0.131451 -0.03869467 -0.9905673 7.45058e-9 0 0 0 1 -0.9889425 -0.01685937 0.1473377 0 -0.03344917 0.9932734 -0.1108566 0.5522437 -0.1444776 -0.1145591 -0.9828544 7.45058e-9 0 0 0 1 -0.9881426 -0.004814145 0.1534635 0 -0.02772497 0.9886727 -0.1475049 0.5522437 -0.151015 -0.1500106 -0.9770831 7.45058e-9 0 0 0 1 -0.9871286 -0.02733349 0.1575754 2.98023e-8 -0.04967337 0.9889569 -0.1396307 0.5522437 -0.1520186 -0.1456608 -0.9775856 7.45058e-9 0 0 0 1 -0.9846099 -0.07679237 0.1569916 0 -0.09268014 0.9910072 -0.09651465 0.5522437 -0.1481682 -0.1095793 -0.9828728 7.45058e-9 0 0 0 1 -0.9804695 -0.1296232 0.1479098 0 -0.1374012 0.9895555 -0.04359669 0.5522437 -0.1407138 -0.0630682 -0.9880396 7.45058e-9 0 0 0 1 -0.9781958 -0.1583194 0.1344174 0 -0.1604924 0.9870222 -0.005418035 0.5522437 -0.1318152 -0.02687287 -0.9909101 7.45058e-9 0 0 0 1 -0.9798822 -0.1558986 0.1246054 0 -0.1591183 0.9871256 -0.01625719 0.5522437 -0.1204667 -0.03575714 -0.9920733 7.45058e-9 0 0 0 1 -0.9819425 -0.1493857 0.1160724 0 -0.1552475 0.986932 -0.04316819 0.5522437 -0.1081068 -0.06040862 -0.9923024 7.45058e-9 0 0 0 1 -0.9838298 -0.1430665 0.1077548 0 -0.151053 0.9860458 -0.06997656 0.5522437 -0.09623981 -0.08512169 -0.9917119 7.45058e-9 0 0 0 1 -0.9850714 -0.1410009 0.09875789 2.98023e-8 -0.1491504 0.9855202 -0.08064718 0.5522437 -0.0859566 -0.094173 -0.9918382 7.45058e-9 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_B2_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_B2_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_B2_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_B2_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_B2_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_B2_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_B2_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_B2_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_B2_pose_matrix-sampler" target="Aspron_Armature_Aspron_B2/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_B3_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_B3_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_B3_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_B3_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_B3_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_B3_pose_matrix-output-array" count="416">-0.9961618 -0.009520411 0.0870131 -5.96046e-8 0.01097615 0.9726353 0.232079 0.5522437 -0.08684143 0.2321433 -0.9687972 -7.45058e-9 0 0 0 1 -0.9919814 0.08794627 0.09076524 -5.96046e-8 0.1020981 0.9809323 0.1653735 0.5522438 -0.07449058 0.1733144 -0.9820455 0 0 0 0 1 -0.977909 0.1906895 0.08562511 5.96046e-8 0.1970605 0.9776437 0.07335305 0.5522437 -0.06972314 0.08860593 -0.9936236 -2.98023e-8 0 0 0 1 -0.9557893 0.2868625 0.06463023 0 0.2853351 0.9578959 -0.03193665 0.5522437 -0.07107048 -0.0120835 -0.9973981 0 0 0 0 1 -0.9336762 0.3567118 0.03171466 5.96046e-8 0.3500288 0.927716 -0.1297064 0.5522439 -0.07568991 -0.1100028 -0.9910452 2.98023e-8 0 0 0 1 -0.9226474 0.3856308 0.003264122 5.96046e-8 0.3770595 0.9038516 -0.2021856 0.5522438 -0.08091925 -0.1853153 -0.9793418 -2.98023e-8 0 0 0 1 -0.9285364 0.3712105 -0.00477317 2.98023e-8 0.3614163 0.9009502 -0.2401403 0.5522437 -0.08484221 -0.2247043 -0.9707264 5.96046e-8 0 0 0 1 -0.9492387 0.3143088 0.01249211 -5.96046e-8 0.3031427 0.9246737 -0.2303986 0.5522438 -0.08396737 -0.2149164 -0.9730161 2.98023e-8 0 0 0 1 -0.9669358 0.2543187 0.01889835 0 0.2459956 0.9496942 -0.1938234 0.5522437 -0.06724056 -0.1827659 -0.9808545 5.96046e-8 0 0 0 1 -0.9760653 0.2171449 -0.0120274 -5.96046e-8 0.2148565 0.9542652 -0.2078821 0.5522437 -0.03366315 -0.2054906 -0.97808 0 0 0 0 1 -0.99146 0.1288885 -0.01987679 -5.96046e-8 0.1299673 0.9639565 -0.232157 0.5522437 -0.01076198 -0.2327577 -0.9724752 -2.98023e-8 0 0 0 1 -0.9952332 0.0974305 0.004288554 0 0.09438398 0.9733198 -0.2091438 0.5522438 -0.02455109 -0.2077421 -0.9778756 2.98023e-8 0 0 0 1 -0.990616 0.1321604 0.03483868 -5.96046e-8 0.1245687 0.9779299 -0.1677395 0.5522439 -0.05623829 -0.1618256 -0.9852157 -2.98023e-8 0 0 0 1 -0.9793353 0.1915689 0.06483629 -5.96046e-8 0.1814849 0.9739059 -0.1362748 0.5522436 -0.08925045 -0.1216919 -0.9885471 0 0 0 0 1 -0.9701557 0.2232795 0.09457324 0 0.2135063 0.9714612 -0.1033372 0.5522436 -0.1149473 -0.08006126 -0.99014 0 0 0 0 1 -0.971391 0.1985814 0.1302504 -2.98023e-8 0.1950937 0.9800037 -0.03914114 0.5522438 -0.1354185 -0.01261033 -0.9907083 0 0 0 0 1 -0.9779493 0.1330708 0.160959 -2.98023e-8 0.1434966 0.9881254 0.05493163 0.5522438 -0.1517378 0.07681738 -0.9854314 7.45058e-9 0 0 0 1 -0.9824523 0.07030749 0.1727555 0 0.09697643 0.9837443 0.1511391 0.5522438 -0.1593211 0.1652401 -0.9732997 -1.49012e-8 0 0 0 1 -0.9846643 0.03049055 0.1717745 -2.98023e-8 0.07075641 0.9697897 0.2334566 0.5522438 -0.1594669 0.2420306 -0.9570745 7.45058e-9 0 0 0 1 -0.9855348 0.02300692 0.1679046 -5.96046e-8 0.07154229 0.954616 0.2891202 0.5522438 -0.1536326 0.2969504 -0.942453 1.49012e-8 0 0 0 1 -0.9859663 0.03277774 0.1636966 -2.98023e-8 0.08420093 0.9443221 0.3180671 0.5522438 -0.1441568 0.3273867 -0.9338292 -2.98023e-8 0 0 0 1 -0.9870588 0.03770366 0.1558639 5.96046e-8 0.0872861 0.9416872 0.3249721 0.5522438 -0.1345225 0.3343714 -0.9327913 0 0 0 0 1 -0.9895102 0.03201611 0.140872 5.96046e-8 0.07601433 0.944616 0.3192541 0.5522437 -0.1228486 0.3266135 -0.9371404 -1.49012e-8 0 0 0 1 -0.9925956 0.01381719 0.1206777 0 0.04959129 0.9530336 0.2987778 0.5522438 -0.1108817 0.3025502 -0.9466619 0 0 0 0 1 -0.9948651 -0.004302874 0.1011175 0 0.02293731 0.9635141 0.2666737 0.5522437 -0.09857559 0.2676238 -0.9584677 0 0 0 0 1 -0.9961619 -0.009520411 0.0870131 -5.96046e-8 0.01097615 0.9726353 0.232079 0.5522437 -0.08684141 0.2321433 -0.9687972 -7.45058e-9 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_B3_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_B3_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_B3_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_B3_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_B3_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_B3_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_B3_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_B3_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_B3_pose_matrix-sampler" target="Aspron_Armature_Aspron_B3/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_B4_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_B4_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_B4_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_B4_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_B4_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_B4_pose_matrix-output-array" count="416">0.984149 0.1757239 -0.0239123 0 -0.1707765 0.975405 0.1393579 0.5522437 0.0478127 -0.1330653 0.9899535 4.47035e-8 0 0 0 1 0.9959593 0.0771192 -0.04601907 -5.96046e-8 -0.06880796 0.9845841 0.1608107 0.5522437 0.0577112 -0.1569944 0.985912 -2.98023e-8 0 0 0 1 0.9951395 -0.04842141 -0.08574665 0 0.05901483 0.9903157 0.1256671 0.5522437 0.0788313 -0.1301166 0.98836 5.96046e-8 0 0 0 1 0.97189 -0.204749 -0.1162226 0 0.2097234 0.9772309 0.03218839 0.5522436 0.1069858 -0.05565816 0.9927016 0 0 0 0 1 0.925432 -0.3652043 -0.1010022 -2.98023e-8 0.3547599 0.9287392 -0.107654 0.5522437 0.1331203 0.06379488 0.9890448 -5.96046e-8 0 0 0 1 0.8765028 -0.4804552 -0.03009656 -2.98023e-8 0.4576012 0.8509598 -0.2578152 0.5522438 0.1494797 0.2122035 0.9657255 -5.96046e-8 0 0 0 1 0.853367 -0.5180418 0.05828762 0 0.4982074 0.7775174 -0.3837399 0.5522438 0.1534737 0.3565103 0.9216 5.96046e-8 0 0 0 1 0.8682205 -0.4833427 0.1121302 -2.98023e-8 0.4751411 0.7447936 -0.4685335 0.5522436 0.1429482 0.460068 0.8763011 5.96046e-8 0 0 0 1 0.9138053 -0.3908574 0.1104099 -5.96046e-8 0.3906662 0.7715119 -0.5021451 0.5522437 0.1110846 0.5019963 0.8577064 5.96046e-8 0 0 0 1 0.9734201 -0.220086 0.06336707 -2.38419e-7 0.2218624 0.8374985 -0.499373 0.5522436 0.0568352 0.5001586 0.8640668 5.96046e-8 0 0 0 1 0.9988729 -0.04572973 0.01272443 -5.96046e-8 0.04652159 0.8899105 -0.4537569 0.5522436 0.009426624 0.4538374 0.8910348 -2.98023e-8 0 0 0 1 0.9992776 -0.03740336 -0.00674215 0 0.03142571 0.9129267 -0.4069124 0.5522438 0.02137493 0.4064064 0.9134426 -5.96046e-8 0 0 0 1 0.9926476 -0.1195707 -0.01880993 -5.96046e-8 0.1026929 0.914203 -0.3920297 0.5522437 0.06407136 0.3872157 0.9197605 0 0 0 0 1 0.9784518 -0.2040002 -0.03187545 5.96046e-8 0.175602 0.9033772 -0.3912464 0.5522438 0.1086099 0.3772184 0.919734 0 0 0 0 1 0.9686918 -0.2425555 -0.05294496 5.96046e-8 0.2053668 0.9027019 -0.3780929 0.5522437 0.1395019 0.3553823 0.9242527 -2.98023e-8 0 0 0 1 0.9711514 -0.2211605 -0.0891829 5.96046e-8 0.180819 0.9267715 -0.329241 0.5522438 0.1554672 0.3036168 0.9400252 -1.49012e-8 0 0 0 1 0.9798458 -0.1535511 -0.1277671 5.96046e-8 0.1195614 0.9632131 -0.2406778 0.5522437 0.1600233 0.220551 0.9621592 0 0 0 0 1 0.9852224 -0.08443218 -0.1490241 0 0.06720649 0.9908474 -0.1170687 0.5522437 0.1575445 0.1053232 0.9818795 -2.98023e-8 0 0 0 1 0.9875401 -0.03387348 -0.15368 0 0.03912959 0.9987438 0.03130627 0.5522439 0.1524265 -0.03692967 0.9876248 -2.98023e-8 0 0 0 1 0.9882268 -0.01351681 -0.1523983 5.96046e-8 0.04097 0.983091 0.1784759 0.5522435 0.147409 -0.1826184 0.9720708 -1.49012e-8 0 0 0 1 0.9882179 -0.01304415 -0.1524974 0 0.05794397 0.9540842 0.2938809 0.5522438 0.1416619 -0.2992547 0.943599 7.45058e-8 0 0 0 1 0.9884149 -0.01752125 -0.150764 -5.96046e-8 0.0701358 0.9336287 0.3513102 0.5522439 0.1346022 -0.357814 0.9240413 4.47035e-8 0 0 0 1 0.9920344 0.007309377 -0.1257563 0 0.03565931 0.9411851 0.3360051 0.5522437 0.1208159 -0.3378128 0.9334272 -2.98023e-8 0 0 0 1 0.9939865 0.07674251 -0.0781129 0 -0.05154327 0.9572649 0.2845827 0.5522438 0.09661433 -0.2788452 0.9554641 1.49012e-8 0 0 0 1 0.9882376 0.1482907 -0.03737205 0 -0.1373819 0.9682148 0.2090134 0.5522436 0.06717882 -0.2014206 0.9771986 5.96046e-8 0 0 0 1 0.9841491 0.1757239 -0.02391234 0 -0.1707765 0.975405 0.1393579 0.5522438 0.04781271 -0.1330653 0.9899535 5.96046e-8 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_B4_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_B4_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_B4_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_B4_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_B4_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_B4_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_B4_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_B4_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_B4_pose_matrix-sampler" target="Aspron_Armature_Aspron_B4/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_D1_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_D1_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_D1_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_D1_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_D1_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_D1_pose_matrix-output-array" count="416">0.9848077 -0.003278569 -0.1736171 0.4173625 -1.0513e-10 0.9998214 -0.01888053 0.9983254 0.1736482 0.01859369 0.9846317 -0.01754984 0 0 0 1 0.9848077 -0.01961534 -0.1725367 0.4173625 -1.0513e-10 0.9935992 -0.1129602 0.9983254 0.1736482 0.1112441 0.978504 -0.01754984 0 0 0 1 0.9848077 -0.03015368 -0.17101 0.4173625 -1.0513e-10 0.9848074 -0.1736481 0.9983254 0.1736482 0.17101 0.9698459 -0.01754984 0 0 0 1 0.9848077 -0.03015368 -0.17101 0.4173625 -1.0513e-10 0.9848074 -0.1736481 0.9983254 0.1736482 0.17101 0.9698459 -0.01754984 0 0 0 1 0.9848077 -0.03015368 -0.17101 0.4173625 -1.0513e-10 0.9848074 -0.1736481 0.9983254 0.1736482 0.17101 0.9698459 -0.01754984 0 0 0 1 0.9848077 -0.03015368 -0.17101 0.4173625 -1.0513e-10 0.9848074 -0.1736481 0.9983254 0.1736482 0.17101 0.9698459 -0.01754984 0 0 0 1 0.9848077 -0.03015368 -0.17101 0.4173625 -1.0513e-10 0.9848074 -0.1736481 0.9983254 0.1736482 0.17101 0.9698459 -0.01754984 0 0 0 1 0.9848077 -0.03015368 -0.17101 0.4173625 -1.0513e-10 0.9848074 -0.1736481 0.9983254 0.1736482 0.17101 0.9698459 -0.01754984 0 0 0 1 0.9848077 -0.03015368 -0.17101 0.4173625 -1.0513e-10 0.9848074 -0.1736481 0.9983254 0.1736482 0.17101 0.9698459 -0.01754984 0 0 0 1 0.9848077 -0.02204243 -0.1722434 0.4173625 -1.0513e-10 0.9919105 -0.1269373 0.9983254 0.1736482 0.1250089 0.976841 -0.01754984 0 0 0 1 0.9848077 -0.02136723 -0.1723285 0.4173625 -1.0513e-10 0.9924003 -0.1230489 0.9983254 0.1736482 0.1211796 0.9773234 -0.01754984 0 0 0 1 0.9848077 -0.02759139 -0.171442 0.4173625 -1.0513e-10 0.9872955 -0.1588925 0.9983254 0.1736482 0.1564786 0.9722962 -0.01754984 0 0 0 1 0.9848077 -0.02995515 -0.1710449 0.4173625 -1.0513e-10 0.9850083 -0.1725048 0.9983254 0.1736482 0.1698841 0.9700438 -0.01754984 0 0 0 1 0.9848077 -0.02900509 -0.1712085 0.4173625 -1.0513e-10 0.9859509 -0.1670336 0.9983254 0.1736482 0.164496 0.9709719 -0.01754984 0 0 0 1 0.9848077 -0.02393275 -0.1719909 0.4173625 -1.0513e-10 0.9904565 -0.1378232 0.9983254 0.1736482 0.1357294 0.9754091 -0.01754984 0 0 0 1 0.9848077 -0.01651655 -0.1728608 0.4173625 -1.0513e-10 0.995466 -0.09511501 0.9983254 0.1736482 0.09367001 0.9803425 -0.01754984 0 0 0 1 0.9848077 -0.009161168 -0.1734063 0.4173625 -1.0513e-10 0.9986071 -0.05275705 0.9983254 0.1736482 0.05195557 0.9834359 -0.01754984 0 0 0 1 0.9848077 -0.005090855 -0.1735734 0.4173625 -1.0513e-10 0.9995698 -0.02931706 0.9983254 0.1736482 0.02887167 0.9843839 -0.01754984 0 0 0 1 0.9848077 -0.006213095 -0.1735369 0.4173625 -1.0513e-10 0.9993594 -0.03577979 0.9983254 0.1736482 0.03523621 0.9841768 -0.01754984 0 0 0 1 0.9848077 -0.01226949 -0.1732141 0.4173625 -1.0513e-10 0.9975004 -0.07065715 0.9983254 0.1736482 0.06958372 0.9823459 -0.01754984 0 0 0 1 0.9848077 -0.01880201 -0.1726272 0.4173625 -1.0513e-10 0.9941205 -0.1082764 0.9983254 0.1736482 0.1066315 0.9790174 -0.01754984 0 0 0 1 0.9848077 -0.02269863 -0.1721582 0.4173625 -1.0513e-10 0.9914196 -0.1307162 0.9983254 0.1736482 0.1287303 0.9763575 -0.01754984 0 0 0 1 0.9848077 -0.02458992 -0.1718982 0.4173625 -1.0513e-10 0.9899225 -0.1416077 0.9983254 0.1736482 0.1394564 0.9748832 -0.01754984 0 0 0 1 0.9848077 -0.02539342 -0.1717814 0.4173625 -1.0513e-10 0.9892496 -0.1462348 0.9983254 0.1736482 0.1440132 0.9742205 -0.01754984 0 0 0 1 0.9848077 -0.02601897 -0.1716877 0.4173625 -1.0513e-10 0.9887103 -0.1498373 0.9983254 0.1736482 0.1475609 0.9736895 -0.01754984 0 0 0 1 0.9848077 -0.02420977 -0.1719522 0.4173625 -1.0513e-10 0.9902332 -0.1394185 0.9983254 0.1736482 0.1373004 0.9751893 -0.01754984 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_D1_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_D1_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_D1_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_D1_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_D1_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_D1_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_D1_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_D1_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_D1_pose_matrix-sampler" target="Aspron_Armature_Aspron_D1/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_D2_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_D2_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_D2_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_D2_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_D2_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_D2_pose_matrix-output-array" count="416">-0.9838623 -0.1450011 0.1048314 -2.98023e-8 -0.1514002 0.9868924 -0.05586561 0.5522437 -0.09535679 -0.07083558 -0.9929196 7.45058e-9 0 0 0 1 -0.9732697 -0.2142392 0.08275238 -5.96046e-8 -0.2121825 0.9766726 0.03299967 0.5522438 -0.08789179 0.01455899 -0.9960237 1.49012e-8 0 0 0 1 -0.9654922 -0.2550799 0.05252624 -2.98023e-8 -0.246008 0.9594666 0.1374913 0.5522438 -0.08546841 0.1198249 -0.9891093 -1.86265e-8 0 0 0 1 -0.9642705 -0.2635542 0.02685971 -2.98023e-8 -0.2500591 0.9389704 0.2362307 0.5522438 -0.08748009 0.2210737 -0.9713257 -1.86265e-8 0 0 0 1 -0.9691415 -0.2459169 0.01701693 -2.98023e-8 -0.2288599 0.9232707 0.3085356 0.5522438 -0.09158537 0.2951202 -0.9510607 -1.86265e-8 0 0 0 1 -0.9770536 -0.2115602 0.02467218 -2.98023e-8 -0.1906148 0.920195 0.3419167 0.5522438 -0.09503917 0.329368 -0.9394064 -1.86265e-8 0 0 0 1 -0.9849972 -0.1671005 0.0431049 -2.98023e-8 -0.1434864 0.9318031 0.3333986 0.5522438 -0.09587635 0.3222117 -0.9418001 -1.86265e-8 0 0 0 1 -0.9913996 -0.1149727 0.0625142 -2.98023e-8 -0.09343502 0.956309 0.277025 0.5522438 -0.09163317 0.2688014 -0.958827 -1.86265e-8 0 0 0 1 -0.9900751 -0.1289769 0.05582529 -2.98023e-8 -0.1154887 0.9730091 0.1997886 0.5522438 -0.08008665 0.1913585 -0.9782475 -1.86265e-8 0 0 0 1 -0.9679644 -0.250179 0.02134127 0 -0.2439374 0.9571357 0.1561591 0.5522437 -0.05949418 0.1459505 -0.9875014 -7.45058e-9 0 0 0 1 -0.9541308 -0.2993695 -0.00355377 2.98023e-8 -0.2966557 0.9437472 0.1460701 0.5522437 -0.04037504 0.1404242 -0.9892679 -7.45058e-9 0 0 0 1 -0.9650906 -0.2616929 0.0108133 2.98023e-8 -0.2571983 0.954699 0.1496625 0.5522437 -0.04948908 0.1416567 -0.988678 7.45058e-9 0 0 0 1 -0.9790677 -0.1978111 0.04792907 0 -0.1899468 0.9726085 0.1339888 0.5522438 -0.07312071 0.1220802 -0.9898233 3.72529e-9 0 0 0 1 -0.986932 -0.1378151 0.08349995 -2.98023e-8 -0.128125 0.9854109 0.1120227 0.5522437 -0.0977202 0.09986039 -0.9901913 3.72529e-9 0 0 0 1 -0.9911869 -0.07510778 0.1091213 0 -0.06680334 0.9947231 0.07786605 0.5522438 -0.1143938 0.06989013 -0.990974 -1.49012e-8 0 0 0 1 -0.9921294 -9.65851e-4 0.1252126 0 0.002230182 0.9996752 0.02538218 0.5522436 -0.1251965 0.02546166 -0.9918053 -7.45058e-9 0 0 0 1 -0.9893583 0.06052935 0.1323111 -2.98023e-8 0.05668336 0.9978582 -0.03264707 0.5522438 -0.1340039 -0.02479981 -0.9906704 -7.45058e-9 0 0 0 1 -0.9876992 0.08018534 0.1342404 0 0.07212736 0.9953489 -0.06385754 0.5522436 -0.1387365 -0.05338963 -0.9888892 -7.45058e-9 0 0 0 1 -0.9889311 0.05410605 0.1381591 0 0.0471014 0.9974574 -0.05347788 0.5522437 -0.1407013 -0.04637844 -0.9889653 7.45058e-9 0 0 0 1 -0.9900801 -0.01082023 0.1400871 -2.98023e-8 -0.01108395 0.999938 -0.001102403 0.5522438 -0.1400665 -0.002644189 -0.9901387 7.45058e-9 0 0 0 1 -0.9876088 -0.08439746 0.1323102 2.98023e-8 -0.07703505 0.9952321 0.05981834 0.5522437 -0.1367279 0.04888459 -0.9894018 -7.45058e-9 0 0 0 1 -0.9836097 -0.1347916 0.1197636 0 -0.1231194 0.9873349 0.1000563 0.5522437 -0.1317335 0.08367108 -0.9877478 0 0 0 0 1 -0.9834024 -0.141397 0.113696 0 -0.1329623 0.9879942 0.07866593 0.5522437 -0.1234541 0.062243 -0.9903964 0 0 0 0 1 -0.9839597 -0.1396114 0.1110486 0 -0.1379956 0.9901851 0.0221442 0.5522437 -0.1130503 0.006464809 -0.9935683 7.45058e-9 0 0 0 1 -0.9844328 -0.137961 0.1088985 2.98023e-8 -0.1424386 0.9892045 -0.03443098 0.5522438 -0.1029728 -0.04940633 -0.9934564 -1.49012e-8 0 0 0 1 -0.9838623 -0.145001 0.1048314 2.98023e-8 -0.1514002 0.9868926 -0.05586562 0.5522437 -0.09535681 -0.07083556 -0.9929197 -7.45058e-9 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_D2_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_D2_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_D2_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_D2_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_D2_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_D2_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_D2_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_D2_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_D2_pose_matrix-sampler" target="Aspron_Armature_Aspron_D2/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_D3_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_D3_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_D3_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_D3_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_D3_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_D3_pose_matrix-output-array" count="416">-0.9814773 0.1278562 0.1426728 0 0.1642039 0.9450538 0.2826851 0.5522437 -0.09869044 0.3008764 -0.9485431 0 0 0 0 1 -0.9616765 0.2333524 0.1439633 2.98023e-8 0.2637411 0.9308197 0.253013 0.5522437 -0.07496264 0.2812856 -0.9566918 -2.23517e-8 0 0 0 1 -0.937456 0.3221434 0.1319091 -2.98023e-8 0.3426058 0.9209242 0.185796 0.5522438 -0.06162532 0.2193683 -0.973694 1.49012e-8 0 0 0 1 -0.9186302 0.3810964 0.1043272 -2.98023e-8 0.3906331 0.9156438 0.09488261 0.5522437 -0.05936721 0.1279157 -0.9900067 -2.98023e-8 0 0 0 1 -0.9129057 0.401732 0.07221454 0 0.4028344 0.9152727 7.68781e-4 0.5522438 -0.06578712 0.02979231 -0.997389 1.49012e-8 0 0 0 1 -0.9215875 0.3847667 0.05129756 0 0.3805004 0.9215947 -0.07670087 0.5522437 -0.07678749 -0.05116785 -0.9957338 -1.49012e-8 0 0 0 1 -0.9400343 0.3373562 0.05026676 0 0.329423 0.9361925 -0.1225742 0.5522438 -0.08841051 -0.09866494 -0.9911857 0 0 0 0 1 -0.9613373 0.2671354 0.06685428 2.98023e-8 0.2582589 0.9588694 -0.1177805 0.5522437 -0.0955679 -0.09596106 -0.9907869 -2.98023e-8 0 0 0 1 -0.9748709 0.2116973 0.06936283 2.98023e-8 0.2066947 0.9756922 -0.07281649 0.5522437 -0.08309178 -0.05664974 -0.9949305 0 0 0 0 1 -0.9760703 0.2148277 0.03370474 0 0.2126728 0.975395 -0.05809665 0.5522438 -0.04535624 -0.04953837 -0.997742 1.49012e-8 0 0 0 1 -0.9781144 0.2078823 0.008791849 0 0.2071695 0.9769432 -0.05160451 0.5522436 -0.01931678 -0.04865372 -0.9986291 0 0 0 0 1 -0.9778613 0.2066355 0.03300352 0 0.2066451 0.978411 -0.003156751 0.5522438 -0.03294329 0.003733188 -0.9994504 4.47035e-8 0 0 0 1 -0.9731773 0.2158552 0.07957768 0 0.2208041 0.9734913 0.05967008 0.5522438 -0.06458809 0.07564059 -0.9950413 1.49012e-8 0 0 0 1 -0.9673918 0.2203397 0.1249151 0 0.2334593 0.9669644 0.1023571 0.5522438 -0.09823506 0.128182 -0.9868737 -7.45058e-9 0 0 0 1 -0.9674487 0.19638 0.1596191 0 0.2187722 0.966048 0.1374414 0.5522436 -0.127209 0.1678876 -0.9775642 0 0 0 0 1 -0.9734564 0.1331474 0.1861571 2.98023e-8 0.1696744 0.9657002 0.1965553 0.5522438 -0.1536012 0.2229241 -0.9626586 -1.11759e-8 0 0 0 1 -0.9787256 0.0509937 0.1987367 0 0.1052984 0.9561701 0.2732238 0.5522438 -0.1760934 0.2883377 -0.9411975 0 0 0 0 1 -0.9807876 -0.01358096 0.194607 -2.98023e-8 0.05251295 0.9423716 0.3304217 0.5522437 -0.1878795 0.3342928 -0.923553 1.49012e-8 0 0 0 1 -0.981539 -0.0388375 0.1872795 0 0.02937889 0.9369324 0.3482743 0.5522438 -0.1889943 0.3473467 -0.9184943 0 0 0 0 1 -0.9826058 -0.01686383 0.1849379 -2.98023e-8 0.04364973 0.9469944 0.3182713 0.5522437 -0.1805025 0.3208076 -0.9297857 -7.45058e-9 0 0 0 1 -0.9825723 0.03646179 0.1822711 -2.98023e-8 0.08380392 0.9621564 0.259292 0.5522437 -0.165919 0.2700481 -0.9484434 2.23517e-8 0 0 0 1 -0.9799897 0.09560505 0.174586 0 0.1302036 0.9713206 0.1989565 0.5522438 -0.1505578 0.217707 -0.964332 -7.45058e-9 0 0 0 1 -0.97976 0.1121143 0.1658344 -2.98023e-8 0.1461563 0.9667304 0.2099308 0.5522437 -0.136781 0.2299195 -0.9635498 -1.49012e-8 0 0 0 1 -0.9805027 0.1173248 0.1576384 2.98023e-8 0.1533547 0.9584551 0.240513 0.5522438 -0.1228712 0.2599981 -0.9577598 0 0 0 0 1 -0.9814592 0.119421 0.1499233 -2.98023e-8 0.1569682 0.9496578 0.2711302 0.5522438 -0.1099972 0.2896363 -0.9507954 -7.45058e-9 0 0 0 1 -0.9814773 0.1278562 0.1426728 -2.98023e-8 0.1642039 0.9450538 0.282685 0.5522438 -0.09869047 0.3008763 -0.948543 -7.45058e-9 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_D3_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_D3_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_D3_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_D3_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_D3_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_D3_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_D3_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_D3_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_D3_pose_matrix-sampler" target="Aspron_Armature_Aspron_D3/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_D4_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_D4_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_D4_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_D4_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_D4_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_D4_pose_matrix-output-array" count="416">0.989976 0.07816538 -0.1176332 -3.72529e-8 -0.04167989 0.9574829 0.2854632 0.5522438 0.1349451 -0.2776988 0.9511431 0 0 0 0 1 0.9894535 -0.05633944 -0.1334451 5.21541e-8 0.09731698 0.9409271 0.3243229 0.5522437 0.1072899 -0.3338889 0.9364866 0 0 0 0 1 0.9674399 -0.196907 -0.1590202 3.72529e-9 0.2386304 0.9190135 0.3137987 0.5522436 0.08435257 -0.3415285 0.9360785 0 0 0 0 1 0.9293363 -0.3285527 -0.1684841 2.98023e-8 0.3630445 0.8962822 0.2547095 0.5522438 0.06732386 -0.2978779 0.9522269 2.98023e-8 0 0 0 1 0.8912861 -0.4299394 -0.1440868 1.49012e-7 0.4498044 0.8784778 0.1610986 0.5522437 0.05731449 -0.2083958 0.9763638 -2.98023e-8 0 0 0 1 0.8714393 -0.4816983 -0.09252059 -5.96046e-8 0.4874593 0.8714668 0.0541195 0.5522438 0.05455935 -0.09226198 0.994239 -5.96046e-8 0 0 0 1 0.877647 -0.4776337 -0.0400202 -5.96046e-8 0.4758056 0.8782673 -0.04749191 0.5522436 0.05783212 0.0226393 0.9980695 0 0 0 0 1 0.9038191 -0.4277777 -0.01081201 -2.98023e-8 0.4234477 0.8977407 -0.1214646 0.5522437 0.06166628 0.1052037 0.9925368 5.96046e-8 0 0 0 1 0.9448355 -0.3273787 -0.01043573 1.49012e-8 0.3216991 0.9334941 -0.1584252 0.5522437 0.06160681 0.1463286 0.9873159 -2.98023e-8 0 0 0 1 0.9821137 -0.1872279 -0.01995498 -6.33299e-8 0.1794763 0.9629205 -0.201426 0.5522437 0.05692767 0.1942418 0.9793005 0 0 0 0 1 0.9954041 -0.09150076 -0.02824654 -2.23517e-8 0.08318698 0.9723387 -0.2182596 0.5522437 0.04743615 0.2149068 0.9754819 0 0 0 0 1 0.9944849 -0.09496891 -0.04450087 2.98023e-8 0.08776671 0.9858824 -0.1425931 0.5522437 0.05741455 0.137901 0.9887806 0 0 0 0 1 0.9856181 -0.1525165 -0.07276938 -3.72529e-8 0.1497476 0.9878261 -0.04213089 0.5522436 0.07830916 0.03062795 0.9964585 0 0 0 0 1 0.9731134 -0.2010275 -0.1124187 -1.49012e-8 0.2058283 0.9780401 0.03274778 0.5522436 0.1033669 -0.05500631 0.9931213 1.49012e-8 0 0 0 1 0.9672843 -0.2043651 -0.1503198 0 0.2191035 0.9716418 0.08891498 0.5522439 0.1278858 -0.1189417 0.984631 7.45058e-9 0 0 0 1 0.9700062 -0.1582993 -0.1844694 -5.96046e-8 0.1902385 0.9667809 0.1707156 0.5522437 0.1513174 -0.2006884 0.9678984 1.49012e-8 0 0 0 1 0.9762759 -0.07098731 -0.2045632 -2.98023e-8 0.1284169 0.9504733 0.2830362 0.5522438 0.1743399 -0.3025907 0.9370402 0 0 0 0 1 0.9799305 0.02631937 -0.1975949 2.98023e-8 0.05479352 0.9174987 0.3939467 0.5522438 0.1916613 -0.3968672 0.8976427 0 0 0 0 1 0.9796535 0.09625988 -0.1761055 -2.98023e-8 -0.002021533 0.8821597 0.4709461 0.5522437 0.2006864 -0.461008 0.8644054 5.96046e-8 0 0 0 1 0.9794803 0.1172407 -0.1639293 0 -0.022111 0.8709869 0.4908084 0.5522437 0.2003231 -0.4771125 0.8557069 0 0 0 0 1 0.9814459 0.09298618 -0.1676829 0 -0.00654459 0.890272 0.4553822 0.5522438 0.1916277 -0.4458356 0.8743623 1.49012e-8 0 0 0 1 0.9835306 0.03693299 -0.1769279 1.49012e-8 0.03472617 0.922048 0.3855146 0.5522437 0.1773742 -0.3853094 0.90558 7.45058e-9 0 0 0 1 0.9854571 0.03919689 -0.1653419 4.47035e-8 0.02082856 0.9378304 0.346468 0.5522436 0.1686432 -0.3448731 0.9233753 0 0 0 0 1 0.9874845 0.05557203 -0.1476012 -1.49012e-8 -0.005223438 0.9468768 0.3215543 0.5522435 0.1576295 -0.3167589 0.9353164 0 0 0 0 1 0.9888548 0.07302825 -0.1297416 2.98023e-8 -0.03035188 0.952018 0.304533 0.5522439 0.1457558 -0.297201 0.9436243 1.49012e-8 0 0 0 1 0.989976 0.0781654 -0.1176332 -2.98023e-8 -0.04167992 0.9574829 0.2854632 0.5522437 0.1349451 -0.2776988 0.9511431 0 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_D4_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_D4_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_D4_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_D4_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_D4_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_D4_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_D4_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_D4_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_D4_pose_matrix-sampler" target="Aspron_Armature_Aspron_D4/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_E1_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_E1_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_E1_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_E1_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_E1_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_E1_pose_matrix-output-array" count="416">0.9848073 -0.003468638 -0.1736135 0.8315375 -1.0513e-10 0.9998003 -0.01997509 0.964119 0.1736481 0.01967162 0.9846111 0.04852095 0 0 0 1 0.9848073 -0.01556164 -0.1729494 0.8315375 -1.0513e-10 0.9959762 -0.08961591 0.964119 0.1736481 0.08825444 0.9808451 0.04852095 0 0 0 1 0.9848073 -0.02947248 -0.1711287 0.8315375 -1.0513e-10 0.9854912 -0.1697253 0.964119 0.1736481 0.1671467 0.9705194 0.04852095 0 0 0 1 0.9848074 -0.03015368 -0.17101 0.8315375 -1.0513e-10 0.9848074 -0.1736481 0.964119 0.1736481 0.17101 0.9698461 0.04852095 0 0 0 1 0.9848074 -0.03015368 -0.17101 0.8315375 -1.0513e-10 0.9848074 -0.1736481 0.964119 0.1736481 0.17101 0.9698461 0.04852095 0 0 0 1 0.9848074 -0.03015368 -0.17101 0.8315375 -1.0513e-10 0.9848074 -0.1736481 0.964119 0.1736481 0.17101 0.9698461 0.04852095 0 0 0 1 0.9848074 -0.03015368 -0.17101 0.8315375 -1.0513e-10 0.9848074 -0.1736481 0.964119 0.1736481 0.17101 0.9698461 0.04852095 0 0 0 1 0.9848073 -0.03015368 -0.17101 0.8315375 -1.0513e-10 0.9848074 -0.1736481 0.964119 0.1736481 0.17101 0.9698461 0.04852095 0 0 0 1 0.9848073 -0.02788839 -0.171394 0.8315375 -1.0513e-10 0.9870189 -0.1606029 0.964119 0.1736481 0.158163 0.9720239 0.04852095 0 0 0 1 0.9848073 -0.007712842 -0.1734768 0.8315375 -1.0513e-10 0.9990129 -0.04441649 0.964119 0.1736481 0.0437417 0.9838357 0.04852095 0 0 0 1 0.9848073 -7.08248e-11 -0.1736481 0.8315375 -1.0513e-10 0.9999998 -1.00409e-9 0.964119 0.1736481 1.00709e-9 0.9848075 0.04852095 0 0 0 1 0.9848073 -0.006939825 -0.1735094 0.8315375 -1.0513e-10 0.9992008 -0.03996486 0.964119 0.1736481 0.0393577 0.9840208 0.04852095 0 0 0 1 0.9848073 -0.01819773 -0.172692 0.8315375 -1.0513e-10 0.9944934 -0.1047966 0.964119 0.1736481 0.1032045 0.9793849 0.04852095 0 0 0 1 0.9848073 -0.02734554 -0.1714815 0.8315375 -1.0513e-10 0.9875225 -0.1574767 0.964119 0.1736481 0.1550843 0.9725198 0.04852095 0 0 0 1 0.9848074 -0.03002419 -0.1710328 0.8315375 -1.0513e-10 0.9849387 -0.1729024 0.964119 0.1736481 0.1702757 0.9699754 0.04852095 0 0 0 1 0.9848074 -0.02890601 -0.1712254 0.8315375 -1.0513e-10 0.9860474 -0.1664631 0.964119 0.1736481 0.1639341 0.9710672 0.04852095 0 0 0 1 0.9848073 -0.02658245 -0.1716014 0.8315375 -1.0513e-10 0.9882132 -0.1530822 0.964119 0.1736481 0.1507566 0.9732 0.04852095 0 0 0 1 0.9848074 -0.02411815 -0.1719651 0.8315375 -1.0513e-10 0.9903074 -0.1388909 0.964119 0.1736481 0.1367808 0.9752625 0.04852095 0 0 0 1 0.9848073 -0.02369685 -0.1720237 0.8315375 -1.0513e-10 0.9906447 -0.1364647 0.964119 0.1736481 0.1343915 0.9755946 0.04852095 0 0 0 1 0.9848074 -0.02568622 -0.1717379 0.8315375 -1.0513e-10 0.9889989 -0.1479211 0.964119 0.1736481 0.1456738 0.9739739 0.04852095 0 0 0 1 0.9848074 -0.02732728 -0.1714844 0.8315375 -1.0513e-10 0.9875392 -0.1573716 0.964119 0.1736481 0.1549807 0.9725363 0.04852095 0 0 0 1 0.9848074 -0.02742409 -0.1714689 0.8315375 -1.0513e-10 0.9874502 -0.157929 0.964119 0.1736481 0.1555298 0.9724487 0.04852095 0 0 0 1 0.9848074 -0.02685282 -0.1715593 0.8315375 -1.0513e-10 0.9879708 -0.1546392 0.964119 0.1736481 0.1522899 0.9729613 0.04852095 0 0 0 1 0.9848074 -0.02616108 -0.1716662 0.8315375 -1.0513e-10 0.9885861 -0.1506557 0.964119 0.1736481 0.1483669 0.9735672 0.04852095 0 0 0 1 0.9848074 -0.02568046 -0.1717387 0.8315375 -1.0513e-10 0.9890038 -0.1478879 0.964119 0.1736481 0.1456411 0.9739788 0.04852095 0 0 0 1 0.9848074 -0.0230557 -0.1721108 0.8315375 -1.0513e-10 0.9911463 -0.1327725 0.964119 0.1736481 0.1307554 0.9760886 0.04852095 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_E1_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_E1_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_E1_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_E1_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_E1_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_E1_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_E1_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_E1_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_E1_pose_matrix-sampler" target="Aspron_Armature_Aspron_E1/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_E2_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_E2_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_E2_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_E2_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_E2_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_E2_pose_matrix-output-array" count="416">-0.9959807 -0.07446378 0.04977178 5.96046e-8 -0.07908725 0.9919903 -0.09849067 0.5522437 -0.04203914 -0.1020311 -0.9938927 -1.49012e-8 0 0 0 1 -0.9894467 -0.1398961 0.03773703 1.19209e-7 -0.1412712 0.9892933 -0.03662213 0.5522436 -0.03220965 -0.04156679 -0.9986165 -1.49012e-8 0 0 0 1 -0.983161 -0.1817393 0.01910958 -1.19209e-7 -0.1805096 0.9821229 0.05339658 0.5522437 -0.02847221 0.04904796 -0.9983907 7.45058e-9 0 0 0 1 -0.9809019 -0.1945005 0.001070135 0 -0.1921386 0.9698163 0.1501316 0.5522438 -0.03023848 0.1470587 -0.9886656 -1.49012e-8 0 0 0 1 -0.9832423 -0.1821716 -0.006930028 0 -0.1788792 0.9567442 0.2294406 0.5522438 -0.03516727 0.2268353 -0.9732981 -1.49012e-8 0 0 0 1 -0.9882614 -0.1527636 -0.001636106 0 -0.1473362 0.9502103 0.2745773 0.5522438 -0.04039074 0.2715952 -0.9615638 -1.49012e-8 0 0 0 1 -0.9935654 -0.1125378 0.01276727 0 -0.1045085 0.9544013 0.2796361 0.5522437 -0.04365472 0.2765025 -0.9600214 -7.45058e-9 0 0 0 1 -0.9975919 -0.06340267 0.02811694 0 -0.0550286 0.9702988 0.2355682 0.5522438 -0.04221749 0.2334536 -0.9714512 -1.49012e-8 0 0 0 1 -0.9967766 -0.07768802 0.02001747 0 -0.07391222 0.9863113 0.1474008 0.5522436 -0.03119473 0.1454462 -0.9888744 0 0 0 0 1 -0.9802891 -0.1975245 -0.004145277 5.96046e-8 -0.1974299 0.9786041 0.05792626 0.5522436 -0.007385287 0.0576029 -0.9983125 -7.45058e-9 0 0 0 1 -0.9681504 -0.2499118 -0.01512507 0 -0.2500345 0.9682128 0.006828531 0.5522437 0.01293775 0.01039283 -0.9998624 -1.49012e-8 0 0 0 1 -0.9769714 -0.2133095 -0.005110039 -5.96046e-8 -0.2133444 0.976947 0.007676724 0.5522438 0.003354688 0.008590125 -0.9999576 1.49012e-8 0 0 0 1 -0.9895304 -0.1432185 0.0178289 5.96046e-8 -0.1428058 0.9894927 0.02260321 0.5522437 -0.02087875 0.01982053 -0.9995857 0 0 0 0 1 -0.9961061 -0.07710365 0.04274735 1.19209e-7 -0.0752466 0.9962168 0.04347262 0.5522436 -0.04593756 0.04008676 -0.9981398 -1.49012e-8 0 0 0 1 -0.9979328 -0.01292596 0.06295256 5.96046e-8 -0.009828938 0.9987376 0.04925966 0.5522436 -0.06350978 0.04853909 -0.9968002 -1.49012e-8 0 0 0 1 -0.9951244 0.05986282 0.07838257 -5.96046e-8 0.0628351 0.9973739 0.03601742 0.5522436 -0.07602058 0.04076698 -0.9962726 -7.45058e-9 0 0 0 1 -0.9889082 0.1188901 0.08902688 -5.96046e-8 0.1206234 0.9925951 0.01433109 0.5522437 -0.0866638 0.02491087 -0.9959264 -7.45058e-9 0 0 0 1 -0.9863741 0.1351207 0.09385265 5.96046e-8 0.136175 0.9906728 0.004891977 0.5522436 -0.09231623 0.01760572 -0.9955743 -1.49012e-8 0 0 0 1 -0.9898015 0.1044555 0.09686092 -5.96046e-8 0.1069262 0.9940524 0.02066346 0.5522437 -0.09412635 0.0308097 -0.9950836 -7.45058e-9 0 0 0 1 -0.994861 0.03562118 0.09477868 5.96046e-8 0.04159533 0.9972202 0.06182204 0.5522438 -0.09231299 0.06544666 -0.9935772 -7.45058e-9 0 0 0 1 -0.9957532 -0.03776729 0.08395893 0 -0.02926022 0.9945229 0.1003404 0.5522436 -0.08728861 0.09745757 -0.9914045 -7.45058e-9 0 0 0 1 -0.9938436 -0.08453501 0.07161418 5.96046e-8 -0.07574344 0.9901612 0.1176601 0.5522437 -0.08085597 0.1115114 -0.9904686 1.49012e-8 0 0 0 1 -0.9944925 -0.08269506 0.06439135 1.19209e-7 -0.07690342 0.9931695 0.08775011 0.5522437 -0.07120804 0.08231494 -0.9940593 -1.49012e-8 0 0 0 1 -0.9951189 -0.0789111 0.05925823 5.96046e-8 -0.07847929 0.9968698 0.009582773 0.5522438 -0.05982888 0.004885435 -0.998197 -2.23517e-8 0 0 0 1 -0.9956381 -0.0755013 0.0548132 0 -0.07919151 0.9944962 -0.06860263 0.5522437 -0.04933189 -0.07264408 -0.9961373 1.49012e-8 0 0 0 1 -0.9959808 -0.07446379 0.0497718 0 -0.07908726 0.9919904 -0.09849066 0.5522437 -0.04203915 -0.1020311 -0.9938927 7.45058e-9 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_E2_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_E2_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_E2_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_E2_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_E2_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_E2_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_E2_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_E2_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_E2_pose_matrix-sampler" target="Aspron_Armature_Aspron_E2/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_E3_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_E3_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_E3_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_E3_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_E3_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_E3_pose_matrix-output-array" count="416">-0.9719267 0.1868286 0.1430172 0 0.2175404 0.9451352 0.2437123 0.5522439 -0.0896382 0.2679824 -0.9592449 -1.49012e-8 0 0 0 1 -0.9487668 0.2769261 0.1521632 0 0.3076886 0.9192743 0.2454844 0.5522438 -0.07189875 0.2797264 -0.957384 0 0 0 0 1 -0.9218657 0.3574983 0.1495281 0 0.3822958 0.9021127 0.2001061 0.5522437 -0.06335368 0.2416348 -0.9682969 1.49012e-8 0 0 0 1 -0.9000437 0.4165317 0.128152 5.96046e-8 0.4311003 0.894042 0.1218257 0.5522436 -0.06382899 0.1648947 -0.9842438 -1.49012e-8 0 0 0 1 -0.8909333 0.4441845 0.09454241 0 0.4486308 0.8931649 0.03141543 0.5522437 -0.07048766 0.07040367 -0.9950252 0 0 0 0 1 -0.8967322 0.4380125 0.0633756 -5.96046e-8 0.4353937 0.8987818 -0.05122098 0.5522436 -0.07939629 -0.01833817 -0.9966745 -2.98023e-8 0 0 0 1 -0.914013 0.4030224 0.04640285 -5.96046e-8 0.3962037 0.9113772 -0.1114193 0.5522438 -0.08719496 -0.08345369 -0.9926896 1.49012e-8 0 0 0 1 -0.9365384 0.3473217 0.04758035 0 0.338935 0.9317588 -0.1301877 0.5522437 -0.08955035 -0.1057991 -0.9903472 0 0 0 0 1 -0.9521918 0.3023765 0.04358269 0 0.2964856 0.9490414 -0.1068491 0.5522438 -0.07367041 -0.08881918 -0.9933197 2.98023e-8 0 0 0 1 -0.9493338 0.3141735 0.00778269 0 0.3123054 0.9458749 -0.08823888 0.5522438 -0.03508377 -0.08133754 -0.9960691 7.45058e-9 0 0 0 1 -0.9439639 0.3297584 -0.01385618 5.96046e-8 0.3299705 0.9419888 -0.06145492 0.5522437 -0.007212905 -0.06258334 -0.9980139 -7.45058e-9 0 0 0 1 -0.9434151 0.3307356 0.02412606 0 0.3309455 0.9436357 0.005179264 0.5522437 -0.02105325 0.01287061 -0.9996956 0 0 0 0 1 -0.9455158 0.314254 0.08511592 5.96046e-8 0.320831 0.9438044 0.0793792 0.5522436 -0.05538755 0.1023621 -0.9932043 -1.49012e-8 0 0 0 1 -0.9488341 0.2857636 0.1343629 0 0.3020729 0.9453788 0.1225188 0.5522438 -0.09201238 0.1568373 -0.9833291 2.98023e-8 0 0 0 1 -0.9569305 0.2393851 0.1642528 0 0.2634713 0.953703 0.1450288 0.5522436 -0.1219307 0.1820584 -0.9756986 0 0 0 0 1 -0.9685832 0.1681377 0.1832395 -1.19209e-7 0.2008878 0.9633172 0.1779457 0.5522436 -0.1465984 0.2091658 -0.9668293 -1.49012e-8 0 0 0 1 -0.9774894 0.08900418 0.1912933 -5.96046e-8 0.1303267 0.9677241 0.2156971 0.5522437 -0.1659212 0.2357721 -0.9575395 -2.98023e-8 0 0 0 1 -0.9817187 0.03179589 0.1876647 0 0.07520568 0.9705209 0.2289843 0.5522438 -0.1748517 0.2389115 -0.9551693 1.49012e-8 0 0 0 1 -0.9832007 0.01557692 0.1818631 5.96046e-8 0.05376329 0.9768652 0.2069884 0.5522438 -0.1744315 0.2132887 -0.9612918 -1.49012e-8 0 0 0 1 -0.9833385 0.04707088 0.175585 0 0.07372871 0.9861546 0.1485385 0.5522438 -0.166162 0.1590092 -0.9731939 1.49012e-8 0 0 0 1 -0.9807466 0.1069294 0.1634093 -1.78814e-7 0.1212301 0.989381 0.08017978 0.5522436 -0.1531005 0.09844616 -0.9832949 -2.98023e-8 0 0 0 1 -0.974694 0.168417 0.1469941 -5.96046e-8 0.1745066 0.9842151 0.02947062 0.5522436 -0.1397104 0.05437629 -0.9886984 1.49012e-8 0 0 0 1 -0.9731138 0.1820384 0.1411093 5.96046e-8 0.1918321 0.9796462 0.05911207 0.5522439 -0.1274765 0.08459201 -0.988228 -1.49012e-8 0 0 0 1 -0.972826 0.182424 0.1425875 -5.96046e-8 0.2019643 0.9697234 0.1372858 0.5522438 -0.1132262 0.1623528 -0.9802151 2.98023e-8 0 0 0 1 -0.9729327 0.179882 0.1450679 0 0.2084153 0.9542111 0.2145799 0.5522436 -0.09982639 0.2390061 -0.9658732 -2.23517e-8 0 0 0 1 -0.9719267 0.1868286 0.1430172 -5.96046e-8 0.2175405 0.9451354 0.2437123 0.5522438 -0.08963823 0.2679825 -0.959245 -7.45058e-9 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_E3_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_E3_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_E3_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_E3_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_E3_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_E3_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_E3_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_E3_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_E3_pose_matrix-sampler" target="Aspron_Armature_Aspron_E3/transform"/>
+      </animation>
+      <animation id="Aspron_Armature_Action_001_Aspron_E4_pose_matrix" name="Aspron_Armature">
+        <source id="Aspron_Armature_Action_001_Aspron_E4_pose_matrix-input">
+          <float_array id="Aspron_Armature_Action_001_Aspron_E4_pose_matrix-input-array" count="26">3 3.033333 3.066667 3.1 3.133333 3.166667 3.2 3.233333 3.266667 3.3 3.333333 3.366667 3.4 3.433333 3.466667 3.5 3.533333 3.566667 3.6 3.633333 3.666667 3.7 3.733333 3.766667 3.8 3.833333</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_E4_pose_matrix-input-array" count="26" stride="1">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_E4_pose_matrix-output">
+          <float_array id="Aspron_Armature_Action_001_Aspron_E4_pose_matrix-output-array" count="416">0.9908237 0.06155241 -0.1203316 1.19209e-7 -0.0326829 0.9729753 0.2285845 0.5522436 0.1311496 -0.2225542 0.9660586 0 0 0 0 1 0.9889681 -0.06061125 -0.1351608 -2.98023e-8 0.09884477 0.9496233 0.2973971 0.5522437 0.1103263 -0.3074762 0.9451382 -2.98023e-8 0 0 0 1 0.9658469 -0.1955177 -0.1700377 -1.49012e-7 0.241631 0.9165813 0.31858 0.5522438 0.09356541 -0.3487859 0.9325201 1.49012e-8 0 0 0 1 0.9247329 -0.3251596 -0.1978388 -1.19209e-7 0.3718313 0.8827957 0.2870772 0.5522438 0.08130534 -0.3390324 0.9372547 1.49012e-8 0 0 0 1 0.8818229 -0.430212 -0.1931478 -5.96046e-8 0.465755 0.8587079 0.2137593 0.5522436 0.07389569 -0.2784573 0.9576016 -2.98023e-8 0 0 0 1 0.8564913 -0.4930701 -0.1526583 -5.96046e-8 0.511227 0.8511509 0.1191176 0.5522437 0.07120189 -0.1800663 0.9810739 -5.96046e-8 0 0 0 1 0.8578798 -0.5048513 -0.09574567 -5.96046e-8 0.5087664 0.8606628 0.02040306 0.5522438 0.07210425 -0.0662155 0.9951965 2.98023e-8 0 0 0 1 0.8804079 -0.471894 -0.04688405 -1.19209e-7 0.4688081 0.8809913 -0.06382313 0.5522439 0.07142219 0.03421071 0.9968592 -5.96046e-8 0 0 0 1 0.9260968 -0.3769559 -0.01578102 5.96046e-8 0.3714275 0.9182605 -0.1372569 0.5522439 0.06623092 0.1212517 0.9904096 5.96046e-8 0 0 0 1 0.9714573 -0.2372141 2.7281e-4 0 0.2307165 0.9445783 -0.2335414 0.5522437 0.05514161 0.2269384 0.9723466 7.45058e-9 0 0 0 1 0.9854529 -0.1697244 0.00873822 -2.98023e-8 0.1655145 0.9467993 -0.2760002 0.5522438 0.03857064 0.2734314 0.9611177 7.45058e-9 0 0 0 1 0.9829314 -0.1832043 -0.01679076 -5.96046e-8 0.1773766 0.9679558 -0.1777612 0.5522437 0.04881935 0.1717488 0.9839302 0 0 0 0 1 0.9726269 -0.220727 -0.07263907 -5.96046e-8 0.2199628 0.9753336 -0.01845701 0.5522438 0.07492132 0.001973875 0.9971874 -1.49012e-8 0 0 0 1 0.9626238 -0.2351186 -0.1344419 -5.96046e-8 0.2492925 0.9632019 0.1004751 0.5522437 0.1058712 -0.1302351 0.9858143 2.98023e-8 0 0 0 1 0.961302 -0.2108706 -0.1772913 1.19209e-7 0.2405811 0.9561067 0.1672745 0.5522437 0.1342361 -0.2034542 0.9698386 2.98023e-8 0 0 0 1 0.9669693 -0.1517706 -0.2047827 -1.19209e-7 0.1996703 0.9504059 0.2384542 0.5522437 0.1584364 -0.2714669 0.9493173 -1.49012e-8 0 0 0 1 0.9748991 -0.0641879 -0.2131942 5.96046e-8 0.1314841 0.9387164 0.3186274 0.5522436 0.1796768 -0.3386612 0.9235932 -1.49012e-8 0 0 0 1 0.9797395 0.03215311 -0.1976787 0 0.04548815 0.9255081 0.3759862 0.5522436 0.1950423 -0.3773606 0.905294 -2.98023e-8 0 0 0 1 0.9787692 0.105738 -0.1755849 -5.96046e-8 -0.02877747 0.9190664 0.3930506 0.5522438 0.2029346 -0.3796529 0.9025967 0 0 0 0 1 0.9771304 0.1318453 -0.1668323 5.96046e-8 -0.064429 0.9312628 0.3586063 0.5522439 0.2026453 -0.3396564 0.9184597 5.96046e-8 0 0 0 1 0.9793602 0.106511 -0.1717818 -5.96046e-8 -0.05405767 0.9569557 0.2851547 0.5522436 0.1947597 -0.2699831 0.9429619 -2.98023e-8 0 0 0 1 0.9833471 0.04236309 -0.1767315 0 -0.006259337 0.9797705 0.2000266 0.5522437 0.18163 -0.1955893 0.9637195 5.96046e-8 0 0 0 1 0.9852856 0.04470247 -0.164967 -5.96046e-8 -0.01024583 0.9789032 0.204067 0.5522436 0.170609 -0.199374 0.9649571 -1.49012e-8 0 0 0 1 0.9874735 0.052184 -0.1489058 5.96046e-8 -0.01925802 0.9765307 0.2145151 0.5522437 0.1566053 -0.2089604 0.9653031 7.45058e-9 0 0 0 1 0.9893842 0.05948499 -0.1325915 0 -0.02843431 0.973992 0.2247911 0.5522438 0.1425148 -0.2186346 0.9653435 0 0 0 0 1 0.9908236 0.06155241 -0.1203315 0 -0.03268293 0.9729753 0.2285845 0.5522437 0.1311496 -0.2225541 0.9660586 0 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_E4_pose_matrix-output-array" count="26" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Aspron_Armature_Action_001_Aspron_E4_pose_matrix-interpolation">
+          <Name_array id="Aspron_Armature_Action_001_Aspron_E4_pose_matrix-interpolation-array" count="26">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+          <technique_common>
+            <accessor source="#Aspron_Armature_Action_001_Aspron_E4_pose_matrix-interpolation-array" count="26" stride="1">
+              <param name="INTERPOLATION" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="Aspron_Armature_Action_001_Aspron_E4_pose_matrix-sampler">
+          <input semantic="INPUT" source="#Aspron_Armature_Action_001_Aspron_E4_pose_matrix-input"/>
+          <input semantic="OUTPUT" source="#Aspron_Armature_Action_001_Aspron_E4_pose_matrix-output"/>
+          <input semantic="INTERPOLATION" source="#Aspron_Armature_Action_001_Aspron_E4_pose_matrix-interpolation"/>
+        </sampler>
+        <channel source="#Aspron_Armature_Action_001_Aspron_E4_pose_matrix-sampler" target="Aspron_Armature_Aspron_E4/transform"/>
+      </animation>
+    </animation>
+  </library_animations>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Aspron_Armature" name="Aspron_Armature" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <node id="Aspron_Armature_Aspron_Root" name="Aspron_Root" sid="Aspron_Root" type="JOINT">
+          <matrix sid="transform">1 0 0 0 0 -1.49012e-7 1 -0.03857762 0 -1 -1.19209e-7 1 0 0 0 1</matrix>
+          <node id="Aspron_Armature_Aspron_C1" name="Aspron_C1" sid="Aspron_C1" type="JOINT">
+            <matrix sid="transform">1 0 0 0 0 1 -6.05418e-10 1 0 6.05425e-10 1 1.49012e-7 0 0 0 1</matrix>
+            <node id="Aspron_Armature_Aspron_C2" name="Aspron_C2" sid="Aspron_C2" type="JOINT">
+              <matrix sid="transform">-1 8.54165e-11 1.34309e-6 0 8.56158e-11 1 1.48406e-7 0.5522437 -1.34309e-6 1.48406e-7 -1 0 0 0 0 1</matrix>
+              <node id="Aspron_Armature_Aspron_C3" name="Aspron_C3" sid="Aspron_C3" type="JOINT">
+                <matrix sid="transform">-1 8.54165e-11 -1.34309e-6 3.55271e-15 8.54165e-11 1 0 0.5522437 1.34309e-6 0 -1 0 0 0 0 1</matrix>
+                <node id="Aspron_Armature_Aspron_C4" name="Aspron_C4" sid="Aspron_C4" type="JOINT">
+                  <matrix sid="transform">1 4.02077e-16 4.02077e-16 0 -4.02077e-16 1 0 0.5522437 -4.02077e-16 0 1 0 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <connect sid="connect" type="bool">1</connect>
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">0</tip_y>
+                      <tip_z sid="tip_z" type="float">-0.5522437</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <connect sid="connect" type="bool">1</connect>
+                    <layer sid="layer" type="string">0</layer>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <connect sid="connect" type="bool">1</connect>
+                  <layer sid="layer" type="string">0</layer>
+                  <roll sid="roll" type="float">3.141591</roll>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+              </technique>
+            </extra>
+          </node>
+          <node id="Aspron_Armature_Aspron_A1" name="Aspron_A1" sid="Aspron_A1" type="JOINT">
+            <matrix sid="transform">1 0 0 -0.8283657 0 1 -6.05418e-10 1 0 6.05425e-10 1 1.49012e-7 0 0 0 1</matrix>
+            <node id="Aspron_Armature_Aspron_A2" name="Aspron_A2" sid="Aspron_A2" type="JOINT">
+              <matrix sid="transform">-1 0 1.34309e-6 0 1.99323e-13 1 1.48406e-7 0.5522437 -1.34309e-6 1.48406e-7 -1 0 0 0 0 1</matrix>
+              <node id="Aspron_Armature_Aspron_A3" name="Aspron_A3" sid="Aspron_A3" type="JOINT">
+                <matrix sid="transform">-1 0 -1.34309e-6 0 0 1 0 0.5522437 1.34309e-6 0 -1 0 0 0 0 1</matrix>
+                <node id="Aspron_Armature_Aspron_A4" name="Aspron_A4" sid="Aspron_A4" type="JOINT">
+                  <matrix sid="transform">1 0 0 0 0 1 0 0.5522437 0 0 1 0 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <connect sid="connect" type="bool">1</connect>
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">0</tip_y>
+                      <tip_z sid="tip_z" type="float">-0.5522437</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <connect sid="connect" type="bool">1</connect>
+                    <layer sid="layer" type="string">0</layer>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <connect sid="connect" type="bool">1</connect>
+                  <layer sid="layer" type="string">0</layer>
+                  <roll sid="roll" type="float">3.141591</roll>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+              </technique>
+            </extra>
+          </node>
+          <node id="Aspron_Armature_Aspron_B1" name="Aspron_B1" sid="Aspron_B1" type="JOINT">
+            <matrix sid="transform">1 0 0 -0.4141828 0 1 -6.05418e-10 1 0 6.05425e-10 1 1.49012e-7 0 0 0 1</matrix>
+            <node id="Aspron_Armature_Aspron_B2" name="Aspron_B2" sid="Aspron_B2" type="JOINT">
+              <matrix sid="transform">-1 0 1.34309e-6 0 1.99323e-13 1 1.48406e-7 0.5522437 -1.34309e-6 1.48406e-7 -1 0 0 0 0 1</matrix>
+              <node id="Aspron_Armature_Aspron_B3" name="Aspron_B3" sid="Aspron_B3" type="JOINT">
+                <matrix sid="transform">-1 0 -1.34309e-6 0 0 1 0 0.5522437 1.34309e-6 0 -1 0 0 0 0 1</matrix>
+                <node id="Aspron_Armature_Aspron_B4" name="Aspron_B4" sid="Aspron_B4" type="JOINT">
+                  <matrix sid="transform">1 0 0 0 0 1 0 0.5522437 0 0 1 0 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <connect sid="connect" type="bool">1</connect>
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">0</tip_y>
+                      <tip_z sid="tip_z" type="float">-0.5522437</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <connect sid="connect" type="bool">1</connect>
+                    <layer sid="layer" type="string">0</layer>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <connect sid="connect" type="bool">1</connect>
+                  <layer sid="layer" type="string">0</layer>
+                  <roll sid="roll" type="float">3.141591</roll>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+              </technique>
+            </extra>
+          </node>
+          <node id="Aspron_Armature_Aspron_D1" name="Aspron_D1" sid="Aspron_D1" type="JOINT">
+            <matrix sid="transform">1 0 0 0.4141828 0 1 -6.05418e-10 1 0 6.05425e-10 1 1.49012e-7 0 0 0 1</matrix>
+            <node id="Aspron_Armature_Aspron_D2" name="Aspron_D2" sid="Aspron_D2" type="JOINT">
+              <matrix sid="transform">-1 0 1.34309e-6 0 1.99323e-13 1 1.48406e-7 0.5522437 -1.34309e-6 1.48406e-7 -1 0 0 0 0 1</matrix>
+              <node id="Aspron_Armature_Aspron_D3" name="Aspron_D3" sid="Aspron_D3" type="JOINT">
+                <matrix sid="transform">-1 0 -1.34309e-6 0 0 1 0 0.5522437 1.34309e-6 0 -1 0 0 0 0 1</matrix>
+                <node id="Aspron_Armature_Aspron_D4" name="Aspron_D4" sid="Aspron_D4" type="JOINT">
+                  <matrix sid="transform">1 0 0 0 0 1 0 0.5522437 0 0 1 0 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <connect sid="connect" type="bool">1</connect>
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">0</tip_y>
+                      <tip_z sid="tip_z" type="float">-0.5522437</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <connect sid="connect" type="bool">1</connect>
+                    <layer sid="layer" type="string">0</layer>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <connect sid="connect" type="bool">1</connect>
+                  <layer sid="layer" type="string">0</layer>
+                  <roll sid="roll" type="float">3.141591</roll>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+              </technique>
+            </extra>
+          </node>
+          <node id="Aspron_Armature_Aspron_E1" name="Aspron_E1" sid="Aspron_E1" type="JOINT">
+            <matrix sid="transform">1 0 0 0.8283657 0 1 -6.05418e-10 1 0 6.05425e-10 1 1.49012e-7 0 0 0 1</matrix>
+            <node id="Aspron_Armature_Aspron_E2" name="Aspron_E2" sid="Aspron_E2" type="JOINT">
+              <matrix sid="transform">-1 0 1.34309e-6 0 1.99323e-13 1 1.48406e-7 0.5522437 -1.34309e-6 1.48406e-7 -1 0 0 0 0 1</matrix>
+              <node id="Aspron_Armature_Aspron_E3" name="Aspron_E3" sid="Aspron_E3" type="JOINT">
+                <matrix sid="transform">-1 0 -1.34309e-6 0 0 1 0 0.5522437 1.34309e-6 0 -1 0 0 0 0 1</matrix>
+                <node id="Aspron_Armature_Aspron_E4" name="Aspron_E4" sid="Aspron_E4" type="JOINT">
+                  <matrix sid="transform">1 0 0 0 0 1 0 0.5522437 0 0 1 0 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <connect sid="connect" type="bool">1</connect>
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">0</tip_y>
+                      <tip_z sid="tip_z" type="float">-0.5522437</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <connect sid="connect" type="bool">1</connect>
+                    <layer sid="layer" type="string">0</layer>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <connect sid="connect" type="bool">1</connect>
+                  <layer sid="layer" type="string">0</layer>
+                  <roll sid="roll" type="float">3.141591</roll>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+              </technique>
+            </extra>
+          </node>
+          <extra>
+            <technique profile="blender">
+              <layer sid="layer" type="string">0</layer>
+              <tip_x sid="tip_x" type="float">0</tip_x>
+              <tip_y sid="tip_y" type="float">-1.49012e-7</tip_y>
+              <tip_z sid="tip_z" type="float">-1</tip_z>
+            </technique>
+          </extra>
+        </node>
+        <node id="Plano_006" name="Plano.006" type="NODE">
+          <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <instance_controller url="#Aspron_Armature_Plano_006-skin">
+            <skeleton>#Aspron_Armature_Aspron_Root</skeleton>
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Aspis_Aspron-01-material" target="#Aspis_Aspron-01-material">
+                  <bind_vertex_input semantic="MapaUV" input_semantic="TEXCOORD" input_set="0"/>
+                </instance_material>
+              </technique_common>
+            </bind_material>
+          </instance_controller>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

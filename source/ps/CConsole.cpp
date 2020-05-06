@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,7 +31,6 @@
 #include "gui/GUIManager.h"
 #include "gui/GUIMatrix.h"
 #include "lib/ogl.h"
-#include "lib/sysdep/clipboard.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "maths/MathUtil.h"
@@ -531,7 +530,7 @@ void CConsole::SetBuffer(const wchar_t* szMessage)
 
 	wcsncpy(m_szBuffer, szMessage, CONSOLE_BUFFER_SIZE);
 	m_szBuffer[CONSOLE_BUFFER_SIZE-1] = 0;
-	m_iBufferLength = (int)wcslen(m_szBuffer);
+	m_iBufferLength = static_cast<int>(wcslen(m_szBuffer));
 	m_iBufferPos = std::min(oldBufferPos, m_iBufferLength);
 }
 
@@ -649,19 +648,22 @@ InReaction conInputHandler(const SDL_Event_* ev)
 		}
 		else if (g_Console->IsActive() && hotkey == "copy")
 		{
-			sys_clipboard_set(g_Console->GetBuffer());
+			std::string text = utf8_from_wstring(g_Console->GetBuffer());
+			SDL_SetClipboardText(text.c_str());
 			return IN_HANDLED;
 		}
 		else if (g_Console->IsActive() && hotkey == "paste")
 		{
-			wchar_t* text = sys_clipboard_get();
-			if (text)
-			{
-				for (wchar_t* c = text; *c; c++)
-					g_Console->InsertChar(0, *c);
+			char* utf8_text = SDL_GetClipboardText();
+			if (!utf8_text)
+				return IN_HANDLED;
 
-				sys_clipboard_free(text);
-			}
+			std::wstring text = wstring_from_utf8(utf8_text);
+			SDL_free(utf8_text);
+
+			for (wchar_t c : text)
+				g_Console->InsertChar(0, c);
+
 			return IN_HANDLED;
 		}
 	}

@@ -6,6 +6,7 @@
       <props>
         <prop actor="props/units/shields/props/aspis_back_bronze_01.xml" attachpoint="root"/>
         <prop actor="props/units/shields/props/aspis_handgrip_bronze_01.xml" attachpoint="handgrip"/>
+        <prop actor="props/units/shields/props/aspis_apron_athen_02.xml" attachpoint="apron"/>
       </props>
     </variant>
   </group>
@@ -16,6 +17,7 @@
     <variant frequency="1" file="shields/athen_aspis_elite_06.xml" name="Athen-ISP-E-06"/>
     <variant frequency="1" file="shields/athen_aspis_elite_07.xml" name="Athen-ISP-E-07"/>
     <variant frequency="1" file="shields/athen_aspis_elite_08.xml" name="Athen-ISP-E-08"/>
+    <variant frequency="1" file="shields/athen_aspis_elite_10.xml" name="Athen-ISP-E-09"/>
   </group>
   <material>player_trans_parallax_spec.xml</material>
 </actor>

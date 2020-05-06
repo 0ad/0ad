@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,7 +24,6 @@
 #include "graphics/TextRenderer.h"
 #include "gui/CGUI.h"
 #include "gui/CGUIScrollBarVertical.h"
-#include "lib/sysdep/clipboard.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "ps/ConfigDB.h"
@@ -600,29 +599,30 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 
 		m_WantedX = 0.0f;
 
-		wchar_t* text = sys_clipboard_get();
-		if (text)
-		{
-			if (SelectingText())
-				DeleteCurSelection();
+		char* utf8_text = SDL_GetClipboardText();
+		if (!utf8_text)
+			return IN_HANDLED;
 
-			if (m_iBufferPos == static_cast<int>(m_Caption.length()))
-				m_Caption += text;
-			else
-				m_Caption =
-					m_Caption.Left(m_iBufferPos) + text +
-					m_Caption.Right(static_cast<long>(m_Caption.length()) - m_iBufferPos);
+		std::wstring text = wstring_from_utf8(utf8_text);
+		SDL_free(utf8_text);
 
-			UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
+		if (SelectingText())
+			DeleteCurSelection();
 
-			m_iBufferPos += (int)wcslen(text);
-			UpdateAutoScroll();
-			UpdateBufferPositionSetting();
+		if (m_iBufferPos == static_cast<int>(m_Caption.length()))
+			m_Caption += text;
+		else
+			m_Caption =
+				m_Caption.Left(m_iBufferPos) + text +
+				m_Caption.Right(static_cast<long>(m_Caption.length()) - m_iBufferPos);
 
-			sys_clipboard_free(text);
+		UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
 
-			SendEvent(GUIM_TEXTEDIT, EventNameTextEdit);
-		}
+		m_iBufferPos += static_cast<int>(text.size());
+		UpdateAutoScroll();
+		UpdateBufferPositionSetting();
+
+		SendEvent(GUIM_TEXTEDIT, EventNameTextEdit);
 
 		return IN_HANDLED;
 	}
@@ -651,7 +651,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 
 			CStrW text = m_Caption.Left(virtualTo).Right(virtualTo - virtualFrom);
 
-			sys_clipboard_set(&text[0]);
+			SDL_SetClipboardText(text.ToUTF8().c_str());
 
 			if (hotkey == "cut")
 			{

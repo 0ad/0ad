@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="Aspron_Armature" title="Aspron Armature">
+    <bone name="Aspron_Root">
+      <bone name="Aspron_C1">
+        <bone name="Aspron_C2">
+          <bone name="Aspron_C3">
+            <bone name="Aspron_C4" />
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Aspron_A1">
+        <bone name="Aspron_A2">
+          <bone name="Aspron_A3">
+            <bone name="Aspron_A4" />
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Aspron_B1">
+        <bone name="Aspron_B2">
+          <bone name="Aspron_B3">
+            <bone name="Aspron_B4" />
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Aspron_D1">
+        <bone name="Aspron_D2">
+          <bone name="Aspron_D3">
+            <bone name="Aspron_D4" />
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Aspron_E1">
+        <bone name="Aspron_E2">
+          <bone name="Aspron_E3">
+            <bone name="Aspron_E4" />
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Plano.006" />
+  </standard_skeleton>
+  <skeleton target="Aspron_Armature" title="Aspron Armature">
+    <identifier>
+      <root>Aspron_Root</root>
+    </identifier>
+    <bone name="Aspron_Root">
+      <target>Aspron_Root</target>
+      <bone name="Aspron_C1">
+        <target>Aspron_C1</target>
+        <bone name="Aspron_C2">
+          <target>Aspron_C2</target>
+          <bone name="Aspron_C3">
+            <target>Aspron_C3</target>
+            <bone name="Aspron_C4">
+              <target>Aspron_C4</target>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Aspron_A1">
+        <target>Aspron_A1</target>
+        <bone name="Aspron_A2">
+          <target>Aspron_A2</target>
+          <bone name="Aspron_A3">
+            <target>Aspron_A3</target>
+            <bone name="Aspron_A4">
+              <target>Aspron_A4</target>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Aspron_B1">
+        <target>Aspron_B1</target>
+        <bone name="Aspron_B2">
+          <target>Aspron_B2</target>
+          <bone name="Aspron_B3">
+            <target>Aspron_B3</target>
+            <bone name="Aspron_B4">
+              <target>Aspron_B4</target>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Aspron_D1">
+        <target>Aspron_D1</target>
+        <bone name="Aspron_D2">
+          <target>Aspron_D2</target>
+          <bone name="Aspron_D3">
+            <target>Aspron_D3</target>
+            <bone name="Aspron_D4">
+              <target>Aspron_D4</target>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Aspron_E1">
+        <target>Aspron_E1</target>
+        <bone name="Aspron_E2">
+          <target>Aspron_E2</target>
+          <bone name="Aspron_E3">
+            <target>Aspron_E3</target>
+            <bone name="Aspron_E4">
+              <target>Aspron_E4</target>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+    <bone name="Plano.006">
+      <target>Plano.006</target>
+    </bone>
+  </skeleton>
+</skeletons>

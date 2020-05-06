@@ -11,13 +11,9 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Player-Color-01">
-      <textures>
-        <texture file="props/shield/aspis_cart_elite_01.png" name="baseTex"/>
-        <texture file="props/shield/aspis_cart_elite_01_norm.png" name="normTex"/>
-        <texture file="props/shield/aspis_cart_elite_01_spec.png" name="specTex"/>
-      </textures>
-    </variant>
+    <variant frequency="1" file="shields/kart_pelte_sacred_band_01.xml" name="Kart-ISP-C-02"/>
+    <variant frequency="1" file="shields/kart_pelte_sacred_band_02.xml" name="Kart-ISP-C-03"/>
+    <variant frequency="1" file="shields/kart_pelte_sacred_band_03.xml" name="Kart-ISP-C-04"/>
   </group>
   <material>player_trans_parallax_spec.xml</material>
 </actor>

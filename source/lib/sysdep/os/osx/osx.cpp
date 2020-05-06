@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,7 +27,6 @@
 #include "lib/sysdep/gfx.h"
 #include "lib/utf8.h"
 #include "osx_bundle.h"
-#include "osx_pasteboard.h"
 
 #include <ApplicationServices/ApplicationServices.h>
 #include <AvailabilityMacros.h> // MAC_OS_X_VERSION_MIN_REQUIRED
@@ -37,42 +36,6 @@
 // Ignore deprecation warnings for 10.5 backwards compatibility
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
-Status sys_clipboard_set(const wchar_t* text)
-{
-	Status ret = INFO::OK;
-
-	std::string str = utf8_from_wstring(text);
-	bool ok = osx_SendStringToPasteboard(str);
-	if (!ok)
-		ret = ERR::FAIL;
-	return ret;
-}
-
-wchar_t* sys_clipboard_get()
-{
-	wchar_t* ret = NULL;
-	std::string str;
-	bool ok = osx_GetStringFromPasteboard(str);
-	if (ok)
-	{
-		// TODO: this is yucky, why are we passing around wchar_t*?
-		std::wstring wstr = wstring_from_utf8(str);
-		size_t len = wcslen(wstr.c_str());
-		ret = (wchar_t*)malloc((len+1)*sizeof(wchar_t));
-		std::copy(wstr.c_str(), wstr.c_str()+len, ret);
-		ret[len] = 0;
-	}
-
-	return ret;
-}
-
-Status sys_clipboard_free(wchar_t* copy)
-{
-	free(copy);
-	return INFO::OK;
-}
-
 
 namespace gfx {
 
@@ -142,7 +105,6 @@ Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
 }
 
 }	// namespace gfx
-
 
 OsPath sys_ExecutablePathname()
 {
