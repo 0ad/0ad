@@ -1,10 +1,10 @@
 function GarrisonHolder() {}
 
 GarrisonHolder.prototype.Schema =
-	"<element name='Max' a:help='Maximum number of entities which can be garrisoned inside this holder'>" +
+	"<element name='Max' a:help='Maximum number of entities which can be garrisoned in this holder'>" +
 		"<data type='positiveInteger'/>" +
 	"</element>" +
-	"<element name='List' a:help='Classes of entities which are allowed to garrison inside this holder (from Identity)'>" +
+	"<element name='List' a:help='Classes of entities which are allowed to garrison in this holder (from Identity)'>" +
 		"<attribute name='datatype'>" +
 			"<value>tokens</value>" +
 		"</attribute>" +
@@ -46,6 +46,14 @@ GarrisonHolder.prototype.Schema =
 							"<data type='decimal'/>" +
 						"</element>" +
 						"<optional>" +
+							"<element name='AllowedClasses' a:help='If specified, only entities matching the given classes will be able to use this visible garrison point.'>" +
+								"<attribute name='datatype'>" +
+									"<value>tokens</value>" +
+								"</attribute>" +
+								"<text/>" +
+							"</element>" +
+						"</optional>"+
+						"<optional>" +
 							"<element name='Angle' a:help='Angle in degrees relative to the garrisonHolder direction'>" +
 								"<data type='decimal'/>" +
 							"</element>" +
@@ -68,20 +76,21 @@ GarrisonHolder.prototype.Init = function()
 	this.timer = undefined;
 	this.allowGarrisoning = new Map();
 	this.visibleGarrisonPoints = [];
-	if (this.template.VisibleGarrisonPoints)
-	{
-		let points = this.template.VisibleGarrisonPoints;
-		for (let point in points)
-			this.visibleGarrisonPoints.push({
-				"offset": {
-					"x": +points[point].X,
-					"y": +points[point].Y,
-					"z": +points[point].Z
-				},
-				"angle": points[point].Angle ? +points[point].Angle * Math.PI / 180 : null,
-				"entity": null
-			});
-	}
+	if (!this.template.VisibleGarrisonPoints)
+		return;
+
+	let points = this.template.VisibleGarrisonPoints;
+	for (let point in points)
+		this.visibleGarrisonPoints.push({
+			"offset": {
+				"x": +points[point].X,
+				"y": +points[point].Y,
+				"z": +points[point].Z
+			},
+			"allowedClasses": points[point].AllowedClasses,
+			"angle": points[point].Angle ? +points[point].Angle * Math.PI / 180 : null,
+			"entity": null
+		});
 };
 
 /**
@@ -179,10 +188,27 @@ GarrisonHolder.prototype.IsAllowedToGarrison = function(ent)
 };
 
 /**
+ * @param {number} entity - The entity's id.
+ * @param {Object|undefined} visibleGarrisonPoint - The vgp object.
+ * @return {boolean} - Whether the unit is allowed be visible on that garrison point.
+ */
+GarrisonHolder.prototype.AllowedToVisibleGarrisoning = function(entity, visibleGarrisonPoint)
+{
+	if (!visibleGarrisonPoint)
+		return false;
+
+	if (!visibleGarrisonPoint.allowedClasses)
+		return true;
+
+	let cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
+	return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), visibleGarrisonPoint.allowedClasses._string);
+};
+
+/**
  * Garrison a unit inside. The timer for AutoHeal is started here.
  * @param {number} vgpEntity - The visual garrison point that will be used.
  * If vgpEntity is given, this visualGarrisonPoint will be used for the entity.
- * @return {boolean} Whether the entity was garrisonned.
+ * @return {boolean} - Whether the entity was garrisoned.
  */
 GarrisonHolder.prototype.Garrison = function(entity, vgpEntity)
 {
@@ -193,16 +219,14 @@ GarrisonHolder.prototype.Garrison = function(entity, vgpEntity)
 	if (!this.PerformGarrison(entity))
 		return false;
 
-	let visibleGarrisonPoint = vgpEntity;
-	if (!visibleGarrisonPoint)
-		for (let vgp of this.visibleGarrisonPoints)
-		{
-			if (vgp.entity)
-				continue;
-			visibleGarrisonPoint = vgp;
-			break;
-		}
+	let visibleGarrisonPoint;
+	if (vgpEntity && this.AllowedToVisibleGarrisoning(entity, vgpEntity))
+		visibleGarrisonPoint = vgpEntity;
 
+	if (!visibleGarrisonPoint)
+		visibleGarrisonPoint = this.visibleGarrisonPoints.find(vgp => !vgp.entity && this.AllowedToVisibleGarrisoning(entity, vgp));
+
+	let isVisiblyGarrisoned = false;
 	if (visibleGarrisonPoint)
 	{
 		visibleGarrisonPoint.entity = entity;
@@ -224,9 +248,20 @@ GarrisonHolder.prototype.Garrison = function(entity, vgpEntity)
 		let cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
 		if (cmpUnitAI)
 			cmpUnitAI.SetTurretStance();
+
+		isVisiblyGarrisoned = true;
 	}
 	else
 		cmpPosition.MoveOutOfWorld();
+
+	// Should only be called after the garrison has been performed else the visible Garrison Points are not updated yet.
+	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {
+		"added": [entity],
+		"removed": [],
+		"visible": {
+			[entity]: isVisiblyGarrisoned,
+		}
+	});
 
 	return true;
 };
@@ -268,7 +303,6 @@ GarrisonHolder.prototype.PerformGarrison = function(entity)
 	if (cmpAura && cmpAura.HasGarrisonAura())
 		cmpAura.ApplyGarrisonAura(this.entity);
 
-	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added": [entity], "removed": [] });
 	return true;
 };
 
@@ -313,6 +347,11 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 	let cmpEntPosition = Engine.QueryInterface(entity, IID_Position);
 	let cmpEntUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
 
+	// Needs to be set before the visible garrison points are cleared.
+	let visible = {
+		[entity]: this.IsVisiblyGarrisoned(entity)
+	};
+
 	for (let vgp of this.visibleGarrisonPoints)
 	{
 		if (vgp.entity != entity)
@@ -345,7 +384,11 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 	if (cmpPosition)
 		cmpEntPosition.SetYRotation(cmpPosition.GetPosition().horizAngleTo(pos));
 
-	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added": [], "removed": [entity] });
+	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {
+		"added": [],
+		"removed": [entity],
+		"visible": visible
+	});
 
 	return true;
 };
@@ -581,7 +624,13 @@ GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
 		if (cmpHealth && cmpHealth.GetHitpoints() == 0)
 		{
 			this.entities.splice(entityIndex, 1);
-			Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added": [], "removed": [msg.entity] });
+			Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {
+				"added": [],
+				"removed": [msg.entity],
+				"visible": {
+					[msg.entity]: this.IsVisiblyGarrisoned(msg.entity)
+				}
+			});
 			this.UpdateGarrisonFlag();
 
 			for (let point of this.visibleGarrisonPoints)
@@ -670,8 +719,27 @@ GarrisonHolder.prototype.EjectOrKill = function(entities)
 	}
 
 	if (killedEntities.length)
-		Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added": [], "removed": killedEntities });
+	{
+		let visibleEntitiesIds = {};
+		for (let ent of killedEntities)
+			visibleEntitiesIds[ent] = this.IsVisiblyGarrisoned(ent);
+		Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {
+			"added": [],
+			"removed": killedEntities,
+			"visible": visibleEntitiesIds
+		});
+	}
 	this.UpdateGarrisonFlag();
+};
+
+/**
+ * Gives insight about the unit type of garrisoning.
+ * @param {number} entity - The entity's id.
+ * @return {boolean} - Whether the entity is visible on the garrison holder.
+ */
+GarrisonHolder.prototype.IsVisiblyGarrisoned = function(entity)
+{
+	return this.visibleGarrisonPoints.some(point => point.entity == entity);
 };
 
 /**

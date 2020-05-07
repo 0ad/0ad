@@ -33,8 +33,8 @@ AddMock(garrisonHolderId, IID_Health, {
 });
 
 AddMock(player, IID_Player, {
-	"IsAlly": id => true,
-	"IsMutualAlly": id => true,
+	"IsAlly": id => id != enemyPlayer,
+	"IsMutualAlly": id => id != enemyPlayer,
 	"GetPlayerID": () => player
 });
 
@@ -55,7 +55,7 @@ AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 for (let i = 24; i <= 34; ++i)
 {
 	AddMock(i, IID_Identity, {
-		"GetClassesList": () => "Infantry+Cavalry",
+		"GetClassesList": () => ["Infantry", "Cavalry"],
 		"GetSelectionGroupName": () => "mace_infantry_archer_a"
 	});
 
@@ -88,7 +88,7 @@ for (let i = 24; i <= 34; ++i)
 }
 
 AddMock(33, IID_Identity, {
-	"GetClassesList": () => "Infantry+Cavalry",
+	"GetClassesList": () => ["Infantry", "Cavalry"],
 	"GetSelectionGroupName": () => "spart_infantry_archer_a"
 });
 
@@ -168,3 +168,127 @@ TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 3);
 TS_ASSERT_EQUALS(cmpGarrisonHolder.IsFull(), false);
 TS_ASSERT_EQUALS(cmpGarrisonHolder.UnloadAll(), true);
 TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), []);
+
+let siegeEngineId = 44;
+AddMock(siegeEngineId, IID_Identity, {
+	"GetClassesList": () => ["Siege"]
+});
+let archerId = 45;
+AddMock(archerId, IID_Identity, {
+	"GetClassesList": () => ["Infantry", "Ranged"]
+});
+
+// Test visible garrisoning restrictions.
+cmpGarrisonHolder = ConstructComponent(garrisonHolderId, "GarrisonHolder", {
+	"Max": 10,
+	"List": { "_string": "Infantry+Ranged Siege Cavalry" },
+	"EjectHealth": 0.1,
+	"EjectClassesOnDestroy": { "_string": "Infantry" },
+	"BuffHeal": 1,
+	"LoadingRange": 2.1,
+	"Pickup": false,
+	"VisibleGarrisonPoints": {
+		"archer1": {
+			"X": 12,
+			"Y": 5,
+			"Z": 6
+		},
+		"archer2": {
+			"X": 15,
+			"Y": 5,
+			"Z": 6,
+			"AllowedClasses": { "_string": "Siege Trader" }
+		},
+		"archer3": {
+			"X": 15,
+			"Y": 5,
+			"Z": 6,
+			"AllowedClasses": { "_string": "Siege Infantry+Ranged Infantry+Cavalry" }
+		}
+	}
+});
+
+AddMock(32, IID_Identity, {
+	"GetClassesList": () => ["Trader"]
+});
+
+TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(32), false);
+TS_ASSERT_EQUALS(cmpGarrisonHolder.AllowedToVisibleGarrisoning(siegeEngineId, cmpGarrisonHolder.visibleGarrisonPoints[0]), true);
+TS_ASSERT_EQUALS(cmpGarrisonHolder.AllowedToVisibleGarrisoning(siegeEngineId, cmpGarrisonHolder.visibleGarrisonPoints[1]), true);
+TS_ASSERT_EQUALS(cmpGarrisonHolder.AllowedToVisibleGarrisoning(siegeEngineId, cmpGarrisonHolder.visibleGarrisonPoints[2]), true);
+TS_ASSERT_EQUALS(cmpGarrisonHolder.AllowedToVisibleGarrisoning(archerId, cmpGarrisonHolder.visibleGarrisonPoints[0]), true);
+TS_ASSERT_EQUALS(cmpGarrisonHolder.AllowedToVisibleGarrisoning(archerId, cmpGarrisonHolder.visibleGarrisonPoints[1]), false);
+TS_ASSERT_EQUALS(cmpGarrisonHolder.AllowedToVisibleGarrisoning(archerId, cmpGarrisonHolder.visibleGarrisonPoints[2]), true);
+TS_ASSERT_EQUALS(cmpGarrisonHolder.AllowedToVisibleGarrisoning(33, cmpGarrisonHolder.visibleGarrisonPoints[0]), true);
+TS_ASSERT_EQUALS(cmpGarrisonHolder.AllowedToVisibleGarrisoning(33, cmpGarrisonHolder.visibleGarrisonPoints[1]), false);
+TS_ASSERT_EQUALS(cmpGarrisonHolder.AllowedToVisibleGarrisoning(33, cmpGarrisonHolder.visibleGarrisonPoints[2]), true);
+
+// If an entity gets renamed (e.g. promotion, upgrade)
+// and is no longer able to be visibly garrisoned it
+// should be garisoned instead or ejected.
+AddMock(siegeEngineId, IID_Position, {
+	"GetHeightOffset": () => 0,
+	"GetPosition": () => new Vector3D(4, 3, 25),
+	"GetRotation": () => new Vector3D(4, 0, 6),
+	"GetTurretParent": () => INVALID_ENTITY,
+	"IsInWorld": () => true,
+	"JumpTo": (posX, posZ) => {},
+	"MoveOutOfWorld": () => {},
+	"SetTurretParent": (entity, offset) => {},
+	"SetHeightOffset": height => {}
+});
+let currentSiegePlayer = player;
+AddMock(siegeEngineId, IID_Ownership, {
+	"GetOwner": () => currentSiegePlayer
+});
+AddMock(siegeEngineId, IID_Garrisonable, {});
+let cavalryId = 46;
+AddMock(cavalryId, IID_Identity, {
+	"GetClassesList": () => ["Infantry", "Ranged"]
+});
+AddMock(cavalryId, IID_Position, {
+	"GetHeightOffset": () => 0,
+	"GetPosition": () => new Vector3D(4, 3, 25),
+	"GetRotation": () => new Vector3D(4, 0, 6),
+	"GetTurretParent": () => INVALID_ENTITY,
+	"IsInWorld": () => true,
+	"JumpTo": (posX, posZ) => {},
+	"MoveOutOfWorld": () => {},
+	"SetTurretParent": (entity, offset) => {},
+	"SetHeightOffset": height => {}
+});
+
+let currentCavalryPlayer = player;
+AddMock(cavalryId, IID_Ownership, {
+	"GetOwner": () => currentCavalryPlayer
+});
+AddMock(cavalryId, IID_Garrisonable, {});
+TS_ASSERT(cmpGarrisonHolder.Garrison(siegeEngineId));
+TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 1);
+TS_ASSERT(cmpGarrisonHolder.IsVisiblyGarrisoned(siegeEngineId));
+cmpGarrisonHolder.OnGlobalEntityRenamed({
+	"entity": siegeEngineId,
+	"newentity": cavalryId
+});
+TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 1);
+TS_ASSERT(!cmpGarrisonHolder.IsVisiblyGarrisoned(siegeEngineId));
+TS_ASSERT(!cmpGarrisonHolder.IsVisiblyGarrisoned(archerId));
+
+// Eject enemy units.
+currentCavalryPlayer = enemyPlayer;
+cmpGarrisonHolder.OnGlobalOwnershipChanged({
+	"entity": cavalryId,
+	"to": enemyPlayer
+});
+TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 0);
+
+// Visibly garrisoned units should get ejected if they change players.
+TS_ASSERT(cmpGarrisonHolder.Garrison(siegeEngineId));
+TS_ASSERT(cmpGarrisonHolder.IsVisiblyGarrisoned(siegeEngineId));
+TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 1);
+currentSiegePlayer = enemyPlayer;
+cmpGarrisonHolder.OnGlobalOwnershipChanged({
+	"entity": siegeEngineId,
+	"to": enemyPlayer
+});
+TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 0);
