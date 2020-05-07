@@ -266,7 +266,7 @@ Capturable.prototype.UpdateCachedValues = function()
 	this.garrisonRegenRate = ApplyValueModificationsToEntity("Capturable/GarrisonRegenRate", +this.template.GarrisonRegenRate, this.entity);
 	this.regenRate = ApplyValueModificationsToEntity("Capturable/RegenRate", +this.template.RegenRate, this.entity);
 	this.maxCp = ApplyValueModificationsToEntity("Capturable/CapturePoints", +this.template.CapturePoints, this.entity);
-}
+};
 
 /**
  * Update all chached values that could be affected by modifications.
@@ -276,7 +276,7 @@ Capturable.prototype.UpdateCachedValues = function()
 Capturable.prototype.UpdateCachedValuesAndNotify = function(dontSendCpChanged = false)
 {
 	let oldMaxCp = this.maxCp;
-	let oldGarrosionRegenRate = this.garrisonRegenRate;
+	let oldGarrisonRegenRate = this.garrisonRegenRate;
 	let oldRegenRate = this.regenRate;
 
 	this.UpdateCachedValues();
@@ -290,9 +290,9 @@ Capturable.prototype.UpdateCachedValuesAndNotify = function(dontSendCpChanged = 
 			Engine.PostMessage(this.entity, MT_CapturePointsChanged, { "capturePoints": this.cp });
 	}
 
-	if (oldGarrosionRegenRate != this.garrisonRegenRate || oldRegenRate != this.regenRate)
+	if (oldGarrisonRegenRate != this.garrisonRegenRate || oldRegenRate != this.regenRate)
 		this.CheckTimer();
-}
+};
 
 //// Message Listeners ////
 
