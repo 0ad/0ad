@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -191,7 +191,9 @@ MESSAGEHANDLER(ImportHeightmap)
 	// Notice that the number of tiles/pixels per side of the heightmap image is
 	// one less than the number of vertices per side of the heightmap.
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	terrain->Resize((sqrt(heightmap_source.size()) - 1) / PATCH_SIZE);
+	const ssize_t newSize = (sqrt(heightmap_source.size()) - 1) / PATCH_SIZE;
+	const ssize_t offset = (newSize - terrain->GetPatchesPerSide()) / 2;
+	terrain->ResizeAndOffset(newSize, offset, offset);
 
 	// copy heightmap data into map
 	u16* heightmap = g_Game->GetWorld()->GetTerrain()->GetHeightMap();
@@ -297,7 +299,9 @@ BEGIN_COMMAND(ResizeMap)
 	{
 		CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 
-		terrain->Resize(tiles / PATCH_SIZE);
+		const ssize_t newSize = tiles / PATCH_SIZE;
+		const ssize_t offset = (newSize - terrain->GetPatchesPerSide()) / 2;
+		terrain->ResizeAndOffset(newSize, offset, offset);
 
 		MakeDirty();
 	}
