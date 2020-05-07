@@ -4947,6 +4947,8 @@ UnitAI.prototype.RespondToTargetedEntities = function(ents)
 
 	if (this.GetStance().respondFlee)
 	{
+		if (this.order && this.order.type == "Flee")
+			this.orderQueue.shift();
 		this.PushOrderFront("Flee", { "target": ents[0], "force": false });
 		return true;
 	}
