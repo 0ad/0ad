@@ -13,8 +13,10 @@ Capturable.prototype.Schema =
 
 Capturable.prototype.Init = function()
 {
-	// Cache this value
+	// Values affected by modifications in onOwnershipChanged
 	this.maxCp = +this.template.CapturePoints;
+	this.garrisonRegenRate = +this.template.GarrisonRegenRate;
+	this.regenRate = +this.template.RegenRate;
 	this.cp = [];
 };
 
@@ -35,7 +37,7 @@ Capturable.prototype.GetMaxCapturePoints = function()
 
 Capturable.prototype.GetGarrisonRegenRate = function()
 {
-	return ApplyValueModificationsToEntity("Capturable/GarrisonRegenRate", +this.template.GarrisonRegenRate, this.entity);
+	return this.garrisonRegenRate;
 };
 
 /**
@@ -182,16 +184,12 @@ Capturable.prototype.RegisterCapturePointsChanged = function()
 
 Capturable.prototype.GetRegenRate = function()
 {
-	var regenRate = +this.template.RegenRate;
-	regenRate = ApplyValueModificationsToEntity("Capturable/RegenRate", regenRate, this.entity);
+	let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
+	if (!cmpGarrisonHolder)
+		return this.regenRate;
 
-	var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
-	if (cmpGarrisonHolder)
-		var garrisonRegenRate = this.GetGarrisonRegenRate() * cmpGarrisonHolder.GetEntities().length;
-	else
-		var garrisonRegenRate = 0;
-
-	return regenRate + garrisonRegenRate;
+	let garrisonRegenRate = this.GetGarrisonRegenRate() * cmpGarrisonHolder.GetEntities().length;
+	return this.regenRate + garrisonRegenRate;
 };
 
 Capturable.prototype.TimerTick = function()
@@ -249,34 +247,59 @@ Capturable.prototype.CheckTimer = function()
 	if (this.timer)
 		return;
 
-	var regenRate = this.GetRegenRate();
-	var cmpDecay = Engine.QueryInterface(this.entity, IID_TerritoryDecay);
-	var decay = cmpDecay && cmpDecay.IsDecaying() ? cmpDecay.GetDecayRate() : 0;
+	let regenRate = this.GetRegenRate();
+	let cmpDecay = Engine.QueryInterface(this.entity, IID_TerritoryDecay);
+	let decay = cmpDecay && cmpDecay.IsDecaying() ? cmpDecay.GetDecayRate() : 0;
 	if (regenRate == 0 && decay == 0)
 		return;
 
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	this.timer = cmpTimer.SetInterval(this.entity, IID_Capturable, "TimerTick", 1000, 1000, null);
 	Engine.PostMessage(this.entity, MT_CaptureRegenStateChanged, { "regenerating": true, "regenRate": regenRate, "territoryDecay": decay });
 };
+
+/**
+ * Update all chached values that could be affected by modifications.
+*/
+Capturable.prototype.UpdateCachedValues = function()
+{
+	this.garrisonRegenRate = ApplyValueModificationsToEntity("Capturable/GarrisonRegenRate", +this.template.GarrisonRegenRate, this.entity);
+	this.regenRate = ApplyValueModificationsToEntity("Capturable/RegenRate", +this.template.RegenRate, this.entity);
+	this.maxCp = ApplyValueModificationsToEntity("Capturable/CapturePoints", +this.template.CapturePoints, this.entity);
+}
+
+/**
+ * Update all chached values that could be affected by modifications.
+ * Check timer and send changed messages when required.
+ * @param {boolean} dontSendCpChanged - when true, caller will take care of sending that message
+*/
+Capturable.prototype.UpdateCachedValuesAndNotify = function(dontSendCpChanged = false)
+{
+	let oldMaxCp = this.maxCp;
+	let oldGarrosionRegenRate = this.garrisonRegenRate;
+	let oldRegenRate = this.regenRate;
+
+	this.UpdateCachedValues();
+
+	if (oldMaxCp != this.maxCp)
+	{
+		let scale = this.maxCp / oldMaxCp;
+		for (let i in this.cp)
+			this.cp[i] *= scale;
+		if (!dontSendCpChanged)
+			Engine.PostMessage(this.entity, MT_CapturePointsChanged, { "capturePoints": this.cp });
+	}
+
+	if (oldGarrosionRegenRate != this.garrisonRegenRate || oldRegenRate != this.regenRate)
+		this.CheckTimer();
+}
 
 //// Message Listeners ////
 
 Capturable.prototype.OnValueModification = function(msg)
 {
-	if (msg.component != "Capturable")
-		return;
-
-	var oldMaxCp = this.GetMaxCapturePoints();
-	this.maxCp = ApplyValueModificationsToEntity("Capturable/CapturePoints", +this.template.CapturePoints, this.entity);
-	if (oldMaxCp == this.maxCp)
-		return;
-
-	var scale = this.maxCp / oldMaxCp;
-	for (let i in this.cp)
-		this.cp[i] *= scale;
-	Engine.PostMessage(this.entity, MT_CapturePointsChanged, { "capturePoints": this.cp });
-	this.CheckTimer();
+	if (msg.component == "Capturable")
+		this.UpdateCachedValuesAndNotify();
 };
 
 Capturable.prototype.OnGarrisonedUnitsChanged = function(msg)
@@ -300,28 +323,34 @@ Capturable.prototype.OnOwnershipChanged = function(msg)
 	if (msg.to == INVALID_PLAYER)
 		return; // we're dead
 
-	if (this.cp.length)
+	// Initialise the capture points when created.
+	if (!this.cp.length)
 	{
-		if (!this.cp[msg.from])
-			return; // nothing to change
-
-		// Was already initialised, this happens on defeat or wololo
-		// transfer the points of the old owner to the new one
-		this.cp[msg.to] += this.cp[msg.from];
-		this.cp[msg.from] = 0;
-		this.RegisterCapturePointsChanged();
-	}
-	else
-	{
-		// Initialise the capture points when created.
+		this.UpdateCachedValues();
 		let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 		for (let i = 0; i < numPlayers; ++i)
+		{
 			if (i == msg.to)
 				this.cp[i] = this.maxCp;
 			else
 				this.cp[i] = 0;
+		}
+		this.CheckTimer();
+		return;
 	}
-	this.CheckTimer();
+
+	// Was already initialised, this happens on defeat or wololo
+	// transfer the points of the old owner to the new one
+	if (this.cp[msg.from])
+	{
+		this.cp[msg.to] += this.cp[msg.from];
+		this.cp[msg.from] = 0;
+		this.UpdateCachedValuesAndNotify(true);
+		this.RegisterCapturePointsChanged();
+		return;
+	}
+
+	this.UpdateCachedValuesAndNotify();
 };
 
 /**
