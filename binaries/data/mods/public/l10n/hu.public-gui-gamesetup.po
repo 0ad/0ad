@@ -6,7 +6,8 @@
 # Ács Zoltán <acszoltan111@gmail.com>, 2019-2020
 # Hammer Andrew <andrewhammer87@gmail.com>, 2017
 # Attila Kocsner, 2014
-# Balázs Meskó <meskobalazs@gmail.com>, 2015-2019
+# Balázs Meskó <mesko.balazs@fsf.hu>, 2020
+# Balázs Meskó <mesko.balazs@fsf.hu>, 2015-2019
 # Balázs Úr, 2015-2016
 # Benedict Drummer <inactive+beni1999@transifex.com>, 2015
 # Boross Péter <borosspet@web.de>, 2015
@@ -31,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-03 08:10+0000\n"
-"PO-Revision-Date: 2020-04-03 18:54+0000\n"
-"Last-Translator: Ács Zoltán <acszoltan111@gmail.com>\n"
+"PO-Revision-Date: 2020-05-07 09:22+0000\n"
+"Last-Translator: Balázs Meskó <mesko.balazs@fsf.hu>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -304,11 +305,11 @@ msgstr "Véletlenszerű biom választása."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:101
 msgid "Daytime"
-msgstr ""
+msgstr "Nappa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
-msgstr ""
+msgstr "Válaszd ki, hogy a meccs nappal vagy éjszaka legyen"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
@@ -318,7 +319,7 @@ msgstr "Véletlenszerű"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr ""
+msgstr "Napszak véletlenszerű kiválasztása."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:73
 msgid "Game Speed"
@@ -330,41 +331,41 @@ msgstr "Játék sebességének kiválasztása."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:142
 msgid "Landscape"
-msgstr ""
+msgstr "Táj"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:145
 msgid "Select one of the landscapes of this map."
-msgstr ""
+msgstr "Válaszd ki a térkép táját."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:151
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
-msgstr ""
+msgstr "Véletlenszerű szárazföldi vagy tengeri"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
 msgctxt "landscape selection"
 msgid "Select a random land or naval map generation."
-msgstr ""
+msgstr "Véletlenszerű szárazföldi vagy tengeri térkép előállítása."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:156
 msgctxt "landscape selection"
 msgid "Random Land"
-msgstr "Véletlen Szárazföld"
+msgstr "Véletlenszerű szárazföldi"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
 msgid "Select a random land map generation."
-msgstr ""
+msgstr "Véletlenszerű szárazföldi térkép előállítása."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:161
 msgctxt "landscape selection"
 msgid "Random Naval"
-msgstr "Véletlen Tenger"
+msgstr "Véletlenszerű tengeri"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:162
 msgctxt "landscape selection"
 msgid "Select a random naval map generation."
-msgstr ""
+msgstr "Véletlenszerű tengeri térkép előállítása."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:89
 msgid "Map Filter"
@@ -426,7 +427,7 @@ msgstr "Népességhatár kiválasztása."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:88
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Játékosonként"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:91
 #, javascript-format
@@ -451,7 +452,7 @@ msgstr "Az egyes nyersanyagok kezdeti mennyisége: %(resources)s."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:90
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Játékosonként"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
 msgid "Team Placement"
@@ -459,7 +460,7 @@ msgstr "Csapatok elhelyezése"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:94
 msgid "Select one of the starting position patterns of this map."
-msgstr ""
+msgstr "Válaszd ki a térkép kezdőpozícióinak mintázatát."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
 msgctxt "team placement"
@@ -469,36 +470,36 @@ msgstr "Véletlenszerű"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr ""
+msgstr "Véletlenszerű csapatelhelyezési minta választása a játék indításakor"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
 msgctxt "team placement"
 msgid "Circle"
-msgstr ""
+msgstr "Körben"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:106
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr ""
+msgstr "A szövetséges játékosok csoportosítva lesznek, és az ellenfél játékosaival együtt lesznek egy kör mentén elhelyezve a térképen."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
 msgctxt "team placement"
 msgid "Line"
-msgstr ""
+msgstr "Vonalban"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
 msgid "Allied players are placed in a linear pattern."
-msgstr ""
+msgstr "A szövetséges játékosok egy vonal mentén lesznek elhelyezve."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:115
 msgctxt "team placement"
 msgid "Random Group"
-msgstr ""
+msgstr "Véletlenszerű csoport"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:116
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr ""
+msgstr "A szövetséges játékosok csoportosítva lesznek, de egyébként véletlenszerűen lesznek elhelyezve a térképen."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:120
 msgctxt "team placement"
@@ -507,7 +508,7 @@ msgstr "Erőd"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:121
 msgid "Allied players are grouped in one random place of the map."
-msgstr ""
+msgstr "A szövetséges játékosok csoportosítva lesznek a térkép egy véletlenszerű helyén."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
@@ -535,8 +536,8 @@ msgstr "Nincs tűzszünet"
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s perc"
+msgstr[1] "%(minutes)s perc"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:86
 msgid "Relic Count"
@@ -546,15 +547,15 @@ msgstr "Ereklyék száma"
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s ereklye"
+msgstr[1] "%(number)s ereklye"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:92
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr "A pályán elhelyezett összes ereklye száma. Az ereklyés győzelem leginkább csak egy-két ereklyével valósághű. Nagyobb szám esetén az ereklyék elfoglalása a területi bónuszok megszerzése miatt fontos."
+msgstr "A pályán elhelyezett összes ereklye száma. Az Ereklye győzelem leginkább csak egy-két ereklyével képzelhető el. Nagyobb szám esetén az ereklyék elfoglalása a területi bónuszok megszerzése miatt fontos."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:86
 msgid "Relic Duration"
@@ -570,30 +571,30 @@ msgstr "A percek száma, miután a játékos Ereklye győzelmet ér el."
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s perc"
+msgstr[1] "%(min)s perc"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:98
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:99
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr ""
+msgstr "Azonnali győzelem."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"
-msgstr ""
+msgstr "Tengerszint emelkedési ideje"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:76
 msgid "Set the time when the water will start to rise."
-msgstr ""
+msgstr "Az idő beállítása, miután a vízszint emelkedni fog."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:79
 #, javascript-format
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s perc"
+msgstr[1] "%(minutes)s perc"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:87
 msgid "Wonder Duration"
@@ -601,7 +602,7 @@ msgstr "Csoda időtartama"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:90
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr ""
+msgstr "A percek száma, miután a játékos Csoda győzelmet ér el"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
 msgid "Cheats enabled."
@@ -609,7 +610,7 @@ msgstr "Csalások engedélyezve."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
 msgid "Rated game."
-msgstr ""
+msgstr "Pontozott játék."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:76
 #, javascript-format
@@ -949,116 +950,116 @@ msgid ""
 "“Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.” \\n— Aeschylus (“Agamemnon”, 176–183)"
-msgstr ""
+msgstr "„bölcsességre ő \\[Zeusz] vezet, embereknek ily szabályt ad: „ki szenved, az tanul” álmában szívére csöppen a bűntudó kín a vétkesnek, így észretérni kényszerül: ily erőszakos kegyes hatalmak ülnek szent kormánypadon.” \\n– Aiszkhülosz („Agamemnón”, 176-183. sor)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "“She \\[Helen] brought to Ilium her dowry, destruction.” \\n— Aeschylus "
 "(“Agamemnon”, 406)"
-msgstr ""
+msgstr "„\\[Heléna] Iliumba vitte a hozományát, a pusztítást.\" \\n– Aiszkhülosz („Agamemnón”, 406. sor)"
 
 #: gui/text/quotes.txt:3
 msgid ""
 "“In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.” \\n— Aeschylus (“Prometheus Bound”, 224–225)"
-msgstr ""
+msgstr "„A zsarnoksággal mindig együtt jár e kór: barátaikban sem mernek megbízni ők.” \\n– Aiszkhülosz („Leláncolt Prométheusz”, 224-225. sor)"
 
 #: gui/text/quotes.txt:4
 msgid ""
 "“Time in the long run teaches all things.” \\n— Aeschylus (“Prometheus "
 "Bound”, 981)"
-msgstr ""
+msgstr "„Mindenre megtanít a vénülő idő.”\\n– Aiszkhülosz („Leláncolt Prométheusz”, 981)"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "“His resolve is not to seem, but to be, the best.” \\n— Aeschylus (“Seven "
 "Against Thebes”, 592)"
-msgstr ""
+msgstr "„\\[…]bátor akar lenni, nemcsak annak látszani” \\n– Aiszkhülosz („Heten Théba ellen”, 592. sor)"
 
 #: gui/text/quotes.txt:6
 msgid "“A prosperous fool is a grievous burden.” \\n— Aeschylus (fragment 383)"
-msgstr ""
+msgstr "„A sok kincs a boldogságot porba dönti.” \\n– Aiszkhülosz (383. töredék)"
 
 #: gui/text/quotes.txt:7
 msgid ""
 "“The gods help those that help themselves.” \\n— Aesop (“Hercules and the "
 "Wagoner”)"
-msgstr ""
+msgstr "„Segíts magadon, és az istenek is megsegítenek.” \\n– Aiszóposz („Herkules és a kocsihajtó”)"
 
 #: gui/text/quotes.txt:8
 msgid ""
 "“It is thrifty to prepare today for the wants of tomorrow.” \\n— Aesop (“The"
 " Ant and the Grasshopper”)"
-msgstr ""
+msgstr "„Okos ma felkészülni a holnap szükségleteire.” \\n– Aiszóposz („A tücsök és a hangya”)"
 
 #: gui/text/quotes.txt:9
 msgid "“Union gives strength.” \\n— Aesop (“The Bundle of Sticks”)"
-msgstr ""
+msgstr "„Egységben az erő.” \\n– Aiszóposz („A földműves gyermekei”)"
 
 #: gui/text/quotes.txt:10
 msgid ""
 "“Never trust advice from a man in the throes of his own difficulty.” \\n— "
 "Aesop (“The Fox and the Goat”)"
-msgstr ""
+msgstr "„Sose bízz olyan ember tanácsában, akinek magának is nehézsége van.” \\n– Aiszóposz („A róka és a kecske”)"
 
 #: gui/text/quotes.txt:11
 msgid ""
 "“Familiarity breeds contempt; acquaintance softens prejudices.” \\n— Aesop "
 "(“The Fox and the Lion”)"
-msgstr ""
+msgstr "„A megszokás megvetést szül; az ismeretség csökkenti az előítéleteket.” \\n– Aiszóposz („A róka és az oroszlán”)"
 
 #: gui/text/quotes.txt:12
 msgid ""
 "“Self-conceit may lead to self-destruction.” \\n— Aesop (“The Frog and the "
 "Ox”)"
-msgstr ""
+msgstr "„A hiúság önpusztításhoz vezethet.” \\n– Aiszóposz („A béka és az öszvér”)"
 
 #: gui/text/quotes.txt:13
 msgid ""
 "“Slow and steady wins the race.” \\n— Aesop (“The Hare and the Tortoise”)"
-msgstr ""
+msgstr "„Lassan és egyenletesen lehet megnyerni a versenyt.” \\n– Aiszóposz („A nyúl és a teknős”)"
 
 #: gui/text/quotes.txt:14
 msgid ""
 "“Better be wise by the misfortunes of others than by your own.” \\n— Aesop "
 "(“The Lion, the Ass, and the Fox Hunting”)"
-msgstr ""
+msgstr "„Bölcsebb mások kárán tanulni mint a sajátunkon.” \\n– Aiszóposz („Az oroszlán, a szamár és a róka”)"
 
 #: gui/text/quotes.txt:15
 msgid ""
 "“Enemies' promises were made to be broken.” \\n— Aesop (“The Nurse and the "
 "Wolf”)"
-msgstr ""
+msgstr "„Az ellenség ígéreteinek soha nem kell hinni.” \\n– Aiszóposz („A farkas és a vénasszony”)"
 
 #: gui/text/quotes.txt:16
 msgid "“Any excuse will serve a tyrant.” \\n— Aesop (“The Wolf and the Lamb”)"
-msgstr ""
+msgstr "„\\[…]mit sem ér a jogos önvédelem azok szemében, akik arra határozták el magukat, hogy jogtalanságot cselekedjenek.” \\n– Aiszóposz („A farkas és a bárány”)"
 
 #: gui/text/quotes.txt:17
 msgid ""
 "“If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.” \\n— "
 "Agesilaus II of Sparta (Plutarch, “Moralia”, “Sayings of Spartans”, 215a)"
-msgstr ""
+msgstr "„Ha valami nemeset tettem, az elég emlékmű; ha nem, akkor a világ összes szobra sem őrzi meg az emlékem.” \\n– II. Agészilaosz spártai király (Plutarkhosz, „Moralia”, „Spártai mondások”, 215a)"
 
 #: gui/text/quotes.txt:18
 msgid ""
 "“Spartans do not ask how many, only where the enemy are.” \\n— Agis II of "
 "Sparta (Plutarch, “Moralia”, “Sayings of Spartans”, 215d)"
-msgstr ""
+msgstr "„A spártaiakat nem az érdekli, mennyi az ellenség, hanem az, hogy hol van.” \\n– II. Agisz spártai király (Plutarkhosz, „Moralia”, „Spártaiak mondásai”, 215d)"
 
 #: gui/text/quotes.txt:19
 msgid ""
 "“Weep not for me, as I suffer unjustly, I am in a happier situation than my "
 "murderers.” \\n— Agis IV of Sparta upon seeing one of his executioners cry "
 "(Plutarch, “Parallel Lives”, “Agis”, sec. 20)"
-msgstr ""
+msgstr "„Ne sirasson engem, jóember, hiszen a törvény és az igazság ellenére kell meghalnom, ezért nagyobb leszek elpusztítóimnál.” \\n– IV. Agisz spártai király, amint sírni látta az egyik hóhérját (Plutarkhosz, „Párhuzamos életrajzok”, „Agisz”, 20. bekezdés)"
 
 #: gui/text/quotes.txt:20
 msgid ""
 "“Sex and sleep alone make me conscious that I am mortal.” \\n— Alexander the"
 " Great (Plutarch, “Parallel Lives”, “Alexander”, sec. 22)"
-msgstr ""
+msgstr "„Azt szokta mondani, hogy az alvásból és a nemi érintkezésből tudja leginkább, hogy halandó.” \\n– Nagy Sándor (Plutarkhosz, „Párhuzamos életrajzok”, „Alexandrosz”, 22. bekezdés)"
 
 #: gui/text/quotes.txt:21
 msgid ""
@@ -1066,7 +1067,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?” \\n— Alexander the Great (Plutarch, “Parallel "
 "Lives”, “Alexander”, sec. 40)"
-msgstr ""
+msgstr "„…mennyire szolgai dolog a henyélés, és milyen királyi a fáradságos munka. \\[…] Nem tudjátok-e – tette hozzá –, hogy a győzni tudás lényege: mást tenni, mint amit a legyőzöttek tesznek?” \\n– Nagy Sándor (Plutarkhosz, „Párhuzamos életrajzok”, „Alexandrosz”, 40. bekezdés)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -1095,20 +1096,20 @@ msgstr ""
 msgid ""
 "“To the strongest!” \\n— Alexander the Great, on his death bed, when asked "
 "who should succeed him as king (Arrian, “The Anabasis of Alexander”, 7.26)"
-msgstr ""
+msgstr "„A legerősebb!” \\n– Nagy Sándor, a halálos ágyán, amikor megkérdezték tőle, ki legyen a következő király (Arrianus, „Alexandrosz felvonulása”, 7.26)"
 
 #: gui/text/quotes.txt:26
 msgid ""
 "“I do not steal victory.” \\n— Alexander the Great, when suggested to raid "
 "the Persians at night (Plutarch, “Parallel Lives”, “Alexander”, sec. 31)"
-msgstr ""
+msgstr "„Én nem lopom a győzelmet.” \\n– Nagy Sándor, a javaslatra, hogy éjjel rohanják meg a perzsákat (Plutarkhosz, „Párhuzamos életrajzok”, „Alexandrosz”, 31. bekezdés)"
 
 #: gui/text/quotes.txt:27
 msgid ""
 "“Written laws are like spiders' webs; they will catch, it is true, the weak "
 "and poor, but will be torn in pieces by the rich and powerful.” \\n— "
 "Anacharsis (Plutarch, “Parallel Lives”, “Solon”, sec. 5)"
-msgstr ""
+msgstr "„Nem érnek többet az ilyen törvények, mint a pókháló, mondta; a gyengéket és az apró vétkeseket megfogják, a hatalmasok és gazdagok viszont széttépik.” \\n– Anakharszisz (Plutarkhosz, „Párhuzamos életrajzok”, „Szolón”, 5. bekezdés)"
 
 #: gui/text/quotes.txt:28
 msgid ""
@@ -1130,13 +1131,13 @@ msgid ""
 "“States are doomed when they are unable to distinguish good men from bad.” "
 "\\n— Antisthenes (Diogenes Laertius, “The Lives and Opinions of Eminent "
 "Philosophers”, “Antisthenes”, sec. 5)"
-msgstr ""
+msgstr "„Az államok, amikor képtelenek megkülönböztetni a jó embert a rossztól, bukásra ítéltetnek.” \\n– Antiszthenész (Diogenész Laertiosz, „A filozófiában jeleskedők élete és nézetei”, „Antiszthenész ”, 5. szakasz)"
 
 #: gui/text/quotes.txt:31
 msgid ""
 "“The fox knows many tricks; the hedgehog one good one.” \\n— Archilochus "
 "(fragment 201)"
-msgstr ""
+msgstr "„A róka sok trükköt ismer; a sün viszont egy jót” \\n– Arkhilokhosz (201. töredék)"
 
 #: gui/text/quotes.txt:32
 msgid ""
@@ -1149,7 +1150,7 @@ msgstr "„Adjatok egy helyet ahová állhatok, s én megmozgatom a világot.”
 msgid ""
 "“It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.” \\n— Aristophanes (“Birds”)"
-msgstr ""
+msgstr "„Az ellenségektől és nem a barátoktól tanulják meg a városok a magas falak és a hadihajók építésének leckéjét.” \\n– Arisztophanész („A madarak”)"
 
 #: gui/text/quotes.txt:34
 msgid ""
@@ -1168,20 +1169,20 @@ msgstr ""
 msgid ""
 "“Man is by nature a political animal.” \\n— Aristotle (“Politics”, I. "
 "1253a.2)"
-msgstr ""
+msgstr "„\\[…]az ember természeténél fogva állami életre hivatott élőlény” \\n– Arisztotelész („Politika”, I. könyv, 2. szakasz)"
 
 #: gui/text/quotes.txt:37
 msgid ""
 "“Both oligarch and tyrant mistrust the people, and therefore deprive them of"
 " their arms.” \\n— Aristotle (“Politics, V. 1311a.11)"
-msgstr ""
+msgstr "„\\[…]a népben egyáltalában nem bízik meg (ezért is szedi el tőle a fegyvert; de az is mindkettőben, ti. az oligarchiában és a türanniszban közös, hogy a köznépet sanyargatják, lakóhelyükről elüldözik és széttelepítik)” \\n– Arisztotelész („Politika”, V. könyv 10. szakasz)"
 
 #: gui/text/quotes.txt:38
 msgid ""
 "“I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.” \\n— Aristotle (Diogenes Laertius, "
 "“The Lives and Opinions of Eminent Philosophers”, “Aristotle”, sec. 20)"
-msgstr ""
+msgstr "„A filozófia ezt tanította nekem: meg tudom irányítás nélkül tenni azt, amit mások csak a törvény félelmében.” \\n– Arisztotelész (Diogenész Laertiosz, „A filozófiában jeleskedők élete és nézetei”, „Arisztotelész”, 20. szakasz)"
 
 #: gui/text/quotes.txt:39
 msgid ""

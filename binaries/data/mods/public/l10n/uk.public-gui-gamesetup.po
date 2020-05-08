@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-03 08:10+0000\n"
-"PO-Revision-Date: 2020-05-03 12:37+0000\n"
+"PO-Revision-Date: 2020-05-06 13:33+0000\n"
 "Last-Translator: Chindu the Manduri <mandurilooter210770@mail.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,7 @@ msgstr "Демонстраційні мапи"
 
 #: gui/gamesetup/Controls/MapFilters.js:98
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr "Ці неігрові мапи призначені виключно для демонстраційних цілей."
+msgstr "Ці не придатні для гри мапи призначені виключно для демонстраційних цілей."
 
 #: gui/gamesetup/Controls/MapFilters.js:103
 msgid "New Maps"
@@ -82,15 +82,15 @@ msgstr "Кожна мапа з обраного типу мап."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:37
 msgid "AI will be disabled for this player."
-msgstr "Штучний інтелект буде відключено для цього гравця."
+msgstr "ШІ буде вимкнено для цього гравця."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:93
 msgid "AI Behavior"
-msgstr "Поведінка штучного інтелекту"
+msgstr "Поведінка ШІ"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:87
 msgid "AI Difficulty"
-msgstr "Складність штучного інтелекту"
+msgstr "Складність ШІ"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:86
 msgctxt "ai"
@@ -99,7 +99,7 @@ msgstr "Немає"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:91
 msgid "AI Player"
-msgstr "Гравець штучного інтелекту"
+msgstr "Гравець ШІ"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:172
 #, javascript-format
@@ -139,7 +139,7 @@ msgstr "Тип гри"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/AIConfigButton.js:32
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr "Налаштувати штучний інтелект: %(description)s."
+msgstr "Налаштувати ШІ: %(description)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayerName.js:114
 #, javascript-format
@@ -153,7 +153,7 @@ msgstr "Вибрати гравця."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:230
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr "Штучний інтелект: %(ai)s"
+msgstr "ШІ: %(ai)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:265
 msgid "Unassigned"
@@ -231,7 +231,7 @@ msgstr "Мандрівник"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "У режимі мандрівника, гравці починають лише з декількома підрозділами та повинні знайти підходяще місце для спорудження їхнього міста. Рекомендується призупинення бойових дій."
+msgstr "У режимі мандрівника, гравці починають лише з декількома підрозділами та повинні знайти підходяще місце для спорудження власного міста. Рекомендується призупинення бойових дій."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:51
 msgid "Rated Game"
@@ -694,7 +694,7 @@ msgstr "Почати нову гру з поточними налаштуван�
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr "Почати нову гру з поточними налаштуваннями (відключено доки всі гравці не будуть готові)."
+msgstr "Почати нову гру з поточними налаштуваннями (вимкнено, доки всі гравці не будуть готові)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatInputPanel.js:55
 #, javascript-format
@@ -805,12 +805,12 @@ msgstr "Назва гри вже використовується."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:310
 msgid "Failed to host via STUN."
-msgstr "Помилка розміщення через STUN."
+msgstr "Не вдалося розмістити через STUN."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:324
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr "Неможливо провести гру: %(message)s."
+msgstr "Неможливо розмістити гру: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:325 gui/gamesetup_mp/gamesetup_mp.js:354
 msgid "Error"
@@ -855,7 +855,7 @@ msgstr "Налаштування змагання"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
-msgstr "Налаштування штучного інтелекту"
+msgstr "Налаштування ШІ"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
 msgid "OK"
@@ -929,7 +929,7 @@ msgstr "Ім'я сервера:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"
-msgstr "Застосувати STUN щоб обійти брандмауери."
+msgstr "Застосувати STUN щоб обійти мережеві екрани."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
 msgid "Continue"

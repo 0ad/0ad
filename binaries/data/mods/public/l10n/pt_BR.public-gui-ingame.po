@@ -37,6 +37,7 @@
 # Marcos Correa <mcorrea.jr28@gmail.com>, 2014
 # Marcus Rasseli <mvrasseli@hotmail.com>, 2013
 # Mateus Felipe Cordeiro Caetano Pinto <uuflor@gmail.com>, 2013
+# Mateus Guerra <jmateusz@gmx.co.uk>, 2020
 # Mateus Seenem Tavares <maseta.mateus@gmail.com>, 2016
 # Matheus Clemente <matheus.xb@gmail.com>, 2015
 # Mihailov Vasilievic Filho, 2015
@@ -62,8 +63,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-03-09 08:13+0000\n"
-"PO-Revision-Date: 2020-03-09 13:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-05-06 21:18+0000\n"
+"Last-Translator: Mateus Guerra <jmateusz@gmx.co.uk>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,7 +75,7 @@ msgstr ""
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "Pressione %(hotkey)s para habilitar este menu."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -91,7 +92,7 @@ msgstr "Sumário"
 #: gui/session/MenuButtons.js:87
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr ""
+msgstr "Pressione %(hotkey)s para abrir a tela de resumo."
 
 #: gui/session/MenuButtons.js:130
 msgid "Lobby"
@@ -102,7 +103,7 @@ msgstr "Lobby"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr ""
+msgstr "Pressione %(hotkey)spara abrir a página das salas de multijogador sem sair do jogo."
 
 #: gui/session/MenuButtons.js:158
 msgid "Options"
