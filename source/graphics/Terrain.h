@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,10 +22,10 @@
 #ifndef INCLUDED_TERRAIN
 #define INCLUDED_TERRAIN
 
-#include "maths/Vector3D.h"
-#include "maths/Fixed.h"
-#include "graphics/SColor.h"
 #include "graphics/HeightMipmap.h"
+#include "graphics/SColor.h"
+#include "maths/Fixed.h"
+#include "maths/Vector3D.h"
 
 class CPatch;
 class CMiniPatch;
@@ -98,8 +98,9 @@ public:
 	// should be in the direction (1,-1); false if it should be (1,1)
 	bool GetTriangulationDir(ssize_t i, ssize_t j) const;
 
-	// resize this terrain such that each side has given number of patches
-	void Resize(ssize_t size);
+	// Resize this terrain such that each side has given number of patches,
+	// with the center offset in patches from the center of the source.
+	void ResizeAndOffset(ssize_t size, ssize_t horizontalOffset = 0, ssize_t verticalOffset = 0);
 
 	// set up a new heightmap from 16 bit data; assumes heightmap matches current terrain size
 	void SetHeightMap(u16* heightmap);
@@ -179,4 +180,4 @@ private:
 	CHeightMipmap m_HeightMipmap;
 };
 
-#endif
+#endif // INCLUDED_TERRAIN

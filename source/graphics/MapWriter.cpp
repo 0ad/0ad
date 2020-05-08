@@ -345,13 +345,16 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				CmpPtr<ICmpGarrisonHolder> cmpGarrisonHolder(sim, ent);
 				if (cmpGarrisonHolder)
 				{
-					XMLWriter_Element garrisonTag(xmlMapFile, "Garrison");
 					std::vector<entity_id_t> garrison = cmpGarrisonHolder->GetEntities();
-					for (const entity_id_t garr_ent_id : garrison)
+					if (!garrison.empty())
 					{
-						XMLWriter_Element garrisonedEntityTag(xmlMapFile, "GarrisonedEntity");
-						garrisonedEntityTag.Attribute("uid", static_cast<int>(garr_ent_id));
-						// ToDo: We can store turret position as well.
+						XMLWriter_Element garrisonTag(xmlMapFile, "Garrison");
+						for (const entity_id_t garr_ent_id : garrison)
+						{
+							XMLWriter_Element garrisonedEntityTag(xmlMapFile, "GarrisonedEntity");
+							garrisonedEntityTag.Attribute("uid", static_cast<int>(garr_ent_id));
+							// ToDo: We can store turret position as well.
+						}
 					}
 				}
 

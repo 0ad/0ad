@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -74,11 +74,11 @@ bool CTerrain::Initialize(ssize_t patchesPerSide, const u16* data)
 	ReleaseData();
 
 	// store terrain size
-	m_MapSize = patchesPerSide*PATCH_SIZE+1;
+	m_MapSize = patchesPerSide * PATCH_SIZE + 1;
 	m_MapSizePatches = patchesPerSide;
 	// allocate data for new terrain
-	m_Heightmap = new u16[m_MapSize*m_MapSize];
-	m_Patches = new CPatch[m_MapSizePatches*m_MapSizePatches];
+	m_Heightmap = new u16[m_MapSize * m_MapSize];
+	m_Patches = new CPatch[m_MapSizePatches * m_MapSizePatches];
 
 	// given a heightmap?
 	if (data)
@@ -496,116 +496,239 @@ bool CTerrain::GetTriangulationDir(ssize_t i, ssize_t j) const
 	return (mid1 < mid2);
 }
 
-///////////////////////////////////////////////////////////////////////////////
-// Resize: resize this terrain to the given size (in patches per side)
-void CTerrain::Resize(ssize_t size)
+void CTerrain::ResizeAndOffset(ssize_t size, ssize_t horizontalOffset, ssize_t verticalOffset)
 {
-	if (size==m_MapSizePatches) {
-		// inexplicable request to resize terrain to the same size .. ignore it
+	if (size == m_MapSizePatches && horizontalOffset == 0 && verticalOffset == 0)
+	{
+		// Inexplicable request to resize terrain to the same size, ignore it.
 		return;
 	}
 
-	if (!m_Heightmap) {
-		// not yet created a terrain; build a default terrain of the given size now
-		Initialize(size,0);
+	if (!m_Heightmap ||
+		std::abs(horizontalOffset) >= size / 2 + m_MapSizePatches / 2 ||
+		std::abs(verticalOffset) >= size / 2 + m_MapSizePatches / 2)
+	{
+		// We have not yet created a terrain, or we are offsetting outside the current source.
+		// Let's build a default terrain of the given size now.
+		Initialize(size, 0);
 		return;
 	}
 
-	// allocate data for new terrain
-	ssize_t newMapSize=size*PATCH_SIZE+1;
-	u16* newHeightmap=new u16[newMapSize*newMapSize];
-	CPatch* newPatches=new CPatch[size*size];
+	// Allocate data for new terrain.
+	const ssize_t newMapSize = size * PATCH_SIZE + 1;
+	u16* newHeightmap = new u16[newMapSize * newMapSize];
+	memset(newHeightmap, 0, newMapSize * newMapSize * sizeof(u16));
+	CPatch* newPatches = new CPatch[size * size];
 
-	if (size>m_MapSizePatches) {
-		// new map is bigger than old one - zero the heightmap so we don't get uninitialised
-		// height data along the expanded edges
-		memset(newHeightmap,0,newMapSize*newMapSize*sizeof(u16));
+	// O--------------------+
+	// | Source             |
+	// |                    |
+	// | Source Center (SC) |
+	// |          X         |
+	// |             A------+----------------+
+	// |             |      |    Destination |
+	// |             |      |                |
+	// +-------------+------B                |
+	//               |    Dest. Center (DC)  |
+	//               |           X           |
+	//               |                       |
+	//               |                       |
+	//               |                       |
+	//               |                       |
+	//               +-----------------------+
+	//
+	// Calculations below should also account cases like:
+	//
+	// +----------+   +----------+     +----------+   +---+--+---+   +------+
+	// |S         |   |D         |     |S         |   |S  |  |  D|   |D     |
+	// |   +---+  |   |   +---+  |   +-+-+        |   |   |  |   |   |  +---+--+
+	// |   | D |  |   |   | S |  |   |D| |        |   +---+--+---+   +--+---+  |
+	// |   +---+  |   |   +---+  |   +-+-+        |                     |     S|
+	// +----------+   +----------+     +----------+                     +------+
+	//
+	// O = (0, 0)
+	// SC = (m_MapSizePatches / 2, m_MapSizePatches / 2)
+	// DC - SC = (horizontalOffset, verticalOffset)
+	//
+	// Source upper left:
+	// A = (max(0, (m_MapSizePatches - size) / 2 + horizontalOffset),
+	//      max(0, (m_MapSizePatches - size) / 2 + verticalOffset))
+	// Source bottom right:
+	// B = (min(m_MapSizePatches, (m_MapSizePatches + size) / 2 + horizontalOffset),
+	//      min(m_MapSizePatches, (m_MapSizePatches + size) / 2 + verticalOffset))
+	//
+	// A-B is the area that we have to copy from the source to the destination.
+
+	// Restate center offset as a window over destination.
+	// This has the effect of always considering the source to be the same size or smaller.
+	const ssize_t sourceUpperLeftX = std::max(
+		static_cast<ssize_t>(0), m_MapSizePatches / 2 - size / 2 + horizontalOffset);
+	const ssize_t sourceUpperLeftZ = std::max(
+		static_cast<ssize_t>(0), m_MapSizePatches / 2 - size / 2 + verticalOffset);
+
+	const ssize_t destUpperLeftX = std::max(
+		static_cast<ssize_t>(0), (size / 2 - m_MapSizePatches / 2 - horizontalOffset));
+	const ssize_t destUpperLeftZ = std::max(
+		static_cast<ssize_t>(0), (size / 2 - m_MapSizePatches / 2 - verticalOffset));
+
+	const ssize_t width =
+		std::min(m_MapSizePatches, m_MapSizePatches / 2 + horizontalOffset + size / 2) - sourceUpperLeftX;
+	const ssize_t depth =
+		std::min(m_MapSizePatches, m_MapSizePatches / 2 + verticalOffset + size / 2) - sourceUpperLeftZ;
+
+	for (ssize_t j = 0; j < depth * PATCH_SIZE; ++j)
+	{
+		// Copy the main part from the source. Destination heightmap:
+		// +----------+
+		// |          |
+		// |   1234   | < current j-th row for example.
+		// |   5678   |
+		// |          |
+		// +----------+
+		u16* dst = newHeightmap + (j + destUpperLeftZ * PATCH_SIZE) * newMapSize + destUpperLeftX * PATCH_SIZE;
+		u16* src = m_Heightmap + (j + sourceUpperLeftZ * PATCH_SIZE) * m_MapSize + sourceUpperLeftX * PATCH_SIZE;
+		std::copy_n(src, width * PATCH_SIZE, dst);
+		if (destUpperLeftX > 0)
+		{
+			// Fill the preceding part by copying the first elements of the
+			// main part. Destination heightmap:
+			// +----------+
+			// |          |
+			// |1111234   |  < current j-th row for example.
+			// |   5678   |
+			// |          |
+			// +----------+
+			u16* dst_prefix = newHeightmap + (j + destUpperLeftZ * PATCH_SIZE) * newMapSize;
+			std::fill_n(dst_prefix, destUpperLeftX * PATCH_SIZE, dst[0]);
+		}
+		if ((destUpperLeftX + width) * PATCH_SIZE < newMapSize)
+		{
+			// Fill the succeeding part by copying the last elements of the
+			// main part. Destination heightmap:
+			// +----------+
+			// |          |
+			// |1111234444|  < current j-th row for example.
+			// |   5678   |
+			// |          |
+			// +----------+
+			u16* dst_suffix = dst + width * PATCH_SIZE;
+			std::fill_n(
+				dst_suffix,
+				newMapSize - (width + destUpperLeftX) * PATCH_SIZE,
+				dst[width * PATCH_SIZE - 1]);
+		}
+	}
+	// Copy over heights from the preceding row. Destination heightmap:
+	// +----------+
+	// |1111234444| < copied from the row below
+	// |1111234444|
+	// |5555678888|
+	// |          |
+	// +----------+
+	for (ssize_t j = 0; j < destUpperLeftZ * PATCH_SIZE; ++j)
+	{
+
+		u16* dst = newHeightmap + j * newMapSize;
+		u16* src = newHeightmap + destUpperLeftZ * PATCH_SIZE * newMapSize;
+		std::copy_n(src, newMapSize, dst);
+	}
+	// Copy over heights from the succeeding row. Destination heightmap:
+	// +----------+
+	// |1111234444|
+	// |1111234444|
+	// |5555678888|
+	// |5555678888| < copied from the row above
+	// +----------+
+	for (ssize_t j = (destUpperLeftZ + depth) * PATCH_SIZE; j < newMapSize; ++j)
+	{
+		u16* dst = newHeightmap + j * newMapSize;
+		u16* src = newHeightmap + ((destUpperLeftZ + depth) * PATCH_SIZE - 1) * newMapSize;
+		std::copy_n(src, newMapSize, dst);
 	}
 
-	// now copy over rows of data
-	u16* src=m_Heightmap;
-	u16* dst=newHeightmap;
-	ssize_t copysize=std::min(newMapSize, m_MapSize);
-	for (ssize_t j=0;j<copysize;j++) {
-		memcpy(dst,src,copysize*sizeof(u16));
-		dst+=copysize;
-		src+=m_MapSize;
-		if (newMapSize>m_MapSize) {
-			// extend the last height to the end of the row
-			for (size_t i=0;i<newMapSize-(size_t)m_MapSize;i++) {
-				*dst++=*(src-1);
+	// Now build new patches. The same process as for the heightmap.
+	for (ssize_t j = 0; j < depth; ++j)
+	{
+		for (size_t i = 0; i < width; ++i)
+		{
+			const CPatch& src =
+				m_Patches[(sourceUpperLeftZ + j) * m_MapSizePatches + sourceUpperLeftX + i];
+			CPatch& dst =
+				newPatches[(destUpperLeftZ + j) * size + destUpperLeftX + i];
+			std::copy_n(&src.m_MiniPatches[0][0], PATCH_SIZE * PATCH_SIZE, &dst.m_MiniPatches[0][0]);
+		}
+		for (ssize_t i = 0; i < destUpperLeftX; ++i)
+			for (ssize_t jPatch = 0; jPatch < PATCH_SIZE; ++jPatch)
+			{
+				const CMiniPatch& src =
+					newPatches[(destUpperLeftZ + j) * size + destUpperLeftX]
+						.m_MiniPatches[jPatch][0];
+				for (ssize_t iPatch = 0; iPatch < PATCH_SIZE; ++iPatch)
+				{
+					CMiniPatch& dst =
+						newPatches[(destUpperLeftZ + j) * size + i]
+							.m_MiniPatches[jPatch][iPatch];
+					dst = src;
+				}
 			}
-		}
-	}
-
-
-	if (newMapSize>m_MapSize) {
-		// copy over heights of the last row to any remaining rows
-		src=newHeightmap+((m_MapSize-1)*newMapSize);
-		dst=src+newMapSize;
-		for (ssize_t i=0;i<newMapSize-m_MapSize;i++) {
-			memcpy(dst,src,newMapSize*sizeof(u16));
-			dst+=newMapSize;
-		}
-	}
-
-	// now build new patches
-	for (ssize_t j=0;j<size;j++) {
-		for (ssize_t i=0;i<size;i++) {
-			// copy over texture data from existing tiles, if possible
-			if (i<m_MapSizePatches && j<m_MapSizePatches) {
-				memcpy(newPatches[j*size+i].m_MiniPatches,m_Patches[j*m_MapSizePatches+i].m_MiniPatches,sizeof(CMiniPatch)*PATCH_SIZE*PATCH_SIZE);
-			}
-		}
-
-		if (j<m_MapSizePatches && size>m_MapSizePatches) {
-			// copy over the last tile from each column
-			for (ssize_t n=0;n<size-m_MapSizePatches;n++) {
-				for (ssize_t m=0;m<PATCH_SIZE;m++) {
-					CMiniPatch& src=m_Patches[j*m_MapSizePatches+m_MapSizePatches-1].m_MiniPatches[m][15];
-					for (ssize_t k=0;k<PATCH_SIZE;k++) {
-						CMiniPatch& dst=newPatches[j*size+m_MapSizePatches+n].m_MiniPatches[m][k];
-						dst = src;
-					}
+		for (ssize_t i = destUpperLeftX + width; i < size; ++i)
+		{
+			for (ssize_t jPatch = 0; jPatch < PATCH_SIZE; ++jPatch)
+			{
+				const CMiniPatch& src =
+					newPatches[(destUpperLeftZ + j) * size + destUpperLeftX + width - 1]
+						.m_MiniPatches[jPatch][PATCH_SIZE - 1];
+				for (ssize_t iPatch = 0; iPatch < PATCH_SIZE; ++iPatch)
+				{
+					CMiniPatch& dst =
+						newPatches[(destUpperLeftZ + j) * size + i].m_MiniPatches[jPatch][iPatch];
+					dst = src;
 				}
 			}
 		}
 	}
 
-	if (size>m_MapSizePatches) {
-		// copy over the last tile from each column
-		CPatch* srcpatch=&newPatches[(m_MapSizePatches-1)*size];
-		CPatch* dstpatch=srcpatch+size;
-		for (ssize_t p=0;p<(ssize_t)size-m_MapSizePatches;p++) {
-			for (ssize_t n=0;n<(ssize_t)size;n++) {
-				for (ssize_t m=0;m<PATCH_SIZE;m++) {
-					for (ssize_t k=0;k<PATCH_SIZE;k++) {
-						CMiniPatch& src=srcpatch->m_MiniPatches[15][k];
-						CMiniPatch& dst=dstpatch->m_MiniPatches[m][k];
-						dst = src;
-					}
+	for (ssize_t j = 0; j < destUpperLeftZ; ++j)
+		for (ssize_t i = 0; i < size; ++i)
+			for (ssize_t iPatch = 0; iPatch < PATCH_SIZE; ++iPatch)
+			{
+				const CMiniPatch& src =
+					newPatches[destUpperLeftZ * size + i].m_MiniPatches[0][iPatch];
+				for (ssize_t jPatch = 0; jPatch < PATCH_SIZE; ++jPatch)
+				{
+					CMiniPatch& dst =
+						newPatches[j * size + i].m_MiniPatches[jPatch][iPatch];
+					dst = src;
 				}
-				srcpatch++;
-				dstpatch++;
 			}
-		}
-	}
+	for (ssize_t j = destUpperLeftZ + depth; j < size; ++j)
+		for (ssize_t i = 0; i < size; ++i)
+			for (ssize_t iPatch = 0; iPatch < PATCH_SIZE; ++iPatch)
+			{
+				const CMiniPatch& src =
+					newPatches[(destUpperLeftZ + depth - 1) * size + i].m_MiniPatches[0][iPatch];
+				for (ssize_t jPatch = 0; jPatch < PATCH_SIZE; ++jPatch)
+				{
+					CMiniPatch& dst =
+						newPatches[j * size + i].m_MiniPatches[jPatch][iPatch];
+					dst = src;
+				}
+			}
 
-
-	// release all the original data
+	// Release all the original data.
 	ReleaseData();
 
-	// store new data
-	m_Heightmap=newHeightmap;
-	m_Patches=newPatches;
-	m_MapSize=(ssize_t)newMapSize;
-	m_MapSizePatches=(ssize_t)size;
+	// Store new data.
+	m_Heightmap = newHeightmap;
+	m_Patches = newPatches;
+	m_MapSize = newMapSize;
+	m_MapSizePatches = size;
 
-	// initialise all the new patches
+	// Initialise all the new patches.
 	InitialisePatches();
 
-	// initialise mipmap
-	m_HeightMipmap.Initialize(m_MapSize,m_Heightmap);
+	// Initialise mipmap.
+	m_HeightMipmap.Initialize(m_MapSize, m_Heightmap);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

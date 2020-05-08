@@ -203,11 +203,14 @@ public:
 		// value per a patch.
 		struct ResizeTestCase
 		{
+			ssize_t horizontalOffset, verticalOffset;
 			std::vector<std::vector<u16>> sourcePatches;
 			std::vector<std::vector<u16>> expectedPatches;
 		};
 		const ResizeTestCase testCases[] = {
+			// Without offset.
 			{
+				0, 0,
 				{
 				{42}
 				},
@@ -216,25 +219,154 @@ public:
 				}
 			},
 			{
+				0, 0,
 				{
 				{1, 2},
 				{3, 4}
 				},
 				{
-				{1},
+				{1, 2},
+				{3, 4}
 				}
 			},
 			{
+				0, 0,
 				{
 				{1, 2},
 				{3, 4}
 				},
 				{
-				{1, 2, 0},
-				{3, 4, 0},
-				{0, 0, 0}
+				{1, 1, 2, 2},
+				{1, 1, 2, 2},
+				{3, 3, 4, 4},
+				{3, 3, 4, 4}
 				}
-			}
+			},
+			{
+				0, 0,
+				{
+				{ 1,  2 , 3,  4},
+				{ 5,  6 , 7,  8},
+				{ 9, 10, 11, 12},
+				{13, 14, 15, 16}
+				},
+				{
+				{ 6,  7},
+				{10, 11},
+				}
+			},
+			// With offset.
+			{
+				-2, -2,
+				{
+				{1, 2},
+				{3, 4}
+				},
+				{
+				{0, 0},
+				{0, 0}
+				}
+			},
+			{
+				-2, 0,
+				{
+				{1, 2},
+				{3, 4}
+				},
+				{
+				{0, 0},
+				{0, 0}
+				}
+			},
+			{
+				4, 4,
+				{
+				{1, 2},
+				{3, 4}
+				},
+				{
+				{0, 0},
+				{0, 0}
+				}
+			},
+			{
+				1, 1,
+				{
+				{ 1,  2 , 3,  4},
+				{ 5,  6 , 7,  8},
+				{ 9, 10, 11, 12},
+				{13, 14, 15, 16}
+				},
+				{
+				{ 6 , 7,  8, 8},
+				{10, 11, 12, 12},
+				{14, 15, 16, 16},
+				{14, 15, 16, 16}
+				}
+			},
+			{
+				1, 1,
+				{
+				{1, 2},
+				{3, 4}
+				},
+				{
+				{4, 4},
+				{4, 4}
+				}
+			},
+			{
+				-2, 0,
+				{
+				{ 1,  2 , 3,  4},
+				{ 5,  6 , 7,  8},
+				{ 9, 10, 11, 12},
+				{13, 14, 15, 16}
+				},
+				{
+				{5, 5},
+				{9, 9}
+				}
+			},
+			{
+				2, -2,
+				{
+				{ 1,  2 , 3,  4},
+				{ 5,  6 , 7,  8},
+				{ 9, 10, 11, 12},
+				{13, 14, 15, 16}
+				},
+				{
+				{4, 4},
+				{4, 4}
+				}
+			},
+			{
+				3, -1,
+				{
+				{ 1,  2 , 3,  4},
+				{ 5,  6 , 7,  8},
+				{ 9, 10, 11, 12},
+				{13, 14, 15, 16}
+				},
+				{
+				{0, 0},
+				{0, 0}
+				}
+			},
+			{
+				-2, -1,
+				{
+				{1, 2},
+				{3, 4}
+				},
+				{
+				{1, 1, 1, 1},
+				{1, 1, 1, 1},
+				{1, 1, 1, 1},
+				{3, 3, 3, 3}
+				}
+			},
 		};
 
 		for (const ResizeTestCase& testCase : testCases)
@@ -251,37 +383,37 @@ public:
 			CTerrain terrain;
 			{
 				std::vector<u16> heightmap(sourceMapSize * sourceMapSize);
-				for (ssize_t iTile = 0; iTile < sourceSize; ++iTile)
+				for (ssize_t jTile = 0; jTile < sourceSize; ++jTile)
 				{
-					TS_ASSERT_EQUALS(sourceSize, testCase.sourcePatches[iTile].size());
-					for (ssize_t jTile = 0; jTile < sourceSize; ++jTile)
+					TS_ASSERT_EQUALS(sourceSize, testCase.sourcePatches[jTile].size());
+					for (ssize_t iTile = 0; iTile < sourceSize; ++iTile)
 					{
-						for (ssize_t i = 0; i < PATCH_SIZE; ++i)
-							for (ssize_t j = 0; j < PATCH_SIZE; ++j)
+						for (ssize_t j = 0; j < PATCH_SIZE; ++j)
+							for (ssize_t i = 0; i < PATCH_SIZE; ++i)
 							{
 								const ssize_t idx =
 									(jTile * PATCH_SIZE + j) * sourceMapSize +
 									 iTile * PATCH_SIZE + i;
-								heightmap[idx] = testCase.sourcePatches[iTile][jTile];
+								heightmap[idx] = testCase.sourcePatches[jTile][iTile];
 							}
 					}
 				}
 				terrain.Initialize(sourceSize, heightmap.data());
 			}
 
-			terrain.Resize(expectedSize);
+			terrain.ResizeAndOffset(expectedSize, testCase.horizontalOffset, testCase.verticalOffset);
 
 			TS_ASSERT_EQUALS(expectedMapSize, terrain.GetVerticesPerSide());
 			TS_ASSERT_EQUALS(expectedSize, terrain.GetPatchesPerSide());
 
-			for (ssize_t iTile = 0; iTile < expectedSize; ++iTile)
+			for (ssize_t jTile = 0; jTile < expectedSize; ++jTile)
 			{
 				TS_ASSERT_EQUALS(
-					expectedSize, testCase.expectedPatches[iTile].size());
-				for (ssize_t jTile = 0; jTile < expectedSize; ++jTile)
+					expectedSize, testCase.expectedPatches[jTile].size());
+				for (ssize_t iTile = 0; iTile < expectedSize; ++iTile)
 				{
-					for (ssize_t i = 0; i < PATCH_SIZE; ++i)
-						for (ssize_t j = 0; j < PATCH_SIZE; ++j)
+					for (ssize_t j = 0; j < PATCH_SIZE; ++j)
+						for (ssize_t i = 0; i < PATCH_SIZE; ++i)
 						{
 							// The whole patch should have the same height,
 							// since we resize by patches.
@@ -304,7 +436,7 @@ public:
 							return;
 						}
 
-					if (testCase.expectedPatches[iTile][jTile] ==
+					if (testCase.expectedPatches[jTile][iTile] ==
 						GetVertex(terrain, iTile * PATCH_SIZE,
 						                   jTile * PATCH_SIZE))
 						continue;
@@ -313,19 +445,19 @@ public:
 					   << " (i=" << iTile << " j=" << jTile << "):"
 					   << " found=" << GetVertex(terrain, iTile * PATCH_SIZE,
 					                                      jTile * PATCH_SIZE)
-					   << " expected=" << testCase.expectedPatches[iTile][jTile];
+					   << " expected=" << testCase.expectedPatches[jTile][iTile];
 					TS_FAIL(ss.str());
 					ss.str(std::string());
 					ss << "Terrain (" << terrain.GetPatchesPerSide()
 					   << "x" << terrain.GetPatchesPerSide() << "):";
 					TS_WARN(ss.str());
-					for (ssize_t iTile = 0; iTile < expectedSize; ++iTile)
+					for (ssize_t jTile = 0; jTile < expectedSize; ++jTile)
 					{
 						ss.str(std::string());
 						ss << "[";
-						for (ssize_t jTile = 0; jTile < expectedSize; ++jTile)
+						for (ssize_t iTile = 0; iTile < expectedSize; ++iTile)
 						{
-							if (jTile)
+							if (iTile)
 								ss << ", ";
 							ss << GetVertex(terrain, iTile * PATCH_SIZE,
 							                         jTile * PATCH_SIZE);
