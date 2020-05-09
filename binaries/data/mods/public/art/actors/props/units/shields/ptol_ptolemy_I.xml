@@ -2,21 +2,28 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="base">
-      <mesh>props/shield/aspis_f.dae</mesh>
+    <variant>
       <props>
-        <prop actor="props/units/shields/mace_round_hypaspist_back.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/props/aspis_handgrip_bronze_02.xml" attachpoint="handgrip"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="shield mace b">
-      <textures>
-<texture file="props/shield/mace_silver_a.png" name="baseTex"/>
-        <texture file="props/shield/mace_silver_a_norm.png" name="normTex"/>
-        <texture file="props/shield/mace_silver_a_spec.png" name="specTex"/>
-      </textures>
+    <variant frequency="1" name="Red-01">
+      <props>
+        <prop actor="props/units/shields/props/aspis_back_bronze_red_01.xml" attachpoint="root"/>
+      </props>
     </variant>
+    <variant frequency="1" name="Purple-01">
+      <props>
+        <prop actor="props/units/shields/props/aspis_back_bronze_purple_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" file="shields/mace_aspis_02_bronze_b.xml" name="Mace-ISP-C-02"/>
+    <variant frequency="1" file="shields/mace_aspis_03_bronze_b.xml" name="Mace-ISP-C-04"/>
+    <variant frequency="1" file="shields/mace_aspis_04_bronze_b.xml" name="Mace-ISP-C-06"/>
   </group>
   <material>player_trans_parallax_spec.xml</material>
 </actor>

@@ -11,10 +11,10 @@
       </animations>
       <mesh>structural/spart_siege_ram.dae</mesh>
       <props>
-        <prop actor="props/units/shields/spart_aspis_a.xml" attachpoint="shield_left_front"/>
-        <prop actor="props/units/shields/spart_aspis_b.xml" attachpoint="shield_right_front"/>
-        <prop actor="props/units/shields/spart_aspis_b.xml" attachpoint="shield_left_back"/>
-        <prop actor="props/units/shields/spart_aspis_skiritai.xml" attachpoint="shield_right_back"/>
+        <prop actor="props/units/shields/aspis_lambda_01.xml" attachpoint="shield_left_front"/>
+        <prop actor="props/units/shields/aspis_lambda_02.xml" attachpoint="shield_right_front"/>
+        <prop actor="props/units/shields/aspis_spart_skiritai.xml" attachpoint="shield_left_back"/>
+        <prop actor="props/units/shields/aspis_lambda_01.xml" attachpoint="shield_right_back"/>
       </props>
       <textures><texture file="structural/spart_siege_ram.png" name="baseTex"/></textures>
     </variant>
@@ -27,10 +27,10 @@
       </animations>
       <mesh>structural/spart_siege_ram.dae</mesh>
       <props>
-        <prop actor="props/units/shields/spart_aspis_b.xml" attachpoint="shield_left_front"/>
-        <prop actor="props/units/shields/spart_aspis_a.xml" attachpoint="shield_right_front"/>
-        <prop actor="props/units/shields/spart_aspis_skiritai.xml" attachpoint="shield_left_back"/>
-        <prop actor="props/units/shields/spart_aspis_b.xml" attachpoint="shield_right_back"/>
+        <prop actor="props/units/shields/aspis_lambda_01.xml" attachpoint="shield_left_front"/>
+        <prop actor="props/units/shields/aspis_lambda_02.xml" attachpoint="shield_right_front"/>
+        <prop actor="props/units/shields/aspis_spart_skiritai.xml" attachpoint="shield_left_back"/>
+        <prop actor="props/units/shields/aspis_lambda_01.xml" attachpoint="shield_right_back"/>
       </props>
       <textures><texture file="structural/spart_siege_ram.png" name="baseTex"/></textures>
     </variant>
