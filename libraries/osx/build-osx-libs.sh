@@ -41,7 +41,7 @@ GNUTLS_VERSION="gnutls-3.6.8"
 GLOOX_VERSION="gloox-1.0.22"
 # OS X only includes part of ICU, and only the dylib
 # NOTE: remember to also update LIB_URL below when changing version
-ICU_VERSION="icu4c-59_1"
+ICU_VERSION="icu4c-59_2"
 ENET_VERSION="enet-1.3.13"
 MINIUPNPC_VERSION="miniupnpc-2.0.20180222"
 SODIUM_VERSION="libsodium-1.0.18"
@@ -754,7 +754,7 @@ echo -e "Building ICU..."
 LIB_VERSION="${ICU_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION-src.tgz"
 LIB_DIRECTORY="icu"
-LIB_URL="http://download.icu-project.org/files/icu4c/59.1/"
+LIB_URL="https://github.com/unicode-org/icu/releases/download/release-59-2/"
 
 mkdir -p $LIB_DIRECTORY
 pushd icu > /dev/null
