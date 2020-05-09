@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.81.16 commit date:2019-11-20, commit time:14:27, hash:26bd5ebd42e3</authoring_tool>
     </contributor>
-    <created>2020-04-22T15:51:04</created>
-    <modified>2020-04-22T15:51:04</modified>
+    <created>2020-05-09T12:25:16</created>
+    <modified>2020-05-09T12:25:16</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -107,10 +107,10 @@
           </bind_material>
         </instance_geometry>
         <node id="prop_shield1" name="prop_shield1" type="NODE">
-          <matrix sid="transform">0.0881362 -0.9787858 0.1849586 1.417278 0.9961084 0.08660347 -0.01636535 -0.03377581 1.16677e-7 0.1856812 0.9826102 1.002244 0 0 0 1</matrix>
+          <matrix sid="transform">0.03588319 -0.9819769 0.1855616 1.567278 0.999356 0.03525915 -0.006662949 -0.03377581 1.16677e-7 0.1856812 0.9826102 1.002244 0 0 0 1</matrix>
         </node>
         <node id="prop_shield2" name="prop_shield2" type="NODE">
-          <matrix sid="transform">-0.08813463 0.9787863 -0.1849586 -1.408419 -0.9961086 -0.08660194 0.01636508 -0.03377581 1.44522e-7 0.1856812 0.9826099 1.002244 0 0 0 1</matrix>
+          <matrix sid="transform">-0.03588161 0.9819773 -0.1855616 -1.558419 -0.999356 -0.0352576 0.006662681 -0.03377581 1.44515e-7 0.1856812 0.9826099 1.002244 0 0 0 1</matrix>
         </node>
       </node>
     </visual_scene>
