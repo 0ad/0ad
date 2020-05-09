@@ -13,6 +13,7 @@
 # Gurea Veronel <wolf_grv@yahoo.com>, 2018
 # Jarcalau Andrei <andreicosmin820@yahoo.com>, 2020
 # Jipa Leo <jipa.leo64@gmail.com>, 2020
+# Kristian C <karakrys@gmail.com>, 2020
 # Mercer Traieste <mercer.traieste@gmail.com>, 2018
 # killtur <mihaitanasastefan@gmail.com>, 2017
 # Nicolae Crefelean, 2016
@@ -26,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-04-13 07:18+0000\n"
-"PO-Revision-Date: 2020-04-13 11:31+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-05-06 19:20+0000\n"
+"Last-Translator: Kristian C <karakrys@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,7 +91,7 @@ msgstr "Piramide Meroitice"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
 msgid "Civic Centers +10% territory influence radius."
-msgstr ""
+msgstr "Centrele Civice +10% raza de influență a teritoriului."
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -106,7 +107,7 @@ msgstr "Puterea Cunoașterii"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −10% technology resource costs and research time."
-msgstr ""
+msgstr "Construcții −10% costuri de resurse tehnologice și timp de cercetare."
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -122,7 +123,7 @@ msgstr "Edictul lui Ashoka"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
-msgstr ""
+msgstr "Comercianți +20% viteză de deplasare."
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
@@ -130,7 +131,7 @@ msgstr "Bonus agricol"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "Workers +25% grain gather rate."
-msgstr ""
+msgstr "Muncitori +25% rată de colectare a cerealelor."
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
@@ -138,7 +139,7 @@ msgstr "Tratament medical"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
-msgstr ""
+msgstr "Oamenii  +1 rata de regenerare a sănătății."
 
 #: simulation/data/auras/structures/theater.jsonauraName
 msgid "Hellenization"
@@ -146,7 +147,7 @@ msgstr "Elenizare"
 
 #: simulation/data/auras/structures/theater.jsonauraDescription
 msgid "Structures +20% territory influence radius."
-msgstr ""
+msgstr "Construcții +20% teritoriu de influență."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -154,7 +155,7 @@ msgstr "Protecția zidului."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid "Garrisoned Soldiers +3 armor and +20 vision range."
-msgstr ""
+msgstr "Soldați în garnizoană +3 armură și +20 rază de vedere."
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraName
 msgid "Symbol of Greatness"
@@ -162,16 +163,16 @@ msgstr "Simbolul măreției"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "+10 maximum population limit."
-msgstr ""
+msgstr "+10 limita maximă a populației."
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion"
-msgstr "Expansiune glorioasă"
+msgstr "Expansiune Glorioasă"
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
 "+40 maximum population limit (requires the “Glorious Expansion” technology)."
-msgstr ""
+msgstr "+40 limita maximă a populației (necesită tehnologia „Expansiune Glorioasă”)."
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
@@ -179,7 +180,7 @@ msgstr "Atelier de reparații\n"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr ""
+msgstr "Mașini de asediu în garnizoană +3 rata de regenerare a sănătății."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -187,7 +188,7 @@ msgstr " Liga de la Delos"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Allied Warships −25% construction time."
-msgstr ""
+msgstr "Nave de război aliate −25% timp de construcție."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -195,7 +196,7 @@ msgstr "Druizi"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allied Healers −20% resource costs."
-msgstr ""
+msgstr "Vindecătorii aliați −20% costuri de resurse."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -203,7 +204,7 @@ msgstr "Maeștrii negustori"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Allied Markets +10% international trade bonus."
-msgstr ""
+msgstr "Piețele aliate +10% bonus de comerț internațional."
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
@@ -211,7 +212,7 @@ msgstr "Înțelepciune druidică"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Allied Structures −20% technology research time."
-msgstr ""
+msgstr "Clădirile aliate −20% timp de cercetare tehnologică."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -219,7 +220,7 @@ msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Javelinists −10% resource costs."
-msgstr ""
+msgstr "Cetățeni cu javelină aliați −10% costuri de resurse."
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -311,7 +312,7 @@ msgstr "Reforme economice"
 msgid ""
 "Solon instituted several economic reforms encouraging commerce and agriculture.\n"
 "Workers +15% gather speed."
-msgstr ""
+msgstr "Solon a instituit mai multe reforme economice încurajând comerțul și agricultura.\nMuncitorii + 15% viteza de adunare."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
@@ -512,7 +513,7 @@ msgstr "Basileus Megas"
 msgid ""
 "Son of Seleucus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
 "Champion Elephants −10% resource costs."
-msgstr ""
+msgstr "Fiul lui Seleucus Nicator, Antiochus a reușit în formidabila sarcină de a menține imperiul împreună, în același timp fondând temple și înfrângând invadatoii Gaul cu elefanți de război.\n Elefanți Campion -10% costul resurselor."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName

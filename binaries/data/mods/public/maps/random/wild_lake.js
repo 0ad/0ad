@@ -419,7 +419,7 @@ function placeStartLocationResources(
  * Base terrain shape generation and settings
  */
  // Height range by map size
-let heightScale = (g_Map.size + 256) / 768 / 4;
+let heightScale = (g_Map.size + 512) / 1024 / 5;
 let heightRange = { "min": MIN_HEIGHT * heightScale, "max": MAX_HEIGHT * heightScale };
 
 // Water coverage
@@ -474,7 +474,7 @@ for (let i = 0; i < 5; ++i)
 g_Map.log("Smoothing map");
 createArea(
 	new MapBoundsPlacer(),
-	new SmoothingPainter(1, 0.8, 1));
+	new SmoothingPainter(1, 0.5, Math.ceil(g_Map.size/128) + 1));
 
 g_Map.log("Rescaling map");
 rescaleHeightmap(heightRange.min, heightRange.max);

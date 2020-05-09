@@ -3,8 +3,9 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Chindu the Manduri <mandurilooter210770@mail.ru>, 2020
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
-# Lion-Tailed Macaque <lion-tailed.macaque@mail.ru>, 2020
+# 504fc1cf9150c6eb2ead15f639dc2c0a, 2020
 # marinik_00 <tsiurik@gmail.com>, 2014
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Olexandr Yaremenko <ua.limitless@gmail.com>, 2016
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-02-13 08:52+0000\n"
-"Last-Translator: Lion-Tailed Macaque <lion-tailed.macaque@mail.ru>\n"
+"PO-Revision-Date: 2020-05-07 18:53+0000\n"
+"Last-Translator: Chindu the Manduri <mandurilooter210770@mail.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,11 +61,11 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr "Ви можете переключатись у повноекранний режим чи у віконний натискаючи комбінацію клавіш Alt + Enter. У віконному режимі, Ви можете змінювати розмір вікна. Якщо гра працює дуже повільно, Ви можете змінити деякі налаштування у опціях вікна: спробуйте відключити налаштування “HQ Водяні ефекти” та “Тіні”."
+msgstr "Ви можете перемкнутися між повноекранним та віконним режимом, натискаючи Alt + Enter. У віконному режимі Ви можете змінити розмір вікна. Якщо гра запускається занадто повільно, Ви можете змінити деякі налаштування у вікні налаштунків: спробуйте відключення налаштунків “Високоякісні водні ефекти” та “Тіні”."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-16\"]Гра[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-16\"]Ігровий процес[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:8
 msgid ""
@@ -72,43 +73,43 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr "Гравцям традиційних стратегій реального часу (RTS), швидше за все, знайомі управління та ігровий процес. Наразі є відсутніми багато можливостей і погано збалансована статистика – можливо, ви захочете дочекатися виходу бета-версії, щоб якісно пограти."
+msgstr "Елементи управління та ігровий процес мають бути знайомі гравцям у традиційні стратегічні ігри в реальному часі (RTS). Наразі існує багато відсутніх функцій та погано збалансовано параметри — Вам, мабуть, доведеться почекати, поки бета-версія не буде добре працювати."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls:"
-msgstr "Базове керування:"
+msgstr "Основні елементи управління:"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr "• Лівий клік, щоб вибрати юніта"
+msgstr "• Клацнути лівою кнопкою миші, щоб вибрати підрозділи"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr "• Лівий клік і виділити, щоб вибрати групу юнітів"
+msgstr "• Клацнути лівою кнопкою миші та перетягнути, щоб вибрати групи підрозділів"
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr "• Правий клік, щоб спрямувати юніта до цілі"
+msgstr "• Клацнути правою кнопкою миші, щоб спрямувати підрозділи до цілі"
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr "• Стрілки або WASD-клавіші, щоб пересувати камеру"
+msgstr "• Клавіші зі стрілками або клавіші WASD слугують для переміщення камери."
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr "• Ctrl + стрілки або Shift + коліщатко миші, щоб обертати камеру"
+msgstr "• Ctrl + клавіші зі стрілками або shift + колесо миші слугують для обертання камери"
 
 #: gui/manual/intro.txt:16
 msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
-msgstr "• Коліщатко миші або “=”/“+” і “-”/“−”, щоб масштабувати"
+msgstr "• Колесо миші або клавіші “=”/“+” та “-”/“−” слугують для збільшення"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-16\"]Моди[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-16\"]Режими[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr "Головне меню надає доступ до двох режимів гри:"
+msgstr "Головне меню надає доступ до двох ігрових режимів:"
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -116,13 +117,13 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Одиночна гра[font=\"sans-14\"] – Грати у пісочниці або проти одного, чи декількох комп'ютерних гравців (ШІ). ШІ за замовчуванням (Petra) наразі у стані розробки, і не завжди може бути актуальний щодо нових функцій, але, разом з тим, Ви можете грати в гру із або проти нього."
 
 #: gui/manual/intro.txt:21
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Багатокористувацька гра[font=\"sans-14\"] – Грати проти людських противників через Інтернет."
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -130,7 +131,7 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr ""
+msgstr "Щоб налаштувати багатокористувацьку гру, один гравець повинен вибрати опцію “Власна гра”. Гра використовує UDP-порт 20595, тому власник повинен налаштувати свій NAT/мережевий екран/тощо, щоб дозволити це. Інші гравці потім можуть вибрати “Приєднатися до гри” та ввести IP-адресу власника."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -138,29 +139,29 @@ msgstr "[font=\"sans-bold-16\"]Налаштування гри[font=\"sans-14\"]
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr "В багатокористувацькому режимі тільки хост може змінювати налаштування гри."
+msgstr "У багатокористувацькій грі тільки власник може змінити опції налаштування гри."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
-msgstr "По-перше, оберіть тип карти, на якій Ви бажаєте грати:"
+msgstr "Спочатку виберіть, на якому типі мапи Ви хочете грати:"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr "• [font=\"sans-bold-14\"]Випадкова карта[font=\"sans-14\"] – Карта створена автоматично за допомогою скрипту"
+msgstr "• [font=\"sans-bold-14\"]Випадкова мапа[font=\"sans-14\"] – Мапа, створена автоматично зі сценарію"
 
 #: gui/manual/intro.txt:30
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
-msgstr "• [font=\"sans-bold-14\"]Карта сценарію[font=\"sans-14\"] – Карта створена розробниками карт із фіксованими цивілізаціями"
+msgstr "• [font=\"sans-bold-14\"]Мапа за сценарієм[font=\"sans-14\"] – Мапа, створена дизайнерами мап та з фіксованими цивілізаціями"
 
 #: gui/manual/intro.txt:31
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr "• [font=\"sans-bold-14\"]Карта сутичок[font=\"sans-14\"] – Карта створена розробниками карт, але цивілізації можна вибрати"
+msgstr "• [font=\"sans-bold-14\"]Мапа зіткнення[font=\"sans-14\"] – Мапа, створена дизайнерами мап, але де цивілізації можуть бути вибраними"
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -169,7 +170,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr "Потім карти можуть бути додатково відфільтровані. Карти, що доступні за умовчанням, як правило, грабельні. Морські карти – це карти, де не всі супротивники доступні на суші, та демо-карти – це карти, що використовуються в цілях тестування (загалом не рекомендуються для гри). Фільтр “Всі карти” показує усі карти в одному списку."
+msgstr "Потім мапи можуть бути додатково відфільтровані. Мапи за замовчуванням, як правило, придатні для гри. Морські мапи — це мапи, на яких не до всіх противників можна дістатися по суші, а демонстраційні мапи — це мапи, які використовуються для тестувальних цілей (як правило, не придатні для гри). Фільтр “Усі мапи” відображає всі карти разом в одному переліку."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -178,32 +179,32 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr ""
+msgstr "Нарешті, змініть налаштування. Для випадкових мап це включає кількість гравців, розмір мапи тощо. Для сценаріїв Ви можете вибрати лише, хто якого гравця контролює (вирішує, де Ви починаєте на мапі тощо). Налаштунками є також людський гравець, ШІ або відсутність гравця взагалі (противник буде просто простоювати)."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr "Коли ви будете готові розпочати, натисніть на кнопку “Розпочати гру”."
+msgstr "Коли Ви готові почати, клацніть кнопку “Почати гру”."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-16\"]Гарячі клавіші[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-16\"]Комбінації клавіш[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Загальнопрограмні[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:41
 msgid ""
 "  Alt + F4 – Immediately close the game, without asking for confirmation"
-msgstr "Alt + F4 – Негайно закрити гру без запиту на підтвердження"
+msgstr "  Alt + F4 – Негайно закрити гру, не запитуючи підтвердження"
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter – Toggle between fullscreen and windowed"
-msgstr "Alt + Enter – Перемикає між повноекранним і віконним режимами"
+msgstr "  Alt + Enter – Перемкнути між повноекранним та віконним"
 
 #: gui/manual/intro.txt:43
 msgid "  ~ or F9 – Show/hide console"
-msgstr "~ чи F9 – Показати/приховати консоль"
+msgstr "  ~ або F9 – Показати/приховати консоль"
 
 #: gui/manual/intro.txt:44
 msgid "  Alt + F – Show/hide frame counter (FPS)"
@@ -213,278 +214,278 @@ msgstr "  Alt + F – Показати/приховати лічильник к�
 msgid ""
 "  F11 – Enable/disable real-time profiler (toggles through the displays of "
 "information)"
-msgstr "  F11 – Увімкнути/вимкнути профайлер реального часу (перемикає між відображеннями інформації)"
+msgstr "  F11 – Увімкнути/вимкнути профайлер реального часу (перемикає через відображення інформації)"
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
-msgstr "  Shift + F11 – Зберегти поточний профіль у “logs/profile.txt”"
+msgstr "  Shift + F11 – Зберегти дані поточного профайлера до “logs/profile.txt”"
 
 #: gui/manual/intro.txt:47
 msgid ""
 "  F2 – Take screenshot (in .png format, location is displayed in the top "
 "left of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr ""
+msgstr "  F2 – Зробити знімок екрана (у форматі .png, місцезнаходження відображено зверху зліва на графічному інтерфейсі користувача після того, як файл було збережено, а також його можна побачити в консолі/журналах, якщо ви його пропустите)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, "
 "location is displayed in the top left of the GUI after the file has been "
 "saved, and can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "  Shift + F2 – Зробити величезний знімок екрана (6400×4800 пікселів, у форматі .bmp, місцезнаходження відображено зверху зліва на графічному інтерфейсі користувача після того, як файл було збережено, а також його можна побачити в консолі/журналах, якщо ви його пропустите)"
 
 #: gui/manual/intro.txt:49
 msgid "  Tab, Alt + S – Switch to the next tab"
-msgstr ""
+msgstr "  Tab, Alt + S – Перемкнутися до наступної вкладки"
 
 #: gui/manual/intro.txt:50
 msgid "  Shift + Tab, Alt + W – Switch to the previous tab"
-msgstr ""
+msgstr "  Shift + Tab, Alt + W – Перемкнутися до попередньої вкладки"
 
 #: gui/manual/intro.txt:52
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]У грі[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:53
 msgid ""
 "  Double Left Click \\[on unit] – Select all of your units of the same kind "
 "on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "  Подвійно клацнути лівою кнопкою миші \\[на одиницю] – Вибрати всі Ваші підрозділи такого ж типу на екрані (навіть якщо вони різних рангів)"
 
 #: gui/manual/intro.txt:54
 msgid ""
 "  Triple Left Click \\[on unit] – Select all of your units of the same kind "
 "and the same rank on the screen"
-msgstr ""
+msgstr "  Потрійно клацнути лівою кнопкою миші \\[на одиницю] – Вибрати всі Ваші підрозділи такого ж типу та такого ж рангу на екрані"
 
 #: gui/manual/intro.txt:55
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "  Alt + Подвійно клацнути лівою кнопкою миші \\[на одиницю] – Вибрати всі Ваші підрозділи такого ж типу по всій мапі (навіть якщо вони різних рангів)"
 
 #: gui/manual/intro.txt:56
 msgid ""
 "  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
 "kind and rank on the entire map"
-msgstr ""
+msgstr "  Alt + Потрійно клацнути лівою кнопкою миші \\[на одиницю] – Вибрати всі Ваші підрозділи такого ж типу та такого ж рангу по всій мапі"
 
 #: gui/manual/intro.txt:57
 msgid "  Shift + F5 – Quicksave"
-msgstr ""
+msgstr "  Shift + F5 – Швидке збереження"
 
 #: gui/manual/intro.txt:58
 msgid "  Shift + F8 – Quickload"
-msgstr ""
+msgstr "  Shift + F8 – Швидке завантаження"
 
 #: gui/manual/intro.txt:59
 msgid "  F10 – Open/close menu"
-msgstr ""
+msgstr "  F10 – Відкрити/закрити меню"
 
 #: gui/manual/intro.txt:60
 msgid "  F12 – Show/hide time elapsed counter"
-msgstr ""
+msgstr "  F12 – Показати/приховати лічильник минулого часу"
 
 #: gui/manual/intro.txt:61
 msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "  Esc – Закрити всі діалоги (бесіда, меню) або зняти виділення з вибраних підрозділів"
 
 #: gui/manual/intro.txt:62
 msgid "  Enter/Return – Open/send chat"
-msgstr ""
+msgstr "  Enter/Return – Відкрити/надіслати бесіду"
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
-msgstr ""
+msgstr "  T – Надіслати командну бесіду"
 
 #: gui/manual/intro.txt:64
 msgid "  L – Chat with the previously selected private chat partner"
-msgstr ""
+msgstr "  L – Вести бесіду із попередньо вибраним партнером приватної бесіди"
 
 #: gui/manual/intro.txt:65
 msgid "  Pause – Pause/resume the game"
-msgstr ""
+msgstr "  Pause – Призупинити/продовжити гру"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "  Delete – Delete currently selected unit(s)/structure(s), ask for "
 "confirmation"
-msgstr ""
+msgstr "  Delete – Видалити вибрану на даний момент одиницю(ці)/споруду(ди), запит на підтвердження"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "  Shift + Delete – Immediately delete currently selected "
 "unit(s)/structure(s), without asking for confirmation"
-msgstr ""
+msgstr "  Shift + Delete – Негайно видалити вибрану на даний момент одиницю(ці)/споруду(ди), не запитуючи підтвердження"
 
 #: gui/manual/intro.txt:68
 msgid "  / (Slash) – Select idle fighter"
-msgstr ""
+msgstr "  / (Скісна риска) – Вибрати незайнятого бійця"
 
 #: gui/manual/intro.txt:69
 msgid "  Shift + / (Slash) – Add idle fighter to selection"
-msgstr ""
+msgstr "  Shift + / (Скісна риска) – Додати незайнятого бійця до вибору"
 
 #: gui/manual/intro.txt:70
 msgid "  Alt + / (Slash) – Select all idle fighters"
-msgstr ""
+msgstr "  Alt + / (Скісна риска) – Вибрати всіх незайнятих бійців"
 
 #: gui/manual/intro.txt:71
 msgid "  . (Period) – Select idle worker (including citizen-soldiers)"
-msgstr ""
+msgstr "  . (Крапка) – Вибрати незайнятого працівника (включаючи громадян-солдатів)"
 
 #: gui/manual/intro.txt:72
 msgid ""
 "  Shift + . (Period) – Add idle worker to selection (including citizen-"
 "soldiers)"
-msgstr ""
+msgstr "  Shift + . (Крапка) – Додати незайнятого працівника до вибору (включаючи громадян-солдатів)"
 
 #: gui/manual/intro.txt:73
 msgid ""
 "  Alt + . (Period) – Select all idle workers (including citizen-soldiers)"
-msgstr ""
+msgstr "  Alt + . (Крапка) – Вибрати всіх незайнятих працівників (включаючи громадян-солдатів)"
 
 #: gui/manual/intro.txt:74
 msgid "  \\\\ (Backslash) – Select idle unit"
-msgstr ""
+msgstr "  \\\\ (Обернена скісна риска) – Вибрати незайняту одиницю"
 
 #: gui/manual/intro.txt:75
 msgid "  Shift + \\\\ (Backslash) – Add idle unit to selection"
-msgstr ""
+msgstr "  Shift + \\\\ (Обернена скісна риска) – Додати незайняту одиницю до вибору"
 
 #: gui/manual/intro.txt:76
 msgid "  Alt + \\\\ (Backslash) – Select all idle units"
-msgstr ""
+msgstr "  Alt + \\\\ (Обернена скісна риска) – Вибрати всі незайняті підрозділи"
 
 #: gui/manual/intro.txt:77
 msgid "  H – Stop (halt) the currently selected units"
-msgstr ""
+msgstr "  H – Призупинити (зупинити) вибрані на даний момент підрозділи"
 
 #: gui/manual/intro.txt:78
 msgid "  Y – The unit will go back to work"
-msgstr "Y – Юніт повернеться до роботи"
+msgstr "  Y – Одиниця повернеться до праці"
 
 #: gui/manual/intro.txt:79
 msgid "  U – Unload the garrisoned units of the selected structure(s)"
-msgstr "  U – Вивести юнітів з гарнізону у вибраних будівлях"
+msgstr "  U – Вивести гарнізовані підрозділи з вибраної споруди(уд)"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from "
 "the selected unit(s)/structure(s)"
-msgstr ""
+msgstr "  Ctrl + 1 (і так далі до Ctrl + 0) – Створити контрольну групу 1 (до 0) із вибраної одиниці(ць)/споруди(уд)"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  1 (and so on up to 0) – Select the unit(s)/structure(s) in control group 1"
 " (to 0)"
-msgstr ""
+msgstr "  1 (і так далі до 0) – Вибрати одиницю(ці)/споруду(ди) у контрольній групі 1 (до 0)"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr ""
+msgstr "  Shift + 1 (до 0) – Додати контрольну групу 1 (до 0) до вибраної одиниці(ць)/споруди(уд)"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "  Ctrl + F5 (and so on up to F8) – Mark the current camera position, for "
 "jumping back to later"
-msgstr ""
+msgstr "  Ctrl + F5 (і так далі до F8) – Позначити поточну позицію камери, на яку можна буде швидко повернутися"
 
 #: gui/manual/intro.txt:84
 msgid ""
 "  F5 (and so on up to F8) – Move the camera to a marked position. Jump back "
 "to the last location if the camera is already over the marked position"
-msgstr ""
+msgstr "  F5 (і так далі до F8) – Перемістити камеру на позначену позицію. Повернутися до останнього місцезнаходження, якщо камера вже поза межею позначеної позиції"
 
 #: gui/manual/intro.txt:85
 msgid ""
 "  Z, X, C, V, B, N, M – With training structure selected. Add the 1st, 2nd, "
 "… unit shown to the training queue for all the selected structures"
-msgstr ""
+msgstr "  Z, X, C, V, B, N, M – Із вибраними тренувальними спорудами. Додати першу, другу, … показану одиницю до черги тренування у всі вибрані споруди"
 
 #: gui/manual/intro.txt:86
 msgid ""
 "  PageUp with unit(s) selected – Highlight the unit(s)/structure(s) guarded "
 "by the selection"
-msgstr ""
+msgstr "  PageUp із вибраною одиницею(ями) – Висвітлити одиницю(ці)/споруду(ди), що охороняється за вибором"
 
 #: gui/manual/intro.txt:87
 msgid ""
 "  PageDown with unit(s)/structure(s) selected – Highlight the unit(s) "
 "guarding the selection"
-msgstr ""
+msgstr "  PageDown із вибраною одиницею(ями)/спорудою(ами) – Висвітлити одиницю(ці), яка охороняє за вибором"
 
 #: gui/manual/intro.txt:88
 msgid ""
 "  Tab – See all status bars (which would also show the building progress)"
-msgstr ""
+msgstr "  Tab – Побачити всі смуги стану (що також покаже просування будівництва)"
 
 #: gui/manual/intro.txt:89
 msgid "  Ctrl + Tab – Toggle summary window"
-msgstr ""
+msgstr "  Ctrl + Tab – Перемкнути підсумкове вікно"
 
 #: gui/manual/intro.txt:90
 msgid "  Alt + L – Show the multiplayer lobby in a dialog window"
-msgstr ""
+msgstr "  Alt + L – Показати багатокористувацьке лобі у діалоговому вікні"
 
 #: gui/manual/intro.txt:91
 msgid "  Ctrl + H – Toggle in-game diplomacy panel"
-msgstr ""
+msgstr "  Ctrl + H – Перемкнути внутрішньоігрову панель дипломатії"
 
 #: gui/manual/intro.txt:92
 msgid "  Ctrl + B – Toggle in-game barter and trade panel"
-msgstr ""
+msgstr "  Ctrl + B – Перемкнути внутрішньоігрову панель обміну та торгівлі"
 
 #: gui/manual/intro.txt:93
 msgid "  Ctrl + O – Toggle in-game objectives panel"
-msgstr ""
+msgstr "  Ctrl + O – Перемкнути внутрішньоігрову панель цілей"
 
 #: gui/manual/intro.txt:94
 msgid "  Ctrl + P – Toggle in-game tutorial panel"
-msgstr ""
+msgstr "  Ctrl + P – Перемкнути внутрішньоігрову панель керівництва"
 
 #: gui/manual/intro.txt:95
 msgid "  Alt + Shift + T – Toggle structure tree panel"
-msgstr ""
+msgstr "  Alt + Shift + T – Перемкнути панель структурного дерева"
 
 #: gui/manual/intro.txt:96
 msgid "  Alt + Shift + H – Toggle civilization info panel"
-msgstr ""
+msgstr "  Alt + Shift + H – Перемкнути панель інформації щодо цивілізації"
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Змінюють дію миші[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
 msgid "  Ctrl + Right Click on structure – Garrison"
-msgstr ""
+msgstr "  Ctrl + Клацнути правою кнопкою миші на споруді – Розмістити гарнізон"
 
 #: gui/manual/intro.txt:100
 msgid "  J + Right Click on structure – Repair"
-msgstr ""
+msgstr "  J + Клацнути правою кнопкою миші на споруді – Ремонтувати"
 
 #: gui/manual/intro.txt:101
 msgid "  P + Right Click – Patrol"
-msgstr "  P + ПКМ – Патрулювання"
+msgstr "  P + Клацнути правою кнопкою миші – Патрулювати"
 
 #: gui/manual/intro.txt:102
 msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
-msgstr ""
+msgstr "  Shift + Клацнути правою кнопкою миші – Встановити черговість порядку руху/спорудження/збору/тощо"
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  Alt + Right Click – Order one unit from the current selection to "
 "move/build/gather/etc. and unselect it. Used to quickly dispatch units with "
 "specific tasks"
-msgstr ""
+msgstr "  Alt + Клацнути правою кнопкою миші – Наказати одиниці з поточного вибору рухатись/спорудити/зібрати/тощо та зняти виділення з неї. Використовується для того, щоб швидко відправити підрозділи із конкретними завданнями"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "  Shift + Left Click when training units – Add units in batches (the batch "
 "size is 5 by default and can be changed in the options)"
-msgstr ""
+msgstr "  Shift + Клацнути лівою кнопкою миші під час тренування підрозділів – Додати підрозділи у групах (розмір групи за замовчуванням становить 5 і може бути змінений у налаштунках)"
 
 #: gui/manual/intro.txt:105
 msgid ""
@@ -714,10 +715,10 @@ msgstr "  Esc – Скасувати"
 
 #: gui/manual/intro.txt:157
 msgid "  Delete – Delete the selected saved game, ask for confirmation"
-msgstr "Delete – Видалити виділену збережену гру із запитом на підтвердження"
+msgstr "  Delete – Видалити вибрану збережену гру, запит на підтвердження"
 
 #: gui/manual/intro.txt:158
 msgid ""
 "  Shift + Delete – Immediately delete the selected saved game, without "
 "asking for confirmation"
-msgstr "  Shift + Delete – Видалити виділену збережену гру без запиту на підтвердження"
+msgstr "  Shift + Delete – Негайно видалити вибрану збережену гру, не запитуючи підтвердження"
