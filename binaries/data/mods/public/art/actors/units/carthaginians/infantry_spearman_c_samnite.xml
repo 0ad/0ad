@@ -5,10 +5,21 @@
     <variant>
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/shields/cart_tarantine_e.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/capes/cape_long_player.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Shield-01">
+      <props>
+        <prop actor="props/units/shields/aspis_kart_a.xml" attachpoint="shield_arm"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Shield-02">
+      <props>
+        <prop actor="props/units/shields/aspis_kart_e.xml" attachpoint="shield_arm"/>
       </props>
     </variant>
   </group>
