@@ -892,7 +892,7 @@ function handleInputAfterGui(ev)
 				var action = determineAction(ev.x, ev.y);
 				if (!action)
 					break;
-				if (!Engine.HotkeyIsPressed("session.queue"))
+				if (!Engine.HotkeyIsPressed("session.queue") && !Engine.HotkeyIsPressed("session.orderone"))
 				{
 					preSelectedAction = ACTION_NONE;
 					inputState = INPUT_NORMAL;
