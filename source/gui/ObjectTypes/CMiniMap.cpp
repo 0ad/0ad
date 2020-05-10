@@ -149,8 +149,11 @@ void CMiniMap::HandleMessage(SGUIMessage& Message)
 	case GUIM_MOUSE_PRESS_LEFT:
 		if (m_MouseHovering)
 		{
-			SetCameraPos();
-			m_Clicking = true;
+			if (!CMiniMap::FireWorldClickEvent(SDL_BUTTON_LEFT, 1))
+			{
+				SetCameraPos();
+				m_Clicking = true;
+			}
 		}
 		break;
 	case GUIM_MOUSE_RELEASE_LEFT:
@@ -237,7 +240,7 @@ float CMiniMap::GetAngle() const
 	return -atan2(cameraIn.X, cameraIn.Z);
 }
 
-void CMiniMap::FireWorldClickEvent(int UNUSED(button), int UNUSED(clicks))
+bool CMiniMap::FireWorldClickEvent(int button, int UNUSED(clicks))
 {
 	JSContext* cx = g_GUI->GetActiveGUI()->GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
@@ -248,10 +251,14 @@ void CMiniMap::FireWorldClickEvent(int UNUSED(button), int UNUSED(clicks))
 	JS::RootedValue coords(cx);
 	ScriptInterface::CreateObject(cx, &coords, "x", x, "z", z);
 
+	JS::RootedValue buttonJs(cx);
+	ScriptInterface::ToJSVal(cx, &buttonJs, button);
+
 	JS::AutoValueVector paramData(cx);
 	paramData.append(coords);
+	paramData.append(buttonJs);
 
-	ScriptEvent(EventNameWorldClick, paramData);
+	return ScriptEventWithReturn(EventNameWorldClick, paramData);
 }
 
 // This sets up and draws the rectangle on the minimap

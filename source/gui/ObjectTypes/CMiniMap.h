@@ -56,7 +56,7 @@ protected:
 
 	void SetCameraPos();
 
-	void FireWorldClickEvent(int button, int clicks);
+	bool FireWorldClickEvent(int button, int clicks);
 
 	static const CStr EventNameWorldClick;
 

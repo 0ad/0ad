@@ -12,19 +12,42 @@ class MiniMap
 		this.mouseIsOverMiniMap = false;
 	}
 
-	onWorldClick(target)
+	onWorldClick(target, button)
 	{
+		// Partly duplicated from handleInputAfterGui(), but with the input being
+		// world coordinates instead of screen coordinates.
+		if (button == SDL_BUTTON_LEFT)
+		{
+			if (inputState != INPUT_PRESELECTEDACTION || preSelectedAction == ACTION_NONE)
+				return false;
+		}
+		else if (button == SDL_BUTTON_RIGHT)
+		{
+			if (inputState == INPUT_PRESELECTEDACTION)
+			{
+				preSelectedAction = ACTION_NONE;
+				inputState = INPUT_NORMAL;
+				return true;
+			}
+			else if (inputState != INPUT_NORMAL)
+				return false;
+		}
+		else
+			return false;
+
+
 		if (!controlsPlayer(g_ViewedPlayer))
 			return false;
 
-		// Partly duplicated from handleInputAfterGui(), but with the input being
-		// world coordinates instead of screen coordinates.
-
-		if (inputState != INPUT_NORMAL)
-			return false;
-
 		let action = determineAction(undefined, undefined, true);
-		return action && handleUnitAction(target, action);
+		if (!action)
+			return false;
+		if (button == SDL_BUTTON_LEFT && !Engine.HotkeyIsPressed("session.queue") && !Engine.HotkeyIsPressed("session.orderone"))
+		{
+			preSelectedAction = ACTION_NONE;
+			inputState = INPUT_NORMAL;
+		}
+		return handleUnitAction(target, action);
 	}
 
 	onMouseEnter()

@@ -239,9 +239,7 @@ function determineAction(x, y, fromMiniMap)
 	// thus the most specific should appear first.
 
 	let actionInfo = undefined;
-	// Disable preselected actions on the minimap because their
-	// left-click interferes with the minimap left-click anyways.
-	if (preSelectedAction != ACTION_NONE && !fromMiniMap)
+	if (preSelectedAction != ACTION_NONE)
 	{
 		for (let action of g_UnitActionsSortedKeys)
 			if (g_UnitActions[action].preSelectedActionCheck)
