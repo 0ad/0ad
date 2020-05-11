@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-03-09 08:13+0000\n"
-"PO-Revision-Date: 2020-05-07 13:57+0000\n"
+"PO-Revision-Date: 2020-05-10 19:28+0000\n"
 "Last-Translator: Chindu the Manduri <mandurilooter210770@mail.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -112,7 +112,7 @@ msgstr "Очікується підключення гравців:"
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
-msgstr "Синхронізація гри з іншими гравцями…"
+msgstr "Синхронізація ігрового процесу з іншими гравцями…"
 
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"
@@ -561,11 +561,11 @@ msgstr "Наказати вибраним підрозділам ремонту�
 
 #: gui/session/unit_actions.js:1269
 msgid "Focus on Rally Point."
-msgstr "Встановити точку збору."
+msgstr "Зосередити увагу на точці збору."
 
 #: gui/session/unit_actions.js:1304
 msgid "Back to Work"
-msgstr "Повернути до роботи"
+msgstr "Повернути до праці"
 
 #: gui/session/unit_actions.js:1323
 msgid "Order the selected units to guard a structure or unit."
@@ -878,7 +878,7 @@ msgstr "%(player)s просувається до %(phaseName)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:100
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr "Просування %(player)s до %(phaseName)s було скасовано."
+msgstr "Просування %(player)s до %(phaseName)s було перервано."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:103
 #, javascript-format
@@ -956,7 +956,7 @@ msgstr "Обмежити камеру"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:169
 msgid "Reveal map"
-msgstr "Відкрити мапу (бачити все)"
+msgstr "Відкрити мапу"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:195
 msgid "Enable time warp"
@@ -1199,7 +1199,7 @@ msgstr "Чи впевнені Ви, що Ви хочете здатися?"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:39
 msgid "Find idle worker"
-msgstr "Знайти непрацюючого працівника"
+msgstr "Знайти незайнятого працівника"
 
 #: gui/session/top_panel/CivIcon.js:77
 #, javascript-format

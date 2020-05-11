@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-07 08:09+0000\n"
-"PO-Revision-Date: 2020-05-07 18:42+0000\n"
+"PO-Revision-Date: 2020-05-11 07:08+0000\n"
 "Last-Translator: Chindu the Manduri <mandurilooter210770@mail.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr "• %(string)s"
 #: gui/civinfo/civinfo.js:113
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr "%(civilization)s особливості гри"
+msgstr "%(civilization)s Ігровий процес"
 
 #: gui/civinfo/civinfo.js:116
 msgid "Civilization Bonus"
@@ -94,7 +94,7 @@ msgstr "Випадково"
 
 #: gui/common/MapCache.js:59
 msgid "A randomly selected map."
-msgstr "Випадково обрана мапа."
+msgstr "Випадково вибрана мапа."
 
 #. dennis-ignore: *
 #: gui/common/OverlayCounterFPS.js:28
@@ -105,7 +105,7 @@ msgstr "FPS: %(fps)4s"
 #: gui/common/color.js:178
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr "Непризначена гаряча клавіша: %(hotkeyName)s"
+msgstr "Не призначена комбінація клавіші: %(hotkeyName)s"
 
 #: gui/common/color.js:193
 #, javascript-format
@@ -115,11 +115,11 @@ msgstr "Натиснути %(hotkey)s для автозаповнення іме
 #: gui/common/color.js:195
 msgctxt "hotkey"
 msgid "Tab"
-msgstr "Таб"
+msgstr "Tab"
 
 #: gui/common/functions_global_object.js:53
 msgid "Loading Aborted"
-msgstr "Завантаження відмінено"
+msgstr "Завантаження перервано"
 
 #: gui/common/functions_utility.js:42
 msgid "Gaia"
@@ -275,7 +275,7 @@ msgstr "Кількість реліквій"
 
 #: gui/common/gamedescription.js:239
 msgid "Hero Garrison"
-msgstr "Герой у гарнізоні"
+msgstr "Геройський гарнізон"
 
 #: gui/common/gamedescription.js:240
 msgid "Heroes can be garrisoned."
@@ -283,7 +283,7 @@ msgstr "Герої можуть бути розміщені у гарнізон�
 
 #: gui/common/gamedescription.js:244
 msgid "Exposed Heroes"
-msgstr "Представлені герої"
+msgstr "Незахищені герої"
 
 #: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
@@ -291,7 +291,7 @@ msgstr "Герої не можуть бути розміщені у гарніз
 
 #: gui/common/gamedescription.js:252
 msgid "Rated game"
-msgstr "Оцінена гра:"
+msgstr "Оціночна гра"
 
 #: gui/common/gamedescription.js:253
 msgid ""
@@ -301,11 +301,11 @@ msgstr "Коли переможець цього матчу визначитьс
 
 #: gui/common/gamedescription.js:258
 msgid "Locked Teams"
-msgstr "Закриті команди"
+msgstr "Незмінні команди"
 
 #: gui/common/gamedescription.js:259
 msgid "Players can't change the initial teams."
-msgstr "Гравці не можуть змінювати початкові команди"
+msgstr "Гравці не можуть змінити початкові команди."
 
 #: gui/common/gamedescription.js:263
 msgid "Diplomacy"
@@ -317,7 +317,7 @@ msgstr "Гравці можуть укладати союзи та оголош�
 
 #: gui/common/gamedescription.js:269
 msgid "Last Man Standing"
-msgstr "До останнього гравця"
+msgstr "Битися до останнього гравця"
 
 #: gui/common/gamedescription.js:270
 msgid ""
@@ -327,7 +327,7 @@ msgstr "Лише один гравець може перемогти у грі. 
 
 #: gui/common/gamedescription.js:274
 msgid "Allied Victory"
-msgstr "Перемога союзників"
+msgstr "Союзна перемога"
 
 #: gui/common/gamedescription.js:275
 msgid ""
@@ -354,27 +354,27 @@ msgstr[3] "Перші %(min)s хвилин, інші гравці залишаю
 #: gui/common/gamedescription.js:293
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr "Випадкова карта"
+msgstr "Випадкова мапа"
 
 #: gui/common/gamedescription.js:294
 msgid "Randomly select a map from the list."
-msgstr "Випадково вибрана карта зі списку."
+msgstr "Випадково вибрати мапу з переліку."
 
 #: gui/common/gamedescription.js:299
 msgid "Map Name"
-msgstr "Назва карти"
+msgstr "Назва мапи"
 
 #: gui/common/gamedescription.js:305
 msgid "Map Description"
-msgstr "Опис карти"
+msgstr "Опис мапи"
 
 #: gui/common/gamedescription.js:311
 msgid "Map Type"
-msgstr "Тип карти"
+msgstr "Тип мапи"
 
 #: gui/common/gamedescription.js:320
 msgid "Map Size"
-msgstr "Розмір карти"
+msgstr "Розмір мапи"
 
 #: gui/common/gamedescription.js:329
 msgctxt "biome"
@@ -383,11 +383,11 @@ msgstr "Випадковий біом"
 
 #: gui/common/gamedescription.js:330
 msgid "Randomly select a biome from the list."
-msgstr "Вибрати біом зі списку випадковим чином."
+msgstr "Випадково вибрати біом з переліку."
 
 #: gui/common/gamedescription.js:345
 msgid "Nomad Mode"
-msgstr "Режим кочівника"
+msgstr "Режим мандрівника"
 
 #: gui/common/gamedescription.js:345
 msgid "Civic Centers"
@@ -397,11 +397,11 @@ msgstr "Громадські центри"
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr "Гравці починають лише з декількох підрозділів, і їм необхідно знайти придатне місце для побудови свого міста."
+msgstr "Гравці починають лише з декількома підрозділами та повинні знайти підходяще місце для спорудження власного міста."
 
 #: gui/common/gamedescription.js:349
 msgid "Players start with a Civic Center."
-msgstr "Гравці починають гру з Громадським центром"
+msgstr "Гравці починають із громадським центром."
 
 #: gui/common/gamedescription.js:354
 msgid "Starting Resources"
@@ -438,19 +438,19 @@ msgstr "Вимкнено"
 #: gui/common/gamedescription.js:384
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr "Як визначено картою."
+msgstr "Як визначено мапою."
 
 #: gui/common/gamedescription.js:388
 msgid "Revealed Map"
-msgstr "Розвідана карта"
+msgstr "Відкрита мапа"
 
 #: gui/common/gamedescription.js:393
 msgid "Explored Map"
-msgstr "Досліджена карта"
+msgstr "Досліджена мапа"
 
 #: gui/common/gamedescription.js:398
 msgid "Cheats"
-msgstr "Шахрайство"
+msgstr "Шахрайства"
 
 #: gui/common/gamedescription.js:402 gui/common/tooltips.js:136
 #: gui/common/tooltips.js:169 gui/common/tooltips.js:211
@@ -473,7 +473,7 @@ msgstr "вимкнено"
 
 #: gui/common/gamedescription.js:418
 msgid "Victorious"
-msgstr "Переможець"
+msgstr "Переможний"
 
 #: gui/common/gamedescription.js:423
 msgid "Defeated"
@@ -528,11 +528,11 @@ msgstr "Гра вже почалася, глядачі не дозволені."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr "Вас вигнали."
+msgstr "Вас було вигнано."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr "Вас заблокували."
+msgstr "Вас було заблоковано."
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
@@ -540,7 +540,7 @@ msgstr "Ім'я гравця уже використовується. Якщо �
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr "Сервер переповнений."
+msgstr "Сервер заповнений"
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
@@ -573,7 +573,7 @@ msgstr "Помилка підключення до серверу."
 
 #: gui/common/network.js:98
 msgid "Disconnected"
-msgstr "Відключено"
+msgstr "Роз'єднано"
 
 #: gui/common/network.js:106
 msgid "Only the host can kick clients!"
@@ -605,47 +605,47 @@ msgstr "Пісочниця"
 #: gui/common/settings.js:119
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr "Дуже Просто"
+msgstr "Дуже легка"
 
 #: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr "Просто"
+msgstr "Легка"
 
 #: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr "Посередньо"
+msgstr "Середня"
 
 #: gui/common/settings.js:132
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr "Важко"
+msgstr "Важка"
 
 #: gui/common/settings.js:136
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr "Дуже Важко"
+msgstr "Дуже важка"
 
 #: gui/common/settings.js:146
 msgctxt "aiBehavior"
 msgid "Random"
-msgstr "Випадково"
+msgstr "Випадкова"
 
 #: gui/common/settings.js:151
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr "Збалансований"
+msgstr "Збалансована"
 
 #: gui/common/settings.js:155
 msgctxt "aiBehavior"
 msgid "Defensive"
-msgstr "Оборонний"
+msgstr "Захисна"
 
 #: gui/common/settings.js:159
 msgctxt "aiBehavior"
 msgid "Aggressive"
-msgstr "Зухвалий"
+msgstr "Агресивна"
 
 #: gui/common/settings.js:172
 msgctxt "map"
@@ -714,7 +714,7 @@ msgstr "Невідомий"
 
 #: gui/common/settings.js:385
 msgid "Unknown Victory Condition"
-msgstr "Невідомі Умови Перемоги"
+msgstr "Невідома умова перемоги"
 
 #: gui/common/tooltips.js:44
 #, javascript-format
@@ -874,7 +874,7 @@ msgstr "Захопити"
 #: gui/common/tooltips.js:283
 #, javascript-format
 msgid "gives %(name)s"
-msgstr "дає %(name)s"
+msgstr "надає %(name)s"
 
 #: gui/common/tooltips.js:313
 #, javascript-format
@@ -1031,7 +1031,7 @@ msgstr "%(component)s %(cost)s"
 
 #: gui/common/tooltips.js:586
 msgid "Gather Rates:"
-msgstr "Коефіцієнт збору:"
+msgstr "Темпи збору:"
 
 #: gui/common/tooltips.js:589 gui/common/tooltips.js:611
 #, javascript-format
@@ -2254,7 +2254,7 @@ msgstr "Тип карти"
 #: gui/replaymenu/replay_menu.xml:(heading):77
 msgctxt "replay"
 msgid "Map Name"
-msgstr "Назва карти"
+msgstr "Назва мапи"
 
 #: gui/loadgame/load.xml:(heading):38
 msgctxt "replay"
@@ -3127,11 +3127,11 @@ msgstr "Оборонний"
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid "Default behavior of the AI."
-msgstr "Стандартна поведінка AI."
+msgstr "Поведінка ШІ за замовчуванням."
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI behavior"
-msgstr ""
+msgstr "Поведінка ШІ за замовчуванням"
 
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
@@ -3280,7 +3280,7 @@ msgstr "Відображати радіус атаки обраних захис
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
-msgstr ""
+msgstr "Візуалізація дистанції атаки"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
@@ -3290,7 +3290,7 @@ msgstr "Відобразити радіус аури вибраних юніті
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
-msgstr ""
+msgstr "Візуалізація дистанції аури"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
@@ -3300,7 +3300,7 @@ msgstr "Відобразити радіус зцілення вибраних ю
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
-msgstr ""
+msgstr "Візуалізація дистанції зцілення"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."

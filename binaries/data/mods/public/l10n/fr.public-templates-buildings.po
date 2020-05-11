@@ -27,7 +27,7 @@
 # Moul <ma.azimi@laposte.net>, 2015
 # Marco tom Suden, 2014
 # Marsan <hugomarsan@free.fr>, 2016
-# ., 2020
+# Nescio, 2020
 # Micky Jault <micky037@hotmail.fr>, 2016
 # Mortimer <doug.mortimer@netcourrier.com>, 2015
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2017
@@ -47,9 +47,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-04-13 07:18+0000\n"
-"PO-Revision-Date: 2020-05-02 19:28+0000\n"
-"Last-Translator: bthlyo <bthl.yohann73@gmail.com>\n"
+"POT-Creation-Date: 2020-05-08 07:09+0000\n"
+"PO-Revision-Date: 2020-05-08 10:57+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -243,10 +243,10 @@ msgid ""
 msgstr "Tire des flèches. Poster des unités en garnison pour fournir une défense supplémentaire. Nécessite la technologie meurtrières pour protéger sa base."
 
 #: simulation/templates/template_structure_defensive_wall.xml:16
-#: simulation/templates/structures/cart_s_wall_long.xml:7
-#: simulation/templates/structures/cart_s_wall_medium.xml:7
-#: simulation/templates/structures/cart_s_wall_short.xml:7
-#: simulation/templates/structures/cart_s_wall_tower.xml:7
+#: simulation/templates/structures/cart_s_wall_long.xml:11
+#: simulation/templates/structures/cart_s_wall_medium.xml:11
+#: simulation/templates/structures/cart_s_wall_short.xml:11
+#: simulation/templates/structures/cart_s_wall_tower.xml:11
 msgid "Stone Wall"
 msgstr "Mur de pierre"
 
@@ -259,11 +259,11 @@ msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Permet aux unités de franchir les murs de la ville. Peut être verrouillée pour empêcher l'accès."
 
-#: simulation/templates/template_structure_defensive_wall_long.xml:43
+#: simulation/templates/template_structure_defensive_wall_long.xml:26
 msgid "Long wall segments can be converted to gates."
 msgstr "Les longues portions de mur peuvent être converties en portes."
 
-#: simulation/templates/template_structure_defensive_wall_long.xml:52
+#: simulation/templates/template_structure_defensive_wall_long.xml:35
 #: simulation/templates/structures/palisades_long.xml:35
 msgid ""
 "This will allow you to let units circulate through your fortifications."
@@ -705,24 +705,24 @@ msgstr "Pyrgíon"
 msgid "Pylai"
 msgstr "Pylai"
 
-#: simulation/templates/structures/athen_wall_long.xml:9
-#: simulation/templates/structures/athen_wall_medium.xml:9
+#: simulation/templates/structures/athen_wall_long.xml:38
+#: simulation/templates/structures/athen_wall_medium.xml:28
 #: simulation/templates/structures/athen_wall_short.xml:9
 #: simulation/templates/structures/athen_wallset_stone.xml:5
-#: simulation/templates/structures/mace_wall_long.xml:9
-#: simulation/templates/structures/mace_wall_medium.xml:9
+#: simulation/templates/structures/mace_wall_long.xml:38
+#: simulation/templates/structures/mace_wall_medium.xml:28
 #: simulation/templates/structures/mace_wall_short.xml:9
 #: simulation/templates/structures/mace_wallset_stone.xml:5
-#: simulation/templates/structures/ptol_wall_long.xml:28
-#: simulation/templates/structures/ptol_wall_medium.xml:22
+#: simulation/templates/structures/ptol_wall_long.xml:38
+#: simulation/templates/structures/ptol_wall_medium.xml:28
 #: simulation/templates/structures/ptol_wall_short.xml:9
 #: simulation/templates/structures/ptol_wallset_stone.xml:5
-#: simulation/templates/structures/sele_wall_long.xml:9
-#: simulation/templates/structures/sele_wall_medium.xml:9
+#: simulation/templates/structures/sele_wall_long.xml:38
+#: simulation/templates/structures/sele_wall_medium.xml:28
 #: simulation/templates/structures/sele_wall_short.xml:9
 #: simulation/templates/structures/sele_wallset_stone.xml:5
-#: simulation/templates/structures/spart_wall_long.xml:9
-#: simulation/templates/structures/spart_wall_medium.xml:9
+#: simulation/templates/structures/spart_wall_long.xml:38
+#: simulation/templates/structures/spart_wall_medium.xml:28
 #: simulation/templates/structures/spart_wall_short.xml:9
 #: simulation/templates/structures/spart_wallset_stone.xml:5
 msgid "Teichos"
@@ -865,12 +865,12 @@ msgstr "Nemeton"
 msgid "Duoricos"
 msgstr "Duoricos"
 
-#: simulation/templates/structures/brit_wall_long.xml:28
-#: simulation/templates/structures/brit_wall_medium.xml:22
+#: simulation/templates/structures/brit_wall_long.xml:38
+#: simulation/templates/structures/brit_wall_medium.xml:28
 #: simulation/templates/structures/brit_wall_short.xml:9
 #: simulation/templates/structures/brit_wallset_stone.xml:5
-#: simulation/templates/structures/gaul_wall_long.xml:28
-#: simulation/templates/structures/gaul_wall_medium.xml:22
+#: simulation/templates/structures/gaul_wall_long.xml:38
+#: simulation/templates/structures/gaul_wall_medium.xml:28
 #: simulation/templates/structures/gaul_wall_short.xml:9
 #: simulation/templates/structures/gaul_wallset_stone.xml:5
 msgid "Rate"
@@ -981,10 +981,10 @@ msgstr "Bet"
 msgid "Šūq"
 msgstr "Šūq"
 
-#: simulation/templates/structures/cart_s_wall_long.xml:6
-#: simulation/templates/structures/cart_s_wall_medium.xml:6
-#: simulation/templates/structures/cart_s_wall_short.xml:6
-#: simulation/templates/structures/cart_s_wall_tower.xml:6
+#: simulation/templates/structures/cart_s_wall_long.xml:10
+#: simulation/templates/structures/cart_s_wall_medium.xml:10
+#: simulation/templates/structures/cart_s_wall_short.xml:10
+#: simulation/templates/structures/cart_s_wall_tower.xml:10
 #: simulation/templates/structures/cart_wallset_short.xml:5
 msgid "Low Wall"
 msgstr "Muret"
@@ -1037,8 +1037,8 @@ msgstr "Entraînez des guérisseurs et des champions de cavalerie et recherchez 
 msgid "Mijdil-šaʿar"
 msgstr "Mijdil-šaʿar"
 
-#: simulation/templates/structures/cart_wall_long.xml:28
-#: simulation/templates/structures/cart_wall_medium.xml:22
+#: simulation/templates/structures/cart_wall_long.xml:38
+#: simulation/templates/structures/cart_wall_medium.xml:28
 #: simulation/templates/structures/cart_wall_short.xml:9
 msgid "Homah"
 msgstr "Homah"
@@ -1084,8 +1084,12 @@ msgid "Remogantion"
 msgstr "Remogantion"
 
 #: simulation/templates/structures/gaul_wonder.xml:9
-msgid "Stonehenge"
-msgstr "Stonehenge"
+msgid "Sanctuary of Corent"
+msgstr ""
+
+#: simulation/templates/structures/gaul_wonder.xml:10
+msgid "Celicnon"
+msgstr ""
 
 #: simulation/templates/structures/iber_barracks.xml:11
 msgid "Kaserna"
@@ -1162,8 +1166,8 @@ msgstr "Loki"
 msgid "Biko Sarbide"
 msgstr "Biko Sarbide"
 
-#: simulation/templates/structures/iber_wall_long.xml:28
-#: simulation/templates/structures/iber_wall_medium.xml:22
+#: simulation/templates/structures/iber_wall_long.xml:38
+#: simulation/templates/structures/iber_wall_medium.xml:28
 #: simulation/templates/structures/iber_wall_short.xml:9
 #: simulation/templates/structures/iber_wallset_stone.xml:5
 msgid "Zabal Horma"
@@ -1464,8 +1468,8 @@ msgstr "Tour de santé supérieure avec remparts pouvant accueillir jusqu'à 16 
 msgid "Dwara"
 msgstr "Dwara"
 
-#: simulation/templates/structures/maur_wall_long.xml:34
-#: simulation/templates/structures/maur_wall_medium.xml:28
+#: simulation/templates/structures/maur_wall_long.xml:44
+#: simulation/templates/structures/maur_wall_medium.xml:34
 #: simulation/templates/structures/maur_wall_short.xml:15
 #: simulation/templates/structures/maur_wallset_stone.xml:5
 msgid "Shilabanda"
@@ -1690,8 +1694,8 @@ msgstr "Āyadanam"
 msgid "Duvarθiš"
 msgstr "Duvarθiš"
 
-#: simulation/templates/structures/pers_wall_long.xml:28
-#: simulation/templates/structures/pers_wall_medium.xml:22
+#: simulation/templates/structures/pers_wall_long.xml:38
+#: simulation/templates/structures/pers_wall_medium.xml:28
 #: simulation/templates/structures/pers_wall_short.xml:9
 #: simulation/templates/structures/pers_wallset_stone.xml:5
 msgid "Para"
@@ -1859,21 +1863,21 @@ msgid "Porta Circummūnītiōnis"
 msgstr "Porta Circummūnītiōnis"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:61
-#: simulation/templates/structures/rome_siege_wall_medium.xml:45
+#: simulation/templates/structures/rome_siege_wall_medium.xml:51
 #: simulation/templates/structures/rome_siege_wall_short.xml:32
 #: simulation/templates/structures/rome_wallset_siege.xml:5
 msgid "Siege Wall"
 msgstr "Mur de siège"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:62
-#: simulation/templates/structures/rome_siege_wall_medium.xml:46
+#: simulation/templates/structures/rome_siege_wall_medium.xml:52
 #: simulation/templates/structures/rome_siege_wall_short.xml:33
 #: simulation/templates/structures/rome_wallset_siege.xml:6
 msgid "Mūrus Circummūnītiōnis"
 msgstr "Mūrus Circummūnītiōnis"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:65
-#: simulation/templates/structures/rome_siege_wall_medium.xml:49
+#: simulation/templates/structures/rome_siege_wall_medium.xml:55
 #: simulation/templates/structures/rome_siege_wall_short.xml:36
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
@@ -1931,8 +1935,8 @@ msgstr "Un abri temporaire pour soldats."
 msgid "Porta"
 msgstr "Porta"
 
-#: simulation/templates/structures/rome_wall_long.xml:28
-#: simulation/templates/structures/rome_wall_medium.xml:22
+#: simulation/templates/structures/rome_wall_long.xml:38
+#: simulation/templates/structures/rome_wall_medium.xml:28
 #: simulation/templates/structures/rome_wall_short.xml:9
 #: simulation/templates/structures/rome_wallset_stone.xml:5
 msgid "Moenia"
@@ -2006,3 +2010,7 @@ msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
 msgstr "Apporter la gloire à votre civilisation et ajouter de grandes étendues de terres à votre empire. Poster des unités en garnison pour les soigner rapidement."
+
+#: simulation/templates/structures/stonehenge.xml:8
+msgid "Stonehenge"
+msgstr "Stonehenge"
