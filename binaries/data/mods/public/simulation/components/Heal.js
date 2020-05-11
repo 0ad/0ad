@@ -87,6 +87,33 @@ Heal.prototype.GetHealableClasses = function()
 	return this.template.HealableClasses._string || "";
 };
 
+/**
+ * Whether this entity can heal the target.
+ *
+ * @param {number} target - The target's entity ID.
+ * @return {boolean} - Whether the target can be healed.
+ */
+Heal.prototype.CanHeal = function(target)
+{
+	let cmpHealth = Engine.QueryInterface(target, IID_Health);
+	if (!cmpHealth || cmpHealth.IsUnhealable())
+		return false;
+
+	// Verify that the target is owned by an ally or the player self.
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership || !IsOwnedByAllyOfPlayer(cmpOwnership.GetOwner(), target))
+		return false;
+
+	// Verify that the target has the right class.
+	let cmpIdentity = Engine.QueryInterface(target, IID_Identity);
+	if (!cmpIdentity)
+		return false;
+
+	let targetClasses = cmpIdentity.GetClassesList();
+	return !MatchesClassList(targetClasses, this.GetUnhealableClasses()) &&
+		MatchesClassList(targetClasses, this.GetHealableClasses());
+};
+
 Heal.prototype.GetRangeOverlays = function()
 {
 	if (!this.template.RangeOverlay)
@@ -121,7 +148,7 @@ Heal.prototype.PerformHeal = function(target)
 		// HP healed * XP per HP
 		cmpPromotion.IncreaseXp((targetState.new - targetState.old) / cmpHealth.GetMaxHitpoints() * cmpLoot.GetXp());
 	}
-	//TODO we need a sound file
+	// TODO we need a sound file
 //	PlaySound("heal_impact", this.entity);
 };
 

@@ -21,6 +21,7 @@
 
 #include "gui/CGUI.h"
 #include "gui/CGUISetting.h"
+#include "js/Conversions.h"
 #include "ps/CLogger.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
@@ -397,20 +398,30 @@ InReaction IGUIObject::SendMouseEvent(EGUIMessageType type, const CStr& eventNam
 
 void IGUIObject::ScriptEvent(const CStr& eventName)
 {
+	ScriptEventWithReturn(eventName);
+}
+
+bool IGUIObject::ScriptEventWithReturn(const CStr& eventName)
+{
 	if (m_ScriptHandlers.find(eventName) == m_ScriptHandlers.end())
-		return;
+		return false;
 
 	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
 	JS::AutoValueVector paramData(cx);
-	ScriptEvent(eventName, paramData);
+	return ScriptEventWithReturn(eventName, paramData);
 }
 
 void IGUIObject::ScriptEvent(const CStr& eventName, const JS::HandleValueArray& paramData)
 {
+	ScriptEventWithReturn(eventName, paramData);
+}
+
+bool IGUIObject::ScriptEventWithReturn(const CStr& eventName, const JS::HandleValueArray& paramData)
+{
 	std::map<CStr, JS::Heap<JSObject*> >::iterator it = m_ScriptHandlers.find(eventName);
 	if (it == m_ScriptHandlers.end())
-		return;
+		return false;
 
 	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
@@ -419,7 +430,11 @@ void IGUIObject::ScriptEvent(const CStr& eventName, const JS::HandleValueArray& 
 	JS::RootedValue result(cx);
 
 	if (!JS_CallFunctionValue(cx, obj, handlerVal, paramData, &result))
+	{
 		JS_ReportError(cx, "Errors executing script event \"%s\"", eventName.c_str());
+		return false;
+	}
+	return JS::ToBoolean(result);
 }
 
 void IGUIObject::CreateJSObject()

@@ -6114,38 +6114,8 @@ UnitAI.prototype.CanHeal = function(target)
 	if (this.IsFormationController())
 		return true;
 
-	// Verify that we're able to respond to Heal commands
-	var cmpHeal = Engine.QueryInterface(this.entity, IID_Heal);
-	if (!cmpHeal)
-		return false;
-
-	// Verify that the target is alive
-	if (!this.TargetIsAlive(target))
-		return false;
-
-	// Verify that the target is owned by the same player as the entity or of an ally
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || !(IsOwnedByPlayer(cmpOwnership.GetOwner(), target) || IsOwnedByAllyOfPlayer(cmpOwnership.GetOwner(), target)))
-		return false;
-
-	// Verify that the target is not unhealable (or at max health)
-	var cmpHealth = Engine.QueryInterface(target, IID_Health);
-	if (!cmpHealth || cmpHealth.IsUnhealable())
-		return false;
-
-	// Verify that the target has no unhealable class
-	var cmpIdentity = Engine.QueryInterface(target, IID_Identity);
-	if (!cmpIdentity)
-		return false;
-
-	if (MatchesClassList(cmpIdentity.GetClassesList(), cmpHeal.GetUnhealableClasses()))
-		return false;
-
-	// Verify that the target is a healable class
-	if (MatchesClassList(cmpIdentity.GetClassesList(), cmpHeal.GetHealableClasses()))
-		return true;
-
-	return false;
+	let cmpHeal = Engine.QueryInterface(this.entity, IID_Heal);
+	return cmpHeal && cmpHeal.CanHeal(target);
 };
 
 UnitAI.prototype.CanReturnResource = function(target, checkCarriedResource)

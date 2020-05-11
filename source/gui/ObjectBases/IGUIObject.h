@@ -385,11 +385,33 @@ protected:
 	/**
 	 * Execute the script for a particular action.
 	 * Does nothing if no script has been registered for that action.
+	 * The mouse coordinates will be passed as the first argument.
+	 *
+	 * @param eventName Name of action
+	 *
+	 * @return True if the script returned something truthy.
+	 */
+	bool ScriptEventWithReturn(const CStr& eventName);
+
+	/**
+	 * Execute the script for a particular action.
+	 * Does nothing if no script has been registered for that action.
 	 *
 	 * @param eventName Name of action
 	 * @param paramData JS::HandleValueArray arguments to pass to the event.
 	 */
 	void ScriptEvent(const CStr& eventName, const JS::HandleValueArray& paramData);
+
+	/**
+	 * Execute the script for a particular action.
+	 * Does nothing if no script has been registered for that action.
+	 *
+	 * @param eventName Name of action
+	 * @param paramData JS::HandleValueArray arguments to pass to the event.
+	 *
+	 * @return True if the script returned something truthy.
+	 */
+	bool ScriptEventWithReturn(const CStr& eventName, const JS::HandleValueArray& paramData);
 
 	/**
 	 * Assigns a JS function to the event name.
