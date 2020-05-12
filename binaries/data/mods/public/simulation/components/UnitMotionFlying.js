@@ -60,19 +60,18 @@ UnitMotionFlying.prototype.Init = function()
 
 UnitMotionFlying.prototype.OnUpdate = function(msg)
 {
-	var turnLength = msg.turnLength;
+	let turnLength = msg.turnLength;
 	if (!this.hasTarget)
 		return;
-	var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
-	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
-	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	var pos = cmpPosition.GetPosition();
-	var angle = cmpPosition.GetRotation().y;
-	var cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
-	var cmpWaterManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_WaterManager);
-	var ground = Math.max(cmpTerrain.GetGroundLevel(pos.x, pos.z), cmpWaterManager.GetWaterLevel(pos.x, pos.z));
-	var newangle = angle;
-	var canTurn = true;
+	let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
+	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	let pos = cmpPosition.GetPosition();
+	let angle = cmpPosition.GetRotation().y;
+	let cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
+	let cmpWaterManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_WaterManager);
+	let ground = Math.max(cmpTerrain.GetGroundLevel(pos.x, pos.z), cmpWaterManager.GetWaterLevel(pos.x, pos.z));
+	let newangle = angle;
+	let canTurn = true;
 	if (this.landing)
 	{
 		if (this.speed > 0 && this.onGround)
@@ -86,7 +85,7 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 			else
 				this.speed = Math.max(0, this.speed - turnLength * this.template.BrakingRate);
 			canTurn = false;
-			// Clamp to ground if below it, or descend if above
+			// Clamp to ground if below it, or descend if above.
 			if (pos.y < ground)
 				pos.y = ground;
 			else if (pos.y > ground)
@@ -94,6 +93,7 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 		}
 		else if (this.speed == 0 && this.onGround)
 		{
+			let cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 			if (this.waterDeath && cmpHealth)
 				cmpHealth.Kill();
 			else
@@ -101,19 +101,19 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 				this.pitch = 0;
 				// We've stopped.
 				if (cmpGarrisonHolder)
-					cmpGarrisonHolder.AllowGarrisoning(true,"UnitMotionFlying");
+					cmpGarrisonHolder.AllowGarrisoning(true, "UnitMotionFlying");
 				canTurn = false;
 				this.hasTarget = false;
 				this.landing = false;
-				// summon planes back from the edge of the map
-				var terrainSize = cmpTerrain.GetMapSize();
-				var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+				// Summon planes back from the edge of the map.
+				let terrainSize = cmpTerrain.GetMapSize();
+				let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 				if (cmpRangeManager.GetLosCircular())
 				{
-					var mapRadius = terrainSize/2;
-					var x = pos.x - mapRadius;
-					var z = pos.z - mapRadius;
-					var div = (mapRadius - 12) / Math.sqrt(x*x + z*z);
+					let mapRadius = terrainSize/2;
+					let x = pos.x - mapRadius;
+					let z = pos.z - mapRadius;
+					let div = (mapRadius - 12) / Math.sqrt(x*x + z*z);
 					if (div < 1)
 					{
 						pos.x = mapRadius + x*div;
@@ -131,17 +131,17 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 		}
 		else
 		{
-			// Final Approach
+			// Final Approach.
 			// We need to slow down to land!
 			this.speed = Math.max(this.template.LandingSpeed, this.speed - turnLength * this.template.SlowingRate);
 			canTurn = false;
-			var targetHeight = ground;
+			let targetHeight = ground;
 			// Steep, then gradual descent.
 			if ((pos.y - targetHeight) / this.template.FlyingHeight > 1 / SHORT_FINAL)
-				this.pitch = - Math.PI / 18;
+				this.pitch = -Math.PI / 18;
 			else
 				this.pitch = Math.PI / 18;
-			var descentRate = ((pos.y - targetHeight) / this.template.FlyingHeight * this.template.ClimbRate + SHORT_FINAL) * SHORT_FINAL;
+			let descentRate = ((pos.y - targetHeight) / this.template.FlyingHeight * this.template.ClimbRate + SHORT_FINAL) * SHORT_FINAL;
 			if (pos.y < targetHeight)
 				pos.y = Math.max(targetHeight, pos.y + turnLength * descentRate);
 			else if (pos.y > targetHeight)
@@ -157,18 +157,18 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 	else
 	{
 		// If we haven't reached max speed yet then we're still on the ground;
-		// otherwise we're taking off or flying
-		// this.onGround in case of a go-around after landing (but not fully stopped)
+		// otherwise we're taking off or flying.
+		// this.onGround in case of a go-around after landing (but not fully stopped).
 
 		if (this.speed < this.template.TakeoffSpeed && this.onGround)
 		{
 			if (cmpGarrisonHolder)
-				cmpGarrisonHolder.AllowGarrisoning(false,"UnitMotionFlying");
+				cmpGarrisonHolder.AllowGarrisoning(false, "UnitMotionFlying");
 			this.pitch = 0;
-			// Accelerate forwards
+			// Accelerate forwards.
 			this.speed = Math.min(this.template.MaxSpeed, this.speed + turnLength * this.template.AccelRate);
 			canTurn = false;
-			// Clamp to ground if below it, or descend if above
+			// Clamp to ground if below it, or descend if above.
 			if (pos.y < ground)
 				pos.y = ground;
 			else if (pos.y > ground)
@@ -177,9 +177,9 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 		else
 		{
 			this.onGround = false;
-			// Climb/sink to max height above ground
+			// Climb/sink to max height above ground.
 			this.speed = Math.min(this.template.MaxSpeed, this.speed + turnLength * this.template.AccelRate);
-			var targetHeight = ground + (+this.template.FlyingHeight);
+			let targetHeight = ground + (+this.template.FlyingHeight);
 			if (Math.abs(pos.y-targetHeight) > this.template.FlyingHeight/5)
 			{
 				this.pitch = Math.PI / 9;
@@ -197,9 +197,9 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 		}
 	}
 
-	// If we're in range of the target then tell people that we've reached it
+	// If we're in range of the target then tell people that we've reached it.
 	// (TODO: quantisation breaks this)
-	var distFromTarget = Math.euclidDistance2D(pos.x, pos.z, this.targetX, this.targetZ);
+	let distFromTarget = Math.euclidDistance2D(pos.x, pos.z, this.targetX, this.targetZ);
 	if (!this.reachedTarget && this.targetMinRange <= distFromTarget && distFromTarget <= this.targetMaxRange)
 	{
 		this.reachedTarget = true;
@@ -207,30 +207,31 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 	}
 
 	// If we're facing away from the target, and are still fairly close to it,
-	// then carry on going straight so we overshoot in a straight line
-	var isBehindTarget = ((this.targetX - pos.x) * Math.sin(angle) + (this.targetZ - pos.z) * Math.cos(angle) < 0);
-	// Overshoot the target: carry on straight
+	// then carry on going straight so we overshoot in a straight line.
+	let isBehindTarget = ((this.targetX - pos.x) * Math.sin(angle) + (this.targetZ - pos.z) * Math.cos(angle) < 0);
+	// Overshoot the target: carry on straight.
 	if (isBehindTarget && distFromTarget < this.template.MaxSpeed * this.template.OvershootTime)
 		canTurn = false;
 
 	if (canTurn)
 	{
-		// Turn towards the target
-		var targetAngle = Math.atan2(this.targetX - pos.x, this.targetZ - pos.z);
-		var delta = targetAngle - angle;
-		// Wrap delta to -pi..pi
-		delta = (delta + Math.PI) % (2*Math.PI); // range -2pi..2pi
-		if (delta < 0) delta += 2*Math.PI; // range 0..2pi
-		delta -= Math.PI; // range -pi..pi
-		// Clamp to max rate
-		var deltaClamped = Math.min(Math.max(delta, -this.template.TurnRate * turnLength), this.template.TurnRate * turnLength);
+		// Turn towards the target.
+		let targetAngle = Math.atan2(this.targetX - pos.x, this.targetZ - pos.z);
+		let delta = targetAngle - angle;
+		// Wrap delta to -pi..pi.
+		delta = (delta + Math.PI) % (2*Math.PI);
+		if (delta < 0)
+			delta += 2 * Math.PI;
+		delta -= Math.PI;
+		// Clamp to max rate.
+		let deltaClamped = Math.min(Math.max(delta, -this.template.TurnRate * turnLength), this.template.TurnRate * turnLength);
 		// Calculate new orientation, in a peculiar way in order to make sure the
-		// result gets close to targetAngle (rather than being n*2*pi out)
+		// result gets close to targetAngle (rather than being n*2*pi out).
 		newangle = targetAngle + deltaClamped - delta;
 		if (newangle - angle > Math.PI / 18)
 			this.roll = Math.PI / 9;
 		else if (newangle - angle < -Math.PI / 18)
-			this.roll = - Math.PI / 9;
+			this.roll = -Math.PI / 9;
 		else
 			this.roll = newangle - angle;
 	}
@@ -260,11 +261,11 @@ UnitMotionFlying.prototype.MoveToPointRange = function(x, z, minRange, maxRange)
 
 UnitMotionFlying.prototype.MoveToTargetRange = function(target, minRange, maxRange)
 {
-	var cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
+	let cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
 	if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld())
 		return false;
 
-	var targetPos = cmpTargetPosition.GetPosition2D();
+	let targetPos = cmpTargetPosition.GetPosition2D();
 
 	this.hasTarget = true;
 	this.reachedTarget = false;
@@ -281,9 +282,9 @@ UnitMotionFlying.prototype.GetWalkSpeed = function()
 	return +this.template.MaxSpeed;
 };
 
-UnitMotionFlying.prototype.SetSpeedMultiplier = function()
+UnitMotionFlying.prototype.SetSpeedMultiplier = function(multiplier)
 {
-	// ignore this, the speed is always the walk speed
+	// Ignore this, the speed is always the walk speed.
 };
 
 UnitMotionFlying.prototype.GetRunMultiplier = function()
@@ -303,7 +304,7 @@ UnitMotionFlying.prototype.GetCurrentSpeed = function()
 
 UnitMotionFlying.prototype.GetSpeedMultiplier = function()
 {
-	return this.GetCurrentSpeed() / this.GetWalkSpeed();
+	return this.speed / +this.template.MaxSpeed;
 };
 
 UnitMotionFlying.prototype.GetPassabilityClassName = function()
@@ -318,17 +319,17 @@ UnitMotionFlying.prototype.GetPassabilityClass = function()
 
 UnitMotionFlying.prototype.FaceTowardsPoint = function(x, z)
 {
-	// Ignore this - angle is controlled by the target-seeking code instead
+	// Ignore this - angle is controlled by the target-seeking code instead.
 };
 
 UnitMotionFlying.prototype.SetFacePointAfterMove = function()
 {
-	// Ignore this - angle is controlled by the target-seeking code instead
+	// Ignore this - angle is controlled by the target-seeking code instead.
 };
 
 UnitMotionFlying.prototype.StopMoving = function()
 {
-	//Invert
+	// Invert.
 	if (!this.waterDeath)
 		this.landing = !this.landing;
 
