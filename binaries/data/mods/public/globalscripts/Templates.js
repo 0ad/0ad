@@ -28,20 +28,22 @@ function loadCivFiles(selectableOnly)
 }
 
 /**
- * Gets an array of all classes for this identity template
+ * @return {string[]} - All the classes for this identity template.
  */
 function GetIdentityClasses(template)
 {
-	var classList = [];
+	let classString = "";
+
 	if (template.Classes && template.Classes._string)
-		classList = classList.concat(template.Classes._string.split(/\s+/));
+		classString += " " + template.Classes._string;
 
 	if (template.VisibleClasses && template.VisibleClasses._string)
-		classList = classList.concat(template.VisibleClasses._string.split(/\s+/));
+		classString += " " + template.VisibleClasses._string;
 
 	if (template.Rank)
-		classList = classList.concat(template.Rank);
-	return classList;
+		classString += " " + template.Rank;
+
+	return classString.length > 1 ? classString.substring(1).split(" ") : [];
 }
 
 /**
@@ -50,9 +52,7 @@ function GetIdentityClasses(template)
  */
 function GetVisibleIdentityClasses(template)
 {
-	if (template.VisibleClasses && template.VisibleClasses._string)
-		return template.VisibleClasses._string.split(/\s+/);
-	return [];
+	return template.VisibleClasses && template.VisibleClasses._string ? template.VisibleClasses._string.split(" ") : [];
 }
 
 /**
@@ -87,8 +87,8 @@ function MatchesClassList(classes, match)
 		// If the elements are still strings, split them by space or by '+'
 		if (typeof sublist == "string")
 			sublist = sublist.split(/[+\s]+/);
-		if (sublist.every(c => (c[0] == "!" && classes.indexOf(c.substr(1)) == -1)
-		                    || (c[0] != "!" && classes.indexOf(c) != -1)))
+		if (sublist.every(c => (c[0] == "!" && classes.indexOf(c.substr(1)) == -1) ||
+		                       (c[0] != "!" && classes.indexOf(c) != -1)))
 			return true;
 	}
 

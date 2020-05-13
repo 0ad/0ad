@@ -3,10 +3,10 @@
   <asset>
     <contributor>
       <author>Blender User</author>
-      <authoring_tool>Blender 2.80.54 commit date:2019-04-06, commit time:12:26, hash:cc73d59ad580</authoring_tool>
+      <authoring_tool>Blender 2.81.16 commit date:2019-11-20, commit time:14:27, hash:26bd5ebd42e3</authoring_tool>
     </contributor>
-    <created>2019-07-28T10:21:31</created>
-    <modified>2019-07-28T10:21:31</modified>
+    <created>2020-05-12T16:07:14</created>
+    <modified>2020-05-12T16:07:14</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -15,6 +15,9 @@
       <profile_COMMON>
         <technique sid="common">
           <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
             <diffuse>
               <color sid="diffuse">0.8 0.8 0.8 1</color>
             </diffuse>
@@ -77,7 +80,7 @@
     </geometry>
   </library_geometries>
   <library_visual_scenes>
-    <visual_scene id="Escena" name="Escena">
+    <visual_scene id="Scene" name="Scene">
       <node id="Hele_Thracian_G_Crest" name="Hele_Thracian_G_Crest" type="NODE">
         <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
         <instance_geometry url="#Esfera_011-mesh" name="Hele_Thracian_G_Crest">
@@ -89,13 +92,13 @@
             </technique_common>
           </bind_material>
         </instance_geometry>
-        <node id="prop-hair" name="prop-hair" type="NODE">
-          <matrix sid="transform">1 0 0 0 0 0.9848077 0.1736482 -0.03486244 0 -0.1736482 0.9848077 0.1699544 0 0 0 1</matrix>
+        <node id="prop_hair" name="prop.hair" type="NODE">
+          <matrix sid="transform">1 0 0 0 0 1 0 0.01653193 0 0 1 0.5064022 0 0 0 1</matrix>
         </node>
       </node>
     </visual_scene>
   </library_visual_scenes>
   <scene>
-    <instance_visual_scene url="#Escena"/>
+    <instance_visual_scene url="#Scene"/>
   </scene>
 </COLLADA>
