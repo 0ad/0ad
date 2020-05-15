@@ -1,23 +1,31 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/pers_taka_b.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/pelta_thra_basic.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
-        <prop actor="props/units/capes/cape_long_player_skirmisher.xml" attachpoint="root"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="tunic-basic-1g">
       <textures>
-        <texture file="skeletal/pers_ijv_a_1.dds" name="baseTex"/>
+        <texture file="skeletal/pers_tunic_basic_1_g.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-basic-1h">
+      <textures>
+        <texture file="skeletal/pers_tunic_basic_1_h.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant file="biped/base_skirmisher_fast.xml" name="Skirmisher-Shield-Fast" frequency="1"/>
+    <variant file="biped/base_skirmisher_fast.xml" frequency="1" name="Skirmisher-Shield-Fast"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>
