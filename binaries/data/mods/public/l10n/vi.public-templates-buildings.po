@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Nguyen Dinh Phuoc Duc <ndpduc@gmail.com>, 2014
+# Lục Cửu Tử Ư <kimtan090807@gmail.com>, 2020
 # viet2uyen <vietquyen1810@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-08 07:09+0000\n"
-"PO-Revision-Date: 2020-05-08 10:57+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-05-14 09:48+0000\n"
+"Last-Translator: Lục Cửu Tử Ư <kimtan090807@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/wildfire-games/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,7 +77,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic_stoa.xml:33
 msgid "Recruit special units."
-msgstr ""
+msgstr "Cho phép tạo các đơn vị đặc biệt"
 
 #: simulation/templates/template_structure_civic_stoa.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:36
@@ -97,7 +98,7 @@ msgstr "Thị trấn"
 msgid ""
 "Train Healers and research healing technologies. Garrison units to heal them"
 " at a quick rate."
-msgstr ""
+msgstr "Huấn luyện các Healer và nghiên cứu các kĩ thuật trị liệu để giúp đơn vị đồn trú trị liệu nhanh hơn."
 
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -111,7 +112,7 @@ msgstr "Công trình phòng thủ"
 #: simulation/templates/template_structure_defensive_palisade.xml:21
 #: simulation/templates/structures/wallset_palisade.xml:4
 msgid "Wooden Wall"
-msgstr ""
+msgstr "Tường gỗ"
 
 #: simulation/templates/template_structure_defensive_palisade.xml:23
 #: simulation/templates/template_structure_defensive_wall.xml:18
@@ -128,7 +129,7 @@ msgstr "Tháp canh"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:57
 msgid "Artillery Tower"
-msgstr ""
+msgstr "Tháp pháo"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 msgid "Catapults stones. Needs the murder holes tech to protect its foot."
@@ -149,11 +150,11 @@ msgstr "Thành phố"
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:60
 #: simulation/templates/template_structure_defensive_tower_stone.xml:35
 msgid "StoneTower"
-msgstr ""
+msgstr "Tháp đá"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
-msgstr ""
+msgstr "Tháp sấm"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
 msgid ""
@@ -289,7 +290,7 @@ msgstr "Quân sự"
 
 #: simulation/templates/template_structure_military_barracks.xml:24
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr ""
+msgstr "Huấn luyện đân quân. Cải thiện nghiên cứu về huấn luyện."
 
 #: simulation/templates/template_structure_military_barracks.xml:25
 #: simulation/templates/template_structure_military_barracks.xml:22
@@ -318,7 +319,7 @@ msgstr "Cảng biển"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:24
 msgid "Elephant Stables"
-msgstr ""
+msgstr "Chuồng voi"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:28
 msgid "Train elephant units."
@@ -351,7 +352,7 @@ msgstr "Kennel"
 
 #: simulation/templates/template_structure_military_kennel.xml:42
 msgid "Train war dogs."
-msgstr ""
+msgstr "Huấn luyện chó chiến"
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"

@@ -4,30 +4,47 @@
 # 
 # Translators:
 # rentt777 <35974380@qq.com>, 2014
+# ACsediment, 2018
 # Bill Stark <billstarknet@gmail.com>, 2016
 # chaofeng sun <449003613@qq.com>, 2020
 # Christian Xia <wood_elf@126.com>, 2016
 # helinb <1696060289@qq.com>, 2015
+# hiahoo lee (leaber) <zodiac8765@gmail.com>, 2014
+# hyln9 <hyln9@live.cn>, 2015
+# jiajinming <bfsujiajinming@hotmail.com>, 2014
 # J L <julianisme@outlook.com>, 2019
 # Julian, 2019
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2015-2016
+# Lawrence Maxwell <maxwell4432@gmail.com>, 2018
 # lg Fan <longgangfan@gmail.com>, 2019
 # loms126 <loms126@126.com>, 2014
 # loms126 <loms126@126.com>, 2014
 # Mysterelee <8161525@qq.com>, 2014
+# Ping Liao <lpjohnhussar@gmail.com>, 2017
+# relaxbsd <relaxbsd@gmail.com>, 2014
 # rentt777 <35974380@qq.com>, 2014
 # Richard Yan <richardyan314@foxmail.com>, 2017
+# samrmrf, 2013
+# Sediment AC <gnusediment+transifex@gmail.com>, 2017
+# Shirley Gao, 2014
+# simsilver <yihuanlingjian@gmail.com>, 2014
+# Tatos An <stron3@126.com>, 2020
 # Tong Hui <tonghuix@gmail.com>, 2015
+# volcano song <1677559@qq.com>, 2018
 # Wolfson Liu <wolfsonliu@live.com>, 2020
+# xingtong, 2013
 # liulitchi <xingzuo88@qq.com>, 2014,2017-2020
+# yukisola <yolandaapply@gmail.com>, 2014
+# 吴善俊 <sjwuny@126.com>, 2014
 # 武军 李 <lwj7863439@gmail.com>, 2016-2017
+# 武军 李 <lwj7863439@gmail.com>, 2017
 # 艳伟 车 <313049312@qq.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-08 07:09+0000\n"
-"PO-Revision-Date: 2020-05-08 10:57+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-05-14 14:54+0000\n"
+"Last-Translator: Tatos An <stron3@126.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +66,7 @@ msgstr "市政中心"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:88
 msgid "Build to acquire large tracts of territory. Train citizens."
-msgstr "建设以扩张领土。可训练市民。"
+msgstr "建设以扩张领土。可训练公民。"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:90
 #: simulation/templates/template_structure_civic_civil_centre.xml:53
@@ -59,7 +76,7 @@ msgstr "市政中心"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:27
 msgid "Military Colony"
-msgstr "军事殖民地"
+msgstr "武装殖民地"
 
 #: simulation/templates/template_structure_civic_house.xml:35
 msgid "Increase the population limit."
@@ -114,7 +131,7 @@ msgstr "城镇"
 msgid ""
 "Train Healers and research healing technologies. Garrison units to heal them"
 " at a quick rate."
-msgstr "生产治疗单位，研究治疗科技。受伤单位驻守后，可加快治愈速度。"
+msgstr "训练医师，研究医疗科技。受伤单位驻守后，可加快治愈速度。"
 
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -149,7 +166,7 @@ msgstr "炮楼"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 msgid "Catapults stones. Needs the murder holes tech to protect its foot."
-msgstr ""
+msgstr "发射弩箭。 驻军可提供额外防御。 需要猎杀洞技术来取消最小射程。 可升级至石塔。 "
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:61
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:60
@@ -177,7 +194,7 @@ msgid ""
 "Shoots bolts. Faster reaction time against raiding units than the artillery "
 "tower, weak to all siege weapons and mass melee. Needs the murder holes tech"
 " to protect its foot."
-msgstr ""
+msgstr "发射弩箭。 驻军可提供额外防御。 需要猎杀洞技术来取消最小射程。 "
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 msgid ""
@@ -343,7 +360,7 @@ msgstr "训练大象。"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:29
 msgid "ElephantStable"
-msgstr "象房"
+msgstr ""
 
 #: simulation/templates/template_structure_military_embassy.xml:31
 #: simulation/templates/template_structure_military_embassy.xml:32
@@ -360,7 +377,7 @@ msgstr "城堡"
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
-msgstr ""
+msgstr "训练精锐单位，研究对应科技，可驻守士兵来增加射击的箭数。"
 
 #: simulation/templates/template_structure_military_kennel.xml:40
 msgid "Kennel"
@@ -368,7 +385,7 @@ msgstr "犬舍"
 
 #: simulation/templates/template_structure_military_kennel.xml:42
 msgid "Train war dogs."
-msgstr "训练战犬。"
+msgstr "训练军犬。"
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
@@ -376,7 +393,7 @@ msgstr "训练场"
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
-msgstr "训练民兵远程步兵。 研究培训改进。"
+msgstr "训练民兵的远程步兵。 研究有关训练的改良。"
 
 #: simulation/templates/template_structure_military_range.xml:25
 msgid "Range"
@@ -384,7 +401,7 @@ msgstr "靶场"
 
 #: simulation/templates/template_structure_military_stable.xml:26
 msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr "训练民兵骑兵。 研究培训改进。"
+msgstr "训练民兵的骑兵。 研究有关训练的改良。"
 
 #: simulation/templates/template_structure_military_stable.xml:27
 #: simulation/templates/template_structure_military_stable.xml:22
@@ -397,7 +414,7 @@ msgstr "攻城器械厂"
 
 #: simulation/templates/template_structure_military_workshop.xml:29
 msgid "Construct Siege Engines and research Siege Engine technologies."
-msgstr "建造攻城器械，以及研究攻城器械科技。"
+msgstr "建造攻城器械，以及研究攻城器械的改良。"
 
 #: simulation/templates/template_structure_military_workshop.xml:30
 msgid "Workshop"
@@ -415,7 +432,7 @@ msgstr "资源"
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr "饲养动物来获取食物。圈养动物可以源源不断地获得食物或其他奖励(未实现)"
+msgstr "饲养牲畜来获取食物。圈养牲畜可以源源不断地获得食物或其他奖励(未实现)"
 
 #: simulation/templates/template_structure_resource_corral.xml:21
 #: simulation/templates/template_structure_resource_corral.xml:18
@@ -425,12 +442,12 @@ msgstr "畜栏"
 #: simulation/templates/template_structure_resource_field.xml:28
 #: simulation/templates/template_structure_resource_field.xml:26
 msgid "Field"
-msgstr "农田"
+msgstr "耕地"
 
 #: simulation/templates/template_structure_resource_field.xml:29
 msgid ""
 "Harvest grain for food. Each subsequent gatherer works less efficiently."
-msgstr "收获谷物。 随后的每个采集者的效率都会降低。"
+msgstr "收获粮食。 随后的每个采集者的效率都会降低。"
 
 #: simulation/templates/template_structure_special.xml:33
 msgid "Special Building"
@@ -443,7 +460,7 @@ msgstr "只有特定的文明才有此特殊建筑。"
 #: simulation/templates/template_structure_special_amphitheater.xml:22
 #: simulation/templates/structures/rome_amphitheater_pompeii.xml:5
 msgid "Amphitheater"
-msgstr "古罗马竞技场"
+msgstr "竞技场"
 
 #: simulation/templates/template_structure_special_library.xml:24
 msgid "Library"
@@ -451,7 +468,7 @@ msgstr "图书馆"
 
 #: simulation/templates/template_structure_special_library.xml:26
 msgid "Research special technologies."
-msgstr "研发特殊科技。"
+msgstr "研发特殊技术。"
 
 #: simulation/templates/template_structure_special_rotarymill.xml:20
 msgid "Rotary Mill"
@@ -465,7 +482,7 @@ msgstr "剧院"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr "给你的文明带来荣耀，并增加你帝国的领土。"
+msgstr "给你的文明带来荣耀，并增加你国家的领土。"
 
 #: simulation/templates/template_structure_wonder.xml:54
 #: simulation/templates/template_structure_wonder.xml:51
@@ -494,7 +511,7 @@ msgstr ""
 #: simulation/templates/structures/sele_civil_centre.xml:5
 #: simulation/templates/structures/spart_civil_centre.xml:8
 msgid "Agora"
-msgstr "城市广场"
+msgstr "广场"
 
 #: simulation/templates/structures/athen_corral.xml:5
 #: simulation/templates/structures/mace_corral.xml:5
@@ -510,7 +527,7 @@ msgstr ""
 #: simulation/templates/structures/sele_defense_tower.xml:9
 #: simulation/templates/structures/spart_defense_tower.xml:9
 msgid "Pyrgion"
-msgstr ""
+msgstr "比利牛斯山"
 
 #: simulation/templates/structures/athen_defense_tower.xml:23
 #: simulation/templates/structures/cart_defense_tower.xml:24
@@ -521,7 +538,7 @@ msgid ""
 "Reinforce with stone block, and install small stone throwers to upgrade this"
 " defense tower into a slow, area of effect, and siege resistant artillery "
 "tower."
-msgstr "加固石块，安装小型投石器。将防御塔升级为区域内慢速攻城型炮塔。"
+msgstr "用石块加固，并安装小型射石机，以将该防御塔升级为低射速、远程的强力礟塔。"
 
 #: simulation/templates/structures/athen_defense_tower.xml:34
 #: simulation/templates/structures/cart_defense_tower.xml:35
@@ -531,7 +548,7 @@ msgstr "加固石块，安装小型投石器。将防御塔升级为区域内慢
 msgid ""
 "Reinforce with stone block, and install scorpions to upgrade this defense "
 "tower into a prompt, long range, and accurate bolt tower."
-msgstr ""
+msgstr "用石块加固，并安装大弩以将该防御塔升级为高射速、远程且准确的防御塔。"
 
 #: simulation/templates/structures/athen_dock.xml:12
 #: simulation/templates/structures/mace_dock.xml:12
@@ -547,7 +564,7 @@ msgstr ""
 #: simulation/templates/structures/sele_farmstead.xml:8
 #: simulation/templates/structures/spart_farmstead.xml:11
 msgid "Epoikion"
-msgstr ""
+msgstr "殖民地"
 
 #: simulation/templates/structures/athen_field.xml:5
 #: simulation/templates/structures/mace_field.xml:5
@@ -555,7 +572,7 @@ msgstr ""
 #: simulation/templates/structures/sele_field.xml:5
 #: simulation/templates/structures/spart_field.xml:5
 msgid "Agros"
-msgstr ""
+msgstr "广场"
 
 #: simulation/templates/structures/athen_fortress.xml:9
 #: simulation/templates/structures/mace_fortress.xml:9
@@ -568,7 +585,7 @@ msgstr "城堡"
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid "Garrison Soldiers for additional arrows."
-msgstr "驻军以增加箭支。"
+msgstr "驻军以增加箭数。"
 
 #: simulation/templates/structures/athen_gymnasium.xml:23
 msgid "Gymnasium"
@@ -581,7 +598,7 @@ msgstr "运动场"
 #: simulation/templates/structures/athen_gymnasium.xml:25
 #: simulation/templates/structures/pers_hall.xml:30
 msgid "Train Champions."
-msgstr "训练冠勇单位。"
+msgstr "训练精锐单位。"
 
 #: simulation/templates/structures/athen_house.xml:5
 #: simulation/templates/structures/mace_house.xml:5
@@ -617,7 +634,7 @@ msgstr "会议室"
 
 #: simulation/templates/structures/athen_prytaneion.xml:25
 msgid "Train Heroes and research technologies."
-msgstr "训练英雄，研究科技。"
+msgstr "训练英雄，研究技术。"
 
 #: simulation/templates/structures/athen_range.xml:8
 #: simulation/templates/structures/mace_range.xml:8
@@ -1124,7 +1141,7 @@ msgstr "崇敬纪念物"
 
 #: simulation/templates/structures/iber_monument.xml:33
 msgid "Gur Oroigarri"
-msgstr "纪念物"
+msgstr "古尔·奥罗加里"
 
 #: simulation/templates/structures/iber_monument.xml:36
 msgid ""
@@ -1278,7 +1295,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush_temple.xml:8
 msgid "Temple of Apedemak"
-msgstr "狮头战神庙"
+msgstr "狮首战神庙"
 
 #: simulation/templates/structures/kush_temple.xml:9
 msgid "Pr-ʿIprmk"
@@ -1706,7 +1723,7 @@ msgstr "增加人口上限。由于这些建筑采用泥砖建成，因此埃及
 
 #: simulation/templates/structures/ptol_lighthouse.xml:24
 msgid "Lighthouse"
-msgstr "灯塔"
+msgstr "亚历山大灯塔"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:25
 msgid "Pharos"

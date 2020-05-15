@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Huynh Yen Loc <yenloc@outlook.com>, 2014
+# Lục Cửu Tử Ư <kimtan090807@gmail.com>, 2020
 # YubiGalaxy <yubigalaxy@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-03 08:10+0000\n"
-"PO-Revision-Date: 2020-02-03 15:46+0000\n"
-"Last-Translator: Huynh Yen Loc <yenloc@outlook.com>\n"
+"PO-Revision-Date: 2020-05-14 09:59+0000\n"
+"Last-Translator: Lục Cửu Tử Ư <kimtan090807@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/wildfire-games/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +25,7 @@ msgstr "Mặc định"
 
 #: gui/gamesetup/Controls/MapFilters.js:86
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "Tất cả bản đồ trừ bản đồ về biển và bản đồ thử nghiệm."
 
 #: gui/gamesetup/Controls/MapFilters.js:91
 msgid "Naval Maps"
@@ -32,7 +33,7 @@ msgstr "Bản đồ hải chiến"
 
 #: gui/gamesetup/Controls/MapFilters.js:92
 msgid "Maps where ships are needed to reach the enemy."
-msgstr ""
+msgstr "Những bản đồ yêu cầu dùng thuyền để phát hiện kẻ địch"
 
 #: gui/gamesetup/Controls/MapFilters.js:97
 msgid "Demo Maps"
@@ -44,7 +45,7 @@ msgstr ""
 
 #: gui/gamesetup/Controls/MapFilters.js:103
 msgid "New Maps"
-msgstr ""
+msgstr "Những bản đồ mới"
 
 #: gui/gamesetup/Controls/MapFilters.js:104
 msgid "Maps that are brand new in this release of the game."
@@ -64,7 +65,7 @@ msgstr "Tất cả"
 
 #: gui/gamesetup/Controls/MapFilters.js:116
 msgid "Every map of the chosen maptype."
-msgstr ""
+msgstr "Mọi bản đồ của những chủ đề được chọn."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:37
 msgid "AI will be disabled for this player."
@@ -72,7 +73,7 @@ msgstr "AI sẽ được tắt cho người chơi này."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:93
 msgid "AI Behavior"
-msgstr ""
+msgstr "Hành vi A.I"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:87
 msgid "AI Difficulty"
@@ -110,17 +111,17 @@ msgstr "Chưa biết tên"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:7
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Bản đồ"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:26
 msgctxt "Match settings tab name"
 msgid "Player"
-msgstr ""
+msgstr "Người chơi"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:36
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Loại trò chơi"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/AIConfigButton.js:32
 #, javascript-format
@@ -147,7 +148,7 @@ msgstr "Còn trống"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:131
 msgid "Choose the civilization for this player."
-msgstr ""
+msgstr "Chọn nền văn minh cho người chơi này"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:134
 msgctxt "civilization"
@@ -156,11 +157,11 @@ msgstr "Ngẫu nhiên"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:140
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "Chọn 1 nền văn minh bất kì khi trờ chơi bắt đầu"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:172
 msgid "Pick a color."
-msgstr ""
+msgstr "Chọn 1 màu"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:73
 msgid "Select player's team."
@@ -173,7 +174,7 @@ msgstr "Không"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
-msgstr ""
+msgstr "Cheats"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:43
 msgid "Toggle the usability of cheats."
@@ -193,7 +194,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:58
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Chế độ Kẻ tồn tại cuối cùng"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:61
 msgid ""
@@ -249,11 +250,11 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:42
 msgid "Disable Spies"
-msgstr ""
+msgstr "Không cho phép sử dụng đơn vị gián điệp"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:45
 msgid "Disable spies during the game."
-msgstr ""
+msgstr "Không cho phép sử dụng gián điệp suốt trò chơi"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:42
 msgid "Disable Treasures"
@@ -274,7 +275,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:144
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Ngẫu nhiên"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:147
 msgid "Pick a biome at random."
@@ -282,7 +283,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:101
 msgid "Daytime"
-msgstr ""
+msgstr "Ban ngày"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
@@ -296,15 +297,15 @@ msgstr "Ngẫu nhiên"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr ""
+msgstr "Ngẫu nhiên chọn một thời gian cho ngày"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:73
 msgid "Game Speed"
-msgstr ""
+msgstr "Tốc độ trò chơi"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:76
 msgid "Select game speed."
-msgstr ""
+msgstr "Chọn tốc độ trò chơi"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:142
 msgid "Landscape"
@@ -363,7 +364,7 @@ msgstr "Chọn bản đồ để chơi."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:155
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Ngẫu nhiên"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:158
 msgid "Pick any of the given maps at random."
@@ -371,15 +372,15 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:74
 msgid "Map Size"
-msgstr ""
+msgstr "Kích thước bản đồ"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:77
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr ""
+msgstr "Chọn kích thước bản đồ ( Bản đồ có kích thước càng lớn sẽ càng giảm về mặt thích ứng đồ họa của hệ thống)"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:61
 msgid "Map Type"
-msgstr ""
+msgstr "Loại bản đồ"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:64
 msgid "Select a map type."
@@ -387,7 +388,7 @@ msgstr "Chọn loại bản đồ."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:49
 msgid "Number of Players"
-msgstr ""
+msgstr "Số người chơi"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:52
 msgid "Select number of players."
@@ -696,7 +697,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:27
 msgid "Unknown Player"
-msgstr ""
+msgstr "Người chơi không xác định"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:47
 #, javascript-format
