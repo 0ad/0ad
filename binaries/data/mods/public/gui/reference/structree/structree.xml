@@ -115,22 +115,22 @@
 			</object>
 		</object>
 
-		<!-- History page -->
+		<!-- Civilization Overview page -->
 		<object
 			type="button"
 			style="StoneButton"
-			size="100%-309 100%-44 100%-169 100%-16"
+			size="100%-421 100%-44 100%-221 100%-16"
 			name="civinfo"
 			hotkey="civinfo"
 		>
-			<translatableAttribute id="caption">History</translatableAttribute>
+			<translatableAttribute id="caption">Civilization Overview</translatableAttribute>
 			<action on="Press">switchToCivInfoPage();</action>
 		</object>
 		<!-- Close dialog -->
 		<object
 			type="button"
 			style="StoneButton"
-			size="100%-164 100%-44 100%-16 100%-16"
+			size="100%-216 100%-44 100%-16 100%-16"
 			name="close"
 			hotkey="cancel"
 		>
