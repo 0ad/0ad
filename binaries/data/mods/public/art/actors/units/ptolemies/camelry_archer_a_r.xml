@@ -3,13 +3,34 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="weapon_bow"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="headband">
+      <props>
+        <prop actor="props/units/helmets/headband_color.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Arab-Padded-1a">
       <textures>
-        <texture file="skeletal/pers_cjv_a_2.png" name="baseTex"/>
+        <texture file="skeletal/arab_padded_1_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Arab-Padded-1b">
+      <textures>
+        <texture file="skeletal/arab_padded_1_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Arab-Padded-1c">
+      <textures>
+        <texture file="skeletal/arab_padded_1_c.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

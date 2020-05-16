@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-08 07:09+0000\n"
-"PO-Revision-Date: 2020-05-08 23:39+0000\n"
+"PO-Revision-Date: 2020-05-14 00:00+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -32,13 +32,13 @@ msgstr "Plaza"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:88
 msgid "Build to acquire large tracts of territory. Train citizens."
-msgstr "Constrúilu pa llograr territoriu. Allista ciudadanos."
+msgstr "Fáila pa posiate de tierra. Allista ciudadanos."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:90
 #: simulation/templates/template_structure_civic_civil_centre.xml:53
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
-msgstr "CentruCívicu"
+msgstr "Plaza"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:27
 msgid "Military Colony"
@@ -97,7 +97,7 @@ msgstr "Villa"
 msgid ""
 "Train Healers and research healing technologies. Garrison units to heal them"
 " at a quick rate."
-msgstr "Allista Curadores ya investiga teunoloxíes curatibles. Guarez unidaes pa curales rápido."
+msgstr "Allista curanderos y ameyora'l curamientu. Guarez les unidaes pa curales rápido."
 
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -116,7 +116,7 @@ msgstr "Muria de madera"
 #: simulation/templates/template_structure_defensive_palisade.xml:23
 #: simulation/templates/template_structure_defensive_wall.xml:18
 msgid "Wall off your town for a stout defense."
-msgstr "Cerca la ciudá pa una defensa sólida."
+msgstr "Cerca la ciudá pa una bona defensa."
 
 #: simulation/templates/template_structure_defensive_tower.xml:36
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:61
@@ -128,11 +128,11 @@ msgstr "TorreDefensa"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:57
 msgid "Artillery Tower"
-msgstr "Torre artillada"
+msgstr "Artillera"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 msgid "Catapults stones. Needs the murder holes tech to protect its foot."
-msgstr "Piedres de catapulta. Precisa la teunoloxía buracos asesinos pa protexese'l pie."
+msgstr "Piedres de catapulta. Precisa de matacanes pa protexese'l pie."
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:61
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:60
@@ -153,55 +153,55 @@ msgstr "TorrePiedra"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
-msgstr "Torre saetera"
+msgstr "Ballestera"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
 msgid ""
 "Shoots bolts. Faster reaction time against raiding units than the artillery "
 "tower, weak to all siege weapons and mass melee. Needs the murder holes tech"
 " to protect its foot."
-msgstr "Llanza saetes. Respuede a atacadores más rápido que la torre artillada, pero ye endébile frente a toles armes d'asediu y ensames d'acutidores. Prescisa la teunoloxía buracos asesinos pa protexese'l pie."
+msgstr "Llanza fleches grandes. Respuede más aína que l'artillera, pero ye sonce frente a toles armes d'asediu y ensames d'asaltantes. Prescisa de matacanes pa protexese'l pie."
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr "Constrúila en territoriu neutral o propiu pa velar fasteres del mapa. En territoriu neutral, col tiempu, pasa a formar parte de la Gaia."
+msgstr "Llevántalu pa velar fasteres del mapa. En tierra de naide, col tiempu, pasa a formar parte de la Gaia."
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:54
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:29
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:51
 #: simulation/templates/structures/palisades_outpost.xml:17
 msgid "Outpost"
-msgstr "Talaya"
+msgstr "Miradoriu"
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:35
 msgid "Sentry Tower"
-msgstr "Torre de vixilancia"
+msgstr "Talaya"
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:39
 msgid "SentryTower"
-msgstr "TorreVixilancia"
+msgstr "Talaya"
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:40
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot. Upgradeable to stone tower."
-msgstr "Tira fleches. Guarezla p'apurri-y más defensa. Precisa la teunoloxía buracos asesinos pa protexese'l pie. Pues ameyorala faciendo d'ella una torre de piedra."
+msgstr "Tira fleches. Guarezla pa reforciar la defensa. Precisa de matacanes pa protexese'l pie. Meyora: torre de piedra."
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:61
 msgid "Reinforce with stone and upgrade to a defense tower."
-msgstr "Refuérciala con piedra ya tresfórmala nuna torre fortificada."
+msgstr "Refuérciala con piedra ya camúdala en torrexón."
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:31
 msgid "Defense Tower"
-msgstr "Torre fortificada"
+msgstr "Torrexón"
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:33
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot."
-msgstr "Tira fleches. Guarezla p'apurri-y más defensa. Precisa la teunoloxía buracos asesinos pa protexese'l pie."
+msgstr "Tira fleches. Guarezlu pa reforciar la defensa. Precisa de matacanes pa protexese'l pie."
 
 #: simulation/templates/template_structure_defensive_wall.xml:16
 #: simulation/templates/structures/cart_s_wall_long.xml:11
@@ -222,7 +222,7 @@ msgstr "Dexa que les unidaes pasen al otru llau d'una muralla. Pues pesllala pa 
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:26
 msgid "Long wall segments can be converted to gates."
-msgstr "Los tramos allongaos de muralla puen convertise en puertes."
+msgstr "Pues camudar les muralles llargues en puertes."
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:35
 #: simulation/templates/structures/palisades_long.xml:35
@@ -236,7 +236,7 @@ msgstr "Torreta"
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:56
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "Tira fleches. Guarezla pa protexer la muralla d'atacadores."
+msgstr "Tira fleches. Guarezla pa protexer la muralla."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -249,7 +249,7 @@ msgstr "Económico"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr "Depósitu pa guardar comida. Investiga meyores na producción de comida."
+msgstr "Depósitu pa guardar comida. Ameyora la producción de comida."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:34
 #: simulation/templates/template_structure_economic_farmstead.xml:30
@@ -260,7 +260,7 @@ msgstr "Celleru"
 msgid ""
 "Create trade units to trade between other markets. Barter resources. "
 "Research trading and bartering improvements."
-msgstr "Fai unidaes comerciales pa comerciar con otros mercaos. Troca recursos. Investiga meyores nel comerciu ya nel troquéu."
+msgstr "Fai unidaes pa comerciar con otros mercaos. Troca recursos. Ameyora'l comerciu y el troquéu."
 
 #: simulation/templates/template_structure_economic_market.xml:33
 #: simulation/templates/template_structure_economic_market.xml:28
@@ -272,7 +272,7 @@ msgstr "Mercáu"
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr "Depósitu pa guardar madera, piedra ya metal. Investiga meyores na producción d'esos recursos."
+msgstr "Depósitu pa guardar madera, piedra ya metal. Ameyora la producción d'esos recursos."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:35
 #: simulation/templates/template_structure_economic_storehouse.xml:31
@@ -289,7 +289,7 @@ msgstr "Militar"
 
 #: simulation/templates/template_structure_military_barracks.xml:24
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr "Allista milicianos. Investiga meyores nel entrenamientu."
+msgstr "Allista milicianos. Ameyora la milicia."
 
 #: simulation/templates/template_structure_military_barracks.xml:25
 #: simulation/templates/template_structure_military_barracks.xml:22
@@ -298,7 +298,7 @@ msgstr "Barracón"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:27
 msgid "Research weapons and armor improvements."
-msgstr "Investiga meyores nes armes y armadura."
+msgstr "Ameyorar les armes ya l'armadura."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:28
 #: simulation/templates/template_structure_military_blacksmith.xml:23
@@ -309,7 +309,7 @@ msgstr "Fragua"
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr "Constrúilu a la vera d'agua pa facer barcos y abrir comerciu marítimu. Investiga meyores navales."
+msgstr "Constrúilu a la vera d'agua pa facer barcos y abrir comerciu marítimu. Ameyora la flota."
 
 #: simulation/templates/template_structure_military_dock.xml:29
 #: simulation/templates/template_structure_military_dock.xml:25
@@ -343,7 +343,7 @@ msgstr "Fortaleza"
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
-msgstr "Allista Campeones y Héroes ya investiga teunoloxía. Guarez Soldaos nella pa tirar más fleches."
+msgstr "Allista campeones y héroes ya investiga teunoloxíes. Guarez soldaos nella pa tirar más fleches."
 
 #: simulation/templates/template_structure_military_kennel.xml:40
 msgid "Kennel"
@@ -359,7 +359,7 @@ msgstr "Campu de práutica"
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
-msgstr "Allista milicianos desaverantes. Investiga meyores nel entrenamientu."
+msgstr "Allista milicianos desaverantes. Ameyora la milicia."
 
 #: simulation/templates/template_structure_military_range.xml:25
 msgid "Range"
@@ -367,7 +367,7 @@ msgstr "Campu"
 
 #: simulation/templates/template_structure_military_stable.xml:26
 msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr "Allista milicianos d'a caballu. Investiga meyores nel entrenamientu."
+msgstr "Allista milicianos d'a caballu. Ameyora la milicia."
 
 #: simulation/templates/template_structure_military_stable.xml:27
 #: simulation/templates/template_structure_military_stable.xml:22
@@ -380,7 +380,7 @@ msgstr "Facedoriu"
 
 #: simulation/templates/template_structure_military_workshop.xml:29
 msgid "Construct Siege Engines and research Siege Engine technologies."
-msgstr "Constrúi máquines d'asediu ya investiga les teunoloxíes venceyaes."
+msgstr "Fai máquines y ameyórales."
 
 #: simulation/templates/template_structure_military_workshop.xml:30
 msgid "Workshop"
@@ -398,7 +398,7 @@ msgstr "Recursos"
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr "Cría animales como fonte de comida. Lleva'l ganáu equí pa recibir una pinga de comida o otra bonificación (Endagora nun se punxo a furrular)."
+msgstr "Cría animales como fonte de comida. Lleva'l ganáu equí pa recibir un fluxu comida o otra bonificación (Endagora nun se punxo a furrular)."
 
 #: simulation/templates/template_structure_resource_corral.xml:21
 #: simulation/templates/template_structure_resource_corral.xml:18
@@ -448,7 +448,7 @@ msgstr "Teatru"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr "Gloria la to civilización y enancha l'imperiu."
+msgstr "Gloria'l pueblu y enancha l'imperiu."
 
 #: simulation/templates/template_structure_wonder.xml:54
 #: simulation/templates/template_structure_wonder.xml:51
@@ -504,7 +504,7 @@ msgid ""
 "Reinforce with stone block, and install small stone throwers to upgrade this"
 " defense tower into a slow, area of effect, and siege resistant artillery "
 "tower."
-msgstr "Refuérciala con bloques de piedra ya fórnila de llanzadores de piedra pa camudar esta torre fortificada nuna torre artillada, que, magar lenta, ye resistente al asediu ya d'impautu espardíu."
+msgstr "Refuércialu con bloques de piedra ya fórnilu d'onagros pa camudar esti torrexón n'artillera, que, magar lenta, ye resistente al asediu ya d'impautu espardíu."
 
 #: simulation/templates/structures/athen_defense_tower.xml:34
 #: simulation/templates/structures/cart_defense_tower.xml:35
@@ -514,7 +514,7 @@ msgstr "Refuérciala con bloques de piedra ya fórnila de llanzadores de piedra 
 msgid ""
 "Reinforce with stone block, and install scorpions to upgrade this defense "
 "tower into a prompt, long range, and accurate bolt tower."
-msgstr "Refuérciala con bloques de piedra ya fórnila d'escorpiones pa camudar esta torre fortificada nuna torre saetera, que ye rápida, certera ya de llargu algame."
+msgstr "Refuércialu con bloques de piedra ya fórnilu d'escorpiones pa camudar esti torrexón en ballestera, que ye rápida, certera ya de llargu algame."
 
 #: simulation/templates/structures/athen_dock.xml:12
 #: simulation/templates/structures/mace_dock.xml:12
@@ -709,7 +709,7 @@ msgstr "Parthenōn"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
-msgstr "Gloria la to civilización y enancha l'imperiu. Guarez unidaes nella pa curales perrápido."
+msgstr "Gloria'l pueblu y enancha l'imperiu. Guarez unidaes nella pa curales perrápido."
 
 #: simulation/templates/structures/athen_workshop.xml:5
 #: simulation/templates/structures/mace_workshop.xml:5
@@ -863,7 +863,7 @@ msgstr "Maḥanēt"
 msgid ""
 "Train North African citizen-soldiers. Research improvements for North "
 "African units."
-msgstr "Allista milicianos norteafricanos. Investiga meyores pa les unidaes."
+msgstr "Allista milicianos norteafricanos. Ameyora les unidaes."
 
 #: simulation/templates/structures/cart_civil_centre.xml:8
 msgid "Merkāz"
@@ -904,7 +904,7 @@ msgstr "Embaxada celta"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:18
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
-msgstr "Contrata mercenarios celtes. Investiga meyores pa ellos."
+msgstr "Contrata mercenarios celtes. Ameyóralos."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:10
 msgid "Iberian Embassy"
@@ -912,7 +912,7 @@ msgstr "Embaxada íbera"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:11
 msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
-msgstr "Contrata mercenarios íberos. Investiga meyores pa ellos."
+msgstr "Contrata mercenarios íberos. Ameyóralos."
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:17
 msgid "Italian Embassy"
@@ -920,7 +920,7 @@ msgstr "Embaxada itálica"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:18
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
-msgstr "Contrata mercenarios itálicos. Investiga meyores pa ellos."
+msgstr "Contrata mercenarios itálicos. Ameyóralos."
 
 #: simulation/templates/structures/cart_farmstead.xml:8
 msgid "Aḥuzāh"
@@ -978,11 +978,11 @@ msgstr "Maqdaš"
 msgid ""
 "Train Healers and Champions and research healing technologies. Garrison "
 "units to heal them at a quick rate."
-msgstr "Allista Curadores ya Campeones ya investiga teunoloxíes curatibles. Guarez unidaes pa curales rápido."
+msgstr "Allista curanderos ya campeones y ameyora'l curamientu. Guarez unidaes pa curales rápido."
 
 #: simulation/templates/structures/cart_tophet.xml:20
 msgid "Sacrificial Temple"
-msgstr "Templu de sacrificiu"
+msgstr "Templu del sacrificiu"
 
 #: simulation/templates/structures/cart_tophet.xml:21
 msgid "Tophet"
@@ -992,7 +992,7 @@ msgstr "Tophet"
 msgid ""
 "Train Healers and Champion Cavalry and research healing technologies. "
 "Garrison units to heal them at a quick rate."
-msgstr "Allista Curadores ya Caballería campeón ya investiga teunoloxíes curatibles. Guarez unidaes pa curales rápido."
+msgstr "Allista curanderos ya caballería campeón y ameyora'l curamientu. Guarez unidaes pa curales rápido."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -1010,7 +1010,7 @@ msgstr "Jdar"
 
 #: simulation/templates/structures/cart_wonder.xml:15
 msgid "Temple of Ba'al Hammon"
-msgstr "Templu de Ba'al Ḥammon"
+msgstr "Templu de Ba'al Hammón"
 
 #: simulation/templates/structures/gaul_barracks.xml:18
 msgid "Coriosedlon"
@@ -1346,7 +1346,7 @@ msgid ""
 "Reinforce with stone block, and add a second rampart for up to 16 archers to"
 " stand upon. Infantry Archer exclusive tower. Devastating against melee "
 "troops, weak to siege and massed ranged units"
-msgstr "Refuérciala con bloques de piedra y añede un anexu pa sofitar fasta 16 arqueros. Torre esclusivamente p'arqueros d'a pie. Afaradora escontra acutidores, endébile frente al asediu y ensames d'unidaes desaverantes."
+msgstr "Refuércialu con bloques de piedra y añade un enantu pa sofitar fasta 16 arqueros. Solo pa los arqueros d'a pie. Esfarrapa asaltantes. Ye sonce frente al asediu y ensames d'unidaes desaverantes."
 
 #: simulation/templates/structures/maur_dock.xml:9
 msgid "Naukasthanaka"
@@ -1416,14 +1416,14 @@ msgstr "Devalaya"
 
 #: simulation/templates/structures/maur_tower_double.xml:12
 msgid "Rampart Tower"
-msgstr "Torrexón"
+msgstr "Bastión"
 
 #: simulation/templates/structures/maur_tower_double.xml:14
 msgid ""
 "Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
 "archers recieve a range and armor bonus. Only archers can garrison. Needs "
 "the murder holes tech to protect its foot."
-msgstr "Torre con más salú ya batura pa fasta 16 arqueros. Los arqueros visiblemente guarecíos reciben una bonificación nel so algame y armadura. Namái puen guarecese arqueros. Precisa la teunoloxía buracos asesinos pa protexese'l pie."
+msgstr "Tien más salú que la torre normal ya batura pa fasta 16 arqueros. Los arqueros visiblemente guarecíos reciben más algame y armadura. Namái puen guarecese arqueros. Precisa de matacanes pa protexese'l pie."
 
 #: simulation/templates/structures/maur_wall_gate.xml:15
 msgid "Dwara"
@@ -1518,7 +1518,7 @@ msgstr "Pugones"
 
 #: simulation/templates/structures/palisades_watchtower.xml:14
 msgid "Watchtower"
-msgstr "Miradoriu"
+msgstr "Torre"
 
 #: simulation/templates/structures/pers_apadana.xml:27
 msgid "Throne Hall"
@@ -1919,7 +1919,7 @@ msgstr "Ballistārium"
 msgid ""
 "Reinforce with stone block, and install small torsion engines to upgrade "
 "this defense tower into an artillery tower."
-msgstr "Refuérciala con bloques de piedra ya fórnila de máquines de torción pa camudar esta torre fortificada nuna torre artillada."
+msgstr "Refuércialu con bloques de piedra ya fórnilu de máquines pa camudar esti torrexón n'artillera."
 
 #: simulation/templates/structures/sele_military_colony.xml:10
 msgid ""
@@ -1936,7 +1936,7 @@ msgstr "Hieron tou Apollōnos Pythiou"
 msgid ""
 "Reinforce with stone block, and install small oxybeles to upgrade this "
 "defense tower into a prompt, long range, and accurate bolt tower."
-msgstr "Refuérciala con bloques de piedra ya fórnila de d'oxíbeles pa camudar esta torre fortificada nuna torre saetera, que ye rápida, certera ya de llargu algame."
+msgstr "Refuércialu con bloques de piedra ya fórnilu de d'oxibolos pa camudar esti torrexón en ballestera, que ye rápida, certera ya de llargu algame."
 
 #: simulation/templates/structures/spart_gerousia.xml:20
 msgid "Spartan Senate"

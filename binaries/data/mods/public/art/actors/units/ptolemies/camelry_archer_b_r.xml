@@ -8,8 +8,49 @@
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="weapon_bow"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="headband">
+      <props>
+        <prop actor="props/units/helmets/headband_color.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="arab-tunic-1a">
       <textures>
-        <texture file="skeletal/pers_car_b_r_2.png" name="baseTex"/>
+        <texture file="skeletal/arab_tunic_1_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="arab-tunic-1b">
+      <textures>
+        <texture file="skeletal/arab_tunic_1_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="arab-tunic-1c">
+      <textures>
+        <texture file="skeletal/arab_tunic_1_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="judea-tunic-1a">
+      <textures>
+        <texture file="skeletal/judea_tunic_basic_1_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="judea-tunic-1b">
+      <textures>
+        <texture file="skeletal/judea_tunic_basic_1_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="judea-tunic-1c">
+      <textures>
+        <texture file="skeletal/judea_tunic_basic_1_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="judea-tunic-1d">
+      <textures>
+        <texture file="skeletal/judea_tunic_basic_1_d.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

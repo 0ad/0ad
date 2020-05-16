@@ -33,7 +33,7 @@ var g_MainMenuItems = [
 				},
 			},
 			{
-				"caption": translate("History"),
+				"caption": translate("Civilization Overview"),
 				"tooltip": colorizeHotkey(translate("%(hotkey)s: Learn about the civilizations featured in 0 A.D."), "civinfo"),
 				"hotkey": "civinfo",
 				"onPress": () => {

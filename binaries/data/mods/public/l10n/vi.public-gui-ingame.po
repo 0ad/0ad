@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Huynh Yen Loc <yenloc@outlook.com>, 2014
+# Lục Cửu Tử Ư <kimtan090807@gmail.com>, 2020
 # YubiGalaxy <yubigalaxy@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-03-09 08:13+0000\n"
-"PO-Revision-Date: 2020-03-09 13:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-05-14 09:58+0000\n"
+"Last-Translator: Lục Cửu Tử Ư <kimtan090807@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/wildfire-games/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +22,7 @@ msgstr ""
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "Bấm %(hotkey)s để vào menu."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -53,11 +54,11 @@ msgstr ""
 
 #: gui/session/MenuButtons.js:158
 msgid "Options"
-msgstr ""
+msgstr "Tùy chỉnh"
 
 #: gui/session/MenuButtons.js:196
 msgid "Resume"
-msgstr ""
+msgstr "Tiếp tục"
 
 #: gui/session/MenuButtons.js:196
 msgid "Pause"
@@ -70,7 +71,7 @@ msgstr ""
 
 #: gui/session/MenuButtons.js:213
 msgid "Resign"
-msgstr ""
+msgstr "Đầu hàng"
 
 #: gui/session/MenuButtons.js:237
 #: gui/session/NetworkStatusOverlay.xml:(caption):9
@@ -79,23 +80,23 @@ msgstr "Thoát"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
-msgstr ""
+msgstr "Kết nối tới server đã được chứng thực"
 
 #: gui/session/NetworkStatusOverlay.js:39
 msgid "Connected to the server."
-msgstr ""
+msgstr "Đã kết nối tới Server"
 
 #: gui/session/NetworkStatusOverlay.js:40
 msgid "Connection to the server has been lost."
-msgstr ""
+msgstr "Kết nối tới server bị ngắt"
 
 #: gui/session/NetworkStatusOverlay.js:42
 msgid "Waiting for players to connect:"
-msgstr ""
+msgstr "Chờ người chơi khác kết nối"
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
-msgstr ""
+msgstr "Đồng bộ hóa gameplay với người chơi khác"
 
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"
@@ -130,33 +131,33 @@ msgstr ""
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] ""
+msgstr[0] "Tầm xa cơ bản: %(range)s m"
 
 #: gui/session/input.js:177
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] ""
+msgstr[0] "Tầm xa cộng thêm trung bình: %(range)sm"
 
 #: gui/session/input.js:698
 msgid "Cannot build wall here!"
-msgstr ""
+msgstr "Không thể xây tường ở đây!"
 
 #: gui/session/messages.js:88
 msgid "You have won!"
-msgstr ""
+msgstr "Bạn đã chiến thắng!"
 
 #: gui/session/messages.js:89
 msgid "You have been defeated!"
-msgstr ""
+msgstr "Bạn đã bị tiêu diệt!"
 
 #: gui/session/messages.js:358
 msgid "Click to quit this tutorial."
-msgstr ""
+msgstr "Nhấn để thoát phần hướng dẫn."
 
 #: gui/session/messages.js:359
 msgid "Quit"
-msgstr ""
+msgstr "Thoát"
 
 #: gui/session/messages.js:363
 msgid "Click when ready."
@@ -168,7 +169,7 @@ msgstr ""
 
 #: gui/session/messages.js:492
 msgid "Unknown Player"
-msgstr ""
+msgstr "Người chơi không xác định"
 
 #: gui/session/selection_details.js:68
 #, javascript-format
@@ -286,11 +287,11 @@ msgstr ""
 
 #: gui/session/selection_panels.js:65
 msgid "Raise an alert!"
-msgstr ""
+msgstr "Báo động!"
 
 #: gui/session/selection_panels.js:68
 msgid "End of alert."
-msgstr ""
+msgstr "Hết báo động!"
 
 #: gui/session/selection_panels.js:376
 #, javascript-format
@@ -1541,7 +1542,7 @@ msgstr ""
 
 #: gui/session/top_panel/IconButtons/GameSpeedButton.xml:(tooltip):9
 msgid "Game Speed"
-msgstr ""
+msgstr "Tốc độ trò chơi"
 
 #: gui/session/trade/BarterPanel.xml:(caption):5
 msgid "Barter"

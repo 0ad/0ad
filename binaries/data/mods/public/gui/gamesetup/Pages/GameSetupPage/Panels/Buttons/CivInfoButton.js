@@ -45,4 +45,4 @@ class CivInfoButton
 }
 
 CivInfoButton.prototype.Tooltip =
-	translate("%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\nLast opened will be reopened on click.");
+	translate("%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\nLast opened will be reopened on click.");

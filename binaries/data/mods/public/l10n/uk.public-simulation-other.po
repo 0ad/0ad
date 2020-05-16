@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Chindu the Manduri <mandurilooter210770@mail.ru>, 2020
+# 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
 # Антон Курило, 2017
 # Victor Butko <victor.butko@gmail.com>, 2014
@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-05-24 09:43+0200\n"
-"PO-Revision-Date: 2020-05-10 15:39+0000\n"
-"Last-Translator: Chindu the Manduri <mandurilooter210770@mail.ru>\n"
+"PO-Revision-Date: 2020-05-12 09:42+0000\n"
+"Last-Translator: 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -364,22 +364,22 @@ msgstr "%(_player_)s, якщо ви не змогли відповісти на 
 #: simulation/components/BuildRestrictions.js:87
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
-msgstr "%(name)s неможливо звести через невідому помилку"
+msgstr "%(name)s не може бути споруджено через невідому помилку"
 
 #: simulation/components/BuildRestrictions.js:108
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
-msgstr "%(name)s неможливо звести на нерозвіданій території"
+msgstr "%(name)s не може бути споруджено в недослідженій області"
 
 #: simulation/components/BuildRestrictions.js:156
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
-msgstr "%(name)s неможливо звести іншій будівлі або ресурсі"
+msgstr "%(name)s не може бути споруджено на іншому спорудженні або ресурсі"
 
 #: simulation/components/BuildRestrictions.js:160
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
-msgstr "%(name)s неможливо звести на неприпустимій місцевості"
+msgstr "%(name)s не може бути споруджено на невірній місцевості"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -428,7 +428,7 @@ msgstr "ворожій"
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
-msgstr "%(name)s неможливо звести на %(territoryType)s території. Доступні території: %(validTerritories)s"
+msgstr "%(name)s не може бути споруджено на %(territoryType)s території. Вірні території: %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:228
 #, javascript-format
@@ -784,7 +784,7 @@ msgstr "Битва на смерть"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr "Виберіть цю складність, якщо ви новачок в 0 A.D."
+msgstr "Виберіть цю складність, якщо Ви у процесі відкриття 0 A.D."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Title
 msgid "Very Easy"

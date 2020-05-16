@@ -18,7 +18,7 @@ function init(data = {})
 	civSelection.selected = data.civ ? civSelection.list_data.indexOf(data.civ) : 0;
 
 	Engine.GetGUIObjectByName("structreeButton").tooltip = colorizeHotkey(translate("%(hotkey)s: Switch to Structure Tree."), "structree");
-	Engine.GetGUIObjectByName("close").tooltip = colorizeHotkey(translate("%(hotkey)s: Close History."), "cancel");
+	Engine.GetGUIObjectByName("close").tooltip = colorizeHotkey(translate("%(hotkey)s: Close Civilization Overview."), "cancel");
 }
 
 /**

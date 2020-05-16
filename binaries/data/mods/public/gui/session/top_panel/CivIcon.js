@@ -1,6 +1,6 @@
 /**
- * This displas the emblem of the civilization of the currently viewed player in the top panel.
- * If clicked, it opens the structure tree or history dialog for the last viewed civilization.
+ * This displays the emblem of the civilization of the currently viewed player in the top panel.
+ * If clicked, it opens the Structure Tree or Civilization Overview dialog, for the last viewed civilization.
  */
 class CivIcon
 {
@@ -74,6 +74,6 @@ class CivIcon
 }
 
 CivIcon.prototype.Tooltip =
-	markForTranslation("%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\nLast opened will be reopened on click.");
+	markForTranslation("%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\nLast opened will be reopened on click.");
 
 CivIcon.prototype.CivTags = { "font": "sans-bold-stroke-14" };
