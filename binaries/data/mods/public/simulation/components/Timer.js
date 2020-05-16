@@ -12,7 +12,7 @@ Timer.prototype.Init = function()
 };
 
 /**
- * Returns time since the start of the game in milliseconds.
+ * @returns {number} - The elapsed time in milliseconds since the game was started.
  */
 Timer.prototype.GetTime = function()
 {
@@ -20,7 +20,7 @@ Timer.prototype.GetTime = function()
 };
 
 /**
- * Returns the duration of the latest turn in milliseconds.
+ * @returns {number} - The duration of the latest turn in milliseconds.
  */
 Timer.prototype.GetLatestTurnLength = function()
 {
@@ -31,38 +31,33 @@ Timer.prototype.GetLatestTurnLength = function()
  * Create a new timer, which will call the 'funcname' method with arguments (data, lateness)
  * on the 'iid' component of the 'ent' entity, after at least 'time' milliseconds.
  * 'lateness' is how late the timer is executed after the specified time (in milliseconds).
- * Returns a non-zero id that can be passed to CancelTimer.
+ * @param {number} ent - The entity id to which the timer will be assigned to.
+ * @param {number} iid - The component iid of the timer.
+ * @param {string} funcname - The name of the function to be called in the component.
+ * @param {number} time - The delay before running the function for the first time.
+ * @param {any} data - The data to pass to the function.
+ * @returns {number} - A non-zero id that can be passed to CancelTimer.
  */
 Timer.prototype.SetTimeout = function(ent, iid, funcname, time, data)
 {
-	let id = ++this.id;
-
-	this.timers.set(id, {
-		"entity": ent,
-		"iid": iid,
-		"functionName": funcname,
-		"time": this.time + time,
-		"repeatTime": 0,
-		"data": data
-	});
-
-	return id;
+	return this.SetInterval(ent, iid, funcname, time, 0, data);
 };
 
 /**
  * Create a new repeating timer, which will call the 'funcname' method with arguments (data, lateness)
- * on the 'iid' component of the 'ent' entity, after at least 'time' milliseconds
+ * on the 'iid' component of the 'ent' entity, after at least 'time' milliseconds.
+ * 'lateness' is how late the timer is executed after the specified time (in milliseconds)
  * and then every 'repeattime' milliseconds thereafter.
- * It will run multiple times per simulation turn if necessary.
- * 'repeattime' must be non-zero.
- * 'lateness' is how late the timer is executed after the specified time (in milliseconds).
- * Returns a non-zero id that can be passed to CancelTimer.
+ * @param {number} ent - The entity the timer will be assigned to.
+ * @param {number} iid - The component iid of the timer.
+ * @param {string} funcname - The name of the function to be called in the component.
+ * @param {number} time - The delay before running the function for the first time.
+ * @param {number} repeattime - If non-zero, the interval between each execution of the function.
+ * @param {any} data - The data to pass to the function.
+ * @returns {number} - A non-zero id that can be passed to CancelTimer.
  */
 Timer.prototype.SetInterval = function(ent, iid, funcname, time, repeattime, data)
 {
-	if (typeof repeattime != "number" || !(repeattime > 0))
-		error("Invalid repeattime to SetInterval of "+funcname);
-
 	let id = ++this.id;
 
 	this.timers.set(id, {
@@ -79,13 +74,16 @@ Timer.prototype.SetInterval = function(ent, iid, funcname, time, repeattime, dat
 
 /**
  * Cancels an existing timer that was created with SetTimeout/SetInterval.
+ * @param {number} id - The timer's ID returned by either SetTimeout or SetInterval.
  */
 Timer.prototype.CancelTimer = function(id)
 {
 	this.timers.delete(id);
 };
 
-
+/**
+ * @param {{ "turnLength": number }} msg - A message containing the turn length in seconds.
+ */
 Timer.prototype.OnUpdate = function(msg)
 {
 	this.turnLength = Math.round(msg.turnLength * 1000);
@@ -108,8 +106,8 @@ Timer.prototype.OnUpdate = function(msg)
 			continue;
 
 		// The entity was probably destroyed; clean up the timer
-		let cmpTimer = Engine.QueryInterface(timer.entity, timer.iid);
-		if (!cmpTimer)
+		let timerTargetComponent = Engine.QueryInterface(timer.entity, timer.iid);
+		if (!timerTargetComponent)
 		{
 			this.timers.delete(id);
 			continue;
@@ -117,7 +115,7 @@ Timer.prototype.OnUpdate = function(msg)
 
 		try
 		{
-			cmpTimer[timer.functionName](timer.data, this.time - timer.time);
+			timerTargetComponent[timer.functionName](timer.data, this.time - timer.time);
 		}
 		catch (e)
 		{
