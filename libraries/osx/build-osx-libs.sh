@@ -344,6 +344,7 @@ then
       --prefix="$INSTALL_DIR" \
       --disable-video-x11 \
       --without-x \
+      --enable-video-cocoa \
       --enable-shared=no \
     && make $JOBS && make install) || die "SDL2 build failed"
   popd
@@ -959,6 +960,7 @@ then
   mkdir -p $INCLUDE_DIR_DEBUG
   cp -R -L dist/include/* $INCLUDE_DIR_DEBUG/
   cp dist/sdk/lib/*.a $INSTALL_DIR/lib
+  cp js/src/*.a $INSTALL_DIR/lib
   popd
   mv moz.build.bak moz.build
 
