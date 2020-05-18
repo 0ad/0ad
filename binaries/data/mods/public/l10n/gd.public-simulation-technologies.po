@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-03-23 08:32+0000\n"
-"PO-Revision-Date: 2020-03-23 09:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-05-17 08:05+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,13 +31,13 @@ msgstr "Nuair a thèid aonadan àrdachadh dhan chlas adhartach, gheibh iad iomad
 msgid ""
 "The Indian, Iranian, and Kushite peoples had a tradition of fine archery and"
 " a penchant for using massed archers in battle."
-msgstr ""
+msgstr "Bhiodh muinntir nan Innseachan, Ioràin ’s Kuluš glè mhath air boghadaireachd is chleachdadh iad grunnan bhoghadairean air a’ bhlàr gu tric."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
-msgstr "Gheibh aonadan le bogha +10 meatairean de rainse. Gheibh boghadairean pongalachd leasaichte is thèid iad a thrèanadh nas luaithe le −20% ach caillidh iad slàinte cuideachd le −20%."
+msgstr "Gheibh aonadan le bogha +10 meatairean de rainse. Gheibh boghadairean pongalachd leasaichte is thèid iad oideachadh nas luaithe le −20% ach caillidh iad slàinte cuideachd le −20%."
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -344,7 +344,7 @@ msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
 "equipped with such body armor, as it was very expensive and time-consuming "
 "to fabricate."
-msgstr "Lùirich a chaidh a dhèanamh de umha gu lèir. cha d’ fhuair ach na saighdearan as fhearr na lùirich seo on a bha e glè chosgail agus thugadh e ùine mhòr gan dèanamh."
+msgstr "Lùirich a chaidh a dhèanamh de umha gu lèir. cha d’ fhuair ach na saighdearan as fheàrr na lùirich seo on a bha e glè chosgail agus thugadh e ùine mhòr gan dèanamh."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
@@ -382,7 +382,7 @@ msgstr "Aspidískos"
 msgid ""
 "The best shields have reinforcements either on the corners (Roman scutum) or"
 " around the rim (Greek aspis)."
-msgstr "Tha neartachadh air na sgiathan as fhearr aig na h-oiseanan (scutum Ròmanach) no timcheall air an oir (aspis Greugach)."
+msgstr "Tha neartachadh air na sgiathan as fheàrr aig na h-oiseanan (scutum Ròmanach) no timcheall air an oir (aspis Greugach)."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
@@ -512,7 +512,7 @@ msgstr "Hasta"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
-msgstr "Meudaichidh trèanadh na h-ionnsaighean dlùtha."
+msgstr "Meudaichidh oideachadh na h-ionnsaighean dlùtha."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
 msgid "+20% melee cavalry attack."
@@ -520,7 +520,7 @@ msgstr "+20% air ionnsaighean dlùtha le eachraidh."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
 msgid "Close Combat Cavalry Training"
-msgstr "Trèanadh air sabaid dhlùth an eachraidh"
+msgstr "Oideachadh air sabaid dhlùth an eachraidh"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.spart
@@ -563,7 +563,7 @@ msgstr "Airm iarainn"
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsondescription
 msgid "Training increases ranged attack."
-msgstr "Meudaichidh trèanadh na h-ionnsaighean astair."
+msgstr "Meudaichidh oideachadh na h-ionnsaighean astair."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
 msgid "+20% ranged cavalry attack."
@@ -571,7 +571,7 @@ msgstr "+20% air ionnsaighean astair le eachraidh."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
 msgid "Ranged Combat Cavalry Training"
-msgstr "Trèanadh air sabaid astair an eachraidh"
+msgstr "Oideachadh air sabaid astair an eachraidh"
 
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
@@ -647,7 +647,7 @@ msgstr "Rinn iarann an àite umha na h-airm nas cumhachdaiche."
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry."
-msgstr "Nì trèanadh an dochann a nì coisridh astair nas motha."
+msgstr "Nì oideachadh an dochann a nì coisridh astair nas motha."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
@@ -680,7 +680,7 @@ msgstr "Átaktoi"
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
-msgstr "Trèanadh na coisridh astair le maighstir"
+msgstr "Oideachadh na coisridh astair le maighstir"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid "The will to fight is crucial to victory."
@@ -751,7 +751,7 @@ msgstr "Tog sprèidh (caoraich, gobhraichean, bà is msaa.) a chùm bìdh."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Domestic Animals −25% breeding time."
-msgstr "-25% air ùine àraich na sprèidhe."
+msgstr "−25% air ùine àraich na sprèidhe."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
@@ -838,11 +838,11 @@ msgstr "An crann-treabhaidh iarainn"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
-msgstr "Trèanadh nan tuathanaich ach an cruinnich iad biadh nas luaithe."
+msgstr "Oideachadh nan tuathanaich ach an cruinnich iad biadh nas luaithe."
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
-msgstr "Trèanadh air cruinneachadh"
+msgstr "Oideachadh air cruinneachadh"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Use nets to improve the productivity of fishing boats."
@@ -1094,7 +1094,7 @@ msgstr "Gabhaidh clò as grinne a chruthachadh le beart gus aodach a chur air na
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "+100% health for female citizens."
-msgstr ""
+msgstr "+100% de shlàinte airson shaoranach boireann."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1497,7 +1497,7 @@ msgstr "Leasachadh air pongalachd nan astasan."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt Shooters −20% ranged attack spread."
-msgstr "Gheibh losgaichean crainn -20% air sgapadh an ionnsaighean astair."
+msgstr "Gheibh losgaichean crainn −20% air sgapadh an ionnsaighean astair."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1554,11 +1554,11 @@ msgstr "Togail eachraidh"
 
 #: simulation/data/technologies/speed_cavalry_02.jsondescription
 msgid "Train your horses to move faster."
-msgstr "Trèanaich na h-eich agad ach an gluais iad nas luaithe."
+msgstr "Oidich na h-eich agad ach an gluais iad nas luaithe."
 
 #: simulation/data/technologies/speed_cavalry_02.jsongenericName
 msgid "Cavalry Speed Training"
-msgstr "Trèanadh air luaths an eachraidh"
+msgstr "Oideachadh air luaths an eachraidh"
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1732,12 +1732,12 @@ msgstr "Làimh-cheàrd adhartach"
 msgid ""
 "Significantly increase training speed of soldiers at the Barracks by "
 "training them in large batches or battalions."
-msgstr "Meudaichidh seo luaths trèanaidh nan saighdearan aig na taighean-feachd gu mòr nuair a thèid an trèanadh ann an grunnan mòra no cathan."
+msgstr "Meudaichidh seo luaths oideachaidh nan saighdearan aig na taighean-feachd gu mòr nuair a thèid an oideachadh ann an grunn mòr no còrachadh."
 
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
 msgid "Faster batch training speed for the Barracks."
-msgstr "Luaths as àirde air trèanadh ghrunnan aig na taighean-feachd."
+msgstr "Luaths as àirde air oideachadh ghrunnan aig na taighean-feachd."
 
 #: simulation/data/technologies/training_conscription.jsongenericName
 msgid "Conscription"
@@ -1753,7 +1753,7 @@ msgstr "Cuiridh eachraidh a thogas tu o na saoranaich rè amannan cogaidh ri nea
 #: simulation/data/technologies/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Conscription."
-msgstr "Thèid eachraidh a thrèanadh nas luaithe le –20% ach gheibh iad –10 de shlàinte cuideachd. Bheir seo a’ ghlas far an dleastanas-airm."
+msgstr "Thèid eachraidh oideachadh nas luaithe le –20% ach gheibh iad –10 de shlàinte cuideachd. Bheir seo a’ ghlas far an dleastanas-airm."
 
 #: simulation/data/technologies/training_levy_cavalry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
@@ -1770,7 +1770,7 @@ msgstr "Cuiridh coisridh a thogas tu o na saoranaich rè amannan cogaidh ri near
 #: simulation/data/technologies/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -10% train time, but also -5 health. Unlocks Conscription."
-msgstr "Thèid coisridh a thrèanadh nas luaithe le −10% ach gheibh iad −5 de shlàinte cuideachd. Bheir seo a’ ghlas far an dleastanas-airm."
+msgstr "Thèid coisridh oideachadh nas luaithe le −10% ach gheibh iad −5 de shlàinte cuideachd. Bheir seo a’ ghlas far an dleastanas-airm."
 
 #: simulation/data/technologies/training_levy_infantry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
@@ -1793,11 +1793,11 @@ msgstr "Ailtireachd cabhlaich"
 msgid ""
 "Guard units (Champions) are professionals who wield the best weapons and "
 "have the best training."
-msgstr "’S e saighdearan proifeiseanta a th’ anns na h-aonadan geàird (laoich) aig a bheil na h-airm ’s an trèanadh as fhearr."
+msgstr "’S e saighdearan proifeiseanta a th’ anns na h-aonadan geàird (laoich) aig a bheil na h-airm ’s an oideachadh as fheàrr."
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
 msgid "Unlock the ability to train Champions at the Barracks."
-msgstr "Thoir a’ ghlas far a’ chomais gus laoich a thrèanadh aig na taighean-feachd."
+msgstr "Thoir a’ ghlas far a’ chomais gus laoich oideachadh aig na taighean-feachd."
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
@@ -1819,7 +1819,7 @@ msgstr "Fèill dha nach tèid ach na boireannaich gus an torrachas a chomharrach
 
 #: simulation/data/technologies/unlock_females_house.jsontooltip
 msgid "Unlock the ability to train women from houses."
-msgstr "Thoir a’ ghlas far a’ chomais gus boireannaich a thrèanadh sna taighean."
+msgstr "Thoir a’ ghlas far a’ chomais gus boireannaich oideachadh sna taighean."
 
 #: simulation/data/technologies/unlock_females_house.jsongenericName
 msgid "Fertility Festival"
@@ -1930,7 +1930,7 @@ msgstr "Fastaich saighdearan-duaise ach an dèan iad sabaid san fheachd agad."
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid ""
 "Mercenaries are promoted to advanced rank but require +20% training time."
-msgstr "Thèid saighdearan-duaise àrdachadh ach bheir an trèanadh aca +20% a dh’ùine."
+msgstr "Thèid saighdearan-duaise àrdachadh ach bheir an oideachadh aca +20% a dh’ùine."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
@@ -2114,7 +2114,7 @@ msgstr "Ailtirean-mara Pheniceach"
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsondescription
 msgid "Celtic mercenaries have their train time decreased."
-msgstr "Thèid saighdearan-duaise Ceilteach a thrèanadh nas luaithe."
+msgstr "Thèid saighdearan-duaise Ceilteach oideachadh nas luaithe."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsontooltip
 msgid ""
@@ -2137,7 +2137,7 @@ msgstr "Ceannas air a’ Ghall"
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsondescription
 msgid "Iberian mercenaries have their train time decreased."
-msgstr "Thèid saighdearan-duaise Ibèireach a thrèanadh nas luaithe."
+msgstr "Thèid saighdearan-duaise Ibèireach oideachadh nas luaithe."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsontooltip
 msgid ""
@@ -2160,7 +2160,7 @@ msgstr "Ceannas air na h-Ibèirich"
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsondescription
 msgid "Italian mercenaries have their train time decreased."
-msgstr "Thèid saighdearan-duaise Eadailteach a thrèanadh nas luaithe."
+msgstr "Thèid saighdearan-duaise Eadailteach oideachadh nas luaithe."
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsontooltip
 msgid ""
@@ -2358,7 +2358,7 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr "Thogadh na Pearsaich mòran choisridh rè àm a’ chogaidh ’s b’ urrainn dhaibh seo a dhèanamh air sàilleibh meud is rian na h-impireachd Achaemeanach. Fhuaireadh coisridh nam Pearsach deagh thrèanadh san fharsaingeachd ’s rinneadh iad sabaid le righneas mòr. Ged a bha seo fìor, cha robh iad math air sabaid glè dhlùth. Cuideachd, cha bhiodh coisridh nam Pearsach ’nam feachd seasmhachd ’s proifeiseanta ach rèisimeidean nan seann-ghaisgeach."
+msgstr "Thogadh na Pearsaich mòran choisridh rè àm a’ chogaidh ’s b’ urrainn dhaibh seo a dhèanamh air sàilleibh meud is rian na h-impireachd Achaemeanach. Fhuaireadh coisridh nam Pearsach deagh oideachadh san fharsaingeachd ’s rinneadh iad sabaid le righneas mòr. Ged a bha seo fìor, cha robh iad math air sabaid glè dhlùth. Cuideachd, cha bhiodh coisridh nam Pearsach ’nam feachd seasmhachd ’s proifeiseanta ach rèisimeidean nan seann-ghaisgeach."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "Persians +10% maximum population limit."
@@ -2374,7 +2374,7 @@ msgid ""
 "the best army in the world for their time. What they didn't have in "
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
-msgstr "Cha bhiodh am feachd as motha fon ghrèin aig na Spartaich ach ’s ann gum biodh am feachd as fhearr fon ghrèin aca aig an àm. Ged a bhiodh dìth nan duine orra cha bhiodh dìth trèanaidh. Bhitear ag ràdh nach biodh feum aig na Spartaich air ballachan neartmhor on a bhiodh na daoine aca ’nam ballachan."
+msgstr "Cha bhiodh am feachd as motha fon ghrèin aig na Spartaich ach ’s ann gum biodh am feachd as fheàrr fon ghrèin aca aig an àm. Ged a bhiodh dìth nan duine orra cha bhiodh dìth oideachaidh. Bhitear ag ràdh nach biodh feum aig na Spartaich air ballachan neartmhor on a bhiodh na daoine aca ’nam ballachan."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
 msgid "Spartans −10% maximum population limit."
@@ -2386,7 +2386,7 @@ msgstr "Uireasbhaidh"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
-msgstr "Cuiridh trèanadh sabaide le sleaghan ris an dochann a nì sleaghairean coisridh."
+msgstr "Cuiridh oideachadh sabaide le sleaghan ris an dochann a nì sleaghairean coisridh."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
 msgid "Spearmen +2 hack attack."
@@ -2406,11 +2406,11 @@ msgstr "Doratismós"
 msgid ""
 "Spartans were housed and trained from a young age to be superlative warriors"
 " and to endure any hardship a military life can give them."
-msgstr "Chaidh na Spartaich a thrèanadh ann an ionadan sònraichte on òige ach am bhiodh iad nan sàr-ghaisgeach ’s gun seasadh iad ri cruadal a’ bheatha san arm."
+msgstr "Chaidh na Spartaich oideachadh ann an ionadan sònraichte on òige ach am bhiodh iad nan sàr-ghaisgeach ’s gun seasadh iad ri cruadal a’ bheatha san arm."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "Gheibh sleaghair coisridh +25% de shlàinte ach bheir iad +10% nas faide gus an trèanadh."
+msgstr "Gheibh sleaghair coisridh +25% de shlàinte ach bheir an oideachadh +10% a dh’ùine."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -2420,11 +2420,11 @@ msgstr "An t‑Agoga"
 msgid ""
 "Athenian triremes can train Marines (Epibates Athenaikos) and Cretan "
 "Mercenary Archers (Toxotes Kretikos)."
-msgstr "’S urrainn dha trì-ràmhaich na h-Àithne saighdearan-mara (Epibates Athenaikos) ’s boghadairean-duaise Criteach (Toxotes Kretikos) a thrèanadh."
+msgstr "’S urrainn dha trì-ràmhaich na h-Àithne saighdearan-mara (Epibates Athenaikos) ’s boghadairean-duaise Criteach (Toxotes Kretikos) oideachadh."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsontooltip
 msgid "Athenian triremes can train Marines and Cretan Mercenary Archers."
-msgstr "’S urrainn dha trì-ràmhaich na h-Àithne saighdearan-mara ’s boghadairean-duaise Criteach a thrèanadh."
+msgstr "’S urrainn dha trì-ràmhaich na h-Àithne saighdearan-mara ’s boghadairean-duaise Criteach oideachadh."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
@@ -2464,7 +2464,7 @@ msgstr "Thèid na sagartan agad oideachadh leis an àrd-shagart fhèin – beann
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
-msgstr "Trèanaich lighichean seann-ghaisgeach."
+msgstr "Oidich lighichean seann-ghaisgeach."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
@@ -2474,11 +2474,11 @@ msgstr "Facal dhè"
 msgid ""
 "The Anusiya champion infantry train twice as fast, but lose a little max "
 "health."
-msgstr "Cha doir trèanadh laoich coisridh Anusaidhea ach an dàrna leth de dh’ùine ach caillidh iad beagan slàinte."
+msgstr "Cha doir oideachadh laoich coisridh Anusaidhea ach an dàrna leth de dh’ùine ach caillidh iad beagan slàinte."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr "Thèid laoich coisridh Anusaidhea a thrèanadh nas luaithe le -50% ach caillidh iad slàinte cuideachd le −10%."
+msgstr "Thèid laoich coisridh Anusaidhea oideachadh nas luaithe le −50% ach caillidh iad slàinte cuideachd le −10%."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2515,7 +2515,7 @@ msgstr "Le gnìomhan nan rìghrean Achaimeneach tràtha, chaidh a’ Pheirse ’
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry."
-msgstr "Buannaichidh na trì-ràmhaich Pheniceach an comas gus eachraidh a thrèanadh."
+msgstr "Buannaichidh na trì-ràmhaich Pheniceach an comas gus eachraidh oideachadh."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"
@@ -2525,11 +2525,11 @@ msgstr "Giùlan each"
 msgid ""
 "Significantly increase training speed of cavalry at the stables by training "
 "them in large batches or battalions."
-msgstr "Meudaichidh seo luaths trèanaidh an eachraidh aig an stàball gu mòr nuair a thèid an trèanadh ann an grunnan mòra no cathan."
+msgstr "Meudaichidh seo luaths oideachaidh an eachraidh aig an stàball gu mòr nuair a thèid an oideachadh ann an grunn mòr no còrachadh."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
 msgid "Faster batch training speed for the Stables."
-msgstr "Luaths as àirde air trèanadh ghrunnan aig an stàball."
+msgstr "Luaths as àirde air oideachadh ghrunnan aig an stàball."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
 msgid "Cavalry Conscription"
@@ -2543,13 +2543,13 @@ msgstr "Dleastanas-airm coirsidh"
 msgid ""
 "All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr "Thèid eachraidh a thrèanadh nas luaithe le −20% ach ach caillidh iad slàinte cuideachd le −5%. Bheir seo a’ ghlas far dleastanas-airm eachraidh."
+msgstr "Thèid eachraidh oideachadh nas luaithe le −20% ach ach caillidh iad slàinte cuideachd le −5%. Bheir seo a’ ghlas far dleastanas-airm eachraidh."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr "Thèid coisridh a thrèanadh nas luaithe le −20% ach caillidh iad slàinte cuideachd le −5%. Bheir seo a’ ghlas far dleastanas-airm coisridh."
+msgstr "Thèid coisridh oideachadh nas luaithe le −20% ach caillidh iad slàinte cuideachd le −5%. Bheir seo a’ ghlas far dleastanas-airm coisridh."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."
@@ -2606,11 +2606,11 @@ msgstr "Mòr-bhaile Greugach"
 msgid ""
 "Significantly increase training speed of champions and siege engines at the "
 "fortress when training them in large batches."
-msgstr "Meudaichidh seo luaths trèanaidh nan laoch ’s innealan-sèiste aig an dùn gu mòr nuair a thèid an trèanadh ann an grunnan mòra."
+msgstr "Meudaichidh seo luaths oideachaidh nan laoch ’s innealan-sèiste aig an dùn gu mòr nuair a thèid an oideachadh ann an grunnan mòra."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
-msgstr "Luaths as àirde air trèanadh ghrunnan aig an dùn."
+msgstr "Luaths as àirde air oideachadh ghrunnan aig an dùn."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"

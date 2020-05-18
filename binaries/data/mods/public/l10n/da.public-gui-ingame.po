@@ -9,7 +9,7 @@
 # Wachsmuth <emilistrupkarlsmose@gmail.com>, 2015
 # Fijure <mathiasik@live.dk>, 2014
 # Jarl Gjessing <inactive+jarlgjessing@transifex.com>, 2014
-# Joe Hansen <joedalton2@yahoo.dk>, 2017,2019
+# Joe Hansen <joedalton2@yahoo.dk>, 2017,2019-2020
 # Mads Overgård Henningsen <mads.overgaard@live.dk>, 2014
 # Magnus Kahr Sejersen <magnus1996-2011@live.dk>, 2015
 # MrKahr <mdsandersen@gmail.com>, 2014
@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-03-09 08:13+0000\n"
-"PO-Revision-Date: 2020-03-09 13:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-05-15 10:56+0000\n"
+"Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +32,7 @@ msgstr ""
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "Tryk %(hotkey)s for at aktivere denne menu."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -44,23 +44,23 @@ msgstr "Gem"
 
 #: gui/session/MenuButtons.js:74
 msgid "Summary"
-msgstr ""
+msgstr "Opsummering"
 
 #: gui/session/MenuButtons.js:87
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr ""
+msgstr "Tryk %(hotkey)s for at åbne opsummeringsskærmen."
 
 #: gui/session/MenuButtons.js:130
 msgid "Lobby"
-msgstr ""
+msgstr "Lobby"
 
 #: gui/session/MenuButtons.js:139
 #, javascript-format
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr ""
+msgstr "Tryk %(hotkey)s for at åbne lobbysiden for flere spiller uden at forlade spillet."
 
 #: gui/session/MenuButtons.js:158
 msgid "Options"
@@ -77,7 +77,7 @@ msgstr "Pause"
 #: gui/session/MenuButtons.js:197
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr ""
+msgstr "Tryk %(hotkey)s for at sætte spillet på pause eller genoptage det."
 
 #: gui/session/MenuButtons.js:213
 msgid "Resign"
@@ -102,40 +102,40 @@ msgstr "Forbindelsen til serveren er blevet tabt."
 
 #: gui/session/NetworkStatusOverlay.js:42
 msgid "Waiting for players to connect:"
-msgstr ""
+msgstr "Venter på spillere:"
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
-msgstr ""
+msgstr "Synkroniserer spillet med andre spillere ..."
 
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
 #: gui/session/OverlayCounterElapsedTime.js:33
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/session/PauseOverlay.js:40
 #: gui/session/message_box/OutOfSyncNetwork.js:20
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/PauseOverlay.js:45
 #, javascript-format
 msgid "Paused by %(players)s"
-msgstr ""
+msgstr "Sat på pause af %(players)s"
 
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:266
 #: gui/session/selection_details.js:282 gui/session/selection_panels.js:594
 msgctxt "countdown format"
 msgid "m:ss"
-msgstr ""
+msgstr "m:ss"
 
 #: gui/session/input.js:176
 #, javascript-format
@@ -295,7 +295,7 @@ msgstr "+"
 #: gui/session/selection_details.js:538
 msgctxt "Separation mark in an enumeration"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/selection_panels.js:65
 msgid "Raise an alert!"
@@ -367,7 +367,7 @@ msgstr ""
 #: gui/session/selection_panels.js:752
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/selection_panels.js:1061
 #, javascript-format
@@ -877,7 +877,7 @@ msgstr ""
 #. elements in an enumeration.
 #: gui/session/chat/ChatMessageFormatSimulation.js:126
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:142
 #, javascript-format

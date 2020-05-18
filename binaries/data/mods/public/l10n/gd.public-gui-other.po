@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-07 08:09+0000\n"
-"PO-Revision-Date: 2020-02-07 15:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-05-17 08:10+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -910,12 +910,12 @@ msgstr "Chan eil"
 #: gui/common/tooltips.js:395
 #, javascript-format
 msgid "%(interval)s"
-msgstr ""
+msgstr "%(interval)s"
 
 #: gui/common/tooltips.js:404
 #, javascript-format
 msgid "%(durName)s: %(duration)s"
-msgstr ""
+msgstr "%(durName)s: %(duration)s"
 
 #: gui/common/tooltips.js:405
 msgid "Duration"
@@ -924,7 +924,7 @@ msgstr "Faide"
 #: gui/common/tooltips.js:410
 #, javascript-format
 msgid "%(statusName)s: "
-msgstr ""
+msgstr "%(statusName)s: "
 
 #: gui/common/tooltips.js:425
 #, javascript-format
@@ -1737,7 +1737,7 @@ msgstr "Chaidh a thogail le:"
 #. train the unit selected.
 #: gui/reference/viewer/viewer.js:142
 msgid "Trained by:"
-msgstr "Chaidh a thrèanadh le:"
+msgstr "Chaidh oideachadh le:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
@@ -2054,7 +2054,7 @@ msgstr "Èifeachdachd"
 #: gui/summary/layout.js:160
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
-msgstr "%(resourceFirstWord)s a chaidh a mhalart"
+msgstr "Malart %(resourceWithinSentence)s"
 
 #: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):109
 msgid "Miscellaneous"
@@ -2066,7 +2066,7 @@ msgstr "Marbhadh / bàs"
 
 #: gui/summary/layout.js:186
 msgid "Map control (peak)"
-msgstr "Smachd air a’ mhapa (as airde)"
+msgstr "Smachd air a’ mhapa (as àirde)"
 
 #: gui/summary/layout.js:187
 msgid "Map control (finish)"
@@ -2101,7 +2101,7 @@ msgstr "Iomlan an sgioba"
 
 #: gui/summary/summary.js:30
 msgid "Trained"
-msgstr "Trèanadh"
+msgstr "Oideachadh"
 
 #: gui/summary/summary.js:35
 msgid "Constructed"
@@ -2345,7 +2345,7 @@ msgstr "Sìobhaltas:"
 
 #: gui/reference/structree/structree.xml:(caption):98
 msgid "Trainer Units"
-msgstr "Aonadan trèanaidh"
+msgstr "Aonadan oideachaidh"
 
 #: gui/reference/viewer/viewer.xml:(caption):13
 msgid "Information"
@@ -2797,23 +2797,23 @@ msgstr "Pròiseasadh an dèidh làimh"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use anti-aliasing."
-msgstr ""
+msgstr "Na cleachd anti-aliasing."
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid "Fast, but simple anti-aliasing."
-msgstr ""
+msgstr "Anti-aliasing sìmplidh ach luath."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
-msgstr ""
+msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
-msgstr ""
+msgstr "Lùghdaich buaidh an aliasing air na h-oirean."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Anti-Aliasing"
-msgstr ""
+msgstr "Anti-aliasing"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -2900,7 +2900,7 @@ msgstr "Èifeachdan uisge"
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr "Cleachd an càileachd as fhearr airson èifeachdan uisge, a’ reandaradh stuadhan cladaich, cop na mara ’s lorgan nan long."
+msgstr "Cleachd an càileachd as fheàrr airson èifeachdan uisge, a’ reandaradh stuadhan cladaich, cop na mara ’s lorgan nan long."
 
 #: gui/options/options.json[1].options[12].label
 msgid "High-quality water effects"
@@ -3198,11 +3198,11 @@ msgstr "Slàinte nan aonadan leònta"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr "An uiread dhe dh’aonadan a thèid a thrèanadh ann an grunn a ghnàth."
+msgstr "An uiread dhe dh’aonadan a thèid oideachadh ann an grunn a ghnàth."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch training size"
-msgstr "Meud ghrunnan trèanaidh"
+msgstr "Meud ghrunnan oideachaidh"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
@@ -3311,7 +3311,7 @@ msgstr "Bàr-staide an eòlais"
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr "Seall gliocasan-sgrìn mionaideach airson aonadan a ghabhas trèanadh ann an togalaichean a nì aonadan."
+msgstr "Seall gliocasan-sgrìn mionaideach airson aonadan a ghabhas oideachadh ann an togalaichean a nì aonadan."
 
 #: gui/options/options.json[5].options[12].label
 msgid "Detailed tooltips"
@@ -3373,59 +3373,59 @@ msgstr "Dathan dioplòmasachd: nàmhaid"
 #: gui/options/options.json[5].options[18].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr ""
+msgstr "Thèid togalaichean ùra a cho-thaobhadh le togalaichean am fagas fhad ’s a bhios tu a’ brùthadh air a’ ghad-iuchair."
 
 #: gui/options/options.json[5].options[18].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr ""
+msgstr "A’ ghrad-iuchair a chuireas an greimeachadh an comas"
 
 #: gui/options/options.json[5].options[18].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr ""
+msgstr "Thèid togalaichean ùra a cho-thaobhadh le togalaichean faisg orra ach ma bhios tu a’ brùthadh air a’ ghad-iuchair."
 
 #: gui/options/options.json[5].options[18].list[1].label
 msgid "Hotkey to disable snapping"
-msgstr ""
+msgstr "A’ ghrad-iuchair a chuireas an greimeachadh à comas"
 
 #: gui/options/options.json[5].options[18].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr ""
+msgstr "Leigidh an roghainn seo leat togalaichean ùra a cho-thaobhachadh le togalaichean am fagas."
 
 #: gui/options/options.json[5].options[18].label
 msgid "Snap to edges"
-msgstr ""
+msgstr "Greimich ris na h-oirean"
 
 #: gui/options/options.json[5].options[19].list[0].tooltip
 msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
-msgstr ""
+msgstr "Nuair a chuireas tu aonad no togalach ri buidheann-smachd, thèid a thoirt air falbh o bhuidheann-smachd sam bith eile. Cleachd an roghainn seo ma tha thu airson feachdan fa leth a stiùireadh leis na biuidhnean-smachd."
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
-msgstr ""
+msgstr "Fa leth"
 
 #: gui/options/options.json[5].options[19].list[1].tooltip
 msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
-msgstr ""
+msgstr "’S urrainn dhut aonad no togalach a chur ann an iomadh buidheann-smachd. Tha seo feumail airson buidhnean-smachd do dh’fheachdan fa leth agus buidheann-smachd air am feachd gu lèir a chumail aig an aon àm."
 
 #: gui/options/options.json[5].options[19].list[1].label
 msgid "Multiple"
-msgstr ""
+msgstr "Iomadach"
 
 #: gui/options/options.json[5].options[19].tooltip
 msgid "Decide whether units can be part of multiple control groups."
-msgstr ""
+msgstr "Cuir romhad am faod aonadan a bhith nam ball de dh’iomadh buidheann-smachd gus nach fhaod."
 
 #: gui/options/options.json[5].options[19].label
 msgid "Control Group Membership"
-msgstr ""
+msgstr "Ballrachd nam buidhnean-smachd"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -3463,7 +3463,7 @@ msgstr "Biadh"
 #: simulation/data/resources/food.jsonname
 msgctxt "withinSentence"
 msgid "Food"
-msgstr "Biadh"
+msgstr "bìdh"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3533,7 +3533,7 @@ msgstr "Meatailt"
 #: simulation/data/resources/metal.jsonname
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr "Meatailt"
+msgstr "meatailte"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3561,7 +3561,7 @@ msgstr "Clach"
 #: simulation/data/resources/stone.jsonname
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr "Clach"
+msgstr "cloiche"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3605,7 +3605,7 @@ msgstr "Fiodh"
 #: simulation/data/resources/wood.jsonname
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr "Fiodh"
+msgstr "fiodha"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3669,7 +3669,7 @@ msgstr "Gabhaidh a thogail àite sam bith air ranntair an nàmhad no neo-phàirt
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct siege weapons and train citizen-soldiers."
-msgstr "Tog innealan-sèiste is trèanaich saighdearan-dùthcha."
+msgstr "Tog innealan-sèiste is oidich saighdearan-dùthcha."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
@@ -3685,7 +3685,7 @@ msgstr "TAIGHEAN-FEACHD"
 msgid ""
 "Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr "Trèanaich a h‑uile seòrsa de shaighdearan-dùthcha. ’S urrainn dha cuid a bhuidhnean a’ ghlas a thoirt far trèanadh nan laoch cuideachd."
+msgstr "Oidich a h‑uile seòrsa de shaighdearan-dùthcha. ’S urrainn dha cuid a bhuidhnean a’ ghlas a thoirt far oideachadh nan laoch cuideachd."
 
 #: gui/text/tips/barracks.txt:3
 msgid "Research military technologies unique to each faction."
@@ -3695,7 +3695,7 @@ msgstr "Rannsaich teicneolasan an airm a bhios diofraichte do gach sìobhaltas."
 msgid ""
 "Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr "Tog fear tràth gus saighdearan-dùthcha a thrèanadh fhad ’s a bhios tu ag àrdachadh do thuineachadh gu linn ùr."
+msgstr "Tog fear tràth gus saighdearan-dùthcha oideachadh fhad ’s a bhios tu ag àrdachadh do thuineachadh gu linn ùr."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
@@ -3725,7 +3725,7 @@ msgstr "Laoich sleaghair ’s laoich sleaghair eachraidh airson nan Cartagach."
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr "Gabhaidh an dà chuid trèanadh san teampall seach san dùn mar a théid a’ mhòrchuid de laoich."
+msgstr "Gabhaidh an dà chuid oideachadh san teampall seach san dùn mar a théid a’ mhòrchuid de laoich."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
@@ -3791,7 +3791,7 @@ msgstr "’S urrainn dhut fear a thogail air ranntair càirdeil no neo-phàirtea
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr "Trèanaich saoranaich: saoranaich bhoireann, coisridh-dhùthcha is eachraidh-dùthcha."
+msgstr "Oidich saoranaich: saoranaich bhoireann, coisridh-dhùthcha is eachraidh-dùthcha."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3803,7 +3803,7 @@ msgstr "Seo taigh-feachd sònraichte aig na Cartagaich."
 
 #: gui/text/tips/embassies.txt:3
 msgid "Train mercenaries from each of the ethnically-themed embassies."
-msgstr "Trèanaich saighdearan-duaise a bhuineas ri sluagh na h‑ambasaid."
+msgstr "Oidich saighdearan-duaise a bhuineas ri sluagh na h‑ambasaid."
 
 #: gui/text/tips/embassies.txt:4
 msgid ""
@@ -3841,7 +3841,7 @@ msgstr "’S e an togalach as treasa aig cha mhòr gach sìobhaltas a tha san d�
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
-msgstr "Trèanaichidh seo laoich, curaidhean is innealan sèiste."
+msgstr "Oidichidh seo laoich, curaidhean is innealan sèiste."
 
 #: gui/text/tips/fortress.txt:4
 msgid "Gives a population boost."
@@ -4107,7 +4107,7 @@ msgstr "Togalach sònraichte do mhuinntir na h‑Àithne, na Masadonaich ’s na
 
 #: gui/text/tips/stoa.txt:3
 msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr "Trèanaidh e streupairean troma e laoich coisridh claidheimh."
+msgstr "Oidichidh e streupairean troma e laoich coisridh claidheimh."
 
 #: gui/text/tips/stoa.txt:4
 msgid "Grants +10 Population."
@@ -4232,7 +4232,7 @@ msgstr "AILBHEANAN-COGAIDH"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
-msgstr "Beathaichean mòra à Afraga ’s às na h-Innseachan a chaidh a thrèanadh airson a’ chogaidh."
+msgstr "Beathaichean mòra à Afraga ’s às na h-Innseachan a chaidh oideachadh airson a’ chogaidh."
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
