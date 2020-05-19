@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Adomas Jackevičius, 2014
+# Ainis Kilinskis <ainis.kilinskis@gmail.com>, 2020
 # Donatas Kičas <donatas.kicas@outlook.com>, 2015
 # Nerijus Rastikis <nerijus.rastikis@hotmail.lt>, 2017
 # Vytautas, 2018
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-04-13 07:18+0000\n"
-"PO-Revision-Date: 2020-04-13 10:46+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-05-17 08:34+0000\n"
+"Last-Translator: Ainis Kilinskis <ainis.kilinskis@gmail.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -164,7 +165,7 @@ msgstr "Kavalerijos lankininkas"
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:26
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:31
 msgid "Javelinist"
-msgstr ""
+msgstr "Javelinistas"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:28
 msgid "Cavalry Skirmisher"
@@ -184,7 +185,7 @@ msgstr "Čempionų kavalerija"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:32
 msgid "Champion Cavalry Archer"
-msgstr ""
+msgstr "lankininkų Čempionų kavalerija"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:32
 msgid "Champion Cavalry Skirmisher"
@@ -281,11 +282,11 @@ msgstr "Negali atakuoti struktūrų"
 #: simulation/templates/template_unit_fauna_herd.xml:7
 #: simulation/templates/template_unit_fauna_hunt.xml:8
 msgid "Kill to gather meat for food."
-msgstr ""
+msgstr "Medžiokite, kad surinktumėte mėsą maistui."
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:9
 msgid "Kill to butcher for food."
-msgstr ""
+msgstr "surinkite mėsą maistui."
 
 #: simulation/templates/template_unit_hero.xml:32
 #: simulation/templates/template_unit_hero.xml:33
@@ -410,7 +411,7 @@ msgstr "Greitai sumažina priešo laivų gyvybės taškus. Degdamas iš lėto pr
 
 #: simulation/templates/template_unit_ship_fishing.xml:36
 msgid "FishingBoat"
-msgstr ""
+msgstr "žvejybinė valtis."
 
 #: simulation/templates/template_unit_ship_fishing.xml:38
 #: simulation/templates/units/kush_ship_fishing.xml:5
@@ -445,7 +446,7 @@ msgstr "Prekiaukite tarp prieplaukų. Įlaipinkite pirklį, kad padidintumėte p
 #: simulation/templates/template_unit_ship_quinquereme.xml:67
 #: simulation/templates/units/cart_ship_quinquereme.xml:5
 msgid "Quinquereme"
-msgstr ""
+msgstr "Kvinkvirema"
 
 #: simulation/templates/template_unit_ship_quinquereme.xml:68
 msgid "Heavy Warship"
@@ -483,7 +484,7 @@ msgstr "Plakantis taranas"
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:55
 msgid "StoneThrower"
-msgstr ""
+msgstr "Akmens mėtytojas"
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:56
 msgid "Siege Catapult"
@@ -629,7 +630,7 @@ msgstr "Pažangus"
 
 #: simulation/templates/units/athen_cavalry_javelinist_b.xml:7
 msgid "Pródromos"
-msgstr ""
+msgstr "Prodromos"
 
 #: simulation/templates/units/athen_cavalry_javelinist_e.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_e.xml:4
@@ -744,7 +745,7 @@ msgstr "Graikų kavalerija"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:8
 msgid "Hippeús"
-msgstr ""
+msgstr "Hipėjus"
 
 #: simulation/templates/units/athen_champion_infantry.xml:6
 msgid "City Guard"
@@ -752,7 +753,7 @@ msgstr "Miesto sargybinis"
 
 #: simulation/templates/units/athen_champion_infantry.xml:7
 msgid "Epílektos"
-msgstr ""
+msgstr "Epiliktas"
 
 #: simulation/templates/units/athen_champion_marine.xml:6
 msgid "Athenian Marine"
@@ -760,7 +761,7 @@ msgstr "Atėnų jūrų pėstininkas"
 
 #: simulation/templates/units/athen_champion_marine.xml:7
 msgid "Epibátēs Athēnaîos"
-msgstr ""
+msgstr "epibatės atenos"
 
 #: simulation/templates/units/athen_champion_ranged.xml:6
 msgid "Scythian Archer"
@@ -768,7 +769,7 @@ msgstr "Skitų lankininkas"
 
 #: simulation/templates/units/athen_champion_ranged.xml:7
 msgid "Toxótēs Skythikós"
-msgstr ""
+msgstr "totų skykos"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:10
 msgid "Iphicrates"
@@ -792,7 +793,7 @@ msgstr "Temistoklis"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:11
 msgid "Themistoklēs"
-msgstr ""
+msgstr "temistokės"
 
 #: simulation/templates/units/athen_hero_xenophon.xml:6
 msgid "Xenophon"

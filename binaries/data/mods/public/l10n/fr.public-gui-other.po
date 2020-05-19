@@ -34,8 +34,9 @@
 # Marco tom Suden, 2014
 # Inperpetuammemoriam, 2016
 # Marwan <Skyplay33@gmail.com>, 2015
-# ., 2020
-# ., 2020
+# MayeulC <mayeul.cantan@live.fr>, 2020
+# Nescio, 2020
+# Nescio, 2020
 # Micky Jault <micky037@hotmail.fr>, 2016
 # Moritz FS <momogingins@gmail.com>, 2015
 # Mortimer <doug.mortimer@netcourrier.com>, 2015-2016,2018
@@ -57,8 +58,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-02-07 08:09+0000\n"
-"PO-Revision-Date: 2020-04-04 09:53+0000\n"
-"Last-Translator: gab tes\n"
+"PO-Revision-Date: 2020-05-16 21:53+0000\n"
+"Last-Translator: MayeulC <mayeul.cantan@live.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -106,8 +107,8 @@ msgstr "Technologies spéciales"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Structure"
 msgid_plural "Special Structures"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Construction spéciale"
+msgstr[1] "Constructions spéciales"
 
 #: gui/civinfo/civinfo.js:141 gui/summary/layout.js:67
 msgid "Heroes"
@@ -3132,17 +3133,17 @@ msgstr "Comportement de l'IA par défaut."
 
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
-msgstr ""
+msgstr "Les joueurs rejoignant la partie seront assignés si un emplacement est disponible."
 
 #: gui/options/options.json[3].options[5].list[1].tooltip
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
-msgstr ""
+msgstr "Les joueurs rejoignant la partie seront seulement assignés si ils sont un ami de l'hôte, et qu'un emplacement est disponible."
 
 #: gui/options/options.json[3].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr ""
+msgstr "Les joueurs ne reçoivent un emplacement que lorsque l'hôte le leur assigne explicitement."
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
@@ -3409,7 +3410,7 @@ msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
-msgstr ""
+msgstr "Lors de l'ajout d'une unité ou construction à un groupe de contrôle, celle-ci est retirée des autres groupes. Choisissez cela si vous souhaitez que les groupes de contrôle désignent des armées distinctes."
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
@@ -3420,7 +3421,7 @@ msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
-msgstr ""
+msgstr "Les unités et constructions peuvent appartenir à différents groupes de contrôle. Cela est utile pour conserver des groupes distincts pour les armées, ainsi qu'un groupe pour l'armée entière."
 
 #: gui/options/options.json[5].options[19].list[1].label
 msgid "Multiple"
@@ -3428,11 +3429,11 @@ msgstr "A plusieurs"
 
 #: gui/options/options.json[5].options[19].tooltip
 msgid "Decide whether units can be part of multiple control groups."
-msgstr ""
+msgstr "Décide si les unités peuvent appartenir à différents groupes de contrôle."
 
 #: gui/options/options.json[5].options[19].label
 msgid "Control Group Membership"
-msgstr ""
+msgstr "Appartenance au groupe de contrôle"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -3891,17 +3892,17 @@ msgstr "Les citoyennes récoltent les ressources végétales plus rapidement."
 
 #: gui/text/tips/gathering.txt:4
 msgid "Infantry citizen-soldiers are faster gathering minerals."
-msgstr ""
+msgstr "Les citoyens-soldat d'infanterie extraient les minéraux plus rapidement."
 
 #: gui/text/tips/gathering.txt:5
 msgid "Cavalry citizen-soldiers are faster gathering meat."
-msgstr ""
+msgstr "Les citoyens-soldat de cavalerie collectent la viande plus rapidement."
 
 #: gui/text/tips/gathering.txt:6
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr ""
+msgstr "Plus le niveau du citoyen-soldat est important (avancé, élite), mieux il se bat, mais moins il est efficace en collecte de ressources."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -3911,15 +3912,15 @@ msgstr "IPHICRATE"
 msgid ""
 "The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr ""
+msgstr "Le général athénien qui a réformé l'armée athénienne pour être plus rapide et plus manœuvrable."
 
 #: gui/text/tips/iphicrates.txt:3
 msgid "Units in his formation are faster and stronger."
-msgstr ""
+msgstr "Les unités dans sa formation sont plus rapides et plus puissantes."
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "Skirmishers move faster while he lives."
-msgstr ""
+msgstr "Les tirailleurs se déplacent plus rapidement tant qu'il est en vie."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -3927,11 +3928,11 @@ msgstr "AVANT-POSTES"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral territory for a large scouting range."
-msgstr ""
+msgstr "Construisez-en en territoire neutre pour une grande portée de reconnaissance."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap, at 80 Wood."
-msgstr ""
+msgstr "Bon marché, coûte 80 de bois."
 
 #: gui/text/tips/outposts.txt:4
 msgid "They construct quickly, but are weak."
@@ -3939,7 +3940,7 @@ msgstr "Ils sont construits rapidement, mais ne sont pas solide."
 
 #: gui/text/tips/outposts.txt:5
 msgid "Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr ""
+msgstr "Mettre en garnison une unité pour en garder le contrôle en territoire neutre."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -3947,11 +3948,11 @@ msgstr "PALISSADES"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr ""
+msgstr "Un rapide et peu coûteux mur en bois disponible pour toutes les factions."
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
-msgstr ""
+msgstr "La plupart des factions y ont accès lors de la phase des villages."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
@@ -3959,11 +3960,11 @@ msgstr "PÉRICLÈS"
 
 #: gui/text/tips/pericles.txt:2
 msgid "The foremost Athenian politician of the 5th century BC."
-msgstr ""
+msgstr "Le plus grand politicien athénien du Ve siècle avant notre ère."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Structures are built faster within his range."
-msgstr ""
+msgstr "Les structures sont construites plus rapidement autour de lui."
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."
@@ -3989,7 +3990,7 @@ msgstr "Augmentation du temps de construction de +20% en conséquence."
 msgid ""
 "Persians also have access to a great number of structural and defensive "
 "technologies."
-msgstr ""
+msgstr "Les Perses ont également accès à un grand nombre de technologies structurelles et défensives."
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
@@ -4110,7 +4111,7 @@ msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "A special structure for  Athenians, Macedonians, and Spartans."
-msgstr ""
+msgstr "Une structure spéciale pour les factions athéniennes, macédoniennes, et spartiates."
 
 #: gui/text/tips/stoa.txt:3
 msgid "Trains Heavy Skirmishers and Sword Infantry Champions."

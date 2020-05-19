@@ -13,15 +13,15 @@
 # SuroX <peter.surovcik@gmail.com>, 2016
 # Peto (wt-ts) <peter.tuharsky@gmail.com>, 2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
-# Angen <slavomir.slovenkai@gmail.com>, 2018-2019
+# Angen <slavomir.slovenkai@gmail.com>, 2018-2020
 # Tom Hanax, 2019
 # Zuzana Miadoková <akara.horse@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-04-30 10:46+0000\n"
-"PO-Revision-Date: 2020-04-30 20:52+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-05-17 08:20+0000\n"
+"Last-Translator: Angen <slavomir.slovenkai@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +31,7 @@ msgstr ""
 
 #: simulation/templates/template_formation.xml:25
 msgid "Requires at least 2 Soldiers or Siege engines."
-msgstr ""
+msgstr "Vyžaduje aspoň 2 vojakov alebo obliehacie stroje."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -44,11 +44,11 @@ msgstr "ryby"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
-msgstr ""
+msgstr "Lov ryby pre jedlo."
 
 #: simulation/templates/template_gaia_flora.xml:6
 msgid "Chop trees for wood."
-msgstr ""
+msgstr "Rúb stromy pre drevo."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
@@ -60,7 +60,7 @@ msgstr "Ker"
 #: simulation/templates/template_gaia_flora_bush_berry.xml:4
 #: simulation/templates/template_gaia_flora_tree_fruit.xml:8
 msgid "Pick fruit for food."
-msgstr ""
+msgstr "Zberaj ovocie pre jedlo."
 
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
@@ -76,7 +76,7 @@ msgstr "Rudná baňa"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
 msgid "Mine ore for metal."
-msgstr ""
+msgstr "Doluj rudu pre kov."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
@@ -92,7 +92,7 @@ msgstr "Ruiny"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr ""
+msgstr "Zbúraj zrúcaniny pre kameň."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
@@ -100,7 +100,7 @@ msgstr "Poklad"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr ""
+msgstr "Zberaj poklady pre suroviny."
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
@@ -193,7 +193,7 @@ msgstr "Canis lupus"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:4
 msgid "Black Bear"
-msgstr ""
+msgstr "Medveď čierny"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:5
 msgid "Ursus americanus"
@@ -209,7 +209,7 @@ msgstr "Ursus arctos"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:4
 msgid "Polar Bear"
-msgstr ""
+msgstr "Polárny medveď"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:5
 msgid "Ursus maritimus"
@@ -242,7 +242,7 @@ msgstr "Bos taurus taurus"
 
 #: simulation/templates/gaia/fauna_cattle_cow.xml:4
 msgid "Cow"
-msgstr ""
+msgstr "Krava"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:4
 msgid "Sanga Cattle"
@@ -683,7 +683,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_maple.xml:4
 msgid "Maple"
-msgstr ""
+msgstr "Javor"
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -763,7 +763,7 @@ msgstr "Topoľ čierny"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy_autumn.xml:4
 msgid "Poplar"
-msgstr ""
+msgstr "Topoľ"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy_dead.xml:4
 msgid "Dead Black Poplar Tree"
@@ -1062,7 +1062,7 @@ msgstr "Bojová línia"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
-msgstr ""
+msgstr "Vyžaduje aspoň 4 vojakov alebo obliehacích strojov."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1078,7 +1078,7 @@ msgstr "Otvorený stĺpec"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr ""
+msgstr "Vyžaduje aspoň 8 vojakov alebo obliehacích strojov."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1098,7 +1098,7 @@ msgstr "Žiadne"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Infantry Hoplites only, requires at least 10."
-msgstr ""
+msgstr "Iba Hopliti, vyžaduje aspoň 10."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1110,7 +1110,7 @@ msgstr "Rozptyl"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Ranged Soldiers only, requires at least 2."
-msgstr ""
+msgstr "Iba vojaci s útokom na diaľku, vyžaduje aspoň 10."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -1118,7 +1118,7 @@ msgstr "Šarvátka"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr ""
+msgstr "Iba Kopijníci, vyžaduje aspoň 16."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1130,7 +1130,7 @@ msgstr "Korytnačka"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Cavalry only, requires at least 6."
-msgstr ""
+msgstr "Iba Jazda, vyžaduje aspoň 6."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
