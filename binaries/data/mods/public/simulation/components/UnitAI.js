@@ -5986,10 +5986,8 @@ UnitAI.prototype.TryMatchTargetSpeed = function(target, mayRun = true)
 	if (cmpUnitMotionTarget)
 	{
 		let targetSpeed = cmpUnitMotionTarget.GetCurrentSpeed();
-		if (!targetSpeed)
-			return;
-
-		this.SetSpeedMultiplier(Math.min(mayRun ? this.GetRunMultiplier() : 1, targetSpeed / this.GetWalkSpeed()));
+		if (targetSpeed)
+			this.SetSpeedMultiplier(Math.min(mayRun ? this.GetRunMultiplier() : 1, targetSpeed / this.GetWalkSpeed()));
 	}
 };
 
