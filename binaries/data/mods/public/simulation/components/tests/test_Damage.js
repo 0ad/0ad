@@ -614,7 +614,7 @@ function Test_MissileHit()
 
 	cmpDelayedDamage.MissileHit(data, 0);
 	TS_ASSERT(hitEnts.has(61));
-	TS_ASSERT_EQUALS(dealtDamage, 100 + 2 * 200);
+	TS_ASSERT_EQUALS(dealtDamage, 100 + 200);
 	dealtDamage = 0;
 	TS_ASSERT(hitEnts.has(62));
 	hitEnts.clear();

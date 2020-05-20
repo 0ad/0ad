@@ -298,28 +298,17 @@ Attacking.prototype.HandleAttackEffects = function(attackType, attackData, targe
  * @param {Vector2D} origin - The point to check around.
  * @param {number}   radius - The radius around the point to check.
  * @param {number[]} players - The players of which we need to check entities.
+ * @param {number}   itf - Interface IID that returned entities must implement. Defaults to none.
  * @return {number[]} The id's of the entities in range of the given point.
  */
-Attacking.prototype.EntitiesNearPoint = function(origin, radius, players)
+Attacking.prototype.EntitiesNearPoint = function(origin, radius, players, itf = 0)
 {
 	// If there is insufficient data return an empty array.
 	if (!origin || !radius || !players || !players.length)
 		return [];
 
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-
-	// Return all entities, except for Gaia: IID_Health is required to avoid returning trees and such.
-	let gaiaEntities = [];
-	let gaiaIndex = players.indexOf(0);
-	if (gaiaIndex !== -1)
-	{
-		// splice() modifies players in-place and returns [0]
-		gaiaEntities = gaiaEntities.concat(cmpRangeManager.ExecuteQueryAroundPos(origin, 0, radius, players.splice(gaiaIndex, 1), IID_Health));
-		if (!players.length)
-			return gaiaEntities;
-	}
-
-	return cmpRangeManager.ExecuteQueryAroundPos(origin, 0, radius, players, 0).concat(gaiaEntities);
+	return cmpRangeManager.ExecuteQueryAroundPos(origin, 0, radius, players, itf);
 };
 
 /**
