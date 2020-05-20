@@ -428,10 +428,12 @@ class xml(Extractor):
                             if "locationAttributes" in self.keywords[keyword]:
                                 attributes = [element.get(attribute) for attribute in self.keywords[keyword]["locationAttributes"] if attribute in element.attrib]
                                 breadcrumb = "({attributes})".format(attributes=", ".join(attributes))
-                            if "tagAsContext" in self.keywords[keyword]:
-                                context = keyword
                             if "context" in element.attrib:
                                 context = unicode(element.get("context"))
+                            elif "tagAsContext" in self.keywords[keyword]:
+                                context = keyword
+                            elif "customContext" in self.keywords[keyword]:
+                                context = self.keywords[keyword]["customContext"]
                             if "comment" in element.attrib:
                                 comment = element.get("comment")
                                 comment = u" ".join(comment.split()) # Remove tabs, line breaks and unecessary spaces.

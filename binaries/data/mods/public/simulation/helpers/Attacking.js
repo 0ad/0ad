@@ -25,12 +25,14 @@ const StatusEffectsSchema =
 			"<element>" +
 				"<anyName/>" +
 				"<interleave>" +
-					"<element name='Name'><text/></element>" +
+					"<optional>" +
+						"<element name='StatusName'><text/></element>" +
+					"</optional>" +
 					"<optional>" +
 						"<element name='Icon' a:help='Icon for the status effect.'><text/></element>" +
 					"</optional>" +
 					"<optional>" +
-						"<element name='Tooltip'><text/></element>" +
+						"<element name='StatusTooltip'><text/></element>" +
 					"</optional>" +
 					"<optional>" +
 						"<element name='Duration' a:help='The duration of the status while the effect occurs.'><ref name='nonNegativeDecimal'/></element>" +
