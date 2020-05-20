@@ -73,6 +73,27 @@ Timer.prototype.SetInterval = function(ent, iid, funcname, time, repeattime, dat
 };
 
 /**
+ * Updates the repeat time of a timer.
+ * Note that this will take only effect after the next update.
+ *
+ * @param {number} timerID - The timer to update.
+ * @param {number} newRepeatTime - The new repeat time to use.
+ */
+Timer.prototype.UpdateRepeatTime = function(timerID, newRepeatTime)
+{
+	let timer = this.timers.get(timerID);
+	if (timer)
+		this.timers.set(timerID, {
+			"entity": timer.entity,
+			"iid": timer.iid,
+			"functionName": timer.functionName,
+			"time": timer.time,
+			"repeatTime": newRepeatTime,
+			"data": timer.data
+		});
+};
+
+/**
  * Cancels an existing timer that was created with SetTimeout/SetInterval.
  * @param {number} id - The timer's ID returned by either SetTimeout or SetInterval.
  */

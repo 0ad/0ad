@@ -78,3 +78,20 @@ cancelId = cmpTimer.SetInterval(20, IID_Test, "Callback", 500, 1000, "s");
 
 cmpTimer.OnUpdate({ "turnLength": 3.0 });
 TS_ASSERT_UNEVAL_EQUALS(fired, [["s",2500]]);
+
+fired = [];
+let f = cmpTimer.SetInterval(10, IID_Test, "Callback", 1000, 1000, "f");
+
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_UNEVAL_EQUALS(fired, [["f", 0]]);
+
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_UNEVAL_EQUALS(fired, [["f", 0], ["f", 0]]);
+
+cmpTimer.UpdateRepeatTime(f, 500);
+cmpTimer.OnUpdate({ "turnLength": 1.5 });
+// Interval updated at next updated, so expecting latency here.
+TS_ASSERT_UNEVAL_EQUALS(fired, [["f", 0], ["f", 0], ["f", 500], ["f", 0]]);
+
+cmpTimer.OnUpdate({ "turnLength": 0.5 });
+TS_ASSERT_UNEVAL_EQUALS(fired, [["f", 0], ["f", 0], ["f", 500], ["f", 0], ["f", 0]]);
