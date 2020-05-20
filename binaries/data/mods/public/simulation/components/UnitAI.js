@@ -1701,15 +1701,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					// Adapt the speed to the one of the target if needed
 					let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
 					if (cmpObstructionManager.IsInTargetRange(this.entity, this.isGuardOf, 0, 3 * this.guardRange, false))
-					{
-						let cmpUnitAI = Engine.QueryInterface(this.isGuardOf, IID_UnitAI);
-						if (cmpUnitAI)
-						{
-							let speed = cmpUnitAI.GetWalkSpeed();
-							if (speed < this.GetWalkSpeed())
-								this.SetSpeedMultiplier(speed / this.GetWalkSpeed());
-						}
-					}
+						this.TryMatchTargetSpeed(this.isGuardOf, false);
 
 					this.SetHeldPositionOnEntity(this.isGuardOf);
 				},
@@ -5980,6 +5972,25 @@ UnitAI.prototype.SetSpeedMultiplier = function(speed)
 	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	if (cmpUnitMotion)
 		cmpUnitMotion.SetSpeedMultiplier(speed);
+};
+
+/**
+ * Try to match the targets current movement speed.
+ *
+ * @param {number} target - The entity ID of the target to match.
+ * @param {boolean} mayRun - Whether the entity is allowed to run to match the speed.
+ */
+UnitAI.prototype.TryMatchTargetSpeed = function(target, mayRun = true)
+{
+	let cmpUnitMotionTarget = Engine.QueryInterface(target, IID_UnitMotion);
+	if (cmpUnitMotionTarget)
+	{
+		let targetSpeed = cmpUnitMotionTarget.GetCurrentSpeed();
+		if (!targetSpeed)
+			return;
+
+		this.SetSpeedMultiplier(Math.min(mayRun ? this.GetRunMultiplier() : 1, targetSpeed / this.GetWalkSpeed()));
+	}
 };
 
 /*
