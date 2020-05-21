@@ -8,6 +8,13 @@ DelayedDamage.prototype.Init = function()
 };
 
 /**
+ * When missiles miss their target, other units in MISSILE_HIT_RADIUS range are considered.
+ * Large missiles should probably implement splash damage anyways,
+ * so keep this value low for performance.
+ */
+DelayedDamage.prototype.MISSILE_HIT_RADIUS = 2;
+
+/**
  * Handles hit logic after the projectile travel time has passed.
  * @param {Object}   data - The data sent by the caller.
  * @param {string}   data.type - The type of damage.
@@ -69,8 +76,7 @@ DelayedDamage.prototype.MissileHit = function(data, lateness)
 		return;
 
 	// If we didn't hit the main target look for nearby units.
-	let ents = Attacking.EntitiesNearPoint(Vector2D.from3D(data.position),
-		targetPosition.horizDistanceTo(data.position) * 2,
+	let ents = Attacking.EntitiesNearPoint(Vector2D.from3D(data.position), this.MISSILE_HIT_RADIUS,
 		Attacking.GetPlayersToDamage(data.attackerOwner, data.friendlyFire));
 
 	for (let ent of ents)

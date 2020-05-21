@@ -400,6 +400,12 @@
                 ],
                 "options": {
                     "keywords": {
+                        "StatusName": {
+                            "customContext": "status effect"
+                        },
+                        "StatusTooltip": {
+                            "customContext": "status effect"
+                        },
                         "GenericName": {},
                         "SpecificName": {},
                         "History": {},
@@ -432,6 +438,12 @@
                 ],
                 "options": {
                     "keywords": {
+                        "StatusName": {
+                            "customContext": "status effect"
+                        },
+                        "StatusTooltip": {
+                            "customContext": "status effect"
+                        },
                         "GenericName": {},
                         "SpecificName": {},
                         "History": {},
@@ -471,6 +483,12 @@
                 },
                 "options": {
                     "keywords": {
+                        "StatusName": {
+                            "customContext": "status effect"
+                        },
+                        "StatusTooltip": {
+                            "customContext": "status effect"
+                        },
                         "GenericName": {},
                         "SpecificName": {},
                         "History": {},
@@ -485,6 +503,32 @@
                             "tagAsContext": true
                         }
                     }
+                }
+            },
+            {
+                "extractor": "json",
+                "filemasks": [
+                    "simulation/data/template_helpers/damage_types/*.json"
+                ],
+                "options": {
+                    "keywords": [
+                        "name",
+                        "description"
+                    ],
+                    "context": "damage type"
+                }
+            },
+            {
+                "extractor": "json",
+                "filemasks": [
+                    "simulation/data/template_helpers/status_effects/*.json"
+                ],
+                "options": {
+                    "keywords": [
+                        "StatusName",
+                        "StatusTooltip"
+                    ],
+                    "context": "status effect"
                 }
             }
         ]

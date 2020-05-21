@@ -13,6 +13,9 @@ function getCostTypes()
 	return g_ResourceData.GetCodes().concat(["population", "populationBonus", "time"]);
 }
 
+var g_DamageTypesMetadata = new DamageTypesMetadata();
+var g_StatusEffectsMetadata = new StatusEffectsMetadata();
+
 /**
  * If true, always shows whether the splash damage deals friendly fire.
  * Otherwise display the friendly fire tooltip only if it does.
@@ -169,10 +172,10 @@ function getArmorTooltip(template)
 	return sprintf(translate("%(label)s %(details)s"), {
 		"label": headerFont(translate("Armor:")),
 		"details":
-			Object.keys(template.armour).map(
+			g_DamageTypesMetadata.sort(Object.keys(template.armour)).map(
 				dmgType => sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
 					"damage": template.armour[dmgType].toFixed(1),
-					"damageType": unitFont(translateWithContext("damage type", dmgType)),
+					"damageType": unitFont(translateWithContext("damage type", g_DamageTypesMetadata.getName(dmgType))),
 					"armorPercentage":
 						'[font="sans-10"]' +
 						sprintf(translate("(%(armorPercentage)s)"), {
@@ -257,10 +260,10 @@ function damageDetails(damageTemplate)
 	if (!damageTemplate)
 		return "";
 
-	return Object.keys(damageTemplate).filter(dmgType => damageTemplate[dmgType]).map(
+	return g_DamageTypesMetadata.sort(Object.keys(damageTemplate).filter(dmgType => damageTemplate[dmgType])).map(
 		dmgType => sprintf(translate("%(damage)s %(damageType)s"), {
 			"damage": (+damageTemplate[dmgType]).toFixed(1),
-			"damageType": unitFont(translateWithContext("damage type", dmgType))
+			"damageType": unitFont(translateWithContext("damage type", g_DamageTypesMetadata.getName(dmgType)))
 		})).join(commaFont(translate(", ")));
 }
 
@@ -281,7 +284,10 @@ function applyStatusDetails(applyStatusTemplate)
 		return "";
 
 	return sprintf(translate("gives %(name)s"), {
-		"name": Object.keys(applyStatusTemplate).map(x => unitFont(translateWithContext("status effect", applyStatusTemplate[x].Name))).join(commaFont(translate(", "))),
+		"name": Object.keys(applyStatusTemplate).map(x => {
+			let template = g_StatusEffectsMetadata.augment(x, applyStatusTemplate[x]);
+			return unitFont(translateWithContext("status effect", template.StatusName));
+		}).join(commaFont(translate(", "))),
 	});
 }
 
@@ -325,7 +331,10 @@ function getAttackTooltip(template)
 		let statusEffectsDetails = [];
 		if (attackTypeTemplate.ApplyStatus)
 			for (let status in attackTypeTemplate.ApplyStatus)
-				statusEffectsDetails.push("\n    " + getStatusEffectsTooltip(attackTypeTemplate.ApplyStatus[status]));
+			{
+				let status_template = g_StatusEffectsMetadata.augment(status, attackTypeTemplate.ApplyStatus[status]);
+				statusEffectsDetails.push("\n    " + getStatusEffectsTooltip(status_template));
+			}
 		statusEffectsDetails = statusEffectsDetails.join("");
 
 		tooltips.push(sprintf(translate("%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s"), {
@@ -375,10 +384,10 @@ function getStatusEffectsTooltip(template)
 {
 	let tooltipAttributes = [];
 	let tooltipString = "";
-	if (template.Tooltip)
+	if (template.StatusTooltip)
 	{
 		tooltipAttributes.push("%(tooltip)s");
-		tooltipString = translate(template.Tooltip);
+		tooltipString = translate(template.StatusTooltip);
 	}
 
 	let attackEffectsString = "";
@@ -408,7 +417,7 @@ function getStatusEffectsTooltip(template)
 	}
 
 	return sprintf(translate("%(statusName)s: " + tooltipAttributes.join(translate(commaFont(", ")))), {
-		"statusName": headerFont(translateWithContext("status effect", template.Name)),
+		"statusName": headerFont(translateWithContext("status effect", template.StatusName)),
 		"tooltip": tooltipString,
 		"effects": attackEffectsString,
 		"rate": intervalString,
