@@ -1216,7 +1216,7 @@ std::string XmppClient::CertificateErrorToString(gloox::CertStatus status)
 		{ gloox::CertSignerUnknown, g_L10n.Translate("The certificate hasn't got a known issuer.") },
 		{ gloox::CertRevoked, g_L10n.Translate("The certificate has been revoked.") },
 		{ gloox::CertExpired, g_L10n.Translate("The certificate has expired.") },
-		{ gloox::CertNotActive, g_L10n.Translate("The certifiacte is not yet active.") },
+		{ gloox::CertNotActive, g_L10n.Translate("The certificate is not yet active.") },
 		{ gloox::CertWrongPeer, g_L10n.Translate("The certificate has not been issued for the peer connected to.") },
 		{ gloox::CertSignerNotCa, g_L10n.Translate("The certificate signer is not a certificate authority.") }
 	};
