@@ -22,7 +22,7 @@ WallSet.prototype.Schema =
 				"<text/>" +
 			"</element>" +
 			"<optional>" +
-				"<element name='WallCurves' a:help='Space-separated list of template names of curving wall segments.'>" +
+				"<element name='WallCurves' a:help='Whitespace-separated list of template names of curving wall segments.'>" +
 					"<text/>" +
 				"</element>" +
 			"</optional>" +
