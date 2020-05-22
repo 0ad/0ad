@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-09 08:13+0000\n"
-"PO-Revision-Date: 2020-03-09 13:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2020-05-18 07:13+0000\n"
+"PO-Revision-Date: 2020-05-18 13:20+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,7 +148,7 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "میانگین امتیاز شعاع حمله : %(range)s متر"
 msgstr[1] "میانگین شعاع حمله : %(range)s متر"
 
-#: gui/session/input.js:698
+#: gui/session/input.js:694
 msgid "Cannot build wall here!"
 msgstr "ساخت دیوار در اینجا امکان پذیر نیست!"
 
@@ -515,91 +515,91 @@ msgstr "کلیک راست کنید تا یک مسیر پیش فرض برای ت�
 msgid "Expected gain: %(gain)s"
 msgstr "سود مورد انتظار: %(gain)s"
 
-#: gui/session/unit_actions.js:1123 gui/session/unit_actions.js:1451
+#: gui/session/unit_actions.js:1125 gui/session/unit_actions.js:1453
 msgid "Unload All."
 msgstr "خالی کردن همه"
 
-#: gui/session/unit_actions.js:1141
+#: gui/session/unit_actions.js:1143
 msgid "Destroy the selected units or structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1143
+#: gui/session/unit_actions.js:1145
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "بکارگیری %(hotkey)s برای اجتناب از دیالوگ تایید."
 
-#: gui/session/unit_actions.js:1190
+#: gui/session/unit_actions.js:1192
 msgid "Abort the current order."
 msgstr "لغو دستور فعلی"
 
-#: gui/session/unit_actions.js:1209
+#: gui/session/unit_actions.js:1211
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1232
+#: gui/session/unit_actions.js:1234
 msgid "Unload"
 msgstr "خالی کردن"
 
-#: gui/session/unit_actions.js:1250
+#: gui/session/unit_actions.js:1252
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr ""
 
-#: gui/session/unit_actions.js:1269
+#: gui/session/unit_actions.js:1271
 msgid "Focus on Rally Point."
 msgstr "تمرکز بر نقطه تجمع"
 
-#: gui/session/unit_actions.js:1304
+#: gui/session/unit_actions.js:1306
 msgid "Back to Work"
 msgstr "بازگشت به کار"
 
-#: gui/session/unit_actions.js:1323
+#: gui/session/unit_actions.js:1325
 msgid "Order the selected units to guard a structure or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1341
+#: gui/session/unit_actions.js:1343
 msgid "Remove guard"
 msgstr "برداشتن محافظ"
 
-#: gui/session/unit_actions.js:1358
+#: gui/session/unit_actions.js:1360
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr "تهاتر & معامله"
 
-#: gui/session/unit_actions.js:1376
+#: gui/session/unit_actions.js:1378
 msgid "Patrol"
 msgstr "گشت"
 
-#: gui/session/unit_actions.js:1377
+#: gui/session/unit_actions.js:1379
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1403
+#: gui/session/unit_actions.js:1405
 msgid "Press to allow allies to use this dropsite"
 msgstr "فشار دادن برای اجازه دادن به هم پیمان ها که از این محل تخلیه منابع استفاده کنند"
 
-#: gui/session/unit_actions.js:1407
+#: gui/session/unit_actions.js:1409
 msgid "Press to prevent allies from using this dropsite"
 msgstr "فشار دادن برای جلوگیری از هم پیمان ها برای استفاده از این محل تخلیه منابع"
 
-#: gui/session/unit_actions.js:1472
+#: gui/session/unit_actions.js:1474
 msgid "You are allowed to use this dropsite"
 msgstr "شما اجازه پیدا کردید تا از این محل تخلیه منابع استفاده کنید"
 
-#: gui/session/unit_actions.js:1477
+#: gui/session/unit_actions.js:1479
 msgid "The use of this dropsite is prohibited"
 msgstr "شما اجازه استفاده از این محل تخلیه منابع را ندارید"
 
-#: gui/session/unit_actions.js:1551
+#: gui/session/unit_actions.js:1553
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "این موجود باید نخست کشته شود تا بتوانید منابع آنرا جمع آوری کنید"
 
-#: gui/session/unit_actions.js:1554
+#: gui/session/unit_actions.js:1556
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "شما نمی توانید این واحد را تخریب کنید چرا که شما مالکیت کمتر از نصف از امتیاز تسخیر آنرا در اختیار دارید."
 
-#: gui/session/unit_actions.js:1557
+#: gui/session/unit_actions.js:1559
 msgid "This entity is undeletable"
 msgstr "این واحد غیر قابل حذف است."
 
@@ -1190,9 +1190,9 @@ msgstr "کارگر بیکار پیدا کن"
 #, javascript-format
 msgid ""
 "%(civ)s\n"
-"%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
+"%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: دیدن تاریخچه / ساختار درختی\nآخرین موردی که باز شد اگر کلید کنید باز خواهد شد."
+msgstr ""
 
 #: gui/session/top_panel/CounterManager.js:100
 #, javascript-format

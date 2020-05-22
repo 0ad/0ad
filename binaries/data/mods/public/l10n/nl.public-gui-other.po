@@ -5,6 +5,7 @@
 # Translators:
 # Anique van Berne <avanberne@gmail.com>, 2016
 # annihilator solar <incoming@upcmail.nl>, 2019
+# Bart <b.anthonisse@gmail.com>, 2020
 # Bart Groeneveld, 2017
 # Bart Groeneveld, 2016
 # bb <b.jansen5@students.uu.nl>, 2019
@@ -35,9 +36,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-02-07 08:09+0000\n"
-"PO-Revision-Date: 2020-03-28 19:35+0000\n"
-"Last-Translator: Freagarach . <freagarach@gmail.com>\n"
+"POT-Creation-Date: 2020-05-18 07:13+0000\n"
+"PO-Revision-Date: 2020-05-21 10:28+0000\n"
+"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,8 +53,8 @@ msgstr "%(hotkey)s: Ga naar structuurboom."
 
 #: gui/civinfo/civinfo.js:21
 #, javascript-format
-msgid "%(hotkey)s: Close History."
-msgstr "%(hotkey)s: Sluit Geschiedenispagina."
+msgid "%(hotkey)s: Close Civilization Overview."
+msgstr "%(hotkey)s Sluit het overzicht van beschavingen"
 
 #. Translation: insert an itemization symbol for each entry.
 #: gui/civinfo/civinfo.js:85
@@ -510,11 +511,11 @@ msgstr "Slechte verbinding met %(player)s (%(milliseconds)sms)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr ""
+msgstr "Dit wordt vaak veroorzaakt doordat UDP poort 20595 niet geforward wordt bij de host, door de firewall of anti-virus software."
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "De host heeft het spel beëindigd."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
@@ -1344,10 +1345,10 @@ msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Toon de structuurboom van beschavingen in 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:36
+#: gui/pregame/MainMenuItems.js:36 gui/civinfo/civinfo.xml:(caption):18
 #: gui/reference/structree/structree.xml:(caption):126
-msgid "History"
-msgstr "Geschiedenis"
+msgid "Civilization Overview"
+msgstr "Overzicht van beschavingen"
 
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
@@ -1415,7 +1416,7 @@ msgstr "Host een spel"
 
 #: gui/pregame/MainMenuItems.js:103
 msgid "Host a multiplayer game."
-msgstr ""
+msgstr "Host een multiplayer spel."
 
 #: gui/pregame/MainMenuItems.js:111
 msgid "Game Lobby"
@@ -1709,8 +1710,8 @@ msgstr "%(health_min)stot%(health_max)s"
 
 #: gui/reference/structree/structree.js:41
 #, javascript-format
-msgid "%(hotkey)s: Switch to History."
-msgstr "%(hotkey)s: Schakel naar Geschiedenis."
+msgid "%(hotkey)s: Switch to Civilization Overview."
+msgstr "%(hotkey)s Ga naar het overzicht van beschavingen"
 
 #: gui/reference/structree/structree.js:42
 #, javascript-format
@@ -2195,10 +2196,6 @@ msgstr "%(mapName)s - %(mapType)s"
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: Toon de multiplayer lobby in een dialoogvenster."
-
-#: gui/civinfo/civinfo.xml:(caption):18
-msgid "Civilizations"
-msgstr "Beschavingen"
 
 #: gui/civinfo/civinfo.xml:(caption):30
 msgid "Civilization Selection"
@@ -2858,7 +2855,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Show outlines of units behind structures."
-msgstr ""
+msgstr "Laat de contouren van de eenheden achter bouwwerken zien."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Unit silhouettes"
@@ -3111,17 +3108,17 @@ msgstr ""
 
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
-msgstr ""
+msgstr "Spelers die zich bij het spel voegen worden toegelaten als er een plek vrij is."
 
 #: gui/options/options.json[3].options[5].list[1].tooltip
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
-msgstr ""
+msgstr "Spelers die zich bij het spel voegen worden alleen toegelaten als ze een vriend van de host zijn en als er een plek vrij is."
 
 #: gui/options/options.json[3].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr ""
+msgstr "Spelers krijgen alleen een plek wanneer de host ze die toewijst."
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
@@ -3958,7 +3955,7 @@ msgstr "Speciale technologie voor de Perzen."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr ""
+msgstr "Gebouwen +25% gezondheid."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."

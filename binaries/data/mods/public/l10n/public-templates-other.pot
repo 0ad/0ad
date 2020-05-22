@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2020-04-30 10:46+0000\n"
-"PO-Revision-Date: 2020-04-30 10:46+0000\n"
+"POT-Creation-Date: 2020-05-22 07:09+0000\n"
+"PO-Revision-Date: 2020-05-22 07:09+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1121,4 +1121,36 @@ msgstr ""
 
 #: simulation/templates/special/player/player.xml:64
 msgid "Player"
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/crush.json:name
+msgctxt "damage type"
+msgid "Crush"
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/crush.json:description
+msgctxt "damage type"
+msgid "Damage caused by sheer force, like with a club or by trampling."
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/hack.json:name
+msgctxt "damage type"
+msgid "Hack"
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/hack.json:description
+msgctxt "damage type"
+msgid ""
+"Damage caused by sharp objects cutting or chopping, like with a sword or an "
+"axe."
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/pierce.json:name
+msgctxt "damage type"
+msgid "Pierce"
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/pierce.json:description
+msgctxt "damage type"
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
 msgstr ""

@@ -5,7 +5,7 @@
 # Translators:
 # Albert, 2016
 # Alejandro Avellaneda <aleavellaneda1@gmail.com>, 2019
-# mondeja <mondejar1994@gmail.com>, 2019
+# Álvaro Mondéjar <mondejar1994@gmail.com>, 2019
 # Antonio Vazquez <antoniovavazquez@gmail.com>, 2020
 # Antón Chinaev <Chinaev_Anton@outlook.es>, 2018
 # Antonio Martín <antonio.martinperez1991@gmail.com>, 2018
@@ -34,9 +34,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-02-07 08:09+0000\n"
-"PO-Revision-Date: 2020-03-15 12:00+0000\n"
-"Last-Translator: juan pablo Ferraro <ferrarojuanpablo@yahoo.es>\n"
+"POT-Creation-Date: 2020-05-18 07:13+0000\n"
+"PO-Revision-Date: 2020-05-18 17:28+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,8 +51,8 @@ msgstr "%(hotkey)s: Cambiar al Árbol de estructura."
 
 #: gui/civinfo/civinfo.js:21
 #, javascript-format
-msgid "%(hotkey)s: Close History."
-msgstr "%(hotkey)s: Cerrar Historia."
+msgid "%(hotkey)s: Close Civilization Overview."
+msgstr ""
 
 #. Translation: insert an itemization symbol for each entry.
 #: gui/civinfo/civinfo.js:85
@@ -1343,10 +1343,10 @@ msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Ver el árbol de estructuras de las civilizaciones en 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:36
+#: gui/pregame/MainMenuItems.js:36 gui/civinfo/civinfo.xml:(caption):18
 #: gui/reference/structree/structree.xml:(caption):126
-msgid "History"
-msgstr "Historia"
+msgid "Civilization Overview"
+msgstr ""
 
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
@@ -1708,8 +1708,8 @@ msgstr "%(health_min)s a %(health_max)s"
 
 #: gui/reference/structree/structree.js:41
 #, javascript-format
-msgid "%(hotkey)s: Switch to History."
-msgstr "%(hotkey)s: Cambiar a Historia"
+msgid "%(hotkey)s: Switch to Civilization Overview."
+msgstr ""
 
 #: gui/reference/structree/structree.js:42
 #, javascript-format
@@ -2194,10 +2194,6 @@ msgstr "%(mapName)s - %(mapType)s"
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: Convierte la sala multijugador en una ventana de diálogo."
-
-#: gui/civinfo/civinfo.xml:(caption):18
-msgid "Civilizations"
-msgstr "Civilizaciones"
 
 #: gui/civinfo/civinfo.xml:(caption):30
 msgid "Civilization Selection"

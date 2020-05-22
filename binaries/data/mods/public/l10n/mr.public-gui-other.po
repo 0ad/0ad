@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-02-07 08:09+0000\n"
-"PO-Revision-Date: 2020-02-07 15:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2020-05-18 07:13+0000\n"
+"PO-Revision-Date: 2020-05-18 17:28+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Marathi (http://www.transifex.com/wildfire-games/0ad/language/mr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: gui/civinfo/civinfo.js:21
 #, javascript-format
-msgid "%(hotkey)s: Close History."
+msgid "%(hotkey)s: Close Civilization Overview."
 msgstr ""
 
 #. Translation: insert an itemization symbol for each entry.
@@ -1315,9 +1315,9 @@ msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:36
+#: gui/pregame/MainMenuItems.js:36 gui/civinfo/civinfo.xml:(caption):18
 #: gui/reference/structree/structree.xml:(caption):126
-msgid "History"
+msgid "Civilization Overview"
 msgstr ""
 
 #: gui/pregame/MainMenuItems.js:37
@@ -1680,7 +1680,7 @@ msgstr ""
 
 #: gui/reference/structree/structree.js:41
 #, javascript-format
-msgid "%(hotkey)s: Switch to History."
+msgid "%(hotkey)s: Switch to Civilization Overview."
 msgstr ""
 
 #: gui/reference/structree/structree.js:42
@@ -2165,10 +2165,6 @@ msgstr ""
 #: gui/summary/summary.js:524
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr ""
-
-#: gui/civinfo/civinfo.xml:(caption):18
-msgid "Civilizations"
 msgstr ""
 
 #: gui/civinfo/civinfo.xml:(caption):30
