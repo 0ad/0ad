@@ -1,3 +1,7 @@
+/*
+ * Slightly modified version by Wildfire Games, for 0 A.D to support more languages.
+ */
+
 // tinygettext - A gettext replacement that works directly on .po files
 // Copyright (c) 2006 Ingo Ruhnke <grumbel@gmail.com>
 //
@@ -38,14 +42,25 @@ unsigned int plural1(int )     { return 0; }
 unsigned int plural2_1(int n)  { return (n != 1); }
 unsigned int plural2_2(int n)  { return (n > 1); }
 unsigned int plural2_mk(int n) { return n==1 || n%10==1 ? 0 : 1; }
+unsigned int plural2_mk_2(int n) { return static_cast<unsigned int>((n % 10 == 1 && n % 100 != 11) ? 0 : 1);}
 unsigned int plural3_lv(int n) { return static_cast<unsigned int>(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2); }
 unsigned int plural3_ga(int n) { return static_cast<unsigned int>(n==1 ? 0 : n==2 ? 1 : 2); }
 unsigned int plural3_lt(int n) { return static_cast<unsigned int>(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2); }
 unsigned int plural3_1(int n)  { return static_cast<unsigned int>(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2); }
 unsigned int plural3_sk(int n) { return static_cast<unsigned int>( (n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2 ); }
 unsigned int plural3_pl(int n) { return static_cast<unsigned int>(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2); }
+unsigned int plural3_ro(int n) { return static_cast<unsigned int>(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));}
 unsigned int plural3_sl(int n) { return static_cast<unsigned int>(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3); }
-unsigned int plural4_gd(int n) { return static_cast<unsigned int>( n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3; }
+unsigned int plural4_be(int n) { return static_cast<unsigned int>(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);}
+unsigned int plural4_cs(int n) { return static_cast<unsigned int>((n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3);}
+unsigned int plural4_cy(int n) { return static_cast<unsigned int>((n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != 11) ? 2 : 3);}
+unsigned int plural4_gd(int n) { return static_cast<unsigned int>(( n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3); }
+unsigned int plural4_he(int n) { return static_cast<unsigned int>((n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3);}
+unsigned int plural4_lt(int n) { return static_cast<unsigned int>(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);}
+unsigned int plural4_pl(int n) { return static_cast<unsigned int>(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);}
+unsigned int plural4_sk(int n) { return static_cast<unsigned int>(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);}
+unsigned int plural4_uk(int n) { return static_cast<unsigned int>(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);}
+unsigned int plural5_ga(int n) { return static_cast<unsigned int>(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);}
 unsigned int plural6_ar(int n) { return static_cast<unsigned int>( n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5); }
 
 
@@ -63,6 +78,7 @@ PluralForms::from_string(const std::string& str)
     plural_forms["Plural-Forms:nplurals=2;plural=n!=1;"] = PluralForms(2, plural2_1);
     plural_forms["Plural-Forms:nplurals=2;plural=(n>1);"] = PluralForms(2, plural2_2);
     plural_forms["Plural-Forms:nplurals=2;plural=n==1||n%10==1?0:1;"] = PluralForms(2, plural2_mk);
+    plural_forms["Plural-Forms:nplurals=2;plural=(n%10==1&&n%100!=11)?0:1;"] = PluralForms(2, plural2_mk_2);
     plural_forms["Plural-Forms:nplurals=3;plural=n%10==1&&n%100!=11?0:n!=0?1:2);"] = PluralForms(2, plural3_lv);
     plural_forms["Plural-Forms:nplurals=3;plural=n==1?0:n==2?1:2;"] = PluralForms(3, plural3_ga);
     plural_forms["Plural-Forms:nplurals=3;plural=(n%10==1&&n%100!=11?0:n%10>=2&&(n%100<10||n%100>=20)?1:2);"] = PluralForms(3, plural3_lt);
@@ -70,8 +86,17 @@ PluralForms::from_string(const std::string& str)
     plural_forms["Plural-Forms:nplurals=3;plural=(n==1)?0:(n>=2&&n<=4)?1:2;"] = PluralForms(3, plural3_sk);
     plural_forms["Plural-Forms:nplurals=3;plural=(n==1?0:n%10>=2&&n%10<=4&&(n%100<10||n%100>=20)?1:2);"] = PluralForms(3, plural3_pl);
     plural_forms["Plural-Forms:nplurals=3;plural=(n%100==1?0:n%100==2?1:n%100==3||n%100==4?2:3);"] = PluralForms(3, plural3_sl);
-
+    plural_forms["Plural-Forms:nplurals=3;plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));"] = PluralForms(3, plural3_ro);
+    plural_forms["Plural-Forms:nplurals=4;plural=(n%1==0&&n==1?0:n%1==0&&n>=2&&n<=4?1:n%1!=0?2:3);"] = PluralForms(4, plural4_sk);
+    plural_forms["Plural-Forms:nplurals=4;plural=(n==1&&n%1==0)?0:(n>=2&&n<=4&&n%1==0)?1:(n%1!=0)?2:3;"] = PluralForms(4, plural4_cs);
+    plural_forms["Plural-Forms:nplurals=4;plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:n%10==0||(n%10>=5&&n%10<=9)||(n%100>=11&&n%100<=14)?2:3);"] = PluralForms(4, plural4_be);
     plural_forms["Plural-Forms:nplurals=4;plural=(n==1||n==11)?0:(n==2||n==12)?1:(n>2&&n<20)?2:3;"]=PluralForms(4, plural4_gd);
+    plural_forms["Plural-Forms:nplurals=4;plural=(n==1)?0:(n==2)?1:(n!=8&&n!=11)?2:3;"] = PluralForms(4, plural4_cy);
+    plural_forms["Plural-Forms:nplurals=4;plural=(n%10==1&&(n%100>19||n%100<11)?0:(n%10>=2&&n%10<=9)&&(n%100>19||n%100<11)?1:n%1!=0?2:3);"] = PluralForms(4, plural4_lt);
+    plural_forms["Plural-Forms:nplurals=4;plural=(n%1==0&&n%10==1&&n%100!=11?0:n%1==0&&n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:n%1==0&&(n%10==0||(n%10>=5&&n%10<=9)||(n%100>=11&&n%100<=14))?2:3);"] = PluralForms(4, plural4_uk);
+    plural_forms["Plural-Forms:nplurals=4;plural=(n==1?0:(n%10>=2&&n%10<=4)&&(n%100<12||n%100>14)?1:n!=1&&(n%10>=0&&n%10<=1)||(n%10>=5&&n%10<=9)||(n%100>=12&&n%100<=14)?2:3);"] = PluralForms(4, plural4_pl);
+    plural_forms["Plural-Forms:nplurals=4;plural=(n==1&&n%1==0)?0:(n==2&&n%1==0)?1:(n%10==0&&n%1==0&&n>10)?2:3;"] = PluralForms(4, plural4_he);
+    plural_forms["Plural-Forms:nplurals=5;plural=(n==1?0:n==2?1:n<7?2:n<11?3:4)"] = PluralForms(5, plural5_ga);
     plural_forms["Plural-Forms:nplurals=6;plural=n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11?4:5"]=PluralForms(6, plural6_ar);
   }
 
