@@ -467,7 +467,7 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 		if (template.WallSet.Templates.WallEnd)
 			ret.wallSet.templates.end = template.WallSet.Templates.WallEnd;
 		if (template.WallSet.Templates.WallCurves)
-			ret.wallSet.templates.curves = template.WallSet.Templates.WallCurves.split(" ");
+			ret.wallSet.templates.curves = template.WallSet.Templates.WallCurves.split(/\s+/);
 	}
 
 	if (template.WallPiece)

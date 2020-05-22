@@ -51,6 +51,11 @@ SODIUM_VERSION="libsodium-1.0.18"
 # * NVTT
 # * FCollada
 # --------------------------------------------------------------
+# We use suffixes here in order to force rebuilding when patching these libs
+SPIDERMONKEY_VERSION="mozjs-45.0.2+wildfiregames.1"
+NVTT_VERSION="nvtt-2.1.1+wildfiregames.1"
+FCOLLADA_VERSION="fcollada-3.05+wildfiregames.1"
+# --------------------------------------------------------------
 # Provided by OS X:
 # * OpenAL
 # * OpenGL
@@ -158,7 +163,7 @@ pushd zlib > /dev/null
 
 ZLIB_DIR="$(pwd)"
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   rm -f .already-built
   download_lib $LIB_URL $LIB_ARCHIVE
@@ -174,7 +179,7 @@ then
          --static \
     && make ${JOBS} && make install) || die "zlib build failed"
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
@@ -191,7 +196,7 @@ LIB_URL="http://curl.haxx.se/download/"
 mkdir -p libcurl
 pushd libcurl > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   INSTALL_DIR="$(pwd)"
 
@@ -231,7 +236,7 @@ then
       --enable-shared=no \
     && make ${JOBS} && make install) || die "libcurl build failed"
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
@@ -250,7 +255,7 @@ pushd iconv > /dev/null
 
 ICONV_DIR="$(pwd)"
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   rm -f .already-built
   download_lib $LIB_URL $LIB_ARCHIVE
@@ -268,7 +273,7 @@ then
       --enable-shared=no \
     && make ${JOBS} && make install) || die "libiconv build failed"
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
@@ -285,7 +290,7 @@ LIB_URL="ftp://xmlsoft.org/libxml2/"
 mkdir -p libxml2
 pushd libxml2 > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   INSTALL_DIR="$(pwd)"
 
@@ -306,7 +311,7 @@ then
       --enable-shared=no \
     && make ${JOBS} && make install) || die "libxml2 build failed"
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
@@ -324,7 +329,7 @@ LIB_URL="https://libsdl.org/release/"
 mkdir -p sdl2
 pushd sdl2 > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   INSTALL_DIR="$(pwd)"
 
@@ -348,7 +353,7 @@ then
       --enable-shared=no \
     && make $JOBS && make install) || die "SDL2 build failed"
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
@@ -365,7 +370,7 @@ LIB_URL="http://download.sourceforge.net/boost/"
 mkdir -p boost
 pushd boost > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   INSTALL_DIR="$(pwd)"
 
@@ -392,7 +397,7 @@ then
     ) || die "Boost build failed"
 
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
@@ -410,7 +415,7 @@ LIB_URL="http://github.com/wxWidgets/wxWidgets/releases/download/v3.0.3.1/"
 mkdir -p wxwidgets
 pushd wxwidgets > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   INSTALL_DIR="$(pwd)"
 
@@ -453,7 +458,7 @@ then
     && make ${JOBS} && make install) || die "wxWidgets build failed"
   popd
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
@@ -470,7 +475,7 @@ LIB_URL="http://download.sourceforge.net/libpng/"
 mkdir -p libpng
 pushd libpng > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   INSTALL_DIR="$(pwd)"
 
@@ -487,7 +492,7 @@ then
       --enable-shared=no \
     && make ${JOBS} && make install) || die "libpng build failed"
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
@@ -509,7 +514,7 @@ mkdir -p vorbis
 pushd libogg > /dev/null
 OGG_DIR="$(pwd)"
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   rm -f .already-built
   download_lib $LIB_URL $LIB_ARCHIVE
@@ -524,7 +529,7 @@ then
       --enable-shared=no \
     && make ${JOBS} && make install) || die "libogg build failed"
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
@@ -540,7 +545,7 @@ LIB_URL="http://downloads.xiph.org/releases/vorbis/"
 
 pushd vorbis > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   INSTALL_DIR="$(pwd)"
 
@@ -558,7 +563,7 @@ then
       --with-ogg="$OGG_DIR" \
     && make ${JOBS} && make install) || die "libvorbis build failed"
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
@@ -577,7 +582,7 @@ pushd gmp > /dev/null
 
 GMP_DIR="$(pwd)"
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   INSTALL_DIR="$(pwd)"
 
@@ -599,7 +604,7 @@ then
       --with-pic \
     && make ${JOBS} && make install) || die "GMP build failed"
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
@@ -618,7 +623,7 @@ pushd nettle > /dev/null
 
 NETTLE_DIR="$(pwd)"
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   INSTALL_DIR="$(pwd)"
 
@@ -644,7 +649,7 @@ then
       --disable-assembler \
     && make ${JOBS} && make install) || die "Nettle build failed"
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
@@ -663,7 +668,7 @@ pushd gnutls > /dev/null
 
 GNUTLS_DIR="$(pwd)"
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   INSTALL_DIR="$(pwd)"
 
@@ -698,7 +703,7 @@ then
           --disable-nls \
     && make ${JOBS} && make install) || die "GnuTLS build failed"
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
@@ -715,7 +720,7 @@ LIB_URL="http://camaya.net/download/"
 mkdir -p gloox
 pushd gloox > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   INSTALL_DIR="$(pwd)"
 
@@ -743,7 +748,7 @@ then
       --disable-getaddrinfo \
     && make ${JOBS} && make install) || die "gloox build failed"
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
@@ -760,7 +765,7 @@ LIB_URL="https://github.com/unicode-org/icu/releases/download/release-59-2/"
 mkdir -p $LIB_DIRECTORY
 pushd icu > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   INSTALL_DIR="$(pwd)"
 
@@ -786,7 +791,7 @@ then
     && make ${JOBS} && make install) || die "ICU build failed"
   popd
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
@@ -803,7 +808,7 @@ LIB_URL="http://enet.bespin.org/download/"
 mkdir -p enet
 pushd enet > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   INSTALL_DIR="$(pwd)"
 
@@ -820,7 +825,7 @@ then
       --enable-shared=no \
     && make clean && make ${JOBS} && make install) || die "ENet build failed"
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
@@ -837,7 +842,7 @@ LIB_URL="http://miniupnp.tuxfamily.org/files/download.php?file="
 mkdir -p miniupnpc
 pushd miniupnpc > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   INSTALL_DIR="$(pwd)"
 
@@ -855,7 +860,7 @@ then
   popd
   # TODO: how can we not build the dylibs?
   rm -f lib/*.dylib
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
@@ -872,7 +877,7 @@ LIB_URL="https://download.libsodium.org/libsodium/releases/"
 mkdir -p libsodium
 pushd libsodium > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   INSTALL_DIR="$(pwd)"
 
@@ -893,7 +898,7 @@ then
     && INSTALLPREFIX="$INSTALL_DIR" make install \
   ) || die "libsodium build failed"
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
@@ -903,14 +908,16 @@ popd > /dev/null
 # The following libraries are shared on different OSes and may
 # be customized, so we build and install them from bundled sources
 # --------------------------------------------------------------------
-echo -e "Building Spidermonkey..."
-LIB_VERSION="mozjs-45.0.2"
-LIB_ARCHIVE="$LIB_VERSION.tar.bz2"
+# SpiderMonkey - bundled, no download
+echo -e "Building SpiderMonkey..."
+
+LIB_VERSION="${SPIDERMONKEY_VERSION}"
 LIB_DIRECTORY="mozjs-45.0.2"
+LIB_ARCHIVE="$LIB_DIRECTORY.tar.bz2"
 
 pushd ../source/spidermonkey/ > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]] || [[ .already-built -ot README.txt ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   INSTALL_DIR="$(pwd)"
   INCLUDE_DIR_DEBUG=$INSTALL_DIR/include-unix-debug
@@ -955,7 +962,7 @@ then
         --disable-optimize \
         --enable-js-diagnostics \
         --enable-gczeal \
-    && make ${JOBS}) || die "Spidermonkey build failed"
+    && make ${JOBS}) || die "SpiderMonkey build failed"
   # js-config.h is different for debug and release builds, so we need different include directories for both
   mkdir -p $INCLUDE_DIR_DEBUG
   cp -R -L dist/include/* $INCLUDE_DIR_DEBUG/
@@ -970,7 +977,7 @@ then
   (CC="clang" CXX="clang++" CXXFLAGS="${TLCXXFLAGS}" AR=ar CROSS_COMPILE=1 \
     ../configure $CONF_OPTS \
         --enable-optimize \
-    && make ${JOBS}) || die "Spidermonkey build failed"
+    && make ${JOBS}) || die "SpiderMonkey build failed"
   # js-config.h is different for debug and release builds, so we need different include directories for both
   mkdir -p $INCLUDE_DIR_RELEASE
   cp -R -L dist/include/* $INCLUDE_DIR_RELEASE/
@@ -980,19 +987,21 @@ then
   mv moz.build.bak moz.build
   
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
 popd > /dev/null
 
 # --------------------------------------------------------------
-# NVTT - no install
+# NVTT - bundled, no download
 echo -e "Building NVTT..."
+
+LIB_VERSION="${NVTT_VERSION}"
 
 pushd ../source/nvtt > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   rm -f .already-built
   rm -f lib/*.a
@@ -1022,19 +1031,21 @@ then
   cp build/src/nv*/libnv*.a ../lib/
   cp build/src/nvtt/squish/libsquish.a ../lib/
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
 popd > /dev/null
 
 # --------------------------------------------------------------
-# FCollada - no install
+# FCollada - bundled, no download
 echo -e "Building FCollada..."
+
+LIB_VERSION="${FCOLLADA_VERSION}"
 
 pushd ../source/fcollada > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
 then
   rm -f .already-built
   rm -f lib/*.a
@@ -1049,7 +1060,7 @@ then
   # Undo Makefile change
   mv Makefile.bak Makefile
   popd
-  touch .already-built
+  echo "$LIB_VERSION" > .already-built
 else
   already_built
 fi
