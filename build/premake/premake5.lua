@@ -6,6 +6,7 @@ newoption { trigger = "icc", description = "Use Intel C++ Compiler (Linux only; 
 newoption { trigger = "jenkins-tests", description = "Configure CxxTest to use the XmlPrinter runner which produces Jenkins-compatible output" }
 newoption { trigger = "minimal-flags", description = "Only set compiler/linker flags that are really needed. Has no effect on Windows builds" }
 newoption { trigger = "outpath", description = "Location for generated project files" }
+newoption { trigger = "with-system-mozjs68", description = "Search standard paths for libmozjs68, instead of using bundled copy (experimental)" }
 newoption { trigger = "with-system-mozjs45", description = "Search standard paths for libmozjs45, instead of using bundled copy" }
 newoption { trigger = "with-system-nvtt", description = "Search standard paths for nvidia-texture-tools library, instead of using bundled copy" }
 newoption { trigger = "without-audio", description = "Disable use of OpenAL/Ogg/Vorbis APIs" }
@@ -280,7 +281,7 @@ function project_set_build_flags()
 
 			buildoptions {
 				-- Enable C++11 standard.
-				"-std=c++0x"
+				"-std=c++17"
 			}
 
 			if arch == "arm" then

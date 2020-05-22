@@ -59,6 +59,7 @@
 
 #include "jspubtd.h"
 #include "jsapi.h"
+#include "js/Initialization.h"
 
 // restore user flags and re-enable the warnings disabled a few lines above
 #if MSC_VERSION
@@ -71,26 +72,29 @@
 # pragma GCC diagnostic pop
 #endif
 
-#if MOZJS_MAJOR_VERSION != 45
-#error Your compiler is trying to use an incorrect major version of the \
-SpiderMonkey library. The only version that works is the one in the \
-libraries/spidermonkey/ directory, and it will not work with a typical \
-system-installed version. Make sure you have got all the right files and \
-include paths.
-#endif
-
-#if MOZJS_MINOR_VERSION != 0
-#error Your compiler is trying to use an untested minor version of the \
-SpiderMonkey library. If you are a package maintainer, please make sure \
-to check very carefully that this version does not change the behaviour \
-of the code executed by SpiderMonkey. Different parts of the game (e.g. \
-the multiplayer mode) rely on deterministic behaviour of the JavaScript \
-engine. A simple way for testing this would be playing a network game \
-with one player using the old version and one player using the new \
-version. Another way for testing is running replays and comparing the \
-final hash (check trac.wildfiregames.com/wiki/Debugging#Replaymode). \
-For more information check this link: trac.wildfiregames.com/wiki/Debugging#Outofsync
-#endif
+/*
+    #if MOZJS_MAJOR_VERSION != 45
+    #error Your compiler is trying to use an incorrect major version of the \
+    SpiderMonkey library. The only version that works is the one in the \
+    libraries/spidermonkey/ directory, and it will not work with a typical \
+    system-installed version. Make sure you have got all the right files and \
+    include paths.
+    #endif
+*/
+/*
+    #if MOZJS_MINOR_VERSION != 0
+    #error Your compiler is trying to use an untested minor version of the \
+    SpiderMonkey library. If you are a package maintainer, please make sure \
+    to check very carefully that this version does not change the behaviour \
+    of the code executed by SpiderMonkey. Different parts of the game (e.g. \
+    the multiplayer mode) rely on deterministic behaviour of the JavaScript \
+    engine. A simple way for testing this would be playing a network game \
+    with one player using the old version and one player using the new \
+    version. Another way for testing is running replays and comparing the \
+    final hash (check trac.wildfiregames.com/wiki/Debugging#Replaymode). \
+    For more information check this link: trac.wildfiregames.com/wiki/Debugging#Outofsync
+    #endif
+*/
 
 class ScriptInterface;
 

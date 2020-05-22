@@ -42,6 +42,7 @@ with_system_premake5=false
 without_nvtt=false
 with_system_nvtt=false
 with_system_mozjs45=false
+with_system_mozjs68=false
 enable_atlas=true
 
 for i in "$@"
@@ -50,6 +51,7 @@ do
     --with-system-premake5 ) with_system_premake5=true ;;
     --without-nvtt ) without_nvtt=true; premake_args="${premake_args} --without-nvtt" ;;
     --with-system-nvtt ) with_system_nvtt=true; premake_args="${premake_args} --with-system-nvtt" ;;
+    --with-system-mozjs68 ) with_system_mozjs68=true; premake_args="${premake_args} --with-system-mozjs68" ;;
     --with-system-mozjs45 ) with_system_mozjs45=true; premake_args="${premake_args} --with-system-mozjs45" ;;
     --enable-atlas ) enable_atlas=true ;;
     --disable-atlas ) enable_atlas=false ;;
@@ -87,7 +89,7 @@ if [ "`uname -s`" != "Darwin" ]; then
   # Build/update bundled external libraries
   (cd ../../libraries/source/fcollada/src && ${MAKE} ${JOBS}) || die "FCollada build failed"
   echo
-  if [ "$with_system_mozjs45" = "false" ]; then
+  if [ "$with_system_mozjs45" = "false" ] && [ "$with_system_mozjs68" = "false" ]; then
     (cd ../../libraries/source/spidermonkey && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "SpiderMonkey build failed"
   fi
   echo

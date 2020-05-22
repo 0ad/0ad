@@ -533,7 +533,12 @@ extern_lib_defs = {
 	},
 	spidermonkey = {
 		compile_settings = function()
-			if _OPTIONS["with-system-mozjs45"] then
+        if _OPTIONS["with-system-mozjs68"] then
+				if not _OPTIONS["android"] then
+					pkgconfig.add_includes("mozjs-68")
+				end
+
+        elseif _OPTIONS["with-system-mozjs45"] then
 				if not _OPTIONS["android"] then
 					pkgconfig.add_includes("mozjs-45")
 				end
@@ -553,7 +558,13 @@ extern_lib_defs = {
 			end
 		end,
 		link_settings = function()
-			if _OPTIONS["with-system-mozjs45"] then
+			if _OPTIONS["with-system-mozjs68"] then
+                if _OPTIONS["android"] then
+					links { "mozjs-68" }
+				else
+					pkgconfig.add_links("mozjs-68")
+				end
+            elseif _OPTIONS["with-system-mozjs45"] then
 				if _OPTIONS["android"] then
 					links { "mozjs-45" }
 				else
