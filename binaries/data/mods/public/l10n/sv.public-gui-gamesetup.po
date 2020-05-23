@@ -9,9 +9,9 @@
 # Daniel Sandman <revoltism@gmail.com>, 2013
 # Erik Johansson <erik@feneur.com>, 2013
 # Jacob Carlsson <yejcob@gmail.com>, 2015-2016
-# Jonatan Nyberg, 2016
-# Jonatan Nyberg, 2018,2020
-# Kristoffer Grundström <hamnisdude@gmail.com>, 2018
+# Jonatan Nyberg <jonatan.nyberg.karl@gmail.com>, 2016
+# Jonatan Nyberg <jonatan.nyberg.karl@gmail.com>, 2018,2020
+# Kristoffer Grundström <lovaren@gmail.com>, 2018
 # liothe <lucy@liothe.se>, 2013
 # magicae, 2014
 # pilino1234 <pilino1234@zoho.eu>, 2016
@@ -27,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-02-03 08:10+0000\n"
-"PO-Revision-Date: 2020-02-18 07:20+0000\n"
-"Last-Translator: Jonatan Nyberg\n"
+"POT-Creation-Date: 2020-05-18 07:13+0000\n"
+"PO-Revision-Date: 2020-05-18 12:15+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -371,20 +371,20 @@ msgstr "Kartfilter"
 msgid "Select a map filter."
 msgstr "Välj ett kartfilter."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:146
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:143
 msgid "Select Map"
 msgstr "Välj karta"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:149
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:146
 msgid "Select a map to play on."
 msgstr "Välj en karta att spela på."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:155
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:152
 msgctxt "map selection"
 msgid "Random"
 msgstr "Slumpmässig"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:158
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:155
 msgid "Pick any of the given maps at random."
 msgstr "Välj en av de angivna kartorna slumpmässigt."
 
@@ -638,9 +638,9 @@ msgstr "Återgå till huvudmenyn."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CivInfoButton.js:48
 #, javascript-format
 msgid ""
-"%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
+"%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Visa Historik / Strukturträd\nSenast öppnad kommer öppnas igen vid klick."
+msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."

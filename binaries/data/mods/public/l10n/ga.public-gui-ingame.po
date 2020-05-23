@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-09 08:13+0000\n"
-"PO-Revision-Date: 2020-03-09 13:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2020-05-18 07:13+0000\n"
+"PO-Revision-Date: 2020-05-18 13:20+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,7 +148,7 @@ msgstr[2] "Meánbhónas raoin: %(range)s meádar"
 msgstr[3] "Meánbhónas raoin: %(range)s meádar"
 msgstr[4] "Meánbhónas raoin: %(range)s meádar"
 
-#: gui/session/input.js:698
+#: gui/session/input.js:694
 msgid "Cannot build wall here!"
 msgstr "Ní féidir leat balla a thógáil anseo!"
 
@@ -518,91 +518,91 @@ msgstr "Deaschliceáil agus bealach réamhshocraithe a chur do thradalaithe nua.
 msgid "Expected gain: %(gain)s"
 msgstr "Brabús iarrtha: %(gain)s"
 
-#: gui/session/unit_actions.js:1123 gui/session/unit_actions.js:1451
+#: gui/session/unit_actions.js:1125 gui/session/unit_actions.js:1453
 msgid "Unload All."
 msgstr "Dílódáil ar Fad."
 
-#: gui/session/unit_actions.js:1141
+#: gui/session/unit_actions.js:1143
 msgid "Destroy the selected units or structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1143
+#: gui/session/unit_actions.js:1145
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Úsáid %(hotkey)s agus an dialóg déimhnithe a sheachaint."
 
-#: gui/session/unit_actions.js:1190
+#: gui/session/unit_actions.js:1192
 msgid "Abort the current order."
 msgstr "Stop a chur leis an ordú reatha."
 
-#: gui/session/unit_actions.js:1209
+#: gui/session/unit_actions.js:1211
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1232
+#: gui/session/unit_actions.js:1234
 msgid "Unload"
 msgstr "Dílódáil"
 
-#: gui/session/unit_actions.js:1250
+#: gui/session/unit_actions.js:1252
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr ""
 
-#: gui/session/unit_actions.js:1269
+#: gui/session/unit_actions.js:1271
 msgid "Focus on Rally Point."
 msgstr "Dírigh ar Áit Slogaidh."
 
-#: gui/session/unit_actions.js:1304
+#: gui/session/unit_actions.js:1306
 msgid "Back to Work"
 msgstr "Fill go hObair."
 
-#: gui/session/unit_actions.js:1323
+#: gui/session/unit_actions.js:1325
 msgid "Order the selected units to guard a structure or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1341
+#: gui/session/unit_actions.js:1343
 msgid "Remove guard"
 msgstr "Bain garda"
 
-#: gui/session/unit_actions.js:1358
+#: gui/session/unit_actions.js:1360
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr "Babhtáil & Trádáil"
 
-#: gui/session/unit_actions.js:1376
+#: gui/session/unit_actions.js:1378
 msgid "Patrol"
 msgstr "Patról"
 
-#: gui/session/unit_actions.js:1377
+#: gui/session/unit_actions.js:1379
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1403
+#: gui/session/unit_actions.js:1405
 msgid "Press to allow allies to use this dropsite"
 msgstr "Brúigh agus ligeann do chomghuaillithe an áit léime seo a úsáid"
 
-#: gui/session/unit_actions.js:1407
+#: gui/session/unit_actions.js:1409
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Brúigh agus cur cosc ar do chomhghuaillithe an áit léime seo a úsáid"
 
-#: gui/session/unit_actions.js:1472
+#: gui/session/unit_actions.js:1474
 msgid "You are allowed to use this dropsite"
 msgstr "Is féidir leat an áit léime seo a úsáid"
 
-#: gui/session/unit_actions.js:1477
+#: gui/session/unit_actions.js:1479
 msgid "The use of this dropsite is prohibited"
 msgstr "Ní féidir leat an áit léime soe a úsáid"
 
-#: gui/session/unit_actions.js:1551
+#: gui/session/unit_actions.js:1553
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Caithfear an aonán seo a mharú roimh bailiú den acmhainní"
 
-#: gui/session/unit_actions.js:1554
+#: gui/session/unit_actions.js:1556
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Ní féidir leat an aonán seo a scriosadh mar tá d'úinéireacht níos lú ná leath pointí gabhála."
 
-#: gui/session/unit_actions.js:1557
+#: gui/session/unit_actions.js:1559
 msgid "This entity is undeletable"
 msgstr "Ní féidir leat an t-aonán sea a scriosadh"
 
@@ -1193,9 +1193,9 @@ msgstr "Aimsigh oibrí díomhaoin"
 #, javascript-format
 msgid ""
 "%(civ)s\n"
-"%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
+"%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Féach ar stair / Crann Tógála\nBeidh rud réamhoscailte ina oscailt arís ar clic."
+msgstr ""
 
 #: gui/session/top_panel/CounterManager.js:100
 #, javascript-format

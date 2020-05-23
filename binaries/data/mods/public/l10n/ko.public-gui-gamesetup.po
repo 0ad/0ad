@@ -29,9 +29,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-02-03 08:10+0000\n"
-"PO-Revision-Date: 2020-05-12 05:07+0000\n"
-"Last-Translator: ks k\n"
+"POT-Creation-Date: 2020-05-18 07:13+0000\n"
+"PO-Revision-Date: 2020-05-18 12:15+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -373,20 +373,20 @@ msgstr "지도 거르개"
 msgid "Select a map filter."
 msgstr "지도 거르개를 선택합니다."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:146
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:143
 msgid "Select Map"
 msgstr "지도 선택"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:149
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:146
 msgid "Select a map to play on."
 msgstr "놀이 지도를 선택합니다."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:155
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:152
 msgctxt "map selection"
 msgid "Random"
 msgstr "아무거나"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:158
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:155
 msgid "Pick any of the given maps at random."
 msgstr "무작위로 주어진 지도를 선택합니다."
 
@@ -636,9 +636,9 @@ msgstr "기본 차림표로 돌아갑니다."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CivInfoButton.js:48
 #, javascript-format
 msgid ""
-"%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
+"%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: 역사/건물 도감 보기\n마지막으로 열리면 클릭 시 다시 열립니다."
+msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."

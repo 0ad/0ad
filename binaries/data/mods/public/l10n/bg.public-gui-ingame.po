@@ -12,13 +12,14 @@
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2014-2015
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2014
 # Любомир Василев, 2016-2019
+# Любомир Василев, 2020
 # Симонъ–Севаръ С. Болокановъ <sbolokanov@abv.bg>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-09 08:13+0000\n"
-"PO-Revision-Date: 2020-03-09 13:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2020-05-18 07:13+0000\n"
+"PO-Revision-Date: 2020-05-20 12:04+0000\n"
+"Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,7 +149,7 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Среден допълнителен обхват: %(range)s метър"
 msgstr[1] "Среден допълнителен обхват: %(range)s метра"
 
-#: gui/session/input.js:698
+#: gui/session/input.js:694
 msgid "Cannot build wall here!"
 msgstr "Тук не може да се строи стена!"
 
@@ -515,91 +516,91 @@ msgstr "Натиснете с десен бутон, за да установи�
 msgid "Expected gain: %(gain)s"
 msgstr "Очаквана печалба: %(gain)s"
 
-#: gui/session/unit_actions.js:1123 gui/session/unit_actions.js:1451
+#: gui/session/unit_actions.js:1125 gui/session/unit_actions.js:1453
 msgid "Unload All."
 msgstr "Премахване всички."
 
-#: gui/session/unit_actions.js:1141
+#: gui/session/unit_actions.js:1143
 msgid "Destroy the selected units or structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1143
+#: gui/session/unit_actions.js:1145
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Използвайте %(hotkey)s, за да не се показва прозорецът за потвърждение."
 
-#: gui/session/unit_actions.js:1190
+#: gui/session/unit_actions.js:1192
 msgid "Abort the current order."
 msgstr "Отмяна на текущата заповед."
 
-#: gui/session/unit_actions.js:1209
+#: gui/session/unit_actions.js:1211
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1232
+#: gui/session/unit_actions.js:1234
 msgid "Unload"
 msgstr "Премахване"
 
-#: gui/session/unit_actions.js:1250
+#: gui/session/unit_actions.js:1252
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr ""
 
-#: gui/session/unit_actions.js:1269
+#: gui/session/unit_actions.js:1271
 msgid "Focus on Rally Point."
 msgstr "Центриране върху сборната точка."
 
-#: gui/session/unit_actions.js:1304
+#: gui/session/unit_actions.js:1306
 msgid "Back to Work"
 msgstr "Обратно на работа"
 
-#: gui/session/unit_actions.js:1323
+#: gui/session/unit_actions.js:1325
 msgid "Order the selected units to guard a structure or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1341
+#: gui/session/unit_actions.js:1343
 msgid "Remove guard"
 msgstr "Спиране на пазенето"
 
-#: gui/session/unit_actions.js:1358
+#: gui/session/unit_actions.js:1360
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr "Обмен и търговия"
 
-#: gui/session/unit_actions.js:1376
+#: gui/session/unit_actions.js:1378
 msgid "Patrol"
 msgstr "Патрулиране"
 
-#: gui/session/unit_actions.js:1377
+#: gui/session/unit_actions.js:1379
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1403
+#: gui/session/unit_actions.js:1405
 msgid "Press to allow allies to use this dropsite"
 msgstr "Щракнете, за да позволите на съюзниците да използват това място за събиране на ресурси"
 
-#: gui/session/unit_actions.js:1407
+#: gui/session/unit_actions.js:1409
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Щракнете, за да забраните на съюзниците да използват това място за събиране на ресурси"
 
-#: gui/session/unit_actions.js:1472
+#: gui/session/unit_actions.js:1474
 msgid "You are allowed to use this dropsite"
 msgstr "Вие можете да използвате това място за събиране на ресурси"
 
-#: gui/session/unit_actions.js:1477
+#: gui/session/unit_actions.js:1479
 msgid "The use of this dropsite is prohibited"
 msgstr "Използването на това място за събиране на ресурси е забранено."
 
-#: gui/session/unit_actions.js:1551
+#: gui/session/unit_actions.js:1553
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Този обект рябва да бъде убит, преди да може да добивате ресурси от него"
 
-#: gui/session/unit_actions.js:1554
+#: gui/session/unit_actions.js:1556
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Този обект не може да бъде унищожен, защото притежавате по-малко от половината пленителни точки"
 
-#: gui/session/unit_actions.js:1557
+#: gui/session/unit_actions.js:1559
 msgid "This entity is undeletable"
 msgstr "Този обект не може да бъде изтрит"
 
@@ -957,7 +958,7 @@ msgstr "Включване на едностранното изчертаван�
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:247
 msgid "Lock cull camera"
-msgstr ""
+msgstr "Заключване на отсичащата изчертаването камера"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:265
 msgid "Display camera frustum"
@@ -1190,9 +1191,9 @@ msgstr "Търсене на бездействащ работник"
 #, javascript-format
 msgid ""
 "%(civ)s\n"
-"%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
+"%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: преглед на историята / структурното дърво\nПоследно отваряното ще бъде отворено отново при щракване."
+msgstr ""
 
 #: gui/session/top_panel/CounterManager.js:100
 #, javascript-format

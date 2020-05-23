@@ -47,9 +47,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-02-03 08:10+0000\n"
-"PO-Revision-Date: 2020-04-23 07:46+0000\n"
-"Last-Translator: Fred Fred <fefferico@gmail.com>\n"
+"POT-Creation-Date: 2020-05-18 07:13+0000\n"
+"PO-Revision-Date: 2020-05-18 12:15+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -391,20 +391,20 @@ msgstr "Filtro Mappa"
 msgid "Select a map filter."
 msgstr "Seleziona un filtro di mappe."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:146
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:143
 msgid "Select Map"
 msgstr "Seleziona Mappa"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:149
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:146
 msgid "Select a map to play on."
 msgstr "Seleziona una mappa su cui giocare."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:155
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:152
 msgctxt "map selection"
 msgid "Random"
 msgstr "Casuale"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:158
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:155
 msgid "Pick any of the given maps at random."
 msgstr "Seleziona una mappa a caso tra quelle disponibili."
 
@@ -658,9 +658,9 @@ msgstr "Ritorna al menù principale"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CivInfoButton.js:48
 #, javascript-format
 msgid ""
-"%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
+"%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Vedi Storia / Albero delle Strutture\nL'ultimo elemento aperto verrà riaperto con un click."
+msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."

@@ -23,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-02-07 08:09+0000\n"
-"PO-Revision-Date: 2020-05-12 05:09+0000\n"
-"Last-Translator: ks k\n"
+"POT-Creation-Date: 2020-05-18 07:13+0000\n"
+"PO-Revision-Date: 2020-05-18 17:28+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,8 +40,8 @@ msgstr "%(hotkey)s: 건축물 도감으로 바꿉니다."
 
 #: gui/civinfo/civinfo.js:21
 #, javascript-format
-msgid "%(hotkey)s: Close History."
-msgstr "%(hotkey)s: 역사 닫기."
+msgid "%(hotkey)s: Close Civilization Overview."
+msgstr ""
 
 #. Translation: insert an itemization symbol for each entry.
 #: gui/civinfo/civinfo.js:85
@@ -1314,10 +1314,10 @@ msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: 서기 0년에 등장하는 문명의 건축물 도감(조견표)을 봅니다."
 
-#: gui/pregame/MainMenuItems.js:36
+#: gui/pregame/MainMenuItems.js:36 gui/civinfo/civinfo.xml:(caption):18
 #: gui/reference/structree/structree.xml:(caption):126
-msgid "History"
-msgstr "역사"
+msgid "Civilization Overview"
+msgstr ""
 
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
@@ -1679,8 +1679,8 @@ msgstr "%(health_min)s 부터 %(health_max)s"
 
 #: gui/reference/structree/structree.js:41
 #, javascript-format
-msgid "%(hotkey)s: Switch to History."
-msgstr "%(hotkey)s: 역사로 바꿉니다."
+msgid "%(hotkey)s: Switch to Civilization Overview."
+msgstr ""
 
 #: gui/reference/structree/structree.js:42
 #, javascript-format
@@ -2163,10 +2163,6 @@ msgstr "%(mapName)s - %(mapType)s"
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: 함께 놀기 앞마당을 대화 상자 창으로 켜고 끕니다."
-
-#: gui/civinfo/civinfo.xml:(caption):18
-msgid "Civilizations"
-msgstr "문명"
 
 #: gui/civinfo/civinfo.xml:(caption):30
 msgid "Civilization Selection"

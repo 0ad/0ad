@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-02-07 08:09+0000\n"
-"PO-Revision-Date: 2020-05-03 22:31+0000\n"
+"POT-Creation-Date: 2020-05-18 07:13+0000\n"
+"PO-Revision-Date: 2020-05-22 05:07+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -22,12 +22,12 @@ msgstr ""
 #: gui/civinfo/civinfo.js:20
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr "%(hotkey)s: Cambiar a Árbole de construcciones."
+msgstr "%(hotkey)s: Cambiar al árbole de les construcciones."
 
 #: gui/civinfo/civinfo.js:21
 #, javascript-format
-msgid "%(hotkey)s: Close History."
-msgstr "%(hotkey)s: Zarrar Historia."
+msgid "%(hotkey)s: Close Civilization Overview."
+msgstr "%(hotkey)s: Zarrar la güeyada a la civilización."
 
 #. Translation: insert an itemization symbol for each entry.
 #: gui/civinfo/civinfo.js:85
@@ -1289,7 +1289,7 @@ msgstr "Deprender a xugar"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr "Depriendi a xugar, entama'l tutorial, descubri los árboles teunolóxicos & la historia detrás de les civilizaciones."
+msgstr "Depriendi a xugar, entama'l tutorial, descubri los árboles teunolóxicos ya la historia detrás de les civilizaciones."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -1310,18 +1310,18 @@ msgstr "Entamar el tutorial económicu."
 #: gui/pregame/MainMenuItems.js:24 gui/civinfo/civinfo.xml:(caption):123
 #: gui/reference/structree/structree.xml:(caption):19
 msgid "Structure Tree"
-msgstr "Árbole de construcciones"
+msgstr "Árbole de les construcciones"
 
 #: gui/pregame/MainMenuItems.js:25
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr "%(hotkey)s: Ver l'árbole de construcciones de civilizaciones qu'apaecen en 0 A.D."
+msgstr "%(hotkey)s: Ver les construcciones de les civilizaciones qu'apaecen en 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:36
+#: gui/pregame/MainMenuItems.js:36 gui/civinfo/civinfo.xml:(caption):18
 #: gui/reference/structree/structree.xml:(caption):126
-msgid "History"
-msgstr "Historia"
+msgid "Civilization Overview"
+msgstr "Una güeyada a la civilización"
 
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
@@ -1683,13 +1683,13 @@ msgstr "%(health_min)s a %(health_max)s"
 
 #: gui/reference/structree/structree.js:41
 #, javascript-format
-msgid "%(hotkey)s: Switch to History."
-msgstr "%(hotkey)s: Cambiar a Historia."
+msgid "%(hotkey)s: Switch to Civilization Overview."
+msgstr "%(hotkey)s: Cambiar a la güeyada a la civilización"
 
 #: gui/reference/structree/structree.js:42
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr "%(hotkey)s: Zarrar Árbole de construcciones."
+msgstr "%(hotkey)s: Zarrar l'árbole de les construcciones."
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
@@ -2169,10 +2169,6 @@ msgstr "%(mapName)s - %(mapType)s"
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: Activar la sala multixugador nun ventanu de diálogu."
-
-#: gui/civinfo/civinfo.xml:(caption):18
-msgid "Civilizations"
-msgstr "Civilizaciones"
 
 #: gui/civinfo/civinfo.xml:(caption):30
 msgid "Civilization Selection"
@@ -3409,7 +3405,7 @@ msgstr "Estrayi de peñes, canteres o ruines."
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr "Corta d'árboles o mates."
+msgstr "Los árboles ya mates apurren madera."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3997,7 +3993,7 @@ msgstr "Abondosa en mines de toa mena. "
 
 #: gui/text/tips/savanna_biome.txt:5
 msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr "La madera suel ser ralo, pero lo qu'hai vien de los baobabs, qu'aducen muncho."
+msgstr "La madera ye ralo, pero lo qu'hai vien de los baobabs, qu'aducen muncho."
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"

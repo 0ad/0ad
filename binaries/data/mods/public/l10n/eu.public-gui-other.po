@@ -5,12 +5,12 @@
 # Translators:
 # Mielanjel Iraeta <pospolos@gmail.com>, 2017-2020
 # Osoitz <oelkoro@gmail.com>, 2015,2019-2020
-# Gontzal Manuel Pujana Onaindia <juchuf@gmail.com>, 2016
+# Thadah D. Denyse <juchuf@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-02-07 08:09+0000\n"
-"PO-Revision-Date: 2020-02-08 21:40+0000\n"
+"POT-Creation-Date: 2020-05-18 07:13+0000\n"
+"PO-Revision-Date: 2020-05-19 16:02+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -26,8 +26,8 @@ msgstr "%(hotkey)s: Joan egitura zuhaitzera."
 
 #: gui/civinfo/civinfo.js:21
 #, javascript-format
-msgid "%(hotkey)s: Close History."
-msgstr "%(hotkey)s: Itxi historia."
+msgid "%(hotkey)s: Close Civilization Overview."
+msgstr "%(hotkey)s: Itxi zibilizazioaren ikuspegi orokorra."
 
 #. Translation: insert an itemization symbol for each entry.
 #: gui/civinfo/civinfo.js:85
@@ -1318,10 +1318,10 @@ msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Ikusi 0 A.D.en azaltzen diren zibilizazioen egituren zuhaitza."
 
-#: gui/pregame/MainMenuItems.js:36
+#: gui/pregame/MainMenuItems.js:36 gui/civinfo/civinfo.xml:(caption):18
 #: gui/reference/structree/structree.xml:(caption):126
-msgid "History"
-msgstr "Historia"
+msgid "Civilization Overview"
+msgstr "Zibilizazioaren ikuspegi orokorra"
 
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
@@ -1683,8 +1683,8 @@ msgstr "%(health_min)s hona %(health_max)s"
 
 #: gui/reference/structree/structree.js:41
 #, javascript-format
-msgid "%(hotkey)s: Switch to History."
-msgstr "%(hotkey)s: Aldatu historia."
+msgid "%(hotkey)s: Switch to Civilization Overview."
+msgstr "%(hotkey)s: Aldatu zibilizazioaren ikuspegi orokorra."
 
 #: gui/reference/structree/structree.js:42
 #, javascript-format
@@ -2169,10 +2169,6 @@ msgstr "%(mapName)s - %(mapType)s"
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: Txandakatu hainbat jokalarien gela elkarrizketa leihoan."
-
-#: gui/civinfo/civinfo.xml:(caption):18
-msgid "Civilizations"
-msgstr "Zibilizazioak"
 
 #: gui/civinfo/civinfo.xml:(caption):30
 msgid "Civilization Selection"

@@ -4,6 +4,7 @@
 # 
 # Translators:
 # annihilator solar <incoming@upcmail.nl>, 2019
+# Bart <b.anthonisse@gmail.com>, 2020
 # bb <b.jansen5@students.uu.nl>, 2018
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016-2017
 # Ellen Roels, 2015
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-04-30 10:46+0000\n"
-"PO-Revision-Date: 2020-04-30 20:52+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-05-21 16:10+0000\n"
+"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,11 +43,11 @@ msgstr "Vis"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
-msgstr ""
+msgstr "Verzamel voedsel door te vissen."
 
 #: simulation/templates/template_gaia_flora.xml:6
 msgid "Chop trees for wood."
-msgstr ""
+msgstr "Verzamel hout door bomen om te hakken."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
@@ -58,7 +59,7 @@ msgstr "Struik"
 #: simulation/templates/template_gaia_flora_bush_berry.xml:4
 #: simulation/templates/template_gaia_flora_tree_fruit.xml:8
 msgid "Pick fruit for food."
-msgstr ""
+msgstr "Pluk fruit voor voedsel."
 
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
@@ -74,15 +75,15 @@ msgstr "Metaalmijn"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
 msgid "Mine ore for metal."
-msgstr ""
+msgstr "Mijn erts voor metaal."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
-msgstr ""
+msgstr "Steengroeve"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Quarry rock for stone."
-msgstr ""
+msgstr "Verzamel steen door steen te houwen."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
@@ -90,7 +91,7 @@ msgstr "Ruïnes"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr ""
+msgstr "Verzamel steen door ruïnes af te breken."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
@@ -98,7 +99,7 @@ msgstr "Schat"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr ""
+msgstr "Verzamel schatten voor grondstoffen."
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
@@ -187,15 +188,15 @@ msgstr "Poolvos"
 #: simulation/templates/gaia/fauna_arctic_wolf.xml:5
 #: simulation/templates/gaia/fauna_wolf.xml:5
 msgid "Canis lupus"
-msgstr ""
+msgstr "Wolf"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:4
 msgid "Black Bear"
-msgstr ""
+msgstr "Zwarte beer"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:5
 msgid "Ursus americanus"
-msgstr ""
+msgstr "Amerikaanse zwarte beer"
 
 #: simulation/templates/gaia/fauna_bear_brown.xml:4
 msgid "Brown Bear"
@@ -203,15 +204,15 @@ msgstr "Bruine Beer"
 
 #: simulation/templates/gaia/fauna_bear_brown.xml:5
 msgid "Ursus arctos"
-msgstr ""
+msgstr "Bruine beer"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:4
 msgid "Polar Bear"
-msgstr ""
+msgstr "IJsbeer"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:5
 msgid "Ursus maritimus"
-msgstr ""
+msgstr "IJsbeer"
 
 #: simulation/templates/gaia/fauna_boar.xml:19
 msgid "Wild Boar"
@@ -227,28 +228,28 @@ msgstr "Dromedaris"
 
 #: simulation/templates/gaia/fauna_camel.xml:9
 msgid "Camelus dromedarius"
-msgstr ""
+msgstr "Dromedaris"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:4
 msgid "Bull"
-msgstr ""
+msgstr "Stier"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:5
 #: simulation/templates/gaia/fauna_cattle_cow.xml:5
 msgid "Bos taurus taurus"
-msgstr ""
+msgstr "Vee"
 
 #: simulation/templates/gaia/fauna_cattle_cow.xml:4
 msgid "Cow"
-msgstr ""
+msgstr "Koe"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:4
 msgid "Sanga Cattle"
-msgstr ""
+msgstr "Afrikaans vee"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:5
 msgid "Bos taurus africanus"
-msgstr ""
+msgstr "Afrikaans vee"
 
 #: simulation/templates/gaia/fauna_cattle_zebu.xml:4
 msgid "Zebu"
@@ -256,7 +257,7 @@ msgstr "Zeboe"
 
 #: simulation/templates/gaia/fauna_cattle_zebu.xml:5
 msgid "Bos taurus indicus"
-msgstr ""
+msgstr "Zebu"
 
 #: simulation/templates/gaia/fauna_chicken.xml:11
 msgid "Chicken"
@@ -264,7 +265,7 @@ msgstr "Kip"
 
 #: simulation/templates/gaia/fauna_chicken.xml:12
 msgid "Gallus gallus domesticus"
-msgstr ""
+msgstr "Kip"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:19
 msgid "Nile Crocodile"
@@ -276,11 +277,11 @@ msgstr "Crocodylus niloticus"
 
 #: simulation/templates/gaia/fauna_deer.xml:8
 msgid "Red Deer"
-msgstr ""
+msgstr "Edelhert"
 
 #: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Cervus elaphus"
-msgstr ""
+msgstr "Edelhert"
 
 #: simulation/templates/gaia/fauna_donkey.xml:4
 msgid "Donkey"
@@ -288,7 +289,7 @@ msgstr "Ezel"
 
 #: simulation/templates/gaia/fauna_donkey.xml:5
 msgid "Equus africanus asinus"
-msgstr ""
+msgstr "Ezel"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:11
 msgid "African Bush Elephant"
@@ -297,11 +298,11 @@ msgstr "Afrikaanse bosolifant"
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:12
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:5
 msgid "Loxodonta africana"
-msgstr ""
+msgstr "Savanneolifant"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:4
 msgid "African Bush Elephant Calf"
-msgstr ""
+msgstr "Savanneolifantsjong"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:11
 msgid "Asian Elephant"
@@ -310,7 +311,7 @@ msgstr "Aziatische olifant"
 #: simulation/templates/gaia/fauna_elephant_asian.xml:12
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:5
 msgid "Elephas maximus"
-msgstr ""
+msgstr "Aziatische olifant"
 
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:4
 msgid "Asian Elephant Calf"
@@ -322,7 +323,7 @@ msgstr "Afrikaanse Bosolifant"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:12
 msgid "Loxodonta cyclotis"
-msgstr ""
+msgstr "Bosolifant"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:4
 msgid "Tilapia"
@@ -338,7 +339,7 @@ msgstr "Poolvos"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:5
 msgid "Vulpes lagopus"
-msgstr ""
+msgstr "Poolvos"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:4
 msgid "Red Fox"
@@ -346,15 +347,15 @@ msgstr "Rode Vos"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:5
 msgid "Vulpes vulpes"
-msgstr ""
+msgstr "Vos"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:8
 msgid "Thomson's Gazelle"
-msgstr ""
+msgstr "Thomsongazelle"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Eudorcas thomsonii"
-msgstr ""
+msgstr "Thomsongazelle"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:11
 msgid "Giraffe"
@@ -363,11 +364,11 @@ msgstr "Giraf"
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:9
 msgid "Giraffa camelopardalis"
-msgstr ""
+msgstr "Giraffe"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:8
 msgid "Juvenile Giraffe"
-msgstr ""
+msgstr "Giraffejong"
 
 #: simulation/templates/gaia/fauna_goat.xml:8
 msgid "Goat"
@@ -375,15 +376,15 @@ msgstr "Geit"
 
 #: simulation/templates/gaia/fauna_goat.xml:9
 msgid "Capra aegagrus hircus"
-msgstr ""
+msgstr "Geit"
 
 #: simulation/templates/gaia/fauna_hippopotamus.xml:25
 msgid "Hippopotamus"
-msgstr ""
+msgstr "Nijlpaard"
 
 #: simulation/templates/gaia/fauna_hippopotamus.xml:26
 msgid "Hippopotamus amphibius"
-msgstr ""
+msgstr "Nijlpaard"
 
 #: simulation/templates/gaia/fauna_horse.xml:8
 msgid "Horse"
@@ -391,7 +392,7 @@ msgstr "Paard"
 
 #: simulation/templates/gaia/fauna_horse.xml:9
 msgid "Equus ferus caballus"
-msgstr ""
+msgstr "Paard"
 
 #: simulation/templates/gaia/fauna_lion.xml:19
 msgid "Lion"
@@ -399,7 +400,7 @@ msgstr "Leeuw"
 
 #: simulation/templates/gaia/fauna_lion.xml:20
 msgid "Panthera leo"
-msgstr ""
+msgstr "Leeuw"
 
 #: simulation/templates/gaia/fauna_lioness.xml:4
 msgid "Lioness"
@@ -412,7 +413,7 @@ msgstr "Buldog"
 #: simulation/templates/gaia/fauna_mastiff.xml:5
 #: simulation/templates/gaia/fauna_wolfhound.xml:5
 msgid "Canis lupus familiaris"
-msgstr ""
+msgstr "Hond"
 
 #: simulation/templates/gaia/fauna_muskox.xml:8
 msgid "Muskox"
@@ -420,7 +421,7 @@ msgstr "Muskusos"
 
 #: simulation/templates/gaia/fauna_muskox.xml:9
 msgid "Ovibos moschatus"
-msgstr ""
+msgstr "Muskusos"
 
 #: simulation/templates/gaia/fauna_peacock.xml:7
 msgid "Peacock"
@@ -436,7 +437,7 @@ msgstr "Varken"
 
 #: simulation/templates/gaia/fauna_pig.xml:9
 msgid "Sus scrofa domesticus"
-msgstr ""
+msgstr "Varken"
 
 #: simulation/templates/gaia/fauna_pig_flaming.xml:18
 msgid "Flaming Pig"
@@ -444,7 +445,7 @@ msgstr "Brandend varken"
 
 #: simulation/templates/gaia/fauna_piglet.xml:8
 msgid "Piglet"
-msgstr ""
+msgstr "Big"
 
 #: simulation/templates/gaia/fauna_pony.xml:4
 msgid "Pony"
@@ -456,15 +457,15 @@ msgstr "Konijn"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:12
 msgid "Oryctolagus cuniculus"
-msgstr ""
+msgstr "Europees konijn"
 
 #: simulation/templates/gaia/fauna_rhino.xml:19
 msgid "White Rhinoceros"
-msgstr ""
+msgstr "Witte neushoorn"
 
 #: simulation/templates/gaia/fauna_rhino.xml:20
 msgid "Ceratotherium simum"
-msgstr ""
+msgstr "Witte neushoorn"
 
 #: simulation/templates/gaia/fauna_shark.xml:12
 msgid "Great White Shark"
@@ -472,7 +473,7 @@ msgstr "Witte haai"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Carcharodon carcharias"
-msgstr ""
+msgstr "Witte haai"
 
 #: simulation/templates/gaia/fauna_sheep.xml:8
 msgid "Sheep"
@@ -480,7 +481,7 @@ msgstr "Schaap"
 
 #: simulation/templates/gaia/fauna_sheep.xml:9
 msgid "Ovis aries"
-msgstr ""
+msgstr "Schaap"
 
 #: simulation/templates/gaia/fauna_tiger.xml:19
 msgid "Tiger"
@@ -488,7 +489,7 @@ msgstr "Tijger"
 
 #: simulation/templates/gaia/fauna_tiger.xml:20
 msgid "Panthera tigris"
-msgstr ""
+msgstr "Tijger"
 
 #: simulation/templates/gaia/fauna_walrus.xml:26
 msgid "Walrus"
@@ -496,7 +497,7 @@ msgstr "Walrus"
 
 #: simulation/templates/gaia/fauna_walrus.xml:27
 msgid "Odobenus rosmarus"
-msgstr ""
+msgstr "Walrus"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:8
 msgid "Fin Whale"
@@ -504,7 +505,7 @@ msgstr "Blauwe vinvis"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:9
 msgid "Balaenoptera physalus"
-msgstr ""
+msgstr "Gewone vinvis"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:8
 msgid "Humpback Whale"
@@ -512,7 +513,7 @@ msgstr "Bultrugwalvis"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:9
 msgid "Megaptera novaeangliae"
-msgstr ""
+msgstr "Bultrug"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:8
 msgid "Blue Wildebeest"
@@ -520,7 +521,7 @@ msgstr "Blauwe Gnoe"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:9
 msgid "Connochaetes taurinus"
-msgstr ""
+msgstr "Blauwe gnoe"
 
 #: simulation/templates/gaia/fauna_wolf.xml:4
 msgid "Wolf"
@@ -536,7 +537,7 @@ msgstr "Gewone Zebra"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Equus quagga"
-msgstr ""
+msgstr "Steppezebra"
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
@@ -568,19 +569,19 @@ msgstr "Appelboom"
 #: simulation/templates/gaia/flora_tree_bamboo.xml:4
 #: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
 msgid "Bamboo"
-msgstr ""
+msgstr "Bamboe"
 
 #: simulation/templates/gaia/flora_tree_bamboo_dragon.xml:8
 msgid "Dragon Bamboo"
-msgstr ""
+msgstr "Drakenbamboe"
 
 #: simulation/templates/gaia/flora_tree_banana.xml:4
 msgid "Banana"
-msgstr ""
+msgstr "Banaan"
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
-msgstr ""
+msgstr "Bodhiboom"
 
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
 #: simulation/templates/gaia/flora_tree_baobab_3_mature.xml:8
@@ -589,15 +590,15 @@ msgstr "Baobab"
 
 #: simulation/templates/gaia/flora_tree_baobab_1_sapling.xml:4
 msgid "Baobab Sapling"
-msgstr ""
+msgstr "Eenjarige baobab"
 
 #: simulation/templates/gaia/flora_tree_baobab_2_young.xml:4
 msgid "Young Baobab"
-msgstr ""
+msgstr "Baobabboompje"
 
 #: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
 msgid "Dead Baobab"
-msgstr ""
+msgstr "Dode baobab"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
@@ -605,16 +606,16 @@ msgstr "Carob"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
-msgstr ""
+msgstr "Eenjarige atlasceder"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_2_young.xml:4
 #: simulation/templates/gaia/flora_tree_cedar_atlas_3_mature.xml:4
 msgid "Atlas Cedar"
-msgstr ""
+msgstr "Atlasceder"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_4_dead.xml:4
 msgid "Dead Atlas Cedar"
-msgstr ""
+msgstr "Dode atlasceder"
 
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
@@ -634,20 +635,20 @@ msgstr "Dadelboom"
 
 #: simulation/templates/gaia/flora_tree_date_palm_dead.xml:4
 msgid "Dead Palm"
-msgstr ""
+msgstr "Dode palm"
 
 #: simulation/templates/gaia/flora_tree_date_palm_fruit.xml:4
 msgid "Fruiting Date Palm"
-msgstr ""
+msgstr "Vruchtdragende dadelpalm"
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
 msgid "Dead Deciduous Tree"
-msgstr ""
+msgstr "Dode loofboom"
 
 #: simulation/templates/gaia/flora_tree_elm.xml:4
 #: simulation/templates/gaia/flora_tree_elm_dead.xml:4
 msgid "Elm Tree"
-msgstr ""
+msgstr "Iep"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
@@ -656,7 +657,7 @@ msgstr "Europese strandboom"
 
 #: simulation/templates/gaia/flora_tree_euro_birch.xml:4
 msgid "Silver Birch"
-msgstr ""
+msgstr "Berk"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
@@ -665,23 +666,23 @@ msgstr "Vijg"
 #: simulation/templates/gaia/flora_tree_fir.xml:4
 #: simulation/templates/gaia/flora_tree_fir_winter.xml:4
 msgid "Fir Tree"
-msgstr ""
+msgstr "Spar"
 
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
-msgstr ""
+msgstr "Eenjarige spar"
 
 #: simulation/templates/gaia/flora_tree_juniper_prickly.xml:4
 msgid "Prickly Juniper"
-msgstr ""
+msgstr "Jeneverbes"
 
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
-msgstr ""
+msgstr "Mangrove"
 
 #: simulation/templates/gaia/flora_tree_maple.xml:4
 msgid "Maple"
-msgstr ""
+msgstr "Esdoorn"
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -697,12 +698,12 @@ msgstr "Eik"
 
 #: simulation/templates/gaia/flora_tree_oak_holly.xml:4
 msgid "Holly Oak"
-msgstr ""
+msgstr "Steeneik"
 
 #: simulation/templates/gaia/flora_tree_oak_hungarian.xml:4
 #: simulation/templates/gaia/flora_tree_oak_hungarian_autumn.xml:4
 msgid "Hungarian Oak"
-msgstr ""
+msgstr "Hongaarse eik"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak Tree"
@@ -714,15 +715,15 @@ msgstr "Olijfboom"
 
 #: simulation/templates/gaia/flora_tree_palm_areca.xml:4
 msgid "Areca Palm"
-msgstr ""
+msgstr "Areca palm"
 
 #: simulation/templates/gaia/flora_tree_palm_doum.xml:4
 msgid "Doum Palm"
-msgstr ""
+msgstr "Egyptische palm"
 
 #: simulation/templates/gaia/flora_tree_palm_palmyra.xml:4
 msgid "Palmyra Palm"
-msgstr ""
+msgstr "Waaierpalm"
 
 #: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
 msgid "Palm"
@@ -740,12 +741,12 @@ msgstr "Dennenboom"
 #: simulation/templates/gaia/flora_tree_pine_black.xml:4
 #: simulation/templates/gaia/flora_tree_pine_black_dead.xml:4
 msgid "Black Pine"
-msgstr ""
+msgstr "Zwarte den"
 
 #: simulation/templates/gaia/flora_tree_pine_maritime.xml:4
 #: simulation/templates/gaia/flora_tree_pine_maritime_short.xml:4
 msgid "Maritime Pine"
-msgstr ""
+msgstr "Zeeden"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
@@ -753,7 +754,7 @@ msgstr "Populier"
 
 #: simulation/templates/gaia/flora_tree_poplar_dead.xml:4
 msgid "Dead Poplar"
-msgstr ""
+msgstr "Dode populier"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 msgid "Black Poplar Tree"
@@ -761,11 +762,11 @@ msgstr "Zwarte Populier"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy_autumn.xml:4
 msgid "Poplar"
-msgstr ""
+msgstr "Populier"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy_dead.xml:4
 msgid "Dead Black Poplar Tree"
-msgstr ""
+msgstr "Dode zwarte populier"
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -773,7 +774,7 @@ msgstr "Senegalese dadelboom"
 
 #: simulation/templates/gaia/flora_tree_strangler.xml:8
 msgid "Strangler Fig"
-msgstr ""
+msgstr "Vijgeboom"
 
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
@@ -781,13 +782,13 @@ msgstr "Tamarix"
 
 #: simulation/templates/gaia/flora_tree_teak.xml:8
 msgid "Teak"
-msgstr ""
+msgstr "Teak"
 
 #: simulation/templates/gaia/flora_tree_temperate.xml:4
 #: simulation/templates/gaia/flora_tree_temperate_autumn.xml:4
 #: simulation/templates/gaia/flora_tree_temperate_winter.xml:4
 msgid "Deciduous Tree"
-msgstr ""
+msgstr "Loofboom"
 
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona Tree"
@@ -795,7 +796,7 @@ msgstr "Toonaboom"
 
 #: simulation/templates/gaia/flora_tree_tropic_rainforest.xml:4
 msgid "Rainforest Tree"
-msgstr ""
+msgstr "Regenwoudboom"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"

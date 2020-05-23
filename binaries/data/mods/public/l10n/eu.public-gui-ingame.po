@@ -4,16 +4,16 @@
 # 
 # Translators:
 # Ibai Oihanguren Sala <ibai@oihanguren.com>, 2014,2016
-# Gontzal Manuel Pujana Onaindia <juchuf@gmail.com>, 2015-2016
+# Thadah D. Denyse <juchuf@gmail.com>, 2015-2016
 # Mielanjel Iraeta <pospolos@gmail.com>, 2017-2020
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Osoitz <oelkoro@gmail.com>, 2015-2016,2019-2020
-# Gontzal Manuel Pujana Onaindia <juchuf@gmail.com>, 2016-2017
+# Thadah D. Denyse <juchuf@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-09 08:13+0000\n"
-"PO-Revision-Date: 2020-03-13 12:03+0000\n"
+"POT-Creation-Date: 2020-05-18 07:13+0000\n"
+"PO-Revision-Date: 2020-05-19 15:59+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -144,7 +144,7 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Batez besteko irismen hobaria: metro %(range)s"
 msgstr[1] "Batez besteko irismen hobaria: %(range)s metro"
 
-#: gui/session/input.js:698
+#: gui/session/input.js:694
 msgid "Cannot build wall here!"
 msgstr "Ezin duzu hesia eraiki hemen!"
 
@@ -511,91 +511,91 @@ msgstr "Eskuin klika gure merkatarientzako berezko ibilbide bat zehazteko."
 msgid "Expected gain: %(gain)s"
 msgstr "Itxarondako irabazia: %(gain)s"
 
-#: gui/session/unit_actions.js:1123 gui/session/unit_actions.js:1451
+#: gui/session/unit_actions.js:1125 gui/session/unit_actions.js:1453
 msgid "Unload All."
 msgstr "Hustu guztia."
 
-#: gui/session/unit_actions.js:1141
+#: gui/session/unit_actions.js:1143
 msgid "Destroy the selected units or structures."
 msgstr "Aukeratutako egitura edo unitateak eraisten ditu."
 
-#: gui/session/unit_actions.js:1143
+#: gui/session/unit_actions.js:1145
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Sakatu  %(hotkey)s baieztapen elkarrizketa ekiditeko."
 
-#: gui/session/unit_actions.js:1190
+#: gui/session/unit_actions.js:1192
 msgid "Abort the current order."
 msgstr "Ezeztatu oraingo agindua."
 
-#: gui/session/unit_actions.js:1209
+#: gui/session/unit_actions.js:1211
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "Agindu aukeratutako unitateei egitura edo unitate batean guardan sartzea."
 
-#: gui/session/unit_actions.js:1232
+#: gui/session/unit_actions.js:1234
 msgid "Unload"
 msgstr "Hustu"
 
-#: gui/session/unit_actions.js:1250
+#: gui/session/unit_actions.js:1252
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "Aukeratutako unitateei agindu egitura, itsasontzi edo setio makina konpontzea."
 
-#: gui/session/unit_actions.js:1269
+#: gui/session/unit_actions.js:1271
 msgid "Focus on Rally Point."
 msgstr "Joan elkartzen puntura."
 
-#: gui/session/unit_actions.js:1304
+#: gui/session/unit_actions.js:1306
 msgid "Back to Work"
 msgstr "Bueltan lanera"
 
-#: gui/session/unit_actions.js:1323
+#: gui/session/unit_actions.js:1325
 msgid "Order the selected units to guard a structure or unit."
 msgstr "Aukeratutako unitateei agindu egitura edo unitate bat babestea."
 
-#: gui/session/unit_actions.js:1341
+#: gui/session/unit_actions.js:1343
 msgid "Remove guard"
 msgstr "Kendu zaindaria"
 
-#: gui/session/unit_actions.js:1358
+#: gui/session/unit_actions.js:1360
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr "Merkataritza eta Trukeak"
 
-#: gui/session/unit_actions.js:1376
+#: gui/session/unit_actions.js:1378
 msgid "Patrol"
 msgstr "Patruilatu"
 
-#: gui/session/unit_actions.js:1377
+#: gui/session/unit_actions.js:1379
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "Bidean aurkituko diren etsaiak eraso egiturak saihestuz."
 
-#: gui/session/unit_actions.js:1403
+#: gui/session/unit_actions.js:1405
 msgid "Press to allow allies to use this dropsite"
 msgstr "Sakatu aliatuek deskarga puntu hau erabil dezaten"
 
-#: gui/session/unit_actions.js:1407
+#: gui/session/unit_actions.js:1409
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Sakatu aliatuek deskarga puntu hau erabil dezaten ekiditeko"
 
-#: gui/session/unit_actions.js:1472
+#: gui/session/unit_actions.js:1474
 msgid "You are allowed to use this dropsite"
 msgstr "Deskarga puntu hau erabil dezakezu"
 
-#: gui/session/unit_actions.js:1477
+#: gui/session/unit_actions.js:1479
 msgid "The use of this dropsite is prohibited"
 msgstr "Ezin duzu deskarga puntu hau erabili"
 
-#: gui/session/unit_actions.js:1551
+#: gui/session/unit_actions.js:1553
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Entitate honekin bukatu behar da bere baliabideez jabetzeko"
 
-#: gui/session/unit_actions.js:1554
+#: gui/session/unit_actions.js:1556
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Ezin duzu entitate hau birrindu ez bai duzu atzitze puntu erdiak baino gehiago kontrolatzen "
 
-#: gui/session/unit_actions.js:1557
+#: gui/session/unit_actions.js:1559
 msgid "This entity is undeletable"
 msgstr "Ezinezkoa da entitate hau ezabatzea"
 
@@ -1186,9 +1186,9 @@ msgstr "Aurkitu langile libre bat"
 #, javascript-format
 msgid ""
 "%(civ)s\n"
-"%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
+"%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Ikusi Historia / Egitura Zuhaitza\nklikatzean irekitako azkena berriz irekiko da "
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Ikusi zibilizazioaren ikuspegi orokorra / Egitura Zuhaitza\nklikatzean irekitako azkena berriz irekiko da "
 
 #: gui/session/top_panel/CounterManager.js:100
 #, javascript-format

@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-03-09 08:13+0000\n"
-"PO-Revision-Date: 2020-05-17 08:25+0000\n"
+"POT-Creation-Date: 2020-05-18 07:13+0000\n"
+"PO-Revision-Date: 2020-05-19 13:41+0000\n"
 "Last-Translator: Angen <slavomir.slovenkai@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,7 @@ msgstr "Zhrnutie"
 #: gui/session/MenuButtons.js:87
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr "Stlačením%(hotkey)s otvoríte obrazovku so zhrnutím.."
+msgstr "Stlačením %(hotkey)s otvoríte obrazovku so zhrnutím.."
 
 #: gui/session/MenuButtons.js:130
 msgid "Lobby"
@@ -82,7 +82,7 @@ msgstr "Pauza"
 #: gui/session/MenuButtons.js:197
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr "Stlačte%(hotkey)s pre pozastavenie alebo pokračovanie hry."
+msgstr "Stlačte %(hotkey)s pre pozastavenie alebo pokračovanie hry."
 
 #: gui/session/MenuButtons.js:213
 msgid "Resign"
@@ -160,7 +160,7 @@ msgstr[1] "Priemerný bonus dosahu: %(range)s metre"
 msgstr[2] "Priemerný bonus dosahu: %(range)s metrov"
 msgstr[3] "Priemerný bonus dosahu: %(range)s metrov"
 
-#: gui/session/input.js:698
+#: gui/session/input.js:694
 msgid "Cannot build wall here!"
 msgstr "Tu nemožno postaviť múr!"
 
@@ -269,7 +269,7 @@ msgstr "Obsadzovacie body:"
 #: gui/session/selection_details.js:436
 #, javascript-format
 msgid "%(label)s %(details)s\n"
-msgstr "%(label)s%(details)s\n"
+msgstr "%(label)s %(details)s\n"
 
 #: gui/session/selection_details.js:437
 msgid "Carrying:"
@@ -383,12 +383,12 @@ msgstr ","
 #: gui/session/selection_panels.js:1061
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "Vylepši na %(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1066
 #, javascript-format
 msgid "Upgrade to %(name)s."
-msgstr ""
+msgstr "Vylepši na %(name)s."
 
 #: gui/session/selection_panels.js:1083
 msgid "Cancel Upgrading"
@@ -493,7 +493,7 @@ msgstr "Podržaním klávesu Shift a kliknutím"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr ""
+msgstr "Toto je východzí trh.\nKliknite pravým tlačítkom myši, pre zrušenie obchodnej cesty."
 
 #: gui/session/unit_actions.js:623
 msgid "Origin trade market."
@@ -509,7 +509,7 @@ msgstr "Kliknite pravým tlačítkom myši, aby ste nastavili trh ako východzí
 
 #: gui/session/unit_actions.js:647 gui/session/unit_actions.js:990
 msgid "This market is too close to the origin market."
-msgstr ""
+msgstr "Tento trh je veľmi blízko k východziemu trhu."
 
 #: gui/session/unit_actions.js:651
 msgid "Right-click to set as destination trade market."
@@ -529,91 +529,91 @@ msgstr "Kliknutím pravým tlačidlom myši môžete vytvoriť predvolenú obcho
 msgid "Expected gain: %(gain)s"
 msgstr "Očakávaný zisk: %(gain)s"
 
-#: gui/session/unit_actions.js:1123 gui/session/unit_actions.js:1451
+#: gui/session/unit_actions.js:1125 gui/session/unit_actions.js:1453
 msgid "Unload All."
 msgstr "Vyložiť všetkých"
 
-#: gui/session/unit_actions.js:1141
-msgid "Destroy the selected units or structures."
-msgstr ""
-
 #: gui/session/unit_actions.js:1143
+msgid "Destroy the selected units or structures."
+msgstr "Znič vybrané jednotky alebo budovy."
+
+#: gui/session/unit_actions.js:1145
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Používaním %(hotkey)s sa vyhnete potvrdzovaciemu dialogóvemu oknu."
 
-#: gui/session/unit_actions.js:1190
+#: gui/session/unit_actions.js:1192
 msgid "Abort the current order."
 msgstr "Zrušte aktuálny príkaz."
 
-#: gui/session/unit_actions.js:1209
+#: gui/session/unit_actions.js:1211
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1232
+#: gui/session/unit_actions.js:1234
 msgid "Unload"
 msgstr "Vyložiť"
 
-#: gui/session/unit_actions.js:1250
+#: gui/session/unit_actions.js:1252
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr ""
 
-#: gui/session/unit_actions.js:1269
+#: gui/session/unit_actions.js:1271
 msgid "Focus on Rally Point."
 msgstr "Sústrediť na zhromaždisko."
 
-#: gui/session/unit_actions.js:1304
+#: gui/session/unit_actions.js:1306
 msgid "Back to Work"
 msgstr "Naspäť k práci"
 
-#: gui/session/unit_actions.js:1323
+#: gui/session/unit_actions.js:1325
 msgid "Order the selected units to guard a structure or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1341
+#: gui/session/unit_actions.js:1343
 msgid "Remove guard"
 msgstr "Prestať strážiť"
 
-#: gui/session/unit_actions.js:1358
+#: gui/session/unit_actions.js:1360
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr "Výmena & Obchod "
 
-#: gui/session/unit_actions.js:1376
+#: gui/session/unit_actions.js:1378
 msgid "Patrol"
 msgstr "Hliadkovať"
 
-#: gui/session/unit_actions.js:1377
+#: gui/session/unit_actions.js:1379
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1403
+#: gui/session/unit_actions.js:1405
 msgid "Press to allow allies to use this dropsite"
 msgstr "Označ pre povolenie používania úložného miesta pre spojencov"
 
-#: gui/session/unit_actions.js:1407
+#: gui/session/unit_actions.js:1409
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Označ pre zákaz používania úložného miesta pre spojencov"
 
-#: gui/session/unit_actions.js:1472
+#: gui/session/unit_actions.js:1474
 msgid "You are allowed to use this dropsite"
 msgstr "Máš povolenie používať toto úložné miesto"
 
-#: gui/session/unit_actions.js:1477
+#: gui/session/unit_actions.js:1479
 msgid "The use of this dropsite is prohibited"
 msgstr "Použitie tohto úložného miesta je zakázané"
 
-#: gui/session/unit_actions.js:1551
+#: gui/session/unit_actions.js:1553
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Predtým než zoberieš od entity suroviny, musíš ju zabiť."
 
-#: gui/session/unit_actions.js:1554
+#: gui/session/unit_actions.js:1556
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Nemôžeš zničiť túto entitu pretože máš menej ako polovicu obsadzovacích bodov"
 
-#: gui/session/unit_actions.js:1557
+#: gui/session/unit_actions.js:1559
 msgid "This entity is undeletable"
 msgstr "Túto entitu nie je možné zmazať"
 
@@ -1204,9 +1204,9 @@ msgstr "Nájsť nečinného robotníka"
 #, javascript-format
 msgid ""
 "%(civ)s\n"
-"%(hotkey_civinfo)s / %(hotkey_structree)s: View History / Structure Tree\n"
+"%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s/%(hotkey_structree)s: Pozrieť históriu/Strom štruktúry\nPosledné otvorenie sa otvorí po kliknutí."
+msgstr ""
 
 #: gui/session/top_panel/CounterManager.js:100
 #, javascript-format
@@ -1277,19 +1277,19 @@ msgstr "Predať %(resource)s"
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
-msgstr ""
+msgstr "+%(amount)s"
 
 #: gui/session/trade/BarterButton.js:103
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"
-msgstr ""
+msgstr "-%(amount)s"
 
 #: gui/session/trade/TradeButton.js:56
 #, javascript-format
 msgctxt "trading good ratio"
 msgid "%(amount)s%%"
-msgstr ""
+msgstr "%(amount)s%%"
 
 #: gui/session/trade/TradeButtonManager.js:76
 #, javascript-format
@@ -1617,4 +1617,4 @@ msgstr "Obchodovať"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
-msgstr ""
+msgstr "Suroviny:"
