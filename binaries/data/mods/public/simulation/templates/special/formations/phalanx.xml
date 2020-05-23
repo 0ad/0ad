@@ -12,11 +12,11 @@
     <MinColumns>5</MinColumns>
     <MaxColumns>20</MaxColumns>
     <MaxRows>8</MaxRows>
-    <Animations>
+    <AnimationVariants>
       1..1,1..-1: phalanx_front;
       2..2,1..-1: phalanx_mid;
       3..-1,1..-1: phalanx_back
-    </Animations>
+    </AnimationVariants>
   </Formation>
   <FormationAttack>
     <CanAttackAsFormation>false</CanAttackAsFormation>

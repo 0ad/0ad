@@ -13,7 +13,7 @@
     <WidthDepthRatio>0.8</WidthDepthRatio>
     <MinColumns>8</MinColumns>
     <MaxColumns>8</MaxColumns>
-    <Animations>
+    <AnimationVariants>
       1..1,2..7: testudo_front;
       1..1,1..1: testudo_front_left;
       1..1,8..8: testudo_front_right;
@@ -62,7 +62,7 @@
       16..16,8..8: testudo_right;
       16..16,2..7: testudo_top;
       16..16,1..1: testudo_left
-    </Animations>
+    </AnimationVariants>
   </Formation>
   <FormationAttack>
     <CanAttackAsFormation>false</CanAttackAsFormation>

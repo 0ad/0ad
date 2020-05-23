@@ -66,17 +66,33 @@ Formation.prototype.Schema =
 	"<element name='UnitSeparationDepthMultiplier' a:help='Place the units in the formation closer or further to each other. The standard separation is the footprint size.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='Animations' a:help='Give a list of animation variants to use for the particular formation members, based on their positions'>" +
-		"<text a:help='example text: \"1..1,1..-1:animation1;2..2,1..-1;animation2\", this will set animation1 for the first row, and animation2 for the second row. The first part of the numbers (1..1 and 2..2) means the row range. Every row between (and including) those values will switch animations. The second part of the numbers (1..-1) denote the columns inside those rows that will be affected. Note that in both cases, you can use -1 for the last row/column, -2 for the second to last, etc.'/>" +
+	"<element name='AnimationVariants' a:help='Give a list of animation variants to use for the particular formation members, based on their positions'>" +
+		"<text a:help='example text: \"1..1,1..-1:animationVariant1;2..2,1..-1;animationVariant2\", this will set animationVariant1 for the first row, and animation2 for the second row. The first part of the numbers (1..1 and 2..2) means the row range. Every row between (and including) those values will switch animationvariants. The second part of the numbers (1..-1) denote the columns inside those rows that will be affected. Note that in both cases, you can use -1 for the last row/column, -2 for the second to last, etc.'/>" +
 	"</element>";
 
 var g_ColumnDistanceThreshold = 128; // distance at which we'll switch between column/box formations
 
-Formation.prototype.Init = function()
+Formation.prototype.variablesToSerialize = [
+	"lastOrderVariant",
+	"members",
+	"memberPositions",
+	"maxRowsUsed",
+	"maxColumnsUsed",
+	"inPosition",
+	"columnar",
+	"rearrange",
+	"formationMembersWithAura",
+	"width",
+	"depth",
+	"oldOrientation",
+	"twinFormations",
+	"formationSeparation",
+	"offsets"
+];
+
+Formation.prototype.Init = function(deserialized = false)
 {
-	this.formationShape = this.template.FormationShape;
 	this.sortingClasses = this.template.SortingClasses.split(/\s+/g);
-	this.sortingOrder = this.template.SortingOrder;
 	this.shiftRows = this.template.ShiftRows == "true";
 	this.separationMultiplier = {
 		"width": +this.template.UnitSeparationWidthMultiplier,
@@ -89,26 +105,26 @@ Formation.prototype.Init = function()
 	this.maxRows = +(this.template.MaxRows || 0);
 	this.centerGap = +(this.template.CenterGap || 0);
 
-	this.animations = [];
-	if (this.template.Animations)
+	if (this.template.AnimationVariants)
 	{
-		let differentAnimations = this.template.Animations.split(/\s*;\s*/);
-		// loop over the different rectangulars that will map to different animations
-		for (var rectAnimation of differentAnimations)
+		this.animationvariants = [];
+		let differentAnimationVariants = this.template.AnimationVariants.split(/\s*;\s*/);
+		// loop over the different rectangulars that will map to different animation variants
+		for (let rectAnimationVariant of differentAnimationVariants)
 		{
-			var rect, replacementAnimationName;
-			[rect, replacementAnimationName] = rectAnimation.split(/\s*:\s*/);
-			var rows, columns;
+			let rect, replacementAnimationVariant;
+			[rect, replacementAnimationVariant] = rectAnimationVariant.split(/\s*:\s*/);
+			let rows, columns;
 			[rows, columns] = rect.split(/\s*,\s*/);
-			var minRow, maxRow, minColumn, maxColumn;
+			let minRow, maxRow, minColumn, maxColumn;
 			[minRow, maxRow] = rows.split(/\s*\.\.\s*/);
 			[minColumn, maxColumn] = columns.split(/\s*\.\.\s*/);
-			this.animations.push({
+			this.animationvariants.push({
 				"minRow": +minRow,
 				"maxRow": +maxRow,
 				"minColumn": +minColumn,
 				"maxColumn": +maxColumn,
-				"animation": replacementAnimationName
+				"name": replacementAnimationVariant
 			});
 		}
 	}
@@ -129,8 +145,28 @@ Formation.prototype.Init = function()
 	this.twinFormations = [];
 	// distance from which two twin formations will merge into one.
 	this.formationSeparation = 0;
+
+	if (deserialized)
+		return;
+
 	Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer)
 		.SetInterval(this.entity, IID_Formation, "ShapeUpdate", 1000, 1000, null);
+};
+
+Formation.prototype.Serialize = function()
+{
+	let result = {};
+	for (let key of this.variablesToSerialize)
+		result[key] = this[key];
+
+	return result;
+};
+
+Formation.prototype.Deserialize = function(data)
+{
+	this.Init(true);
+	for (let key in data)
+		this[key] = data[key];
 };
 
 /**
@@ -203,45 +239,44 @@ Formation.prototype.GetPrimaryMember = function()
 };
 
 /**
- * Get the formation animation for a certain member of this formation
+ * Get the formation animation variant for a certain member of this formation
  * @param entity The entity ID to get the animation for
- * @return The name of the transformed animation as defined in the template
+ * @return The name of the animation variant as defined in the template
  * E.g. "testudo_row1" or undefined if does not exist
  */
-Formation.prototype.GetFormationAnimation = function(entity)
+Formation.prototype.GetFormationAnimationVariant = function(entity)
 {
-	var animationGroup = this.animations;
-	if (!animationGroup.length || this.columnar || !this.memberPositions[entity])
+	if (!this.animationvariants || !this.animationvariants.length || this.columnar || !this.memberPositions[entity])
 		return undefined;
-	var row = this.memberPositions[entity].row;
-	var column = this.memberPositions[entity].column;
-	for (var i = 0; i < animationGroup.length; ++i)
+	let row = this.memberPositions[entity].row;
+	let column = this.memberPositions[entity].column;
+	for (let i = 0; i < this.animationvariants.length; ++i)
 	{
-		var minRow = animationGroup[i].minRow;
+		let minRow = this.animationvariants[i].minRow;
 		if (minRow < 0)
 			minRow += this.maxRowsUsed + 1;
 		if (row < minRow)
 			continue;
 
-		var maxRow = animationGroup[i].maxRow;
+		let maxRow = this.animationvariants[i].maxRow;
 		if (maxRow < 0)
 			maxRow += this.maxRowsUsed + 1;
 		if (row > maxRow)
 			continue;
 
-		var minColumn = animationGroup[i].minColumn;
+		let minColumn = this.animationvariants[i].minColumn;
 		if (minColumn < 0)
 			minColumn += this.maxColumnsUsed[row] + 1;
 		if (column < minColumn)
 			continue;
 
-		var maxColumn = animationGroup[i].maxColumn;
+		let maxColumn = this.animationvariants[i].maxColumn;
 		if (maxColumn < 0)
 			maxColumn += this.maxColumnsUsed[row] + 1;
 		if (column > maxColumn)
 			continue;
 
-		return animationGroup[i].animation;
+		return this.animationvariants[i].name;
 	}
 	return undefined;
 };
@@ -636,11 +671,10 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 
 	var count = active.length;
 
-	var shape = this.formationShape;
+	let shape = this.template.FormationShape;
 	var shiftRows = this.shiftRows;
 	var centerGap = this.centerGap;
-	var sortingOrder = this.sortingOrder;
-
+	let sortingOrder = this.template.SortingOrder;
 	var offsets = [];
 
 	// Choose a sensible size/shape for the various formations, depending on number of units
@@ -656,7 +690,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 	}
 	else
 	{
-		var depth = Math.sqrt(count / this.widthDepthRatio);
+		let depth = Math.sqrt(count / this.widthDepthRatio);
 		if (this.maxRows && depth > this.maxRows)
 			depth = this.maxRows;
 		cols = Math.ceil(count / Math.ceil(depth) + (this.shiftRows ? 0.5 : 0));
@@ -726,8 +760,8 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 					x += side * centerGap / 2;
 				}
 				var column = Math.ceil(n/2) + Math.ceil(c/2) * side;
-				var r1 = randFloat(-1, 1) * this.sloppyness;
-				var r2 = randFloat(-1, 1) * this.sloppyness;
+				let r1 = randFloat(-1, 1) * this.sloppyness;
+				let r2 = randFloat(-1, 1) * this.sloppyness;
 
 				offsets.push(new Vector2D(x + r1, z + r2));
 				offsets[offsets.length - 1].row = r+1;

@@ -14,10 +14,10 @@
     <MaxColumns>8</MaxColumns>
     <MaxRows>2</MaxRows>
     <WidthDepthRatio>0.8</WidthDepthRatio>
-    <Animations>
+    <AnimationVariants>
       1..1,1..-1: anti_cavalry_front;
       2..2,1..-1: anti_cavalry_back
-    </Animations>
+    </AnimationVariants>
   </Formation>
   <FormationAttack>
     <CanAttackAsFormation>false</CanAttackAsFormation>
