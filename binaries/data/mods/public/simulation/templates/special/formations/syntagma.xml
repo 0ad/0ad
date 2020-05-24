@@ -14,14 +14,14 @@
     <MinColumns>4</MinColumns>
     <MaxColumns>8</MaxColumns>
     <MaxRows>9</MaxRows>
-    <Animations>
+    <AnimationVariants>
       1..2,1..-1: syntagma_front;
       3..3,1..-1: syntagma_01;
       4..4,1..-1: syntagma_02;
       5..5,1..-1: syntagma_03;
       6..6,1..-1: syntagma_04;
       7...-1,1..-1: syntagma_back
-    </Animations>  
+    </AnimationVariants>
     <Sloppyness>0.15</Sloppyness>
   </Formation>
   <FormationAttack>

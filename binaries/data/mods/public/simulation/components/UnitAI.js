@@ -1312,7 +1312,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			let cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
 			if (cmpFormation)
 			{
-				this.formationAnimationVariant = cmpFormation.GetFormationAnimation(this.entity);
+				this.formationAnimationVariant = cmpFormation.GetFormationAnimationVariant(this.entity);
 				if (this.formationAnimationVariant)
 					this.SetAnimationVariant(this.formationAnimationVariant);
 				else
@@ -1341,7 +1341,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				{
 					let cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
 					if (cmpFormation)
-						this.formationAnimationVariant = cmpFormation.GetFormationAnimation(this.entity);
+						this.formationAnimationVariant = cmpFormation.GetFormationAnimationVariant(this.entity);
 				}
 				if (this.formationAnimationVariant)
 					this.SetAnimationVariant(this.formationAnimationVariant);

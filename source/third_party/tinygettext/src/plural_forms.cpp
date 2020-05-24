@@ -57,7 +57,7 @@ unsigned int plural4_cy(int n) { return static_cast<unsigned int>((n==1) ? 0 : (
 unsigned int plural4_gd(int n) { return static_cast<unsigned int>(( n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3); }
 unsigned int plural4_he(int n) { return static_cast<unsigned int>((n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3);}
 unsigned int plural4_lt(int n) { return static_cast<unsigned int>(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);}
-unsigned int plural4_pl(int n) { return static_cast<unsigned int>(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);}
+unsigned int plural4_pl(int n) { return static_cast<unsigned int>(n == 1 ? 0 : (n % 10 >= 2 && n % 10 <= 4) && (n % 100 < 12 || n % 100 > 14) ? 1 : (n != 1 && (n % 10 >= 0 && n % 10 <= 1)) || (n % 10 >= 5 && n % 10 <= 9) || (n % 100 >= 12 && n % 100 <= 14) ? 2 : 3); }
 unsigned int plural4_sk(int n) { return static_cast<unsigned int>(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);}
 unsigned int plural4_uk(int n) { return static_cast<unsigned int>(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);}
 unsigned int plural5_ga(int n) { return static_cast<unsigned int>(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);}
