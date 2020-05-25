@@ -25,7 +25,6 @@
 
 template<typename T> static void ToJSVal_vector(JSContext* cx, JS::MutableHandleValue ret, const std::vector<T>& val)
 {
-	JSAutoRequest rq(cx);
 	JS::RootedObject obj(cx, JS_NewArrayObject(cx, 0));
 	if (!obj)
 	{
@@ -47,7 +46,6 @@ template<typename T> static void ToJSVal_vector(JSContext* cx, JS::MutableHandle
 
 template<typename T> static bool FromJSVal_vector(JSContext* cx, JS::HandleValue v, std::vector<T>& out)
 {
-	JSAutoRequest rq(cx);
 	JS::RootedObject obj(cx);
 	if (!v.isObject())
 		FAIL("Argument must be an array");
@@ -92,7 +90,6 @@ template<typename T> bool ScriptInterface::FromJSProperty(JSContext* cx, const J
 	if (!val.isObject())
 		return false;
 
-	JSAutoRequest rq(cx);
 	JS::RootedObject obj(cx, &val.toObject());
 
 	bool hasProperty;

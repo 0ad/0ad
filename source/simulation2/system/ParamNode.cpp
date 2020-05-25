@@ -374,7 +374,6 @@ void CParamNode::ToJSVal(JSContext* cx, bool cacheValue, JS::MutableHandleValue 
 
 void CParamNode::ConstructJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 {
-	JSAutoRequest rq(cx);
 	if (m_Childs.empty())
 	{
 		// Empty node - map to undefined

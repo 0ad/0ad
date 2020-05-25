@@ -503,7 +503,6 @@ namespace
 		void operator() (AbstractProfileTable* table)
 		{
 			JSContext* cx = m_ScriptInterface.GetContext();
-			JSAutoRequest rq(cx);
 
 			JS::RootedValue t(cx);
 			ScriptInterface::CreateObject(
@@ -530,7 +529,6 @@ namespace
 		JS::Value DumpRows(AbstractProfileTable* table)
 		{
 			JSContext* cx = m_ScriptInterface.GetContext();
-			JSAutoRequest rq(cx);
 
 			JS::RootedValue data(cx);
 			ScriptInterface::CreateObject(cx, &data);

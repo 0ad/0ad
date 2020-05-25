@@ -116,7 +116,6 @@ void* CMapGeneratorWorker::RunThread(CMapGeneratorWorker* self)
 bool CMapGeneratorWorker::Run()
 {
 	JSContext* cx = m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
 
 	// Parse settings
 	JS::RootedValue settingsVal(cx);
@@ -327,7 +326,6 @@ JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::CxPrivate* pCxPriv
 
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
 	JSContext* cx = self->m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
 	JS::RootedValue returnValue(cx);
 	ToJSVal_vector(cx, &returnValue, heightmap);
 	return returnValue;
@@ -338,7 +336,6 @@ JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CxPrivate* pCxPri
 {
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
 	JSContext* cx = self->m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
 
 	if (!VfsFileExists(filename))
 	{

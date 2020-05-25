@@ -156,7 +156,6 @@ JS::Value JSI_Network::PollNetworkClient(ScriptInterface::CxPrivate* pCxPrivate)
 
 	// Convert from net client context to GUI script context
 	JSContext* cxNet = g_NetClient->GetScriptInterface().GetContext();
-	JSAutoRequest rqNet(cxNet);
 	JS::RootedValue pollNet(cxNet);
 	g_NetClient->GuiPoll(&pollNet);
 	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(g_NetClient->GetScriptInterface(), pollNet);
@@ -168,7 +167,6 @@ void JSI_Network::SetNetworkGameAttributes(ScriptInterface::CxPrivate* pCxPrivat
 
 	// TODO: This is a workaround because we need to pass a MutableHandle to a JSAPI functions somewhere (with no obvious reason).
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
 	JS::RootedValue attribs(cx, attribs1);
 
 	g_NetClient->SendGameSetupMessage(&attribs, *(pCxPrivate->pScriptInterface));

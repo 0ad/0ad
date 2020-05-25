@@ -76,7 +76,6 @@ static void ReportGLLimits(const ScriptInterface& scriptInterface, JS::HandleVal
 void ConvertCaches(const ScriptInterface& scriptInterface, x86_x64::IdxCache idxCache, JS::MutableHandleValue ret)
 {
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	ScriptInterface::CreateArray(cx, ret);
 
@@ -105,7 +104,6 @@ void ConvertCaches(const ScriptInterface& scriptInterface, x86_x64::IdxCache idx
 void ConvertTLBs(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	ScriptInterface::CreateArray(cx, ret);
 
@@ -218,7 +216,6 @@ void RunHardwareDetection()
 
 	ScriptInterface scriptInterface("Engine", "HWDetect", g_ScriptRuntime);
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	JSI_Debug::RegisterScriptFunctions(scriptInterface); // Engine.DisplayErrorDialog
 

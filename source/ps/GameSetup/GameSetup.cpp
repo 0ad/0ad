@@ -185,7 +185,6 @@ void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 {
 	const ScriptInterface& scriptInterface = *(g_GUI->GetActiveGUI()->GetScriptInterface());
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	JS::AutoValueVector paramData(cx);
 
@@ -518,7 +517,6 @@ void InitPsAutostart(bool networked, JS::HandleValue attrs)
 	// The GUI has not been initialized yet, so use the simulation scriptinterface for this variable
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	JS::RootedValue playerAssignments(cx);
 	ScriptInterface::CreateObject(cx, &playerAssignments);
@@ -1100,7 +1098,6 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 			// We only want to display the splash screen at startup
 			shared_ptr<ScriptInterface> scriptInterface = g_GUI->GetScriptInterface();
 			JSContext* cx = scriptInterface->GetContext();
-			JSAutoRequest rq(cx);
 			JS::RootedValue data(cx);
 			if (g_GUI)
 			{
@@ -1260,7 +1257,6 @@ bool Autostart(const CmdLineArgs& args)
 
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	JS::RootedValue attrs(cx);
 	JS::RootedValue settings(cx);
@@ -1645,7 +1641,6 @@ bool AutostartVisualReplay(const std::string& replayFile)
 
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 	JS::RootedValue attrs(cx, g_Game->GetSimulation2()->GetInitAttributes());
 
 	InitPsAutostart(false, attrs);
@@ -1657,7 +1652,6 @@ void CancelLoad(const CStrW& message)
 {
 	shared_ptr<ScriptInterface> pScriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
 	JSContext* cx = pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
 
 	JS::RootedValue global(cx, pScriptInterface->GetGlobalObject());
 

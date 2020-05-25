@@ -241,7 +241,6 @@ void CTurnManager::AddCommand(int client, int player, JS::HandleValue data, u32 
 	m_Simulation2.GetScriptInterface().FreezeObject(data, true);
 
 	JSContext* cx = m_Simulation2.GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 
 	m_QueuedCommands[turn - (m_CurrentTurn+1)][client].emplace_back(player, cx, data);
 }
@@ -307,7 +306,6 @@ void CTurnManager::QuickSave(JS::HandleValue GUIMetadata)
 	m_QuickSaveState = stream.str();
 
 	JSContext* cx = m_Simulation2.GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 
 	if (JS_StructuredClone(cx, GUIMetadata, &m_QuickSaveMetadata, nullptr, nullptr))
 	{
@@ -347,7 +345,6 @@ void CTurnManager::QuickLoad()
 		return;
 
 	JSContext* cx = m_Simulation2.GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 
 	// Provide a copy, so that GUI components don't have to clone to get mutable objects
 	JS::RootedValue quickSaveMetadataClone(cx);

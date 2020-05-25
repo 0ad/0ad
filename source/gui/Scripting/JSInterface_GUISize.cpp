@@ -43,7 +43,6 @@ void JSI_GUISize::RegisterScriptClass(ScriptInterface& scriptInterface)
 
 bool JSI_GUISize::construct(JSContext* cx, uint argc, JS::Value* vp)
 {
-	JSAutoRequest rq(cx);
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
 	JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUISize"));
@@ -99,7 +98,6 @@ CStr JSI_GUISize::ToPercentString(double pix, double per)
 
 bool JSI_GUISize::toString(JSContext* cx, uint argc, JS::Value* vp)
 {
-	// JSAutoRequest not needed for the calls below
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	CStr buffer;
 

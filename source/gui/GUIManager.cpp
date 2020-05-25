@@ -134,7 +134,6 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptRuntime> scriptRuntime)
 	{
 		shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
 		JSContext* cx = scriptInterface->GetContext();
-		JSAutoRequest rq(cx);
 
 		JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
 		JS::RootedValue hotloadDataVal(cx);
@@ -201,7 +200,6 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptRuntime> scriptRuntime)
 
 	shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
 	JSContext* cx = scriptInterface->GetContext();
-	JSAutoRequest rq(cx);
 
 	JS::RootedValue initDataVal(cx);
 	JS::RootedValue hotloadDataVal(cx);
@@ -226,7 +224,6 @@ void CGUIManager::SGUIPage::SetCallbackFunction(ScriptInterface& scriptInterface
 		return;
 	}
 
-	// Does not require JSAutoRequest
 	if (!JS_ObjectIsFunction(scriptInterface.GetContext(), &callbackFunc.toObject()))
 	{
 		LOGERROR("Given callback handler is not a function!");
@@ -243,7 +240,6 @@ void CGUIManager::SGUIPage::PerformCallbackFunction(shared_ptr<ScriptInterface::
 
 	shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
 	JSContext* cx = scriptInterface->GetContext();
-	JSAutoRequest rq(cx);
 
 	JS::RootedObject globalObj(cx, &scriptInterface->GetGlobalObject().toObject());
 
@@ -300,7 +296,6 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 	{
 		PROFILE("handleInputBeforeGui");
 		JSContext* cx = top()->GetScriptInterface()->GetContext();
-		JSAutoRequest rq(cx);
 		JS::RootedValue global(cx, top()->GetGlobalObject());
 		if (top()->GetScriptInterface()->CallFunction(global, "handleInputBeforeGui", handled, *ev, top()->FindObjectUnderMouse()))
 			if (handled)
@@ -317,7 +312,6 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 	{
 		// We can't take the following lines out of this scope because top() may be another gui page than it was when calling handleInputBeforeGui!
 		JSContext* cx = top()->GetScriptInterface()->GetContext();
-		JSAutoRequest rq(cx);
 		JS::RootedValue global(cx, top()->GetGlobalObject());
 
 		PROFILE("handleInputAfterGui");

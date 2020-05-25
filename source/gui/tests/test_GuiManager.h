@@ -63,7 +63,6 @@ public:
 		// Load up a test page.
 		const ScriptInterface& scriptInterface = *(g_GUI->GetScriptInterface());
 		JSContext* cx = scriptInterface.GetContext();
-		JSAutoRequest rq(cx);
 		JS::RootedValue val(cx);
 		scriptInterface.CreateObject(cx, &val);
 
@@ -84,7 +83,6 @@ public:
 
 		const ScriptInterface& pageScriptInterface = *(g_GUI->GetActiveGUI()->GetScriptInterface());
 		JSContext* pcx = pageScriptInterface.GetContext();
-		JSAutoRequest pagerq(pcx);
 		JS::RootedValue global(pcx, pageScriptInterface.GetGlobalObject());
 
 		// Ensure that our hotkey state was synchronised with the event itself.

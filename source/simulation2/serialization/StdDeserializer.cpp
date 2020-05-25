@@ -32,7 +32,6 @@ CStdDeserializer::CStdDeserializer(const ScriptInterface& scriptInterface, std::
 	m_dummyObject(scriptInterface.GetJSRuntime())
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	JS_AddExtraGCRootsTracer(m_ScriptInterface.GetJSRuntime(), CStdDeserializer::Trace, this);
 
@@ -125,7 +124,6 @@ void CStdDeserializer::GetScriptBackref(u32 tag, JS::MutableHandleObject ret)
 JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject appendParent)
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	uint8_t type;
 	NumberU8_Unbounded("type", type);
@@ -461,7 +459,6 @@ void CStdDeserializer::ScriptString(const char* name, JS::MutableHandleString ou
 #endif
 
 	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	bool isLatin1;
 	Bool("isLatin1", isLatin1);
@@ -493,7 +490,6 @@ void CStdDeserializer::ScriptVal(const char* name, JS::MutableHandleValue out)
 void CStdDeserializer::ScriptObjectAppend(const char* name, JS::HandleValue objVal)
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	if (!objVal.isObject())
 		throw PSERROR_Deserialize_ScriptError();

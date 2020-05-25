@@ -35,7 +35,6 @@
 
 template<> void ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, JS::MutableHandleValue ret, SDL_Event_ const& val)
 {
-	JSAutoRequest rq(cx);
 	const char* typeName;
 
 	switch (val.ev.type)
@@ -166,21 +165,18 @@ template<> bool ScriptInterface::FromJSVal<CSize>(JSContext* cx, JS::HandleValue
 {
 	if (!v.isObject())
 	{
-		JSAutoRequest rq(cx);
 		JS_ReportError(cx, "CSize value must be an object!");
 		return false;
 	}
 
 	if (!FromJSProperty(cx, v, "width", out.cx))
 	{
-		JSAutoRequest rq(cx);
 		JS_ReportError(cx, "Failed to get CSize.cx property");
 		return false;
 	}
 
 	if (!FromJSProperty(cx, v, "height", out.cy))
 	{
-		JSAutoRequest rq(cx);
 		JS_ReportError(cx, "Failed to get CSize.cy property");
 		return false;
 	}
@@ -197,21 +193,18 @@ template<> bool ScriptInterface::FromJSVal<CPos>(JSContext* cx, JS::HandleValue 
 {
 	if (!v.isObject())
 	{
-		JSAutoRequest rq(cx);
 		JS_ReportError(cx, "CPos value must be an object!");
 		return false;
 	}
 
 	if (!FromJSProperty(cx, v, "x", out.x))
 	{
-		JSAutoRequest rq(cx);
 		JS_ReportError(cx, "Failed to get CPos.x property");
 		return false;
 	}
 
 	if (!FromJSProperty(cx, v, "y", out.y))
 	{
-		JSAutoRequest rq(cx);
 		JS_ReportError(cx, "Failed to get CPos.y property");
 		return false;
 	}
@@ -279,7 +272,6 @@ template<> void ScriptInterface::ToJSVal<EVAlign>(JSContext* cx, JS::MutableHand
 
 	default:
 		word = "error";
-		JSAutoRequest rq(cx);
 		JS_ReportError(cx, "Invalid EVAlign");
 		break;
 	}
@@ -300,7 +292,6 @@ template<> bool ScriptInterface::FromJSVal<EVAlign>(JSContext* cx, JS::HandleVal
 	else
 	{
 		out = EVAlign_Top;
-		JSAutoRequest rq(cx);
 		JS_ReportError(cx, "Invalid alignment (should be 'left', 'right' or 'center')");
 		return false;
 	}
@@ -323,7 +314,6 @@ template<> void ScriptInterface::ToJSVal<EAlign>(JSContext* cx, JS::MutableHandl
 		break;
 	default:
 		word = "error";
-		JSAutoRequest rq(cx);
 		JS_ReportError(cx, "Invalid alignment (should be 'left', 'right' or 'center')");
 		break;
 	}
@@ -344,7 +334,6 @@ template<> bool ScriptInterface::FromJSVal<EAlign>(JSContext* cx, JS::HandleValu
 	else
 	{
 		out = EAlign_Left;
-		JSAutoRequest rq(cx);
 		JS_ReportError(cx, "Invalid alignment (should be 'left', 'right' or 'center')");
 		return false;
 	}

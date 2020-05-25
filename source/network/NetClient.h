@@ -158,7 +158,6 @@ public:
 	void PushGuiMessage(Args const&... args)
 	{
 		JSContext* cx = GetScriptInterface().GetContext();
-		JSAutoRequest rq(cx);
 
 		JS::RootedValue message(cx);
 		ScriptInterface::CreateObject(cx, &message, args...);

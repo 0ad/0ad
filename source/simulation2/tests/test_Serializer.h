@@ -293,7 +293,6 @@ public:
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		JSContext* cx = script.GetContext();
-		JSAutoRequest rq(cx);
 
 		JS::RootedValue obj(cx);
 		TSM_ASSERT(msg, script.Eval(input, &obj));
@@ -756,7 +755,6 @@ public:
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		JSContext* cx = script.GetContext();
-		JSAutoRequest rq(cx);
 
 		JS::RootedValue obj(cx);
 
@@ -791,7 +789,6 @@ public:
 
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		JSContext* cx = script.GetContext();
-		JSAutoRequest rq(cx);
 
 		JS::RootedValue obj(cx);
 		TS_ASSERT(script.Eval(input, &obj));

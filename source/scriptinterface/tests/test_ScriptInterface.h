@@ -66,13 +66,11 @@ public:
 		ScriptInterface script2("Test", "Test", g_ScriptRuntime);
 
 		JSContext* cx1 = script1.GetContext();
-		JSAutoRequest rq1(cx1);
 		JS::RootedValue obj1(cx1);
 		TS_ASSERT(script1.Eval("({'x': 123, 'y': [1, 1.5, '2', 'test', undefined, null, true, false]})", &obj1));
 
 		{
 			JSContext* cx2 = script2.GetContext();
-			JSAutoRequest rq2(cx2);
 
 			JS::RootedValue obj2(cx2, script2.CloneValueFromOtherContext(script1, obj1));
 
@@ -89,14 +87,12 @@ public:
 		ScriptInterface script2("Test", "Test", g_ScriptRuntime);
 
 		JSContext* cx1 = script1.GetContext();
-		JSAutoRequest rq1(cx1);
 
 		JS::RootedValue obj1(cx1);
 		TS_ASSERT(script1.Eval("var s = '?'; var v = ({get x() { return 123 }, 'y': {'w':{get z() { delete v.y; delete v.n; v = null; s += s; return 4 }}}, 'n': 100}); v", &obj1));
 
 		{
 			JSContext* cx2 = script2.GetContext();
-			JSAutoRequest rq2(cx2);
 
 			JS::RootedValue obj2(cx2, script2.CloneValueFromOtherContext(script1, obj1));
 
@@ -112,14 +108,12 @@ public:
 		ScriptInterface script2("Test", "Test", g_ScriptRuntime);
 
 		JSContext* cx1 = script1.GetContext();
-		JSAutoRequest rq1(cx1);
 
 		JS::RootedValue obj1(cx1);
 		TS_ASSERT(script1.Eval("var x = []; x[0] = x; ({'a': x, 'b': x})", &obj1));
 
 		{
 			JSContext* cx2 = script2.GetContext();
-			JSAutoRequest rq(cx2);
 			JS::RootedValue obj2(cx2, script2.CloneValueFromOtherContext(script1, obj1));
 
 			// Use JSAPI function to check if the values of the properties "a", "b" are equals a.x[0]
@@ -145,7 +139,6 @@ public:
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 
 		JSContext* cx = script.GetContext();
-		JSAutoRequest rq(cx);
 
 		JS::RootedValue val(cx);
 		JS::RootedValue out(cx);
@@ -242,7 +235,6 @@ public:
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		JSContext* cx = script.GetContext();
-		JSAutoRequest rq(cx);
 
 		std::string input = "({'x':1,'z':[2,'3\\u263A\\ud800'],\"y\":true})";
 		JS::RootedValue val(cx);
@@ -261,7 +253,6 @@ public:
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		JSContext* cx = script.GetContext();
-		JSAutoRequest rq(cx);
 
 		TS_ASSERT(script.Eval(
 			"function f() { return 1; }"

@@ -36,7 +36,6 @@ public:
 	{
 		ComponentTestHelper test(g_ScriptRuntime);
 		JSContext* cx = test.GetScriptInterface().GetContext();
-		JSAutoRequest rq(cx);
 
 		std::vector<SimulationCommand> empty;
 

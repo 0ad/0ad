@@ -88,7 +88,6 @@ void CReplayTurnManager::NotifyFinishedUpdate(u32 turn)
 
 	const ScriptInterface& scriptInterface = m_Simulation2.GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	JS::AutoValueVector paramData(cx);
 
@@ -112,7 +111,6 @@ void CReplayTurnManager::DoTurn(u32 turn)
 	m_TurnLength = m_ReplayTurnLengths[turn];
 
 	JSContext* cx = m_Simulation2.GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 
 	// Simulate commands for that turn
 	for (const std::pair<player_id_t, std::string>& p : m_ReplayCommands[turn])

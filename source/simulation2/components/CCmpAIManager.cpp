@@ -96,7 +96,6 @@ private:
 				return false;
 
 			JSContext* cx = m_ScriptInterface->GetContext();
-			JSAutoRequest rq(cx);
 
 			OsPath path = L"simulation/ai/" + m_AIName + L"/data.json";
 			JS::RootedValue metadata(cx);
@@ -315,7 +314,6 @@ public:
 		ENSURE(pCxPrivate->pCBData);
 		CAIWorker* self = static_cast<CAIWorker*> (pCxPrivate->pCBData);
 		JSContext* cx(self->m_ScriptInterface->GetContext());
-		JSAutoRequest rq(cx);
 
 		CFixedVector2D pos, goalPos;
 		std::vector<CFixedVector2D> waypoints;
@@ -406,7 +404,6 @@ public:
 	bool TryLoadSharedComponent()
 	{
 		JSContext* cx = m_ScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
 
 		// we don't need to load it.
 		if (!m_HasSharedComponent)
@@ -496,7 +493,6 @@ public:
 		// For now it will run for the shared Component.
 		// This is NOT run during deserialization.
 		JSContext* cx = m_ScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
 
 		JS::RootedValue state(cx);
 		m_ScriptInterface->ReadStructuredClone(gameState, &state);
@@ -556,7 +552,6 @@ public:
 		else
 		{
 			// Avoid a useless memory reallocation followed by a garbage collection.
-			JSAutoRequest rq(cx);
 
 			JS::RootedObject mapObj(cx, &m_PassabilityMapVal.toObject());
 			JS::RootedValue mapData(cx);
@@ -586,7 +581,6 @@ public:
 		else
 		{
 			// Avoid a useless memory reallocation followed by a garbage collection.
-			JSAutoRequest rq(cx);
 
 			JS::RootedObject mapObj(cx, &m_TerritoryMapVal.toObject());
 			JS::RootedValue mapData(cx);
@@ -633,7 +627,6 @@ public:
 	void LoadEntityTemplates(const std::vector<std::pair<std::string, const CParamNode*> >& templates)
 	{
 		JSContext* cx = m_ScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
 
 		m_HasLoadedEntityTemplates = true;
 
@@ -672,7 +665,6 @@ public:
 			return;
 
 		JSContext* cx = m_ScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
 
 		std::stringstream rngStream;
 		rngStream << m_RNG;
@@ -735,7 +727,6 @@ public:
 			return;
 
 		JSContext* cx = m_ScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
 
 		ENSURE(m_CommandsComputed); // deserializing while we're still actively computing would be bad
 
@@ -833,7 +824,6 @@ public:
 		ENSURE(proto.isObject() && "A serializable prototype has to be an object!");
 
 		JSContext* cx = m_ScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
 
 		JS::RootedObject obj(cx, &proto.toObject());
 		if (m_SerializablePrototypes->has(obj) || m_DeserializablePrototypes.find(name) != m_DeserializablePrototypes.end())
@@ -875,7 +865,6 @@ private:
 	{
 		// Deserialize the game state, to pass to the AI's HandleMessage
 		JSContext* cx = m_ScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
 		JS::RootedValue state(cx);
 		{
 			PROFILE3("AI compute read state");
@@ -1031,7 +1020,6 @@ public:
 	{
 		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		JSContext* cx = scriptInterface.GetContext();
-		JSAutoRequest rq(cx);
 
 		CmpPtr<ICmpAIInterface> cmpAIInterface(GetSystemEntity());
 		ENSURE(cmpAIInterface);
@@ -1070,7 +1058,6 @@ public:
 
 		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		JSContext* cx = scriptInterface.GetContext();
-		JSAutoRequest rq(cx);
 
 		if (m_Worker.getPlayerSize() == 0)
 			return;
@@ -1135,7 +1122,6 @@ public:
 
 		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		JSContext* cx = scriptInterface.GetContext();
-		JSAutoRequest rq(cx);
 		JS::RootedValue clonedCommandVal(cx);
 
 		for (size_t i = 0; i < commands.size(); ++i)
@@ -1187,7 +1173,6 @@ private:
 
 		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		JSContext* cx = scriptInterface.GetContext();
-		JSAutoRequest rq(cx);
 
 		JS::RootedValue classesVal(cx);
 		ScriptInterface::CreateObject(cx, &classesVal);

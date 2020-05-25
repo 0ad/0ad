@@ -36,7 +36,6 @@ public:
 	{
 		ComponentTestHelper test(g_ScriptRuntime);
 		JSContext* cx = test.GetScriptInterface().GetContext();
-		JSAutoRequest rq(cx);
 
 		ICmpCinemaManager* cmp = test.Add<ICmpCinemaManager>(CID_CinemaManager, "", SYSTEM_ENTITY);
 

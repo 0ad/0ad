@@ -28,7 +28,6 @@ public:
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		JSContext* cx = script.GetContext();
-		JSAutoRequest rq(cx);
 
 		JS::RootedObject obj(cx, JS_NewPlainObject(cx));
 		ObjectIdCache<u32> map(g_ScriptRuntime);

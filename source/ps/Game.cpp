@@ -192,7 +192,6 @@ bool CGame::StartVisualReplay(const OsPath& replayPath)
 
 	const ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	JS::RootedValue attribs(cx);
 	scriptInterface.ParseJSON(line, &attribs);
@@ -210,7 +209,6 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 {
 	const ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	m_InitialSavedState = savedState;
 	m_IsSavedGame = !savedState.empty();
@@ -296,7 +294,6 @@ int CGame::LoadInitialState()
 PSRETURN CGame::ReallyStartGame()
 {
 	JSContext* cx = m_Simulation2->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 
 	// Call the script function InitGame only for new games, not saved games
 	if (!m_IsSavedGame)

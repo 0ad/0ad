@@ -252,7 +252,6 @@ void CNetClient::GuiPoll(JS::MutableHandleValue ret)
 std::string CNetClient::TestReadGuiMessages()
 {
 	JSContext* cx = GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 
 	std::string r;
 	JS::RootedValue msg(cx);
@@ -274,7 +273,6 @@ const ScriptInterface& CNetClient::GetScriptInterface()
 void CNetClient::PostPlayerAssignmentsToScript()
 {
 	JSContext* cx = GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 
 	JS::RootedValue newAssignments(cx);
 	ScriptInterface::CreateObject(cx, &newAssignments);

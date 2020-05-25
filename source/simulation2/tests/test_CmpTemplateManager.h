@@ -100,7 +100,6 @@ public:
 		tempMan->DisableValidation();
 
 		JSContext* cx = man.GetScriptInterface().GetContext();
-		JSAutoRequest rq(cx);
 
 		// This is testing some bugs in the template JS object caching
 

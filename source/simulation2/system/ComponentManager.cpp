@@ -153,7 +153,6 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxP
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 	JSContext* cx = componentManager->m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	// Find the C++ component that wraps the interface
 	int cidWrapper = componentManager->GetScriptWrapper(iid);
@@ -727,7 +726,6 @@ void CComponentManager::AddSystemComponents(bool skipScriptedComponents, bool sk
 IComponent* CComponentManager::ConstructComponent(CEntityHandle ent, ComponentTypeId cid)
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	std::map<ComponentTypeId, ComponentType>::const_iterator it = m_ComponentTypesById.find(cid);
 	if (it == m_ComponentTypesById.end())

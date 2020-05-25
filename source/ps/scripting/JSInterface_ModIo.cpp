@@ -87,7 +87,6 @@ JS::Value JSI_ModIo::GetMods(ScriptInterface::CxPrivate* pCxPrivate)
 
 	ScriptInterface* scriptInterface = pCxPrivate->pScriptInterface;
 	JSContext* cx = scriptInterface->GetContext();
-	JSAutoRequest rq(cx);
 
 	const std::vector<ModIoModData>& availableMods = g_ModIo->GetMods();
 
@@ -134,7 +133,6 @@ JS::Value JSI_ModIo::GetDownloadProgress(ScriptInterface::CxPrivate* pCxPrivate)
 
 	ScriptInterface* scriptInterface = pCxPrivate->pScriptInterface;
 	JSContext* cx = scriptInterface->GetContext();
-	JSAutoRequest rq(cx);
 
 	const DownloadProgressData& progress = g_ModIo->GetDownloadProgress();
 

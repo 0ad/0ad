@@ -36,7 +36,6 @@
 
 template<> void ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, JS::MutableHandleValue ret, IComponent* const& val)
 {
-	JSAutoRequest rq(cx);
 	if (val == NULL)
 	{
 		ret.setNull();
@@ -68,7 +67,6 @@ template<> void ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, JS::Mutable
 
 template<> void ScriptInterface::ToJSVal<CParamNode>(JSContext* cx, JS::MutableHandleValue ret, CParamNode const& val)
 {
-	JSAutoRequest rq(cx);
 	val.ToJSVal(cx, true, ret);
 
 	// Prevent modifications to the object, so that it's safe to share between
@@ -90,7 +88,6 @@ template<> void ScriptInterface::ToJSVal<const CParamNode*>(JSContext* cx, JS::M
 
 template<> bool ScriptInterface::FromJSVal<CColor>(JSContext* cx, JS::HandleValue v, CColor& out)
 {
-	JSAutoRequest rq(cx);
 
 	if (!v.isObject())
 		FAIL("JS::HandleValue not an object");
@@ -126,7 +123,6 @@ template<> void ScriptInterface::ToJSVal<CColor>(JSContext* cx, JS::MutableHandl
 
 template<> bool ScriptInterface::FromJSVal<fixed>(JSContext* cx, JS::HandleValue v, fixed& out)
 {
-	JSAutoRequest rq(cx);
 	double ret;
 	if (!JS::ToNumber(cx, v, &ret))
 		return false;
@@ -146,7 +142,6 @@ template<> bool ScriptInterface::FromJSVal<CFixedVector3D>(JSContext* cx, JS::Ha
 	if (!v.isObject())
 		return false; // TODO: report type error
 
-	JSAutoRequest rq(cx);
 	JS::RootedObject obj(cx, &v.toObject());
 	JS::RootedValue p(cx);
 
@@ -164,7 +159,6 @@ template<> bool ScriptInterface::FromJSVal<CFixedVector3D>(JSContext* cx, JS::Ha
 
 template<> void ScriptInterface::ToJSVal<CFixedVector3D>(JSContext* cx, JS::MutableHandleValue ret, const CFixedVector3D& val)
 {
-	JSAutoRequest rq(cx);
 
  	ScriptInterface::CxPrivate* pCxPrivate = ScriptInterface::GetScriptInterfaceAndCBData(cx);
 	JS::RootedObject global(cx, &pCxPrivate->pScriptInterface->GetGlobalObject().toObject());
@@ -183,7 +177,6 @@ template<> void ScriptInterface::ToJSVal<CFixedVector3D>(JSContext* cx, JS::Muta
 
 template<> bool ScriptInterface::FromJSVal<CFixedVector2D>(JSContext* cx, JS::HandleValue v, CFixedVector2D& out)
 {
-	JSAutoRequest rq(cx);
 	if (!v.isObject())
 		return false; // TODO: report type error
 	JS::RootedObject obj(cx, &v.toObject());
@@ -201,7 +194,6 @@ template<> bool ScriptInterface::FromJSVal<CFixedVector2D>(JSContext* cx, JS::Ha
 
 template<> void ScriptInterface::ToJSVal<CFixedVector2D>(JSContext* cx, JS::MutableHandleValue ret, const CFixedVector2D& val)
 {
-	JSAutoRequest rq(cx);
 
  	ScriptInterface::CxPrivate* pCxPrivate = ScriptInterface::GetScriptInterfaceAndCBData(cx);
 	JS::RootedObject global(cx, &pCxPrivate->pScriptInterface->GetGlobalObject().toObject());
@@ -219,7 +211,6 @@ template<> void ScriptInterface::ToJSVal<CFixedVector2D>(JSContext* cx, JS::Muta
 
 template<> void ScriptInterface::ToJSVal<Grid<u8> >(JSContext* cx, JS::MutableHandleValue ret, const Grid<u8>& val)
 {
-	JSAutoRequest rq(cx);
 	u32 length = (u32)(val.m_W * val.m_H);
 	u32 nbytes = (u32)(length * sizeof(u8));
 	JS::RootedObject objArr(cx, JS_NewUint8Array(cx, length));
@@ -241,7 +232,6 @@ template<> void ScriptInterface::ToJSVal<Grid<u8> >(JSContext* cx, JS::MutableHa
 
 template<> void ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, JS::MutableHandleValue ret, const Grid<u16>& val)
  {
-	JSAutoRequest rq(cx);
 	u32 length = (u32)(val.m_W * val.m_H);
 	u32 nbytes = (u32)(length * sizeof(u16));
 	JS::RootedObject objArr(cx, JS_NewUint16Array(cx, length));
@@ -263,7 +253,6 @@ template<> void ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, JS::MutableH
 
 template<> bool ScriptInterface::FromJSVal<TNSpline>(JSContext* cx, JS::HandleValue v, TNSpline& out)
 {
-	JSAutoRequest rq(cx);
 
 	if (!v.isObject())
 		FAIL("Argument must be an object");
@@ -302,7 +291,6 @@ template<> bool ScriptInterface::FromJSVal<TNSpline>(JSContext* cx, JS::HandleVa
 
 template<> bool ScriptInterface::FromJSVal<CCinemaPath>(JSContext* cx, JS::HandleValue v, CCinemaPath& out)
 {
-	JSAutoRequest rq(cx);
 
 	if (!v.isObject())
 		FAIL("Argument must be an object");

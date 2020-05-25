@@ -538,7 +538,6 @@ void XmppClient::handleOOB(const glooxwrapper::JID&, const glooxwrapper::OOB&)
 void XmppClient::GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	ScriptInterface::CreateArray(cx, ret);
 	int j = 0;
@@ -567,7 +566,6 @@ void XmppClient::GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::Mu
 void XmppClient::GUIGetGameList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	ScriptInterface::CreateArray(cx, ret);
 	int j = 0;
@@ -596,7 +594,6 @@ void XmppClient::GUIGetGameList(const ScriptInterface& scriptInterface, JS::Muta
 void XmppClient::GUIGetBoardList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	ScriptInterface::CreateArray(cx, ret);
 	int j = 0;
@@ -623,7 +620,6 @@ void XmppClient::GUIGetBoardList(const ScriptInterface& scriptInterface, JS::Mut
 void XmppClient::GUIGetProfile(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	ScriptInterface::CreateArray(cx, ret);
 	int j = 0;
@@ -653,7 +649,6 @@ void SetGUIMessageProperty(JSContext* UNUSED(cx), JS::HandleObject UNUSED(messag
 template<typename T, typename... Args>
 void SetGUIMessageProperty(JSContext* cx, JS::HandleObject messageObj, const std::string& propertyName, const T& propertyValue, Args const&... args)
 {
-	// JSAutoRequest is the responsibility of the caller
 	JS::RootedValue scriptPropertyValue(cx);
 	ScriptInterface::AssignOrToJSVal(cx, &scriptPropertyValue, propertyValue);
 	JS_DefineProperty(cx, messageObj, propertyName.c_str(), scriptPropertyValue, JSPROP_ENUMERATE);
@@ -670,7 +665,6 @@ void XmppClient::CreateGUIMessage(
 	if (!m_ScriptInterface)
 		return;
 	JSContext* cx = m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
 	JS::RootedValue message(cx);
 	ScriptInterface::CreateObject(
 		cx,
@@ -704,7 +698,6 @@ JS::Value XmppClient::GuiPollNewMessages(const ScriptInterface& scriptInterface)
 		return JS::UndefinedValue();
 
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	// Optimize for batch message processing that is more
 	// performance demanding than processing a lone message.
@@ -751,7 +744,6 @@ JS::Value XmppClient::GuiPollHistoricMessages(const ScriptInterface& scriptInter
 		return JS::UndefinedValue();
 
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	JS::RootedValue messages(cx);
 	ScriptInterface::CreateArray(cx, &messages);

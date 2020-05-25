@@ -42,7 +42,6 @@ public:
 		m_AIs(scriptInterface.GetJSRuntime())
 	{
 		JSContext* cx = m_ScriptInterface.GetContext();
-		JSAutoRequest rq(cx);
 		m_AIs = JS_NewArrayObject(cx, 0);
 	}
 
@@ -55,7 +54,6 @@ public:
 	{
 		GetAIsHelper* self = (GetAIsHelper*)cbData;
 		JSContext* cx = self->m_ScriptInterface.GetContext();
-		JSAutoRequest rq(cx);
 
 		// Extract the 3rd component of the path (i.e. the directory after simulation/ai/)
 		fs::wpath components = pathname.string();

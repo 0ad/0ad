@@ -114,7 +114,6 @@ struct ScriptInterface_NativeMethodWrapper<void, TC>
 	bool ScriptInterface::call(JSContext* cx, uint argc, JS::Value* vp) \
 	{ \
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
-		JSAutoRequest rq(cx); \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
 		JS::RootedValue rval(cx); \
 		ScriptInterface_NativeWrapper<R>::template call<R( ScriptInterface::CxPrivate* T0_TAIL_MAYBE_REF(z,i))  T0_TAIL(z,i)>(cx, &rval, fptr  A0_TAIL(z,i)); \
@@ -130,7 +129,6 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 	bool ScriptInterface::callMethod(JSContext* cx, uint argc, JS::Value* vp) \
 	{ \
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
-		JSAutoRequest rq(cx); \
 		TC* c = ScriptInterface::GetPrivate<TC>(cx, args, CLS); \
 		if (! c) return false; \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
@@ -148,7 +146,6 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 	bool ScriptInterface::callMethodConst(JSContext* cx, uint argc, JS::Value* vp) \
 	{ \
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
-		JSAutoRequest rq(cx); \
 		TC* c = ScriptInterface::GetPrivate<TC>(cx, args, CLS); \
 		if (! c) return false; \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
@@ -178,7 +175,6 @@ template<typename R, typename... Ts>
 bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, R& ret, const Ts&... params) const
 {
 	JSContext* cx = GetContext();
-	JSAutoRequest rq(cx);
 	JS::RootedValue jsRet(cx);
 	JS::AutoValueVector argv(cx);
 	argv.resize(sizeof...(Ts));
@@ -193,7 +189,6 @@ template<typename R, typename... Ts>
 bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, JS::Rooted<R>* ret, const Ts&... params) const
 {
 	JSContext* cx = GetContext();
-	JSAutoRequest rq(cx);
 	JS::MutableHandle<R> jsRet(ret);
 	JS::AutoValueVector argv(cx);
 	argv.resize(sizeof...(Ts));
@@ -205,7 +200,6 @@ template<typename R, typename... Ts>
 bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, JS::MutableHandle<R> ret, const Ts&... params) const
 {
 	JSContext* cx = GetContext();
-	JSAutoRequest rq(cx);
 	JS::AutoValueVector argv(cx);
 	argv.resize(sizeof...(Ts));
 	AssignOrToJSValHelper<0>(cx, argv, params...);
@@ -217,7 +211,6 @@ template<typename... Ts>
 bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name, const Ts&... params) const
 {
 	JSContext* cx = GetContext();
-	JSAutoRequest rq(cx);
 	JS::RootedValue jsRet(cx);
 	JS::AutoValueVector argv(cx);
 	argv.resize(sizeof...(Ts));

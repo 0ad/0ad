@@ -300,7 +300,6 @@ float IGUIObject::GetBufferedZ() const
 void IGUIObject::RegisterScriptHandler(const CStr& eventName, const CStr& Code, CGUI& pGUI)
 {
 	JSContext* cx = pGUI.GetScriptInterface()->GetContext();
-	JSAutoRequest rq(cx);
 	JS::RootedValue globalVal(cx, pGUI.GetGlobalObject());
 	JS::RootedObject globalObj(cx, &globalVal.toObject());
 
@@ -376,7 +375,6 @@ InReaction IGUIObject::SendMouseEvent(EGUIMessageType type, const CStr& eventNam
 	HandleMessage(msg);
 
 	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
-	JSAutoRequest rq(cx);
 
 	// Set up the 'mouse' parameter
 	JS::RootedValue mouse(cx);
@@ -407,7 +405,6 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName)
 		return false;
 
 	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
-	JSAutoRequest rq(cx);
 	JS::AutoValueVector paramData(cx);
 	return ScriptEventWithReturn(eventName, paramData);
 }
@@ -424,7 +421,6 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName, const JS::HandleVa
 		return false;
 
 	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
-	JSAutoRequest rq(cx);
 	JS::RootedObject obj(cx, GetJSObject());
 	JS::RootedValue handlerVal(cx, JS::ObjectValue(*it->second));
 	JS::RootedValue result(cx);
@@ -440,7 +436,6 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName, const JS::HandleVa
 void IGUIObject::CreateJSObject()
 {
 	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
-	JSAutoRequest rq(cx);
 
 	m_JSObject.init(cx, m_pGUI.GetScriptInterface()->CreateCustomObject("GUIObject"));
 	JS_SetPrivate(m_JSObject.get(), this);

@@ -138,7 +138,6 @@ public:
 
 		ScriptInterface scriptInterface("Engine", "Test", g_ScriptRuntime);
 		JSContext* cx = scriptInterface.GetContext();
-		JSAutoRequest rq(cx);
 
 		TestStdoutLogger logger;
 
@@ -218,7 +217,6 @@ public:
 	{
 		ScriptInterface scriptInterface("Engine", "Test", g_ScriptRuntime);
 		JSContext* cx = scriptInterface.GetContext();
-		JSAutoRequest rq(cx);
 
 		TestStdoutLogger logger;
 

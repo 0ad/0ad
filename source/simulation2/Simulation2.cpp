@@ -168,14 +168,12 @@ public:
 		const std::vector<SimulationCommand>& commands)
 	{
 		JSContext* cxOld = oldScript.GetContext();
-		JSAutoRequest rqOld(cxOld);
 
 		std::vector<SimulationCommand> newCommands;
 		newCommands.reserve(commands.size());
 		for (const SimulationCommand& command : commands)
 		{
 			JSContext* cxNew = newScript.GetContext();
-			JSAutoRequest rqNew(cxNew);
 			JS::RootedValue tmpCommand(cxNew, newScript.CloneValueFromOtherContext(oldScript, command.data));
 			newScript.FreezeObject(tmpCommand, true);
 			SimulationCommand cmd(command.player, cxNew, tmpCommand);
@@ -425,7 +423,6 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 		// Load the trigger scripts after we have loaded the simulation.
 		{
 			JSContext* cx2 = m_SecondaryComponentManager->GetScriptInterface().GetContext();
-			JSAutoRequest rq2(cx2);
 			JS::RootedValue mapSettingsCloned(cx2,
 				m_SecondaryComponentManager->GetScriptInterface().CloneValueFromOtherContext(
 					scriptInterface, m_MapSettings));
@@ -738,7 +735,6 @@ ScriptInterface& CSimulation2::GetScriptInterface() const
 void CSimulation2::PreInitGame()
 {
 	JSContext* cx = GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 	JS::RootedValue global(cx, GetScriptInterface().GetGlobalObject());
 	GetScriptInterface().CallFunctionVoid(global, "PreInitGame");
 }
@@ -746,7 +742,6 @@ void CSimulation2::PreInitGame()
 void CSimulation2::InitGame()
 {
 	JSContext* cx = GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 	JS::RootedValue global(cx, GetScriptInterface().GetGlobalObject());
 
 	JS::RootedValue settings(cx);
@@ -846,7 +841,6 @@ void CSimulation2::GetMapSettings(JS::MutableHandleValue ret)
 void CSimulation2::LoadPlayerSettings(bool newPlayers)
 {
 	JSContext* cx = GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 	JS::RootedValue global(cx, GetScriptInterface().GetGlobalObject());
 	GetScriptInterface().CallFunctionVoid(global, "LoadPlayerSettings", m->m_MapSettings, newPlayers);
 }
@@ -854,7 +848,6 @@ void CSimulation2::LoadPlayerSettings(bool newPlayers)
 void CSimulation2::LoadMapSettings()
 {
 	JSContext* cx = GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 
 	JS::RootedValue global(cx, GetScriptInterface().GetGlobalObject());
 
@@ -986,7 +979,6 @@ std::string CSimulation2::GetAIData()
 {
 	const ScriptInterface& scriptInterface = GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 	JS::RootedValue aiData(cx, ICmpAIManager::GetAIs(scriptInterface));
 
 	// Build single JSON string with array of AI data

@@ -209,7 +209,6 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 static void PumpEvents()
 {
 	JSContext* cx = g_GUI->GetScriptInterface()->GetContext();
-	JSAutoRequest rq(cx);
 
 	PROFILE3("dispatch events");
 

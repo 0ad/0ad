@@ -371,7 +371,6 @@ PSRETURN CMapSummaryReader::LoadMap(const VfsPath& pathname)
 void CMapSummaryReader::GetMapSettings(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	ScriptInterface::CreateObject(cx, ret);
 
@@ -1238,7 +1237,6 @@ int CMapReader::LoadRMSettings()
 int CMapReader::GenerateMap()
 {
 	JSContext* cx = pSimulation2->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 
 	if (!m_MapGen)
 	{
@@ -1301,7 +1299,6 @@ int CMapReader::ParseTerrain()
 {
 	TIMER(L"ParseTerrain");
 	JSContext* cx = pSimulation2->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 
 	// parse terrain from map data
 	//	an error here should stop the loading process
@@ -1377,7 +1374,6 @@ int CMapReader::ParseEntities()
 {
 	TIMER(L"ParseEntities");
 	JSContext* cx = pSimulation2->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 
 	// parse entities from map data
 	std::vector<Entity> entities;
@@ -1442,7 +1438,6 @@ int CMapReader::ParseEnvironment()
 {
 	// parse environment settings from map data
 	JSContext* cx = pSimulation2->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 
 #define GET_ENVIRONMENT_PROPERTY(val, prop, out)\
 	if (!pSimulation2->GetScriptInterface().GetProperty(val, #prop, out))\
@@ -1542,7 +1537,6 @@ int CMapReader::ParseEnvironment()
 int CMapReader::ParseCamera()
 {
 	JSContext* cx = pSimulation2->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 	// parse camera settings from map data
 	// defaults if we don't find player starting camera
 	float declination = DEGTORAD(30.f), rotation = DEGTORAD(-45.f);

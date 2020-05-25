@@ -79,7 +79,6 @@ JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, 
 	// The game we start from here creates another context and expects data in this context.
 
 	JSContext* cxGui = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cxGui);
 
 	ENSURE(!g_NetServer);
 	ENSURE(!g_NetClient);
@@ -98,7 +97,6 @@ JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, 
 	{
 		CSimulation2* sim = g_Game->GetSimulation2();
 		JSContext* cxGame = sim->GetScriptInterface().GetContext();
-		JSAutoRequest rq(cxGame);
 
 		JS::RootedValue gameContextMetadata(cxGame,
 			sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), guiContextMetadata));

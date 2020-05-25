@@ -142,7 +142,6 @@ bool CGUISize::FromString(const CStr& Value)
 
 void CGUISize::ToJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 {
-	JSAutoRequest rq(cx);
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
 	ret.setObjectOrNull(pScriptInterface->CreateCustomObject("GUISize"));
 
@@ -178,7 +177,6 @@ void CGUISize::ToJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 
 bool CGUISize::FromJSVal(JSContext* cx, JS::HandleValue v)
 {
-	JSAutoRequest rq(cx);
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
 
 	if (v.isString())

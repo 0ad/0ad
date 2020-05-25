@@ -51,7 +51,6 @@ void JSI_IGUIObject::RegisterScriptClass(ScriptInterface& scriptInterface)
 
 bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp)
 {
-	JSAutoRequest rq(cx);
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
 
 	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, obj, &JSI_IGUIObject::JSI_class);
@@ -132,7 +131,6 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	if (!e)
 		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
 
-	JSAutoRequest rq(cx);
 	JS::RootedValue idval(cx);
 	if (!JS_IdToValue(cx, id, &idval))
 		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
@@ -182,7 +180,6 @@ bool JSI_IGUIObject::deleteProperty(JSContext* cx, JS::HandleObject obj, JS::Han
 	if (!e)
 		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
 
-	JSAutoRequest rq(cx);
 	JS::RootedValue idval(cx);
 	if (!JS_IdToValue(cx, id, &idval))
 		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
@@ -205,7 +202,6 @@ bool JSI_IGUIObject::deleteProperty(JSContext* cx, JS::HandleObject obj, JS::Han
 
 bool JSI_IGUIObject::toString(JSContext* cx, uint argc, JS::Value* vp)
 {
-	// No JSAutoRequest needed for these calls
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, args, &JSI_IGUIObject::JSI_class);
 	if (!e)
@@ -217,7 +213,6 @@ bool JSI_IGUIObject::toString(JSContext* cx, uint argc, JS::Value* vp)
 
 bool JSI_IGUIObject::focus(JSContext* cx, uint argc, JS::Value* vp)
 {
-	// No JSAutoRequest needed for these calls
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, args, &JSI_IGUIObject::JSI_class);
 	if (!e)
@@ -230,7 +225,6 @@ bool JSI_IGUIObject::focus(JSContext* cx, uint argc, JS::Value* vp)
 
 bool JSI_IGUIObject::blur(JSContext* cx, uint argc, JS::Value* vp)
 {
-	// No JSAutoRequest needed for these calls
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, args, &JSI_IGUIObject::JSI_class);
 	if (!e)
@@ -243,7 +237,6 @@ bool JSI_IGUIObject::blur(JSContext* cx, uint argc, JS::Value* vp)
 
 bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, JS::Value* vp)
 {
-	JSAutoRequest rq(cx);
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 
 	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, args, &JSI_IGUIObject::JSI_class);

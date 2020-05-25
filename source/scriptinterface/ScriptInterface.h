@@ -138,7 +138,6 @@ public:
 	template<typename... Args>
 	static bool CreateObject(JSContext* cx, JS::MutableHandleValue objectValue, Args const&... args)
 	{
-		//JSAutoRequest rq(cx);
 		JS::RootedObject obj(cx);
 
 		if (!CreateObject_(cx, &obj, args...))
@@ -338,7 +337,6 @@ public:
 	template <typename T>
 	static T* GetPrivate(JSContext* cx, JS::HandleObject thisobj, JSClass* jsClass)
 	{
-		//JSAutoRequest rq(cx);
 		T* value = static_cast<T*>(JS_GetInstancePrivate(cx, thisobj, jsClass, nullptr));
 		if (value == nullptr && !JS_IsExceptionPending(cx))
 			JS_ReportError(cx, "Private data of the given object is null!");
@@ -352,7 +350,6 @@ public:
 	template <typename T>
 	static T* GetPrivate(JSContext* cx, JS::CallArgs& callArgs, JSClass* jsClass)
 	{
-		//JSAutoRequest rq(cx);
 		if (!callArgs.thisv().isObject())
 		{
 			JS_ReportError(cx, "Cannot retrieve private JS class data because from a non-object value!");
@@ -400,14 +397,12 @@ public:
 private:
 
 	/**
-	 * Careful, the CreateObject_ helpers avoid creation of the //JSAutoRequest!
 	 */
 	static bool CreateObject_(JSContext* cx, JS::MutableHandleObject obj);
 
 	template<typename T, typename... Args>
 	static bool CreateObject_(JSContext* cx, JS::MutableHandleObject obj, const char* propertyName, const T& propertyValue, Args const&... args)
 	{
-		// //JSAutoRequest is the responsibility of the caller
 		JS::RootedValue val(cx);
 		AssignOrToJSVal(cx, &val, propertyValue);
 
@@ -530,7 +525,6 @@ inline JS::HandleValue ScriptInterface::AssignOrFromJSVal<JS::HandleValue>(JSCon
 template<typename T>
 bool ScriptInterface::SetGlobal(const char* name, const T& value, bool replace, bool constant, bool enumerate)
 {
-	//JSAutoRequest rq(GetContext());
 	JS::RootedValue val(GetContext());
 	AssignOrToJSVal(GetContext(), &val, value);
 	return SetGlobal_(name, val, replace, constant, enumerate);
@@ -539,7 +533,6 @@ bool ScriptInterface::SetGlobal(const char* name, const T& value, bool replace, 
 template<typename T>
 bool ScriptInterface::SetProperty(JS::HandleValue obj, const char* name, const T& value, bool constant, bool enumerate) const
 {
-	//JSAutoRequest rq(GetContext());
 	JS::RootedValue val(GetContext());
 	AssignOrToJSVal(GetContext(), &val, value);
 	return SetProperty_(obj, name, val, constant, enumerate);
@@ -548,7 +541,6 @@ bool ScriptInterface::SetProperty(JS::HandleValue obj, const char* name, const T
 template<typename T>
 bool ScriptInterface::SetProperty(JS::HandleValue obj, const wchar_t* name, const T& value, bool constant, bool enumerate) const
 {
-	//JSAutoRequest rq(GetContext());
 	JS::RootedValue val(GetContext());
 	AssignOrToJSVal(GetContext(), &val, value);
 	return SetProperty_(obj, name, val, constant, enumerate);
@@ -557,7 +549,6 @@ bool ScriptInterface::SetProperty(JS::HandleValue obj, const wchar_t* name, cons
 template<typename T>
 bool ScriptInterface::SetPropertyInt(JS::HandleValue obj, int name, const T& value, bool constant, bool enumerate) const
 {
-	//JSAutoRequest rq(GetContext());
 	JS::RootedValue val(GetContext());
 	AssignOrToJSVal(GetContext(), &val, value);
 	return SetPropertyInt_(obj, name, val, constant, enumerate);
@@ -567,7 +558,6 @@ template<typename T>
 bool ScriptInterface::GetProperty(JS::HandleValue obj, const char* name, T& out) const
 {
 	JSContext* cx = GetContext();
-	//JSAutoRequest rq(cx);
 	JS::RootedValue val(cx);
 	if (!GetProperty_(obj, name, &val))
 		return false;
@@ -577,7 +567,6 @@ bool ScriptInterface::GetProperty(JS::HandleValue obj, const char* name, T& out)
 template<typename T>
 bool ScriptInterface::GetPropertyInt(JS::HandleValue obj, int name, T& out) const
 {
-	//JSAutoRequest rq(GetContext());
 	JS::RootedValue val(GetContext());
 	if (!GetPropertyInt_(obj, name, &val))
 		return false;
@@ -595,7 +584,6 @@ bool ScriptInterface::Eval(const CHAR* code, JS::MutableHandleValue ret) const
 template<typename T, typename CHAR>
 bool ScriptInterface::Eval(const CHAR* code, T& ret) const
 {
-	//JSAutoRequest rq(GetContext());
 	JS::RootedValue rval(GetContext());
 	if (!Eval_(code, &rval))
 		return false;

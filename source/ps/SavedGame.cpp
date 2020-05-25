@@ -53,7 +53,6 @@ Status SavedGames::SavePrefix(const CStrW& prefix, const CStrW& description, CSi
 Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation2& simulation, const shared_ptr<ScriptInterface::StructuredClone>& guiMetadataClone)
 {
 	JSContext* cx = simulation.GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 
 	// Determine the filename to save under
 	const VfsPath basenameFormat(L"saves/" + name);
@@ -175,7 +174,6 @@ public:
 	void ReadEntry(const VfsPath& pathname, const CFileInfo& fileInfo, PIArchiveFile archiveFile)
 	{
 		JSContext* cx = m_ScriptInterface.GetContext();
-		JSAutoRequest rq(cx);
 
 		if (pathname == L"metadata.json")
 		{
@@ -231,7 +229,6 @@ JS::Value SavedGames::GetSavedGames(const ScriptInterface& scriptInterface)
 {
 	TIMER(L"GetSavedGames");
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	JS::RootedValue games(cx);
 	ScriptInterface::CreateArray(cx, &games);

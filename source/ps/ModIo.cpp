@@ -587,7 +587,6 @@ bool ModIo::ParseGameIdResponse(const ScriptInterface& scriptInterface, const st
 {
 #define CLEANUP() id = -1;
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	JS::RootedValue gameResponse(cx);
 
@@ -659,7 +658,6 @@ bool ModIo::ParseModsResponse(const ScriptInterface& scriptInterface, const std:
 #define CLEANUP() modData.clear();
 
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	JS::RootedValue modResponse(cx);
 

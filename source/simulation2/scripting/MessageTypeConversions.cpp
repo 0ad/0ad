@@ -22,7 +22,6 @@
 
 #define TOJSVAL_SETUP() \
 	JSContext* cx = scriptInterface.GetContext(); \
-	JSAutoRequest rq(cx); \
 	JS::RootedObject obj(cx, JS_NewPlainObject(cx)); \
 	if (!obj) \
 		return JS::UndefinedValue();
@@ -37,7 +36,6 @@
 
 #define FROMJSVAL_SETUP() \
 	JSContext* cx = scriptInterface.GetContext(); \
-	JSAutoRequest rq(cx); \
 	if (val.isPrimitive()) \
 		return NULL; \
 	JS::RootedObject obj(cx, &val.toObject()); \

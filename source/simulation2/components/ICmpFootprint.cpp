@@ -31,7 +31,6 @@ JS::Value ICmpFootprint::GetShape_wrapper() const
 	GetShape(shape, size0, size1, height);
 
 	JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 
 	JS::RootedObject obj(cx, JS_NewPlainObject(cx));
 	if (!obj)

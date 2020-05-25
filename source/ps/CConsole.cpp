@@ -546,7 +546,6 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 {
 	shared_ptr<ScriptInterface> pScriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
 	JSContext* cx = pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
 
 	if (szLine == NULL) return;
 	if (wcslen(szLine) <= 0) return;

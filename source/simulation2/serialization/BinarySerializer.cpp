@@ -65,7 +65,6 @@ CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(const ScriptInterface& 
 void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	switch (JS_TypeOfValue(cx, val))
 	{
@@ -420,7 +419,6 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 void CBinarySerializerScriptImpl::ScriptString(const char* name, JS::HandleString string)
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 #if BYTE_ORDER != LITTLE_ENDIAN
 #error TODO: probably need to convert JS strings to little-endian
@@ -466,7 +464,6 @@ u32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)
 		return tag;
 
 	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	m_ScriptBackrefs.add(cx, obj, m_ScriptBackrefsNext);
 

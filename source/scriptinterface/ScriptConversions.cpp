@@ -52,7 +52,6 @@ static const char* InformalValueTypeName(const JS::Value& v)
 
 template<> bool ScriptInterface::FromJSVal<bool>(JSContext* cx, JS::HandleValue v, bool& out)
 {
-	JSAutoRequest rq(cx);
 	WARN_IF_NOT(v.isBoolean(), v);
 	out = JS::ToBoolean(v);
 	return true;
@@ -60,7 +59,6 @@ template<> bool ScriptInterface::FromJSVal<bool>(JSContext* cx, JS::HandleValue 
 
 template<> bool ScriptInterface::FromJSVal<float>(JSContext* cx, JS::HandleValue v, float& out)
 {
-	JSAutoRequest rq(cx);
 	double tmp;
 	WARN_IF_NOT(v.isNumber(), v);
 	if (!JS::ToNumber(cx, v, &tmp))
@@ -71,7 +69,6 @@ template<> bool ScriptInterface::FromJSVal<float>(JSContext* cx, JS::HandleValue
 
 template<> bool ScriptInterface::FromJSVal<double>(JSContext* cx, JS::HandleValue v, double& out)
 {
-	JSAutoRequest rq(cx);
 	WARN_IF_NOT(v.isNumber(), v);
 	if (!JS::ToNumber(cx, v, &out))
 		return false;
@@ -80,7 +77,6 @@ template<> bool ScriptInterface::FromJSVal<double>(JSContext* cx, JS::HandleValu
 
 template<> bool ScriptInterface::FromJSVal<i32>(JSContext* cx, JS::HandleValue v, i32& out)
 {
-	JSAutoRequest rq(cx);
 	WARN_IF_NOT(v.isNumber(), v);
 	if (!JS::ToInt32(cx, v, &out))
 		return false;
@@ -89,7 +85,6 @@ template<> bool ScriptInterface::FromJSVal<i32>(JSContext* cx, JS::HandleValue v
 
 template<> bool ScriptInterface::FromJSVal<u32>(JSContext* cx, JS::HandleValue v, u32& out)
 {
-	JSAutoRequest rq(cx);
 	WARN_IF_NOT(v.isNumber(), v);
 	if (!JS::ToUint32(cx, v, &out))
 		return false;
@@ -98,7 +93,6 @@ template<> bool ScriptInterface::FromJSVal<u32>(JSContext* cx, JS::HandleValue v
 
 template<> bool ScriptInterface::FromJSVal<u16>(JSContext* cx, JS::HandleValue v, u16& out)
 {
-	JSAutoRequest rq(cx);
 	WARN_IF_NOT(v.isNumber(), v);
 	if (!JS::ToUint16(cx, v, &out))
 		return false;
@@ -107,7 +101,6 @@ template<> bool ScriptInterface::FromJSVal<u16>(JSContext* cx, JS::HandleValue v
 
 template<> bool ScriptInterface::FromJSVal<u8>(JSContext* cx, JS::HandleValue v, u8& out)
 {
-	JSAutoRequest rq(cx);
 	u16 tmp;
 	WARN_IF_NOT(v.isNumber(), v);
 	if (!JS::ToUint16(cx, v, &tmp))
@@ -118,7 +111,6 @@ template<> bool ScriptInterface::FromJSVal<u8>(JSContext* cx, JS::HandleValue v,
 
 template<> bool ScriptInterface::FromJSVal<std::wstring>(JSContext* cx, JS::HandleValue v, std::wstring& out)
 {
-	JSAutoRequest rq(cx);
 	WARN_IF_NOT(v.isString() || v.isNumber(), v); // allow implicit number conversions
 	JS::RootedString str(cx, JS::ToString(cx, v));
 	if (!str)
@@ -158,7 +150,6 @@ template<> bool ScriptInterface::FromJSVal<Path>(JSContext* cx, JS::HandleValue 
 
 template<> bool ScriptInterface::FromJSVal<std::string>(JSContext* cx, JS::HandleValue v, std::string& out)
 {
-	JSAutoRequest rq(cx);
 	WARN_IF_NOT(v.isString() || v.isNumber(), v); // allow implicit number conversions
 	JS::RootedString str(cx, JS::ToString(cx, v));
 	if (!str)
@@ -183,7 +174,6 @@ template<> bool ScriptInterface::FromJSVal<CStrW>(JSContext* cx, JS::HandleValue
 
 template<> bool ScriptInterface::FromJSVal<Entity>(JSContext* cx, JS::HandleValue v, Entity& out)
 {
-	JSAutoRequest rq(cx);
 	if (!v.isObject())
 		FAIL("Argument must be an object");
 
@@ -249,7 +239,6 @@ template<> void ScriptInterface::ToJSVal<u32>(JSContext* UNUSED(cx), JS::Mutable
 
 template<> void ScriptInterface::ToJSVal<std::wstring>(JSContext* cx, JS::MutableHandleValue ret, const std::wstring& val)
 {
-	JSAutoRequest rq(cx);
 	utf16string utf16(val.begin(), val.end());
 	JS::RootedString str(cx, JS_NewUCStringCopyN(cx, reinterpret_cast<const char16_t*> (utf16.c_str()), utf16.length()));
 	if (str)
@@ -265,7 +254,6 @@ template<> void ScriptInterface::ToJSVal<Path>(JSContext* cx, JS::MutableHandleV
 
 template<> void ScriptInterface::ToJSVal<std::string>(JSContext* cx, JS::MutableHandleValue ret, const std::string& val)
 {
-	JSAutoRequest rq(cx);
 	JS::RootedString str(cx, JS_NewStringCopyN(cx, val.c_str(), val.length()));
 	if (str)
 		ret.setString(str);
@@ -280,7 +268,6 @@ template<> void ScriptInterface::ToJSVal<const wchar_t*>(JSContext* cx, JS::Muta
 
 template<> void ScriptInterface::ToJSVal<const char*>(JSContext* cx, JS::MutableHandleValue ret, const char* const& val)
 {
-	JSAutoRequest rq(cx);
 	JS::RootedString str(cx, JS_NewStringCopyZ(cx, val));
 	if (str)
 		ret.setString(str);

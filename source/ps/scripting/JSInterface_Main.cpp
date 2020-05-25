@@ -74,7 +74,6 @@ std::wstring JSI_Main::GetMatchID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate)
 JS::Value JSI_Main::LoadMapSettings(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& pathname)
 {
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
 
 	CMapSummaryReader reader;
 

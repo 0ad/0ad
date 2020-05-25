@@ -65,7 +65,6 @@ CReplayLogger::~CReplayLogger()
 void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	// Add timestamp, since the file-modification-date can change
 	m_ScriptInterface.SetProperty(attribs, "timestamp", (double)std::time(nullptr));
@@ -85,7 +84,6 @@ void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 void CReplayLogger::Turn(u32 n, u32 turnLength, std::vector<SimulationCommand>& commands)
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	*m_Stream << "turn " << n << " " << turnLength << "\n";
 
@@ -115,7 +113,6 @@ void CReplayLogger::SaveMetadata(const CSimulation2& simulation)
 
 	ScriptInterface& scriptInterface = simulation.GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	JS::RootedValue arg(cx);
 	JS::RootedValue metadata(cx);
@@ -166,7 +163,6 @@ CStr CReplayPlayer::ModListToString(const std::vector<std::vector<CStr>>& list) 
 void CReplayPlayer::CheckReplayMods(const ScriptInterface& scriptInterface, JS::HandleValue attribs) const
 {
 	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
 
 	std::vector<std::vector<CStr>> replayMods;
 	scriptInterface.GetProperty(attribs, "mods", replayMods);
@@ -234,7 +230,6 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 
 	{
 	JSContext* cx = g_Game->GetSimulation2()->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 	std::string type;
 
 	while ((*m_Stream >> type).good())
