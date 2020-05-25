@@ -271,6 +271,8 @@ Attacking.prototype.HandleAttackEffects = function(attackType, attackData, targe
 
 		Object.assign(targetState, cmpReceiver[receiver.method](attackData[effectType], attacker, attackerOwner, bonusMultiplier));
 	}
+	if (!Object.keys(targetState).length)
+		return;
 
 	if (targetState.killed)
 		this.TargetKilled(attacker, target, attackerOwner);
