@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,8 +50,8 @@
  * smaller ranges might miss some legitimate routes around large obstacles.)
  */
 static const entity_pos_t SHORT_PATH_MIN_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*3)/2;
-static const entity_pos_t SHORT_PATH_MAX_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*6);
-static const entity_pos_t SHORT_PATH_SEARCH_RANGE_INCREMENT = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*1);
+static const entity_pos_t SHORT_PATH_MAX_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*14);
+static const entity_pos_t SHORT_PATH_SEARCH_RANGE_INCREMENT = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*2);
 
 /**
  * When using the short-pathfinder to rejoin a long-path waypoint, aim for a circle of this radius around the waypoint.
@@ -1024,9 +1024,10 @@ bool CCmpUnitMotion::HandleObstructedMove()
 
 	if (!InShortPathRange(goal, pos))
 	{
-		// If we still have long waypoints, try and compute a short path.
-		// Assume the next waypoint is impassable
-		if (m_LongPath.m_Waypoints.size() > 1)
+		// If we still have long waypoints, try and compute a short path to our next long waypoint.
+		// Assume the next waypoint is impassable and pop it. This helps unstuck entities in some cases, and we'll just
+		// end up recomputing a long path if we pop all of them, so it's safe.
+		if (m_LongPath.m_Waypoints.size() >= 1)
 			m_LongPath.m_Waypoints.pop_back();
 		if (!m_LongPath.m_Waypoints.empty())
 		{
