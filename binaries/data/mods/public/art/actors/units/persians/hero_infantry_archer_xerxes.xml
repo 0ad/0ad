@@ -12,12 +12,15 @@
         <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="weapon_bow"/>
         <prop actor="props/units/pers_quiver_xerxes.xml" attachpoint="back"/>
       </props>
-      <textures><texture file="skeletal/pers_hero_xerxes.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/pers_hero_xerxes.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_ranged_archer.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
