@@ -89,7 +89,7 @@ void CReplayTurnManager::NotifyFinishedUpdate(u32 turn)
 	const ScriptInterface& scriptInterface = m_Simulation2.GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
 
-	JS::AutoValueVector paramData(cx);
+	JS::RootedValueVector paramData(cx);
 
 	paramData.append(JS::NumberValue(turn));
 

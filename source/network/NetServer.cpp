@@ -389,7 +389,7 @@ void CNetServerWorker::Run()
 	// To avoid the need for JS_SetContextThread, we create and use and destroy
 	// the script interface entirely within this network thread
 	m_ScriptInterface = new ScriptInterface("Engine", "Net server", ScriptInterface::CreateRuntime(g_ScriptRuntime));
-	m_GameAttributes.init(m_ScriptInterface->GetJSRuntime(), JS::UndefinedValue());
+	m_GameAttributes.init(m_ScriptInterface->GetContext(), JS::UndefinedValue());
 
 	while (true)
 	{

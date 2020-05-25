@@ -24,31 +24,12 @@
 #include "ps/utf16string.h"
 #include "ps/CStr.h"
 
-#define FAIL(msg) STMT(JS_ReportError(cx, msg); return false)
+#include "js/Warnings.h"
+
+#define FAIL(msg) STMT(JS_ReportErrorASCII(cx, msg); return false)
 
 // Implicit type conversions often hide bugs, so warn about them
-#define WARN_IF_NOT(c, v) STMT(if (!(c)) { JS_ReportWarning(cx, "Script value conversion check failed: %s (got type %s)", #c, InformalValueTypeName(v)); })
-
-// TODO: SpiderMonkey: Follow upstream progresses about JS_InformalValueTypeName in the API
-// https://bugzilla.mozilla.org/show_bug.cgi?id=1285917
-static const char* InformalValueTypeName(const JS::Value& v)
-{
-	if (v.isObject())
-		return "object";
-	if (v.isString())
-		return "string";
-	if (v.isSymbol())
-		return "symbol";
-	if (v.isNumber())
-		return "number";
-	if (v.isBoolean())
-		return "boolean";
-	if (v.isNull())
-		return "null";
-	if (v.isUndefined())
-		return "undefined";
-	return "value";
-}
+#define WARN_IF_NOT(c, v) STMT(if (!(c)) { JS::WarnASCII(cx, "Script value conversion check failed: %s (got type %s)", #c, InformalValueTypeName(v)); })
 
 template<> bool ScriptInterface::FromJSVal<bool>(JSContext* cx, JS::HandleValue v, bool& out)
 {
@@ -154,11 +135,10 @@ template<> bool ScriptInterface::FromJSVal<std::string>(JSContext* cx, JS::Handl
 	JS::RootedString str(cx, JS::ToString(cx, v));
 	if (!str)
 		FAIL("Argument must be convertible to a string");
-	char* ch = JS_EncodeString(cx, str); // chops off high byte of each char16_t
+    JS::UniqueChars ch = JS_EncodeStringToASCII(cx, str.get()); // chops off high byte of each char16_t
 	if (!ch)
 		FAIL("JS_EncodeString failed"); // out of memory
-	out.assign(ch, ch + JS_GetStringLength(str));
-	JS_free(cx, ch);
+	out.assign(ch.get(), ch.get() + JS_GetStringLength(str));
 	return true;
 }
 

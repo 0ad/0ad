@@ -22,111 +22,68 @@
 
 #include "scriptinterface/ScriptRuntime.h"
 #include "scriptinterface/ScriptTypes.h"
+#include "js/GCHashTable.h"
+#include "js/AllocPolicy.h"
 #include <stdint.h>
 
 // Map JSObjects -> ids
 template <typename T>
 class ObjectIdCache
 {
-	typedef js::PointerHasher<JSObject*, 3> Hasher;
-	typedef js::HashMap<JSObject*, T, Hasher, js::SystemAllocPolicy> Table;
+	using Hasher = js::MovableCellHasher<JS::Heap<JSObject*>>;
+	using Table = JS::GCHashMap<JS::Heap<JSObject*>, T, Hasher, js::SystemAllocPolicy>;
 
 	NONCOPYABLE(ObjectIdCache);
 
 public:
-	ObjectIdCache(shared_ptr<ScriptRuntime> rt)
-		: table_(nullptr), m_rt(rt)
-	{
-	}
-
-	~ObjectIdCache()
-	{
-		if (table_)
-		{
-			m_rt->AddDeferredFinalizationObject(std::shared_ptr<void>((void*)table_, DeleteTable));
-			table_ = nullptr;
-			JS_RemoveExtraGCRootsTracer(m_rt->m_rt, ObjectIdCache::Trace, this);
-		}
-	}
-
-	bool init()
-	{
-		if (table_)
-			return true;
-
-		table_ = new Table(js::SystemAllocPolicy());
-		JS_AddExtraGCRootsTracer(m_rt->m_rt, ObjectIdCache::Trace, this);
-		return table_ && table_->init(32);
-	}
+    ObjectIdCache() : table_(js::SystemAllocPolicy(), 32) {}
+	virtual ~ObjectIdCache(){}
 
 	void trace(JSTracer* trc)
 	{
-		for (typename Table::Enum e(*table_); !e.empty(); e.popFront())
-		{
-			JSObject* obj = e.front().key();
-			JS_CallUnbarrieredObjectTracer(trc, &obj, "ipc-object");
-			if (obj != e.front().key())
-				e.rekeyFront(obj);
-		}
+        table_.trace();
 	}
 
 // TODO sweep?
 
 	bool find(JSObject* obj, T& ret)
 	{
-		typename Table::Ptr p = table_->lookup(obj);
-		if (!p)
+		typename Table::Ptr p = table_.lookup(obj);
+		if (!p) {
 			return false;
+        }
 		ret = p->value();
 		return true;
 	}
 
 	bool add(JSContext* cx, JSObject* obj, T id)
 	{
-		if (!table_->put(obj, id))
-			return false;
-		JS_StoreObjectPostBarrierCallback(cx, keyMarkCallback, obj, table_);
-		return true;
+        (void) cx;
+		return table_.put(obj, id);
 	}
 
 	void remove(JSObject* obj)
 	{
-		table_->remove(obj);
+		table_.remove(obj);
 	}
 
-// TODO clear?
+    void clear()
+    {
+        return table_.clear();
+    }
 
 	bool empty()
 	{
-		return table_->empty();
+		return table_.empty();
 	}
 
 	bool has(JSObject* obj)
 	{
-		return table_->has(obj);
+		return table_.has(obj);
 	}
 
 private:
-	static void keyMarkCallback(JSTracer* trc, JSObject* key, void* data)
-	{
-		Table* table = static_cast<Table*>(data);
-		JSObject* prior = key;
-		JS_CallUnbarrieredObjectTracer(trc, &key, "ObjectIdCache::table_ key");
-		table->rekeyIfMoved(prior, key);
-	}
-
-	static void Trace(JSTracer* trc, void* data)
-	{
-		reinterpret_cast<ObjectIdCache*>(data)->trace(trc);
-	}
-
-	static void DeleteTable(void* table)
-	{
-		delete (Table*)table;
-	}
-
-	shared_ptr<ScriptRuntime> m_rt;
-	Table* table_;
+	Table table_;
 };
 
 #endif // INCLUDED_OBJECTTOIDMAP

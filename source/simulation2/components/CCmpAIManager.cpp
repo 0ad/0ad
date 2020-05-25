@@ -157,8 +157,8 @@ private:
 				m_ScriptInterface->SetProperty(settings, "templates", m_Worker.m_EntityTemplates, false);
 			}
 
-			JS::AutoValueVector argv(cx);
-			argv.append(settings.get());
+			JS::RootedValueVector argv(cx);
+			(void)argv.append(settings.get());
 			m_ScriptInterface->CallConstructor(ctor, argv, &m_Obj);
 
 			if (m_Obj.get().isNull())
@@ -215,7 +215,7 @@ public:
 		m_CommandsComputed(true),
 		m_HasLoadedEntityTemplates(false),
 		m_HasSharedComponent(false),
-		m_SerializablePrototypes(new ObjectIdCache<std::wstring>(g_ScriptRuntime)),
+		m_SerializablePrototypes(new ObjectIdCache<std::wstring>()),
 		m_EntityTemplates(g_ScriptRuntime->m_rt),
 		m_SharedAIObj(g_ScriptRuntime->m_rt),
 		m_PassabilityMapVal(g_ScriptRuntime->m_rt),
@@ -226,8 +226,7 @@ public:
 
 		m_ScriptInterface->SetCallbackData(static_cast<void*> (this));
 
-		m_SerializablePrototypes->init();
-		JS_AddExtraGCRootsTracer(m_ScriptInterface->GetJSRuntime(), Trace, this);
+		JS_AddExtraGCRootsTracer(m_ScriptInterface->GetContext(), Trace, this);
 
 		m_ScriptInterface->RegisterFunction<void, int, JS::HandleValue, CAIWorker::PostCommand>("PostCommand");
 		m_ScriptInterface->RegisterFunction<void, std::wstring, CAIWorker::IncludeModule>("IncludeModule");
@@ -246,7 +245,7 @@ public:
 
 	~CAIWorker()
 	{
-		JS_RemoveExtraGCRootsTracer(m_ScriptInterface->GetJSRuntime(), Trace, this);
+		JS_RemoveExtraGCRootsTracer(m_ScriptInterface->GetContext(), Trace, this);
 	}
 
 	bool HasLoadedEntityTemplates() const { return m_HasLoadedEntityTemplates; }
@@ -458,7 +457,7 @@ public:
 			"players", playersID,
 			"templates", m_EntityTemplates);
 
-		JS::AutoValueVector argv(cx);
+		JS::RootedValueVector argv(cx);
 		argv.append(settings);
 		m_ScriptInterface->CallConstructor(ctor, argv, &m_SharedAIObj);
 
@@ -844,9 +843,9 @@ private:
 	void TraceMember(JSTracer *trc)
 	{
 		for (std::pair<const std::wstring, JS::Heap<JSObject*>>& prototype : m_DeserializablePrototypes)
-			JS_CallObjectTracer(trc, &prototype.second, "CAIWorker::m_DeserializablePrototypes");
+			JS::TraceEdge(trc, &prototype.second, "CAIWorker::m_DeserializablePrototypes");
 		for (std::pair<const VfsPath, JS::Heap<JS::Value>>& metadata : m_PlayerMetadata)
-			JS_CallValueTracer(trc, &metadata.second, "CAIWorker::m_PlayerMetadata");
+			JS::TraceEdge(trc, &metadata.second, "CAIWorker::m_PlayerMetadata");
 	}
 
 	void LoadMetadata(const VfsPath& path, JS::MutableHandleValue out)

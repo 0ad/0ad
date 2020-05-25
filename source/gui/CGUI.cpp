@@ -405,13 +405,13 @@ void CGUI::SetGlobalHotkey(const CStr& hotkeyTag, JS::HandleValue function)
 
 	if (hotkeyTag.empty())
 	{
-		JS_ReportError(cx, "Cannot assign a function to an empty hotkey identifier!");
+		JS_ReportErrorASCII(cx, "Cannot assign a function to an empty hotkey identifier!");
 		return;
 	}
 
 	if (!function.isObject() || !JS_ObjectIsFunction(cx, &function.toObject()))
 	{
-		JS_ReportError(cx, "Cannot assign non-function value to global hotkey '%s'", hotkeyTag.c_str());
+		JS_ReportErrorASCII(cx, "Cannot assign non-function value to global hotkey '%s'", hotkeyTag.c_str());
 		return;
 	}
 

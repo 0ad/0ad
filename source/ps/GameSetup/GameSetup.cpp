@@ -186,7 +186,7 @@ void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 	const ScriptInterface& scriptInterface = *(g_GUI->GetActiveGUI()->GetScriptInterface());
 	JSContext* cx = scriptInterface.GetContext();
 
-	JS::AutoValueVector paramData(cx);
+	JS::RootedValueVector paramData(cx);
 
 	paramData.append(JS::NumberValue(percent));
 

@@ -339,7 +339,7 @@ public:
 	{
 		T* value = static_cast<T*>(JS_GetInstancePrivate(cx, thisobj, jsClass, nullptr));
 		if (value == nullptr && !JS_IsExceptionPending(cx))
-			JS_ReportError(cx, "Private data of the given object is null!");
+			JS_ReportErrorASCII(cx, "Private data of the given object is null!");
 		return value;
 	}
 
@@ -352,13 +352,13 @@ public:
 	{
 		if (!callArgs.thisv().isObject())
 		{
-			JS_ReportError(cx, "Cannot retrieve private JS class data because from a non-object value!");
+			JS_ReportErrorASCII(cx, "Cannot retrieve private JS class data because from a non-object value!");
 			return nullptr;
 		}
 		JS::RootedObject thisObj(cx, &callArgs.thisv().toObject());
 		T* value = static_cast<T*>(JS_GetInstancePrivate(cx, thisObj, jsClass, &callArgs));
 		if (value == nullptr && !JS_IsExceptionPending(cx))
-			JS_ReportError(cx, "Private data of the given object is null!");
+			JS_ReportErrorASCII(cx, "Private data of the given object is null!");
 		return value;
 	}
 

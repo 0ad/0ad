@@ -370,7 +370,7 @@ public:
 		{
 			TestLogger log;
 			TS_ASSERT(man.LoadScript(L"simulation/components/error.js"));
-			// In SpiderMonkey 1.6, JS_ReportError calls the error reporter even if it's inside
+			// In SpiderMonkey 1.6, JS_ReportErrorASCII calls the error reporter even if it's inside
 			// a try{} in the script; in recent versions (not sure when it changed) it doesn't
 			// so the error here won't get reported.
 			TS_ASSERT_STR_NOT_CONTAINS(log.GetOutput(), "ERROR: JavaScript error: simulation/components/error.js line 4\nInvalid interface id");

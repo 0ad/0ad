@@ -33,6 +33,7 @@
 #include "ps/ConfigDB.h"
 #include "ps/Pyrogenesis.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "js/StructuredClone.h"
 
 #include <gloox/gloox.h>
 
@@ -94,7 +95,7 @@ XmppClient::XmppClient(const ScriptInterface* scriptInterface, const std::string
 	  m_PlayerMapUpdate(false)
 {
 	if (m_ScriptInterface)
-		JS_AddExtraGCRootsTracer(m_ScriptInterface->GetJSRuntime(), XmppClient::Trace, this);
+		JS_AddExtraGCRootsTracer(m_ScriptInterface->GetContext(), XmppClient::Trace, this);
 
 	// Read lobby configuration from default.cfg
 	std::string sXpartamupp;
@@ -192,16 +193,16 @@ XmppClient::~XmppClient()
 		glooxwrapper::Tag::free(t);
 
 	if (m_ScriptInterface)
-		JS_RemoveExtraGCRootsTracer(m_ScriptInterface->GetJSRuntime(), XmppClient::Trace, this);
+		JS_RemoveExtraGCRootsTracer(m_ScriptInterface->GetContext(), XmppClient::Trace, this);
 }
 
 void XmppClient::TraceMember(JSTracer* trc)
 {
 	for (JS::Heap<JS::Value>& guiMessage : m_GuiMessageQueue)
-		JS_CallValueTracer(trc, &guiMessage, "m_GuiMessageQueue");
+		JS::TraceEdge(trc, &guiMessage, "m_GuiMessageQueue");
 
 	for (JS::Heap<JS::Value>& guiMessage : m_HistoricGuiMessages)
-		JS_CallValueTracer(trc, &guiMessage, "m_HistoricGuiMessages");
+		JS::TraceEdge(trc, &guiMessage, "m_HistoricGuiMessages");
 }
 
 /// Network

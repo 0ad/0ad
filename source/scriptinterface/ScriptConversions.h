@@ -42,7 +42,7 @@ template<typename T> static void ToJSVal_vector(JSContext* cx, JS::MutableHandle
 	ret.setObject(*obj);
 }
 
-#define FAIL(msg) STMT(JS_ReportError(cx, msg); return false)
+#define FAIL(msg) STMT(JS_ReportErrorASCII(cx, msg); return false)
 
 template<typename T> static bool FromJSVal_vector(JSContext* cx, JS::HandleValue v, std::vector<T>& out)
 {

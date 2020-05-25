@@ -26,6 +26,8 @@
 #include "scriptinterface/ScriptExtraHeaders.h"
 #include "SerializedScriptTypes.h"
 
+#include "js/ForOfIterator.h"
+
 static u8 GetArrayType(js::Scalar::Type arrayType)
 {
 	switch(arrayType)
@@ -55,11 +57,9 @@ static u8 GetArrayType(js::Scalar::Type arrayType)
 }
 
 CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(const ScriptInterface& scriptInterface, ISerializer& serializer) :
-	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_ScriptBackrefs(scriptInterface.GetRuntime()),
-	m_SerializablePrototypes(new ObjectIdCache<std::wstring>(scriptInterface.GetRuntime())), m_ScriptBackrefsNext(1)
+	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_ScriptBackrefs(),
+	m_SerializablePrototypes(new ObjectIdCache<std::wstring>()), m_ScriptBackrefsNext(1)
 {
-	m_ScriptBackrefs.init();
-	m_SerializablePrototypes->init();
 }
 
 void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
@@ -68,7 +68,8 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 
 	switch (JS_TypeOfValue(cx, val))
 	{
-	case JSTYPE_VOID:
+	
+    case JSTYPE_UNDEFINED: //not sure if it is correct
 	{
 		m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_VOID);
 		break;
@@ -126,7 +127,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			HandleScriptVal(bufferVal);
 			break;
 		}
-		else if (JS_IsArrayBufferObject(obj))
+		else if (JS_IsArrayBufferViewObject(obj))
 		{
 			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_ARRAY_BUFFER);
 
@@ -134,11 +135,11 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 #error TODO: need to convert JS ArrayBuffer data to little-endian
 #endif
 
-			u32 length = JS_GetArrayBufferByteLength(obj);
+			u32 length = JS_GetArrayBufferViewByteLength(obj);
 			m_Serializer.NumberU32_Unbounded("buffer length", length);
 			JS::AutoCheckCannotGC nogc;
 			bool sharedMemory;
-			m_Serializer.RawBytes("buffer data", (const u8*)JS_GetArrayBufferData(obj, &sharedMemory, nogc), length);
+			m_Serializer.RawBytes("buffer data", (const u8*)JS_GetArrayBufferViewData(obj, &sharedMemory, nogc), length);
 			break;
 		}
 		else
@@ -315,7 +316,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			JS::RootedValue propval(cx);
 
 			// Forbid getters, which might delete values and mess things up.
-			JS::Rooted<JSPropertyDescriptor> desc(cx);
+			JS::Rooted<JS::PropertyDescriptor> desc(cx);
 			if (!JS_GetPropertyDescriptorById(cx, obj, id, &desc))
 				throw PSERROR_Serialize_ScriptError("JS_GetPropertyDescriptorById failed");
 			if (desc.hasGetterObject())

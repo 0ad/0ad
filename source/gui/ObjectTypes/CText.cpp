@@ -270,7 +270,7 @@ bool CText::GetTextSize(JSContext* cx, uint argc, JS::Value* vp)
 	CText* thisObj = ScriptInterface::GetPrivate<CText>(cx, args, &JSI_IGUIObject::JSI_class);
 	if (!thisObj)
 	{
-		JS_ReportError(cx, "This is not a CText object!");
+		JS_ReportErrorASCII(cx, "This is not a CText object!");
 		return false;
 	}
 

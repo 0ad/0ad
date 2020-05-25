@@ -40,6 +40,11 @@
 #include <boost/flyweight/no_locking.hpp>
 #include <boost/flyweight/no_tracking.hpp>
 
+#include "js/Warnings.h"
+#include "js/ContextOptions.h"
+#include "js/CompilationAndEvaluation.h"
+#include "js/SourceText.h"
+
 #include "valgrind.h"
 
 #include "scriptinterface/ScriptExtraHeaders.h"
@@ -64,7 +69,7 @@ struct ScriptInterface_impl
 
 	JSContext* m_cx;
 	JS::PersistentRootedObject m_glob; // global scope object
-	JSCompartment* m_comp;
+    JS::Realm* m_comp;
 	boost::rand48* m_rng;
 	JS::PersistentRootedObject m_nativeScope; // native function scope object
 };
@@ -72,16 +77,24 @@ struct ScriptInterface_impl
 namespace
 {
 
-JSClass global_class = {
-	"global", JSCLASS_GLOBAL_FLAGS,
-	nullptr, nullptr,
-	nullptr, nullptr,
-	nullptr, nullptr, nullptr,
-	nullptr, nullptr, nullptr, nullptr,
-	JS_GlobalObjectTraceHook
-};
+    constexpr JSClassOps classOps = {                                      
+       nullptr,                                      
+       nullptr,                                      
+       nullptr,                                      
+       nullptr,                           
+       nullptr,                                
+       nullptr,                             
+       nullptr,                               
+       nullptr,                                      
+       nullptr,                                      
+       nullptr,                                      
+	   JS_GlobalObjectTraceHook};                     
 
-void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
+    JSClass global_class = {
+	    "global", JSCLASS_GLOBAL_FLAGS,
+        &classOps};
+
+void ErrorReporter(JSContext* cx, JSErrorReport* report)
 {
 
 	std::stringstream msg;
@@ -93,7 +106,7 @@ void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
 		msg << " line " << report->lineno << "\n";
 	}
 
-	msg << message;
+	msg << report->message().c_str();
 
 	// If there is an exception, then print its stack trace
 	JS::RootedValue excn(cx);
@@ -212,7 +225,7 @@ bool deepfreeze(JSContext* cx, uint argc, JS::Value* vp)
 
 	if (args.length() != 1 || !args.get(0).isObject())
 	{
-		JS_ReportError(cx, "deepfreeze requires exactly one object as an argument.");
+		JS_ReportErrorASCII(cx, "deepfreeze requires exactly one object as an argument.");
 		return false;
 	}
 
@@ -332,34 +345,34 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 {
 	bool ok;
 
-	m_cx = JS_NewContext(m_runtime->m_rt, STACK_CHUNK_SIZE);
+	m_cx = JS_NewContext(STACK_CHUNK_SIZE, JS::DefaultNurseryBytes, m_runtime->m_rt);
 	ENSURE(m_cx);
 
-	JS_SetOffthreadIonCompilationEnabled(m_runtime->m_rt, true);
+	JS_SetOffthreadIonCompilationEnabled(m_cx, true);
 
 	// For GC debugging:
 	// JS_SetGCZeal(m_cx, 2, JS_DEFAULT_ZEAL_FREQ);
 
 	JS_SetContextPrivate(m_cx, NULL);
 
-	JS_SetErrorReporter(m_runtime->m_rt, ErrorReporter);
+    JS::SetWarningReporter(m_cx, ErrorReporter);
 
-	JS_SetGlobalJitCompilerOption(m_runtime->m_rt, JSJITCOMPILER_ION_ENABLE, 1);
-	JS_SetGlobalJitCompilerOption(m_runtime->m_rt, JSJITCOMPILER_BASELINE_ENABLE, 1);
+	JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_ION_ENABLE, 1);
+	JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_BASELINE_ENABLE, 1);
 
-	JS::RuntimeOptionsRef(m_cx)
+	JS::ContextOptionsRef(m_cx)
 		.setExtraWarnings(true)
 		.setWerror(false)
 		.setStrictMode(true);
 
-	JS::CompartmentOptions opt;
-	opt.setVersion(JSVERSION_LATEST);
+	JS::RealmOptions opt;
+	// opt.setVersion(JSVERSION_LATEST); not present in mozjs 68?
 	// Keep JIT code during non-shrinking GCs. This brings a quite big performance improvement.
-	opt.setPreserveJitCode(true);
+	//opt.setPreserveJitCode(true); only in RealmCreationOptions
 
 	JS::RootedObject globalRootedVal(m_cx, JS_NewGlobalObject(m_cx, &global_class, NULL, JS::OnNewGlobalHookOption::FireOnNewGlobalHook, opt));
-	m_comp = JS_EnterCompartment(m_cx, globalRootedVal);
-	ok = JS_InitStandardClasses(m_cx, globalRootedVal);
+	m_comp = JS::EnterRealm(m_cx, globalRootedVal);
+	ok = JS_EnumerateStandardClasses(m_cx, globalRootedVal);
 	ENSURE(ok);
 	m_glob = globalRootedVal.get();
 
@@ -385,7 +398,7 @@ ScriptInterface_impl::~ScriptInterface_impl()
 {
 	m_runtime->UnRegisterContext(m_cx);
 	{
-		JS_LeaveCompartment(m_cx, m_comp);
+        JS::LeaveRealm(m_cx, m_comp);
 	}
 	JS_DestroyContext(m_cx);
 }
@@ -520,7 +533,7 @@ void ScriptInterface::DefineCustomObjectType(JSClass *clasp, JSNative constructo
 	                                           ps, fs,                   // Properties, methods
 	                                           static_ps, static_fs));   // Constructor properties, methods
 
-	if (obj == NULL)
+	if (!obj)
 		throw PSERROR_Scripting_DefineType_CreationFailed();
 
 	CustomType& type = m_CustomObjectTypes[typeName];
@@ -591,7 +604,7 @@ bool ScriptInterface::SetGlobal_(const char* name, JS::HandleValue value, bool r
 		return false;
 	if (found)
 	{
-		JS::Rooted<JSPropertyDescriptor> desc(m->m_cx);
+		JS::Rooted<JS::PropertyDescriptor> desc(m->m_cx);
 		if (!JS_GetOwnPropertyDescriptor(m->m_cx, global, name, &desc))
 			return false;
 
@@ -599,7 +612,7 @@ bool ScriptInterface::SetGlobal_(const char* name, JS::HandleValue value, bool r
 		{
 			if (!replace)
 			{
-				JS_ReportError(m->m_cx, "SetGlobal \"%s\" called multiple times", name);
+				JS_ReportErrorASCII(m->m_cx, "SetGlobal \"%s\" called multiple times", name);
 				return false;
 			}
 
@@ -607,7 +620,7 @@ bool ScriptInterface::SetGlobal_(const char* name, JS::HandleValue value, bool r
 			// instead of using SetGlobal.
 			if (!desc.configurable())
 			{
-				JS_ReportError(m->m_cx, "The global \"%s\" is permanent and cannot be hotloaded", name);
+				JS_ReportErrorASCII(m->m_cx, "The global \"%s\" is permanent and cannot be hotloaded", name);
 				return false;
 			}
 
@@ -769,9 +782,11 @@ bool ScriptInterface::EnumeratePropertyNamesWithPrefix(JS::HandleValue objVal, c
 
 		JS::RootedString name(m->m_cx, val.toString());
 		size_t len = strlen(prefix)+1;
-		std::vector<char> buf(len);
-		size_t prefixLen = strlen(prefix) * sizeof(char);
-		JS_EncodeStringToBuffer(m->m_cx, name, &buf[0], prefixLen);
+		JS::UniqueChars ubuf = JS_EncodeStringToASCII(m->m_cx, name);
+        std::vector<char> buf;
+        buf.resize(len);
+        for(size_t i = 0; i < len-1; i++) buf[i] = ubuf.get()[i];
+
 		buf[len-1]= '\0';
 		if (0 == strcmp(&buf[0], prefix))
 		{
@@ -831,7 +846,6 @@ bool ScriptInterface::FreezeObject(JS::HandleValue objVal, bool deep) const
 bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& code) const
 {
 	JS::RootedObject global(m->m_cx, m->m_glob);
-	utf16string codeUtf16(code.begin(), code.end());
 	uint lineNo = 1;
 	// CompileOptions does not copy the contents of the filename string pointer.
 	// Passing a temporary string there will cause undefined behaviour, so we create a separate string to avoid the temporary.
@@ -841,11 +855,27 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& cod
 	options.setFileAndLine(filenameStr.c_str(), lineNo);
 	options.setIsRunOnce(false);
 
-	JS::RootedFunction func(m->m_cx);
-	JS::AutoObjectVector emptyScopeChain(m->m_cx);
-	if (!JS::CompileFunction(m->m_cx, emptyScopeChain, options, NULL, 0, NULL,
-	                         reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)(codeUtf16.length()), &func))
-		return false;
+	JS::RootedObjectVector emptyScopeChain(m->m_cx);
+
+    JS::SourceText<char16_t> source;
+
+    if (!source.init(m->m_cx, 
+                     code.c_str(), 
+                     code.size(), 
+                     JS::SourceOwnership::Borrowed)) {    
+     return false;                                                               
+    }
+
+	JS::RootedFunction func(m->m_cx,
+                                JS::CompileFunction(m->m_cx, 
+                                    emptyScopeChain, 
+                                    options, 
+                                    NULL, 
+                                    0, 
+                                    NULL,
+	                                source));
+	
+    if(!func) return false;
 
 	JS::RootedValue rval(m->m_cx);
 	return JS_CallFunction(m->m_cx, nullptr, func, JS::HandleValueArray::empty(), &rval);
@@ -1029,12 +1059,12 @@ std::string ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty) c
 		JS::RootedValue indentVal(m->m_cx, JS::Int32Value(2));
 
 		// Temporary disable the error reporter, so we don't print complaints about cyclic values
-		JSErrorReporter er = JS_SetErrorReporter(m->m_runtime->m_rt, NULL);
+		JSWarningReporter er = JS::SetWarningReporter(m->m_runtime->m_rt, NULL);
 
 		bool ok = JS_Stringify(m->m_cx, obj, nullptr, indentVal, &Stringifier::callback, &str);
 
 		// Restore error reporter
-		JS_SetErrorReporter(m->m_runtime->m_rt, er);
+        JS::SetWarningReporter(m->m_runtime->m_rt, er);
 
 		if (ok)
 			return str.stream.str();
@@ -1053,13 +1083,13 @@ std::string ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty) c
 
 void ScriptInterface::ReportError(const char* msg) const
 {
-	// JS_ReportError by itself doesn't seem to set a JS-style exception, and so
+	// JS_ReportErrorASCII by itself doesn't seem to set a JS-style exception, and so
 	// script callers will be unable to catch anything. So use JS_SetPendingException
 	// to make sure there really is a script-level exception. But just set it to undefined
 	// because there's not much value yet in throwing a real exception object.
 	JS_SetPendingException(m->m_cx, JS::UndefinedHandleValue);
 	// And report the actual error
-	JS_ReportError(m->m_cx, "%s", msg);
+	JS_ReportErrorASCII(m->m_cx, "%s", msg);
 
 	// TODO: Why doesn't JS_ReportPendingException(m->m_cx); work?
 }

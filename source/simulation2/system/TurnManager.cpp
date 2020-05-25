@@ -28,6 +28,7 @@
 #include "ps/Util.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
+#include "js/StructuredClone.h"
 
 const u32 DEFAULT_TURN_LENGTH_MP = 500;
 const u32 DEFAULT_TURN_LENGTH_SP = 200;

@@ -265,5 +265,5 @@ void ScriptRuntime::ShrinkingGC()
 void ScriptRuntime::PrepareContextsForIncrementalGC()
 {
 	for (JSContext* const& ctx : m_Contexts)
-		JS::PrepareZoneForGC(js::GetCompartmentZone(js::GetContextCompartment(ctx)));
+		JS::PrepareZoneForGC(js::GetRealmZone(js::GetContextRealm(ctx)));
 }

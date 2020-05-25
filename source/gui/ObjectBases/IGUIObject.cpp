@@ -75,7 +75,7 @@ IGUIObject::~IGUIObject()
 		delete p.second;
 
 	if (!m_ScriptHandlers.empty())
-		JS_RemoveExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetJSRuntime(), Trace, this);
+		JS_RemoveExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetContext(), Trace, this);
 
 	// m_Children is deleted along all other GUI Objects in the CGUI destructor
 }
@@ -319,7 +319,7 @@ void IGUIObject::RegisterScriptHandler(const CStr& eventName, const CStr& Code, 
 	options.setIsRunOnce(false);
 
 	JS::RootedFunction func(cx);
-	JS::AutoObjectVector emptyScopeChain(cx);
+	JS::RootedObjectVector (cx, emptyScopeChain(cx));
 	if (!JS::CompileFunction(cx, emptyScopeChain, options, buf, paramCount, paramNames, Code.c_str(), Code.length(), &func))
 	{
 		LOGERROR("RegisterScriptHandler: Failed to compile the script for %s", eventName.c_str());
@@ -333,7 +333,7 @@ void IGUIObject::RegisterScriptHandler(const CStr& eventName, const CStr& Code, 
 void IGUIObject::SetScriptHandler(const CStr& eventName, JS::HandleObject Function)
 {
 	if (m_ScriptHandlers.empty())
-		JS_AddExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetJSRuntime(), Trace, this);
+		JS_AddExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetContext(), Trace, this);
 
 	m_ScriptHandlers[eventName] = JS::Heap<JSObject*>(Function);
 }
@@ -348,7 +348,7 @@ void IGUIObject::UnsetScriptHandler(const CStr& eventName)
 	m_ScriptHandlers.erase(it);
 
 	if (m_ScriptHandlers.empty())
-		JS_RemoveExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetJSRuntime(), Trace, this);
+		JS_RemoveExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetContext(), Trace, this);
 }
 
 InReaction IGUIObject::SendEvent(EGUIMessageType type, const CStr& eventName)
@@ -387,7 +387,7 @@ InReaction IGUIObject::SendMouseEvent(EGUIMessageType type, const CStr& eventNam
 		"x", mousePos.x,
 		"y", mousePos.y,
 		"buttons", m_pGUI.GetMouseButtons());
-	JS::AutoValueVector paramData(cx);
+	JS::RootedValueVector paramData(cx);
 	paramData.append(mouse);
 	ScriptEvent(eventName, paramData);
 
@@ -405,7 +405,7 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName)
 		return false;
 
 	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
-	JS::AutoValueVector paramData(cx);
+	JS::RootedValueVector paramData(cx);
 	return ScriptEventWithReturn(eventName, paramData);
 }
 
@@ -427,7 +427,7 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName, const JS::HandleVa
 
 	if (!JS_CallFunctionValue(cx, obj, handlerVal, paramData, &result))
 	{
-		JS_ReportError(cx, "Errors executing script event \"%s\"", eventName.c_str());
+		JS_ReportErrorASCII(cx, "Errors executing script event \"%s\"", eventName.c_str());
 		return false;
 	}
 	return JS::ToBoolean(result);
@@ -512,7 +512,7 @@ void IGUIObject::TraceMember(JSTracer* trc)
 	// Please ensure to adapt the Tracer enabling and disabling in accordance with the GC things traced!
 
 	for (std::pair<const CStr, JS::Heap<JSObject*>>& handler : m_ScriptHandlers)
-		JS_CallObjectTracer(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
+		JS::TraceEdge(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
 }
 
 // Instantiate templated functions:

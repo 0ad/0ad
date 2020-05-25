@@ -27,13 +27,15 @@
 
 #include "lib/byte_order.h"
 
+#include "js/ArrayBuffer.h"
+
 CStdDeserializer::CStdDeserializer(const ScriptInterface& scriptInterface, std::istream& stream) :
 	m_ScriptInterface(scriptInterface), m_Stream(stream),
 	m_dummyObject(scriptInterface.GetJSRuntime())
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
 
-	JS_AddExtraGCRootsTracer(m_ScriptInterface.GetJSRuntime(), CStdDeserializer::Trace, this);
+	JS_AddExtraGCRootsTracer(m_ScriptInterface.GetContext(), CStdDeserializer::Trace, this);
 
 	// Add a dummy tag because the serializer uses the tag 0 to indicate that a value
 	// needs to be serialized and then tagged
@@ -43,7 +45,7 @@ CStdDeserializer::CStdDeserializer(const ScriptInterface& scriptInterface, std::
 
 CStdDeserializer::~CStdDeserializer()
 {
-	JS_RemoveExtraGCRootsTracer(m_ScriptInterface.GetJSRuntime(), CStdDeserializer::Trace, this);
+	JS_RemoveExtraGCRootsTracer(m_ScriptInterface.GetContext(), CStdDeserializer::Trace, this);
 }
 
 void CStdDeserializer::Trace(JSTracer *trc, void *data)
@@ -54,10 +56,10 @@ void CStdDeserializer::Trace(JSTracer *trc, void *data)
 void CStdDeserializer::TraceMember(JSTracer *trc)
 {
 	for (size_t i=0; i<m_ScriptBackrefs.size(); ++i)
-		JS_CallObjectTracer(trc, &m_ScriptBackrefs[i], "StdDeserializer::m_ScriptBackrefs");
+		JS::TraceEdge(trc, &m_ScriptBackrefs[i], "StdDeserializer::m_ScriptBackrefs");
 
 	for (std::pair<const std::wstring, JS::Heap<JSObject*>>& proto : m_SerializablePrototypes)
-		JS_CallObjectTracer(trc, &proto.second, "StdDeserializer::m_SerializablePrototypes");
+		JS::TraceEdge(trc, &proto.second, "StdDeserializer::m_SerializablePrototypes");
 }
 
 void CStdDeserializer::Get(const char* name, u8* data, size_t len)
@@ -337,7 +339,7 @@ JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleOb
 			throw PSERROR_Deserialize_ScriptError();
 
 		JS::RootedObject bufferObj(cx, &bufferVal.toObject());
-		if (!JS_IsArrayBufferObject(bufferObj))
+		if (!JS_IsArrayBufferViewObject(bufferObj))
 			throw PSERROR_Deserialize_ScriptError("js_IsArrayBuffer failed");
 
 		switch(arrayType)
@@ -388,7 +390,7 @@ JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleOb
 		void* contents = malloc(length);
 		ENSURE(contents);
 		RawBytes("buffer data", (u8*)contents, length);
-		JS::RootedObject bufferObj(cx, JS_NewArrayBufferWithContents(cx, length, contents));
+		JS::RootedObject bufferObj(cx, JS::NewArrayBufferWithContents(cx, length, contents));
 		AddScriptBackref(bufferObj);
 
 		return JS::ObjectValue(*bufferObj);

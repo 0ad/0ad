@@ -80,7 +80,7 @@ CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 
 	void* context = this;
 
-	JS_AddExtraGCRootsTracer(GetScriptInterface().GetJSRuntime(), CNetClient::Trace, this);
+	JS_AddExtraGCRootsTracer(GetScriptInterface().GetContext(), CNetClient::Trace, this);
 
 	// Set up transitions for session
 	AddTransition(NCS_UNCONNECTED, (uint)NMT_CONNECT_COMPLETE, NCS_CONNECT, (void*)&OnConnect, context);
@@ -144,13 +144,13 @@ CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 CNetClient::~CNetClient()
 {
 	DestroyConnection();
-	JS_RemoveExtraGCRootsTracer(GetScriptInterface().GetJSRuntime(), CNetClient::Trace, this);
+	JS_RemoveExtraGCRootsTracer(GetScriptInterface().GetContext(), CNetClient::Trace, this);
 }
 
 void CNetClient::TraceMember(JSTracer *trc)
 {
 	for (JS::Heap<JS::Value>& guiMessage : m_GuiMessageQueue)
-		JS_CallValueTracer(trc, &guiMessage, "m_GuiMessageQueue");
+		JS::TraceEdge<JS::Value>(trc, &guiMessage, "m_GuiMessageQueue");
 }
 
 void CNetClient::SetUserName(const CStrW& username)

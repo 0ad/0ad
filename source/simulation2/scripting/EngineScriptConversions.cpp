@@ -31,8 +31,8 @@
 #include "simulation2/system/IComponent.h"
 #include "simulation2/system/ParamNode.h"
 
-#define FAIL(msg) STMT(JS_ReportError(cx, msg); return false)
-#define FAIL_VOID(msg) STMT(JS_ReportError(cx, msg); return)
+#define FAIL(msg) STMT(JS_ReportErrorASCII(cx, msg); return false)
+#define FAIL_VOID(msg) STMT(JS_ReportErrorASCII(cx, msg); return)
 
 template<> void ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, JS::MutableHandleValue ret, IComponent* const& val)
 {
@@ -171,7 +171,10 @@ template<> void ScriptInterface::ToJSVal<CFixedVector3D>(JSContext* cx, JS::Muta
 	args[1].setNumber(val.Y.ToDouble());
 	args[2].setNumber(val.Z.ToDouble());
 
-	if (!JS::Construct(cx, valueVector3D, args, ret))
+    JS::HandleValue valueVector3Dh(valueVector3D);
+    JS::RootedObject rootedRetObject(cx, &ret.toObject());
+
+	if (!JS::Construct(cx, valueVector3Dh, args, &rootedRetObject))
 		FAIL_VOID("Failed to construct Vector3D object");
 }
 
@@ -205,7 +208,10 @@ template<> void ScriptInterface::ToJSVal<CFixedVector2D>(JSContext* cx, JS::Muta
 	args[0].setNumber(val.X.ToDouble());
 	args[1].setNumber(val.Y.ToDouble());
 
-	if (!JS::Construct(cx, valueVector2D, args, ret))
+    JS::HandleValue valueVector2Dh(valueVector2D);
+    JS::RootedObject rootedRetObject(cx, &ret.toObject());
+
+	if (!JS::Construct(cx, valueVector2Dh, args, &rootedRetObject))
 		FAIL_VOID("Failed to construct Vector2D object");
 }
 

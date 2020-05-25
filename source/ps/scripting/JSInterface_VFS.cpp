@@ -223,7 +223,7 @@ bool JSI_VFS::PathRestrictionMet(ScriptInterface::CxPrivate* pCxPrivate, const s
 	}
 
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-	JS_ReportError(cx, "This part of the engine may only read from %s!", utf8_from_wstring(allowedPaths).c_str());
+	JS_ReportErrorASCII(cx, "This part of the engine may only read from %s!", utf8_from_wstring(allowedPaths).c_str());
 
 	return false;
 }

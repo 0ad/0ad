@@ -253,7 +253,7 @@ bool CMiniMap::FireWorldClickEvent(int button, int UNUSED(clicks))
 	JS::RootedValue buttonJs(cx);
 	ScriptInterface::ToJSVal(cx, &buttonJs, button);
 
-	JS::AutoValueVector paramData(cx);
+	JS::RootedValueVector paramData(cx);
 	paramData.append(coords);
 	paramData.append(buttonJs);
 

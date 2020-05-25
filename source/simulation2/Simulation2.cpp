@@ -167,8 +167,6 @@ public:
 	static std::vector<SimulationCommand> CloneCommandsFromOtherContext(const ScriptInterface& oldScript, const ScriptInterface& newScript,
 		const std::vector<SimulationCommand>& commands)
 	{
-		JSContext* cxOld = oldScript.GetContext();
-
 		std::vector<SimulationCommand> newCommands;
 		newCommands.reserve(commands.size());
 		for (const SimulationCommand& command : commands)

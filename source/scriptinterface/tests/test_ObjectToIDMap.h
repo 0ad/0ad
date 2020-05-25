@@ -30,7 +30,7 @@ public:
 		JSContext* cx = script.GetContext();
 
 		JS::RootedObject obj(cx, JS_NewPlainObject(cx));
-		ObjectIdCache<u32> map(g_ScriptRuntime);
+		ObjectIdCache<u32> map();
 		map.init();
 
 		TS_ASSERT(map.add(cx, obj, 1));

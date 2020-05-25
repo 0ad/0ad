@@ -147,21 +147,21 @@ void CGUISize::ToJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 
 	if (!ret.isObject())
 	{
-		JS_ReportError(cx, "CGUISize value is not an Object");
+		JS_ReportErrorASCII(cx, "CGUISize value is not an Object");
 		return;
 	}
 
 	JS::RootedObject obj(cx, &ret.toObject());
 	if (!JS_InstanceOf(cx, obj, &JSI_GUISize::JSI_class, nullptr))
 	{
-		JS_ReportError(cx, "CGUISize value is not a CGUISize class instance");
+		JS_ReportErrorASCII(cx, "CGUISize value is not a CGUISize class instance");
 		return;
 	}
 
 #define P(x, y, z)\
 	if (!pScriptInterface->SetProperty(ret, #z, x.y)) \
 	{ \
-		JS_ReportError(cx, "Could not SetProperty '%s'", #z); \
+		JS_ReportErrorASCII(cx, "Could not SetProperty '%s'", #z); \
 		return; \
 	}
 	P(pixel, left, left);
@@ -184,13 +184,13 @@ bool CGUISize::FromJSVal(JSContext* cx, JS::HandleValue v)
 		CStrW str;
 		if (!ScriptInterface::FromJSVal(cx, v, str))
 		{
-			JS_ReportError(cx, "CGUISize could not read JS string");
+			JS_ReportErrorASCII(cx, "CGUISize could not read JS string");
 			return false;
 		}
 
 		if (!FromString(str.ToUTF8()))
 		{
-			JS_ReportError(cx, "CGUISize could not parse JS string");
+			JS_ReportErrorASCII(cx, "CGUISize could not parse JS string");
 			return false;
 		}
 		return true;
@@ -198,21 +198,21 @@ bool CGUISize::FromJSVal(JSContext* cx, JS::HandleValue v)
 
 	if (!v.isObject())
 	{
-		JS_ReportError(cx, "CGUISize value is not an String, nor Object");
+		JS_ReportErrorASCII(cx, "CGUISize value is not an String, nor Object");
 		return false;
 	}
 
 	JS::RootedObject obj(cx, &v.toObject());
 	if (!JS_InstanceOf(cx, obj, &JSI_GUISize::JSI_class, nullptr))
 	{
-		JS_ReportError(cx, "CGUISize value is not a CGUISize class instance");
+		JS_ReportErrorASCII(cx, "CGUISize value is not a CGUISize class instance");
 		return false;
 	}
 
 #define P(x, y, z) \
 	if (!pScriptInterface->GetProperty(v, #z, x.y))\
 	{\
-		JS_ReportError(cx, "CGUISize could not get object property '%s'", #z);\
+		JS_ReportErrorASCII(cx, "CGUISize could not get object property '%s'", #z);\
 		return false;\
 	}
 

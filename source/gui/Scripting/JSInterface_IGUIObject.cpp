@@ -121,7 +121,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		return true;
 	}
 
-	JS_ReportError(cx, "Property '%s' does not exist!", propName.c_str());
+	JS_ReportErrorASCII(cx, "Property '%s' does not exist!", propName.c_str());
 	return false;
 }
 
@@ -157,7 +157,7 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	{
 		if (vp.isPrimitive() || vp.isNull() || !JS_ObjectIsFunction(cx, &vp.toObject()))
 		{
-			JS_ReportError(cx, "on- event-handlers must be functions");
+			JS_ReportErrorASCII(cx, "on- event-handlers must be functions");
 			return result.fail(JSMSG_NOT_FUNCTION);
 		}
 
@@ -170,7 +170,7 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	if (e->SettingExists(propName))
 		return e->m_Settings[propName]->FromJSVal(cx, vp, true) ? result.succeed() : result.fail(JSMSG_TYPE_ERR_BAD_ARGS);
 
-	JS_ReportError(cx, "Property '%s' does not exist!", propName.c_str());
+	JS_ReportErrorASCII(cx, "Property '%s' does not exist!", propName.c_str());
 	return result.fail(JSMSG_UNDEFINED_PROP);
 }
 
@@ -196,7 +196,7 @@ bool JSI_IGUIObject::deleteProperty(JSContext* cx, JS::HandleObject obj, JS::Han
 		return result.succeed();
 	}
 
-	JS_ReportError(cx, "Only event handlers can be deleted from GUI objects!");
+	JS_ReportErrorASCII(cx, "Only event handlers can be deleted from GUI objects!");
 	return result.fail(JSMSG_UNDEFINED_PROP);
 }
 

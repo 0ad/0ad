@@ -158,14 +158,14 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
 template<int i, typename T, typename... Ts>
-static void AssignOrToJSValHelper(JSContext* cx, JS::AutoValueVector& argv, const T& a, const Ts&... params)
+static void AssignOrToJSValHelper(JSContext* cx, JS::MutableHandleValueVector argv, const T& a, const Ts&... params)
 {
 	ScriptInterface::AssignOrToJSVal(cx, argv[i], a);
 	AssignOrToJSValHelper<i+1>(cx, argv, params...);
 }
 
 template<int i, typename... Ts>
-static void AssignOrToJSValHelper(JSContext* UNUSED(cx), JS::AutoValueVector& UNUSED(argv))
+static void AssignOrToJSValHelper(JSContext* UNUSED(cx), JS::MutableHandleValueVector UNUSED(argv))
 {
 	cassert(sizeof...(Ts) == 0);
 	// Nop, for terminating the template recursion.
@@ -176,9 +176,9 @@ bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, R& ret
 {
 	JSContext* cx = GetContext();
 	JS::RootedValue jsRet(cx);
-	JS::AutoValueVector argv(cx);
+	JS::RootedValueVector argv(cx);
 	argv.resize(sizeof...(Ts));
-	AssignOrToJSValHelper<0>(cx, argv, params...);
+	AssignOrToJSValHelper<0>(cx, &argv, params...);
 	bool ok = CallFunction_(val, name, argv, &jsRet);
 	if (!ok)
 		return false;
@@ -190,9 +190,9 @@ bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, JS::Ro
 {
 	JSContext* cx = GetContext();
 	JS::MutableHandle<R> jsRet(ret);
-	JS::AutoValueVector argv(cx);
+	JS::RootedValueVector argv(cx);
 	argv.resize(sizeof...(Ts));
-	AssignOrToJSValHelper<0>(cx, argv, params...);
+	AssignOrToJSValHelper<0>(cx, &argv, params...);
 	return CallFunction_(val, name, argv, jsRet);
 }
 
@@ -200,9 +200,9 @@ template<typename R, typename... Ts>
 bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, JS::MutableHandle<R> ret, const Ts&... params) const
 {
 	JSContext* cx = GetContext();
-	JS::AutoValueVector argv(cx);
+	JS::RootedValueVector argv(cx);
 	argv.resize(sizeof...(Ts));
-	AssignOrToJSValHelper<0>(cx, argv, params...);
+	AssignOrToJSValHelper<0>(cx, &argv, params...);
 	return CallFunction_(val, name, argv, ret);
 }
 
@@ -212,9 +212,9 @@ bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name, co
 {
 	JSContext* cx = GetContext();
 	JS::RootedValue jsRet(cx);
-	JS::AutoValueVector argv(cx);
-	argv.resize(sizeof...(Ts));
-	AssignOrToJSValHelper<0>(cx, argv, params...);
+	JS::RootedValueVector argv(cx);
+	(void)argv.resize(sizeof...(Ts));
+	AssignOrToJSValHelper<0>(cx, &argv, params...);
 	return CallFunction_(val, name, argv, &jsRet);
 }
 
