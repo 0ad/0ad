@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# A B <Twentycents1564@live.fr>, 2020
 # Adge Nodux <tempo.data@gmail.com>, 2016
 # adrien vigneron <adrienvigneron@ml1.net>, 2017
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
@@ -58,8 +59,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-18 07:13+0000\n"
-"PO-Revision-Date: 2020-05-18 17:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-05-24 18:21+0000\n"
+"Last-Translator: A B <Twentycents1564@live.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,7 +76,7 @@ msgstr "%(hotkey)s : Passer à l'Arbre Technologique."
 #: gui/civinfo/civinfo.js:21
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: Fermer l'aperçu de la civilisation."
 
 #. Translation: insert an itemization symbol for each entry.
 #: gui/civinfo/civinfo.js:85
@@ -883,7 +884,7 @@ msgstr "%(amount)s%(name)s"
 #: gui/common/tooltips.js:274
 msgctxt "damage type"
 msgid "Capture"
-msgstr "Capter"
+msgstr "Capturer"
 
 #: gui/common/tooltips.js:283
 #, javascript-format
@@ -1369,7 +1370,7 @@ msgstr "%(hotkey)s : Voir l'arbre technologique des civilisations présentes dan
 #: gui/pregame/MainMenuItems.js:36 gui/civinfo/civinfo.xml:(caption):18
 #: gui/reference/structree/structree.xml:(caption):126
 msgid "Civilization Overview"
-msgstr ""
+msgstr "Aperçu de la civilisation"
 
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
@@ -1732,7 +1733,7 @@ msgstr "%(health_min)s à %(health_max)s"
 #: gui/reference/structree/structree.js:41
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s : Basculer vers l'aperçu de la civilisation."
 
 #: gui/reference/structree/structree.js:42
 #, javascript-format
@@ -3999,7 +4000,7 @@ msgstr "Lourdement blindé et lent. Attaque faible."
 #: gui/text/tips/pikemen.txt:3
 msgid ""
 "Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "Utilisé contre la cavalerie ou contre d'autres unités d'infanterie de mêlée pour les clouer sur place."
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
@@ -4013,7 +4014,7 @@ msgstr "QUINQUÉRÈME"
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, and Seleucids."
-msgstr ""
+msgstr "Le plus lourd des navires de guerre standards. Disponible pour : Carthaginois, Ptolémées, Romains et Séleucides."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
@@ -4021,7 +4022,7 @@ msgstr "Peut transporter jusqu'à 50 unités."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "Increases firepower with garrisoned catapults."
-msgstr ""
+msgstr "La puissance de feu est accrue lorsque des catapultes sont mises en garnison."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -4029,11 +4030,11 @@ msgstr "BIOME DE LA SAVANE"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "Generally flat, with a few watering holes and rocky outcrops."
-msgstr ""
+msgstr "Généralement plat, avec quelques points d'eau et affleurements rocheux."
 
 #: gui/text/tips/savanna_biome.txt:3
 msgid "Chock full of herd animals for plentiful hunting."
-msgstr ""
+msgstr "Regorge de troupeaux pour une chasse abondante."
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "Rich in all types of mining."
@@ -4041,7 +4042,7 @@ msgstr "Riche en tous types d'exploitations minières."
 
 #: gui/text/tips/savanna_biome.txt:5
 msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr ""
+msgstr "Le bois a tendance à être rare, mais les baobabs permettent un haut rendement."
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
@@ -4049,17 +4050,17 @@ msgstr "TOURS DE DÉFENSE"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "Free-standing towers good for defending large areas of countryside."
-msgstr ""
+msgstr "Tours autonomes aptes à défendre de vastes zones de campagne."
 
 #: gui/text/tips/scout_towers.txt:3
 msgid ""
 "They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
 "Wood and 250 Stone (because they're stronger)."
-msgstr ""
+msgstr "Coûtent habituellement 100 bois et 100 de pierre. Les tours ibères coûtent 50 de bois et 250 de pierre (car elles sont plus solides)."
 
 #: gui/text/tips/scout_towers.txt:4
 msgid "Has a ranged attack that increases for each garrisoned unit."
-msgstr ""
+msgstr "Ont une attaque à distance qui augmente pour chaque unité en garnison."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -4077,7 +4078,7 @@ msgstr "Infanterie championne disponible pour les Spartiates."
 msgid ""
 "Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr ""
+msgstr "Utilisez-les pour abattre la cavalerie ennemie ou comme une force de choc pour appuyer votre infanterie régulière."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
@@ -4085,7 +4086,7 @@ msgstr "LANCIERS"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "The basic melee infantry for every faction in the game."
-msgstr ""
+msgstr "L'infanterie de mêlée basique pour chaque faction du jeu."
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
@@ -4093,13 +4094,13 @@ msgstr "Utilisé contre la cavalerie pour un bonus d'attaque."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
-msgstr ""
+msgstr "Une attaque tranchante conséquente en font une unité efficace sur la ligne de front."
 
 #: gui/text/tips/spearmen.txt:5
 msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
-msgstr ""
+msgstr "Ils sont contrés par les unités à distance et les épéistes, alors soutenez vos lanciers avec des frondeurs ou de la cavalerie."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
@@ -4111,7 +4112,7 @@ msgstr "Une structure spéciale pour les factions athéniennes, macédoniennes, 
 
 #: gui/text/tips/stoa.txt:3
 msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr ""
+msgstr "Entraîne des tirailleurs lourds et des champions d'infanterie de mêlée."
 
 #: gui/text/tips/stoa.txt:4
 msgid "Grants +10 Population."
@@ -4123,7 +4124,7 @@ msgstr "ENTREPÔTS"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
-msgstr ""
+msgstr "Un site de stockage bon marché pour les ressources non alimentaires (bois, pierre, métal)."
 
 #: gui/text/tips/storehouses.txt:3
 msgid ""
@@ -4153,7 +4154,7 @@ msgstr "Son \"aura\" soigne les unités proches."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
-msgstr ""
+msgstr "Les unités blessées en garnison y guérissent plus vite."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"

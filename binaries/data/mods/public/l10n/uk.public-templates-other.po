@@ -3,11 +3,11 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Chindu the Manduri <mandurilooter210770@mail.ru>, 2020
+# 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
-# Chindu the Manduri <mandurilooter210770@mail.ru>, 2020
+# 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
 # Oleg Adept <adeptoleg@gmail.com>, 2016
-# Chindu the Manduri <mandurilooter210770@mail.ru>, 2020
+# 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
 # Victor Butko <victor.butko@gmail.com>, 2014,2016
 # Victor Ptah, 2015
 # Victor Ptah, 2015
@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-04-30 10:46+0000\n"
-"PO-Revision-Date: 2020-05-08 19:37+0000\n"
-"Last-Translator: Chindu the Manduri <mandurilooter210770@mail.ru>\n"
+"POT-Creation-Date: 2020-05-22 07:09+0000\n"
+"PO-Revision-Date: 2020-05-22 19:22+0000\n"
+"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1139,3 +1139,35 @@ msgstr "Клин"
 #: simulation/templates/special/player/player.xml:64
 msgid "Player"
 msgstr "Гравець"
+
+#: simulation/data/template_helpers/damage_types/crush.jsonname
+msgctxt "damage type"
+msgid "Crush"
+msgstr "Руйнування"
+
+#: simulation/data/template_helpers/damage_types/crush.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sheer force, like with a club or by trampling."
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/hack.jsonname
+msgctxt "damage type"
+msgid "Hack"
+msgstr "Рубати"
+
+#: simulation/data/template_helpers/damage_types/hack.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by sharp objects cutting or chopping, like with a sword or an "
+"axe."
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/pierce.jsonname
+msgctxt "damage type"
+msgid "Pierce"
+msgstr "Колющий"
+
+#: simulation/data/template_helpers/damage_types/pierce.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
+msgstr ""

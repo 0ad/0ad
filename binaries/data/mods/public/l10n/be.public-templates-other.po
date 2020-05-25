@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-04-30 10:46+0000\n"
-"PO-Revision-Date: 2020-04-30 20:52+0000\n"
+"POT-Creation-Date: 2020-05-22 07:09+0000\n"
+"PO-Revision-Date: 2020-05-22 19:22+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Belarusian (http://www.transifex.com/wildfire-games/0ad/language/be/)\n"
 "MIME-Version: 1.0\n"
@@ -1125,4 +1125,36 @@ msgstr ""
 
 #: simulation/templates/special/player/player.xml:64
 msgid "Player"
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/crush.jsonname
+msgctxt "damage type"
+msgid "Crush"
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/crush.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sheer force, like with a club or by trampling."
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/hack.jsonname
+msgctxt "damage type"
+msgid "Hack"
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/hack.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by sharp objects cutting or chopping, like with a sword or an "
+"axe."
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/pierce.jsonname
+msgctxt "damage type"
+msgid "Pierce"
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/pierce.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
 msgstr ""
