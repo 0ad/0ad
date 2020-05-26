@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,9 +25,10 @@
  * Hotkeys consist of a name (an arbitrary string), and a key mapping.
  * The names and mappings are loaded from the config system (any
  * config setting with the name prefix "hotkey.").
- * When a hotkey is pressed or released, SDL_HOTKEYDOWN and SDL_HOTKEYUP
- * events are triggered, with the hotkey name stored in ev.user.data1
- * as a const char*.
+ * When a hotkey is pressed one SDL_HOTKEYPRESS is triggered. While the key is
+ * kept down repeated SDL_HOTKEYDOWN events are triggered at an interval
+ * determined by the OS. When a hotkey is released an SDL_HOTKEYUP event is
+ * triggered. All with the hotkey name stored in ev.user.data1 as a const char*.
  */
 
 #include "CStr.h"
@@ -38,8 +39,9 @@
 // required for our HOTKEY event type definition. this is OK since
 // hotkey.h is not included from any headers.
 
-const int SDL_HOTKEYDOWN = SDL_USEREVENT;
-const int SDL_HOTKEYUP = SDL_USEREVENT + 1;
+const uint SDL_HOTKEYPRESS = SDL_USEREVENT;
+const uint SDL_HOTKEYDOWN = SDL_USEREVENT + 1;
+const uint SDL_HOTKEYUP = SDL_USEREVENT + 2;
 
 extern void LoadHotkeys();
 extern void UnloadHotkeys();

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -61,16 +61,16 @@ JS::Value JSI_GUIManager::GetGUIObjectByName(ScriptInterface::CxPrivate* pCxPriv
 	return JS::ObjectValue(*guiObj->GetJSObject());
 }
 
-void JSI_GUIManager::SetGlobalHotkey(ScriptInterface::CxPrivate* pCxPrivate, const std::string& hotkeyTag, JS::HandleValue function)
+void JSI_GUIManager::SetGlobalHotkey(ScriptInterface::CxPrivate* pCxPrivate, const std::string& hotkeyTag, const std::string& eventName, JS::HandleValue function)
 {
 	CGUI* guiPage = static_cast<CGUI*>(pCxPrivate->pCBData);
-	guiPage->SetGlobalHotkey(hotkeyTag, function);
+	guiPage->SetGlobalHotkey(hotkeyTag, eventName, function);
 }
 
-void JSI_GUIManager::UnsetGlobalHotkey(ScriptInterface::CxPrivate* pCxPrivate, const std::string& hotkeyTag)
+void JSI_GUIManager::UnsetGlobalHotkey(ScriptInterface::CxPrivate* pCxPrivate, const std::string& hotkeyTag, const std::string& eventName)
 {
 	CGUI* guiPage = static_cast<CGUI*>(pCxPrivate->pCBData);
-	guiPage->UnsetGlobalHotkey(hotkeyTag);
+	guiPage->UnsetGlobalHotkey(hotkeyTag, eventName);
 }
 
 std::wstring JSI_GUIManager::SetCursor(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& name)
@@ -99,8 +99,8 @@ void JSI_GUIManager::RegisterScriptFunctions(const ScriptInterface& scriptInterf
 {
 	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, JS::HandleValue, &PushGuiPage>("PushGuiPage");
 	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &SwitchGuiPage>("SwitchGuiPage");
-	scriptInterface.RegisterFunction<void, std::string, JS::HandleValue, &SetGlobalHotkey>("SetGlobalHotkey");
-	scriptInterface.RegisterFunction<void, std::string, &UnsetGlobalHotkey>("UnsetGlobalHotkey");
+	scriptInterface.RegisterFunction<void, std::string, std::string, JS::HandleValue, &SetGlobalHotkey>("SetGlobalHotkey");
+	scriptInterface.RegisterFunction<void, std::string, std::string, &UnsetGlobalHotkey>("UnsetGlobalHotkey");
 	scriptInterface.RegisterFunction<void, JS::HandleValue, &PopGuiPage>("PopGuiPage");
 	scriptInterface.RegisterFunction<JS::Value, std::string, &GetGUIObjectByName>("GetGUIObjectByName");
 	scriptInterface.RegisterFunction<std::wstring, std::wstring, &SetCursor>("SetCursor");

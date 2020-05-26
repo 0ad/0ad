@@ -37,7 +37,7 @@ class ProfilePage
 	openPage()
 	{
 		this.profilePage.hidden = false;
-		Engine.SetGlobalHotkey("cancel", this.onPressClose.bind(this));
+		Engine.SetGlobalHotkey("cancel", "Press", this.onPressClose.bind(this));
 	}
 
 	onPressLookup()

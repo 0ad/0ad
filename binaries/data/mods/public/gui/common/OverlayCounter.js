@@ -12,7 +12,7 @@ class OverlayCounter
 		registerConfigChangeHandler(this.onConfigChange.bind(this));
 
 		if (this.Hotkey)
-			Engine.SetGlobalHotkey(this.Hotkey, this.toggle.bind(this));
+			Engine.SetGlobalHotkey(this.Hotkey, "Press", this.toggle.bind(this));
 	}
 
 	onConfigChange(changes)

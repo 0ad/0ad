@@ -6,7 +6,8 @@ class MiniMapIdleWorkerButton
 	constructor(playerViewControl, idleClasses)
 	{
 		this.idleWorkerButton = Engine.GetGUIObjectByName("idleWorkerButton");
-		this.idleWorkerButton.onPress = this.onPress.bind(this);
+		this.idleWorkerButton.onKeyDown = this.onKeyDown.bind(this);
+		this.idleWorkerButton.onMouseLeftPress = this.onKeyDown.bind(this);
 		this.idleClasses = idleClasses;
 
 		registerHotkeyChangeHandler(this.onHotkeyChange.bind(this));
@@ -30,7 +31,7 @@ class MiniMapIdleWorkerButton
 		});
 	}
 
-	onPress()
+	onKeyDown()
 	{
 		findIdleUnit(this.idleClasses);
 	}

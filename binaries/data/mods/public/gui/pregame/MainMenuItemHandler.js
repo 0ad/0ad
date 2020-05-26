@@ -85,7 +85,7 @@ class MainMenuItemHandler
 		{
 			let item = menuItems[i];
 			if (item.onPress && item.hotkey)
-				Engine.SetGlobalHotkey(item.hotkey, () => {
+				Engine.SetGlobalHotkey(item.hotkey, "Press", () => {
 					this.closeSubmenu();
 					item.onPress();
 				});

@@ -50,6 +50,7 @@ const u32 MAX_OBJECT_DEPTH = 100; // Max number of nesting for GUI includes. Use
 const CStr CGUI::EventNameLoad = "Load";
 const CStr CGUI::EventNameTick = "Tick";
 const CStr CGUI::EventNamePress = "Press";
+const CStr CGUI::EventNameKeyDown = "KeyDown";
 const CStr CGUI::EventNameRelease = "Release";
 const CStr CGUI::EventNameMouseRightPress = "MouseRightPress";
 const CStr CGUI::EventNameMouseLeftPress = "MouseLeftPress";
@@ -86,11 +87,13 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 {
 	InReaction ret = IN_PASS;
 
-	if (ev->ev.type == SDL_HOTKEYDOWN || ev->ev.type == SDL_HOTKEYUP)
+	if (ev->ev.type == SDL_HOTKEYDOWN || ev->ev.type == SDL_HOTKEYPRESS || ev->ev.type == SDL_HOTKEYUP)
 	{
 		const char* hotkey = static_cast<const char*>(ev->ev.user.data1);
 
-		if (m_GlobalHotkeys.find(hotkey) != m_GlobalHotkeys.end() && ev->ev.type == SDL_HOTKEYDOWN)
+		const CStr& eventName = ev->ev.type == SDL_HOTKEYPRESS ? EventNamePress : ev->ev.type == SDL_HOTKEYDOWN ? EventNameKeyDown : EventNameRelease;
+
+		if (m_GlobalHotkeys.find(hotkey) != m_GlobalHotkeys.end() && m_GlobalHotkeys[hotkey].find(eventName) != m_GlobalHotkeys[hotkey].end())
 		{
 			ret = IN_HANDLED;
 
@@ -98,15 +101,17 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 			JSAutoRequest rq(cx);
 			JS::RootedObject globalObj(cx, &GetGlobalObject().toObject());
 			JS::RootedValue result(cx);
-			JS_CallFunctionValue(cx, globalObj, m_GlobalHotkeys[hotkey], JS::HandleValueArray::empty(), &result);
+			JS_CallFunctionValue(cx, globalObj, m_GlobalHotkeys[hotkey][eventName], JS::HandleValueArray::empty(), &result);
 		}
 
 		std::map<CStr, std::vector<IGUIObject*> >::iterator it = m_HotkeyObjects.find(hotkey);
 		if (it != m_HotkeyObjects.end())
 			for (IGUIObject* const& obj : it->second)
 			{
-				if (ev->ev.type == SDL_HOTKEYDOWN)
+				if (ev->ev.type == SDL_HOTKEYPRESS)
 					ret = obj->SendEvent(GUIM_PRESSED, EventNamePress);
+				else if (ev->ev.type == SDL_HOTKEYDOWN)
+					ret = obj->SendEvent(GUIM_KEYDOWN, EventNameKeyDown);
 				else
 					ret = obj->SendEvent(GUIM_RELEASED, EventNameRelease);
 			}
@@ -400,7 +405,7 @@ void CGUI::UnsetObjectHotkey(IGUIObject* pObject, const CStr& hotkeyTag)
 		assignment.end());
 }
 
-void CGUI::SetGlobalHotkey(const CStr& hotkeyTag, JS::HandleValue function)
+void CGUI::SetGlobalHotkey(const CStr& hotkeyTag, const CStr& eventName, JS::HandleValue function)
 {
 	JSContext* cx = m_ScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
@@ -411,19 +416,33 @@ void CGUI::SetGlobalHotkey(const CStr& hotkeyTag, JS::HandleValue function)
 		return;
 	}
 
+	// Only support "Press", "Keydown" and "Release" events.
+	if (eventName != EventNamePress && eventName != EventNameKeyDown && eventName != EventNameRelease)
+	{
+		JS_ReportError(cx, "Cannot assign a function to an unsupported event!");
+		return;
+	}
+
 	if (!function.isObject() || !JS_ObjectIsFunction(cx, &function.toObject()))
 	{
 		JS_ReportError(cx, "Cannot assign non-function value to global hotkey '%s'", hotkeyTag.c_str());
 		return;
 	}
 
-	UnsetGlobalHotkey(hotkeyTag);
-	m_GlobalHotkeys[hotkeyTag].init(cx, function);
+	UnsetGlobalHotkey(hotkeyTag, eventName);
+	m_GlobalHotkeys[hotkeyTag][eventName].init(cx, function);
 }
 
-void CGUI::UnsetGlobalHotkey(const CStr& hotkeyTag)
+void CGUI::UnsetGlobalHotkey(const CStr& hotkeyTag, const CStr& eventName)
 {
-	m_GlobalHotkeys.erase(hotkeyTag);
+	std::map<CStr, std::map<CStr, JS::PersistentRootedValue>>::iterator it = m_GlobalHotkeys.find(hotkeyTag);
+	if (it == m_GlobalHotkeys.end())
+		return;
+
+	m_GlobalHotkeys[hotkeyTag].erase(eventName);
+
+	if (m_GlobalHotkeys.count(hotkeyTag) == 0)
+		m_GlobalHotkeys.erase(it);
 }
 
 const SGUIScrollBarStyle* CGUI::GetScrollBarStyle(const CStr& style) const

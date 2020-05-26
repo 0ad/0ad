@@ -17,10 +17,10 @@ class QuitButton
 
 		if (dialog)
 		{
-			Engine.SetGlobalHotkey("lobby", onPress);
-			Engine.SetGlobalHotkey("cancel", onPress);
+			Engine.SetGlobalHotkey("lobby", "Press", onPress);
+			Engine.SetGlobalHotkey("cancel", "Press", onPress);
 
-			let cancelHotkey = Engine.SetGlobalHotkey.bind(Engine, "cancel", onPress);
+			let cancelHotkey = Engine.SetGlobalHotkey.bind(Engine, "cancel", "Press", onPress);
 			leaderboardPage.registerClosePageHandler(cancelHotkey);
 			profilePage.registerClosePageHandler(cancelHotkey);
 		}

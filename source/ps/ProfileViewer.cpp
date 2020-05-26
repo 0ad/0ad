@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -336,7 +336,7 @@ InReaction CProfileViewer::Input(const SDL_Event_* ev)
 		}
 		break;
 	}
-	case SDL_HOTKEYDOWN:
+	case SDL_HOTKEYPRESS:
 		std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
 
 		if( hotkey == "profile.toggle" )

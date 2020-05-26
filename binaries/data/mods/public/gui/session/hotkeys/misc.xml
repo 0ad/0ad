@@ -32,19 +32,19 @@
 	</object>
 
 	<object hotkey="session.kill">
-		<action on="Press">performCommand(g_Selection.toList().map(ent => GetEntityState(ent)), "delete");</action>
+		<action on="KeyDown">performCommand(g_Selection.toList().map(ent => GetEntityState(ent)), "delete");</action>
 	</object>
 
 	<object hotkey="session.unload">
-		<action on="Press">unloadAll();</action>
+		<action on="KeyDown">unloadAll();</action>
 	</object>
 
 	<object hotkey="session.stop">
-		<action on="Press">stopUnits(g_Selection.toList());</action>
+		<action on="KeyDown">stopUnits(g_Selection.toList());</action>
 	</object>
 
 	<object hotkey="session.backtowork">
-		<action on="Press">backToWork();</action>
+		<action on="KeyDown">backToWork();</action>
 	</object>
 
 	<object hotkey="session.batchtrain">
@@ -54,15 +54,15 @@
 
 	<!-- Find idle warrior - TODO: Potentially move this to own UI button? -->
 	<object hotkey="selection.idlewarrior">
-		<action on="Press">findIdleUnit(g_MilitaryTypes);</action>
+		<action on="KeyDown">findIdleUnit(g_MilitaryTypes);</action>
 	</object>
 
 	<object hotkey="selection.idleunit">
-		<action on="Press">findIdleUnit(["!Domestic"]);</action>
+		<action on="KeyDown">findIdleUnit(["!Domestic"]);</action>
 	</object>
 
 	<object hotkey="selection.cancel">
-		<action on="Press">clearSelection();</action>
+		<action on="KeyDown">clearSelection();</action>
 	</object>
 
 	<object hotkey="session.showstatusbars">

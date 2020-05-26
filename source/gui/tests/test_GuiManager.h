@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -74,6 +74,7 @@ public:
 		SDL_Event_ hotkeyNotification;
 		hotkeyNotification.ev.type = SDL_KEYDOWN;
 		hotkeyNotification.ev.key.keysym.sym = SDLK_a;
+		hotkeyNotification.ev.key.repeat = 0;
 
 		// Init input and poll the event.
 		InitInput();
@@ -91,6 +92,22 @@ public:
 		bool hotkey_pressed_value = false;
 		JS::RootedValue js_hotkey_pressed_value(pageScriptInterface.GetContext());
 
+		pageScriptInterface.GetProperty(global, "state_before", &js_hotkey_pressed_value);
+		ScriptInterface::FromJSVal(pcx, js_hotkey_pressed_value, hotkey_pressed_value);
+		TS_ASSERT_EQUALS(hotkey_pressed_value, true);
+
+		hotkey_pressed_value = false;
+		pageScriptInterface.GetProperty(global, "state_after", &js_hotkey_pressed_value);
+		ScriptInterface::FromJSVal(pcx, js_hotkey_pressed_value, hotkey_pressed_value);
+		TS_ASSERT_EQUALS(hotkey_pressed_value, true);
+
+		// We are listening to KeyDown events, so repeat shouldn't matter.
+		hotkeyNotification.ev.key.repeat = 1;
+		in_push_priority_event(&hotkeyNotification);
+		while (in_poll_event(&ev))
+			in_dispatch_event(&ev);
+
+		hotkey_pressed_value = false;
 		pageScriptInterface.GetProperty(global, "state_before", &js_hotkey_pressed_value);
 		ScriptInterface::FromJSVal(pcx, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, true);
