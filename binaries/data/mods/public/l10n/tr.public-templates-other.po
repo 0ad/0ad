@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-04-30 10:46+0000\n"
-"PO-Revision-Date: 2020-05-01 03:21+0000\n"
+"POT-Creation-Date: 2020-05-22 07:09+0000\n"
+"PO-Revision-Date: 2020-05-23 10:05+0000\n"
 "Last-Translator: Günay Yılmaz\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -1137,3 +1137,35 @@ msgstr "Kama"
 #: simulation/templates/special/player/player.xml:64
 msgid "Player"
 msgstr "Oyuncu"
+
+#: simulation/data/template_helpers/damage_types/crush.jsonname
+msgctxt "damage type"
+msgid "Crush"
+msgstr "Yıkım"
+
+#: simulation/data/template_helpers/damage_types/crush.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sheer force, like with a club or by trampling."
+msgstr "Bir sopadaki veya çiğneme gibi salt kuvvetten kaynaklanan hasar."
+
+#: simulation/data/template_helpers/damage_types/hack.jsonname
+msgctxt "damage type"
+msgid "Hack"
+msgstr "Darbe"
+
+#: simulation/data/template_helpers/damage_types/hack.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by sharp objects cutting or chopping, like with a sword or an "
+"axe."
+msgstr "Kılıç veya balta gibi keskin nesnelerin kesmesi veya yarması sonucu oluşan hasar."
+
+#: simulation/data/template_helpers/damage_types/pierce.jsonname
+msgctxt "damage type"
+msgid "Pierce"
+msgstr "Delme"
+
+#: simulation/data/template_helpers/damage_types/pierce.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
+msgstr "Oklar veya mızraklar gibi sivri uçlu nesnelerin neden olduğu hasarlar."

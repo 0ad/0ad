@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-04-30 10:46+0000\n"
-"PO-Revision-Date: 2020-04-30 23:08+0000\n"
+"POT-Creation-Date: 2020-05-22 07:09+0000\n"
+"PO-Revision-Date: 2020-05-25 04:53+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -1128,3 +1128,35 @@ msgstr "Pina"
 #: simulation/templates/special/player/player.xml:64
 msgid "Player"
 msgstr "Xugador"
+
+#: simulation/data/template_helpers/damage_types/crush.jsonname
+msgctxt "damage type"
+msgid "Crush"
+msgstr "Frayadura"
+
+#: simulation/data/template_helpers/damage_types/crush.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sheer force, like with a club or by trampling."
+msgstr "L'efeutu d'un ataque frayante, como una porrada o calcañada."
+
+#: simulation/data/template_helpers/damage_types/hack.jsonname
+msgctxt "damage type"
+msgid "Hack"
+msgstr "Corte"
+
+#: simulation/data/template_helpers/damage_types/hack.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by sharp objects cutting or chopping, like with a sword or an "
+"axe."
+msgstr "L'efeutu d'un ataque tayante, como un espadazu o brosada"
+
+#: simulation/data/template_helpers/damage_types/pierce.jsonname
+msgctxt "damage type"
+msgid "Pierce"
+msgstr "Furadura"
+
+#: simulation/data/template_helpers/damage_types/pierce.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
+msgstr "L'efeutu d'un ataque furador, como un flechazu o llanzada"

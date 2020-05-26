@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_archer_relax_fem.xml">
+    <variant>
       <mesh>skeletal/new/f_dress.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_ptol_cleopatra.xml" attachpoint="head"/>
@@ -16,11 +16,11 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
-    <variant file="biped/attack_capture.xml"/>
-    <variant file="biped/female_base_walk.xml"/>
+    <variant file="biped/base_archer_relax_fem.xml"/>
     <variant file="biped/attack_ranged_archer.xml"/>
-    <variant file="biped/female_death.xml"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

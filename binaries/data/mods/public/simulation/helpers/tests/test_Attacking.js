@@ -60,6 +60,30 @@ class testHandleAttackEffects {
 	}
 
 	/**
+	 * Check that the Attacked message is [not] sent if [no] receivers exist.
+	 */
+	testAttackedMessage() {
+		Engine.PostMessage = () => TS_ASSERT(false);
+		Attacking.HandleAttackEffects("Test", this.attackData, this.TESTED_ENTITY_ID, INVALID_ENTITY, INVALID_PLAYER);
+
+		AddMock(this.TESTED_ENTITY_ID, IID_Capturable, {
+			"Capture": () => ({ "captureChange": 0 }),
+		});
+		let count = 0;
+		Engine.PostMessage = () => count++;
+		Attacking.HandleAttackEffects("Test", this.attackData, this.TESTED_ENTITY_ID, INVALID_ENTITY, INVALID_PLAYER);
+		TS_ASSERT_EQUALS(count, 1);
+
+		AddMock(this.TESTED_ENTITY_ID, IID_Health, {
+			"TakeDamage": () => ({ "HPchange": 0 }),
+		});
+		count = 0;
+		Engine.PostMessage = () => count++;
+		Attacking.HandleAttackEffects("Test", this.attackData, this.TESTED_ENTITY_ID, INVALID_ENTITY, INVALID_PLAYER);
+		TS_ASSERT_EQUALS(count, 1);
+	}
+
+	/**
 	 * Regression test that bonus multiplier is handled correctly.
 	 */
 	testBonusMultiplier() {
@@ -76,4 +100,5 @@ class testHandleAttackEffects {
 
 new testHandleAttackEffects().testMultipleEffects();
 new testHandleAttackEffects().testSkippedEffect();
+new testHandleAttackEffects().testAttackedMessage();
 new testHandleAttackEffects().testBonusMultiplier();

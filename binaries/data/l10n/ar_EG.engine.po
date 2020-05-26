@@ -1,14 +1,14 @@
 # Translation template for Pyrogenesis.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-13 07:08+0000\n"
-"PO-Revision-Date: 2019-09-13 12:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2020-05-22 07:08+0000\n"
+"PO-Revision-Date: 2020-05-22 10:20+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Arabic (Egypt) (http://www.transifex.com/wildfire-games/0ad/language/ar_EG/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,142 +20,142 @@ msgstr ""
 msgid "Long strings"
 msgstr ""
 
-#: lobby/XmppClient.cpp:855
+#: lobby/XmppClient.cpp:887
 msgid "unknown subtype (see logs)"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1169
+#: lobby/XmppClient.cpp:1215
 msgid "The certificate is not trusted."
 msgstr ""
 
-#: lobby/XmppClient.cpp:1170
+#: lobby/XmppClient.cpp:1216
 msgid "The certificate hasn't got a known issuer."
 msgstr ""
 
-#: lobby/XmppClient.cpp:1171
+#: lobby/XmppClient.cpp:1217
 msgid "The certificate has been revoked."
 msgstr ""
 
-#: lobby/XmppClient.cpp:1172
+#: lobby/XmppClient.cpp:1218
 msgid "The certificate has expired."
 msgstr ""
 
-#: lobby/XmppClient.cpp:1173
-msgid "The certifiacte is not yet active."
-msgstr ""
-
-#: lobby/XmppClient.cpp:1174
-msgid "The certificate has not been issued for the peer connected to."
-msgstr ""
-
-#: lobby/XmppClient.cpp:1175
-msgid "The certificate signer is not a certificate authority."
-msgstr ""
-
-#: lobby/XmppClient.cpp:1197 lobby/XmppClient.cpp:1241
-#: lobby/XmppClient.cpp:1280
-msgid "Error"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1200 lobby/XmppClient.cpp:1244
-msgid "No error"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1202
-msgid "Player already logged in"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1204
-msgid "Forbidden"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1206
-msgid "Internal server error"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1210
-msgid "Not allowed"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1211
-msgid "Not authorized"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1214
-msgid "Recipient temporarily unavailable"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1216
-msgid "Registration required"
+#: lobby/XmppClient.cpp:1219
+msgid "The certificate is not yet active."
 msgstr ""
 
 #: lobby/XmppClient.cpp:1220
-msgid "Service unavailable"
+msgid "The certificate has not been issued for the peer connected to."
 msgstr ""
 
-#: lobby/XmppClient.cpp:1225 lobby/XmppClient.cpp:1264
-msgid "Unknown error"
+#: lobby/XmppClient.cpp:1221
+msgid "The certificate signer is not a certificate authority."
 msgstr ""
 
-#: lobby/XmppClient.cpp:1245
-msgid "Stream error"
+#: lobby/XmppClient.cpp:1243 lobby/XmppClient.cpp:1287
+#: lobby/XmppClient.cpp:1326
+msgid "Error"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1246
-msgid "The incoming stream version is unsupported"
+#: lobby/XmppClient.cpp:1246 lobby/XmppClient.cpp:1290
+msgid "No error"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1247
-msgid "The stream has been closed by the server"
+#: lobby/XmppClient.cpp:1248
+msgid "Player already logged in"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1251
-msgid "An I/O error occurred"
+#: lobby/XmppClient.cpp:1250
+msgid "Forbidden"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1253
-msgid "The connection was refused by the server"
+#: lobby/XmppClient.cpp:1252
+msgid "Internal server error"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1254
-msgid "Resolving the server's hostname failed"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1255
-msgid "This system is out of memory"
+#: lobby/XmppClient.cpp:1256
+msgid "Not allowed"
 msgstr ""
 
 #: lobby/XmppClient.cpp:1257
+msgid "Not authorized"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1260
+msgid "Recipient temporarily unavailable"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1262
+msgid "Registration required"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1266
+msgid "Service unavailable"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1271 lobby/XmppClient.cpp:1310
+msgid "Unknown error"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1291
+msgid "Stream error"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1292
+msgid "The incoming stream version is unsupported"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1293
+msgid "The stream has been closed by the server"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1297
+msgid "An I/O error occurred"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1299
+msgid "The connection was refused by the server"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1300
+msgid "Resolving the server's hostname failed"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1301
+msgid "This system is out of memory"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1303
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1258
+#: lobby/XmppClient.cpp:1304
 msgid "The server did not offer required TLS encryption"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1260
+#: lobby/XmppClient.cpp:1306
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1261
+#: lobby/XmppClient.cpp:1307
 msgid "The user or system requested a disconnect"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1262
+#: lobby/XmppClient.cpp:1308
 msgid "There is no active connection"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1283
+#: lobby/XmppClient.cpp:1329
 msgid "Your account has been successfully registered"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1284
+#: lobby/XmppClient.cpp:1330
 msgid "Not all necessary information provided"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1285
+#: lobby/XmppClient.cpp:1331
 msgid "Username already exists"
 msgstr ""
 
@@ -216,7 +216,7 @@ msgstr ""
 msgid "Saved game to '%s'"
 msgstr ""
 
-#: ps/Util.cpp:279 ps/Util.cpp:282 ps/Util.cpp:417 ps/Util.cpp:420
+#: ps/Util.cpp:280 ps/Util.cpp:283 ps/Util.cpp:424 ps/Util.cpp:427
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr ""

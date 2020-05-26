@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-09-13 07:08+0000\n"
-"PO-Revision-Date: 2019-11-13 21:36+0000\n"
-"Last-Translator: Fat Man <fat.oyunn@gmail.com>\n"
+"POT-Creation-Date: 2020-05-22 07:08+0000\n"
+"PO-Revision-Date: 2020-05-22 10:20+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Bengali (http://www.transifex.com/wildfire-games/0ad/language/bn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,142 +21,142 @@ msgstr ""
 msgid "Long strings"
 msgstr "দীর্ঘবাক্য"
 
-#: lobby/XmppClient.cpp:855
+#: lobby/XmppClient.cpp:887
 msgid "unknown subtype (see logs)"
 msgstr "অজানা উপধরন (লগ দেখুন)"
 
-#: lobby/XmppClient.cpp:1169
+#: lobby/XmppClient.cpp:1215
 msgid "The certificate is not trusted."
 msgstr "সার্টিফিকেট বিশ্বস্ত নয়।"
 
-#: lobby/XmppClient.cpp:1170
+#: lobby/XmppClient.cpp:1216
 msgid "The certificate hasn't got a known issuer."
 msgstr "সার্টিফিকেটের কোন জানা ইস্যু নেই।"
 
-#: lobby/XmppClient.cpp:1171
+#: lobby/XmppClient.cpp:1217
 msgid "The certificate has been revoked."
 msgstr "সার্টিফিকেট বাতিল করা হয়েছে।"
 
-#: lobby/XmppClient.cpp:1172
+#: lobby/XmppClient.cpp:1218
 msgid "The certificate has expired."
 msgstr "সার্টিফিকেটের মেয়াদ শেষ।"
 
-#: lobby/XmppClient.cpp:1173
-msgid "The certifiacte is not yet active."
-msgstr "সার্টিফিকেট এখনো চালু হয়নি।"
+#: lobby/XmppClient.cpp:1219
+msgid "The certificate is not yet active."
+msgstr ""
 
-#: lobby/XmppClient.cpp:1174
+#: lobby/XmppClient.cpp:1220
 msgid "The certificate has not been issued for the peer connected to."
 msgstr "সার্টিফিকেটটি এই পিয়ার কানেকশনের জন্য ইস্যু করা হয়নি।"
 
-#: lobby/XmppClient.cpp:1175
+#: lobby/XmppClient.cpp:1221
 msgid "The certificate signer is not a certificate authority."
 msgstr "সার্টিফিকেট স্বাক্ষরকারী সার্টিফিকেটের স্বত্বাধিকার নয়। "
 
-#: lobby/XmppClient.cpp:1197 lobby/XmppClient.cpp:1241
-#: lobby/XmppClient.cpp:1280
+#: lobby/XmppClient.cpp:1243 lobby/XmppClient.cpp:1287
+#: lobby/XmppClient.cpp:1326
 msgid "Error"
 msgstr "সমস্যা"
 
-#: lobby/XmppClient.cpp:1200 lobby/XmppClient.cpp:1244
+#: lobby/XmppClient.cpp:1246 lobby/XmppClient.cpp:1290
 msgid "No error"
 msgstr "কোন সমস্যা নেই"
 
-#: lobby/XmppClient.cpp:1202
+#: lobby/XmppClient.cpp:1248
 msgid "Player already logged in"
 msgstr "খেলোয়াড় পূর্বেই লগইন করেছে "
 
-#: lobby/XmppClient.cpp:1204
+#: lobby/XmppClient.cpp:1250
 msgid "Forbidden"
 msgstr "নিষিদ্ধ"
 
-#: lobby/XmppClient.cpp:1206
+#: lobby/XmppClient.cpp:1252
 msgid "Internal server error"
 msgstr "ইন্টারনেট সার্ভারে সমস্যা"
 
-#: lobby/XmppClient.cpp:1210
+#: lobby/XmppClient.cpp:1256
 msgid "Not allowed"
 msgstr "অনুমতি নেই"
 
-#: lobby/XmppClient.cpp:1211
+#: lobby/XmppClient.cpp:1257
 msgid "Not authorized"
 msgstr "অনুনোমদিত"
 
-#: lobby/XmppClient.cpp:1214
+#: lobby/XmppClient.cpp:1260
 msgid "Recipient temporarily unavailable"
 msgstr "গ্রহীতা সাময়িকভাবে লভ্য নয়"
 
-#: lobby/XmppClient.cpp:1216
+#: lobby/XmppClient.cpp:1262
 msgid "Registration required"
 msgstr "রেজিস্ট্রেশন প্রয়োজন"
 
-#: lobby/XmppClient.cpp:1220
+#: lobby/XmppClient.cpp:1266
 msgid "Service unavailable"
 msgstr "সার্ভার লভ্য নয়"
 
-#: lobby/XmppClient.cpp:1225 lobby/XmppClient.cpp:1264
+#: lobby/XmppClient.cpp:1271 lobby/XmppClient.cpp:1310
 msgid "Unknown error"
 msgstr "অজানা সমস্যা"
 
-#: lobby/XmppClient.cpp:1245
+#: lobby/XmppClient.cpp:1291
 msgid "Stream error"
 msgstr "স্টিমে সমস্যা"
 
-#: lobby/XmppClient.cpp:1246
+#: lobby/XmppClient.cpp:1292
 msgid "The incoming stream version is unsupported"
 msgstr "স্টিম ভার্শনটি অসমর্থিত"
 
-#: lobby/XmppClient.cpp:1247
+#: lobby/XmppClient.cpp:1293
 msgid "The stream has been closed by the server"
 msgstr "সার্ভার স্টিমটি বন্ধ করে দিয়েছে"
 
-#: lobby/XmppClient.cpp:1251
+#: lobby/XmppClient.cpp:1297
 msgid "An I/O error occurred"
 msgstr "একটি ইনপুট/আউটপুট সমস্যা হয়েছে"
 
-#: lobby/XmppClient.cpp:1253
+#: lobby/XmppClient.cpp:1299
 msgid "The connection was refused by the server"
 msgstr "সার্ভার কানেকশন প্রত্যাখ্যান করেছে"
 
-#: lobby/XmppClient.cpp:1254
+#: lobby/XmppClient.cpp:1300
 msgid "Resolving the server's hostname failed"
 msgstr "সার্ভারের হোষ্টনাম সমাধান করা অকৃতকার্য হয়েছে"
 
-#: lobby/XmppClient.cpp:1255
+#: lobby/XmppClient.cpp:1301
 msgid "This system is out of memory"
 msgstr "সিস্টেমের মেমরি শেষ"
 
-#: lobby/XmppClient.cpp:1257
+#: lobby/XmppClient.cpp:1303
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1258
+#: lobby/XmppClient.cpp:1304
 msgid "The server did not offer required TLS encryption"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1260
+#: lobby/XmppClient.cpp:1306
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1261
+#: lobby/XmppClient.cpp:1307
 msgid "The user or system requested a disconnect"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1262
+#: lobby/XmppClient.cpp:1308
 msgid "There is no active connection"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1283
+#: lobby/XmppClient.cpp:1329
 msgid "Your account has been successfully registered"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1284
+#: lobby/XmppClient.cpp:1330
 msgid "Not all necessary information provided"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1285
+#: lobby/XmppClient.cpp:1331
 msgid "Username already exists"
 msgstr "ইউজারনেম আগেথেকেই আছে "
 
@@ -217,7 +217,7 @@ msgstr "সাক্ষর যাচাই অকৃতকার্য হয়ে
 msgid "Saved game to '%s'"
 msgstr "খেলা %s তে জমা করা হয়েছে"
 
-#: ps/Util.cpp:279 ps/Util.cpp:282 ps/Util.cpp:417 ps/Util.cpp:420
+#: ps/Util.cpp:280 ps/Util.cpp:283 ps/Util.cpp:424 ps/Util.cpp:427
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "স্ক্রিনশট %s তে লিখা হয়েছে"
