@@ -83,8 +83,6 @@ void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 
 void CReplayLogger::Turn(u32 n, u32 turnLength, std::vector<SimulationCommand>& commands)
 {
-	JSContext* cx = m_ScriptInterface.GetContext();
-
 	*m_Stream << "turn " << n << " " << turnLength << "\n";
 
 	for (SimulationCommand& command : commands)

@@ -173,8 +173,6 @@ public:
 
 	void ReadEntry(const VfsPath& pathname, const CFileInfo& fileInfo, PIArchiveFile archiveFile)
 	{
-		JSContext* cx = m_ScriptInterface.GetContext();
-
 		if (pathname == L"metadata.json")
 		{
 			std::string buffer;

@@ -61,7 +61,7 @@ CMapReader::CMapReader()
 }
 
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
-void CMapReader::LoadMap(const VfsPath& pathname, JSRuntime* rt,  JS::HandleValue settings, CTerrain *pTerrain_,
+void CMapReader::LoadMap(const VfsPath& pathname, JSContext* ctx,  JS::HandleValue settings, CTerrain *pTerrain_,
 						 WaterManager* pWaterMan_, SkyManager* pSkyMan_,
 						 CLightEnv *pLightEnv_, CGameView *pGameView_, CCinemaManager* pCinema_, CTriggerManager* pTrigMan_, CPostprocManager* pPostproc_,
 						 CSimulation2 *pSimulation2_, const CSimContext* pSimContext_, int playerID_, bool skipEntities)
@@ -79,7 +79,7 @@ void CMapReader::LoadMap(const VfsPath& pathname, JSRuntime* rt,  JS::HandleValu
 	m_PlayerID = playerID_;
 	m_SkipEntities = skipEntities;
 	m_StartingCameraTarget = INVALID_ENTITY;
-	m_ScriptSettings.init(rt, settings);
+	m_ScriptSettings.init(ctx, settings);
 
 	filename_xml = pathname.ChangeExtension(L".xml");
 
@@ -143,7 +143,7 @@ void CMapReader::LoadMap(const VfsPath& pathname, JSRuntime* rt,  JS::HandleValu
 }
 
 // LoadRandomMap: try to load the map data; reinitialise the scene to new data if successful
-void CMapReader::LoadRandomMap(const CStrW& scriptFile, JSRuntime* rt, JS::HandleValue settings, CTerrain *pTerrain_,
+void CMapReader::LoadRandomMap(const CStrW& scriptFile, JSContext* ctx, JS::HandleValue settings, CTerrain *pTerrain_,
 						 WaterManager* pWaterMan_, SkyManager* pSkyMan_,
 						 CLightEnv *pLightEnv_, CGameView *pGameView_, CCinemaManager* pCinema_, CTriggerManager* pTrigMan_, CPostprocManager* pPostproc_,
 						 CSimulation2 *pSimulation2_, int playerID_)
@@ -151,7 +151,7 @@ void CMapReader::LoadRandomMap(const CStrW& scriptFile, JSRuntime* rt, JS::Handl
 	m_ScriptFile = scriptFile;
 	pSimulation2 = pSimulation2_;
 	pSimContext = pSimulation2 ? &pSimulation2->GetSimContext() : NULL;
-	m_ScriptSettings.init(rt, settings);
+	m_ScriptSettings.init(ctx, settings);
 	pTerrain = pTerrain_;
 	pLightEnv = pLightEnv_;
 	pGameView = pGameView_;
@@ -1373,7 +1373,6 @@ int CMapReader::ParseTerrain()
 int CMapReader::ParseEntities()
 {
 	TIMER(L"ParseEntities");
-	JSContext* cx = pSimulation2->GetScriptInterface().GetContext();
 
 	// parse entities from map data
 	std::vector<Entity> entities;

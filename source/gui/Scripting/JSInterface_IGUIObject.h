@@ -19,16 +19,19 @@
 #define INCLUDED_JSI_IGUIOBJECT
 
 #include "scriptinterface/ScriptInterface.h"
+#include "js/Class.h"
 
 namespace JSI_IGUIObject
 {
+    extern JSClassOps classOps;                     
+    extern js::ObjectOps objOps;                     
 	extern JSClass JSI_class;
 	extern JSFunctionSpec JSI_methods[];
 
 	void RegisterScriptClass(ScriptInterface& scriptInterface);
 
-	bool getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp);
-	bool setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp, JS::ObjectOpResult& result);
+	bool getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleValue receiver, JS::HandleId id, JS::MutableHandleValue vp);
+	bool setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::HandleValue vp, JS::HandleValue receiver, JS::ObjectOpResult& result);
 	bool deleteProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::ObjectOpResult& result);
 	bool toString(JSContext* cx, uint argc, JS::Value* vp);
 	bool focus(JSContext* cx, uint argc, JS::Value* vp);

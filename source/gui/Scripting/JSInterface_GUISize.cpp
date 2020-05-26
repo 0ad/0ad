@@ -22,12 +22,22 @@
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptInterface.h"
 
+JSClassOps JSI_GUISize::classOps = {                                      
+    nullptr,                                      
+    nullptr,                                      
+    nullptr,                                      
+    nullptr,                           
+    nullptr,                                
+    nullptr,                             
+    nullptr,                               
+    nullptr,                                      
+    nullptr,                                      
+	JSI_GUISize::construct,
+    nullptr};
+
 JSClass JSI_GUISize::JSI_class = {
 	"GUISize", 0,
-	nullptr, nullptr,
-	nullptr, nullptr,
-	nullptr, nullptr, nullptr, nullptr,
-	nullptr, nullptr, JSI_GUISize::construct, nullptr
+    &JSI_GUISize::classOps
 };
 
 JSFunctionSpec JSI_GUISize::JSI_methods[] =

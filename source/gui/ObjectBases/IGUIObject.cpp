@@ -28,6 +28,9 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "soundmanager/ISoundManager.h"
 
+#include "js/CompilationAndEvaluation.h"
+#include "js/SourceText.h"
+
 const CStr IGUIObject::EventNameMouseEnter = "MouseEnter";
 const CStr IGUIObject::EventNameMouseMove = "MouseMove";
 const CStr IGUIObject::EventNameMouseLeave = "MouseLeave";
@@ -318,9 +321,22 @@ void IGUIObject::RegisterScriptHandler(const CStr& eventName, const CStr& Code, 
 	options.setFileAndLine(CodeName.c_str(), 0);
 	options.setIsRunOnce(false);
 
-	JS::RootedFunction func(cx);
-	JS::RootedObjectVector (cx, emptyScopeChain(cx));
-	if (!JS::CompileFunction(cx, emptyScopeChain, options, buf, paramCount, paramNames, Code.c_str(), Code.length(), &func))
+	JS::RootedObjectVector emptyScopeChain(cx);
+
+    JS::SourceText<mozilla::Utf8Unit> source;
+    if (!source.init(cx, 
+                     Code.c_str(), 
+                     Code.length(), 
+                     JS::SourceOwnership::Borrowed)) {    
+	    LOGERROR("RegisterScriptHandler: Failed to compile the script for %s", eventName.c_str());
+        return;                                                               
+    }
+
+
+	JS::RootedFunction func(cx, JS::CompileFunction(cx, emptyScopeChain, options, buf, 
+                             paramCount, paramNames, source));
+
+	if (!func)
 	{
 		LOGERROR("RegisterScriptHandler: Failed to compile the script for %s", eventName.c_str());
 		return;

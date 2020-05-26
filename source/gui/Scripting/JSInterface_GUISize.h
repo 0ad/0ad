@@ -23,6 +23,8 @@
 
 namespace JSI_GUISize
 {
+
+    extern JSClassOps classOps;                     
 	extern JSClass JSI_class;
 	extern JSPropertySpec JSI_props[];
 	extern JSFunctionSpec JSI_methods[];
@@ -33,6 +35,7 @@ namespace JSI_GUISize
 	bool toString(JSContext* cx, uint argc, JS::Value* vp);
 
 	CStr ToPercentString(double pix, double per);
+
 }
 
 #endif // INCLUDED_JSI_GUISIZE

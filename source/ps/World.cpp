@@ -65,7 +65,7 @@ CWorld::CWorld(CGame *pGame):
 /**
  * Initializes the game world with the attributes provided.
  **/
-void CWorld::RegisterInit(const CStrW& mapFile, JSRuntime* rt, JS::HandleValue settings, int playerID)
+void CWorld::RegisterInit(const CStrW& mapFile, JSContext* ctx, JS::HandleValue settings, int playerID)
 {
 	// Load the map, if one was specified
 	if (mapFile.length())
@@ -75,7 +75,7 @@ void CWorld::RegisterInit(const CStrW& mapFile, JSRuntime* rt, JS::HandleValue s
 		try
 		{
 			CTriggerManager* pTriggerManager = NULL;
-			m_MapReader->LoadMap(mapfilename, rt, settings, m_Terrain,
+			m_MapReader->LoadMap(mapfilename, ctx, settings, m_Terrain,
 				CRenderer::IsInitialised() ? g_Renderer.GetWaterManager() : NULL,
 				CRenderer::IsInitialised() ? g_Renderer.GetSkyManager() : NULL,
 				&g_LightEnv, m_pGame->GetView(),
@@ -94,11 +94,11 @@ void CWorld::RegisterInit(const CStrW& mapFile, JSRuntime* rt, JS::HandleValue s
 	}
 }
 
-void CWorld::RegisterInitRMS(const CStrW& scriptFile, JSRuntime* rt, JS::HandleValue settings, int playerID)
+void CWorld::RegisterInitRMS(const CStrW& scriptFile, JSContext* ctx, JS::HandleValue settings, int playerID)
 {
 	// If scriptFile is empty, a blank map will be generated using settings (no RMS run)
 	CTriggerManager* pTriggerManager = NULL;
-	m_MapReader->LoadRandomMap(scriptFile, rt, settings, m_Terrain,
+	m_MapReader->LoadRandomMap(scriptFile, ctx, settings, m_Terrain,
 		CRenderer::IsInitialised() ? g_Renderer.GetWaterManager() : NULL,
 		CRenderer::IsInitialised() ? g_Renderer.GetSkyManager() : NULL,
 		&g_LightEnv, m_pGame->GetView(),

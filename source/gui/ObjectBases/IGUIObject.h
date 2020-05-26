@@ -55,8 +55,8 @@ class IGUIObject
 	friend class CGUI;
 
 	// Allow getProperty to access things like GetParent()
-	friend bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp);
-	friend bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp, JS::ObjectOpResult& result);
+	friend bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleValue receiver, JS::HandleId id, JS::MutableHandleValue vp);
+	friend bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::HandleValue vp, JS::HandleValue receiver, JS::ObjectOpResult& result);
 	friend bool JSI_IGUIObject::deleteProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::ObjectOpResult& result);
 	friend bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, JS::Value* vp);
 

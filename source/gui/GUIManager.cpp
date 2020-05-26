@@ -224,7 +224,7 @@ void CGUIManager::SGUIPage::SetCallbackFunction(ScriptInterface& scriptInterface
 		return;
 	}
 
-	if (!JS_ObjectIsFunction(scriptInterface.GetContext(), &callbackFunc.toObject()))
+	if (!JS_ObjectIsFunction(&callbackFunc.toObject()))
 	{
 		LOGERROR("Given callback handler is not a function!");
 		return;

@@ -68,6 +68,7 @@ public:
 	void AddDeferredFinalizationObject(const std::shared_ptr<void>& obj);
 
 	JSRuntime* m_rt;
+	JSContext* m_ctx;
 
 private:
 
@@ -82,7 +83,7 @@ private:
 	int m_LastGCBytes;
 	double m_LastGCCheck;
 
-	static void GCCallback(JSRuntime *rt, JSGCStatus status, void *data);
+	static void GCCallback(JSContext *rt, JSGCStatus status, void *data);
 };
 
 #endif // INCLUDED_SCRIPTRUNTIME

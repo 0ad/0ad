@@ -44,6 +44,7 @@
 #include "js/ContextOptions.h"
 #include "js/CompilationAndEvaluation.h"
 #include "js/SourceText.h"
+#include "js/JSON.h"
 
 #include "valgrind.h"
 
@@ -857,11 +858,11 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& cod
 
 	JS::RootedObjectVector emptyScopeChain(m->m_cx);
 
+	utf16string codeUtf16(code.begin(), code.end());
     JS::SourceText<char16_t> source;
-
     if (!source.init(m->m_cx, 
-                     code.c_str(), 
-                     code.size(), 
+                     (const char16_t*)(codeUtf16.c_str()), 
+                     codeUtf16.size(), 
                      JS::SourceOwnership::Borrowed)) {    
      return false;                                                               
     }
@@ -888,7 +889,6 @@ shared_ptr<ScriptRuntime> ScriptInterface::CreateRuntime(shared_ptr<ScriptRuntim
 
 bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::wstring& code) const
 {
-	utf16string codeUtf16(code.begin(), code.end());
 	uint lineNo = 1;
 	// CompileOptions does not copy the contents of the filename string pointer.
 	// Passing a temporary string there will cause undefined behaviour, so we create a separate string to avoid the temporary.
@@ -897,8 +897,17 @@ bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::wstri
 	JS::RootedValue rval(m->m_cx);
 	JS::CompileOptions opts(m->m_cx);
 	opts.setFileAndLine(filenameStr.c_str(), lineNo);
-	return JS::Evaluate(m->m_cx, opts,
-			reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)(codeUtf16.length()), &rval);
+	
+    utf16string codeUtf16(code.begin(), code.end());
+    JS::SourceText<char16_t> source;
+    if (!source.init(m->m_cx, 
+                     (const char16_t*)codeUtf16.c_str(), 
+                     codeUtf16.size(), 
+                     JS::SourceOwnership::Borrowed)) {    
+     return false;                                                               
+    }
+
+	return JS::Evaluate(m->m_cx, opts, source, &rval);
 }
 
 bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path) const
@@ -919,9 +928,8 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path) const
 		return false;
 	}
 
-	std::wstring code = wstring_from_utf8(file.DecodeUTF8()); // assume it's UTF-8
+	auto codeUtf8 = file.DecodeUTF8(); // assume it's UTF-8
 
-	utf16string codeUtf16(code.begin(), code.end());
 	uint lineNo = 1;
 	// CompileOptions does not copy the contents of the filename string pointer.
 	// Passing a temporary string there will cause undefined behaviour, so we create a separate string to avoid the temporary.
@@ -930,8 +938,16 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path) const
 	JS::RootedValue rval(m->m_cx);
 	JS::CompileOptions opts(m->m_cx);
 	opts.setFileAndLine(filenameStr.c_str(), lineNo);
-	return JS::Evaluate(m->m_cx, opts,
-			reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)(codeUtf16.length()), &rval);
+
+    JS::SourceText<mozilla::Utf8Unit> source;
+    if (!source.init(m->m_cx, 
+                     codeUtf8.c_str(), 
+                     codeUtf8.size(), 
+                     JS::SourceOwnership::Borrowed)) {    
+     return false;                                                               
+    }
+
+	return JS::Evaluate(m->m_cx, opts, source, &rval);
 }
 
 bool ScriptInterface::Eval(const char* code) const
@@ -942,20 +958,40 @@ bool ScriptInterface::Eval(const char* code) const
 
 bool ScriptInterface::Eval_(const char* code, JS::MutableHandleValue rval) const
 {
-	utf16string codeUtf16(code, code+strlen(code));
 
 	JS::CompileOptions opts(m->m_cx);
 	opts.setFileAndLine("(eval)", 1);
-	return JS::Evaluate(m->m_cx, opts, reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)codeUtf16.length(), rval);
+
+	utf16string codeUtf16(code, code+strlen(code));
+    JS::SourceText<char16_t> source;
+    if (!source.init(m->m_cx, 
+                     (const char16_t*)codeUtf16.c_str(), 
+                     codeUtf16.size(), 
+                     JS::SourceOwnership::Borrowed)) {    
+     return false;                                                               
+    }
+
+	return JS::Evaluate(m->m_cx, opts, source, rval);
 }
 
 bool ScriptInterface::Eval_(const wchar_t* code, JS::MutableHandleValue rval) const
 {
-	utf16string codeUtf16(code, code+wcslen(code));
+
 
 	JS::CompileOptions opts(m->m_cx);
 	opts.setFileAndLine("(eval)", 1);
-	return JS::Evaluate(m->m_cx, opts, reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)codeUtf16.length(), rval);
+
+	utf16string codeUtf16(code, code+wcslen(code));
+    JS::SourceText<char16_t> source;
+    if (!source.init(m->m_cx, 
+                     (const char16_t*)codeUtf16.c_str(), 
+                     codeUtf16.size(), 
+                     JS::SourceOwnership::Borrowed)) {    
+     return false;                                                               
+    }
+
+
+	return JS::Evaluate(m->m_cx, opts, source, rval);
 }
 
 bool ScriptInterface::ParseJSON(const std::string& string_utf8, JS::MutableHandleValue out) const
@@ -1059,12 +1095,12 @@ std::string ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty) c
 		JS::RootedValue indentVal(m->m_cx, JS::Int32Value(2));
 
 		// Temporary disable the error reporter, so we don't print complaints about cyclic values
-		JSWarningReporter er = JS::SetWarningReporter(m->m_runtime->m_rt, NULL);
+        JS::WarningReporter er = JS::SetWarningReporter(m->m_cx, NULL);
 
 		bool ok = JS_Stringify(m->m_cx, obj, nullptr, indentVal, &Stringifier::callback, &str);
 
 		// Restore error reporter
-        JS::SetWarningReporter(m->m_runtime->m_rt, er);
+        JS::SetWarningReporter(m->m_cx, er);
 
 		if (ok)
 			return str.stream.str();
@@ -1109,33 +1145,36 @@ JS::Value ScriptInterface::CloneValueFromOtherContext(const ScriptInterface& oth
 }
 
 ScriptInterface::StructuredClone::StructuredClone() :
-	m_Data(NULL), m_Size(0)
+	m_data(JS::StructuredCloneScope::DifferentProcess)
 {
 }
 
 ScriptInterface::StructuredClone::~StructuredClone()
 {
-	if (m_Data)
-		JS_ClearStructuredClone(m_Data, m_Size, NULL, NULL);
+    m_data.Clear();
 }
 
 shared_ptr<ScriptInterface::StructuredClone> ScriptInterface::WriteStructuredClone(JS::HandleValue v) const
 {
-	u64* data = NULL;
-	size_t nbytes = 0;
-	if (!JS_WriteStructuredClone(m->m_cx, v, &data, &nbytes, NULL, NULL, JS::UndefinedHandleValue))
-	{
+    JS::CloneDataPolicy policy;
+    policy.denySharedArrayBuffer();
+
+	shared_ptr<StructuredClone> ret(new StructuredClone);
+	if (!JS_WriteStructuredClone(m->m_cx, v, &(ret->m_data),
+                                 JS::StructuredCloneScope::DifferentProcess,
+                                 policy, NULL, NULL, JS::UndefinedHandleValue)){
 		debug_warn(L"Writing a structured clone with JS_WriteStructuredClone failed!");
 		return shared_ptr<StructuredClone>();
 	}
 
-	shared_ptr<StructuredClone> ret(new StructuredClone);
-	ret->m_Data = data;
-	ret->m_Size = nbytes;
+
 	return ret;
 }
 
 void ScriptInterface::ReadStructuredClone(const shared_ptr<ScriptInterface::StructuredClone>& ptr, JS::MutableHandleValue ret) const
 {
-	JS_ReadStructuredClone(m->m_cx, ptr->m_Data, ptr->m_Size, JS_STRUCTURED_CLONE_VERSION, ret, NULL, NULL);
+	JS_ReadStructuredClone(m->m_cx, ptr->m_data, 
+                           JS_STRUCTURED_CLONE_VERSION, 
+                           JS::StructuredCloneScope::DifferentProcess, 
+                           ret, NULL, NULL);
 }

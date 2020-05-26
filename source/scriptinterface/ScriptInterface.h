@@ -26,6 +26,8 @@
 #include <boost/random/linear_congruential.hpp>
 #include <map>
 
+#include "js/StructuredClone.h"
+
 ERROR_GROUP(Scripting);
 ERROR_TYPE(Scripting, SetupFailed);
 
@@ -324,8 +326,7 @@ public:
 	public:
 		StructuredClone();
 		~StructuredClone();
-		u64* m_Data;
-		size_t m_Size;
+        JSStructuredCloneData m_data;
 	};
 
 	shared_ptr<StructuredClone> WriteStructuredClone(JS::HandleValue v) const;
