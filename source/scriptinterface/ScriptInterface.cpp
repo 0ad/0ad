@@ -45,6 +45,7 @@
 #include "js/CompilationAndEvaluation.h"
 #include "js/SourceText.h"
 #include "js/JSON.h"
+#include "js/StructuredClone.h"
 
 #include "valgrind.h"
 
@@ -346,7 +347,8 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 {
 	bool ok;
 
-	m_cx = JS_NewContext(STACK_CHUNK_SIZE, JS::DefaultNurseryBytes, m_runtime->m_rt);
+	//m_cx = JS_NewContext(STACK_CHUNK_SIZE, JS::DefaultNurseryBytes, m_runtime->m_rt);
+    m_cx = runtime->m_ctx;
 	ENSURE(m_cx);
 
 	JS_SetOffthreadIonCompilationEnabled(m_cx, true);
@@ -1145,25 +1147,20 @@ JS::Value ScriptInterface::CloneValueFromOtherContext(const ScriptInterface& oth
 }
 
 ScriptInterface::StructuredClone::StructuredClone() :
-	m_data(JS::StructuredCloneScope::DifferentProcess)
+	m_data(JS::StructuredCloneScope::DifferentProcess, NULL, NULL)
 {
 }
 
 ScriptInterface::StructuredClone::~StructuredClone()
 {
-    m_data.Clear();
+    m_data.clear();
 }
 
 shared_ptr<ScriptInterface::StructuredClone> ScriptInterface::WriteStructuredClone(JS::HandleValue v) const
 {
-    JS::CloneDataPolicy policy;
-    policy.denySharedArrayBuffer();
-
-	shared_ptr<StructuredClone> ret(new StructuredClone);
-	if (!JS_WriteStructuredClone(m->m_cx, v, &(ret->m_data),
-                                 JS::StructuredCloneScope::DifferentProcess,
-                                 policy, NULL, NULL, JS::UndefinedHandleValue)){
-		debug_warn(L"Writing a structured clone with JS_WriteStructuredClone failed!");
+	shared_ptr<StructuredClone> ret(new StructuredClone());
+	if (!ret->m_data.write(m->m_cx, v)){
+		debug_warn(L"Writing a structured clone failed!");
 		return shared_ptr<StructuredClone>();
 	}
 
@@ -1171,10 +1168,20 @@ shared_ptr<ScriptInterface::StructuredClone> ScriptInterface::WriteStructuredClo
 	return ret;
 }
 
+
 void ScriptInterface::ReadStructuredClone(const shared_ptr<ScriptInterface::StructuredClone>& ptr, JS::MutableHandleValue ret) const
 {
-	JS_ReadStructuredClone(m->m_cx, ptr->m_data, 
-                           JS_STRUCTURED_CLONE_VERSION, 
-                           JS::StructuredCloneScope::DifferentProcess, 
-                           ret, NULL, NULL);
+    if(!ptr->m_data.read(m->m_cx, ret)){
+        debug_warn(L"Reading a structured clone failed!");
+    } 
 }
+
+//Included from mozjs .. for some reason this is not exported..
+
+js::SharedArrayRawBufferRefs::~SharedArrayRawBufferRefs() { 
+  //for (js::SharedArrayRawBuffer* ref : this->refs_) {
+  //  ref->dropReference();
+  //}
+  //refs_.clear();
+}
+

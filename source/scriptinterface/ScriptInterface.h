@@ -326,7 +326,7 @@ public:
 	public:
 		StructuredClone();
 		~StructuredClone();
-        JSStructuredCloneData m_data;
+        JSAutoStructuredCloneBuffer m_data;
 	};
 
 	shared_ptr<StructuredClone> WriteStructuredClone(JS::HandleValue v) const;

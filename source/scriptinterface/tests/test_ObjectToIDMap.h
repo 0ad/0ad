@@ -30,15 +30,14 @@ public:
 		JSContext* cx = script.GetContext();
 
 		JS::RootedObject obj(cx, JS_NewPlainObject(cx));
-		ObjectIdCache<u32> map();
-		map.init();
+		ObjectIdCache<u32> map;
 
 		TS_ASSERT(map.add(cx, obj, 1));
 		JSObject* plainObj = obj;
 		// The map should contain the object we've just added
 		TS_ASSERT(map.has(plainObj));
 
-		JS_GC(g_ScriptRuntime->m_rt);
+		JS_GC(g_ScriptRuntime->m_ctx);
 
 		// After a GC, the object should have been moved and plainObj should
 		// not be valid anymore and not be found in the map anymore.
