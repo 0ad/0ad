@@ -12,7 +12,7 @@ class RangeOverlayManager
 		for (let type of this.Types)
 		{
 			this.setEnabled(type, this.isEnabled(type));
-			Engine.SetGlobalHotkey(type.hotkey, this.toggle.bind(this, type));
+			Engine.SetGlobalHotkey(type.hotkey, "Press", this.toggle.bind(this, type));
 		}
 
 		registerConfigChangeHandler(this.onConfigChange.bind(this));

@@ -171,7 +171,7 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 		QuitEngine();
 		break;
 
-	case SDL_HOTKEYDOWN:
+	case SDL_HOTKEYPRESS:
 		std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
 		if (hotkey == "exit")
 		{

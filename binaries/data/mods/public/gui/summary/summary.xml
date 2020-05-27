@@ -17,11 +17,11 @@
 	</object>
 
 	<object hotkey="tab.next">
-		<action on="Press">selectNextTab(1);</action>
+		<action on="KeyDown">selectNextTab(1);</action>
 	</object>
 
 	<object hotkey="tab.prev">
-		<action on="Press">selectNextTab(-1);</action>
+		<action on="KeyDown">selectNextTab(-1);</action>
 	</object>
 
 	<object type="image" sprite="ModernFade" name="fadeImage"/>

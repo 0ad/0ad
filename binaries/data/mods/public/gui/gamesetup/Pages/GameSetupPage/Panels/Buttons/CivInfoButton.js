@@ -15,8 +15,8 @@ class CivInfoButton
 				"hotkey_structree": colorizeHotkey("%(hotkey)s", "structree")
 			});
 
-		Engine.SetGlobalHotkey("structree", this.openPage.bind(this, "page_structree.xml"));
-		Engine.SetGlobalHotkey("civinfo", this.openPage.bind(this, "page_civinfo.xml"));
+		Engine.SetGlobalHotkey("structree", "Press", this.openPage.bind(this, "page_structree.xml"));
+		Engine.SetGlobalHotkey("civinfo", "Press", this.openPage.bind(this, "page_civinfo.xml"));
 	}
 
 	onPress()

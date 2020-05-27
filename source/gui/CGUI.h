@@ -136,8 +136,8 @@ public:
 	/**
 	 * Allows the JS side to add or remove global hotkeys.
 	 */
-	void SetGlobalHotkey(const CStr& hotkeyTag, JS::HandleValue function);
-	void UnsetGlobalHotkey(const CStr& hotkeyTag);
+	void SetGlobalHotkey(const CStr& hotkeyTag, const CStr& eventName, JS::HandleValue function);
+	void UnsetGlobalHotkey(const CStr& hotkeyTag, const CStr& eventName);
 
 	/**
 	 * Return the object which is an ancestor of every other GUI object.
@@ -606,10 +606,11 @@ private:
 	std::map<CStr, std::vector<IGUIObject*> > m_HotkeyObjects;
 
 	/**
-	 * Map from hotkey names to functions that are triggered if the hotkey is pressed.
-	 * Contrary to object hotkeys, this allows for only one global function per hotkey name.
+	 * Map from hotkey names to maps of eventNames to functions that are triggered
+	 * when the hotkey goes through the event. Contrary to object hotkeys, this
+	 * allows for only one global function per hotkey name per event type.
 	 */
-	std::map<CStr, JS::PersistentRootedValue> m_GlobalHotkeys;
+	std::map<CStr, std::map<CStr, JS::PersistentRootedValue>> m_GlobalHotkeys;
 
 	/**
 	 * XML and JS can subscribe handlers to events identified by these names.
@@ -619,6 +620,7 @@ private:
 	static const CStr EventNameLoad;
 	static const CStr EventNameTick;
 	static const CStr EventNamePress;
+	static const CStr EventNameKeyDown;
 	static const CStr EventNameRelease;
 	static const CStr EventNameMouseRightPress;
 	static const CStr EventNameMouseLeftPress;

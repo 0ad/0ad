@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -378,10 +378,9 @@ InReaction CGameView::HandleEvent(const SDL_Event_* ev)
 {
 	switch(ev->ev.type)
 	{
-
-	case SDL_HOTKEYDOWN:
+	case SDL_HOTKEYPRESS:
+	{
 		std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
-
 		if (hotkey == "wireframe")
 		{
 			if (g_XmppClient && g_rankedGame == true)
@@ -406,6 +405,7 @@ InReaction CGameView::HandleEvent(const SDL_Event_* ev)
 			}
 			return IN_HANDLED;
 		}
+	}
 	}
 
 	return m->CameraController->HandleEvent(ev);

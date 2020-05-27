@@ -18,8 +18,8 @@ class CivIcon
 		playerViewControl.registerViewedPlayerChangeHandler(this.rebuild.bind(this));
 		registerHotkeyChangeHandler(this.rebuild.bind(this));
 
-		Engine.SetGlobalHotkey("civinfo", () => this.openPage("page_civinfo.xml"));
-		Engine.SetGlobalHotkey("structree", () => this.openPage("page_structree.xml"));
+		Engine.SetGlobalHotkey("structree", "Press", this.openPage.bind(this, "page_structree.xml"));
+		Engine.SetGlobalHotkey("civinfo", "Press", this.openPage.bind(this, "page_civinfo.xml"));
 	}
 
 	onPress()

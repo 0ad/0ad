@@ -16,7 +16,7 @@ class GameSettingTabs
 				colorizeHotkey("\n" + this.HotkeyUpTooltip, this.ConfigNameHotkeyUp);
 
 		setupWindow.registerLoadHandler(this.onLoad.bind(this));
-		Engine.SetGlobalHotkey("cancel", selectPanel);
+		Engine.SetGlobalHotkey("cancel", "Press", selectPanel);
 	}
 
 	registerTabsResizeHandler(handler)

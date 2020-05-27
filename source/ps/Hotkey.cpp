@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -154,7 +154,7 @@ bool isNegated(const SKey& key)
 
 InReaction HotkeyStateChange(const SDL_Event_* ev)
 {
-	if (ev->ev.type == SDL_HOTKEYDOWN)
+	if (ev->ev.type == SDL_HOTKEYPRESS)
 		g_HotkeyStatus[static_cast<const char*>(ev->ev.user.data1)] = true;
 	else if (ev->ev.type == SDL_HOTKEYUP)
 		g_HotkeyStatus[static_cast<const char*>(ev->ev.user.data1)] = false;
@@ -216,6 +216,9 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 
 	SDL_Event_ phantom;
 	phantom.ev.type = ((ev->ev.type == SDL_KEYDOWN) || (ev->ev.type == SDL_MOUSEBUTTONDOWN)) ? SDL_KEYDOWN : SDL_KEYUP;
+	if (phantom.ev.type == SDL_KEYDOWN)
+		phantom.ev.key.repeat = ev->ev.type == SDL_KEYDOWN ? ev->ev.key.repeat : 0;
+
 	if ((keycode == SDLK_LSHIFT) || (keycode == SDLK_RSHIFT))
 	{
 		phantom.ev.key.keysym.sym = (SDL_Keycode)UNIFIED_SHIFT;
@@ -259,7 +262,7 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 
 	// To avoid this, set the modifier keys for /all/ events this key would trigger
 	// (Ctrl, for example, is both group-save and bookmark-save)
-	// but only send a HotkeyDown event for the event with bindings most precisely
+	// but only send a HotkeyPress/HotkeyDown event for the event with bindings most precisely
 	// matching the conditions (i.e. the event with the highest number of auxiliary
 	// keys, providing they're all down)
 
@@ -306,10 +309,22 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 
 	for (size_t i = 0; i < closestMapNames.size(); ++i)
 	{
-		SDL_Event_ hotkeyNotification;
-		hotkeyNotification.ev.type = SDL_HOTKEYDOWN;
-		hotkeyNotification.ev.user.data1 = const_cast<char*>(closestMapNames[i]);
-		in_push_priority_event(&hotkeyNotification);
+		// Send a KeyPress event when a key is pressed initially and on mouseButton and mouseWheel events.
+		if (ev->ev.type != SDL_KEYDOWN || ev->ev.key.repeat == 0)
+		{
+			SDL_Event_ hotkeyPressNotification;
+			hotkeyPressNotification.ev.type = SDL_HOTKEYPRESS;
+			hotkeyPressNotification.ev.user.data1 = const_cast<char*>(closestMapNames[i]);
+			in_push_priority_event(&hotkeyPressNotification);
+		}
+
+		// Send a HotkeyDown event on every key, mouseButton and mouseWheel event.
+		// For keys the event is repeated depending on hardware and OS configured interval.
+		// On linux, modifier keys (shift, alt, ctrl) are not repeated, see https://github.com/SFML/SFML/issues/122.
+		SDL_Event_ hotkeyDownNotification;
+		hotkeyDownNotification.ev.type = SDL_HOTKEYDOWN;
+		hotkeyDownNotification.ev.user.data1 = const_cast<char*>(closestMapNames[i]);
+		in_push_priority_event(&hotkeyDownNotification);
 	}
 
 	// -- KEYUP SECTION --

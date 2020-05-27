@@ -40,9 +40,9 @@ class Chat
 		registerPlayerAssignmentsChangeHandler(updater);
 		playerViewControl.registerViewedPlayerChangeHandler(updater);
 
-		Engine.SetGlobalHotkey("chat", this.openPage.bind(this));
-		Engine.SetGlobalHotkey("privatechat", this.openPage.bind(this));
-		Engine.SetGlobalHotkey("teamchat", () => { this.openPage(g_IsObserver ? "/observers" : "/allies"); });
+		Engine.SetGlobalHotkey("chat", "Press", this.openPage.bind(this));
+		Engine.SetGlobalHotkey("privatechat", "Press", this.openPage.bind(this));
+		Engine.SetGlobalHotkey("teamchat", "Press", () => { this.openPage(g_IsObserver ? "/observers" : "/allies"); });
 	}
 
 	/**
@@ -81,7 +81,7 @@ class Chat
 	submitChat(text, command = "")
 	{
 		if (command.startsWith("/msg "))
-			Engine.SetGlobalHotkey("privatechat", () => { this.openPage(command); });
+			Engine.SetGlobalHotkey("privatechat", "Press", () => { this.openPage(command); });
 
 		let msg = command ? command + " " + text : text;
 

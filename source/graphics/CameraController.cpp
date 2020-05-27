@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
 * This file is part of 0 A.D.
 *
 * 0 A.D. is free software: you can redistribute it and/or modify
@@ -640,7 +640,19 @@ InReaction CCameraController::HandleEvent(const SDL_Event_* ev)
 {
 	switch (ev->ev.type)
 	{
+	case SDL_HOTKEYPRESS:
+	{
+		std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
+		if (hotkey == "camera.reset")
+		{
+			ResetCameraAngleZoom();
+			return IN_HANDLED;
+		}
+		return IN_PASS;
+	}
+
 	case SDL_HOTKEYDOWN:
+	{
 		std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
 
 		// Mouse wheel must be treated using events instead of polling,
@@ -698,11 +710,8 @@ InReaction CCameraController::HandleEvent(const SDL_Event_* ev)
 			m_ViewZoomSpeed /= m_ViewZoomSpeedModifier;
 			return IN_HANDLED;
 		}
-		else if (hotkey == "camera.reset")
-		{
-			ResetCameraAngleZoom();
-			return IN_HANDLED;
-		}
+		return IN_PASS;
+	}
 	}
 
 	return IN_PASS;
