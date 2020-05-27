@@ -45,6 +45,11 @@
 # define signbit std::signbit
 #endif
 
+#ifdef DEBUG
+#define TEMP_DEACTIVATED_DEBUG
+#undef DEBUG
+#endif
+
 #include "jsfriendapi.h"
 #include "js/AllocPolicy.h"
 #include "js/CompilationAndEvaluation.h"
@@ -58,6 +63,11 @@
 #include "js/SourceText.h"
 #include "js/StructuredClone.h"
 #include "js/Warnings.h"
+
+#ifdef TEMP_DEACTIVATED_DEBUG
+#define DEBUG 
+#undef TEMP_DEACTIVATED_DEBUG
+#endif
 
 #undef signbit
 
