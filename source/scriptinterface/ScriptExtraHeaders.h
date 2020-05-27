@@ -46,9 +46,18 @@
 #endif
 
 #include "jsfriendapi.h"
+#include "js/AllocPolicy.h"
+#include "js/CompilationAndEvaluation.h"
+#include "js/ContextOptions.h"
 #include "js/Conversions.h"
+#include "js/ForOfIterator.h"
 #include "js/GCAPI.h"
+#include "js/GCHashTable.h"
+#include "js/Initialization.h"
+#include "js/JSON.h"
+#include "js/SourceText.h"
 #include "js/StructuredClone.h"
+#include "js/Warnings.h"
 
 #undef signbit
 

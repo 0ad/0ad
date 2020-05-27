@@ -26,8 +26,6 @@
 #include "scriptinterface/ScriptExtraHeaders.h"
 #include "SerializedScriptTypes.h"
 
-#include "js/ForOfIterator.h"
-
 static u8 GetArrayType(js::Scalar::Type arrayType)
 {
 	switch(arrayType)

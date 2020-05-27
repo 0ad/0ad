@@ -33,7 +33,6 @@
 #include "ps/ConfigDB.h"
 #include "ps/Pyrogenesis.h"
 #include "scriptinterface/ScriptInterface.h"
-#include "js/StructuredClone.h"
 
 #include <gloox/gloox.h>
 

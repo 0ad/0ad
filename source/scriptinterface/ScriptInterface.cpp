@@ -20,6 +20,7 @@
 #include "ScriptInterface.h"
 #include "ScriptRuntime.h"
 #include "ScriptStats.h"
+#include "ScriptExtraHeaders.h"
 
 #include "lib/debug.h"
 #include "lib/utf8.h"
@@ -40,16 +41,8 @@
 #include <boost/flyweight/no_locking.hpp>
 #include <boost/flyweight/no_tracking.hpp>
 
-#include "js/Warnings.h"
-#include "js/ContextOptions.h"
-#include "js/CompilationAndEvaluation.h"
-#include "js/SourceText.h"
-#include "js/JSON.h"
-#include "js/StructuredClone.h"
-
 #include "valgrind.h"
 
-#include "scriptinterface/ScriptExtraHeaders.h"
 
 /**
  * @file

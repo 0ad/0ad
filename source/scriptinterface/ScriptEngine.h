@@ -19,9 +19,8 @@
 #define INCLUDED_SCRIPTENGINE
 
 #include "ScriptTypes.h"
+#include "ScriptExtraHeaders.h"
 #include "ps/Singleton.h"
-
-#include "js/Initialization.h"
 
 /**
  * A class using the RAII (Resource Acquisition Is Initialization) idiom to manage initialization

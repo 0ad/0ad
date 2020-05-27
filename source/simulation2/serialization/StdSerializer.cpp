@@ -18,6 +18,7 @@
 #include "precompiled.h"
 
 #include "StdSerializer.h"
+#include "scriptinterface/ScriptInterface.h"
 
 CStdSerializerImpl::CStdSerializerImpl(std::ostream& stream) :
 	m_Stream(stream)

@@ -21,15 +21,12 @@
 
 #include "gui/CGUI.h"
 #include "gui/CGUISetting.h"
-#include "js/Conversions.h"
 #include "ps/CLogger.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptExtraHeaders.h"
 #include "soundmanager/ISoundManager.h"
-
-#include "js/CompilationAndEvaluation.h"
-#include "js/SourceText.h"
 
 const CStr IGUIObject::EventNameMouseEnter = "MouseEnter";
 const CStr IGUIObject::EventNameMouseMove = "MouseMove";

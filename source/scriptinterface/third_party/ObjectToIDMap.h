@@ -22,8 +22,7 @@
 
 #include "scriptinterface/ScriptRuntime.h"
 #include "scriptinterface/ScriptTypes.h"
-#include "js/GCHashTable.h"
-#include "js/AllocPolicy.h"
+#include "scriptinterface/ScriptExtraHeaders.h"
 #include <stdint.h>
 
 // Map JSObjects -> ids
