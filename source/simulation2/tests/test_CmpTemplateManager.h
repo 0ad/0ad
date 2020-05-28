@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -79,7 +79,7 @@ public:
 		const CParamNode* actor = tempMan->LoadTemplate(ent2, "actor|example1");
 		TS_ASSERT(actor != NULL);
 		TS_ASSERT_WSTR_EQUALS(actor->ToXML(),
-				L"<Footprint><Circle radius=\"2.0\"></Circle><Height>1.0</Height></Footprint><Selectable><EditorOnly></EditorOnly><Overlay><Texture><MainTexture>actor.png</MainTexture><MainTextureMask>actor_mask.png</MainTextureMask></Texture></Overlay></Selectable>"
+				L"<Footprint><Circle radius=\"2.0\"></Circle><Height>1.0</Height></Footprint><Selectable><EditorOnly></EditorOnly><Overlay><Texture><MainTexture>128x128/ellipse.png</MainTexture><MainTextureMask>128x128/ellipse_mask.png</MainTextureMask></Texture></Overlay></Selectable>"
 				L"<VisualActor><Actor>example1</Actor><ActorOnly></ActorOnly><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder><VisibleInAtlasOnly>false</VisibleInAtlasOnly></VisualActor>");
 	}
 

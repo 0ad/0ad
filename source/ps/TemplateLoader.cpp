@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -193,16 +193,16 @@ void CTemplateLoader::ConstructTemplateActor(const std::string& actorName, CPara
 	// Copy the actor template
 	out = GetTemplateFileData("special/actor");
 
-	// Initialise the actor's name and make it an Atlas selectable entity.
+	// Initialize the actor's name and make it an Atlas selectable entity.
 	std::wstring actorNameW = wstring_from_utf8(actorName);
 	std::string name = utf8_from_wstring(CParamNode::EscapeXMLString(actorNameW));
 	std::string xml = "<Entity>"
 	                      "<VisualActor><Actor>" + name + "</Actor><ActorOnly/></VisualActor>"
-						  // arbitrary-sized Footprint definition to make actors' selection outlines show up in Atlas
+						  // Arbitrary-sized Footprint definition to make actors' selection outlines show up in Atlas.
 						  "<Footprint><Circle radius='2.0'/><Height>1.0</Height></Footprint>"
 	                      "<Selectable>"
 	                          "<EditorOnly/>"
-	                          "<Overlay><Texture><MainTexture>actor.png</MainTexture><MainTextureMask>actor_mask.png</MainTextureMask></Texture></Overlay>"
+	                          "<Overlay><Texture><MainTexture>128x128/ellipse.png</MainTexture><MainTextureMask>128x128/ellipse_mask.png</MainTextureMask></Texture></Overlay>"
 	                      "</Selectable>"
 	                  "</Entity>";
 
