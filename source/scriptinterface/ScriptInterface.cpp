@@ -72,22 +72,9 @@ struct ScriptInterface_impl
 namespace
 {
 
-    constexpr JSClassOps classOps = {                                      
-       nullptr,                                      
-       nullptr,                                      
-       nullptr,                                      
-       nullptr,                           
-       nullptr,                                
-       nullptr,                             
-       nullptr,                               
-       nullptr,                                      
-       nullptr,                                      
-       nullptr,                                      
-	   JS_GlobalObjectTraceHook};                     
-
     JSClass global_class = {
 	    "global", JSCLASS_GLOBAL_FLAGS,
-        &classOps};
+        &JS::DefaultGlobalClassOps};
 
 void ErrorReporter(JSContext* cx, JSErrorReport* report)
 {
@@ -340,33 +327,28 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 {
 	bool ok;
 
-	//m_cx = JS_NewContext(STACK_CHUNK_SIZE, JS::DefaultNurseryBytes, m_runtime->m_rt);
     m_cx = runtime->m_ctx;
 	ENSURE(m_cx);
 
-	JS_SetOffthreadIonCompilationEnabled(m_cx, true);
+    //maybe for child is not a problem ?!
+	//JS_SetOffthreadIonCompilationEnabled(m_cx, true);
 
-	// For GC debugging:
-	// JS_SetGCZeal(m_cx, 2, JS_DEFAULT_ZEAL_FREQ);
+    //JS_SetContextPrivate(m_cx, NULL);
 
-	JS_SetContextPrivate(m_cx, NULL);
+    //JS::SetWarningReporter(m_cx, ErrorReporter);
 
-    JS::SetWarningReporter(m_cx, ErrorReporter);
+    //maybe for child is not a problem ?!
+	//JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_ION_ENABLE, 1);
+    //JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_BASELINE_ENABLE, 1);
 
-	JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_ION_ENABLE, 1);
-	JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_BASELINE_ENABLE, 1);
-
-	JS::ContextOptionsRef(m_cx)
-		.setExtraWarnings(true)
-		.setWerror(false)
-		.setStrictMode(true);
+//	JS::ContextOptionsRef(m_cx)
+//		.setExtraWarnings(true)
+//		.setWerror(false)
+//		.setStrictMode(true);
 
 	JS::RealmOptions opt;
-	// opt.setVersion(JSVERSION_LATEST); not present in mozjs 68?
-	// Keep JIT code during non-shrinking GCs. This brings a quite big performance improvement.
-	//opt.setPreserveJitCode(true); only in RealmCreationOptions
 
-	JS::RootedObject globalRootedVal(m_cx, JS_NewGlobalObject(m_cx, &global_class, NULL, JS::OnNewGlobalHookOption::FireOnNewGlobalHook, opt));
+	JS::RootedObject globalRootedVal(m_cx, JS_NewGlobalObject(m_cx, &global_class, nullptr, JS::FireOnNewGlobalHook, opt));
 	m_comp = JS::EnterRealm(m_cx, globalRootedVal);
 	ok = JS_EnumerateStandardClasses(m_cx, globalRootedVal);
 	ENSURE(ok);

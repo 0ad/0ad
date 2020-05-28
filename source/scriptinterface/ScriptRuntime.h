@@ -84,6 +84,8 @@ private:
 	double m_LastGCCheck;
 
 	static void GCCallback(JSContext *rt, JSGCStatus status, void *data);
+    
+    JSRuntime* m_parentJSRuntime;
 };
 
 #endif // INCLUDED_SCRIPTRUNTIME

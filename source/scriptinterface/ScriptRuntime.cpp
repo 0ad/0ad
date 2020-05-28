@@ -113,17 +113,18 @@ ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtim
 {
 	ENSURE(ScriptEngine::IsInitialised() && "The ScriptEngine must be initialized before constructing any ScriptRuntimes!");
 
-	JSRuntime* parentJSRuntime = parentRuntime ? parentRuntime->m_rt : nullptr;
-    m_ctx = JS_NewContext(runtimeSize, JS::DefaultNurseryBytes, parentJSRuntime);
-	ENSURE(m_ctx); // TODO: error handling
+    m_ctx = JS_NewContext(runtimeSize);
+	JS::InitSelfHostedCode(m_ctx);
+    
+    ENSURE(m_ctx); // TODO: error handling
     m_rt = JS_GetRuntime(m_ctx);
 	ENSURE(m_rt); // TODO: error handling
-    JS::SetGCSliceCallback(m_ctx, GCSliceCallbackHook);
-	JS_SetGCCallback(m_ctx, ScriptRuntime::GCCallback, this);
+    //JS::SetGCSliceCallback(m_ctx, GCSliceCallbackHook);
+	//JS_SetGCCallback(m_ctx, ScriptRuntime::GCCallback, this);
 
-	JS_SetGCParameter(m_ctx, JSGC_MAX_MALLOC_BYTES, m_RuntimeSize);
-	JS_SetGCParameter(m_ctx, JSGC_MAX_BYTES, m_RuntimeSize);
-	JS_SetGCParameter(m_ctx, JSGC_MODE, JSGC_MODE_INCREMENTAL);
+	//JS_SetGCParameter(m_ctx, JSGC_MAX_MALLOC_BYTES, m_RuntimeSize);
+	//JS_SetGCParameter(m_ctx, JSGC_MAX_BYTES, m_RuntimeSize);
+	//JS_SetGCParameter(m_ctx, JSGC_MODE, JSGC_MODE_INCREMENTAL);
 
 	// The whole heap-growth mechanism seems to work only for non-incremental GCs.
 	// We disable it to make it more clear if full GCs happen triggered by this JSAPI internal mechanism.
