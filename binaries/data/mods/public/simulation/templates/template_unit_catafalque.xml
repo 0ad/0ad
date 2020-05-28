@@ -27,6 +27,14 @@
     <Anchor>pitch-roll</Anchor>
   </Position>
   <ResourceGatherer disable=""/>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>128x256/cartouche.png</MainTexture>
+        <MainTextureMask>128x256/cartouche_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <Sound>
     <SoundGroups>
       <order_walk>actor/singlesteps/steps_grass_order.xml</order_walk>

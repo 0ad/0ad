@@ -10,6 +10,14 @@
     <SpecificName>Vanijyik Nauka</SpecificName>
     <Icon>units/maur_ship_merchant.png</Icon>
   </Identity>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>128x256/ellipse.png</MainTexture>
+        <MainTextureMask>128x256/ellipse_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <VisualActor>
     <Actor>structures/mauryas/merchant_ship.xml</Actor>
   </VisualActor>
