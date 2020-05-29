@@ -19,6 +19,14 @@
     <Color r="227" g="130" b="141"/>
   </Minimap>
   <ResourceGatherer disable=""/>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>128x256/ellipse.png</MainTexture>
+        <MainTextureMask>128x256/ellipse_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <UnitAI>
     <CanGuard>false</CanGuard>
     <CanPatrol>false</CanPatrol>

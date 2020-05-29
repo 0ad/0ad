@@ -40,6 +40,14 @@
   <Repairable>
     <RepairTimeRatio>4.0</RepairTimeRatio>
   </Repairable>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>128x256/rounded_rectangle.png</MainTexture>
+        <MainTextureMask>128x256/rounded_rectangle_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <Sound>
     <SoundGroups>
       <select>attack/siege/siege_select.xml</select>

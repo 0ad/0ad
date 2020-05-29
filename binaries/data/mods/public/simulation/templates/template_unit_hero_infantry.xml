@@ -27,4 +27,12 @@
   <Position>
     <Anchor>upright</Anchor>
   </Position>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>128x128/star.png</MainTexture>
+        <MainTextureMask>128x128/star_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
 </Entity>

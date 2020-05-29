@@ -21,6 +21,14 @@
   <Position>
     <Anchor>pitch</Anchor>
   </Position>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>128x256/ellipse.png</MainTexture>
+        <MainTextureMask>128x256/ellipse_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <Sound>
     <SoundGroups>
       <select>voice/{lang}/civ/civ_{phenotype}_select.xml</select>

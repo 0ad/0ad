@@ -14,6 +14,14 @@
     <GenericName>Champion Unit</GenericName>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>256x256/arrow.png</MainTexture>
+        <MainTextureMask>256x256/arrow_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <Loot>
     <xp>150</xp>
     <food>10</food>

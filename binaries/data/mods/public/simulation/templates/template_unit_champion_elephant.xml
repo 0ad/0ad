@@ -26,14 +26,6 @@
     <VisibleClasses datatype="tokens">Elephant</VisibleClasses>
     <GenericName>War Elephant</GenericName>
   </Identity>
-  <Selectable>
-    <Overlay>
-      <Texture>
-        <MainTexture>arrow/256x256.png</MainTexture>
-        <MainTextureMask>arrow/256x256_mask.png</MainTextureMask>
-      </Texture>
-    </Overlay>
-  </Selectable>
   <Sound>
     <SoundGroups>
       <select>actor/fauna/animal/elephant_select.xml</select>

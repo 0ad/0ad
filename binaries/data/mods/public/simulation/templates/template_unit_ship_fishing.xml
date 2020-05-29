@@ -52,6 +52,14 @@
       <treasure disable=""/>
     </Rates>
   </ResourceGatherer>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>128x256/ellipse.png</MainTexture>
+        <MainTextureMask>128x256/ellipse_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <Sound>
     <SoundGroups>
       <order_walk>actor/ship/boat_move.xml</order_walk>

@@ -40,6 +40,14 @@
     <SpecificName>Pyrobolos</SpecificName>
     <Icon>units/hele_siege_lithobolos.png</Icon>
   </Identity>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>128x512/rounded_rectangle.png</MainTexture>
+        <MainTextureMask>128x512/rounded_rectangle_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <Vision>
     <Range>60</Range>
   </Vision>
