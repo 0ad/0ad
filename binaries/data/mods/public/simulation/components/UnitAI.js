@@ -193,6 +193,13 @@ UnitAI.prototype.UnitFsmSpec = {
 		// ignore
 	},
 
+	"OrderTargetRenamed": function() {
+		// By default, trigger an exit-reenter
+		// so that state preconditions are checked against the new entity
+		// (there is no reason to assume the target is still valid).
+		this.SetNextState(this.GetCurrentState());
+	},
+
 	// Formation handlers:
 
 	"FormationLeave": function(msg) {
@@ -1978,6 +1985,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				"Timer": function(msg) {
 					let target = this.order.data.target;
+					let attackType = this.order.data.attackType;
 
 					// Check the target is still alive and attackable
 					if (!this.CanAttack(target))
@@ -2000,11 +2008,16 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (!cmpBuildingAI)
 					{
 						let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-						cmpAttack.PerformAttack(this.order.data.attackType, target);
+						cmpAttack.PerformAttack(attackType, target);
 					}
 
+					// PerformAttack might have triggered messages that moved us to another state.
+					if (this.GetCurrentState() != "INDIVIDUAL.COMBAT.ATTACKING")
+						return;
+
+
 					// Check we can still reach the target for the next attack
-					if (this.CheckTargetAttackRange(target, this.order.data.attackType))
+					if (this.CheckTargetAttackRange(target, attackType))
 					{
 						if (this.resyncAnimation)
 						{
@@ -4144,24 +4157,32 @@ UnitAI.prototype.OnGlobalConstructionFinished = function(msg)
 UnitAI.prototype.OnGlobalEntityRenamed = function(msg)
 {
 	let changed = false;
-	for (let order of this.orderQueue)
+	let currentOrderChanged = false;
+	for (let i = 0; i < this.orderQueue.length; ++i)
 	{
+		let order = this.orderQueue[i];
 		if (order.data && order.data.target && order.data.target == msg.entity)
 		{
 			changed = true;
+			if (i == 0)
+				currentOrderChanged = true;
 			order.data.target = msg.newentity;
 		}
 		if (order.data && order.data.formationTarget && order.data.formationTarget == msg.entity)
 		{
 			changed = true;
+			if (i == 0)
+				currentOrderChanged = true;
 			order.data.formationTarget = msg.newentity;
 		}
 	}
-	if (this.repairTarget && this.repairTarget == msg.entity)
-		this.repairTarget = msg.newentity;
+	if (!changed)
+		return;
 
-	if (changed)
-		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
+	if (currentOrderChanged)
+		this.UnitFsm.ProcessMessage(this, { "type": "OrderTargetRenamed", "data": msg });
+
+	Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 };
 
 UnitAI.prototype.OnAttacked = function(msg)
