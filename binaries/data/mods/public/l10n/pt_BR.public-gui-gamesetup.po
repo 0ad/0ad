@@ -9,7 +9,7 @@
 # borg 2k <estevanborg@gmail.com>, 2017-2018
 # Caio Northfleet <caio.northfleet@gmail.com>, 2014
 # Diana K. Cury <dianakac@gmail.com>, 2014
-# Elisa Silva Ramos <inactive+elisasr@transifex.com>, 2014
+# 1e46fd82907595ae69bafb7f4e47cd1b_169840e <1f20291f26e4e92cc88e8522999d4c5b_169576>, 2014
 # alveselvis16 <elvis.alves.ismart@gmail.com>, 2014
 # Enrico Nicoletto <enrico.BR@gmx.co.uk>, 2013
 # Ernan, 2014
@@ -26,7 +26,7 @@
 # jose, 2017
 # JulioBianor <mr.logan1@yahoo.com.br>, 2014
 # Lourenço Gaiteiro <loredal@gmail.com>, 2017
-# Lucas Simões <inactive+kaslusimoes@transifex.com>, 2013
+# d985c683c87c96d130507ab20847ffb3_c33e5c1 <adede5c43c7c39447cc854215823dacf_125806>, 2013
 # mac.edgar <mac.edgar@hotmail.com>, 2014
 # Marcelo Augusto Kniss <marcelo.kniss@outlook.com>, 2016
 # Marcos Correa <mcorrea.jr28@gmail.com>, 2014
@@ -44,6 +44,7 @@
 # PedroDognani <pedro_dognani_@hotmail.com>, 2015
 # PedroDognani <pedro_dognani_@hotmail.com>, 2014
 # Qodek <andre.lucas.silva2468@gmail.com>, 2014
+# Rafael Andrade <rafaelandradeadm@gmail.com>, 2020
 # Rafael Monteiro <rafaelimabsb2@hotmail.com>, 2016
 # Raphael Mendonça, 2014
 # Ricardo Siqueira Oliveira Leite <ricardooliveira88@gmail.com>, 2016
@@ -59,8 +60,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-18 07:13+0000\n"
-"PO-Revision-Date: 2020-05-18 12:15+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-05-26 02:20+0000\n"
+"Last-Translator: Rafael Andrade <rafaelandradeadm@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -336,7 +337,7 @@ msgstr "Hora do Dia"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
-msgstr ""
+msgstr "Selecionar se a partida ocorrerá durante o dia ou a noite."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
@@ -346,7 +347,7 @@ msgstr "Aleatório"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr ""
+msgstr "Selecionar aleatoriamente um período do dia."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:73
 msgid "Game Speed"
@@ -358,41 +359,41 @@ msgstr "Selecionar velocidade de jogo."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:142
 msgid "Landscape"
-msgstr ""
+msgstr "Cenário"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:145
 msgid "Select one of the landscapes of this map."
-msgstr ""
+msgstr "Selecionar um dos cenários deste mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:151
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
-msgstr ""
+msgstr "Continental ou Naval Aleatório"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
 msgctxt "landscape selection"
 msgid "Select a random land or naval map generation."
-msgstr ""
+msgstr "Seleciona a geração de mapa aleatório do tipo continental ou naval."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:156
 msgctxt "landscape selection"
 msgid "Random Land"
-msgstr ""
+msgstr "Continental Aleatório."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
 msgid "Select a random land map generation."
-msgstr ""
+msgstr "Seleciona a geração de um mapa continental aleatório."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:161
 msgctxt "landscape selection"
 msgid "Random Naval"
-msgstr ""
+msgstr "Naval Aleatório."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:162
 msgctxt "landscape selection"
 msgid "Select a random naval map generation."
-msgstr ""
+msgstr "Seleciona a geração de um mapa naval aleatório."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:89
 msgid "Map Filter"
@@ -454,7 +455,7 @@ msgstr "Selecione o limite populacional."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:88
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Por Jogador"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:91
 #, javascript-format
@@ -479,15 +480,15 @@ msgstr "Quantidade inicial de cada recurso: %(resources)s."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:90
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Por Jogador"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
 msgid "Team Placement"
-msgstr ""
+msgstr "Posicionamento dos Times"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:94
 msgid "Select one of the starting position patterns of this map."
-msgstr ""
+msgstr "Selecione um dos padrões de posicionamento inicial deste mapa. "
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
 msgctxt "team placement"
@@ -497,12 +498,12 @@ msgstr "Aleatório"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr ""
+msgstr "Selecione um padrão aleatório de posicionamento do time quando iniciado o jogo. "
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
 msgctxt "team placement"
 msgid "Circle"
-msgstr ""
+msgstr "Círculo"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:106
 msgid ""
@@ -513,20 +514,20 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
 msgctxt "team placement"
 msgid "Line"
-msgstr ""
+msgstr "Linha"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
 msgid "Allied players are placed in a linear pattern."
-msgstr ""
+msgstr "Jogadores aliados são posicionados em um padrão linear."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:115
 msgctxt "team placement"
 msgid "Random Group"
-msgstr ""
+msgstr "Grupo Aleatório"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:116
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr ""
+msgstr "Jogadores aliados são agrupados, porém posicionados aleatoriamente no mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:120
 msgctxt "team placement"
@@ -535,7 +536,7 @@ msgstr "Fortaleza"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:121
 msgid "Allied players are grouped in one random place of the map."
-msgstr ""
+msgstr "Jogadores aliados são agrupados em um local aleatório no mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
@@ -563,8 +564,8 @@ msgstr "Sem cessar-fogo"
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s minuto"
+msgstr[1] "%(minutes)s minutos"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:86
 msgid "Relic Count"
@@ -574,8 +575,8 @@ msgstr "Contagem de Relíquias"
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s relíquia"
+msgstr[1] "%(number)s relíquias"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:92
 msgid ""
@@ -598,30 +599,30 @@ msgstr "Minutos até o jogador conquistar uma Vitória por Relíquia."
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s minuto"
+msgstr[1] "%(min)s minutos"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:98
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:99
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr ""
+msgstr "Vitória Imediata."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"
-msgstr ""
+msgstr "Tempo Subida do Nível do Mar"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:76
 msgid "Set the time when the water will start to rise."
-msgstr ""
+msgstr "Defina o tempo em que a água do mar começará a subir."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:79
 #, javascript-format
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s minuto"
+msgstr[1] "%(minutes)s minutos"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:87
 msgid "Wonder Duration"
@@ -629,7 +630,7 @@ msgstr "Duração da Maravilha"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:90
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr ""
+msgstr "Minutos até que o jogador conquiste uma Vitória por Maravilha"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
 msgid "Cheats enabled."
@@ -637,7 +638,7 @@ msgstr "Trapaças ativadas."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
 msgid "Rated game."
-msgstr ""
+msgstr "Jogo avaliado."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:76
 #, javascript-format
@@ -671,7 +672,7 @@ msgstr "Voltar ao menu principal."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Visão Geral da Civilização / Árvore Estrutural\nA última aberta será reaberta ao clicar."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
@@ -977,13 +978,13 @@ msgid ""
 "“Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.” \\n— Aeschylus (“Agamemnon”, 176–183)"
-msgstr ""
+msgstr "“Zeus \\[...] estabeleceu a sua lei: a sabedoria vem através do sofrimento. \\[...] Assim, os homens, contra sua vontade, aprendem a praticar a moderação. \\[...] Tal graça é dura e violenta.” \\n— Ésquilo (“Agamêmnon”, 176–183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "“She \\[Helen] brought to Ilium her dowry, destruction.” \\n— Aeschylus "
 "(“Agamemnon”, 406)"
-msgstr ""
+msgstr "“Ela, \\[Helen], trouxe para Ilium seu dote, a destruição”. \\n— Ésquilo (“Agamêmnon”, 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
@@ -1021,7 +1022,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:9
 msgid "“Union gives strength.” \\n— Aesop (“The Bundle of Sticks”)"
-msgstr ""
+msgstr "“A união faz a força” \\n— Esopo (“O Feixe de Varas”)"
 
 #: gui/text/quotes.txt:10
 msgid ""
@@ -1073,7 +1074,7 @@ msgstr ""
 msgid ""
 "“Spartans do not ask how many, only where the enemy are.” \\n— Agis II of "
 "Sparta (Plutarch, “Moralia”, “Sayings of Spartans”, 215d)"
-msgstr ""
+msgstr "“Espartanos não perguntam quantos são, somente onde os inimigos estão.” \\n— Agis II de Esparta (Plutarco, “Moralia”, “Dizeres de Espartanos”, 215d)"
 
 #: gui/text/quotes.txt:19
 msgid ""
@@ -1129,7 +1130,7 @@ msgstr ""
 msgid ""
 "“I do not steal victory.” \\n— Alexander the Great, when suggested to raid "
 "the Persians at night (Plutarch, “Parallel Lives”, “Alexander”, sec. 31)"
-msgstr ""
+msgstr "“Eu não roubo vitórias.” \\n— Alexandre, O Grande, quando lhe foi sugerido que atacasse os Persas à noite.  (Plutarco, “Vidas Paralelas”, “Alexandre”, sec. 31)"
 
 #: gui/text/quotes.txt:27
 msgid ""
@@ -2278,11 +2279,11 @@ msgstr ""
 msgid ""
 "“Do not trust the horse, Trojans! I fear the Greeks even when they bring "
 "gifts.” \\n— Virgil (“Aeneid”, II. 48–49)"
-msgstr ""
+msgstr "“Não acreditem no cavalo, Troianos! Eu temo os Gregos até quando eles trazem presentes.” \\n— Virgílio (“Eneida”, II. 48–49)"
 
 #: gui/text/quotes.txt:185
 msgid "“Prepared for either alternative.” \\n— Virgil (“Aeneid”, II. 61)"
-msgstr ""
+msgstr "“Preparado para qualquer que seja a alternativa.” \\n— Virgílio (“Eneida”, II. 61)"
 
 #: gui/text/quotes.txt:186
 msgid ""

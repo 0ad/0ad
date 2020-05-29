@@ -19,6 +19,7 @@
 # Matheus Clemente <matheus.xb@gmail.com>, 2014-2015
 # Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2015-2016,2018
 # PedroDognani <pedro_dognani_@hotmail.com>, 2015
+# Rafael Andrade <rafaelandradeadm@gmail.com>, 2020
 # Rafael Monteiro <rafaelimabsb2@hotmail.com>, 2016
 # Raphael Mendonça, 2014
 # Rui <xymarior@yandex.com>, 2018-2019
@@ -31,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-03-23 08:32+0000\n"
-"PO-Revision-Date: 2020-03-23 09:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-05-26 01:51+0000\n"
+"Last-Translator: Rafael Andrade <rafaelandradeadm@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,7 +53,7 @@ msgstr "Unidades promovidas para a classe avançada ganham muita qualidade: +20%
 msgid ""
 "The Indian, Iranian, and Kushite peoples had a tradition of fine archery and"
 " a penchant for using massed archers in battle."
-msgstr ""
+msgstr "Os povos Indianos, Iranianos e Cuxitas possuíam tradição no uso de arco e flechas, além de uma propensão no uso de arqueiros em massa nas batalhas."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
@@ -768,11 +769,11 @@ msgstr "Unidades promovidas para a classe de elite ganham: +20% de saúde, +1 de
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
-msgstr ""
+msgstr "Criação de animais (ovelhas, bodes, gado, etc.) para comida."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Domestic Animals −25% breeding time."
-msgstr ""
+msgstr "Animais Domésticos -25% tempo de criação."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
@@ -780,12 +781,12 @@ msgstr "Pecuária"
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
 msgid "Workers use baskets. Increases shuttling capacity for all resources."
-msgstr ""
+msgstr "Trabalhadores usam cestas. Aumento da capacidade de transporte para todos os recursos."
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers +5 resource capacity."
-msgstr ""
+msgstr "Trabalhadores +5 capacidade de carregar recursos."
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -795,11 +796,11 @@ msgstr "Cestas"
 msgid ""
 "Workers use horse-drawn carts. Increases shuttling capacity for all "
 "resources."
-msgstr ""
+msgstr "Trabalhadores usam carroças. Aumento da capacidade de transporte para todos os recursos."
 
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 msgid "Workers +10 resource capacity."
-msgstr ""
+msgstr "Trabalhadores +10 capacidade de carregar recursos."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -824,7 +825,7 @@ msgstr "Desbloqueado na Fase de Vila. Requer Rede de Pesca."
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid ""
 "Workers use wheelbarrows. Increases shuttling capacity for all resources."
-msgstr ""
+msgstr "Trabalhadores usam carrinhos de mão. Aumento da capacidade de transporte para todos os recursos."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
@@ -846,7 +847,7 @@ msgstr "Fertilizante"
 msgid ""
 "Equip your workers with iron plows, animal-drawn instruments to turn the "
 "sod."
-msgstr ""
+msgstr "Equipe seus trabalhadores com arados de ferro, instrumentos puxados por animais para trabalhar a terra."
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
@@ -867,11 +868,11 @@ msgstr "Treinamento de coletas"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Use nets to improve the productivity of fishing boats."
-msgstr ""
+msgstr "Utilize redes para melhorar a produtividade de barcos de pesca."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid "Fishing Boats +30% fish gather rate."
-msgstr ""
+msgstr "Barcos de Pesca +30% taxa de coleta de peixes."
 
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
@@ -886,7 +887,7 @@ msgstr "Aumenta a taxa de coleta de madeira de árvores."
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +15% wood gather rate."
-msgstr ""
+msgstr "Trabalhadores +15% taxa de coleta de madeira."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
@@ -894,7 +895,7 @@ msgstr "Cabeças de Machado de Ferro"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 msgid "Workers +50% wood gather rate."
-msgstr ""
+msgstr "Trabalhadores +50% taxa de coleta de madeira."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -908,12 +909,12 @@ msgstr "Machado mais forte"
 msgid ""
 "Compel serfs to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr ""
+msgstr "Compele servos para ajudar seus trabalhadores nas pedreiras. Aumenta a taxa para coleta de pedra."
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "Workers +15% stone gather rate."
-msgstr ""
+msgstr "Trabalhadores +15% taxa de coleta de pedra."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -927,7 +928,7 @@ msgstr "Heílōtes"
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
-msgstr ""
+msgstr "Contratar servos para auxiliar na pedreira. Aumenta a taxa de coleta de pedras."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -941,12 +942,12 @@ msgstr "Doûloi"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
 msgid "Develop shaft mining. Increases metal gathering rates."
-msgstr ""
+msgstr "Desenvolve a mineração em poços. Aumenta a taxa para coleta de metais."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +15% metal gather rate."
-msgstr ""
+msgstr "Trabalhadores +15% taxa de coleta de metal."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -954,11 +955,11 @@ msgstr "Poços de Mineração"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
-msgstr ""
+msgstr "Atingir uma veia de prata preciosa. Aumenta a taxa de coleta de metal."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 msgid "Workers +50% metal gather rate."
-msgstr ""
+msgstr "Trabalhadores +50% taxa de coleta de metal."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -976,11 +977,11 @@ msgstr "Minas de Lavrio"
 msgid ""
 "Buy slaves to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr ""
+msgstr "Comprar escravos para auxiliar seus trabalhadores na pedreira. Aumenta a taxa de coleta de pedra."
 
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +50% stone gather rate."
-msgstr ""
+msgstr "Trabalhadores +50% taxa de coleta de pedra."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -995,7 +996,7 @@ msgstr "Andrápoda"
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid ""
 "Equip your workers with helpful tools. Increases metal gathering rates."
-msgstr ""
+msgstr "Equipe seus trabalhadores com ferramentas úteis. Aumenta a taxa para coleta de metais."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -1003,11 +1004,11 @@ msgstr "Cunha e Malho"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Equip your foragers with wicker baskets for foraging."
-msgstr ""
+msgstr "Equipar seus coletores com cestas de vime para colheita."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Workers +50% fruit gather rate."
-msgstr ""
+msgstr "Trabalhadores +50% taxa de coleta de frutas."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
@@ -1115,7 +1116,7 @@ msgstr "O tear permitiu a criação de roupas mais finas para colonos. As mulher
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "+100% health for female citizens."
-msgstr ""
+msgstr "+100% de saúde para cidadãos do sexo feminino."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1490,11 +1491,11 @@ msgstr "Amentum"
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege engines."
-msgstr ""
+msgstr "Aumento da armadura de mecanismos de cerco."
 
 #: simulation/data/technologies/siege_armor.jsontooltip
 msgid "Siege Engines +2 hack armor."
-msgstr ""
+msgstr "Mecanismos de Cerco +2 armadura de cortes."
 
 #: simulation/data/technologies/siege_armor.jsongenericName
 msgid "Armor plating"
@@ -1502,7 +1503,7 @@ msgstr "Blindagem"
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
-msgstr ""
+msgstr "Tecnologias avançadas melhoram a eficiência de cerco."
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "Siege Engines +25% attack crush damage."
@@ -1514,7 +1515,7 @@ msgstr "Cerco Avançado"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy."
-msgstr ""
+msgstr "Melhoria na precisão de projéteis."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt Shooters −20% ranged attack spread."
@@ -1526,11 +1527,11 @@ msgstr "Precisão do Dardo"
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
 msgid "Siege engines require less metal."
-msgstr ""
+msgstr "Mecanismos de Cerco precisam de menos metal para serem construídas."
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
 msgid "Siege Engines −20% metal cost."
-msgstr ""
+msgstr "Mecanismos de Cerco −20% custo de metal."
 
 #: simulation/data/technologies/siege_cost_metal.jsongenericName
 msgid "Metalworker"
@@ -1538,11 +1539,11 @@ msgstr "Metalúrgico"
 
 #: simulation/data/technologies/siege_cost_wood.jsondescription
 msgid "Siege engines require less wood."
-msgstr ""
+msgstr "Mecanismos de Cerco precisam de menos madeira para serem construídas."
 
 #: simulation/data/technologies/siege_cost_wood.jsontooltip
 msgid "Siege Engines −20% wood cost."
-msgstr ""
+msgstr "Mecanismos de Cerco −20% custo de madeira."
 
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
@@ -1550,11 +1551,11 @@ msgstr "Instrutores de Artilharia"
 
 #: simulation/data/technologies/siege_packing.jsondescription
 msgid "Immobile siege engines are assembled and disassembled faster."
-msgstr ""
+msgstr "Mecanismos de cerco imóveis são montadas e desmontadas mais rápido."
 
 #: simulation/data/technologies/siege_packing.jsontooltip
 msgid "Siege Engines −25% pack and unpack time."
-msgstr ""
+msgstr "Mecanismos de Cerco −25% de tempo para empacotar e desempacotar."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -2347,7 +2348,7 @@ msgstr "O Império Máuria abrangia dezenas de reinos previamente independentes 
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 msgid "Mauryas +10% maximum population limit."
-msgstr ""
+msgstr "Maurianos +10% limite de população máxima."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -2365,7 +2366,7 @@ msgstr "Os Máurias construíram os muros das suas cidades com madeira, um recur
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "Mauryan City Walls −20% build time and −20% health."
-msgstr ""
+msgstr "Muralhas das Cidades Maurianas -20% tempo de construção e -20% saúde."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2383,7 +2384,7 @@ msgstr "Os Persas recrutavam um grande número de pessoas para integrarem seus r
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "Persians +10% maximum population limit."
-msgstr ""
+msgstr "Persas +10% limite de população máxima."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -2399,7 +2400,7 @@ msgstr "Os Espartanos não tinham o maior exército do mundo, mas tinham o melho
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
 msgid "Spartans −10% maximum population limit."
-msgstr ""
+msgstr "Espartanos -10% limite de população máxima."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"
@@ -2627,7 +2628,7 @@ msgstr "Metrópole Helenística"
 msgid ""
 "Significantly increase training speed of champions and siege engines at the "
 "fortress when training them in large batches."
-msgstr ""
+msgstr "Aumento significativo da velocidade de treinamento de campeões e de mecanismos de cerco na Fortaleza, quando treinados em grandes lotes."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."

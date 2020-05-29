@@ -11,7 +11,7 @@
 # Caio Northfleet <caio.northfleet@gmail.com>, 2014
 # Dalcio Marçal, 2016
 # Diana K. Cury <dianakac@gmail.com>, 2014
-# Elisa Silva Ramos <inactive+elisasr@transifex.com>, 2014
+# 1e46fd82907595ae69bafb7f4e47cd1b_169840e <1f20291f26e4e92cc88e8522999d4c5b_169576>, 2014
 # alveselvis16 <elvis.alves.ismart@gmail.com>, 2014
 # Enrico Nicoletto <enrico.BR@gmx.co.uk>, 2013
 # Ernan, 2014
@@ -32,7 +32,7 @@
 # Leonardo Augusto Suzin <leonardosuzin@gmail.com>, 2014
 # Leonardo Tada Antunes <leonardo_tada@hotmail.com>, 2014
 # Lourenço Gaiteiro <loredal@gmail.com>, 2017
-# Lucas Simões <inactive+kaslusimoes@transifex.com>, 2013
+# d985c683c87c96d130507ab20847ffb3_c33e5c1 <adede5c43c7c39447cc854215823dacf_125806>, 2013
 # Marcelo Augusto Kniss <marcelo.kniss@outlook.com>, 2016
 # Marcos Correa <mcorrea.jr28@gmail.com>, 2014
 # Marcus Rasseli <mvrasseli@hotmail.com>, 2013
@@ -49,12 +49,13 @@
 # PedroDognani <pedro_dognani_@hotmail.com>, 2015
 # PedroDognani <pedro_dognani_@hotmail.com>, 2014
 # Qodek <andre.lucas.silva2468@gmail.com>, 2014
+# Rafael Andrade <rafaelandradeadm@gmail.com>, 2020
 # Rafael Monteiro <rafaelimabsb2@hotmail.com>, 2016
 # Raphael Mendonça, 2014
 # Rowel <luciomeiradavid@hotmail.com>, 2014
 # Rui <xymarior@yandex.com>, 2018
 # Sturm <gravador202@yahoo.com.br>, 2014
-# Thiago Perrotta <inactive+thiagowfx@transifex.com>, 2015
+# e05a6f0c527312287ac027cf3d3a35f5_685166c <0e3f187c36e42a887ffaef9a9e407417_190443>, 2015
 # Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>, 2020
 # Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>, 2018,2020
 # Victor Gregório <vt_marv@hotmail.com>, 2017
@@ -63,8 +64,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-18 07:13+0000\n"
-"PO-Revision-Date: 2020-05-18 13:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-05-25 21:09+0000\n"
+"Last-Translator: Rafael Andrade <rafaelandradeadm@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -120,7 +121,7 @@ msgstr "Pausar"
 #: gui/session/MenuButtons.js:197
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr ""
+msgstr "Pressione %(hotkey)s para pausar ou resumir o jogo."
 
 #: gui/session/MenuButtons.js:213
 msgid "Resign"
@@ -415,12 +416,12 @@ msgstr ","
 #: gui/session/selection_panels.js:1061
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "Aprimorar para%(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1066
 #, javascript-format
 msgid "Upgrade to %(name)s."
-msgstr ""
+msgstr "Aprimorar para %(name)s."
 
 #: gui/session/selection_panels.js:1083
 msgid "Cancel Upgrading"
@@ -525,7 +526,7 @@ msgstr "Shift-clique"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr ""
+msgstr "Este é o mercado de origem da rota.\nClique com o botão direito para cancelar a rota de comércio."
 
 #: gui/session/unit_actions.js:623
 msgid "Origin trade market."
@@ -541,7 +542,7 @@ msgstr "Clique-direito para definir como mercado de origem"
 
 #: gui/session/unit_actions.js:647 gui/session/unit_actions.js:990
 msgid "This market is too close to the origin market."
-msgstr ""
+msgstr "Este mercado está muito próximo ao mercado de origem."
 
 #: gui/session/unit_actions.js:651
 msgid "Right-click to set as destination trade market."
@@ -567,7 +568,7 @@ msgstr "Desalojar Todos."
 
 #: gui/session/unit_actions.js:1143
 msgid "Destroy the selected units or structures."
-msgstr ""
+msgstr "Destruir as unidades ou estruturas selecionadas."
 
 #: gui/session/unit_actions.js:1145
 #, javascript-format
@@ -580,7 +581,7 @@ msgstr "Abortar a ordem atual."
 
 #: gui/session/unit_actions.js:1211
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr ""
+msgstr "Ordene as unidades selecionadas a entrarem em uma estrutura ou unidade."
 
 #: gui/session/unit_actions.js:1234
 msgid "Unload"
@@ -588,7 +589,7 @@ msgstr "Desalojar"
 
 #: gui/session/unit_actions.js:1252
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr ""
+msgstr "Ordene as unidades selecionadas a reparar uma estrutura, navio ou mecanismo de cerco."
 
 #: gui/session/unit_actions.js:1271
 msgid "Focus on Rally Point."
@@ -600,7 +601,7 @@ msgstr "Voltar ao Trabalho"
 
 #: gui/session/unit_actions.js:1325
 msgid "Order the selected units to guard a structure or unit."
-msgstr ""
+msgstr "Ordene as unidades selecionadas a proteger uma estrutura ou unidade."
 
 #: gui/session/unit_actions.js:1343
 msgid "Remove guard"
@@ -741,12 +742,12 @@ msgstr "Chat privado"
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr ""
+msgstr "Notificações do Jogo"
 
 #: gui/session/chat/ChatHistory.js:130
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr ""
+msgstr "Notificações de Rede"
 
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
@@ -814,7 +815,7 @@ msgstr "%(player)s entrou no jogo."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:57
 msgid "no-context"
-msgstr ""
+msgstr "Sem contexto."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:61
 #, javascript-format
@@ -1238,7 +1239,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s/%(hotkey_structree)s: Visão Geral da Civilização / Árvore Estrutural\nA última aberta será reaberta ao clicar."
 
 #: gui/session/top_panel/CounterManager.js:100
 #, javascript-format
@@ -1309,19 +1310,19 @@ msgstr "Venda %(resource)s"
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
-msgstr ""
+msgstr "+%(amount)s"
 
 #: gui/session/trade/BarterButton.js:103
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"
-msgstr ""
+msgstr "-%(amount)s"
 
 #: gui/session/trade/TradeButton.js:56
 #, javascript-format
 msgctxt "trading good ratio"
 msgid "%(amount)s%%"
-msgstr ""
+msgstr "%(amount)s%%"
 
 #: gui/session/trade/TradeButtonManager.js:76
 #, javascript-format
