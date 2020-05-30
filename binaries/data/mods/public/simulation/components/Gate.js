@@ -20,20 +20,6 @@ Gate.prototype.Init = function()
 	this.locked = false;
 };
 
-/**
- * Handle the renaming case (from long-wall to gate)
- * because that does not trigger ownershipchange or diplomacy change
- * and units don't get added to the ignorelist.
- */
-Gate.prototype.OnEntityRenamed = function(msg)
-{
-	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || cmpOwnership.GetOwner() == INVALID_PLAYER)
-		return;
-
-	this.SetupRangeQuery();
-};
-
 Gate.prototype.OnOwnershipChanged = function(msg)
 {
 	if (msg.to != INVALID_PLAYER)
