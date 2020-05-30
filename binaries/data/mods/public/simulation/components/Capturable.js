@@ -362,7 +362,8 @@ Capturable.prototype.OnGlobalPlayerDefeated = function(msg)
 	if (!this.cp[msg.playerId])
 		return;
 	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (cmpOwnership && cmpOwnership.GetOwner() == msg.playerId)
+	if (cmpOwnership && (cmpOwnership.GetOwner() == INVALID_PLAYER ||
+	                     cmpOwnership.GetOwner() == msg.playerId))
 		return;
 	this.cp[0] += this.cp[msg.playerId];
 	this.cp[msg.playerId] = 0;
