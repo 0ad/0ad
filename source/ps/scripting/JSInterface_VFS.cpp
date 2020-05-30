@@ -78,9 +78,9 @@ static Status BuildDirEntListCB(const VfsPath& pathname, const CFileInfo& UNUSED
 // specified directory.
 //   filter_string: default "" matches everything; otherwise, see vfs_next_dirent.
 //   recurse: should subdirectories be included in the search? default false.
-JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const std::wstring& path, const std::wstring& filterStr, bool recurse)
+JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::RealmPrivate* pRealmPrivate, const std::vector<CStrW>& validPaths, const std::wstring& path, const std::wstring& filterStr, bool recurse)
 {
-	if (!PathRestrictionMet(pCxPrivate, validPaths, path))
+	if (!PathRestrictionMet(pRealmPrivate, validPaths, path))
 		return JS::NullValue();
 
 	// convert to const wchar_t*; if there's no filter, pass 0 for speed
@@ -91,7 +91,7 @@ JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, const
 
 	int flags = recurse ? vfs::DIR_RECURSIVE : 0;
 
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 
 	// build array in the callback function
 	BuildDirEntListState state(cx);
@@ -101,13 +101,13 @@ JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, const
 }
 
 // Return true iff the file exits
-bool JSI_VFS::FileExists(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const CStrW& filename)
+bool JSI_VFS::FileExists(ScriptInterface::RealmPrivate* pRealmPrivate, const std::vector<CStrW>& validPaths, const CStrW& filename)
 {
-	return PathRestrictionMet(pCxPrivate, validPaths, filename) && g_VFS->GetFileInfo(filename, 0) == INFO::OK;
+	return PathRestrictionMet(pRealmPrivate, validPaths, filename) && g_VFS->GetFileInfo(filename, 0) == INFO::OK;
 }
 
 // Return time [seconds since 1970] of the last modification to the specified file.
-double JSI_VFS::GetFileMTime(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename)
+double JSI_VFS::GetFileMTime(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::wstring& filename)
 {
 	CFileInfo fileInfo;
 	Status err = g_VFS->GetFileInfo(filename, &fileInfo);
@@ -117,7 +117,7 @@ double JSI_VFS::GetFileMTime(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), con
 }
 
 // Return current size of file.
-unsigned int JSI_VFS::GetFileSize(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename)
+unsigned int JSI_VFS::GetFileSize(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::wstring& filename)
 {
 	CFileInfo fileInfo;
 	Status err = g_VFS->GetFileInfo(filename, &fileInfo);
@@ -127,9 +127,9 @@ unsigned int JSI_VFS::GetFileSize(ScriptInterface::CxPrivate* UNUSED(pCxPrivate)
 }
 
 // Return file contents in a string. Assume file is UTF-8 encoded text.
-JS::Value JSI_VFS::ReadFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename)
+JS::Value JSI_VFS::ReadFile(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& filename)
 {
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 
 	CVFSFile file;
 	if (file.Load(g_VFS, filename) != PSRETURN_OK)
@@ -147,9 +147,9 @@ JS::Value JSI_VFS::ReadFile(ScriptInterface::CxPrivate* pCxPrivate, const std::w
 }
 
 // Return file contents as an array of lines. Assume file is UTF-8 encoded text.
-JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename)
+JS::Value JSI_VFS::ReadFileLines(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& filename)
 {
-	const ScriptInterface& scriptInterface = *pCxPrivate->pScriptInterface;
+	const ScriptInterface& scriptInterface = *pRealmPrivate->pScriptInterface;
 	JSContext* cx = scriptInterface.GetContext();
 
 	CVFSFile file;
@@ -181,25 +181,25 @@ JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const s
 	return line_array;
 }
 
-JS::Value JSI_VFS::ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const CStrW& filePath)
+JS::Value JSI_VFS::ReadJSONFile(ScriptInterface::RealmPrivate* pRealmPrivate, const std::vector<CStrW>& validPaths, const CStrW& filePath)
 {
-	if (!PathRestrictionMet(pCxPrivate, validPaths, filePath))
+	if (!PathRestrictionMet(pRealmPrivate, validPaths, filePath))
 		return JS::NullValue();
 
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 	JS::RootedValue out(cx);
-	pCxPrivate->pScriptInterface->ReadJSONFile(filePath, &out);
+	pRealmPrivate->pScriptInterface->ReadJSONFile(filePath, &out);
 	return out;
 }
 
-void JSI_VFS::WriteJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath, JS::HandleValue val1)
+void JSI_VFS::WriteJSONFile(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& filePath, JS::HandleValue val1)
 {
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 
 	// TODO: This is a workaround because we need to pass a MutableHandle to StringifyJSON.
 	JS::RootedValue val(cx, val1);
 
-	std::string str(pCxPrivate->pScriptInterface->StringifyJSON(&val, false));
+	std::string str(pRealmPrivate->pScriptInterface->StringifyJSON(&val, false));
 
 	VfsPath path(filePath);
 	WriteBuffer buf;
@@ -207,7 +207,7 @@ void JSI_VFS::WriteJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::w
 	g_VFS->CreateFile(path, buf.Data(), buf.Size());
 }
 
-bool JSI_VFS::PathRestrictionMet(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const CStrW& filePath)
+bool JSI_VFS::PathRestrictionMet(ScriptInterface::RealmPrivate* pRealmPrivate, const std::vector<CStrW>& validPaths, const CStrW& filePath)
 {
 	for (const CStrW& validPath : validPaths)
 		if (filePath.find(validPath) == 0)
@@ -222,24 +222,24 @@ bool JSI_VFS::PathRestrictionMet(ScriptInterface::CxPrivate* pCxPrivate, const s
 		allowedPaths += L"\"" + validPaths[i] + L"\"";
 	}
 
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 	JS_ReportErrorASCII(cx, "This part of the engine may only read from %s!", utf8_from_wstring(allowedPaths).c_str());
 
 	return false;
 }
 
 #define VFS_ScriptFunctions(context)\
-JS::Value Script_ReadJSONFile_##context(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath)\
+JS::Value Script_ReadJSONFile_##context(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& filePath)\
 {\
-	return JSI_VFS::ReadJSONFile(pCxPrivate, PathRestriction_##context, filePath);\
+	return JSI_VFS::ReadJSONFile(pRealmPrivate, PathRestriction_##context, filePath);\
 }\
-JS::Value Script_ListDirectoryFiles_##context(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& path, const std::wstring& filterStr, bool recurse)\
+JS::Value Script_ListDirectoryFiles_##context(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& path, const std::wstring& filterStr, bool recurse)\
 {\
-	return JSI_VFS::BuildDirEntList(pCxPrivate, PathRestriction_##context, path, filterStr, recurse);\
+	return JSI_VFS::BuildDirEntList(pRealmPrivate, PathRestriction_##context, path, filterStr, recurse);\
 }\
-bool Script_FileExists_##context(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath)\
+bool Script_FileExists_##context(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& filePath)\
 {\
-	return JSI_VFS::FileExists(pCxPrivate, PathRestriction_##context, filePath);\
+	return JSI_VFS::FileExists(pRealmPrivate, PathRestriction_##context, filePath);\
 }\
 
 VFS_ScriptFunctions(GUI);

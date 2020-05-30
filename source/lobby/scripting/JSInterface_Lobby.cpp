@@ -72,23 +72,23 @@ void JSI_Lobby::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 #endif // CONFIG2_LOBBY
 }
 
-bool JSI_Lobby::HasXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+bool JSI_Lobby::HasXmppClient(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate))
 {
 	return g_XmppClient;
 }
 
-void JSI_Lobby::SetRankedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool isRanked)
+void JSI_Lobby::SetRankedGame(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), bool isRanked)
 {
 	g_rankedGame = isRanked;
 }
 
 #if CONFIG2_LOBBY
 
-void JSI_Lobby::StartXmppClient(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& username, const std::wstring& password, const std::wstring& room, const std::wstring& nick, int historyRequestSize)
+void JSI_Lobby::StartXmppClient(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& username, const std::wstring& password, const std::wstring& room, const std::wstring& nick, int historyRequestSize)
 {
 	if (g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call StartXmppClient with an already initialized XmppClient!");
 		return;
 	}
@@ -105,11 +105,11 @@ void JSI_Lobby::StartXmppClient(ScriptInterface::CxPrivate* pCxPrivate, const st
 	g_rankedGame = true;
 }
 
-void JSI_Lobby::StartRegisterXmppClient(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& username, const std::wstring& password)
+void JSI_Lobby::StartRegisterXmppClient(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& username, const std::wstring& password)
 {
 	if (g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call StartRegisterXmppClient with an already initialized XmppClient!");
 		return;
 	}
@@ -125,11 +125,11 @@ void JSI_Lobby::StartRegisterXmppClient(ScriptInterface::CxPrivate* pCxPrivate, 
 			true);
 }
 
-void JSI_Lobby::StopXmppClient(ScriptInterface::CxPrivate* pCxPrivate)
+void JSI_Lobby::StopXmppClient(ScriptInterface::RealmPrivate* pRealmPrivate)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call StopXmppClient without an initialized XmppClient!");
 		return;
 	}
@@ -138,11 +138,11 @@ void JSI_Lobby::StopXmppClient(ScriptInterface::CxPrivate* pCxPrivate)
 	g_rankedGame = false;
 }
 
-void JSI_Lobby::ConnectXmppClient(ScriptInterface::CxPrivate* pCxPrivate)
+void JSI_Lobby::ConnectXmppClient(ScriptInterface::RealmPrivate* pRealmPrivate)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call ConnectXmppClient without an initialized XmppClient!");
 		return;
 	}
@@ -150,11 +150,11 @@ void JSI_Lobby::ConnectXmppClient(ScriptInterface::CxPrivate* pCxPrivate)
 	g_XmppClient->connect();
 }
 
-void JSI_Lobby::DisconnectXmppClient(ScriptInterface::CxPrivate* pCxPrivate)
+void JSI_Lobby::DisconnectXmppClient(ScriptInterface::RealmPrivate* pRealmPrivate)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call DisconnectXmppClient without an initialized XmppClient!");
 		return;
 	}
@@ -162,11 +162,11 @@ void JSI_Lobby::DisconnectXmppClient(ScriptInterface::CxPrivate* pCxPrivate)
 	g_XmppClient->disconnect();
 }
 
-bool JSI_Lobby::IsXmppClientConnected(ScriptInterface::CxPrivate* pCxPrivate)
+bool JSI_Lobby::IsXmppClientConnected(ScriptInterface::RealmPrivate* pRealmPrivate)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call IsXmppClientConnected without an initialized XmppClient!");
 		return false;
 	}
@@ -174,11 +174,11 @@ bool JSI_Lobby::IsXmppClientConnected(ScriptInterface::CxPrivate* pCxPrivate)
 	return g_XmppClient->isConnected();
 }
 
-void JSI_Lobby::SendGetBoardList(ScriptInterface::CxPrivate* pCxPrivate)
+void JSI_Lobby::SendGetBoardList(ScriptInterface::RealmPrivate* pRealmPrivate)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call SendGetBoardList without an initialized XmppClient!");
 		return;
 	}
@@ -186,11 +186,11 @@ void JSI_Lobby::SendGetBoardList(ScriptInterface::CxPrivate* pCxPrivate)
 	g_XmppClient->SendIqGetBoardList();
 }
 
-void JSI_Lobby::SendGetProfile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& player)
+void JSI_Lobby::SendGetProfile(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& player)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call SendGetProfile without an initialized XmppClient!");
 		return;
 	}
@@ -198,23 +198,23 @@ void JSI_Lobby::SendGetProfile(ScriptInterface::CxPrivate* pCxPrivate, const std
 	g_XmppClient->SendIqGetProfile(utf8_from_wstring(player));
 }
 
-void JSI_Lobby::SendGameReport(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue data)
+void JSI_Lobby::SendGameReport(ScriptInterface::RealmPrivate* pRealmPrivate, JS::HandleValue data)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call SendGameReport without an initialized XmppClient!");
 		return;
 	}
 
-	g_XmppClient->SendIqGameReport(*(pCxPrivate->pScriptInterface), data);
+	g_XmppClient->SendIqGameReport(*(pRealmPrivate->pScriptInterface), data);
 }
 
-void JSI_Lobby::SendRegisterGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue data)
+void JSI_Lobby::SendRegisterGame(ScriptInterface::RealmPrivate* pRealmPrivate, JS::HandleValue data)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call SendRegisterGame without an initialized XmppClient!");
 		return;
 	}
@@ -226,14 +226,14 @@ void JSI_Lobby::SendRegisterGame(ScriptInterface::CxPrivate* pCxPrivate, JS::Han
 		return;
 	}
 
-	g_XmppClient->SendIqRegisterGame(*(pCxPrivate->pScriptInterface), data);
+	g_XmppClient->SendIqRegisterGame(*(pRealmPrivate->pScriptInterface), data);
 }
 
-void JSI_Lobby::SendUnregisterGame(ScriptInterface::CxPrivate* pCxPrivate)
+void JSI_Lobby::SendUnregisterGame(ScriptInterface::RealmPrivate* pRealmPrivate)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call SendUnregisterGame without an initialized XmppClient!");
 		return;
 	}
@@ -241,11 +241,11 @@ void JSI_Lobby::SendUnregisterGame(ScriptInterface::CxPrivate* pCxPrivate)
 	g_XmppClient->SendIqUnregisterGame();
 }
 
-void JSI_Lobby::SendChangeStateGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nbp, const std::wstring& players)
+void JSI_Lobby::SendChangeStateGame(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& nbp, const std::wstring& players)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call SendChangeStateGame without an initialized XmppClient!");
 		return;
 	}
@@ -253,9 +253,9 @@ void JSI_Lobby::SendChangeStateGame(ScriptInterface::CxPrivate* pCxPrivate, cons
 	g_XmppClient->SendIqChangeStateGame(utf8_from_wstring(nbp), utf8_from_wstring(players));
 }
 
-JS::Value JSI_Lobby::GetPlayerList(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_Lobby::GetPlayerList(ScriptInterface::RealmPrivate* pRealmPrivate)
 {
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 
 	if (!g_XmppClient)
 	{
@@ -264,14 +264,14 @@ JS::Value JSI_Lobby::GetPlayerList(ScriptInterface::CxPrivate* pCxPrivate)
 	}
 
 	JS::RootedValue playerList(cx);
-	g_XmppClient->GUIGetPlayerList(*(pCxPrivate->pScriptInterface), &playerList);
+	g_XmppClient->GUIGetPlayerList(*(pRealmPrivate->pScriptInterface), &playerList);
 
 	return playerList;
 }
 
-JS::Value JSI_Lobby::GetGameList(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_Lobby::GetGameList(ScriptInterface::RealmPrivate* pRealmPrivate)
 {
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 
 	if (!g_XmppClient)
 	{
@@ -280,14 +280,14 @@ JS::Value JSI_Lobby::GetGameList(ScriptInterface::CxPrivate* pCxPrivate)
 	}
 
 	JS::RootedValue gameList(cx);
-	g_XmppClient->GUIGetGameList(*(pCxPrivate->pScriptInterface), &gameList);
+	g_XmppClient->GUIGetGameList(*(pRealmPrivate->pScriptInterface), &gameList);
 
 	return gameList;
 }
 
-JS::Value JSI_Lobby::GetBoardList(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_Lobby::GetBoardList(ScriptInterface::RealmPrivate* pRealmPrivate)
 {
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 
 	if (!g_XmppClient)
 	{
@@ -296,14 +296,14 @@ JS::Value JSI_Lobby::GetBoardList(ScriptInterface::CxPrivate* pCxPrivate)
 	}
 
 	JS::RootedValue boardList(cx);
-	g_XmppClient->GUIGetBoardList(*(pCxPrivate->pScriptInterface), &boardList);
+	g_XmppClient->GUIGetBoardList(*(pRealmPrivate->pScriptInterface), &boardList);
 
 	return boardList;
 }
 
-JS::Value JSI_Lobby::GetProfile(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_Lobby::GetProfile(ScriptInterface::RealmPrivate* pRealmPrivate)
 {
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 
 	if (!g_XmppClient)
 	{
@@ -312,16 +312,16 @@ JS::Value JSI_Lobby::GetProfile(ScriptInterface::CxPrivate* pCxPrivate)
 	}
 
 	JS::RootedValue profileFetch(cx);
-	g_XmppClient->GUIGetProfile(*(pCxPrivate->pScriptInterface), &profileFetch);
+	g_XmppClient->GUIGetProfile(*(pRealmPrivate->pScriptInterface), &profileFetch);
 
 	return profileFetch;
 }
 
-bool JSI_Lobby::LobbyGuiPollHasPlayerListUpdate(ScriptInterface::CxPrivate* pCxPrivate)
+bool JSI_Lobby::LobbyGuiPollHasPlayerListUpdate(ScriptInterface::RealmPrivate* pRealmPrivate)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call LobbyGuiPollHasPlayerListUpdate without an initialized XmppClient!");
 		return false;
 	}
@@ -329,31 +329,31 @@ bool JSI_Lobby::LobbyGuiPollHasPlayerListUpdate(ScriptInterface::CxPrivate* pCxP
 	return g_XmppClient->GuiPollHasPlayerListUpdate();
 }
 
-JS::Value JSI_Lobby::LobbyGuiPollNewMessages(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_Lobby::LobbyGuiPollNewMessages(ScriptInterface::RealmPrivate* pRealmPrivate)
 {
 	if (!g_XmppClient)
 		return JS::UndefinedValue();
 
-	return g_XmppClient->GuiPollNewMessages(*(pCxPrivate->pScriptInterface));
+	return g_XmppClient->GuiPollNewMessages(*(pRealmPrivate->pScriptInterface));
 }
 
-JS::Value JSI_Lobby::LobbyGuiPollHistoricMessages(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_Lobby::LobbyGuiPollHistoricMessages(ScriptInterface::RealmPrivate* pRealmPrivate)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call LobbyGuiPollHistoricMessages without an initialized XmppClient!");
 		return JS::UndefinedValue();
 	}
 
-	return g_XmppClient->GuiPollHistoricMessages(*(pCxPrivate->pScriptInterface));
+	return g_XmppClient->GuiPollHistoricMessages(*(pRealmPrivate->pScriptInterface));
 }
 
-void JSI_Lobby::LobbySendMessage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& message)
+void JSI_Lobby::LobbySendMessage(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& message)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call LobbySendMessage without an initialized XmppClient!");
 		return;
 	}
@@ -361,11 +361,11 @@ void JSI_Lobby::LobbySendMessage(ScriptInterface::CxPrivate* pCxPrivate, const s
 	g_XmppClient->SendMUCMessage(utf8_from_wstring(message));
 }
 
-void JSI_Lobby::LobbySetPlayerPresence(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& presence)
+void JSI_Lobby::LobbySetPlayerPresence(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& presence)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call LobbySetPlayerPresence without an initialized XmppClient!");
 		return;
 	}
@@ -373,11 +373,11 @@ void JSI_Lobby::LobbySetPlayerPresence(ScriptInterface::CxPrivate* pCxPrivate, c
 	g_XmppClient->SetPresence(utf8_from_wstring(presence));
 }
 
-void JSI_Lobby::LobbySetNick(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nick)
+void JSI_Lobby::LobbySetNick(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& nick)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call LobbySetNick without an initialized XmppClient!");
 		return;
 	}
@@ -385,11 +385,11 @@ void JSI_Lobby::LobbySetNick(ScriptInterface::CxPrivate* pCxPrivate, const std::
 	g_XmppClient->SetNick(utf8_from_wstring(nick));
 }
 
-std::wstring JSI_Lobby::LobbyGetNick(ScriptInterface::CxPrivate* pCxPrivate)
+std::wstring JSI_Lobby::LobbyGetNick(ScriptInterface::RealmPrivate* pRealmPrivate)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call LobbyGetNick without an initialized XmppClient!");
 		return std::wstring();
 	}
@@ -399,11 +399,11 @@ std::wstring JSI_Lobby::LobbyGetNick(ScriptInterface::CxPrivate* pCxPrivate)
 	return wstring_from_utf8(nick);
 }
 
-void JSI_Lobby::LobbyKick(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nick, const std::wstring& reason)
+void JSI_Lobby::LobbyKick(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& nick, const std::wstring& reason)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call LobbyKick without an initialized XmppClient!");
 		return;
 	}
@@ -411,11 +411,11 @@ void JSI_Lobby::LobbyKick(ScriptInterface::CxPrivate* pCxPrivate, const std::wst
 	g_XmppClient->kick(utf8_from_wstring(nick), utf8_from_wstring(reason));
 }
 
-void JSI_Lobby::LobbyBan(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nick, const std::wstring& reason)
+void JSI_Lobby::LobbyBan(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& nick, const std::wstring& reason)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call LobbyBan without an initialized XmppClient!");
 		return;
 	}
@@ -423,11 +423,11 @@ void JSI_Lobby::LobbyBan(ScriptInterface::CxPrivate* pCxPrivate, const std::wstr
 	g_XmppClient->ban(utf8_from_wstring(nick), utf8_from_wstring(reason));
 }
 
-const char* JSI_Lobby::LobbyGetPlayerPresence(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nickname)
+const char* JSI_Lobby::LobbyGetPlayerPresence(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& nickname)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call LobbyGetPlayerPresence without an initialized XmppClient!");
 		return "";
 	}
@@ -435,11 +435,11 @@ const char* JSI_Lobby::LobbyGetPlayerPresence(ScriptInterface::CxPrivate* pCxPri
 	return g_XmppClient->GetPresence(utf8_from_wstring(nickname));
 }
 
-const char* JSI_Lobby::LobbyGetPlayerRole(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nickname)
+const char* JSI_Lobby::LobbyGetPlayerRole(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& nickname)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call LobbyGetPlayerRole without an initialized XmppClient!");
 		return "";
 	}
@@ -447,11 +447,11 @@ const char* JSI_Lobby::LobbyGetPlayerRole(ScriptInterface::CxPrivate* pCxPrivate
 	return g_XmppClient->GetRole(utf8_from_wstring(nickname));
 }
 
-std::wstring JSI_Lobby::LobbyGetPlayerRating(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nickname)
+std::wstring JSI_Lobby::LobbyGetPlayerRating(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& nickname)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call LobbyGetPlayerRating without an initialized XmppClient!");
 		return std::wstring();
 	}
@@ -501,16 +501,16 @@ std::string JSI_Lobby::EncryptPassword(const std::string& password, const std::s
 	return CStr(Hexify(encrypted, DIGESTSIZE)).UpperCase();
 }
 
-std::wstring JSI_Lobby::EncryptPassword(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& pass, const std::wstring& user)
+std::wstring JSI_Lobby::EncryptPassword(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::wstring& pass, const std::wstring& user)
 {
 	return wstring_from_utf8(JSI_Lobby::EncryptPassword(utf8_from_wstring(pass), utf8_from_wstring(user)));
 }
 
-std::wstring JSI_Lobby::LobbyGetRoomSubject(ScriptInterface::CxPrivate* pCxPrivate)
+std::wstring JSI_Lobby::LobbyGetRoomSubject(ScriptInterface::RealmPrivate* pRealmPrivate)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Cannot call LobbyGetRoomSubject without an initialized XmppClient!");
 		return std::wstring();
 	}

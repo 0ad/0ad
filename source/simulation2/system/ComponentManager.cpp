@@ -149,9 +149,9 @@ bool CComponentManager::LoadScript(const VfsPath& filename, bool hotload)
 	return ok;
 }
 
-void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxPrivate* pCxPrivate, int iid, const std::string& cname, JS::HandleValue ctor, bool reRegister, bool systemComponent)
+void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::RealmPrivate* pRealmPrivate, int iid, const std::string& cname, JS::HandleValue ctor, bool reRegister, bool systemComponent)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pRealmPrivate->pCBData);
 	JSContext* cx = componentManager->m_ScriptInterface.GetContext();
 
 	// Find the C++ component that wraps the interface
@@ -311,28 +311,28 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxP
 	}
 }
 
-void CComponentManager::Script_RegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, const std::string& cname, JS::HandleValue ctor)
+void CComponentManager::Script_RegisterComponentType(ScriptInterface::RealmPrivate* pRealmPrivate, int iid, const std::string& cname, JS::HandleValue ctor)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
-	componentManager->Script_RegisterComponentType_Common(pCxPrivate, iid, cname, ctor, false, false);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pRealmPrivate->pCBData);
+	componentManager->Script_RegisterComponentType_Common(pRealmPrivate, iid, cname, ctor, false, false);
 	componentManager->m_ScriptInterface.SetGlobal(cname.c_str(), ctor, componentManager->m_CurrentlyHotloading);
 }
 
-void CComponentManager::Script_RegisterSystemComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, const std::string& cname, JS::HandleValue ctor)
+void CComponentManager::Script_RegisterSystemComponentType(ScriptInterface::RealmPrivate* pRealmPrivate, int iid, const std::string& cname, JS::HandleValue ctor)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
-	componentManager->Script_RegisterComponentType_Common(pCxPrivate, iid, cname, ctor, false, true);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pRealmPrivate->pCBData);
+	componentManager->Script_RegisterComponentType_Common(pRealmPrivate, iid, cname, ctor, false, true);
 	componentManager->m_ScriptInterface.SetGlobal(cname.c_str(), ctor, componentManager->m_CurrentlyHotloading);
 }
 
-void CComponentManager::Script_ReRegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, const std::string& cname, JS::HandleValue ctor)
+void CComponentManager::Script_ReRegisterComponentType(ScriptInterface::RealmPrivate* pRealmPrivate, int iid, const std::string& cname, JS::HandleValue ctor)
 {
-	Script_RegisterComponentType_Common(pCxPrivate, iid, cname, ctor, true, false);
+	Script_RegisterComponentType_Common(pRealmPrivate, iid, cname, ctor, true, false);
 }
 
-void CComponentManager::Script_RegisterInterface(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name)
+void CComponentManager::Script_RegisterInterface(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& name)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pRealmPrivate->pCBData);
 
 	std::map<std::string, InterfaceId>::iterator it = componentManager->m_InterfaceIdsByName.find(name);
 	if (it != componentManager->m_InterfaceIdsByName.end())
@@ -351,9 +351,9 @@ void CComponentManager::Script_RegisterInterface(ScriptInterface::CxPrivate* pCx
 	componentManager->m_ScriptInterface.SetGlobal(("IID_" + name).c_str(), (int)id);
 }
 
-void CComponentManager::Script_RegisterMessageType(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name)
+void CComponentManager::Script_RegisterMessageType(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& name)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pRealmPrivate->pCBData);
 
 	std::map<std::string, MessageTypeId>::iterator it = componentManager->m_MessageTypeIdsByName.find(name);
 	if (it != componentManager->m_MessageTypeIdsByName.end())
@@ -371,22 +371,22 @@ void CComponentManager::Script_RegisterMessageType(ScriptInterface::CxPrivate* p
 	componentManager->m_ScriptInterface.SetGlobal(("MT_" + name).c_str(), (int)id);
 }
 
-void CComponentManager::Script_RegisterGlobal(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name, JS::HandleValue value)
+void CComponentManager::Script_RegisterGlobal(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& name, JS::HandleValue value)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pRealmPrivate->pCBData);
 	componentManager->m_ScriptInterface.SetGlobal(name.c_str(), value, componentManager->m_CurrentlyHotloading);
 }
 
-IComponent* CComponentManager::Script_QueryInterface(ScriptInterface::CxPrivate* pCxPrivate, int ent, int iid)
+IComponent* CComponentManager::Script_QueryInterface(ScriptInterface::RealmPrivate* pRealmPrivate, int ent, int iid)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pRealmPrivate->pCBData);
 	IComponent* component = componentManager->QueryInterface((entity_id_t)ent, iid);
 	return component;
 }
 
-std::vector<int> CComponentManager::Script_GetEntitiesWithInterface(ScriptInterface::CxPrivate* pCxPrivate, int iid)
+std::vector<int> CComponentManager::Script_GetEntitiesWithInterface(ScriptInterface::RealmPrivate* pRealmPrivate, int iid)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pRealmPrivate->pCBData);
 
 	std::vector<int> ret;
 	const InterfaceListUnordered& ents = componentManager->GetEntitiesWithInterfaceUnordered(iid);
@@ -397,9 +397,9 @@ std::vector<int> CComponentManager::Script_GetEntitiesWithInterface(ScriptInterf
 	return ret;
 }
 
-std::vector<IComponent*> CComponentManager::Script_GetComponentsWithInterface(ScriptInterface::CxPrivate* pCxPrivate, int iid)
+std::vector<IComponent*> CComponentManager::Script_GetComponentsWithInterface(ScriptInterface::RealmPrivate* pRealmPrivate, int iid)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pRealmPrivate->pCBData);
 
 	std::vector<IComponent*> ret;
 	InterfaceList ents = componentManager->GetEntitiesWithInterface(iid);
@@ -423,9 +423,9 @@ CMessage* CComponentManager::ConstructMessage(int mtid, JS::HandleValue data)
 	}
 }
 
-void CComponentManager::Script_PostMessage(ScriptInterface::CxPrivate* pCxPrivate, int ent, int mtid, JS::HandleValue data)
+void CComponentManager::Script_PostMessage(ScriptInterface::RealmPrivate* pRealmPrivate, int ent, int mtid, JS::HandleValue data)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pRealmPrivate->pCBData);
 
 	CMessage* msg = componentManager->ConstructMessage(mtid, data);
 	if (!msg)
@@ -436,9 +436,9 @@ void CComponentManager::Script_PostMessage(ScriptInterface::CxPrivate* pCxPrivat
 	delete msg;
 }
 
-void CComponentManager::Script_BroadcastMessage(ScriptInterface::CxPrivate* pCxPrivate, int mtid, JS::HandleValue data)
+void CComponentManager::Script_BroadcastMessage(ScriptInterface::RealmPrivate* pRealmPrivate, int mtid, JS::HandleValue data)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pRealmPrivate->pCBData);
 
 	CMessage* msg = componentManager->ConstructMessage(mtid, data);
 	if (!msg)
@@ -449,9 +449,9 @@ void CComponentManager::Script_BroadcastMessage(ScriptInterface::CxPrivate* pCxP
 	delete msg;
 }
 
-int CComponentManager::Script_AddEntity(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName)
+int CComponentManager::Script_AddEntity(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& templateName)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pRealmPrivate->pCBData);
 
 	std::wstring name(templateName.begin(), templateName.end());
 	// TODO: should validate the string to make sure it doesn't contain scary characters
@@ -461,9 +461,9 @@ int CComponentManager::Script_AddEntity(ScriptInterface::CxPrivate* pCxPrivate, 
 	return (int)ent;
 }
 
-int CComponentManager::Script_AddLocalEntity(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName)
+int CComponentManager::Script_AddLocalEntity(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& templateName)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pRealmPrivate->pCBData);
 
 	std::wstring name(templateName.begin(), templateName.end());
 	// TODO: should validate the string to make sure it doesn't contain scary characters
@@ -473,16 +473,16 @@ int CComponentManager::Script_AddLocalEntity(ScriptInterface::CxPrivate* pCxPriv
 	return (int)ent;
 }
 
-void CComponentManager::Script_DestroyEntity(ScriptInterface::CxPrivate* pCxPrivate, int ent)
+void CComponentManager::Script_DestroyEntity(ScriptInterface::RealmPrivate* pRealmPrivate, int ent)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pRealmPrivate->pCBData);
 
 	componentManager->DestroyComponentsSoon(ent);
 }
 
-void CComponentManager::Script_FlushDestroyedEntities(ScriptInterface::CxPrivate *pCxPrivate)
+void CComponentManager::Script_FlushDestroyedEntities(ScriptInterface::RealmPrivate *pRealmPrivate)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pRealmPrivate->pCBData);
 	componentManager->FlushDestroyedComponents();
 }
 

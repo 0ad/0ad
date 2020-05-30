@@ -23,6 +23,45 @@
 #include "ps/Profile.h"
 #include "scriptinterface/ScriptEngine.h"
 
+void ErrorReporter(JSContext* cx, JSErrorReport* report)
+{
+
+	std::stringstream msg;
+	bool isWarning = JSREPORT_IS_WARNING(report->flags);
+	msg << (isWarning ? "JavaScript warning: " : "JavaScript error: ");
+	if (report->filename)
+	{
+		msg << report->filename;
+		msg << " line " << report->lineno << "\n";
+	}
+
+	msg << report->message().c_str();
+
+	// If there is an exception, then print its stack trace
+	JS::RootedValue excn(cx);
+	if (JS_GetPendingException(cx, &excn) && excn.isObject())
+	{
+		JS::RootedValue stackVal(cx);
+		JS::RootedObject excnObj(cx, &excn.toObject());
+		JS_GetProperty(cx, excnObj, "stack", &stackVal);
+
+		std::string stackText;
+		ScriptInterface::FromJSVal(cx, stackVal, stackText);
+
+		std::istringstream stream(stackText);
+		for (std::string line; std::getline(stream, line);)
+			msg << "\n  " << line;
+	}
+
+	if (isWarning)
+		LOGWARNING("%s", msg.str().c_str());
+	else
+		LOGERROR("%s", msg.str().c_str());
+
+	// When running under Valgrind, print more information in the error message
+//	VALGRIND_PRINTF_BACKTRACE("->");
+}
+
 
 void GCSliceCallbackHook(JSContext* UNUSED(rt), JS::GCProgress progress, const JS::GCDescription& UNUSED(desc))
 {
@@ -119,12 +158,23 @@ ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtim
     ENSURE(m_ctx); // TODO: error handling
     m_rt = JS_GetRuntime(m_ctx);
 	ENSURE(m_rt); // TODO: error handling
-    //JS::SetGCSliceCallback(m_ctx, GCSliceCallbackHook);
-	//JS_SetGCCallback(m_ctx, ScriptRuntime::GCCallback, this);
+    JS::SetGCSliceCallback(m_ctx, GCSliceCallbackHook);
+	JS_SetGCCallback(m_ctx, ScriptRuntime::GCCallback, this);
 
-	//JS_SetGCParameter(m_ctx, JSGC_MAX_MALLOC_BYTES, m_RuntimeSize);
-	//JS_SetGCParameter(m_ctx, JSGC_MAX_BYTES, m_RuntimeSize);
-	//JS_SetGCParameter(m_ctx, JSGC_MODE, JSGC_MODE_INCREMENTAL);
+	JS_SetGCParameter(m_ctx, JSGC_MAX_MALLOC_BYTES, m_RuntimeSize);
+	JS_SetGCParameter(m_ctx, JSGC_MAX_BYTES, m_RuntimeSize);
+	JS_SetGCParameter(m_ctx, JSGC_MODE, JSGC_MODE_INCREMENTAL);
+
+    JS_SetOffthreadIonCompilationEnabled(m_cx, true);
+    JS_SetContextPrivate(m_cx, nullptr);
+    JS::SetWarningReporter(m_cx, ErrorReporter);
+	JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_ION_ENABLE, 1);
+    JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_BASELINE_ENABLE, 1);
+
+    JS::ContextOptionsRef(m_cx)
+	    .setExtraWarnings(true)
+	    .setWerror(false)
+	    .setStrictMode(true);
 
 	// The whole heap-growth mechanism seems to work only for non-incremental GCs.
 	// We disable it to make it more clear if full GCs happen triggered by this JSAPI internal mechanism.

@@ -97,14 +97,14 @@ public:
 
 	~ScriptInterface();
 
-	struct CxPrivate
+	struct RealmPrivate
 	{
 		ScriptInterface* pScriptInterface; // the ScriptInterface object the current context belongs to
 		void* pCBData; // meant to be used as the "this" object for callback functions
-	} m_CxPrivate;
+	} m_RealmPrivate;
 
 	void SetCallbackData(void* pCBData);
-	static CxPrivate* GetScriptInterfaceAndCBData(JSContext* cx);
+	static RealmPrivate* GetScriptInterfaceAndCBData(JSContext* ctx);
 
 	JSContext* GetContext() const;
 	JSRuntime* GetJSRuntime() const;

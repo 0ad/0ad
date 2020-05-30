@@ -24,18 +24,18 @@
 
 namespace JSI_Simulation
 {
-	JS::Value GuiInterfaceCall(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue data);
-	void PostNetworkCommand(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue cmd);
-	entity_id_t PickEntityAtPoint(ScriptInterface::CxPrivate* pCxPrivate, int x, int y);
-	void DumpSimState(ScriptInterface::CxPrivate* pCxPrivate);
-	std::vector<entity_id_t> PickPlayerEntitiesInRect(ScriptInterface::CxPrivate* pCxPrivate, int x0, int y0, int x1, int y1, int player);
-	std::vector<entity_id_t> PickPlayerEntitiesOnScreen(ScriptInterface::CxPrivate* pCxPrivate, int player);
-	std::vector<entity_id_t> PickNonGaiaEntitiesOnScreen(ScriptInterface::CxPrivate* pCxPrivate);
-	std::vector<entity_id_t> GetEntitiesWithStaticObstructionOnScreen(ScriptInterface::CxPrivate* pCxPrivate);
-	JS::Value GetEdgesOfStaticObstructionsOnScreenNearTo(ScriptInterface::CxPrivate* pCxPrivate, entity_pos_t x, entity_pos_t z);
-	std::vector<entity_id_t> PickSimilarPlayerEntities(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName, bool includeOffScreen, bool matchRank, bool allowFoundations);
-	JS::Value GetAIs(ScriptInterface::CxPrivate* pCxPrivate);
-	void SetBoundingBoxDebugOverlay(ScriptInterface::CxPrivate* pCxPrivate, bool enabled);
+	JS::Value GuiInterfaceCall(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& name, JS::HandleValue data);
+	void PostNetworkCommand(ScriptInterface::RealmPrivate* pRealmPrivate, JS::HandleValue cmd);
+	entity_id_t PickEntityAtPoint(ScriptInterface::RealmPrivate* pRealmPrivate, int x, int y);
+	void DumpSimState(ScriptInterface::RealmPrivate* pRealmPrivate);
+	std::vector<entity_id_t> PickPlayerEntitiesInRect(ScriptInterface::RealmPrivate* pRealmPrivate, int x0, int y0, int x1, int y1, int player);
+	std::vector<entity_id_t> PickPlayerEntitiesOnScreen(ScriptInterface::RealmPrivate* pRealmPrivate, int player);
+	std::vector<entity_id_t> PickNonGaiaEntitiesOnScreen(ScriptInterface::RealmPrivate* pRealmPrivate);
+	std::vector<entity_id_t> GetEntitiesWithStaticObstructionOnScreen(ScriptInterface::RealmPrivate* pRealmPrivate);
+	JS::Value GetEdgesOfStaticObstructionsOnScreenNearTo(ScriptInterface::RealmPrivate* pRealmPrivate, entity_pos_t x, entity_pos_t z);
+	std::vector<entity_id_t> PickSimilarPlayerEntities(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& templateName, bool includeOffScreen, bool matchRank, bool allowFoundations);
+	JS::Value GetAIs(ScriptInterface::RealmPrivate* pRealmPrivate);
+	void SetBoundingBoxDebugOverlay(ScriptInterface::RealmPrivate* pRealmPrivate, bool enabled);
 
 	void RegisterScriptFunctions(const ScriptInterface& ScriptInterface);
 }

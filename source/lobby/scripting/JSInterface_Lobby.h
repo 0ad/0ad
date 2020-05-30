@@ -27,46 +27,46 @@ namespace JSI_Lobby
 {
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 
-	bool HasXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
-	bool IsRankedGame(ScriptInterface::CxPrivate* pCxPrivate);
-	void SetRankedGame(ScriptInterface::CxPrivate* pCxPrivate, bool isRanked);
+	bool HasXmppClient(ScriptInterface::RealmPrivate* pRealmPrivate);
+	bool IsRankedGame(ScriptInterface::RealmPrivate* pRealmPrivate);
+	void SetRankedGame(ScriptInterface::RealmPrivate* pRealmPrivate, bool isRanked);
 
 #if CONFIG2_LOBBY
-	void StartXmppClient(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& username, const std::wstring& password, const std::wstring& room, const std::wstring& nick, int historyRequestSize);
-	void StartRegisterXmppClient(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& username, const std::wstring& password);
-	void StopXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
-	void ConnectXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
-	void DisconnectXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
-	bool IsXmppClientConnected(ScriptInterface::CxPrivate* pCxPrivate);
-	void SendGetBoardList(ScriptInterface::CxPrivate* pCxPrivate);
-	void SendGetProfile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& player);
-	void SendGameReport(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue data);
-	void SendRegisterGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue data);
-	void SendUnregisterGame(ScriptInterface::CxPrivate* pCxPrivate);
-	void SendChangeStateGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nbp, const std::wstring& players);
-	JS::Value GetPlayerList(ScriptInterface::CxPrivate* pCxPrivate);
-	JS::Value GetGameList(ScriptInterface::CxPrivate* pCxPrivate);
-	JS::Value GetBoardList(ScriptInterface::CxPrivate* pCxPrivate);
-	JS::Value GetProfile(ScriptInterface::CxPrivate* pCxPrivate);
-	JS::Value LobbyGuiPollNewMessages(ScriptInterface::CxPrivate* pCxPrivate);
-	JS::Value LobbyGuiPollHistoricMessages(ScriptInterface::CxPrivate* pCxPrivate);
-	bool LobbyGuiPollHasPlayerListUpdate(ScriptInterface::CxPrivate* pCxPrivate);
-	void LobbySendMessage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& message);
-	void LobbySetPlayerPresence(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& presence);
-	void LobbySetNick(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nick);
-	std::wstring LobbyGetNick(ScriptInterface::CxPrivate* pCxPrivate);
-	void LobbyKick(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nick, const std::wstring& reason);
-	void LobbyBan(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nick, const std::wstring& reason);
-	const char* LobbyGetPlayerPresence(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nickname);
-	const char* LobbyGetPlayerRole(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nickname);
-	std::wstring LobbyGetPlayerRating(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nickname);
-	std::wstring LobbyGetRoomSubject(ScriptInterface::CxPrivate* pCxPrivate);
+	void StartXmppClient(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& username, const std::wstring& password, const std::wstring& room, const std::wstring& nick, int historyRequestSize);
+	void StartRegisterXmppClient(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& username, const std::wstring& password);
+	void StopXmppClient(ScriptInterface::RealmPrivate* pRealmPrivate);
+	void ConnectXmppClient(ScriptInterface::RealmPrivate* pRealmPrivate);
+	void DisconnectXmppClient(ScriptInterface::RealmPrivate* pRealmPrivate);
+	bool IsXmppClientConnected(ScriptInterface::RealmPrivate* pRealmPrivate);
+	void SendGetBoardList(ScriptInterface::RealmPrivate* pRealmPrivate);
+	void SendGetProfile(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& player);
+	void SendGameReport(ScriptInterface::RealmPrivate* pRealmPrivate, JS::HandleValue data);
+	void SendRegisterGame(ScriptInterface::RealmPrivate* pRealmPrivate, JS::HandleValue data);
+	void SendUnregisterGame(ScriptInterface::RealmPrivate* pRealmPrivate);
+	void SendChangeStateGame(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& nbp, const std::wstring& players);
+	JS::Value GetPlayerList(ScriptInterface::RealmPrivate* pRealmPrivate);
+	JS::Value GetGameList(ScriptInterface::RealmPrivate* pRealmPrivate);
+	JS::Value GetBoardList(ScriptInterface::RealmPrivate* pRealmPrivate);
+	JS::Value GetProfile(ScriptInterface::RealmPrivate* pRealmPrivate);
+	JS::Value LobbyGuiPollNewMessages(ScriptInterface::RealmPrivate* pRealmPrivate);
+	JS::Value LobbyGuiPollHistoricMessages(ScriptInterface::RealmPrivate* pRealmPrivate);
+	bool LobbyGuiPollHasPlayerListUpdate(ScriptInterface::RealmPrivate* pRealmPrivate);
+	void LobbySendMessage(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& message);
+	void LobbySetPlayerPresence(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& presence);
+	void LobbySetNick(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& nick);
+	std::wstring LobbyGetNick(ScriptInterface::RealmPrivate* pRealmPrivate);
+	void LobbyKick(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& nick, const std::wstring& reason);
+	void LobbyBan(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& nick, const std::wstring& reason);
+	const char* LobbyGetPlayerPresence(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& nickname);
+	const char* LobbyGetPlayerRole(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& nickname);
+	std::wstring LobbyGetPlayerRating(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& nickname);
+	std::wstring LobbyGetRoomSubject(ScriptInterface::RealmPrivate* pRealmPrivate);
 
 	// Non-public secure PBKDF2 hash function with salting and 1,337 iterations
 	std::string EncryptPassword(const std::string& password, const std::string& username);
 
 	// Public hash interface.
-	std::wstring EncryptPassword(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& pass, const std::wstring& user);
+	std::wstring EncryptPassword(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& pass, const std::wstring& user);
 #endif // CONFIG2_LOBBY
 }
 

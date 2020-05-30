@@ -274,22 +274,22 @@ public:
 
 private:
 	// Implementations of functions exposed to scripts
-	static void Script_RegisterComponentType_Common(ScriptInterface::CxPrivate* pCxPrivate, int iid, const std::string& cname, JS::HandleValue ctor, bool reRegister, bool systemComponent);
-	static void Script_RegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, const std::string& cname, JS::HandleValue ctor);
-	static void Script_RegisterSystemComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, const std::string& cname, JS::HandleValue ctor);
-	static void Script_ReRegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, const std::string& cname, JS::HandleValue ctor);
-	static void Script_RegisterInterface(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name);
-	static void Script_RegisterMessageType(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name);
-	static void Script_RegisterGlobal(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name, JS::HandleValue value);
-	static IComponent* Script_QueryInterface(ScriptInterface::CxPrivate* pCxPrivate, int ent, int iid);
-	static std::vector<int> Script_GetEntitiesWithInterface(ScriptInterface::CxPrivate* pCxPrivate, int iid);
-	static std::vector<IComponent*> Script_GetComponentsWithInterface(ScriptInterface::CxPrivate* pCxPrivate, int iid);
-	static void Script_PostMessage(ScriptInterface::CxPrivate* pCxPrivate, int ent, int mtid, JS::HandleValue data);
-	static void Script_BroadcastMessage(ScriptInterface::CxPrivate* pCxPrivate, int mtid, JS::HandleValue data);
-	static int Script_AddEntity(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName);
-	static int Script_AddLocalEntity(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName);
-	static void Script_DestroyEntity(ScriptInterface::CxPrivate* pCxPrivate, int ent);
-	static void Script_FlushDestroyedEntities(ScriptInterface::CxPrivate* pCxPrivate);
+	static void Script_RegisterComponentType_Common(ScriptInterface::RealmPrivate* pRealmPrivate, int iid, const std::string& cname, JS::HandleValue ctor, bool reRegister, bool systemComponent);
+	static void Script_RegisterComponentType(ScriptInterface::RealmPrivate* pRealmPrivate, int iid, const std::string& cname, JS::HandleValue ctor);
+	static void Script_RegisterSystemComponentType(ScriptInterface::RealmPrivate* pRealmPrivate, int iid, const std::string& cname, JS::HandleValue ctor);
+	static void Script_ReRegisterComponentType(ScriptInterface::RealmPrivate* pRealmPrivate, int iid, const std::string& cname, JS::HandleValue ctor);
+	static void Script_RegisterInterface(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& name);
+	static void Script_RegisterMessageType(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& name);
+	static void Script_RegisterGlobal(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& name, JS::HandleValue value);
+	static IComponent* Script_QueryInterface(ScriptInterface::RealmPrivate* pRealmPrivate, int ent, int iid);
+	static std::vector<int> Script_GetEntitiesWithInterface(ScriptInterface::RealmPrivate* pRealmPrivate, int iid);
+	static std::vector<IComponent*> Script_GetComponentsWithInterface(ScriptInterface::RealmPrivate* pRealmPrivate, int iid);
+	static void Script_PostMessage(ScriptInterface::RealmPrivate* pRealmPrivate, int ent, int mtid, JS::HandleValue data);
+	static void Script_BroadcastMessage(ScriptInterface::RealmPrivate* pRealmPrivate, int mtid, JS::HandleValue data);
+	static int Script_AddEntity(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& templateName);
+	static int Script_AddLocalEntity(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& templateName);
+	static void Script_DestroyEntity(ScriptInterface::RealmPrivate* pRealmPrivate, int ent);
+	static void Script_FlushDestroyedEntities(ScriptInterface::RealmPrivate* pRealmPrivate);
 
 	CMessage* ConstructMessage(int mtid, JS::HandleValue data);
 	void SendGlobalMessage(entity_id_t ent, const CMessage& msg);

@@ -110,13 +110,13 @@ struct ScriptInterface_NativeMethodWrapper<void, TC>
 
 // JSFastNative-compatible function that wraps the function identified in the template argument list
 #define OVERLOADS(z, i, data) \
-	template <typename R, TYPENAME_T0_HEAD(z,i)  R (*fptr) ( ScriptInterface::CxPrivate* T0_TAIL_MAYBE_REF(z,i) )> \
+	template <typename R, TYPENAME_T0_HEAD(z,i)  R (*fptr) ( ScriptInterface::RealmPrivate* T0_TAIL_MAYBE_REF(z,i) )> \
 	bool ScriptInterface::call(JSContext* cx, uint argc, JS::Value* vp) \
 	{ \
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
 		JS::RootedValue rval(cx); \
-		ScriptInterface_NativeWrapper<R>::template call<R( ScriptInterface::CxPrivate* T0_TAIL_MAYBE_REF(z,i))  T0_TAIL(z,i)>(cx, &rval, fptr  A0_TAIL(z,i)); \
+		ScriptInterface_NativeWrapper<R>::template call<R( ScriptInterface::RealmPrivate* T0_TAIL_MAYBE_REF(z,i))  T0_TAIL(z,i)>(cx, &rval, fptr  A0_TAIL(z,i)); \
 		args.rval().set(rval); \
 		return !ScriptInterface::IsExceptionPending(cx); \
 	}
