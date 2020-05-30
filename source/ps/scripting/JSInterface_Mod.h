@@ -25,10 +25,10 @@ namespace JSI_Mod
 {
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 
-	JS::Value GetEngineInfo(ScriptInterface::CxPrivate* pCxPrivate);
-	JS::Value GetAvailableMods(ScriptInterface::CxPrivate* pCxPrivate);
-	void RestartEngine(ScriptInterface::CxPrivate* pCxPrivate);
-	void SetMods(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStr>& mods);
+	JS::Value GetEngineInfo(ScriptInterface::RealmPrivate* pRealmPrivate);
+	JS::Value GetAvailableMods(ScriptInterface::RealmPrivate* pRealmPrivate);
+	void RestartEngine(ScriptInterface::RealmPrivate* pRealmPrivate);
+	void SetMods(ScriptInterface::RealmPrivate* pRealmPrivate, const std::vector<CStr>& mods);
 }
 
 #endif // INCLUDED_JSI_MOD

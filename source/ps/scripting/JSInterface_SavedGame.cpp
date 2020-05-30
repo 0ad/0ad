@@ -28,31 +28,31 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/system/TurnManager.h"
 
-JS::Value JSI_SavedGame::GetSavedGames(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_SavedGame::GetSavedGames(ScriptInterface::RealmPrivate* pRealmPrivate)
 {
-	return SavedGames::GetSavedGames(*(pCxPrivate->pScriptInterface));
+	return SavedGames::GetSavedGames(*(pRealmPrivate->pScriptInterface));
 }
 
-bool JSI_SavedGame::DeleteSavedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& name)
+bool JSI_SavedGame::DeleteSavedGame(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::wstring& name)
 {
 	return SavedGames::DeleteSavedGame(name);
 }
 
-void JSI_SavedGame::SaveGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename, const std::wstring& description, JS::HandleValue GUIMetadata)
+void JSI_SavedGame::SaveGame(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& filename, const std::wstring& description, JS::HandleValue GUIMetadata)
 {
-	shared_ptr<ScriptInterface::StructuredClone> GUIMetadataClone = pCxPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata);
+	shared_ptr<ScriptInterface::StructuredClone> GUIMetadataClone = pRealmPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata);
 	if (SavedGames::Save(filename, description, *g_Game->GetSimulation2(), GUIMetadataClone) < 0)
 		LOGERROR("Failed to save game");
 }
 
-void JSI_SavedGame::SaveGamePrefix(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& prefix, const std::wstring& description, JS::HandleValue GUIMetadata)
+void JSI_SavedGame::SaveGamePrefix(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& prefix, const std::wstring& description, JS::HandleValue GUIMetadata)
 {
-	shared_ptr<ScriptInterface::StructuredClone> GUIMetadataClone = pCxPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata);
+	shared_ptr<ScriptInterface::StructuredClone> GUIMetadataClone = pRealmPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata);
 	if (SavedGames::SavePrefix(prefix, description, *g_Game->GetSimulation2(), GUIMetadataClone) < 0)
 		LOGERROR("Failed to save game");
 }
 
-void JSI_SavedGame::QuickSave(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), JS::HandleValue GUIMetadata)
+void JSI_SavedGame::QuickSave(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), JS::HandleValue GUIMetadata)
 {
 	if (g_NetServer || g_NetClient)
 		LOGERROR("Can't store quicksave during multiplayer!");
@@ -62,7 +62,7 @@ void JSI_SavedGame::QuickSave(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), JS
 		LOGERROR("Can't store quicksave if game is not running!");
 }
 
-void JSI_SavedGame::QuickLoad(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_SavedGame::QuickLoad(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate))
 {
 	if (g_NetServer || g_NetClient)
 		LOGERROR("Can't load quicksave during multiplayer!");
@@ -72,13 +72,13 @@ void JSI_SavedGame::QuickLoad(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 		LOGERROR("Can't load quicksave if game is not running!");
 }
 
-JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name)
+JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& name)
 {
 	// We need to be careful with different compartments and contexts.
 	// The GUI calls this function from the GUI context and expects the return value in the same context.
 	// The game we start from here creates another context and expects data in this context.
 
-	JSContext* cxGui = pCxPrivate->pScriptInterface->GetContext();
+	JSContext* cxGui = pRealmPrivate->pScriptInterface->GetContext();
 
 	ENSURE(!g_NetServer);
 	ENSURE(!g_NetClient);
@@ -88,7 +88,7 @@ JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, 
 	// Load the saved game data from disk
 	JS::RootedValue guiContextMetadata(cxGui);
 	std::string savedState;
-	Status err = SavedGames::Load(name, *(pCxPrivate->pScriptInterface), &guiContextMetadata, savedState);
+	Status err = SavedGames::Load(name, *(pRealmPrivate->pScriptInterface), &guiContextMetadata, savedState);
 	if (err < 0)
 		return JS::UndefinedValue();
 
@@ -99,7 +99,7 @@ JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, 
 		JSContext* cxGame = sim->GetScriptInterface().GetContext();
 
 		JS::RootedValue gameContextMetadata(cxGame,
-			sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), guiContextMetadata));
+			sim->GetScriptInterface().CloneValueFromOtherContext(*(pRealmPrivate->pScriptInterface), guiContextMetadata));
 		JS::RootedValue gameInitAttributes(cxGame);
 		sim->GetScriptInterface().GetProperty(gameContextMetadata, "initAttributes", &gameInitAttributes);
 

@@ -138,30 +138,30 @@ static bool IsOverridden(const char* setting)
 	return !(ns == CFG_LAST || ns == CFG_DEFAULT);
 }
 
-void SetDisableAudio(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
+void SetDisableAudio(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), bool disabled)
 {
 	g_DisableAudio = disabled;
 }
 
-void SetDisableS3TC(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
+void SetDisableS3TC(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), bool disabled)
 {
 	if (!IsOverridden("nos3tc"))
 		ogl_tex_override(OGL_TEX_S3TC, disabled ? OGL_TEX_DISABLE : OGL_TEX_ENABLE);
 }
 
-void SetDisableShadows(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
+void SetDisableShadows(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), bool disabled)
 {
 	if (!IsOverridden("shadows"))
 		g_Shadows = !disabled;
 }
 
-void SetDisableShadowPCF(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
+void SetDisableShadowPCF(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), bool disabled)
 {
 	if (!IsOverridden("shadowpcf"))
 		g_ShadowPCF = !disabled;
 }
 
-void SetDisableAllWater(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
+void SetDisableAllWater(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), bool disabled)
 {
 	if (!IsOverridden("watereffects"))
 		g_WaterEffects = !disabled;
@@ -177,7 +177,7 @@ void SetDisableAllWater(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool dis
 		g_WaterShadows = !disabled;
 }
 
-void SetDisableFancyWater(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
+void SetDisableFancyWater(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), bool disabled)
 {
 	if (!IsOverridden("waterfancyeffects"))
 		g_WaterFancyEffects = !disabled;
@@ -187,25 +187,25 @@ void SetDisableFancyWater(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool d
 		g_WaterShadows = !disabled;
 }
 
-void SetEnableGLSL(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool enabled)
+void SetEnableGLSL(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), bool enabled)
 {
 	if (!IsOverridden("preferglsl"))
 		g_PreferGLSL = enabled;
 }
 
-void SetEnablePostProc(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool enabled)
+void SetEnablePostProc(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), bool enabled)
 {
 	if (!IsOverridden("postproc"))
 		g_PostProc = enabled;
 }
 
-void SetEnableSmoothLOS(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool enabled)
+void SetEnableSmoothLOS(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), bool enabled)
 {
 	if (!IsOverridden("smoothlos"))
 		g_SmoothLOS = enabled;
 }
 
-void SetRenderPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& renderpath)
+void SetRenderPath(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::string& renderpath)
 {
 	g_RenderPath = renderpath;
 }

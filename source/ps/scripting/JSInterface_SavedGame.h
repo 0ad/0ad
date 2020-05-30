@@ -22,13 +22,13 @@
 
 namespace JSI_SavedGame
 {
-	JS::Value GetSavedGames(ScriptInterface::CxPrivate* pCxPrivate);
-	bool DeleteSavedGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name);
-	void SaveGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename, const std::wstring& description, JS::HandleValue GUIMetadata);
-	void SaveGamePrefix(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& prefix, const std::wstring& description, JS::HandleValue GUIMetadata);
-	void QuickSave(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue GUIMetadata);
-	void QuickLoad(ScriptInterface::CxPrivate* pCxPrivate);
-	JS::Value StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name);
+	JS::Value GetSavedGames(ScriptInterface::RealmPrivate* pRealmPrivate);
+	bool DeleteSavedGame(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& name);
+	void SaveGame(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& filename, const std::wstring& description, JS::HandleValue GUIMetadata);
+	void SaveGamePrefix(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& prefix, const std::wstring& description, JS::HandleValue GUIMetadata);
+	void QuickSave(ScriptInterface::RealmPrivate* pRealmPrivate, JS::HandleValue GUIMetadata);
+	void QuickLoad(ScriptInterface::RealmPrivate* pRealmPrivate);
+	JS::Value StartSavedGame(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& name);
 
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 }

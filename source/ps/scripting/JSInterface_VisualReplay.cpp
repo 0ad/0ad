@@ -23,42 +23,42 @@
 #include "ps/VisualReplay.h"
 #include "scriptinterface/ScriptInterface.h"
 
-bool JSI_VisualReplay::StartVisualReplay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& directory)
+bool JSI_VisualReplay::StartVisualReplay(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const CStrW& directory)
 {
 	return VisualReplay::StartVisualReplay(directory);
 }
 
-bool JSI_VisualReplay::DeleteReplay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& replayFile)
+bool JSI_VisualReplay::DeleteReplay(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const CStrW& replayFile)
 {
 	return VisualReplay::DeleteReplay(replayFile);
 }
 
-JS::Value JSI_VisualReplay::GetReplays(ScriptInterface::CxPrivate* pCxPrivate, bool compareFiles)
+JS::Value JSI_VisualReplay::GetReplays(ScriptInterface::RealmPrivate* pRealmPrivate, bool compareFiles)
 {
-	return VisualReplay::GetReplays(*(pCxPrivate->pScriptInterface), compareFiles);
+	return VisualReplay::GetReplays(*(pRealmPrivate->pScriptInterface), compareFiles);
 }
 
-JS::Value JSI_VisualReplay::GetReplayAttributes(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName)
+JS::Value JSI_VisualReplay::GetReplayAttributes(ScriptInterface::RealmPrivate* pRealmPrivate, const CStrW& directoryName)
 {
-	return VisualReplay::GetReplayAttributes(pCxPrivate, directoryName);
+	return VisualReplay::GetReplayAttributes(pRealmPrivate, directoryName);
 }
 
-bool JSI_VisualReplay::HasReplayMetadata(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& directoryName)
+bool JSI_VisualReplay::HasReplayMetadata(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const CStrW& directoryName)
 {
 	return VisualReplay::HasReplayMetadata(directoryName);
 }
 
-JS::Value JSI_VisualReplay::GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName)
+JS::Value JSI_VisualReplay::GetReplayMetadata(ScriptInterface::RealmPrivate* pRealmPrivate, const CStrW& directoryName)
 {
-	return VisualReplay::GetReplayMetadata(pCxPrivate, directoryName);
+	return VisualReplay::GetReplayMetadata(pRealmPrivate, directoryName);
 }
 
-void JSI_VisualReplay::AddReplayToCache(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName)
+void JSI_VisualReplay::AddReplayToCache(ScriptInterface::RealmPrivate* pRealmPrivate, const CStrW& directoryName)
 {
-	VisualReplay::AddReplayToCache(*(pCxPrivate->pScriptInterface), directoryName);
+	VisualReplay::AddReplayToCache(*(pRealmPrivate->pScriptInterface), directoryName);
 }
 
-CStrW JSI_VisualReplay::GetReplayDirectoryName(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& directoryName)
+CStrW JSI_VisualReplay::GetReplayDirectoryName(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const CStrW& directoryName)
 {
 	return wstring_from_utf8(OsPath(VisualReplay::GetDirectoryPath() / directoryName).string8());
 }

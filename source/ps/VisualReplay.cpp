@@ -422,10 +422,10 @@ bool VisualReplay::DeleteReplay(const OsPath& replayDirectory)
 	return DirectoryExists(directory) && DeleteDirectory(directory) == INFO::OK;
 }
 
-JS::Value VisualReplay::GetReplayAttributes(ScriptInterface::CxPrivate* pCxPrivate, const OsPath& directoryName)
+JS::Value VisualReplay::GetReplayAttributes(ScriptInterface::RealmPrivate* pRealmPrivate, const OsPath& directoryName)
 {
 	// Create empty JS object
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 	JS::RootedValue attribs(cx);
 	ScriptInterface::CreateObject(cx, &attribs);
 
@@ -441,7 +441,7 @@ JS::Value VisualReplay::GetReplayAttributes(ScriptInterface::CxPrivate* pCxPriva
 
 	// Read and return first line
 	std::getline(*replayStream, line);
-	pCxPrivate->pScriptInterface->ParseJSON(line, &attribs);
+	pRealmPrivate->pScriptInterface->ParseJSON(line, &attribs);
 	SAFE_DELETE(replayStream);;
 	return attribs;
 }
@@ -479,12 +479,12 @@ bool VisualReplay::HasReplayMetadata(const OsPath& directoryName)
 	return fileInfo.Size() > 0;
 }
 
-JS::Value VisualReplay::GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const OsPath& directoryName)
+JS::Value VisualReplay::GetReplayMetadata(ScriptInterface::RealmPrivate* pRealmPrivate, const OsPath& directoryName)
 {
 	if (!HasReplayMetadata(directoryName))
 		return JS::NullValue();
 
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 	JS::RootedValue metadata(cx);
 
 	std::ifstream* stream = new std::ifstream(OsString(GetDirectoryPath() / directoryName / L"metadata.json").c_str());
@@ -493,7 +493,7 @@ JS::Value VisualReplay::GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate
 	std::getline(*stream, line);
 	stream->close();
 	SAFE_DELETE(stream);
-	pCxPrivate->pScriptInterface->ParseJSON(line, &metadata);
+	pRealmPrivate->pScriptInterface->ParseJSON(line, &metadata);
 
 	return metadata;
 }

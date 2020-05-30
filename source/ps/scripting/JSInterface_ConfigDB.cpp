@@ -60,7 +60,7 @@ bool JSI_ConfigDB::GetConfigNamespace(const std::wstring& cfgNsString, EConfigNa
 	return true;
 }
 
-bool JSI_ConfigDB::HasChanges(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& cfgNsString)
+bool JSI_ConfigDB::HasChanges(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::wstring& cfgNsString)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
@@ -69,7 +69,7 @@ bool JSI_ConfigDB::HasChanges(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), co
 	return g_ConfigDB.HasChanges(cfgNs);
 }
 
-bool JSI_ConfigDB::SetChanges(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& cfgNsString, bool value)
+bool JSI_ConfigDB::SetChanges(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::wstring& cfgNsString, bool value)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
@@ -79,7 +79,7 @@ bool JSI_ConfigDB::SetChanges(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), co
 	return true;
 }
 
-std::string JSI_ConfigDB::GetValue(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& cfgNsString, const std::string& name)
+std::string JSI_ConfigDB::GetValue(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::wstring& cfgNsString, const std::string& name)
 {
 	if (IsProtectedConfigName(name))
 		return "";
@@ -93,7 +93,7 @@ std::string JSI_ConfigDB::GetValue(ScriptInterface::CxPrivate* UNUSED(pCxPrivate
 	return value;
 }
 
-bool JSI_ConfigDB::CreateValue(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& cfgNsString, const std::string& name, const std::string& value)
+bool JSI_ConfigDB::CreateValue(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::wstring& cfgNsString, const std::string& name, const std::string& value)
 {
 	if (IsProtectedConfigName(name))
 		return false;
@@ -106,7 +106,7 @@ bool JSI_ConfigDB::CreateValue(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), c
 	return true;
 }
 
-bool JSI_ConfigDB::RemoveValue(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& cfgNsString, const std::string& name)
+bool JSI_ConfigDB::RemoveValue(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::wstring& cfgNsString, const std::string& name)
 {
 	if (IsProtectedConfigName(name))
 		return false;
@@ -119,7 +119,7 @@ bool JSI_ConfigDB::RemoveValue(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), c
 	return true;
 }
 
-bool JSI_ConfigDB::WriteFile(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& cfgNsString, const Path& path)
+bool JSI_ConfigDB::WriteFile(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::wstring& cfgNsString, const Path& path)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
@@ -128,7 +128,7 @@ bool JSI_ConfigDB::WriteFile(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), con
 	return g_ConfigDB.WriteFile(cfgNs, path);
 }
 
-bool JSI_ConfigDB::WriteValueToFile(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& cfgNsString,  const std::string& name, const std::string& value, const Path& path)
+bool JSI_ConfigDB::WriteValueToFile(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::wstring& cfgNsString,  const std::string& name, const std::string& value, const Path& path)
 {
 	if (IsProtectedConfigName(name))
 		return false;
@@ -140,13 +140,13 @@ bool JSI_ConfigDB::WriteValueToFile(ScriptInterface::CxPrivate* UNUSED(pCxPrivat
 	return g_ConfigDB.WriteValueToFile(cfgNs, name, value, path);
 }
 
-void JSI_ConfigDB::CreateAndWriteValueToFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString,  const std::string& name, const std::string& value, const Path& path)
+void JSI_ConfigDB::CreateAndWriteValueToFile(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& cfgNsString,  const std::string& name, const std::string& value, const Path& path)
 {
-	CreateValue(pCxPrivate, cfgNsString, name, value);
-	WriteValueToFile(pCxPrivate, cfgNsString, name, value, path);
+	CreateValue(pRealmPrivate, cfgNsString, name, value);
+	WriteValueToFile(pRealmPrivate, cfgNsString, name, value, path);
 }
 
-bool JSI_ConfigDB::Reload(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& cfgNsString)
+bool JSI_ConfigDB::Reload(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::wstring& cfgNsString)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
@@ -155,7 +155,7 @@ bool JSI_ConfigDB::Reload(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const 
 	return g_ConfigDB.Reload(cfgNs);
 }
 
-bool JSI_ConfigDB::SetFile(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& cfgNsString, const Path& path)
+bool JSI_ConfigDB::SetFile(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::wstring& cfgNsString, const Path& path)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))

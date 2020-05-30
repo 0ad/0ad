@@ -21,16 +21,16 @@
 #include "scriptinterface/ScriptInterface.h"
 
 #define DECLARE_BOOLEAN_SCRIPT_SETTING(NAME) \
-	bool Get##NAME##Enabled(ScriptInterface::CxPrivate* pCxPrivate); \
-	void Set##NAME##Enabled(ScriptInterface::CxPrivate* pCxPrivate, bool Enabled);
+	bool Get##NAME##Enabled(ScriptInterface::RealmPrivate* pRealmPrivate); \
+	void Set##NAME##Enabled(ScriptInterface::RealmPrivate* pRealmPrivate, bool Enabled);
 
 namespace JSI_Renderer
 {
-	std::string GetRenderPath(ScriptInterface::CxPrivate* pCxPrivate);
-	void SetRenderPath(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name);
-	void UpdateAntiAliasingTechnique(ScriptInterface::CxPrivate* pCxPrivate);
-	void RecreateShadowMap(ScriptInterface::CxPrivate* pCxPrivate);
-	bool TextureExists(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename);
+	std::string GetRenderPath(ScriptInterface::RealmPrivate* pRealmPrivate);
+	void SetRenderPath(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& name);
+	void UpdateAntiAliasingTechnique(ScriptInterface::RealmPrivate* pRealmPrivate);
+	void RecreateShadowMap(ScriptInterface::RealmPrivate* pRealmPrivate);
+	bool TextureExists(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& filename);
 
 	DECLARE_BOOLEAN_SCRIPT_SETTING(Shadows);
 	DECLARE_BOOLEAN_SCRIPT_SETTING(ShadowPCF);

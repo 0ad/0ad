@@ -24,13 +24,13 @@
 
 namespace JSI_Debug
 {
-	int Crash(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
-	void DebugWarn(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
-	void DisplayErrorDialog(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& msg);
-	std::wstring GetBuildDate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
-	double GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
-	std::wstring GetBuildRevision(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
-	double GetMicroseconds(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
+	int Crash(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate));
+	void DebugWarn(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate));
+	void DisplayErrorDialog(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::wstring& msg);
+	std::wstring GetBuildDate(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate));
+	double GetBuildTimestamp(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate));
+	std::wstring GetBuildRevision(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate));
+	double GetMicroseconds(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate));
 
 	void RegisterScriptFunctions(const ScriptInterface& ScriptInterface);
 }

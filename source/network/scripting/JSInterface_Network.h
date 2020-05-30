@@ -24,23 +24,23 @@
 
 namespace JSI_Network
 {
-	u16 GetDefaultPort(ScriptInterface::CxPrivate* pCxPrivate);
-	bool HasNetServer(ScriptInterface::CxPrivate* pCxPrivate);
-	bool HasNetClient(ScriptInterface::CxPrivate* pCxPrivate);
-	void StartNetworkGame(ScriptInterface::CxPrivate* pCxPrivate);
-	void SetNetworkGameAttributes(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs1);
-	void StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const u16 serverPort, const CStr& hostLobbyName);
-	void StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const CStr& serverAddress, u16 serverPort, bool useSTUN, const CStr& hostJID);
-	JS::Value FindStunEndpoint(ScriptInterface::CxPrivate* pCxPrivate, int port);
-	void DisconnectNetworkGame(ScriptInterface::CxPrivate* pCxPrivate);
-	JS::Value PollNetworkClient(ScriptInterface::CxPrivate* pCxPrivate);
-	CStr GetPlayerGUID(ScriptInterface::CxPrivate* pCxPrivate);
-	void KickPlayer(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, bool ban);
-	void AssignNetworkPlayer(ScriptInterface::CxPrivate* pCxPrivate, int playerID, const CStr& guid);
-	void ClearAllPlayerReady (ScriptInterface::CxPrivate* pCxPrivate);
-	void SendNetworkChat(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& message);
-	void SendNetworkReady(ScriptInterface::CxPrivate* pCxPrivate, int message);
-	void SetTurnLength(ScriptInterface::CxPrivate* pCxPrivate, int length);
+	u16 GetDefaultPort(ScriptInterface::RealmPrivate* pRealmPrivate);
+	bool HasNetServer(ScriptInterface::RealmPrivate* pRealmPrivate);
+	bool HasNetClient(ScriptInterface::RealmPrivate* pRealmPrivate);
+	void StartNetworkGame(ScriptInterface::RealmPrivate* pRealmPrivate);
+	void SetNetworkGameAttributes(ScriptInterface::RealmPrivate* pRealmPrivate, JS::HandleValue attribs1);
+	void StartNetworkHost(ScriptInterface::RealmPrivate* pRealmPrivate, const CStrW& playerName, const u16 serverPort, const CStr& hostLobbyName);
+	void StartNetworkJoin(ScriptInterface::RealmPrivate* pRealmPrivate, const CStrW& playerName, const CStr& serverAddress, u16 serverPort, bool useSTUN, const CStr& hostJID);
+	JS::Value FindStunEndpoint(ScriptInterface::RealmPrivate* pRealmPrivate, int port);
+	void DisconnectNetworkGame(ScriptInterface::RealmPrivate* pRealmPrivate);
+	JS::Value PollNetworkClient(ScriptInterface::RealmPrivate* pRealmPrivate);
+	CStr GetPlayerGUID(ScriptInterface::RealmPrivate* pRealmPrivate);
+	void KickPlayer(ScriptInterface::RealmPrivate* pRealmPrivate, const CStrW& playerName, bool ban);
+	void AssignNetworkPlayer(ScriptInterface::RealmPrivate* pRealmPrivate, int playerID, const CStr& guid);
+	void ClearAllPlayerReady (ScriptInterface::RealmPrivate* pRealmPrivate);
+	void SendNetworkChat(ScriptInterface::RealmPrivate* pRealmPrivate, const CStrW& message);
+	void SendNetworkReady(ScriptInterface::RealmPrivate* pRealmPrivate, int message);
+	void SetTurnLength(ScriptInterface::RealmPrivate* pRealmPrivate, int length);
 
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 }

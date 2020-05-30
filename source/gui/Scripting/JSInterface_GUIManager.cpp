@@ -27,31 +27,31 @@
 
 // Note that the initData argument may only contain clonable data.
 // Functions aren't supported for example!
-void JSI_GUIManager::PushGuiPage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue initData, JS::HandleValue callbackFunction)
+void JSI_GUIManager::PushGuiPage(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& name, JS::HandleValue initData, JS::HandleValue callbackFunction)
 {
-	g_GUI->PushPage(name, pCxPrivate->pScriptInterface->WriteStructuredClone(initData), callbackFunction);
+	g_GUI->PushPage(name, pRealmPrivate->pScriptInterface->WriteStructuredClone(initData), callbackFunction);
 }
 
-void JSI_GUIManager::SwitchGuiPage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue initData)
+void JSI_GUIManager::SwitchGuiPage(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& name, JS::HandleValue initData)
 {
-	g_GUI->SwitchPage(name, pCxPrivate->pScriptInterface, initData);
+	g_GUI->SwitchPage(name, pRealmPrivate->pScriptInterface, initData);
 }
 
-void JSI_GUIManager::PopGuiPage(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue args)
+void JSI_GUIManager::PopGuiPage(ScriptInterface::RealmPrivate* pRealmPrivate, JS::HandleValue args)
 {
 	if (g_GUI->GetPageCount() < 2)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
 		JS_ReportErrorASCII(cx, "Can't pop GUI pages when less than two pages are opened!");
 		return;
 	}
 
-	g_GUI->PopPage(pCxPrivate->pScriptInterface->WriteStructuredClone(args));
+	g_GUI->PopPage(pRealmPrivate->pScriptInterface->WriteStructuredClone(args));
 }
 
-JS::Value JSI_GUIManager::GetGUIObjectByName(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name)
+JS::Value JSI_GUIManager::GetGUIObjectByName(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& name)
 {
-	CGUI* guiPage = static_cast<CGUI*>(pCxPrivate->pCBData);
+	CGUI* guiPage = static_cast<CGUI*>(pRealmPrivate->pCBData);
 
 	IGUIObject* guiObj = guiPage->FindObjectByName(name);
 	if (!guiObj)
@@ -60,36 +60,36 @@ JS::Value JSI_GUIManager::GetGUIObjectByName(ScriptInterface::CxPrivate* pCxPriv
 	return JS::ObjectValue(*guiObj->GetJSObject());
 }
 
-void JSI_GUIManager::SetGlobalHotkey(ScriptInterface::CxPrivate* pCxPrivate, const std::string& hotkeyTag, JS::HandleValue function)
+void JSI_GUIManager::SetGlobalHotkey(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& hotkeyTag, JS::HandleValue function)
 {
-	CGUI* guiPage = static_cast<CGUI*>(pCxPrivate->pCBData);
+	CGUI* guiPage = static_cast<CGUI*>(pRealmPrivate->pCBData);
 	guiPage->SetGlobalHotkey(hotkeyTag, function);
 }
 
-void JSI_GUIManager::UnsetGlobalHotkey(ScriptInterface::CxPrivate* pCxPrivate, const std::string& hotkeyTag)
+void JSI_GUIManager::UnsetGlobalHotkey(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& hotkeyTag)
 {
-	CGUI* guiPage = static_cast<CGUI*>(pCxPrivate->pCBData);
+	CGUI* guiPage = static_cast<CGUI*>(pRealmPrivate->pCBData);
 	guiPage->UnsetGlobalHotkey(hotkeyTag);
 }
 
-std::wstring JSI_GUIManager::SetCursor(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& name)
+std::wstring JSI_GUIManager::SetCursor(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::wstring& name)
 {
 	std::wstring old = g_CursorName;
 	g_CursorName = name;
 	return old;
 }
 
-void JSI_GUIManager::ResetCursor(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_GUIManager::ResetCursor(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate))
 {
 	g_CursorName = g_DefaultCursor;
 }
 
-bool JSI_GUIManager::TemplateExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& templateName)
+bool JSI_GUIManager::TemplateExists(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::string& templateName)
 {
 	return g_GUI->TemplateExists(templateName);
 }
 
-CParamNode JSI_GUIManager::GetTemplate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& templateName)
+CParamNode JSI_GUIManager::GetTemplate(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::string& templateName)
 {
 	return g_GUI->GetTemplate(templateName);
 }

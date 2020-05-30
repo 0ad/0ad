@@ -23,16 +23,16 @@
 
 namespace JSI_GUIManager
 {
-	void PushGuiPage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue initData, JS::HandleValue callbackFunction);
-	void SwitchGuiPage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue initData);
-	void PopGuiPage(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue args);
-	JS::Value GetGUIObjectByName(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name);
-	void SetGlobalHotkey(ScriptInterface::CxPrivate* pCxPrivate, const std::string& hotkeyTag, JS::HandleValue function);
-	void UnsetGlobalHotkey(ScriptInterface::CxPrivate* pCxPrivate, const std::string& hotkeyTag);
-	std::wstring SetCursor(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name);
-	void ResetCursor(ScriptInterface::CxPrivate* pCxPrivate);
-	bool TemplateExists(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName);
-	CParamNode GetTemplate(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName);
+	void PushGuiPage(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& name, JS::HandleValue initData, JS::HandleValue callbackFunction);
+	void SwitchGuiPage(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& name, JS::HandleValue initData);
+	void PopGuiPage(ScriptInterface::RealmPrivate* pRealmPrivate, JS::HandleValue args);
+	JS::Value GetGUIObjectByName(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& name);
+	void SetGlobalHotkey(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& hotkeyTag, JS::HandleValue function);
+	void UnsetGlobalHotkey(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& hotkeyTag);
+	std::wstring SetCursor(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& name);
+	void ResetCursor(ScriptInterface::RealmPrivate* pRealmPrivate);
+	bool TemplateExists(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& templateName);
+	CParamNode GetTemplate(ScriptInterface::RealmPrivate* pRealmPrivate, const std::string& templateName);
 
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 }

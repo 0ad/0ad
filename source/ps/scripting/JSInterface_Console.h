@@ -23,8 +23,8 @@
 namespace JSI_Console
 {
 	bool CheckGlobalInitialized();
-	bool GetVisibleEnabled(ScriptInterface::CxPrivate* pCxPrivate);
-	void SetVisibleEnabled(ScriptInterface::CxPrivate* pCxPrivate, bool Enabled);
+	bool GetVisibleEnabled(ScriptInterface::RealmPrivate* pRealmPrivate);
+	void SetVisibleEnabled(ScriptInterface::RealmPrivate* pRealmPrivate, bool Enabled);
 
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 }

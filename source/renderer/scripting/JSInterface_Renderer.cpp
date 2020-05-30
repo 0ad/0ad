@@ -27,12 +27,12 @@
 #include "scriptinterface/ScriptInterface.h"
 
 #define IMPLEMENT_BOOLEAN_SCRIPT_SETTING(NAME) \
-bool JSI_Renderer::Get##NAME##Enabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate)) \
+bool JSI_Renderer::Get##NAME##Enabled(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate)) \
 { \
 return g_RenderingOptions.Get##NAME(); \
 } \
 \
-void JSI_Renderer::Set##NAME##Enabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool enabled) \
+void JSI_Renderer::Set##NAME##Enabled(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), bool enabled) \
 { \
 	g_RenderingOptions.Set##NAME(enabled); \
 }
@@ -57,27 +57,27 @@ IMPLEMENT_BOOLEAN_SCRIPT_SETTING(DisplayShadowsFrustum);
 
 #undef IMPLEMENT_BOOLEAN_SCRIPT_SETTING
 
-std::string JSI_Renderer::GetRenderPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+std::string JSI_Renderer::GetRenderPath(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate))
 {
 	return RenderPathEnum::ToString(g_RenderingOptions.GetRenderPath());
 }
 
-void JSI_Renderer::SetRenderPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& name)
+void JSI_Renderer::SetRenderPath(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::string& name)
 {
 	g_RenderingOptions.SetRenderPath(RenderPathEnum::FromString(name));
 }
 
-void JSI_Renderer::UpdateAntiAliasingTechnique(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_Renderer::UpdateAntiAliasingTechnique(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate))
 {
 	g_Renderer.GetPostprocManager().UpdateAntiAliasingTechnique();
 }
 
-void JSI_Renderer::RecreateShadowMap(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_Renderer::RecreateShadowMap(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate))
 {
 	g_Renderer.GetShadowMap().RecreateTexture();
 }
 
-bool JSI_Renderer::TextureExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename)
+bool JSI_Renderer::TextureExists(ScriptInterface::RealmPrivate* UNUSED(pRealmPrivate), const std::wstring& filename)
 {
 	return g_Renderer.GetTextureManager().TextureExists(filename);
 }
