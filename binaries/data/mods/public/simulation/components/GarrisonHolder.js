@@ -10,9 +10,6 @@ GarrisonHolder.prototype.Schema =
 		"</attribute>" +
 		"<text/>" +
 	"</element>" +
-	"<element name='EjectHealth' a:help='Percentage of maximum health below which this holder no longer allows garrisoning'>" +
-		"<ref name='nonNegativeDecimal'/>" +
-	"</element>" +
 	"<element name='EjectClassesOnDestroy' a:help='Classes of entities to be ejected on destroy. Others are killed'>" +
 		"<attribute name='datatype'>" +
 			"<value>tokens</value>" +
@@ -25,6 +22,11 @@ GarrisonHolder.prototype.Schema =
 	"<element name='LoadingRange' a:help='The maximum distance from this holder at which entities are allowed to garrison. Should be about 2.0 for land entities and preferably greater for ships'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
+	"<optional>" +
+		"<element name='EjectHealth' a:help='Percentage of maximum health below which this holder no longer allows garrisoning'>" +
+			"<ref name='nonNegativeDecimal'/>" +
+		"</element>" +
+	"</optional>" +
 	"<optional>" +
 		"<element name='Pickup' a:help='This garrisonHolder will move to pick up units to be garrisoned'>" +
 			"<data type='boolean'/>" +
@@ -547,8 +549,12 @@ GarrisonHolder.prototype.OnHealthChanged = function(msg)
 
 GarrisonHolder.prototype.HasEnoughHealth = function()
 {
+	// 0 is a valid value so explicitly check for undefined.
+	if (this.template.EjectHealth === undefined)
+		return true;
+
 	let cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
-	return cmpHealth.GetHitpoints() > Math.floor(+this.template.EjectHealth * cmpHealth.GetMaxHitpoints());
+	return !cmpHealth || cmpHealth.GetHitpoints() > Math.floor(+this.template.EjectHealth * cmpHealth.GetMaxHitpoints());
 };
 
 /**

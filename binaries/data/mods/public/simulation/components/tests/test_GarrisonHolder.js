@@ -27,11 +27,6 @@ AddMock(garrisonHolderId, IID_Ownership, {
 	"GetOwner": () => player
 });
 
-AddMock(garrisonHolderId, IID_Health, {
-	"GetHitpoints": () => 50,
-	"GetMaxHitpoints": () => 600
-});
-
 AddMock(player, IID_Player, {
 	"IsAlly": id => id != enemyPlayer,
 	"IsMutualAlly": id => id != enemyPlayer,
@@ -114,6 +109,43 @@ let cmpGarrisonHolder = ConstructComponent(garrisonHolderId, "GarrisonHolder", {
 	}
 });
 
+let testGarrisonAllowed = function()
+{
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.HasEnoughHealth(), true);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(enemyUnitId), false);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(unitToGarrisonId), true);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.Eject(unitToGarrisonId), true);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(unitToGarrisonId), true);
+	for (let entity of garrisonedEntitiesList)
+		TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(entity), true);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.IsFull(), true);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.CanPickup(unitToGarrisonId), false);
+
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.UnloadTemplate("spart_infantry_archer_a", 2, false, false), true);
+	TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), [24, 25, 26, 27, 28, 29, 30, 31, 32]);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.UnloadAllByOwner(friendlyPlayer, false), true);
+	TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), [24, 25, 26, 27]);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 4);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.IsEjectable(25), true);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.Unload(25), true);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.IsEjectable(25), false);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.PerformEject([25], false), false);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.PerformEject([], false), true);
+	TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), [24, 26, 27]);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 3);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.IsFull(), false);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.UnloadAll(), true);
+	TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), []);
+};
+
+// No health component yet.
+testGarrisonAllowed();
+
+AddMock(garrisonHolderId, IID_Health, {
+	"GetHitpoints": () => 50,
+	"GetMaxHitpoints": () => 600
+});
+
 cmpGarrisonHolder.AllowGarrisoning(true, "callerID1");
 cmpGarrisonHolder.AllowGarrisoning(false, 5);
 TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(unitToGarrisonId), false);
@@ -143,31 +175,29 @@ AddMock(garrisonHolderId, IID_Health, {
 	"GetMaxHitpoints": () => 600
 });
 
-TS_ASSERT_EQUALS(cmpGarrisonHolder.HasEnoughHealth(), true);
-TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(enemyUnitId), false);
-TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(unitToGarrisonId), true);
-TS_ASSERT_EQUALS(cmpGarrisonHolder.Eject(unitToGarrisonId), true);
-TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(unitToGarrisonId), true);
-for (let entity of garrisonedEntitiesList)
-	TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(entity), true);
-TS_ASSERT_EQUALS(cmpGarrisonHolder.IsFull(), true);
-TS_ASSERT_EQUALS(cmpGarrisonHolder.CanPickup(unitToGarrisonId), false);
+// No eject health.
+cmpGarrisonHolder = ConstructComponent(garrisonHolderId, "GarrisonHolder", {
+	"Max": 10,
+	"List": { "_string": "Infantry+Cavalry" },
+	"EjectClassesOnDestroy": { "_string": "Infantry" },
+	"BuffHeal": 1,
+	"LoadingRange": 2.1,
+	"Pickup": false,
+	"VisibleGarrisonPoints": {
+		"archer1": {
+			"X": 12,
+			"Y": 5,
+			"Z": 6
+		},
+		"archer2": {
+			"X": 15,
+			"Y": 5,
+			"Z": 6
+		}
+	}
+});
 
-TS_ASSERT_EQUALS(cmpGarrisonHolder.UnloadTemplate("spart_infantry_archer_a", 2, false, false), true);
-TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), [24, 25, 26, 27, 28, 29, 30, 31, 32]);
-TS_ASSERT_EQUALS(cmpGarrisonHolder.UnloadAllByOwner(friendlyPlayer, false), true);
-TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), [24, 25, 26, 27]);
-TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 4);
-TS_ASSERT_EQUALS(cmpGarrisonHolder.IsEjectable(25), true);
-TS_ASSERT_EQUALS(cmpGarrisonHolder.Unload(25), true);
-TS_ASSERT_EQUALS(cmpGarrisonHolder.IsEjectable(25), false);
-TS_ASSERT_EQUALS(cmpGarrisonHolder.PerformEject([25], false), false);
-TS_ASSERT_EQUALS(cmpGarrisonHolder.PerformEject([], false), true);
-TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), [24, 26, 27]);
-TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 3);
-TS_ASSERT_EQUALS(cmpGarrisonHolder.IsFull(), false);
-TS_ASSERT_EQUALS(cmpGarrisonHolder.UnloadAll(), true);
-TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), []);
+testGarrisonAllowed();
 
 let siegeEngineId = 44;
 AddMock(siegeEngineId, IID_Identity, {
