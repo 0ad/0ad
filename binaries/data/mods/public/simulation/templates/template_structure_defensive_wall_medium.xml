@@ -4,9 +4,9 @@
     structures/wall_garrisoned
   </Auras>
   <Cost>
-    <BuildTime>30</BuildTime>
+    <BuildTime>24</BuildTime>
     <Resources>
-      <stone>22</stone>
+      <stone>24</stone>
     </Resources>
   </Cost>
   <GarrisonHolder>
@@ -22,7 +22,7 @@
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_wall_medium</SpawnEntityOnDeath>
   </Health>
   <Loot>
-    <stone>4</stone>
+    <stone>5</stone>
   </Loot>
   <ProductionQueue disable=""/>
   <VisualActor>
