@@ -23,15 +23,6 @@
   <Obstruction>
     <Static width="20.0" depth="20.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/{civ}_champion_infantry_barracks
-      units/{civ}_champion_cavalry_barracks
-    </Entities>
-    <Technologies datatype="tokens">
-      unlock_champion_units
-    </Technologies>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/britons/barracks.xml</Actor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
