@@ -41,7 +41,6 @@ public:
 	virtual std::string CheckFoundation_wrapper(const std::string& UNUSED(className), bool UNUSED(onlyCenterPoint)) const { return std::string(); }
 	virtual bool CheckDuplicateFoundation() const { return true; }
 	virtual std::vector<entity_id_t> GetEntitiesByFlags(ICmpObstructionManager::flags_t UNUSED(flags)) const { return std::vector<entity_id_t>(); }
-	virtual std::vector<entity_id_t> GetEntitiesBlockingMovement() const { return std::vector<entity_id_t>(); }
 	virtual std::vector<entity_id_t> GetEntitiesBlockingConstruction() const { return std::vector<entity_id_t>(); }
 	virtual std::vector<entity_id_t> GetEntitiesDeletedUponConstruction() const { return std::vector<entity_id_t>(); }
 	virtual void ResolveFoundationCollisions() const { }
