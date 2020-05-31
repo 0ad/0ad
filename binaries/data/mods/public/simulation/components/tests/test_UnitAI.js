@@ -61,6 +61,7 @@ TestTargetEntityRenaming(
 	(unitAI, player_ent, target_ent) => {
 		unitAI.CanGarrison = (target) => target == target_ent;
 		unitAI.MoveToGarrisonRange = (target) => target == target_ent;
+		unitAI.AbleToMove = () => true;
 
 		AddMock(target_ent, IID_GarrisonHolder, {
 			"CanPickup": () => false

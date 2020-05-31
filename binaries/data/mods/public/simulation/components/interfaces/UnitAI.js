@@ -7,6 +7,13 @@ Engine.RegisterInterface("UnitAI");
 Engine.RegisterMessageType("UnitIdleChanged");
 
 /**
+ * Message of the form { "ableToMove": boolean }
+ * sent from UnitAI whenever the unit's ability to move changes.
+ */
+Engine.RegisterMessageType("UnitAbleToMoveChanged");
+
+
+/**
  * Message of the form { "to": string }
  * where "to" value is a UnitAI stance,
  * sent from UnitAI whenever the unit's stance changes.
