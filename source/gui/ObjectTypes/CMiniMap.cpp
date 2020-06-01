@@ -242,7 +242,7 @@ float CMiniMap::GetAngle() const
 
 bool CMiniMap::FireWorldClickEvent(int button, int UNUSED(clicks))
 {
-	JSContext* cx = g_GUI->GetActiveGUI()->GetScriptInterface()->GetContext();
+	CX_IN_REALM(cx,g_GUI->GetActiveGUI()->GetScriptInterface());
 
 	float x, z;
 	GetMouseWorldCoordinates(x, z);

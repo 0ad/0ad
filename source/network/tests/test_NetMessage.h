@@ -27,6 +27,7 @@ public:
 	void test_sim()
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+        auto realm = script.AutoRealm();
 		JSContext* cx = script.GetContext();
 
 		JS::RootedValue val(cx);

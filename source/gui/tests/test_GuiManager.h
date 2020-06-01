@@ -62,7 +62,8 @@ public:
 
 		// Load up a test page.
 		const ScriptInterface& scriptInterface = *(g_GUI->GetScriptInterface());
-		JSContext* cx = scriptInterface.GetContext();
+		
+        CX_IN_REALM(cx, (&scriptInterface))
 		JS::RootedValue val(cx);
 		scriptInterface.CreateObject(cx, &val);
 
@@ -82,12 +83,12 @@ public:
 			in_dispatch_event(&ev);
 
 		const ScriptInterface& pageScriptInterface = *(g_GUI->GetActiveGUI()->GetScriptInterface());
-		JSContext* pcx = pageScriptInterface.GetContext();
+        CX_IN_REALM(pcx, (&pageScriptInterface));
 		JS::RootedValue global(pcx, pageScriptInterface.GetGlobalObject());
 
 		// Ensure that our hotkey state was synchronised with the event itself.
 		bool hotkey_pressed_value = false;
-		JS::RootedValue js_hotkey_pressed_value(pageScriptInterface.GetContext());
+		JS::RootedValue js_hotkey_pressed_value(pcx);
 
 		pageScriptInterface.GetProperty(global, "state_before", &js_hotkey_pressed_value);
 		ScriptInterface::FromJSVal(pcx, js_hotkey_pressed_value, hotkey_pressed_value);

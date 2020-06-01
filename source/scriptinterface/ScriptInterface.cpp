@@ -667,8 +667,8 @@ bool ScriptInterface::GetProperty(JS::HandleValue obj, const char* name, JS::Mut
 
 bool ScriptInterface::GetProperty(JS::HandleValue obj, const char* name, JS::MutableHandleObject out) const
 {
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
-	JSContext* cx = GetContext();
+    CX_IN_REALM(cx,this)
+
 	JS::RootedValue val(cx);
 	if (!GetProperty_(obj, name, &val))
 		return false;
@@ -689,39 +689,42 @@ bool ScriptInterface::GetPropertyInt(JS::HandleValue obj, int name, JS::MutableH
 
 bool ScriptInterface::GetProperty_(JS::HandleValue obj, const char* name, JS::MutableHandleValue out) const
 {
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
+    CX_IN_REALM(cx,this)
+
 	if (!obj.isObject())
 		return false;
-	JS::RootedObject object(m->m_cx, &obj.toObject());
+	JS::RootedObject object(cx, &obj.toObject());
 
-	if (!JS_GetProperty(m->m_cx, object, name, out))
+	if (!JS_GetProperty(cx, object, name, out))
 		return false;
 	return true;
 }
 
 bool ScriptInterface::GetPropertyInt_(JS::HandleValue obj, int name, JS::MutableHandleValue out) const
 {
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
-	JS::RootedId nameId(m->m_cx, INT_TO_JSID(name));
+    CX_IN_REALM(cx,this)
+
+	JS::RootedId nameId(cx, INT_TO_JSID(name));
 	if (!obj.isObject())
 		return false;
-	JS::RootedObject object(m->m_cx, &obj.toObject());
+	JS::RootedObject object(cx, &obj.toObject());
 
-	if (!JS_GetPropertyById(m->m_cx, object, nameId, out))
+	if (!JS_GetPropertyById(cx, object, nameId, out))
 		return false;
 	return true;
 }
 
 bool ScriptInterface::HasProperty(JS::HandleValue obj, const char* name) const
 {
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
+    CX_IN_REALM(cx,this)
+
 	// TODO: proper errorhandling
 	if (!obj.isObject())
 		return false;
-	JS::RootedObject object(m->m_cx, &obj.toObject());
+	JS::RootedObject object(cx, &obj.toObject());
 
 	bool found;
-	if (!JS_HasProperty(m->m_cx, object, name, &found))
+	if (!JS_HasProperty(cx, object, name, &found))
 		return false;
 	return found;
 }
@@ -729,7 +732,8 @@ bool ScriptInterface::HasProperty(JS::HandleValue obj, const char* name) const
 bool ScriptInterface::EnumeratePropertyNamesWithPrefix(JS::HandleValue objVal, const char* prefix, std::vector<std::string>& out) const
 {
 
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
+    CX_IN_REALM(cx,this)
+
 	if (!objVal.isObjectOrNull())
 	{
 		LOGERROR("EnumeratePropertyNamesWithPrefix expected object type!");
@@ -739,24 +743,24 @@ bool ScriptInterface::EnumeratePropertyNamesWithPrefix(JS::HandleValue objVal, c
 	if (objVal.isNull())
 		return true; // reached the end of the prototype chain
 
-	JS::RootedObject obj(m->m_cx, &objVal.toObject());
-	JS::Rooted<JS::IdVector> props(m->m_cx, JS::IdVector(m->m_cx));
-	if (!JS_Enumerate(m->m_cx, obj, &props))
+	JS::RootedObject obj(cx, &objVal.toObject());
+	JS::Rooted<JS::IdVector> props(cx, JS::IdVector(cx));
+	if (!JS_Enumerate(cx, obj, &props))
 		return false;
 
 	for (size_t i = 0; i < props.length(); ++i)
 	{
-		JS::RootedId id(m->m_cx, props[i]);
-		JS::RootedValue val(m->m_cx);
-		if (!JS_IdToValue(m->m_cx, id, &val))
+		JS::RootedId id(cx, props[i]);
+		JS::RootedValue val(cx);
+		if (!JS_IdToValue(cx, id, &val))
 			return false;
 
 		if (!val.isString())
 			continue; // ignore integer properties
 
-		JS::RootedString name(m->m_cx, val.toString());
+		JS::RootedString name(cx, val.toString());
 		size_t len = strlen(prefix)+1;
-		JS::UniqueChars ubuf = JS_EncodeStringToASCII(m->m_cx, name);
+		JS::UniqueChars ubuf = JS_EncodeStringToASCII(cx, name);
         std::vector<char> buf;
         buf.resize(len);
         for(size_t i = 0; i < len-1; i++) buf[i] = ubuf.get()[i];
@@ -768,7 +772,7 @@ bool ScriptInterface::EnumeratePropertyNamesWithPrefix(JS::HandleValue objVal, c
 			{
 				size_t length;
 				JS::AutoCheckCannotGC nogc;
-				const JS::Latin1Char* chars = JS_GetLatin1StringCharsAndLength(m->m_cx, nogc, name, &length);
+				const JS::Latin1Char* chars = JS_GetLatin1StringCharsAndLength(cx, nogc, name, &length);
 				if (chars)
 					out.push_back(std::string(chars, chars+length));
 			}
@@ -776,7 +780,7 @@ bool ScriptInterface::EnumeratePropertyNamesWithPrefix(JS::HandleValue objVal, c
 			{
 				size_t length;
 				JS::AutoCheckCannotGC nogc;
-				const char16_t* chars = JS_GetTwoByteStringCharsAndLength(m->m_cx, nogc, name, &length);
+				const char16_t* chars = JS_GetTwoByteStringCharsAndLength(cx, nogc, name, &length);
 				if (chars)
 					out.push_back(std::string(chars, chars+length));
 			}
@@ -784,10 +788,10 @@ bool ScriptInterface::EnumeratePropertyNamesWithPrefix(JS::HandleValue objVal, c
 	}
 
 	// Recurse up the prototype chain
-	JS::RootedObject prototype(m->m_cx);
-	if (JS_GetPrototype(m->m_cx, obj, &prototype))
+	JS::RootedObject prototype(cx);
+	if (JS_GetPrototype(cx, obj, &prototype))
 	{
-		JS::RootedValue prototypeVal(m->m_cx, JS::ObjectOrNullValue(prototype));
+		JS::RootedValue prototypeVal(cx, JS::ObjectOrNullValue(prototype));
 		if (!EnumeratePropertyNamesWithPrefix(prototypeVal, prefix, out))
 			return false;
 	}
@@ -797,42 +801,45 @@ bool ScriptInterface::EnumeratePropertyNamesWithPrefix(JS::HandleValue objVal, c
 
 bool ScriptInterface::SetPrototype(JS::HandleValue objVal, JS::HandleValue protoVal)
 {
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
+    CX_IN_REALM(cx,this)
+
 	if (!objVal.isObject() || !protoVal.isObject())
 		return false;
-	JS::RootedObject obj(m->m_cx, &objVal.toObject());
-	JS::RootedObject proto(m->m_cx, &protoVal.toObject());
-	return JS_SetPrototype(m->m_cx, obj, proto);
+	JS::RootedObject obj(cx, &objVal.toObject());
+	JS::RootedObject proto(cx, &protoVal.toObject());
+	return JS_SetPrototype(cx, obj, proto);
 }
 
 bool ScriptInterface::FreezeObject(JS::HandleValue objVal, bool deep) const
 {
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
-	if (!objVal.isObject())
+    CX_IN_REALM(cx,this)
+	
+    if (!objVal.isObject())
 		return false;
 
-	JS::RootedObject obj(m->m_cx, &objVal.toObject());
+	JS::RootedObject obj(cx, &objVal.toObject());
 
 	if (deep)
-		return JS_DeepFreezeObject(m->m_cx, obj);
+		return JS_DeepFreezeObject(cx, obj);
 	else
-		return JS_FreezeObject(m->m_cx, obj);
+		return JS_FreezeObject(cx, obj);
 }
 
 bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& code) const
 {
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
-	JS::RootedObject global(m->m_cx, m->m_glob);
+    CX_IN_REALM(cx,this)
+
+	JS::RootedObject global(cx, m->m_glob);
 	uint lineNo = 1;
 	// CompileOptions does not copy the contents of the filename string pointer.
 	// Passing a temporary string there will cause undefined behaviour, so we create a separate string to avoid the temporary.
 	std::string filenameStr = filename.string8();
 
-	JS::CompileOptions options(m->m_cx);
+	JS::CompileOptions options(cx);
 	options.setFileAndLine(filenameStr.c_str(), lineNo);
 	options.setIsRunOnce(false);
 
-	JS::RootedObjectVector emptyScopeChain(m->m_cx);
+	JS::RootedObjectVector emptyScopeChain(cx);
 
 	utf16string codeUtf16(code.begin(), code.end());
     JS::SourceText<char16_t> source;
@@ -843,8 +850,8 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& cod
      return false;                                                               
     }
 
-	JS::RootedFunction func(m->m_cx,
-                                JS::CompileFunction(m->m_cx, 
+	JS::RootedFunction func(cx,
+                                JS::CompileFunction(cx, 
                                     emptyScopeChain, 
                                     options, 
                                     NULL, 
@@ -854,8 +861,8 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& cod
 	
     if(!func) return false;
 
-	JS::RootedValue rval(m->m_cx);
-	return JS_CallFunction(m->m_cx, nullptr, func, JS::HandleValueArray::empty(), &rval);
+	JS::RootedValue rval(cx);
+	return JS_CallFunction(cx, nullptr, func, JS::HandleValueArray::empty(), &rval);
 }
 
 shared_ptr<ScriptRuntime> ScriptInterface::CreateRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtimeSize, int heapGrowthBytesGCTrigger)
@@ -865,31 +872,33 @@ shared_ptr<ScriptRuntime> ScriptInterface::CreateRuntime(shared_ptr<ScriptRuntim
 
 bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::wstring& code) const
 {
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
+    CX_IN_REALM(cx,this)
+
 	uint lineNo = 1;
 	// CompileOptions does not copy the contents of the filename string pointer.
 	// Passing a temporary string there will cause undefined behaviour, so we create a separate string to avoid the temporary.
 	std::string filenameStr = filename.string8();
 
-	JS::RootedValue rval(m->m_cx);
-	JS::CompileOptions opts(m->m_cx);
+	JS::RootedValue rval(cx);
+	JS::CompileOptions opts(cx);
 	opts.setFileAndLine(filenameStr.c_str(), lineNo);
 	
     utf16string codeUtf16(code.begin(), code.end());
     JS::SourceText<char16_t> source;
-    if (!source.init(m->m_cx, 
+    if (!source.init(cx, 
                      (const char16_t*)codeUtf16.c_str(), 
                      codeUtf16.size(), 
                      JS::SourceOwnership::Borrowed)) {    
      return false;                                                               
     }
 
-	return JS::Evaluate(m->m_cx, opts, source, &rval);
+	return JS::Evaluate(cx, opts, source, &rval);
 }
 
 bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path) const
 {
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
+    CX_IN_REALM(cx,this)
+
 	if (!VfsFileExists(path))
 	{
 		LOGERROR("File '%s' does not exist", path.string8());
@@ -913,36 +922,45 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path) const
 	// Passing a temporary string there will cause undefined behaviour, so we create a separate string to avoid the temporary.
 	std::string filenameStr = path.string8();
 
-	JS::RootedValue rval(m->m_cx);
-	JS::CompileOptions opts(m->m_cx);
+	JS::RootedValue rval(cx);
+	JS::CompileOptions opts(cx);
 	opts.setFileAndLine(filenameStr.c_str(), lineNo);
 
     JS::SourceText<mozilla::Utf8Unit> source;
-    if (!source.init(m->m_cx, 
+    if (!source.init(cx, 
                      codeUtf8.c_str(), 
                      codeUtf8.size(), 
                      JS::SourceOwnership::Borrowed)) {    
      return false;                                                               
     }
 
-	return JS::Evaluate(m->m_cx, opts, source, &rval);
+	return JS::Evaluate(cx, opts, source, &rval);
+}
+
+
+JSAutoRealm ScriptInterface::AutoRealm() const
+{
+    return JSAutoRealm(m->m_cx, m->globalRootedVal);
 }
 
 bool ScriptInterface::Eval(const char* code) const
 {
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
-	JS::RootedValue rval(m->m_cx);
+    CX_IN_REALM(cx,this)
+
+	JS::RootedValue rval(cx);
 	return Eval_(code, &rval);
 }
 
 bool ScriptInterface::Eval_(const char* code, JS::MutableHandleValue rval) const
 {
-    JS::CompileOptions opts(m->m_cx);
+    CX_IN_REALM(cx,this)
+
+    JS::CompileOptions opts(cx);
 	opts.setFileAndLine("(eval)", 1);
 
 	utf16string codeUtf16(code, code+strlen(code));
     JS::SourceText<char16_t> source;
-    if (!source.init(m->m_cx, 
+    if (!source.init(cx, 
                      (const char16_t*)codeUtf16.c_str(), 
                      codeUtf16.size(), 
                      JS::SourceOwnership::Borrowed)) {    
@@ -954,13 +972,14 @@ bool ScriptInterface::Eval_(const char* code, JS::MutableHandleValue rval) const
 
 bool ScriptInterface::Eval_(const wchar_t* code, JS::MutableHandleValue rval) const
 {
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
-	JS::CompileOptions opts(m->m_cx);
+    CX_IN_REALM(cx,this)
+
+	JS::CompileOptions opts(cx);
 	opts.setFileAndLine("(eval)", 1);
 
 	utf16string codeUtf16(code, code+wcslen(code));
     JS::SourceText<char16_t> source;
-    if (!source.init(m->m_cx, 
+    if (!source.init(cx, 
                      (const char16_t*)codeUtf16.c_str(), 
                      codeUtf16.size(), 
                      JS::SourceOwnership::Borrowed)) {    
@@ -973,39 +992,39 @@ bool ScriptInterface::Eval_(const wchar_t* code, JS::MutableHandleValue rval) co
 
 bool ScriptInterface::ParseJSON(const std::string& string_utf8, JS::MutableHandleValue out) const
 {
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
+    CX_IN_REALM(cx,this)
+
 	std::wstring attrsW = wstring_from_utf8(string_utf8);
  	utf16string string(attrsW.begin(), attrsW.end());
-	if (JS_ParseJSON(m->m_cx, reinterpret_cast<const char16_t*>(string.c_str()), (u32)string.size(), out))
+	if (JS_ParseJSON(cx, reinterpret_cast<const char16_t*>(string.c_str()), (u32)string.size(), out))
 		return true;
 
 	LOGERROR("JS_ParseJSON failed!");
-	if (!JS_IsExceptionPending(m->m_cx))
+	if (!JS_IsExceptionPending(cx))
 		return false;
 
 	JS::RootedValue exc(m->m_cx);
-	if (!JS_GetPendingException(m->m_cx, &exc))
+	if (!JS_GetPendingException(cx, &exc))
 		return false;
 
-	JS_ClearPendingException(m->m_cx);
+	JS_ClearPendingException(cx);
 	// We expect an object of type SyntaxError
 	if (!exc.isObject())
 		return false;
 
-	JS::RootedValue rval(m->m_cx);
-	JS::RootedObject excObj(m->m_cx, &exc.toObject());
-	if (!JS_CallFunctionName(m->m_cx, excObj, "toString", JS::HandleValueArray::empty(), &rval))
+	JS::RootedValue rval(cx);
+	JS::RootedObject excObj(cx, &exc.toObject());
+	if (!JS_CallFunctionName(cx, excObj, "toString", JS::HandleValueArray::empty(), &rval))
 		return false;
 
 	std::wstring error;
-	ScriptInterface::FromJSVal(m->m_cx, rval, error);
+	ScriptInterface::FromJSVal(cx, rval, error);
 	LOGERROR("%s", utf8_from_wstring(error));
 	return false;
 }
 
 void ScriptInterface::ReadJSONFile(const VfsPath& path, JS::MutableHandleValue out) const
 {
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
 	if (!VfsFileExists(path))
 	{
 		LOGERROR("File '%s' does not exist", path.string8());
@@ -1047,11 +1066,13 @@ struct Stringifier
 // It probably has historical reasons and could be changed by SpiderMonkey in the future.
 std::string ScriptInterface::StringifyJSON(JS::MutableHandleValue obj, bool indent) const
 {
+    CX_IN_REALM(cx, this)
+
 	Stringifier str;
-	JS::RootedValue indentVal(m->m_cx, indent ? JS::Int32Value(2) : JS::UndefinedValue());
-	if (!JS_Stringify(m->m_cx, obj, nullptr, indentVal, &Stringifier::callback, &str))
+	JS::RootedValue indentVal(cx, indent ? JS::Int32Value(2) : JS::UndefinedValue());
+	if (!JS_Stringify(cx, obj, nullptr, indentVal, &Stringifier::callback, &str))
 	{
-		JS_ClearPendingException(m->m_cx);
+		JS_ClearPendingException(cx);
 		LOGERROR("StringifyJSON failed");
 		return std::string();
 	}
@@ -1062,8 +1083,9 @@ std::string ScriptInterface::StringifyJSON(JS::MutableHandleValue obj, bool inde
 
 std::string ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty) const
 {
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
-	if (obj.isUndefined())
+    CX_IN_REALM(cx, this)
+	
+    if (obj.isUndefined())
 		return "(void 0)";
 
 	// Try to stringify as JSON if possible
@@ -1074,18 +1096,18 @@ std::string ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty) c
 		JS::RootedValue indentVal(m->m_cx, JS::Int32Value(2));
 
 		// Temporary disable the error reporter, so we don't print complaints about cyclic values
-        JS::WarningReporter er = JS::SetWarningReporter(m->m_cx, NULL);
+        JS::WarningReporter er = JS::SetWarningReporter(cx, NULL);
 
-		bool ok = JS_Stringify(m->m_cx, obj, nullptr, indentVal, &Stringifier::callback, &str);
+		bool ok = JS_Stringify(cx, obj, nullptr, indentVal, &Stringifier::callback, &str);
 
 		// Restore error reporter
-        JS::SetWarningReporter(m->m_cx, er);
+        JS::SetWarningReporter(cx, er);
 
 		if (ok)
 			return str.stream.str();
 
 		// Clear the exception set when Stringify failed
-		JS_ClearPendingException(m->m_cx);
+		JS_ClearPendingException(cx);
 	}
 
 	// Caller didn't want pretty output, or JSON conversion failed (e.g. due to cycles),
@@ -1098,14 +1120,14 @@ std::string ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty) c
 
 void ScriptInterface::ReportError(const char* msg) const
 {
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
+    CX_IN_REALM(cx, this)
 	// JS_ReportErrorASCII by itself doesn't seem to set a JS-style exception, and so
 	// script callers will be unable to catch anything. So use JS_SetPendingException
 	// to make sure there really is a script-level exception. But just set it to undefined
 	// because there's not much value yet in throwing a real exception object.
-	JS_SetPendingException(m->m_cx, JS::UndefinedHandleValue);
+	JS_SetPendingException(cx, JS::UndefinedHandleValue);
 	// And report the actual error
-	JS_ReportErrorASCII(m->m_cx, "%s", msg);
+	JS_ReportErrorASCII(cx, "%s", msg);
 
 	// TODO: Why doesn't JS_ReportPendingException(m->m_cx); work?
 }
@@ -1117,9 +1139,10 @@ bool ScriptInterface::IsExceptionPending(JSContext* cx)
 
 JS::Value ScriptInterface::CloneValueFromOtherContext(const ScriptInterface& otherContext, JS::HandleValue val) const
 {
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
+    CX_IN_REALM(cx, this)
+
 	PROFILE("CloneValueFromOtherContext");
-	JS::RootedValue out(m->m_cx);
+	JS::RootedValue out(cx);
 	shared_ptr<StructuredClone> structuredClone = otherContext.WriteStructuredClone(val);
 	ReadStructuredClone(structuredClone, &out);
 	return out.get();
@@ -1137,9 +1160,10 @@ ScriptInterface::StructuredClone::~StructuredClone()
 
 shared_ptr<ScriptInterface::StructuredClone> ScriptInterface::WriteStructuredClone(JS::HandleValue v) const
 {
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
+    CX_IN_REALM(cx, this)
+
 	shared_ptr<StructuredClone> ret(new StructuredClone());
-	if (!ret->m_data.write(m->m_cx, v)){
+	if (!ret->m_data.write(cx, v)){
 		debug_warn(L"Writing a structured clone failed!");
 		return shared_ptr<StructuredClone>();
 	}
@@ -1151,8 +1175,9 @@ shared_ptr<ScriptInterface::StructuredClone> ScriptInterface::WriteStructuredClo
 
 void ScriptInterface::ReadStructuredClone(const shared_ptr<ScriptInterface::StructuredClone>& ptr, JS::MutableHandleValue ret) const
 {
-    JSAutoRealm ar(m->m_cx, m->globalRootedVal);
-    if(!ptr->m_data.read(m->m_cx, ret)){
+    CX_IN_REALM(cx, this)
+
+    if(!ptr->m_data.read(cx, ret)){
         debug_warn(L"Reading a structured clone failed!");
     } 
 }

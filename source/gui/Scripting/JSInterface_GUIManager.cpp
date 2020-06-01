@@ -41,7 +41,7 @@ void JSI_GUIManager::PopGuiPage(ScriptInterface::RealmPrivate* pRealmPrivate, JS
 {
 	if (g_GUI->GetPageCount() < 2)
 	{
-		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
+		CX_IN_REALM(cx,pRealmPrivate->pScriptInterface);
 		JS_ReportErrorASCII(cx, "Can't pop GUI pages when less than two pages are opened!");
 		return;
 	}

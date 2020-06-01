@@ -174,7 +174,7 @@ static void AssignOrToJSValHelper(JSContext* UNUSED(cx), JS::MutableHandleValueV
 template<typename R, typename... Ts>
 bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, R& ret, const Ts&... params) const
 {
-	JSContext* cx = GetContext();
+	CX_IN_REALM(cx,this)
 	JS::RootedValue jsRet(cx);
 	JS::RootedValueVector argv(cx);
 	argv.resize(sizeof...(Ts));
@@ -188,7 +188,7 @@ bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, R& ret
 template<typename R, typename... Ts>
 bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, JS::Rooted<R>* ret, const Ts&... params) const
 {
-	JSContext* cx = GetContext();
+	CX_IN_REALM(cx,this)
 	JS::MutableHandle<R> jsRet(ret);
 	JS::RootedValueVector argv(cx);
 	argv.resize(sizeof...(Ts));
@@ -199,7 +199,7 @@ bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, JS::Ro
 template<typename R, typename... Ts>
 bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, JS::MutableHandle<R> ret, const Ts&... params) const
 {
-	JSContext* cx = GetContext();
+	CX_IN_REALM(cx,this)
 	JS::RootedValueVector argv(cx);
 	argv.resize(sizeof...(Ts));
 	AssignOrToJSValHelper<0>(cx, &argv, params...);
@@ -210,7 +210,7 @@ bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, JS::Mu
 template<typename... Ts>
 bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name, const Ts&... params) const
 {
-	JSContext* cx = GetContext();
+	CX_IN_REALM(cx,this)
 	JS::RootedValue jsRet(cx);
 	JS::RootedValueVector argv(cx);
 	(void)argv.resize(sizeof...(Ts));

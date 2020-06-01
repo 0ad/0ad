@@ -94,7 +94,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		{
 			ret = IN_HANDLED;
 
-			JSContext* cx = m_ScriptInterface->GetContext();
+			CX_IN_REALM(cx,m_ScriptInterface)
 			JS::RootedObject globalObj(cx, &GetGlobalObject().toObject());
 			JS::RootedValue result(cx);
 			JS_CallFunctionValue(cx, globalObj, m_GlobalHotkeys[hotkey], JS::HandleValueArray::empty(), &result);
@@ -401,7 +401,7 @@ void CGUI::UnsetObjectHotkey(IGUIObject* pObject, const CStr& hotkeyTag)
 
 void CGUI::SetGlobalHotkey(const CStr& hotkeyTag, JS::HandleValue function)
 {
-	JSContext* cx = m_ScriptInterface->GetContext();
+    CX_IN_REALM(cx,m_ScriptInterface)
 
 	if (hotkeyTag.empty())
 	{

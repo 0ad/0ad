@@ -254,7 +254,7 @@ bool CText::MouseOverIcon()
 
 void CText::RegisterScriptFunctions()
 {
-	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
+    CX_IN_REALM(cx,m_pGUI.GetScriptInterface())
 	JS_DefineFunctions(cx, m_JSObject, CText::JSI_methods);
 }
 

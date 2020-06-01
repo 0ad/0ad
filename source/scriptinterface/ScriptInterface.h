@@ -28,6 +28,10 @@
 
 #include "js/StructuredClone.h"
 
+#define CX_IN_REALM(CONTEXT, IFACE) \
+            JSContext* CONTEXT = (IFACE)->GetContext(); \
+            auto __realm_ ## CONTEXT ## __ = (IFACE)->AutoRealm();
+
 ERROR_GROUP(Scripting);
 ERROR_TYPE(Scripting, SetupFailed);
 
@@ -219,6 +223,7 @@ public:
 
 	bool FreezeObject(JS::HandleValue objVal, bool deep) const;
 
+    JSAutoRealm AutoRealm() const;
 	bool Eval(const char* code) const;
 
 	template<typename CHAR> bool Eval(const CHAR* code, JS::MutableHandleValue out) const;
@@ -526,39 +531,43 @@ inline JS::HandleValue ScriptInterface::AssignOrFromJSVal<JS::HandleValue>(JSCon
 template<typename T>
 bool ScriptInterface::SetGlobal(const char* name, const T& value, bool replace, bool constant, bool enumerate)
 {
-	JS::RootedValue val(GetContext());
-	AssignOrToJSVal(GetContext(), &val, value);
+    CX_IN_REALM(cx, this)
+	JS::RootedValue val(cx);
+	AssignOrToJSVal(cx, &val, value);
 	return SetGlobal_(name, val, replace, constant, enumerate);
 }
 
 template<typename T>
 bool ScriptInterface::SetProperty(JS::HandleValue obj, const char* name, const T& value, bool constant, bool enumerate) const
 {
-	JS::RootedValue val(GetContext());
-	AssignOrToJSVal(GetContext(), &val, value);
+    CX_IN_REALM(cx, this)
+	JS::RootedValue val(cx);
+	AssignOrToJSVal(cx, &val, value);
 	return SetProperty_(obj, name, val, constant, enumerate);
 }
 
 template<typename T>
 bool ScriptInterface::SetProperty(JS::HandleValue obj, const wchar_t* name, const T& value, bool constant, bool enumerate) const
 {
-	JS::RootedValue val(GetContext());
-	AssignOrToJSVal(GetContext(), &val, value);
+    CX_IN_REALM(cx, this)
+	JS::RootedValue val(cx);
+	AssignOrToJSVal(cx, &val, value);
 	return SetProperty_(obj, name, val, constant, enumerate);
 }
 
 template<typename T>
 bool ScriptInterface::SetPropertyInt(JS::HandleValue obj, int name, const T& value, bool constant, bool enumerate) const
 {
-	JS::RootedValue val(GetContext());
-	AssignOrToJSVal(GetContext(), &val, value);
+    CX_IN_REALM(cx, this)
+	JS::RootedValue val(cx);
+	AssignOrToJSVal(cx, &val, value);
 	return SetPropertyInt_(obj, name, val, constant, enumerate);
 }
 
 template<typename T>
 bool ScriptInterface::GetProperty(JS::HandleValue obj, const char* name, T& out) const
 {
-	JSContext* cx = GetContext();
+    CX_IN_REALM(cx, this)
 	JS::RootedValue val(cx);
 	if (!GetProperty_(obj, name, &val))
 		return false;
@@ -568,10 +577,11 @@ bool ScriptInterface::GetProperty(JS::HandleValue obj, const char* name, T& out)
 template<typename T>
 bool ScriptInterface::GetPropertyInt(JS::HandleValue obj, int name, T& out) const
 {
-	JS::RootedValue val(GetContext());
+    CX_IN_REALM(cx, this)
+	JS::RootedValue val(cx);
 	if (!GetPropertyInt_(obj, name, &val))
 		return false;
-	return FromJSVal(GetContext(), val, out);
+	return FromJSVal(cx, val, out);
 }
 
 template<typename CHAR>
@@ -585,10 +595,11 @@ bool ScriptInterface::Eval(const CHAR* code, JS::MutableHandleValue ret) const
 template<typename T, typename CHAR>
 bool ScriptInterface::Eval(const CHAR* code, T& ret) const
 {
-	JS::RootedValue rval(GetContext());
+    CX_IN_REALM(cx, this)
+	JS::RootedValue rval(cx);
 	if (!Eval_(code, &rval))
 		return false;
-	return FromJSVal(GetContext(), rval, ret);
+	return FromJSVal(cx, rval, ret);
 }
 
 #endif // INCLUDED_SCRIPTINTERFACE

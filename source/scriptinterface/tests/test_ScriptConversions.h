@@ -35,7 +35,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		TS_ASSERT(script.LoadGlobalScripts());
-		JSContext* cx = script.GetContext();
+		CX_IN_REALM(cx,(&script))
 
 		JS::RootedValue v1(cx);
 		ScriptInterface::ToJSVal(cx, &v1, value);
@@ -54,7 +54,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		TS_ASSERT(script.LoadGlobalScripts());
-		JSContext* cx = script.GetContext();
+		CX_IN_REALM(cx,(&script))
 
 		JS::RootedValue v1(cx);
 		ScriptInterface::ToJSVal(cx, &v1, value);
@@ -76,7 +76,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		TS_ASSERT(script.LoadGlobalScripts());
-		JSContext* cx = script.GetContext();
+		CX_IN_REALM(cx,(&script))
 
 		JS::RootedValue v1(cx);
 		ScriptInterface::ToJSVal(cx, &v1, v);
@@ -169,7 +169,7 @@ public:
 	void test_integers()
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
-		JSContext* cx = script.GetContext();
+		CX_IN_REALM(cx,(&script))
 
 		// using new uninitialized variables each time to be sure the test doesn't succeeed if ToJSVal doesn't touch the value at all.
 		JS::RootedValue val0(cx), val1(cx), val2(cx), val3(cx), val4(cx), val5(cx), val6(cx), val7(cx), val8(cx);
@@ -201,7 +201,7 @@ public:
 		convert_to<float>(std::numeric_limits<float>::quiet_NaN(), "NaN"); // can't use roundtrip since nan != nan
 
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
-		JSContext* cx = script.GetContext();
+		CX_IN_REALM(cx,(&script))
 
 		float f = 0;
 		JS::RootedValue testNANVal(cx);

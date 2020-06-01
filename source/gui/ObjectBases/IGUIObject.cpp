@@ -74,8 +74,10 @@ IGUIObject::~IGUIObject()
 	for (const std::pair<CStr, IGUISetting*>& p : m_Settings)
 		delete p.second;
 
-	if (!m_ScriptHandlers.empty())
-		JS_RemoveExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetContext(), Trace, this);
+	if (!m_ScriptHandlers.empty()){
+        CX_IN_REALM(cx,m_pGUI.GetScriptInterface())
+		JS_RemoveExtraGCRootsTracer(cx, Trace, this);
+    }
 
 	// m_Children is deleted along all other GUI Objects in the CGUI destructor
 }

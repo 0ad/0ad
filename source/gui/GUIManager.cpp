@@ -133,7 +133,7 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptRuntime> scriptRuntime)
 	if (gui)
 	{
 		shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
-		JSContext* cx = scriptInterface->GetContext();
+		CX_IN_REALM(cx,scriptInterface);
 
 		JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
 		JS::RootedValue hotloadDataVal(cx);

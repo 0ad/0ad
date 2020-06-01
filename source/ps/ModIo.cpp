@@ -586,7 +586,7 @@ bool ModIo::VerifyDownloadedFile(std::string& err)
 bool ModIo::ParseGameIdResponse(const ScriptInterface& scriptInterface, const std::string& responseData, int& id, std::string& err)
 {
 #define CLEANUP() id = -1;
-	JSContext* cx = scriptInterface.GetContext();
+    CX_IN_REALM(cx,(&scriptInterface))
 
 	JS::RootedValue gameResponse(cx);
 
@@ -657,7 +657,7 @@ bool ModIo::ParseModsResponse(const ScriptInterface& scriptInterface, const std:
 // Make sure we don't end up passing partial results back
 #define CLEANUP() modData.clear();
 
-	JSContext* cx = scriptInterface.GetContext();
+    CX_IN_REALM(cx,(&scriptInterface))
 
 	JS::RootedValue modResponse(cx);
 

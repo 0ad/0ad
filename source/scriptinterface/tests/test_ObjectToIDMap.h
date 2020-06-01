@@ -27,7 +27,7 @@ public:
 	void test_movinggc()
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
-		JSContext* cx = script.GetContext();
+        CX_IN_REALM(cx,(&script))
 
 		JS::RootedObject obj(cx, JS_NewPlainObject(cx));
 		ObjectIdCache<u32> map;
