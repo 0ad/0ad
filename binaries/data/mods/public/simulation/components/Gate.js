@@ -15,7 +15,6 @@ Gate.prototype.Schema =
 Gate.prototype.Init = function()
 {
 	this.allies = [];
-	this.ignoreList = [];
 	this.opened = false;
 	this.locked = false;
 };
@@ -33,11 +32,10 @@ Gate.prototype.OnOwnershipChanged = function(msg)
 
 Gate.prototype.OnDiplomacyChanged = function(msg)
 {
-	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (cmpOwnership && cmpOwnership.GetOwner() == msg.player)
 	{
 		this.allies = [];
-		this.ignoreList = [];
 		this.SetupRangeQuery(msg.player);
 	}
 };
@@ -93,36 +91,11 @@ Gate.prototype.OnRangeUpdate = function(msg)
 
 	if (msg.added.length > 0)
 		for (let entity of msg.added)
-		{
-			// Ignore entities that cannot move as those won't be able to go through the gate.
-			let unitAI = Engine.QueryInterface(entity, IID_UnitAI);
-			if (!unitAI.AbleToMove())
-				this.ignoreList.push(entity);
 			this.allies.push(entity);
-		}
 
 	if (msg.removed.length > 0)
 		for (let entity of msg.removed)
-		{
-			let index = this.ignoreList.indexOf(entity);
-			if (index !== -1)
-				this.ignoreList.splice(index, 1);
 			this.allies.splice(this.allies.indexOf(entity), 1);
-		}
-
-	this.OperateGate();
-};
-
-Gate.prototype.OnGlobalUnitAbleToMoveChanged = function(msg)
-{
-	if (this.allies.indexOf(msg.entity) === -1)
-		return;
-
-	let index = this.ignoreList.indexOf(msg.entity);
-	if (msg.ableToMove && index !== -1)
-		this.ignoreList.splice(index, 1);
-	else if (!msg.ableToMove && index === -1)
-		this.ignoreList.push(msg.entity);
 
 	this.OperateGate();
 };
@@ -133,11 +106,6 @@ Gate.prototype.OnGlobalUnitAbleToMoveChanged = function(msg)
 Gate.prototype.GetPassRange = function()
 {
 	return +this.template.PassRange;
-};
-
-Gate.prototype.ShouldOpen = function()
-{
-	return this.allies.some(ent => this.ignoreList.indexOf(ent) === -1);
 };
 
 /**
@@ -154,9 +122,10 @@ Gate.prototype.OperateGate = function()
 		cmpTimer.CancelTimer(this.timer);
 		this.timer = undefined;
 	}
-	if (this.opened && (this.locked || !this.ShouldOpen()))
+
+	if (this.opened && (this.allies.length == 0 || this.locked))
 		this.CloseGate();
-	else if (!this.opened && this.ShouldOpen())
+	else if (!this.opened && this.allies.length)
 		this.OpenGate();
 };
 
@@ -246,19 +215,19 @@ Gate.prototype.OpenGate = function()
  */
 Gate.prototype.CloseGate = function()
 {
-	let cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
+	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
 	if (!cmpObstruction)
 		return;
 
 	// The gate can't be closed if there are entities colliding with it.
-	let collisions = cmpObstruction.GetEntitiesBlockingMovement();
+	var collisions = cmpObstruction.GetEntitiesBlockingConstruction();
 	if (collisions.length)
 	{
 		if (!this.timer)
 		{
 			// Set an "instant" timer which will run on the next simulation turn.
-			let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-			this.timer = cmpTimer.SetTimeout(this.entity, IID_Gate, "OperateGate", 0);
+			var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+			this.timer = cmpTimer.SetTimeout(this.entity, IID_Gate, "OperateGate", 0, {});
 		}
 		return;
 	}
@@ -272,7 +241,7 @@ Gate.prototype.CloseGate = function()
 	this.opened = false;
 
 	PlaySound("gate_closing", this.entity);
-	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (cmpVisual)
 		cmpVisual.SelectAnimation("gate_closing", true, 1.0);
 };

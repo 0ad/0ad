@@ -42,10 +42,15 @@
       units/{civ}_cavalry_spearman_b
       units/{civ}_cavalry_javelinist_b
       units/{civ}_cavalry_archer_b
+      units/{civ}_champion_infantry_barracks
+      units/{civ}_champion_maiden_barracks
+      units/{civ}_champion_cavalry_barracks
+      units/{civ}_champion_chariot_barracks
     </Entities>
     <Technologies datatype="tokens">
       heal_barracks
       training_conscription
+      unlock_champion_units
       archery_tradition
     </Technologies>
   </ProductionQueue>

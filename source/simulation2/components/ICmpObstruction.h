@@ -105,12 +105,6 @@ public:
 	virtual std::vector<entity_id_t> GetEntitiesByFlags(ICmpObstructionManager::flags_t flags) const = 0;
 
 	/**
-	 * Returns a list of entities that are blocking movement.
-	 * @return vector of blocking entities
-	 */
-	virtual std::vector<entity_id_t> GetEntitiesBlockingMovement() const = 0;
-
-	/**
 	 * Returns a list of entities that are blocking construction of a foundation.
 	 * @return vector of blocking entities
 	 */

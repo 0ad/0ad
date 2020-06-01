@@ -12,8 +12,8 @@ class GameSettingTabs
 		for (let tab in g_GameSettingsLayout)
 			g_GameSettingsLayout[tab].tooltip =
 				sprintf(this.ToggleTooltip, { "name": g_GameSettingsLayout[tab].label }) +
-				colorizeHotkey("\n" + this.HotkeyDownTooltip, this.ConfigNameHotkeyDown) +
-				colorizeHotkey("\n" + this.HotkeyUpTooltip, this.ConfigNameHotkeyUp);
+				colorizeHotkey("\n" + this.HotkeyNextTooltip, this.ConfigNameHotkeyNext) +
+				colorizeHotkey("\n" + this.HotkeyPreviousTooltip, this.ConfigNameHotkeyPrevious);
 
 		setupWindow.registerLoadHandler(this.onLoad.bind(this));
 		Engine.SetGlobalHotkey("cancel", "Press", selectPanel);
@@ -73,18 +73,18 @@ class GameSettingTabs
 }
 
 GameSettingTabs.prototype.ToggleTooltip =
-	translate("Toggle the %(name)s settings tab.");
+	translate("Click to toggle the %(name)s settings tab.");
 
-GameSettingTabs.prototype.HotkeyUpTooltip =
-	translate("Use %(hotkey)s to move a settings tab up.");
+GameSettingTabs.prototype.HotkeyNextTooltip =
+	translate("Press %(hotkey)s to move to the next settings tab.");
 
-GameSettingTabs.prototype.HotkeyDownTooltip =
-	translate("Use %(hotkey)s to move a settings tab down.");
+GameSettingTabs.prototype.HotkeyPreviousTooltip =
+	translate("Press %(hotkey)s to move to the previous settings tab.");
 
-GameSettingTabs.prototype.ConfigNameHotkeyUp =
+GameSettingTabs.prototype.ConfigNameHotkeyNext =
 	"tab.next";
 
-GameSettingTabs.prototype.ConfigNameHotkeyDown =
+GameSettingTabs.prototype.ConfigNameHotkeyPrevious =
 	"tab.prev";
 
 GameSettingTabs.prototype.TabButtonHeight = 30;
