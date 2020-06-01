@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -241,13 +241,6 @@ bool CVideoMode::InitSDL()
 
 	ogl_Init(); // required after each mode change
 	// (TODO: does that mean we need to call this when toggling fullscreen later?)
-
-#if !OS_ANDROID
-	u16 ramp[256];
-	SDL_CalculateGammaRamp(g_Gamma, ramp);
-	if (SDL_SetWindowGammaRamp(m_Window, ramp, ramp, ramp) < 0)
-		LOGWARNING("SDL_SetWindowGammaRamp failed");
-#endif
 
 	m_IsInitialised = true;
 

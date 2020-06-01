@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -55,8 +55,6 @@ bool g_ShowSky = false;
 bool g_PreferGLSL = false;
 bool g_PostProc = false;
 bool g_SmoothLOS = false;
-
-float g_Gamma = 1.0f;
 
 CStr g_RenderPath = "default";
 
@@ -129,13 +127,6 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 			CStr value = name_value.AfterFirst(":");
 			g_ConfigDB.SetValueString(CFG_COMMAND, name, value);
 		}
-	}
-
-	if (args.Has("g"))
-	{
-		g_Gamma = args.Get("g").ToFloat();
-		if (g_Gamma == 0.0f)
-			g_Gamma = 1.0f;
 	}
 
 //	if (args.Has("listfiles"))

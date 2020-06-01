@@ -44,7 +44,6 @@ Examples:
 
 Configuration:
 -conf=KEY:VALUE     set a config value
--g=F                set the gamma correction to 'F' (default 1.0)
 -nosound            disable audio
 -noUserMod          disable loading of the user mod
 -shadows            enable shadows
