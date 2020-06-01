@@ -93,7 +93,7 @@ template<> bool ScriptInterface::FromJSVal<CColor>(JSContext* cx, JS::HandleValu
 	JSAutoRequest rq(cx);
 
 	if (!v.isObject())
-		FAIL("JS::HandleValue not an object");
+		FAIL("CColor has to be an object");
 
 	JS::RootedObject obj(cx, &v.toObject());
 
