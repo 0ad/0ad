@@ -5,14 +5,15 @@
 # Translators:
 # Ankomias, 2014
 # chaoky <charleszhang99@yahoo.com>, 2014
+# Ernestus Severus, 2020
 # Nescio, 2020
 # nylki, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-18 07:13+0000\n"
-"PO-Revision-Date: 2020-05-18 13:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-05-31 18:18+0000\n"
+"Last-Translator: Ernestus Severus\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "Preme %(hotkey)s ut hanc tabulam aperias."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -31,163 +32,163 @@ msgstr "Locutorium"
 
 #: gui/session/MenuButtons.js:53
 msgid "Save"
-msgstr ""
+msgstr "Reservare"
 
 #: gui/session/MenuButtons.js:74
 msgid "Summary"
-msgstr ""
+msgstr "Summarium"
 
 #: gui/session/MenuButtons.js:87
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr ""
+msgstr "Preme %(hotkey)s ut summarium aperias."
 
 #: gui/session/MenuButtons.js:130
 msgid "Lobby"
-msgstr ""
+msgstr "Vestibulum"
 
 #: gui/session/MenuButtons.js:139
 #, javascript-format
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr ""
+msgstr "Preme %(hotkey)s ut paginam vestibuli aperias, nec ludum relinquas."
 
 #: gui/session/MenuButtons.js:158
 msgid "Options"
-msgstr ""
+msgstr "Optiones"
 
 #: gui/session/MenuButtons.js:196
 msgid "Resume"
-msgstr ""
+msgstr "Repetere"
 
 #: gui/session/MenuButtons.js:196
 msgid "Pause"
-msgstr ""
+msgstr "Insistere"
 
 #: gui/session/MenuButtons.js:197
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr ""
+msgstr "Preme %(hotkey)s ut insistas vel ludum repetas."
 
 #: gui/session/MenuButtons.js:213
 msgid "Resign"
-msgstr ""
+msgstr "Tradere"
 
 #: gui/session/MenuButtons.js:237
 #: gui/session/NetworkStatusOverlay.xml:(caption):9
 msgid "Exit"
-msgstr "Exi"
+msgstr "Exire"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
-msgstr ""
+msgstr "Coniunctio cum servo recognita est."
 
 #: gui/session/NetworkStatusOverlay.js:39
 msgid "Connected to the server."
-msgstr ""
+msgstr "Cum servo coniunctus es."
 
 #: gui/session/NetworkStatusOverlay.js:40
 msgid "Connection to the server has been lost."
-msgstr ""
+msgstr "Coniunctio cum servo amissa est."
 
 #: gui/session/NetworkStatusOverlay.js:42
 msgid "Waiting for players to connect:"
-msgstr ""
+msgstr "Lusores iuncturos expectat:"
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
-msgstr ""
+msgstr "Ludum cum aliis lusoribus synchronizatur..."
 
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
 #: gui/session/OverlayCounterElapsedTime.js:33
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/session/PauseOverlay.js:40
 #: gui/session/message_box/OutOfSyncNetwork.js:20
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/PauseOverlay.js:45
 #, javascript-format
 msgid "Paused by %(players)s"
-msgstr ""
+msgstr "Ab %(players)s intermissum"
 
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:266
 #: gui/session/selection_details.js:282 gui/session/selection_panels.js:594
 msgctxt "countdown format"
 msgid "m:ss"
-msgstr ""
+msgstr "m:ss"
 
 #: gui/session/input.js:176
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Iactus Primus: %(range)s metrum"
+msgstr[1] "Iactus Primus: %(range)s metra"
 
 #: gui/session/input.js:177
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Iactus additus: %(range)s metrum"
+msgstr[1] "Iactus additus: %(range)s metra"
 
 #: gui/session/input.js:694
 msgid "Cannot build wall here!"
-msgstr ""
+msgstr "Hic murus aedificari non potest!"
 
 #: gui/session/messages.js:88
 msgid "You have won!"
-msgstr ""
+msgstr "Vicisti!"
 
 #: gui/session/messages.js:89
 msgid "You have been defeated!"
-msgstr ""
+msgstr "Victus es!"
 
 #: gui/session/messages.js:358
 msgid "Click to quit this tutorial."
-msgstr ""
+msgstr "Preme ut hoc praeceptum linquas."
 
 #: gui/session/messages.js:359
 msgid "Quit"
-msgstr ""
+msgstr "Relinquere"
 
 #: gui/session/messages.js:363
 msgid "Click when ready."
-msgstr ""
+msgstr "Preme si paratus es."
 
 #: gui/session/messages.js:367
 msgid "Follow the instructions."
-msgstr ""
+msgstr "Mandata sequere."
 
 #: gui/session/messages.js:492
 msgid "Unknown Player"
-msgstr ""
+msgstr "Lusor incognitus"
 
 #: gui/session/selection_details.js:68
 #, javascript-format
 msgid "%(genericName)s — Packed"
-msgstr ""
+msgstr "%(genericName)s — Collectus"
 
 #: gui/session/selection_details.js:78 gui/session/chat/ChatAddressees.js:74
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
-msgstr ""
+msgstr "\\[ABSENTES] %(player)s"
 
 #: gui/session/selection_details.js:83
 #, javascript-format
 msgid "%(rank)s Rank"
-msgstr ""
+msgstr "%(rank)s Ordo"
 
 #: gui/session/selection_details.js:137
 #, javascript-format
@@ -206,7 +207,7 @@ msgstr "%(experience)s %(current)s / %(required)s"
 
 #: gui/session/selection_details.js:197 gui/session/selection_details.js:203
 msgid "Experience:"
-msgstr ""
+msgstr "Experientia:"
 
 #: gui/session/selection_details.js:202
 #, javascript-format
@@ -215,7 +216,7 @@ msgstr "%(experience)s %(current)s"
 
 #: gui/session/selection_details.js:212
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/session/selection_details.js:213 gui/session/selection_details.js:243
 #: gui/session/selection_details.js:271
@@ -233,11 +234,11 @@ msgstr "%(resource)s:"
 #: gui/session/unit_actions.js:984
 #, javascript-format
 msgid "Gain: %(gain)s"
-msgstr ""
+msgstr "Bonum: %(gain)s"
 
 #: gui/session/selection_details.js:275
 msgid "Current/max gatherers"
-msgstr ""
+msgstr "Numerus/terminus operariorum"
 
 #: gui/session/selection_details.js:297
 #, javascript-format
@@ -246,7 +247,7 @@ msgstr "(%(genericName)s)"
 
 #: gui/session/selection_details.js:428
 msgid "Capture Points:"
-msgstr ""
+msgstr "Puncta Capiendi:"
 
 #: gui/session/selection_details.js:436
 #, javascript-format
@@ -255,7 +256,7 @@ msgstr "%(label)s %(details)s\n"
 
 #: gui/session/selection_details.js:437
 msgid "Carrying:"
-msgstr ""
+msgstr "Portans:"
 
 #: gui/session/selection_details.js:440 gui/session/selection_details.js:449
 #, javascript-format
@@ -269,7 +270,7 @@ msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:446
 msgid "Loot:"
-msgstr ""
+msgstr "Praeda:"
 
 #. Translation: Used in the trading gain tooltip
 #: gui/session/selection_details.js:507
@@ -281,62 +282,62 @@ msgstr "%(gain)s (%(player)s)"
 #. different players
 #: gui/session/selection_details.js:531
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: gui/session/selection_details.js:538
 msgctxt "Separation mark in an enumeration"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/selection_panels.js:65
 msgid "Raise an alert!"
-msgstr ""
+msgstr "Ad arma conclamare!"
 
 #: gui/session/selection_panels.js:68
 msgid "End of alert."
-msgstr ""
+msgstr "Conclamare desinere."
 
 #: gui/session/selection_panels.js:376
 #, javascript-format
 msgid "Unload %(name)s"
-msgstr ""
+msgstr "Deornare %(name)s"
 
 #: gui/session/selection_panels.js:377
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr ""
+msgstr "Semel preme ut 1 deornes. Shift-preme ut omnes huius generis deornes."
 
 #: gui/session/selection_panels.js:379 gui/session/selection_panels.js:869
 #, javascript-format
 msgid "Player: %(playername)s"
-msgstr ""
+msgstr "Lusor: %(playername)s"
 
 #: gui/session/selection_panels.js:414
 msgid "Lock Gate"
-msgstr ""
+msgstr "Portam Obserare"
 
 #: gui/session/selection_panels.js:420
 msgid "Unlock Gate"
-msgstr ""
+msgstr "Portam Reserare"
 
 #: gui/session/selection_panels.js:470
 msgid "Pack"
-msgstr ""
+msgstr "Colligere"
 
 #: gui/session/selection_panels.js:478
 msgid "Unpack"
-msgstr ""
+msgstr "Deponere"
 
 #: gui/session/selection_panels.js:486
 msgid "Cancel Packing"
-msgstr ""
+msgstr "Colligere Desinere"
 
 #: gui/session/selection_panels.js:494
 msgid "Cancel Unpacking"
-msgstr ""
+msgstr "Deponere Desinere"
 
 #: gui/session/selection_panels.js:581
 msgid "Insufficient population capacity:"
-msgstr ""
+msgstr "Terminus numeri civium non sufficit:"
 
 #: gui/session/selection_panels.js:582
 #, javascript-format
@@ -347,61 +348,61 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s res generis %(class)s"
+msgstr[1] "%(number)s res generis %(class)s"
 
 #: gui/session/selection_panels.js:751
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
-msgstr ""
+msgstr "Reliqui: %(entityCounts)s"
 
 #: gui/session/selection_panels.js:752
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/selection_panels.js:1061
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "Amplificare ad %(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1066
 #, javascript-format
 msgid "Upgrade to %(name)s."
-msgstr ""
+msgstr "Amplificare ad %(name)s."
 
 #: gui/session/selection_panels.js:1083
 msgid "Cancel Upgrading"
-msgstr ""
+msgstr "Amplificare Desinere"
 
 #: gui/session/selection_panels.js:1088
 msgid "Cannot upgrade when the entity is already upgrading."
-msgstr ""
+msgstr "Amplificari incipere non potest, cum iam amplificatur."
 
 #: gui/session/selection_panels_helpers.js:51
 msgctxt "stance"
 msgid "Violent"
-msgstr ""
+msgstr "Saevus"
 
 #: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
 msgid "Aggressive"
-msgstr ""
+msgstr "Aggrediens"
 
 #: gui/session/selection_panels_helpers.js:55
 msgctxt "stance"
 msgid "Defensive"
-msgstr ""
+msgstr "Defendens"
 
 #: gui/session/selection_panels_helpers.js:57
 msgctxt "stance"
 msgid "Passive"
-msgstr ""
+msgstr "Ignavus"
 
 #: gui/session/selection_panels_helpers.js:59
 msgctxt "stance"
 msgid "Standground"
-msgstr ""
+msgstr "Stabilis"
 
 #: gui/session/selection_panels_helpers.js:71
 msgctxt "stance"
@@ -868,7 +869,7 @@ msgstr ""
 #. elements in an enumeration.
 #: gui/session/chat/ChatMessageFormatSimulation.js:126
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:142
 #, javascript-format

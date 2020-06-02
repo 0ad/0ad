@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -78,7 +78,6 @@ extern bool g_PostProc;
 // Use smooth LOS interpolation
 extern bool g_SmoothLOS;
 
-extern float g_Gamma;
 // name of configured render path (depending on OpenGL extensions, this may not be
 // the render path that is actually in use right now)
 extern CStr g_RenderPath;

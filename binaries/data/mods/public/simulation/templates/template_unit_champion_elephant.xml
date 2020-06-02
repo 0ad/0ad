@@ -9,10 +9,8 @@
     <Population>3</Population>
     <BuildTime>30</BuildTime>
     <Resources>
-      <food>250</food>
-      <wood>0</wood>
-      <stone>0</stone>
-      <metal>250</metal>
+      <food>300</food>
+      <metal>200</metal>
     </Resources>
   </Cost>
   <Footprint>
@@ -26,6 +24,11 @@
     <VisibleClasses datatype="tokens">Elephant</VisibleClasses>
     <GenericName>War Elephant</GenericName>
   </Identity>
+  <Loot>
+    <food>30</food>
+    <wood>0</wood>
+    <metal>20</metal>
+  </Loot>
   <Sound>
     <SoundGroups>
       <select>actor/fauna/animal/elephant_select.xml</select>
