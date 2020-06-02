@@ -251,6 +251,11 @@ GarrisonHolder.prototype.Garrison = function(entity, vgpEntity)
 		if (cmpUnitAI)
 			cmpUnitAI.SetTurretStance();
 
+		// Remove the unit's obstruction to avoid interfering with pathing.
+		let cmpObstruction = Engine.QueryInterface(entity, IID_Obstruction);
+		if (cmpObstruction)
+			cmpObstruction.SetActive(false);
+
 		isVisiblyGarrisoned = true;
 	}
 	else
@@ -367,6 +372,11 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 		vgp.entity = null;
 		break;
 	}
+
+	// Reset the obstruction flags to template defaults.
+	let cmpObstruction = Engine.QueryInterface(entity, IID_Obstruction);
+	if (cmpObstruction)
+		cmpObstruction.SetActive(true);
 
 	if (cmpEntUnitAI)
 		cmpEntUnitAI.Ungarrison();

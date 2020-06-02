@@ -651,6 +651,11 @@ public:
 		return ret;
 	}
 
+	virtual std::vector<entity_id_t> GetEntitiesBlockingMovement() const
+	{
+		return GetEntitiesByFlags(ICmpObstructionManager::FLAG_BLOCK_MOVEMENT);
+	}
+
 	virtual std::vector<entity_id_t> GetEntitiesBlockingConstruction() const
 	{
 		return GetEntitiesByFlags(ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION);
