@@ -5,10 +5,7 @@
     <variant file="quadraped/base_elephant_african.xml">
       <mesh>skeletal/elephant_african_forest.dae</mesh>
       <props>
-        <prop actor="units/carthaginians/elephantry_c_r.xml" attachpoint="turret"/>
         <prop actor="units/carthaginians/elephantry_c_d.xml" attachpoint="rider"/>
-        <prop actor="props/units/elephant/cushion_small.xml" attachpoint="turret"/>
-        <prop actor="props/units/elephant/howdah_cart_01.xml" attachpoint="turret"/>
       </props>
     </variant>
   </group>
