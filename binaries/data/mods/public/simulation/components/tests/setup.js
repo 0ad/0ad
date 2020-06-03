@@ -74,6 +74,7 @@ global.AddMock = function(ent, iid, mock)
 	if (!g_Components[ent])
 		g_Components[ent] = {};
 	g_Components[ent][iid] = mock;
+	return g_Components[ent][iid];
 };
 
 global.DeleteMock = function(ent, iid)
@@ -109,4 +110,28 @@ global.ConstructComponent = function(ent, name, template)
 	g_Components[ent][g_ComponentTypes[name].iid] = cmp;
 
 	return cmp;
+};
+
+/**
+ * A simple Spy proxy that tracks and forward function calls.
+ * NB: this immediately replaces obj's func.
+ */
+global.Spy = function(obj, func)
+{
+	this._called = 0;
+	this._callargs = [];
+	let og_func = obj[func];
+	let spy = (...args) => {
+		++this._called;
+		this._callargs.push(args);
+		return og_func.apply(obj, args);
+	};
+	obj[func] = spy;
+
+	this._reset = () => {
+		this._called = 0;
+		this._callargs = [];
+	};
+
+	return this;
 };
