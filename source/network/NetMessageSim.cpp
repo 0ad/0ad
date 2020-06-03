@@ -110,24 +110,29 @@ public:
 };
 
 CSimulationMessage::CSimulationMessage(const ScriptInterface& scriptInterface) :
-	CNetMessage(NMT_SIMULATION_COMMAND), m_ScriptInterface(scriptInterface), m_Data(scriptInterface.GetJSRuntime())
+	CNetMessage(NMT_SIMULATION_COMMAND), m_ScriptInterface(scriptInterface)
 {
+    CX_IN_REALM(cx,&scriptInterface)
+    m_Data = JS::PersistentRootedValue(cx);
 }
 
 CSimulationMessage::CSimulationMessage(const ScriptInterface& scriptInterface, u32 client, i32 player, u32 turn, JS::HandleValue data) :
 	CNetMessage(NMT_SIMULATION_COMMAND), m_ScriptInterface(scriptInterface),
-	m_Client(client), m_Player(player), m_Turn(turn), m_Data(scriptInterface.GetJSRuntime(), data)
+	m_Client(client), m_Player(player), m_Turn(turn) 
 {
+    CX_IN_REALM(cx,&scriptInterface)
+    m_Data = JS::PersistentRootedValue(cx,data);
 }
 
 CSimulationMessage::CSimulationMessage(const CSimulationMessage& orig) :
-	m_Data(orig.m_ScriptInterface.GetJSRuntime()),
 	m_Client(orig.m_Client),
 	m_Player(orig.m_Player),
 	m_ScriptInterface(orig.m_ScriptInterface),
 	m_Turn(orig.m_Turn),
 	CNetMessage(orig)
 {
+    CX_IN_REALM(cx,&m_ScriptInterface)
+    m_Data = JS::PersistentRootedValue(cx);
 	m_Data = orig.m_Data;
 }
 
@@ -185,14 +190,17 @@ CStr CSimulationMessage::ToString() const
 
 
 CGameSetupMessage::CGameSetupMessage(const ScriptInterface& scriptInterface) :
-	CNetMessage(NMT_GAME_SETUP), m_ScriptInterface(scriptInterface), m_Data(scriptInterface.GetJSRuntime())
+	CNetMessage(NMT_GAME_SETUP), m_ScriptInterface(scriptInterface)
 {
+    CX_IN_REALM(cx,&scriptInterface)
+    m_Data = JS::PersistentRootedValue(cx);
 }
 
 CGameSetupMessage::CGameSetupMessage(const ScriptInterface& scriptInterface, JS::HandleValue data) :
-	CNetMessage(NMT_GAME_SETUP), m_ScriptInterface(scriptInterface),
-	m_Data(scriptInterface.GetJSRuntime(), data)
+	CNetMessage(NMT_GAME_SETUP), m_ScriptInterface(scriptInterface)
 {
+    CX_IN_REALM(cx,&scriptInterface)
+    m_Data = JS::PersistentRootedValue(cx,data);
 }
 
 u8* CGameSetupMessage::Serialize(u8* pBuffer) const

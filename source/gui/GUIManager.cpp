@@ -229,8 +229,8 @@ void CGUIManager::SGUIPage::SetCallbackFunction(ScriptInterface& scriptInterface
 		LOGERROR("Given callback handler is not a function!");
 		return;
 	}
-
-	callbackFunction = std::make_shared<JS::PersistentRootedValue>(scriptInterface.GetJSRuntime(), callbackFunc);
+    CX_IN_REALM(cx, &scriptInterface)
+	callbackFunction = std::make_shared<JS::PersistentRootedValue>(cx, callbackFunc);
 }
 
 void CGUIManager::SGUIPage::PerformCallbackFunction(shared_ptr<ScriptInterface::StructuredClone> args)

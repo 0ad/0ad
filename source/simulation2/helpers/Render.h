@@ -21,6 +21,7 @@
 class CSimContext;
 class CVector2D;
 class CVector3D;
+class CFixedVector2D;
 class CFixedVector3D;
 class CMatrix3D;
 class CBoundingBoxAligned;

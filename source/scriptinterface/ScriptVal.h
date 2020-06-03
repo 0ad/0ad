@@ -37,14 +37,9 @@ public:
 	{
 	}
 
-	DefPersistentRooted(JSRuntime* rt)
+	DefPersistentRooted(JSContext* cx)
 	{
-		m_Val.reset(new JS::PersistentRooted<T>(rt));
-	}
-
-	DefPersistentRooted(JSRuntime* rt, JS::HandleValue val)
-	{
-		m_Val.reset(new JS::PersistentRooted<T>(rt, val));
+		m_Val.reset(new JS::PersistentRooted<T>(cx));
 	}
 
 	DefPersistentRooted(JSContext* cx, JS::Handle<T> val)

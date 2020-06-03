@@ -30,10 +30,10 @@
 #include "js/ArrayBuffer.h"
 
 CStdDeserializer::CStdDeserializer(const ScriptInterface& scriptInterface, std::istream& stream) :
-	m_ScriptInterface(scriptInterface), m_Stream(stream),
-	m_dummyObject(scriptInterface.GetJSRuntime())
+	m_ScriptInterface(scriptInterface), m_Stream(stream)
 {
     CX_IN_REALM(cx,&m_ScriptInterface)
+	m_dummyObject = JS::PersistentRootedObject(cx);
 
 	JS_AddExtraGCRootsTracer(cx, CStdDeserializer::Trace, this);
 

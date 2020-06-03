@@ -161,9 +161,10 @@ public:
 	 */
 	CGameLoader(const ScriptInterface& scriptInterface, std::string* savedState) :
 		m_ScriptInterface(scriptInterface),
-		m_Metadata(scriptInterface.GetJSRuntime()),
 		m_SavedState(savedState)
 	{
+        CX_IN_REALM(cx,&scriptInterface)
+		m_Metadata = JS::PersistentRootedValue(cx);
 	}
 
 	static void ReadEntryCallback(const VfsPath& pathname, const CFileInfo& fileInfo, PIArchiveFile archiveFile, uintptr_t cbData)

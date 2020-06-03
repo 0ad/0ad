@@ -53,7 +53,7 @@
 JS::Value CMessage::ToJSValCached(const ScriptInterface& scriptInterface) const
 {
 	if (!m_Cached)
-		m_Cached.reset(new JS::PersistentRootedValue(scriptInterface.GetJSRuntime(), ToJSVal(scriptInterface)));
+		m_Cached.reset(new JS::PersistentRootedValue(scriptInterface.GetContext(), ToJSVal(scriptInterface)));
 
 	return m_Cached->get();
 }

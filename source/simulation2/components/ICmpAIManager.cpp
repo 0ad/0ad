@@ -38,10 +38,10 @@ struct GetAIsHelper
 	NONCOPYABLE(GetAIsHelper);
 public:
 	GetAIsHelper(const ScriptInterface& scriptInterface) :
-		m_ScriptInterface(scriptInterface),
-		m_AIs(scriptInterface.GetJSRuntime())
+		m_ScriptInterface(scriptInterface)
 	{
         CX_IN_REALM(cx,&m_ScriptInterface)
+		m_AIs = JS::PersistentRootedObject(cx);
 		m_AIs = JS_NewArrayObject(cx, 0);
 	}
 

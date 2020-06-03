@@ -23,10 +23,12 @@
 #include "simulation2/serialization/IDeserializer.h"
 
 CComponentTypeScript::CComponentTypeScript(const ScriptInterface& scriptInterface, JS::HandleValue instance) :
-	m_ScriptInterface(scriptInterface), m_Instance(scriptInterface.GetJSRuntime(), instance)
+	m_ScriptInterface(scriptInterface)
 {
 	// Cache the property detection for efficiency
     CX_IN_REALM(cx,(&m_ScriptInterface))
+
+    m_Instance = JS::PersistentRootedValue(cx,instance);
 
 	m_HasCustomSerialize = m_ScriptInterface.HasProperty(m_Instance, "Serialize");
 	m_HasCustomDeserialize = m_ScriptInterface.HasProperty(m_Instance, "Deserialize");

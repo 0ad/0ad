@@ -488,16 +488,19 @@ namespace
 		const ScriptInterface& m_ScriptInterface;
 		JS::PersistentRooted<JS::Value> m_Root;
 		DumpTable(const ScriptInterface& scriptInterface, JS::HandleValue root) :
-			m_ScriptInterface(scriptInterface), m_Root(scriptInterface.GetJSRuntime(), root)
+			m_ScriptInterface(scriptInterface)
 		{
+            CX_IN_REALM(cx, &scriptInterface)
+            m_Root = JS::PersistentRootedValue(cx,root);
 		}
 
 		// std::for_each requires a move constructor and the use of JS::PersistentRooted<T> apparently breaks a requirement for an
 		// automatic move constructor
 		DumpTable(DumpTable && original) :
-			m_ScriptInterface(original.m_ScriptInterface),
-			m_Root(original.m_ScriptInterface.GetJSRuntime(), original.m_Root.get())
+			m_ScriptInterface(original.m_ScriptInterface)
 		{
+            CX_IN_REALM(cx, &m_ScriptInterface)
+            m_Root = JS::PersistentRootedValue(cx,original.m_Root.get());
 		}
 
 		void operator() (AbstractProfileTable* table)

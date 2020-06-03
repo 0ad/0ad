@@ -42,9 +42,11 @@ public:
 	virtual const char* GetScriptGlobalHandlerName() const { return globalHandlerName.c_str(); }
 	virtual JS::Value ToJSVal(const ScriptInterface& UNUSED(scriptInterface)) const { return msg.get(); }
 
-	CMessageScripted(const ScriptInterface& scriptInterface, int mtid, const std::string& name, JS::HandleValue msg) :
-		mtid(mtid), handlerName("On" + name), globalHandlerName("OnGlobal" + name), msg(scriptInterface.GetJSRuntime(), msg)
+	CMessageScripted(const ScriptInterface& scriptInterface, int mtid, const std::string& name, JS::HandleValue msg_) :
+		mtid(mtid), handlerName("On" + name), globalHandlerName("OnGlobal" + name) 
 	{
+        CX_IN_REALM(cx, &scriptInterface)
+        msg = JS::PersistentRootedValue(cx, msg_);
 	}
 
 	int mtid;

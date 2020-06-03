@@ -85,8 +85,10 @@ private:
 		CAIPlayer(CAIWorker& worker, const std::wstring& aiName, player_id_t player, u8 difficulty, const std::wstring& behavior,
 				shared_ptr<ScriptInterface> scriptInterface) :
 			m_Worker(worker), m_AIName(aiName), m_Player(player), m_Difficulty(difficulty), m_Behavior(behavior),
-			m_ScriptInterface(scriptInterface), m_Obj(scriptInterface->GetJSRuntime())
+			m_ScriptInterface(scriptInterface) 
 		{
+            CX_IN_REALM(cx,scriptInterface)
+            m_Obj = JS::PersistentRootedValue(cx);
 		}
 
 		bool Initialise()

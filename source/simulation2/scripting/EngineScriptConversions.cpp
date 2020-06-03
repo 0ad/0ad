@@ -170,12 +170,12 @@ template<> void ScriptInterface::ToJSVal<CFixedVector3D>(JSContext* cx, JS::Muta
 	args[0].setNumber(val.X.ToDouble());
 	args[1].setNumber(val.Y.ToDouble());
 	args[2].setNumber(val.Z.ToDouble());
+    JS::RootedObject retObj(cx);
 
-    JS::HandleValue valueVector3Dh(valueVector3D);
-    JS::RootedObject rootedRetObject(cx, &ret.toObject());
-
-	if (!JS::Construct(cx, valueVector3Dh, args, &rootedRetObject))
+	if (!JS::Construct(cx, valueVector3D, args, &retObj))
 		FAIL_VOID("Failed to construct Vector3D object");
+    
+    ret.set(JS::ObjectValue(*retObj));
 }
 
 template<> bool ScriptInterface::FromJSVal<CFixedVector2D>(JSContext* cx, JS::HandleValue v, CFixedVector2D& out)
@@ -207,12 +207,12 @@ template<> void ScriptInterface::ToJSVal<CFixedVector2D>(JSContext* cx, JS::Muta
 	JS::AutoValueArray<2> args(cx);
 	args[0].setNumber(val.X.ToDouble());
 	args[1].setNumber(val.Y.ToDouble());
+    JS::RootedObject retObj(cx);
 
-    JS::HandleValue valueVector2Dh(valueVector2D);
-    JS::RootedObject rootedRetObject(cx, &ret.toObject());
-
-	if (!JS::Construct(cx, valueVector2Dh, args, &rootedRetObject))
+	if (!JS::Construct(cx, valueVector2D, args, &retObj))
 		FAIL_VOID("Failed to construct Vector2D object");
+
+    ret.set(JS::ObjectValue(*retObj));
 }
 
 template<> void ScriptInterface::ToJSVal<Grid<u8> >(JSContext* cx, JS::MutableHandleValue ret, const Grid<u8>& val)
