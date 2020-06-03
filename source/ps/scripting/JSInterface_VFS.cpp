@@ -91,7 +91,7 @@ JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::RealmPrivate* pRealmPrivate,
 
 	int flags = recurse ? vfs::DIR_RECURSIVE : 0;
 
-	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
+    CX_IN_REALM(cx,pRealmPrivate->pScriptInterface)
 
 	// build array in the callback function
 	BuildDirEntListState state(cx);
@@ -129,7 +129,7 @@ unsigned int JSI_VFS::GetFileSize(ScriptInterface::RealmPrivate* UNUSED(pRealmPr
 // Return file contents in a string. Assume file is UTF-8 encoded text.
 JS::Value JSI_VFS::ReadFile(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& filename)
 {
-	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
+    CX_IN_REALM(cx,pRealmPrivate->pScriptInterface)
 
 	CVFSFile file;
 	if (file.Load(g_VFS, filename) != PSRETURN_OK)
@@ -150,7 +150,7 @@ JS::Value JSI_VFS::ReadFile(ScriptInterface::RealmPrivate* pRealmPrivate, const 
 JS::Value JSI_VFS::ReadFileLines(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& filename)
 {
 	const ScriptInterface& scriptInterface = *pRealmPrivate->pScriptInterface;
-	JSContext* cx = scriptInterface.GetContext();
+	CX_IN_REALM(cx,&scriptInterface)
 
 	CVFSFile file;
 	if (file.Load(g_VFS, filename) != PSRETURN_OK)
@@ -186,7 +186,7 @@ JS::Value JSI_VFS::ReadJSONFile(ScriptInterface::RealmPrivate* pRealmPrivate, co
 	if (!PathRestrictionMet(pRealmPrivate, validPaths, filePath))
 		return JS::NullValue();
 
-	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
+    CX_IN_REALM(cx,pRealmPrivate->pScriptInterface)
 	JS::RootedValue out(cx);
 	pRealmPrivate->pScriptInterface->ReadJSONFile(filePath, &out);
 	return out;
@@ -194,7 +194,7 @@ JS::Value JSI_VFS::ReadJSONFile(ScriptInterface::RealmPrivate* pRealmPrivate, co
 
 void JSI_VFS::WriteJSONFile(ScriptInterface::RealmPrivate* pRealmPrivate, const std::wstring& filePath, JS::HandleValue val1)
 {
-	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
+    CX_IN_REALM(cx,pRealmPrivate->pScriptInterface)
 
 	// TODO: This is a workaround because we need to pass a MutableHandle to StringifyJSON.
 	JS::RootedValue val(cx, val1);
@@ -222,7 +222,7 @@ bool JSI_VFS::PathRestrictionMet(ScriptInterface::RealmPrivate* pRealmPrivate, c
 		allowedPaths += L"\"" + validPaths[i] + L"\"";
 	}
 
-	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
+    CX_IN_REALM(cx,pRealmPrivate->pScriptInterface)
 	JS_ReportErrorASCII(cx, "This part of the engine may only read from %s!", utf8_from_wstring(allowedPaths).c_str());
 
 	return false;

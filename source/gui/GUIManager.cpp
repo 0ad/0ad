@@ -199,7 +199,7 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptRuntime> scriptRuntime)
 	gui->LoadedXmlFiles();
 
 	shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
-	JSContext* cx = scriptInterface->GetContext();
+	CX_IN_REALM(cx,scriptInterface)
 
 	JS::RootedValue initDataVal(cx);
 	JS::RootedValue hotloadDataVal(cx);
@@ -239,7 +239,7 @@ void CGUIManager::SGUIPage::PerformCallbackFunction(shared_ptr<ScriptInterface::
 		return;
 
 	shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
-	JSContext* cx = scriptInterface->GetContext();
+	CX_IN_REALM(cx,scriptInterface)
 
 	JS::RootedObject globalObj(cx, &scriptInterface->GetGlobalObject().toObject());
 
@@ -295,7 +295,7 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 
 	{
 		PROFILE("handleInputBeforeGui");
-		JSContext* cx = top()->GetScriptInterface()->GetContext();
+		CX_IN_REALM(cx,(top()->GetScriptInterface()))
 		JS::RootedValue global(cx, top()->GetGlobalObject());
 		if (top()->GetScriptInterface()->CallFunction(global, "handleInputBeforeGui", handled, *ev, top()->FindObjectUnderMouse()))
 			if (handled)
@@ -311,7 +311,7 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 
 	{
 		// We can't take the following lines out of this scope because top() may be another gui page than it was when calling handleInputBeforeGui!
-		JSContext* cx = top()->GetScriptInterface()->GetContext();
+		CX_IN_REALM(cx,(top()->GetScriptInterface()))
 		JS::RootedValue global(cx, top()->GetGlobalObject());
 
 		PROFILE("handleInputAfterGui");

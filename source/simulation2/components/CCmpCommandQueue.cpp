@@ -51,8 +51,7 @@ public:
 
 	virtual void Serialize(ISerializer& serialize)
 	{
-		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
-
+        CX_IN_REALM(cx,(&(GetSimContext().GetScriptInterface())))
 		serialize.NumberU32_Unbounded("num commands", (u32)m_LocalQueue.size());
 		for (size_t i = 0; i < m_LocalQueue.size(); ++i)
 		{
@@ -63,7 +62,7 @@ public:
 
 	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
 	{
-		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
+        CX_IN_REALM(cx,(&(GetSimContext().GetScriptInterface())))
 
 		u32 numCmds;
 		deserialize.NumberU32_Unbounded("num commands", numCmds);
@@ -79,14 +78,13 @@ public:
 
 	virtual void PushLocalCommand(player_id_t player, JS::HandleValue cmd)
 	{
-		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
-
+        CX_IN_REALM(cx,(&(GetSimContext().GetScriptInterface())))
 		m_LocalQueue.emplace_back(SimulationCommand(player, cx, cmd));
 	}
 
 	virtual void PostNetworkCommand(JS::HandleValue cmd1)
 	{
-		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
+        CX_IN_REALM(cx,(&(GetSimContext().GetScriptInterface())))
 
 		// TODO: This is a workaround because we need to pass a MutableHandle to StringifyJSON.
 		JS::RootedValue cmd(cx, cmd1.get());
@@ -102,7 +100,7 @@ public:
 	virtual void FlushTurn(const std::vector<SimulationCommand>& commands)
 	{
 		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
-		JSContext* cx = scriptInterface.GetContext();
+        CX_IN_REALM(cx,&scriptInterface)
 
 		JS::RootedValue global(cx, scriptInterface.GetGlobalObject());
 		std::vector<SimulationCommand> localCommands;

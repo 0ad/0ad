@@ -28,7 +28,7 @@ public:
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
         auto realm = script.AutoRealm();
-		JSContext* cx = script.GetContext();
+		CX_IN_REALM(cx,&script)
 
 		JS::RootedValue val(cx);
 		ScriptInterface::CreateArray(cx, &val);

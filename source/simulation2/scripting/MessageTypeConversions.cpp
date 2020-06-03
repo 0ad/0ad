@@ -35,7 +35,7 @@
 	} while (0);
 
 #define FROMJSVAL_SETUP() \
-	JSContext* cx = scriptInterface.GetContext(); \
+    JSContext* cx = scriptInterface.GetContext(); \
 	if (val.isPrimitive()) \
 		return NULL; \
 	JS::RootedObject obj(cx, &val.toObject()); \

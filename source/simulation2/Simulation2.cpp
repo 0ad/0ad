@@ -171,7 +171,7 @@ public:
 		newCommands.reserve(commands.size());
 		for (const SimulationCommand& command : commands)
 		{
-			JSContext* cxNew = newScript.GetContext();
+            CX_IN_REALM(cxNew,&newScript)
 			JS::RootedValue tmpCommand(cxNew, newScript.CloneValueFromOtherContext(oldScript, command.data));
 			newScript.FreezeObject(tmpCommand, true);
 			SimulationCommand cmd(command.player, cxNew, tmpCommand);
@@ -420,7 +420,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 
 		// Load the trigger scripts after we have loaded the simulation.
 		{
-			JSContext* cx2 = m_SecondaryComponentManager->GetScriptInterface().GetContext();
+            CX_IN_REALM(cx2,(&(m_SecondaryComponentManager->GetScriptInterface())))
 			JS::RootedValue mapSettingsCloned(cx2,
 				m_SecondaryComponentManager->GetScriptInterface().CloneValueFromOtherContext(
 					scriptInterface, m_MapSettings));
@@ -445,7 +445,8 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 			scriptInterface.GetProperty(m_InitAttributes, "map", mapFile);
 
 			VfsPath mapfilename = VfsPath(mapFile).ChangeExtension(L".pmp");
-			mapReader->LoadMap(mapfilename, scriptInterface.GetContext(), JS::UndefinedHandleValue,
+            CX_IN_REALM(cx,&scriptInterface)
+			mapReader->LoadMap(mapfilename, cx, JS::UndefinedHandleValue,
 				m_SecondaryTerrain, NULL, NULL, NULL, NULL, NULL, NULL,
 				NULL, NULL, m_SecondaryContext, INVALID_PLAYER, true); // throws exception on failure
 		}
@@ -732,14 +733,14 @@ ScriptInterface& CSimulation2::GetScriptInterface() const
 
 void CSimulation2::PreInitGame()
 {
-	JSContext* cx = GetScriptInterface().GetContext();
+    CX_IN_REALM(cx,(&(GetScriptInterface())))
 	JS::RootedValue global(cx, GetScriptInterface().GetGlobalObject());
 	GetScriptInterface().CallFunctionVoid(global, "PreInitGame");
 }
 
 void CSimulation2::InitGame()
 {
-	JSContext* cx = GetScriptInterface().GetContext();
+    CX_IN_REALM(cx,(&(GetScriptInterface())))
 	JS::RootedValue global(cx, GetScriptInterface().GetGlobalObject());
 
 	JS::RootedValue settings(cx);
@@ -838,14 +839,14 @@ void CSimulation2::GetMapSettings(JS::MutableHandleValue ret)
 
 void CSimulation2::LoadPlayerSettings(bool newPlayers)
 {
-	JSContext* cx = GetScriptInterface().GetContext();
+    CX_IN_REALM(cx,(&(GetScriptInterface())))
 	JS::RootedValue global(cx, GetScriptInterface().GetGlobalObject());
 	GetScriptInterface().CallFunctionVoid(global, "LoadPlayerSettings", m->m_MapSettings, newPlayers);
 }
 
 void CSimulation2::LoadMapSettings()
 {
-	JSContext* cx = GetScriptInterface().GetContext();
+    CX_IN_REALM(cx,(&(GetScriptInterface())))
 
 	JS::RootedValue global(cx, GetScriptInterface().GetGlobalObject());
 
@@ -976,7 +977,7 @@ std::string CSimulation2::GetMapSizes()
 std::string CSimulation2::GetAIData()
 {
 	const ScriptInterface& scriptInterface = GetScriptInterface();
-	JSContext* cx = scriptInterface.GetContext();
+    CX_IN_REALM(cx,&scriptInterface)
 	JS::RootedValue aiData(cx, ICmpAIManager::GetAIs(scriptInterface));
 
 	// Build single JSON string with array of AI data

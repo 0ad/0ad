@@ -545,7 +545,7 @@ void CConsole::UseHistoryFile(const VfsPath& filename, int max_history_lines)
 void CConsole::ProcessBuffer(const wchar_t* szLine)
 {
 	shared_ptr<ScriptInterface> pScriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
-	JSContext* cx = pScriptInterface->GetContext();
+	CX_IN_REALM(cx,pScriptInterface)
 
 	if (szLine == NULL) return;
 	if (wcslen(szLine) <= 0) return;

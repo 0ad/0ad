@@ -157,7 +157,7 @@ public:
 	template<typename... Args>
 	void PushGuiMessage(Args const&... args)
 	{
-		JSContext* cx = GetScriptInterface().GetContext();
+        CX_IN_REALM(cx,(&(GetScriptInterface())))
 
 		JS::RootedValue message(cx);
 		ScriptInterface::CreateObject(cx, &message, args...);

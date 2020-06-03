@@ -49,7 +49,8 @@ JS::Value JSI_Simulation::GuiInterfaceCall(ScriptInterface::RealmPrivate* pRealm
 	if (!cmpGuiInterface)
 		return JS::UndefinedValue();
 
-	JSContext* cxSim = sim->GetScriptInterface().GetContext();
+    CX_IN_REALM(cxSim,(&(sim->GetScriptInterface())))
+
 	JS::RootedValue arg(cxSim, sim->GetScriptInterface().CloneValueFromOtherContext(*(pRealmPrivate->pScriptInterface), data));
 	JS::RootedValue ret(cxSim);
 	cmpGuiInterface->ScriptCall(g_Game->GetViewedPlayerID(), name, arg, &ret);
@@ -69,7 +70,8 @@ void JSI_Simulation::PostNetworkCommand(ScriptInterface::RealmPrivate* pRealmPri
 	if (!cmpCommandQueue)
 		return;
 
-	JSContext* cxSim = sim->GetScriptInterface().GetContext();
+    CX_IN_REALM(cxSim,(&(sim->GetScriptInterface())))
+
 	JS::RootedValue cmd2(cxSim, sim->GetScriptInterface().CloneValueFromOtherContext(*(pRealmPrivate->pScriptInterface), cmd));
 
 	cmpCommandQueue->PostNetworkCommand(cmd2);
@@ -123,8 +125,9 @@ JS::Value JSI_Simulation::GetEdgesOfStaticObstructionsOnScreenNearTo(ScriptInter
 	CSimulation2* sim = g_Game->GetSimulation2();
 	ENSURE(sim);
 
-	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
-	JS::RootedValue edgeList(cx);
+    CX_IN_REALM(cx,pRealmPrivate->pScriptInterface)
+	
+    JS::RootedValue edgeList(cx);
 	ScriptInterface::CreateArray(cx, &edgeList);
 	int edgeListIndex = 0;
 

@@ -292,7 +292,7 @@ public:
 	void helper_script_roundtrip(const char* msg, const char* input, const char* expected, size_t expstreamlen = 0, const char* expstream = NULL, const char* debug = NULL)
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
-		JSContext* cx = script.GetContext();
+        CX_IN_REALM(cx,(&script))
 
 		JS::RootedValue obj(cx);
 		TSM_ASSERT(msg, script.Eval(input, &obj));
@@ -754,7 +754,8 @@ public:
 	void test_script_exceptions()
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
-		JSContext* cx = script.GetContext();
+
+        CX_IN_REALM(cx,(&script))
 
 		JS::RootedValue obj(cx);
 
@@ -788,7 +789,8 @@ public:
 		const char* input = "var x = {}; for (var i=0;i<256;++i) x[i]=Math.pow(i, 2); x";
 
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
-		JSContext* cx = script.GetContext();
+        
+        CX_IN_REALM(cx,(&script))
 
 		JS::RootedValue obj(cx);
 		TS_ASSERT(script.Eval(input, &obj));
@@ -838,9 +840,11 @@ public:
 
 		std::unique_ptr<CMapReader> mapReader(new CMapReader());
 
+        CX_IN_REALM(cx,(&(sim2.GetScriptInterface())))
+
 		LDR_BeginRegistering();
 		mapReader->LoadMap(L"maps/skirmishes/Greek Acropolis (2).pmp",
-			sim2.GetScriptInterface().GetContext(), JS::UndefinedHandleValue,
+			cx, JS::UndefinedHandleValue,
 			&terrain, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 			&sim2, &sim2.GetSimContext(), -1, false);
 		LDR_EndRegistering();

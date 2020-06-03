@@ -87,7 +87,7 @@ void CReplayTurnManager::NotifyFinishedUpdate(u32 turn)
 	LOGERROR("Replay out of sync on turn %d", turn);
 
 	const ScriptInterface& scriptInterface = m_Simulation2.GetScriptInterface();
-	JSContext* cx = scriptInterface.GetContext();
+    CX_IN_REALM(cx,(&scriptInterface))
 
 	JS::RootedValueVector paramData(cx);
 
@@ -110,7 +110,7 @@ void CReplayTurnManager::DoTurn(u32 turn)
 
 	m_TurnLength = m_ReplayTurnLengths[turn];
 
-	JSContext* cx = m_Simulation2.GetScriptInterface().GetContext();
+    CX_IN_REALM(cx,(&(m_Simulation2.GetScriptInterface())))
 
 	// Simulate commands for that turn
 	for (const std::pair<player_id_t, std::string>& p : m_ReplayCommands[turn])

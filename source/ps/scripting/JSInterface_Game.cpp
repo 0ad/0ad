@@ -48,7 +48,7 @@ void JSI_Game::StartGame(ScriptInterface::RealmPrivate* pRealmPrivate, JS::Handl
 
 	// Convert from GUI script context to sim script context
 	CSimulation2* sim = g_Game->GetSimulation2();
-	JSContext* cxSim = sim->GetScriptInterface().GetContext();
+    CX_IN_REALM(cxSim,(&(sim->GetScriptInterface())))
 
 	JS::RootedValue gameAttribs(cxSim,
 		sim->GetScriptInterface().CloneValueFromOtherContext(*(pRealmPrivate->pScriptInterface), attribs));
@@ -100,7 +100,7 @@ bool JSI_Game::IsPaused(ScriptInterface::RealmPrivate* pRealmPrivate)
 {
 	if (!g_Game)
 	{
-		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
+        CX_IN_REALM(cx,pRealmPrivate->pScriptInterface)
 		JS_ReportErrorASCII(cx, "Game is not started");
 		return false;
 	}
@@ -112,7 +112,7 @@ void JSI_Game::SetPaused(ScriptInterface::RealmPrivate* pRealmPrivate, bool paus
 {
 	if (!g_Game)
 	{
-		JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
+        CX_IN_REALM(cx,pRealmPrivate->pScriptInterface)
 		JS_ReportErrorASCII(cx, "Game is not started");
 		return;
 	}

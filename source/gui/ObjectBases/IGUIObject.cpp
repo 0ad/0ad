@@ -301,8 +301,9 @@ float IGUIObject::GetBufferedZ() const
 
 void IGUIObject::RegisterScriptHandler(const CStr& eventName, const CStr& Code, CGUI& pGUI)
 {
-	JSContext* cx = pGUI.GetScriptInterface()->GetContext();
-	JS::RootedValue globalVal(cx, pGUI.GetGlobalObject());
+	CX_IN_REALM(cx,pGUI.GetScriptInterface())
+	
+    JS::RootedValue globalVal(cx, pGUI.GetGlobalObject());
 	JS::RootedObject globalObj(cx, &globalVal.toObject());
 
 	const int paramCount = 1;
@@ -347,8 +348,10 @@ void IGUIObject::RegisterScriptHandler(const CStr& eventName, const CStr& Code, 
 
 void IGUIObject::SetScriptHandler(const CStr& eventName, JS::HandleObject Function)
 {
-	if (m_ScriptHandlers.empty())
-		JS_AddExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetContext(), Trace, this);
+	if (m_ScriptHandlers.empty()) {
+	    CX_IN_REALM(cx,m_pGUI.GetScriptInterface())
+		JS_AddExtraGCRootsTracer(cx, Trace, this);
+    }
 
 	m_ScriptHandlers[eventName] = JS::Heap<JSObject*>(Function);
 }
@@ -362,8 +365,10 @@ void IGUIObject::UnsetScriptHandler(const CStr& eventName)
 
 	m_ScriptHandlers.erase(it);
 
-	if (m_ScriptHandlers.empty())
-		JS_RemoveExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetContext(), Trace, this);
+	if (m_ScriptHandlers.empty()){
+        CX_IN_REALM(cx,m_pGUI.GetScriptInterface())
+		JS_RemoveExtraGCRootsTracer(cx, Trace, this);
+    }
 }
 
 InReaction IGUIObject::SendEvent(EGUIMessageType type, const CStr& eventName)
@@ -389,7 +394,7 @@ InReaction IGUIObject::SendMouseEvent(EGUIMessageType type, const CStr& eventNam
 	SGUIMessage msg(type);
 	HandleMessage(msg);
 
-	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
+    CX_IN_REALM(cx,m_pGUI.GetScriptInterface())
 
 	// Set up the 'mouse' parameter
 	JS::RootedValue mouse(cx);
@@ -419,7 +424,7 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName)
 	if (m_ScriptHandlers.find(eventName) == m_ScriptHandlers.end())
 		return false;
 
-	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
+    CX_IN_REALM(cx,m_pGUI.GetScriptInterface())
 	JS::RootedValueVector paramData(cx);
 	return ScriptEventWithReturn(eventName, paramData);
 }
@@ -435,7 +440,7 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName, const JS::HandleVa
 	if (it == m_ScriptHandlers.end())
 		return false;
 
-	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
+    CX_IN_REALM(cx,m_pGUI.GetScriptInterface())
 	JS::RootedObject obj(cx, GetJSObject());
 	JS::RootedValue handlerVal(cx, JS::ObjectValue(*it->second));
 	JS::RootedValue result(cx);
@@ -450,7 +455,7 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName, const JS::HandleVa
 
 void IGUIObject::CreateJSObject()
 {
-	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
+    CX_IN_REALM(cx,m_pGUI.GetScriptInterface())
 
 	m_JSObject.init(cx, m_pGUI.GetScriptInterface()->CreateCustomObject("GUIObject"));
 	JS_SetPrivate(m_JSObject.get(), this);

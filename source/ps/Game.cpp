@@ -191,7 +191,7 @@ bool CGame::StartVisualReplay(const OsPath& replayPath)
 	std::getline(*m_ReplayStream, line);
 
 	const ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
-	JSContext* cx = scriptInterface.GetContext();
+    CX_IN_REALM(cx,&scriptInterface)
 
 	JS::RootedValue attribs(cx);
 	scriptInterface.ParseJSON(line, &attribs);
@@ -208,7 +208,7 @@ bool CGame::StartVisualReplay(const OsPath& replayPath)
 void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& savedState)
 {
 	const ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
-	JSContext* cx = scriptInterface.GetContext();
+    CX_IN_REALM(cx,&scriptInterface)
 
 	m_InitialSavedState = savedState;
 	m_IsSavedGame = !savedState.empty();
@@ -243,7 +243,8 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 		scriptInterface.GetProperty(attribs, "script", scriptFile);
 		scriptInterface.GetProperty(attribs, "settings", &settings);
 
-		m_World->RegisterInitRMS(scriptFile, scriptInterface.GetContext(), settings, m_PlayerID);
+        CX_IN_REALM(cx,&scriptInterface)
+		m_World->RegisterInitRMS(scriptFile, cx, settings, m_PlayerID);
 	}
 	else
 	{
@@ -252,7 +253,8 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 		scriptInterface.GetProperty(attribs, "map", mapFile);
 		scriptInterface.GetProperty(attribs, "settings", &settings);
 
-		m_World->RegisterInit(mapFile, scriptInterface.GetContext(), settings, m_PlayerID);
+        CX_IN_REALM(cx,&scriptInterface)
+		m_World->RegisterInit(mapFile, cx, settings, m_PlayerID);
 	}
 	if (m_GameView)
 		RegMemFun(g_Renderer.GetSingletonPtr()->GetWaterManager(), &WaterManager::LoadWaterTextures, L"LoadWaterTextures", 80);
@@ -293,7 +295,7 @@ int CGame::LoadInitialState()
  **/
 PSRETURN CGame::ReallyStartGame()
 {
-	JSContext* cx = m_Simulation2->GetScriptInterface().GetContext();
+    CX_IN_REALM(cx,(&(m_Simulation2->GetScriptInterface())))
 
 	// Call the script function InitGame only for new games, not saved games
 	if (!m_IsSavedGame)

@@ -115,7 +115,7 @@ void* CMapGeneratorWorker::RunThread(CMapGeneratorWorker* self)
 
 bool CMapGeneratorWorker::Run()
 {
-	JSContext* cx = m_ScriptInterface->GetContext();
+    CX_IN_REALM(cx,m_ScriptInterface)
 
 	// Parse settings
 	JS::RootedValue settingsVal(cx);
@@ -325,7 +325,7 @@ JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::RealmPrivate* pRea
 	}
 
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pRealmPrivate->pCBData);
-	JSContext* cx = self->m_ScriptInterface->GetContext();
+    CX_IN_REALM(cx,self->m_ScriptInterface)
 	JS::RootedValue returnValue(cx);
 	ToJSVal_vector(cx, &returnValue, heightmap);
 	return returnValue;
@@ -335,7 +335,7 @@ JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::RealmPrivate* pRea
 JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::RealmPrivate* pRealmPrivate, const VfsPath& filename)
 {
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pRealmPrivate->pCBData);
-	JSContext* cx = self->m_ScriptInterface->GetContext();
+    CX_IN_REALM(cx,self->m_ScriptInterface)
 
 	if (!VfsFileExists(filename))
 	{

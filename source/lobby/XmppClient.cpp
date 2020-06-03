@@ -93,8 +93,9 @@ XmppClient::XmppClient(const ScriptInterface* scriptInterface, const std::string
 	  m_certStatus(gloox::CertStatus::CertOk),
 	  m_PlayerMapUpdate(false)
 {
-	if (m_ScriptInterface)
-		JS_AddExtraGCRootsTracer(m_ScriptInterface->GetContext(), XmppClient::Trace, this);
+	if (m_ScriptInterface){
+        CX_IN_REALM(cx,m_ScriptInterface)
+    }
 
 	// Read lobby configuration from default.cfg
 	std::string sXpartamupp;
@@ -192,7 +193,10 @@ XmppClient::~XmppClient()
 		glooxwrapper::Tag::free(t);
 
 	if (m_ScriptInterface)
-		JS_RemoveExtraGCRootsTracer(m_ScriptInterface->GetContext(), XmppClient::Trace, this);
+    {
+        CX_IN_REALM(cx,m_ScriptInterface)
+		JS_RemoveExtraGCRootsTracer(cx, XmppClient::Trace, this);
+    }
 }
 
 void XmppClient::TraceMember(JSTracer* trc)
@@ -537,7 +541,7 @@ void XmppClient::handleOOB(const glooxwrapper::JID&, const glooxwrapper::OOB&)
  */
 void XmppClient::GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
-	JSContext* cx = scriptInterface.GetContext();
+    CX_IN_REALM(cx,&scriptInterface)
 
 	ScriptInterface::CreateArray(cx, ret);
 	int j = 0;
@@ -565,7 +569,7 @@ void XmppClient::GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::Mu
  */
 void XmppClient::GUIGetGameList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
-	JSContext* cx = scriptInterface.GetContext();
+    CX_IN_REALM(cx,&scriptInterface)
 
 	ScriptInterface::CreateArray(cx, ret);
 	int j = 0;
@@ -593,7 +597,7 @@ void XmppClient::GUIGetGameList(const ScriptInterface& scriptInterface, JS::Muta
  */
 void XmppClient::GUIGetBoardList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
-	JSContext* cx = scriptInterface.GetContext();
+    CX_IN_REALM(cx,&scriptInterface)
 
 	ScriptInterface::CreateArray(cx, ret);
 	int j = 0;
@@ -619,7 +623,7 @@ void XmppClient::GUIGetBoardList(const ScriptInterface& scriptInterface, JS::Mut
  */
 void XmppClient::GUIGetProfile(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
-	JSContext* cx = scriptInterface.GetContext();
+    CX_IN_REALM(cx,&scriptInterface)
 
 	ScriptInterface::CreateArray(cx, ret);
 	int j = 0;
@@ -664,7 +668,8 @@ void XmppClient::CreateGUIMessage(
 {
 	if (!m_ScriptInterface)
 		return;
-	JSContext* cx = m_ScriptInterface->GetContext();
+    
+    CX_IN_REALM(cx,m_ScriptInterface)
 	JS::RootedValue message(cx);
 	ScriptInterface::CreateObject(
 		cx,
@@ -697,7 +702,7 @@ JS::Value XmppClient::GuiPollNewMessages(const ScriptInterface& scriptInterface)
 	if ((m_isConnected && !m_initialLoadComplete) || m_GuiMessageQueue.empty())
 		return JS::UndefinedValue();
 
-	JSContext* cx = scriptInterface.GetContext();
+    CX_IN_REALM(cx,&scriptInterface)
 
 	// Optimize for batch message processing that is more
 	// performance demanding than processing a lone message.
@@ -743,7 +748,7 @@ JS::Value XmppClient::GuiPollHistoricMessages(const ScriptInterface& scriptInter
 	if (m_HistoricGuiMessages.empty())
 		return JS::UndefinedValue();
 
-	JSContext* cx = scriptInterface.GetContext();
+    CX_IN_REALM(cx,&scriptInterface)
 
 	JS::RootedValue messages(cx);
 	ScriptInterface::CreateArray(cx, &messages);

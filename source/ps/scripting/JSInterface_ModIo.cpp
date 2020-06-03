@@ -86,7 +86,7 @@ JS::Value JSI_ModIo::GetMods(ScriptInterface::RealmPrivate* pRealmPrivate)
 	}
 
 	ScriptInterface* scriptInterface = pRealmPrivate->pScriptInterface;
-	JSContext* cx = scriptInterface->GetContext();
+    CX_IN_REALM(cx,scriptInterface)
 
 	const std::vector<ModIoModData>& availableMods = g_ModIo->GetMods();
 
@@ -132,7 +132,7 @@ JS::Value JSI_ModIo::GetDownloadProgress(ScriptInterface::RealmPrivate* pRealmPr
 	}
 
 	ScriptInterface* scriptInterface = pRealmPrivate->pScriptInterface;
-	JSContext* cx = scriptInterface->GetContext();
+    CX_IN_REALM(cx,scriptInterface)
 
 	const DownloadProgressData& progress = g_ModIo->GetDownloadProgress();
 

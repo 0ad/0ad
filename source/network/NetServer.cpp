@@ -389,7 +389,8 @@ void CNetServerWorker::Run()
 	// To avoid the need for JS_SetContextThread, we create and use and destroy
 	// the script interface entirely within this network thread
 	m_ScriptInterface = new ScriptInterface("Engine", "Net server", ScriptInterface::CreateRuntime(g_ScriptRuntime));
-	m_GameAttributes.init(m_ScriptInterface->GetContext(), JS::UndefinedValue());
+	CX_IN_REALM(cx,m_ScriptInterface)
+	m_GameAttributes.init(cx, JS::UndefinedValue());
 
 	while (true)
 	{
@@ -418,7 +419,7 @@ bool CNetServerWorker::RunStep()
 
 	m_ScriptInterface->GetRuntime()->MaybeIncrementalGC(0.5f);
 
-	JSContext* cx = m_ScriptInterface->GetContext();
+	CX_IN_REALM(cx,m_ScriptInterface)
 
 	std::vector<bool> newStartGame;
 	std::vector<std::string> newGameAttributes;
@@ -1136,7 +1137,7 @@ bool CNetServerWorker::OnSimulationCommand(void* context, CFsmEvent* event)
 	// unless cheating is enabled
 	bool cheatsEnabled = false;
 	const ScriptInterface& scriptInterface = server.GetScriptInterface();
-	JSContext* cx = scriptInterface.GetContext();
+	CX_IN_REALM(cx,&scriptInterface)
 	JS::RootedValue settings(cx);
 	scriptInterface.GetProperty(server.m_GameAttributes, "settings", &settings);
 	if (scriptInterface.HasProperty(settings, "CheatsEnabled"))

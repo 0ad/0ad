@@ -62,7 +62,7 @@ CModInstaller::ModInstallationResult CModInstaller::Install(
 
 	// Extract the name of the mod
 	ScriptInterface scriptInterface("Engine", "ModInstaller", scriptRuntime);
-	JSContext* cx = scriptInterface.GetContext();
+	CX_IN_REALM(cx,&scriptInterface)
 	JS::RootedValue json_val(cx);
 	if (!scriptInterface.ParseJSON(modinfo.GetAsString(), &json_val))
 		return FAIL_ON_PARSE_JSON;

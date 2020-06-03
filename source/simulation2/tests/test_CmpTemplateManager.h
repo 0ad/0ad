@@ -99,7 +99,7 @@ public:
 		TS_ASSERT(tempMan != NULL);
 		tempMan->DisableValidation();
 
-		JSContext* cx = man.GetScriptInterface().GetContext();
+        CX_IN_REALM(cx,(&(man.GetScriptInterface())))
 
 		// This is testing some bugs in the template JS object caching
 

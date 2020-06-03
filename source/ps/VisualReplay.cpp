@@ -71,7 +71,7 @@ bool VisualReplay::StartVisualReplay(const OsPath& directory)
 
 bool VisualReplay::ReadCacheFile(const ScriptInterface& scriptInterface, JS::MutableHandleObject cachedReplaysObject)
 {
-	JSContext* cx = scriptInterface.GetContext();
+	CX_IN_REALM(cx,&scriptInterface)
 
 	if (!FileExists(GetCacheFilePath()))
 		return false;
@@ -96,7 +96,7 @@ bool VisualReplay::ReadCacheFile(const ScriptInterface& scriptInterface, JS::Mut
 
 void VisualReplay::StoreCacheFile(const ScriptInterface& scriptInterface, JS::HandleObject replays)
 {
-	JSContext* cx = scriptInterface.GetContext();
+	CX_IN_REALM(cx,&scriptInterface)
 
 	JS::RootedValue replaysRooted(cx, JS::ObjectValue(*replays));
 	std::ofstream cacheStream(OsString(GetTempCacheFilePath()).c_str(), std::ofstream::out | std::ofstream::trunc);
@@ -111,7 +111,7 @@ void VisualReplay::StoreCacheFile(const ScriptInterface& scriptInterface, JS::Ha
 JS::HandleObject VisualReplay::ReloadReplayCache(const ScriptInterface& scriptInterface, bool compareFiles)
 {
 	TIMER(L"ReloadReplayCache");
-	JSContext* cx = scriptInterface.GetContext();
+	CX_IN_REALM(cx,&scriptInterface)
 
 	// Maps the filename onto the index and size
 	typedef std::map<OsPath, std::pair<u32, off_t>> replayCacheMap;
@@ -228,7 +228,7 @@ JS::HandleObject VisualReplay::ReloadReplayCache(const ScriptInterface& scriptIn
 JS::Value VisualReplay::GetReplays(const ScriptInterface& scriptInterface, bool compareFiles)
 {
 	TIMER(L"GetReplays");
-	JSContext* cx = scriptInterface.GetContext();
+	CX_IN_REALM(cx,&scriptInterface)
 	JS::RootedObject replays(cx, ReloadReplayCache(scriptInterface, compareFiles));
 	// Only take entries with data
 	JS::RootedValue replaysWithoutNullEntries(cx);
@@ -365,7 +365,7 @@ JS::Value VisualReplay::LoadReplayData(const ScriptInterface& scriptInterface, c
 	// Parse header / first line
 	CStr header;
 	std::getline(*replayStream, header);
-	JSContext* cx = scriptInterface.GetContext();
+	CX_IN_REALM(cx, &scriptInterface)
 	JS::RootedValue attribs(cx);
 	if (!scriptInterface.ParseJSON(header, &attribs))
 	{
@@ -425,7 +425,7 @@ bool VisualReplay::DeleteReplay(const OsPath& replayDirectory)
 JS::Value VisualReplay::GetReplayAttributes(ScriptInterface::RealmPrivate* pRealmPrivate, const OsPath& directoryName)
 {
 	// Create empty JS object
-	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
+	CX_IN_REALM(cx,pRealmPrivate->pScriptInterface)
 	JS::RootedValue attribs(cx);
 	ScriptInterface::CreateObject(cx, &attribs);
 
@@ -449,7 +449,7 @@ JS::Value VisualReplay::GetReplayAttributes(ScriptInterface::RealmPrivate* pReal
 void VisualReplay::AddReplayToCache(const ScriptInterface& scriptInterface, const CStrW& directoryName)
 {
 	TIMER(L"AddReplayToCache");
-	JSContext* cx = scriptInterface.GetContext();
+	CX_IN_REALM(cx, &scriptInterface)
 
 	JS::RootedValue replayData(cx, LoadReplayData(scriptInterface, OsPath(directoryName)));
 	if (replayData.isNull())
@@ -484,7 +484,7 @@ JS::Value VisualReplay::GetReplayMetadata(ScriptInterface::RealmPrivate* pRealmP
 	if (!HasReplayMetadata(directoryName))
 		return JS::NullValue();
 
-	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
+	CX_IN_REALM(cx,pRealmPrivate->pScriptInterface)
 	JS::RootedValue metadata(cx);
 
 	std::ifstream* stream = new std::ifstream(OsString(GetDirectoryPath() / directoryName / L"metadata.json").c_str());

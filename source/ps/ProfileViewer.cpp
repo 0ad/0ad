@@ -502,7 +502,7 @@ namespace
 
 		void operator() (AbstractProfileTable* table)
 		{
-			JSContext* cx = m_ScriptInterface.GetContext();
+	        CX_IN_REALM(cx,&m_ScriptInterface)
 
 			JS::RootedValue t(cx);
 			ScriptInterface::CreateObject(
@@ -528,7 +528,7 @@ namespace
 
 		JS::Value DumpRows(AbstractProfileTable* table)
 		{
-			JSContext* cx = m_ScriptInterface.GetContext();
+	        CX_IN_REALM(cx,&m_ScriptInterface)
 
 			JS::RootedValue data(cx);
 			ScriptInterface::CreateObject(cx, &data);

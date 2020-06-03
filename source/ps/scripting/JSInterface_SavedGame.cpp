@@ -78,7 +78,7 @@ JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::RealmPrivate* pRealmPri
 	// The GUI calls this function from the GUI context and expects the return value in the same context.
 	// The game we start from here creates another context and expects data in this context.
 
-	JSContext* cxGui = pRealmPrivate->pScriptInterface->GetContext();
+    CX_IN_REALM(cxGui,pRealmPrivate->pScriptInterface)
 
 	ENSURE(!g_NetServer);
 	ENSURE(!g_NetClient);
@@ -96,7 +96,7 @@ JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::RealmPrivate* pRealmPri
 
 	{
 		CSimulation2* sim = g_Game->GetSimulation2();
-		JSContext* cxGame = sim->GetScriptInterface().GetContext();
+        CX_IN_REALM(cxGame,(&(sim->GetScriptInterface())))
 
 		JS::RootedValue gameContextMetadata(cxGame,
 			sim->GetScriptInterface().CloneValueFromOtherContext(*(pRealmPrivate->pScriptInterface), guiContextMetadata));

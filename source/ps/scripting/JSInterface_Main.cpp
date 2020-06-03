@@ -73,7 +73,7 @@ std::wstring JSI_Main::GetMatchID(ScriptInterface::RealmPrivate* UNUSED(pRealmPr
 
 JS::Value JSI_Main::LoadMapSettings(ScriptInterface::RealmPrivate* pRealmPrivate, const VfsPath& pathname)
 {
-	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
+    CX_IN_REALM(cx,pRealmPrivate->pScriptInterface)
 
 	CMapSummaryReader reader;
 

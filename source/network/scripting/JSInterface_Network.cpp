@@ -155,7 +155,7 @@ JS::Value JSI_Network::PollNetworkClient(ScriptInterface::RealmPrivate* pRealmPr
 		return JS::UndefinedValue();
 
 	// Convert from net client context to GUI script context
-	JSContext* cxNet = g_NetClient->GetScriptInterface().GetContext();
+	CX_IN_REALM(cxNet,(&(g_NetClient->GetScriptInterface())))
 	JS::RootedValue pollNet(cxNet);
 	g_NetClient->GuiPoll(&pollNet);
 	return pRealmPrivate->pScriptInterface->CloneValueFromOtherContext(g_NetClient->GetScriptInterface(), pollNet);
@@ -166,7 +166,7 @@ void JSI_Network::SetNetworkGameAttributes(ScriptInterface::RealmPrivate* pRealm
 	ENSURE(g_NetClient);
 
 	// TODO: This is a workaround because we need to pass a MutableHandle to a JSAPI functions somewhere (with no obvious reason).
-	JSContext* cx = pRealmPrivate->pScriptInterface->GetContext();
+    CX_IN_REALM(cx,pRealmPrivate->pScriptInterface)
 	JS::RootedValue attribs(cx, attribs1);
 
 	g_NetClient->SendGameSetupMessage(&attribs, *(pRealmPrivate->pScriptInterface));

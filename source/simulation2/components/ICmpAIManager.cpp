@@ -41,7 +41,7 @@ public:
 		m_ScriptInterface(scriptInterface),
 		m_AIs(scriptInterface.GetJSRuntime())
 	{
-		JSContext* cx = m_ScriptInterface.GetContext();
+        CX_IN_REALM(cx,&m_ScriptInterface)
 		m_AIs = JS_NewArrayObject(cx, 0);
 	}
 
@@ -53,7 +53,7 @@ public:
 	static Status Callback(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 	{
 		GetAIsHelper* self = (GetAIsHelper*)cbData;
-		JSContext* cx = self->m_ScriptInterface.GetContext();
+        CX_IN_REALM(cx,(&(self->m_ScriptInterface)))
 
 		// Extract the 3rd component of the path (i.e. the directory after simulation/ai/)
 		fs::wpath components = pathname.string();

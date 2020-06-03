@@ -145,8 +145,11 @@ public:
 		std::unique_ptr<CMapReader> mapReader(new CMapReader());
 
 		LDR_BeginRegistering();
+        
+        CX_IN_REALM(cx,(&(sim2.GetScriptInterface())))
+
 		mapReader->LoadMap(L"maps/skirmishes/Median Oasis (2).pmp",
-			sim2.GetScriptInterface().GetContext(), JS::UndefinedHandleValue,
+			cx, JS::UndefinedHandleValue,
 			&terrain, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 			&sim2, &sim2.GetSimContext(), -1, false);
 		LDR_EndRegistering();
@@ -254,10 +257,13 @@ public:
 		sim2.ResetState();
 
 		std::unique_ptr<CMapReader> mapReader(new CMapReader());
+		
+        LDR_BeginRegistering();
+        
+        CX_IN_REALM(cx,(&(sim2.GetScriptInterface())))
 
-		LDR_BeginRegistering();
 		mapReader->LoadMap(L"maps/scenarios/Peloponnese.pmp",
-			sim2.GetScriptInterface().GetContext(), JS::UndefinedHandleValue,
+			cx, JS::UndefinedHandleValue,
 			&terrain, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 			&sim2, &sim2.GetSimContext(), -1, false);
 		LDR_EndRegistering();
@@ -313,8 +319,11 @@ public:
 		std::unique_ptr<CMapReader> mapReader(new CMapReader());
 
 		LDR_BeginRegistering();
+
+        CX_IN_REALM(cx,(&(sim2.GetScriptInterface())))
+
 		mapReader->LoadMap(L"maps/scenarios/Peloponnese.pmp",
-			sim2.GetScriptInterface().GetContext(), JS::UndefinedHandleValue,
+			cx, JS::UndefinedHandleValue,
 			&terrain, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 			&sim2, &sim2.GetSimContext(), -1, false);
 		LDR_EndRegistering();

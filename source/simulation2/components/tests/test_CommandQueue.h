@@ -35,7 +35,8 @@ public:
 	void test_basic()
 	{
 		ComponentTestHelper test(g_ScriptRuntime);
-		JSContext* cx = test.GetScriptInterface().GetContext();
+
+        CX_IN_REALM(cx,(&(test.GetScriptInterface())))
 
 		std::vector<SimulationCommand> empty;
 

@@ -33,9 +33,9 @@ CStdDeserializer::CStdDeserializer(const ScriptInterface& scriptInterface, std::
 	m_ScriptInterface(scriptInterface), m_Stream(stream),
 	m_dummyObject(scriptInterface.GetJSRuntime())
 {
-	JSContext* cx = m_ScriptInterface.GetContext();
+    CX_IN_REALM(cx,&m_ScriptInterface)
 
-	JS_AddExtraGCRootsTracer(m_ScriptInterface.GetContext(), CStdDeserializer::Trace, this);
+	JS_AddExtraGCRootsTracer(cx, CStdDeserializer::Trace, this);
 
 	// Add a dummy tag because the serializer uses the tag 0 to indicate that a value
 	// needs to be serialized and then tagged
@@ -45,7 +45,8 @@ CStdDeserializer::CStdDeserializer(const ScriptInterface& scriptInterface, std::
 
 CStdDeserializer::~CStdDeserializer()
 {
-	JS_RemoveExtraGCRootsTracer(m_ScriptInterface.GetContext(), CStdDeserializer::Trace, this);
+    CX_IN_REALM(cx,&m_ScriptInterface)
+	JS_RemoveExtraGCRootsTracer(cx, CStdDeserializer::Trace, this);
 }
 
 void CStdDeserializer::Trace(JSTracer *trc, void *data)
@@ -125,7 +126,7 @@ void CStdDeserializer::GetScriptBackref(u32 tag, JS::MutableHandleObject ret)
 
 JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject appendParent)
 {
-	JSContext* cx = m_ScriptInterface.GetContext();
+    CX_IN_REALM(cx,&m_ScriptInterface)
 
 	uint8_t type;
 	NumberU8_Unbounded("type", type);
@@ -460,7 +461,7 @@ void CStdDeserializer::ScriptString(const char* name, JS::MutableHandleString ou
 #error TODO: probably need to convert JS strings from little-endian
 #endif
 
-	JSContext* cx = m_ScriptInterface.GetContext();
+    CX_IN_REALM(cx,&m_ScriptInterface)
 
 	bool isLatin1;
 	Bool("isLatin1", isLatin1);
@@ -491,7 +492,7 @@ void CStdDeserializer::ScriptVal(const char* name, JS::MutableHandleValue out)
 
 void CStdDeserializer::ScriptObjectAppend(const char* name, JS::HandleValue objVal)
 {
-	JSContext* cx = m_ScriptInterface.GetContext();
+    CX_IN_REALM(cx,&m_ScriptInterface)
 
 	if (!objVal.isObject())
 		throw PSERROR_Deserialize_ScriptError();

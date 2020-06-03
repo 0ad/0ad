@@ -208,7 +208,7 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 // dispatch all pending events to the various receivers.
 static void PumpEvents()
 {
-	JSContext* cx = g_GUI->GetScriptInterface()->GetContext();
+    CX_IN_REALM(cx,g_GUI->GetScriptInterface())
 
 	PROFILE3("dispatch events");
 

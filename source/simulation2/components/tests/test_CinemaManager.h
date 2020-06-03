@@ -35,7 +35,7 @@ public:
 	void test_basic()
 	{
 		ComponentTestHelper test(g_ScriptRuntime);
-		JSContext* cx = test.GetScriptInterface().GetContext();
+        CX_IN_REALM(cx,(&(test.GetScriptInterface())))
 
 		ICmpCinemaManager* cmp = test.Add<ICmpCinemaManager>(CID_CinemaManager, "", SYSTEM_ENTITY);
 

@@ -52,7 +52,7 @@ Status SavedGames::SavePrefix(const CStrW& prefix, const CStrW& description, CSi
 
 Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation2& simulation, const shared_ptr<ScriptInterface::StructuredClone>& guiMetadataClone)
 {
-	JSContext* cx = simulation.GetScriptInterface().GetContext();
+    CX_IN_REALM(cx,(&(simulation.GetScriptInterface())))
 
 	// Determine the filename to save under
 	const VfsPath basenameFormat(L"saves/" + name);
@@ -226,7 +226,7 @@ Status SavedGames::Load(const std::wstring& name, const ScriptInterface& scriptI
 JS::Value SavedGames::GetSavedGames(const ScriptInterface& scriptInterface)
 {
 	TIMER(L"GetSavedGames");
-	JSContext* cx = scriptInterface.GetContext();
+    CX_IN_REALM(cx,&scriptInterface)
 
 	JS::RootedValue games(cx);
 	ScriptInterface::CreateArray(cx, &games);

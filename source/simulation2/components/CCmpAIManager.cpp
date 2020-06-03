@@ -95,7 +95,7 @@ private:
 			if (!m_Worker.LoadScripts(m_AIName))
 				return false;
 
-			JSContext* cx = m_ScriptInterface->GetContext();
+            CX_IN_REALM(cx,m_ScriptInterface)
 
 			OsPath path = L"simulation/ai/" + m_AIName + L"/data.json";
 			JS::RootedValue metadata(cx);
@@ -226,7 +226,8 @@ public:
 
 		m_ScriptInterface->SetCallbackData(static_cast<void*> (this));
 
-		JS_AddExtraGCRootsTracer(m_ScriptInterface->GetContext(), Trace, this);
+        CX_IN_REALM(cx, m_ScriptInterface)
+		JS_AddExtraGCRootsTracer(cx, Trace, this);
 
 		m_ScriptInterface->RegisterFunction<void, int, JS::HandleValue, CAIWorker::PostCommand>("PostCommand");
 		m_ScriptInterface->RegisterFunction<void, std::wstring, CAIWorker::IncludeModule>("IncludeModule");
@@ -245,7 +246,8 @@ public:
 
 	~CAIWorker()
 	{
-		JS_RemoveExtraGCRootsTracer(m_ScriptInterface->GetContext(), Trace, this);
+        CX_IN_REALM(cx,m_ScriptInterface)
+		JS_RemoveExtraGCRootsTracer(cx, Trace, this);
 	}
 
 	bool HasLoadedEntityTemplates() const { return m_HasLoadedEntityTemplates; }
@@ -312,7 +314,8 @@ public:
 	{
 		ENSURE(pRealmPrivate->pCBData);
 		CAIWorker* self = static_cast<CAIWorker*> (pRealmPrivate->pCBData);
-		JSContext* cx(self->m_ScriptInterface->GetContext());
+
+        CX_IN_REALM(cx,self->m_ScriptInterface)
 
 		CFixedVector2D pos, goalPos;
 		std::vector<CFixedVector2D> waypoints;
@@ -402,7 +405,7 @@ public:
 
 	bool TryLoadSharedComponent()
 	{
-		JSContext* cx = m_ScriptInterface->GetContext();
+        CX_IN_REALM(cx,m_ScriptInterface)
 
 		// we don't need to load it.
 		if (!m_HasSharedComponent)
@@ -491,7 +494,7 @@ public:
 		// this will be run last by InitGame.js, passing the full game representation.
 		// For now it will run for the shared Component.
 		// This is NOT run during deserialization.
-		JSContext* cx = m_ScriptInterface->GetContext();
+        CX_IN_REALM(cx,m_ScriptInterface)
 
 		JS::RootedValue state(cx);
 		m_ScriptInterface->ReadStructuredClone(gameState, &state);
@@ -545,7 +548,8 @@ public:
 			m_HierarchicalPathfinder.Update(&m_PassabilityMap, dirtinessGrid);
 		}
 
-		JSContext* cx = m_ScriptInterface->GetContext();
+        CX_IN_REALM(cx,m_ScriptInterface)
+
 		if (dimensionChange || justDeserialized)
 			ScriptInterface::ToJSVal(cx, &m_PassabilityMapVal, m_PassabilityMap);
 		else
@@ -574,8 +578,9 @@ public:
 
 		m_TerritoryMap = territoryMap;
 
-		JSContext* cx = m_ScriptInterface->GetContext();
-		if (dimensionChange)
+        CX_IN_REALM(cx,m_ScriptInterface)
+		
+        if (dimensionChange)
 			ScriptInterface::ToJSVal(cx, &m_TerritoryMapVal, m_TerritoryMap);
 		else
 		{
@@ -625,7 +630,7 @@ public:
 
 	void LoadEntityTemplates(const std::vector<std::pair<std::string, const CParamNode*> >& templates)
 	{
-		JSContext* cx = m_ScriptInterface->GetContext();
+        CX_IN_REALM(cx,m_ScriptInterface)
 
 		m_HasLoadedEntityTemplates = true;
 
@@ -663,7 +668,7 @@ public:
 		if (m_Players.empty())
 			return;
 
-		JSContext* cx = m_ScriptInterface->GetContext();
+        CX_IN_REALM(cx,m_ScriptInterface)
 
 		std::stringstream rngStream;
 		rngStream << m_RNG;
@@ -725,7 +730,7 @@ public:
 		if (numAis == 0)
 			return;
 
-		JSContext* cx = m_ScriptInterface->GetContext();
+        CX_IN_REALM(cx,m_ScriptInterface)
 
 		ENSURE(m_CommandsComputed); // deserializing while we're still actively computing would be bad
 
@@ -822,7 +827,7 @@ public:
 		// TODO: this is yucky - see comment in Deserialize()
 		ENSURE(proto.isObject() && "A serializable prototype has to be an object!");
 
-		JSContext* cx = m_ScriptInterface->GetContext();
+        CX_IN_REALM(cx,m_ScriptInterface)
 
 		JS::RootedObject obj(cx, &proto.toObject());
 		if (m_SerializablePrototypes->has(obj) || m_DeserializablePrototypes.find(name) != m_DeserializablePrototypes.end())
@@ -863,8 +868,9 @@ private:
 	void PerformComputation()
 	{
 		// Deserialize the game state, to pass to the AI's HandleMessage
-		JSContext* cx = m_ScriptInterface->GetContext();
-		JS::RootedValue state(cx);
+        CX_IN_REALM(cx,m_ScriptInterface)
+		
+        JS::RootedValue state(cx);
 		{
 			PROFILE3("AI compute read state");
 			m_ScriptInterface->ReadStructuredClone(m_GameState, &state);
@@ -1018,7 +1024,8 @@ public:
 	virtual void RunGamestateInit()
 	{
 		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
-		JSContext* cx = scriptInterface.GetContext();
+        
+        CX_IN_REALM(cx,&scriptInterface)
 
 		CmpPtr<ICmpAIInterface> cmpAIInterface(GetSystemEntity());
 		ENSURE(cmpAIInterface);
@@ -1056,7 +1063,7 @@ public:
 		PROFILE("AI setup");
 
 		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
-		JSContext* cx = scriptInterface.GetContext();
+        CX_IN_REALM(cx,&scriptInterface)
 
 		if (m_Worker.getPlayerSize() == 0)
 			return;
@@ -1120,7 +1127,7 @@ public:
 			return;
 
 		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
-		JSContext* cx = scriptInterface.GetContext();
+        CX_IN_REALM(cx,&scriptInterface)
 		JS::RootedValue clonedCommandVal(cx);
 
 		for (size_t i = 0; i < commands.size(); ++i)
@@ -1171,7 +1178,7 @@ private:
 			return;
 
 		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
-		JSContext* cx = scriptInterface.GetContext();
+        CX_IN_REALM(cx,&scriptInterface)
 
 		JS::RootedValue classesVal(cx);
 		ScriptInterface::CreateObject(cx, &classesVal);

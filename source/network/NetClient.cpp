@@ -71,16 +71,21 @@ CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 	m_Session(NULL),
 	m_UserName(L"anonymous"),
 	m_HostID((u32)-1), m_ClientTurnManager(NULL), m_Game(game),
-	m_GameAttributes(game->GetSimulation2()->GetScriptInterface().GetContext()),
 	m_IsLocalClient(isLocalClient),
 	m_LastConnectionCheck(0),
 	m_Rejoin(false)
 {
-	m_Game->SetTurnManager(NULL); // delete the old local turn manager so we don't accidentally use it
+    {
+        CX_IN_REALM(cxGame,(&(game->GetSimulation2()->GetScriptInterface())))
+	    m_GameAttributes = JS::PersistentRootedValue(cxGame);
+    }
+	
+    m_Game->SetTurnManager(NULL); // delete the old local turn manager so we don't accidentally use it
 
 	void* context = this;
 
-	JS_AddExtraGCRootsTracer(GetScriptInterface().GetContext(), CNetClient::Trace, this);
+    CX_IN_REALM(cx,(&(GetScriptInterface())))
+	JS_AddExtraGCRootsTracer(cx, CNetClient::Trace, this);
 
 	// Set up transitions for session
 	AddTransition(NCS_UNCONNECTED, (uint)NMT_CONNECT_COMPLETE, NCS_CONNECT, (void*)&OnConnect, context);
@@ -144,7 +149,8 @@ CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 CNetClient::~CNetClient()
 {
 	DestroyConnection();
-	JS_RemoveExtraGCRootsTracer(GetScriptInterface().GetContext(), CNetClient::Trace, this);
+    CX_IN_REALM(cx,(&(GetScriptInterface())))
+	JS_RemoveExtraGCRootsTracer(cx, CNetClient::Trace, this);
 }
 
 void CNetClient::TraceMember(JSTracer *trc)
@@ -251,7 +257,7 @@ void CNetClient::GuiPoll(JS::MutableHandleValue ret)
 
 std::string CNetClient::TestReadGuiMessages()
 {
-	JSContext* cx = GetScriptInterface().GetContext();
+    CX_IN_REALM(cx,(&(GetScriptInterface())))
 
 	std::string r;
 	JS::RootedValue msg(cx);
@@ -272,7 +278,7 @@ const ScriptInterface& CNetClient::GetScriptInterface()
 
 void CNetClient::PostPlayerAssignmentsToScript()
 {
-	JSContext* cx = GetScriptInterface().GetContext();
+    CX_IN_REALM(cx,(&(GetScriptInterface())))
 
 	JS::RootedValue newAssignments(cx);
 	ScriptInterface::CreateObject(cx, &newAssignments);

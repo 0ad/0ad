@@ -152,7 +152,8 @@ bool CComponentManager::LoadScript(const VfsPath& filename, bool hotload)
 void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::RealmPrivate* pRealmPrivate, int iid, const std::string& cname, JS::HandleValue ctor, bool reRegister, bool systemComponent)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pRealmPrivate->pCBData);
-	JSContext* cx = componentManager->m_ScriptInterface.GetContext();
+    
+    CX_IN_REALM(cx,(&(componentManager->m_ScriptInterface)))
 
 	// Find the C++ component that wraps the interface
 	int cidWrapper = componentManager->GetScriptWrapper(iid);
@@ -725,7 +726,7 @@ void CComponentManager::AddSystemComponents(bool skipScriptedComponents, bool sk
 
 IComponent* CComponentManager::ConstructComponent(CEntityHandle ent, ComponentTypeId cid)
 {
-	JSContext* cx = m_ScriptInterface.GetContext();
+    CX_IN_REALM(cx,(&m_ScriptInterface))
 
 	std::map<ComponentTypeId, ComponentType>::const_iterator it = m_ComponentTypesById.find(cid);
 	if (it == m_ComponentTypesById.end())
