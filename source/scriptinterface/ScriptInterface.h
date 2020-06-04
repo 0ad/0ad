@@ -20,6 +20,7 @@
 
 #include "lib/file/vfs/vfs_path.h"
 #include "maths/Fixed.h"
+#include "ScriptRuntime.h"
 #include "ScriptTypes.h"
 #include "ps/Errors.h"
 
@@ -29,6 +30,13 @@
 #define CX_IN_REALM(CONTEXT, IFACE) \
             JSContext* CONTEXT = (IFACE)->GetContext(); \
             auto __realm_ ## CONTEXT ## __ = (IFACE)->AutoRealm();
+
+
+/**
+ * See https://groups.google.com/forum/#!topic/mozilla.dev.tech.js-engine/Mu1arXbBhi8
+ *
+ */
+void checkJSError(JSContext* cx);
 
 ERROR_GROUP(Scripting);
 ERROR_TYPE(Scripting, SetupFailed);
@@ -362,7 +370,10 @@ public:
 		JS::RootedObject thisObj(cx, &callArgs.thisv().toObject());
 		T* value = static_cast<T*>(JS_GetInstancePrivate(cx, thisObj, jsClass, &callArgs));
 		if (value == nullptr && !JS_IsExceptionPending(cx))
+        {
+            checkJSError(cx);
 			JS_ReportErrorASCII(cx, "Private data of the given object is null!");
+        }
 		return value;
 	}
 

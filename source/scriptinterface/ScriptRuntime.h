@@ -19,11 +19,17 @@
 #define INCLUDED_SCRIPTRUNTIME
 
 #include "ScriptTypes.h"
-#include "ScriptExtraHeaders.h"
 
 #include <sstream>
 
 #define STACK_CHUNK_SIZE 8192
+
+
+/**
+ *  Set global errors and warnings
+ *
+ */
+void ErrorReporter(JSContext* cx, JSErrorReport* report);
 
 /**
  * Abstraction around a SpiderMonkey JSRuntime.
