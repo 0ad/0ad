@@ -2482,16 +2482,17 @@ UnitAI.prototype.UnitFsmSpec = {
 					{
 						// Try to find a new resource of the same specific type near the initial resource position:
 						// Also don't switch to a different type of huntable animal
-						let nearbyResource = this.FindNearbyResource((ent, type, template) => {
-							if (previousTarget == ent)
-								return false;
+						let nearbyResource = this.FindNearbyResource(new Vector2D(initPos.x, initPos.z),
+							(ent, type, template) => {
+								if (previousTarget == ent)
+									return false;
 
-							if (type.generic == "treasure" && resourceType.generic == "treasure")
-								return true;
+								if (type.generic == "treasure" && resourceType.generic == "treasure")
+									return true;
 
-							return type.specific == resourceType.specific &&
-							    (type.specific != "meat" || resourceTemplate == template);
-						}, new Vector2D(initPos.x, initPos.z));
+								return type.specific == resourceType.specific &&
+								    (type.specific != "meat" || resourceTemplate == template);
+						});
 
 						if (nearbyResource)
 						{
@@ -2935,16 +2936,10 @@ UnitAI.prototype.UnitFsmSpec = {
 				{
 					let cmpResourceDropsite = Engine.QueryInterface(msg.data.newentity, IID_ResourceDropsite);
 					let types = cmpResourceDropsite.GetTypes();
-					let pos;
-					let cmpPosition = Engine.QueryInterface(msg.data.newentity, IID_Position);
-					if (cmpPosition && cmpPosition.IsInWorld())
-						pos = cmpPosition.GetPosition2D();
-
 					// TODO: Slightly undefined behavior here, we don't know what type of resource will be collected,
 					//   may cause problems for AIs (especially hunting fast animals), but avoid ugly hacks to fix that!
-					let nearby = this.FindNearbyResource(function(ent, type, template) {
-						return (types.indexOf(type.generic) != -1);
-					}, pos);
+					let nearby = this.FindNearbyResource(this.TargetPosOrEntPos(msg.data.newentity),
+						(ent, type, template) => types.indexOf(type.generic) != -1);
 
 					if (nearby)
 					{
@@ -2953,8 +2948,8 @@ UnitAI.prototype.UnitFsmSpec = {
 					}
 				}
 
-				// Look for a nearby foundation to help with
-				let nearbyFoundation = this.FindNearbyFoundation();
+				// Look for a nearby foundation to help with.
+				let nearbyFoundation = this.FindNearbyFoundation(this.TargetPosOrEntPos(msg.data.newentity));
 				if (nearbyFoundation)
 				{
 					this.AddOrder("Repair", { "target": nearbyFoundation, "autocontinue": oldData.autocontinue, "force": false }, true);
@@ -4253,14 +4248,34 @@ UnitAI.prototype.MustKillGatherTarget = function(ent)
 };
 
 /**
+ * Returns the position of target or, if there is none,
+ * the entity's position, or undefined.
+ */
+UnitAI.prototype.TargetPosOrEntPos = function(target)
+{
+	let cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
+	if (cmpTargetPosition && cmpTargetPosition.IsInWorld())
+		return cmpTargetPosition.GetPosition2D();
+
+	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (cmpPosition && cmpPosition.IsInWorld())
+		return cmpPosition.GetPosition2D();
+
+	return undefined;
+};
+
+
+/**
  * Returns the entity ID of the nearest resource supply where the given
  * filter returns true, or undefined if none can be found.
- * if position (as a vector2D) is given, the nearest is computed versus this position.
- * TODO: extend this to exclude resources that already have lots of
- * gatherers.
+ * "Nearest" is nearest from @param position.
+ * TODO: extend this to exclude resources that already have lots of gatherers.
  */
-UnitAI.prototype.FindNearbyResource = function(filter, position)
+UnitAI.prototype.FindNearbyResource = function(position, filter)
 {
+	if (!position)
+		return undefined;
+
 	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (!cmpOwnership || cmpOwnership.GetOwner() == INVALID_PLAYER)
 		return undefined;
@@ -4273,14 +4288,7 @@ UnitAI.prototype.FindNearbyResource = function(filter, position)
 
 	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	let pos = position;
-	if (!pos)
-	{
-		let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-		if (cmpPosition && cmpPosition.IsInWorld())
-			pos = cmpPosition.GetPosition2D();
-	}
-	let nearby = cmpRangeManager.ExecuteQueryAroundPos(pos, 0, range, players, IID_ResourceSupply);
+	let nearby = cmpRangeManager.ExecuteQueryAroundPos(position, 0, range, players, IID_ResourceSupply);
 	return nearby.find(ent => {
 		if (!this.CanGather(ent) || !this.CheckTargetVisible(ent))
 			return false;
@@ -4355,22 +4363,24 @@ UnitAI.prototype.FindNearestDropsite = function(genericType)
 };
 
 /**
- * Returns the entity ID of the nearest building that needs to be constructed,
- * or undefined if none can be found close enough.
+ * Returns the entity ID of the nearest building that needs to be constructed.
+ * "Nearest" is nearest from @param position.
  */
-UnitAI.prototype.FindNearbyFoundation = function()
+UnitAI.prototype.FindNearbyFoundation = function(position)
 {
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!position)
+		return undefined;
+
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (!cmpOwnership || cmpOwnership.GetOwner() == INVALID_PLAYER)
 		return undefined;
 
 	// Find buildings owned by this unit's player
-	var players = [cmpOwnership.GetOwner()];
+	let players = [cmpOwnership.GetOwner()];
 
-	var range = 64; // TODO: what's a sensible number?
-
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var nearby = cmpRangeManager.ExecuteQuery(this.entity, 0, range, players, IID_Foundation);
+	let range = 64; // TODO: what's a sensible number?
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	let nearby = cmpRangeManager.ExecuteQueryAroundPos(position, 0, range, players, IID_Foundation);
 
 	// Skip foundations that are already complete. (This matters since
 	// we process the ConstructionFinished message before the foundation
