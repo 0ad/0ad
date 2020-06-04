@@ -294,22 +294,32 @@ ResourceGatherer.prototype.IsCarryingAnythingExcept = function(exceptedType)
 
 /**
  * Transfer our carried resources to our owner immediately.
- * Only resources of the given types will be transferred.
- * (This should typically be called after reaching a dropsite).
+ * Only resources of the appropriate types will be transferred.
+ * (This should typically be called after reaching a dropsite.)
+ *
+ * @param {number} target - The target entity ID to drop resources at.
  */
-ResourceGatherer.prototype.CommitResources = function(types)
+ResourceGatherer.prototype.CommitResources = function(target)
 {
+	let cmpResourceDropsite = Engine.QueryInterface(target, IID_ResourceDropsite);
+	if (!cmpResourceDropsite)
+		return;
+
 	let cmpPlayer = QueryOwnerInterface(this.entity);
+	if (!cmpPlayer)
+		return;
 
-	if (cmpPlayer)
-		for (let type of types)
-			if (type in this.carrying)
-			{
-				cmpPlayer.AddResource(type, this.carrying[type]);
-				delete this.carrying[type];
-			}
+	let changed = false;
+	for (let type in this.carrying)
+		if (cmpResourceDropsite.AcceptsType(type))
+		{
+			cmpPlayer.AddResource(type, this.carrying[type]);
+			delete this.carrying[type];
+			changed = true;
+		}
 
-	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
+	if (changed)
+		Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 };
 
 /**

@@ -579,23 +579,19 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	"Order.ReturnResource": function(msg) {
 		// Check if the dropsite is already in range
-		if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer) && this.CanReturnResource(this.order.data.target, true))
+		let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+		if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer) &&
+		    this.CanReturnResource(this.order.data.target, true, cmpResourceGatherer))
 		{
-			var cmpResourceDropsite = Engine.QueryInterface(this.order.data.target, IID_ResourceDropsite);
-			if (cmpResourceDropsite)
-			{
-				// Dump any resources we can
-				var dropsiteTypes = cmpResourceDropsite.GetTypes();
+			cmpResourceGatherer.CommitResources(this.order.data.target);
 
-				Engine.QueryInterface(this.entity, IID_ResourceGatherer).CommitResources(dropsiteTypes);
-				// Stop showing the carried resource animation.
-				this.SetDefaultAnimationVariant();
+			// Stop showing the carried resource animation.
+			this.SetDefaultAnimationVariant();
 
-				// Our next order should always be a Gather,
-				// so just switch back to that order
-				this.FinishOrder();
-				return;
-			}
+			// Our next order should always be a Gather,
+			// so just switch back to that order.
+			this.FinishOrder();
+			return;
 		}
 		this.SetNextState("INDIVIDUAL.RETURNRESOURCE.APPROACHING");
 	},
@@ -2694,25 +2690,19 @@ UnitAI.prototype.UnitFsmSpec = {
 				"MovementUpdate": function(msg) {
 					// Check the dropsite is in range and we can return our resource there
 					// (we didn't get stopped before reaching it)
-					if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer) && this.CanReturnResource(this.order.data.target, true))
+					let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+					if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer) &&
+					    this.CanReturnResource(this.order.data.target, true, cmpResourceGatherer))
 					{
-						let cmpResourceDropsite = Engine.QueryInterface(this.order.data.target, IID_ResourceDropsite);
-						if (cmpResourceDropsite)
-						{
-							// Dump any resources we can
-							let dropsiteTypes = cmpResourceDropsite.GetTypes();
+						cmpResourceGatherer.CommitResources(this.order.data.target);
 
-							let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-							cmpResourceGatherer.CommitResources(dropsiteTypes);
+						// Stop showing the carried resource animation.
+						this.SetDefaultAnimationVariant();
 
-							// Stop showing the carried resource animation.
-							this.SetDefaultAnimationVariant();
-
-							// Our next order should always be a Gather,
-							// so just switch back to that order
-							this.FinishOrder();
-							return;
-						}
+						// Our next order should always be a Gather,
+						// so just switch back to that order.
+						this.FinishOrder();
+						return;
 					}
 
 					if (msg.obstructed)
@@ -2721,8 +2711,6 @@ UnitAI.prototype.UnitFsmSpec = {
 					// If we are here: we are in range but not carrying the right resources (or resources at all),
 					// the dropsite was destroyed, or we couldn't reach it, or ownership changed.
 					// Look for a new one.
-
-					let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
 					let genericType = cmpResourceGatherer.GetMainCarryingType();
 					let nearby = this.FindNearestDropsite(genericType);
 					if (nearby)
@@ -2898,12 +2886,10 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				// Drop any resource we can if we are in range when the construction finishes
 				let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-				let cmpResourceDropsite = Engine.QueryInterface(msg.data.newentity, IID_ResourceDropsite);
-				if (cmpResourceGatherer && cmpResourceDropsite && this.CheckTargetRange(msg.data.newentity, IID_Builder) &&
-					this.CanReturnResource(msg.data.newentity, true))
+				let canReturnResources = this.CanReturnResource(msg.data.newentity, true, cmpResourceGatherer);
+				if (this.CheckTargetRange(msg.data.newentity, IID_Builder) && canReturnResources)
 				{
-					let dropsiteTypes = cmpResourceDropsite.GetTypes();
-					cmpResourceGatherer.CommitResources(dropsiteTypes);
+					cmpResourceGatherer.CommitResources(msg.data.newentity);
 					this.SetDefaultAnimationVariant();
 				}
 
@@ -2911,12 +2897,20 @@ UnitAI.prototype.UnitFsmSpec = {
 				// Switch to the next order (if any)
 				if (this.FinishOrder())
 				{
-					if (this.CanReturnResource(msg.data.newentity, true))
+					if (canReturnResources)
 					{
+						// We aren't in range, but we can still return resources there: always do so.
 						this.SetDefaultAnimationVariant();
 						this.PushOrderFront("ReturnResource", { "target": msg.data.newentity, "force": false });
 					}
 					return;
+				}
+
+				if (canReturnResources)
+				{
+					// We aren't in range, but we can still return resources there: always do so.
+					this.SetDefaultAnimationVariant();
+					this.PushOrderFront("ReturnResource", { "target": msg.data.newentity, "force": false });
 				}
 
 				// No remaining orders - pick a useful default behaviour
@@ -2930,19 +2924,16 @@ UnitAI.prototype.UnitFsmSpec = {
 				// the build command should start gathering from it
 				if ((oldData.force || oldData.autoharvest) && this.CanGather(msg.data.newentity))
 				{
-					if (this.CanReturnResource(msg.data.newentity, true))
-					{
-						this.SetDefaultAnimationVariant();
-						this.PushOrder("ReturnResource", { "target": msg.data.newentity, "force": false });
-					}
 					this.PerformGather(msg.data.newentity, true, false);
 					return;
 				}
 
 				// If this building was e.g. a farmstead of ours, entities that received
 				// the build command should look for nearby resources to gather
-				if ((oldData.force || oldData.autoharvest) && this.CanReturnResource(msg.data.newentity, false))
+				if ((oldData.force || oldData.autoharvest) &&
+				    this.CanReturnResource(msg.data.newentity, false, cmpResourceGatherer))
 				{
+					let cmpResourceDropsite = Engine.QueryInterface(msg.data.newentity, IID_ResourceDropsite);
 					let types = cmpResourceDropsite.GetTypes();
 					let pos;
 					let cmpPosition = Engine.QueryInterface(msg.data.newentity, IID_Position);
@@ -3059,18 +3050,12 @@ UnitAI.prototype.UnitFsmSpec = {
 									}
 								}
 
-								// Check if we are garrisoned in a dropsite
-								var cmpResourceDropsite = Engine.QueryInterface(target, IID_ResourceDropsite);
-								if (cmpResourceDropsite && this.CanReturnResource(target, true))
+								// Check if we are garrisoned in a dropsite.
+								let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+								if (this.CanReturnResource(target, true, cmpResourceGatherer))
 								{
-									// Dump any resources we can
-									var dropsiteTypes = cmpResourceDropsite.GetTypes();
-									var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-									if (cmpResourceGatherer)
-									{
-										cmpResourceGatherer.CommitResources(dropsiteTypes);
-										this.SetDefaultAnimationVariant();
-									}
+									cmpResourceGatherer.CommitResources(target);
+									this.SetDefaultAnimationVariant();
 								}
 
 								// If a pickup has been requested, remove it
@@ -6158,7 +6143,12 @@ UnitAI.prototype.CanHeal = function(target)
 	return cmpHeal && cmpHeal.CanHeal(target);
 };
 
-UnitAI.prototype.CanReturnResource = function(target, checkCarriedResource)
+/**
+ * Check if the entity can return carried resources at @param target
+ * @param checkCarriedResource check we are carrying resources
+ * @param cmpResourceGatherer if present, use this directly instead of re-querying.
+ */
+UnitAI.prototype.CanReturnResource = function(target, checkCarriedResource, cmpResourceGatherer = undefined)
 {
 	if (this.IsTurret())
 		return false;
@@ -6168,12 +6158,15 @@ UnitAI.prototype.CanReturnResource = function(target, checkCarriedResource)
 		return true;
 
 	// Verify that we're able to respond to ReturnResource commands
-	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
 	if (!cmpResourceGatherer)
-		return false;
+	{
+		cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+		if (!cmpResourceGatherer)
+			return false;
+	}
 
 	// Verify that the target is a dropsite
-	var cmpResourceDropsite = Engine.QueryInterface(target, IID_ResourceDropsite);
+	let cmpResourceDropsite = Engine.QueryInterface(target, IID_ResourceDropsite);
 	if (!cmpResourceDropsite)
 		return false;
 
@@ -6181,16 +6174,16 @@ UnitAI.prototype.CanReturnResource = function(target, checkCarriedResource)
 	{
 		// Verify that we are carrying some resources,
 		// and can return our current resource to this target
-		var type = cmpResourceGatherer.GetMainCarryingType();
+		let type = cmpResourceGatherer.GetMainCarryingType();
 		if (!type || !cmpResourceDropsite.AcceptsType(type))
 			return false;
 	}
 
 	// Verify that the dropsite is owned by this entity's player (or a mutual ally's if allowed)
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (cmpOwnership && IsOwnedByPlayer(cmpOwnership.GetOwner(), target))
 		return true;
-	var cmpPlayer = QueryOwnerInterface(this.entity);
+	let cmpPlayer = QueryOwnerInterface(this.entity);
 	return cmpPlayer && cmpPlayer.HasSharedDropsites() && cmpResourceDropsite.IsShared() &&
 	       cmpOwnership && IsOwnedByMutualAllyOfPlayer(cmpOwnership.GetOwner(), target);
 };
