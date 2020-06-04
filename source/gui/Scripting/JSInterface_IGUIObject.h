@@ -18,8 +18,8 @@
 #ifndef INCLUDED_JSI_IGUIOBJECT
 #define INCLUDED_JSI_IGUIOBJECT
 
+#include "scriptinterface/ScriptExtraHeaders.h"
 #include "scriptinterface/ScriptInterface.h"
-#include "js/Class.h"
 
 namespace JSI_IGUIObject
 {

@@ -4,6 +4,7 @@ binaries/system/AtlasUI.dll
 binaries/system/Collada.dll
 binaries/system/pyrogenesis.exe
 binaries/system/pyrogenesis.pdb
+binaries/system/crashlog.txt
 
 # Build files
 *.so
@@ -16,6 +17,7 @@ binaries/system/pyrogenesis
 binaries/system/pyrogenesis_dbg
 binaries/system/test
 binaries/system/test_dbg
+binaries/data/mods/_testcache
 
 build/workspaces/codeblocks/
 build/workspaces/gcc/
@@ -84,3 +86,4 @@ long.*.po
 # OSX specific data
 .DS_Store
 source/JS.txt
+

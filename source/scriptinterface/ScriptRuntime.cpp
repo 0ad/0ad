@@ -18,10 +18,11 @@
 #include "precompiled.h"
 
 #include "ScriptRuntime.h"
+#include "ScriptEngine.h"
+#include "ScriptInterface.h"
 
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
-#include "scriptinterface/ScriptEngine.h"
 
 void ErrorReporter(JSContext* cx, JSErrorReport* report)
 {
@@ -165,13 +166,13 @@ ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtim
 	JS_SetGCParameter(m_ctx, JSGC_MAX_BYTES, m_RuntimeSize);
 	JS_SetGCParameter(m_ctx, JSGC_MODE, JSGC_MODE_INCREMENTAL);
 
-    JS_SetOffthreadIonCompilationEnabled(m_cx, true);
-    JS_SetContextPrivate(m_cx, nullptr);
-    JS::SetWarningReporter(m_cx, ErrorReporter);
-	JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_ION_ENABLE, 1);
-    JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_BASELINE_ENABLE, 1);
+    JS_SetOffthreadIonCompilationEnabled(m_ctx, true);
+    JS_SetContextPrivate(m_ctx, nullptr);
+    JS::SetWarningReporter(m_ctx, ErrorReporter);
+	JS_SetGlobalJitCompilerOption(m_ctx, JSJITCOMPILER_ION_ENABLE, 1);
+    JS_SetGlobalJitCompilerOption(m_ctx, JSJITCOMPILER_BASELINE_ENABLE, 1);
 
-    JS::ContextOptionsRef(m_cx)
+    JS::ContextOptionsRef(m_ctx)
 	    .setExtraWarnings(true)
 	    .setWerror(false)
 	    .setStrictMode(true);

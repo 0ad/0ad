@@ -65,6 +65,7 @@
 #include "jspubtd.h"
 #include "jsapi.h"
 #include "js/Initialization.h"
+#include "js/StructuredClone.h"
 
 #ifdef TEMP_DEACTIVATED_DEBUG
 #define DEBUG 

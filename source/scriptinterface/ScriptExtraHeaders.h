@@ -61,7 +61,6 @@
 #include "js/Initialization.h"
 #include "js/JSON.h"
 #include "js/SourceText.h"
-#include "js/StructuredClone.h"
 #include "js/Warnings.h"
 
 #ifdef TEMP_DEACTIVATED_DEBUG

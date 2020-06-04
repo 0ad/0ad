@@ -859,7 +859,7 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& cod
                                     NULL,
 	                                source));
 	
-    if(!func) return false;
+    if(!func) { return false; };
 
 	JS::RootedValue rval(cx);
 	return JS_CallFunction(cx, nullptr, func, JS::HandleValueArray::empty(), &rval);

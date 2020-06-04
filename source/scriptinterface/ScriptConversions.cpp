@@ -18,13 +18,13 @@
 #include "precompiled.h"
 
 #include "ScriptConversions.h"
+#include "ScriptExtraHeaders.h"
 
 #include "graphics/Entity.h"
 #include "maths/Vector2D.h"
 #include "ps/utf16string.h"
 #include "ps/CStr.h"
 
-#include "js/Warnings.h"
 
 #define FAIL(msg) STMT(JS_ReportErrorASCII(cx, msg); return false)
 

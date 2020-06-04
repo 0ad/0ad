@@ -26,8 +26,6 @@
 #include <boost/random/linear_congruential.hpp>
 #include <map>
 
-#include "js/StructuredClone.h"
-
 #define CX_IN_REALM(CONTEXT, IFACE) \
             JSContext* CONTEXT = (IFACE)->GetContext(); \
             auto __realm_ ## CONTEXT ## __ = (IFACE)->AutoRealm();
