@@ -12,10 +12,10 @@
 # Fabrizio Morotti <famorot@tin.it>, 2016-2017
 # Federico D'Alessio <federico98.dalessio@gmail.com>, 2018
 # francescogramazio <francescograma@gmail.com>, 2014
-# Giuseppe D'Addio <giuseppinoino@virgilio.it>, 2019
+# Giuseppe D'Addio <giuseppinoino@virgilio.it>, 2019-2020
 # Italang, 2019
 # mattia_b89 <mattia.b89@gmail.com>, 2018
-# Me Lazzi, 2014-2017
+# c5f3de31f3a2c4018f39966fa6563659_5b320d0, 2014-2017
 # Nescio, 2020
 # Michele Marongiu <michelemarongiu@gmail.com>, 2016
 # Riccardo Fina <romanriki4@gmail.com>, 2018
@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-22 07:09+0000\n"
-"PO-Revision-Date: 2020-05-22 10:41+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-06-01 18:15+0000\n"
+"Last-Translator: Giuseppe D'Addio <giuseppinoino@virgilio.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -170,14 +170,14 @@ msgstr "Torre di Pietra"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
-msgstr ""
+msgstr "Torre a proiettili"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
 msgid ""
 "Shoots bolts. Faster reaction time against raiding units than the artillery "
 "tower, weak to all siege weapons and mass melee. Needs the murder holes tech"
 " to protect its foot."
-msgstr ""
+msgstr "Spara proiettili. Tempi di reazioni più rapide rispetto alla torre d'artiglieria contro le unità incursori, debole contro le unità da mischia e le macchine d'assedio. Necessita di feritoie per proteggerne i piedi."
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 msgid ""
@@ -521,7 +521,7 @@ msgid ""
 "Reinforce with stone block, and install small stone throwers to upgrade this"
 " defense tower into a slow, area of effect, and siege resistant artillery "
 "tower."
-msgstr ""
+msgstr "Rinforza con blocchi in pietra, e installa piccoli lanciapietre per aggiornare la torre di difesa in una torre d'artiglieria, lenta, a lungo raggio e resistente all'assedio."
 
 #: simulation/templates/structures/athen_defense_tower.xml:34
 #: simulation/templates/structures/cart_defense_tower.xml:35
@@ -531,7 +531,7 @@ msgstr ""
 msgid ""
 "Reinforce with stone block, and install scorpions to upgrade this defense "
 "tower into a prompt, long range, and accurate bolt tower."
-msgstr ""
+msgstr "Rinforza con blocchi in pietra, e installa scorpioni per aggiornare la torre di difesa in una torre a proiettili, rapida, a lungo raggio e precisa."
 
 #: simulation/templates/structures/athen_dock.xml:12
 #: simulation/templates/structures/mace_dock.xml:12
@@ -1063,11 +1063,11 @@ msgstr "Remogantion"
 
 #: simulation/templates/structures/gaul_wonder.xml:9
 msgid "Sanctuary of Corent"
-msgstr ""
+msgstr "Santuario di Corent"
 
 #: simulation/templates/structures/gaul_wonder.xml:10
 msgid "Celicnon"
-msgstr ""
+msgstr "Celicnon"
 
 #: simulation/templates/structures/iber_barracks.xml:11
 msgid "Kaserna"
@@ -1157,11 +1157,11 @@ msgstr "Cancho Roano"
 
 #: simulation/templates/structures/kush_barracks.xml:15
 msgid "pr-msʿyw"
-msgstr ""
+msgstr "pr-msʿyw"
 
 #: simulation/templates/structures/kush_blacksmith.xml:5
 msgid "hmw hʿy n rȝ-ʿ"
-msgstr ""
+msgstr "hmw hʿy n rȝ-ʿ"
 
 #: simulation/templates/structures/kush_blemmye_camp.xml:19
 #: simulation/templates/structures/kush_blemmye_camp.xml:20
@@ -1182,7 +1182,7 @@ msgstr "ihy"
 
 #: simulation/templates/structures/kush_defense_tower.xml:5
 msgid "tsmt ʿȝ"
-msgstr ""
+msgstr "tsmt ʿȝ"
 
 #: simulation/templates/structures/kush_dock.xml:9
 msgid "Mryt"
@@ -1232,7 +1232,7 @@ msgstr "Piramide Kushita"
 #: simulation/templates/structures/kush_pyramid.xml:25
 #: simulation/templates/structures/kush_pyramid_large.xml:28
 msgid "mr ʿȝ"
-msgstr ""
+msgstr "mr ʿȝ"
 
 #: simulation/templates/structures/kush_pyramid.xml:26
 #: simulation/templates/structures/kush_pyramid_large.xml:29
@@ -1274,7 +1274,7 @@ msgstr "Ỉḥ Ssmt"
 
 #: simulation/templates/structures/kush_storehouse.xml:5
 msgid "wdȝt"
-msgstr ""
+msgstr "wdȝt"
 
 #: simulation/templates/structures/kush_temple.xml:8
 msgid "Temple of Apedemak"
@@ -1282,7 +1282,7 @@ msgstr "Tempio di Apedemak"
 
 #: simulation/templates/structures/kush_temple.xml:9
 msgid "Pr-ʿIprmk"
-msgstr ""
+msgstr "Pr-ʿIprmk"
 
 #: simulation/templates/structures/kush_temple.xml:10
 msgid ""
@@ -1296,7 +1296,7 @@ msgstr "Grande Tempio di Amon"
 
 #: simulation/templates/structures/kush_temple_amun.xml:29
 msgid "Pr-ʿImn"
-msgstr ""
+msgstr "Pr-ʿImn"
 
 #: simulation/templates/structures/kush_temple_amun.xml:30
 msgid ""
@@ -1306,7 +1306,7 @@ msgstr "Addestra sacerdoti per guarire le tue truppe. Addestra Guardiani del Tem
 
 #: simulation/templates/structures/kush_wall_gate.xml:9
 msgid "ʿryt"
-msgstr ""
+msgstr "ʿryt"
 
 #: simulation/templates/structures/kush_wall_long.xml:38
 #: simulation/templates/structures/kush_wall_medium.xml:28
@@ -1317,7 +1317,7 @@ msgstr "sbty"
 
 #: simulation/templates/structures/kush_wall_tower.xml:9
 msgid "sȝwt"
-msgstr ""
+msgstr "sȝwt"
 
 #: simulation/templates/structures/kush_wonder.xml:15
 msgid "Mnw nht"
@@ -1363,7 +1363,7 @@ msgid ""
 "Reinforce with stone block, and add a second rampart for up to 16 archers to"
 " stand upon. Infantry Archer exclusive tower. Devastating against melee "
 "troops, weak to siege and massed ranged units."
-msgstr ""
+msgstr "Rinforza con blocchi in pietra, e aggiungi un secondo bastione che ospita fino a 16 arcieri. Torre esclusiva per fanti con arco. Devastante contro unità da mischia, debole contro macchine d'assedio e unità da tiro ammassate."
 
 #: simulation/templates/structures/maur_dock.xml:9
 msgid "Naukasthanaka"
@@ -1433,14 +1433,14 @@ msgstr "Devalaya"
 
 #: simulation/templates/structures/maur_tower_double.xml:12
 msgid "Rampart Tower"
-msgstr ""
+msgstr "Torre da bastione"
 
 #: simulation/templates/structures/maur_tower_double.xml:14
 msgid ""
 "Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
 "archers recieve a range and armor bonus. Only archers can garrison. Needs "
 "the murder holes tech to protect its foot."
-msgstr ""
+msgstr "Torre più resistente con bastioni che ospita fino a 16 arcieri, i quali ricevono un bonus in armatura e raggio e sono gli unici che possono entrarvi. Necessita di feritoie per difenderne le basi."
 
 #: simulation/templates/structures/maur_wall_gate.xml:15
 msgid "Dwara"
@@ -1463,7 +1463,7 @@ msgstr "Grande Stupa"
 
 #: simulation/templates/structures/mausoleum.xml:8
 msgid "Mausoleum at Halicarnassus"
-msgstr ""
+msgstr "Mausoleo di Alicarnasso"
 
 #: simulation/templates/structures/mausoleum.xml:9
 msgid "Mausōleion"
@@ -1476,7 +1476,7 @@ msgstr "Campo Mercenario"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:28
 msgid "Egyptian Mercenary Camp"
-msgstr ""
+msgstr "Accampamento mercenario egizio"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 #: simulation/templates/structures/ptol_mercenary_camp.xml:29
@@ -1523,7 +1523,7 @@ msgstr "Palizzata"
 
 #: simulation/templates/structures/palisades_spike_angle.xml:17
 msgid "Angle Spike"
-msgstr ""
+msgstr "Spina angolare"
 
 #: simulation/templates/structures/palisades_spikes_small.xml:17
 msgid "Small Spikes"
@@ -1953,7 +1953,7 @@ msgstr "Hieron tou Apollōnos Pythiou"
 msgid ""
 "Reinforce with stone block, and install small oxybeles to upgrade this "
 "defense tower into a prompt, long range, and accurate bolt tower."
-msgstr ""
+msgstr "Rinforza con blocchi in pietra, e installa piccoli oxybele per aggiornare la torre di difesa in una torre a proiettili rapida, a lungo raggio e precisa."
 
 #: simulation/templates/structures/spart_gerousia.xml:20
 msgid "Spartan Senate"

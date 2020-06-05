@@ -13,11 +13,11 @@
 # Bartosz Bobin <bartosz@bobin.eu>, 2018
 # Daniel Koć <daniel@xn--ko-wla.pl>, 2014
 # Daniel Whatever <Deynyel@protonmail.com>, 2017
-# Dominik Pieczyński <inactive+RiviPN@transifex.com>, 2014
+# 8f109d0108020ab645eeb99d9e707e29_098f6ba <e5f6893f5bbcbbf65b20d413eb7d999b_102166>, 2014
 # domino1162, 2014
 # Filip Binkiewicz <filip.binkiewicz@gmail.com>, 2018
 # Grzegorz Lara <gregoriuszgonface@gmail.com>, 2016
-# Aya Punx <inactive+hubert.slosarski@transifex.com>, 2018
+# e9706534be4a728ed4e67375991e760b_b69146a <22edc3ec7a0ff9ecf360faca25adb468_671791>, 2018
 # inso_pl <hurricane.pl.96@gmail.com>, 2014
 # Kamil Grela <kamilgrela97@gmail.com>, 2018
 # krzychu188 <krzychu188@gmail.com>, 2014
@@ -60,8 +60,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-18 07:13+0000\n"
-"PO-Revision-Date: 2020-05-18 19:09+0000\n"
+"POT-Creation-Date: 2020-06-01 07:09+0000\n"
+"PO-Revision-Date: 2020-06-01 16:01+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -651,18 +651,18 @@ msgstr "Rozgrywka rankingowa."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:76
 #, javascript-format
-msgid "Toggle the %(name)s settings tab."
-msgstr "Przełącz %(name)s ustawienia."
+msgid "Click to toggle the %(name)s settings tab."
+msgstr "Przełącz na ustawienia %(name)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:79
 #, javascript-format
-msgid "Use %(hotkey)s to move a settings tab up."
-msgstr "Użyj %(hotkey)s by przesunąć opcję wyżej."
+msgid "Press %(hotkey)s to move to the next settings tab."
+msgstr "Kliknij %(hotkey)s, aby przejść do następnej karty ustawień."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:82
 #, javascript-format
-msgid "Use %(hotkey)s to move a settings tab down."
-msgstr "Użyj %(hotkey)s by przesunąć opcję niżej."
+msgid "Press %(hotkey)s to move to the previous settings tab."
+msgstr "Kliknij %(hotkey)s, aby przejść do poprzedniej karty ustawień."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
