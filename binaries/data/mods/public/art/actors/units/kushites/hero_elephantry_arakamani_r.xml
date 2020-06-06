@@ -7,8 +7,7 @@
       <props>
         <prop actor="props/units/helmets/kush_skull_cap_cavalry_crown.xml" attachpoint="head"/>
         <prop actor="props/units/heads/head_kush_meroitic.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/spear_long.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/kush_beja_reinforced_gold_rhino.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
       </props>
       <textures>
         <texture file="skeletal/kush_hero_01.png" name="baseTex"/>
@@ -18,9 +17,13 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/rider/elephantry/turret_idle.xml"/>
+    <variant file="biped/base_elephant_turret_pikeman_relax.xml"/>
     <variant file="biped/attack_capture.xml"/>
-    <variant file="biped/rider/elephantry/asian_turret_death.xml"/>
+    <variant file="biped/rider/elephantry/asian_turret_death.xml">
+      <props>
+        <prop actor="props/units/capes/rider/elephant_driver_asian.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>player_trans_parallax_spec.xml</material>
 </actor>

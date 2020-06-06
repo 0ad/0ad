@@ -24,7 +24,11 @@
   <group>
     <variant file="biped/base_skirmisher_fast.xml" frequency="1" name="Skirmisher-Shield-Fast"/>
     <variant file="biped/attack_ranged_javelinist.xml"/>
-    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_capture.xml">
+      <props>
+        <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>

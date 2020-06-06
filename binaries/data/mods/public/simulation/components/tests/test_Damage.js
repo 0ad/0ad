@@ -310,39 +310,40 @@ function TestCircularSplashDamage()
 		"GetPosition2D": () => new Vector2D(9, -4),
 	});
 
-	AddMock(60, IID_Resistance, {
+	AddMock(60, IID_Health, {
 		"TakeDamage": (effectData, __, ___, mult) => {
 			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100 * fallOff(0));
 			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
-	AddMock(61, IID_Resistance, {
+	AddMock(61, IID_Health, {
 		"TakeDamage": (effectData, __, ___, mult) => {
 			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100 * fallOff(5));
 			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
-	AddMock(62, IID_Resistance, {
+	AddMock(62, IID_Health, {
 		"TakeDamage": (effectData, __, ___, mult) => {
 			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100 * fallOff(1));
 			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
-	AddMock(63, IID_Resistance, {
+	AddMock(63, IID_Health, {
 		"TakeDamage": (effectData, __, ___, mult) => {
 			TS_ASSERT(false);
 		}
 	});
 
-	AddMock(64, IID_Resistance, {
+	let cmphealth = AddMock(64, IID_Health, {
 		"TakeDamage": (effectData, __, ___, mult) => {
 			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 0);
 			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
+	let spy = new Spy(cmphealth, "TakeDamage");
 
 	Attacking.CauseDamageOverArea({
 		"type": "Ranged",
@@ -354,6 +355,8 @@ function TestCircularSplashDamage()
 		"shape": "Circular",
 		"friendlyFire": false,
 	});
+
+	TS_ASSERT_EQUALS(spy._called, 1);
 }
 
 TestCircularSplashDamage();

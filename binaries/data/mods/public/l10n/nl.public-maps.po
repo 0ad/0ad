@@ -11,7 +11,7 @@
 # bilsimon <simontje.bil@gmail.com>, 2014
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016
 # Ellen Roels, 2015
-# Evert Van Petegem <inactive+evertvp@transifex.com>, 2015
+# 0df07244571ee3139f3030c73f383bf7_b45dbf3 <0dbf15e41aaa6214dad933946b05b915_279461>, 2015
 # Freagarach . <freagarach@gmail.com>, 2019
 # Max Klaversma <maxklaversma@gmail.com>, 2014
 # niektb <niektb95@gmail.com>, 2014-2016
@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-17 08:09+0000\n"
-"PO-Revision-Date: 2020-05-21 10:52+0000\n"
-"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
+"POT-Creation-Date: 2020-06-01 07:10+0000\n"
+"PO-Revision-Date: 2020-06-01 16:35+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -212,8 +212,8 @@ msgstr "Continent"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
 #: maps/random/unknown.jsonsettings.Landscapes.land[1].Description
-#: maps/skirmishes/Corinthian Isthmus (2).xml:Description:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:Description:40
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:39
+#: maps/skirmishes/corinthian_isthmus_4p.xml:Description:40
 msgid ""
 "Two Mediterranean land masses connected by a narrow spit of land, called an "
 "'Isthmus'."
@@ -617,7 +617,7 @@ msgid ""
 msgstr "Spelers starten op kleine eilanden in het oostelijk gedeelte van de kaart. Er is een groot continent in het westen, klaar voor kolonisatie."
 
 #: maps/random/migration.jsonsettings.Name
-#: maps/scenarios/Migration.xml:Name:27
+#: maps/scenarios/migration.xml:Name:27
 msgid "Migration"
 msgstr "Migratie"
 
@@ -807,8 +807,8 @@ msgstr "Rivieren"
 msgid "Each players starts near a lush oasis in a large, desolate desert."
 msgstr "Iedere speler start bij een weelderige oase in een grote, eenzame woestijn."
 
-#: maps/random/saharan_oases.jsonsettings.Name maps/scenarios/Saharan
-#: Oases.xml:Name:27
+#: maps/random/saharan_oases.jsonsettings.Name
+#: maps/scenarios/saharan_oases.xml:Name:27
 msgid "Saharan Oases"
 msgstr "Sahara Oase"
 
@@ -818,7 +818,7 @@ msgid ""
 "wood is somewhat scarce."
 msgstr "Een open kaart met een overvloed aan voedsel en mineralen, maar hout is zeldzaam."
 
-#: maps/random/sahel.jsonsettings.Name maps/scenarios/Sahel.xml:Name:39
+#: maps/random/sahel.jsonsettings.Name maps/scenarios/sahel.xml:Name:39
 msgid "Sahel"
 msgstr "Sahel"
 
@@ -1018,19 +1018,19 @@ msgstr "Een meer omgeven door heuvels."
 msgid "Wild Lake"
 msgstr "Wild Meer"
 
-#: maps/random/extinct_volcano_triggers.js:65
+#: maps/random/extinct_volcano_triggers.js:59
 msgid "It keeps on raining, we will have to evacuate soon!"
 msgstr "Het blijft maar regenen, we zullen snel moeten vertrekken!"
 
-#: maps/random/extinct_volcano_triggers.js:66
+#: maps/random/extinct_volcano_triggers.js:60
 msgid "The rivers are standing high, we need to find a safe place!"
 msgstr "De rivieren staan hoog, we moeten een veilige plek vinden!"
 
-#: maps/random/extinct_volcano_triggers.js:67
+#: maps/random/extinct_volcano_triggers.js:61
 msgid "We have to find dry ground, our lands will drown soon!"
 msgstr "We moeten snel droge grond vinden, onze landen staan onder!"
 
-#: maps/random/extinct_volcano_triggers.js:68
+#: maps/random/extinct_volcano_triggers.js:62
 msgid "The lakes start swallowing the land, we have to find shelter!"
 msgstr "De meren nemen het land in, we moeten dekking zoeken!"
 
@@ -1057,29 +1057,9 @@ msgstr "Pas op! Een vijandelijke aanvalsgolf!"
 msgid "%(player)s has been defeated (lost civic center)."
 msgstr "%(player)s is verslagen (beschavingscentrum verloren)"
 
-#: maps/scenarios/Cinema_Demo.js:6
+#: maps/scenarios/cinema_demo.js:6
 msgid "Cutscene starts after 5 seconds"
 msgstr "Scène start na 5 seconden"
-
-#: maps/scenarios/Triggers_demo.js:73
-msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
-msgstr "Testen van de ja-nee dialoog. Wilt u tuurlijk of liever niet zeggen?"
-
-#: maps/scenarios/Triggers_demo.js:79
-msgid "Sure"
-msgstr "Tuurlijk"
-
-#: maps/scenarios/Triggers_demo.js:83
-msgid "Say sure"
-msgstr "Zeg tuurlijk"
-
-#: maps/scenarios/Triggers_demo.js:89
-msgid "Rather not"
-msgstr "Liever niet"
-
-#: maps/scenarios/Triggers_demo.js:93
-msgid "Say rather not"
-msgstr "Zeg liever niet"
 
 #: maps/scenarios/treasure_islands.js:9
 msgid "Collect the treasures before your enemy does! May the better win!"
@@ -1129,955 +1109,548 @@ msgid_plural ""
 msgstr[0] "%(lastPlayer)s heeft verloren (schat gevonden)."
 msgstr[1] "%(players)s en %(lastPlayer)s hebben verloren (schat gevonden)."
 
-#: maps/scenarios/Arcadia.xml:Description:39
+#: maps/scenarios/triggers_demo.js:73
+msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
+msgstr "Testen van de ja-nee dialoog. Wilt u tuurlijk of liever niet zeggen?"
+
+#: maps/scenarios/triggers_demo.js:79
+msgid "Sure"
+msgstr "Tuurlijk"
+
+#: maps/scenarios/triggers_demo.js:83
+msgid "Say sure"
+msgstr "Zeg tuurlijk"
+
+#: maps/scenarios/triggers_demo.js:89
+msgid "Rather not"
+msgstr "Liever niet"
+
+#: maps/scenarios/triggers_demo.js:93
+msgid "Say rather not"
+msgstr "Zeg liever niet"
+
+#: maps/scenarios/_default.xml:Name:28
+msgid "Unnamed map"
+msgstr "Onbekende kaart"
+
+#: maps/scenarios/_default.xml:Description:28
+#: maps/scenarios/temperate_map.xml:Description:27
+#: maps/scenarios/walltest.xml:Description:27
+msgid "Give an interesting description of your map."
+msgstr "Geef een interessante beschrijving voor uw kaart."
+
+#: maps/scenarios/arcadia.xml:Description:39
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr "Lente in Arcadië, Griekenland. Lenteregens hebben het water in de kleine beekjes doen stijgen. Zo is het land verdeeld tussen twee strijdende stammen.\n\nSpelers starten een weerszijden van een bergachtige regio met veel grondstoffen. Extra startgebouwen helpen spelers om hun kolonie snel te starten."
 
-#: maps/scenarios/Arcadia.xml:PlayerData[0].Name:39
-#: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:39
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:39
-#: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:27 maps/scenarios/Eire
-#: and Albion.xml:PlayerData[0].Name:27 maps/scenarios/Fast
-#: Oasis.xml:PlayerData[0].Name:27
-#: maps/scenarios/Flight_demo_2.xml:PlayerData[0].Name:27
-#: maps/scenarios/Gold_Rush.xml:PlayerData[0].Name:27 maps/scenarios/Laconia
-#: 01.xml:PlayerData[0].Name:27
-#: maps/scenarios/Migration.xml:PlayerData[0].Name:27
-#: maps/scenarios/Necropolis.xml:PlayerData[0].Name:39 maps/scenarios/Saharan
-#: Oases.xml:PlayerData[0].Name:27 maps/scenarios/Sandbox -
-#: Britons.xml:PlayerData[0].Name:39 maps/scenarios/Sandbox -
-#: Gauls.xml:PlayerData[1].Name:40 maps/scenarios/Sandbox -
-#: Iberians.xml:PlayerData[0].Name:39 maps/scenarios/Sandbox -
-#: Romans.xml:PlayerData[0].Name:39 maps/scenarios/Siwa
-#: Oasis.xml:PlayerData[0].Name:27 maps/scenarios/The Massacre of
-#: Delphi.xml:PlayerData[0].Name:39 maps/scenarios/Treasure
-#: Islands.xml:PlayerData[0].Name:39 maps/scenarios/Tropical
-#: Island.xml:PlayerData[0].Name:39
-#: maps/scenarios/WallTest.xml:PlayerData[0].Name:27
-#: maps/scenarios/Walls.xml:PlayerData[0].Name:27
+#: maps/scenarios/arcadia.xml:PlayerData[0].Name:39
+#: maps/scenarios/belgian_bog_night.xml:PlayerData[0].Name:39
+#: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[0].Name:39
+#: maps/scenarios/demo_trading.xml:PlayerData[0].Name:27
+#: maps/scenarios/eire_and_albion.xml:PlayerData[0].Name:27
+#: maps/scenarios/fast_oasis.xml:PlayerData[0].Name:27
+#: maps/scenarios/flight_demo.xml:PlayerData[1].Name:40
+#: maps/scenarios/gold_rush.xml:PlayerData[0].Name:27
+#: maps/scenarios/laconia.xml:PlayerData[0].Name:27
+#: maps/scenarios/migration.xml:PlayerData[0].Name:27
+#: maps/scenarios/necropolis.xml:PlayerData[0].Name:39
 #: maps/scenarios/reservoir.xml:PlayerData[0].Name:27
+#: maps/scenarios/saharan_oases.xml:PlayerData[0].Name:27
+#: maps/scenarios/sandbox_britons.xml:PlayerData[0].Name:39
+#: maps/scenarios/sandbox_gauls.xml:PlayerData[1].Name:40
+#: maps/scenarios/sandbox_iberians.xml:PlayerData[0].Name:39
+#: maps/scenarios/sandbox_romans.xml:PlayerData[0].Name:39
+#: maps/scenarios/siwa_oasis.xml:PlayerData[0].Name:27
+#: maps/scenarios/the_massacre_of_delphi.xml:PlayerData[0].Name:39
+#: maps/scenarios/treasure_islands.xml:PlayerData[0].Name:39
+#: maps/scenarios/tropical_island.xml:PlayerData[0].Name:39
+#: maps/scenarios/walls.xml:PlayerData[0].Name:27
+#: maps/scenarios/walltest.xml:PlayerData[0].Name:27
 msgid "Player 1"
 msgstr "Speler 1"
 
-#: maps/scenarios/Arcadia.xml:PlayerData[1].Name:39
-#: maps/scenarios/Belgian_Bog_night.xml:PlayerData[1].Name:39
-#: maps/scenarios/Demo_Trading.xml:PlayerData[1].Name:27 maps/scenarios/Eire
-#: and Albion.xml:PlayerData[1].Name:27 maps/scenarios/Fast
-#: Oasis.xml:PlayerData[1].Name:27
-#: maps/scenarios/Flight_demo_2.xml:PlayerData[1].Name:27
-#: maps/scenarios/Gold_Rush.xml:PlayerData[1].Name:27 maps/scenarios/Laconia
-#: 01.xml:PlayerData[1].Name:27
-#: maps/scenarios/Migration.xml:PlayerData[1].Name:27
-#: maps/scenarios/Necropolis.xml:PlayerData[1].Name:39 maps/scenarios/Saharan
-#: Oases.xml:PlayerData[1].Name:27 maps/scenarios/Sandbox -
-#: Britons.xml:PlayerData[1].Name:39 maps/scenarios/Sandbox -
-#: Gauls.xml:PlayerData[2].Name:40 maps/scenarios/Sandbox -
-#: Iberians.xml:PlayerData[1].Name:39 maps/scenarios/Sandbox -
-#: Romans.xml:PlayerData[1].Name:39 maps/scenarios/Siwa
-#: Oasis.xml:PlayerData[1].Name:27 maps/scenarios/The Massacre of
-#: Delphi.xml:PlayerData[1].Name:39 maps/scenarios/Treasure
-#: Islands.xml:PlayerData[1].Name:39 maps/scenarios/Tropical
-#: Island.xml:PlayerData[1].Name:39
-#: maps/scenarios/WallTest.xml:PlayerData[1].Name:27
-#: maps/scenarios/Walls.xml:PlayerData[1].Name:27
+#: maps/scenarios/arcadia.xml:PlayerData[1].Name:39
+#: maps/scenarios/belgian_bog_night.xml:PlayerData[1].Name:39
+#: maps/scenarios/demo_trading.xml:PlayerData[1].Name:27
+#: maps/scenarios/eire_and_albion.xml:PlayerData[1].Name:27
+#: maps/scenarios/fast_oasis.xml:PlayerData[1].Name:27
+#: maps/scenarios/flight_demo.xml:PlayerData[2].Name:40
+#: maps/scenarios/gold_rush.xml:PlayerData[1].Name:27
+#: maps/scenarios/laconia.xml:PlayerData[1].Name:27
+#: maps/scenarios/migration.xml:PlayerData[1].Name:27
+#: maps/scenarios/necropolis.xml:PlayerData[1].Name:39
+#: maps/scenarios/saharan_oases.xml:PlayerData[1].Name:27
+#: maps/scenarios/sandbox_britons.xml:PlayerData[1].Name:39
+#: maps/scenarios/sandbox_gauls.xml:PlayerData[2].Name:40
+#: maps/scenarios/sandbox_iberians.xml:PlayerData[1].Name:39
+#: maps/scenarios/sandbox_romans.xml:PlayerData[1].Name:39
+#: maps/scenarios/siwa_oasis.xml:PlayerData[1].Name:27
+#: maps/scenarios/the_massacre_of_delphi.xml:PlayerData[1].Name:39
+#: maps/scenarios/treasure_islands.xml:PlayerData[1].Name:39
+#: maps/scenarios/tropical_island.xml:PlayerData[1].Name:39
+#: maps/scenarios/walls.xml:PlayerData[1].Name:27
+#: maps/scenarios/walltest.xml:PlayerData[1].Name:27
 msgid "Player 2"
 msgstr "Speler 2"
 
-#: maps/scenarios/Arcadia.xml:Name:39
+#: maps/scenarios/arcadia.xml:Name:39
 msgid "Arcadia"
 msgstr "Arcadië"
 
-#: maps/scenarios/Azure Coast(2).xml:Description:27 maps/scenarios/Azure
-#: Coast(4).xml:Description:27 maps/scenarios/Azure Coast.xml:Description:39
+#: maps/scenarios/azure_coast_2p.xml:Description:27
+#: maps/scenarios/azure_coast_4p.xml:Description:27
+#: maps/scenarios/azure_coast_8p.xml:Description:39
 msgid "Help the young Massilia to settle or expel the Greeks from Gaul."
 msgstr "Help het jonge Massilia om zich te vestigen of de Grieken uit Gallië te verdrijven."
 
-#: maps/scenarios/Azure Coast(2).xml:PlayerData[0].Name:27
+#: maps/scenarios/azure_coast_2p.xml:PlayerData[0].Name:27
 msgid "Greeks"
 msgstr "Grieken"
 
-#: maps/scenarios/Azure Coast(2).xml:PlayerData[1].Name:27
+#: maps/scenarios/azure_coast_2p.xml:PlayerData[1].Name:27
 msgid "Celts"
 msgstr "Kelten"
 
-#: maps/scenarios/Azure Coast(2).xml:Name:27
+#: maps/scenarios/azure_coast_2p.xml:Name:27
 msgid "Azure Coast 2"
 msgstr "Azuurkust 2"
 
-#: maps/scenarios/Azure Coast(4).xml:PlayerData[0].Name:27
+#: maps/scenarios/azure_coast_4p.xml:PlayerData[0].Name:27
 msgid "East"
 msgstr "Oosten"
 
-#: maps/scenarios/Azure Coast(4).xml:PlayerData[1].Name:27
+#: maps/scenarios/azure_coast_4p.xml:PlayerData[1].Name:27
 msgid "West"
 msgstr "Westen"
 
-#: maps/scenarios/Azure Coast(4).xml:PlayerData[2].Name:27
+#: maps/scenarios/azure_coast_4p.xml:PlayerData[2].Name:27
 msgid "South"
 msgstr "Zuiden"
 
-#: maps/scenarios/Azure Coast(4).xml:PlayerData[3].Name:27
+#: maps/scenarios/azure_coast_4p.xml:PlayerData[3].Name:27
 msgid "North"
 msgstr "Noorden"
 
-#: maps/scenarios/Azure Coast(4).xml:Name:27
+#: maps/scenarios/azure_coast_4p.xml:Name:27
 msgid "Azure Coast 3"
 msgstr "Azuurkust 3"
 
-#: maps/scenarios/Azure Coast.xml:PlayerData[0].Name:39
+#: maps/scenarios/azure_coast_8p.xml:PlayerData[0].Name:39
 msgid "Antipolis"
 msgstr "Antipolis"
 
-#: maps/scenarios/Azure Coast.xml:PlayerData[1].Name:39
+#: maps/scenarios/azure_coast_8p.xml:PlayerData[1].Name:39
 msgid "Nikaia"
 msgstr "Nikaia"
 
-#: maps/scenarios/Azure Coast.xml:PlayerData[2].Name:39
+#: maps/scenarios/azure_coast_8p.xml:PlayerData[2].Name:39
 msgid "Massalia"
 msgstr "Massalië"
 
-#: maps/scenarios/Azure Coast.xml:PlayerData[3].Name:39
+#: maps/scenarios/azure_coast_8p.xml:PlayerData[3].Name:39
 msgid "Olbia"
 msgstr "Olbia"
 
-#: maps/scenarios/Azure Coast.xml:PlayerData[4].Name:39
+#: maps/scenarios/azure_coast_8p.xml:PlayerData[4].Name:39
 msgid "Deciates"
 msgstr "Deciates"
 
-#: maps/scenarios/Azure Coast.xml:PlayerData[5].Name:39
+#: maps/scenarios/azure_coast_8p.xml:PlayerData[5].Name:39
 msgid "Salluvii"
 msgstr "Salluvii"
 
-#: maps/scenarios/Azure Coast.xml:PlayerData[6].Name:39
+#: maps/scenarios/azure_coast_8p.xml:PlayerData[6].Name:39
 msgid "Cavares"
 msgstr "Cavares"
 
-#: maps/scenarios/Azure Coast.xml:PlayerData[7].Name:39
+#: maps/scenarios/azure_coast_8p.xml:PlayerData[7].Name:39
 msgid "Verguni"
 msgstr "Verguni"
 
-#: maps/scenarios/Azure Coast.xml:Name:39
+#: maps/scenarios/azure_coast_8p.xml:Name:39
 msgid "Azure Coast 1"
 msgstr "Azuurkust 1"
 
-#: maps/scenarios/Battle for the Tiber.xml:Description:27
+#: maps/scenarios/battle_for_the_tiber.xml:Description:27
 msgid ""
 "Rome battles against the Etruscan city of Veii for control of the Tiber "
 "River basin."
 msgstr "Rome vecht tegen de Etruskische stad Veii om macht over het Tiberbekken."
 
-#: maps/scenarios/Battle for the Tiber.xml:PlayerData[0].Name:27
+#: maps/scenarios/battle_for_the_tiber.xml:PlayerData[0].Name:27
 msgid "Rome"
 msgstr "Rome"
 
-#: maps/scenarios/Battle for the Tiber.xml:PlayerData[1].Name:27
+#: maps/scenarios/battle_for_the_tiber.xml:PlayerData[1].Name:27
 msgid "Veii"
 msgstr "Veii"
 
-#: maps/scenarios/Battle for the Tiber.xml:PlayerData[2].Name:27
-#: maps/scenarios/Battle for the Tiber.xml:PlayerData[3].Name:27
+#: maps/scenarios/battle_for_the_tiber.xml:PlayerData[2].Name:27
+#: maps/scenarios/battle_for_the_tiber.xml:PlayerData[3].Name:27
 msgid "Gallic Invaders"
 msgstr "Gallische indringers"
 
-#: maps/scenarios/Battle for the Tiber.xml:Name:27
+#: maps/scenarios/battle_for_the_tiber.xml:Name:27
 msgid "Battle for the Tiber"
 msgstr "Slag om de Tiber"
 
-#: maps/scenarios/Belgian_Bog_night.xml:Description:39
+#: maps/scenarios/belgian_bog_night.xml:Description:39
 msgid "Two Celtic tribes face off across a large bog at night."
 msgstr "Twee Keltische stammen tegenover elkaar in een moeras tijdens de nacht."
 
-#: maps/scenarios/Belgian_Bog_night.xml:Name:39
+#: maps/scenarios/belgian_bog_night.xml:Name:39
 msgid "Belgian Bog Night"
 msgstr "Belgisch moeras, nacht"
 
-#: maps/scenarios/Bridge_demo.xml:PlayerData[0].Name:27
+#: maps/scenarios/bridge_demo.xml:PlayerData[0].Name:27
 msgid "Bridge Demo"
 msgstr "Bruggen demo"
 
-#: maps/scenarios/Bridge_demo.xml:PlayerData[1].Name:27
+#: maps/scenarios/bridge_demo.xml:PlayerData[1].Name:27
 msgid "Other"
 msgstr "Ander"
 
-#: maps/scenarios/Bridge_demo.xml:Description:27
+#: maps/scenarios/bridge_demo.xml:Description:27
 msgid "Demo map showing how to simulate bridges in the Atlas map editor."
 msgstr "Demokaart die toont hoe men een brug kan simuleren in Atlas, de kaartenbewerker."
 
-#: maps/scenarios/Bridge_demo.xml:Name:27
+#: maps/scenarios/bridge_demo.xml:Name:27
 msgid "Bridge demo"
 msgstr "Bruggen demo"
 
-#: maps/scenarios/Campaign Test Map 2 - heightmap.xml:Name:39
-msgid "Campaign Map - Test"
-msgstr "Veldtochten kaart - Test"
-
-#: maps/scenarios/Campaign Test Map.xml:Description:39
+#: maps/scenarios/campaign_test_map.xml:Description:39
 msgid "A test map for potential Strategic Campaigns."
 msgstr "Een test kaart voor eventuele strategische veldtochten."
 
-#: maps/scenarios/Campaign Test Map.xml:PlayerData[0].Name:39
+#: maps/scenarios/campaign_test_map.xml:PlayerData[0].Name:39
 msgid "Delian League"
 msgstr "Delische Bond"
 
-#: maps/scenarios/Campaign Test Map.xml:PlayerData[1].Name:39
-#: maps/scenarios/Peloponnese.xml:PlayerData[3].Name:39
+#: maps/scenarios/campaign_test_map.xml:PlayerData[1].Name:39
+#: maps/scenarios/peloponnese.xml:PlayerData[3].Name:39
 msgid "Thebes"
 msgstr "Thebe"
 
-#: maps/scenarios/Campaign Test Map.xml:PlayerData[2].Name:39
-#: maps/scenarios/Peloponnese.xml:PlayerData[5].Name:39
+#: maps/scenarios/campaign_test_map.xml:PlayerData[2].Name:39
+#: maps/scenarios/peloponnese.xml:PlayerData[5].Name:39
 msgid "Thessaly"
 msgstr "Thessalië"
 
-#: maps/scenarios/Campaign Test Map.xml:PlayerData[3].Name:39
+#: maps/scenarios/campaign_test_map.xml:PlayerData[3].Name:39
 msgid "Megara"
 msgstr "Megara"
 
-#: maps/scenarios/Campaign Test Map.xml:PlayerData[4].Name:39
+#: maps/scenarios/campaign_test_map.xml:PlayerData[4].Name:39
 msgid "Eretria"
 msgstr "Eretria"
 
-#: maps/scenarios/Campaign Test Map.xml:PlayerData[5].Name:39
+#: maps/scenarios/campaign_test_map.xml:PlayerData[5].Name:39
 msgid "Chalcis"
 msgstr "Chalcis"
 
-#: maps/scenarios/Campaign Test Map.xml:PlayerData[6].Name:39
+#: maps/scenarios/campaign_test_map.xml:PlayerData[6].Name:39
 msgid "Peloponnesian League"
 msgstr "Peloponnesische Oorlog"
 
-#: maps/scenarios/Campaign Test Map.xml:PlayerData[7].Name:39
+#: maps/scenarios/campaign_test_map.xml:PlayerData[7].Name:39
 msgid "Religious Institutions"
 msgstr "Religieuze instituten"
 
-#: maps/scenarios/Campaign Test Map.xml:Name:39
+#: maps/scenarios/campaign_test_map.xml:Name:39
 msgid "Strategic Campaign Proof of Concept"
 msgstr "Strategische veldtocht - proof of concept"
 
-#: maps/scenarios/Cinema_Demo.xml:Description:40
+#: maps/scenarios/campaign_test_map_2_heightmap.xml:Name:39
+msgid "Campaign Map - Test"
+msgstr "Veldtochten kaart - Test"
+
+#: maps/scenarios/cinema_demo.xml:Description:40
 msgid "Demo map for cinematic camera movements."
 msgstr "Demokaart voor filmische camerabewegingen."
 
-#: maps/scenarios/Cinema_Demo.xml:PlayerData[1].Name:40
+#: maps/scenarios/cinema_demo.xml:PlayerData[1].Name:40
 msgid "Xerxes I"
 msgstr "Xerxes I"
 
-#: maps/scenarios/Cinema_Demo.xml:PlayerData[2].Name:40
+#: maps/scenarios/cinema_demo.xml:PlayerData[2].Name:40
 msgid "You"
 msgstr "Jij"
 
-#: maps/scenarios/Cinema_Demo.xml:Name:40
+#: maps/scenarios/cinema_demo.xml:Name:40
 msgid "Cinema Demo"
 msgstr "Filmische Demo"
 
-#: maps/scenarios/Combat_demo.xml:Name:27
+#: maps/scenarios/combat_demo.xml:Name:27
 msgid "Combat Demo"
 msgstr "Gevechtsdemo"
 
-#: maps/scenarios/Combat_demo.xml:Description:27
+#: maps/scenarios/combat_demo.xml:Description:27
 msgid ""
 "A combat demonstration between a small number of ranged and melee infantry "
 "units."
 msgstr "Een gevechtsdemonstratie tussen kleine aantallen afstands- en mêlee infanterie eenheden."
 
-#: maps/scenarios/Combat_demo_(huge).xml:Name:74
+#: maps/scenarios/combat_demo_huge.xml:Name:74
 msgid "Combat Demo (Huge)"
 msgstr "Gevechtsdemo (groot)"
 
-#: maps/scenarios/Combat_demo_(huge).xml:Description:74
+#: maps/scenarios/combat_demo_huge.xml:Description:74
 msgid "1296 units. Extremely slow (we need more optimisation)."
 msgstr "1296 eenheden. Enorm traag (optimalisatie is nodig)."
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:Description:39
+#: maps/scenarios/death_canyon_invasion_force.xml:Description:39
 msgid ""
 "A deep rocky canyon slicing through the desert. Good for multiplayer.\n"
 "\n"
 "2 teams of 2 players. 1 player on each team starts with a base and resources. The other player starts with only a large army to assist their teammate."
 msgstr "Een diepe rotskloof splitst een woestijnachtig landschap. Speciale multiplayerkaart. \n\n2 teams van 2 spelers elk. 1 speler per team start met een basis en grondstoffen, terwijl de andere start met enkel een groot leger om hun teamgenoot te assisteren. "
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[1].Name:39
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[3].Name:39
+#: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[1].Name:39
+#: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[3].Name:39
 msgid "Invasion Force"
 msgstr "Invasie kracht"
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[2].Name:39
-#: maps/scenarios/Demo_Trading.xml:PlayerData[2].Name:27 maps/scenarios/Fast
-#: Oasis.xml:PlayerData[2].Name:27
-#: maps/scenarios/Gold_Rush.xml:PlayerData[2].Name:27
-#: maps/scenarios/Migration.xml:PlayerData[2].Name:27
-#: maps/scenarios/Necropolis.xml:PlayerData[2].Name:39 maps/scenarios/Saharan
-#: Oases.xml:PlayerData[2].Name:27 maps/scenarios/Sandbox -
-#: Britons.xml:PlayerData[2].Name:39 maps/scenarios/Sandbox -
-#: Gauls.xml:PlayerData[3].Name:40 maps/scenarios/Siwa
-#: Oasis.xml:PlayerData[2].Name:27
+#: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[2].Name:39
+#: maps/scenarios/demo_trading.xml:PlayerData[2].Name:27
+#: maps/scenarios/fast_oasis.xml:PlayerData[2].Name:27
+#: maps/scenarios/gold_rush.xml:PlayerData[2].Name:27
+#: maps/scenarios/migration.xml:PlayerData[2].Name:27
+#: maps/scenarios/necropolis.xml:PlayerData[2].Name:39
+#: maps/scenarios/saharan_oases.xml:PlayerData[2].Name:27
+#: maps/scenarios/sandbox_britons.xml:PlayerData[2].Name:39
+#: maps/scenarios/sandbox_gauls.xml:PlayerData[3].Name:40
+#: maps/scenarios/siwa_oasis.xml:PlayerData[2].Name:27
 msgid "Player 3"
 msgstr "Speler 3"
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:Name:39
+#: maps/scenarios/death_canyon_invasion_force.xml:Name:39
 msgid "Death Canyon - Invasion Force"
 msgstr "Kloof der doden - Invasiekracht"
 
-#: maps/scenarios/Demo_Trading.xml:Description:27
+#: maps/scenarios/demo_trading.xml:Description:27
 msgid "A demonstration of the new trading feature."
 msgstr "Een demonstratie van de nieuwe handelsmogelijkheden."
 
-#: maps/scenarios/Demo_Trading.xml:Name:27
+#: maps/scenarios/demo_trading.xml:Name:27
 msgid "Trading Demo"
 msgstr "Handel demo"
 
-#: maps/scenarios/Eire and Albion.xml:Description:27
+#: maps/scenarios/eire_and_albion.xml:Description:27
 msgid ""
 "A demo map of the British Isles, created with the assistance of a height "
 "map."
 msgstr "Een demokaart van Britse eilanden, gemaakt met behulp van een terreinprofiel."
 
-#: maps/scenarios/Eire and Albion.xml:Name:27
+#: maps/scenarios/eire_and_albion.xml:Name:27
 msgid "Eire and Albion (British Isles)"
 msgstr "Eire en Albion (Britse Eilanden)"
 
-#: maps/scenarios/Fast Oasis.xml:Description:27
+#: maps/scenarios/fast_oasis.xml:Description:27
 msgid ""
 "A small desert map. Each player starts near an oasis spotted about an otherwise bleak and sandy desert that is wide open to assault and depredation.\n"
 "\n"
 "Gameplay is tight and fast, with no time to stop and smell the roses."
 msgstr "Een kleine woestijnkaart. Ieder speler start bij een oase, maar voor de rest is de kaart dor en verlaten. \n\nEen snel spel gegarandeerd, zonder tijd om naar de bloemetjes te kijken."
 
-#: maps/scenarios/Fast Oasis.xml:PlayerData[3].Name:27
-#: maps/scenarios/Gold_Rush.xml:PlayerData[3].Name:27
-#: maps/scenarios/Necropolis.xml:PlayerData[3].Name:39 maps/scenarios/Saharan
-#: Oases.xml:PlayerData[3].Name:27 maps/scenarios/Siwa
-#: Oasis.xml:PlayerData[3].Name:27
+#: maps/scenarios/fast_oasis.xml:PlayerData[3].Name:27
+#: maps/scenarios/gold_rush.xml:PlayerData[3].Name:27
+#: maps/scenarios/necropolis.xml:PlayerData[3].Name:39
+#: maps/scenarios/saharan_oases.xml:PlayerData[3].Name:27
+#: maps/scenarios/siwa_oasis.xml:PlayerData[3].Name:27
 msgid "Player 4"
 msgstr "Speler 4"
 
-#: maps/scenarios/Fast Oasis.xml:Name:27
+#: maps/scenarios/fast_oasis.xml:Name:27
 msgid "Fast Oasis"
 msgstr "Snelle oase"
 
-#: maps/scenarios/Fishing_demo.xml:Name:27
+#: maps/scenarios/fishing_demo.xml:Name:27
 msgid "Fishing Demo"
 msgstr "Vis demo"
 
-#: maps/scenarios/Fishing_demo.xml:Description:27
+#: maps/scenarios/fishing_demo.xml:Description:27
 msgid "Test out fishing with a fishing boat. Still in development."
 msgstr "Test het vissen met een vissersboot. Nog in ontwikkeling."
 
-#: maps/scenarios/Flight_demo.xml:Description:27
-msgid "Has some experimental fighter plane prototypes."
-msgstr "Heeft enkele experimentele prototypes van gevechtsvliegtuigen."
-
-#: maps/scenarios/Flight_demo.xml:Name:27
-msgid "Flight Demo"
-msgstr "Vlucht demo"
-
-#: maps/scenarios/Flight_demo_2.xml:Description:27
+#: maps/scenarios/flight_demo.xml:Description:40
 msgid "Fly some Mustangs."
 msgstr "Vlieg met Mustangs"
 
-#: maps/scenarios/Flight_demo_2.xml:Name:27
-msgid "Flight Demo 2"
-msgstr "Vlucht Demo 2"
+#: maps/scenarios/flight_demo.xml:Name:40
+msgid "Flight Demo"
+msgstr "Vlucht demo"
 
-#: maps/scenarios/Gold_Rush.xml:Description:27
+#: maps/scenarios/gold_rush.xml:Description:27
 msgid ""
 "A wide-open map with a central rocky region rich in Minerals (Metal "
 "Resource). This map may be played if the other more detailed maps cause "
 "uncomfortable lag."
 msgstr "Een open kaart met een centraal gelegen rotsig gedeelte, rijk aan mineralen. Deze kaart kan gespeeld worden als de meer gedetailleerde versie problemen veroorzaakt."
 
-#: maps/scenarios/Gold_Rush.xml:Name:27
+#: maps/scenarios/gold_rush.xml:Name:27
 msgid "Gold Rush"
 msgstr "Goudkoorts"
 
-#: maps/scenarios/Gorge.xml:Description:27
+#: maps/scenarios/gorge.xml:Description:27
 msgid "A riparian gorge meanders its way through the South lands of Gaul."
 msgstr "Een aan de oever gelegen pas die zich een weg kronkelt door de zuidelijke landen van Gallië."
 
-#: maps/scenarios/Gorge.xml:Name:27
+#: maps/scenarios/gorge.xml:Name:27
 msgid "Gorge"
 msgstr "Bergpas"
 
-#: maps/scenarios/Height Map Import - Demo (Fractal).xml:Description:27
+#: maps/scenarios/height_map_import_demo_fractal.xml:Description:27
 msgid "Importation of a height map created with fractals."
 msgstr "Import van een terreinprofiel gecreëerd m.b.v. fractalen."
 
-#: maps/scenarios/Height Map Import - Demo (Fractal).xml:Name:27
+#: maps/scenarios/height_map_import_demo_fractal.xml:Name:27
 msgid "Height Map Import Demo - Fractal"
 msgstr "Terreinprofiel import demo - fractaal"
 
-#: maps/scenarios/Height Map Import - Demo (Greece).xml:Description:27
+#: maps/scenarios/height_map_import_demo_greece.xml:Description:27
 msgid ""
 "An example of height map importation. Image was 1000x1000 grayscale PNG. This image can be found in the scenarios folder.\n"
 " \n"
 "(Smaller images are recommended, as the importer scales the scenario size by the resolution of the imported image.)"
 msgstr "Een voorbeeld van hoogtekaart importering. De afbeelding was een 1000x1000 grijze PNG. De afbeelding kan gevonden worden in de scenario's map.\n\n(Kleinere afbeeldingen worden aangeraden, aangezien de importering de kaarten schaalt naargelang de resolutie van de afbeelding)."
 
-#: maps/scenarios/Height Map Import - Demo (Greece).xml:Name:27
+#: maps/scenarios/height_map_import_demo_greece.xml:Name:27
 msgid "Height Map Import Demo - Greece"
 msgstr "Terreinprofiel Import Demo - Griekenland"
 
-#: maps/scenarios/Height Map Import - Demo (Greece-Small).xml:Description:27
+#: maps/scenarios/height_map_import_demo_greecesmall.xml:Description:27
 msgid ""
 "An example of height map importation. Image was 512x512 grayscale PNG. This "
 "image can be found in the scenarios folder, but can be placed anywhere."
 msgstr "Een voorbeeld van hoogtekaart importering. De afbeelding was een 512x512 grijze PNG. De afbeelding kan gevonden worden in de scenario's map."
 
-#: maps/scenarios/Height Map Import - Demo (Greece-Small).xml:Name:27
+#: maps/scenarios/height_map_import_demo_greecesmall.xml:Name:27
 msgid "Height Map Import Demo - Greece (small)"
 msgstr "Terreinprofiel Import Demo - Griekenland (klein)"
 
-#: maps/scenarios/Laconia 01.xml:Description:27
+#: maps/scenarios/laconia.xml:Description:27
 msgid ""
 "The Peloponnesian valley of Laconia, homeland of the Spartans.\n"
 "\n"
 "The Macedonians are encroaching into Spartan lands. After losing a pitched battle against the invaders, the Spartans must rebuild their army quickly before the Macedonians overrun the entire valley."
 msgstr "De Peloponnesische vallei van Laconië, thuisland van de Spartanen.\n\nDe Macedoniërs vallen binnen in Spartaans grondgebied. De Spartanen moeten snel hun leger opnieuw opbouwen, na een kort maar krachtig gevecht verloren te hebben tegen de Macedoniërs."
 
-#: maps/scenarios/Laconia 01.xml:Name:27
+#: maps/scenarios/laconia.xml:Name:27
 msgid "Laconia"
 msgstr "Laconië"
 
-#: maps/scenarios/Migration.xml:Description:27
+#: maps/scenarios/migration.xml:Description:27
 msgid ""
 "Multiplayer map. Each player starts out on a small island with minimal resources situated off the coast of a large land mass.\n"
 "\n"
 "This is a WFG community-designed map by: SMST, NOXAS1, and Yodaspirine."
 msgstr "Multiplayer kaart. Iedere speler start op een klein eiland met een minimale hoeveelheid grondstoffen. De rest ligt op een grotere landmassa.\n\nDit is een kaart ontworpen door de WFG community, door SMST, NOXAS1 en Yodaspirine."
 
-#: maps/scenarios/Miletus.xml:PlayerData[0].Name:27
-#: maps/scenarios/Miletus.xml:Name:27
+#: maps/scenarios/miletus.xml:PlayerData[0].Name:27
+#: maps/scenarios/miletus.xml:Name:27
 msgid "Miletus"
 msgstr "Miletus"
 
-#: maps/scenarios/Miletus.xml:PlayerData[1].Name:27 maps/scenarios/Sandbox -
-#: Ptolemies 2.xml:PlayerData[1].Name:39
+#: maps/scenarios/miletus.xml:PlayerData[1].Name:27
+#: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[1].Name:39
 msgid "Romans"
 msgstr "Rome"
 
-#: maps/scenarios/Miletus.xml:Description:27
+#: maps/scenarios/miletus.xml:Description:27
 msgid "A sandbox scenario for one player."
 msgstr "Een zandbak scenario voor één speler."
 
-#: maps/scenarios/Multiplayer_demo.xml:Name:27
+#: maps/scenarios/multiplayer_demo.xml:Name:27
 msgid "Multiplayer Demo"
 msgstr "Multiplayer demo"
 
-#: maps/scenarios/Multiplayer_demo.xml:Description:27
+#: maps/scenarios/multiplayer_demo.xml:Description:27
 msgid ""
 "Small map with lots of resources and some water, for testing gameplay in "
 "non-competitive multiplayer matches."
 msgstr "Kleine kaart met veel grondstoffen en wat water. Om multiplayer wedstrijden te testen."
 
-#: maps/scenarios/Napata Reconstruction.xml:Name:40
+#: maps/scenarios/napata_reconstruction.xml:Name:40
 msgid "Napata Reconstruction"
 msgstr "Reconstructie van Napata"
 
-#: maps/scenarios/Napata Reconstruction.xml:Description:40
+#: maps/scenarios/napata_reconstruction.xml:Description:40
 msgid ""
 "This map displays a reconstruction of the ancient city Napata. "
 "[color=\"red\"]Note:[/color] The map is not intended to be playable."
 msgstr ""
 
-#: maps/scenarios/Necropolis.xml:Description:39
+#: maps/scenarios/necropolis.xml:Description:39
 msgid ""
 "Four players duke it out over the vast Nile Delta. Each city starts out nestled atop a large plateau, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
 msgstr ""
 
-#: maps/scenarios/Necropolis.xml:Name:39
+#: maps/scenarios/necropolis.xml:Name:39
 msgid "Necropolis"
 msgstr "Necropolis"
 
-#: maps/scenarios/Pathfinding_demo.xml:Description:39
+#: maps/scenarios/pathfinding_demo.xml:Description:39
 msgid "A map for testing unit movement algorithms."
 msgstr "Een kaart voor het testen van de algoritmes om eenheden te bewegen."
 
-#: maps/scenarios/Pathfinding_demo.xml:Name:39
+#: maps/scenarios/pathfinding_demo.xml:Name:39
 msgid "Pathfinding Demo"
 msgstr "Kortste-pad algoritme demo"
 
-#: maps/scenarios/Pathfinding_terrain_demo.xml:Name:27
+#: maps/scenarios/pathfinding_terrain_demo.xml:Name:27
 msgid "Pathfinding Terrain Demo"
 msgstr "Kortste-pad algoritme terrein demo"
 
-#: maps/scenarios/Pathfinding_terrain_demo.xml:Description:27
+#: maps/scenarios/pathfinding_terrain_demo.xml:Description:27
 msgid ""
 "A map for testing movement costs and terrain properties in the A* "
 "pathfinder."
 msgstr "Een kaart om terrein-eigenshappen en de A* pathfinder te testen."
 
-#: maps/scenarios/Peloponnese.xml:Description:39
+#: maps/scenarios/peloponnese.xml:Description:39
 msgid "A real-world map of the Greek homeland."
 msgstr "Een schaalmodel van het Griekse schiereiland."
 
-#: maps/scenarios/Peloponnese.xml:PlayerData[0].Name:39
+#: maps/scenarios/peloponnese.xml:PlayerData[0].Name:39
 msgid "Athens"
 msgstr "Athene"
 
-#: maps/scenarios/Peloponnese.xml:PlayerData[1].Name:39
+#: maps/scenarios/peloponnese.xml:PlayerData[1].Name:39
 msgid "Sparta"
 msgstr "Sparta"
 
-#: maps/scenarios/Peloponnese.xml:PlayerData[2].Name:39
+#: maps/scenarios/peloponnese.xml:PlayerData[2].Name:39
 msgid "Elis"
 msgstr "Elis"
 
-#: maps/scenarios/Peloponnese.xml:PlayerData[4].Name:39
+#: maps/scenarios/peloponnese.xml:PlayerData[4].Name:39
 msgid "Corinth"
 msgstr "Corinthe"
 
-#: maps/scenarios/Peloponnese.xml:Name:39
+#: maps/scenarios/peloponnese.xml:Name:39
 msgid "Peloponnesian Wars"
 msgstr "Peloponnesische oorlogen "
 
-#: maps/scenarios/Polynesia.xml:Description:39
+#: maps/scenarios/polynesia.xml:Description:39
 msgid "Demo map for new fancy water effects."
 msgstr "Demokaart met de nieuwe water effecten."
 
-#: maps/scenarios/Polynesia.xml:PlayerData[0].Name:39
+#: maps/scenarios/polynesia.xml:PlayerData[0].Name:39
 msgid "Samoa"
 msgstr "Samoa"
 
-#: maps/scenarios/Polynesia.xml:PlayerData[1].Name:39
+#: maps/scenarios/polynesia.xml:PlayerData[1].Name:39
 msgid "Vanuatu"
 msgstr "Vanuatu"
 
-#: maps/scenarios/Polynesia.xml:Name:39
+#: maps/scenarios/polynesia.xml:Name:39
 msgid "Polynesia"
 msgstr "Polynesië"
-
-#: maps/scenarios/Resource_demo.xml:Name:27
-msgid "Resource demo"
-msgstr "Grondstoffen demo"
-
-#: maps/scenarios/Resource_demo.xml:Description:27
-msgid "Demo map for resource gathering."
-msgstr "Demo kaart voor het verzamelen van grondstoffen."
-
-#: maps/scenarios/Saharan Oases.xml:Description:27
-msgid ""
-"A desert biome map where each player has founded their colony at their own "
-"lush oasis. The rest of the map is generally wide-open and barren."
-msgstr "Een woestijnkaart waar elke speler start met een weelderige oase dichtbij. De rest van de kaart is over het algemeen kaal en open."
-
-#: maps/scenarios/Sahel.xml:Description:39
-msgid ""
-"Situated Southside of the Atlas mountain range in North Africa.\n"
-"\n"
-"A somewhat open map with an abundance of food and mineral resources, while wood is somewhat scarce."
-msgstr "Gesitueerd in het zuiden van het Atlasgebergte in het noorden van Afrika.\n\nEen tamelijk open kaart met een overvloed aan voedsel en mineralen, maar hout is eerder zeldzaam."
-
-#: maps/scenarios/Sahel.xml:PlayerData[0].Name:39
-msgid "Aulus Manlius Capitolinus"
-msgstr "Aulus Manlius Capitolinus"
-
-#: maps/scenarios/Sahel.xml:PlayerData[1].Name:39
-msgid "Hasdrubal the Fair"
-msgstr "Hasdrubal de Eerlijke"
-
-#: maps/scenarios/Sahel.xml:PlayerData[2].Name:39
-msgid "Artaxshacha II"
-msgstr "Artaxshacha II"
-
-#: maps/scenarios/Sahel.xml:PlayerData[3].Name:39
-msgid "Tautalus"
-msgstr "Tautalus"
-
-#: maps/scenarios/Sandbox - Athenians.xml:Description:39
-msgid ""
-"Play with the Athenians faction in a non-threatening sandbox environment."
-msgstr "Speel met de Atheense beschaving in een niet-bedreigende zandbak omgeving."
-
-#: maps/scenarios/Sandbox - Athenians.xml:PlayerData[0].Name:39
-msgid "The Athenians"
-msgstr "De Atheners"
-
-#: maps/scenarios/Sandbox - Athenians.xml:PlayerData[1].Name:39
-#: maps/scenarios/Sandbox - Macedonians.xml:PlayerData[1].Name:39
-#: maps/scenarios/Sandbox - Spartans.xml:PlayerData[0].Name:39
-#: maps/scenarios/Sandbox - Spartans.xml:PlayerData[1].Name:39
-msgid "The Spartans"
-msgstr "De Spartanen"
-
-#: maps/scenarios/Sandbox - Athenians.xml:PlayerData[2].Name:39
-#: maps/scenarios/Sandbox - Macedonians.xml:PlayerData[2].Name:39
-#: maps/scenarios/Sandbox - Spartans.xml:PlayerData[2].Name:39
-msgid "The Persians"
-msgstr "De Perzen"
-
-#: maps/scenarios/Sandbox - Athenians.xml:PlayerData[3].Name:39
-#: maps/scenarios/Sandbox - Macedonians.xml:PlayerData[3].Name:39
-#: maps/scenarios/Sandbox - Spartans.xml:PlayerData[3].Name:39
-msgid "The Gauls"
-msgstr "De Galliërs"
-
-#: maps/scenarios/Sandbox - Athenians.xml:Name:39
-msgid "Sandbox - The Athenians"
-msgstr "Zandbak - De Atheners"
-
-#: maps/scenarios/Sandbox - Britons.xml:Description:39 maps/scenarios/Sandbox
-#: - Gauls.xml:Description:40
-msgid "Play around with the Gallic faction in an idyllic sandbox setting."
-msgstr "Speel met de Gallische beschaving in een idyllische zandbak."
-
-#: maps/scenarios/Sandbox - Britons.xml:PlayerData[3].Name:39
-#: maps/scenarios/Sandbox - Gauls.xml:PlayerData[4].Name:40
-msgid "Roman Interlopers"
-msgstr "Romeinse wachters"
-
-#: maps/scenarios/Sandbox - Britons.xml:Name:39
-msgid "Sandbox - The Britons"
-msgstr "Zandbak - De Britten"
-
-#: maps/scenarios/Sandbox - Carthaginians.xml:Description:39
-msgid "Explore the Carthaginian Buildings and Units."
-msgstr "Bekijk de Carthaagse gebouwen en eenheden."
-
-#: maps/scenarios/Sandbox - Carthaginians.xml:PlayerData[0].Name:39
-#: maps/scenarios/Serengeti.xml:PlayerData[0].Name:27
-msgid "Carthage"
-msgstr "Carthago"
-
-#: maps/scenarios/Sandbox - Carthaginians.xml:PlayerData[1].Name:39
-#: maps/scenarios/Sandbox - Persians.xml:PlayerData[1].Name:39
-msgid "Creeps"
-msgstr "Engerds"
-
-#: maps/scenarios/Sandbox - Carthaginians.xml:Name:39
-msgid "Sandbox - The Carthaginians"
-msgstr "Zandbak - De Carthagers"
-
-#: maps/scenarios/Sandbox - Gauls.xml:Name:40
-msgid "Sandbox - The Gauls"
-msgstr "Zandbak - De Galliërs"
-
-#: maps/scenarios/Sandbox - Iberians.xml:Description:39
-msgid "A demo map for the Iberians."
-msgstr "Een demo kaart voor de Iberiërs."
-
-#: maps/scenarios/Sandbox - Iberians.xml:Name:39
-msgid "Sandbox - The Iberians"
-msgstr "Zandbak - De Iberiërs"
-
-#: maps/scenarios/Sandbox - Kushites.xml:Description:40
-msgid "Play the Kushites faction in a non-threatening sandbox scenario."
-msgstr "Speel met de Koesjitische beschaving in een niet-bedreigende zandbak omgeving."
-
-#: maps/scenarios/Sandbox - Kushites.xml:PlayerData[1].Name:40
-msgid "Kushites"
-msgstr "Koesjiten "
-
-#: maps/scenarios/Sandbox - Kushites.xml:PlayerData[2].Name:40
-msgid "Egyptians"
-msgstr "Egyptenaren"
-
-#: maps/scenarios/Sandbox - Kushites.xml:Name:40
-msgid "Sandbox - The Kushites"
-msgstr "Zandbak - De koesjiten"
-
-#: maps/scenarios/Sandbox - Macedonians.xml:Description:39
-msgid ""
-"Play with the Macedonians faction in a non-threatening sandbox environment."
-msgstr "Speel met de Macedoniërs in een niet-bedreigende zandbakomgeving."
-
-#: maps/scenarios/Sandbox - Macedonians.xml:PlayerData[0].Name:39
-msgid "The Macedonians"
-msgstr "De Macedoniërs"
-
-#: maps/scenarios/Sandbox - Macedonians.xml:Name:39
-msgid "Sandbox - The Macedonians"
-msgstr "Zandbak - De Macedoniërs"
-
-#: maps/scenarios/Sandbox - Mauryas.xml:Description:39
-msgid "Mauryan Indian faction showcase map."
-msgstr "Kaart die de Mauryaans-Indische beschaving toont."
-
-#: maps/scenarios/Sandbox - Mauryas.xml:PlayerData[0].Name:39
-msgid "Mauryan Indians"
-msgstr "Mauryaanse Indiërs"
-
-#: maps/scenarios/Sandbox - Mauryas.xml:PlayerData[1].Name:39
-msgid "Enemy"
-msgstr "Vijand"
-
-#: maps/scenarios/Sandbox - Mauryas.xml:Name:39
-msgid "Sandbox - The Mauryas"
-msgstr ""
-
-#: maps/scenarios/Sandbox - Persians.xml:Description:39
-msgid "Demo Map. Play with the Persian civilisation in a sandbox setting."
-msgstr "Demokaart. Speel met de Perzische beschaving in een zandbak."
-
-#: maps/scenarios/Sandbox - Persians.xml:PlayerData[0].Name:39
-msgid "Achaemenids"
-msgstr "Achaemenids"
-
-#: maps/scenarios/Sandbox - Persians.xml:Name:39
-msgid "Sandbox - The Persians"
-msgstr "Zandbak - De Perzen"
-
-#: maps/scenarios/Sandbox - Ptolemies 2.xml:Description:39
-msgid ""
-"Play with the Ptolemaic Egyptians in a non-threatening sandbox setting."
-msgstr "Speel met de Ptolemeïsche beschavingen in een niet-bedreigende zandbak omgeving."
-
-#: maps/scenarios/Sandbox - Ptolemies 2.xml:PlayerData[0].Name:39
-msgid "Ptolemy \"Savior\""
-msgstr "Ptolemaeus \"Wetende\""
-
-#: maps/scenarios/Sandbox - Ptolemies 2.xml:PlayerData[2].Name:39
-msgid "Seleucids"
-msgstr "Seleucidisch Perzië"
-
-#: maps/scenarios/Sandbox - Ptolemies 2.xml:PlayerData[3].Name:39
-msgid "Libyans"
-msgstr "Libiërs"
-
-#: maps/scenarios/Sandbox - Ptolemies 2.xml:Name:39
-msgid "Sandbox - The Ptolemaic Egyptians 2"
-msgstr "Zandbak - De Ptolemeïsche Egyptenaren 2"
-
-#: maps/scenarios/Sandbox - Ptolemies.xml:Description:39
-#: maps/skirmishes/Sporades Islands (2).xml:Description:39
-msgid "An islands map good for intense naval combat."
-msgstr "Een eilandkaart, goed voor intense zeeslagen."
-
-#: maps/scenarios/Sandbox - Ptolemies.xml:PlayerData[0].Name:39
-msgid "Ptolemaios A' Soter"
-msgstr "Ptolemaios A' Soter"
-
-#: maps/scenarios/Sandbox - Ptolemies.xml:PlayerData[1].Name:39
-msgid "Kautilya"
-msgstr "Kautilya"
-
-#: maps/scenarios/Sandbox - Ptolemies.xml:Name:39
-msgid "Sandbox - The Ptolemaic Egyptians"
-msgstr "Zandbak - De Ptolemaeïsche Egyptenaren"
-
-#: maps/scenarios/Sandbox - Romans.xml:Description:39
-msgid "A sandbox scenario for players to try out the Roman civilisation."
-msgstr "Een zandbak scenario om de Romeinse beschaving te testen."
-
-#: maps/scenarios/Sandbox - Romans.xml:Name:39
-msgid "Sandbox - The Republican Romans"
-msgstr "Zandbak - De Republikeinse Romeinen"
-
-#: maps/scenarios/Sandbox - Seleucids.xml:Description:39
-msgid "A sandbox scenario for players to try out the Seleucid civilisation."
-msgstr "Een zandbak scenario om de Seleucidische beschaving te testen."
-
-#: maps/scenarios/Sandbox - Seleucids.xml:PlayerData[0].Name:39
-msgid "The Seleucids"
-msgstr "De Seleuciden"
-
-#: maps/scenarios/Sandbox - Seleucids.xml:PlayerData[1].Name:39
-msgid "The Ptolemies"
-msgstr "De Ptolemeën"
-
-#: maps/scenarios/Sandbox - Seleucids.xml:Name:39
-msgid "Sandbox - The Seleucids"
-msgstr "Zandbak - De Seleuciden"
-
-#: maps/scenarios/Sandbox - Spartans.xml:Description:39
-msgid ""
-"Play with the Spartans faction in a non-threatening sandbox environment."
-msgstr "Speel met de Spartaanse beschaving in een niet-bedreigende zandbak omgeving."
-
-#: maps/scenarios/Sandbox - Spartans.xml:Name:39
-msgid "Sandbox - The Spartans"
-msgstr "Zandbak - De Spartanen"
-
-#: maps/scenarios/Savanna Ravine.xml:Name:39
-msgid "Savanna Ravine"
-msgstr "Savanne ravijn"
-
-#: maps/scenarios/Savanna Ravine.xml:Description:39
-msgid ""
-"A wide-open Savanna map with a small ravine running down the center, which "
-"is easily forded."
-msgstr "Een open Savannekaart met een kleine ravijn in het midden."
-
-#: maps/scenarios/Serengeti.xml:PlayerData[1].Name:27
-msgid "Iberia"
-msgstr "Iberië"
-
-#: maps/scenarios/Serengeti.xml:PlayerData[2].Name:27
-msgid "Greece"
-msgstr "Griekenland"
-
-#: maps/scenarios/Serengeti.xml:PlayerData[3].Name:27
-msgid "Persia"
-msgstr "Perzië"
-
-#: maps/scenarios/Serengeti.xml:Description:27
-msgid ""
-"The African serengeti has herds of animals criss crossing the plain. Mineral"
-" wealth is bountiful and wood is in full supply."
-msgstr "De Afrikaanse Serengeti heeft kuddes dieren die over het land lopen. Veel minerale rijkdom, en totaal geen tekort aan hout."
-
-#: maps/scenarios/Serengeti.xml:Name:27
-msgid "Serengeti 1"
-msgstr "Serengeti 1"
-
-#: maps/scenarios/Ship Formations.xml:Description:27
-msgid "Ship formations mockup."
-msgstr "Scheepsformaties voorbeelden."
-
-#: maps/scenarios/Ship Formations.xml:PlayerData[0].Name:27
-msgid "Ships"
-msgstr "Schepen"
-
-#: maps/scenarios/Ship Formations.xml:Name:27
-msgid "Ship Formations"
-msgstr "Schip formaties"
-
-#: maps/scenarios/Siwa Oasis.xml:Description:27
-msgid ""
-"Carthage vs. Macedon vs. Persia vs. Iberia! A large oasis acts as the hub of"
-" mountainous spokes that divide the home territories of each player."
-msgstr "Carthago vs. Macedonië vs. Perzië vs. Iberië! Een grote oase als een middelpunt van bergketens die gebieden van elke speler verdeelt."
-
-#: maps/scenarios/Siwa Oasis.xml:Name:27
-msgid "Siwa Oasis"
-msgstr "Siwa oase"
-
-#: maps/scenarios/Territory Demo.xml:Description:27
-msgid "A demo map showing the territory effects of each type of structure."
-msgstr "Een demokaart die de gebiedseffecten van elk type gebouw laat zien."
-
-#: maps/scenarios/Territory Demo.xml:Name:27
-msgid "Territory Demo"
-msgstr "Territorium demo"
-
-#: maps/scenarios/The Massacre of Delphi.xml:Description:39
-msgid ""
-"The Celts invade Greece. Fight through the central valley or cut through the"
-" rich highlands in order to secure the lands around Delphi!"
-msgstr "De Kelten vallen Griekenland binnen. Vecht midden door de vallei of baan een weg door de rijke hooglanden om de gebieden rond Delphi te bemachtigen."
-
-#: maps/scenarios/The Massacre of Delphi.xml:Name:39
-msgid "Massacre of Delphi"
-msgstr "Bloedbad van Delphi"
-
-#: maps/scenarios/The Persian Gates.xml:Description:27
-msgid ""
-"\"It has always been the Greek Dream to go East.\"\n"
-"\n"
-"\"Beware such pride. The East has a way of swallowing men and their dreams.\"\n"
-"\n"
-"Will Alexander push his way through The Persian Gates and fulfill his destiny, or will Ariobarzanes defend the rugged ancient land of Persis against a foreign invader?"
-msgstr "\"Het is altijd een Griekse droom geweest om oostwaarts te gaan.\"\n\n\"Let op voor je trots. Het oosten heeft al menig man verslonden in hun dromen.\"\n\nZal Alexander zijn weg door de Perzische poorten halen. Of zal Ariobarzanes het ruwe land van zijn voorvaderen met succes verdedigen?"
-
-#: maps/scenarios/The Persian Gates.xml:PlayerData[0].Name:27
-msgid "Alexandros Megas"
-msgstr "Alexandros Megas"
-
-#: maps/scenarios/The Persian Gates.xml:PlayerData[1].Name:27
-msgid "Krateros"
-msgstr "Krateros"
-
-#: maps/scenarios/The Persian Gates.xml:PlayerData[2].Name:27
-msgid "Ariobarzanes"
-msgstr "Ariobarzanes"
-
-#: maps/scenarios/The Persian Gates.xml:PlayerData[3].Name:27
-msgid "Persians"
-msgstr "Achaemenidisch Perzië"
-
-#: maps/scenarios/The Persian Gates.xml:Name:27
-msgid "The Persian Gates"
-msgstr "De Perzische poorten"
-
-#: maps/scenarios/Third Macedonian War.xml:Description:27
-msgid ""
-"The Romans encroach upon Macedonian lands for the third and final time. Can "
-"the once-proud Macedonians prevail against the Roman juggernaut?"
-msgstr "De Romeinen vallen voor de derde keer Macedonisch grondgebied binnen. Kunnen de, ooit zo grote, Macedoniërs de Romeinse aanval overwinnen?"
-
-#: maps/scenarios/Third Macedonian War.xml:PlayerData[0].Name:27
-msgid "Lucius Aemilius Paullus"
-msgstr "Lucius Aemilius Paullus"
-
-#: maps/scenarios/Third Macedonian War.xml:PlayerData[1].Name:27
-msgid "Perseus of Macedon"
-msgstr "Perseus van Macedonië"
-
-#: maps/scenarios/Third Macedonian War.xml:PlayerData[2].Name:27
-msgid "Greek Allies"
-msgstr "Griekse geallieerden"
-
-#: maps/scenarios/Third Macedonian War.xml:Name:27
-msgid "Third Macedonian War"
-msgstr "Derde Macedonische oorlog"
-
-#: maps/scenarios/Treasure Islands.xml:Description:39
-msgid ""
-"Search treasures on small islands and on the water. Collect more treasures "
-"than your opponent to win."
-msgstr "Zoek voor schatten op kleine eilanden en op het water. Verzamel meer schatten dan uw tegenstander om te winnen."
-
-#: maps/scenarios/Treasure Islands.xml:Name:39
-msgid "Treasure Islands"
-msgstr "Schateilanden"
-
-#: maps/scenarios/Triggers_demo.xml:Description:39
-msgid ""
-"Demo map listening to various triggers and printing warning messages about "
-"them"
-msgstr "Demo map, reageert op verschillende triggers en geeft hiervoor waarschuwings berichten weer."
-
-#: maps/scenarios/Triggers_demo.xml:Name:39
-msgid "Triggers Demo"
-msgstr "Triggers demo"
-
-#: maps/scenarios/Tropical Island.xml:Description:39
-msgid "Multiplayer map. A tropical paradise."
-msgstr "Multiplayer kaart, een tropisch paradijs."
-
-#: maps/scenarios/Tropical Island.xml:Name:39
-msgid "Tropical Island"
-msgstr "Tropisch eiland"
-
-#: maps/scenarios/Units_demo.xml:Name:28
-msgid "Units Demo"
-msgstr "Eenheden demo"
-
-#: maps/scenarios/Units_demo.xml:Description:28
-msgid "Every unit in the game."
-msgstr "Een demo met alle eenheden in het spel."
-
-#: maps/scenarios/WallTest.xml:Description:27
-#: maps/scenarios/_default.xml:Description:28 maps/scenarios/temperate
-#: map.xml:Description:27
-msgid "Give an interesting description of your map."
-msgstr "Geef een interessante beschrijving voor uw kaart."
-
-#: maps/scenarios/WallTest.xml:Name:27
-msgid "WallTest"
-msgstr "Murentest"
-
-#: maps/scenarios/Walls.xml:Description:27
-msgid "Walls."
-msgstr "Muren."
-
-#: maps/scenarios/Walls.xml:Name:27
-msgid "Walls"
-msgstr "Muren"
-
-#: maps/scenarios/We are Legion.xml:Name:27
-msgid "We Are Legion"
-msgstr "We Are Legion"
-
-#: maps/scenarios/We are Legion.xml:Description:27
-msgid "A quick battle demo map using Roman legionaries."
-msgstr ""
-
-#: maps/scenarios/_default.xml:Name:28
-msgid "Unnamed map"
-msgstr "Onbekende kaart"
 
 #: maps/scenarios/reservoir.xml:Description:27
 msgid "A demo showing water planes."
@@ -2087,13 +1660,298 @@ msgstr "Een demo die watervelden toont."
 msgid "Reservoir"
 msgstr "Reservoir"
 
-#: maps/scenarios/road demo.xml:Description:27
+#: maps/scenarios/resource_demo.xml:Name:27
+msgid "Resource demo"
+msgstr "Grondstoffen demo"
+
+#: maps/scenarios/resource_demo.xml:Description:27
+msgid "Demo map for resource gathering."
+msgstr "Demo kaart voor het verzamelen van grondstoffen."
+
+#: maps/scenarios/road_demo.xml:Description:27
 msgid "Demo map showcasing Temperate Road decals."
 msgstr "Demo kaart die de wegen in een gematigd klimaat toont."
 
-#: maps/scenarios/road demo.xml:Name:27
+#: maps/scenarios/road_demo.xml:Name:27
 msgid "Road Decals Demo"
 msgstr "Wegtextuur demo"
+
+#: maps/scenarios/saharan_oases.xml:Description:27
+msgid ""
+"A desert biome map where each player has founded their colony at their own "
+"lush oasis. The rest of the map is generally wide-open and barren."
+msgstr "Een woestijnkaart waar elke speler start met een weelderige oase dichtbij. De rest van de kaart is over het algemeen kaal en open."
+
+#: maps/scenarios/sahel.xml:Description:39
+msgid ""
+"Situated Southside of the Atlas mountain range in North Africa.\n"
+"\n"
+"A somewhat open map with an abundance of food and mineral resources, while wood is somewhat scarce."
+msgstr "Gesitueerd in het zuiden van het Atlasgebergte in het noorden van Afrika.\n\nEen tamelijk open kaart met een overvloed aan voedsel en mineralen, maar hout is eerder zeldzaam."
+
+#: maps/scenarios/sahel.xml:PlayerData[0].Name:39
+msgid "Aulus Manlius Capitolinus"
+msgstr "Aulus Manlius Capitolinus"
+
+#: maps/scenarios/sahel.xml:PlayerData[1].Name:39
+msgid "Hasdrubal the Fair"
+msgstr "Hasdrubal de Eerlijke"
+
+#: maps/scenarios/sahel.xml:PlayerData[2].Name:39
+msgid "Artaxshacha II"
+msgstr "Artaxshacha II"
+
+#: maps/scenarios/sahel.xml:PlayerData[3].Name:39
+msgid "Tautalus"
+msgstr "Tautalus"
+
+#: maps/scenarios/sandbox_athenians.xml:Description:39
+msgid ""
+"Play with the Athenians faction in a non-threatening sandbox environment."
+msgstr "Speel met de Atheense beschaving in een niet-bedreigende zandbak omgeving."
+
+#: maps/scenarios/sandbox_athenians.xml:PlayerData[0].Name:39
+msgid "The Athenians"
+msgstr "De Atheners"
+
+#: maps/scenarios/sandbox_athenians.xml:PlayerData[1].Name:39
+#: maps/scenarios/sandbox_macedonians.xml:PlayerData[1].Name:39
+#: maps/scenarios/sandbox_spartans.xml:PlayerData[0].Name:39
+#: maps/scenarios/sandbox_spartans.xml:PlayerData[1].Name:39
+msgid "The Spartans"
+msgstr "De Spartanen"
+
+#: maps/scenarios/sandbox_athenians.xml:PlayerData[2].Name:39
+#: maps/scenarios/sandbox_macedonians.xml:PlayerData[2].Name:39
+#: maps/scenarios/sandbox_spartans.xml:PlayerData[2].Name:39
+msgid "The Persians"
+msgstr "De Perzen"
+
+#: maps/scenarios/sandbox_athenians.xml:PlayerData[3].Name:39
+#: maps/scenarios/sandbox_macedonians.xml:PlayerData[3].Name:39
+#: maps/scenarios/sandbox_spartans.xml:PlayerData[3].Name:39
+msgid "The Gauls"
+msgstr "De Galliërs"
+
+#: maps/scenarios/sandbox_athenians.xml:Name:39
+msgid "Sandbox - The Athenians"
+msgstr "Zandbak - De Atheners"
+
+#: maps/scenarios/sandbox_britons.xml:Description:39
+#: maps/scenarios/sandbox_gauls.xml:Description:40
+msgid "Play around with the Gallic faction in an idyllic sandbox setting."
+msgstr "Speel met de Gallische beschaving in een idyllische zandbak."
+
+#: maps/scenarios/sandbox_britons.xml:PlayerData[3].Name:39
+#: maps/scenarios/sandbox_gauls.xml:PlayerData[4].Name:40
+msgid "Roman Interlopers"
+msgstr "Romeinse wachters"
+
+#: maps/scenarios/sandbox_britons.xml:Name:39
+msgid "Sandbox - The Britons"
+msgstr "Zandbak - De Britten"
+
+#: maps/scenarios/sandbox_carthaginians.xml:Description:39
+msgid "Explore the Carthaginian Buildings and Units."
+msgstr "Bekijk de Carthaagse gebouwen en eenheden."
+
+#: maps/scenarios/sandbox_carthaginians.xml:PlayerData[0].Name:39
+#: maps/scenarios/serengeti.xml:PlayerData[0].Name:27
+msgid "Carthage"
+msgstr "Carthago"
+
+#: maps/scenarios/sandbox_carthaginians.xml:PlayerData[1].Name:39
+#: maps/scenarios/sandbox_persians.xml:PlayerData[1].Name:39
+msgid "Creeps"
+msgstr "Engerds"
+
+#: maps/scenarios/sandbox_carthaginians.xml:Name:39
+msgid "Sandbox - The Carthaginians"
+msgstr "Zandbak - De Carthagers"
+
+#: maps/scenarios/sandbox_gauls.xml:Name:40
+msgid "Sandbox - The Gauls"
+msgstr "Zandbak - De Galliërs"
+
+#: maps/scenarios/sandbox_iberians.xml:Description:39
+msgid "A demo map for the Iberians."
+msgstr "Een demo kaart voor de Iberiërs."
+
+#: maps/scenarios/sandbox_iberians.xml:Name:39
+msgid "Sandbox - The Iberians"
+msgstr "Zandbak - De Iberiërs"
+
+#: maps/scenarios/sandbox_kushites.xml:Description:40
+msgid "Play the Kushites faction in a non-threatening sandbox scenario."
+msgstr "Speel met de Koesjitische beschaving in een niet-bedreigende zandbak omgeving."
+
+#: maps/scenarios/sandbox_kushites.xml:PlayerData[1].Name:40
+msgid "Kushites"
+msgstr "Koesjiten "
+
+#: maps/scenarios/sandbox_kushites.xml:PlayerData[2].Name:40
+msgid "Egyptians"
+msgstr "Egyptenaren"
+
+#: maps/scenarios/sandbox_kushites.xml:Name:40
+msgid "Sandbox - The Kushites"
+msgstr "Zandbak - De koesjiten"
+
+#: maps/scenarios/sandbox_macedonians.xml:Description:39
+msgid ""
+"Play with the Macedonians faction in a non-threatening sandbox environment."
+msgstr "Speel met de Macedoniërs in een niet-bedreigende zandbakomgeving."
+
+#: maps/scenarios/sandbox_macedonians.xml:PlayerData[0].Name:39
+msgid "The Macedonians"
+msgstr "De Macedoniërs"
+
+#: maps/scenarios/sandbox_macedonians.xml:Name:39
+msgid "Sandbox - The Macedonians"
+msgstr "Zandbak - De Macedoniërs"
+
+#: maps/scenarios/sandbox_mauryas.xml:Description:39
+msgid "Mauryan Indian faction showcase map."
+msgstr "Kaart die de Mauryaans-Indische beschaving toont."
+
+#: maps/scenarios/sandbox_mauryas.xml:PlayerData[0].Name:39
+msgid "Mauryan Indians"
+msgstr "Mauryaanse Indiërs"
+
+#: maps/scenarios/sandbox_mauryas.xml:PlayerData[1].Name:39
+msgid "Enemy"
+msgstr "Vijand"
+
+#: maps/scenarios/sandbox_mauryas.xml:Name:39
+msgid "Sandbox - The Mauryas"
+msgstr ""
+
+#: maps/scenarios/sandbox_persians.xml:Description:39
+msgid "Demo Map. Play with the Persian civilisation in a sandbox setting."
+msgstr "Demokaart. Speel met de Perzische beschaving in een zandbak."
+
+#: maps/scenarios/sandbox_persians.xml:PlayerData[0].Name:39
+msgid "Achaemenids"
+msgstr "Achaemenids"
+
+#: maps/scenarios/sandbox_persians.xml:Name:39
+msgid "Sandbox - The Persians"
+msgstr "Zandbak - De Perzen"
+
+#: maps/scenarios/sandbox_ptolemies.xml:Description:39
+#: maps/skirmishes/sporades_islands_2p.xml:Description:39
+msgid "An islands map good for intense naval combat."
+msgstr "Een eilandkaart, goed voor intense zeeslagen."
+
+#: maps/scenarios/sandbox_ptolemies.xml:PlayerData[0].Name:39
+msgid "Ptolemaios A' Soter"
+msgstr "Ptolemaios A' Soter"
+
+#: maps/scenarios/sandbox_ptolemies.xml:PlayerData[1].Name:39
+msgid "Kautilya"
+msgstr "Kautilya"
+
+#: maps/scenarios/sandbox_ptolemies.xml:Name:39
+msgid "Sandbox - The Ptolemaic Egyptians"
+msgstr "Zandbak - De Ptolemaeïsche Egyptenaren"
+
+#: maps/scenarios/sandbox_ptolemies_02.xml:Description:39
+msgid ""
+"Play with the Ptolemaic Egyptians in a non-threatening sandbox setting."
+msgstr "Speel met de Ptolemeïsche beschavingen in een niet-bedreigende zandbak omgeving."
+
+#: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[0].Name:39
+msgid "Ptolemy \"Savior\""
+msgstr "Ptolemaeus \"Wetende\""
+
+#: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[2].Name:39
+msgid "Seleucids"
+msgstr "Seleucidisch Perzië"
+
+#: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[3].Name:39
+msgid "Libyans"
+msgstr "Libiërs"
+
+#: maps/scenarios/sandbox_ptolemies_02.xml:Name:39
+msgid "Sandbox - The Ptolemaic Egyptians 2"
+msgstr "Zandbak - De Ptolemeïsche Egyptenaren 2"
+
+#: maps/scenarios/sandbox_romans.xml:Description:39
+msgid "A sandbox scenario for players to try out the Roman civilisation."
+msgstr "Een zandbak scenario om de Romeinse beschaving te testen."
+
+#: maps/scenarios/sandbox_romans.xml:Name:39
+msgid "Sandbox - The Republican Romans"
+msgstr "Zandbak - De Republikeinse Romeinen"
+
+#: maps/scenarios/sandbox_seleucids.xml:Description:39
+msgid "A sandbox scenario for players to try out the Seleucid civilisation."
+msgstr "Een zandbak scenario om de Seleucidische beschaving te testen."
+
+#: maps/scenarios/sandbox_seleucids.xml:PlayerData[0].Name:39
+msgid "The Seleucids"
+msgstr "De Seleuciden"
+
+#: maps/scenarios/sandbox_seleucids.xml:PlayerData[1].Name:39
+msgid "The Ptolemies"
+msgstr "De Ptolemeën"
+
+#: maps/scenarios/sandbox_seleucids.xml:Name:39
+msgid "Sandbox - The Seleucids"
+msgstr "Zandbak - De Seleuciden"
+
+#: maps/scenarios/sandbox_spartans.xml:Description:39
+msgid ""
+"Play with the Spartans faction in a non-threatening sandbox environment."
+msgstr "Speel met de Spartaanse beschaving in een niet-bedreigende zandbak omgeving."
+
+#: maps/scenarios/sandbox_spartans.xml:Name:39
+msgid "Sandbox - The Spartans"
+msgstr "Zandbak - De Spartanen"
+
+#: maps/scenarios/savanna_ravine.xml:Name:39
+msgid "Savanna Ravine"
+msgstr "Savanne ravijn"
+
+#: maps/scenarios/savanna_ravine.xml:Description:39
+msgid ""
+"A wide-open Savanna map with a small ravine running down the center, which "
+"is easily forded."
+msgstr "Een open Savannekaart met een kleine ravijn in het midden."
+
+#: maps/scenarios/serengeti.xml:PlayerData[1].Name:27
+msgid "Iberia"
+msgstr "Iberië"
+
+#: maps/scenarios/serengeti.xml:PlayerData[2].Name:27
+msgid "Greece"
+msgstr "Griekenland"
+
+#: maps/scenarios/serengeti.xml:PlayerData[3].Name:27
+msgid "Persia"
+msgstr "Perzië"
+
+#: maps/scenarios/serengeti.xml:Description:27
+msgid ""
+"The African serengeti has herds of animals criss crossing the plain. Mineral"
+" wealth is bountiful and wood is in full supply."
+msgstr "De Afrikaanse Serengeti heeft kuddes dieren die over het land lopen. Veel minerale rijkdom, en totaal geen tekort aan hout."
+
+#: maps/scenarios/serengeti.xml:Name:27
+msgid "Serengeti 1"
+msgstr "Serengeti 1"
+
+#: maps/scenarios/ship_formations.xml:Description:27
+msgid "Ship formations mockup."
+msgstr "Scheepsformaties voorbeelden."
+
+#: maps/scenarios/ship_formations.xml:PlayerData[0].Name:27
+msgid "Ships"
+msgstr "Schepen"
+
+#: maps/scenarios/ship_formations.xml:Name:27
+msgid "Ship Formations"
+msgstr "Schip formaties"
 
 #: maps/scenarios/shipattacks.xml:Description:27
 msgid "Move ships around. Attack other ships."
@@ -2103,19 +1961,126 @@ msgstr "Vaar rond. Val andere schepen aan."
 msgid "Ships Demo"
 msgstr "Schepen demo"
 
-#: maps/scenarios/temperate map.xml:Name:27
+#: maps/scenarios/siwa_oasis.xml:Description:27
+msgid ""
+"Carthage vs. Macedon vs. Persia vs. Iberia! A large oasis acts as the hub of"
+" mountainous spokes that divide the home territories of each player."
+msgstr "Carthago vs. Macedonië vs. Perzië vs. Iberië! Een grote oase als een middelpunt van bergketens die gebieden van elke speler verdeelt."
+
+#: maps/scenarios/siwa_oasis.xml:Name:27
+msgid "Siwa Oasis"
+msgstr "Siwa oase"
+
+#: maps/scenarios/temperate_map.xml:Name:27
 msgid "Base Temperate Map"
 msgstr "Basis matigeklimaatskaart"
 
-#: maps/scenarios/test-foundation.xml:Description:40
+#: maps/scenarios/territory_demo.xml:Description:27
+msgid "A demo map showing the territory effects of each type of structure."
+msgstr "Een demokaart die de gebiedseffecten van elk type gebouw laat zien."
+
+#: maps/scenarios/territory_demo.xml:Name:27
+msgid "Territory Demo"
+msgstr "Territorium demo"
+
+#: maps/scenarios/test_foundation.xml:Description:40
 msgid ""
 "This map is designed to help artists and modders find the adequate "
 "foundation for a specific building. This map is not meant to be playable."
 msgstr ""
 
-#: maps/scenarios/test-foundation.xml:Name:40
+#: maps/scenarios/test_foundation.xml:Name:40
 msgid "Foundation Testing Map"
 msgstr ""
+
+#: maps/scenarios/the_massacre_of_delphi.xml:Description:39
+msgid ""
+"The Celts invade Greece. Fight through the central valley or cut through the"
+" rich highlands in order to secure the lands around Delphi!"
+msgstr "De Kelten vallen Griekenland binnen. Vecht midden door de vallei of baan een weg door de rijke hooglanden om de gebieden rond Delphi te bemachtigen."
+
+#: maps/scenarios/the_massacre_of_delphi.xml:Name:39
+msgid "Massacre of Delphi"
+msgstr "Bloedbad van Delphi"
+
+#: maps/scenarios/the_persian_gates.xml:Description:27
+msgid ""
+"\"It has always been the Greek Dream to go East.\"\n"
+"\n"
+"\"Beware such pride. The East has a way of swallowing men and their dreams.\"\n"
+"\n"
+"Will Alexander push his way through The Persian Gates and fulfill his destiny, or will Ariobarzanes defend the rugged ancient land of Persis against a foreign invader?"
+msgstr "\"Het is altijd een Griekse droom geweest om oostwaarts te gaan.\"\n\n\"Let op voor je trots. Het oosten heeft al menig man verslonden in hun dromen.\"\n\nZal Alexander zijn weg door de Perzische poorten halen. Of zal Ariobarzanes het ruwe land van zijn voorvaderen met succes verdedigen?"
+
+#: maps/scenarios/the_persian_gates.xml:PlayerData[0].Name:27
+msgid "Alexandros Megas"
+msgstr "Alexandros Megas"
+
+#: maps/scenarios/the_persian_gates.xml:PlayerData[1].Name:27
+msgid "Krateros"
+msgstr "Krateros"
+
+#: maps/scenarios/the_persian_gates.xml:PlayerData[2].Name:27
+msgid "Ariobarzanes"
+msgstr "Ariobarzanes"
+
+#: maps/scenarios/the_persian_gates.xml:PlayerData[3].Name:27
+msgid "Persians"
+msgstr "Achaemenidisch Perzië"
+
+#: maps/scenarios/the_persian_gates.xml:Name:27
+msgid "The Persian Gates"
+msgstr "De Perzische poorten"
+
+#: maps/scenarios/third_macedonian_war.xml:Description:27
+msgid ""
+"The Romans encroach upon Macedonian lands for the third and final time. Can "
+"the once-proud Macedonians prevail against the Roman juggernaut?"
+msgstr "De Romeinen vallen voor de derde keer Macedonisch grondgebied binnen. Kunnen de, ooit zo grote, Macedoniërs de Romeinse aanval overwinnen?"
+
+#: maps/scenarios/third_macedonian_war.xml:PlayerData[0].Name:27
+msgid "Lucius Aemilius Paullus"
+msgstr "Lucius Aemilius Paullus"
+
+#: maps/scenarios/third_macedonian_war.xml:PlayerData[1].Name:27
+msgid "Perseus of Macedon"
+msgstr "Perseus van Macedonië"
+
+#: maps/scenarios/third_macedonian_war.xml:PlayerData[2].Name:27
+msgid "Greek Allies"
+msgstr "Griekse geallieerden"
+
+#: maps/scenarios/third_macedonian_war.xml:Name:27
+msgid "Third Macedonian War"
+msgstr "Derde Macedonische oorlog"
+
+#: maps/scenarios/treasure_islands.xml:Description:39
+msgid ""
+"Search treasures on small islands and on the water. Collect more treasures "
+"than your opponent to win."
+msgstr "Zoek voor schatten op kleine eilanden en op het water. Verzamel meer schatten dan uw tegenstander om te winnen."
+
+#: maps/scenarios/treasure_islands.xml:Name:39
+msgid "Treasure Islands"
+msgstr "Schateilanden"
+
+#: maps/scenarios/triggers_demo.xml:Description:39
+msgid ""
+"Demo map listening to various triggers and printing warning messages about "
+"them"
+msgstr "Demo map, reageert op verschillende triggers en geeft hiervoor waarschuwings berichten weer."
+
+#: maps/scenarios/triggers_demo.xml:Name:39
+msgid "Triggers Demo"
+msgstr "Triggers demo"
+
+#: maps/scenarios/tropical_island.xml:Description:39
+msgid "Multiplayer map. A tropical paradise."
+msgstr "Multiplayer kaart, een tropisch paradijs."
+
+#: maps/scenarios/tropical_island.xml:Name:39
+msgid "Tropical Island"
+msgstr "Tropisch eiland"
 
 #: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""
@@ -2129,65 +2094,93 @@ msgstr ""
 msgid "Unit Motion Integration Test"
 msgstr ""
 
-#: maps/skirmishes/Acropolis Bay (2).xml:Description:39
+#: maps/scenarios/units_demo.xml:Name:28
+msgid "Units Demo"
+msgstr "Eenheden demo"
+
+#: maps/scenarios/units_demo.xml:Description:28
+msgid "Every unit in the game."
+msgstr "Een demo met alle eenheden in het spel."
+
+#: maps/scenarios/walls.xml:Description:27
+msgid "Walls."
+msgstr "Muren."
+
+#: maps/scenarios/walls.xml:Name:27
+msgid "Walls"
+msgstr "Muren"
+
+#: maps/scenarios/walltest.xml:Name:27
+msgid "WallTest"
+msgstr "Murentest"
+
+#: maps/scenarios/we_are_legion.xml:Name:27
+msgid "We Are Legion"
+msgstr "We Are Legion"
+
+#: maps/scenarios/we_are_legion.xml:Description:27
+msgid "A quick battle demo map using Roman legionaries."
+msgstr ""
+
+#: maps/skirmishes/acropolis_bay_2p.xml:Description:39
 msgid ""
 "Each player starts the match atop a large flat plateau.\n"
 "\n"
 "To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed plateau commanding the valley below."
 msgstr ""
 
-#: maps/skirmishes/Acropolis Bay (2).xml:Name:39
+#: maps/skirmishes/acropolis_bay_2p.xml:Name:39
 msgid "Acropolis Bay (2)"
 msgstr "Akropolisbaai (2)"
 
-#: maps/skirmishes/Alpine_Mountains_(3).xml:Description:40
+#: maps/skirmishes/alpine_mountains_3p.xml:Description:40
 msgid ""
 "A map filled with impassable mountains and a great number of natural "
 "resources."
 msgstr "Een kaart gevuld met onbegaanbare bergen en een groot aantal natuurlijke bronnen."
 
-#: maps/skirmishes/Alpine_Mountains_(3).xml:Name:40
+#: maps/skirmishes/alpine_mountains_3p.xml:Name:40
 msgid "Alpine Mountains (3)"
 msgstr "Alpenbergen (3)"
 
-#: maps/skirmishes/Alpine_Valleys_(2).xml:Description:39
+#: maps/skirmishes/alpine_valleys_2p.xml:Description:39
 msgid ""
 "The high peaks and valleys of the Alps.\n"
 "\n"
 "Each player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range."
 msgstr "Hoge pieken en valleien van de Alpen.\n\nElke speler start de wedstrijd in een veilige groene vallei. Tussen de spelers liggen verraderlijke bergen."
 
-#: maps/skirmishes/Alpine_Valleys_(2).xml:Name:39
+#: maps/skirmishes/alpine_valleys_2p.xml:Name:39
 msgid "Alpine Valleys (2)"
 msgstr "Alpenvallei (2)"
 
-#: maps/skirmishes/Atlas_Valleys_(8).xml:Description:40
+#: maps/skirmishes/atlas_valleys_8p.xml:Description:40
 msgid ""
 "Skirmish high in the Atlas mountains, where snowcapped mountains loom over "
 "desert oases. A wild landscape awaits; every player will experience "
 "different advantages and challenges based on their location."
 msgstr ""
 
-#: maps/skirmishes/Atlas_Valleys_(8).xml:Name:40
+#: maps/skirmishes/atlas_valleys_8p.xml:Name:40
 msgid "Atlas Valleys (8)"
 msgstr ""
 
-#: maps/skirmishes/Bactria (2).xml:Description:39
+#: maps/skirmishes/bactria_2p.xml:Description:39
 msgid ""
 "The arid and mineral-rich lands of Bactria (modern-day Afghanistan) at the foot of the Hindu Kush mountains.\n"
 "\n"
 "The center of the map is a dried up mountain. On either side are mountains and foothills pierced by treacherous passes and old trade routes."
 msgstr "De dorre en mineraalrijke regio Bactrië (tegenwoordig Afghanistan) aan de voet van de Hindoe Kush bergen.\n\nHet centrum van de kaart is een verdroogde berg. Aan weerszijden zijn er bergen en heuvels, doorboord met gevaarlijke bergpaden en oude handelsroutes."
 
-#: maps/skirmishes/Bactria (2).xml:Name:39
+#: maps/skirmishes/bactria_2p.xml:Name:39
 msgid "Bactria (2)"
 msgstr "Bactrië (2)"
 
-#: maps/skirmishes/Barcania (3).xml:Name:27
+#: maps/skirmishes/barcania_3p.xml:Name:27
 msgid "Barcania (3)"
 msgstr "Barca (3)"
 
-#: maps/skirmishes/Barcania (3).xml:Description:27
+#: maps/skirmishes/barcania_3p.xml:Description:27
 msgid ""
 "A wild and wooded isle, full of forests, gold, and mystery. Mountains, seas,"
 " and thick forests make for a very dynamic and fast-paced 3-player map with "
@@ -2195,108 +2188,108 @@ msgid ""
 "defensive fighting or aggressive maneuvers."
 msgstr "Een verwilderd en bebost eiland, vol met bomen, goud en mysteries. Bergen, zeeën en ondoordringbare bossen maken dit een 3-spelerkaart voor dynamisch en snel spel, vol met mogelijkheden voor schermutselingen en guerrilla tactieken, maar ook voor verdedigend of agressieve bewegingen. "
 
-#: maps/skirmishes/Belgian Bog (2).xml:Description:39
+#: maps/skirmishes/belgian_bog_2p.xml:Description:39
 msgid ""
 "Two players face off across a large bog somewhere in the Rhine lowlands.\n"
 "\n"
 "Wood is abundant, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful."
 msgstr "Twee spelers starten rond een groot moeras, ergens bij de Rijn.\n\nHout is er in overvloed, maar metaal en steen zijn moeilijker te vinden. Jagen en voedsel verzamelen is gemakkelijk."
 
-#: maps/skirmishes/Belgian Bog (2).xml:Name:39
+#: maps/skirmishes/belgian_bog_2p.xml:Name:39
 msgid "Belgian Bog (2)"
 msgstr "Belgisch moeras (2)"
 
-#: maps/skirmishes/Butana Steppe (2).xml:Description:40
+#: maps/skirmishes/butana_steppe_2p.xml:Description:40
 msgid ""
 "South of the Sahara, East of the Nile, lies a semi-arid region today known "
 "as the Butana Steppe."
 msgstr "Het zuiden van de Sahara, ten oosten van de Nijl, ligt een halfdor gebied tegenwoordig bekend als de Butaanse Steppe."
 
-#: maps/skirmishes/Butana Steppe (2).xml:PlayerData[0].Name:40
+#: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:40
 msgid "West Player"
 msgstr "Westelijke speler"
 
-#: maps/skirmishes/Butana Steppe (2).xml:PlayerData[1].Name:40
+#: maps/skirmishes/butana_steppe_2p.xml:PlayerData[1].Name:40
 msgid "East Player"
 msgstr "Oostenlijke speler"
 
-#: maps/skirmishes/Butana Steppe (2).xml:Name:40
+#: maps/skirmishes/butana_steppe_2p.xml:Name:40
 msgid "Butana Steppe (2)"
 msgstr "Butaanse Steppe (2)"
 
-#: maps/skirmishes/Caspian Sea (2v2).xml:Description:39
+#: maps/skirmishes/caspian_sea_2pv2p.xml:Description:39
 msgid ""
 "Two teams face off across a long, very large saltwater lake.\n"
 "\n"
 "Fishing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits."
 msgstr "Twee teams starten aan weerszijden van een lang en groot zoutmeer. \n\nEr kan gevist worden op het centrale meer. De kaart is ook goed voorzien van steen- en metaalmijnen."
 
-#: maps/skirmishes/Caspian Sea (2v2).xml:Name:39
+#: maps/skirmishes/caspian_sea_2pv2p.xml:Name:39
 msgid "Caspian Sea (2v2)"
 msgstr "Kaspische Zee (2v2)"
 
-#: maps/skirmishes/Corinthian Isthmus (2).xml:Name:39
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Name:39
 msgid "Corinthian Isthmus (2)"
 msgstr "Landengte van Korinthe (2)"
 
-#: maps/skirmishes/Corinthian Isthmus (4).xml:Name:40
+#: maps/skirmishes/corinthian_isthmus_4p.xml:Name:40
 msgid "Corinthian Isthmus (4)"
 msgstr "Landengte van Korinthe (4)"
 
-#: maps/skirmishes/Corsica and Sardinia (4).xml:Description:39
+#: maps/skirmishes/corsica_and_sardinia_4p.xml:Description:39
 msgid ""
 "The players start on two opposing islands, both with a very jagged relief that will make landing difficult.\n"
 "\n"
 "Originally occupied by the Torreans, then marginally settled by Etruscans, Phocaeans and Syracusans. Rome conquered these two islands from Carthage during the First Punic War and in 238 BC created the \"Corsica et Sardinia\" province. The Corsicans regularly revolted and over the course of a century, the island lost two thirds of its Corsican population."
 msgstr "De spelers starten aan weerszijden van een zee, met een ruwe kust die een landing moeilijk maakt.\n\nOrigineel grond van de Torreanen, daarna kwamen ook Etrusken, Phocaeanen, en Syracusanen. Rome veroverde deze twee eilanden van Carthago gedurende de eerste Punische oorlog, en creëerde in 238 V.C. de \"Corsica en Sardinië\" provincie. De Corsicanen hadden vaak revoluties tegen de Romeinse bezetter, zo verloor Corsica twee derden van zijn bevolking. "
 
-#: maps/skirmishes/Corsica and Sardinia (4).xml:Name:39
+#: maps/skirmishes/corsica_and_sardinia_4p.xml:Name:39
 msgid "Corsica and Sardinia (4)"
 msgstr "Corsica tegen Sardinië (4)"
 
-#: maps/skirmishes/Cycladic Archipelago (2).xml:Description:39
+#: maps/skirmishes/cycladic_archipelago_2p.xml:Description:39
 msgid "A \"small island\"-style map set in the Aegean Sea."
 msgstr "Een \"kleine eilanden\" stijl kaart in de Egeïsche zee."
 
-#: maps/skirmishes/Cycladic Archipelago (2).xml:Name:39
+#: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
 msgid "Cycladic Archipelago (2)"
 msgstr "Cycladisch Archipel (2)"
 
-#: maps/skirmishes/Cycladic Archipelago (3).xml:Description:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:Description:39
 msgid ""
 "A \"small island\"-style map set in the Aegean Sea.\n"
 "\n"
 "Map size: Very Large"
 msgstr "Een \"kleine eilanden\" stijl kaart in de Egeïsche zee.\n\nKaartgrootte: Heel groot"
 
-#: maps/skirmishes/Cycladic Archipelago (3).xml:PlayerData[0].Name:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[0].Name:39
 msgid "Samos"
 msgstr "Samos"
 
-#: maps/skirmishes/Cycladic Archipelago (3).xml:PlayerData[1].Name:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[1].Name:39
 msgid "Lesbos"
 msgstr "Lesbos"
 
-#: maps/skirmishes/Cycladic Archipelago (3).xml:PlayerData[2].Name:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:39
 msgid "Delos"
 msgstr "Delos"
 
-#: maps/skirmishes/Cycladic Archipelago (3).xml:Name:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
 msgid "Cycladic Archipelago (3)"
 msgstr "Cycladisch Archipel (3)"
 
-#: maps/skirmishes/Death Canyon (2).xml:Description:39
+#: maps/skirmishes/death_canyon_2p.xml:Description:39
 msgid ""
 "A deep rocky canyon slicing through the desert.\n"
 "\n"
 "Each player starts their colony on a plateau on either side of the ravine."
 msgstr "Een diepe rotskloof snijd door de woestijn.\n\nElke speler start op een plateau, aan de andere kant van de ravijn."
 
-#: maps/skirmishes/Death Canyon (2).xml:Name:39
+#: maps/skirmishes/death_canyon_2p.xml:Name:39
 msgid "Death Canyon (2)"
 msgstr "Kloof der doden (2)"
 
-#: maps/skirmishes/Deccan Plateau (2).xml:Description:39
+#: maps/skirmishes/deccan_plateau_2p.xml:Description:39
 msgid ""
 "Two players square off across the heavily forested Deccan Plateau of central India.\n"
 "\n"
@@ -2305,50 +2298,50 @@ msgid ""
 "Virgin resources lie to the lowlands on either side of the plateau. The lowlands also offer opportunity for expansion and strategic maneuvering."
 msgstr "Twee spelers starten in het dicht beboste hoogland van Dekan in centraal India.\n\nElke speler krijgt een gratis boerderij en pakhuis voor een snellere start.\n\nGrondstoffen bevinden zich in de dalen aan beide kanten van het hoogland. De dalen bieden ook ruimte voor expansie of strategische maneuvers."
 
-#: maps/skirmishes/Deccan Plateau (2).xml:Name:39
+#: maps/skirmishes/deccan_plateau_2p.xml:Name:39
 msgid "Deccan Plateau (2)"
 msgstr "Hoogland van Dekan (2)"
 
-#: maps/skirmishes/Dueling Cliffs (3v3).xml:Description:40
+#: maps/skirmishes/dueling_cliffs_3pv3p.xml:Description:40
 msgid ""
 "A foggy alpine landscape becomes a battleground as each team has an ally "
 "squashed precariously between two enemies. Two forest cliffs overlook the "
 "center lake, accessible from the sides of the map."
 msgstr "Een mistig alpenlandschap wordt een slagveld wanneer elk team een bondgenoot heeft die vervaarlijk gekneld zit tussen twee vijanden. Twee beboste klippen, toegankelijk via de zijden van de map, kijken uit over het centrale meer."
 
-#: maps/skirmishes/Dueling Cliffs (3v3).xml:Name:40
+#: maps/skirmishes/dueling_cliffs_3pv3p.xml:Name:40
 msgid "Dueling Cliffs (3v3)"
 msgstr "Duels op de Klippen (3v3)"
 
-#: maps/skirmishes/Egypt (3v3).xml:Name:40
+#: maps/skirmishes/egypt_3pv3p.xml:Name:40
 msgid "Egypt (3v3)"
 msgstr "Egypte (3v3)"
 
-#: maps/skirmishes/Egypt (3v3).xml:PlayerData[0].Name:40
+#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[0].Name:40
 msgid "Alexandria"
 msgstr "Alexandrië"
 
-#: maps/skirmishes/Egypt (3v3).xml:PlayerData[1].Name:40
+#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[1].Name:40
 msgid "Theben"
 msgstr "Thebe"
 
-#: maps/skirmishes/Egypt (3v3).xml:PlayerData[2].Name:40
+#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[2].Name:40
 msgid "Siwa"
 msgstr "Siwa"
 
-#: maps/skirmishes/Egypt (3v3).xml:PlayerData[3].Name:40
+#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[3].Name:40
 msgid "Sinai"
 msgstr "Sinaï"
 
-#: maps/skirmishes/Egypt (3v3).xml:PlayerData[4].Name:40
+#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[4].Name:40
 msgid "Memphis"
 msgstr ""
 
-#: maps/skirmishes/Egypt (3v3).xml:PlayerData[5].Name:40
+#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[5].Name:40
 msgid "Cyrene"
 msgstr ""
 
-#: maps/skirmishes/Egypt (3v3).xml:Description:40
+#: maps/skirmishes/egypt_3pv3p.xml:Description:40
 msgid ""
 "Fight for the remains of ancient Egypt!\n"
 "\n"
@@ -2365,25 +2358,25 @@ msgid ""
 "- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
 msgstr ""
 
-#: maps/skirmishes/Farmland (2).xml:Description:40
+#: maps/skirmishes/farmland_2p.xml:Description:40
 msgid "Farmland in Eastern Europe."
 msgstr ""
 
-#: maps/skirmishes/Farmland (2).xml:Name:40
+#: maps/skirmishes/farmland_2p.xml:Name:40
 msgid "Farmland (2)"
 msgstr ""
 
-#: maps/skirmishes/Forest Battle (4).xml:Description:40
+#: maps/skirmishes/forest_battle_4p.xml:Description:40
 msgid ""
 "A forest battle map where all players fight for supremacy and control over "
 "the middle."
 msgstr "Een gevechtskaart in het bos waar alle spelers vechten voor heerschappij over het midden."
 
-#: maps/skirmishes/Forest Battle (4).xml:Name:40
+#: maps/skirmishes/forest_battle_4p.xml:Name:40
 msgid "Forest Battle (4)"
 msgstr "Woudgevecht (4)"
 
-#: maps/skirmishes/Gallic Fields (3).xml:Description:39
+#: maps/skirmishes/gallic_fields_3p.xml:Description:39
 msgid ""
 "Defend your Gallic outpost against attacks from your treacherous neighbors!\n"
 "\n"
@@ -2392,81 +2385,81 @@ msgid ""
 "Watch out for Romans passing by!"
 msgstr "Verdedig uw Gallische post tegen aanvallen van je verraderlijke buren!\n\nIedere speler begint de wedstrijd met een houten palisade en een aantal wachttorens op een verhooginkje.\n\nKijk uit voor voorbijkomende Romeinen!"
 
-#: maps/skirmishes/Gallic Fields (3).xml:Name:39
+#: maps/skirmishes/gallic_fields_3p.xml:Name:39
 msgid "Gallic Fields (3)"
 msgstr "Gallische velden (3)"
 
-#: maps/skirmishes/Gambia River (3).xml:Description:39
+#: maps/skirmishes/gambia_river_3p.xml:Description:39
 msgid ""
 "All players start on one bank of the river, with minimal harvestable metal. Across the Gambia River is a savanna with many deposits of metal to be claimed. \n"
 "\n"
 "(Warning: Large map. Good computer specs recommended)"
 msgstr "Spelers starten op een oever van de rivier, met een minimum aan metaal. Over de Gambia rivier is er een savanne met een grote metaalvoorraad.\n\n(Opgelet: grote kaart. Snelle computer is aangeraden)"
 
-#: maps/skirmishes/Gambia River (3).xml:Name:39
+#: maps/skirmishes/gambia_river_3p.xml:Name:39
 msgid "Gambia River (3)"
 msgstr "Gambië rivier (3)"
 
-#: maps/skirmishes/Golden Island (2).xml:Description:40
+#: maps/skirmishes/golden_island_2p.xml:Description:40
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
 "can access the center via a narrow strip of shallow water or via boat."
 msgstr ""
 
-#: maps/skirmishes/Golden Island (2).xml:Name:40
+#: maps/skirmishes/golden_island_2p.xml:Name:40
 msgid "Golden Island (2)"
 msgstr "Gouden eiland (2)"
 
-#: maps/skirmishes/Golden Oasis (2).xml:Description:39
+#: maps/skirmishes/golden_oasis_2p.xml:Description:39
 msgid ""
 "Players start around a small oasis in the center of the map which holds much of the available wood on the map.\n"
 "\n"
 "Elsewhere, in the hinterlands, lies great riches, in the form of large deposits of gold and other metals."
 msgstr "Spelers starten rond een kleine oase in het midden van de kaart. Rond die oase bevindt zich zowat al het hout op de kaart.\n\nOp andere plaatsen liggen grote rijkdommen in de vorm van metaalmijnen."
 
-#: maps/skirmishes/Golden Oasis (2).xml:Name:39
+#: maps/skirmishes/golden_oasis_2p.xml:Name:39
 msgid "Gold Oasis (2)"
 msgstr "Gouden oase (2)"
 
-#: maps/skirmishes/Greek Acropolis (2).xml:Description:39
-#: maps/skirmishes/Greek Acropolis Night (2).xml:Description:39
+#: maps/skirmishes/greek_acropolis_2p.xml:Description:39
+#: maps/skirmishes/greek_acropolis_night_2p.xml:Description:39
 msgid ""
 "Two factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
 msgstr ""
 
-#: maps/skirmishes/Greek Acropolis (2).xml:Name:39
+#: maps/skirmishes/greek_acropolis_2p.xml:Name:39
 msgid "Greek Acropolis (2)"
 msgstr "Griekse Akropolis (2)"
 
-#: maps/skirmishes/Greek Acropolis (4).xml:Description:39
+#: maps/skirmishes/greek_acropolis_4p.xml:Description:39
 msgid ""
 "Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
 msgstr ""
 
-#: maps/skirmishes/Greek Acropolis (4).xml:Name:39
+#: maps/skirmishes/greek_acropolis_4p.xml:Name:39
 msgid "Greek Acropolis (4)"
 msgstr "Griekse Akropolis (4)"
 
-#: maps/skirmishes/Greek Acropolis Night (2).xml:Name:39
+#: maps/skirmishes/greek_acropolis_night_2p.xml:Name:39
 msgid "Greek Acropolis Night (2)"
 msgstr "Griekse Akropolis bij nacht (2)"
 
-#: maps/skirmishes/Libyan Oases (4).xml:Description:39
+#: maps/skirmishes/libyan_oases_4p.xml:Description:39
 msgid ""
 "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
 "\n"
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt."
 msgstr "Een open, vlakke, woestijnkaart met in het midden twee weelderige oases.\n\nDeze kaart stelt de Libische woestijn voor. Deel van de Sahara, ten westen van de Nijl."
 
-#: maps/skirmishes/Libyan Oases (4).xml:Name:39
+#: maps/skirmishes/libyan_oases_4p.xml:Name:39
 msgid "Libyan Oases (4)"
 msgstr "Libische oase (4)"
 
-#: maps/skirmishes/Libyan Oasis (2).xml:Description:39
+#: maps/skirmishes/libyan_oasis_2p.xml:Description:39
 msgid ""
 "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis.\n"
 "\n"
@@ -2475,11 +2468,11 @@ msgid ""
 "Iberians do not receive their circuit walls here. Instead, all factions receive 4 free Defense Towers."
 msgstr "Een open, vlakke, woestijnkaart met in het midden een weelderige oases.\n\nDeze kaart stelt de Libische woestijn voor. Deel van de Sahara, ten westen van de Nijl.\n\nIberiërs krijgen hier geen startmuren, maar ieder speler start met 4 gratis defensietorens."
 
-#: maps/skirmishes/Libyan Oasis (2).xml:Name:39
+#: maps/skirmishes/libyan_oasis_2p.xml:Name:39
 msgid "Libyan Oasis (2)"
 msgstr "Libische oase (2)"
 
-#: maps/skirmishes/Lorraine Plain (2).xml:Description:40
+#: maps/skirmishes/lorraine_plain_2p.xml:Description:40
 msgid ""
 "The map is cut through the center by a river traversing east-west with some shallows.\n"
 "\n"
@@ -2488,37 +2481,37 @@ msgid ""
 "Civ Territories are divided by main river and tributaries (with necessary shallows for crossings)."
 msgstr "De kaart wordt in het centrum verdeeld door een rivier die van oost naar west gaat, met enkele doorwaadbare plaatsen.\n\nTamelijk open, en over het algemeen vlak. Veel plaats om te bouwen. Goed gebalanceerde grondstoffen. "
 
-#: maps/skirmishes/Lorraine Plain (2).xml:Name:40
+#: maps/skirmishes/lorraine_plain_2p.xml:Name:40
 msgid "Lorraine Plain (2)"
 msgstr "Vlakte van Lotharingen (2)"
 
-#: maps/skirmishes/Median Oasis (2).xml:Description:39 maps/skirmishes/Median
-#: Oasis (4).xml:Description:39
+#: maps/skirmishes/median_oasis_2p.xml:Description:39
+#: maps/skirmishes/median_oasis_4p.xml:Description:39
 msgid ""
 "A large oasis acts as the hub of mountainous spokes that divide the home "
 "territories of each player."
 msgstr "Een grote oase als een middelpunt van bergketens die de gebieden van elke speler verdeelt."
 
-#: maps/skirmishes/Median Oasis (2).xml:Name:39
+#: maps/skirmishes/median_oasis_2p.xml:Name:39
 msgid "Median Oasis (2)"
 msgstr "Medische oase (2)"
 
-#: maps/skirmishes/Median Oasis (4).xml:Name:39
+#: maps/skirmishes/median_oasis_4p.xml:Name:39
 msgid "Median Oasis (4)"
 msgstr "Medische oase (4)"
 
-#: maps/skirmishes/Mediterranean Cove (2).xml:Description:39
+#: maps/skirmishes/mediterranean_cove_2p.xml:Description:39
 msgid ""
 "A sheltered natural harbour on the Mediterranean coast provides the "
 "resources for battle."
 msgstr "Een natuurlijk beschermde haven aan de Middellandse kust heeft de nodige grondstoffen voor een gevecht."
 
-#: maps/skirmishes/Mediterranean Cove (2).xml:Name:39
+#: maps/skirmishes/mediterranean_cove_2p.xml:Name:39
 msgid "Mediterranean Coves (2)"
 msgstr "Middellandse Baaien (2)"
 
-#: maps/skirmishes/Neareastern Badlands (2).xml:Description:39
-#: maps/skirmishes/Neareastern Badlands (4).xml:Description:39
+#: maps/skirmishes/neareastern_badlands_2p.xml:Description:39
+#: maps/skirmishes/neareastern_badlands_4p.xml:Description:39
 msgid ""
 "The 'Cappadocia' region of Central-Eastern Anatolia.\n"
 "\n"
@@ -2527,104 +2520,104 @@ msgid ""
 "Stone and Metal resources are in abundance, especially Stone, but Wood is somewhat scarce."
 msgstr "De regio van Cappadocië in Middenoost-Anatolië.\n\nAlle spelers starten in het westen, met een grote onverkende wildernis in het oosten. \n\nSteen en metaal zijn er in overvloed, maar hout is aan de schaarse kant."
 
-#: maps/skirmishes/Neareastern Badlands (2).xml:Name:39
+#: maps/skirmishes/neareastern_badlands_2p.xml:Name:39
 msgid "Neareastern Badlands (2)"
 msgstr "Nabije Oosten Badlands (2)"
 
-#: maps/skirmishes/Neareastern Badlands (4).xml:Name:39
+#: maps/skirmishes/neareastern_badlands_4p.xml:Name:39
 msgid "Neareastern Badlands (4)"
 msgstr "Nabije Oosten Badlands (4)"
 
-#: maps/skirmishes/Nile River (4).xml:Description:39
+#: maps/skirmishes/nile_river_4p.xml:Description:39
 msgid ""
 "An Egyptian desert map bisected by the broad Nile River. Organic resources "
 "cluster near the river, while mineral resources can be found in the desert "
 "hinterlands."
 msgstr "Een Egyptische woestijnkaart, doorsneden door de brede Nijl. Organische grondstoffen zijn te vinden bij het water, terwijl mineralen verder in de woestijn gevonden kunnen worden."
 
-#: maps/skirmishes/Nile River (4).xml:Name:39
+#: maps/skirmishes/nile_river_4p.xml:Name:39
 msgid "Nile River (4)"
 msgstr "De Nijl (4)"
 
-#: maps/skirmishes/Northern Island (2).xml:Description:40
+#: maps/skirmishes/northern_island_2p.xml:Description:40
 msgid ""
 "Stranded in the cold North, 2 players fight for supremacy over the Island. "
 "One player starts in the Mountains to the West, the other player starts near"
 " the Bay in the East."
 msgstr "Gestrand in het koude noorden vechten 2 spelers over de heerschappij van het Eiland. Eén speler start in de Bergen in het Westen, de andere speler start bij de Baai in het Oosten."
 
-#: maps/skirmishes/Northern Island (2).xml:Name:40
+#: maps/skirmishes/northern_island_2p.xml:Name:40
 msgid "Northern Island (2)"
 msgstr "Noordelijk Eiland (2)"
 
-#: maps/skirmishes/Obedska_Bog_(4).xml:Description:40
-#: maps/skirmishes/Obedska_Bog_Night_(4).xml:Description:40
+#: maps/skirmishes/obedska_bog_4p.xml:Description:40
+#: maps/skirmishes/obedska_bog_night_4p.xml:Description:40
 msgid ""
 "A lazy river meanders through these Serbian wetlands. Stone is scarce, but many lumps of bog iron sit waiting to be found.\n"
 "\n"
 "*This map makes heavy use of grass actors which may adversely affect performance."
 msgstr ""
 
-#: maps/skirmishes/Obedska_Bog_(4).xml:Name:40
+#: maps/skirmishes/obedska_bog_4p.xml:Name:40
 msgid "Obedska Bog (4)"
 msgstr ""
 
-#: maps/skirmishes/Obedska_Bog_Night_(4).xml:Name:40
+#: maps/skirmishes/obedska_bog_night_4p.xml:Name:40
 msgid "Obedska Bog Night (4)"
 msgstr ""
 
-#: maps/skirmishes/Oceanside (2).xml:Description:40
+#: maps/skirmishes/oceanside_2p.xml:Description:40
 msgid "A Lush temperate biome along an ocean. "
 msgstr ""
 
-#: maps/skirmishes/Oceanside (2).xml:Name:40
+#: maps/skirmishes/oceanside_2p.xml:Name:40
 msgid "Oceanside (2)"
 msgstr ""
 
-#: maps/skirmishes/Persian Highlands (4).xml:Description:39
+#: maps/skirmishes/persian_highlands_4p.xml:Description:39
 msgid ""
 "A dry central basin rich in minerals surrounded by rocky hills and "
 "highlands."
 msgstr "Een droge centrale bassin, rijk aan mineralen. Die is omgeven met rotsige heuvels en beboste hooglanden."
 
-#: maps/skirmishes/Persian Highlands (4).xml:Name:39
+#: maps/skirmishes/persian_highlands_4p.xml:Name:39
 msgid "Persian Highlands (4)"
 msgstr "Persische Hooglanden (4)"
 
-#: maps/skirmishes/Punjab (2).xml:Description:40
+#: maps/skirmishes/punjab_2p.xml:Description:40
 msgid ""
 "Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\n"
 "\n"
 "The rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common sight."
 msgstr "De lucht word donkerder aan de horizon in Noordwest Indië. Nabije rivieren stijgen door de moessonregens. Slechts een paar verraderlijke oversteekplaatsen blijven toegankelijk.\n\nDe rivieren zijn dichtbebost, met wat gras iets verderop. Let op voor tijgers in het hoge gras! Aziatische olifanten zijn ook alomtegenwoordig."
 
-#: maps/skirmishes/Punjab (2).xml:Name:40
+#: maps/skirmishes/punjab_2p.xml:Name:40
 msgid "Punjab (2)"
 msgstr "Punjab (2)"
 
-#: maps/skirmishes/Saharan Oases (4).xml:Description:39
+#: maps/skirmishes/saharan_oases_4p.xml:Description:39
 msgid ""
 "A desert biome map where each player has founded their colony at their own lush oasis.\n"
 "\n"
 "The rest of the map is generally wide-open and barren."
 msgstr "Een woestijn waar elke speler start aan een weelderige oase.\n\nDe rest van de kaart is open en kaal."
 
-#: maps/skirmishes/Saharan Oases (4).xml:Name:39
+#: maps/skirmishes/saharan_oases_4p.xml:Name:39
 msgid "Saharan Oases (4)"
 msgstr "Sahara oase (4)"
 
-#: maps/skirmishes/Sahel (4).xml:Description:39
+#: maps/skirmishes/sahel_4p.xml:Description:39
 msgid ""
 "Situated Southside of the Atlas mountain range in North Africa.\n"
 "\n"
 "A somewhat open map with an abundance of animals and mineral resources, while wood is scarce."
 msgstr "Gesitueerd in het zuiden van het Atlasgebergte in het noorden van Afrika.\n\nEen tamelijk open kaart met een overvloed aan voedsel en mineralen, maar hout is eerder zeldzaam."
 
-#: maps/skirmishes/Sahel (4).xml:Name:39
+#: maps/skirmishes/sahel_4p.xml:Name:39
 msgid "Sahel (4)"
 msgstr "Sahel (4)"
 
-#: maps/skirmishes/Sahyadri_Buttes_(5).xml:Description:40
+#: maps/skirmishes/sahyadri_buttes_5.xml:Description:40
 msgid ""
 "The diverse rainforests nestled in the Sahyadri mountain range of the west coast of India. It goes without saying, wood is abundant.\n"
 "\n"
@@ -2633,142 +2626,142 @@ msgid ""
 "WARNING: This map uses a lot of floral actors on account of being a rainforest. Expect a drop in framerate, this is taxing on most mid range computers."
 msgstr ""
 
-#: maps/skirmishes/Sahyadri_Buttes_(5).xml:Name:40
+#: maps/skirmishes/sahyadri_buttes_5.xml:Name:40
 msgid "Sahyadri Buttes (5)"
 msgstr ""
 
-#: maps/skirmishes/Savanna River.xml:Description:39
+#: maps/skirmishes/savanna_river.xml:Description:39
 msgid "A large savanna is bisected by a narrow jungle stream."
 msgstr "Een grote savanne met een smalle beek."
 
-#: maps/skirmishes/Savanna River.xml:Name:39
+#: maps/skirmishes/savanna_river.xml:Name:39
 msgid "Savanna River (2)"
 msgstr "Savanne rivier (2)"
 
-#: maps/skirmishes/Sicilia (2).xml:Description:39
+#: maps/skirmishes/sicilia_2p.xml:Description:39
 msgid "The large Mediterranean island of Sicily is open for conquest."
 msgstr "Het grote mediterrane eiland Sicilië is open voor verovering."
 
-#: maps/skirmishes/Sicilia (2).xml:Name:39
+#: maps/skirmishes/sicilia_2p.xml:Name:39
 msgid "Sicilia (2)"
 msgstr "Sicilië (2)"
 
-#: maps/skirmishes/Sicilia_Nomad.xml:Description:35
+#: maps/skirmishes/sicilia_nomad.xml:Description:35
 msgid ""
 "The large Mediterranean island of Sicily is open for conquest.\n"
 "[color=\"orange\"]Tip: docks are useful dropsite when you have no territory yet.[/color]"
 msgstr "Het grote mediterrane eiland Sicilië staat open voor verovering.\n[color=\"orange\"]Tip: dokken zijn een handig afzetpunt buiten je gebied als je nog geen terrein hebt.[/color]"
 
-#: maps/skirmishes/Sicilia_Nomad.xml:Name:35
+#: maps/skirmishes/sicilia_nomad.xml:Name:35
 msgid "Sicilia Nomad (2)"
 msgstr "Siciliaanse nomade (2)"
 
-#: maps/skirmishes/Skirmish Demo.xml:Description:39
+#: maps/skirmishes/skirmish_demo.xml:Description:39
 msgid "A demo Skirmish map."
 msgstr "Een demo schermutselkaart"
 
-#: maps/skirmishes/Skirmish Demo.xml:Name:39
+#: maps/skirmishes/skirmish_demo.xml:Name:39
 msgid "Skirmish Demo"
 msgstr "Schermutseldemo"
 
-#: maps/skirmishes/Sporades Islands (2).xml:Name:39
+#: maps/skirmishes/sporades_islands_2p.xml:Name:39
 msgid "Sporades Islands (2)"
 msgstr "Sporades eilanden (2)"
 
-#: maps/skirmishes/Syria (2).xml:Description:39
+#: maps/skirmishes/syria_2p.xml:Description:39
 msgid ""
 "A barren land with little wood and few animals. Treasures dot the landscape and will be essential to early growth.\n"
 "\n"
 "The player who sets up a profitable trade caravan earliest may gain a decisive advantage."
 msgstr "Een dor, verloren land, met weinig hout en dieren. Er zijn wel enkele schatten te vinden die essentieel zullen zijn voor verdere groei.\n\nDe speler die als eerste een goede handelsroute opzet zal een groot voordeel kennen."
 
-#: maps/skirmishes/Syria (2).xml:Name:39
+#: maps/skirmishes/syria_2p.xml:Name:39
 msgid "Syria (2)"
 msgstr "Syrië (2)"
 
-#: maps/skirmishes/Team Oasis - 2v2.xml:Description:39
+#: maps/skirmishes/team_oasis_2pv2p.xml:Description:39
 msgid ""
 "An oasis surrounded by mountains and desert. Farmlands near the water's edge"
 " provide much-needed boost in farming, but foraging and hunting are in short"
 " supply."
 msgstr "Een oase omgeven met bergen en woestijn. Er is landbouwgrond dicht bij het water om een boost te geven, maar jagen en voedsel verzamelen is moeilijk."
 
-#: maps/skirmishes/Team Oasis - 2v2.xml:Name:39
+#: maps/skirmishes/team_oasis_2pv2p.xml:Name:39
 msgid "Team Oasis (2v2)"
 msgstr "Team Oase (2v2)"
 
-#: maps/skirmishes/Temperate Roadway (2).xml:Description:40
+#: maps/skirmishes/temperate_roadway_2p.xml:Description:40
 msgid "Temperate zone map with plentiful resources. Map Size: Small"
 msgstr ""
 
-#: maps/skirmishes/Temperate Roadway (2).xml:Name:40
+#: maps/skirmishes/temperate_roadway_2p.xml:Name:40
 msgid "Temperate Roadway (2)"
 msgstr ""
 
-#: maps/skirmishes/Thessalian Plains (4).xml:Description:39
+#: maps/skirmishes/thessalian_plains_4p.xml:Description:39
 msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
 "starts the match safe atop a large plateau."
 msgstr ""
 
-#: maps/skirmishes/Thessalian Plains (4).xml:Name:39
+#: maps/skirmishes/thessalian_plains_4p.xml:Name:39
 msgid "Thessalian Plains (4)"
 msgstr "Thessalische vlakte (4)"
 
-#: maps/skirmishes/Tuscan Acropolis (4).xml:Description:40
+#: maps/skirmishes/tuscan_acropolis_4p.xml:Description:40
 msgid ""
 "Four factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
 msgstr ""
 
-#: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
+#: maps/skirmishes/tuscan_acropolis_4p.xml:Name:40
 msgid "Tuscan Acropolis (4)"
 msgstr "Toscaanse Akropolis (4)"
 
-#: maps/skirmishes/Two Seas (6).xml:Description:40
+#: maps/skirmishes/two_seas_6.xml:Description:40
 msgid ""
 "A large tropic map with two seas to the East and to the West. Good for two "
 "teams of three players or three teams of two players."
 msgstr "Een grote tropische kaart met twee zeeën, in het oosten en het westen.\nGoed voor twee teams van drie spelers, of drie teams van twee spelers."
 
-#: maps/skirmishes/Two Seas (6).xml:Name:40
+#: maps/skirmishes/two_seas_6.xml:Name:40
 msgid "Two Seas (6)"
 msgstr "Twee zeeën (6)"
 
-#: maps/skirmishes/Vesuvius_(6).xml:Description:40
+#: maps/skirmishes/vesuvius_6.xml:Description:40
 msgid ""
 "Skirmish as ash lightly falls around this recently erupted volcano. the "
 "scorched landscape offers little food, though the blasted forests are still "
 "laden with useful wood. "
 msgstr ""
 
-#: maps/skirmishes/Vesuvius_(6).xml:Name:40
+#: maps/skirmishes/vesuvius_6.xml:Name:40
 msgid "Vesuvius (6)"
 msgstr "Vesuvius (6)"
 
-#: maps/skirmishes/Via Augusta (4).xml:Description:40
+#: maps/skirmishes/via_augusta_4p.xml:Description:40
 msgid ""
 "All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BCE."
 msgstr "Alle wegen leiden naar Rome. Via Julius Augustus is een Romeinse weg gebouwd in de 13e eeuw voor Christus."
 
-#: maps/skirmishes/Via Augusta (4).xml:Name:40
+#: maps/skirmishes/via_augusta_4p.xml:Name:40
 msgid "Via Augusta"
 msgstr "Via Augusta"
 
-#: maps/skirmishes/Watering Holes (4).xml:Description:39
+#: maps/skirmishes/watering_holes_4p.xml:Description:39
 msgid ""
 "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up.\n"
 "\n"
 "Note: This is a very small \"fast and furious\" map. Iberians do not start with their custom circuit walls."
 msgstr "De Afrikaanse savanne zit vol dieren waarop gejaagd kan worden, en er zijn veel minerale afzettingen. Het droge seizoen komt nader en de drinkplaatsen drogen op.\n\nOpgelet: Dit is een kleine, snelle kaart. Iberiërs starten niet met hun muurbonus."
 
-#: maps/skirmishes/Watering Holes (4).xml:Name:39
+#: maps/skirmishes/watering_holes_4p.xml:Name:39
 msgid "Watering Holes (4)"
 msgstr "Waterpoelen (4)"
 
-#: maps/skirmishes/Zagros Mountains (2).xml:Description:39
+#: maps/skirmishes/zagros_mountains_2p.xml:Description:39
 msgid ""
 "The mountains buffering the Persian homeland, straddling Persis, Susiana, and Media.\n"
 "\n"
@@ -2777,7 +2770,7 @@ msgid ""
 "Access to untapped resources and territories can be found through the rugged hinterlands."
 msgstr "De bergen langs het Perzische thuisland. Midden tussen Persis, Susiana en Medië.\n\nSpelers starten de wedstrijd bij de Perzische Golf in hun eigen provincie met 1 gratis tempel.\n\nToegang tot grondstoffen en extra territorium kan gevonden worden door de ruwe bergen."
 
-#: maps/skirmishes/Zagros Mountains (2).xml:Name:39
+#: maps/skirmishes/zagros_mountains_2p.xml:Name:39
 msgid "Zagros Mountains (2)"
 msgstr "Zagros bergen (2)"
 
