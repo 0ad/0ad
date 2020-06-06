@@ -168,7 +168,7 @@ TS_ASSERT_EQUALS(cmpGarrisonHolder.IsFull(), false);
 TS_ASSERT_EQUALS(cmpGarrisonHolder.IsAllowedToGarrison(enemyUnitId), false);
 TS_ASSERT_EQUALS(cmpGarrisonHolder.IsAllowedToGarrison(unitToGarrisonId), true);
 TS_ASSERT_EQUALS(cmpGarrisonHolder.HasEnoughHealth(), false);
-TS_ASSERT_EQUALS(cmpGarrisonHolder.PerformGarrison(unitToGarrisonId), false);
+TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(unitToGarrisonId), false);
 
 AddMock(garrisonHolderId, IID_Health, {
 	"GetHitpoints": () => 600,
