@@ -394,16 +394,16 @@ function TestMoveIntoFormationWhileAttacking()
 
 	controllerAI.Attack(enemy, []);
 
-	for (var ent of unitAIs)
+	for (let ent of unitAIs)
 		TS_ASSERT_EQUALS(unitAI.fsmStateName, "INDIVIDUAL.COMBAT.ATTACKING");
 
 	controllerAI.MoveIntoFormation({"name": "Circle"});
 
 	// let all units be in position
-	for (var ent of unitAIs)
-		controllerFormation.SetInPosition(ent);
+	for (let ent of unitAIs)
+		controllerFormation.SetWaitingOnController(ent);
 
-	for (var ent of unitAIs)
+	for (let ent of unitAIs)
 		TS_ASSERT_EQUALS(unitAI.fsmStateName, "INDIVIDUAL.COMBAT.ATTACKING");
 
 	controllerFormation.Disband();

@@ -962,10 +962,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"MovementUpdate": function(msg) {
 				if (msg.likelyFailure || this.CheckRange(this.order.data))
-				{
 					this.FinishOrder();
-					this.CallMemberFunction("ResetFinishOrder", []);
-				}
 			},
 		},
 
@@ -995,10 +992,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"MovementUpdate": function(msg) {
 				if (msg.likelyFailure || this.CheckRange(this.order.data))
-				{
 					this.FinishOrder();
-					this.CallMemberFunction("ResetFinishOrder", []);
-				}
 			},
 		},
 
@@ -1132,14 +1126,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				if (!msg.likelyFailure && !this.CheckRange(this.order.data))
 					return;
 
-				if (this.FinishOrder())
-				{
-					this.CallMemberFunction("ResetFinishOrder", []);
-					return;
-				}
-				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-
-				cmpFormation.FindInPosition();
+				this.FinishOrder();
 			}
 		},
 
@@ -1239,10 +1226,9 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"Timer": function(msg) {
 				// Have all members finished the task?
-				if (!this.TestAllMemberFunction("HasFinishedOrder", []))
+				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				if (cmpFormation && !cmpFormation.AreAllMembersWaiting())
 					return;
-
-				this.CallMemberFunction("ResetFinishOrder", []);
 
 				// Execute the next order
 				if (this.FinishOrder())
@@ -1267,9 +1253,6 @@ UnitAI.prototype.UnitFsmSpec = {
 	// States for entities moving as part of a formation:
 	"FORMATIONMEMBER": {
 		"FormationLeave": function(msg) {
-			// We're not in a formation anymore, so no need to track this.
-			this.finishedOrder = false;
-
 			// Stop moving as soon as the formation disbands
 			this.StopMoving();
 
@@ -1377,10 +1360,6 @@ UnitAI.prototype.UnitFsmSpec = {
 				if (this.FinishOrder())
 					return;
 
-				let cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
-				if (cmpFormation)
-					cmpFormation.SetInPosition(this.entity);
-
 				delete this.formationOffset;
 			},
 		},
@@ -1388,10 +1367,6 @@ UnitAI.prototype.UnitFsmSpec = {
 		// Special case used by Order.LeaveFoundation
 		"WALKINGTOPOINT": {
 			"enter": function() {
-				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
-				if (cmpFormation)
-					cmpFormation.UnsetInPosition(this.entity);
-
 				if (!this.MoveTo(this.order.data))
 				{
 					this.FinishOrder();
@@ -3377,7 +3352,6 @@ UnitAI.prototype.Init = function()
 	this.isGarrisoned = false;
 	this.isIdle = false;
 	this.isImmobile = false; // True if the unit is currently unable to move (garrisoned,...)
-	this.finishedOrder = false; // used to find if all formation members finished the order
 
 	this.heldPosition = undefined;
 
@@ -3411,16 +3385,6 @@ UnitAI.prototype.IsFormationController = function()
 UnitAI.prototype.IsFormationMember = function()
 {
 	return (this.formationController != INVALID_ENTITY);
-};
-
-UnitAI.prototype.HasFinishedOrder = function()
-{
-	return this.finishedOrder;
-};
-
-UnitAI.prototype.ResetFinishOrder = function()
-{
-	this.finishedOrder = false;
 };
 
 UnitAI.prototype.IsAnimal = function()
@@ -3785,7 +3749,8 @@ UnitAI.prototype.FinishOrder = function()
 		if (cmpUnitAI)
 		{
 			// Inform the formation controller that we finished this task
-			this.finishedOrder = true;
+			let cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
+			cmpFormation.SetWaitingOnController(this.entity);
 			// We don't want to carry out the default order
 			// if there are still queued formation orders left
 			if (cmpUnitAI.GetOrders().length > 1)
@@ -6389,16 +6354,24 @@ UnitAI.prototype.AttackEntitiesByPreference = function(ents)
 };
 
 /**
- * Call obj.funcname(args) on UnitAI components of all formation members.
+ * Call UnitAI.funcname(args) on all formation members.
+ * @param resetWaitingEntities - If true, call ResetWaitingEntities first.
+ *     If the controller wants to wait on its members to finish their order,
+ *     this needs to be reset before sending new orders (in case they instafail)
+ *     so it makes sense to do it here.
+ *     Only set this to false if you're sure it's safe.
  */
-UnitAI.prototype.CallMemberFunction = function(funcname, args)
+UnitAI.prototype.CallMemberFunction = function(funcname, args, resetWaitingEntities = true)
 {
 	var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 	if (!cmpFormation)
 		return;
 
+	if (resetWaitingEntities)
+		cmpFormation.ResetWaitingEntities();
+
 	cmpFormation.GetMembers().forEach(ent => {
-		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI[funcname].apply(cmpUnitAI, args);
 	});
 };

@@ -78,7 +78,7 @@ Formation.prototype.variablesToSerialize = [
 	"memberPositions",
 	"maxRowsUsed",
 	"maxColumnsUsed",
-	"inPosition",
+	"waitingOnController",
 	"columnar",
 	"rearrange",
 	"formationMembersWithAura",
@@ -135,7 +135,7 @@ Formation.prototype.Init = function(deserialized = false)
 	this.memberPositions = {};
 	this.maxRowsUsed = 0;
 	this.maxColumnsUsed = [];
-	this.inPosition = []; // entities that have reached their final position
+	this.waitingOnController = []; // entities that are waiting on the controller.
 	this.columnar = false; // whether we're travelling in column (vs box) formation
 	this.rearrange = true; // whether we should rearrange all formation members
 	this.formationMembersWithAura = []; // Members with a formation aura
@@ -281,10 +281,7 @@ Formation.prototype.GetFormationAnimationVariant = function(entity)
 	return undefined;
 };
 
-/**
- * Permits formation members to register that they've reached their destination.
- */
-Formation.prototype.SetInPosition = function(ent)
+Formation.prototype.SetWaitingOnController = function(ent)
 {
 	// Rotate the entity to the right angle.
 	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
@@ -292,19 +289,26 @@ Formation.prototype.SetInPosition = function(ent)
 	if (cmpEntPosition && cmpEntPosition.IsInWorld() && cmpPosition && cmpPosition.IsInWorld())
 		cmpEntPosition.TurnTo(cmpPosition.GetRotation().y);
 
-	if (this.inPosition.indexOf(ent) != -1)
+	if (this.waitingOnController.indexOf(ent) !== -1)
 		return;
-	this.inPosition.push(ent);
+	this.waitingOnController.push(ent);
 };
 
-/**
- * Called by formation members upon entering non-walking states.
- */
-Formation.prototype.UnsetInPosition = function(ent)
+Formation.prototype.UnsetWaitingOnController = function(ent)
 {
-	var ind = this.inPosition.indexOf(ent);
-	if (ind != -1)
-		this.inPosition.splice(ind, 1);
+	let ind = this.waitingOnController.indexOf(ent);
+	if (ind !== -1)
+		this.waitingOnController.splice(ind, 1);
+};
+
+Formation.prototype.ResetWaitingEntities = function()
+{
+	this.waitingOnController = [];
+};
+
+Formation.prototype.AreAllMembersWaiting = function()
+{
+	return this.waitingOnController.length === this.members.length;
 };
 
 /**
@@ -355,8 +359,8 @@ Formation.prototype.SetMembers = function(ents)
 Formation.prototype.RemoveMembers = function(ents, renamed = false)
 {
 	this.offsets = undefined;
-	this.members = this.members.filter(function(e) { return ents.indexOf(e) == -1; });
-	this.inPosition = this.inPosition.filter(function(e) { return ents.indexOf(e) == -1; });
+	this.members = this.members.filter(ent => ents.indexOf(ent) === -1);
+	this.waitingOnController = this.waitingOnController.filter(ent => ents.indexOf(ent) === -1);
 
 	for (let ent of ents)
 	{
@@ -397,7 +401,6 @@ Formation.prototype.RemoveMembers = function(ents, renamed = false)
 Formation.prototype.AddMembers = function(ents)
 {
 	this.offsets = undefined;
-	this.inPosition = [];
 
 	for (let ent of this.formationMembersWithAura)
 	{
@@ -431,25 +434,6 @@ Formation.prototype.AddMembers = function(ents)
 };
 
 /**
- * Called when the formation stops moving in order to detect
- * units that have already reached their final positions.
- */
-Formation.prototype.FindInPosition = function()
-{
-	for (var i = 0; i < this.members.length; ++i)
-	{
-		var cmpUnitMotion = Engine.QueryInterface(this.members[i], IID_UnitMotion);
-		if (!cmpUnitMotion.IsMoveRequested())
-		{
-			// Verify that members are stopped in FORMATIONMEMBER.WALKING
-			var cmpUnitAI = Engine.QueryInterface(this.members[i], IID_UnitAI);
-			if (cmpUnitAI.IsWalking())
-				this.SetInPosition(this.members[i]);
-		}
-	}
-};
-
-/**
  * Remove all members and destroy the formation.
  */
 Formation.prototype.Disband = function()
@@ -468,7 +452,7 @@ Formation.prototype.Disband = function()
 
 
 	this.members = [];
-	this.inPosition = [];
+	this.waitingOnController = [];
 	this.formationMembersWithAura = [];
 	this.offsets = undefined;
 
@@ -549,15 +533,22 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force, varia
 	var xMin = 0;
 	var yMin = 0;
 
-	for (var i = 0; i < this.offsets.length; ++i)
+	if (force)
+		// Reset waitingOnController as FormationWalk is called.
+		this.ResetWaitingEntities();
+
+	for (let i = 0; i < this.offsets.length; ++i)
 	{
-		var offset = this.offsets[i];
+		let offset = this.offsets[i];
 
-		var cmpUnitAI = Engine.QueryInterface(offset.ent, IID_UnitAI);
+		let cmpUnitAI = Engine.QueryInterface(offset.ent, IID_UnitAI);
 		if (!cmpUnitAI)
+		{
+			warn("Entities without UnitAI in formation are not supported.");
 			continue;
+		}
 
-		var data =
+		let data =
 		{
 			"target": this.entity,
 			"x": offset.x,
@@ -978,8 +969,12 @@ Formation.prototype.OnGlobalOwnershipChanged = function(msg)
 
 Formation.prototype.OnGlobalEntityRenamed = function(msg)
 {
-	if (this.members.indexOf(msg.entity) == -1)
+	if (this.members.indexOf(msg.entity) === -1)
 		return;
+
+	let waitingIndex = this.waitingOnController.indexOf(msg.entity);
+	if (waitingIndex !== -1)
+		this.waitingOnController.splice(waitingIndex, 1, msg.newentity);
 
 	// Save rearranging to temporarily set it to false.
 	let temp = this.rearrange;
