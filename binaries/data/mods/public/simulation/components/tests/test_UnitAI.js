@@ -1,8 +1,10 @@
 Engine.LoadHelperScript("FSM.js");
 Engine.LoadHelperScript("Entity.js");
 Engine.LoadHelperScript("Player.js");
+Engine.LoadHelperScript("Sound.js");
 Engine.LoadComponentScript("interfaces/Attack.js");
 Engine.LoadComponentScript("interfaces/Auras.js");
+Engine.LoadComponentScript("interfaces/Builder.js");
 Engine.LoadComponentScript("interfaces/BuildingAI.js");
 Engine.LoadComponentScript("interfaces/Capturable.js");
 Engine.LoadComponentScript("interfaces/Resistance.js");
@@ -16,6 +18,87 @@ Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("interfaces/UnitAI.js");
 Engine.LoadComponentScript("Formation.js");
 Engine.LoadComponentScript("UnitAI.js");
+
+/**
+ * Fairly straightforward test that entity renaming is handled
+ * by unitAI states. These ought to be augmented with integration tests, ideally.
+ */
+function TestTargetEntityRenaming(init_state, post_state, setup)
+{
+	ResetState();
+	const player_ent = 5;
+	const target_ent = 6;
+
+	AddMock(SYSTEM_ENTITY, IID_Timer, {
+		"SetInterval": () => {},
+		"SetTimeout": () => {}
+	});
+	AddMock(SYSTEM_ENTITY, IID_ObstructionManager, {
+		"IsInTargetRange": () => false
+	});
+
+	let unitAI = ConstructComponent(player_ent, "UnitAI", {
+		"FormationController": "false",
+		"DefaultStance": "aggressive",
+		"FleeDistance": 10
+	});
+	unitAI.OnCreate();
+
+	setup(unitAI, player_ent, target_ent);
+
+	TS_ASSERT_EQUALS(unitAI.GetCurrentState(), init_state);
+
+	unitAI.OnGlobalEntityRenamed({
+		"entity": target_ent,
+		"newentity": target_ent + 1
+	});
+
+	TS_ASSERT_EQUALS(unitAI.GetCurrentState(), post_state);
+}
+
+TestTargetEntityRenaming(
+	"INDIVIDUAL.GARRISON.APPROACHING", "INDIVIDUAL.IDLE",
+	(unitAI, player_ent, target_ent) => {
+		unitAI.CanGarrison = (target) => target == target_ent;
+		unitAI.MoveToGarrisonRange = (target) => target == target_ent;
+		unitAI.AbleToMove = () => true;
+
+		AddMock(target_ent, IID_GarrisonHolder, {
+			"CanPickup": () => false
+		});
+
+		unitAI.Garrison(target_ent, false);
+	}
+);
+
+TestTargetEntityRenaming(
+	"INDIVIDUAL.REPAIR.REPAIRING", "INDIVIDUAL.IDLE",
+	(unitAI, player_ent, target_ent) => {
+		QueryBuilderListInterface = () => {};
+		unitAI.CheckTargetRange = () => true;
+		unitAI.CanRepair = (target) => target == target_ent;
+
+		unitAI.Repair(target_ent, false, false);
+	}
+);
+
+
+TestTargetEntityRenaming(
+	"INDIVIDUAL.FLEEING", "INDIVIDUAL.FLEEING",
+	(unitAI, player_ent, target_ent) => {
+		DistanceBetweenEntities = () => 10;
+		unitAI.CheckTargetRangeExplicit = () => false;
+
+		AddMock(player_ent, IID_UnitMotion, {
+			"MoveToTargetRange": () => true,
+			"GetRunMultiplier": () => 1,
+			"SetSpeedMultiplier": () => {},
+			"StopMoving": () => {}
+		});
+
+		unitAI.Flee(target_ent, false);
+	}
+);
 
 /* Regression test.
  * Tests the FSM behaviour of a unit when walking as part of a formation,
