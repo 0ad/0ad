@@ -359,37 +359,37 @@ global.RunHardwareDetection = function(settings)
 		Engine.SetDisableAudio(output.disable_audio);
 
 	if (output.disable_shadows !== undefined)
-		Engine.ConfigDB_CreateValue("hwdetect", "shadows", !output.disable_shadows);
+		Engine.ConfigDB_CreateValue("hwdetect", "shadows", (!output.disable_shadows).toString());
 
-	if (output.disable_shadowpcf !== undefined)
-		Engine.ConfigDB_CreateValue("hwdetect", "shadowpcf", !output.disable_shadowpcf);
+	//if (output.disable_shadowpcf !== undefined)
+	Engine.ConfigDB_CreateValue("hwdetect", "shadowpcf", (!output.disable_shadowpcf).toString());
 
 	if (output.disable_allwater !== undefined)
 	{
-		Engine.ConfigDB_CreateValue("hwdetect", "watereffects", !output.disable_allwater);
-		Engine.ConfigDB_CreateValue("hwdetect", "waterfancyeffects", !output.disable_allwater);
-		Engine.ConfigDB_CreateValue("hwdetect", "waterrealdepth", !output.disable_allwater);
-		Engine.ConfigDB_CreateValue("hwdetect", "watershadows", !output.disable_allwater);
-		Engine.ConfigDB_CreateValue("hwdetect", "waterrefraction", !output.disable_allwater);
-		Engine.ConfigDB_CreateValue("hwdetect", "waterreflection", !output.disable_allwater);
+		Engine.ConfigDB_CreateValue("hwdetect", "watereffects", (!output.disable_allwater).toString());
+		Engine.ConfigDB_CreateValue("hwdetect", "waterfancyeffects", (!output.disable_allwater).toString());
+		Engine.ConfigDB_CreateValue("hwdetect", "waterrealdepth", (!output.disable_allwater).toString());
+		Engine.ConfigDB_CreateValue("hwdetect", "watershadows", (!output.disable_allwater).toString());
+		Engine.ConfigDB_CreateValue("hwdetect", "waterrefraction", (!output.disable_allwater).toString());
+		Engine.ConfigDB_CreateValue("hwdetect", "waterreflection", (!output.disable_allwater).toString());
 	}
 
 	if (output.disable_fancywater !== undefined)
 	{
-		Engine.ConfigDB_CreateValue("hwdetect", "waterfancyeffects", !output.disable_fancywater);
-		Engine.ConfigDB_CreateValue("hwdetect", "waterrealdepth", !output.disable_fancywater);
-		Engine.ConfigDB_CreateValue("hwdetect", "watershadows", !output.disable_fancywater);
+		Engine.ConfigDB_CreateValue("hwdetect", "waterfancyeffects", (!output.disable_fancywater).toString());
+		Engine.ConfigDB_CreateValue("hwdetect", "waterrealdepth", (!output.disable_fancywater).toString());
+		Engine.ConfigDB_CreateValue("hwdetect", "watershadows", (!output.disable_fancywater).toString());
 	}
 
 	if (output.enable_glsl !== undefined)
-		Engine.ConfigDB_CreateValue("hwdetect", "preferglsl", output.enable_glsl);
+		Engine.ConfigDB_CreateValue("hwdetect", "preferglsl", (output.enable_glsl).toString());
 
 	if (output.enable_postproc !== undefined)
-		Engine.ConfigDB_CreateValue("hwdetect", "postproc", output.enable_postproc);
+		Engine.ConfigDB_CreateValue("hwdetect", "postproc", (output.enable_postproc).toString());
 
 	if (output.enable_smoothlos !== undefined)
-		Engine.ConfigDB_CreateValue("hwdetect", "smoothlos", output.enable_smoothlos);
+		Engine.ConfigDB_CreateValue("hwdetect", "smoothlos", (output.enable_smoothlos).toString());
 
 	if (output.override_renderpath !== undefined)
-		Engine.ConfigDB_CreateValue("hwdetect", "renderpath", output.override_renderpath);
+		Engine.ConfigDB_CreateValue("hwdetect", "renderpath", (output.override_renderpath).toString());
 };
