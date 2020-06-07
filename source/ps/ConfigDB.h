@@ -33,14 +33,19 @@
 
 #include <map>
 
-// Namespace priorities: User supersedes mod supersedes system.
-//						 Command-line arguments override everything.
-
+/**
+ * Namespace priorities:
+ * - Command line args override everything
+ * - User supersedes HWDetect (let the user try crashing his system).
+ * - HWDetect supersedes mods & default -> mods can mod hwdetect itself.
+ * - SYSTEM is used for local.cfg and is basically for setting custom defaults.
+ */
 enum EConfigNamespace
 {
 	CFG_DEFAULT,
-	CFG_SYSTEM,
 	CFG_MOD,
+	CFG_SYSTEM,
+	CFG_HWDETECT,
 	CFG_USER,
 	CFG_COMMAND,
 	CFG_LAST

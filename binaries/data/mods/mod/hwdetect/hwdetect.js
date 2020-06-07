@@ -358,30 +358,38 @@ global.RunHardwareDetection = function(settings)
 	if (output.disable_audio !== undefined)
 		Engine.SetDisableAudio(output.disable_audio);
 
-	if (output.disable_s3tc !== undefined)
-		Engine.SetDisableS3TC(output.disable_s3tc);
-
 	if (output.disable_shadows !== undefined)
-		Engine.SetDisableShadows(output.disable_shadows);
+		Engine.ConfigDB_CreateValue("hwdetect", "shadows", !output.disable_shadows);
 
 	if (output.disable_shadowpcf !== undefined)
-		Engine.SetDisableShadowPCF(output.disable_shadowpcf);
+		Engine.ConfigDB_CreateValue("hwdetect", "shadowpcf", !output.disable_shadowpcf);
 
 	if (output.disable_allwater !== undefined)
-		Engine.SetDisableAllWater(output.disable_allwater);
+	{
+		Engine.ConfigDB_CreateValue("hwdetect", "watereffects", !output.disable_allwater);
+		Engine.ConfigDB_CreateValue("hwdetect", "waterfancyeffects", !output.disable_allwater);
+		Engine.ConfigDB_CreateValue("hwdetect", "waterrealdepth", !output.disable_allwater);
+		Engine.ConfigDB_CreateValue("hwdetect", "watershadows", !output.disable_allwater);
+		Engine.ConfigDB_CreateValue("hwdetect", "waterrefraction", !output.disable_allwater);
+		Engine.ConfigDB_CreateValue("hwdetect", "waterreflection", !output.disable_allwater);
+	}
 
 	if (output.disable_fancywater !== undefined)
-		Engine.SetDisableFancyWater(output.disable_fancywater);
+	{
+		Engine.ConfigDB_CreateValue("hwdetect", "waterfancyeffects", !output.disable_fancywater);
+		Engine.ConfigDB_CreateValue("hwdetect", "waterrealdepth", !output.disable_fancywater);
+		Engine.ConfigDB_CreateValue("hwdetect", "watershadows", !output.disable_fancywater);
+	}
 
 	if (output.enable_glsl !== undefined)
-		Engine.SetEnableGLSL(output.enable_glsl);
+		Engine.ConfigDB_CreateValue("hwdetect", "preferglsl", output.enable_glsl);
 
 	if (output.enable_postproc !== undefined)
-		Engine.SetEnablePostProc(output.enable_postproc);
+		Engine.ConfigDB_CreateValue("hwdetect", "postproc", output.enable_postproc);
 
 	if (output.enable_smoothlos !== undefined)
-		Engine.SetEnableSmoothLOS(output.enable_smoothlos);
+		Engine.ConfigDB_CreateValue("hwdetect", "smoothlos", output.enable_smoothlos);
 
 	if (output.override_renderpath !== undefined)
-		Engine.SetRenderPath(output.override_renderpath);
+		Engine.ConfigDB_CreateValue("hwdetect", "renderpath", output.override_renderpath);
 };

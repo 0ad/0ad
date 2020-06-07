@@ -75,7 +75,7 @@ struct DownloadCallbackData
 ModIo::ModIo()
 	: m_GamesRequest("/games"), m_CallbackData(nullptr)
 {
-	// Get config values from the sytem namespace, or below (default).
+	// Get config values from the default namespace.
 	// This can be overridden on the command line.
 	//
 	// We do this so a malicious mod cannot change the base url and
@@ -85,16 +85,16 @@ ModIo::ModIo()
 	// provide some shortcut/script that sets these using command line
 	// parameters.
 	std::string pk_str;
-	g_ConfigDB.GetValue(CFG_SYSTEM, "modio.public_key", pk_str);
-	g_ConfigDB.GetValue(CFG_SYSTEM, "modio.v1.baseurl", m_BaseUrl);
+	g_ConfigDB.GetValue(CFG_DEFAULT, "modio.public_key", pk_str);
+	g_ConfigDB.GetValue(CFG_DEFAULT, "modio.v1.baseurl", m_BaseUrl);
 	{
 		std::string api_key;
-		g_ConfigDB.GetValue(CFG_SYSTEM, "modio.v1.api_key", api_key);
+		g_ConfigDB.GetValue(CFG_DEFAULT, "modio.v1.api_key", api_key);
 		m_ApiKey = "api_key=" + api_key;
 	}
 	{
 		std::string nameid;
-		g_ConfigDB.GetValue(CFG_SYSTEM, "modio.v1.name_id", nameid);
+		g_ConfigDB.GetValue(CFG_DEFAULT, "modio.v1.name_id", nameid);
 		m_IdQuery = "name_id="+nameid;
 	}
 

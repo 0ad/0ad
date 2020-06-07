@@ -31,32 +31,7 @@ const wchar_t g_DefaultCursor[] = L"default-arrow";
 
 CStrW g_CursorName = g_DefaultCursor;
 
-bool g_NoGLS3TC = false;
-bool g_NoGLAutoMipmap = false;
-bool g_NoGLVBO = false;
-
 bool g_PauseOnFocusLoss = false;
-
-bool g_Shadows = false;
-bool g_ShadowPCF = false;
-
-bool g_WaterEffects = true;
-bool g_WaterFancyEffects = false;
-bool g_WaterRealDepth = false;
-bool g_WaterRefraction = false;
-bool g_WaterReflection = false;
-bool g_WaterShadows = false;
-
-bool g_Particles = false;
-bool g_Fog = true;
-bool g_Silhouettes = false;
-bool g_ShowSky = false;
-
-bool g_PreferGLSL = false;
-bool g_PostProc = false;
-bool g_SmoothLOS = false;
-
-CStr g_RenderPath = "default";
 
 int g_xres, g_yres;
 float g_GuiScale = 1.0f;
@@ -85,28 +60,8 @@ static void LoadGlobals()
 {
 	CFG_GET_VAL("vsync", g_VSync);
 
-	CFG_GET_VAL("nos3tc", g_NoGLS3TC);
-	CFG_GET_VAL("noautomipmap", g_NoGLAutoMipmap);
-	CFG_GET_VAL("novbo", g_NoGLVBO);
 	CFG_GET_VAL("pauseonfocusloss", g_PauseOnFocusLoss);
-	CFG_GET_VAL("shadows", g_Shadows);
-	CFG_GET_VAL("shadowpcf", g_ShadowPCF);
 
-	CFG_GET_VAL("watereffects", g_WaterEffects);
-	CFG_GET_VAL("waterfancyeffects", g_WaterFancyEffects);
-	CFG_GET_VAL("waterrealdepth", g_WaterRealDepth);
-	CFG_GET_VAL("waterrefraction", g_WaterRefraction);
-	CFG_GET_VAL("waterreflection", g_WaterReflection);
-	CFG_GET_VAL("watershadows", g_WaterShadows);
-
-	CFG_GET_VAL("renderpath", g_RenderPath);
-	CFG_GET_VAL("particles", g_Particles);
-	CFG_GET_VAL("fog", g_Fog);
-	CFG_GET_VAL("silhouettes", g_Silhouettes);
-	CFG_GET_VAL("showsky", g_ShowSky);
-	CFG_GET_VAL("preferglsl", g_PreferGLSL);
-	CFG_GET_VAL("postproc", g_PostProc);
-	CFG_GET_VAL("smoothlos", g_SmoothLOS);
 	CFG_GET_VAL("gui.scale", g_GuiScale);
 }
 

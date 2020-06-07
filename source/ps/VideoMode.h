@@ -33,7 +33,6 @@ public:
 	/**
 	 * Initialise parts of the video mode, for use in Atlas (which uses
 	 * wxWidgets instead of SDL for GL).
-	 * Currently this just tries to enable S3TC.
 	 */
 	bool InitNonSDL();
 
@@ -91,7 +90,6 @@ private:
 	void ReadConfig();
 	int GetBestBPP();
 	bool SetVideoMode(int w, int h, int bpp, bool fullscreen);
-	void EnableS3TC();
 
 	/**
 	 * Remember whether Init has been called. (This isn't used for anything
@@ -114,7 +112,6 @@ private:
 	int m_ConfigBPP;
 	int m_ConfigDisplay;
 	bool m_ConfigFullscreen;
-	bool m_ConfigForceS3TCEnable;
 
 	// If we're fullscreen, size/position of window when we were last windowed (or the default window
 	// size/position if we started fullscreen), to support switching back to the old window size/position

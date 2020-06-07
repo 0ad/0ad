@@ -145,73 +145,6 @@ void SetDisableAudio(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabl
 	g_DisableAudio = disabled;
 }
 
-void SetDisableS3TC(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
-{
-	if (!IsOverridden("nos3tc"))
-		ogl_tex_override(OGL_TEX_S3TC, disabled ? OGL_TEX_DISABLE : OGL_TEX_ENABLE);
-}
-
-void SetDisableShadows(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
-{
-	if (!IsOverridden("shadows"))
-		g_Shadows = !disabled;
-}
-
-void SetDisableShadowPCF(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
-{
-	if (!IsOverridden("shadowpcf"))
-		g_ShadowPCF = !disabled;
-}
-
-void SetDisableAllWater(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
-{
-	if (!IsOverridden("watereffects"))
-		g_WaterEffects = !disabled;
-	if (!IsOverridden("waterfancyeffects"))
-		g_WaterFancyEffects = !disabled;
-	if (!IsOverridden("waterrealdepth"))
-		g_WaterRealDepth = !disabled;
-	if (!IsOverridden("waterrefraction"))
-		g_WaterRefraction = !disabled;
-	if (!IsOverridden("waterreflection"))
-		g_WaterReflection = !disabled;
-	if (!IsOverridden("watershadows"))
-		g_WaterShadows = !disabled;
-}
-
-void SetDisableFancyWater(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
-{
-	if (!IsOverridden("waterfancyeffects"))
-		g_WaterFancyEffects = !disabled;
-	if (!IsOverridden("waterrealdepth"))
-		g_WaterRealDepth = !disabled;
-	if (!IsOverridden("watershadows"))
-		g_WaterShadows = !disabled;
-}
-
-void SetEnableGLSL(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool enabled)
-{
-	if (!IsOverridden("preferglsl"))
-		g_PreferGLSL = enabled;
-}
-
-void SetEnablePostProc(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool enabled)
-{
-	if (!IsOverridden("postproc"))
-		g_PostProc = enabled;
-}
-
-void SetEnableSmoothLOS(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool enabled)
-{
-	if (!IsOverridden("smoothlos"))
-		g_SmoothLOS = enabled;
-}
-
-void SetRenderPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& renderpath)
-{
-	g_RenderPath = renderpath;
-}
-
 void RunHardwareDetection()
 {
 	TIMER(L"RunHardwareDetection");
@@ -223,15 +156,6 @@ void RunHardwareDetection()
 	JSI_Debug::RegisterScriptFunctions(scriptInterface); // Engine.DisplayErrorDialog
 
 	scriptInterface.RegisterFunction<void, bool, &SetDisableAudio>("SetDisableAudio");
-	scriptInterface.RegisterFunction<void, bool, &SetDisableS3TC>("SetDisableS3TC");
-	scriptInterface.RegisterFunction<void, bool, &SetDisableShadows>("SetDisableShadows");
-	scriptInterface.RegisterFunction<void, bool, &SetDisableShadowPCF>("SetDisableShadowPCF");
-	scriptInterface.RegisterFunction<void, bool, &SetDisableAllWater>("SetDisableAllWater");
-	scriptInterface.RegisterFunction<void, bool, &SetDisableFancyWater>("SetDisableFancyWater");
-	scriptInterface.RegisterFunction<void, bool, &SetEnableGLSL>("SetEnableGLSL");
-	scriptInterface.RegisterFunction<void, bool, &SetEnablePostProc>("SetEnablePostProc");
-	scriptInterface.RegisterFunction<void, bool, &SetEnableSmoothLOS>("SetEnableSmoothLOS");
-	scriptInterface.RegisterFunction<void, std::string, &SetRenderPath>("SetRenderPath");
 
 	// Load the detection script:
 
