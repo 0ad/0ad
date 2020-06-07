@@ -3,13 +3,8 @@
   <Identity>
     <Civ>pers</Civ>
     <SpecificName>Didā</SpecificName>
-    <Tooltip>Train Champions and research technologies. Garrison Soldiers for additional arrows.</Tooltip>
+    <Tooltip>Research technologies. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/{civ}_champion_cavalry
-    </Entities>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/persians/fortress.xml</Actor>
   </VisualActor>
