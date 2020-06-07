@@ -173,20 +173,27 @@ GarrisonHolder.prototype.GetGarrisonedEntitiesCount = function()
 	return count;
 };
 
-GarrisonHolder.prototype.IsAllowedToGarrison = function(ent)
+GarrisonHolder.prototype.IsAllowedToGarrison = function(entity)
 {
 	if (!this.IsGarrisoningAllowed())
 		return false;
 
-	if (!IsOwnedByMutualAllyOfEntity(ent, this.entity))
+	if (!IsOwnedByMutualAllyOfEntity(entity, this.entity))
 		return false;
 
-	let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
+	let extraCount = 0;
+	let cmpGarrisonHolder = Engine.QueryInterface(entity, IID_GarrisonHolder);
+	if (cmpGarrisonHolder)
+		extraCount += cmpGarrisonHolder.GetGarrisonedEntitiesCount();
+	if (this.GetGarrisonedEntitiesCount() + extraCount >= this.GetCapacity())
+		return false;
+
+	let cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
 	if (!cmpIdentity)
 		return false;
 
 	let entityClasses = cmpIdentity.GetClassesList();
-	return MatchesClassList(entityClasses, this.template.List._string) && !!Engine.QueryInterface(ent, IID_Garrisonable);
+	return MatchesClassList(entityClasses, this.template.List._string) && !!Engine.QueryInterface(entity, IID_Garrisonable);
 };
 
 /**
@@ -214,12 +221,31 @@ GarrisonHolder.prototype.AllowedToVisibleGarrisoning = function(entity, visibleG
  */
 GarrisonHolder.prototype.Garrison = function(entity, vgpEntity)
 {
+	if (!this.IsAllowedToGarrison(entity))
+		return false;
+
+	if (!this.HasEnoughHealth())
+		return false;
+
 	let cmpPosition = Engine.QueryInterface(entity, IID_Position);
 	if (!cmpPosition)
 		return false;
 
-	if (!this.PerformGarrison(entity))
-		return false;
+	if (!this.timer && this.GetHealRate() > 0)
+	{
+		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		this.timer = cmpTimer.SetTimeout(this.entity, IID_GarrisonHolder, "HealTimeout", 1000, {});
+	}
+
+	this.entities.push(entity);
+	this.UpdateGarrisonFlag();
+	let cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
+	if (cmpProductionQueue)
+		cmpProductionQueue.PauseProduction();
+
+	let cmpAura = Engine.QueryInterface(entity, IID_Auras);
+	if (cmpAura && cmpAura.HasGarrisonAura())
+		cmpAura.ApplyGarrisonAura(this.entity);
 
 	let visibleGarrisonPoint;
 	if (vgpEntity && this.AllowedToVisibleGarrisoning(entity, vgpEntity))
@@ -269,46 +295,6 @@ GarrisonHolder.prototype.Garrison = function(entity, vgpEntity)
 			[entity]: isVisiblyGarrisoned,
 		}
 	});
-
-	return true;
-};
-
-/**
- * @return {boolean} Whether the entity was garrisonned.
- */
-GarrisonHolder.prototype.PerformGarrison = function(entity)
-{
-	if (!this.HasEnoughHealth())
-		return false;
-
-	// Check if the unit is allowed to be garrisoned inside the building
-	if (!this.IsAllowedToGarrison(entity))
-		return false;
-
-	// Check the capacity
-	let extraCount = 0;
-	let cmpGarrisonHolder = Engine.QueryInterface(entity, IID_GarrisonHolder);
-	if (cmpGarrisonHolder)
-		extraCount += cmpGarrisonHolder.GetGarrisonedEntitiesCount();
-	if (this.GetGarrisonedEntitiesCount() + extraCount >= this.GetCapacity())
-		return false;
-
-	if (!this.timer && this.GetHealRate() > 0)
-	{
-		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		this.timer = cmpTimer.SetTimeout(this.entity, IID_GarrisonHolder, "HealTimeout", 1000, {});
-	}
-
-	// Actual garrisoning happens here
-	this.entities.push(entity);
-	this.UpdateGarrisonFlag();
-	let cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
-	if (cmpProductionQueue)
-		cmpProductionQueue.PauseProduction();
-
-	let cmpAura = Engine.QueryInterface(entity, IID_Auras);
-	if (cmpAura && cmpAura.HasGarrisonAura())
-		cmpAura.ApplyGarrisonAura(this.entity);
 
 	return true;
 };

@@ -626,7 +626,7 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 		{
 			// Temporary owner affectation needed for GarrisonHolder checks.
 			cmpNewOwnership.SetOwnerQuiet(cmpOwnership.GetOwner());
-			garrisoned = cmpAutoGarrison.PerformGarrison(ent);
+			garrisoned = cmpAutoGarrison.Garrison(ent);
 			cmpNewOwnership.SetOwnerQuiet(INVALID_PLAYER);
 		}
 
