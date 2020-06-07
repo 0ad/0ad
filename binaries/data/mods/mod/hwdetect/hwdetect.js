@@ -361,8 +361,8 @@ global.RunHardwareDetection = function(settings)
 	if (output.disable_shadows !== undefined)
 		Engine.ConfigDB_CreateValue("hwdetect", "shadows", (!output.disable_shadows).toString());
 
-	//if (output.disable_shadowpcf !== undefined)
-	Engine.ConfigDB_CreateValue("hwdetect", "shadowpcf", (!output.disable_shadowpcf).toString());
+	if (output.disable_shadowpcf !== undefined)
+		Engine.ConfigDB_CreateValue("hwdetect", "shadowpcf", (!output.disable_shadowpcf).toString());
 
 	if (output.disable_allwater !== undefined)
 	{
