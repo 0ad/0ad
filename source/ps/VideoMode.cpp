@@ -51,7 +51,7 @@ CVideoMode g_VideoMode;
 CVideoMode::CVideoMode() :
 	m_IsFullscreen(false), m_IsInitialised(false), m_Window(NULL),
 	m_PreferredW(0), m_PreferredH(0), m_PreferredBPP(0), m_PreferredFreq(0),
-	m_ConfigW(0), m_ConfigH(0), m_ConfigBPP(0), m_ConfigFullscreen(false), m_ConfigForceS3TCEnable(true),
+	m_ConfigW(0), m_ConfigH(0), m_ConfigBPP(0), m_ConfigFullscreen(false),
 	m_WindowedW(DEFAULT_WINDOW_W), m_WindowedH(DEFAULT_WINDOW_H), m_WindowedX(0), m_WindowedY(0)
 {
 	// (m_ConfigFullscreen defaults to false, so users don't get stuck if
@@ -68,7 +68,6 @@ void CVideoMode::ReadConfig()
 	CFG_GET_VAL("yres", m_ConfigH);
 	CFG_GET_VAL("bpp", m_ConfigBPP);
 	CFG_GET_VAL("display", m_ConfigDisplay);
-	CFG_GET_VAL("force_s3tc_enable", m_ConfigForceS3TCEnable);
 }
 
 bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
@@ -169,8 +168,6 @@ bool CVideoMode::InitSDL()
 
 	ReadConfig();
 
-	EnableS3TC();
-
 	// preferred video mode = current desktop settings
 	// (command line params may override these)
 	gfx::GetVideoMode(&m_PreferredW, &m_PreferredH, &m_PreferredBPP, &m_PreferredFreq);
@@ -261,8 +258,6 @@ bool CVideoMode::InitNonSDL()
 
 	ReadConfig();
 
-	EnableS3TC();
-
 	m_IsInitialised = true;
 
 	return true;
@@ -279,28 +274,6 @@ void CVideoMode::Shutdown()
 		SDL_DestroyWindow(m_Window);
 		m_Window = NULL;
 	}
-}
-
-void CVideoMode::EnableS3TC()
-{
-	// On Linux we have to try hard to get S3TC compressed texture support.
-	// If the extension is already provided by default, that's fine.
-	// Otherwise we should enable the 'force_s3tc_enable' environment variable
-	// and (re)initialise the video system, so that Mesa provides the extension
-	// (if the driver at least supports decompression).
-	// (This overrides the force_s3tc_enable specified via driconf files.)
-	// Otherwise we should complain to the user, and stop using compressed textures.
-	//
-	// Setting the environment variable causes Mesa to print an ugly message to stderr
-	// ("ATTENTION: default value of option force_s3tc_enable overridden by environment."),
-	// so it'd be nicer to skip that if S3TC will be supported by default,
-	// but reinitialising video is a pain (and it might do weird things when fullscreen)
-	// so we just unconditionally set it (unless our config file explicitly disables it).
-
-#if !(OS_WIN || OS_MACOSX) // (assume Mesa is used for all non-Windows non-Mac platforms)
-	if (m_ConfigForceS3TCEnable)
-		setenv("force_s3tc_enable", "true", 0);
-#endif
 }
 
 bool CVideoMode::ResizeWindow(int w, int h)

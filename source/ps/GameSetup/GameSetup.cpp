@@ -592,52 +592,10 @@ static void InitRenderer()
 {
 	TIMER(L"InitRenderer");
 
-	if(g_NoGLS3TC)
-		ogl_tex_override(OGL_TEX_S3TC, OGL_TEX_DISABLE);
-	if(g_NoGLAutoMipmap)
-		ogl_tex_override(OGL_TEX_AUTO_MIPMAP_GEN, OGL_TEX_DISABLE);
-
 	// create renderer
 	new CRenderer;
 
 	g_RenderingOptions.ReadConfig();
-
-	// set renderer options from command line options - NOVBO must be set before opening the renderer
-	// and init them in the ConfigDB when needed
-	g_RenderingOptions.SetNoVBO(g_NoGLVBO);
-	g_RenderingOptions.SetShadows(g_Shadows);
-	g_ConfigDB.SetValueBool(CFG_SYSTEM, "shadows", g_Shadows);
-
-	g_RenderingOptions.SetWaterEffects(g_WaterEffects);
-	g_ConfigDB.SetValueBool(CFG_SYSTEM, "watereffects", g_WaterEffects);
-	g_RenderingOptions.SetWaterFancyEffects(g_WaterFancyEffects);
-	g_ConfigDB.SetValueBool(CFG_SYSTEM, "waterfancyeffects", g_WaterFancyEffects);
-	g_RenderingOptions.SetWaterRealDepth(g_WaterRealDepth);
-	g_ConfigDB.SetValueBool(CFG_SYSTEM, "waterrealdepth", g_WaterRealDepth);
-	g_RenderingOptions.SetWaterReflection(g_WaterReflection);
-	g_ConfigDB.SetValueBool(CFG_SYSTEM, "waterreflection", g_WaterReflection);
-	g_RenderingOptions.SetWaterRefraction(g_WaterRefraction);
-	g_ConfigDB.SetValueBool(CFG_SYSTEM, "waterrefraction", g_WaterRefraction);
-	g_RenderingOptions.SetWaterShadows(g_WaterShadows);
-	g_ConfigDB.SetValueBool(CFG_SYSTEM, "watershadows", g_WaterShadows);
-
-	g_RenderingOptions.SetRenderPath(RenderPathEnum::FromString(g_RenderPath));
-	g_RenderingOptions.SetShadowPCF(g_ShadowPCF);
-	g_ConfigDB.SetValueBool(CFG_SYSTEM, "shadowpcf", g_ShadowPCF);
-	g_RenderingOptions.SetParticles(g_Particles);
-	g_ConfigDB.SetValueBool(CFG_SYSTEM, "particles", g_Particles);
-	g_RenderingOptions.SetFog(g_Fog);
-	g_ConfigDB.SetValueBool(CFG_SYSTEM, "fog", g_Fog);
-	g_RenderingOptions.SetSilhouettes(g_Silhouettes);
-	g_ConfigDB.SetValueBool(CFG_SYSTEM, "silhouettes", g_Silhouettes);
-	g_RenderingOptions.SetShowSky(g_ShowSky);
-	g_ConfigDB.SetValueBool(CFG_SYSTEM, "showsky", g_ShowSky);
-	g_RenderingOptions.SetPreferGLSL(g_PreferGLSL);
-	g_ConfigDB.SetValueBool(CFG_SYSTEM, "preferglsl", g_PreferGLSL);
-	g_RenderingOptions.SetPostProc(g_PostProc);
-	g_ConfigDB.SetValueBool(CFG_SYSTEM, "postproc", g_PostProc);
-	g_RenderingOptions.SetSmoothLOS(g_SmoothLOS);
-	g_ConfigDB.SetValueBool(CFG_SYSTEM, "smoothlos", g_SmoothLOS);
 
 	// create terrain related stuff
 	new CTerrainTextureManager;
@@ -1078,7 +1036,7 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 			L"The GL_ARB_texture_env_crossbar extension doesn't appear to be available on your computer."
 			L" Shadows are not available and overall graphics quality might suffer."
 			L" You are advised to try installing newer drivers and/or upgrade your graphics card.");
-		g_Shadows = false;
+		g_ConfigDB.SetValueBool(CFG_HWDETECT, "shadows", false);
 	}
 
 	ogl_WarnIfError();

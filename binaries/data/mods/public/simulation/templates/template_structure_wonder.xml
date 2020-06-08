@@ -11,6 +11,7 @@
     </Foundation>
   </Armour>
   <Auras datatype="tokens">
+    structures/epic_temple_heal
     structures/wonder_pop_1
     structures/wonder_pop_2
   </Auras>
@@ -35,11 +36,11 @@
     <Height>10.0</Height>
   </Footprint>
   <GarrisonHolder>
-    <Max>30</Max>
+    <Max>50</Max>
     <EjectHealth>0.1</EjectHealth>
     <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
-    <List datatype="tokens">Support Infantry Cavalry</List>
-    <BuffHeal>1</BuffHeal>
+    <List datatype="tokens">Support Soldier</List>
+    <BuffHeal>5</BuffHeal>
     <LoadingRange>2</LoadingRange>
   </GarrisonHolder>
   <Health>

@@ -83,12 +83,33 @@ SRenderingOptions::SRenderingOptions()
 
 void SRenderingOptions::ReadConfig()
 {
-	// TODO: be more consistent in use of the config system
+	CFG_GET_VAL("shadows", m_Shadows);
+	CFG_GET_VAL("shadowpcf", m_ShadowPCF);
+
 	CFG_GET_VAL("preferglsl", m_PreferGLSL);
+	CFG_GET_VAL("postproc", m_PostProc);
+	CFG_GET_VAL("smoothlos", m_SmoothLOS);
+
+	CStr renderPath;
+	CFG_GET_VAL("renderpath", renderPath);
+	SetRenderPath(RenderPathEnum::FromString(renderPath));
+
+	CFG_GET_VAL("watereffects", m_WaterEffects);
+	CFG_GET_VAL("waterfancyeffects", m_WaterFancyEffects);
+	CFG_GET_VAL("waterrealdepth", m_WaterRealDepth);
+	CFG_GET_VAL("waterrefraction", m_WaterRefraction);
+	CFG_GET_VAL("waterreflection", m_WaterReflection);
+	CFG_GET_VAL("watershadows", m_WaterShadows);
+
+	CFG_GET_VAL("particles", m_Particles);
+	CFG_GET_VAL("fog", m_Fog);
+	CFG_GET_VAL("silhouettes", m_Silhouettes);
+	CFG_GET_VAL("showsky", m_ShowSky);
+
+	CFG_GET_VAL("novbo", m_NoVBO);
+
 	CFG_GET_VAL("forcealphatest", m_ForceAlphaTest);
 	CFG_GET_VAL("gpuskinning", m_GPUSkinning);
-	CFG_GET_VAL("smoothlos", m_SmoothLOS);
-	CFG_GET_VAL("postproc", m_PostProc);
 
 	CFG_GET_VAL("renderactors", m_RenderActors);
 }

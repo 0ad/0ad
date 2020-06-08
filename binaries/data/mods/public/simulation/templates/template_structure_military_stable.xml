@@ -23,7 +23,7 @@
     <SelectionGroupName>template_structure_military_stable</SelectionGroupName>
     <Icon>structures/pers_stable.png</Icon>
     <RequiredTechnology>phase_village</RequiredTechnology>
-    <Tooltip>Train citizen-soldier cavalry. Research training improvements.</Tooltip>
+    <Tooltip>Train Cavalry and research Cavalry technologies.</Tooltip>
     <VisibleClasses datatype="tokens">Village Stable</VisibleClasses>
   </Identity>
   <Loot>
@@ -39,9 +39,12 @@
       units/{civ}_cavalry_spearman_b
       units/{civ}_cavalry_javelinist_b
       units/{civ}_cavalry_archer_b
+      units/{civ}_champion_cavalry
     </Entities>
     <Technologies datatype="tokens">
       heal_barracks
+      speed_cavalry_01
+      speed_cavalry_02
       persians/training_levy_cavalry
       persians/training_conscription_cavalry
       successors/special_war_horses

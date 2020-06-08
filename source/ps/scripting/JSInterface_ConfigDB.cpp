@@ -26,9 +26,13 @@
 #include <string>
 #include <unordered_set>
 
-// These entries will not be readable nor writable for JS, so that malicious mods can't leak personal or sensitive data
+// These entries will not be readable nor writable for JS, so that e.g. malicious mods can't leak personal or sensitive data
 static const std::unordered_set<std::string> g_ProtectedConfigNames = {
-	"userreport.id" // authentication token for GDPR personal data requests
+	"modio.public_key", // See ModIO.cpp
+	"modio.v1.baseurl",
+	"modio.v1.api_key",
+	"modio.v1.name_id",
+	"userreport.id" // Acts as authentication token for GDPR personal data requests.
 };
 
 bool JSI_ConfigDB::IsProtectedConfigName(const std::string& name)
@@ -45,12 +49,14 @@ bool JSI_ConfigDB::GetConfigNamespace(const std::wstring& cfgNsString, EConfigNa
 {
 	if (cfgNsString == L"default")
 		cfgNs = CFG_DEFAULT;
+	else if (cfgNsString == L"mod")
+		cfgNs = CFG_MOD;
 	else if (cfgNsString == L"system")
 		cfgNs = CFG_SYSTEM;
 	else if (cfgNsString == L"user")
 		cfgNs = CFG_USER;
-	else if (cfgNsString == L"mod")
-		cfgNs = CFG_MOD;
+	else if (cfgNsString == L"hwdetect")
+		cfgNs = CFG_HWDETECT;
 	else
 	{
 		LOGERROR("Invalid namespace name passed to the ConfigDB!");
