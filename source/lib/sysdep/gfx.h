@@ -41,16 +41,6 @@ LIB_API std::wstring CardName();
  **/
 LIB_API std::wstring DriverInfo();
 
-/**
- * (useful for choosing a new video mode)
- *
- * @param xres, yres (optional out) resolution [pixels]
- * @param bpp (optional out) bits per pixel
- * @param freq (optional out) vertical refresh rate [Hz]
- * @return Status (if negative, outputs were left unchanged)
- **/
-LIB_API Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq);
-
 }	// namespace gfx
 
 #endif	// #ifndef INCLUDED_GFX
