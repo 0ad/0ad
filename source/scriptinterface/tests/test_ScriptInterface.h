@@ -239,15 +239,15 @@ public:
 
 		CX_IN_REALM(cx,(&script))
 
-		std::string input = "({'x':1,'z':[2,'3\\u263A\\ud800'],\"y\":true})";
+		std::string input = "({'x':1,'z':[2,'3\\u263A'],\"y\":true})";
 		JS::RootedValue val(cx);
 		TS_ASSERT(script.Eval(input.c_str(), &val));
 
 		std::string stringified = script.StringifyJSON(&val);
-		TS_ASSERT_STR_EQUALS(stringified, "{\n  \"x\": 1,\n  \"z\": [\n    2,\n    \"3\xE2\x98\xBA\xEF\xBF\xBD\"\n  ],\n  \"y\": true\n}");
+		TS_ASSERT_STR_EQUALS(stringified, "{\n  \"x\": 1,\n  \"z\": [\n    2,\n    \"3\xE2\x98\xBA\"\n  ],\n  \"y\": true\n}");
 
 		TS_ASSERT(script.ParseJSON(stringified, &val));
-		TS_ASSERT_STR_EQUALS(script.ToString(&val), "({x:1, z:[2, \"3\\u263A\\uFFFD\"], y:true})");
+		TS_ASSERT_STR_EQUALS(script.ToString(&val), "({x:1, z:[2, \"3\\u263A\"], y:true})");
 	}
 
 	// This function tests a common way to mod functions, by crating a wrapper that

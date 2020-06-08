@@ -181,8 +181,6 @@ ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtim
 	// We disable it to make it more clear if full GCs happen triggered by this JSAPI internal mechanism.
 	JS_SetGCParameter(m_ctx, JSGC_DYNAMIC_HEAP_GROWTH, false);
 
-
-
 	ScriptEngine::GetSingleton().RegisterRuntime(m_rt);
 }
 
