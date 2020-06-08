@@ -281,7 +281,7 @@ function project_set_build_flags()
 
 			buildoptions {
 				-- Enable C++11 standard.
-				"-std=c++17"
+				"-std=c++14"
 			}
 
 			if arch == "arm" then
