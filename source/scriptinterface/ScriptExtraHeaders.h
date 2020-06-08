@@ -62,6 +62,7 @@
 #include "js/JSON.h"
 #include "js/SourceText.h"
 #include "js/Warnings.h"
+#include "js/ArrayBuffer.h"
 
 #ifdef TEMP_DEACTIVATED_DEBUG
 #define DEBUG 

@@ -125,7 +125,22 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			HandleScriptVal(bufferVal);
 			break;
 		}
-		else if (JS_IsArrayBufferViewObject(obj))
+		else if (JS::IsArrayBufferObject(obj))
+		{
+			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_ARRAY_BUFFER);
+
+            #if BYTE_ORDER != LITTLE_ENDIAN
+            #error TODO: need to convert JS ArrayBuffer data to little-endian
+            #endif
+
+			u32 length = JS::GetArrayBufferByteLength(obj);
+			m_Serializer.NumberU32_Unbounded("buffer length", length);
+			JS::AutoCheckCannotGC nogc;
+			bool sharedMemory;
+			m_Serializer.RawBytes("buffer data", (const u8*)JS::GetArrayBufferData(obj, &sharedMemory, nogc), length);
+			break;
+		}
+        else if (JS_IsArrayBufferViewObject(obj))
 		{
 			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_ARRAY_BUFFER);
 
@@ -140,6 +155,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			m_Serializer.RawBytes("buffer data", (const u8*)JS_GetArrayBufferViewData(obj, &sharedMemory, nogc), length);
 			break;
 		}
+
 		else
 		{
 			// Find type of object

@@ -20,6 +20,7 @@
 
 #include "ISerializer.h"
 
+#include "scriptinterface/ScriptExtraHeaders.h"
 #include "scriptinterface/third_party/ObjectToIDMap.h"
 
 #include "lib/byte_order.h"

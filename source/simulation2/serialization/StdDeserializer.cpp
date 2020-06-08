@@ -340,7 +340,7 @@ JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleOb
 			throw PSERROR_Deserialize_ScriptError();
 
 		JS::RootedObject bufferObj(cx, &bufferVal.toObject());
-		if (!JS_IsArrayBufferViewObject(bufferObj))
+		if (!JS_IsArrayBufferViewObject(bufferObj) && !JS::IsArrayBufferObject(bufferObj))
 			throw PSERROR_Deserialize_ScriptError("js_IsArrayBuffer failed");
 
 		switch(arrayType)
