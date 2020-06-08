@@ -61,7 +61,7 @@ ERROR_TYPE(Scripting_DefineType, CreationFailed);
 #define SCRIPT_INTERFACE_MAX_ARGS 8
 
 // TODO: what's a good default?
-#define DEFAULT_RUNTIME_SIZE 16 * 1024 * 1024
+#define DEFAULT_RUNTIME_SIZE 512 * 1024 * 1024
 #define DEFAULT_HEAP_GROWTH_BYTES_GCTRIGGER 2 * 1024 *1024
 
 struct ScriptInterface_impl;

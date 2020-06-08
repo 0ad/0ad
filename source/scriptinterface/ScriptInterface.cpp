@@ -351,8 +351,10 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
                                         nullptr, 
                                         JS::FireOnNewGlobalHook, 
                                         opt);
+    
+	ENSURE(globalRootedVal);
     {
-    JSAutoRealm ar(m_cx, globalRootedVal);
+        JSAutoRealm ar(m_cx, globalRootedVal);
         ok = JS_EnumerateStandardClasses(m_cx, globalRootedVal);
         ENSURE(ok);
         m_glob = globalRootedVal.get();
