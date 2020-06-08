@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-18 07:13+0000\n"
-"PO-Revision-Date: 2020-05-18 17:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-06-08 04:40+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,7 +41,7 @@ msgstr "%(hotkey)s: 건축물 도감으로 바꿉니다."
 #: gui/civinfo/civinfo.js:21
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: 문명 개요를 닫습니다."
 
 #. Translation: insert an itemization symbol for each entry.
 #: gui/civinfo/civinfo.js:85
@@ -1317,7 +1317,7 @@ msgstr "%(hotkey)s: 서기 0년에 등장하는 문명의 건축물 도감(조�
 #: gui/pregame/MainMenuItems.js:36 gui/civinfo/civinfo.xml:(caption):18
 #: gui/reference/structree/structree.xml:(caption):126
 msgid "Civilization Overview"
-msgstr ""
+msgstr "문명 개요"
 
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
@@ -1450,7 +1450,7 @@ msgstr "시나리오 편집기"
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
-msgstr "새로운 창에서 아틀라스 시나리오 편집기 열기. 실행명령어 \"-editor\"로 이 놀이를 더 안정적으로 시작할 수 있습니다."
+msgstr "새로운 창에서 아틀라스 시나리오 편집기를 엽니다. 명령줄 인수 \"-editor\"로 이 놀이를 시작하면 이 작업을 더 안정적으로 실행할 수 있습니다."
 
 #: gui/pregame/MainMenuItems.js:181
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
@@ -1680,7 +1680,7 @@ msgstr "%(health_min)s 부터 %(health_max)s"
 #: gui/reference/structree/structree.js:41
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: 문명 개요로 바꿉니다."
 
 #: gui/reference/structree/structree.js:42
 #, javascript-format
@@ -3216,7 +3216,7 @@ msgstr "대화 알림 단계"
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr "선택한 방어 건축물의 공격 범위를 표시합니다(단축키를 사용하여 놀이 내에서 켯다껏다할 수도 있음)."
+msgstr "선택한 방어 건축물의 공격 범위를 표시합니다 (단축키를 사용하여 놀이 내에서 켯다껏다할 수도 있음)."
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
@@ -3226,7 +3226,7 @@ msgstr "공격 범위 시각화"
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr "선택한 유닛 및 건축물의 기운 범위를 표시합니다(단축키를 사용하여 놀이 내에서 켯다껏다할 수도 있음)."
+msgstr "선택한 유닛 및 건축물의 기운 범위를 표시합니다 (단축키를 사용하여 놀이 내에서 켯다껏다할 수도 있음)."
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
@@ -3236,7 +3236,7 @@ msgstr "기운 범위 시각화"
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
-msgstr "선택한 유닛의 치유 범위를 표시합니다(단축키를 사용하여 놀이 내에서 켯다껏다할 수도 있음)."
+msgstr "선택한 유닛의 치유 범위를 표시합니다 (단축키를 사용하여 놀이 내에서 켯다껏다할 수도 있음)."
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
@@ -3363,7 +3363,7 @@ msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
-msgstr "유닛과 건축물은 여러 통제 무리에 속할 수 잇습니다. 이것은 서로 다른 군대에 대한 통제 무리와 전체 군대에 대한 통제 무리를 동시에 유지하는 데 유용합니다."
+msgstr "유닛과 건축물은 여러 통제 무리에 속할 수 잇습니다. 이것은 서로 다른 군대에 대한 통제 무리와 전체 군대에 대한 통제 무리를 동시에 유지하는데 유용합니다."
 
 #: gui/options/options.json[5].options[19].list[1].label
 msgid "Multiple"
@@ -3593,7 +3593,7 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. Features "
 "are missing and it contains bugs."
-msgstr "[imgleft=\"constructionIcon\"]이 놀이는 아직 개발 중입니다. 필요한 기능이 없어지거나 버그가 있을수 도 있습니다."
+msgstr "[imgleft=\"constructionIcon\"]이 놀이는 아직 개발 중입니다. 필요한 기능이 없어지거나 버그가 있을수도 있습니다."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
@@ -3615,7 +3615,7 @@ msgstr "로마 육군 본부"
 msgid ""
 "Buildable in neutral or enemy territory. Good for building a secret base "
 "behind enemy lines or to consolidate gains within enemy territory."
-msgstr "중립 또는 적 영토에 지을수 있습니다. 적의 배후에 비밀 기지를 건설하거나 적의 영토 내의 이익을 강화하는 데 적합합니다."
+msgstr "중립 또는 적 영토에 지을수 있습니다. 적의 배후에 비밀 기지를 건설하거나 적의 영토 내의 이익을 강화하는데 적합합니다."
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct siege weapons and train citizen-soldiers."
@@ -3741,7 +3741,7 @@ msgstr "동맹 영토나 중립지에 지을 수 있습니다."
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr "시민 양성: 여성 시민, 보병 시민 군인, 기병 시민 군인."
+msgstr "여성 시민, 보병 시민 군인, 기병 시민 군인의 시민을 훈련시킵니다."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3890,7 +3890,7 @@ msgstr "울타리"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr "모든 진영이 이용할 수 있는 빠르고 값싼 나무 벽."
+msgstr "모든 진영이 이용할 수 있는 빠르고 값싼 나무 벽입니다."
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
@@ -3902,7 +3902,7 @@ msgstr "페리클레스"
 
 #: gui/text/tips/pericles.txt:2
 msgid "The foremost Athenian politician of the 5th century BC."
-msgstr "기원전 5 세기의 최고의 아테네 정치인."
+msgstr "기원전 5 세기의 최고의 아테네 정치인입니다."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Structures are built faster within his range."
@@ -3918,7 +3918,7 @@ msgstr "페르시아 건축"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
-msgstr "페르시아를 위한 특별한 기술."
+msgstr "페르시아를 위한 특별한 기술입니다."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
@@ -3949,7 +3949,7 @@ msgstr "기병대나 다른 근접 보병에 대항하여 그들을 제자리에
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr "이용 가능: 쿠시, 마케도니아, 프톨레마이오, 셀레우코스."
+msgstr "쿠시, 마케도니아, 프톨레마이오, 셀레우코스가 이용 가능합니다."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
@@ -3959,7 +3959,7 @@ msgstr "5단 노선"
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, and Seleucids."
-msgstr "가장 무거운 표준 군함. 이용 가능: 카르타고, 프톨레마이오스, 로마, 셀레우코스."
+msgstr "가장 무거운 표준 군함입니다. 카르타고, 프톨레마이오스, 로마, 셀레우코스가 이용 가능합니다."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
@@ -3987,7 +3987,7 @@ msgstr "모든 유형의 광산이 풍부합니다."
 
 #: gui/text/tips/savanna_biome.txt:5
 msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr "목재는 드문 편이지만 많은 목재를 낼수있는 바오밥 나무로 구성되어있습니다."
+msgstr "목재는 드문 편이지만 많은 목재를 낼수있는 바오밥 나무로 구성되어 있습니다."
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
@@ -3995,13 +3995,13 @@ msgstr "방어탑"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "Free-standing towers good for defending large areas of countryside."
-msgstr "시골의 넓은 지역을 방어하기에 적합한 독립형 탑."
+msgstr "시골의 넓은 지역을 방어하기에 적합한 독립형 탑입니다."
 
 #: gui/text/tips/scout_towers.txt:3
 msgid ""
 "They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
 "Wood and 250 Stone (because they're stronger)."
-msgstr "그들은 보통 100 목재와 100 석재를 소비합니다. 이베리아 방어탑의 50 목재와 250 석재를 소비합니다.(그들은 강하기 때문입니다)."
+msgstr "그들은 보통 100 목재와 100 석재를 소비합니다. 이베리아 방어탑의 50 목재와 250 석재를 소비합니다 (그들은 강하기 때문입니다)."
 
 #: gui/text/tips/scout_towers.txt:4
 msgid "Has a ranged attack that increases for each garrisoned unit."
@@ -4017,7 +4017,7 @@ msgstr "놀이에서 가장 강한 보병부대입니다."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr "스파르타인들이 이용할 수 있는 대표 전사 보병."
+msgstr "스파르타인들이 이용할 수 있는 대표 전사 보병입니다."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
@@ -4031,11 +4031,11 @@ msgstr "창병"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "The basic melee infantry for every faction in the game."
-msgstr "놀이 내에서 모든 진영을 위한 기본 근접전 보병."
+msgstr "놀이 내에서 모든 진영을 위한 기본 근접전 보병입니다."
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
-msgstr "공격 보너스로 기병대를 상대로 사용됨."
+msgstr "공격 보너스로 기병대를 상대로 사용됩니다."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
@@ -4053,7 +4053,7 @@ msgstr "주랑"
 
 #: gui/text/tips/stoa.txt:2
 msgid "A special structure for  Athenians, Macedonians, and Spartans."
-msgstr "아테네, 마케도니아, 스파르타를 위한 특별한 건축물."
+msgstr "아테네, 마케도니아, 스파르타를 위한 특별한 건축물입니다."
 
 #: gui/text/tips/stoa.txt:3
 msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
@@ -4069,7 +4069,7 @@ msgstr "창고"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
-msgstr "비 식품 자원 (목재, 석재, 금속)을 위한 값싼 회수 장소."
+msgstr "비 식품 자원 (목재, 석재, 금속)을 위한 값싼 회수 장소입니다."
 
 #: gui/text/tips/storehouses.txt:3
 msgid ""
@@ -4130,7 +4130,7 @@ msgstr "테미스토클레스"
 msgid ""
 "Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr "아르테미시움과 살라미스의 대해전에서 그리스인을 지휘한 아테네의 영웅."
+msgstr "아르테미시움과 살라미스의 대해전에서 그리스인을 지휘한 아테네의 영웅입니다."
 
 #: gui/text/tips/themistocles.txt:3
 msgid "All ships are built faster while he lives."
@@ -4162,7 +4162,7 @@ msgstr "비리아토"
 
 #: gui/text/tips/viriato.txt:2
 msgid "Iberian hero of the Lusitani tribe."
-msgstr "루시타니 부족의 이베리아 영웅."
+msgstr "루시타니 부족의 이베리아 영웅입니다."
 
 #: gui/text/tips/viriato.txt:3
 msgid ""
@@ -4192,7 +4192,7 @@ msgstr "식량과 금속 가격은 비싸지만 매우 강력합니다."
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr "이용 가능: 카르타고, 쿠시, 모리아스, 페르시아, 프톨레마이오스, 셀레우코스"
+msgstr "카르타고, 쿠시, 모리아스, 페르시아, 프톨레마이오스, 셀레우코스가 이용 가능합니다"
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"

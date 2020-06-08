@@ -4,6 +4,7 @@
 # 
 # Translators:
 # lynx121 <adam.ostruszka@seznam.cz>, 2016
+# David Nováček, 2020
 # Jakub Jelen <jakuje@gmail.com>, 2017
 # Jakub Podlaha <j.podlaha@gmail.com>, 2018
 # Jaroslav Benkovsky <jaroslav.benkovsky@nic.cz>, 2018
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-04-13 07:18+0000\n"
-"PO-Revision-Date: 2020-05-02 11:32+0000\n"
-"Last-Translator: Lukáš Bačovský <l.bacovsky@gmail.com>\n"
+"PO-Revision-Date: 2020-06-06 15:07+0000\n"
+"Last-Translator: David Nováček\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +34,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
 msgid "Rigorous Training"
-msgstr ""
+msgstr "Důkladný výcvik"
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned in barracks."
@@ -45,7 +46,7 @@ msgstr "Opravy v loděnici"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr ""
+msgstr "Lodě umístěné v doku jsou opravovány rychlostí +10"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -61,7 +62,7 @@ msgstr "Náboženská horlivost"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr ""
+msgstr "Vojáci získávají +20% k útoku na blízko i na dálku."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -70,7 +71,7 @@ msgstr "Vlastenectví"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr ""
+msgstr "Dělníci získávají zdroje o 15% rychleji."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -78,7 +79,7 @@ msgstr "Naléhavá přítomnost"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers +10% melee and ranged attack damage."
-msgstr ""
+msgstr "Vojáci získávají +10% k útoku na blízko i na dálku."
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
@@ -86,7 +87,7 @@ msgstr "Meroejské pyramidy"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
 msgid "Civic Centers +10% territory influence radius."
-msgstr ""
+msgstr "+10% ke sféře vlivu občanských center."
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -94,7 +95,7 @@ msgstr "Mocné kněžství"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
-msgstr ""
+msgstr "-5% bodů zdraví pro hrdiny."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
@@ -118,7 +119,7 @@ msgstr "Ašókův výnos"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
-msgstr ""
+msgstr "O 20% rychlejší pohyb obchodníků."
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
@@ -126,7 +127,7 @@ msgstr "Zemědělský přídavek"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "Workers +25% grain gather rate."
-msgstr ""
+msgstr "Dělníci sklízí obilí o 25% rychleji."
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
@@ -142,7 +143,7 @@ msgstr "Helenizace"
 
 #: simulation/data/auras/structures/theater.jsonauraDescription
 msgid "Structures +20% territory influence radius."
-msgstr ""
+msgstr "Stavby získávají +20% ke sféře vlivu."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -158,7 +159,7 @@ msgstr "Znamení velikosti"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "+10 maximum population limit."
-msgstr ""
+msgstr "Navýšení maximální populace o +10."
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion"
@@ -167,7 +168,7 @@ msgstr "Velkolepý rozmach"
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
 "+40 maximum population limit (requires the “Glorious Expansion” technology)."
-msgstr ""
+msgstr "Navýšení populačního limitu o 40 (vyžaduje technologii Velkolepého rozmachu)."
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
@@ -183,7 +184,7 @@ msgstr "Délský spolek (Athénský námořní spolek)"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Allied Warships −25% construction time."
-msgstr ""
+msgstr "Snížení času stavby pro spojenecké lodě o 25%."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -191,7 +192,7 @@ msgstr "Druidové"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allied Healers −20% resource costs."
-msgstr ""
+msgstr "Snížení ceny pro spojenecké léčitele o 20%."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -199,7 +200,7 @@ msgstr "Hlavní obchodníci"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Allied Markets +10% international trade bonus."
-msgstr ""
+msgstr "Navýšení zisku z mezinárodního obchodu pro spojenecká tržiště o 10%."
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
@@ -285,11 +286,11 @@ msgstr ""
 
 #: simulation/data/auras/units/elephant_worker.jsonauraName
 msgid "Elephant Workers"
-msgstr ""
+msgstr "Pracovní sloni"
 
 #: simulation/data/auras/units/elephant_worker.jsonauraDescription
 msgid "Workers +25% build rate."
-msgstr ""
+msgstr "Dělníci staví o 25% rychleji."
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
@@ -297,7 +298,7 @@ msgstr "Inspirace"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraDescription
 msgid "Citizen Soldiers +10% build rate and gather speed."
-msgstr ""
+msgstr "Občanští vojáci staví a získávají suroviny o 10% rychleji. "
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
@@ -348,7 +349,7 @@ msgstr "Velitel těžké jízdy"
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
 "Melee Cavalry +1 armor and +10% health."
-msgstr ""
+msgstr "Velitel kartáginské těžké jízdy v bitvě na řece Trebia a v bitvě u Kann, kde jeho trojnásobná zteč měl zničující dopad na nepřítele.\n+1 k brnění a +10% na zdraví pro jízdu pro boj zblízka."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraName
 msgid "Ambush Slaughter"
@@ -368,7 +369,7 @@ msgstr "Poplatek Římu"
 msgid ""
 "When the Roman army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by force.\n"
 "Workers −10% grain gather rate."
-msgstr ""
+msgstr "Když římské armádě začaly docházet zásoby, galským kmenům bylo nařízeno aby se vzdali části už tak mizerné úrody. Eburoné pod vedením Ambiorixe se však zdráhali tak učinit, a proto César vyslal vojáky, aby zásoby získali silou.\n-10% k rychlosti sklizně obilí."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraName
 msgid "Mercenary Commander"
@@ -378,7 +379,7 @@ msgstr "Velitel žoldnéřů"
 msgid ""
 "Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
 "Allied Citizen Mercenaries −25% metal cost."
-msgstr ""
+msgstr "Mandonius společně se svým bratrem Indibilem velel iberským brancům a žoldákům, kteří se účastnili Punských válek.\nSnížení nákladů na kov o 25% pro výcvik spojeneckých občanských žoldnéřů.  "
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
@@ -388,7 +389,7 @@ msgstr "Zachránce životů"
 msgid ""
 "Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
 "Soldiers +10% health."
-msgstr ""
+msgstr "Po smrti Indíbila v bitvě zavedl Mandonius přeživší do bezpečí.\n+10% ke zdraví pro všechny vojáky."
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraName
 msgid "Earliest Nubian Queen"
@@ -398,7 +399,7 @@ msgstr "První královna Núbie"
 msgid ""
 "Ruling with full power in the Meroë Empire and also playing a significant role in the Meroitic religion, Shanakdakheto represented the might of Kush, something not to be taken lightly.\n"
 "Enemy Female Citizens −15% gather speed."
-msgstr ""
+msgstr "Vládnoucí plnou mocí v Meroejské říši a zároveň plnící důležitou úlohu v meroejském náboženství, Shanakdakheto představovala sílu Kúše, něco, co by se nemělo brát na lehkou váhu.\n -15% na rychlosti získávání surovin pro občanky nepřítele."
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
 msgid "Temple at Naqa"
@@ -408,7 +409,7 @@ msgstr "Naqajský chrám"
 msgid ""
 "As in all cultures, religion played a significant part in Kush. Shanakdakheto had the temple built around 160 BC as a symbol of the advancedness of Meroë.\n"
 "Temples +1 garrison heal rate."
-msgstr ""
+msgstr "Tak jako v jiných kulturách, náboženství hrálo v Kúši důležitou roli.\nShanakdakheto měla postaven svůj chrám už kolem roku 160 před naším letopočtem, jako symbol pokrokovosti města Meroë.\n+1 k rychlosti léčení posádky chrámů."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -418,7 +419,7 @@ msgstr "Plenitel měst"
 msgid ""
 "During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political center of Aetolia.\n"
 "Humans, Siege Engines, Ships, and Structures gain +5 food and wood loot."
-msgstr ""
+msgstr "Během První makedonské války, Filip a jeho jednotky vyplenili Thermum, náboženské a politické centrum Aitólie.\n+5 jídla a dřeva za každou zabitou nebo zničenou jednotku či stavbu."
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraName
 msgid "Consolidator of the Empire"
@@ -428,7 +429,7 @@ msgstr "Upevňovatel říše"
 msgid ""
 "Son of Chandragupta Maurya, Bindusara consolidated the empire, creating a stable state for his son Ashoka to inherit.\n"
 "Structures +20% territory influence radius."
-msgstr ""
+msgstr "Syn Čandragupty Maurjy, Bindusára upevnil říši a vytvořil pro svého dědice, syna Ašóku, stabilní stát.\n+20% ke sféře vlivu staveb."
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_2.jsonauraName
 msgid "Vamba Moriyar"
@@ -438,7 +439,7 @@ msgstr "Vamba Moriyar"
 msgid ""
 "Bindusara is said to have conquered lands to the south of the empire.\n"
 "Soldiers +15% capture attack strength."
-msgstr ""
+msgstr "Bindusára je znám tím, že si podmanil země ležící jižně od říše.\n+15% na zajímání jednotek pro všechny vojáky."
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
@@ -448,7 +449,7 @@ msgstr "Vynikající stavitel"
 msgid ""
 "Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa and restored the ancient city of Ecbatana.\n"
 "Structures −10% resource costs and +5% health."
-msgstr ""
+msgstr "Během jeho vlády byla velká část Artaxerxova bohatství použita k výstavbě. Obnovil palác Dareia I. v Susách a obnovil starověké město  Ecbatana.\n -10% nákladů a +5% zdraví pro stavby."
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
@@ -458,7 +459,7 @@ msgstr "Význačný knihovník"
 msgid ""
 "Continuing his predecessors' work on the Great Library of Alexandria, he seized every book brought to the city, thus leaving to his people a vast amount of hoarded wisdom.\n"
 "Structure technologies −10% resource costs."
-msgstr ""
+msgstr "Pokračujíce v práci svých předchůdců na Velké alexandrijské knihovně zabavil každou knihu dovezenou do města. A tak svým lidem zanechal obrovské množství nastřádané moudrosti.\n-10% z nákladů na technologie spojené se stavbami."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraName
 msgid "Avenger of Lucretia"
@@ -468,7 +469,7 @@ msgstr "Mstitel Lukrécie"
 msgid ""
 "After the rape of Lucretia by the son of King Tarquinius Superbus and her subsequent suicide, Brutus vowed to avenge her and overthrow the monarchy.\n"
 "Female Citizens −20% food cost and +10% gather speed."
-msgstr ""
+msgstr "Po znásilnění Lukrécie synem krále Tarquinia Superba a její následné sebevraždě, Brutus slíbil, že ji pomstí a svrhne monarchii.\nObčanky stojí o 20% méně a získávají zdroje o 10% rychleji."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
@@ -478,7 +479,7 @@ msgstr "Zakladatel a ochránce republiky"
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
 "Humans and Siege Engines +1 armor."
-msgstr ""
+msgstr "Brutus byl jednou z hlavních postav při svržení monarchie a založení Římské republiky. Později jako konzul vedl římskou armádu k vítězství proti etruskému králi Tarquiniovi, který usiloval o získání trůnu zpět.\n+1 k brnění pro jednotky a obléhací stroje."
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraName
 msgid "Founder of the Ezida Temple"
@@ -488,7 +489,7 @@ msgstr "Zakladatel chrámu Ezidy"
 msgid ""
 "Antiochus I laid the foundation for the Ezida Temple in Borsippa.\n"
 "Temples −10% resource costs; Temple technologies −10% resource costs."
-msgstr ""
+msgstr "Antiochos I. položil základy Ezidského chrámu v Borsippě.\n-10% z nákladů na chrámy a chrámové technologie."
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_2.jsonauraName
 msgid "Immigration"
@@ -498,7 +499,7 @@ msgstr "Přistěhovalectví"
 msgid ""
 "Antiochus encouraged Greek immigration to his realm and established many new cities in Asia Minor to serve as counterweights to the Gauls.\n"
 "+5% maximum population limit."
-msgstr ""
+msgstr "Antiochos podporoval migraci Řeků do své říše a založil mnoho nových měst v Malé Asie, aby sloužila jako protiváha Galům.\nNavýšení maximálního počtu obyvatel o 5%."
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraName
 msgid "Basileus Megas"
@@ -508,7 +509,7 @@ msgstr "Basileus Megas (Veliký Král)"
 msgid ""
 "Son of Seleucus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
 "Champion Elephants −10% resource costs."
-msgstr ""
+msgstr "Antiochos, syn Seleuka Níkátóra, uspěl při obtížném úkolu udržet svou říši pohromadě, zatímco založil nové chrámy a porazil Galy pomocí válečných slonů.\n-10% z nákladů na Slony–šampiony."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
@@ -519,7 +520,7 @@ msgstr "Lykúrgovy vojenské reformy"
 msgid ""
 "Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\n"
 "Citizen Infantry Spearmen −10% resource costs."
-msgstr ""
+msgstr "Lykúrgos zavedl několik vojenských reforem. A tak bylo za jeho vlády dosaženo naprosté jednoty a oddanosti občanů svému městu, Spartě.\n-10% z nákladů na občanské pěší kopiníky."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "Champion Infantry Spearmen −5% resource costs."

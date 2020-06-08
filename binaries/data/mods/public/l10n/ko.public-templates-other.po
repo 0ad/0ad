@@ -3,19 +3,20 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# 76407af6b051a571d67c2577de2183db_7380deb <7a4a088c8c60986e924b802e46370579_512231>, 2016
 # Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
 # Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
 # Asakura, 2017
 # 미워하지 않아 <eustaph7725@gmail.com>, 2017
 # 미워하지 않아 <eustaph7725@gmail.com>, 2017
-# Gr Nada <inactive+Granada45621@transifex.com>, 2016
+# 76407af6b051a571d67c2577de2183db_7380deb <7a4a088c8c60986e924b802e46370579_512231>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # Hn Dsu <lomio97@naver.com>, 2016
 # moolow <copyhyeon@gmail.com>, 2018
 # jjj <triplej03@nate.com>, 2014
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2017,2019
-# ks k, 2019
+# ks k, 2019-2020
 # moolow <copyhyeon@gmail.com>, 2018
 # naoki yoshida <oimotanaka1122@gmail.com>, 2015
 # red hare <www3@hotmail.co.jp>, 2017
@@ -28,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-22 07:09+0000\n"
-"PO-Revision-Date: 2020-05-22 19:22+0000\n"
+"PO-Revision-Date: 2020-06-08 04:12+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -1110,7 +1111,7 @@ msgstr "장갑 보병만, 최소 10명이 필요합니다."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
-msgstr "밀집 창대형"
+msgstr "팔랑스-밀집 창대형"
 
 #: simulation/templates/special/formations/scatter.xml:5
 msgid "Scatter"
@@ -1151,31 +1152,31 @@ msgstr "선수"
 #: simulation/data/template_helpers/damage_types/crush.jsonname
 msgctxt "damage type"
 msgid "Crush"
-msgstr "충돌"
+msgstr "때리기"
 
 #: simulation/data/template_helpers/damage_types/crush.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr ""
+msgstr "몽둥이나 짓밟는 것과 같은 순수한 힘에 의한 피해입니다."
 
 #: simulation/data/template_helpers/damage_types/hack.jsonname
 msgctxt "damage type"
 msgid "Hack"
-msgstr "타격"
+msgstr "베기"
 
 #: simulation/data/template_helpers/damage_types/hack.jsondescription
 msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
-msgstr ""
+msgstr "칼이나 도끼처럼 날카로운 물체에의한 베거나 찍히는 피해입니다."
 
 #: simulation/data/template_helpers/damage_types/pierce.jsonname
 msgctxt "damage type"
 msgid "Pierce"
-msgstr "관통"
+msgstr "뚫기"
 
 #: simulation/data/template_helpers/damage_types/pierce.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr ""
+msgstr "화살이나 창과 같은 뾰족한 물체로 인한 피해입니다."

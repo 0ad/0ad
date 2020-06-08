@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-18 07:13+0000\n"
-"PO-Revision-Date: 2020-05-31 18:18+0000\n"
+"PO-Revision-Date: 2020-06-08 03:57+0000\n"
 "Last-Translator: Ernestus Severus\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
@@ -407,44 +407,44 @@ msgstr "Stabilis"
 #: gui/session/selection_panels_helpers.js:71
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr ""
+msgstr "Hostes propinquos oppugnare, oppugnatores petere atque persequeri si videri possunt."
 
 #: gui/session/selection_panels_helpers.js:73
 msgctxt "stance"
 msgid "Attack nearby opponents"
-msgstr ""
+msgstr "Hostes propinquos oppugnare."
 
 #: gui/session/selection_panels_helpers.js:75
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr ""
+msgstr "Hostes propinquos oppugnare et brevi persequeri, deinde ad locum vetum redire."
 
 #: gui/session/selection_panels_helpers.js:77
 msgctxt "stance"
 msgid "Flee if attacked"
-msgstr ""
+msgstr "Fugere si oppugnatur."
 
 #: gui/session/selection_panels_helpers.js:79
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr ""
+msgstr "Oppugnare hostes qui in iactu sunt, sed ipse non movere."
 
 #: gui/session/selection_panels_helpers.js:93
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
-msgstr ""
+msgstr "Numerus: %(count)s, Terminus: %(limit)s."
 
 #: gui/session/selection_panels_helpers.js:107
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s terminum auget %(change)s."
 
 #: gui/session/selection_panels_helpers.js:108
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s terminum minuit %(change)s."
 
 #: gui/session/selection_panels_helpers.js:139
 #, javascript-format
@@ -454,189 +454,189 @@ msgstr "%(buildings)s*%(batchSize)s"
 #: gui/session/selection_panels_helpers.js:153
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
-msgstr ""
+msgstr "%(action)s conscribere %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:155
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
-msgstr ""
+msgstr "%(action)s conscribere %(number)s (%(fullBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:157
 #, javascript-format
 msgid "%(action)s to train %(number)s."
-msgstr ""
+msgstr "%(action)s conscribere %(number)s."
 
 #: gui/session/selection_panels_helpers.js:162
 msgid "Shift-click"
-msgstr ""
+msgstr "Shift-preme"
 
 #: gui/session/unit_actions.js:563
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr ""
+msgstr "Hic est mercatus primus.\nDextra-preme ut cursum mercatoris deleas."
 
 #: gui/session/unit_actions.js:623
 msgid "Origin trade market."
-msgstr ""
+msgstr "Mercatus primus"
 
 #: gui/session/unit_actions.js:633
 msgid "Destination trade market."
-msgstr ""
+msgstr "Mercatus Intentus"
 
 #: gui/session/unit_actions.js:640
 msgid "Right-click to set as origin trade market"
-msgstr ""
+msgstr "Dextra-preme ut mercatum primum designes."
 
 #: gui/session/unit_actions.js:647 gui/session/unit_actions.js:990
 msgid "This market is too close to the origin market."
-msgstr ""
+msgstr "Hic mercatus primo mercatu nimis propinquus est."
 
 #: gui/session/unit_actions.js:651
 msgid "Right-click to set as destination trade market."
-msgstr ""
+msgstr "Dextra-preme ut mercatum intentum designes."
 
 #: gui/session/unit_actions.js:712 gui/session/unit_actions.js:928
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
-msgstr ""
+msgstr "Praesidium: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:981
 msgid "Right-click to establish a default route for new traders."
-msgstr ""
+msgstr "Dextra-preme ut cursum novorum mercatorum designes."
 
 #: gui/session/unit_actions.js:985
 #, javascript-format
 msgid "Expected gain: %(gain)s"
-msgstr ""
+msgstr "Lucrum expectatum: %(gain)s"
 
 #: gui/session/unit_actions.js:1125 gui/session/unit_actions.js:1453
 msgid "Unload All."
-msgstr ""
+msgstr "Omnes deonerare."
 
 #: gui/session/unit_actions.js:1143
 msgid "Destroy the selected units or structures."
-msgstr ""
+msgstr "Electos delere."
 
 #: gui/session/unit_actions.js:1145
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
-msgstr ""
+msgstr "Preme %(hotkey)s ut fenestram confirmationis vites."
 
 #: gui/session/unit_actions.js:1192
 msgid "Abort the current order."
-msgstr ""
+msgstr "Hoc iussum intermittere."
 
 #: gui/session/unit_actions.js:1211
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr ""
+msgstr "Electis praesidium imperare."
 
 #: gui/session/unit_actions.js:1234
 msgid "Unload"
-msgstr ""
+msgstr "Deonerare"
 
 #: gui/session/unit_actions.js:1252
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr ""
+msgstr "Electis imperare ut vel aedificium vel navem vel machinam reficiant."
 
 #: gui/session/unit_actions.js:1271
 msgid "Focus on Rally Point."
-msgstr ""
+msgstr "Ad Coetum colligere."
 
 #: gui/session/unit_actions.js:1306
 msgid "Back to Work"
-msgstr ""
+msgstr "Ad laborem remittere"
 
 #: gui/session/unit_actions.js:1325
 msgid "Order the selected units to guard a structure or unit."
-msgstr ""
+msgstr "Electis imperare ut quoddam defendant."
 
 #: gui/session/unit_actions.js:1343
 msgid "Remove guard"
-msgstr "remove custodia "
+msgstr "Custodiam removere"
 
 #: gui/session/unit_actions.js:1360
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
-msgstr ""
+msgstr "Mutare & Venditare"
 
 #: gui/session/unit_actions.js:1378
 msgid "Patrol"
-msgstr ""
+msgstr "Excubiae"
 
 #: gui/session/unit_actions.js:1379
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr ""
+msgstr "Omnes obvios hostes oppugnat dum aedificia vitat."
 
 #: gui/session/unit_actions.js:1405
 msgid "Press to allow allies to use this dropsite"
-msgstr ""
+msgstr "Preme ut socios hoc receptaculo uti sinas"
 
 #: gui/session/unit_actions.js:1409
 msgid "Press to prevent allies from using this dropsite"
-msgstr ""
+msgstr "Preme ut socios hoc receptaculo uti prohibeas"
 
 #: gui/session/unit_actions.js:1474
 msgid "You are allowed to use this dropsite"
-msgstr ""
+msgstr "Hoc receptaculo uti situs es"
 
 #: gui/session/unit_actions.js:1479
 msgid "The use of this dropsite is prohibited"
-msgstr ""
+msgstr "Hoc receptaculo uti prohibitus es"
 
 #: gui/session/unit_actions.js:1553
 msgid "The entity has to be killed before it can be gathered from"
-msgstr ""
+msgstr "Necesse est hoc interficere priusquam colligi potest"
 
 #: gui/session/unit_actions.js:1556
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr ""
+msgstr "Hoc delere non potes, nam minus quam dimidium punctorum capiendi habes"
 
 #: gui/session/unit_actions.js:1559
 msgid "This entity is undeletable"
-msgstr ""
+msgstr "Hoc deleri non potest"
 
 #: gui/session/chat/ChatAddressees.js:88
 msgctxt "chat addressee"
 msgid "Everyone"
-msgstr ""
+msgstr "Omnes"
 
 #: gui/session/chat/ChatAddressees.js:94
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr ""
+msgstr "Socios"
 
 #: gui/session/chat/ChatAddressees.js:95
 msgctxt "chat message context"
 msgid "Ally"
-msgstr ""
+msgstr "Socius"
 
 #: gui/session/chat/ChatAddressees.js:105
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr ""
+msgstr "Hostes"
 
 #: gui/session/chat/ChatAddressees.js:106
 msgctxt "chat message context"
 msgid "Enemy"
-msgstr "Hostes"
+msgstr "Hostis"
 
 #: gui/session/chat/ChatAddressees.js:116
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr ""
+msgstr "Spectatores"
 
 #: gui/session/chat/ChatAddressees.js:117
 msgctxt "chat message context"
 msgid "Observer"
-msgstr ""
+msgstr "Spectator"
 
 #: gui/session/chat/ChatAddressees.js:124
 msgctxt "chat message context"
 msgid "Private"
-msgstr ""
+msgstr "Privatus"
 
 #: gui/session/chat/ChatHistory.js:49
 #, javascript-format
@@ -650,52 +650,52 @@ msgstr "\\[%(time)s]"
 
 #: gui/session/chat/ChatHistory.js:62
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/session/chat/ChatHistory.js:82
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr ""
+msgstr "Colloquia et denuntiationes"
 
 #: gui/session/chat/ChatHistory.js:87
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr ""
+msgstr "Colloquia"
 
 #: gui/session/chat/ChatHistory.js:92
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "Colloquia lusorum"
 
 #: gui/session/chat/ChatHistory.js:99
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr ""
+msgstr "Colloquia sociorum"
 
 #: gui/session/chat/ChatHistory.js:106
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "Colloquia hostium"
 
 #: gui/session/chat/ChatHistory.js:113
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "Colloquia spectatorum"
 
 #: gui/session/chat/ChatHistory.js:120
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr ""
+msgstr "Colloquia privata"
 
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr ""
+msgstr "Denuntiationes ludi"
 
 #: gui/session/chat/ChatHistory.js:130
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr ""
+msgstr "Denuntiationes retis 'network'"
 
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
@@ -997,7 +997,7 @@ msgstr ""
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:78
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):28
 msgid "Ally"
-msgstr ""
+msgstr "Socius"
 
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:81
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):32
@@ -1232,7 +1232,7 @@ msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
 #: gui/session/top_panel/PlayerViewControl.js:123
 msgid "Observer"
-msgstr ""
+msgstr "Spectator"
 
 #: gui/session/top_panel/IconButtons/DiplomacyDialogButton.js:29
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):10

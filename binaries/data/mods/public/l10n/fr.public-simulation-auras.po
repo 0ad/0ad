@@ -8,6 +8,7 @@
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
 # Arnaud Schmeltz <arnaud-sch5@hotmail.fr>, 2017
+# Arthur Bellet <2412arthur@gmail.com>, 2020
 # benjamin jasse <benuri@hotmail.fr>, 2020
 # Brian BERNARD <brianbernard16@gmail.com>, 2017
 # Buber Uglu <buberuglu@hotmail.com>, 2019
@@ -45,8 +46,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-04-13 07:18+0000\n"
-"PO-Revision-Date: 2020-04-16 21:10+0000\n"
-"Last-Translator: Michaël DEMESSINE <m.demessine@gmail.com>\n"
+"PO-Revision-Date: 2020-06-05 18:31+0000\n"
+"Last-Translator: Arthur Bellet <2412arthur@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,7 +69,7 @@ msgstr "Chantiers navals"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr "Augmente le taux de régénération de la santé des navires en garnison de +10."
+msgstr "+10 points de régénération de la santé des navires en garnison."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -76,7 +77,7 @@ msgstr "Bénédiction divine"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Humans +3 health regeneration rate."
-msgstr "Augmente le taux de régénération de la santé des humains de +3%."
+msgstr "+3% de taux de régénération de la santé des humains."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -84,7 +85,7 @@ msgstr "Ferveur religieuse"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr "Augmente les dégâts de mêlée et de distance de l'infanterie de +20%."
+msgstr "+20% de dégats pour l'infanterie de mêlée et de distance."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -93,7 +94,7 @@ msgstr "Patriotisme"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr "Augmente le taux de récolte des ouvriers de +15%."
+msgstr "+15% de taux de récolte pour les travailleurs."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -101,7 +102,7 @@ msgstr "Présence Exhortative"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers +10% melee and ranged attack damage."
-msgstr "Augmente les dégâts de mêlée et à distance de l'infanterie de +10%."
+msgstr "+10% de dégats pour l'infanterie de mêlée et de distance."
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
@@ -109,7 +110,7 @@ msgstr "Pyramides Méroïtiques"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
 msgid "Civic Centers +10% territory influence radius."
-msgstr "Augmente le rayon d'influence territorial des centres-villes de +10%."
+msgstr "+10% de rayon d'influence territoriale pour les centres-villes."
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -117,7 +118,7 @@ msgstr "Sacerdoce Puissant"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
-msgstr "Réduit la santé des héros de -5%."
+msgstr "-5% de santé pour les héros."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
@@ -125,7 +126,7 @@ msgstr "Pouvoir de la connaissance"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −10% technology resource costs and research time."
-msgstr "Réduit le coût des ressources et le temps de recherches des technologies dans les bâtiments de -10%."
+msgstr "-10% de coûts en ressources et de temps de recherche de technologies"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
