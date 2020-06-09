@@ -57,20 +57,20 @@
 # pragma warning(push, 1)
 #endif
 
-#ifdef DEBUG
-#define TEMP_DEACTIVATED_DEBUG
-#undef DEBUG
-#endif
+//#ifdef DEBUG
+//#define TEMP_DEACTIVATED_DEBUG
+//#undef DEBUG
+//#endif
 
 #include "jspubtd.h"
 #include "jsapi.h"
 #include "js/Initialization.h"
 #include "js/StructuredClone.h"
 
-#ifdef TEMP_DEACTIVATED_DEBUG
-#define DEBUG 
-#undef TEMP_DEACTIVATED_DEBUG
-#endif
+//#ifdef TEMP_DEACTIVATED_DEBUG
+//#define DEBUG 
+//#undef TEMP_DEACTIVATED_DEBUG
+//#endif
 
 // restore user flags and re-enable the warnings disabled a few lines above
 #if MSC_VERSION

@@ -113,7 +113,7 @@ CSimulationMessage::CSimulationMessage(const ScriptInterface& scriptInterface) :
 	CNetMessage(NMT_SIMULATION_COMMAND), m_ScriptInterface(scriptInterface)
 {
     CX_IN_REALM(cx,&scriptInterface)
-    m_Data = JS::PersistentRootedValue(cx);
+    m_Data.init(cx);
 }
 
 CSimulationMessage::CSimulationMessage(const ScriptInterface& scriptInterface, u32 client, i32 player, u32 turn, JS::HandleValue data) :
@@ -121,7 +121,7 @@ CSimulationMessage::CSimulationMessage(const ScriptInterface& scriptInterface, u
 	m_Client(client), m_Player(player), m_Turn(turn) 
 {
     CX_IN_REALM(cx,&scriptInterface)
-    m_Data = JS::PersistentRootedValue(cx,data);
+    m_Data.init(cx,data);
 }
 
 CSimulationMessage::CSimulationMessage(const CSimulationMessage& orig) :
@@ -132,7 +132,7 @@ CSimulationMessage::CSimulationMessage(const CSimulationMessage& orig) :
 	CNetMessage(orig)
 {
     CX_IN_REALM(cx,&m_ScriptInterface)
-    m_Data = JS::PersistentRootedValue(cx);
+    m_Data.init(cx);
 	m_Data = orig.m_Data;
 }
 
@@ -193,14 +193,14 @@ CGameSetupMessage::CGameSetupMessage(const ScriptInterface& scriptInterface) :
 	CNetMessage(NMT_GAME_SETUP), m_ScriptInterface(scriptInterface)
 {
     CX_IN_REALM(cx,&scriptInterface)
-    m_Data = JS::PersistentRootedValue(cx);
+    m_Data.init(cx);
 }
 
 CGameSetupMessage::CGameSetupMessage(const ScriptInterface& scriptInterface, JS::HandleValue data) :
 	CNetMessage(NMT_GAME_SETUP), m_ScriptInterface(scriptInterface)
 {
     CX_IN_REALM(cx,&scriptInterface)
-    m_Data = JS::PersistentRootedValue(cx,data);
+    m_Data.init(cx,data);
 }
 
 u8* CGameSetupMessage::Serialize(u8* pBuffer) const

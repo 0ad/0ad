@@ -33,7 +33,7 @@ CStdDeserializer::CStdDeserializer(const ScriptInterface& scriptInterface, std::
 	m_ScriptInterface(scriptInterface), m_Stream(stream)
 {
     CX_IN_REALM(cx,&m_ScriptInterface)
-	m_dummyObject = JS::PersistentRootedObject(cx);
+	m_dummyObject.init(cx);
 
 	JS_AddExtraGCRootsTracer(cx, CStdDeserializer::Trace, this);
 

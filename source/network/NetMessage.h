@@ -130,7 +130,7 @@ public:
 	u32 m_Client;
 	i32 m_Player;
 	u32 m_Turn;
-	JS::PersistentRooted<JS::Value> m_Data;
+	JS::PersistentRootedValue m_Data;
 private:
 	const ScriptInterface& m_ScriptInterface;
 };

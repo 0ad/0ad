@@ -77,7 +77,7 @@ CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 {
     {
         CX_IN_REALM(cxGame,(&(game->GetSimulation2()->GetScriptInterface())))
-	    m_GameAttributes = JS::PersistentRootedValue(cxGame);
+	    m_GameAttributes.init(cxGame);
     }
 	
     m_Game->SetTurnManager(NULL); // delete the old local turn manager so we don't accidentally use it

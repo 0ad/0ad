@@ -164,7 +164,7 @@ public:
 		m_SavedState(savedState)
 	{
         CX_IN_REALM(cx,&scriptInterface)
-		m_Metadata = JS::PersistentRootedValue(cx);
+		m_Metadata.init(cx);
 	}
 
 	static void ReadEntryCallback(const VfsPath& pathname, const CFileInfo& fileInfo, PIArchiveFile archiveFile, uintptr_t cbData)

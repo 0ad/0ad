@@ -28,7 +28,7 @@ CComponentTypeScript::CComponentTypeScript(const ScriptInterface& scriptInterfac
 	// Cache the property detection for efficiency
     CX_IN_REALM(cx,(&m_ScriptInterface))
 
-    m_Instance = JS::PersistentRootedValue(cx,instance);
+    m_Instance.init(cx,instance);
 
 	m_HasCustomSerialize = m_ScriptInterface.HasProperty(m_Instance, "Serialize");
 	m_HasCustomDeserialize = m_ScriptInterface.HasProperty(m_Instance, "Deserialize");

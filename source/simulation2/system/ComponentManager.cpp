@@ -46,7 +46,7 @@ public:
 		mtid(mtid), handlerName("On" + name), globalHandlerName("OnGlobal" + name) 
 	{
         CX_IN_REALM(cx, &scriptInterface)
-        msg = JS::PersistentRootedValue(cx, msg_);
+        msg.init(cx, msg_);
 	}
 
 	int mtid;

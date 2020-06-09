@@ -491,7 +491,7 @@ namespace
 			m_ScriptInterface(scriptInterface)
 		{
             CX_IN_REALM(cx, &scriptInterface)
-            m_Root = JS::PersistentRootedValue(cx,root);
+            m_Root.init(cx,root);
 		}
 
 		// std::for_each requires a move constructor and the use of JS::PersistentRooted<T> apparently breaks a requirement for an
@@ -500,7 +500,7 @@ namespace
 			m_ScriptInterface(original.m_ScriptInterface)
 		{
             CX_IN_REALM(cx, &m_ScriptInterface)
-            m_Root = JS::PersistentRootedValue(cx,original.m_Root.get());
+            m_Root.init(cx,original.m_Root.get());
 		}
 
 		void operator() (AbstractProfileTable* table)

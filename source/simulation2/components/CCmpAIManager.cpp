@@ -88,7 +88,7 @@ private:
 			m_ScriptInterface(scriptInterface) 
 		{
             CX_IN_REALM(cx,scriptInterface)
-            m_Obj = JS::PersistentRootedValue(cx);
+            m_Obj.init(cx);
 		}
 
 		bool Initialise()

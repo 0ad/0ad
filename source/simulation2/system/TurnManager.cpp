@@ -49,7 +49,7 @@ CTurnManager::CTurnManager(CSimulation2& simulation, u32 defaultTurnLength, int 
 	m_FinalTurn(std::numeric_limits<u32>::max()), m_TimeWarpNumTurns(0)
 {
     CX_IN_REALM(cx,(&(m_Simulation2.GetScriptInterface())))
-	m_QuickSaveMetadata = JS::PersistentRootedValue(cx);
+	m_QuickSaveMetadata.init(cx);
 	// When we are on turn n, we schedule new commands for n+2.
 	// We know that all other clients have finished scheduling commands for n (else we couldn't have got here).
 	// We know we have not yet finished scheduling commands for n+2.

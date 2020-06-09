@@ -41,7 +41,7 @@ public:
 		m_ScriptInterface(scriptInterface)
 	{
         CX_IN_REALM(cx,&m_ScriptInterface)
-		m_AIs = JS::PersistentRootedObject(cx);
+		m_AIs.init(cx);
 		m_AIs = JS_NewArrayObject(cx, 0);
 	}
 
