@@ -19,60 +19,197 @@
 
 #include "JSInterface_IGUIObject.h"
 
+#include <type_traits>
+
 #include "gui/CGUI.h"
 #include "gui/CGUISetting.h"
 #include "gui/ObjectBases/IGUIObject.h"
-#include "scriptinterface/ScriptExtraHeaders.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "gui/ObjectTypes/CText.h"
 
-JSClassOps JSI_IGUIObject::classOps = {
-    nullptr,
-    nullptr,
-    nullptr,
-    nullptr,
-    nullptr,
-    nullptr,
-    nullptr,
-    nullptr,
-    nullptr,
-    nullptr,
-    nullptr
-};
+/**
+ * Convenient struct to get info on a [const] function pointer.
+ */
+template<typename ptr>
+struct args_info;
 
-js::ObjectOps JSI_IGUIObject::objOps = {
-	nullptr, nullptr, nullptr,
-	JSI_IGUIObject::getProperty,
-	JSI_IGUIObject::setProperty,
-	nullptr, 
-    JSI_IGUIObject::deleteProperty,
-    nullptr, nullptr};
-
-JSClass JSI_IGUIObject::JSI_class = {
-	"GUIObject", JSCLASS_HAS_PRIVATE,
-    &JSI_IGUIObject::classOps,
-    nullptr, nullptr,
-    &JSI_IGUIObject::objOps
-};
-
-JSFunctionSpec JSI_IGUIObject::JSI_methods[] =
+template<typename C, typename R, typename ...Types>
+struct args_info<R(C::*)(Types ...)>
 {
-	JS_FN("toString", JSI_IGUIObject::toString, 0, 0),
-	JS_FN("focus", JSI_IGUIObject::focus, 0, 0),
-	JS_FN("blur", JSI_IGUIObject::blur, 0, 0),
-	JS_FN("getComputedSize", JSI_IGUIObject::getComputedSize, 0, 0),
-	JS_FS_END
-};
+	static const size_t nb_args = sizeof...(Types);
+	using return_type = R;
+	using object_type = C;
+	using args = std::tuple<typename std::remove_const<typename std::remove_reference<Types>::type>::type...>;
+ };
+ 
+// TODO: would be nice to find a way around the duplication here.
+template<typename C, typename R, typename ...Types>
+struct args_info<R(C::*)(Types ...) const>
+ {
+	static const size_t nb_args = sizeof...(Types);
+	using return_type = R;
+	using object_type = C;
+	using args = std::tuple<typename std::remove_const<typename std::remove_reference<Types>::type>::type...>;
+ };
+ 
+// Convenience wrapper since the code is a little verbose.
+// TODO: I think c++14 makes this clean enough, with type deduction, that it could be removed.
+#define SetupHandler(funcPtr, JSName) \
+	m_FunctionHandlers[JSName].init( \
+		scriptInterface.GetContext(), \
+		JS_NewFunction(scriptInterface.GetContext(), &(scriptMethod<cppType, decltype(funcPtr), funcPtr>), args_info<decltype(funcPtr)>::nb_args, 0, JSName) \
+	);
 
-void JSI_IGUIObject::RegisterScriptClass(ScriptInterface& scriptInterface)
+JSI_GUI::GUIObjectFactory::GUIObjectFactory(ScriptInterface& scriptInterface)
 {
-	scriptInterface.DefineCustomObjectType(&JSI_class, nullptr, 0, nullptr, JSI_methods, nullptr, nullptr);
+	CX_IN_REALM(cx, &scriptInterface);
+	SetupHandler(&IGUIObject::toString, "toString");
+	SetupHandler(&IGUIObject::toString, "toSource");
+	SetupHandler(&IGUIObject::focus, "focus");
+	SetupHandler(&IGUIObject::blur, "blur");
+	SetupHandler(&IGUIObject::getComputedSize, "getComputedSize");
 }
 
-bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle<JS::Value>, JS::HandleId id, JS::MutableHandleValue vp)
-{
-	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
 
-	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, obj, &JSI_IGUIObject::JSI_class);
+JSI_GUI::TextObjectFactory::TextObjectFactory(ScriptInterface& scriptInterface) : JSI_GUI::GUIObjectFactory(scriptInterface)
+ {
+	CX_IN_REALM(cx, &scriptInterface);
+    SetupHandler(&CText::GetTextSize, "getTextSize");
+ }
+ 
+#undef SetupHandler
+
+/**
+ * Based on https://stackoverflow.com/a/32223343
+ * make_index_sequence is not defined in C++11... Only C++14.
+ */
+template <size_t... Ints>
+struct index_sequence
+{
+	using type = index_sequence;
+	using value_type = size_t;
+	static constexpr std::size_t size() noexcept { return sizeof...(Ints); }
+};
+template <class Sequence1, class Sequence2>
+struct _merge_and_renumber;
+template <size_t... I1, size_t... I2>
+struct _merge_and_renumber<index_sequence<I1...>, index_sequence<I2...>>
+: index_sequence<I1..., (sizeof...(I1)+I2)...> { };
+template <size_t N>
+struct make_index_sequence
+: _merge_and_renumber<typename make_index_sequence<N/2>::type,
+typename make_index_sequence<N - N/2>::type> { };
+template<> struct make_index_sequence<0> : index_sequence<> { };
+template<> struct make_index_sequence<1> : index_sequence<0> { };
+
+
+/**
+ * This series of templates is a setup to transparently call a c++ function
+ * from a JS function (with CallArgs) and returning that value.
+ * The C++ code can have arbitrary arguments and arbitrary return types, so long
+ * as they can be converted to/from JS.
+ */
+
+/**
+ * This helper is a recursive template call that converts the N-1th argument
+ * of the function from a JS value to its proper C++ type.
+ */
+template<int N, typename tuple>
+struct convertFromJS
+{
+	bool operator()(ScriptInterface& interface, JSContext* cx, JS::CallArgs& val, tuple& outs)
+	{
+		if (!interface.FromJSVal(cx, val[N-1], std::get<N-1>(outs)))
+			return false;
+		return convertFromJS<N-1, tuple>()(interface, cx, val, outs);
+	}
+};
+// Specialization for the base case "no arguments".
+template<typename tuple>
+struct convertFromJS<0, tuple>
+{
+	bool operator()(ScriptInterface& UNUSED(interface), JSContext* UNUSED(cx), JS::CallArgs& UNUSED(val), tuple& UNUSED(outs))
+	{
+		return true;
+	}
+};
+
+/**
+ * These two templates take a function pointer, its arguments, call it,
+ * and set the return value of the CallArgs to whatever it returned, if anything.
+ * It's tag-dispatched for the "returns_void" and the regular return case.
+ */
+template <typename funcPtr, funcPtr callable, typename T, size_t... Is, typename... types>
+void call(T* object, ScriptInterface* scriptInterface, JS::CallArgs& callArgs, std::tuple<types...>& args, std::false_type, index_sequence<Is...>)
+{
+	// This is perfectly readable, what are you talking about.
+	auto ret = ((*object).* callable)(std::get<Is>(args)...);
+	scriptInterface->ToJSVal(scriptInterface->GetContext(), callArgs.rval(), ret);
+}
+
+template <typename funcPtr, funcPtr callable, typename T, size_t... Is, typename... types>
+void call(T* object, ScriptInterface* UNUSED(scriptInterface), JS::CallArgs& UNUSED(callArgs), std::tuple<types...>& args, std::true_type, index_sequence<Is...>)
+{
+	// Void return specialization, just call the function.
+	((*object).* callable)(std::get<Is>(args)...);
+}
+
+template <typename funcPtr, funcPtr callable, typename T, size_t N = args_info<funcPtr>::nb_args, typename tuple = typename args_info<funcPtr>::args>
+bool JSToCppCall(T* object, JSContext* cx, JS::CallArgs& args)
+{
+	ScriptInterface* scriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+	// This is where the magic happens: instantiate a tuple to store the converted JS arguments,
+	// then 'unpack' the tuple to call the C++ function, convert & store the return value.
+	tuple outs;
+	if (!convertFromJS<N, tuple>()(*scriptInterface, cx, args, outs))
+		return false;
+	// TODO: We have no failure handling here. It's non trivial in a generic sense since we may return a value.
+	// We could either try-catch and throw exceptions,
+	// or come C++17 return an std::optional/maybe or some kind of [bool, val] structured binding.
+	using returns_void = std::is_same<typename args_info<funcPtr>::return_type, void>;
+	call<funcPtr, callable, T>(object, scriptInterface, args, outs, returns_void{}, make_index_sequence<N>{});
+	return true;
+}
+
+// TODO: this can get rewritten as <auto> and deduced come c++14
+template <typename objType, typename funcPtr, funcPtr callable>
+bool JSI_GUI::GUIObjectFactory::scriptMethod(JSContext* cx, unsigned argc, JS::Value* vp)
+{
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+
+	static_assert(std::is_same<objType, typename args_info<funcPtr>::object_type>::value,
+				  "The called method is not defined on the factory's cppType. You most likely forgot to define 'using cppType = ...'");
+	objType* thisObj = static_cast<objType*>(JS_GetPrivate(args.thisv().toObjectOrNull()));
+	if (!thisObj)
+		return false;
+
+	if (!JSToCppCall<decltype(callable), callable>(thisObj, cx, args))
+		return false;
+
+	return true;
+}
+
+js::Class JSI_GUI::GUIObjectFactory::m_ProxyObjectClass = \
+	PROXY_CLASS_DEF("GUIObjectProxy", JSCLASS_HAS_PRIVATE | JSCLASS_HAS_RESERVED_SLOTS(1) |JSCLASS_HAS_CACHED_PROTO(JSProto_Proxy));
+
+JSObject* JSI_GUI::GUIObjectFactory::CreateObject(JSContext* cx)
+{
+	js::ProxyOptions options;
+	options.setClass(&m_ProxyObjectClass);
+	JS::RootedObject proxy(cx, js::NewProxyObject(cx, &JSI_GUI::GUIProxy::singleton, JS::NullHandleValue, nullptr, options));
+	return proxy;
+}
+
+JSI_GUI::GUIProxy JSI_GUI::GUIProxy::singleton;
+
+// The family can't be nullptr because that's used for some DOM object and it crashes.
+JSI_GUI::GUIProxy::GUIProxy() : BaseProxyHandler(this, false, false) {};
+
+bool JSI_GUI::GUIProxy::get(JSContext* cx, JS::HandleObject proxy, JS::HandleValue UNUSED(receiver), JS::HandleId id, JS::MutableHandleValue vp) const
+ {
+ 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+    CX_IN_REALM(cx_,pScriptInterface);
+ 
+	IGUIObject* e = static_cast<IGUIObject*>(JS_GetPrivate(proxy.get()));
 	if (!e)
 		return false;
 
@@ -139,14 +276,16 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		return true;
 	}
 
-	JS_ReportErrorASCII(cx, "Property '%s' does not exist!", propName.c_str());
+	LOGERROR("Property '%s' does not exist!", propName.c_str());
 	return false;
 }
 
-bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::HandleValue vp, JS::HandleValue,  JS::ObjectOpResult& result)
-{
-	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, obj, &JSI_IGUIObject::JSI_class);
-	if (!e)
+bool JSI_GUI::GUIProxy::set(JSContext* cx, JS::HandleObject proxy, JS::HandleId id, JS::HandleValue vp,
+							 JS::HandleValue UNUSED(receiver), JS::ObjectOpResult& result) const
+ {
+	IGUIObject* e = static_cast<IGUIObject*>(JS_GetPrivate(proxy.get()));
+
+    if (!e)
 		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
 
 	JS::RootedValue idval(cx);
@@ -175,7 +314,7 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	{
 		if (vp.isPrimitive() || vp.isNull() || !JS_ObjectIsFunction(&vp.toObject()))
 		{
-			JS_ReportErrorASCII(cx, "on- event-handlers must be functions");
+			LOGERROR("on- event-handlers must be functions");
 			return result.fail(JSMSG_NOT_FUNCTION);
 		}
 
@@ -192,10 +331,11 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	return result.fail(JSMSG_UNDEFINED_PROP);
 }
 
-bool JSI_IGUIObject::deleteProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::ObjectOpResult& result)
-{
-	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, obj, &JSI_IGUIObject::JSI_class);
-	if (!e)
+bool JSI_GUI::GUIProxy::delete_(JSContext* cx, JS::HandleObject proxy, JS::HandleId id, JS::ObjectOpResult& result) const
+{	
+	IGUIObject* e = static_cast<IGUIObject*>(JS_GetPrivate(proxy.get()));
+
+    if (!e)
 		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
 
 	JS::RootedValue idval(cx);
@@ -214,55 +354,7 @@ bool JSI_IGUIObject::deleteProperty(JSContext* cx, JS::HandleObject obj, JS::Han
 		return result.succeed();
 	}
 
-	JS_ReportErrorASCII(cx, "Only event handlers can be deleted from GUI objects!");
+	LOGERROR("Only event handlers can be deleted from GUI objects! (trying to delete %s)", propName.c_str());
 	return result.fail(JSMSG_UNDEFINED_PROP);
 }
 
-bool JSI_IGUIObject::toString(JSContext* cx, uint argc, JS::Value* vp)
-{
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, args, &JSI_IGUIObject::JSI_class);
-	if (!e)
-		return false;
-
-	ScriptInterface::ToJSVal(cx, args.rval(), "[GUIObject: " + e->GetName() + "]");
-	return true;
-}
-
-bool JSI_IGUIObject::focus(JSContext* cx, uint argc, JS::Value* vp)
-{
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, args, &JSI_IGUIObject::JSI_class);
-	if (!e)
-		return false;
-
-	e->GetGUI().SetFocusedObject(e);
-	args.rval().setUndefined();
-	return true;
-}
-
-bool JSI_IGUIObject::blur(JSContext* cx, uint argc, JS::Value* vp)
-{
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, args, &JSI_IGUIObject::JSI_class);
-	if (!e)
-		return false;
-
-	e->GetGUI().SetFocusedObject(nullptr);
-	args.rval().setUndefined();
-	return true;
-}
-
-bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, JS::Value* vp)
-{
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-
-	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, args, &JSI_IGUIObject::JSI_class);
-	if (!e)
-		return false;
-
-	e->UpdateCachedSize();
-	ScriptInterface::ToJSVal(cx, args.rval(), e->m_CachedActualSize);
-
-	return true;
-}

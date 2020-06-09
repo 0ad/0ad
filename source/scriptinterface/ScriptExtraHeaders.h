@@ -63,6 +63,7 @@
 #include "js/SourceText.h"
 #include "js/Warnings.h"
 #include "js/ArrayBuffer.h"
+#include "js/Proxy.h"
 
 #ifdef TEMP_DEACTIVATED_DEBUG
 #define DEBUG 

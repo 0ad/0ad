@@ -252,30 +252,3 @@ bool CText::MouseOverIcon()
 	return false;
 }
 
-void CText::RegisterScriptFunctions()
-{
-    CX_IN_REALM(cx,m_pGUI.GetScriptInterface())
-	JS_DefineFunctions(cx, m_JSObject, CText::JSI_methods);
-}
-
-JSFunctionSpec CText::JSI_methods[] =
-{
-	JS_FN("getTextSize", CText::GetTextSize, 0, 0),
-	JS_FS_END
-};
-
-bool CText::GetTextSize(JSContext* cx, uint argc, JS::Value* vp)
-{
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	CText* thisObj = ScriptInterface::GetPrivate<CText>(cx, args, &JSI_IGUIObject::JSI_class);
-	if (!thisObj)
-	{
-		JS_ReportErrorASCII(cx, "This is not a CText object!");
-		return false;
-	}
-
-	thisObj->UpdateText();
-
-	ScriptInterface::ToJSVal(cx, args.rval(), thisObj->m_GeneratedTexts[0].GetSize());
-	return true;
-}

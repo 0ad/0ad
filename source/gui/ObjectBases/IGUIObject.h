@@ -76,13 +76,7 @@ JS_SetPrivate(m_JSObject.get(), static_cast<JSI_GUI::JSFactoryType::cppType*>(th
  */
 class IGUIObject
 {
-	friend class CGUI;
-
-	// Allow getProperty to access things like GetParent()
-	friend bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleValue receiver, JS::HandleId id, JS::MutableHandleValue vp);
-	friend bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::HandleValue vp, JS::HandleValue receiver, JS::ObjectOpResult& result);
-	friend bool JSI_IGUIObject::deleteProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::ObjectOpResult& result);
-	friend bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, JS::Value* vp);
+    BASE_GUI_OBJECT(IGUIObject, "empty", GUIObjectFactory);
 
 public:
 	NONCOPYABLE(IGUIObject);

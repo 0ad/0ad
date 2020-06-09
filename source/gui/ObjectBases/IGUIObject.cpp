@@ -447,28 +447,44 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName, const JS::HandleVa
 
 	if (!JS_CallFunctionValue(cx, obj, handlerVal, paramData, &result))
 	{
-		JS_ReportErrorASCII(cx, "Errors executing script event \"%s\"", eventName.c_str());
+		LOGERROR("Errors executing script event \"%s\"", eventName.c_str());
 		return false;
 	}
 	return JS::ToBoolean(result);
 }
 
-void IGUIObject::CreateJSObject()
+std::string IGUIObject::toString() const
 {
-    CX_IN_REALM(cx,m_pGUI.GetScriptInterface())
+	return "[GUIObject: " + GetName() + "]";
+}
 
-	m_JSObject.init(cx, m_pGUI.GetScriptInterface()->CreateCustomObject("GUIObject"));
-	JS_SetPrivate(m_JSObject.get(), this);
+void IGUIObject::focus()
+{
+	GetGUI().SetFocusedObject(this);
+}
 
-	RegisterScriptFunctions();
+void IGUIObject::blur()
+{
+	GetGUI().SetFocusedObject(nullptr);
+}
+
+CRect IGUIObject::getComputedSize()
+{
+	UpdateCachedSize();
+	return m_CachedActualSize;
 }
 
 JSObject* IGUIObject::GetJSObject()
 {
+    CX_IN_REALM(cx,m_pGUI.GetScriptInterface())
+
 	// Cache the object when somebody first asks for it, because otherwise
 	// we end up doing far too much object allocation.
 	if (!m_JSObject.initialized())
-		CreateJSObject();
+	{
+		m_JSObject.init(cx, m_pGUI.ConstructJSObject(GetObjectType()));
+		SetPrivateData();
+	}
 
 	return m_JSObject.get();
 }
