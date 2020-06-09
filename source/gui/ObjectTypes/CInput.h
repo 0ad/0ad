@@ -33,7 +33,7 @@
  */
 class CInput : public IGUIObject, public IGUIScrollBarOwner
 {
-	GUI_OBJECT(CInput)
+	GUI_OBJECT(CInput, "input", GUIObjectFactory)
 
 protected: // forwards
 	struct SRow;

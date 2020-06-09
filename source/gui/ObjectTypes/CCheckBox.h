@@ -23,7 +23,7 @@
 
 class CCheckBox : public IGUIObject, public IGUIButtonBehavior
 {
-	GUI_OBJECT(CCheckBox)
+	GUI_OBJECT(CCheckBox, "checkbox", GUIObjectFactory)
 
 public:
 	CCheckBox(CGUI& pGUI);

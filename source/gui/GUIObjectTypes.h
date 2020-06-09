@@ -34,21 +34,26 @@
 
 void CGUI::AddObjectTypes()
 {
-	AddObjectType("button", &CButton::ConstructObject);
-	AddObjectType("chart", &CChart::ConstructObject);
-	AddObjectType("checkbox", &CCheckBox::ConstructObject);
-	AddObjectType("dropdown", &CDropDown::ConstructObject);
-	AddObjectType("empty", &CGUIDummyObject::ConstructObject);
-	AddObjectType("image", &CImage::ConstructObject);
-	AddObjectType("input", &CInput::ConstructObject);
-	AddObjectType("list", &CList::ConstructObject);
-	AddObjectType("minimap", &CMiniMap::ConstructObject);
-	AddObjectType("olist", &COList::ConstructObject);
-	AddObjectType("progressbar", &CProgressBar::ConstructObject);
-	AddObjectType("radiobutton", &CRadioButton::ConstructObject);
-	AddObjectType("slider", &CSlider::ConstructObject);
-	AddObjectType("text", &CText::ConstructObject);
-	AddObjectType("tooltip", &CTooltip::ConstructObject);
+#define AddObjectType(ObjectType) \
+AddObjectType(ObjectType::xmlName, &ObjectType::ConstructObject, std::unique_ptr<ObjectType::JSFactory>(new ObjectType::JSFactory(*m_ScriptInterface.get())));
+
+	AddObjectType(CButton);
+	AddObjectType(CChart);
+	AddObjectType(CCheckBox);
+	AddObjectType(CDropDown);
+	AddObjectType(CGUIDummyObject);
+	AddObjectType(CImage);
+	AddObjectType(CInput);
+	AddObjectType(CList);
+	AddObjectType(CMiniMap);
+	AddObjectType(COList);
+	AddObjectType(CProgressBar);
+	AddObjectType(CRadioButton);
+	AddObjectType(CSlider);
+	AddObjectType(CText);
+	AddObjectType(CTooltip);
+
+#undef AddObjectType
 }
 
 #endif // INCLUDED_GUIOBJECTTYPES

@@ -28,7 +28,7 @@ class CTerrain;
 
 class CMiniMap : public IGUIObject
 {
-	GUI_OBJECT(CMiniMap)
+	GUI_OBJECT(CMiniMap, "minimap", GUIObjectFactory)
 public:
 	CMiniMap(CGUI& pGUI);
 	virtual ~CMiniMap();

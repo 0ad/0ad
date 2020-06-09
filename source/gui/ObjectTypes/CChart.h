@@ -43,7 +43,7 @@ struct CChartData
  */
 class CChart : public IGUIObject, public IGUITextOwner
 {
-	GUI_OBJECT(CChart)
+	GUI_OBJECT(CChart, "chart", GUIObjectFactory)
 
 public:
 	CChart(CGUI& pGUI);

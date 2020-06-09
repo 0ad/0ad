@@ -33,7 +33,7 @@
  */
 class CImage : public IGUIObject
 {
-	GUI_OBJECT(CImage)
+	GUI_OBJECT(CImage, "image", GUIObjectFactory)
 
 public:
 	CImage(CGUI& pGUI);

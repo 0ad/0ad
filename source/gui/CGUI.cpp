@@ -306,14 +306,30 @@ void CGUI::UpdateResolution()
 	m_BaseObject.RecurseObject(nullptr, &IGUIObject::UpdateCachedSize);
 }
 
+void CGUI::AddObjectType(const CStr& str, ConstructObjectFunction pFunc, std::unique_ptr<JSI_GUI::GUIObjectFactory>&& JSFactory)
+{
+	m_ObjectTypes.emplace(str, ObjectFactory{ pFunc, std::move(JSFactory) });
+}
+
 IGUIObject* CGUI::ConstructObject(const CStr& str)
 {
-	std::map<CStr, ConstructObjectFunction>::iterator it = m_ObjectTypes.find(str);
+	std::map<CStr, ObjectFactory>::iterator it = m_ObjectTypes.find(str);
 
 	if (it == m_ObjectTypes.end())
 		return nullptr;
 
-	return (*it->second)(*this);
+	return (*it->second.constructObject)(*this);
+}
+
+JSObject* CGUI::ConstructJSObject(const CStr& str)
+{
+	std::map<CStr, ObjectFactory>::iterator it = m_ObjectTypes.find(str);
+
+	if (it == m_ObjectTypes.end())
+		return nullptr;
+
+	return it->second.guiObjectFactory->CreateObject(m_ScriptInterface->GetContext());
+
 }
 
 bool CGUI::AddObject(IGUIObject& parent, IGUIObject& child)

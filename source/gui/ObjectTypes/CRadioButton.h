@@ -28,7 +28,7 @@
  */
 class CRadioButton : public CCheckBox
 {
-	GUI_OBJECT(CRadioButton)
+	GUI_OBJECT(CRadioButton, "radiobutton", GUIObjectFactory)
 
 public:
 	CRadioButton(CGUI& pGUI);

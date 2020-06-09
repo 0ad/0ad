@@ -27,7 +27,7 @@
  */
 class CTooltip : public IGUIObject, public IGUITextOwner
 {
-	GUI_OBJECT(CTooltip)
+	GUI_OBJECT(CTooltip, "tooltip", GUIObjectFactory)
 
 public:
 	CTooltip(CGUI& pGUI);

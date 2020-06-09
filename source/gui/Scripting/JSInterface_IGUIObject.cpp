@@ -84,18 +84,17 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	if (!ScriptInterface::FromJSVal(cx, idval, propName))
 		return false;
 
-	// Skip registered functions and inherited properties
-	// including JSInterfaces of derived classes
-	if (propName == "constructor" ||
-		propName == "prototype"   ||
-		propName == "toString"    ||
-		propName == "toJSON"      ||
-		propName == "focus"       ||
-		propName == "blur"        ||
-		propName == "getTextSize" ||
-		propName == "getComputedSize"
-	   )
+	// TODO: This is slightly inefficient (we're going through the GUI via a string lookup).
+	// We could do better by templating the proxy with function names to look for in the Factory.
+	// (the find can't fail)
+	const std::map<std::string, JS::PersistentRootedFunction>& factory = e->m_pGUI.m_ObjectTypes.find(e->GetObjectType())->second.guiObjectFactory->m_FunctionHandlers;
+	std::map<std::string, JS::PersistentRootedFunction>::const_iterator it = factory.find(propName);
+	if (it != factory.end())
+	{
+		JSObject* obj = JS_GetFunctionObject(it->second.get());
+		vp.setObjectOrNull(obj);
 		return true;
+	}
 
 	// Use onWhatever to access event handlers
 	if (propName.substr(0, 2) == "on")

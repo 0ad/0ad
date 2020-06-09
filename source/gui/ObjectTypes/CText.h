@@ -28,8 +28,7 @@
  */
 class CText : public IGUIObject, public IGUIScrollBarOwner, public IGUITextOwner
 {
-	GUI_OBJECT(CText)
-
+	GUI_OBJECT(CText, "text", TextObjectFactory)
 public:
 	CText(CGUI& pGUI);
 	virtual ~CText();
@@ -56,8 +55,6 @@ protected:
 	 */
 	void SetupText();
 
-	virtual void RegisterScriptFunctions();
-
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
@@ -68,12 +65,10 @@ protected:
 	 */
 	virtual void Draw();
 
-	/**
-	 * Script accessors to this GUI object.
-	 */
-	static JSFunctionSpec JSI_methods[];
-
-	static bool GetTextSize(JSContext* cx, uint argc, JS::Value* vp);
+	CSize GetTextSize()
+	{
+		return m_GeneratedTexts[0].GetSize();
+	}
 
 	/**
 	 * Placement of text. Ignored when scrollbars are active.

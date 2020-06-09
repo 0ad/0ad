@@ -30,7 +30,7 @@
  */
 class CGUIDummyObject : public IGUIObject
 {
-	GUI_OBJECT(CGUIDummyObject)
+	GUI_OBJECT(CGUIDummyObject, "empty", GUIObjectFactory)
 
 public:
 	CGUIDummyObject(CGUI& pGUI) : IGUIObject(pGUI) {}

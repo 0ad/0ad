@@ -36,7 +36,7 @@
  */
 class CList : public IGUIObject, public IGUIScrollBarOwner, public IGUITextOwner
 {
-	GUI_OBJECT(CList)
+	GUI_OBJECT(CList, "list", GUIObjectFactory)
 
 public:
 	CList(CGUI& pGUI);

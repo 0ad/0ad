@@ -44,7 +44,7 @@ GUI Object - Drop Down (list)
  */
 class CDropDown : public CList
 {
-	GUI_OBJECT(CDropDown)
+	GUI_OBJECT(CDropDown, "dropdown", GUIObjectFactory)
 
 public:
 	CDropDown(CGUI& pGUI);

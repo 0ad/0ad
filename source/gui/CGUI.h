@@ -52,6 +52,9 @@ class CGUI
 {
 	NONCOPYABLE(CGUI);
 
+	friend class JSI_GUI::GUIProxy;
+	friend class IGUIObject;
+
 private:
 	// Private typedefs
 	using ConstructObjectFunction = IGUIObject* (*)(CGUI&);
@@ -193,7 +196,7 @@ public:
 	 *
 	 * @see CGUI#ConstructObject()
 	 */
-	void AddObjectType(const CStr& str, ConstructObjectFunction pFunc) { m_ObjectTypes[str] = pFunc; }
+	void AddObjectType(const CStr& str, ConstructObjectFunction pFunc, std::unique_ptr<JSI_GUI::GUIObjectFactory>&& JSFactory);
 
 	/**
 	 * Update Resolution, should be called every time the resolution
@@ -255,6 +258,8 @@ private:
 	 * @return Newly constructed IGUIObject (but constructed as a subclass)
 	 */
 	IGUIObject* ConstructObject(const CStr& str);
+
+	JSObject* ConstructJSObject(const CStr& str);
 
 public:
 	/**
@@ -596,7 +601,11 @@ private:
 	 * IGUIObjects by name... For instance m_ObjectTypes["button"]
 	 * is filled with a function that will "return new CButton();"
 	 */
-	std::map<CStr, ConstructObjectFunction> m_ObjectTypes;
+	struct ObjectFactory {
+		ConstructObjectFunction constructObject;
+		std::unique_ptr<JSI_GUI::GUIObjectFactory> guiObjectFactory;
+	};
+	std::map<CStr, ObjectFactory> m_ObjectTypes;
 
 	/**
 	 * Map from hotkey names to objects that listen to the hotkey.

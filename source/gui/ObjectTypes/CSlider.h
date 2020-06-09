@@ -24,7 +24,7 @@
 
 class CSlider : public IGUIObject, public IGUIButtonBehavior
 {
-	GUI_OBJECT(CSlider)
+	GUI_OBJECT(CSlider, "slider", GUIObjectFactory)
 
 public:
 	CSlider(CGUI& pGUI);

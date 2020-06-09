@@ -49,7 +49,7 @@ struct COListColumn
  */
 class COList : public CList
 {
-	GUI_OBJECT(COList)
+	GUI_OBJECT(COList, "olist", GUIObjectFactory)
 
 public:
 	COList(CGUI& pGUI);

@@ -41,10 +41,34 @@ class IGUISetting;
 
 using map_pObjects = std::map<CStr, IGUIObject*>;
 
-#define GUI_OBJECT(obj) \
-public: \
+#define BASE_GUI_OBJECT(obj, xmlName_, JSFactoryType) \
+protected: \
+	friend class CGUI; \
+	friend class JSI_GUI::GUIProxy; \
+	friend class JSI_GUI::JSFactoryType; \
+	\
+	static constexpr const char* xmlName = xmlName_; \
+	virtual CStr GetObjectType() { return xmlName_; }; \
+	\
+	using JSFactory = JSI_GUI::JSFactoryType;\
+	/**
+	* When creating the JS counterpart of a GUI Object,
+	* we may need to set the private data to the derived 'this',
+	* and not the base 'this', otherwise derived proxies
+	* won't be able to call the derived-only functions.
+	* Perhaps TODO: I think the virtual call could be CRPT-ed out.
+	*/ \
+	virtual void SetPrivateData() { \
+		ENSURE(m_JSObject.initialized()); \
+		/** I'm not entirely sure this static cast is needed but it seems conceptually correct, and safer */ \
+JS_SetPrivate(m_JSObject.get(), static_cast<JSI_GUI::JSFactoryType::cppType*>(this)); \
+	};
+
+#define GUI_OBJECT(obj, xmlName_, JSFactoryType) \
+	BASE_GUI_OBJECT(obj, xmlName_, JSFactoryType) \
 	static IGUIObject* ConstructObject(CGUI& pGUI) \
-		{ return new obj(pGUI); }
+	{ return new obj(pGUI); };
+
 
 /**
  * GUI object such as a button or an input-box.
@@ -239,6 +263,11 @@ public:
 	 * Retrieves the JSObject representing this GUI object.
 	 */
 	JSObject* GetJSObject();
+
+	std::string toString() const;
+	void focus();
+	void blur();
+	CRect getComputedSize();
 
 	//@}
 protected:
@@ -438,11 +467,6 @@ private:
 	/** @name Internal functions */
 	//--------------------------------------------------------
 	//@{
-
-	/**
-	 * Creates the JS object representing this page upon first use.
-	 */
-	void CreateJSObject();
 
 	/**
 	 * Updates some internal data depending on the setting changed.

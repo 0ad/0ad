@@ -26,7 +26,7 @@
  */
 class CProgressBar : public IGUIObject
 {
-	GUI_OBJECT(CProgressBar)
+	GUI_OBJECT(CProgressBar, "progressbar", GUIObjectFactory)
 
 public:
 	CProgressBar(CGUI& pGUI);

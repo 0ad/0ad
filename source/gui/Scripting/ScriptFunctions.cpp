@@ -51,7 +51,7 @@
 void GuiScriptingInit(ScriptInterface& scriptInterface)
 {
 	JSI_GUISize::RegisterScriptClass(scriptInterface);
-	JSI_IGUIObject::RegisterScriptClass(scriptInterface);
+//	JSI_IGUIObject::RegisterScriptClass(scriptInterface);
 
 	JSI_ConfigDB::RegisterScriptFunctions(scriptInterface);
 	JSI_Console::RegisterScriptFunctions(scriptInterface);

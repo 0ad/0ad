@@ -26,7 +26,7 @@
 
 class CButton : public IGUIObject, public IGUITextOwner, public IGUIButtonBehavior
 {
-	GUI_OBJECT(CButton)
+	GUI_OBJECT(CButton, "button", GUIObjectFactory)
 
 public:
 	CButton(CGUI& pGUI);
