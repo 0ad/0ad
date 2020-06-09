@@ -116,8 +116,9 @@ template<> struct make_index_sequence<1> : index_sequence<0> { };
 template<int N, typename tuple>
 struct convertFromJS
 {
-	bool operator()(ScriptInterface& interface, JSContext* cx, JS::CallArgs& val, tuple& outs)
+	bool operator()(ScriptInterface& interface, JSContext* cx_, JS::CallArgs& val, tuple& outs)
 	{
+	    CX_IN_REALM(cx, &interface);
 		if (!interface.FromJSVal(cx, val[N-1], std::get<N-1>(outs)))
 			return false;
 		return convertFromJS<N-1, tuple>()(interface, cx, val, outs);
@@ -141,9 +142,10 @@ struct convertFromJS<0, tuple>
 template <typename funcPtr, funcPtr callable, typename T, size_t... Is, typename... types>
 void call(T* object, ScriptInterface* scriptInterface, JS::CallArgs& callArgs, std::tuple<types...>& args, std::false_type, index_sequence<Is...>)
 {
+	CX_IN_REALM(cx, scriptInterface);
 	// This is perfectly readable, what are you talking about.
 	auto ret = ((*object).* callable)(std::get<Is>(args)...);
-	scriptInterface->ToJSVal(scriptInterface->GetContext(), callArgs.rval(), ret);
+	scriptInterface->ToJSVal(cx, callArgs.rval(), ret);
 }
 
 template <typename funcPtr, funcPtr callable, typename T, size_t... Is, typename... types>
@@ -207,7 +209,6 @@ JSI_GUI::GUIProxy::GUIProxy() : BaseProxyHandler(this, false, false) {};
 bool JSI_GUI::GUIProxy::get(JSContext* cx, JS::HandleObject proxy, JS::HandleValue UNUSED(receiver), JS::HandleId id, JS::MutableHandleValue vp) const
  {
  	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-    CX_IN_REALM(cx_,pScriptInterface);
  
 	IGUIObject* e = static_cast<IGUIObject*>(JS_GetPrivate(proxy.get()));
 	if (!e)

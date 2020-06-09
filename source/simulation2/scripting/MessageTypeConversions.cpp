@@ -22,6 +22,7 @@
 
 #define TOJSVAL_SETUP() \
 	JSContext* cx = scriptInterface.GetContext(); \
+    auto __realm__ = scriptInterface.AutoRealm(); \
 	JS::RootedObject obj(cx, JS_NewPlainObject(cx)); \
 	if (!obj) \
 		return JS::UndefinedValue();
@@ -36,6 +37,7 @@
 
 #define FROMJSVAL_SETUP() \
     JSContext* cx = scriptInterface.GetContext(); \
+    auto __realm__ = scriptInterface.AutoRealm(); \
 	if (val.isPrimitive()) \
 		return NULL; \
 	JS::RootedObject obj(cx, &val.toObject()); \
@@ -52,8 +54,9 @@
 
 JS::Value CMessage::ToJSValCached(const ScriptInterface& scriptInterface) const
 {
+    CX_IN_REALM(cx, &scriptInterface);
 	if (!m_Cached)
-		m_Cached.reset(new JS::PersistentRootedValue(scriptInterface.GetContext(), ToJSVal(scriptInterface)));
+		m_Cached.reset(new JS::PersistentRootedValue(cx, ToJSVal(scriptInterface)));
 
 	return m_Cached->get();
 }

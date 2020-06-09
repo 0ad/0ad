@@ -323,12 +323,13 @@ IGUIObject* CGUI::ConstructObject(const CStr& str)
 
 JSObject* CGUI::ConstructJSObject(const CStr& str)
 {
+    CX_IN_REALM(cx,m_ScriptInterface);
 	std::map<CStr, ObjectFactory>::iterator it = m_ObjectTypes.find(str);
 
 	if (it == m_ObjectTypes.end())
 		return nullptr;
 
-	return it->second.guiObjectFactory->CreateObject(m_ScriptInterface->GetContext());
+	return it->second.guiObjectFactory->CreateObject(cx);
 
 }
 
