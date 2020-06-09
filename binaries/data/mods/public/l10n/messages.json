@@ -403,7 +403,10 @@
                         "StatusName": {
                             "customContext": "status effect"
                         },
-                        "StatusTooltip": {
+                        "ApplierTooltip": {
+                            "customContext": "status effect"
+                        },
+                        "ReceiverTooltip": {
                             "customContext": "status effect"
                         },
                         "GenericName": {},
@@ -441,7 +444,10 @@
                         "StatusName": {
                             "customContext": "status effect"
                         },
-                        "StatusTooltip": {
+                        "ApplierTooltip": {
+                            "customContext": "status effect"
+                        },
+                        "ReceiverTooltip": {
                             "customContext": "status effect"
                         },
                         "GenericName": {},
@@ -486,7 +492,10 @@
                         "StatusName": {
                             "customContext": "status effect"
                         },
-                        "StatusTooltip": {
+                        "ApplierTooltip": {
+                            "customContext": "status effect"
+                        },
+                        "ReceiverTooltip": {
                             "customContext": "status effect"
                         },
                         "GenericName": {},
@@ -526,7 +535,8 @@
                 "options": {
                     "keywords": [
                         "StatusName",
-                        "StatusTooltip"
+                        "ApplierTooltip",
+                        "ReceiverTooltip"
                     ],
                     "context": "status effect"
                 }

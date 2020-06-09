@@ -46,14 +46,30 @@ StatusEffectsReceiver.prototype.ApplyStatus = function(effectData, attacker, att
  *
  * @param {string} statusName - The name of the status effect.
  * @param {object} data - The various effects and timings.
+ * @param {object} attackerData - The attacker and attackerOwner.
  */
 StatusEffectsReceiver.prototype.AddStatus = function(statusName, data, attackerData)
 {
 	if (this.activeStatusEffects[statusName])
 	{
-		// TODO: implement different behaviour when receiving the same status multiple times.
-		// For now, these are ignored.
-		return;
+		if (data.Stackability == "Ignore")
+			return;
+		if (data.Stackability == "Extend")
+		{
+			this.activeStatusEffects[statusName].Duration += data.Duration;
+			return;
+		}
+		if (data.Stackability == "Replace")
+			this.RemoveStatus(statusName);
+		else if (data.Stackability == "Stack")
+		{
+			let i = 0;
+			let temp;
+			do
+				temp = statusName + "_" + i++;
+			while (!!this.activeStatusEffects[temp]);
+			statusName = temp;
+		}
 	}
 
 	this.activeStatusEffects[statusName] = {};

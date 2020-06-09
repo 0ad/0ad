@@ -1,135 +1,345 @@
+Engine.LoadHelperScript("MultiKeyMap.js");
+Engine.LoadHelperScript("Player.js");
+Engine.LoadHelperScript("ValueModification.js");
+Engine.LoadComponentScript("interfaces/Health.js");
+Engine.LoadComponentScript("interfaces/ModifiersManager.js");
 Engine.LoadComponentScript("interfaces/StatusEffectsReceiver.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
+Engine.LoadComponentScript("Health.js");
+Engine.LoadComponentScript("ModifiersManager.js");
 Engine.LoadComponentScript("StatusEffectsReceiver.js");
 Engine.LoadComponentScript("Timer.js");
 
-var target = 42;
-var cmpStatusReceiver;
-var cmpTimer;
-var dealtDamage;
-var enemyEntity = 4;
-var enemy = 2;
+let target = 42;
+let cmpStatusReceiver = ConstructComponent(target, "StatusEffectsReceiver");
+let cmpTimer = ConstructComponent(SYSTEM_ENTITY, "Timer");
+let dealtDamage = 0;
+let enemyEntity = 4;
+let enemy = 2;
+let statusName;
 
-function setup()
+let Attacking = {
+	"HandleAttackEffects": (_, attackData) => {
+		for (let type in attackData.Damage)
+			dealtDamage += attackData.Damage[type];
+	}
+};
+Engine.RegisterGlobal("Attacking", Attacking);
+
+function reset()
 {
-	cmpStatusReceiver = ConstructComponent(target, "StatusEffectsReceiver");
-	cmpTimer = ConstructComponent(SYSTEM_ENTITY, "Timer");
+	for (let status in cmpStatusReceiver.GetActiveStatuses())
+		cmpStatusReceiver.RemoveStatus(status);
 	dealtDamage = 0;
 }
 
-function testInflictEffects()
-{
-	setup();
-	let statusName = "Burn";
-	let Attacking = {
-		"HandleAttackEffects": (_, attackData) => { dealtDamage += attackData.Damage[statusName]; }
-	};
-	Engine.RegisterGlobal("Attacking", Attacking);
+// Test adding a single effect.
+statusName = "Burn";
 
-	// damage scheduled: 0, 10, 20 sec
-	cmpStatusReceiver.AddStatus(statusName, {
+// Damage scheduled: 0, 10, 20 seconds.
+cmpStatusReceiver.AddStatus(statusName, {
+	"Duration": 20000,
+	"Interval": 10000,
+	"Damage": {
+		[statusName]: 1
+	}
+},
+{
+	"entity": enemyEntity,
+	"owner": enemy,
+});
+
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 1); // 1 sec
+
+cmpTimer.OnUpdate({ "turnLength": 8 });
+TS_ASSERT_EQUALS(dealtDamage, 1); // 9 sec
+
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 2); // 10 sec
+
+cmpTimer.OnUpdate({ "turnLength": 10 });
+TS_ASSERT_EQUALS(dealtDamage, 3); // 20 sec
+
+cmpTimer.OnUpdate({ "turnLength": 10 });
+TS_ASSERT_EQUALS(dealtDamage, 3); // 30 sec
+
+
+// Test adding multiple effects.
+reset();
+
+// Damage scheduled: 0, 1, 2, 10 seconds.
+cmpStatusReceiver.ApplyStatus({
+	"Burn": {
 		"Duration": 20000,
 		"Interval": 10000,
 		"Damage": {
-			[statusName]: 1
+			"Burn": 10
 		}
 	},
-	{
-		"entity": enemyEntity,
-		"owner": enemy,
-	});
+	"Poison": {
+		"Duration": 3000,
+		"Interval": 1000,
+		"Damage": {
+			"Poison": 1
+		}
+	}
+});
 
-	cmpTimer.OnUpdate({ "turnLength": 1 });
-	TS_ASSERT_EQUALS(dealtDamage, 1); // 1 sec
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 12); // 1 sec
 
-	cmpTimer.OnUpdate({ "turnLength": 8 });
-	TS_ASSERT_EQUALS(dealtDamage, 1); // 9 sec
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 13); // 2 sec
 
-	cmpTimer.OnUpdate({ "turnLength": 1 });
-	TS_ASSERT_EQUALS(dealtDamage, 2); // 10 sec
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 13); // 3 sec
 
-	cmpTimer.OnUpdate({ "turnLength": 10 });
-	TS_ASSERT_EQUALS(dealtDamage, 3); // 20 sec
+cmpTimer.OnUpdate({ "turnLength": 7 });
+TS_ASSERT_EQUALS(dealtDamage, 23); // 10 sec
 
-	cmpTimer.OnUpdate({ "turnLength": 10 });
-	TS_ASSERT_EQUALS(dealtDamage, 3); // 30 sec
-}
 
-testInflictEffects();
+// Test removing a status removes effects.
+reset();
+statusName = "Poison";
 
-function testMultipleEffects()
+// Damage scheduled: 0, 10, 20 seconds.
+cmpStatusReceiver.AddStatus(statusName, {
+	"Duration": 20000,
+	"Interval": 10000,
+	"Damage": {
+		[statusName]: 1
+	}
+},
 {
-	setup();
-	let Attacking = {
-		"HandleAttackEffects": (_, attackData) => {
-			if (attackData.Damage.Burn) dealtDamage += attackData.Damage.Burn;
-			if (attackData.Damage.Poison) dealtDamage += attackData.Damage.Poison;
-		},
-	};
-	Engine.RegisterGlobal("Attacking", Attacking);
+	"entity": enemyEntity,
+	"owner": enemy,
+});
 
-	// damage scheduled: 0, 1, 2, 10 sec
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 1); // 1 sec
+
+cmpStatusReceiver.RemoveStatus(statusName);
+
+cmpTimer.OnUpdate({ "turnLength": 10 });
+TS_ASSERT_EQUALS(dealtDamage, 1); // 11 sec
+
+
+// Test that a status effect with modifications modifies.
+reset();
+
+AddMock(target, IID_Identity, {
+	"GetClassesList": () => ["AffectedClass"]
+});
+let cmpModifiersManager = ConstructComponent(SYSTEM_ENTITY, "ModifiersManager");
+
+let maxHealth = 100;
+AddMock(target, IID_Health, {
+	"GetMaxHitpoints": () => ApplyValueModificationsToEntity("Health/Max", maxHealth, target)
+});
+
+statusName = "Haste";
+let factor = 0.5;
+cmpStatusReceiver.AddStatus(statusName, {
+	"Duration": 5000,
+	"Modifiers": {
+		[statusName]: {
+			"Paths": {
+				"_string": "Health/Max"
+			},
+			"Affects": {
+				"_string": "AffectedClass"
+			},
+			"Multiply": factor
+		}
+	}
+},
+{
+	"entity": enemyEntity,
+	"owner": enemy,
+});
+
+let cmpHealth = Engine.QueryInterface(target, IID_Health);
+// Test that the modification is applied.
+TS_ASSERT_EQUALS(cmpHealth.GetMaxHitpoints(), maxHealth * factor);
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(cmpHealth.GetMaxHitpoints(), maxHealth * factor);
+
+// Test that the modification is removed after the appropriate time.
+cmpTimer.OnUpdate({ "turnLength": 4 });
+TS_ASSERT_EQUALS(cmpHealth.GetMaxHitpoints(), maxHealth);
+
+
+// Test addition.
+let addition = 50;
+cmpStatusReceiver.AddStatus(statusName, {
+	"Duration": 5000,
+	"Modifiers": {
+		[statusName]: {
+			"Paths": {
+				"_string": "Health/Max"
+			},
+			"Affects": {
+				"_string": "AffectedClass"
+			},
+			"Add": addition
+		}
+	}
+},
+{
+	"entity": enemyEntity,
+	"owner": enemy,
+});
+
+// Test that the addition modification is applied.
+TS_ASSERT_EQUALS(cmpHealth.GetMaxHitpoints(), maxHealth + addition);
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(cmpHealth.GetMaxHitpoints(), maxHealth + addition);
+
+// Test that the modification is removed after the appropriate time.
+cmpTimer.OnUpdate({ "turnLength": 4 });
+TS_ASSERT_EQUALS(cmpHealth.GetMaxHitpoints(), maxHealth);
+
+
+// Test replacement.
+let newValue = 50;
+cmpStatusReceiver.AddStatus(statusName, {
+	"Duration": 5000,
+	"Modifiers": {
+		[statusName]: {
+			"Paths": {
+				"_string": "Health/Max"
+			},
+			"Affects": {
+				"_string": "AffectedClass"
+			},
+			"Replace": newValue
+		}
+	}
+},
+{
+	"entity": enemyEntity,
+	"owner": enemy,
+});
+
+// Test that the replacement modification is applied.
+TS_ASSERT_EQUALS(cmpHealth.GetMaxHitpoints(), newValue);
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(cmpHealth.GetMaxHitpoints(), newValue);
+
+// Test that the modification is removed after the appropriate time.
+cmpTimer.OnUpdate({ "turnLength": 4 });
+TS_ASSERT_EQUALS(cmpHealth.GetMaxHitpoints(), maxHealth);
+
+
+function applyStatus(stackability)
+{
 	cmpStatusReceiver.ApplyStatus({
-		"Burn": {
-			"Duration": 20000,
-			"Interval": 10000,
-			"Damage": {
-				"Burn": 10
-			}
-		},
-		"Poison": {
+		"randomName": {
 			"Duration": 3000,
 			"Interval": 1000,
 			"Damage": {
-				"Poison": 1
-			}
+				"randomName": 1
+			},
+			"Stackability": stackability
 		}
 	});
-
-	cmpTimer.OnUpdate({ "turnLength": 1 });
-	TS_ASSERT_EQUALS(dealtDamage, 12); // 1 sec
-
-	cmpTimer.OnUpdate({ "turnLength": 1 });
-	TS_ASSERT_EQUALS(dealtDamage, 13); // 2 sec
-
-	cmpTimer.OnUpdate({ "turnLength": 1 });
-	TS_ASSERT_EQUALS(dealtDamage, 13); // 3 sec
-
-	cmpTimer.OnUpdate({ "turnLength": 7 });
-	TS_ASSERT_EQUALS(dealtDamage, 23); // 10 sec
 }
 
-testMultipleEffects();
 
-function testRemoveStatus()
-{
-	setup();
-	let statusName = "Poison";
-	let Attacking = {
-		"HandleAttackEffects": (_, attackData) => { dealtDamage += attackData.Damage[statusName]; }
-	};
-	Engine.RegisterGlobal("Attacking", Attacking);
+// Test different stackabilities.
+// First ignoring, i.e. next time the same status is added it is just ignored.
+reset();
+applyStatus("Ignore");
 
-	// damage scheduled: 0, 10, 20 sec
-	cmpStatusReceiver.AddStatus(statusName, {
-		"Duration": 20000,
-		"Interval": 10000,
-		"Damage": {
-			[statusName]: 1
-		}
-	},
-	{
-		"entity": enemyEntity,
-		"owner": enemy,
-	});
+// 1 Second: 1 update and lateness.
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 2);
 
-	cmpTimer.OnUpdate({ "turnLength": 1 });
-	TS_ASSERT_EQUALS(dealtDamage, 1); // 1 sec
+applyStatus("Ignore");
 
-	cmpStatusReceiver.RemoveStatus(statusName);
+// 2 Seconds.
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 3);
 
-	cmpTimer.OnUpdate({ "turnLength": 10 });
-	TS_ASSERT_EQUALS(dealtDamage, 1); // 11 sec
-}
+// 3 Seconds: finished in previous turn.
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 3);
 
-testRemoveStatus();
+
+// Extending, i.e. next time the same status is applied the times are added.
+reset();
+applyStatus("Extend");
+
+// 1 Second: 1 update and lateness.
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 2);
+
+// Add 3 seconds.
+applyStatus("Extend");
+
+// 2 Seconds.
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 3);
+
+// 3 Seconds: extended in previous turn.
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 4);
+
+// 4 Seconds.
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 5);
+
+// 5 Seconds.
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 6);
+
+// 6 Seconds: finished in previous turn (3 + 3).
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 6);
+
+
+// Replacing, i.e. the next applied status replaces the former.
+reset();
+applyStatus("Replace");
+
+// 1 Second: 1 update and lateness.
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 2);
+
+applyStatus("Replace");
+
+// 2 Seconds: 1 update and lateness of the new status.
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 4);
+
+// 3 Seconds.
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 5);
+
+// 4 Seconds: finished in previous turn.
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 5);
+
+
+// Stacking, every new status just applies besides the rest.
+reset();
+applyStatus("Stack");
+
+// 1 Second: 1 update and lateness.
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 2);
+
+applyStatus("Stack");
+
+// 2 Seconds: 1 damage from the previous status + 2 from the new (1 turn + lateness).
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 5);
+
+// 3 Seconds: first one finished in the previous turn, +1 from the new.
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 6);
+
+// 4 Seconds: new status finished in previous turn.
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT_EQUALS(dealtDamage, 6);
