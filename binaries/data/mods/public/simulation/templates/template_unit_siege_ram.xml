@@ -10,7 +10,8 @@
       <MaxRange>6.5</MaxRange>
       <PrepareTime>750</PrepareTime>
       <RepeatTime>1500</RepeatTime>
-      <PreferredClasses datatype="tokens">Gates Structure</PreferredClasses>
+      <PreferredClasses datatype="tokens">Gates Defensive Structure</PreferredClasses>
+      <RestrictedClasses datatype="tokens">Field Organic</RestrictedClasses>
     </Melee>
   </Attack>
   <Capturable disable=""/>
@@ -35,6 +36,7 @@
   <Identity>
     <VisibleClasses datatype="tokens">Melee Ram</VisibleClasses>
     <GenericName>Battering Ram</GenericName>
+    <Tooltip>Cannot attack Fields or Organic Units.</Tooltip>
   </Identity>
   <Sound>
     <SoundGroups>
@@ -46,7 +48,7 @@
     </SoundGroups>
   </Sound>
   <UnitMotion>
-    <WalkSpeed op="mul">0.9</WalkSpeed>
+    <WalkSpeed op="mul">0.8</WalkSpeed>
   </UnitMotion>
   <Vision>
     <Range>80</Range>

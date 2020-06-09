@@ -7,6 +7,7 @@
 # Christian Bellagamba <christiandes00@gmail.com>, 2018
 # Daniele Laudani <danielelaudani@protonmail.com>, 2018
 # Davide Redana <davide.redana@gmail.com>, 2018
+# Davide Zuliani <davide.x.zuliani@gmail.com>, 2020
 # SecondCloud500 <eddieven2000@gmail.com>, 2017
 # 68050bdc14f6091ae4ebbf99db4aa65a, 2017
 # Fabio Pedretti <pedretti.fabio@gmail.com>, 2017
@@ -18,7 +19,7 @@
 # Luca Errani <luca.errani1@gmail.com>, 2018
 # Martin Falanga <iblaim97@hotmail.it>, 2017
 # mattia_b89 <mattia.b89@gmail.com>, 2018
-# Me Lazzi, 2016-2017
+# c5f3de31f3a2c4018f39966fa6563659_5b320d0, 2016-2017
 # Michele Marongiu <michelemarongiu@gmail.com>, 2017,2019
 # Nicolas Benetton <inm.bene96@gmail.com>, 2018
 # Paolo Gianpaolo <gpuse91@gmail.com>, 2017
@@ -28,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-04-13 07:18+0000\n"
-"PO-Revision-Date: 2020-04-14 08:46+0000\n"
-"Last-Translator: Andrea D'Annibale <andreadannibale87@gmail.com>\n"
+"PO-Revision-Date: 2020-06-07 14:59+0000\n"
+"Last-Translator: Davide Zuliani <davide.x.zuliani@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +44,7 @@ msgstr "Addestramento Rigoroso"
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned in barracks."
-msgstr "Le unità guadagnano salute quando presidiano una caserma."
+msgstr "Le unità guadagnano esperienza quando presidiano una caserma."
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
@@ -67,7 +68,7 @@ msgstr "Fervore Religioso"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr "+20% danno da mischia e a distanza per le unità militari"
+msgstr "+20% danno da mischia e a distanza per i soldati"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -76,7 +77,7 @@ msgstr "Patriottismo"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr "+15% velocità di raccolta per gli operai."
+msgstr "+15% velocità di raccolta per i lavoratori."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -84,7 +85,7 @@ msgstr "Presenza Esortativa"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers +10% melee and ranged attack damage."
-msgstr "+20% danno da mischia e a distanza per le unità militari"
+msgstr "+10% danno da mischia e a distanza per le unità militari"
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
@@ -116,7 +117,7 @@ msgstr "Fedeltà"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
-msgstr "Le strutture recuperano i punti cattura il 50% più in fretta."
+msgstr "Le strutture presidiate recuperano i punti cattura il 50% più in fretta."
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
@@ -132,7 +133,7 @@ msgstr "Bonus Agricoltura"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "Workers +25% grain gather rate."
-msgstr "+15% velocità di raccolta per gli operai."
+msgstr "+25% velocità di raccolta per i lavoratori."
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"

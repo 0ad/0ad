@@ -5,6 +5,7 @@
 # Translators:
 # Carlos Moreira, 2015
 # Danny Reese <danny@angolateam.org>, 2016
+# José Fernandes <rapazamistoso@gmail.com>, 2020
 # Luis Neves <luisjneves@gmail.com>, 2015
 # Mário Branco <branco.ana8@gmail.com>, 2017
 # mogafi, 2014
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-22 07:09+0000\n"
-"PO-Revision-Date: 2020-05-22 19:22+0000\n"
-"Last-Translator: Ricardo Amendoeira <ricardo.amendoeira@ist.utl.pt>\n"
+"PO-Revision-Date: 2020-06-07 18:54+0000\n"
+"Last-Translator: José Fernandes <rapazamistoso@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,7 @@ msgstr ""
 
 #: simulation/templates/template_formation.xml:25
 msgid "Requires at least 2 Soldiers or Siege engines."
-msgstr ""
+msgstr "Requer pelo menos 2 Soldados ou Máquinas de cerco."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -38,11 +39,11 @@ msgstr "Peixe"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
-msgstr ""
+msgstr "Apanha peixe para obter comida."
 
 #: simulation/templates/template_gaia_flora.xml:6
 msgid "Chop trees for wood."
-msgstr ""
+msgstr "Corta árvores para obter madeira"
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
@@ -54,7 +55,7 @@ msgstr "Arbusto"
 #: simulation/templates/template_gaia_flora_bush_berry.xml:4
 #: simulation/templates/template_gaia_flora_tree_fruit.xml:8
 msgid "Pick fruit for food."
-msgstr ""
+msgstr "Apanha fruta para obter comida"
 
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
@@ -70,7 +71,7 @@ msgstr "Mina de Metal"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
 msgid "Mine ore for metal."
-msgstr ""
+msgstr "Minera minérios para extrair metal"
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
@@ -78,7 +79,7 @@ msgstr "Pedreira"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Quarry rock for stone."
-msgstr ""
+msgstr "Extrair rochas para extrair pedra."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
@@ -86,7 +87,7 @@ msgstr "Ruínas"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr ""
+msgstr "Demole ruínas para extrair pedra."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
@@ -94,7 +95,7 @@ msgstr "Tesouro"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr ""
+msgstr "Recolhe tesouros para obter recursos."
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
@@ -187,11 +188,11 @@ msgstr "Canis lupus"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:4
 msgid "Black Bear"
-msgstr ""
+msgstr "Urso Negro"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:5
 msgid "Ursus americanus"
-msgstr ""
+msgstr "Urso negro (Baribal)"
 
 #: simulation/templates/gaia/fauna_bear_brown.xml:4
 msgid "Brown Bear"
@@ -203,11 +204,11 @@ msgstr "Ursus arctos"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:4
 msgid "Polar Bear"
-msgstr ""
+msgstr "Urso Polar"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:5
 msgid "Ursus maritimus"
-msgstr ""
+msgstr "Urso Polar (Urso Branco)"
 
 #: simulation/templates/gaia/fauna_boar.xml:19
 msgid "Wild Boar"
@@ -375,11 +376,11 @@ msgstr "Capra aegagrus hircus"
 
 #: simulation/templates/gaia/fauna_hippopotamus.xml:25
 msgid "Hippopotamus"
-msgstr ""
+msgstr "Hipopótamo"
 
 #: simulation/templates/gaia/fauna_hippopotamus.xml:26
 msgid "Hippopotamus amphibius"
-msgstr ""
+msgstr "Hipopótamo do Nilo"
 
 #: simulation/templates/gaia/fauna_horse.xml:8
 msgid "Horse"
@@ -643,7 +644,7 @@ msgstr "Árvore de folha caduca morta"
 #: simulation/templates/gaia/flora_tree_elm.xml:4
 #: simulation/templates/gaia/flora_tree_elm_dead.xml:4
 msgid "Elm Tree"
-msgstr ""
+msgstr "Ulmeiro"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
@@ -669,7 +670,7 @@ msgstr "Rebento de pinheiro"
 
 #: simulation/templates/gaia/flora_tree_juniper_prickly.xml:4
 msgid "Prickly Juniper"
-msgstr ""
+msgstr "Cedro de Espanha"
 
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
@@ -698,7 +699,7 @@ msgstr "Azinheira"
 #: simulation/templates/gaia/flora_tree_oak_hungarian.xml:4
 #: simulation/templates/gaia/flora_tree_oak_hungarian_autumn.xml:4
 msgid "Hungarian Oak"
-msgstr ""
+msgstr "Carvalho Húngaro"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak Tree"
@@ -741,7 +742,7 @@ msgstr "Pinheiro-larício"
 #: simulation/templates/gaia/flora_tree_pine_maritime.xml:4
 #: simulation/templates/gaia/flora_tree_pine_maritime_short.xml:4
 msgid "Maritime Pine"
-msgstr ""
+msgstr "Pinheiro Bravo"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
@@ -749,7 +750,7 @@ msgstr "Choupo"
 
 #: simulation/templates/gaia/flora_tree_poplar_dead.xml:4
 msgid "Dead Poplar"
-msgstr ""
+msgstr "Choupo Morto"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 msgid "Black Poplar Tree"
@@ -757,11 +758,11 @@ msgstr "Choupo Negro"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy_autumn.xml:4
 msgid "Poplar"
-msgstr ""
+msgstr "Choupo"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy_dead.xml:4
 msgid "Dead Black Poplar Tree"
-msgstr ""
+msgstr "Choupo Negro Morto"
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -1044,7 +1045,7 @@ msgstr "Espião"
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
-msgstr ""
+msgstr "Apenas Infantaria Corpo-a-corpo, requer pelo menos 16."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1056,7 +1057,7 @@ msgstr "Linha de Batalha"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
-msgstr ""
+msgstr "Requer pelo menos 4 Soldados ou Máquinas de cerco."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1072,7 +1073,7 @@ msgstr "Coluna aberta"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr ""
+msgstr "Requer pelo menos 8 Soldados ou Máquinas de cerco."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1092,7 +1093,7 @@ msgstr "Nenhuma"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Infantry Hoplites only, requires at least 10."
-msgstr ""
+msgstr "Apenas Infantaria de Hoplitas, requer pelo menos 10."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1104,7 +1105,7 @@ msgstr "Espalhados"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Ranged Soldiers only, requires at least 2."
-msgstr ""
+msgstr "Apenas Soldados à distância, requer pelo menos 2."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -1112,7 +1113,7 @@ msgstr "Escaramuça"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr ""
+msgstr "Apenas Infantaria de Piqueiros, requer pelo menos 16."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1124,7 +1125,7 @@ msgstr "Tartaruga"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Cavalry only, requires at least 6."
-msgstr ""
+msgstr "Apenas Cavalaria, requer pelo menos 6."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
@@ -1142,7 +1143,7 @@ msgstr "Esmagamento"
 #: simulation/data/template_helpers/damage_types/crush.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr ""
+msgstr "Dano causado por completa força, como por um bastão ou por esmagamento"
 
 #: simulation/data/template_helpers/damage_types/hack.jsonname
 msgctxt "damage type"
@@ -1154,7 +1155,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
-msgstr ""
+msgstr "Dano causado por objetos afiados cortanto ou talhando, como com uma espada ou machado."
 
 #: simulation/data/template_helpers/damage_types/pierce.jsonname
 msgctxt "damage type"
@@ -1164,4 +1165,4 @@ msgstr "Perfuração"
 #: simulation/data/template_helpers/damage_types/pierce.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr ""
+msgstr "Dano causado por objeto de ponta afiada, como setas ou lanças."

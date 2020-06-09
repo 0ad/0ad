@@ -170,7 +170,15 @@ bool CVideoMode::InitSDL()
 
 	// preferred video mode = current desktop settings
 	// (command line params may override these)
-	gfx::GetVideoMode(&m_PreferredW, &m_PreferredH, &m_PreferredBPP, &m_PreferredFreq);
+	// TODO: handle multi-screen and HiDPI properly.
+	SDL_DisplayMode mode;
+	if (SDL_GetDesktopDisplayMode(0, &mode) == 0)
+	{
+		m_PreferredW = mode.w;
+		m_PreferredH = mode.h;
+		m_PreferredBPP = SDL_BITSPERPIXEL(mode.format);
+		m_PreferredFreq = mode.refresh_rate;
+	}
 
 	int w = m_ConfigW;
 	int h = m_ConfigH;

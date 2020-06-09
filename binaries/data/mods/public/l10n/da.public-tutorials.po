@@ -5,14 +5,14 @@
 # Translators:
 # Mads Dyrmann <madsdyrmannlarsen@gmail.com>, 2017
 # Wachsmuth <emilistrupkarlsmose@gmail.com>, 2017
-# David Lemser <davidlemser@icloud.com>, 2017
+# J Wehage, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2019-03-22 09:45+0100\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: David Lemser <davidlemser@icloud.com>, 2017\n"
+"Last-Translator: J Wehage, 2020\n"
 "Language-Team: Danish (https://www.transifex.com/wildfire-games/teams/17418/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:3
 msgid "Welcome to the 0 A.D. tutorial."
-msgstr "Velkommen til 0 A.D. tutorialen."
+msgstr "Velkommen til den interaktive vejledning i 0 A.D."
 
 #: maps/tutorials/Introductory_Tutorial.js:6
 msgid ""
@@ -30,6 +30,9 @@ msgid ""
 "that female citizen gather food. Female citizens gather vegetables faster "
 "than other units."
 msgstr ""
+"Venstreklik på en kvindelig borger og højreklik dernæst på en bærbusk, for "
+"at få den kvindelige borger til at indsamle mad. Kvindelige borgere "
+"indsamler hurtigere grøntsager end andre enheder."
 
 #: maps/tutorials/Introductory_Tutorial.js:15
 msgid ""
@@ -37,6 +40,9 @@ msgid ""
 "begin gathering Wood. Citizen Soldiers gather Wood faster than female "
 "citizens."
 msgstr ""
+"Vælg borgersoldaten og højreklik på et træ tæt på borgercentret, for at "
+"påbegynde indsamling af træ. Borgersoldater indsamler træ hurtigere end "
+"kvindelige borgere."
 
 #: maps/tutorials/Introductory_Tutorial.js:26
 #, javascript-format
@@ -44,6 +50,9 @@ msgid ""
 "Select the Civic Center building and hold %(hotkey)s while clicking on the "
 "Hoplite icon once to begin training a batch of Hoplites."
 msgstr ""
+"Vælg borgercenterbygningen og hold samtidig %(hotkey)s nede, mens du klikker"
+" på hoplit-ikonet én gang, for at påbegynde uddannelse af en gruppe "
+"hoplitter."
 
 #: maps/tutorials/Introductory_Tutorial.js:37
 #: maps/tutorials/Introductory_Tutorial.js:79
@@ -56,13 +65,15 @@ msgstr ""
 
 #: maps/tutorials/Introductory_Tutorial.js:38
 msgid "Click on the HOPLITE icon."
-msgstr ""
+msgstr "Klik på Hoplit-ikonet."
 
 #: maps/tutorials/Introductory_Tutorial.js:46
 msgid ""
 "Select the two idle female citizens and build a house nearby by selecting "
 "the house icon. Place the house by left-clicking on a piece of land."
 msgstr ""
+"Vælg de to ubeskæftigede kvindelige borgere, og byg et hus i nærheden ved at"
+" klikke på hus-ikonet. Placer huset ved at venstreklikke på et stykke jord."
 
 #: maps/tutorials/Introductory_Tutorial.js:54
 msgid ""
@@ -70,6 +81,9 @@ msgid ""
 "build a storehouse beside some nearby trees. They will begin to gather Wood "
 "when it's constructed."
 msgstr ""
+"Vælg de nyuddannede hoplitter når de er klar, og sæt dem til at bygge et "
+"depot ved nogle nærliggende træer. De vil begynde at indsamle træ, når "
+"depotet er opført."
 
 #: maps/tutorials/Introductory_Tutorial.js:64
 #, javascript-format
@@ -77,20 +91,24 @@ msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
 msgstr ""
+"Uddan en gruppe spydkastere ved at holde %(hotkey)s nede og klikke på "
+"Spydkaster-ikonet i borgercentret."
 
 #: maps/tutorials/Introductory_Tutorial.js:80
 msgid "Click on the Skirmisher icon."
-msgstr ""
+msgstr "Klik på Spydkaster-ikonet."
 
 #: maps/tutorials/Introductory_Tutorial.js:88
 msgid ""
 "Build a farmstead in an open space beside the Civic Center using any idle "
 "builders."
 msgstr ""
+"Byg en bondegård i et åbent område ved borgercentret ved hjælp af vilkårlige"
+" ubeskæftigede byggere."
 
 #: maps/tutorials/Introductory_Tutorial.js:100
 msgid "Let's wait for the farmstead to be built."
-msgstr ""
+msgstr "Lad os vente til bondegården er opført."
 
 #: maps/tutorials/Introductory_Tutorial.js:112
 msgid ""
@@ -98,6 +116,9 @@ msgid ""
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a field beside the farmstead."
 msgstr ""
+"Når bondegården er opført vil dens byggere automatisk begynde at indsamle "
+"nærliggende mad, hvis det er til stede. Vælg byggerne og få dem i stedet til"
+" at opføre en mark ved siden af bondegården."
 
 #: maps/tutorials/Introductory_Tutorial.js:136
 msgid ""
@@ -105,6 +126,9 @@ msgid ""
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
 msgstr ""
+"Markens byggere vil nu automatisk begynde at indsamle mad fra marken. Brug "
+"nu den nydannede gruppe af spydkastere til at opføre endnu et hus i "
+"nærheden."
 
 #: maps/tutorials/Introductory_Tutorial.js:144
 msgid ""
@@ -112,16 +136,21 @@ msgid ""
 "with it selected right-click on a tree nearby. Units from the Civic Center "
 "will now automatically gather Wood."
 msgstr ""
+"Uddan en gruppe hoplitter ved borgercentret. Højreklik på et træ i nærheden,"
+" mens borgercentret er markeret. Enheder fra borgercentret vil nu automatisk"
+" indsamle træ."
 
 #: maps/tutorials/Introductory_Tutorial.js:162
 msgid "Click on the Hoplite icon."
-msgstr ""
+msgstr "Klik på Hoplit-ikonet."
 
 #: maps/tutorials/Introductory_Tutorial.js:176
 msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a Wood icon."
 msgstr ""
+"Vælg borgercentret, bevæg markøren over træet, og højreklik når du ser "
+"markøren ændre sig til et Træ-ikon."
 
 #: maps/tutorials/Introductory_Tutorial.js:185
 msgid ""
@@ -129,6 +158,9 @@ msgid ""
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
 msgstr ""
+"Påbyd de ubeskæftigede spydkastere at opføre en forpost i nordøst, ved "
+"udkanten af dit territorie. Dette vil være den femte opførte struktur fra "
+"Landsby-fasen, hvilket vil lade dig fortsætte til By-fasen."
 
 #: maps/tutorials/Introductory_Tutorial.js:193
 msgid ""
@@ -136,12 +168,17 @@ msgid ""
 "II icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"Vælg borgercentret igen og fortsæt til By-fasen ved at klikke på II-ikonet "
+"(forposten skal først opføres). Dette vil give mulighed for at bygninger fra"
+" By-fasen kan opføres."
 
 #: maps/tutorials/Introductory_Tutorial.js:205
 msgid ""
 "While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
+"Mens du venter på at avancere til den næste fase, kan du tildele "
+"ubeskæftiget arbejdskraft til at indsamle ressourcer, du er i bekneb for."
 
 #: maps/tutorials/Introductory_Tutorial.js:220
 msgid ""

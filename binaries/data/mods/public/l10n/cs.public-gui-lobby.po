@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Cyril Chudáček <cyr.chudac@centrum.cz>, 2020
+# David Nováček, 2020
 # Jakub Jelen <jakuje@gmail.com>, 2017
 # LiberteCzech <liberte.czech@gmail.com>, 2015
 # fri, 2014-2018
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-22 08:08+0000\n"
-"PO-Revision-Date: 2020-02-13 12:59+0000\n"
-"Last-Translator: Cyril Chudáček <cyr.chudac@centrum.cz>\n"
+"PO-Revision-Date: 2020-06-06 17:29+0000\n"
+"Last-Translator: David Nováček\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,7 +91,7 @@ msgstr "Hráči: %(current)s/%(total)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:121
 msgid "Victory Conditions:"
-msgstr "Kdy nastane Vítězství:"
+msgstr "Podmínky vítězství:"
 
 #. Translation: Comma used to concatenate victory conditions
 #: gui/lobby/LobbyPage/GameDetails.js:124
@@ -663,7 +664,7 @@ msgstr "Poslat"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):14
 msgid "Enter playername:"
-msgstr ""
+msgstr "zadejte hráčské jméno:"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):20
 msgid "View Profile"

@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -100,7 +100,8 @@ private:
 
 	SDL_Window* m_Window;
 
-	// Initial desktop settings
+	// Initial desktop settings.
+	// Frequency is in Hz, and BPP means bits per pixels (not bytes per pixels).
 	int m_PreferredW;
 	int m_PreferredH;
 	int m_PreferredBPP;

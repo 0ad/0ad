@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -143,34 +143,3 @@ std::wstring wgfx_DriverInfo()
 		AppendDriverVersionsFromKnownFiles(versionList);
 	return versionList;
 }
-
-
-//-----------------------------------------------------------------------------
-// direct implementations of some gfx functions
-
-namespace gfx {
-
-Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
-{
-	DEVMODE dm = { sizeof(dm) };
-
-	if(!EnumDisplaySettings(0, ENUM_CURRENT_SETTINGS, &dm))
-		WARN_RETURN(ERR::FAIL);
-
-	// EnumDisplaySettings is documented to set the values of the following:
-	const DWORD expectedFlags = DM_PELSWIDTH|DM_PELSHEIGHT|DM_BITSPERPEL|DM_DISPLAYFREQUENCY|DM_DISPLAYFLAGS;
-	ENSURE((dm.dmFields & expectedFlags) == expectedFlags);
-
-	if(xres)
-		*xres = (int)dm.dmPelsWidth;
-	if(yres)
-		*yres = (int)dm.dmPelsHeight;
-	if(bpp)
-		*bpp  = (int)dm.dmBitsPerPel;
-	if(freq)
-		*freq = (int)dm.dmDisplayFrequency;
-
-	return INFO::OK;
-}
-
-}	// namespace gfx
