@@ -32,7 +32,10 @@ const StatusEffectsSchema =
 						"<element name='Icon' a:help='Icon for the status effect.'><text/></element>" +
 					"</optional>" +
 					"<optional>" +
-						"<element name='StatusTooltip'><text/></element>" +
+						"<element name='ApplierTooltip' a:help='The tooltip shown on the entity giving the effect, e.g. the attacker.'><text/></element>" +
+					"</optional>" +
+					"<optional>" +
+						"<element name='ReceiverTooltip' a:help='The tooltip shown on the affected entity while the effect occurs.'><text/></element>" +
 					"</optional>" +
 					"<optional>" +
 						"<element name='Duration' a:help='The duration of the status while the effect occurs.'><ref name='nonNegativeDecimal'/></element>" +
@@ -50,6 +53,14 @@ const StatusEffectsSchema =
 					"<optional>" +
 						ModificationsSchema +
 					"</optional>" +
+					"<element name='Stackability' a:help='Defines how this status effect stacks, i.e. how subsequent status effects of the same kind are handled. Choices are: “Ignore”, which means a new one is ignored, “Extend”, which means the duration of a new one is added to the already active status effect, “Replace”, which means the currently active status effect is removed and the new one is put in place and “Stack”, which means that the status effect can be added multiple times.'>" +
+						"<choice>" +
+							"<value>Ignore</value>" +
+							"<value>Extend</value>" +
+							"<value>Replace</value>" +
+							"<value>Stack</value>" +
+						"</choice>" +
+					"</element>" +
 				"</interleave>" +
 			"</element>" +
 		"</oneOrMore>" +
@@ -108,12 +119,53 @@ Attacking.prototype.GetAttackEffectsData = function(valueModifRoot, template, en
 		ret.Capture = ApplyValueModificationsToEntity(valueModifRoot + "/Capture", +(template.Capture || 0), entity);
 
 	if (template.ApplyStatus)
-		ret.ApplyStatus = template.ApplyStatus;
+		ret.ApplyStatus = this.GetStatusEffectsData(valueModifRoot, template.ApplyStatus, entity);
 
 	if (template.Bonuses)
 		ret.Bonuses = template.Bonuses;
 
 	return ret;
+};
+
+Attacking.prototype.GetStatusEffectsData = function(valueModifRoot, template, entity)
+{
+	let result = {};
+	for (let effect in template)
+	{
+		let statusTemplate = template[effect];
+		result[effect] = {
+			"StatusName": statusTemplate.StatusName,
+			"ApplierTooltip": statusTemplate.ApplierTooltip,
+			"ReceiverTooltip": statusTemplate.ReceiverTooltip,
+			"Duration": ApplyValueModificationsToEntity(valueModifRoot + "/ApplyStatus/" + effect + "/Duration", +(statusTemplate.Duration || 0), entity),
+			"Interval": ApplyValueModificationsToEntity(valueModifRoot + "/ApplyStatus/" + effect + "/Interval", +(statusTemplate.Interval || 0), entity),
+			"Stackability": statusTemplate.Stackability
+		};
+		Object.assign(result[effect], this.GetAttackEffectsData(valueModifRoot + "/ApplyStatus" + effect, statusTemplate, entity));
+		if (statusTemplate.Modifiers)
+			result[effect].Modifiers = this.GetStatusEffectsModifications(valueModifRoot, statusTemplate.Modifiers, entity, effect);
+	}
+	return result;
+};
+
+Attacking.prototype.GetStatusEffectsModifications = function(valueModifRoot, template, entity, effect)
+{
+	let modifiers = {};
+	for (let modifier in template)
+	{
+		let modifierTemplate = template[modifier];
+		modifiers[modifier] = {
+			"Paths": modifierTemplate.Paths,
+			"Affects": modifierTemplate.Affects
+		};
+		if (modifierTemplate.Add !== undefined)
+			modifiers[modifier].Add = ApplyValueModificationsToEntity(valueModifRoot + "/ApplyStatus/" + effect + "/Modifiers/" + modifier + "/Add", +modifierTemplate.Add, entity);
+		if (modifierTemplate.Multiply !== undefined)
+			modifiers[modifier].Multiply = ApplyValueModificationsToEntity(valueModifRoot + "/ApplyStatus/" + effect + "/Modifiers/" + modifier + "/Multiply", +modifierTemplate.Multiply, entity);
+		if (modifierTemplate.Replace !== undefined)
+			modifiers[modifier].Replace = modifierTemplate.Replace;
+	}
+	return modifiers;
 };
 
 Attacking.prototype.GetTotalAttackEffects = function(effectData, effectType, cmpResistance)

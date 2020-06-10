@@ -333,7 +333,7 @@ function getAttackTooltip(template)
 			for (let status in attackTypeTemplate.ApplyStatus)
 			{
 				let status_template = g_StatusEffectsMetadata.augment(status, attackTypeTemplate.ApplyStatus[status]);
-				statusEffectsDetails.push("\n    " + getStatusEffectsTooltip(status_template));
+				statusEffectsDetails.push("\n    " + getStatusEffectsTooltip(status_template, true));
 			}
 		statusEffectsDetails = statusEffectsDetails.join("");
 
@@ -380,48 +380,66 @@ function getSplashDamageTooltip(template)
 	return tooltips.join("\n");
 }
 
-function getStatusEffectsTooltip(template)
+/**
+ * @param applier - if true, return the tooltip for the Applier. If false, Receiver is returned.
+ */
+function getStatusEffectsTooltip(template, applier)
 {
 	let tooltipAttributes = [];
-	let tooltipString = "";
-	if (template.StatusTooltip)
-	{
-		tooltipAttributes.push("%(tooltip)s");
-		tooltipString = translate(template.StatusTooltip);
-	}
+	if (applier && template.ApplierTooltip)
+		tooltipAttributes.push(translate(template.ApplierTooltip));
+	else if (!applier && template.ReceiverTooltip)
+		tooltipAttributes.push(translate(template.ReceiverTooltip));
 
-	let attackEffectsString = "";
 	if (template.Damage || template.Capture)
-	{
-		tooltipAttributes.push("%(effects)s");
-		attackEffectsString = attackEffectsDetails(template);
-	}
+		tooltipAttributes.push(attackEffectsDetails(template));
 
-	let intervalString = "";
 	if (template.Interval)
-	{
-		tooltipAttributes.push("%(rate)s");
-		intervalString = sprintf(translate("%(interval)s"), {
-			"interval": attackRateDetails(+template.Interval)
-		});
-	}
+		tooltipAttributes.push(attackRateDetails(+template.Interval));
 
-	let durationString = "";
 	if (template.Duration)
-	{
-		tooltipAttributes.push("%(duration)s");
-		durationString = sprintf(translate("%(durName)s: %(duration)s"), {
-			"durName": headerFont(translate("Duration")),
-			"duration": getSecondsString((template._timeElapsed ? +template.Duration - template._timeElapsed : +template.Duration) / 1000),
-		});
-	}
+		tooltipAttributes.push(getStatusEffectDurationTooltip(template));
 
-	return sprintf(translate("%(statusName)s: " + tooltipAttributes.join(translate(commaFont(", ")))), {
+	if (applier)
+		return sprintf(translate("%(statusName)s: %(statusInfo)s %(stackability)s"), {
+			"statusName": headerFont(translateWithContext("status effect", template.StatusName)),
+			"statusInfo": tooltipAttributes.join(commaFont(translate(", "))),
+			"stackability": getStatusEffectStackabilityTooltip(template)
+		});
+	return sprintf(translate("%(statusName)s: %(statusInfo)s"), {
 		"statusName": headerFont(translateWithContext("status effect", template.StatusName)),
-		"tooltip": tooltipString,
-		"effects": attackEffectsString,
-		"rate": intervalString,
-		"duration": durationString
+		"statusInfo": tooltipAttributes.join(commaFont(translate(", ")))
+	});
+}
+
+function getStatusEffectDurationTooltip(template)
+{
+	if (!template.Duration)
+		return "";
+
+	return sprintf(translate("%(durName)s: %(duration)s"), {
+		"durName": headerFont(translate("Duration")),
+		"duration": getSecondsString((template._timeElapsed ?
+			+template.Duration - template._timeElapsed :
+			+template.Duration) / 1000)
+	});
+}
+
+function getStatusEffectStackabilityTooltip(template)
+{
+	if (!template.Stackability || template.Stackability == "Ignore")
+		return "";
+
+	let stackabilityString = "";
+	if (template.Stackability === "Extend")
+		stackabilityString = translateWithContext("status effect stackability", "(extends)");
+	else if (template.Stackability === "Replace")
+		stackabilityString = translateWithContext("status effect stackability", "(replaces)");
+	else if (template.Stackability === "Stack")
+		stackabilityString = translateWithContext("status effect stackability", "(stacks)");
+
+	return sprintf(translate("%(stackability)s"), {
+		"stackability": stackabilityString
 	});
 }
 

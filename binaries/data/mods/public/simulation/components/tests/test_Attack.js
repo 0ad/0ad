@@ -108,7 +108,31 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 			"Capture": 8,
 			"MaxRange": 10,
 		},
-		"Slaughter": {}
+		"Slaughter": {},
+		"StatusEffect": {
+			"ApplyStatus": {
+				"StatusInternalName": {
+					"StatusName": "StatusShownName",
+					"ApplierTooltip": "ApplierTooltip",
+					"ReceiverTooltip": "ReceiverTooltip",
+					"Duration": 5000,
+					"Stackability": "Stacks",
+					"Modifiers": {
+						"SE": {
+							"Paths": {
+								"_string": "Health/Max"
+							},
+							"Affects": {
+								"_string": "Unit"
+							},
+							"Add": 10
+						}
+					}
+				}
+			},
+			"MinRange": "10",
+			"MaxRange": "80"
+		}
 	});
 
 	let defender = ++entityID;
@@ -171,6 +195,30 @@ attackComponentTest(undefined, true, (attacker, cmpAttack, defender) => {
 			"BonusCav": {
 				"Classes": "Cavalry",
 				"Multiplier": 3
+			}
+		}
+	});
+
+	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackEffectsData("StatusEffect"), {
+		"ApplyStatus": {
+			"StatusInternalName": {
+				"StatusName": "StatusShownName",
+				"ApplierTooltip": "ApplierTooltip",
+				"ReceiverTooltip": "ReceiverTooltip",
+				"Duration": 5000,
+				"Interval": 0,
+				"Stackability": "Stacks",
+				"Modifiers": {
+					"SE": {
+						"Paths": {
+							"_string": "Health/Max"
+						},
+						"Affects": {
+							"_string": "Unit"
+						},
+						"Add": 10
+					}
+				}
 			}
 		}
 	});

@@ -103,12 +103,14 @@ function displaySingle(entState)
 			let effect = entState.statusEffects[effectName];
 			statusIcons[i].hidden = false;
 			statusIcons[i].sprite = "stretched:session/icons/status_effects/" + (effect.Icon || "default") + ".png";
-			statusIcons[i].tooltip = getStatusEffectsTooltip(effect);
+			statusIcons[i].tooltip = getStatusEffectsTooltip(effect, false);
 			let size = statusIcons[i].size;
 			size.top = i * 18;
 			size.bottom = i * 18 + 16;
 			statusIcons[i].size = size;
-			i++;
+
+			if (++i >= statusIcons.length)
+				break;
 		}
 		for (; i < statusIcons.length; ++i)
 			statusIcons[i].hidden = true;
