@@ -1140,12 +1140,7 @@ PETRA.AttackPlan.prototype.checkTargetObstruction = function(gameState, target, 
 		}
 	}
 
-	if (blocker && blocker.hasClass("StoneWall"))
-	{
-		this.isBlocked = true;
-		return blocker;
-	}
-	else if (blocker)
+	if (blocker)
 	{
 		this.isBlocked = true;
 		return blocker;
