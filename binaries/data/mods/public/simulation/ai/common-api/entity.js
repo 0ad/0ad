@@ -744,6 +744,34 @@ m.Entity = m.Class({
 		return false;
 	},
 
+	/**
+	 * Derived from Attack.js' similary named function.
+	 * @return {boolean} - Whether an entity can attack a given target.
+	 */
+	"canAttackTarget": function(target, allowCapture)
+	{
+		let attackTypes = this.get("Attack");
+		if (!attackTypes)
+			return false;
+
+		let canCapture = allowCapture && this.canCapture(target);
+		let armourStrengths = target.get("Armour");
+		if (!armourStrengths)
+			return canCapture;
+
+		for (let type in attackTypes)
+		{
+			if (type == "Capture" ? !canCapture : target.isInvulnerable())
+				continue;
+
+			let restrictedClasses = this.get("Attack/" + type + "/RestrictedClasses/_string");
+			if (!restrictedClasses || !MatchesClassList(target.classes(), restrictedClasses))
+				return true;
+		};
+
+		return false;
+	},
+
 	"move": function(x, z, queued = false) {
 		Engine.PostCommand(PlayerID, { "type": "walk", "entities": [this.id()], "x": x, "z": z, "queued": queued });
 		return this;

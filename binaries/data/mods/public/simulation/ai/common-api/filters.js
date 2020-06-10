@@ -82,6 +82,11 @@ m.Filters = {
 		"dynamicProperties": []
 	}),
 
+	"byCanAttackTarget": target => ({
+		"func": ent => ent.canAttackTarget(target),
+		"dynamicProperties": []
+	}),
+
 	"isGarrisoned": () => ({
 		"func": ent => ent.position() === undefined,
 		"dynamicProperties": []

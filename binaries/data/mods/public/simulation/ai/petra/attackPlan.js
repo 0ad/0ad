@@ -1327,11 +1327,15 @@ PETRA.AttackPlan.prototype.update = function(gameState, events)
 				{
 					if (PETRA.isSiegeUnit(ent))	// needed as mauryan elephants are not filtered out
 						continue;
-					ent.attack(attacker.id(), PETRA.allowCapture(gameState, ent, attacker));
+
+					let allowCapture = PETRA.allowCapture(gameState, ent, attacker);
+					if (!ent.canAttackTarget(attacker, allowCapture))
+						continue;
+					ent.attack(attacker.id(), allowCapture);
 					ent.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
 				}
 				// And if this attacker is a non-ranged siege unit and our unit also, attack it
-				if (PETRA.isSiegeUnit(attacker) && attacker.hasClass("Melee") && ourUnit.hasClass("Melee"))
+				if (PETRA.isSiegeUnit(attacker) && attacker.hasClass("Melee") && ourUnit.hasClass("Melee") && ourUnit.canAttackTarget(attacker, PETRA.allowCapture(gameState, ourUnit, attacker)))
 				{
 					ourUnit.attack(attacker.id(), PETRA.allowCapture(gameState, ourUnit, attacker));
 					ourUnit.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
@@ -1350,7 +1354,10 @@ PETRA.AttackPlan.prototype.update = function(gameState, events)
 					let collec = this.unitCollection.filter(API3.Filters.byClass("Melee")).filterNearest(ourUnit.position(), 5);
 					for (let ent of collec.values())
 					{
-						ent.attack(attacker.id(), PETRA.allowCapture(gameState, ent, attacker));
+						let allowCapture = PETRA.allowCapture(gameState, ent, attacker);
+						if (!ent.canAttackTarget(attacker, allowCapture))
+							continue;
+						ent.attack(attacker.id(), allowCapture);
 						ent.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
 					}
 				}
@@ -1360,7 +1367,8 @@ PETRA.AttackPlan.prototype.update = function(gameState, events)
 					let collec = this.unitCollection.filterNearest(ourUnit.position(), 2);
 					for (let ent of collec.values())
 					{
-						if (PETRA.isSiegeUnit(ent))
+						let allowCapture = PETRA.allowCapture(gameState, ent, attacker);
+						if (PETRA.isSiegeUnit(ent) || !ent.canAttackTarget(attacker, allowCapture))
 							continue;
 						let orderData = ent.unitAIOrderData();
 						if (orderData && orderData.length && orderData[0].target)
@@ -1371,7 +1379,7 @@ PETRA.AttackPlan.prototype.update = function(gameState, events)
 							if (target && !target.hasClass("Structure") && !target.hasClass("Support"))
 								continue;
 						}
-						ent.attack(attacker.id(), PETRA.allowCapture(gameState, ent, attacker));
+						ent.attack(attacker.id(), allowCapture);
 						ent.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
 					}
 					// Then the unit under attack: abandon its target (if it was a structure or a support) and retaliate
@@ -1388,8 +1396,12 @@ PETRA.AttackPlan.prototype.update = function(gameState, events)
 								continue;
 						}
 					}
-					ourUnit.attack(attacker.id(), PETRA.allowCapture(gameState, ourUnit, attacker));
-					ourUnit.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
+					let allowCapture = PETRA.allowCapture(gameState, ourUnit, attacker);
+					if (ourUnit.canAttackTarget(attacker, allowCapture))
+					{
+						ourUnit.attack(attacker.id(), allowCapture);
+						ourUnit.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
+					}
 				}
 			}
 		}
@@ -1540,7 +1552,7 @@ PETRA.AttackPlan.prototype.update = function(gameState, events)
 			if (siegeUnit)
 			{
 				let mStruct = enemyStructures.filter(enemy => {
-					if (!enemy.position() || enemy.hasClass("StoneWall") && !ent.canAttackClass("StoneWall"))
+					if (!enemy.position() || !ent.canAttackTarget(enemy, PETRA.allowCapture(gameState, ent, enemy)))
 						return false;
 					if (API3.SquareVectorDistance(enemy.position(), ent.position()) > range)
 						return false;
@@ -1592,7 +1604,7 @@ PETRA.AttackPlan.prototype.update = function(gameState, events)
 			{
 				let nearby = !ent.hasClass("Cavalry") && !ent.hasClass("Ranged");
 				let mUnit = enemyUnits.filter(enemy => {
-					if (!enemy.position())
+					if (!enemy.position() || !ent.canAttackTarget(enemy, PETRA.allowCapture(gameState, ent, enemy)))
 						return false;
 					if (enemy.hasClass("Animal"))
 						return false;
@@ -1634,7 +1646,9 @@ PETRA.AttackPlan.prototype.update = function(gameState, events)
 					let rand = randIntExclusive(0, mUnit.length * 0.1);
 					ent.attack(mUnit[rand].id(), PETRA.allowCapture(gameState, ent, mUnit[rand]));
 				}
-				else if (this.isBlocked)
+				// This may prove dangerous as we may be blocked by something we
+				// cannot attack. See similar behaviour at #5741.
+				else if (this.isBlocked && ent.canAttackTarget(this.target, false))
 					ent.attack(this.target.id(), false);
 				else if (API3.SquareVectorDistance(this.targetPos, ent.position()) > 2500)
 				{
@@ -1655,7 +1669,7 @@ PETRA.AttackPlan.prototype.update = function(gameState, events)
 					let mStruct = enemyStructures.filter(enemy => {
 						if (this.isBlocked && enemy.id() != this.target.id())
 							return false;
-						if (!enemy.position() || enemy.hasClass("StoneWall") && !ent.canAttackClass("StoneWall"))
+						if (!enemy.position() || !ent.canAttackTarget(enemy, PETRA.allowCapture(gameState, ent, enemy)))
 							return false;
 						if (API3.SquareVectorDistance(enemy.position(), ent.position()) > range)
 							return false;
@@ -1696,13 +1710,16 @@ PETRA.AttackPlan.prototype.update = function(gameState, events)
 							if (unit.unitAIState().split(".")[1] != "COMBAT" || !unit.unitAIOrderData().length ||
 								!unit.unitAIOrderData()[0].target)
 								return;
-							if (!gameState.getEntityById(unit.unitAIOrderData()[0].target))
+							let target = gameState.getEntityById(unit.unitAIOrderData()[0].target);
+							if (!target)
 								return;
 							let dist = API3.SquareVectorDistance(unit.position(), ent.position());
 							if (dist > distmin)
 								return;
 							distmin = dist;
-							attacker = gameState.getEntityById(unit.unitAIOrderData()[0].target);
+							if (!ent.canAttackTarget(target, PETRA.allowCapture(gameState, ent, target)))
+								return;
+							attacker = target;
 						});
 						if (attacker)
 							ent.attack(attacker.id(), PETRA.allowCapture(gameState, ent, attacker));
@@ -1756,9 +1773,11 @@ PETRA.AttackPlan.prototype.UpdateTransporting = function(gameState, events)
 		{
 			if (ent.getMetadata(PlayerID, "transport") !== undefined)
 				continue;
-			if (!ent.isIdle())
+
+			let allowCapture = PETRA.allowCapture(gameState, ent, attacker);
+			if (!ent.isIdle() || !ent.canAttackTarget(attacker, allowCapture))
 				continue;
-			ent.attack(attacker.id(), PETRA.allowCapture(gameState, ent, attacker));
+			ent.attack(attacker.id(), allowCapture);
 		}
 		break;
 	}
