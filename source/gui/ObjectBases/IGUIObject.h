@@ -58,10 +58,14 @@ protected: \
 	* won't be able to call the derived-only functions.
 	* Perhaps TODO: I think the virtual call could be CRPT-ed out.
 	*/ \
-	virtual void SetPrivateData() { \
+	virtual void SetPrivateData(JSContext* cx) { \
 		ENSURE(m_JSObject.initialized()); \
+        JS::RootedObject ptrObj(cx, JS_NewObject(cx, &IGUIObject::store_class)); \
+        JS_SetPrivate(ptrObj, (void*) this); \
+        JS::RootedValue ptrVal(cx); \
+        ptrVal.setObject(*ptrObj); \
 		/** I'm not entirely sure this static cast is needed but it seems conceptually correct, and safer */ \
-JS_SetPrivate(m_JSObject.get(), static_cast<JSI_GUI::JSFactoryType::cppType*>(this)); \
+        js::SetProxyReservedSlot(m_JSObject.get(), 0, ptrVal); \
 	};
 
 #define GUI_OBJECT(obj, xmlName_, JSFactoryType) \
@@ -85,7 +89,7 @@ public:
 	virtual ~IGUIObject();
 
 	/**
-	 * This function checks if the mouse is hovering the
+	 * This function checks if the mouse is hovering tce
 	 * rectangle that the base setting "size" makes.
 	 * Although it is virtual, so one could derive
 	 * an object from CButton, which changes only this
@@ -499,6 +503,10 @@ private:
 
 	void TraceMember(JSTracer* trc);
 
+public:
+
+    void trace(JSTrace* trc);
+
 // Variables
 protected:
 	static const CStr EventNameMouseEnter;
@@ -549,6 +557,9 @@ protected:
 	float m_AspectRatio;
 	CStrW m_Tooltip;
 	CStr m_TooltipStyle;
+
+    protected:
+    static const JSClass store_class;
 };
 
 #endif // INCLUDED_IGUIOBJECT

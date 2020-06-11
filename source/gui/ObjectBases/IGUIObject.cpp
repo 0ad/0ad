@@ -483,7 +483,7 @@ JSObject* IGUIObject::GetJSObject()
 	if (!m_JSObject.initialized())
 	{
 		m_JSObject.init(cx, m_pGUI.ConstructJSObject(GetObjectType()));
-		SetPrivateData();
+		SetPrivateData(cx);
 	}
 
 	return m_JSObject.get();
@@ -550,6 +550,13 @@ void IGUIObject::TraceMember(JSTracer* trc)
 	for (std::pair<const CStr, JS::Heap<JSObject*>>& handler : m_ScriptHandlers)
 		JS::TraceEdge(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
 }
+
+void IGUIObject::trace(JSTracer* trc){
+	for (std::pair<const CStr, JS::Heap<JSObject*>>& handler : m_ScriptHandlers)
+		JS::TraceEdge(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
+}
+
+const JSClass IGUIObject::store_class = {"StoreClass", JSCLASS_HAS_PRIVATE, nullptr};
 
 // Instantiate templated functions:
 // These functions avoid copies by working with a reference and move semantics.
