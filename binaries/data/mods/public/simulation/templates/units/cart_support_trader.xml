@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support_trader">
-  <Footprint>
-    <Circle radius="2.0"/>
-    <Height>7.5</Height>
+  <Footprint replace="">
+    <Square width="3" depth="6"/>
+    <Height>6</Height>
   </Footprint>
   <Identity>
     <Civ>cart</Civ>
@@ -16,6 +16,9 @@
       <death>actor/fauna/death/death_camel.xml</death>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <HeightOffset>7</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>units/carthaginians/trader.xml</Actor>
   </VisualActor>

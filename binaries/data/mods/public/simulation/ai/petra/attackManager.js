@@ -180,6 +180,9 @@ PETRA.AttackManager.prototype.assignBombers = function(gameState)
 		let access = PETRA.getLandAccess(gameState, ent);
 		for (let struct of gameState.getEnemyStructures().values())
 		{
+			if (!ent.canAttackTarget(struct, PETRA.allowCapture(gameState, ent, struct)))
+				continue;
+
 			let structPos = struct.position();
 			let x;
 			let z;

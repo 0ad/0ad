@@ -464,6 +464,14 @@ PETRA.DefenseManager.prototype.assignDefenders = function(gameState)
 			{
 				if (access && armiesNeeding[a].access != access)
 					continue;
+
+				// Do not assign defender if it cannot attack at least part of the attacking army.
+				if (!armiesNeeding[a].army.foeEntities.some(eEnt => {
+					let eEntID = gameState.getEntityById(eEnt);
+					return ent.canAttackTarget(eEntID, PETRA.allowCapture(gameState, ent, eEntID));
+					}))
+					continue;
+
 				let dist = API3.SquareVectorDistance(ent.position(), armiesNeeding[a].army.foePosition);
 				if (aMin !== undefined && dist > distMin)
 					continue;
@@ -705,7 +713,7 @@ PETRA.DefenseManager.prototype.checkEvents = function(gameState, events)
 						if (allAttacked[entId])
 							continue;
 						let ent = gameState.getEntityById(entId);
-						if (!ent || !ent.position())
+						if (!ent || !ent.position() || !ent.canAttackTarget(attacker, PETRA.allowCapture(gameState, ent, attacker)))
 							continue;
 						// Check that the unit is still attacking the structure (since the last played turn).
 						let state = ent.unitAIState();
@@ -728,7 +736,9 @@ PETRA.DefenseManager.prototype.checkEvents = function(gameState, events)
 					}
 				}
 			}
-			target.attack(attacker.id(), PETRA.allowCapture(gameState, target, attacker));
+			let allowCapture = PETRA.allowCapture(gameState, target, attacker);
+			if (target.canAttackTarget(attacker, allowCapture))
+				target.attack(attacker.id(), allowCapture);
 		}
 	}
 };
