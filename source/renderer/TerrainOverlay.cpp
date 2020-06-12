@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -163,9 +163,9 @@ void TerrainOverlay::RenderTile(const CColor& color, bool draw_hidden)
 
 void TerrainOverlay::RenderTile(const CColor& color, bool draw_hidden, ssize_t i, ssize_t j)
 {
-	// TODO: if this is unpleasantly slow, make it much more efficient
-	// (e.g. buffering data and making a single draw call? or at least
-	// far fewer calls than it makes now)
+	// TODO: unnecessary computation calls has been removed but we should use
+	// a vertex buffer or a vertex shader with a texture.
+	// Not sure if it's possible on old OpenGL.
 
 	if (draw_hidden)
 	{
@@ -184,28 +184,32 @@ void TerrainOverlay::RenderTile(const CColor& color, bool draw_hidden, ssize_t i
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-	CVector3D pos;
+	CVector3D pos[2][2];
+	for (int di = 0; di < 2; ++di)
+		for (int dj = 0; dj < 2; ++dj)
+			m_Terrain->CalcPosition(i + di, j + dj, pos[di][dj]);
+
 	glBegin(GL_TRIANGLES);
 		glColor4fv(color.FloatArray());
 		if (m_Terrain->GetTriangulationDir(i, j))
 		{
-			m_Terrain->CalcPosition(i,   j,   pos); glVertex3fv(pos.GetFloatArray());
-			m_Terrain->CalcPosition(i+1, j,   pos); glVertex3fv(pos.GetFloatArray());
-			m_Terrain->CalcPosition(i,   j+1, pos); glVertex3fv(pos.GetFloatArray());
+			glVertex3fv(pos[0][0].GetFloatArray());
+			glVertex3fv(pos[1][0].GetFloatArray());
+			glVertex3fv(pos[0][1].GetFloatArray());
 
-			m_Terrain->CalcPosition(i+1, j,   pos); glVertex3fv(pos.GetFloatArray());
-			m_Terrain->CalcPosition(i+1, j+1, pos); glVertex3fv(pos.GetFloatArray());
-			m_Terrain->CalcPosition(i,   j+1, pos); glVertex3fv(pos.GetFloatArray());
+			glVertex3fv(pos[1][0].GetFloatArray());
+			glVertex3fv(pos[1][1].GetFloatArray());
+			glVertex3fv(pos[0][1].GetFloatArray());
 		}
 		else
 		{
-			m_Terrain->CalcPosition(i,   j,   pos); glVertex3fv(pos.GetFloatArray());
-			m_Terrain->CalcPosition(i+1, j,   pos); glVertex3fv(pos.GetFloatArray());
-			m_Terrain->CalcPosition(i+1, j+1, pos); glVertex3fv(pos.GetFloatArray());
+			glVertex3fv(pos[0][0].GetFloatArray());
+			glVertex3fv(pos[1][0].GetFloatArray());
+			glVertex3fv(pos[1][1].GetFloatArray());
 
-			m_Terrain->CalcPosition(i+1, j+1, pos); glVertex3fv(pos.GetFloatArray());
-			m_Terrain->CalcPosition(i,   j+1, pos); glVertex3fv(pos.GetFloatArray());
-			m_Terrain->CalcPosition(i,   j,   pos); glVertex3fv(pos.GetFloatArray());
+			glVertex3fv(pos[1][1].GetFloatArray());
+			glVertex3fv(pos[0][1].GetFloatArray());
+			glVertex3fv(pos[0][0].GetFloatArray());
 		}
 	glEnd();
 
