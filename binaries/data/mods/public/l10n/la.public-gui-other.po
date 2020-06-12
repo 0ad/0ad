@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Ernestus Severus, 2020
 # 69d173e75acdb881322c6bc441927bb5_d3edb26 <e16774467f1134e7a739153be9d0b63c_402962>, 2016
 # Nescio, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-18 07:13+0000\n"
-"PO-Revision-Date: 2020-06-08 03:52+0000\n"
+"PO-Revision-Date: 2020-06-11 01:04+0000\n"
 "Last-Translator: Ernestus Severus\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
@@ -21,12 +22,12 @@ msgstr ""
 #: gui/civinfo/civinfo.js:20
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: Ad Arborem Aedificiorum vertere."
 
 #: gui/civinfo/civinfo.js:21
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: Prospectum Civitatis claudere."
 
 #. Translation: insert an itemization symbol for each entry.
 #: gui/civinfo/civinfo.js:85
@@ -37,53 +38,53 @@ msgstr "• %(string)s"
 #: gui/civinfo/civinfo.js:113
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr ""
+msgstr "%(civilization)s Artes Ludendi"
 
 #: gui/civinfo/civinfo.js:116
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bonum Civitatis"
+msgstr[1] "Bona Civitatis"
 
 #: gui/civinfo/civinfo.js:121
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bonum Foederis"
+msgstr[1] "Bona Foederis"
 
 #: gui/civinfo/civinfo.js:128
 msgid "Special Technologies"
-msgstr ""
+msgstr "Artes Peculiares"
 
 #: gui/civinfo/civinfo.js:134
 msgid "Special Structure"
 msgid_plural "Special Structures"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Aedificium Peculiare"
+msgstr[1] "Aedificia Peculiaria"
 
 #: gui/civinfo/civinfo.js:141 gui/summary/layout.js:67
 msgid "Heroes"
-msgstr ""
+msgstr "Heroes"
 
 #: gui/civinfo/civinfo.js:151
 #, javascript-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "Historia de %(civilization)s"
 
 #: gui/common/MapCache.js:52
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Fortuitus"
 
 #: gui/common/MapCache.js:59
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Tabula fortuite electa"
 
 #. dennis-ignore: *
 #: gui/common/OverlayCounterFPS.js:28
 #, javascript-format
 msgid "FPS: %(fps)4s"
-msgstr ""
+msgstr "FPS: %(fps)4s"
 
 #: gui/common/color.js:178
 #, javascript-format
@@ -98,7 +99,7 @@ msgstr ""
 #: gui/common/color.js:195
 msgctxt "hotkey"
 msgid "Tab"
-msgstr ""
+msgstr "Tab"
 
 #: gui/common/functions_global_object.js:53
 msgid "Loading Aborted"
@@ -106,7 +107,7 @@ msgstr ""
 
 #: gui/common/functions_utility.js:42
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: gui/common/functions_utility.js:228
 #, javascript-format
@@ -185,26 +186,26 @@ msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/gamedescription.js:130
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "Civitas Incognita"
 
 #: gui/common/gamedescription.js:137
 msgctxt "playerstate"
 msgid "defeated"
-msgstr ""
+msgstr "Victus"
 
 #: gui/common/gamedescription.js:138
 msgctxt "playerstate"
 msgid "won"
-msgstr ""
+msgstr "Victor"
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
-msgstr ""
+msgstr "Sine Foedere"
 
 #: gui/common/gamedescription.js:160
 #, javascript-format
 msgid "Team %(team)s"
-msgstr ""
+msgstr "Manus %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
@@ -218,13 +219,13 @@ msgstr "%(team)s:\n%(playerDescriptions)s"
 #: gui/common/gamedescription.js:171
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Spectator"
+msgstr[1] "Spectatores"
 
 #: gui/common/gamedescription.js:188
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr ""
+msgstr "Ludum Infinitum"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
@@ -286,7 +287,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:263
 msgid "Diplomacy"
-msgstr ""
+msgstr "Legatio"
 
 #: gui/common/gamedescription.js:264
 msgid "Players can make alliances and declare war on allies."
@@ -385,7 +386,7 @@ msgstr ""
 #: gui/common/gamedescription.js:358
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Pro Lusore"
 
 #: gui/common/gamedescription.js:359
 #, javascript-format
@@ -394,38 +395,38 @@ msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:370
 msgid "Population Limit"
-msgstr ""
+msgstr "Terminus Civium"
 
 #: gui/common/gamedescription.js:374
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Pro Lusore"
 
 #: gui/common/gamedescription.js:381
 msgid "Treasures"
-msgstr ""
+msgstr "Thesaurus"
 
 #: gui/common/gamedescription.js:383
 msgctxt "treasures"
 msgid "Disabled"
-msgstr ""
+msgstr "Debilitatus"
 
 #: gui/common/gamedescription.js:384
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr ""
+msgstr "Ut tabula difinitur."
 
 #: gui/common/gamedescription.js:388
 msgid "Revealed Map"
-msgstr ""
+msgstr "Tabula Aperta"
 
 #: gui/common/gamedescription.js:393
 msgid "Explored Map"
-msgstr ""
+msgstr "Tabula Explorata"
 
 #: gui/common/gamedescription.js:398
 msgid "Cheats"
-msgstr ""
+msgstr "Fraudes"
 
 #: gui/common/gamedescription.js:402 gui/common/tooltips.js:136
 #: gui/common/tooltips.js:169 gui/common/tooltips.js:211
@@ -605,12 +606,12 @@ msgstr ""
 #: gui/common/settings.js:146
 msgctxt "aiBehavior"
 msgid "Random"
-msgstr ""
+msgstr "Fortuitus"
 
 #: gui/common/settings.js:151
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "Libratus"
 
 #: gui/common/settings.js:155
 msgctxt "aiBehavior"
@@ -625,7 +626,7 @@ msgstr "Aggrediens"
 #: gui/common/settings.js:172
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Velitari"
 
 #: gui/common/settings.js:173
 msgid ""
@@ -636,7 +637,7 @@ msgstr ""
 #: gui/common/settings.js:181
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Fortuitus"
 
 #: gui/common/settings.js:182
 msgid ""
@@ -670,7 +671,7 @@ msgstr ""
 #: gui/common/settings.js:337
 msgctxt "AI behavior"
 msgid "Default"
-msgstr ""
+msgstr "Pristinus"
 
 #: gui/common/settings.js:349
 msgctxt "map type"
@@ -680,7 +681,7 @@ msgstr ""
 #: gui/common/settings.js:361
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Pristinus"
 
 #: gui/common/settings.js:373
 msgctxt "population capacity"
@@ -712,12 +713,12 @@ msgstr[1] "%(time)s %(second)s"
 #: gui/common/tooltips.js:801
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Punctum Temporis"
+msgstr[1] "Puncta Temporis"
 
 #: gui/common/tooltips.js:137 gui/common/tooltips.js:148
 msgid "Health:"
-msgstr ""
+msgstr "Valetudo:"
 
 #: gui/common/tooltips.js:147
 #, javascript-format
@@ -731,7 +732,7 @@ msgstr "%(percentage)s%%"
 
 #: gui/common/tooltips.js:170
 msgid "Armor:"
-msgstr ""
+msgstr "Arma:"
 
 #: gui/common/tooltips.js:173
 #, javascript-format
@@ -745,15 +746,15 @@ msgstr "(%(armorPercentage)s)"
 
 #: gui/common/tooltips.js:192
 msgid "Garrison to fire arrows"
-msgstr ""
+msgstr "Praesidium colloca ut sagittas coniciant."
 
 #: gui/common/tooltips.js:195
 msgid "Interval:"
-msgstr ""
+msgstr "Intervallum:"
 
 #: gui/common/tooltips.js:199 gui/common/tooltips.js:799
 msgid "Rate:"
-msgstr ""
+msgstr "Frequentia:"
 
 #: gui/common/tooltips.js:200
 #, javascript-format
@@ -765,8 +766,8 @@ msgstr[1] "%(projectileCount)s %(projectileName)s"
 #: gui/common/tooltips.js:202
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sagitta"
+msgstr[1] "Sagittae"
 
 #: gui/common/tooltips.js:205
 #, javascript-format
@@ -779,7 +780,7 @@ msgstr "%(projectileString)s / %(attackRateString)s"
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
 "%(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s ad %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 (+2) meters
 #: gui/common/tooltips.js:227
@@ -791,7 +792,7 @@ msgstr "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 #: gui/common/tooltips.js:231
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s ad %(maxRange)s %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 meters
 #: gui/common/tooltips.js:233
@@ -801,7 +802,7 @@ msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
 #: gui/common/tooltips.js:243 gui/common/tooltips.js:794
 msgid "Range:"
-msgstr ""
+msgstr "Iactus"
 
 #: gui/common/tooltips.js:246
 #, javascript-format
@@ -812,14 +813,14 @@ msgstr "+%(number)s"
 #. meters"
 #: gui/common/tooltips.js:250
 msgid "meters"
-msgstr ""
+msgstr "metra"
 
 #: gui/common/tooltips.js:251 gui/common/tooltips.js:796
 #: gui/common/tooltips.js:826
 msgid "meter"
 msgid_plural "meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "metrum"
+msgstr[1] "metra"
 
 #: gui/common/tooltips.js:261
 #, javascript-format
@@ -834,17 +835,17 @@ msgstr "%(amount)s %(name)s"
 #: gui/common/tooltips.js:274
 msgctxt "damage type"
 msgid "Capture"
-msgstr ""
+msgstr "Captus"
 
 #: gui/common/tooltips.js:283
 #, javascript-format
 msgid "gives %(name)s"
-msgstr ""
+msgstr "dat %(name)s"
 
 #: gui/common/tooltips.js:313
 #, javascript-format
 msgid "%(attackType)s Attack"
-msgstr ""
+msgstr "%(attackType)s Detrimentum"
 
 #: gui/common/tooltips.js:331
 #, javascript-format
@@ -854,7 +855,7 @@ msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s"
 #: gui/common/tooltips.js:354
 #, javascript-format
 msgid "%(splashShape)s Splash Damage"
-msgstr ""
+msgstr "%(splashShape)s Detrimentum Aspersum"
 
 #: gui/common/tooltips.js:357
 #, javascript-format
@@ -864,7 +865,7 @@ msgstr "%(label)s: %(effects)s"
 #: gui/common/tooltips.js:363
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
-msgstr ""
+msgstr "Socios Laedere: %(enabled)s"
 
 #: gui/common/tooltips.js:364 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
@@ -894,7 +895,7 @@ msgstr "%(durName)s: %(duration)s"
 
 #: gui/common/tooltips.js:405
 msgid "Duration"
-msgstr ""
+msgstr "Intervallum temporis"
 
 #: gui/common/tooltips.js:410
 #, javascript-format
@@ -908,7 +909,7 @@ msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:426
 msgid "Garrison Limit"
-msgstr ""
+msgstr "Terminus Praesidionis"
 
 #: gui/common/tooltips.js:433
 #, javascript-format
@@ -917,11 +918,11 @@ msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
 #: gui/common/tooltips.js:434 gui/common/tooltips.js:788
 msgid "Heal:"
-msgstr ""
+msgstr "Sanare:"
 
 #: gui/common/tooltips.js:436
 msgid "Health"
-msgstr ""
+msgstr "Valetudo"
 
 #: gui/common/tooltips.js:460 gui/common/tooltips.js:465
 #: gui/common/tooltips.js:470
@@ -931,55 +932,55 @@ msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:461
 msgid "Projectile Limit"
-msgstr ""
+msgstr "Terminus Telorum"
 
 #: gui/common/tooltips.js:466
 msgctxt "projectiles"
 msgid "Default"
-msgstr ""
+msgstr "Primus"
 
 #: gui/common/tooltips.js:471
 msgctxt "projectiles"
 msgid "Per Unit"
-msgstr ""
+msgstr "Pro Defensore"
 
 #: gui/common/tooltips.js:480
 msgid "Number of repairers:"
-msgstr ""
+msgstr "Numerus Reparatorum:"
 
 #: gui/common/tooltips.js:486
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Adde operarium ut opus %(second)s puncto temporis adceleres. "
+msgstr[1] "Adde operarium ut opus %(second)s punctis temporis adceleres."
 
 #: gui/common/tooltips.js:493
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Adde operarium ut opus %(second)s punctum temporis finiatur."
+msgstr[1] "Adde operarium ut opus %(second)s puncta temporis finiatur."
 
 #: gui/common/tooltips.js:502
 msgid "Number of builders:"
-msgstr ""
+msgstr "Numerus Aedificatorum:"
 
 #: gui/common/tooltips.js:508
 #, javascript-format
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Adde operarium ut opus %(second)s puncto temporis adceleres."
+msgstr[1] "Adde operarium ut opus %(second)s punctis temporis adceleres."
 
 #: gui/common/tooltips.js:515
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Adde operarium ut opus  %(second)s punctum temporis finiatur."
+msgstr[1] "Adde operarium ut opus  %(second)s puncta temporis finiatur."
 
 #: gui/common/tooltips.js:550 gui/common/tooltips.js:741
 #, javascript-format
@@ -988,7 +989,7 @@ msgstr "%(component)s %(cost)s"
 
 #: gui/common/tooltips.js:586
 msgid "Gather Rates:"
-msgstr ""
+msgstr "Velocitas Colligendi:"
 
 #: gui/common/tooltips.js:589 gui/common/tooltips.js:611
 #, javascript-format
@@ -997,7 +998,7 @@ msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/common/tooltips.js:607
 msgid "Resource Trickle:"
-msgstr ""
+msgstr "Lucrum Adsiduum"
 
 #: gui/common/tooltips.js:608
 #, javascript-format
@@ -1009,17 +1010,17 @@ msgstr "%(resources)s / %(time)s"
 #: gui/common/tooltips.js:660
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(minimum)s ad %(resourceIcon)s %(maximum)s"
 
 #: gui/common/tooltips.js:689
 #, javascript-format
 msgid "Walls:  %(costs)s"
-msgstr ""
+msgstr "Muri:  %(costs)s"
 
 #: gui/common/tooltips.js:690
 #, javascript-format
 msgid "Towers:  %(costs)s"
-msgstr ""
+msgstr "Turres:  %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
@@ -1030,12 +1031,12 @@ msgstr "%(label)s %(costs)s"
 
 #: gui/common/tooltips.js:699
 msgid "Cost:"
-msgstr ""
+msgstr "Impensa:"
 
 #: gui/common/tooltips.js:712
 #, javascript-format
 msgid "Requires %(technology)s"
-msgstr ""
+msgstr "Eget %(technology)s"
 
 #: gui/common/tooltips.js:724
 #, javascript-format
@@ -1044,11 +1045,11 @@ msgstr "%(label)s %(populationBonus)s"
 
 #: gui/common/tooltips.js:725
 msgid "Population Bonus:"
-msgstr ""
+msgstr "Bonum Numeri Civium"
 
 #: gui/common/tooltips.js:746
 msgid "Insufficient resources:"
-msgstr ""
+msgstr "Defectio Opum:"
 
 #: gui/common/tooltips.js:762
 #, javascript-format
@@ -1057,7 +1058,7 @@ msgstr "%(label)s %(speeds)s"
 
 #: gui/common/tooltips.js:763
 msgid "Speed:"
-msgstr ""
+msgstr "Velocitas:"
 
 #: gui/common/tooltips.js:765 gui/common/tooltips.js:770
 #, javascript-format
@@ -1066,11 +1067,11 @@ msgstr "%(speed)s %(movementType)s"
 
 #: gui/common/tooltips.js:767
 msgid "Walk"
-msgstr ""
+msgstr "Ambulare"
 
 #: gui/common/tooltips.js:772
 msgid "Run"
-msgstr ""
+msgstr "Currere"
 
 #: gui/common/tooltips.js:787 gui/common/tooltips.js:793
 #: gui/common/tooltips.js:798 gui/common/tooltips.js:823
@@ -1085,8 +1086,8 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 #: gui/common/tooltips.js:791
 msgid "HP"
 msgid_plural "HP"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "HP"
+msgstr[1] "HP"
 
 #: gui/common/tooltips.js:815
 #, javascript-format
@@ -1101,7 +1102,7 @@ msgstr "%(auraname)s:"
 #: gui/common/tooltips.js:824
 msgctxt "aura"
 msgid "Range:"
-msgstr ""
+msgstr "Iactus"
 
 #: gui/common/tooltips.js:841
 #, javascript-format
@@ -1117,7 +1118,7 @@ msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
 #: gui/common/tooltips.js:868
 msgid "Classes:"
-msgstr ""
+msgstr "Classes:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
@@ -1219,11 +1220,11 @@ msgstr ""
 
 #: gui/loadgame/SavegamePage.js:42
 msgid "Save Game"
-msgstr "Ludum Salva"
+msgstr "Ludum Reservare"
 
 #: gui/loadgame/SavegamePage.js:42 gui/pregame/MainMenuItems.js:66
 msgid "Load Game"
-msgstr "Ludum Carrica"
+msgstr "Ludum Reducere"
 
 #: gui/loadgame/SavegameWriter.js:16 gui/options/options.xml:(caption):54
 msgid "Save"
@@ -1240,31 +1241,31 @@ msgstr ""
 #: gui/options/options.js:95
 #, javascript-format
 msgid "Default: %(value)s"
-msgstr ""
+msgstr "Primum: %(value)s"
 
 #: gui/options/options.js:121
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
-msgstr ""
+msgstr "Min: %(min)s, Max: %(max)s"
 
 #: gui/options/options.js:123
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
-msgstr ""
+msgstr "Min: %(min)s"
 
 #: gui/options/options.js:125
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
-msgstr ""
+msgstr "Max: %(max)s"
 
 #: gui/options/options.js:162
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
-msgstr ""
+msgstr "Numerus: %(val)s (min: %(min)s, max: %(max)s)"
 
 #: gui/options/options.js:297
 msgid ""
@@ -1309,7 +1310,7 @@ msgstr ""
 #: gui/pregame/MainMenuItems.js:24 gui/civinfo/civinfo.xml:(caption):123
 #: gui/reference/structree/structree.xml:(caption):19
 msgid "Structure Tree"
-msgstr ""
+msgstr "Arbor Aedificiorum"
 
 #: gui/pregame/MainMenuItems.js:25
 #, javascript-format
@@ -1320,7 +1321,7 @@ msgstr ""
 #: gui/pregame/MainMenuItems.js:36 gui/civinfo/civinfo.xml:(caption):18
 #: gui/reference/structree/structree.xml:(caption):126
 msgid "Civilization Overview"
-msgstr ""
+msgstr "Prospectus Civitatis"
 
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
@@ -1337,7 +1338,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:54
 msgid "Matches"
-msgstr "Ludi"
+msgstr "Certamina"
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Start a new single-player game."
@@ -1345,7 +1346,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Campaigns"
-msgstr "Campaniae"
+msgstr "Stipendia"
 
 #: gui/pregame/MainMenuItems.js:62
 msgid ""
@@ -1367,11 +1368,11 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:88 gui/replaymenu/replay_filters.js:142
 msgid "Multiplayer"
-msgstr "Multilusor"
+msgstr "Multi-lusores"
 
 #: gui/pregame/MainMenuItems.js:89
 msgid "Fight against one or more human players in a multiplayer game."
-msgstr "Contra unum aut plus lusores humanos battue in ludo multilusoris."
+msgstr "Contra unum aut plures lusores humanos certare in ludo multorum-lusorum."
 
 #. Translation: Join a game by specifying the host's IP address.
 #: gui/pregame/MainMenuItems.js:93
@@ -1384,7 +1385,7 @@ msgstr "Ludum existentem multilusoris participat."
 
 #: gui/pregame/MainMenuItems.js:102
 msgid "Host Game"
-msgstr "Ludum Hospita"
+msgstr "Ludum Creare"
 
 #: gui/pregame/MainMenuItems.js:103
 msgid "Host a multiplayer game."
@@ -1407,11 +1408,11 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:138
 msgid "Settings"
-msgstr "Optiones"
+msgstr "Modi"
 
 #: gui/pregame/MainMenuItems.js:139
 msgid "Change game options."
-msgstr ""
+msgstr "Optiones ludi mutare."
 
 #: gui/pregame/MainMenuItems.js:142
 msgid "Options"
@@ -1419,19 +1420,19 @@ msgstr "Optiones"
 
 #: gui/pregame/MainMenuItems.js:143
 msgid "Adjust game settings."
-msgstr ""
+msgstr "Modos ludi mutare."
 
 #: gui/pregame/MainMenuItems.js:152 gui/locale/locale.xml:(caption):14
 msgid "Language"
-msgstr ""
+msgstr "Lingua"
 
 #: gui/pregame/MainMenuItems.js:153
 msgid "Choose the language of the game."
-msgstr ""
+msgstr "Lingua ludi eligere."
 
 #: gui/pregame/MainMenuItems.js:159
 msgid "Mod Selection"
-msgstr ""
+msgstr "Mutatio 'Mod' Eligere"
 
 #: gui/pregame/MainMenuItems.js:160
 msgid "Select and download mods for the game."
@@ -1483,15 +1484,15 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:200
 msgid "Exit"
-msgstr "Exi"
+msgstr "Exire"
 
 #: gui/pregame/MainMenuItems.js:201
 msgid "Exit the game."
-msgstr ""
+msgstr "Ludum linquere."
 
 #: gui/pregame/MainMenuItems.js:205
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr "Certene exire vis 0 A.D.?   "
+msgstr "Visne 0 A.D. certe relinquere?   "
 
 #: gui/pregame/ProjectInformation.js:6
 msgid "WILDFIRE GAMES"
@@ -1499,7 +1500,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXIV"
-msgstr ""
+msgstr "Alpha XXIV"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -1527,7 +1528,7 @@ msgstr "Navigatro interretis tuo 0 A.D. IRC locutorium aperi. (#0ad in webchat.q
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
-msgstr "Problemam Reporta"
+msgstr "Errorem Renuntiare"
 
 #: gui/pregame/ProjectInformation.js:42
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
@@ -1678,59 +1679,59 @@ msgstr "∞"
 #: gui/reference/common/load.js:192
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr ""
+msgstr "%(health_min)s ad %(health_max)s"
 
 #: gui/reference/structree/structree.js:41
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: Ad Prospectum Civitatis vertere."
 
 #: gui/reference/structree/structree.js:42
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: Arborem Aedificiorum claudere."
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
 #: gui/reference/viewer/viewer.js:129
 msgid "Built by:"
-msgstr ""
+msgstr "Aedificatur ab:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit selected.
 #: gui/reference/viewer/viewer.js:142
 msgid "Trained by:"
-msgstr ""
+msgstr "Conscribitur ab:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
 #: gui/reference/viewer/viewer.js:155
 msgid "Researched at:"
-msgstr ""
+msgstr "Inquiritur in:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
 #: gui/reference/viewer/viewer.js:167
 msgid "Builds:"
-msgstr ""
+msgstr "Aedificat:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or structure can research.
 #: gui/reference/viewer/viewer.js:188
 msgid "Researches:"
-msgstr ""
+msgstr "Inquirit:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
 #: gui/reference/viewer/viewer.js:200
 msgid "Trains:"
-msgstr ""
+msgstr "Conscribit:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
 #: gui/reference/viewer/viewer.js:213
 msgid "Upgradable to:"
-msgstr ""
+msgstr "Amplificari potest ad:"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
@@ -1769,27 +1770,27 @@ msgstr ""
 #: gui/replaymenu/replay_filters.js:50
 msgctxt "datetime"
 msgid "Any"
-msgstr ""
+msgstr "Ullus"
 
 #: gui/replaymenu/replay_filters.js:66
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Ullus"
 
 #: gui/replaymenu/replay_filters.js:82
 msgctxt "map name"
 msgid "Any"
-msgstr ""
+msgstr "Ullus"
 
 #: gui/replaymenu/replay_filters.js:98
 msgctxt "population capacity"
 msgid "Any"
-msgstr ""
+msgstr "Ullus"
 
 #: gui/replaymenu/replay_filters.js:117
 msgctxt "duration"
 msgid "Any"
-msgstr ""
+msgstr "Ullus"
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:121
@@ -1797,8 +1798,8 @@ msgstr ""
 msgctxt "duration filter"
 msgid "< %(max)s min"
 msgid_plural "< %(max)s min"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "< %(max)s min"
+msgstr[1] "< %(max)s min"
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:125
@@ -1806,15 +1807,15 @@ msgstr[1] ""
 msgctxt "duration filter"
 msgid "> %(min)s min"
 msgid_plural "> %(min)s min"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "> %(min)s min"
+msgstr[1] "> %(min)s min"
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:128
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
-msgstr ""
+msgstr "%(min)s - %(max)s min"
 
 #: gui/replaymenu/replay_filters.js:142
 msgid "Single-player and multiplayer"
@@ -2217,7 +2218,7 @@ msgstr "Retrorsum"
 #: gui/loadgame/load.xml:(caption):53
 #: gui/replaymenu/replay_menu.xml:(caption):231
 msgid "Delete"
-msgstr ""
+msgstr "Delere"
 
 #: gui/loadgame/load.xml:(caption):63
 msgid "Filter compatible saved games"
@@ -2353,7 +2354,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(heading):89
 msgctxt "replay"
 msgid "Duration"
-msgstr ""
+msgstr "Intervallum temporis"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):238
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
@@ -2685,7 +2686,7 @@ msgstr ""
 #: gui/options/options.json[1].options[4].list[0].label
 #: gui/options/options.json[3].options[5].list[2].label
 msgid "Disabled"
-msgstr ""
+msgstr "Debilitatus"
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid ""
@@ -3056,11 +3057,11 @@ msgstr ""
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
-msgstr ""
+msgstr "Fortuitus"
 
 #: gui/options/options.json[3].options[4].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "Libratus"
 
 #: gui/options/options.json[3].options[4].list[2].label
 msgid "Aggressive"
@@ -3274,15 +3275,15 @@ msgstr ""
 
 #: gui/options/options.json[5].options[13].list[0].label
 msgid "Unordered"
-msgstr ""
+msgstr "Non ordinarius"
 
 #: gui/options/options.json[5].options[13].list[1].label
 msgid "Ascending"
-msgstr ""
+msgstr "Ascendens"
 
 #: gui/options/options.json[5].options[13].list[2].label
 msgid "Descending"
-msgstr ""
+msgstr "Descendens"
 
 #: gui/options/options.json[5].options[13].tooltip
 msgid ""
@@ -3524,7 +3525,7 @@ msgstr ""
 #: simulation/data/resources/wood.jsonsubtypes.ruins
 msgctxt "firstWord"
 msgid "Ruins"
-msgstr ""
+msgstr "Ruinae"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -3532,7 +3533,7 @@ msgstr ""
 #: simulation/data/resources/wood.jsonsubtypes.ruins
 msgctxt "withinSentence"
 msgid "Ruins"
-msgstr ""
+msgstr "Ruinae"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.

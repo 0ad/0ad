@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-06-01 07:09+0000\n"
-"PO-Revision-Date: 2020-06-08 03:54+0000\n"
+"PO-Revision-Date: 2020-06-11 00:33+0000\n"
 "Last-Translator: Ernestus Severus\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: gui/gamesetup/Controls/MapFilters.js:85
 msgid "Default"
-msgstr ""
+msgstr "Pristinus"
 
 #: gui/gamesetup/Controls/MapFilters.js:86
 msgid "All maps except naval and demo maps."
@@ -83,7 +83,7 @@ msgstr ""
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:86
 msgctxt "ai"
 msgid "None"
-msgstr ""
+msgstr "Nemo"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:91
 msgid "AI Player"
@@ -117,7 +117,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:26
 msgctxt "Match settings tab name"
 msgid "Player"
-msgstr ""
+msgstr "Lusor"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:36
 msgctxt "Match settings tab name"
@@ -154,7 +154,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:134
 msgctxt "civilization"
 msgid "Random"
-msgstr ""
+msgstr "Fortuitus"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:140
 msgid "Picks one civilization at random when the game starts."
@@ -171,11 +171,11 @@ msgstr "Lusoris manum selige."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:76
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "Nemo"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
-msgstr ""
+msgstr "Fraudes"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:43
 msgid "Toggle the usability of cheats."
@@ -185,7 +185,7 @@ msgstr ""
 #. explored map settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:54
 msgid "Explored Map"
-msgstr ""
+msgstr "Tabula Explorata"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -241,7 +241,7 @@ msgstr ""
 #. explored map settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:49
 msgid "Revealed Map"
-msgstr ""
+msgstr "Tabula Aperta"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -276,7 +276,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:144
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Fortuitus"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:147
 msgid "Pick a biome at random."
@@ -293,7 +293,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
 msgid "Random"
-msgstr ""
+msgstr "Fortuitus"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
 msgctxt "daytime selection"
@@ -302,7 +302,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:73
 msgid "Game Speed"
-msgstr ""
+msgstr "Velocitas Ludi"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:76
 msgid "Select game speed."
@@ -365,7 +365,7 @@ msgstr "Mappam ludere selige. "
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:152
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Fortuitus"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:155
 msgid "Pick any of the given maps at random."
@@ -406,7 +406,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:88
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Pro Lusore"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:91
 #, javascript-format
@@ -431,7 +431,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:90
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Pro Lusore"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
 msgid "Team Placement"
@@ -444,7 +444,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
 msgctxt "team placement"
 msgid "Random"
-msgstr ""
+msgstr "Fortuitus"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
 msgctxt "team placement"
@@ -727,12 +727,12 @@ msgstr "%(username)s abivit"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientKicked.js:22
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s expulsus est"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientKicked.js:25
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s exclusus est"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientReady.js:28
 #, javascript-format

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-18 07:13+0000\n"
-"PO-Revision-Date: 2020-06-08 03:57+0000\n"
+"PO-Revision-Date: 2020-06-11 00:09+0000\n"
 "Last-Translator: Ernestus Severus\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
@@ -700,70 +700,70 @@ msgstr "Denuntiationes retis 'network'"
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr ""
+msgstr "Da litteras quas emittitas."
 
 #: gui/session/chat/ChatInput.js:37
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr ""
+msgstr "Preme %(hotkey)s ut colloquia publica aperias."
 
 #: gui/session/chat/ChatInput.js:40
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "Preme %(hotkey)s ut colloquia spectatorum aperias."
 
 #: gui/session/chat/ChatInput.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr ""
+msgstr "Preme %(hotkey)s ut colloquia sociorum aperias."
 
 #: gui/session/chat/ChatInput.js:43
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr ""
+msgstr "Preme %(hotkey)s ut colloquium privatum aperias, quod antea electum est."
 
 #. Translation: A player that left the game joins again
 #: gui/session/chat/ChatMessageFormatNetwork.js:23
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr ""
+msgstr "%(player)s ad ludum redire coepit."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:25
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr ""
+msgstr "%(player)s ludum intrare coepit."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:34
 #, javascript-format
 msgid "%(player)s has left the game."
-msgstr ""
+msgstr "%(player)s ludum reliquit."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:46
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s exclusus est"
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:47
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s expulsus est"
 
 #. Translation: A player that left the game joins again
 #: gui/session/chat/ChatMessageFormatNetwork.js:64
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr "%(player)s ad ludum revenit."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:66
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr ""
+msgstr "%(player)s ludum intravit."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:57
 msgid "no-context"
-msgstr ""
+msgstr "sine contextu"
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:61
 #, javascript-format
@@ -793,77 +793,77 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "Pecus tuum ab %(attacker)s oppugnatum est!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "Tu ab %(attacker)s oppugnatus es!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:38
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
-msgstr ""
+msgstr "%(player)s %(amountsBought)s in %(amountsSold)s mutavit."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:70
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr ""
+msgstr "Tu cum %(player)s sociatus es."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:71
 #, javascript-format
 msgid "You are now at war with %(player)s."
-msgstr ""
+msgstr "Bellum inter te et %(player)s ortum est."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:72
 #, javascript-format
 msgid "You are now neutral with %(player)s."
-msgstr ""
+msgstr "Iam tu nec socius nec hostis %(player)s es."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:75
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr ""
+msgstr "%(player)s cum te sociatus est."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:76
 #, javascript-format
 msgid "%(player)s is now at war with you."
-msgstr ""
+msgstr "Bellum inter %(player)s et te ortum est."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:77
 #, javascript-format
 msgid "%(player)s is now neutral with you."
-msgstr ""
+msgstr "Iam %(player)s tibi nec socius nec hostis est."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:80
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr ""
+msgstr "%(player)s cum %(player2)s sociatus est."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr ""
+msgstr "Bellum inter %(player)s et %(player2)s ortum est."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:82
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr ""
+msgstr "Iam %(player)s et %(player2)s nec socii nec hostes sunt."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:98
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr ""
+msgstr "%(player)s ad %(phaseName)sprogredi incipit."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:100
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr ""
+msgstr "%(phaseName)s intermissus est %(player)s. "
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:103
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
-msgstr ""
+msgstr "%(player)s ad %(phaseName)sprogressus est."
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -874,33 +874,33 @@ msgstr ", "
 #: gui/session/chat/ChatMessageFormatSimulation.js:142
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
-msgstr ""
+msgstr "%(player)s tibi %(amounts)s misit."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:144
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "%(player2)s %(amounts)s misisti."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:149
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "%(player)s %(player2)s %(amounts)s misit."
 
 #: gui/session/developer_overlay/DeveloperOverlay.js:67
 msgid "The Developer Overlay was opened."
-msgstr ""
+msgstr "'The Developer Overlay' apertus est."
 
 #: gui/session/developer_overlay/DeveloperOverlay.js:68
 msgid "The Developer Overlay was closed."
-msgstr ""
+msgstr "'The Developer Overlay' clausus est."
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:15
 msgid "Control all units"
-msgstr ""
+msgstr "Omnibus imperare"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:42
 msgid "Change perspective"
-msgstr ""
+msgstr "Spectaculum mutare"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:60
 msgid "Display selection state"
@@ -936,7 +936,7 @@ msgstr ""
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:169
 msgid "Reveal map"
-msgstr "Adaperire tabulam:"
+msgstr "Tabulam aperire"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:195
 msgid "Enable time warp"
@@ -977,22 +977,22 @@ msgstr ""
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr ""
+msgstr "Intervallum ad bellum iterandum: %(time)s."
 
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
 #: gui/session/minimap/MiniMapDiplomacyColorsButton.js:34
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
-msgstr ""
+msgstr "Colores Legationis ostendere"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
-msgstr ""
+msgstr "Socios rogare, ut hunc hostem oppugnent."
 
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "Nemo"
 
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:78
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):28
@@ -1002,7 +1002,7 @@ msgstr "Socius"
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:81
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):32
 msgid "Neutral"
-msgstr ""
+msgstr "Medius"
 
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:84
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):36
@@ -1013,31 +1013,31 @@ msgstr "Hostes"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr ""
+msgstr "Civem fortuitum huius lusoris corrumpere et visum eius quisdam intervallis temporis communicare."
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
 msgid "A failed bribe will cost you:"
-msgstr ""
+msgstr "Ambitus defectus tibi stat:"
 
 #: gui/session/diplomacy/playercontrols/StanceButton.js:60
 msgctxt "diplomatic stance selection"
 msgid "x"
-msgstr ""
+msgstr "x"
 
 #: gui/session/diplomacy/playercontrols/TributeButton.js:112
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr ""
+msgstr "%(resourceAmount)s %(resourceType)s %(playerName)s tribuere. Shift-preme ut %(greaterAmount)s tribuas."
 
 #: gui/session/message_box/DeleteSelectionConfirmation.js:10
 msgid "Delete"
-msgstr ""
+msgstr "Delere"
 
 #: gui/session/message_box/DeleteSelectionConfirmation.js:11
 msgid "Destroy everything currently selected?"
-msgstr ""
+msgstr "Omnes electos vere deleas?"
 
 #: gui/session/message_box/DeleteSelectionConfirmation.js:14
 #: gui/session/message_box/QuitConfirmation.js:14
@@ -1065,7 +1065,7 @@ msgstr ""
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
-msgstr ""
+msgstr "Lusores: %(players)s"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:24
 msgctxt "Out-Of-Sync"
@@ -1122,64 +1122,64 @@ msgstr "Confirmatio"
 
 #: gui/session/message_box/QuitConfirmation.js:9
 msgid "Are you sure you want to quit?"
-msgstr ""
+msgstr "Visne vere exire?"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:54
 msgid "VICTORIOUS!"
-msgstr ""
+msgstr "VICISTI!"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:55
 msgid "DEFEATED!"
-msgstr ""
+msgstr "VICTUS ES!"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:57
 msgid "Do you want to quit?"
-msgstr ""
+msgstr "Visne exire?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:33
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr ""
+msgstr "Visne vere exire? Si exibis, quisque lusor ab aliis adiungetur."
 
 #: gui/session/message_box/QuitConfirmationMenu.js:64
 msgid "Do you want to resign or will you return soon?"
-msgstr ""
+msgstr "Visne concedere an brevi redire?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:67
 msgid "I will return"
-msgstr ""
+msgstr "Redibo"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:71
 msgid "I resign"
-msgstr ""
+msgstr "Concedo"
 
 #: gui/session/message_box/QuitConfirmationReplay.js:14
 msgctxt "replayFinished"
 msgid "Confirmation"
-msgstr ""
+msgstr "Confirmatio"
 
 #: gui/session/message_box/QuitConfirmationReplay.js:17
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr ""
+msgstr "Finita est revisio. Visne exire?"
 
 #: gui/session/message_box/QuitConfirmationReplay.js:22
 msgctxt "replayFinished"
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 #: gui/session/message_box/QuitConfirmationReplay.js:25
 msgctxt "replayFinished"
 msgid "Yes"
-msgstr ""
+msgstr "Sic"
 
 #: gui/session/message_box/ResignConfirmation.js:6
 msgid "Are you sure you want to resign?"
-msgstr ""
+msgstr "Visne vere concedere?"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:39
 msgid "Find idle worker"
-msgstr ""
+msgstr "Ignavum operarium reperire"
 
 #: gui/session/top_panel/CivIcon.js:77
 #, javascript-format
@@ -1187,24 +1187,24 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Prospectum / Arborem Aedificiorum Nationis videre\nSi premetur, aperetur id quod antea apertum est."
 
 #: gui/session/top_panel/CounterManager.js:100
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr ""
+msgstr "%(order)s: %(hotkey)s ordinem mutare."
 
 #: gui/session/top_panel/CounterManager.js:104
 msgid "Unordered"
-msgstr ""
+msgstr "Non ordinarius"
 
 #: gui/session/top_panel/CounterManager.js:106
 msgid "Descending"
-msgstr ""
+msgstr "Descendens"
 
 #: gui/session/top_panel/CounterManager.js:107
 msgid "Ascending"
-msgstr ""
+msgstr "Ascendens"
 
 #: gui/session/top_panel/CounterManager.js:132
 #, javascript-format
@@ -1218,12 +1218,12 @@ msgstr "%(popCount)s/%(popLimit)s"
 
 #: gui/session/top_panel/CounterPopulation.js:58
 msgid "Population (current / limit)"
-msgstr ""
+msgstr "Census civium (numerus / terminus)"
 
 #: gui/session/top_panel/CounterPopulation.js:60
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
-msgstr ""
+msgstr "Terminus civium: %(popCap)s"
 
 #: gui/session/top_panel/CounterPopulation.js:62
 #, javascript-format
@@ -1237,22 +1237,22 @@ msgstr "Spectator"
 #: gui/session/top_panel/IconButtons/DiplomacyDialogButton.js:29
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):10
 msgid "Diplomacy"
-msgstr ""
+msgstr "Legatio"
 
 #: gui/session/top_panel/IconButtons/ObjectivesDialogButton.js:23
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):15
 msgid "Objectives"
-msgstr ""
+msgstr "Proposita"
 
 #: gui/session/trade/BarterButton.js:100
 #, javascript-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "Emere %(resource)s"
 
 #: gui/session/trade/BarterButton.js:101
 #, javascript-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "Vendere %(resource)s"
 
 #: gui/session/trade/BarterButton.js:102
 #, javascript-format
@@ -1287,35 +1287,35 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr ""
+msgstr "Primum elige mercem in linea prima, quam vendere vis. Quoties bullae inferiores premantur, toties %(quantity)s merx superior vendatur pro copiis inferiorum ut ostenduntur.  Preme et tene %(hotkey)s ut copias vendendas multiplicare %(multiplier)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:15
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Iam %(numberTrading)s mercator terrenus mercaturas facit"
+msgstr[1] "Iam  %(numberTrading)s mercatores terreni mercaturas faciunt"
 
 #: gui/session/trade/TraderStatusTextLand.js:25
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfLandTraders)s iners est"
+msgstr[1] "%(numberOfLandTraders)s inertes sunt"
 
 #: gui/session/trade/TraderStatusTextLand.js:30
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfLandTraders)smercator terrenus iners"
+msgstr[1] "%(numberOfLandTraders)s mercatores terreni inertes"
 
 #: gui/session/trade/TraderStatusTextLand.js:40
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberGarrisoned)s in nave oneraria collocatus"
+msgstr[1] "%(numberGarrisoned)s in nave oneraria collocati"
 
 #: gui/session/trade/TraderStatusTextLand.js:45
 #, javascript-format
@@ -1325,19 +1325,19 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberGarrisoned)s mercator terrenus in nave oneraria collocatus est."
+msgstr[1] "%(numberGarrisoned)s mercatores terreni in nave oneraria collocati sunt."
 
 #: gui/session/trade/TraderStatusTextLand.js:65
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, et %(garrisonedString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:66
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, %(garrisonedString)s, et %(inactiveString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:69
 #: gui/session/trade/TraderStatusTextShip.js:47
@@ -1349,7 +1349,7 @@ msgstr "%(openingTradingString)s."
 #: gui/session/trade/TraderStatusTextShip.js:46
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, et %(inactiveString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:75
 #, javascript-format
@@ -1359,75 +1359,75 @@ msgstr "%(openingGarrisonedString)s."
 #: gui/session/trade/TraderStatusTextLand.js:76
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s, et %(inactiveString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:79
 #: gui/session/trade/TraderStatusTextShip.js:50
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ecce %(inactiveString)s."
+msgstr[1] "Ecce %(inactiveString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:80
 msgid "There are no land traders."
-msgstr ""
+msgstr "Nullus est mercator terrenus."
 
 #: gui/session/trade/TraderStatusTextShip.js:14
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Iam %(numberTrading)s navis oneraria mercaturas facit."
+msgstr[1] "Iam %(numberTrading)s naves onerariae mercaturas faciunt."
 
 #: gui/session/trade/TraderStatusTextShip.js:24
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfShipTraders)s iners"
+msgstr[1] "%(numberOfShipTraders)s inertes"
 
 #: gui/session/trade/TraderStatusTextShip.js:29
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfShipTraders)s navis oneraria iners"
+msgstr[1] "%(numberOfShipTraders)s naves onerariae inertes"
 
 #: gui/session/trade/TraderStatusTextShip.js:51
 msgid "There are no merchant ships."
-msgstr ""
+msgstr "Nulla est navis oneraria."
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
-msgstr ""
+msgstr "Velocitatem ludi eligere"
 
 #: gui/session/PauseOverlay.xml:(caption):7
 msgid "Game Paused"
-msgstr ""
+msgstr "Ludus intermissus"
 
 #: gui/session/PauseOverlay.xml:(caption):11
 msgid "Click to Resume Game"
-msgstr ""
+msgstr "Preme ut ludum repetas"
 
 #: gui/session/tutorial_panel.xml:(caption):11
 msgid "Ready"
-msgstr ""
+msgstr "Paratus"
 
 #: gui/session/chat/chat_window.xml:(caption):19
 msgctxt "chat input"
 msgid "Filter:"
-msgstr ""
+msgstr "Filtrum:"
 
 #: gui/session/chat/chat_window.xml:(caption):46
 msgctxt "chat input"
 msgid "To:"
-msgstr ""
+msgstr "Ad:"
 
 #: gui/session/chat/chat_window.xml:(caption):60
 msgctxt "chat input"
 msgid "Text:"
-msgstr ""
+msgstr "Verba:"
 
 #: gui/session/chat/chat_window.xml:(caption):71
 msgid "Cancel"
@@ -1436,29 +1436,29 @@ msgstr "Retrorsum"
 #: gui/session/chat/chat_window.xml:(caption):85
 msgctxt "chat"
 msgid "History"
-msgstr ""
+msgstr "Historia"
 
 #: gui/session/chat/chat_window.xml:(caption):90
 msgid "Send"
-msgstr "mitte"
+msgstr "Mittere"
 
 #: gui/session/chat/chat_window.xml:(tooltip):29
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr ""
+msgstr "Historiam colloquiorum exquirere."
 
 #: gui/session/chat/chat_window.xml:(tooltip):55
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr ""
+msgstr "Auditorem eligere"
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
-msgstr ""
+msgstr "Interrogatio"
 
 #: gui/session/dialogs/yes_no.xml:(caption):15
 msgid "Yes or no?"
-msgstr ""
+msgstr "Sic an non?"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):15
 msgid "Name"
@@ -1466,7 +1466,7 @@ msgstr "Nomen"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):18
 msgid "Civilization"
-msgstr "Civilizatio:"
+msgstr "Civitas"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):21
 msgid "Team"
@@ -1482,15 +1482,15 @@ msgstr "A"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):31
 msgid "N"
-msgstr ""
+msgstr "N"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):35
 msgid "E"
-msgstr ""
+msgstr "E"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):39
 msgid "Tribute"
-msgstr ""
+msgstr "Tributum"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):90
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):43
@@ -1500,84 +1500,84 @@ msgstr "Claudere"
 
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):14
 msgid "Hitpoints"
-msgstr ""
+msgstr "Puncta Valetudinis"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):18
 msgid "Health:"
-msgstr ""
+msgstr "Valetudo:"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):32
 msgid "Capture points:"
-msgstr ""
+msgstr "Puncta Capiendi:"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):60
 msgid "Attack and Armor"
-msgstr ""
+msgstr "Detrimentum et Arma"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):75
 msgid "Experience"
-msgstr ""
+msgstr "Experientia"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):83
 msgid "Rank"
-msgstr ""
+msgstr "Ordo"
 
 #: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
 msgid "Production queue"
-msgstr ""
+msgstr "Agmen operis"
 
 #: gui/session/session_objects/selection_group_icons.xml:(tooltip):8
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr ""
+msgstr "Preme ut suos collectos deligas, bis-preme ut suos collectos intendas, dextra-preme ut gregem dimittas."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "ALPHA XXIV"
-msgstr ""
+msgstr "ALPHA XXIV"
 
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 msgctxt "observer mode"
 msgid "Follow Player"
-msgstr ""
+msgstr "Lusorem Sequeri"
 
 #: gui/session/top_panel/MenuButton.xml:(caption):15
 msgid "Menu"
-msgstr ""
+msgstr "Tabula"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(tooltip):13
 msgid "Choose player to view"
-msgstr ""
+msgstr "Lusorem videndum eligere"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(caption):17
 msgid "Observer Mode"
-msgstr ""
+msgstr "Modus Spectatoris"
 
 #: gui/session/top_panel/IconButtons/GameSpeedButton.xml:(tooltip):9
 msgid "Game Speed"
-msgstr ""
+msgstr "Velocitas Ludi"
 
 #: gui/session/trade/BarterPanel.xml:(caption):5
 msgid "Barter"
-msgstr ""
+msgstr "Mutare"
 
 #: gui/session/trade/BarterPanel.xml:(caption):13
 msgid "Sell:"
-msgstr ""
+msgstr "Vendere:"
 
 #: gui/session/trade/BarterPanel.xml:(caption):17
 msgid "Buy:"
-msgstr ""
+msgstr "Emere:"
 
 #: gui/session/trade/BarterPanel.xml:(caption):21
 msgid "No Markets Available"
-msgstr ""
+msgstr "Nullo Mercatu uti potes"
 
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
-msgstr ""
+msgstr "Mercatura"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
-msgstr ""
+msgstr "Merces:"
