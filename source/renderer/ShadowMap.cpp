@@ -103,6 +103,44 @@ struct ShadowMapInternals
 	void CreateTexture();
 };
 
+void CalculateBoundsForFixedShadows(
+	const CCamera& camera, const CMatrix3D& lightTransform,
+	const float nearPlane, const float farPlane, CBoundingBoxAligned* bbaa)
+{
+	// We need to calculate a circumscribed sphere for the camera to
+	// create a rotation stable bounding box.
+	const CVector3D cameraIn = camera.m_Orientation.GetIn();
+	const CVector3D cameraTranslation = camera.m_Orientation.GetTranslation();
+	const CVector3D centerNear = cameraTranslation + cameraIn * nearPlane;
+	const CVector3D centerDist = cameraTranslation + cameraIn * farPlane;
+
+	// We can solve 3D problem in 2D space, because the frustum is
+	// symmetric by 2 planes. Than means we can use only one corner
+	// to find a circumscribed sphere.
+	CCamera::Quad corners;
+	camera.GetViewQuad(nearPlane, corners);
+	const CVector3D cornerNear = camera.GetOrientation().Transform(corners[0]);
+	camera.GetViewQuad(farPlane, corners);
+	const CVector3D cornerDist = camera.GetOrientation().Transform(corners[0]);
+
+	// We solve 2D case for the right trapezoid.
+	const float firstBase = (cornerNear - centerNear).Length();
+	const float secondBase = (cornerDist - centerDist).Length();
+	const float height = (centerDist - centerNear).Length();
+	const float distanceToCenter =
+		(height * height + secondBase * secondBase - firstBase * firstBase) * 0.5f / height;
+
+	CVector3D position = cameraTranslation + cameraIn * (camera.GetNearPlane() + distanceToCenter);
+	const float radius = (cornerNear - position).Length();
+
+	// We need to convert the bounding box to the light space.
+	position = lightTransform.Rotate(position);
+
+	const float insets = 0.2f;
+	*bbaa = CBoundingBoxAligned(position, position);
+	bbaa->Expand(radius);
+	bbaa->Expand(insets);
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -229,41 +267,7 @@ void ShadowMap::SetupFrame(const CCamera& camera, const CVector3D& lightdir)
 	m->LightspaceCamera.UpdateFrustum();
 
 	if (m->FixedShadowsEnabled)
-	{
-		// We need to calculate a circumscribed sphere for the camera to
-		// create a rotation stable bounding box.
-		const CVector3D cameraIn = camera.m_Orientation.GetIn();
-		const CVector3D cameraTranslation = camera.m_Orientation.GetTranslation();
-		const CVector3D centerNear = cameraTranslation + cameraIn * camera.GetNearPlane();
-		const CVector3D centerDist = cameraTranslation + cameraIn * m->FixedShadowsDistance;
-
-		// We can solve 3D problem in 2D space, because the frustum is
-		// symmetric by 2 planes. Than means we can use only one corner
-		// to find a circumscribed sphere.
-		CCamera::Quad corners;
-		camera.GetViewQuad(camera.GetNearPlane(), corners);
-		const CVector3D cornerNear = camera.GetOrientation().Transform(corners[0]);
-		camera.GetViewQuad(m->FixedShadowsDistance, corners);
-		const CVector3D cornerDist = camera.GetOrientation().Transform(corners[0]);
-
-		// We solve 2D case for the right trapezoid.
-		const float firstBase = (cornerNear - centerNear).Length();
-		const float secondBase = (cornerDist - centerDist).Length();
-		const float height = (centerDist - centerNear).Length();
-		const float distanceToCenter =
-			(height * height + secondBase * secondBase - firstBase * firstBase) * 0.5f / height;
-
-		CVector3D position = cameraTranslation + cameraIn * (camera.GetNearPlane() + distanceToCenter);
-		const float radius = (cornerNear - position).Length();
-
-		// We need to convert the bounding box to the light space.
-		position = m->LightTransform.Rotate(position);
-		
-		const float insets = 0.2f;
-		m->FixedFrustumBounds = CBoundingBoxAligned(position, position);
-		m->FixedFrustumBounds.Expand(radius);
-		m->FixedFrustumBounds.Expand(insets);
-	}
+		CalculateBoundsForFixedShadows(camera, m->LightTransform, camera.GetNearPlane(), m->FixedShadowsDistance, &m->FixedFrustumBounds);
 }
 
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -425,7 +425,12 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 
 	const char* shaderName;
 	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
-		shaderName = "arb/overlayline";
+	{
+		if (g_RenderingOptions.GetPreferGLSL())
+			shaderName = "glsl/overlayline";
+		else
+			shaderName = "arb/overlayline";
+	}
 	else
 		shaderName = "fixed:overlayline";
 
@@ -500,77 +505,76 @@ void OverlayRenderer::RenderQuadOverlays()
 	if (m->quadBatchMap.empty())
 		return;
 
-	ogl_WarnIfError();
+	const char* shaderName;
+	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
+	{
+		if (g_RenderingOptions.GetPreferGLSL())
+			shaderName = "glsl/overlayline";
+		else
+			shaderName = "arb/overlayline";
+	}
+	else
+		shaderName = "fixed:overlayline";
+
+	CShaderManager& shaderManager = g_Renderer.GetShaderManager();
+	CShaderProgramPtr shader(shaderManager.LoadProgram(shaderName, m->defsQuadOverlay));
+
+	if (!shader)
+		return;
 
 	pglActiveTextureARB(GL_TEXTURE0);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
 	glDepthMask(0);
 
-	const char* shaderName;
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
-		shaderName = "arb/overlayline";
-	else
-		shaderName = "fixed:overlayline";
-
 	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
 
-	CShaderManager& shaderManager = g_Renderer.GetShaderManager();
-	CShaderProgramPtr shader(shaderManager.LoadProgram(shaderName, m->defsQuadOverlay));
+	shader->Bind();
+	shader->BindTexture(str_losTex, los.GetTexture());
+	shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 
-	// ----------------------------------------------------------------------------------------
+	// Base offsets (in bytes) of the two backing stores relative to their owner VBO
+	u8* indexBase = m->quadIndices.Bind();
+	u8* vertexBase = m->quadVertices.Bind();
+	GLsizei indexStride = m->quadIndices.GetStride();
+	GLsizei vertexStride = m->quadVertices.GetStride();
 
-	if (shader)
+	for (OverlayRendererInternals::QuadBatchMap::iterator it = m->quadBatchMap.begin(); it != m->quadBatchMap.end(); ++it)
 	{
-		shader->Bind();
-		shader->BindTexture(str_losTex, los.GetTexture());
-		shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+		QuadBatchData& batchRenderData = it->second;
+		const size_t batchNumQuads = batchRenderData.m_NumRenderQuads;
 
-		// Base offsets (in bytes) of the two backing stores relative to their owner VBO
-		u8* indexBase = m->quadIndices.Bind();
-		u8* vertexBase = m->quadVertices.Bind();
-		GLsizei indexStride = m->quadIndices.GetStride();
-		GLsizei vertexStride = m->quadVertices.GetStride();
+		// Careful; some drivers don't like drawing calls with 0 stuff to draw.
+		if (batchNumQuads == 0)
+			continue;
 
-		for (OverlayRendererInternals::QuadBatchMap::iterator it = m->quadBatchMap.begin(); it != m->quadBatchMap.end(); ++it)
-		{
-			QuadBatchData& batchRenderData = it->second;
-			const size_t batchNumQuads = batchRenderData.m_NumRenderQuads;
+		const QuadBatchKey& maskPair = it->first;
 
-			// Careful; some drivers don't like drawing calls with 0 stuff to draw.
-			if (batchNumQuads == 0)
-				continue;
+		shader->BindTexture(str_baseTex, maskPair.m_Texture->GetHandle());
+		shader->BindTexture(str_maskTex, maskPair.m_TextureMask->GetHandle());
 
-			const QuadBatchKey& maskPair = it->first;
+		int streamflags = shader->GetStreamFlags();
 
-			shader->BindTexture(str_baseTex, maskPair.m_Texture->GetHandle());
-			shader->BindTexture(str_maskTex, maskPair.m_TextureMask->GetHandle());
+		if (streamflags & STREAM_POS)
+			shader->VertexPointer(m->quadAttributePos.elems, m->quadAttributePos.type, vertexStride, vertexBase + m->quadAttributePos.offset);
 
-			int streamflags = shader->GetStreamFlags();
+		if (streamflags & STREAM_UV0)
+			shader->TexCoordPointer(GL_TEXTURE0, m->quadAttributeUV.elems, m->quadAttributeUV.type, vertexStride, vertexBase + m->quadAttributeUV.offset);
 
-			if (streamflags & STREAM_POS)
-				shader->VertexPointer(m->quadAttributePos.elems, m->quadAttributePos.type, vertexStride, vertexBase + m->quadAttributePos.offset);
+		if (streamflags & STREAM_UV1)
+			shader->TexCoordPointer(GL_TEXTURE1, m->quadAttributeUV.elems, m->quadAttributeUV.type, vertexStride, vertexBase + m->quadAttributeUV.offset);
 
-			if (streamflags & STREAM_UV0)
-				shader->TexCoordPointer(GL_TEXTURE0, m->quadAttributeUV.elems, m->quadAttributeUV.type, vertexStride, vertexBase + m->quadAttributeUV.offset);
+		if (streamflags & STREAM_COLOR)
+			shader->ColorPointer(m->quadAttributeColor.elems, m->quadAttributeColor.type, vertexStride, vertexBase + m->quadAttributeColor.offset);
 
-			if (streamflags & STREAM_UV1)
-				shader->TexCoordPointer(GL_TEXTURE1, m->quadAttributeUV.elems, m->quadAttributeUV.type, vertexStride, vertexBase + m->quadAttributeUV.offset);
+		shader->AssertPointersBound();
+		glDrawElements(GL_TRIANGLES, (GLsizei)(batchNumQuads * 6), GL_UNSIGNED_SHORT, indexBase + indexStride * batchRenderData.m_IndicesBase);
 
-			if (streamflags & STREAM_COLOR)
-				shader->ColorPointer(m->quadAttributeColor.elems, m->quadAttributeColor.type, vertexStride, vertexBase + m->quadAttributeColor.offset);
-
-			shader->AssertPointersBound();
-			glDrawElements(GL_TRIANGLES, (GLsizei)(batchNumQuads * 6), GL_UNSIGNED_SHORT, indexBase + indexStride * batchRenderData.m_IndicesBase);
-
-			g_Renderer.GetStats().m_DrawCalls++;
-			g_Renderer.GetStats().m_OverlayTris += batchNumQuads*2;
-		}
-
-		shader->Unbind();
+		g_Renderer.GetStats().m_DrawCalls++;
+		g_Renderer.GetStats().m_OverlayTris += batchNumQuads*2;
 	}
 
-	// ----------------------------------------------------------------------------------------
+	shader->Unbind();
 
 	// TODO: the shader should probably be responsible for unbinding its textures
 	g_Renderer.BindTexture(1, 0);

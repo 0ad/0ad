@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<program type="glsl">
+
+    <vertex file="glsl/overlayline.vs">
+        <stream name="pos"/>
+        <stream name="uv0"/>
+        <stream name="color" if="!USE_OBJECTCOLOR"/>
+        <attrib name="a_vertex" semantics="gl_Vertex"/>
+        <attrib name="a_uv0" semantics="gl_MultiTexCoord0"/>
+        <attrib name="a_color" semantics="gl_Color" if="!USE_OBJECTCOLOR"/>
+    </vertex>
+
+    <fragment file="glsl/overlayline.fs"/>
+
+</program>
