@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -88,7 +88,7 @@ public:
 		/**
 		 * Cached LOS visibility status.
 		 */
-		ICmpRangeManager::ELosVisibility visibility;
+		LosVisibility visibility;
 		bool visibilityDirty;
 
 		/**
@@ -404,7 +404,7 @@ void CCmpUnitRenderer::RenderSubmit(SceneCollector& collector, const CFrustum& f
 		if (unit.visibilityDirty)
 			UpdateVisibility(unit);
 
-		if (unit.visibility == ICmpRangeManager::VIS_HIDDEN)
+		if (unit.visibility == LosVisibility::HIDDEN)
 			continue;
 
 		if (!g_AtlasGameLoop->running && !g_RenderingOptions.GetRenderActors() && (unit.flags & ACTOR_ONLY))
@@ -451,7 +451,7 @@ void CCmpUnitRenderer::UpdateVisibility(SUnit& unit) const
 		// (regardless of whether the LOS system thinks it's visible)
 		CmpPtr<ICmpVisibility> cmpVisibility(unit.entity);
 		if (cmpVisibility && cmpVisibility->GetAlwaysVisible())
-			unit.visibility = ICmpRangeManager::VIS_VISIBLE;
+			unit.visibility = LosVisibility::VISIBLE;
 		else
 		{
 			CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
@@ -460,12 +460,12 @@ void CCmpUnitRenderer::UpdateVisibility(SUnit& unit) const
 		}
 	}
 	else
-		unit.visibility = ICmpRangeManager::VIS_HIDDEN;
+		unit.visibility = LosVisibility::HIDDEN;
 
 	// Change the visibility of the visual actor's selectable if it has one.
 	CmpPtr<ICmpSelectable> cmpSelectable(unit.entity);
 	if (cmpSelectable)
-		cmpSelectable->SetVisibility(unit.visibility != ICmpRangeManager::VIS_HIDDEN);
+		cmpSelectable->SetVisibility(unit.visibility != LosVisibility::HIDDEN);
 
 	unit.visibilityDirty = false;
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,12 +22,34 @@
 #include "maths/FixedVector2D.h"
 
 #include "simulation2/system/Interface.h"
+#include "simulation2/helpers/Grid.h"
 #include "simulation2/helpers/Position.h"
 #include "simulation2/helpers/Player.h"
 
 #include "graphics/Terrain.h" // for TERRAIN_TILE_SIZE
 
 class FastSpatialSubdivision;
+
+/**
+ * Since GetVisibility queries are run by the range manager
+ * other code using these must include ICmpRangeManager.h anyways,
+ * so define this enum here (Ideally, it'd be in its own header file,
+ * but adding header file does incur its own compilation time increase).
+ */
+enum class LosVisibility : u8
+{
+	HIDDEN = 0,
+	FOGGED = 1,
+	VISIBLE = 2
+};
+
+enum class LosState : u8
+{
+	UNEXPLORED = 0,
+	EXPLORED = 1,
+	VISIBLE = 2,
+	MASK = 3
+};
 
 /**
  * Provides efficient range-based queries of the game world,
@@ -221,22 +243,6 @@ public:
 	 */
 	virtual void SetEntityFlag(entity_id_t ent, const std::string& identifier, bool value) = 0;
 
-	// LOS interface:
-
-	enum ELosState
-	{
-		LOS_UNEXPLORED = 0,
-		LOS_EXPLORED = 1,
-		LOS_VISIBLE = 2,
-		LOS_MASK = 3
-	};
-
-	enum ELosVisibility
-	{
-		VIS_HIDDEN = 0,
-		VIS_FOGGED = 1,
-		VIS_VISIBLE = 2
-	};
 
 	/**
 	 * Object providing efficient abstracted access to the LOS state.
@@ -250,8 +256,8 @@ public:
 		friend class CCmpRangeManager;
 		friend class TestLOSTexture;
 
-		CLosQuerier(u32 playerMask, const std::vector<u32>& data, ssize_t verticesPerSide) :
-			m_Data(&data[0]), m_PlayerMask(playerMask), m_VerticesPerSide(verticesPerSide)
+		CLosQuerier(u32 playerMask, const Grid<u32>& data, ssize_t verticesPerSide) :
+			m_Data(data), m_PlayerMask(playerMask), m_VerticesPerSide(verticesPerSide)
 		{
 		}
 
@@ -267,7 +273,7 @@ public:
 				return false;
 
 			// Check high bit of each bit-pair
-			if ((m_Data[j*m_VerticesPerSide + i] & m_PlayerMask) & 0xAAAAAAAAu)
+			if ((m_Data.get(i, j) & m_PlayerMask) & 0xAAAAAAAAu)
 				return true;
 			else
 				return false;
@@ -282,7 +288,7 @@ public:
 				return false;
 
 			// Check low bit of each bit-pair
-			if ((m_Data[j*m_VerticesPerSide + i] & m_PlayerMask) & 0x55555555u)
+			if ((m_Data.get(i, j) & m_PlayerMask) & 0x55555555u)
 				return true;
 			else
 				return false;
@@ -298,7 +304,7 @@ public:
 			ENSURE(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide);
 #endif
 			// Check high bit of each bit-pair
-			if ((m_Data[j*m_VerticesPerSide + i] & m_PlayerMask) & 0xAAAAAAAAu)
+			if ((m_Data.get(i, j) & m_PlayerMask) & 0xAAAAAAAAu)
 				return true;
 			else
 				return false;
@@ -314,7 +320,7 @@ public:
 			ENSURE(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide);
 #endif
 			// Check low bit of each bit-pair
-			if ((m_Data[j*m_VerticesPerSide + i] & m_PlayerMask) & 0x55555555u)
+			if ((m_Data.get(i, j) & m_PlayerMask) & 0x55555555u)
 				return true;
 			else
 				return false;
@@ -322,9 +328,12 @@ public:
 
 	private:
 		u32 m_PlayerMask;
-		const u32* m_Data;
+		const Grid<u32>& m_Data;
 		ssize_t m_VerticesPerSide;
 	};
+	//////////////////////////////////////////////////////////////////
+	////              LOS interface below this line               ////
+	//////////////////////////////////////////////////////////////////
 
 	/**
 	 * Returns a CLosQuerier for checking whether vertex positions are visible to the given player
@@ -339,17 +348,17 @@ public:
 
 	/**
 	 * Returns the visibility status of the given entity, with respect to the given player.
-	 * Returns VIS_HIDDEN if the entity doesn't exist or is not in the world.
+	 * Returns LosVisibility::HIDDEN if the entity doesn't exist or is not in the world.
 	 * This respects the GetLosRevealAll flag.
 	 */
-	virtual ELosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player) const = 0;
-	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player) const = 0;
+	virtual LosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player) const = 0;
+	virtual LosVisibility GetLosVisibility(entity_id_t ent, player_id_t player) const = 0;
 
 	/**
 	 * Returns the visibility status of the given position, with respect to the given player.
 	 * This respects the GetLosRevealAll flag.
 	 */
-	virtual ELosVisibility GetLosVisibilityPosition(entity_pos_t x, entity_pos_t z, player_id_t player) const = 0;
+	virtual LosVisibility GetLosVisibilityPosition(entity_pos_t x, entity_pos_t z, player_id_t player) const = 0;
 
 	/**
 	 * Request the update of the visibility cache of ent at next turn.

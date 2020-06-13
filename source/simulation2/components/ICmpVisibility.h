@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@ public:
 	 */
 	virtual bool IsActivated() = 0;
 
-	virtual ICmpRangeManager::ELosVisibility GetVisibility(player_id_t player, bool isVisible, bool isExplored) = 0;
+	virtual LosVisibility GetVisibility(player_id_t player, bool isVisible, bool isExplored) = 0;
 
 	virtual bool GetRetainInFog() = 0;
 

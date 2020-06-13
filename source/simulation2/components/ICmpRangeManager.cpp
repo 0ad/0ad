@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,13 +22,13 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 namespace {
-	std::string VisibilityToString(ICmpRangeManager::ELosVisibility visibility)
+	std::string VisibilityToString(LosVisibility visibility)
 	{
 		switch (visibility)
 		{
-		case ICmpRangeManager::VIS_HIDDEN: return "hidden";
-		case ICmpRangeManager::VIS_FOGGED: return "fogged";
-		case ICmpRangeManager::VIS_VISIBLE: return "visible";
+		case LosVisibility::HIDDEN: return "hidden";
+		case LosVisibility::FOGGED: return "fogged";
+		case LosVisibility::VISIBLE: return "visible";
 		default: return "error"; // should never happen
 		}
 	}

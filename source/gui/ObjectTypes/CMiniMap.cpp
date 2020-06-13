@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -544,8 +544,8 @@ void CMiniMap::Draw()
 			ICmpMinimap* cmpMinimap = static_cast<ICmpMinimap*>(it->second);
 			if (cmpMinimap->GetRenderData(v.r, v.g, v.b, posX, posZ))
 			{
-				ICmpRangeManager::ELosVisibility vis = cmpRangeManager->GetLosVisibility(it->first, g_Game->GetSimulation2()->GetSimContext().GetCurrentDisplayedPlayer());
-				if (vis != ICmpRangeManager::VIS_HIDDEN)
+				LosVisibility vis = cmpRangeManager->GetLosVisibility(it->first, g_Game->GetSimulation2()->GetSimContext().GetCurrentDisplayedPlayer());
+				if (vis != LosVisibility::HIDDEN)
 				{
 					v.a = 255;
 					v.x = posX.ToFloat() * sx;

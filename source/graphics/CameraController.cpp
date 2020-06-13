@@ -249,7 +249,7 @@ void CCameraController::Update(const float deltaRealTime)
 		CmpPtr<ICmpPosition> cmpPosition(*(g_Game->GetSimulation2()), m_FollowEntity);
 		CmpPtr<ICmpRangeManager> cmpRangeManager(*(g_Game->GetSimulation2()), SYSTEM_ENTITY);
 		if (cmpPosition && cmpPosition->IsInWorld() &&
-			cmpRangeManager && cmpRangeManager->GetLosVisibility(m_FollowEntity, g_Game->GetViewedPlayerID()) == ICmpRangeManager::VIS_VISIBLE)
+			cmpRangeManager && cmpRangeManager->GetLosVisibility(m_FollowEntity, g_Game->GetViewedPlayerID()) == LosVisibility::VISIBLE)
 		{
 			// Get the most recent interpolated position
 			float frameOffset = g_Game->GetSimulation2()->GetLastFrameOffset();

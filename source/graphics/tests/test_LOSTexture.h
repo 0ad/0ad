@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,12 +41,16 @@ public:
 			0, 0, 0, 0, 0, 0, 0, 0,
 			0, 0, 0, 0, 0, 0, 0, 2
 		};
-		std::vector<u32> inputDataVec(inputData, inputData+size*size);
+		Grid<u32> inputDataVec(size, size);
 
-		// LOS_MASK should be cmpRanageManager->GetSharedLosMask(1),
+		for (u8 i = 0; i < size; ++i)
+			for (u8 j = 0; j < size; ++j)
+				inputDataVec.set(i, j, inputData[i + j * size]);
+
+		// LosState::MASK should be cmpRanageManager->GetSharedLosMask(1),
 		// but that would mean adding a huge mock component for this and it
-		// should always be LOS_MASK for player 1 (as the other players are bit-shifted).
-		ICmpRangeManager::CLosQuerier los(ICmpRangeManager::LOS_MASK, inputDataVec, size);
+		// should always be LosState::MASK for player 1 (as the other players are bit-shifted).
+		ICmpRangeManager::CLosQuerier los((u32)LosState::MASK, inputDataVec, size);
 
 		std::vector<u8> losData;
 		size_t pitch;
@@ -66,13 +70,12 @@ public:
 		CLOSTexture tex(sim);
 
 		const ssize_t size = 257;
-		std::vector<u32> inputDataVec;
-		inputDataVec.resize(size*size);
+		Grid<u32> inputDataVec(size, size);
 
-		// LOS_MASK should be cmpRanageManager->GetSharedLosMask(1),
+		// LosState::MASK should be cmpRanageManager->GetSharedLosMask(1),
 		// but that would mean adding a huge mock component for this and it
-		// should always be LOS_MASK for player 1 (as the other players are bit-shifted).
-		ICmpRangeManager::CLosQuerier los(ICmpRangeManager::LOS_MASK, inputDataVec, size);
+		// should always be LosState::MASK for player 1 (as the other players are bit-shifted).
+		ICmpRangeManager::CLosQuerier los((u32)LosState::MASK, inputDataVec, size);
 
 		size_t reps = 128;
 		double t = timer_Time();

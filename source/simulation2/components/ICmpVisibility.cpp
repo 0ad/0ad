@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,21 +35,21 @@ public:
 		return m_Script.Call<bool>("IsActivated");
 	}
 
-	virtual ICmpRangeManager::ELosVisibility GetVisibility(player_id_t player, bool isVisible, bool isExplored)
+	virtual LosVisibility GetVisibility(player_id_t player, bool isVisible, bool isExplored)
 	{
 		int visibility = m_Script.Call<int, player_id_t, bool, bool>("GetVisibility", player, isVisible, isExplored);
 
 		switch (visibility)
 		{
-		case ICmpRangeManager::VIS_HIDDEN:
-			return ICmpRangeManager::VIS_HIDDEN;
-		case ICmpRangeManager::VIS_FOGGED:
-			return ICmpRangeManager::VIS_FOGGED;
-		case ICmpRangeManager::VIS_VISIBLE:
-			return ICmpRangeManager::VIS_VISIBLE;
+		case static_cast<int>(LosVisibility::HIDDEN):
+			return LosVisibility::HIDDEN;
+			case static_cast<int>(LosVisibility::FOGGED):
+			return LosVisibility::FOGGED;
+		case static_cast<int>(LosVisibility::VISIBLE):
+			return LosVisibility::VISIBLE;
 		default:
 			LOGERROR("Received the invalid visibility value %d from the Visibility scripted component!", visibility);
-			return ICmpRangeManager::VIS_HIDDEN;
+			return LosVisibility::HIDDEN;
 		}
 	}
 
