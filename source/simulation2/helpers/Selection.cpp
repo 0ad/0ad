@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -79,7 +79,7 @@ entity_id_t EntitySelection::PickEntityAtPoint(CSimulation2& simulation, const C
 			continue;
 
 		// Ignore entities hidden by LOS (or otherwise hidden, e.g. when not IsInWorld)
-		if (cmpRangeManager->GetLosVisibility(handle, player) == ICmpRangeManager::VIS_HIDDEN)
+		if (cmpRangeManager->GetLosVisibility(handle, player) == LosVisibility::HIDDEN)
 			continue;
 
 		return handle.GetId();
@@ -126,7 +126,7 @@ bool CheckEntityInRect(CEntityHandle handle, const CCamera& camera, int sx0, int
 static bool CheckEntityVisibleAndInRect(CEntityHandle handle, CmpPtr<ICmpRangeManager> cmpRangeManager, const CCamera& camera, int sx0, int sy0, int sx1, int sy1, player_id_t player, bool allowEditorSelectables)
 {
 	// Ignore entities hidden by LOS (or otherwise hidden, e.g. when not IsInWorld)
-	if (cmpRangeManager->GetLosVisibility(handle, player) == ICmpRangeManager::VIS_HIDDEN)
+	if (cmpRangeManager->GetLosVisibility(handle, player) == LosVisibility::HIDDEN)
 		return false;
 
 	return CheckEntityInRect(handle, camera, sx0, sy0, sx1, sy1, allowEditorSelectables);
@@ -224,7 +224,7 @@ std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simu
 
 		// Ignore entities hidden by LOS (or otherwise hidden, e.g. when not IsInWorld)
 		// In this case, the checking is done to avoid selecting garrisoned units
-		if (cmpRangeManager->GetLosVisibility(handle, owner) == ICmpRangeManager::VIS_HIDDEN)
+		if (cmpRangeManager->GetLosVisibility(handle, owner) == LosVisibility::HIDDEN)
 			continue;
 
 		// Ignore entities not owned by 'owner'

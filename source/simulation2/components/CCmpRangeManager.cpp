@@ -46,22 +46,6 @@
 #define LOS_TILES_RATIO 8
 #define DEBUG_RANGE_MANAGER_BOUNDS 0
 
-/**
- * Representation of a range query.
- */
-struct Query
-{
-	bool enabled;
-	bool parabolic;
-	CEntityHandle source; // TODO: this could crash if an entity is destroyed while a Query is still referencing it
-	entity_pos_t minRange;
-	entity_pos_t maxRange;
-	entity_pos_t elevationBonus;
-	u32 ownersMask;
-	i32 interface;
-	std::vector<entity_id_t> lastMatch;
-	u8 flagsMask;
-};
 
 /**
  * Convert an owner ID (-1 = unowned, 0 = gaia, 1..30 = players)
@@ -81,7 +65,7 @@ static inline u32 CalcOwnerMask(player_id_t owner)
 static inline u32 CalcPlayerLosMask(player_id_t player)
 {
 	if (player > 0 && player <= 16)
-		return ICmpRangeManager::LOS_MASK << (2*(player-1));
+		return (u32)LosState::MASK << (2*(player-1));
 	return 0;
 }
 
@@ -119,11 +103,11 @@ static bool SetPlayerSharedDirtyVisibilityBit(u16& mask, player_id_t player, boo
 /**
  * Computes the 2-bit visibility for one player, given the total 32-bit visibilities
  */
-static inline u8 GetPlayerVisibility(u32 visibilities, player_id_t player)
+static inline LosVisibility GetPlayerVisibility(u32 visibilities, player_id_t player)
 {
 	if (player > 0 && player <= 16)
-		return (visibilities >> (2 *(player-1))) & 0x3;
-	return 0;
+		return static_cast<LosVisibility>( (visibilities >> (2 *(player-1))) & 0x3 );
+	return LosVisibility::HIDDEN;
 }
 
 /**
@@ -151,6 +135,23 @@ static inline u16 CalcVisionSharingMask(player_id_t player)
 {
 	return 1 << (player-1);
 }
+
+/**
+ * Representation of a range query.
+ */
+struct Query
+{
+	bool enabled;
+	bool parabolic;
+	CEntityHandle source; // TODO: this could crash if an entity is destroyed while a Query is still referencing it
+	entity_pos_t minRange;
+	entity_pos_t maxRange;
+	entity_pos_t elevationBonus;
+	u32 ownersMask;
+	i32 interface;
+	std::vector<entity_id_t> lastMatch;
+	u8 flagsMask;
+};
 
 /**
  * Checks whether v is in a parabolic range of (0,0,0)
@@ -372,16 +373,18 @@ public:
 	// LOS state:
 	static const player_id_t MAX_LOS_PLAYER_ID = 16;
 
-	std::vector<bool> m_LosRevealAll;
+	using LosTile = std::pair<u16, u16>;
+
+	std::array<bool, MAX_LOS_PLAYER_ID+2> m_LosRevealAll;
 	bool m_LosCircular;
 	i32 m_TerrainVerticesPerSide;
 
 	// Cache for visibility tracking
 	i32 m_LosTilesPerSide;
 	bool m_GlobalVisibilityUpdate;
-	std::vector<u8> m_GlobalPlayerVisibilityUpdate;
-	std::vector<u16> m_DirtyVisibility;
-	std::vector<std::set<entity_id_t> > m_LosTiles;
+	std::array<bool, MAX_LOS_PLAYER_ID> m_GlobalPlayerVisibilityUpdate;
+	Grid<u16> m_DirtyVisibility;
+	Grid<std::set<entity_id_t>> m_LosTiles;
 	// List of entities that must be updated, regardless of the status of their tile
 	std::vector<entity_id_t> m_ModifiedEntities;
 
@@ -390,19 +393,19 @@ public:
 	// of units in a very small area.
 	// (Note we use vertexes, not tiles, to better match the renderer.)
 	// Lazily constructed when it's needed, to save memory in smaller games.
-	std::vector<std::vector<u16> > m_LosPlayerCounts;
+	std::array<Grid<u16>, MAX_LOS_PLAYER_ID> m_LosPlayerCounts;
 
-	// 2-bit ELosState per player, starting with player 1 (not 0!) up to player MAX_LOS_PLAYER_ID (inclusive)
-	std::vector<u32> m_LosState;
+	// 2-bit LosState per player, starting with player 1 (not 0!) up to player MAX_LOS_PLAYER_ID (inclusive)
+	Grid<u32> m_LosState;
 
 	// Special static visibility data for the "reveal whole map" mode
 	// (TODO: this is usually a waste of memory)
-	std::vector<u32> m_LosStateRevealed;
+	Grid<u32> m_LosStateRevealed;
 
 	// Shared LOS masks, one per player.
-	std::vector<u32> m_SharedLosMasks;
+	std::array<u32, MAX_LOS_PLAYER_ID+2> m_SharedLosMasks;
 	// Shared dirty visibility masks, one per player.
-	std::vector<u16> m_SharedDirtyVisibilityMasks;
+	std::array<u16, MAX_LOS_PLAYER_ID+2> m_SharedDirtyVisibilityMasks;
 
 	// Cache explored vertices per player (not serialized)
 	u32 m_TotalInworldVertices;
@@ -431,13 +434,9 @@ public:
 
 		// The whole map should be visible to Gaia by default, else e.g. animals
 		// will get confused when trying to run from enemies
-		m_LosRevealAll.resize(MAX_LOS_PLAYER_ID+2,false);
 		m_LosRevealAll[0] = true;
-		m_SharedLosMasks.resize(MAX_LOS_PLAYER_ID+2,0);
-		m_SharedDirtyVisibilityMasks.resize(MAX_LOS_PLAYER_ID + 2, 0);
 
 		m_GlobalVisibilityUpdate = true;
-		m_GlobalPlayerVisibilityUpdate.resize(MAX_LOS_PLAYER_ID);
 
 		m_LosCircular = false;
 		m_TerrainVerticesPerSide = 0;
@@ -459,22 +458,22 @@ public:
 		SerializeMap<SerializeU32_Unbounded, SerializeQuery>()(serialize, "queries", m_Queries, GetSimContext());
 		SerializeEntityMap<SerializeEntityData>()(serialize, "entity data", m_EntityData);
 
-		SerializeVector<SerializeBool>()(serialize, "los reveal all", m_LosRevealAll);
+		SerializeArray<SerializeBool>()(serialize, "los reveal all", m_LosRevealAll);
 		serialize.Bool("los circular", m_LosCircular);
 		serialize.NumberI32_Unbounded("terrain verts per side", m_TerrainVerticesPerSide);
 
 		serialize.Bool("global visibility update", m_GlobalVisibilityUpdate);
-		SerializeVector<SerializeU8_Unbounded>()(serialize, "global player visibility update", m_GlobalPlayerVisibilityUpdate);
-		SerializeRepetitiveVector<SerializeU16_Unbounded>()(serialize, "dirty visibility", m_DirtyVisibility);
+		SerializeArray<SerializeBool>()(serialize, "global player visibility update", m_GlobalPlayerVisibilityUpdate);
+		SerializedGridCompressed<SerializeU16_Unbounded>()(serialize, "dirty visibility", m_DirtyVisibility);
 		SerializeVector<SerializeU32_Unbounded>()(serialize, "modified entities", m_ModifiedEntities);
 
 		// We don't serialize m_Subdivision, m_LosPlayerCounts or m_LosTiles
 		// since they can be recomputed from the entity data when deserializing;
 		// m_LosState must be serialized since it depends on the history of exploration
 
-		SerializeRepetitiveVector<SerializeU32_Unbounded>()(serialize, "los state", m_LosState);
-		SerializeVector<SerializeU32_Unbounded>()(serialize, "shared los masks", m_SharedLosMasks);
-		SerializeVector<SerializeU16_Unbounded>()(serialize, "shared dirty visibility masks", m_SharedDirtyVisibilityMasks);
+		SerializedGridCompressed<SerializeU32_Unbounded>()(serialize, "los state", m_LosState);
+		SerializeArray<SerializeU32_Unbounded>()(serialize, "shared los masks", m_SharedLosMasks);
+		SerializeArray<SerializeU16_Unbounded>()(serialize, "shared dirty visibility masks", m_SharedDirtyVisibilityMasks);
 	}
 
 	virtual void Serialize(ISerializer& serialize)
@@ -563,8 +562,8 @@ public:
 						SharingLosMove(it->second.visionSharing, it->second.visionRange, from, to);
 					else
 						LosMove(it->second.owner, it->second.visionRange, from, to);
-					i32 oldLosTile = PosToLosTilesHelper(it->second.x, it->second.z);
-					i32 newLosTile = PosToLosTilesHelper(msgData.x, msgData.z);
+					LosTile oldLosTile = PosToLosTilesHelper(it->second.x, it->second.z);
+					LosTile newLosTile = PosToLosTilesHelper(msgData.x, msgData.z);
 					if (oldLosTile != newLosTile)
 					{
 						RemoveFromTile(oldLosTile, ent);
@@ -782,10 +781,10 @@ public:
 		// Check that calling ResetDerivedData (i.e. recomputing all the state from scratch)
 		// does not affect the incrementally-computed state
 
-		std::vector<std::vector<u16> > oldPlayerCounts = m_LosPlayerCounts;
-		std::vector<u32> oldStateRevealed = m_LosStateRevealed;
+		std::array<Grid<u16>, MAX_LOS_PLAYER_ID> oldPlayerCounts = m_LosPlayerCounts;
+		Grid<u32> oldStateRevealed = m_LosStateRevealed;
 		FastSpatialSubdivision oldSubdivision = m_Subdivision;
-		std::vector<std::set<entity_id_t> > oldLosTiles = m_LosTiles;
+		Grid<std::set<entity_id_t> > oldLosTiles = m_LosTiles;
 
 		m_Deserializing = true;
 		ResetDerivedData();
@@ -793,19 +792,25 @@ public:
 
 		if (oldPlayerCounts != m_LosPlayerCounts)
 		{
-			for (size_t i = 0; i < oldPlayerCounts.size(); ++i)
+			for (size_t id = 0; id < m_LosPlayerCounts.size(); ++id)
 			{
-				debug_printf("%d: ", (int)i);
-				for (size_t j = 0; j < oldPlayerCounts[i].size(); ++j)
-					debug_printf("%d ", oldPlayerCounts[i][j]);
-				debug_printf("\n");
+				debug_printf("player %li\n", id);
+				for (size_t i = 0; i < oldPlayerCounts[id].width(); ++i)
+				{
+					for (size_t j = 0; j < oldPlayerCounts[id].height(); ++j)
+						debug_printf("%i ", oldPlayerCounts[id].get(i,j));
+					debug_printf("\n");
+				}
 			}
-			for (size_t i = 0; i < m_LosPlayerCounts.size(); ++i)
+			for (size_t id = 0; id < m_LosPlayerCounts.size(); ++id)
 			{
-				debug_printf("%d: ", (int)i);
-				for (size_t j = 0; j < m_LosPlayerCounts[i].size(); ++j)
-					debug_printf("%d ", m_LosPlayerCounts[i][j]);
-				debug_printf("\n");
+				debug_printf("player %li\n", id);
+				for (size_t i = 0; i < m_LosPlayerCounts[id].width(); ++i)
+				{
+					for (size_t j = 0; j < m_LosPlayerCounts[id].height(); ++j)
+						debug_printf("%i ", m_LosPlayerCounts[id].get(i,j));
+					debug_printf("\n");
+				}
 			}
 			debug_warn(L"inconsistent player counts");
 		}
@@ -830,10 +835,12 @@ public:
 
 		m_LosTilesPerSide = (m_TerrainVerticesPerSide - 1)/LOS_TILES_RATIO;
 
-		m_LosPlayerCounts.clear();
-		m_LosPlayerCounts.resize(MAX_LOS_PLAYER_ID+1);
+		for (size_t player_id = 0; player_id < m_LosPlayerCounts.size(); ++player_id)
+			m_LosPlayerCounts[player_id].reset();
+
 		m_ExploredVertices.clear();
 		m_ExploredVertices.resize(MAX_LOS_PLAYER_ID+1, 0);
+
 		if (m_Deserializing)
 		{
 			// recalc current exploration stats.
@@ -841,25 +848,20 @@ public:
 				for (i32 i = 0; i < m_TerrainVerticesPerSide; i++)
 					if (!LosIsOffWorld(i, j))
 						for (u8 k = 1; k < MAX_LOS_PLAYER_ID+1; ++k)
-							m_ExploredVertices.at(k) += ((m_LosState[j*m_TerrainVerticesPerSide + i] & (LOS_EXPLORED << (2*(k-1)))) > 0);
-		}
-		else
-		{
-			m_LosState.clear();
-			m_LosState.resize(m_TerrainVerticesPerSide*m_TerrainVerticesPerSide);
-		}
-		m_LosStateRevealed.clear();
-		m_LosStateRevealed.resize(m_TerrainVerticesPerSide*m_TerrainVerticesPerSide);
+							m_ExploredVertices.at(k) += ((m_LosState.get(i, j) & ((u32)LosState::EXPLORED << (2*(k-1)))) > 0);
+		} else
+			m_LosState.resize(m_TerrainVerticesPerSide, m_TerrainVerticesPerSide);
+
+		m_LosStateRevealed.resize(m_TerrainVerticesPerSide, m_TerrainVerticesPerSide);
 
 		if (!m_Deserializing)
 		{
-			m_DirtyVisibility.clear();
-			m_DirtyVisibility.resize(m_LosTilesPerSide*m_LosTilesPerSide);
+			m_DirtyVisibility.resize(m_LosTilesPerSide, m_LosTilesPerSide);
 		}
-		ENSURE(m_DirtyVisibility.size() == (size_t)(m_LosTilesPerSide*m_LosTilesPerSide));
+		ENSURE(m_DirtyVisibility.width() == m_LosTilesPerSide);
+		ENSURE(m_DirtyVisibility.height() == m_LosTilesPerSide);
 
-		m_LosTiles.clear();
-		m_LosTiles.resize(m_LosTilesPerSide*m_LosTilesPerSide);
+		m_LosTiles.resize(m_LosTilesPerSide, m_LosTilesPerSide);
 
 		for (EntityMap<EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
 			if (it->second.HasFlag<FlagMasks::InWorld>())
@@ -879,10 +881,10 @@ public:
 			for (ssize_t i = 0; i < m_TerrainVerticesPerSide; ++i)
 			{
 				if (LosIsOffWorld(i,j))
-					m_LosStateRevealed[i + j*m_TerrainVerticesPerSide] = 0;
+					m_LosStateRevealed.get(i, j) = 0;
 				else
 				{
-					m_LosStateRevealed[i + j*m_TerrainVerticesPerSide] = 0xFFFFFFFFu;
+					m_LosStateRevealed.get(i, j) = 0xFFFFFFFFu;
 					m_TotalInworldVertices++;
 				}
 			}
@@ -1582,19 +1584,19 @@ public:
 			it->second.SetFlag<FlagMasks::ScriptedVisibility>(status);
 	}
 
-	ELosVisibility ComputeLosVisibility(CEntityHandle ent, player_id_t player) const
+	LosVisibility ComputeLosVisibility(CEntityHandle ent, player_id_t player) const
 	{
 		// Entities not with positions in the world are never visible
 		if (ent.GetId() == INVALID_ENTITY)
-			return VIS_HIDDEN;
+			return LosVisibility::HIDDEN;
 		CmpPtr<ICmpPosition> cmpPosition(ent);
 		if (!cmpPosition || !cmpPosition->IsInWorld())
-			return VIS_HIDDEN;
+			return LosVisibility::HIDDEN;
 
 		// Mirage entities, whatever the situation, are visible for one specific player
 		CmpPtr<ICmpMirage> cmpMirage(ent);
 		if (cmpMirage && cmpMirage->GetPlayer() != player)
-			return VIS_HIDDEN;
+			return LosVisibility::HIDDEN;
 
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
 		int i = (pos.X / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
@@ -1604,9 +1606,8 @@ public:
 		if (GetLosRevealAll(player))
 		{
 			if (LosIsOffWorld(i, j) || cmpMirage)
-				return VIS_HIDDEN;
-			else
-				return VIS_VISIBLE;
+				return LosVisibility::HIDDEN;
+			return LosVisibility::VISIBLE;
 		}
 
 		// Get visible regions
@@ -1632,41 +1633,41 @@ public:
 		if (los.IsVisible(i, j))
 		{
 			if (cmpMirage)
-				return VIS_HIDDEN;
+				return LosVisibility::HIDDEN;
 
-			return VIS_VISIBLE;
+			return LosVisibility::VISIBLE;
 		}
 
 		if (!los.IsExplored(i, j))
-			return VIS_HIDDEN;
+			return LosVisibility::HIDDEN;
 
 		// Invisible if the 'retain in fog' flag is not set, and in a non-visible explored region
 		// Try using the 'retainInFog' flag in m_EntityData to save a script call
 		if (it != m_EntityData.end())
 		{
 			if (!it->second.HasFlag<FlagMasks::RetainInFog>())
-				return VIS_HIDDEN;
+				return LosVisibility::HIDDEN;
 		}
 		else
 		{
 			if (!(cmpVisibility && cmpVisibility->GetRetainInFog()))
-				return VIS_HIDDEN;
+				return LosVisibility::HIDDEN;
 		}
 
 		if (cmpMirage)
-			return VIS_FOGGED;
+			return LosVisibility::FOGGED;
 
 		CmpPtr<ICmpOwnership> cmpOwnership(ent);
 		if (!cmpOwnership)
-			return VIS_FOGGED;
+			return LosVisibility::FOGGED;
 
 		if (cmpOwnership->GetOwner() == player)
 		{
 			CmpPtr<ICmpFogging> cmpFogging(ent);
 			if (!(cmpFogging && cmpFogging->IsMiraged(player)))
-				return VIS_FOGGED;
+				return LosVisibility::FOGGED;
 
-			return VIS_HIDDEN;
+			return LosVisibility::HIDDEN;
 		}
 
 		// Fogged entities are hidden in two cases:
@@ -1675,37 +1676,36 @@ public:
 		CmpPtr<ICmpFogging> cmpFogging(ent);
 		if (cmpFogging && cmpFogging->IsActivated() &&
 			(!cmpFogging->WasSeen(player) || cmpFogging->IsMiraged(player)))
-			return VIS_HIDDEN;
+			return LosVisibility::HIDDEN;
 
-		return VIS_FOGGED;
+		return LosVisibility::FOGGED;
 	}
 
-	ELosVisibility ComputeLosVisibility(entity_id_t ent, player_id_t player) const
+	LosVisibility ComputeLosVisibility(entity_id_t ent, player_id_t player) const
 	{
 		CEntityHandle handle = GetSimContext().GetComponentManager().LookupEntityHandle(ent);
 		return ComputeLosVisibility(handle, player);
 	}
 
-	virtual ELosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player) const
+	virtual LosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player) const
 	{
 		entity_id_t entId = ent.GetId();
 
 		// Entities not with positions in the world are never visible
 		if (entId == INVALID_ENTITY)
-			return VIS_HIDDEN;
+			return LosVisibility::HIDDEN;
 
 		CmpPtr<ICmpPosition> cmpPosition(ent);
 		if (!cmpPosition || !cmpPosition->IsInWorld())
-			return VIS_HIDDEN;
+			return LosVisibility::HIDDEN;
 
 		// Gaia and observers do not have a visibility cache
 		if (player <= 0)
 			return ComputeLosVisibility(ent, player);
 
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
-		i32 n = PosToLosTilesHelper(pos.X, pos.Y);
 
-		if (IsVisibilityDirty(m_DirtyVisibility[n], player))
+		if (IsVisibilityDirty(m_DirtyVisibility[PosToLosTilesHelper(pos.X, pos.Y)], player))
 			return ComputeLosVisibility(ent, player);
 
 		if (std::find(m_ModifiedEntities.begin(), m_ModifiedEntities.end(), entId) != m_ModifiedEntities.end())
@@ -1715,16 +1715,16 @@ public:
 		if (it == m_EntityData.end())
 			return ComputeLosVisibility(ent, player);
 
-		return static_cast<ELosVisibility>(GetPlayerVisibility(it->second.visibilities, player));
+		return static_cast<LosVisibility>(GetPlayerVisibility(it->second.visibilities, player));
 	}
 
-	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player) const
+	virtual LosVisibility GetLosVisibility(entity_id_t ent, player_id_t player) const
 	{
 		CEntityHandle handle = GetSimContext().GetComponentManager().LookupEntityHandle(ent);
 		return GetLosVisibility(handle, player);
 	}
 
-	virtual ELosVisibility GetLosVisibilityPosition(entity_pos_t x, entity_pos_t z, player_id_t player) const
+	virtual LosVisibility GetLosVisibilityPosition(entity_pos_t x, entity_pos_t z, player_id_t player) const
 	{
 		int i = (x / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
 		int j = (z / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
@@ -1733,22 +1733,27 @@ public:
 		if (GetLosRevealAll(player))
 		{
 			if (LosIsOffWorld(i, j))
-				return VIS_HIDDEN;
+				return LosVisibility::HIDDEN;
 			else
-				return VIS_VISIBLE;
+				return LosVisibility::VISIBLE;
 		}
 
 		// Get visible regions
 		CLosQuerier los(GetSharedLosMask(player), m_LosState, m_TerrainVerticesPerSide);
 
 		if (los.IsVisible(i,j))
-			return VIS_VISIBLE;
+			return LosVisibility::VISIBLE;
 		if (los.IsExplored(i,j))
-			return VIS_FOGGED;
-		return VIS_HIDDEN;
+			return LosVisibility::FOGGED;
+		return LosVisibility::HIDDEN;
 	}
 
-	i32 PosToLosTilesHelper(entity_pos_t x, entity_pos_t z) const
+	LosTile PosToLosTilesHelper(u16 x, u16 z) const
+	{
+		return LosTile{ Clamp(x/LOS_TILES_RATIO, 0, m_LosTilesPerSide - 1), Clamp(z/LOS_TILES_RATIO, 0, m_LosTilesPerSide - 1) };
+	}
+
+	LosTile PosToLosTilesHelper(entity_pos_t x, entity_pos_t z) const
 	{
 		i32 i = Clamp(
 			(x/(entity_pos_t::FromInt(TERRAIN_TILE_SIZE * LOS_TILES_RATIO))).ToInt_RoundToZero(),
@@ -1758,15 +1763,15 @@ public:
 			(z/(entity_pos_t::FromInt(TERRAIN_TILE_SIZE * LOS_TILES_RATIO))).ToInt_RoundToZero(),
 			0,
 			m_LosTilesPerSide - 1);
-		return j*m_LosTilesPerSide + i;
+		return std::make_pair(i, j);
 	}
 
-	void AddToTile(i32 tile, entity_id_t ent)
+	void AddToTile(LosTile tile, entity_id_t ent)
 	{
 		m_LosTiles[tile].insert(ent);
 	}
 
-	void RemoveFromTile(i32 tile, entity_id_t ent)
+	void RemoveFromTile(LosTile tile, entity_id_t ent)
 	{
 		std::set<entity_id_t>::const_iterator tileIt = m_LosTiles[tile].find(ent);
 		if (tileIt != m_LosTiles[tile].end())
@@ -1777,17 +1782,19 @@ public:
 	{
 		PROFILE("UpdateVisibilityData");
 
-		for (i32 n = 0; n < m_LosTilesPerSide * m_LosTilesPerSide; ++n)
-		{
-			for (player_id_t player = 1; player < MAX_LOS_PLAYER_ID + 1; ++player)
-				if (IsVisibilityDirty(m_DirtyVisibility[n], player) || m_GlobalPlayerVisibilityUpdate[player-1] == 1 || m_GlobalVisibilityUpdate)
-					for (const entity_id_t& ent : m_LosTiles[n])
-						UpdateVisibility(ent, player);
+		for (u16 i = 0; i < m_LosTilesPerSide; ++i)
+			for (u16 j = 0; j < m_LosTilesPerSide; ++j)
+			{
+				LosTile pos{i, j};
+				for (player_id_t player = 1; player < MAX_LOS_PLAYER_ID + 1; ++player)
+					if (IsVisibilityDirty(m_DirtyVisibility[pos], player) || m_GlobalPlayerVisibilityUpdate[player-1] == 1 || m_GlobalVisibilityUpdate)
+						for (const entity_id_t& ent : m_LosTiles[pos])
+							UpdateVisibility(ent, player);
 
-			m_DirtyVisibility[n] = 0;
-		}
+				m_DirtyVisibility[pos] = 0;
+			}
 
-		std::fill(m_GlobalPlayerVisibilityUpdate.begin(), m_GlobalPlayerVisibilityUpdate.end(), 0);
+		std::fill(m_GlobalPlayerVisibilityUpdate.begin(), m_GlobalPlayerVisibilityUpdate.end(), false);
 		m_GlobalVisibilityUpdate = false;
 
 		// Calling UpdateVisibility can modify m_ModifiedEntities, so be careful:
@@ -1817,15 +1824,15 @@ public:
 		if (itEnts == m_EntityData.end())
 			return;
 
-		u8 oldVis = GetPlayerVisibility(itEnts->second.visibilities, player);
-		u8 newVis = ComputeLosVisibility(itEnts->first, player);
+		LosVisibility oldVis = GetPlayerVisibility(itEnts->second.visibilities, player);
+		LosVisibility newVis = ComputeLosVisibility(itEnts->first, player);
 
 		if (oldVis == newVis)
 			return;
 
-		itEnts->second.visibilities = (itEnts->second.visibilities & ~(0x3 << 2 * (player - 1))) | (newVis << 2 * (player - 1));
+		itEnts->second.visibilities = (itEnts->second.visibilities & ~(0x3 << 2 * (player - 1))) | ((u8)newVis << 2 * (player - 1));
 
-		CMessageVisibilityChanged msg(player, ent, oldVis, newVis);
+		CMessageVisibilityChanged msg(player, ent, static_cast<int>(oldVis), static_cast<int>(newVis));
 		GetSimContext().GetComponentManager().PostMessage(ent, msg);
 	}
 
@@ -1909,8 +1916,8 @@ public:
 				if (LosIsOffWorld(i,j))
 					continue;
 				u32 &explored = m_ExploredVertices.at(p);
-				explored += !(m_LosState[i + j*m_TerrainVerticesPerSide] & (LOS_EXPLORED << (2*(p-1))));
-				m_LosState[i + j*m_TerrainVerticesPerSide] |= (LOS_EXPLORED << (2*(p-1)));
+				explored += !(m_LosState.get(i, j) & ((u32)LosState::EXPLORED << (2*(p-1))));
+				m_LosState.get(i, j) |= ((u32)LosState::EXPLORED << (2*(p-1)));
 			}
 
 		SeeExploredEntities(p);
@@ -1951,11 +1958,11 @@ public:
 							if (LosIsOffWorld(ti, tj))
 								continue;
 
-							u32& losState = m_LosState[ti + tj * m_TerrainVerticesPerSide];
-							if (!(losState & (LOS_EXPLORED << (2*(p-1)))))
+							u32& losState = m_LosState.get(ti, tj);
+							if (!(losState & ((u32)LosState::EXPLORED << (2*(p-1)))))
 							{
 								++explored;
-								losState |= (LOS_EXPLORED << (2*(p-1)));
+								losState |= ((u32)LosState::EXPLORED << (2*(p-1)));
 							}
 						}
 				}
@@ -2018,9 +2025,8 @@ public:
 		const Grid<u16>& shoreGrid = cmpPathfinder->ComputeShoreGrid(true);
 		ENSURE(shoreGrid.m_W == m_TerrainVerticesPerSide-1 && shoreGrid.m_H == m_TerrainVerticesPerSide-1);
 
-		std::vector<u16>& counts = m_LosPlayerCounts.at(p);
-		ENSURE(!counts.empty());
-		u16* countsData = &counts[0];
+		Grid<u16>& counts = m_LosPlayerCounts.at(p);
+		ENSURE(!counts.blank());
 
 		for (u16 j = 0; j < shoreGrid.m_H; ++j)
 			for (u16 i = 0; i < shoreGrid.m_W; ++i)
@@ -2031,9 +2037,9 @@ public:
 
 				// Maybe we could be more clever and don't add dummy strips of one tile
 				if (enable)
-					LosAddStripHelper(p, i, i, j, countsData);
+					LosAddStripHelper(p, i, i, j, counts);
 				else
-					LosRemoveStripHelper(p, i, i, j, countsData);
+					LosRemoveStripHelper(p, i, i, j, counts);
 			}
 	}
 
@@ -2069,56 +2075,50 @@ public:
 	/**
 	 * Update the LOS state of tiles within a given horizontal strip (i0,j) to (i1,j) (inclusive).
 	 */
-	inline void LosAddStripHelper(u8 owner, i32 i0, i32 i1, i32 j, u16* counts)
+	inline void LosAddStripHelper(u8 owner, i32 i0, i32 i1, i32 j, Grid<u16>& counts)
 	{
 		if (i1 < i0)
 			return;
 
-		i32 idx0 = j*m_TerrainVerticesPerSide + i0;
-		i32 idx1 = j*m_TerrainVerticesPerSide + i1;
 		u32 &explored = m_ExploredVertices.at(owner);
-		for (i32 idx = idx0; idx <= idx1; ++idx)
+		for (i32 i = i0; i <= i1; ++i)
 		{
 			// Increasing from zero to non-zero - move from unexplored/explored to visible+explored
-			if (counts[idx] == 0)
+			if (counts.get(i, j) == 0)
 			{
-				i32 i = i0 + idx - idx0;
 				if (!LosIsOffWorld(i, j))
 				{
-					explored += !(m_LosState[idx] & (LOS_EXPLORED << (2*(owner-1))));
-					m_LosState[idx] |= ((LOS_VISIBLE | LOS_EXPLORED) << (2*(owner-1)));
+					explored += !(m_LosState.get(i, j) & ((u32)LosState::EXPLORED << (2*(owner-1))));
+					m_LosState.get(i, j) |= (((int)LosState::VISIBLE | (u32)LosState::EXPLORED) << (2*(owner-1)));
 				}
 
 				MarkVisibilityDirtyAroundTile(owner, i, j);
 			}
 
-			ASSERT(counts[idx] < 65535);
-			counts[idx] = (u16)(counts[idx] + 1); // ignore overflow; the player should never have 64K units
+			ENSURE(counts.get(i, j) < std::numeric_limits<u16>::max());
+			counts.get(i, j) = (u16)(counts.get(i, j) + 1); // ignore overflow; the player should never have 64K units
 		}
 	}
 
 	/**
 	 * Update the LOS state of tiles within a given horizontal strip (i0,j) to (i1,j) (inclusive).
 	 */
-	inline void LosRemoveStripHelper(u8 owner, i32 i0, i32 i1, i32 j, u16* counts)
+	inline void LosRemoveStripHelper(u8 owner, i32 i0, i32 i1, i32 j, Grid<u16>& counts)
 	{
 		if (i1 < i0)
 			return;
 
-		i32 idx0 = j*m_TerrainVerticesPerSide + i0;
-		i32 idx1 = j*m_TerrainVerticesPerSide + i1;
-		for (i32 idx = idx0; idx <= idx1; ++idx)
+		for (i32 i = i0; i <= i1; ++i)
 		{
-			ASSERT(counts[idx] > 0);
-			counts[idx] = (u16)(counts[idx] - 1);
+			ASSERT(counts.get(i, j) > 0);
+			counts.get(i, j) = (u16)(counts.get(i, j) - 1);
 
 			// Decreasing from non-zero to zero - move from visible+explored to explored
-			if (counts[idx] == 0)
+			if (counts.get(i, j) == 0)
 			{
 				// (If LosIsOffWorld then this is a no-op, so don't bother doing the check)
-				m_LosState[idx] &= ~(LOS_VISIBLE << (2*(owner-1)));
+				m_LosState.get(i, j) &= ~((int)LosState::VISIBLE << (2*(owner-1)));
 
-				i32 i = i0 + idx - idx0;
 				MarkVisibilityDirtyAroundTile(owner, i, j);
 			}
 		}
@@ -2132,10 +2132,10 @@ public:
 
 		// Mark the LoS tiles around the updated vertex
 		// 1: left-up, 2: right-up, 3: left-down, 4: right-down
-		int n1 = ((j-1)/LOS_TILES_RATIO)*m_LosTilesPerSide + (i-1)/LOS_TILES_RATIO;
-		int n2 = ((j-1)/LOS_TILES_RATIO)*m_LosTilesPerSide + i/LOS_TILES_RATIO;
-		int n3 = (j/LOS_TILES_RATIO)*m_LosTilesPerSide + (i-1)/LOS_TILES_RATIO;
-		int n4 = (j/LOS_TILES_RATIO)*m_LosTilesPerSide + i/LOS_TILES_RATIO;
+		LosTile n1 = PosToLosTilesHelper(i-1, j-1);
+		LosTile n2 = PosToLosTilesHelper(i-1, j);
+		LosTile n3 = PosToLosTilesHelper(i, j-1);
+		LosTile n4 = PosToLosTilesHelper(i, j);
 
 		u16 sharedDirtyVisibilityMask = m_SharedDirtyVisibilityMasks[owner];
 
@@ -2162,13 +2162,11 @@ public:
 
 		PROFILE("LosUpdateHelper");
 
-		std::vector<u16>& counts = m_LosPlayerCounts.at(owner);
+		Grid<u16>& counts = m_LosPlayerCounts.at(owner);
 
 		// Lazy initialisation of counts:
-		if (counts.empty())
-			counts.resize(m_TerrainVerticesPerSide*m_TerrainVerticesPerSide);
-
-		u16* countsData = &counts[0];
+		if (counts.blank())
+			counts.resize(m_TerrainVerticesPerSide, m_TerrainVerticesPerSide);
 
 		// Compute the circular region as a series of strips.
 		// Rather than quantise pos to vertexes, we do more precise sub-tile computations
@@ -2233,9 +2231,9 @@ public:
 			i32 i0clamp = std::max(i0, 1);
 			i32 i1clamp = std::min(i1, m_TerrainVerticesPerSide-2);
 			if (adding)
-				LosAddStripHelper(owner, i0clamp, i1clamp, j, countsData);
+				LosAddStripHelper(owner, i0clamp, i1clamp, j, counts);
 			else
-				LosRemoveStripHelper(owner, i0clamp, i1clamp, j, countsData);
+				LosRemoveStripHelper(owner, i0clamp, i1clamp, j, counts);
 		}
 	}
 
@@ -2251,13 +2249,11 @@ public:
 
 		PROFILE("LosUpdateHelperIncremental");
 
-		std::vector<u16>& counts = m_LosPlayerCounts.at(owner);
+		Grid<u16>& counts = m_LosPlayerCounts.at(owner);
 
 		// Lazy initialisation of counts:
-		if (counts.empty())
-			counts.resize(m_TerrainVerticesPerSide*m_TerrainVerticesPerSide);
-
-		u16* countsData = &counts[0];
+		if (counts.blank())
+			counts.resize(m_TerrainVerticesPerSide, m_TerrainVerticesPerSide);
 
 		// See comments in LosUpdateHelper.
 		// This does exactly the same, except computing the strips for
@@ -2343,11 +2339,11 @@ public:
 				// and we can just add/remove the entire other strip
 				if (i1clamp_from < i0clamp_from)
 				{
-					LosAddStripHelper(owner, i0clamp_to, i1clamp_to, j, countsData);
+					LosAddStripHelper(owner, i0clamp_to, i1clamp_to, j, counts);
 				}
 				else if (i1clamp_to < i0clamp_to)
 				{
-					LosRemoveStripHelper(owner, i0clamp_from, i1clamp_from, j, countsData);
+					LosRemoveStripHelper(owner, i0clamp_from, i1clamp_from, j, counts);
 				}
 				else
 				{
@@ -2360,10 +2356,10 @@ public:
 					// movement speeds), the region between them will be both added and removed,
 					// so we have to do the add first to avoid overflowing to -1 and triggering
 					// assertion failures.)
-					LosAddStripHelper(owner, i0clamp_to, i0clamp_from-1, j, countsData);
-					LosAddStripHelper(owner, i1clamp_from+1, i1clamp_to, j, countsData);
-					LosRemoveStripHelper(owner, i0clamp_from, i0clamp_to-1, j, countsData);
-					LosRemoveStripHelper(owner, i1clamp_to+1, i1clamp_from, j, countsData);
+					LosAddStripHelper(owner, i0clamp_to, i0clamp_from-1, j, counts);
+					LosAddStripHelper(owner, i1clamp_from+1, i1clamp_to, j, counts);
+					LosRemoveStripHelper(owner, i0clamp_from, i0clamp_to-1, j, counts);
+					LosRemoveStripHelper(owner, i1clamp_to+1, i1clamp_from, j, counts);
 				}
 			}
 		}
@@ -2448,7 +2444,7 @@ public:
 					continue;
 
 				for (playerIt = players.begin(); playerIt != players.end(); ++playerIt)
-					if (m_LosState[j*m_TerrainVerticesPerSide + i] & (LOS_EXPLORED << (2*((*playerIt)-1))))
+					if (m_LosState.get(i, j) & ((u32)LosState::EXPLORED << (2*((*playerIt)-1))))
 					{
 						exploredVertices += 1;
 						break;

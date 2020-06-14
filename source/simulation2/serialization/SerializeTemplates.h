@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,6 +31,24 @@
 #include <utility>
 
 template<typename ELEM>
+struct SerializeArray
+{
+	template<typename T, size_t N>
+	void operator()(ISerializer& serialize, const char* name, std::array<T, N>& value)
+	{
+		for (size_t i = 0; i < N; ++i)
+			ELEM()(serialize, name, value[i]);
+	}
+
+	template<typename T, size_t N>
+	void operator()(IDeserializer& deserialize, const char* name, std::array<T, N>& value)
+	{
+		for (size_t i = 0; i < N; ++i)
+			ELEM()(deserialize, name, value[i]);
+	}
+};
+
+template<typename ELEM>
 struct SerializeVector
 {
 	template<typename T>
@@ -53,54 +71,7 @@ struct SerializeVector
 		{
 			T el;
 			ELEM()(deserialize, name, el);
-			value.push_back(el);
-		}
-	}
-};
-
-template<typename ELEM>
-struct SerializeRepetitiveVector
-{
-	template<typename T>
-	void operator()(ISerializer& serialize, const char* name, std::vector<T>& value)
-	{
-		size_t len = value.size();
-		serialize.NumberU32_Unbounded("length", (u32)len);
-		if (len == 0)
-			return;
-		u32 count = 1;
-		T prevVal = value[0];
-		for (size_t i = 1; i < len; ++i)
-		{
-			if (prevVal == value[i])
-			{
-				count++;
-				continue;
-			}
-			serialize.NumberU32_Unbounded("#", count);
-			ELEM()(serialize, name, prevVal);
-			count = 1;
-			prevVal = value[i];
-		}
-		serialize.NumberU32_Unbounded("#", count);
-		ELEM()(serialize, name, prevVal);
-	}
-
-	template<typename T>
-	void operator()(IDeserializer& deserialize, const char* name, std::vector<T>& value)
-	{
-		value.clear();
-		u32 len;
-		deserialize.NumberU32_Unbounded("length", len);
-		value.reserve(len); // TODO: watch out for out-of-memory
-		for (size_t i = 0; i < len;)
-		{
-			u32 count;
-			deserialize.NumberU32_Unbounded("#", count);
-			T el;
-			ELEM()(deserialize, name, el);
-			i += count;
-			value.insert(value.end(), count, el);
+			value.emplace_back(el);
 		}
 	}
 };
