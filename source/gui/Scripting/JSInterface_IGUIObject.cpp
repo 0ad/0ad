@@ -22,6 +22,7 @@
 #include "gui/CGUI.h"
 #include "gui/CGUISetting.h"
 #include "gui/ObjectBases/IGUIObject.h"
+#include "ps/CLogger.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
 #include "scriptinterface/ScriptInterface.h"
 
