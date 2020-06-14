@@ -20,68 +20,99 @@
 #ifndef INCLUDED_OBJECTTOIDMAP
 #define INCLUDED_OBJECTTOIDMAP
 
-#include "scriptinterface/ScriptRuntime.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptTypes.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
 #include <stdint.h>
+
+template <typename T>
+class TraceablePayload
+{
+    public:
+    T data;
+    void trace(JSTracer* trc){}
+};
 
 // Map JSObjects -> ids
 template <typename T>
 class ObjectIdCache
 {
 	using Hasher = js::MovableCellHasher<JS::Heap<JSObject*>>;
-	using Table = JS::GCHashMap<JS::Heap<JSObject*>, T, Hasher, js::SystemAllocPolicy>;
+	using Table = js::GCRekeyableHashMap<JS::Heap<JSObject*>, 
+                                TraceablePayload<T>, 
+                                Hasher, 
+                                js::SystemAllocPolicy>;
 
 	NONCOPYABLE(ObjectIdCache);
 
 public:
-    ObjectIdCache() : table_(js::SystemAllocPolicy(), 32) {}
-	virtual ~ObjectIdCache(){}
+    ObjectIdCache(const ScriptInterface* iface) : table_(js::SystemAllocPolicy(), 32), m_iface(iface) 
+    {
+        CX_IN_REALM(cx,m_iface);
+        JS_AddExtraGCRootsTracer(cx, ObjectIdCache::Trace, this);
+    }
+	
+    virtual ~ObjectIdCache()
+    {
+        CX_IN_REALM(cx,m_iface);
+        JS_RemoveExtraGCRootsTracer(cx, ObjectIdCache::Trace, this);
+    }
 
 	void trace(JSTracer* trc)
 	{
-        table_.trace();
+        table_.trace(trc);
 	}
 
-// TODO sweep?
+    static void Trace(JSTracer* trc, void* data)
+	{
+		reinterpret_cast<ObjectIdCache*>(data)->trace(trc);
+	}
 
 	bool find(JSObject* obj, T& ret)
 	{
+        CX_IN_REALM(cx,m_iface);
 		typename Table::Ptr p = table_.lookup(obj);
 		if (!p) {
 			return false;
         }
-		ret = p->value();
+		ret = p->value().data;
 		return true;
 	}
 
-	bool add(JSContext* cx, JSObject* obj, T id)
+	bool add(JSObject* obj, T id)
 	{
-        (void) cx;
-		return table_.put(obj, id);
+        TraceablePayload<T> payload;
+        payload.data = id;
+        CX_IN_REALM(cx,m_iface);
+		return table_.put(obj, payload);
 	}
 
 	void remove(JSObject* obj)
 	{
+        CX_IN_REALM(cx,m_iface);
 		table_.remove(obj);
 	}
 
     void clear()
     {
+        CX_IN_REALM(cx,m_iface);
         return table_.clear();
     }
 
 	bool empty()
 	{
+        CX_IN_REALM(cx,m_iface);
 		return table_.empty();
 	}
 
 	bool has(JSObject* obj)
 	{
+        CX_IN_REALM(cx,m_iface);
 		return table_.has(obj);
 	}
 
 private:
+    const ScriptInterface* m_iface;
 	Table table_;
 };
 

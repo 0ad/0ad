@@ -217,7 +217,7 @@ public:
 		m_CommandsComputed(true),
 		m_HasLoadedEntityTemplates(false),
 		m_HasSharedComponent(false),
-		m_SerializablePrototypes(new ObjectIdCache<std::wstring>()),
+		m_SerializablePrototypes(new ObjectIdCache<std::wstring>(m_ScriptInterface.get())),
 		m_EntityTemplates(g_ScriptRuntime->m_rt),
 		m_SharedAIObj(g_ScriptRuntime->m_rt),
 		m_PassabilityMapVal(g_ScriptRuntime->m_rt),
@@ -837,7 +837,7 @@ public:
 			LOGERROR("RegisterSerializablePrototype called with same prototype multiple times: p=%p n='%s'", (void *)obj.get(), utf8_from_wstring(name));
 			return;
 		}
-		m_SerializablePrototypes->add(cx, obj, name);
+		m_SerializablePrototypes->add(obj, name);
 		m_DeserializablePrototypes[name] = JS::Heap<JSObject*>(obj);
 	}
 

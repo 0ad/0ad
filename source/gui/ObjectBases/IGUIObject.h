@@ -503,10 +503,6 @@ private:
 
 	void TraceMember(JSTracer* trc);
 
-public:
-
-    void trace(JSTrace* trc);
-
 // Variables
 protected:
 	static const CStr EventNameMouseEnter;

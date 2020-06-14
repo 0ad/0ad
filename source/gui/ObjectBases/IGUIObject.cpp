@@ -551,11 +551,6 @@ void IGUIObject::TraceMember(JSTracer* trc)
 		JS::TraceEdge(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
 }
 
-void IGUIObject::trace(JSTracer* trc){
-	for (std::pair<const CStr, JS::Heap<JSObject*>>& handler : m_ScriptHandlers)
-		JS::TraceEdge(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
-}
-
 const JSClass IGUIObject::store_class = {"StoreClass", JSCLASS_HAS_PRIVATE, nullptr};
 
 // Instantiate templated functions:

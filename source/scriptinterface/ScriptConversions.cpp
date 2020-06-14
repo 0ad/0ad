@@ -131,11 +131,21 @@ template<> bool ScriptInterface::FromJSVal<Path>(JSContext* cx, JS::HandleValue 
 
 template<> bool ScriptInterface::FromJSVal<std::string>(JSContext* cx, JS::HandleValue v, std::string& out)
 {
+    JS::UniqueChars ch;
 	WARN_IF_NOT(v.isString() || v.isNumber(), v); // allow implicit number conversions
 	JS::RootedString str(cx, JS::ToString(cx, v));
 	if (!str)
 		FAIL("Argument must be convertible to a string");
-    JS::UniqueChars ch = JS_EncodeStringToASCII(cx, str.get()); // chops off high byte of each char16_t
+
+	if (JS_StringHasLatin1Chars(str))
+	{
+        ch = JS_EncodeStringToLatin1(cx, str.get()); // chops off high byte of each char16_t
+    }
+    else
+    {
+        ch = JS_EncodeStringToUTF8(cx, str); // chops off high byte of each char16_t
+    }
+
 	if (!ch)
 		FAIL("JS_EncodeString failed"); // out of memory
 	out.assign(ch.get(), ch.get() + JS_GetStringLength(str));
@@ -248,11 +258,7 @@ template<> void ScriptInterface::ToJSVal<const wchar_t*>(JSContext* cx, JS::Muta
 
 template<> void ScriptInterface::ToJSVal<const char*>(JSContext* cx, JS::MutableHandleValue ret, const char* const& val)
 {
-	JS::RootedString str(cx, JS_NewStringCopyZ(cx, val));
-	if (str)
-		ret.setString(str);
-	else
-		ret.setUndefined();
+	ToJSVal(cx, ret, std::string(val));
 }
 
 #define TOJSVAL_CHAR(N) \

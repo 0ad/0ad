@@ -55,8 +55,8 @@ static u8 GetArrayType(js::Scalar::Type arrayType)
 }
 
 CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(const ScriptInterface& scriptInterface, ISerializer& serializer) :
-	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_ScriptBackrefs(),
-	m_SerializablePrototypes(new ObjectIdCache<std::wstring>()), m_ScriptBackrefsNext(1)
+	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_ScriptBackrefs(&m_ScriptInterface),
+	m_SerializablePrototypes(new ObjectIdCache<std::wstring>(&m_ScriptInterface)), m_ScriptBackrefsNext(1)
 {
 }
 
@@ -480,7 +480,7 @@ u32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)
 
     CX_IN_REALM(cx,&m_ScriptInterface)
 
-	m_ScriptBackrefs.add(cx, obj, m_ScriptBackrefsNext);
+	m_ScriptBackrefs.add(obj, m_ScriptBackrefsNext);
 
 	m_ScriptBackrefsNext++;
 	// Return a non-tag number so callers know they need to serialize the object
