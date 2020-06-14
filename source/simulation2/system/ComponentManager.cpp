@@ -264,19 +264,23 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxP
 	// Find all the ctor prototype's On* methods, and subscribe to the appropriate messages:
 	std::vector<std::string> methods;
 
-	if (!componentManager->m_ScriptInterface.EnumeratePropertyNamesWithPrefix(protoVal, "On", methods))
+	if (!componentManager->m_ScriptInterface.EnumeratePropertyNames(protoVal, false, methods))
 	{
-		componentManager->m_ScriptInterface.ReportError("Failed to enumerate 'On' messages");
+		componentManager->m_ScriptInterface.ReportError("Failed to enumerate component properties.");
 		return;
 	}
 
 	for (std::vector<std::string>::const_iterator it = methods.begin(); it != methods.end(); ++it)
 	{
+		// TODO C++17: string_view
+		if (strncmp((it->c_str()), "On", 2) != 0)
+			continue;
+
 		std::string name = (*it).substr(2); // strip the "On" prefix
 
 		// Handle "OnGlobalFoo" functions specially
 		bool isGlobal = false;
-		if (name.substr(0, 6) == "Global")
+		if (strncmp(name.c_str(), "Global", 6) == 0)
 		{
 			isGlobal = true;
 			name = name.substr(6);

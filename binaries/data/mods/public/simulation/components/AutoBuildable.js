@@ -2,20 +2,9 @@ class AutoBuildable
 {
 	Init()
 	{
-		this.rate = ApplyValueModificationsToEntity("AutoBuildable/Rate", +this.template.Rate , this.entity);
+		this.rate = ApplyValueModificationsToEntity("AutoBuildable/Rate", +this.template.Rate, this.entity);
 		if (this.rate)
 			this.StartTimer();
-	}
-
-	get Schema()
-	{
-		return  "<a:help>Defines whether the entity can be built by itself.</a:help>" +
-			"<a:example>" +
-				"<Rate>1.0</Rate>" +
-			"</a:example>" +
-			"<element name='Rate' a:help='The rate at which the building autobuilds.'>" +
-				"<ref name='nonNegativeDecimal'/>" +
-			"</element>";
 	}
 
 	/**
@@ -28,7 +17,7 @@ class AutoBuildable
 
 	UpdateRate()
 	{
-		this.rate = ApplyValueModificationsToEntity("AutoBuildable/Rate", +this.template.Rate , this.entity);
+		this.rate = ApplyValueModificationsToEntity("AutoBuildable/Rate", +this.template.Rate, this.entity);
 
 		if (this.rate)
 			this.StartTimer();
@@ -78,22 +67,31 @@ class AutoBuildable
 
 		cmpFoundation.Build(this.entity, this.rate);
 	}
+
+	OnValueModification(msg)
+	{
+		if (msg.component != "AutoBuildable")
+			return;
+
+		this.UpdateRate();
+	}
+
+	OnOwnershipChanged(msg)
+	{
+		if (msg.to == INVALID_PLAYER)
+			return;
+
+		this.UpdateRate();
+	}
 }
 
-AutoBuildable.prototype.OnValueModification = function(msg)
-{
-	if (msg.component != "AutoBuildable")
-		return;
-
-	this.UpdateRate();
-};
-
-AutoBuildable.prototype.OnOwnershipChanged = function(msg)
-{
-	if (msg.to == INVALID_PLAYER)
-		return;
-
-	this.UpdateRate();
-}
+AutoBuildable.prototype.Schema =
+	"<a:help>Defines whether the entity can be built by itself.</a:help>" +
+	"<a:example>" +
+		"<Rate>1.0</Rate>" +
+	"</a:example>" +
+	"<element name='Rate' a:help='The rate at which the building autobuilds.'>" +
+		"<ref name='nonNegativeDecimal'/>" +
+	"</element>";
 
 Engine.RegisterComponentType(IID_AutoBuildable, "AutoBuildable", AutoBuildable);
