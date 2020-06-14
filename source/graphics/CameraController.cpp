@@ -40,6 +40,7 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpRangeManager.h"
+#include "simulation2/helpers/Los.h"
 
 extern int g_xres, g_yres;
 

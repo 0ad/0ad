@@ -18,6 +18,9 @@
 #include "precompiled.h"
 #include "CCmpRallyPointRenderer.h"
 
+#include "simulation2/components/ICmpRangeManager.h"
+#include "simulation2/helpers/Los.h"
+
 std::string CCmpRallyPointRenderer::GetSchema()
 {
 	return
@@ -814,7 +817,7 @@ void CCmpRallyPointRenderer::GetVisibilitySegments(std::vector<SVisibilitySegmen
 	CmpPtr<ICmpRangeManager> cmpRangeMgr(GetSystemEntity());
 
 	player_id_t currentPlayer = static_cast<player_id_t>(GetSimContext().GetCurrentDisplayedPlayer());
-	ICmpRangeManager::CLosQuerier losQuerier(cmpRangeMgr->GetLosQuerier(currentPlayer));
+	CLosQuerier losQuerier(cmpRangeMgr->GetLosQuerier(currentPlayer));
 
 	// Go through the path node list, comparing each node's visibility with the previous one. If it changes, end the current segment and start
 	// a new one at the next point.

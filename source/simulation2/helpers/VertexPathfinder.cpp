@@ -38,6 +38,7 @@
 #include "ps/Profile.h"
 #include "renderer/Scene.h"
 #include "simulation2/components/ICmpObstructionManager.h"
+#include "simulation2/helpers/Grid.h"
 #include "simulation2/helpers/PriorityQueue.h"
 #include "simulation2/helpers/Render.h"
 #include "simulation2/system/SimContext.h"

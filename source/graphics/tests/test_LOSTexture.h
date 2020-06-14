@@ -21,6 +21,7 @@
 #include "lib/timer.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/helpers/Los.h"
 
 class TestLOSTexture : public CxxTest::TestSuite
 {
@@ -50,7 +51,7 @@ public:
 		// LosState::MASK should be cmpRanageManager->GetSharedLosMask(1),
 		// but that would mean adding a huge mock component for this and it
 		// should always be LosState::MASK for player 1 (as the other players are bit-shifted).
-		ICmpRangeManager::CLosQuerier los((u32)LosState::MASK, inputDataVec, size);
+		CLosQuerier los((u32)LosState::MASK, inputDataVec, size);
 
 		std::vector<u8> losData;
 		size_t pitch;
@@ -75,7 +76,7 @@ public:
 		// LosState::MASK should be cmpRanageManager->GetSharedLosMask(1),
 		// but that would mean adding a huge mock component for this and it
 		// should always be LosState::MASK for player 1 (as the other players are bit-shifted).
-		ICmpRangeManager::CLosQuerier los((u32)LosState::MASK, inputDataVec, size);
+		CLosQuerier los((u32)LosState::MASK, inputDataVec, size);
 
 		size_t reps = 128;
 		double t = timer_Time();

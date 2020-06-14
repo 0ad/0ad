@@ -25,6 +25,7 @@
 #include "ICmpPosition.h"
 #include "ICmpRangeManager.h"
 #include "ICmpTerrain.h"
+#include "simulation2/helpers/Los.h"
 #include "simulation2/MessageTypes.h"
 
 #include "graphics/Frustum.h"
@@ -114,7 +115,7 @@ public:
 	virtual void RemoveProjectile(uint32_t);
 
 	void RenderModel(CModelAbstract& model, const CVector3D& position, SceneCollector& collector, const CFrustum& frustum, bool culling,
-		const ICmpRangeManager::CLosQuerier& los, bool losRevealAll) const;
+		const CLosQuerier& los, bool losRevealAll) const;
 
 private:
 	struct Projectile
@@ -358,7 +359,7 @@ void CCmpProjectileManager::RemoveProjectile(uint32_t id)
 }
 
 void CCmpProjectileManager::RenderModel(CModelAbstract& model, const CVector3D& position, SceneCollector& collector,
-	const CFrustum& frustum, bool culling, const ICmpRangeManager::CLosQuerier& los, bool losRevealAll) const
+	const CFrustum& frustum, bool culling, const CLosQuerier& los, bool losRevealAll) const
 {
 	// Don't display objects outside the visible area
 	ssize_t posi = (ssize_t)(0.5f + position.X / TERRAIN_TILE_SIZE);
@@ -380,7 +381,7 @@ void CCmpProjectileManager::RenderSubmit(SceneCollector& collector, const CFrust
 {
 	CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
 	int player = GetSimContext().GetCurrentDisplayedPlayer();
-	ICmpRangeManager::CLosQuerier los(cmpRangeManager->GetLosQuerier(player));
+	CLosQuerier los(cmpRangeManager->GetLosQuerier(player));
 	bool losRevealAll = cmpRangeManager->GetLosRevealAll(player);
 
 	for (const Projectile& projectile : m_Projectiles)

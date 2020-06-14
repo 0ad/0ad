@@ -37,6 +37,7 @@
 #include "ps/CLogger.h"
 #include "renderer/TerrainOverlay.h"
 #include "simulation2/components/ICmpObstructionManager.h"
+#include "simulation2/helpers/Grid.h"
 
 
 class HierarchicalPathfinder;

@@ -23,6 +23,7 @@
 #include "graphics/Overlay.h"
 #include "renderer/Scene.h"
 #include "renderer/TerrainOverlay.h"
+#include "simulation2/helpers/Grid.h"
 #include "simulation2/helpers/PriorityQueue.h"
 
 /**

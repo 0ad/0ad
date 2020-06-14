@@ -32,6 +32,7 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpTerrain.h"
+#include "simulation2/helpers/Los.h"
 
 /*
 
@@ -341,7 +342,7 @@ void CLOSTexture::RecomputeTexture(int unit)
 	if (!cmpRangeManager)
 		return;
 
-	ICmpRangeManager::CLosQuerier los(cmpRangeManager->GetLosQuerier(g_Game->GetSimulation2()->GetSimContext().GetCurrentDisplayedPlayer()));
+	CLosQuerier los(cmpRangeManager->GetLosQuerier(g_Game->GetSimulation2()->GetSimContext().GetCurrentDisplayedPlayer()));
 
 	GenerateBitmap(los, &losData[0], m_MapSize, m_MapSize, pitch);
 
@@ -363,7 +364,7 @@ size_t CLOSTexture::GetBitmapSize(size_t w, size_t h, size_t* pitch)
 	return *pitch * (h + g_BlurSize - 1);
 }
 
-void CLOSTexture::GenerateBitmap(const ICmpRangeManager::CLosQuerier& los, u8* losData, size_t w, size_t h, size_t pitch)
+void CLOSTexture::GenerateBitmap(const CLosQuerier& los, u8* losData, size_t w, size_t h, size_t pitch)
 {
 	u8 *dataPtr = losData;
 
