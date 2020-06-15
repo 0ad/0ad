@@ -30,12 +30,12 @@ public:
         CX_IN_REALM(cx,(&script))
 
 		JS::RootedObject obj(cx, JS_NewPlainObject(cx));
-		ObjectIdCache<u32> map(&script);
+        JS::PersistentRooted<ObjectIdCache<u32>> map(cx, &script);
 
-		TS_ASSERT(map.add(obj, 1));
+		TS_ASSERT(map.get().add(obj, 1));
 		JSObject* plainObj = obj;
 		// The map should contain the object we've just added
-		TS_ASSERT(map.has(plainObj));
+		TS_ASSERT(map.get().has(plainObj));
 
 		JS_GC(g_ScriptRuntime->m_ctx);
 
@@ -50,13 +50,14 @@ public:
 		//
 		// TODO: It might be a good idea to test the behaviour when only a minor
 		// GC runs, but there's no API for calling a minor GC yet.
-		TS_ASSERT(plainObj != obj);
-		//TS_ASSERT(!map.has(plainObj)); why ?????
-		TS_ASSERT(map.has(obj));
+		
+        TS_ASSERT(plainObj != obj);
+		TS_ASSERT(map.get().has(obj));
 
 		// Finding the ID associated with the object
 		u32 ret(0);
-		TS_ASSERT(map.find(obj, ret));
+		TS_ASSERT(map.get().find(obj, ret));
 		TS_ASSERT_EQUALS(ret, 1);
+
 	}
 };

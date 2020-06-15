@@ -55,9 +55,12 @@ static u8 GetArrayType(js::Scalar::Type arrayType)
 }
 
 CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(const ScriptInterface& scriptInterface, ISerializer& serializer) :
-	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_ScriptBackrefs(&m_ScriptInterface),
-	m_SerializablePrototypes(new ObjectIdCache<std::wstring>(&m_ScriptInterface)), m_ScriptBackrefsNext(1)
+	m_ScriptInterface(scriptInterface), m_Serializer(serializer), 
+	m_ScriptBackrefsNext(1)
 {
+    CX_IN_REALM(cx, &m_ScriptInterface);
+    m_ScriptBackrefs.reset(new JS::PersistentRooted<ObjectIdCache<u32>>(cx, &m_ScriptInterface));
+    m_SerializablePrototypes.reset(new JS::PersistentRooted<ObjectIdCache<std::wstring>>(cx, &m_ScriptInterface));
 }
 
 void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
@@ -173,7 +176,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 				if (!proto)
 					throw PSERROR_Serialize_ScriptError("JS_GetPrototype failed");
 
-				if (m_SerializablePrototypes->empty() || !IsSerializablePrototype(proto))
+				if (m_SerializablePrototypes->get().empty() || !IsSerializablePrototype(proto))
 				{
 					// Standard Object prototype
 					m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT);
@@ -475,12 +478,12 @@ u32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)
 
 	// If it was already there, return the tag
 	u32 tag;
-	if (m_ScriptBackrefs.find(obj, tag))
+	if (m_ScriptBackrefs->get().find(obj, tag))
 		return tag;
 
     CX_IN_REALM(cx,&m_ScriptInterface)
 
-	m_ScriptBackrefs.add(obj, m_ScriptBackrefsNext);
+	m_ScriptBackrefs->get().add(obj, m_ScriptBackrefsNext);
 
 	m_ScriptBackrefsNext++;
 	// Return a non-tag number so callers know they need to serialize the object
@@ -489,18 +492,18 @@ u32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)
 
 bool CBinarySerializerScriptImpl::IsSerializablePrototype(JS::HandleObject prototype)
 {
-	return m_SerializablePrototypes->has(prototype);
+	return m_SerializablePrototypes->get().has(prototype);
 }
 
 std::wstring CBinarySerializerScriptImpl::GetPrototypeName(JS::HandleObject prototype)
 {
 	std::wstring ret;
-	bool found = m_SerializablePrototypes->find(prototype, ret);
+	bool found = m_SerializablePrototypes->get().find(prototype, ret);
 	ENSURE(found);
 	return ret;
 }
 
-void CBinarySerializerScriptImpl::SetSerializablePrototypes(shared_ptr<ObjectIdCache<std::wstring> > prototypes)
+void CBinarySerializerScriptImpl::SetSerializablePrototypes(shared_ptr<JS::PersistentRooted<ObjectIdCache<std::wstring>>>& prototypes)
 {
 	m_SerializablePrototypes = prototypes;
 }

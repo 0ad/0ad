@@ -27,6 +27,10 @@
 #include "lib/allocators/arena.h"
 
 #include <map>
+#include <memory>
+
+using std::unique_ptr;
+using std::shared_ptr;
 
 /**
  * Wrapper for redirecting ostream writes to CBinarySerializer's impl
@@ -88,16 +92,16 @@ public:
 
 	void ScriptString(const char* name, JS::HandleString string);
 	void HandleScriptVal(JS::HandleValue val);
-	void SetSerializablePrototypes(shared_ptr<ObjectIdCache<std::wstring> > prototypes);
+	void SetSerializablePrototypes(shared_ptr<JS::PersistentRooted<ObjectIdCache<std::wstring>>>& prototypes);
 private:
 	const ScriptInterface& m_ScriptInterface;
 	ISerializer& m_Serializer;
 
-	ObjectIdCache<u32> m_ScriptBackrefs;
+    unique_ptr<JS::PersistentRooted<ObjectIdCache<u32>>> m_ScriptBackrefs;
 	u32 m_ScriptBackrefsNext;
 	u32 GetScriptBackrefTag(JS::HandleObject obj);
 
-	shared_ptr<ObjectIdCache<std::wstring> > m_SerializablePrototypes;
+	shared_ptr<JS::PersistentRooted<ObjectIdCache<std::wstring>>> m_SerializablePrototypes;
 
 	bool IsSerializablePrototype(JS::HandleObject prototype);
 	std::wstring GetPrototypeName(JS::HandleObject prototype);
@@ -128,7 +132,7 @@ public:
 	{
 	}
 
-	virtual void SetSerializablePrototypes(shared_ptr<ObjectIdCache<std::wstring> >& prototypes)
+	virtual void SetSerializablePrototypes(shared_ptr<JS::PersistentRooted<ObjectIdCache<std::wstring>>>& prototypes)
 	{
 		m_ScriptImpl->SetSerializablePrototypes(prototypes);
 	}

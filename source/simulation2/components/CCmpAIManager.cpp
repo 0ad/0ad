@@ -217,18 +217,19 @@ public:
 		m_CommandsComputed(true),
 		m_HasLoadedEntityTemplates(false),
 		m_HasSharedComponent(false),
-		m_SerializablePrototypes(new ObjectIdCache<std::wstring>(m_ScriptInterface.get())),
 		m_EntityTemplates(g_ScriptRuntime->m_rt),
 		m_SharedAIObj(g_ScriptRuntime->m_rt),
 		m_PassabilityMapVal(g_ScriptRuntime->m_rt),
 		m_TerritoryMapVal(g_ScriptRuntime->m_rt)
 	{
-
+        CX_IN_REALM(cx, m_ScriptInterface)
 		m_ScriptInterface->ReplaceNondeterministicRNG(m_RNG);
 
 		m_ScriptInterface->SetCallbackData(static_cast<void*> (this));
 
-        CX_IN_REALM(cx, m_ScriptInterface)
+        m_SerializablePrototypes.reset(new JS::PersistentRooted<ObjectIdCache<std::wstring>>(cx, 
+                                                m_ScriptInterface.get())),
+
 		JS_AddExtraGCRootsTracer(cx, Trace, this);
 
 		m_ScriptInterface->RegisterFunction<void, int, JS::HandleValue, CAIWorker::PostCommand>("PostCommand");
@@ -832,12 +833,12 @@ public:
         CX_IN_REALM(cx,m_ScriptInterface)
 
 		JS::RootedObject obj(cx, &proto.toObject());
-		if (m_SerializablePrototypes->has(obj) || m_DeserializablePrototypes.find(name) != m_DeserializablePrototypes.end())
+		if (m_SerializablePrototypes->get().has(obj) || m_DeserializablePrototypes.find(name) != m_DeserializablePrototypes.end())
 		{
 			LOGERROR("RegisterSerializablePrototype called with same prototype multiple times: p=%p n='%s'", (void *)obj.get(), utf8_from_wstring(name));
 			return;
 		}
-		m_SerializablePrototypes->add(obj, name);
+		m_SerializablePrototypes->get().add(obj, name);
 		m_DeserializablePrototypes[name] = JS::Heap<JSObject*>(obj);
 	}
 
@@ -939,7 +940,7 @@ private:
 
 	bool m_CommandsComputed;
 
-	shared_ptr<ObjectIdCache<std::wstring> > m_SerializablePrototypes;
+	shared_ptr<JS::PersistentRooted<ObjectIdCache<std::wstring>>> m_SerializablePrototypes;
 	std::map<std::wstring, JS::Heap<JSObject*> > m_DeserializablePrototypes;
 	CTemplateLoader m_TemplateLoader;
 };
