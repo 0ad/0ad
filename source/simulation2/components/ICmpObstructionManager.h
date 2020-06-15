@@ -25,6 +25,9 @@
 #include "maths/FixedVector2D.h"
 
 class IObstructionTestFilter;
+template<typename T>
+class Grid;
+struct GridUpdateInformation;
 
 /**
  * Obstruction manager: provides efficient spatial queries over objects in the world.

@@ -25,6 +25,7 @@
 
 #include "simulation2/MessageTypes.h"
 #include "simulation2/helpers/Geometry.h"
+#include "simulation2/helpers/Grid.h"
 #include "simulation2/helpers/Rasterize.h"
 #include "simulation2/helpers/Render.h"
 #include "simulation2/helpers/Spatial.h"

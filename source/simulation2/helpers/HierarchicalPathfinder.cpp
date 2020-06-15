@@ -23,6 +23,8 @@
 #include "ps/Profile.h"
 #include "renderer/Scene.h"
 
+#include "simulation2/helpers/Grid.h"
+
 // Find the root ID of a region, used by InitRegions
 inline u16 RootID(u16 x, const std::vector<u16>& v)
 {

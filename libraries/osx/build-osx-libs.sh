@@ -37,7 +37,7 @@ VORBIS_VERSION="libvorbis-1.3.6"
 GMP_VERSION="gmp-6.1.2"
 NETTLE_VERSION="nettle-3.5.1"
 # NOTE: remember to also update LIB_URL below when changing version
-GNUTLS_VERSION="gnutls-3.6.8"
+GNUTLS_VERSION="gnutls-3.6.13"
 GLOOX_VERSION="gloox-1.0.22"
 # OS X only includes part of ICU, and only the dylib
 # NOTE: remember to also update LIB_URL below when changing version
@@ -700,8 +700,9 @@ then
           --with-included-libtasn1 \
           --without-p11-kit \
           --disable-tests \
+          --disable-guile \
           --disable-nls \
-    && make ${JOBS} && make install) || die "GnuTLS build failed"
+    && make ${JOBS} LDFLAGS= install) || die "GnuTLS build failed"
   popd
   echo "$LIB_VERSION" > .already-built
 else

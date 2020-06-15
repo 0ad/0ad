@@ -373,7 +373,7 @@ void XmppClient::SendIqGameReport(const ScriptInterface& scriptInterface, JS::Ha
 
 	// Iterate through all the properties reported and add them to the stanza.
 	std::vector<std::string> properties;
-	scriptInterface.EnumeratePropertyNamesWithPrefix(data, "", properties);
+	scriptInterface.EnumeratePropertyNames(data, true, properties);
 	for (const std::string& p : properties)
 	{
 		std::wstring value;
@@ -409,7 +409,7 @@ void XmppClient::SendIqRegisterGame(const ScriptInterface& scriptInterface, JS::
 
 	// Iterate through all the properties reported and add them to the stanza.
 	std::vector<std::string> properties;
-	scriptInterface.EnumeratePropertyNamesWithPrefix(data, "", properties);
+	scriptInterface.EnumeratePropertyNames(data, true, properties);
 	for (const std::string& p : properties)
 	{
 		std::wstring value;

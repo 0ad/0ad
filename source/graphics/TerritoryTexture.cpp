@@ -25,6 +25,7 @@
 #include "ps/Profile.h"
 #include "renderer/Renderer.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/helpers/Grid.h"
 #include "simulation2/helpers/Pathfinding.h"
 #include "simulation2/components/ICmpPlayer.h"
 #include "simulation2/components/ICmpPlayerManager.h"

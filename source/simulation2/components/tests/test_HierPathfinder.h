@@ -20,6 +20,7 @@
 #define TEST
 
 #include "maths/Vector2D.h"
+#include "simulation2/helpers/Grid.h"
 #include "simulation2/helpers/HierarchicalPathfinder.h"
 
 class TestHierarchicalPathfinder : public CxxTest::TestSuite

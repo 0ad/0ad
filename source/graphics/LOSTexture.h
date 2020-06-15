@@ -83,7 +83,7 @@ private:
 	void RecomputeTexture(int unit);
 
 	size_t GetBitmapSize(size_t w, size_t h, size_t* pitch);
-	void GenerateBitmap(const ICmpRangeManager::CLosQuerier& los, u8* losData, size_t w, size_t h, size_t pitch);
+	void GenerateBitmap(const CLosQuerier& los, u8* losData, size_t w, size_t h, size_t pitch);
 
 	CSimulation2& m_Simulation;
 

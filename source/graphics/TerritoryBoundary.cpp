@@ -21,6 +21,7 @@
 #include <algorithm> // for reverse
 
 #include "graphics/Terrain.h"
+#include "simulation2/helpers/Grid.h"
 #include "simulation2/helpers/Pathfinding.h"
 #include "simulation2/components/ICmpTerritoryManager.h"
 

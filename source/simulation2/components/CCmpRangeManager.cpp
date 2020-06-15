@@ -32,6 +32,7 @@
 #include "simulation2/components/ICmpVisibility.h"
 #include "simulation2/components/ICmpVision.h"
 #include "simulation2/components/ICmpWaterManager.h"
+#include "simulation2/helpers/Los.h"
 #include "simulation2/helpers/MapEdgeTiles.h"
 #include "simulation2/helpers/Render.h"
 #include "simulation2/helpers/Spatial.h"

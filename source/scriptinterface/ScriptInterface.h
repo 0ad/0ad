@@ -212,7 +212,15 @@ public:
 	 */
 	bool HasProperty(JS::HandleValue obj, const char* name) const;
 
-	bool EnumeratePropertyNamesWithPrefix(JS::HandleValue objVal, const char* prefix, std::vector<std::string>& out) const;
+	/**
+	 * Returns all properties of the object, both own properties and inherited.
+	 * This is essentially equivalent to calling Object.getOwnPropertyNames()
+	 * and recursing up the prototype chain.
+	 * NB: this does not return properties with symbol or numeric keys, as that would
+	 * require a variant in the vector, and it's not useful for now.
+	 * @param enumerableOnly - only return enumerable properties.
+	 */
+	bool EnumeratePropertyNames(JS::HandleValue objVal, bool enumerableOnly, std::vector<std::string>& out) const;
 
 	bool SetPrototype(JS::HandleValue obj, JS::HandleValue proto);
 

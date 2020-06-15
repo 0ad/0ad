@@ -19,6 +19,7 @@
 
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpPathfinder.h"
+#include "simulation2/helpers/Grid.h"
 
 #include "graphics/MapReader.h"
 #include "graphics/Terrain.h"

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -761,24 +761,23 @@ bool ScriptInterface::HasProperty(JS::HandleValue obj, const char* name) const
 	return found;
 }
 
-bool ScriptInterface::EnumeratePropertyNamesWithPrefix(JS::HandleValue objVal, const char* prefix, std::vector<std::string>& out) const
+bool ScriptInterface::EnumeratePropertyNames(JS::HandleValue objVal, bool enumerableOnly, std::vector<std::string>& out) const
 {
 	JSAutoRequest rq(m->m_cx);
 
 	if (!objVal.isObjectOrNull())
 	{
-		LOGERROR("EnumeratePropertyNamesWithPrefix expected object type!");
+		LOGERROR("EnumeratePropertyNames expected object type!");
 		return false;
 	}
 
-	if (objVal.isNull())
-		return true; // reached the end of the prototype chain
-
 	JS::RootedObject obj(m->m_cx, &objVal.toObject());
-	JS::Rooted<JS::IdVector> props(m->m_cx, JS::IdVector(m->m_cx));
-	if (!JS_Enumerate(m->m_cx, obj, &props))
+	JS::AutoIdVector props(m->m_cx);
+	// This recurses up the prototype chain on its own.
+	if (!js::GetPropertyKeys(m->m_cx, obj, enumerableOnly? 0 : JSITER_HIDDEN, &props))
 		return false;
 
+	out.reserve(out.size() + props.length());
 	for (size_t i = 0; i < props.length(); ++i)
 	{
 		JS::RootedId id(m->m_cx, props[i]);
@@ -786,43 +785,16 @@ bool ScriptInterface::EnumeratePropertyNamesWithPrefix(JS::HandleValue objVal, c
 		if (!JS_IdToValue(m->m_cx, id, &val))
 			return false;
 
+		// Ignore integer properties for now.
+		// TODO: is this actually a thing in ECMAScript 6?
 		if (!val.isString())
-			continue; // ignore integer properties
+			continue;
 
-		JS::RootedString name(m->m_cx, val.toString());
-		size_t len = strlen(prefix)+1;
-		std::vector<char> buf(len);
-		size_t prefixLen = strlen(prefix) * sizeof(char);
-		JS_EncodeStringToBuffer(m->m_cx, name, &buf[0], prefixLen);
-		buf[len-1]= '\0';
-		if (0 == strcmp(&buf[0], prefix))
-		{
-			if (JS_StringHasLatin1Chars(name))
-			{
-				size_t length;
-				JS::AutoCheckCannotGC nogc;
-				const JS::Latin1Char* chars = JS_GetLatin1StringCharsAndLength(m->m_cx, nogc, name, &length);
-				if (chars)
-					out.push_back(std::string(chars, chars+length));
-			}
-			else
-			{
-				size_t length;
-				JS::AutoCheckCannotGC nogc;
-				const char16_t* chars = JS_GetTwoByteStringCharsAndLength(m->m_cx, nogc, name, &length);
-				if (chars)
-					out.push_back(std::string(chars, chars+length));
-			}
-		}
-	}
-
-	// Recurse up the prototype chain
-	JS::RootedObject prototype(m->m_cx);
-	if (JS_GetPrototype(m->m_cx, obj, &prototype))
-	{
-		JS::RootedValue prototypeVal(m->m_cx, JS::ObjectOrNullValue(prototype));
-		if (!EnumeratePropertyNamesWithPrefix(prototypeVal, prefix, out))
+		std::string propName;
+		if (!FromJSVal(m->m_cx, val, propName))
 			return false;
+
+		out.emplace_back(std::move(propName));
 	}
 
 	return true;
