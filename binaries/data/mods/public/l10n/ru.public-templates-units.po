@@ -28,7 +28,7 @@
 # micha030201 <micha030201@gmail.com>, 2015
 # micha030201 <micha030201@gmail.com>, 2015
 # Mikhail Grebelnick <oers92@mail.ru>, 2020
-# Nick Zhivotenko <inactive+niko.zvt@transifex.com>, 2014
+# 7a29a266fd9cb6bd6f7a5ad8b7eecd04_d094aea <8eb4501fa1ae799eccffc2010c174d97_227354>, 2014
 # Roman M. Yagodin <roman.yagodin@gmail.com>, 2017
 # Ryan Addariy <durganful@gmail.com>, 2018
 # Simple88, 2014
@@ -49,9 +49,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-18 07:14+0000\n"
-"PO-Revision-Date: 2020-05-22 22:12+0000\n"
-"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
+"POT-Creation-Date: 2020-06-12 07:09+0000\n"
+"PO-Revision-Date: 2020-06-12 09:32+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -102,7 +102,7 @@ msgstr "Основной"
 #: simulation/templates/template_unit_cavalry_melee.xml:21
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:35
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:30
-#: simulation/templates/template_unit_champion_elephant_melee.xml:17
+#: simulation/templates/template_unit_champion_elephant_melee.xml:16
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:30
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:36
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:35
@@ -110,13 +110,13 @@ msgstr "Основной"
 #: simulation/templates/template_unit_dog.xml:40
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:27
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:27
-#: simulation/templates/template_unit_hero_elephant_melee.xml:37
+#: simulation/templates/template_unit_hero_elephant_melee.xml:36
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:27
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:27
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:27
 #: simulation/templates/template_unit_infantry_melee.xml:21
 #: simulation/templates/template_unit_ship_fire.xml:45
-#: simulation/templates/template_unit_siege_ram.xml:36
+#: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Melee"
 msgstr "Ближний бой"
 
@@ -237,16 +237,16 @@ msgstr "Конный копейщик-чемпион"
 msgid "Champion Cavalry Swordsman"
 msgstr "Конный мечник-чемпион"
 
-#: simulation/templates/template_unit_champion_elephant.xml:26
+#: simulation/templates/template_unit_champion_elephant.xml:24
 #: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:28
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:13
-#: simulation/templates/template_unit_hero_elephant_melee.xml:37
-#: simulation/templates/units/maur_elephant_archer_b.xml:34
+#: simulation/templates/template_unit_hero_elephant_melee.xml:36
+#: simulation/templates/units/maur_elephant_archer_b.xml:33
 #: simulation/templates/units/maur_support_elephant.xml:26
 msgid "Elephant"
 msgstr "Слон"
 
-#: simulation/templates/template_unit_champion_elephant.xml:27
+#: simulation/templates/template_unit_champion_elephant.xml:25
 msgid "War Elephant"
 msgstr "Боевой слон"
 
@@ -512,13 +512,17 @@ msgstr "Арбалетчик"
 msgid "Bolt Shooter"
 msgstr "Стреломёт"
 
-#: simulation/templates/template_unit_siege_ram.xml:36
+#: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Ram"
 msgstr "Таран"
 
-#: simulation/templates/template_unit_siege_ram.xml:37
+#: simulation/templates/template_unit_siege_ram.xml:38
 msgid "Battering Ram"
 msgstr "Стенобитное орудие"
+
+#: simulation/templates/template_unit_siege_ram.xml:39
+msgid "Cannot attack Fields or Organic Units."
+msgstr ""
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:55
 msgid "StoneThrower"
@@ -1018,7 +1022,7 @@ msgstr ""
 msgid "Celtic Cavalry"
 msgstr "Кельтский всадник"
 
-#: simulation/templates/units/brit_champion_cavalry.xml:9
+#: simulation/templates/units/brit_champion_chariot.xml:9
 #: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/maur_champion_chariot.xml:9
 #: simulation/templates/units/maur_hero_ashoka.xml:13
@@ -1030,11 +1034,11 @@ msgstr "Кельтский всадник"
 msgid "Chariot"
 msgstr "Колесница"
 
-#: simulation/templates/units/brit_champion_cavalry.xml:10
+#: simulation/templates/units/brit_champion_chariot.xml:10
 msgid "Celtic Chariot"
 msgstr "Кельтская колесница"
 
-#: simulation/templates/units/brit_champion_cavalry.xml:11
+#: simulation/templates/units/brit_champion_chariot.xml:11
 msgid "Essedon"
 msgstr ""
 
@@ -1481,7 +1485,7 @@ msgstr "Жрица Атаегины"
 msgid "Emakumezko Apaiz de Ataekina"
 msgstr "Эмакумеско Апаис де Атаекина"
 
-#: simulation/templates/units/iber_support_trader.xml:5
+#: simulation/templates/units/iber_support_trader.xml:9
 msgid "Merkatari"
 msgstr "Меркатари"
 
@@ -1696,11 +1700,11 @@ msgstr "Жрец"
 msgid "wʿb nsw"
 msgstr "Уаб нэсу"
 
-#: simulation/templates/units/kush_support_trader.xml:5
+#: simulation/templates/units/kush_support_trader.xml:9
 msgid "Nilotic Merchant"
 msgstr "Нилотский торговец"
 
-#: simulation/templates/units/kush_support_trader.xml:6
+#: simulation/templates/units/kush_support_trader.xml:10
 msgid "rmt sbt"
 msgstr "Рэмэт сэбэт"
 
@@ -1919,11 +1923,11 @@ msgstr "Виша Канья"
 msgid "Maiden Guard Archer"
 msgstr "Лучница девичьей гвардии"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:35
+#: simulation/templates/units/maur_elephant_archer_b.xml:34
 msgid "Elephant Archer"
 msgstr "Лучник на слоне"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:39
+#: simulation/templates/units/maur_elephant_archer_b.xml:38
 msgid "Vachii Gaja"
 msgstr "Вачии Гайа"
 

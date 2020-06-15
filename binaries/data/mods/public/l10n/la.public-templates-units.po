@@ -5,13 +5,14 @@
 # Translators:
 # Ernestus Severus, 2020
 # Luc <luc.absil2@gmail.com>, 2015
+# Nescio, 2020
 # Supernova 888 <megasupernova888@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-18 07:14+0000\n"
-"PO-Revision-Date: 2020-05-30 18:30+0000\n"
-"Last-Translator: Ernestus Severus\n"
+"POT-Creation-Date: 2020-06-12 07:09+0000\n"
+"PO-Revision-Date: 2020-06-14 12:18+0000\n"
+"Last-Translator: Nescio\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +63,7 @@ msgstr "Primus"
 #: simulation/templates/template_unit_cavalry_melee.xml:21
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:35
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:30
-#: simulation/templates/template_unit_champion_elephant_melee.xml:17
+#: simulation/templates/template_unit_champion_elephant_melee.xml:16
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:30
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:36
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:35
@@ -70,13 +71,13 @@ msgstr "Primus"
 #: simulation/templates/template_unit_dog.xml:40
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:27
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:27
-#: simulation/templates/template_unit_hero_elephant_melee.xml:37
+#: simulation/templates/template_unit_hero_elephant_melee.xml:36
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:27
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:27
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:27
 #: simulation/templates/template_unit_infantry_melee.xml:21
 #: simulation/templates/template_unit_ship_fire.xml:45
-#: simulation/templates/template_unit_siege_ram.xml:36
+#: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Melee"
 msgstr "Propinquus"
 
@@ -197,16 +198,16 @@ msgstr "Eques Hastatus Propugnator "
 msgid "Champion Cavalry Swordsman"
 msgstr "Eques Gladiator Propugnator "
 
-#: simulation/templates/template_unit_champion_elephant.xml:26
+#: simulation/templates/template_unit_champion_elephant.xml:24
 #: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:28
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:13
-#: simulation/templates/template_unit_hero_elephant_melee.xml:37
-#: simulation/templates/units/maur_elephant_archer_b.xml:34
+#: simulation/templates/template_unit_hero_elephant_melee.xml:36
+#: simulation/templates/units/maur_elephant_archer_b.xml:33
 #: simulation/templates/units/maur_support_elephant.xml:26
 msgid "Elephant"
 msgstr "Elephantus"
 
-#: simulation/templates/template_unit_champion_elephant.xml:27
+#: simulation/templates/template_unit_champion_elephant.xml:25
 msgid "War Elephant"
 msgstr "Elephantus Armatus"
 
@@ -472,13 +473,17 @@ msgstr "Scorpio"
 msgid "Bolt Shooter"
 msgstr "Scorpio"
 
-#: simulation/templates/template_unit_siege_ram.xml:36
+#: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Ram"
 msgstr "Aries"
 
-#: simulation/templates/template_unit_siege_ram.xml:37
+#: simulation/templates/template_unit_siege_ram.xml:38
 msgid "Battering Ram"
 msgstr "Aries"
+
+#: simulation/templates/template_unit_siege_ram.xml:39
+msgid "Cannot attack Fields or Organic Units."
+msgstr "Nec agros nec vivos oppugnare potest."
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:55
 msgid "StoneThrower"
@@ -978,7 +983,7 @@ msgstr "Eporedos"
 msgid "Celtic Cavalry"
 msgstr "Eques Celticus"
 
-#: simulation/templates/units/brit_champion_cavalry.xml:9
+#: simulation/templates/units/brit_champion_chariot.xml:9
 #: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/maur_champion_chariot.xml:9
 #: simulation/templates/units/maur_hero_ashoka.xml:13
@@ -990,11 +995,11 @@ msgstr "Eques Celticus"
 msgid "Chariot"
 msgstr "Currus"
 
-#: simulation/templates/units/brit_champion_cavalry.xml:10
+#: simulation/templates/units/brit_champion_chariot.xml:10
 msgid "Celtic Chariot"
 msgstr "Essedum Celticum"
 
-#: simulation/templates/units/brit_champion_cavalry.xml:11
+#: simulation/templates/units/brit_champion_chariot.xml:11
 msgid "Essedon"
 msgstr "Essedon"
 
@@ -1441,7 +1446,7 @@ msgstr "Sacerdos Ataekinae"
 msgid "Emakumezko Apaiz de Ataekina"
 msgstr "Emakumezko Apaiz de Ataekina"
 
-#: simulation/templates/units/iber_support_trader.xml:5
+#: simulation/templates/units/iber_support_trader.xml:9
 msgid "Merkatari"
 msgstr "Merkatari"
 
@@ -1656,11 +1661,11 @@ msgstr "Sacerdos"
 msgid "wʿb nsw"
 msgstr "wʿb nsw"
 
-#: simulation/templates/units/kush_support_trader.xml:5
+#: simulation/templates/units/kush_support_trader.xml:9
 msgid "Nilotic Merchant"
 msgstr "Mercator Nilaticus"
 
-#: simulation/templates/units/kush_support_trader.xml:6
+#: simulation/templates/units/kush_support_trader.xml:10
 msgid "rmt sbt"
 msgstr "rmt sbt"
 
@@ -1879,18 +1884,18 @@ msgstr "Visha Kanya"
 msgid "Maiden Guard Archer"
 msgstr "Custos Virgo Sagittaria"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:35
+#: simulation/templates/units/maur_elephant_archer_b.xml:34
 msgid "Elephant Archer"
 msgstr "Sagittarius Elephantinus"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:39
+#: simulation/templates/units/maur_elephant_archer_b.xml:38
 msgid "Vachii Gaja"
 msgstr "Vachii Gaja"
 
 #: simulation/templates/units/maur_hero_ashoka.xml:14
 #: simulation/templates/units/maur_hero_ashoka_infantry.xml:8
 msgid "Ashoka the Great"
-msgstr "Aśokus Magnus"
+msgstr "Piodasses"
 
 #: simulation/templates/units/maur_hero_ashoka.xml:15
 #: simulation/templates/units/maur_hero_ashoka_infantry.xml:9
@@ -1902,7 +1907,7 @@ msgstr "Aśoka Devānāmpriya"
 msgid ""
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built "
 "during Ashoka's lifetime."
-msgstr "Proprium Herois: \"Edicta Aśoki\" - Columina Edictorum Aśoki aedificari potest dum Aśokus vivit."
+msgstr "Proprium Herois: “Edicta Piodassis” - Columina Edictorum Piodassis aedificari potest dum Piodasses vivit."
 
 #: simulation/templates/units/maur_hero_chanakya.xml:9
 msgid "Acharya Chanakya"

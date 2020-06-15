@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-18 07:14+0000\n"
-"PO-Revision-Date: 2020-05-18 09:23+0000\n"
+"POT-Creation-Date: 2020-06-12 07:09+0000\n"
+"PO-Revision-Date: 2020-06-12 09:32+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Estonian (http://www.transifex.com/wildfire-games/0ad/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr ""
 #: simulation/templates/template_unit_cavalry_melee.xml:21
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:35
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:30
-#: simulation/templates/template_unit_champion_elephant_melee.xml:17
+#: simulation/templates/template_unit_champion_elephant_melee.xml:16
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:30
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:36
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:35
@@ -69,13 +69,13 @@ msgstr ""
 #: simulation/templates/template_unit_dog.xml:40
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:27
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:27
-#: simulation/templates/template_unit_hero_elephant_melee.xml:37
+#: simulation/templates/template_unit_hero_elephant_melee.xml:36
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:27
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:27
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:27
 #: simulation/templates/template_unit_infantry_melee.xml:21
 #: simulation/templates/template_unit_ship_fire.xml:45
-#: simulation/templates/template_unit_siege_ram.xml:36
+#: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Melee"
 msgstr ""
 
@@ -196,16 +196,16 @@ msgstr ""
 msgid "Champion Cavalry Swordsman"
 msgstr ""
 
-#: simulation/templates/template_unit_champion_elephant.xml:26
+#: simulation/templates/template_unit_champion_elephant.xml:24
 #: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:28
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:13
-#: simulation/templates/template_unit_hero_elephant_melee.xml:37
-#: simulation/templates/units/maur_elephant_archer_b.xml:34
+#: simulation/templates/template_unit_hero_elephant_melee.xml:36
+#: simulation/templates/units/maur_elephant_archer_b.xml:33
 #: simulation/templates/units/maur_support_elephant.xml:26
 msgid "Elephant"
 msgstr "Elevant"
 
-#: simulation/templates/template_unit_champion_elephant.xml:27
+#: simulation/templates/template_unit_champion_elephant.xml:25
 msgid "War Elephant"
 msgstr "Sõjaelevant"
 
@@ -471,13 +471,17 @@ msgstr ""
 msgid "Bolt Shooter"
 msgstr ""
 
-#: simulation/templates/template_unit_siege_ram.xml:36
+#: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Ram"
 msgstr ""
 
-#: simulation/templates/template_unit_siege_ram.xml:37
+#: simulation/templates/template_unit_siege_ram.xml:38
 msgid "Battering Ram"
 msgstr "Taraan"
+
+#: simulation/templates/template_unit_siege_ram.xml:39
+msgid "Cannot attack Fields or Organic Units."
+msgstr ""
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:55
 msgid "StoneThrower"
@@ -977,7 +981,7 @@ msgstr ""
 msgid "Celtic Cavalry"
 msgstr "Kelti ratsur"
 
-#: simulation/templates/units/brit_champion_cavalry.xml:9
+#: simulation/templates/units/brit_champion_chariot.xml:9
 #: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/maur_champion_chariot.xml:9
 #: simulation/templates/units/maur_hero_ashoka.xml:13
@@ -989,11 +993,11 @@ msgstr "Kelti ratsur"
 msgid "Chariot"
 msgstr "Kaarik"
 
-#: simulation/templates/units/brit_champion_cavalry.xml:10
+#: simulation/templates/units/brit_champion_chariot.xml:10
 msgid "Celtic Chariot"
 msgstr ""
 
-#: simulation/templates/units/brit_champion_cavalry.xml:11
+#: simulation/templates/units/brit_champion_chariot.xml:11
 msgid "Essedon"
 msgstr ""
 
@@ -1440,7 +1444,7 @@ msgstr ""
 msgid "Emakumezko Apaiz de Ataekina"
 msgstr ""
 
-#: simulation/templates/units/iber_support_trader.xml:5
+#: simulation/templates/units/iber_support_trader.xml:9
 msgid "Merkatari"
 msgstr ""
 
@@ -1655,11 +1659,11 @@ msgstr ""
 msgid "wʿb nsw"
 msgstr ""
 
-#: simulation/templates/units/kush_support_trader.xml:5
+#: simulation/templates/units/kush_support_trader.xml:9
 msgid "Nilotic Merchant"
 msgstr ""
 
-#: simulation/templates/units/kush_support_trader.xml:6
+#: simulation/templates/units/kush_support_trader.xml:10
 msgid "rmt sbt"
 msgstr ""
 
@@ -1878,11 +1882,11 @@ msgstr ""
 msgid "Maiden Guard Archer"
 msgstr ""
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:35
+#: simulation/templates/units/maur_elephant_archer_b.xml:34
 msgid "Elephant Archer"
 msgstr "Vibulaskur elevandil"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:39
+#: simulation/templates/units/maur_elephant_archer_b.xml:38
 msgid "Vachii Gaja"
 msgstr ""
 

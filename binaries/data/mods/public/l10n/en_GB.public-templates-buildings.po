@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-22 07:09+0000\n"
-"PO-Revision-Date: 2020-05-22 10:41+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-06-12 07:09+0000\n"
+"PO-Revision-Date: 2020-06-13 20:04+0000\n"
+"Last-Translator: Nescio\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -147,7 +147,7 @@ msgstr "Catapults stones. Needs the murder holes tech to protect its foot."
 #: simulation/templates/template_structure_military_fortress.xml:73
 #: simulation/templates/template_structure_military_workshop.xml:30
 #: simulation/templates/template_structure_special.xml:36
-#: simulation/templates/template_structure_wonder.xml:54
+#: simulation/templates/template_structure_wonder.xml:55
 #: simulation/templates/structures/kush_temple_amun.xml:33
 msgid "City"
 msgstr "City"
@@ -373,8 +373,8 @@ msgid "Range"
 msgstr "Range"
 
 #: simulation/templates/template_structure_military_stable.xml:26
-msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr "Train citizen soldier cavalry. Research training improvements."
+msgid "Train Cavalry and research Cavalry technologies."
+msgstr "Train Cavalry and research Cavalry technologies."
 
 #: simulation/templates/template_structure_military_stable.xml:27
 #: simulation/templates/template_structure_military_stable.xml:22
@@ -451,14 +451,14 @@ msgstr "Rotary Mill"
 msgid "Theater"
 msgstr "Theatre"
 
-#: simulation/templates/template_structure_wonder.xml:53
+#: simulation/templates/template_structure_wonder.xml:54
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
 msgstr "Bring glory to your civilisation and add large tracts of land to your empire."
 
-#: simulation/templates/template_structure_wonder.xml:54
-#: simulation/templates/template_structure_wonder.xml:51
+#: simulation/templates/template_structure_wonder.xml:55
+#: simulation/templates/template_structure_wonder.xml:52
 msgid "Wonder"
 msgstr "Wonder"
 
@@ -704,19 +704,9 @@ msgstr "Teichos"
 msgid "Pyrgos"
 msgstr "Pyrgos"
 
-#: simulation/templates/structures/athen_wonder.xml:15
+#: simulation/templates/structures/athen_wonder.xml:9
 msgid "Parthenōn﻿﻿"
 msgstr "Parthenōn"
-
-#: simulation/templates/structures/athen_wonder.xml:16
-#: simulation/templates/structures/cart_wonder.xml:16
-#: simulation/templates/structures/mace_wonder.xml:16
-#: simulation/templates/structures/ptol_wonder.xml:16
-#: simulation/templates/structures/rome_wonder.xml:16
-msgid ""
-"Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison units to heal them at an extremely quick rate."
-msgstr "Bring glory to your civilisation and add large tracts of land to your empire. Garrison units to heal them at an extremely quick rate."
 
 #: simulation/templates/structures/athen_workshop.xml:5
 #: simulation/templates/structures/mace_workshop.xml:5
@@ -1015,7 +1005,7 @@ msgstr "Homah"
 msgid "Jdar"
 msgstr "Jdar"
 
-#: simulation/templates/structures/cart_wonder.xml:15
+#: simulation/templates/structures/cart_wonder.xml:9
 msgid "Temple of Ba'al Hammon"
 msgstr "Temple of Ba'al Hammon"
 
@@ -1053,11 +1043,11 @@ msgstr "Remogantion"
 
 #: simulation/templates/structures/gaul_wonder.xml:9
 msgid "Sanctuary of Corent"
-msgstr ""
+msgstr "Sanctuary of Corent"
 
 #: simulation/templates/structures/gaul_wonder.xml:10
 msgid "Celicnon"
-msgstr ""
+msgstr "Celicnon"
 
 #: simulation/templates/structures/iber_barracks.xml:11
 msgid "Kaserna"
@@ -1147,11 +1137,11 @@ msgstr "Cancho Roano"
 
 #: simulation/templates/structures/kush_barracks.xml:15
 msgid "pr-msʿyw"
-msgstr ""
+msgstr "pr-msʿyw"
 
 #: simulation/templates/structures/kush_blacksmith.xml:5
 msgid "hmw hʿy n rȝ-ʿ"
-msgstr ""
+msgstr "hmw hʿy n rȝ-ʿ"
 
 #: simulation/templates/structures/kush_blemmye_camp.xml:19
 #: simulation/templates/structures/kush_blemmye_camp.xml:20
@@ -1172,7 +1162,7 @@ msgstr "ihy"
 
 #: simulation/templates/structures/kush_defense_tower.xml:5
 msgid "tsmt ʿȝ"
-msgstr ""
+msgstr "tsmt ʿȝ"
 
 #: simulation/templates/structures/kush_dock.xml:9
 msgid "Mryt"
@@ -1222,7 +1212,7 @@ msgstr "Kushite Pyramid"
 #: simulation/templates/structures/kush_pyramid.xml:25
 #: simulation/templates/structures/kush_pyramid_large.xml:28
 msgid "mr ʿȝ"
-msgstr ""
+msgstr "mr ʿȝ"
 
 #: simulation/templates/structures/kush_pyramid.xml:26
 #: simulation/templates/structures/kush_pyramid_large.xml:29
@@ -1264,7 +1254,7 @@ msgstr "Ỉḥ Ssmt"
 
 #: simulation/templates/structures/kush_storehouse.xml:5
 msgid "wdȝt"
-msgstr ""
+msgstr "wdȝt"
 
 #: simulation/templates/structures/kush_temple.xml:8
 msgid "Temple of Apedemak"
@@ -1272,7 +1262,7 @@ msgstr "Temple of Apedemak"
 
 #: simulation/templates/structures/kush_temple.xml:9
 msgid "Pr-ʿIprmk"
-msgstr ""
+msgstr "Pr-ʿIprmk"
 
 #: simulation/templates/structures/kush_temple.xml:10
 msgid ""
@@ -1286,7 +1276,7 @@ msgstr "Grand Temple of Amun"
 
 #: simulation/templates/structures/kush_temple_amun.xml:29
 msgid "Pr-ʿImn"
-msgstr ""
+msgstr "Pr-ʿImn"
 
 #: simulation/templates/structures/kush_temple_amun.xml:30
 msgid ""
@@ -1296,7 +1286,7 @@ msgstr "Train priests to heal your troops. Train Napatan Temple Guards and resea
 
 #: simulation/templates/structures/kush_wall_gate.xml:9
 msgid "ʿryt"
-msgstr ""
+msgstr "ʿryt"
 
 #: simulation/templates/structures/kush_wall_long.xml:38
 #: simulation/templates/structures/kush_wall_medium.xml:28
@@ -1307,9 +1297,9 @@ msgstr "sbty"
 
 #: simulation/templates/structures/kush_wall_tower.xml:9
 msgid "sȝwt"
-msgstr ""
+msgstr "sȝwt"
 
-#: simulation/templates/structures/kush_wonder.xml:15
+#: simulation/templates/structures/kush_wonder.xml:9
 msgid "Mnw nht"
 msgstr "Mnw nht"
 
@@ -1323,7 +1313,7 @@ msgstr "Pr-ỉwn n ms"
 msgid "Bibliothēkē"
 msgstr "Bibliothēkē"
 
-#: simulation/templates/structures/mace_wonder.xml:15
+#: simulation/templates/structures/mace_wonder.xml:9
 msgid "Hieron tou Dios tou Olympiou"
 msgstr "Hieron tou Dios tou Olympiou"
 
@@ -1353,7 +1343,7 @@ msgid ""
 "Reinforce with stone block, and add a second rampart for up to 16 archers to"
 " stand upon. Infantry Archer exclusive tower. Devastating against melee "
 "troops, weak to siege and massed ranged units."
-msgstr ""
+msgstr "Reinforce with stone block, and add a second rampart for up to 16 archers to stand upon. Can only be garrisoned by Infantry Archers. Devastating against Melee Soldiers, weak to Siege Engines or massed Ranged Soldiers."
 
 #: simulation/templates/structures/maur_dock.xml:9
 msgid "Naukasthanaka"
@@ -1453,11 +1443,11 @@ msgstr "Great Stupa"
 
 #: simulation/templates/structures/mausoleum.xml:8
 msgid "Mausoleum at Halicarnassus"
-msgstr ""
+msgstr "Mausoleum at Halicarnassus"
 
 #: simulation/templates/structures/mausoleum.xml:9
 msgid "Mausōleion"
-msgstr ""
+msgstr "Mausōleion"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:7
 #: simulation/templates/structures/ptol_mercenary_camp.xml:7
@@ -1592,12 +1582,8 @@ msgid "Didā"
 msgstr "Didā"
 
 #: simulation/templates/structures/pers_fortress.xml:6
-#: simulation/templates/structures/ptol_fortress.xml:10
-#: simulation/templates/structures/sele_fortress.xml:10
-msgid ""
-"Train Champions and research technologies. Garrison Soldiers for additional "
-"arrows."
-msgstr "Train Champions and research technologies. Garrison Soldiers for additional arrows."
+msgid "Research technologies. Garrison Soldiers for additional arrows."
+msgstr "Research technologies. Garrison Soldiers for additional arrows."
 
 #: simulation/templates/structures/pers_hall.xml:27
 msgid "Gate of All Nations"
@@ -1688,6 +1674,13 @@ msgstr "Train Egyptian and Middle Eastern citizen soldiers. Research training im
 msgid "Stathmos tōn Elepantōn"
 msgstr "Stathmos tōn Elepantōn"
 
+#: simulation/templates/structures/ptol_fortress.xml:10
+#: simulation/templates/structures/sele_fortress.xml:10
+msgid ""
+"Train Champions and research technologies. Garrison Soldiers for additional "
+"arrows."
+msgstr "Train Champions and research technologies. Garrison Soldiers for additional arrows."
+
 #: simulation/templates/structures/ptol_house.xml:19
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
@@ -1734,7 +1727,7 @@ msgstr "This is the Ptolemaic expansion building, similar to Civic Centres for o
 msgid "mktr-n-ḏw"
 msgstr "mktr-n-ḏw"
 
-#: simulation/templates/structures/ptol_wonder.xml:15
+#: simulation/templates/structures/ptol_wonder.xml:9
 msgid "Hieron tou Hōrou"
 msgstr "Hieron tou Hōrou"
 
@@ -1914,7 +1907,7 @@ msgstr "Moenia"
 msgid "Turris Lapidea"
 msgstr "Turris Lapidea"
 
-#: simulation/templates/structures/rome_wonder.xml:15
+#: simulation/templates/structures/rome_wonder.xml:9
 msgid "Aedēs Iovis Optimi Maximi"
 msgstr "Aedēs Iovis Optimi Maximi"
 
@@ -1969,15 +1962,9 @@ msgstr "Syssition"
 msgid "Train Champions and Heroes."
 msgstr "Train Champions and Heroes."
 
-#: simulation/templates/structures/spart_wonder.xml:15
+#: simulation/templates/structures/spart_wonder.xml:9
 msgid "Hieron tēs Artemidos Orthias"
 msgstr "Hieron tēs Artemidos Orthias"
-
-#: simulation/templates/structures/spart_wonder.xml:16
-msgid ""
-"Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison units to heal them at a quick rate."
-msgstr "Bring glory to your civilisation and add large tracts of land to your empire. Garrison units to heal them at a quick rate."
 
 #: simulation/templates/structures/stonehenge.xml:8
 msgid "Stonehenge"

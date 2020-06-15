@@ -7,7 +7,7 @@
 # Cem Aktas <cemwstone@gmail.com>, 2015,2017-2018
 # Cengizhan Asıliskender <ceas08@gmail.com>, 2016
 # Doğu Kan, 2015,2017
-# Emre JILTA <jilta.e@gmail.com>, 2018
+# Emre JILTA <jilta.e@gmail.com>, 2018,2020
 # Ender Türsen <ado.ender@gmail.com>, 2014,2016
 # Eren Ramiz <kumbasar2004@hotmail.com>, 2016
 # Günay Yılmaz, 2019-2020
@@ -28,9 +28,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-22 07:09+0000\n"
-"PO-Revision-Date: 2020-05-22 13:45+0000\n"
-"Last-Translator: Günay Yılmaz\n"
+"POT-Creation-Date: 2020-06-12 07:09+0000\n"
+"PO-Revision-Date: 2020-06-13 14:05+0000\n"
+"Last-Translator: Emre JILTA <jilta.e@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -160,7 +160,7 @@ msgstr "Taşları mancınıklar. Dibini korumak için Kale Mazgalları teknoloji
 #: simulation/templates/template_structure_military_fortress.xml:73
 #: simulation/templates/template_structure_military_workshop.xml:30
 #: simulation/templates/template_structure_special.xml:36
-#: simulation/templates/template_structure_wonder.xml:54
+#: simulation/templates/template_structure_wonder.xml:55
 #: simulation/templates/structures/kush_temple_amun.xml:33
 msgid "City"
 msgstr "Şehir"
@@ -386,8 +386,8 @@ msgid "Range"
 msgstr "Menzil"
 
 #: simulation/templates/template_structure_military_stable.xml:26
-msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr "Vatandaş-süvarisi eğit. Eğitim gelişimleri araştır."
+msgid "Train Cavalry and research Cavalry technologies."
+msgstr "Süvarileri eğitin ve Süvari teknolojilerini geliştirin."
 
 #: simulation/templates/template_structure_military_stable.xml:27
 #: simulation/templates/template_structure_military_stable.xml:22
@@ -464,14 +464,14 @@ msgstr "Döner Değirmen"
 msgid "Theater"
 msgstr "Tiyatro"
 
-#: simulation/templates/template_structure_wonder.xml:53
+#: simulation/templates/template_structure_wonder.xml:54
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
 msgstr "Zaferi medeniyetine getir ve arazinin geniş yollarını imparatorluğuna ekle."
 
-#: simulation/templates/template_structure_wonder.xml:54
-#: simulation/templates/template_structure_wonder.xml:51
+#: simulation/templates/template_structure_wonder.xml:55
+#: simulation/templates/template_structure_wonder.xml:52
 msgid "Wonder"
 msgstr "Dünya Harikası"
 
@@ -717,19 +717,9 @@ msgstr "Teichos"
 msgid "Pyrgos"
 msgstr "Pyrgos"
 
-#: simulation/templates/structures/athen_wonder.xml:15
+#: simulation/templates/structures/athen_wonder.xml:9
 msgid "Parthenōn﻿﻿"
 msgstr "Parthenōn"
-
-#: simulation/templates/structures/athen_wonder.xml:16
-#: simulation/templates/structures/cart_wonder.xml:16
-#: simulation/templates/structures/mace_wonder.xml:16
-#: simulation/templates/structures/ptol_wonder.xml:16
-#: simulation/templates/structures/rome_wonder.xml:16
-msgid ""
-"Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison units to heal them at an extremely quick rate."
-msgstr "Uygarlığına zafer getir ve imparatorluğunuza büyük toprak parçalarını ekleyin. Birimleri son derece hızlı bir oranda iyileştirmek için binanın içine yerleştirin"
 
 #: simulation/templates/structures/athen_workshop.xml:5
 #: simulation/templates/structures/mace_workshop.xml:5
@@ -1028,7 +1018,7 @@ msgstr "Duvar"
 msgid "Jdar"
 msgstr "Jdar"
 
-#: simulation/templates/structures/cart_wonder.xml:15
+#: simulation/templates/structures/cart_wonder.xml:9
 msgid "Temple of Ba'al Hammon"
 msgstr "Baal Hammon tapınağı"
 
@@ -1322,7 +1312,7 @@ msgstr "sbty"
 msgid "sȝwt"
 msgstr "sȝwt"
 
-#: simulation/templates/structures/kush_wonder.xml:15
+#: simulation/templates/structures/kush_wonder.xml:9
 msgid "Mnw nht"
 msgstr "Mnw nht"
 
@@ -1336,7 +1326,7 @@ msgstr "Pr-ỉwn n ms"
 msgid "Bibliothēkē"
 msgstr "Bibliothēkē"
 
-#: simulation/templates/structures/mace_wonder.xml:15
+#: simulation/templates/structures/mace_wonder.xml:9
 msgid "Hieron tou Dios tou Olympiou"
 msgstr "Hieron tou Dios tou Olympiou"
 
@@ -1605,12 +1595,8 @@ msgid "Didā"
 msgstr "Didā"
 
 #: simulation/templates/structures/pers_fortress.xml:6
-#: simulation/templates/structures/ptol_fortress.xml:10
-#: simulation/templates/structures/sele_fortress.xml:10
-msgid ""
-"Train Champions and research technologies. Garrison Soldiers for additional "
-"arrows."
-msgstr "Şampiyonlar eğit ve teknolojiler araştır. Daha fazla ok atmak için asker konuşlandırın."
+msgid "Research technologies. Garrison Soldiers for additional arrows."
+msgstr "Teknolojileri araştırın. Daha fazla ok atmaları için askerleri konuşlandırın."
 
 #: simulation/templates/structures/pers_hall.xml:27
 msgid "Gate of All Nations"
@@ -1701,6 +1687,13 @@ msgstr "Mısır ve Orta Doğu vatandaş askerlerini eğitin. Eğitim gelişimler
 msgid "Stathmos tōn Elepantōn"
 msgstr "Stathmos tōn Elepantōn"
 
+#: simulation/templates/structures/ptol_fortress.xml:10
+#: simulation/templates/structures/sele_fortress.xml:10
+msgid ""
+"Train Champions and research technologies. Garrison Soldiers for additional "
+"arrows."
+msgstr "Şampiyonlar eğit ve teknolojiler araştır. Daha fazla ok atmak için asker konuşlandırın."
+
 #: simulation/templates/structures/ptol_house.xml:19
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
@@ -1747,7 +1740,7 @@ msgstr "Bu Ptolemaios yayılma binası, diğer ihtilaflardaki Şehir Merkezlerin
 msgid "mktr-n-ḏw"
 msgstr "mktr-n-ḏw"
 
-#: simulation/templates/structures/ptol_wonder.xml:15
+#: simulation/templates/structures/ptol_wonder.xml:9
 msgid "Hieron tou Hōrou"
 msgstr "Hieron tou Hōrou"
 
@@ -1927,7 +1920,7 @@ msgstr "Moenia"
 msgid "Turris Lapidea"
 msgstr "Turris Lapidea"
 
-#: simulation/templates/structures/rome_wonder.xml:15
+#: simulation/templates/structures/rome_wonder.xml:9
 msgid "Aedēs Iovis Optimi Maximi"
 msgstr "Aedēs Iovis Optimi Maximi"
 
@@ -1982,15 +1975,9 @@ msgstr "Syssition"
 msgid "Train Champions and Heroes."
 msgstr "Şampiyonlar ve Kahramanlar eğit."
 
-#: simulation/templates/structures/spart_wonder.xml:15
+#: simulation/templates/structures/spart_wonder.xml:9
 msgid "Hieron tēs Artemidos Orthias"
 msgstr "Hieron tēs Artemidos Orthias"
-
-#: simulation/templates/structures/spart_wonder.xml:16
-msgid ""
-"Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison units to heal them at a quick rate."
-msgstr "Medeniyetinize zafer kazandırın ve imparatorluğunuza büyük toprak parçalarını ekleyin. Yerleştirilen birimleri hızlı bir oranda iyileştirecekler."
 
 #: simulation/templates/structures/stonehenge.xml:8
 msgid "Stonehenge"

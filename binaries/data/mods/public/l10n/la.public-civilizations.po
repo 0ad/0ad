@@ -6,13 +6,14 @@
 # Ankomias, 2014
 # chaoky <charleszhang99@yahoo.com>, 2014
 # Ernestus Severus, 2020
+# Nescio, 2020
 # nylki, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-06-09 07:19+0000\n"
-"Last-Translator: Ernestus Severus\n"
+"PO-Revision-Date: 2020-06-14 12:16+0000\n"
+"Last-Translator: Nescio\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -215,7 +216,7 @@ msgstr "."
 
 #: simulation/data/civs/athen.jsonFactions[0].Description
 msgid "A Hellenic people of the Ionian tribe."
-msgstr ""
+msgstr "Populus Graecus tribus Ionicae."
 
 #: simulation/data/civs/athen.jsonStructures[0].Name
 #: simulation/data/civs/mace.jsonStructures[0].Name
@@ -228,7 +229,7 @@ msgstr "Theatron"
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%."
-msgstr ""
+msgstr "Hellenismus. Theatrum fines omnium aedificiorum +25% expandit."
 
 #: simulation/data/civs/athen.jsonStructures[0].History
 #: simulation/data/civs/mace.jsonStructures[0].History
@@ -246,7 +247,7 @@ msgstr "Gymnasion"
 #: simulation/data/civs/athen.jsonStructures[1].Special
 msgid ""
 "Train champion units and research technologies pertaining to champion units."
-msgstr ""
+msgstr "Conscribe Propugnatores et artes propugnatorum inquire."
 
 #: simulation/data/civs/athen.jsonStructures[1].History
 msgid ""
@@ -260,7 +261,7 @@ msgstr "Prytaneion"
 
 #: simulation/data/civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
-msgstr ""
+msgstr "Conscribe Heroes et inquire artes heroum."
 
 #: simulation/data/civs/athen.jsonStructures[2].History
 msgid ""
@@ -284,56 +285,56 @@ msgstr "Britones"
 #: simulation/data/civs/brit.jsonCivBonuses[0].Description
 #: simulation/data/civs/gaul.jsonCivBonuses[0].Description
 msgid "Enhanced food gained from ranching and farming. "
-msgstr ""
+msgstr "Plus cibus de armentis frumentisque."
 
 #: simulation/data/civs/brit.jsonCivBonuses[0].Name
 #: simulation/data/civs/gaul.jsonCivBonuses[0].Name
 msgid "Ardiosmanae"
-msgstr ""
+msgstr "Ardiosmanae"
 
 #: simulation/data/civs/brit.jsonCivBonuses[0].History
 #: simulation/data/civs/gaul.jsonCivBonuses[0].History
 msgid "Represents Celtic farming methods. "
-msgstr ""
+msgstr "Artes agri culturae Celticas significat."
 
 #: simulation/data/civs/brit.jsonCivBonuses[1].Description
 #: simulation/data/civs/gaul.jsonCivBonuses[1].Description
 msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr ""
+msgstr "Druides frequentiam militum aggredientium amplificant."
 
 #: simulation/data/civs/brit.jsonCivBonuses[1].Name
 #: simulation/data/civs/gaul.jsonCivBonuses[1].Name
 msgid "Deas Celtica"
-msgstr ""
+msgstr "Deas Celtica"
 
 #: simulation/data/civs/brit.jsonCivBonuses[1].History
 #: simulation/data/civs/gaul.jsonCivBonuses[1].History
 msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr ""
+msgstr "Religio Celtica Druidesque animum suum bellicosum incendit."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "Allied Healers −20% resource costs."
-msgstr ""
+msgstr "Medici sociis -20% opibus stant."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
-msgstr ""
+msgstr "Druides"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr ""
+msgstr "Druides Celticae religionem ordinatam conservabant, quae artes huius populi promoverunt etiam in bello."
 
 #: simulation/data/civs/brit.jsonAINames[0]
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[0].Name
 msgid "Karatakos"
-msgstr ""
+msgstr "Karatakos"
 
 #: simulation/data/civs/brit.jsonAINames[1]
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].Name
 msgid "Kunobelinos"
-msgstr ""
+msgstr "Kunobelinos"
 
 #: simulation/data/civs/brit.jsonAINames[2]
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[2].Name
@@ -342,43 +343,43 @@ msgstr "Boudicca"
 
 #: simulation/data/civs/brit.jsonAINames[3]
 msgid "Prasutagus"
-msgstr ""
+msgstr "Prasutagus"
 
 #: simulation/data/civs/brit.jsonAINames[4]
 msgid "Venutius"
-msgstr ""
+msgstr "Venutius"
 
 #: simulation/data/civs/brit.jsonAINames[5]
 msgid "Cogidubnus"
-msgstr ""
+msgstr "Cogidubnus"
 
 #: simulation/data/civs/brit.jsonAINames[6]
 msgid "Commius"
-msgstr ""
+msgstr "Commius"
 
 #: simulation/data/civs/brit.jsonAINames[7]
 msgid "Comux"
-msgstr ""
+msgstr "Comux"
 
 #: simulation/data/civs/brit.jsonAINames[8]
 msgid "Adminius"
-msgstr ""
+msgstr "Adminius"
 
 #: simulation/data/civs/brit.jsonAINames[9]
 msgid "Dubnovellaunus"
-msgstr ""
+msgstr "Dubnovellaunus"
 
 #: simulation/data/civs/brit.jsonAINames[10]
 msgid "Vosenius"
-msgstr ""
+msgstr "Vosenius"
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Description
 msgid "Increased attack and movement rate for melee soldiers."
-msgstr ""
+msgstr "Milites qui proxime pugnant plure detrimentum infligunt et citius ambulant."
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Name
 msgid "Sevili Dusios"
-msgstr ""
+msgstr "Sevili Dusios"
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -389,11 +390,11 @@ msgstr ""
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr ""
+msgstr "Amplificat bonum altitudinis militum qui in turri praesidio collocati sunt."
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Name
 msgid "Turos Maros"
-msgstr ""
+msgstr "Turos Maros"
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -501,7 +502,7 @@ msgstr ""
 
 #: simulation/data/civs/brit.jsonFactions[0].Description
 msgid "The Celts of the British Isles."
-msgstr ""
+msgstr "Celtae Insularum Brittanidum"
 
 #: simulation/data/civs/brit.jsonStructures[0].Name
 msgid "Kennel"
@@ -509,7 +510,7 @@ msgstr "Stabulum Caninum"
 
 #: simulation/data/civs/brit.jsonStructures[0].History
 msgid "The Britons were known for breeding war dogs."
-msgstr ""
+msgstr "Scitum est Britones canes belli aluisse."
 
 #: simulation/data/civs/brit.jsonHistory
 msgid ""
@@ -521,33 +522,33 @@ msgstr ""
 
 #: simulation/data/civs/cart.jsonName
 msgid "Carthaginians"
-msgstr "Punicus"
+msgstr "Carthaginienses"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid ""
 "Carthaginian walls, gates, and towers have 3x health of a standard wall, but"
 " also 2x build time."
-msgstr ""
+msgstr "Muri, portae et turres Carthaginienses 3x tantam valetudinem muri communis, at 2x intervallis temporis aedificandi stant."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
-msgstr ""
+msgstr "Muri Tripli"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].History
 msgid "Carthaginians built triple city walls."
-msgstr ""
+msgstr "Carthaginienses triplos muros circum urbem aedificaverunt."
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Description
 msgid ""
 "The resource cost of training elephant-mounted (war elephant) or horse-"
 "mounted units (cavalry) is reduced by 5% per animal corralled (as "
 "appropriate)."
-msgstr ""
+msgstr "Pretium elephantorum (elephantorum armatorum) equitumque (equitus) conscribendorum 5% minuitur pro unaquaque pecude alita (propria)."
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Name
 #: simulation/data/civs/ptol.jsonCivBonuses[2].Name
 msgid "Roundup"
-msgstr ""
+msgstr "Elephantos Compellere"
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].History
 msgid ""
@@ -558,11 +559,11 @@ msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "Allied Markets +10% international trade bonus."
-msgstr ""
+msgstr "Mercatus sociorum +10% bonum internationale."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
-msgstr ""
+msgstr "Domini Mercaturae"
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].History
 msgid ""
@@ -582,15 +583,15 @@ msgstr "Hamilcar Barca"
 
 #: simulation/data/civs/cart.jsonAINames[2]
 msgid "Hasdrubal Barca"
-msgstr ""
+msgstr "Hasdrubal Barca"
 
 #: simulation/data/civs/cart.jsonAINames[3]
 msgid "Hasdrubal Gisco"
-msgstr ""
+msgstr "Hasdrubal Gisco"
 
 #: simulation/data/civs/cart.jsonAINames[4]
 msgid "Hanno the Elder"
-msgstr ""
+msgstr "Hanno Maior"
 
 #: simulation/data/civs/cart.jsonAINames[5]
 #: simulation/data/civs/cart.jsonFactions[0].Heroes[2].Name
@@ -599,51 +600,51 @@ msgstr "Maharbal"
 
 #: simulation/data/civs/cart.jsonAINames[6]
 msgid "Mago Barca"
-msgstr ""
+msgstr "Mago Barca"
 
 #: simulation/data/civs/cart.jsonAINames[7]
 msgid "Hasdrubal the Fair"
-msgstr ""
+msgstr "Hasdrubal 'Formosus'"
 
 #: simulation/data/civs/cart.jsonAINames[8]
 msgid "Hanno the Great"
-msgstr ""
+msgstr "Hanno Magnus"
 
 #: simulation/data/civs/cart.jsonAINames[9]
 msgid "Himilco"
-msgstr ""
+msgstr "Himilco"
 
 #: simulation/data/civs/cart.jsonAINames[10]
 msgid "Hampsicora"
-msgstr ""
+msgstr "Hampsicora"
 
 #: simulation/data/civs/cart.jsonAINames[11]
 msgid "Hannibal Gisco"
-msgstr ""
+msgstr "Hannibal Gisco"
 
 #: simulation/data/civs/cart.jsonAINames[12]
 msgid "Dido"
-msgstr ""
+msgstr "Dido"
 
 #: simulation/data/civs/cart.jsonAINames[13]
 msgid "Xanthippus"
-msgstr ""
+msgstr "Xanthippus"
 
 #: simulation/data/civs/cart.jsonAINames[14]
 msgid "Himilco Phameas"
-msgstr ""
+msgstr "Himilco Phameas"
 
 #: simulation/data/civs/cart.jsonAINames[15]
 msgid "Hasdrubal the Boetharch"
-msgstr ""
+msgstr "Hasdrubal Boetharcus"
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[0].Description
 msgid "All Traders and Ships +25% vision range."
-msgstr ""
+msgstr "Omnes Mercatores Navesque +25% conspectum."
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[0].Name
 msgid "Exploration"
-msgstr ""
+msgstr "Exploratio"
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -654,11 +655,11 @@ msgstr ""
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[1].Description
 msgid "Civic Centers, Temples, and Houses -25% build time."
-msgstr ""
+msgstr "Centra Civilia, Templa, Domi -25% intervallum temporis aedificandi."
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[1].Name
 msgid "Colonization"
-msgstr ""
+msgstr "Deductio Coloniarum"
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -700,7 +701,7 @@ msgstr "Navalia Militaria"
 
 #: simulation/data/civs/cart.jsonStructures[0].Special
 msgid "Construct the powerful warships of the Carthaginian navy."
-msgstr ""
+msgstr "Naves potentes classis Carthaginiensis construere."
 
 #: simulation/data/civs/cart.jsonStructures[0].History
 msgid ""
@@ -710,23 +711,23 @@ msgstr ""
 
 #: simulation/data/civs/cart.jsonStructures[1].Name
 msgid "Celtic Embassy"
-msgstr "Celticus legatio"
+msgstr "Legatio Celtica"
 
 #: simulation/data/civs/cart.jsonStructures[1].Special
 msgid "Hire Celtic mercenaries."
-msgstr ""
+msgstr "Conscribe milites mercennarios Celticos."
 
 #: simulation/data/civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
-msgstr ""
+msgstr "Celtae milites mercennarios acres exercitui Carthaginiensi suppleverunt."
 
 #: simulation/data/civs/cart.jsonStructures[2].Name
 msgid "Italiote Embassy"
-msgstr ""
+msgstr "Legatio Italica"
 
 #: simulation/data/civs/cart.jsonStructures[2].Special
 msgid "Hire Italian mercenaries."
-msgstr ""
+msgstr "Conscribe milites mercennarios Italicos."
 
 #: simulation/data/civs/cart.jsonStructures[2].History
 msgid ""
@@ -741,7 +742,7 @@ msgstr "Legatio Hiberica"
 
 #: simulation/data/civs/cart.jsonStructures[3].Special
 msgid "Hire Iberian mercenaries."
-msgstr ""
+msgstr "Conscribe milites mercennarios Hibericos."
 
 #: simulation/data/civs/cart.jsonStructures[3].History
 msgid ""
@@ -761,21 +762,21 @@ msgstr ""
 #: simulation/data/civs/gaul.jsonName
 #: simulation/data/civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
-msgstr ""
+msgstr "Galli"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Allied Structures −20% technology research time."
-msgstr ""
+msgstr "Aedificia sociorum −20% intervallum temporis artium inquirendarum."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
-msgstr ""
+msgstr "Sapientia Druidum"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Gauls maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr ""
+msgstr "Druides Galli religionem ordinatam conservabant, quae artes huius populi promoverunt etiam in bello."
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -789,11 +790,11 @@ msgstr "Brennus"
 
 #: simulation/data/civs/gaul.jsonAINames[2]
 msgid "Cativolcus"
-msgstr ""
+msgstr "Cativolcus"
 
 #: simulation/data/civs/gaul.jsonAINames[3]
 msgid "Cingetorix"
-msgstr ""
+msgstr "Cingetorix"
 
 #: simulation/data/civs/gaul.jsonAINames[4]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].Name
@@ -802,7 +803,7 @@ msgstr "Vercingetorix"
 
 #: simulation/data/civs/gaul.jsonAINames[5]
 msgid "Divico"
-msgstr ""
+msgstr "Divico"
 
 #: simulation/data/civs/gaul.jsonAINames[6]
 msgid "Ambiorix"
@@ -810,24 +811,24 @@ msgstr "Ambiorix"
 
 #: simulation/data/civs/gaul.jsonAINames[7]
 msgid "Liscus"
-msgstr ""
+msgstr "Liscus"
 
 #: simulation/data/civs/gaul.jsonAINames[8]
 msgid "Valetiacus"
-msgstr ""
+msgstr "Valetiacus"
 
 #: simulation/data/civs/gaul.jsonAINames[9]
 msgid "Viridovix"
-msgstr ""
+msgstr "Viridovix"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
 msgid ""
 "A set amount of metal and food from every structure destroyed or captured."
-msgstr ""
+msgstr "Praedam metalli cibique ex aedificio vel destructo vel capto."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Vae Victis"
-msgstr ""
+msgstr "Vae Victis"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -840,11 +841,11 @@ msgstr ""
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
-msgstr ""
+msgstr "Druides Galli parvum detrimentum proxime infligere possunt."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
 msgid "Carnutes"
-msgstr ""
+msgstr "Carnutes"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -909,7 +910,7 @@ msgstr ""
 
 #: simulation/data/civs/gaul.jsonFactions[0].Description
 msgid "The Celts of mainland Europe."
-msgstr ""
+msgstr "Celtae Europae Continentis"
 
 #: simulation/data/civs/gaul.jsonStructures[0].Name
 msgid "Melonas"
@@ -917,7 +918,7 @@ msgstr "Melonas"
 
 #: simulation/data/civs/gaul.jsonStructures[0].History
 msgid "The Celts developed the first rotary flour mill."
-msgstr ""
+msgstr "Celtae primam molam rotatilem invenerunt."
 
 #: simulation/data/civs/gaul.jsonHistory
 msgid ""
@@ -930,15 +931,15 @@ msgstr ""
 
 #: simulation/data/civs/iber.jsonName
 msgid "Iberians"
-msgstr "Iberi"
+msgstr "Hiberes"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Description
 msgid "Iberians start with a powerful prefabricated circuit of stone walls."
-msgstr "Iberi potente saxonis passi incipit."
+msgstr "Hiberes proficiscuntur cum firmis muris lapideis comparatis."
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Name
 msgid "Harritsu Leku"
-msgstr ""
+msgstr "Harritsu Leku"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].History
 msgid ""
@@ -951,11 +952,11 @@ msgstr ""
 msgid ""
 "The resource cost of training horse-mounted units (cavalry) is reduced by 5%"
 " per animal corralled."
-msgstr ""
+msgstr "Pretium equitum (equitus) conscribendorum 5% minuitur pro unaquaque pecude alita."
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Zaldi Saldoa"
-msgstr ""
+msgstr "Zaldi Saldoa"
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].History
 msgid ""
@@ -965,11 +966,11 @@ msgstr ""
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Javelinists −10% resource costs."
-msgstr ""
+msgstr "Iaculatores Socii −10% pretio stant."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
-msgstr ""
+msgstr "Saripeko"
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].History
 msgid ""
@@ -988,7 +989,7 @@ msgstr "Viriato"
 #: simulation/data/civs/iber.jsonAINames[2]
 #: simulation/data/civs/iber.jsonFactions[0].Heroes[1].Name
 msgid "Karos"
-msgstr ""
+msgstr "Karos"
 
 #: simulation/data/civs/iber.jsonAINames[3]
 #: simulation/data/civs/iber.jsonFactions[0].Heroes[2].Name
@@ -997,15 +998,15 @@ msgstr "Indibil"
 
 #: simulation/data/civs/iber.jsonAINames[4]
 msgid "Audax"
-msgstr ""
+msgstr "Audax"
 
 #: simulation/data/civs/iber.jsonAINames[5]
 msgid "Ditalcus"
-msgstr ""
+msgstr "Ditalcus"
 
 #: simulation/data/civs/iber.jsonAINames[6]
 msgid "Minurus"
-msgstr ""
+msgstr "Minurus"
 
 #: simulation/data/civs/iber.jsonAINames[7]
 msgid "Tautalus"
@@ -1015,11 +1016,11 @@ msgstr "Tautalus"
 msgid ""
 "Causes targets struck to become inflamed and lose hitpoints at a constant "
 "rate until and if either healed or repaired, as appropriate."
-msgstr ""
+msgstr "Hostes ictos inflammant qui constante velocitate valetudinem amittant, quoad sanantur aut reficiuntur."
 
 #: simulation/data/civs/iber.jsonFactions[0].Technologies[0].Name
 msgid "Suzko Txabalina"
-msgstr ""
+msgstr "Suzko Txabalina"
 
 #: simulation/data/civs/iber.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1030,11 +1031,11 @@ msgstr ""
 
 #: simulation/data/civs/iber.jsonFactions[0].Technologies[1].Description
 msgid "Metal costs for units and technologies reduced by 50%."
-msgstr ""
+msgstr "Metallum pretium militum artiumque -50%."
 
 #: simulation/data/civs/iber.jsonFactions[0].Technologies[1].Name
 msgid "Maisu Burdina Langileak"
-msgstr ""
+msgstr "Maisu Burdina Langileak"
 
 #: simulation/data/civs/iber.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -1104,7 +1105,7 @@ msgid ""
 "Defensive Aura - Gives all Iberian units and buildings within vision range "
 "of the monument a 10-15% attack boost. Build Limit: Only 5 may be built per "
 "map."
-msgstr ""
+msgstr "Aura Defensionis - Omnes milites atque aedificia Hiberica in conspectu huius monumenti +10-15% detrimentum infligunt. Terminus: 5 solum aedificari possunt pro tabula."
 
 #: simulation/data/civs/iber.jsonStructures[0].History
 msgid ""
@@ -1125,90 +1126,90 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonName
 msgid "Kushites"
-msgstr ""
+msgstr "Aethiopes"
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Name
 msgid "The Pyramids of Meroe"
-msgstr ""
+msgstr "Pyramides Meroeticae"
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Description
 msgid ""
 "Building a Kushite pyramid increases Civic Center territory influence by "
 "+10% for each one built."
-msgstr ""
+msgstr "Quaeque pyramis Aethiopica fines Centrorum Civilium +10% auget."
 
 #: simulation/data/civs/kush.jsonCivBonuses[1].Name
 msgid "Mineral Deposits"
-msgstr ""
+msgstr "Depositum Metallicum"
 
 #: simulation/data/civs/kush.jsonCivBonuses[1].Description
 msgid ""
 "Kushite players receive a free extra Metal Mine somewhere in their home "
 "territory."
-msgstr ""
+msgstr "Lusores Aethiopium Metallum gratuitum additum alicubi in finibus suis inveniunt."
 
 #: simulation/data/civs/kush.jsonCivBonuses[2].Name
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Elephant Roundup"
-msgstr ""
+msgstr "Elephantos Compellere"
 
 #: simulation/data/civs/kush.jsonCivBonuses[2].Description
 msgid ""
 "Can capture Gaia elephants and garrison them into a corral to reduce "
 "training costs for War Elephants."
-msgstr ""
+msgstr "Gaiae Elephantos capere atque in stabulo locare potes, ut pretium Elephantorum Armatorum minuatur."
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Name
 msgid "Elephant Suppliers"
-msgstr ""
+msgstr "Fons Elephantorum"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
 msgid "Allied Elephants −20% resource costs and training time."
-msgstr ""
+msgstr "Elephanti sociorum −20% pretium et intervallum temporis conscribendi."
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
-msgstr ""
+msgstr "Kashta"
 
 #: simulation/data/civs/kush.jsonAINames[1]
 msgid "Alara"
-msgstr ""
+msgstr "Alara"
 
 #: simulation/data/civs/kush.jsonAINames[2]
 msgid "Pebatjma"
-msgstr ""
+msgstr "Pebatjma"
 
 #: simulation/data/civs/kush.jsonAINames[3]
 msgid "Shabaka"
-msgstr ""
+msgstr "Shabaka"
 
 #: simulation/data/civs/kush.jsonAINames[4]
 msgid "Shebitku"
-msgstr ""
+msgstr "Shebitku"
 
 #: simulation/data/civs/kush.jsonAINames[5]
 msgid "Qalhata"
-msgstr ""
+msgstr "Qalhata"
 
 #: simulation/data/civs/kush.jsonAINames[6]
 msgid "Takahatenamun"
-msgstr ""
+msgstr "Takahatenamun"
 
 #: simulation/data/civs/kush.jsonAINames[7]
 msgid "Tantamani"
-msgstr ""
+msgstr "Tantamani"
 
 #: simulation/data/civs/kush.jsonAINames[8]
 msgid "Atlanersa"
-msgstr ""
+msgstr "Atlanersa"
 
 #: simulation/data/civs/kush.jsonAINames[9]
 msgid "Nasalsa"
-msgstr ""
+msgstr "Nasalsa"
 
 #: simulation/data/civs/kush.jsonAINames[10]
 msgid "Malewiebamani"
-msgstr ""
+msgstr "Malewiebamani"
 
 #: simulation/data/civs/kush.jsonAINames[11]
 msgid "Harsiotef"
@@ -1216,35 +1217,35 @@ msgstr "Harsiotef"
 
 #: simulation/data/civs/kush.jsonAINames[12]
 msgid "Shanakdakhete"
-msgstr ""
+msgstr "Shanakdakhete"
 
 #: simulation/data/civs/kush.jsonAINames[13]
 msgid "Amanishakheto"
-msgstr ""
+msgstr "Amanishakheto"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
 msgid "Monumental Architecture"
-msgstr ""
+msgstr "Architectura Monumentorum"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
 msgid ""
 "+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr ""
+msgstr "Centra Civilia, Templa, Pyramides et Miracula +50% HP et -50% intervallum temporis conscribendi."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid "Allow to train elite rank healers"
-msgstr ""
+msgstr "Medicos roboris ordinis conscribere potest."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "High Priest of Amun"
-msgstr ""
+msgstr "Pontifex Ammonis"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
-msgstr ""
+msgstr "Sacerdotes tui a Pontifice ipso docti sunt - Ammon eum benedicet."
 
 #: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
 msgid "Nastasen"
@@ -1260,28 +1261,28 @@ msgstr "Amanirenas"
 
 #: simulation/data/civs/kush.jsonFactions[0].Name
 msgid "Kushite Africans"
-msgstr ""
+msgstr "Aethiopes Africani"
 
 #: simulation/data/civs/kush.jsonFactions[0].Description
 msgid ""
 "The great African kingdom that straddled the Nile River in Nubia, in the "
 "South of Egypt."
-msgstr ""
+msgstr "Regnum Magnum Africanum, quod Nilum in Nubia ad meridiem Aegypti varicavit"
 
 #: simulation/data/civs/kush.jsonStructures[0].Name
 msgid "Temple of Amun"
-msgstr ""
+msgstr "Templum Ammonis"
 
 #: simulation/data/civs/kush.jsonStructures[0].Special
 msgid ""
 "The Kushites can upgrade individual Temples to Temples of Amun, which can "
 "train Napatan Temple Guard champions and heal units faster."
-msgstr ""
+msgstr "Aethiopes Templa in Templa Ammonis amplificare possunt, in quibus propugnatores, Custodes Templi Napatanos conscribere potes et suos citius sanere."
 
 #: simulation/data/civs/kush.jsonStructures[0].History
 #: simulation/data/civs/kush.jsonStructures[1].History
 msgid "History."
-msgstr ""
+msgstr "Historia."
 
 #: simulation/data/civs/kush.jsonStructures[1].Name
 msgid "Temple of Apedemak"
@@ -1291,11 +1292,11 @@ msgstr "Templum Apedemak"
 msgid ""
 "The Kushites can upgrade individual Temples to Temples of Apedemak, which "
 "can train Meroe Temple Guard champions and heal units faster."
-msgstr ""
+msgstr "Aethiopes Templa in Templa Apedemacis amplificare possunt, in quibus propugnatores, Custodes Templi Meroeticos conscribere potes et suos citius sanere."
 
 #: simulation/data/civs/kush.jsonStructures[2].Name
 msgid "Kushite Pyramids"
-msgstr ""
+msgstr "Pyramides Aethiopicae"
 
 #: simulation/data/civs/kush.jsonStructures[2].Special
 msgid ""
@@ -1648,7 +1649,7 @@ msgstr ""
 #: simulation/data/civs/maur.jsonAINames[2]
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[1].Name
 msgid "Ashoka the Great"
-msgstr "Ashoka Magna"
+msgstr "Piodasses"
 
 #: simulation/data/civs/maur.jsonAINames[3]
 msgid "Dasharatha Maurya"
@@ -1726,7 +1727,7 @@ msgstr ""
 
 #: simulation/data/civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
-msgstr "Columen Edictorum Ashoka"
+msgstr "Columen Edictorum Piodassis"
 
 #: simulation/data/civs/maur.jsonStructures[1].Special
 msgid ""

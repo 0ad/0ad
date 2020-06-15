@@ -52,8 +52,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-22 07:09+0000\n"
-"PO-Revision-Date: 2020-05-22 10:41+0000\n"
+"POT-Creation-Date: 2020-06-12 07:09+0000\n"
+"PO-Revision-Date: 2020-06-12 10:43+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -184,7 +184,7 @@ msgstr "发射弩箭。 驻军可提供额外防御。 需要猎杀洞技术来�
 #: simulation/templates/template_structure_military_fortress.xml:73
 #: simulation/templates/template_structure_military_workshop.xml:30
 #: simulation/templates/template_structure_special.xml:36
-#: simulation/templates/template_structure_wonder.xml:54
+#: simulation/templates/template_structure_wonder.xml:55
 #: simulation/templates/structures/kush_temple_amun.xml:33
 msgid "City"
 msgstr "城市"
@@ -410,8 +410,8 @@ msgid "Range"
 msgstr "靶场"
 
 #: simulation/templates/template_structure_military_stable.xml:26
-msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr "训练民兵的骑兵。 研究有关训练的改良。"
+msgid "Train Cavalry and research Cavalry technologies."
+msgstr ""
 
 #: simulation/templates/template_structure_military_stable.xml:27
 #: simulation/templates/template_structure_military_stable.xml:22
@@ -488,14 +488,14 @@ msgstr "旋转研磨机"
 msgid "Theater"
 msgstr "剧院"
 
-#: simulation/templates/template_structure_wonder.xml:53
+#: simulation/templates/template_structure_wonder.xml:54
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
 msgstr "给你的文明带来荣耀，并增加你国家的领土。"
 
-#: simulation/templates/template_structure_wonder.xml:54
-#: simulation/templates/template_structure_wonder.xml:51
+#: simulation/templates/template_structure_wonder.xml:55
+#: simulation/templates/template_structure_wonder.xml:52
 msgid "Wonder"
 msgstr "奇观"
 
@@ -741,19 +741,9 @@ msgstr ""
 msgid "Pyrgos"
 msgstr ""
 
-#: simulation/templates/structures/athen_wonder.xml:15
+#: simulation/templates/structures/athen_wonder.xml:9
 msgid "Parthenōn﻿﻿"
 msgstr ""
-
-#: simulation/templates/structures/athen_wonder.xml:16
-#: simulation/templates/structures/cart_wonder.xml:16
-#: simulation/templates/structures/mace_wonder.xml:16
-#: simulation/templates/structures/ptol_wonder.xml:16
-#: simulation/templates/structures/rome_wonder.xml:16
-msgid ""
-"Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison units to heal them at an extremely quick rate."
-msgstr "将荣耀归于您的文明，并在您的帝国里加入大片的土地。驻守单位，并可以以极快的速度治疗。"
 
 #: simulation/templates/structures/athen_workshop.xml:5
 #: simulation/templates/structures/mace_workshop.xml:5
@@ -1052,7 +1042,7 @@ msgstr " 霍马"
 msgid "Jdar"
 msgstr "城墙"
 
-#: simulation/templates/structures/cart_wonder.xml:15
+#: simulation/templates/structures/cart_wonder.xml:9
 msgid "Temple of Ba'al Hammon"
 msgstr "巴耳·哈蒙神庙"
 
@@ -1346,7 +1336,7 @@ msgstr "城墙"
 msgid "sȝwt"
 msgstr ""
 
-#: simulation/templates/structures/kush_wonder.xml:15
+#: simulation/templates/structures/kush_wonder.xml:9
 msgid "Mnw nht"
 msgstr "奇观"
 
@@ -1360,7 +1350,7 @@ msgstr "梅云恩梅斯大院"
 msgid "Bibliothēkē"
 msgstr ""
 
-#: simulation/templates/structures/mace_wonder.xml:15
+#: simulation/templates/structures/mace_wonder.xml:9
 msgid "Hieron tou Dios tou Olympiou"
 msgstr ""
 
@@ -1629,12 +1619,8 @@ msgid "Didā"
 msgstr "城堡"
 
 #: simulation/templates/structures/pers_fortress.xml:6
-#: simulation/templates/structures/ptol_fortress.xml:10
-#: simulation/templates/structures/sele_fortress.xml:10
-msgid ""
-"Train Champions and research technologies. Garrison Soldiers for additional "
-"arrows."
-msgstr "训练冠勇单位，研究对应科技。可驻守单位来增加射击箭支。"
+msgid "Research technologies. Garrison Soldiers for additional arrows."
+msgstr ""
 
 #: simulation/templates/structures/pers_hall.xml:27
 msgid "Gate of All Nations"
@@ -1725,6 +1711,13 @@ msgstr "训练埃及和中东民兵。研究训练的改进科技。"
 msgid "Stathmos tōn Elepantōn"
 msgstr ""
 
+#: simulation/templates/structures/ptol_fortress.xml:10
+#: simulation/templates/structures/sele_fortress.xml:10
+msgid ""
+"Train Champions and research technologies. Garrison Soldiers for additional "
+"arrows."
+msgstr "训练冠勇单位，研究对应科技。可驻守单位来增加射击箭支。"
+
 #: simulation/templates/structures/ptol_house.xml:19
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
@@ -1771,7 +1764,7 @@ msgstr "托勒密的扩张建筑物，类似于其他文明的城镇中心。它
 msgid "mktr-n-ḏw"
 msgstr "防御塔"
 
-#: simulation/templates/structures/ptol_wonder.xml:15
+#: simulation/templates/structures/ptol_wonder.xml:9
 msgid "Hieron tou Hōrou"
 msgstr ""
 
@@ -1951,7 +1944,7 @@ msgstr "城墙"
 msgid "Turris Lapidea"
 msgstr "石塔"
 
-#: simulation/templates/structures/rome_wonder.xml:15
+#: simulation/templates/structures/rome_wonder.xml:9
 msgid "Aedēs Iovis Optimi Maximi"
 msgstr "朱庇特神殿"
 
@@ -2006,15 +1999,9 @@ msgstr "公共食堂"
 msgid "Train Champions and Heroes."
 msgstr "训练冠勇单位和英雄。"
 
-#: simulation/templates/structures/spart_wonder.xml:15
+#: simulation/templates/structures/spart_wonder.xml:9
 msgid "Hieron tēs Artemidos Orthias"
 msgstr ""
-
-#: simulation/templates/structures/spart_wonder.xml:16
-msgid ""
-"Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison units to heal them at a quick rate."
-msgstr "为你的文明带来荣耀，可扩张领土。可加快治疗驻守军队。"
 
 #: simulation/templates/structures/stonehenge.xml:8
 msgid "Stonehenge"
