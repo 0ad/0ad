@@ -15,6 +15,7 @@
 # 77960155d0a4db79ed901e7c2ee242e7_4b8c532, 2015
 # manitarious gr <manitarious@gmail.com>, 2015
 # LOUKAS SKOUROLIAKOS, 2015-2016
+# LOUKAS SKOUROLIAKOS, 2020
 # malvanos <malvanos@gmail.com>, 2015
 # mAnlis mAnlAkis <www.1908jeep@gmail.com>, 2016
 # Michael Chatz <chatziasemidismichael@gmail.com>, 2018
@@ -34,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-06-01 07:09+0000\n"
-"PO-Revision-Date: 2020-06-01 12:15+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-06-14 17:56+0000\n"
+"Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -307,11 +308,11 @@ msgstr "Διαλέξτε τυχαία ένα οικοσύστημα."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:101
 msgid "Daytime"
-msgstr ""
+msgstr "Διάρκεια Ημέρας"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
-msgstr ""
+msgstr "Επιλέξτε εάν το παιχνίδι είναι σε ημέρα ή νύχτα."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
@@ -321,7 +322,7 @@ msgstr "Τυχαίο"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr ""
+msgstr "Τυχαία διαλέγει μία ώρα της ημέρας."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:73
 msgid "Game Speed"
@@ -333,11 +334,11 @@ msgstr "Επιλογή της ταχύτητας παιχνιδιού."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:142
 msgid "Landscape"
-msgstr ""
+msgstr "Τοπίο"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:145
 msgid "Select one of the landscapes of this map."
-msgstr ""
+msgstr "Έπιλέξτε ένα απο τα τοπία απο αυτό το χάρτη."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:151
 msgctxt "landscape selection"
@@ -352,17 +353,17 @@ msgstr "Επέλεξε μια τυχαία γεννήτρια ξηράς ή να
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:156
 msgctxt "landscape selection"
 msgid "Random Land"
-msgstr ""
+msgstr "Τυχαίο κομμάτι γής."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
 msgid "Select a random land map generation."
-msgstr ""
+msgstr "Επέλεξε μια τυχαία γεννήτρια χαρτών  εδάφους."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:161
 msgctxt "landscape selection"
 msgid "Random Naval"
-msgstr ""
+msgstr "Τυχαίο Ναυτικό."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:162
 msgctxt "landscape selection"
@@ -458,11 +459,11 @@ msgstr "Ανά Παίχτη"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
 msgid "Team Placement"
-msgstr ""
+msgstr "Τοποθέτηση Ομάδας"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:94
 msgid "Select one of the starting position patterns of this map."
-msgstr ""
+msgstr "Επιλέξτε μία απο τις θέσεις εκίννισης απο αυτό το χάρτη."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
 msgctxt "team placement"
@@ -472,36 +473,36 @@ msgstr "Τυχαίο"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr ""
+msgstr "Επιλέξτε ένα τυχαίο μοτίβο τοποθέτησης ομάδας όταν ξεκινάτε το παιχνίδι."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
 msgctxt "team placement"
 msgid "Circle"
-msgstr ""
+msgstr "Κύκλος"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:106
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr ""
+msgstr "Οί συμμαχικοί παίτκες τοποθετούνται σε ομάδα και τοποθετούνται με αντίπαλους παίκτες σε ένα κυκλικό στην έκταση του χάρτη."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
 msgctxt "team placement"
 msgid "Line"
-msgstr ""
+msgstr "Γραμμή"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
 msgid "Allied players are placed in a linear pattern."
-msgstr ""
+msgstr "Οι συμμαχικοί παίκτες τοποθετούνται σε γραμμικό μοτίβο."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:115
 msgctxt "team placement"
 msgid "Random Group"
-msgstr ""
+msgstr "Τυχαίο Γκρούπ"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:116
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr ""
+msgstr "Οι συμμαχικοί παίκτες είναι σε ομάδες ,άλλα τοποθετούνται σε τυχαίο σημείο στο χάρτη."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:120
 msgctxt "team placement"
@@ -510,7 +511,7 @@ msgstr "Οχυρό"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:121
 msgid "Allied players are grouped in one random place of the map."
-msgstr ""
+msgstr "Οι συμμαχικοί παίκτες τοποθετούνται σε τυχαίο σημείο στο χάρτη."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
@@ -580,15 +581,15 @@ msgstr[1] "%(min)s λεπτά"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:99
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr ""
+msgstr "Αμεση Νίκη."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"
-msgstr ""
+msgstr "Χρόνος για Ανοδος της Θάλασσας."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:76
 msgid "Set the time when the water will start to rise."
-msgstr ""
+msgstr "Ορίστε την ώρα για το πότε το νερό θα ξεκινήσει "
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:79
 #, javascript-format
@@ -617,17 +618,17 @@ msgstr "Βαθμολογημένο παιχνίδι."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:76
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Πατήστε για εναλλαγή της  %(name)s καρτέλας ρυθμίσεων ."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:79
 #, javascript-format
 msgid "Press %(hotkey)s to move to the next settings tab."
-msgstr ""
+msgstr "Πατήστε %(hotkey)s για μετακίνηση στην επόμενη καρτέλα ρυθμίσεων."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:82
 #, javascript-format
 msgid "Press %(hotkey)s to move to the previous settings tab."
-msgstr ""
+msgstr "Πατήστε %(hotkey)sγια μετακίνιη προς τη προηγούμενη καρτέλα ρυθμίσεων."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -646,7 +647,7 @@ msgstr "Επιστροφή στο κεντρικό μενού."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s%(hotkey_structree)s\n:Δείτε Σύνοψη Πολιτισμού/\nΔένδρο Δομής\nΤο τελευατίο που άνοιξε ,θα ανοίξει εκ νέου με κλίκ."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."

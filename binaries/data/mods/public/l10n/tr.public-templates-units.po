@@ -8,6 +8,7 @@
 # Cem Aktas <cemwstone@gmail.com>, 2015,2018
 # coolland, 2014
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
+# Emre JILTA <jilta.e@gmail.com>, 2020
 # Ender Türsen <ado.ender@gmail.com>, 2017
 # Erdem Aydogan <erdemaydogann@gmail.com>, 2016
 # Eren Ramiz <kumbasar2004@hotmail.com>, 2016
@@ -26,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-18 07:14+0000\n"
-"PO-Revision-Date: 2020-05-22 13:42+0000\n"
-"Last-Translator: Günay Yılmaz\n"
+"POT-Creation-Date: 2020-06-12 07:09+0000\n"
+"PO-Revision-Date: 2020-06-13 14:06+0000\n"
+"Last-Translator: Emre JILTA <jilta.e@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,7 +80,7 @@ msgstr "Basit"
 #: simulation/templates/template_unit_cavalry_melee.xml:21
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:35
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:30
-#: simulation/templates/template_unit_champion_elephant_melee.xml:17
+#: simulation/templates/template_unit_champion_elephant_melee.xml:16
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:30
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:36
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:35
@@ -87,13 +88,13 @@ msgstr "Basit"
 #: simulation/templates/template_unit_dog.xml:40
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:27
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:27
-#: simulation/templates/template_unit_hero_elephant_melee.xml:37
+#: simulation/templates/template_unit_hero_elephant_melee.xml:36
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:27
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:27
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:27
 #: simulation/templates/template_unit_infantry_melee.xml:21
 #: simulation/templates/template_unit_ship_fire.xml:45
-#: simulation/templates/template_unit_siege_ram.xml:36
+#: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Melee"
 msgstr "Yakın Dövüş"
 
@@ -214,16 +215,16 @@ msgstr "Şampiyon Mızrakçı Süvari"
 msgid "Champion Cavalry Swordsman"
 msgstr "Şampiyon Kılıçlı Süvari"
 
-#: simulation/templates/template_unit_champion_elephant.xml:26
+#: simulation/templates/template_unit_champion_elephant.xml:24
 #: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:28
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:13
-#: simulation/templates/template_unit_hero_elephant_melee.xml:37
-#: simulation/templates/units/maur_elephant_archer_b.xml:34
+#: simulation/templates/template_unit_hero_elephant_melee.xml:36
+#: simulation/templates/units/maur_elephant_archer_b.xml:33
 #: simulation/templates/units/maur_support_elephant.xml:26
 msgid "Elephant"
 msgstr "Fil"
 
-#: simulation/templates/template_unit_champion_elephant.xml:27
+#: simulation/templates/template_unit_champion_elephant.xml:25
 msgid "War Elephant"
 msgstr "Savaş Fili"
 
@@ -489,13 +490,17 @@ msgstr "Zıpkın atıcı"
 msgid "Bolt Shooter"
 msgstr "Zıpkın atıcı"
 
-#: simulation/templates/template_unit_siege_ram.xml:36
+#: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Ram"
 msgstr "Koçbaşı"
 
-#: simulation/templates/template_unit_siege_ram.xml:37
+#: simulation/templates/template_unit_siege_ram.xml:38
 msgid "Battering Ram"
 msgstr "Koçbaşı"
+
+#: simulation/templates/template_unit_siege_ram.xml:39
+msgid "Cannot attack Fields or Organic Units."
+msgstr "Tarlalara veya Organik Birimlere saldırılamaz."
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:55
 msgid "StoneThrower"
@@ -995,7 +1000,7 @@ msgstr "Eporedos"
 msgid "Celtic Cavalry"
 msgstr "Kelt Süvarisi"
 
-#: simulation/templates/units/brit_champion_cavalry.xml:9
+#: simulation/templates/units/brit_champion_chariot.xml:9
 #: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/maur_champion_chariot.xml:9
 #: simulation/templates/units/maur_hero_ashoka.xml:13
@@ -1007,11 +1012,11 @@ msgstr "Kelt Süvarisi"
 msgid "Chariot"
 msgstr "Savaş Arabası"
 
-#: simulation/templates/units/brit_champion_cavalry.xml:10
+#: simulation/templates/units/brit_champion_chariot.xml:10
 msgid "Celtic Chariot"
 msgstr "Kelt Savaş Arabası"
 
-#: simulation/templates/units/brit_champion_cavalry.xml:11
+#: simulation/templates/units/brit_champion_chariot.xml:11
 msgid "Essedon"
 msgstr "Essedon"
 
@@ -1458,7 +1463,7 @@ msgstr "Ataekina Rahibesi"
 msgid "Emakumezko Apaiz de Ataekina"
 msgstr "Emakumezko Apaiz de Ataekina"
 
-#: simulation/templates/units/iber_support_trader.xml:5
+#: simulation/templates/units/iber_support_trader.xml:9
 msgid "Merkatari"
 msgstr "Merkatari"
 
@@ -1673,11 +1678,11 @@ msgstr "Rahip"
 msgid "wʿb nsw"
 msgstr "wʿb nsw"
 
-#: simulation/templates/units/kush_support_trader.xml:5
+#: simulation/templates/units/kush_support_trader.xml:9
 msgid "Nilotic Merchant"
 msgstr "Nil Tüccarı"
 
-#: simulation/templates/units/kush_support_trader.xml:6
+#: simulation/templates/units/kush_support_trader.xml:10
 msgid "rmt sbt"
 msgstr "rmt sbt"
 
@@ -1896,11 +1901,11 @@ msgstr "Visha Kanya"
 msgid "Maiden Guard Archer"
 msgstr "Bakire Muhafız Okçu"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:35
+#: simulation/templates/units/maur_elephant_archer_b.xml:34
 msgid "Elephant Archer"
 msgstr "Filli Okçu"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:39
+#: simulation/templates/units/maur_elephant_archer_b.xml:38
 msgid "Vachii Gaja"
 msgstr "Vachii Gaja"
 

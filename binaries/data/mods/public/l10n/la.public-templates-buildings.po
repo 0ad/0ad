@@ -4,16 +4,17 @@
 # 
 # Translators:
 # Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>, 2016
-# Ernestus Severus <ernsths@outlook.de>, 2020
+# Ernestus Severus, 2020
 # Luc <luc.absil2@gmail.com>, 2015
 # Cephalus <michaelkopf.xyz@gmail.com>, 2020
+# Nescio, 2020
 # Supernova 888 <megasupernova888@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-22 07:09+0000\n"
-"PO-Revision-Date: 2020-05-26 00:18+0000\n"
-"Last-Translator: Ernestus Severus <ernsths@outlook.de>\n"
+"POT-Creation-Date: 2020-06-12 07:09+0000\n"
+"PO-Revision-Date: 2020-06-14 12:18+0000\n"
+"Last-Translator: Nescio\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -143,7 +144,7 @@ msgstr "Fundas deicit. Opus est arte cavorum telorum ut huius pedem defendat."
 #: simulation/templates/template_structure_military_fortress.xml:73
 #: simulation/templates/template_structure_military_workshop.xml:30
 #: simulation/templates/template_structure_special.xml:36
-#: simulation/templates/template_structure_wonder.xml:54
+#: simulation/templates/template_structure_wonder.xml:55
 #: simulation/templates/structures/kush_temple_amun.xml:33
 msgid "City"
 msgstr "Urbs"
@@ -369,8 +370,8 @@ msgid "Range"
 msgstr "Iactus"
 
 #: simulation/templates/template_structure_military_stable.xml:26
-msgid "Train citizen-soldier cavalry. Research training improvements."
-msgstr "Conscribe equites. Inquire artes institutionis."
+msgid "Train Cavalry and research Cavalry technologies."
+msgstr "Conscribe Equites et inquire artes Equitum."
 
 #: simulation/templates/template_structure_military_stable.xml:27
 #: simulation/templates/template_structure_military_stable.xml:22
@@ -447,14 +448,14 @@ msgstr "Mola Versatilis"
 msgid "Theater"
 msgstr "Theatrum"
 
-#: simulation/templates/template_structure_wonder.xml:53
+#: simulation/templates/template_structure_wonder.xml:54
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
 msgstr "Adfice tuae genti gloriam et magnos adde imperii fines."
 
-#: simulation/templates/template_structure_wonder.xml:54
-#: simulation/templates/template_structure_wonder.xml:51
+#: simulation/templates/template_structure_wonder.xml:55
+#: simulation/templates/template_structure_wonder.xml:52
 msgid "Wonder"
 msgstr "Miraculum"
 
@@ -700,19 +701,9 @@ msgstr "Teichos"
 msgid "Pyrgos"
 msgstr "Pyrgos"
 
-#: simulation/templates/structures/athen_wonder.xml:15
+#: simulation/templates/structures/athen_wonder.xml:9
 msgid "Parthenōn﻿﻿"
 msgstr "Parthenōn"
-
-#: simulation/templates/structures/athen_wonder.xml:16
-#: simulation/templates/structures/cart_wonder.xml:16
-#: simulation/templates/structures/mace_wonder.xml:16
-#: simulation/templates/structures/ptol_wonder.xml:16
-#: simulation/templates/structures/rome_wonder.xml:16
-msgid ""
-"Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison units to heal them at an extremely quick rate."
-msgstr "Adfice tuae genti gloriam et magnos adde imperii fines. Colloca tuos ut eos celerrime sanes."
 
 #: simulation/templates/structures/athen_workshop.xml:5
 #: simulation/templates/structures/mace_workshop.xml:5
@@ -1011,7 +1002,7 @@ msgstr "Homah"
 msgid "Jdar"
 msgstr "Jdar"
 
-#: simulation/templates/structures/cart_wonder.xml:15
+#: simulation/templates/structures/cart_wonder.xml:9
 msgid "Temple of Ba'al Hammon"
 msgstr "Templum Ba'al Hammonis"
 
@@ -1305,7 +1296,7 @@ msgstr "sbty"
 msgid "sȝwt"
 msgstr "sȝwt"
 
-#: simulation/templates/structures/kush_wonder.xml:15
+#: simulation/templates/structures/kush_wonder.xml:9
 msgid "Mnw nht"
 msgstr "Mnw nht"
 
@@ -1319,7 +1310,7 @@ msgstr "Pr-ỉwn n ms"
 msgid "Bibliothēkē"
 msgstr "Bibliothēkē"
 
-#: simulation/templates/structures/mace_wonder.xml:15
+#: simulation/templates/structures/mace_wonder.xml:9
 msgid "Hieron tou Dios tou Olympiou"
 msgstr "Hieron tou Dios tou Olympiou"
 
@@ -1397,7 +1388,7 @@ msgstr "Columen"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:32
 msgid "Edict Pillar of Ashoka"
-msgstr "Columen Edictorum Aśoki"
+msgstr "Columen Edictorum Piodassis"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:33
 msgid "Śāsana Stambha Aśokā"
@@ -1407,7 +1398,7 @@ msgstr "Śāsana Stambha Aśokā"
 msgid ""
 "The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
 "in the territory of the monument do not decay."
-msgstr "Columen nobile Aśoki. Auget celeritatem mercatorum. Aedificia intra fines huius monumenti non cadunt."
+msgstr "Columen nobile Piodassis. Auget celeritatem mercatorum. Aedificia intra fines huius monumenti non cadunt."
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"
@@ -1588,12 +1579,8 @@ msgid "Didā"
 msgstr "Didā"
 
 #: simulation/templates/structures/pers_fortress.xml:6
-#: simulation/templates/structures/ptol_fortress.xml:10
-#: simulation/templates/structures/sele_fortress.xml:10
-msgid ""
-"Train Champions and research technologies. Garrison Soldiers for additional "
-"arrows."
-msgstr "Conscribe Propugnatores et artes inquire. Praesidium colloca ut plures sagittas coniciant."
+msgid "Research technologies. Garrison Soldiers for additional arrows."
+msgstr "Inquire artes. Praesidium colloca ut plures sagittas coniciant."
 
 #: simulation/templates/structures/pers_hall.xml:27
 msgid "Gate of All Nations"
@@ -1684,6 +1671,13 @@ msgstr "Conscribe milites Aegyptios et Asianos Occidentales. Inquire artes insti
 msgid "Stathmos tōn Elepantōn"
 msgstr "Stathmos tōn Elepantōn"
 
+#: simulation/templates/structures/ptol_fortress.xml:10
+#: simulation/templates/structures/sele_fortress.xml:10
+msgid ""
+"Train Champions and research technologies. Garrison Soldiers for additional "
+"arrows."
+msgstr "Conscribe Propugnatores et artes inquire. Praesidium colloca ut plures sagittas coniciant."
+
 #: simulation/templates/structures/ptol_house.xml:19
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
@@ -1730,7 +1724,7 @@ msgstr "Aedificium Ptolemaicum, Foris aliarum factionum simile, quo fines tuos e
 msgid "mktr-n-ḏw"
 msgstr "mktr-n-ḏw"
 
-#: simulation/templates/structures/ptol_wonder.xml:15
+#: simulation/templates/structures/ptol_wonder.xml:9
 msgid "Hieron tou Hōrou"
 msgstr "Hieron tou Hōrou"
 
@@ -1910,7 +1904,7 @@ msgstr "Moenia"
 msgid "Turris Lapidea"
 msgstr "Turris Lapidea"
 
-#: simulation/templates/structures/rome_wonder.xml:15
+#: simulation/templates/structures/rome_wonder.xml:9
 msgid "Aedēs Iovis Optimi Maximi"
 msgstr "Aedēs Iovis Optimi Maximi"
 
@@ -1965,15 +1959,9 @@ msgstr "Syssition"
 msgid "Train Champions and Heroes."
 msgstr "Conscribe Propugnatores et Heroes."
 
-#: simulation/templates/structures/spart_wonder.xml:15
+#: simulation/templates/structures/spart_wonder.xml:9
 msgid "Hieron tēs Artemidos Orthias"
 msgstr "Hieron tēs Artemidos Orthias"
-
-#: simulation/templates/structures/spart_wonder.xml:16
-msgid ""
-"Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison units to heal them at a quick rate."
-msgstr "Adfice tuae genti gloriam et magnos adde imperii fines. Colloca tuos ut eos citius sanes."
 
 #: simulation/templates/structures/stonehenge.xml:8
 msgid "Stonehenge"

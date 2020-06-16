@@ -9,12 +9,12 @@
 # Rok Kepa <rokkepa@gmail.com>, 2014
 # sda das <mazprodaja@gmail.com>, 2017
 # Tilen Nosan <tilenn@gmail.com>, 2015,2017
-# TimB, 2015
+# bb2bbe51ae9c098f8fd4e724658828da_da8f605, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-22 07:09+0000\n"
-"PO-Revision-Date: 2020-05-22 10:41+0000\n"
+"POT-Creation-Date: 2020-06-12 07:09+0000\n"
+"PO-Revision-Date: 2020-06-12 10:43+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Slovenian (http://www.transifex.com/wildfire-games/0ad/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -145,7 +145,7 @@ msgstr ""
 #: simulation/templates/template_structure_military_fortress.xml:73
 #: simulation/templates/template_structure_military_workshop.xml:30
 #: simulation/templates/template_structure_special.xml:36
-#: simulation/templates/template_structure_wonder.xml:54
+#: simulation/templates/template_structure_wonder.xml:55
 #: simulation/templates/structures/kush_temple_amun.xml:33
 msgid "City"
 msgstr "Mesto"
@@ -371,7 +371,7 @@ msgid "Range"
 msgstr ""
 
 #: simulation/templates/template_structure_military_stable.xml:26
-msgid "Train citizen-soldier cavalry. Research training improvements."
+msgid "Train Cavalry and research Cavalry technologies."
 msgstr ""
 
 #: simulation/templates/template_structure_military_stable.xml:27
@@ -449,14 +449,14 @@ msgstr "Krožni mlin"
 msgid "Theater"
 msgstr ""
 
-#: simulation/templates/template_structure_wonder.xml:53
+#: simulation/templates/template_structure_wonder.xml:54
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
 msgstr "Prinesite slavo svoji civilizaciji in dodajte velike površine ozemlja svojemu imperiju."
 
-#: simulation/templates/template_structure_wonder.xml:54
-#: simulation/templates/template_structure_wonder.xml:51
+#: simulation/templates/template_structure_wonder.xml:55
+#: simulation/templates/template_structure_wonder.xml:52
 msgid "Wonder"
 msgstr "Čudo"
 
@@ -702,19 +702,9 @@ msgstr ""
 msgid "Pyrgos"
 msgstr ""
 
-#: simulation/templates/structures/athen_wonder.xml:15
+#: simulation/templates/structures/athen_wonder.xml:9
 msgid "Parthenōn﻿﻿"
 msgstr ""
-
-#: simulation/templates/structures/athen_wonder.xml:16
-#: simulation/templates/structures/cart_wonder.xml:16
-#: simulation/templates/structures/mace_wonder.xml:16
-#: simulation/templates/structures/ptol_wonder.xml:16
-#: simulation/templates/structures/rome_wonder.xml:16
-msgid ""
-"Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison units to heal them at an extremely quick rate."
-msgstr "Prinesite slavo svoji civilizaciji in dodajte velike površine ozemlja svojemu imperiju. Namestite enote za njihovo skrajno hitro zdravljenje."
 
 #: simulation/templates/structures/athen_workshop.xml:5
 #: simulation/templates/structures/mace_workshop.xml:5
@@ -1013,7 +1003,7 @@ msgstr "Homah"
 msgid "Jdar"
 msgstr "Jdar"
 
-#: simulation/templates/structures/cart_wonder.xml:15
+#: simulation/templates/structures/cart_wonder.xml:9
 msgid "Temple of Ba'al Hammon"
 msgstr "Svetišče Baala Hammona"
 
@@ -1307,7 +1297,7 @@ msgstr ""
 msgid "sȝwt"
 msgstr ""
 
-#: simulation/templates/structures/kush_wonder.xml:15
+#: simulation/templates/structures/kush_wonder.xml:9
 msgid "Mnw nht"
 msgstr ""
 
@@ -1321,7 +1311,7 @@ msgstr ""
 msgid "Bibliothēkē"
 msgstr ""
 
-#: simulation/templates/structures/mace_wonder.xml:15
+#: simulation/templates/structures/mace_wonder.xml:9
 msgid "Hieron tou Dios tou Olympiou"
 msgstr ""
 
@@ -1590,11 +1580,7 @@ msgid "Didā"
 msgstr "Didā"
 
 #: simulation/templates/structures/pers_fortress.xml:6
-#: simulation/templates/structures/ptol_fortress.xml:10
-#: simulation/templates/structures/sele_fortress.xml:10
-msgid ""
-"Train Champions and research technologies. Garrison Soldiers for additional "
-"arrows."
+msgid "Research technologies. Garrison Soldiers for additional arrows."
 msgstr ""
 
 #: simulation/templates/structures/pers_hall.xml:27
@@ -1686,6 +1672,13 @@ msgstr "Izuri Egipčanske in Srednjevzhodne državljane-vojake. Razišči izbolj
 msgid "Stathmos tōn Elepantōn"
 msgstr ""
 
+#: simulation/templates/structures/ptol_fortress.xml:10
+#: simulation/templates/structures/sele_fortress.xml:10
+msgid ""
+"Train Champions and research technologies. Garrison Soldiers for additional "
+"arrows."
+msgstr ""
+
 #: simulation/templates/structures/ptol_house.xml:19
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
@@ -1732,7 +1725,7 @@ msgstr "Ptolemejska razširitvena zgradba, podobna upravnim središčem za druge
 msgid "mktr-n-ḏw"
 msgstr "mktr-n-ḏw"
 
-#: simulation/templates/structures/ptol_wonder.xml:15
+#: simulation/templates/structures/ptol_wonder.xml:9
 msgid "Hieron tou Hōrou"
 msgstr ""
 
@@ -1912,7 +1905,7 @@ msgstr "Moenia"
 msgid "Turris Lapidea"
 msgstr "Turris Lapidea"
 
-#: simulation/templates/structures/rome_wonder.xml:15
+#: simulation/templates/structures/rome_wonder.xml:9
 msgid "Aedēs Iovis Optimi Maximi"
 msgstr ""
 
@@ -1967,15 +1960,9 @@ msgstr ""
 msgid "Train Champions and Heroes."
 msgstr ""
 
-#: simulation/templates/structures/spart_wonder.xml:15
+#: simulation/templates/structures/spart_wonder.xml:9
 msgid "Hieron tēs Artemidos Orthias"
 msgstr ""
-
-#: simulation/templates/structures/spart_wonder.xml:16
-msgid ""
-"Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison units to heal them at a quick rate."
-msgstr "Prinesite slavo svoji civilizaciji in dodajte velike površine ozemlja svojemu imperiju. Namestite enote za njihovo hitro zdravljenje."
 
 #: simulation/templates/structures/stonehenge.xml:8
 msgid "Stonehenge"

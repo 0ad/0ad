@@ -12,6 +12,7 @@
 # Jipa Leo <jipa.leo64@gmail.com>, 2020
 # Baadur Jobava <jobaval10n@gmail.com>, 2015
 # Lucian Lupescu <l.lupescu@yahoo.com>, 2016
+# Mihai Morariu <mihaimorariu@gmail.com>, 2020
 # Bogdan Mințoi <mintoi.bogdan@gmail.com>, 2014
 # Neagoe Ciprian <banditulrto@gmail.com>, 2016
 # Nicolae Crefelean, 2016
@@ -23,13 +24,13 @@
 # Robert <roberto_asasinul_2006@yahoo.com>, 2018
 # coyoty <sacuiu.andy@gmail.com>, 2014
 # Silvio George <georgesilvio2004@gmail.com>, 2017
-# w3as3l54, 2014
+# 35882561c826518b81ddd4dbbde95f16_a5ad106, 2014
 # zsofiaforro, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-22 07:09+0000\n"
-"PO-Revision-Date: 2020-05-22 10:41+0000\n"
+"POT-Creation-Date: 2020-06-12 07:09+0000\n"
+"PO-Revision-Date: 2020-06-12 10:43+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -117,7 +118,7 @@ msgstr "Oraș"
 msgid ""
 "Train Healers and research healing technologies. Garrison units to heal them"
 " at a quick rate."
-msgstr ""
+msgstr "Antrenează Vindecători şi cercetează tehnologii de vindecare. Găzduieşte unităţi pentru a le vindeca mai rapid. "
 
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -160,7 +161,7 @@ msgstr "Pietre de catapultă. Necesită tehnologia găuri ucigaşe pentru a-şi 
 #: simulation/templates/template_structure_military_fortress.xml:73
 #: simulation/templates/template_structure_military_workshop.xml:30
 #: simulation/templates/template_structure_special.xml:36
-#: simulation/templates/template_structure_wonder.xml:54
+#: simulation/templates/template_structure_wonder.xml:55
 #: simulation/templates/structures/kush_temple_amun.xml:33
 msgid "City"
 msgstr "Oraș"
@@ -173,7 +174,7 @@ msgstr "Turn de piatră"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
-msgstr ""
+msgstr "Turn cu săgeţi"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
 msgid ""
@@ -375,7 +376,7 @@ msgstr "Instruiește câini de război."
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
-msgstr ""
+msgstr "Poligon de antrenanare"
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
@@ -383,16 +384,16 @@ msgstr ""
 
 #: simulation/templates/template_structure_military_range.xml:25
 msgid "Range"
-msgstr ""
+msgstr "Poligon"
 
 #: simulation/templates/template_structure_military_stable.xml:26
-msgid "Train citizen-soldier cavalry. Research training improvements."
+msgid "Train Cavalry and research Cavalry technologies."
 msgstr ""
 
 #: simulation/templates/template_structure_military_stable.xml:27
 #: simulation/templates/template_structure_military_stable.xml:22
 msgid "Stable"
-msgstr ""
+msgstr "Grajd"
 
 #: simulation/templates/template_structure_military_workshop.xml:25
 msgid "Siege Workshop"
@@ -446,7 +447,7 @@ msgstr "Aceasta este o clădire specială, specifică unei singure civilizații.
 #: simulation/templates/template_structure_special_amphitheater.xml:22
 #: simulation/templates/structures/rome_amphitheater_pompeii.xml:5
 msgid "Amphitheater"
-msgstr ""
+msgstr "Amfiteatru"
 
 #: simulation/templates/template_structure_special_library.xml:24
 msgid "Library"
@@ -462,16 +463,16 @@ msgstr "Moară rotativă"
 
 #: simulation/templates/template_structure_special_theater.xml:25
 msgid "Theater"
-msgstr ""
+msgstr "Teatru"
 
-#: simulation/templates/template_structure_wonder.xml:53
+#: simulation/templates/template_structure_wonder.xml:54
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
 msgstr "Adu glorie civilizației tale și anexează suprafețe mari de teren imperiului tău."
 
-#: simulation/templates/template_structure_wonder.xml:54
-#: simulation/templates/template_structure_wonder.xml:51
+#: simulation/templates/template_structure_wonder.xml:55
+#: simulation/templates/template_structure_wonder.xml:52
 msgid "Wonder"
 msgstr "Minune"
 
@@ -584,7 +585,7 @@ msgstr "Gimnaziu"
 #: simulation/templates/structures/athen_gymnasium.xml:25
 #: simulation/templates/structures/pers_hall.xml:30
 msgid "Train Champions."
-msgstr ""
+msgstr "Antrenează Campioni."
 
 #: simulation/templates/structures/athen_house.xml:5
 #: simulation/templates/structures/mace_house.xml:5
@@ -717,19 +718,9 @@ msgstr ""
 msgid "Pyrgos"
 msgstr ""
 
-#: simulation/templates/structures/athen_wonder.xml:15
+#: simulation/templates/structures/athen_wonder.xml:9
 msgid "Parthenōn﻿﻿"
 msgstr ""
-
-#: simulation/templates/structures/athen_wonder.xml:16
-#: simulation/templates/structures/cart_wonder.xml:16
-#: simulation/templates/structures/mace_wonder.xml:16
-#: simulation/templates/structures/ptol_wonder.xml:16
-#: simulation/templates/structures/rome_wonder.xml:16
-msgid ""
-"Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison units to heal them at an extremely quick rate."
-msgstr "Adu glorie civilizației tale și anexează suprafețe mari de teren imperiului tău. Pune unități în garnizoană pentru a le vindeca într-un ritm accelerat."
 
 #: simulation/templates/structures/athen_workshop.xml:5
 #: simulation/templates/structures/mace_workshop.xml:5
@@ -1028,7 +1019,7 @@ msgstr "Homah"
 msgid "Jdar"
 msgstr "Jdar"
 
-#: simulation/templates/structures/cart_wonder.xml:15
+#: simulation/templates/structures/cart_wonder.xml:9
 msgid "Temple of Ba'al Hammon"
 msgstr "Templul lui Ba'al Hammon"
 
@@ -1322,7 +1313,7 @@ msgstr ""
 msgid "sȝwt"
 msgstr ""
 
-#: simulation/templates/structures/kush_wonder.xml:15
+#: simulation/templates/structures/kush_wonder.xml:9
 msgid "Mnw nht"
 msgstr ""
 
@@ -1336,7 +1327,7 @@ msgstr ""
 msgid "Bibliothēkē"
 msgstr ""
 
-#: simulation/templates/structures/mace_wonder.xml:15
+#: simulation/templates/structures/mace_wonder.xml:9
 msgid "Hieron tou Dios tou Olympiou"
 msgstr ""
 
@@ -1605,11 +1596,7 @@ msgid "Didā"
 msgstr "Didā"
 
 #: simulation/templates/structures/pers_fortress.xml:6
-#: simulation/templates/structures/ptol_fortress.xml:10
-#: simulation/templates/structures/sele_fortress.xml:10
-msgid ""
-"Train Champions and research technologies. Garrison Soldiers for additional "
-"arrows."
+msgid "Research technologies. Garrison Soldiers for additional arrows."
 msgstr ""
 
 #: simulation/templates/structures/pers_hall.xml:27
@@ -1701,6 +1688,13 @@ msgstr "Antrenează cetățeni-soldați egipteni și din orientul mijlociu. Cerc
 msgid "Stathmos tōn Elepantōn"
 msgstr ""
 
+#: simulation/templates/structures/ptol_fortress.xml:10
+#: simulation/templates/structures/sele_fortress.xml:10
+msgid ""
+"Train Champions and research technologies. Garrison Soldiers for additional "
+"arrows."
+msgstr ""
+
 #: simulation/templates/structures/ptol_house.xml:19
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
@@ -1747,7 +1741,7 @@ msgstr "Aceasta este clădirea de expansiune Ptolemaică, similară cu Centrele 
 msgid "mktr-n-ḏw"
 msgstr "mktr-n-ḏw"
 
-#: simulation/templates/structures/ptol_wonder.xml:15
+#: simulation/templates/structures/ptol_wonder.xml:9
 msgid "Hieron tou Hōrou"
 msgstr ""
 
@@ -1927,7 +1921,7 @@ msgstr "Moenia"
 msgid "Turris Lapidea"
 msgstr "Turris Lapidea"
 
-#: simulation/templates/structures/rome_wonder.xml:15
+#: simulation/templates/structures/rome_wonder.xml:9
 msgid "Aedēs Iovis Optimi Maximi"
 msgstr ""
 
@@ -1968,7 +1962,7 @@ msgstr ""
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Train Heroes."
-msgstr ""
+msgstr "Antrenează Eroi"
 
 #: simulation/templates/structures/spart_syssiton.xml:24
 msgid "Military Mess Hall"
@@ -1980,17 +1974,11 @@ msgstr "Syssition"
 
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Champions and Heroes."
-msgstr ""
+msgstr "Antrenează Campioni şi Eroi"
 
-#: simulation/templates/structures/spart_wonder.xml:15
+#: simulation/templates/structures/spart_wonder.xml:9
 msgid "Hieron tēs Artemidos Orthias"
 msgstr ""
-
-#: simulation/templates/structures/spart_wonder.xml:16
-msgid ""
-"Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison units to heal them at a quick rate."
-msgstr "Aduce glorie civilizației tale și adaugă suprafețe mari de teren imperiului tău. Încartiruiți unități pentru a le vindeca într-un ritm accelerat."
 
 #: simulation/templates/structures/stonehenge.xml:8
 msgid "Stonehenge"
