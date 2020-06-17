@@ -155,7 +155,7 @@ ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtim
 
     m_ctx = JS_NewContext(runtimeSize);
 	JS::InitSelfHostedCode(m_ctx);
-    
+
     ENSURE(m_ctx); // TODO: error handling
     m_rt = JS_GetRuntime(m_ctx);
 	ENSURE(m_rt); // TODO: error handling
@@ -177,6 +177,7 @@ ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtim
 	    .setWerror(false)
 	    .setStrictMode(true);
 
+    // JS_SetGCZeal(m_ctx, 6, 0);
 	// The whole heap-growth mechanism seems to work only for non-incremental GCs.
 	// We disable it to make it more clear if full GCs happen triggered by this JSAPI internal mechanism.
 	JS_SetGCParameter(m_ctx, JSGC_DYNAMIC_HEAP_GROWTH, false);

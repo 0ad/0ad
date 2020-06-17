@@ -80,6 +80,7 @@ CGUI::~CGUI()
 
 	for (const std::pair<CStr, const CGUISprite*>& p : m_Sprites)
 		delete p.second;
+
 }
 
 InReaction CGUI::HandleEvent(const SDL_Event_* ev)

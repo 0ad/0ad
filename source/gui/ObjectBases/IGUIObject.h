@@ -50,23 +50,7 @@ protected: \
 	static constexpr const char* xmlName = xmlName_; \
 	virtual CStr GetObjectType() { return xmlName_; }; \
 	\
-	using JSFactory = JSI_GUI::JSFactoryType;\
-	/**
-	* When creating the JS counterpart of a GUI Object,
-	* we may need to set the private data to the derived 'this',
-	* and not the base 'this', otherwise derived proxies
-	* won't be able to call the derived-only functions.
-	* Perhaps TODO: I think the virtual call could be CRPT-ed out.
-	*/ \
-	virtual void SetPrivateData(JSContext* cx) { \
-		ENSURE(m_JSObject.initialized()); \
-        JS::RootedObject ptrObj(cx, JS_NewObject(cx, &IGUIObject::store_class)); \
-        JS_SetPrivate(ptrObj, (void*) this); \
-        JS::RootedValue ptrVal(cx); \
-        ptrVal.setObject(*ptrObj); \
-		/** I'm not entirely sure this static cast is needed but it seems conceptually correct, and safer */ \
-        js::SetProxyReservedSlot(m_JSObject.get(), 0, ptrVal); \
-	};
+	using JSFactory = JSI_GUI::JSFactoryType;
 
 #define GUI_OBJECT(obj, xmlName_, JSFactoryType) \
 	BASE_GUI_OBJECT(obj, xmlName_, JSFactoryType) \
@@ -262,7 +246,18 @@ public:
 	 */
 	JSObject* GetJSObject();
 
-	std::string toString() const;
+protected:
+	/**
+	 * When creating the JS counterpart of a GUI Object,
+	 * we may need to set the private data to the derived 'this',
+	 * and not the base 'this', otherwise derived proxies
+	 * won't be able to call the derived-only functions.
+	 * Perhaps TODO: I think the virtual call could be CRPT-ed out.
+	 */
+	virtual void SetPrivateData();
+public:
+
+    std::string toString() const;
 	void focus();
 	void blur();
 	CRect getComputedSize();
@@ -443,7 +438,7 @@ protected:
 	/**
 	 * Assigns a JS function to the event name.
 	 */
-	void SetScriptHandler(const CStr& eventName, JS::HandleObject Function);
+	void SetScriptHandler(const CStr& eventName, JSFunction* Function);
 
 	/**
 	 * Deletes an event handler assigned to the given name, if such a handler exists.
@@ -536,7 +531,7 @@ protected:
 	CGUI& m_pGUI;
 
 	// Internal storage for registered script handlers.
-	std::map<CStr, JS::Heap<JSObject*> > m_ScriptHandlers;
+	std::map<CStr, JS::Heap<JSFunction*> > m_ScriptHandlers;
 
 	// Cached JSObject representing this GUI object
 	JS::PersistentRootedObject m_JSObject;

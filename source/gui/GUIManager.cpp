@@ -101,7 +101,9 @@ void CGUIManager::PushPage(const CStrW& pageName, shared_ptr<ScriptInterface::St
 {
 	// Store the callback handler in the current GUI page before opening the new one
 	if (!m_PageStack.empty() && !callbackFunction.isUndefined())
+    {
 		m_PageStack.back().SetCallbackFunction(*m_ScriptInterface, callbackFunction);
+    }
 
 	// Push the page prior to loading its contents, because that may push
 	// another GUI page on init which should be pushed on top of this new page.
@@ -130,7 +132,7 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptRuntime> scriptRuntime)
 {
 	// If we're hotloading then try to grab some data from the previous page
 	shared_ptr<ScriptInterface::StructuredClone> hotloadData;
-	if (gui)
+    if (gui)
 	{
 		shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
 		CX_IN_REALM(cx,scriptInterface);
@@ -144,6 +146,8 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptRuntime> scriptRuntime)
 	g_CursorName = g_DefaultCursor;
 	inputs.clear();
 	gui.reset(new CGUI(scriptRuntime));
+    shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
+	CX_IN_REALM(cx,scriptInterface)
 
 	gui->AddObjectTypes();
 
@@ -197,19 +201,20 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptRuntime> scriptRuntime)
 	}
 
 	gui->LoadedXmlFiles();
-
-	shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
-	CX_IN_REALM(cx,scriptInterface)
-
+	
 	JS::RootedValue initDataVal(cx);
 	JS::RootedValue hotloadDataVal(cx);
 	JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
 
 	if (initData)
+    {
 		scriptInterface->ReadStructuredClone(initData, &initDataVal);
+    }
 
 	if (hotloadData)
+    {
 		scriptInterface->ReadStructuredClone(hotloadData, &hotloadDataVal);
+    }
 
 	if (scriptInterface->HasProperty(global, "init") &&
 	    !scriptInterface->CallFunctionVoid(global, "init", initDataVal, hotloadDataVal))

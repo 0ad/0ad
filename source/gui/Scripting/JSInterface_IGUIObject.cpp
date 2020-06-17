@@ -181,7 +181,7 @@ bool JSI_GUI::GUIObjectFactory::scriptMethod(JSContext* cx, unsigned argc, JS::V
 	static_assert(std::is_same<objType, typename args_info<funcPtr>::object_type>::value,
 				  "The called method is not defined on the factory's cppType. You most likely forgot to define 'using cppType = ...'");
 
-    void* ptr = JS_GetPrivate(&(js::GetProxyReservedSlot(args.thisv().toObjectOrNull(), 0).toObject()));
+    void* ptr = js::GetProxyPrivate(args.thisv().toObjectOrNull()).toPrivate();
 	objType* thisObj = static_cast<objType*>(ptr);
 	if (!thisObj)
 		return false;
@@ -212,7 +212,7 @@ bool JSI_GUI::GUIProxy::get(JSContext* cx, JS::HandleObject proxy, JS::HandleVal
  {
  	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
  
-    void* ptr = JS_GetPrivate(&(js::GetProxyReservedSlot(proxy.get(), 0).toObject()));
+    void* ptr = js::GetProxyPrivate(proxy.get()).toPrivate();
 	IGUIObject* e = static_cast<IGUIObject*>(ptr);
 	if (!e)
 		return false;
@@ -241,11 +241,11 @@ bool JSI_GUI::GUIProxy::get(JSContext* cx, JS::HandleObject proxy, JS::HandleVal
 	if (propName.substr(0, 2) == "on")
 	{
 		CStr eventName(propName.substr(2));
-		std::map<CStr, JS::Heap<JSObject*>>::iterator it = e->m_ScriptHandlers.find(eventName);
+		std::map<CStr, JS::Heap<JSFunction*>>::iterator it = e->m_ScriptHandlers.find(eventName);
 		if (it == e->m_ScriptHandlers.end())
 			vp.setNull();
 		else
-			vp.setObject(*it->second.get());
+			vp.setObject(*JS_GetFunctionObject(it->second.get()));
 		return true;
 	}
 
@@ -287,7 +287,7 @@ bool JSI_GUI::GUIProxy::get(JSContext* cx, JS::HandleObject proxy, JS::HandleVal
 bool JSI_GUI::GUIProxy::set(JSContext* cx, JS::HandleObject proxy, JS::HandleId id, JS::HandleValue vp,
 							 JS::HandleValue UNUSED(receiver), JS::ObjectOpResult& result) const
  {
-    void* ptr = JS_GetPrivate(&(js::GetProxyReservedSlot(proxy.get(), 0).toObject()));
+    void* ptr = js::GetProxyPrivate(proxy.get()).toPrivate();
 	IGUIObject* e = static_cast<IGUIObject*>(ptr);
 
     if (!e)
@@ -319,12 +319,12 @@ bool JSI_GUI::GUIProxy::set(JSContext* cx, JS::HandleObject proxy, JS::HandleId 
 	{
 		if (vp.isPrimitive() || vp.isNull() || !JS_ObjectIsFunction(&vp.toObject()))
 		{
-			LOGERROR("on- event-handlers must be functions");
+            JS_ReportErrorASCII(cx, "on- event-handlers must be functions");
 			return result.fail(JSMSG_NOT_FUNCTION);
 		}
 
 		CStr eventName(propName.substr(2));
-		e->SetScriptHandler(eventName, vpObj);
+		e->SetScriptHandler(eventName, JS_ValueToFunction(cx, vp));
 
 		return result.succeed();
 	}
@@ -360,7 +360,7 @@ bool JSI_GUI::GUIProxy::delete_(JSContext* cx, JS::HandleObject proxy, JS::Handl
 		return result.succeed();
 	}
 
-	LOGERROR("Only event handlers can be deleted from GUI objects! (trying to delete %s)", propName.c_str());
+    JS_ReportErrorASCII(cx, "Only event handlers can be deleted from GUI objects!");
 	return result.fail(JSMSG_UNDEFINED_PROP);
 }
 

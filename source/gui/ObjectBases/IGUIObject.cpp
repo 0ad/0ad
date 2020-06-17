@@ -301,8 +301,8 @@ float IGUIObject::GetBufferedZ() const
 
 void IGUIObject::RegisterScriptHandler(const CStr& eventName, const CStr& Code, CGUI& pGUI)
 {
-	CX_IN_REALM(cx,pGUI.GetScriptInterface())
-	
+    CX_IN_REALM(cx, pGUI.GetScriptInterface())
+
     JS::RootedValue globalVal(cx, pGUI.GetGlobalObject());
 	JS::RootedObject globalObj(cx, &globalVal.toObject());
 
@@ -333,8 +333,8 @@ void IGUIObject::RegisterScriptHandler(const CStr& eventName, const CStr& Code, 
     }
 
 
-	JS::RootedFunction func(cx, JS::CompileFunction(cx, emptyScopeChain, options, buf, 
-                             paramCount, paramNames, source));
+	JSFunction* func = JS::CompileFunction(cx, emptyScopeChain, options, buf, 
+                                          paramCount, paramNames, source);
 
 	if (!func)
 	{
@@ -342,23 +342,22 @@ void IGUIObject::RegisterScriptHandler(const CStr& eventName, const CStr& Code, 
 		return;
 	}
 
-	JS::RootedObject funcObj(cx, JS_GetFunctionObject(func));
-	SetScriptHandler(eventName, funcObj);
+	SetScriptHandler(eventName, func);
 }
 
-void IGUIObject::SetScriptHandler(const CStr& eventName, JS::HandleObject Function)
+void IGUIObject::SetScriptHandler(const CStr& eventName, JSFunction* Function)
 {
 	if (m_ScriptHandlers.empty()) {
 	    CX_IN_REALM(cx,m_pGUI.GetScriptInterface())
 		JS_AddExtraGCRootsTracer(cx, Trace, this);
     }
 
-	m_ScriptHandlers[eventName] = JS::Heap<JSObject*>(Function);
+	m_ScriptHandlers[eventName] = JS::Heap<JSFunction*>(Function);
 }
 
 void IGUIObject::UnsetScriptHandler(const CStr& eventName)
 {
-	std::map<CStr, JS::Heap<JSObject*> >::iterator it = m_ScriptHandlers.find(eventName);
+	std::map<CStr, JS::Heap<JSFunction*> >::iterator it = m_ScriptHandlers.find(eventName);
 
 	if (it == m_ScriptHandlers.end())
 		return;
@@ -421,10 +420,10 @@ void IGUIObject::ScriptEvent(const CStr& eventName)
 
 bool IGUIObject::ScriptEventWithReturn(const CStr& eventName)
 {
+    CX_IN_REALM(cx,m_pGUI.GetScriptInterface())
 	if (m_ScriptHandlers.find(eventName) == m_ScriptHandlers.end())
 		return false;
 
-    CX_IN_REALM(cx,m_pGUI.GetScriptInterface())
 	JS::RootedValueVector paramData(cx);
 	return ScriptEventWithReturn(eventName, paramData);
 }
@@ -436,20 +435,26 @@ void IGUIObject::ScriptEvent(const CStr& eventName, const JS::HandleValueArray& 
 
 bool IGUIObject::ScriptEventWithReturn(const CStr& eventName, const JS::HandleValueArray& paramData)
 {
-	std::map<CStr, JS::Heap<JSObject*> >::iterator it = m_ScriptHandlers.find(eventName);
-	if (it == m_ScriptHandlers.end())
-		return false;
-
     CX_IN_REALM(cx,m_pGUI.GetScriptInterface())
-	JS::RootedObject obj(cx, GetJSObject());
-	JS::RootedValue handlerVal(cx, JS::ObjectValue(*it->second));
-	JS::RootedValue result(cx);
+	
 
-	if (!JS_CallFunctionValue(cx, obj, handlerVal, paramData, &result))
+    std::map<CStr, JS::Heap<JSFunction*> >::iterator it = m_ScriptHandlers.find(eventName);
+
+	if (it == m_ScriptHandlers.end()) {
+		return false;
+    }
+	
+    char str [80];
+    JS::RootedObject obj(cx, GetJSObject());
+	JS::RootedValue result(cx);
+    JS::RootedFunction fun(cx, it->second);
+
+	if (!JS_CallFunction(cx, obj, fun, paramData, &result))
 	{
 		LOGERROR("Errors executing script event \"%s\"", eventName.c_str());
 		return false;
 	}
+
 	return JS::ToBoolean(result);
 }
 
@@ -483,10 +488,22 @@ JSObject* IGUIObject::GetJSObject()
 	if (!m_JSObject.initialized())
 	{
 		m_JSObject.init(cx, m_pGUI.ConstructJSObject(GetObjectType()));
-		SetPrivateData(cx);
+		SetPrivateData();
 	}
 
 	return m_JSObject.get();
+}
+
+void IGUIObject::SetPrivateData()
+{
+	ENSURE(m_JSObject.initialized());
+    CX_IN_REALM(cx,m_pGUI.GetScriptInterface())
+
+    //JS::RootedObject ptrObj(cx, JS_NewObject(cx, &IGUIObject::store_class));
+	JS::RootedValue pointer(cx);
+	// I'm not entirely sure this static cast is needed but it seems conceptually correct, and safer.
+	pointer.get().setPrivate(static_cast<JSFactory::cppType*>(this));
+	SetProxyPrivate(m_JSObject, pointer);
 }
 
 bool IGUIObject::IsEnabled() const
@@ -547,7 +564,7 @@ void IGUIObject::TraceMember(JSTracer* trc)
 {
 	// Please ensure to adapt the Tracer enabling and disabling in accordance with the GC things traced!
 
-	for (std::pair<const CStr, JS::Heap<JSObject*>>& handler : m_ScriptHandlers)
+	for (std::pair<const CStr, JS::Heap<JSFunction*>>& handler : m_ScriptHandlers)
 		JS::TraceEdge(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
 }
 
