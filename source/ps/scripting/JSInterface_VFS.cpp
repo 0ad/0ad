@@ -23,7 +23,6 @@
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Filesystem.h"
-#include "scriptinterface/ScriptVal.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include <sstream>
@@ -49,15 +48,16 @@
 // state held across multiple BuildDirEntListCB calls; init by BuildDirEntList.
 struct BuildDirEntListState
 {
-	JSContext* cx;
+	ScriptInterface* scriptIface;
 	JS::PersistentRootedObject filename_array;
 	int cur_idx;
 
-	BuildDirEntListState(JSContext* cx_)
-		: cx(cx_),
-		filename_array(cx, JS_NewArrayObject(cx, JS::HandleValueArray::empty())),
+	BuildDirEntListState(ScriptInterface* si)
+		: scriptIface(si),
 		cur_idx(0)
 	{
+        CX_IN_REALM(cx, si)
+		filename_array.init(cx, JS_NewArrayObject(cx, JS::HandleValueArray::empty()));
 	}
 };
 
@@ -66,10 +66,12 @@ static Status BuildDirEntListCB(const VfsPath& pathname, const CFileInfo& UNUSED
 {
 	BuildDirEntListState* s = (BuildDirEntListState*)cbData;
 
-	JS::RootedObject filenameArrayObj(s->cx, s->filename_array);
-	JS::RootedValue val(s->cx);
-	ScriptInterface::ToJSVal( s->cx, &val, CStrW(pathname.string()) );
-	JS_SetElement(s->cx, filenameArrayObj, s->cur_idx++, val);
+    CX_IN_REALM(cx, s->scriptIface)
+
+	JS::RootedObject filenameArrayObj(cx, s->filename_array);
+	JS::RootedValue val(cx);
+	ScriptInterface::ToJSVal(cx, &val, CStrW(pathname.string()) );
+	JS_SetElement(cx, filenameArrayObj, s->cur_idx++, val);
 	return INFO::OK;
 }
 
@@ -91,10 +93,8 @@ JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::RealmPrivate* pRealmPrivate,
 
 	int flags = recurse ? vfs::DIR_RECURSIVE : 0;
 
-    CX_IN_REALM(cx,pRealmPrivate->pScriptInterface)
-
 	// build array in the callback function
-	BuildDirEntListState state(cx);
+	BuildDirEntListState state(pRealmPrivate->pScriptInterface);
 	vfs::ForEachFile(g_VFS, path, BuildDirEntListCB, (uintptr_t)&state, filter, flags);
 
 	return JS::ObjectValue(*state.filename_array);

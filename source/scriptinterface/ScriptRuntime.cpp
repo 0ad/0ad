@@ -270,7 +270,7 @@ void ScriptRuntime::MaybeIncrementalGC(double delay)
 					printf("Finishing incremental GC because gcBytes > m_RuntimeSize / 2. \n");
 #endif
 					PrepareContextsForIncrementalGC();
-					JS::FinishIncrementalGC(m_ctx, JS::GCReason::NO_REASON);
+					JS::FinishIncrementalGC(m_ctx, JS::GCReason::MEM_PRESSURE);
 				}
 				else
 				{
@@ -300,9 +300,9 @@ void ScriptRuntime::MaybeIncrementalGC(double delay)
 #endif
 				PrepareContextsForIncrementalGC();
 				if (!JS::IsIncrementalGCInProgress(m_rt))
-					JS::StartIncrementalGC(m_ctx, GC_NORMAL, JS::GCReason::NO_REASON, GCSliceTimeBudget);
+					JS::StartIncrementalGC(m_ctx, GC_NORMAL, JS::GCReason::MEM_PRESSURE, GCSliceTimeBudget);
 				else
-					JS::IncrementalGCSlice(m_ctx, JS::GCReason::NO_REASON, GCSliceTimeBudget);
+					JS::IncrementalGCSlice(m_ctx, JS::GCReason::MEM_PRESSURE, GCSliceTimeBudget);
 			}
 			m_LastGCBytes = gcBytes;
 		}
@@ -313,7 +313,7 @@ void ScriptRuntime::ShrinkingGC()
 {
 	JS_SetGCParameter(m_ctx, JSGC_MODE, JSGC_MODE_ZONE);
 	JS::PrepareForFullGC(m_ctx);
-	JS::NonIncrementalGC(m_ctx, GC_SHRINK, JS::GCReason::NO_REASON);
+	JS::NonIncrementalGC(m_ctx, GC_SHRINK, JS::GCReason::MEM_PRESSURE);
 	JS_SetGCParameter(m_ctx, JSGC_MODE, JSGC_MODE_INCREMENTAL);
 }
 

@@ -22,8 +22,8 @@
 
 #include "ps/Errors.h"
 #include "ps/Filesystem.h"
-#include "scriptinterface/ScriptVal.h"
 #include "simulation2/helpers/Player.h"
+#include "scriptinterface/ScriptInterface.h"
 
 class CWorld;
 class CSimulation2;

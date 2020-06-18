@@ -1,0 +1,1126 @@
+Index: build/premake/premake5.lua
+===================================================================
+--- build/premake/premake5.lua
++++ build/premake/premake5.lua
+@@ -526,9 +526,11 @@
+ 		table.insert(static_lib_names, project_name)
+ 	end
+ 
+-	if os.istarget("windows") then
+-		rtti "off"
+-	elseif os.istarget("macosx") and _OPTIONS["macosx-version-min"] then
++	-- Deactivate Run Time Type Information. Performance of dynamic_cast is very poor.
++	-- The exception to this principle is Atlas UI, which is not a static library.
++	rtti "off"
++
++	if os.istarget("macosx") and _OPTIONS["macosx-version-min"] then
+ 		xcodebuildsettings { MACOSX_DEPLOYMENT_TARGET = _OPTIONS["macosx-version-min"] }
+ 	end
+ end
+@@ -551,7 +553,6 @@
+ 	end
+ 
+ 	if os.istarget("windows") then
+-		rtti "off"
+ 		links { "delayimp" }
+ 	elseif os.istarget("macosx") and _OPTIONS["macosx-version-min"] then
+ 		xcodebuildsettings { MACOSX_DEPLOYMENT_TARGET = _OPTIONS["macosx-version-min"] }
+@@ -963,6 +964,8 @@
+ 
+ 	dependson { "Collada" }
+ 
++	rtti "off"
++
+ 	-- Platform Specifics
+ 	if os.istarget("windows") then
+ 
+@@ -970,8 +973,6 @@
+ 		-- from "lowlevel" static lib; must be added here to be linked in
+ 		files { source_root.."lib/sysdep/os/win/error_dialog.rc" }
+ 
+-		rtti "off"
+-
+ 		linkoptions {
+ 			-- wraps main thread in a __try block(see wseh.cpp). replace with mainCRTStartup if that's undesired.
+ 			"/ENTRY:wseh_EntryPoint",
+@@ -1362,6 +1363,8 @@
+ 
+ 	dependson { "Collada" }
+ 
++	rtti "off"
++
+ 	-- TODO: should fix the duplication between this OS-specific linking
+ 	-- code, and the similar version in setup_main_exe
+ 
+@@ -1369,8 +1372,6 @@
+ 		-- from "lowlevel" static lib; must be added here to be linked in
+ 		files { source_root.."lib/sysdep/os/win/error_dialog.rc" }
+ 
+-		rtti "off"
+-
+ 		-- see wstartup.h
+ 		linkoptions { "/INCLUDE:_wstartup_InitAndRegisterShutdown" }
+ 		-- Enables console for the TEST project on Windows
+Index: source/gui/CGUI.h
+===================================================================
+--- source/gui/CGUI.h
++++ source/gui/CGUI.h
+@@ -52,6 +52,9 @@
+ {
+ 	NONCOPYABLE(CGUI);
+ 
++	friend class JSI_GUI::GUIProxy;
++	friend class IGUIObject;
++
+ private:
+ 	// Private typedefs
+ 	using ConstructObjectFunction = IGUIObject* (*)(CGUI&);
+@@ -193,7 +196,7 @@
+ 	 *
+ 	 * @see CGUI#ConstructObject()
+ 	 */
+-	void AddObjectType(const CStr& str, ConstructObjectFunction pFunc) { m_ObjectTypes[str] = pFunc; }
++	void AddObjectType(const CStr& str, ConstructObjectFunction pFunc, std::unique_ptr<JSI_GUI::GUIObjectFactory>&& JSFactory);
+ 
+ 	/**
+ 	 * Update Resolution, should be called every time the resolution
+@@ -256,6 +259,8 @@
+ 	 */
+ 	IGUIObject* ConstructObject(const CStr& str);
+ 
++	JSObject* ConstructJSObject(const CStr& str);
++
+ public:
+ 	/**
+ 	 * Get Focused Object.
+@@ -596,7 +601,11 @@
+ 	 * IGUIObjects by name... For instance m_ObjectTypes["button"]
+ 	 * is filled with a function that will "return new CButton();"
+ 	 */
+-	std::map<CStr, ConstructObjectFunction> m_ObjectTypes;
++	struct ObjectFactory {
++		ConstructObjectFunction constructObject;
++		std::unique_ptr<JSI_GUI::GUIObjectFactory> guiObjectFactory;
++	};
++	std::map<CStr, ObjectFactory> m_ObjectTypes;
+ 
+ 	/**
+ 	 * Map from hotkey names to objects that listen to the hotkey.
+Index: source/gui/CGUI.cpp
+===================================================================
+--- source/gui/CGUI.cpp
++++ source/gui/CGUI.cpp
+@@ -312,14 +312,30 @@
+ 	m_BaseObject.RecurseObject(nullptr, &IGUIObject::UpdateCachedSize);
+ }
+ 
++void CGUI::AddObjectType(const CStr& str, ConstructObjectFunction pFunc, std::unique_ptr<JSI_GUI::GUIObjectFactory>&& JSFactory)
++{
++	m_ObjectTypes.emplace(str, ObjectFactory{ pFunc, std::move(JSFactory) });
++}
++
+ IGUIObject* CGUI::ConstructObject(const CStr& str)
+ {
+-	std::map<CStr, ConstructObjectFunction>::iterator it = m_ObjectTypes.find(str);
++	std::map<CStr, ObjectFactory>::iterator it = m_ObjectTypes.find(str);
+ 
+ 	if (it == m_ObjectTypes.end())
+ 		return nullptr;
+ 
+-	return (*it->second)(*this);
++	return (*it->second.constructObject)(*this);
++}
++
++JSObject* CGUI::ConstructJSObject(const CStr& str)
++{
++	std::map<CStr, ObjectFactory>::iterator it = m_ObjectTypes.find(str);
++
++	if (it == m_ObjectTypes.end())
++		return nullptr;
++
++	return it->second.guiObjectFactory->CreateObject(m_ScriptInterface->GetContext());
++
+ }
+ 
+ bool CGUI::AddObject(IGUIObject& parent, IGUIObject& child)
+Index: source/gui/GUIObjectTypes.h
+===================================================================
+--- source/gui/GUIObjectTypes.h
++++ source/gui/GUIObjectTypes.h
+@@ -34,21 +34,26 @@
+ 
+ void CGUI::AddObjectTypes()
+ {
+-	AddObjectType("button", &CButton::ConstructObject);
+-	AddObjectType("chart", &CChart::ConstructObject);
+-	AddObjectType("checkbox", &CCheckBox::ConstructObject);
+-	AddObjectType("dropdown", &CDropDown::ConstructObject);
+-	AddObjectType("empty", &CGUIDummyObject::ConstructObject);
+-	AddObjectType("image", &CImage::ConstructObject);
+-	AddObjectType("input", &CInput::ConstructObject);
+-	AddObjectType("list", &CList::ConstructObject);
+-	AddObjectType("minimap", &CMiniMap::ConstructObject);
+-	AddObjectType("olist", &COList::ConstructObject);
+-	AddObjectType("progressbar", &CProgressBar::ConstructObject);
+-	AddObjectType("radiobutton", &CRadioButton::ConstructObject);
+-	AddObjectType("slider", &CSlider::ConstructObject);
+-	AddObjectType("text", &CText::ConstructObject);
+-	AddObjectType("tooltip", &CTooltip::ConstructObject);
++#define AddObjectType(ObjectType) \
++AddObjectType(ObjectType::xmlName, &ObjectType::ConstructObject, std::unique_ptr<ObjectType::JSFactory>(new ObjectType::JSFactory(*m_ScriptInterface.get())));
++
++	AddObjectType(CButton);
++	AddObjectType(CChart);
++	AddObjectType(CCheckBox);
++	AddObjectType(CDropDown);
++	AddObjectType(CGUIDummyObject);
++	AddObjectType(CImage);
++	AddObjectType(CInput);
++	AddObjectType(CList);
++	AddObjectType(CMiniMap);
++	AddObjectType(COList);
++	AddObjectType(CProgressBar);
++	AddObjectType(CRadioButton);
++	AddObjectType(CSlider);
++	AddObjectType(CText);
++	AddObjectType(CTooltip);
++
++#undef AddObjectType
+ }
+ 
+ #endif // INCLUDED_GUIOBJECTTYPES
+Index: source/gui/ObjectBases/IGUIObject.h
+===================================================================
+--- source/gui/ObjectBases/IGUIObject.h
++++ source/gui/ObjectBases/IGUIObject.h
+@@ -41,10 +41,22 @@
+ 
+ using map_pObjects = std::map<CStr, IGUIObject*>;
+ 
+-#define GUI_OBJECT(obj) \
+-public: \
++#define BASE_GUI_OBJECT(obj, xmlName_, JSFactoryType) \
++protected: \
++	friend class CGUI; \
++	friend class JSI_GUI::GUIProxy; \
++	friend class JSI_GUI::JSFactoryType; \
++	\
++	static constexpr const char* xmlName = xmlName_; \
++	virtual CStr GetObjectType() { return xmlName_; }; \
++	\
++	using JSFactory = JSI_GUI::JSFactoryType;
++
++#define GUI_OBJECT(obj, xmlName_, JSFactoryType) \
++	BASE_GUI_OBJECT(obj, xmlName_, JSFactoryType) \
+ 	static IGUIObject* ConstructObject(CGUI& pGUI) \
+-		{ return new obj(pGUI); }
++	{ return new obj(pGUI); };
++
+ 
+ /**
+  * GUI object such as a button or an input-box.
+@@ -52,13 +64,7 @@
+  */
+ class IGUIObject
+ {
+-	friend class CGUI;
+-
+-	// Allow getProperty to access things like GetParent()
+-	friend bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp);
+-	friend bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp, JS::ObjectOpResult& result);
+-	friend bool JSI_IGUIObject::deleteProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::ObjectOpResult& result);
+-	friend bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, JS::Value* vp);
++	BASE_GUI_OBJECT(IGUIObject, "empty", GUIObjectFactory);
+ 
+ public:
+ 	NONCOPYABLE(IGUIObject);
+@@ -240,6 +246,21 @@
+ 	 */
+ 	JSObject* GetJSObject();
+ 
++protected:
++	/**
++	 * When creating the JS counterpart of a GUI Object,
++	 * we may need to set the private data to the derived 'this',
++	 * and not the base 'this', otherwise derived proxies
++	 * won't be able to call the derived-only functions.
++	 * Perhaps TODO: I think the virtual call could be CRPT-ed out.
++	 */
++	virtual void SetPrivateData();
++public:
++	std::string toString() const;
++	void focus();
++	void blur();
++	CRect getComputedSize();
++
+ 	//@}
+ protected:
+ 	//--------------------------------------------------------
+@@ -439,11 +460,6 @@
+ 	//--------------------------------------------------------
+ 	//@{
+ 
+-	/**
+-	 * Creates the JS object representing this page upon first use.
+-	 */
+-	void CreateJSObject();
+-
+ 	/**
+ 	 * Updates some internal data depending on the setting changed.
+ 	 */
+Index: source/gui/ObjectBases/IGUIObject.cpp
+===================================================================
+--- source/gui/ObjectBases/IGUIObject.cpp
++++ source/gui/ObjectBases/IGUIObject.cpp
+@@ -437,27 +437,54 @@
+ 	return JS::ToBoolean(result);
+ }
+ 
+-void IGUIObject::CreateJSObject()
+-{
+-	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
+-	JSAutoRequest rq(cx);
+-
+-	m_JSObject.init(cx, m_pGUI.GetScriptInterface()->CreateCustomObject("GUIObject"));
+-	JS_SetPrivate(m_JSObject.get(), this);
+-
+-	RegisterScriptFunctions();
+-}
+-
+ JSObject* IGUIObject::GetJSObject()
+ {
++	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
++	JSAutoRequest rq(cx);
++
+ 	// Cache the object when somebody first asks for it, because otherwise
+ 	// we end up doing far too much object allocation.
+ 	if (!m_JSObject.initialized())
+-		CreateJSObject();
++	{
++		m_JSObject.init(cx, m_pGUI.ConstructJSObject(GetObjectType()));
++		SetPrivateData();
++	}
+ 
+ 	return m_JSObject.get();
+ }
+ 
++void IGUIObject::SetPrivateData()
++{
++	ENSURE(m_JSObject.initialized());
++	JS::RootedValue pointer(m_pGUI.GetScriptInterface()->GetJSRuntime());
++	// I'm not entirely sure this static cast is needed but it seems conceptually correct, and safer.
++	pointer.get().setPrivate(static_cast<JSFactory::cppType*>(this));
++	SetReservedOrProxyPrivateSlot(m_JSObject, 1, pointer);
++};
++
++std::string IGUIObject::toString() const
++{
++	return "[GUIObject: " + GetName() + "]";
++}
++
++void IGUIObject::focus()
++{
++	GetGUI().SetFocusedObject(this);
++}
++
++void IGUIObject::blur()
++{
++	GetGUI().SetFocusedObject(nullptr);
++}
++
++CRect IGUIObject::getComputedSize()
++{
++	UpdateCachedSize();
++	return m_CachedActualSize;
++}
++
++
++
+ bool IGUIObject::IsEnabled() const
+ {
+ 	return m_Enabled;
+Index: source/gui/ObjectTypes/CButton.h
+===================================================================
+--- source/gui/ObjectTypes/CButton.h
++++ source/gui/ObjectTypes/CButton.h
+@@ -26,7 +26,7 @@
+ 
+ class CButton : public IGUIObject, public IGUITextOwner, public IGUIButtonBehavior
+ {
+-	GUI_OBJECT(CButton)
++	GUI_OBJECT(CButton, "button", GUIObjectFactory)
+ 
+ public:
+ 	CButton(CGUI& pGUI);
+Index: source/gui/ObjectTypes/CChart.h
+===================================================================
+--- source/gui/ObjectTypes/CChart.h
++++ source/gui/ObjectTypes/CChart.h
+@@ -43,7 +43,7 @@
+  */
+ class CChart : public IGUIObject, public IGUITextOwner
+ {
+-	GUI_OBJECT(CChart)
++	GUI_OBJECT(CChart, "chart", GUIObjectFactory)
+ 
+ public:
+ 	CChart(CGUI& pGUI);
+Index: source/gui/ObjectTypes/CCheckBox.h
+===================================================================
+--- source/gui/ObjectTypes/CCheckBox.h
++++ source/gui/ObjectTypes/CCheckBox.h
+@@ -23,7 +23,7 @@
+ 
+ class CCheckBox : public IGUIObject, public IGUIButtonBehavior
+ {
+-	GUI_OBJECT(CCheckBox)
++	GUI_OBJECT(CCheckBox, "checkbox", GUIObjectFactory)
+ 
+ public:
+ 	CCheckBox(CGUI& pGUI);
+Index: source/gui/ObjectTypes/CDropDown.h
+===================================================================
+--- source/gui/ObjectTypes/CDropDown.h
++++ source/gui/ObjectTypes/CDropDown.h
+@@ -44,7 +44,7 @@
+  */
+ class CDropDown : public CList
+ {
+-	GUI_OBJECT(CDropDown)
++	GUI_OBJECT(CDropDown, "dropdown", GUIObjectFactory)
+ 
+ public:
+ 	CDropDown(CGUI& pGUI);
+Index: source/gui/ObjectTypes/CGUIDummyObject.h
+===================================================================
+--- source/gui/ObjectTypes/CGUIDummyObject.h
++++ source/gui/ObjectTypes/CGUIDummyObject.h
+@@ -30,7 +30,7 @@
+  */
+ class CGUIDummyObject : public IGUIObject
+ {
+-	GUI_OBJECT(CGUIDummyObject)
++	GUI_OBJECT(CGUIDummyObject, "empty", GUIObjectFactory)
+ 
+ public:
+ 	CGUIDummyObject(CGUI& pGUI) : IGUIObject(pGUI) {}
+Index: source/gui/ObjectTypes/CImage.h
+===================================================================
+--- source/gui/ObjectTypes/CImage.h
++++ source/gui/ObjectTypes/CImage.h
+@@ -33,7 +33,7 @@
+  */
+ class CImage : public IGUIObject
+ {
+-	GUI_OBJECT(CImage)
++	GUI_OBJECT(CImage, "image", GUIObjectFactory)
+ 
+ public:
+ 	CImage(CGUI& pGUI);
+Index: source/gui/ObjectTypes/CInput.h
+===================================================================
+--- source/gui/ObjectTypes/CInput.h
++++ source/gui/ObjectTypes/CInput.h
+@@ -33,7 +33,7 @@
+  */
+ class CInput : public IGUIObject, public IGUIScrollBarOwner
+ {
+-	GUI_OBJECT(CInput)
++	GUI_OBJECT(CInput, "input", GUIObjectFactory)
+ 
+ protected: // forwards
+ 	struct SRow;
+Index: source/gui/ObjectTypes/CList.h
+===================================================================
+--- source/gui/ObjectTypes/CList.h
++++ source/gui/ObjectTypes/CList.h
+@@ -36,7 +36,7 @@
+  */
+ class CList : public IGUIObject, public IGUIScrollBarOwner, public IGUITextOwner
+ {
+-	GUI_OBJECT(CList)
++	GUI_OBJECT(CList, "list", GUIObjectFactory)
+ 
+ public:
+ 	CList(CGUI& pGUI);
+Index: source/gui/ObjectTypes/CMiniMap.h
+===================================================================
+--- source/gui/ObjectTypes/CMiniMap.h
++++ source/gui/ObjectTypes/CMiniMap.h
+@@ -28,7 +28,7 @@
+ 
+ class CMiniMap : public IGUIObject
+ {
+-	GUI_OBJECT(CMiniMap)
++	GUI_OBJECT(CMiniMap, "minimap", GUIObjectFactory)
+ public:
+ 	CMiniMap(CGUI& pGUI);
+ 	virtual ~CMiniMap();
+Index: source/gui/ObjectTypes/COList.h
+===================================================================
+--- source/gui/ObjectTypes/COList.h
++++ source/gui/ObjectTypes/COList.h
+@@ -49,7 +49,7 @@
+  */
+ class COList : public CList
+ {
+-	GUI_OBJECT(COList)
++	GUI_OBJECT(COList, "olist", GUIObjectFactory)
+ 
+ public:
+ 	COList(CGUI& pGUI);
+Index: source/gui/ObjectTypes/CProgressBar.h
+===================================================================
+--- source/gui/ObjectTypes/CProgressBar.h
++++ source/gui/ObjectTypes/CProgressBar.h
+@@ -26,7 +26,7 @@
+  */
+ class CProgressBar : public IGUIObject
+ {
+-	GUI_OBJECT(CProgressBar)
++	GUI_OBJECT(CProgressBar, "progressbar", GUIObjectFactory)
+ 
+ public:
+ 	CProgressBar(CGUI& pGUI);
+Index: source/gui/ObjectTypes/CRadioButton.h
+===================================================================
+--- source/gui/ObjectTypes/CRadioButton.h
++++ source/gui/ObjectTypes/CRadioButton.h
+@@ -28,7 +28,7 @@
+  */
+ class CRadioButton : public CCheckBox
+ {
+-	GUI_OBJECT(CRadioButton)
++	GUI_OBJECT(CRadioButton, "radiobutton", GUIObjectFactory)
+ 
+ public:
+ 	CRadioButton(CGUI& pGUI);
+Index: source/gui/ObjectTypes/CSlider.h
+===================================================================
+--- source/gui/ObjectTypes/CSlider.h
++++ source/gui/ObjectTypes/CSlider.h
+@@ -24,7 +24,7 @@
+ 
+ class CSlider : public IGUIObject, public IGUIButtonBehavior
+ {
+-	GUI_OBJECT(CSlider)
++	GUI_OBJECT(CSlider, "slider", GUIObjectFactory)
+ 
+ public:
+ 	CSlider(CGUI& pGUI);
+Index: source/gui/ObjectTypes/CText.h
+===================================================================
+--- source/gui/ObjectTypes/CText.h
++++ source/gui/ObjectTypes/CText.h
+@@ -28,8 +28,7 @@
+  */
+ class CText : public IGUIObject, public IGUIScrollBarOwner, public IGUITextOwner
+ {
+-	GUI_OBJECT(CText)
+-
++	GUI_OBJECT(CText, "text", TextObjectFactory)
+ public:
+ 	CText(CGUI& pGUI);
+ 	virtual ~CText();
+@@ -56,8 +55,6 @@
+ 	 */
+ 	void SetupText();
+ 
+-	virtual void RegisterScriptFunctions();
+-
+ 	/**
+ 	 * @see IGUIObject#HandleMessage()
+ 	 */
+@@ -68,12 +65,10 @@
+ 	 */
+ 	virtual void Draw();
+ 
+-	/**
+-	 * Script accessors to this GUI object.
+-	 */
+-	static JSFunctionSpec JSI_methods[];
+-
+-	static bool GetTextSize(JSContext* cx, uint argc, JS::Value* vp);
++	CSize GetTextSize()
++	{
++		return m_GeneratedTexts[0].GetSize();
++	}
+ 
+ 	/**
+ 	 * Placement of text. Ignored when scrollbars are active.
+Index: source/gui/ObjectTypes/CText.cpp
+===================================================================
+--- source/gui/ObjectTypes/CText.cpp
++++ source/gui/ObjectTypes/CText.cpp
+@@ -251,34 +251,3 @@
+ 
+ 	return false;
+ }
+-
+-void CText::RegisterScriptFunctions()
+-{
+-	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
+-	JSAutoRequest rq(cx);
+-	JS_DefineFunctions(cx, m_JSObject, CText::JSI_methods);
+-}
+-
+-JSFunctionSpec CText::JSI_methods[] =
+-{
+-	JS_FN("getTextSize", CText::GetTextSize, 0, 0),
+-	JS_FS_END
+-};
+-
+-bool CText::GetTextSize(JSContext* cx, uint argc, JS::Value* vp)
+-{
+-	// No JSAutoRequest needed for these calls
+-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+-	CText* thisObj = ScriptInterface::GetPrivate<CText>(cx, args, &JSI_IGUIObject::JSI_class);
+-	if (!thisObj)
+-	{
+-		JSAutoRequest rq(cx);
+-		JS_ReportError(cx, "This is not a CText object!");
+-		return false;
+-	}
+-
+-	thisObj->UpdateText();
+-
+-	ScriptInterface::ToJSVal(cx, args.rval(), thisObj->m_GeneratedTexts[0].GetSize());
+-	return true;
+-}
+Index: source/gui/ObjectTypes/CTooltip.h
+===================================================================
+--- source/gui/ObjectTypes/CTooltip.h
++++ source/gui/ObjectTypes/CTooltip.h
+@@ -27,7 +27,7 @@
+  */
+ class CTooltip : public IGUIObject, public IGUITextOwner
+ {
+-	GUI_OBJECT(CTooltip)
++	GUI_OBJECT(CTooltip, "tooltip", GUIObjectFactory)
+ 
+ public:
+ 	CTooltip(CGUI& pGUI);
+Index: source/gui/Scripting/JSInterface_IGUIObject.h
+===================================================================
+--- source/gui/Scripting/JSInterface_IGUIObject.h
++++ source/gui/Scripting/JSInterface_IGUIObject.h
+@@ -19,22 +19,142 @@
+ #define INCLUDED_JSI_IGUIOBJECT
+ 
+ #include "scriptinterface/ScriptInterface.h"
++#include "js/Proxy.h"
+ 
+-namespace JSI_IGUIObject
++class CText;
++
++namespace JSI_GUI
+ {
+-	extern JSClass JSI_class;
+-	extern JSFunctionSpec JSI_methods[];
+-
+-	void RegisterScriptClass(ScriptInterface& scriptInterface);
+-
+-	bool getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp);
+-	bool setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp, JS::ObjectOpResult& result);
+-	bool deleteProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::ObjectOpResult& result);
+-	bool toString(JSContext* cx, uint argc, JS::Value* vp);
+-	bool focus(JSContext* cx, uint argc, JS::Value* vp);
+-	bool blur(JSContext* cx, uint argc, JS::Value* vp);
+-	bool getComputedSize(JSContext* cx, uint argc, JS::Value* vp);
+-	bool getTextSize(JSContext* cx, uint argc, JS::Value* vp);
++	class GUIObjectFactory;
++
++	/**
++	 * Handles the js interface with C++ GUI objects.
++	 * Proxy handlers must live for at least as long as the JS runtime
++	 * where a proxy object with that handler was created. The reason is that
++	 * proxy handlers are called during GC, such as on runtime destruction.
++	 * In practical terms, this means "just keep them static and store no data".
++	 *
++	 * Function properties are defined once per IGUIObject type and not on each object,
++	 * so we fetch them from the GUIObjectFactory in the CGUI (via the object).
++	 * To avoid running these fetches on any property access, and since we know the names of such properties
++	 * at compile time, we pass them as template arguments and check that the prop name matches one.
++	 *
++	 * GUI Objects only exist in C++ and have no JS-only properties.
++	 * As such, there is no "target" JS object that this proxy could point to,
++	 * and thus we should inherit from BaseProxyHandler and not js::Wrapper.
++	 */
++	class GUIProxy : protected js::BaseProxyHandler
++	{
++		friend class GUIObjectFactory;
++	public:
++		GUIProxy();
++		virtual ~GUIProxy() {};
++
++	private:
++		// See GUIObjectFactory on why we want a long-lived proxy.
++		static GUIProxy singleton;
++
++		// Handler got object.x
++		virtual bool get(JSContext* cx, JS::HandleObject proxy, JS::HandleValue receiver, JS::HandleId id, JS::MutableHandleValue vp) const final;
++		// Handler for object.x = y;
++		virtual bool set(JSContext* cx, JS::HandleObject proxy, JS::HandleId id, JS::HandleValue vp,
++						 JS::HandleValue receiver, JS::ObjectOpResult& result) const final;
++		// Handler for delete object.x;
++		virtual bool delete_(JSContext* cx, JS::HandleObject proxy, JS::HandleId id, JS::ObjectOpResult& result) const final;
++
++		// The following methods are not provided by BaseProxyHandler.
++		// We provide a default that does nothing.
++
++		// The JS code will see undefined when querying a property descriptor.
++		virtual bool getOwnPropertyDescriptor(JSContext* UNUSED(cx), JS::HandleObject UNUSED(proxy), JS::HandleId UNUSED(id),
++											  JS::MutableHandle<JSPropertyDescriptor> UNUSED(desc)) const
++		{
++			return true;
++		}
++		// Throw an exception is JS code attempts defining a property.
++		virtual bool defineProperty(JSContext* UNUSED(cx), JS::HandleObject UNUSED(proxy), JS::HandleId UNUSED(id),
++									JS::Handle<JSPropertyDescriptor> UNUSED(desc), JS::ObjectOpResult& UNUSED(result)) const
++		{
++			return false;
++		}
++		// Return nothing.
++		virtual bool ownPropertyKeys(JSContext* UNUSED(cx), JS::HandleObject UNUSED(proxy), JS::AutoIdVector& UNUSED(props)) const
++		{
++			return true;
++		}
++		// Return nothing.
++		virtual bool enumerate(JSContext* UNUSED(cx), JS::HandleObject UNUSED(proxy), JS::MutableHandleObject UNUSED(objp)) const
++		{
++			return true;
++		}
++		// We are not extensible.
++		virtual bool preventExtensions(JSContext* UNUSED(cx), JS::HandleObject UNUSED(proxy), JS::ObjectOpResult& UNUSED(result)) const
++		{
++			return true;
++		}
++		virtual bool isExtensible(JSContext* UNUSED(cx), JS::HandleObject UNUSED(proxy), bool* extensible) const
++		{
++			*extensible = false;
++			return true;
++		}
++	};
++
++	/**
++	 * A GUIObjectFactory is created by CGUI for each object definition it has.
++	 * This class is responsible for creating the JS counterparts to C++ objects,
++	 * which are Proxy objects implement GUIProxy.
++	 *
++	 * A word on function properties.
++	 *
++	 * Some properties of JS-GUIObjects are functions, which must exist in the JS compartment
++	 * (get returns the JSNative function, which then gets called from JS code).
++	 * We could create them as properties of the newly created JS-GUIObject, but that would
++	 * mean we have n-handlers * GUI objects definitions of the same function. We could create them
++	 * everytime they are asked for, but that seems rather inefficient.
++	 * It seems easier to create them once and always return the same JS functions.
++	 * However, the lifetime of those JS functions must be the same as the lifetime of the compartment,
++	 * (unlike the proxy handler which lives forever), so we must store them in an object whose lifetime
++	 * is tied to the CGUI lifetime. We could, for now, store them in the IGUIObject directly, since we don't
++	 * really create/destroy objects at runtime, but that's preventing future evolution.
++	 * The simplest solution is to store them in the GUIObjectFactory.
++	 */
++	class GUIObjectFactory
++	{
++		friend class ::JSI_GUI::GUIProxy;
++	public:
++		/**
++		 * This is the "least derived" object type that this factory can work with.
++		 * A pointer to the c++ object is stored in the private data of the proxy, which is void*.
++		 * We need to know what type to use when writing and reading the pointer.
++		 * This is that type.
++		 */
++		using cppType = IGUIObject;
++
++		GUIObjectFactory(ScriptInterface& scriptInterface);
++		JSObject* CreateObject(JSContext* cx);
++	protected:
++		/**
++		 * Call the "callable" member function, correctly converting input and output from and to JS.
++		 * This is a generic method that does no particular transformation on JS inputs, provided for convenience.
++		 * If some specific pre-processing of arguments is wanted, it should be specialised.
++		 *
++		 * Templated on on objType because `using cppType` isn't virtual-like.
++		 *
++		 * TODO: this method will generally not work for member functions with multiple overloads.
++		 * It sounds fixable, but rather difficult.
++		 */
++		template <typename objType, typename funcPtr, funcPtr callable>
++		static bool scriptMethod(JSContext* cx, unsigned argc, JS::Value* vp);
++
++		std::map<std::string, JS::PersistentRootedFunction> m_FunctionHandlers;
++		static js::Class m_ProxyObjectClass;
++	};
++	class TextObjectFactory : public GUIObjectFactory
++	{
++	public:
++		using cppType = CText;
++		TextObjectFactory(ScriptInterface& scriptInterface);
++	};
+ }
+ 
+ #endif // INCLUDED_JSI_IGUIOBJECT
+Index: source/gui/Scripting/JSInterface_IGUIObject.cpp
+===================================================================
+--- source/gui/Scripting/JSInterface_IGUIObject.cpp
++++ source/gui/Scripting/JSInterface_IGUIObject.cpp
+@@ -19,42 +19,203 @@
+ 
+ #include "JSInterface_IGUIObject.h"
+ 
++#include <type_traits>
++
+ #include "gui/CGUI.h"
+ #include "gui/CGUISetting.h"
+ #include "gui/ObjectBases/IGUIObject.h"
++#include "gui/ObjectTypes/CText.h"
+ #include "scriptinterface/ScriptExtraHeaders.h"
+ #include "scriptinterface/ScriptInterface.h"
+ 
+-JSClass JSI_IGUIObject::JSI_class = {
+-	"GUIObject", JSCLASS_HAS_PRIVATE,
+-	nullptr,
+-	JSI_IGUIObject::deleteProperty,
+-	JSI_IGUIObject::getProperty,
+-	JSI_IGUIObject::setProperty,
+-	nullptr, nullptr, nullptr, nullptr,
+-	nullptr, nullptr, nullptr, nullptr
++/**
++ * Convenient struct to get info on a [const] function pointer.
++ */
++template<typename ptr>
++struct args_info;
++
++template<typename C, typename R, typename ...Types>
++struct args_info<R(C::*)(Types ...)>
++{
++	static const size_t nb_args = sizeof...(Types);
++	using return_type = R;
++	using object_type = C;
++	using args = std::tuple<typename std::remove_const<typename std::remove_reference<Types>::type>::type...>;
++};
++
++// TODO: would be nice to find a way around the duplication here.
++template<typename C, typename R, typename ...Types>
++struct args_info<R(C::*)(Types ...) const>
++{
++	static const size_t nb_args = sizeof...(Types);
++	using return_type = R;
++	using object_type = C;
++	using args = std::tuple<typename std::remove_const<typename std::remove_reference<Types>::type>::type...>;
++};
++
++// Convenience wrapper since the code is a little verbose.
++// TODO: I think c++14 makes this clean enough, with type deduction, that it could be removed.
++#define SetupHandler(funcPtr, JSName) \
++	m_FunctionHandlers[JSName].init( \
++		scriptInterface.GetContext(), \
++		JS_NewFunction(scriptInterface.GetContext(), &(scriptMethod<cppType, decltype(funcPtr), funcPtr>), args_info<decltype(funcPtr)>::nb_args, 0, JSName) \
++	);
++
++JSI_GUI::GUIObjectFactory::GUIObjectFactory(ScriptInterface& scriptInterface)
++{
++	JSAutoRequest rq(scriptInterface.GetContext());
++	SetupHandler(&IGUIObject::toString, "toString");
++	SetupHandler(&IGUIObject::toString, "toSource");
++	SetupHandler(&IGUIObject::focus, "focus");
++	SetupHandler(&IGUIObject::blur, "blur");
++	SetupHandler(&IGUIObject::getComputedSize, "getComputedSize");
++}
++
++
++JSI_GUI::TextObjectFactory::TextObjectFactory(ScriptInterface& scriptInterface) : JSI_GUI::GUIObjectFactory(scriptInterface)
++{
++	JSAutoRequest rq(scriptInterface.GetContext());
++	SetupHandler(&CText::GetTextSize, "getTextSize");
++}
++
++#undef SetupHandler
++
++/**
++ * Based on https://stackoverflow.com/a/32223343
++ * make_index_sequence is not defined in C++11... Only C++14.
++ */
++template <size_t... Ints>
++struct index_sequence
++{
++	using type = index_sequence;
++	using value_type = size_t;
++	static constexpr std::size_t size() noexcept { return sizeof...(Ints); }
+ };
++template <class Sequence1, class Sequence2>
++struct _merge_and_renumber;
++template <size_t... I1, size_t... I2>
++struct _merge_and_renumber<index_sequence<I1...>, index_sequence<I2...>>
++: index_sequence<I1..., (sizeof...(I1)+I2)...> { };
++template <size_t N>
++struct make_index_sequence
++: _merge_and_renumber<typename make_index_sequence<N/2>::type,
++typename make_index_sequence<N - N/2>::type> { };
++template<> struct make_index_sequence<0> : index_sequence<> { };
++template<> struct make_index_sequence<1> : index_sequence<0> { };
++
+ 
+-JSFunctionSpec JSI_IGUIObject::JSI_methods[] =
++/**
++ * This series of templates is a setup to transparently call a c++ function
++ * from a JS function (with CallArgs) and returning that value.
++ * The C++ code can have arbitrary arguments and arbitrary return types, so long
++ * as they can be converted to/from JS.
++ */
++
++/**
++ * This helper is a recursive template call that converts the N-1th argument
++ * of the function from a JS value to its proper C++ type.
++ */
++template<int N, typename tuple>
++struct convertFromJS
++{
++	bool operator()(ScriptInterface& interface, JSContext* cx, JS::CallArgs& val, tuple& outs)
++	{
++		if (!interface.FromJSVal(cx, val[N-1], std::get<N-1>(outs)))
++			return false;
++		return convertFromJS<N-1, tuple>()(interface, cx, val, outs);
++	}
++};
++// Specialization for the base case "no arguments".
++template<typename tuple>
++struct convertFromJS<0, tuple>
+ {
+-	JS_FN("toString", JSI_IGUIObject::toString, 0, 0),
+-	JS_FN("focus", JSI_IGUIObject::focus, 0, 0),
+-	JS_FN("blur", JSI_IGUIObject::blur, 0, 0),
+-	JS_FN("getComputedSize", JSI_IGUIObject::getComputedSize, 0, 0),
+-	JS_FS_END
++	bool operator()(ScriptInterface& UNUSED(interface), JSContext* UNUSED(cx), JS::CallArgs& UNUSED(val), tuple& UNUSED(outs))
++	{
++		return true;
++	}
+ };
+ 
+-void JSI_IGUIObject::RegisterScriptClass(ScriptInterface& scriptInterface)
++/**
++ * These two templates take a function pointer, its arguments, call it,
++ * and set the return value of the CallArgs to whatever it returned, if anything.
++ * It's tag-dispatched for the "returns_void" and the regular return case.
++ */
++template <typename funcPtr, funcPtr callable, typename T, size_t... Is, typename... types>
++void call(T* object, ScriptInterface* scriptInterface, JS::CallArgs& callArgs, std::tuple<types...>& args, std::false_type, index_sequence<Is...>)
++{
++	// This is perfectly readable, what are you talking about.
++	auto ret = ((*object).* callable)(std::get<Is>(args)...);
++	scriptInterface->ToJSVal(scriptInterface->GetContext(), callArgs.rval(), ret);
++}
++
++template <typename funcPtr, funcPtr callable, typename T, size_t... Is, typename... types>
++void call(T* object, ScriptInterface* UNUSED(scriptInterface), JS::CallArgs& UNUSED(callArgs), std::tuple<types...>& args, std::true_type, index_sequence<Is...>)
++{
++	// Void return specialization, just call the function.
++	((*object).* callable)(std::get<Is>(args)...);
++}
++
++template <typename funcPtr, funcPtr callable, typename T, size_t N = args_info<funcPtr>::nb_args, typename tuple = typename args_info<funcPtr>::args>
++bool JSToCppCall(T* object, JSContext* cx, JS::CallArgs& args)
++{
++	ScriptInterface* scriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
++	// This is where the magic happens: instantiate a tuple to store the converted JS arguments,
++	// then 'unpack' the tuple to call the C++ function, convert & store the return value.
++	tuple outs;
++	if (!convertFromJS<N, tuple>()(*scriptInterface, cx, args, outs))
++		return false;
++	// TODO: We have no failure handling here. It's non trivial in a generic sense since we may return a value.
++	// We could either try-catch and throw exceptions,
++	// or come C++17 return an std::optional/maybe or some kind of [bool, val] structured binding.
++	using returns_void = std::is_same<typename args_info<funcPtr>::return_type, void>;
++	call<funcPtr, callable, T>(object, scriptInterface, args, outs, returns_void{}, make_index_sequence<N>{});
++	return true;
++}
++
++// TODO: this can get rewritten as <auto> and deduced come c++14
++template <typename objType, typename funcPtr, funcPtr callable>
++bool JSI_GUI::GUIObjectFactory::scriptMethod(JSContext* cx, unsigned argc, JS::Value* vp)
+ {
+-	scriptInterface.DefineCustomObjectType(&JSI_class, nullptr, 0, nullptr, JSI_methods, nullptr, nullptr);
++	JSAutoRequest rq(cx);
++	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
++
++	static_assert(std::is_same<objType, typename args_info<funcPtr>::object_type>::value,
++				  "The called method is not defined on the factory's cppType. You most likely forgot to define 'using cppType = ...'");
++
++	objType* thisObj = static_cast<objType*>(js::GetProxyPrivate(args.thisv().toObjectOrNull()).toPrivate());
++	if (!thisObj)
++		return false;
++
++	if (!JSToCppCall<decltype(callable), callable>(thisObj, cx, args))
++		return false;
++
++	return true;
++}
++
++js::Class JSI_GUI::GUIObjectFactory::m_ProxyObjectClass = \
++	PROXY_CLASS_DEF("GUIObjectProxy", JSCLASS_HAS_PRIVATE | JSCLASS_HAS_CACHED_PROTO(JSProto_Proxy));
++
++JSObject* JSI_GUI::GUIObjectFactory::CreateObject(JSContext* cx)
++{
++	JSAutoRequest rq(cx);
++	js::ProxyOptions options;
++	options.setClass(&m_ProxyObjectClass);
++	JS::RootedObject proxy(cx, js::NewProxyObject(cx, &JSI_GUI::GUIProxy::singleton, JS::NullHandleValue, nullptr, options));
++	return proxy;
+ }
+ 
+-bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp)
++JSI_GUI::GUIProxy JSI_GUI::GUIProxy::singleton;
++
++// The family can't be nullptr because that's used for some DOM object and it crashes.
++JSI_GUI::GUIProxy::GUIProxy() : BaseProxyHandler(this, false, false) {};
++
++bool JSI_GUI::GUIProxy::get(JSContext* cx, JS::HandleObject proxy, JS::HandleValue UNUSED(receiver), JS::HandleId id, JS::MutableHandleValue vp) const
+ {
+ 	JSAutoRequest rq(cx);
+ 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+ 
+-	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, obj, &JSI_IGUIObject::JSI_class);
++	IGUIObject* e = static_cast<IGUIObject*>(js::GetProxyPrivate(proxy.get()).toPrivate());
++
+ 	if (!e)
+ 		return false;
+ 
+@@ -66,18 +227,17 @@
+ 	if (!ScriptInterface::FromJSVal(cx, idval, propName))
+ 		return false;
+ 
+-	// Skip registered functions and inherited properties
+-	// including JSInterfaces of derived classes
+-	if (propName == "constructor" ||
+-		propName == "prototype"   ||
+-		propName == "toString"    ||
+-		propName == "toJSON"      ||
+-		propName == "focus"       ||
+-		propName == "blur"        ||
+-		propName == "getTextSize" ||
+-		propName == "getComputedSize"
+-	   )
++	// TODO: This is slightly inefficient (we're going through the GUI via a string lookup).
++	// We could do better by templating the proxy with function names to look for in the Factory.
++	// (the find can't fail)
++	const std::map<std::string, JS::PersistentRootedFunction>& factory = e->m_pGUI.m_ObjectTypes.find(e->GetObjectType())->second.guiObjectFactory->m_FunctionHandlers;
++	std::map<std::string, JS::PersistentRootedFunction>::const_iterator it = factory.find(propName);
++	if (it != factory.end())
++	{
++		JSObject* obj = JS_GetFunctionObject(it->second.get());
++		vp.setObjectOrNull(obj);
+ 		return true;
++	}
+ 
+ 	// Use onWhatever to access event handlers
+ 	if (propName.substr(0, 2) == "on")
+@@ -126,13 +286,16 @@
+ 	return false;
+ }
+ 
+-bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp, JS::ObjectOpResult& result)
++bool JSI_GUI::GUIProxy::set(JSContext* cx, JS::HandleObject proxy, JS::HandleId id, JS::HandleValue vp,
++							 JS::HandleValue UNUSED(receiver), JS::ObjectOpResult& result) const
+ {
+-	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, obj, &JSI_IGUIObject::JSI_class);
++	JSAutoRequest rq(cx);
++
++	IGUIObject* e = static_cast<IGUIObject*>(js::GetProxyPrivate(proxy.get()).toPrivate());
++
+ 	if (!e)
+ 		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
+ 
+-	JSAutoRequest rq(cx);
+ 	JS::RootedValue idval(cx);
+ 	if (!JS_IdToValue(cx, id, &idval))
+ 		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
+@@ -176,13 +339,14 @@
+ 	return result.fail(JSMSG_UNDEFINED_PROP);
+ }
+ 
+-bool JSI_IGUIObject::deleteProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::ObjectOpResult& result)
++bool JSI_GUI::GUIProxy::delete_(JSContext* cx, JS::HandleObject proxy, JS::HandleId id, JS::ObjectOpResult& result) const
+ {
+-	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, obj, &JSI_IGUIObject::JSI_class);
++	JSAutoRequest rq(cx);
++
++	IGUIObject* e = static_cast<IGUIObject*>(js::GetProxyPrivate(proxy.get()).toPrivate());
+ 	if (!e)
+ 		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
+ 
+-	JSAutoRequest rq(cx);
+ 	JS::RootedValue idval(cx);
+ 	if (!JS_IdToValue(cx, id, &idval))
+ 		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
+@@ -203,55 +367,3 @@
+ 	return result.fail(JSMSG_UNDEFINED_PROP);
+ }
+ 
+-bool JSI_IGUIObject::toString(JSContext* cx, uint argc, JS::Value* vp)
+-{
+-	// No JSAutoRequest needed for these calls
+-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+-	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, args, &JSI_IGUIObject::JSI_class);
+-	if (!e)
+-		return false;
+-
+-	ScriptInterface::ToJSVal(cx, args.rval(), "[GUIObject: " + e->GetName() + "]");
+-	return true;
+-}
+-
+-bool JSI_IGUIObject::focus(JSContext* cx, uint argc, JS::Value* vp)
+-{
+-	// No JSAutoRequest needed for these calls
+-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+-	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, args, &JSI_IGUIObject::JSI_class);
+-	if (!e)
+-		return false;
+-
+-	e->GetGUI().SetFocusedObject(e);
+-	args.rval().setUndefined();
+-	return true;
+-}
+-
+-bool JSI_IGUIObject::blur(JSContext* cx, uint argc, JS::Value* vp)
+-{
+-	// No JSAutoRequest needed for these calls
+-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+-	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, args, &JSI_IGUIObject::JSI_class);
+-	if (!e)
+-		return false;
+-
+-	e->GetGUI().SetFocusedObject(nullptr);
+-	args.rval().setUndefined();
+-	return true;
+-}
+-
+-bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, JS::Value* vp)
+-{
+-	JSAutoRequest rq(cx);
+-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+-
+-	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(cx, args, &JSI_IGUIObject::JSI_class);
+-	if (!e)
+-		return false;
+-
+-	e->UpdateCachedSize();
+-	ScriptInterface::ToJSVal(cx, args.rval(), e->m_CachedActualSize);
+-
+-	return true;
+-}
+Index: source/gui/Scripting/ScriptFunctions.cpp
+===================================================================
+--- source/gui/Scripting/ScriptFunctions.cpp
++++ source/gui/Scripting/ScriptFunctions.cpp
+@@ -51,7 +51,7 @@
+ void GuiScriptingInit(ScriptInterface& scriptInterface)
+ {
+ 	JSI_GUISize::RegisterScriptClass(scriptInterface);
+-	JSI_IGUIObject::RegisterScriptClass(scriptInterface);
++//	JSI_IGUIObject::RegisterScriptClass(scriptInterface);
+ 
+ 	JSI_ConfigDB::RegisterScriptFunctions(scriptInterface);
+ 	JSI_Console::RegisterScriptFunctions(scriptInterface);
+

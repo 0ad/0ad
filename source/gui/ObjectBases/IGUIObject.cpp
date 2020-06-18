@@ -449,13 +449,14 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName, const JS::HandleVa
 	JS::RootedValue result(cx);
     JS::RootedFunction fun(cx, it->second);
 
-	if (!JS_CallFunction(cx, obj, fun, paramData, &result))
+    checkJSError(cx);
+    if (!JS_CallFunction(cx, obj, fun, paramData, &result))
 	{
 		LOGERROR("Errors executing script event \"%s\"", eventName.c_str());
 		return false;
 	}
-
-	return JS::ToBoolean(result);
+	
+    return JS::ToBoolean(result);
 }
 
 std::string IGUIObject::toString() const

@@ -568,6 +568,7 @@ bool ScriptInterface::CallFunction_(JS::HandleValue val, const char* name, JS::H
 		return false;
     }
 
+    checkJSError(m->m_cx);
 	bool ok = JS_CallFunctionName(m->m_cx, obj, name, argv, ret);
     checkJSError(m->m_cx);
 	return ok;
