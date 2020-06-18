@@ -181,7 +181,7 @@ bool JSI_GUI::GUIObjectFactory::scriptMethod(JSContext* cx, unsigned argc, JS::V
 	static_assert(std::is_same<objType, typename args_info<funcPtr>::object_type>::value,
 				  "The called method is not defined on the factory's cppType. You most likely forgot to define 'using cppType = ...'");
 
-    void* ptr = js::GetProxyPrivate(args.thisv().toObjectOrNull()).toPrivate();
+    void* ptr = js::GetProxyReservedSlot(args.thisv().toObjectOrNull(), 0).toPrivate();
 	objType* thisObj = static_cast<objType*>(ptr);
 	if (!thisObj)
 		return false;
@@ -193,7 +193,7 @@ bool JSI_GUI::GUIObjectFactory::scriptMethod(JSContext* cx, unsigned argc, JS::V
 }
 
 js::Class JSI_GUI::GUIObjectFactory::m_ProxyObjectClass = \
-	PROXY_CLASS_DEF("GUIObjectProxy", JSCLASS_HAS_RESERVED_SLOTS(1) |JSCLASS_HAS_CACHED_PROTO(JSProto_Proxy));
+	PROXY_CLASS_DEF("GUIObjectProxy", JSCLASS_HAS_RESERVED_SLOTS(1) | JSCLASS_HAS_CACHED_PROTO(JSProto_Proxy));
 
 JSObject* JSI_GUI::GUIObjectFactory::CreateObject(JSContext* cx)
 {
@@ -212,7 +212,7 @@ bool JSI_GUI::GUIProxy::get(JSContext* cx, JS::HandleObject proxy, JS::HandleVal
  {
  	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
  
-    void* ptr = js::GetProxyPrivate(proxy.get()).toPrivate();
+    void* ptr = js::GetProxyReservedSlot(proxy.get(), 0).toPrivate();
 	IGUIObject* e = static_cast<IGUIObject*>(ptr);
 	if (!e)
 		return false;
@@ -287,7 +287,7 @@ bool JSI_GUI::GUIProxy::get(JSContext* cx, JS::HandleObject proxy, JS::HandleVal
 bool JSI_GUI::GUIProxy::set(JSContext* cx, JS::HandleObject proxy, JS::HandleId id, JS::HandleValue vp,
 							 JS::HandleValue UNUSED(receiver), JS::ObjectOpResult& result) const
  {
-    void* ptr = js::GetProxyPrivate(proxy.get()).toPrivate();
+    void* ptr = js::GetProxyReservedSlot(proxy.get(), 0).toPrivate();
 	IGUIObject* e = static_cast<IGUIObject*>(ptr);
 
     if (!e)
@@ -338,8 +338,7 @@ bool JSI_GUI::GUIProxy::set(JSContext* cx, JS::HandleObject proxy, JS::HandleId 
 
 bool JSI_GUI::GUIProxy::delete_(JSContext* cx, JS::HandleObject proxy, JS::HandleId id, JS::ObjectOpResult& result) const
 {	
-    void* ptr = JS_GetPrivate(&(js::GetProxyReservedSlot(proxy.get(), 0).toObject()));
-	IGUIObject* e = static_cast<IGUIObject*>(ptr);
+    IGUIObject* e = static_cast<IGUIObject*>(js::GetProxyReservedSlot(proxy.get(), 0).toPrivate());
 
     if (!e)
 		return result.fail(JSMSG_NOT_NONNULL_OBJECT);

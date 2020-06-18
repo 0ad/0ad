@@ -336,7 +336,7 @@ bool ScriptInterface::MathRandom(double& nbr)
 }
 
 ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const shared_ptr<ScriptRuntime>& runtime) :
-	m_runtime(runtime), m_glob(runtime->m_rt), m_nativeScope(runtime->m_rt)
+	m_runtime(runtime), m_glob(), m_nativeScope()
 {
 	bool ok;
 
@@ -354,22 +354,22 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
     	
     ENSURE(globalRootedVal);
     {
-
-        m_glob = globalRootedVal.get();
-        JSAutoRealm ar(m_cx, m_glob);
-        ok = JS_EnumerateStandardClasses(m_cx, m_glob);
+        m_glob.init(m_cx);
+        m_glob = globalRootedVal;
+        JSAutoRealm ar(m_cx, globalRootedVal);
+        ok = JS::InitRealmStandardClasses(m_cx);
         ENSURE(ok);
 
-        JS_DefineProperty(m_cx, m_glob, "global", m_glob, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+        JS_DefineProperty(m_cx, globalRootedVal, "global", m_glob, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 
-        m_nativeScope = JS_DefineObject(m_cx, m_glob, nativeScopeName, nullptr, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+        m_nativeScope.init(m_cx, JS_DefineObject(m_cx, m_glob, nativeScopeName, nullptr, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT));
 
-        JS_DefineFunction(m_cx, m_glob, "print", ::print,        1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
-        JS_DefineFunction(m_cx, m_glob, "log",   ::logmsg,       1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
-        JS_DefineFunction(m_cx, m_glob, "warn",  ::warn,         1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
-        JS_DefineFunction(m_cx, m_glob, "error", ::error,        1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
-        JS_DefineFunction(m_cx, m_glob, "clone", ::deepcopy,        1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
-        JS_DefineFunction(m_cx, m_glob, "deepfreeze", ::deepfreeze, 1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+        JS_DefineFunction(m_cx, globalRootedVal, "print", ::print,        1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+        JS_DefineFunction(m_cx, globalRootedVal, "log",   ::logmsg,       1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+        JS_DefineFunction(m_cx, globalRootedVal, "warn",  ::warn,         1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+        JS_DefineFunction(m_cx, globalRootedVal, "error", ::error,        1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+        JS_DefineFunction(m_cx, globalRootedVal, "clone", ::deepcopy,        1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+        JS_DefineFunction(m_cx, globalRootedVal, "deepfreeze", ::deepfreeze, 1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
     }
 	Register("ProfileStart", ::ProfileStart, 1);
 	Register("ProfileStop", ::ProfileStop, 0);
@@ -388,11 +388,8 @@ void ScriptInterface_impl::Register(const char* name, JSNative fptr, uint nargs)
     checkJSError(m_cx);
 }
 
-ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugName, const shared_ptr<ScriptRuntime>& runtime) {
-
-    
-	m.reset(new ScriptInterface_impl(nativeScopeName, runtime));
-
+ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugName, const shared_ptr<ScriptRuntime>& runtime) : m(new ScriptInterface_impl(nativeScopeName, runtime))
+{    
 	// Profiler stats table isn't thread-safe, so only enable this on the main thread
 	if (ThreadUtil::IsMainThread())
 	{
@@ -774,7 +771,8 @@ bool ScriptInterface::GetProperty_(JS::HandleValue obj, const char* name, JS::Mu
         checkJSError(cx);
 		return false;
     }
-	JS::RootedObject object(cx, &obj.toObject());
+	
+    JS::RootedObject object(cx, &obj.toObject());
 
 	if (!JS_GetProperty(cx, object, name, out))
     {

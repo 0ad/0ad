@@ -503,7 +503,7 @@ void IGUIObject::SetPrivateData()
 	JS::RootedValue pointer(cx);
 	// I'm not entirely sure this static cast is needed but it seems conceptually correct, and safer.
 	pointer.get().setPrivate(static_cast<JSFactory::cppType*>(this));
-	SetProxyPrivate(m_JSObject, pointer);
+    js::SetProxyReservedSlot(m_JSObject, 0, pointer);
 }
 
 bool IGUIObject::IsEnabled() const
