@@ -159,7 +159,7 @@ var mercenaryCampGuards = {
 	"generic/desert": [
 		{ "Template" : "structures/ptol_mercenary_camp" },
 		{ "Template" : "units/pers_infantry_javelinist_b", "Count" : 4 },
-		{ "Template" : "units/pers_cavalry_swordsman_e", "Count" : 3 },
+		{ "Template" : "units/pers_cavalry_axeman_e", "Count" : 3 },
 		{ "Template" : "units/pers_infantry_archer_a", "Count" : 4 },
 		{ "Template" : "units/pers_champion_infantry", "Count" : 3 }
 	],

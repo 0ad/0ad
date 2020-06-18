@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_melee">
+  <Armour>
+    <Hack>4</Hack>
+    <Pierce>5</Pierce>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Damage>
+        <Hack>6</Hack>
+        <Crush>2</Crush>
+      </Damage>
+      <PreferredClasses datatype="tokens">Siege</PreferredClasses>
+    </Melee>
+  </Attack>
+  <Cost>
+    <Resources>
+      <wood>40</wood>
+      <metal>10</metal>
+    </Resources>
+  </Cost>
+  <Identity>
+    <VisibleClasses datatype="tokens">Axeman</VisibleClasses>
+    <GenericName>Axeman</GenericName>
+  </Identity>
+  <Loot>
+    <wood>4</wood>
+    <metal>1</metal>
+  </Loot>
+  <UnitMotion>
+    <WalkSpeed op="mul">1.05</WalkSpeed>
+  </UnitMotion>
+</Entity>
