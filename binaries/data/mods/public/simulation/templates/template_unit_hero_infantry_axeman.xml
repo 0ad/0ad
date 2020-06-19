@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_infantry">
+  <Armour>
+    <Hack op="add">3</Hack>
+    <Pierce op="add">4</Pierce>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Damage>
+        <Hack>24</Hack>
+        <Pierce>0</Pierce>
+        <Crush>8</Crush>
+      </Damage>
+      <MaxRange>3.5</MaxRange>
+      <PrepareTime>500</PrepareTime>
+      <RepeatTime>1000</RepeatTime>
+      <PreferredClasses datatype="tokens">Human Siege</PreferredClasses>
+    </Melee>
+  </Attack>
+  <Identity>
+    <VisibleClasses datatype="tokens">Melee Axeman</VisibleClasses>
+    <GenericName>Hero Axeman</GenericName>
+  </Identity>
+  <UnitMotion>
+    <WalkSpeed op="mul">1.05</WalkSpeed>
+  </UnitMotion>
+  <Vision>
+    <Range>80</Range>
+  </Vision>
+</Entity>

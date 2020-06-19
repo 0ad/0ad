@@ -376,15 +376,32 @@ Trigger.prototype.LaunchAttack = function()
 {
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	let entities = cmpRangeManager.GetEntitiesByPlayer(this.playerID);
-	let target = entities.find(e => Engine.QueryInterface(e, IID_Identity) && Engine.QueryInterface(e, IID_Identity).HasClass("DefenseTower")) ||
-	             entities.find(e => Engine.QueryInterface(e, IID_Identity) && Engine.QueryInterface(e, IID_Identity).HasClass("CivilCentre"));
+	let target = 
+		entities.find(e => {
+			let cmpIdentity = Engine.QueryInterface(e, IID_Identity);
+			return cmpIdentity && cmpIdentity.HasClass("DefenseTower") && Engine.QueryInterface(e, IID_Position);
+		}) || 
+		entities.find(e => {
+			let cmpIdentity = Engine.QueryInterface(e, IID_Identity);
+			return cmpIdentity && cmpIdentity.HasClass("CivilCentre") && Engine.QueryInterface(e, IID_Position);
+		});
+
 	let position = Engine.QueryInterface(target, IID_Position).GetPosition2D();
 
-	this.attackers = cmpRangeManager.GetEntitiesByPlayer(this.enemyID).filter(e =>
-			Engine.QueryInterface(e, IID_Identity) && Engine.QueryInterface(e, IID_UnitAI) &&
-			Engine.QueryInterface(e, IID_Identity).HasClass("CitizenSoldier")
-		);
-	this.attackers.forEach(e => { Engine.QueryInterface(e, IID_UnitAI).WalkAndFight(position.x, position.y, { "attack": ["Unit"] }, false); });
+	this.attackers = cmpRangeManager.GetEntitiesByPlayer(this.enemyID).filter(e => {
+		let cmpIdentity = Engine.QueryInterface(e, IID_Identity); 
+		return Engine.QueryInterface(e, IID_UnitAI) && cmpIdentity && cmpIdentity.HasClass("CitizenSoldier");
+	});
+
+	ProcessCommand(this.enemyID, {
+		"type": "attack-walk",
+		"entities": this.attackers,
+		"x": position.x,
+		"z": position.y,
+		"targetClasses": { "attack": ["Unit"] },
+		"allowCapture": false,
+		"queued": false
+	});
 };
 
 Trigger.prototype.IsAttackRepelled = function()
