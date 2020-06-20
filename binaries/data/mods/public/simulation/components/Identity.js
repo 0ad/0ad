@@ -5,7 +5,7 @@ Identity.prototype.Schema =
 	"<a:example>" +
 		"<Civ>athen</Civ>" +
 		"<GenericName>Athenian Hoplite</GenericName>" +
-		"<SpecificName>Hoplī́tēs Athēnaïkós</SpecificName>" +
+		"<SpecificName>Athenian Hoplite</SpecificName>" +
 		"<Icon>units/athen_infantry_spearman.png</Icon>" +
 	"</a:example>" +
 	"<element name='Civ' a:help='Civilization that this unit is primarily associated with, typically a 4-letter code. Choices include: gaia (world objects), skirm (skirmish map placeholders), athen (Athenians), brit (Britons), cart (Carthaginians), gaul (Gauls), iber (Iberians), kush (Kushites), mace (Macedonians), maur (Mauryas), pers (Persians), ptol (Ptolemies), rome (Romans), sele (Seleucids), spart (Spartans).'>" +
@@ -90,8 +90,8 @@ Identity.prototype.Schema =
 			"<text/>" +
 		"</element>" +
 	"</optional>" +
-	"<element name='Undeletable' a:help='Prevent players from deleting this entity.'>" +
-		"<data type='boolean'/>" +
+	"<element name='Undeletable' a:help='Prevent players from deleting this entity'>" + 
+    "<data type='boolean'/>" +
 	"</element>";
 
 Identity.prototype.Init = function()
