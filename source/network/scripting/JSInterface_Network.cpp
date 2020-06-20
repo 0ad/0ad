@@ -61,7 +61,7 @@ void JSI_Network::StartNetworkHost(ScriptInterface::RealmPrivate* pRealmPrivate,
 	g_NetServer = new CNetServer(static_cast<bool>(g_XmppClient));
 	if (!g_NetServer->SetupConnection(serverPort))
 	{
-		pRealmPrivate->pScriptInterface->ReportError("Failed to start server");
+		pRealmPrivate->pScriptInterface->ReportError("Failed to start server", __FILE__, __LINE__);
 		SAFE_DELETE(g_NetServer);
 		return;
 	}
@@ -73,7 +73,7 @@ void JSI_Network::StartNetworkHost(ScriptInterface::RealmPrivate* pRealmPrivate,
 
 	if (!g_NetClient->SetupConnection("127.0.0.1", serverPort, nullptr))
 	{
-		pRealmPrivate->pScriptInterface->ReportError("Failed to connect to server");
+		pRealmPrivate->pScriptInterface->ReportError("Failed to connect to server", __FILE__, __LINE__);
 		SAFE_DELETE(g_NetClient);
 		SAFE_DELETE(g_Game);
 	}
@@ -100,14 +100,18 @@ void JSI_Network::StartNetworkJoin(ScriptInterface::RealmPrivate* pRealmPrivate,
 
 		if (!enetClient)
 		{
-			pRealmPrivate->pScriptInterface->ReportError("Could not find an unused port for the enet STUN client");
+			pRealmPrivate->pScriptInterface->ReportError("Could not find an unused port for the enet STUN client",
+                                                        __FILE__,
+                                                        __LINE__);
 			return;
 		}
 
 		StunClient::StunEndpoint stunEndpoint;
 		if (!StunClient::FindStunEndpointJoin(*enetClient, stunEndpoint))
 		{
-			pRealmPrivate->pScriptInterface->ReportError("Could not find the STUN endpoint");
+			pRealmPrivate->pScriptInterface->ReportError("Could not find the STUN endpoint", 
+                                                        __FILE__, 
+                                                        __LINE__);
 			return;
 		}
 
@@ -126,7 +130,9 @@ void JSI_Network::StartNetworkJoin(ScriptInterface::RealmPrivate* pRealmPrivate,
 
 	if (!g_NetClient->SetupConnection(serverAddress, serverPort, enetClient))
 	{
-		pRealmPrivate->pScriptInterface->ReportError("Failed to connect to server");
+		pRealmPrivate->pScriptInterface->ReportError("Failed to connect to server", 
+                                                    __FILE__, 
+                                                    __LINE__);
 		SAFE_DELETE(g_NetClient);
 		SAFE_DELETE(g_Game);
 	}

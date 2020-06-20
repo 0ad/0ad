@@ -4,7 +4,7 @@ try {
 	Engine.RegisterComponentType(12345, "TestScript1A", TestScript1A);
 	Engine.TS_FAIL("Missed exception");
 } catch (e) {
-//	print("Caught exception: " + e + "\n");
+	print("Caught exception: " + e + "\n");
 }
 
 var n = Engine.QueryInterface(12345, IID_Test1);

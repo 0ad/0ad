@@ -594,6 +594,7 @@ void ScriptInterface::CreateArray(JSContext* cx, JS::MutableHandleValue objectVa
 
 JS::Value ScriptInterface::GetGlobalObject() const
 {
+    CX_IN_REALM(cx,this)
     JS::Value globalObject = JS::ObjectValue(*JS::CurrentGlobalOrNull(m->m_cx));
     checkJSError(m->m_cx);
 	return globalObject;
@@ -1284,18 +1285,32 @@ std::string ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty) c
 	return utf8_from_wstring(source);
 }
 
-void ScriptInterface::ReportError(const char* msg) const
+void ScriptInterface::ReportError(const char* message, const char* filename, size_t lineno) const
 {
-    CX_IN_REALM(cx, this)
-	// JS_ReportErrorASCII by itself doesn't seem to set a JS-style exception, and so
-	// script callers will be unable to catch anything. So use JS_SetPendingException
-	// to make sure there really is a script-level exception. But just set it to undefined
-	// because there's not much value yet in throwing a real exception object.
-	JS_SetPendingException(cx, JS::UndefinedHandleValue);
-	// And report the actual error
-	JS_ReportErrorASCII(cx, "%s", msg);
+    // JS_ReportErrorASCII by itself doesn't seem to set a JS-style exception, and so
+    // script callers will be unable to catch anything. So use JS_SetPendingException
+    // to make sure there really is a script-level exception. But just set it to undefined
+    // because there's not much value yet in throwing a real exception object.
+    // And report the actual error
 
-	// TODO: Why doesn't JS_ReportPendingException(m->m_cx); work?
+    CX_IN_REALM(cx, this)
+
+    JS::RootedString messageStr(cx, JS_NewStringCopyZ(cx, message));
+    JS::RootedString filenameStr(cx, JS_NewStringCopyZ(cx, filename));
+
+    JS::AutoValueArray<3> args(cx);
+    args[0].setString(messageStr);
+    args[1].setString(filenameStr);
+    args[2].setInt32(lineno);
+    JS::RootedValue exc(cx);
+    JS::RootedObject global(cx, &(GetGlobalObject().toObject()));
+
+    // The JSAPI code here is actually simulating `throw Error(message)` without
+    // the new, as new is a bit harder to simulate using the JSAPI. In this case,
+    // unless the script has redefined Error, it amounts to the same thing.
+    JS_CallFunctionName(cx, global, "Error", args, &exc);
+
+    JS_SetPendingException(cx, exc);
 }
 
 bool ScriptInterface::IsExceptionPending(JSContext* cx)

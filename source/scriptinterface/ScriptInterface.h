@@ -265,7 +265,7 @@ public:
 	 * and throw a JS exception. (Callers can check IsPendingException, and must
 	 * return false in that case to propagate the exception.)
 	 */
-	void ReportError(const char* msg) const;
+	void ReportError(const char* message, const char* filename, size_t lineno) const;
 
 	/**
 	 * Load and execute the given script in a new function scope.

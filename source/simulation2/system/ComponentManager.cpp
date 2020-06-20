@@ -161,7 +161,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Rea
 	int cidWrapper = componentManager->GetScriptWrapper(iid);
 	if (cidWrapper == CID__Invalid)
 	{
-		componentManager->m_ScriptInterface.ReportError("Invalid interface id");
+		componentManager->m_ScriptInterface.ReportError("Invalid interface id", __FILE__, __LINE__);
 		return;
 	}
 	const ComponentType& ctWrapper = componentManager->m_ComponentTypesById[cidWrapper];
@@ -173,7 +173,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Rea
 	{
 		if (reRegister)
 		{
-			componentManager->m_ScriptInterface.ReportError(("ReRegistering component type that was not registered before '" + cname + "'").c_str());
+			componentManager->m_ScriptInterface.ReportError(("ReRegistering component type that was not registered before '" + cname + "'").c_str(), __FILE__, __LINE__);
 			return;
 		}
 		// Allocate a new cid number
@@ -188,7 +188,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Rea
 
 		if (!componentManager->m_CurrentlyHotloading && !reRegister)
 		{
-			componentManager->m_ScriptInterface.ReportError(("Registering component type with already-registered name '" + cname + "'").c_str());
+			componentManager->m_ScriptInterface.ReportError(("Registering component type with already-registered name '" + cname + "'").c_str(), __FILE__, __LINE__);
 			return;
 		}
 
@@ -197,7 +197,9 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Rea
 		// We can only replace scripted component types, not native ones
 		if (ctPrevious.type != CT_Script)
 		{
-			componentManager->m_ScriptInterface.ReportError(("Loading script component type with same name '" + cname + "' as native component").c_str());
+			componentManager->m_ScriptInterface.ReportError(("Loading script component type with same name '" + cname + "' as native component").c_str(), 
+                                                            __FILE__, 
+                                                            __LINE__);
 			return;
 		}
 
@@ -208,7 +210,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Rea
 			// ...though it only matters if any components exist with this type
 			if (!componentManager->m_ComponentsByTypeId[cid].empty())
 			{
-				componentManager->m_ScriptInterface.ReportError("Hotloading script component type mustn't change interface ID");
+				componentManager->m_ScriptInterface.ReportError("Hotloading script component type mustn't change interface ID", __FILE__, __LINE__);
 				return;
 			}
 		}
@@ -236,12 +238,12 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Rea
 	JS::RootedValue protoVal(cx);
 	if (!componentManager->m_ScriptInterface.GetProperty(ctor, "prototype", &protoVal))
 	{
-		componentManager->m_ScriptInterface.ReportError("Failed to get property 'prototype'");
+		componentManager->m_ScriptInterface.ReportError("Failed to get property 'prototype'", __FILE__, __LINE__);
 		return;
 	}
 	if (!protoVal.isObject())
 	{
-		componentManager->m_ScriptInterface.ReportError("Component has no constructor");
+		componentManager->m_ScriptInterface.ReportError("Component has no constructor", __FILE__, __LINE__);
 		return;
 	}
 	std::string schema = "<empty/>";
@@ -268,7 +270,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Rea
 
 	if (!componentManager->m_ScriptInterface.EnumeratePropertyNamesWithPrefix(protoVal, "On", methods))
 	{
-		componentManager->m_ScriptInterface.ReportError("Failed to enumerate 'On' messages");
+		componentManager->m_ScriptInterface.ReportError("Failed to enumerate 'On' messages", __FILE__, __LINE__);
 		return;
 	}
 
@@ -287,7 +289,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Rea
 		std::map<std::string, MessageTypeId>::const_iterator mit = componentManager->m_MessageTypeIdsByName.find(name);
 		if (mit == componentManager->m_MessageTypeIdsByName.end())
 		{
-			componentManager->m_ScriptInterface.ReportError(("Registered component has unrecognized '" + *it + "' message handler method").c_str());
+			componentManager->m_ScriptInterface.ReportError(("Registered component has unrecognized '" + *it + "' message handler method").c_str(), __FILE__, __LINE__);
 			return;
 		}
 
@@ -343,7 +345,7 @@ void CComponentManager::Script_RegisterInterface(ScriptInterface::RealmPrivate* 
 		// Redefinitions are fine (and just get ignored) when hotloading; otherwise
 		// they're probably unintentional and should be reported
 		if (!componentManager->m_CurrentlyHotloading)
-			componentManager->m_ScriptInterface.ReportError(("Registering interface with already-registered name '" + name + "'").c_str());
+			componentManager->m_ScriptInterface.ReportError(("Registering interface with already-registered name '" + name + "'").c_str(), __FILE__, __LINE__);
 		return;
 	}
 
@@ -364,7 +366,7 @@ void CComponentManager::Script_RegisterMessageType(ScriptInterface::RealmPrivate
 		// Redefinitions are fine (and just get ignored) when hotloading; otherwise
 		// they're probably unintentional and should be reported
 		if (!componentManager->m_CurrentlyHotloading)
-			componentManager->m_ScriptInterface.ReportError(("Registering message type with already-registered name '" + name + "'").c_str());
+			componentManager->m_ScriptInterface.ReportError(("Registering message type with already-registered name '" + name + "'").c_str(), __FILE__, __LINE__);
 		return;
 	}
 
