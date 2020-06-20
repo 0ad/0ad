@@ -112,8 +112,7 @@ var g_InfinitySymbol = translate("\u221E");
 
 var g_Teams = [];
 
-// TODO set g_PlayerCount as playerCounters.length
-var g_PlayerCount = 0;
+var g_PlayerCount;
 
 var g_GameData;
 var g_ResourceData = new Resources();
@@ -135,26 +134,33 @@ var g_PanelButtons = [];
 /**
  * Remember the name of the currently opened view panel.
  */
-var g_SelectedPanel = "";
+var g_SelectedPanel;
 
 function init(data)
 {
-	// Fill globals
+	initSummaryData(data);
+	initGUISummary();
+}
+
+function initSummaryData(data)
+{
 	g_GameData = data;
 	g_ScorePanelsData = getScorePanelsData();
 	g_PanelButtons = Object.keys(g_ScorePanelsData).concat(["charts"]).map(panel => panel + "PanelButton");
 
 	g_SelectedPanel = g_PanelButtons[0];
-	if (data && data.selectedData)
+	if (data && data.gui && data.gui.summarySelection)
 	{
-		g_SelectedPanel = data.selectedData.panel;
-		g_SelectedChart = data.selectedData.charts;
+		g_SelectedPanel = data.gui.summarySelection.panel;
+		g_SelectedChart = data.gui.summarySelection.charts;
 	}
 
 	initTeamData();
 	calculateTeamCounterDataHelper();
+}
 
-	// Output globals
+function initGUISummary()
+{
 	initGUIWindow();
 	initPlayerBoxPositions();
 	initGUICharts();
@@ -438,13 +444,13 @@ function updatePanelData(panelInfo)
 
 function continueButton()
 {
-	let summarySelectedData = {
+	let summarySelection = {
 		"panel": g_SelectedPanel,
 		"charts": g_SelectedChart
 	};
 	if (g_GameData.gui.isInGame)
 		Engine.PopGuiPage({
-			"summarySelectedData": summarySelectedData
+			"summarySelection": summarySelection
 		});
 	else if (g_GameData.gui.dialog)
 		Engine.PopGuiPage();
@@ -453,7 +459,7 @@ function continueButton()
 	else if (g_GameData.gui.isReplay)
 		Engine.SwitchGuiPage("page_replaymenu.xml", {
 			"replaySelectionData": g_GameData.gui.replaySelectionData,
-			"summarySelectedData": summarySelectedData
+			"summarySelection": summarySelection
 		});
 	else
 		Engine.SwitchGuiPage("page_pregame.xml");
