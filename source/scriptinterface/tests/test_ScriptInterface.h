@@ -41,6 +41,9 @@ public:
 		TestLogger logger;
 		TS_ASSERT(!script.LoadScript(L"test.js", "1+"));
 		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "JavaScript error: test.js line 3\nexpected expression, got ");
+        CX_IN_REALM(cx,&script);
+        //it is required to clear the exception to continue the tests
+        JS_ClearPendingException(cx);
 	}
 
 	void test_loadscript_strict_warning()
@@ -58,6 +61,9 @@ public:
 		TestLogger logger;
 		TS_ASSERT(!script.LoadScript(L"test.js", "with(1){}"));
 		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "JavaScript error: test.js line 2\nstrict mode code may not contain \'with\' statements");
+        CX_IN_REALM(cx,&script);
+        //it is required to clear the exception to continue the tests
+        JS_ClearPendingException(cx);
 	}
 
 	void test_clone_basic()

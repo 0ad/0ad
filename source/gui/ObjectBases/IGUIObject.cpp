@@ -452,7 +452,7 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName, const JS::HandleVa
     checkJSError(cx);
     if (!JS_CallFunction(cx, obj, fun, paramData, &result))
 	{
-		LOGERROR("Errors executing script event \"%s\"", eventName.c_str());
+        JS_ReportErrorASCII(cx, "Errors executing script event \"%s\"", eventName.c_str());
 		return false;
 	}
 	

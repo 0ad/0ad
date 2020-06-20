@@ -91,6 +91,7 @@ public:
 	void test_mods_parsing()
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+        CX_IN_REALM(cx,&script)
 
 		PKStruct pk;
 
@@ -179,6 +180,9 @@ public:
 			TS_ASSERT(err.empty());
 			TS_ASSERT_EQUALS(mods.size(), 1);
 		}
+
+        //needed to continue the tests
+        JS_ClearPendingException(cx);
 	}
 
 	void test_signature_parsing()

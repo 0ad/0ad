@@ -62,7 +62,6 @@ void checkJSError(JSContext* cx)
              JSErrorReport* what = JS_ErrorFromException(cx,exceptionObject);
              if(what) ErrorReporter(cx, what);
          }
-         JS_ClearPendingException(cx);
      } 
 }
 
@@ -617,7 +616,6 @@ bool ScriptInterface::SetGlobal_(const char* name, JS::HandleValue value, bool r
 		JS::Rooted<JS::PropertyDescriptor> desc(m->m_cx);
 		if (!JS_GetOwnPropertyDescriptor(m->m_cx, global, name, &desc))
         {
-            checkJSError(m->m_cx);
 			return false;
         }
 
@@ -625,23 +623,20 @@ bool ScriptInterface::SetGlobal_(const char* name, JS::HandleValue value, bool r
 		{
 			if (!replace)
 			{
-                checkJSError(m->m_cx);
 				JS_ReportErrorASCII(m->m_cx, "SetGlobal \"%s\" called multiple times", name);
-				return false;
+                checkJSError(m->m_cx);
 			}
 
 			// This is not supposed to happen, unless the user has called SetProperty with constant = true on the global object
 			// instead of using SetGlobal.
 			if (!desc.configurable())
 			{
+				JS_ReportErrorASCII(m->m_cx, "The global \"%s\" is permanent and cannot be hotloaded", name);       
                 checkJSError(m->m_cx);
-				JS_ReportErrorASCII(m->m_cx, "The global \"%s\" is permanent and cannot be hotloaded", name);
-				return false;
 			}
 
 			LOGMESSAGE("Hotloading new value for global \"%s\".", name);
 			ENSURE(JS_DeleteProperty(m->m_cx, global, name));
-            checkJSError(m->m_cx);
 		}
 	}
 
@@ -667,7 +662,6 @@ bool ScriptInterface::SetProperty_(JS::HandleValue obj, const char* name, JS::Ha
 
 	if (!obj.isObject())
     {
-        checkJSError(m->m_cx);
 		return false;
     }
 

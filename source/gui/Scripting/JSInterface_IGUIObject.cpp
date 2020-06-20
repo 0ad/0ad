@@ -279,8 +279,8 @@ bool JSI_GUI::GUIProxy::get(JSContext* cx, JS::HandleObject proxy, JS::HandleVal
 		e->m_Settings[propName]->ToJSVal(cx, vp);
 		return true;
 	}
-
-	LOGERROR("Property '%s' does not exist!", propName.c_str());
+    
+    JS_ReportErrorASCII(cx, "Property '%s' does not exist!", propName.c_str());
 	return false;
 }
 
