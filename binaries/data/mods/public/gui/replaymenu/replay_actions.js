@@ -124,9 +124,9 @@ function showReplaySummary()
 			"dialog": false,
 			"isReplay": true,
 			"replayDirectory": g_ReplaysFiltered[selected].directory,
-			"replaySelectionData": createReplaySelectionData(g_ReplaysFiltered[selected].directory)
-		},
-		"selectedData": g_SummarySelectedData
+			"replaySelectionData": createReplaySelectionData(g_ReplaysFiltered[selected].directory),
+			"summarySelection": g_SummarySelection
+		}
 	});
 }
 

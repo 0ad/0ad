@@ -111,12 +111,12 @@ MenuButtons.prototype.Summary = class
 				},
 				"gui": {
 					"dialog": true,
-					"isInGame": true
+					"isInGame": true,
+					"summarySelection": this.summarySelection
 				},
-				"selectedData": this.selectedData
 			},
 			data => {
-				this.selectedData = data.summarySelectedData;
+				this.summarySelection = data.summarySelection;
 				this.pauseControl.implicitResume();
 			});
 	}
