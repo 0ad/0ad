@@ -31,7 +31,7 @@
 class CVector2D
 {
 public:
-	CVector2D() {}
+	CVector2D() : X(0.0f), Y(0.0f) {}
 	CVector2D(float x, float y) : X(x), Y(y) {}
 
 	operator float*()
