@@ -1,23 +1,5 @@
 function DeathDamage() {}
 
-DeathDamage.prototype.bonusesSchema =
-	"<optional>" +
-		"<element name='Bonuses'>" +
-			"<zeroOrMore>" +
-				"<element>" +
-					"<anyName/>" +
-					"<interleave>" +
-						"<optional>" +
-							"<element name='Civ' a:help='If an entity has this civ then the bonus is applied'><text/></element>" +
-						"</optional>" +
-						"<element name='Classes' a:help='If an entity has all these classes then the bonus is applied'><text/></element>" +
-						"<element name='Multiplier' a:help='The attackers attack strength is multiplied by this'><ref name='nonNegativeDecimal'/></element>" +
-					"</interleave>" +
-				"</element>" +
-			"</zeroOrMore>" +
-		"</element>" +
-	"</optional>";
-
 DeathDamage.prototype.Schema =
 	"<a:help>When a unit or building is destroyed, it inflicts damage to nearby units.</a:help>" +
 	"<a:example>" +
@@ -30,16 +12,17 @@ DeathDamage.prototype.Schema =
 			"<Crush>50.0</Crush>" +
 		"</Damage>" +
 	"</a:example>" +
-	"<element name='Shape' a:help='Shape of the splash damage, can be circular'><text/></element>" +
-	"<element name='Range' a:help='Size of the area affected by the splash'><ref name='nonNegativeDecimal'/></element>" +
-	"<element name='FriendlyFire' a:help='Whether the splash damage can hurt non enemy units'><data type='boolean'/></element>" +
+	"<element name='Shape' a:help='Shape of the splash damage, can be circular.'><text/></element>" +
+	"<element name='Range' a:help='Size of the area affected by the splash.'><ref name='nonNegativeDecimal'/></element>" +
+	"<element name='FriendlyFire' a:help='Whether the splash damage can hurt non enemy units.'><data type='boolean'/></element>" +
 	Attacking.BuildAttackEffectsSchema();
 
 DeathDamage.prototype.Init = function()
 {
 };
 
-DeathDamage.prototype.Serialize = null; // we have no dynamic state to save
+// We have no dynamic state to save.
+DeathDamage.prototype.Serialize = null;
 
 DeathDamage.prototype.GetDeathDamageEffects = function()
 {
@@ -58,15 +41,13 @@ DeathDamage.prototype.CauseDeathDamage = function()
 	if (owner == INVALID_PLAYER)
 		warn("Unit causing death damage does not have any owner.");
 
-	let radius = ApplyValueModificationsToEntity("DeathDamage/Range", +this.template.Range, this.entity);
-
 	Attacking.CauseDamageOverArea({
 		"type": "Death",
 		"attackData": this.GetDeathDamageEffects(),
 		"attacker": this.entity,
 		"attackerOwner": owner,
 		"origin": pos,
-		"radius": radius,
+		"radius": ApplyValueModificationsToEntity("DeathDamage/Range", +this.template.Range, this.entity),
 		"shape": this.template.Shape,
 		"friendlyFire": this.template.FriendlyFire == "true",
 	});
