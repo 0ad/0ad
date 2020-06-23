@@ -4,6 +4,11 @@
 var g_TabCategoryCount;
 
 /**
+ * Align the buttons horizontally or vertically.
+ */
+var g_TabHorizontal;
+
+/**
  * Index of the currently visible tab, set first tab as default.
  */
 var g_TabCategorySelected = 0;
@@ -17,15 +22,17 @@ var g_OnSelectTab;
  * Create tab buttons.
  *
  * @param {Array} categoriesData - Arrays of objects containing for every tab a (translated) label and tooltip.
- * @param {number} buttonHeight - Vertical distance between the top and bottom of a button.
- * @param {number} spacing - Vertical distance between two buttons.
+ * @param {boolean} horizontal - Have the tabs horizontally or vertically aligned.
+ * @param {number} buttonSize - Size of a button in the specified direction.
+ * @param {number} spacing - Distance between two buttons in the specified direction.
  * @param {function} onPress - Function to be executed when a button is pressed, it gets the new category index passed.
  * @param {function} onSelect - Function to be executed whenever the selection changes (so also for scrolling), it gets the new category index passed.
  */
-function placeTabButtons(categoriesData, buttonHeight, spacing, onPress, onSelect)
+function placeTabButtons(categoriesData, horizontal, buttonSize, spacing, onPress, onSelect)
 {
-	g_OnSelectTab = onSelect;
 	g_TabCategoryCount = categoriesData.length;
+	g_TabHorizontal = horizontal;
+	g_OnSelectTab = onSelect;
 
 	for (let category in categoriesData)
 	{
@@ -36,11 +43,22 @@ function placeTabButtons(categoriesData, buttonHeight, spacing, onPress, onSelec
 			break;
 		}
 
+		button.style = "ModernTabButton" + (horizontal ? "Horizontal" : "Vertical");
 		button.hidden = false;
 
 		let size = button.size;
-		size.top = category * (buttonHeight + spacing) + spacing / 2;
-		size.bottom = size.top + buttonHeight;
+		if (horizontal)
+		{
+			size.left = category * (buttonSize + spacing) + spacing / 2;
+			size.right = size.left + buttonSize;
+			size.rright = 0;
+		}
+		else
+		{
+			size.top = category * (buttonSize + spacing) + spacing / 2;
+			size.bottom = size.top + buttonSize;
+			size.rbottom = 0;
+		}
 		button.size = size;
 		button.tooltip = categoriesData[category].tooltip || "";
 
@@ -71,7 +89,13 @@ function selectPanel(category)
 {
 	g_TabCategorySelected = category;
 	Engine.GetGUIObjectByName("tabButtons").children.forEach((button, j) => {
-		button.sprite = category == j ? "ModernTabVerticalForeground" : "ModernTabVerticalBackground";
+		button.sprite = g_TabHorizontal ?
+			category == j ?
+				"ModernTabHorizontalForeground" :
+				"ModernTabHorizontalBackground" :
+			category == j ?
+				"ModernTabVerticalForeground" :
+				"ModernTabVerticalBackground";
 	});
 
 	if (g_OnSelectTab)

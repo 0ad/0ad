@@ -33,6 +33,7 @@ class GameSettingTabs
 	{
 		placeTabButtons(
 			g_GameSettingsLayout,
+			false,
 			this.TabButtonHeight,
 			this.TabButtonMargin,
 			this.onTabPress.bind(this),

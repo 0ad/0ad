@@ -16,14 +16,6 @@
 		</action>
 	</object>
 
-	<object hotkey="tab.next">
-		<action on="KeyDown">selectNextTab(1);</action>
-	</object>
-
-	<object hotkey="tab.prev">
-		<action on="KeyDown">selectNextTab(-1);</action>
-	</object>
-
 	<object type="image" sprite="ModernFade" name="fadeImage"/>
 
 	<object name="summaryWindow"
@@ -65,56 +57,11 @@
 
 		</object>
 
-		<object name="tabDividerLeft" type="image" sprite="ModernTabHorizontalSpacer" size="172 120 174 122"/>
-		<object name="tabDividerRight" type="image" sprite="ModernTabHorizontalSpacer" size="328 120 330 122"/>
+		<object name="tabDividerLeft" type="image" sprite="ModernTabHorizontalSpacer" size="20 120 20 122"/>
+		<object name="tabDividerRight" type="image" sprite="ModernTabHorizontalSpacer" size="20 120 100%-20 122"/>
 
-		<object name="scorePanelButton" type="button" style="ModernTabButtonHorizontal" size="20 92 136 120">
-			<action on="Press">selectPanel(this);</action>
-			<object type="text" style="ModernLabelText" ghost="true">
-				<translatableAttribute id="caption">Score</translatableAttribute>
-			</object>
-		</object>
-
-		<object name="buildingsPanelButton" type="button" style="ModernTabButtonHorizontal" size="142 92 260 120">
-			<action on="Press">selectPanel(this);</action>
-			<object type="text" style="ModernLabelText" ghost="true">
-				<translatableAttribute id="caption">Structures</translatableAttribute>
-			</object>
-		</object>
-
-		<object name="unitsPanelButton" type="button" style="ModernTabButtonHorizontal" size="266 92 384 120">
-			<action on="Press">selectPanel(this);</action>
-			<object type="text" style="ModernLabelText" ghost="true">
-				<translatableAttribute id="caption">Units</translatableAttribute>
-			</object>
-		</object>
-
-		<object name="resourcesPanelButton" type="button" style="ModernTabButtonHorizontal" size="390 92 508 120">
-			<action on="Press">selectPanel(this);</action>
-			<object type="text" style="ModernLabelText" ghost="true">
-				<translatableAttribute id="caption">Resources</translatableAttribute>
-			</object>
-		</object>
-
-		<object name="marketPanelButton" type="button" style="ModernTabButtonHorizontal" size="514 92 632 120">
-			<action on="Press">selectPanel(this);</action>
-			<object type="text" style="ModernLabelText" ghost="true">
-				<translatableAttribute id="caption">Market</translatableAttribute>
-			</object>
-		</object>
-
-		<object name="miscPanelButton" type="button" style="ModernTabButtonHorizontal" size="638 92 756 120">
-			<action on="Press">selectPanel(this);</action>
-			<object type="text" style="ModernLabelText" ghost="true">
-				<translatableAttribute id="caption">Miscellaneous</translatableAttribute>
-			</object>
-		</object>
-
-		<object name="chartsPanelButton" type="button" style="ModernTabButtonHorizontal" size="762 92 880 120">
-			<action on="Press">selectPanel(this);</action>
-			<object type="text" style="ModernLabelText" ghost="true">
-				<translatableAttribute id="caption">Charts</translatableAttribute>
-			</object>
+		<object name="tabButtonsFrame" size="17 92 883 120">
+			<include file="gui/common/tab_buttons.xml"/>
 		</object>
 
 		<object name="generalPanel" type="image" sprite="ModernTabHorizontalFrame" size="20 120 100%-20 100%-54">
