@@ -126,16 +126,6 @@ var g_SelectedChart = {
 	"type": [0, 0]
 };
 
-/**
- * Array of the panel button names.
- */
-var g_PanelButtons = [];
-
-/**
- * Remember the name of the currently opened view panel.
- */
-var g_SelectedPanel;
-
 function init(data)
 {
 	initSummaryData(data);
@@ -146,12 +136,10 @@ function initSummaryData(data)
 {
 	g_GameData = data;
 	g_ScorePanelsData = getScorePanelsData();
-	g_PanelButtons = Object.keys(g_ScorePanelsData).concat(["charts"]).map(panel => panel + "PanelButton");
 
-	g_SelectedPanel = g_PanelButtons[0];
 	if (data && data.gui && data.gui.summarySelection)
 	{
-		g_SelectedPanel = data.gui.summarySelection.panel;
+		g_TabCategorySelected = data.gui.summarySelection.panel;
 		g_SelectedChart = data.gui.summarySelection.charts;
 	}
 
@@ -166,14 +154,6 @@ function initGUISummary()
 	initGUICharts();
 	initGUILabels();
 	initGUIButtons();
-
-	selectPanel(Engine.GetGUIObjectByName(g_SelectedPanel));
-	for (let button of g_PanelButtons)
-	{
-		let tab = Engine.GetGUIObjectByName(button);
-		tab.onMouseWheelUp = () => selectNextTab(1);
-		tab.onMouseWheelDown = () => selectNextTab(-1);
-	}
 }
 
 /**
@@ -187,39 +167,21 @@ function initGUIWindow()
 	Engine.GetGUIObjectByName("summaryWindowTitle").size = g_GameData.gui.dialog ? "50%-128 -16 50%+128 16" : "50%-128 4 50%+128 36";
 }
 
-/**
- * Show next/previous panel.
- * @param direction - 1/-1 forward, backward panel.
- */
-function selectNextTab(direction)
+function selectPanelGUI(panel)
 {
-	selectPanel(Engine.GetGUIObjectByName(g_PanelButtons[
-		(g_PanelButtons.indexOf(g_SelectedPanel) + direction + g_PanelButtons.length) % g_PanelButtons.length]));
-}
-
-function selectPanel(panel)
-{
-	// TODO: move panel buttons to a custom parent object
-
-	for (let button of Engine.GetGUIObjectByName("summaryWindow").children)
-		if (button.name.endsWith("PanelButton"))
-			button.sprite = "ModernTabHorizontalBackground";
-
-	panel.sprite = "ModernTabHorizontalForeground";
-
-	adjustTabDividers(panel.size);
+	adjustTabDividers(Engine.GetGUIObjectByName("tabButton[" + panel + "]").size);
 
 	let generalPanel = Engine.GetGUIObjectByName("generalPanel");
 	let chartsPanel = Engine.GetGUIObjectByName("chartsPanel");
-	let chartsHidden = panel.name != "chartsPanelButton";
+
+	// We assume all scorePanels come before the charts.
+	let chartsHidden = panel < g_ScorePanelsData.length;
 	generalPanel.hidden = !chartsHidden;
 	chartsPanel.hidden = chartsHidden;
 	if (chartsHidden)
-		updatePanelData(g_ScorePanelsData[panel.name.substr(0, panel.name.length - "PanelButton".length)]);
+		updatePanelData(g_ScorePanelsData[panel]);
 	else
 		[0, 1].forEach(updateCategoryDropdown);
-
-	g_SelectedPanel = panel.name;
 }
 
 function initGUICharts()
@@ -264,8 +226,8 @@ function resizeDropdown(dropdown)
 function updateCategoryDropdown(number)
 {
 	let chartCategory = Engine.GetGUIObjectByName("chart[" + number + "]CategorySelection");
-	chartCategory.list_data = Object.keys(g_ScorePanelsData);
-	chartCategory.list = Object.keys(g_ScorePanelsData).map(panel => g_ScorePanelsData[panel].caption);
+	chartCategory.list_data = g_ScorePanelsData.map((panel, idx) => idx);
+	chartCategory.list = g_ScorePanelsData.map(panel => panel.label);
 	chartCategory.onSelectionChange = function() {
 		if (!this.list_data[this.selected])
 			return;
@@ -358,22 +320,17 @@ function updateChart(number, category, item, itemNumber, type)
 
 function adjustTabDividers(tabSize)
 {
+	let tabButtonsLeft = Engine.GetGUIObjectByName("tabButtonsFrame").size.left;
+
 	let leftSpacer = Engine.GetGUIObjectByName("tabDividerLeft");
+	let leftSpacerSize = leftSpacer.size;
+	leftSpacerSize.right = tabSize.left + tabButtonsLeft + 2;
+	leftSpacer.size = leftSpacerSize;
+
 	let rightSpacer = Engine.GetGUIObjectByName("tabDividerRight");
-
-	leftSpacer.size = [
-		20,
-		leftSpacer.size.top,
-		tabSize.left + 2,
-		leftSpacer.size.bottom
-	].join(" ");
-
-	rightSpacer.size = [
-		tabSize.right - 2,
-		rightSpacer.size.top,
-		"100%-20",
-		rightSpacer.size.bottom
-	].join(" ");
+	let rightSpacerSize = rightSpacer.size;
+	rightSpacerSize.left = tabSize.right + tabButtonsLeft - 2;
+	rightSpacer.size = rightSpacerSize;
 }
 
 function updatePanelData(panelInfo)
@@ -445,7 +402,7 @@ function updatePanelData(panelInfo)
 function continueButton()
 {
 	let summarySelection = {
-		"panel": g_SelectedPanel,
+		"panel": g_TabCategorySelected,
 		"charts": g_SelectedChart
 	};
 	if (g_GameData.gui.isInGame)
@@ -536,6 +493,21 @@ function initGUIButtons()
 	lobbyButtonSize.right = (replayButton.hidden ? Engine.GetGUIObjectByName("continueButton").size.left : replayButton.size.left) - 10;
 	lobbyButtonSize.left = lobbyButtonSize.right - lobbyButtonWidth;
 	lobbyButton.size = lobbyButtonSize;
+
+	let allPanelsData = g_ScorePanelsData.concat(g_ChartPanelsData);
+	for (let tab in allPanelsData)
+		allPanelsData[tab].tooltip =
+			sprintf(translate("Toggle the %(name)s summary tab."), { "name": allPanelsData[tab].label }) +
+			colorizeHotkey("\n" + translate("Use %(hotkey)s to move a summary tab right."), "tab.next") +
+			colorizeHotkey("\n" + translate("Use %(hotkey)s to move a summary tab left."), "tab.prev");
+
+	placeTabButtons(
+		allPanelsData,
+		true,
+		g_TabButtonWidth,
+		g_TabButtonDist,
+		selectPanel,
+		selectPanelGUI);
 }
 
 function initTeamData()

@@ -25,6 +25,7 @@ CURL_VERSION="curl-7.59.0"
 ICONV_VERSION="libiconv-1.15"
 XML2_VERSION="libxml2-2.9.8"
 SDL2_VERSION="SDL2-2.0.5"
+# NOTE: remember to also update LIB_URL below when changing version
 BOOST_VERSION="boost_1_64_0"
 # NOTE: remember to also update LIB_URL below when changing version
 WXWIDGETS_VERSION="wxWidgets-3.0.3.1"
@@ -365,7 +366,7 @@ echo -e "Building Boost..."
 LIB_VERSION="${BOOST_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION.tar.bz2"
 LIB_DIRECTORY="$LIB_VERSION"
-LIB_URL="http://download.sourceforge.net/boost/"
+LIB_URL="https://dl.bintray.com/boostorg/release/1.64.0/source/"
 
 mkdir -p boost
 pushd boost > /dev/null

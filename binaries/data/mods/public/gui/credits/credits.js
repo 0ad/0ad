@@ -47,6 +47,7 @@ function init()
 
 	placeTabButtons(
 		g_PanelData,
+		false,
 		g_TabButtonHeight,
 		g_TabButtonDist,
 		selectPanel,

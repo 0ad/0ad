@@ -1,6 +1,16 @@
-var getScorePanelsData = () => ({
-	"score": {
-		"caption": translate("Score"),
+/**
+ * Horizontal size of a tab button.
+ */
+var g_TabButtonWidth = 118;
+
+/**
+ * Horizontal space between two tab buttons.
+ */
+var g_TabButtonDist = 6;
+
+var getScorePanelsData = () => [
+	{
+		"label": translate("Score"),
 		"headings": [
 			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			{ "identifier": "totalScore", "caption": translate("Total score"), "yStart": 16, "width": 100 },
@@ -17,8 +27,8 @@ var getScorePanelsData = () => ({
 		],
 		"teamCounterFn": calculateScoreTeam
 	},
-	"buildings": {
-		"caption": translate("Structures"),
+	{
+		"label": translate("Structures"),
 		"headings": [
 			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			{ "identifier": "total", "caption": translate("Total"), "yStart": 34, "width": 105 },
@@ -55,8 +65,8 @@ var getScorePanelsData = () => ({
 		],
 		"teamCounterFn": calculateBuildingsTeam
 	},
-	"units": {
-		"caption": translate("Units"),
+	{
+		"label": translate("Units"),
 		"headings": [
 			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			{ "identifier": "total", "caption": translate("Total"), "yStart": 34, "width": 105 },
@@ -95,8 +105,8 @@ var getScorePanelsData = () => ({
 		],
 		"teamCounterFn": calculateUnitsTeam
 	},
-	"resources": {
-		"caption": translate("Resources"),
+	{
+		"label": translate("Resources"),
 		"headings": [
 			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			{ "identifier": "total", "caption": translate("Total"), "yStart": 34, "width": 110 },
@@ -146,8 +156,8 @@ var getScorePanelsData = () => ({
 		],
 		"teamCounterFn": calculateResourcesTeam
 	},
-	"market": {
-		"caption": translate("Market"),
+	{
+		"label": translate("Market"),
 		"headings": [
 			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			{ "identifier": "tradeIncome", "caption": translate("Trade income"), "yStart": 16, "width": 100 },
@@ -178,8 +188,8 @@ var getScorePanelsData = () => ({
 		],
 		"teamCounterFn": calculateMarketTeam
 	},
-	"misc": {
-		"caption": translate("Miscellaneous"),
+	{
+		"label": translate("Miscellaneous"),
 		"headings": [
 			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			{ "identifier": "killDeath", "caption": translate("Kill / Death ratio"), "yStart": 16, "width": 100, "format": "DECIMAL2" },
@@ -212,7 +222,13 @@ var getScorePanelsData = () => ({
 		],
 		"teamCounterFn": calculateMiscellaneousTeam
 	}
-});
+];
+
+var g_ChartPanelsData = [
+	{
+		"label": translate("Charts")
+	}
+];
 
 function getColoredTypeTranslation(type)
 {

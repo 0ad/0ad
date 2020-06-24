@@ -178,6 +178,7 @@ function init(data, hotloadData)
 
 	placeTabButtons(
 		g_Options,
+		false,
 		g_TabButtonHeight,
 		g_TabButtonDist,
 		selectPanel,

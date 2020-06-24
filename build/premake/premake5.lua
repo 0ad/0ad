@@ -90,6 +90,19 @@ else
 	end
 end
 
+-- Test whether we need to link libexecinfo.
+-- This is mostly the case on musl systems, as well as on BSD systems : only glibc provides the
+-- backtrace symbols we require in the libc, for other libcs we use the libexecinfo library.
+local link_execinfo = false
+if os.istarget("bsd") then
+	link_execinfo = true
+elseif os.istarget("linux") then
+	local _, link_errorCode = os.outputof(cc .. " ./tests/execinfo.c -o /dev/null")
+	if link_errorCode ~= 0 then
+		link_execinfo = true
+	end
+end
+
 -- Set up the Workspace
 workspace "pyrogenesis"
 targetdir(rootdir.."/binaries/system")
@@ -1005,15 +1018,16 @@ function setup_main_exe ()
 			links { "log" }
 		end
 
+		if link_execinfo then
+			links {
+				"execinfo"
+			}
+		end
+
 		if os.istarget("linux") or os.getversion().description == "GNU/kFreeBSD" then
 			links {
 				-- Dynamic libraries (needed for linking for gold)
 				"dl",
-			}
-		elseif os.istarget("bsd") then
-			links {
-				-- Needed for backtrace* on BSDs
-				"execinfo",
 			}
 		end
 
@@ -1380,6 +1394,11 @@ function setup_tests()
 
 	elseif os.istarget("linux") or os.istarget("bsd") then
 
+		if link_execinfo then
+			links {
+				"execinfo"
+			}
+		end
 		if not _OPTIONS["android"] and not (os.getversion().description == "OpenBSD") then
 			links { "rt" }
 		end
@@ -1393,11 +1412,6 @@ function setup_tests()
 			links {
 				-- Dynamic libraries (needed for linking for gold)
 				"dl",
-			}
-		elseif os.istarget("bsd") then
-			links {
-				-- Needed for backtrace* on BSDs
-				"execinfo",
 			}
 		end
 
