@@ -6,12 +6,13 @@
 # Adrian Chaves <adrian@chaves.io>, 2018
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2013-2016
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2015
+# daniel diaz <danieldiazdelaiglesia@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-22 07:08+0000\n"
-"PO-Revision-Date: 2020-05-22 10:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-06-19 21:09+0000\n"
+"Last-Translator: daniel diaz <danieldiazdelaiglesia@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +30,7 @@ msgstr "Subtipo descoñecido (consulte o historial)"
 
 #: lobby/XmppClient.cpp:1215
 msgid "The certificate is not trusted."
-msgstr ""
+msgstr "O certificado non é de confianza."
 
 #: lobby/XmppClient.cpp:1216
 msgid "The certificate hasn't got a known issuer."
@@ -37,15 +38,15 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1217
 msgid "The certificate has been revoked."
-msgstr ""
+msgstr "O certificado foi revocado"
 
 #: lobby/XmppClient.cpp:1218
 msgid "The certificate has expired."
-msgstr ""
+msgstr "O certificado expirou."
 
 #: lobby/XmppClient.cpp:1219
 msgid "The certificate is not yet active."
-msgstr ""
+msgstr "O certificado xa non está activo."
 
 #: lobby/XmppClient.cpp:1220
 msgid "The certificate has not been issued for the peer connected to."

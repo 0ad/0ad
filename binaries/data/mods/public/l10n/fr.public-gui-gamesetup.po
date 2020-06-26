@@ -6,6 +6,7 @@
 # adrien vigneron <adrienvigneron@ml1.net>, 2017
 # Alt Ober <altober333@gmail.com>, 2018
 # Antoine Adet <antoine.adet@gmail.com>, 2013
+# Antonin GIRAUD-PERNETTE <antonin.giraud.pernette@gmail.com>, 2020
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
 # ay sapik <tonio2000@gmail.com>, 2018
 # Barth Frey <frey.barthelemy@gmail.com>, 2017-2018
@@ -22,7 +23,7 @@
 # SecondCloud500 <eddieven2000@gmail.com>, 2014
 # ernest olory <ernestolory@hotmail.fr>, 2017
 # François Magimel, 2019
-# François Poirotte <clicky@erebot.net>, 2014,2016-2017
+# François Poirotte <clicky@erebot.net>, 2014,2016-2017,2020
 # gab tes, 2020
 # Glorfindel Of Gondolin, 2019
 # Hadrien Titeux <hadwarez@gmail.com>, 2013
@@ -30,6 +31,7 @@
 # Jérémi Mapas <jeremi.mapas@gmail.com>, 2017
 # Jibi, 2013
 # Jo Du <jojo337@live.fr>, 2017-2018
+# Jonathan LEVY <jonalevy@gmail.com>, 2020
 # Julien Bernard, 2013
 # jy jrts <lucashavard35@hotmail.fr>, 2017
 # Kachimatte <erwan.trestan.laigle@gmail.com>, 2013
@@ -85,8 +87,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-06-01 07:09+0000\n"
-"PO-Revision-Date: 2020-06-01 12:15+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-06-24 22:11+0000\n"
+"Last-Translator: Jonathan LEVY <jonalevy@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -589,8 +591,8 @@ msgstr "Pas de cessez-le-feu"
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s minute"
+msgstr[1] "%(minutes)s minutes"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:86
 msgid "Relic Count"
@@ -600,8 +602,8 @@ msgstr "Nombre de reliques"
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s relique"
+msgstr[1] "%(number)s reliques"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:92
 msgid ""
@@ -624,8 +626,8 @@ msgstr "Minutes avant que le joueur achève la victoire par Reliques."
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s minute"
+msgstr[1] "%(min)s minutes"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:98
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:99
@@ -646,8 +648,8 @@ msgstr "Réglez l'heure à laquelle l'eau commencera à monter."
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s minute"
+msgstr[1] "%(minutes)s minutes"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:87
 msgid "Wonder Duration"
@@ -668,17 +670,17 @@ msgstr "Jeu évalué"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:76
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Cliquer pour basculer vers l'onglet de réglages %(name)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:79
 #, javascript-format
 msgid "Press %(hotkey)s to move to the next settings tab."
-msgstr ""
+msgstr "Appuyer sur %(hotkey)spour accéder à l'onglet de réglages suivant."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:82
 #, javascript-format
 msgid "Press %(hotkey)s to move to the previous settings tab."
-msgstr ""
+msgstr "Appuyer sur %(hotkey)spour accéder à l'onglet de réglages précédent."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -697,7 +699,7 @@ msgstr "Revenir au menu principal."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Aperçu de la civilisation / Arborescence\nLors du clic, la dernière civilisation ouverte sera chargée."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
@@ -2144,7 +2146,7 @@ msgid ""
 "inventive, hardworking, and watchful, bullheaded and brilliant, friendly and"
 " fierce, straightforward and subtle.” \\n— Socrates (Xenophon, "
 "“Memorabilia”, 3.1.6)"
-msgstr ""
+msgstr "“Ce n’est pourtant là, qu’une bien petite partie de l’art du général; il faut encore qu’il sache se procurer tout le matériel de la guerre et fournir de tout le soldat ; qu’il soit fécond en expédients, entreprenant, soigneux, patient, entendu, indulgent et sévère, franc et rusé, cauteleux et agissant à la dérobée, prodigue et rapace, libéral et cupide, réservé et résolu” \\n— Socrates, parlant de la science tactique - (Xenophon, “Memorables”, 3.1.6)"
 
 #: gui/text/quotes.txt:164
 msgid ""
@@ -2152,14 +2154,14 @@ msgid ""
 " if the city is stronger, one may recommend her to go to war, but if weaker "
 "than the enemy, may persuade her to beware.” \\n— Socrates (Xenophon, "
 "“Memorabilia”, 3.6.9)"
-msgstr ""
+msgstr "“Celui qui veut, à l’occasion, pouvoir faire une guerre, doit donc connaître la force de sa nation et celle des ennemis, afin que, si sa patrie est la plus forte, il lui conseille de commencer les hostilités, et si elle est la plus faible, il lui persuade de se tenir sur la défensive.” \\n— Socrates (Xenophon, “Memorables”, 3.6.8)"
 
 #: gui/text/quotes.txt:165
 msgid ""
 "“The unexamined life is not worth living.” Socrates, in his defense when "
 "trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) \\n— Plato (“Apology”, 38a)"
-msgstr ""
+msgstr "\"Une vie sans examen ne vaut pas la peine d'être vécue.\" - Socrate, dans son plaidoyer quand il fut jugé pour avoir corrompu la jeunesse et ne pas révérer les bons dieux (il but plus tard de la ciguë, après avoir été condamné à mort) \\n— Platon (\"Apologie\", 38a)"
 
 #: gui/text/quotes.txt:166
 msgid ""
@@ -2167,13 +2169,13 @@ msgid ""
 "to live. Which is better God only knows.” Socrates, in his defense when "
 "trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) \\n— Plato (“Apology”, 42a)"
-msgstr ""
+msgstr "“L'heure du départ est venue, et nos chemins se séparent – moi pour mourir, et vous pour vivre. Dieu seul sait quelle issue est la meilleure.” Socrate, plaidoirie à son procès pour corruption de la jeunesse et adoration des mauvais dieux (il but ensuite de la ciguë suite à sa condamnation à mort) \\n— Platon (“Apologie”, 42a)"
 
 #: gui/text/quotes.txt:167
 msgid ""
 "“Walls and ships are nothing without men living together inside them.” \\n— "
 "Sophocles (“Oedipus Rex”)"
-msgstr ""
+msgstr "“Les murs et les navires ne sont rien sans des hommes pour y vivre ensemble.” \\n— Sophocle (“Œdipe roi”)"
 
 #: gui/text/quotes.txt:168
 msgid ""
@@ -2182,24 +2184,24 @@ msgid ""
 "interest. It was not we who set the example, for it has always been the law "
 "that the weak should be subject to the strong.” \\n— Speech of an Athenian "
 "embassy in Sparta (Thucydides, “History of the Peloponnesian War”, I. 76.2)"
-msgstr ""
+msgstr "\"Nous avions accepté un empire qui nous était offert, et nous avions refusé de l'abandonner sous la pression des trois plus grands mobiles: la peur, l'honneur et l'intérêt. Ce ne fut pas nous qui donnèrent l'exemple, car il avait toujours fait loi que les faibles dussent se soumettre aux forts.\" \\n— Discours d'une ambassade athénienne à Sparte (Thucydide, \"Histoire de la guerre du Péloponnèse\", I. 76.2)"
 
 #: gui/text/quotes.txt:169
 msgid ""
 "“He could boast that he found a city of brick and left it a city of marble.”"
 " \\n— Suetonius, commenting on the many building projects of Augustus in "
 "Rome (“Divus Augustus”, sec 38)"
-msgstr ""
+msgstr "\"Il pouvait se targuer d'avoir trouvé une cité de brique et d'avoir laissé une cité de marbre.\" \\n— Suétone, faisant une remarque sur les nombreux projets d'urbanisme d'Auguste à Rome (\"Divus Augustus\", sec 38)"
 
 #: gui/text/quotes.txt:170
 msgid "“Moderation in all things.” \\n— Terence (“The Girl from Andros”, 61)"
-msgstr ""
+msgstr "“Modération en toutes choses.” \\n— Térence (“L'Andrienne”, 61)"
 
 #: gui/text/quotes.txt:171
 msgid ""
 "“Fortune favors the bold.” \\n— Terence in a play about a great Athenian "
 "admiral (“Phormio”, 203)"
-msgstr ""
+msgstr "“La chance sourit aux audacieux.” \\n— Terence dans une pièce de théâtre à propos d'un amiral Athénien (“Phormio”, 203)"
 
 #: gui/text/quotes.txt:172
 msgid ""
@@ -2207,7 +2209,7 @@ msgid ""
 "raise a city that was small and unimportant to glory and greatness.” \\n— "
 "Themistocles, defending his lack of cultural sophistication (Plutarch, "
 "“Parallel Lives”, “Themistocles”, sec. 2)"
-msgstr ""
+msgstr "\"Je ne sais pas accorder une lyre ou jouer de la harpe, mais je sais comment amener une cité petite et peu importante vers la gloire et la grandeur.\" \\n— Themistocle, défendant son manque de culture (Plutarque, \"Vies Parallèles\", \"Themistocle\", sec. 2)"
 
 #: gui/text/quotes.txt:173
 msgid ""
@@ -2215,7 +2217,7 @@ msgid ""
 " with the Spartan fleet commander who threatened to beat him with his staff,"
 " before the Battle of Salamis (Plutarch, “Parallel Lives”, “Themistocles”, "
 "sec. 11)"
-msgstr ""
+msgstr "\"Frappe, si tu veux, mais écoute.\" \\n— Thémistocle, dans une discussion houleuse avec le commandant de la flotte spartiate, qui menaçait de le frapper de son bâton, avant la Bataille de Salamine (Plutarque, \"Vies Parallèles\", \"Thémistocle\", sec. 11)"
 
 #: gui/text/quotes.txt:174
 msgid ""
@@ -2230,20 +2232,20 @@ msgid ""
 "“So little pains does the mob take in finding out the truth, accepting "
 "readily the first story at hand.” \\n— Thucydides (“History of the "
 "Peloponnesian War”, I. 21.3)"
-msgstr ""
+msgstr "“La foule se donne si peu de mal à rechercher la vérité, acceptant volontiers la première histoire qui vienne.” \\n— Thucydide (“Histoire de la guerre du Péloponnèse”, I. 21.3)"
 
 #: gui/text/quotes.txt:176
 msgid ""
 "“The growth of the power of Athens, and the alarm which this caused in "
 "Sparta, made war inevitable.” \\n— Thucydides (“History of the Peloponnesian"
 " War”, I. 23.6)"
-msgstr ""
+msgstr "“L'accroissement du pouvoir d'Athènes et l'inquiétude qu'il causa à Sparte rendirent la guerre inévitable.”\\n— Thucydides (“Histoire de la guerre du Péloponnèse”, I. 23.6)"
 
 #: gui/text/quotes.txt:177
 msgid ""
 "“War is a matter not so much of arms as of money.” \\n— Thucydides (“History"
 " of the Peloponnesian War”, I. 83.2)"
-msgstr ""
+msgstr "“La guerre n'est pas tant une question d'armes que d'argent.” \\n— Thucydides (“Histoire de la guerre du Péloponnèse”, I. 83.2)"
 
 #: gui/text/quotes.txt:178
 msgid ""
@@ -2304,11 +2306,11 @@ msgstr ""
 msgid ""
 "“Do not trust the horse, Trojans! I fear the Greeks even when they bring "
 "gifts.” \\n— Virgil (“Aeneid”, II. 48–49)"
-msgstr ""
+msgstr "“Troyens, méfiez-vous du cheval ! Je crains les Grecs, même lorsqu'ils apportent des cadeaux”.\\n— Virgile (“L'Énéide”, II. 48–49)"
 
 #: gui/text/quotes.txt:185
 msgid "“Prepared for either alternative.” \\n— Virgil (“Aeneid”, II. 61)"
-msgstr ""
+msgstr "“Paré à toute éventualité”. \\n— Virgile (“L'Énéide”, II. 61)"
 
 #: gui/text/quotes.txt:186
 msgid ""
@@ -2366,7 +2368,7 @@ msgid ""
 "“People are glad to obey the man whom they believe to be wiser than "
 "themselves in pursuing their interests.” \\n— Xenophon (“The Education of "
 "Cyrus”, 1.6.22)"
-msgstr ""
+msgstr "“Les gens sont ravis d'obéir à un homme qu'ils pensent plus sage qu'eux-mêmes pour défendre leurs intérêts.” \\n— Xenophon (“L'Éducation de Cyrus, 1.6.22)"
 
 #: gui/text/quotes.txt:194
 msgid ""
@@ -2381,7 +2383,7 @@ msgstr ""
 msgid ""
 "“Battles are decided more by the morale of men than their physical "
 "strength.” \\n— Xenophon (“The Education of Cyrus”, 3.3.20)"
-msgstr ""
+msgstr "“Les batailles sont décidées davantage par le moral des hommes que par leur force physique.” \\n— Xénophon (“L'Éducation de Cyrus”, 3.3.20)"
 
 #: gui/text/quotes.txt:196
 msgid ""
@@ -2405,7 +2407,7 @@ msgid ""
 "thief and a robber, overreaching the enemy at every point.” \\n— Xenophon on"
 " how best to gain advantage over the enemy (“The Education of Cyrus”, "
 "1.6.26)"
-msgstr ""
+msgstr "“L'homme qui veut cela doit être sournois et malin, astucieux et trompeur, un larron et un voleur, surpassant l'ennemi sur tous les points”.\\n— Xénophon sur la meilleure façon de prendre l'ascendant sur l'ennemi (“L’Éducation de Cyrus”, 1.6.26)"
 
 #: gui/text/quotes.txt:199
 msgid ""

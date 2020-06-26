@@ -7,6 +7,7 @@
 # Felix Häuslmann <felix.haeuslmann@gmx.at>, 2018
 # Filip Bengtsson, 2019
 # Jacob Carlsson <yejcob@gmail.com>, 2015
+# Jocke Berg <hej@jockeberg.com>, 2020
 # Jonatan Nyberg <jonatan.nyberg.karl@gmail.com>, 2020
 # Kristoffer Grundström <lovaren@gmail.com>, 2015-2016
 # leper <leper@wildfiregames.com>, 2015
@@ -24,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-06-12 07:09+0000\n"
-"PO-Revision-Date: 2020-06-12 10:43+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-06-21 12:38+0000\n"
+"Last-Translator: Jocke Berg <hej@jockeberg.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -112,7 +113,7 @@ msgstr "Stad"
 msgid ""
 "Train Healers and research healing technologies. Garrison units to heal them"
 " at a quick rate."
-msgstr ""
+msgstr "Träna läkare. Garnisonera enheter för att läka dem snabbt."
 
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -126,7 +127,7 @@ msgstr "Försvarsbyggnad"
 #: simulation/templates/template_structure_defensive_palisade.xml:21
 #: simulation/templates/structures/wallset_palisade.xml:4
 msgid "Wooden Wall"
-msgstr "Trävägg"
+msgstr "Trämur"
 
 #: simulation/templates/template_structure_defensive_palisade.xml:23
 #: simulation/templates/template_structure_defensive_wall.xml:18
@@ -143,11 +144,11 @@ msgstr "Försvarstorn"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:57
 msgid "Artillery Tower"
-msgstr ""
+msgstr "Artilleritorn"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 msgid "Catapults stones. Needs the murder holes tech to protect its foot."
-msgstr ""
+msgstr "Skjuter stenar. Bemanna för att utöka skyddet. Kräver lönnhål för att skydda tornets bas."
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:61
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:60
@@ -168,7 +169,7 @@ msgstr "Stentorn"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
-msgstr ""
+msgstr "Projektiltorn"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
 msgid ""
@@ -358,7 +359,7 @@ msgstr "Fästning"
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
-msgstr ""
+msgstr "Utbilda mästare och hjältar och forska fram teknologier. Garnisonera soldater för ytterligare pilar."
 
 #: simulation/templates/template_structure_military_kennel.xml:40
 msgid "Kennel"
@@ -382,7 +383,7 @@ msgstr "Spis"
 
 #: simulation/templates/template_structure_military_stable.xml:26
 msgid "Train Cavalry and research Cavalry technologies."
-msgstr ""
+msgstr "Träna kavalleri och forska fram kavalleriteknologier."
 
 #: simulation/templates/template_structure_military_stable.xml:27
 #: simulation/templates/template_structure_military_stable.xml:22
@@ -519,7 +520,7 @@ msgid ""
 "Reinforce with stone block, and install small stone throwers to upgrade this"
 " defense tower into a slow, area of effect, and siege resistant artillery "
 "tower."
-msgstr ""
+msgstr "Förstärk med stenblock och installera små stenkastare för att uppgradera detta försvarstorn till ett långsamt och belägringsresistent artilleritorn med stort effektområde."
 
 #: simulation/templates/structures/athen_defense_tower.xml:34
 #: simulation/templates/structures/cart_defense_tower.xml:35
@@ -529,7 +530,7 @@ msgstr ""
 msgid ""
 "Reinforce with stone block, and install scorpions to upgrade this defense "
 "tower into a prompt, long range, and accurate bolt tower."
-msgstr ""
+msgstr "Förstärk med stenblock och installera skorpioner för att uppgradera detta försvarstorn till ett snabbt och pricksäkert projektiltorn med lång räckvidd."
 
 #: simulation/templates/structures/athen_dock.xml:12
 #: simulation/templates/structures/mace_dock.xml:12
@@ -579,7 +580,7 @@ msgstr "Gymnasion"
 #: simulation/templates/structures/athen_gymnasium.xml:25
 #: simulation/templates/structures/pers_hall.xml:30
 msgid "Train Champions."
-msgstr ""
+msgstr "Träna mästare."
 
 #: simulation/templates/structures/athen_house.xml:5
 #: simulation/templates/structures/mace_house.xml:5
@@ -615,7 +616,7 @@ msgstr "Prytaneion"
 
 #: simulation/templates/structures/athen_prytaneion.xml:25
 msgid "Train Heroes and research technologies."
-msgstr ""
+msgstr "Träna hjältar och forska fram teknologier."
 
 #: simulation/templates/structures/athen_range.xml:8
 #: simulation/templates/structures/mace_range.xml:8
@@ -983,7 +984,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train Healers and Champions and research healing technologies. Garrison "
 "units to heal them at a quick rate."
-msgstr ""
+msgstr "Träna läkare och mästare och forska fram läkarteknologier. Garnisonera enheter för att läka dem snabbt."
 
 #: simulation/templates/structures/cart_tophet.xml:20
 msgid "Sacrificial Temple"
@@ -997,7 +998,7 @@ msgstr "Tofeth"
 msgid ""
 "Train Healers and Champion Cavalry and research healing technologies. "
 "Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Träna läkare och mästarkavalleri och forska fram läkarteknologier. Garnisonera enheter för att läka dem snabbt."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -1391,7 +1392,7 @@ msgstr "Harmya"
 
 #: simulation/templates/structures/maur_palace.xml:20
 msgid "Train Female Citizens, Champions, and Heroes."
-msgstr ""
+msgstr "Träna kvinnliga medborgare, mästare och hjältar."
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:9
 msgid "Pillar"
@@ -1464,7 +1465,7 @@ msgstr "Legosoldatlager"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:28
 msgid "Egyptian Mercenary Camp"
-msgstr ""
+msgstr "Egyptiskt legosoldatläger"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 #: simulation/templates/structures/ptol_mercenary_camp.xml:29
@@ -1537,7 +1538,7 @@ msgstr "Apadāna"
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Champions and Heroes."
-msgstr ""
+msgstr "\"Satraptribut\": Få ett långsamt tillflöde av mat, trä, sten och metall. Träna mästare och hjältar."
 
 #: simulation/templates/structures/pers_apartment_block.xml:15
 msgid "Apartment Block"
@@ -1591,7 +1592,7 @@ msgstr "Didā"
 
 #: simulation/templates/structures/pers_fortress.xml:6
 msgid "Research technologies. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Forska fram teknologier. Garnisonera soldater för ytterligare pilar."
 
 #: simulation/templates/structures/pers_hall.xml:27
 msgid "Gate of All Nations"
@@ -1956,7 +1957,7 @@ msgstr "Gerousia"
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Train Heroes."
-msgstr ""
+msgstr "Träna hjältar"
 
 #: simulation/templates/structures/spart_syssiton.xml:24
 msgid "Military Mess Hall"
@@ -1968,7 +1969,7 @@ msgstr "Syssition"
 
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Champions and Heroes."
-msgstr ""
+msgstr "Träna mästare och hjältar"
 
 #: simulation/templates/structures/spart_wonder.xml:9
 msgid "Hieron tēs Artemidos Orthias"
