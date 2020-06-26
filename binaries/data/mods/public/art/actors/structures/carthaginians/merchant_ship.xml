@@ -9,8 +9,18 @@
         <prop actor="props/structures/carthaginians/merchant_ship_sail.xml" attachpoint="root"/>
         <prop actor="props/structures/carthaginians/merchantship_cargo.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/kart_merchant_ship.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/kart_merchant_ship.png" name="baseTex"/>
+      </textures>
     </variant>
+  </group>
+  <group>
+    <variant frequency="0" name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_kart.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="ungarrisoned"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

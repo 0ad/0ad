@@ -8,20 +8,29 @@
       <mesh>structural/maur_merch_ship.dae</mesh>
       <props>
         <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="wrld_barrel_a1"/>
-<prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="wrld_barrel_a2"/>
-<prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="wrld_barrel_a3"/>
-<prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="wrld_barrel_a4"/>
-<prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="wrld_barrel_a5"/>
-<prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="wrld_barrel_a6"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="wrld_barrel_a2"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="wrld_barrel_a3"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="wrld_barrel_a4"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="wrld_barrel_a5"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="wrld_barrel_a6"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Blue Eye">
       <textures>
-	  <texture file="structural/maur_merch_ship.png" name="baseTex"/>
-	 </textures>
+        <texture file="structural/maur_merch_ship.png" name="baseTex"/>
+      </textures>
     </variant>
+  </group>
+  <group>
+    <variant frequency="0" name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_maur.xml" attachpoint="garrisoned_01"/>
+        <prop actor="props/special/common/garrison_flag_maur.xml" attachpoint="garrisoned_02"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="ungarrisoned"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

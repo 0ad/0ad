@@ -8,7 +8,18 @@
         <prop actor="props/structures/romans/merchant_shrouds.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/merchant_sail.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/rome_merch_ship.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/rome_merch_ship.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
+  <group>
+    <variant frequency="0" name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="ungarrisoned"/>
+  </group>
+  <material>default.xml</material>
 </actor>

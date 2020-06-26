@@ -11,10 +11,18 @@
       </props>
       <textures>
         <texture file="structural/ptol_merch_ship.png" name="baseTex"/>
-       <texture file="structural/ptol_merch_ship_norm.png" name="normTex"/>
-       <texture file="structural/ptol_merch_ship_spec.png" name="specTex"/>
+        <texture file="structural/ptol_merch_ship_norm.png" name="normTex"/>
+        <texture file="structural/ptol_merch_ship_spec.png" name="specTex"/>
       </textures>
     </variant>
+  </group>
+  <group>
+    <variant frequency="0" name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_ptol.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="ungarrisoned"/>
   </group>
   <material>player_trans_parallax_spec.xml</material>
 </actor>

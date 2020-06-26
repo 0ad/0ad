@@ -14,5 +14,13 @@
       </textures>
     </variant>
   </group>
+  <group>
+    <variant frequency="0" name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_persians.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="ungarrisoned"/>
+  </group>
   <material>default.xml</material>
 </actor>
