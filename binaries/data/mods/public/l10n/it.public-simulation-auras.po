@@ -20,6 +20,7 @@
 # Martin Falanga <iblaim97@hotmail.it>, 2017
 # mattia_b89 <mattia.b89@gmail.com>, 2018
 # c5f3de31f3a2c4018f39966fa6563659_5b320d0, 2016-2017
+# Nescio, 2020
 # Michele Marongiu <michelemarongiu@gmail.com>, 2017,2019
 # Nicolas Benetton <inm.bene96@gmail.com>, 2018
 # Paolo Gianpaolo <gpuse91@gmail.com>, 2017
@@ -29,8 +30,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-04-13 07:18+0000\n"
-"PO-Revision-Date: 2020-06-07 14:59+0000\n"
-"Last-Translator: Davide Zuliani <davide.x.zuliani@gmail.com>\n"
+"PO-Revision-Date: 2020-06-19 12:34+0000\n"
+"Last-Translator: Nescio\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -101,7 +102,7 @@ msgstr "Sacerdozio potente"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
-msgstr "-5% salute per gli Eroi."
+msgstr "−5% salute per gli Eroi."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
@@ -109,7 +110,7 @@ msgstr "Potere della Conoscenza"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −10% technology resource costs and research time."
-msgstr "-10% costi e tempi di ricerca per le tecnologie in tutte le strutture."
+msgstr "−10% costi e tempi di ricerca per le tecnologie in tutte le strutture."
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -190,7 +191,7 @@ msgstr "Lega di Delo"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Allied Warships −25% construction time."
-msgstr "-25% tempi di costruzione per le navi da guerra alleate."
+msgstr "−25% tempi di costruzione per le navi da guerra alleate."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -198,7 +199,7 @@ msgstr "Druidi"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allied Healers −20% resource costs."
-msgstr "-20% costi per i guaritori alleati."
+msgstr "−20% costi per i guaritori alleati."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -214,7 +215,7 @@ msgstr "Sapienza Druidica"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Allied Structures −20% technology research time."
-msgstr "+20% velocità di ricerca tecnologica per le strutture alleate."
+msgstr "−20% tempi di ricerca tecnologica per le strutture alleate."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -222,7 +223,7 @@ msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Javelinists −10% resource costs."
-msgstr "-10% costi per i giavellottisti alleati."
+msgstr "−10% costi per i giavellottisti alleati."
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -230,7 +231,7 @@ msgstr "Fornitori di Elefanti"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
 msgid "Allied Elephants −20% resource costs and training time."
-msgstr "-20% costi e tempi d'addestramento per gli elefanti alleati."
+msgstr "−20% costi e tempi d'addestramento per gli elefanti alleati."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
@@ -248,7 +249,7 @@ msgstr "Supporto religioso di Ashoka"
 msgid ""
 "Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
-msgstr "-50% costi e tempi di costruzioni per i templi alleati, e -50% costi e tempi di ricerca per le loro tecnologie."
+msgstr "−50% costi e tempi di costruzioni per i templi alleati, e −50% costi e tempi di ricerca per le loro tecnologie."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
@@ -272,7 +273,7 @@ msgstr "Coscrizione"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Infantry −10% training time."
-msgstr "-10% tempi di addestramento per la fanteria alleata."
+msgstr "−10% tempi di addestramento per la fanteria alleata."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -280,7 +281,7 @@ msgstr "Tetrapoli Siriaca"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid "Allied Civil Centers −20% resource costs."
-msgstr "-20% costi per i centri civici alleati."
+msgstr "−20% costi per i centri civici alleati."
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
@@ -707,7 +708,7 @@ msgstr "Mobilitazione"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
 msgid "Soldiers −15% resources costs, −20% training time."
-msgstr "-15% costi e -20% tempi d'addestramento per i soldati."
+msgstr "−15% costi e −20% tempi d'addestramento per i soldati."
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraDescription
 msgid "Soldiers +20% movement speed."
@@ -749,7 +750,7 @@ msgstr "Seguace di Apedemak"
 msgid ""
 "Temple of Apedemak −20% resource costs and build time. Apedemak Temple Guard"
 " −20% resource costs and training time."
-msgstr "-20% costi e tempi di costruzione per il Tempio di Apedemak e per le sue Guardie del Tempio di Apedemak ."
+msgstr "−20% costi e tempi di costruzione per il Tempio di Apedemak e per le sue Guardie del Tempio di Apedemak."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
 msgid "Slaughter of the Faithful"
@@ -757,7 +758,7 @@ msgstr "Massacro dei Fedeli"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
 msgid "Enemy Healers −50% healing strength."
-msgstr "-50% forza di guarigione per i guaritori nemici."
+msgstr "−50% forza di guarigione per i guaritori nemici."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -773,7 +774,7 @@ msgstr "Dono di Navi da Guerra"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraDescription
 msgid "Kushite Triremes −50 wood and metal cost."
-msgstr "-50 costi in legname e metallo per i triremi kushiti."
+msgstr "−50 costi in legname e metallo per i triremi kushiti."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
 msgid "Imperialism"
@@ -789,7 +790,7 @@ msgstr "Conquistatore"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
-msgstr "-50% rigenerazione di punti cattura da presidio per i Centri Civici nemici."
+msgstr "−50% rigenerazione di punti cattura da presidio per i Centri Civici nemici."
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
@@ -820,7 +821,7 @@ msgstr "Vittoria di Pirro"
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage, −15% health."
-msgstr "+20% attacco da mischia e a distanza e -15% salute per i soldati."
+msgstr "+20% attacco da mischia e a distanza e −15% salute per i soldati."
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraName
 msgid "Buddhism"
@@ -830,7 +831,7 @@ msgstr "Buddismo"
 msgid ""
 "Temples −50% resource costs and build time. Temple technologies −50% "
 "resource costs and research time."
-msgstr "-50% costi e tempi di costruzione per i templi, e -50% costi e tempi di ricerca per le loro tecnologie."
+msgstr "−50% costi e tempi di costruzione per i templi, e −50% costi e tempi di ricerca per le loro tecnologie."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
@@ -840,7 +841,7 @@ msgstr "Maestro"
 msgid ""
 "When garrisoned, the Structure's technologies have −20% resource cost and "
 "−50% research time."
-msgstr "-20% costi e -50% tempi di ricerca per le tecnologie per le strutture che presentano unità presidiate."
+msgstr "−20% costi e −50% tempi di ricerca per le tecnologie per le strutture che presentano unità presidiate."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
@@ -878,7 +879,7 @@ msgstr "Patriota"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraDescription
 msgid "Soldiers and Siege Engines −20% melee and ranged attack repeat time."
-msgstr "-20% intervallo per gli attacchi da mischia e a distanza per soldati e macchine d'assedio."
+msgstr "−20% intervallo per gli attacchi da mischia e a distanza per soldati e macchine d'assedio."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraName
@@ -891,7 +892,7 @@ msgstr "+10% salute per gli Eroi alleati."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraDescription
 msgid "Enemy Heroes −10% health."
-msgstr "-10% salute per gli Eroi nemici."
+msgstr "−10% salute per gli Eroi nemici."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia"
@@ -915,7 +916,7 @@ msgstr "Patrono Mercenario"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
 msgid "Mercenaries −35% resource costs."
-msgstr "-35% costi per le unità mercenarie."
+msgstr "−35% costi per le unità mercenarie."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
@@ -928,7 +929,7 @@ msgstr "+15% attacco da mischia e a distanza per la cavalleria."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
 msgid "Enemy Infantry −10% melee and ranged attack damage."
-msgstr "-10% danni da mischia e a distanza per la fanteria nemica."
+msgstr "−10% danni da mischia e a distanza per la fanteria nemica."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"

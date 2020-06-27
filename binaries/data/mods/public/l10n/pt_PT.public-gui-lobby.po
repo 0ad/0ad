@@ -3,9 +3,10 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# alfalb.as, 2015
+# e8f1a29f7bd45d2490d729ad149fc504_6eadd8e, 2015
 # André Gomes <andre.capoeira1@hotmail.com>, 2017
 # Danny Reese <danny@angolateam.org>, 2016
+# Hugo Alves <hribalves@gmail.com>, 2020
 # Mário Branco <branco.ana8@gmail.com>, 2017
 # mogafi, 2014
 # Pedro matias <pmsm1100@gmail.com>, 2015
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-22 08:08+0000\n"
-"PO-Revision-Date: 2019-11-22 15:16+0000\n"
-"Last-Translator: Rui <xymarior@yandex.com>\n"
+"PO-Revision-Date: 2020-06-25 22:27+0000\n"
+"Last-Translator: Hugo Alves <hribalves@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,13 +67,13 @@ msgstr "Sim"
 #: gui/lobby/LobbyPage/Game.js:298
 #, javascript-format
 msgid "%(current)s/%(max)s +%(observercount)s"
-msgstr ""
+msgstr "Nº. de jogadores: %(current)s/%(max)s\nNº de observadores: %(observercount)s"
 
 #. Translation: The number of players in this game
 #: gui/lobby/LobbyPage/Game.js:301
 #, javascript-format
 msgid "%(current)s/%(max)s"
-msgstr ""
+msgstr "Nº de jogadores: %(current)s/%(max)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:65
 msgctxt "victory condition"
@@ -82,7 +83,7 @@ msgstr "Jogo sem fim"
 #: gui/lobby/LobbyPage/GameDetails.js:117
 #, javascript-format
 msgid "Host: %(playername)s"
-msgstr ""
+msgstr "Hospedeiro: %(playername)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:119
 #, javascript-format
@@ -91,7 +92,7 @@ msgstr "Jogadores: %(current)s/%(total)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:121
 msgid "Victory Conditions:"
-msgstr ""
+msgstr "Condições de Vitória:"
 
 #. Translation: Comma used to concatenate victory conditions
 #: gui/lobby/LobbyPage/GameDetails.js:124
@@ -100,7 +101,7 @@ msgstr ", "
 
 #: gui/lobby/LobbyPage/GameDetails.js:126
 msgid "Mods:"
-msgstr ""
+msgstr "Mods:"
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/LobbyPage/GameDetails.js:129
@@ -123,7 +124,7 @@ msgstr "Tamanho do Mapa:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:137
 msgid "Map Description:"
-msgstr ""
+msgstr "Descrição do mapa:"
 
 #: gui/lobby/LobbyPage/KickStrings.js:39
 msgid "You have been kicked from the lobby!"
@@ -251,7 +252,7 @@ msgstr "Líder"
 #: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):10
 msgid "Player Profile Lookup"
-msgstr ""
+msgstr "Procurar Jogador:"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
 msgctxt "previous page"
@@ -276,7 +277,7 @@ msgstr "O comando \"%(cmd)s\" é apenas para moderadores."
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:66
 #, javascript-format
 msgid "The command '%(cmd)s' requires at least one argument."
-msgstr ""
+msgstr "O comando %(cmd)srequer, pelo menos, um argumento."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:87
 msgid "Set your state to 'Away'."
@@ -315,7 +316,7 @@ msgstr "Envia uma mensagem de conversação sobre ti mesmo. Por exemplo: /me vou
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:149
 msgid "/me"
-msgstr ""
+msgstr "/eu"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:153
 msgid ""
@@ -326,7 +327,7 @@ msgstr "Enviar mensagens de texto como uma mensagem de conversa (mesmo se ele co
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:156
 msgid "/say"
-msgstr ""
+msgstr "/diz"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:160
 msgid "Clear all chat scrollback."
@@ -349,7 +350,7 @@ msgstr "\\[%(time)s]"
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatMe.js:24
 #, javascript-format
 msgid "* %(sender)s %(message)s"
-msgstr ""
+msgstr "/eu %(sender)s%(message)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatSay.js:29
 #, javascript-format
@@ -368,7 +369,7 @@ msgstr "Privado"
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:25
 #, javascript-format
 msgid "(%(private)s) %(message)s"
-msgstr ""
+msgstr "(%(private)s) %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:47
 #, javascript-format
@@ -424,12 +425,12 @@ msgstr "%(nick)s deixou de ser moderador."
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:152
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to:"
-msgstr ""
+msgstr "%(nick)s mudou a sala de espera para:"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:153
 #, javascript-format
 msgid "%(nick)s deleted the lobby subject."
-msgstr ""
+msgstr "%(nick)sdeletou a sala de espera."
 
 #. Translation: Chat status message
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
@@ -439,7 +440,7 @@ msgstr "== %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
 msgid "Connected."
-msgstr ""
+msgstr "Conectado."
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:56
 msgid "Disconnected."
@@ -448,12 +449,12 @@ msgstr "Desconectado."
 #. Translation: Caption for system notifications shown in the chat panel
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:25
 msgid "System:"
-msgstr ""
+msgstr "Sistema:"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
 #, javascript-format
 msgid "=== %(system)s %(message)s"
-msgstr ""
+msgstr "===%(system)s %(message)s"
 
 #: gui/lobby/LobbyPage/GameListFilters/MapSize.js:9
 msgctxt "map size"
@@ -664,7 +665,7 @@ msgstr "Enviar"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):14
 msgid "Enter playername:"
-msgstr ""
+msgstr "Insere o nome de jogador:"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):20
 msgid "View Profile"

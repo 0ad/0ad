@@ -8,7 +8,7 @@
 # Bart <b.anthonisse@gmail.com>, 2020
 # Bart Groeneveld, 2017
 # Bart Groeneveld, 2016
-# bb <b.jansen5@students.uu.nl>, 2019
+# bb <b.jansen5@students.uu.nl>, 2019-2020
 # bb <b.jansen5@students.uu.nl>, 2018
 # Charon De Beukelaer <charondb@gmail.com>, 2015
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016
@@ -37,8 +37,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-06-12 07:09+0000\n"
-"PO-Revision-Date: 2020-06-12 17:42+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-06-15 16:58+0000\n"
+"Last-Translator: bb <b.jansen5@students.uu.nl>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,7 +60,7 @@ msgstr "%(hotkey)s Sluit het overzicht van beschavingen"
 #: gui/civinfo/civinfo.js:85
 #, javascript-format
 msgid "• %(string)s"
-msgstr ""
+msgstr "• %(string)s"
 
 #: gui/civinfo/civinfo.js:113
 #, javascript-format
@@ -86,8 +86,8 @@ msgstr "Speciale Technologieën"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Structure"
 msgid_plural "Special Structures"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Speciaal gebouw"
+msgstr[1] "Speciale gebouwen"
 
 #: gui/civinfo/civinfo.js:141 gui/summary/layout.js:67
 msgid "Heroes"
@@ -519,31 +519,31 @@ msgstr "De host heeft het spel beëindigd."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "Onjuiste versie van het netwerkprotocol."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "Spel wordt geladen, probeer het later nog eens."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "Het spel is al begonnen, waarnemers zijn niet toegestaan."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "Je werd uitgesloten."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "U werd verbannen."
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Naam al in gebruik. Als u terug in het spel probeert te komen, wacht dan even en probeer het over een paar seconden opnieuw."
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "Server is vol."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
@@ -774,7 +774,7 @@ msgstr "(%(armorPercentage)s)"
 
 #: gui/common/tooltips.js:195
 msgid "Garrison to fire arrows"
-msgstr ""
+msgstr "Beman voor extra pijlen."
 
 #: gui/common/tooltips.js:198
 msgid "Interval:"
@@ -863,17 +863,17 @@ msgstr ""
 #: gui/common/tooltips.js:277
 msgctxt "damage type"
 msgid "Capture"
-msgstr ""
+msgstr "Verover"
 
 #: gui/common/tooltips.js:286
 #, javascript-format
 msgid "gives %(name)s"
-msgstr ""
+msgstr "geeft %(name)s"
 
 #: gui/common/tooltips.js:319
 #, javascript-format
 msgid "%(attackType)s Attack"
-msgstr ""
+msgstr "%(attackType)s aanval"
 
 #: gui/common/tooltips.js:340
 #, javascript-format
@@ -883,7 +883,7 @@ msgstr ""
 #: gui/common/tooltips.js:363
 #, javascript-format
 msgid "%(splashShape)s Splash Damage"
-msgstr ""
+msgstr "%(splashShape)s omgevingsschade"
 
 #: gui/common/tooltips.js:366
 #, javascript-format
@@ -1378,7 +1378,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:142
 msgid "Single-player"
-msgstr ""
+msgstr "Singleplayer"
 
 #: gui/pregame/MainMenuItems.js:51
 msgid "Start, load, or replay a single-player game."
@@ -1390,7 +1390,7 @@ msgstr "Wedstrijden"
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "Start een nieuw singleplayerspel."
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Campaigns"
@@ -1404,7 +1404,7 @@ msgstr "Herbeleef de geschiedenis door middel van historische militaire veldtoch
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Load a saved game."
-msgstr ""
+msgstr "Laad een opgeslagen spel."
 
 #: gui/pregame/MainMenuItems.js:73 gui/pregame/MainMenuItems.js:123
 msgid "Replays"
@@ -1460,7 +1460,7 @@ msgstr "Instellingen"
 
 #: gui/pregame/MainMenuItems.js:139
 msgid "Change game options."
-msgstr ""
+msgstr "Verander de spelinstellingen."
 
 #: gui/pregame/MainMenuItems.js:142
 msgid "Options"
@@ -1536,7 +1536,7 @@ msgstr "Stop"
 
 #: gui/pregame/MainMenuItems.js:201
 msgid "Exit the game."
-msgstr ""
+msgstr "Verlaat het spel."
 
 #: gui/pregame/MainMenuItems.js:205
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -1936,7 +1936,7 @@ msgstr "Ontdekkings-score"
 
 #: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):81
 msgid "Structures"
-msgstr ""
+msgstr "Gebouwen"
 
 #: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:102
 msgid "Total"
@@ -2694,7 +2694,7 @@ msgstr "Toon de frames per seconde teller in de rechter bovenhoek"
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS overlay"
-msgstr ""
+msgstr "FPS overlay"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -2702,7 +2702,7 @@ msgstr "Geef de huidige systeemtijd weer in de rechter bovenhoek."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Real time overlay"
-msgstr ""
+msgstr "Echte tijd overlay"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
@@ -2710,7 +2710,7 @@ msgstr "Geef de huidige simulatietijd weer in de rechter bovenhoek."
 
 #: gui/options/options.json[0].options[7].label
 msgid "Game time overlay"
-msgstr ""
+msgstr "Speltijd overlay"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -2718,7 +2718,7 @@ msgstr "Laat de overgebleven tijd van de wapenstilstand altijd zien."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire time overlay"
-msgstr ""
+msgstr "Wapenstilstand tijd overlay"
 
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
@@ -2744,7 +2744,7 @@ msgstr "Sta iedereen of enkel vrienden toe om het spel toe te treden als waarnem
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late observer joins"
-msgstr ""
+msgstr "Late toetreding waarnemers"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
@@ -2752,7 +2752,7 @@ msgstr "Blokkeer toetreden van waarnemers als de limiet bereikt is."
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer limit"
-msgstr ""
+msgstr "Waarnemerlimiet"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid ""
@@ -2761,7 +2761,7 @@ msgstr "Toon de tijd waarop chatberichten verstuurd zijn in de lobby, gamesetup 
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "Chat tijdsweergave"
 
 #: gui/options/options.json[0].label
 msgid "General"
@@ -2773,7 +2773,7 @@ msgstr "Start 0 A.D. in een venster."
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
-msgstr ""
+msgstr "Venstermodus"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
@@ -2801,15 +2801,15 @@ msgstr ""
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use anti-aliasing."
-msgstr ""
+msgstr "Gebruik geen anti-aliassen."
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid "Fast, but simple anti-aliasing."
-msgstr ""
+msgstr "Snelle maar eenvoudige anti-aliassen."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
-msgstr ""
+msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
@@ -2817,7 +2817,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[4].label
 msgid "Anti-Aliasing"
-msgstr ""
+msgstr "Anti-aliassen"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -2898,7 +2898,7 @@ msgstr "Zet dit UIT om de laagst waterkwaliteit weer te geven. Dit negeert alle 
 
 #: gui/options/options.json[1].options[11].label
 msgid "Water effects"
-msgstr ""
+msgstr "Watereffecten"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid ""
@@ -2916,7 +2916,7 @@ msgstr "Gebruik de echte diepte van het water bij de weergaveberekeningen."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Real water depth"
-msgstr ""
+msgstr "Werkelijke waterdiepte"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Allow water to reflect a mirror image."
@@ -2924,7 +2924,7 @@ msgstr "Laat water toe om een spiegelbeeld te reflecteren."
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water reflections"
-msgstr ""
+msgstr "Waterreflectie"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Use a real water refraction map and not transparency."
@@ -2932,7 +2932,7 @@ msgstr "Gebruik een realistische refractieafbeelding, en geen transparantie voor
 
 #: gui/options/options.json[1].options[15].label
 msgid "Water refraction"
-msgstr ""
+msgstr "Waterrefractie"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Cast shadows on water."
@@ -2940,7 +2940,7 @@ msgstr "Toon schaduwen op het water."
 
 #: gui/options/options.json[1].options[16].label
 msgid "Shadows on water"
-msgstr ""
+msgstr "Schaduwen op het water"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
@@ -2956,7 +2956,7 @@ msgstr "Toon de lucht."
 
 #: gui/options/options.json[1].options[18].label
 msgid "Show sky"
-msgstr ""
+msgstr "Toon lucht"
 
 #: gui/options/options.json[1].options[19].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
@@ -3000,7 +3000,7 @@ msgstr "Mastervolume."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master volume"
-msgstr ""
+msgstr "Volume"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
@@ -3008,7 +3008,7 @@ msgstr "Volume van de muziek."
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music volume"
-msgstr ""
+msgstr "Volume muziek"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
@@ -3016,7 +3016,7 @@ msgstr "Volume van het achtergrondgeluid."
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient volume"
-msgstr ""
+msgstr "Achtergrondvolume"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
@@ -3162,7 +3162,7 @@ msgstr ""
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
-msgstr ""
+msgstr "TLS Versleuteling."
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
@@ -3223,7 +3223,7 @@ msgstr "Laat een chatnotificatie zien wanneer u wordt aangevallen door een ander
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat notification attack"
-msgstr ""
+msgstr "Chatnotificatie aanval"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
@@ -3233,7 +3233,7 @@ msgstr "Laat een chatnotificatie zien wanneer een geallieerde grondstoffen gesch
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat notification tribute"
-msgstr ""
+msgstr "Chatnotificatie schenking"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
@@ -3242,7 +3242,7 @@ msgstr "Laat een chatnotificatie zien aan waarnemers als een speler grondstoffen
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat notification barter"
-msgstr ""
+msgstr "Chatnotificatie ruilhandel"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -3264,7 +3264,7 @@ msgstr "Laat een chatnotificatie zien wanneer u of een geallieerde het onderzoek
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat notification phase"
-msgstr ""
+msgstr "Chatnotificatie Fasen"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
@@ -3274,7 +3274,7 @@ msgstr "Laat het aanvalsbereik van de geselecteerde verdedigingswerken zien (dit
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
-msgstr ""
+msgstr "Zichtbaar aanvalsbereik"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
@@ -3284,7 +3284,7 @@ msgstr "Laat het aurabereik van de geselecteerde eenheden en bouwwerken zien (di
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
-msgstr ""
+msgstr "Zichtbaar aurabereik"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
@@ -3294,7 +3294,7 @@ msgstr "Laat het helingsbereik van de geselecteerde eenheden zien (dit kan ook o
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
-msgstr ""
+msgstr "Zichtbaar helersbereik"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
@@ -4003,7 +4003,7 @@ msgstr "Gebruikt tegen cavalerie of andere mêlee infanterie om hen op hun plaat
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr ""
+msgstr "- Beschikbaar voor: Kushiten, Macedoniërs, Ptolemaeïers en Seleuciden."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"

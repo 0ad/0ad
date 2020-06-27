@@ -19,7 +19,7 @@
 # David D, 2018
 # foufy much <foufy68@hotmail.com>, 2016
 # François Magimel, 2018-2019
-# François Poirotte <clicky@erebot.net>, 2016
+# François Poirotte <clicky@erebot.net>, 2016,2020
 # gab tes, 2020
 # Glorfindel Of Gondolin, 2019
 # tavariz <guipoi@yahoo.fr>, 2016
@@ -59,8 +59,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-06-12 07:09+0000\n"
-"PO-Revision-Date: 2020-06-12 17:42+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-06-23 19:59+0000\n"
+"Last-Translator: François Poirotte <clicky@erebot.net>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -936,12 +936,12 @@ msgstr "Non"
 #: gui/common/tooltips.js:404
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s %(stackability)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s %(stackability)s"
 
 #: gui/common/tooltips.js:409
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s"
-msgstr ""
+msgstr "%(statusName)s : %(statusInfo)s"
 
 #: gui/common/tooltips.js:420
 #, javascript-format
@@ -955,22 +955,22 @@ msgstr "Durée"
 #: gui/common/tooltips.js:435
 msgctxt "status effect stackability"
 msgid "(extends)"
-msgstr ""
+msgstr "(étend)"
 
 #: gui/common/tooltips.js:437
 msgctxt "status effect stackability"
 msgid "(replaces)"
-msgstr ""
+msgstr "(remplace)"
 
 #: gui/common/tooltips.js:439
 msgctxt "status effect stackability"
 msgid "(stacks)"
-msgstr ""
+msgstr "(cumule)"
 
 #: gui/common/tooltips.js:441
 #, javascript-format
 msgid "%(stackability)s"
-msgstr ""
+msgstr "%(stackability)s"
 
 #: gui/common/tooltips.js:452
 #, javascript-format

@@ -7,8 +7,18 @@
       <props>
         <prop actor="props/structures/iberians/merch_sail.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/iber_ship.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/iber_ship.dds" name="baseTex"/>
+      </textures>
     </variant>
+  </group>
+  <group>
+    <variant frequency="0" name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_iber.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="ungarrisoned"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

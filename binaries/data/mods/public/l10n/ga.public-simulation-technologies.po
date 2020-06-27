@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-08 07:13+0000\n"
-"PO-Revision-Date: 2020-06-08 08:27+0000\n"
+"POT-Creation-Date: 2020-06-15 07:10+0000\n"
+"PO-Revision-Date: 2020-06-15 08:29+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,6 @@ msgid "Unlocked in Village Phase."
 msgstr "Díghlasáilte sa Chéim Sráidbhaile."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
-#: simulation/data/technologies/armor_cav_chamfron.jsondescription
 msgid "Metal armor for a horse's face."
 msgstr "Armúr miotail d'aghaidh capaill."
 
@@ -68,19 +67,12 @@ msgstr "Feistigh armúr ar do chapaill mharcacha. Leibhéal armúir Teasctha is 
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
-#: simulation/data/technologies/armor_cav_chamfron.jsongenericName
 msgid "Chamfron"
 msgstr "Siamfrón"
 
 #: simulation/data/technologies/armor_cav_01.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_cav_chamfron.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_infantry_01.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantry_hack_01.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantry_hack_02.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_ship_hypozomata.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_cav_lance.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_melee_01.jsonrequirementsTooltip
@@ -95,10 +87,7 @@ msgstr "Siamfrón"
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/health_walls_geometric_masonry.jsonrequirementsTooltip
-#: simulation/data/technologies/melee_inf_sidearms.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_civic_01.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
-#: simulation/data/technologies/ranged_inf_irregulars.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_decay.jsonrequirementsTooltip
@@ -106,22 +95,9 @@ msgstr "Siamfrón"
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
-#: simulation/data/technologies/training_levy_cavalry.jsonrequirementsTooltip
-#: simulation/data/technologies/training_levy_infantry.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/cost_celt_mercs.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/cost_italian_mercs.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_colonisation.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_exploration.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
@@ -132,11 +108,6 @@ msgstr "Díghlasáilte sa Chéim Bhaile."
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.spart
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.sele
-#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.mace
-#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.ptol
-#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.spart
-#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.athen
 msgid "Prometōpídion"
 msgstr "Prometōpídion"
 
@@ -147,14 +118,9 @@ msgstr "Armúr miotail do chorp capaill."
 #: simulation/data/technologies/armor_cav_02.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_hero_01.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_infantry_02.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantry_hack_03.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantry_hack_04.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_ship_hullsheathing.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_champions_elite.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
@@ -168,17 +134,13 @@ msgstr "Armúr miotail do chorp capaill."
 #: simulation/data/technologies/heal_rate_2.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_temple.jsonrequirementsTooltip
 #: simulation/data/technologies/health_regen_units.jsonrequirementsTooltip
-#: simulation/data/technologies/melee_inf_spearheads.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_civic_02.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_wonder.jsonrequirementsTooltip
-#: simulation/data/technologies/ranged_inf_skirmishers.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_armor.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_attack.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_cost_metal.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_packing.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_02.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_armour.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
@@ -187,19 +149,7 @@ msgstr "Armúr miotail do chorp capaill."
 #: simulation/data/technologies/training_conscription.jsonrequirementsTooltip
 #: simulation/data/technologies/training_naval_architects.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_units.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_elite_cavalry.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_elite_infantry.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsonrequirementsTooltip
-#: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_long_walls.jsonrequirementsTooltip
@@ -209,7 +159,6 @@ msgstr "Armúr miotail do chorp capaill."
 #: simulation/data/technologies/persians/special_equine_transports.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsonrequirementsTooltip
-#: simulation/data/technologies/romans/decay_logistics.jsonrequirementsTooltip
 #: simulation/data/technologies/romans/vision_sibylline.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsonrequirementsTooltip
@@ -219,10 +168,6 @@ msgstr "Armúr miotail do chorp capaill."
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "Díghlasáilte sa Chéim Chathracha."
-
-#: simulation/data/technologies/armor_cav_chamfron.jsontooltip
-msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
-msgstr "Feistigh armúr ar do chapaill mharcacha. Leibheál armúir Teasctha +1 do gach marcach."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
@@ -253,7 +198,6 @@ msgid "Lorica Ferrea"
 msgstr "Lorica Ferrea"
 
 #: simulation/data/technologies/armor_infantry_01.jsondescription
-#: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
 msgstr "Línéadach cuilteáilte nó armúr colainne as leathar do na coisithe."
 
@@ -263,7 +207,6 @@ msgid "All Infantry +1 Hack and Pierce Armor Level."
 msgstr "Leibheál armúir Teasctha is Pollda +1 do gach coisí."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
-#: simulation/data/technologies/armor_infantry_hack_01.jsongenericName
 msgid "Quilted Body Armor"
 msgstr "Armúr Colainne Cuilteáilte"
 
@@ -278,27 +221,14 @@ msgstr "Armúr Colainne Cuilteáilte"
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.rome
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.gaul
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.iber
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.maur
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.generic
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.cart
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.brit
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.pers
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.rome
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.gaul
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.iber
 msgid "Spolas"
 msgstr "Spolas"
 
 #: simulation/data/technologies/armor_infantry_02.jsondescription
-#: simulation/data/technologies/armor_infantry_hack_02.jsondescription
 msgid "Laminated linen body armor for infantrymen."
 msgstr "Armúr Colainne lannaithe as línéadach do na coisithe."
 
 #: simulation/data/technologies/armor_infantry_02.jsongenericName
-#: simulation/data/technologies/armor_infantry_hack_02.jsongenericName
 msgid "Laminated Linen Body Armor"
 msgstr "Armúr Colainne Línéadach Lannaithe"
 
@@ -310,137 +240,8 @@ msgstr "Armúr Colainne Línéadach Lannaithe"
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.pers
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.rome
-#: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.cart
-#: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.pers
-#: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.rome
 msgid "Linothorakes"
 msgstr "Linothorakes"
-
-#: simulation/data/technologies/armor_infantry_hack_01.jsontooltip
-#: simulation/data/technologies/armor_infantry_hack_02.jsontooltip
-#: simulation/data/technologies/armor_infantry_hack_03.jsontooltip
-msgid "All Infantry +1 Hack Armor Level."
-msgstr "Leibheál armúir Teasctha +1 do gach coisí."
-
-#: simulation/data/technologies/armor_infantry_hack_03.jsondescription
-msgid "Body armor reinforced with bronze scales."
-msgstr "Armúr colainne treisithe le gannaí as cré-umha."
-
-#: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
-msgid "Scale Body Armor"
-msgstr "Armúr Colainne na nGannaí"
-
-#: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
-msgid "Lorica Squamata"
-msgstr "Lorica Squamata"
-
-#: simulation/data/technologies/armor_infantry_hack_04.jsondescription
-msgid ""
-"Body armor fashioned completely of bronze. Only the best soldiers were "
-"equipped with such body armor, as it was very expensive and time-consuming "
-"to fabricate."
-msgstr "Armúr colainne déanta as cré-umha amháin. Níl ach na saighdiúirí is fearr feistithe leis an armúr colainne seo, mar an-dhaor atá sé, agus ghlac sé am fada a cruthú."
-
-#: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
-msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr "Leibheál armúir Polltha +2 do gach curadh, ach Costas Miotail +10 freisin."
-
-#: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
-msgid "Bronze Cuirass Body Armor"
-msgstr "Armúr Colainne na Lúirí Cré-Umha"
-
-#: simulation/data/technologies/armor_infantry_hack_04.jsonspecificName.rome
-msgid "Lorica Musculata"
-msgstr "Lorica Musculata"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsondescription
-msgid "Plywood construction for large shields."
-msgstr "Tógáil sriathadhmaid do sciatha móra."
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
-msgid "Infantry Spearmen +2 Pierce Armor Levels."
-msgstr "Leibheál armúir Pollda +2 do gach cos-sleádóir."
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
-msgid "Plywood Shield Construction"
-msgstr "Tógáil Sciath as Sriathadhmad"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.athen
-msgid "Aspidískos"
-msgstr "Aspidískos"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsondescription
-msgid ""
-"The best shields have reinforcements either on the corners (Roman scutum) or"
-" around the rim (Greek aspis)."
-msgstr "Tá na sciatha is fearr treisithe ar na cúinní (scútumh Rómhánach) nó thart ar an imeall (hoplón Gréigeach) ach an oiread."
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
-msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr "Leabheáil armúir Pollda +1 do gach cos-sleádóir."
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
-msgid "Reinforced Shield"
-msgstr "Sciath Treisithe"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
-msgid "Aspís"
-msgstr "Aspís"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
-msgid "A bronze skin hammered over the face of the shield."
-msgstr "Craiceann cré-umha tuargainte ar aghaidh na scéithe."
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
-msgid "Bronze Shield Facing"
-msgstr "Sraod na Scéithe Cré-Umha"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
-msgid "Khalkaspís"
-msgstr "Khalkaspís"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.mace
-msgid "Khrysaspís"
-msgstr "Khrysaspís"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsondescription
-msgid ""
-"Only the most celebrated soldiers had shields faced with silver, as did the "
-"famous 'Silver Shields' regiment in Alexander the Great's army."
-msgstr "Níl ach na saighdiúirí is fearr feistithe le sciatha ar aghaidh airgid, ba 'Airgidsciatha' ag an reisimint cailiúil eapainmneach de chuid airm Alastair Mhóir."
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
-msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
-msgstr "Leibheál armúir Pollda +2 do gach curadh, ach Costas Miotail +10 freisin."
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
-msgid "Silver Shields"
-msgstr "Airgidsciatha"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
-msgid "Argyraspís"
-msgstr "Argyraspís"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
@@ -481,35 +282,6 @@ msgstr "Bíomaí adhmaid treisithe do chabhlacha long. Leibheál +2 i ngach cine
 msgid "Reinforced hull"
 msgstr "Chabhail Treisithe"
 
-#: simulation/data/technologies/attack_cav_lance.jsondescription
-msgid "A long spear made specifically for cavalry."
-msgstr "Sleá fada déanta ar son na marcraí."
-
-#: simulation/data/technologies/attack_cav_lance.jsontooltip
-msgid ""
-"Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr "Feistigh airm níos fearr ar do mharcraí trodacha. Ionsaí Teasctha +2 do throd-mharcaigh."
-
-#: simulation/data/technologies/attack_cav_lance.jsongenericName
-msgid "Cavalry Lance"
-msgstr "Lansa Marcra"
-
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.ptol
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.spart
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.sele
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.athen
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.mace
-msgid "Xystón"
-msgstr "Xystón"
-
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.rome
-msgid "Hasta"
-msgstr "Hasta"
-
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
 msgstr "Méadaíonn traenáil an t-ionsaí trodach."
@@ -545,6 +317,13 @@ msgstr "Oiliúint Dlúthchomhraic don Mharcshlua"
 msgid "Xyston"
 msgstr "Xyston"
 
+#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
+#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.rome
+#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.rome
+#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.rome
+msgid "Hasta"
+msgstr "Hasta"
+
 #: simulation/data/technologies/attack_cavalry_melee_02.jsondescription
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsondescription
 msgid "Replaces bronze weapons with iron."
@@ -578,33 +357,7 @@ msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
 msgstr "Feistigh airm níos fearr ar do mharcraí raonta. Ionsaí +20% do raon-mharcaigh."
 
-#: simulation/data/technologies/attack_champions_elite.jsondescription
-msgid "Guard units have uncommon bravery and valor in battle."
-msgstr "Tá crógacht is laochas as an ngnáth ag aonaid gardaí nuair atá siad sa chath."
-
-#: simulation/data/technologies/attack_champions_elite.jsontooltip
-msgid ""
-"Guard units have uncommon courage and valor in battle. Champions +2 attack."
-msgstr "Tá crógacht is laochas as an ngnáth ag aonaid gardaí nuair atá siad sa chath. Ionsaí +2 do churaidh."
-
-#: simulation/data/technologies/attack_champions_elite.jsongenericName
-msgid "Heroism"
-msgstr "Crógacht"
-
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.ptol
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.spart
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.sele
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.mace
-msgid "Andreía"
-msgstr "Andreía"
-
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.rome
-msgid "Fortitudo"
-msgstr "Fortitudo"
-
 #: simulation/data/technologies/attack_infantry_melee_01.jsondescription
-#: simulation/data/technologies/melee_inf_sidearms.jsondescription
 msgid ""
 "Often, an infantryman would carry a secondary weapon in addition to his "
 "primary weapon of choice, to be drawn when the primary weapon has failed or "
@@ -617,7 +370,6 @@ msgid "+20% melee infantry attack."
 msgstr "Ionsaí +20% do choisithe trodacha."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
-#: simulation/data/technologies/melee_inf_sidearms.jsongenericName
 msgid "Side Arms"
 msgstr "Airm Cliatháin"
 
@@ -626,16 +378,10 @@ msgstr "Airm Cliatháin"
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.athen
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.mace
-#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.ptol
-#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.spart
-#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.sele
-#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.athen
-#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.mace
 msgid "Xíphos"
 msgstr "Xíphos"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.rome
-#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.rome
 msgid "Pugio"
 msgstr "Pugio"
 
@@ -645,18 +391,15 @@ msgstr "D'fhaigh an úsáid iarainn in áit chré-umha neart sa bhreis don airm 
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsondescription
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
-#: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry."
 msgstr ""
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
-#: simulation/data/technologies/ranged_inf_irregulars.jsontooltip
 msgid "+20% ranged infantry attack."
 msgstr "Ionsaí raonta +20% do choisithe."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
-#: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
 msgid "Ranged Infantry Irregulars"
 msgstr "Neamhrialtaigh Raon-Choisí"
 
@@ -670,11 +413,6 @@ msgstr "Neamhrialtaigh Raon-Choisí"
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.ptol
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.spart
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.athen
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.sele
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.mace
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.ptol
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.spart
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.athen
 msgid "Átaktoi"
 msgstr "Átaktoi"
 
@@ -1124,109 +862,6 @@ msgstr "Leibhéil armúir Bhasctha +2 do bhaillaí cathrach, ach am tógála +10
 msgid "Geometric Masonry"
 msgstr "Saoirseacht Gheoiméadrach"
 
-#: simulation/data/technologies/melee_inf_sidearms.jsontooltip
-msgid "Melee infantry +1 hack attack."
-msgstr "Ionsaí Teasctha +1 do chos-shaighdiúirí."
-
-#: simulation/data/technologies/melee_inf_spearheads.jsondescription
-msgid "Using iron instead of bronze gave spears additional piercing power."
-msgstr "D'fhaigh an úsáid iarainn in áit chré-umha neart polltha sa bhreis do sleánna."
-
-#: simulation/data/technologies/melee_inf_spearheads.jsontooltip
-msgid "All Spear units +2 hack attack."
-msgstr "Ionsaí Teasctha +2 do gach sleádóir."
-
-#: simulation/data/technologies/melee_inf_spearheads.jsongenericName
-msgid "Iron Spearheads"
-msgstr "Ceann Sleá Iarainn"
-
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.sele
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.ptol
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.mace
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.spart
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.athen
-msgid "Sidḗreai Aikhmaí"
-msgstr "Sidḗreai Aikhmaí"
-
-#: simulation/data/technologies/pair_cav_01.jsongenericName
-msgid "Lance vs. Chamfron"
-msgstr "Lansa i.gc. Siamfrón"
-
-#: simulation/data/technologies/pair_champ_02.jsongenericName
-msgid "Champions vs. Part-timers"
-msgstr "Curaidh i.gc. Páirtaimsearthaí"
-
-#: simulation/data/technologies/pair_gather_01.jsongenericName
-msgid "Servants vs. Wedge and Mallet"
-msgstr "Giollaí i.gc. Ding is Máilléad"
-
-#: simulation/data/technologies/pair_gather_02.jsongenericName
-msgid "Serfs vs. Shaft Mining"
-msgstr "Héalótaí i.gc. Mianadóireacht Sloic"
-
-#: simulation/data/technologies/pair_gather_03.jsongenericName
-msgid "Slaves vs. Silver Mining"
-msgstr "Mogha i.gc. Mianadóireacht Airgid"
-
-#: simulation/data/technologies/pair_gather_wood_01.jsongenericName
-msgid "Iron Axes vs. Wheelbarrow"
-msgstr "Tuanna Iarainn i.gc. Bara Rotha"
-
-#: simulation/data/technologies/pair_heal_01.jsongenericName
-msgid "Heal Range and Rate"
-msgstr "Raon is Ráta Cneasaithe"
-
-#: simulation/data/technologies/pair_heal_02.jsongenericName
-msgid "Heal Range and Rate #2"
-msgstr "Raon is Ráta Cneasaithe 2"
-
-#: simulation/data/technologies/pair_heal_03.jsongenericName
-msgid "Garrison Healing vs. Self-Healing"
-msgstr "Cneasú Garastúin i.gc. Féinchneasú"
-
-#: simulation/data/technologies/pair_house_01.jsongenericName
-msgid "Females vs. Population"
-msgstr "Mná i.gc. Daonra"
-
-#: simulation/data/technologies/pair_house_02.jsongenericName
-msgid "Female Citizens vs Population"
-msgstr "Banshaoránaigh i.gc. Daonra"
-
-#: simulation/data/technologies/pair_inf_01.jsongenericName
-msgid "Side Arms vs. Irregulars"
-msgstr "Airm Cliatháin i.gc. Neamhrialtaigh"
-
-#: simulation/data/technologies/pair_inf_02.jsongenericName
-msgid "Spear Fighting vs. Skirmishing"
-msgstr "Sleádóireacht i.gc. Scirmiseoireacht"
-
-#: simulation/data/technologies/pair_inf_armor_01.jsongenericName
-#: simulation/data/technologies/pair_inf_armor_02.jsongenericName
-#: simulation/data/technologies/pair_inf_armor_03.jsongenericName
-#: simulation/data/technologies/pair_inf_armor_04.jsongenericName
-msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr "Armúr Teasctha an Choisí i.gc. Armúr Pollda an Sleádóra"
-
-#: simulation/data/technologies/pair_levy_01.jsongenericName
-msgid "Levy Infantry vs. Levy Cavalry"
-msgstr "Léibheann Coisithe i.gc. Léibheann Marcshlua"
-
-#: simulation/data/technologies/pair_siege_attack_cost.jsongenericName
-msgid "Attack vs. Cost"
-msgstr "Ionsaí i.gc. Costas"
-
-#: simulation/data/technologies/pair_siege_attack_pack.jsongenericName
-msgid "Attack vs. Packing"
-msgstr "Ionsaí i.gc. Pacáil"
-
-#: simulation/data/technologies/pair_siege_cost_armor.jsongenericName
-msgid "Cost vs. Armor"
-msgstr "Costas i.gc. Armúr"
-
-#: simulation/data/technologies/pair_tower_01.jsongenericName
-msgid "Night's Watch vs. Crenellations"
-msgstr "Tráth Faire na hOíche i.gc. Cíor Lámhaigh"
-
 #: simulation/data/technologies/pair_walls_01.jsongenericName
 msgid "Walls build time vs. Health"
 msgstr "Am Tógála na mBallaí i.gc. Sláinte"
@@ -1337,47 +972,6 @@ msgstr ""
 msgid "Village Phase"
 msgstr "Céim Sráidbhaile"
 
-#: simulation/data/technologies/pop_civic_01.jsondescription
-msgid ""
-"The state or tribe would often construct a dining hall for public feasts or "
-"to receive foreign emissaries."
-msgstr "Thógáil an stát nó an treibh proinnteach go minic d'fhleánna poiblí a óstáil agus a chur fáilte roimh teachtaí iasachta."
-
-#: simulation/data/technologies/pop_civic_01.jsontooltip
-#: simulation/data/technologies/pop_civic_02.jsontooltip
-msgid "Civic Centers +5 population cap bonus."
-msgstr "Bónas daonra +5 as Ionaid Chathartha."
-
-#: simulation/data/technologies/pop_civic_01.jsongenericName
-msgid "Dining Hall"
-msgstr "Proinnteach"
-
-#: simulation/data/technologies/pop_civic_01.jsonspecificName.athen
-msgid "Thólos"
-msgstr "Thólos"
-
-#: simulation/data/technologies/pop_civic_02.jsondescription
-msgid ""
-"Public assembly places were often the center of civic life for ancient "
-"societies. Athens had the Ekklesia, the citizens' assembly which met on the "
-"Pnyx Hill near the agora in full view of the Acropolis. The Romans had an "
-"open-aired assembly place in the great Forum Romanum called the Comitium. "
-"Here citizens could air grievances and present petitions to the patrician "
-"politicians who ruled their city in the Senate."
-msgstr "Bhí áiteanna poblachta ina n-uaireanta mar lár an bheatha cathartha sna sochaithe ársa. Tá an Eccléisia ag Aithin, dáil na Saoránach a chasadh ar chéile ar an gCnoc Pnicse in aice leis an agora agus ag amharc ar an Acrapolas Tá dáil poblachta ag na Rómhánaigh leis an bhForum Romanum, tugtar an Goimitium. D'fhéadfadh na saoránaigh a gcasoidí a roinnt anseo, agus thaispeáin siad achainaithe chuig na paitrígh a bhí ina rialtas ar an gcathair, agus a Seanad."
-
-#: simulation/data/technologies/pop_civic_02.jsongenericName
-msgid "Public Assembly"
-msgstr "Tionól Poiblí"
-
-#: simulation/data/technologies/pop_civic_02.jsonspecificName.rome
-msgid "Comitium"
-msgstr "Comitium"
-
-#: simulation/data/technologies/pop_civic_02.jsonspecificName.athen
-msgid "Ekklēsía"
-msgstr "Ekklēsía"
-
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
 "Home gardens ranged from simple fenced-in areas to large manicured and "
@@ -1440,33 +1034,6 @@ msgstr "Cumasaigh Leathnú Glórach. Méadaigh an t-uasdhaonra sa bhreis le 40 s
 msgid "Glorious Expansion"
 msgstr "Leathnú Glórmhar"
 
-#: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
-msgid ""
-"The javelin thong (the Greeks also called them loops, or bronkhos) increased"
-" the fulcrum action of the throwing arm mid-throw, increasing speed and "
-"range of the javelin."
-msgstr "Mhéadaigh iall na bhfogha (chuir na Gréigigh uaireanta ainm eile air - lúba, nó 'bronkhos') ar aicsean an bhuthail sa lámh i lár caithimh, agus méadú a chur ar raon agus luas an fhogha."
-
-#: simulation/data/technologies/ranged_inf_skirmishers.jsontooltip
-msgid "All Javelin units +2 pierce attack and +4 range."
-msgstr "Ionsaí Pollda +2 agus raon +4 do gach gaithleannach."
-
-#: simulation/data/technologies/ranged_inf_skirmishers.jsongenericName
-msgid "Javelin Thong"
-msgstr "Iall Fogha"
-
-#: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.ptol
-#: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.spart
-#: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.sele
-#: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.athen
-#: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.mace
-msgid "Himás"
-msgstr "Himás"
-
-#: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.rome
-msgid "Amentum"
-msgstr "Amentum"
-
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege engines."
 msgstr ""
@@ -1526,18 +1093,6 @@ msgstr ""
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
 msgstr "Teagascóirí Airtléire"
-
-#: simulation/data/technologies/siege_packing.jsondescription
-msgid "Immobile siege engines are assembled and disassembled faster."
-msgstr ""
-
-#: simulation/data/technologies/siege_packing.jsontooltip
-msgid "Siege Engines −25% pack and unpack time."
-msgstr ""
-
-#: simulation/data/technologies/siege_packing.jsongenericName
-msgid "Military Engineers"
-msgstr "Innealtóirí Míleata"
 
 #: simulation/data/technologies/speed_cavalry_01.jsondescription
 msgid "Breed the fastest horses."
@@ -1743,40 +1298,6 @@ msgstr "Luas traenála níos tapa do dhream le beairicí."
 msgid "Conscription"
 msgstr "Coinscríobhacht"
 
-#: simulation/data/technologies/training_levy_cavalry.jsondescription
-#: simulation/data/technologies/persians/training_levy_cavalry.jsondescription
-msgid ""
-"Calling up cavalry levies in time of war helps bolster the ranks of a king's"
-" army."
-msgstr "Gaireadh ar léibhinn an Mharcshlua le linn cogaidh agus méid airm an rí a dhaingniú."
-
-#: simulation/data/technologies/training_levy_cavalry.jsontooltip
-msgid ""
-"All cavalry -20% train time, but also -10 health. Unlocks Conscription."
-msgstr "Am traenála -20% do gach marcra, ach sláinte -10 freisin. Díghlasáil Coinscríobhacht."
-
-#: simulation/data/technologies/training_levy_cavalry.jsongenericName
-#: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
-msgid "Levy Cavalry"
-msgstr "Léibheann Marcshlua"
-
-#: simulation/data/technologies/training_levy_infantry.jsondescription
-#: simulation/data/technologies/persians/training_levy_infantry.jsondescription
-msgid ""
-"Calling up infantry levies in time of war helps bolster the ranks of a "
-"king's army."
-msgstr "Gaireadh ar léibhinn an Chos-shlua le linn cogaidh agus méid airm an rí a dhaingniú."
-
-#: simulation/data/technologies/training_levy_infantry.jsontooltip
-msgid ""
-"All infantry -10% train time, but also -5 health. Unlocks Conscription."
-msgstr "Am traenála -10% do gach coisí, ach sláinte -5 freisin. Díghlasáil Coinscríobhacht."
-
-#: simulation/data/technologies/training_levy_infantry.jsongenericName
-#: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
-msgid "Levy Infantry"
-msgstr "Léibheann Coisithe"
-
 #: simulation/data/technologies/training_naval_architects.jsondescription
 msgid "Significantly increase build speed of batches of ships at the Dock."
 msgstr "Méadaigh luas tógála go mór do dhream loinge sa Duga."
@@ -1886,43 +1407,6 @@ msgstr "Lig d'aonaid imreora eile a bhreabáil dá fhís a roinnt."
 msgid "Espionage"
 msgstr "Spiaireacht"
 
-#: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
-#: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
-msgid "Promote all of your citizen-soldier cavalrymen to Advanced rank."
-msgstr "Ardaigh do mharcraí míle-shaoránacha ar fad go an rang Forásach."
-
-#: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsontooltip
-msgid ""
-"Promote all of your citizen-soldier cavalrymen to Advanced rank. This "
-"increases their military prowess, but decreases their meat gathering rates "
-"-25%. Unlocks Elite Citizen-Cavalry technology."
-msgstr "Ardaigh do mharcraí míle-shaoránacha ar fad go an rang Forásach. Méadaíonn sé seo a láidreacht mhíleata, ach laghdaíonn sé a rátaí bailithe d'fheoil le -25% freisin. Díghlasáil teicneolaíocht Marcra-Shaoránach Éilite."
-
-#: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsongenericName
-msgid "Advanced Citizen-Cavalry"
-msgstr "Marcra-Shaoránaigh Forásacha"
-
-#: simulation/data/technologies/upgrade_rank_advanced_infantry.jsondescription
-msgid "Upgrade all of your citizen-soldier infantrymen to Advanced rank."
-msgstr "Uasghradaigh do choisithe míle-shaoránacha ar fad go an rang Forásach."
-
-#: simulation/data/technologies/upgrade_rank_advanced_infantry.jsontooltip
-msgid ""
-"Upgrade all of your citizen-soldier infantrymen to Advanced rank. This "
-"increases their military prowess, but decreases their resource gathering "
-"rates -25%. Unlocks Elite Citizen-Infantry technology."
-msgstr "Uasghradaigh do choisithe míle-shaoránacha ar fad go an rang Forásach. Méadaíonn sé seo a láidreacht mhíleata, ach laghdaíonn sé a rátaí bailithe d'acmhainní le -25%. Díghlasáil teicneolaíocht Míle-Shaoránach Éilite."
-
-#: simulation/data/technologies/upgrade_rank_advanced_infantry.jsongenericName
-msgid "Advanced Citizen-Infantry"
-msgstr "Míle-Shaoránaigh Fhorásacha"
-
-#: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.mace
-#: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.spart
-#: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.athen
-msgid "Zeugítai"
-msgstr "Zeugítai"
-
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
 msgstr "Fostaigh amhais phroifisiúnta do throid a dhéanamh i d'arm."
@@ -1935,137 +1419,6 @@ msgstr "Ardaíodh amhais go an rang forásach ach teastaíonn am traenála +20% 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
 msgstr "Saineolas Cogaidh"
-
-#: simulation/data/technologies/upgrade_rank_elite_cavalry.jsontooltip
-msgid ""
-"Promote all of your citizen-soldier cavalrymen to Elite rank. This increases"
-" their military prowess, but decreases their meat gathering rates another "
-"-25%."
-msgstr "Ardaigh do mharcraí míle-shaoránacha ar fad go an rang Éilite. Méadaíonn sé seo a láidreacht mhíleata, ach laghdaíonn sé a rátaí bailithe d'fheoil le -25% eile."
-
-#: simulation/data/technologies/upgrade_rank_elite_cavalry.jsongenericName
-msgid "Elite Citizen-Cavalry"
-msgstr "Marcra-Shaoránaigh Éilíte"
-
-#: simulation/data/technologies/upgrade_rank_elite_infantry.jsondescription
-msgid "Upgrade all of your citizen-soldier infantrymen to Elite rank."
-msgstr "Uasghradaigh do choisithe míle-shaoránacha ar fad go an rang Éilite."
-
-#: simulation/data/technologies/upgrade_rank_elite_infantry.jsontooltip
-msgid ""
-"Upgrade all of your citizen-soldier infantrymen to Elite rank. This "
-"increases their military prowess, but decreases their resource gathering "
-"rates another -25%."
-msgstr "Uasghradaigh do choisithe míle-shaoránaigh ar fad go an rang Éilite. Méadaíonn sé seo a láidreacht mhíleata, ach laghdaíonn a rátaí bailithe d'acmhainne le -25% eile."
-
-#: simulation/data/technologies/upgrade_rank_elite_infantry.jsongenericName
-msgid "Elite Citizen-Infantry"
-msgstr "Míle-Shaoránaigh Éilíte"
-
-#: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.mace
-#: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.spart
-#: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
-msgid "Pentakosiomédimnoi"
-msgstr "Pentakosiomédimnoi"
-
-#: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
-#: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
-msgid "Celtic mercenaries have their metal cost decreased."
-msgstr "Tá costas miotail laghdaithe d'amhais Cheilteacha."
-
-#: simulation/data/technologies/carthaginians/cost_celt_mercs.jsontooltip
-msgid ""
-"Hire a Celtic mercenary captain to reduce cost -20 metal for Celtic "
-"mercenaries."
-msgstr "Fostaigh captaen Ceilteach na n-amhas do chostas miotail a laghdú le -20 d'amhais Cheilteacha."
-
-#: simulation/data/technologies/carthaginians/cost_celt_mercs.jsongenericName
-msgid "Celtic Mercenary Captain"
-msgstr "Captaen Ceilteach na nAmhas"
-
-#: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsontooltip
-msgid ""
-"Hire a Gallic mercenary general to reduce cost -20 metal for Celtic "
-"mercenaries."
-msgstr "Fostaigh captaen Gallach na n-amhas do chostas miotail a laghdú le -20 d'amhais Cheilteacha."
-
-#: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsongenericName
-msgid "Gallic Mercenary General"
-msgstr "Ginearál Gallach na nAmhas"
-
-#: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsondescription
-#: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsondescription
-msgid "Iberian mercenaries have their metal cost decreased."
-msgstr "Tá costas miotail laghdaithe d'amhais Ibéaracha."
-
-#: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsontooltip
-msgid ""
-"Hire a Lusitanian mercenary captain to reduce cost -20 metal for Iberian "
-"mercenaries."
-msgstr "Fostaigh captaen Lúsaiteánach na n-amhas do chostas miotail a laghdú le -20 d'amhais Ibéaracha."
-
-#: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsongenericName
-msgid "Lusitanian Mercenary Captain"
-msgstr "Captaen Lúsaiteánach na nAmhas"
-
-#: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsontooltip
-msgid ""
-"Hire a Celtiberian mercenary general to reduce cost -20 metal for Iberian "
-"mercenaries."
-msgstr "Fostaigh ginearál Ceiltibéarach na n-amhas do chostas miotail a laghdú le -20 d'amhais Ibéaracha."
-
-#: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsongenericName
-msgid "Celtiberian Mercenary General"
-msgstr "Ginearál Ceiltibéarach na nAmhas"
-
-#: simulation/data/technologies/carthaginians/cost_italian_mercs.jsondescription
-#: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsondescription
-msgid "Italian mercenaries have their metal cost decreased."
-msgstr "Tá costas miotail laghdaithe d'amhais Iodálacha."
-
-#: simulation/data/technologies/carthaginians/cost_italian_mercs.jsontooltip
-msgid ""
-"Hire an Italiote mercenary captain to reduce cost -20 metal for Italian "
-"mercenaries."
-msgstr "Fostaigh captaen Iodálach na n-amhas do chostas miotail a laghdú le -20 d'amhais Iodálacha."
-
-#: simulation/data/technologies/carthaginians/cost_italian_mercs.jsongenericName
-msgid "Italiote Mercenary Captain"
-msgstr "Captaen Iodálach na nAmhas"
-
-#: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsontooltip
-msgid ""
-"Hire an Italiote mercenary general to reduce cost -20 metal for Italian "
-"mercenaries."
-msgstr "Fostaigh ginearál Iodálach na n-amhas do chostas miotail a laghdú le -20 d'amhais Iodálacha."
-
-#: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsongenericName
-msgid "Italiote Mercenary General"
-msgstr "Ginearál Iodálach na nAmhas"
-
-#: simulation/data/technologies/carthaginians/pair_celt_mercs_1.jsongenericName
-msgid "Celtic merc cost vs. recruit time #1"
-msgstr "Costas an Amhais Cheiltigh i.gc. Am Earcaithe 1"
-
-#: simulation/data/technologies/carthaginians/pair_celt_mercs_2.jsongenericName
-msgid "Celtic merc cost vs. recruit time #2"
-msgstr "Costas an Amhais Cheiltigh i.gc. Am Earcaithe 2"
-
-#: simulation/data/technologies/carthaginians/pair_iberian_mercs_1.jsongenericName
-msgid "Iberian merc cost vs. recruit time #1"
-msgstr "Costas an Amhais Ibéaraigh i.gc. Am Earcaithe 1"
-
-#: simulation/data/technologies/carthaginians/pair_iberian_mercs_2.jsongenericName
-msgid "Iberian merc cost vs. recruit time #2"
-msgstr "Costas an Amhais Ibéaraigh i.gc. Am Earcaithe 2"
-
-#: simulation/data/technologies/carthaginians/pair_italian_mercs_1.jsongenericName
-msgid "Italian merc cost vs. recruit time #1"
-msgstr "Costas an Amhais Iodálaigh i.gc. Am Earcaithe 1"
-
-#: simulation/data/technologies/carthaginians/pair_italian_mercs_2.jsongenericName
-msgid "Italian merc cost vs. recruit time #2"
-msgstr "Costas an Amhais Iodálaigh i.gc. Am Earcaithe 2"
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
 msgid ""
@@ -2110,165 +1463,6 @@ msgstr "Méadaigh luas tógála do dhream sa Longchlós."
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsongenericName
 msgid "Phoenician Naval Architects"
 msgstr "Ailtirí Cabhlaigh Féiníceacha"
-
-#: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsondescription
-#: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsondescription
-msgid "Celtic mercenaries have their train time decreased."
-msgstr "Tá am traenála laghdaithe d'amhais Cheilteacha."
-
-#: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsontooltip
-msgid ""
-"Ally with Celtic towns to reduce recruit time -20% for Celtic mercenaries."
-msgstr "Déan comhaontas le bailte Ceilteacha d'am fostaithe a laghdú le -20% d'amhais Cheilteacha."
-
-#: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsongenericName
-msgid "Celtic Alliance"
-msgstr "Comhaontas Ceilteach"
-
-#: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsontooltip
-msgid ""
-"Subjugate Gallic tribes to reduce recruit time -20% for Celtic mercenaries."
-msgstr "Cuir treibheanna Gallacha faoi smacht d'am fostaithe a laghdú le -20% d'amhais Cheilteacha."
-
-#: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsongenericName
-msgid "Gallic Hegemony"
-msgstr "Mórcheannas na nGallach"
-
-#: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsondescription
-#: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsondescription
-msgid "Iberian mercenaries have their train time decreased."
-msgstr "Tá am traenála laghdaithe d'amhais Ibéaracha."
-
-#: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsontooltip
-msgid ""
-"Ally with Iberian towns to reduce recruit time -20% for Iberian mercenaries."
-msgstr "Déan comhaontas le bailte Ibéaracha d'am fostaithe a laghdú le -20% d'amhais Ibéaracha."
-
-#: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsongenericName
-msgid "Iberian Alliance"
-msgstr "Comhaontas Ibéarach"
-
-#: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
-msgid ""
-"Subjugate Hispania to reduce recruit time -20% for Iberian mercenaries."
-msgstr "Cuir Easpáinne faoi smacht d'am fostaithe a laghdú le -20% d'amhais Ibéaracha."
-
-#: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsongenericName
-msgid "Iberian Hegemony"
-msgstr "Mórcheannas na nIbéarach"
-
-#: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsondescription
-#: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsondescription
-msgid "Italian mercenaries have their train time decreased."
-msgstr "Tá am traenála laghdaithe d'amhais Iodálacha."
-
-#: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsontooltip
-msgid ""
-"Ally with Italiote towns to reduce recruit time -20% for Italian "
-"mercenaries."
-msgstr "Déan comhaontas le bailte Iodálacha d'am fostaithe a laghdú le -20% d'amhais Iodálacha."
-
-#: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsongenericName
-msgid "Italiote Alliance"
-msgstr "Comhaontas Iodálach"
-
-#: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsontooltip
-msgid ""
-"Subjugate Italiote towns to reduce recruit time -20% for Italian "
-"mercenaries."
-msgstr "Cuir bailte Iodálacha faoi smacht d'am fostaithe a laghdú le -20% d'amhais Iodálacha."
-
-#: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsongenericName
-msgid "Italiote Hegemony"
-msgstr "Mórcheannas na nIodálach"
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsondescription
-msgid "Upgrade all of your Celtic mercenaries to Advanced rank."
-msgstr "Uasghradaigh d'amhais Ceilteacha ar fad go an rang Forásach."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsontooltip
-msgid ""
-"Upgrade all of your Celtic mercenaries to Advanced rank. This increases "
-"their military prowess, but decreases their resource gathering rates -25%. "
-"Unlocks Elite Celtic Mercenaries technology."
-msgstr "Uasghradaigh d'amhais Cheilteacha ar fad go an rang Forásach. Méadaíonn sé seo a láidreacht mhíleata ach laghdaíonn sé a rátaí bailithe d'acmhainní le -25%. Díghlasáil teicneolaíocht Amhas Ceilteacha Éilite."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsongenericName
-msgid "Advanced Celtic Mercenaries"
-msgstr "Amhais Ceilteacha Forásacha"
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsondescription
-msgid "Upgrade all of your Iberian mercenaries to Advanced rank."
-msgstr "Uasghradaigh d'amhais Ibéaracha ar fad go an rang Forásach."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsontooltip
-msgid ""
-"Upgrade all of your Iberian mercenaries to Advanced rank. This increases "
-"their military prowess, but decreases their resource gathering rates -25%. "
-"Unlocks Elite Iberian Mercenaries technology."
-msgstr "Uasghradaigh d'amhais Ibéaracha ar fad go an rang Forásach. Méadaíonn sé seo a láidreacht mhíleata ach laghdaíonn sé a rátaí bailithe d'acmhainní le -25%. Díghlasáil teicneolaíocht Amhas Ibéaracha Éilite."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsongenericName
-msgid "Advanced Iberian Mercenaries"
-msgstr "Amhais Ibéaracha Forásacha"
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsondescription
-msgid "Upgrade all of your Italiote mercenaries to Advanced rank."
-msgstr "Uasghradaigh d'amhais Iodálacha ar fad go an rang Forásach."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsontooltip
-msgid ""
-"Upgrade all of your Italiote mercenaries to Advanced rank. This increases "
-"their military prowess, but decreases their resource gathering rates -25%. "
-"Unlocks Elite Italiote Mercenaries technology."
-msgstr "Uasghradaigh d'amhais Iodálacha ar fad go an rang Forásach. Méadaíonn sé seo a láidreacht mhíleata ach laghdaíonn sé a rátaí bailithe d'acmhainní le -25%. Díghlasáil teicneolaíocht Amhas Iodálacha Éilite."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsongenericName
-msgid "Advanced Italiote Mercenaries"
-msgstr "Amhais Iodálacha Forásacha"
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsondescription
-msgid "Upgrade all of your Celtic Mercenaries to Elite rank."
-msgstr "Uasghradaigh d'amhais Ceilteacha ar fad go an rang Éilite."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsontooltip
-msgid ""
-"Upgrade all of your Celtic mercenaries to Elite rank. This increases their "
-"military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Uasghradaigh d'amhais Cheilteacha ar fad go an rang Éilite. Méadaíonn sé seo a láidreacht mhíleata, ach laghdaíonn a rátaí bailithe d'acmhainne le -25% eile."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsongenericName
-msgid "Elite Celtic Mercenaries"
-msgstr "Amhais Ceilteacha Éilíte"
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsondescription
-msgid "Upgrade all of your Iberian Mercenaries to Elite rank."
-msgstr "Uasghradaigh d'amhais Ibéaracha ar fad go an rang Éilite."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsontooltip
-msgid ""
-"Upgrade all of your Iberian mercenaries to Elite rank. This increases their "
-"military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Uasghradaigh d'amhais Ibéarcha ar fad go an rang Éilite. Méadaíonn sé seo a láidreacht mhíleata, ach laghdaíonn a rátaí bailithe d'acmhainne le -25% eile."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
-msgid "Elite Iberian Mercenaries"
-msgstr "Amhais Ibéaracha Éilíte"
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsondescription
-msgid "Upgrade all of your Italiote Mercenaries to Elite rank."
-msgstr "Uasghradaigh d'amhais Iodálacha ar fad go an rang Éilite."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsontooltip
-msgid ""
-"Upgrade all of your Italiote mercenaries to Elite rank. This increases their"
-" military prowess, but decreases their resource gathering rates another "
-"-25%."
-msgstr "Uasghradaigh d'amhais Iodálacha ar fad go an rang Éilite. Méadaíonn sé seo a láidreacht mhíleata, ach laghdaíonn a rátaí bailithe d'acmhainne le -25% eile."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
-msgid "Elite Italiote Mercenaries"
-msgstr "Amhais Iodálacha Éilíte"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
@@ -2383,24 +1577,6 @@ msgstr ""
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"
 msgstr "Íochtaráin"
-
-#: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
-msgid "Spear fighting training increases damage of infantry spear units."
-msgstr "Méadaíonn traenáil sleádóireachta ar damáiste na cos-shleádóirí."
-
-#: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
-msgid "Spearmen +2 hack attack."
-msgstr "Ionsaí Tesctha +2 do shleádóirí."
-
-#: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
-msgid "Infantry Spear Fighting"
-msgstr "Sleádóireacht na gCoisithe"
-
-#: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
-#: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.spart
-#: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
-msgid "Doratismós"
-msgstr "Doratismós"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2539,11 +1715,27 @@ msgstr "Coinscríobhacht an Mharcra"
 msgid "Infantry Conscription"
 msgstr "Coinscríobhacht na gCoisithe"
 
+#: simulation/data/technologies/persians/training_levy_cavalry.jsondescription
+msgid ""
+"Calling up cavalry levies in time of war helps bolster the ranks of a king's"
+" army."
+msgstr "Gaireadh ar léibhinn an Mharcshlua le linn cogaidh agus méid airm an rí a dhaingniú."
+
 #: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
 msgstr "Am traenála -20% do gach marcra, ach sláinte -5% freisin. Díghlasáil Coinscríobhacht an Mharcra."
+
+#: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
+msgid "Levy Cavalry"
+msgstr "Léibheann Marcshlua"
+
+#: simulation/data/technologies/persians/training_levy_infantry.jsondescription
+msgid ""
+"Calling up infantry levies in time of war helps bolster the ranks of a "
+"king's army."
+msgstr "Gaireadh ar léibhinn an Chos-shlua le linn cogaidh agus méid airm an rí a dhaingniú."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
@@ -2551,17 +1743,9 @@ msgid ""
 "Conscription."
 msgstr "Am traenála -20% do gach coisí, ach sláinte -5% freisin. Díghlasáil Coinscríobhacht na gCoisithe."
 
-#: simulation/data/technologies/romans/decay_logistics.jsondescription
-msgid "The Romans were masters of the logistics of warfare."
-msgstr "Bhí na Rómhánaigh ina máistrí ar lóistíochta cogaíochta."
-
-#: simulation/data/technologies/romans/decay_logistics.jsontooltip
-msgid "Entrenched Camps and Siege Walls decay 50% slower."
-msgstr "Lobhann Campaí Trinsithe agus Ballaí Léigearacha 50% níos moille."
-
-#: simulation/data/technologies/romans/decay_logistics.jsongenericName
-msgid "Roman Logistics"
-msgstr "Lóistíochtaí Rómhánacha"
+#: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
+msgid "Levy Infantry"
+msgstr "Léibheann Coisithe"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsondescription
 msgid ""

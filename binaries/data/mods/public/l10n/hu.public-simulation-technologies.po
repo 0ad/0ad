@@ -10,6 +10,7 @@
 # 12dde84ca529f511e7ad8b70de73f71c_b688a04 <2328b4f5662bb45a5de7adc879cc0db2_206283>, 2014
 # Boross Péter <borosspet@web.de>, 2015
 # Gyuris Gellért <bubu@ujevangelizacio.hu>, 2015
+# Gyuris Gellért <bubu@ujevangelizacio.hu>, 2020
 # Gyuris Gellért <bubu@ujevangelizacio.hu>, 2017
 # lkishalmi <laszlo.kishalmi@gmail.com>, 2015
 # lkishalmi <laszlo.kishalmi@gmail.com>, 2015
@@ -21,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-08 07:13+0000\n"
-"PO-Revision-Date: 2020-06-08 08:27+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-06-15 07:10+0000\n"
+"PO-Revision-Date: 2020-06-22 06:50+0000\n"
+"Last-Translator: Gyuris Gellért <bubu@ujevangelizacio.hu>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,7 +38,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster Infantry movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "A fejlett osztályra képzett egységek a következő bónuszokat kapják: 20% további életerő, 1 további páncélszint minden típusból, 20% további zsákmány, 20%-kal nagyobb támadás a közelharci egységeknek, 4 m további hatótávolság és jobb pontosság a távolsági egységeknek, gyorsabb gyalogsági mozgási sebesség és további gyógyítási sebesség és hatótáv a gyógyítóknak."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -67,7 +68,6 @@ msgid "Unlocked in Village Phase."
 msgstr "Falusi szakasztól érhető el."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
-#: simulation/data/technologies/armor_cav_chamfron.jsondescription
 msgid "Metal armor for a horse's face."
 msgstr "Fémpáncél egy ló fejére."
 
@@ -80,19 +80,12 @@ msgstr "A hátaslovak felszerelése páncéllal. Minden lovassági egységnek +1
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
-#: simulation/data/technologies/armor_cav_chamfron.jsongenericName
 msgid "Chamfron"
 msgstr "Chamfron"
 
 #: simulation/data/technologies/armor_cav_01.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_cav_chamfron.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_infantry_01.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantry_hack_01.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantry_hack_02.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_ship_hypozomata.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_cav_lance.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_melee_01.jsonrequirementsTooltip
@@ -107,10 +100,7 @@ msgstr "Chamfron"
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/health_walls_geometric_masonry.jsonrequirementsTooltip
-#: simulation/data/technologies/melee_inf_sidearms.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_civic_01.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
-#: simulation/data/technologies/ranged_inf_irregulars.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_decay.jsonrequirementsTooltip
@@ -118,22 +108,9 @@ msgstr "Chamfron"
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
-#: simulation/data/technologies/training_levy_cavalry.jsonrequirementsTooltip
-#: simulation/data/technologies/training_levy_infantry.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/cost_celt_mercs.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/cost_italian_mercs.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_colonisation.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_exploration.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
@@ -144,11 +121,6 @@ msgstr "Városi szakasztól érhető el."
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.spart
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.sele
-#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.mace
-#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.ptol
-#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.spart
-#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.athen
 msgid "Prometōpídion"
 msgstr "Prometōpídion"
 
@@ -159,14 +131,9 @@ msgstr "Fémpáncél egy ló testére."
 #: simulation/data/technologies/armor_cav_02.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_hero_01.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_infantry_02.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantry_hack_03.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantry_hack_04.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_ship_hullsheathing.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_champions_elite.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
@@ -180,17 +147,13 @@ msgstr "Fémpáncél egy ló testére."
 #: simulation/data/technologies/heal_rate_2.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_temple.jsonrequirementsTooltip
 #: simulation/data/technologies/health_regen_units.jsonrequirementsTooltip
-#: simulation/data/technologies/melee_inf_spearheads.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_civic_02.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_wonder.jsonrequirementsTooltip
-#: simulation/data/technologies/ranged_inf_skirmishers.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_armor.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_attack.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_cost_metal.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_packing.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_02.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_armour.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
@@ -199,19 +162,7 @@ msgstr "Fémpáncél egy ló testére."
 #: simulation/data/technologies/training_conscription.jsonrequirementsTooltip
 #: simulation/data/technologies/training_naval_architects.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_units.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_elite_cavalry.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_elite_infantry.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsonrequirementsTooltip
-#: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_long_walls.jsonrequirementsTooltip
@@ -221,7 +172,6 @@ msgstr "Fémpáncél egy ló testére."
 #: simulation/data/technologies/persians/special_equine_transports.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsonrequirementsTooltip
-#: simulation/data/technologies/romans/decay_logistics.jsonrequirementsTooltip
 #: simulation/data/technologies/romans/vision_sibylline.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsonrequirementsTooltip
@@ -231,10 +181,6 @@ msgstr "Fémpáncél egy ló testére."
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "Nagyvárosi szakasztól érhető el."
-
-#: simulation/data/technologies/armor_cav_chamfron.jsontooltip
-msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
-msgstr "A hátaslovak felszerelése páncéllal. Minden lovassági egységnek +1 vágás páncél szint."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
@@ -265,7 +211,6 @@ msgid "Lorica Ferrea"
 msgstr "Lorica Ferrea"
 
 #: simulation/data/technologies/armor_infantry_01.jsondescription
-#: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
 msgstr "Tűzött vászon vagy bőr testpáncél a gyalogosok számára."
 
@@ -275,7 +220,6 @@ msgid "All Infantry +1 Hack and Pierce Armor Level."
 msgstr "Minden gyalogosnak +1 vágás és szúrás páncél szint."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
-#: simulation/data/technologies/armor_infantry_hack_01.jsongenericName
 msgid "Quilted Body Armor"
 msgstr "Tűzött testpáncél"
 
@@ -290,27 +234,14 @@ msgstr "Tűzött testpáncél"
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.rome
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.gaul
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.iber
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.maur
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.generic
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.cart
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.brit
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.pers
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.rome
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.gaul
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.iber
 msgid "Spolas"
 msgstr "Spolas"
 
 #: simulation/data/technologies/armor_infantry_02.jsondescription
-#: simulation/data/technologies/armor_infantry_hack_02.jsondescription
 msgid "Laminated linen body armor for infantrymen."
 msgstr "Rétegzett vászon testpáncél a gyalogosok számára."
 
 #: simulation/data/technologies/armor_infantry_02.jsongenericName
-#: simulation/data/technologies/armor_infantry_hack_02.jsongenericName
 msgid "Laminated Linen Body Armor"
 msgstr "Rétegzett vászon testpáncél"
 
@@ -322,137 +253,8 @@ msgstr "Rétegzett vászon testpáncél"
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.pers
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.rome
-#: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.cart
-#: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.pers
-#: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.rome
 msgid "Linothorakes"
 msgstr "Linothorax"
-
-#: simulation/data/technologies/armor_infantry_hack_01.jsontooltip
-#: simulation/data/technologies/armor_infantry_hack_02.jsontooltip
-#: simulation/data/technologies/armor_infantry_hack_03.jsontooltip
-msgid "All Infantry +1 Hack Armor Level."
-msgstr "Minden gyalogosnak +1 vágás páncél szint."
-
-#: simulation/data/technologies/armor_infantry_hack_03.jsondescription
-msgid "Body armor reinforced with bronze scales."
-msgstr "Bronzlapokkal megerősített testpáncél."
-
-#: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
-msgid "Scale Body Armor"
-msgstr "Pikkelyes testpáncél"
-
-#: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
-msgid "Lorica Squamata"
-msgstr "Lorica Squamata"
-
-#: simulation/data/technologies/armor_infantry_hack_04.jsondescription
-msgid ""
-"Body armor fashioned completely of bronze. Only the best soldiers were "
-"equipped with such body armor, as it was very expensive and time-consuming "
-"to fabricate."
-msgstr "Teljesen bronzból készült testpáncél. Csak a legjobb harcosokat szerelték fel ilyen testpáncéllal, mivel nagyon drága és időigényes volt az elkészítése."
-
-#: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
-msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr "Bajnokoknak +2 vágás páncél szint, de +10 fém költség."
-
-#: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
-msgid "Bronze Cuirass Body Armor"
-msgstr "Bronz mellvért testpáncél"
-
-#: simulation/data/technologies/armor_infantry_hack_04.jsonspecificName.rome
-msgid "Lorica Musculata"
-msgstr "Lorica Musculata"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsondescription
-msgid "Plywood construction for large shields."
-msgstr "Rétegelt szerkezet a nagyobb pajzsokhoz."
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
-msgid "Infantry Spearmen +2 Pierce Armor Levels."
-msgstr "Lándzsás gyalogosoknak +2 szúrás páncél szint."
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
-msgid "Plywood Shield Construction"
-msgstr "Rétegelt pajzsszerkezet"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.athen
-msgid "Aspidískos"
-msgstr "Aspidískos"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsondescription
-msgid ""
-"The best shields have reinforcements either on the corners (Roman scutum) or"
-" around the rim (Greek aspis)."
-msgstr "A legjobb pajzsok vagy a sarkoknál (római scutum), vagy a szegélynél (görög aspis) vannak megerősítve."
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
-msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr "Lándzsás gyalogosoknak +1 szúrás páncél szint."
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
-msgid "Reinforced Shield"
-msgstr "Megerősített pajzs"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
-msgid "Aspís"
-msgstr "Aspís"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
-msgid "A bronze skin hammered over the face of the shield."
-msgstr "Bronz borítás a pajzs lapjára kalapálva."
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
-msgid "Bronze Shield Facing"
-msgstr "Bronz pajzsborítás"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
-msgid "Khalkaspís"
-msgstr "Khalkaspís"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.mace
-msgid "Khrysaspís"
-msgstr "Khrysaspís"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsondescription
-msgid ""
-"Only the most celebrated soldiers had shields faced with silver, as did the "
-"famous 'Silver Shields' regiment in Alexander the Great's army."
-msgstr "Csak a legünnepeltebb katonáknak volt ezüsttel ellátott pajzslapja, mint a híres „Ezüst pajzsos” ezrednek Nagy Sándor seregében."
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
-msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
-msgstr "Bajnokoknak +2 szúrás páncél szint, de +10 fém költség."
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
-msgid "Silver Shields"
-msgstr "Ezüst pajzsos"
-
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
-msgid "Argyraspís"
-msgstr "Argyraspís"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
@@ -493,35 +295,6 @@ msgstr "Fából készült erősítő gerendák a hajótestekhez. +2 szint minden
 msgid "Reinforced hull"
 msgstr "Megerősített hajótest"
 
-#: simulation/data/technologies/attack_cav_lance.jsondescription
-msgid "A long spear made specifically for cavalry."
-msgstr "Egy hosszú lándzsa kifejezetten a lovasságnak készítve."
-
-#: simulation/data/technologies/attack_cav_lance.jsontooltip
-msgid ""
-"Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr "A közelharci lovasság felszerelése jobb fegyverekkel. Közelharci lovasságnak +2 vágás támadás."
-
-#: simulation/data/technologies/attack_cav_lance.jsongenericName
-msgid "Cavalry Lance"
-msgstr "Kopjás lovasság"
-
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.ptol
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.spart
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.sele
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.athen
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.mace
-msgid "Xystón"
-msgstr "Xystón"
-
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.rome
-msgid "Hasta"
-msgstr "Hasta"
-
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
 msgstr "A kiképzés növeli a közelharci támadást."
@@ -557,6 +330,13 @@ msgstr "Közelharci lovasság kiképzés"
 msgid "Xyston"
 msgstr "Xyston"
 
+#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
+#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.rome
+#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.rome
+#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.rome
+msgid "Hasta"
+msgstr "Hasta"
+
 #: simulation/data/technologies/attack_cavalry_melee_02.jsondescription
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsondescription
 msgid "Replaces bronze weapons with iron."
@@ -590,33 +370,7 @@ msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
 msgstr "A távolsági lovasság felszerelése jobb fegyverekkel. +20% távolsági lovasság támadás."
 
-#: simulation/data/technologies/attack_champions_elite.jsondescription
-msgid "Guard units have uncommon bravery and valor in battle."
-msgstr "A védőegységeknek rendkívüli bátorságuk és hősiességük van a csatában."
-
-#: simulation/data/technologies/attack_champions_elite.jsontooltip
-msgid ""
-"Guard units have uncommon courage and valor in battle. Champions +2 attack."
-msgstr "A védőegységeknek rendkívüli bátorságuk és hősiességük van a csatában. Bajnokoknak +2 támadás."
-
-#: simulation/data/technologies/attack_champions_elite.jsongenericName
-msgid "Heroism"
-msgstr "Hősiesség"
-
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.ptol
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.spart
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.sele
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.mace
-msgid "Andreía"
-msgstr "Andreía"
-
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.rome
-msgid "Fortitudo"
-msgstr "Lelkierő"
-
 #: simulation/data/technologies/attack_infantry_melee_01.jsondescription
-#: simulation/data/technologies/melee_inf_sidearms.jsondescription
 msgid ""
 "Often, an infantryman would carry a secondary weapon in addition to his "
 "primary weapon of choice, to be drawn when the primary weapon has failed or "
@@ -629,7 +383,6 @@ msgid "+20% melee infantry attack."
 msgstr "+20% közelharci gyalogság támadás."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
-#: simulation/data/technologies/melee_inf_sidearms.jsongenericName
 msgid "Side Arms"
 msgstr "Oldalfegyverek"
 
@@ -638,16 +391,10 @@ msgstr "Oldalfegyverek"
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.athen
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.mace
-#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.ptol
-#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.spart
-#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.sele
-#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.athen
-#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.mace
 msgid "Xíphos"
 msgstr "Xíphos"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.rome
-#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.rome
 msgid "Pugio"
 msgstr "Pugio"
 
@@ -657,18 +404,15 @@ msgstr "Bronz helyett vas használata többlet erőt ad a fegyvereknek."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsondescription
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
-#: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry."
 msgstr "A kiképzés növeli a távolsági gyalogosok sebzését."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
-#: simulation/data/technologies/ranged_inf_irregulars.jsontooltip
 msgid "+20% ranged infantry attack."
 msgstr "+20% távolsági gyalogság támadás."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
-#: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
 msgid "Ranged Infantry Irregulars"
 msgstr "Távolsági gyalogság partizáncsapatok"
 
@@ -682,11 +426,6 @@ msgstr "Távolsági gyalogság partizáncsapatok"
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.ptol
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.spart
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.athen
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.sele
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.mace
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.ptol
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.spart
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.athen
 msgid "Átaktoi"
 msgstr "Átaktoi"
 
@@ -755,7 +494,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "Infantry movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Az elit osztályra képzett egységek a következő bónuszokat kapják: 20% további életerő, 1 további páncélszint minden típusból, 20% további zsákmány, 20%-kal nagyobb támadás a közelharci egységeknek, 4 m további hatótávolság és jobb pontosság a távolsági egységeknek, gyorsabb gyalogsági mozgási sebesség és további gyógyítási sebesség és hatótáv a gyógyítóknak."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -1136,109 +875,6 @@ msgstr "Városfalaknak +2 zúzás páncél szint, de +10% építési idő."
 msgid "Geometric Masonry"
 msgstr "Mértani falazás"
 
-#: simulation/data/technologies/melee_inf_sidearms.jsontooltip
-msgid "Melee infantry +1 hack attack."
-msgstr "Közelharci gyalogságnak +1 vágás támadás."
-
-#: simulation/data/technologies/melee_inf_spearheads.jsondescription
-msgid "Using iron instead of bronze gave spears additional piercing power."
-msgstr "Bronz helyett a vas használata további átütőerőt adott a lándzsáknak."
-
-#: simulation/data/technologies/melee_inf_spearheads.jsontooltip
-msgid "All Spear units +2 hack attack."
-msgstr "Minden lándzsás egységnek +2 vágás támadás."
-
-#: simulation/data/technologies/melee_inf_spearheads.jsongenericName
-msgid "Iron Spearheads"
-msgstr "Vas lándzsahegyek"
-
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.sele
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.ptol
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.mace
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.spart
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.athen
-msgid "Sidḗreai Aikhmaí"
-msgstr "Sidḗreai Aikhmaí"
-
-#: simulation/data/technologies/pair_cav_01.jsongenericName
-msgid "Lance vs. Chamfron"
-msgstr "Kopja ↔ chamfron"
-
-#: simulation/data/technologies/pair_champ_02.jsongenericName
-msgid "Champions vs. Part-timers"
-msgstr "Bajnokok ↔ részmunkaidősök"
-
-#: simulation/data/technologies/pair_gather_01.jsongenericName
-msgid "Servants vs. Wedge and Mallet"
-msgstr "Szolgák ↔ ék és fakalapács"
-
-#: simulation/data/technologies/pair_gather_02.jsongenericName
-msgid "Serfs vs. Shaft Mining"
-msgstr "Jobbágyok ↔ tárnás bányászat"
-
-#: simulation/data/technologies/pair_gather_03.jsongenericName
-msgid "Slaves vs. Silver Mining"
-msgstr "Rabszolgák ↔ ezüstbányászat"
-
-#: simulation/data/technologies/pair_gather_wood_01.jsongenericName
-msgid "Iron Axes vs. Wheelbarrow"
-msgstr "Vas fejszék ↔ talicska"
-
-#: simulation/data/technologies/pair_heal_01.jsongenericName
-msgid "Heal Range and Rate"
-msgstr "Gyógyítási hatótávolság és sebesség"
-
-#: simulation/data/technologies/pair_heal_02.jsongenericName
-msgid "Heal Range and Rate #2"
-msgstr "Gyógyítási hatótávolság és sebesség #2"
-
-#: simulation/data/technologies/pair_heal_03.jsongenericName
-msgid "Garrison Healing vs. Self-Healing"
-msgstr "Beszállásolási gyógyulás ↔ öngyógyulás"
-
-#: simulation/data/technologies/pair_house_01.jsongenericName
-msgid "Females vs. Population"
-msgstr "Nők ↔ népesség"
-
-#: simulation/data/technologies/pair_house_02.jsongenericName
-msgid "Female Citizens vs Population"
-msgstr "Női polgárok ↔ népesség"
-
-#: simulation/data/technologies/pair_inf_01.jsongenericName
-msgid "Side Arms vs. Irregulars"
-msgstr "Oldalfegyverek ↔ partizánok"
-
-#: simulation/data/technologies/pair_inf_02.jsongenericName
-msgid "Spear Fighting vs. Skirmishing"
-msgstr "Lándzsás küzdelem ↔ csatározás"
-
-#: simulation/data/technologies/pair_inf_armor_01.jsongenericName
-#: simulation/data/technologies/pair_inf_armor_02.jsongenericName
-#: simulation/data/technologies/pair_inf_armor_03.jsongenericName
-#: simulation/data/technologies/pair_inf_armor_04.jsongenericName
-msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr "Gyalogsági vágás páncél ↔ lándzsás szúrás páncél"
-
-#: simulation/data/technologies/pair_levy_01.jsongenericName
-msgid "Levy Infantry vs. Levy Cavalry"
-msgstr "Gyalogság besorozása ↔ lovasság besorozása"
-
-#: simulation/data/technologies/pair_siege_attack_cost.jsongenericName
-msgid "Attack vs. Cost"
-msgstr "Támadás ↔ költség"
-
-#: simulation/data/technologies/pair_siege_attack_pack.jsongenericName
-msgid "Attack vs. Packing"
-msgstr "Támadás ↔ csomagolás"
-
-#: simulation/data/technologies/pair_siege_cost_armor.jsongenericName
-msgid "Cost vs. Armor"
-msgstr "Költség ↔ páncél"
-
-#: simulation/data/technologies/pair_tower_01.jsongenericName
-msgid "Night's Watch vs. Crenellations"
-msgstr "Éjjeli őrség ↔ csipkézett várfal "
-
 #: simulation/data/technologies/pair_walls_01.jsongenericName
 msgid "Walls build time vs. Health"
 msgstr "Falak építési ideje ↔ életerő"
@@ -1349,47 +985,6 @@ msgstr "Városi szakasszá fejlődés, amely több épületet és egységet tesz
 msgid "Village Phase"
 msgstr "Falusi szakasz"
 
-#: simulation/data/technologies/pop_civic_01.jsondescription
-msgid ""
-"The state or tribe would often construct a dining hall for public feasts or "
-"to receive foreign emissaries."
-msgstr "Az állam vagy törzs gyakran egy nagy étkezőt építene a nyilvános ünnepekhez vagy idegen követek fogadásához."
-
-#: simulation/data/technologies/pop_civic_01.jsontooltip
-#: simulation/data/technologies/pop_civic_02.jsontooltip
-msgid "Civic Centers +5 population cap bonus."
-msgstr "Városházáknak +5 népességkorlát bónusz."
-
-#: simulation/data/technologies/pop_civic_01.jsongenericName
-msgid "Dining Hall"
-msgstr "Nagy étkező"
-
-#: simulation/data/technologies/pop_civic_01.jsonspecificName.athen
-msgid "Thólos"
-msgstr "Thólos"
-
-#: simulation/data/technologies/pop_civic_02.jsondescription
-msgid ""
-"Public assembly places were often the center of civic life for ancient "
-"societies. Athens had the Ekklesia, the citizens' assembly which met on the "
-"Pnyx Hill near the agora in full view of the Acropolis. The Romans had an "
-"open-aired assembly place in the great Forum Romanum called the Comitium. "
-"Here citizens could air grievances and present petitions to the patrician "
-"politicians who ruled their city in the Senate."
-msgstr "A népgyűlési helyek gyakran a polgári élet központjai voltak az ősi társadalmaknál. Az athéniak az Ekklesia volt a polgárok gyűlése, amely Pnyx-hegyen ült össze a piactér közelében, teljes kilátással az Akropoliszra. A rómaiaknak egy nyitott gyülekezőhelyük volt a nagy Forum Romanumban, amit Comitiumnak hívtak. Itt a polgárok megszellőztethették a sérelmüket és petíciókat nyújthattak be a patrícius politikusoknak, akik a szenátusban irányították a városukat."
-
-#: simulation/data/technologies/pop_civic_02.jsongenericName
-msgid "Public Assembly"
-msgstr "Népgyűlés"
-
-#: simulation/data/technologies/pop_civic_02.jsonspecificName.rome
-msgid "Comitium"
-msgstr "Comitium"
-
-#: simulation/data/technologies/pop_civic_02.jsonspecificName.athen
-msgid "Ekklēsía"
-msgstr "Ekklēsía"
-
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
 "Home gardens ranged from simple fenced-in areas to large manicured and "
@@ -1452,33 +1047,6 @@ msgstr "Dicsőséges hódítás engedélyezése. A népességkorlát további n�
 msgid "Glorious Expansion"
 msgstr "Dicsőséges hódítás"
 
-#: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
-msgid ""
-"The javelin thong (the Greeks also called them loops, or bronkhos) increased"
-" the fulcrum action of the throwing arm mid-throw, increasing speed and "
-"range of the javelin."
-msgstr "A gerely tartószíj (a görögök hurkoknak vagy bronkhosnak is hívják) növelte a dobó kar középdobás forgáspont műveletét növelve a gerely sebességét és hatótávolságát."
-
-#: simulation/data/technologies/ranged_inf_skirmishers.jsontooltip
-msgid "All Javelin units +2 pierce attack and +4 range."
-msgstr "Minden dárdás egységnek +2 szúrás támadás és +4 hatótávolság."
-
-#: simulation/data/technologies/ranged_inf_skirmishers.jsongenericName
-msgid "Javelin Thong"
-msgstr "Gerely tartószíj"
-
-#: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.ptol
-#: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.spart
-#: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.sele
-#: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.athen
-#: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.mace
-msgid "Himás"
-msgstr "Himás"
-
-#: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.rome
-msgid "Amentum"
-msgstr "Amentum"
-
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege engines."
 msgstr "Megnövelt páncél az ostromgépeken."
@@ -1538,18 +1106,6 @@ msgstr "Az ostromgépek 20%-kal kevesebb fába kerülnek."
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
 msgstr "Tüzérségi utasítások"
-
-#: simulation/data/technologies/siege_packing.jsondescription
-msgid "Immobile siege engines are assembled and disassembled faster."
-msgstr "A rögzített ostromgépeket gyorsabban szerelik össze és szét."
-
-#: simulation/data/technologies/siege_packing.jsontooltip
-msgid "Siege Engines −25% pack and unpack time."
-msgstr "Ostromgépeknek 25%-kal kevesebb kicsomagolási és becsomagolási idő."
-
-#: simulation/data/technologies/siege_packing.jsongenericName
-msgid "Military Engineers"
-msgstr "Hadmérnökök"
 
 #: simulation/data/technologies/speed_cavalry_01.jsondescription
 msgid "Breed the fastest horses."
@@ -1755,40 +1311,6 @@ msgstr "Gyorsabb csoportos kiképzési sebesség a laktanyákban."
 msgid "Conscription"
 msgstr "Sorozás"
 
-#: simulation/data/technologies/training_levy_cavalry.jsondescription
-#: simulation/data/technologies/persians/training_levy_cavalry.jsondescription
-msgid ""
-"Calling up cavalry levies in time of war helps bolster the ranks of a king's"
-" army."
-msgstr "A lovasság besorozása segít megerősíteni a király seregének sorait háború idején."
-
-#: simulation/data/technologies/training_levy_cavalry.jsontooltip
-msgid ""
-"All cavalry -20% train time, but also -10 health. Unlocks Conscription."
-msgstr "Összes lovas egységnek -20% kiképzési idő, de -10 életerő. Elérhetővé teszi a sorozást."
-
-#: simulation/data/technologies/training_levy_cavalry.jsongenericName
-#: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
-msgid "Levy Cavalry"
-msgstr "Lovasság besorozása"
-
-#: simulation/data/technologies/training_levy_infantry.jsondescription
-#: simulation/data/technologies/persians/training_levy_infantry.jsondescription
-msgid ""
-"Calling up infantry levies in time of war helps bolster the ranks of a "
-"king's army."
-msgstr "A gyalogság besorozása segít megerősíteni a király seregének sorait háború idején."
-
-#: simulation/data/technologies/training_levy_infantry.jsontooltip
-msgid ""
-"All infantry -10% train time, but also -5 health. Unlocks Conscription."
-msgstr "Összes gyalogos egységnek -10% kiképzési idő, de -5 életerő. Elérhetővé teszi a sorozást."
-
-#: simulation/data/technologies/training_levy_infantry.jsongenericName
-#: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
-msgid "Levy Infantry"
-msgstr "Gyalogság besorozása"
-
 #: simulation/data/technologies/training_naval_architects.jsondescription
 msgid "Significantly increase build speed of batches of ships at the Dock."
 msgstr "Jelentősen növeli a hajócsoportok építési sebességét a kikötőben."
@@ -1898,43 +1420,6 @@ msgstr "Lefizethetővé teszi a többi játékos egységeit, hogy osztozz a lát
 msgid "Espionage"
 msgstr "Kémkedés"
 
-#: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
-#: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
-msgid "Promote all of your citizen-soldier cavalrymen to Advanced rank."
-msgstr "Minden lovas polgár előléptetése fejlett rangra."
-
-#: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsontooltip
-msgid ""
-"Promote all of your citizen-soldier cavalrymen to Advanced rank. This "
-"increases their military prowess, but decreases their meat gathering rates "
-"-25%. Unlocks Elite Citizen-Cavalry technology."
-msgstr "Minden lovas polgár előléptetése fejlett rangra. Ez növeli a harci képességeiket, de -25% a húsgyűjtési sebességükre. Elérhetővé teszi at elit polgár lovas fejlesztést."
-
-#: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsongenericName
-msgid "Advanced Citizen-Cavalry"
-msgstr "Fejlett lovas polgár"
-
-#: simulation/data/technologies/upgrade_rank_advanced_infantry.jsondescription
-msgid "Upgrade all of your citizen-soldier infantrymen to Advanced rank."
-msgstr "Minden gyalogos polgár előléptetése fejlett rangra."
-
-#: simulation/data/technologies/upgrade_rank_advanced_infantry.jsontooltip
-msgid ""
-"Upgrade all of your citizen-soldier infantrymen to Advanced rank. This "
-"increases their military prowess, but decreases their resource gathering "
-"rates -25%. Unlocks Elite Citizen-Infantry technology."
-msgstr "Minden gyalogos polgár előléptetése fejlett rangra. Ez növeli a harci képességeiket, de -25% a húsgyűjtési sebességükre. Elérhetővé teszi az elit gyalogos polgár fejlesztést."
-
-#: simulation/data/technologies/upgrade_rank_advanced_infantry.jsongenericName
-msgid "Advanced Citizen-Infantry"
-msgstr "Fejlett gyalogos polgár"
-
-#: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.mace
-#: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.spart
-#: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.athen
-msgid "Zeugítai"
-msgstr "Zeugítai"
-
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
 msgstr "Hivatásos zsoldosok felbérlése, hogy a seregedben harcoljanak."
@@ -1947,137 +1432,6 @@ msgstr "A zsoldosok fejlett ranggal érkeznek, de +20%-kal hosszabb a kiképzés
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
 msgstr "Hadi tapasztalat"
-
-#: simulation/data/technologies/upgrade_rank_elite_cavalry.jsontooltip
-msgid ""
-"Promote all of your citizen-soldier cavalrymen to Elite rank. This increases"
-" their military prowess, but decreases their meat gathering rates another "
-"-25%."
-msgstr "Minden lovas polgár előléptetése elit rangra. Ez növeli a harci képességeiket, de -25% a húsgyűjtési sebességükre."
-
-#: simulation/data/technologies/upgrade_rank_elite_cavalry.jsongenericName
-msgid "Elite Citizen-Cavalry"
-msgstr "Elit lovas polgár"
-
-#: simulation/data/technologies/upgrade_rank_elite_infantry.jsondescription
-msgid "Upgrade all of your citizen-soldier infantrymen to Elite rank."
-msgstr "Minden gyalogos polgár előléptetése elit rangra."
-
-#: simulation/data/technologies/upgrade_rank_elite_infantry.jsontooltip
-msgid ""
-"Upgrade all of your citizen-soldier infantrymen to Elite rank. This "
-"increases their military prowess, but decreases their resource gathering "
-"rates another -25%."
-msgstr "Minden gyalogos polgár előléptetése elit rangra. Ez növeli a harci képességeiket, de további -25% a erőforrásgyűjtési sebességükre."
-
-#: simulation/data/technologies/upgrade_rank_elite_infantry.jsongenericName
-msgid "Elite Citizen-Infantry"
-msgstr "Elit gyalogos polgár"
-
-#: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.mace
-#: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.spart
-#: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
-msgid "Pentakosiomédimnoi"
-msgstr "Pentakosiomédimnoi"
-
-#: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
-#: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
-msgid "Celtic mercenaries have their metal cost decreased."
-msgstr "A kelta zsoldosok fémköltsége alacsonyabb."
-
-#: simulation/data/technologies/carthaginians/cost_celt_mercs.jsontooltip
-msgid ""
-"Hire a Celtic mercenary captain to reduce cost -20 metal for Celtic "
-"mercenaries."
-msgstr "Bérelj fel egy kelta zsoldoskapitányt, így -20 minden kelta zsoldos fémköltségére."
-
-#: simulation/data/technologies/carthaginians/cost_celt_mercs.jsongenericName
-msgid "Celtic Mercenary Captain"
-msgstr "Kelta zsoldoskapitány"
-
-#: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsontooltip
-msgid ""
-"Hire a Gallic mercenary general to reduce cost -20 metal for Celtic "
-"mercenaries."
-msgstr "Bérelj fel egy gall zsoldos tábornokot, így -20 minden kelta zsoldos fémköltségére."
-
-#: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsongenericName
-msgid "Gallic Mercenary General"
-msgstr "Gall zsoldos tábornok"
-
-#: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsondescription
-#: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsondescription
-msgid "Iberian mercenaries have their metal cost decreased."
-msgstr "Az ibériai zsoldosok fémköltsége alacsonyabb."
-
-#: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsontooltip
-msgid ""
-"Hire a Lusitanian mercenary captain to reduce cost -20 metal for Iberian "
-"mercenaries."
-msgstr "Bérelj fel egy luzitán zsoldoskapitányt, így -20 minden ibériai zsoldos fémköltségére."
-
-#: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsongenericName
-msgid "Lusitanian Mercenary Captain"
-msgstr "Luzitán zsoldoskapitány"
-
-#: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsontooltip
-msgid ""
-"Hire a Celtiberian mercenary general to reduce cost -20 metal for Iberian "
-"mercenaries."
-msgstr "Bérelj fel egy keltibér zsoldos tábornokat, így -20 minden ibériai zsoldos fémköltségére."
-
-#: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsongenericName
-msgid "Celtiberian Mercenary General"
-msgstr "Keltibér zsoldos tábornok"
-
-#: simulation/data/technologies/carthaginians/cost_italian_mercs.jsondescription
-#: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsondescription
-msgid "Italian mercenaries have their metal cost decreased."
-msgstr "Az itáliai zsoldosok fémköltsége alacsonyabb."
-
-#: simulation/data/technologies/carthaginians/cost_italian_mercs.jsontooltip
-msgid ""
-"Hire an Italiote mercenary captain to reduce cost -20 metal for Italian "
-"mercenaries."
-msgstr "Bérelj fel egy italióta zsoldoskapitányt, így -20 minden itáliai zsoldos fémköltségére."
-
-#: simulation/data/technologies/carthaginians/cost_italian_mercs.jsongenericName
-msgid "Italiote Mercenary Captain"
-msgstr "Italióta zsoldoskapitány"
-
-#: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsontooltip
-msgid ""
-"Hire an Italiote mercenary general to reduce cost -20 metal for Italian "
-"mercenaries."
-msgstr "Bérelj fel egy italióta zsoldos tábornokot, így -20 minden itáliai zsoldos fémköltségére."
-
-#: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsongenericName
-msgid "Italiote Mercenary General"
-msgstr "Italióta zsoldos tábornok"
-
-#: simulation/data/technologies/carthaginians/pair_celt_mercs_1.jsongenericName
-msgid "Celtic merc cost vs. recruit time #1"
-msgstr "Kelta zsoldosok költsége ↔ kiképzési idő #1"
-
-#: simulation/data/technologies/carthaginians/pair_celt_mercs_2.jsongenericName
-msgid "Celtic merc cost vs. recruit time #2"
-msgstr "Kelta zsoldosok költsége ↔ kiképzési idő #2"
-
-#: simulation/data/technologies/carthaginians/pair_iberian_mercs_1.jsongenericName
-msgid "Iberian merc cost vs. recruit time #1"
-msgstr "Ibériai zsoldosok költsége ↔ kiképzési idő #1"
-
-#: simulation/data/technologies/carthaginians/pair_iberian_mercs_2.jsongenericName
-msgid "Iberian merc cost vs. recruit time #2"
-msgstr "Ibériai zsoldosok költsége ↔ kiképzési idő #2"
-
-#: simulation/data/technologies/carthaginians/pair_italian_mercs_1.jsongenericName
-msgid "Italian merc cost vs. recruit time #1"
-msgstr "Itáliai zsoldosok költsége ↔ kiképzési idő #1"
-
-#: simulation/data/technologies/carthaginians/pair_italian_mercs_2.jsongenericName
-msgid "Italian merc cost vs. recruit time #2"
-msgstr "Itáliai zsoldosok költsége ↔ kiképzési idő #2"
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
 msgid ""
@@ -2122,165 +1476,6 @@ msgstr "A hajógyár építési sebesség bónuszt kap a hajócsoportokra."
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsongenericName
 msgid "Phoenician Naval Architects"
 msgstr "Föníciai hajómérnökök"
-
-#: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsondescription
-#: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsondescription
-msgid "Celtic mercenaries have their train time decreased."
-msgstr "A kelta zsoldosok kiképzési ideje alacsonyabb."
-
-#: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsontooltip
-msgid ""
-"Ally with Celtic towns to reduce recruit time -20% for Celtic mercenaries."
-msgstr "Kelta városokkal kötött szövetség esetén -20% a kelta zsoldosok kiképzési idejéből."
-
-#: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsongenericName
-msgid "Celtic Alliance"
-msgstr "Kelta szövetség "
-
-#: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsontooltip
-msgid ""
-"Subjugate Gallic tribes to reduce recruit time -20% for Celtic mercenaries."
-msgstr "Gall törzsek leigázása esetén -20% a kelta zsoldosok kiképzési idejéből."
-
-#: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsongenericName
-msgid "Gallic Hegemony"
-msgstr "Gall hegemónia"
-
-#: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsondescription
-#: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsondescription
-msgid "Iberian mercenaries have their train time decreased."
-msgstr "Az ibériai zsoldosok kiképzési ideje alacsonyabb."
-
-#: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsontooltip
-msgid ""
-"Ally with Iberian towns to reduce recruit time -20% for Iberian mercenaries."
-msgstr "Ibériai városokkal kötött szövetség esetén -20% az ibériai zsoldosok kiképzési idejéből."
-
-#: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsongenericName
-msgid "Iberian Alliance"
-msgstr "Ibériai szövetség"
-
-#: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
-msgid ""
-"Subjugate Hispania to reduce recruit time -20% for Iberian mercenaries."
-msgstr "Hispánia leigázása esetén -20% az ibériai zsoldosok kiképzési idejéből."
-
-#: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsongenericName
-msgid "Iberian Hegemony"
-msgstr "Ibériai hegemónia"
-
-#: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsondescription
-#: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsondescription
-msgid "Italian mercenaries have their train time decreased."
-msgstr "Az itáliai zsoldosok kiképzési ideje alacsonyabb."
-
-#: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsontooltip
-msgid ""
-"Ally with Italiote towns to reduce recruit time -20% for Italian "
-"mercenaries."
-msgstr "Italióta városokkal kötött szövetség esetén -20% az itáliai zsoldosok kiképzési idejéből."
-
-#: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsongenericName
-msgid "Italiote Alliance"
-msgstr "Italióta szövetség"
-
-#: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsontooltip
-msgid ""
-"Subjugate Italiote towns to reduce recruit time -20% for Italian "
-"mercenaries."
-msgstr "Italióta városok leigázása esetén -20% az itáliai zsoldosok kiképzési idejéből."
-
-#: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsongenericName
-msgid "Italiote Hegemony"
-msgstr "Italióta hegemónia"
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsondescription
-msgid "Upgrade all of your Celtic mercenaries to Advanced rank."
-msgstr "Minden kelta zsoldos előléptetése fejlett rangra."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsontooltip
-msgid ""
-"Upgrade all of your Celtic mercenaries to Advanced rank. This increases "
-"their military prowess, but decreases their resource gathering rates -25%. "
-"Unlocks Elite Celtic Mercenaries technology."
-msgstr "Minden kelta zsoldos előléptetése elit rangra. Ez növeli a harci képességeiket, de -25% a erőforrásgyűjtési sebességükre. Elérhetővé teszi az elit kelta zsoldosok fejlesztést."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsongenericName
-msgid "Advanced Celtic Mercenaries"
-msgstr "Fejlett kelta zsoldosok"
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsondescription
-msgid "Upgrade all of your Iberian mercenaries to Advanced rank."
-msgstr "Minden ibériai zsoldos előléptetése fejlett rangra."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsontooltip
-msgid ""
-"Upgrade all of your Iberian mercenaries to Advanced rank. This increases "
-"their military prowess, but decreases their resource gathering rates -25%. "
-"Unlocks Elite Iberian Mercenaries technology."
-msgstr "Minden ibériai zsoldos előléptetése fejlett rangra. Ez növeli a harci képességeiket, de -25% a erőforrásgyűjtési sebességükre. Elérhetővé teszi az elit ibériai zsoldosok fejlesztést."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsongenericName
-msgid "Advanced Iberian Mercenaries"
-msgstr "Fejlett ibériai zsoldosok"
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsondescription
-msgid "Upgrade all of your Italiote mercenaries to Advanced rank."
-msgstr "Minden italióta zsoldos előléptetése fejlett rangra."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsontooltip
-msgid ""
-"Upgrade all of your Italiote mercenaries to Advanced rank. This increases "
-"their military prowess, but decreases their resource gathering rates -25%. "
-"Unlocks Elite Italiote Mercenaries technology."
-msgstr "Minden italióta zsoldos előléptetése fejlett rangra. Ez növeli a harci képességeiket, de -25% a erőforrásgyűjtési sebességükre. Elérhetővé teszi az elit italióta zsoldosok fejlesztést."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsongenericName
-msgid "Advanced Italiote Mercenaries"
-msgstr "Fejlett italióta zsoldosok"
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsondescription
-msgid "Upgrade all of your Celtic Mercenaries to Elite rank."
-msgstr "Minden kelta zsoldos előléptetése elit rangra."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsontooltip
-msgid ""
-"Upgrade all of your Celtic mercenaries to Elite rank. This increases their "
-"military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Minden kelta zsoldos előléptetése elit rangra. Ez növeli a harci képességeiket, de további -25% a erőforrásgyűjtési sebességükre."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsongenericName
-msgid "Elite Celtic Mercenaries"
-msgstr "Elit kelta zsoldosok"
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsondescription
-msgid "Upgrade all of your Iberian Mercenaries to Elite rank."
-msgstr "Minden ibériai zsoldos előléptetése elit rangra."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsontooltip
-msgid ""
-"Upgrade all of your Iberian mercenaries to Elite rank. This increases their "
-"military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Minden ibériai zsoldos előléptetése elit rangra. Ez növeli a harci képességeiket, de további -25% a erőforrásgyűjtési sebességükre."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
-msgid "Elite Iberian Mercenaries"
-msgstr "Elit ibériai gyalogosok"
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsondescription
-msgid "Upgrade all of your Italiote Mercenaries to Elite rank."
-msgstr "Minden italióta zsoldos előléptetése elit rangra."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsontooltip
-msgid ""
-"Upgrade all of your Italiote mercenaries to Elite rank. This increases their"
-" military prowess, but decreases their resource gathering rates another "
-"-25%."
-msgstr "Minden italióta zsoldos előléptetése elit rangra. Ez növeli a harci képességeiket, de további -25% a erőforrásgyűjtési sebességükre."
-
-#: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
-msgid "Elite Italiote Mercenaries"
-msgstr "Elit italióta zsoldosok"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
@@ -2395,24 +1590,6 @@ msgstr "-10%-kal alacsonyabb maximális népességkorlát a spártaiaknál."
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"
 msgstr "A gyengébb fél"
-
-#: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
-msgid "Spear fighting training increases damage of infantry spear units."
-msgstr "A lándzsás harci kiképzés növeli a lándzsás gyalogos egységek sebzését."
-
-#: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
-msgid "Spearmen +2 hack attack."
-msgstr "Minden lándzsás gyalogosnak +2 vágás támadás."
-
-#: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
-msgid "Infantry Spear Fighting"
-msgstr "Gyalogsági lándzsás harc"
-
-#: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
-#: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.spart
-#: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
-msgid "Doratismós"
-msgstr "Doratismós"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2551,11 +1728,27 @@ msgstr "Lovasság sorozása"
 msgid "Infantry Conscription"
 msgstr "Gyalogság sorozása"
 
+#: simulation/data/technologies/persians/training_levy_cavalry.jsondescription
+msgid ""
+"Calling up cavalry levies in time of war helps bolster the ranks of a king's"
+" army."
+msgstr "A lovasság besorozása segít megerősíteni a király seregének sorait háború idején."
+
 #: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
 msgstr "Minden lovassági egységnek -20% kiképzési idő, de -5% életerő. Elérhetővé teszi a lovasság sorozását."
+
+#: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
+msgid "Levy Cavalry"
+msgstr "Lovasság besorozása"
+
+#: simulation/data/technologies/persians/training_levy_infantry.jsondescription
+msgid ""
+"Calling up infantry levies in time of war helps bolster the ranks of a "
+"king's army."
+msgstr "A gyalogság besorozása segít megerősíteni a király seregének sorait háború idején."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
@@ -2563,17 +1756,9 @@ msgid ""
 "Conscription."
 msgstr "Minden gyalogsági egységnek -20% kiképzési idő, de -5% életerő. Elérhetővé teszi a gyalogság sorozását."
 
-#: simulation/data/technologies/romans/decay_logistics.jsondescription
-msgid "The Romans were masters of the logistics of warfare."
-msgstr "A rómaiak a háborús logisztika mesterei voltak."
-
-#: simulation/data/technologies/romans/decay_logistics.jsontooltip
-msgid "Entrenched Camps and Siege Walls decay 50% slower."
-msgstr "Rögzített Táborok és Ostrom Falak pusztulása 50%-al lassabb."
-
-#: simulation/data/technologies/romans/decay_logistics.jsongenericName
-msgid "Roman Logistics"
-msgstr "Római logisztika"
+#: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
+msgid "Levy Infantry"
+msgstr "Gyalogság besorozása"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsondescription
 msgid ""
