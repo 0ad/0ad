@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_embassy">
+  <BuildRestrictions>
+    <Territory>own neutral</Territory>
+  </BuildRestrictions>
   <Cost>
     <Resources>
       <wood>100</wood>
@@ -33,6 +36,10 @@
       units/{civ}_cavalry_javelinist_merc_b
     </Entities>
   </ProductionQueue>
+  <TerritoryDecay>
+    <DecayRate>1</DecayRate>
+  </TerritoryDecay>
+  <TerritoryInfluence disable=""/>
   <VisualActor>
     <Actor>structures/mercenaries/camp_blemmye.xml</Actor>
     <FoundationActor>structures/fndn_8x7.xml</FoundationActor>
