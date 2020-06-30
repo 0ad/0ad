@@ -198,7 +198,32 @@ private:
 	 * Returns all reachable regions, optionally ordered in a specific manner.
 	 */
 	template<typename Ordering>
-	void FindReachableRegions(RegionID from, std::set<RegionID, Ordering>& reachable, pass_class_t passClass) const;
+	void FindReachableRegions(RegionID from, std::set<RegionID, Ordering>& reachable, pass_class_t passClass) const
+	{
+		// Flood-fill the region graph, starting at 'from',
+		// collecting all the regions that are reachable via edges
+		reachable.insert(from);
+
+		const EdgesMap& edgeMap = m_Edges.at(passClass);
+		if (edgeMap.find(from) == edgeMap.end())
+			return;
+
+		std::vector<RegionID> open;
+		open.reserve(64);
+		open.push_back(from);
+
+		while (!open.empty())
+		{
+			RegionID curr = open.back();
+			open.pop_back();
+
+			for (const RegionID& region : edgeMap.at(curr))
+				// Add to the reachable set; if this is the first time we added
+				// it then also add it to the open list
+				if (reachable.insert(region).second)
+					open.push_back(region);
+		}
+	}
 
 	struct SortByCenterToPoint
 	{
