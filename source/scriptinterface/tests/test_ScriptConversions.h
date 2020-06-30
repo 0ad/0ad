@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -148,9 +148,9 @@ public:
 
 		roundtrip<std::string>("", "\"\"");
 		roundtrip<std::string>("test", "\"test\"");
-		roundtrip<std::string>("тест", "\"\\xD1\\x82\\xD0\\xB5\\xD1\\x81\\xD1\\x82\"");
+		roundtrip<std::string>("тест", "\"\\u0442\\u0435\\u0441\\u0442\"");
 		roundtrip<std::string>(s1, "\"t\\x00st\"");
-		roundtrip<std::string>(s2, "\"\\xD1\\x82\\x00\\x00\\xD1\\x81\\xD1\\x82\"");
+		roundtrip<std::string>(s2, "\"\\u0442\\x00\\x00\\u0441\\u0442\"");
 
 		roundtrip<std::wstring>(L"", "\"\"");
 		roundtrip<std::wstring>(L"test", "\"test\"");
@@ -250,5 +250,29 @@ public:
 
 		CFixedVector3D u(fixed::Pi(), fixed::Zero(), fixed::FromInt(2));
 		call_prototype_function<CFixedVector3D>(u, v, "add", "({x:3.1415863037109375, y:3.1415863037109375, z:3})");
+	}
+
+	void test_utf8utf16_conversion()
+	{
+		// Fancier conversion: we store UTF8 and get UTF16 and vice-versa
+		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		TS_ASSERT(script.LoadGlobalScripts());
+		JSContext* cx = script.GetContext();
+		JSAutoRequest rq(cx);
+
+		std::string in_utf8("éè!§$-aezi134900°°©©¢¢ÇÇ‘{¶«¡Ç’[å»ÛÁØ");
+		std::wstring in_utf16(L"éè!§$-aezi134900°°©©¢¢ÇÇ‘{¶«¡Ç’[å»ÛÁØ");
+
+		JS::RootedValue v1(cx);
+		ScriptInterface::ToJSVal(cx, &v1, in_utf8);
+		std::wstring test_out_utf16;
+		TS_ASSERT(ScriptInterface::FromJSVal(cx, v1, test_out_utf16));
+		TS_ASSERT_EQUALS(test_out_utf16, in_utf16);
+
+		JS::RootedValue v2(cx);
+		ScriptInterface::ToJSVal(cx, &v2, in_utf16);
+		std::string test_out_utf8;
+		TS_ASSERT(ScriptInterface::FromJSVal(cx, v2, test_out_utf8));
+		TS_ASSERT_EQUALS(test_out_utf8, in_utf8);
 	}
 };

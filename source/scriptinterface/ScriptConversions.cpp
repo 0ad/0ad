@@ -158,16 +158,10 @@ template<> bool ScriptInterface::FromJSVal<Path>(JSContext* cx, JS::HandleValue 
 
 template<> bool ScriptInterface::FromJSVal<std::string>(JSContext* cx, JS::HandleValue v, std::string& out)
 {
-	JSAutoRequest rq(cx);
-	WARN_IF_NOT(v.isString() || v.isNumber(), v); // allow implicit number conversions
-	JS::RootedString str(cx, JS::ToString(cx, v));
-	if (!str)
-		FAIL("Argument must be convertible to a string");
-	char* ch = JS_EncodeString(cx, str); // chops off high byte of each char16_t
-	if (!ch)
-		FAIL("JS_EncodeString failed"); // out of memory
-	out.assign(ch, ch + JS_GetStringLength(str));
-	JS_free(cx, ch);
+	std::wstring wideout;
+	if (!FromJSVal(cx, v, wideout))
+		return false;
+	out = CStrW(wideout).ToUTF8();
 	return true;
 }
 
@@ -265,12 +259,7 @@ template<> void ScriptInterface::ToJSVal<Path>(JSContext* cx, JS::MutableHandleV
 
 template<> void ScriptInterface::ToJSVal<std::string>(JSContext* cx, JS::MutableHandleValue ret, const std::string& val)
 {
-	JSAutoRequest rq(cx);
-	JS::RootedString str(cx, JS_NewStringCopyN(cx, val.c_str(), val.length()));
-	if (str)
-		ret.setString(str);
-	else
-		ret.setUndefined();
+	ToJSVal(cx, ret, static_cast<const std::wstring>(CStr(val).FromUTF8()));
 }
 
 template<> void ScriptInterface::ToJSVal<const wchar_t*>(JSContext* cx, JS::MutableHandleValue ret, const wchar_t* const& val)
