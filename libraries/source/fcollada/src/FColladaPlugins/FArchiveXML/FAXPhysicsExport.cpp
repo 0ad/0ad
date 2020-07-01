@@ -329,16 +329,3 @@ void FArchiveXML::WritePhysicsRigidBodyParameters(FCDPhysicsRigidBodyParameters*
 		FArchiveXML::LetWriteObject(physicsRigidBodyParameters->GetPhysicsShape(i), techniqueNode);
 	}
 }
-
-template <class TYPE, int QUAL>
-xmlNode* FArchiveXML::AddPhysicsParameter(xmlNode* parentNode, const char* name, FCDParameterAnimatableT<TYPE,QUAL>& value)
-{
-	xmlNode* paramNode = AddChild(parentNode, name);
-	AddContent(paramNode, FUStringConversion::ToString((TYPE&) value));
-	if (value.IsAnimated())
-	{
-		const FCDAnimated* animated = value.GetAnimated();
-		FArchiveXML::WriteAnimatedValue(animated, paramNode, name);
-	}
-	return paramNode;
-}

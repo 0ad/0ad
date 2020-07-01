@@ -553,7 +553,16 @@ public:
 
 	static void WritePhysicsRigidBodyParameters(FCDPhysicsRigidBodyParameters* physicsRigidBodyParameters, xmlNode* techniqueNode);
 	template <class TYPE, int QUAL>
-	static xmlNode* AddPhysicsParameter(xmlNode* parentNode, const char* name, FCDParameterAnimatableT<TYPE,QUAL>& value);
+	static xmlNode* AddPhysicsParameter(xmlNode* parentNode, const char* name, FCDParameterAnimatableT<TYPE,QUAL>& value) {
+		xmlNode* paramNode = AddChild(parentNode, name);
+		AddContent(paramNode, FUStringConversion::ToString((TYPE&) value));
+		if (value.IsAnimated())
+		{
+			const FCDAnimated* animated = value.GetAnimated();
+			FArchiveXML::WriteAnimatedValue(animated, paramNode, name);
+		}
+		return paramNode;
+	}
 
 
 	//
