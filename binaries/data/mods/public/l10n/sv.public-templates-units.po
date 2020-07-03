@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-12 07:09+0000\n"
-"PO-Revision-Date: 2020-06-12 09:32+0000\n"
+"POT-Creation-Date: 2020-06-26 07:10+0000\n"
+"PO-Revision-Date: 2020-06-26 09:27+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -69,17 +69,21 @@ msgid "Basic"
 msgstr "Enkel"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:21
+#: simulation/templates/template_unit_champion_cavalry_axeman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:35
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:30
 #: simulation/templates/template_unit_champion_elephant_melee.xml:16
+#: simulation/templates/template_unit_champion_infantry_axeman.xml:30
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:30
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:36
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:35
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:30
 #: simulation/templates/template_unit_dog.xml:40
+#: simulation/templates/template_unit_hero_cavalry_axeman.xml:20
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:27
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:27
 #: simulation/templates/template_unit_hero_elephant_melee.xml:36
+#: simulation/templates/template_unit_hero_infantry_axeman.xml:21
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:27
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:27
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:27
@@ -92,6 +96,20 @@ msgstr "Närstrid"
 #: simulation/templates/template_unit_cavalry_melee.xml:22
 msgid "Melee Cavalry"
 msgstr "Närstridskavalleri"
+
+#: simulation/templates/template_unit_cavalry_melee_axeman.xml:23
+#: simulation/templates/template_unit_champion_cavalry_axeman.xml:29
+#: simulation/templates/template_unit_champion_infantry_axeman.xml:30
+#: simulation/templates/template_unit_hero_cavalry_axeman.xml:20
+#: simulation/templates/template_unit_hero_infantry_axeman.xml:21
+#: simulation/templates/template_unit_infantry_melee_axeman.xml:23
+#: simulation/templates/template_unit_infantry_melee_axeman.xml:24
+msgid "Axeman"
+msgstr "Yxbärare"
+
+#: simulation/templates/template_unit_cavalry_melee_axeman.xml:24
+msgid "Cavalry Axeman"
+msgstr ""
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:25
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:35
@@ -194,6 +212,10 @@ msgstr "Mästarkavalleri"
 msgid "Champion Cavalry Archer"
 msgstr "Mästarkavalleribågskytte"
 
+#: simulation/templates/template_unit_champion_cavalry_axeman.xml:30
+msgid "Champion Cavalry Axeman"
+msgstr ""
+
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:32
 msgid "Champion Cavalry Skirmisher"
 msgstr "Mästarkavalleriskärmytsling"
@@ -233,6 +255,10 @@ msgstr "Mästarinfanteri"
 #: simulation/templates/template_unit_champion_infantry_archer.xml:35
 msgid "Champion Archer"
 msgstr "Mästarbågskytte"
+
+#: simulation/templates/template_unit_champion_infantry_axeman.xml:31
+msgid "Champion Axeman"
+msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:35
 msgid "Champion Skirmisher"
@@ -309,6 +335,10 @@ msgstr "Kavalleri Hjälte"
 msgid "Hero Cavalry Archer"
 msgstr "Kavalleri Hjälte Bågsskytt"
 
+#: simulation/templates/template_unit_hero_cavalry_axeman.xml:21
+msgid "Hero Cavalry Axeman"
+msgstr ""
+
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:37
 msgid "Hero Cavalry Skirmisher"
 msgstr "Hjälte Kavalleriskärmytsling"
@@ -336,6 +366,10 @@ msgstr "Support"
 #: simulation/templates/template_unit_hero_infantry_archer.xml:27
 msgid "Hero Archer"
 msgstr "Hjältebågskytt"
+
+#: simulation/templates/template_unit_hero_infantry_axeman.xml:22
+msgid "Hero Axeman"
+msgstr ""
 
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:27
 msgid "Hero Skirmisher"
@@ -598,9 +632,9 @@ msgstr "Solon"
 #: simulation/templates/units/maur_infantry_swordsman_a.xml:4
 #: simulation/templates/units/maur_support_healer_a.xml:4
 #: simulation/templates/units/pers_cavalry_archer_a.xml:4
+#: simulation/templates/units/pers_cavalry_axeman_a.xml:4
 #: simulation/templates/units/pers_cavalry_javelinist_a.xml:4
 #: simulation/templates/units/pers_cavalry_spearman_a.xml:4
-#: simulation/templates/units/pers_cavalry_swordsman_a.xml:4
 #: simulation/templates/units/pers_infantry_archer_a.xml:4
 #: simulation/templates/units/pers_infantry_javelinist_a.xml:4
 #: simulation/templates/units/pers_infantry_spearman_a.xml:4
@@ -706,9 +740,9 @@ msgstr "Pródromos"
 #: simulation/templates/units/maur_infantry_swordsman_e.xml:4
 #: simulation/templates/units/maur_support_healer_e.xml:4
 #: simulation/templates/units/pers_cavalry_archer_e.xml:4
+#: simulation/templates/units/pers_cavalry_axeman_e.xml:4
 #: simulation/templates/units/pers_cavalry_javelinist_e.xml:4
 #: simulation/templates/units/pers_cavalry_spearman_e.xml:4
-#: simulation/templates/units/pers_cavalry_swordsman_e.xml:4
 #: simulation/templates/units/pers_infantry_archer_e.xml:4
 #: simulation/templates/units/pers_infantry_javelinist_e.xml:4
 #: simulation/templates/units/pers_infantry_spearman_e.xml:4
@@ -1049,26 +1083,26 @@ msgstr ""
 msgid "Cunobelinos"
 msgstr ""
 
-#: simulation/templates/units/brit_infantry_javelinist_b.xml:19
+#: simulation/templates/units/brit_infantry_javelinist_b.xml:18
 #: simulation/templates/units/gaul_infantry_javelinist_b.xml:12
 msgid "Adretos"
 msgstr ""
 
-#: simulation/templates/units/brit_infantry_slinger_b.xml:12
+#: simulation/templates/units/brit_infantry_slinger_b.xml:11
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:12
 msgid "Celtic Slinger"
 msgstr "Keltisk Slungare"
 
-#: simulation/templates/units/brit_infantry_slinger_b.xml:13
+#: simulation/templates/units/brit_infantry_slinger_b.xml:12
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:13
 msgid "Talmoris"
 msgstr ""
 
-#: simulation/templates/units/brit_infantry_spearman_b.xml:12
+#: simulation/templates/units/brit_infantry_spearman_b.xml:11
 msgid "Celtic Spearman"
 msgstr "Keltisk Spjutman"
 
-#: simulation/templates/units/brit_infantry_spearman_b.xml:13
+#: simulation/templates/units/brit_infantry_spearman_b.xml:12
 #: simulation/templates/units/gaul_infantry_spearman_b.xml:12
 msgid "Catucos"
 msgstr ""
@@ -1523,21 +1557,13 @@ msgstr "Napatansk tempelvakt"
 msgid "rs ʿImn"
 msgstr ""
 
-#: simulation/templates/units/kush_champion_infantry_apedemak.xml:20
-msgid "Axeman"
-msgstr "Yxbärare"
-
-#: simulation/templates/units/kush_champion_infantry_apedemak.xml:21
+#: simulation/templates/units/kush_champion_infantry_apedemak.xml:5
 msgid "Meroitic Temple Guard"
 msgstr "Meroitisk tempelvakt"
 
-#: simulation/templates/units/kush_champion_infantry_apedemak.xml:22
+#: simulation/templates/units/kush_champion_infantry_apedemak.xml:6
 msgid "rs ʿIprmk"
 msgstr ""
-
-#: simulation/templates/units/kush_champion_infantry_apedemak.xml:23
-msgid "Armor-piercing Axes: Counters 1.3x vs. Champions and Heroes."
-msgstr "Pansarbrytande yxor: Kontrar 1.3x mot mästare och hjältar."
 
 #: simulation/templates/units/kush_hero_amanirenas.xml:8
 #: simulation/templates/units/kush_hero_amanirenas_infantry.xml:8
@@ -2055,6 +2081,14 @@ msgstr ""
 msgid "Asabāra Parθava"
 msgstr ""
 
+#: simulation/templates/units/pers_cavalry_axeman_b.xml:7
+msgid "Hyrcanian Cavalry"
+msgstr "Hyrkaniskt Kavalleri"
+
+#: simulation/templates/units/pers_cavalry_axeman_b.xml:8
+msgid "Asabāra Varkaniya"
+msgstr "Asabāra Varkaniya"
+
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:7
 msgid "Median Light Cavalry"
 msgstr "Mediskt Lätt Kavalleri"
@@ -2070,14 +2104,6 @@ msgstr "Kappadokiskt Kavalleri"
 #: simulation/templates/units/pers_cavalry_spearman_b.xml:8
 msgid "Asabāra Katpatuka"
 msgstr "Asabāra Katpatuka"
-
-#: simulation/templates/units/pers_cavalry_swordsman_b.xml:7
-msgid "Hyrcanian Cavalry"
-msgstr "Hyrkaniskt Kavalleri"
-
-#: simulation/templates/units/pers_cavalry_swordsman_b.xml:8
-msgid "Asabāra Varkaniya"
-msgstr "Asabāra Varkaniya"
 
 #: simulation/templates/units/pers_champion_cavalry.xml:6
 msgid "Bactrian Heavy Lancer"

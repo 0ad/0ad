@@ -32,16 +32,16 @@
 # dddb155916b6708524139dbbf813fa7c, 2017
 # Rui <xymarior@yandex.com>, 2018-2019
 # e05a6f0c527312287ac027cf3d3a35f5_685166c <0e3f187c36e42a887ffaef9a9e407417_190443>, 2015
-# Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>, 2020
-# Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>, 2018-2020
+# Tiago <tiago.henrique.cco@gmail.com>, 2020
+# Tiago <tiago.henrique.cco@gmail.com>, 2018-2020
 # Victor Gregório <vt_marv@hotmail.com>, 2017
 # Vinícius Pereira <lameiravinicius24@gmail.com>, 2018
 # Werther Ramalho <werther23@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-12 07:09+0000\n"
-"PO-Revision-Date: 2020-06-12 17:42+0000\n"
+"POT-Creation-Date: 2020-06-26 07:09+0000\n"
+"PO-Revision-Date: 2020-06-26 17:21+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -93,7 +93,7 @@ msgid_plural "Special Structures"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/civinfo/civinfo.js:141 gui/summary/layout.js:67
+#: gui/civinfo/civinfo.js:141 gui/summary/layout.js:77
 msgid "Heroes"
 msgstr "Heróis"
 
@@ -601,7 +601,7 @@ msgstr "Usuários (%(num)s): %(users)s"
 #: gui/common/tooltips.js:501 gui/common/tooltips.js:796
 #: gui/common/tooltips.js:830 gui/common/tooltips.js:896
 #: gui/loadgame/SavegameDetails.js:38 gui/reference/common/draw.js:51
-#: gui/replaymenu/replay_menu.js:283
+#: gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ","
 
@@ -901,16 +901,16 @@ msgstr "Fogo Amigo: %(enabled)s"
 
 #: gui/common/tooltips.js:373 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:299 gui/options/options.js:352
-#: gui/options/options.js:378 gui/pregame/MainMenuItems.js:183
+#: gui/options/options.js:300 gui/options/options.js:353
+#: gui/options/options.js:379 gui/pregame/MainMenuItems.js:183
 #: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Sim"
 
 #: gui/common/tooltips.js:373 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:299 gui/options/options.js:352
-#: gui/options/options.js:378 gui/pregame/MainMenuItems.js:183
+#: gui/options/options.js:300 gui/options/options.js:353
+#: gui/options/options.js:379 gui/pregame/MainMenuItems.js:183
 #: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Não"
@@ -1195,7 +1195,7 @@ msgstr "Clique com o botão direito para ver mais informações."
 msgid "Click to view more information."
 msgstr "Clique para ver mais informações."
 
-#: gui/credits/credits.js:80
+#: gui/credits/credits.js:81
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
@@ -1205,7 +1205,7 @@ msgstr "%(nick)s - %(name)s"
 msgid "Delete the selected savegame using %(hotkey)s."
 msgstr ""
 
-#: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:204
+#: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:203
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
 msgstr "Pressione %(hotkey)s para evitar o diálogo de confirmação ao excluir."
@@ -1265,8 +1265,8 @@ msgstr "Este jogo salvo precisa de uma sequência diferente de mods:"
 msgid "Do you still want to proceed?"
 msgstr "Ainda quer continuar?"
 
-#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:298
-#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:299
+#: gui/options/options.js:352 gui/options/options.js:378
 msgid "Warning"
 msgstr "Aviso"
 
@@ -1319,17 +1319,17 @@ msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Valor: %(val)s (min: %(min)s, max: %(max)s)"
 
-#: gui/options/options.js:297
+#: gui/options/options.js:298
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Restaurar as opções irá apagar suas configurações salvas. Deseja continuar?"
 
-#: gui/options/options.js:350
+#: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr "Alguns valores das configurações são inválidos! Você tem certeza que deseja salvá-los?"
 
-#: gui/options/options.js:376
+#: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Você possui modificações não salvas, deseja fechar esta janela?"
 
@@ -1889,225 +1889,229 @@ msgstr "Jogos classificados"
 msgid "Unrated games"
 msgstr "Jogos não classificados"
 
-#: gui/replaymenu/replay_menu.js:195
+#: gui/replaymenu/replay_menu.js:194
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
 msgstr "Filtre as gravação digitando nomes de um ou mais jogadores ou digitando seus nomes por inteiro ou parcialmente."
 
-#: gui/replaymenu/replay_menu.js:199
+#: gui/replaymenu/replay_menu.js:198
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
 msgstr "Exclua as gravações selecionadas usando %(hotkey)s."
 
-#: gui/replaymenu/replay_menu.js:284
+#: gui/replaymenu/replay_menu.js:283
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr "Jogadores: %(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:308
+#: gui/replaymenu/replay_menu.js:307
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:338
+#: gui/replaymenu/replay_menu.js:337
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
+#: gui/summary/layout.js:13
 msgid "Score"
 msgstr "Pontuação"
 
-#: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
-#: gui/summary/layout.js:101 gui/summary/layout.js:152
-#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):123
+#: gui/summary/layout.js:15 gui/summary/layout.js:33 gui/summary/layout.js:71
+#: gui/summary/layout.js:111 gui/summary/layout.js:162
+#: gui/summary/layout.js:194 gui/summary/summary.xml:(caption):70
 msgid "Player name"
 msgstr "Nome do Jogador"
 
-#: gui/summary/layout.js:6
+#: gui/summary/layout.js:16
 msgid "Total score"
 msgstr "Pontuação Total"
 
-#: gui/summary/layout.js:7
+#: gui/summary/layout.js:17
 msgid "Economy score"
 msgstr "Pontuação econômica"
 
-#: gui/summary/layout.js:8
+#: gui/summary/layout.js:18
 msgid "Military score"
 msgstr "Pontuação militar"
 
-#: gui/summary/layout.js:9
+#: gui/summary/layout.js:19
 msgid "Exploration score"
 msgstr "Pontuação de exploração"
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):81
+#: gui/summary/layout.js:31
 msgid "Structures"
 msgstr ""
 
-#: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:102
+#: gui/summary/layout.js:34 gui/summary/layout.js:72 gui/summary/layout.js:112
 msgid "Total"
 msgstr "Total"
 
-#: gui/summary/layout.js:25
+#: gui/summary/layout.js:35
 msgid "Houses"
 msgstr "Casas"
 
-#: gui/summary/layout.js:26
+#: gui/summary/layout.js:36
 msgid "Economic"
 msgstr "Economia"
 
-#: gui/summary/layout.js:27
+#: gui/summary/layout.js:37
 msgid "Outposts"
 msgstr "Postos avançados"
 
-#: gui/summary/layout.js:28
+#: gui/summary/layout.js:38
 msgid "Military"
 msgstr "Militar"
 
-#: gui/summary/layout.js:29
+#: gui/summary/layout.js:39
 msgid "Fortresses"
 msgstr "Fortalezas"
 
-#: gui/summary/layout.js:30
+#: gui/summary/layout.js:40
 msgid "Civ centers"
 msgstr "Centros Cívicos"
 
-#: gui/summary/layout.js:31
+#: gui/summary/layout.js:41
 msgid "Wonders"
 msgstr "Maravilhas"
 
-#: gui/summary/layout.js:35
+#: gui/summary/layout.js:45
 #, javascript-format
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
 msgstr "Estatísticas da Estrutura (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):88
+#: gui/summary/layout.js:69
 msgid "Units"
 msgstr "Unidades"
 
-#: gui/summary/layout.js:63
+#: gui/summary/layout.js:73
 msgid "Infantry"
 msgstr "Infantaria"
 
-#: gui/summary/layout.js:64
+#: gui/summary/layout.js:74
 msgid "Worker"
 msgstr "Trabalhador"
 
-#: gui/summary/layout.js:65
+#: gui/summary/layout.js:75
 msgid "Cavalry"
 msgstr "Cavaleiro"
 
-#: gui/summary/layout.js:66
+#: gui/summary/layout.js:76
 msgid "Champion"
 msgstr "Campeão"
 
-#: gui/summary/layout.js:68
+#: gui/summary/layout.js:78
 msgid "Siege"
 msgstr "Cerco"
 
-#: gui/summary/layout.js:69
+#: gui/summary/layout.js:79
 msgid "Navy"
 msgstr "Marinha"
 
-#: gui/summary/layout.js:70
+#: gui/summary/layout.js:80
 msgid "Traders"
 msgstr "Mercadores"
 
-#: gui/summary/layout.js:74
+#: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr "Estatísticas da Unidade (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):95
+#: gui/summary/layout.js:109
 msgid "Resources"
 msgstr "Recursos"
 
-#: gui/summary/layout.js:111
+#: gui/summary/layout.js:121
 msgid "Tributes"
 msgstr "Tributos"
 
-#: gui/summary/layout.js:112
+#: gui/summary/layout.js:122
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
 msgstr "Tributos ⏎ (%(sent)s / %(received)s)"
 
-#: gui/summary/layout.js:120
+#: gui/summary/layout.js:130
 msgid "Treasures collected"
 msgstr "Tesouros coletados"
 
-#: gui/summary/layout.js:121
+#: gui/summary/layout.js:131
 msgid "Loot"
 msgstr "Saque"
 
-#: gui/summary/layout.js:122
+#: gui/summary/layout.js:132
 msgid "Livestock bred"
 msgstr "Gado criado"
 
-#: gui/summary/layout.js:126
+#: gui/summary/layout.js:136
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Estatísticas dos Recursos (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):102
+#: gui/summary/layout.js:160
 msgid "Market"
 msgstr "Mercado"
 
-#: gui/summary/layout.js:153
+#: gui/summary/layout.js:163
 msgid "Trade income"
 msgstr "Lucro comercial"
 
-#: gui/summary/layout.js:154
+#: gui/summary/layout.js:164
 msgid "Barter efficiency"
 msgstr "Eficiência de troca"
 
 #. Translation: use %(resourceWithinSentence)s if needed
-#: gui/summary/layout.js:160
+#: gui/summary/layout.js:170
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "%(resourceFirstWord)s trocado"
 
-#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):109
+#: gui/summary/layout.js:192
 msgid "Miscellaneous"
 msgstr "Outros"
 
-#: gui/summary/layout.js:185
+#: gui/summary/layout.js:195
 msgid "Kill / Death ratio"
 msgstr "Proporção Matar / Mortos"
 
-#: gui/summary/layout.js:186
+#: gui/summary/layout.js:196
 msgid "Map control (peak)"
 msgstr "Controle do Mapa (pico)"
 
-#: gui/summary/layout.js:187
+#: gui/summary/layout.js:197
 msgid "Map control (finish)"
 msgstr "Controle do Mapa (final)"
 
-#: gui/summary/layout.js:188
+#: gui/summary/layout.js:198
 msgid "Map exploration"
 msgstr "Exploração do Mapa"
 
-#: gui/summary/layout.js:189
+#: gui/summary/layout.js:199
 msgid "Vegetarian ratio"
 msgstr "Taxa de Vegetarianismo"
 
-#: gui/summary/layout.js:190
+#: gui/summary/layout.js:200
 msgid "Feminization"
 msgstr "Feminização"
 
-#: gui/summary/layout.js:193
+#: gui/summary/layout.js:203
 msgid "Bribes"
 msgstr "Subornos"
 
-#: gui/summary/layout.js:194
+#: gui/summary/layout.js:204
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
 msgstr "Subornos\n(%(succeeded)s / %(failed)s)"
 
-#: gui/summary/layout.js:357
+#: gui/summary/layout.js:229
+msgid "Charts"
+msgstr "Gráficos"
+
+#: gui/summary/layout.js:373
 msgid "Team total"
 msgstr "Total do time"
 
@@ -2175,52 +2179,67 @@ msgstr "Resultado"
 msgid "Failed"
 msgstr "Falhou"
 
-#: gui/summary/summary.js:335
+#: gui/summary/summary.js:303
 msgid "Time elapsed"
 msgstr "Tempo decorrido"
 
-#: gui/summary/summary.js:490
+#: gui/summary/summary.js:453
 msgid "Current Scores"
 msgstr "Pontuação Atual"
 
-#: gui/summary/summary.js:492
+#: gui/summary/summary.js:455
 msgid "Scores at the end of the game."
 msgstr "Pontuações no final do jogo."
 
-#: gui/summary/summary.js:494
+#: gui/summary/summary.js:457
 msgid "You have been disconnected."
 msgstr "Você foi desconectado."
 
-#: gui/summary/summary.js:496
+#: gui/summary/summary.js:459
 msgid "You have left the game."
 msgstr "Você saiu do jogo."
 
-#: gui/summary/summary.js:498
+#: gui/summary/summary.js:461
 msgid "You have won the battle!"
 msgstr "Você venceu a batalha!"
 
-#: gui/summary/summary.js:500
+#: gui/summary/summary.js:463
 msgid "You have been defeated…"
 msgstr "Você foi derrotado..."
 
-#: gui/summary/summary.js:501
+#: gui/summary/summary.js:464
 msgid "You have abandoned the game."
 msgstr "Você abandonou o jogo."
 
-#: gui/summary/summary.js:504
+#: gui/summary/summary.js:467
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Tempo decorrido do jogo: %(time)s"
 
-#: gui/summary/summary.js:512
+#: gui/summary/summary.js:475
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s%(mapType)s"
 
-#: gui/summary/summary.js:524
+#: gui/summary/summary.js:487
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: Alternar o lobby multijogador em uma janela de diálogo."
+
+#: gui/summary/summary.js:500
+#, javascript-format
+msgid "Toggle the %(name)s summary tab."
+msgstr ""
+
+#: gui/summary/summary.js:501
+#, javascript-format
+msgid "Use %(hotkey)s to move a summary tab right."
+msgstr ""
+
+#: gui/summary/summary.js:502
+#, javascript-format
+msgid "Use %(hotkey)s to move a summary tab left."
+msgstr ""
 
 #: gui/civinfo/civinfo.xml:(caption):30
 msgid "Civilization Selection"
@@ -2380,7 +2399,7 @@ msgid "Rebuild Cache"
 msgstr "Reconstruir Cache"
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
-#: gui/summary/summary.xml:(caption):34
+#: gui/summary/summary.xml:(caption):26
 msgid "Summary"
 msgstr "Sumário"
 
@@ -2424,44 +2443,40 @@ msgstr "Mostrar essa mensagem no futuro"
 msgid "Known Issues (web)"
 msgstr "Problemas conhecidos (web)"
 
-#: gui/summary/summary.xml:(caption):116
-msgid "Charts"
-msgstr "Gráficos"
-
-#: gui/summary/summary.xml:(caption):173
+#: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "Categoria:"
 
-#: gui/summary/summary.xml:(caption):183
+#: gui/summary/summary.xml:(caption):130
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "Valor:"
 
-#: gui/summary/summary.xml:(caption):193
+#: gui/summary/summary.xml:(caption):140
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "Tipo:"
 
-#: gui/summary/summary.xml:(caption):227
+#: gui/summary/summary.xml:(caption):174
 msgid "Watch Replay"
 msgstr "Ver Gravação"
 
-#: gui/summary/summary.xml:(caption):232
+#: gui/summary/summary.xml:(caption):179
 msgid "Continue"
 msgstr "Continuar"
 
-#: gui/summary/summary.xml:(tooltip):179
+#: gui/summary/summary.xml:(tooltip):126
 msgctxt "summary chart"
 msgid "Category"
 msgstr "Categoria"
 
-#: gui/summary/summary.xml:(tooltip):189
+#: gui/summary/summary.xml:(tooltip):136
 msgctxt "summary chart"
 msgid "Value"
 msgstr "Valor"
 
-#: gui/summary/summary.xml:(tooltip):200
+#: gui/summary/summary.xml:(tooltip):147
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Tipo"

@@ -16,15 +16,16 @@
 # Victor Ptah, 2015
 # Yaroslav Yenkala <hyper-news@yandex.ru>, 2015
 # 85c91c3444bcf82d63b07801f727e341, 2020
+# Антон Курило, 2020
 # Микола Франчук <thekolian1996@gmail.com>, 2018-2019
 # Сергій Дубик <dubyk@ukr.net>, 2016
 # Тарас Коржик <ordinarystory@i.ua>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-12 07:09+0000\n"
-"PO-Revision-Date: 2020-06-12 10:43+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-06-26 07:10+0000\n"
+"PO-Revision-Date: 2020-06-27 10:08+0000\n"
+"Last-Translator: Антон Курило\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,7 +99,6 @@ msgstr "Вербує особливі підрозділи."
 #: simulation/templates/template_structure_economic_market.xml:33
 #: simulation/templates/template_structure_military_blacksmith.xml:28
 #: simulation/templates/template_structure_military_embassy.xml:31
-#: simulation/templates/template_structure_military_kennel.xml:39
 #: simulation/templates/structures/cart_super_dock.xml:46
 #: simulation/templates/structures/gaul_tavern.xml:26
 #: simulation/templates/structures/kush_pyramid_small.xml:27
@@ -359,14 +359,6 @@ msgid ""
 "additional arrows."
 msgstr "Тренувати чемпіонів та героїв, та досліджувати технології. Розмістити солдатів у гарнізоні для додаткових стріл."
 
-#: simulation/templates/template_structure_military_kennel.xml:40
-msgid "Kennel"
-msgstr "Собача будка"
-
-#: simulation/templates/template_structure_military_kennel.xml:42
-msgid "Train war dogs."
-msgstr "Тренувати бойових собак."
-
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
 msgstr "Тренувальний полігон"
@@ -381,7 +373,7 @@ msgstr "Полігон"
 
 #: simulation/templates/template_structure_military_stable.xml:26
 msgid "Train Cavalry and research Cavalry technologies."
-msgstr ""
+msgstr "Тренує кінноту та розвідувальну кінноту"
 
 #: simulation/templates/template_structure_military_stable.xml:27
 #: simulation/templates/template_structure_military_stable.xml:22
@@ -786,10 +778,6 @@ msgstr "Дунон"
 #: simulation/templates/structures/gaul_house.xml:5
 msgid "Tegia"
 msgstr "Теґіа"
-
-#: simulation/templates/structures/brit_kennel.xml:5
-msgid "Cunattegia"
-msgstr "Кунаттеґіа"
 
 #: simulation/templates/structures/brit_market.xml:15
 #: simulation/templates/structures/gaul_market.xml:15
@@ -1590,7 +1578,7 @@ msgstr "Діда"
 
 #: simulation/templates/structures/pers_fortress.xml:6
 msgid "Research technologies. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Досліджує технології. Розмістіть солдатів як додаткових стрільців."
 
 #: simulation/templates/structures/pers_hall.xml:27
 msgid "Gate of All Nations"

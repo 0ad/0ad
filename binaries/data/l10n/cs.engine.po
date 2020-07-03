@@ -5,6 +5,7 @@
 # Translators:
 # Jakub Jelen <jakuje@gmail.com>, 2017
 # Lukáš Bačovský <l.bacovsky@gmail.com>, 2020
+# Marek Mojžíš <marek.moj@seznam.cz>, 2020
 # fri, 2013-2016,2018
 # Pavel Šindelář <pavelsin123@gmail.com>, 2016
 # Radek Mašek <warrriog@gmail.com>, 2018
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-22 07:08+0000\n"
-"PO-Revision-Date: 2020-05-22 10:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-06-28 20:02+0000\n"
+"Last-Translator: Marek Mojžíš <marek.moj@seznam.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,7 +38,7 @@ msgstr "Certifikát není důvěryhodný."
 
 #: lobby/XmppClient.cpp:1216
 msgid "The certificate hasn't got a known issuer."
-msgstr ""
+msgstr "Certifikát má neznámý eminent."
 
 #: lobby/XmppClient.cpp:1217
 msgid "The certificate has been revoked."
@@ -49,11 +50,11 @@ msgstr "Platnost certifikátu skončila."
 
 #: lobby/XmppClient.cpp:1219
 msgid "The certificate is not yet active."
-msgstr ""
+msgstr "Certifikát ještě není aktivní."
 
 #: lobby/XmppClient.cpp:1220
 msgid "The certificate has not been issued for the peer connected to."
-msgstr ""
+msgstr "Certifikát nebyl vydán pro protějšek, ke kterému je připojen."
 
 #: lobby/XmppClient.cpp:1221
 msgid "The certificate signer is not a certificate authority."
