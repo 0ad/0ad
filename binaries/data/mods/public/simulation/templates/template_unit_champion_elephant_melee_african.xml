@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_elephant_melee">
+  <Attack>
+    <Melee>
+      <Damage>
+        <Hack op="mul">0.9</Hack>
+        <Crush op="mul">0.9</Crush>
+      </Damage>
+    </Melee>
+  </Attack>
+  <Cost>
+    <BuildTime op="mul">0.9</BuildTime>
+    <Resources>
+      <food op="mul">0.9</food>
+      <metal op="mul">0.9</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max op="mul">0.9</Max>
+  </Health>
+  <Identity>
+    <GenericName>African War Elephant</GenericName>
+  </Identity>
+  <Loot>
+    <food op="mul">0.9</food>
+    <metal op="mul">0.9</metal>
+  </Loot>
+</Entity>
