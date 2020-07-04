@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Jaroslav Lichtblau <jlichtblau@seznam.cz>, 2016
+# Marek Mojžíš <marek.moj@seznam.cz>, 2020
 # fri, 2014-2018
 # Petr Hála <halapetr@selfnet.cz>, 2016
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-01-17 15:32+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-06-29 11:19+0000\n"
+"Last-Translator: Marek Mojžíš <marek.moj@seznam.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,7 +56,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr ""
+msgstr "Mezi režimem na celou obrazovku a okenním režimem se přepnete stisknutím Alt + Enter. V okenním režimu můžete měnit velikost okna. Pokud běží hra příliš pomalu (seká se), můžete změnit některá nastavení v souboru s nastavením. Vyzkoušejte zákaz voleb týkajících se efektů \"zobrazení vody ve vysokém rozlišení\" a \"stínů\"."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -67,7 +68,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr ""
+msgstr "Ovládání a způsob hry by měly být známy uživatelům z tradičních her RTS (real-time strategy). V současnosti chybí spousta funkcí a statistiky jsou špatně vyváženy – Pravděpodobně si budete muset počkat na to, až bude vydána beta verze poběží. Pak už to poběží dobře."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls:"
@@ -79,23 +80,23 @@ msgstr ""
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr ""
+msgstr "Podržte levé tlačíto myši a potáhněte pro výběr skupin jednotek."
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr ""
+msgstr "Zmáčkněte pravé tlačítko myši abyste zadali jednotkám cíl cesty."
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr ""
+msgstr "Použijte šipky, nebo klávesy WASD pro pohyb kamery."
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr ""
+msgstr "Použijte Ctrl + šipky, nebo Shift + kolečko myši pro otáčení kamery."
 
 #: gui/manual/intro.txt:16
 msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
-msgstr ""
+msgstr "Použijte kolečko myši, nebo klávesy \"=\"/\"+\" a \"-\"/“−” pro přibližování a oddalování."
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -103,7 +104,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr ""
+msgstr "Hlavní nabídka nabízí přístup ke dvěma herním režimům:"
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -133,7 +134,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr ""
+msgstr "Ve hře pro více hráčů může měnit možnosti pro nastavení hry pouze hostitel."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -177,7 +178,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr ""
+msgstr "Až budete připraven začít, klepněte na tlačítko \"Spustit hru\"."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
@@ -190,19 +191,19 @@ msgstr ""
 #: gui/manual/intro.txt:41
 msgid ""
 "  Alt + F4 – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr "Alt + F4 – Okamžitě ukončit hru, bez potvrzení"
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "Alt + Enter – Přepnout mezi režimem na celou obrazovku a okenním režimem"
 
 #: gui/manual/intro.txt:43
 msgid "  ~ or F9 – Show/hide console"
-msgstr ""
+msgstr "~ nebo F9 –Ukázat/Skrýt konzoli"
 
 #: gui/manual/intro.txt:44
 msgid "  Alt + F – Show/hide frame counter (FPS)"
-msgstr ""
+msgstr "Alt + F – Ukázat/Skrýt počítadlo snímků (FPS)"
 
 #: gui/manual/intro.txt:45
 msgid ""
@@ -212,7 +213,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
-msgstr ""
+msgstr "Shift + F11 – Uložit data nynějšího profilu do \"logs/profile.txt\""
 
 #: gui/manual/intro.txt:47
 msgid ""
@@ -230,15 +231,15 @@ msgstr ""
 
 #: gui/manual/intro.txt:49
 msgid "  Tab, Alt + S – Switch to the next tab"
-msgstr ""
+msgstr "Tab, Alt + S – Přepnout na další kartu."
 
 #: gui/manual/intro.txt:50
 msgid "  Shift + Tab, Alt + W – Switch to the previous tab"
-msgstr ""
+msgstr "Shift + Tab, Alt + W – Přepnout na předchozí kartu."
 
 #: gui/manual/intro.txt:52
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Ve hře[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:53
 msgid ""
@@ -266,35 +267,35 @@ msgstr ""
 
 #: gui/manual/intro.txt:57
 msgid "  Shift + F5 – Quicksave"
-msgstr ""
+msgstr "Shift + F5 – Rychlé uložení"
 
 #: gui/manual/intro.txt:58
 msgid "  Shift + F8 – Quickload"
-msgstr ""
+msgstr "Shift + F8 – Rychlé načtení"
 
 #: gui/manual/intro.txt:59
 msgid "  F10 – Open/close menu"
-msgstr ""
+msgstr "F10 – Otevřít/Zavřít nabídku"
 
 #: gui/manual/intro.txt:60
 msgid "  F12 – Show/hide time elapsed counter"
-msgstr ""
+msgstr "F12 – Ukázat/Skrýt počítadlo uplynulého času"
 
 #: gui/manual/intro.txt:61
 msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "ESC – Zavřit všechny dialogy (rozhovor, menu) nebo zrušit označení vybraných jednotek"
 
 #: gui/manual/intro.txt:62
 msgid "  Enter/Return – Open/send chat"
-msgstr ""
+msgstr " Enter/Return – Otevřít rozhovor/Poslat zprávu"
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
-msgstr ""
+msgstr "T – Poslat zprávu spojencům"
 
 #: gui/manual/intro.txt:64
 msgid "  L – Chat with the previously selected private chat partner"
-msgstr ""
+msgstr "L – Rozhovor s dříve vybraným spoluhráčem v soukromém rozhovoru"
 
 #: gui/manual/intro.txt:65
 msgid "  Pause – Pause/resume the game"

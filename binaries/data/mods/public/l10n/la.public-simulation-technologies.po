@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Ernestus Severus, 2020
 # Supernova 888 <megasupernova888@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-06-15 07:10+0000\n"
-"PO-Revision-Date: 2020-06-21 23:06+0000\n"
+"PO-Revision-Date: 2020-07-01 09:14+0000\n"
 "Last-Translator: Ernestus Severus\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
@@ -23,19 +24,19 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster Infantry movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Militibus ad ordinem provectum productis haec dantur facultates: +20% valutudinem, +1 arma omnium generum, +20% praedam, qui propinque pugnant +20% detrimentum, qui telos iciunt +4m iactum et diligentius intendunt, peditibus maiorem velocitam itineris, medicis maiorem velocitam et fines sanandi."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
 "The Indian, Iranian, and Kushite peoples had a tradition of fine archery and"
 " a penchant for using massed archers in battle."
-msgstr ""
+msgstr "Indi, Persae et Aethiopii famam sagittariam servabant et magnas copias sagittariorum in bellis committere consuerunt."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units better accuracy and "
 "-20% train time, but also -20% health."
-msgstr ""
+msgstr "Sagittarii +10 metris iactum, -20% tempus conscribendi, -20% valetudinem habent, ac diligentius intendunt."
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -50,23 +51,23 @@ msgstr "Fama Sagittariorum"
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr ""
+msgstr "Gradu Vico recluditur."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 msgid "Metal armor for a horse's face."
-msgstr ""
+msgstr "Armatura ferrea quae faciem equi tegit."
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr ""
+msgstr "Arma equos tuos. Omnes Equites +1 arma contra detrimentum Transfigens et Secans."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
 msgid "Chamfron"
-msgstr ""
+msgstr "Armatura Equestris"
 
 #: simulation/data/technologies/armor_cav_01.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_infantry_01.jsonrequirementsTooltip
@@ -99,7 +100,7 @@ msgstr ""
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr ""
+msgstr "Gradu Oppido recluditur."
 
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
@@ -107,11 +108,11 @@ msgstr ""
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.spart
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.athen
 msgid "Prometōpídion"
-msgstr ""
+msgstr "Prometōpídion"
 
 #: simulation/data/technologies/armor_cav_02.jsondescription
 msgid "Metal armor for a horse's body."
-msgstr ""
+msgstr "Armatura ferrea quae corpus equi tegit."
 
 #: simulation/data/technologies/armor_cav_02.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_hero_01.jsonrequirementsTooltip
@@ -165,23 +166,23 @@ msgstr ""
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr ""
+msgstr "Gradu Urbe recluditur."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
 "Body armor fashioned completely of iron, the hardest workable metal known to"
 " the ancients."
-msgstr ""
+msgstr "Arma integre ferro fabricata, metallo durissimo quod veteres cognoverunt."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
 msgid ""
 "All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
 "Metal Cost."
-msgstr ""
+msgstr "Omnes Heroes +2 arma contra detrimentum Transfigens et Secans, sed +50 pretium Metalli habent."
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
-msgstr ""
+msgstr "Armatura Ferrea Herois"
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
@@ -189,24 +190,24 @@ msgstr ""
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.mace
 msgid "Sidḗrea Panoplía"
-msgstr ""
+msgstr "Sidḗrea Panoplía"
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
 msgid "Lorica Ferrea"
-msgstr ""
+msgstr "Lorica Ferrea"
 
 #: simulation/data/technologies/armor_infantry_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
-msgstr ""
+msgstr "Arma lintea aut lenta insuta peditum."
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
 msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr ""
+msgstr "Omnes Pedites +1 arma contra detrimentum Transfigens et Secans."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
-msgstr ""
+msgstr "Arma Insuta"
 
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.maur
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.spart
@@ -220,15 +221,15 @@ msgstr ""
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.gaul
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.iber
 msgid "Spolas"
-msgstr ""
+msgstr "Spolas"
 
 #: simulation/data/technologies/armor_infantry_02.jsondescription
 msgid "Laminated linen body armor for infantrymen."
-msgstr ""
+msgstr "Arma lintea laminata peditum."
 
 #: simulation/data/technologies/armor_infantry_02.jsongenericName
 msgid "Laminated Linen Body Armor"
-msgstr ""
+msgstr "Arma Lintea Laminata"
 
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.spart
@@ -239,58 +240,58 @@ msgstr ""
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.rome
 msgid "Linothorakes"
-msgstr ""
+msgstr "Linothorakes"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
-msgstr ""
+msgstr "Laminae aereae alveos navium tegunt."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
 msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr ""
+msgstr "Laminae aereae alveos navium tegunt. Omnes Naves +2 arma contra detrimentum omnium generum."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
-msgstr ""
+msgstr "Laminae Aereae"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
-msgstr ""
+msgstr "Hypozomata navem tegunt."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
 msgid ""
 "The hypozomata braces the ship's structure. +2 levels to all ship armor "
 "types."
-msgstr ""
+msgstr "Hypozomata navem tegunt. Omnes Naves +2 arma contra detrimentum omnium generum."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
-msgstr ""
+msgstr "Hypozomata"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
-msgstr ""
+msgstr "Trabes ligneae alveos navium firmant."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid ""
 "Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr ""
+msgstr "Trabes ligneae alveos navium firmant. Omnes Naves +2 arma contra detrimentum omnium generum."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
-msgstr ""
+msgstr "Alveus Firmatus"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
-msgstr ""
+msgstr "Exercitatio detrimentum propinquum auget."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
 msgid "+20% melee cavalry attack."
-msgstr ""
+msgstr "Equites +20% detrimentum propinquum."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
 msgid "Close Combat Cavalry Training"
-msgstr ""
+msgstr "Exercitatio Equestris Dimicando"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.spart
@@ -313,63 +314,63 @@ msgstr ""
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.athen
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.mace
 msgid "Xyston"
-msgstr ""
+msgstr "Xyston"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.rome
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.rome
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.rome
 msgid "Hasta"
-msgstr ""
+msgstr "Hasta"
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsondescription
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsondescription
 msgid "Replaces bronze weapons with iron."
-msgstr ""
+msgstr "Tela ferrea pro aeratis."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr ""
+msgstr "Arma equites tuos qui propinque pugnant meliore ferro. Equites +20% detrimentum propinquum."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
 #: simulation/data/technologies/attack_infantry_melee_02.jsongenericName
 msgid "Iron Weapons"
-msgstr ""
+msgstr "Tela Ferrea"
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsondescription
 msgid "Training increases ranged attack."
-msgstr ""
+msgstr "Exercitatio detrimentum iaculatorum auget."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
 msgid "+20% ranged cavalry attack."
-msgstr ""
+msgstr "Equites Iaculatores +20% detrimentum."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
 msgid "Ranged Combat Cavalry Training"
-msgstr ""
+msgstr "Exercitatio Equestris Iaculando"
 
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr ""
+msgstr "Arma equites tuos qui tela coniciunt meliore ferro. Equites iaculatores +20% detrimentum."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsondescription
 msgid ""
 "Often, an infantryman would carry a secondary weapon in addition to his "
 "primary weapon of choice, to be drawn when the primary weapon has failed or "
 "been broken."
-msgstr ""
+msgstr "Pedes saepe alterum gerebat telum praeter telum suum praecipuum, quod stringeretur cum vel casum vel fractum esset praecipuum."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
 msgid "+20% melee infantry attack."
-msgstr ""
+msgstr "Pedites +20% detrimentum propinquum."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
 msgid "Side Arms"
-msgstr ""
+msgstr "Tela Laterum"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.spart
@@ -377,29 +378,29 @@ msgstr ""
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.athen
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.mace
 msgid "Xíphos"
-msgstr ""
+msgstr "Xíphos"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.rome
 msgid "Pugio"
-msgstr ""
+msgstr "Pugio"
 
 #: simulation/data/technologies/attack_infantry_melee_02.jsondescription
 msgid "Using iron instead of bronze gave weapons additional power."
-msgstr ""
+msgstr "Telis ferreis pro aeratis uti, quae acutiora sunt."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsondescription
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
 msgid "Training increases damage of ranged infantry."
-msgstr ""
+msgstr "Exercitatio detrimentum iaculatorum peditum auget."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
 msgid "+20% ranged infantry attack."
-msgstr ""
+msgstr "Pedites Iaculatores +20% detrimentum."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
 msgid "Ranged Infantry Irregulars"
-msgstr ""
+msgstr "Pedites Iaculatores Tumultuarii"
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.mace
@@ -412,24 +413,24 @@ msgstr ""
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.spart
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.athen
 msgid "Átaktoi"
-msgstr ""
+msgstr "Átaktoi"
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
-msgstr ""
+msgstr "Pedites Iaculatores Compotes"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid "The will to fight is crucial to victory."
-msgstr ""
+msgstr "Voluntas bellandi victoriae magni est momenti."
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid ""
 "Inspire your troops with higher pay. All land and naval army +25% attack."
-msgstr ""
+msgstr "Incita tuos maioribus pretiis. Omnes exercitus classesque +25% detrimentum."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
-msgstr ""
+msgstr "Voluntas Bellandi"
 
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.sele
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.ptol
@@ -437,41 +438,41 @@ msgstr ""
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
 msgid "Dýnamis"
-msgstr ""
+msgstr "Dýnamis"
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
 msgid ""
 "Secret steel working techniques give sword blades distinctive and beautiful "
 "markings. Not only that, but the steel's hardness is unparalleled."
-msgstr ""
+msgstr "Artibus arcanis ferri durandi laminae telorum insigniter decorantur, quibus egregia est duritia."
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr ""
+msgstr "Omnes gladiatores et clavigeri +20% detrimentum Secans."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
-msgstr ""
+msgstr "Ferrum Duratum"
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.maur
 msgid "Wootz Steel"
-msgstr ""
+msgstr "Ferrum Duratum Wootz"
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.iber
 msgid "Toledo Steel"
-msgstr ""
+msgstr "Ferrum Duratum Toleti"
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsondescription
 msgid "Using rubble materials reduces the costs and build times of walls."
-msgstr ""
+msgstr "Ruderibus uti quae pretium muri et tempus aedificandi reducas."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
 msgid "City walls -20% build time, but -1 crush armor level."
-msgstr ""
+msgstr "Moenia -20% tempus aedificandi, et -1 arma contra detrimentum Iciens."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
-msgstr ""
+msgstr "Rudera"
 
 #: simulation/data/technologies/elite_unit_bonus.jsontooltip
 msgid ""
@@ -479,118 +480,118 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "Infantry movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Militibus ad ordinem robur productis haec dantur facultates: +20% valutudinem, +1 arma omnium generum, +20% praedam, qui propinque pugnant +20% detrimentum, qui telos iciunt +4m iactum et diligentius intendunt, peditibus maiorem velocitam itineris, medicis maiorem velocitam et fines sanandi."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
-msgstr ""
+msgstr "Pecudes (oves, capros, boves etc.) alere pro cibo."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Domestic Animals −25% breeding time."
-msgstr ""
+msgstr "Pecudes −25% tempus alendi."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
-msgstr ""
+msgstr "Pecus Alitum"
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
 msgid "Workers use baskets. Increases shuttling capacity for all resources."
-msgstr ""
+msgstr "Operarii corbibus utuntur, ita maiores copias omnium opum secum ferre possunt."
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers +5 resource capacity."
-msgstr ""
+msgstr "Operarii +5 opes ferre possunt."
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
-msgstr ""
+msgstr "Corbes"
 
 #: simulation/data/technologies/gather_capacity_carts.jsondescription
 msgid ""
 "Workers use horse-drawn carts. Increases shuttling capacity for all "
 "resources."
-msgstr ""
+msgstr "Operarii carris utuntur, ita maiores copias omnium opum secum ferre possunt."
 
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 msgid "Workers +10 resource capacity."
-msgstr ""
+msgstr "Operarii +10 opes ferre possunt."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
-msgstr ""
+msgstr "Carri"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
 msgid "Salting allows to preserve fish longer."
-msgstr ""
+msgstr "Pisces saliuntur ut longius conserventur."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
-msgstr ""
+msgstr "Piscatoriae +20 cibos ferre possunt."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsongenericName
 msgid "Salting Fish"
-msgstr ""
+msgstr "Pisces Saliti"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr ""
+msgstr "Gradu Oppido recluditur. Eget Rete Piscatorio."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid ""
 "Workers use wheelbarrows. Increases shuttling capacity for all resources."
-msgstr ""
+msgstr "Operarii pabonibus utuntur, ita maiores copias omnium opum secum ferre possunt."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
-msgstr ""
+msgstr "Pabo"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
-msgstr ""
+msgstr "Plura frumenta ex agris."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% grain gather rate."
-msgstr ""
+msgstr "Operarii +25% velocitatem frumentandi."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
-msgstr ""
+msgstr "Laetamen"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
 "Equip your workers with iron plows, animal-drawn instruments to turn the "
 "sod."
-msgstr ""
+msgstr "Operarii aratris utuntur, instrumentis iumento tractis quae caespides vertunt."
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% grain gather rate."
-msgstr ""
+msgstr "Operarii +15% velocitatem frumentandi."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
-msgstr ""
+msgstr "Aratrum Ferreum"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
-msgstr ""
+msgstr "Operarii citius fructus colligunt."
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
-msgstr ""
+msgstr "Exercitatio Colligendo"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Use nets to improve the productivity of fishing boats."
-msgstr ""
+msgstr "Naviculae Piscatoriae retibus utuntur ut citius piscentur."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid "Fishing Boats +30% fish gather rate."
-msgstr ""
+msgstr "Naviculae Piscatoriae +30% velocitatem piscandi."
 
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
-msgstr ""
+msgstr "Rete Piscatorium"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
@@ -1584,11 +1585,11 @@ msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "+25% health for spear infantry, but also +10% train time."
-msgstr ""
+msgstr "Pedites Hastati +25% valetudinem, sed etiam +10% intervallum temporis conscribendi habent."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
-msgstr ""
+msgstr "Agoge"
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsondescription
 msgid ""
@@ -1767,7 +1768,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
 msgid "Traditional Army vs. Reform Army"
-msgstr ""
+msgstr "Exercitus Traditus vs. Exercitus Renovatus"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsondescription
 msgid ""

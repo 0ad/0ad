@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# alfalb.as, 2015
+# e8f1a29f7bd45d2490d729ad149fc504_6eadd8e, 2015
 # André Rodrigues, 2013
 # Carlos Moreira, 2015
 # Danny Reese <danny@angolateam.org>, 2016
@@ -12,6 +12,7 @@
 # G N <nunes.guilherme@gmail.com>, 2016
 # Grim Kriegor <grimkriegor@opmbx.org>, 2014
 # Helder Meneses <helder.meneses@gmail.com>, 2013
+# Hugo Alves <hribalves@gmail.com>, 2020
 # Luís Guedes <luisgguedes@gmail.com>, 2013
 # Luis Neves <luisjneves@gmail.com>, 2015
 # Mário Branco <branco.ana8@gmail.com>, 2017
@@ -26,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-18 07:13+0000\n"
-"PO-Revision-Date: 2020-05-18 13:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-06-26 18:05+0000\n"
+"Last-Translator: Hugo Alves <hribalves@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +39,7 @@ msgstr ""
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "Pressiona  %(hotkey)s para abrir o menu."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -55,7 +56,7 @@ msgstr "Estatísticas"
 #: gui/session/MenuButtons.js:87
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr ""
+msgstr "Pressiona %(hotkey)s para abrir o ecrã de estatísticas."
 
 #: gui/session/MenuButtons.js:130
 msgid "Lobby"
@@ -66,7 +67,7 @@ msgstr "Sala de Espera"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr ""
+msgstr "Pressiona %(hotkey)s para abrir a sala de espera multi-jogador sem sair do jogo."
 
 #: gui/session/MenuButtons.js:158
 msgid "Options"
@@ -83,7 +84,7 @@ msgstr "Pausa"
 #: gui/session/MenuButtons.js:197
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr ""
+msgstr "Pressiona %(hotkey)s para pausar ou continuar o jogo."
 
 #: gui/session/MenuButtons.js:213
 msgid "Resign"
@@ -378,12 +379,12 @@ msgstr ", "
 #: gui/session/selection_panels.js:1061
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "Promover para %(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1066
 #, javascript-format
 msgid "Upgrade to %(name)s."
-msgstr ""
+msgstr "Promover para %(name)s."
 
 #: gui/session/selection_panels.js:1083
 msgid "Cancel Upgrading"
@@ -488,7 +489,7 @@ msgstr "Shift + clique"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr ""
+msgstr "Este é o mercado de origem da rota de comércio.\nClique com o botão direito para cancelar a rota de comércio."
 
 #: gui/session/unit_actions.js:623
 msgid "Origin trade market."
@@ -504,7 +505,7 @@ msgstr "Clica com o botão direito do rato para o definir como mercado de origem
 
 #: gui/session/unit_actions.js:647 gui/session/unit_actions.js:990
 msgid "This market is too close to the origin market."
-msgstr ""
+msgstr "Este mercado é muito perto do mercado de origem."
 
 #: gui/session/unit_actions.js:651
 msgid "Right-click to set as destination trade market."
@@ -530,7 +531,7 @@ msgstr "Desalojar todos."
 
 #: gui/session/unit_actions.js:1143
 msgid "Destroy the selected units or structures."
-msgstr ""
+msgstr "Destruir as unidades ou estruturas selecionadas."
 
 #: gui/session/unit_actions.js:1145
 #, javascript-format
@@ -543,7 +544,7 @@ msgstr "Cancelar a ordem atual."
 
 #: gui/session/unit_actions.js:1211
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr ""
+msgstr "Ordenar às unidades selecionadas para guarnecerem uma estrutura ou unidade."
 
 #: gui/session/unit_actions.js:1234
 msgid "Unload"
@@ -551,7 +552,7 @@ msgstr "Desalojar"
 
 #: gui/session/unit_actions.js:1252
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr ""
+msgstr "Ordenar às unidades selecionadas para reparar uma estrutura, um navio ou uma máquina de cerco."
 
 #: gui/session/unit_actions.js:1271
 msgid "Focus on Rally Point."
@@ -563,7 +564,7 @@ msgstr "Voltar a trabalhar"
 
 #: gui/session/unit_actions.js:1325
 msgid "Order the selected units to guard a structure or unit."
-msgstr ""
+msgstr "Ordenar às unidades selecionadas para vigiarem uma estrutura ou unidade."
 
 #: gui/session/unit_actions.js:1343
 msgid "Remove guard"
@@ -581,7 +582,7 @@ msgstr "Patrulha"
 
 #: gui/session/unit_actions.js:1379
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr ""
+msgstr "Atacar todas as unidades inimigas e evitar estruturas."
 
 #: gui/session/unit_actions.js:1405
 msgid "Press to allow allies to use this dropsite"
@@ -704,12 +705,12 @@ msgstr "Conversa privada"
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr ""
+msgstr "Notificações do jogo."
 
 #: gui/session/chat/ChatHistory.js:130
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr ""
+msgstr "Notificações de rede"
 
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
@@ -777,7 +778,7 @@ msgstr "%(player)s entrou no jogo."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:57
 msgid "no-context"
-msgstr ""
+msgstr "sem contexto"
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:61
 #, javascript-format
@@ -966,15 +967,15 @@ msgstr "Habilitar selecção"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:247
 msgid "Lock cull camera"
-msgstr ""
+msgstr "Bloquear câmara selecionada."
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:265
 msgid "Display camera frustum"
-msgstr ""
+msgstr "Mostrar frustum da câmara,"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:283
 msgid "Display shadows frustum"
-msgstr ""
+msgstr "Exibir frustum das sombras."
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -1126,7 +1127,7 @@ msgstr "Fora de sincronismo"
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr ""
+msgstr "Dessincronizado."
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:63
@@ -1201,7 +1202,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s/%(hotkey_structree)s: Ver informações gerais da civilização / Árvore de Estrutura\nA última abertura será aberta ao clicar."
 
 #: gui/session/top_panel/CounterManager.js:100
 #, javascript-format
@@ -1272,19 +1273,19 @@ msgstr "Vender %(resource)s"
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
-msgstr ""
+msgstr "+%(amount)s\n "
 
 #: gui/session/trade/BarterButton.js:103
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"
-msgstr ""
+msgstr "-%(amount)s"
 
 #: gui/session/trade/TradeButton.js:56
 #, javascript-format
 msgctxt "trading good ratio"
 msgid "%(amount)s%%"
-msgstr ""
+msgstr "%(amount)s%%"
 
 #: gui/session/trade/TradeButtonManager.js:76
 #, javascript-format
@@ -1594,4 +1595,4 @@ msgstr "Comercializar"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
-msgstr ""
+msgstr "Recursos:"

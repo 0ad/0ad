@@ -11,6 +11,7 @@
 # ike20 <mvaldman@seznam.cz>, 2014
 # Jaroslav Lichtblau <jlichtblau@seznam.cz>, 2016
 # Lukas Koutsky <tekumseh65@seznam.cz>, 2015
+# Marek Mojžíš <marek.moj@seznam.cz>, 2020
 # OndraK <ondrej.kajinek@gmail.com>, 2014
 # fri, 2014-2018
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
@@ -26,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-06-06 13:50+0000\n"
-"Last-Translator: David Nováček\n"
+"PO-Revision-Date: 2020-06-28 20:21+0000\n"
+"Last-Translator: Marek Mojžíš <marek.moj@seznam.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -469,7 +470,7 @@ msgid ""
 "their British allies, and Kunobelinos was held up by the post-Roman Britons "
 "as one of their great heroes; a conqueror and uniter of petty kingdoms, "
 "something the post-Roman Britons or Romano-British sorely needed."
-msgstr ""
+msgstr "Kunobelinos (možná známý více pod latinskou obdobou svého jména ako Cunobelinus), byl mocným vládcem Catuvellů. Římany byl označován jako král Britanů. Jeho území se rozprostíralo okolo Kamulodunonu (víc známého jako Camulodunum), dnešného Colchestru. Římská prohra v bitvě v Teutoburském lese (Germánie) umožnila Kunobelinovi podrobit si sousedný kmen Trinovantů, spojenců Říma, a nepodařilo se jim získat římskou podporu. Zdá se, že Kunobelinos byl vůči Římanům lhostejný. Volně s nimi obchodoval, ale neměl výčitky při podmaňování si římských spojenců, a dokonce poslal svého nejmladšího syna Adminia jako adoptivní dítě vzdelávat se do římské Galie. To mělo vlyv na Adminiova přátelství s Římany. Adminiův otec mu dal vládu v Cantaci, obývané Kenťany. Toto území bylo hlavním římským územím pro obchod a vliv v Británii a Kunobelinos bystře zpozoroval, že přátelství jeho nejmladšího syna s římskými politiky a obchodníky by se hodilo při správě tohoto území. Jeho ostatní synové vůči Římanům nepřechovávali žádnou lásku. Když Kunobelinos zemřel kvůli nemoci, jeho místo převzal jeho syn Togdumnos, který zatkl, popravil a vyhnal mnoho římských přívrženců. To zahrnovalo i jeho vlastního bratra Adminia a sesazeného atrebatského krále Vericu, který se s žádostí obrátil na své římské styky, aby získali zpět svá území. Togdumnos zemřel v bitvě proti Římanům a byl nahrazen svým bratrem, Caratakem. Je ironií, že to byl jeho třetí syn, který původně pozval tuto římskou odvetu. Kunobelinos byl svého času jedným z největších britských králů. Obsadil velkou většinu jižní polovice Británie (jeho mince byly raženy až za hranicami dnešního Walesu). Začal vládu jen nad čtyřmi malými kmeny v konfederaci Catuvellů (Catuvellauni), a skončil jako uznávaný britský král. Toto uznání bylo tak velké, že kmeny v Cambrii dokonce přišly na pomoc jeho synům proti Římanům a jejich britským spojencům, a Kunobelinos byl vyzdvihován pořímanskými Brity jako jeden z jejich největších hrdinů; dobyvatel a sjednotitel drobných království, něčeho, co pořímští Brité anebo Římano-Brité velmi potřebovali."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -780,7 +781,7 @@ msgstr "Galové"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Allied Structures −20% technology research time."
-msgstr ""
+msgstr "Spojenecké stavby −20% z času na výzkum techonologie."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -1179,7 +1180,7 @@ msgstr "Dodavatelé slonů"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
 msgid "Allied Elephants −20% resource costs and training time."
-msgstr ""
+msgstr "Spojenečtí sloni -20% z ceny a doby výcviku."
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1245,7 +1246,7 @@ msgstr "Monumentální architektura"
 msgid ""
 "+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
 "Wonders."
-msgstr ""
+msgstr "Správní střediska, chrámy, pyramidy a divy světa mají o 50% více HP a staví se o 50% rychleji."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid "Allow to train elite rank healers"
@@ -1598,13 +1599,13 @@ msgstr "Makedonie byla starověkým řeckým královstvím soustředěným v sve
 
 #: simulation/data/civs/maur.jsonName
 msgid "Mauryas"
-msgstr ""
+msgstr "Maurjovská říše"
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Description
 msgid ""
 "Mauryas have a +10% population cap bonus (e.g., 330 pop cap instead of the "
 "usual 300)."
-msgstr ""
+msgstr "Maurjové mají +10 % bonus k výši populačního limitu (např. limit 330 jednotek namísto běžných 300)."
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
@@ -1622,7 +1623,7 @@ msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
 msgid "The Mauryas enjoy access to 4 champions."
-msgstr ""
+msgstr "Maurjové si užívají přístupu ke čtyřem elitním jednotkám. "
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
 msgid "Kṣhatriya Warrior Caste."
@@ -1667,7 +1668,7 @@ msgstr "Ašóka Veliký"
 
 #: simulation/data/civs/maur.jsonAINames[3]
 msgid "Dasharatha Maurya"
-msgstr ""
+msgstr "Dašaratha Maurja"
 
 #: simulation/data/civs/maur.jsonAINames[4]
 msgid "Samprati Maurya"
@@ -1675,7 +1676,7 @@ msgstr "Samprati Maurja"
 
 #: simulation/data/civs/maur.jsonAINames[5]
 msgid "Shalishuka Maurya"
-msgstr ""
+msgstr "Salisuka Maurja"
 
 #: simulation/data/civs/maur.jsonAINames[6]
 msgid "Devavarman Maurya"
@@ -1683,7 +1684,7 @@ msgstr "Devavarman Maurja"
 
 #: simulation/data/civs/maur.jsonAINames[7]
 msgid "Shatadhanvan Maurya"
-msgstr ""
+msgstr "Satadhanvan Maurja"
 
 #: simulation/data/civs/maur.jsonAINames[8]
 msgid "Brihadratha Maurya"
@@ -1806,7 +1807,7 @@ msgstr "Peršané mohli na základě prosté velikosti Achjmenovské říše a z
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
 msgid "Allied Land Traders +15% trade gain."
-msgstr ""
+msgstr "Spojenečtí pozemní obchodníci +15% k zisku."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -1872,7 +1873,7 @@ msgstr "Hšayāŗšā II."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry."
-msgstr ""
+msgstr "Fénické trojveslice získají jedinečnou schopnost cvičit jednotky jízdy."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Name
 msgid "Naval Craftsmanship"
@@ -2013,7 +2014,7 @@ msgstr "Ptolemaiovci"
 msgid ""
 "The Ptolemies receive the Mercenary Camp, a Barracks that is constructed in "
 "neutral territory and trains mercenaries."
-msgstr ""
+msgstr " Ptolemajovci dostanou žoldnéřský tábor, kasárny, které se stavějí na neutrálním území a cvičí žoldnéřské vojáky."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Mercenary Army"
@@ -2205,7 +2206,7 @@ msgstr "Stratópedo Misthophóron"
 msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains mercenaries."
-msgstr ""
+msgstr "Musí se postavit na neutrální půdě. Nemá žádný územní účinek daný poloměrem. Cvičí   žoldnéřské jednotky."
 
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
@@ -2483,7 +2484,7 @@ msgstr "Seleukovké a jistě Následnické vedení války se v průběhu 3. a 2.
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
 msgid "Allied Civil Centers −20% resource costs."
-msgstr ""
+msgstr "Spojenecká správní střediska -20% z ceny."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2676,7 +2677,7 @@ msgid ""
 "Achaean League and the Kingdom of Pergamon banded together with the Romans "
 "to defeat him at the Battle of Magnesia, forever burying the dream of "
 "reuniting Alexander's empire."
-msgstr ""
+msgstr "Antiochos III. Veliký (Antiochos III. Megás) na začátku své vlády zdědil království s mnohými problémy. Od pokraje zhroucení se mu podařilo dát nazpět dohromady to, co Seleukos I. tak vydřeně založil. Povstalecké východné satrapie Baktrie a Parthie byly sraženy na kolena, takže dočasně zabezpečovaly jeho východní hranice. Potom obrátil svoji pozornost na mateřské Řecko, pokoušeje se tak naplnit sny svých otců o napadení Řecka pod záminkou osvobození. Achajský spolek a Pergamské království se však spojili s Římany a v bitvě u Magnesie ho porazili, navždy tak pochovajíc sen o znovusjednocení Alexandrovy říše."
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"

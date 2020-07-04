@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2020
+# pospolos <pospolos@gmail.com>, 2017-2020
 # Osoitz <oelkoro@gmail.com>, 2015,2019-2020
+# pospolos <pospolos@gmail.com>, 2020
 # Thadah D. Denyse <juchuf@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-12 07:09+0000\n"
-"PO-Revision-Date: 2020-06-13 07:51+0000\n"
-"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2020-06-26 07:09+0000\n"
+"PO-Revision-Date: 2020-06-27 07:56+0000\n"
+"Last-Translator: pospolos <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +63,7 @@ msgid_plural "Special Structures"
 msgstr[0] "Egitura berezia"
 msgstr[1] "Egitura bereziak"
 
-#: gui/civinfo/civinfo.js:141 gui/summary/layout.js:67
+#: gui/civinfo/civinfo.js:141 gui/summary/layout.js:77
 msgid "Heroes"
 msgstr "Heroiak"
 
@@ -570,7 +571,7 @@ msgstr "Erabiltzaileak (%(num)s): %(users)s"
 #: gui/common/tooltips.js:501 gui/common/tooltips.js:796
 #: gui/common/tooltips.js:830 gui/common/tooltips.js:896
 #: gui/loadgame/SavegameDetails.js:38 gui/reference/common/draw.js:51
-#: gui/replaymenu/replay_menu.js:283
+#: gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ", "
 
@@ -870,16 +871,16 @@ msgstr "Lagunen sua:  %(enabled)s"
 
 #: gui/common/tooltips.js:373 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:299 gui/options/options.js:352
-#: gui/options/options.js:378 gui/pregame/MainMenuItems.js:183
+#: gui/options/options.js:300 gui/options/options.js:353
+#: gui/options/options.js:379 gui/pregame/MainMenuItems.js:183
 #: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Bai"
 
 #: gui/common/tooltips.js:373 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:299 gui/options/options.js:352
-#: gui/options/options.js:378 gui/pregame/MainMenuItems.js:183
+#: gui/options/options.js:300 gui/options/options.js:353
+#: gui/options/options.js:379 gui/pregame/MainMenuItems.js:183
 #: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Ez"
@@ -1164,7 +1165,7 @@ msgstr "Eskuin klika informazio gehiago ikusteko."
 msgid "Click to view more information."
 msgstr "Klikatu informazio gehiago ikusteko."
 
-#: gui/credits/credits.js:80
+#: gui/credits/credits.js:81
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
@@ -1174,7 +1175,7 @@ msgstr "%(nick)s - %(name)s"
 msgid "Delete the selected savegame using %(hotkey)s."
 msgstr "Ezabatu hautatuta dagoen gordetako partida %(hotkey)s erabiliz."
 
-#: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:204
+#: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:203
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
 msgstr "Mantendu %(hotkey)s baieztapen elkarrizketa saltatzeko ezabatzean."
@@ -1234,8 +1235,8 @@ msgstr "Salbamendu joko honek mod sekuentzia ezberdina behar du:"
 msgid "Do you still want to proceed?"
 msgstr "Jarraitu hala ere?"
 
-#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:298
-#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:299
+#: gui/options/options.js:352 gui/options/options.js:378
 msgid "Warning"
 msgstr "Kontuz"
 
@@ -1288,17 +1289,17 @@ msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Balioa: %(val)s (gutxien: %(min)s, gehien: %(max)s)"
 
-#: gui/options/options.js:297
+#: gui/options/options.js:298
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Hasierako egoerara bueltatzeak zure ezarpenak ezabatuko ditu. Jarraitu nahi duzu?"
 
-#: gui/options/options.js:350
+#: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr "Ezarpen balio batzuk baliogabeak dira! Ziur al zaude gorde nahi duzula?"
 
-#: gui/options/options.js:376
+#: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Gorde gabeko aldaketak dituzu. Leiho hau itxi nahi duzu?"
 
@@ -1858,225 +1859,229 @@ msgstr "Sailkapenerako Partidak"
 msgid "Unrated games"
 msgstr "Sailkapenik gabeko partidak"
 
-#: gui/replaymenu/replay_menu.js:195
+#: gui/replaymenu/replay_menu.js:194
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
 msgstr "Iragazi errepikapenak jokalari izen bat edo batzuk, edo izen moztuak idatziz. "
 
-#: gui/replaymenu/replay_menu.js:199
+#: gui/replaymenu/replay_menu.js:198
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
 msgstr "Ezabatu aukeratutako errepikapena %(hotkey)s sakatuz."
 
-#: gui/replaymenu/replay_menu.js:284
+#: gui/replaymenu/replay_menu.js:283
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr "Jokalariak: %(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:308
+#: gui/replaymenu/replay_menu.js:307
 msgid "yyyy-MM-dd HH:mm"
 msgstr "uuuu-HH-ee OO:mm"
 
-#: gui/replaymenu/replay_menu.js:338
+#: gui/replaymenu/replay_menu.js:337
 msgid "yyyy-MM"
 msgstr "uuuu-HH"
 
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
+#: gui/summary/layout.js:13
 msgid "Score"
 msgstr "Puntuazioa"
 
-#: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
-#: gui/summary/layout.js:101 gui/summary/layout.js:152
-#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):123
+#: gui/summary/layout.js:15 gui/summary/layout.js:33 gui/summary/layout.js:71
+#: gui/summary/layout.js:111 gui/summary/layout.js:162
+#: gui/summary/layout.js:194 gui/summary/summary.xml:(caption):70
 msgid "Player name"
 msgstr "Jokalariaren izena"
 
-#: gui/summary/layout.js:6
+#: gui/summary/layout.js:16
 msgid "Total score"
 msgstr "Puntuazioa guztira"
 
-#: gui/summary/layout.js:7
+#: gui/summary/layout.js:17
 msgid "Economy score"
 msgstr "Ekonomia puntuazioa"
 
-#: gui/summary/layout.js:8
+#: gui/summary/layout.js:18
 msgid "Military score"
 msgstr "Militar puntuazioa"
 
-#: gui/summary/layout.js:9
+#: gui/summary/layout.js:19
 msgid "Exploration score"
 msgstr "Esploratze puntuazioa"
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):81
+#: gui/summary/layout.js:31
 msgid "Structures"
 msgstr "Egiturak"
 
-#: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:102
+#: gui/summary/layout.js:34 gui/summary/layout.js:72 gui/summary/layout.js:112
 msgid "Total"
 msgstr "Guztira"
 
-#: gui/summary/layout.js:25
+#: gui/summary/layout.js:35
 msgid "Houses"
 msgstr "Etxeak"
 
-#: gui/summary/layout.js:26
+#: gui/summary/layout.js:36
 msgid "Economic"
 msgstr "Ekonomia"
 
-#: gui/summary/layout.js:27
+#: gui/summary/layout.js:37
 msgid "Outposts"
 msgstr "Postu aurreratuak"
 
-#: gui/summary/layout.js:28
+#: gui/summary/layout.js:38
 msgid "Military"
 msgstr "Militarra"
 
-#: gui/summary/layout.js:29
+#: gui/summary/layout.js:39
 msgid "Fortresses"
 msgstr "Gotorlekuak"
 
-#: gui/summary/layout.js:30
+#: gui/summary/layout.js:40
 msgid "Civ centers"
 msgstr "Giz zentroak"
 
-#: gui/summary/layout.js:31
+#: gui/summary/layout.js:41
 msgid "Wonders"
 msgstr "Miragarriak"
 
-#: gui/summary/layout.js:35
+#: gui/summary/layout.js:45
 #, javascript-format
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
 msgstr "Egituren estatistikak (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):88
+#: gui/summary/layout.js:69
 msgid "Units"
 msgstr "Unitateak"
 
-#: gui/summary/layout.js:63
+#: gui/summary/layout.js:73
 msgid "Infantry"
 msgstr "Infanteria"
 
-#: gui/summary/layout.js:64
+#: gui/summary/layout.js:74
 msgid "Worker"
 msgstr "Langilea"
 
-#: gui/summary/layout.js:65
+#: gui/summary/layout.js:75
 msgid "Cavalry"
 msgstr "Zalditeria"
 
-#: gui/summary/layout.js:66
+#: gui/summary/layout.js:76
 msgid "Champion"
 msgstr "Aldezkaria"
 
-#: gui/summary/layout.js:68
+#: gui/summary/layout.js:78
 msgid "Siege"
 msgstr "Setio"
 
-#: gui/summary/layout.js:69
+#: gui/summary/layout.js:79
 msgid "Navy"
 msgstr "Itsas armadakoak"
 
-#: gui/summary/layout.js:70
+#: gui/summary/layout.js:80
 msgid "Traders"
 msgstr "Merkatariak"
 
-#: gui/summary/layout.js:74
+#: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr "Unitate estatistikak (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):95
+#: gui/summary/layout.js:109
 msgid "Resources"
 msgstr "Baliabideak"
 
-#: gui/summary/layout.js:111
+#: gui/summary/layout.js:121
 msgid "Tributes"
 msgstr "Ordainak"
 
-#: gui/summary/layout.js:112
+#: gui/summary/layout.js:122
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
 msgstr "Tributuak⏎\n(%(sent)s / %(received)s)"
 
-#: gui/summary/layout.js:120
+#: gui/summary/layout.js:130
 msgid "Treasures collected"
 msgstr "Bildutako altxorrak"
 
-#: gui/summary/layout.js:121
+#: gui/summary/layout.js:131
 msgid "Loot"
 msgstr "Harrapakina"
 
-#: gui/summary/layout.js:122
+#: gui/summary/layout.js:132
 msgid "Livestock bred"
 msgstr "Hezitako abereak"
 
-#: gui/summary/layout.js:126
+#: gui/summary/layout.js:136
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Baliabideen estatistikak (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):102
+#: gui/summary/layout.js:160
 msgid "Market"
 msgstr "Merkatua"
 
-#: gui/summary/layout.js:153
+#: gui/summary/layout.js:163
 msgid "Trade income"
 msgstr "Merkatari irabaziak"
 
-#: gui/summary/layout.js:154
+#: gui/summary/layout.js:164
 msgid "Barter efficiency"
 msgstr "Aldaketarako gaitasuna"
 
 #. Translation: use %(resourceWithinSentence)s if needed
-#: gui/summary/layout.js:160
+#: gui/summary/layout.js:170
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "%(resourceFirstWord)s aldaturik"
 
-#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):109
+#: gui/summary/layout.js:192
 msgid "Miscellaneous"
 msgstr "Hainbat"
 
-#: gui/summary/layout.js:185
+#: gui/summary/layout.js:195
 msgid "Kill / Death ratio"
 msgstr "Erailak/hildakoen zenbatekoa"
 
-#: gui/summary/layout.js:186
+#: gui/summary/layout.js:196
 msgid "Map control (peak)"
 msgstr "Maparen kontrola (goikoa)"
 
-#: gui/summary/layout.js:187
+#: gui/summary/layout.js:197
 msgid "Map control (finish)"
 msgstr "Maparen kontrola (bukaerakoa)"
 
-#: gui/summary/layout.js:188
+#: gui/summary/layout.js:198
 msgid "Map exploration"
 msgstr "Maparen ikusketa"
 
-#: gui/summary/layout.js:189
+#: gui/summary/layout.js:199
 msgid "Vegetarian ratio"
 msgstr "Belarjaleen zenbatekoa"
 
-#: gui/summary/layout.js:190
+#: gui/summary/layout.js:200
 msgid "Feminization"
 msgstr "Emetua"
 
-#: gui/summary/layout.js:193
+#: gui/summary/layout.js:203
 msgid "Bribes"
 msgstr "Eskupekoak"
 
-#: gui/summary/layout.js:194
+#: gui/summary/layout.js:204
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
 msgstr "Eskupekoak\n(%(succeeded)s / %(failed)s)"
 
-#: gui/summary/layout.js:357
+#: gui/summary/layout.js:229
+msgid "Charts"
+msgstr "Kontuak"
+
+#: gui/summary/layout.js:373
 msgid "Team total"
 msgstr "Taldeko guztia"
 
@@ -2144,52 +2149,67 @@ msgstr "Emaitza"
 msgid "Failed"
 msgstr "Huts-eginda"
 
-#: gui/summary/summary.js:335
+#: gui/summary/summary.js:303
 msgid "Time elapsed"
 msgstr "Igarotako denbora"
 
-#: gui/summary/summary.js:490
+#: gui/summary/summary.js:453
 msgid "Current Scores"
 msgstr "Momentuko puntuazioak"
 
-#: gui/summary/summary.js:492
+#: gui/summary/summary.js:455
 msgid "Scores at the end of the game."
 msgstr "Puntuazioa partidaren amaieran."
 
-#: gui/summary/summary.js:494
+#: gui/summary/summary.js:457
 msgid "You have been disconnected."
 msgstr "Deskonektatua izan zara."
 
-#: gui/summary/summary.js:496
+#: gui/summary/summary.js:459
 msgid "You have left the game."
 msgstr "Partida utzi duzu."
 
-#: gui/summary/summary.js:498
+#: gui/summary/summary.js:461
 msgid "You have won the battle!"
 msgstr "Borroka irabazi duzu!"
 
-#: gui/summary/summary.js:500
+#: gui/summary/summary.js:463
 msgid "You have been defeated…"
 msgstr "Menderatua izan zara."
 
-#: gui/summary/summary.js:501
+#: gui/summary/summary.js:464
 msgid "You have abandoned the game."
 msgstr "Jokoa abandonatu duzu"
 
-#: gui/summary/summary.js:504
+#: gui/summary/summary.js:467
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Igarotako partida denbora: %(time)s"
 
-#: gui/summary/summary.js:512
+#: gui/summary/summary.js:475
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/summary/summary.js:524
+#: gui/summary/summary.js:487
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: Txandakatu hainbat jokalarien gela elkarrizketa leihoan."
+
+#: gui/summary/summary.js:500
+#, javascript-format
+msgid "Toggle the %(name)s summary tab."
+msgstr "Aldatu %(name)s laburpenen fitxa."
+
+#: gui/summary/summary.js:501
+#, javascript-format
+msgid "Use %(hotkey)s to move a summary tab right."
+msgstr "Erabili %(hotkey)s laburpenen fitxa bat eskuinera mugitzeko."
+
+#: gui/summary/summary.js:502
+#, javascript-format
+msgid "Use %(hotkey)s to move a summary tab left."
+msgstr "Erabili %(hotkey)s laburpenen fitxa bat ezkerrera mugitzeko."
 
 #: gui/civinfo/civinfo.xml:(caption):30
 msgid "Civilization Selection"
@@ -2349,7 +2369,7 @@ msgid "Rebuild Cache"
 msgstr "Berregin cachea"
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
-#: gui/summary/summary.xml:(caption):34
+#: gui/summary/summary.xml:(caption):26
 msgid "Summary"
 msgstr "Laburpena"
 
@@ -2393,44 +2413,40 @@ msgstr "Bistaratu mezu hau etorkizunean ere"
 msgid "Known Issues (web)"
 msgstr "Arazo ezagunak (webgunea)"
 
-#: gui/summary/summary.xml:(caption):116
-msgid "Charts"
-msgstr "Kontuak"
-
-#: gui/summary/summary.xml:(caption):173
+#: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "Kategoria:"
 
-#: gui/summary/summary.xml:(caption):183
+#: gui/summary/summary.xml:(caption):130
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "Balioa:"
 
-#: gui/summary/summary.xml:(caption):193
+#: gui/summary/summary.xml:(caption):140
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "Mota:"
 
-#: gui/summary/summary.xml:(caption):227
+#: gui/summary/summary.xml:(caption):174
 msgid "Watch Replay"
 msgstr "Ikusi erreprodukzioa"
 
-#: gui/summary/summary.xml:(caption):232
+#: gui/summary/summary.xml:(caption):179
 msgid "Continue"
 msgstr "Jarraitu"
 
-#: gui/summary/summary.xml:(tooltip):179
+#: gui/summary/summary.xml:(tooltip):126
 msgctxt "summary chart"
 msgid "Category"
 msgstr "Kategoria"
 
-#: gui/summary/summary.xml:(tooltip):189
+#: gui/summary/summary.xml:(tooltip):136
 msgctxt "summary chart"
 msgid "Value"
 msgstr "Balioa"
 
-#: gui/summary/summary.xml:(tooltip):200
+#: gui/summary/summary.xml:(tooltip):147
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Mota"

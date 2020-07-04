@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-12 07:09+0000\n"
-"PO-Revision-Date: 2020-06-12 17:42+0000\n"
+"POT-Creation-Date: 2020-06-26 07:09+0000\n"
+"PO-Revision-Date: 2020-06-26 17:21+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,7 @@ msgstr[1] "Особливих споруд"
 msgstr[2] "Особливих споруд"
 msgstr[3] "Особливі споруди"
 
-#: gui/civinfo/civinfo.js:141 gui/summary/layout.js:67
+#: gui/civinfo/civinfo.js:141 gui/summary/layout.js:77
 msgid "Heroes"
 msgstr "Герої"
 
@@ -595,7 +595,7 @@ msgstr "Користувачі (%(num)s): %(users)s"
 #: gui/common/tooltips.js:501 gui/common/tooltips.js:796
 #: gui/common/tooltips.js:830 gui/common/tooltips.js:896
 #: gui/loadgame/SavegameDetails.js:38 gui/reference/common/draw.js:51
-#: gui/replaymenu/replay_menu.js:283
+#: gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ", "
 
@@ -905,16 +905,16 @@ msgstr "Дружній вогонь: %(enabled)s"
 
 #: gui/common/tooltips.js:373 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:299 gui/options/options.js:352
-#: gui/options/options.js:378 gui/pregame/MainMenuItems.js:183
+#: gui/options/options.js:300 gui/options/options.js:353
+#: gui/options/options.js:379 gui/pregame/MainMenuItems.js:183
 #: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Так"
 
 #: gui/common/tooltips.js:373 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:299 gui/options/options.js:352
-#: gui/options/options.js:378 gui/pregame/MainMenuItems.js:183
+#: gui/options/options.js:300 gui/options/options.js:353
+#: gui/options/options.js:379 gui/pregame/MainMenuItems.js:183
 #: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Ні"
@@ -1211,7 +1211,7 @@ msgstr "Клацнути правою кнопкою миші, щоб перег
 msgid "Click to view more information."
 msgstr "Клацнути, щоб переглянути більше інформації."
 
-#: gui/credits/credits.js:80
+#: gui/credits/credits.js:81
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
@@ -1221,7 +1221,7 @@ msgstr "%(nick)s - %(name)s"
 msgid "Delete the selected savegame using %(hotkey)s."
 msgstr "Видалити вибрану збережену гру, використовуючи %(hotkey)s."
 
-#: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:204
+#: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:203
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
 msgstr "Утримувати %(hotkey)s щоб пропустити діалог підтвердження під час видалення."
@@ -1281,8 +1281,8 @@ msgstr "Ця збережена гра потребує іншої послід�
 msgid "Do you still want to proceed?"
 msgstr "Чи Ви все ще хочете продовжити?"
 
-#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:298
-#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:299
+#: gui/options/options.js:352 gui/options/options.js:378
 msgid "Warning"
 msgstr "Попередження"
 
@@ -1335,17 +1335,17 @@ msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Значення: %(val)s (мін: %(min)s, макс: %(max)s)"
 
-#: gui/options/options.js:297
+#: gui/options/options.js:298
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Скидання налаштунків призведе до видалення Ваших збережених налаштувань. Чи хочете Ви продовжити?"
 
-#: gui/options/options.js:350
+#: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr "Деякі значення налаштування є невірними! Чи впевнені Ви, щоб зберегти їх?"
 
-#: gui/options/options.js:376
+#: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "У Вас є незбережені зміни, чи хочете Ви закрити це вікно?"
 
@@ -1909,225 +1909,229 @@ msgstr "Оціночні ігри"
 msgid "Unrated games"
 msgstr "Безоціночні ігри"
 
-#: gui/replaymenu/replay_menu.js:195
+#: gui/replaymenu/replay_menu.js:194
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
 msgstr "Фільтрувати повтори за набором одного чи декількох, повних чи часткових імен гравців."
 
-#: gui/replaymenu/replay_menu.js:199
+#: gui/replaymenu/replay_menu.js:198
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
 msgstr "Видалити вибране відтворення, використовуючи%(hotkey)s."
 
-#: gui/replaymenu/replay_menu.js:284
+#: gui/replaymenu/replay_menu.js:283
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr "Гравців: %(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:308
+#: gui/replaymenu/replay_menu.js:307
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:338
+#: gui/replaymenu/replay_menu.js:337
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
+#: gui/summary/layout.js:13
 msgid "Score"
 msgstr "Підрахунок"
 
-#: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
-#: gui/summary/layout.js:101 gui/summary/layout.js:152
-#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):123
+#: gui/summary/layout.js:15 gui/summary/layout.js:33 gui/summary/layout.js:71
+#: gui/summary/layout.js:111 gui/summary/layout.js:162
+#: gui/summary/layout.js:194 gui/summary/summary.xml:(caption):70
 msgid "Player name"
 msgstr "Ім'я гравця"
 
-#: gui/summary/layout.js:6
+#: gui/summary/layout.js:16
 msgid "Total score"
 msgstr "Загальний підрахунок"
 
-#: gui/summary/layout.js:7
+#: gui/summary/layout.js:17
 msgid "Economy score"
 msgstr "Економічний підрахунок"
 
-#: gui/summary/layout.js:8
+#: gui/summary/layout.js:18
 msgid "Military score"
 msgstr "Військовий підрахунок"
 
-#: gui/summary/layout.js:9
+#: gui/summary/layout.js:19
 msgid "Exploration score"
 msgstr "Дослідницький підрахунок"
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):81
+#: gui/summary/layout.js:31
 msgid "Structures"
 msgstr "Споруди"
 
-#: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:102
+#: gui/summary/layout.js:34 gui/summary/layout.js:72 gui/summary/layout.js:112
 msgid "Total"
 msgstr "Загально"
 
-#: gui/summary/layout.js:25
+#: gui/summary/layout.js:35
 msgid "Houses"
 msgstr "Будинків"
 
-#: gui/summary/layout.js:26
+#: gui/summary/layout.js:36
 msgid "Economic"
 msgstr "Господарських"
 
-#: gui/summary/layout.js:27
+#: gui/summary/layout.js:37
 msgid "Outposts"
 msgstr "Застав"
 
-#: gui/summary/layout.js:28
+#: gui/summary/layout.js:38
 msgid "Military"
 msgstr "Військових"
 
-#: gui/summary/layout.js:29
+#: gui/summary/layout.js:39
 msgid "Fortresses"
 msgstr "Фортець"
 
-#: gui/summary/layout.js:30
+#: gui/summary/layout.js:40
 msgid "Civ centers"
 msgstr "Громадських центрів"
 
-#: gui/summary/layout.js:31
+#: gui/summary/layout.js:41
 msgid "Wonders"
 msgstr "Див"
 
-#: gui/summary/layout.js:35
+#: gui/summary/layout.js:45
 #, javascript-format
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
 msgstr "Споруджувальна статистика (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):88
+#: gui/summary/layout.js:69
 msgid "Units"
 msgstr "Підрозділи"
 
-#: gui/summary/layout.js:63
+#: gui/summary/layout.js:73
 msgid "Infantry"
 msgstr "Піхотних"
 
-#: gui/summary/layout.js:64
+#: gui/summary/layout.js:74
 msgid "Worker"
 msgstr "Працівників"
 
-#: gui/summary/layout.js:65
+#: gui/summary/layout.js:75
 msgid "Cavalry"
 msgstr "Кавалерійських"
 
-#: gui/summary/layout.js:66
+#: gui/summary/layout.js:76
 msgid "Champion"
 msgstr "Чемпіонських"
 
-#: gui/summary/layout.js:68
+#: gui/summary/layout.js:78
 msgid "Siege"
 msgstr "Облогових"
 
-#: gui/summary/layout.js:69
+#: gui/summary/layout.js:79
 msgid "Navy"
 msgstr "Морських"
 
-#: gui/summary/layout.js:70
+#: gui/summary/layout.js:80
 msgid "Traders"
 msgstr "Торгових"
 
-#: gui/summary/layout.js:74
+#: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr "Статистика одиниць (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):95
+#: gui/summary/layout.js:109
 msgid "Resources"
 msgstr "Ресурси"
 
-#: gui/summary/layout.js:111
+#: gui/summary/layout.js:121
 msgid "Tributes"
 msgstr "Підношень"
 
-#: gui/summary/layout.js:112
+#: gui/summary/layout.js:122
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
 msgstr "Підношень \n(%(sent)s / %(received)s)"
 
-#: gui/summary/layout.js:120
+#: gui/summary/layout.js:130
 msgid "Treasures collected"
 msgstr "Скарбів зібрано"
 
-#: gui/summary/layout.js:121
+#: gui/summary/layout.js:131
 msgid "Loot"
 msgstr "Грабіж"
 
-#: gui/summary/layout.js:122
+#: gui/summary/layout.js:132
 msgid "Livestock bred"
 msgstr "Тваринництво"
 
-#: gui/summary/layout.js:126
+#: gui/summary/layout.js:136
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Ресурсна статистика (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):102
+#: gui/summary/layout.js:160
 msgid "Market"
 msgstr "Ринок"
 
-#: gui/summary/layout.js:153
+#: gui/summary/layout.js:163
 msgid "Trade income"
 msgstr "Торговельний дохід"
 
-#: gui/summary/layout.js:154
+#: gui/summary/layout.js:164
 msgid "Barter efficiency"
 msgstr "Ефективність обміну"
 
 #. Translation: use %(resourceWithinSentence)s if needed
-#: gui/summary/layout.js:160
+#: gui/summary/layout.js:170
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "%(resourceFirstWord)s обміняно"
 
-#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):109
+#: gui/summary/layout.js:192
 msgid "Miscellaneous"
 msgstr "Різне"
 
-#: gui/summary/layout.js:185
+#: gui/summary/layout.js:195
 msgid "Kill / Death ratio"
 msgstr "Вбито / Померло співвідношення"
 
-#: gui/summary/layout.js:186
+#: gui/summary/layout.js:196
 msgid "Map control (peak)"
 msgstr "Контроль карти (пік)"
 
-#: gui/summary/layout.js:187
+#: gui/summary/layout.js:197
 msgid "Map control (finish)"
 msgstr "Контроль карти (фініш)"
 
-#: gui/summary/layout.js:188
+#: gui/summary/layout.js:198
 msgid "Map exploration"
 msgstr "Дослідження мапи"
 
-#: gui/summary/layout.js:189
+#: gui/summary/layout.js:199
 msgid "Vegetarian ratio"
 msgstr "Співвідношення вегетаріанства"
 
-#: gui/summary/layout.js:190
+#: gui/summary/layout.js:200
 msgid "Feminization"
 msgstr "Фемінізація"
 
-#: gui/summary/layout.js:193
+#: gui/summary/layout.js:203
 msgid "Bribes"
 msgstr "Підкупи"
 
-#: gui/summary/layout.js:194
+#: gui/summary/layout.js:204
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
 msgstr "Підкупи\n(%(succeeded)s / %(failed)s)"
 
-#: gui/summary/layout.js:357
+#: gui/summary/layout.js:229
+msgid "Charts"
+msgstr "Графіки"
+
+#: gui/summary/layout.js:373
 msgid "Team total"
 msgstr "Загальний командний"
 
@@ -2195,52 +2199,67 @@ msgstr "Результат"
 msgid "Failed"
 msgstr "Не вдалося"
 
-#: gui/summary/summary.js:335
+#: gui/summary/summary.js:303
 msgid "Time elapsed"
 msgstr "Час минув"
 
-#: gui/summary/summary.js:490
+#: gui/summary/summary.js:453
 msgid "Current Scores"
 msgstr "Поточні Результати"
 
-#: gui/summary/summary.js:492
+#: gui/summary/summary.js:455
 msgid "Scores at the end of the game."
 msgstr "Результати в кінці гри."
 
-#: gui/summary/summary.js:494
+#: gui/summary/summary.js:457
 msgid "You have been disconnected."
 msgstr "Вас було роз'єднано."
 
-#: gui/summary/summary.js:496
+#: gui/summary/summary.js:459
 msgid "You have left the game."
 msgstr "Ви покинули гру."
 
-#: gui/summary/summary.js:498
+#: gui/summary/summary.js:461
 msgid "You have won the battle!"
 msgstr "Ви перемогли у битві!"
 
-#: gui/summary/summary.js:500
+#: gui/summary/summary.js:463
 msgid "You have been defeated…"
 msgstr "Ви зазнали поразки..."
 
-#: gui/summary/summary.js:501
+#: gui/summary/summary.js:464
 msgid "You have abandoned the game."
 msgstr "Ви відмовилися від гри."
 
-#: gui/summary/summary.js:504
+#: gui/summary/summary.js:467
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Тривалість гри: %(time)s"
 
-#: gui/summary/summary.js:512
+#: gui/summary/summary.js:475
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/summary/summary.js:524
+#: gui/summary/summary.js:487
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: Перемкнути багатокористувацьке лобі у діалоговому вікні."
+
+#: gui/summary/summary.js:500
+#, javascript-format
+msgid "Toggle the %(name)s summary tab."
+msgstr ""
+
+#: gui/summary/summary.js:501
+#, javascript-format
+msgid "Use %(hotkey)s to move a summary tab right."
+msgstr ""
+
+#: gui/summary/summary.js:502
+#, javascript-format
+msgid "Use %(hotkey)s to move a summary tab left."
+msgstr ""
 
 #: gui/civinfo/civinfo.xml:(caption):30
 msgid "Civilization Selection"
@@ -2400,7 +2419,7 @@ msgid "Rebuild Cache"
 msgstr "Перебудувати кеш"
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
-#: gui/summary/summary.xml:(caption):34
+#: gui/summary/summary.xml:(caption):26
 msgid "Summary"
 msgstr "Підсумок"
 
@@ -2444,44 +2463,40 @@ msgstr "Показати це повідомлення у майбутньому
 msgid "Known Issues (web)"
 msgstr "Відомі проблеми (веб)"
 
-#: gui/summary/summary.xml:(caption):116
-msgid "Charts"
-msgstr "Графіки"
-
-#: gui/summary/summary.xml:(caption):173
+#: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "Категорія:"
 
-#: gui/summary/summary.xml:(caption):183
+#: gui/summary/summary.xml:(caption):130
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "Значення:"
 
-#: gui/summary/summary.xml:(caption):193
+#: gui/summary/summary.xml:(caption):140
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "Тип:"
 
-#: gui/summary/summary.xml:(caption):227
+#: gui/summary/summary.xml:(caption):174
 msgid "Watch Replay"
 msgstr "Переглянути Повтор"
 
-#: gui/summary/summary.xml:(caption):232
+#: gui/summary/summary.xml:(caption):179
 msgid "Continue"
 msgstr "Продовжити"
 
-#: gui/summary/summary.xml:(tooltip):179
+#: gui/summary/summary.xml:(tooltip):126
 msgctxt "summary chart"
 msgid "Category"
 msgstr "Категорія"
 
-#: gui/summary/summary.xml:(tooltip):189
+#: gui/summary/summary.xml:(tooltip):136
 msgctxt "summary chart"
 msgid "Value"
 msgstr "Значення"
 
-#: gui/summary/summary.xml:(tooltip):200
+#: gui/summary/summary.xml:(tooltip):147
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Тип"

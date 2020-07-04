@@ -6,6 +6,7 @@
 # lynx121 <adam.ostruszka@seznam.cz>, 2016
 # Jaroslav Lichtblau <jlichtblau@seznam.cz>, 2016
 # Wesalius <jonas.dyba@gmail.com>, 2016
+# Marek Mojžíš <marek.moj@seznam.cz>, 2020
 # fri, 2014-2018
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-05-24 09:43+0200\n"
-"PO-Revision-Date: 2019-05-24 14:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2020-06-29 10:26+0000\n"
+"Last-Translator: Marek Mojžíš <marek.moj@seznam.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -244,7 +245,7 @@ msgstr "%(_player_)s, musíš mi poslat tribut (projev úcty, vlastně vazalskou
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s."
-msgstr ""
+msgstr "Dokud mi nepošleš %(_amount_)s %(_resource_)s, tak mezi námi neuzavře žádné spojenectví %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
@@ -748,7 +749,7 @@ msgid ""
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
-msgstr ""
+msgstr "Buď prvním, kdo postaví nebo zabere div světa a uchová si ho po stanovenou dobu, aby jsi zvítězil ve hře. Měřič času bude vynulován, kdykoliv je div zničen nebo zabrán jiným hráčem, či v případě změny členů ve spojenectví."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -894,4 +895,4 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra je výchozí umělá inteligence 0 A.D. Prosím, upozorňujte na chyby Wildfire Games (odkaz najdete v hlavní nabídce).\n\nUmělá inteligence má zvýhodnění ,nebo znevýhodnění v získávaní zdrojů (rychlost sběru nebo obchodování) v závislosti na zvolené obtížnosti(Pískoviště -58%, Velmi Lehká -44%, Lehká -25%, Střední ±0%, Těžká +25% , Velmi Těžká +56%) Lehčí obtížnosti mají taky pomalejší dobu výzkumu, stavění a trénování jednotek.  Obtížnost Pískoviště také neútočí a nerozšiřuje své hranice."

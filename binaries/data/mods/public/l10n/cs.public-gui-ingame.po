@@ -13,6 +13,7 @@
 # Jakub Jelen <jakuje@gmail.com>, 2017
 # Jaroslav Lichtblau <jlichtblau@seznam.cz>, 2016
 # Lukáš Bačovský <l.bacovsky@gmail.com>, 2020
+# Marek Mojžíš <marek.moj@seznam.cz>, 2020
 # LiberteCzech <liberte.czech@gmail.com>, 2015
 # OndraK <ondrej.kajinek@gmail.com>, 2014
 # fri, 2014-2018,2020
@@ -27,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-18 07:13+0000\n"
-"PO-Revision-Date: 2020-05-18 13:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-06-29 11:32+0000\n"
+"Last-Translator: Marek Mojžíš <marek.moj@seznam.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -385,12 +386,12 @@ msgstr ", "
 #: gui/session/selection_panels.js:1061
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "Vylepšit na %(name)s.%(tooltip)s"
 
 #: gui/session/selection_panels.js:1066
 #, javascript-format
 msgid "Upgrade to %(name)s."
-msgstr ""
+msgstr "Vylepšit na %(name)s."
 
 #: gui/session/selection_panels.js:1083
 msgid "Cancel Upgrading"
@@ -784,7 +785,7 @@ msgstr "%(player)s se připojil ke hře."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:57
 msgid "no-context"
-msgstr ""
+msgstr "bez kontextu"
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:61
 #, javascript-format

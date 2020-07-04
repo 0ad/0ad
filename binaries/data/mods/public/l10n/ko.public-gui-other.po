@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-12 07:09+0000\n"
-"PO-Revision-Date: 2020-06-12 17:42+0000\n"
+"POT-Creation-Date: 2020-06-26 07:09+0000\n"
+"PO-Revision-Date: 2020-06-26 17:21+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgid "Special Structure"
 msgid_plural "Special Structures"
 msgstr[0] "특수 건축물"
 
-#: gui/civinfo/civinfo.js:141 gui/summary/layout.js:67
+#: gui/civinfo/civinfo.js:141 gui/summary/layout.js:77
 msgid "Heroes"
 msgstr "영웅들"
 
@@ -577,7 +577,7 @@ msgstr "사용자 (%(num)s): %(users)s"
 #: gui/common/tooltips.js:501 gui/common/tooltips.js:796
 #: gui/common/tooltips.js:830 gui/common/tooltips.js:896
 #: gui/loadgame/SavegameDetails.js:38 gui/reference/common/draw.js:51
-#: gui/replaymenu/replay_menu.js:283
+#: gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ", "
 
@@ -872,16 +872,16 @@ msgstr "아군의 포격: %(enabled)s"
 
 #: gui/common/tooltips.js:373 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:299 gui/options/options.js:352
-#: gui/options/options.js:378 gui/pregame/MainMenuItems.js:183
+#: gui/options/options.js:300 gui/options/options.js:353
+#: gui/options/options.js:379 gui/pregame/MainMenuItems.js:183
 #: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "예"
 
 #: gui/common/tooltips.js:373 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:299 gui/options/options.js:352
-#: gui/options/options.js:378 gui/pregame/MainMenuItems.js:183
+#: gui/options/options.js:300 gui/options/options.js:353
+#: gui/options/options.js:379 gui/pregame/MainMenuItems.js:183
 #: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "아니오"
@@ -1160,7 +1160,7 @@ msgstr "자세한 정보를 보려면 마우스 오른쪽 버튼을 클릭하십
 msgid "Click to view more information."
 msgstr "클릭하면 더많은 정보를 볼수 있습니다."
 
-#: gui/credits/credits.js:80
+#: gui/credits/credits.js:81
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s 님"
@@ -1170,7 +1170,7 @@ msgstr "%(nick)s - %(name)s 님"
 msgid "Delete the selected savegame using %(hotkey)s."
 msgstr "%(hotkey)s 을(를) 사용하여 선택한 저장 놀이를 삭제하십시오."
 
-#: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:204
+#: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:203
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
 msgstr "삭제하는 동안 확인 대화상자를 건너뛰려면 %(hotkey)s 을(를) 유지하십시오."
@@ -1230,8 +1230,8 @@ msgstr "이 저장놀이는 다른 수정판(MOD)의 순서를 필요로 합니�
 msgid "Do you still want to proceed?"
 msgstr "계속 진행하시겠습니까?"
 
-#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:298
-#: gui/options/options.js:351 gui/options/options.js:377
+#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:299
+#: gui/options/options.js:352 gui/options/options.js:378
 msgid "Warning"
 msgstr "경고"
 
@@ -1284,17 +1284,17 @@ msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "값: %(val)s (최소: %(min)s, 최대: %(max)s)"
 
-#: gui/options/options.js:297
+#: gui/options/options.js:298
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "선택사항을 다시 설정하면 저장된 설정이 지워집니다. 계속하시겠습니까?"
 
-#: gui/options/options.js:350
+#: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr "일부 설정 값이 잘못되었습니다! 저장 하시겠습니까?"
 
-#: gui/options/options.js:376
+#: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "바뀐 내용을 저장하지 않으셨습니다. 이 창을 닫으시겠습니까?"
 
@@ -1852,225 +1852,229 @@ msgstr "정격 놀이??"
 msgid "Unrated games"
 msgstr "등급이 매겨지지 않은 놀이들"
 
-#: gui/replaymenu/replay_menu.js:195
+#: gui/replaymenu/replay_menu.js:194
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
 msgstr "하나 이상의 부분 또는 전체 선수 이름을 입력하여 재생을 걸러냅니다."
 
-#: gui/replaymenu/replay_menu.js:199
+#: gui/replaymenu/replay_menu.js:198
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
 msgstr "%(hotkey)s 을(를) 사용하여 선택한 재생을 삭제하십시오."
 
-#: gui/replaymenu/replay_menu.js:284
+#: gui/replaymenu/replay_menu.js:283
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr "선수: %(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:308
+#: gui/replaymenu/replay_menu.js:307
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:338
+#: gui/replaymenu/replay_menu.js:337
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):74
+#: gui/summary/layout.js:13
 msgid "Score"
 msgstr "점수"
 
-#: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
-#: gui/summary/layout.js:101 gui/summary/layout.js:152
-#: gui/summary/layout.js:184 gui/summary/summary.xml:(caption):123
+#: gui/summary/layout.js:15 gui/summary/layout.js:33 gui/summary/layout.js:71
+#: gui/summary/layout.js:111 gui/summary/layout.js:162
+#: gui/summary/layout.js:194 gui/summary/summary.xml:(caption):70
 msgid "Player name"
 msgstr "선수 이름"
 
-#: gui/summary/layout.js:6
+#: gui/summary/layout.js:16
 msgid "Total score"
 msgstr "총 점수"
 
-#: gui/summary/layout.js:7
+#: gui/summary/layout.js:17
 msgid "Economy score"
 msgstr "경제 점수"
 
-#: gui/summary/layout.js:8
+#: gui/summary/layout.js:18
 msgid "Military score"
 msgstr "군사 점수"
 
-#: gui/summary/layout.js:9
+#: gui/summary/layout.js:19
 msgid "Exploration score"
 msgstr "탐험 점수"
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):81
+#: gui/summary/layout.js:31
 msgid "Structures"
 msgstr "건축물"
 
-#: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:102
+#: gui/summary/layout.js:34 gui/summary/layout.js:72 gui/summary/layout.js:112
 msgid "Total"
 msgstr "전체"
 
-#: gui/summary/layout.js:25
+#: gui/summary/layout.js:35
 msgid "Houses"
 msgstr "집"
 
-#: gui/summary/layout.js:26
+#: gui/summary/layout.js:36
 msgid "Economic"
 msgstr "경제적인"
 
-#: gui/summary/layout.js:27
+#: gui/summary/layout.js:37
 msgid "Outposts"
 msgstr "전초기지"
 
-#: gui/summary/layout.js:28
+#: gui/summary/layout.js:38
 msgid "Military"
 msgstr "군사의"
 
-#: gui/summary/layout.js:29
+#: gui/summary/layout.js:39
 msgid "Fortresses"
 msgstr "요새"
 
-#: gui/summary/layout.js:30
+#: gui/summary/layout.js:40
 msgid "Civ centers"
 msgstr "시민 회관"
 
-#: gui/summary/layout.js:31
+#: gui/summary/layout.js:41
 msgid "Wonders"
 msgstr "상징"
 
-#: gui/summary/layout.js:35
+#: gui/summary/layout.js:45
 #, javascript-format
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
 msgstr "건축물 통계 (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):88
+#: gui/summary/layout.js:69
 msgid "Units"
 msgstr "부대"
 
-#: gui/summary/layout.js:63
+#: gui/summary/layout.js:73
 msgid "Infantry"
 msgstr "보병"
 
-#: gui/summary/layout.js:64
+#: gui/summary/layout.js:74
 msgid "Worker"
 msgstr "노동자"
 
-#: gui/summary/layout.js:65
+#: gui/summary/layout.js:75
 msgid "Cavalry"
 msgstr "기병"
 
-#: gui/summary/layout.js:66
+#: gui/summary/layout.js:76
 msgid "Champion"
 msgstr "대표 전사"
 
-#: gui/summary/layout.js:68
+#: gui/summary/layout.js:78
 msgid "Siege"
 msgstr "공성"
 
-#: gui/summary/layout.js:69
+#: gui/summary/layout.js:79
 msgid "Navy"
 msgstr "해군"
 
-#: gui/summary/layout.js:70
+#: gui/summary/layout.js:80
 msgid "Traders"
 msgstr "상인"
 
-#: gui/summary/layout.js:74
+#: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr "유닛 통계 (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):95
+#: gui/summary/layout.js:109
 msgid "Resources"
 msgstr "자원"
 
-#: gui/summary/layout.js:111
+#: gui/summary/layout.js:121
 msgid "Tributes"
 msgstr "공물"
 
-#: gui/summary/layout.js:112
+#: gui/summary/layout.js:122
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
 msgstr "공물 \n(%(sent)s / %(received)s)"
 
-#: gui/summary/layout.js:120
+#: gui/summary/layout.js:130
 msgid "Treasures collected"
 msgstr "수집된 보물"
 
-#: gui/summary/layout.js:121
+#: gui/summary/layout.js:131
 msgid "Loot"
 msgstr "전리품"
 
-#: gui/summary/layout.js:122
+#: gui/summary/layout.js:132
 msgid "Livestock bred"
 msgstr "가축 사육"
 
-#: gui/summary/layout.js:126
+#: gui/summary/layout.js:136
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "자원 통계 (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:150 gui/summary/summary.xml:(caption):102
+#: gui/summary/layout.js:160
 msgid "Market"
 msgstr "시장"
 
-#: gui/summary/layout.js:153
+#: gui/summary/layout.js:163
 msgid "Trade income"
 msgstr "교역 수익"
 
-#: gui/summary/layout.js:154
+#: gui/summary/layout.js:164
 msgid "Barter efficiency"
 msgstr "거래 효율"
 
 #. Translation: use %(resourceWithinSentence)s if needed
-#: gui/summary/layout.js:160
+#: gui/summary/layout.js:170
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "거래된 %(resourceFirstWord)s"
 
-#: gui/summary/layout.js:182 gui/summary/summary.xml:(caption):109
+#: gui/summary/layout.js:192
 msgid "Miscellaneous"
 msgstr "기타"
 
-#: gui/summary/layout.js:185
+#: gui/summary/layout.js:195
 msgid "Kill / Death ratio"
 msgstr "죽임 / 죽음 비율"
 
-#: gui/summary/layout.js:186
+#: gui/summary/layout.js:196
 msgid "Map control (peak)"
 msgstr "지도 제어 (절정??)"
 
-#: gui/summary/layout.js:187
+#: gui/summary/layout.js:197
 msgid "Map control (finish)"
 msgstr "지도 제어 (종료??)"
 
-#: gui/summary/layout.js:188
+#: gui/summary/layout.js:198
 msgid "Map exploration"
 msgstr "지도 탐험"
 
-#: gui/summary/layout.js:189
+#: gui/summary/layout.js:199
 msgid "Vegetarian ratio"
 msgstr "채식 비율or 채식 율"
 
-#: gui/summary/layout.js:190
+#: gui/summary/layout.js:200
 msgid "Feminization"
 msgstr "여성화or 여성 비율"
 
-#: gui/summary/layout.js:193
+#: gui/summary/layout.js:203
 msgid "Bribes"
 msgstr "뇌물"
 
-#: gui/summary/layout.js:194
+#: gui/summary/layout.js:204
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
 msgstr "뇌물\n(%(succeeded)s / %(failed)s)"
 
-#: gui/summary/layout.js:357
+#: gui/summary/layout.js:229
+msgid "Charts"
+msgstr "도표"
+
+#: gui/summary/layout.js:373
 msgid "Team total"
 msgstr "편 합계"
 
@@ -2138,52 +2142,67 @@ msgstr "결과"
 msgid "Failed"
 msgstr "실패함"
 
-#: gui/summary/summary.js:335
+#: gui/summary/summary.js:303
 msgid "Time elapsed"
 msgstr "진행된 시간"
 
-#: gui/summary/summary.js:490
+#: gui/summary/summary.js:453
 msgid "Current Scores"
 msgstr "현재 점수"
 
-#: gui/summary/summary.js:492
+#: gui/summary/summary.js:455
 msgid "Scores at the end of the game."
 msgstr "놀이 끝날때의 점수입니다."
 
-#: gui/summary/summary.js:494
+#: gui/summary/summary.js:457
 msgid "You have been disconnected."
 msgstr "연결이 끊어졌습니다."
 
-#: gui/summary/summary.js:496
+#: gui/summary/summary.js:459
 msgid "You have left the game."
 msgstr "놀이를 그만두었다."
 
-#: gui/summary/summary.js:498
+#: gui/summary/summary.js:461
 msgid "You have won the battle!"
 msgstr "전투에서 승리했습니다!"
 
-#: gui/summary/summary.js:500
+#: gui/summary/summary.js:463
 msgid "You have been defeated…"
 msgstr "패배했습니다…"
 
-#: gui/summary/summary.js:501
+#: gui/summary/summary.js:464
 msgid "You have abandoned the game."
 msgstr "놀이를 포기했습니다."
 
-#: gui/summary/summary.js:504
+#: gui/summary/summary.js:467
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "놀이 진행 시간: %(time)s"
 
-#: gui/summary/summary.js:512
+#: gui/summary/summary.js:475
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/summary/summary.js:524
+#: gui/summary/summary.js:487
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: 함께 놀기 앞마당을 대화 상자 창으로 켜고 끕니다."
+
+#: gui/summary/summary.js:500
+#, javascript-format
+msgid "Toggle the %(name)s summary tab."
+msgstr ""
+
+#: gui/summary/summary.js:501
+#, javascript-format
+msgid "Use %(hotkey)s to move a summary tab right."
+msgstr ""
+
+#: gui/summary/summary.js:502
+#, javascript-format
+msgid "Use %(hotkey)s to move a summary tab left."
+msgstr ""
 
 #: gui/civinfo/civinfo.xml:(caption):30
 msgid "Civilization Selection"
@@ -2343,7 +2362,7 @@ msgid "Rebuild Cache"
 msgstr "캐쉬를 다시 구축"
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
-#: gui/summary/summary.xml:(caption):34
+#: gui/summary/summary.xml:(caption):26
 msgid "Summary"
 msgstr "요약"
 
@@ -2387,44 +2406,40 @@ msgstr "계속 이 메시지를 표시"
 msgid "Known Issues (web)"
 msgstr "알려진 문제점 (웹)"
 
-#: gui/summary/summary.xml:(caption):116
-msgid "Charts"
-msgstr "도표"
-
-#: gui/summary/summary.xml:(caption):173
+#: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "범주:"
 
-#: gui/summary/summary.xml:(caption):183
+#: gui/summary/summary.xml:(caption):130
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "값:"
 
-#: gui/summary/summary.xml:(caption):193
+#: gui/summary/summary.xml:(caption):140
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "유형"
 
-#: gui/summary/summary.xml:(caption):227
+#: gui/summary/summary.xml:(caption):174
 msgid "Watch Replay"
 msgstr "다시보기 보기"
 
-#: gui/summary/summary.xml:(caption):232
+#: gui/summary/summary.xml:(caption):179
 msgid "Continue"
 msgstr "계속"
 
-#: gui/summary/summary.xml:(tooltip):179
+#: gui/summary/summary.xml:(tooltip):126
 msgctxt "summary chart"
 msgid "Category"
 msgstr "범주"
 
-#: gui/summary/summary.xml:(tooltip):189
+#: gui/summary/summary.xml:(tooltip):136
 msgctxt "summary chart"
 msgid "Value"
 msgstr "값"
 
-#: gui/summary/summary.xml:(tooltip):200
+#: gui/summary/summary.xml:(tooltip):147
 msgctxt "summary chart"
 msgid "Type"
 msgstr "유형"

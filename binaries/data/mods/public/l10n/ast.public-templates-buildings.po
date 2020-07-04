@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-12 07:09+0000\n"
-"PO-Revision-Date: 2020-06-15 01:32+0000\n"
+"POT-Creation-Date: 2020-06-26 07:10+0000\n"
+"PO-Revision-Date: 2020-07-02 23:31+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -84,7 +84,6 @@ msgstr "Allista unidaes especiales."
 #: simulation/templates/template_structure_economic_market.xml:33
 #: simulation/templates/template_structure_military_blacksmith.xml:28
 #: simulation/templates/template_structure_military_embassy.xml:31
-#: simulation/templates/template_structure_military_kennel.xml:39
 #: simulation/templates/structures/cart_super_dock.xml:46
 #: simulation/templates/structures/gaul_tavern.xml:26
 #: simulation/templates/structures/kush_pyramid_small.xml:27
@@ -344,14 +343,6 @@ msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
 msgstr "Allista campeones y héroes ya desendolca la teunoloxía. Guarez soldaos nella pa tirar más fleches."
-
-#: simulation/templates/template_structure_military_kennel.xml:40
-msgid "Kennel"
-msgstr "Cabañu del can"
-
-#: simulation/templates/template_structure_military_kennel.xml:42
-msgid "Train war dogs."
-msgstr "Allista canes."
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
@@ -772,10 +763,6 @@ msgstr "Dunon"
 #: simulation/templates/structures/gaul_house.xml:5
 msgid "Tegia"
 msgstr "Tegia"
-
-#: simulation/templates/structures/brit_kennel.xml:5
-msgid "Cunattegia"
-msgstr "Cunattegia"
 
 #: simulation/templates/structures/brit_market.xml:15
 #: simulation/templates/structures/gaul_market.xml:15
@@ -1215,11 +1202,11 @@ msgstr "Pirámide"
 
 #: simulation/templates/structures/kush_pyramid_large.xml:27
 msgid "Large Pyramid"
-msgstr "Pirámide grande"
+msgstr "Pirámide mayor"
 
 #: simulation/templates/structures/kush_pyramid_small.xml:25
 msgid "Small Pyramid"
-msgstr "Pirámide pequeña"
+msgstr "Pirámide menor"
 
 #: simulation/templates/structures/kush_pyramid_small.xml:26
 msgid "mr"
@@ -1702,7 +1689,7 @@ msgstr "Campamentu de mercenarios"
 msgid ""
 "Cheap Barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr "Barracón baratu que pue faese en tierra abertal, pero que nun se posia d'ello. Allista mercenarios."
+msgstr "Barraca barata que pue montase en tierra abertal, pero que nun afeuta'l territoriu. Allista mercenarios."
 
 #: simulation/templates/structures/ptol_military_colony.xml:9
 #: simulation/templates/structures/sele_military_colony.xml:9

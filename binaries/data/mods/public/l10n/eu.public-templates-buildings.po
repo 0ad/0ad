@@ -4,7 +4,8 @@
 # 
 # Translators:
 # Thadah D. Denyse <juchuf@gmail.com>, 2016
-# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2020
+# pospolos <pospolos@gmail.com>, 2017-2020
+# Mikel Muñoa <mikelmunoa5@gmail.com>, 2020
 # Osoitz <oelkoro@gmail.com>, 2015,2019-2020
 # Quintana Salazar <quintana.salazar.unai@gmail.com>, 2015
 # Thadah D. Denyse <juchuf@gmail.com>, 2016
@@ -12,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-12 07:09+0000\n"
-"PO-Revision-Date: 2020-06-13 07:48+0000\n"
-"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2020-06-26 07:10+0000\n"
+"PO-Revision-Date: 2020-06-27 10:41+0000\n"
+"Last-Translator: Mikel Muñoa <mikelmunoa5@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,7 +89,6 @@ msgstr "Unitate bereziak errekrutatu."
 #: simulation/templates/template_structure_economic_market.xml:33
 #: simulation/templates/template_structure_military_blacksmith.xml:28
 #: simulation/templates/template_structure_military_embassy.xml:31
-#: simulation/templates/template_structure_military_kennel.xml:39
 #: simulation/templates/structures/cart_super_dock.xml:46
 #: simulation/templates/structures/gaul_tavern.xml:26
 #: simulation/templates/structures/kush_pyramid_small.xml:27
@@ -191,7 +191,7 @@ msgstr "Zelatari Dorrea"
 msgid ""
 "Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
 "tech to protect its foot. Upgradeable to stone tower."
-msgstr "Geziak jaurti ditzake. Sartu unitateak guardan estaldura gehigarria emateko. Zure basea babesteko kanoi-zuloak erabili behar dira. Harrizko dorrera hobetu daiteke."
+msgstr "Geziak jaurtitzen ditu. Sartu unitateak guardan estaldura gehigarria emateko. Zure basea babesteko kanoi-zuloak erabili behar dira. Harrizko dorrera hobetu daiteke."
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:61
 msgid "Reinforce with stone and upgrade to a defense tower."
@@ -293,7 +293,7 @@ msgstr "Militarra"
 
 #: simulation/templates/template_structure_military_barracks.xml:24
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr "Trebatu hiritar-soldaduak. Ikertu trebatze hobekuntzak."
+msgstr "Trebatu gudari hiritarrak. Ikertu trebatze hobekuntzak."
 
 #: simulation/templates/template_structure_military_barracks.xml:25
 #: simulation/templates/template_structure_military_barracks.xml:22
@@ -348,14 +348,6 @@ msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
 msgstr "Trebatu aldezkariak eta heroiak eta ikertu teknologiak. Sartu soldaduak guardan gezi gehiagorako."
-
-#: simulation/templates/template_structure_military_kennel.xml:40
-msgid "Kennel"
-msgstr "Kennel"
-
-#: simulation/templates/template_structure_military_kennel.xml:42
-msgid "Train war dogs."
-msgstr "Guda txakurrak trebatu"
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
@@ -776,10 +768,6 @@ msgstr "Dunon"
 #: simulation/templates/structures/gaul_house.xml:5
 msgid "Tegia"
 msgstr "Tegia"
-
-#: simulation/templates/structures/brit_kennel.xml:5
-msgid "Cunattegia"
-msgstr "Cunattegia"
 
 #: simulation/templates/structures/brit_market.xml:15
 #: simulation/templates/structures/gaul_market.xml:15

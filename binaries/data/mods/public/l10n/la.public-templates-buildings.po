@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-12 07:09+0000\n"
-"PO-Revision-Date: 2020-06-21 23:29+0000\n"
+"POT-Creation-Date: 2020-06-26 07:10+0000\n"
+"PO-Revision-Date: 2020-06-29 22:49+0000\n"
 "Last-Translator: Ernestus Severus\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr "Aedifica ut magnos fines adipiscaris. Civiles conscribe."
 #: simulation/templates/template_structure_civic_civil_centre.xml:53
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
-msgstr "Forum"
+msgstr "Centrum Civile"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:27
 msgid "Military Colony"
@@ -88,7 +88,6 @@ msgstr "Conscribe peculiares."
 #: simulation/templates/template_structure_economic_market.xml:33
 #: simulation/templates/template_structure_military_blacksmith.xml:28
 #: simulation/templates/template_structure_military_embassy.xml:31
-#: simulation/templates/template_structure_military_kennel.xml:39
 #: simulation/templates/structures/cart_super_dock.xml:46
 #: simulation/templates/structures/gaul_tavern.xml:26
 #: simulation/templates/structures/kush_pyramid_small.xml:27
@@ -293,7 +292,7 @@ msgstr "Militaris"
 
 #: simulation/templates/template_structure_military_barracks.xml:24
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr "Conscribe milites. Inquire artes institutionis."
+msgstr "Conscribe milites-civiles. Inquire artes institutionis."
 
 #: simulation/templates/template_structure_military_barracks.xml:25
 #: simulation/templates/template_structure_military_barracks.xml:22
@@ -349,21 +348,13 @@ msgid ""
 "additional arrows."
 msgstr "Conscribe Propugnatores Heroesque, et artes inquire. Praesidium colloca ut plures sagittas coniciant."
 
-#: simulation/templates/template_structure_military_kennel.xml:40
-msgid "Kennel"
-msgstr "Stabulum Caninum"
-
-#: simulation/templates/template_structure_military_kennel.xml:42
-msgid "Train war dogs."
-msgstr "Conscribe canes bellantes."
-
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
 msgstr "Exercitant artes telorum."
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Train citizen-soldier ranged infantry. Research training improvements."
-msgstr "Conscribe pedites qui telis utuntur. Inquire artes institutionis."
+msgstr "Conscribe pedites milites-civiles qui telis utuntur. Inquire artes institutionis."
 
 #: simulation/templates/template_structure_military_range.xml:25
 msgid "Range"
@@ -777,10 +768,6 @@ msgstr "Dunon"
 msgid "Tegia"
 msgstr "Tegia"
 
-#: simulation/templates/structures/brit_kennel.xml:5
-msgid "Cunattegia"
-msgstr "Cunattegia"
-
 #: simulation/templates/structures/brit_market.xml:15
 #: simulation/templates/structures/gaul_market.xml:15
 msgid "Magos"
@@ -857,7 +844,7 @@ msgstr "Maḥanēt"
 msgid ""
 "Train North African citizen-soldiers. Research improvements for North "
 "African units."
-msgstr "Conscribe milites Africanos septentriones. Inquire artes pro Africanis Septentrionibus tuis."
+msgstr "Conscribe milites-civiles Africanos septentriones. Inquire artes pro Africanis Septentrionibus tuis."
 
 #: simulation/templates/structures/cart_civil_centre.xml:8
 msgid "Merkāz"
@@ -1538,7 +1525,7 @@ msgstr "Padgan"
 
 #: simulation/templates/structures/pers_barracks.xml:11
 msgid "Levy citizen-soldier infantry."
-msgstr "Scribe milites."
+msgstr "Scribe pedites milites-civiles."
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1664,7 +1651,7 @@ msgstr "Horti Pensiles Babylonis"
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements."
-msgstr "Conscribe milites Aegyptios et Asianos Occidentales. Inquire artes institutionis."
+msgstr "Conscribe milites-civiles Aegyptios et Asianos Occidentales. Inquire artes institutionis."
 
 #: simulation/templates/structures/ptol_elephant_stables.xml:5
 #: simulation/templates/structures/sele_elephant_stables.xml:5
@@ -1756,7 +1743,7 @@ msgstr "Castra"
 msgid ""
 "Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
 "Siege Engines. Garrison Soldiers for additional arrows."
-msgstr "Aedifica in finibus hostium aut terra quae nemo imperat. Conscribe Milites et construe Machinas. Praesidium colloca ut plures sagittas coniciant."
+msgstr "Aedifica in finibus hostium aut terra quae nemo imperat. Conscribe Milites-civiles et construe Machinas. Praesidium colloca ut plures sagittas coniciant."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
