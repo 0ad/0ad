@@ -3,8 +3,8 @@
   <Attack>
     <Melee>
       <Damage>
-        <Hack>6.0</Hack>
-        <Pierce>5.0</Pierce>
+        <Hack>4</Hack>
+        <Pierce>3</Pierce>
       </Damage>
       <MaxRange>4.5</MaxRange>
       <Bonuses>
@@ -13,7 +13,7 @@
           <Multiplier>1.5</Multiplier>
         </BonusCavMelee>
       </Bonuses>
-      <RepeatTime>2000</RepeatTime>
+      <RepeatTime>1250</RepeatTime>
     </Melee>
   </Attack>
   <Cost>

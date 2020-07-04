@@ -7,9 +7,9 @@
   <Attack>
     <Melee>
       <Damage>
-        <Hack>12.0</Hack>
-        <Pierce>10.0</Pierce>
-        <Crush>0.0</Crush>
+        <Hack>8</Hack>
+        <Pierce>6</Pierce>
+        <Crush>0</Crush>
       </Damage>
       <MaxRange>4.5</MaxRange>
       <Bonuses>
@@ -19,7 +19,7 @@
         </BonusCavMelee>
       </Bonuses>
       <PrepareTime>500</PrepareTime>
-      <RepeatTime>2000</RepeatTime>
+      <RepeatTime>1250</RepeatTime>
       <PreferredClasses datatype="tokens">Human</PreferredClasses>
     </Melee>
   </Attack>
