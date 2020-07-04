@@ -19,6 +19,11 @@
 			"Technologies":
 			[
 				{
+					"Name": "Harvesting Machine",
+					"History": "The Gauls invented an harvesting machine, making it much easier to harvest grain.",
+					"Description": "Workers +15% grain gather rate."
+				},
+				{
 					"Name": "Vae Victis",
 					"History": "Woe to the Defeated! The Gallic chieftain Brennus seized Rome (with the exception of a garrison on Capitoline Hill). When Camillus besieged him with a relief force from Veii, he negotiated his surrender for 1000 pounds of gold, and adding the weight of his sword on the scale when the Romans complained that he used false weights he uttered those famous words.",
 					"Description": "A set amount of metal and food from every structure destroyed or captured."
@@ -76,18 +81,7 @@
 			"Description": "Allied Structures −20% technology research time."
 		}
 	],
-	"Structures":
-	[
-		{
-			"Name": "Melonas",
-			"Class": "",
-			"Emblem": "",
-			"History": "The Celts developed the first rotary flour mill.",
-			"Requirements": "",
-			"Phase": "",
-			"Special": ""
-		}
-	],
+	"Structures": [],
 	"WallSets":
 	[
 		"structures/wallset_palisade",
