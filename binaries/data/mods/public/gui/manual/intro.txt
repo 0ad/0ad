@@ -39,10 +39,10 @@ When you are ready to start, click the “Start game” button.
 [font="sans-bold-16"]Hotkeys[font="sans-14"]
 [font="sans-bold-14"]Program-wide[font="sans-14"]
   Alt + F4 – Immediately close the game, without asking for confirmation
-  Alt + Enter – Toggle between fullscreen and windowed
-  ~ or F9 – Show/hide console
-  Alt + F – Show/hide frame counter (FPS)
-  F11 – Enable/disable real-time profiler (toggles through the displays of information)
+  Alt + Enter (Return) – Toggle between fullscreen and windowed
+  ~ or F9 – Toggle console
+  Alt + F – Toggle frame counter (FPS)
+  F11 – Toggle real-time profiler (cycles through the displays of information)
   Shift + F11 – Save current profiler data to “logs/profile.txt”
   F2 – Take screenshot (in .png format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
   Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
@@ -56,13 +56,13 @@ When you are ready to start, click the “Start game” button.
   Alt + Triple Left Click \[on unit] – Select all your units of the same kind and rank on the entire map
   Shift + F5 – Quicksave
   Shift + F8 – Quickload
-  F10 – Open/close menu
-  F12 – Show/hide time elapsed counter
+  F10 – Toggle menu
+  F12 – Toggle time elapsed counter
   Esc – Close all dialogs (chat, menu) or clear selected units
-  Enter/Return – Open/send chat
+  Enter (Return) – Open chat or send message
   T – Send team chat
   L – Chat with the previously selected private chat partner
-  Pause – Pause/resume the game
+  Pause – Pause or resume the game
   Delete – Delete currently selected unit(s)/structure(s), ask for confirmation
   Shift + Delete – Immediately delete currently selected unit(s)/structure(s), without asking for confirmation
   / (Slash) – Select idle fighter
@@ -118,8 +118,8 @@ When you are ready to start, click the “Start game” button.
   Ctrl + Mouse Move near structures – Align the new structure with an existing nearby structure
 
 [font="sans-bold-14"]Overlays[font="sans-14"]
-  Alt + G – Hide/show the GUI
-  Alt + D – Show/hide developer overlay (with developer options)
+  Alt + G – Toggle the GUI
+  Alt + D – Toggle developer overlay (with developer options)
   Alt + Shift + W – Toggle wireframe mode (press once to get wireframes overlaid over the textured models, twice to get just the wireframes colored by the textures, thrice to get back to normal textured mode)
   Alt + Shift + S – Toggle unit silhouettes (might give a small performance boost)
   Alt + Z – Toggle sky
@@ -142,7 +142,7 @@ When you are ready to start, click the “Start game” button.
   Shift + Mouse Wheel Rotate Up – Rotate camera clockwise around terrain
   Shift + Mouse Wheel Rotate Down – Rotate camera counter-clockwise around terrain
   F – Follow the selected unit (move the camera to stop following the unit)
-  R – Reset camera zoom/orientation
+  R – Reset camera zoom and orientation
   = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)
   - (Hyphen) or − (Minus) – Zoom out (keep pressed for continuous zoom)
   Middle Mouse Button – Keep pressed and move the mouse to pan

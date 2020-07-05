@@ -2,11 +2,11 @@
 <Entity parent="template_unit_infantry_melee_swordsman">
   <Builder>
     <Entities datatype="tokens">
-      structures/cart_tower_artillery
-      structures/cart_super_dock
-      structures/cart_embassy_celtic
-      structures/cart_embassy_iberian
-      structures/cart_embassy_italiote
+      structures/{civ}_tower_artillery
+      structures/{civ}_super_dock
+      structures/{civ}_embassy_celtic
+      structures/{civ}_embassy_iberian
+      structures/{civ}_embassy_italiote
     </Entities>
   </Builder>
   <Cost>
