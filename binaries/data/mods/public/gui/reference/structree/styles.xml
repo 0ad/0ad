@@ -6,7 +6,7 @@
 
 	<style name="StructNameSpecific"
 		font="sans-12"
-		size="8 0 100%-8 20"
+		size="0 0 100% 20"
 		text_align="center"
 		textcolor="white"
 	/>
@@ -18,12 +18,22 @@
 
 	<style name="StructIcon"
 		size="50%-24 8+16 50%+24 8+16+48"
+		sprite="stretched:pregame/shell/logo/wfg_logo_white.png"
 		tooltip_style="referenceTooltip"
 	/>
 
+	<style name="ProdBar"
+		sprite="ProdBar"
+		size="40 0 0 0"
+	/>
+
 	<style name="ProdBox"
-		size="0 0 20 20"
+		size="2 2 22 22"
 		sprite="stretched:pregame/shell/logo/wfg_logo_white.png"
 		tooltip_style="referenceTooltip"
+	/>
+
+	<style name="ProdBoxRow"
+		size="50% 100%-24 100% 100%"
 	/>
 </styles>

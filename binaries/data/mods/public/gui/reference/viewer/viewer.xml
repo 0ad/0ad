@@ -2,7 +2,10 @@
 
 <objects>
 	<script directory="gui/common/"/>
+
 	<script directory="gui/reference/common/"/>
+	<script directory="gui/reference/common/Buttons/"/>
+
 	<script directory="gui/reference/viewer/"/>
 
 	<!-- Add a translucent black background to fade out whatever's behind this -->
@@ -27,16 +30,9 @@
 
 		<object name="entityInfo" type="text" style="ModernText" size="16 128+48+8 100%-16 100%-48"/>
 
-		<!-- Close page -->
-		<object
-			type="button"
-			style="StoneButton"
-			size="100%-164 100%-44 100%-16 100%-16"
-			hotkey="cancel"
-		>
-			<translatableAttribute id="caption">Close</translatableAttribute>
-			<action on="Press">Engine.PopGuiPage();</action>
-		</object>
+		<!-- Close button -->
+		<include file="gui/reference/common/Buttons/CloseButton.xml"/>
+
 	</object>
 
 </objects>
