@@ -148,7 +148,8 @@ function TestFormationExiting(mode)
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_ObstructionManager, {
-		"IsInTargetRange": (ent, target, min, max, opposite) => true
+		"IsInTargetRange": () => true,
+		"IsInPointRange": () => true
 	});
 
 	var unitAI = ConstructComponent(unit, "UnitAI", { "FormationController": "false", "DefaultStance": "aggressive" });
@@ -221,6 +222,7 @@ function TestFormationExiting(mode)
 		GetPosition2D: function() { return new Vector2D(this.x, this.z); },
 		GetRotation: function() { return { "y": 0 }; },
 		IsInWorld: function() { return true; },
+		MoveOutOfWorld: () => {}
 	});
 
 	AddMock(controller, IID_UnitMotion, {
@@ -366,12 +368,13 @@ function TestMoveIntoFormationWhileAttacking()
 	var controllerAI = ConstructComponent(controller, "UnitAI", { "FormationController": "true", "DefaultStance": "aggressive" });
 
 	AddMock(controller, IID_Position, {
-		GetTurretParent: function() { return INVALID_ENTITY; },
-		JumpTo: function(x, z) { this.x = x; this.z = z; },
-		GetPosition: function() { return new Vector3D(this.x, 0, this.z); },
-		GetPosition2D: function() { return new Vector2D(this.x, this.z); },
-		GetRotation: function() { return { "y": 0 }; },
-		IsInWorld: function() { return true; },
+		"GetTurretParent": () => INVALID_ENTITY,
+		"JumpTo": function(x, z) { this.x = x; this.z = z; },
+		"GetPosition": function(){ return new Vector3D(this.x, 0, this.z); },
+		"GetPosition2D": function(){ return new Vector2D(this.x, this.z); },
+		"GetRotation": () => ({ "y": 0 }),
+		"IsInWorld": () => true,
+		"MoveOutOfWorld": () => {},
 	});
 
 	AddMock(controller, IID_UnitMotion, {

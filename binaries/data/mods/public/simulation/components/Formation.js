@@ -312,8 +312,7 @@ Formation.prototype.AreAllMembersWaiting = function()
 };
 
 /**
- * Set whether we should rearrange formation members if
- * units are removed from the formation.
+ * Set whether we are allowed to rearrange formation members.
  */
 Formation.prototype.SetRearrange = function(rearrange)
 {
@@ -902,29 +901,33 @@ Formation.prototype.ComputeMotionParameters = function()
 
 Formation.prototype.ShapeUpdate = function()
 {
+	if (!this.rearrange)
+		return;
+
 	// Check the distance to twin formations, and merge if when
 	// the formations could collide
-	for (var i = this.twinFormations.length - 1; i >= 0; --i)
+	for (let i = this.twinFormations.length - 1; i >= 0; --i)
 	{
 		// only do the check on one side
 		if (this.twinFormations[i] <= this.entity)
 			continue;
-
-		var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-		var cmpOtherPosition = Engine.QueryInterface(this.twinFormations[i], IID_Position);
-		var cmpOtherFormation = Engine.QueryInterface(this.twinFormations[i], IID_Formation);
-		if (!cmpPosition || !cmpOtherPosition || !cmpOtherFormation)
+		let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+		let cmpOtherPosition = Engine.QueryInterface(this.twinFormations[i], IID_Position);
+		let cmpOtherFormation = Engine.QueryInterface(this.twinFormations[i], IID_Formation);
+		if (!cmpPosition || !cmpOtherPosition || !cmpOtherFormation ||
+		     !cmpPosition.IsInWorld() || !cmpOtherPosition.IsInWorld())
 			continue;
 
-		var thisPosition = cmpPosition.GetPosition2D();
-		var otherPosition = cmpOtherPosition.GetPosition2D();
-		var dx = thisPosition.x - otherPosition.x;
-		var dy = thisPosition.y - otherPosition.y;
-		var dist = Math.sqrt(dx * dx + dy * dy);
+		let thisPosition = cmpPosition.GetPosition2D();
+		let otherPosition = cmpOtherPosition.GetPosition2D();
 
-		var thisSize = this.GetSize();
-		var otherSize = cmpOtherFormation.GetSize();
-		var minDist = Math.max(thisSize.width / 2, thisSize.depth / 2) +
+		let dx = thisPosition.x - otherPosition.x;
+		let dy = thisPosition.y - otherPosition.y;
+		let dist = Math.sqrt(dx * dx + dy * dy);
+
+		let thisSize = this.GetSize();
+		let otherSize = cmpOtherFormation.GetSize();
+		let minDist = Math.max(thisSize.width / 2, thisSize.depth / 2) +
 			Math.max(otherSize.width / 2, otherSize.depth / 2) +
 			this.formationSeparation;
 
@@ -937,12 +940,12 @@ Formation.prototype.ShapeUpdate = function()
 		cmpOtherFormation.RemoveMembers(otherMembers);
 		this.AddMembers(otherMembers);
 		Engine.DestroyEntity(this.twinFormations[i]);
-		this.twinFormations.splice(i,1);
+		this.twinFormations.splice(i, 1);
 	}
 	// Switch between column and box if necessary
-	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
-	var walkingDistance = cmpUnitAI.ComputeWalkingDistance();
-	var columnar = walkingDistance > g_ColumnDistanceThreshold;
+	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	let walkingDistance = cmpUnitAI.ComputeWalkingDistance();
+	let columnar = walkingDistance > g_ColumnDistanceThreshold;
 	if (columnar != this.columnar)
 	{
 		this.offsets = undefined;
