@@ -649,7 +649,7 @@ void CTerrain::ResizeAndOffset(ssize_t size, ssize_t horizontalOffset, ssize_t v
 	// Now build new patches. The same process as for the heightmap.
 	for (ssize_t j = 0; j < depth; ++j)
 	{
-		for (size_t i = 0; i < width; ++i)
+		for (ssize_t i = 0; i < width; ++i)
 		{
 			const CPatch& src =
 				m_Patches[(sourceUpperLeftZ + j) * m_MapSizePatches + sourceUpperLeftX + i];
