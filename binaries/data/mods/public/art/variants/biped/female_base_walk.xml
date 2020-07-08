@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <variant frequency="1" name="Base">
   <animations>
-    <animation file="biped/citizen/idle_relax_f_long.dae" name="Idle" speed="100"/>
-    <animation file="biped/citizen/idle_relax_f_short.dae" name="Idle" speed="100"/>
-    <animation file="biped/citizen/idle_relax_f.dae" name="Idle" speed="100"/>
-    <animation file="biped/citizen/idle_relax_f.dae" name="Idle" speed="100"/>
-    <animation file="biped/citizen/idle_relax_f_long.dae" name="Idle" speed="100"/>
+    <animation file="biped/citizen/idle_relax_f_long.dae" name="Idle" id="idle1" speed="100"/>
+    <animation file="biped/citizen/idle_relax_f_short.dae" name="Idle" id="idle2" speed="100"/>
+    <animation file="biped/citizen/idle_relax_f.dae" name="Idle"  id="idle3" speed="100"/>
     <animation file="biped/citizen/walk_relax_f.dae" name="Walk" speed="20"/>
     <animation file="biped/citizen/run.dae" name="Run" id="run1" speed="8"/>
     <animation file="biped/citizen/run.dae" name="Run" id="run2" speed="9"/>

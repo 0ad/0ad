@@ -1,0 +1,21 @@
+{
+	"autoResearch": true,
+	"tooltip": "African Elephants −10% resource costs, training time, health, attack damage, and loot.",
+	"modifications": [
+		{ "value": "Attack/Melee/Damage/Hack", "multiply": 0.9 },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 0.9 },
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 0.9 },
+		{ "value": "Cost/BuildTime", "multiply": 0.9 },
+		{ "value": "Cost/Resources/food", "multiply": 0.9 },
+		{ "value": "Cost/Resources/wood", "multiply": 0.9 },
+		{ "value": "Cost/Resources/stone", "multiply": 0.9 },
+		{ "value": "Cost/Resources/metal", "multiply": 0.9 },
+		{ "value": "Health/Max", "multiply": 0.9 },
+		{ "value": "Loot/food", "multiply": 0.9 },
+		{ "value": "Loot/wood", "multiply": 0.9 },
+		{ "value": "Loot/stone", "multiply": 0.9 },
+		{ "value": "Loot/metal", "multiply": 0.9 },
+		{ "value": "Loot/xp", "multiply": 0.9 }
+	],
+	"affects": ["AfricanElephant"]
+}
