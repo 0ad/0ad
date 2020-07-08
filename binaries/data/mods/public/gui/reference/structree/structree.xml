@@ -2,14 +2,15 @@
 <objects>
 
 	<script directory="gui/common/"/>
-	<script directory="gui/reference/common/"/>
-	<script directory="gui/reference/structree/"/>
 
-	<object	hotkey="structree">
-		<action on="Press">
-			closePage();
-		</action>
-	</object>
+	<script directory="gui/reference/common/"/>
+	<script directory="gui/reference/common/Buttons/"/>
+	<script directory="gui/reference/common/Dropdowns/"/>
+
+	<script directory="gui/reference/structree/"/>
+	<script directory="gui/reference/structree/Boxes/"/>
+	<script directory="gui/reference/structree/Sections/Trainer/"/>
+	<script directory="gui/reference/structree/Sections/Tree/"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" sprite="BackgroundTranslucent"/>
@@ -20,21 +21,7 @@
 		</object>
 
 		<!-- Civ selection -->
-		<object size="16 10 100%-16 30">
-			<object
-				name="civSelectionHeading"
-				type="text"
-				font="sans-bold-16"
-				textcolor="white"
-				text_align="left"
-				size="100%-290 10 100%-180 48">
-				<translatableAttribute id="caption">Civilization:</translatableAttribute>
-			</object>
-
-			<object name="civSelection" type="dropdown" style="ModernDropDown" size="100%-180 8 100% 34" dropdown_size="424">
-				<action on="SelectionChange">selectCiv(this.list_data[this.selected]);</action>
-			</object>
-		</object>
+		<include file="gui/reference/common/Dropdowns/CivSelectDropdown.xml"/>
 
 		<object
 			name="civEmblem"
@@ -63,79 +50,15 @@
 			size="104 52 100%-8 100%"
 		/>
 
-		<!-- Structure Tree display -->
-		<object size="0 54+64 100%-124 100%-54" name="display_tree">
-			<object name="phase_ident">
-				<repeat count="4" var="n">
-					<object>
-						<object name="phase[n]_phase" type="image"/>
-						<object name="phase[n]_bars">
-							<repeat count="4" var="k">
-								<object name="phase[n]_bar[k]" type="image" sprite="ProdBar">
-									<object name="phase[n]_bar[k]_icon" type="image" size="2 2 20 20"/>
-								</object>
-							</repeat>
-						</object>
-					</object>
-				</repeat>
-			</object>
+		<!-- Structure Tree display section -->
+		<include file="gui/reference/structree/Sections/Tree/TreeSection.xml"/>
 
-			<object type="image" name="tree_display" style="TreeDisplay" size="48+16+8 0 100%-12 100%">
-				<include file="gui/reference/structree/rows.xml"/>
-			</object>
-		</object>
+		<!-- Trainer Units display section -->
+		<include file="gui/reference/structree/Sections/Trainer/TrainerSection.xml"/>
 
-		<!-- Trainer Units display -->
-		<object size="100%-124 54+64 100%-16 100%-54" name="display_trainers">
-			<object
-				type="text"
-				font="sans-bold-14"
-				textcolor="white"
-				text_align="center"
-				text_valign="top"
-				size="0 0 100% 16"
-			>
-				<translatableAttribute id="caption">Trainer Units</translatableAttribute>
-			</object>
+		<!-- Buttons -->
+		<include file="gui/reference/common/Buttons/CivInfoButton.xml"/>
+		<include file="gui/reference/common/Buttons/CloseButton.xml"/>
 
-			<object type="image" style="TreeDisplay" size="0 24 100% 100%" name="trainers">
-				<repeat count="6" var="t">
-					<object type="image" style="StructBox" name="trainer[t]">
-						<object type="text" style="StructNameSpecific" name="trainer[t]_name"/>
-						<object type="button" style="StructIcon" name="trainer[t]_icon"
-							sprite="stretched:pregame/shell/logo/wfg_logo_white.png"
-						/>
-						<object name="trainer[t]_row">
-							<repeat count="4" var="p">
-								<object type="button" style="ProdBox" name="trainer[t]_prod[p]"/>
-							</repeat>
-						</object>
-					</object>
-				</repeat>
-			</object>
-		</object>
-
-		<!-- Civilization Overview page -->
-		<object
-			type="button"
-			style="StoneButton"
-			size="100%-421 100%-44 100%-221 100%-16"
-			name="civinfo"
-			hotkey="civinfo"
-		>
-			<translatableAttribute id="caption">Civilization Overview</translatableAttribute>
-			<action on="Press">switchToCivInfoPage();</action>
-		</object>
-		<!-- Close dialog -->
-		<object
-			type="button"
-			style="StoneButton"
-			size="100%-216 100%-44 100%-16 100%-16"
-			name="close"
-			hotkey="cancel"
-		>
-			<translatableAttribute id="caption">Close</translatableAttribute>
-			<action on="Press">closePage();</action>
-		</object>
 	</object>
 </objects>

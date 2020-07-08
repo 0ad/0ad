@@ -621,6 +621,26 @@ function getGatherTooltip(template)
 	});
 }
 
+/**
+ * Returns the resources this entity supplies in the specified entity's tooltip
+ */
+function getResourceSupplyTooltip(template)
+{
+	if (!template.supply)
+		return "";
+
+	let supply = template.supply;
+	let type = supply.type[0] == "treasure" ? supply.type[1] : supply.type[0];
+
+	// Translation: Label in tooltip showing the resource type and quantity of a given resource supply.
+	return sprintf(translate("%(label)s %(component)s %(amount)s"), {
+		"label": headerFont(translate("Resource Supply:")),
+		"component": resourceIcon(type),
+		// Translation: Marks that a resource supply entity has an unending, infinite, supply of its resource.
+		"amount": Number.isFinite(+supply.amount) ? supply.amount : translate("∞")
+	});
+}
+
 function getResourceTrickleTooltip(template)
 {
 	if (!template.resourceTrickle)

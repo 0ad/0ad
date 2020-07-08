@@ -749,6 +749,9 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.CallMemberFunction("Stop", [false]);
 			this.StopMoving();
 			this.FinishOrder();
+			// Don't move the members back into formation,
+			// as the formation then resets and it looks odd when walk-stopping.
+			// TODO: this should be improved in the formation reshaping code.
 		},
 
 		"Order.Attack": function(msg) {
@@ -937,8 +940,6 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"IDLE": {
 			"enter": function(msg) {
-				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				cmpFormation.SetRearrange(false);
 				return false;
 			},
 		},
@@ -1214,12 +1215,32 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 		},
 
+		// Wait for individual members to finish
 		"MEMBER": {
-			// Wait for individual members to finish
+			"OrderTargetRenamed": function(msg) {
+				// In general, don't react - we don't want to send spurious messages to members.
+				// This looks odd for hunting hwoever because we wait for all
+				// entities to ahve clumped around the dead resource before proceeding
+				// so explicitly handle this case.
+				if (this.order && this.order.data && this.order.data.hunting &&
+				     this.order.data.target == msg.data.newentity &&
+				     this.orderQueue.length > 1)
+					this.FinishOrder();
+			},
+
 			"enter": function(msg) {
-				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				cmpFormation.SetRearrange(false);
-				this.StopMoving();
+				// Don't rearrange the formation, as that forces all units to stop
+				// what they're doing.
+				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				if (cmpFormation)
+					cmpFormation.SetRearrange(false);
+				// While waiting on members, the formation is more like
+				// a group of unit and does not have a well-defined position,
+				// so move the controller out of the world to enforce that.
+				let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+				if (cmpPosition)
+					cmpPosition.MoveOutOfWorld();
+
 				this.StartTimer(1000, 1000);
 				return false;
 			},
@@ -1238,13 +1259,23 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.FindWalkAndFightTargets();
 					return;
 				}
-				return false;
+				return;
 			},
 
 			"leave": function(msg) {
 				this.StopTimer();
+				// Reform entirely as members might be all over the place now.
 				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				cmpFormation.MoveToMembersCenter();
+				if (cmpFormation)
+					cmpFormation.MoveMembersIntoFormation(true);
+
+				// Update the held position so entities respond to orders.
+				let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+				if (cmpPosition && cmpPosition.IsInWorld())
+				{
+					let pos = cmpPosition.GetPosition2D();
+					this.CallMemberFunction("SetHeldPosition", [pos.x, pos.y]);
+				}
 			},
 		},
 	},
@@ -1318,10 +1349,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"WALKING": {
 			"enter": function() {
-				this.formationOffset = { "x": this.order.data.x, "z": this.order.data.z };
 				let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-				// Prevent unit to turn when stopmoving is called.
-				cmpUnitMotion.SetFacePointAfterMove(false);
 				cmpUnitMotion.MoveToFormationOffset(this.order.data.target, this.order.data.x, this.order.data.z);
 				if (this.order.data.offsetsChanged)
 				{
@@ -1339,28 +1367,30 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"leave": function() {
+				// Don't use the logic from unitMotion, as SetInPosition
+				// has already given us a custom rotation
+				// (or we failed to move and thus don't care.)
+				this.SetFacePointAfterMove(false);
 				this.StopMoving();
+				// Reset default behaviour (TODO: actually get the previuos behaviour).
 				this.SetFacePointAfterMove(true);
 			},
 
 			// Occurs when the unit has reached its destination and the controller
 			// is done moving. The controller is notified.
 			"MovementUpdate": function(msg) {
-				// We can only finish this order if the move was really completed.
-				let cmpPosition = Engine.QueryInterface(this.formationController, IID_Position);
-				let atDestination = cmpPosition && cmpPosition.IsInWorld();
-				if (!atDestination && cmpPosition)
+				// We're supposed to be walking in formation,
+				// but the controller has no position -> abort.
+				let cmpControllerPosition = Engine.QueryInterface(this.formationController, IID_Position);
+				if (!cmpControllerPosition || !cmpControllerPosition.IsInWorld())
 				{
-					let pos = cmpPosition.GetPosition2D();
-					atDestination = this.CheckPointRangeExplicit(pos.X + this.order.data.x, pos.Y + this.order.data.z, 0, 1);
+					this.FinishOrder();
+					return;
 				}
-				if (!atDestination && !msg.likelyFailure)
+				if (!msg.likelyFailure && !msg.likelySuccess)
 					return;
 
-				if (this.FinishOrder())
-					return;
-
-				delete this.formationOffset;
+				this.FinishOrder();
 			},
 		},
 
@@ -1526,18 +1556,16 @@ UnitAI.prototype.UnitFsmSpec = {
 				if (this.FindNewTargets())
 					return;
 
-				if (this.formationOffset && this.formationController)
-				{
-					this.PushOrder("FormationWalk", {
-						"target": this.formationController,
-						"x": this.formationOffset.x,
-						"z": this.formationOffset.z
-					});
-					return;
-				}
-
 				if (!this.isIdle)
 				{
+					// Move back to the held position if we drifted away.
+					// (only if not a formation member).
+					if (!this.IsFormationMember() &&
+					     this.GetStance().respondHoldGround && this.heldPosition &&
+					     !this.CheckPointRangeExplicit(this.heldPosition.x, this.heldPosition.z, 0, 10) &&
+					     this.WalkToHeldPosition())
+						return;
+
 					this.isIdle = true;
 					Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
 				}
@@ -3716,7 +3744,8 @@ UnitAI.prototype.FinishOrder = function()
 	this.order = this.orderQueue[0];
 
 	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	if (this.orderQueue.length && (this.IsGarrisoned() || cmpPosition && cmpPosition.IsInWorld()))
+	if (this.orderQueue.length && (this.IsGarrisoned() || this.IsFormationController() ||
+	        cmpPosition && cmpPosition.IsInWorld()))
 	{
 		let ret = this.UnitFsm.ProcessMessage(this,
 			{ "type": "Order."+this.order.type, "data": this.order.data }
