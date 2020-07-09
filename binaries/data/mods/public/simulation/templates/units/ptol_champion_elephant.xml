@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_champion_elephant_melee_african">
+<Entity parent="template_unit_champion_elephant_melee">
   <Identity>
     <Civ>ptol</Civ>
     <GenericName>Towered War Elephant</GenericName>
     <SpecificName>Polémou Eléphantos</SpecificName>
+    <Classes datatype="tokens">AfricanElephant</Classes>
     <Icon>units/ptol_champion_elephant.png</Icon>
   </Identity>
   <VisualActor>

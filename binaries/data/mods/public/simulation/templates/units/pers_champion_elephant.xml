@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_champion_elephant_melee_indian">
+<Entity parent="template_unit_champion_elephant_melee">
   <Identity>
     <Civ>pers</Civ>
     <Lang>persian</Lang>
     <GenericName>Indian War Elephant</GenericName>
     <SpecificName>Pila Hinduya</SpecificName>
+    <Classes datatype="tokens">IndianElephant</Classes>
     <Icon>units/pers_champion_elephant.png</Icon>
   </Identity>
   <VisualActor>

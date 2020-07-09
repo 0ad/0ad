@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_champion_elephant_melee_african">
+<Entity parent="template_unit_champion_elephant_melee">
   <Identity>
     <Civ>cart</Civ>
     <GenericName>North African War Elephant</GenericName>
     <SpecificName>Pil Malḥamit</SpecificName>
+    <Classes datatype="tokens">AfricanElephant</Classes>
     <Icon>units/cart_champion_elephant.png</Icon>
   </Identity>
   <VisualActor>
