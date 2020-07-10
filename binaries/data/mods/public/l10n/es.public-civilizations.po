@@ -43,11 +43,11 @@
 # Pretorg <fpgelmejor2@hotmail.com>, 2014
 # Rafael Castro <drill.hurricane@hotmail.com>, 2013
 # Rafael López Reyes <rafalopezreyes@gmail.com>, 2018
-# Ramiro Garay <inactive+kranioceros@transifex.com>, 2015
+# ec4ed8ad513c79b45aa3a016799aa037_aac9b66 <40ec634153c8e56a0afc75e965b51fbf_269003>, 2015
 # Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018
 # Roger Vasquez <r0g3rva5qu3z@hotmail.com>, 2013
 # Sander Deryckere, 2014
-# Sebastian David Tamayo, 2014
+# ab661d6cee6a756af4a49df8163441b7_633a6fb, 2014
 # Spartan2411 <andyyosoy@hotmail.com>, 2014
 # Swyter <Swyterzone@gmail.com>, 2013-2018,2020
 # Tobal lópez silla <lopeztobal@gmail.com>, 2019
@@ -57,9 +57,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-05-07 23:15+0000\n"
-"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
+"POT-Creation-Date: 2020-07-06 07:16+0000\n"
+"PO-Revision-Date: 2020-07-06 11:24+0000\n"
+"Last-Translator: Fernando Mendez <nandito104@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -868,15 +868,29 @@ msgid "Viridovix"
 msgstr "Virídovix"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
+msgid "Workers +15% grain gather rate."
+msgstr "Trabajadores +15% recolección de granos."
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
+msgid "Harvesting Machine"
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
+msgid ""
+"The Gauls invented an harvesting machine, making it much easier to harvest "
+"grain."
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid ""
 "A set amount of metal and food from every structure destroyed or captured."
 msgstr "Una cantidad de metal y comida fija por cada estructura destruida o capturada."
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
 msgid "Vae Victis"
 msgstr "¡Ay, de los vencidos!"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
 msgid ""
 "Woe to the Defeated! The Gallic chieftain Brennus seized Rome (with the "
 "exception of a garrison on Capitoline Hill). When Camillus besieged him with"
@@ -885,15 +899,15 @@ msgid ""
 "complained that he used false weights he uttered those famous words."
 msgstr "¡Ay, de los vencidos! El jefe galo Breno se apoderó de toda Roma (con la excepción de una pequeña guarnición en la colina del capitolio). Cuando Camilo le sitió con ayuda de un batallón de Veyes, negoció su rendición por mil libras de oro, y pronunció tan famosas palabras al añadir el peso de su espada cuando los romanos le acusaron de pesar en falso."
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].Description
 msgid "Gallic druids gain a small melee attack."
 msgstr "Los druidas galos consiguen un pequeño ataque cuerpo a cuerpo."
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].Name
 msgid "Carnutes"
 msgstr "Carnutos"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].History
 msgid ""
 "The Carnutes were druids from Aulercia. They fought when needed, and were "
 "largely responsible for turning back the Belgae incursions into Armorica and"
@@ -957,14 +971,6 @@ msgstr "Vercingetorix (Galo: Ver-Rix Cingetos, que significa «el más grande re
 #: simulation/data/civs/gaul.jsonFactions[0].Description
 msgid "The Celts of mainland Europe."
 msgstr "Los celtas de la Europa continental."
-
-#: simulation/data/civs/gaul.jsonStructures[0].Name
-msgid "Melonas"
-msgstr "Melonas"
-
-#: simulation/data/civs/gaul.jsonStructures[0].History
-msgid "The Celts developed the first rotary flour mill."
-msgstr "Los celtas inventaron el primer molino de harina rotatorio."
 
 #: simulation/data/civs/gaul.jsonHistory
 msgid ""

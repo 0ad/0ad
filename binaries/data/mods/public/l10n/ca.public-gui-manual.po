@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-02-06 00:25+0000\n"
+"POT-Creation-Date: 2020-07-06 07:17+0000\n"
+"PO-Revision-Date: 2020-07-08 19:17+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -194,20 +194,20 @@ msgid ""
 msgstr "  Alt + F4 – Tanca el joc immediatament sense demanar confirmació"
 
 #: gui/manual/intro.txt:42
-msgid "  Alt + Enter – Toggle between fullscreen and windowed"
+msgid "  Alt + Enter (Return) – Toggle between fullscreen and windowed"
 msgstr "  Alt + Retorn – Canvia entre pantalla completa i finestra"
 
 #: gui/manual/intro.txt:43
-msgid "  ~ or F9 – Show/hide console"
-msgstr "  ~ o F9 – Mostra/amaga la consola"
+msgid "  ~ or F9 – Toggle console"
+msgstr "  ~ o F9 – Mostra/Amaga la consola"
 
 #: gui/manual/intro.txt:44
-msgid "  Alt + F – Show/hide frame counter (FPS)"
-msgstr "  Alt + F – Mostra/amaga la freqüència de generació de fotogrames (FPS)"
+msgid "  Alt + F – Toggle frame counter (FPS)"
+msgstr "  Alt + F – Mostra/Amaga la freqüència de generació de fotogrames (FPS)"
 
 #: gui/manual/intro.txt:45
 msgid ""
-"  F11 – Enable/disable real-time profiler (toggles through the displays of "
+"  F11 – Toggle real-time profiler (cycles through the displays of "
 "information)"
 msgstr "  F11 – Activa/desactiva l'anàlisi de rendiment en temps real (alterna entre les visualitzacions d'informació)"
 
@@ -274,20 +274,20 @@ msgid "  Shift + F8 – Quickload"
 msgstr "  Maj + F8 – Càrrega ràpida"
 
 #: gui/manual/intro.txt:59
-msgid "  F10 – Open/close menu"
-msgstr "  F10 – Obre/tanca el menú"
+msgid "  F10 – Toggle menu"
+msgstr "  F10 – Mostra/Amaga el menú"
 
 #: gui/manual/intro.txt:60
-msgid "  F12 – Show/hide time elapsed counter"
-msgstr "  F12 – Mostra/amaga el comptador de temps transcorregut"
+msgid "  F12 – Toggle time elapsed counter"
+msgstr "  F12 – Mostra/Amaga el comptador de temps transcorregut"
 
 #: gui/manual/intro.txt:61
 msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
 msgstr "  Esc – Tanca tots els diàlegs (xat, menú) o desselecciona les unitats seleccionades"
 
 #: gui/manual/intro.txt:62
-msgid "  Enter/Return – Open/send chat"
-msgstr "  Retorn – Obre/envia un xat"
+msgid "  Enter (Return) – Open chat or send message"
+msgstr "Retorn – Obre el xat o envia un missatge"
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
@@ -298,8 +298,8 @@ msgid "  L – Chat with the previously selected private chat partner"
 msgstr "  L – Envia un xat a l'últim contacte privat seleccionat"
 
 #: gui/manual/intro.txt:65
-msgid "  Pause – Pause/resume the game"
-msgstr "  Pausa – Pausa/continua la partida"
+msgid "  Pause – Pause or resume the game"
+msgstr "  Pausa – Pausa o continua la partida"
 
 #: gui/manual/intro.txt:66
 msgid ""
@@ -559,11 +559,11 @@ msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Capes[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:121
-msgid "  Alt + G – Hide/show the GUI"
-msgstr "  Alt + G – Amaga/Mostra la interfície gràfica"
+msgid "  Alt + G – Toggle the GUI"
+msgstr "  Alt + G – Mostra/Amaga la interfície gràfica"
 
 #: gui/manual/intro.txt:122
-msgid "  Alt + D – Show/hide developer overlay (with developer options)"
+msgid "  Alt + D – Toggle developer overlay (with developer options)"
 msgstr "  Alt + D – Mostra/Amaga les eines de desenvolupador (amb opcions tècniques)"
 
 #: gui/manual/intro.txt:123
@@ -666,7 +666,7 @@ msgid ""
 msgstr "  F – Segueix la unitat seleccionada (moveu la càmera per deixar de seguir la unitat)"
 
 #: gui/manual/intro.txt:145
-msgid "  R – Reset camera zoom/orientation"
+msgid "  R – Reset camera zoom and orientation"
 msgstr "  R – Restableix el zoom i l'orientació de la càmera"
 
 #: gui/manual/intro.txt:146

@@ -4,8 +4,8 @@
 # 
 # Translators:
 # MarongHappy <daemul72@gmail.com>, 2020
-# Gr Nada <inactive+Granada45621@transifex.com>, 2016
-# Gr Nada <inactive+Granada45621@transifex.com>, 2016
+# 76407af6b051a571d67c2577de2183db_7380deb <7a4a088c8c60986e924b802e46370579_512231>, 2016
+# 76407af6b051a571d67c2577de2183db_7380deb <7a4a088c8c60986e924b802e46370579_512231>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # moolow <copyhyeon@gmail.com>, 2018
 # jasonkimik <jasonkim@linux.com>, 2014
@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-02-22 16:24+0000\n"
+"POT-Creation-Date: 2020-07-06 07:16+0000\n"
+"PO-Revision-Date: 2020-07-06 11:24+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -835,15 +835,29 @@ msgid "Viridovix"
 msgstr "비리도비스"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
+msgid "Workers +15% grain gather rate."
+msgstr "노동자의 곡물 수확률이 +15% 증가합니다."
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
+msgid "Harvesting Machine"
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
+msgid ""
+"The Gauls invented an harvesting machine, making it much easier to harvest "
+"grain."
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid ""
 "A set amount of metal and food from every structure destroyed or captured."
 msgstr "건물을 파괴 또는 점령 할 때마다 일정량의 금속과 식량을 얻습니다."
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
 msgid "Vae Victis"
 msgstr "와이 윅티스"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
 msgid ""
 "Woe to the Defeated! The Gallic chieftain Brennus seized Rome (with the "
 "exception of a garrison on Capitoline Hill). When Camillus besieged him with"
@@ -852,15 +866,15 @@ msgid ""
 "complained that he used false weights he uttered those famous words."
 msgstr "패배한 자에게 재앙이 있기를! 갈리아 족장 브레누스는 로마를 점령했습니다 (카피톨린 언덕의 수비대는 제외). 카밀루스가 바이에이로부터 구원병력으로 그를 포위했을 때, 그는 1000파운드의 금을 받고 항복을 협상했고, 그가 부정 저울추를 사용하는것에 불평을 했을때 저울에 칼의 무게를 더하면서 그는 그 유명한 단어들을 말했다."
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].Description
 msgid "Gallic druids gain a small melee attack."
 msgstr "갈리아의 사제가 약간의 근접 공격력을 얻습니다."
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].Name
 msgid "Carnutes"
 msgstr "카루누테스"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].History
 msgid ""
 "The Carnutes were druids from Aulercia. They fought when needed, and were "
 "largely responsible for turning back the Belgae incursions into Armorica and"
@@ -924,14 +938,6 @@ msgstr "베르킨게토릭스 (갈리아어: 베르-릭스 시겐토스)는 갈�
 #: simulation/data/civs/gaul.jsonFactions[0].Description
 msgid "The Celts of mainland Europe."
 msgstr "유럽 대륙 본토의 켈트족들"
-
-#: simulation/data/civs/gaul.jsonStructures[0].Name
-msgid "Melonas"
-msgstr "메로나스"
-
-#: simulation/data/civs/gaul.jsonStructures[0].History
-msgid "The Celts developed the first rotary flour mill."
-msgstr "켈트인은 최초로 회전식 밀링 기계를 만들었습니다."
 
 #: simulation/data/civs/gaul.jsonHistory
 msgid ""

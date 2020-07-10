@@ -12,6 +12,7 @@
 # Fabrizio Morotti <famorot@tin.it>, 2016-2017
 # Federico Di Salvo <ad16fdis@uwcad.it>, 2020
 # George Lungu <lungugeorge88@gmail.com>, 2018
+# Giovanni Villabianca <giovannivillabianca@gmail.com>, 2020
 # Giuseppe D'Addio <giuseppinoino@virgilio.it>, 2019
 # Luca Errani <luca.errani1@gmail.com>, 2018
 # Martin Falanga <iblaim97@hotmail.it>, 2017
@@ -25,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-26 07:10+0000\n"
-"PO-Revision-Date: 2020-06-26 09:27+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-06 07:18+0000\n"
+"PO-Revision-Date: 2020-07-09 19:43+0000\n"
+"Last-Translator: Giovanni Villabianca <giovannivillabianca@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,7 +117,7 @@ msgstr "Guerriero con ascia"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:24
 msgid "Cavalry Axeman"
-msgstr ""
+msgstr "Cavaliere con ascia"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:25
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:35
@@ -221,7 +222,7 @@ msgstr "Arciere a cavallo Campione"
 
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:30
 msgid "Champion Cavalry Axeman"
-msgstr ""
+msgstr "Cavaliere con ascia campione"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:32
 msgid "Champion Cavalry Skirmisher"
@@ -248,6 +249,16 @@ msgstr "Elefante"
 msgid "War Elephant"
 msgstr "Elefante da Guerra"
 
+#: simulation/templates/template_unit_champion_elephant_melee_african.xml:22
+msgid "African War Elephant"
+msgstr "Elefante da guerra africano"
+
+#: simulation/templates/template_unit_champion_elephant_melee_indian.xml:22
+#: simulation/templates/units/maur_champion_elephant.xml:5
+#: simulation/templates/units/pers_champion_elephant.xml:6
+msgid "Indian War Elephant"
+msgstr "Elefante da Guerra Indiano"
+
 #: simulation/templates/template_unit_champion_infantry.xml:21
 #: simulation/templates/template_unit_hero_infantry.xml:24
 #: simulation/templates/template_unit_infantry.xml:68
@@ -265,7 +276,7 @@ msgstr "Arciere Campione"
 
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:31
 msgid "Champion Axeman"
-msgstr ""
+msgstr "Soldato con ascia campione"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:35
 msgid "Champion Skirmisher"
@@ -344,7 +355,7 @@ msgstr "Arciere a Cavallo Eroe"
 
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:21
 msgid "Hero Cavalry Axeman"
-msgstr ""
+msgstr "Cavalleria con ascia eroe"
 
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:37
 msgid "Hero Cavalry Skirmisher"
@@ -376,7 +387,7 @@ msgstr "Arciere Eroe"
 
 #: simulation/templates/template_unit_hero_infantry_axeman.xml:22
 msgid "Hero Axeman"
-msgstr ""
+msgstr "Soldato con ascia eroe"
 
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:27
 msgid "Hero Skirmisher"
@@ -532,11 +543,11 @@ msgstr "Ariete"
 
 #: simulation/templates/template_unit_siege_ram.xml:39
 msgid "Cannot attack Fields or Organic Units."
-msgstr ""
+msgstr "Non può attaccare coltivazioni o unità organiche"
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:55
 msgid "StoneThrower"
-msgstr "Lanciapietre"
+msgstr "Fromboliere"
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:56
 msgid "Siege Catapult"
@@ -853,7 +864,7 @@ msgstr "Senofonte"
 
 #: simulation/templates/units/athen_hero_xenophon.xml:7
 msgid "Xenophōn"
-msgstr "Xenophōn"
+msgstr "Senofonte"
 
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:20
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:20
@@ -997,7 +1008,7 @@ msgstr "Chirurgo"
 #: simulation/templates/units/sele_support_healer_b.xml:7
 #: simulation/templates/units/spart_support_healer_b.xml:7
 msgid "Iatros"
-msgstr "Iatros"
+msgstr "Medico"
 
 #: simulation/templates/units/athen_support_slave.xml:5
 msgid "Doûlos"
@@ -1058,13 +1069,13 @@ msgstr ""
 
 #: simulation/templates/units/brit_champion_infantry.xml:6
 msgid "Argos"
-msgstr ""
+msgstr "Argo"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:13
 #: simulation/templates/units/brit_hero_boudicca_cavalry_javelinist.xml:8
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:8
 msgid "Boudicca"
-msgstr "Budicca"
+msgstr "Boudicca"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:14
 #: simulation/templates/units/brit_hero_boudicca_cavalry_javelinist.xml:9
@@ -1088,29 +1099,29 @@ msgstr ""
 #: simulation/templates/units/brit_hero_cunobelin.xml:9
 #: simulation/templates/units/brit_hero_cunobelin_infantry.xml:9
 msgid "Cunobelinos"
-msgstr ""
+msgstr "Cunobelino"
 
-#: simulation/templates/units/brit_infantry_javelinist_b.xml:18
-#: simulation/templates/units/gaul_infantry_javelinist_b.xml:12
+#: simulation/templates/units/brit_infantry_javelinist_b.xml:13
+#: simulation/templates/units/gaul_infantry_javelinist_b.xml:11
 msgid "Adretos"
 msgstr ""
 
-#: simulation/templates/units/brit_infantry_slinger_b.xml:11
-#: simulation/templates/units/gaul_infantry_slinger_b.xml:12
+#: simulation/templates/units/brit_infantry_slinger_b.xml:6
+#: simulation/templates/units/gaul_infantry_slinger_b.xml:11
 msgid "Celtic Slinger"
 msgstr "Fromboliere Celtico"
 
-#: simulation/templates/units/brit_infantry_slinger_b.xml:12
-#: simulation/templates/units/gaul_infantry_slinger_b.xml:13
+#: simulation/templates/units/brit_infantry_slinger_b.xml:7
+#: simulation/templates/units/gaul_infantry_slinger_b.xml:12
 msgid "Talmoris"
 msgstr ""
 
-#: simulation/templates/units/brit_infantry_spearman_b.xml:11
+#: simulation/templates/units/brit_infantry_spearman_b.xml:6
 msgid "Celtic Spearman"
 msgstr "Lanciere Celtico"
 
-#: simulation/templates/units/brit_infantry_spearman_b.xml:12
-#: simulation/templates/units/gaul_infantry_spearman_b.xml:12
+#: simulation/templates/units/brit_infantry_spearman_b.xml:7
+#: simulation/templates/units/gaul_infantry_spearman_b.xml:11
 msgid "Catucos"
 msgstr ""
 
@@ -1134,13 +1145,13 @@ msgstr ""
 msgid "Molton"
 msgstr ""
 
-#: simulation/templates/units/brit_support_female_citizen.xml:10
-#: simulation/templates/units/gaul_support_female_citizen.xml:10
+#: simulation/templates/units/brit_support_female_citizen.xml:5
+#: simulation/templates/units/gaul_support_female_citizen.xml:5
 msgid "Celtic Woman"
 msgstr "Donna Celtica"
 
-#: simulation/templates/units/brit_support_female_citizen.xml:11
-#: simulation/templates/units/gaul_support_female_citizen.xml:11
+#: simulation/templates/units/brit_support_female_citizen.xml:6
+#: simulation/templates/units/gaul_support_female_citizen.xml:6
 msgid "Bena"
 msgstr ""
 
@@ -1392,7 +1403,7 @@ msgstr "Vercingetorige"
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:9
 #: simulation/templates/units/gaul_hero_vercingetorix_infantry.xml:9
 msgid "Uercingetorix"
-msgstr ""
+msgstr "Vercingetorige"
 
 #: simulation/templates/units/gaul_hero_viridomarus.xml:8
 msgid "Viridomarus"
@@ -1620,7 +1631,7 @@ msgstr "Guerriero con clava"
 
 #: simulation/templates/units/kush_infantry_clubman_b.xml:33
 msgid "Nuba Clubman"
-msgstr "Soldato con Mazza Nuba"
+msgstr "Soldato con Mazza Nubiano"
 
 #: simulation/templates/units/kush_infantry_clubman_b.xml:34
 msgid "nhw Noba"
@@ -1895,11 +1906,6 @@ msgstr "Carro da Guerra"
 msgid "Rath"
 msgstr "Rath"
 
-#: simulation/templates/units/maur_champion_elephant.xml:5
-#: simulation/templates/units/pers_champion_elephant.xml:6
-msgid "Indian War Elephant"
-msgstr "Elefante da Guerra Indiano"
-
 #: simulation/templates/units/maur_champion_elephant.xml:6
 msgid "Gajendra"
 msgstr "Gajendra"
@@ -2082,7 +2088,7 @@ msgstr "Artaxšaçā"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:8
 msgid "Parthian Horse Archer"
-msgstr ""
+msgstr "Arciere a cavallo parto"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:9
 msgid "Asabāra Parθava"
@@ -2432,7 +2438,7 @@ msgstr "Polybolos"
 
 #: simulation/templates/units/ptol_support_female_citizen.xml:5
 msgid "Gýnē Aigýptia"
-msgstr "Gýnē Aigýptia"
+msgstr "Donna egizia"
 
 #: simulation/templates/units/ptol_support_female_citizen.xml:6
 msgid "Egyptian Woman"
@@ -2631,7 +2637,7 @@ msgstr "Lanciere Sannita"
 
 #: simulation/templates/units/sele_catafalque.xml:10
 msgid "Antiochus I Soter (Savior)"
-msgstr "Antioco I Sotere (Salvatore)"
+msgstr "Antioco I Soter (Salvatore)"
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
@@ -2639,7 +2645,7 @@ msgstr "Arcieri a Cavallo Daha"
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:8
 msgid "Hippotoxotès Dahae"
-msgstr "Hippotoxotès Dahae"
+msgstr "Arciere a cavallo dahae"
 
 #: simulation/templates/units/sele_cavalry_javelinist_b.xml:7
 msgid "Militia Cavalry"
@@ -2659,7 +2665,7 @@ msgstr "Catafratto Seleucide"
 
 #: simulation/templates/units/sele_champion_cavalry.xml:7
 msgid "Seleukidón Kataphraktos"
-msgstr "Seleukidón Kataphraktos"
+msgstr "Catafratto seleucide"
 
 #: simulation/templates/units/sele_champion_chariot.xml:11
 msgid "Scythed Chariot"
@@ -2679,11 +2685,11 @@ msgstr "Thorakisménos Eléphantos"
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:6
 msgid "Silver Shield"
-msgstr ""
+msgstr "Scudo argenteo"
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:7
 msgid "Argyraspis"
-msgstr ""
+msgstr "Argiraspide"
 
 #: simulation/templates/units/sele_champion_infantry_swordsman.xml:6
 msgid "Romanized Heavy Swordsman"
@@ -2707,7 +2713,7 @@ msgstr "Antioco IV"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:10
 msgid "Antiokhos D' Epiphanēs"
-msgstr "Antiokhos D' Epiphanēs"
+msgstr "Antiokhos IV Epifane"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:9
 msgid "Seleucus I"
@@ -2715,7 +2721,7 @@ msgstr "Seleuco I"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:10
 msgid "Seleukos A' Nikatōr"
-msgstr "Seleukos A' Nikatōr"
+msgstr "Seleuco I il Vincitore"
 
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:20
 msgid "Syrian Archer"
@@ -2723,7 +2729,7 @@ msgstr "Arciere Siriano"
 
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:21
 msgid "Toxótēs Syrías"
-msgstr "Toxótēs Syrías"
+msgstr "Arciere siriano"
 
 #: simulation/templates/units/sele_infantry_javelinist_b.xml:13
 msgid "Arab Javelineer"
@@ -2735,7 +2741,7 @@ msgstr "Pezakontistès Aravikós"
 
 #: simulation/templates/units/sele_infantry_pikeman_b.xml:13
 msgid "Phalangite"
-msgstr ""
+msgstr "Falangista"
 
 #: simulation/templates/units/sele_infantry_pikeman_b.xml:14
 msgid "Phalangitēs"
@@ -2819,7 +2825,7 @@ msgstr "Commando Skiritai"
 
 #: simulation/templates/units/spart_champion_infantry_sword.xml:22
 msgid "Ékdromos Skirítēs"
-msgstr "Ékdromos Skirítēs"
+msgstr "Assaltatore skiritai"
 
 #: simulation/templates/units/spart_hero_agis.xml:9
 msgid "Agis III"
@@ -2868,7 +2874,7 @@ msgstr "Donna Spartana"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:24
 msgid "Spartiâtis"
-msgstr "Spartiâtis"
+msgstr "Spartiate"
 
 #: simulation/templates/units/spart_support_trader.xml:9
 msgid "Émporos Períoikos"

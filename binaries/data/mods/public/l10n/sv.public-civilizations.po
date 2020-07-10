@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# 13975 <inactive+13975@transifex.com>, 2013
+# 978f34620323a49beac44c046cb2117a_1860a64 <e8de3b350daafa1075da72408a4b8b7a_136008>, 2013
 # Amanda Ringqvist, 2014
 # 0a7f9ff4c411567131ab21a7587f6066, 2014
 # Daniel Sandman <revoltism@gmail.com>, 2013
 # Erik Johansson <erik@feneur.com>, 2013,2015
 # Hans Kunkell <hansk@mailfence.com>, 2019
 # Jacob Carlsson <yejcob@gmail.com>, 2015
-# Jonatan Nyberg, 2016
-# Jonatan Nyberg, 2020
-# Kristoffer Grundström <hamnisdude@gmail.com>, 2016
+# Jonatan Nyberg <jonatan.nyberg.karl@gmail.com>, 2016
+# Jonatan Nyberg <jonatan.nyberg.karl@gmail.com>, 2020
+# Kristoffer Grundström <lovaren@gmail.com>, 2016
 # liothe <lucy@liothe.se>, 2013
 # magicae, 2014
 # pilino1234 <pilino1234@zoho.eu>, 2016
@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-02-18 07:40+0000\n"
-"Last-Translator: Jonatan Nyberg\n"
+"POT-Creation-Date: 2020-07-06 07:16+0000\n"
+"PO-Revision-Date: 2020-07-06 11:24+0000\n"
+"Last-Translator: Filip Bengtsson\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -837,15 +837,29 @@ msgid "Viridovix"
 msgstr "Viridovix"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
+msgid "Workers +15% grain gather rate."
+msgstr "Arbetare +15% insamlingstakt för spannmål."
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
+msgid "Harvesting Machine"
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
+msgid ""
+"The Gauls invented an harvesting machine, making it much easier to harvest "
+"grain."
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid ""
 "A set amount of metal and food from every structure destroyed or captured."
 msgstr "En bestämd mängda metall och mat från varje strukture som förstörs eller övertas."
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
 msgid "Vae Victis"
 msgstr "Vae Victis"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
 msgid ""
 "Woe to the Defeated! The Gallic chieftain Brennus seized Rome (with the "
 "exception of a garrison on Capitoline Hill). When Camillus besieged him with"
@@ -854,15 +868,15 @@ msgid ""
 "complained that he used false weights he uttered those famous words."
 msgstr "Ve den segrade! Den galliska hövdingen Brennus grep Rom (med undantag för ett garnison på Capitoline Hill). När Camillus belejdade honom med en lättnadskraft från Veii, förhandlade han sin uppgivelse för 1000 pund guld och tillade vikten av sitt svärd på skalan när romarna klagade på att han använde falska vikter uttryckte han de kända orden."
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].Description
 msgid "Gallic druids gain a small melee attack."
 msgstr "Galliska druider får en liten närstridsattack."
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].Name
 msgid "Carnutes"
 msgstr "Carnutes"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].History
 msgid ""
 "The Carnutes were druids from Aulercia. They fought when needed, and were "
 "largely responsible for turning back the Belgae incursions into Armorica and"
@@ -926,14 +940,6 @@ msgstr "Vercingetorix (Gaulish: Ver-Rix Cingetos) var hövdingen för Arverni-st
 #: simulation/data/civs/gaul.jsonFactions[0].Description
 msgid "The Celts of mainland Europe."
 msgstr "Kelterna av Europeiska fastlandet."
-
-#: simulation/data/civs/gaul.jsonStructures[0].Name
-msgid "Melonas"
-msgstr "Melonas"
-
-#: simulation/data/civs/gaul.jsonStructures[0].History
-msgid "The Celts developed the first rotary flour mill."
-msgstr "Kelterna utvecklade de första roterande mjölkvarnarna."
 
 #: simulation/data/civs/gaul.jsonHistory
 msgid ""

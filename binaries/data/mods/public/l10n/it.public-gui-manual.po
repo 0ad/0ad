@@ -9,6 +9,7 @@
 # Fabrizio Morotti <famorot@tin.it>, 2016-2017
 # cgand <gand61@gmail.com>, 2017
 # George Lungu <lungugeorge88@gmail.com>, 2018
+# Giovanni Villabianca <giovannivillabianca@gmail.com>, 2020
 # Giuseppe D'Addio <giuseppinoino@virgilio.it>, 2019-2020
 # Italang, 2019
 # Lorenzo Frascari <frascarilorenzo@gmail.com>, 2018
@@ -21,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-06-09 22:23+0000\n"
-"Last-Translator: Luca Luca <luccame@gmail.com>\n"
+"POT-Creation-Date: 2020-07-06 07:17+0000\n"
+"PO-Revision-Date: 2020-07-09 19:58+0000\n"
+"Last-Translator: Giovanni Villabianca <giovannivillabianca@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,7 +65,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr "È possibile passare da schermo intero a modalità finestra premendo Alt + Invio. In modalità finestra, è possibile ridimensionare la finestra. Se il gioco gira troppo lentamente, è possibile modificare alcune impostazioni nella finestra delle opzioni di gioco: prova a disabilitare le opzioni “Effetti Acqua HQ” e “Ombre”."
+msgstr "È possibile passare da schermo intero a modalità finestra premendo Alt + Invio. In modalità finestra, è possibile ridimensionare la finestra. Se il gioco risulta lento, è possibile modificare alcune impostazioni nella finestra delle opzioni di gioco: prova a disabilitare le opzioni “Effetti Acqua HQ” e “Ombre”."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -76,7 +77,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr ""
+msgstr "I controlli ed il gioco dovrebbero essere familiari ai giocatori dei tradizionali giochi di strategia in tempo reale (RTS). Attualmente ci sono numerosi contenuti mancanti e statistiche mal bilanciate – probabilmente dovrai attendere fino al rilascio di una beta perchè funzioni tutto correttamente."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls:"
@@ -84,7 +85,7 @@ msgstr "Controlli essenziali:"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr "• Clicca col sinistro per selezionare le unità"
+msgstr "• Clicca il tasto sinistro per selezionare le unità"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
@@ -142,7 +143,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr "In una partita multigiocatore solo l'ospitante può alterare le opzioni iniziali della prtita."
+msgstr "In una partita multigiocatore solo l'ospitante può modificare le opzioni iniziali della prtita."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -202,20 +203,20 @@ msgid ""
 msgstr ""
 
 #: gui/manual/intro.txt:42
-msgid "  Alt + Enter – Toggle between fullscreen and windowed"
+msgid "  Alt + Enter (Return) – Toggle between fullscreen and windowed"
 msgstr ""
 
 #: gui/manual/intro.txt:43
-msgid "  ~ or F9 – Show/hide console"
+msgid "  ~ or F9 – Toggle console"
 msgstr ""
 
 #: gui/manual/intro.txt:44
-msgid "  Alt + F – Show/hide frame counter (FPS)"
+msgid "  Alt + F – Toggle frame counter (FPS)"
 msgstr ""
 
 #: gui/manual/intro.txt:45
 msgid ""
-"  F11 – Enable/disable real-time profiler (toggles through the displays of "
+"  F11 – Toggle real-time profiler (cycles through the displays of "
 "information)"
 msgstr ""
 
@@ -282,11 +283,11 @@ msgid "  Shift + F8 – Quickload"
 msgstr ""
 
 #: gui/manual/intro.txt:59
-msgid "  F10 – Open/close menu"
-msgstr "  F10 – Apri/chiudi menu"
+msgid "  F10 – Toggle menu"
+msgstr ""
 
 #: gui/manual/intro.txt:60
-msgid "  F12 – Show/hide time elapsed counter"
+msgid "  F12 – Toggle time elapsed counter"
 msgstr ""
 
 #: gui/manual/intro.txt:61
@@ -294,7 +295,7 @@ msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
 msgstr ""
 
 #: gui/manual/intro.txt:62
-msgid "  Enter/Return – Open/send chat"
+msgid "  Enter (Return) – Open chat or send message"
 msgstr ""
 
 #: gui/manual/intro.txt:63
@@ -306,8 +307,8 @@ msgid "  L – Chat with the previously selected private chat partner"
 msgstr ""
 
 #: gui/manual/intro.txt:65
-msgid "  Pause – Pause/resume the game"
-msgstr "Pause - Metti in pausa/torna al gioco"
+msgid "  Pause – Pause or resume the game"
+msgstr ""
 
 #: gui/manual/intro.txt:66
 msgid ""
@@ -366,11 +367,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:78
 msgid "  Y – The unit will go back to work"
-msgstr ""
+msgstr "Y – L'unità tornerà al lavoro"
 
 #: gui/manual/intro.txt:79
 msgid "  U – Unload the garrisoned units of the selected structure(s)"
-msgstr ""
+msgstr "U - Rilascia le unità acquartierate dalle strutture selezionate"
 
 #: gui/manual/intro.txt:80
 msgid ""
@@ -435,7 +436,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:91
 msgid "  Ctrl + H – Toggle in-game diplomacy panel"
-msgstr "  Ctrl + H – Apri il pannello di diplomazia"
+msgstr "  Ctrl + H – Apri il pannello della diplomazia"
 
 #: gui/manual/intro.txt:92
 msgid "  Ctrl + B – Toggle in-game barter and trade panel"
@@ -567,11 +568,11 @@ msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr ""
 
 #: gui/manual/intro.txt:121
-msgid "  Alt + G – Hide/show the GUI"
+msgid "  Alt + G – Toggle the GUI"
 msgstr ""
 
 #: gui/manual/intro.txt:122
-msgid "  Alt + D – Show/hide developer overlay (with developer options)"
+msgid "  Alt + D – Toggle developer overlay (with developer options)"
 msgstr ""
 
 #: gui/manual/intro.txt:123
@@ -674,7 +675,7 @@ msgid ""
 msgstr ""
 
 #: gui/manual/intro.txt:145
-msgid "  R – Reset camera zoom/orientation"
+msgid "  R – Reset camera zoom and orientation"
 msgstr ""
 
 #: gui/manual/intro.txt:146

@@ -7,6 +7,7 @@
 # Järvi Eduardo <hammondemain@gmail.com>, 2018
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2019
 # Max Ihalempia, 2016
+# Oi Suomi On! <oisuomion@protonmail.com>, 2020
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
 # Pauli Kaikkonen <p.kaikkon@gmail.com>, 2016
 # Petri, 2014
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-22 07:08+0000\n"
-"PO-Revision-Date: 2020-05-22 10:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-07-09 18:47+0000\n"
+"Last-Translator: Oi Suomi On! <oisuomion@protonmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +40,7 @@ msgstr "Varmenteeseen ei luoteta."
 
 #: lobby/XmppClient.cpp:1216
 msgid "The certificate hasn't got a known issuer."
-msgstr ""
+msgstr "Varmenteella ei ole tunnettua julkaisijaa."
 
 #: lobby/XmppClient.cpp:1217
 msgid "The certificate has been revoked."
@@ -51,15 +52,15 @@ msgstr "Varmenne on vanhentunut."
 
 #: lobby/XmppClient.cpp:1219
 msgid "The certificate is not yet active."
-msgstr ""
+msgstr "Varmennetta ei ole vielä toimeenpantu."
 
 #: lobby/XmppClient.cpp:1220
 msgid "The certificate has not been issued for the peer connected to."
-msgstr ""
+msgstr "Varmennetta ei ole julkaistu yhdistettyyn vertaiseen."
 
 #: lobby/XmppClient.cpp:1221
 msgid "The certificate signer is not a certificate authority."
-msgstr ""
+msgstr "Varmenteen allekirjoittaja ei ole varmennevaltuuksinen."
 
 #: lobby/XmppClient.cpp:1243 lobby/XmppClient.cpp:1287
 #: lobby/XmppClient.cpp:1326

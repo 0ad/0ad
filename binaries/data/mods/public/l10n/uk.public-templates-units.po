@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-26 07:10+0000\n"
-"PO-Revision-Date: 2020-06-26 09:27+0000\n"
+"POT-Creation-Date: 2020-07-06 07:18+0000\n"
+"PO-Revision-Date: 2020-07-06 09:37+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -246,6 +246,16 @@ msgstr "Слон"
 #: simulation/templates/template_unit_champion_elephant.xml:25
 msgid "War Elephant"
 msgstr "Бойовий слон"
+
+#: simulation/templates/template_unit_champion_elephant_melee_african.xml:22
+msgid "African War Elephant"
+msgstr ""
+
+#: simulation/templates/template_unit_champion_elephant_melee_indian.xml:22
+#: simulation/templates/units/maur_champion_elephant.xml:5
+#: simulation/templates/units/pers_champion_elephant.xml:6
+msgid "Indian War Elephant"
+msgstr "Індійський бойовий слон"
 
 #: simulation/templates/template_unit_champion_infantry.xml:21
 #: simulation/templates/template_unit_hero_infantry.xml:24
@@ -1089,27 +1099,27 @@ msgstr "Кунобелін"
 msgid "Cunobelinos"
 msgstr "Кунобелінос"
 
-#: simulation/templates/units/brit_infantry_javelinist_b.xml:18
-#: simulation/templates/units/gaul_infantry_javelinist_b.xml:12
+#: simulation/templates/units/brit_infantry_javelinist_b.xml:13
+#: simulation/templates/units/gaul_infantry_javelinist_b.xml:11
 msgid "Adretos"
 msgstr "Адретос"
 
-#: simulation/templates/units/brit_infantry_slinger_b.xml:11
-#: simulation/templates/units/gaul_infantry_slinger_b.xml:12
+#: simulation/templates/units/brit_infantry_slinger_b.xml:6
+#: simulation/templates/units/gaul_infantry_slinger_b.xml:11
 msgid "Celtic Slinger"
 msgstr "Кельтський пращник"
 
-#: simulation/templates/units/brit_infantry_slinger_b.xml:12
-#: simulation/templates/units/gaul_infantry_slinger_b.xml:13
+#: simulation/templates/units/brit_infantry_slinger_b.xml:7
+#: simulation/templates/units/gaul_infantry_slinger_b.xml:12
 msgid "Talmoris"
 msgstr "Талморіс"
 
-#: simulation/templates/units/brit_infantry_spearman_b.xml:11
+#: simulation/templates/units/brit_infantry_spearman_b.xml:6
 msgid "Celtic Spearman"
 msgstr "Кельтський списоносець"
 
-#: simulation/templates/units/brit_infantry_spearman_b.xml:12
-#: simulation/templates/units/gaul_infantry_spearman_b.xml:12
+#: simulation/templates/units/brit_infantry_spearman_b.xml:7
+#: simulation/templates/units/gaul_infantry_spearman_b.xml:11
 msgid "Catucos"
 msgstr "Катукос"
 
@@ -1133,13 +1143,13 @@ msgstr "Понтос"
 msgid "Molton"
 msgstr "Молтон"
 
-#: simulation/templates/units/brit_support_female_citizen.xml:10
-#: simulation/templates/units/gaul_support_female_citizen.xml:10
+#: simulation/templates/units/brit_support_female_citizen.xml:5
+#: simulation/templates/units/gaul_support_female_citizen.xml:5
 msgid "Celtic Woman"
 msgstr "Кельтська жінка"
 
-#: simulation/templates/units/brit_support_female_citizen.xml:11
-#: simulation/templates/units/gaul_support_female_citizen.xml:11
+#: simulation/templates/units/brit_support_female_citizen.xml:6
+#: simulation/templates/units/gaul_support_female_citizen.xml:6
 msgid "Bena"
 msgstr "Бена"
 
@@ -1893,11 +1903,6 @@ msgstr "Військова колісниця"
 #: simulation/templates/units/maur_champion_chariot.xml:11
 msgid "Rath"
 msgstr "Ратх"
-
-#: simulation/templates/units/maur_champion_elephant.xml:5
-#: simulation/templates/units/pers_champion_elephant.xml:6
-msgid "Indian War Elephant"
-msgstr "Індійський бойовий слон"
 
 #: simulation/templates/units/maur_champion_elephant.xml:6
 msgid "Gajendra"
