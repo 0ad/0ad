@@ -59,6 +59,11 @@ class TrainerSection
 		for (let handler of this.widthChangedHandlers)
 			handler(this.width, !this.TrainerSection.hidden);
 	}
+
+	isVisible()
+	{
+		return !this.TrainerSection.hidden;
+	}
 }
 
 TrainerSection.prototype.Caption =

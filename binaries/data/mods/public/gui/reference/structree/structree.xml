@@ -13,9 +13,9 @@
 	<script directory="gui/reference/structree/Sections/Tree/"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
-	<object type="image" sprite="BackgroundTranslucent"/>
+	<object name="background" type="image" sprite="BackgroundTranslucent"/>
 
-	<object type="image" style="ModernDialog" size="16 24 100%-16 100%-24">
+	<object name="structreePage" type="image" style="ModernDialog" size="50%-480 50%-360 50%+480 50%+360">
 		<object style="TitleText" type="text" size="50%-128 -18 50%+128 14">
 			<translatableAttribute id="caption">Structure Tree</translatableAttribute>
 		</object>

@@ -12,6 +12,8 @@ class StructreePage extends ReferencePage
 		this.structureBoxes = [];
 		this.trainerBoxes = [];
 
+		this.StructreePage = Engine.GetGUIObjectByName("structreePage");
+		this.Background = Engine.GetGUIObjectByName("background");
 		this.CivEmblem = Engine.GetGUIObjectByName("civEmblem");
 		this.CivName = Engine.GetGUIObjectByName("civName");
 		this.CivHistory = Engine.GetGUIObjectByName("civHistory");
@@ -30,6 +32,9 @@ class StructreePage extends ReferencePage
 		let civInfoButton = new CivInfoButton(this);
 		let closeButton = new CloseButton(this);
 		Engine.SetGlobalHotkey("structree", "Press", this.closePage.bind(this));
+
+		this.StructreePage.onWindowResized = this.updatePageWidth.bind(this);
+		this.width = 0;
 	}
 
 	closePage()
@@ -48,6 +53,31 @@ class StructreePage extends ReferencePage
 		let templateLists = this.TemplateLister.getTemplateLists(this.activeCiv);
 		this.TreeSection.draw(templateLists.structures, this.activeCiv);
 		this.TrainerSection.draw(templateLists.units, this.activeCiv);
+
+		this.width = this.TreeSection.width + -this.TreeSection.rightMargin;
+		if (this.TrainerSection.isVisible())
+			this.width += this.TrainerSection.width + this.SectionGap;
+		this.updatePageWidth();
+		this.updatePageHeight();
+	}
+
+	updatePageHeight()
+	{
+		let y = (this.TreeSection.height + this.TreeSection.vMargin) / 2;
+		let pageSize = this.StructreePage.size;
+		pageSize.top = -y;
+		pageSize.bottom = y;
+		this.StructreePage.size = pageSize;
+	}
+
+	updatePageWidth()
+	{
+		let screenSize = this.Background.getComputedSize();
+		let pageSize = this.StructreePage.size;
+		let x = Math.min(this.width, screenSize.right - this.BorderMargin * 2) / 2;
+		pageSize.left = -x;
+		pageSize.right = x;
+		this.StructreePage.size = pageSize;
 	}
 }
 
@@ -56,3 +86,7 @@ StructreePage.prototype.CloseButtonTooltip =
 
 // Gap between the `TreeSection` and `TrainerSection` gui objects (when the latter is visible)
 StructreePage.prototype.SectionGap = 12;
+
+// Margin around the edge of the structree on lower resolutions,
+// preventing the UI from being clipped by the edges of the screen.
+StructreePage.prototype.BorderMargin = 16;
