@@ -123,6 +123,12 @@ class TemplateLoader
 					production.units.push(this.getBaseTemplateName(templateName, civCode));
 			}
 
+		let appendTechnology = (technologyName) => {
+			let technology = this.loadTechnologyTemplate(technologyName, civCode);
+			if (DeriveTechnologyRequirements(technology, civCode))
+				production.techs.push(technologyName);
+		};
+
 		if (template.ProductionQueue.Technologies && template.ProductionQueue.Technologies._string)
 			for (let technologyName of template.ProductionQueue.Technologies._string.split(" "))
 			{
@@ -133,9 +139,14 @@ class TemplateLoader
 				}
 
 				if (this.isPairTech(technologyName))
-					Array.prototype.push.apply(production.techs, this.loadTechnologyPairTemplate(technologyName, civCode).techs);
+				{
+					let technologyPair = this.loadTechnologyPairTemplate(technologyName, civCode);
+					if (technologyPair.reqs)
+						for (technologyName of technologyPair.techs)
+							appendTechnology(technologyName);
+				}
 				else
-					production.techs.push(technologyName);
+					appendTechnology(technologyName);
 			}
 
 		return production;
