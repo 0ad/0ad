@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-22 07:08+0000\n"
-"PO-Revision-Date: 2020-05-23 17:29+0000\n"
+"PO-Revision-Date: 2020-07-09 22:38+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "Cadenes llargues"
 
 #: lobby/XmppClient.cpp:887
 msgid "unknown subtype (see logs)"
-msgstr "desconozse'l sotipu (mirar rexistros)"
+msgstr "desconozse'l sotipu (ve los rexistros)"
 
 #: lobby/XmppClient.cpp:1215
 msgid "The certificate is not trusted."
@@ -32,11 +32,11 @@ msgstr "El certificáu nun ye d'enfotu."
 
 #: lobby/XmppClient.cpp:1216
 msgid "The certificate hasn't got a known issuer."
-msgstr "El certificáu nun tien un emisor conocíu."
+msgstr "Nun se sabe quién fexo'l certificáu."
 
 #: lobby/XmppClient.cpp:1217
 msgid "The certificate has been revoked."
-msgstr "El certificáu revocóse."
+msgstr "Revocóse'l certificáu."
 
 #: lobby/XmppClient.cpp:1218
 msgid "The certificate has expired."
@@ -44,7 +44,7 @@ msgstr "El certificáu caducó."
 
 #: lobby/XmppClient.cpp:1219
 msgid "The certificate is not yet active."
-msgstr "Inda nun ta activu'l certificáu."
+msgstr "El certificáu nun ta activu."
 
 #: lobby/XmppClient.cpp:1220
 msgid "The certificate has not been issued for the peer connected to."
@@ -52,7 +52,7 @@ msgstr "El certificáu nun s'emitió pal par al que tas coneutáu. "
 
 #: lobby/XmppClient.cpp:1221
 msgid "The certificate signer is not a certificate authority."
-msgstr "El roblador del certificáu nun ye una autoridá de certificaos."
+msgstr "Quien robló'l certificáu nun ye autoridá de certificación."
 
 #: lobby/XmppClient.cpp:1243 lobby/XmppClient.cpp:1287
 #: lobby/XmppClient.cpp:1326
@@ -65,7 +65,7 @@ msgstr "Nun hai fallos"
 
 #: lobby/XmppClient.cpp:1248
 msgid "Player already logged in"
-msgstr "El xugador yá anició sesión"
+msgstr "Esi xugador tien la sesión aniciada"
 
 #: lobby/XmppClient.cpp:1250
 msgid "Forbidden"
@@ -85,7 +85,7 @@ msgstr "Nun s'autorizó"
 
 #: lobby/XmppClient.cpp:1260
 msgid "Recipient temporarily unavailable"
-msgstr "El receptor nun ta disponible temporalmente"
+msgstr "El destinatariu nun ta disponible"
 
 #: lobby/XmppClient.cpp:1262
 msgid "Registration required"
@@ -113,7 +113,7 @@ msgstr "El fluxu zarrólu'l sirvidor"
 
 #: lobby/XmppClient.cpp:1297
 msgid "An I/O error occurred"
-msgstr "Hebo un fallu I/O"
+msgstr "Hebo un fallu E/S"
 
 #: lobby/XmppClient.cpp:1299
 msgid "The connection was refused by the server"
@@ -125,7 +125,7 @@ msgstr "Falló la resolución del nome d'agospiu del sirvidor"
 
 #: lobby/XmppClient.cpp:1301
 msgid "This system is out of memory"
-msgstr "Esti sistema ta ensin memoria"
+msgstr "Acabóse la memoria del sistema"
 
 #: lobby/XmppClient.cpp:1303
 msgid ""
@@ -159,7 +159,7 @@ msgstr "Nun s'apurrió tola información precisa"
 
 #: lobby/XmppClient.cpp:1331
 msgid "Username already exists"
-msgstr "Yá esiste'l nome d'usuariu"
+msgstr "Yá esiste esi nome d'usuariu"
 
 #: ps/ModIo.cpp:261
 #, c-format
@@ -179,7 +179,7 @@ msgstr "Nun pudo criase'l direutoriu camudos: %s."
 #: ps/ModIo.cpp:342
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "Nun pudo abrise'l ficheru temporal pa la baxada'l camudu: %s."
+msgstr "Nun pudo abrise'l ficheru temporal pa baxar el camudu: %s."
 
 #: ps/ModIo.cpp:352
 #, c-format

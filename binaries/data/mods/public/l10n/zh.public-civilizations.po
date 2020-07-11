@@ -12,7 +12,9 @@
 # jiajinming <bfsujiajinming@hotmail.com>, 2014
 # Julian, 2019
 # Lawrence Maxwell <maxwell4432@gmail.com>, 2018
+# liulitchi <xingzuo88@qq.com>, 2018
 # loms126 <loms126@126.com>, 2014
+# 李峰宇 <lxx4380@gmail.com>, 2018
 # Mysterelee <8161525@qq.com>, 2014
 # Ping Liao <lpjohnhussar@gmail.com>, 2017
 # relaxbsd <relaxbsd@gmail.com>, 2014
@@ -21,6 +23,7 @@
 # Shirley Gao, 2014
 # Shirley Gao, 2014
 # simsilver <yihuanlingjian@gmail.com>, 2014
+# Orwill Towne <sam990620@gmail.com>, 2018
 # volcano song <1677559@qq.com>, 2018
 # xingtong, 2013
 # liulitchi <xingzuo88@qq.com>, 2014-2015,2017-2019
@@ -29,14 +32,16 @@
 # 吴善俊 <sjwuny@126.com>, 2014
 # 武军 李 <lwj7863439@gmail.com>, 2017
 # 武军 李 <lwj7863439@gmail.com>, 2017
+# 润泽 汪 <2185025980@qq.com>, 2017
+# 玉堂白鹤 <yjwork@qq.com>, 2015
 # 艳伟 车 <313049312@qq.com>, 2016-2017
 # Lawrence Maxwell <maxwell4432@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-01-27 10:27+0000\n"
-"Last-Translator: chaofeng sun <449003613@qq.com>\n"
+"POT-Creation-Date: 2020-07-06 07:16+0000\n"
+"PO-Revision-Date: 2020-07-06 11:24+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -845,15 +850,29 @@ msgid "Viridovix"
 msgstr "Virdovix"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
+msgid "Workers +15% grain gather rate."
+msgstr "工人谷物采集效率 +15%  。"
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
+msgid "Harvesting Machine"
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
+msgid ""
+"The Gauls invented an harvesting machine, making it much easier to harvest "
+"grain."
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid ""
 "A set amount of metal and food from every structure destroyed or captured."
 msgstr "从每个废墟或俘虏中获取一定数量的金属和食物。"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
 msgid "Vae Victis"
 msgstr " 悲观失败者"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
 msgid ""
 "Woe to the Defeated! The Gallic chieftain Brennus seized Rome (with the "
 "exception of a garrison on Capitoline Hill). When Camillus besieged him with"
@@ -862,15 +881,15 @@ msgid ""
 "complained that he used false weights he uttered those famous words."
 msgstr "祸事来了！ 我们的酋长布伦努斯占领了罗马城。 当其被围时，被迫与罗马人谈判投降，并支付了1000磅黄金。"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].Description
 msgid "Gallic druids gain a small melee attack."
 msgstr "高卢德鲁伊在近战中能获得额外的攻击。"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].Name
 msgid "Carnutes"
 msgstr "卡尔努特斯 "
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].History
 msgid ""
 "The Carnutes were druids from Aulercia. They fought when needed, and were "
 "largely responsible for turning back the Belgae incursions into Armorica and"
@@ -934,14 +953,6 @@ msgstr "Vercingetorix (高卢： Ver Rix Cingetos) 是在高卢 (现代法国) A
 #: simulation/data/civs/gaul.jsonFactions[0].Description
 msgid "The Celts of mainland Europe."
 msgstr "欧洲大陆的凯尔特人"
-
-#: simulation/data/civs/gaul.jsonStructures[0].Name
-msgid "Melonas"
-msgstr "磨坊"
-
-#: simulation/data/civs/gaul.jsonStructures[0].History
-msgid "The Celts developed the first rotary flour mill."
-msgstr "凯尔特人研制出第一台旋转式磨面机。"
 
 #: simulation/data/civs/gaul.jsonHistory
 msgid ""

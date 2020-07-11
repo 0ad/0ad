@@ -31,8 +31,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-15 07:10+0000\n"
-"PO-Revision-Date: 2020-06-15 08:29+0000\n"
+"POT-Creation-Date: 2020-07-06 07:18+0000\n"
+"PO-Revision-Date: 2020-07-06 08:17+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -43,11 +43,11 @@ msgstr ""
 
 #: simulation/data/technologies/advanced_unit_bonus.jsontooltip
 msgid ""
-"Units promoted to the advanced class gain a lot of quality: 20% extra "
+"Units promoted to the advanced class gain a lot of quality: 10% extra "
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster Infantry movement speeds and extra heal speed and range for healers."
-msgstr "Las unidades ascendidas a la clase avanzada ganan mucha calidad: 20% extra de salud, 1 nivel extra de armadura de cada tipo, 20 % extra de saqueo, 20% extra de ataque para unidades de cuerpo a cuerpo, 4 m extra de alcance y mejor precisión para unidades de largo alcance, mayor velocidad de movimiento para la infantería, y mayor velocidad de curación y alcance para los sanadores. "
+msgstr ""
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -101,6 +101,7 @@ msgstr "Chaflán protector"
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/buildtime_walls_rubble.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_mining_serfs.jsonrequirementsTooltip
@@ -499,11 +500,11 @@ msgstr "Reuso de escombros"
 
 #: simulation/data/technologies/elite_unit_bonus.jsontooltip
 msgid ""
-"Units promoted to the elite class gain a lot of quality: 20% extra health, 1"
+"Units promoted to the elite class gain a lot of quality: 10% extra health, 1"
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "Infantry movement speeds and extra heal speed and range for healers."
-msgstr "Las unidades ascendidas a la clase élite ganan mucha calidad: 20% extra de salud, 1 nivel extra de armadura de cada tipo, 20% extra de saqueo, 20% extra de ataque para unidades de cuerpo a cuerpo, 4 m extra de alcance y mejor precisión para unidades de largo alcance, mayor velocidad de movimiento para la infantería, y mayor velocidad de curación y alcance para los sanadores.  "
+msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -581,16 +582,27 @@ msgstr "Trabajadores +25% en el ritmo de cosecha de granos."
 msgid "Fertilizer"
 msgstr "Fertilizante"
 
+#: simulation/data/technologies/gather_farming_harvester.jsondescription
+msgid ""
+"The Gauls invented an harvesting machine, making it much easier to harvest "
+"grain."
+msgstr ""
+
+#: simulation/data/technologies/gather_farming_harvester.jsontooltip
+#: simulation/data/technologies/gather_farming_plows.jsontooltip
+#: simulation/data/technologies/gather_farming_training.jsontooltip
+msgid "Workers +15% grain gather rate."
+msgstr "Trabajadores +15% recolección de granos."
+
+#: simulation/data/technologies/gather_farming_harvester.jsongenericName
+msgid "Harvesting Machine"
+msgstr ""
+
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
 "Equip your workers with iron plows, animal-drawn instruments to turn the "
 "sod."
 msgstr "Considera equipar a tus trabajadores con arados de hierro, instrumentos alados por animales para arar el terreno."
-
-#: simulation/data/technologies/gather_farming_plows.jsontooltip
-#: simulation/data/technologies/gather_farming_training.jsontooltip
-msgid "Workers +15% grain gather rate."
-msgstr "Trabajadores +15% recolección de granos."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"

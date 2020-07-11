@@ -7,7 +7,7 @@
 # Adrian Budasz <adrianbudasz@gmail.com>, 2014-2015
 # Andrzej Preibisz <andrzejjpreibisz@gmail.com>, 2016
 # Bartosz Bobin <bartosz@bobin.eu>, 2017-2018
-# Bartosz Bobin <bartosz@bobin.eu>, 2018
+# Bartosz Bobin <bartosz@bobin.eu>, 2018,2020
 # Daniel Whatever <Deynyel@protonmail.com>, 2017
 # Jacek <jacek15klb@gmail.com>, 2015
 # Krzysztof Grabania, 2015
@@ -36,9 +36,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-15 07:10+0000\n"
-"PO-Revision-Date: 2020-06-15 08:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-06 07:18+0000\n"
+"PO-Revision-Date: 2020-07-06 20:58+0000\n"
+"Last-Translator: Bartosz Bobin <bartosz@bobin.eu>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,11 +48,11 @@ msgstr ""
 
 #: simulation/data/technologies/advanced_unit_bonus.jsontooltip
 msgid ""
-"Units promoted to the advanced class gain a lot of quality: 20% extra "
+"Units promoted to the advanced class gain a lot of quality: 10% extra "
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster Infantry movement speeds and extra heal speed and range for healers."
-msgstr "Jednostki, które otrzymały awans do klasy zaawansowanej, zyskują na jakości: 20% więcej zdrowia, o 1 punkt więcej pancerza przeciw każdemu rodzajowi obrażeń, 20% więcej ataku dla jednostek walczących wręcz, 4m dodatkowego zasięgu i większa precyzja dla jednostek walczących na dystans, szybszy ruch piechoty oraz przyspieszenie i zwiększenie zasięgu uzdrowicieli."
+msgstr "Jednostki, które otrzymały awans do klasy zaawansowanej, zyskują na jakości: 10% więcej zdrowia, o 1 punkt więcej pancerza przeciw każdemu rodzajowi obrażeń, 20% dodatkowych łupów, 20% więcej ataku dla jednostek walczących wręcz, 4m dodatkowego zasięgu i większa precyzja dla jednostek walczących na dystans, szybszy ruch piechoty oraz przyspieszenie i zwiększenie zasięgu uzdrowicieli."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -106,6 +106,7 @@ msgstr "Zbroja końska"
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/buildtime_walls_rubble.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_mining_serfs.jsonrequirementsTooltip
@@ -504,11 +505,11 @@ msgstr "Gruz"
 
 #: simulation/data/technologies/elite_unit_bonus.jsontooltip
 msgid ""
-"Units promoted to the elite class gain a lot of quality: 20% extra health, 1"
+"Units promoted to the elite class gain a lot of quality: 10% extra health, 1"
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "Infantry movement speeds and extra heal speed and range for healers."
-msgstr "Jednostki, które otrzymały awans do klasy elitarnej, zyskują dodatkowe parametry: 20% więcej zdrowia, o 1 punkt więcej pancerza przeciw każdemu rodzajowi obrażeń, 20% więcej ataku dla jednostek walczących wręcz, 4m dodatkowego zasięgu i większa precyzja dla jednostek walczących na dystans, szybszy ruch piechoty oraz przyspieszenie i zwiększenie zasięgu uzdrowicieli."
+msgstr "Jednostki, które otrzymały awans do klasy elitarnej, zyskują dodatkowe parametry: 10% więcej zdrowia, o 1 punkt więcej pancerza przeciw każdemu rodzajowi obrażeń, 20% dodatkowych łupów, 20% więcej ataku dla jednostek walczących wręcz, 4m dodatkowego zasięgu i większa precyzja dla jednostek walczących na dystans, szybszy ruch piechoty oraz przyspieszenie i zwiększenie zasięgu uzdrowicieli."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -586,16 +587,27 @@ msgstr "Farmerzy zbierają o 25% szybciej."
 msgid "Fertilizer"
 msgstr "Nawóz"
 
+#: simulation/data/technologies/gather_farming_harvester.jsondescription
+msgid ""
+"The Gauls invented an harvesting machine, making it much easier to harvest "
+"grain."
+msgstr "Galowie wynaleźli maszynę do zbiorów, która znacznie ułatwia zbieranie ziarna."
+
+#: simulation/data/technologies/gather_farming_harvester.jsontooltip
+#: simulation/data/technologies/gather_farming_plows.jsontooltip
+#: simulation/data/technologies/gather_farming_training.jsontooltip
+msgid "Workers +15% grain gather rate."
+msgstr "Robotnicy zbierają 15% szybciej."
+
+#: simulation/data/technologies/gather_farming_harvester.jsongenericName
+msgid "Harvesting Machine"
+msgstr "Maszyna do zbiorów"
+
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
 "Equip your workers with iron plows, animal-drawn instruments to turn the "
 "sod."
 msgstr "Wyposaż robotników w żelazne pługi, które ciągną zwierzęta w celu orania gleby."
-
-#: simulation/data/technologies/gather_farming_plows.jsontooltip
-#: simulation/data/technologies/gather_farming_training.jsontooltip
-msgid "Workers +15% grain gather rate."
-msgstr "Robotnicy zbierają 15% szybciej."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"

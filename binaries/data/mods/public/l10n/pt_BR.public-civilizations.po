@@ -10,7 +10,7 @@
 # Caio Northfleet <caio.northfleet@gmail.com>, 2014
 # Carlos Gabriel <carlos2324feitosa@gmail.com>, 2018
 # Diana K. Cury <dianakac@gmail.com>, 2014
-# Elisa Silva Ramos <inactive+elisasr@transifex.com>, 2014
+# 1e46fd82907595ae69bafb7f4e47cd1b_169840e <1f20291f26e4e92cc88e8522999d4c5b_169576>, 2014
 # Enrico Nicoletto <enrico.BR@gmx.co.uk>, 2013
 # Erick Alves <erickalves@outlook.com>, 2014
 # Ernan, 2014
@@ -24,7 +24,7 @@
 # JulioBianor <mr.logan1@yahoo.com.br>, 2014
 # Junior Lage <junimslage@gmail.com>, 2017
 # Leonardo Barros <leonardobatzeta@gmail.com>, 2018
-# Lucas Simões <inactive+kaslusimoes@transifex.com>, 2013
+# d985c683c87c96d130507ab20847ffb3_c33e5c1 <adede5c43c7c39447cc854215823dacf_125806>, 2013
 # Marcelo Augusto Kniss <marcelo.kniss@outlook.com>, 2016
 # Marcos Correa <mcorrea.jr28@gmail.com>, 2014
 # Marcus Rasseli <mvrasseli@hotmail.com>, 2013
@@ -41,8 +41,8 @@
 # Rowel <luciomeiradavid@hotmail.com>, 2014
 # Rui <xymarior@yandex.com>, 2018-2019
 # Sturm <gravador202@yahoo.com.br>, 2014
-# Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>, 2020
-# Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>, 2018-2019
+# Tiago <tiago.henrique.cco@gmail.com>, 2020
+# Tiago <tiago.henrique.cco@gmail.com>, 2018-2019
 # Victor Franceschini <vitor_v@hotmail.co.uk>, 2019
 # Vinícius Pereira <lameiravinicius24@gmail.com>, 2018
 # Werther Ramalho <werther23@gmail.com>, 2019
@@ -50,9 +50,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-04-05 18:26+0000\n"
-"Last-Translator: Mateus Guerra <jmateusz@gmx.co.uk>\n"
+"POT-Creation-Date: 2020-07-06 07:16+0000\n"
+"PO-Revision-Date: 2020-07-06 11:24+0000\n"
+"Last-Translator: Tiago <tiago.henrique.cco@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -861,15 +861,29 @@ msgid "Viridovix"
 msgstr "Viridovix"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
+msgid "Workers +15% grain gather rate."
+msgstr "Trabalhadores têm +15% de taxa de coleta de grãos."
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
+msgid "Harvesting Machine"
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
+msgid ""
+"The Gauls invented an harvesting machine, making it much easier to harvest "
+"grain."
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid ""
 "A set amount of metal and food from every structure destroyed or captured."
 msgstr "Uma quantidade definida de metal e comida de cada estrutura destruída ou capturada."
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
 msgid "Vae Victis"
 msgstr "Ai dos Vencidos"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
 msgid ""
 "Woe to the Defeated! The Gallic chieftain Brennus seized Rome (with the "
 "exception of a garrison on Capitoline Hill). When Camillus besieged him with"
@@ -878,15 +892,15 @@ msgid ""
 "complained that he used false weights he uttered those famous words."
 msgstr "Ai dos Derrotados! O chefe Gaules Breno derrotou Roma (com exceção de uma guarnição no Monte Capitolino). Quando Camilo o cercou com uma força de ajuda de Veios, ele negociou sua rendição por 1000 quilos de ouro, e adicionando o peso de sua espada na balança quando os romanos reclamaram que ele usava pesos falsos ele pronunciou aquelas palavras famosas."
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].Description
 msgid "Gallic druids gain a small melee attack."
 msgstr "Os druidas gauleses ganham um pequeno ataque corpo a corpo."
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].Name
 msgid "Carnutes"
 msgstr "Carnutes"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].History
 msgid ""
 "The Carnutes were druids from Aulercia. They fought when needed, and were "
 "largely responsible for turning back the Belgae incursions into Armorica and"
@@ -950,14 +964,6 @@ msgstr "Vercingetórix era o chefe da tribo dos Arvernos da Gália (na atual Fra
 #: simulation/data/civs/gaul.jsonFactions[0].Description
 msgid "The Celts of mainland Europe."
 msgstr "Os Celtas da Europa continental."
-
-#: simulation/data/civs/gaul.jsonStructures[0].Name
-msgid "Melonas"
-msgstr "Melonas"
-
-#: simulation/data/civs/gaul.jsonStructures[0].History
-msgid "The Celts developed the first rotary flour mill."
-msgstr "Os Celtas desenvolveram o primeiro moinho de farinha rotativo."
 
 #: simulation/data/civs/gaul.jsonHistory
 msgid ""

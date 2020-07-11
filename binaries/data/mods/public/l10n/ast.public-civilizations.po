@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-07-06 01:45+0000\n"
+"POT-Creation-Date: 2020-07-06 07:16+0000\n"
+"PO-Revision-Date: 2020-07-08 03:09+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -819,15 +819,29 @@ msgid "Viridovix"
 msgstr "Viridovix"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
+msgid "Workers +15% grain gather rate."
+msgstr "Trabayadores +15% tasa de recueya de grana."
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
+msgid "Harvesting Machine"
+msgstr "Coyedora"
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
+msgid ""
+"The Gauls invented an harvesting machine, making it much easier to harvest "
+"grain."
+msgstr "Pa facilitar la collecha, los galos fexeron una máquina coyedora."
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid ""
 "A set amount of metal and food from every structure destroyed or captured."
 msgstr "Determinada cantidá de metal ya comida por toa construcción que desfaigas o tomes."
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
 msgid "Vae Victis"
 msgstr "Vae Victis"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
 msgid ""
 "Woe to the Defeated! The Gallic chieftain Brennus seized Rome (with the "
 "exception of a garrison on Capitoline Hill). When Camillus besieged him with"
@@ -836,15 +850,15 @@ msgid ""
 "complained that he used false weights he uttered those famous words."
 msgstr "En conquistando a Roma, Brennos viose cercáu de les fuercies de Camilu, qu'aportaren de Veyos. Alcordó dexar la ciudá por 1.000 llibres d'oru. Cuando los romanos se quexaron de qu'amañare la balanza, el galu echó-y la so espada ya gorgutó: ¡Ai de los vencíos!"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].Description
 msgid "Gallic druids gain a small melee attack."
 msgstr "Los druides galos puen engardise."
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].Name
 msgid "Carnutes"
 msgstr "Carnutos"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].History
 msgid ""
 "The Carnutes were druids from Aulercia. They fought when needed, and were "
 "largely responsible for turning back the Belgae incursions into Armorica and"
@@ -908,14 +922,6 @@ msgstr "Vercinxetórix (Galu: Vercingetorix) foi caudiellu de los arvernos na Ga
 #: simulation/data/civs/gaul.jsonFactions[0].Description
 msgid "The Celts of mainland Europe."
 msgstr "Los celtes de la Europa continental."
-
-#: simulation/data/civs/gaul.jsonStructures[0].Name
-msgid "Melonas"
-msgstr "Melonas"
-
-#: simulation/data/civs/gaul.jsonStructures[0].History
-msgid "The Celts developed the first rotary flour mill."
-msgstr "Los celtes desendolcaron el primer molín de rabil."
 
 #: simulation/data/civs/gaul.jsonHistory
 msgid ""
@@ -2736,7 +2742,7 @@ msgid ""
 "and run away before a single shield clashed. 'Othismos' refers to the point "
 "in a phalanx battle where both sides try to shove each other out of "
 "formation, attempting to breaking up the enemy lines and routing them."
-msgstr "La falanxe espartana yera ensin oldéu. Tanta medrana metía la so disciplina que de xemes en cuando l'enemigu se separtaba ya fuxía ensin cutir un escudu. El «othismós» referíase al intre nel que dos falanxes s'emburriaben ún al otru pa romper les files del contrariu."
+msgstr "La falanxe espartana yera ensin oldéu. Tanta medrana metía la so disciplina que de xemes en cuando l'enemigu se separtaba ya fuxía ensin cutir un escudu. El «othismós» referíase al intre nel que dos falanxes s'emburriaben ún al otru pa romper les files del contrariu ya vencelu."
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].Description
 msgid ""
@@ -2768,7 +2774,7 @@ msgid ""
 "loose confederation, with Sparta as its leader, was later dubbed the "
 "Peloponnesian League by historians, but in ancient times was called 'The "
 "Lacedaemonians and their allies.'"
-msgstr "Munchos pueblos del Peloponesu dependíen d'Esparta, d'una forma o otra. Antaño, esti colligamientu del Peloponesu se llamaba «los lacedemonios ya los sos aliaos.»"
+msgstr "Munchos pueblos del Peloponesu dependíen d'Esparta, d'una forma o otra. Antaño, esti colligamientu se llamaba «los lacedemonios ya los sos aliaos.»"
 
 #: simulation/data/civs/spart.jsonAINames[0]
 msgid "Leonidas"
@@ -2835,7 +2841,7 @@ msgid ""
 "lost battle against Pyrrhus of Epirus they overnight built an earthen "
 "rampart to protect the city while their men slept in preparation for the "
 "next day's siege."
-msgstr "Les espartanes yeren ente les muyeres más llibres del mundu antiguu. Podíen poseyer tierres & esclavos & mesmamente exercitar desnudes como los espartanos. Dizse que namái les espartanes paríen homes de verdá. Tales muyeres dures ayudaron más d'una vegada a salvar la ciudá del desastre, por casu, en perdiendo la batalla escontra Pirru d'Epiru construyeron de nueche un reparu de tierra pa protexer la ciudá mentanto dormíen los homes pa preparase pal asediu del otru día."
+msgstr "Les muyeres espartanes yeren ente les más llibres de l'antigüedá. Podíen aposiar tierres y esclavos ya mesmamente facer exerciciu en porrica como los homes. Dizse que les espartanes paren homes de verdá. Gracies a la so durez, en más d'una ocasión aidaron a salvar la ciudá. Por casu, en perdiendo una amarraza a Pirru d'Epiru, pasaron la nueche carcovando la ciudá ente que los homes dormíen pa preparase pa otru día d'asediu."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[1].Description
 msgid "Units in phalanx formation move faster."
@@ -2850,7 +2856,7 @@ msgid ""
 "Paeans were battle hymns that were sung by the hoplites when they charged "
 "the enemy lines. One of the first known Paeans were composed by Tirteus, a "
 "warrior poet of Sparta, during the First Messenian War."
-msgstr "Les peanes foron himnos de batalla que cantaben los hoplites cuando cargaben escontra les llinies enemigues. Una de les primeres peanes compúnxoles Tirtéu, un poeta guerreru d'Esparta, na primer guerra mesenia."
+msgstr "Les peanes yeren himnos que cantaben los hoplites al cargar escontra les files enemigues. Una de les primeres compúnxola Tirtéu, un poeta ya guerreru d'Esparta, na primer guerra mesenia."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "+25% health for spear infantry, but also +10% train time."
@@ -2864,7 +2870,7 @@ msgstr "L'agogá"
 msgid ""
 "Spartans were housed and trained from a young age to be superlative warriors"
 " and to endure any hardship a military life can give them."
-msgstr "Los espartanos agospiábense & trallábense dende pequeños pa ser guerreros superlativos & soportar cualquier desafíu qu'una vida militar-yos pudiere presentar."
+msgstr "Los espartanos entrenábense dende pequeños a engarrar ya soportar cualquier desafíu que la milicia-yos presentare."
 
 #: simulation/data/civs/spart.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -2898,7 +2904,7 @@ msgid ""
 " the Battle of Megalopolis, the Macedonians prevailed in a long and bloody "
 "battle. Much like Leonidas 150 years earlier, instead of surrendering, Agis "
 "made a heroic final stand in order to buy time for his troops to retreat."
-msgstr "Axis III yera'l 20u rei d'Esparta del llinaxe euripóntida. Axis improvisó una alianza d'estaos griegos pa resistir la hexemonía macedonia mentanto Alexandru'l Grande taba n'Asia na so marcha conquistadora. Darréu d'asegurar Creta como tributariu espartanu, Axis púnxose a asediar la ciudá de Magalópolis nel Peloponesu, que yera aliada de Macedonia. Antípatru, el rexente macedoniu, dirixó un exércitu p'acabar con esti alzamientu nuevu. Na batalla de Megalópolis, los macedonios vencieron tres una batalla llonga & sangronienta. Neto que Leónides 150 años antes, Axis nun se rindió, sinón que fizo una cabera defensa heroica col envís de ganar tiempu pa que les tropes se retiraren. "
+msgstr "Axis III yera'l rei XX d'Esparta de la casa euripóntida. Formó una alianza coles poleis meridionales p'acabar cola hexemonía macedonia de Grecia mentanto Alexandru'l Grande taba n'Asia. Darréu d'asegurar el sofitu de Creta, Axis cercó la ciudá peloponesia de Magalópolis, una aliada de Macedonia. Antípatru, el rexente macedoniu, dirixó un contrataque ya ganó tres una batalla llonga ya sangronienta, pero Axis nun se rindió, sinón que, como fexo Leónides 150 años primero, lluchó fasta la muerte al envís de ganar tiempu pa que les tropes se retiraren. "
 
 #: simulation/data/civs/spart.jsonFactions[0].Heroes[2].Name
 msgid "Agis III"
@@ -2916,7 +2922,7 @@ msgstr "Allista héroes y esparciates ya desendolca la teunoloxía venceyao."
 msgid ""
 "The Syssition was the Mess Hall for full-blooded Spartiates. Every Spartan "
 "peer, even kings, belonged to one."
-msgstr "El «Syssition» yera'l comedor pa esparciates de pura castra. Tola nobleza espartano, mesmamente los reis, pertenecía a dalgún."
+msgstr "El «Syssition» yera'l comedor de los esparciates de pura castra. Tola nobleza espartano, mesmamente los reis, pertenecía a dalgún."
 
 #: simulation/data/civs/spart.jsonHistory
 msgid ""
@@ -2926,4 +2932,4 @@ msgid ""
 " at age seven. Thanks to its military might, Sparta led a coalition of Greek"
 " forces during the Greco-Persian Wars, and won over Athens in the "
 "Peloponnesian Wars, though at great cost."
-msgstr "Esparta yera una polis de nomada y apoderó los campos de batalla de la Hélade dende alredor de 650 a.C. Los espartanos encegolábense cola milicia; los sos rapacinos trallábense dende los siete años. Gracies al puxu del so exércitu, Esparta mandó un colligamientu griegu nes guerres médiques ya venció a Atenes na guerra del Peloponesu, si bien-yos costó enforma."
+msgstr "Esparta yera una polis de nomada que la mayor potencia militar de la Hélade dende alredor de 650 a.C. Los espartanos encegolábense cola milicia; los sos rapacinos entrenábense dende los siete años. Gracies al puxu del so exércitu, Esparta mandó un colligamientu griegu nes guerres médiques ya venció a Atenes na guerra del Peloponesu, si bien-yos costó enforma."

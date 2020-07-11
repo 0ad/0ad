@@ -10,6 +10,9 @@ class TreeSection
 		this.PhaseIdents = new PhaseIdentManager(this.page);
 
 		this.rightMargin = this.TreeSection.size.right;
+		this.vMargin = this.TreeSection.size.top + -this.TreeSection.size.bottom;
+		this.width = 0;
+		this.height = 0;
 
 		this.structureBoxes = [];
 		for (let boxIdx in this.Structures.children)
@@ -34,6 +37,9 @@ class TreeSection
 
 		// Position phase idents
 		this.PhaseIdents.draw(phaseList, civCode, runningWidths, this.Structures.size.left);
+
+		this.width = this.Structures.size.left + Math.max(...runningWidths) + EntityBox.prototype.HMargin;
+		this.height = this.constructor.getPositionOffset(phaseList.length, this.page.TemplateParser);
 	}
 
 	drawPhaseIcon(phaseIcon, phaseIndex, civCode)

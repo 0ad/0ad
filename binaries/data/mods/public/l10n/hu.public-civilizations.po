@@ -5,10 +5,10 @@
 # Translators:
 # Aqualung <molnar.boldizsar@gmail.com>, 2014
 # Attila Kocsner, 2014
-# Balázs Meskó <meskobalazs@gmail.com>, 2015-2020
+# Balázs Meskó <meskobalazs@mailbox.org>, 2015-2020
 # Balázs Úr, 2015-2016
-# Benedict Drummer <inactive+beni1999@transifex.com>, 2015
-# Benedict Drummer <inactive+beni1999@transifex.com>, 2015
+# 12dde84ca529f511e7ad8b70de73f71c_b688a04 <2328b4f5662bb45a5de7adc879cc0db2_206283>, 2015
+# 12dde84ca529f511e7ad8b70de73f71c_b688a04 <2328b4f5662bb45a5de7adc879cc0db2_206283>, 2015
 # Boross Péter <borosspet@web.de>, 2015
 # Levente Krisztián Büte <chris020891@gmail.com>, 2013-2014
 # Czene István <kekana@citromail.hu>, 2015
@@ -27,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-02-03 18:36+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2020-07-06 07:16+0000\n"
+"PO-Revision-Date: 2020-07-06 11:24+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -838,15 +838,29 @@ msgid "Viridovix"
 msgstr "Viridovix"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
+msgid "Workers +15% grain gather rate."
+msgstr "+15% gabonabegyűjtési sebesség a munkásoknál."
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
+msgid "Harvesting Machine"
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
+msgid ""
+"The Gauls invented an harvesting machine, making it much easier to harvest "
+"grain."
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid ""
 "A set amount of metal and food from every structure destroyed or captured."
 msgstr "Meghatározott mennyiségű fém és élelem minden elpusztított vagy elfoglalt épület után."
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
 msgid "Vae Victis"
 msgstr "Vae Victis"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
 msgid ""
 "Woe to the Defeated! The Gallic chieftain Brennus seized Rome (with the "
 "exception of a garrison on Capitoline Hill). When Camillus besieged him with"
@@ -855,15 +869,15 @@ msgid ""
 "complained that he used false weights he uttered those famous words."
 msgstr "Jaj a legyőzötteknek! A gall törzsfőnök Brennus bevette Rómát (a Kapitólium-domb kaszárnyájának kivételével). Amikor Camillus megostromolta a veii-i felmentő sereggel, akkor megadási tárgyalásokat kezdeményezett. Ez 1000 font aranyba került, és Brennus még a kardját is rádobta a mérlegre, amikor a rómaiak panaszkodtak, hogy hamis súlyokat használnak. Eközben mondta ezeket a híres szavakat."
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].Description
 msgid "Gallic druids gain a small melee attack."
 msgstr "A gall druidák közelharci támadása növekszik."
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].Name
 msgid "Carnutes"
 msgstr "Carnutesek"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].History
 msgid ""
 "The Carnutes were druids from Aulercia. They fought when needed, and were "
 "largely responsible for turning back the Belgae incursions into Armorica and"
@@ -927,14 +941,6 @@ msgstr "Vercingetorix (gallul: Ver-Rix Cingetos) az arverni gallok törzsfőnök
 #: simulation/data/civs/gaul.jsonFactions[0].Description
 msgid "The Celts of mainland Europe."
 msgstr "Az európai szárazföld keltái."
-
-#: simulation/data/civs/gaul.jsonStructures[0].Name
-msgid "Melonas"
-msgstr "Melonas"
-
-#: simulation/data/civs/gaul.jsonStructures[0].History
-msgid "The Celts developed the first rotary flour mill."
-msgstr "A kelták építették az első forgó lisztmalmot."
 
 #: simulation/data/civs/gaul.jsonHistory
 msgid ""

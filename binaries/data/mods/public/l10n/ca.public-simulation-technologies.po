@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-15 07:10+0000\n"
-"PO-Revision-Date: 2020-06-18 21:54+0000\n"
+"POT-Creation-Date: 2020-07-06 07:18+0000\n"
+"PO-Revision-Date: 2020-07-08 19:18+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -31,11 +31,11 @@ msgstr ""
 
 #: simulation/data/technologies/advanced_unit_bonus.jsontooltip
 msgid ""
-"Units promoted to the advanced class gain a lot of quality: 20% extra "
+"Units promoted to the advanced class gain a lot of quality: 10% extra "
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster Infantry movement speeds and extra heal speed and range for healers."
-msgstr "Les unitat ascendides a la classe avançada guanyen molta qualitat: 20% més de salut, 1 nivell d'armadura de cada tipus, 20% extra de saqueig, 20% extra en atac per a unitats cos a cos, 4 metres més d'abast i més precisió per a unitats a distància, més velocitat de moviment per a la infanteria, i més velocitat i abast de curació."
+msgstr "Les unitat ascendides a la classe avançada guanyen molta qualitat: 10% més de salut, 1 nivell d'armadura de cada tipus, 20% extra de saqueig, 20% extra en atac per a unitats cos a cos, 4 metres més d'abast i més precisió per a unitats a distància, més velocitat de moviment per a la infanteria, i més velocitat i abast de curació."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -89,6 +89,7 @@ msgstr "Barda"
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/buildtime_walls_rubble.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_mining_serfs.jsonrequirementsTooltip
@@ -487,11 +488,11 @@ msgstr "Materials de runa"
 
 #: simulation/data/technologies/elite_unit_bonus.jsontooltip
 msgid ""
-"Units promoted to the elite class gain a lot of quality: 20% extra health, 1"
+"Units promoted to the elite class gain a lot of quality: 10% extra health, 1"
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "Infantry movement speeds and extra heal speed and range for healers."
-msgstr "Les unitat ascendides a la classe d'elit guanyen molta qualitat: 20% més de salut, 1 nivell d'armadura de cada tipus, 20% extra de saqueig, 20% extra en atac per a unitats cos a cos, 4 metres més d'abast i més precisió per a unitats a distància, més velocitat de moviment per a la infanteria, i més velocitat i abast de curació."
+msgstr "Les unitat ascendides a la classe d'elit guanyen molta qualitat: 10% més de salut, 1 nivell d'armadura de cada tipus, 20% extra de saqueig, 20% extra en atac per a unitats cos a cos, 4 metres més d'abast i més precisió per a unitats a distància, més velocitat de moviment per a la infanteria, i més velocitat i abast de curació."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -569,16 +570,27 @@ msgstr "Els treballadors augmenten un 25% la velocitat de recol·lecció del gra
 msgid "Fertilizer"
 msgstr "Fertilitzant"
 
+#: simulation/data/technologies/gather_farming_harvester.jsondescription
+msgid ""
+"The Gauls invented an harvesting machine, making it much easier to harvest "
+"grain."
+msgstr "Els gals van inventar una segadora que va facilitar molt la collita del gra."
+
+#: simulation/data/technologies/gather_farming_harvester.jsontooltip
+#: simulation/data/technologies/gather_farming_plows.jsontooltip
+#: simulation/data/technologies/gather_farming_training.jsontooltip
+msgid "Workers +15% grain gather rate."
+msgstr "Els treballadors augmenten un 15% la velocitat de recol·lecció del gra."
+
+#: simulation/data/technologies/gather_farming_harvester.jsongenericName
+msgid "Harvesting Machine"
+msgstr "Segadora"
+
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
 "Equip your workers with iron plows, animal-drawn instruments to turn the "
 "sod."
 msgstr "Proporciona als treballadors arades de ferro, eines que aprofiten la tracció animal per llaurar la terra."
-
-#: simulation/data/technologies/gather_farming_plows.jsontooltip
-#: simulation/data/technologies/gather_farming_training.jsontooltip
-msgid "Workers +15% grain gather rate."
-msgstr "Els treballadors augmenten un 15% la velocitat de recol·lecció del gra."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"

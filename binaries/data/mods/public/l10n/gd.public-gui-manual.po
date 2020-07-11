@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-05-19 08:39+0000\n"
-"Last-Translator: GunChleoc\n"
+"POT-Creation-Date: 2020-07-06 07:17+0000\n"
+"PO-Revision-Date: 2020-07-06 15:20+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -191,22 +191,22 @@ msgid ""
 msgstr "  Alt + F4 – Fàg an geama sa bhad is gun dearbhadh"
 
 #: gui/manual/intro.txt:42
-msgid "  Alt + Enter – Toggle between fullscreen and windowed"
-msgstr "  Alt + Enter – Toglaich eadar làn-sgrìn is modh uinneige"
+msgid "  Alt + Enter (Return) – Toggle between fullscreen and windowed"
+msgstr ""
 
 #: gui/manual/intro.txt:43
-msgid "  ~ or F9 – Show/hide console"
-msgstr "  ~ no F9 – Seall/Falaich a’ chonsoil"
+msgid "  ~ or F9 – Toggle console"
+msgstr ""
 
 #: gui/manual/intro.txt:44
-msgid "  Alt + F – Show/hide frame counter (FPS)"
-msgstr "  Alt + F – Seall/Falaich cunntair nam frèam (FPS)"
+msgid "  Alt + F – Toggle frame counter (FPS)"
+msgstr ""
 
 #: gui/manual/intro.txt:45
 msgid ""
-"  F11 – Enable/disable real-time profiler (toggles through the displays of "
+"  F11 – Toggle real-time profiler (cycles through the displays of "
 "information)"
-msgstr "  F11 – Cuir am pròifilear fìor-ama an comas/à comas (toglaichidh seo tro na seallaidhean fiosrachaidh)"
+msgstr ""
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
@@ -271,20 +271,20 @@ msgid "  Shift + F8 – Quickload"
 msgstr "  Shift + F8 – Luchdadh luath"
 
 #: gui/manual/intro.txt:59
-msgid "  F10 – Open/close menu"
-msgstr "  F10 – Fosgail/Dùin an clàr-taice"
+msgid "  F10 – Toggle menu"
+msgstr ""
 
 #: gui/manual/intro.txt:60
-msgid "  F12 – Show/hide time elapsed counter"
-msgstr "  F12 – Seall/Falaich an ùine a dh’fhalbh"
+msgid "  F12 – Toggle time elapsed counter"
+msgstr ""
 
 #: gui/manual/intro.txt:61
 msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
 msgstr "  ESC – Dùin a h‑uile còmhradh (cabadaich, clàr-taice) no falamhaich taghadh nan aonadan"
 
 #: gui/manual/intro.txt:62
-msgid "  Enter/Return – Open/send chat"
-msgstr "  Enter/Return – Fosgail/Cuir cabadaich"
+msgid "  Enter (Return) – Open chat or send message"
+msgstr ""
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
@@ -295,8 +295,8 @@ msgid "  L – Chat with the previously selected private chat partner"
 msgstr "  L – Dèan cabadaich phrìobhaideach leis an neach mu dheireadh a thagh thu"
 
 #: gui/manual/intro.txt:65
-msgid "  Pause – Pause/resume the game"
-msgstr "  Pause – Cuir an geama ’na stad/a’ dol"
+msgid "  Pause – Pause or resume the game"
+msgstr ""
 
 #: gui/manual/intro.txt:66
 msgid ""
@@ -556,12 +556,12 @@ msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr "[font=”sans-bold-14”]Tar-chòmhdachaidhean[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:121
-msgid "  Alt + G – Hide/show the GUI"
-msgstr "  Alt + G – Falaich/Seall an eadar-aghaidh"
+msgid "  Alt + G – Toggle the GUI"
+msgstr ""
 
 #: gui/manual/intro.txt:122
-msgid "  Alt + D – Show/hide developer overlay (with developer options)"
-msgstr "  Alt + D – Seall/Falaich tar-chòmhdachadh nan leasaichear (le roghainnean nan leasaichear)"
+msgid "  Alt + D – Toggle developer overlay (with developer options)"
+msgstr ""
 
 #: gui/manual/intro.txt:123
 msgid ""
@@ -663,8 +663,8 @@ msgid ""
 msgstr "  F – Lean air an aonad air a thaghadh (gluais an camara ach nach lean e air an aonad tuilleadh)"
 
 #: gui/manual/intro.txt:145
-msgid "  R – Reset camera zoom/orientation"
-msgstr "  R – Ath-shuidhich sùm/cuairteachadh a’ chamara"
+msgid "  R – Reset camera zoom and orientation"
+msgstr ""
 
 #: gui/manual/intro.txt:146
 msgid "  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)"

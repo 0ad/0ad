@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-02-28 21:46+0000\n"
+"POT-Creation-Date: 2020-07-06 07:17+0000\n"
+"PO-Revision-Date: 2020-07-07 22:41+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -189,22 +189,22 @@ msgid ""
 msgstr "  Alt + F4 – Zarrar la partida nel intre, ensin pidir confirmanza"
 
 #: gui/manual/intro.txt:42
-msgid "  Alt + Enter – Toggle between fullscreen and windowed"
-msgstr "  Alt + Intro – Alternar ente la pantalla completa & la ventana"
+msgid "  Alt + Enter (Return) – Toggle between fullscreen and windowed"
+msgstr "  Alt + Intro – Alternar ente la pantalla completa ya la ventana"
 
 #: gui/manual/intro.txt:43
-msgid "  ~ or F9 – Show/hide console"
-msgstr "  ~ o F9 – Amosar/anubrir la consola"
+msgid "  ~ or F9 – Toggle console"
+msgstr "  ~ o F9 – Enseñar la consola"
 
 #: gui/manual/intro.txt:44
-msgid "  Alt + F – Show/hide frame counter (FPS)"
-msgstr "  Alt + F – Amosar/anubrir el cuntador de cuadros (FPS)"
+msgid "  Alt + F – Toggle frame counter (FPS)"
+msgstr "  Alt + F – Enseñar el cuntador de cuadros (FPS)"
 
 #: gui/manual/intro.txt:45
 msgid ""
-"  F11 – Enable/disable real-time profiler (toggles through the displays of "
+"  F11 – Toggle real-time profiler (cycles through the displays of "
 "information)"
-msgstr "  F11 – Activar/desactivar el perfilador en tiempu real, (navega pente les amosances d'información)"
+msgstr "  F11 – Enseñar el perfilador en tiempu real, (navega pente la información)"
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
@@ -269,20 +269,20 @@ msgid "  Shift + F8 – Quickload"
 msgstr "  Mayús + F8 – Carga rápida"
 
 #: gui/manual/intro.txt:59
-msgid "  F10 – Open/close menu"
-msgstr "  F10 – Abrir/zarrar el menú"
+msgid "  F10 – Toggle menu"
+msgstr "  F10 – Enseñar el menú"
 
 #: gui/manual/intro.txt:60
-msgid "  F12 – Show/hide time elapsed counter"
-msgstr "  F12 – Amosar/anubrir el cuntador del tiempu trescurrío"
+msgid "  F12 – Toggle time elapsed counter"
+msgstr "  F12 – Enseñar el cuntador del tiempu trescurrío"
 
 #: gui/manual/intro.txt:61
 msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
 msgstr "  Esc – Zarrar tolos diálogos (charra, menú) o llimpiar la esbilla d'unidaes"
 
 #: gui/manual/intro.txt:62
-msgid "  Enter/Return – Open/send chat"
-msgstr "  Intro/Tornar – Abrir/unviar mensaxe de charra"
+msgid "  Enter (Return) – Open chat or send message"
+msgstr "  Intro – Abrir la charra o unviar un mensaxe"
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
@@ -293,8 +293,8 @@ msgid "  L – Chat with the previously selected private chat partner"
 msgstr "  L – Charrar en privao col contautu esbilláu previamente"
 
 #: gui/manual/intro.txt:65
-msgid "  Pause – Pause/resume the game"
-msgstr "  Posa – Posar/siguir cola partida"
+msgid "  Pause – Pause or resume the game"
+msgstr "  Posa – Posar o siguir cola partida"
 
 #: gui/manual/intro.txt:66
 msgid ""
@@ -554,12 +554,12 @@ msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Sobrecapes[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:121
-msgid "  Alt + G – Hide/show the GUI"
-msgstr "  Alt + G – Anubrir/amosar la GUI"
+msgid "  Alt + G – Toggle the GUI"
+msgstr "  Alt + G – Enseñar la interfaz gráfica del usuariu"
 
 #: gui/manual/intro.txt:122
-msgid "  Alt + D – Show/hide developer overlay (with developer options)"
-msgstr "  Alt + D – Amosar/anubrir sobrecapa desendolcadora, (con opciones desendolcadores)"
+msgid "  Alt + D – Toggle developer overlay (with developer options)"
+msgstr "  Alt + D – Enseñar la sobrecapa desendolcadora, (que tien opciones pa desendolcadores)"
 
 #: gui/manual/intro.txt:123
 msgid ""
@@ -661,8 +661,8 @@ msgid ""
 msgstr "  F – Siguir la unidá esbillada (movi la cámara pa dexar de siguir la unidá)"
 
 #: gui/manual/intro.txt:145
-msgid "  R – Reset camera zoom/orientation"
-msgstr "  R – Reafitar la orientación/averamientu la cámara"
+msgid "  R – Reset camera zoom and orientation"
+msgstr "  R – Reafitar la orientación y averamientu la cámara"
 
 #: gui/manual/intro.txt:146
 msgid "  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)"

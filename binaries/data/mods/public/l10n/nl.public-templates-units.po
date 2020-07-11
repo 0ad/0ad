@@ -33,8 +33,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-26 07:10+0000\n"
-"PO-Revision-Date: 2020-06-26 09:27+0000\n"
+"POT-Creation-Date: 2020-07-06 07:18+0000\n"
+"PO-Revision-Date: 2020-07-06 09:37+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -255,6 +255,16 @@ msgstr "Olifant"
 #: simulation/templates/template_unit_champion_elephant.xml:25
 msgid "War Elephant"
 msgstr "Krijgsolifant"
+
+#: simulation/templates/template_unit_champion_elephant_melee_african.xml:22
+msgid "African War Elephant"
+msgstr ""
+
+#: simulation/templates/template_unit_champion_elephant_melee_indian.xml:22
+#: simulation/templates/units/maur_champion_elephant.xml:5
+#: simulation/templates/units/pers_champion_elephant.xml:6
+msgid "Indian War Elephant"
+msgstr "Indische krijgsolifant"
 
 #: simulation/templates/template_unit_champion_infantry.xml:21
 #: simulation/templates/template_unit_hero_infantry.xml:24
@@ -1098,27 +1108,27 @@ msgstr "Cunobeline"
 msgid "Cunobelinos"
 msgstr "Cunobeline"
 
-#: simulation/templates/units/brit_infantry_javelinist_b.xml:18
-#: simulation/templates/units/gaul_infantry_javelinist_b.xml:12
+#: simulation/templates/units/brit_infantry_javelinist_b.xml:13
+#: simulation/templates/units/gaul_infantry_javelinist_b.xml:11
 msgid "Adretos"
 msgstr "Adretos"
 
-#: simulation/templates/units/brit_infantry_slinger_b.xml:11
-#: simulation/templates/units/gaul_infantry_slinger_b.xml:12
+#: simulation/templates/units/brit_infantry_slinger_b.xml:6
+#: simulation/templates/units/gaul_infantry_slinger_b.xml:11
 msgid "Celtic Slinger"
 msgstr "Keltische slingeraar"
 
-#: simulation/templates/units/brit_infantry_slinger_b.xml:12
-#: simulation/templates/units/gaul_infantry_slinger_b.xml:13
+#: simulation/templates/units/brit_infantry_slinger_b.xml:7
+#: simulation/templates/units/gaul_infantry_slinger_b.xml:12
 msgid "Talmoris"
 msgstr ""
 
-#: simulation/templates/units/brit_infantry_spearman_b.xml:11
+#: simulation/templates/units/brit_infantry_spearman_b.xml:6
 msgid "Celtic Spearman"
 msgstr "Keltische speervechter"
 
-#: simulation/templates/units/brit_infantry_spearman_b.xml:12
-#: simulation/templates/units/gaul_infantry_spearman_b.xml:12
+#: simulation/templates/units/brit_infantry_spearman_b.xml:7
+#: simulation/templates/units/gaul_infantry_spearman_b.xml:11
 msgid "Catucos"
 msgstr ""
 
@@ -1142,13 +1152,13 @@ msgstr ""
 msgid "Molton"
 msgstr ""
 
-#: simulation/templates/units/brit_support_female_citizen.xml:10
-#: simulation/templates/units/gaul_support_female_citizen.xml:10
+#: simulation/templates/units/brit_support_female_citizen.xml:5
+#: simulation/templates/units/gaul_support_female_citizen.xml:5
 msgid "Celtic Woman"
 msgstr "Keltische vrouw"
 
-#: simulation/templates/units/brit_support_female_citizen.xml:11
-#: simulation/templates/units/gaul_support_female_citizen.xml:11
+#: simulation/templates/units/brit_support_female_citizen.xml:6
+#: simulation/templates/units/gaul_support_female_citizen.xml:6
 msgid "Bena"
 msgstr ""
 
@@ -1902,11 +1912,6 @@ msgstr "Strijdwagen"
 #: simulation/templates/units/maur_champion_chariot.xml:11
 msgid "Rath"
 msgstr "Rath"
-
-#: simulation/templates/units/maur_champion_elephant.xml:5
-#: simulation/templates/units/pers_champion_elephant.xml:6
-msgid "Indian War Elephant"
-msgstr "Indische krijgsolifant"
 
 #: simulation/templates/units/maur_champion_elephant.xml:6
 msgid "Gajendra"

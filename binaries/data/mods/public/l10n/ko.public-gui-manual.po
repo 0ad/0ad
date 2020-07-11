@@ -23,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-01-17 08:08+0000\n"
-"PO-Revision-Date: 2020-02-22 20:04+0000\n"
-"Last-Translator: ks k\n"
+"POT-Creation-Date: 2020-07-06 07:17+0000\n"
+"PO-Revision-Date: 2020-07-06 15:20+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -204,22 +204,22 @@ msgid ""
 msgstr "Alt + F4 – 확인 요청 없이 바로 놀이 끝냄"
 
 #: gui/manual/intro.txt:42
-msgid "  Alt + Enter – Toggle between fullscreen and windowed"
-msgstr "Alt + Enter – 전체 화면모드와 창모드 켜고 끔"
+msgid "  Alt + Enter (Return) – Toggle between fullscreen and windowed"
+msgstr ""
 
 #: gui/manual/intro.txt:43
-msgid "  ~ or F9 – Show/hide console"
-msgstr "~ 또는 F9 – 콘솔 보이기/숨기기"
+msgid "  ~ or F9 – Toggle console"
+msgstr ""
 
 #: gui/manual/intro.txt:44
-msgid "  Alt + F – Show/hide frame counter (FPS)"
-msgstr "Alt + F – 틀 숫자 보이기/숨기기 (FPS)"
+msgid "  Alt + F – Toggle frame counter (FPS)"
+msgstr ""
 
 #: gui/manual/intro.txt:45
 msgid ""
-"  F11 – Enable/disable real-time profiler (toggles through the displays of "
+"  F11 – Toggle real-time profiler (cycles through the displays of "
 "information)"
-msgstr "F11 – 실시간 모형틀 활성화/비활성화 (정보 표시를 통해 켜고 끄기)"
+msgstr ""
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
@@ -284,20 +284,20 @@ msgid "  Shift + F8 – Quickload"
 msgstr "  Shift + F8 – 빠른 불러오기"
 
 #: gui/manual/intro.txt:59
-msgid "  F10 – Open/close menu"
-msgstr "  F10 – 차림표 열기/닫기"
+msgid "  F10 – Toggle menu"
+msgstr ""
 
 #: gui/manual/intro.txt:60
-msgid "  F12 – Show/hide time elapsed counter"
-msgstr "  F12 – 흐른 시간 카운터 보이기/숨기기"
+msgid "  F12 – Toggle time elapsed counter"
+msgstr ""
 
 #: gui/manual/intro.txt:61
 msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
 msgstr "  Esc – 모든 대화상자를 닫기(대화, 차림표) 또는 선택된 유닛 지우기"
 
 #: gui/manual/intro.txt:62
-msgid "  Enter/Return – Open/send chat"
-msgstr "  Enter/Return – 대화 열기/보내기"
+msgid "  Enter (Return) – Open chat or send message"
+msgstr ""
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
@@ -308,8 +308,8 @@ msgid "  L – Chat with the previously selected private chat partner"
 msgstr "  L – 이전에 선택한 비공개 대화 파트너와 대화"
 
 #: gui/manual/intro.txt:65
-msgid "  Pause – Pause/resume the game"
-msgstr "  Pause – 놀이를 중단/재개"
+msgid "  Pause – Pause or resume the game"
+msgstr ""
 
 #: gui/manual/intro.txt:66
 msgid ""
@@ -569,12 +569,12 @@ msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]덧판[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:121
-msgid "  Alt + G – Hide/show the GUI"
-msgstr "  Alt + G – GUI 숨기기/보이기"
+msgid "  Alt + G – Toggle the GUI"
+msgstr ""
 
 #: gui/manual/intro.txt:122
-msgid "  Alt + D – Show/hide developer overlay (with developer options)"
-msgstr "  Alt + D – 개발자용 덧판 보이기/숨기기 (개발자용 선택사항)"
+msgid "  Alt + D – Toggle developer overlay (with developer options)"
+msgstr ""
 
 #: gui/manual/intro.txt:123
 msgid ""
@@ -676,8 +676,8 @@ msgid ""
 msgstr "  F – 선택한 유닛을 따라가기 (카메라를 움직여 유닛의 뒤를 따라가지 않음)"
 
 #: gui/manual/intro.txt:145
-msgid "  R – Reset camera zoom/orientation"
-msgstr "  R – 카메라 확대 축소/방향 다시 설정"
+msgid "  R – Reset camera zoom and orientation"
+msgstr ""
 
 #: gui/manual/intro.txt:146
 msgid "  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)"
