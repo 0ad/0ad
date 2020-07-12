@@ -295,9 +295,6 @@ int CGame::LoadInitialState()
  **/
 PSRETURN CGame::ReallyStartGame()
 {
-	JSContext* cx = m_Simulation2->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
-
 	// Call the script function InitGame only for new games, not saved games
 	if (!m_IsSavedGame)
 	{
@@ -327,9 +324,12 @@ PSRETURN CGame::ReallyStartGame()
 	// Call the reallyStartGame GUI function, but only if it exists
 	if (g_GUI && g_GUI->GetPageCount())
 	{
-		JS::RootedValue global(cx, g_GUI->GetActiveGUI()->GetGlobalObject());
-		if (g_GUI->GetActiveGUI()->GetScriptInterface()->HasProperty(global, "reallyStartGame"))
-			g_GUI->GetActiveGUI()->GetScriptInterface()->CallFunctionVoid(global, "reallyStartGame");
+		shared_ptr<ScriptInterface> scriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
+		JSContext* cx = scriptInterface->GetContext();
+		JSAutoRequest rq(cx);
+		JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
+		if (scriptInterface->HasProperty(global, "reallyStartGame"))
+			scriptInterface->CallFunctionVoid(global, "reallyStartGame");
 	}
 
 	debug_printf("GAME STARTED, ALL INIT COMPLETE\n");
