@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_special">
+<Entity parent="template_structure_civic">
   <Auras datatype="tokens">
-    structures/kush_pyramids_territory
-    structures/kush_pyramids_economic
     structures/kush_pyramids_military
   </Auras>
   <BuildRestrictions>
@@ -11,8 +9,8 @@
   <Cost>
     <BuildTime>300</BuildTime>
     <Resources>
-      <stone>400</stone>
-      <metal>400</metal>
+      <stone>450</stone>
+      <metal>150</metal>
     </Resources>
   </Cost>
   <Footprint>
@@ -21,29 +19,25 @@
   </Footprint>
   <Health>
     <Max>3000</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_6x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>kush</Civ>
     <GenericName>Large Pyramid</GenericName>
     <SpecificName>mr ʿȝ</SpecificName>
-    <VisibleClasses datatype="tokens">Pyramid</VisibleClasses>
-    <Classes datatype="tokens">Pyramid PyramidLarge</Classes>
+    <Classes datatype="tokens">-ConquestCritical</Classes>
+    <VisibleClasses datatype="tokens">City Pyramid</VisibleClasses>
     <RequiredTechnology>phase_city</RequiredTechnology>
     <Icon>structures/kush_pyramid_big.png</Icon>
   </Identity>
   <Loot>
-    <stone>80</stone>
-    <metal>80</metal>
+    <stone>90</stone>
+    <metal>30</metal>
   </Loot>
   <Obstruction>
     <Static width="20.0" depth="24.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.8</BatchTimeModifier>
-    <Technologies datatype="tokens">
-      kushites/monumental_architecture
-    </Technologies>
-  </ProductionQueue>
+  <ProductionQueue disable=""/>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_temple_10.xml</select>
@@ -51,10 +45,13 @@
     </SoundGroups>
   </Sound>
   <StatusBars>
-    <BarWidth>6.0</BarWidth>
-    <BarHeight>0.6</BarHeight>
     <HeightOffset>15.0</HeightOffset>
   </StatusBars>
+  <TerritoryInfluence>
+    <Root>false</Root>
+    <Radius>40</Radius>
+    <Weight>40000</Weight>
+  </TerritoryInfluence>
   <Vision>
     <Range>40</Range>
   </Vision>

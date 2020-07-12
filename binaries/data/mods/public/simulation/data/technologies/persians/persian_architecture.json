@@ -11,6 +11,6 @@
 		{ "value": "Capturable/CapturePoints", "multiply": 1.25 },
 		{ "value": "Health/Max", "multiply": 1.25 }
 	],
-	"affects": ["Structure"],
+	"affects": ["Structure !Wonder"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

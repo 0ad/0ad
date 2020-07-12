@@ -17,6 +17,9 @@
       units/{civ}_infantry_archer_b
       units/{civ}_cavalry_javelinist_b
     </Entities>
+    <Technologies datatype="tokens">
+      kushites/monumental_architecture
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/kushites/civic_centre_kush.xml</Actor>
