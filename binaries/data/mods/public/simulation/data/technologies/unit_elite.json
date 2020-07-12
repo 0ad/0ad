@@ -24,7 +24,7 @@
 		{ "value": "ResourceGatherer/BaseSpeed", "multiply": 0.7 },
 		{ "value": "UnitMotion/WalkSpeed", "add": 0.5, "affects": "Infantry" },
 		{ "value": "Vision/Range", "add": 3, "affects": "Healer" },
-		{ "value": "Vision/Range", "add": 4, "affects": "Ranged" },
+		{ "value": "Vision/Range", "add": 4, "affects": "Ranged" }
 	],
 	"affects": ["Elite Unit"]
 }
