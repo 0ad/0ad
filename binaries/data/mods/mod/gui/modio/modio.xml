@@ -65,7 +65,21 @@
 					<translatableAttribute id="heading">Dependencies</translatableAttribute>
 				</column>
 			</object>
+
 			<object name="modDescription" type="text" style="ModmodScrollbar" size="0 100% 100%-16 100%+28" />
+			<object name="modError" type="text" style="ModmodScrollbar" textcolor="255 0 0" size="0 100% 100%-16 100%+28" />
+		</object>
+
+		<!-- Right Panel: Compatibility Filter-->
+		<object name="rightPanel" size="100%-250 20 100%-10 40" >
+			<!-- Compatibility Filter Checkbox -->
+			<object name="compatibilityFilter" type="checkbox" checked="true" style="ModernTickBox" size="0 4 20 100%">
+				<action on="Press">displayMods();</action>
+			</object>
+			<!-- Compatibility Filter Label -->
+			<object type="text" size="20 2 100% 100%" text_align="left" textcolor="white">
+				<translatableAttribute id="caption">Filter valid mods</translatableAttribute>
+			</object>
 		</object>
 
 		<!-- Buttons -->

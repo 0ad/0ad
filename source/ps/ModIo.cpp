@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -678,84 +678,100 @@ bool ModIo::ParseModsResponse(const ScriptInterface& scriptInterface, const std:
 	if (!dataVal.isObject())
 		FAIL("data property not an object.");
 
-	JS::RootedObject data(cx, dataVal.toObjectOrNull());
+	JS::RootedObject rData(cx, dataVal.toObjectOrNull());
 	u32 length;
 	bool isArray;
-	if (!JS_IsArrayObject(cx, data, &isArray) || !isArray || !JS_GetArrayLength(cx, data, &length) || !length)
+	if (!JS_IsArrayObject(cx, rData, &isArray) || !isArray || !JS_GetArrayLength(cx, rData, &length) || !length)
 		FAIL("data property not an array with at least one element.");
 
 	modData.clear();
 	modData.reserve(length);
 
+#define INVALIDATE_DATA_AND_CONTINUE(...) \
+	{\
+		data.properties.emplace("invalid", "true");\
+		data.properties.emplace("error", __VA_ARGS__);\
+		continue;\
+	}
+
 	for (u32 i = 0; i < length; ++i)
 	{
-		JS::RootedValue el(cx);
-		if (!JS_GetElement(cx, data, i, &el) || !el.isObject())
-			FAIL("Failed to get array element object.");
-
 		modData.emplace_back();
+		ModIoModData& data = modData.back();
+		JS::RootedValue el(cx);
+		if (!JS_GetElement(cx, rData, i, &el) || !el.isObject())
+			INVALIDATE_DATA_AND_CONTINUE("Failed to get array element object.")
 
-#define COPY_STRINGS(prefix, obj, ...) \
+		bool ok = true;
+		std::string copyStringError;
+#define COPY_STRINGS_ELSE_CONTINUE(prefix, obj, ...) \
 	for (const std::string& prop : { __VA_ARGS__ }) \
 	{ \
 		std::string val; \
-		if (!ScriptInterface::FromJSProperty(cx, obj, prop.c_str(), val)) \
-			FAIL("Failed to get %s from %s.", prop, #obj);\
-		modData.back().properties.emplace(prefix+prop, val); \
-	}
+		if (!ScriptInterface::FromJSProperty(cx, obj, prop.c_str(), val, true)) \
+		{ \
+			ok  = false; \
+			copyStringError = "Failed to get " + prop + " from " + #obj + "."; \
+			break; \
+		}\
+		data.properties.emplace(prefix+prop, val); \
+	} \
+	if (!ok) \
+		INVALIDATE_DATA_AND_CONTINUE(copyStringError);
 
 		// TODO: Currently the homepage_url field does not contain a non-null value for any entry.
-		COPY_STRINGS("", el, "name", "name_id", "summary");
+		COPY_STRINGS_ELSE_CONTINUE("", el, "name", "name_id", "summary")
 
 		// Now copy over the modfile part, but without the pointless substructure
 		JS::RootedObject elObj(cx, el.toObjectOrNull());
 		JS::RootedValue modFile(cx);
 		if (!JS_GetProperty(cx, elObj, "modfile", &modFile))
-			FAIL("Failed to get modfile data.");
+			INVALIDATE_DATA_AND_CONTINUE("Failed to get modfile data.");
 
 		if (!modFile.isObject())
-			FAIL("modfile not an object.");
+			INVALIDATE_DATA_AND_CONTINUE("modfile not an object.");
 
-		COPY_STRINGS("", modFile, "version", "filesize");
+		COPY_STRINGS_ELSE_CONTINUE("", modFile, "version", "filesize");
 
 		JS::RootedObject modFileObj(cx, modFile.toObjectOrNull());
 		JS::RootedValue filehash(cx);
 		if (!JS_GetProperty(cx, modFileObj, "filehash", &filehash))
-			FAIL("Failed to get filehash data.");
+			INVALIDATE_DATA_AND_CONTINUE("Failed to get filehash data.");
 
-		COPY_STRINGS("filehash_", filehash, "md5");
+		COPY_STRINGS_ELSE_CONTINUE("filehash_", filehash, "md5");
 
 		JS::RootedValue download(cx);
 		if (!JS_GetProperty(cx, modFileObj, "download", &download))
-			FAIL("Failed to get download data.");
+			INVALIDATE_DATA_AND_CONTINUE("Failed to get download data.");
 
-		COPY_STRINGS("", download, "binary_url");
+		COPY_STRINGS_ELSE_CONTINUE("", download, "binary_url");
 
 		// Parse metadata_blob (sig+deps)
 		std::string metadata_blob;
-		if (!ScriptInterface::FromJSProperty(cx, modFile, "metadata_blob", metadata_blob))
-			FAIL("Failed to get metadata_blob from modFile.");
+		if (!ScriptInterface::FromJSProperty(cx, modFile, "metadata_blob", metadata_blob, true))
+			INVALIDATE_DATA_AND_CONTINUE("Failed to get metadata_blob from modFile.");
 
 		JS::RootedValue metadata(cx);
 		if (!scriptInterface.ParseJSON(metadata_blob, &metadata))
-			FAIL("Failed to parse metadata_blob as JSON.");
+			INVALIDATE_DATA_AND_CONTINUE("Failed to parse metadata_blob as JSON.");
 
 		if (!metadata.isObject())
-			FAIL("metadata_blob not decoded as an object.");
+			INVALIDATE_DATA_AND_CONTINUE("metadata_blob is not decoded as an object.");
 
-		if (!ScriptInterface::FromJSProperty(cx, metadata, "dependencies", modData.back().dependencies))
-			FAIL("Failed to get dependencies from metadata_blob.");
+		if (!ScriptInterface::FromJSProperty(cx, metadata, "dependencies", data.dependencies, true))
+			INVALIDATE_DATA_AND_CONTINUE("Failed to get dependencies from metadata_blob.");
 
 		std::vector<std::string> minisigs;
-		if (!ScriptInterface::FromJSProperty(cx, metadata, "minisigs", minisigs))
-			FAIL("Failed to get minisigs from metadata_blob.");
+		if (!ScriptInterface::FromJSProperty(cx, metadata, "minisigs", minisigs, true))
+			INVALIDATE_DATA_AND_CONTINUE("Failed to get minisigs from metadata_blob.");
 
-		// Remove this entry if we did not find a valid matching signature.
+		// Check we did find a valid matching signature.
 		std::string signatureParsingErr;
-		if (!ParseSignature(minisigs, modData.back().sig, pk, signatureParsingErr))
-			modData.pop_back();
+		if (!ParseSignature(minisigs, data.sig, pk, signatureParsingErr))
+			INVALIDATE_DATA_AND_CONTINUE(signatureParsingErr);
 
-#undef COPY_STRINGS
+#undef COPY_STRINGS_ELSE_CONTINUE
+#undef INVALIDATE_DATA_AND_CONTINUE
 	}
 
 	return true;

@@ -310,7 +310,7 @@ public:
 	/**
 	 * Convert a named property of an object to a C++ type.
 	 */
-	template<typename T> static bool FromJSProperty(JSContext* cx, const JS::HandleValue val, const char* name, T& ret);
+	template<typename T> static bool FromJSProperty(JSContext* cx, const JS::HandleValue val, const char* name, T& ret, bool strict = false);
 
 	/**
 	 * MathRandom (this function) calls the random number generator assigned to this ScriptInterface instance and
