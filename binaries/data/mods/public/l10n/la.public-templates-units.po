@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-06 07:18+0000\n"
-"PO-Revision-Date: 2020-07-06 09:37+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-10 07:09+0000\n"
+"PO-Revision-Date: 2020-07-12 07:52+0000\n"
+"Last-Translator: Ernestus Severus\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -232,16 +232,6 @@ msgstr "Elephantus"
 #: simulation/templates/template_unit_champion_elephant.xml:25
 msgid "War Elephant"
 msgstr "Elephantus Armatus"
-
-#: simulation/templates/template_unit_champion_elephant_melee_african.xml:22
-msgid "African War Elephant"
-msgstr ""
-
-#: simulation/templates/template_unit_champion_elephant_melee_indian.xml:22
-#: simulation/templates/units/maur_champion_elephant.xml:5
-#: simulation/templates/units/pers_champion_elephant.xml:6
-msgid "Indian War Elephant"
-msgstr "Elephantus Armatus Indus"
 
 #: simulation/templates/template_unit_champion_infantry.xml:21
 #: simulation/templates/template_unit_hero_infantry.xml:24
@@ -1890,6 +1880,11 @@ msgstr "Essedum"
 msgid "Rath"
 msgstr "Rath"
 
+#: simulation/templates/units/maur_champion_elephant.xml:5
+#: simulation/templates/units/pers_champion_elephant.xml:6
+msgid "Indian War Elephant"
+msgstr "Elephantus Armatus Indus"
+
 #: simulation/templates/units/maur_champion_elephant.xml:6
 msgid "Gajendra"
 msgstr "Gajendra"
@@ -2866,7 +2861,7 @@ msgstr "Émporos Períoikos"
 
 #: simulation/templates/units/theb_siege_fireraiser.xml:39
 msgid "Fire Raiser"
-msgstr "Ballista Flammae"
+msgstr "Ignifer"
 
 #: simulation/templates/units/theb_siege_fireraiser.xml:40
 msgid "Pyrobolos"

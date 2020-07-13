@@ -36,9 +36,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-06 07:18+0000\n"
-"PO-Revision-Date: 2020-07-06 20:58+0000\n"
-"Last-Translator: Bartosz Bobin <bartosz@bobin.eu>\n"
+"POT-Creation-Date: 2020-07-10 07:10+0000\n"
+"PO-Revision-Date: 2020-07-10 11:51+0000\n"
+"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1348,6 +1348,18 @@ msgstr "Zwiększona premia szkolenia grupowego dla Doków."
 #: simulation/data/technologies/training_naval_architects.jsongenericName
 msgid "Naval Architects"
 msgstr "Architekci morscy"
+
+#: simulation/data/technologies/unit_elephant_african.jsontooltip
+msgid ""
+"African Elephants −10% resource costs, training time, health, attack damage,"
+" and loot."
+msgstr "Afrykańskie słonie są 10% tańsze, o tyle szybciej się szkolą, ale mają też 10% mniej zdrowia, ataku i zasobów."
+
+#: simulation/data/technologies/unit_elephant_indian.jsontooltip
+msgid ""
+"Indian Elephants +10% resource costs, training time, health, attack damage, "
+"and loot."
+msgstr "Indiańskie słonie są 10% droższe, o tyle wolniej się szkolą, ale mają też 10% więcej zdrowia, ataku i zasobów."
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""

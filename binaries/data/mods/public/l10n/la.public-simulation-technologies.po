@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-06 07:18+0000\n"
-"PO-Revision-Date: 2020-07-06 08:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-10 07:10+0000\n"
+"PO-Revision-Date: 2020-07-12 08:25+0000\n"
+"Last-Translator: Ernestus Severus\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +24,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
 "for melee units, 4m extra range and better precision for ranged units, "
 "faster Infantry movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Militibus ad ordinem provectum productis haec dantur facultates: +10% valutudinem, +1 arma omnium generum, +20% praedam, qui propinque pugnant +20% detrimentum, qui telos iciunt +4m iactum et diligentius intendunt, peditibus maiorem velocitam itineris, medicis maiorem velocitam et fines sanandi."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -481,7 +481,7 @@ msgid ""
 " extra armor level of every type, 20% extra loot, 20% extra attack for melee"
 " units, 4m extra range and better precision for ranged units, faster "
 "Infantry movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Militibus ad ordinem robur productis haec dantur facultates: +10% valutudinem, +1 arma omnium generum, +20% praedam, qui propinque pugnant +20% detrimentum, qui telos iciunt +4m iactum et diligentius intendunt, peditibus maiorem velocitam itineris, medicis maiorem velocitam et fines sanandi."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -563,7 +563,7 @@ msgstr "Laetamen"
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr ""
+msgstr "Galli machinam messis invenerunt, qua multo facile frumentarentur."
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
@@ -573,7 +573,7 @@ msgstr "Operarii +15% velocitatem frumentandi."
 
 #: simulation/data/technologies/gather_farming_harvester.jsongenericName
 msgid "Harvesting Machine"
-msgstr ""
+msgstr "Machina Messis"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
@@ -839,49 +839,49 @@ msgid ""
 "The loom allowed the creation of finer clothing for settlers. Women of the "
 "household were taught from a young age how to weave on the loom, and "
 "subsequently spent a large share of their lives working with it."
-msgstr ""
+msgstr "Meliora vestimenta telis colonibus texuntur. Ab iuventate docebantur feminae domi texere telis, cum quibus maiorem partem aetatis earum officiis fungebantur."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "+100% health for female citizens."
-msgstr ""
+msgstr "Feminae +100% valetudinem."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
-msgstr ""
+msgstr "Tela"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Unlock health regeneration for your units."
-msgstr ""
+msgstr "Recludit regenerationem valetudinis suorum."
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Organic units will slowly regenerate health over time when idle."
-msgstr ""
+msgstr "Mortales ignavi lente valetudinem recipit."
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
-msgstr ""
+msgstr "Medicina Militaris"
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
 msgid "Using geometric masonry increases the sturdiness of defensive walls."
-msgstr ""
+msgstr "Caementicia Geometrica firmitatem murorum augent."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
 msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr ""
+msgstr "Moenia +2 arma contra detrimentum iciens, sed +10% tempus aedificandi."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
-msgstr ""
+msgstr "Caementicia Geometrica"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
 msgid "Walls build time vs. Health"
-msgstr ""
+msgstr "Tempus Murorum Aedificandorum vs. Valetudinem"
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 #: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
-msgstr ""
+msgstr "Gradus Urbs"
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
@@ -902,7 +902,7 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
 " health. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Ad Gradum Urbem progredi, qui plures milites aedificiaque recludit. Radius finium Centrorum Civilium +50%. Bubones Argentei +10% velocitatem metalli exercendi omnibus operariis. Milites Civiles +10% valetudinem. Omnia aedificia +9 celeritatem regenerationis."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1319,6 +1319,18 @@ msgstr ""
 
 #: simulation/data/technologies/training_naval_architects.jsongenericName
 msgid "Naval Architects"
+msgstr ""
+
+#: simulation/data/technologies/unit_elephant_african.jsontooltip
+msgid ""
+"African Elephants −10% resource costs, training time, health, attack damage,"
+" and loot."
+msgstr ""
+
+#: simulation/data/technologies/unit_elephant_indian.jsontooltip
+msgid ""
+"Indian Elephants +10% resource costs, training time, health, attack damage, "
+"and loot."
 msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription

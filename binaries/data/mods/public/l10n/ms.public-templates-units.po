@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-06 07:18+0000\n"
-"PO-Revision-Date: 2020-07-06 09:37+0000\n"
+"POT-Creation-Date: 2020-07-10 07:09+0000\n"
+"PO-Revision-Date: 2020-07-10 09:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -230,16 +230,6 @@ msgstr "Gajah"
 #: simulation/templates/template_unit_champion_elephant.xml:25
 msgid "War Elephant"
 msgstr "Gajah Perang"
-
-#: simulation/templates/template_unit_champion_elephant_melee_african.xml:22
-msgid "African War Elephant"
-msgstr ""
-
-#: simulation/templates/template_unit_champion_elephant_melee_indian.xml:22
-#: simulation/templates/units/maur_champion_elephant.xml:5
-#: simulation/templates/units/pers_champion_elephant.xml:6
-msgid "Indian War Elephant"
-msgstr "Gajah Perang India"
 
 #: simulation/templates/template_unit_champion_infantry.xml:21
 #: simulation/templates/template_unit_hero_infantry.xml:24
@@ -1887,6 +1877,11 @@ msgstr "Kereta Kuda Perang"
 #: simulation/templates/units/maur_champion_chariot.xml:11
 msgid "Rath"
 msgstr "Rath"
+
+#: simulation/templates/units/maur_champion_elephant.xml:5
+#: simulation/templates/units/pers_champion_elephant.xml:6
+msgid "Indian War Elephant"
+msgstr "Gajah Perang India"
 
 #: simulation/templates/units/maur_champion_elephant.xml:6
 msgid "Gajendra"
