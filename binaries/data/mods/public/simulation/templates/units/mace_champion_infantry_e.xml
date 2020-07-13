@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/mace_champion_infantry_a">
-  <Armour>
-    <Hack op="add">1</Hack>
-    <Pierce op="add">1</Pierce>
-  </Armour>
+  <Attack>
+    <Melee>
+      <Damage>
+        <Hack op="mul">1.1</Hack>
+        <Pierce op="mul">1.1</Pierce>
+      </Damage>
+    </Melee>
+  </Attack>
   <Health>
     <Max op="mul">1.1</Max>
   </Health>

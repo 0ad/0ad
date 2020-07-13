@@ -167,6 +167,8 @@ function displayMods()
 
 	let filterColumns = ["name", "name_id", "summary"];
 	let filterText = Engine.GetGUIObjectByName("modFilter").caption.toLowerCase();
+	if (Engine.GetGUIObjectByName("compatibilityFilter").checked)
+		displayedMods = displayedMods.filter(mod => !mod.invalid);
 	displayedMods = displayedMods.filter(mod => filterColumns.some(column => mod[column].toLowerCase().indexOf(filterText) != -1));
 
 	displayedMods.sort((mod1, mod2) =>
@@ -175,11 +177,11 @@ function displayMods()
 			mod1.filesize - mod2.filesize :
 			String(mod1[modsAvailableList.selected_column]).localeCompare(String(mod2[modsAvailableList.selected_column]))));
 
-	modsAvailableList.list_name = displayedMods.map(mod => mod.name);
-	modsAvailableList.list_name_id = displayedMods.map(mod => mod.name_id);
-	modsAvailableList.list_version = displayedMods.map(mod => mod.version);
-	modsAvailableList.list_filesize = displayedMods.map(mod => filesizeToString(mod.filesize));
-	modsAvailableList.list_dependencies = displayedMods.map(mod => (mod.dependencies || []).join(" "));
+	modsAvailableList.list_name = displayedMods.map(mod => compatibilityColor(mod.name, !mod.invalid));
+	modsAvailableList.list_name_id = displayedMods.map(mod => compatibilityColor(mod.name_id, !mod.invalid));
+	modsAvailableList.list_version = displayedMods.map(mod => compatibilityColor(mod.version || "", !mod.invalid));
+	modsAvailableList.list_filesize = displayedMods.map(mod => compatibilityColor(mod.filesize !== undefined ? filesizeToString(mod.filesize) : filesizeToString(mod.filesize), !mod.invalid));
+	modsAvailableList.list_dependencies = displayedMods.map(mod => compatibilityColor((mod.dependencies || []).join(" "), !mod.invalid));
 	modsAvailableList.list = displayedMods.map(mod => mod.i);
 	modsAvailableList.selected = modsAvailableList.list.indexOf(selectedMod);
 }
@@ -202,11 +204,19 @@ function selectedModIndex()
 	return +modsAvailableList.list[modsAvailableList.selected];
 }
 
+function isSelectedModInvalid(selected)
+{
+	return selected !== undefined && !!g_ModsAvailableOnline[selected].invalid && g_ModsAvailableOnline[selected].invalid == "true";
+}
+
 function showModDescription()
 {
 	let selected = selectedModIndex();
-	Engine.GetGUIObjectByName("downloadButton").enabled = selected !== undefined;
-	Engine.GetGUIObjectByName("modDescription").caption = selected !== undefined ? g_ModsAvailableOnline[selected].summary : "";
+	let isSelected = selected !== undefined;
+	let isInvalid = isSelectedModInvalid(selected);
+	Engine.GetGUIObjectByName("downloadButton").enabled = isSelected && !isInvalid;
+	Engine.GetGUIObjectByName("modDescription").caption = isSelected && !isInvalid ? g_ModsAvailableOnline[selected].summary : "";
+	Engine.GetGUIObjectByName("modError").caption = isSelected && isInvalid ? sprintf(translate("Invalid mod: %(error)s"), {"error": g_ModsAvailableOnline[selected].error }) : "";
 }
 
 function cancelModListUpdate()
@@ -243,6 +253,9 @@ function updateModList()
 function downloadMod()
 {
 	let selected = selectedModIndex();
+
+	if (isSelectedModInvalid(selected))
+		return;
 
 	progressDialog(
 		sprintf(translate("Downloading “%(modname)s”"), {

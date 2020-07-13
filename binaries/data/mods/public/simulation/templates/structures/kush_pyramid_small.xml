@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_special">
+<Entity parent="template_structure_civic">
   <Auras datatype="tokens">
     structures/kush_pyramids_economic
   </Auras>
@@ -9,8 +9,8 @@
   <Cost>
     <BuildTime>200</BuildTime>
     <Resources>
-      <food>300</food>
       <stone>300</stone>
+      <metal>100</metal>
     </Resources>
   </Cost>
   <Footprint>
@@ -19,19 +19,20 @@
   </Footprint>
   <Health>
     <Max>2000</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_4x4</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>kush</Civ>
     <GenericName>Small Pyramid</GenericName>
     <SpecificName>mr</SpecificName>
-    <VisibleClasses datatype="tokens">-City Town Pyramid</VisibleClasses>
-    <Classes datatype="tokens">Pyramid PyramidSmall</Classes>
+    <Classes datatype="tokens">-ConquestCritical</Classes>
+    <VisibleClasses datatype="tokens">Town Pyramid</VisibleClasses>
     <RequiredTechnology>phase_town</RequiredTechnology>
     <Icon>structures/kush_pyramid_small.png</Icon>
   </Identity>
   <Loot>
-    <food>60</food>
     <stone>60</stone>
+    <metal>20</metal>
   </Loot>
   <Obstruction>
     <Static width="16.0" depth="16.0"/>
@@ -43,11 +44,11 @@
       <constructed>interface/complete/building/complete_iber_monument.xml</constructed>
     </SoundGroups>
   </Sound>
-  <StatusBars>
-    <BarWidth>6.0</BarWidth>
-    <BarHeight>0.6</BarHeight>
-    <HeightOffset>12.0</HeightOffset>
-  </StatusBars>
+  <TerritoryInfluence>
+    <Root>false</Root>
+    <Radius>30</Radius>
+    <Weight>30000</Weight>
+  </TerritoryInfluence>
   <Vision>
     <Range>30</Range>
   </Vision>

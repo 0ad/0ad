@@ -11,7 +11,6 @@
     </Foundation>
   </Armour>
   <Auras datatype="tokens">
-    structures/epic_temple_heal
     structures/wonder_pop_1
     structures/wonder_pop_2
   </Auras>
@@ -25,9 +24,8 @@
   <Cost>
     <BuildTime>1000</BuildTime>
     <Resources>
-      <food>1000</food>
       <wood>1000</wood>
-      <stone>1000</stone>
+      <stone>1500</stone>
       <metal>1000</metal>
     </Resources>
   </Cost>
@@ -58,9 +56,8 @@
   </Identity>
   <Loot>
     <xp>300</xp>
-    <food>200</food>
     <wood>200</wood>
-    <stone>200</stone>
+    <stone>300</stone>
     <metal>200</metal>
   </Loot>
   <Obstruction>

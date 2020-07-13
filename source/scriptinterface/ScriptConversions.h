@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -87,7 +87,7 @@ template<> bool ScriptInterface::FromJSVal<std::vector<T> >(JSContext* cx, JS::H
 	return FromJSVal_vector(cx, v, out); \
 }
 
-template<typename T> bool ScriptInterface::FromJSProperty(JSContext* cx, const JS::HandleValue val, const char* name, T& ret)
+template<typename T> bool ScriptInterface::FromJSProperty(JSContext* cx, const JS::HandleValue val, const char* name, T& ret, bool strict)
 {
 	if (!val.isObject())
 		return false;
@@ -101,6 +101,9 @@ template<typename T> bool ScriptInterface::FromJSProperty(JSContext* cx, const J
 
 	JS::RootedValue value(cx);
 	if (!JS_GetProperty(cx, obj, name, &value))
+		return false;
+
+	if (strict && value.isNull())
 		return false;
 
 	return FromJSVal(cx, value, ret);

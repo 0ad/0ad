@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -118,14 +118,28 @@ public:
 		TS_ASSERT_PARSE("{\"data\": null}", "data property not an object.");
 		TS_ASSERT_PARSE("{\"data\": {}}", "data property not an array with at least one element.");
 		TS_ASSERT_PARSE("{\"data\": []}", "data property not an array with at least one element.");
+
+#undef TS_ASSERT_PARSE
+
+#define TS_ASSERT_PARSE(input, expected_error) \
+	{ \
+		TestLogger logger; \
+		std::vector<ModIoModData> mods; \
+		std::string err; \
+		TS_ASSERT(ModIo::ParseModsResponse(script, input, mods, pk, err)); \
+		TS_ASSERT_EQUALS(mods.size(), 1); \
+		TS_ASSERT_STR_EQUALS(mods.at(0).properties.at("error"), expected_error); \
+		TS_ASSERT_EQUALS(mods.at(0).properties.at("invalid"), "true"); \
+	}
+
 		TS_ASSERT_PARSE("{\"data\": [null]}", "Failed to get array element object.");
 		TS_ASSERT_PARSE("{\"data\": [false]}", "Failed to get array element object.");
 		TS_ASSERT_PARSE("{\"data\": [true]}", "Failed to get array element object.");
 		TS_ASSERT_PARSE("{\"data\": [{}]}", "Failed to get name from el.");
 		TS_ASSERT_PARSE("{\"data\": [[]]}", "Failed to get name from el.");
 		TS_ASSERT_PARSE("{\"data\": [{\"foo\":\"bar\"}]}", "Failed to get name from el.");
+		TS_ASSERT_PARSE("{\"data\": [{\"name\":null}]}", "Failed to get name from el.");
 
-		TS_ASSERT_PARSE("{\"data\": [{\"name\":null}]}", "Failed to get name_id from el."); // also some script value conversion check warning
 		TS_ASSERT_PARSE("{\"data\": [{\"name\":42}]}", "Failed to get name_id from el."); // no conversion warning, but converting numbers to strings and vice-versa seems ok
 		TS_ASSERT_PARSE("{\"data\": [{\"name\":false}]}", "Failed to get name_id from el."); // also some script value conversion check warning
 		TS_ASSERT_PARSE("{\"data\": [{\"name\":{}}]}", "Failed to get name_id from el."); // also some script value conversion check warning
@@ -136,20 +150,22 @@ public:
 		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":null}]}", "modfile not an object.");
 		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":[]}]}", "Failed to get version from modFile.");
 		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{}}]}", "Failed to get version from modFile.");
+		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":null}}]}", "Failed to get version from modFile.");
 
-		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":null}}]}", "Failed to get filesize from modFile."); // also some script value conversion check warning
+		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":1}}]}", "Failed to get filesize from modFile.");
 		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":\"\",\"filesize\":1234}}]}", "Failed to get md5 from filehash.");
 
 		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":\"\",\"filesize\":1234, \"filehash\":null}}]}", "Failed to get md5 from filehash.");
 		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":\"\",\"filesize\":1234, \"filehash\":{}}}]}", "Failed to get md5 from filehash.");
-		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":\"\",\"filesize\":1234, \"filehash\":{\"md5\":null}}}]}", "Failed to get binary_url from download."); // also some script value conversion check warning
+		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":\"\",\"filesize\":1234, \"filehash\":{\"md5\":null}}}]}", "Failed to get md5 from filehash.");
 		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":\"\",\"filesize\":1234, \"filehash\":{\"md5\":\"abc\"}}}]}", "Failed to get binary_url from download.");
 
 		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":\"\",\"filesize\":1234, \"filehash\":{\"md5\":\"abc\"}, \"download\":null}}]}", "Failed to get binary_url from download."); // also some script value conversion check warning
-		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":\"\",\"filesize\":1234, \"filehash\":{\"md5\":\"abc\"}, \"download\":{\"binary_url\":null}}}]}", "Failed to get metadata_blob from modFile."); // also some script value conversion check warning
+		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":\"\",\"filesize\":1234, \"filehash\":{\"md5\":\"abc\"}, \"download\":{\"binary_url\":null}}}]}", "Failed to get binary_url from download.");
 		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":\"\",\"filesize\":1234, \"filehash\":{\"md5\":\"abc\"}, \"download\":{\"binary_url\":\"\"}}}]}", "Failed to get metadata_blob from modFile.");
+		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":\"\",\"filesize\":1234, \"filehash\":{\"md5\":\"abc\"}, \"download\":{\"binary_url\":\"\"},\"metadata_blob\":null}}]}", "Failed to get metadata_blob from modFile.");
 
-		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":\"\",\"filesize\":1234, \"filehash\":{\"md5\":\"abc\"}, \"download\":{\"binary_url\":\"\"},\"metadata_blob\":null}}]}", "metadata_blob not decoded as an object.");
+		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":\"\",\"filesize\":1234, \"filehash\":{\"md5\":\"abc\"}, \"download\":{\"binary_url\":\"\"},\"metadata_blob\":1}}]}", "metadata_blob is not decoded as an object.");
 		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":\"\",\"filesize\":1234, \"filehash\":{\"md5\":\"abc\"}, \"download\":{\"binary_url\":\"\"},\"metadata_blob\":\"\"}}]}", "Failed to parse metadata_blob as JSON.");
 
 		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":\"\",\"filesize\":1234, \"filehash\":{\"md5\":\"abc\"}, \"download\":{\"binary_url\":\"\"},\"metadata_blob\":\"{}\"}}]}", "Failed to get dependencies from metadata_blob.");
@@ -160,14 +176,15 @@ public:
 #undef TS_ASSERT_PARSE
 
 		// Correctly formed input, but no signature matching the public key
-		// Thus all such mods/modfiles are not added, thus we get 0 parsed mods.
+		// Thus all such mods/modfiles are marked as invalid.
 		{
 			TestLogger logger;
 			std::vector<ModIoModData> mods;
 			std::string err;
 			TS_ASSERT(ModIo::ParseModsResponse(script, "{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":\"\",\"filesize\":1234, \"filehash\":{\"md5\":\"abc\"}, \"download\":{\"binary_url\":\"\"},\"metadata_blob\":\"{\\\"dependencies\\\":[],\\\"minisigs\\\":[]}\"}}]}", mods, pk, err));
 			TS_ASSERT(err.empty());
-			TS_ASSERT_EQUALS(mods.size(), 0);
+			TS_ASSERT_EQUALS(mods.size(), 1);
+			TS_ASSERT_EQUALS(mods.at(0).properties.at("invalid"), "true");
 		}
 
 		// Correctly formed input (with a signature matching the public key above, and a valid global signature)
@@ -178,6 +195,7 @@ public:
 			TS_ASSERT(ModIo::ParseModsResponse(script, "{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\",\"modfile\":{\"version\":\"\",\"filesize\":1234, \"filehash\":{\"md5\":\"abc\"}, \"download\":{\"binary_url\":\"\"},\"metadata_blob\":\"{\\\"dependencies\\\":[],\\\"minisigs\\\":[\\\"untrusted comment: signature from minisign secret key\\\\nRUTA6VIoth2Q1HUg5bwwbCUZPcqbQ/reLXqxiaWARH5PNcwxX5vBv/mLPLgdxGsIrOyK90763+rCVTmjeYx5BDz8C0CIbGZTNQs=\\\\ntrusted comment: timestamp:1517285433\\\\tfile:tm.zip\\\\nTHwNMhK4Ogj6XA4305p1K9/ouP/DrxPcDFrPaiu+Ke6/WGlHIzBZHvmHWUedvsK6dzL31Gk8YNzscKWnZqWNCw==\\\"]}\"}}]}", mods, pk, err));
 			TS_ASSERT(err.empty());
 			TS_ASSERT_EQUALS(mods.size(), 1);
+			TS_ASSERT_EQUALS(mods.at(0).properties.find("invalid"), mods.at(0).properties.end());
 		}
 	}
 
