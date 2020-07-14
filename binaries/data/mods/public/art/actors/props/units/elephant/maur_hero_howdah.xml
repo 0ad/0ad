@@ -3,9 +3,9 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="maur_hero_howdah">
-      <mesh>props/maur_maurya_howdah.dae</mesh>
+      <mesh>props/elephant/maur_hero_howdah.dae</mesh>
       <props>
-        <prop actor="units/mauryas/hero_elephantry_maurya_r.xml" attachpoint="maurya"/>
+        <prop actor="units/mauryas/hero_elephant_chandragupta_r.xml" attachpoint="maurya"/>
       </props>
       <textures>
         <texture file="props/maur_howdah.png" name="baseTex"/>
