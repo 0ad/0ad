@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-06 07:18+0000\n"
-"PO-Revision-Date: 2020-07-06 09:37+0000\n"
+"POT-Creation-Date: 2020-07-10 07:09+0000\n"
+"PO-Revision-Date: 2020-07-10 09:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -231,16 +231,6 @@ msgstr "Ailbhean"
 #: simulation/templates/template_unit_champion_elephant.xml:25
 msgid "War Elephant"
 msgstr "Ailbhean-cogaidh"
-
-#: simulation/templates/template_unit_champion_elephant_melee_african.xml:22
-msgid "African War Elephant"
-msgstr ""
-
-#: simulation/templates/template_unit_champion_elephant_melee_indian.xml:22
-#: simulation/templates/units/maur_champion_elephant.xml:5
-#: simulation/templates/units/pers_champion_elephant.xml:6
-msgid "Indian War Elephant"
-msgstr "Ailbhean-cogaidh Innseanach"
 
 #: simulation/templates/template_unit_champion_infantry.xml:21
 #: simulation/templates/template_unit_hero_infantry.xml:24
@@ -1666,7 +1656,7 @@ msgstr "Dȝy sbt"
 
 #: simulation/templates/units/kush_ship_trireme.xml:12
 msgid "Ptolemaic Mercenary Trireme"
-msgstr "Trì-ràmhach shaighdearan-duaise Ptolamach"
+msgstr "Trì-ràmhach shaighdearan-duaise Ptolemaidheach"
 
 #: simulation/templates/units/kush_ship_trireme.xml:13
 msgid "shry ʿȝ"
@@ -1888,6 +1878,11 @@ msgstr "Feun-cogaidh"
 #: simulation/templates/units/maur_champion_chariot.xml:11
 msgid "Rath"
 msgstr "Rath"
+
+#: simulation/templates/units/maur_champion_elephant.xml:5
+#: simulation/templates/units/pers_champion_elephant.xml:6
+msgid "Indian War Elephant"
+msgstr "Ailbhean-cogaidh Innseanach"
 
 #: simulation/templates/units/maur_champion_elephant.xml:6
 msgid "Gajendra"
@@ -2276,7 +2271,7 @@ msgstr "Plèan-cogaidh Aimeireaganach às an Dàrna Cogadh."
 
 #: simulation/templates/units/ptol_catafalque.xml:8
 msgid "Ptolemy III Euergetes (Benefactor)"
-msgstr "Ptolamaidh III Eurgetes (Taibheartach)"
+msgstr "Ptolemaios III Eurgetes (Taibheartach)"
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
@@ -2344,7 +2339,7 @@ msgstr "Kleopatra H’ Philopatōr"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:9
 msgid "Ptolemy I"
-msgstr "Ptolamaidh I"
+msgstr "Ptolemaios I"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:10
 msgid "Ptolemaios A' Sōter"
@@ -2352,7 +2347,7 @@ msgstr "Ptolemaios A’ Sōter"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:9
 msgid "Ptolemy IV"
-msgstr "Ptolamaidh IV"
+msgstr "Ptolemaios IV"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:10
 msgid "Ptolemaios D' Philopatōr"

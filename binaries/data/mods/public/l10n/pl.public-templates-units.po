@@ -44,9 +44,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-06 07:18+0000\n"
-"PO-Revision-Date: 2020-07-06 21:01+0000\n"
-"Last-Translator: Bartosz Bobin <bartosz@bobin.eu>\n"
+"POT-Creation-Date: 2020-07-10 07:09+0000\n"
+"PO-Revision-Date: 2020-07-10 09:28+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -266,16 +266,6 @@ msgstr "Słoń"
 #: simulation/templates/template_unit_champion_elephant.xml:25
 msgid "War Elephant"
 msgstr "Słoń bojowy"
-
-#: simulation/templates/template_unit_champion_elephant_melee_african.xml:22
-msgid "African War Elephant"
-msgstr "Afrykański słoń bojowy"
-
-#: simulation/templates/template_unit_champion_elephant_melee_indian.xml:22
-#: simulation/templates/units/maur_champion_elephant.xml:5
-#: simulation/templates/units/pers_champion_elephant.xml:6
-msgid "Indian War Elephant"
-msgstr "Indyjski słoń bojowy"
 
 #: simulation/templates/template_unit_champion_infantry.xml:21
 #: simulation/templates/template_unit_hero_infantry.xml:24
@@ -1923,6 +1913,11 @@ msgstr "Rydwan bojowy"
 #: simulation/templates/units/maur_champion_chariot.xml:11
 msgid "Rath"
 msgstr "Ratha"
+
+#: simulation/templates/units/maur_champion_elephant.xml:5
+#: simulation/templates/units/pers_champion_elephant.xml:6
+msgid "Indian War Elephant"
+msgstr "Indyjski słoń bojowy"
 
 #: simulation/templates/units/maur_champion_elephant.xml:6
 msgid "Gajendra"

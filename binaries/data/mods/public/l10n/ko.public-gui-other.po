@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-26 07:09+0000\n"
-"PO-Revision-Date: 2020-06-26 17:21+0000\n"
+"POT-Creation-Date: 2020-07-10 07:09+0000\n"
+"PO-Revision-Date: 2020-07-10 17:38+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -438,8 +438,8 @@ msgstr "치트"
 #: gui/common/gamedescription.js:402 gui/common/tooltips.js:139
 #: gui/common/tooltips.js:172 gui/common/tooltips.js:214
 #: gui/common/tooltips.js:506 gui/common/tooltips.js:528
-#: gui/common/tooltips.js:612 gui/common/tooltips.js:633
-#: gui/common/tooltips.js:931
+#: gui/common/tooltips.js:612 gui/common/tooltips.js:653
+#: gui/common/tooltips.js:951
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -574,9 +574,9 @@ msgstr "사용자 (%(num)s): %(users)s"
 #: gui/common/tooltips.js:290 gui/common/tooltips.js:304
 #: gui/common/tooltips.js:372 gui/common/tooltips.js:406
 #: gui/common/tooltips.js:411 gui/common/tooltips.js:468
-#: gui/common/tooltips.js:501 gui/common/tooltips.js:796
-#: gui/common/tooltips.js:830 gui/common/tooltips.js:896
-#: gui/loadgame/SavegameDetails.js:38 gui/reference/common/draw.js:51
+#: gui/common/tooltips.js:501 gui/common/tooltips.js:816
+#: gui/common/tooltips.js:850 gui/common/tooltips.js:916
+#: gui/loadgame/SavegameDetails.js:38 gui/reference/common/tooltips.js:13
 #: gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ", "
@@ -717,7 +717,7 @@ msgid_plural "%(time)s %(second)s"
 msgstr[0] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:87 gui/common/tooltips.js:464
-#: gui/common/tooltips.js:828
+#: gui/common/tooltips.js:848
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "초"
@@ -758,7 +758,7 @@ msgstr "화살 쏘는 주둔지"
 msgid "Interval:"
 msgstr "간격:"
 
-#: gui/common/tooltips.js:202 gui/common/tooltips.js:826
+#: gui/common/tooltips.js:202 gui/common/tooltips.js:846
 msgid "Rate:"
 msgstr "비율:"
 
@@ -804,7 +804,7 @@ msgstr "%(rangeLabel)s %(minRange)s ~ %(maxRange)s %(rangeUnit)s (번역확인??
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
-#: gui/common/tooltips.js:246 gui/common/tooltips.js:821
+#: gui/common/tooltips.js:246 gui/common/tooltips.js:841
 msgid "Range:"
 msgstr "범위:"
 
@@ -819,8 +819,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "미터"
 
-#: gui/common/tooltips.js:254 gui/common/tooltips.js:823
-#: gui/common/tooltips.js:853
+#: gui/common/tooltips.js:254 gui/common/tooltips.js:843
+#: gui/common/tooltips.js:873
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "미터"
@@ -939,7 +939,7 @@ msgstr "수비대 한계"
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:461 gui/common/tooltips.js:815
+#: gui/common/tooltips.js:461 gui/common/tooltips.js:835
 msgid "Heal:"
 msgstr "회복:"
 
@@ -1001,7 +1001,7 @@ msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] "노동자를 추가하면 %(second)s 초 이내에 짓는것을 마칩니다."
 
-#: gui/common/tooltips.js:577 gui/common/tooltips.js:768
+#: gui/common/tooltips.js:577 gui/common/tooltips.js:788
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
@@ -1010,90 +1010,107 @@ msgstr "%(component)s %(cost)s"
 msgid "Gather Rates:"
 msgstr "채집 속도:"
 
-#: gui/common/tooltips.js:616 gui/common/tooltips.js:638
+#: gui/common/tooltips.js:616 gui/common/tooltips.js:658
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/common/tooltips.js:634
+#. Translation: Label in tooltip showing the resource type and quantity of a
+#. given resource supply.
+#: gui/common/tooltips.js:636
+#, javascript-format
+msgid "%(label)s %(component)s %(amount)s"
+msgstr "%(label)s %(component)s %(amount)s"
+
+#: gui/common/tooltips.js:637
+msgid "Resource Supply:"
+msgstr "자원 공급:"
+
+#. Translation: Marks that a resource supply entity has an unending, infinite,
+#. supply of its resource.
+#: gui/common/tooltips.js:640 gui/summary/summary.js:111
+msgid "∞"
+msgstr "∞"
+
+#: gui/common/tooltips.js:654
 msgid "Resource Trickle:"
 msgstr "자원 흐름??:"
 
-#: gui/common/tooltips.js:635
+#: gui/common/tooltips.js:655
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:687
+#: gui/common/tooltips.js:707
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s to(번역확인할것) %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:716
+#: gui/common/tooltips.js:736
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "성벽: %(costs)s"
 
-#: gui/common/tooltips.js:717
+#: gui/common/tooltips.js:737
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "탑: %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
-#: gui/common/tooltips.js:725
+#: gui/common/tooltips.js:745
 #, javascript-format
 msgid "%(label)s %(costs)s"
 msgstr "%(label)s %(costs)s"
 
-#: gui/common/tooltips.js:726
+#: gui/common/tooltips.js:746
 msgid "Cost:"
 msgstr "비용:"
 
-#: gui/common/tooltips.js:739
+#: gui/common/tooltips.js:759
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "%(technology)s 이(가) 필요합니다"
 
-#: gui/common/tooltips.js:751
+#: gui/common/tooltips.js:771
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:752
+#: gui/common/tooltips.js:772
 msgid "Population Bonus:"
 msgstr "인구 보너스:"
 
-#: gui/common/tooltips.js:773
+#: gui/common/tooltips.js:793
 msgid "Insufficient resources:"
 msgstr "부족한 자원:"
 
-#: gui/common/tooltips.js:789
+#: gui/common/tooltips.js:809
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:790
+#: gui/common/tooltips.js:810
 msgid "Speed:"
 msgstr "이동 속도:"
 
-#: gui/common/tooltips.js:792 gui/common/tooltips.js:797
+#: gui/common/tooltips.js:812 gui/common/tooltips.js:817
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:794
+#: gui/common/tooltips.js:814
 msgid "Walk"
 msgstr "걷기"
 
-#: gui/common/tooltips.js:799
+#: gui/common/tooltips.js:819
 msgid "Run"
 msgstr "뛰기"
 
-#: gui/common/tooltips.js:814 gui/common/tooltips.js:820
-#: gui/common/tooltips.js:825 gui/common/tooltips.js:850
+#: gui/common/tooltips.js:834 gui/common/tooltips.js:840
+#: gui/common/tooltips.js:845 gui/common/tooltips.js:870
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -1101,62 +1118,62 @@ msgstr[0] "%(label)s %(val)s %(unit)s"
 
 #. Translation: Short for hit points (or health points) that are healed in one
 #. healing action
-#: gui/common/tooltips.js:818
+#: gui/common/tooltips.js:838
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] "체력"
 
-#: gui/common/tooltips.js:842
+#: gui/common/tooltips.js:862
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:843
+#: gui/common/tooltips.js:863
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:851
+#: gui/common/tooltips.js:871
 msgctxt "aura"
 msgid "Range:"
 msgstr "범위:"
 
-#: gui/common/tooltips.js:868
+#: gui/common/tooltips.js:888
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:880
+#: gui/common/tooltips.js:900
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:895
+#: gui/common/tooltips.js:915
 msgid "Classes:"
 msgstr "분류:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
-#: gui/common/tooltips.js:922
+#: gui/common/tooltips.js:942
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:932
+#: gui/common/tooltips.js:952
 msgid "Loot:"
 msgstr "이 유닛이 약탈 당했을때 보상:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI element will open the Template Details GUI page.
-#: gui/common/tooltips.js:940
+#: gui/common/tooltips.js:960
 msgid "Right-click to view more information."
 msgstr "자세한 정보를 보려면 마우스 오른쪽 버튼을 클릭하십시오."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
-#: gui/common/tooltips.js:946
+#: gui/common/tooltips.js:966
 msgid "Click to view more information."
 msgstr "클릭하면 더많은 정보를 볼수 있습니다."
 
@@ -1325,7 +1342,7 @@ msgid "Start the economic tutorial."
 msgstr "경제 자습서를 시작합니다."
 
 #: gui/pregame/MainMenuItems.js:24 gui/civinfo/civinfo.xml:(caption):123
-#: gui/reference/structree/structree.xml:(caption):19
+#: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
 msgstr "건축물 도감"
 
@@ -1335,8 +1352,9 @@ msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: 서기 0년에 등장하는 문명의 건축물 도감(조견표)을 봅니다."
 
-#: gui/pregame/MainMenuItems.js:36 gui/civinfo/civinfo.xml:(caption):18
-#: gui/reference/structree/structree.xml:(caption):126
+#: gui/pregame/MainMenuItems.js:36
+#: gui/reference/common/Buttons/CivInfoButton.js:21
+#: gui/civinfo/civinfo.xml:(caption):18
 msgid "Civilization Overview"
 msgstr "문명 개요"
 
@@ -1670,85 +1688,87 @@ msgid ""
 "improve performance and compatibility."
 msgstr "버그를 수정하고 성능과 호환성을 향상시키는 데 도움이 되는 의견제출기능을 자동으로 보내주십시오."
 
-#. Translation: Label followed by a list of values.
-#: gui/reference/common/draw.js:48
-#, javascript-format
-msgid "%(listHeader)s %(listOfValues)s"
-msgstr "%(listHeader)s %(listOfValues)s"
-
-#. Translation: Label in tooltip showing the resource type and quantity of a
-#. given resource supply.
-#: gui/reference/common/draw.js:67
-#, javascript-format
-msgid "%(label)s %(component)s %(amount)s"
-msgstr "%(label)s %(component)s %(amount)s"
-
-#: gui/reference/common/draw.js:68
-msgid "Resource Supply:"
-msgstr "자원 공급:"
-
-#. Translation: Marks that a resource supply entity has an unending, infinite,
-#. supply of its resource.
-#: gui/reference/common/draw.js:71 gui/summary/summary.js:111
-msgid "∞"
-msgstr "∞"
-
-#: gui/reference/common/load.js:192
+#: gui/reference/common/TemplateParser.js:126
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s 부터 %(health_max)s"
 
-#: gui/reference/structree/structree.js:41
+#. Translation: Label followed by a list of values.
+#: gui/reference/common/tooltips.js:10
 #, javascript-format
-msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr "%(hotkey)s: 문명 개요로 바꿉니다."
-
-#: gui/reference/structree/structree.js:42
-#, javascript-format
-msgid "%(hotkey)s: Close Structure Tree."
-msgstr "%(hotkey)s: 건축물 도감을 닫습니다."
+msgid "%(listHeader)s %(listOfValues)s"
+msgstr "%(listHeader)s %(listOfValues)s"
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
-#: gui/reference/viewer/viewer.js:129
+#: gui/reference/common/tooltips.js:27
 msgid "Built by:"
 msgstr "다음 유닛으로 이 건축물을 지을 수 있음:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit selected.
-#: gui/reference/viewer/viewer.js:142
+#: gui/reference/common/tooltips.js:33
 msgid "Trained by:"
 msgstr "이 유닛을 생산할 수 있는 건축물:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
-#: gui/reference/viewer/viewer.js:155
+#: gui/reference/common/tooltips.js:39
 msgid "Researched at:"
 msgstr "연구 건축물:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
-#: gui/reference/viewer/viewer.js:167
+#: gui/reference/common/tooltips.js:48
 msgid "Builds:"
 msgstr "이 유닛으로 지을 수 있는 건축물:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or structure can research.
-#: gui/reference/viewer/viewer.js:188
+#: gui/reference/common/tooltips.js:57
 msgid "Researches:"
 msgstr "연구:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
-#: gui/reference/viewer/viewer.js:200
+#: gui/reference/common/tooltips.js:66
 msgid "Trains:"
 msgstr "이 건축물로 생산할 수 있는 유닛:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or structure can be upgradable to.
-#: gui/reference/viewer/viewer.js:213
+#: gui/reference/common/tooltips.js:75
 msgid "Upgradable to:"
 msgstr "향상 대상:"
+
+#: gui/reference/common/Buttons/CivInfoButton.js:27
+#, javascript-format
+msgid "%(hotkey)s: Switch to Civilization Overview."
+msgstr "%(hotkey)s: 문명 개요로 바꿉니다."
+
+#: gui/reference/common/Buttons/CloseButton.js:13
+#: gui/civinfo/civinfo.xml:(caption):135 gui/credits/credits.xml:(caption):32
+#: gui/options/options.xml:(caption):60
+msgid "Close"
+msgstr "닫기"
+
+#: gui/reference/common/Dropdowns/CivSelectDropdown.js:63
+msgid "Civilization:"
+msgstr "문명:"
+
+#: gui/reference/structree/StructreePage.js:55
+#, javascript-format
+msgid "%(hotkey)s: Close Structure Tree."
+msgstr "%(hotkey)s: 건축물 도감을 닫습니다."
+
+#: gui/reference/structree/Sections/Trainer/TrainerSection.js:65
+msgid "Trainer Units"
+msgstr "유닛 훈련사??"
+
+#: gui/reference/viewer/ViewerPage.js:167
+#, javascript-format
+msgid "%(hotkey)s: Close Template Viewer"
+msgstr ""
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
@@ -2208,13 +2228,6 @@ msgstr ""
 msgid "Civilization Selection"
 msgstr "문명 선택"
 
-#: gui/civinfo/civinfo.xml:(caption):135 gui/credits/credits.xml:(caption):32
-#: gui/options/options.xml:(caption):60
-#: gui/reference/structree/structree.xml:(caption):137
-#: gui/reference/viewer/viewer.xml:(caption):37
-msgid "Close"
-msgstr "닫기"
-
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
 msgstr "0 A.D. 제작자"
@@ -2329,15 +2342,7 @@ msgstr "저장 변동사항"
 msgid "Unsaved changes affect this session only"
 msgstr "저장하지 않은 변경은 이번에 한하여 유효??"
 
-#: gui/reference/structree/structree.xml:(caption):31
-msgid "Civilization:"
-msgstr "문명:"
-
-#: gui/reference/structree/structree.xml:(caption):98
-msgid "Trainer Units"
-msgstr "유닛 훈련사??"
-
-#: gui/reference/viewer/viewer.xml:(caption):13
+#: gui/reference/viewer/viewer.xml:(caption):16
 msgid "Information"
 msgstr "정보"
 
