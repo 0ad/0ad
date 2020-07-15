@@ -299,7 +299,8 @@ function tryPlaceBuilding(queued)
 		return false;
 	}
 
-	var selection = g_Selection.toList();
+	let selection = Engine.HotkeyIsPressed("session.orderone") &&
+		popOneFromSelection({ "type": "construct", "target": placementSupport }) || g_Selection.toList();
 
 	Engine.PostNetworkCommand({
 		"type": "construct",
@@ -315,7 +316,7 @@ function tryPlaceBuilding(queued)
 	});
 	Engine.GuiInterfaceCall("PlaySound", { "name": "order_build", "entity": selection[0] });
 
-	if (!queued)
+	if (!queued || !g_Selection.toList().length)
 		placementSupport.Reset();
 	else
 		placementSupport.RandomizeActorSeed();
@@ -331,8 +332,8 @@ function tryPlaceWall(queued)
 		return false;
 	}
 
-	var wallPlacementInfo = updateBuildingPlacementPreview(); // entities making up the wall (wall segments, towers, ...)
-	if (!(wallPlacementInfo === false || typeof(wallPlacementInfo) === "object"))
+	let wallPlacementInfo = updateBuildingPlacementPreview(); // entities making up the wall (wall segments, towers, ...)
+	if (!(wallPlacementInfo === false || typeof wallPlacementInfo === "object"))
 	{
 		error("Invalid updateBuildingPlacementPreview return value: " + uneval(wallPlacementInfo));
 		return false;
@@ -341,8 +342,10 @@ function tryPlaceWall(queued)
 	if (!wallPlacementInfo)
 		return false;
 
-	var selection = g_Selection.toList();
-	var cmd = {
+	let selection = Engine.HotkeyIsPressed("session.orderone") &&
+		popOneFromSelection({ "type": "construct", "target": placementSupport }) || g_Selection.toList();
+
+	let cmd = {
 		"type": "construct-wall",
 		"autorepair": true,
 		"autocontinue": true,
@@ -357,7 +360,7 @@ function tryPlaceWall(queued)
 	// make sure that there's at least one non-tower entity getting built, to prevent silly edge cases where the start and end
 	// point are too close together for the algorithm to place a wall segment inbetween, and only the towers are being previewed
 	// (this is somewhat non-ideal and hardcode-ish)
-	var hasWallSegment = false;
+	let hasWallSegment = false;
 	for (let piece of cmd.pieces)
 	{
 		if (piece.template != cmd.wallSet.templates.tower) // TODO: hardcode-ish :(
@@ -584,7 +587,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 				var queued = Engine.HotkeyIsPressed("session.queue");
 				if (tryPlaceBuilding(queued))
 				{
-					if (queued)
+					if (queued && g_Selection.toList().length)
 						inputState = INPUT_BUILDING_PLACEMENT;
 					else
 						inputState = INPUT_NORMAL;
@@ -750,7 +753,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 				var queued = Engine.HotkeyIsPressed("session.queue");
 				if (tryPlaceBuilding(queued))
 				{
-					if (queued)
+					if (queued && g_Selection.toList().length)
 						inputState = INPUT_BUILDING_PLACEMENT;
 					else
 						inputState = INPUT_NORMAL;
@@ -1144,6 +1147,21 @@ function doAction(action, ev)
 	return handleUnitAction(Engine.GetTerrainAtScreenPoint(ev.x, ev.y), action);
 }
 
+function popOneFromSelection(action)
+{
+	// Pick the first unit that can do this order.
+	let unit = g_Selection.find(entity =>
+		["preSelectedActionCheck", "hotkeyActionCheck", "actionCheck"].some(method =>
+			g_UnitActions[action.type][method] &&
+			g_UnitActions[action.type][method](action.target || undefined, [entity])
+		));
+	if (unit)
+	{
+		g_Selection.removeList([unit]);
+		return [unit];
+	}
+	return null;
+}
 
 function positionUnitsFreehandSelectionMouseMove(ev)
 {
@@ -1236,22 +1254,8 @@ function handleUnitAction(target, action)
 		return false;
 	}
 
-	let selection = g_Selection.toList();
-	if (Engine.HotkeyIsPressed("session.orderone"))
-	{
-		// Pick the first unit that can do this order.
-		let unit = selection.find(entity =>
-			["preSelectedActionCheck", "hotkeyActionCheck", "actionCheck"].some(method =>
-				g_UnitActions[action.type][method] &&
-				g_UnitActions[action.type][method](action.target || undefined, [entity])
-			));
-		if (unit)
-		{
-			selection = [unit];
-			g_Selection.removeList(selection);
-		}
-	}
-
+	let selection = Engine.HotkeyIsPressed("session.orderone") &&
+		popOneFromSelection(action) || g_Selection.toList();
 	// If the session.queue hotkey is down, add the order to the unit's order queue instead
 	// of running it immediately
 	return g_UnitActions[action.type].execute(target, action, selection, Engine.HotkeyIsPressed("session.queue"));

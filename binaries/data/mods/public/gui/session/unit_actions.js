@@ -340,6 +340,20 @@ var g_UnitActions =
 		"specificness": 7,
 	},
 
+	// "Fake" action to check if an entity can be ordered to "construct"
+	// which is handled differently from repair as the target does not exist.
+	"construct":
+	{
+		"preSelectedActionCheck": function(target, selection)
+		{
+			let state = GetEntityState(selection[0]);
+			if (state && state.builder && target.constructor.name == "PlacementSupport")
+				return { "type": "construct" };
+			return false;
+		},
+		"specificness": 0,
+	},
+
 	"repair":
 	{
 		"execute": function(target, action, selection, queued)

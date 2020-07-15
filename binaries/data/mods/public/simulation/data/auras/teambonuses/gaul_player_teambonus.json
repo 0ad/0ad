@@ -1,10 +1,14 @@
 {
 	"type": "global",
-	"affects": ["Structure"],
+	"affects": ["Blacksmith"],
 	"affectedPlayers": ["ExclusiveMutualAlly"],
 	"modifications": [
-		{ "value": "ProductionQueue/TechCostMultiplier/time", "multiply": 0.8 }
+		{ "value": "ProductionQueue/TechCostMultiplier/food", "multiply": 0.85 },
+		{ "value": "ProductionQueue/TechCostMultiplier/wood", "multiply": 0.85 },
+		{ "value": "ProductionQueue/TechCostMultiplier/stone", "multiply": 0.85 },
+		{ "value": "ProductionQueue/TechCostMultiplier/metal", "multiply": 0.85 },
+		{ "value": "ProductionQueue/TechCostMultiplier/time", "multiply": 0.85 }
 	],
-	"auraName": "Druidic Wisdom",
-	"auraDescription": "Allied Structures −20% technology research time."
+	"auraName": "Products from Gaul",
+	"auraDescription": "Blacksmiths −15% technology resource costs and research time."
 }

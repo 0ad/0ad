@@ -390,6 +390,14 @@ EntitySelection.prototype.toList = function()
 	return ents;
 };
 
+EntitySelection.prototype.find = function(condition)
+{
+	for (let ent in this.selected)
+		if (condition(ent))
+			return +ent;
+	return null;
+};
+
 EntitySelection.prototype.setHighlightList = function(ents)
 {
 	var highlighted = {};
