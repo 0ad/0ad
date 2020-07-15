@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_barracks">
-  <Cost>
-    <Resources>
-      <wood>100</wood>
-      <stone>200</stone>
-    </Resources>
-  </Cost>
   <Footprint>
     <Square width="23" depth="23"/>
   </Footprint>
@@ -15,12 +9,7 @@
   <Identity>
     <Civ>ptol</Civ>
     <SpecificName>Stratopedon</SpecificName>
-    <Tooltip>Train Egyptian and Middle-Eastern citizen-soldiers. Research training improvements.</Tooltip>
   </Identity>
-  <Loot>
-    <wood>20</wood>
-    <stone>40</stone>
-  </Loot>
   <Obstruction>
     <Static width="20.0" depth="20.0"/>
   </Obstruction>

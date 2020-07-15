@@ -4,7 +4,7 @@
     structures/workshop_repair
   </Auras>
   <Cost>
-    <BuildTime>200</BuildTime>
+    <BuildTime>180</BuildTime>
     <Resources>
       <wood>300</wood>
     </Resources>
@@ -24,10 +24,10 @@
   <Identity>
     <GenericName>Siege Workshop</GenericName>
     <SelectionGroupName>template_structure_military_workshop</SelectionGroupName>
-    <Icon>structures/siege_workshop.png</Icon>
-    <RequiredTechnology>phase_city</RequiredTechnology>
     <Tooltip>Construct Siege Engines and research Siege Engine technologies.</Tooltip>
     <VisibleClasses datatype="tokens">City Workshop</VisibleClasses>
+    <Icon>structures/siege_workshop.png</Icon>
+    <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>
     <wood>60</wood>

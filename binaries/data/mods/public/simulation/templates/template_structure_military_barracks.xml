@@ -5,6 +5,10 @@
   </Auras>
   <Cost>
     <BuildTime>150</BuildTime>
+    <Resources>
+      <wood>200</wood>
+      <stone>100</stone>
+    </Resources>
   </Cost>
   <Footprint>
     <Square width="19.0" depth="19.0"/>
@@ -26,6 +30,10 @@
     <Icon>structures/barracks.png</Icon>
     <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
+  <Loot>
+    <wood>40</wood>
+    <stone>20</stone>
+  </Loot>
   <Obstruction>
     <Static width="17.0" depth="17.0"/>
   </Obstruction>
