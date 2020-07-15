@@ -1,12 +1,17 @@
 {
 	"genericName": "Silver Shields Regiment",
 	"description": "The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of the Macedonian army.",
-	"cost": { "food": 0, "wood": 0, "stone": 0, "metal": 1000 },
-	"requirements": { "all": [{ "tech": "phase_city" }, { "civ": "mace" }] },
+	"cost": { "food": 0, "wood": 0, "stone": 0, "metal": 600 },
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "civ": "mace" }
+		]
+	},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "shields_generic_silver.png",
-	"researchTime": 40,
-	"tooltip": "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater health and armor.",
+	"researchTime": 60,
+	"tooltip": "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater health and attack.",
 	"modifications": [
 		{ "value": "Promotion/RequiredXp", "replace": 0 }
 	],
