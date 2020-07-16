@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military">
   <Cost>
-    <BuildTime>300</BuildTime>
+    <BuildTime>240</BuildTime>
     <Resources>
+      <wood>200</wood>
       <stone>200</stone>
-      <metal>200</metal>
     </Resources>
   </Cost>
   <Footprint>
@@ -23,14 +23,14 @@
   <Identity>
     <GenericName>Elephant Stables</GenericName>
     <SelectionGroupName>template_structure_military_elephant_stables</SelectionGroupName>
+    <Tooltip>Train Elephants and research Elephant technologies.</Tooltip>
+    <VisibleClasses datatype="tokens">City ElephantStable</VisibleClasses>
     <RequiredTechnology>phase_city</RequiredTechnology>
     <Icon>structures/stable_elephant.png</Icon>
-    <Tooltip>Train elephant units.</Tooltip>
-    <VisibleClasses datatype="tokens">City ElephantStable</VisibleClasses>
   </Identity>
   <Loot>
+    <wood>40</wood>
     <stone>40</stone>
-    <metal>40</metal>
   </Loot>
   <Obstruction>
     <Static width="29" depth="27"/>

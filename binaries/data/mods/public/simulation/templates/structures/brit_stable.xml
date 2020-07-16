@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_stable">
+  <Cost>
+    <Resources>
+      <wood>250</wood>
+      <stone>0</stone>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>brit</Civ>
     <SpecificName>Eposton</SpecificName>
   </Identity>
+  <Loot>
+    <wood>50</wood>
+    <stone>0</stone>
+  </Loot>
   <VisualActor>
     <Actor>structures/britons/stable.xml</Actor>
     <FoundationActor>structures/fndn_6x5.xml</FoundationActor>
