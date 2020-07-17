@@ -105,7 +105,7 @@ MenuButtons.prototype.Summary = class
 				"sim": {
 					"mapSettings": g_GameAttributes.settings,
 					"playerStates": simState.players.filter((state, player) =>
-						g_IsObserver || player == 0 || player == g_ViewedPlayer ||
+						g_IsObserver || g_ViewedPlayer == 0 || player == 0 || player == g_ViewedPlayer ||
 						simState.players[g_ViewedPlayer].hasSharedLos && g_Players[player].isMutualAlly[g_ViewedPlayer]),
 					"timeElapsed": simState.timeElapsed
 				},
