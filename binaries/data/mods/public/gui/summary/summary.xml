@@ -154,6 +154,19 @@
 			</repeat>
 
 			<object name="chartLegend" type="text" style="ModernLabelText" size="15 100%-35 100%-15 100%-5"/>
+
+			<object name="toggleTeam" size="4 100%+6 50% 100%+34">
+				<object name="toggleTeamBox" size="0 3 22 100%-3" type="checkbox" style="ModernTickBox">
+					<action on="Press">
+						updateChartColorAndLegend();
+						updateCategoryDropdown(0);
+						updateCategoryDropdown(1);
+					</action>
+				</object>
+				<object name="toggleTeamText" size="20 0 100% 100%" type="text" style="ModernLeftLabelText">
+					<translatableAttribute id="caption">Group by team</translatableAttribute>
+				</object>
+			</object>
 		</object>
 
 		<!-- View Lobby Button -->
