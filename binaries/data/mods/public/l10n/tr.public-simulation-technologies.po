@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-10 07:10+0000\n"
-"PO-Revision-Date: 2020-07-10 08:50+0000\n"
+"POT-Creation-Date: 2020-07-13 07:16+0000\n"
+"PO-Revision-Date: 2020-07-14 15:11+0000\n"
 "Last-Translator: Günay Yılmaz\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -37,14 +37,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
-#: simulation/data/technologies/advanced_unit_bonus.jsontooltip
-msgid ""
-"Units promoted to the advanced class gain a lot of quality: 10% extra "
-"health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
-"for melee units, 4m extra range and better precision for ranged units, "
-"faster Infantry movement speeds and extra heal speed and range for healers."
-msgstr "Gelişmiş sınıfa terfi eden birimler çok fazla kalite kazanır:% 10 ekstra sağlık, her türden 1 ekstra zırh seviyesi,% 20 ekstra yağma, yakın dövüş birimleri için% 20 ekstra saldırı, menzilli birimler için 4m ekstra menzil ve daha iyi isabet, daha hızlı Piyade hareket hızı ve şifacılar için ekstra iyileştirme hızı ve menzili."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -118,6 +110,7 @@ msgstr "At başlığı"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_colonisation.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_exploration.jsonrequirementsTooltip
+#: simulation/data/technologies/kushites/monumental_architecture.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
@@ -173,7 +166,6 @@ msgstr "Atların vücudu için metal zırh."
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_long_walls.jsonrequirementsTooltip
-#: simulation/data/technologies/kushites/monumental_architecture.jsonrequirementsTooltip
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/immortals.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_equine_transports.jsonrequirementsTooltip
@@ -494,14 +486,6 @@ msgstr "Şehir Surları -20 daha hızlı inşa edilir ama Yıkım zırhı -1 sev
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
 msgstr "Çakıl Malzemeleri"
-
-#: simulation/data/technologies/elite_unit_bonus.jsontooltip
-msgid ""
-"Units promoted to the elite class gain a lot of quality: 10% extra health, 1"
-" extra armor level of every type, 20% extra loot, 20% extra attack for melee"
-" units, 4m extra range and better precision for ranged units, faster "
-"Infantry movement speeds and extra heal speed and range for healers."
-msgstr "Elit sınıfa terfi eden birimler çok fazla kalite kazanır:% 10 ekstra sağlık, her türden 1 ekstra zırh seviyesi,% 20 ekstra yağma, yakın muharebe birimleri için% 20 ekstra saldırı, menzilli birimler için 4 m ekstra menzil ve daha iyi isabet, daha hızlı Piyade hareket hızı ve şifacılar için ekstra iyileştirme hızı ve menzili."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -1341,6 +1325,14 @@ msgstr "Tersane toplu üretim hızı artışı."
 msgid "Naval Architects"
 msgstr "Gemi Mühendisliği"
 
+#: simulation/data/technologies/unit_advanced.jsontooltip
+msgid ""
+"Advanced and Elite units +20% training time, +1 armour level, +10% health, "
+"+0.4 capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
+"healing strength and +3 healing range; Infantry +0.5 movement speed; Melee "
+"units +20% attack damage; Ranged units +4 attack range and −10% spread."
+msgstr "Gelişmiş ve Seçkin birimler +%20 eğitim süresi, +1 zırh seviyesi, +% 0 sağlık, +0.4 ele geçirme saldırı gücü, +%20 yağma ve −%30 toplama hızı; Şifacılar +5 iyileşme gücü ve +3 iyileşme menzili; Piyade +0.5 hareket hızı; Yakın dövüş birimleri +%20 saldırı gücü; Menzilli birimler +4 saldırı menzili ve −%10 yayılma."
+
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
@@ -1352,6 +1344,14 @@ msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
 msgstr "Hint Filleri 4%10 kaynak maliyeti, eğitim süresi, sağlık, saldırı hasarı ve yağma."
+
+#: simulation/data/technologies/unit_elite.jsontooltip
+msgid ""
+"Elite units +20% training time, +1 armour level, +10% health, +0.4 capture "
+"attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
+"strength and +3 healing range; Infantry +0.5 movement speed; Melee units "
+"+20% attack damage; Ranged units +4 attack range and −10% spread."
+msgstr "Seçkin birimler +%20 eğitim süresi, +1 zırh seviyesi, +%10 sağlık, +0.4 ele geçirme saldırı gücü, +%20 yağma ve −%30 toplanma hızı; Şifacılar +5 iyileşme gücü ve +3 iyileşme menzili; Piyade +0.5 hareket hızı; Yakın dövüş birimleri +%20 saldırı gücü; Menzilli birimler +4 saldırı menzili ve −%10 yayılma."
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""
@@ -1455,9 +1455,8 @@ msgid "Hire professional mercenaries to fight in your army."
 msgstr "Profesyonel paralı askerleri, yanınızda savaşmaları için kiralayın."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
-msgid ""
-"Mercenaries are promoted to advanced rank but require +20% training time."
-msgstr "Paralı askerler ileri rütbelere yükselebilir, ancak eğitim süresi +%20 artar."
+msgid "Mercenaries are promoted to Advanced rank."
+msgstr "Paralı askerler Gelişmiş seviyeye terfi edildi."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
@@ -1550,6 +1549,22 @@ msgstr "Atinalı, Makedon ve Spartalı Binaları +%10 inşa süresi, +%10 sağl�
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
 msgstr "Eski Yunan Mimarisi"
+
+#: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
+msgid ""
+"India is the land of the elephants. Elephant warfare originated in India and"
+" continued for millennia. It was also the source of elephants for the "
+"eastern Mediterranean. Indian kings were able to field large numbers of war "
+"elephants."
+msgstr "Hindistan fillerin ülkesi. Fil savaşı Hindistan'da doğdu ve bin yıl boyunca devam etti. Aynı zamanda doğu Akdeniz için fillerin kaynağıydı. Hint kralları çok sayıda savaş fili beslediler."
+
+#: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
+msgid "Elephants −30% training time."
+msgstr "Filer -%30 eğitim süresi."
+
+#: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
+msgid "Elephant Tradition"
+msgstr "Fil Geleneği"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -1667,9 +1682,8 @@ msgstr "Atina Uzun Duvarları"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
-"+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
-"Wonders."
-msgstr "Kent Merkezleri, Tapınaklar, Piramitler ve Harikalar için +%25 Can ve -%50 inşa süresi."
+"Civic Structures +20% build time, +20% health, and +20% capture points."
+msgstr "Yerleşim Yapıları +%20 inşa süresi, +%20 sağlık ve +%20 ele geçirme puanı."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"

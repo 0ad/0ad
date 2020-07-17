@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-10 07:10+0000\n"
-"PO-Revision-Date: 2020-07-10 08:38+0000\n"
+"POT-Creation-Date: 2020-07-13 07:16+0000\n"
+"PO-Revision-Date: 2020-07-13 08:43+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -29,14 +29,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
-
-#: simulation/data/technologies/advanced_unit_bonus.jsontooltip
-msgid ""
-"Units promoted to the advanced class gain a lot of quality: 10% extra "
-"health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
-"for melee units, 4m extra range and better precision for ranged units, "
-"faster Infantry movement speeds and extra heal speed and range for healers."
-msgstr ""
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -110,6 +102,7 @@ msgstr "Brnění chránící koňskou hlavu"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_colonisation.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_exploration.jsonrequirementsTooltip
+#: simulation/data/technologies/kushites/monumental_architecture.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
@@ -165,7 +158,6 @@ msgstr "Kovové brnění pro trup koně"
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_long_walls.jsonrequirementsTooltip
-#: simulation/data/technologies/kushites/monumental_architecture.jsonrequirementsTooltip
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/immortals.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_equine_transports.jsonrequirementsTooltip
@@ -486,14 +478,6 @@ msgstr "Městské hradby, -20% doby potřebné na jejich postavení, ale -1 bod 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
 msgstr "Nalámaný kámen"
-
-#: simulation/data/technologies/elite_unit_bonus.jsontooltip
-msgid ""
-"Units promoted to the elite class gain a lot of quality: 10% extra health, 1"
-" extra armor level of every type, 20% extra loot, 20% extra attack for melee"
-" units, 4m extra range and better precision for ranged units, faster "
-"Infantry movement speeds and extra heal speed and range for healers."
-msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -1333,6 +1317,14 @@ msgstr "Přístaviště zvýší rychlost hromadné stavby."
 msgid "Naval Architects"
 msgstr "Námořní stavitelé"
 
+#: simulation/data/technologies/unit_advanced.jsontooltip
+msgid ""
+"Advanced and Elite units +20% training time, +1 armour level, +10% health, "
+"+0.4 capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
+"healing strength and +3 healing range; Infantry +0.5 movement speed; Melee "
+"units +20% attack damage; Ranged units +4 attack range and −10% spread."
+msgstr ""
+
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
@@ -1343,6 +1335,14 @@ msgstr ""
 msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
+msgstr ""
+
+#: simulation/data/technologies/unit_elite.jsontooltip
+msgid ""
+"Elite units +20% training time, +1 armour level, +10% health, +0.4 capture "
+"attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
+"strength and +3 healing range; Infantry +0.5 movement speed; Melee units "
+"+20% attack damage; Ranged units +4 attack range and −10% spread."
 msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
@@ -1447,9 +1447,8 @@ msgid "Hire professional mercenaries to fight in your army."
 msgstr "Najmout do armády profesionální žoldnéře."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
-msgid ""
-"Mercenaries are promoted to advanced rank but require +20% training time."
-msgstr "Žoldnéři jsou povýšeni do pokročilého postavení, ale vyžadují o + 20% výcviku navíc."
+msgid "Mercenaries are promoted to Advanced rank."
+msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
@@ -1542,6 +1541,22 @@ msgstr ""
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
 msgstr "Helénská architektura"
+
+#: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
+msgid ""
+"India is the land of the elephants. Elephant warfare originated in India and"
+" continued for millennia. It was also the source of elephants for the "
+"eastern Mediterranean. Indian kings were able to field large numbers of war "
+"elephants."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
+msgid "Elephants −30% training time."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
+msgid "Elephant Tradition"
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -1659,8 +1674,7 @@ msgstr "Athénské dlouhé hradby"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
-"+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
-"Wonders."
+"Civic Structures +20% build time, +20% health, and +20% capture points."
 msgstr ""
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName

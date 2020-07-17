@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-06 07:16+0000\n"
-"PO-Revision-Date: 2020-07-06 11:24+0000\n"
+"POT-Creation-Date: 2020-07-13 07:13+0000\n"
+"PO-Revision-Date: 2020-07-13 11:34+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -199,7 +199,6 @@ msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
 msgstr "Bhí Peiricléas an polaiteoir Aithneach is fearr sa 5ú aois R.C."
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[2].History
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
 #: simulation/data/civs/maur.jsonStructures[0].History
 #: simulation/data/civs/maur.jsonStructures[1].History
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].History
@@ -1152,7 +1151,6 @@ msgid ""
 msgstr "Faigh imreoirí Cúiseacha Mianach Miotail sa bhreis in áit éigin ina gcríocha bhaile."
 
 #: simulation/data/civs/kush.jsonCivBonuses[2].Name
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Elephant Roundup"
 msgstr "Bailigh le Chéile na nEilifintí"
 
@@ -1610,20 +1608,20 @@ msgid ""
 msgstr "Chuimsigh Impireacht na Mauiriaigh ar roinnt ríochtaí iarneamhspleácha thar cheantar do 5 mhilliún méadair chearnaigh, agus ag daonra in aice le 60 milliún duine. Tá teideal Ard Impire ar na ríthe Mauiriaigh, agus tá siad ina gceannasaí ar arm seasta le 600,000 coisí, 9000 eilifint, 8000 carbad, agus 30,000 marcra aige, agus chuir sé mar arm is mó san am seo."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
-msgid "The Mauryas enjoy access to 4 champions."
-msgstr "Is féidir leis na Mauiriaigh 4 churadh a earcú."
+msgid "Elephants −30% training time."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
-msgid "Kṣhatriya Warrior Caste."
-msgstr "'Kṣhatriya': Sainaicme Laochra"
+msgid "Elephant Tradition"
+msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].History
 msgid ""
-"Kshatriya or Kashtriya, meaning warrior, is one of the four varnas (social "
-"orders) in Hinduism. Traditionally Kshatriya constitute the military and "
-"ruling elite of the Vedic-Hindu social system outlined by the Vedas and the "
-"Laws of Manu."
-msgstr "Is ceann de na ceithre 'varna' (aicme shóisialta) í 'Kṣhatriya' nó Csiáitríá, a dtugtar 'laoch', san Hiondúchas. Tá na Csiátríáí mar scothaicme mhíleata agus cheannasach go traidisiúnta sa chóras sóisialta de chuid na Véideach-Hiondúch de réir na Véidí agus na Dlíthe Mhánú."
+"India is the land of the elephants. Elephant warfare originated in India and"
+" continued for millennia. It was also the source of elephants for the "
+"eastern Mediterranean. Indian kings were able to field large numbers of war "
+"elephants."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid ""
@@ -1679,20 +1677,14 @@ msgid "Brihadratha Maurya"
 msgstr "Braíohadrata Mauiria"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Description
-msgid ""
-"Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
-"gain up to a 25% bonus in cost and train time of elephant units."
-msgstr "Gabh suas le 5 eilifint Gaia agus cuir iad i ngarastún sa Stáblaí Eilifinte agus bónas suas le 25% a fháil i gcostas agus in am tránala d'aonaid eilifinte."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
 msgstr "Raon níos mó agus am tránála níos tapa do chos-shaighdeoirí Mauiriacha."
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Archery Tradition"
 msgstr "Nós Saighdeoireachta"
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
 msgid ""
 "India was a land of archery. The bulk of any Indian army was made up of "
 "highly skilled archers, armed with bamboo longbows."

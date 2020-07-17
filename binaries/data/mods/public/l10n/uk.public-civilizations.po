@@ -10,6 +10,7 @@
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
 # Dimaver <dimaver@ukr.net>, 2014
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
+# 36bc093879f7ad106de586c9dd88b51d_1728f11 <41de99256bb308b66ac6186edf8ebe1f_918412>, 2020
 # hgujmgfmgfd gfyhndftyhdh <mojove1758@htwern.com>, 2020
 # 504fc1cf9150c6eb2ead15f639dc2c0a, 2020
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
@@ -24,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-06 07:16+0000\n"
-"PO-Revision-Date: 2020-07-06 11:24+0000\n"
-"Last-Translator: 504fc1cf9150c6eb2ead15f639dc2c0a\n"
+"POT-Creation-Date: 2020-07-13 07:13+0000\n"
+"PO-Revision-Date: 2020-07-16 09:04+0000\n"
+"Last-Translator: 36bc093879f7ad106de586c9dd88b51d_1728f11 <41de99256bb308b66ac6186edf8ebe1f_918412>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -215,7 +216,6 @@ msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
 msgstr "Перікл був видатним афінським політиком 5 століття до н. е."
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[2].History
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
 #: simulation/data/civs/maur.jsonStructures[0].History
 #: simulation/data/civs/maur.jsonStructures[1].History
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].History
@@ -840,7 +840,7 @@ msgstr "Працівники мають +15% темпу збору зерна."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Harvesting Machine"
-msgstr ""
+msgstr "Збиральна машина"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1168,7 +1168,6 @@ msgid ""
 msgstr "Гравці Кушитів отримують безкоштовну додаткову Копальню по видобутку металів десь на своїй території."
 
 #: simulation/data/civs/kush.jsonCivBonuses[2].Name
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Elephant Roundup"
 msgstr "Загін для слонів"
 
@@ -1481,7 +1480,7 @@ msgid ""
 " of the Macedonian army. His reforms created a powerful cavalry arm to his "
 "army that would prove useful to both himself and his son Alexander's "
 "conquests."
-msgstr "Коли Філіп II зійшов на македонський престол, він почав повну реорганізацію македонської армії. Його реформи призвели до появи нового могутнього роду військ — кавалерії, яка виявиться корисною для нього і його сина Олександра."
+msgstr "Коли Філіпп II зійшов на македонський престол, він почав повну реорганізацію македонської армії. Його реформи призвели до появи нового могутнього роду військ — кавалерії, яка виявиться корисною для нього і його сина Олександра."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -1532,7 +1531,7 @@ msgstr "Цар Македонії (359-336 до н. е.), проводив ве�
 
 #: simulation/data/civs/mace.jsonFactions[0].Heroes[0].Name
 msgid "Philip II of Macedon"
-msgstr "Філіп ІІ, Македонський"
+msgstr "Філіпп II Македонський"
 
 #: simulation/data/civs/mace.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1559,7 +1558,7 @@ msgstr "Один із Діадохів, цар Македонії (294-288 до 
 
 #: simulation/data/civs/mace.jsonFactions[0].Heroes[2].Name
 msgid "Demetrios the Besieger"
-msgstr "Деметрій I Поліоркет"
+msgstr "Деметрій Обложник"
 
 #: simulation/data/civs/mace.jsonFactions[0].Description
 msgid "A Hellenistic kingdom bordering the Greek city-states."
@@ -1626,20 +1625,20 @@ msgid ""
 msgstr "Імперія Маур'їв охоплювала десятки раніше незалежних царств на площі понад 5 мільйонів квадратних кілометрів з населенням близько 60 мільйонів осіб. Правителі Маур'їв носили титул \"Імператора імператорів\" і керували регулярною армією з 600000 піхотинців, 9000 слонів, 8000 колісниць, і 30000 кінноти, що робить її, мабуть, найбільшою армією свого часу."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
-msgid "The Mauryas enjoy access to 4 champions."
-msgstr "Маур'ї задовольняються доступом до 4 чемпіонів."
+msgid "Elephants −30% training time."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
-msgid "Kṣhatriya Warrior Caste."
-msgstr "Військова каста кштатрія."
+msgid "Elephant Tradition"
+msgstr "Слонова традиція"
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].History
 msgid ""
-"Kshatriya or Kashtriya, meaning warrior, is one of the four varnas (social "
-"orders) in Hinduism. Traditionally Kshatriya constitute the military and "
-"ruling elite of the Vedic-Hindu social system outlined by the Vedas and the "
-"Laws of Manu."
-msgstr "Кшатрія або каштрія - воїн, що належить до одної з чотирьох варн (станів) в індуїзмі. Традиційно кшатрії складаються з військової та правлячої еліти індійської ведичної соціальної системи, описаної у Ведах і Законах Ману."
+"India is the land of the elephants. Elephant warfare originated in India and"
+" continued for millennia. It was also the source of elephants for the "
+"eastern Mediterranean. Indian kings were able to field large numbers of war "
+"elephants."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid ""
@@ -1695,20 +1694,14 @@ msgid "Brihadratha Maurya"
 msgstr "Бріхадратха Маур'я"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Description
-msgid ""
-"Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
-"gain up to a 25% bonus in cost and train time of elephant units."
-msgstr "Зловіть до 5 диких слонів, відправте їх в слонячий загін і отримаєте зменшення часу їхнього навчання і вартості максимум на 25%."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
 msgstr "Піші лучники маур'їв стріляють далі і тренуються швидше."
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Archery Tradition"
 msgstr "Традиції стрільби з лука"
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
 msgid ""
 "India was a land of archery. The bulk of any Indian army was made up of "
 "highly skilled archers, armed with bamboo longbows."
@@ -1716,7 +1709,7 @@ msgstr "Індія була країною лучників. Основна ча
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
-msgstr "Засновник Маур'їнської Імперії"
+msgstr "Засновник імперії Маур'їв."
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[1].History
 msgid "Last great emperor of the Mauryan dynasty."
@@ -1724,11 +1717,11 @@ msgstr "Останній великий імператор династії Ма
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[2].History
 msgid "Great teacher and advisor to Chandragupta Maurya."
-msgstr "Великий учитель і радник Чандрагупти Маур'ї."
+msgstr "Великий учитель і радник Чандраґупти Маур'ї."
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[2].Name
 msgid "Acharya Chāṇakya"
-msgstr "Чанак'я"
+msgstr "Ачар'я Чанак'я"
 
 #: simulation/data/civs/maur.jsonFactions[0].Name
 msgid "Mauryan Indians"
@@ -1948,7 +1941,7 @@ msgstr "Кир (правив у 559-530 р. р. до н. е.) - син міді�
 
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[0].Name
 msgid "Kurush II"
-msgstr "Кир II"
+msgstr "Куруш II"
 
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -2176,7 +2169,7 @@ msgstr "У Дельті Нілу були ґрунти, придатні для 
 
 #: simulation/data/civs/ptol.jsonFactions[0].Heroes[0].Name
 msgid "Ptolemaios A' Soter"
-msgstr "Птолемайос А Сотер"
+msgstr "Птолемаіос A' Сотер"
 
 #: simulation/data/civs/ptol.jsonFactions[0].Heroes[1].Name
 msgid "Ptolemaios D' Philopater"
@@ -2317,11 +2310,11 @@ msgstr "Гай Юлій Юл"
 
 #: simulation/data/civs/rome.jsonAINames[5]
 msgid "Gaius Servilius Structus Ahala"
-msgstr "Гай Сервілій Структ Ахала"
+msgstr "Гай Сервілій Структ Агала"
 
 #: simulation/data/civs/rome.jsonAINames[6]
 msgid "Publius Cornelius Rufinus"
-msgstr "Публий Корнелий Руфин"
+msgstr "Публій Корнелій Руфін"
 
 #: simulation/data/civs/rome.jsonAINames[7]
 msgid "Lucius Papirius Cursor"
@@ -2547,11 +2540,11 @@ msgstr "Александр I Балас"
 #: simulation/data/civs/sele.jsonAINames[11]
 #: simulation/data/civs/sele.jsonAINames[15]
 msgid "Demetrius II Nicator"
-msgstr "Деметрій II Ніканор"
+msgstr "Деметрій II Нікатор"
 
 #: simulation/data/civs/sele.jsonAINames[12]
 msgid "Antiochus VI Dionysus"
-msgstr "Антіох VI Діоніс Епіфан"
+msgstr "Антіох VI Діоніс"
 
 #: simulation/data/civs/sele.jsonAINames[13]
 msgid "Diodotus Tryphon"
@@ -2615,7 +2608,7 @@ msgstr "Антіох XIII Азійський"
 
 #: simulation/data/civs/sele.jsonAINames[29]
 msgid "Philip II Philoromaeus"
-msgstr "Філіпп IІ Філадельф"
+msgstr "Філіпп II Філоромей"
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -2668,7 +2661,7 @@ msgstr "Постійно влаштовуючи пастки сусіднім н
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[0].Name
 msgid "Seleukos A' Nikator"
-msgstr "Селевк А Нікатор"
+msgstr "Селеукос A' Нікатор"
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -2685,7 +2678,7 @@ msgstr "Антіох на початку свого правління успа�
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"
-msgstr "Антіох Ги Мегас"
+msgstr "Антіохос G' Мегас"
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -2700,7 +2693,7 @@ msgstr "Антіох IV Епіфан був сином царя Антіоха I
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[2].Name
 msgid "Antiokhos D' Epiphanes"
-msgstr "Антіохос Ди Епіфантес"
+msgstr "Антіохос D' Епіфанес"
 
 #: simulation/data/civs/sele.jsonFactions[0].Description
 msgid ""
@@ -2798,12 +2791,12 @@ msgstr "Леонід"
 
 #: simulation/data/civs/spart.jsonAINames[1]
 msgid "Dienekes"
-msgstr "Діенекій"
+msgstr "Дієнек"
 
 #: simulation/data/civs/spart.jsonAINames[2]
 #: simulation/data/civs/spart.jsonFactions[0].Heroes[1].Name
 msgid "Brasidas"
-msgstr "Брасид"
+msgstr "Брасід"
 
 #: simulation/data/civs/spart.jsonAINames[3]
 msgid "Agis"
@@ -2819,7 +2812,7 @@ msgstr "Павсаній"
 
 #: simulation/data/civs/spart.jsonAINames[7]
 msgid "Agesilaus"
-msgstr "Агесілай II"
+msgstr "Агесілай"
 
 #: simulation/data/civs/spart.jsonAINames[8]
 msgid "Echestratus"
@@ -2827,7 +2820,7 @@ msgstr "Ехестрат"
 
 #: simulation/data/civs/spart.jsonAINames[9]
 msgid "Eurycrates"
-msgstr "Еврикрат"
+msgstr "Еврікрат"
 
 #: simulation/data/civs/spart.jsonAINames[10]
 msgid "Eucleidas"
@@ -2900,7 +2893,7 @@ msgstr "Цар Спарти, який боровся і загинув у бит
 
 #: simulation/data/civs/spart.jsonFactions[0].Heroes[0].Name
 msgid "Leonidas I"
-msgstr "Леонід І"
+msgstr "Леонід I"
 
 #: simulation/data/civs/spart.jsonFactions[0].Heroes[1].History
 msgid ""

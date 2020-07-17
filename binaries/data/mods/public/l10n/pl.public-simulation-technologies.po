@@ -36,8 +36,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-10 07:10+0000\n"
-"PO-Revision-Date: 2020-07-10 11:51+0000\n"
+"POT-Creation-Date: 2020-07-13 07:16+0000\n"
+"PO-Revision-Date: 2020-07-13 13:22+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -45,14 +45,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-
-#: simulation/data/technologies/advanced_unit_bonus.jsontooltip
-msgid ""
-"Units promoted to the advanced class gain a lot of quality: 10% extra "
-"health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
-"for melee units, 4m extra range and better precision for ranged units, "
-"faster Infantry movement speeds and extra heal speed and range for healers."
-msgstr "Jednostki, które otrzymały awans do klasy zaawansowanej, zyskują na jakości: 10% więcej zdrowia, o 1 punkt więcej pancerza przeciw każdemu rodzajowi obrażeń, 20% dodatkowych łupów, 20% więcej ataku dla jednostek walczących wręcz, 4m dodatkowego zasięgu i większa precyzja dla jednostek walczących na dystans, szybszy ruch piechoty oraz przyspieszenie i zwiększenie zasięgu uzdrowicieli."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -126,6 +118,7 @@ msgstr "Zbroja końska"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_colonisation.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_exploration.jsonrequirementsTooltip
+#: simulation/data/technologies/kushites/monumental_architecture.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
@@ -181,7 +174,6 @@ msgstr "Metalowa zbroja dla konia."
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_long_walls.jsonrequirementsTooltip
-#: simulation/data/technologies/kushites/monumental_architecture.jsonrequirementsTooltip
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/immortals.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_equine_transports.jsonrequirementsTooltip
@@ -502,14 +494,6 @@ msgstr "Zmniejsza czas budowania Murów miejskich o -20%, ale zmniejsza też ich
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
 msgstr "Gruz"
-
-#: simulation/data/technologies/elite_unit_bonus.jsontooltip
-msgid ""
-"Units promoted to the elite class gain a lot of quality: 10% extra health, 1"
-" extra armor level of every type, 20% extra loot, 20% extra attack for melee"
-" units, 4m extra range and better precision for ranged units, faster "
-"Infantry movement speeds and extra heal speed and range for healers."
-msgstr "Jednostki, które otrzymały awans do klasy elitarnej, zyskują dodatkowe parametry: 10% więcej zdrowia, o 1 punkt więcej pancerza przeciw każdemu rodzajowi obrażeń, 20% dodatkowych łupów, 20% więcej ataku dla jednostek walczących wręcz, 4m dodatkowego zasięgu i większa precyzja dla jednostek walczących na dystans, szybszy ruch piechoty oraz przyspieszenie i zwiększenie zasięgu uzdrowicieli."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -1349,6 +1333,14 @@ msgstr "Zwiększona premia szkolenia grupowego dla Doków."
 msgid "Naval Architects"
 msgstr "Architekci morscy"
 
+#: simulation/data/technologies/unit_advanced.jsontooltip
+msgid ""
+"Advanced and Elite units +20% training time, +1 armour level, +10% health, "
+"+0.4 capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
+"healing strength and +3 healing range; Infantry +0.5 movement speed; Melee "
+"units +20% attack damage; Ranged units +4 attack range and −10% spread."
+msgstr "Jednostki zaawansowane i elitarne szkolą się o 20% szybciej, mają 1 więcej punkt pancerza, 10% więcej zdrowia, 0.4 punktu przejmowania, 20% zasobów i zbierają zasoby 30% szybciej. Uzdrowiciele otrzymują +5 siły leczenia i +3 zasięgu leczenia. Piechota szybsza o 0.5 punktu. Jednostki walczące wręcz +20% obrażeń. Jednostki walczące na dystans +4 zasięgu ataku i -10% rozstrzału."
+
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
@@ -1360,6 +1352,14 @@ msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
 msgstr "Indiańskie słonie są 10% droższe, o tyle wolniej się szkolą, ale mają też 10% więcej zdrowia, ataku i zasobów."
+
+#: simulation/data/technologies/unit_elite.jsontooltip
+msgid ""
+"Elite units +20% training time, +1 armour level, +10% health, +0.4 capture "
+"attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
+"strength and +3 healing range; Infantry +0.5 movement speed; Melee units "
+"+20% attack damage; Ranged units +4 attack range and −10% spread."
+msgstr "Jednostki zaawansowane i elitarne szkolą się o 20% szybciej, mają 1 więcej punkt pancerza, 10% więcej zdrowia, 0.4 punktu przejmowania, 20% zasobów i zbierają zasoby 30% szybciej. Uzdrowiciele otrzymują +5 siły leczenia i +3 zasięgu leczenia. Piechota szybsza o 0.5 punktu. Jednostki walczące wręcz +20% obrażeń. Jednostki walczące na dystans +4 zasięgu ataku i -10% rozstrzału."
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""
@@ -1463,9 +1463,8 @@ msgid "Hire professional mercenaries to fight in your army."
 msgstr "Zatrudnij profesjonalnych najemników by walczyli u twego boku"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
-msgid ""
-"Mercenaries are promoted to advanced rank but require +20% training time."
-msgstr "Najemnicy zostają promowani do rangi zaawansowani, ale wymagają +20% więcej czasu na szkolenie."
+msgid "Mercenaries are promoted to Advanced rank."
+msgstr "Najemnicy zostają ulepszeni."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
@@ -1558,6 +1557,22 @@ msgstr "Ateńskie, macedońskie i spartańskie struktury +10% czasu budowania, +
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
 msgstr "Architektura hellenistyczna"
+
+#: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
+msgid ""
+"India is the land of the elephants. Elephant warfare originated in India and"
+" continued for millennia. It was also the source of elephants for the "
+"eastern Mediterranean. Indian kings were able to field large numbers of war "
+"elephants."
+msgstr "Indie to kraina słoni, gdzie narodziło się wykorzystywanie ich w boju przez kolejne tysiąclecia. Stąd też sprowadzano słonie do krajów basenu Morza Śródziemnego. Królowie indyjscy hodowali potężne liczby słoni bojowych."
+
+#: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
+msgid "Elephants −30% training time."
+msgstr "Słonie szkolą się o 30% szybciej."
+
+#: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
+msgid "Elephant Tradition"
+msgstr "Tradycja słoniowa"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -1675,9 +1690,8 @@ msgstr "Ateńskie długie mury"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
-"+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
-"Wonders."
-msgstr "+25% punktów życia i -50% czasu budowy centrów osad, świątyń, piramid i cudów."
+"Civic Structures +20% build time, +20% health, and +20% capture points."
+msgstr "Struktury cywilne budowane są o 20% szybciej, mają 20% więcej zdrowia i 20% punktów przejmowania."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"

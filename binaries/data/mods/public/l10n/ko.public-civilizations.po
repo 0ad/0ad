@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-06 07:16+0000\n"
-"PO-Revision-Date: 2020-07-06 11:24+0000\n"
-"Last-Translator: ks k\n"
+"POT-Creation-Date: 2020-07-13 07:13+0000\n"
+"PO-Revision-Date: 2020-07-13 11:34+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -215,7 +215,6 @@ msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
 msgstr "페리클레스는 아테네 최고의 정치인으로서 기원전 5세기에 활약했습니다."
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[2].History
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
 #: simulation/data/civs/maur.jsonStructures[0].History
 #: simulation/data/civs/maur.jsonStructures[1].History
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].History
@@ -1168,7 +1167,6 @@ msgid ""
 msgstr "쿠시를 선택한 선수들은 그들의 본거지 어딘가에서 무료 여분의 금속 광산을 받습니다."
 
 #: simulation/data/civs/kush.jsonCivBonuses[2].Name
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Elephant Roundup"
 msgstr "코끼리 몰이"
 
@@ -1626,20 +1624,20 @@ msgid ""
 msgstr "마우리아 제국은 5백만 평방 킬로미터의 면적에 걸쳐 수십개의 이전에 독립한 왕국을 포함했고, 인구는 6천만 명에 이르렀습니다. 마우리아의 통치자는 황제라는 제목의 황제를 지키고 60만 명의 보병, 9천 마리의 코끼리, 8천대의 전차, 3만 기병대의 상비군을 지명하여 그 시대의 가장 큰 군대로 만들었습니다."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
-msgid "The Mauryas enjoy access to 4 champions."
-msgstr "마우리아인들은 4명의 대표 전사에 접근하는 것을 즐깁니다."
+msgid "Elephants −30% training time."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
-msgid "Kṣhatriya Warrior Caste."
-msgstr "크샤트리아 전사 계급."
+msgid "Elephant Tradition"
+msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].History
 msgid ""
-"Kshatriya or Kashtriya, meaning warrior, is one of the four varnas (social "
-"orders) in Hinduism. Traditionally Kshatriya constitute the military and "
-"ruling elite of the Vedic-Hindu social system outlined by the Vedas and the "
-"Laws of Manu."
-msgstr "전사라는 의미의 크샤트리야 또는 카슈트리야는 힌두교의 4개의 바르나(사회 계층)중 하나입니다. 전통적으로 크샤트리야는 군인과 지배 정예트 계층으로 베다와 마누의 법전을 근거로 한 베다-힌두교 사회체제를 구성하고있습니다."
+"India is the land of the elephants. Elephant warfare originated in India and"
+" continued for millennia. It was also the source of elephants for the "
+"eastern Mediterranean. Indian kings were able to field large numbers of war "
+"elephants."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid ""
@@ -1695,20 +1693,14 @@ msgid "Brihadratha Maurya"
 msgstr "브리하드라타 마우리아"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Description
-msgid ""
-"Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
-"gain up to a 25% bonus in cost and train time of elephant units."
-msgstr "최대 5 마리의 야생 코끼리를 잡아서 코끼리 우리에 넣어두면 코끼리 유닛의 비용과 훈련 시간이 최대 25 %의 보너스를 얻습니다."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
 msgstr "마우리아 보병 궁수들의 사정거리가 더 길어지고 양성시간이 더 빨라집니다."
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Archery Tradition"
 msgstr "전통 궁술"
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
 msgid ""
 "India was a land of archery. The bulk of any Indian army was made up of "
 "highly skilled archers, armed with bamboo longbows."

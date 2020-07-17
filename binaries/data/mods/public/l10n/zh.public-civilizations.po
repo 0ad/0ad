@@ -39,9 +39,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-06 07:16+0000\n"
-"PO-Revision-Date: 2020-07-06 11:24+0000\n"
-"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
+"POT-Creation-Date: 2020-07-13 07:13+0000\n"
+"PO-Revision-Date: 2020-07-13 11:34+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -230,7 +230,6 @@ msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
 msgstr "伯里克利是公元前 5 世纪时，雅典最重要的政治家。"
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[2].History
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
 #: simulation/data/civs/maur.jsonStructures[0].History
 #: simulation/data/civs/maur.jsonStructures[1].History
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].History
@@ -1183,7 +1182,6 @@ msgid ""
 msgstr "库什多一处金属矿。"
 
 #: simulation/data/civs/kush.jsonCivBonuses[2].Name
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Elephant Roundup"
 msgstr "围捕大象"
 
@@ -1641,20 +1639,20 @@ msgid ""
 msgstr "印度孔雀王朝，涵盖了原先数十个独立的王国。领土面积约500万平方公里，人口总数约6000万。其统治者有“万王之王”的称号，并有步兵60万、战象9000头、双轮战车8000辆以及骑兵3万名，可以说是当时军队之最。 "
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
-msgid "The Mauryas enjoy access to 4 champions."
-msgstr "印度孔雀王朝可以获得4个冠军单位。 "
+msgid "Elephants −30% training time."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
-msgid "Kṣhatriya Warrior Caste."
-msgstr "刹帝利武士"
+msgid "Elephant Tradition"
+msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].History
 msgid ""
-"Kshatriya or Kashtriya, meaning warrior, is one of the four varnas (social "
-"orders) in Hinduism. Traditionally Kshatriya constitute the military and "
-"ruling elite of the Vedic-Hindu social system outlined by the Vedas and the "
-"Laws of Manu."
-msgstr "刹帝利或 Kashtriya,意思是战士,是四个印度教种姓(社会阶级)其中之一。传统上来说,刹帝利在印度教社会系统中构成了军队及统治阶级的精锐,在吠陀经及摩奴法典中所描述。"
+"India is the land of the elephants. Elephant warfare originated in India and"
+" continued for millennia. It was also the source of elephants for the "
+"eastern Mediterranean. Indian kings were able to field large numbers of war "
+"elephants."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid ""
@@ -1710,20 +1708,14 @@ msgid "Brihadratha Maurya"
 msgstr "巨车王"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Description
-msgid ""
-"Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
-"gain up to a 25% bonus in cost and train time of elephant units."
-msgstr "捕获5头大象，并让他们驻守在象厩内，则大象单位花费-25%，并缩短训练时间。"
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
 msgstr "给孔雀王朝印度步兵弓箭手更大的范围与更短的培训时间"
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Archery Tradition"
 msgstr "箭术传统"
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
 msgid ""
 "India was a land of archery. The bulk of any Indian army was made up of "
 "highly skilled archers, armed with bamboo longbows."

@@ -5,12 +5,13 @@
 # Translators:
 # Faraaz Madni <rocketfrost247@gmail.com>, 2018
 # Rajarshi Bandopadhyay <theocrat93@gmail.com>, 2017-2018
+# Sonu Singh <sonumayank2384@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-04-13 07:18+0000\n"
-"PO-Revision-Date: 2020-04-13 11:31+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-13 07:16+0000\n"
+"PO-Revision-Date: 2020-07-17 05:32+0000\n"
+"Last-Translator: Sonu Singh <sonumayank2384@gmail.com>\n"
 "Language-Team: Hindi (http://www.transifex.com/wildfire-games/0ad/language/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,11 +21,11 @@ msgstr ""
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
 msgid "Rigorous Training"
-msgstr ""
+msgstr "कठिन प्रशिक्षण"
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned in barracks."
-msgstr ""
+msgstr "बैरक में रहने के दौरान इकाइयाँ अनुभव प्राप्त करती हैं।"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
@@ -64,7 +65,7 @@ msgid "Exhortative Presence"
 msgstr "उपदेशात्मक उपस्थिती"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
-msgid "Soldiers +10% melee and ranged attack damage."
+msgid "Soldiers +1 armor level and +10% melee and ranged attack damage."
 msgstr ""
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
@@ -109,7 +110,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
-msgstr "\nखेती अधिलाभ"
+msgstr "खेती अधिलाभ"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "Workers +25% grain gather rate."
@@ -117,7 +118,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
-msgstr "\nचिकित्सा इलाज"
+msgstr "चिकित्सा इलाज"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
@@ -133,7 +134,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
-msgstr ""
+msgstr "दीवार सुरक्षा"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid "Garrisoned Soldiers +3 armor and +20 vision range."
@@ -141,24 +142,24 @@ msgstr ""
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraName
 msgid "Symbol of Greatness"
-msgstr ""
+msgstr "महानता का प्रतीक"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "+10 maximum population limit."
-msgstr ""
+msgstr "+10 अधिकतम जनसंख्या सीमा।"
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion"
-msgstr ""
+msgstr "गौरवशाली विस्तार"
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
 "+40 maximum population limit (requires the “Glorious Expansion” technology)."
-msgstr ""
+msgstr "+40 अधिकतम जनसंख्या सीमा (\"गौरवशाली विस्तार\" प्रौद्योगिकी की आवश्यकता है)।"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
-msgstr ""
+msgstr "कार्यशाला की मरम्मत"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
@@ -206,7 +207,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
-msgstr ""
+msgstr "हाथी आपूर्तिकर्ता"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
 msgid "Allied Elephants −20% resource costs and training time."
@@ -214,7 +215,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
-msgstr ""
+msgstr "मानकीकृत मुद्रा"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
 msgid "Allies +20% barter sell prices."
@@ -222,41 +223,41 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
-msgstr ""
+msgstr "अशोक का धार्मिक समर्थन"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
 "Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
-msgstr ""
+msgstr "मित्र मंदिर -50% संसाधन लागत और निर्माण समय; मंदिर प्रौद्योगिकी -50% संसाधन लागत और निर्माण समय।"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
-msgstr ""
+msgstr "राजसी सड़क"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Allied Land Traders +15% trade gain."
-msgstr ""
+msgstr "संबद्ध भूमि व्यापारी +15% व्यापार लाभ।"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
-msgstr ""
+msgstr "भूमध्य सागर की ब्रेडटोकरी"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "Allies +1.0 food trickle rate."
-msgstr ""
+msgstr "मित्र-राष्ट्र +1.0 खाद्य बहाव दर।"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
-msgstr ""
+msgstr "भरती"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Infantry −10% training time."
-msgstr ""
+msgstr "सम्बद्ध नागरिक इन्फैंट्री -10% प्रशिक्षण काल"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
-msgstr ""
+msgstr "सीरियाई टेट्रापोलिस"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid "Allied Civil Centers −20% resource costs."
@@ -703,7 +704,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraName
 msgid "Warrior Queen"
-msgstr ""
+msgstr "योद्धा रानी"
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraDescription
@@ -713,7 +714,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraName
 msgid "Defier of Tradition"
-msgstr ""
+msgstr "परंपरा का अवज्ञा करनेवाला"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraDescription
 msgid ""
@@ -723,7 +724,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraName
 msgid "Follower of Apedemak"
-msgstr ""
+msgstr "अपदेमक का अनुयायी"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraDescription
 msgid ""
@@ -733,7 +734,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
 msgid "Slaughter of the Faithful"
-msgstr ""
+msgstr "निष्ठावान का वध"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
 msgid "Enemy Healers −50% healing strength."
@@ -741,7 +742,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
-msgstr ""
+msgstr "कुश का उद्धारकर्ता"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraDescription
 msgid "Soldiers +10 melee and ranged attack damage, gain +50% resource loot."
@@ -749,7 +750,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraName
 msgid "Gift of Warships"
-msgstr ""
+msgstr "युद्धपोतों का उपहार"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraDescription
 msgid "Kushite Triremes −50 wood and metal cost."
@@ -757,7 +758,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
 msgid "Imperialism"
-msgstr ""
+msgstr "साम्राज्यवाद"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraDescription
 msgid "Structures +10% territory influence radius."
@@ -765,7 +766,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraName
 msgid "Conqueror"
-msgstr ""
+msgstr "विजेता"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
@@ -804,7 +805,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraName
 msgid "Buddhism"
-msgstr ""
+msgstr "बुद्ध धर्म"
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraDescription
 msgid ""
@@ -814,7 +815,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
-msgstr ""
+msgstr "अध्यापक"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
 msgid ""
@@ -824,11 +825,11 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
-msgstr ""
+msgstr "उत्थान"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraName
 msgid "Forefront Leader"
-msgstr ""
+msgstr "अग्रगण्य नेता"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
 msgid ""
@@ -837,7 +838,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
 msgid "Leadership"
-msgstr ""
+msgstr "नेतृत्व"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
 msgid ""
@@ -846,7 +847,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
-msgstr ""
+msgstr "प्रशासक"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraDescription
 msgid "Workers +15% build rate and gather speed."
@@ -854,7 +855,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot"
-msgstr ""
+msgstr "देश-भक्त"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraDescription
 msgid "Soldiers and Siege Engines −20% melee and ranged attack repeat time."
@@ -863,7 +864,7 @@ msgstr ""
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraName
 msgid "Consort"
-msgstr ""
+msgstr "सहचारी"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraDescription
 msgid "Allied Heroes +10% health."
@@ -883,50 +884,50 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Patron of Construction"
-msgstr ""
+msgstr "निर्माण का संरक्षक"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraDescription
 msgid "Workers +10% build rate."
-msgstr ""
+msgstr "श्रमिक +10% निर्माण दर।"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraName
 msgid "Mercenary Patron"
-msgstr ""
+msgstr "किराये का संरक्षक"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
 msgid "Mercenaries −35% resource costs."
-msgstr ""
+msgstr "वेतन-भोगी -35% संसाधन लागत।"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
 msgid "Sword of Rome"
-msgstr ""
+msgstr "रोम की तलवार"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
 msgid "Cavalry +15% melee and ranged attack damage."
-msgstr ""
+msgstr "घुड़सवार सेना +15% हाथापाई और हमले का नुकसान।"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
 msgid "Enemy Infantry −10% melee and ranged attack damage."
-msgstr ""
+msgstr "शत्रु पैदल सेना -10% हाथापाई और हमले का नुकसान।"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
-msgstr ""
+msgstr "रोम की ढाल"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "Humans and Structures +1 armor."
-msgstr ""
+msgstr "मनुष्य और संरचनाएँ +1 कवच।"
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
 msgid "Triumph"
-msgstr ""
+msgstr "विजय"
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraDescription
 msgid ""
 "Soldiers and Siege Engines +2 capture attack strength, +20% melee and ranged"
 " attack damage."
-msgstr ""
+msgstr "सैनिक और घेराबंदी इंजन +2 कब्जा आक्रमण शक्ति, +20% हाथापाई और हमले का नुकसान।"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
 msgid "Ilarchès"
@@ -934,15 +935,15 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraDescription
 msgid "Cavalry +2 armor."
-msgstr ""
+msgstr "घुड़सवार सेना +2 कवच।"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraName
 msgid "Renowned Conqueror"
-msgstr ""
+msgstr "विख्यात विजेता"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraDescription
 msgid "Enemy Structures, Ships, and Siege Engines -20% health."
-msgstr ""
+msgstr "शत्रु संरचनाएं, जहाजों, और घेराबंदी इंजन -20% स्वास्थ्य।"
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos"
@@ -950,21 +951,21 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraDescription
 msgid "Champion Elephants +20% melee attack damage, +20% movement speed."
-msgstr ""
+msgstr "चैंपियन हाथी +20% हाथापाई से नुकसान, +20% संचलन गति।"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
-msgstr ""
+msgstr "हेलोट सुधार"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid ""
 "Citizen Infantry Javelinists +1 armor, +25% ranged attack pierce damage."
-msgstr ""
+msgstr "नागरिकसेना बरछाधारक +1 कवच, +25% श्रेणीबद्ध हमला वेधक क्षति"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"
-msgstr ""
+msgstr "अंतिम मोरचा"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
-msgstr ""
+msgstr "शूलधारक +1 हमले और कब्जा की शक्ति, +25% हाथापाई से नुकसान"

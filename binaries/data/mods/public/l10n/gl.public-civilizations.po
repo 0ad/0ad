@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-06 07:16+0000\n"
-"PO-Revision-Date: 2020-07-06 11:24+0000\n"
+"POT-Creation-Date: 2020-07-13 07:13+0000\n"
+"PO-Revision-Date: 2020-07-13 11:34+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -202,7 +202,6 @@ msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
 msgstr "Pericles foi o político ateniense de maior influencia do século V a.C."
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[2].History
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
 #: simulation/data/civs/maur.jsonStructures[0].History
 #: simulation/data/civs/maur.jsonStructures[1].History
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].History
@@ -1155,7 +1154,6 @@ msgid ""
 msgstr "Os xogadores cuxitas reciben unha mina de metal adicional nalgún lugar do seu territorio inicial."
 
 #: simulation/data/civs/kush.jsonCivBonuses[2].Name
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Elephant Roundup"
 msgstr "Agrupamento de elefantes"
 
@@ -1613,20 +1611,20 @@ msgid ""
 msgstr "O Imperio Mauro estaba formado por ducias de reinos outrora independentes que se estendían por unha zona de 5 millóns de quilómetros cadrados, cunha poboación de preto de 60 millóns de persoas. Os líderes dos mauros tiñan o título de emperador de emperadores e comandaban un exército permanente de 600.000 unidades de infantaría, 9.000 elefantes, 8.000 carros, e 30.000 unidades de cabalaría, posibelmente o maior exército do seu tempo."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
-msgid "The Mauryas enjoy access to 4 champions."
-msgstr "Os mauros teñen acceso a 4 campións."
+msgid "Elephants −30% training time."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
-msgid "Kṣhatriya Warrior Caste."
-msgstr "Chatrías"
+msgid "Elephant Tradition"
+msgstr ""
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].History
 msgid ""
-"Kshatriya or Kashtriya, meaning warrior, is one of the four varnas (social "
-"orders) in Hinduism. Traditionally Kshatriya constitute the military and "
-"ruling elite of the Vedic-Hindu social system outlined by the Vedas and the "
-"Laws of Manu."
-msgstr "Os chatrías (“guerreiros”) eran unha das catro castas da India. Os chatrías constitúen tradicionalmente a elite político-militar do sistema social veda e hindú, rexido polos Vedas e mailas Leis de Manu."
+"India is the land of the elephants. Elephant warfare originated in India and"
+" continued for millennia. It was also the source of elephants for the "
+"eastern Mediterranean. Indian kings were able to field large numbers of war "
+"elephants."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid ""
@@ -1682,20 +1680,14 @@ msgid "Brihadratha Maurya"
 msgstr "Brihadraza Mauria"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Description
-msgid ""
-"Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
-"gain up to a 25% bonus in cost and train time of elephant units."
-msgstr "Captura ata 5 elefantes da natureza e acurrálaos nas cortes de elefantes para conseguir unha bonificación de ata o 25% no custo e no tempo de adestramento das unidades con elefante."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
 msgstr "Aumenta o alcance e reduce o tempo de adestramento dos arqueiros de infantaría mauros."
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Archery Tradition"
 msgstr "Tradición de arqueiros"
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
 msgid ""
 "India was a land of archery. The bulk of any Indian army was made up of "
 "highly skilled archers, armed with bamboo longbows."
