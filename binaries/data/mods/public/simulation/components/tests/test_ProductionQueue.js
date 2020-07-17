@@ -1,145 +1,7 @@
-Resources = {
-        "BuildSchema": (a, b) => {}
-};
-
 Engine.LoadHelperScript("Player.js");
+Engine.LoadHelperScript("Sound.js");
 Engine.LoadComponentScript("interfaces/TechnologyManager.js");
 Engine.LoadComponentScript("interfaces/ProductionQueue.js");
-Engine.LoadComponentScript("ProductionQueue.js");
-
-global.TechnologyTemplates = {
-	"Has": name => name == "phase_town_athen" || name == "phase_city_athen",
-	"Get": () => ({})
-};
-
-const productionQueueId = 6;
-const playerId = 1;
-const playerEntityID = 2;
-
-AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
-	"TemplateExists": () => true,
-	"GetTemplate": name => ({})
-});
-
-let cmpProductionQueue = ConstructComponent(productionQueueId, "ProductionQueue", {
-	"Entities": { "_string": "units/{civ}_cavalry_javelinist_b " +
-	                         "units/{civ}_infantry_swordsman_b " +
-	                         "units/{native}_support_female_citizen" },
-	"Technologies": { "_string": "gather_fishing_net " +
-	                             "phase_town_{civ} " +
-	                             "phase_city_{civ}" }
-});
-
-cmpProductionQueue.CalculateEntitiesList();
-TS_ASSERT_UNEVAL_EQUALS(cmpProductionQueue.GetEntitiesList(), []);
-
-AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
-	"GetPlayerByID": id => playerEntityID
-});
-
-AddMock(playerEntityID, IID_Player, {
-	"GetCiv": () => "iber",
-	"GetDisabledTechnologies": () => ({}),
-	"GetDisabledTemplates": () => ({}),
-	"GetPlayerID": () => playerId
-});
-
-AddMock(playerEntityID, IID_TechnologyManager, {
-	"CheckTechnologyRequirements": () => true,
-	"IsInProgress": () => false,
-	"IsTechnologyResearched": () => false
-});
-
-AddMock(productionQueueId, IID_Ownership, {
-	"GetOwner": () => playerId
-});
-
-AddMock(productionQueueId, IID_Identity, {
-	"GetCiv": () => "iber"
-});
-
-cmpProductionQueue.CalculateEntitiesList();
-TS_ASSERT_UNEVAL_EQUALS(
-	cmpProductionQueue.GetEntitiesList(),
-	["units/iber_cavalry_javelinist_b", "units/iber_infantry_swordsman_b", "units/iber_support_female_citizen"]
-);
-TS_ASSERT_UNEVAL_EQUALS(
-	cmpProductionQueue.GetTechnologiesList(),
-	["gather_fishing_net", "phase_town_generic", "phase_city_generic"]
-);
-
-AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
-	"TemplateExists": name => name == "units/iber_support_female_citizen",
-	"GetTemplate": name => ({})
-});
-
-cmpProductionQueue.CalculateEntitiesList();
-TS_ASSERT_UNEVAL_EQUALS(cmpProductionQueue.GetEntitiesList(), ["units/iber_support_female_citizen"]);
-
-AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
-	"TemplateExists": () => true,
-	"GetTemplate": name => ({})
-});
-
-AddMock(playerEntityID, IID_Player, {
-	"GetCiv": () => "iber",
-	"GetDisabledTechnologies": () => ({}),
-	"GetDisabledTemplates": () => ({ "units/athen_infantry_swordsman_b": true }),
-	"GetPlayerID": () => playerId
-});
-
-cmpProductionQueue.CalculateEntitiesList();
-TS_ASSERT_UNEVAL_EQUALS(
-	cmpProductionQueue.GetEntitiesList(),
-	["units/iber_cavalry_javelinist_b", "units/iber_infantry_swordsman_b", "units/iber_support_female_citizen"]
-);
-
-AddMock(playerEntityID, IID_Player, {
-	"GetCiv": () => "iber",
-	"GetDisabledTechnologies": () => ({}),
-	"GetDisabledTemplates": () => ({ "units/iber_infantry_swordsman_b": true }),
-	"GetPlayerID": () => playerId
-});
-
-cmpProductionQueue.CalculateEntitiesList();
-TS_ASSERT_UNEVAL_EQUALS(
-	cmpProductionQueue.GetEntitiesList(),
-	["units/iber_cavalry_javelinist_b", "units/iber_support_female_citizen"]
-);
-
-AddMock(playerEntityID, IID_Player, {
-	"GetCiv": () => "athen",
-	"GetDisabledTechnologies": () => ({ "gather_fishing_net": true }),
-	"GetDisabledTemplates": () => ({ "units/athen_infantry_swordsman_b": true }),
-	"GetPlayerID": () => playerId
-});
-
-cmpProductionQueue.CalculateEntitiesList();
-TS_ASSERT_UNEVAL_EQUALS(
-	cmpProductionQueue.GetEntitiesList(),
-	["units/athen_cavalry_javelinist_b", "units/iber_support_female_citizen"]
-);
-TS_ASSERT_UNEVAL_EQUALS(cmpProductionQueue.GetTechnologiesList(), ["phase_town_athen",
-                                                                   "phase_city_athen"]
-);
-
-AddMock(playerEntityID, IID_TechnologyManager, {
-	"CheckTechnologyRequirements": () => true,
-	"IsInProgress": () => false,
-	"IsTechnologyResearched": tech => tech == "phase_town_athen"
-});
-TS_ASSERT_UNEVAL_EQUALS(cmpProductionQueue.GetTechnologiesList(), [undefined, "phase_city_athen"]);
-
-AddMock(playerEntityID, IID_Player, {
-	"GetCiv": () => "iber",
-	"GetDisabledTechnologies": () => ({}),
-	"GetPlayerID": () => playerId
-});
-TS_ASSERT_UNEVAL_EQUALS(
-	cmpProductionQueue.GetTechnologiesList(),
-	["gather_fishing_net", "phase_town_generic", "phase_city_generic"]
-);
-
 Engine.LoadComponentScript("interfaces/BuildRestrictions.js");
 Engine.LoadComponentScript("interfaces/EntityLimits.js");
 Engine.LoadComponentScript("interfaces/Foundation.js");
@@ -148,11 +10,149 @@ Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("interfaces/TrainingRestrictions.js");
 Engine.LoadComponentScript("interfaces/Trigger.js");
 Engine.LoadComponentScript("EntityLimits.js");
+
+Engine.RegisterGlobal("Resources", {
+	"BuildSchema": (a, b) => {}
+});
+Engine.LoadComponentScript("ProductionQueue.js");
 Engine.LoadComponentScript("TrainingRestrictions.js");
-Engine.LoadHelperScript("Sound.js");
 
 Engine.RegisterGlobal("ApplyValueModificationsToEntity", (_, value) => value);
 Engine.RegisterGlobal("ApplyValueModificationsToTemplate", (_, value) => value);
+
+function testEntitiesList()
+{
+	Engine.RegisterGlobal("TechnologyTemplates", {
+		"Has": name => name == "phase_town_athen" || name == "phase_city_athen",
+		"Get": () => ({})
+	});
+
+	const productionQueueId = 6;
+	const playerId = 1;
+	const playerEntityID = 2;
+
+	AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
+		"TemplateExists": () => true,
+		"GetTemplate": name => ({})
+	});
+
+	let cmpProductionQueue = ConstructComponent(productionQueueId, "ProductionQueue", {
+		"Entities": { "_string": "units/{civ}_cavalry_javelinist_b " +
+		                         "units/{civ}_infantry_swordsman_b " +
+		                         "units/{native}_support_female_citizen" },
+		"Technologies": { "_string": "gather_fishing_net " +
+		                             "phase_town_{civ} " +
+		                             "phase_city_{civ}" }
+	});
+	cmpProductionQueue.GetUpgradedTemplate = (template) => template;
+
+	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
+		"GetPlayerByID": id => playerEntityID
+	});
+
+	AddMock(playerEntityID, IID_Player, {
+		"GetCiv": () => "iber",
+		"GetDisabledTechnologies": () => ({}),
+		"GetDisabledTemplates": () => ({}),
+		"GetPlayerID": () => playerId
+	});
+
+	AddMock(playerEntityID, IID_TechnologyManager, {
+		"CheckTechnologyRequirements": () => true,
+		"IsInProgress": () => false,
+		"IsTechnologyResearched": () => false
+	});
+
+	AddMock(productionQueueId, IID_Ownership, {
+		"GetOwner": () => playerId
+	});
+
+	AddMock(productionQueueId, IID_Identity, {
+		"GetCiv": () => "iber"
+	});
+
+	cmpProductionQueue.CalculateEntitiesMap();
+	TS_ASSERT_UNEVAL_EQUALS(
+		cmpProductionQueue.GetEntitiesList(),
+		["units/iber_cavalry_javelinist_b", "units/iber_infantry_swordsman_b", "units/iber_support_female_citizen"]
+	);
+	TS_ASSERT_UNEVAL_EQUALS(
+		cmpProductionQueue.GetTechnologiesList(),
+		["gather_fishing_net", "phase_town_generic", "phase_city_generic"]
+	);
+
+	AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
+		"TemplateExists": name => name == "units/iber_support_female_citizen",
+		"GetTemplate": name => ({})
+	});
+
+	cmpProductionQueue.CalculateEntitiesMap();
+	TS_ASSERT_UNEVAL_EQUALS(cmpProductionQueue.GetEntitiesList(), ["units/iber_support_female_citizen"]);
+
+	AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
+		"TemplateExists": () => true,
+		"GetTemplate": name => ({})
+	});
+
+	AddMock(playerEntityID, IID_Player, {
+		"GetCiv": () => "iber",
+		"GetDisabledTechnologies": () => ({}),
+		"GetDisabledTemplates": () => ({ "units/athen_infantry_swordsman_b": true }),
+		"GetPlayerID": () => playerId
+	});
+
+	cmpProductionQueue.CalculateEntitiesMap();
+	TS_ASSERT_UNEVAL_EQUALS(
+		cmpProductionQueue.GetEntitiesList(),
+		["units/iber_cavalry_javelinist_b", "units/iber_infantry_swordsman_b", "units/iber_support_female_citizen"]
+	);
+
+	AddMock(playerEntityID, IID_Player, {
+		"GetCiv": () => "iber",
+		"GetDisabledTechnologies": () => ({}),
+		"GetDisabledTemplates": () => ({ "units/iber_infantry_swordsman_b": true }),
+		"GetPlayerID": () => playerId
+	});
+
+	cmpProductionQueue.CalculateEntitiesMap();
+	TS_ASSERT_UNEVAL_EQUALS(
+		cmpProductionQueue.GetEntitiesList(),
+		["units/iber_cavalry_javelinist_b", "units/iber_support_female_citizen"]
+	);
+
+	AddMock(playerEntityID, IID_Player, {
+		"GetCiv": () => "athen",
+		"GetDisabledTechnologies": () => ({ "gather_fishing_net": true }),
+		"GetDisabledTemplates": () => ({ "units/athen_infantry_swordsman_b": true }),
+		"GetPlayerID": () => playerId
+	});
+
+	cmpProductionQueue.CalculateEntitiesMap();
+	TS_ASSERT_UNEVAL_EQUALS(
+		cmpProductionQueue.GetEntitiesList(),
+		["units/athen_cavalry_javelinist_b", "units/iber_support_female_citizen"]
+	);
+	TS_ASSERT_UNEVAL_EQUALS(cmpProductionQueue.GetTechnologiesList(), ["phase_town_athen",
+	                                                                   "phase_city_athen"]
+	);
+
+	AddMock(playerEntityID, IID_TechnologyManager, {
+		"CheckTechnologyRequirements": () => true,
+		"IsInProgress": () => false,
+		"IsTechnologyResearched": tech => tech == "phase_town_athen"
+	});
+	TS_ASSERT_UNEVAL_EQUALS(cmpProductionQueue.GetTechnologiesList(), [undefined, "phase_city_athen"]);
+
+	AddMock(playerEntityID, IID_Player, {
+		"GetCiv": () => "iber",
+		"GetDisabledTechnologies": () => ({}),
+		"GetPlayerID": () => playerId
+	});
+	TS_ASSERT_UNEVAL_EQUALS(
+		cmpProductionQueue.GetTechnologiesList(),
+		["gather_fishing_net", "phase_town_generic", "phase_city_generic"]
+	);
+}
 
 function regression_test_d1879()
 {
@@ -280,4 +280,74 @@ function regression_test_d1879()
 	TS_ASSERT_EQUALS(cmpEntLimits.GetCounts().some_limit, 6);
 }
 
+function test_token_changes()
+{
+	const ent = 10;
+	let cmpProductionQueue = ConstructComponent(10, "ProductionQueue", {
+		"Entities": { "_string": "units/{civ}_a " +
+		                         "units/{civ}_b" },
+		"Technologies": { "_string": "a " +
+		                             "b_{civ} " +
+		                             "c_{civ}" },
+		"BatchTimeModifier": 1
+	});
+	cmpProductionQueue.GetUpgradedTemplate = (template) => template;
+
+	// Merges interface of multiple components because it's enough here.
+	Engine.RegisterGlobal("QueryOwnerInterface", () => ({
+		// player
+		"GetCiv": () => "test",
+		"GetDisabledTemplates": () => [],
+		"GetDisabledTechnologies": () => [],
+		"TrySubtractResources": () => true,
+		"AddResources": () => {},
+		"GetPlayerID": () => 1,
+		// entitylimits
+		"ChangeCount": () => {},
+		// techmanager
+		"CheckTechnologyRequirements": () => true,
+		"IsTechnologyResearched": () => false,
+		"IsInProgress": () => false
+	}));
+	Engine.RegisterGlobal("QueryPlayerIDInterface", QueryOwnerInterface);
+
+	AddMock(SYSTEM_ENTITY, IID_GuiInterface, {
+		"SetSelectionDirty": () => {}
+	});
+
+	// Test Setup
+	cmpProductionQueue.CalculateEntitiesMap();
+	TS_ASSERT_UNEVAL_EQUALS(
+		cmpProductionQueue.GetEntitiesList(), ["units/test_a", "units/test_b"]
+	);
+	TS_ASSERT_UNEVAL_EQUALS(
+		cmpProductionQueue.GetTechnologiesList(), ["a", "b_generic", "c_generic"]
+	);
+	// Add a unit of each type to our queue, validate.
+	cmpProductionQueue.AddBatch("units/test_a", "unit", 1, {});
+	cmpProductionQueue.AddBatch("units/test_b", "unit", 1, {});
+	TS_ASSERT_EQUALS(cmpProductionQueue.GetQueue()[0].unitTemplate, "units/test_a");
+	TS_ASSERT_EQUALS(cmpProductionQueue.GetQueue()[1].unitTemplate, "units/test_b");
+
+	// Add a modifier that replaces unit A with unit C,
+	// adds a unit D and removes unit B from the roster.
+	Engine.RegisterGlobal("ApplyValueModificationsToEntity", (_, val) => {
+		return HandleTokens(val, "units/{civ}_a>units/{civ}_c units/{civ}_d -units/{civ}_b");
+	});
+
+	cmpProductionQueue.OnValueModification({
+		"component": "ProductionQueue",
+		"valueNames": ["ProductionQueue/Entities/_string"],
+		"entities": [ent]
+	});
+
+	TS_ASSERT_UNEVAL_EQUALS(
+		cmpProductionQueue.GetEntitiesList(), ["units/test_c", "units/test_d"]
+	);
+	TS_ASSERT_EQUALS(cmpProductionQueue.GetQueue()[0].unitTemplate, "units/test_c");
+	TS_ASSERT_EQUALS(cmpProductionQueue.GetQueue().length, 1);
+}
+
+testEntitiesList();
 regression_test_d1879();
+test_token_changes();

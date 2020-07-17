@@ -863,23 +863,12 @@ Player.prototype.AddDisabledTemplate = function(template)
 {
 	this.disabledTemplates[template] = true;
 	Engine.BroadcastMessage(MT_DisabledTemplatesChanged, {});
-	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGuiInterface.PushNotification({
-		"type": "resetselectionpannel",
-		"players": [this.GetPlayerID()]
-	});
 };
 
 Player.prototype.RemoveDisabledTemplate = function(template)
 {
 	this.disabledTemplates[template] = false;
 	Engine.BroadcastMessage(MT_DisabledTemplatesChanged, {});
-
-	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGuiInterface.PushNotification({
-		"type": "resetselectionpannel",
-		"players": [this.GetPlayerID()]
-	});
 };
 
 Player.prototype.SetDisabledTemplates = function(templates)
@@ -888,12 +877,6 @@ Player.prototype.SetDisabledTemplates = function(templates)
 	for (let template of templates)
 		this.disabledTemplates[template] = true;
 	Engine.BroadcastMessage(MT_DisabledTemplatesChanged, {});
-
-	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGuiInterface.PushNotification({
-		"type": "resetselectionpannel",
-		"players": [this.GetPlayerID()]
-	});
 };
 
 Player.prototype.GetDisabledTemplates = function()

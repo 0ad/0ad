@@ -79,6 +79,21 @@ PETRA.BuildManager.prototype.checkEvents = function(gameState, events)
 		if (ent && ent.hasClass("Unit"))
 			this.incrementBuilderCounters(civ, ent, increment);
 	}
+
+	for (let evt of events.ValueModification)
+	{
+		if (evt.component != "Builder" ||
+		        !evt.valueNames.some(val => val.startsWith("Builder/Entities/")))
+			continue;
+
+		// Unfortunately there really is not an easy way to determine the changes
+		// at this stage, so we simply have to dump the cache.
+		this.builderCounters = new Map();
+
+		let civ = gameState.getPlayerCiv();
+		for (let ent of gameState.getOwnUnits().values())
+			this.incrementBuilderCounters(civ, ent, 1);
+	}
 };
 
 
