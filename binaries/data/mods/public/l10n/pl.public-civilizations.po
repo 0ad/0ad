@@ -54,9 +54,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-06 07:16+0000\n"
-"PO-Revision-Date: 2020-07-06 20:56+0000\n"
-"Last-Translator: Bartosz Bobin <bartosz@bobin.eu>\n"
+"POT-Creation-Date: 2020-07-13 07:13+0000\n"
+"PO-Revision-Date: 2020-07-13 13:21+0000\n"
+"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -245,7 +245,6 @@ msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
 msgstr "Perykles był czołowym politykiem ateńskim w 5 wieku p.n.e."
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[2].History
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
 #: simulation/data/civs/maur.jsonStructures[0].History
 #: simulation/data/civs/maur.jsonStructures[1].History
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].History
@@ -1198,7 +1197,6 @@ msgid ""
 msgstr "Gracz kuszycki otrzymuje dodatkową kopalnię metalu gdzieś na jego terytorium."
 
 #: simulation/data/civs/kush.jsonCivBonuses[2].Name
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Elephant Roundup"
 msgstr "Przegląd słoni"
 
@@ -1656,20 +1654,20 @@ msgid ""
 msgstr "Dynastia Maurjów obejmowała dziesiątki wcześniej niezależnych królestw na obszarze pięciu milionów kilometrów kwadratowych, z populacją blisko 60 milionów ludzi. Władcy posiadali tytuł Cesarza Cesarzy i dowodzili stałą armią, na którą składało się 600 000 jednostek piechoty, 9000 słoni, 8000 rydwanów i 30 000 jednostek kawalerii, co czyniło ją prawdopodobnie największą armią tamtych czasów."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
-msgid "The Mauryas enjoy access to 4 champions."
-msgstr "Maurjowie mają dostęp do czterech czempionów."
+msgid "Elephants −30% training time."
+msgstr "Słonie szkolą się o 30% szybciej."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
-msgid "Kṣhatriya Warrior Caste."
-msgstr "Kasta wojowników Kṣhatriya."
+msgid "Elephant Tradition"
+msgstr "Tradycja słoniowa"
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].History
 msgid ""
-"Kshatriya or Kashtriya, meaning warrior, is one of the four varnas (social "
-"orders) in Hinduism. Traditionally Kshatriya constitute the military and "
-"ruling elite of the Vedic-Hindu social system outlined by the Vedas and the "
-"Laws of Manu."
-msgstr "Kshatriya lub Kshatriya, czyli wojownik, jest jednym z czterech varnów (porządków społecznych) w hinduizmie. Tradycyjnie Kshatriya stanowią wojskową i rządzącą elitę wedyjsko-hinduskiego systemu społecznego przedstawionym przez Wedy oraz U. z Manu."
+"India is the land of the elephants. Elephant warfare originated in India and"
+" continued for millennia. It was also the source of elephants for the "
+"eastern Mediterranean. Indian kings were able to field large numbers of war "
+"elephants."
+msgstr "Indie to kraina słoni, gdzie narodziło się wykorzystywanie ich w boju przez kolejne tysiąclecia. Stąd też sprowadzano słonie do krajów basenu Morza Śródziemnego. Królowie indyjscy hodowali potężne liczby słoni bojowych."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid ""
@@ -1725,20 +1723,14 @@ msgid "Brihadratha Maurya"
 msgstr "Bryhadratha Maurja"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Description
-msgid ""
-"Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
-"gain up to a 25% bonus in cost and train time of elephant units."
-msgstr "Schwytaj do 5 dzikich słoni i umieść je w stajni dla słoni aby zyskać do 25% premii w kosztach i czasie trenowania jednostek słoni."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
 msgstr "Większy zasięg i szybszy czas szkolenia mauryjskich pieszych łuczników."
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Archery Tradition"
 msgstr "Tradycja łucznicza"
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
 msgid ""
 "India was a land of archery. The bulk of any Indian army was made up of "
 "highly skilled archers, armed with bamboo longbows."

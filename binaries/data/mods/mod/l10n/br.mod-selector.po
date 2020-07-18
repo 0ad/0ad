@@ -3,17 +3,17 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
-# Goulven <goulvenbreizh@hotmail.fr>, 2018
+# Goulven, 2018
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2018
 # Thierry Vignaud <thierry.vignaud@gmail.com>, 2016-2018
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
-# Goulven <goulvenbreizh@hotmail.fr>, 2018
+# Goulven, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-02-21 08:09+0000\n"
-"PO-Revision-Date: 2020-02-21 14:00+0000\n"
-"Last-Translator: Thierry Vignaud <thierry.vignaud@gmail.com>\n"
+"POT-Creation-Date: 2020-07-13 07:19+0000\n"
+"PO-Revision-Date: 2020-07-13 13:20+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -172,40 +172,45 @@ msgstr "Derouekadur"
 msgid "Cancel"
 msgstr "Nullañ"
 
-#: gui/modio/modio.js:232
+#: gui/modio/modio.js:219
+#, javascript-format
+msgid "Invalid mod: %(error)s"
+msgstr ""
+
+#: gui/modio/modio.js:242
 msgid "Fetching and updating list of available mods."
 msgstr "Adtapout ha nevesaat listenn ar modoù hegerz."
 
-#: gui/modio/modio.js:233
+#: gui/modio/modio.js:243
 msgid "Updating"
 msgstr "Hivizadur"
 
-#: gui/modio/modio.js:235
+#: gui/modio/modio.js:245
 msgid "Cancel Update"
 msgstr "Nullañ an Hivizadur"
 
-#: gui/modio/modio.js:248
+#: gui/modio/modio.js:261
 #, javascript-format
 msgid "Downloading “%(modname)s”"
 msgstr "O pellgargañ “%(modname)s”"
 
-#: gui/modio/modio.js:251
+#: gui/modio/modio.js:264
 msgid "Downloading"
 msgstr "O pellgargañ"
 
-#: gui/modio/modio.js:253
+#: gui/modio/modio.js:266
 msgid "Cancel Download"
 msgstr "Nullañ ar Pellgargañ"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with percentage complete.
-#: gui/modio/modio.js:320
+#: gui/modio/modio.js:333
 #, javascript-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
 msgstr "%(current)s / %(total)s (%(percent)s%%)"
 
 #. Translation: Mod file download status message.
-#: gui/modio/modio.js:330
+#: gui/modio/modio.js:343
 #, javascript-format
 msgid ""
 "Time Elapsed: %(elapsed)s\n"
@@ -213,13 +218,13 @@ msgid ""
 "Average Speed: %(avgSpeed)s"
 msgstr "Pad Dremenet: %(elapsed)s\nPad Rakwelet o Chom:%(remaining)s\nKeidenn Gas: %(avgSpeed)s"
 
-#: gui/modio/modio.js:332
+#: gui/modio/modio.js:345
 msgid "∞"
 msgstr "∞"
 
 #. Translation: Average download speed, used to give the user a very rough and
 #. naive idea of the download time. For example: 123.4 KiB/s
-#: gui/modio/modio.js:334
+#: gui/modio/modio.js:347
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
 msgstr "%(number)s %(unit)s/e"
@@ -286,15 +291,19 @@ msgstr "mod.io Modoù"
 msgid "Available Mods"
 msgstr "Modoù hegerzus"
 
-#: gui/modio/modio.xml:(caption):73
+#: gui/modio/modio.xml:(caption):81
+msgid "Filter valid mods"
+msgstr ""
+
+#: gui/modio/modio.xml:(caption):87
 msgid "Back"
 msgstr "Distreiñ"
 
-#: gui/modio/modio.xml:(caption):78
+#: gui/modio/modio.xml:(caption):92
 msgid "Refresh List"
 msgstr "Freskaat al Listenn"
 
-#: gui/modio/modio.xml:(caption):83
+#: gui/modio/modio.xml:(caption):97
 msgid "Download"
 msgstr "Pellgargañ"
 

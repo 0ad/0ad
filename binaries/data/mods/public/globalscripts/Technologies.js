@@ -9,13 +9,16 @@
  * Returns modified property value modified by the applicable tech
  * modifications.
  *
- * @param currentTechModifications array of modificiations
+ * @param modifications array of modificiations
  * @param classes Array containing the class list of the template.
  * @param originalValue Number storing the original value. Can also be
- * non-numberic, but then only "replace" techs can be supported.
+ * non-numeric, but then only "replace" and "tokens" techs can be supported.
  */
 function GetTechModifiedProperty(modifications, classes, originalValue)
 {
+	if (!modifications.length)
+		return originalValue;
+
 	let multiply = 1;
 	let add = 0;
 
@@ -25,6 +28,8 @@ function GetTechModifiedProperty(modifications, classes, originalValue)
 			continue;
 		if (modification.replace !== undefined)
 			return modification.replace;
+		if (modification.tokens !== undefined)
+			return HandleTokens(originalValue, modification.tokens);
 		if (modification.multiply)
 			multiply *= modification.multiply;
 		else if (modification.add)
@@ -32,11 +37,7 @@ function GetTechModifiedProperty(modifications, classes, originalValue)
 		else
 			warn("GetTechModifiedProperty: modification format not recognised : " + uneval(modification));
 	}
-
-	// Note, some components pass non-numeric values (for which only the "replace" modification makes sense)
-	if (typeof originalValue == "number")
-		return originalValue * multiply + add;
-	return originalValue;
+	return originalValue * multiply + add;
 }
 
 /**
@@ -45,6 +46,35 @@ function GetTechModifiedProperty(modifications, classes, originalValue)
 function DoesModificationApply(modification, classes)
 {
 	return MatchesClassList(classes, modification.affects);
+}
+
+/**
+ * Returns a modified list of tokens.
+ * Supports "A>B" to replace A by B, "-A" to remove A, and the rest will add tokens.
+ */
+function HandleTokens(originalValue, modification)
+{
+	let tokens = originalValue === "" ? [] : originalValue.split(/\s+/);
+	let newTokens = modification === "" ? [] : modification.split(/\s+/);
+	for (let token of newTokens)
+	{
+		if (token.indexOf(">") !== -1)
+		{
+			let [oldToken, newToken] = token.split(">");
+			let index = tokens.indexOf(oldToken);
+			if (index !== -1)
+				tokens[index] = newToken;
+		}
+		else if (token[0] == "-")
+		{
+			let index = tokens.indexOf(token.substr(1));
+			if (index !== -1)
+				tokens.splice(index, 1);
+		}
+		else
+			tokens.push(token);
+	}
+	return tokens.join(" ");
 }
 
 /**

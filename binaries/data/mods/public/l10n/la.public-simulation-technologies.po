@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-10 07:10+0000\n"
-"PO-Revision-Date: 2020-07-12 08:25+0000\n"
+"POT-Creation-Date: 2020-07-13 07:16+0000\n"
+"PO-Revision-Date: 2020-07-16 05:30+0000\n"
 "Last-Translator: Ernestus Severus\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
@@ -17,14 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: la\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: simulation/data/technologies/advanced_unit_bonus.jsontooltip
-msgid ""
-"Units promoted to the advanced class gain a lot of quality: 10% extra "
-"health, 1 extra armor level of every type, 20% extra loot, 20% extra attack "
-"for melee units, 4m extra range and better precision for ranged units, "
-"faster Infantry movement speeds and extra heal speed and range for healers."
-msgstr "Militibus ad ordinem provectum productis haec dantur facultates: +10% valutudinem, +1 arma omnium generum, +20% praedam, qui propinque pugnant +20% detrimentum, qui telos iciunt +4m iactum et diligentius intendunt, peditibus maiorem velocitam itineris, medicis maiorem velocitam et fines sanandi."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -98,6 +90,7 @@ msgstr "Armatura Equestris"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_colonisation.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_exploration.jsonrequirementsTooltip
+#: simulation/data/technologies/kushites/monumental_architecture.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
@@ -153,7 +146,6 @@ msgstr "Armatura ferrea quae corpus equi tegit."
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_long_walls.jsonrequirementsTooltip
-#: simulation/data/technologies/kushites/monumental_architecture.jsonrequirementsTooltip
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/immortals.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_equine_transports.jsonrequirementsTooltip
@@ -474,14 +466,6 @@ msgstr "Moenia -20% tempus aedificandi, et -1 arma contra detrimentum Iciens."
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
 msgstr "Rudera"
-
-#: simulation/data/technologies/elite_unit_bonus.jsontooltip
-msgid ""
-"Units promoted to the elite class gain a lot of quality: 10% extra health, 1"
-" extra armor level of every type, 20% extra loot, 20% extra attack for melee"
-" units, 4m extra range and better precision for ranged units, faster "
-"Infantry movement speeds and extra heal speed and range for healers."
-msgstr "Militibus ad ordinem robur productis haec dantur facultates: +10% valutudinem, +1 arma omnium generum, +20% praedam, qui propinque pugnant +20% detrimentum, qui telos iciunt +4m iactum et diligentius intendunt, peditibus maiorem velocitam itineris, medicis maiorem velocitam et fines sanandi."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -907,32 +891,32 @@ msgstr "Ad Gradum Urbem progredi, qui plures milites aedificiaque recludit. Radi
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr ""
+msgstr "Eget 4 novis aedificiis Gradus Oppidi (praeter Muros et Centra Civilia)."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
 msgid "Megalópolis"
-msgstr ""
+msgstr "Megalópolis"
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology."
-msgstr ""
+msgstr "Progreditur de oppido celebre in metropolem veram, miraculis artium plenam."
 
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
 "health. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Progreditur ad Gradum Urbem, qui plures aedificia civesque recludit. Fines Centrorum Civilium iterum +50% augentur. Milites Civiles +10% valetudinem. Omnia aedificia +9 celeritatem regenerationis."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
 #: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
-msgstr ""
+msgstr "Gradus Oppidum"
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -945,7 +929,7 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr ""
+msgstr "Progreditur de vico parvo in oppidum celebre, ad rapidum augendum paratum. Hic est Gradus Oppidum Atheniense, quo velocitas metalli exercendi festinatur bono 'Bubonibus Argenteis'."
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
@@ -953,50 +937,50 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
 "health. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Progreditur ad Gradum Oppidum, qui plures aedificia civesque recludit. Fines Centrorum Civilium +30% augentur. 'Bubones Argentei' bonus velocitatem metalli exercendi +10% addit. Milites Civiles +20% valetudinem. Omnia aedificia +7 celeritatem regenerationis."
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid ""
 "Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr ""
+msgstr "Eget 5 aedificiis Gradus Vici (praeter Valla et Agros)."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
 msgid "Kōmópolis"
-msgstr ""
+msgstr "Kōmópolis"
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr ""
+msgstr "Progreditur de vico parvo in oppidum celebre, ad rapidum augendum paratum."
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
 "All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Progreditur ad Gradum Oppidum, qui plures aedificia civesque recludit. Fines Centrorum Civilium +30% augentur.  Milites Civiles +20% valetudinem. Omnia aedificia +7 celeritatem regenerationis."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
-msgstr ""
+msgstr "Gradus Vicus"
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
 "Home gardens ranged from simple fenced-in areas to large manicured and "
 "colonnaded enclosures."
-msgstr ""
+msgstr "Horti Domestici diversi erant, ab simplicibus saepitis ad porticis inclusis."
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +20% population cap bonus."
-msgstr ""
+msgstr "Domi +20% terminum numeri civium."
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
-msgstr ""
+msgstr "Hortus Domesticus"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.ptol
 #: simulation/data/technologies/pop_house_01.jsonspecificName.spart
@@ -1011,132 +995,132 @@ msgstr ""
 #: simulation/data/technologies/pop_wonder.jsonspecificName.mace
 #: simulation/data/technologies/pop_wonder.jsonspecificName.rome
 msgid "Peristyle"
-msgstr ""
+msgstr "Peristylium"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.pers
 #: simulation/data/technologies/pop_wonder.jsonspecificName.pers
 msgid "Paradise"
-msgstr ""
+msgstr "Paradisium"
 
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
 "Homes tended to expand as the wealth and population of a settlement grew."
-msgstr ""
+msgstr "Adduntur domi, cum incresceret populus."
 
 #: simulation/data/technologies/pop_house_02.jsongenericName
 msgid "Manors"
-msgstr ""
+msgstr "Praedia"
 
 #: simulation/data/technologies/pop_house_02.jsonspecificName.rome
 msgid "Insulae"
-msgstr ""
+msgstr "Insulae"
 
 #: simulation/data/technologies/pop_wonder.jsondescription
 msgid "The wonder attracts many more people to your civilization."
-msgstr ""
+msgstr "Miraculum multo plures homines ad civitatem tuam attrahit."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid ""
 "Enable Glorious Expansion. Further increase the population limit by 40 per "
 "Wonder owned."
-msgstr ""
+msgstr "Recludit Expansionem Gloriosam. Auget Terminum numeri civium +40 pro unoquoque Miraculo tuo."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
-msgstr ""
+msgstr "Expansio Gloriosa"
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege engines."
-msgstr ""
+msgstr "Increscunt arma machinarum obsidionis."
 
 #: simulation/data/technologies/siege_armor.jsontooltip
 msgid "Siege Engines +2 hack armor."
-msgstr ""
+msgstr "Machinae Obsidionis +2 arma contra detrimentum secans."
 
 #: simulation/data/technologies/siege_armor.jsongenericName
 msgid "Armor plating"
-msgstr ""
+msgstr "Lamina"
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
-msgstr ""
+msgstr "Augentur vires obsidionis."
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "Siege Engines +25% attack crush damage."
-msgstr ""
+msgstr "Machinae Obsidionis +25% detrimentum iciens."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
-msgstr ""
+msgstr "Obsidio Provecta"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy."
-msgstr ""
+msgstr "Machinae Obsidionis diligentius intendunt."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt Shooters −20% ranged attack spread."
-msgstr ""
+msgstr "Scorpiones −20% diffusionem telorum."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
-msgstr ""
+msgstr "Diligentia Fulminum"
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
 msgid "Siege engines require less metal."
-msgstr ""
+msgstr "Machinae Obsidionis pauciore metallo stant."
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
 msgid "Siege Engines −20% metal cost."
-msgstr ""
+msgstr "Machinae Obsidionis −20% pretium metalli."
 
 #: simulation/data/technologies/siege_cost_metal.jsongenericName
 msgid "Metalworker"
-msgstr ""
+msgstr "Faber"
 
 #: simulation/data/technologies/siege_cost_wood.jsondescription
 msgid "Siege engines require less wood."
-msgstr ""
+msgstr "Machinae Obsidionis pauciore ligno stant."
 
 #: simulation/data/technologies/siege_cost_wood.jsontooltip
 msgid "Siege Engines −20% wood cost."
-msgstr ""
+msgstr "Machinae Obsidionis −20% pretium ligni."
 
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
-msgstr ""
+msgstr "Doctores Tormentorum"
 
 #: simulation/data/technologies/speed_cavalry_01.jsondescription
 msgid "Breed the fastest horses."
-msgstr ""
+msgstr "Equos celerrimos alere."
 
 #: simulation/data/technologies/speed_cavalry_01.jsontooltip
 #: simulation/data/technologies/speed_cavalry_02.jsontooltip
 msgid "+10% cavalry walk speed."
-msgstr ""
+msgstr "Equites +10% velocitatem itineris."
 
 #: simulation/data/technologies/speed_cavalry_01.jsongenericName
 msgid "Cavalry Breeding"
-msgstr ""
+msgstr "Fetura Equorum"
 
 #: simulation/data/technologies/speed_cavalry_02.jsondescription
 msgid "Train your horses to move faster."
-msgstr ""
+msgstr "Dirige equos tuos ut citius moveant."
 
 #: simulation/data/technologies/speed_cavalry_02.jsongenericName
 msgid "Cavalry Speed Training"
-msgstr ""
+msgstr "Exercitatio Equestris Velocitatis"
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
-msgstr ""
+msgstr "Construe rete delatorum qui populum tuum spectent."
 
 #: simulation/data/technologies/spy_counter.jsontooltip
 msgid "Make your units 50% more expensive to bribe."
-msgstr ""
+msgstr "Fac tuos 50% pretiosiores ad corrumpendum."
 
 #: simulation/data/technologies/spy_counter.jsongenericName
 msgid "Counterintelligence"
-msgstr ""
+msgstr "Contra-Delatores"
 
 #: simulation/data/technologies/tower_armour.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
@@ -1321,6 +1305,14 @@ msgstr ""
 msgid "Naval Architects"
 msgstr ""
 
+#: simulation/data/technologies/unit_advanced.jsontooltip
+msgid ""
+"Advanced and Elite units +20% training time, +1 armour level, +10% health, "
+"+0.4 capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
+"healing strength and +3 healing range; Infantry +0.5 movement speed; Melee "
+"units +20% attack damage; Ranged units +4 attack range and −10% spread."
+msgstr ""
+
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
@@ -1331,6 +1323,14 @@ msgstr ""
 msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
+msgstr ""
+
+#: simulation/data/technologies/unit_elite.jsontooltip
+msgid ""
+"Elite units +20% training time, +1 armour level, +10% health, +0.4 capture "
+"attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
+"strength and +3 healing range; Infantry +0.5 movement speed; Melee units "
+"+20% attack damage; Ranged units +4 attack range and −10% spread."
 msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
@@ -1435,8 +1435,7 @@ msgid "Hire professional mercenaries to fight in your army."
 msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
-msgid ""
-"Mercenaries are promoted to advanced rank but require +20% training time."
+msgid "Mercenaries are promoted to Advanced rank."
 msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
@@ -1529,6 +1528,22 @@ msgstr ""
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
+msgid ""
+"India is the land of the elephants. Elephant warfare originated in India and"
+" continued for millennia. It was also the source of elephants for the "
+"eastern Mediterranean. Indian kings were able to field large numbers of war "
+"elephants."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
+msgid "Elephants −30% training time."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
+msgid "Elephant Tradition"
 msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
@@ -1647,8 +1662,7 @@ msgstr ""
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
-"+25% HP and -50% build time for Civic Centers, Temples, Pyramids and "
-"Wonders."
+"Civic Structures +20% build time, +20% health, and +20% capture points."
 msgstr ""
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName

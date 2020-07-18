@@ -14,6 +14,7 @@ AIInterface.prototype.EventNames = [
 	"AIMetadata",
 	"PlayerDefeated",
 	"EntityRenamed",
+	"ValueModification",
 	"OwnershipChanged",
 	"Garrison",
 	"UnGarrison",
@@ -251,7 +252,7 @@ AIInterface.prototype.OnTemplateModification = function(msg)
 			if (!ended)
 				continue;
 			// item now contains the template value for this.
-			let oldValue = +item;
+			let oldValue = +item == item ? +item : item;
 			let newValue = ApplyValueModificationsToTemplate(valName, oldValue, msg.player, template);
 			// Apply the same roundings as in the components
 			if (valName === "Player/MaxPopulation" || valName === "Cost/Population" ||
@@ -273,6 +274,7 @@ AIInterface.prototype.OnTemplateModification = function(msg)
 
 AIInterface.prototype.OnGlobalValueModification = function(msg)
 {
+	this.events.ValueModification.push(msg);
 	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	for (let ent of msg.entities)
 	{
@@ -299,7 +301,7 @@ AIInterface.prototype.OnGlobalValueModification = function(msg)
 			if (!ended)
 				continue;
 			// "item" now contains the unmodified template value for this.
-			let oldValue = +item;
+			let oldValue = +item == item ? +item : item;
 			let newValue = ApplyValueModificationsToEntity(valName, oldValue, ent);
 			// Apply the same roundings as in the components
 			if (valName === "Player/MaxPopulation" || valName === "Cost/Population" ||

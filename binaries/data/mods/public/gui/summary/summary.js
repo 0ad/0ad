@@ -137,11 +137,14 @@ function initSummaryData(data)
 	g_GameData = data;
 	g_ScorePanelsData = getScorePanelsData();
 
+	let teamCharts = false;
 	if (data && data.gui && data.gui.summarySelection)
 	{
 		g_TabCategorySelected = data.gui.summarySelection.panel;
 		g_SelectedChart = data.gui.summarySelection.charts;
+		teamCharts = data.gui.summarySelection.teamCharts;
 	}
+	Engine.GetGUIObjectByName("toggleTeamBox").checked = g_Teams && teamCharts;
 
 	initTeamData();
 	calculateTeamCounterDataHelper();
@@ -184,13 +187,24 @@ function selectPanelGUI(panel)
 		[0, 1].forEach(updateCategoryDropdown);
 }
 
-function initGUICharts()
+function constructPlayersWithColor(color, playerListing)
 {
-	let player_colors = [];
+	return sprintf(translateWithContext("Player listing with color indicator",
+		"%(colorIndicator)s %(playerListing)s"),
+	{
+		"colorIndicator": setStringTags(translateWithContext(
+			"Charts player color indicator", "■"), { "color": color }),
+		"playerListing": playerListing
+	});
+}
+
+function updateChartColorAndLegend()
+{
+	let playerColors = [];
 	for (let i = 1; i <= g_PlayerCount; ++i)
 	{
 		let playerState = g_GameData.sim.playerStates[i];
-		player_colors.push(
+		playerColors.push(
 			Math.floor(playerState.color.r * 255) + " " +
 			Math.floor(playerState.color.g * 255) + " " +
 			Math.floor(playerState.color.b * 255)
@@ -198,13 +212,26 @@ function initGUICharts()
 	}
 
 	for (let i = 0; i < 2; ++i)
-		Engine.GetGUIObjectByName("chart[" + i + "]").series_color = player_colors;
+		Engine.GetGUIObjectByName("chart[" + i + "]").series_color =
+			Engine.GetGUIObjectByName("toggleTeamBox").checked ?
+				g_Teams.filter(el => el !== null).map(players => playerColors[players[0] - 1]) :
+				playerColors;
 
 	let chartLegend = Engine.GetGUIObjectByName("chartLegend");
-	chartLegend.caption = g_GameData.sim.playerStates.slice(1).map(
-		(state, index) => coloredText("■", player_colors[index]) + " " + state.name
+	chartLegend.caption = (Engine.GetGUIObjectByName("toggleTeamBox").checked ?
+		g_Teams.filter(el => el !== null).map(players =>
+			constructPlayersWithColor(playerColors[players[0] - 1],	players.map(player =>
+				g_GameData.sim.playerStates[player].name
+			).join(translateWithContext("Player listing", ", ")))
+		) :
+		g_GameData.sim.playerStates.slice(1).map((state, index) =>
+			constructPlayersWithColor(playerColors[index], state.name))
 	).join("   ");
+}
 
+function initGUICharts()
+{
+	updateChartColorAndLegend();
 	let chart1Part = Engine.GetGUIObjectByName("chart[1]Part");
 	let chart1PartSize = chart1Part.size;
 	chart1PartSize.rright += 50;
@@ -212,6 +239,7 @@ function initGUICharts()
 	chart1PartSize.right -= 5;
 	chart1PartSize.left -= 5;
 	chart1Part.size = chart1PartSize;
+	Engine.GetGUIObjectByName("toggleTeam").hidden = !g_Teams;
 }
 
 function resizeDropdown(dropdown)
@@ -301,20 +329,37 @@ function updateChart(number, category, item, itemNumber, type)
 	let chart = Engine.GetGUIObjectByName("chart[" + number + "]");
 	chart.format_y = g_ScorePanelsData[category].headings[itemNumber + 1].format || "INTEGER";
 	Engine.GetGUIObjectByName("chart[" + number + "]XAxisLabel").caption = translate("Time elapsed");
+
 	let series = [];
-	for (let j = 1; j <= g_PlayerCount; ++j)
-	{
-		let playerState = g_GameData.sim.playerStates[j];
-		let data = [];
-		for (let index in playerState.sequences.time)
+	if (Engine.GetGUIObjectByName("toggleTeamBox").checked)
+		for (let team in g_Teams)
 		{
-			let value = g_ScorePanelsData[category].counters[itemNumber].fn(playerState, index, item);
-			if (type)
-				value = value[type];
-			data.push([playerState.sequences.time[index], value]);
+			let data = [];
+			for (let index in g_GameData.sim.playerStates[1].sequences.time)
+			{
+				let value = g_ScorePanelsData[category].teamCounterFn(team, index, item,
+					g_ScorePanelsData[category].counters, g_ScorePanelsData[category].headings);
+				if (type)
+					value = value[type];
+				data.push([g_GameData.sim.playerStates[1].sequences.time[index], value]);
+			}
+			series.push(data);
 		}
-		series.push(data);
-	}
+	else
+		for (let j = 1; j <= g_PlayerCount; ++j)
+		{
+			let playerState = g_GameData.sim.playerStates[j];
+			let data = [];
+			for (let index in playerState.sequences.time)
+			{
+				let value = g_ScorePanelsData[category].counters[itemNumber].fn(playerState, index, item);
+				if (type)
+					value = value[type];
+				data.push([playerState.sequences.time[index], value]);
+			}
+			series.push(data);
+		}
+
 	chart.series = series;
 }
 
@@ -403,7 +448,8 @@ function continueButton()
 {
 	let summarySelection = {
 		"panel": g_TabCategorySelected,
-		"charts": g_SelectedChart
+		"charts": g_SelectedChart,
+		"teamCharts": Engine.GetGUIObjectByName("toggleTeamBox").checked
 	};
 	if (g_GameData.gui.isInGame)
 		Engine.PopGuiPage({

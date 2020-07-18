@@ -45,3 +45,29 @@ Reporting problems
 
 Bugs should be reported on Trac. For information on reporting problems
 and finding logs, see http://trac.wildfiregames.com/wiki/ReportingErrors
+
+
+------------------
+ Contributing Code
+------------------
+
+If you want to help out programming for the game, have a look at
+https://trac.wildfiregames.com/wiki/GettingStartedProgrammers
+or contact us on #0ad-dev on irc.quakenet.org
+
+
+--------------------
+Contributing Artwork
+--------------------
+
+If you want to make artwork for the game, have a look at
+https://trac.wildfiregames.com/#Forartists:
+or visit the forums http://www.wildfiregames.com/forum
+
+
+-----------
+Translating
+-----------
+
+You can help translating the game at https://www.transifex.com/projects/p/0ad
+for more information, see https://trac.wildfiregames.com/wiki/Localization

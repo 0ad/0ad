@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-06 07:16+0000\n"
-"PO-Revision-Date: 2020-07-08 03:09+0000\n"
+"POT-Creation-Date: 2020-07-13 07:13+0000\n"
+"PO-Revision-Date: 2020-07-14 04:34+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -199,7 +199,6 @@ msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
 msgstr "Pericles foi'l políticu más destacáu de l'Atenes del sieglu V a.C."
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[2].History
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
 #: simulation/data/civs/maur.jsonStructures[0].History
 #: simulation/data/civs/maur.jsonStructures[1].History
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].History
@@ -1152,7 +1151,6 @@ msgid ""
 msgstr "Los cuxinos reciben otra xaceda de Metal ayuri per onde entamen."
 
 #: simulation/data/civs/kush.jsonCivBonuses[2].Name
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Elephant Roundup"
 msgstr "Adomu del elefante"
 
@@ -1610,20 +1608,20 @@ msgid ""
 msgstr "L'imperiu maurián gobernaba docenes de reinos conquistaos, abarcaba un área de 5 millones de quilómetros cuadraos y ablugaba una población d'aproximao 60 millones de persones. Los soberanos maurianos ostentaben el títulu d'emperador d'emperadores ya mandaben un exércitu de 600.000 soldaos d'a pie, 9.000 elefantes, 8.000 carros ya 30.000 xinetes—al meyor, el más grande de la dómina."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
-msgid "The Mauryas enjoy access to 4 champions."
-msgstr "Los mauria cunten con 4 campeones."
+msgid "Elephants −30% training time."
+msgstr "Elefantes: mueres d'allistamientu −30%."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
-msgid "Kṣhatriya Warrior Caste."
-msgstr "Castra del xatría."
+msgid "Elephant Tradition"
+msgstr "Tradición elefantina"
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].History
 msgid ""
-"Kshatriya or Kashtriya, meaning warrior, is one of the four varnas (social "
-"orders) in Hinduism. Traditionally Kshatriya constitute the military and "
-"ruling elite of the Vedic-Hindu social system outlined by the Vedas and the "
-"Laws of Manu."
-msgstr "El xatría o kṣatriya, guerreru, ye ún de los cuatro órdenes sociales del hinduismu. Conforme los Veda ya lleis de Manu, componíalu la élite militar ya gobernadora."
+"India is the land of the elephants. Elephant warfare originated in India and"
+" continued for millennia. It was also the source of elephants for the "
+"eastern Mediterranean. Indian kings were able to field large numbers of war "
+"elephants."
+msgstr "La India ye tierra d'elefantes. Foi'l primer país n'emplegalos en combate, costume que siguió demientres milenios. Tamién fornía d'elefantes al Mediterraneu oriental. Los sos reis yeren quien a desplegar abondos elefantes na guerra."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid ""
@@ -1679,20 +1677,14 @@ msgid "Brihadratha Maurya"
 msgstr "Brihadratha Maurya"
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Description
-msgid ""
-"Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
-"gain up to a 25% bonus in cost and train time of elephant units."
-msgstr "Prinda fasta 5 elefantes de la Gaia ya métilos na corte del elefante p'amenorgar un 25% los costos ya mueres d'allistamientu."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
 msgstr "Los arqueros d'a pie mauria allístense más rápido y algamen más distancia."
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Archery Tradition"
 msgstr "Tradición arquera"
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
 msgid ""
 "India was a land of archery. The bulk of any Indian army was made up of "
 "highly skilled archers, armed with bamboo longbows."

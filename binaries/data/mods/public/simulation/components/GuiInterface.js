@@ -35,6 +35,7 @@ GuiInterface.prototype.Init = function()
 	this.entsWithAuraAndStatusBars = new Set();
 	this.enabledVisualRangeOverlayTypes = {};
 	this.templateModified = {};
+	this.selectionDirty = {};
 	this.obstructionSnap = new ObstructionSnap();
 };
 
@@ -659,6 +660,7 @@ GuiInterface.prototype.GetNeededResources = function(player, data)
 GuiInterface.prototype.OnTemplateModification = function(msg)
 {
 	this.templateModified[msg.player] = true;
+	this.selectionDirty[msg.player] = true;
 };
 
 GuiInterface.prototype.IsTemplateModified = function(player)
@@ -669,6 +671,35 @@ GuiInterface.prototype.IsTemplateModified = function(player)
 GuiInterface.prototype.ResetTemplateModified = function()
 {
 	this.templateModified = {};
+};
+
+/**
+ * Some changes may require an update to the selection panel,
+ * which is cached for efficiency. Inform the GUI it needs reloading.
+ */
+GuiInterface.prototype.OnDisabledTemplatesChanged = function(msg)
+{
+	this.selectionDirty[msg.player] = true;
+};
+
+GuiInterface.prototype.OnDisabledTechnologiesChanged = function(msg)
+{
+	this.selectionDirty[msg.player] = true;
+};
+
+GuiInterface.prototype.SetSelectionDirty = function(player)
+{
+	this.selectionDirty[player] = true;
+};
+
+GuiInterface.prototype.IsSelectionDirty = function(player)
+{
+	return this.selectionDirty[player] || false;
+};
+
+GuiInterface.prototype.ResetSelectionDirty = function()
+{
+	this.selectionDirty = {};
 };
 
 /**
@@ -1991,7 +2022,9 @@ let exposedFunctions = {
 	"GetTraderNumber": 1,
 	"GetTradingGoods": 1,
 	"IsTemplateModified": 1,
-	"ResetTemplateModified": 1
+	"ResetTemplateModified": 1,
+	"IsSelectionDirty": 1,
+	"ResetSelectionDirty": 1
 };
 
 GuiInterface.prototype.ScriptCall = function(player, name, args)

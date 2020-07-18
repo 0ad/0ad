@@ -620,6 +620,13 @@ function onSimulationUpdate()
 	}
 	g_SimState = undefined;
 
+	// Some changes may require re-rendering the selection.
+	if (Engine.GuiInterfaceCall("IsSelectionDirty"))
+	{
+		g_Selection.onChange();
+		Engine.GuiInterfaceCall("ResetSelectionDirty");
+	}
+
 	if (!GetSimState())
 		return;
 

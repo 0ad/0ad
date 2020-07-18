@@ -15,8 +15,7 @@ m.Template = m.Class({
 		this._tpCache = new Map();
 	},
 
-	// helper function to return a template value, optionally adjusting for tech.
-	// TODO: there's no support for "_string" values here.
+	// Helper function to return a template value, adjusting for tech.
 	"get": function(string)
 	{
 		let value = this._template;

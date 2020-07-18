@@ -347,7 +347,8 @@ var g_UnitActions =
 		"preSelectedActionCheck": function(target, selection)
 		{
 			let state = GetEntityState(selection[0]);
-			if (state && state.builder && target.constructor.name == "PlacementSupport")
+			if (state && state.builder &&
+			        target && target.constructor && target.constructor.name == "PlacementSupport")
 				return { "type": "construct" };
 			return false;
 		},
