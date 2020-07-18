@@ -1175,7 +1175,8 @@ function setup_atlas_projects()
 	{	-- include
 		"..",
 		"CustomControls",
-		"Misc"
+		"Misc",
+		"../../../third_party/jsonspirit"
 	},
 	atlas_extern_libs,
 	{	-- extra_params
