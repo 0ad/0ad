@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,12 +20,13 @@
 #include "Map.h"
 
 #include "AtlasObject/AtlasObject.h"
+#include "AtlasObject/JSONSpiritInclude.h"
 #include "GameInterface/Messages.h"
 #include "ScenarioEditor/ScenarioEditor.h"
 #include "ScenarioEditor/Tools/Common/Tools.h"
 
-#include "wx/busyinfo.h"
-#include "wx/filename.h"
+#include <wx/busyinfo.h>
+#include <wx/filename.h>
 
 #define CREATE_CHECKBOX(window, parentSizer, name, description, ID) \
 	parentSizer->Add(new wxStaticText(window, wxID_ANY, _(name)), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT)); \
@@ -43,12 +44,6 @@ enum
 	ID_MapKW_Naval,
 	ID_MapKW_New,
 	ID_MapKW_Trigger,
-	ID_VC_Conquest,
-	ID_VC_ConquestUnits,
-	ID_VC_ConquestStructures,
-	ID_VC_CaptureTheRelic,
-	ID_VC_Wonder,
-	ID_VC_Regicide,
 	ID_RandomScript,
 	ID_RandomSize,
 	ID_RandomNomad,
@@ -105,15 +100,15 @@ public:
 	AtObj UpdateSettingsObject();
 private:
 	void SendToEngine();
-	void OnConquestChanged();
+	void OnVictoryConditionChanged(long controlId);
 
 	void OnEdit(wxCommandEvent& evt)
 	{
+		OnVictoryConditionChanged(evt.GetId());
 		SendToEngine();
-		if (evt.GetId() == ID_VC_Conquest)
-			OnConquestChanged();
 	}
 
+	std::map<long, AtObj> m_VictoryConditions;
 	std::set<std::string> m_MapSettingsKeywords;
 	std::set<std::string> m_MapSettingsVictoryConditions;
 	std::vector<wxChoice*> m_PlayerCivChoices;
@@ -171,16 +166,23 @@ void MapSettingsControl::CreateWidgets()
 
 	sizer->AddSpacer(5);
 
-	// TODO: replace by names in binaries/data/mods/public/simulation/data/settings/victory_conditions/
 	wxStaticBoxSizer* victoryConditionSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Victory Conditions"));
 	wxFlexGridSizer* vcGridSizer = new wxFlexGridSizer(2, 0, 5);
 	vcGridSizer->AddGrowableCol(1);
-	CREATE_CHECKBOX(this, vcGridSizer, "Conquest", "Select Conquest victory condition", ID_VC_Conquest);
-	CREATE_CHECKBOX(this, vcGridSizer, "Conquest Units", "Select Conquest Units victory condition", ID_VC_ConquestUnits);
-	CREATE_CHECKBOX(this, vcGridSizer, "Conquest Structures", "Select Conquest Structures victory condition", ID_VC_ConquestStructures);
-	CREATE_CHECKBOX(this, vcGridSizer, "Capture the Relic", "Select Capture the Relic victory condition", ID_VC_CaptureTheRelic);
-	CREATE_CHECKBOX(this, vcGridSizer, "Wonder", "Select Wonder victory condition", ID_VC_Wonder);
-	CREATE_CHECKBOX(this, vcGridSizer, "Regicide", "Select Regicide victory condition", ID_VC_Regicide);
+
+	AtlasMessage::qGetVictoryConditionData qryVictoryCondition;
+	qryVictoryCondition.Post();
+	std::vector<std::string> victoryConditionData = *qryVictoryCondition.data;
+
+	for (const std::string& victoryConditionJson : victoryConditionData)
+	{
+		AtObj victoryCondition = AtlasObject::LoadFromJSON(victoryConditionJson);
+		long index = wxWindow::NewControlId();
+		wxString title = wxString::FromUTF8(victoryCondition["Data"]["Title"]);
+		m_VictoryConditions.insert(std::pair<long, AtObj>(index, victoryCondition));
+		CREATE_CHECKBOX(this, vcGridSizer, title.MakeLower(), "Select " + wxString::FromUTF8(victoryCondition["Data"]["Title"]) + " victory condition.", index);
+	}
+
 	victoryConditionSizer->Add(vcGridSizer);
 	sizer->Add(victoryConditionSizer, wxSizerFlags().Expand());
 
@@ -224,19 +226,29 @@ void MapSettingsControl::ReadFromEngine()
 	for (AtIter victoryCondition = m_MapSettings["VictoryConditions"]["item"]; victoryCondition.defined(); ++victoryCondition)
 		m_MapSettingsVictoryConditions.insert(std::string(victoryCondition));
 
-	wxWindow* window;
-#define INIT_CHECKBOX(ID, mapSettings, value) \
-	window = FindWindow(ID); \
-	if (window != nullptr) \
-		wxDynamicCast(window, wxCheckBox)->SetValue(mapSettings.count(value) != 0);
+	// Clear Checkboxes before loading data. We don't update victory condition just yet because it might reenable some of the checkboxes.
+	for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
+	{
+		wxCheckBox* checkBox = wxDynamicCast(FindWindow(vc.first), wxCheckBox);
+		if (!checkBox)
+			continue;
 
-	INIT_CHECKBOX(ID_VC_Conquest, m_MapSettingsVictoryConditions, "conquest");
-	INIT_CHECKBOX(ID_VC_ConquestUnits, m_MapSettingsVictoryConditions, "conquest_units");
-	INIT_CHECKBOX(ID_VC_ConquestStructures, m_MapSettingsVictoryConditions, "conquest_structures");
-	INIT_CHECKBOX(ID_VC_CaptureTheRelic, m_MapSettingsVictoryConditions, "capture_the_relic");
-	INIT_CHECKBOX(ID_VC_Wonder, m_MapSettingsVictoryConditions, "wonder");
-	INIT_CHECKBOX(ID_VC_Regicide, m_MapSettingsVictoryConditions, "regicide");
-	OnConquestChanged();
+		checkBox->SetValue(false);
+		checkBox->Enable(true);
+	}
+
+	for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
+	{
+		if (m_MapSettingsVictoryConditions.count(wxString::FromUTF8(vc.second["Data"]["Title"]).Lower().ToStdString()) == 0)
+			continue;
+
+		wxCheckBox* checkBox = wxDynamicCast(FindWindow(vc.first), wxCheckBox);
+		if (!checkBox)
+			continue;
+
+		checkBox->SetValue(true);
+		OnVictoryConditionChanged(vc.first);
+	}
 
 	// lock teams
 	wxDynamicCast(FindWindow(ID_MapTeams), wxCheckBox)->SetValue(wxString::FromUTF8(m_MapSettings["LockTeams"]) == "true");
@@ -246,14 +258,17 @@ void MapSettingsControl::ReadFromEngine()
 		m_MapSettingsKeywords.clear();
 		for (AtIter keyword = m_MapSettings["Keywords"]["item"]; keyword.defined(); ++keyword)
 			m_MapSettingsKeywords.insert(std::string(keyword));
-
+		wxWindow* window;
+		#define INIT_CHECKBOX(ID, mapSettings, value) \
+			window = FindWindow(ID); \
+			if (window != nullptr) \
+				wxDynamicCast(window, wxCheckBox)->SetValue(mapSettings.count(value) != 0);
 		INIT_CHECKBOX(ID_MapKW_Demo, m_MapSettingsKeywords, "demo");
 		INIT_CHECKBOX(ID_MapKW_Naval, m_MapSettingsKeywords, "naval");
 		INIT_CHECKBOX(ID_MapKW_New, m_MapSettingsKeywords, "new");
 		INIT_CHECKBOX(ID_MapKW_Trigger, m_MapSettingsKeywords, "trigger");
+		#undef INIT_CHECKBOX
 	}
-
-#undef INIT_CHECKBOX
 }
 
 void MapSettingsControl::SetMapSettings(const AtObj& obj)
@@ -264,19 +279,59 @@ void MapSettingsControl::SetMapSettings(const AtObj& obj)
 	SendToEngine();
 }
 
-// TODO Use the json data for this
-void MapSettingsControl::OnConquestChanged()
+void MapSettingsControl::OnVictoryConditionChanged(long controlId)
 {
-	bool conqestEnabled = wxDynamicCast(FindWindow(ID_VC_Conquest), wxCheckBox)->GetValue();
+	AtObj victoryCondition;
 
-	wxCheckBox* conquestUnitsCheckbox = wxDynamicCast(FindWindow(ID_VC_ConquestUnits), wxCheckBox);
-	conquestUnitsCheckbox->Enable(!conqestEnabled);
-	wxCheckBox* conquestStructuresCheckbox = wxDynamicCast(FindWindow(ID_VC_ConquestStructures), wxCheckBox);
-	conquestStructuresCheckbox->Enable(!conqestEnabled);
-	if (conqestEnabled)
+	for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
 	{
-		conquestUnitsCheckbox->SetValue(false);
-		conquestStructuresCheckbox->SetValue(false);
+		if(vc.first != controlId)
+			continue;
+
+	 	victoryCondition = vc.second;
+		break;
+	}
+
+	// ChangeOnChecked and DisabledWhenChecked use file names instead of victory titles so we have to convert them.
+
+	for (AtIter victoryConditionPair = victoryCondition["Data"]["ChangeOnChecked"]; victoryConditionPair.defined(); ++victoryConditionPair)
+	{
+		for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
+		{
+			std::string escapedTitle = wxString::FromUTF8(vc.second["Data"]["Title"]).Lower().ToStdString();
+			for (std::string::iterator it = escapedTitle.begin(); it != escapedTitle.end(); ++it) {
+				if (*it == ' ')
+					*it = '_';
+			}
+
+			if (victoryConditionPair[escapedTitle.c_str()].defined())
+			{
+				wxCheckBox* victoryConditionCheckBox = wxDynamicCast(FindWindow(vc.first), wxCheckBox);
+				victoryConditionCheckBox->SetValue(wxString::FromUTF8(victoryConditionPair[escapedTitle.c_str()]).Lower().ToStdString() == "true");
+				break;
+			}
+		}
+	}
+
+	bool controlEnabled = wxDynamicCast(FindWindow(controlId), wxCheckBox)->GetValue();
+	for (AtIter victoryConditionTitle = victoryCondition["Data"]["DisabledWhenChecked"]; victoryConditionTitle.defined(); ++victoryConditionTitle)
+	{
+		for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
+		{
+			std::string escapedTitle = wxString::FromUTF8(vc.second["Data"]["Title"]).Lower().ToStdString();
+			for (std::string::iterator it = escapedTitle.begin(); it != escapedTitle.end(); ++it) {
+				if (*it == ' ')
+					*it = '_';
+			}
+
+			if (escapedTitle == wxString::FromUTF8(victoryConditionTitle["item"]).ToStdString())
+			{
+				wxCheckBox* victoryConditionCheckBox = wxDynamicCast(FindWindow(vc.first), wxCheckBox);
+				victoryConditionCheckBox->Enable(!controlEnabled);
+				victoryConditionCheckBox->SetValue(!controlEnabled);
+				break;
+			}
+		}
 	}
 }
 
@@ -301,12 +356,8 @@ AtObj MapSettingsControl::UpdateSettingsObject()
 	else \
 		m_MapSettingsVictoryConditions.erase(name);
 
-	INSERT_VICTORY_CONDITION_CHECKBOX("conquest", ID_VC_Conquest);
-	INSERT_VICTORY_CONDITION_CHECKBOX("conquest_units", ID_VC_ConquestUnits);
-	INSERT_VICTORY_CONDITION_CHECKBOX("conquest_structures", ID_VC_ConquestStructures);
-	INSERT_VICTORY_CONDITION_CHECKBOX("capture_the_relic", ID_VC_CaptureTheRelic);
-	INSERT_VICTORY_CONDITION_CHECKBOX("wonder", ID_VC_Wonder);
-	INSERT_VICTORY_CONDITION_CHECKBOX("regicide", ID_VC_Regicide);
+	for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
+		INSERT_VICTORY_CONDITION_CHECKBOX(wxString::FromUTF8(vc.second["Data"]["Title"]).Lower().ToStdString(), vc.first)
 
 #undef INSERT_VICTORY_CONDITION_CHECKBOX
 

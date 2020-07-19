@@ -369,4 +369,9 @@ QUERYHANDLER(GetMapList)
 #undef GET_FILE_LIST
 }
 
+QUERYHANDLER(GetVictoryConditionData)
+{
+	msg->data = g_Game->GetSimulation2()->GetVictoryConditiondData();
+}
+
 }
