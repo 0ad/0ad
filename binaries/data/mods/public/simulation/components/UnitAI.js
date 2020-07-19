@@ -1370,10 +1370,11 @@ UnitAI.prototype.UnitFsmSpec = {
 				// Don't use the logic from unitMotion, as SetInPosition
 				// has already given us a custom rotation
 				// (or we failed to move and thus don't care.)
+				let facePointAfterMove = this.GetFacePointAfterMove();
 				this.SetFacePointAfterMove(false);
 				this.StopMoving();
-				// Reset default behaviour (TODO: actually get the previuos behaviour).
-				this.SetFacePointAfterMove(true);
+				// Reset previous behaviour.
+				this.SetFacePointAfterMove(facePointAfterMove);
 			},
 
 			// Occurs when the unit has reached its destination and the controller
@@ -6334,6 +6335,12 @@ UnitAI.prototype.SetFacePointAfterMove = function(val)
 	if (cmpMotion)
 		cmpMotion.SetFacePointAfterMove(val);
 };
+
+UnitAI.prototype.GetFacePointAfterMove = function()
+{
+	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion && cmpUnitMotion.GetFacePointAfterMove();
+}
 
 UnitAI.prototype.AttackEntitiesByPreference = function(ents)
 {

@@ -414,6 +414,11 @@ public:
 		m_FacePointAfterMove = facePointAfterMove;
 	}
 
+	virtual bool GetFacePointAfterMove() const
+	{
+		return m_FacePointAfterMove;
+	}
+
 	virtual void SetDebugOverlay(bool enabled)
 	{
 		m_DebugOverlayEnabled = enabled;
