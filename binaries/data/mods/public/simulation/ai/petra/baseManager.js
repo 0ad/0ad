@@ -801,7 +801,7 @@ PETRA.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		    target.getMetadata(PlayerID, "phaseUp") == true)
 			targetNB = 7;
 		else if (target.hasClass("Barracks") || target.hasClass("Range") || target.hasClass("Stable") ||
-		         target.hasClass("DefenseTower") || target.hasClass("Market"))
+		         target.hasClass("Tower") || target.hasClass("Market"))
 			targetNB = 4;
 		else if (target.hasClass("House") || target.hasClass("DropsiteWood"))
 			targetNB = 3;

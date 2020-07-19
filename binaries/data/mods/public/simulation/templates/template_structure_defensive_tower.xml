@@ -31,9 +31,9 @@
     <GarrisonArrowClasses>Infantry</GarrisonArrowClasses>
   </BuildingAI>
   <BuildRestrictions>
-    <Category>DefenseTower</Category>
+    <Category>Tower</Category>
     <Distance>
-      <FromClass>DefenseTower</FromClass>
+      <FromClass>Tower</FromClass>
       <MinDistance>60</MinDistance>
     </Distance>
   </BuildRestrictions>
@@ -49,11 +49,8 @@
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_2x2</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Classes datatype="tokens">Tower</Classes>
+    <VisibleClasses datatype="tokens">Tower</VisibleClasses>
   </Identity>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <constructed>interface/complete/building/complete_tower.xml</constructed>

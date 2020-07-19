@@ -6,11 +6,11 @@
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "arrow.png",
 	"researchTime": 40,
-	"tooltip": "Increases defensive towers' maximum range by 8 meters.",
+	"tooltip": "Sentry and Stone Towers +8 attack range.",
 	"modifications": [
 		{ "value": "Attack/Ranged/MaxRange", "add": 8 },
 		{ "value": "Vision/Range","add": 8 }
 	],
-	"affects": ["DefenseTower"],
+	"affects": ["SentryTower", "StoneTower"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

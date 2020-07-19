@@ -475,7 +475,7 @@ PETRA.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 				continue;
 			let enemyDefense = 0;
 			for (let ent of gameState.getEnemyStructures(i).values())
-				if (ent.hasClass("Tower") || ent.hasClass("Fortress"))
+				if (ent.hasClass("Tower") || ent.hasClass("WallTower") || ent.hasClass("Fortress"))
 					enemyDefense++;
 			if (enemyDefense > 6)
 				veto[i] = true;

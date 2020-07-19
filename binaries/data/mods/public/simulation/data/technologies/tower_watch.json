@@ -14,10 +14,10 @@
 	"requirementsTooltip": "Unlocked in Village Phase.",
 	"icon": "helmet_corinthian_bronze.png",
 	"researchTime": 40,
-	"tooltip": "Post sentries to add one arrow to defensive towers.",
+	"tooltip": "Sentry and Stone Towers +1 default arrow count.",
 	"modifications": [
 		{ "value": "BuildingAI/DefaultArrowCount", "add": 1 }
 	],
-	"affects": ["DefenseTower"],
+	"affects": ["SentryTower", "StoneTower"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

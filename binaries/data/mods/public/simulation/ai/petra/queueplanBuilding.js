@@ -152,7 +152,7 @@ PETRA.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			}
 			return false;
 		}
-		else if (template.hasClass("DefenseTower") || template.hasClass("Fortress") || template.hasClass("ArmyCamp"))
+		else if (template.hasClass("Tower") || template.hasClass("Fortress") || template.hasClass("ArmyCamp"))
 		{
 			let pos = HQ.findDefensiveLocation(gameState, template);
 			if (pos)

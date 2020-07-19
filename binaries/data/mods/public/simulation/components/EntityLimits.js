@@ -4,12 +4,12 @@ EntityLimits.prototype.Schema =
 	"<a:help>Specifies per category limits on number of entities (buildings or units) that can be created for each player</a:help>" +
 	"<a:example>" +
 		"<Limits>" +
-			"<DefenseTower>25</DefenseTower>" +
-			"<Fortress>10</Fortress>" +
-			"<Wonder>1</Wonder>" +
-			"<Hero>1</Hero>" +
 			"<Apadana>1</Apadana>" +
+			"<Fortress>10</Fortress>" +
+			"<Hero>1</Hero>" +
 			"<Monument>5</Monument>" +
+			"<Tower>25</Tower>" +
+			"<Wonder>1</Wonder>" +
 		"</Limits>" +
 		"<LimitChangers>" +
 			"<Monument>" +

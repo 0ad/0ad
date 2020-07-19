@@ -53,8 +53,8 @@
   <Identity>
     <GenericName>Wall Turret</GenericName>
     <SelectionGroupName>template_structure_defensive_wall_tower</SelectionGroupName>
-    <Tooltip>Shoots arrows. Garrison to defend a city wall against attackers.</Tooltip>
-    <Classes datatype="tokens">Tower</Classes>
+    <Tooltip>Garrison Infantry for additional arrows. Needs the “Murder Holes” technology to protect its foot.</Tooltip>
+    <Classes datatype="tokens">WallTower</Classes>
     <Icon>structures/tower.png</Icon>
   </Identity>
   <Loot>
@@ -64,7 +64,6 @@
     <ControlPersist/>
   </Obstruction>
   <ProductionQueue>
-    <BatchTimeModifier>0.8</BatchTimeModifier>
     <Technologies datatype="tokens">
       pair_walls_01
     </Technologies>

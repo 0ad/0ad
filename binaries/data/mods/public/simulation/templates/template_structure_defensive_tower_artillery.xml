@@ -56,9 +56,7 @@
   <Identity>
     <GenericName>Artillery Tower</GenericName>
     <SelectionGroupName>template_structure_defensive_tower_artillery</SelectionGroupName>
-    <Tooltip>Catapults stones. Needs the murder holes tech to protect its foot.</Tooltip>
-    <Classes datatype="tokens">GarrisonTower</Classes>
-    <VisibleClasses datatype="tokens">City DefenseTower StoneTower</VisibleClasses>
+    <VisibleClasses datatype="tokens">City ArtilleryTower</VisibleClasses>
     <Icon>structures/tower_artillery.png</Icon>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
