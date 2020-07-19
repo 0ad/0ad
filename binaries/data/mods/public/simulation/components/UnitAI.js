@@ -1285,7 +1285,11 @@ UnitAI.prototype.UnitFsmSpec = {
 	"FORMATIONMEMBER": {
 		"FormationLeave": function(msg) {
 			// Stop moving as soon as the formation disbands
+			// Keep current rotation
+			let facePointAfterMove = this.GetFacePointAfterMove();
+			this.SetFacePointAfterMove(false);
 			this.StopMoving();
+			this.SetFacePointAfterMove(facePointAfterMove);
 
 			// If the controller handled an order but some members rejected it,
 			// they will have no orders and be in the FORMATIONMEMBER.IDLE state.
