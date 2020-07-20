@@ -23,7 +23,9 @@
   <GarrisonHolder>
     <List>Infantry+Archer</List>
     <Max>20</Max>
-    <VisibleGarrisonPoints>
+  </GarrisonHolder>
+  <TurretHolder>
+    <TurretPoints>
       <Archer1>
         <X>2</X><Y>12.5</Y><Z>0</Z>
       </Archer1>
@@ -72,8 +74,8 @@
       <Archer16>
         <X>-2.1</X><Y>18.0</Y><Z>-2.1</Z>
       </Archer16>
-    </VisibleGarrisonPoints>
-  </GarrisonHolder>
+    </TurretPoints>
+  </TurretHolder>
   <Health>
     <Max>1200</Max>
   </Health>
