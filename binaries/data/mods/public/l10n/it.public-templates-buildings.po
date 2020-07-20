@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-26 07:10+0000\n"
-"PO-Revision-Date: 2020-07-09 19:49+0000\n"
-"Last-Translator: Giovanni Villabianca <giovannivillabianca@gmail.com>\n"
+"POT-Creation-Date: 2020-07-17 07:09+0000\n"
+"PO-Revision-Date: 2020-07-17 10:13+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,10 +71,10 @@ msgstr "Aumenta il limite di popolazione."
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:39
 #: simulation/templates/template_structure_economic_farmstead.xml:34
 #: simulation/templates/template_structure_economic_storehouse.xml:35
-#: simulation/templates/template_structure_military_barracks.xml:25
+#: simulation/templates/template_structure_military_barracks.xml:29
 #: simulation/templates/template_structure_military_dock.xml:29
 #: simulation/templates/template_structure_military_range.xml:25
-#: simulation/templates/template_structure_military_stable.xml:27
+#: simulation/templates/template_structure_military_stable.xml:26
 #: simulation/templates/template_structure_resource_corral.xml:21
 msgid "Village"
 msgstr "Villaggio"
@@ -100,11 +100,11 @@ msgstr "Recluta unità speciali."
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_defensive_tower_stone.xml:35
 #: simulation/templates/template_structure_economic_market.xml:33
-#: simulation/templates/template_structure_military_blacksmith.xml:28
-#: simulation/templates/template_structure_military_embassy.xml:31
+#: simulation/templates/template_structure_military_blacksmith.xml:26
+#: simulation/templates/template_structure_military_embassy.xml:33
 #: simulation/templates/structures/cart_super_dock.xml:46
 #: simulation/templates/structures/gaul_tavern.xml:26
-#: simulation/templates/structures/kush_pyramid_small.xml:27
+#: simulation/templates/structures/kush_pyramid_small.xml:29
 #: simulation/templates/structures/maur_elephant_stables.xml:7
 #: simulation/templates/structures/ptol_lighthouse.xml:27
 msgid "Town"
@@ -153,11 +153,12 @@ msgstr "Catapulta pietre. Necessita di feritoie per proteggerne i piedi."
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:61
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:60
-#: simulation/templates/template_structure_military_elephant_stables.xml:29
+#: simulation/templates/template_structure_military_elephant_stables.xml:27
 #: simulation/templates/template_structure_military_fortress.xml:73
-#: simulation/templates/template_structure_military_workshop.xml:30
+#: simulation/templates/template_structure_military_workshop.xml:28
 #: simulation/templates/template_structure_special.xml:36
-#: simulation/templates/template_structure_wonder.xml:55
+#: simulation/templates/template_structure_wonder.xml:53
+#: simulation/templates/structures/kush_pyramid_large.xml:29
 #: simulation/templates/structures/kush_temple_amun.xml:33
 msgid "City"
 msgstr "Città"
@@ -296,7 +297,7 @@ msgstr "Deposito per le risorse di legno, pietra e metallo. Ricerca migliorie pe
 msgid "Storehouse"
 msgstr "Magazzino"
 
-#: simulation/templates/template_structure_military.xml:24
+#: simulation/templates/template_structure_military.xml:23
 msgid "Military Structure"
 msgstr "Struttura Militare"
 
@@ -304,21 +305,21 @@ msgstr "Struttura Militare"
 msgid "Military"
 msgstr "Militari"
 
-#: simulation/templates/template_structure_military_barracks.xml:24
+#: simulation/templates/template_structure_military_barracks.xml:28
 msgid "Train citizen-soldiers. Research training improvements."
 msgstr "Addestra cittadini-soldati. Ricerca migliorie per l'addestramento. "
 
-#: simulation/templates/template_structure_military_barracks.xml:25
-#: simulation/templates/template_structure_military_barracks.xml:22
+#: simulation/templates/template_structure_military_barracks.xml:29
+#: simulation/templates/template_structure_military_barracks.xml:26
 msgid "Barracks"
 msgstr "Caserma"
 
-#: simulation/templates/template_structure_military_blacksmith.xml:27
-msgid "Research weapons and armor improvements."
-msgstr "Ricerca miglioramenti per armi e armature."
+#: simulation/templates/template_structure_military_blacksmith.xml:24
+msgid "Research attack and armor technologies."
+msgstr ""
 
-#: simulation/templates/template_structure_military_blacksmith.xml:28
-#: simulation/templates/template_structure_military_blacksmith.xml:23
+#: simulation/templates/template_structure_military_blacksmith.xml:26
+#: simulation/templates/template_structure_military_blacksmith.xml:22
 msgid "Blacksmith"
 msgstr "Fabbro"
 
@@ -337,16 +338,16 @@ msgstr "Porto"
 msgid "Elephant Stables"
 msgstr "Scuderie per Elefanti"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:28
-msgid "Train elephant units."
-msgstr "Addestra unità Elefanti."
+#: simulation/templates/template_structure_military_elephant_stables.xml:26
+msgid "Train Elephants and research Elephant technologies."
+msgstr ""
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:29
+#: simulation/templates/template_structure_military_elephant_stables.xml:27
 msgid "ElephantStable"
 msgstr "Stalla per Elefanti"
 
+#: simulation/templates/template_structure_military_embassy.xml:33
 #: simulation/templates/template_structure_military_embassy.xml:31
-#: simulation/templates/template_structure_military_embassy.xml:32
 #: simulation/templates/structures/cart_embassy.xml:18
 msgid "Embassy"
 msgstr "Ambasciata"
@@ -367,19 +368,19 @@ msgid "Practice Range"
 msgstr "Poligono di Tiro"
 
 #: simulation/templates/template_structure_military_range.xml:24
-msgid "Train citizen-soldier ranged infantry. Research training improvements."
-msgstr "Addestra cittadini-soldato per la fanteria da distanza. Ricerca miglioramenti per l'addestramento."
+msgid "Train Ranged Infantry and research technologies."
+msgstr ""
 
 #: simulation/templates/template_structure_military_range.xml:25
 msgid "Range"
 msgstr "Raggio"
 
-#: simulation/templates/template_structure_military_stable.xml:26
+#: simulation/templates/template_structure_military_stable.xml:25
 msgid "Train Cavalry and research Cavalry technologies."
 msgstr "Addestra la cavalleria e ricerca sviluppi per essa."
 
-#: simulation/templates/template_structure_military_stable.xml:27
-#: simulation/templates/template_structure_military_stable.xml:22
+#: simulation/templates/template_structure_military_stable.xml:26
+#: simulation/templates/template_structure_military_stable.xml:23
 msgid "Stable"
 msgstr "Scuderia"
 
@@ -387,11 +388,11 @@ msgstr "Scuderia"
 msgid "Siege Workshop"
 msgstr "Officina Macchinari d'Assedio "
 
-#: simulation/templates/template_structure_military_workshop.xml:29
+#: simulation/templates/template_structure_military_workshop.xml:27
 msgid "Construct Siege Engines and research Siege Engine technologies."
 msgstr "Costruisci Macchine d'Assedio e ricerca apposite tecnologie."
 
-#: simulation/templates/template_structure_military_workshop.xml:30
+#: simulation/templates/template_structure_military_workshop.xml:28
 msgid "Workshop"
 msgstr "Officina"
 
@@ -453,22 +454,22 @@ msgstr "Mulino a Rotazione"
 msgid "Theater"
 msgstr "Teatro"
 
-#: simulation/templates/template_structure_wonder.xml:54
+#: simulation/templates/template_structure_wonder.xml:52
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
 msgstr "Porta gloria alla tua civiltà e aggiungi grandi appezzamenti di terreno al tuo impero."
 
-#: simulation/templates/template_structure_wonder.xml:55
-#: simulation/templates/template_structure_wonder.xml:52
+#: simulation/templates/template_structure_wonder.xml:53
+#: simulation/templates/template_structure_wonder.xml:50
 msgid "Wonder"
 msgstr "Meraviglia"
 
-#: simulation/templates/structures/athen_barracks.xml:18
-#: simulation/templates/structures/mace_barracks.xml:18
-#: simulation/templates/structures/ptol_barracks.xml:17
-#: simulation/templates/structures/sele_barracks.xml:18
-#: simulation/templates/structures/spart_barracks.xml:18
+#: simulation/templates/structures/athen_barracks.xml:12
+#: simulation/templates/structures/mace_barracks.xml:12
+#: simulation/templates/structures/ptol_barracks.xml:11
+#: simulation/templates/structures/sele_barracks.xml:12
+#: simulation/templates/structures/spart_barracks.xml:12
 msgid "Stratopedon"
 msgstr "Stratopedon"
 
@@ -718,7 +719,7 @@ msgstr "Parthenōn"
 msgid "Hoplothēkē"
 msgstr "Hoplothēkē"
 
-#: simulation/templates/structures/brit_barracks.xml:18
+#: simulation/templates/structures/brit_barracks.xml:19
 msgid "Coriosessa"
 msgstr "Coriosessa"
 
@@ -801,8 +802,8 @@ msgstr "Budinadon"
 msgid "Melonas"
 msgstr "Melona"
 
-#: simulation/templates/structures/brit_stable.xml:5
-#: simulation/templates/structures/gaul_stable.xml:5
+#: simulation/templates/structures/brit_stable.xml:11
+#: simulation/templates/structures/gaul_stable.xml:11
 msgid "Eposton"
 msgstr "Eposton"
 
@@ -850,15 +851,9 @@ msgstr "Miletucerdon"
 msgid "Apartment Building"
 msgstr "Costruzione Oppida"
 
-#: simulation/templates/structures/cart_barracks.xml:18
+#: simulation/templates/structures/cart_barracks.xml:12
 msgid "Maḥanēt"
 msgstr "Maḥanēt"
-
-#: simulation/templates/structures/cart_barracks.xml:19
-msgid ""
-"Train North African citizen-soldiers. Research improvements for North "
-"African units."
-msgstr "Addestra cittadini-soldati nordafricani. Ricerca migliorie per le unità nordafricane."
 
 #: simulation/templates/structures/cart_civil_centre.xml:8
 msgid "Merkāz"
@@ -1007,7 +1002,7 @@ msgstr "Jdar"
 msgid "Temple of Ba'al Hammon"
 msgstr "Tempio di Baal Ammone"
 
-#: simulation/templates/structures/gaul_barracks.xml:18
+#: simulation/templates/structures/gaul_barracks.xml:19
 msgid "Coriosedlon"
 msgstr "Coriosedlon"
 
@@ -1047,7 +1042,7 @@ msgstr "Santuario di Corent"
 msgid "Celicnon"
 msgstr "Celicnon"
 
-#: simulation/templates/structures/iber_barracks.xml:11
+#: simulation/templates/structures/iber_barracks.xml:5
 msgid "Kaserna"
 msgstr "Kaserna"
 
@@ -1133,7 +1128,7 @@ msgstr "Zabal Horma"
 msgid "Cancho Roano"
 msgstr "Cancho Roano"
 
-#: simulation/templates/structures/kush_barracks.xml:15
+#: simulation/templates/structures/kush_barracks.xml:9
 msgid "pr-msʿyw"
 msgstr "pr-msʿyw"
 
@@ -1141,12 +1136,12 @@ msgstr "pr-msʿyw"
 msgid "hmw hʿy n rȝ-ʿ"
 msgstr "hmw hʿy n rȝ-ʿ"
 
-#: simulation/templates/structures/kush_blemmye_camp.xml:19
-#: simulation/templates/structures/kush_blemmye_camp.xml:20
+#: simulation/templates/structures/kush_blemmye_camp.xml:22
+#: simulation/templates/structures/kush_blemmye_camp.xml:23
 msgid "Blemmye Camp"
 msgstr "Campo Blemmi"
 
-#: simulation/templates/structures/kush_blemmye_camp.xml:21
+#: simulation/templates/structures/kush_blemmye_camp.xml:24
 msgid "Train Blemmye Desert Raiders."
 msgstr "Addestra Predoni del Deserto Blemmi."
 
@@ -1190,12 +1185,12 @@ msgstr "Pr"
 msgid "Pr-sbt"
 msgstr "Pr-sbt"
 
-#: simulation/templates/structures/kush_nuba_village.xml:19
-#: simulation/templates/structures/kush_nuba_village.xml:20
+#: simulation/templates/structures/kush_nuba_village.xml:22
+#: simulation/templates/structures/kush_nuba_village.xml:23
 msgid "Nuba Village"
 msgstr "Villaggio Nuba"
 
-#: simulation/templates/structures/kush_nuba_village.xml:21
+#: simulation/templates/structures/kush_nuba_village.xml:24
 msgid "Train the Nuba Clubman and Nuba Hunter."
 msgstr "Addestra ? e Cacciatori Nuba."
 
@@ -1203,30 +1198,24 @@ msgstr "Addestra ? e Cacciatori Nuba."
 msgid "trtr"
 msgstr "trtr"
 
-#: simulation/templates/structures/kush_pyramid.xml:24
-msgid "Kushite Pyramid"
-msgstr "Piramide Kushita"
-
-#: simulation/templates/structures/kush_pyramid.xml:25
-#: simulation/templates/structures/kush_pyramid_large.xml:28
-msgid "mr ʿȝ"
-msgstr "mr ʿȝ"
-
-#: simulation/templates/structures/kush_pyramid.xml:26
-#: simulation/templates/structures/kush_pyramid_large.xml:29
-#: simulation/templates/structures/kush_pyramid_small.xml:27
-msgid "Pyramid"
-msgstr "Piramide"
-
-#: simulation/templates/structures/kush_pyramid_large.xml:27
+#: simulation/templates/structures/kush_pyramid_large.xml:26
 msgid "Large Pyramid"
 msgstr "Grande Piramide"
 
-#: simulation/templates/structures/kush_pyramid_small.xml:25
+#: simulation/templates/structures/kush_pyramid_large.xml:27
+msgid "mr ʿȝ"
+msgstr "mr ʿȝ"
+
+#: simulation/templates/structures/kush_pyramid_large.xml:29
+#: simulation/templates/structures/kush_pyramid_small.xml:29
+msgid "Pyramid"
+msgstr "Piramide"
+
+#: simulation/templates/structures/kush_pyramid_small.xml:26
 msgid "Small Pyramid"
 msgstr "Piccola Piramide"
 
-#: simulation/templates/structures/kush_pyramid_small.xml:26
+#: simulation/templates/structures/kush_pyramid_small.xml:27
 msgid "mr"
 msgstr "mr"
 
@@ -1315,7 +1304,7 @@ msgstr "Bibliothēkē"
 msgid "Hieron tou Dios tou Olympiou"
 msgstr "Hieron tou Dios tou Olympiou"
 
-#: simulation/templates/structures/maur_barracks.xml:14
+#: simulation/templates/structures/maur_barracks.xml:15
 msgid "Sainyavasa"
 msgstr "Sainyavasa"
 
@@ -1452,16 +1441,16 @@ msgstr "Mausoleo"
 msgid "MercenaryCamp"
 msgstr "Campo Mercenario"
 
-#: simulation/templates/structures/merc_camp_egyptian.xml:28
+#: simulation/templates/structures/merc_camp_egyptian.xml:29
 msgid "Egyptian Mercenary Camp"
 msgstr "Accampamento mercenario egizio"
 
-#: simulation/templates/structures/merc_camp_egyptian.xml:29
+#: simulation/templates/structures/merc_camp_egyptian.xml:30
 #: simulation/templates/structures/ptol_mercenary_camp.xml:29
 msgid "Stratopedeia Misthophorōn"
 msgstr "Stratopedeia Misthophorōn"
 
-#: simulation/templates/structures/merc_camp_egyptian.xml:31
+#: simulation/templates/structures/merc_camp_egyptian.xml:32
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
 msgstr "Cattura questa struttura per addestrare mercenari originari dell'Egitto Ellenico."
 
@@ -1533,13 +1522,13 @@ msgstr "\"Tributo del Satrapo\": Guadagni una tantum di cibo, legname, pietra e 
 msgid "Apartment Block"
 msgstr "Residenze (Ḥayy?)"
 
-#: simulation/templates/structures/pers_barracks.xml:10
+#: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
 msgstr "Padgan"
 
-#: simulation/templates/structures/pers_barracks.xml:11
-msgid "Levy citizen-soldier infantry."
-msgstr "Addestra fanteria cittadina di leva."
+#: simulation/templates/structures/pers_barracks.xml:6
+msgid "Train Infantry."
+msgstr ""
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1622,7 +1611,7 @@ msgstr "Ardatašta"
 msgid "Didebani"
 msgstr "Didebani"
 
-#: simulation/templates/structures/pers_stable.xml:15
+#: simulation/templates/structures/pers_stable.xml:9
 msgid "Paraspa"
 msgstr "Paraspa"
 
@@ -1660,12 +1649,6 @@ msgstr "Magazzino"
 #: simulation/templates/structures/pers_wonder.xml:9
 msgid "Hanging Gardens of Babylon"
 msgstr "Giardini Pensili di Babilonia"
-
-#: simulation/templates/structures/ptol_barracks.xml:18
-msgid ""
-"Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
-"improvements."
-msgstr "Addestra cittadini-soldati Egiziani e Mediorientali. Ricerca migliorie nell'addestramento."
 
 #: simulation/templates/structures/ptol_elephant_stables.xml:5
 #: simulation/templates/structures/sele_elephant_stables.xml:5
@@ -1759,7 +1742,7 @@ msgid ""
 "Siege Engines. Garrison Soldiers for additional arrows."
 msgstr "Costruibile in territorio neutrale o nemico. addestra soldati-cittadini e costruisce macchine d'assedio. Acquartiera soldati per frecce aggiuntive."
 
-#: simulation/templates/structures/rome_barracks.xml:18
+#: simulation/templates/structures/rome_barracks.xml:12
 msgid "Castrum"
 msgstr "Castrum"
 

@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Do Phan <thuthom.nguyen@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-22 08:08+0000\n"
-"PO-Revision-Date: 2020-05-14 09:54+0000\n"
-"Last-Translator: Lục Cửu Tử Ư <kimtan090807@gmail.com>\n"
+"PO-Revision-Date: 2020-07-17 08:28+0000\n"
+"Last-Translator: Do Phan <thuthom.nguyen@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/wildfire-games/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,85 +19,85 @@ msgstr ""
 
 #: gui/lobby/LobbyPage/AnnouncementHandler.js:18
 msgid "Notice"
-msgstr ""
+msgstr "Để ý"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:45
 msgid "BANNED"
-msgstr ""
+msgstr "CHẶN"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:45
 msgid "KICKED"
-msgstr ""
+msgstr "ĐUỔI"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:61
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr ""
+msgstr "Bạn đã bị ngắt kết nối với phòng sảnh. Bạn có muốn kết nối lại?"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:62
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
 #: gui/prelobby/common/credentials/credentials.js:55
 msgid "Confirmation"
-msgstr ""
+msgstr "Xác nhận"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:63
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "No"
-msgstr ""
+msgstr "Không"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:63
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "Yes"
-msgstr ""
+msgstr "Có"
 
 #. Translation: The number of players and observers in this game
 #: gui/lobby/LobbyPage/Game.js:298
 #, javascript-format
 msgid "%(current)s/%(max)s +%(observercount)s"
-msgstr ""
+msgstr "%(current)s/%(max)s/%(observercount)s"
 
 #. Translation: The number of players in this game
 #: gui/lobby/LobbyPage/Game.js:301
 #, javascript-format
 msgid "%(current)s/%(max)s"
-msgstr ""
+msgstr "%(current)s/%(max)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:65
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr ""
+msgstr "Vô tận"
 
 #: gui/lobby/LobbyPage/GameDetails.js:117
 #, javascript-format
 msgid "Host: %(playername)s"
-msgstr ""
+msgstr "Người tổ chức: %(playername)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:119
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
-msgstr ""
+msgstr "Người chơi: %(current)s/%(total)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:121
 msgid "Victory Conditions:"
-msgstr ""
+msgstr "Điều kiện thắng:"
 
 #. Translation: Comma used to concatenate victory conditions
 #: gui/lobby/LobbyPage/GameDetails.js:124
 msgid ", "
-msgstr ", "
+msgstr ","
 
 #: gui/lobby/LobbyPage/GameDetails.js:126
 msgid "Mods:"
-msgstr ""
+msgstr "Mod:"
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/LobbyPage/GameDetails.js:129
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr ""
+msgstr "Trò chơi bắt đầu lúc %(time)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:131
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
@@ -105,7 +106,7 @@ msgstr "HH:mm"
 
 #: gui/lobby/LobbyPage/GameDetails.js:133
 msgid "Map Type:"
-msgstr ""
+msgstr "Loại bản đồ:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:135
 msgid "Map Size:"
@@ -113,36 +114,36 @@ msgstr "Kích thước bản đồ:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:137
 msgid "Map Description:"
-msgstr ""
+msgstr "Mô tả bản đồ:"
 
 #: gui/lobby/LobbyPage/KickStrings.js:39
 msgid "You have been kicked from the lobby!"
-msgstr ""
+msgstr "Bạn đã bị đuổi khỏi sảnh!"
 
 #: gui/lobby/LobbyPage/KickStrings.js:40
 msgid "You have been banned from the lobby!"
-msgstr ""
+msgstr "Bạn đã bị chặn khỏi sảnh!"
 
 #: gui/lobby/LobbyPage/KickStrings.js:43
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr ""
+msgstr "%(nick)s đã bị đuổi khỏi sảnh."
 
 #: gui/lobby/LobbyPage/KickStrings.js:44
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr ""
+msgstr "%(nick)s đã bị chặn khỏi sảnh"
 
 #: gui/lobby/LobbyPage/KickStrings.js:49
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "Lý do: %(reason)s"
 
 #: gui/lobby/LobbyPage/PlayerColor.js:34
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s(%(rating)s)"
 
 #: gui/lobby/LobbyPage/PlayerList.js:178
 msgid "Online"
@@ -167,11 +168,11 @@ msgstr "Không biết"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:106
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:112
 msgid "Moderator"
-msgstr ""
+msgstr "Người điều hành"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:113
 msgid "Player"
@@ -179,25 +180,25 @@ msgstr "Người chơi"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:114
 msgid "Muted Player"
-msgstr ""
+msgstr "Người chơi đã tắt tiếng"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:120
 msgctxt "Used for an undefined winning rate"
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:122
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s %%"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:69
 msgid "Mark as Buddy"
-msgstr ""
+msgstr "Đánh dấu là Bạn bè"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:70
 msgid "Unmark as Buddy"
-msgstr ""
+msgstr "Bỏ đánh dấu là Bạn bè"
 
 #: gui/lobby/LobbyPage/Buttons/HostButton.js:10
 msgid "Host Game"

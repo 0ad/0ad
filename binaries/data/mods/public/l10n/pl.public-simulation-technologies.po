@@ -36,8 +36,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-13 07:16+0000\n"
-"PO-Revision-Date: 2020-07-13 13:22+0000\n"
+"POT-Creation-Date: 2020-07-17 07:10+0000\n"
+"PO-Revision-Date: 2020-07-17 11:54+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -1550,9 +1550,9 @@ msgstr "Grecy używali kamiennych konstrukcji od czasów wczesnomykeńskich."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid ""
-"Athenian, Macedonian, and Spartan Structures +10% build time, +10% health, "
-"and +10% capture points."
-msgstr "Ateńskie, macedońskie i spartańskie struktury +10% czasu budowania, +10% zdrowia i +10% punktów przejęcia."
+"Athenian, Macedonian, and Spartan Structures +10% health and +10% capture "
+"points."
+msgstr "Ateńskie, macedońskie i spartańskie budowle otrzymują +10% zdrowia i +10% punktów przejęcia."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -1833,8 +1833,8 @@ msgid "Libri Sibyllini"
 msgstr "Libri Sibyllini"
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
-msgid "Traditional Army vs. Reform Army"
-msgstr "Armia tradycyjna kontra armia zreformowana"
+msgid "Traditional Army vs Reform Army"
+msgstr "Tradycyjna armia kontra zreformowana armia"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsondescription
 msgid ""
@@ -1885,24 +1885,24 @@ msgid "Nisioi"
 msgstr "Nisioi"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsondescription
-msgid "The reform army of the Seleucids."
-msgstr "Reformacka armia Seleucydów."
+msgid "The Roman-style core of the Seleucid army."
+msgstr "Rzymski rdzeń armii Seleucydów."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
-msgid "Unlock the Romanized Heavy Swordsman and Seleucid Cataphract."
-msgstr "Odblokowuje Rzymskiego Ciężkiego Miecznika i Seleudzkich Katafraktów."
+msgid "Unlock the Champion Infantry Swordsman."
+msgstr "Odblokuj czempiona miecznika."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
 msgid "Reform Army"
 msgstr "Armia zreformowana"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsondescription
-msgid "The traditional army of the Seleucids."
-msgstr "Tradycyjna armia Seleucydów."
+msgid "The Macedonian-style core of the Seleucid army."
+msgstr "Macedoński rdzeń armii Seleucydów."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
-msgid "Unlock the Silver Shield Pikeman and Scythed Chariot."
-msgstr "Odblokowuje Falangitów Srebrnej Tarczy oraz Rydwan z kosami"
+msgid "Unlock the Champion Infantry Pikeman."
+msgstr "Odblokuj czempiona pikiniera."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"
@@ -1917,8 +1917,8 @@ msgstr "Srebrne Tarcze lub Argyraspidai, byli elitarną ciężką piechotą Mace
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
-"health and armor."
-msgstr "Awansuj jednostki bohaterów Tarczowników do Srebrnych Tarcz, z lepszym atakiem, życiem i obroną."
+"health and attack."
+msgstr "Ulepsz bohaterskich tarczowników do srebrnych tarcz, które posiadają więcej punktów zdrowia i ataku."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"
