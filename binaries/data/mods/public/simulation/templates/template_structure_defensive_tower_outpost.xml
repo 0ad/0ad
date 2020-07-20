@@ -50,8 +50,8 @@
   <Identity>
     <GenericName>Outpost</GenericName>
     <SelectionGroupName>template_structure_defensive_tower_outpost</SelectionGroupName>
-    <Tooltip>Build in neutral and own territories to scout areas of the map. Slowly converts to Gaia while in neutral territory.</Tooltip>
-    <VisibleClasses datatype="tokens">Village Outpost</VisibleClasses>
+    <Tooltip>Build in own or neutral territory. Slowly converts to Gaia while in neutral territory.</Tooltip>
+    <VisibleClasses datatype="tokens">Village -Tower Outpost</VisibleClasses>
     <Icon>structures/outpost.png</Icon>
   </Identity>
   <Loot>

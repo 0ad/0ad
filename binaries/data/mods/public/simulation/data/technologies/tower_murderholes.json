@@ -6,10 +6,10 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "murder_holes.png",
 	"researchTime": 40,
-	"tooltip": "Removes defensive towers' minimum range.",
+	"tooltip": "Sentry and Stone Towers have 0 minimum attack range.",
 	"modifications": [
 		{ "value": "Attack/Ranged/MinRange", "replace": 0 }
 	],
-	"affects": ["DefenseTower"],
+	"affects": ["SentryTower", "StoneTower"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

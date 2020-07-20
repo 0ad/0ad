@@ -169,9 +169,9 @@ m.EntityCollection.prototype.moveIndiv = function(x, z, queued = false)
 	return this;
 };
 
-m.EntityCollection.prototype.garrison = function(target)
+m.EntityCollection.prototype.garrison = function(target, queued = false)
 {
-	Engine.PostCommand(PlayerID, { "type": "garrison", "entities": this.toIdArray(), "target": target.id() });
+	Engine.PostCommand(PlayerID, { "type": "garrison", "entities": this.toIdArray(), "target": target.id(), "queued": queued });
 	return this;
 };
 
@@ -181,9 +181,9 @@ m.EntityCollection.prototype.destroy = function()
 	return this;
 };
 
-m.EntityCollection.prototype.attack = function(unitId)
+m.EntityCollection.prototype.attack = function(unitId, queued = false)
 {
-	Engine.PostCommand(PlayerID, { "type": "attack", "entities": this.toIdArray(), "target": unitId, "queued": false });
+	Engine.PostCommand(PlayerID, { "type": "attack", "entities": this.toIdArray(), "target": unitId, "queued": queued });
 	return this;
 };
 

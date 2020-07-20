@@ -85,10 +85,10 @@
   </Health>
   <Identity>
     <GenericName>Civic Center</GenericName>
-    <Tooltip>Build to acquire large tracts of territory. Train citizens.</Tooltip>
-    <Classes datatype="tokens">Defensive CivCentre</Classes>
-    <VisibleClasses datatype="tokens">CivilCentre</VisibleClasses>
     <SelectionGroupName>template_structure_civic_civil_centre</SelectionGroupName>
+    <Tooltip>Build to acquire large tracts of territory. Train citizens.</Tooltip>
+    <Classes datatype="tokens">CivCentre</Classes>
+    <VisibleClasses datatype="tokens">Defensive CivilCentre</VisibleClasses>
     <Icon>structures/civic_centre.png</Icon>
   </Identity>
   <Loot>

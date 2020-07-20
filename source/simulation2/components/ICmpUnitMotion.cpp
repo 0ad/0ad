@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,6 +37,7 @@ DEFINE_INTERFACE_METHOD_1("SetSpeedMultiplier", void, ICmpUnitMotion, SetSpeedMu
 DEFINE_INTERFACE_METHOD_CONST_0("GetPassabilityClassName", std::string, ICmpUnitMotion, GetPassabilityClassName)
 DEFINE_INTERFACE_METHOD_CONST_0("GetUnitClearance", entity_pos_t, ICmpUnitMotion, GetUnitClearance)
 DEFINE_INTERFACE_METHOD_1("SetFacePointAfterMove", void, ICmpUnitMotion, SetFacePointAfterMove, bool)
+DEFINE_INTERFACE_METHOD_CONST_0("GetFacePointAfterMove", bool, ICmpUnitMotion, GetFacePointAfterMove)
 DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpUnitMotion, SetDebugOverlay, bool)
 END_INTERFACE_WRAPPER(UnitMotion)
 
@@ -108,6 +109,11 @@ public:
 	virtual void SetFacePointAfterMove(bool facePointAfterMove)
 	{
 		m_Script.CallVoid("SetFacePointAfterMove", facePointAfterMove);
+	}
+
+	virtual bool GetFacePointAfterMove() const
+	{
+		return m_Script.Call<bool>("GetFacePointAfterMove");
 	}
 
 	virtual pass_class_t GetPassabilityClass() const
