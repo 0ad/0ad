@@ -155,6 +155,9 @@ EndGameManager.prototype.AlliedVictoryCheck = function()
 		allies.push(playerID);
 	}
 
+	if (!allies.length)
+		return;
+
 	if (this.alliedVictory || allies.length == 1)
 	{
 		for (let playerID of allies)
