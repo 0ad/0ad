@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 
 #include "../Common/Sidebar.h"
 
-#include "wx/collpane.h"
+#include <wx/collpane.h>
 
 class MapSettingsControl;
 
@@ -35,12 +35,13 @@ private:
 	MapSettingsControl* m_MapSettingsCtrl;
 
 	void OnCollapse(wxCollapsiblePaneEvent& evt);
+	void OnOpenPlayerPanel(wxCommandEvent& evt);
+	void OnRandomReseed(wxCommandEvent& evt);
+	void OnRandomGenerate(wxCommandEvent& evt);
+	void OnResizeMap(wxCommandEvent& evt);
 	void OnSimPlay(wxCommandEvent& evt);
 	void OnSimPause(wxCommandEvent& evt);
 	void OnSimReset(wxCommandEvent& evt);
-	void OnRandomReseed(wxCommandEvent& evt);
-	void OnRandomGenerate(wxCommandEvent& evt);
-	void OnOpenPlayerPanel(wxCommandEvent& evt);
 	void UpdateSimButtons();
 
 	int m_SimState;

@@ -49,7 +49,7 @@
 #include "simulation2/helpers/Los.h"
 #include "simulation2/system/ParamNode.h"
 
-#include <math.h>
+#include <cmath>
 
 extern bool g_GameRestarted;
 
@@ -79,14 +79,7 @@ CMiniMap::CMiniMap(CGUI& pGUI) :
 	// Register Relax NG validator
 	CXeromyces::AddValidator(g_VFS, "pathfinder", "simulation/data/pathfinder.rng");
 
-	// Get the maximum height for unit passage in water.
-	CParamNode externalParamNode;
-	CParamNode::LoadXML(externalParamNode, L"simulation/data/pathfinder.xml", "pathfinder");
-	const CParamNode pathingSettings = externalParamNode.GetChild("Pathfinder").GetChild("PassabilityClasses");
-	if (pathingSettings.GetChild("default").IsOk() && pathingSettings.GetChild("default").GetChild("MaxWaterDepth").IsOk())
-		m_ShallowPassageHeight = pathingSettings.GetChild("default").GetChild("MaxWaterDepth").ToFloat();
-	else
-		m_ShallowPassageHeight = 0.0f;
+	m_ShallowPassageHeight = GetShallowPassageHeight();
 
 	m_AttributePos.type = GL_FLOAT;
 	m_AttributePos.elems = 2;
@@ -718,4 +711,16 @@ void CMiniMap::Destroy()
 	}
 
 	SAFE_ARRAY_DELETE(m_TerrainData);
+}
+
+// static
+float CMiniMap::GetShallowPassageHeight()
+{
+	float shallowPassageHeight = 0.0f;
+	CParamNode externalParamNode;
+	CParamNode::LoadXML(externalParamNode, L"simulation/data/pathfinder.xml", "pathfinder");
+	const CParamNode pathingSettings = externalParamNode.GetChild("Pathfinder").GetChild("PassabilityClasses");
+	if (pathingSettings.GetChild("default").IsOk() && pathingSettings.GetChild("default").GetChild("MaxWaterDepth").IsOk())
+		shallowPassageHeight = pathingSettings.GetChild("default").GetChild("MaxWaterDepth").ToFloat();
+	return shallowPassageHeight;
 }

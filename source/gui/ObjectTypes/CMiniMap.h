@@ -32,6 +32,12 @@ class CMiniMap : public IGUIObject
 public:
 	CMiniMap(CGUI& pGUI);
 	virtual ~CMiniMap();
+
+	/**
+	 * @return The maximum height for unit passage in water.
+	 */
+	static float GetShallowPassageHeight();
+
 protected:
 	virtual void Draw();
 

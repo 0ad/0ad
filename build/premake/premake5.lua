@@ -1136,6 +1136,7 @@ function setup_atlas_projects()
 		"CustomControls/FileHistory",
 		"CustomControls/HighResTimer",
 		"CustomControls/MapDialog",
+		"CustomControls/MapResizeDialog",
 		"CustomControls/SnapSplitterWindow",
 		"CustomControls/VirtualDirTreeCtrl",
 		"CustomControls/Windows",
