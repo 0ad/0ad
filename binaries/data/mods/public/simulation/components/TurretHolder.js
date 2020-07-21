@@ -56,7 +56,7 @@ class TurretHolder
 	/**
 	 * Occupy a turret point with the given entity.
 	 * @param {number} entity - The entity to use.
-	 * @param {Object} turretPoint - Optionally the specific turret point to occupy.
+	 * @param {Object} requestedTurretPoint - Optionally the specific turret point to occupy.
 	 *
 	 * @return {boolean} - Whether the occupation was successful.
 	 */
@@ -107,6 +107,11 @@ class TurretHolder
 		if (cmpUnitAI)
 			cmpUnitAI.SetTurretStance();
 
+		// Remove the unit's obstruction to avoid interfering with pathing.
+		let cmpObstruction = Engine.QueryInterface(entity, IID_Obstruction);
+		if (cmpObstruction)
+			cmpObstruction.SetActive(false);
+
 		Engine.PostMessage(this.entity, MT_TurretsChanged, {
 			"added": [entity],
 			"removed": []
@@ -148,6 +153,11 @@ class TurretHolder
 			cmpUnitAIEntity.ResetTurretStance();
 
 		turretPoint.entity = null;
+
+		// Reset the obstruction flags to template defaults.
+		let cmpObstruction = Engine.QueryInterface(entity, IID_Obstruction);
+		if (cmpObstruction)
+			cmpObstruction.SetActive(true);
 
 		Engine.PostMessage(this.entity, MT_TurretsChanged, {
 			"added": [],

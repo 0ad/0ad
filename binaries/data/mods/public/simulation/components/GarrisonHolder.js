@@ -240,11 +240,6 @@ GarrisonHolder.prototype.Eject = function(entity, forced, renamed = false)
 
 	this.entities.splice(entityIndex, 1);
 
-	// Reset the obstruction flags to template defaults.
-	let cmpObstruction = Engine.QueryInterface(entity, IID_Obstruction);
-	if (cmpObstruction)
-		cmpObstruction.SetActive(true);
-
 	let cmpEntUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
 	if (cmpEntUnitAI)
 		cmpEntUnitAI.Ungarrison();

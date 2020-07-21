@@ -4,6 +4,16 @@
     <Square width="25" depth="6"/>
     <Height>12.5</Height>
   </Footprint>
+  <Identity>
+    <Civ>mace</Civ>
+    <SpecificName>Teichos</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="24" depth="5"/>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>13.5</HeightOffset>
+  </StatusBars>
   <TurretHolder>
     <TurretPoints>
       <Archer1>
@@ -23,16 +33,6 @@
       </Archer3>
     </TurretPoints>
   </TurretHolder>
-  <Identity>
-    <Civ>mace</Civ>
-    <SpecificName>Teichos</SpecificName>
-  </Identity>
-  <Obstruction>
-    <Static width="24" depth="5"/>
-  </Obstruction>
-  <StatusBars>
-    <HeightOffset>13.5</HeightOffset>
-  </StatusBars>
   <VisualActor>
     <Actor>structures/hellenes/wall_medium.xml</Actor>
   </VisualActor>

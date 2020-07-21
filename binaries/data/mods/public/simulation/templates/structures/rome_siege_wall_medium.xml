@@ -23,25 +23,6 @@
     <Square width="25" depth="5"/>
     <Height>6.7</Height>
   </Footprint>
-  <TurretHolder>
-    <TurretPoints>
-      <Archer1>
-        <X>0</X>
-        <Y>5.7</Y>
-        <Z>0</Z>
-      </Archer1>
-      <Archer2>
-        <X>4</X>
-        <Y>5.7</Y>
-        <Z>0</Z>
-      </Archer2>
-      <Archer3>
-        <X>-4</X>
-        <Y>5.7</Y>
-        <Z>0</Z>
-      </Archer3>
-    </TurretPoints>
-  </TurretHolder>
   <Health>
     <Max op="mul">0.75</Max>
   </Health>
@@ -65,6 +46,25 @@
     <HeightOffset>7.7</HeightOffset>
   </StatusBars>
   <TerritoryInfluence disable=""/>
+  <TurretHolder>
+    <TurretPoints>
+      <Archer1>
+        <X>0</X>
+        <Y>5.7</Y>
+        <Z>0</Z>
+      </Archer1>
+      <Archer2>
+        <X>4</X>
+        <Y>5.7</Y>
+        <Z>0</Z>
+      </Archer2>
+      <Archer3>
+        <X>-4</X>
+        <Y>5.7</Y>
+        <Z>0</Z>
+      </Archer3>
+    </TurretPoints>
+  </TurretHolder>
   <VisualActor>
     <Actor>structures/romans/siege_wall_medium.xml</Actor>
   </VisualActor>

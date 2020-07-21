@@ -4,6 +4,16 @@
     <Square width="25" depth="8"/>
     <Height>10</Height>
   </Footprint>
+  <Identity>
+    <Civ>iber</Civ>
+    <SpecificName>Zabal Horma</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="24" depth="7"/>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>11</HeightOffset>
+  </StatusBars>
   <TurretHolder>
     <TurretPoints>
       <Archer1>
@@ -23,16 +33,6 @@
       </Archer3>
     </TurretPoints>
   </TurretHolder>
-  <Identity>
-    <Civ>iber</Civ>
-    <SpecificName>Zabal Horma</SpecificName>
-  </Identity>
-  <Obstruction>
-    <Static width="24" depth="7"/>
-  </Obstruction>
-  <StatusBars>
-    <HeightOffset>11</HeightOffset>
-  </StatusBars>
   <VisualActor>
     <Actor>structures/iberians/wall_medium.xml</Actor>
   </VisualActor>

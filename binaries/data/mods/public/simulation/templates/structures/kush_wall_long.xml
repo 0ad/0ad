@@ -4,6 +4,16 @@
     <Square width="37" depth="6"/>
     <Height>12.6</Height>
   </Footprint>
+  <Identity>
+    <Civ>kush</Civ>
+    <SpecificName>sbty</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="36" depth="5"/>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>13.6</HeightOffset>
+  </StatusBars>
   <TurretHolder>
     <TurretPoints>
       <Archer1>
@@ -33,16 +43,6 @@
       </Archer5>
     </TurretPoints>
   </TurretHolder>
-  <Identity>
-    <Civ>kush</Civ>
-    <SpecificName>sbty</SpecificName>
-  </Identity>
-  <Obstruction>
-    <Static width="36" depth="5"/>
-  </Obstruction>
-  <StatusBars>
-    <HeightOffset>13.6</HeightOffset>
-  </StatusBars>
   <VisualActor>
     <Actor>structures/kushites/wall_long.xml</Actor>
   </VisualActor>

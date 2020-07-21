@@ -4,6 +4,16 @@
     <Square width="26" depth="6"/>
     <Height>10.8</Height>
   </Footprint>
+  <Identity>
+    <Civ>ptol</Civ>
+    <SpecificName>Teichos</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="25" depth="5"/>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>11.8</HeightOffset>
+  </StatusBars>
   <TurretHolder>
     <TurretPoints>
       <Archer1>
@@ -23,16 +33,6 @@
       </Archer3>
     </TurretPoints>
   </TurretHolder>
-  <Identity>
-    <Civ>ptol</Civ>
-    <SpecificName>Teichos</SpecificName>
-  </Identity>
-  <Obstruction>
-    <Static width="25" depth="5"/>
-  </Obstruction>
-  <StatusBars>
-    <HeightOffset>11.8</HeightOffset>
-  </StatusBars>
   <VisualActor>
     <Actor>structures/ptolemies/wall_medium.xml</Actor>
   </VisualActor>

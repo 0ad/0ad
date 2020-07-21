@@ -4,6 +4,16 @@
     <Square width="37" depth="8"/>
     <Height>13</Height>
   </Footprint>
+  <Identity>
+    <Civ>cart</Civ>
+    <SpecificName>Homah</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="36" depth="7"/>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>14</HeightOffset>
+  </StatusBars>
   <TurretHolder>
     <TurretPoints>
       <Archer1>
@@ -33,16 +43,6 @@
       </Archer5>
     </TurretPoints>
   </TurretHolder>
-  <Identity>
-    <Civ>cart</Civ>
-    <SpecificName>Homah</SpecificName>
-  </Identity>
-  <Obstruction>
-    <Static width="36" depth="7"/>
-  </Obstruction>
-  <StatusBars>
-    <HeightOffset>14</HeightOffset>
-  </StatusBars>
   <VisualActor>
     <Actor>structures/carthaginians/wall_long.xml</Actor>
     <FoundationActor>structures/carthaginians/fndn_wall_long.xml</FoundationActor>

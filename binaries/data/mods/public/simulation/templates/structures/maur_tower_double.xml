@@ -24,6 +24,12 @@
     <List>Infantry+Archer</List>
     <Max>20</Max>
   </GarrisonHolder>
+  <Health>
+    <Max>1200</Max>
+  </Health>
+  <StatusBars>
+    <HeightOffset>19.0</HeightOffset>
+  </StatusBars>
   <TurretHolder>
     <TurretPoints>
       <Archer1>
@@ -76,12 +82,6 @@
       </Archer16>
     </TurretPoints>
   </TurretHolder>
-  <Health>
-    <Max>1200</Max>
-  </Health>
-  <StatusBars>
-    <HeightOffset>19.0</HeightOffset>
-  </StatusBars>
   <VisualActor>
     <Actor>structures/mauryas/tower_double.xml</Actor>
   </VisualActor>
