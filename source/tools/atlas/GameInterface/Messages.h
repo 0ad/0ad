@@ -195,6 +195,17 @@ QUERY(GetMapSizes,
 		((std::string, sizes))
 		);
 
+QUERY(GetCurrentMapSize,
+		,
+		((int, size))
+		);
+
+QUERY(RasterizeMinimap,
+		,
+		((int, dimension))
+		((std::vector<uint8_t>, imageBytes))
+		);
+
 QUERY(GetRMSData,
 		,
 		((std::vector<std::string>, data))
@@ -202,6 +213,8 @@ QUERY(GetRMSData,
 
 COMMAND(ResizeMap, NOMERGE,
 		((int, tiles))
+		((int, offsetX))
+		((int, offsetY))
 		);
 
 QUERY(VFSFileExists,

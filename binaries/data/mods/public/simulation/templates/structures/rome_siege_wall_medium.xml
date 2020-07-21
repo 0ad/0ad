@@ -23,8 +23,8 @@
     <Square width="25" depth="5"/>
     <Height>6.7</Height>
   </Footprint>
-  <GarrisonHolder>
-    <VisibleGarrisonPoints>
+  <TurretHolder>
+    <TurretPoints>
       <Archer1>
         <X>0</X>
         <Y>5.7</Y>
@@ -40,8 +40,8 @@
         <Y>5.7</Y>
         <Z>0</Z>
       </Archer3>
-    </VisibleGarrisonPoints>
-  </GarrisonHolder>
+    </TurretPoints>
+  </TurretHolder>
   <Health>
     <Max op="mul">0.75</Max>
   </Health>

@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
+# Anirban Mitra <mitradranirban@gmail.com>, 2020
 # Fat Man <fat.oyunn@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-22 07:08+0000\n"
-"PO-Revision-Date: 2020-05-22 10:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-07-20 07:04+0000\n"
+"Last-Translator: Anirban Mitra <mitradranirban@gmail.com>\n"
 "Language-Team: Bengali (http://www.transifex.com/wildfire-games/0ad/language/bn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +44,7 @@ msgstr "সার্টিফিকেটের মেয়াদ শেষ।"
 
 #: lobby/XmppClient.cpp:1219
 msgid "The certificate is not yet active."
-msgstr ""
+msgstr "শংসাপত্রটি এখনও সক্রিয় নেই।"
 
 #: lobby/XmppClient.cpp:1220
 msgid "The certificate has not been issued for the peer connected to."
@@ -130,40 +131,40 @@ msgstr "সিস্টেমের মেমরি শেষ"
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr ""
+msgstr "সার্ভারের শংসাপত্রটি যাচাই করা যায়নি বা টিএলএস হ্যান্ডশেক সফলভাবে সম্পূর্ণ হয়নি"
 
 #: lobby/XmppClient.cpp:1304
 msgid "The server did not offer required TLS encryption"
-msgstr ""
+msgstr "সার্ভারটি প্রয়োজনীয় টিএলএস এনক্রিপশন দেয় নি"
 
 #: lobby/XmppClient.cpp:1306
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr ""
+msgstr "প্রমাণীকরণ ব্যর্থ হয়েছে. ভুল পাসওয়ার্ড বা অ্যাকাউন্ট বিদ্যমান নেই"
 
 #: lobby/XmppClient.cpp:1307
 msgid "The user or system requested a disconnect"
-msgstr ""
+msgstr "ব্যবহারকারী বা সিস্টেমটি সংযোগ বিচ্ছিন্ন করার অনুরোধ করেছে"
 
 #: lobby/XmppClient.cpp:1308
 msgid "There is no active connection"
-msgstr ""
+msgstr "কোনও সক্রিয় সংযোগ নেই"
 
 #: lobby/XmppClient.cpp:1329
 msgid "Your account has been successfully registered"
-msgstr ""
+msgstr "আপনার অ্যাকাউন্ট সাফল্যের সাথে নিবন্ধিত হয়েছে"
 
 #: lobby/XmppClient.cpp:1330
 msgid "Not all necessary information provided"
-msgstr ""
+msgstr "সমস্ত প্রয়োজনীয় তথ্য সরবরাহ করা হয় নি"
 
 #: lobby/XmppClient.cpp:1331
 msgid "Username already exists"
-msgstr "ইউজারনেম আগেথেকেই আছে "
+msgstr "ইউজার নেম আগে থেকেই আছে "
 
 #: ps/ModIo.cpp:261
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr ""
+msgstr "গেম আইডি অনুসন্ধান করা শুরু করার সময় ব্যর্থতা। ত্রুটি:%s:%s"
 
 #: ps/ModIo.cpp:291
 #, c-format

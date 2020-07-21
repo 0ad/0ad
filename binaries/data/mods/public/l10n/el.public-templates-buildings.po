@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-26 07:10+0000\n"
-"PO-Revision-Date: 2020-06-26 10:15+0000\n"
+"POT-Creation-Date: 2020-07-17 07:09+0000\n"
+"PO-Revision-Date: 2020-07-17 10:13+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -83,10 +83,10 @@ msgstr "Αυξάνει το όριο του πληθυσμού."
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:39
 #: simulation/templates/template_structure_economic_farmstead.xml:34
 #: simulation/templates/template_structure_economic_storehouse.xml:35
-#: simulation/templates/template_structure_military_barracks.xml:25
+#: simulation/templates/template_structure_military_barracks.xml:29
 #: simulation/templates/template_structure_military_dock.xml:29
 #: simulation/templates/template_structure_military_range.xml:25
-#: simulation/templates/template_structure_military_stable.xml:27
+#: simulation/templates/template_structure_military_stable.xml:26
 #: simulation/templates/template_structure_resource_corral.xml:21
 msgid "Village"
 msgstr "Χωριό"
@@ -112,11 +112,11 @@ msgstr "Στρατολόγηση Ειδικών Μονάδων"
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_defensive_tower_stone.xml:35
 #: simulation/templates/template_structure_economic_market.xml:33
-#: simulation/templates/template_structure_military_blacksmith.xml:28
-#: simulation/templates/template_structure_military_embassy.xml:31
+#: simulation/templates/template_structure_military_blacksmith.xml:26
+#: simulation/templates/template_structure_military_embassy.xml:33
 #: simulation/templates/structures/cart_super_dock.xml:46
 #: simulation/templates/structures/gaul_tavern.xml:26
-#: simulation/templates/structures/kush_pyramid_small.xml:27
+#: simulation/templates/structures/kush_pyramid_small.xml:29
 #: simulation/templates/structures/maur_elephant_stables.xml:7
 #: simulation/templates/structures/ptol_lighthouse.xml:27
 msgid "Town"
@@ -165,11 +165,12 @@ msgstr "Εκτοξεύει πέτρες. Απαιτείται η τεχνολο�
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:61
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:60
-#: simulation/templates/template_structure_military_elephant_stables.xml:29
+#: simulation/templates/template_structure_military_elephant_stables.xml:27
 #: simulation/templates/template_structure_military_fortress.xml:73
-#: simulation/templates/template_structure_military_workshop.xml:30
+#: simulation/templates/template_structure_military_workshop.xml:28
 #: simulation/templates/template_structure_special.xml:36
-#: simulation/templates/template_structure_wonder.xml:55
+#: simulation/templates/template_structure_wonder.xml:53
+#: simulation/templates/structures/kush_pyramid_large.xml:29
 #: simulation/templates/structures/kush_temple_amun.xml:33
 msgid "City"
 msgstr "Πόλη"
@@ -308,7 +309,7 @@ msgstr "Σημείο απόθεσης για ξυλεία, πέτρα και μ�
 msgid "Storehouse"
 msgstr "Αποθήκη"
 
-#: simulation/templates/template_structure_military.xml:24
+#: simulation/templates/template_structure_military.xml:23
 msgid "Military Structure"
 msgstr "Στρατιωτική Κατασκευή"
 
@@ -316,21 +317,21 @@ msgstr "Στρατιωτική Κατασκευή"
 msgid "Military"
 msgstr "Στρατός"
 
-#: simulation/templates/template_structure_military_barracks.xml:24
+#: simulation/templates/template_structure_military_barracks.xml:28
 msgid "Train citizen-soldiers. Research training improvements."
 msgstr "Εκπαίδευσε πολίτες-στρατιώτες. Κάνε έρευνες για την βελτίωση της εκπαίδευσης."
 
-#: simulation/templates/template_structure_military_barracks.xml:25
-#: simulation/templates/template_structure_military_barracks.xml:22
+#: simulation/templates/template_structure_military_barracks.xml:29
+#: simulation/templates/template_structure_military_barracks.xml:26
 msgid "Barracks"
 msgstr "Στρατώνες"
 
-#: simulation/templates/template_structure_military_blacksmith.xml:27
-msgid "Research weapons and armor improvements."
-msgstr "Ερεύνησε για αναβαθμίσεις όπλων και τις πανοπλιών."
+#: simulation/templates/template_structure_military_blacksmith.xml:24
+msgid "Research attack and armor technologies."
+msgstr ""
 
-#: simulation/templates/template_structure_military_blacksmith.xml:28
-#: simulation/templates/template_structure_military_blacksmith.xml:23
+#: simulation/templates/template_structure_military_blacksmith.xml:26
+#: simulation/templates/template_structure_military_blacksmith.xml:22
 msgid "Blacksmith"
 msgstr "Σιδηρουργείο"
 
@@ -349,16 +350,16 @@ msgstr "Λιμάνι"
 msgid "Elephant Stables"
 msgstr "Στάβλοι Ελεφάντων"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:28
-msgid "Train elephant units."
-msgstr "Εκπαίδευση Ελεφάντων"
+#: simulation/templates/template_structure_military_elephant_stables.xml:26
+msgid "Train Elephants and research Elephant technologies."
+msgstr ""
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:29
+#: simulation/templates/template_structure_military_elephant_stables.xml:27
 msgid "ElephantStable"
 msgstr "Στάβλος Ελεφάντων"
 
+#: simulation/templates/template_structure_military_embassy.xml:33
 #: simulation/templates/template_structure_military_embassy.xml:31
-#: simulation/templates/template_structure_military_embassy.xml:32
 #: simulation/templates/structures/cart_embassy.xml:18
 msgid "Embassy"
 msgstr "Πρεσβεία"
@@ -379,19 +380,19 @@ msgid "Practice Range"
 msgstr "Βεληνεκές Εξάσκησης"
 
 #: simulation/templates/template_structure_military_range.xml:24
-msgid "Train citizen-soldier ranged infantry. Research training improvements."
-msgstr "Εκπαίδευσε πολίτες-οπλίτες πεζικού εξ αποστάσεως. Ερεύνησε βελτιώσεις εκπαίδευσης."
+msgid "Train Ranged Infantry and research technologies."
+msgstr ""
 
 #: simulation/templates/template_structure_military_range.xml:25
 msgid "Range"
 msgstr "Βεληνεκές"
 
-#: simulation/templates/template_structure_military_stable.xml:26
+#: simulation/templates/template_structure_military_stable.xml:25
 msgid "Train Cavalry and research Cavalry technologies."
 msgstr ""
 
-#: simulation/templates/template_structure_military_stable.xml:27
-#: simulation/templates/template_structure_military_stable.xml:22
+#: simulation/templates/template_structure_military_stable.xml:26
+#: simulation/templates/template_structure_military_stable.xml:23
 msgid "Stable"
 msgstr "Στάβλος"
 
@@ -399,11 +400,11 @@ msgstr "Στάβλος"
 msgid "Siege Workshop"
 msgstr "Πολιορκητικό Εργαστήρι"
 
-#: simulation/templates/template_structure_military_workshop.xml:29
+#: simulation/templates/template_structure_military_workshop.xml:27
 msgid "Construct Siege Engines and research Siege Engine technologies."
 msgstr "Κατασκευάζει Πολιορκητικές Μηχανές και  ερευνά τεχνολογία των Πολιορκητικών Μηχανών."
 
-#: simulation/templates/template_structure_military_workshop.xml:30
+#: simulation/templates/template_structure_military_workshop.xml:28
 msgid "Workshop"
 msgstr "Εργαστήρι"
 
@@ -465,22 +466,22 @@ msgstr "Περιστροφικός Μύλος"
 msgid "Theater"
 msgstr "Θέατρο"
 
-#: simulation/templates/template_structure_wonder.xml:54
+#: simulation/templates/template_structure_wonder.xml:52
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
 msgstr "Κομίστε δόξα στον πολιτισμό σας και προσθέστε μεγάλες εκτάσεις γης στην αυτοκρατορία σας."
 
-#: simulation/templates/template_structure_wonder.xml:55
-#: simulation/templates/template_structure_wonder.xml:52
+#: simulation/templates/template_structure_wonder.xml:53
+#: simulation/templates/template_structure_wonder.xml:50
 msgid "Wonder"
 msgstr "Θαύμα"
 
-#: simulation/templates/structures/athen_barracks.xml:18
-#: simulation/templates/structures/mace_barracks.xml:18
-#: simulation/templates/structures/ptol_barracks.xml:17
-#: simulation/templates/structures/sele_barracks.xml:18
-#: simulation/templates/structures/spart_barracks.xml:18
+#: simulation/templates/structures/athen_barracks.xml:12
+#: simulation/templates/structures/mace_barracks.xml:12
+#: simulation/templates/structures/ptol_barracks.xml:11
+#: simulation/templates/structures/sele_barracks.xml:12
+#: simulation/templates/structures/spart_barracks.xml:12
 msgid "Stratopedon"
 msgstr "Στρατόπεδον"
 
@@ -730,7 +731,7 @@ msgstr "Παρθενόν"
 msgid "Hoplothēkē"
 msgstr "Οπλοστάσιο"
 
-#: simulation/templates/structures/brit_barracks.xml:18
+#: simulation/templates/structures/brit_barracks.xml:19
 msgid "Coriosessa"
 msgstr "Κοριόσεσσα"
 
@@ -813,8 +814,8 @@ msgstr "Μπαντίναντον"
 msgid "Melonas"
 msgstr "Μέλονας"
 
-#: simulation/templates/structures/brit_stable.xml:5
-#: simulation/templates/structures/gaul_stable.xml:5
+#: simulation/templates/structures/brit_stable.xml:11
+#: simulation/templates/structures/gaul_stable.xml:11
 msgid "Eposton"
 msgstr "Επίστον"
 
@@ -862,15 +863,9 @@ msgstr "Μαϊλτούρσεντον"
 msgid "Apartment Building"
 msgstr "Κτήριο Διαμερισμάτων"
 
-#: simulation/templates/structures/cart_barracks.xml:18
+#: simulation/templates/structures/cart_barracks.xml:12
 msgid "Maḥanēt"
 msgstr "Maḥanēt"
-
-#: simulation/templates/structures/cart_barracks.xml:19
-msgid ""
-"Train North African citizen-soldiers. Research improvements for North "
-"African units."
-msgstr "Εκπαίδευσε βόρειο-αφρικανούς πολίτες-στρατιώτες. Ερεύνησε βελτιώσεις για βόρειο-αφρικανές μονάδες"
 
 #: simulation/templates/structures/cart_civil_centre.xml:8
 msgid "Merkāz"
@@ -1019,7 +1014,7 @@ msgstr "Jdar"
 msgid "Temple of Ba'al Hammon"
 msgstr "Ναός του Ba'al Hammon"
 
-#: simulation/templates/structures/gaul_barracks.xml:18
+#: simulation/templates/structures/gaul_barracks.xml:19
 msgid "Coriosedlon"
 msgstr "Κοριοσέντλον"
 
@@ -1059,7 +1054,7 @@ msgstr ""
 msgid "Celicnon"
 msgstr ""
 
-#: simulation/templates/structures/iber_barracks.xml:11
+#: simulation/templates/structures/iber_barracks.xml:5
 msgid "Kaserna"
 msgstr "Στρατώνας"
 
@@ -1145,7 +1140,7 @@ msgstr "Ζαμπάλ Χόρμα"
 msgid "Cancho Roano"
 msgstr "Κάνσο Ροάνο"
 
-#: simulation/templates/structures/kush_barracks.xml:15
+#: simulation/templates/structures/kush_barracks.xml:9
 msgid "pr-msʿyw"
 msgstr ""
 
@@ -1153,12 +1148,12 @@ msgstr ""
 msgid "hmw hʿy n rȝ-ʿ"
 msgstr ""
 
-#: simulation/templates/structures/kush_blemmye_camp.xml:19
-#: simulation/templates/structures/kush_blemmye_camp.xml:20
+#: simulation/templates/structures/kush_blemmye_camp.xml:22
+#: simulation/templates/structures/kush_blemmye_camp.xml:23
 msgid "Blemmye Camp"
 msgstr "Κατασκήνωση Ακέφαλων"
 
-#: simulation/templates/structures/kush_blemmye_camp.xml:21
+#: simulation/templates/structures/kush_blemmye_camp.xml:24
 msgid "Train Blemmye Desert Raiders."
 msgstr "Εκπαίδευσε Ακέφαλο Επιδρομέα της Ερήμου"
 
@@ -1202,12 +1197,12 @@ msgstr "Πρ"
 msgid "Pr-sbt"
 msgstr "Πρ-σμπτ"
 
-#: simulation/templates/structures/kush_nuba_village.xml:19
-#: simulation/templates/structures/kush_nuba_village.xml:20
+#: simulation/templates/structures/kush_nuba_village.xml:22
+#: simulation/templates/structures/kush_nuba_village.xml:23
 msgid "Nuba Village"
 msgstr "Χωριό Νούμπα"
 
-#: simulation/templates/structures/kush_nuba_village.xml:21
+#: simulation/templates/structures/kush_nuba_village.xml:24
 msgid "Train the Nuba Clubman and Nuba Hunter."
 msgstr "Εκπαίδευσε Ροπαλοφόρο Νούμπα και Νούμπα Κυνηγό."
 
@@ -1215,30 +1210,24 @@ msgstr "Εκπαίδευσε Ροπαλοφόρο Νούμπα και Νούμπ
 msgid "trtr"
 msgstr "τρτρ"
 
-#: simulation/templates/structures/kush_pyramid.xml:24
-msgid "Kushite Pyramid"
-msgstr "Κουσίτικη Πυραμίδα"
-
-#: simulation/templates/structures/kush_pyramid.xml:25
-#: simulation/templates/structures/kush_pyramid_large.xml:28
-msgid "mr ʿȝ"
-msgstr ""
-
-#: simulation/templates/structures/kush_pyramid.xml:26
-#: simulation/templates/structures/kush_pyramid_large.xml:29
-#: simulation/templates/structures/kush_pyramid_small.xml:27
-msgid "Pyramid"
-msgstr "Πυραμίδα"
-
-#: simulation/templates/structures/kush_pyramid_large.xml:27
+#: simulation/templates/structures/kush_pyramid_large.xml:26
 msgid "Large Pyramid"
 msgstr "Μεγάλη Πυραμίδα"
 
-#: simulation/templates/structures/kush_pyramid_small.xml:25
+#: simulation/templates/structures/kush_pyramid_large.xml:27
+msgid "mr ʿȝ"
+msgstr ""
+
+#: simulation/templates/structures/kush_pyramid_large.xml:29
+#: simulation/templates/structures/kush_pyramid_small.xml:29
+msgid "Pyramid"
+msgstr "Πυραμίδα"
+
+#: simulation/templates/structures/kush_pyramid_small.xml:26
 msgid "Small Pyramid"
 msgstr "Μικρή Πυραμίδα"
 
-#: simulation/templates/structures/kush_pyramid_small.xml:26
+#: simulation/templates/structures/kush_pyramid_small.xml:27
 msgid "mr"
 msgstr "μρ"
 
@@ -1327,7 +1316,7 @@ msgstr "Βιβλιοθήκη"
 msgid "Hieron tou Dios tou Olympiou"
 msgstr "Ιερόν του Ολύμπιου Διός"
 
-#: simulation/templates/structures/maur_barracks.xml:14
+#: simulation/templates/structures/maur_barracks.xml:15
 msgid "Sainyavasa"
 msgstr "Sainyavasa"
 
@@ -1464,16 +1453,16 @@ msgstr "Μαυσωλείο"
 msgid "MercenaryCamp"
 msgstr "Στρατόπεδο Μισθοφόρων "
 
-#: simulation/templates/structures/merc_camp_egyptian.xml:28
+#: simulation/templates/structures/merc_camp_egyptian.xml:29
 msgid "Egyptian Mercenary Camp"
 msgstr "Αιγυπτιακό Μισθοφορικό Στρατόπεδο"
 
-#: simulation/templates/structures/merc_camp_egyptian.xml:29
+#: simulation/templates/structures/merc_camp_egyptian.xml:30
 #: simulation/templates/structures/ptol_mercenary_camp.xml:29
 msgid "Stratopedeia Misthophorōn"
 msgstr "Στρατοπεδεία Μισθοφόρων"
 
-#: simulation/templates/structures/merc_camp_egyptian.xml:31
+#: simulation/templates/structures/merc_camp_egyptian.xml:32
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
 msgstr "Αιχμαλώτισε αυτό το κατασκεύασμα για να εκπαιδεύσεις μισθοφόρους από την Ελληνιστική Αίγυπτο."
 
@@ -1545,13 +1534,13 @@ msgstr "\"Φόρος τιμής στους Σατράπηδες.\":  Κέρδι�
 msgid "Apartment Block"
 msgstr "Συγκρότημα Διαμερισμάτων"
 
-#: simulation/templates/structures/pers_barracks.xml:10
+#: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
 msgstr "Padgan"
 
-#: simulation/templates/structures/pers_barracks.xml:11
-msgid "Levy citizen-soldier infantry."
-msgstr "Στρατολογημένο πολίτες οπλίτες πεζικό."
+#: simulation/templates/structures/pers_barracks.xml:6
+msgid "Train Infantry."
+msgstr ""
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1634,7 +1623,7 @@ msgstr "Ardatašta"
 msgid "Didebani"
 msgstr "Didebani"
 
-#: simulation/templates/structures/pers_stable.xml:15
+#: simulation/templates/structures/pers_stable.xml:9
 msgid "Paraspa"
 msgstr "Paraspa"
 
@@ -1672,12 +1661,6 @@ msgstr "Αποθήκη"
 #: simulation/templates/structures/pers_wonder.xml:9
 msgid "Hanging Gardens of Babylon"
 msgstr "Κρεμαστοί Κήποι της Βαβυλώνας"
-
-#: simulation/templates/structures/ptol_barracks.xml:18
-msgid ""
-"Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
-"improvements."
-msgstr "Εκπαιδεύστε πολίτες-στρατιώτες από την Αίγυπτο και τη Μέση Ανατολή. Ερευνήστε βελτιώσεις εκπαίδευσης."
 
 #: simulation/templates/structures/ptol_elephant_stables.xml:5
 #: simulation/templates/structures/sele_elephant_stables.xml:5
@@ -1771,7 +1754,7 @@ msgid ""
 "Siege Engines. Garrison Soldiers for additional arrows."
 msgstr "Κατασκευάζεται σε ουδέτερη ή εχθρική περιοχή. Εκπαιδεύει Πολίτες-Οπλίτες και κατασκευάζει Πολιορκητικές Μηχανές. Τοποθέτησε φρουρά από Στρατιώτες για περισσότερα βέλη."
 
-#: simulation/templates/structures/rome_barracks.xml:18
+#: simulation/templates/structures/rome_barracks.xml:12
 msgid "Castrum"
 msgstr "Castrum"
 

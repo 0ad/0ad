@@ -18,8 +18,9 @@
 #include "precompiled.h"
 
 #include "MessageHandler.h"
-#include "../GameLoop.h"
 #include "../CommandProc.h"
+#include "../GameLoop.h"
+#include "../MessagePasser.h"
 
 #include "graphics/GameView.h"
 #include "graphics/LOSTexture.h"
@@ -29,6 +30,7 @@
 #include "graphics/Terrain.h"
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/TerrainTextureManager.h"
+#include "gui/ObjectTypes/CMiniMap.h"
 #include "lib/bits.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "lib/status.h"
@@ -36,16 +38,22 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
+#include "ps/GameSetup/GameSetup.h"
 #include "ps/Loader.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
+#include "renderer/WaterManager.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPlayer.h"
 #include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpRangeManager.h"
+#include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/components/ICmpTerrain.h"
+#include "simulation2/components/ICmpVisual.h"
+#include "simulation2/system/ParamNode.h"
 
 namespace
 {
@@ -271,17 +279,128 @@ QUERYHANDLER(GetMapSizes)
 	msg->sizes = g_Game->GetSimulation2()->GetMapSizes();
 }
 
+QUERYHANDLER(RasterizeMinimap)
+{
+	// TODO: remove the code duplication of the rasterization algorithm, using
+	// CMinimap version.
+	const CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+	const ssize_t dimension = terrain->GetVerticesPerSide() - 1;
+	const ssize_t bpp = 24;
+	const ssize_t imageDataSize = dimension * dimension * (bpp / 8);
+
+	std::vector<u8> imageBytes(imageDataSize);
+
+	float shallowPassageHeight = CMiniMap::GetShallowPassageHeight();
+
+	ssize_t w = dimension;
+	ssize_t h = dimension;
+	float waterHeight = g_Renderer.GetWaterManager()->m_WaterHeight;
+
+	for (ssize_t j = 0; j < h; ++j)
+	{
+		// Work backwards to vertically flip the image.
+		ssize_t position = 3 * (h - j - 1) * dimension;
+		for (ssize_t i = 0; i < w; ++i)
+		{
+			float avgHeight = (terrain->GetVertexGroundLevel(i, j)
+				+ terrain->GetVertexGroundLevel(i + 1, j)
+				+ terrain->GetVertexGroundLevel(i, j + 1)
+				+ terrain->GetVertexGroundLevel(i + 1, j + 1)
+				) / 4.0f;
+
+			if (avgHeight < waterHeight && avgHeight > waterHeight - shallowPassageHeight)
+			{
+				// shallow water
+				imageBytes[position++] = 0x70;
+				imageBytes[position++] = 0x98;
+				imageBytes[position++] = 0xc0;
+			}
+			else if (avgHeight < waterHeight)
+			{
+				// Set water as constant color for consistency on different maps
+				imageBytes[position++] = 0x50;
+				imageBytes[position++] = 0x78;
+				imageBytes[position++] = 0xa0;
+			}
+			else
+			{
+				u32 color = std::numeric_limits<u32>::max();
+				u32 hmap = static_cast<u32>(terrain->GetHeightMap()[j * dimension + i]) >> 8;
+				float scale = hmap / 3.0f + 170.0f / 255.0f;
+
+				CMiniPatch* mp = terrain->GetTile(i, j);
+				if (mp)
+				{
+					CTerrainTextureEntry* tex = mp->GetTextureEntry();
+					if (tex)
+						color = tex->GetBaseColor();
+				}
+
+				// Convert
+				imageBytes[position++] = static_cast<u8>(static_cast<float>(color & 0xff) * scale);
+				imageBytes[position++] = static_cast<u8>(static_cast<float>((color >> 8) & 0xff) * scale);
+				imageBytes[position++] = static_cast<u8>(static_cast<float>((color >> 16) & 0xff) * scale);
+			}
+		}
+	}
+
+	msg->imageBytes = std::move(imageBytes);
+	msg->dimension = dimension;
+}
+
 QUERYHANDLER(GetRMSData)
 {
 	msg->data = g_Game->GetSimulation2()->GetRMSData();
 }
 
+QUERYHANDLER(GetCurrentMapSize)
+{
+	msg->size = g_Game->GetWorld()->GetTerrain()->GetTilesPerSide();
+}
+
 BEGIN_COMMAND(ResizeMap)
 {
-	int m_OldTiles, m_NewTiles;
-
-	cResizeMap()
+	bool Within(const CFixedVector3D& pos, const int centerX, const int centerZ, const int radius)
 	{
+		int dx = abs(pos.X.ToInt_RoundToZero() - centerX);
+		if (dx > radius)
+			return false;
+		int dz = abs(pos.Z.ToInt_RoundToZero() - centerZ);
+		if (dz > radius)
+			return false;
+		if (dx + dz <= radius)
+			return true;
+		return dx * dx + dz * dz <= radius * radius;
+	}
+
+	struct DeletedObject
+	{
+		entity_id_t entityId;
+		CStr templateName;
+		player_id_t owner;
+		CFixedVector3D pos;
+		CFixedVector3D rot;
+		u32 actorSeed;
+	};
+
+	ssize_t m_OldPatches, m_NewPatches;
+	int m_OffsetX, m_OffsetY;
+
+	u16* m_Heightmap;
+	CPatch*	m_Patches;
+
+	std::vector<DeletedObject> m_DeletedObjects;
+	std::vector<std::pair<entity_id_t, CFixedVector3D>> m_OldPositions;
+	std::vector<std::pair<entity_id_t, CFixedVector3D>> m_NewPositions;
+
+	cResizeMap() : m_Heightmap(nullptr), m_Patches(nullptr)
+	{
+	}
+
+	~cResizeMap()
+	{
+		delete[] m_Heightmap;
+		delete[] m_Patches;
 	}
 
 	void MakeDirty()
@@ -295,41 +414,185 @@ BEGIN_COMMAND(ResizeMap)
 		g_Game->GetView()->GetLOSTexture().MakeDirty();
 	}
 
-	void ResizeTerrain(int tiles)
+	void ResizeTerrain(ssize_t patches, int offsetX, int offsetY)
 	{
 		CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+		terrain->ResizeAndOffset(patches, -offsetX, -offsetY);
+	}
 
-		const ssize_t newSize = tiles / PATCH_SIZE;
-		const ssize_t offset = (newSize - terrain->GetPatchesPerSide()) / 2;
-		terrain->ResizeAndOffset(newSize, offset, offset);
+	void DeleteObjects(const std::vector<DeletedObject>& deletedObjects)
+	{
+		for (const DeletedObject& deleted : deletedObjects)
+			g_Game->GetSimulation2()->DestroyEntity(deleted.entityId);
 
-		MakeDirty();
+		g_Game->GetSimulation2()->FlushDestroyedEntities();
+	}
+
+	void RestoreObjects(const std::vector<DeletedObject>& deletedObjects)
+	{
+		CSimulation2& sim = *g_Game->GetSimulation2();
+
+		for (const DeletedObject& deleted : deletedObjects)
+		{
+			entity_id_t ent = sim.AddEntity(deleted.templateName.FromUTF8(), deleted.entityId);
+			if (ent == INVALID_ENTITY)
+			{
+				LOGERROR("Failed to load entity template '%s'", deleted.templateName.c_str());
+			}
+			else
+			{
+				CmpPtr<ICmpPosition> cmpPosition(sim, deleted.entityId);
+				if (cmpPosition)
+				{
+					cmpPosition->JumpTo(deleted.pos.X, deleted.pos.Z);
+					cmpPosition->SetXZRotation(deleted.rot.X, deleted.rot.Z);
+					cmpPosition->SetYRotation(deleted.rot.Y);
+				}
+
+				CmpPtr<ICmpOwnership> cmpOwnership(sim, deleted.entityId);
+				if (cmpOwnership)
+					cmpOwnership->SetOwner(deleted.owner);
+
+				CmpPtr<ICmpVisual> cmpVisual(sim, deleted.entityId);
+				if (cmpVisual)
+					cmpVisual->SetActorSeed(deleted.actorSeed);
+			}
+		}
+	}
+
+	void SetMovedEntitiesPosition(const std::vector<std::pair<entity_id_t, CFixedVector3D>>& movedObjects)
+	{
+		for (const std::pair<entity_id_t, CFixedVector3D>& obj : movedObjects)
+		{
+			const entity_id_t id = obj.first;
+			const CFixedVector3D position = obj.second;
+			CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), id);
+			ENSURE(cmpPosition);
+			cmpPosition->JumpTo(position.X, position.Z);
+		}
 	}
 
 	void Do()
 	{
-		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		CSimulation2& sim = *g_Game->GetSimulation2();
+		CmpPtr<ICmpTemplateManager> cmpTemplateManager(sim, SYSTEM_ENTITY);
+		ENSURE(cmpTemplateManager);
+
+		CmpPtr<ICmpTerrain> cmpTerrain(sim, SYSTEM_ENTITY);
 		if (!cmpTerrain)
 		{
-			m_OldTiles = m_NewTiles = 0;
+			m_OldPatches = m_NewPatches = 0;
+			m_OffsetX = m_OffsetY = 0;
 		}
 		else
 		{
-			m_OldTiles = (int)cmpTerrain->GetTilesPerSide();
-			m_NewTiles = msg->tiles;
+			m_OldPatches = static_cast<ssize_t>(cmpTerrain->GetTilesPerSide() / PATCH_SIZE);
+			m_NewPatches = msg->tiles / PATCH_SIZE;
+			m_OffsetX = msg->offsetX / PATCH_SIZE;
+			// Need to flip direction of vertical offset, due to screen mapping order.
+			m_OffsetY = -(msg->offsetY / PATCH_SIZE);
+
+			CTerrain* terrain = cmpTerrain->GetCTerrain();
+			m_Heightmap = new u16[(m_OldPatches * PATCH_SIZE + 1) * (m_OldPatches * PATCH_SIZE + 1)];
+			std::copy_n(terrain->GetHeightMap(), (m_OldPatches * PATCH_SIZE + 1) * (m_OldPatches * PATCH_SIZE + 1), m_Heightmap);
+			m_Patches = new CPatch[m_OldPatches * m_OldPatches];
+			for (ssize_t j = 0; j < m_OldPatches; ++j)
+				for (ssize_t i = 0; i < m_OldPatches; ++i)
+				{
+					CPatch& src = *(terrain->GetPatch(i, j));
+					CPatch& dst = m_Patches[j * m_OldPatches + i];
+					std::copy_n(&src.m_MiniPatches[0][0], PATCH_SIZE * PATCH_SIZE, &dst.m_MiniPatches[0][0]);
+				}
 		}
 
-		ResizeTerrain(m_NewTiles);
+		const int radiusInTerrainUnits = m_NewPatches * PATCH_SIZE * TERRAIN_TILE_SIZE / 2 * (1.f - 1e-6f);
+		// Opposite direction offset, as we move the destination onto the source, not the source into the destination.
+		const int mapCenterX = (m_OldPatches / 2 - m_OffsetX) * PATCH_SIZE * TERRAIN_TILE_SIZE;
+		const int mapCenterZ = (m_OldPatches / 2 - m_OffsetY) * PATCH_SIZE * TERRAIN_TILE_SIZE;
+		// The offset to move units by is opposite the direction the map is moved, and from the corner.
+		const int offsetX = ((m_NewPatches - m_OldPatches) / 2 + m_OffsetX) * PATCH_SIZE * TERRAIN_TILE_SIZE;
+		const int offsetZ = ((m_NewPatches - m_OldPatches) / 2 + m_OffsetY) * PATCH_SIZE * TERRAIN_TILE_SIZE;
+		const CFixedVector3D offset = CFixedVector3D(fixed::FromInt(offsetX), fixed::FromInt(0), fixed::FromInt(offsetZ));
+
+		const CSimulation2::InterfaceListUnordered& ents = sim.GetEntitiesWithInterfaceUnordered(IID_Selectable);
+		for (const std::pair<entity_id_t, IComponent*>& ent : ents)
+		{
+			const entity_id_t entityId = ent.first;
+
+			CmpPtr<ICmpPosition> cmpPosition(sim, entityId);
+
+			if (cmpPosition && cmpPosition->IsInWorld() && Within(cmpPosition->GetPosition(), mapCenterX, mapCenterZ, radiusInTerrainUnits))
+			{
+				CFixedVector3D position = cmpPosition->GetPosition();
+
+				m_NewPositions.emplace_back(entityId, position + offset);
+				m_OldPositions.emplace_back(entityId, position);
+			}
+			else
+			{
+				DeletedObject deleted;
+				deleted.entityId = entityId;
+				deleted.templateName = cmpTemplateManager->GetCurrentTemplateName(entityId);
+
+				// If the entity has a position, but the ending position is not valid;
+				if (cmpPosition)
+				{
+					deleted.pos = cmpPosition->GetPosition();
+					deleted.rot = cmpPosition->GetRotation();
+				}
+
+				CmpPtr<ICmpOwnership> cmpOwnership(sim, entityId);
+				if (cmpOwnership)
+					deleted.owner = cmpOwnership->GetOwner();
+
+				CmpPtr<ICmpVisual> cmpVisual(sim, deleted.entityId);
+				if (cmpVisual)
+					deleted.actorSeed = cmpVisual->GetActorSeed();
+
+				m_DeletedObjects.push_back(deleted);
+			}
+		}
+
+		DeleteObjects(m_DeletedObjects);
+		ResizeTerrain(m_NewPatches, m_OffsetX, m_OffsetY);
+		SetMovedEntitiesPosition(m_NewPositions);
+		MakeDirty();
 	}
 
 	void Undo()
 	{
-		ResizeTerrain(m_OldTiles);
+		if (m_Heightmap == nullptr || m_Patches == nullptr)
+		{
+			// If there previously was no data, just resize to old (probably not originally valid).
+			ResizeTerrain(m_OldPatches, -m_OffsetX, -m_OffsetY);
+		}
+		else
+		{
+			CSimulation2& sim = *g_Game->GetSimulation2();
+			CmpPtr<ICmpTerrain> cmpTerrain(sim, SYSTEM_ENTITY);
+			CTerrain* terrain = cmpTerrain->GetCTerrain();
+
+			terrain->Initialize(m_OldPatches, m_Heightmap);
+			// Copy terrain data back.
+			for (ssize_t j = 0; j < m_OldPatches; ++j)
+				for (ssize_t i = 0; i < m_OldPatches; ++i)
+				{
+					CPatch& src = m_Patches[j * m_OldPatches + i];
+					CPatch& dst = *(terrain->GetPatch(i, j));
+					std::copy_n(&src.m_MiniPatches[0][0], PATCH_SIZE * PATCH_SIZE, &dst.m_MiniPatches[0][0]);
+				}
+		}
+		RestoreObjects(m_DeletedObjects);
+		SetMovedEntitiesPosition(m_OldPositions);
+		MakeDirty();
 	}
 
 	void Redo()
 	{
-		ResizeTerrain(m_NewTiles);
+		DeleteObjects(m_DeletedObjects);
+		ResizeTerrain(m_NewPatches, m_OffsetX, m_OffsetY);
+		SetMovedEntitiesPosition(m_NewPositions);
+		MakeDirty();
 	}
 };
 END_COMMAND(ResizeMap)

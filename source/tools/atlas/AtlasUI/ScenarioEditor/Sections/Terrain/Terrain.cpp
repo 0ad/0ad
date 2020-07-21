@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,12 +26,12 @@
 
 #include "GameInterface/Messages.h"
 
-#include "wx/spinctrl.h"
-#include "wx/listctrl.h"
-#include "wx/image.h"
-#include "wx/imaglist.h"
-#include "wx/busyinfo.h"
-#include "wx/notebook.h"
+#include <wx/spinctrl.h>
+#include <wx/listctrl.h>
+#include <wx/image.h>
+#include <wx/imaglist.h>
+#include <wx/busyinfo.h>
+#include <wx/notebook.h>
 
 class TextureNotebook;
 
@@ -47,8 +47,7 @@ private:
 enum
 {
 	ID_Passability = 1,
-	ID_ShowPriorities,
-	ID_ResizeMap
+	ID_ShowPriorities
 };
 
 // Helper function for adding tooltips
@@ -247,14 +246,6 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 			_("Show terrain texture priorities")));
 	}
 
-	{
-		/////////////////////////////////////////////////////////////////////////
-		// Misc tools
-		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _("Misc tools"));
-		sizer->Add(new wxButton(scrolledWindow, ID_ResizeMap, _("Resize map")), wxSizerFlags().Expand());
-		scrollSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
-	}
-
 	m_BottomBar = new TerrainBottomBar(scenarioEditor, bottomBarContainer);
 }
 
@@ -283,37 +274,9 @@ void TerrainSidebar::OnShowPriorities(wxCommandEvent& evt)
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::GAME, L"priorities", evt.IsChecked()));
 }
 
-void TerrainSidebar::OnResizeMap(wxCommandEvent& WXUNUSED(evt))
-{
-	wxArrayString sizeNames;
-	std::vector<size_t> sizeTiles;
-
-	// Load the map sizes list
-	AtlasMessage::qGetMapSizes qrySizes;
-	qrySizes.Post();
-	AtObj sizes = AtlasObject::LoadFromJSON(*qrySizes.sizes);
-	for (AtIter s = sizes["Data"]["item"]; s.defined(); ++s)
-	{
-		sizeNames.Add(wxString::FromUTF8(s["Name"]));
-		sizeTiles.push_back((*s["Tiles"]).getLong());
-	}
-
-	// TODO: set default based on current map size
-
-	wxSingleChoiceDialog dlg(this, _("Select new map size. WARNING: This probably only works reliably on blank maps."),
-			_("Resize map"), sizeNames);
-
-	if (dlg.ShowModal() != wxID_OK)
-		return;
-
-	size_t tiles = sizeTiles.at(dlg.GetSelection());
-	POST_COMMAND(ResizeMap, (tiles));
-}
-
 BEGIN_EVENT_TABLE(TerrainSidebar, Sidebar)
 	EVT_CHOICE(ID_Passability, TerrainSidebar::OnPassabilityChoice)
 	EVT_CHECKBOX(ID_ShowPriorities, TerrainSidebar::OnShowPriorities)
-	EVT_BUTTON(ID_ResizeMap, TerrainSidebar::OnResizeMap)
 END_EVENT_TABLE();
 
 //////////////////////////////////////////////////////////////////////////

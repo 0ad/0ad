@@ -4,8 +4,8 @@
     <Square width="37" depth="6"/>
     <Height>12.5</Height>
   </Footprint>
-  <GarrisonHolder>
-    <VisibleGarrisonPoints>
+  <TurretHolder>
+    <TurretPoints>
       <Archer1>
         <X>0</X>
         <Y>11.5</Y>
@@ -31,8 +31,8 @@
         <Y>11.5</Y>
         <Z>0</Z>
       </Archer5>
-    </VisibleGarrisonPoints>
-  </GarrisonHolder>
+    </TurretPoints>
+  </TurretHolder>
   <Identity>
     <Civ>spart</Civ>
     <SpecificName>Teichos</SpecificName>

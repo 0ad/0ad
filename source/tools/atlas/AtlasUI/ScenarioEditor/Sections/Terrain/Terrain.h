@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,11 +30,9 @@ protected:
 private:
 	void OnPassabilityChoice(wxCommandEvent& evt);
 	void OnShowPriorities(wxCommandEvent& evt);
-	void OnResizeMap(wxCommandEvent& evt);
 
 	wxChoice* m_PassabilityChoice;
 	TexturePreviewPanel* m_TexturePreview;
 
 	DECLARE_EVENT_TABLE();
 };
-
