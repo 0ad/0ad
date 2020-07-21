@@ -834,7 +834,7 @@ function getHealerTooltip(template)
 		sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", health), {
 			"label": headerFont(translate("Heal:")),
 			"val": health,
-			"unit": unitFont(translate("Health"))
+			"unit": unitFont(translatePlural("Health", "Health", health))
 		}),
 		sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", range), {
 			"label": headerFont(translate("Range:")),
