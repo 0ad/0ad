@@ -9,12 +9,12 @@ Heal.prototype.Schema =
 			"<LineTextureMask>heal_overlay_range_mask.png</LineTextureMask>" +
 			"<LineThickness>0.35</LineThickness>" +
 		"</RangeOverlay>" +
-		"<HP>5</HP>" +
-		"<Rate>2000</Rate>" +
+		"<Health>5</Health>" +
+		"<Interval>2000</Interval>" +
 		"<UnhealableClasses datatype=\"tokens\">Cavalry</UnhealableClasses>" +
 		"<HealableClasses datatype=\"tokens\">Support Infantry</HealableClasses>" +
 	"</a:example>" +
-	"<element name='Range' a:help='Range (in metres) where healing is possible'>" +
+	"<element name='Range' a:help='Range (in metres) where healing is possible.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
 	"<optional>" +
@@ -26,19 +26,19 @@ Heal.prototype.Schema =
 			"</interleave>" +
 		"</element>" +
 	"</optional>" +
-	"<element name='HP' a:help='Hitpoints healed per Rate'>" +
+	"<element name='Health' a:help='Health healed per Interval.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='Rate' a:help='A heal is performed every Rate ms'>" +
+	"<element name='Interval' a:help='A heal is performed every Interval ms.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='UnhealableClasses' a:help='If the target has any of these classes it can not be healed (even if it has a class from HealableClasses)'>" +
+	"<element name='UnhealableClasses' a:help='If the target has any of these classes it can not be healed (even if it has a class from HealableClasses).'>" +
 		"<attribute name='datatype'>" +
 			"<value>tokens</value>" +
 		"</attribute>" +
 		"<text/>" +
 	"</element>" +
-	"<element name='HealableClasses' a:help='The target must have one of these classes to be healable'>" +
+	"<element name='HealableClasses' a:help='The target must have one of these classes to be healable.'>" +
 		"<attribute name='datatype'>" +
 			"<value>tokens</value>" +
 		"</attribute>" +
@@ -49,24 +49,25 @@ Heal.prototype.Init = function()
 {
 };
 
-Heal.prototype.Serialize = null; // we have no dynamic state to save
+// We have no dynamic state to save.
+Heal.prototype.Serialize = null;
 
 Heal.prototype.GetTimers = function()
 {
 	return {
 		"prepare": 1000,
-		"repeat": this.GetRate()
+		"repeat": this.GetInterval()
 	};
 };
 
-Heal.prototype.GetHP = function()
+Heal.prototype.GetHealth = function()
 {
-	return ApplyValueModificationsToEntity("Heal/HP", +this.template.HP, this.entity);
+	return ApplyValueModificationsToEntity("Heal/Health", +this.template.Health, this.entity);
 };
 
-Heal.prototype.GetRate = function()
+Heal.prototype.GetInterval = function()
 {
-	return ApplyValueModificationsToEntity("Heal/Rate", +this.template.Rate, this.entity);
+	return ApplyValueModificationsToEntity("Heal/Interval", +this.template.Interval, this.entity);
 };
 
 Heal.prototype.GetRange = function()
@@ -138,14 +139,14 @@ Heal.prototype.PerformHeal = function(target)
 	if (!cmpHealth)
 		return;
 
-	let targetState = cmpHealth.Increase(this.GetHP());
+	let targetState = cmpHealth.Increase(this.GetHealth());
 
-	// Add XP
+	// Add experience.
 	let cmpLoot = Engine.QueryInterface(target, IID_Loot);
 	let cmpPromotion = Engine.QueryInterface(this.entity, IID_Promotion);
 	if (targetState !== undefined && cmpLoot && cmpPromotion)
 	{
-		// HP healed * XP per HP
+		// Health healed times experience per health.
 		cmpPromotion.IncreaseXp((targetState.new - targetState.old) / cmpHealth.GetMaxHitpoints() * cmpLoot.GetXp());
 	}
 	// TODO we need a sound file

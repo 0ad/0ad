@@ -501,9 +501,9 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	let cmpHeal = Engine.QueryInterface(ent, IID_Heal);
 	if (cmpHeal)
 		ret.heal = {
-			"hp": cmpHeal.GetHP(),
+			"health": cmpHeal.GetHealth(),
 			"range": cmpHeal.GetRange().max,
-			"rate": cmpHeal.GetRate(),
+			"interval": cmpHeal.GetInterval(),
 			"unhealableClasses": cmpHeal.GetUnhealableClasses(),
 			"healableClasses": cmpHeal.GetHealableClasses()
 		};

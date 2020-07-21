@@ -19,8 +19,8 @@ let template = {
 		"LineTextureMask": "heal_overlay_range_mask.png",
 		"LineThickness": 0.35
 	},
-	"HP": 5,
-	"Rate": 2000,
+	"Health": 5,
+	"Interval": 2000,
 	"UnhealableClasses": { "_string": "Cavalry" },
 	"HealableClasses": { "_string": "Support Infantry" },
 };
@@ -47,9 +47,9 @@ ApplyValueModificationsToEntity = function(value, stat, ent)
 		return stat;
 	switch (value)
 	{
-	case "Heal/HP":
+	case "Heal/Health":
 		return stat + 100;
-	case "Heal/Rate":
+	case "Heal/Interval":
 		return stat + 200;
 	case "Heal/Range":
 		return stat + 300;
@@ -61,11 +61,11 @@ ApplyValueModificationsToEntity = function(value, stat, ent)
 let cmpHeal = ConstructComponent(60, "Heal", template);
 
 // Test Getters
-TS_ASSERT_EQUALS(cmpHeal.GetRate(), 2000 + 200);
+TS_ASSERT_EQUALS(cmpHeal.GetInterval(), 2000 + 200);
 
 TS_ASSERT_UNEVAL_EQUALS(cmpHeal.GetTimers(), { "prepare": 1000, "repeat": 2000 + 200 });
 
-TS_ASSERT_EQUALS(cmpHeal.GetHP(), 5 + 100);
+TS_ASSERT_EQUALS(cmpHeal.GetHealth(), 5 + 100);
 
 TS_ASSERT_UNEVAL_EQUALS(cmpHeal.GetRange(), { "min": 0, "max": 20 + 300 });
 
@@ -134,7 +134,7 @@ AddMock(entity, IID_UnitAI, {
 	}
 });
 
-cmpHeal.OnValueModification({ "component": "Heal", "valueNames": ["Heal/HP"] });
+cmpHeal.OnValueModification({ "component": "Heal", "valueNames": ["Heal/Health"] });
 TS_ASSERT(!updated);
 
 cmpHeal.OnValueModification({ "component": "Heal", "valueNames": ["Heal/Range"] });
