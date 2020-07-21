@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
   <BuildRestrictions>
-    <Category>Apadana</Category>
+    <Category>Palace</Category>
   </BuildRestrictions>
   <Cost>
     <BuildTime>300</BuildTime>
@@ -26,9 +26,10 @@
     <Civ>pers</Civ>
     <GenericName>Throne Hall</GenericName>
     <SpecificName>Apadāna</SpecificName>
-    <Classes datatype="tokens">Apadana ConquestCritical Palace</Classes>
+    <Tooltip>Train Champions and Heroes.</Tooltip>
+    <Classes datatype="tokens">ConquestCritical</Classes>
+    <VisibleClasses datatype="tokens">Palace</VisibleClasses>
     <Icon>structures/palace.png</Icon>
-    <Tooltip>"Satrapy Tribute": Gain a trickle of food, wood, stone, and metal resources. Train Champions and Heroes.</Tooltip>
   </Identity>
   <Loot>
     <stone>60</stone>

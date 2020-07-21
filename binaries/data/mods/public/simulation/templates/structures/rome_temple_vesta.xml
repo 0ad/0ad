@@ -4,7 +4,7 @@
     structures/loyalty_regen
   </Auras>
   <BuildRestrictions>
-    <Category>UniqueBuilding</Category>
+    <Category>TempleOfVesta</Category>
   </BuildRestrictions>
   <Footprint replace="">
     <Circle radius="11.0"/>
@@ -15,8 +15,9 @@
   </Health>
   <Identity>
     <GenericName>Temple of Vesta</GenericName>
-    <Icon>structures/temple_vesta.png</Icon>
     <SpecificName>Aedēs Vestālis</SpecificName>
+    <VisibleClasses datatype="tokens">TempleOfVesta</VisibleClasses>
+    <Icon>structures/temple_vesta.png</Icon>
   </Identity>
   <Obstruction>
     <Static width="19.0" depth="19.0"/>

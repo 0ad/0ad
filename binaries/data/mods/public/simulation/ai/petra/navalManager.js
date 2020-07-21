@@ -713,8 +713,8 @@ PETRA.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 
 	if (gameState.ai.HQ.getAccountedPopulation(gameState) > this.Config.Economy.popForDock)
 	{
-		if (queues.dock.countQueuedUnitsWithClass("NavalMarket") === 0 &&
-			!gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClass("NavalMarket"), API3.Filters.isFoundation())).hasEntities() &&
+		if (queues.dock.countQueuedUnitsWithClass("Dock") === 0 &&
+			!gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClass("Dock"), API3.Filters.isFoundation())).hasEntities() &&
 			gameState.ai.HQ.canBuild(gameState, "structures/{civ}_dock"))
 		{
 			let dockStarted = false;
@@ -745,8 +745,8 @@ PETRA.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 	if (!this.docks.filter(API3.Filters.byClass("Dock")).hasEntities() ||
 	     this.docks.filter(API3.Filters.byClass("Shipyard")).hasEntities())
 		return;
-	// Use in priority resources to build a market
-	if (!gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities() &&
+	// Use in priority resources to build a Market.
+	if (!gameState.getOwnEntitiesByClass("Market", true).hasEntities() &&
 	    gameState.ai.HQ.canBuild(gameState, "structures/{civ}_market"))
 		return;
 	let template;

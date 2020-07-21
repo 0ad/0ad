@@ -37,6 +37,7 @@
     <Tooltip>Garrison Infantry for additional arrows. Needs the “Murder Holes” technology to protect its foot.</Tooltip>
     <VisibleClasses datatype="tokens">Village SentryTower</VisibleClasses>
     <Icon>structures/sentry_tower.png</Icon>
+    <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
   <Loot>
     <wood>20</wood>

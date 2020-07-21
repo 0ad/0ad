@@ -26,12 +26,13 @@
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_4x4</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Classes datatype="tokens">DropsiteFood</Classes>
     <GenericName>Farmstead</GenericName>
     <SelectionGroupName>template_structure_economic_farmstead</SelectionGroupName>
-    <Icon>structures/farmstead.png</Icon>
-    <Tooltip>Dropsite for the food resource. Research food gathering improvements.</Tooltip>
+    <Tooltip>Dropsite for food. Research food gathering technologies.</Tooltip>
+    <Classes datatype="tokens">DropsiteFood</Classes>
     <VisibleClasses datatype="tokens">Village Farmstead</VisibleClasses>
+    <Icon>structures/farmstead.png</Icon>
+    <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
   <Loot>
     <wood>20</wood>

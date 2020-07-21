@@ -14,7 +14,7 @@
     <Max op="mul">0.75</Max>
   </Health>
   <Identity>
-    <SpecificName>Palisade</SpecificName>
+    <Tooltip>Can be converted into a Palisade Gate.</Tooltip>
   </Identity>
   <Loot>
     <wood>3</wood>
@@ -28,11 +28,11 @@
   <Upgrade>
     <Gate>
       <Entity>structures/palisades_gate</Entity>
+      <Tooltip>Allow units access through Palisades. Can be locked to prevent access.</Tooltip>
       <Cost>
         <wood>20</wood>
       </Cost>
       <Time>5</Time>
-      <Tooltip>This will allow you to let units circulate through your fortifications.</Tooltip>
       <Variant>upgrading</Variant>
     </Gate>
   </Upgrade>

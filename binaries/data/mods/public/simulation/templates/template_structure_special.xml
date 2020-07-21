@@ -30,9 +30,7 @@
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_6x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <GenericName>Special Building</GenericName>
-    <Tooltip>This is a special building unique to a particular civilization.</Tooltip>
-    <Classes datatype="tokens">SpecialBuilding</Classes>
+    <GenericName>Special Structure</GenericName>
     <VisibleClasses datatype="tokens">City</VisibleClasses>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>

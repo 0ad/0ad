@@ -54,10 +54,10 @@ PETRA.ConstructionPlan.prototype.start = function(gameState)
 		return;
 	}
 
-	if (this.metadata && this.metadata.expectedGain && (!this.template.hasClass("BarterMarket") ||
-	    gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities()))
+	if (this.metadata && this.metadata.expectedGain && (!this.template.hasClass("Market") ||
+	    gameState.getOwnEntitiesByClass("Market", true).hasEntities()))
 	{
-		// Check if this market is still worth building (others may have been built making it useless)
+		// Check if this Market is still worth building (others may have been built making it useless).
 		let tradeManager = gameState.ai.HQ.tradeManager;
 		tradeManager.checkRoutes(gameState);
 		if (!tradeManager.isNewMarketWorth(this.metadata.expectedGain))
@@ -161,7 +161,7 @@ PETRA.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			if (!template.hasClass("Fortress") || gameState.getOwnEntitiesByClass("Fortress", true).hasEntities())
 				return false;
 		}
-		else if (template.hasClass("Market"))	// Docks (i.e. NavalMarket) are done before
+		else if (template.hasClass("Market")) // Docks are done before.
 		{
 			let pos = HQ.findMarketLocation(gameState, template);
 			if (pos && pos[2] > 0)
@@ -218,29 +218,29 @@ PETRA.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				if (struct.resourceDropsiteTypes() && struct.resourceDropsiteTypes().indexOf("food") != -1)
 				{
 					if (template.hasClass("Field") || template.hasClass("Corral"))
-						placement.addInfluence(x, z, 80/cellSize, 50);
+						placement.addInfluence(x, z, 80 / cellSize, 50);
 					else // If this is not a field add a negative influence because we want to leave this area for fields
-						placement.addInfluence(x, z, 80/cellSize, -20);
+						placement.addInfluence(x, z, 80 / cellSize, -20);
 				}
 				else if (template.hasClass("House"))
 				{
 					if (ent.hasClass("House"))
 					{
-						placement.addInfluence(x, z, 60/cellSize, 40);    // houses are close to other houses
+						placement.addInfluence(x, z, 60 / cellSize, 40);    // houses are close to other houses
 						alreadyHasHouses = true;
 					}
-					else if (!ent.hasClass("StoneWall") || ent.hasClass("Gates"))
-						placement.addInfluence(x, z, 60/cellSize, -40);   // and further away from other stuffs
+					else if (!ent.hasClass("Wall") || ent.hasClass("Gate"))
+						placement.addInfluence(x, z, 60 / cellSize, -40);   // and further away from other stuffs
 				}
 				else if (template.hasClass("Farmstead") && (!ent.hasClass("Field") && !ent.hasClass("Corral") &&
-					(!ent.hasClass("StoneWall") || ent.hasClass("Gates"))))
-					placement.addInfluence(x, z, 100/cellSize, -25);       // move farmsteads away to make room (StoneWall test needed for iber)
+					(!ent.hasClass("Wall") || ent.hasClass("Gate"))))
+					placement.addInfluence(x, z, 100 / cellSize, -25);       // move farmsteads away to make room (Wall test needed for iber)
 				else if (template.hasClass("GarrisonFortress") && ent.hasClass("House"))
-					placement.addInfluence(x, z, 120/cellSize, -50);
+					placement.addInfluence(x, z, 120 / cellSize, -50);
 				else if (template.hasClass("Military"))
-					placement.addInfluence(x, z, 40/cellSize, -40);
+					placement.addInfluence(x, z, 40 / cellSize, -40);
 				else if (template.genericName() == "Rotary Mill" && ent.hasClass("Field"))
-					placement.addInfluence(x, z, 60/cellSize, 40);
+					placement.addInfluence(x, z, 60 / cellSize, 40);
 			});
 		}
 		if (template.hasClass("Farmstead"))
@@ -256,8 +256,8 @@ PETRA.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	}
 
 	// Requires to be inside our territory, and inside our base territory if required
-	// and if our first market, put it on border if possible to maximize distance with next market
-	let favorBorder = template.hasClass("BarterMarket");
+	// and if our first market, put it on border if possible to maximize distance with next Market.
+	let favorBorder = template.hasClass("Market");
 	let disfavorBorder = gameState.currentPhase() > 1 && !template.hasDefensiveFire();
 	let favoredBase = this.metadata && (this.metadata.favoredBase ||
 		         (this.metadata.militaryBase ? HQ.findBestBaseForMilitary(gameState) : undefined));
@@ -319,7 +319,7 @@ PETRA.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		this.type == gameState.applyCiv("structures/{civ}_elephant_stables"))
 		radius = Math.floor((template.obstructionRadius().max + 8) / obstructions.cellSize);
 	else if (template.resourceDropsiteTypes() === undefined && !template.hasClass("House") &&
-	         !template.hasClass("Field") && !template.hasClass("BarterMarket"))
+		!template.hasClass("Field") && !template.hasClass("Market"))
 		radius = Math.ceil((template.obstructionRadius().max + 4) / obstructions.cellSize);
 	else
 		radius = Math.ceil(template.obstructionRadius().max / obstructions.cellSize);

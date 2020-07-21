@@ -1064,7 +1064,7 @@ PETRA.AttackPlan.prototype.checkTargetObstruction = function(gameState, target, 
 		if (!struct.position() || !struct.get("Obstruction") || struct.hasClass("Field"))
 			continue;
 		// we consider that we can reach the target, but nonetheless check that we did not cross any enemy gate
-		if (dist < radius + 10 && !struct.hasClass("Gates"))
+		if (dist < radius + 10 && !struct.hasClass("Gate"))
 			continue;
 		// Check that we are really blocked by this structure, i.e. advancing by 1+0.8(clearance)m
 		// in the target direction would bring us inside its obstruction.
@@ -1436,15 +1436,15 @@ PETRA.AttackPlan.prototype.update = function(gameState, events)
 		let targetClassesUnit;
 		let targetClassesSiege;
 		if (this.type == "Rush")
-			targetClassesUnit = { "attack": ["Unit", "Structure"], "avoid": ["Palisade", "StoneWall", "Tower", "Fortress"], "vetoEntities": veto };
+			targetClassesUnit = { "attack": ["Unit", "Structure"], "avoid": ["Palisade", "Wall", "Tower", "Fortress"], "vetoEntities": veto };
 		else
 		{
 			if (this.target.hasClass("Fortress"))
-				targetClassesUnit = { "attack": ["Unit", "Structure"], "avoid": ["Palisade", "StoneWall"], "vetoEntities": veto };
-			else if (this.target.hasClass("Palisade") || this.target.hasClass("StoneWall"))
+				targetClassesUnit = { "attack": ["Unit", "Structure"], "avoid": ["Palisade", "Wall"], "vetoEntities": veto };
+			else if (this.target.hasClass("Palisade") || this.target.hasClass("Wall"))
 				targetClassesUnit = { "attack": ["Unit", "Structure"], "avoid": ["Fortress"], "vetoEntities": veto };
 			else
-				targetClassesUnit = { "attack": ["Unit", "Structure"], "avoid": ["Palisade", "StoneWall", "Fortress"], "vetoEntities": veto };
+				targetClassesUnit = { "attack": ["Unit", "Structure"], "avoid": ["Palisade", "Wall", "Fortress"], "vetoEntities": veto };
 		}
 		if (this.target.hasClass("Structure"))
 			targetClassesSiege = { "attack": ["Structure"], "avoid": [], "vetoEntities": veto };
@@ -1561,14 +1561,14 @@ PETRA.AttackPlan.prototype.update = function(gameState, events)
 				{
 					mStruct.sort((structa, structb) => {
 						let vala = structa.costSum();
-						if (structa.hasClass("Gates") && ent.canAttackClass("StoneWall"))
+						if (structa.hasClass("Gate") && ent.canAttackClass("Wall"))
 							vala += 10000;
 						else if (structa.hasDefensiveFire())
 							vala += 1000;
 						else if (structa.hasClass("ConquestCritical"))
 							vala += 200;
 						let valb = structb.costSum();
-						if (structb.hasClass("Gates") && ent.canAttackClass("StoneWall"))
+						if (structb.hasClass("Gate") && ent.canAttackClass("Wall"))
 							valb += 10000;
 						else if (structb.hasDefensiveFire())
 							valb += 1000;
@@ -1576,7 +1576,7 @@ PETRA.AttackPlan.prototype.update = function(gameState, events)
 							valb += 200;
 						return valb - vala;
 					});
-					if (mStruct[0].hasClass("Gates"))
+					if (mStruct[0].hasClass("Gate"))
 						ent.attack(mStruct[0].id(), PETRA.allowCapture(gameState, ent, mStruct[0]));
 					else
 					{
@@ -1676,18 +1676,18 @@ PETRA.AttackPlan.prototype.update = function(gameState, events)
 					{
 						mStruct.sort((structa, structb) => {
 							let vala = structa.costSum();
-							if (structa.hasClass("Gates") && ent.canAttackClass("StoneWall"))
+							if (structa.hasClass("Gate") && ent.canAttackClass("Wall"))
 								vala += 10000;
 							else if (structa.hasClass("ConquestCritical"))
 								vala += 100;
 							let valb = structb.costSum();
-							if (structb.hasClass("Gates") && ent.canAttackClass("StoneWall"))
+							if (structb.hasClass("Gate") && ent.canAttackClass("Wall"))
 								valb += 10000;
 							else if (structb.hasClass("ConquestCritical"))
 								valb += 100;
 							return valb - vala;
 						});
-						if (mStruct[0].hasClass("Gates"))
+						if (mStruct[0].hasClass("Gate"))
 							ent.attack(mStruct[0].id(), false);
 						else
 						{
@@ -1833,11 +1833,11 @@ PETRA.AttackPlan.prototype.UpdateWalking = function(gameState, events)
 		if (!this.path[0][0] || !this.path[0][1])
 			API3.warn("Start: Problem with path " + uneval(this.path));
 		// We're stuck, presumably. Check if there are no walls just close to us.
-		for (let ent of gameState.getEnemyStructures().filter(API3.Filters.byClass(["Palisade", "StoneWall"])).values())
+		for (let ent of gameState.getEnemyStructures().filter(API3.Filters.byClass(["Palisade", "Wall"])).values())
 		{
 			if (API3.SquareVectorDistance(this.position, ent.position()) > 800)
 				continue;
-			let enemyClass = ent.hasClass("StoneWall") ? "StoneWall" : "Palisade";
+			let enemyClass = ent.hasClass("Wall") ? "Wall" : "Palisade";
 			// there are walls, so check if we can attack
 			if (this.unitCollection.filter(API3.Filters.byCanAttackClass(enemyClass)).hasEntities())
 			{

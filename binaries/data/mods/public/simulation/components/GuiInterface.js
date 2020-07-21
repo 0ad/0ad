@@ -495,7 +495,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"req": cmpPromotion.GetRequiredXp()
 		};
 
-	if (!cmpFoundation && cmpIdentity && cmpIdentity.HasClass("BarterMarket"))
+	if (!cmpFoundation && cmpIdentity && cmpIdentity.HasClass("Barter"))
 		ret.isBarterMarket = true;
 
 	let cmpHeal = Engine.QueryInterface(ent, IID_Heal);

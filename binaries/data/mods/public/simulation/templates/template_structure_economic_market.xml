@@ -24,13 +24,13 @@
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_5x5</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Classes datatype="tokens">BarterMarket</Classes>
     <GenericName>Market</GenericName>
     <SelectionGroupName>template_structure_economic_market</SelectionGroupName>
+    <Tooltip>Barter resources. Establish trade routes. Train Traders and research trade and barter technologies.</Tooltip>
+    <Classes datatype="tokens">Barter</Classes>
+    <VisibleClasses datatype="tokens">Trade Town Market</VisibleClasses>
     <Icon>structures/market.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
-    <Tooltip>Create trade units to trade between other markets. Barter resources. Research trading and bartering improvements.</Tooltip>
-    <VisibleClasses datatype="tokens">Town Market</VisibleClasses>
   </Identity>
   <Loot>
     <wood>60</wood>

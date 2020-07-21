@@ -22,8 +22,8 @@
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_wall_long</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Classes datatype="tokens">LongWall</Classes>
-    <Tooltip>Long wall segments can be converted to gates.</Tooltip>
+    <Tooltip>Can be converted into a Gate.</Tooltip>
+    <Classes datatype="tokens">WallLong</Classes>
   </Identity>
   <Loot>
     <stone>7</stone>
@@ -32,7 +32,7 @@
   <Upgrade>
     <Gate>
       <Entity>structures/{civ}_wall_gate</Entity>
-      <Tooltip>This will allow you to let units circulate through your fortifications.</Tooltip>
+      <Tooltip>Allow units access through Walls. Can be locked to prevent access.</Tooltip>
       <Cost>
         <stone>60</stone>
       </Cost>

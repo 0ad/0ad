@@ -4,7 +4,7 @@
     structures/loyalty_regen
   </Auras>
   <BuildRestrictions>
-    <Category>UniqueBuilding</Category>
+    <Category>IshtarGate</Category>
   </BuildRestrictions>
   <Capturable disable=""/>
   <Cost>
@@ -26,10 +26,10 @@
   </Health>
   <Identity>
     <Civ>pers</Civ>
-    <GenericName>Persian Special Building</GenericName>
-    <SpecificName>Ishtar Gate of Babylon</SpecificName>
-    <Tooltip>Increases the loyalty regeneration of nearby structures, making them harder to capture.</Tooltip>
+    <GenericName>Ishtar Gate of Babylon</GenericName>
+    <Tooltip>Territory root.</Tooltip>
     <Classes datatype="tokens">ConquestCritical</Classes>
+    <VisibleClasses datatype="tokens">IshtarGate</VisibleClasses>
     <Icon>structures/pers_gate.png</Icon>
   </Identity>
   <Loot>

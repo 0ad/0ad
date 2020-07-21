@@ -30,10 +30,10 @@
   <Identity>
     <GenericName>Stoa</GenericName>
     <SelectionGroupName>template_structure_civic_stoa</SelectionGroupName>
-    <Tooltip>Recruit special units.</Tooltip>
+    <Tooltip>Train Mercenary Champions.</Tooltip>
+    <VisibleClasses datatype="tokens">Town Stoa</VisibleClasses>
     <Icon>gaia/special_stoa.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
-    <VisibleClasses datatype="tokens">Town</VisibleClasses>
   </Identity>
   <Loot>
     <stone>20</stone>

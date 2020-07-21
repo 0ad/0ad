@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_wallset">
   <Identity>
-    <GenericName>Wooden Wall</GenericName>
-    <SpecificName>Palisade</SpecificName>
-    <Classes datatype="tokens">-StoneWall Palisade</Classes>
+    <GenericName>Palisade</GenericName>
+    <VisibleClasses datatype="tokens">-Wall Palisade</VisibleClasses>
     <Icon>structures/palisade_wall.png</Icon>
     <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>

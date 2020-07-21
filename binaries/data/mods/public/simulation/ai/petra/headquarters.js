@@ -282,7 +282,7 @@ PETRA.HQ.prototype.checkEvents = function(gameState, events)
 		let ent = gameState.getEntityById(evt.newentity);
 		if (!ent || ent.owner() != PlayerID)
 			continue;
-		if (ent.hasClass("BarterMarket") && this.maxFields)
+		if (ent.hasClass("Market") && this.maxFields)
 			this.maxFields = false;
 		if (ent.getMetadata(PlayerID, "base") === undefined)
 			continue;
@@ -556,7 +556,7 @@ PETRA.HQ.prototype.checkPhaseRequirements = function(gameState, queues)
 			    !queues.militaryBuilding.hasQueuedUnits() &&
 			    !queues.defenseBuilding.hasQueuedUnits())
 			{
-				if (!gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities() &&
+				if (!gameState.getOwnEntitiesByClass("Market", true).hasEntities() &&
 				    this.canBuild(gameState, "structures/{civ}_market"))
 				{
 					plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}_market", { "phaseUp": true });
@@ -1281,9 +1281,9 @@ PETRA.HQ.prototype.findStrategicCCLocation = function(gameState, template)
  */
 PETRA.HQ.prototype.findMarketLocation = function(gameState, template)
 {
-	let markets = gameState.updatingCollection("diplo-ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities()).toEntityArray();
+	let markets = gameState.updatingCollection("diplo-ExclusiveAllyMarkets", API3.Filters.byClass("Trade"), gameState.getExclusiveAllyEntities()).toEntityArray();
 	if (!markets.length)
-		markets = gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures()).toEntityArray();
+		markets = gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Trade"), gameState.getOwnStructures()).toEntityArray();
 
 	if (!markets.length)	// this is the first market. For the time being, place it arbitrarily by the ConstructionPlan
 		return [-1, -1, -1, 0];
@@ -1306,7 +1306,7 @@ PETRA.HQ.prototype.findMarketLocation = function(gameState, template)
 	let bestDistSq;
 	let bestGainMult;
 	let radius = Math.ceil(template.obstructionRadius().max / obstructions.cellSize);
-	let isNavalMarket = template.hasClass("NavalMarket");
+	let isNavalMarket = template.hasClass("Naval") && template.hasClass("Trade");
 
 	let width = this.territoryMap.width;
 	let cellSize = this.territoryMap.cellSize;
@@ -1335,7 +1335,7 @@ PETRA.HQ.prototype.findMarketLocation = function(gameState, template)
 		let gainMultiplier;
 		for (let market of markets)
 		{
-			if (isNavalMarket && market.hasClass("NavalMarket"))
+			if (isNavalMarket && template.hasClass("Naval") && template.hasClass("Trade"))
 			{
 				if (PETRA.getSeaAccess(gameState, market) != gameState.ai.accessibility.getAccessValue(pos, true))
 					continue;
@@ -1377,13 +1377,13 @@ PETRA.HQ.prototype.findMarketLocation = function(gameState, template)
 	let expectedGain = Math.round(bestGainMult * TradeGain(bestDistSq, gameState.sharedScript.mapSize));
 	if (this.Config.debug > 1)
 		API3.warn("this would give a trading gain of " + expectedGain);
-	// do not keep it if gain is too small, except if this is our first BarterMarket
+	// Do not keep it if gain is too small, except if this is our first Market.
 	let idx;
 	if (expectedGain < this.tradeManager.minimalGain)
 	{
-		if (template.hasClass("BarterMarket") &&
-		    !gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities())
-			idx = -1;	// needed by queueplanBuilding manager to keep that market
+		if (template.hasClass("Market") &&
+		    !gameState.getOwnEntitiesByClass("Market", true).hasEntities())
+			idx = -1; // Needed by queueplanBuilding manager to keep that Market.
 		else
 			return false;
 	}
@@ -1538,7 +1538,7 @@ PETRA.HQ.prototype.buildTemple = function(gameState, queues)
 	// at least one market (which have the same queue) should be build before any temple
 	if (queues.economicBuilding.hasQueuedUnits() ||
 		gameState.getOwnEntitiesByClass("Temple", true).hasEntities() ||
-		!gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities())
+		!gameState.getOwnEntitiesByClass("Market", true).hasEntities())
 		return;
 	// Try to build a temple earlier if in regicide to recruit healer guards
 	if (this.currentPhase < 3 && !gameState.getVictoryConditions().has("regicide"))
@@ -1554,11 +1554,11 @@ PETRA.HQ.prototype.buildTemple = function(gameState, queues)
 
 PETRA.HQ.prototype.buildMarket = function(gameState, queues)
 {
-	if (gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities() ||
+	if (gameState.getOwnEntitiesByClass("Market", true).hasEntities() ||
 		!this.canBuild(gameState, "structures/{civ}_market"))
 		return;
 
-	if (queues.economicBuilding.hasQueuedUnitsWithClass("BarterMarket"))
+	if (queues.economicBuilding.hasQueuedUnitsWithClass("Market"))
 	{
 		if (!queues.economicBuilding.paused)
 		{
@@ -1902,7 +1902,7 @@ PETRA.HQ.prototype.buildBlacksmith = function(gameState, queues)
 		queues.militaryBuilding.hasQueuedUnits() || gameState.getOwnEntitiesByClass("Blacksmith", true).length)
 		return;
 	// Build a market before the blacksmith.
-	if (!gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities())
+	if (!gameState.getOwnEntitiesByClass("Market", true).hasEntities())
 		return;
 
 	if (this.canBuild(gameState, "structures/{civ}_blacksmith"))
@@ -2670,7 +2670,7 @@ PETRA.HQ.prototype.update = function(gameState, queues, events)
 	Engine.ProfileStart("Headquarters update");
 	this.turnCache = {};
 	this.territoryMap = PETRA.createTerritoryMap(gameState);
-	this.canBarter = gameState.getOwnEntitiesByClass("BarterMarket", true).filter(API3.Filters.isBuilt()).hasEntities();
+	this.canBarter = gameState.getOwnEntitiesByClass("Market", true).filter(API3.Filters.isBuilt()).hasEntities();
 	// TODO find a better way to update
 	if (this.currentPhase != gameState.currentPhase())
 	{

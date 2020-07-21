@@ -16,11 +16,11 @@
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_wall_long</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Classes datatype="tokens">Gates</Classes>
-    <GenericName>City Gate</GenericName>
+    <GenericName>Gate</GenericName>
     <SelectionGroupName>template_structure_defensive_wall_gate</SelectionGroupName>
+    <Tooltip>Allow units access through Walls. Can be locked to prevent access.</Tooltip>
+    <VisibleClasses datatype="tokens">Gate</VisibleClasses>
     <Icon>structures/gate.png</Icon>
-    <Tooltip>Allow units access through a city wall. Can be locked to prevent access.</Tooltip>
   </Identity>
   <Loot>
     <stone>12</stone>

@@ -91,7 +91,7 @@ PETRA.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 	else
 	{
 		template = gameState.applyCiv("units/{civ}_support_trader");
-		if (!this.tradeRoute.source.hasClass("NavalMarket"))
+		if (!this.tradeRoute.source.hasClass("Naval"))
 			metadata.base = this.tradeRoute.source.getMetadata(PlayerID, "base");
 		else
 			metadata.base = this.tradeRoute.target.getMetadata(PlayerID, "base");
@@ -214,7 +214,7 @@ PETRA.TradeManager.prototype.setTradingGoods = function(gameState)
  */
 PETRA.TradeManager.prototype.performBarter = function(gameState)
 {
-	let barterers = gameState.getOwnEntitiesByClass("BarterMarket", true).filter(API3.Filters.isBuilt()).toEntityArray();
+	let barterers = gameState.getOwnEntitiesByClass("Barter", true).filter(API3.Filters.isBuilt()).toEntityArray();
 	if (barterers.length == 0)
 		return false;
 	let resBarterCodes = Resources.GetBarterableCodes();
@@ -335,7 +335,7 @@ PETRA.TradeManager.prototype.checkEvents = function(gameState, events)
 	for (let evt of events.EntityRenamed)
 	{
 		let ent = gameState.getEntityById(evt.newentity);
-		if (!ent || !ent.hasClass("Market"))
+		if (!ent || !ent.hasClass("Trade"))
 			continue;
 		for (let trader of this.traders.values())
 		{
@@ -358,7 +358,7 @@ PETRA.TradeManager.prototype.checkEvents = function(gameState, events)
 		if (!evt.entityObj)
 			continue;
 		let ent = evt.entityObj;
-		if (!ent || !ent.hasClass("Market") || !gameState.isPlayerAlly(ent.owner()))
+		if (!ent || !ent.hasClass("Trade") || !gameState.isPlayerAlly(ent.owner()))
 			continue;
 		this.activateProspection(gameState);
 		return true;
@@ -368,7 +368,7 @@ PETRA.TradeManager.prototype.checkEvents = function(gameState, events)
 	for (let evt of events.Create)
 	{
 		let ent = gameState.getEntityById(evt.entity);
-		if (!ent || ent.foundationProgress() !== undefined || !ent.hasClass("Market") ||
+		if (!ent || ent.foundationProgress() !== undefined || !ent.hasClass("Trade") ||
 		    !gameState.isPlayerAlly(ent.owner()))
 			continue;
 		this.activateProspection(gameState);
@@ -382,7 +382,7 @@ PETRA.TradeManager.prototype.checkEvents = function(gameState, events)
 		if (!gameState.isPlayerAlly(evt.from) && !gameState.isPlayerAlly(evt.to))
 			continue;
 		let ent = gameState.getEntityById(evt.entity);
-		if (!ent || ent.foundationProgress() !== undefined || !ent.hasClass("Market"))
+		if (!ent || ent.foundationProgress() !== undefined || !ent.hasClass("Trade"))
 			continue;
 		this.activateProspection(gameState);
 		return true;
@@ -419,8 +419,8 @@ PETRA.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 		return false;
 	}
 
-	let market1 = gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures());
-	let market2 = gameState.updatingCollection("diplo-ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities());
+	let market1 = gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Trade"), gameState.getOwnStructures());
+	let market2 = gameState.updatingCollection("diplo-ExclusiveAllyMarkets", API3.Filters.byClass("Trade"), gameState.getExclusiveAllyEntities());
 	if (market1.length + market2.length < 2)  // We have to wait  ... markets will be built soon
 	{
 		this.tradeRoute = undefined;
@@ -444,7 +444,7 @@ PETRA.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 		if (!m1.position())
 			continue;
 		let access1 = PETRA.getLandAccess(gameState, m1);
-		let sea1 = m1.hasClass("NavalMarket") ? PETRA.getSeaAccess(gameState, m1) : undefined;
+		let sea1 = m1.hasClass("Naval") ? PETRA.getSeaAccess(gameState, m1) : undefined;
 		for (let m2 of market2.values())
 		{
 			if (onlyOurs && m1.id() >= m2.id())
@@ -452,7 +452,7 @@ PETRA.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 			if (!m2.position())
 				continue;
 			let access2 = PETRA.getLandAccess(gameState, m2);
-			let sea2 = m2.hasClass("NavalMarket") ? PETRA.getSeaAccess(gameState, m2) : undefined;
+			let sea2 = m2.hasClass("Naval") ? PETRA.getSeaAccess(gameState, m2) : undefined;
 			let land = access1 == access2 ? access1 : undefined;
 			let sea = sea1 && sea1 == sea2 ? sea1 : undefined;
 			if (!land && !sea)
@@ -586,12 +586,12 @@ PETRA.TradeManager.prototype.checkTrader = function(gameState, ent)
 
 PETRA.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 {
-	if (queues.economicBuilding.hasQueuedUnitsWithClass("Market") || queues.dock.hasQueuedUnitsWithClass("Market"))
+	if (queues.economicBuilding.hasQueuedUnitsWithClass("Trade") || queues.dock.hasQueuedUnitsWithClass("Trade"))
 		return;
 	if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_market"))
 		return;
-	if (!gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures()).hasEntities() &&
-	    !gameState.updatingCollection("diplo-ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities()).hasEntities())
+	if (!gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Trade"), gameState.getOwnStructures()).hasEntities() &&
+	    !gameState.updatingCollection("diplo-ExclusiveAllyMarkets", API3.Filters.byClass("Trade"), gameState.getExclusiveAllyEntities()).hasEntities())
 		return;
 	let template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_market"));
 	if (!template)
@@ -600,7 +600,7 @@ PETRA.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 	let marketPos = gameState.ai.HQ.findMarketLocation(gameState, template);
 	if (!marketPos || marketPos[3] == 0)   // marketPos[3] is the expected gain
 	{	// no position found
-		if (gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities())
+		if (gameState.getOwnEntitiesByClass("Market", true).hasEntities())
 			gameState.ai.HQ.buildManager.setUnbuildable(gameState, gameState.applyCiv("structures/{civ}_market"));
 		else
 			this.routeProspection = false;
@@ -621,7 +621,7 @@ PETRA.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 	}
 
 	if (!this.tradeRoute)
-		gameState.ai.queueManager.changePriority("economicBuilding", 2*this.Config.priorities.economicBuilding);
+		gameState.ai.queueManager.changePriority("economicBuilding", 2 * this.Config.priorities.economicBuilding);
 	let plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}_market");
 	if (!this.tradeRoute)
 		plan.queueToReset = "economicBuilding";

@@ -1,10 +1,10 @@
 {
 	"type": "global",
-	"affects": ["Market"],
+	"affects": ["Trade"],
 	"affectedPlayers": ["ExclusiveMutualAlly"],
 	"modifications": [
 		{ "value": "Market/InternationalBonus", "add": 0.1 }
 	],
 	"auraName": "Trademasters",
-	"auraDescription": "Allied Markets +10% international trade bonus."
+	"auraDescription": "Allies +10% international trade bonus."
 }
