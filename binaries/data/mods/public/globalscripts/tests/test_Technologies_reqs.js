@@ -1,5 +1,3 @@
-// TODO: Move this to a folder of tests for GlobalScripts (once one is created)
-
 // No requirements set in template
 let template = {};
 TS_ASSERT_UNEVAL_EQUALS(DeriveTechnologyRequirements(template, "athen"), []);
