@@ -24,9 +24,8 @@
   <Identity>
     <GenericName>Dock</GenericName>
     <SelectionGroupName>template_structure_military_dock</SelectionGroupName>
-    <Tooltip>Build upon a shoreline to construct naval vessels and to open sea trade. Research naval improvements.</Tooltip>
-    <Classes datatype="tokens">Naval NavalMarket</Classes>
-    <VisibleClasses datatype="tokens">Economic Village Market Dock</VisibleClasses>
+    <Tooltip>Build upon a shoreline in own, neutral, or allied territory. Dropsite for food, wood, stone, and metal. Establish trade routes. Construct Ships and research Ship technologies.</Tooltip>
+    <VisibleClasses datatype="tokens">Economic Naval Trade Village Dock</VisibleClasses>
     <Icon>structures/dock.png</Icon>
   </Identity>
   <Loot>

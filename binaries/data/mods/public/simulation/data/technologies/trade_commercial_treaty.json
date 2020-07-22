@@ -6,10 +6,10 @@
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "sibylline_books.png",
 	"researchTime": 40,
-	"tooltip": "Market +10% International Bonus.",
+	"tooltip": "+10% international trade bonus.",
 	"modifications": [
 		{ "value": "Market/InternationalBonus", "add": 0.1 }
 	],
-	"affects": ["Market"],
+	"affects": ["Trade"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

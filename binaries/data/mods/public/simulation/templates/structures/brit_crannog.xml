@@ -9,12 +9,12 @@
     <Height>8.0</Height>
   </Footprint>
   <Identity>
-    <GenericName>Island Settlement</GenericName>
     <Civ>brit</Civ>
-    <Classes datatype="tokens">Naval</Classes>
-    <Icon>structures/crannog.png</Icon>
-    <Tooltip>Increase population limit and defend waterways.</Tooltip>
+    <GenericName>Island Settlement</GenericName>
     <SpecificName>Cranogion</SpecificName>
+    <Tooltip>Build upon a shoreline in own, neutral, or allied territory. Acquire large tracts of territory. Territory root. Dropsite for food, wood, stone, and metal. Train Citizens, construct Ships, and research technologies. Garrison Soldiers for additional arrows.</Tooltip>
+    <VisibleClasses datatype="tokens">Naval</VisibleClasses>
+    <Icon>structures/crannog.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Obstruction>

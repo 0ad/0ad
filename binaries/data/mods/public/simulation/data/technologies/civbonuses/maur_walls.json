@@ -6,8 +6,8 @@
 	"icon": "wooden_walls.png",
 	"tooltip": "Mauryan City Walls −20% build time and −20% health.",
 	"modifications": [
-		{ "value": "Health/Max", "multiply": 0.8 },
-		{ "value": "Cost/BuildTime", "multiply": 0.8 }
+		{ "value": "Cost/BuildTime", "multiply": 0.8 },
+		{ "value": "Health/Max", "multiply": 0.8 }
 	],
-	"affects": ["StoneWall"]
+	"affects": ["Wall"]
 }

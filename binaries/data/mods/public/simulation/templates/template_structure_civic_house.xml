@@ -32,10 +32,10 @@
   </Health>
   <Identity>
     <GenericName>House</GenericName>
-    <Tooltip>Increase the population limit.</Tooltip>
-    <VisibleClasses datatype="tokens">Village House</VisibleClasses>
     <SelectionGroupName>template_structure_civic_house</SelectionGroupName>
+    <VisibleClasses datatype="tokens">Village House</VisibleClasses>
     <Icon>structures/house.png</Icon>
+    <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
   <Loot>
     <wood>15</wood>

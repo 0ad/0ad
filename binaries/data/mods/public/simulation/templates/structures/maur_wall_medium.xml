@@ -10,6 +10,20 @@
     <Square width="25" depth="5"/>
     <Height>10.5</Height>
   </Footprint>
+  <Identity>
+    <Civ>maur</Civ>
+    <SpecificName>Shilabanda</SpecificName>
+  </Identity>
+  <Loot>
+    <wood>5</wood>
+    <stone>0</stone>
+  </Loot>
+  <Obstruction>
+    <Static width="24" depth="4"/>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>18</HeightOffset>
+  </StatusBars>
   <TurretHolder>
     <TurretPoints>
       <Archer1>
@@ -29,20 +43,6 @@
       </Archer3>
     </TurretPoints>
   </TurretHolder>
-  <Identity>
-    <Civ>maur</Civ>
-    <SpecificName>Shilabanda</SpecificName>
-  </Identity>
-  <Loot>
-    <wood>5</wood>
-    <stone>0</stone>
-  </Loot>
-  <Obstruction>
-    <Static width="24" depth="4"/>
-  </Obstruction>
-  <StatusBars>
-    <HeightOffset>18</HeightOffset>
-  </StatusBars>
   <VisualActor>
     <Actor>structures/mauryas/wall_medium.xml</Actor>
   </VisualActor>

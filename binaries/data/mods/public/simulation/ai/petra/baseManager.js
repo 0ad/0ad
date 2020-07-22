@@ -781,7 +781,7 @@ PETRA.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			continue; // we do not build fields
 
 		if (gameState.ai.HQ.isNearInvadingArmy(target.position()))
-			if (!target.hasClass("CivCentre") && !target.hasClass("StoneWall") &&
+			if (!target.hasClass("CivCentre") && !target.hasClass("Wall") &&
 			    (!target.hasClass("Wonder") || !gameState.getVictoryConditions().has("wonder")))
 				continue;
 
@@ -801,7 +801,7 @@ PETRA.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		    target.getMetadata(PlayerID, "phaseUp") == true)
 			targetNB = 7;
 		else if (target.hasClass("Barracks") || target.hasClass("Range") || target.hasClass("Stable") ||
-		         target.hasClass("Tower") || target.hasClass("Market"))
+			target.hasClass("Tower") || target.hasClass("Market"))
 			targetNB = 4;
 		else if (target.hasClass("House") || target.hasClass("DropsiteWood"))
 			targetNB = 3;
@@ -880,7 +880,7 @@ PETRA.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		if (gameState.ai.HQ.isNearInvadingArmy(target.position()))
 		{
 			if (target.healthLevel() > 0.5 ||
-			    !target.hasClass("CivCentre") && !target.hasClass("StoneWall") &&
+			    !target.hasClass("CivCentre") && !target.hasClass("Wall") &&
 			    (!target.hasClass("Wonder") || !gameState.getVictoryConditions().has("wonder")))
 				continue;
 		}

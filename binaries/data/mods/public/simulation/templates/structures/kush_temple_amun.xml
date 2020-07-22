@@ -27,10 +27,9 @@
     <Civ>kush</Civ>
     <GenericName>Grand Temple of Amun</GenericName>
     <SpecificName>Pr-ʿImn</SpecificName>
-    <Tooltip>Train priests to heal your troops. Train Napatan Temple Guards and research unique technologies. Garrison units to heal them at a quick rate.</Tooltip>
+    <Tooltip>Train Healers and Amun Champions and research healing technologies.</Tooltip>
+    <VisibleClasses datatype="tokens">-Town City TempleOfAmun</VisibleClasses>
     <Icon>structures/temple_epic.png</Icon>
-    <Classes datatype="tokens">TempleOfAmun</Classes>
-    <VisibleClasses datatype="tokens">City -Town</VisibleClasses>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>

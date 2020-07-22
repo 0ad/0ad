@@ -40,11 +40,11 @@
   </Health>
   <Identity>
     <Civ>cart</Civ>
-    <Classes datatype="tokens">ConquestCritical</Classes>
     <GenericName>Naval Shipyard</GenericName>
     <SpecificName>Cothon</SpecificName>
-    <VisibleClasses datatype="tokens">-City Shipyard Town</VisibleClasses>
-    <Tooltip>Construct and repair mighty warships.</Tooltip>
+    <Tooltip>Build upon a shoreline in own, neutral, or allied territory. Acquire large tracts of territory. Territory root. Construct Warships and research technologies.</Tooltip>
+    <Classes datatype="tokens">ConquestCritical</Classes>
+    <VisibleClasses datatype="tokens">Naval -City Town Shipyard</VisibleClasses>
     <Icon>structures/uber_dock.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

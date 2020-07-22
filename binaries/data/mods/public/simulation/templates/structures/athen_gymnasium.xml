@@ -19,10 +19,11 @@
   </Health>
   <Identity>
     <Civ>athen</Civ>
-    <Classes datatype="tokens">ConquestCritical</Classes>
     <GenericName>Gymnasium</GenericName>
     <SpecificName>Gymnasion</SpecificName>
     <Tooltip>Train Champions.</Tooltip>
+    <Classes datatype="tokens">ConquestCritical</Classes>
+    <VisibleClasses datatype="tokens">Gymnasium</VisibleClasses>
     <Icon>structures/gymnasium.png</Icon>
   </Identity>
   <Loot>

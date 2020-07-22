@@ -23,9 +23,8 @@
     <Civ>ptol</Civ>
     <GenericName>Lighthouse</GenericName>
     <SpecificName>Pharos</SpecificName>
-    <Classes datatype="tokens">Lighthouse</Classes>
-    <VisibleClasses datatype="tokens">-City Town</VisibleClasses>
-    <Tooltip>Build along the shore to reveal the shorelines over the entire map. Very large vision range: 180 meters.</Tooltip>
+    <Tooltip>Build upon a shoreline in own, neutral, or allied territory. Reveal the shorelines over the entire map. Very large vision range.</Tooltip>
+    <VisibleClasses datatype="tokens">-City Town Lighthouse</VisibleClasses>
     <Icon>structures/lighthouse.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

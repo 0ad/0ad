@@ -7,11 +7,11 @@
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "stone_blocks.png",
 	"researchTime": 40,
-	"tooltip": "City walls +2 crush armor levels, but +10% build time.",
+	"tooltip": "Walls +2 crush armor, but +10% build time.",
 	"modifications": [
-		{ "value": "Cost/BuildTime", "multiply": 1.1 },
-		{ "value": "Armour/Crush", "add": 2 }
+		{ "value": "Armour/Crush", "add": 2 },
+		{ "value": "Cost/BuildTime", "multiply": 1.1 }
 	],
-	"affects": ["StoneWall"],
+	"affects": ["Wall"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

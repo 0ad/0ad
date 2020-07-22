@@ -6,9 +6,9 @@
 	"tooltip": "Carthaginian Walls +100% build time, +100% stone cost, and  +200% health.",
 	"requirements": { "civ": "cart" },
 	"modifications": [
-		{ "value": "Health/Max", "multiply": 3 },
 		{ "value": "Cost/BuildTime", "multiply": 2 },
-		{ "value": "Cost/Resources/stone", "multiply": 2 }
+		{ "value": "Cost/Resources/stone", "multiply": 2 },
+		{ "value": "Health/Max", "multiply": 3 }
 	],
-	"affects": ["StoneWall"]
+	"affects": ["Wall"]
 }

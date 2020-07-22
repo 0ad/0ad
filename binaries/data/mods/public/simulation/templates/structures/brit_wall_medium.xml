@@ -4,6 +4,16 @@
     <Square width="25" depth="7"/>
     <Height>10.3</Height>
   </Footprint>
+  <Identity>
+    <Civ>brit</Civ>
+    <SpecificName>Rate</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="24" depth="6"/>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>11.3</HeightOffset>
+  </StatusBars>
   <TurretHolder>
     <TurretPoints>
       <Archer1>
@@ -23,16 +33,6 @@
       </Archer3>
     </TurretPoints>
   </TurretHolder>
-  <Identity>
-    <Civ>brit</Civ>
-    <SpecificName>Rate</SpecificName>
-  </Identity>
-  <Obstruction>
-    <Static width="24" depth="6"/>
-  </Obstruction>
-  <StatusBars>
-    <HeightOffset>11.3</HeightOffset>
-  </StatusBars>
   <VisualActor>
     <Actor>structures/britons/wall_medium.xml</Actor>
   </VisualActor>

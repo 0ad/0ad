@@ -6,11 +6,11 @@
 <Entity>
   <Identity>
     <Civ>gaia</Civ>
-    <Classes datatype="tokens">StoneWall</Classes>
-    <GenericName>City Wall</GenericName>
+    <GenericName>Wall</GenericName>
+    <Tooltip>Wall off an area.</Tooltip>
+    <VisibleClasses datatype="tokens">Wall</VisibleClasses>
     <Icon>structures/wall.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
-    <Tooltip>Wall off your town for a stout defense.</Tooltip>
     <Undeletable>true</Undeletable>
   </Identity>
   <Visibility>

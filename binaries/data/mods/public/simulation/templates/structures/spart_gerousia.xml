@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <BuildRestrictions>
+    <Category>Council</Category>
+  </BuildRestrictions>
   <Cost>
     <BuildTime>200</BuildTime>
     <Resources>
@@ -16,10 +19,11 @@
   </Health>
   <Identity>
     <Civ>spart</Civ>
-    <Classes datatype="tokens">ConquestCritical</Classes>
     <GenericName>Spartan Senate</GenericName>
     <SpecificName>Gerousia</SpecificName>
     <Tooltip>Train Heroes.</Tooltip>
+    <Classes datatype="tokens">ConquestCritical</Classes>
+    <VisibleClasses datatype="tokens">Council</VisibleClasses>
     <Icon>structures/tholos.png</Icon>
   </Identity>
   <Loot>

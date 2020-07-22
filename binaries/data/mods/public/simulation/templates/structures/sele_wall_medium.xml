@@ -4,6 +4,16 @@
     <Square width="22" depth="6"/>
     <Height>11.4</Height>
   </Footprint>
+  <Identity>
+    <Civ>sele</Civ>
+    <SpecificName>Teichos</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="21" depth="5"/>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>12.4</HeightOffset>
+  </StatusBars>
   <TurretHolder>
     <TurretPoints>
       <Archer1>
@@ -23,16 +33,6 @@
       </Archer3>
     </TurretPoints>
   </TurretHolder>
-  <Identity>
-    <Civ>sele</Civ>
-    <SpecificName>Teichos</SpecificName>
-  </Identity>
-  <Obstruction>
-    <Static width="21" depth="5"/>
-  </Obstruction>
-  <StatusBars>
-    <HeightOffset>12.4</HeightOffset>
-  </StatusBars>
   <VisualActor>
     <Actor>structures/seleucids/wall_medium.xml</Actor>
   </VisualActor>

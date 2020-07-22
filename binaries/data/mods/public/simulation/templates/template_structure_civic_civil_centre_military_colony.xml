@@ -25,8 +25,8 @@
   </Health>
   <Identity>
     <GenericName>Military Colony</GenericName>
-    <Classes datatype="tokens">Colony</Classes>
     <SelectionGroupName>template_structure_civic_civil_centre_military_colony</SelectionGroupName>
+    <VisibleClasses datatype="tokens">Colony</VisibleClasses>
     <Icon>structures/military_settlement.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

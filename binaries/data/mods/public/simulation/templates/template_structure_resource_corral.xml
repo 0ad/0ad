@@ -17,9 +17,10 @@
   <Identity>
     <GenericName>Corral</GenericName>
     <SelectionGroupName>template_structure_resource_corral</SelectionGroupName>
-    <Tooltip>Raise herd animals for food. Task domestic animals here to gain a trickle of food or other bonus (Not yet implemented).</Tooltip>
+    <Tooltip>Raise Domestic Animals for food.</Tooltip>
     <VisibleClasses datatype="tokens">Village Corral</VisibleClasses>
     <Icon>structures/corral.png</Icon>
+    <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
   <Loot>
     <wood>20</wood>

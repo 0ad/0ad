@@ -12,10 +12,10 @@
     <Height>8.0</Height>
   </Footprint>
   <Identity>
-    <Classes datatype="tokens">StoneWall</Classes>
-    <GenericName>Stone Wall</GenericName>
+    <GenericName>Wall</GenericName>
     <SelectionGroupName>template_structure_defensive_wall</SelectionGroupName>
     <Tooltip>Wall off your town for a stout defense.</Tooltip>
+    <VisibleClasses datatype="tokens">Wall</VisibleClasses>
     <Icon>structures/wall.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

@@ -27,12 +27,13 @@
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_3x3</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Classes datatype="tokens">DropsiteWood DropsiteMetal DropsiteStone</Classes>
     <GenericName>Storehouse</GenericName>
     <SelectionGroupName>template_structure_economic_storehouse</SelectionGroupName>
-    <Icon>structures/storehouse.png</Icon>
-    <Tooltip>Dropsite for wood, stone, and metal resources. Research gathering improvements for these resources.</Tooltip>
+    <Tooltip>Dropsite for wood, stone, and metal. Research gathering technologies.</Tooltip>
+    <Classes datatype="tokens">DropsiteWood DropsiteMetal DropsiteStone</Classes>
     <VisibleClasses datatype="tokens">Village Storehouse</VisibleClasses>
+    <Icon>structures/storehouse.png</Icon>
+    <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
   <Loot>
     <wood>20</wood>

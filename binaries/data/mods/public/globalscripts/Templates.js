@@ -323,9 +323,9 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 
 	if (template.Heal)
 		ret.heal = {
-			"hp": getEntityValue("Heal/HP"),
+			"health": getEntityValue("Heal/Health"),
 			"range": getEntityValue("Heal/Range"),
-			"rate": getEntityValue("Heal/Rate")
+			"interval": getEntityValue("Heal/Interval")
 		};
 
 	if (template.ResourceGatherer)

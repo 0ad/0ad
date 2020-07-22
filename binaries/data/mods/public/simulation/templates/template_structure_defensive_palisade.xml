@@ -17,12 +17,11 @@
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_2x2</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Classes datatype="tokens">Palisade</Classes>
-    <GenericName>Wooden Wall</GenericName>
+    <GenericName>Palisade</GenericName>
     <SelectionGroupName>template_structure_defensive_palisade</SelectionGroupName>
-    <Tooltip>Wall off your town for a stout defense.</Tooltip>
+    <Tooltip>Wall off an area.</Tooltip>
+    <VisibleClasses datatype="tokens">Palisade</VisibleClasses>
     <Icon>gaia/special_palisade.png</Icon>
-    <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
   <ProductionQueue disable=""/>
   <RallyPoint disable=""/>

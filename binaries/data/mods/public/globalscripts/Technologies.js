@@ -19,6 +19,16 @@ function GetTechModifiedProperty(modifications, classes, originalValue)
 	if (!modifications.length)
 		return originalValue;
 
+	// From indicative profiling, splitting in two sub-functions or checking directly
+	// is about as efficient, but splitting makes it easier to report errors.
+	if (typeof originalValue === "string")
+		return GetTechModifiedProperty_string(modifications, classes, originalValue);
+	return GetTechModifiedProperty_numeric(modifications, classes, originalValue);
+}
+
+
+function GetTechModifiedProperty_numeric(modifications, classes, originalValue)
+{
 	let multiply = 1;
 	let add = 0;
 
@@ -28,17 +38,37 @@ function GetTechModifiedProperty(modifications, classes, originalValue)
 			continue;
 		if (modification.replace !== undefined)
 			return modification.replace;
-		if (modification.tokens !== undefined)
-			return HandleTokens(originalValue, modification.tokens);
 		if (modification.multiply)
 			multiply *= modification.multiply;
 		else if (modification.add)
 			add += modification.add;
 		else
-			warn("GetTechModifiedProperty: modification format not recognised : " + uneval(modification));
+			warn("GetTechModifiedProperty: numeric modification format not recognised : " + uneval(modification));
 	}
 	return originalValue * multiply + add;
 }
+
+function GetTechModifiedProperty_string(modifications, classes, originalValue)
+{
+	let value = originalValue;
+	for (let modification of modifications)
+	{
+		if (!DoesModificationApply(modification, classes))
+			continue;
+		if (modification.replace !== undefined)
+			return modification.replace;
+		// Multiple token replacement works, though ordering is not technically guaranteed.
+		// In practice, the order will be that of 'research', which ought to be fine,
+		// and operations like adding tokens are order-independent anyways,
+		// but modders beware if replacement or deletions are implemented.
+		if (modification.tokens !== undefined)
+			value = HandleTokens(value, modification.tokens);
+		else
+			warn("GetTechModifiedProperty: string modification format not recognised : " + uneval(modification));
+	}
+	return value;
+}
+
 
 /**
  * Returns whether the given modification applies to the entity containing the given class list

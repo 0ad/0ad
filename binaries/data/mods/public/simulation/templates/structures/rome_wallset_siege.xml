@@ -4,8 +4,9 @@
     <Civ>rome</Civ>
     <GenericName>Siege Wall</GenericName>
     <SpecificName>Mūrus Circummūnītiōnis</SpecificName>
+    <Tooltip>Wall off an area. Build in own, neutral, or enemy territory.</Tooltip>
+    <VisibleClasses datatype="tokens">SiegeWall</VisibleClasses>
     <Icon>structures/siege_wall.png</Icon>
-    <Tooltip>A wooden and turf palisade buildable in enemy and neutral territories.</Tooltip>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <WallSet>

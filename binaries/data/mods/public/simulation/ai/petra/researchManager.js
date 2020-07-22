@@ -199,7 +199,7 @@ PETRA.ResearchManager.prototype.update = function(gameState, queues)
 	{
 		let template = techs[i][1]._template;
 		if (template.affects && template.affects.length === 1 &&
-			(template.affects[0] === "Healer" || template.affects[0] === "Outpost" || template.affects[0] === "StoneWall"))
+			(template.affects[0] === "Healer" || template.affects[0] === "Outpost" || template.affects[0] === "Wall"))
 		{
 			techs.splice(i--, 1);
 			continue;
