@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
-  <Cost>
-    <BuildTime op="mul">0.75</BuildTime>
-    <Resources>
-      <food>0</food>
-      <metal op="mul">1.5</metal>
-    </Resources>
-  </Cost>
   <Identity>
     <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Lang>greek</Lang>
