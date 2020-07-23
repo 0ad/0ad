@@ -74,7 +74,8 @@ AddMock(SYSTEM_ENTITY, IID_EndGameManager, {
 
 AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 	"GetNumPlayers": function() { return 2; },
-	"GetPlayerByID": function(id) { TS_ASSERT(id === 0 || id === 1); return 100 + id; }
+	"GetPlayerByID": function(id) { TS_ASSERT(id === 0 || id === 1); return 100 + id; },
+	"GetMaxWorldPopulation": function() {}
 });
 
 AddMock(SYSTEM_ENTITY, IID_RangeManager, {
@@ -369,7 +370,8 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 	"circularMap": false,
 	"timeElapsed": 0,
 	"victoryConditions": ["conquest", "wonder"],
-	"alliedVictory": false
+	"alliedVictory": false,
+	"maxWorldPopulation": undefined
 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
@@ -522,7 +524,8 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 	"circularMap": false,
 	"timeElapsed": 0,
 	"victoryConditions": ["conquest", "wonder"],
-	"alliedVictory": false
+	"alliedVictory": false,
+	"maxWorldPopulation": undefined
 });
 
 

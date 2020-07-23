@@ -44,6 +44,7 @@ function loadSettingsValues()
 		"Biomes": loadBiomes(),
 		"PlayerDefaults": loadPlayerDefaults(),
 		"PopulationCapacities": loadPopulationCapacities(),
+		"WorldPopulationCapacities": loadWorldPopulationCapacities(),
 		"StartingResources": loadSettingValuesFile("starting_resources.json"),
 		"VictoryConditions": loadVictoryConditions(),
 		"TriggerDifficulties": loadSettingValuesFile("trigger_difficulties.json")
@@ -269,6 +270,29 @@ function loadPopulationCapacities()
 }
 
 /**
+ * Loads available world population capacities.
+ *
+ * @returns {Object[]|undefined} - An array of the world population capacities in the form:
+ *	{ "Population": number, "Default": number, "Title": number|String }.
+ */
+function loadWorldPopulationCapacities()
+{
+	let json = Engine.ReadJSONFile(g_SettingsDirectory + "world_population_capacities.json");
+
+	if (!json || json.Default === undefined || !json.WorldPopulationCapacities || !Array.isArray(json.WorldPopulationCapacities))
+	{
+		error("Could not load population_capacities.json");
+		return undefined;
+	}
+
+	return json.WorldPopulationCapacities.map(population => ({
+		"Population": population,
+		"Default": population == json.Default,
+		"Title": population < 10000 ? population : translate("Unlimited")
+	}));
+}
+
+/**
  * Creates an object with all values of that property of the given setting and
  * finds the index of the default value.
  *
@@ -364,11 +388,19 @@ function translateMapSize(tiles)
 /**
  * Returns title or placeholder.
  *
- * @param {Number} population - for example 300
+ * @param {Number} population
+ * @param {boolean} world - Whether the entry has world population enabled.
  * @returns {string}
  */
-function translatePopulationCapacity(population)
+function translatePopulationCapacity(population, world)
 {
+	if (world)
+	{
+		let popCap = g_Settings.WorldPopulationCapacities.find(p => p.Population == population);
+		return popCap ? popCap.Title + " " + translateWithContext("population capacity addendum", "(world)") :
+			translateWithContext("population capacity", "Unknown");
+	}
+
 	let popCap = g_Settings.PopulationCapacities.find(p => p.Population == population);
 	return popCap ? popCap.Title : translateWithContext("population capacity", "Unknown");
 }

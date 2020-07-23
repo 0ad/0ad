@@ -226,7 +226,7 @@ function displayReplayList()
 		return {
 			"directories": replay.directory,
 			"months": compatibilityColor(getReplayDateTime(replay), works),
-			"popCaps": compatibilityColor(translatePopulationCapacity(replay.attribs.settings.PopulationCap), works),
+			"popCaps": compatibilityColor(translatePopulationCapacity(replay.attribs.settings.PopulationCap, !!replay.attribs.settings.WorldPopulation), works),
 			"mapNames": compatibilityColor(getReplayMapName(replay), works),
 			"mapSizes": compatibilityColor(translateMapSize(replay.attribs.settings.Size), works),
 			"durations": compatibilityColor(getReplayDuration(replay), works),
