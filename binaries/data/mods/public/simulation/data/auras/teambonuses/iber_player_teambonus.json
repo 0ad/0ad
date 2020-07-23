@@ -1,6 +1,6 @@
 {
 	"type": "global",
-	"affects": ["Citizen Javelinist"],
+	"affects": ["Citizen Javelineer"],
 	"affectedPlayers": ["ExclusiveMutualAlly"],
 	"modifications": [
 		{ "value": "Cost/Resources/food", "multiply": 0.9 },
@@ -9,5 +9,5 @@
 		{ "value": "Cost/Resources/metal", "multiply": 0.9 }
 	],
 	"auraName": "Saripeko",
-	"auraDescription": "Allied Citizen Javelinists −10% resource costs."
+	"auraDescription": "Allied Citizen Javelineers −10% resource costs."
 }
