@@ -483,10 +483,10 @@ private:
 		return m_MoveRequest.m_Type == MoveRequest::OFFSET;
 	}
 
-	bool IsFormationControllerNotMoving() const
+	bool IsFormationControllerMoving() const
 	{
 		CmpPtr<ICmpUnitMotion> cmpControllerMotion(GetSimContext(), m_MoveRequest.m_Entity);
-		return cmpControllerMotion && !cmpControllerMotion->IsMoveRequested();
+		return cmpControllerMotion && cmpControllerMotion->IsMoveRequested();
 	}
 
 	entity_id_t GetGroup() const
@@ -501,6 +501,12 @@ private:
 	 */
 	void MoveFailed()
 	{
+		// Don't notify if we are a formation member in a moving formation - we can occasionally be stuck for a long time
+		// if our current offset is unreachable, but we don't want to end up stuck.
+		// (If the formation controller has stopped moving however, we can safely message).
+		if (IsFormationMember() && IsFormationControllerMoving())
+			return;
+
 		CMessageMotionUpdate msg(CMessageMotionUpdate::LIKELY_FAILURE);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
@@ -512,7 +518,30 @@ private:
 	 */
 	void MoveSucceeded()
 	{
+		// Don't notify if we are a formation member in a moving formation - we can occasionally be stuck for a long time
+		// if our current offset is unreachable, but we don't want to end up stuck.
+		// (If the formation controller has stopped moving however, we can safely message).
+		if (IsFormationMember() && IsFormationControllerMoving())
+			return;
+
 		CMessageMotionUpdate msg(CMessageMotionUpdate::LIKELY_SUCCESS);
+		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
+	}
+
+	/**
+	 * Warns other components that our current movement was obstructed (i.e. we failed to move this turn).
+	 * This should only be called before the actual movement in a given turn, or units might both move and try to do things
+	 * on the same turn, leading to gliding units.
+	 */
+	void MoveObstructed()
+	{
+		// Don't notify if we are a formation member in a moving formation - we can occasionally be stuck for a long time
+		// if our current offset is unreachable, but we don't want to end up stuck.
+		// (If the formation controller has stopped moving however, we can safely message).
+		if (IsFormationMember() && IsFormationControllerMoving())
+			return;
+
+		CMessageMotionUpdate msg(CMessageMotionUpdate::OBSTRUCTED);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
 
@@ -761,17 +790,10 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 	}
 
 	if (m_FailedPathComputations >= 1)
-	{
 		// Inform other components - we might be ordered to stop, and computeGoal will then fail and return early.
-		CMessageMotionUpdate msg(CMessageMotionUpdate::OBSTRUCTED);
-		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
-	}
+		MoveObstructed();
 
-	// Don't notify if we are a formation member - we can occasionally be stuck for a long time
-	// if our current offset is unreachable.
-	// Unless the formationcontroller has reached final destination and we are stuck
-	if (!IsFormationMember() || IsFormationControllerNotMoving())
-		IncrementFailedPathComputationAndMaybeNotify();
+	IncrementFailedPathComputationAndMaybeNotify();
 
 	// If there's no waypoints then we couldn't get near the target
 	// If we're globally following a long path, try to remove the next waypoint,
@@ -1013,11 +1035,8 @@ bool CCmpUnitMotion::HandleObstructedMove()
 		return false;
 
 	if (m_FailedPathComputations >= 1)
-	{
 		// Inform other components - we might be ordered to stop, and computeGoal will then fail and return early.
-		CMessageMotionUpdate msg(CMessageMotionUpdate::OBSTRUCTED);
-		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
-	}
+		MoveObstructed();
 
 	CFixedVector2D pos = cmpPosition->GetPosition2D();
 

@@ -9,9 +9,8 @@
     <Population>1</Population>
     <BuildTime>30</BuildTime>
     <Resources>
-      <food>250</food>
-      <wood>0</wood>
-      <stone>0</stone>
+      <food>150</food>
+      <wood>80</wood>
       <metal>100</metal>
     </Resources>
   </Cost>
@@ -29,6 +28,12 @@
       special/formations/wedge
     </Formations>
   </Identity>
+  <Loot>
+    <xp>200</xp>
+    <food>15</food>
+    <wood>8</wood>
+    <metal>10</metal>
+  </Loot>
   <Sound>
     <SoundGroups>
       <select>voice/{lang}/civ/civ_{phenotype}_select.xml</select>

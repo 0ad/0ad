@@ -1384,17 +1384,12 @@ UnitAI.prototype.UnitFsmSpec = {
 			// Occurs when the unit has reached its destination and the controller
 			// is done moving. The controller is notified.
 			"MovementUpdate": function(msg) {
-				// We're supposed to be walking in formation,
-				// but the controller has no position -> abort.
-				let cmpControllerPosition = Engine.QueryInterface(this.formationController, IID_Position);
-				if (!cmpControllerPosition || !cmpControllerPosition.IsInWorld())
-				{
-					this.FinishOrder();
-					return;
-				}
-				if (!msg.likelyFailure && !msg.likelySuccess)
-					return;
-
+				// When walking in formation, we'll only get notified in case of failure
+				// if the formation controller has stopped walking.
+				// Formations can start lagging a lot if many entities request short path
+				// so prefer to finish order early than retry pathing.
+				// (see https://code.wildfiregames.com/rP23806)
+				// (if the message is likelyFailure of likelySuccess, we also want to stop).
 				this.FinishOrder();
 			},
 		},

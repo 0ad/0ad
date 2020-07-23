@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_javelinist">
-  <Cost>
-    <Resources>
-      <food>0</food>
-      <metal op="mul">2</metal>
-    </Resources>
-  </Cost>
   <Identity>
     <Civ>pers</Civ>
     <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>

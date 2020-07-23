@@ -8,10 +8,9 @@
   <Cost>
     <BuildTime>20</BuildTime>
     <Resources>
-      <food>125</food>
-      <wood>0</wood>
-      <stone>0</stone>
-      <metal>75</metal>
+      <food>80</food>
+      <wood>60</wood>
+      <metal>80</metal>
     </Resources>
   </Cost>
   <Health>
@@ -21,6 +20,12 @@
     <VisibleClasses datatype="tokens">Infantry</VisibleClasses>
     <GenericName>Champion Infantry</GenericName>
   </Identity>
+  <Loot>
+    <xp>150</xp>
+    <food>8</food>
+    <wood>6</wood>
+    <metal>8</metal>
+  </Loot>
   <Position>
     <Anchor>upright</Anchor>
   </Position>
