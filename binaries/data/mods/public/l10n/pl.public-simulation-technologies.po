@@ -36,8 +36,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:10+0000\n"
-"PO-Revision-Date: 2020-07-17 11:54+0000\n"
+"POT-Creation-Date: 2020-07-20 07:10+0000\n"
+"PO-Revision-Date: 2020-07-20 21:56+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -1155,8 +1155,8 @@ msgid "Reinforce the foundations in preparation of an attack."
 msgstr "Wzmocnij fundamenty w przygotowaniu ataku."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
-msgid "Increases armor of defensive towers by 2 levels."
-msgstr "Podwyższa pancerz wieżyczek obronnych o 2 poziomy."
+msgid "Towers +2 armor."
+msgstr "Wieże +2 pancerza."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1169,10 +1169,8 @@ msgid ""
 msgstr "Blanki na murach zapewniają żołnierzom broniącym twierdzy szerszy zasięg strzału."
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
-msgid ""
-"Install crenellations and murder holes to have 40% more arrows fired per "
-"garrisoned soldier."
-msgstr "Zainstaluj blanki i mordownie, aby zwiększyć o 40% ilość strzał wystrzeliwanych na każdego żołnierza w garnizonie."
+msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
+msgstr "Strażnice i kamienne wieże +40% więcej strzał na każdego obsadzonego żołnierza."
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1183,8 +1181,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "Posterunki wytrzymują dwa razy dłużej na neutralnym terytorium."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
-msgid "Outposts -50% territory decay rate."
-msgstr "Zmniejsza o 50% szybkość utraty posterunku."
+msgid "Outposts −50% territory decay rate."
+msgstr "Posterunki zmniejszają o 50% szybkość utraty terytorium."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1195,8 +1193,8 @@ msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr "Machikuły pozwalają zwalczać przeciwników u podnóża wieży."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
-msgid "Removes defensive towers' minimum range."
-msgstr "Usuwa limit minimalnego zasięgu wieżyczek obronnych."
+msgid "Sentry and Stone Towers have 0 minimum attack range."
+msgstr "Strażnice i kamienne wieże nie mają zasięgu minimalnego."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1207,8 +1205,8 @@ msgid "Arrow shooters increase the maximum range of the fire arrows."
 msgstr "Łucznicy zwiększają maksymalny zasięg wystrzeliwanych strzał."
 
 #: simulation/data/technologies/tower_range.jsontooltip
-msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr "Zwiększa zasięg wiezyczek obronnych o 8 metrów."
+msgid "Sentry and Stone Towers +8 attack range."
+msgstr "Strażnice i kamienne wieże mają +8 zasięgu ataku."
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1231,8 +1229,8 @@ msgid "A night's watch increases vigilance."
 msgstr "Straż nocna zwiększa czujność."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
-msgid "Post sentries to add one arrow to defensive towers."
-msgstr "Wstaw wartowników by dodać 1 dodatkowy strzał dla wiezyczek obronnych."
+msgid "Sentry and Stone Towers +1 default arrow count."
+msgstr "Strażnice i kamienne wieże mają +1 podstawowej liczby strzał."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"

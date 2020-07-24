@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2020-07-20 07:10+0000\n"
-"PO-Revision-Date: 2020-07-20 07:10+0000\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-24 07:10+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -454,7 +454,7 @@ msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr ""
 
 #: simulation/data/technologies/buildtime_walls_rubble.json:tooltip
-msgid "City walls -20% build time, but -1 crush armor level."
+msgid "Walls −20% build time, but −1 crush armor."
 msgstr ""
 
 #: simulation/data/technologies/buildtime_walls_rubble.json:genericName
@@ -766,7 +766,7 @@ msgstr ""
 
 #: simulation/data/technologies/heal_rate.json:tooltip
 #: simulation/data/technologies/heal_rate_2.json:tooltip
-msgid "Healers +25% healing rate."
+msgid "Healers −20% healing time."
 msgstr ""
 
 #: simulation/data/technologies/heal_rate.json:genericName
@@ -842,7 +842,7 @@ msgid "Using geometric masonry increases the sturdiness of defensive walls."
 msgstr ""
 
 #: simulation/data/technologies/health_walls_geometric_masonry.json:tooltip
-msgid "City walls +2 crush armor levels, but +10% build time."
+msgid "Walls +2 crush armor, but +10% build time."
 msgstr ""
 
 #: simulation/data/technologies/health_walls_geometric_masonry.json:genericName
@@ -850,7 +850,7 @@ msgid "Geometric Masonry"
 msgstr ""
 
 #: simulation/data/technologies/pair_walls_01.json:genericName
-msgid "Walls build time vs. Health"
+msgid "Wall armor vs build time."
 msgstr ""
 
 #: simulation/data/technologies/phase_city.json:genericName
@@ -882,7 +882,7 @@ msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.json:requirementsTooltip
 #: simulation/data/technologies/phase_city_generic.json:requirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
+msgid "Requires 4 Town Structures."
 msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.json:specificName.athen
@@ -933,7 +933,7 @@ msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.json:requirementsTooltip
 #: simulation/data/technologies/phase_town_generic.json:requirementsTooltip
-msgid "Requires 5 Village Phase structures (except Palisades and Farm Fields)."
+msgid "Requires 5 Village Structures."
 msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.json:specificName.athen
@@ -1216,7 +1216,7 @@ msgid "Improve the international trading profit."
 msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.json:tooltip
-msgid "Market +10% International Bonus."
+msgid "+10% international trade bonus."
 msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.json:genericName
@@ -1641,7 +1641,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/technologies/hellenes/special_long_walls.json:tooltip
-msgid "Build stone walls in neutral territory."
+msgid "Build Walls in own or neutral territory."
 msgstr ""
 
 #: simulation/data/technologies/hellenes/special_long_walls.json:genericName

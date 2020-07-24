@@ -31,9 +31,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:10+0000\n"
-"PO-Revision-Date: 2020-07-17 08:38+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-20 07:10+0000\n"
+"PO-Revision-Date: 2020-07-22 15:19+0000\n"
+"Last-Translator: Tiago <tiago.henrique.cco@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1150,8 +1150,8 @@ msgid "Reinforce the foundations in preparation of an attack."
 msgstr "Reforce as fundações para se precaver de um ataque."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
-msgid "Increases armor of defensive towers by 2 levels."
-msgstr "Aumenta a armadura de torres defensivas em 2 níveis."
+msgid "Towers +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1164,10 +1164,8 @@ msgid ""
 msgstr "Ameias concedem aos soldados um maior alcance enquanto defendem uma base."
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
-msgid ""
-"Install crenellations and murder holes to have 40% more arrows fired per "
-"garrisoned soldier."
-msgstr "Instale ameias e buracos assassinos para aumentar em 40% o número de flechas disparadas por cada soldado guarnecido."
+msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
+msgstr ""
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1178,8 +1176,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "Os postos avançados duram o dobro do tempo em território neutro."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
-msgid "Outposts -50% territory decay rate."
-msgstr "Postos avançados têm -50% de taxa de perca do território."
+msgid "Outposts −50% territory decay rate."
+msgstr ""
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1190,8 +1188,8 @@ msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr "Buracos Assassinos permitem acertar inimigos na base da torre."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
-msgid "Removes defensive towers' minimum range."
-msgstr "Remove o alcance mínimo para torres defensivas."
+msgid "Sentry and Stone Towers have 0 minimum attack range."
+msgstr ""
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1202,8 +1200,8 @@ msgid "Arrow shooters increase the maximum range of the fire arrows."
 msgstr "Aumente o alcance máximo das flechas de fogo dos atiradores de flecha."
 
 #: simulation/data/technologies/tower_range.jsontooltip
-msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr "Aumenta o alcance máximo de torres defensivas em 8 metros."
+msgid "Sentry and Stone Towers +8 attack range."
+msgstr ""
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1226,8 +1224,8 @@ msgid "A night's watch increases vigilance."
 msgstr "Uma ronda noturna aumenta a vigilância."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
-msgid "Post sentries to add one arrow to defensive towers."
-msgstr "Posicione sentinelas para adicionar mais 1 flecha às torres defensivas."
+msgid "Sentry and Stone Towers +1 default arrow count."
+msgstr ""
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
@@ -1751,7 +1749,7 @@ msgstr "Os primeiros monarcas aquemênidas fizeram da Pérsia o primeiro grande 
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry."
-msgstr ""
+msgstr "Trirremes fenícias ganham a habilidade de treinar cavalaria."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"

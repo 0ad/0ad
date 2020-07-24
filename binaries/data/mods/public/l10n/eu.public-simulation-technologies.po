@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:10+0000\n"
-"PO-Revision-Date: 2020-07-17 08:38+0000\n"
+"POT-Creation-Date: 2020-07-20 07:10+0000\n"
+"PO-Revision-Date: 2020-07-20 08:31+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -1130,8 +1130,8 @@ msgid "Reinforce the foundations in preparation of an attack."
 msgstr "Hobetu oinarriak ustezko erasoei aurre egiteko. "
 
 #: simulation/data/technologies/tower_armour.jsontooltip
-msgid "Increases armor of defensive towers by 2 levels."
-msgstr "Babes dorrearen babes maila 2 mailatan hobetzen du."
+msgid "Towers +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1144,10 +1144,8 @@ msgid ""
 msgstr "Gotorlekuetako almenek eta gezileihoek  tiro luzeagoa egiteko aukera ematen die     egitura babesteko garaian."
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
-msgid ""
-"Install crenellations and murder holes to have 40% more arrows fired per "
-"garrisoned soldier."
-msgstr "Eraiki kanoi zuloak %40 gezi gehiago botatzeko guardan sartutako soldadu bakoitzeko."
+msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
+msgstr ""
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1158,8 +1156,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "Postu aurreratuek denbora bikoitza iraun ahal dute eremu neutralean."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
-msgid "Outposts -50% territory decay rate."
-msgstr "Postu aurreratuak %50- lurralde narriaduran."
+msgid "Outposts −50% territory decay rate."
+msgstr ""
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1170,8 +1168,8 @@ msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr "Kanoi zuloek dorrearen azpian dauden etsaiei ziurtasunez tiro egin eta jaurtigaiak botatzeko aukera ematen dute."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
-msgid "Removes defensive towers' minimum range."
-msgstr "Babes dorreen gutxieneko tiro egiteko distantzia ezabatzen du."
+msgid "Sentry and Stone Towers have 0 minimum attack range."
+msgstr ""
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1182,8 +1180,8 @@ msgid "Arrow shooters increase the maximum range of the fire arrows."
 msgstr "Suzko gezien tiro egiteko distantzia handitzeko aukera ematen dute."
 
 #: simulation/data/technologies/tower_range.jsontooltip
-msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr "Babes dorreen gehienezko tiro egiteko distantzia 8 metroetan handitzen du."
+msgid "Sentry and Stone Towers +8 attack range."
+msgstr ""
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1206,8 +1204,8 @@ msgid "A night's watch increases vigilance."
 msgstr "Gabeko zaindari batek zaintza hobetzen du."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
-msgid "Post sentries to add one arrow to defensive towers."
-msgstr "Zaintzaileak jarri babes dorre bakoitzari gezi bat gehiago eransteko."
+msgid "Sentry and Stone Towers +1 default arrow count."
+msgstr ""
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"

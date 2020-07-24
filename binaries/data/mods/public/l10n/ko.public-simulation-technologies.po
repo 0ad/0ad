@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:10+0000\n"
-"PO-Revision-Date: 2020-07-17 08:38+0000\n"
+"POT-Creation-Date: 2020-07-20 07:10+0000\n"
+"PO-Revision-Date: 2020-07-20 08:31+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -1141,8 +1141,8 @@ msgid "Reinforce the foundations in preparation of an attack."
 msgstr "공격에 대비하여 기초를 강화합니다."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
-msgid "Increases armor of defensive towers by 2 levels."
-msgstr "방어탑의 방어력 수준이 +2 증가합니다."
+msgid "Towers +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1155,10 +1155,8 @@ msgid ""
 msgstr "총안을 낸 흉벽에서 총안은 수비하는것을 유지하는중에 군인이 더 넓은 공격범위를 허용합니다."
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
-msgid ""
-"Install crenellations and murder holes to have 40% more arrows fired per "
-"garrisoned soldier."
-msgstr "주둔 병사당 40% 더 많은 화살을 쏘는기위해 총안과 근총안을 설치합니다."
+msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
+msgstr ""
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1169,8 +1167,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "중립 지대에서는 전초 기지가 2 배나 오래 생존합니다."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
-msgid "Outposts -50% territory decay rate."
-msgstr "전초기지의 영토 붕괴 비율이 -50% 됩니다."
+msgid "Outposts −50% territory decay rate."
+msgstr ""
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1181,8 +1179,8 @@ msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr "근총안은 탑의 발밑의 적을 활등으로 공격할 수 있습니다."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
-msgid "Removes defensive towers' minimum range."
-msgstr "방어탑의 최소사거리를 없앱니다."
+msgid "Sentry and Stone Towers have 0 minimum attack range."
+msgstr ""
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1193,8 +1191,8 @@ msgid "Arrow shooters increase the maximum range of the fire arrows."
 msgstr "궁수의 화살 최대 사거리를 늘립니다."
 
 #: simulation/data/technologies/tower_range.jsontooltip
-msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr "방어탑의 최대 사거리를 8미터 늘립니다."
+msgid "Sentry and Stone Towers +8 attack range."
+msgstr ""
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1217,8 +1215,8 @@ msgid "A night's watch increases vigilance."
 msgstr "야간 경계 경비를 강화합니다."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
-msgid "Post sentries to add one arrow to defensive towers."
-msgstr "방어 탑에 주둔하여 발사하는 화살이 1개 더 늘어납니다."
+msgid "Sentry and Stone Towers +1 default arrow count."
+msgstr ""
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"

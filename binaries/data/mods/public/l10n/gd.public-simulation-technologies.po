@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:10+0000\n"
-"PO-Revision-Date: 2020-07-17 08:38+0000\n"
+"POT-Creation-Date: 2020-07-20 07:10+0000\n"
+"PO-Revision-Date: 2020-07-20 08:31+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -1128,8 +1128,8 @@ msgid "Reinforce the foundations in preparation of an attack."
 msgstr "Neartaich na buinn gus ullachadh an aghaidh ionnsaighe."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
-msgid "Increases armor of defensive towers by 2 levels."
-msgstr "Meudaichidh seo armachd nan tùr dìona le 2 leibheil."
+msgid "Towers +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1142,10 +1142,8 @@ msgid ""
 msgstr "Le creanailean air na ballachan, gheibh ionsaigh nan saighdearan astar nas motha nuair a dhìonas iad daingean."
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
-msgid ""
-"Install crenellations and murder holes to have 40% more arrows fired per "
-"garrisoned soldier."
-msgstr "Cuir creanailean ’s tuill-mharbhaidh ris ach an tèid 40% a bharrachd de shaighdean a thilgeil airson gach saighdeir a bhios ’na ghearastan ann."
+msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
+msgstr ""
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1156,8 +1154,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "Mairidh gearastanan an dà chuid as fhaide air ranntair neo-phàirteach."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
-msgid "Outposts -50% territory decay rate."
-msgstr "Crìonadh ranntair de −50% airson ghearastanan."
+msgid "Outposts −50% territory decay rate."
+msgstr ""
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1168,8 +1166,8 @@ msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr "Leigidh tuill-mharbhaidh leat bualadh air nàimhdean a tha aig dearbh-bhonn an tùir."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
-msgid "Removes defensive towers' minimum range."
-msgstr "Bheir seo cuingeachadh air falbh ach an urrainn dha na tùir-dhìona ’gan dìon fhèin an aghaidh nàimhdean a tha dìreach aig am bonn."
+msgid "Sentry and Stone Towers have 0 minimum attack range."
+msgstr ""
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1180,8 +1178,8 @@ msgid "Arrow shooters increase the maximum range of the fire arrows."
 msgstr "Cuiridh torain ris an astar as motha aig saighdean."
 
 #: simulation/data/technologies/tower_range.jsontooltip
-msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr "Meudaichidh seo an t-astar as motha aig tùir dhìona le 8 meatairean."
+msgid "Sentry and Stone Towers +8 attack range."
+msgstr ""
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1204,8 +1202,8 @@ msgid "A night's watch increases vigilance."
 msgstr "Cuiridh faire na h-oidhche ris an fhurachas."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
-msgid "Post sentries to add one arrow to defensive towers."
-msgstr "Cuir luchd-faire ann gus saighead a chur ris na tùir dìona."
+msgid "Sentry and Stone Towers +1 default arrow count."
+msgstr ""
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"

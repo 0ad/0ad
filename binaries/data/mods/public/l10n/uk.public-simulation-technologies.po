@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:10+0000\n"
-"PO-Revision-Date: 2020-07-17 08:38+0000\n"
+"POT-Creation-Date: 2020-07-20 07:10+0000\n"
+"PO-Revision-Date: 2020-07-20 08:31+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -1140,8 +1140,8 @@ msgid "Reinforce the foundations in preparation of an attack."
 msgstr "Зміцнити фундаменти у підготовці атаки."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
-msgid "Increases armor of defensive towers by 2 levels."
-msgstr "Збільшує броню захисних веж на 2 рівня."
+msgid "Towers +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1154,10 +1154,8 @@ msgid ""
 msgstr "Кренеляж надає солдатам ширший діапазон ведення вогню у захисті фортеці."
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
-msgid ""
-"Install crenellations and murder holes to have 40% more arrows fired per "
-"garrisoned soldier."
-msgstr "Встановити кренеляж та діри-вбивці, щоб мати 40% більше випущених стріл за кожного гарнізованого солдата."
+msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
+msgstr ""
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1168,8 +1166,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "Застави зберігаються удвічі довше на нейтральній території."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
-msgid "Outposts -50% territory decay rate."
-msgstr "Застави мають -50% темпу занепаду території."
+msgid "Outposts −50% territory decay rate."
+msgstr ""
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1180,8 +1178,8 @@ msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr "Діри-вбивці дозволяють вражати ворогів біля підніжжя вежі."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
-msgid "Removes defensive towers' minimum range."
-msgstr "Усуває мінімальну дистанцію захисних веж."
+msgid "Sentry and Stone Towers have 0 minimum attack range."
+msgstr ""
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1192,8 +1190,8 @@ msgid "Arrow shooters increase the maximum range of the fire arrows."
 msgstr "Метальники стріли збільшують максимальну дистанцію ведення вогню стрілами."
 
 #: simulation/data/technologies/tower_range.jsontooltip
-msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr "Збільшує максимальну дистанцію захисних веж на 8 метрів."
+msgid "Sentry and Stone Towers +8 attack range."
+msgstr ""
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1216,8 +1214,8 @@ msgid "A night's watch increases vigilance."
 msgstr "Нічне вартування підвищує пильність."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
-msgid "Post sentries to add one arrow to defensive towers."
-msgstr "Розмістити сторожів, щоб надати одну стрілу до захисної вежі."
+msgid "Sentry and Stone Towers +1 default arrow count."
+msgstr ""
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
