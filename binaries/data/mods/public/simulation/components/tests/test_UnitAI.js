@@ -196,7 +196,7 @@ function TestFormationExiting(mode)
 
 	unitAI.OnCreate();
 
-	unitAI.SetupRangeQuery(1);
+	unitAI.SetupAttackRangeQuery(1);
 
 
 	if (mode == 1)
@@ -357,7 +357,7 @@ function TestMoveIntoFormationWhileAttacking()
 
 		unitAI.OnCreate();
 
-		unitAI.SetupRangeQuery(1);
+		unitAI.SetupAttackRangeQuery(1);
 
 		unitAIs.push(unitAI);
 	}

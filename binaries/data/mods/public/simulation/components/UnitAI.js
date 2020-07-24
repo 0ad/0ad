@@ -162,11 +162,15 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"LosRangeUpdate": function(msg) {
-		// ignore newly-seen units by default
+		// Ignore newly-seen units by default.
 	},
 
 	"LosHealRangeUpdate": function(msg) {
-		// ignore newly-seen injured units by default
+		// Ignore newly-seen injured units by default.
+	},
+
+	"LosAttackRangeUpdate": function(msg) {
+		// Ignore newly-seen enemy units by default.
 	},
 
 	"Attacked": function(msg) {
@@ -1503,11 +1507,13 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"leave": function() {
-				var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+				let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 				if (this.losRangeQuery)
 					cmpRangeManager.DisableActiveQuery(this.losRangeQuery);
 				if (this.losHealRangeQuery)
 					cmpRangeManager.DisableActiveQuery(this.losHealRangeQuery);
+				if (this.losAttackRangeQuery)
+					cmpRangeManager.DisableActiveQuery(this.losAttackRangeQuery);
 
 				this.StopTimer();
 
@@ -1518,21 +1524,24 @@ UnitAI.prototype.UnitFsmSpec = {
 				}
 			},
 
+			// On the range updates:
+			// We check for idleness to prevent an entity to react only to newly seen entities
+			// when receiving a Los*RangeUpdate on the same turn as the entity becomes idle
+			// since this.FindNew*Targets is called in the timer.
+
 			"LosRangeUpdate": function(msg) {
-				// Start attacking one of the newly-seen enemy (if any).
-				// We check for idleness to prevent an entity to attack only newly seen enemies
-				// when receiving a LosRangeUpdate on the same turn as the entity becomes idle
-				// since this.FindNewTargets is called in the timer.
-				if (this.isIdle && msg.data.added.length && this.GetStance().targetVisibleEnemies)
-					this.AttackEntitiesByPreference(msg.data.added);
+				if (this.isIdle && msg && msg.data && msg.data.added && msg.data.added.length)
+					this.RespondToSightedEntities(msg.data.added);
 			},
 
 			"LosHealRangeUpdate": function(msg) {
-				// We check for idleness to prevent an entity to heal only newly seen entities
-				// when receiving a LosHealRangeUpdate on the same turn as the entity becomes idle
-				// since this.FindNewHealTargets is called in the timer.
-				if (this.isIdle && msg.data.added.length)
+				if (this.isIdle && msg && msg.data && msg.data.added && msg.data.added.length)
 					this.RespondToHealableEntities(msg.data.added);
+			},
+
+			"LosAttackRangeUpdate": function(msg) {
+				if (this.isIdle && msg && msg.data && msg.data.added && msg.data.added.length && this.GetStance().targetVisibleEnemies)
+					this.AttackEntitiesByPreference(msg.data.added);
 			},
 
 			"Timer": function(msg) {
@@ -1552,8 +1561,11 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				// If we entered the idle state we must have nothing better to do,
 				// so immediately check whether there's anybody nearby to attack.
-				// (If anyone approaches later, it'll be handled via LosRangeUpdate.)
+				// (If anyone approaches later, it'll be handled via LosAttackRangeUpdate.)
 				if (this.FindNewTargets())
+					return;
+
+				if (this.FindSightedEnemies())
 					return;
 
 				if (!this.isIdle)
@@ -1735,8 +1747,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					return false;
 				},
 
-				"LosRangeUpdate": function(msg) {
-					// Start attacking one of the newly-seen enemy (if any)
+				"LosAttackRangeUpdate": function(msg) {
 					if (this.GetStance().targetVisibleEnemies)
 						this.AttackEntitiesByPreference(msg.data.added);
 				},
@@ -3295,22 +3306,16 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"LosRangeUpdate": function(msg) {
-				if (this.template.NaturalBehaviour == "skittish")
-				{
-					if (msg.data.added.length > 0)
-					{
-						this.Flee(msg.data.added[0], false);
-						return;
-					}
-				}
-				// Start attacking one of the newly-seen enemy (if any)
-				else if (this.IsDangerousAnimal())
-				{
+				if (msg && msg.data && msg.data.added && msg.data.added.length)
+					this.RespondToSightedEntities(msg.data.added);
+			},
+
+			"LosAttackRangeUpdate": function(msg) {
+				if (this.IsDangerousAnimal() && msg && msg.data && msg.data.added && msg.data.added.length)
 					this.AttackVisibleEntity(msg.data.added);
-				}
 
 				// TODO: if two units enter our range together, we'll attack the
-				// first and then the second won't trigger another LosRangeUpdate
+				// first and then the second won't trigger another LosAttackRangeUpdate
 				// so we won't notice it. Probably we should do something with
 				// ResetActiveQuery in ROAMING.enter/FEEDING.enter in order to
 				// find any units that are already in range.
@@ -3340,19 +3345,13 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"LosRangeUpdate": function(msg) {
-				if (this.template.NaturalBehaviour == "skittish")
-				{
-					if (msg.data.added.length > 0)
-					{
-						this.Flee(msg.data.added[0], false);
-						return;
-					}
-				}
-				// Start attacking one of the newly-seen enemy (if any)
-				else if (this.template.NaturalBehaviour == "violent")
-				{
+				if (msg && msg.data && msg.data.added && msg.data.added.length)
+					this.RespondToSightedEntities(msg.data.added);
+			},
+
+			"LosAttackRangeUpdate": function(msg) {
+				if (this.template.NaturalBehaviour == "violent" && msg && msg.data && msg.data.added && msg.data.added.length)
 					this.AttackVisibleEntity(msg.data.added);
-				}
 			},
 
 			"Timer": function(msg) {
@@ -3575,12 +3574,13 @@ UnitAI.prototype.OnDestroy = function()
 	// Switch to an empty state to let states execute their leave handlers.
 	this.UnitFsm.SwitchToNextState(this, "");
 
-	// Clean up range queries
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (this.losRangeQuery)
 		cmpRangeManager.DestroyActiveQuery(this.losRangeQuery);
 	if (this.losHealRangeQuery)
 		cmpRangeManager.DestroyActiveQuery(this.losHealRangeQuery);
+	if (this.losAttackRangeQuery)
+		cmpRangeManager.DestroyActiveQuery(this.losAttackRangeQuery);
 };
 
 UnitAI.prototype.OnVisionRangeChanged = function(msg)
@@ -3619,63 +3619,73 @@ UnitAI.prototype.OnPickupCanceled = function(msg)
 	}
 };
 
-// Wrapper function that sets up the normal and healer range queries.
+/**
+ * Wrapper function that sets up the LOS, healer and attack range queries.
+ * This should be called whenever our ownership changes.
+ */
 UnitAI.prototype.SetupRangeQueries = function()
 {
-	this.SetupRangeQuery();
+	// Only skittish animals use this for now.
+	if (this.template.NaturalBehaviour && this.template.NaturalBehaviour == "skittish")
+		this.SetupLOSRangeQuery();
 
 	if (this.IsHealer())
 		this.SetupHealRangeQuery();
+
+	if (Engine.QueryInterface(this.entity, IID_Attack))
+		this.SetupAttackRangeQuery();
 };
 
 UnitAI.prototype.UpdateRangeQueries = function()
 {
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (this.losRangeQuery)
-		this.SetupRangeQuery(cmpRangeManager.IsActiveQueryEnabled(this.losRangeQuery));
+		this.SetupLOSRangeQuery(cmpRangeManager.IsActiveQueryEnabled(this.losRangeQuery));
 
-	if (this.IsHealer() && this.losHealRangeQuery)
+	if (this.losHealRangeQuery)
 		this.SetupHealRangeQuery(cmpRangeManager.IsActiveQueryEnabled(this.losHealRangeQuery));
+
+	if (this.losAttackRangeQuery)
+		this.SetupAttackRangeQuery(cmpRangeManager.IsActiveQueryEnabled(this.losAttackRangeQuery));
 };
 
-// Set up a range query for all enemy and gaia units within LOS range
-// which can be attacked.
-// This should be called whenever our ownership changes.
-UnitAI.prototype.SetupRangeQuery = function(enable = true)
+/**
+ * Set up a range query for all enemy units within LOS range.
+ * @param {boolean} enable - Optional parameter whether to enable the query.
+ */
+UnitAI.prototype.SetupLOSRangeQuery = function(enable = true)
 {
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (this.losRangeQuery)
 	{
 		cmpRangeManager.DestroyActiveQuery(this.losRangeQuery);
 		this.losRangeQuery = undefined;
 	}
 
-	var cmpPlayer = QueryOwnerInterface(this.entity);
-	// If we are being destructed (owner -1), creating a range query is pointless
+	let cmpPlayer = QueryOwnerInterface(this.entity);
+	// If we are being destructed (owner == -1), creating a range query is pointless.
 	if (!cmpPlayer)
 		return;
 
-	// Exclude allies, and self
-	// TODO: How to handle neutral players - Special query to attack military only?
 	let players = cmpPlayer.GetEnemies();
 	if (!players.length)
 		return;
 
-	var range = this.GetQueryRange(IID_Attack);
-
-	this.losRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_Resistance, cmpRangeManager.GetEntityFlagMask("normal"));
+	let range = this.GetQueryRange(IID_Vision);
+	this.losRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_Identity, cmpRangeManager.GetEntityFlagMask("normal"));
 
 	if (enable)
 		cmpRangeManager.EnableActiveQuery(this.losRangeQuery);
 };
 
-// Set up a range query for all own or ally units within LOS range
-// which can be healed.
-// This should be called whenever our ownership changes.
+/**
+ * Set up a range query for all own or ally units within LOS range
+ * which can be healed.
+ * @param {boolean} enable - Optional parameter whether to enable the query.
+ */
 UnitAI.prototype.SetupHealRangeQuery = function(enable = true)
 {
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 
 	if (this.losHealRangeQuery)
 	{
@@ -3683,18 +3693,50 @@ UnitAI.prototype.SetupHealRangeQuery = function(enable = true)
 		this.losHealRangeQuery = undefined;
 	}
 
-	var cmpPlayer = QueryOwnerInterface(this.entity);
-	// If we are being destructed (owner -1), creating a range query is pointless
+	let cmpPlayer = QueryOwnerInterface(this.entity);
+	// If we are being destructed (owner == -1), creating a range query is pointless.
 	if (!cmpPlayer)
 		return;
 
-	var players = cmpPlayer.GetAllies();
-	var range = this.GetQueryRange(IID_Heal);
+	let players = cmpPlayer.GetAllies();
+	let range = this.GetQueryRange(IID_Heal);
 
 	this.losHealRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_Health, cmpRangeManager.GetEntityFlagMask("injured"));
 
 	if (enable)
 		cmpRangeManager.EnableActiveQuery(this.losHealRangeQuery);
+};
+
+/**
+ * Set up a range query for all enemy and gaia units within range
+ * which can be attacked.
+ * @param {boolean} enable - Optional parameter whether to enable the query.
+ */
+UnitAI.prototype.SetupAttackRangeQuery = function(enable = true)
+{
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+
+	if (this.losAttackRangeQuery)
+	{
+		cmpRangeManager.DestroyActiveQuery(this.losAttackRangeQuery);
+		this.losAttackRangeQuery = undefined;
+	}
+
+	let cmpPlayer = QueryOwnerInterface(this.entity);
+	// If we are being destructed (owner == -1), creating a range query is pointless.
+	if (!cmpPlayer)
+		return;
+
+	// TODO: How to handle neutral players - Special query to attack military only?
+	let players = cmpPlayer.GetEnemies();
+	if (!players.length)
+		return;
+
+	let range = this.GetQueryRange(IID_Attack);
+	this.losAttackRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_Resistance, cmpRangeManager.GetEntityFlagMask("normal"));
+
+	if (enable)
+		cmpRangeManager.EnableActiveQuery(this.losAttackRangeQuery);
 };
 
 
@@ -4212,9 +4254,11 @@ UnitAI.prototype.OnHealthChanged = function(msg)
 UnitAI.prototype.OnRangeUpdate = function(msg)
 {
 	if (msg.tag == this.losRangeQuery)
-		this.UnitFsm.ProcessMessage(this, {"type": "LosRangeUpdate", "data": msg});
+		this.UnitFsm.ProcessMessage(this, { "type": "LosRangeUpdate", "data": msg });
 	else if (msg.tag == this.losHealRangeQuery)
-		this.UnitFsm.ProcessMessage(this, {"type": "LosHealRangeUpdate", "data": msg});
+		this.UnitFsm.ProcessMessage(this, { "type": "LosHealRangeUpdate", "data": msg });
+	else if (msg.tag == this.losAttackRangeQuery)
+		this.UnitFsm.ProcessMessage(this, { "type": "LosAttackRangeUpdate", "data": msg });
 };
 
 UnitAI.prototype.OnPackFinished = function(msg)
@@ -4994,12 +5038,30 @@ UnitAI.prototype.RespondToTargetedEntities = function(ents)
 };
 
 /**
+ * @param {number} ents - An array of the IDs of the spotted entities.
+ * @return {boolean} - Whether we responded.
+ */
+UnitAI.prototype.RespondToSightedEntities = function(ents)
+{
+	if (!ents || !ents.length)
+		return false;
+
+	if (this.template.NaturalBehaviour && this.template.NaturalBehaviour == "skittish")
+	{
+		this.Flee(ents[0], false);
+		return true;
+	}
+
+	return false;
+};
+
+/**
  * Try to respond to healable entities.
  * Returns true if it responded.
  */
 UnitAI.prototype.RespondToHealableEntities = function(ents)
 {
-	var ent = ents.find(ent => this.CanHeal(ent));
+	let ent = ents.find(ent => this.CanHeal(ent));
 	if (!ent)
 		return false;
 
@@ -5832,19 +5894,45 @@ UnitAI.prototype.ResetTurretStance = function()
 };
 
 /**
- * Resets losRangeQuery, and if there are some targets in range that we can
+ * Resets the losRangeQuery.
+ * @return {boolean} - Whether there are targets in range that we ought to react upon.
+ */
+UnitAI.prototype.FindSightedEnemies = function()
+{
+	if (!this.losRangeQuery)
+		return false;
+
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	return this.RespondToSightedEntities(cmpRangeManager.ResetActiveQuery(this.losRangeQuery));
+};
+
+/**
+ * Resets losHealRangeQuery, and if there are some targets in range that we can heal
+ * then we start healing and this returns true; otherwise, returns false.
+ */
+UnitAI.prototype.FindNewHealTargets = function()
+{
+	if (!this.losHealRangeQuery)
+		return false;
+
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	return this.RespondToHealableEntities(cmpRangeManager.ResetActiveQuery(this.losHealRangeQuery));
+};
+
+/**
+ * Resets losAttackRangeQuery, and if there are some targets in range that we can
  * attack then we start attacking and this returns true; otherwise, returns false.
  */
 UnitAI.prototype.FindNewTargets = function()
 {
-	if (!this.losRangeQuery)
+	if (!this.losAttackRangeQuery)
 		return false;
 
 	if (!this.GetStance().targetVisibleEnemies)
 		return false;
 
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	return this.AttackEntitiesByPreference(cmpRangeManager.ResetActiveQuery(this.losRangeQuery));
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	return this.AttackEntitiesByPreference(cmpRangeManager.ResetActiveQuery(this.losAttackRangeQuery));
 };
 
 UnitAI.prototype.FindWalkAndFightTargets = function()
@@ -5915,43 +6003,30 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 
 UnitAI.prototype.GetTargetsFromUnit = function()
 {
-	if (!this.losRangeQuery)
+	if (!this.losAttackRangeQuery)
 		return [];
 
 	if (!this.GetStance().targetVisibleEnemies)
 		return [];
 
-	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	if (!cmpAttack)
 		return [];
 
-	var attackfilter = function(e) {
-		var cmpOwnership = Engine.QueryInterface(e, IID_Ownership);
+	let attackfilter = function(e) {
+		let cmpOwnership = Engine.QueryInterface(e, IID_Ownership);
 		if (cmpOwnership && cmpOwnership.GetOwner() > 0)
 			return true;
-		var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
+		let cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
 		return cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal());
 	};
 
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var entities = cmpRangeManager.ResetActiveQuery(this.losRangeQuery);
-	var targets = entities.filter(function(v) { return cmpAttack.CanAttack(v) && attackfilter(v); })
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	let entities = cmpRangeManager.ResetActiveQuery(this.losAttackRangeQuery);
+	let targets = entities.filter(function(v) { return cmpAttack.CanAttack(v) && attackfilter(v); })
 		.sort(function(a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
 
 	return targets;
-};
-
-/**
- * Resets losHealRangeQuery, and if there are some targets in range that we can heal
- * then we start healing and this returns true; otherwise, returns false.
- */
-UnitAI.prototype.FindNewHealTargets = function()
-{
-	if (!this.losHealRangeQuery)
-		return false;
-
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	return this.RespondToHealableEntities(cmpRangeManager.ResetActiveQuery(this.losHealRangeQuery));
 };
 
 UnitAI.prototype.GetQueryRange = function(iid)
@@ -5962,6 +6037,12 @@ UnitAI.prototype.GetQueryRange = function(iid)
 	if (!cmpVision)
 		return ret;
 	let visionRange = cmpVision.GetRange();
+
+	if (iid === IID_Vision)
+	{
+		ret.max = visionRange;
+		return ret;
+	}
 
 	if (this.GetStance().respondStandGround)
 	{
