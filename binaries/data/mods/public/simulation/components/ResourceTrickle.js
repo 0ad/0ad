@@ -11,12 +11,13 @@ ResourceTrickle.prototype.Schema =
 
 ResourceTrickle.prototype.Init = function()
 {
+	this.trickleInterval = +this.template.Interval;
 	this.CheckTimer();
 };
 
-ResourceTrickle.prototype.GetTimer = function()
+ResourceTrickle.prototype.GetInterval = function()
 {
-	return +this.template.Interval;
+	return this.trickleInterval;
 };
 
 ResourceTrickle.prototype.GetRates = function()
@@ -66,21 +67,41 @@ ResourceTrickle.prototype.CheckTimer = function()
 {
 	if (!this.ComputeRates())
 	{
-		if (this.timer)
-		{
-			let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-			cmpTimer.CancelTimer(this.timer);
-			delete this.timer;
-		}
+		if (!this.timer)
+			return;
+
+		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		cmpTimer.CancelTimer(this.timer);
+		delete this.timer;
+		return;
+	}
+
+	let oldTrickleInterval = this.trickleInterval;
+	this.trickleInterval = ApplyValueModificationsToEntity("ResourceTrickle/Interval", +this.template.Interval, this.entity);
+	if (this.trickleInterval < 0)
+	{
+		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		cmpTimer.CancelTimer(this.timer);
+		delete this.timer;
 		return;
 	}
 
 	if (this.timer)
-		return;
+	{
+		if (this.trickleInterval == oldTrickleInterval)
+			return;
+
+		// If the timer wasn't invalidated before (interval <= 0), just update it.
+		if (oldTrickleInterval > 0)
+		{
+			let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+			cmpTimer.UpdateRepeatTime(this.timer, this.trickleInterval);
+			return;
+		}
+	}
 
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	let interval = +this.template.Interval;
-	this.timer = cmpTimer.SetInterval(this.entity, IID_ResourceTrickle, "Trickle", interval, interval, undefined);
+	this.timer = cmpTimer.SetInterval(this.entity, IID_ResourceTrickle, "Trickle", this.trickleInterval, this.trickleInterval, undefined);
 };
 
 Engine.RegisterComponentType(IID_ResourceTrickle, "ResourceTrickle", ResourceTrickle);
