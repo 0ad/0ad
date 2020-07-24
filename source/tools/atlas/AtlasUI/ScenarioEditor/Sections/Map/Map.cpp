@@ -26,6 +26,7 @@
 #include "ScenarioEditor/ScenarioEditor.h"
 #include "ScenarioEditor/Tools/Common/Tools.h"
 
+#include <algorithm>
 #include <wx/busyinfo.h>
 #include <wx/filename.h>
 
@@ -106,7 +107,12 @@ private:
 
 	void OnEdit(wxCommandEvent& evt)
 	{
-		OnVictoryConditionChanged(evt.GetId());
+		long id = static_cast<long>(evt.GetId());
+		if (std::any_of(m_VictoryConditions.begin(), m_VictoryConditions.end(), [id](const std::pair<long, AtObj>& vc) {
+			return vc.first == id;
+		}))
+			OnVictoryConditionChanged(id);
+
 		SendToEngine();
 	}
 
@@ -241,7 +247,7 @@ void MapSettingsControl::ReadFromEngine()
 
 	for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
 	{
-		if (m_MapSettingsVictoryConditions.count(wxString::FromUTF8(vc.second["Data"]["Title"]).Lower().ToStdString()) == 0)
+		if (m_MapSettingsVictoryConditions.find(wxString::FromUTF8(vc.second["Data"]["Title"]).Lower().ToStdString()) == m_MapSettingsVictoryConditions.end())
 			continue;
 
 		wxCheckBox* checkBox = wxDynamicCast(FindWindow(vc.first), wxCheckBox);
@@ -284,6 +290,7 @@ void MapSettingsControl::SetMapSettings(const AtObj& obj)
 void MapSettingsControl::OnVictoryConditionChanged(long controlId)
 {
 	AtObj victoryCondition;
+	wxCheckBox* modifiedCheckbox = wxDynamicCast(FindWindow(controlId), wxCheckBox);
 
 	for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
 	{
@@ -294,44 +301,44 @@ void MapSettingsControl::OnVictoryConditionChanged(long controlId)
 		break;
 	}
 
-	// ChangeOnChecked and DisabledWhenChecked use file names instead of victory titles so we have to convert them.
-
-	for (AtIter victoryConditionPair = victoryCondition["Data"]["ChangeOnChecked"]; victoryConditionPair.defined(); ++victoryConditionPair)
+	if(modifiedCheckbox->GetValue())
 	{
-		for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
+		for (AtIter victoryConditionPair = victoryCondition["Data"]["ChangeOnChecked"]; victoryConditionPair.defined(); ++victoryConditionPair)
 		{
-			std::string escapedTitle = wxString::FromUTF8(vc.second["Data"]["Title"]).Lower().ToStdString();
-			for (std::string::iterator it = escapedTitle.begin(); it != escapedTitle.end(); ++it) {
-				if (*it == ' ')
-					*it = '_';
-			}
-
-			if (victoryConditionPair[escapedTitle.c_str()].defined())
+			for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
 			{
-				wxCheckBox* victoryConditionCheckBox = wxDynamicCast(FindWindow(vc.first), wxCheckBox);
-				victoryConditionCheckBox->SetValue(wxString::FromUTF8(victoryConditionPair[escapedTitle.c_str()]).Lower().ToStdString() == "true");
-				break;
+				std::string escapedTitle = wxString::FromUTF8(vc.second["Data"]["Title"]).Lower().ToStdString();
+				std::replace(escapedTitle.begin(), escapedTitle.end(), ' ', '_');
+
+				if (victoryConditionPair[escapedTitle.c_str()].defined())
+				{
+					wxCheckBox* victoryConditionCheckBox = wxDynamicCast(FindWindow(vc.first), wxCheckBox);
+					victoryConditionCheckBox->SetValue(wxString::FromUTF8(victoryConditionPair[escapedTitle.c_str()]).Lower().ToStdString() == "true");
+				}
 			}
 		}
 	}
 
-	bool controlEnabled = wxDynamicCast(FindWindow(controlId), wxCheckBox)->GetValue();
-	for (AtIter victoryConditionTitle = victoryCondition["Data"]["DisabledWhenChecked"]; victoryConditionTitle.defined(); ++victoryConditionTitle)
+	for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
 	{
-		for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
-		{
-			std::string escapedTitle = wxString::FromUTF8(vc.second["Data"]["Title"]).Lower().ToStdString();
-			for (std::string::iterator it = escapedTitle.begin(); it != escapedTitle.end(); ++it) {
-				if (*it == ' ')
-					*it = '_';
-			}
+		if (vc.first == controlId)
+			continue;
 
-			if (escapedTitle == wxString::FromUTF8(victoryConditionTitle["item"]).ToStdString())
+		wxCheckBox* otherCheckbox = wxDynamicCast(FindWindow(vc.first), wxCheckBox);
+		otherCheckbox->Enable(true);
+
+		for (const std::pair<long, AtObj>& vc2 : m_VictoryConditions)
+		{
+			for (AtIter victoryConditionTitle = vc2.second["Data"]["DisabledWhenChecked"]; victoryConditionTitle.defined(); ++victoryConditionTitle)
 			{
-				wxCheckBox* victoryConditionCheckBox = wxDynamicCast(FindWindow(vc.first), wxCheckBox);
-				victoryConditionCheckBox->Enable(!controlEnabled);
-				victoryConditionCheckBox->SetValue(!controlEnabled);
-				break;
+				std::string escapedTitle = wxString::FromUTF8(vc.second["Data"]["Title"]).Lower().ToStdString();
+				std::replace(escapedTitle.begin(), escapedTitle.end(), ' ', '_');
+				if (escapedTitle == wxString::FromUTF8(victoryConditionTitle["item"]).ToStdString() && wxDynamicCast(FindWindow(vc2.first), wxCheckBox)->GetValue())
+				{
+					otherCheckbox->Enable(false);
+					otherCheckbox->SetValue(false);
+					break;
+				}
 			}
 		}
 	}
