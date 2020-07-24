@@ -24,11 +24,16 @@ function Cheat(input)
 		cmpRangeManager.SetLosRevealAll(-1, true);
 		return;
 	case "maxpopulation":
-		cmpPlayer.SetPopulationBonuses(500);
+		cmpPlayer.SetPopulationBonuses((cmpPlayerManager.GetMaxWorldPopulation() || cmpPlayer.GetMaxPopulation()) + 500);
 		return;
 	case "changemaxpopulation":
-		cmpPlayer.SetMaxPopulation(500);
+	{
+		let cmpModifiersManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ModifiersManager);
+		cmpModifiersManager.AddModifiers("cheat/maxpopulation", {
+			"Player/MaxPopulation": [{ "affects": ["Player"], "add": 500 }],
+		}, playerEnt);
 		return;
+	}
 	case "convertunit":
 		for (let ent of input.selected)
 		{
@@ -69,6 +74,7 @@ function Cheat(input)
 			cmpProductionQueue.SpawnUnits(input.templates[i % input.templates.length], 1, null);
 		return;
 	case "fastactions":
+	{
 		let cmpModifiersManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ModifiersManager);
 		if (cmpModifiersManager.HasAnyModifier("cheat/fastactions", playerEnt))
 			cmpModifiersManager.RemoveAllModifiers("cheat/fastactions", playerEnt);
@@ -81,6 +87,7 @@ function Cheat(input)
 				"ProductionQueue/TechCostMultiplier/time": [{ "affects": [["Structure"], ["Unit"]], "multiply": 0.01 }]
 			}, playerEnt);
 		return;
+	}
 	case "changephase":
 		var cmpTechnologyManager = Engine.QueryInterface(playerEnt, IID_TechnologyManager);
 		if (!cmpTechnologyManager)

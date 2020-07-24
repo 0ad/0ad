@@ -40,10 +40,19 @@ GameSettingControls.PopulationCap = class extends GameSettingControlDropdown
 
 	onGameAttributesChange()
 	{
-		if (g_GameAttributes.settings.PopulationCap === undefined)
+		if (g_GameAttributes.settings.WorldPopulation)
 		{
-			g_GameAttributes.settings.PopulationCap = g_PopulationCapacities.Population[g_PopulationCapacities.Default];
-			this.gameSettingsControl.updateGameAttributes();
+			this.setHidden(true);
+			g_GameAttributes.settings.PopulationCap = undefined;
+		}
+		else
+		{
+			this.setHidden(false);
+			if (g_GameAttributes.settings.PopulationCap === undefined)
+			{
+				g_GameAttributes.settings.PopulationCap = g_PopulationCapacities.Population[g_PopulationCapacities.Default];
+				this.gameSettingsControl.updateGameAttributes();
+			}
 		}
 	}
 

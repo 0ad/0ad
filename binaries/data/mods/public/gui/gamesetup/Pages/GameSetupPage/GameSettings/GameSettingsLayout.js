@@ -26,7 +26,9 @@ var g_GameSettingsLayout = [
 		"label": translateWithContext("Match settings tab name", "Player"),
 		"settings": [
 			"PlayerCount",
+			"WorldPopulation",
 			"PopulationCap",
+			"WorldPopulationCap",
 			"StartingResources",
 			"Spies",
 			"Cheats"

@@ -16,6 +16,7 @@ var g_DurationFilterIntervals = [
  * Allow to filter by population capacity.
  */
 const g_PopulationCapacities = prepareForDropdown(g_Settings && g_Settings.PopulationCapacities);
+const g_WorldPopulationCapacities = prepareForDropdown(g_Settings && g_Settings.WorldPopulationCapacities);
 
 /**
  * Reloads the selectable values in the filters. The filters depend on g_Settings and g_Replays

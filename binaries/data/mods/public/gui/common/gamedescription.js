@@ -377,6 +377,15 @@ function getGameDescription(mapCache)
 							g_GameAttributes.settings.PopulationCap)]
 		});
 
+	if (g_GameAttributes.settings.WorldPopulationCap !== undefined)
+		titles.push({
+			"label": translate("World Population Cap"),
+			"value":
+				g_WorldPopulationCapacities.Title[
+					g_WorldPopulationCapacities.Population.indexOf(
+						g_GameAttributes.settings.WorldPopulationCap)]
+		});
+
 	titles.push({
 		"label": translate("Treasures"),
 		"value": g_GameAttributes.settings.DisableTreasures ?

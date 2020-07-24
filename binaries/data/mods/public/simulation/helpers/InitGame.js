@@ -65,8 +65,14 @@ function InitGame(settings)
 				"Cost/BuildTime": [{ "affects": ["Unit", "Structure"], "multiply": time[AIDiff] }],
 			}, cmpPlayer.entity);
 		}
+
+		if (settings.PopulationCap)
+			cmpPlayer.SetMaxPopulation(settings.PopulationCap);
 	}
-	// Map or player data (handicap...) dependent initialisations of components (i.e. garrisoned units)
+	if (settings.WorldPopulationCap)
+		Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).SetMaxWorldPopulation(settings.WorldPopulationCap);
+
+	// Map or player data (handicap...) dependent initialisations of components (i.e. garrisoned units).
 	Engine.BroadcastMessage(MT_InitGame, {});
 
 	cmpAIManager.TryLoadSharedComponent();
