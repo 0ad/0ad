@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_palisade">
   <Cost>
-    <BuildTime>7</BuildTime>
+    <BuildTime>14</BuildTime>
     <Resources>
-      <wood>5</wood>
+      <wood>14</wood>
     </Resources>
   </Cost>
   <Footprint>
@@ -11,10 +11,10 @@
     <Height>8</Height>
   </Footprint>
   <Health>
-    <Max op="mul">0.75</Max>
+    <Max op="mul">0.7</Max>
   </Health>
   <Loot>
-    <wood>1</wood>
+    <wood>3</wood>
   </Loot>
   <Obstruction>
     <ControlPersist/>
