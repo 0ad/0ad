@@ -564,7 +564,7 @@ AddMock(10, IID_Position, {
 });
 
 AddMock(10, IID_ResourceTrickle, {
-	"GetTimer": () => 1250,
+	"GetInterval": () => 1250,
 	"GetRates": () => ({ "food": 2, "wood": 3, "stone": 5, "metal": 9 })
 });
 

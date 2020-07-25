@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-22 07:08+0000\n"
-"PO-Revision-Date: 2020-07-20 07:04+0000\n"
+"PO-Revision-Date: 2020-07-20 07:53+0000\n"
 "Last-Translator: Anirban Mitra <mitradranirban@gmail.com>\n"
 "Language-Team: Bengali (http://www.transifex.com/wildfire-games/0ad/language/bn/)\n"
 "MIME-Version: 1.0\n"
@@ -169,45 +169,45 @@ msgstr "গেম আইডি অনুসন্ধান করা শুর�
 #: ps/ModIo.cpp:291
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr ""
+msgstr "মোডগুলি অনুসন্ধান করা শুরু করার সময় ব্যর্থতা। ত্রুটি:%s;%s"
 
 #: ps/ModIo.cpp:317
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr ""
+msgstr "মোড ডিরেক্টরি তৈরি করতে পারেনি:%s"
 
 #: ps/ModIo.cpp:342
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr ""
+msgstr "মোড ডাউনলোডের জন্য অস্থায়ী ফাইলটি খুলতে পারেনি:%s"
 
 #: ps/ModIo.cpp:352
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr ""
+msgstr "ডাউনলোড শুরু করতে ব্যর্থ। ত্রুটি:%s;%s"
 
 #: ps/ModIo.cpp:397
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr ""
+msgstr "অসমনিয়ত ডাউনলোড ব্যর্থতা:%s,%s"
 
 #: ps/ModIo.cpp:426
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr ""
+msgstr "ডাউনলোড ব্যর্থতা। সার্ভারের প্রতিক্রিয়া:%s; %s\n"
 
 #: ps/ModIo.cpp:529
 msgid "Mismatched filesize."
-msgstr ""
+msgstr "ফাইল সাইজ মিলছে না"
 
 #: ps/ModIo.cpp:547
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr ""
+msgstr "অবৈধ ফাইল. প্রত্যাশিত এমডি5 %s, পেয়েছি %s।"
 
 #: ps/ModIo.cpp:562
 msgid "Failed to compute final hash."
-msgstr ""
+msgstr "চূড়ান্ত হ্যাশ গণনা করতে ব্যর্থ।"
 
 #: ps/ModIo.cpp:568
 msgid "Failed to verify signature."

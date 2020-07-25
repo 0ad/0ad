@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:10+0000\n"
-"PO-Revision-Date: 2020-07-18 19:46+0000\n"
+"POT-Creation-Date: 2020-07-20 07:10+0000\n"
+"PO-Revision-Date: 2020-07-20 22:24+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -1127,8 +1127,8 @@ msgid "Reinforce the foundations in preparation of an attack."
 msgstr "Reforcia les murueques pa preparate pa un ataque."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
-msgid "Increases armor of defensive towers by 2 levels."
-msgstr "Aumenta l'armadura de torres de defensa en 2 niveles."
+msgid "Towers +2 armor."
+msgstr "Torres: armadura +2."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1141,10 +1141,8 @@ msgid ""
 msgstr "Les almenes nos parapetos dan a soldaos más algame de fueu al defender una fortaleza."
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
-msgid ""
-"Install crenellations and murder holes to have 40% more arrows fired per "
-"garrisoned soldier."
-msgstr "Fórnila d'almenes ya matacanes pa tirar un 40% más de fleches per soldáu guarecíu."
+msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
+msgstr "Torrexones ya talayes: fleches por soldáu guarecíu +40%."
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1155,8 +1153,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "Les talayes duren el doblu en territoriu neutral."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
-msgid "Outposts -50% territory decay rate."
-msgstr "Talayes -50% tasa d'escayencia territorial."
+msgid "Outposts −50% territory decay rate."
+msgstr "Miradorios: tasa d'escayencia n'abertal −50%."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1167,8 +1165,8 @@ msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr "Los matacanes dexen atacar enemigos al pie de la torre."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
-msgid "Removes defensive towers' minimum range."
-msgstr "Quita l'algame mínimu a les torres de defensa."
+msgid "Sentry and Stone Towers have 0 minimum attack range."
+msgstr "Los torrexones ya talayes tienen un algame mínimu de 0."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1179,8 +1177,8 @@ msgid "Arrow shooters increase the maximum range of the fire arrows."
 msgstr "Los llanciadores de fleches xuben l'algame máximu de les fleches enceses."
 
 #: simulation/data/technologies/tower_range.jsontooltip
-msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr "Aumenta l'algame máximu de torres de defensa en 8 metros."
+msgid "Sentry and Stone Towers +8 attack range."
+msgstr "Torrexones ya talayes: algame +8."
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1203,8 +1201,8 @@ msgid "A night's watch increases vigilance."
 msgstr "Una rolda de nueche aumenta la vixilancia."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
-msgid "Post sentries to add one arrow to defensive towers."
-msgstr "Pon centineles p'amestar una flecha a les torres de defensa."
+msgid "Sentry and Stone Towers +1 default arrow count."
+msgstr "Torrexones ya talayes: fleches por defeutu +1."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"

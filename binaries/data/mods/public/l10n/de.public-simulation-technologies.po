@@ -34,9 +34,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:10+0000\n"
-"PO-Revision-Date: 2020-07-17 08:38+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-20 07:10+0000\n"
+"PO-Revision-Date: 2020-07-23 10:37+0000\n"
+"Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1153,8 +1153,8 @@ msgid "Reinforce the foundations in preparation of an attack."
 msgstr "Stärkung des Fundaments zur Vorbereitung eines Angriffs."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
-msgid "Increases armor of defensive towers by 2 levels."
-msgstr "Erhöht die Rüstung der Verteidigungstürme um 2 Stufen."
+msgid "Towers +2 armor."
+msgstr "Türme +2 Rüstung."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1167,10 +1167,8 @@ msgid ""
 msgstr "Zinnen am Wehrgang erlauben Verteidigern einen größeren Feuerbereich beim Verteidigen."
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
-msgid ""
-"Install crenellations and murder holes to have 40% more arrows fired per "
-"garrisoned soldier."
-msgstr "Baue Mauerzinnen und Maschikuli, um 40% mehr Pfeile pro stationiertem Söldner verschießen zu können."
+msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
+msgstr "Wach- und Steintürme +40% mehr Pfeile pro einuartiertem Soldaten."
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1181,8 +1179,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "Außenposten überleben in neutralem Territorium doppelt so lange."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
-msgid "Outposts -50% territory decay rate."
-msgstr "Außenposten -50% Gebietsverfallsrate."
+msgid "Outposts −50% territory decay rate."
+msgstr "Außenposten −50% Gebietsverfallsrate."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1193,8 +1191,8 @@ msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr "Mörderlöcher ermöglichen es, Gegner am Fuß des Turmes anzugreifen."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
-msgid "Removes defensive towers' minimum range."
-msgstr "Entfernt die minimale Reichweite des Verteidigungsturms."
+msgid "Sentry and Stone Towers have 0 minimum attack range."
+msgstr "Wach- und Steintürme haben 0 Mindestangriffreichweite."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1205,8 +1203,8 @@ msgid "Arrow shooters increase the maximum range of the fire arrows."
 msgstr "Pfeilgeschütze erhöhen die maximale Reichweite der Feuerpfeile."
 
 #: simulation/data/technologies/tower_range.jsontooltip
-msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr "Erhöht die maximale Reichweite des Verteidigungsturms um 8 Meter."
+msgid "Sentry and Stone Towers +8 attack range."
+msgstr "Wach- und Steintürme +8 Reichweite."
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1229,8 +1227,8 @@ msgid "A night's watch increases vigilance."
 msgstr "Ein Nachtwächter erhöht die Wachsamkeit."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
-msgid "Post sentries to add one arrow to defensive towers."
-msgstr "Setze Wachposten ein, um die Anzahl der abgefeuerten Pfeile um 1 zu erhöhen."
+msgid "Sentry and Stone Towers +1 default arrow count."
+msgstr "Wach- und Steintürme +1 Standardpfeile."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
@@ -1462,7 +1460,7 @@ msgstr "Heuere professionelle Söldner an, in deiner Armee zu kämpfen."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries are promoted to Advanced rank."
-msgstr ""
+msgstr "Söldner werden zum fortgeschrittenen Rang befördert."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
@@ -1550,7 +1548,7 @@ msgstr "Die Griechen nutzten Steinbautechniken aus der frühen mykenischen Zeit.
 msgid ""
 "Athenian, Macedonian, and Spartan Structures +10% health and +10% capture "
 "points."
-msgstr ""
+msgstr "Athenische, makedonische, und spartanische Strukturen +10% Gesundheit und +10% Eroberungspunkte."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -1562,15 +1560,15 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr ""
+msgstr "Indien ist das Land der Elefanten. Die Benutzung von Elefanten als Kriegswaffe stammt aus Indien und wurde für Jahrtausende praktiziert. Es war auch die Quelle für Elefanten für den östlichen Mittelmehrraum. Indische Könige konnten große Zahlen an Kriegselefanten ins Feld führen."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "Elefanten −30% Ausbildungszeit."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "Elefantentradition"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -1689,7 +1687,7 @@ msgstr "Athenische Lange Mauern"
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "Zivile Strukturen +20% Bauzeit, +20% Gesundheit und +20% Eroberungspunkte."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -1832,7 +1830,7 @@ msgstr "Libri Sibyllini"
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
 msgid "Traditional Army vs Reform Army"
-msgstr ""
+msgstr "Traditionelle Armee vs. reformierte Armee"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsondescription
 msgid ""
@@ -1884,11 +1882,11 @@ msgstr "Nisioi"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsondescription
 msgid "The Roman-style core of the Seleucid army."
-msgstr ""
+msgstr "Der römisch geprägte Kern der seleukidischen Armee."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
-msgstr ""
+msgstr "Gardisten-Infanterie-Schwertkämpfer freischalten."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
 msgid "Reform Army"
@@ -1896,11 +1894,11 @@ msgstr "Reformierte Armee"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
-msgstr ""
+msgstr "Der makedonisch geprägte Kern der seleukidischen Armee."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Champion Infantry Pikeman."
-msgstr ""
+msgstr "Gardisten-Infanterie-Pikenier freischalten."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"
@@ -1916,7 +1914,7 @@ msgstr "Die Silberschilde oder Argyraspidai waren die Elite der schweren Infantr
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "health and attack."
-msgstr ""
+msgstr "Verbessert die Schildträger-Gardisteninfantrie zu Silberschilden, mit erhöhter Gesundheit und Angriff."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

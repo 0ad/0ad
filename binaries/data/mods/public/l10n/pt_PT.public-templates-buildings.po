@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:09+0000\n"
-"PO-Revision-Date: 2020-07-17 10:13+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-20 07:09+0000\n"
+"PO-Revision-Date: 2020-07-20 10:28+0000\n"
+"Last-Translator: Nuno de Mendonça Raimundo <nnraimundo@outlook.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,11 +43,17 @@ msgstr "Cívico"
 msgid "Civic Center"
 msgstr "Centro Cívico"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:88
+#: simulation/templates/template_structure_civic_civil_centre.xml:89
 msgid "Build to acquire large tracts of territory. Train citizens."
 msgstr "Constrói para adquirir grandes extensões de território. Treina cidadãos."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:90
+#: simulation/templates/template_structure_civic_civil_centre.xml:91
+#: simulation/templates/template_structure_defensive.xml:15
+#: simulation/templates/template_structure_military_fortress.xml:76
+msgid "Defensive"
+msgstr "Defensivo"
+
+#: simulation/templates/template_structure_civic_civil_centre.xml:91
 #: simulation/templates/template_structure_civic_civil_centre.xml:53
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
@@ -63,7 +69,7 @@ msgstr "Aumenta o limite populacional."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:54
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 #: simulation/templates/template_structure_economic_farmstead.xml:34
 #: simulation/templates/template_structure_economic_storehouse.xml:35
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -93,7 +99,7 @@ msgstr "Recrutar unidades especiais."
 
 #: simulation/templates/template_structure_civic_stoa.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:36
-#: simulation/templates/template_structure_defensive_tower_stone.xml:35
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
 #: simulation/templates/template_structure_economic_market.xml:33
 #: simulation/templates/template_structure_military_blacksmith.xml:26
 #: simulation/templates/template_structure_military_embassy.xml:33
@@ -130,26 +136,19 @@ msgstr "Muralha de Madeira"
 msgid "Wall off your town for a stout defense."
 msgstr "Cerca a tua povoação com muralhas para uma defesa mais robusta."
 
+#: simulation/templates/template_structure_defensive_tower.xml:52
 #: simulation/templates/template_structure_defensive_tower.xml:36
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:61
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:60
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
-#: simulation/templates/template_structure_defensive_tower_stone.xml:35
-msgid "DefenseTower"
-msgstr "Torre de Defesa"
+msgid "Tower"
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:57
 msgid "Artillery Tower"
 msgstr "Torre de Artilharia"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
-msgid "Catapults stones. Needs the murder holes tech to protect its foot."
-msgstr "Atira pedras. Necessita da tecnologia Buracos Assassinos para proteger a base."
-
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:61
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:60
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:58
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_fortress.xml:76
 #: simulation/templates/template_structure_military_workshop.xml:28
 #: simulation/templates/template_structure_special.xml:36
 #: simulation/templates/template_structure_wonder.xml:53
@@ -158,28 +157,23 @@ msgstr "Atira pedras. Necessita da tecnologia Buracos Assassinos para proteger a
 msgid "City"
 msgstr "Cidade"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:61
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:60
-#: simulation/templates/template_structure_defensive_tower_stone.xml:35
-msgid "StoneTower"
-msgstr "Torre de Pedra"
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
+msgid "ArtilleryTower"
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
 msgstr "Torre de setas."
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
-msgid ""
-"Shoots bolts. Faster reaction time against raiding units than the artillery "
-"tower, weak to all siege weapons and mass melee. Needs the murder holes tech"
-" to protect its foot."
-msgstr "Dispara flechas. Mais rápido contra unidades de assalto do que a torre de artilharia, fraco contra todas as armas de cerco e grandes quantidades de unidades corpo-a-corpo. Necessita da tecnologia Buracos Assassinos para proteger a base."
+msgid "BoltTower"
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 msgid ""
-"Build in neutral and own territories to scout areas of the map. Slowly "
-"converts to Gaia while in neutral territory."
-msgstr "Pode-se construir no próprio território ou em territórios neutros para explorar áreas do mapa. Converte-se lentamente em Gaia se estiver em território neutro."
+"Build in own or neutral territory. Slowly converts to Gaia while in neutral "
+"territory."
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:54
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:29
@@ -192,17 +186,19 @@ msgstr "Atalaia"
 msgid "Sentry Tower"
 msgstr "Torre Sentinela"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:37
+#: simulation/templates/template_structure_defensive_tower_stone.xml:33
+#: simulation/templates/template_structure_defensive_wall_tower.xml:56
+msgid ""
+"Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
+" to protect its foot."
+msgstr ""
+
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 msgid "SentryTower"
 msgstr "Torre Sentinela"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:40
-msgid ""
-"Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
-"tech to protect its foot. Upgradeable to stone tower."
-msgstr "Atira flechas. Guarnição fornece uma defesa extra. Necessita da tecnologia de buracos assassinos para proteger a sua base. Atualizável para torre de pedra."
-
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:61
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:60
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Reforçar com pedra e atualizar para uma torre de defesa."
 
@@ -210,11 +206,9 @@ msgstr "Reforçar com pedra e atualizar para uma torre de defesa."
 msgid "Defense Tower"
 msgstr "Torre de Defesa"
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:33
-msgid ""
-"Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
-"tech to protect its foot."
-msgstr "Dispara flechas. Guarnecer com unidades para uma defesa extra. Necessita da tecnologia Buracos Assassinos para proteger a base."
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
+msgid "StoneTower"
+msgstr "Torre de Pedra"
 
 #: simulation/templates/template_structure_defensive_wall.xml:16
 #: simulation/templates/structures/cart_s_wall_long.xml:11
@@ -246,10 +240,6 @@ msgstr "Isto permitirá que deixes as unidades circularem através das tuas fort
 #: simulation/templates/template_structure_defensive_wall_tower.xml:54
 msgid "Wall Turret"
 msgstr "Cubelo"
-
-#: simulation/templates/template_structure_defensive_wall_tower.xml:56
-msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "Dispara flechas. Guarnece com unidades para defender a muralha de ataques inimigos."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -347,16 +337,17 @@ msgstr "Estábulo de elefantes"
 msgid "Embassy"
 msgstr "Embaixada"
 
-#: simulation/templates/template_structure_military_fortress.xml:42
 #: simulation/templates/template_structure_military_fortress.xml:74
-msgid "Fortress"
-msgstr "Fortaleza"
-
-#: simulation/templates/template_structure_military_fortress.xml:78
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
 msgstr "Treina Campeões e Heróis e desenvolve tecnologias. Guarnece soldados para flechas adicionais."
+
+#: simulation/templates/template_structure_military_fortress.xml:76
+#: simulation/templates/template_structure_military_fortress.xml:42
+#: simulation/templates/template_structure_military_fortress.xml:72
+msgid "Fortress"
+msgstr "Fortaleza"
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"

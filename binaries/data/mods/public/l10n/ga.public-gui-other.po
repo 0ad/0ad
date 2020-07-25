@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-10 07:09+0000\n"
-"PO-Revision-Date: 2020-07-10 17:38+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-20 07:09+0000\n"
+"PO-Revision-Date: 2020-07-20 17:43+0000\n"
+"Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1815,12 +1815,12 @@ msgstr "Dún"
 msgid "Civilization:"
 msgstr "Sibhialtacht:"
 
-#: gui/reference/structree/StructreePage.js:55
+#: gui/reference/structree/StructreePage.js:85
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
 msgstr "%(hotkey)s: Dún Crann Tógála"
 
-#: gui/reference/structree/Sections/Trainer/TrainerSection.js:65
+#: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
 msgid "Trainer Units"
 msgstr "Aonaid Teagaisc"
 
@@ -2229,64 +2229,80 @@ msgstr "Toradh"
 msgid "Failed"
 msgstr "Teipthe"
 
-#: gui/summary/summary.js:303
+#: gui/summary/summary.js:192
+#, javascript-format
+msgctxt "Player listing with color indicator"
+msgid "%(colorIndicator)s %(playerListing)s"
+msgstr ""
+
+#: gui/summary/summary.js:195
+msgctxt "Charts player color indicator"
+msgid "■"
+msgstr ""
+
+#: gui/summary/summary.js:225
+msgctxt "Player listing"
+msgid ", "
+msgstr ", "
+
+#: gui/summary/summary.js:331
 msgid "Time elapsed"
 msgstr "Am caite"
 
-#: gui/summary/summary.js:453
+#: gui/summary/summary.js:499
 msgid "Current Scores"
 msgstr "Scóir Reatha"
 
-#: gui/summary/summary.js:455
+#: gui/summary/summary.js:501
 msgid "Scores at the end of the game."
 msgstr "Scóir ar deireadh an chluiche."
 
-#: gui/summary/summary.js:457
+#: gui/summary/summary.js:503
 msgid "You have been disconnected."
 msgstr "Tá tú dícheangailte."
 
-#: gui/summary/summary.js:459
+#: gui/summary/summary.js:505
 msgid "You have left the game."
 msgstr "D'éirí tú as an cluiche."
 
-#: gui/summary/summary.js:461
+#: gui/summary/summary.js:507
 msgid "You have won the battle!"
 msgstr "Tá tú buacach sa chluiche!"
 
-#: gui/summary/summary.js:463
+#: gui/summary/summary.js:509
 msgid "You have been defeated…"
 msgstr "Tá tú cloíte..."
 
-#: gui/summary/summary.js:464
+#: gui/summary/summary.js:510
 msgid "You have abandoned the game."
 msgstr "D'fhág tú an cluiche."
 
-#: gui/summary/summary.js:467
+#: gui/summary/summary.js:513
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Am cluiche caite: %(time)s"
 
-#: gui/summary/summary.js:475
+#: gui/summary/summary.js:521
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/summary/summary.js:487
+#: gui/summary/summary.js:533
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: Scoránaigh an ilforhalla i bhfuinneog dialóíge."
 
-#: gui/summary/summary.js:500
+#: gui/summary/summary.js:546
 #, javascript-format
 msgid "Toggle the %(name)s summary tab."
 msgstr ""
 
-#: gui/summary/summary.js:501
+#: gui/summary/summary.js:547
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab right."
 msgstr ""
 
-#: gui/summary/summary.js:502
+#: gui/summary/summary.js:548
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab left."
 msgstr ""
@@ -2493,11 +2509,15 @@ msgctxt "summary chart"
 msgid "Type:"
 msgstr "Cineál:"
 
-#: gui/summary/summary.xml:(caption):174
+#: gui/summary/summary.xml:(caption):167
+msgid "Group by team"
+msgstr ""
+
+#: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
 msgstr "Breathnaigh ar Athimirt"
 
-#: gui/summary/summary.xml:(caption):179
+#: gui/summary/summary.xml:(caption):192
 msgid "Continue"
 msgstr "Lean ar aghaidh"
 

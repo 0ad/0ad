@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:09+0000\n"
-"PO-Revision-Date: 2020-07-17 10:13+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-20 07:09+0000\n"
+"PO-Revision-Date: 2020-07-20 10:28+0000\n"
+"Last-Translator: Balázs Úr\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,11 +43,17 @@ msgstr "Polgári"
 msgid "Civic Center"
 msgstr "Városháza"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:88
+#: simulation/templates/template_structure_civic_civil_centre.xml:89
 msgid "Build to acquire large tracts of territory. Train citizens."
 msgstr "Nagyobb területek megszerzéséhez építhető. Polgárok kiképzése."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:90
+#: simulation/templates/template_structure_civic_civil_centre.xml:91
+#: simulation/templates/template_structure_defensive.xml:15
+#: simulation/templates/template_structure_military_fortress.xml:76
+msgid "Defensive"
+msgstr "Védekező"
+
+#: simulation/templates/template_structure_civic_civil_centre.xml:91
 #: simulation/templates/template_structure_civic_civil_centre.xml:53
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
@@ -63,7 +69,7 @@ msgstr "A népességkorlát növelése."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:54
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 #: simulation/templates/template_structure_economic_farmstead.xml:34
 #: simulation/templates/template_structure_economic_storehouse.xml:35
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -93,7 +99,7 @@ msgstr "Különleges egységek toborzása."
 
 #: simulation/templates/template_structure_civic_stoa.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:36
-#: simulation/templates/template_structure_defensive_tower_stone.xml:35
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
 #: simulation/templates/template_structure_economic_market.xml:33
 #: simulation/templates/template_structure_military_blacksmith.xml:26
 #: simulation/templates/template_structure_military_embassy.xml:33
@@ -130,26 +136,19 @@ msgstr "Fa fal"
 msgid "Wall off your town for a stout defense."
 msgstr "A városod körbefalazása az erősebb védelemhez."
 
+#: simulation/templates/template_structure_defensive_tower.xml:52
 #: simulation/templates/template_structure_defensive_tower.xml:36
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:61
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:60
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
-#: simulation/templates/template_structure_defensive_tower_stone.xml:35
-msgid "DefenseTower"
-msgstr "Védőtorony"
+msgid "Tower"
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:57
 msgid "Artillery Tower"
 msgstr "Tüzértorony"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
-msgid "Catapults stones. Needs the murder holes tech to protect its foot."
-msgstr "Köveket lő. A lábazat megvédéséhez a lőrések kifejlesztése szükséges."
-
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:61
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:60
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:58
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_fortress.xml:76
 #: simulation/templates/template_structure_military_workshop.xml:28
 #: simulation/templates/template_structure_special.xml:36
 #: simulation/templates/template_structure_wonder.xml:53
@@ -158,28 +157,23 @@ msgstr "Köveket lő. A lábazat megvédéséhez a lőrések kifejlesztése szü
 msgid "City"
 msgstr "Nagyváros"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:61
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:60
-#: simulation/templates/template_structure_defensive_tower_stone.xml:35
-msgid "StoneTower"
-msgstr "Kőtorony"
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
+msgid "ArtilleryTower"
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
 msgstr "Nyílvető torony"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
-msgid ""
-"Shoots bolts. Faster reaction time against raiding units than the artillery "
-"tower, weak to all siege weapons and mass melee. Needs the murder holes tech"
-" to protect its foot."
-msgstr "Nyílpuska nyilakat lő. Gyorsabb reakcióidő a fosztogató egységek ellen, mint a tüzértornyoknál, gyenge az összes ostromgép és a tömeges közelharci egységek ellen. Lőrések technológiára van szüksége, hogy megvédje az alapzatát."
+msgid "BoltTower"
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 msgid ""
-"Build in neutral and own territories to scout areas of the map. Slowly "
-"converts to Gaia while in neutral territory."
-msgstr "Semleges vagy saját területekre építve felderíti a térkép területeit. Semleges területen lassan Gaiává alakul át."
+"Build in own or neutral territory. Slowly converts to Gaia while in neutral "
+"territory."
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:54
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:29
@@ -192,17 +186,19 @@ msgstr "Előőrs"
 msgid "Sentry Tower"
 msgstr "Őrtorony"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:37
+#: simulation/templates/template_structure_defensive_tower_stone.xml:33
+#: simulation/templates/template_structure_defensive_wall_tower.xml:56
+msgid ""
+"Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
+" to protect its foot."
+msgstr ""
+
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 msgid "SentryTower"
 msgstr "Őrtorony"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:40
-msgid ""
-"Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
-"tech to protect its foot. Upgradeable to stone tower."
-msgstr "Nyilakat lő. Szállásolj be, hogy extra védelmet biztosíts. Szükséges a lőrések fejlesztés, hogy megvédje a lábazatot. Kő toronnyá fejleszthető."
-
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:61
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:60
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Megerősítés kővel, és fejlesztés védőtoronnyá."
 
@@ -210,11 +206,9 @@ msgstr "Megerősítés kővel, és fejlesztés védőtoronnyá."
 msgid "Defense Tower"
 msgstr "Védőtorony"
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:33
-msgid ""
-"Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
-"tech to protect its foot."
-msgstr "Nyilakat lő. Szállásolj be, hogy extra védelmet biztosíts. Szükséges a lőrések fejlesztés, hogy megvédje a lábazatot."
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
+msgid "StoneTower"
+msgstr "Kőtorony"
 
 #: simulation/templates/template_structure_defensive_wall.xml:16
 #: simulation/templates/structures/cart_s_wall_long.xml:11
@@ -246,10 +240,6 @@ msgstr "Lehetővé teszi, hogy az egyésegek körbejárják az erődítményeket
 #: simulation/templates/template_structure_defensive_wall_tower.xml:54
 msgid "Wall Turret"
 msgstr "Fali torony"
-
-#: simulation/templates/template_structure_defensive_wall_tower.xml:56
-msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "Nyilakat lő. Beszállásolva megvédi a városfalat a támadókkal szemben."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -347,16 +337,17 @@ msgstr "Elefánt istálló"
 msgid "Embassy"
 msgstr "Követség"
 
-#: simulation/templates/template_structure_military_fortress.xml:42
 #: simulation/templates/template_structure_military_fortress.xml:74
-msgid "Fortress"
-msgstr "Erőd"
-
-#: simulation/templates/template_structure_military_fortress.xml:78
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
 msgstr "Bajnokok és hősök kiképzése, valamint technológiák kutatása. Katonák beszállásolása az erősebb védelemhez."
+
+#: simulation/templates/template_structure_military_fortress.xml:76
+#: simulation/templates/template_structure_military_fortress.xml:42
+#: simulation/templates/template_structure_military_fortress.xml:72
+msgid "Fortress"
+msgstr "Erőd"
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"

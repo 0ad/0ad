@@ -52,9 +52,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:09+0000\n"
-"PO-Revision-Date: 2020-07-17 10:13+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-20 07:09+0000\n"
+"PO-Revision-Date: 2020-07-20 10:28+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,11 +74,17 @@ msgstr "市政厅"
 msgid "Civic Center"
 msgstr "市政中心"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:88
+#: simulation/templates/template_structure_civic_civil_centre.xml:89
 msgid "Build to acquire large tracts of territory. Train citizens."
 msgstr "建设以扩张领土。可训练公民。"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:90
+#: simulation/templates/template_structure_civic_civil_centre.xml:91
+#: simulation/templates/template_structure_defensive.xml:15
+#: simulation/templates/template_structure_military_fortress.xml:76
+msgid "Defensive"
+msgstr "防守"
+
+#: simulation/templates/template_structure_civic_civil_centre.xml:91
 #: simulation/templates/template_structure_civic_civil_centre.xml:53
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
@@ -94,7 +100,7 @@ msgstr "增加人口上限。"
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:54
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 #: simulation/templates/template_structure_economic_farmstead.xml:34
 #: simulation/templates/template_structure_economic_storehouse.xml:35
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -124,7 +130,7 @@ msgstr "招募特殊单位。"
 
 #: simulation/templates/template_structure_civic_stoa.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:36
-#: simulation/templates/template_structure_defensive_tower_stone.xml:35
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
 #: simulation/templates/template_structure_economic_market.xml:33
 #: simulation/templates/template_structure_military_blacksmith.xml:26
 #: simulation/templates/template_structure_military_embassy.xml:33
@@ -161,26 +167,19 @@ msgstr "木墙"
 msgid "Wall off your town for a stout defense."
 msgstr "在城镇周围建造围墙，可以用来侦查和防御。"
 
+#: simulation/templates/template_structure_defensive_tower.xml:52
 #: simulation/templates/template_structure_defensive_tower.xml:36
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:61
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:60
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
-#: simulation/templates/template_structure_defensive_tower_stone.xml:35
-msgid "DefenseTower"
-msgstr "防御塔"
+msgid "Tower"
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:57
 msgid "Artillery Tower"
 msgstr "炮楼"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
-msgid "Catapults stones. Needs the murder holes tech to protect its foot."
-msgstr "发射弩箭。 驻军可提供额外防御。 需要猎杀洞技术来取消最小射程。 可升级至石塔。 "
-
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:61
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:60
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:58
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_fortress.xml:76
 #: simulation/templates/template_structure_military_workshop.xml:28
 #: simulation/templates/template_structure_special.xml:36
 #: simulation/templates/template_structure_wonder.xml:53
@@ -189,28 +188,23 @@ msgstr "发射弩箭。 驻军可提供额外防御。 需要猎杀洞技术来�
 msgid "City"
 msgstr "城市"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:61
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:60
-#: simulation/templates/template_structure_defensive_tower_stone.xml:35
-msgid "StoneTower"
-msgstr "石塔"
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
+msgid "ArtilleryTower"
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
 msgstr "弩塔"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
-msgid ""
-"Shoots bolts. Faster reaction time against raiding units than the artillery "
-"tower, weak to all siege weapons and mass melee. Needs the murder holes tech"
-" to protect its foot."
-msgstr "发射弩箭。 驻军可提供额外防御。 需要猎杀洞技术来取消最小射程。 "
+msgid "BoltTower"
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 msgid ""
-"Build in neutral and own territories to scout areas of the map. Slowly "
-"converts to Gaia while in neutral territory."
-msgstr "在中立和同盟国的领土上建造建筑去侦察地图上的区域。当你建在中立领土上时，建筑会慢慢得成为大地的一部分。"
+"Build in own or neutral territory. Slowly converts to Gaia while in neutral "
+"territory."
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:54
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:29
@@ -223,17 +217,19 @@ msgstr "哨所"
 msgid "Sentry Tower"
 msgstr "警戒塔"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:37
+#: simulation/templates/template_structure_defensive_tower_stone.xml:33
+#: simulation/templates/template_structure_defensive_wall_tower.xml:56
+msgid ""
+"Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
+" to protect its foot."
+msgstr ""
+
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 msgid "SentryTower"
 msgstr "警戒塔"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:40
-msgid ""
-"Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
-"tech to protect its foot. Upgradeable to stone tower."
-msgstr "发射弩箭。 驻军可提供额外防御。 需要猎杀洞技术来取消最小射程。 可升级至石塔。"
-
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:61
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:60
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "用石头加固并升级防御塔。"
 
@@ -241,11 +237,9 @@ msgstr "用石头加固并升级防御塔。"
 msgid "Defense Tower"
 msgstr "防御塔"
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:33
-msgid ""
-"Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
-"tech to protect its foot."
-msgstr "发射弩箭。 驻军可提供额外防御。 需要猎杀洞技术来取消最小射程。"
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
+msgid "StoneTower"
+msgstr "石塔"
 
 #: simulation/templates/template_structure_defensive_wall.xml:16
 #: simulation/templates/structures/cart_s_wall_long.xml:11
@@ -277,10 +271,6 @@ msgstr "这允许你让你的单位在你的要塞巡逻。"
 #: simulation/templates/template_structure_defensive_wall_tower.xml:54
 msgid "Wall Turret"
 msgstr "城墙箭塔"
-
-#: simulation/templates/template_structure_defensive_wall_tower.xml:56
-msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "箭垛。驻兵用弓箭抵御进攻者。"
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -378,16 +368,17 @@ msgstr ""
 msgid "Embassy"
 msgstr "使馆"
 
-#: simulation/templates/template_structure_military_fortress.xml:42
 #: simulation/templates/template_structure_military_fortress.xml:74
-msgid "Fortress"
-msgstr "城堡"
-
-#: simulation/templates/template_structure_military_fortress.xml:78
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
 msgstr "训练精锐单位，研究对应科技，可驻守士兵来增加射击的箭数。"
+
+#: simulation/templates/template_structure_military_fortress.xml:76
+#: simulation/templates/template_structure_military_fortress.xml:42
+#: simulation/templates/template_structure_military_fortress.xml:72
+msgid "Fortress"
+msgstr "城堡"
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"

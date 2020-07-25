@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:10+0000\n"
-"PO-Revision-Date: 2020-07-17 08:38+0000\n"
+"POT-Creation-Date: 2020-07-20 07:10+0000\n"
+"PO-Revision-Date: 2020-07-20 08:31+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -1136,8 +1136,8 @@ msgid "Reinforce the foundations in preparation of an attack."
 msgstr "強化基礎以準備攻擊。"
 
 #: simulation/data/technologies/tower_armour.jsontooltip
-msgid "Increases armor of defensive towers by 2 levels."
-msgstr "防禦塔的裝甲增加 2級"
+msgid "Towers +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1150,10 +1150,8 @@ msgid ""
 msgstr "城垛射孔讓士兵在防禦要塞的時候能有更廣的開火範圍。"
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
-msgid ""
-"Install crenellations and murder holes to have 40% more arrows fired per "
-"garrisoned soldier."
-msgstr "裝置城垛射孔和獵殺洞可讓每個駐守的士兵多發射40%的箭。"
+msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
+msgstr ""
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1164,8 +1162,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "在中立地帶上可以存活比正常的前哨站多一倍的時間。"
 
 #: simulation/data/technologies/tower_decay.jsontooltip
-msgid "Outposts -50% territory decay rate."
-msgstr "前哨站領土荒廢率 -50%"
+msgid "Outposts −50% territory decay rate."
+msgstr ""
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1176,8 +1174,8 @@ msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr "城垛射孔可以攻擊塔底的敵人。"
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
-msgid "Removes defensive towers' minimum range."
-msgstr "移除防禦塔的最短射程限制"
+msgid "Sentry and Stone Towers have 0 minimum attack range."
+msgstr ""
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1188,8 +1186,8 @@ msgid "Arrow shooters increase the maximum range of the fire arrows."
 msgstr "急速射手增加射出弓箭的最大射程。"
 
 #: simulation/data/technologies/tower_range.jsontooltip
-msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr "增加防禦塔的最遠射程到8單位"
+msgid "Sentry and Stone Towers +8 attack range."
+msgstr ""
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1212,8 +1210,8 @@ msgid "A night's watch increases vigilance."
 msgstr "夜間瞭望增強了警覺性。"
 
 #: simulation/data/technologies/tower_watch.jsontooltip
-msgid "Post sentries to add one arrow to defensive towers."
-msgstr "後哨，增加一隻箭來防禦箭塔"
+msgid "Sentry and Stone Towers +1 default arrow count."
+msgstr ""
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"

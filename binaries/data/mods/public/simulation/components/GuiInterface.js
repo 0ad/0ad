@@ -521,7 +521,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	let cmpResourceTrickle = Engine.QueryInterface(ent, IID_ResourceTrickle);
 	if (cmpResourceTrickle)
 		ret.resourceTrickle = {
-			"interval": cmpResourceTrickle.GetTimer(),
+			"interval": cmpResourceTrickle.GetInterval(),
 			"rates": cmpResourceTrickle.GetRates()
 		};
 

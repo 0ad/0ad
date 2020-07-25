@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:10+0000\n"
-"PO-Revision-Date: 2020-07-17 08:38+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-20 07:10+0000\n"
+"PO-Revision-Date: 2020-07-20 13:49+0000\n"
+"Last-Translator: Ernestus Severus\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1124,50 +1124,48 @@ msgstr "Contra-Delatores"
 
 #: simulation/data/technologies/tower_armour.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
-msgstr ""
+msgstr "Firma fundamenta adversus oppugnationem."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
-msgid "Increases armor of defensive towers by 2 levels."
-msgstr ""
+msgid "Towers +2 armor."
+msgstr "Turres +2 arma."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
-msgstr ""
+msgstr "Fundamenta Firma"
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""
 "Crenellations on the battlements allow soldiers wider range of fire in "
 "defending a keep."
-msgstr ""
+msgstr "Crenae munimentorum militibus faciunt potestatem, ut custodes longius tela deiciant."
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
-msgid ""
-"Install crenellations and murder holes to have 40% more arrows fired per "
-"garrisoned soldier."
-msgstr ""
+msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
+msgstr "Turres Vigiles et Turres Lapideae +40% sagittas pro quoque Milite in praesidio."
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
-msgstr ""
+msgstr "Crenae Muri"
 
 #: simulation/data/technologies/tower_decay.jsondescription
 msgid "Outposts survive twice as long in neutral territory."
 msgstr ""
 
 #: simulation/data/technologies/tower_decay.jsontooltip
-msgid "Outposts -50% territory decay rate."
+msgid "Outposts −50% territory decay rate."
 msgstr ""
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
-msgstr ""
+msgstr "Fundamenta Lapidea"
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr ""
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
-msgid "Removes defensive towers' minimum range."
+msgid "Sentry and Stone Towers have 0 minimum attack range."
 msgstr ""
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
@@ -1179,7 +1177,7 @@ msgid "Arrow shooters increase the maximum range of the fire arrows."
 msgstr ""
 
 #: simulation/data/technologies/tower_range.jsontooltip
-msgid "Increases defensive towers' maximum range by 8 meters."
+msgid "Sentry and Stone Towers +8 attack range."
 msgstr ""
 
 #: simulation/data/technologies/tower_range.jsongenericName
@@ -1203,7 +1201,7 @@ msgid "A night's watch increases vigilance."
 msgstr ""
 
 #: simulation/data/technologies/tower_watch.jsontooltip
-msgid "Post sentries to add one arrow to defensive towers."
+msgid "Sentry and Stone Towers +1 default arrow count."
 msgstr ""
 
 #: simulation/data/technologies/tower_watch.jsongenericName

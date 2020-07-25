@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:10+0000\n"
-"PO-Revision-Date: 2020-07-17 08:38+0000\n"
+"POT-Creation-Date: 2020-07-20 07:10+0000\n"
+"PO-Revision-Date: 2020-07-20 08:31+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -1129,8 +1129,8 @@ msgid "Reinforce the foundations in preparation of an attack."
 msgstr "تقویت زیربنای آماده سازی برای یک حمله"
 
 #: simulation/data/technologies/tower_armour.jsontooltip
-msgid "Increases armor of defensive towers by 2 levels."
-msgstr "افزایش زره برج های دفاعی به میزان 2 سطح"
+msgid "Towers +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1143,10 +1143,8 @@ msgid ""
 msgstr "بارو هایی مستحکم به سربازان اجازه می دهد هنگام دفاع از برج، شعاع حمله وسیع تری داشته باشند."
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
-msgid ""
-"Install crenellations and murder holes to have 40% more arrows fired per "
-"garrisoned soldier."
-msgstr "بارو های مستحکم و پنجره های کوچکی بر روی برج ایجاد کنید تا به ازای هر سرباز مستقر در برج، 40% تیر بیشتری شلیک شود."
+msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
+msgstr ""
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1157,8 +1155,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "برج های دیده بانی دو برابر بیشتر در مناطع بی طرف دوام می آورند."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
-msgid "Outposts -50% territory decay rate."
-msgstr "برج های دیده بانی  -50% سرعت متروکه شدن بواسه قلمرو"
+msgid "Outposts −50% territory decay rate."
+msgstr ""
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1169,8 +1167,8 @@ msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr "چاله های مرگ این امکان را بوجود می آورد که سربازان مهاجمی که به پای برج می رسند آسیب ببینند"
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
-msgid "Removes defensive towers' minimum range."
-msgstr "برداشتن حالت دفاعی برج ، حداقل شعاع حمله"
+msgid "Sentry and Stone Towers have 0 minimum attack range."
+msgstr ""
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1181,8 +1179,8 @@ msgid "Arrow shooters increase the maximum range of the fire arrows."
 msgstr "کماندارها حداکثر شعاع حمله برج را افزایش می دهند"
 
 #: simulation/data/technologies/tower_range.jsontooltip
-msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr "افزایش دفاعی برجها ، بیشترین شعاع حمله با 8 متر"
+msgid "Sentry and Stone Towers +8 attack range."
+msgstr ""
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1205,8 +1203,8 @@ msgid "A night's watch increases vigilance."
 msgstr "افزایش آمادگی دیده بانان"
 
 #: simulation/data/technologies/tower_watch.jsontooltip
-msgid "Post sentries to add one arrow to defensive towers."
-msgstr "قرار دادن نگهبانها برای اضافه شدن تعداد تیرهایی که برج های دفاعی پرتاب می کنند"
+msgid "Sentry and Stone Towers +1 default arrow count."
+msgstr ""
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"

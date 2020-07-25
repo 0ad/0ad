@@ -121,7 +121,7 @@
 				"type": "dropdown",
 				"label": "Anti-Aliasing",
 				"tooltip": "Reduce aliasing effect on edges.",
-				"dependencies": ["postproc"],
+				"dependencies": ["postproc", "preferglsl"],
 				"config": "antialiasing",
 				"list": [
 					{ "value": "disabled", "label": "Disabled", "tooltip": "Do not use anti-aliasing." },

@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-10 07:09+0000\n"
-"PO-Revision-Date: 2020-07-11 19:33+0000\n"
+"POT-Creation-Date: 2020-07-20 07:09+0000\n"
+"PO-Revision-Date: 2020-07-21 21:35+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -1760,12 +1760,12 @@ msgstr "Zarrar"
 msgid "Civilization:"
 msgstr "Civilización:"
 
-#: gui/reference/structree/StructreePage.js:55
+#: gui/reference/structree/StructreePage.js:85
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
 msgstr "%(hotkey)s: Zarrar l'árbole de les construcciones."
 
-#: gui/reference/structree/Sections/Trainer/TrainerSection.js:65
+#: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
 msgid "Trainer Units"
 msgstr "Unidaes allistadores"
 
@@ -2168,64 +2168,80 @@ msgstr "Resultáu"
 msgid "Failed"
 msgstr "Fallíos"
 
-#: gui/summary/summary.js:303
+#: gui/summary/summary.js:192
+#, javascript-format
+msgctxt "Player listing with color indicator"
+msgid "%(colorIndicator)s %(playerListing)s"
+msgstr "%(colorIndicator)s %(playerListing)s"
+
+#: gui/summary/summary.js:195
+msgctxt "Charts player color indicator"
+msgid "■"
+msgstr "■"
+
+#: gui/summary/summary.js:225
+msgctxt "Player listing"
+msgid ", "
+msgstr ", "
+
+#: gui/summary/summary.js:331
 msgid "Time elapsed"
 msgstr "Tiempu trescurrío"
 
-#: gui/summary/summary.js:453
+#: gui/summary/summary.js:499
 msgid "Current Scores"
 msgstr "Puntuaciones actuales"
 
-#: gui/summary/summary.js:455
+#: gui/summary/summary.js:501
 msgid "Scores at the end of the game."
 msgstr "Les puntuaciones na fin de la partida."
 
-#: gui/summary/summary.js:457
+#: gui/summary/summary.js:503
 msgid "You have been disconnected."
 msgstr "Desconeutéstite"
 
-#: gui/summary/summary.js:459
+#: gui/summary/summary.js:505
 msgid "You have left the game."
 msgstr "Dexesti la partida"
 
-#: gui/summary/summary.js:461
+#: gui/summary/summary.js:507
 msgid "You have won the battle!"
 msgstr "¡Ganesti la batalla!"
 
-#: gui/summary/summary.js:463
+#: gui/summary/summary.js:509
 msgid "You have been defeated…"
 msgstr "Venciéronte..."
 
-#: gui/summary/summary.js:464
+#: gui/summary/summary.js:510
 msgid "You have abandoned the game."
 msgstr "Abandonesti la partida."
 
-#: gui/summary/summary.js:467
+#: gui/summary/summary.js:513
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Tiempu de partida trescurrío: %(time)s"
 
-#: gui/summary/summary.js:475
+#: gui/summary/summary.js:521
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/summary/summary.js:487
+#: gui/summary/summary.js:533
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: Activar la sala multixugador nun ventanu de diálogu."
 
-#: gui/summary/summary.js:500
+#: gui/summary/summary.js:546
 #, javascript-format
 msgid "Toggle the %(name)s summary tab."
 msgstr "Enseña'l resume %(name)s."
 
-#: gui/summary/summary.js:501
+#: gui/summary/summary.js:547
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab right."
 msgstr "Usa %(hotkey)s pa mover un resume a mandrecha."
 
-#: gui/summary/summary.js:502
+#: gui/summary/summary.js:548
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab left."
 msgstr "Usa %(hotkey)s pa mover un resume a manzorga."
@@ -2432,11 +2448,15 @@ msgctxt "summary chart"
 msgid "Type:"
 msgstr "Tipu:"
 
-#: gui/summary/summary.xml:(caption):174
+#: gui/summary/summary.xml:(caption):167
+msgid "Group by team"
+msgstr "Encolmar per equipu"
+
+#: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
 msgstr "Ver repetición"
 
-#: gui/summary/summary.xml:(caption):179
+#: gui/summary/summary.xml:(caption):192
 msgid "Continue"
 msgstr "Siguir"
 

@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:10+0000\n"
-"PO-Revision-Date: 2020-07-17 08:38+0000\n"
+"POT-Creation-Date: 2020-07-20 07:10+0000\n"
+"PO-Revision-Date: 2020-07-20 08:31+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -1139,8 +1139,8 @@ msgid "Reinforce the foundations in preparation of an attack."
 msgstr "Posílit základy v přípravě na útok."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
-msgid "Increases armor of defensive towers by 2 levels."
-msgstr "Zvyšuje stupeň ochrany obranné věže o 2 úrovně."
+msgid "Towers +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1153,10 +1153,8 @@ msgid ""
 msgstr "Cimbuří dovoluje vojákům větší dosah při obraně pevnosti."
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
-msgid ""
-"Install crenellations and murder holes to have 40% more arrows fired per "
-"garrisoned soldier."
-msgstr "Postavit cimbuří a střílny pro zvýšení počtu šípů vystřelených vojákem posádky o 40%."
+msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
+msgstr ""
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1167,8 +1165,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "Předsunuté základny přežijí v neutrálním území dvakrát tak dlouho."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
-msgid "Outposts -50% territory decay rate."
-msgstr "Rozhledny -50% rychlosti rozkladu."
+msgid "Outposts −50% territory decay rate."
+msgstr ""
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1179,8 +1177,8 @@ msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr "Díry ve stropě umožňují zasáhnout nepřátele pod věží."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
-msgid "Removes defensive towers' minimum range."
-msgstr "Umožní obranným věžím střílet i na nepřátele bližší, než je jejich nejmenší vzdálenost k nepříteli, ve které pořád mohou pálit."
+msgid "Sentry and Stone Towers have 0 minimum attack range."
+msgstr ""
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1191,8 +1189,8 @@ msgid "Arrow shooters increase the maximum range of the fire arrows."
 msgstr "Střelci šípů zvýší největší dosah zapálených šípů."
 
 #: simulation/data/technologies/tower_range.jsontooltip
-msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr "Zvyšuje největší dosah obranné věže o 8 metrů."
+msgid "Sentry and Stone Towers +8 attack range."
+msgstr ""
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1215,8 +1213,8 @@ msgid "A night's watch increases vigilance."
 msgstr "Noční hlídka zvyšuje bdělost."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
-msgid "Post sentries to add one arrow to defensive towers."
-msgstr "Pošlete stráže na stanoviště, aby přidaly jeden šíp obranným věžím."
+msgid "Sentry and Stone Towers +1 default arrow count."
+msgstr ""
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"

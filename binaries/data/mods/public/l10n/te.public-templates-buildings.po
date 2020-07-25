@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:09+0000\n"
-"PO-Revision-Date: 2020-07-17 10:13+0000\n"
+"POT-Creation-Date: 2020-07-20 07:09+0000\n"
+"PO-Revision-Date: 2020-07-20 10:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Telugu (http://www.transifex.com/wildfire-games/0ad/language/te/)\n"
 "MIME-Version: 1.0\n"
@@ -31,11 +31,17 @@ msgstr "పౌర"
 msgid "Civic Center"
 msgstr "పౌర కేంద్రం"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:88
+#: simulation/templates/template_structure_civic_civil_centre.xml:89
 msgid "Build to acquire large tracts of territory. Train citizens."
 msgstr "చాలా స్థలాన్ని సేకరించడానికి కట్టండి. పౌరులకు శిక్షణ కలిగించు."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:90
+#: simulation/templates/template_structure_civic_civil_centre.xml:91
+#: simulation/templates/template_structure_defensive.xml:15
+#: simulation/templates/template_structure_military_fortress.xml:76
+msgid "Defensive"
+msgstr ""
+
+#: simulation/templates/template_structure_civic_civil_centre.xml:91
 #: simulation/templates/template_structure_civic_civil_centre.xml:53
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
@@ -51,7 +57,7 @@ msgstr "జనాభా సంఖ్యా పరిమితి పెంచు
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:54
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 #: simulation/templates/template_structure_economic_farmstead.xml:34
 #: simulation/templates/template_structure_economic_storehouse.xml:35
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -81,7 +87,7 @@ msgstr "ప్రత్యేక సిబ్బందిని పనిలో 
 
 #: simulation/templates/template_structure_civic_stoa.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:36
-#: simulation/templates/template_structure_defensive_tower_stone.xml:35
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
 #: simulation/templates/template_structure_economic_market.xml:33
 #: simulation/templates/template_structure_military_blacksmith.xml:26
 #: simulation/templates/template_structure_military_embassy.xml:33
@@ -118,26 +124,19 @@ msgstr "చెక్క గోడ"
 msgid "Wall off your town for a stout defense."
 msgstr "బలిష్టమైన భద్రతకోసం నగరం చుట్టూ గోడ కట్టు."
 
+#: simulation/templates/template_structure_defensive_tower.xml:52
 #: simulation/templates/template_structure_defensive_tower.xml:36
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:61
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:60
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
-#: simulation/templates/template_structure_defensive_tower_stone.xml:35
-msgid "DefenseTower"
-msgstr "రక్షణా గోపురం"
+msgid "Tower"
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:57
 msgid "Artillery Tower"
 msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
-msgid "Catapults stones. Needs the murder holes tech to protect its foot."
-msgstr ""
-
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:61
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:60
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:58
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_fortress.xml:76
 #: simulation/templates/template_structure_military_workshop.xml:28
 #: simulation/templates/template_structure_special.xml:36
 #: simulation/templates/template_structure_wonder.xml:53
@@ -146,10 +145,8 @@ msgstr ""
 msgid "City"
 msgstr "నగరం"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:61
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:60
-#: simulation/templates/template_structure_defensive_tower_stone.xml:35
-msgid "StoneTower"
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
+msgid "ArtilleryTower"
 msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
@@ -157,17 +154,14 @@ msgid "Bolt Tower"
 msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
-msgid ""
-"Shoots bolts. Faster reaction time against raiding units than the artillery "
-"tower, weak to all siege weapons and mass melee. Needs the murder holes tech"
-" to protect its foot."
+msgid "BoltTower"
 msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 msgid ""
-"Build in neutral and own territories to scout areas of the map. Slowly "
-"converts to Gaia while in neutral territory."
-msgstr "సమాచార సేకరణకి కాలీ మరియు సొంత స్థలముల్లో నిర్మించు. కాలి మైదానంలో ఉన్నప్పుడు నెమ్మదిగా గియాగా మారుతుంది."
+"Build in own or neutral territory. Slowly converts to Gaia while in neutral "
+"territory."
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:54
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:29
@@ -180,17 +174,19 @@ msgstr ""
 msgid "Sentry Tower"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:37
+#: simulation/templates/template_structure_defensive_tower_stone.xml:33
+#: simulation/templates/template_structure_defensive_wall_tower.xml:56
+msgid ""
+"Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
+" to protect its foot."
+msgstr ""
+
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 msgid "SentryTower"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:40
-msgid ""
-"Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
-"tech to protect its foot. Upgradeable to stone tower."
-msgstr ""
-
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:61
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:60
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "రాతితో బలోపేతం చేసి రక్షణా గూపురం క్రింద నవీకరించు."
 
@@ -198,10 +194,8 @@ msgstr "రాతితో బలోపేతం చేసి రక్షణా
 msgid "Defense Tower"
 msgstr "రక్షణా గోపురం"
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:33
-msgid ""
-"Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
-"tech to protect its foot."
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
+msgid "StoneTower"
 msgstr ""
 
 #: simulation/templates/template_structure_defensive_wall.xml:16
@@ -234,10 +228,6 @@ msgstr "ఇది మీ దళాల్ని కోట గోడల నుం�
 #: simulation/templates/template_structure_defensive_wall_tower.xml:54
 msgid "Wall Turret"
 msgstr "గోడ పైనున్న ఫిరంగి"
-
-#: simulation/templates/template_structure_defensive_wall_tower.xml:56
-msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "బాణాలు వెయ్యు. సెత్రువుల దాడులనుంచి రక్షించుటకు నగర గోడలో రక్షక భటులను నియమించు."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -335,16 +325,17 @@ msgstr ""
 msgid "Embassy"
 msgstr "దౌత్య కార్యాలయం"
 
-#: simulation/templates/template_structure_military_fortress.xml:42
 #: simulation/templates/template_structure_military_fortress.xml:74
-msgid "Fortress"
-msgstr "కోట"
-
-#: simulation/templates/template_structure_military_fortress.xml:78
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
 msgstr ""
+
+#: simulation/templates/template_structure_military_fortress.xml:76
+#: simulation/templates/template_structure_military_fortress.xml:42
+#: simulation/templates/template_structure_military_fortress.xml:72
+msgid "Fortress"
+msgstr "కోట"
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"

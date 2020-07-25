@@ -472,7 +472,8 @@ void CPostprocManager::ApplyPostproc()
 
 	// Don't do anything if we are using the default effect and no AA.
 	const bool hasEffects = m_PostProcEffect != L"default";
-	if (!hasEffects && !m_AATech)
+	const bool hasAA = m_AATech && g_RenderingOptions.GetPreferGLSL();
+	if (!hasEffects && !hasAA)
 		return;
 
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
@@ -501,7 +502,7 @@ void CPostprocManager::ApplyPostproc()
 			ApplyEffect(m_PostProcTech, pass);
 	}
 
-	if (m_AATech)
+	if (hasAA)
 	{
 		for (int pass = 0; pass < m_AATech->GetNumPasses(); ++pass)
 			ApplyEffect(m_AATech, pass);

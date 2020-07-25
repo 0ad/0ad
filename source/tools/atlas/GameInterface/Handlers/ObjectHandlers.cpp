@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -998,9 +998,10 @@ BEGIN_COMMAND(DeleteObjects)
 	{
 		entity_id_t entityID;
 		CStr templateName;
-		int32_t owner;
+		player_id_t owner;
 		CFixedVector3D pos;
 		CFixedVector3D rot;
+		u32 actorSeed;
 	};
 
 	std::vector<OldObject> oldObjects;
@@ -1039,6 +1040,10 @@ BEGIN_COMMAND(DeleteObjects)
 				obj.rot = cmpPosition->GetRotation();
 			}
 
+			CmpPtr<ICmpVisual> cmpVisual(sim, obj.entityID);
+			if (cmpVisual)
+				obj.actorSeed = cmpVisual->GetActorSeed();
+
 			oldObjects.push_back(obj);
 			g_Game->GetSimulation2()->DestroyEntity(obj.entityID);
 		}
@@ -1069,6 +1074,10 @@ BEGIN_COMMAND(DeleteObjects)
 				CmpPtr<ICmpOwnership> cmpOwnership(sim, oldObjects[i].entityID);
 				if (cmpOwnership)
 					cmpOwnership->SetOwner(oldObjects[i].owner);
+
+				CmpPtr<ICmpVisual> cmpVisual(sim, oldObjects[i].entityID);
+				if (cmpVisual)
+					cmpVisual->SetActorSeed(oldObjects[i].actorSeed);
 			}
 		}
 

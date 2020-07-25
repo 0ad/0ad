@@ -28,9 +28,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:09+0000\n"
-"PO-Revision-Date: 2020-07-17 10:13+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-20 07:09+0000\n"
+"PO-Revision-Date: 2020-07-20 10:28+0000\n"
+"Last-Translator: Volkan Gezer <volkangezer@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,11 +50,17 @@ msgstr "Kent"
 msgid "Civic Center"
 msgstr "Kent Merkezi"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:88
+#: simulation/templates/template_structure_civic_civil_centre.xml:89
 msgid "Build to acquire large tracts of territory. Train citizens."
 msgstr "Bölgenin geniş alanlarına sahip olmak için inşa et . Vatandaşları eğit."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:90
+#: simulation/templates/template_structure_civic_civil_centre.xml:91
+#: simulation/templates/template_structure_defensive.xml:15
+#: simulation/templates/template_structure_military_fortress.xml:76
+msgid "Defensive"
+msgstr "Savunmacı"
+
+#: simulation/templates/template_structure_civic_civil_centre.xml:91
 #: simulation/templates/template_structure_civic_civil_centre.xml:53
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
@@ -70,7 +76,7 @@ msgstr "Nüfus limitini arttır."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:54
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 #: simulation/templates/template_structure_economic_farmstead.xml:34
 #: simulation/templates/template_structure_economic_storehouse.xml:35
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -100,7 +106,7 @@ msgstr "Özel birimleri askere al."
 
 #: simulation/templates/template_structure_civic_stoa.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:36
-#: simulation/templates/template_structure_defensive_tower_stone.xml:35
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
 #: simulation/templates/template_structure_economic_market.xml:33
 #: simulation/templates/template_structure_military_blacksmith.xml:26
 #: simulation/templates/template_structure_military_embassy.xml:33
@@ -137,26 +143,19 @@ msgstr "Ahşap Duvar"
 msgid "Wall off your town for a stout defense."
 msgstr "Sağlam bir savunma için şehrine duvar ör."
 
+#: simulation/templates/template_structure_defensive_tower.xml:52
 #: simulation/templates/template_structure_defensive_tower.xml:36
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:61
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:60
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
-#: simulation/templates/template_structure_defensive_tower_stone.xml:35
-msgid "DefenseTower"
-msgstr "Savunma Kulesi"
+msgid "Tower"
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:57
 msgid "Artillery Tower"
 msgstr "Ağır Silah Kulesi"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
-msgid "Catapults stones. Needs the murder holes tech to protect its foot."
-msgstr "Taşları mancınıklar. Dibini korumak için Kale Mazgalları teknolojisi gerektirir."
-
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:61
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:60
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:58
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_fortress.xml:76
 #: simulation/templates/template_structure_military_workshop.xml:28
 #: simulation/templates/template_structure_special.xml:36
 #: simulation/templates/template_structure_wonder.xml:53
@@ -165,28 +164,23 @@ msgstr "Taşları mancınıklar. Dibini korumak için Kale Mazgalları teknoloji
 msgid "City"
 msgstr "Şehir"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:61
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:60
-#: simulation/templates/template_structure_defensive_tower_stone.xml:35
-msgid "StoneTower"
-msgstr "Taş Kule"
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
+msgid "ArtilleryTower"
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
 msgstr "Ok Kulesi"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
-msgid ""
-"Shoots bolts. Faster reaction time against raiding units than the artillery "
-"tower, weak to all siege weapons and mass melee. Needs the murder holes tech"
-" to protect its foot."
-msgstr "Ok atar. Yağmacı birimlere karşı mancınık kulesinden daha hızlı tepki verir., tüm kuşatma silahlarına ve kalabalık yakın dövüşçülere karşı zayıftır. Dibini korumak için Kale Mazgalları teknolojisi gerektirir."
+msgid "BoltTower"
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 msgid ""
-"Build in neutral and own territories to scout areas of the map. Slowly "
-"converts to Gaia while in neutral territory."
-msgstr "Haritanın alanlarını keşfetmek için tarafsız ve kendi bölgelerinizde inşa edin. Tarafsız bölgedeyken Gaia'ya dönüşüm yavaş gerçekleşir."
+"Build in own or neutral territory. Slowly converts to Gaia while in neutral "
+"territory."
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:54
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:29
@@ -199,17 +193,19 @@ msgstr "Karakol"
 msgid "Sentry Tower"
 msgstr "Nöbetçi Kulesi"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:37
+#: simulation/templates/template_structure_defensive_tower_stone.xml:33
+#: simulation/templates/template_structure_defensive_wall_tower.xml:56
+msgid ""
+"Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
+" to protect its foot."
+msgstr ""
+
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 msgid "SentryTower"
 msgstr "Nöbetçi Kulesi"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:40
-msgid ""
-"Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
-"tech to protect its foot. Upgradeable to stone tower."
-msgstr "Ok atar. Daha fazla savunma için birim yerleştirin. Dibini korumak için Kale Mazgalları teknolojisi gerektirir. Taş kuleye geliştirilebilir."
-
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:61
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:60
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Taşla güçlendirin ve bir savunma kulesine geçin."
 
@@ -217,11 +213,9 @@ msgstr "Taşla güçlendirin ve bir savunma kulesine geçin."
 msgid "Defense Tower"
 msgstr "Savunma Kulesi"
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:33
-msgid ""
-"Shoots arrows. Garrison to provide extra defence. Needs the murder holes "
-"tech to protect its foot."
-msgstr "Ok atar. Daha fazla savunma için birim yerleştirin. Dibinii korumak için Kale Mazgalları teknolojisi gerektirir."
+#: simulation/templates/template_structure_defensive_tower_stone.xml:34
+msgid "StoneTower"
+msgstr "Taş Kule"
 
 #: simulation/templates/template_structure_defensive_wall.xml:16
 #: simulation/templates/structures/cart_s_wall_long.xml:11
@@ -253,10 +247,6 @@ msgstr "Bu, birimlerinizin savunma binalarında dolaşmalarına olanak sağlar."
 #: simulation/templates/template_structure_defensive_wall_tower.xml:54
 msgid "Wall Turret"
 msgstr "Duvar Tareti"
-
-#: simulation/templates/template_structure_defensive_wall_tower.xml:56
-msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "Ok atar. Şehir Duvarı saldırganlara karşı korumak için birim yerleştirin."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -354,16 +344,17 @@ msgstr "Fil Ahırı"
 msgid "Embassy"
 msgstr "Elçilik"
 
-#: simulation/templates/template_structure_military_fortress.xml:42
 #: simulation/templates/template_structure_military_fortress.xml:74
-msgid "Fortress"
-msgstr "Kale"
-
-#: simulation/templates/template_structure_military_fortress.xml:78
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
 msgstr "Şampiyonlar ve Kahramanlar eğit ve teknolojiler araştır. Daha fazla ok için birim konuşlandırın."
+
+#: simulation/templates/template_structure_military_fortress.xml:76
+#: simulation/templates/template_structure_military_fortress.xml:42
+#: simulation/templates/template_structure_military_fortress.xml:72
+msgid "Fortress"
+msgstr "Kale"
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
