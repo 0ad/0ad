@@ -25,12 +25,12 @@
 				},
 				{
 					"Name": "Monumental Architecture",
-					"Description": "+50% HP and -50% build time for Civic Centers, Temples, Pyramids and Wonders."
+					"Description": "Civic Structures +20% build time, +20% health, and +20% capture points."
 				},
 				{
 					"Name": "High Priest of Amun",
 					"History": "Have your priests instructed by the High Priest himself - may Amun bless him.",
-					"Description": "Allow to train elite rank healers"
+					"Description": "Train elite rank healers."
 				}
 			],
 			"Heroes":
@@ -39,41 +39,27 @@
 					"Name": "Nastasen",
 					"Class": "",
 					"Armament": "",
-					"Emblem": "emblem.png",
+					"Emblem": "",
 					"History": ""
 				},
 				{
 					"Name": "Arakamani",
 					"Class": "",
 					"Armament": "",
-					"Emblem": "emblem.png",
+					"Emblem": "",
 					"History": ""
 				},
 				{
 					"Name": "Amanirenas",
 					"Class": "",
 					"Armament": "",
-					"Emblem": "emblem.png",
+					"Emblem": "",
 					"History": ""
 				}
 			]
 		}
 	],
-	"CivBonuses":
-	[
-		{
-			"Name": "The Pyramids of Meroe",
-			"Description": "Building a Kushite pyramid increases Civic Center territory influence by +10% for each one built."
-		},
-		{
-			"Name": "Mineral Deposits",
-			"Description": "Kushite players receive a free extra Metal Mine somewhere in their home territory."
-		},
-		{
-			"Name": "Elephant Roundup",
-			"Description": "Can capture Gaia elephants and garrison them into a corral to reduce training costs for War Elephants."
-		}
-	],
+	"CivBonuses": [],
 	"TeamBonuses":
 	[
 		{
@@ -86,27 +72,27 @@
 		{
 			"Name": "Temple of Amun",
 			"Class": "",
-			"Emblem": "emblem.png",
-			"History": "History.",
-			"Requirements": ".",
+			"Emblem": "",
+			"History": "",
+			"Requirements": "",
 			"Phase": "City",
 			"Special": "The Kushites can upgrade individual Temples to Temples of Amun, which can train Napatan Temple Guard champions and heal units faster."
 		},
 		{
 			"Name": "Temple of Apedemak",
 			"Class": "",
-			"Emblem": "emblem.png",
-			"History": "History.",
-			"Requirements": ".",
+			"Emblem": "",
+			"History": "",
+			"Requirements": "",
 			"Phase": "City",
 			"Special": "The Kushites can upgrade individual Temples to Temples of Apedemak, which can train Meroe Temple Guard champions and heal units faster."
 		},
 		{
 			"Name": "Kushite Pyramids",
 			"Class": "",
-			"Emblem": "emblem.png",
+			"Emblem": "",
 			"History": "The Kushites built over 200 pyramids in Nubia.",
-			"Requirements": ".",
+			"Requirements": "",
 			"Phase": "Village",
 			"Special": "Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% territory effect to Civic Centers."
 		}

@@ -18,19 +18,9 @@
 			"Technologies":
 			[
 				{
-					"Name":"Hellenistic Metropolises",
-					"History":"Beginning with Alexander, the Hellenistic monarchs founded many cities throughout their empires, where Greek culture and art blended with local customs to create the motley Hellenistic civilization.",
-					"Description":"Civic Centers have double Health and double default arrows."
-				},
-				{
-					"Name":"Pharaonic Cult.",
-					"History":"The Macedonian-Greek rulers of the Ptolemaic dynasty observed many ancient Egyptian traditions in order to satiate the local populace and ingratiate themselves to the powerful priestly class in the country.",
-					"Description":"Hero aura range boosted by 50%."
-				},
-				{
-					"Name":"Nile Delta",
-					"History":"The Nile Delta had rich soil for farming, due to centuries of seasonal floods from the Nile depositing rich silt across the landscape.",
-					"Description":"The Ptolemaic Egyptians receive 3 additional farming technologies above and beyond the maximum number of farming technologies usually available to a faction."
+					"Name": "Hellenistic Metropolis",
+					"History": "Beginning with Alexander, the Hellenistic monarchs founded many cities throughout their empires, where Greek culture and art blended with local customs to create the motley Hellenistic civilization.",
+					"Description": "Civic Centers +100% health and capture points, double default arrows."
 				}
 			],
 			"Heroes":
@@ -40,43 +30,26 @@
 					"Class":"",
 					"Armament":"",
 					"Emblem":"",
-					"History":"."
+					"History":""
 				},
 				{
 					"Name":"Ptolemaios D' Philopater",
 					"Class":"",
 					"Armament":"",
 					"Emblem":"",
-					"History":"."
+					"History":""
 				},
 				{
 					"Name":"Kleopatra H' Philopater",
 					"Class":"",
 					"Armament":"",
 					"Emblem":"",
-					"History":"."
+					"History":""
 				}
 			]
 		}
 	],
-	"CivBonuses":
-	[
-		{
-			"Name":"Mercenary Army",
-			"History":"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and foreign mercenaries for the bulk of its military force, mainly because the loyalty of native Egyptian units was often suspect. Indeed, during one native uprising, Upper Egypt was lost to the Ptolemies for decades. Mercenaries were often battle-hardened and their loyalty could be bought, sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt under the Ptolemies was so prosperous as to be the richest of Alexander's successor states.",
-			"Description":"The Ptolemies receive the Mercenary Camp, a Barracks that is constructed in neutral territory and trains mercenaries."
-		},
-		{
-			"Name":"Nile Delta",
-			"History":"Unknown.",
-			"Description":"The Ptolemaic Egyptians receive 3 additional farming technologies."
-		},
-		{
-			"Name":"Roundup",
-			"History":"Unknown.",
-			"Description":"Can capture gaia elephants and camels to reduce their training cost."
-		}
-	],
+	"CivBonuses": [],
 	"TeamBonuses":
 	[
 		{
@@ -92,7 +65,7 @@
 			"Class":"",
 			"Emblem":"",
 			"History":"Alexander the Great founded libraries all over his new empire. These became a center of learning for an entirely new synthesized culture: the Hellenistic culture.",
-			"Requirements":".",
+			"Requirements":"",
 			"Phase":"City",
 			"Special":"Maximum of 1 built. All Special Technologies and some regular city-phase technologies are researched here. Building one reduces the cost of all other remaining technologies by 10%."
 		},
@@ -110,7 +83,7 @@
 			"Class":"",
 			"Emblem":"",
 			"History":"The Ptolemaic dynasty in Egypt built the magnificent Lighthouse of Alexandria near the harbor mouth of that Nile Delta city. This structure could be seen for many kilometers out to sea and was one of the Seven Wonders of the World.",
-			"Requirements":".",
+			"Requirements":"",
 			"Phase":"City",
 			"Special":"When built along the shoreline, removes shroud of darkness over all the water, revealing all the coast lines on the map. Limit: 1."
 		}

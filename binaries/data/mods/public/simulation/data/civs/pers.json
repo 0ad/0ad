@@ -34,8 +34,8 @@
 				},
 				{
 					"Name": "Immortals",
-					"History": ".",
-					"Description": "Reduces train time for Anusiya champion infantry by half."
+					"History": "The Achaemenids maintained a 10,000-strong elite corps, referred to as Athanatoi (“Immortals”) by Greek authors.",
+					"Description": "Anušiya Champion Infantry -50% train time, but also -10% health."
 				},
 				{
 					"Name": "Nisean War Horses",
@@ -72,11 +72,6 @@
 	"CivBonuses":
 	[
 		{
-			"Name": "Corral Camels and Horses",
-			"History": "While the Persians employed camelry only in a few cases, its use was always accompanied by great success (most notably during the battle of Sardis in 546 B.C.) The satrapy of Bactria was a rich source of 'two-hump' camels, while Northern Arabia supplied 'one-hump' camels.",
-			"Description": "The resource cost of training camel-mounted (trader) or horse-mounted units (cavalry) is reduced by 5% per animal (as appropriate) corralled."
-		},
-		{
 			"Name": "Great King's Levy",
 			"History": "The Persians could and did levy a large number of infantry during wartime due to the sheer size of the Achaemenid Empire and the way in which it was set-up. In general the Persian infantry was well trained and fought with great tenacity. However while this was true the infantry were poor hand-to-hand, close combat fighters. Also, with the exception of the elite regiments, the Persian infantry was not a standing professional force.",
 			"Description": "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the usual 300)."
@@ -93,13 +88,13 @@
 	"Structures":
 	[
 		{
-			"Name": "Cavalry Stables",
+			"Name": "Stable",
 			"Class": "",
 			"Emblem": "",
 			"History": "The Persian Empire's best soldiers were Eastern horsemen.",
+			"Phase": "Village",
 			"Requirements": "",
-			"Phase": "Town",
-			"Special": "Train Cavalry citizen-soldiers."
+			"Special": "Train Cavalry and research Cavalry technologies."
 		},
  		{
 			"Name": "Apadana",

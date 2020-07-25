@@ -18,19 +18,14 @@
 			"Technologies":
 			[
 				{
-					"Name":"Military Reforms",
-					"History":"When Philip II came to the Macedonian throne he began a total reorganization of the Macedonian army. His reforms created a powerful cavalry arm to his army that would prove useful to both himself and his son Alexander's conquests.",
-					"Description":"Each subsequent Barracks constructed comes with 5 free (random) Macedonian military units. This also applies to the Barracks of allied players (they receive 5 free units of their own culture for each new Barracks constructed)."
+					"Name": "Hellenistic Metropolis",
+					"History": "Beginning with Alexander, the Hellenistic monarchs founded many cities throughout their empires, where Greek culture and art blended with local customs to create the motley Hellenistic civilization.",
+					"Description": "Civic Centers +100% health and capture points, double default arrows."
 				},
 				{
-					"Name":"Royal Gift",
-					"History":"In India near the end of his long anabasis, Alexander gifted to the Royal Hypaspist corps shields of silver for their long and valiant service in his army.",
-					"Description":"Upgrade Hypaspist Champion Infantry to Silver Shields, with greater attack and armor, but also greater cost."
-				},
-				{
-					"Name":"Hellenistic Metropolises",
-					"History":"Beginning with Alexander, the Hellenistic monarchs founded many cities throughout their empires, where Greek culture and art blended with local customs to create the motley Hellenistic civilization.",
-					"Description":"Civic Centers have double Health and double default arrows."
+					"Name": "Silver Shields",
+					"History": "In India near the end of his long anabasis, Alexander gifted to the Royal Hypaspist corps shields of silver for their long and valiant service in his army.",
+					"Description": "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health and attack damage."
 				}
 			],
 			"Heroes":
@@ -62,19 +57,9 @@
 	"CivBonuses":
 	[
 		{
-			"Name":"Hellenic League",
-			"History":"After the unification of Greece, Philip II gathered all the city-states together to form the Hellenic League, with Macedon as the its leader. With this Pan-Hellenic federation he planned to launch an expedition to punish Persia for past wrongs. Although assassinated before he could carry out the invasion, his son Alexander the Great took up the mantle and completed his fathers plans.",
-			"Description":"Macedonian units have +10% attack bonus vs. Persian and Hellenic factions, but -5% attack debonus vs. Romans."
-		},
-		{
-			"Name":"Syntagma",
-			"History":"Based upon the Theban Oblique Order phalanx, the Syntagma was the formation that proved invincible against the armies of Hellas and the East.",
-			"Description":"Infantry pike units can use the slow and powerful Syntagma formation."
-		},
-		{
-			"Name":"Hellenization",
-			"History":"The Greeks were highly successful in Hellenizing various foreigners. During the Hellenistic Age, Greek was the lingua franca of the Ancient World, spoken widely from Spain to India.",
-			"Description":"Constructing a Theatron increases the territory expanse of all buildings by +20%."
+			"Name": "Hellenic Architecture",
+			"History": "The Greeks used stone construction from early Mycenaean times.",
+			"Description": "Structures +10% health and +10% capture points."
 		}
 	],
 	"TeamBonuses":
