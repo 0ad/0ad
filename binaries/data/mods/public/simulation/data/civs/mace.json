@@ -1,22 +1,32 @@
 {
-	"Code":"mace",
-	"Culture":"hele",
-	"Name":"Macedonians",
-	"Emblem":"session/portraits/emblems/emblem_macedonians.png",
-	"History":"Macedonia was an ancient Greek kingdom, centered in the northeastern part of the Greek peninsula. Under the leadership of Alexander the Great, Macedonian forces and allies took over most of the world they knew, including Egypt, Persia and parts of the Indian subcontinent, allowing a diffusion of Hellenic and eastern cultures for years to come.",
-	"Music":[
-			{"File":"Rise_of_Macedon.ogg", "Type":"peace"},
-			{"File":"In_the_Shadow_of_Olympus.ogg", "Type":"peace"},
-			{"File":"Elysian_Fields.ogg", "Type":"peace"},
-			{"File":"The_Hellespont.ogg", "Type":"peace"}
-		],
-	"Factions":
-	[
+	"Code": "mace",
+	"Culture": "hele",
+	"Name": "Macedonians",
+	"Emblem": "session/portraits/emblems/emblem_macedonians.png",
+	"History": "Macedonia was an ancient Greek kingdom, centered in the northeastern part of the Greek peninsula. Under the leadership of Alexander the Great, Macedonian forces and allies took over most of the world they knew, including Egypt, Persia and parts of the Indian subcontinent, allowing a diffusion of Hellenic and eastern cultures for years to come.",
+	"Music": [
 		{
-			"Name":"Macedonians",
-			"Description":"A Hellenistic kingdom bordering the Greek city-states.",
-			"Technologies":
-			[
+			"File": "Rise_of_Macedon.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "In_the_Shadow_of_Olympus.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Elysian_Fields.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "The_Hellespont.ogg",
+			"Type": "peace"
+		}
+	],
+	"Factions": [
+		{
+			"Name": "Macedonians",
+			"Description": "A Hellenistic kingdom bordering the Greek city-states.",
+			"Technologies": [
 				{
 					"Name": "Hellenistic Metropolis",
 					"History": "Beginning with Alexander, the Hellenistic monarchs founded many cities throughout their empires, where Greek culture and art blended with local customs to create the motley Hellenistic civilization.",
@@ -28,76 +38,70 @@
 					"Description": "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health and attack damage."
 				}
 			],
-			"Heroes":
-			[
+			"Heroes": [
 				{
-					"Name":"Philip II of Macedon",
-					"Class":"",
-					"Armament":"",
-					"Emblem":"",
-					"History":"The king of Macedonia (359-336 B.C.), he carried out vast monetary and military reforms in order to make his kingdom the most powerful force in the Greek world. Greatly enlarged the size of Macedonia by conquering much of Thrace and subduing the Greeks. Murdered in Aegae while planning a campaign against Persia."
+					"Name": "Philip II of Macedon",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "",
+					"History": "The king of Macedonia (359-336 B.C.), he carried out vast monetary and military reforms in order to make his kingdom the most powerful force in the Greek world. Greatly enlarged the size of Macedonia by conquering much of Thrace and subduing the Greeks. Murdered in Aegae while planning a campaign against Persia."
 				},
 				{
-					"Name":"Alexander the Great",
-					"Class":"",
-					"Armament":"",
-					"Emblem":"",
-					"History":"The most powerful hero of them all - son of Philip II, king of Macedonia (336-323 B.C.). After conquering the rest of the Thracians and quelling the unrest of the Greeks, Alexander embarked on a world-conquest march. Defeating the Persian forces at Granicus (334 B.C.), Issus (333 B.C.) and Gaugamela (331 B.C.), he became master of the Persian Empire. Entering India, he defeated king Porus at Hydaspes (326 B.C.), but his weary troops made him halt. Died in Babylon at the age of 33 while planning a campaign against Arabia."
+					"Name": "Alexander the Great",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "",
+					"History": "The most powerful hero of them all - son of Philip II, king of Macedonia (336-323 B.C.). After conquering the rest of the Thracians and quelling the unrest of the Greeks, Alexander embarked on a world-conquest march. Defeating the Persian forces at Granicus (334 B.C.), Issus (333 B.C.) and Gaugamela (331 B.C.), he became master of the Persian Empire. Entering India, he defeated king Porus at Hydaspes (326 B.C.), but his weary troops made him halt. Died in Babylon at the age of 33 while planning a campaign against Arabia."
 				},
 				{
-					"Name":"Demetrios the Besieger",
-					"Class":"",
-					"Armament":"",
-					"Emblem":"",
-					"History":"One of the Diadochi, king of Macedonia (294-288 B.C.), Demetrios was renowned as one of the bravest and most able successors of Alexander. As the son of Antigonus I Monophthalmus, he fought and won many important battles early on and was proclaimed king, along with his father, in 306 B.C. Losing his Asian possessions after the battle of Ipsos, he later won the Macedonian throne. Fearing lest they should be overpowered by Demetrios, the other Diadochi united against him and defeated him."
+					"Name": "Demetrios the Besieger",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "",
+					"History": "One of the Diadochi, king of Macedonia (294-288 B.C.), Demetrios was renowned as one of the bravest and most able successors of Alexander. As the son of Antigonus I Monophthalmus, he fought and won many important battles early on and was proclaimed king, along with his father, in 306 B.C. Losing his Asian possessions after the battle of Ipsos, he later won the Macedonian throne. Fearing lest they should be overpowered by Demetrios, the other Diadochi united against him and defeated him."
 				}
 			]
 		}
 	],
-	"CivBonuses":
-	[
+	"CivBonuses": [
 		{
 			"Name": "Hellenic Architecture",
 			"History": "The Greeks used stone construction from early Mycenaean times.",
 			"Description": "Structures +10% health and +10% capture points."
 		}
 	],
-	"TeamBonuses":
-	[
+	"TeamBonuses": [
 		{
-			"Name":"Standardized Currency",
-			"History":"The Macedonians and the Diadochi minted coins of very high quality. On their currency the Diadochi in particular frequently depicted themselves as the rightful successor to Alexander the Great, attempting to legitimize their rule.",
-			"Description":"Allies +20% barter sell prices."
+			"Name": "Standardized Currency",
+			"History": "The Macedonians and the Diadochi minted coins of very high quality. On their currency the Diadochi in particular frequently depicted themselves as the rightful successor to Alexander the Great, attempting to legitimize their rule.",
+			"Description": "Allies +20% barter sell prices."
 		}
 	],
-	"Structures":
-	[
+	"Structures": [
 		{
-			"Name":"Theatron",
-			"Class":"",
-			"Emblem":"",
-			"History":"Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture.",
-			"Requirements":"",
-			"Phase":"City",
-			"Special":"The Hellenization civ bonus. Building a Theatron increases the territory effect of all buildings by 25%. Build limit: 1."
+			"Name": "Theatron",
+			"Class": "",
+			"Emblem": "",
+			"History": "Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture.",
+			"Requirements": "",
+			"Phase": "City",
+			"Special": "The Hellenization civ bonus. Building a Theatron increases the territory effect of all buildings by 25%. Build limit: 1."
 		},
 		{
-			"Name":"Library",
-			"Class":"",
-			"Emblem":"",
-			"History":"Alexander the Great founded libraries all over his new empire. These became a center of learning for an entirely new synthesized culture: the Hellenistic culture.",
-			"Requirements":"",
-			"Phase":"City",
-			"Special":"All Special Technologies are researched here. Building one reduces the cost of all other remaining technologies by 10%. Build limit: 1."
+			"Name": "Library",
+			"Class": "",
+			"Emblem": "",
+			"History": "Alexander the Great founded libraries all over his new empire. These became a center of learning for an entirely new synthesized culture: the Hellenistic culture.",
+			"Requirements": "",
+			"Phase": "City",
+			"Special": "All Special Technologies are researched here. Building one reduces the cost of all other remaining technologies by 10%. Build limit: 1."
 		}
 	],
-	"WallSets":
-	[
+	"WallSets": [
 		"structures/wallset_palisade",
 		"structures/mace_wallset_stone"
 	],
-	"StartEntities":
-	[
+	"StartEntities": [
 		{
 			"Template": "structures/mace_civil_centre"
 		},
@@ -117,8 +121,7 @@
 			"Template": "units/mace_cavalry_spearman_b"
 		}
 	],
-	"Formations":
-	[
+	"Formations": [
 		"special/formations/null",
 		"special/formations/box",
 		"special/formations/column_closed",
@@ -132,8 +135,7 @@
 		"special/formations/phalanx",
 		"special/formations/syntagma"
 	],
-	"AINames":
-	[
+	"AINames": [
 		"Alexander the Great",
 		"Philip II",
 		"Antipater",
@@ -148,9 +150,8 @@
 		"Craterus",
 		"Meleager"
 	],
-	"SkirmishReplacements":
-	{
-		"skirmish/units/default_cavalry" : "units/mace_cavalry_spearman_b",
+	"SkirmishReplacements": {
+		"skirmish/units/default_cavalry": "units/mace_cavalry_spearman_b",
 		"skirmish/units/default_infantry_melee_b": "units/mace_infantry_pikeman_b",
 		"skirmish/structures/default_house_10": "structures/{civ}_house"
 	},

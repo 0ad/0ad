@@ -4,27 +4,36 @@
 	"Name": "Romans",
 	"Emblem": "session/portraits/emblems/emblem_romans.png",
 	"History": "The Romans controlled one of the largest empires of the ancient world, stretching at its peak from southern Scotland to the Sahara Desert, and containing between 60 million and 80 million inhabitants, one quarter of the Earth's population at that time. Rome also remained one of the strongest nations on earth for almost 800 years. The Romans were the supreme builders of the ancient world, excelled at siege warfare and had an exquisite infantry and navy.",
-	"Music":[
-			{"File":"Juno_Protect_You.ogg", "Type":"peace"},
-			{"File":"Mediterranean_Waves.ogg", "Type":"peace"},
-			{"File":"Elysian_Fields.ogg", "Type":"peace"},
-			{"File":"The_Governor.ogg", "Type":"peace"}
-		],
-	"Factions":
-	[
+	"Music": [
+		{
+			"File": "Juno_Protect_You.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Mediterranean_Waves.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Elysian_Fields.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "The_Governor.ogg",
+			"Type": "peace"
+		}
+	],
+	"Factions": [
 		{
 			"Name": "",
 			"Description": "",
-			"Technologies":
-			[
+			"Technologies": [
 				{
 					"Name": "Divide et Impera",
 					"History": "'Divide and conquer' was the main principle in Rome's foreign politics throughout its long history. The Romans lured enemies or neutral factions to their side by offering them certain privileges. In due period of time, friends as well as foes were subjugated.",
 					"Description": "Roman heroes can convert enemy units with great cost."
 				}
 			],
-			"Heroes":
-			[
+			"Heroes": [
 				{
 					"Name": "Quintus Fabius Maximus",
 					"Class": "",
@@ -49,8 +58,7 @@
 			]
 		}
 	],
-	"CivBonuses":
-	[
+	"CivBonuses": [
 		{
 			"Name": "Testudo Formation",
 			"History": "The Romans commonly used the Testudo or 'turtle' formation for defense: Legionaries were formed into hollow squares with twelve men on each side, standing so close together that their shields overlapped like fish scales.",
@@ -62,16 +70,14 @@
 			"Description": "Any Roman citizen-soldier fighting within Roman territory gains a non-permanent +10% bonus in armor."
 		}
 	],
-	"TeamBonuses":
-	[
+	"TeamBonuses": [
 		{
 			"Name": "Conscription",
 			"History": "Many Roman soldiers were conscripted into service. While volunteers were preferred, the Roman state did maintain an annual military draft. During an emergency the draft and the terms of service were enlarged. The importance of military service in Republican Rome was so great it was a prerequisite for a political career. Members of the Senate were called Conscript Fathers because of this, reflected in how the ordo equester was said to have been \"conscripted\" into the Senate.",
 			"Description": "Allied Citizen Infantry −10% training time."
 		}
 	],
-	"Structures":
-	[
+	"Structures": [
 		{
 			"Name": "Entrenched Camp",
 			"Class": "",
@@ -91,13 +97,11 @@
 			"Special": "Can be built in neutral and enemy territory to strangle enemy towns."
 		}
 	],
-	"WallSets":
-	[
+	"WallSets": [
 		"structures/rome_wallset_stone",
 		"structures/rome_wallset_siege"
 	],
-	"StartEntities":
-	[
+	"StartEntities": [
 		{
 			"Template": "structures/rome_civil_centre"
 		},
@@ -117,8 +121,7 @@
 			"Template": "units/rome_cavalry_spearman_b"
 		}
 	],
-	"Formations":
-	[
+	"Formations": [
 		"special/formations/null",
 		"special/formations/box",
 		"special/formations/column_closed",
@@ -132,8 +135,7 @@
 		"special/formations/testudo",
 		"special/formations/anti_cavalry"
 	],
-	"AINames":
-	[
+	"AINames": [
 		"Lucius Junius Brutus",
 		"Lucius Tarquinius Collatinus",
 		"Gaius Julius Caesar Octavianus",
@@ -149,11 +151,10 @@
 		"Quintus Caecilius Metellus Pius",
 		"Marcus Licinius Crassus"
 	],
-	"SkirmishReplacements":
-	{
-		"skirmish/units/default_cavalry" : "units/rome_cavalry_spearman_b",
+	"SkirmishReplacements": {
+		"skirmish/units/default_cavalry": "units/rome_cavalry_spearman_b",
 		"skirmish/units/default_infantry_melee_b": "units/rome_infantry_swordsman_b",
-		"skirmish/structures/default_house_10" : "structures/{civ}_house"
+		"skirmish/structures/default_house_10": "structures/{civ}_house"
 	},
 	"SelectableInGameSetup": true
 }

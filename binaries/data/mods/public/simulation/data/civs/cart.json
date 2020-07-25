@@ -4,18 +4,25 @@
 	"Name": "Carthaginians",
 	"Emblem": "session/portraits/emblems/emblem_carthaginians.png",
 	"History": "Carthage, a city-state in modern-day Tunisia, was a formidable force in the western Mediterranean, eventually taking over much of North Africa and modern-day Spain in the third century B.C. The sailors of Carthage were among the fiercest contenders on the high seas, and masters of naval trade. They deployed towered War Elephants on the battlefield to fearsome effect, and had defensive walls so strong, they were never breached.",
-	"Music":[
-			{"File":"Mediterranean_Waves.ogg", "Type":"peace"},
-			{"File":"Harsh_Lands_Rugged_People.ogg", "Type":"peace"},
-			{"File":"Peaks_of_Atlas.ogg", "Type":"peace"}
-		],
-	"Factions":
-	[
+	"Music": [
+		{
+			"File": "Mediterranean_Waves.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Harsh_Lands_Rugged_People.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Peaks_of_Atlas.ogg",
+			"Type": "peace"
+		}
+	],
+	"Factions": [
 		{
 			"Name": "",
 			"Description": "",
-			"Technologies":
-			[
+			"Technologies": [
 				{
 					"Name": "Exploration",
 					"History": "Nobody knew better than the Carthaginians where in the ancient world they were going and going to go; their merchant traders had missions to everywhere.",
@@ -27,8 +34,7 @@
 					"Description": "Civic Centers, Temples, and Houses -25% build time."
 				}
 			],
-			"Heroes":
-			[
+			"Heroes": [
 				{
 					"Name": "Hannibal Barca",
 					"Class": "",
@@ -53,69 +59,64 @@
 			]
 		}
 	],
-	"CivBonuses":
-	[
+	"CivBonuses": [
 		{
 			"Name": "Triple Walls",
 			"History": "Carthaginians built triple city walls.",
 			"Description": "Walls +100% build time, +100% stone cost, and +200% health."
 		}
 	],
-	"TeamBonuses":
-	[
+	"TeamBonuses": [
 		{
 			"Name": "Trademasters",
 			"History": "The Phoenicians and Carthaginians were broadly known as the greatest trading civilization of the ancient and classical world.",
 			"Description": "Allies +10% international trade bonus."
 		}
 	],
-	"Structures":
-	[
+	"Structures": [
 		{
-			"Name":"Naval Shipyard",
-			"Class":"",
-			"Emblem":"",
-			"History":"The structure is based upon the center island of the inner harbour constructed to house the war fleet of the Carthaginian navy at Carthage.",
-			"Requirements":"",
-			"Phase":"",
-			"Special":"Construct the powerful warships of the Carthaginian navy."
+			"Name": "Naval Shipyard",
+			"Class": "",
+			"Emblem": "",
+			"History": "The structure is based upon the center island of the inner harbour constructed to house the war fleet of the Carthaginian navy at Carthage.",
+			"Requirements": "",
+			"Phase": "",
+			"Special": "Construct the powerful warships of the Carthaginian navy."
 		},
 		{
-			"Name":"Celtic Embassy",
-			"Class":"",
-			"Emblem":"",
-			"History":"The Celts supplied fierce warrior mercenaries for Carthaginian armies.",
-			"Requirements":"",
-			"Phase":"",
-			"Special":"Hire Celtic mercenaries."
+			"Name": "Celtic Embassy",
+			"Class": "",
+			"Emblem": "",
+			"History": "The Celts supplied fierce warrior mercenaries for Carthaginian armies.",
+			"Requirements": "",
+			"Phase": "",
+			"Special": "Hire Celtic mercenaries."
 		},
 		{
-			"Name":"Italiote Embassy",
-			"Class":"",
-			"Emblem":"",
-			"History":"When Hannibal invaded Italy and defeated the Romans in a series of battles, many of the Italian peoples subject to Rome, including the Italian Greeks and powerful Samnites, revolted and joined the Carthaginian cause.",
-			"Requirements":"",
-			"Phase":"",
-			"Special":"Hire Italian mercenaries."
+			"Name": "Italiote Embassy",
+			"Class": "",
+			"Emblem": "",
+			"History": "When Hannibal invaded Italy and defeated the Romans in a series of battles, many of the Italian peoples subject to Rome, including the Italian Greeks and powerful Samnites, revolted and joined the Carthaginian cause.",
+			"Requirements": "",
+			"Phase": "",
+			"Special": "Hire Italian mercenaries."
 		},
 		{
-			"Name":"Iberian Embassy",
-			"Class":"",
-			"Emblem":"",
-			"History":"The Iberians were known as fierce mercenaries, loyal to their paymasters.",
-			"Requirements":"",
-			"Phase":"",
-			"Special":"Hire Iberian mercenaries."
+			"Name": "Iberian Embassy",
+			"Class": "",
+			"Emblem": "",
+			"History": "The Iberians were known as fierce mercenaries, loyal to their paymasters.",
+			"Requirements": "",
+			"Phase": "",
+			"Special": "Hire Iberian mercenaries."
 		}
 	],
-	"WallSets":
-	[
+	"WallSets": [
 		"structures/wallset_palisade",
 		"structures/cart_wallset_short",
 		"structures/cart_wallset_stone"
 	],
-	"StartEntities":
-	[
+	"StartEntities": [
 		{
 			"Template": "structures/cart_civil_centre"
 		},
@@ -135,8 +136,7 @@
 			"Template": "units/cart_cavalry_javelinist_b"
 		}
 	],
-	"Formations":
-	[
+	"Formations": [
 		"special/formations/null",
 		"special/formations/box",
 		"special/formations/column_closed",
@@ -149,8 +149,7 @@
 		"special/formations/wedge",
 		"special/formations/phalanx"
 	],
-	"AINames":
-	[
+	"AINames": [
 		"Hannibal Barca",
 		"Hamilcar Barca",
 		"Hasdrubal Barca",
@@ -168,8 +167,7 @@
 		"Himilco Phameas",
 		"Hasdrubal the Boetharch"
 	],
-	"SkirmishReplacements":
-	{
+	"SkirmishReplacements": {
 		"skirmish/units/default_infantry_ranged_b": "units/cart_infantry_archer_b",
 		"skirmish/structures/default_house_10": "structures/{civ}_house"
 	},

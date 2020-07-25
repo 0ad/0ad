@@ -4,23 +4,33 @@
 	"Name": "Persians",
 	"Emblem": "session/portraits/emblems/emblem_persians.png",
 	"History": "The Persian Empire, when ruled by the Achaemenid dynasty, was one of the greatest empires of antiquity, stretching at its zenith from the Indus Valley in the east to Greece in the west. The Persians were the pioneers of empire-building of the ancient world, successfully imposing a centralized rule over various peoples with different customs, laws, religions and languages, and building a cosmopolitan army made up of contingents from each of these nations.",
-	"Music":[
-			{"File":"Eastern_Dreams.ogg", "Type":"peace"},
-			{"File":"Valley_of_the_Nile.ogg", "Type":"peace"},
-			{"File":"Land_between_the_two_Seas.ogg", "Type":"peace"},
-			{"File":"Sands_of_Time.ogg", "Type":"peace"}
-		],
-	"Factions":
-	[
+	"Music": [
+		{
+			"File": "Eastern_Dreams.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Valley_of_the_Nile.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Land_between_the_two_Seas.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Sands_of_Time.ogg",
+			"Type": "peace"
+		}
+	],
+	"Factions": [
 		{
 			"Name": "",
 			"Description": "",
-			"Technologies":
-			[
+			"Technologies": [
 				{
-					"Name":"Archery Tradition",
-					"History":"The Iranian peoples had a tradition of fine archery and a penchant for using massed archers in battle.",
-					"Description":"Archers −10% training time, +8 attack range, and −10% ranged attack spread."
+					"Name": "Archery Tradition",
+					"History": "The Iranian peoples had a tradition of fine archery and a penchant for using massed archers in battle.",
+					"Description": "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
 				},
 				{
 					"Name": "Naval Craftsmanship",
@@ -43,8 +53,7 @@
 					"Description": "+25% health for cavalry, but +10% train time."
 				}
 			],
-			"Heroes":
-			[
+			"Heroes": [
 				{
 					"Name": "Kurush II",
 					"Class": "",
@@ -69,24 +78,21 @@
 			]
 		}
 	],
-	"CivBonuses":
-	[
+	"CivBonuses": [
 		{
 			"Name": "Great King's Levy",
 			"History": "The Persians could and did levy a large number of infantry during wartime due to the sheer size of the Achaemenid Empire and the way in which it was set-up. In general the Persian infantry was well trained and fought with great tenacity. However while this was true the infantry were poor hand-to-hand, close combat fighters. Also, with the exception of the elite regiments, the Persian infantry was not a standing professional force.",
 			"Description": "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the usual 300)."
 		}
 	],
-	"TeamBonuses":
-	[
+	"TeamBonuses": [
 		{
 			"Name": "Royal Road",
 			"History": "Coinage was invented by the Lydians in 7th Century B.C., but it was not very common until the Persian period. Darius the Great standardized coined money and his golden coins (known as 'darics') became commonplace not only throughout his empire, but as far to the west as Central Europe.",
 			"Description": "Allied Land Traders +15% trade gain."
 		}
 	],
-	"Structures":
-	[
+	"Structures": [
 		{
 			"Name": "Stable",
 			"Class": "",
@@ -96,7 +102,7 @@
 			"Requirements": "",
 			"Special": "Train Cavalry and research Cavalry technologies."
 		},
- 		{
+		{
 			"Name": "Apadana",
 			"Class": "",
 			"Emblem": "",
@@ -106,13 +112,11 @@
 			"Special": "Train heroes and Persian Immortals. Gives a slow trickle of all resources as 'Satrapy Tribute.'"
 		}
 	],
-	"WallSets":
-	[
+	"WallSets": [
 		"structures/wallset_palisade",
 		"structures/pers_wallset_stone"
 	],
-	"StartEntities":
-	[
+	"StartEntities": [
 		{
 			"Template": "structures/pers_civil_centre"
 		},
@@ -132,8 +136,7 @@
 			"Template": "units/pers_cavalry_javelinist_b"
 		}
 	],
-	"Formations":
-	[
+	"Formations": [
 		"special/formations/null",
 		"special/formations/box",
 		"special/formations/column_closed",
@@ -146,8 +149,7 @@
 		"special/formations/wedge",
 		"special/formations/phalanx"
 	],
-	"AINames":
-	[
+	"AINames": [
 		"Kurush II the Great",
 		"Darayavahush I",
 		"Cambyses II",
@@ -161,10 +163,9 @@
 		"Haxamanish",
 		"Xsayarsa II"
 	],
-	"SkirmishReplacements":
-	{
+	"SkirmishReplacements": {
 		"skirmish/units/default_infantry_ranged_b": "units/pers_infantry_archer_b",
-		"skirmish/structures/default_house_10" : "structures/{civ}_house"
+		"skirmish/structures/default_house_10": "structures/{civ}_house"
 	},
 	"SelectableInGameSetup": true
 }

@@ -1,108 +1,112 @@
 {
-	"Code":"spart",
-	"Culture":"hele",
-	"Name":"Spartans",
-	"Emblem":"session/portraits/emblems/emblem_spartans.png",
-	"History":"Sparta was a prominent city-state in ancient Greece, and its dominant military power on land from circa 650 B.C. Spartan culture was obsessed with military training and excellence, with rigorous training for boys beginning at age seven. Thanks to its military might, Sparta led a coalition of Greek forces during the Greco-Persian Wars, and won over Athens in the Peloponnesian Wars, though at great cost.",
-	"Music":[
-			{"File":"Helen_Leaves_Sparta.ogg", "Type":"peace"},
-			{"File":"Peaks_of_Atlas.ogg", "Type":"peace"},
-			{"File":"Forging_a_City-State.ogg", "Type":"peace"},
-			{"File":"The_Hellespont.ogg", "Type":"peace"}
-		],
-	"Factions":
-	[
+	"Code": "spart",
+	"Culture": "hele",
+	"Name": "Spartans",
+	"Emblem": "session/portraits/emblems/emblem_spartans.png",
+	"History": "Sparta was a prominent city-state in ancient Greece, and its dominant military power on land from circa 650 B.C. Spartan culture was obsessed with military training and excellence, with rigorous training for boys beginning at age seven. Thanks to its military might, Sparta led a coalition of Greek forces during the Greco-Persian Wars, and won over Athens in the Peloponnesian Wars, though at great cost.",
+	"Music": [
 		{
-			"Name":"Spartans",
-			"Description":"",
-			"Technologies":
-			[
+			"File": "Helen_Leaves_Sparta.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Peaks_of_Atlas.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Forging_a_City-State.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "The_Hellespont.ogg",
+			"Type": "peace"
+		}
+	],
+	"Factions": [
+		{
+			"Name": "Spartans",
+			"Description": "",
+			"Technologies": [
 				{
-					"Name":"Feminine Mystique",
-					"History":"Spartan women were some of the freest in the ancient world. They could own land and slaves and even exercise naked like Spartan men. It is said that only Spartan women gave birth to real men. Such tough-as-nails women more than once helped save their city from disaster, for example when after a lost battle against Pyrrhus of Epirus they overnight built an earthen rampart to protect the city while their men slept in preparation for the next day's siege.",
-					"Description":"Spartan female citizens cannot be captured and will doggedly fight back against any attackers. They are also capable of constructing defense towers and palisades."
+					"Name": "Feminine Mystique",
+					"History": "Spartan women were some of the freest in the ancient world. They could own land and slaves and even exercise naked like Spartan men. It is said that only Spartan women gave birth to real men. Such tough-as-nails women more than once helped save their city from disaster, for example when after a lost battle against Pyrrhus of Epirus they overnight built an earthen rampart to protect the city while their men slept in preparation for the next day's siege.",
+					"Description": "Spartan female citizens cannot be captured and will doggedly fight back against any attackers. They are also capable of constructing defense towers and palisades."
 				},
 				{
-					"Name":"Tyrtean Paeans",
-					"History":"Paeans were battle hymns that were sung by the hoplites when they charged the enemy lines. One of the first known Paeans were composed by Tirteus, a warrior poet of Sparta, during the First Messenian War.",
-					"Description":"Units in phalanx formation move faster."
+					"Name": "Tyrtean Paeans",
+					"History": "Paeans were battle hymns that were sung by the hoplites when they charged the enemy lines. One of the first known Paeans were composed by Tirteus, a warrior poet of Sparta, during the First Messenian War.",
+					"Description": "Units in phalanx formation move faster."
 				},
 				{
-					"Name":"The Agoge",
-					"History":"Spartans were housed and trained from a young age to be superlative warriors and to endure any hardship a military life can give them.",
-					"Description":"Champion Infantry Spearmen +25% health, but +5% training time."
+					"Name": "The Agoge",
+					"History": "Spartans were housed and trained from a young age to be superlative warriors and to endure any hardship a military life can give them.",
+					"Description": "Champion Infantry Spearmen +25% health, but +5% training time."
 				}
 			],
-			"Heroes":
-			[
+			"Heroes": [
 				{
-					"Name":"Leonidas I",
-					"Class":"",
-					"Armament":"",
-					"Emblem":"",
-					"History":"The king of Sparta, who fought and died at the battle of Thermopylae in 480 B.C. He successfully blocked the way of the huge Persian army through the narrow passage with his 7000 men, until Xerxes was made aware of a secret unobstructed path. Finding the enemy at his rear, Leonidas sent home most of his troops, choosing to stay behind with 300 hand-picked hoplites and win time for the others to withdraw."
+					"Name": "Leonidas I",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "",
+					"History": "The king of Sparta, who fought and died at the battle of Thermopylae in 480 B.C. He successfully blocked the way of the huge Persian army through the narrow passage with his 7000 men, until Xerxes was made aware of a secret unobstructed path. Finding the enemy at his rear, Leonidas sent home most of his troops, choosing to stay behind with 300 hand-picked hoplites and win time for the others to withdraw."
 				},
 				{
-					"Name":"Brasidas",
-					"Class":"",
-					"Armament":"",
-					"Emblem":"",
-					"History":"Because Brasidas has sponsored their citizenship in return for service, Helot Skirmishers fight longer and harder for Sparta while within range of him."
+					"Name": "Brasidas",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "",
+					"History": "Because Brasidas has sponsored their citizenship in return for service, Helot Skirmishers fight longer and harder for Sparta while within range of him."
 				},
 				{
-					"Name":"Agis III",
-					"Class":"",
-					"Armament":"",
-					"Emblem":"",
-					"History":"Agis III was the 20th Spartan king of the Eurypontid lineage. Agis cobbled together an alliance of Southern Greek states to fight off Macedonian hegemony while Alexander the Great was away in Asia on his conquest march. After securing Crete as a Spartan tributary, Agis then moved to besiege the city of Megalopolis in the Peloponnese, who was an ally of Macedon. Antipater, the Macedonian regent, lead an army to stop this new uprising. In the Battle of Megalopolis, the Macedonians prevailed in a long and bloody battle. Much like Leonidas 150 years earlier, instead of surrendering, Agis made a heroic final stand in order to buy time for his troops to retreat."
+					"Name": "Agis III",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "",
+					"History": "Agis III was the 20th Spartan king of the Eurypontid lineage. Agis cobbled together an alliance of Southern Greek states to fight off Macedonian hegemony while Alexander the Great was away in Asia on his conquest march. After securing Crete as a Spartan tributary, Agis then moved to besiege the city of Megalopolis in the Peloponnese, who was an ally of Macedon. Antipater, the Macedonian regent, lead an army to stop this new uprising. In the Battle of Megalopolis, the Macedonians prevailed in a long and bloody battle. Much like Leonidas 150 years earlier, instead of surrendering, Agis made a heroic final stand in order to buy time for his troops to retreat."
 				}
 			]
 		}
 	],
-	"CivBonuses":
-	[
+	"CivBonuses": [
 		{
 			"Name": "Hellenic Architecture",
 			"History": "The Greeks used stone construction from early Mycenaean times.",
 			"Description": "Structures +10% health and +10% capture points."
 		}
 	],
-	"TeamBonuses":
-	[
+	"TeamBonuses": [
 		{
-			"Name":"Peloponnesian League",
-			"History":"Much of the Peloponnese was subject to Sparta in one way or another. This loose confederation, with Sparta as its leader, was later dubbed the Peloponnesian League by historians, but in ancient times was called 'The Lacedaemonians and their allies.'",
-			"Description":"Allied Citizen Infantry Spearmen +10% health."
+			"Name": "Peloponnesian League",
+			"History": "Much of the Peloponnese was subject to Sparta in one way or another. This loose confederation, with Sparta as its leader, was later dubbed the Peloponnesian League by historians, but in ancient times was called 'The Lacedaemonians and their allies.'",
+			"Description": "Allied Citizen Infantry Spearmen +10% health."
 		}
 	],
-	"Structures":
-	[
+	"Structures": [
 		{
-			"Name":"Theatron",
-			"Class":"",
-			"Emblem":"",
-			"History":"Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture.",
-			"Requirements":"",
-			"Phase":"City",
-			"Special":"The Hellenization civ bonus. Building a Theatron increases the territory effect of all buildings by 25%."
+			"Name": "Theatron",
+			"Class": "",
+			"Emblem": "",
+			"History": "Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture.",
+			"Requirements": "",
+			"Phase": "City",
+			"Special": "The Hellenization civ bonus. Building a Theatron increases the territory effect of all buildings by 25%."
 		},
 		{
-			"Name":"Syssition",
-			"Class":"",
-			"Emblem":"",
-			"History":"The Syssition was the Mess Hall for full-blooded Spartiates. Every Spartan peer, even kings, belonged to one.",
-			"Requirements":"",
-			"Phase":"City",
-			"Special":"Train heroes and Spartiates and research technologies related to them."
+			"Name": "Syssition",
+			"Class": "",
+			"Emblem": "",
+			"History": "The Syssition was the Mess Hall for full-blooded Spartiates. Every Spartan peer, even kings, belonged to one.",
+			"Requirements": "",
+			"Phase": "City",
+			"Special": "Train heroes and Spartiates and research technologies related to them."
 		}
 	],
-	"WallSets":
-	[
+	"WallSets": [
 		"structures/wallset_palisade",
 		"structures/spart_wallset_stone"
 	],
-	"StartEntities":
-	[
+	"StartEntities": [
 		{
 			"Template": "structures/spart_civil_centre"
 		},
@@ -122,8 +126,7 @@
 			"Template": "units/spart_cavalry_javelinist_b"
 		}
 	],
-	"Formations":
-	[
+	"Formations": [
 		"special/formations/null",
 		"special/formations/box",
 		"special/formations/column_closed",
@@ -136,8 +139,7 @@
 		"special/formations/wedge",
 		"special/formations/phalanx"
 	],
-	"AINames":
-	[
+	"AINames": [
 		"Leonidas",
 		"Dienekes",
 		"Brasidas",
@@ -151,9 +153,8 @@
 		"Eucleidas",
 		"Agesipolis"
 	],
-	"SkirmishReplacements":
-	{
-		"skirmish/structures/default_house_10" : "structures/{civ}_house",
+	"SkirmishReplacements": {
+		"skirmish/structures/default_house_10": "structures/{civ}_house",
 		"skirmish/structures/default_wall_tower": "",
 		"skirmish/structures/default_wall_gate": "",
 		"skirmish/structures/default_wall_short": "",

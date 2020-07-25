@@ -4,53 +4,61 @@
 	"Name": "Mauryas",
 	"Emblem": "session/portraits/emblems/emblem_mauryas.png",
 	"History": "Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first to rule most of the Indian subcontinent, and was one of the largest and most populous empires of antiquity. Its military featured bowmen who used the long-range bamboo longbow, fierce female warriors, chariots, and thousands of armored war elephants. Its philosophers, especially the famous Acharya Chanakya, contributed to such varied fields such as economics, religion, diplomacy, warfare, and good governance. Under the rule of Ashoka the Great, the empire saw 40 years of peace, harmony, and prosperity.",
-	"Music":[
-			{"File":"An_old_Warhorse_goes_to_Pasture.ogg", "Type":"peace"},
-			{"File":"Land_between_the_two_Seas.ogg", "Type":"peace"},
-			{"File":"Eastern_Dreams.ogg", "Type":"peace"},
-			{"File":"Karmic_Confluence.ogg", "Type":"peace"}
-		],
-	"Factions":
-	[
+	"Music": [
+		{
+			"File": "An_old_Warhorse_goes_to_Pasture.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Land_between_the_two_Seas.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Eastern_Dreams.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Karmic_Confluence.ogg",
+			"Type": "peace"
+		}
+	],
+	"Factions": [
 		{
 			"Name": "Mauryan Indians",
 			"Description": "",
-			"Technologies":
-			[
+			"Technologies": [
 				{
-					"Name":"Archery Tradition",
-					"History":"The Indian peoples had a tradition of fine archery and a penchant for using massed archers in battle.",
-					"Description":"Archers −10% training time, +8 attack range, and −10% ranged attack spread."
+					"Name": "Archery Tradition",
+					"History": "The Indian peoples had a tradition of fine archery and a penchant for using massed archers in battle.",
+					"Description": "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
 				}
 			],
-			"Heroes":
-			[
+			"Heroes": [
 				{
-					"Name":"Chandragupta Maurya",
-					"Class":"",
-					"Armament":"",
-					"Emblem":"",
-					"History":"Founder of the Mauryan Empire."
+					"Name": "Chandragupta Maurya",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "",
+					"History": "Founder of the Mauryan Empire."
 				},
 				{
-					"Name":"Ashoka the Great",
-					"Class":"",
-					"Armament":"",
-					"Emblem":"",
-					"History":"Last great emperor of the Mauryan dynasty."
+					"Name": "Ashoka the Great",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "",
+					"History": "Last great emperor of the Mauryan dynasty."
 				},
 				{
-					"Name":"Acharya Chāṇakya",
-					"Class":"",
-					"Armament":"",
-					"Emblem":"",
-					"History":"Great teacher and advisor to Chandragupta Maurya."
+					"Name": "Acharya Chāṇakya",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "",
+					"History": "Great teacher and advisor to Chandragupta Maurya."
 				}
 			]
 		}
 	],
-	"CivBonuses":
-	[
+	"CivBonuses": [
 		{
 			"Name": "Emperor of Emperors.",
 			"History": "The Mauryan Empire encompassed dozens of formerly independent kingdoms over an area of 5 million square kilometers, with a population of close to 60 million people. The Mauryan rulers held the title Emperor of Emperors and commanded a standing army of 600,000 infantry, 9000 elephants, 8000 chariots, and 30,000 cavalry, making it arguably the largest army of its time.",
@@ -62,16 +70,14 @@
 			"Description": "Elephants −30% training time."
 		}
 	],
-	"TeamBonuses":
-	[
+	"TeamBonuses": [
 		{
 			"Name": "Ashoka's Religious Support",
 			"History": "Ashoka the Great sent embassies West to spread knowledge of the Buddha.",
 			"Description": "Allied Temples −50% resource costs and building time; Temple technologies −50% resource costs and research time."
 		}
 	],
-	"Structures":
-	[
+	"Structures": [
 		{
 			"Name": "Elephant Stable",
 			"Class": "",
@@ -91,13 +97,11 @@
 			"Special": "Contentment: +10% Health and +10% resource gathering rates for all citizens and allied citizens within its range. Can be built anywhere except in enemy territory. Max Built: 10."
 		}
 	],
-	"WallSets":
-	[
+	"WallSets": [
 		"structures/wallset_palisade",
 		"structures/maur_wallset_stone"
 	],
-	"StartEntities":
-	[
+	"StartEntities": [
 		{
 			"Template": "structures/maur_civil_centre"
 		},
@@ -122,8 +126,7 @@
 			"Count": 1
 		}
 	],
-	"Formations":
-	[
+	"Formations": [
 		"special/formations/null",
 		"special/formations/box",
 		"special/formations/column_closed",
@@ -135,8 +138,7 @@
 		"special/formations/skirmish",
 		"special/formations/wedge"
 	],
-	"AINames":
-	[
+	"AINames": [
 		"Chandragupta Maurya",
 		"Bindusara Maurya",
 		"Ashoka the Great",
@@ -147,8 +149,7 @@
 		"Shatadhanvan Maurya",
 		"Brihadratha Maurya"
 	],
-	"SkirmishReplacements":
-	{
+	"SkirmishReplacements": {
 		"skirmish/units/default_infantry_ranged_b": "units/maur_infantry_archer_b",
 		"skirmish/units/special_starting_unit": "units/maur_support_elephant",
 		"skirmish/structures/default_house_5": "structures/{civ}_house"

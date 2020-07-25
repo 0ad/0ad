@@ -4,18 +4,25 @@
 	"Name": "Iberians",
 	"Emblem": "session/portraits/emblems/emblem_iberians.png",
 	"History": "The Iberians were a people of mysterious origins and language, with a strong tradition of horsemanship and metalworking. A relatively peaceful culture, they usually fought in other's battles only as mercenaries. However, they proved tenacious when Rome sought to take their land and freedom from them, and employed pioneering guerrilla tactics and flaming javelins as they fought back.",
-	"Music":[
-			{"File":"An_old_Warhorse_goes_to_Pasture.ogg", "Type":"peace"},
-			{"File":"Celtica.ogg", "Type":"peace"},
-			{"File":"Harsh_Lands_Rugged_People.ogg", "Type":"peace"}
-		],
-	"Factions":
-	[
+	"Music": [
+		{
+			"File": "An_old_Warhorse_goes_to_Pasture.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Celtica.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Harsh_Lands_Rugged_People.ogg",
+			"Type": "peace"
+		}
+	],
+	"Factions": [
 		{
 			"Name": "",
 			"Description": "",
-			"Technologies":
-			[
+			"Technologies": [
 				{
 					"Name": "Suzko Txabalina",
 					"History": "Iberian tribesmen were noted for wrapping bundles of grass about the shafts of their throwing spears, soaking that in some sort of flammable pitch, then setting it afire just before throwing.",
@@ -27,8 +34,7 @@
 					"Description": "Metal costs for units and technologies reduced by 50%."
 				}
 			],
-			"Heroes":
-			[
+			"Heroes": [
 				{
 					"Name": "Viriato",
 					"Class": "",
@@ -53,24 +59,21 @@
 			]
 		}
 	],
-	"CivBonuses":
-	[
+	"CivBonuses": [
 		{
 			"Name": "Harritsu Leku",
 			"History": "With exception to alluvial plains and river valleys, stone is abundant in the Iberian Peninsula and was greatly used in construction of structures of all types.",
 			"Description": "Iberians start with a powerful prefabricated circuit of stone walls."
 		}
 	],
-	"TeamBonuses":
-	[
+	"TeamBonuses": [
 		{
 			"Name": "Saripeko",
 			"History": "The Iberians were long known to provide mercenaries to other nations to serve as auxiliaries to their armies in foreign wars. Carthage is the most well known example, and we have evidence of them serving in such a capacity in Aquitania.",
 			"Description": "Allied Citizen Javelineers −10% resource costs."
 		}
 	],
-	"Structures":
-	[
+	"Structures": [
 		{
 			"Name": "Gur Oroigarri",
 			"Class": "",
@@ -81,13 +84,11 @@
 			"Special": "Defensive Aura - Gives all Iberian units and buildings within vision range of the monument a 10-15% attack boost. Build Limit: Only 5 may be built per map."
 		}
 	],
-	"WallSets":
-	[
+	"WallSets": [
 		"structures/wallset_palisade",
 		"structures/iber_wallset_stone"
 	],
-	"StartEntities":
-	[
+	"StartEntities": [
 		{
 			"Template": "structures/iber_civil_centre"
 		},
@@ -107,8 +108,7 @@
 			"Template": "units/iber_cavalry_javelinist_b"
 		}
 	],
-	"Formations":
-	[
+	"Formations": [
 		"special/formations/null",
 		"special/formations/box",
 		"special/formations/column_closed",
@@ -120,8 +120,7 @@
 		"special/formations/skirmish",
 		"special/formations/wedge"
 	],
-	"AINames":
-	[
+	"AINames": [
 		"Viriato",
 		"Viriato",
 		"Karos",
@@ -131,8 +130,7 @@
 		"Minurus",
 		"Tautalus"
 	],
-	"SkirmishReplacements":
-	{
+	"SkirmishReplacements": {
 		"skirmish/units/default_infantry_melee_b": "units/iber_infantry_swordsman_b",
 		"skirmish/structures/default_house_5": "structures/{civ}_house",
 		"skirmish/structures/iber_wall_short": "structures/iber_wall_short",
