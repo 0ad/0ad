@@ -32,14 +32,11 @@
     <Square width="4" depth="6"/>
     <Height>7.5</Height>
   </Footprint>
-  <Health>
-    <Max>160</Max>
-  </Health>
   <Identity>
-    <Classes datatype="tokens">Human CitizenSoldier</Classes>
-    <VisibleClasses datatype="tokens">Citizen Soldier Cavalry</VisibleClasses>
     <GenericName>Cavalry</GenericName>
     <Rank>Basic</Rank>
+    <Classes datatype="tokens">Human CitizenSoldier</Classes>
+    <VisibleClasses datatype="tokens">Citizen Soldier Cavalry</VisibleClasses>
     <Formations datatype="tokens">
       special/formations/wedge
     </Formations>

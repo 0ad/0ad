@@ -1,23 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry">
-  <Armour>
-    <Hack>4</Hack>
-    <Pierce>3</Pierce>
-  </Armour>
-  <Attack>
-    <Melee>
-      <Damage>
-        <Hack>13</Hack>
-        <Pierce>0</Pierce>
-        <Crush>0.0</Crush>
-      </Damage>
-      <MaxRange>3.5</MaxRange>
-      <PrepareTime>375</PrepareTime>
-      <RepeatTime>750</RepeatTime>
-    </Melee>
-  </Attack>
+  <Health>
+    <Max>160</Max>
+  </Health>
   <Identity>
-    <VisibleClasses datatype="tokens">Melee</VisibleClasses>
     <GenericName>Melee Cavalry</GenericName>
+    <VisibleClasses datatype="tokens">Melee</VisibleClasses>
   </Identity>
 </Entity>
