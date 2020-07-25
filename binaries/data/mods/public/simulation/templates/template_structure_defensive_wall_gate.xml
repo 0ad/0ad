@@ -2,9 +2,10 @@
 <Entity parent="template_structure_defensive_wall">
   <!-- We need a Cost component, although gates cannot be built directly, as Cost/BuildTime is required to prevent instantaneous repair -->
   <Cost>
-    <BuildTime>38</BuildTime>
+    <BuildTime>30</BuildTime>
     <Resources>
-      <stone>60</stone>
+      <wood>12</wood>
+      <stone>18</stone>
     </Resources>
   </Cost>
   <GarrisonHolder disable=""/>
@@ -23,7 +24,8 @@
     <Icon>structures/gate.png</Icon>
   </Identity>
   <Loot>
-    <stone>12</stone>
+    <wood>2</wood>
+    <stone>4</stone>
   </Loot>
   <Obstruction>
     <Static disable=""/>
