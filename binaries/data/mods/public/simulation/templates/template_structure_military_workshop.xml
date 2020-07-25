@@ -24,7 +24,7 @@
   <Identity>
     <GenericName>Siege Workshop</GenericName>
     <SelectionGroupName>template_structure_military_workshop</SelectionGroupName>
-    <Tooltip>Construct Siege Engines and research Siege Engine technologies.</Tooltip>
+    <Tooltip>Train Champion Infantry Crossbowmen, construct Siege Engines, and research Siege Engine technologies.</Tooltip>
     <VisibleClasses datatype="tokens">City Workshop</VisibleClasses>
     <Icon>structures/siege_workshop.png</Icon>
     <RequiredTechnology>phase_city</RequiredTechnology>
@@ -38,11 +38,12 @@
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
-      units/{civ}_siege_ballista_packed
+      units/{civ}_champion_infantry_crossbowman
       units/{civ}_siege_scorpio_packed
+      units/{civ}_siege_polybolos_packed
       units/{civ}_siege_oxybeles_packed
       units/{civ}_siege_lithobolos_packed
-      units/{civ}_siege_polybolos_packed
+      units/{civ}_siege_ballista_packed
       units/{civ}_siege_ram
       units/{civ}_siege_tower
     </Entities>
