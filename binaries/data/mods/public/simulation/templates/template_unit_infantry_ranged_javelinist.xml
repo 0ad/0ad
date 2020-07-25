@@ -35,13 +35,13 @@
   <Loot>
     <wood>5</wood>
   </Loot>
-  <UnitMotion>
-    <WalkSpeed op="mul">1.4</WalkSpeed>
-  </UnitMotion>
   <Sound>
     <SoundGroups>
       <attack_ranged>attack/weapon/javelin_attack.xml</attack_ranged>
       <attack_impact_ranged>attack/impact/javelin_impact.xml</attack_impact_ranged>
     </SoundGroups>
   </Sound>
+  <UnitMotion>
+    <WalkSpeed op="mul">1.2</WalkSpeed>
+  </UnitMotion>
 </Entity>
