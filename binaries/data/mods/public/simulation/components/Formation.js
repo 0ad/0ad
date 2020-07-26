@@ -473,10 +473,11 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force, varia
 
 	var active = [];
 	var positions = [];
+	let rotations = 0;
 
 	for (var ent of this.members)
 	{
-		var cmpPosition = Engine.QueryInterface(ent, IID_Position);
+		let cmpPosition = Engine.QueryInterface(ent, IID_Position);
 		if (!cmpPosition || !cmpPosition.IsInWorld())
 			continue;
 
@@ -485,23 +486,15 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force, varia
 		// but bring the position to the right coordinates
 		var pos = cmpPosition.GetPosition2D();
 		positions.push(pos);
+		rotations += cmpPosition.GetRotation().y;
 	}
 
 	var avgpos = Vector2D.average(positions);
 
+	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	// Reposition the formation if we're told to or if we don't already have a position
-	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	var inWorld = cmpPosition.IsInWorld();
-	if (moveCenter || !inWorld)
-	{
-		cmpPosition.JumpTo(avgpos.x, avgpos.y);
-		// Don't make the formation controller entity show up in range queries
-		if (!inWorld)
-		{
-			var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-			cmpRangeManager.SetEntityFlag(this.entity, "normal", false);
-		}
-	}
+	if (moveCenter || (cmpPosition && !cmpPosition.IsInWorld()))
+		this.SetupPositionAndHandleRotation(avgpos.x, avgpos.y, rotations / active.length);
 
 	this.lastOrderVariant = variant;
 	// Switch between column and box if necessary
@@ -567,30 +560,43 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force, varia
 
 Formation.prototype.MoveToMembersCenter = function()
 {
-	var positions = [];
+	let positions = [];
+	let rotations = 0;
 
-	for (var ent of this.members)
+	for (let ent of this.members)
 	{
-		var cmpPosition = Engine.QueryInterface(ent, IID_Position);
+		let cmpPosition = Engine.QueryInterface(ent, IID_Position);
 		if (!cmpPosition || !cmpPosition.IsInWorld())
 			continue;
 
 		positions.push(cmpPosition.GetPosition2D());
+		rotations += cmpPosition.GetRotation().y;
 	}
 
-	var avgpos = Vector2D.average(positions);
+	let avgpos = Vector2D.average(positions);
 
-	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	var inWorld = cmpPosition.IsInWorld();
-	cmpPosition.JumpTo(avgpos.x, avgpos.y);
-
-	// Don't make the formation controller show up in range queries
-	if (!inWorld)
-	{
-		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		cmpRangeManager.SetEntityFlag(this.entity, "normal", false);
-	}
+	this.SetupPositionAndHandleRotation(avgpos.x, avgpos.y, rotations / positions.length);
 };
+
+/**
+* Set formation position.
+* If formation is not in world at time this is called, set new rotation and flag for range manager.
+*/
+Formation.prototype.SetupPositionAndHandleRotation = function(x, y, rot)
+{
+	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!cmpPosition)
+		return;
+	let wasInWorld = cmpPosition.IsInWorld();
+	cmpPosition.JumpTo(x, y);
+
+	if (wasInWorld)
+		return;
+
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	cmpRangeManager.SetEntityFlag(this.entity, "normal", false);
+	cmpPosition.TurnTo(rot);
+}
 
 Formation.prototype.GetAvgFootprint = function(active)
 {
