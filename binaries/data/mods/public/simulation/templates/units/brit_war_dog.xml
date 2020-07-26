@@ -2,13 +2,9 @@
 <Entity parent="template_unit_dog">
   <Identity>
     <Civ>brit</Civ>
-    <SelectionGroupName>units/brit_war_dog_b</SelectionGroupName>
     <SpecificName>Agrocuna</SpecificName>
     <Icon>units/brit_war_dog.png</Icon>
   </Identity>
-  <Promotion>
-    <Entity>units/brit_war_dog_a</Entity>
-  </Promotion>
   <VisualActor>
     <Actor>units/britons/war_dog_mastiff_b.xml</Actor>
   </VisualActor>

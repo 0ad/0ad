@@ -36,12 +36,12 @@
   <Loot>
     <stone>5</stone>
   </Loot>
-  <UnitMotion>
-    <WalkSpeed op="mul">1.2</WalkSpeed>
-  </UnitMotion>
   <Sound>
     <SoundGroups>
       <attack_ranged>attack/weapon/sling_attack.xml</attack_ranged>
     </SoundGroups>
   </Sound>
+  <UnitMotion>
+    <WalkSpeed op="mul">1.2</WalkSpeed>
+  </UnitMotion>
 </Entity>

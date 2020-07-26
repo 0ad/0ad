@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
-  <BuildRestrictions>
-    <Category>Hall</Category>
-  </BuildRestrictions>
   <Cost>
     <BuildTime>300</BuildTime>
     <Resources>
@@ -25,10 +22,8 @@
     <Civ>pers</Civ>
     <GenericName>Gate of All Nations</GenericName>
     <SpecificName>Duvarθi Visadahyu</SpecificName>
-    <Classes datatype="tokens">ConquestCritical</Classes>
     <VisibleClasses datatype="tokens">Hall</VisibleClasses>
     <Icon>structures/pers_hall.png</Icon>
-    <Tooltip>Train Champions.</Tooltip>
   </Identity>
   <Loot>
     <stone>50</stone>
@@ -37,14 +32,6 @@
   <Obstruction>
     <Static width="25.0" depth="25.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}_kardakes_hoplite
-      units/{civ}_kardakes_skirmisher
-      units/{civ}_champion_elephant
-    </Entities>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_broch.xml</select>
@@ -52,10 +39,6 @@
     </SoundGroups>
   </Sound>
   <TerritoryDecay disable=""/>
-  <TerritoryInfluence>
-    <Root>false</Root>
-    <Radius>38</Radius>
-  </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/persians/hall.xml</Actor>
     <FoundationActor>structures/fndn_7x7.xml</FoundationActor>

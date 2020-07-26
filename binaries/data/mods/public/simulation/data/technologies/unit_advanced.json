@@ -1,7 +1,7 @@
 {
 	"autoResearch": true,
 	"icon": "upgrade_advanced.png",
-	"tooltip": "Advanced and Elite units +20% training time, +1 armour level, +10% health, +0.4 capture attack strength, +20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing range; Infantry +0.5 movement speed; Melee units +20% attack damage; Ranged units +4 attack range and −10% spread.",
+	"tooltip": "Advanced and Elite units +20% training time, +1 armor, +10% health, +0.7 capture attack strength, +20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing range; Melee units +20% attack damage; Ranged units +4 attack range and −10% spread.",
 	"modifications": [
 		{ "value": "Armour/Hack", "add": 1 },
 		{ "value": "Armour/Pierce", "add": 1 },
@@ -21,10 +21,7 @@
 		{ "value": "Loot/stone", "multiply": 1.2 },
 		{ "value": "Loot/metal", "multiply": 1.2 },
 		{ "value": "Loot/xp", "multiply": 1.2 },
-		{ "value": "ResourceGatherer/BaseSpeed", "multiply": 0.7 },
-		{ "value": "UnitMotion/WalkSpeed", "add": 0.5, "affects": "Infantry" },
-		{ "value": "Vision/Range", "add": 3, "affects": "Healer" },
-		{ "value": "Vision/Range", "add": 4, "affects": "Ranged" }
+		{ "value": "ResourceGatherer/BaseSpeed", "multiply": 0.7 }
 	],
 	"affects": ["Advanced Unit", "Elite Unit"]
 }

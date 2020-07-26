@@ -8,8 +8,12 @@
     <Melee>
       <Damage>
         <Hack>6.9</Hack>
+        <Pierce>0</Pierce>
         <Crush>2.3</Crush>
       </Damage>
+      <MaxRange>3.5</MaxRange>
+      <PrepareTime>500</PrepareTime>
+      <RepeatTime>1000</RepeatTime>
       <PreferredClasses datatype="tokens">Unit+!Ship</PreferredClasses>
     </Melee>
   </Attack>
@@ -20,8 +24,8 @@
     </Resources>
   </Cost>
   <Identity>
-    <VisibleClasses datatype="tokens">Axeman</VisibleClasses>
     <GenericName>Cavalry Axeman</GenericName>
+    <VisibleClasses datatype="tokens">Axeman</VisibleClasses>
   </Identity>
   <Loot>
     <wood>4</wood>

@@ -9,8 +9,11 @@
       <Damage>
         <Hack>6.5</Hack>
         <Pierce>0</Pierce>
-        <Crush>0.0</Crush>
+        <Crush>0</Crush>
       </Damage>
+      <MaxRange>3.5</MaxRange>
+      <PrepareTime>375</PrepareTime>
+      <RepeatTime>750</RepeatTime>
       <PreferredClasses datatype="tokens">Unit+!Ship</PreferredClasses>
     </Melee>
   </Attack>
@@ -21,8 +24,8 @@
     </Resources>
   </Cost>
   <Identity>
-    <VisibleClasses datatype="tokens">Swordsman</VisibleClasses>
     <GenericName>Cavalry Swordsman</GenericName>
+    <VisibleClasses datatype="tokens">Swordsman</VisibleClasses>
   </Identity>
   <Loot>
     <wood>4</wood>

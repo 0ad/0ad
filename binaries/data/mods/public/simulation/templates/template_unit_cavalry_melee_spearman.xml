@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_melee">
+  <Armour>
+    <Hack>4</Hack>
+    <Pierce>3</Pierce>
+  </Armour>
   <Attack>
     <Melee>
       <Damage>
         <Hack>4</Hack>
         <Pierce>3</Pierce>
+        <Crush>0</Crush>
       </Damage>
-      <MaxRange>4.5</MaxRange>
       <Bonuses>
         <BonusCavMelee>
           <Classes>Cavalry</Classes>
           <Multiplier>1.5</Multiplier>
         </BonusCavMelee>
       </Bonuses>
+      <MaxRange>4.5</MaxRange>
+      <PrepareTime>625</PrepareTime>
       <RepeatTime>1250</RepeatTime>
       <PreferredClasses datatype="tokens">Human</PreferredClasses>
     </Melee>
@@ -23,8 +29,8 @@
     </Resources>
   </Cost>
   <Identity>
-    <VisibleClasses datatype="tokens">Spearman</VisibleClasses>
     <GenericName>Cavalry Spearman</GenericName>
+    <VisibleClasses datatype="tokens">Spearman</VisibleClasses>
     <Tooltip>Counters: 1.5x vs. Cavalry.</Tooltip>
   </Identity>
   <Sound>

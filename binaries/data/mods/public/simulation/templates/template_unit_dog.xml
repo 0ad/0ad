@@ -10,7 +10,7 @@
       <Damage>
         <Hack>7</Hack>
         <Pierce>2</Pierce>
-        <Crush>0.0</Crush>
+        <Crush>0</Crush>
       </Damage>
       <MaxRange>3</MaxRange>
       <PrepareTime>500</PrepareTime>
@@ -23,9 +23,6 @@
     <Population>0</Population>
     <Resources>
       <food>100</food>
-      <wood>0</wood>
-      <stone>0</stone>
-      <metal>0</metal>
     </Resources>
   </Cost>
   <Footprint>
@@ -33,25 +30,18 @@
     <Height>3.0</Height>
   </Footprint>
   <Health>
-    <Max>90</Max>
+    <Max>110</Max>
   </Health>
   <Identity>
+    <GenericName>War Dog</GenericName>
+    <Tooltip>Cannot attack Structures, Ships, or Siege Engines.</Tooltip>
     <Classes datatype="tokens">Human</Classes>
     <VisibleClasses datatype="tokens">Dog Melee</VisibleClasses>
-    <GenericName>War Dog</GenericName>
-    <Rank>Basic</Rank>
-    <Tooltip>Cannot attack structures.</Tooltip>
   </Identity>
   <Loot>
     <xp>100</xp>
     <food>10</food>
-    <wood>0</wood>
-    <stone>0</stone>
-    <metal>0</metal>
   </Loot>
-  <Promotion>
-    <RequiredXp>100</RequiredXp>
-  </Promotion>
   <ResourceGatherer disable=""/>
   <Selectable>
     <Overlay>
@@ -82,8 +72,8 @@
     <Category>WarDog</Category>
   </TrainingRestrictions>
   <UnitMotion>
-    <WalkSpeed op="mul">1.6</WalkSpeed>
-    <RunMultiplier>2.5</RunMultiplier>
+    <WalkSpeed op="mul">1.5</WalkSpeed>
+    <RunMultiplier>2</RunMultiplier>
   </UnitMotion>
   <Vision>
     <Range>30</Range>

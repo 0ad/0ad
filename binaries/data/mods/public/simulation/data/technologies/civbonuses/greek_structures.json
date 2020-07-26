@@ -2,12 +2,18 @@
 	"genericName": "Hellenic Architecture",
 	"autoResearch": true,
 	"description": "The Greeks used stone construction from early Mycenaean times.",
-	"requirements": { "any": [{ "civ": "athen" }, { "civ": "mace" }, { "civ": "spart" }] },
+	"requirements": {
+		"any": [
+			{ "civ": "athen" },
+			{ "civ": "mace" },
+			{ "civ": "spart" }
+		]
+	},
 	"icon": "ionic_column.png",
-	"tooltip": "Athenian, Macedonian, and Spartan Structures +10% health and +10% capture points.",
+	"tooltip": "Structures +10% health and +10% capture points.",
 	"modifications": [
-		{ "value": "Health/Max", "multiply": 1.1 },
-		{ "value": "Capturable/CapturePoints", "multiply": 1.1 }
+		{ "value": "Capturable/CapturePoints", "multiply": 1.1 },
+		{ "value": "Health/Max", "multiply": 1.1 }
 	],
 	"affects": ["Structure !Wonder"]
 }

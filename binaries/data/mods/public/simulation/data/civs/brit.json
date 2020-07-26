@@ -4,33 +4,34 @@
 	"Name": "Britons",
 	"Emblem": "session/portraits/emblems/emblem_britons.png",
 	"History": "The Britons were the Celtic tribes of the British Isles. Using chariots, longswordsmen and powerful melee soldiers, they staged fearsome revolts against Rome to protect their customs and interests. Also, they built thousands of unique structures such as hill forts, crannogs and brochs.",
-	"Music":[
-			{"File":"Highland_Mist.ogg", "Type":"peace"},
-			{"File":"Water's_Edge.ogg", "Type":"peace"},
-			{"File":"Celtic_Pride.ogg", "Type":"peace"},
-			{"File":"Cisalpine_Gaul.ogg", "Type":"peace"},
-			{"File":"Celtica.ogg", "Type":"peace"}
-		],
-	"Factions":
-	[
+	"Music": [
+		{
+			"File": "Highland_Mist.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Water's_Edge.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Celtic_Pride.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Cisalpine_Gaul.ogg",
+			"Type": "peace"
+		},
+		{
+			"File": "Celtica.ogg",
+			"Type": "peace"
+		}
+	],
+	"Factions": [
 		{
 			"Name": "Britons",
 			"Description": "The Celts of the British Isles.",
-			"Technologies":
-			[
-				{
-					"Name": "Sevili Dusios",
-					"History": "The Britons took up the practice of either making permanent marks on their body in the form of tattoos or temporarily painted their bodies with woad paint. The effect was very frightening.",
-					"Description": "Increased attack and movement rate for melee soldiers."
-				},
-				{
-					"Name": "Turos Maros",
-					"History": "'Great Tower'; Celtic legends abound with stories of massive tall towers built by the most powerful kings, and the remains of some very large towers have been found.",
-					"Description": "Increases the height bonus of units garrisoned in a tower."
-				}
-			],
-			"Heroes":
-			[
+			"Technologies": [],
+			"Heroes": [
 				{
 					"Name": "Karatakos",
 					"Class": "",
@@ -55,46 +56,20 @@
 			]
 		}
 	],
-	"CivBonuses":
-	[
-		{
-			"Name": "Ardiosmanae",
-			"History": "Represents Celtic farming methods. ",
-			"Description": "Enhanced food gained from ranching and farming. "
-		},
-		{
-			"Name": "Deas Celtica",
-			"History": "Celtic religion and druidry inspired their warlike mindset. ",
-			"Description": "Druids increase attack rates of soldiers near them slightly."
-		}
-	],
-	"TeamBonuses":
-	[
+	"CivBonuses": [],
+	"TeamBonuses": [
 		{
 			"Name": "Druids",
 			"History": "The Druids of the Celts maintained an organized religion that advanced the technology of their people even during wartime.",
 			"Description": "Allied Healers −20% resource costs."
 		}
 	],
-	"Structures":
-	[
-		{
-			"Name": "Kennel",
-			"Class": "",
-			"Emblem": "",
-			"History": "The Britons were known for breeding war dogs.",
-			"Requirements": "",
-			"Phase": "",
-			"Special": ""
-		}
-	],
-	"WallSets":
-	[
+	"Structures": [],
+	"WallSets": [
 		"structures/wallset_palisade",
 		"structures/brit_wallset_stone"
 	],
-	"StartEntities":
-	[
+	"StartEntities": [
 		{
 			"Template": "structures/brit_civil_centre"
 		},
@@ -115,11 +90,10 @@
 			"Count": 1
 		},
 		{
-			"Template": "units/brit_war_dog_e"
+			"Template": "units/brit_war_dog"
 		}
 	],
-	"Formations":
-	[
+	"Formations": [
 		"special/formations/null",
 		"special/formations/box",
 		"special/formations/column_closed",
@@ -131,8 +105,7 @@
 		"special/formations/skirmish",
 		"special/formations/wedge"
 	],
-	"AINames":
-	[
+	"AINames": [
 		"Karatakos",
 		"Kunobelinos",
 		"Boudicca",
@@ -145,10 +118,9 @@
 		"Dubnovellaunus",
 		"Vosenius"
 	],
-	"SkirmishReplacements":
-	{
+	"SkirmishReplacements": {
 		"skirmish/units/default_infantry_ranged_b": "units/brit_infantry_slinger_b",
-		"skirmish/units/special_starting_unit": "units/brit_war_dog_b",
+		"skirmish/units/special_starting_unit": "units/brit_war_dog",
 		"skirmish/structures/default_house_5": "structures/{civ}_house"
 	},
 	"SelectableInGameSetup": true

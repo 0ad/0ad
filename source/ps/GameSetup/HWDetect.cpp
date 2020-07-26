@@ -132,15 +132,6 @@ void ConvertTLBs(const ScriptInterface& scriptInterface, JS::MutableHandleValue 
 }
 #endif
 
-// The Set* functions will override the default behaviour, unless the user
-// has explicitly set a config variable to override that.
-// (TODO: This is an ugly abuse of the config system)
-static bool IsOverridden(const char* setting)
-{
-	EConfigNamespace ns = g_ConfigDB.GetValueNamespace(CFG_COMMAND, setting);
-	return !(ns == CFG_LAST || ns == CFG_DEFAULT);
-}
-
 void SetDisableAudio(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
 {
 	g_DisableAudio = disabled;
