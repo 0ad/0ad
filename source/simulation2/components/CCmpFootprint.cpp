@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -49,7 +49,7 @@ public:
 	static std::string GetSchema()
 	{
 		return
-			"<a:help>Approximation of the entity's shape, for collision detection and outline rendering. "
+			"<a:help>Approximation of the entity's shape, for collision detection and may be used for outline rendering or to determine selectable bounding box. "
 			"Shapes are flat horizontal squares or circles, extended vertically to a given height.</a:help>"
 			"<a:example>"
 				"<Square width='3.0' height='3.0'/>"
