@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-20 07:10+0000\n"
-"PO-Revision-Date: 2020-07-20 08:31+0000\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-24 08:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -463,8 +463,8 @@ msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr "Zaborretako materialak erabiltzeak hesien eraikitze kostua eta denbora gutxitzen du."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "Hiriko hesiak eraikitzean %20- behar du, baina -1 babesa galtzen du eraisketa erasoen aurrean."
+msgid "Walls −20% build time, but −1 crush armor."
+msgstr ""
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -777,8 +777,8 @@ msgstr "Sendalari guztien sendatze-abiadura hobetzen du."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
-msgid "Healers +25% healing rate."
-msgstr "Sendalariek %25+ hobetzen dute sendatze-abiadura."
+msgid "Healers −20% healing time."
+msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -853,16 +853,16 @@ msgid "Using geometric masonry increases the sturdiness of defensive walls."
 msgstr "Igeltserotza geometrikoaren erabilpenak eusteko ahalmen handiagoa ematen die babes hesiei."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "Hiriko hesiek +2 babes maila gehiago lortzen dute eraisketa minaren kontra, baina eraikitze denbora %10 igotzen da."
+msgid "Walls +2 crush armor, but +10% build time."
+msgstr ""
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
 msgstr "Igeltserotza Geometrikoa."
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Walls build time vs. Health"
-msgstr "Hesien eraikitze denbora vs. Osasuna"
+msgid "Wall armor vs build time."
+msgstr ""
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -893,8 +893,8 @@ msgstr "Aurreratu Hiri Arora, eraikin eta unitate gehiago gaitzen dituena. Gizar
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Herri Aroko 4 egitura behar ditu (Hesiak eta Gizarte zentroak beste)"
+msgid "Requires 4 Town Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -944,9 +944,8 @@ msgstr "Aurreratu Herri Arora, egitura eta unitate gehiago gaitzen dituena. Hiri
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Herrixka aroko 5 egitura behar ditu (Hesi eta Baratzeak beste)."
+msgid "Requires 5 Village Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1228,8 +1227,8 @@ msgid "Improve the international trading profit."
 msgstr "Kanpo merkataritzaren irabaziak hobetzen ditu."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "Market +10% International Bonus."
-msgstr "%10+ saria Merkataritza Internazionalean. "
+msgid "+10% international trade bonus."
+msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1654,8 +1653,8 @@ msgid ""
 msgstr "Atenasko Harresi Luzeak Temistokles azkarraren agindu pean eraiki ziren, hiritik Pireo kairaino 6 kilometroz luzatzen ziren. Horrek hornitzeko itsas bideak ziurtatzen zituen eta etsaiari hiria setioan zuenean janaririk gabe uztea eragozten zion."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
-msgid "Build stone walls in neutral territory."
-msgstr "Eraiki harresiak eremu neutralean."
+msgid "Build Walls in own or neutral territory."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"

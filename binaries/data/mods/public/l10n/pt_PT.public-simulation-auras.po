@@ -6,6 +6,7 @@
 # Djassi Fonseca <djassi.fonseca@gmail.com>, 2016
 # Drew Melim <nokostya.translation@gmail.com>, 2016
 # Gonçalo Amaral <gongasamaral@hotmail.com>, 2018
+# João Ferreira <joaopedropferreira3@gmail.com>, 2020
 # José Fernandes <rapazamistoso@gmail.com>, 2020
 # Mário Branco <branco.ana8@gmail.com>, 2017
 # Nuno Menezes <nuno.menezes12@gmail.com>, 2017
@@ -18,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:09+0000\n"
-"PO-Revision-Date: 2020-07-17 11:37+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-26 18:10+0000\n"
+"Last-Translator: João Ferreira <joaopedropferreira3@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,7 +76,7 @@ msgstr "Presença Encorajadora"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers +1 armor level and +10% melee and ranged attack damage."
-msgstr ""
+msgstr "Soldados +1 de nível de armadura e +10% de dano de ataque físico e de alcance."
 
 #: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
 msgid "Meroitic Pyramids"
@@ -195,24 +196,24 @@ msgid "Trademasters"
 msgstr "Mestres do Comércio"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
-msgid "Allied Markets +10% international trade bonus."
-msgstr "Mercados Aliados +10% de bónus de comércio internacional"
+msgid "Allies +10% international trade bonus."
+msgstr "Aliados +10% de bónus em comércio internacional"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Products from Gaul"
-msgstr ""
+msgstr "Produtos da Gália"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Blacksmiths −15% technology resource costs and research time."
-msgstr ""
+msgstr "Ferreiros -15% de custos de recursos de tecnologia e de tempo de pesquisa."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
 msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
-msgid "Allied Citizen Javelinists −10% resource costs."
-msgstr "Cidadãos atiradores de lança aliados -10% custo de recursos."
+msgid "Allied Citizen Javelineers −10% resource costs."
+msgstr "Cidadãos Javelineiros Aliados -10% de custos de recursos."
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -334,8 +335,8 @@ msgstr "Perseguição dos Escaramuçadores"
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraDescription
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
-"Javelinists +20% attack range."
-msgstr "Cassivelauno mobilizou escaramuçadores velozes para assediar as tropas Romanas e forrageadores.\nAtiradores de lança +20% alcance de ataque."
+"Javelineers +20% attack range."
+msgstr "Cassivellaunus escaramuceiros rápidos implantados para disruptar tropas Romanas e forrageiros. Javelineiros +20% de ataque de alcance."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -545,8 +546,8 @@ msgid "Peltast Reforms"
 msgstr "Reformas de Peltasta"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraDescription
-msgid "Infantry Javelinists +15% movement speed."
-msgstr "Infantaria de atiradores de lança +15% velocidade de movimento"
+msgid "Infantry Javelineers +15% movement speed."
+msgstr "Javelineiros de Infantaria +15% de velocidade de movimento."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
@@ -968,8 +969,8 @@ msgstr "Reformas de Hilota"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid ""
-"Citizen Infantry Javelinists +1 armor, +25% ranged attack pierce damage."
-msgstr "Infantaria Cidadã de atiradores de lança +1 armadura, +25% dano perfurante de ataque à distância."
+"Citizen Infantry Javelineers +1 armor, +25% ranged attack pierce damage."
+msgstr "Infantaria de Cidadãos Javelineiros +1 de armadura, +25% de dano perfurador de alcance"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

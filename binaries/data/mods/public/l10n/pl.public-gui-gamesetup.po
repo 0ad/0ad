@@ -52,6 +52,7 @@
 # Piotr Lehmann <lejmus@o2.pl>, 2017
 # Przemysław Murach <moonshine133@vp.pl>, 2019-2020
 # Robert Wolniak <robert.wolniak@gmail.com>, 2014
+# Robert x <jankinowski11@gmail.com>, 2020
 # Jakub Rosiński, 2014
 # slodki12341 <slodki1234@gmail.com>, 2014
 # tomekpg <tomekpg@op.pl>, 2014
@@ -60,9 +61,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-26 07:09+0000\n"
-"PO-Revision-Date: 2020-06-26 12:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-24 07:08+0000\n"
+"PO-Revision-Date: 2020-07-25 22:16+0000\n"
+"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -169,7 +170,7 @@ msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "Gracz"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:36
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:38
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "Rodzaj gry"
@@ -315,6 +316,16 @@ msgstr "Wyłącz skarby"
 msgid "Do not add treasures to the map."
 msgstr "Wyłącz wszystkie skarby na mapie."
 
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:46
+msgid "World population"
+msgstr "Populacja świata"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
+msgid ""
+"When checked the Population Cap will be evenly distributed over all living "
+"players."
+msgstr "Jeśli ta opcja zostanie zaznaczona, limit populacji zostanie równo rozdzielony między wszystkich żywych graczy."
+
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:135
 msgid "Biome"
 msgstr "Fauna i flora"
@@ -445,20 +456,20 @@ msgstr "Liczba graczy"
 msgid "Select number of players."
 msgstr "Wybierz liczbę graczy."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:82
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:91
 msgid "Population Cap"
 msgstr "Limit populacji"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:85
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:94
 msgid "Select population limit."
 msgstr "Wybierz limit populacji."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:88
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:97
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "Przez gracza"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:91
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:100
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
@@ -546,6 +557,21 @@ msgstr "Poziom trudności"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:84
 msgid "Select the difficulty of this scenario."
 msgstr "Wybierz poziom trudności dla tego scenariusza."
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:76
+msgid "World Population Cap"
+msgstr "Limit populacji świata"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:79
+msgid "Select world population limit."
+msgstr "Wybierz limit światowej populacji."
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:82
+#, javascript-format
+msgid ""
+"Warning: There might be performance issues if %(popCap)s population is "
+"reached."
+msgstr "Uwaga: mogą pojawić się problemy z wydajnością, jeśli zostanie osiągnięta populacja %(popCap)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:61
 msgid "Ceasefire"

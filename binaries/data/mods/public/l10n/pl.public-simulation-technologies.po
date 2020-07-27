@@ -30,14 +30,15 @@
 # q <q@qq.qq>, 2015
 # Adam Rabiega <rabusek@gmail.com>, 2014
 # Robert Wolniak <robert.wolniak@gmail.com>, 2014
+# Robert x <jankinowski11@gmail.com>, 2020
 # Sebastiasn Kalisz <sebastiankalisz3@gmail.com>, 2020
 # slodki12341 <slodki1234@gmail.com>, 2014
 # Voltinus <voltinusmail@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-20 07:10+0000\n"
-"PO-Revision-Date: 2020-07-20 21:56+0000\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-25 22:16+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -451,7 +452,7 @@ msgstr "Zainspiruj swoich żołnierzy wyższym wynagrodzeniem. Wszystkie wojska 
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
-msgstr "Chęć do walki"
+msgstr "Wola walki"
 
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.sele
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.ptol
@@ -488,8 +489,8 @@ msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr "Użycie gruzu zmniejsza koszt oraz czas budowy murów."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "Zmniejsza czas budowania Murów miejskich o -20%, ale zmniejsza też ich poziom obrony przeciw obrażeniom burzącym o -1."
+msgid "Walls −20% build time, but −1 crush armor."
+msgstr "Mury -20% czasu budowy, ale -1 ochrony przed burzeniem"
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -802,8 +803,8 @@ msgstr "Zwiększa tempo uzdrawiania każdego z uzdrowicieli."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
-msgid "Healers +25% healing rate."
-msgstr "Uzdrowiciele +25% tempa uzdrawiania."
+msgid "Healers −20% healing time."
+msgstr "Uzdrowiciele -20% czasu leczenia"
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -878,16 +879,16 @@ msgid "Using geometric masonry increases the sturdiness of defensive walls."
 msgstr "Użycie zasad geometrii w murarstwie zwiększa solidność murów obronnych."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "Mury miejskie +2 pancerza przeciw miażdżeniu, lecz wydłużony o +10% czas budowania."
+msgid "Walls +2 crush armor, but +10% build time."
+msgstr "Mury +2 ochrony przed burzeniem, ale +10% czasu budowy."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
 msgstr "Geometria masońska"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Walls build time vs. Health"
-msgstr "Szybkość budowania murów kontra Wytrzymałość"
+msgid "Wall armor vs build time."
+msgstr "Odporność murów vs czas budowy"
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -918,8 +919,8 @@ msgstr "Awansuj do fazy dużego miasta, która odblokowuje więcej budynków i j
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Wymaga 4 nowych budynków fazy miasta (poza murami i centrami osady)."
+msgid "Requires 4 Town Structures."
+msgstr "Wymaga czterech struktur miasta."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -969,9 +970,8 @@ msgstr "Awansuj do fazy miasteczka, która odblokowuje więcej budynków i jedno
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Wymaga 5 budynków fazy wioski (poza palisadami i farmami)."
+msgid "Requires 5 Village Structures."
+msgstr "Wymaga pięciu struktur osady."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1253,8 +1253,8 @@ msgid "Improve the international trading profit."
 msgstr "Popraw międzynarodowe zyski."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "Market +10% International Bonus."
-msgstr "Targi +10 do Międzynarodowego Dodatku"
+msgid "+10% international trade bonus."
+msgstr "+10% bonus dla handlu międzynarodowego"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1679,8 +1679,8 @@ msgid ""
 msgstr "Długie Mury ateńskie zostały skonstruowane pod patronatem przebiegłego Termoklesa i rozszerzone o 6 km od miasta to portu w Pireusie. To zabezpieczało morskie drogi zaopatrzenia, co chroniło przed głodem w czasie oblężenia miasta przez wrogów."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
-msgid "Build stone walls in neutral territory."
-msgstr "Buduj kamienne mury na neutralnym terytorium."
+msgid "Build Walls in own or neutral territory."
+msgstr "Buduj mury na własnym lub neutralnym terytorium"
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"

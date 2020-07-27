@@ -4,7 +4,7 @@
 # 
 # Translators:
 # LeviTaule <levi.taule@gmail.com>, 2015-2016
-# Marián Mižik <inactive+marian.mizik@transifex.com>, 2015
+# 2001c3bfc7421750b343e20d6f8feae5_62d342a <746da4594d700c1e2023e1839e1e5d4f_309682>, 2015
 # Mário Bulejko, 2015
 # Martin Plávala <martinplavala@gmail.com>, 2014
 # Miroslav Kadlec <mirokadlec12@gmail.com>, 2018
@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-22 07:09+0000\n"
-"PO-Revision-Date: 2020-05-22 19:22+0000\n"
-"Last-Translator: Angen <slavomir.slovenkai@gmail.com>\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-24 07:41+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,12 +111,13 @@ msgid "Unit"
 msgstr "Jednotka"
 
 #: simulation/templates/template_wallset.xml:10
-msgid "City Wall"
-msgstr "Mestské hradby"
+msgid "Wall off an area."
+msgstr ""
 
-#: simulation/templates/template_wallset.xml:13
-msgid "Wall off your town for a stout defense."
-msgstr "Opevni svoje mesto hradbami pre pevnejšiu obranu."
+#: simulation/templates/template_wallset.xml:11
+#: simulation/templates/template_wallset.xml:9
+msgid "Wall"
+msgstr ""
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
@@ -1136,7 +1137,7 @@ msgstr "Iba Jazda, vyžaduje aspoň 6."
 msgid "Wedge"
 msgstr "Klin"
 
-#: simulation/templates/special/player/player.xml:64
+#: simulation/templates/special/player/player.xml:61
 msgid "Player"
 msgstr "Hráč"
 

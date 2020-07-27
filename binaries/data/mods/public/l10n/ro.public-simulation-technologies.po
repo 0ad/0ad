@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-20 07:10+0000\n"
-"PO-Revision-Date: 2020-07-20 08:31+0000\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-24 08:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -465,8 +465,8 @@ msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr "Folosind materiale din moloz se reduce costul si timpul de construire al zidurilor."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "Ziduri de oras -20% timp de construcție, dar -1 nivel armură zdrobită"
+msgid "Walls −20% build time, but −1 crush armor."
+msgstr ""
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -779,8 +779,8 @@ msgstr "Crește Raza de Vindecare a tuturo vindecătorilor."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
-msgid "Healers +25% healing rate."
-msgstr "Vindecătorii +25% rată de vindecare."
+msgid "Healers −20% healing time."
+msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -855,7 +855,7 @@ msgid "Using geometric masonry increases the sturdiness of defensive walls."
 msgstr "Folosind geometria, masoneria a crescut duritatea zidurilor defensive."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "City walls +2 crush armor levels, but +10% build time."
+msgid "Walls +2 crush armor, but +10% build time."
 msgstr ""
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
@@ -863,7 +863,7 @@ msgid "Geometric Masonry"
 msgstr "Zidărie geometrică"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Walls build time vs. Health"
+msgid "Wall armor vs build time."
 msgstr ""
 
 #: simulation/data/technologies/phase_city.jsongenericName
@@ -895,7 +895,7 @@ msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
+msgid "Requires 4 Town Structures."
 msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
@@ -946,8 +946,7 @@ msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
+msgid "Requires 5 Village Structures."
 msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
@@ -1230,7 +1229,7 @@ msgid "Improve the international trading profit."
 msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "Market +10% International Bonus."
+msgid "+10% international trade bonus."
 msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
@@ -1656,8 +1655,8 @@ msgid ""
 msgstr "Zidurile lungi ale Atenei au fost construite sub egida vicleanului Temistocle și aveau lungimea de 6km, între oraș și portul Piraeus. Acestea au securizat rutele de aprovizionare pe mare ale orașului și au prevenit înfometarea orașului în timpul unui asediu."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
-msgid "Build stone walls in neutral territory."
-msgstr "Construiește ziduri de piatră in teritorii neutre."
+msgid "Build Walls in own or neutral territory."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"

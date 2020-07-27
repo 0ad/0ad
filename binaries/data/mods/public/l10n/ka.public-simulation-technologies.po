@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-20 07:10+0000\n"
-"PO-Revision-Date: 2020-07-20 08:31+0000\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-24 08:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Georgian (http://www.transifex.com/wildfire-games/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -459,8 +459,8 @@ msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr "რიყის ქვის გამოყენება ამცირებს კედლების ფასს და შენების დროს."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "ქალაქის კედლები -20% შენების დრო, მაგრამ -1 დასრესის ჯავშნის დონე."
+msgid "Walls −20% build time, but −1 crush armor."
+msgstr ""
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -773,8 +773,8 @@ msgstr "ზრდის ყველა მკურნალის განკ
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
-msgid "Healers +25% healing rate."
-msgstr "მკურნალებს +25% განკურნების ხარისხი."
+msgid "Healers −20% healing time."
+msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -849,16 +849,16 @@ msgid "Using geometric masonry increases the sturdiness of defensive walls."
 msgstr "ქვების გეომეტრიული წყობა ზრდის თავდაცვითი კედლების სიმტკიცეს."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "ქალაქის კედლები +2 გასრესის ჯავშნის დონე, მაგრამ +10% შენების დრო."
+msgid "Walls +2 crush armor, but +10% build time."
+msgstr ""
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
 msgstr "ქვების გეომეტრიული წყობა"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Walls build time vs. Health"
-msgstr "კედლების შენების დრო ჯანმრთელობის წინააღმდეგ"
+msgid "Wall armor vs build time."
+msgstr ""
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -889,8 +889,8 @@ msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "საჭიროებს 4 ახალ ქალაქის ფაზის შენობას (კედლების და სამოქალაქო სახლების გამოკლებით)."
+msgid "Requires 4 Town Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -940,9 +940,8 @@ msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "საჭიროებს 5 სოფლის ფაზის შენობას (ღობეების და ყანების გამოკლებით)"
+msgid "Requires 5 Village Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1224,7 +1223,7 @@ msgid "Improve the international trading profit."
 msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "Market +10% International Bonus."
+msgid "+10% international trade bonus."
 msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
@@ -1650,7 +1649,7 @@ msgid ""
 msgstr "ათენის გრძელი კედლები აიგო ცბიერი თემისტოკლეს წინათგრძნობით და გაიზარდა 6 კმ-ით ქალაქიდან პორტ პირაეუსამდე. ეს იცავდა ქალაქის საზღვაო მიწოდების გზებს და ხელს უშლიდა მტერს ეშიმშილებინა ქალაქი ალყის პერიოდში."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
-msgid "Build stone walls in neutral territory."
+msgid "Build Walls in own or neutral territory."
 msgstr ""
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName

@@ -11,7 +11,7 @@
 # Bartosz Bobin <bartosz@bobin.eu>, 2017-2018
 # Bartosz Bobin <bartosz@bobin.eu>, 2018
 # Daniel Whatever <Deynyel@protonmail.com>, 2017
-# Aya Punx <inactive+hubert.slosarski@transifex.com>, 2018
+# e9706534be4a728ed4e67375991e760b_b69146a <22edc3ec7a0ff9ecf360faca25adb468_671791>, 2018
 # Jarek Kokociński <yarecky@onet.pl>, 2015
 # Leszek Szary, 2014-2015
 # Lukasz B <boberstarosta@gmail.com>, 2016
@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-22 07:09+0000\n"
-"PO-Revision-Date: 2020-05-23 11:29+0000\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-25 22:15+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -120,12 +120,13 @@ msgid "Unit"
 msgstr "Jednostka"
 
 #: simulation/templates/template_wallset.xml:10
-msgid "City Wall"
-msgstr "Mury miasta"
+msgid "Wall off an area."
+msgstr "Zamuruj obszar."
 
-#: simulation/templates/template_wallset.xml:13
-msgid "Wall off your town for a stout defense."
-msgstr "Wybuduj mur, aby zwiększyć możliwości obronne miasta."
+#: simulation/templates/template_wallset.xml:11
+#: simulation/templates/template_wallset.xml:9
+msgid "Wall"
+msgstr "Mur"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
@@ -1145,7 +1146,7 @@ msgstr "Tylko kawaleria, wymaga przynajmniej 6."
 msgid "Wedge"
 msgstr "Klin"
 
-#: simulation/templates/special/player/player.xml:64
+#: simulation/templates/special/player/player.xml:61
 msgid "Player"
 msgstr "Gracz"
 

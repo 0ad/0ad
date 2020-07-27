@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-20 07:10+0000\n"
-"PO-Revision-Date: 2020-07-20 08:31+0000\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-24 08:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -461,8 +461,8 @@ msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr "Bidh ballachan nas saoire ’s nas luaithe ri an togail ma chleachdar stuthan sprùillich."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "Thèid ballachan a’ bhaile a thogail nas luaithe e −20% ach bidh −1 de dh’armachd an aghaidh brùillidh aca."
+msgid "Walls −20% build time, but −1 crush armor."
+msgstr ""
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -775,8 +775,8 @@ msgstr "Meudaichidh seo luaths slànachaidh nan lighichean uile."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
-msgid "Healers +25% healing rate."
-msgstr "+25% air luaths slànachaidh nan lighichean."
+msgid "Healers −20% healing time."
+msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -851,16 +851,16 @@ msgid "Using geometric masonry increases the sturdiness of defensive walls."
 msgstr "Le clachaireachd gheomatrach, bidh na ballachan-dìona nas seasmhaiche."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "+2 de dh’armachd an aghaidh brùillidh airson ballachan a’ bhaile ach bheir e +10% nas fhaide an togail."
+msgid "Walls +2 crush armor, but +10% build time."
+msgstr ""
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
 msgstr "Clachaireachd gheomatrach"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Walls build time vs. Health"
-msgstr "Luaths togail no seasmhachd nam ballachan"
+msgid "Wall armor vs build time."
+msgstr ""
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -891,8 +891,8 @@ msgstr "Adhartaich gu linn nam mòr-bhailtean a bheir barrachd thogalaichean is 
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Feumaidh seo 4 togalaichean ùra (ach ballachan is ionadan sìobhalta) o linn nam bailtean."
+msgid "Requires 4 Town Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -942,9 +942,8 @@ msgstr "Adhartaich gu linn bailtean a bheir barrachd thogalaichean is aonadan dh
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Feumaidh seo 5 togalaichean ùra (ach sonnaich is achaidhean tuathanais) o linn nan clachan."
+msgid "Requires 5 Village Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1226,8 +1225,8 @@ msgid "Improve the international trading profit."
 msgstr "Faigh barrachd maoin às a’ mhalart eadar-nàiseanta."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "Market +10% International Bonus."
-msgstr "Buannachd eadar-nàiseanta dhe +10% air margaidean."
+msgid "+10% international trade bonus."
+msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1652,8 +1651,8 @@ msgid ""
 msgstr "Chaidh ballachan fada na h-Àithne an togail fo stiùireadh Themistocles seòlta agus ruig iad on bhaile gu port Phiraeus a bha 6 km air falbh. Dhaingnich seo slighean solar a’ bhaile on mhuir ’s cha b’ urrainn do nàmhaid am baile a ghortachadh rè sèiste."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
-msgid "Build stone walls in neutral territory."
-msgstr "Tog ballachan-cloiche air ranntair neo-phàirteach."
+msgid "Build Walls in own or neutral territory."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"

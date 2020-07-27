@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-20 07:10+0000\n"
-"PO-Revision-Date: 2020-07-20 08:31+0000\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-24 08:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -470,8 +470,8 @@ msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr "Χρησιμοποιώντας υλικά από μπάζα μειώνετε το κόστος και ο χρόνος οικοδόμησης των τοίχων."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "Στα τείχη της πόλης -20% στο χρόνο κατασκευής, αλλά -1 βαθμό στη θωράκιση συνθλίψεως."
+msgid "Walls −20% build time, but −1 crush armor."
+msgstr ""
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -784,8 +784,8 @@ msgstr "Αυξάνει το ρυθμό θεραπείας για όλους το
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
-msgid "Healers +25% healing rate."
-msgstr "Θεραπευτές +25% ρυθμός θεραπείας"
+msgid "Healers −20% healing time."
+msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -860,16 +860,16 @@ msgid "Using geometric masonry increases the sturdiness of defensive walls."
 msgstr "Χρησιμοποιώντας γεωμετρική τοιχοποιία αυξάνετε η ανθεκτικότητα του αμυντικού τείχους."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "Στα τείχη τη πόλης +2 βαθμούς στη θωράκιση κατά της σύνθλιψης, αλλά +10% στο χρόνο κατασκευής."
+msgid "Walls +2 crush armor, but +10% build time."
+msgstr ""
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
 msgstr "Γεωμετρική Δόμηση."
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Walls build time vs. Health"
-msgstr "Χρόνος Οικοδόμησης Τειχών εναντίον Υγείας"
+msgid "Wall armor vs build time."
+msgstr ""
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -900,8 +900,8 @@ msgstr "Προχωρήσετε στην Φάση Πόλη, η οποία ξεκ�
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Απαιτούνται 4 νέες δομές Φάσης Κωμόπολης (εκτός από Τείχη και Αστικά κέντρα)."
+msgid "Requires 4 Town Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -951,9 +951,8 @@ msgstr "Προχώρησε στην Φάση Κωμόπολη, η οποία ξ�
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Απαιτούνται 5 Κτίρια Φάσης Χωριού (εκτός από Περιφράγματα και Αγροκτήματα)."
+msgid "Requires 5 Village Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1235,8 +1234,8 @@ msgid "Improve the international trading profit."
 msgstr "Βελτίωση του διεθνούς εμπορικού κέρδους."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "Market +10% International Bonus."
-msgstr "Στην Αγορά +10% Διεθνές Μπόνους."
+msgid "+10% international trade bonus."
+msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1661,8 +1660,8 @@ msgid ""
 msgstr "Τα Μακρά Τείχη της Αθήνας κατασκευάστηκαν υπό την αιγίδα του τετραπέρατου Θεμιστοκλή και εκτείνονταν 6 χλμ από την πόλη μέχρι το λιμάνι του Πειραιά. Αυτό εξασφάλιζε ασφαλή οδό εφοδιασμού της πόλης από θάλασσα και απέτρεπε τη λιμοκτονία κατά τη διάρκεια της πολιορκίας από εχθρό."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
-msgid "Build stone walls in neutral territory."
-msgstr "Χτίσε πέτρινα τείχη σε ουδέτερο έδαφος."
+msgid "Build Walls in own or neutral territory."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"

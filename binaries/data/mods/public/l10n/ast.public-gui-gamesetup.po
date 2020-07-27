@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-26 07:09+0000\n"
-"PO-Revision-Date: 2020-07-24 01:20+0000\n"
+"POT-Creation-Date: 2020-07-24 07:08+0000\n"
+"PO-Revision-Date: 2020-07-27 03:24+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -117,7 +117,7 @@ msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "Xugador"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:36
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:38
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "Tipu de partida"
@@ -263,6 +263,16 @@ msgstr "Desactivar ayalgues"
 msgid "Do not add treasures to the map."
 msgstr "Que nun heba ayalgues en mapa."
 
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:46
+msgid "World population"
+msgstr "Población global"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
+msgid ""
+"When checked the Population Cap will be evenly distributed over all living "
+"players."
+msgstr "Marcada, la llende de la población va partise por igual ente tolos xugadores vivos."
+
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:135
 msgid "Biome"
 msgstr "Bioma"
@@ -393,20 +403,20 @@ msgstr "Númberu de xugadores"
 msgid "Select number of players."
 msgstr "Esbilla'l númberu de xugadores."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:82
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:91
 msgid "Population Cap"
 msgstr "Llende de la población"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:85
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:94
 msgid "Select population limit."
 msgstr "Esbilla la llende de la población."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:88
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:97
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "Por xugador"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:91
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:100
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
@@ -495,6 +505,21 @@ msgstr "Dificultá"
 msgid "Select the difficulty of this scenario."
 msgstr "Esbilla la dificultá del escenariu."
 
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:76
+msgid "World Population Cap"
+msgstr "Llende de la población global"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:79
+msgid "Select world population limit."
+msgstr "Esbilla la llende de la población global."
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:82
+#, javascript-format
+msgid ""
+"Warning: There might be performance issues if %(popCap)s population is "
+"reached."
+msgstr "Avisu: Pue que'l rindimientu caya si s'algama una población de %(popCap)s."
+
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:61
 msgid "Ceasefire"
 msgstr "Altu'l fueu"
@@ -532,7 +557,7 @@ msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr "La cifra total de reliquies en mapa. Si se quier ganar pente medies de reliquies, una o dos ye la cantidá más razonable. D'ehí p'arriba, cal percanciar les reliquies pa dar puxu a les aures."
+msgstr "La cifra total de reliquies en mapa. Si se quier ganar con reliquies, una o dos ye la cantidá más razonable. D'ehí p'arriba, cal percanciar les reliquies pa dar puxu a les aures."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:86
 msgid "Relic Duration"
@@ -540,7 +565,7 @@ msgstr "Cuenta atrás de les reliquies"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:89
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr "Minutos hasta que'l xugador gane por reliquies."
+msgstr "Minutos hasta que'l xugador gane con reliquies."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:95
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:96
@@ -579,7 +604,7 @@ msgstr "Cuenta atrás de les maravíes"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:90
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr "Minutos hasta que'l xugador gane por maravíes."
+msgstr "Minutos hasta que'l xugador gane con maravíes."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
 msgid "Cheats enabled."
@@ -1294,7 +1319,7 @@ msgstr "«Pos tamién camiento que Cartagu nun ha ser.» \\n— Catón el Vieyu,
 msgid ""
 "“If a king is energetic, his subjects will be equally energetic.” \\n— "
 "Chanakya (“Arthashastra”, I. “Concerning Discipline”, chapter 19)"
-msgstr "«Si'l rei ye brengosu, los suxetos van ser igualmente brengosos.» \\n— Chanakya («L'artaxastra», I. «Tocántenes a la disciplina», capítulu 19)"
+msgstr "«Si'l rei ye brengosu, los paisanos tamién van ser brengosos.» \\n— Chanakya («L'artaxastra», I. «Tocántenes a la disciplina», capítulu 19)"
 
 #: gui/text/quotes.txt:57
 msgid ""
@@ -1302,14 +1327,14 @@ msgid ""
 " who awards mild punishment becomes contemptible. But whoever imposes "
 "punishment as deserved becomes respectable.” \\n— Chanakya (“Arthashastra”, "
 "I. “Concerning Discipline”, chapter 4)"
-msgstr "«Quienquiera qu'imponga acadigos severos vuélvese tarrecible al pueblu; quien da acadigos suaves vuélvese desdexable; pero quienquiera qu'imponga acadigos al avíu vuélvese respetable.» \\n— Chanakya («L'artaxastra», I. «Tocántenes a la disciplina», capítulu 4)"
+msgstr "«El que pon penes severes anoxa al pueblu; el que da penes suaves vuélvese refalgable; pero tol que pene al avíu dase a respetar.» \\n— Chanakya («L'artaxastra», I. «Tocántenes a la disciplina», capítulu 4)"
 
 #: gui/text/quotes.txt:58
 msgid ""
 "“We did not flinch but gave our lives to save Greece when her fate hung on a"
 " razor's edge.” \\n— Corinthian epitaph to their fallen of the Persian Wars "
 "(Plutarch, “Moralia”, “On the Malice of Herodotus”, 870e)"
-msgstr "«Teniendo tao na punta de la cuchiella asperxemos la Hélade.» \\n— Epitafiu corintiu pa los cayíos de les guerres perses (Plutarcu, «Moralia», «Sobre la malinidá d'Heródotu», 870e)"
+msgstr "«Cuando tola Hélade taba pela cota la cuchiella, diemos les nueses vides protexéndola.» \\n— Epitafiu corintiu pa los cayíos de les guerres perses (Plutarcu, «Moralia», «Sobre la malinidá d'Heródotu», 870e)"
 
 #: gui/text/quotes.txt:59
 msgid ""
@@ -1325,7 +1350,7 @@ msgid ""
 "“I am Cyrus, who won for the Persians their empire. Therefore do not "
 "begrudge me this bit of earth that covers my bones.” \\n— Cyrus the Great's "
 "epitaph (Plutarch, “Parallel Lives”, “Alexander”, sec. 69)"
-msgstr "«Yo so Ciru, que ganó a los perses l'imperiu, conque nun envidies esta pequeñeza de tierra que m'envolubra'l cuerpu.» \\n— L'epitafiu de Ciru'l Grande (Plutarcu, «Vides paraleles», «Alexandru», seic. 69)"
+msgstr "«Yo so Ciru, el que ganó a los perses l'imperiu; poro, nun enveyéis esta pequeñeza de tierra que m'envolubra'l cuerpu.» \\n— L'epitafiu de Ciru'l Grande (Plutarcu, «Vides paraleles», «Alexandru», seic. 69)"
 
 #: gui/text/quotes.txt:61
 msgid ""
@@ -1342,7 +1367,7 @@ msgid ""
 "Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
 "hung out their skins, stuffed with straw.” \\n— Darius I (Behistun "
 "inscription, column II, 32)"
-msgstr "«A Frávartix catóse-y y llevóse-y énte min. Yo corté-y la ñariz, les oreyes, la llingua y espuxé-y un güeyu; guardóse-y encadenáu a la entrada del mio palaciu; tola xente lu vio. Darréu lu crucifiqué n'Ecbatana; y a los homes que yeren los siguidores principales \\[…] esfollé-yos y escolingué-yos el pelleyu, enlleno de paya.» \\n— Daríu I (La inscripción de Beḥistún, columna II, 32)"
+msgstr "«Cataron a Frávartix y lleváronlu énte min. Yo corté-y la ñariz, les oreyes y la llingua; espuxé-y un güeyu y encadenémoslu a la entrada del palaz; tola xente lu vio. Darréu lu crucifiqué n'Ecbatana; y a los siguidores principales \\[…] esfollélos y escolingué los pelleyos, enllenos de paya.» \\n— Daríu I (La inscripción de Beḥistún, columna II, 32)"
 
 #: gui/text/quotes.txt:63
 msgid ""
@@ -1353,7 +1378,7 @@ msgstr "«Queriendo poco, el probe faise ricu.» \\n— Demócritu (fragmentu)"
 #: gui/text/quotes.txt:64
 msgid ""
 "“It is hard to be governed by one's inferior.” \\n— Democritus (fragment)"
-msgstr "«Cuesta tar sol gobiernu del inferior d'ún.» \\n— Demócritu (fragmentu)"
+msgstr "«Cuesta tar sol gobiernu d'un inferior.» \\n— Demócritu (fragmentu)"
 
 #: gui/text/quotes.txt:65
 msgid ""
@@ -1366,7 +1391,7 @@ msgid ""
 "“It is not possible to found a lasting power upon injustice, perjury, and "
 "treachery.” \\n— Demosthenes, in one of his many speeches against the rising"
 " Philip II of Macedon (“Olynthiac II”, 10)"
-msgstr "«Nun se pue llograr poder duradero malfaciendo, perxurando y engañando.» \\n— Demóstenes, nún de los munchos discursos sos escontra l'ascensu de Filipu II de Macedonia («La Olíntica II», 10)"
+msgstr "«Nun se pue establecer un poder duraderu malfaciendo, perxurando y engañando.» \\n— Demóstenes, nún de los munchos discursos sos escontra l'ascensu de Filipu II de Macedonia («La Olíntica II», 10)"
 
 #: gui/text/quotes.txt:67
 msgid ""
@@ -1381,7 +1406,7 @@ msgid ""
 "the sound, and that second roar was louder than the Macedonian war cry as "
 "five hundred thousand men shouted with one voice.” \\n— Diodorus Siculus "
 "about the Battle of Issus (“The Library of History”, XVII., sec. 33)"
-msgstr "«Los macedonios glayanon primero, allanciando un ixuxú de mal agüeru, pero resclamando los bárbaros darréu, miániques retrañía tol monte'l rodiu, masque'l ruxíu d'aquesi gritu apodraba l'otru esberríu, como a una voz se resonaben quinientos mil.» \\n— Diodoru Sículu sobre la batalla d'Isu («Biblioteca histórica», XVII., seic. 33)"
+msgstr "«Los macedonios glayanon primero, llanzando un gritu de mal agüeru, pero al responder los bárbaros darréu, resonó tol rodiu montascosu; el ruxíu d'aquesti ixuxú apoderó'l primer esberríu, como a una voz se reclamaben quinientos mil.» \\n— Diodoru Sículu sobre la batalla d'Isu («Biblioteca histórica», XVII., seic. 33)"
 
 #: gui/text/quotes.txt:69
 msgid ""
@@ -1391,7 +1416,7 @@ msgid ""
 "him, he suffered many wounds on the front of his body.” \\n— Diodorus "
 "Siculus, on a brave Spartan at the Battle of Pylos (“The Library of "
 "History”, XXII., sec. 62)"
-msgstr "«Brásides, defendiéndose na pasera, tornaba d'ende l'ensame d'atenienses que converxeren nelli. Al entamu mató a munchos de la que lu acometíen, pero llueu, furáu por numberosos proxeutiles, quedó enforma llagáu nel frente del cuerpu.» \\n— Diodoru Sículu, sobre un espartanu valiente de la batalla de Pilos («La biblioteca histórica», XXII., seic. 62)"
+msgstr "«Brásides defendíase na pasera d'un ensame d'atenienses. Al entamu mató munchos de la que lu acometíen, pero llueu, furáu por bien de proxectiles, quedóse enforma llagáu.» \\n— Diodoru Sículu, sobre la valentía d'un espartanu na batalla de Pilos («La biblioteca histórica», XXII., seic. 62)"
 
 #: gui/text/quotes.txt:70
 msgid ""
@@ -1401,7 +1426,7 @@ msgid ""
 "there was added to the definition: having broad nails.” \\n— Diogenes "
 "Laertius (“The Lives and Opinions of Eminent Philosophers”, “Diogenes”, sec."
 " 40)"
-msgstr "«Platón definiere l'home como un animal bípedu ensin plumaxe, y tevo acoyida. Dióxenes \\[de Sinope] espeñó un pitón, tráxolu a la escuela y afirmó: Velehí l'home de Platón. D'ende qu'a la definición s'amestó: con uñes gordes.» \\n— Dióxenes Laerciu («Les vides y sencies de los filósofos más valoraos», «Dióxenes», seic. 40)"
+msgstr "«Platón definiere l'home como un animal bípedu ensin plumaxe, y tevo acoyida. Dióxenes \\[de Sinope] espeñó un pitón, tráxolu a la escuela y afirmó: Velehí l'home de Platón. D'ende qu'a la definición s'amestó: con uñes gordes.» \\n— Dióxenes Laerciu («Vitae Philosophorum», «Dióxenes», seic. 40)"
 
 #: gui/text/quotes.txt:71
 msgid ""
@@ -1413,14 +1438,14 @@ msgstr "«Soi cosmopolita.» \\n— Dióxenes de Sinope (Dióxenes Laerciu, «Le
 msgid ""
 "“It is not that I am mad, it is only that my head is different from yours.” "
 "\\n— Diogenes of Sinope (Stobaeus, “Florilegium”, 51)"
-msgstr "«Un demente nun lo soi, pero nun tengo la mesma miente que tu.» \\n— Dióxenes de Sinope (Estobéu, «Florilegium», 3.3.51)"
+msgstr "«Demente nun lo soi, pero nun tengo la mesma miente que tu.» \\n— Dióxenes de Sinope (Estobéu, «Florilegium», 3.3.51)"
 
 #: gui/text/quotes.txt:73
 msgid ""
 "“Yes, stand a little out of my sunshine.” \\n— Diogenes of Sinope to "
 "Alexander the Great, who asked if he could help in in any way (Plutarch, "
 "“Parallel Lives”, “Alexander”, sec. 14)"
-msgstr "«Escíbiate un poco del sol.» \\n— Dióxenes de Sinope a Alexandru'l Grande, que-y entrugare si-y podía aidar en dalgo (Plutarcu, «Vides paraleles», «Alexandru», seic. 14)"
+msgstr "«Escíbiate un poco del sol.» \\n— Dióxenes de Sinope a Alexandru'l Grande, que-y entrugare si precisaba ayuda (Plutarcu, «Vides paraleles», «Alexandru», seic. 14)"
 
 #: gui/text/quotes.txt:74
 msgid ""
@@ -1433,7 +1458,7 @@ msgid ""
 "“Stranger, go tell the Spartans that we lie here, obedient to their laws.” "
 "\\n— Epitaph at Thermopylae for Leonidas and his men (Herodotus, “The "
 "Histories”, VII. 228)"
-msgstr "«Á forasteru, que s'anuncie a los lacedemonios qu'equí xacemos, obedeciendo les sos pallabres.» \\n— L'epitafiu a les Termópiles pa Leónides y los de so (Heródotu, «Les hestories», VII. 228)"
+msgstr "«Á forasteru, que s'anuncie a los lacedemonios qu'equí xacemos, obedeciendo les sos pallabres.» \\n— L'epitafiu de Leónides ya los sos soldaos nes Termópiles (Heródotu, «Les hestories», VII. 228)"
 
 #: gui/text/quotes.txt:76
 msgid ""
@@ -1551,7 +1576,7 @@ msgid ""
 "an old man.” \\n— Hannibal's last words before his suicide, in exile with "
 "Flaminius pressuring the local ruler to hand him over (Livy, “History of "
 "Rome”, XXXIX. 51)"
-msgstr "«Vamos llibrar el pueblu romanu d'aprovecimientu durador, pos esperar la muerte d'un vieyu paez avaga-yos.» \\n— Haníbal, enantes del suicidiu, esterráu con Flaminiu, qu'apertaba al rexente llocal pa que lu entregare (Liviu, «Ab Urbe Condita», XXXIX. 51)"
+msgstr "«Vamos llibrar el pueblu romanu del aprovecimientu durador, pos esperar la muerte d'un vieyu paez avaga-yos.» \\n— Haníbal, enantes de suicidase, esterráu con Flaminiu, qu'apertaba al gobernador local pa que lu entregare (Liviu, «Ab Urbe Condita», XXXIX. 51)"
 
 #: gui/text/quotes.txt:93
 msgid ""

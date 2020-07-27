@@ -28,9 +28,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-20 07:10+0000\n"
-"PO-Revision-Date: 2020-07-20 08:31+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-26 11:45+0000\n"
+"Last-Translator: Günay Yılmaz\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -480,8 +480,8 @@ msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr "Çakıl kullanılması  duvarların inşa maliyeti ve sürelerini azaltır."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "Şehir Surları -20 daha hızlı inşa edilir ama Yıkım zırhı -1 seviye azalır."
+msgid "Walls −20% build time, but −1 crush armor."
+msgstr "Duvarlar -%20 inşa süresi ama -1 yıkım zırhı."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -794,8 +794,8 @@ msgstr "Tüm şifacıların iyileştirme oranını artırır."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
-msgid "Healers +25% healing rate."
-msgstr "Şifacılara +%25 iyileştirme oranı."
+msgid "Healers −20% healing time."
+msgstr "Şifacılar -%20 iyileştirme süresi."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -870,16 +870,16 @@ msgid "Using geometric masonry increases the sturdiness of defensive walls."
 msgstr "Geometrik taş işçiliği kullanarak savunma duvarlarınızın sağlamlığını artırın."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "Şehir duvarlarına +2 Yıkım zırhı seviyesi, ama +%10 inşa süresi."
+msgid "Walls +2 crush armor, but +10% build time."
+msgstr "Duvarlar +2 yıkım zırhı ama +%10 inşa süresi."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
 msgstr "Geometrik Duvarcılık"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Walls build time vs. Health"
-msgstr "Duvar İnşa Süresi vs. Dayanıklılığı"
+msgid "Wall armor vs build time."
+msgstr "Duvar zırhı vs inşa süresi."
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -910,8 +910,8 @@ msgstr "Daha fazla yapı ve birimin kilidini açan Şehir Aşamasına İlerle. S
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "4 yeni Şehir Aşaması yapısı gerekli (Duvarlar ve Şehir Merkezleri hariç)."
+msgid "Requires 4 Town Structures."
+msgstr "4 kasaba binası gerektirir."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -961,9 +961,8 @@ msgstr "Daha fazla yapı ve ünitenin kilidini açan Şehir Aşamasına İlerle.
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "5 Köy Aşaması yapısı gerekli (Çitler ve Tarım Alanları hariç)."
+msgid "Requires 5 Village Structures."
+msgstr "5 köy yapısı gerektirir."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1148,7 +1147,7 @@ msgstr "Saldırılara karşı yapıları güçlendir."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Towers +2 armor."
-msgstr ""
+msgstr "Kuleler +2 zırh."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1162,7 +1161,7 @@ msgstr "Savunma yapılarındaki mazgallar kale savunmasındaki askerlere daha ge
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
-msgstr ""
+msgstr "Nöbet ve Taş Kuleleri konuşlanan asker başına +%40 daha fazla ok atar."
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1174,7 +1173,7 @@ msgstr "Karakollar tarafsız bölgede iki kat daha uzun hayatta kalır."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts −50% territory decay rate."
-msgstr ""
+msgstr "Gözetleme kuleleri -%50 bölge sağlık bozulma oranı."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1186,7 +1185,7 @@ msgstr "Kale Mazgalları kulenin dibinde düşman vurmaya izin verir."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Sentry and Stone Towers have 0 minimum attack range."
-msgstr ""
+msgstr "Nöbet ve Taş Kuleler 0 minimum saldırı menziline sahipler."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1198,7 +1197,7 @@ msgstr "Ok atıcılar ateşli okların azami menzilini arttırır."
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Sentry and Stone Towers +8 attack range."
-msgstr ""
+msgstr "Nöbet ve Taş Kuleler +8 saldırı menzili."
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1222,7 +1221,7 @@ msgstr "Gece Nöbetçileri ihtiyatı artırır."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Sentry and Stone Towers +1 default arrow count."
-msgstr ""
+msgstr "Nöbet ve taş kuleleri +1 öntanımlı ok sayısı."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
@@ -1245,8 +1244,8 @@ msgid "Improve the international trading profit."
 msgstr "Uluslararası ticari kazancı geliştir."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "Market +10% International Bonus."
-msgstr "+%10 Uluslararası pazar bonusu"
+msgid "+10% international trade bonus."
+msgstr "+%10 uluslararası ticaret bonusu."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1542,7 +1541,7 @@ msgstr "Miken zamanlarının başlarında Yunanlar inşaat için taş kullanırd
 msgid ""
 "Athenian, Macedonian, and Spartan Structures +10% health and +10% capture "
 "points."
-msgstr ""
+msgstr "Atinalı, Makedon ve Spartalı yapılar +%10 sağlık ve +%10 ele geçirme puanı."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -1671,8 +1670,8 @@ msgid ""
 msgstr "Atina'nın uzun duvarları kurnaz Themistocles'in himayesi altında inşa edilmiştir ve şehir limanından Piraeus'a kadar 6 km uzunluğa ulaşmıştır. Bu bir kuşatma sırasında düşmanın tedarik yollarını kapatarak şehri açlığa mahkum etmesini engellemiştir."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
-msgid "Build stone walls in neutral territory."
-msgstr "Tarafsız bölgede taş duvarlar inşa."
+msgid "Build Walls in own or neutral territory."
+msgstr "Kendi bölgen ya da tarafsız bölgede duvar inşa et."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
@@ -1824,7 +1823,7 @@ msgstr "Libri Sibyllini"
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
 msgid "Traditional Army vs Reform Army"
-msgstr ""
+msgstr "Geleneksel Ordu vs Reform Ordusu"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsondescription
 msgid ""
@@ -1876,11 +1875,11 @@ msgstr "Nisioi"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsondescription
 msgid "The Roman-style core of the Seleucid army."
-msgstr ""
+msgstr "Selevkos ordusunun Roma tarzı çerkirdeği."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
-msgstr ""
+msgstr "Şampiyon Piyade Kılıçlıyı aç."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
 msgid "Reform Army"
@@ -1888,11 +1887,11 @@ msgstr "Reform Ordusu"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
-msgstr ""
+msgstr "Selevkos ordusunun Makedon tarzı çekirdeği."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Champion Infantry Pikeman."
-msgstr ""
+msgstr "Şampiyon Kargıcı Piyadeyi Aç"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"
@@ -1908,7 +1907,7 @@ msgstr "Gümüş Kalkanlar, veya Argyraspidai, Makedon ordusunun seçkin ağır 
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "health and attack."
-msgstr ""
+msgstr "Daha fazla sağlık ve saldırı ile Kalkan Taşıyan Şampiyon Piyadelerini, Gümüş Kalkanlara yükseltin."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"
