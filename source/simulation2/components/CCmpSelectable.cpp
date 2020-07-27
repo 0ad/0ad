@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -52,6 +52,13 @@ static const float RGB_DESATURATION = 0.333333f;
 class CCmpSelectable : public ICmpSelectable
 {
 public:
+	enum EShape
+	{
+		FOOTPRINT,
+		CIRCLE,
+		SQUARE
+	};
+
 	static void ClassInit(CComponentManager& componentManager)
 	{
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
@@ -90,25 +97,56 @@ public:
 					"<empty/>"
 				"</element>"
 			"</optional>"
-			"<element name='Overlay' a:help='Specifies the type of overlay to be displayed when this entity is selected'>"
-				"<optional>"
-					"<element name='AlwaysVisible' a:help='If this element is present, the selection overlay will always be visible (with transparency and desaturation)'>"
-						"<empty/>"
-					"</element>"
-				"</optional>"
-				"<choice>"
-					"<element name='Texture' a:help='Displays a texture underneath the entity.'>"
-						"<element name='MainTexture' a:help='Texture to display underneath the entity. Filepath relative to art/textures/selection/.'><text/></element>"
-						"<element name='MainTextureMask' a:help='Mask texture that controls where to apply player color. Filepath relative to art/textures/selection/.'><text/></element>"
-					"</element>"
-					"<element name='Outline' a:help='Traces the outline of the entity with a line texture.'>"
-						"<element name='LineTexture' a:help='Texture to apply to the line. Filepath relative to art/textures/selection/.'><text/></element>"
-						"<element name='LineTextureMask' a:help='Texture that controls where to apply player color. Filepath relative to art/textures/selection/.'><text/></element>"
-						"<element name='LineThickness' a:help='Thickness of the line, in world units.'><ref name='positiveDecimal'/></element>"
-					"</element>"
-				"</choice>"
+			"<element name='Overlay' a:help='Specifies the type of overlay to be displayed when this entity is selected.'>"
+				"<interleave>"
+					"<optional>"
+						"<element name='Shape' a:help='Specifies shape of overlay. If not specified, footprint shape will be used.'>"
+							"<choice>"
+								"<element name='Square' a:help='Set the overlay to a square of the given size'>"
+									"<attribute name='width' a:help='Size of the overlay along the left/right direction (in metres)'>"
+										"<data type='decimal'>"
+											"<param name='minExclusive'>0.0</param>"
+										"</data>"
+									"</attribute>"
+									"<attribute name='depth' a:help='Size of the overlay along the front/back direction (in metres)'>"
+										"<data type='decimal'>"
+											"<param name='minExclusive'>0.0</param>"
+										"</data>"
+									"</attribute>"
+								"</element>"
+								"<element name='Circle' a:help='Set the overlay to a circle of the given size'>"
+									"<attribute name='radius' a:help='Radius of the overlay (in metres)'>"
+										"<data type='decimal'>"
+											"<param name='minExclusive'>0.0</param>"
+										"</data>"
+									"</attribute>"
+								"</element>"
+							"</choice>"
+						"</element>"
+					"</optional>"
+					"<optional>"
+						"<element name='AlwaysVisible' a:help='If this element is present, the selection overlay will always be visible (with transparency and desaturation)'>"
+							"<empty/>"
+						"</element>"
+					"</optional>"
+					"<choice>"
+						"<element name='Texture' a:help='Displays a texture underneath the entity.'>"
+							"<element name='MainTexture' a:help='Texture to display underneath the entity. Filepath relative to art/textures/selection/.'><text/></element>"
+							"<element name='MainTextureMask' a:help='Mask texture that controls where to apply player color. Filepath relative to art/textures/selection/.'><text/></element>"
+						"</element>"
+						"<element name='Outline' a:help='Traces the outline of the entity with a line texture.'>"
+							"<element name='LineTexture' a:help='Texture to apply to the line. Filepath relative to art/textures/selection/.'><text/></element>"
+							"<element name='LineTextureMask' a:help='Texture that controls where to apply player color. Filepath relative to art/textures/selection/.'><text/></element>"
+							"<element name='LineThickness' a:help='Thickness of the line, in world units.'><ref name='positiveDecimal'/></element>"
+						"</element>"
+					"</choice>"
+				"</interleave>"
 			"</element>";
 	}
+
+	EShape m_Shape;
+	entity_pos_t m_Width; // width/radius
+	entity_pos_t m_Height; // height/radius
 
 	virtual void Init(const CParamNode& paramNode)
 	{
@@ -143,6 +181,32 @@ public:
 			m_OverlayDescriptor.m_LineTexture = CStrIntern(TEXTUREBASEPATH + outlineNode.GetChild("LineTexture").ToUTF8());
 			m_OverlayDescriptor.m_LineTextureMask = CStrIntern(TEXTUREBASEPATH + outlineNode.GetChild("LineTextureMask").ToUTF8());
 			m_OverlayDescriptor.m_LineThickness = outlineNode.GetChild("LineThickness").ToFloat();
+		}
+
+		const CParamNode& shapeNode = paramNode.GetChild("Overlay").GetChild("Shape");
+		if (shapeNode.IsOk())
+		{
+			if (shapeNode.GetChild("Square").IsOk())
+			{
+				m_Shape = SQUARE;
+				m_Width = shapeNode.GetChild("Square").GetChild("@width").ToFixed();
+				m_Height = shapeNode.GetChild("Square").GetChild("@depth").ToFixed();
+			}
+			else if (shapeNode.GetChild("Circle").IsOk())
+			{
+				m_Shape = CIRCLE;
+				m_Width = m_Height = shapeNode.GetChild("Circle").GetChild("@radius").ToFixed();
+			}
+			else
+			{
+				// Should not happen
+				m_Shape = FOOTPRINT;
+				LOGWARNING("[Selectable] Selected overlay shape is not implemented.");
+			}
+		}
+		else
+		{
+			m_Shape = FOOTPRINT;
 		}
 
 		m_EnabledInterpolate = false;
@@ -218,7 +282,7 @@ public:
 	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
 
 	/**
-	 * Draw a textured line overlay. The selection overlays for structures are based solely on footprint shape.
+	 * Draw a textured line overlay.
 	 */
 	void UpdateTexturedLineOverlay(const SOverlayDescriptor* overlayDescriptor, SOverlayTexturedLine& overlay, float frameOffset);
 
@@ -427,14 +491,18 @@ void CCmpSelectable::UpdateTexturedLineOverlay(const SOverlayDescriptor* overlay
 		return;
 
 	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
-	CmpPtr<ICmpFootprint> cmpFootprint(GetEntityHandle());
-	if (!cmpFootprint || !cmpPosition || !cmpPosition->IsInWorld())
+	if (!cmpPosition || !cmpPosition->IsInWorld())
 		return;
 
-	ICmpFootprint::EShape fpShape;
-	entity_pos_t fpSize0_fixed, fpSize1_fixed, fpHeight_fixed;
-	cmpFootprint->GetShape(fpShape, fpSize0_fixed, fpSize1_fixed, fpHeight_fixed);
-
+	ICmpFootprint::EShape fpShape = ICmpFootprint::CIRCLE;
+	if (m_Shape == FOOTPRINT)
+	{
+		CmpPtr<ICmpFootprint> cmpFootprint(GetEntityHandle());
+		if (!cmpFootprint)
+			return;
+		entity_pos_t h;
+		cmpFootprint->GetShape(fpShape, m_Width, m_Height, h);
+	}
 	float rotY;
 	CVector2D origin;
 	cmpPosition->GetInterpolatedPosition2D(frameOffset, origin.X, origin.Y, rotY);
@@ -443,10 +511,10 @@ void CCmpSelectable::UpdateTexturedLineOverlay(const SOverlayDescriptor* overlay
 	overlay.m_Color = m_Color;
 	overlay.CreateOverlayTexture(overlayDescriptor);
 
-	if (fpShape == ICmpFootprint::SQUARE)
-		SimRender::ConstructTexturedLineBox(overlay, origin, cmpPosition->GetRotation(), fpSize0_fixed.ToFloat(), fpSize1_fixed.ToFloat());
+	if (m_Shape == SQUARE || (m_Shape == FOOTPRINT && fpShape == ICmpFootprint::SQUARE))
+		SimRender::ConstructTexturedLineBox(overlay, origin, cmpPosition->GetRotation(), m_Width.ToFloat(), m_Height.ToFloat());
 	else
-		SimRender::ConstructTexturedLineCircle(overlay, origin, fpSize0_fixed.ToFloat());
+		SimRender::ConstructTexturedLineCircle(overlay, origin, m_Width.ToFloat());
 }
 
 void CCmpSelectable::UpdateDynamicOverlay(float frameOffset)
@@ -462,9 +530,18 @@ void CCmpSelectable::UpdateDynamicOverlay(float frameOffset)
 		return;
 
 	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
-	CmpPtr<ICmpFootprint> cmpFootprint(GetEntityHandle());
-	if (!cmpFootprint || !cmpPosition || !cmpPosition->IsInWorld())
+	if (!cmpPosition || !cmpPosition->IsInWorld())
 		return;
+
+	ICmpFootprint::EShape fpShape = ICmpFootprint::CIRCLE;
+	if (m_Shape == FOOTPRINT)
+	{
+		CmpPtr<ICmpFootprint> cmpFootprint(GetEntityHandle());
+		if (!cmpFootprint)
+			return;
+		entity_pos_t h;
+		cmpFootprint->GetShape(fpShape, m_Width, m_Height, h);
+	}
 
 	float rotY;
 	CVector2D position;
@@ -476,10 +553,6 @@ void CCmpSelectable::UpdateDynamicOverlay(float frameOffset)
 
 	CTerrain* terrain = cmpTerrain->GetCTerrain();
 	ENSURE(terrain);
-
-	ICmpFootprint::EShape fpShape;
-	entity_pos_t fpSize0_fixed, fpSize1_fixed, fpHeight_fixed;
-	cmpFootprint->GetShape(fpShape, fpSize0_fixed, fpSize1_fixed, fpHeight_fixed);
 
 	// ---------------------------------------------------------------------------------
 
@@ -510,9 +583,9 @@ void CCmpSelectable::UpdateDynamicOverlay(float frameOffset)
 	CVector2D unitX(c, s);
 	CVector2D unitZ(-s, c);
 
-	float halfSizeX = fpSize0_fixed.ToFloat();
-	float halfSizeZ = fpSize1_fixed.ToFloat();
-	if (fpShape == ICmpFootprint::SQUARE)
+	float halfSizeX = m_Width.ToFloat();
+	float halfSizeZ = m_Height.ToFloat();
+	if (m_Shape == SQUARE || (m_Shape == FOOTPRINT && fpShape == ICmpFootprint::SQUARE))
 	{
 		halfSizeX /= 2.0f;
 		halfSizeZ /= 2.0f;
