@@ -34,9 +34,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-20 07:10+0000\n"
-"PO-Revision-Date: 2020-07-23 10:37+0000\n"
-"Last-Translator: xtother90\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-24 08:28+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -486,8 +486,8 @@ msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr "Bruchsteine zu nutzen reduziert die Kosten und die Bauzeit von Mauern."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "Stadtmauern -20% Bauzeit, aber -1 Schmetterpanzerung."
+msgid "Walls −20% build time, but −1 crush armor."
+msgstr ""
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -800,8 +800,8 @@ msgstr "Erhöht die Heilrate aller Heiler."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
-msgid "Healers +25% healing rate."
-msgstr "Heiler erhalten +25% Heilrate."
+msgid "Healers −20% healing time."
+msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -876,16 +876,16 @@ msgid "Using geometric masonry increases the sturdiness of defensive walls."
 msgstr "Durch Nutzung geometrischer Mauerwerke erhöht sich die Stabilität von Verteidigungswällen."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "Stadtmauern +2 Schmetterpanzerung, aber +10% Bauzeit."
+msgid "Walls +2 crush armor, but +10% build time."
+msgstr ""
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
 msgstr "Geometrisches Mauerwerk"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Walls build time vs. Health"
-msgstr "Mauer: Bauzeit vs. Trefferpunkte"
+msgid "Wall armor vs build time."
+msgstr ""
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -916,8 +916,8 @@ msgstr "Schreite zur Großstadtphase fort, wodurch zusätzliche Gebäude und Ein
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Erfordert 4 neue Gebäude der Stadtphase (außer Mauern und Verwaltungssitzen)."
+msgid "Requires 4 Town Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -967,9 +967,8 @@ msgstr "Schreite zur Stadtphase fort, wodurch zusätzliche Gebäude und Einheite
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Braucht 5 Gebäude der Dorfphase (außer Palisaden und Feldern)."
+msgid "Requires 5 Village Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1251,8 +1250,8 @@ msgid "Improve the international trading profit."
 msgstr "Erhöht den internationalen Handelsprofit."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "Market +10% International Bonus."
-msgstr "Markt +10% internationaler Bonus."
+msgid "+10% international trade bonus."
+msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1677,8 +1676,8 @@ msgid ""
 msgstr "Die Langen Mauern von Athen wurden unter Federführung des genialen Themistokles gebaut und verbanden Athen mit dem 6 km entfernten Piräus. Dies sicherte die Versorgung von See aus und verhinderte, dass Angreifer Athen durch eine Belagerung aushungern konnten."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
-msgid "Build stone walls in neutral territory."
-msgstr "Baue Steinmauern in neutralem Territorium."
+msgid "Build Walls in own or neutral territory."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"

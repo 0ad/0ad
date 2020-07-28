@@ -31,9 +31,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-20 07:10+0000\n"
-"PO-Revision-Date: 2020-07-22 15:19+0000\n"
-"Last-Translator: Tiago <tiago.henrique.cco@gmail.com>\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-24 08:28+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -483,8 +483,8 @@ msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr "Usar entulho reduz o custo e tempo de construção de muralhas."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "Muralhas têm -20% de tempo de construção, mas têm -1 de armadura contra esmagamento."
+msgid "Walls −20% build time, but −1 crush armor."
+msgstr ""
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -797,8 +797,8 @@ msgstr "Aumenta a taxa de cura de todos os curandeiros."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
-msgid "Healers +25% healing rate."
-msgstr "+25% de cura para curandeiros."
+msgid "Healers −20% healing time."
+msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -873,16 +873,16 @@ msgid "Using geometric masonry increases the sturdiness of defensive walls."
 msgstr "Usando alvenaria geométrica aumenta a robustez das muralhas defensivas."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "Muralhas da cidade têm +2 de armadura contra esmagamento, mas +10% no tempo de construção."
+msgid "Walls +2 crush armor, but +10% build time."
+msgstr ""
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
 msgstr "Alvenaria Geométrica"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Walls build time vs. Health"
-msgstr "Tempo de construção de Muralhas vs Robustez"
+msgid "Wall armor vs build time."
+msgstr ""
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -913,8 +913,8 @@ msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Requer 4 novas estruturas da Fase de Vila (exceto por Muralhas e Centros Civis)."
+msgid "Requires 4 Town Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -964,9 +964,8 @@ msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Requer 5 estruturas da Fase de Aldeia (exceto Paliçadas e Campos Agrícolas)."
+msgid "Requires 5 Village Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1248,8 +1247,8 @@ msgid "Improve the international trading profit."
 msgstr "Aumente o lucro do comércio internacional."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "Market +10% International Bonus."
-msgstr "Mercado +10% Bônus Internacional"
+msgid "+10% international trade bonus."
+msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1674,8 +1673,8 @@ msgid ""
 msgstr "As Longas Muralhas de Atenas foram construídas sob o auspício do astuto Temístocles e estenderam-se por 6 km desde a cidade até o porto de Pireu. Isso garantia a rota litorânea e prevenia a fome na cidade durante cercos."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
-msgid "Build stone walls in neutral territory."
-msgstr "Construa muralhas de pedra em território neutro."
+msgid "Build Walls in own or neutral territory."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"

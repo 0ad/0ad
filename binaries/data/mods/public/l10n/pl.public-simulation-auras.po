@@ -21,12 +21,13 @@
 # Michał Karol, 2016
 # Pitong, 2017
 # Przemysław Murach <moonshine133@vp.pl>, 2018-2020
+# Robert x <jankinowski11@gmail.com>, 2020
 # Tomasz Goljat <goljat@protonmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:09+0000\n"
-"PO-Revision-Date: 2020-07-17 11:54+0000\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-25 22:18+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -202,8 +203,8 @@ msgid "Trademasters"
 msgstr "Mistrzowie Kupiectwa"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
-msgid "Allied Markets +10% international trade bonus."
-msgstr "Sojusznicze targowiska otrzymują bonus handlowy w wysokości 10%."
+msgid "Allies +10% international trade bonus."
+msgstr "Sojusznicy +10% bonus dla handlu międzynarodowego"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Products from Gaul"
@@ -218,7 +219,7 @@ msgid "Saripeko"
 msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
-msgid "Allied Citizen Javelinists −10% resource costs."
+msgid "Allied Citizen Javelineers −10% resource costs."
 msgstr "Sojuszniczy oszczepnicy są o 10% tańsi."
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
@@ -341,8 +342,8 @@ msgstr "Nękanie Oszczepnikami"
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraDescription
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
-"Javelinists +20% attack range."
-msgstr "Cassivellanus wyszkolił szybko przemieszczających się oszczepników, aby nękać rzymskich żołnierzy i furażerów.\n+20% zasięgu ataku dla oszczepników."
+"Javelineers +20% attack range."
+msgstr "Cassivellanus wyszkolił szybko przemieszczających się oszczepników, by nękać rzymskich żołnierzy i furażerów.\nOszczepnicy +20% zasięgu ataku."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -552,8 +553,8 @@ msgid "Peltast Reforms"
 msgstr "Reformy Peltastów"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraDescription
-msgid "Infantry Javelinists +15% movement speed."
-msgstr "Piesi oszczepnicy poruszają się 15% szybciej."
+msgid "Infantry Javelineers +15% movement speed."
+msgstr "Pieszy oszczepnicy +15% szybkości poruszania"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
@@ -975,8 +976,8 @@ msgstr "Reformy helockie"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid ""
-"Citizen Infantry Javelinists +1 armor, +25% ranged attack pierce damage."
-msgstr "Obywatelscy oszczepnicy mają +1 pancerza i zadają 25% więcej obrażeń kłutych."
+"Citizen Infantry Javelineers +1 armor, +25% ranged attack pierce damage."
+msgstr "Oszczepnicy mają +1 pancerza i zadają 25% więcej obrażeń kłutych."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

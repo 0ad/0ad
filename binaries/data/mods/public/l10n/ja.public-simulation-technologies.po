@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-20 07:10+0000\n"
-"PO-Revision-Date: 2020-07-20 08:31+0000\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-24 08:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -463,8 +463,8 @@ msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr "荒石の使用は壁建設のコストと時間を削減します。"
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "城壁の建設時間が20%短くなりますが、衝突装甲レベルが1下がります。"
+msgid "Walls −20% build time, but −1 crush armor."
+msgstr ""
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -777,8 +777,8 @@ msgstr "すべての治療者の治療速度を速めます。"
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
-msgid "Healers +25% healing rate."
-msgstr "治療者の治療速度が25%速まります。"
+msgid "Healers −20% healing time."
+msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -853,16 +853,16 @@ msgid "Using geometric masonry increases the sturdiness of defensive walls."
 msgstr "幾何学的石組みを用いて防御壁の強度を増します。"
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "城壁の衝突装甲レベルが2上がりますが、  建設時間は10%増加します。"
+msgid "Walls +2 crush armor, but +10% build time."
+msgstr ""
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
 msgstr "幾何学的石組み"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Walls build time vs. Health"
-msgstr "壁の建設時間 対 耐久力"
+msgid "Wall armor vs build time."
+msgstr ""
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -893,8 +893,8 @@ msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "新たに4つの町の段階の建物（壁と町の中心は除く）が必要です。"
+msgid "Requires 4 Town Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -944,9 +944,8 @@ msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "村の段階の建物が5棟必要です（柵と畑を除く）。"
+msgid "Requires 5 Village Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1228,8 +1227,8 @@ msgid "Improve the international trading profit."
 msgstr "国際交易収入を改善する。"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "Market +10% International Bonus."
-msgstr "市場 +10% 国際ボーナス。"
+msgid "+10% international trade bonus."
+msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1654,8 +1653,8 @@ msgid ""
 msgstr "アテナイの長城はしたたかなテミストクレスの肝いりで建設され、市街からピレウスの港まで6kmにおよびました。これによって都市の海からの補給路を確保し、敵の包囲による飢餓を防ぎました。"
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
-msgid "Build stone walls in neutral territory."
-msgstr "中立地帯に壁を建造できます。"
+msgid "Build Walls in own or neutral territory."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"

@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-20 07:10+0000\n"
-"PO-Revision-Date: 2020-07-20 08:31+0000\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-24 08:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -469,8 +469,8 @@ msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr "用碎石材料減少城牆的花費及建造時間。"
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "城市城牆 -20% 建造時間，但是 -1 粉碎裝甲等級。"
+msgid "Walls −20% build time, but −1 crush armor."
+msgstr ""
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -783,8 +783,8 @@ msgstr "增加所有醫療者的治療速率。"
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
-msgid "Healers +25% healing rate."
-msgstr "醫療者 +25% 治療速率。"
+msgid "Healers −20% healing time."
+msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -859,16 +859,16 @@ msgid "Using geometric masonry increases the sturdiness of defensive walls."
 msgstr "使用幾何石工技術來增強防禦牆的堅固程度。"
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "城牆 +2 粉碎盔甲等級，但 +10% 建造時間。"
+msgid "Walls +2 crush armor, but +10% build time."
+msgstr ""
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
 msgstr "幾何石工技術"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Walls build time vs. Health"
-msgstr "城牆建造時間 vs. 生命值"
+msgid "Wall armor vs build time."
+msgstr ""
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -899,8 +899,8 @@ msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "需要 4 棟新的鄉鎮階段建築物(城牆及城鎮中心除外)。"
+msgid "Requires 4 Town Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -950,9 +950,8 @@ msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "需要 5 棟村莊階段的建築物(柵欄及農田除外)。"
+msgid "Requires 5 Village Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1234,8 +1233,8 @@ msgid "Improve the international trading profit."
 msgstr "改進國際貿易利潤。"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "Market +10% International Bonus."
-msgstr "市集 +10% 國際獎勵。"
+msgid "+10% international trade bonus."
+msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1660,8 +1659,8 @@ msgid ""
 msgstr "雅典長城是在老謀深算的地米斯托克利的主導下修建的，從城市延伸 6 公里到比雷埃夫斯的港口。它確保了城市海上補給線的安全，並且防止敵人圍攻而導致居民陷入饑荒。"
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
-msgid "Build stone walls in neutral territory."
-msgstr "在中立地帶上建造石牆。"
+msgid "Build Walls in own or neutral territory."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"

@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-20 07:10+0000\n"
-"PO-Revision-Date: 2020-07-20 08:31+0000\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-24 08:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -468,8 +468,8 @@ msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr "Penggunaan bahan puing mengurangi biaya dan waktu bangun tembok."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "Tembok kota -20% waktu bangun, tapi -1 zirah lindasan."
+msgid "Walls −20% build time, but −1 crush armor."
+msgstr ""
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -782,8 +782,8 @@ msgstr "Meningkatkan Tingkat Penyembuhan semua tabib."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
-msgid "Healers +25% healing rate."
-msgstr "Tabib menyembuhkan +25% lebih cepat."
+msgid "Healers −20% healing time."
+msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -858,16 +858,16 @@ msgid "Using geometric masonry increases the sturdiness of defensive walls."
 msgstr "Penggunaan teknik pembangunan geometris meningkatkan kekokohan tembok pertahanan."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "Tembok kota +2 zirah lindasan, tapi +10% waktu bangun."
+msgid "Walls +2 crush armor, but +10% build time."
+msgstr ""
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
 msgstr "Teknik Pembangunan Geometris"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Walls build time vs. Health"
-msgstr "Waktu bangun tembok vs. Nyawa"
+msgid "Wall armor vs build time."
+msgstr ""
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -898,8 +898,8 @@ msgstr "Maju ke Fase Metropolis, membuka lebih banyak bangunan dan unit. Radius 
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Memerlukan 4 bangunan baru dari Fase Kota (kecuali Tembok dan Pusat Peradaban)."
+msgid "Requires 4 Town Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -949,9 +949,8 @@ msgstr "Maju ke Fase Kota, membuka lebih banyak bangunan dan unit. Radius wilaya
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Memerlukan 5 bangunan Fase Desa (kecuali Palisade dan Ladang)."
+msgid "Requires 5 Village Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1233,8 +1232,8 @@ msgid "Improve the international trading profit."
 msgstr "Meningkatkan penghasilan perdagangan internasional."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "Market +10% International Bonus."
-msgstr "Pasar +10% Bonus Internasional."
+msgid "+10% international trade bonus."
+msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1659,8 +1658,8 @@ msgid ""
 msgstr "Tembok Panjang Athena dibangun dibawah naungan Themistokles sepanjang 6 km dari kota ke pelabuhan Piraeus. Tembok ini mengamankan jalur pasok laut dan mencegah musuh memotong jalur pangan selama pengepungan."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
-msgid "Build stone walls in neutral territory."
-msgstr "Buat tembok batu di teritori netral."
+msgid "Build Walls in own or neutral territory."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"

@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-20 07:10+0000\n"
-"PO-Revision-Date: 2020-07-20 08:31+0000\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-24 08:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -478,8 +478,8 @@ msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr "Het gebruik van afvalstenen vermindert de prijs en bouwtijd van muren."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "Stadsmuren -20% bouwtijd maar ook -1 verbrijzelpantser."
+msgid "Walls −20% build time, but −1 crush armor."
+msgstr ""
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -792,8 +792,8 @@ msgstr "Verhoogde Genezende Kracht van alle helers."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
-msgid "Healers +25% healing rate."
-msgstr "Helers +25% helende kracht."
+msgid "Healers −20% healing time."
+msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -868,16 +868,16 @@ msgid "Using geometric masonry increases the sturdiness of defensive walls."
 msgstr "Geometrische metselkunsten verhogen de stevigheid van een muur."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "Stadsmuren +2 verbrijzelpantser maar ook +10% bouwtijd."
+msgid "Walls +2 crush armor, but +10% build time."
+msgstr ""
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
 msgstr "Geometrisch metselwerk"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Walls build time vs. Health"
-msgstr "Constructietijd vs. sterkte van muren"
+msgid "Wall armor vs build time."
+msgstr ""
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -908,8 +908,8 @@ msgstr "Ontwikkel de grootstadsfase, die je meer gebouwen en eenheden geeft. De 
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Vereist 4 stadsgebouwen (uitgezonderd muren en beschavingscentra)."
+msgid "Requires 4 Town Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -959,9 +959,8 @@ msgstr "Ontwikkel de stadsfase, die je meer gebouwen en eenheden geeft. De terri
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Vereist 5 Dorpsgebouwen (uitgezonderd Palissades en Akkers)."
+msgid "Requires 5 Village Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1243,8 +1242,8 @@ msgid "Improve the international trading profit."
 msgstr "Verhoog de internationale handelswinst."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "Market +10% International Bonus."
-msgstr "Markten +10% internationale bonus."
+msgid "+10% international trade bonus."
+msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1669,8 +1668,8 @@ msgid ""
 msgstr "De lange muren van Athene waren geconstrueerd onder Themistokles. Het waren 6km lange muren van de stad Athene tot aan de haven van Piraeus. Dit zorgde er voor dat Athene altijd kon voorzien worden van voedsel tijdens vijandige aanvallen."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
-msgid "Build stone walls in neutral territory."
-msgstr "Bouw stenen muren in neutraal territorium."
+msgid "Build Walls in own or neutral territory."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"

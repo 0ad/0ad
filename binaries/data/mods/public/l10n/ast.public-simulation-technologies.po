@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-20 07:10+0000\n"
-"PO-Revision-Date: 2020-07-20 22:24+0000\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-25 05:42+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -460,8 +460,8 @@ msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr "Emplegar escombrios como material amenorga'l costu & tiempu de construcción de muralles."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "Muralles -20% de tiempu de construcción, pero -1 nivel d'armadura antiimpautu."
+msgid "Walls −20% build time, but −1 crush armor."
+msgstr "Muralles: tiempu de construcción −20%, armadura antifrayadura −1."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -774,8 +774,8 @@ msgstr "Aumenta la Tasa de curamientu de tolos curadores."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
-msgid "Healers +25% healing rate."
-msgstr "Curadores +25% na tasa de curamientu."
+msgid "Healers −20% healing time."
+msgstr "Curanderos: velocidá de curamientu −20%."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -850,16 +850,16 @@ msgid "Using geometric masonry increases the sturdiness of defensive walls."
 msgstr "La cantería xeométrica fortalez les muralles de defensa."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "Muralles +2 niveles d'armadura antiimpautu, pero +10% nel tiempu de construcción."
+msgid "Walls +2 crush armor, but +10% build time."
+msgstr "Muralles: armadura antifrayadura +2, tiempu de construcción +10%."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
 msgstr "Cantería xeométrica"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Walls build time vs. Health"
-msgstr "Tiempu de construcción de muralles frente a Salú"
+msgid "Wall armor vs build time."
+msgstr "La tiez de les muralles frente al tiempu de construcción."
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -890,8 +890,8 @@ msgstr "Avanza a la Fas de la ciudá, que desbloquia más construcciones ya unid
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Rique 4 construcciones nueves de la Fas de la villa (sacantes les Muralles ya les Places)."
+msgid "Requires 4 Town Structures."
+msgstr "Rique 4 construcciones de la fas de la villa."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -941,9 +941,8 @@ msgstr "Avanza a la Fas de la villa, que desbloquia más construcciones ya unida
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Rique 5 construcciones de la Fas del pueblu (sacantes Estacaes & Eros)."
+msgid "Requires 5 Village Structures."
+msgstr "Rique 5 construcciones de la fas del pueblu."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1225,8 +1224,8 @@ msgid "Improve the international trading profit."
 msgstr "Xubi les ganancies del comerciu internacional."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "Market +10% International Bonus."
-msgstr "Mercáu +10% de bonificación internacional."
+msgid "+10% international trade bonus."
+msgstr "Ganancies del comerciu internacional +10%."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1651,8 +1650,8 @@ msgid ""
 msgstr "Les Muralles Llongues d'Atenes alzáronse col sofitu del cuciu Temístocles & espurriéronse 6 km dende la ciudá al puertu'l Piréu. Esto aseguró rutes marítimes de suministros a la ciudá & torgó qu'un enemigu esfamiare la ciudá nun asediu."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
-msgid "Build stone walls in neutral territory."
-msgstr "Constrúi muralles de piedra en territoriu neutral."
+msgid "Build Walls in own or neutral territory."
+msgstr "Llevanta les muralles en terrenu propiu o n'abertal."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"

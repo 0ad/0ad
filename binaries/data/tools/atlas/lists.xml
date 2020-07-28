@@ -30,15 +30,25 @@
     <item>specTex</item>
   </textures>
   <animations>
-    <item>attack_anti_cavalry_back</item>
-    <item>attack_anti_cavalry_front</item>
+    <item>anti_cavalry_back</item>
+    <item>anti_cavalry_front</item>
     <item>attack_capture</item>
     <item>attack_melee</item>
     <item>attack_ranged</item>
     <item>attack_slaughter</item>
+    <item>approach_fruit</item>
+    <item>approach_grain</item>
+    <item>approach_meat</item>
+    <item>approach_ore</item>
+    <item>approach_praise</item>
+    <item>approach_rock</item>
+    <item>approach_ruins</item>
+    <item>approach_tree</item>
     <item>build</item>
+    <item>carry_food</item>
     <item>carry_meat</item>
     <item>carry_metal</item>
+    <item>carry_stone</item>
     <item>carry_wood</item>
     <item>death</item>
     <item>feeding</item>
@@ -46,6 +56,7 @@
     <item>gate_closed</item>
     <item>gate_closing</item>
     <item>gate_open</item>
+    <item>gather_fish</item>
     <item>gather_fruit</item>
     <item>gather_grain</item>
     <item>gather_meat</item>
@@ -57,38 +68,25 @@
     <item>gather_tree</item>
     <item>heal</item>
     <item>idle</item>
-    <item>idle_anti_cavalry_back</item>
-    <item>idle_anti_cavalry_front</item>
-    <item>idle_testudo_front</item>
-    <item>idle_testudo_front_left</item>
-    <item>idle_testudo_front_right</item>
-    <item>idle_testudo_left</item>
-    <item>idle_testudo_right</item>
-    <item>idle_testudo_top</item>
-    <item>phalanx_attack</item>
-    <item>phalanx_back_idle</item>
-    <item>phalanx_idle</item>
-    <item>phalanx_run</item>
-    <item>phalanx_walk</item>
+    <item>phalanx_back</item>
+    <item>phalanx_front</item>
+    <item>phalanx_mid</item>
     <item>promotion</item>
     <item>run</item>
     <item>scaffold</item>
-    <item>syntagma_back_idle</item>
-    <item>syntagma_back_run</item>
-    <item>syntagma_back_walk</item>
-    <item>syntagma_front_idle</item>
-    <item>syntagma_front_run</item>
-    <item>syntagma_front_walk</item>
-    <item>syntagma_med_idle</item>
-    <item>syntagma_med_run</item>
-    <item>syntagma_med_walk</item>
+    <item>syntagma_01</item>
+    <item>syntagma_02</item>
+    <item>syntagma_03</item>
+    <item>syntagma_04</item>
+    <item>syntagma_back</item>
+    <item>syntagma_front</item>
+    <item>testudo_front</item>
+    <item>testudo_front_left</item>
+    <item>testudo_front_right</item>
+    <item>testudo_left</item>
+    <item>testudo_right</item>
+    <item>testudo_top</item>
     <item>upgrading</item>
     <item>walk</item>
-    <item>walk_testudo_front</item>
-    <item>walk_testudo_front_left</item>
-    <item>walk_testudo_front_right</item>
-    <item>walk_testudo_left</item>
-    <item>walk_testudo_right</item>
-    <item>walk_testudo_top</item>
   </animations>
 </lists>

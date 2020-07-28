@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-20 07:10+0000\n"
-"PO-Revision-Date: 2020-07-20 08:31+0000\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-24 08:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -474,8 +474,8 @@ msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr "돌무더기 자재를 사용하는 것은 비용을 절감하고 성벽을 쌓을 수 있습니다."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "성벽 짓는 시간이 -20% 줄어들지만, 충돌 방어력 수준이 -1 감소합니다."
+msgid "Walls −20% build time, but −1 crush armor."
+msgstr ""
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -788,8 +788,8 @@ msgstr "모든 치료자의 치유속도가 증가합니다."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
-msgid "Healers +25% healing rate."
-msgstr "치료자의 치유속도가 +25% 증가합니다."
+msgid "Healers −20% healing time."
+msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -864,16 +864,16 @@ msgid "Using geometric masonry increases the sturdiness of defensive walls."
 msgstr "기하학적인 석조를 사용하면 방어 성벽의 견고성이 증가합니다."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "성벽의 충돌 방어력 수준이 +2 증가합니다. 그러나 건설 시간이 +10% 증가합니다."
+msgid "Walls +2 crush armor, but +10% build time."
+msgstr ""
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
 msgstr "기하학적인 석조"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Walls build time vs. Health"
-msgstr "성벽 쌓는 시간 vs. 건강"
+msgid "Wall armor vs build time."
+msgstr ""
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -904,8 +904,8 @@ msgstr "더 많은 건축물과 유닛을 열수있는 대도시 단계로 나�
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "4개의 새로운 작은 도시 단계 건축물이 필요합니다(성벽과 시민 회관은 제외)."
+msgid "Requires 4 Town Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -955,9 +955,8 @@ msgstr "다양한 건축물과 유닛을 열 수 있는 작은도시 단계로 �
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "5곳의 마을 단계 건축물이 필요합니다 (울타리와 농장의 밭은 제외)."
+msgid "Requires 5 Village Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1239,8 +1238,8 @@ msgid "Improve the international trading profit."
 msgstr "국제 교역 수익을 개선합니다."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "Market +10% International Bonus."
-msgstr "시장의 국제 보너스가 +10% 증가합니다."
+msgid "+10% international trade bonus."
+msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1665,8 +1664,8 @@ msgid ""
 msgstr "아테네의 장성은 만만찮은 테미스토클레스의 후원하에 지어졌으며 도시에서 피레우스 항구까지 6km가 확장되었습니다. 이것은 도시의 보급로를 확보하고 적의 포위 공격 중에도 도시가 굶어 죽지 못하도록 막았습니다."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
-msgid "Build stone walls in neutral territory."
-msgstr "중립 지역에 돌 성벽을 쌓습니다."
+msgid "Build Walls in own or neutral territory."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"

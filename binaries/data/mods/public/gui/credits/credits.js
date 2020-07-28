@@ -5,6 +5,8 @@ var g_OrderTabNames = [
 	"special",
 	"programming",
 	"art",
+	"audio",
+	"maps",
 	"history",
 	"balancing",
 	"community",

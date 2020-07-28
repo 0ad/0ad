@@ -33,9 +33,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-17 07:09+0000\n"
-"PO-Revision-Date: 2020-07-17 11:37+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-26 12:27+0000\n"
+"Last-Translator: Günay Yılmaz\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -134,7 +134,7 @@ msgstr "Tüccarlara +%20 hareket hızı."
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
-msgstr "Tarım Getirisi"
+msgstr "Tarım Bonusu"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "Workers +25% grain gather rate."
@@ -174,12 +174,12 @@ msgstr "+10 en yüksek nüfus sınırı."
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion"
-msgstr "Şanlı Yayılma"
+msgstr "Şanlı Yayılmacılık"
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
 "+40 maximum population limit (requires the “Glorious Expansion” technology)."
-msgstr "+40 en yüksek nüfus sınırı ('Şanlı Genişleme' teknolojisi gerektirir)."
+msgstr "+40 en yüksek nüfus sınırı ('Şanlı Yayılmacılık' teknolojisi gerektirir)."
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
@@ -210,24 +210,24 @@ msgid "Trademasters"
 msgstr "Ticaret ustaları"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
-msgid "Allied Markets +10% international trade bonus."
-msgstr "Müttefik Marketler +%10 uluslararası ticaret bonusu."
+msgid "Allies +10% international trade bonus."
+msgstr "Müttefikler +%10 uluslararası ticaret bonusu."
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Products from Gaul"
-msgstr ""
+msgstr "Galya Mahsülleri"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Blacksmiths −15% technology resource costs and research time."
-msgstr ""
+msgstr "Demirciler -%15 teknoloji kaynağı ve araştırma süresi."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
 msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
-msgid "Allied Citizen Javelinists −10% resource costs."
-msgstr "Müttefik Ciritçi Vatandaşlar -%10 kaynağa mâl olur."
+msgid "Allied Citizen Javelineers −10% resource costs."
+msgstr "Müttefik Ciritçi vatandaşlar -%10 kaynak maliyeti."
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -349,8 +349,8 @@ msgstr "Avcı Taciz Ateşi"
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraDescription
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
-"Javelinists +20% attack range."
-msgstr "Cassivellaunus, Roma birliklerini ve toplayıcılarını taciz etmek için hızlı hareket eden avcıları görevlendirdi.\nCiritçiler +% 20 saldırı menzili."
+"Javelineers +20% attack range."
+msgstr "Cassivellaunus, Roma birliklerini ve gıda toplayıcıları taciz etmek için hızlı hareket eden avcı erleri görevlendirdi.\nCiritçiler +%20 saldırı menzili."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -560,8 +560,8 @@ msgid "Peltast Reforms"
 msgstr "Peltast Reformları"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraDescription
-msgid "Infantry Javelinists +15% movement speed."
-msgstr "Piyade Ciritçiler +%15 hareket hızı."
+msgid "Infantry Javelineers +15% movement speed."
+msgstr "Ciritçi Piyadeler +%15 hareket hızı."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
@@ -983,8 +983,8 @@ msgstr "Köle Reformları"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid ""
-"Citizen Infantry Javelinists +1 armor, +25% ranged attack pierce damage."
-msgstr "Vatandaş Piyade Ciritçiler +1 zırh, +%25 menzilli saldır delme hasarı."
+"Citizen Infantry Javelineers +1 armor, +25% ranged attack pierce damage."
+msgstr "Ciritçi piyade vatandaş +1 zırh, +%25 menzilli saldırı delme hasarı."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

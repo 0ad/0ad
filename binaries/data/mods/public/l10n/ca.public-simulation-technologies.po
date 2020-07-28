@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-20 07:10+0000\n"
-"PO-Revision-Date: 2020-07-20 08:31+0000\n"
+"POT-Creation-Date: 2020-07-24 07:10+0000\n"
+"PO-Revision-Date: 2020-07-24 08:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -471,8 +471,8 @@ msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr "Fer servir runa redueix el cost i el temps de construcció de les muralles."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "Les muralles de la ciutat es construeixen un 20% més ràpid, però perden 1 nivell d'armadura d'impacte."
+msgid "Walls −20% build time, but −1 crush armor."
+msgstr ""
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -785,8 +785,8 @@ msgstr "Augmenta la velocitat de curació de tots els guaridors."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
-msgid "Healers +25% healing rate."
-msgstr "Els guaridors augmenten en un 25% la seva velocitat de curació."
+msgid "Healers −20% healing time."
+msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -861,16 +861,16 @@ msgid "Using geometric masonry increases the sturdiness of defensive walls."
 msgstr "La maçoneria geomètrica fa més resistents les muralles defensives."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "Les muralles de la ciutat guanyen 2 nivells d'armadura d'impacte, però es construeixen un 10% més lentes."
+msgid "Walls +2 crush armor, but +10% build time."
+msgstr ""
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
 msgstr "Maçoneria geomètrica"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Walls build time vs. Health"
-msgstr "Temps de construcció de les muralles vs. Salut"
+msgid "Wall armor vs build time."
+msgstr ""
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -901,8 +901,8 @@ msgstr "Avança a la Fase de Ciutat, que desbloqueja més estructures i unitats.
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Es necessiten 4 noves estructures de Fase de Vila (excepte muralles i centres cívics)."
+msgid "Requires 4 Town Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -952,9 +952,8 @@ msgstr "Avança a la Fase de Vila, que desbloqueja més estructures i unitats. E
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Es necessiten 5 estructures de Fase de Poblat (excepte palissades i horts)."
+msgid "Requires 5 Village Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1236,8 +1235,8 @@ msgid "Improve the international trading profit."
 msgstr "Millora els beneficis del comerç internacional."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "Market +10% International Bonus."
-msgstr "10% de bonificació internacional als mercats."
+msgid "+10% international trade bonus."
+msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1662,8 +1661,8 @@ msgid ""
 msgstr "La muralla llarga d'Atenes es va construir sota els auspicis de l'astut Temístocles i s'estenia 6 km des de la ciutat fins al port del Pireu. Això va assegurar les rutes d'abastiment per mar de la ciutat  i va evitar que els enemics matessin de fam la ciutat durant un setge."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
-msgid "Build stone walls in neutral territory."
-msgstr "Les muralles de pedra es poden construir en territori neutral."
+msgid "Build Walls in own or neutral territory."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"

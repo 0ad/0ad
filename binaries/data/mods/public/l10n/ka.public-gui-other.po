@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-20 07:09+0000\n"
-"PO-Revision-Date: 2020-07-20 17:43+0000\n"
-"Last-Translator: Rezo Imnadze <rezo@imnadze.ge>\n"
+"POT-Creation-Date: 2020-07-24 07:09+0000\n"
+"PO-Revision-Date: 2020-07-24 17:40+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Georgian (http://www.transifex.com/wildfire-games/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -400,60 +400,64 @@ msgctxt "population limit"
 msgid "Per Player"
 msgstr ""
 
-#: gui/common/gamedescription.js:381
+#: gui/common/gamedescription.js:382
+msgid "World Population Cap"
+msgstr ""
+
+#: gui/common/gamedescription.js:390
 msgid "Treasures"
 msgstr ""
 
-#: gui/common/gamedescription.js:383
+#: gui/common/gamedescription.js:392
 msgctxt "treasures"
 msgid "Disabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:384
+#: gui/common/gamedescription.js:393
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr ""
 
-#: gui/common/gamedescription.js:388
+#: gui/common/gamedescription.js:397
 msgid "Revealed Map"
 msgstr ""
 
-#: gui/common/gamedescription.js:393
+#: gui/common/gamedescription.js:402
 msgid "Explored Map"
 msgstr ""
 
-#: gui/common/gamedescription.js:398
+#: gui/common/gamedescription.js:407
 msgid "Cheats"
 msgstr ""
 
-#: gui/common/gamedescription.js:402 gui/common/tooltips.js:139
+#: gui/common/gamedescription.js:411 gui/common/tooltips.js:139
 #: gui/common/tooltips.js:172 gui/common/tooltips.js:214
 #: gui/common/tooltips.js:506 gui/common/tooltips.js:528
 #: gui/common/tooltips.js:612 gui/common/tooltips.js:653
-#: gui/common/tooltips.js:951
+#: gui/common/tooltips.js:950
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:405
+#: gui/common/gamedescription.js:414
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:406
+#: gui/common/gamedescription.js:415
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:418
+#: gui/common/gamedescription.js:427
 msgid "Victorious"
 msgstr ""
 
-#: gui/common/gamedescription.js:423
+#: gui/common/gamedescription.js:432
 msgid "Defeated"
 msgstr ""
 
-#: gui/common/gamedescription.js:432
+#: gui/common/gamedescription.js:441
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr ""
@@ -566,128 +570,133 @@ msgstr ""
 #: gui/common/tooltips.js:372 gui/common/tooltips.js:406
 #: gui/common/tooltips.js:411 gui/common/tooltips.js:468
 #: gui/common/tooltips.js:501 gui/common/tooltips.js:816
-#: gui/common/tooltips.js:850 gui/common/tooltips.js:916
+#: gui/common/tooltips.js:849 gui/common/tooltips.js:915
 #: gui/loadgame/SavegameDetails.js:38 gui/reference/common/tooltips.js:13
 #: gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ","
 
-#: gui/common/settings.js:115
+#: gui/common/settings.js:116
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr ""
 
-#: gui/common/settings.js:119
+#: gui/common/settings.js:120
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr ""
 
-#: gui/common/settings.js:123
+#: gui/common/settings.js:124
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr ""
 
-#: gui/common/settings.js:127
+#: gui/common/settings.js:128
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr ""
 
-#: gui/common/settings.js:132
+#: gui/common/settings.js:133
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr ""
 
-#: gui/common/settings.js:136
+#: gui/common/settings.js:137
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr ""
 
-#: gui/common/settings.js:146
+#: gui/common/settings.js:147
 msgctxt "aiBehavior"
 msgid "Random"
 msgstr "შემთხვევითი"
 
-#: gui/common/settings.js:151
+#: gui/common/settings.js:152
 msgctxt "aiBehavior"
 msgid "Balanced"
 msgstr ""
 
-#: gui/common/settings.js:155
+#: gui/common/settings.js:156
 msgctxt "aiBehavior"
 msgid "Defensive"
 msgstr "თავდაცვითი"
 
-#: gui/common/settings.js:159
+#: gui/common/settings.js:160
 msgctxt "aiBehavior"
 msgid "Aggressive"
 msgstr "შეტევითი"
 
-#: gui/common/settings.js:172
+#: gui/common/settings.js:173
 msgctxt "map"
 msgid "Skirmish"
 msgstr ""
 
-#: gui/common/settings.js:173
+#: gui/common/settings.js:174
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
 msgstr ""
 
-#: gui/common/settings.js:181
+#: gui/common/settings.js:182
 msgctxt "map"
 msgid "Random"
 msgstr ""
 
-#: gui/common/settings.js:182
+#: gui/common/settings.js:183
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
 msgstr ""
 
-#: gui/common/settings.js:189
+#: gui/common/settings.js:190
 msgctxt "map"
 msgid "Scenario"
 msgstr ""
 
-#: gui/common/settings.js:190
+#: gui/common/settings.js:191
 msgid "A map with a predefined landscape and matchsettings."
 msgstr ""
 
-#: gui/common/settings.js:267
+#: gui/common/settings.js:268 gui/common/settings.js:291
 msgid "Unlimited"
 msgstr ""
 
-#: gui/common/settings.js:315
+#: gui/common/settings.js:339
 msgctxt "AI name"
 msgid "Unknown"
 msgstr ""
 
-#: gui/common/settings.js:326
+#: gui/common/settings.js:350
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr ""
 
-#: gui/common/settings.js:337
+#: gui/common/settings.js:361
 msgctxt "AI behavior"
 msgid "Default"
 msgstr "საწყისი"
 
-#: gui/common/settings.js:349
+#: gui/common/settings.js:373
 msgctxt "map type"
 msgid "Unknown"
 msgstr ""
 
-#: gui/common/settings.js:361
+#: gui/common/settings.js:385
 msgctxt "map size"
 msgid "Default"
 msgstr ""
 
-#: gui/common/settings.js:373
+#: gui/common/settings.js:400
+msgctxt "population capacity addendum"
+msgid "(world)"
+msgstr ""
+
+#: gui/common/settings.js:401 gui/common/settings.js:405
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr ""
 
-#: gui/common/settings.js:385
+#: gui/common/settings.js:417
 msgid "Unknown Victory Condition"
 msgstr ""
 
@@ -709,7 +718,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: gui/common/tooltips.js:87 gui/common/tooltips.js:464
-#: gui/common/tooltips.js:848
+#: gui/common/tooltips.js:847
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] ""
@@ -747,11 +756,11 @@ msgstr "(%(armorPercentage)s)"
 msgid "Garrison to fire arrows"
 msgstr ""
 
-#: gui/common/tooltips.js:198
+#: gui/common/tooltips.js:198 gui/common/tooltips.js:845
 msgid "Interval:"
 msgstr "შუალედი:"
 
-#: gui/common/tooltips.js:202 gui/common/tooltips.js:846
+#: gui/common/tooltips.js:202
 msgid "Rate:"
 msgstr "განაკვეთი:"
 
@@ -799,7 +808,7 @@ msgstr ""
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr ""
 
-#: gui/common/tooltips.js:246 gui/common/tooltips.js:841
+#: gui/common/tooltips.js:246 gui/common/tooltips.js:840
 msgid "Range:"
 msgstr "მანძილი:"
 
@@ -814,8 +823,8 @@ msgstr ""
 msgid "meters"
 msgstr ""
 
-#: gui/common/tooltips.js:254 gui/common/tooltips.js:843
-#: gui/common/tooltips.js:873
+#: gui/common/tooltips.js:254 gui/common/tooltips.js:842
+#: gui/common/tooltips.js:872
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] ""
@@ -939,7 +948,7 @@ msgstr ""
 msgid "Heal:"
 msgstr ""
 
-#: gui/common/tooltips.js:463
+#: gui/common/tooltips.js:463 gui/common/tooltips.js:837
 msgid "Health"
 msgstr ""
 
@@ -1109,79 +1118,71 @@ msgstr "სიარული"
 msgid "Run"
 msgstr "სირბილი"
 
-#: gui/common/tooltips.js:834 gui/common/tooltips.js:840
-#: gui/common/tooltips.js:845 gui/common/tooltips.js:870
+#: gui/common/tooltips.js:834 gui/common/tooltips.js:839
+#: gui/common/tooltips.js:844 gui/common/tooltips.js:869
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] ""
 msgstr[1] ""
 
-#. Translation: Short for hit points (or health points) that are healed in one
-#. healing action
-#: gui/common/tooltips.js:838
-msgid "HP"
-msgid_plural "HP"
-msgstr[0] ""
-msgstr[1] ""
-
-#: gui/common/tooltips.js:862
+#: gui/common/tooltips.js:861
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr ""
 
-#: gui/common/tooltips.js:863
+#: gui/common/tooltips.js:862
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr ""
 
-#: gui/common/tooltips.js:871
+#: gui/common/tooltips.js:870
 msgctxt "aura"
 msgid "Range:"
 msgstr ""
 
-#: gui/common/tooltips.js:888
+#: gui/common/tooltips.js:887
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:900
+#: gui/common/tooltips.js:899
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr ""
 
-#: gui/common/tooltips.js:915
+#: gui/common/tooltips.js:914
 msgid "Classes:"
 msgstr "კლასები:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
-#: gui/common/tooltips.js:942
+#: gui/common/tooltips.js:941
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr ""
 
-#: gui/common/tooltips.js:952
+#: gui/common/tooltips.js:951
 msgid "Loot:"
 msgstr ""
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI element will open the Template Details GUI page.
-#: gui/common/tooltips.js:960
+#: gui/common/tooltips.js:959
 msgid "Right-click to view more information."
 msgstr ""
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
-#: gui/common/tooltips.js:966
+#: gui/common/tooltips.js:965
 msgid "Click to view more information."
 msgstr ""
 
 #: gui/credits/credits.js:81
 #, javascript-format
-msgid "%(nick)s - %(name)s"
+msgid "%(nick)s — %(name)s"
 msgstr ""
 
 #: gui/loadgame/SavegameDeleter.js:34
@@ -1365,7 +1366,7 @@ msgstr ""
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:142
+#: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:143
 msgid "Single-player"
 msgstr ""
 
@@ -1403,7 +1404,7 @@ msgstr ""
 msgid "Playback previous games."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:88 gui/replaymenu/replay_filters.js:142
+#: gui/pregame/MainMenuItems.js:88 gui/replaymenu/replay_filters.js:143
 msgid "Multiplayer"
 msgstr "ბევრი მოთამაშე"
 
@@ -1806,33 +1807,33 @@ msgstr ""
 msgid "Delete replay"
 msgstr ""
 
-#: gui/replaymenu/replay_filters.js:50
+#: gui/replaymenu/replay_filters.js:51
 msgctxt "datetime"
 msgid "Any"
 msgstr ""
 
-#: gui/replaymenu/replay_filters.js:66
+#: gui/replaymenu/replay_filters.js:67
 msgctxt "map size"
 msgid "Any"
 msgstr ""
 
-#: gui/replaymenu/replay_filters.js:82
+#: gui/replaymenu/replay_filters.js:83
 msgctxt "map name"
 msgid "Any"
 msgstr ""
 
-#: gui/replaymenu/replay_filters.js:98
+#: gui/replaymenu/replay_filters.js:99
 msgctxt "population capacity"
 msgid "Any"
 msgstr ""
 
-#: gui/replaymenu/replay_filters.js:117
+#: gui/replaymenu/replay_filters.js:118
 msgctxt "duration"
 msgid "Any"
 msgstr ""
 
 #. Translation: Shorter duration than max minutes.
-#: gui/replaymenu/replay_filters.js:121
+#: gui/replaymenu/replay_filters.js:122
 #, javascript-format
 msgctxt "duration filter"
 msgid "< %(max)s min"
@@ -1841,7 +1842,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Translation: Longer duration than min minutes.
-#: gui/replaymenu/replay_filters.js:125
+#: gui/replaymenu/replay_filters.js:126
 #, javascript-format
 msgctxt "duration filter"
 msgid "> %(min)s min"
@@ -1850,29 +1851,29 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Translation: Duration between min and max minutes.
-#: gui/replaymenu/replay_filters.js:128
+#: gui/replaymenu/replay_filters.js:129
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
 msgstr ""
 
-#: gui/replaymenu/replay_filters.js:142
+#: gui/replaymenu/replay_filters.js:143
 msgid "Single-player and multiplayer"
 msgstr ""
 
-#: gui/replaymenu/replay_filters.js:155
+#: gui/replaymenu/replay_filters.js:156
 msgid "Any Victory Condition"
 msgstr ""
 
-#: gui/replaymenu/replay_filters.js:168
+#: gui/replaymenu/replay_filters.js:169
 msgid "Rated and unrated games"
 msgstr ""
 
-#: gui/replaymenu/replay_filters.js:168
+#: gui/replaymenu/replay_filters.js:169
 msgid "Rated games"
 msgstr ""
 
-#: gui/replaymenu/replay_filters.js:168
+#: gui/replaymenu/replay_filters.js:169
 msgid "Unrated games"
 msgstr ""
 
