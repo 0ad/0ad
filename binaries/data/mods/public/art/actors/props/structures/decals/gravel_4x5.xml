@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant name="decal_gravel_4x5">
+      <decal angle="0" depth="25" offsetx="0" offsetz="0" width="30"/>
+      <textures>
+        <texture file="props/decal_struct_gravel_large.png" name="baseTex"/>
+        <texture file="props/decal_struct_gravel_large_norm.png" name="normTex"/>
+        <texture file="props/decal_struct_gravel_large_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>terrain_norm_spec.xml</material>
+</actor>

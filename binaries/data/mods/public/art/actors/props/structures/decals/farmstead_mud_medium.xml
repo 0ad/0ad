@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant frequency="100" name="Base">
+      <decal width="22" depth="25" angle="0" offsetx="0" offsetz="0"/>
+      <textures><texture file="props/decal_struct_mud_long.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>terrain_base.xml</material>
+</actor>
