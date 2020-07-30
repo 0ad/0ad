@@ -862,13 +862,13 @@ Player.prototype.TributeResource = function(player, amounts)
 Player.prototype.AddDisabledTemplate = function(template)
 {
 	this.disabledTemplates[template] = true;
-	Engine.BroadcastMessage(MT_DisabledTemplatesChanged, {});
+	Engine.BroadcastMessage(MT_DisabledTemplatesChanged, { "player": this.playerID });
 };
 
 Player.prototype.RemoveDisabledTemplate = function(template)
 {
 	this.disabledTemplates[template] = false;
-	Engine.BroadcastMessage(MT_DisabledTemplatesChanged, {});
+	Engine.BroadcastMessage(MT_DisabledTemplatesChanged, { "player": this.playerID });
 };
 
 Player.prototype.SetDisabledTemplates = function(templates)
@@ -876,7 +876,7 @@ Player.prototype.SetDisabledTemplates = function(templates)
 	this.disabledTemplates = {};
 	for (let template of templates)
 		this.disabledTemplates[template] = true;
-	Engine.BroadcastMessage(MT_DisabledTemplatesChanged, {});
+	Engine.BroadcastMessage(MT_DisabledTemplatesChanged, { "player": this.playerID });
 };
 
 Player.prototype.GetDisabledTemplates = function()
@@ -887,13 +887,13 @@ Player.prototype.GetDisabledTemplates = function()
 Player.prototype.AddDisabledTechnology = function(tech)
 {
 	this.disabledTechnologies[tech] = true;
-	Engine.BroadcastMessage(MT_DisabledTechnologiesChanged, {});
+	Engine.BroadcastMessage(MT_DisabledTechnologiesChanged, { "player": this.playerID });
 };
 
 Player.prototype.RemoveDisabledTechnology = function(tech)
 {
 	this.disabledTechnologies[tech] = false;
-	Engine.BroadcastMessage(MT_DisabledTechnologiesChanged, {});
+	Engine.BroadcastMessage(MT_DisabledTechnologiesChanged, { "player": this.playerID });
 };
 
 Player.prototype.SetDisabledTechnologies = function(techs)
@@ -901,7 +901,7 @@ Player.prototype.SetDisabledTechnologies = function(techs)
 	this.disabledTechnologies = {};
 	for (let tech of techs)
 		this.disabledTechnologies[tech] = true;
-	Engine.BroadcastMessage(MT_DisabledTechnologiesChanged, {});
+	Engine.BroadcastMessage(MT_DisabledTechnologiesChanged, { "player": this.playerID });
 };
 
 Player.prototype.GetDisabledTechnologies = function()
