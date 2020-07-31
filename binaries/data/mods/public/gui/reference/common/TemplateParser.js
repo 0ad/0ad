@@ -27,8 +27,10 @@ class TemplateParser
 	 */
 	getEntity(templateName, civCode)
 	{
-		if (templateName in this.entities)
-			return this.entities[templateName];
+		if (!(civCode in this.entities))
+			this.entities[civCode] = {};
+		else if (templateName in this.entities[civCode])
+			return this.entities[civCode][templateName];
 
 		if (!Engine.TemplateExists(templateName))
 			return null;
@@ -129,7 +131,7 @@ class TemplateParser
 				});
 		}
 
-		this.entities[templateName] = parsed;
+		this.entities[civCode][templateName] = parsed;
 		return parsed;
 	}
 
