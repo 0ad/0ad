@@ -35,8 +35,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:09+0000\n"
-"PO-Revision-Date: 2020-07-25 22:23+0000\n"
+"POT-Creation-Date: 2020-07-27 07:10+0000\n"
+"PO-Revision-Date: 2020-07-27 17:35+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -236,13 +236,13 @@ msgstr "Wybuduj mur, aby zwiększyć możliwości obronne miasta."
 msgid "Wall"
 msgstr "Mur"
 
-#: simulation/templates/template_structure_defensive_wall_gate.xml:21
+#: simulation/templates/template_structure_defensive_wall_gate.xml:22
 #: simulation/templates/template_structure_defensive_wall_long.xml:35
 msgid "Allow units access through Walls. Can be locked to prevent access."
 msgstr "Pozwala jednostkom przedostać się przez mury miasta. Może zostać zamknięta, aby uniemożliwić dostęp."
 
-#: simulation/templates/template_structure_defensive_wall_gate.xml:22
-#: simulation/templates/template_structure_defensive_wall_gate.xml:19
+#: simulation/templates/template_structure_defensive_wall_gate.xml:23
+#: simulation/templates/template_structure_defensive_wall_gate.xml:20
 #: simulation/templates/structures/palisades_gate.xml:23
 msgid "Gate"
 msgstr "Brama"
@@ -347,7 +347,7 @@ msgid "Dock"
 msgstr "Dok"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:24
-msgid "Elephant Stables"
+msgid "Elephant Stable"
 msgstr "Stajnie dla słoni"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:26
@@ -402,8 +402,10 @@ msgid "Siege Workshop"
 msgstr "Warsztat oblężniczy"
 
 #: simulation/templates/template_structure_military_workshop.xml:27
-msgid "Construct Siege Engines and research Siege Engine technologies."
-msgstr "Konstruuje machiny oblężnicze i opracowuje technologie z nimi związane."
+msgid ""
+"Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
+"Siege Engine technologies."
+msgstr "Szkoli kuszników-czempionów, konstruuje machiny oblężnicze i opracowuje technologie dla machin."
 
 #: simulation/templates/template_structure_military_workshop.xml:28
 msgid "Workshop"
@@ -578,7 +580,6 @@ msgid "Gymnasion"
 msgstr "Gimnazjon"
 
 #: simulation/templates/structures/athen_gymnasium.xml:24
-#: simulation/templates/structures/pers_hall.xml:31
 msgid "Train Champions."
 msgstr "Szkoli czempionów."
 
@@ -1120,7 +1121,6 @@ msgstr "Pomnik Gur Origarri"
 
 #: simulation/templates/structures/iber_monument.xml:34
 #: simulation/templates/structures/maur_pillar_ashoka.xml:34
-#: simulation/templates/structures/pers_ishtar_gate.xml:30
 #: simulation/templates/structures/rome_arch.xml:23
 msgid "Territory root."
 msgstr "Rdzeń."
@@ -1586,15 +1586,15 @@ msgstr "Didā"
 msgid "Research technologies. Garrison Soldiers for additional arrows."
 msgstr "Opracowuje technologie. Obsadź wojownikami, by zwiększyć liczbę strzał."
 
-#: simulation/templates/structures/pers_hall.xml:26
+#: simulation/templates/structures/pers_hall.xml:23
 msgid "Gate of All Nations"
 msgstr "Brama Narodów"
 
-#: simulation/templates/structures/pers_hall.xml:27
+#: simulation/templates/structures/pers_hall.xml:24
 msgid "Duvarθi Visadahyu"
 msgstr "Duvarθi Visadahyu"
 
-#: simulation/templates/structures/pers_hall.xml:29
+#: simulation/templates/structures/pers_hall.xml:25
 msgid "Hall"
 msgstr "Hall"
 
@@ -1611,7 +1611,7 @@ msgstr "Karczma"
 msgid "Ishtar Gate of Babylon"
 msgstr "Brama Isztar"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:32
+#: simulation/templates/structures/pers_ishtar_gate.xml:30
 msgid "IshtarGate"
 msgstr "Brama Isztar"
 

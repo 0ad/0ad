@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:10+0000\n"
-"PO-Revision-Date: 2020-07-24 08:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-27 07:10+0000\n"
+"PO-Revision-Date: 2020-07-30 08:02+0000\n"
+"Last-Translator: Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,9 +34,8 @@ msgstr ""
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
-"Range +10 meters for bow-wielding units. Archer units better accuracy and "
-"-20% train time, but also -20% health."
-msgstr ""
+"Archers −10% training time, +8 attack range, and −10% ranged attack spread."
+msgstr "Pemanah -10% waktu pelatihan, +8 jarak serangan, dan -10% sebaran proyektil."
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -545,7 +544,7 @@ msgstr "Nutrisi ekstra untuk pertanian."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% grain gather rate."
-msgstr ""
+msgstr "Pekerja +25% kecepatan mengumpulkan gandum."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -561,11 +560,11 @@ msgstr ""
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% grain gather rate."
-msgstr ""
+msgstr "Pekerja +15% kecepatan mengumpulkan gandum."
 
 #: simulation/data/technologies/gather_farming_harvester.jsongenericName
 msgid "Harvesting Machine"
-msgstr ""
+msgstr "Mesin Pemanen"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
@@ -1312,10 +1311,10 @@ msgstr "Arsitek Kelautan"
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
-"Advanced and Elite units +20% training time, +1 armour level, +10% health, "
-"+0.4 capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
-"healing strength and +3 healing range; Infantry +0.5 movement speed; Melee "
-"units +20% attack damage; Ranged units +4 attack range and −10% spread."
+"Advanced and Elite units +20% training time, +1 armor, +10% health, +0.7 "
+"capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
+"healing strength and +3 healing range; Melee units +20% attack damage; "
+"Ranged units +4 attack range and −10% spread."
 msgstr ""
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
@@ -1332,10 +1331,10 @@ msgstr ""
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
-"Elite units +20% training time, +1 armour level, +10% health, +0.4 capture "
-"attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
-"strength and +3 healing range; Infantry +0.5 movement speed; Melee units "
-"+20% attack damage; Ranged units +4 attack range and −10% spread."
+"Elite units +20% training time, +1 armor, +10% health, +0.8 capture attack "
+"strength, +20% loot, and −30% gather speed; Healers +5 healing strength and "
+"+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
+"range and −10% spread."
 msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
@@ -1499,9 +1498,8 @@ msgid ""
 msgstr "Bangsa Kartago membangun tembok kota mereka dalam tiga sirkuit yang konsentris. Tembok-tembok ini tidak pernah ditembus. Walaupun kota mereka diambil alih oleh bangsa Romawi, caranya adalah melewati pelabuhan kota, bukan dengan menyerang tembok mereka."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
-msgid ""
-"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
-msgstr "Dinding Kartago +100% waktu bangun, +100% biaya batu, dan +200% nyawa."
+msgid "Walls +100% build time, +100% stone cost, and +200% health."
+msgstr "Dinding +100% waktu bangun, +100% biaya batu, dan +200% nyawa."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -1526,10 +1524,8 @@ msgid "The Greeks used stone construction from early Mycenaean times."
 msgstr "Bangsa Yunani menggunakan bangunan batu dari awal zaman Mykenai."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
-msgid ""
-"Athenian, Macedonian, and Spartan Structures +10% health and +10% capture "
-"points."
-msgstr ""
+msgid "Structures +10% health and +10% capture points."
+msgstr "Bangunan +10% nyawa dan 10% poin penguasaan."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -1541,15 +1537,15 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr ""
+msgstr "India adalah tanah para gajah. Peperangan menggunakan gajah berasal dari India dan berlanjut selama ribuan tahun. India juga merupakan sumber Gajah untuk orang-orang di Mediterania timur. Raja-raja India mampu menaklukkan gajah-gajah perang dalam jumlah besar."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "Gajah -30% waktu pelatihan."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "Tradisi Gajah"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -1628,8 +1624,8 @@ msgid ""
 msgstr "Kaum Sparta dirumahkan dan dilatih dari masa muda untuk menjadi pejuang tangguh dan menanggung penderitaan kehidupan militer."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "+25% nyawa untuk infanteri penombak, namun +10% waktu latih."
+msgid "Champion Infantry Spearmen +25% health, but +5% training time."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -1672,7 +1668,7 @@ msgstr ""
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
-msgstr ""
+msgstr "Aristektur Monumental"
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsondescription
 msgid ""
@@ -1682,7 +1678,7 @@ msgstr ""
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
-msgstr ""
+msgstr "Latih tabib berperingkat elit."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
@@ -1690,13 +1686,13 @@ msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
-"The Anusiya champion infantry train twice as fast, but lose a little max "
-"health."
-msgstr "Infanteri jawara Anusiya dilatih dua kali lebih cepat namun nyawa mereka dikurangi."
+"The Achaemenids maintained a 10,000-strong elite corps, referred to as "
+"Athanatoi (“Immortals”) by Greek authors."
+msgstr "Bangsa Akhemeniyah memelihara korps elite berjumlah 10,000 orang, yang dijuluki Athanatoi (\"Abadi\") oleh para pengarang dari Yunani."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr "Jawara Infanteri Anusiya -50% waktu melatih, tapi -10% nyawa."
+msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -1821,8 +1817,8 @@ msgid ""
 msgstr "Dimulai dari Iskandar, monarki Helenistik mendirikan banyak kota di seluruh kekaisarannya, dimana budaya dan seni Yunani bercampur dengan budaya lokal menjadi peradaban Helenistik yang beranekaragam."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
-msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr "Pusat peradaban +100% nyawa dan poin penguasaan, menggandakan jumlah panah standar."
+msgid "Civic Centers +100% health and capture points, double default arrows."
+msgstr "Balai kota +100% nyawa dan poin penguasaan, dua kali lipat jumlah panah standar."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -1893,8 +1889,8 @@ msgstr "Perisai Perak atau Argyraspidai adalah infanteri berat elit pasukan Make
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
 msgid ""
-"Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
-"health and attack."
+"Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
+"and attack damage."
 msgstr ""
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName

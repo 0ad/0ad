@@ -16,7 +16,7 @@
 # Joshua Randiny <jrandiny2@gmail.com>, 2017-2018
 # Joshua Randiny <jrandiny2@gmail.com>, 2013-2014
 # La Ode Muh. Fadlun Akbar <fadlun.net@gmail.com>, 2014
-# Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2017
+# Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2017,2020
 # Samuel <srandiny@gmail.com>, 2014-2016
 # Samuel <srandiny@gmail.com>, 2017
 # Ulzeta Ulzeta <julyusputra@gmail.com>, 2020
@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-24 07:08+0000\n"
-"PO-Revision-Date: 2020-07-24 12:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-07-31 05:40+0000\n"
+"Last-Translator: Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,7 +88,7 @@ msgstr "AI akan dimatikan untuk pemain ini."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:93
 msgid "AI Behavior"
-msgstr ""
+msgstr "Tingkah laku kecerdasan buatan"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:87
 msgid "AI Difficulty"
@@ -163,7 +163,7 @@ msgstr "Tak tercantum"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:131
 msgid "Choose the civilization for this player."
-msgstr ""
+msgstr "Pilih peradaban untuk pemain ini."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:134
 msgctxt "civilization"
@@ -277,17 +277,17 @@ msgstr "Matikan Harta Karun"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:45
 msgid "Do not add treasures to the map."
-msgstr ""
+msgstr "Jangan tambahkan harta karun ke peta."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:46
 msgid "World population"
-msgstr ""
+msgstr "Populasi dunia"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr ""
+msgstr "Bila aktif, Batas Populasi akan didistribusikan secara acak kepada semua pemain yang masih hidup."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:135
 msgid "Biome"
@@ -304,15 +304,15 @@ msgstr "Acak"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:147
 msgid "Pick a biome at random."
-msgstr ""
+msgstr "Pilih bioma secara acak."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:101
 msgid "Daytime"
-msgstr ""
+msgstr "Siang hari"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
-msgstr ""
+msgstr "Pilih apakah pertandingan akan berlangsung di siang atau malam hari."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
@@ -343,7 +343,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:151
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
-msgstr ""
+msgstr "Daratan atau perairan secara acak"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
 msgctxt "landscape selection"
@@ -353,7 +353,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:156
 msgctxt "landscape selection"
 msgid "Random Land"
-msgstr ""
+msgstr "Daratan acak"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
@@ -363,7 +363,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:161
 msgctxt "landscape selection"
 msgid "Random Naval"
-msgstr ""
+msgstr "Perairan acak"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:162
 msgctxt "landscape selection"
@@ -393,7 +393,7 @@ msgstr "Acak"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:155
 msgid "Pick any of the given maps at random."
-msgstr ""
+msgstr "Pilih map yang tersedia secara acak."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:74
 msgid "Map Size"
@@ -430,7 +430,7 @@ msgstr "Pilih batas maksimal populasi."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:97
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Tiap Pemain"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:100
 #, javascript-format
@@ -455,15 +455,15 @@ msgstr "Jumlah tiap sumber daya awal: %(resources)s."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:90
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Tiap Pemain"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
 msgid "Team Placement"
-msgstr ""
+msgstr "Penempatan Tim"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:94
 msgid "Select one of the starting position patterns of this map."
-msgstr ""
+msgstr "Pilih salah satu pola penempatan posisi awal di peta ini."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
 msgctxt "team placement"
@@ -478,7 +478,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
 msgctxt "team placement"
 msgid "Circle"
-msgstr ""
+msgstr "Melingkar"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:106
 msgid ""
@@ -489,16 +489,16 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
 msgctxt "team placement"
 msgid "Line"
-msgstr ""
+msgstr "Deret"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
 msgid "Allied players are placed in a linear pattern."
-msgstr ""
+msgstr "Pemain sekutu ditempatkan berderet."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:115
 msgctxt "team placement"
 msgid "Random Group"
-msgstr ""
+msgstr "Grup Acak"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:116
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
@@ -523,18 +523,18 @@ msgstr "Pilih kesulitan dari skenario ini."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:76
 msgid "World Population Cap"
-msgstr ""
+msgstr "Kapasitas Populasi Dunia"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:79
 msgid "Select world population limit."
-msgstr ""
+msgstr "Pilih batas populasi dunia."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:82
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr ""
+msgstr "Peringatan: Masalah performa mungkin terjadi apabila populasi telah mencapai angka %(popCap)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:61
 msgid "Ceasefire"
@@ -554,7 +554,7 @@ msgstr "Tidak ada gencatan senjata"
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
+msgstr[0] "%(minutes)s menit"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:86
 msgid "Relic Count"
@@ -564,7 +564,7 @@ msgstr "Jumlah Relikui"
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] ""
+msgstr[0] "%(number)s pusaka"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:92
 msgid ""
@@ -587,28 +587,28 @@ msgstr "Menit sampai seorang pemain mencapai Kemenangan Pusaka.."
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
+msgstr[0] "%(min)s menit"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:98
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:99
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr ""
+msgstr "Langsung menang."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"
-msgstr ""
+msgstr "Waktu Kenaikan Permukaan Laut"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:76
 msgid "Set the time when the water will start to rise."
-msgstr ""
+msgstr "Tentukan waktu permukaan air akan naik secara perlahan."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:79
 #, javascript-format
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
+msgstr[0] "%(minutes)smenit"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:87
 msgid "Wonder Duration"
@@ -629,17 +629,17 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Klik untuk mengaktifkan tab konfigurasi %(name)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
 #, javascript-format
 msgid "Press %(hotkey)s to move to the next settings tab."
-msgstr ""
+msgstr "Tekan %(hotkey)s untuk berpindah ke tab pengaturan selanjutnya."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
 #, javascript-format
 msgid "Press %(hotkey)s to move to the previous settings tab."
-msgstr ""
+msgstr "Tekan %(hotkey)s untuk berpindah ke tab pengaturan sebelumnya."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -691,7 +691,7 @@ msgstr "Nyatakan bahwa anda belum siap bermain."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:33
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr ""
+msgstr "Kembalikan peradaban-peradaban yang sudah dipilih ke semula (acak)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:35
 msgid "Reset all teams to the default."
@@ -709,12 +709,12 @@ msgstr "Memulai permainan dengan pengaturan ini."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr ""
+msgstr "Mulai permainan dengan pengaturan saat ini (dinonaktifkan sampai semua pemain siap)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatInputPanel.js:55
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr ""
+msgstr "Tekan %(hotkey)s untuk mengisi nama atau pengaturan pemain secara otomatis."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/StatusMessageFormat.js:24
 #, javascript-format
@@ -852,7 +852,7 @@ msgstr "%(percentage)s%%"
 #: gui/loading/TipDisplay.js:52
 #, javascript-format
 msgid "• %(tiptext)s"
-msgstr ""
+msgstr "• %(tiptext)s"
 
 #: gui/loading/TitleDisplay.js:15
 #, javascript-format
@@ -898,7 +898,7 @@ msgstr "Regu"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
-msgstr ""
+msgstr "Tunjukkan pesan ini di masa mendatang."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatPanel.xml:(caption):9
 msgid "Send"
@@ -923,7 +923,7 @@ msgstr "Bergabung ke permainan yang sudah ada."
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "Nama Pemain:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
@@ -940,7 +940,7 @@ msgstr "Persiapkan server anda sebagai host."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr ""
+msgstr "Nama Server:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"
@@ -982,13 +982,13 @@ msgstr ""
 msgid ""
 "“Time in the long run teaches all things.” \\n— Aeschylus (“Prometheus "
 "Bound”, 981)"
-msgstr ""
+msgstr "“Waktu dalam jangka panjang akan mengajarkan segalanya.” \\n— Aeschylus (“Prometheus Bound”, 981)"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "“His resolve is not to seem, but to be, the best.” \\n— Aeschylus (“Seven "
 "Against Thebes”, 592)"
-msgstr ""
+msgstr "\"Tekadnya bukan untuk terlihat, tapi menjadi, yang terbaik.\" \\n— Aeschylus (“Seven Against Thebes”, 592)"
 
 #: gui/text/quotes.txt:6
 msgid "“A prosperous fool is a grievous burden.” \\n— Aeschylus (fragment 383)"
@@ -998,23 +998,23 @@ msgstr ""
 msgid ""
 "“The gods help those that help themselves.” \\n— Aesop (“Hercules and the "
 "Wagoner”)"
-msgstr ""
+msgstr "\"Para dewa membantu mereka yang membantu dirinya sendiri.\" \\n— Aesop (“Hercules and the Wagoner”)"
 
 #: gui/text/quotes.txt:8
 msgid ""
 "“It is thrifty to prepare today for the wants of tomorrow.” \\n— Aesop (“The"
 " Ant and the Grasshopper”)"
-msgstr ""
+msgstr "\"Adalah cermat mempersiapkan hari ini untuk kebutuhan di hari esok.\" \\n— Aesop (“The Ant and the Grasshopper”)"
 
 #: gui/text/quotes.txt:9
 msgid "“Union gives strength.” \\n— Aesop (“The Bundle of Sticks”)"
-msgstr ""
+msgstr "“Persatuan memberi kekuatan.” \\n— Aesop (“The Bundle of Sticks”)"
 
 #: gui/text/quotes.txt:10
 msgid ""
 "“Never trust advice from a man in the throes of his own difficulty.” \\n— "
 "Aesop (“The Fox and the Goat”)"
-msgstr ""
+msgstr "“Jangan pernah percaya nasihat orang yang sedang bergelut dengan kesulitannya sendiri.” \\n— Aesop (“The Fox and the Goat”)"
 
 #: gui/text/quotes.txt:11
 msgid ""
@@ -1031,7 +1031,7 @@ msgstr ""
 #: gui/text/quotes.txt:13
 msgid ""
 "“Slow and steady wins the race.” \\n— Aesop (“The Hare and the Tortoise”)"
-msgstr ""
+msgstr "\"Lambat tapi pasti yang memenangkan perlombaan.\" \\n— Aesop (“The Hare and the Tortoise”)"
 
 #: gui/text/quotes.txt:14
 msgid ""
@@ -1043,11 +1043,11 @@ msgstr ""
 msgid ""
 "“Enemies' promises were made to be broken.” \\n— Aesop (“The Nurse and the "
 "Wolf”)"
-msgstr ""
+msgstr "\"Janji-janji musuh dibuat untuk dilanggar.\" \\n— Aesop (\"The Nurse and the Wolf\")"
 
 #: gui/text/quotes.txt:16
 msgid "“Any excuse will serve a tyrant.” \\n— Aesop (“The Wolf and the Lamb”)"
-msgstr ""
+msgstr "\"Alasan apapun akan berguna bagi seorang tiran\" \\n— Aesop (“The Wolf and the Lamb”)"
 
 #: gui/text/quotes.txt:17
 msgid ""
@@ -1060,7 +1060,7 @@ msgstr ""
 msgid ""
 "“Spartans do not ask how many, only where the enemy are.” \\n— Agis II of "
 "Sparta (Plutarch, “Moralia”, “Sayings of Spartans”, 215d)"
-msgstr ""
+msgstr "“Sparta tidak bertanya berapa jumlahnya, hanya di mana musuhnya berada.” \\n— Agis II dari Sparta (Plutarch, “Moralia”, “Sayings of Spartans”, 215d)"
 
 #: gui/text/quotes.txt:19
 msgid ""
@@ -1073,7 +1073,7 @@ msgstr ""
 msgid ""
 "“Sex and sleep alone make me conscious that I am mortal.” \\n— Alexander the"
 " Great (Plutarch, “Parallel Lives”, “Alexander”, sec. 22)"
-msgstr ""
+msgstr "\"Hanya dengan seks dan tidur membuat saya menyadari bahwa saya manusia biasa.\" - Aleksander yang Agung (Plutarch, “Parallel Lives”, “Alexander”, bag. 22)"
 
 #: gui/text/quotes.txt:21
 msgid ""
@@ -1104,7 +1104,7 @@ msgid ""
 "“If I were not Alexander, I should wish to be Diogenes \\[of Sinope].” \\n— "
 "Alexander the Great, impressed by the simplicity of the philosopher he had "
 "met (Plutarch, “Moralia”, “On the Fortunes of Alexander the Great”, 332a–b)"
-msgstr ""
+msgstr "“Kalau saja aku bukan Aleksander, maka aku akan berharap untuk menjadi Diogenes \\[dari Sinope].” \\n— Aleksander yang Agung, terpukau atas si filsuf yang ia kenal (Plutarch, “Moralia”, “On the Fortunes of Alexander the Great”, 332a–b)"
 
 #: gui/text/quotes.txt:25
 msgid ""
@@ -1116,7 +1116,7 @@ msgstr ""
 msgid ""
 "“I do not steal victory.” \\n— Alexander the Great, when suggested to raid "
 "the Persians at night (Plutarch, “Parallel Lives”, “Alexander”, sec. 31)"
-msgstr ""
+msgstr "“Aku tidak mencuri kemenangan.” \\n— Alexander yang Agung, saat menerima usul untuk menjarah orang-orang Persia pada malam hari (Plutarch, “Parallel Lives”, “Alexander”, sec. 31)"
 
 #: gui/text/quotes.txt:27
 msgid ""
@@ -1138,20 +1138,20 @@ msgid ""
 "“It was not by taking care of the fields, but of ourselves, that we acquired"
 " those fields.” \\n— Anaxandridas II of Sparta (Plutarch, “Moralia”, "
 "“Sayings of Spartans”, 217a)"
-msgstr ""
+msgstr "\"Tidak dengan merawat ladang, tapi dengan merawat diri sendiri, kita bisa merebut ladang-ladang tersebut\" \\n— Anaxandridas II dari Sparta (Plutarch, “Moralia”, “Sayings of Spartans”, 217a)"
 
 #: gui/text/quotes.txt:30
 msgid ""
 "“States are doomed when they are unable to distinguish good men from bad.” "
 "\\n— Antisthenes (Diogenes Laertius, “The Lives and Opinions of Eminent "
 "Philosophers”, “Antisthenes”, sec. 5)"
-msgstr ""
+msgstr "“Negara menuju kehancuran apabila mereka tidak mampu membedakan antara orang baik dan orang jahat.” \\n— Antisthenes (Diogenes Laertius, “The Lives and Opinions of Eminent Philosophers”, “Antisthenes”, sec. 5)"
 
 #: gui/text/quotes.txt:31
 msgid ""
 "“The fox knows many tricks; the hedgehog one good one.” \\n— Archilochus "
 "(fragment 201)"
-msgstr ""
+msgstr "“Sang rubah tahu banyak trik; sang landak hanya tahu satu yang bagus.” \\n— Archilochus (fragment 201)"
 
 #: gui/text/quotes.txt:32
 msgid ""
@@ -1164,46 +1164,46 @@ msgstr ""
 msgid ""
 "“It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.” \\n— Aristophanes (“Birds”)"
-msgstr ""
+msgstr "\"Dari musuhlah, bukan teman, kota-kota belajar membangun dinding yang tinggi dan kapal perang.\"  \\n— Aristophanes (“Birds”)"
 
 #: gui/text/quotes.txt:34
 msgid ""
 "“It is obligatory, especially for a philosopher, to sacrifice even one's "
 "closest personal ties in defense of the truth.” \\n— Aristotle (“Nicomachean"
 " Ethics”, I. 1096a.11)"
-msgstr ""
+msgstr "\"Adalah keharusan, khususnya bagi seorang filsuf, untuk mengorbankan bahkan hubungan terdekatnya atas nama kebenaran.\" \\n— Aristotle (“Nicomachean Ethics”, I. 1096a.11)"
 
 #: gui/text/quotes.txt:35
 msgid ""
 "“Happiness depends on leisure; for we are busy to have leisure, and make war"
 " to live in peace.” \\n— Aristotle (“Nicomachean Ethics”, X. 1177b.4)"
-msgstr ""
+msgstr "“Kebahagiaan bergantung pada waktu senggang; karena kita menyibukkan diri untuk menciptakan waktu senggang, dan berperang untuk hidup dalam perdamaian” \\n— Aristoteles (“Nicomachean Ethics”, X. 1177b.4)"
 
 #: gui/text/quotes.txt:36
 msgid ""
 "“Man is by nature a political animal.” \\n— Aristotle (“Politics”, I. "
 "1253a.2)"
-msgstr ""
+msgstr "\"Manusia pada dasarnya adalah binatang politik\" \\n— Aristoteles (“Politics”, I. 1253a.2)"
 
 #: gui/text/quotes.txt:37
 msgid ""
 "“Both oligarch and tyrant mistrust the people, and therefore deprive them of"
 " their arms.” \\n— Aristotle (“Politics, V. 1311a.11)"
-msgstr ""
+msgstr "\"Oligarki dan tiran keduanya menaruh curiga terhadap rakyat, hingga merenggut senjata mereka.\" \\n— Aristoteles (“Politics, V. 1311a.11)"
 
 #: gui/text/quotes.txt:38
 msgid ""
 "“I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.” \\n— Aristotle (Diogenes Laertius, "
 "“The Lives and Opinions of Eminent Philosophers”, “Aristotle”, sec. 20)"
-msgstr ""
+msgstr "“Aku telah mempelajari ini dari filosofi: bahwasanya aku bertindak tanpa diperintah orang lain hanya dikarenakan rasa takut terhadap hukum” \\n— Aristoteles (Diogenes Laertius, “The Lives and Opinions of Eminent Philosophers”, “Aristotle”, sec. 20)"
 
 #: gui/text/quotes.txt:39
 msgid ""
 "“I count him braver who overcomes his desires than him who conquers his "
 "enemies, for the hardest victory is over the self.” \\n— Aristotle "
 "(Stobaeus, “Florilegium”, 223)"
-msgstr ""
+msgstr "\"Aku menganggapnya sebagai lebih berani; orang yang bisa menguasai nafsunya, daripada orang yang dapat menguasai musuhnya.\" \\n— Aristoteles (Stobaeus, “Florilegium”, 223)"
 
 #: gui/text/quotes.txt:40
 msgid ""
@@ -1214,7 +1214,7 @@ msgid ""
 "immediately poured it upon the ground in the sight of all.” \\n— Arrian "
 "about Alexander's march through the Gedrosian desert (“The Anabasis of "
 "Alexander”, 6.26)"
-msgstr ""
+msgstr "“Aleksander sendiri, dilanda haus, dengan rasa sakit dan kesulitan yang luar biasa berjalan kaki memimpin tentaranya \\[…]. Pada saat itu beberapa serdadu bersenjata ringan \\[…] menemukan air \\[…], menuangkannya ke dalam sebuah helm dan membawanya ke Aleksander. Ia mengambilnya, dan setelah mengapresiasi orang-orang yang membawakannya, langsung menumpahkannya ke tanah, terlihat oleh semua orang.” \\n— Arrian tentang perjalanan Aleksander melewati gurun Gedrosia (“The Anabasis of Alexander”, 6.26)"
 
 #: gui/text/quotes.txt:41
 msgid ""
@@ -1239,7 +1239,7 @@ msgid ""
 "“Quintilius Varus, give me back my legions!” \\n— Augustus, after three "
 "legions were annihilated in the Battle of the Teutoburg Forest (Suetonius, "
 "“Divus Augustus”, sec. 23)"
-msgstr ""
+msgstr "“Quintilius Varus, berikan legiunku kembali!” \\n— Augustus, setelah tiga legiunnya dibantai dalam pertempuran hutan Teutoburg (Suetonius, “Divus Augustus”, sec. 23)\n"
 
 #: gui/text/quotes.txt:44
 msgid ""
@@ -1256,7 +1256,7 @@ msgid ""
 "foreign nations which could with safety be pardoned I preferred to save "
 "rather than to destroy.” \\n— Augustus, in his autobiography (“Res Gestae "
 "Divi Augusti”, sec. 3)"
-msgstr ""
+msgstr "“Peperangan, baik sipil maupun melawan bangsa lain, aku gaungkan di seluruh dunia, di laut dan di daratan, dan saat menang aku selamatkan nyawa semua warga yang meminta ampun. Bangsa-bangsa asing yang dengan aman dapat diampuni, aku lebih memilih menyelamatkan mereka daripada menghancurkan mereka.” \\n— Augustus, dalam autobiografinya (“Res Gestae Divi Augusti”, bag. 3)"
 
 #: gui/text/quotes.txt:46
 msgid ""
@@ -1271,14 +1271,14 @@ msgid ""
 "“How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.” \\n— Bion of Borysthenes (Cicero, "
 "“Tusculan Disputations”, III. 26)"
-msgstr ""
+msgstr "\"Betapa bodohnya sang raja untuk mencabut rambutnya dalam kesedihan, seakan-akan kebotakan adalah obat untuk duka.\" \\n— Bion dari Borysthenes (Cicero, “Tusculan Disputations”, III. 26)"
 
 #: gui/text/quotes.txt:48
 msgid ""
 "“He has not acquired a fortune; the fortune has acquired him.” \\n— Bion of "
 "Borysthenes, referring to a wealthy miser (Diogenes Laertius, “The Lives and"
 " Opinions of Eminent Philosophers”, “Bion”, sec. 50)"
-msgstr ""
+msgstr "“Dia tidaklah memperoleh kekayaan; kekayaan lah yang memperolehnya.” \\n— Bion dari Borysthenes, berkenaan tentang satu orang kaya yang menderita (Diogenes Laertius, “The Lives and Opinions of Eminent Philosophers”, “Bion”, sec. 50)"
 
 #: gui/text/quotes.txt:49
 msgid ""
@@ -1296,23 +1296,23 @@ msgid ""
 "they make a wasteland and call it peace.” \\n— Calgacus, Caledonian "
 "chieftain in a speech before the Battle of Mons Graupius (Tacitus, "
 "“Agricola”, 30)"
-msgstr ""
+msgstr "“Perampokan, pembantaian, penjarahan, mereka \\[orang-orang Romawi] dengan kebohongan mereka menyebutnya sebagai kekaisaran; mereka membuat tanah yang tandus dan menyebutnya perdamaian.” \\n— Calgacus, kepala suku Kaledonia dalam sebuah pidato sebelum Pertempuran Mons Graupius (Tacitus, “Agricola”, 30)"
 
 #: gui/text/quotes.txt:51
 msgid "“Set a thief to catch a thief.” \\n— Callimachus (“Epigrams”, 44)"
-msgstr ""
+msgstr "\"Perintahkan seorang pencuri untuk menangkap pencuri.\" \\n— Callimachus (“Epigrams”, 44)"
 
 #: gui/text/quotes.txt:52
 msgid ""
 "“All mankind rules its women, and we rule all mankind, but our women rule "
 "us.” \\n— Cato the Elder (Plutarch, “Moralia”, “Sayings of Romans”, 198e)"
-msgstr ""
+msgstr "\"Seluruh umat manusia menguasai wanitanya, dan kami menguasai seluruh umat manusia, tapi wanita kami menguasai kami.\" \\n— Cato si Tua (Plutarch, “Moralia”, “Sayings of Romans”, 198e)"
 
 #: gui/text/quotes.txt:53
 msgid ""
 "“The worst ruler is one who cannot rule himself.” \\n— Cato the Elder "
 "(Plutarch, “Moralia”, “Sayings of Romans”, 198f)"
-msgstr ""
+msgstr "\"Pemimpin yang paling buruk adalah ia yang tidak mampu memimpin dirinya sendiri.\"  \\n— Cato si Tua (Plutarch, “Moralia”, “Sayings of Romans”, 198f)"
 
 #: gui/text/quotes.txt:54
 msgid ""
@@ -1325,13 +1325,13 @@ msgid ""
 "“Moreover, I consider that Carthage should be destroyed.” \\n— Cato the "
 "Elder, who ended all speeches in his later life with this statement "
 "(Plutarch, “Parallel Lives”, “Cato the Elder”, sec. 27)"
-msgstr ""
+msgstr "“Terlebih lagi, aku rasa Kartago harus dihancurkan.” \\n— Cato si Tua, yang mengakhiri semua pidato di masa tuanya dengan pernyataan ini (Plutarch, “Parallel Lives”, “Cato the Elder”, bag. 27)"
 
 #: gui/text/quotes.txt:56
 msgid ""
 "“If a king is energetic, his subjects will be equally energetic.” \\n— "
 "Chanakya (“Arthashastra”, I. “Concerning Discipline”, chapter 19)"
-msgstr ""
+msgstr "\"Jika seorang raja bersemangat, seluruh pengikutnya akan bersemangat juga.\" \\n— Chanakya (“Arthashastra”, I. “Concerning Discipline”, bab 19)"
 
 #: gui/text/quotes.txt:57
 msgid ""
@@ -1339,14 +1339,14 @@ msgid ""
 " who awards mild punishment becomes contemptible. But whoever imposes "
 "punishment as deserved becomes respectable.” \\n— Chanakya (“Arthashastra”, "
 "I. “Concerning Discipline”, chapter 4)"
-msgstr ""
+msgstr "\"Siapa saja yang memberikan hukuman berat akan ditolak oleh rakyatnya; sedangkan yang memberikan hukuman ringan akan dihina. Tapi, siapa saja yang memberikan hukuman selayak mungkin akan dihormati.\" \\n— Chanakya (“Arthashastra”, I. “Concerning Discipline”, bab 4)"
 
 #: gui/text/quotes.txt:58
 msgid ""
 "“We did not flinch but gave our lives to save Greece when her fate hung on a"
 " razor's edge.” \\n— Corinthian epitaph to their fallen of the Persian Wars "
 "(Plutarch, “Moralia”, “On the Malice of Herodotus”, 870e)"
-msgstr ""
+msgstr "\"Kami tidak tergemap, tapi memberikan nyawa kami untuk menyelamatkan Yunani saat nasibnya berada di ujung tombak.\" \\n— epitaf Korinthia yang ditujukan kepada para pejuang Perang Persia yang gugur (Plutarch, “Moralia”, “On the Malice of Herodotus”, 870e)"
 
 #: gui/text/quotes.txt:59
 msgid ""
@@ -1369,7 +1369,7 @@ msgid ""
 "“I am Darius, the great king, king of kings, the king of Persia, the king of"
 " countries, \\[…] 23 lands in total.” \\n— Darius I (Behistun inscription, "
 "column I, 1–6)"
-msgstr ""
+msgstr "“Aku adalah Darius, sang maharaja, raja dari raja, raja Persia, raja negara-negara, \\[…] 23 negeri jumlahnya” \\n— Darius I (inskripsi Behistun, kolom I, 1–6)"
 
 #: gui/text/quotes.txt:62
 msgid ""
@@ -1385,7 +1385,7 @@ msgstr ""
 msgid ""
 "“By desiring little, a poor man makes himself rich.” \\n— Democritus "
 "(fragment)"
-msgstr ""
+msgstr "“Dengan menginginkan sedikit, orang miskin membuat dirinya kaya.” \\n— Demokritos (penggalan)"
 
 #: gui/text/quotes.txt:64
 msgid ""
@@ -1396,7 +1396,7 @@ msgstr ""
 msgid ""
 "“Physical strength is only noble in cattle, it is strength of character that"
 " is noble in men.” \\n— Democritus (fragment)"
-msgstr ""
+msgstr "\"Kekuatan jasmani hanya mulia di kalangan hewan lembu, kekuatan karakter lah yang mulia di kalangan laki-laki\" \\n— Demokritos (penggalan)"
 
 #: gui/text/quotes.txt:66
 msgid ""
@@ -1409,7 +1409,7 @@ msgstr ""
 msgid ""
 "“Delivery, delivery, delivery.” \\n— Demosthenes, when asked what were the "
 "three most important elements of rhetoric (Cicero, “De Oratore”, 3.213)"
-msgstr ""
+msgstr "“Penghantaran, penghantaran, penghantaran” \\n— Demosthenes, saat ditanya tiga unsur terpenting dalam retorika (Cicero, “De Oratore”, 3.213)"
 
 #: gui/text/quotes.txt:68
 msgid ""
@@ -1444,26 +1444,26 @@ msgstr ""
 msgid ""
 "“I am a citizen of the world.” \\n— Diogenes of Sinope (Diogenes Laertius, "
 "“The Lives and Opinions of Eminent Philosophers”, “Diogenes”, sec. 63)"
-msgstr ""
+msgstr "“Aku adalah seorang warganegara dunia.” \\n— Diogenes dari Sinope (Diogenes Laertius, “The Lives and Opinions of Eminent Philosophers”, “Diogenes”, bag. 63)"
 
 #: gui/text/quotes.txt:72
 msgid ""
 "“It is not that I am mad, it is only that my head is different from yours.” "
 "\\n— Diogenes of Sinope (Stobaeus, “Florilegium”, 51)"
-msgstr ""
+msgstr "\"Bukannya aku gila, tapi hanya saja kepalaku berbeda darimu.\" \\n— Diogenes dari Sinope (Stobaeus, “Florilegium”, 51)"
 
 #: gui/text/quotes.txt:73
 msgid ""
 "“Yes, stand a little out of my sunshine.” \\n— Diogenes of Sinope to "
 "Alexander the Great, who asked if he could help in in any way (Plutarch, "
 "“Parallel Lives”, “Alexander”, sec. 14)"
-msgstr ""
+msgstr "“Ya, menjauhlah sedikit dari sinar matahariku.” \\n— Diogenes dari Sinope kepada Aleksander yang Agung, yang bertanya dengan cara apa ia dapat membantunya (Plutarch, “Parallel Lives”, “Alexander”, sec. 14)"
 
 #: gui/text/quotes.txt:74
 msgid ""
 "“The victor is not victorious if the vanquished does not consider himself "
 "so.” \\n— Ennius (“Annales”, fragment 31.493)"
-msgstr ""
+msgstr "“Sang pemenang belum menang selama yang kalah belum menganggap dirinya kalah.” \\n— Ennius (“Annales”, penggalan 31.493)"
 
 #: gui/text/quotes.txt:75
 msgid ""
@@ -1476,7 +1476,7 @@ msgstr ""
 msgid ""
 "“A coward turns away, but a brave man's choice is danger.” \\n— Euripides "
 "(“Iphigenia in Tauris”)"
-msgstr ""
+msgstr "\"Seorang pengecut melarikan diri, tetapi pilihan seorang pemberani adalah bahaya.\" \\n— Euripides (“Iphigenia in Tauris”)"
 
 #: gui/text/quotes.txt:77
 msgid ""
@@ -1501,25 +1501,25 @@ msgid ""
 "“Return with your shield, or on it.” \\n— Farewell of Spartan women to their"
 " warriors, implying that cowards would throw away their shield in battle to "
 "flee (Plutarch, “Moralia”, “Sayings of Spartan Women”, 241f)"
-msgstr ""
+msgstr "“Kembalilah dengan perisaimu, atau diatasnya” \\n— Pamit wanita-wanita Sparta kepada para pendekar Sparta, dalam artian para pengecut akan membuang perisai mereka dalam pertempuran untuk melarikan diri (Plutarch, “Moralia”, “Sayings of Spartan Women”, 241f)"
 
 #: gui/text/quotes.txt:81
 msgid ""
 "“I came, I saw, I conquered.” \\n— Caesar, after routing Pharnaces II of "
 "Pontus in the first assault (Plutarch, “Parallel Lives”, “Caesar”, sec. 50)"
-msgstr ""
+msgstr "“Aku datang, aku melihat, aku menaklukkan” \\n— Caesar, setelah memukul mundur Pharnaces II dari Pontus dalam serangan pertama (Plutarch, “Parallel Lives”, “Caesar”, bag. 50)"
 
 #: gui/text/quotes.txt:82
 msgid ""
 "“Men willingly believe what they wish.” \\n— Caesar (“De Bello Gallico”, "
 "III. 18)"
-msgstr ""
+msgstr "\"Manusia secara sukarela percaya akan hal yang mereka harapkan.\" \\n— Caesar (“De Bello Gallico”, III. 18)"
 
 #: gui/text/quotes.txt:83
 msgid ""
 "“It is not the well-fed long-haired man I fear, but the pale and the hungry "
 "looking.” \\n— Caesar (Plutarch, “Parallel Lives”, “Antony”, sec. 11)"
-msgstr ""
+msgstr "\"Bukan orang yang berkecukupan makan dan berambut panjang yang aku takuti, tetapi yang pucat dan terlihat lapar.\" \\n— Caesar (Plutarch, “Parallel Lives”, “Antony”, bag. 11)"
 
 #: gui/text/quotes.txt:84
 msgid ""
@@ -1555,7 +1555,7 @@ msgid ""
 "“The die is cast.” \\n— Caesar, when crossing the Rubicon river with his "
 "legion into Italy, a capital offense that led to his civil war against "
 "Pompey (Suetonius, “The Lives of the Twelve Caesars”, 32)"
-msgstr ""
+msgstr "\"Dadu sudah dilemparkan.\" \\n— Caesar, saat menyebrangi sungai Rubicon dengan legiunnya ke Italia, sebuah tindak pidana yang berakhir dengan perang saudara melawan Pompey (Suetonius, “The Lives of the Twelve Caesars”, 32)"
 
 #: gui/text/quotes.txt:88
 msgid ""
@@ -1568,19 +1568,19 @@ msgstr ""
 msgid ""
 "“Stop quoting laws, we carry weapons!” \\n— Pompey (Plutarch, “Parallel "
 "Lives”, “Pompey”, sec. 10)"
-msgstr ""
+msgstr "\"Berhentilah mengutip hukum, kami membawa senjata!\" \\n— Pompey (Plutarch, “Parallel Lives”, “Pompey”, bag. 10)"
 
 #: gui/text/quotes.txt:90
 msgid ""
 "“If a man put out the eye of another man, his eye shall be put out.” \\n— "
 "Hammurabi (Hammurabi's Code, sec. 196)"
-msgstr ""
+msgstr "\"Jika seseorang mencungkil mata orang lain, matanya juga harus dicungkil.\" \\n— Hammurabi (Hammurabi's Code, bag. 196)"
 
 #: gui/text/quotes.txt:91
 msgid ""
 "“I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.” \\n— Hannibal (Polybius, “Histories”, III. 85)"
-msgstr ""
+msgstr "\"Aku datang bukan untuk berperang dengan orang-orang Italia, tapi untuk membantu mereka melawan Roma.\" \\n— Hannibal (Polybius, “Histories”, III. 85)"
 
 #: gui/text/quotes.txt:92
 msgid ""
@@ -1596,7 +1596,7 @@ msgid ""
 "world as theirs and subject to their pleasure. With whom we are to be at "
 "war, with whom at peace, they think it right that they should determine.” "
 "\\n— Hannibal, addressing his troops (Livy, “History of Rome”, XXI. 44)"
-msgstr ""
+msgstr "\"Yang paling tidak manusiawi dan paling arogan dari semua negara, mereka \\[orang-orang Romawi] menganggap dunia sebagai milik mereka dan tunduk kepada kesenangan mereka. Dengan siapa kita berperang, dengan siapa kita berdamai, mereka pikir itu adalah hak mereka untuk menentukan.\" \\n— Hannibal, menyapa tentaranya (Livy, “History of Rome”, XXI. 44)"
 
 #: gui/text/quotes.txt:94
 msgid ""
@@ -1609,7 +1609,7 @@ msgid ""
 "“War is the father and king of all things: some he has made gods, and some "
 "men; some slaves and some free.” \\n— Heraclitus (Hippolytus, “The "
 "Refutation of all Heresies”, IX. 4)"
-msgstr ""
+msgstr "“Perang adalah bapak dan raja dari semuanya: ada yang ia jadikan dewa, ada yang ia jadikan manusia; ada yang budak dan ada yang bebas.” \\n— Heraclitus (Hippolytus, “The Refutation of all Heresies”, IX. 4)"
 
 #: gui/text/quotes.txt:96
 msgid ""
@@ -1621,7 +1621,7 @@ msgstr ""
 msgid ""
 "“It is better to be envied than to be pitied.” \\n— Herodotus (“The "
 "Histories”, III. 52)"
-msgstr ""
+msgstr "\"Lebih baik dicemburui daripada dikasihani.\" \\n— Herodotos (“The Histories”, III. 52)"
 
 #: gui/text/quotes.txt:98
 msgid ""
@@ -1731,7 +1731,7 @@ msgid ""
 "“Come and get them!” \\n— Leonidas, to the Persian messenger who demanded "
 "that he and his men lay down their arms (Plutarch, “Moralia”, “Sayings of "
 "Spartans”, 225c)"
-msgstr ""
+msgstr "“Ambil saja sendiri!” \\n— Leonidas, kepada pengirim surat Persia yang meminta dia dan tentaranya untuk menurunkan senjata mereka (Plutarch, “Moralia”, “Sayings of Spartans”, 225c)"
 
 #: gui/text/quotes.txt:114
 msgid ""
@@ -1786,13 +1786,13 @@ msgstr ""
 msgid ""
 "“No one is so old as to think that he cannot live one more year.” \\n— "
 "Cicero (“On Old Age”, sec. 24)"
-msgstr ""
+msgstr "\"Tidak ada seorang pun yang terlalu tua untuk berpikir bahwa ia tidak akan hidup satu tahun lagi.\" \\n— Cicero (“On Old Age”, sec. 24)"
 
 #: gui/text/quotes.txt:122
 msgid ""
 "“Let the welfare of the people be the ultimate law.” \\n— Cicero (“On the "
 "Laws”, III., sec. 3)"
-msgstr ""
+msgstr "\"Biarkan kemakmuran rakyat menjadi hukum yang utama.\" \\n— Cicero (“On the Laws”, III., sec. 3)"
 
 #: gui/text/quotes.txt:123
 msgid ""
@@ -1803,7 +1803,7 @@ msgstr ""
 #: gui/text/quotes.txt:124
 msgid ""
 "“Laws are silent in time of war.” \\n— Cicero (“Pro Milone”, IV., sec. 11)"
-msgstr ""
+msgstr "“Hukum membisu dalam masa perang.” \\n— Cicero (“Pro Milone”, IV., sec. 11)"
 
 #: gui/text/quotes.txt:125
 msgid ""
@@ -1830,7 +1830,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:128
 msgid "“The man who runs may fight again.” \\n— Menander (“Monosticha”)"
-msgstr ""
+msgstr "\"Orang yang lari akan dapat bertarung lagi.\" - Menander (\"Monosticha\")"
 
 #: gui/text/quotes.txt:129
 msgid ""

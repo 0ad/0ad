@@ -37,9 +37,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:10+0000\n"
-"PO-Revision-Date: 2020-07-25 22:16+0000\n"
-"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
+"POT-Creation-Date: 2020-07-27 07:10+0000\n"
+"PO-Revision-Date: 2020-07-27 08:27+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,9 +55,8 @@ msgstr "Ludy indyjskie, irańskie i kuszyckie kultywowały tradycję znakomitego
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
-"Range +10 meters for bow-wielding units. Archer units better accuracy and "
-"-20% train time, but also -20% health."
-msgstr "Zasięg +10 metrów dla jednostek uzbrojonych w łuk. Czas treningu łuczników -20%, poziom zdrowia również -20%."
+"Archers −10% training time, +8 attack range, and −10% ranged attack spread."
+msgstr ""
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -1333,11 +1332,11 @@ msgstr "Architekci morscy"
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
-"Advanced and Elite units +20% training time, +1 armour level, +10% health, "
-"+0.4 capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
-"healing strength and +3 healing range; Infantry +0.5 movement speed; Melee "
-"units +20% attack damage; Ranged units +4 attack range and −10% spread."
-msgstr "Jednostki zaawansowane i elitarne szkolą się o 20% szybciej, mają 1 więcej punkt pancerza, 10% więcej zdrowia, 0.4 punktu przejmowania, 20% zasobów i zbierają zasoby 30% szybciej. Uzdrowiciele otrzymują +5 siły leczenia i +3 zasięgu leczenia. Piechota szybsza o 0.5 punktu. Jednostki walczące wręcz +20% obrażeń. Jednostki walczące na dystans +4 zasięgu ataku i -10% rozstrzału."
+"Advanced and Elite units +20% training time, +1 armor, +10% health, +0.7 "
+"capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
+"healing strength and +3 healing range; Melee units +20% attack damage; "
+"Ranged units +4 attack range and −10% spread."
+msgstr ""
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
@@ -1353,11 +1352,11 @@ msgstr "Indiańskie słonie są 10% droższe, o tyle wolniej się szkolą, ale m
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
-"Elite units +20% training time, +1 armour level, +10% health, +0.4 capture "
-"attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
-"strength and +3 healing range; Infantry +0.5 movement speed; Melee units "
-"+20% attack damage; Ranged units +4 attack range and −10% spread."
-msgstr "Jednostki zaawansowane i elitarne szkolą się o 20% szybciej, mają 1 więcej punkt pancerza, 10% więcej zdrowia, 0.4 punktu przejmowania, 20% zasobów i zbierają zasoby 30% szybciej. Uzdrowiciele otrzymują +5 siły leczenia i +3 zasięgu leczenia. Piechota szybsza o 0.5 punktu. Jednostki walczące wręcz +20% obrażeń. Jednostki walczące na dystans +4 zasięgu ataku i -10% rozstrzału."
+"Elite units +20% training time, +1 armor, +10% health, +0.8 capture attack "
+"strength, +20% loot, and −30% gather speed; Healers +5 healing strength and "
+"+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
+"range and −10% spread."
+msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""
@@ -1520,9 +1519,8 @@ msgid ""
 msgstr "Kartagińczycy budowali mury miejskie w trzech koncentrycznych obwodach. Mury te nigdy nie były przełamane. Nawet gdy miasto zajęli Rzymianie, zrobili to przez port, nie zaś przez szturmowanie murów."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
-msgid ""
-"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
-msgstr "Kartagińskie mury +100% czasu budowania, +100% kosztu kamienia i +200% zdrowia."
+msgid "Walls +100% build time, +100% stone cost, and +200% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -1547,10 +1545,8 @@ msgid "The Greeks used stone construction from early Mycenaean times."
 msgstr "Grecy używali kamiennych konstrukcji od czasów wczesnomykeńskich."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
-msgid ""
-"Athenian, Macedonian, and Spartan Structures +10% health and +10% capture "
-"points."
-msgstr "Ateńskie, macedońskie i spartańskie budowle otrzymują +10% zdrowia i +10% punktów przejęcia."
+msgid "Structures +10% health and +10% capture points."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -1649,8 +1645,8 @@ msgid ""
 msgstr "Spartanie byli szkoleni od najmłodszych lat na najpotężniejszych wojowników, którzy potrafią znosić wszelkie trudy życia wojskowego, na jakie mogą natrafić w przyszłości."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "+25% zdrowia dla piechoty z włóczniami, ale również +10% czas trenowania"
+msgid "Champion Infantry Spearmen +25% health, but +5% training time."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -1711,13 +1707,13 @@ msgstr "Boska instrukcja"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
-"The Anusiya champion infantry train twice as fast, but lose a little max "
-"health."
-msgstr "Jednostki piechoty bohaterów Nieśmiertelnych szkolą się dwa razy szybciej, ale tracą trochę maksymalnego zdrowia."
+"The Achaemenids maintained a 10,000-strong elite corps, referred to as "
+"Athanatoi (“Immortals”) by Greek authors."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr "Jednostki Piechoty Bohaterów Nieśmiertelnych mają zmniejszony o -50% czas szkolenia, ale tracą -10% zdrowia."
+msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -1842,8 +1838,8 @@ msgid ""
 msgstr "Zaczynając od Aleksandra, Helleńscy monarchowie założyli wiele miast w swoich imperiach, gdzie grecka kultura i sztuka mieszała się z regionalnymi obyczajami tworząc zróżnicowaną cywilizację Helleńską."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
-msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr "Centa osady otrzymują +100% zdrowia, punkty przejmowania oraz dwa razy więcej strzał."
+msgid "Civic Centers +100% health and capture points, double default arrows."
+msgstr ""
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -1914,9 +1910,9 @@ msgstr "Srebrne Tarcze lub Argyraspidai, byli elitarną ciężką piechotą Mace
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
 msgid ""
-"Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
-"health and attack."
-msgstr "Ulepsz bohaterskich tarczowników do srebrnych tarcz, które posiadają więcej punktów zdrowia i ataku."
+"Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
+"and attack damage."
+msgstr ""
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

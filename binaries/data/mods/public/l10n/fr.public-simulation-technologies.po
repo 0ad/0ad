@@ -18,6 +18,7 @@
 # gab tes, 2020
 # Glorfindel Of Gondolin, 2019
 # gorius <gorius05@gmail.com>, 2014
+# Hakim Benzakour <hakim.benz67@gmail.com>, 2020
 # Jo Du <jojo337@live.fr>, 2018
 # Julien Piron <traducteur@jpiron.eu>, 2020
 # jy jrts <lucashavard35@hotmail.fr>, 2017
@@ -34,9 +35,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:10+0000\n"
-"PO-Revision-Date: 2020-07-24 08:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-27 07:10+0000\n"
+"PO-Revision-Date: 2020-07-29 18:24+0000\n"
+"Last-Translator: Hakim Benzakour <hakim.benz67@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,9 +53,8 @@ msgstr "Les Indiens, les Iraniens et les Koushites avaient traditionnellement de
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
-"Range +10 meters for bow-wielding units. Archer units better accuracy and "
-"-20% train time, but also -20% health."
-msgstr "+10 mètres de portée pour les unités utilisant un arc. Les archers ont une plus grande précision et -20% de temps d'entrainement, mais également -20% de santé."
+"Archers −10% training time, +8 attack range, and −10% ranged attack spread."
+msgstr ""
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -573,7 +573,7 @@ msgstr "Engrais"
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr ""
+msgstr "Les Gaulois ont inventé une moissonneuse, laquelle facilite grandement la récolte."
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
@@ -583,7 +583,7 @@ msgstr "Les ouvriers ont +15% de taux de récolte du grain."
 
 #: simulation/data/technologies/gather_farming_harvester.jsongenericName
 msgid "Harvesting Machine"
-msgstr ""
+msgstr "Moissonneuse"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
@@ -1330,30 +1330,30 @@ msgstr "Architectes navals"
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
-"Advanced and Elite units +20% training time, +1 armour level, +10% health, "
-"+0.4 capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
-"healing strength and +3 healing range; Infantry +0.5 movement speed; Melee "
-"units +20% attack damage; Ranged units +4 attack range and −10% spread."
+"Advanced and Elite units +20% training time, +1 armor, +10% health, +0.7 "
+"capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
+"healing strength and +3 healing range; Melee units +20% attack damage; "
+"Ranged units +4 attack range and −10% spread."
 msgstr ""
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
 " and loot."
-msgstr ""
+msgstr "Réduit de -10% les coûts en ressources, le temps d'entraînement, les points de vie, les dégâts en attaque, et la compétences de pillage des éléphants africains."
 
 #: simulation/data/technologies/unit_elephant_indian.jsontooltip
 msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
-msgstr ""
+msgstr "Augmente de +10% le coût des ressources, le temps d'entraînement, les points de vie, les dégâts à l'attaque, et la compétence de pillage des éléphants indiens."
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
-"Elite units +20% training time, +1 armour level, +10% health, +0.4 capture "
-"attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
-"strength and +3 healing range; Infantry +0.5 movement speed; Melee units "
-"+20% attack damage; Ranged units +4 attack range and −10% spread."
+"Elite units +20% training time, +1 armor, +10% health, +0.8 capture attack "
+"strength, +20% loot, and −30% gather speed; Healers +5 healing strength and "
+"+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
+"range and −10% spread."
 msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
@@ -1459,7 +1459,7 @@ msgstr "Engager des mercenaires professionnels pour combattre dans votre armée.
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries are promoted to Advanced rank."
-msgstr ""
+msgstr "Les mercenaires obtiennent la promotion Rang supérieur."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
@@ -1517,9 +1517,8 @@ msgid ""
 msgstr "Les Carthaginois bâtissaient leurs remparts en trois circuits concentriques. Ces murs n'ont jamais été percés. Même quand la cité fut prises par les Romains, ce fut par le port de la ville et non en prenant d'assaut les remparts."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
-msgid ""
-"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
-msgstr "Les murs Carthaginois ont +100% de temps de construction, +100% de coût en pierre et +200% de vie."
+msgid "Walls +100% build time, +100% stone cost, and +200% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -1544,9 +1543,7 @@ msgid "The Greeks used stone construction from early Mycenaean times."
 msgstr "Les Grecs utilisent les constructions en pierre depuis le début du Mycénien."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
-msgid ""
-"Athenian, Macedonian, and Spartan Structures +10% health and +10% capture "
-"points."
+msgid "Structures +10% health and +10% capture points."
 msgstr ""
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
@@ -1559,15 +1556,15 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr ""
+msgstr "L'Inde est le pays des éléphants. C'est en Inde que l'on commença à faire des éléphants des armes de guerre, et cette pratique s'y perpétua pendant plusieurs millénaires. C'est également depuis l'Inde que la région orientale de la Méditerranée se procurait ses éléphants. Les monarques indiens étaient en mesure de déployer quantité d'éléphants de guerre sur le champ de bataille."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "Réduction de -30% du temps d'entraînement des éléphants."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "Culture de l'éléphant"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -1646,8 +1643,8 @@ msgid ""
 msgstr "Les Spartiates étaient abrités et formés à partir du plus jeune âge à être des guerriers hors normes et supporter n'importe quelle épreuve qu'une vie militaire peut leur apporter."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "+25% de santé pour les lanciers, mais aussi +10% de temps de formation."
+msgid "Champion Infantry Spearmen +25% health, but +5% training time."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -1708,13 +1705,13 @@ msgstr "Instruction divine"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
-"The Anusiya champion infantry train twice as fast, but lose a little max "
-"health."
-msgstr "Le champion d'infanterie Anusiya se forme deux fois plus vite, mais perd un peu de santé maximum."
+"The Achaemenids maintained a 10,000-strong elite corps, referred to as "
+"Athanatoi (“Immortals”) by Greek authors."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr "-50% de temps de formation pour le champion d'infanterie Anusiya, mais aussi -10% santé."
+msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -1839,8 +1836,8 @@ msgid ""
 msgstr "Commençant avec Alexandre, les monarques hellénistiques fondèrent de nombreuses cités à travers leur empire, où la culture grecque mêlée avec les coutumes locales créa la civilisation hellénistique hétéroclite. "
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
-msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr "Centres civiques : +100% de points de vie et de capture, flèches par défaut doublées."
+msgid "Civic Centers +100% health and capture points, double default arrows."
+msgstr ""
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -1897,7 +1894,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Champion Infantry Pikeman."
-msgstr ""
+msgstr "Déverrouille l'unité Fantassin piquier champion"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"
@@ -1911,8 +1908,8 @@ msgstr "Les Boucliers d'argent ou Argyraspides étaient l'infanterie lourde d'é
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
 msgid ""
-"Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
-"health and attack."
+"Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
+"and attack damage."
 msgstr ""
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName

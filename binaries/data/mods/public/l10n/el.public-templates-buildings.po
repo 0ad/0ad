@@ -38,9 +38,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:09+0000\n"
-"PO-Revision-Date: 2020-07-24 10:22+0000\n"
-"Last-Translator: firespin\n"
+"POT-Creation-Date: 2020-07-27 07:10+0000\n"
+"PO-Revision-Date: 2020-07-27 10:25+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -239,13 +239,13 @@ msgstr "Οχύρωσε την πόλη για μια στιβαρή άμυνα."
 msgid "Wall"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_wall_gate.xml:21
+#: simulation/templates/template_structure_defensive_wall_gate.xml:22
 #: simulation/templates/template_structure_defensive_wall_long.xml:35
 msgid "Allow units access through Walls. Can be locked to prevent access."
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_wall_gate.xml:22
-#: simulation/templates/template_structure_defensive_wall_gate.xml:19
+#: simulation/templates/template_structure_defensive_wall_gate.xml:23
+#: simulation/templates/template_structure_defensive_wall_gate.xml:20
 #: simulation/templates/structures/palisades_gate.xml:23
 msgid "Gate"
 msgstr "Πύλη"
@@ -350,8 +350,8 @@ msgid "Dock"
 msgstr "Λιμάνι"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:24
-msgid "Elephant Stables"
-msgstr "Στάβλοι Ελεφάντων"
+msgid "Elephant Stable"
+msgstr ""
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:26
 msgid "Train Elephants and research Elephant technologies."
@@ -405,8 +405,10 @@ msgid "Siege Workshop"
 msgstr "Πολιορκητικό Εργαστήρι"
 
 #: simulation/templates/template_structure_military_workshop.xml:27
-msgid "Construct Siege Engines and research Siege Engine technologies."
-msgstr "Κατασκευάζει Πολιορκητικές Μηχανές και  ερευνά τεχνολογία των Πολιορκητικών Μηχανών."
+msgid ""
+"Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
+"Siege Engine technologies."
+msgstr ""
 
 #: simulation/templates/template_structure_military_workshop.xml:28
 msgid "Workshop"
@@ -581,7 +583,6 @@ msgid "Gymnasion"
 msgstr "Γυμνάσιο"
 
 #: simulation/templates/structures/athen_gymnasium.xml:24
-#: simulation/templates/structures/pers_hall.xml:31
 msgid "Train Champions."
 msgstr "Εκπαιδεύει Πρωταθλητές."
 
@@ -1123,7 +1124,6 @@ msgstr "Gur Oroigarri"
 
 #: simulation/templates/structures/iber_monument.xml:34
 #: simulation/templates/structures/maur_pillar_ashoka.xml:34
-#: simulation/templates/structures/pers_ishtar_gate.xml:30
 #: simulation/templates/structures/rome_arch.xml:23
 msgid "Territory root."
 msgstr ""
@@ -1589,15 +1589,15 @@ msgstr "Διδά"
 msgid "Research technologies. Garrison Soldiers for additional arrows."
 msgstr ""
 
-#: simulation/templates/structures/pers_hall.xml:26
+#: simulation/templates/structures/pers_hall.xml:23
 msgid "Gate of All Nations"
 msgstr "Πύλη Όλων των Εθνών"
 
-#: simulation/templates/structures/pers_hall.xml:27
+#: simulation/templates/structures/pers_hall.xml:24
 msgid "Duvarθi Visadahyu"
 msgstr "Ντουβάρθι Βιζαντάγιου"
 
-#: simulation/templates/structures/pers_hall.xml:29
+#: simulation/templates/structures/pers_hall.xml:25
 msgid "Hall"
 msgstr ""
 
@@ -1614,7 +1614,7 @@ msgstr "Πανδοχείο"
 msgid "Ishtar Gate of Babylon"
 msgstr "Πύλη Ιστάρ της Βαβυλώνας"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:32
+#: simulation/templates/structures/pers_ishtar_gate.xml:30
 msgid "IshtarGate"
 msgstr ""
 
