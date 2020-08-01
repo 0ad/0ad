@@ -1,0 +1,53 @@
+{
+    "settings": {
+        "TriggerScripts": [
+            "scripts/TriggerHelper.js",
+            "scripts/ConquestCommon.js",
+            "scripts/ConquestUnits.js"
+        ],
+        "VictoryConditions": [
+            "conquest_units"
+        ],
+        "Name": "Arcadia",
+        "mapType": "scenario",
+        "AISeed": 0,
+        "Seed": 0,
+        "CheatsEnabled": true,
+        "Ceasefire": 0,
+        "WonderDuration": 10,
+        "RelicDuration": 10,
+        "RelicCount": 2,
+        "Size": 256,
+        "PlayerData": [
+            {
+                "Name": "Player 1",
+                "Civ": "spart",
+                "Color": {
+                    "r": 150,
+                    "g": 20,
+                    "b": 20
+                },
+                "AI": "",
+                "AIDiff": 3,
+                "AIBehavior": "random",
+                "Team": 1
+            },
+            {
+                "Name": "Player 2",
+                "Civ": "spart",
+                "Color": {
+                    "r": 150,
+                    "g": 20,
+                    "b": 20
+                },
+                "AI": "",
+                "AIDiff": 3,
+                "AIBehavior": "random",
+                "Team": 2
+            }
+        ]
+    },
+    "mapType": "scenario",
+    "map": "maps/scenarios/arcadia",
+    "gameSpeed": 1
+}

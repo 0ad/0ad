@@ -42,6 +42,9 @@ Examples:
 3) Observe the PetraBot on a triggerscript map:
  -autostart="random/jebel_barkal" -autostart-seed=-1 -autostart-players=2 -autostart-civ=1:athen -autostart-civ=2:brit -autostart-ai=1:petra -autostart-ai=2:petra -autostart-player=-1
 
+RL client:
+-rl-interface       Run the RL interface (see source/tools/rlclient)
+
 Configuration:
 -conf=KEY:VALUE     set a config value
 -nosound            disable audio
