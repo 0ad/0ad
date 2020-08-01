@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:10+0000\n"
-"PO-Revision-Date: 2020-07-24 08:28+0000\n"
+"POT-Creation-Date: 2020-07-27 07:10+0000\n"
+"PO-Revision-Date: 2020-07-27 08:27+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -27,9 +27,8 @@ msgstr "Bhiodh muinntir nan Innseachan, Ioràin ’s Kuluš glè mhath air bogha
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
-"Range +10 meters for bow-wielding units. Archer units better accuracy and "
-"-20% train time, but also -20% health."
-msgstr "Gheibh aonadan le bogha +10 meatairean de rainse. Gheibh boghadairean pongalachd leasaichte is thèid iad oideachadh nas luaithe le −20% ach caillidh iad slàinte cuideachd le −20%."
+"Archers −10% training time, +8 attack range, and −10% ranged attack spread."
+msgstr ""
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -1305,10 +1304,10 @@ msgstr "Ailtireachd cabhlaich"
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
-"Advanced and Elite units +20% training time, +1 armour level, +10% health, "
-"+0.4 capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
-"healing strength and +3 healing range; Infantry +0.5 movement speed; Melee "
-"units +20% attack damage; Ranged units +4 attack range and −10% spread."
+"Advanced and Elite units +20% training time, +1 armor, +10% health, +0.7 "
+"capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
+"healing strength and +3 healing range; Melee units +20% attack damage; "
+"Ranged units +4 attack range and −10% spread."
 msgstr ""
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
@@ -1325,10 +1324,10 @@ msgstr ""
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
-"Elite units +20% training time, +1 armour level, +10% health, +0.4 capture "
-"attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
-"strength and +3 healing range; Infantry +0.5 movement speed; Melee units "
-"+20% attack damage; Ranged units +4 attack range and −10% spread."
+"Elite units +20% training time, +1 armor, +10% health, +0.8 capture attack "
+"strength, +20% loot, and −30% gather speed; Healers +5 healing strength and "
+"+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
+"range and −10% spread."
 msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
@@ -1492,9 +1491,8 @@ msgid ""
 msgstr "Thogadh na Cartagaich ballachan a’ bhaile aca ann an trì cuairtean co-mheadhanach. Cha deach briseadh tro na ballachan ud a-riamh. Fiù ’s nuair a cheannsaich na Ròmanaich am baile, ’s ann gun d’ fhuair iad a-steach tron phort seach na ballachan."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
-msgid ""
-"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
-msgstr "Gheibh ballachan Cartagach +100% air an ùine togail, +100% air cosgais cloiche agus +200% air an slàinte."
+msgid "Walls +100% build time, +100% stone cost, and +200% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -1519,9 +1517,7 @@ msgid "The Greeks used stone construction from early Mycenaean times."
 msgstr "Cleachdadh na Greugaich togail le clach o chionn tràth ann an linn Mhycenae."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
-msgid ""
-"Athenian, Macedonian, and Spartan Structures +10% health and +10% capture "
-"points."
+msgid "Structures +10% health and +10% capture points."
 msgstr ""
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
@@ -1621,8 +1617,8 @@ msgid ""
 msgstr "Chaidh na Spartaich oideachadh ann an ionadan sònraichte on òige ach am bhiodh iad nan sàr-ghaisgeach ’s gun seasadh iad ri cruadal a’ bheatha san arm."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "Gheibh sleaghair coisridh +25% de shlàinte ach bheir an oideachadh +10% a dh’ùine."
+msgid "Champion Infantry Spearmen +25% health, but +5% training time."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -1683,13 +1679,13 @@ msgstr "Facal dhè"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
-"The Anusiya champion infantry train twice as fast, but lose a little max "
-"health."
-msgstr "Cha doir oideachadh laoich coisridh Anusaidhea ach an dàrna leth de dh’ùine ach caillidh iad beagan slàinte."
+"The Achaemenids maintained a 10,000-strong elite corps, referred to as "
+"Athanatoi (“Immortals”) by Greek authors."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr "Thèid laoich coisridh Anusaidhea oideachadh nas luaithe le −50% ach caillidh iad slàinte cuideachd le −10%."
+msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -1814,8 +1810,8 @@ msgid ""
 msgstr "Stèidhich na rìghrean Greugach iomadh baile sna h-impireachdan aca o Alasdair a-mach far an deach cultar ’s ealan nan Greugach a mheasgachadh leis an dualchas ionadail agus chruthaich seo sìobhaltas Greugach measgaichte ’s farsaing."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
-msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr "Gheibh ionadan sìobhalta +100% de shlàinte is puingean glacaidh is dà uiread dhe shaighdean tùsail."
+msgid "Civic Centers +100% health and capture points, double default arrows."
+msgstr ""
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -1886,8 +1882,8 @@ msgstr "’S e an coisridh throm sheann-ghaisgeach san fheachd Mhasadonach a bha
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
 msgid ""
-"Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
-"health and attack."
+"Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
+"and attack damage."
 msgstr ""
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName

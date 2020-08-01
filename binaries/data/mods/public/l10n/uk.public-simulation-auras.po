@@ -8,6 +8,7 @@
 # Coringo Luminos <noksamem@gmail.com>, 2017
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2018,2020
 # 36bc093879f7ad106de586c9dd88b51d_1728f11 <41de99256bb308b66ac6186edf8ebe1f_918412>, 2020
+# Halyna Bondar <jockyani@rambler.ru>, 2020
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
 # Oleg Adept <adeptoleg@gmail.com>, 2016
@@ -22,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:10+0000\n"
-"PO-Revision-Date: 2020-07-24 11:19+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-27 07:10+0000\n"
+"PO-Revision-Date: 2020-07-30 05:53+0000\n"
+"Last-Translator: Halyna Bondar <jockyani@rambler.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,14 +48,6 @@ msgstr "Ремонти у доці"
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
 msgstr "Гарнізовані кораблі мають +10 темпу відновлення здоров'я."
-
-#: simulation/data/auras/structures/epic_temple_heal.jsonauraName
-msgid "Blessing of the Gods"
-msgstr "Благословіння богів"
-
-#: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
-msgid "Humans +3 health regeneration rate."
-msgstr "Люди мають +3 темпу відновлення здоров'я."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -80,14 +73,6 @@ msgstr "Викликаюча присутність"
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers +1 armor level and +10% melee and ranged attack damage."
 msgstr "Солдати мають +1 рівень броні та +10% нанесення ближнього, та дистанційного пошкодження."
-
-#: simulation/data/auras/structures/kush_pyramids_territory.jsonauraName
-msgid "Meroitic Pyramids"
-msgstr "Мероїтські піраміди"
-
-#: simulation/data/auras/structures/kush_pyramids_territory.jsonauraDescription
-msgid "Civic Centers +10% territory influence radius."
-msgstr "Громадські центри мають +10% радіусу территоріального впливу."
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -200,15 +185,15 @@ msgstr "Торгові експерти"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Allies +10% international trade bonus."
-msgstr ""
+msgstr "Союзники мають +10% бонусу міжнародної торгівлі."
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Products from Gaul"
-msgstr ""
+msgstr "Товари з Галлії"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Blacksmiths −15% technology resource costs and research time."
-msgstr ""
+msgstr "Ковалі потребують -15% технологічних ресурсних витрат та часу дослідження."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -216,7 +201,7 @@ msgstr "Саріпєко"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Javelineers −10% resource costs."
-msgstr ""
+msgstr "Союзні громадянські метальники копій потребують -10% ресурсних витрат."
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -339,7 +324,7 @@ msgstr "Переслідування застрільником"
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
 "Javelineers +20% attack range."
-msgstr ""
+msgstr "Кассівелаун використовував стрімких застрільників, щоб переслідувати римські війська і фуражирів.\nМетальники копій мають +20% дистанції атаки. "
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -550,7 +535,7 @@ msgstr "Реформи пельтаста"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraDescription
 msgid "Infantry Javelineers +15% movement speed."
-msgstr ""
+msgstr "Піхотні метальники копій мають +15% швидкості руху. "
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
@@ -973,7 +958,7 @@ msgstr "Реформи ілотів"
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid ""
 "Citizen Infantry Javelineers +1 armor, +25% ranged attack pierce damage."
-msgstr ""
+msgstr "Громадянські піхотні метальники копій мають +1 броні, +25% нанесення дистанційного колючого пошкодження."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

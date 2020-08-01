@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:10+0000\n"
-"PO-Revision-Date: 2020-07-24 08:28+0000\n"
+"POT-Creation-Date: 2020-07-27 07:10+0000\n"
+"PO-Revision-Date: 2020-07-27 08:27+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -40,9 +40,8 @@ msgstr "인도와 이란, 쿠쉬는 전장에서 전통 궁술과 궁수의 일�
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
-"Range +10 meters for bow-wielding units. Archer units better accuracy and "
-"-20% train time, but also -20% health."
-msgstr "활을 가진 유닛의 사거리가 +10 미터 늘어납니다. 궁수 유닛의 사격 정확도가 향상되고 훈련시간이 -20% 단축되지만, 체력은 -20% 감소합니다."
+"Archers −10% training time, +8 attack range, and −10% ranged attack spread."
+msgstr ""
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -1318,10 +1317,10 @@ msgstr "조선 기술자"
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
-"Advanced and Elite units +20% training time, +1 armour level, +10% health, "
-"+0.4 capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
-"healing strength and +3 healing range; Infantry +0.5 movement speed; Melee "
-"units +20% attack damage; Ranged units +4 attack range and −10% spread."
+"Advanced and Elite units +20% training time, +1 armor, +10% health, +0.7 "
+"capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
+"healing strength and +3 healing range; Melee units +20% attack damage; "
+"Ranged units +4 attack range and −10% spread."
 msgstr ""
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
@@ -1338,10 +1337,10 @@ msgstr ""
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
-"Elite units +20% training time, +1 armour level, +10% health, +0.4 capture "
-"attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
-"strength and +3 healing range; Infantry +0.5 movement speed; Melee units "
-"+20% attack damage; Ranged units +4 attack range and −10% spread."
+"Elite units +20% training time, +1 armor, +10% health, +0.8 capture attack "
+"strength, +20% loot, and −30% gather speed; Healers +5 healing strength and "
+"+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
+"range and −10% spread."
 msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
@@ -1505,9 +1504,8 @@ msgid ""
 msgstr "카르타고는 삼중 성벽을 쌓았습니다. 이 성벽은 절때로 뚫리지 않았습니다. 이 도시는 로마에게 점령 당했을때도 성벽을 습격당해서가 아니라 도시의 항구를 통해서 점령당했기 때문입니다."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
-msgid ""
-"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
-msgstr "카르타고의 성벽의 짓는시간이 +100% 증가하고, 석재 비용이 +100% 증가하고, 내구력이 +200% 증가합니다."
+msgid "Walls +100% build time, +100% stone cost, and +200% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -1532,9 +1530,7 @@ msgid "The Greeks used stone construction from early Mycenaean times."
 msgstr "그리스는 미케네 문명 초기부터 석조 건설을 이용했습니다."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
-msgid ""
-"Athenian, Macedonian, and Spartan Structures +10% health and +10% capture "
-"points."
+msgid "Structures +10% health and +10% capture points."
 msgstr ""
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
@@ -1634,8 +1630,8 @@ msgid ""
 msgstr "스파르타인들은 어려서부터 최상급 전사가되기 위하고 군대 생활이 그들에게 줄 수 있는 어떠한 고난도 견뎌내기위해 수용되어 훈련되었습니다."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "장창 보병의 체력이 +25% 증가하지만, 또한 양성 시간이 +10% 증가합니다."
+msgid "Champion Infantry Spearmen +25% health, but +5% training time."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -1696,13 +1692,13 @@ msgstr "신성한 명령"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
-"The Anusiya champion infantry train twice as fast, but lose a little max "
-"health."
-msgstr "아누쉬야 대표 전사 보병 양성 속도가 2배 빠르지만 최대 체력이 약간 줄어듭니다."
+"The Achaemenids maintained a 10,000-strong elite corps, referred to as "
+"Athanatoi (“Immortals”) by Greek authors."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr "아누쉬야 대표 전사 보병의 양성 시간이 -50% 줄어들지만 또한 체력도 -10% 감소합니다."
+msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -1827,8 +1823,8 @@ msgid ""
 msgstr "알렉산더를 시작으로 헬레니즘의 군주들은 그들의 제국 전체에 걸쳐 많은 도시를 세웠는데, 그리스 문화와 예술이 지방의 풍습과 어우러져 혼합된 헬레니즘 문명을 만들었습니다."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
-msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr "시민 회관의 내구력과 점령 포인트가 +100% 증가하고,  화살의 양이 2배가 됩니다."
+msgid "Civic Centers +100% health and capture points, double default arrows."
+msgstr ""
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -1899,8 +1895,8 @@ msgstr "실버 방패 부대 즉 아르기라스피다이 는 마케도니아 �
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
 msgid ""
-"Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
-"health and attack."
+"Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
+"and attack damage."
 msgstr ""
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName

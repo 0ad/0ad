@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:08+0000\n"
-"PO-Revision-Date: 2020-07-24 11:21+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-27 07:09+0000\n"
+"PO-Revision-Date: 2020-07-27 11:43+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,40 +33,36 @@ msgid "Athenians"
 msgstr "Atenesos"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
+#: simulation/data/civs/mace.jsonCivBonuses[0].Description
+#: simulation/data/civs/spart.jsonCivBonuses[0].Description
+msgid "Structures +10% health and +10% capture points."
+msgstr ""
+
+#: simulation/data/civs/athen.jsonCivBonuses[0].Name
+#: simulation/data/civs/mace.jsonCivBonuses[0].Name
+#: simulation/data/civs/spart.jsonCivBonuses[0].Name
+msgid "Hellenic Architecture"
+msgstr "Arquitectura hel·lènica"
+
+#: simulation/data/civs/athen.jsonCivBonuses[0].History
+#: simulation/data/civs/mace.jsonCivBonuses[0].History
+#: simulation/data/civs/spart.jsonCivBonuses[0].History
+msgid "The Greeks used stone construction from early Mycenaean times."
+msgstr "Els grecs feien construccions de pedra des dels temps micènics primerencs."
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
 msgstr "La velocitat de recollida de metall augmenta un 10% cada edat que passa."
 
-#: simulation/data/civs/athen.jsonCivBonuses[0].Name
+#: simulation/data/civs/athen.jsonCivBonuses[1].Name
 msgid "Silver Owls"
 msgstr "Òlibes de plata"
 
-#: simulation/data/civs/athen.jsonCivBonuses[0].History
+#: simulation/data/civs/athen.jsonCivBonuses[1].History
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
 msgstr "Les mines a Laureion a l'Àtica proveïen Atenes amb una gran quantitat de plata, que es feia servir per encunyar la seva famosa i valuosa moneda, l'òliba atenesa."
-
-#: simulation/data/civs/athen.jsonCivBonuses[1].Description
-#: simulation/data/civs/mace.jsonCivBonuses[2].Description
-#: simulation/data/civs/spart.jsonCivBonuses[2].Description
-msgid ""
-"Constructing a Theatron increases the territory expanse of all buildings by "
-"+20%."
-msgstr "Construir un teatre augmenta l'efecte de territori de tots els edificis un 20%."
-
-#: simulation/data/civs/athen.jsonCivBonuses[1].Name
-#: simulation/data/civs/mace.jsonCivBonuses[2].Name
-#: simulation/data/civs/spart.jsonCivBonuses[2].Name
-msgid "Hellenization"
-msgstr "Hel·lenització"
-
-#: simulation/data/civs/athen.jsonCivBonuses[1].History
-#: simulation/data/civs/spart.jsonCivBonuses[2].History
-msgid ""
-"The Greeks were highly successful in Hellenising various foreigners. During "
-"the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
-"spoken widely from Spain to India."
-msgstr "Els grecs van hel·lenitzar amb èxit diversos pobles estrangers. Durant l'època hel·lenística, el grec era la llengua franca del món antic, parlat des de la península Ibèrica fins a l'Índia."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Allied Warships −25% construction time."
@@ -180,7 +176,6 @@ msgid ""
 msgstr "El jugador guanya la capacitat de fer formar les tropes amb llances en formació de falange, que proporciona millor atac i armadura."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Name
-#: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Othismos"
 msgstr "Othismos"
 
@@ -206,18 +201,6 @@ msgstr "El general que va persuadir els atenesos d'invertir els seus ingressos d
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
 msgstr "Pèricles fou el polític atenès més prominent del segle V aC."
-
-#: simulation/data/civs/athen.jsonFactions[0].Heroes[2].History
-#: simulation/data/civs/maur.jsonStructures[0].History
-#: simulation/data/civs/maur.jsonStructures[1].History
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].History
-#: simulation/data/civs/ptol.jsonFactions[0].Heroes[0].History
-#: simulation/data/civs/ptol.jsonFactions[0].Heroes[1].History
-#: simulation/data/civs/ptol.jsonFactions[0].Heroes[2].History
-#: simulation/data/civs/sele.jsonCivBonuses[0].History
-#: simulation/data/civs/sele.jsonStructures[1].History
-msgid "."
-msgstr "."
 
 #: simulation/data/civs/athen.jsonFactions[0].Description
 msgid "A Hellenic people of the Ionian tribe."
@@ -287,36 +270,6 @@ msgstr "Com a bressol de la civilització occidental i lloc de naixement de la d
 msgid "Britons"
 msgstr "Britons"
 
-#: simulation/data/civs/brit.jsonCivBonuses[0].Description
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Description
-msgid "Enhanced food gained from ranching and farming. "
-msgstr "Millora l'obtenció d'aliments de la ramaderia i l'agricultura."
-
-#: simulation/data/civs/brit.jsonCivBonuses[0].Name
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Name
-msgid "Ardiosmanae"
-msgstr "Ardiosmanae"
-
-#: simulation/data/civs/brit.jsonCivBonuses[0].History
-#: simulation/data/civs/gaul.jsonCivBonuses[0].History
-msgid "Represents Celtic farming methods. "
-msgstr "Representa els mètodes de conreu dels celtes."
-
-#: simulation/data/civs/brit.jsonCivBonuses[1].Description
-#: simulation/data/civs/gaul.jsonCivBonuses[1].Description
-msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr "Els druides augmenten lleugerament la velocitat d'atac dels soldats propers."
-
-#: simulation/data/civs/brit.jsonCivBonuses[1].Name
-#: simulation/data/civs/gaul.jsonCivBonuses[1].Name
-msgid "Deas Celtica"
-msgstr "Deas Celtica"
-
-#: simulation/data/civs/brit.jsonCivBonuses[1].History
-#: simulation/data/civs/gaul.jsonCivBonuses[1].History
-msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr "La religió celta i el druïdisme inspiraven la seva mentalitat bel·licosa."
-
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "Allied Healers −20% resource costs."
 msgstr "Els guaridors aliats costen un 20% menys."
@@ -377,36 +330,6 @@ msgstr "Dubnovelaune"
 #: simulation/data/civs/brit.jsonAINames[10]
 msgid "Vosenius"
 msgstr "Vosenios"
-
-#: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Description
-msgid "Increased attack and movement rate for melee soldiers."
-msgstr "Augment de la velocitat d'atac i moviment dels soldats cos a cos."
-
-#: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Name
-msgid "Sevili Dusios"
-msgstr "Sevili Dusios"
-
-#: simulation/data/civs/brit.jsonFactions[0].Technologies[0].History
-msgid ""
-"The Britons took up the practice of either making permanent marks on their "
-"body in the form of tattoos or temporarily painted their bodies with woad "
-"paint. The effect was very frightening."
-msgstr "Els britons van incorporar la pràctica de fer-se marques permanents al cos com a tatuatges o pintar-se el cos temporalment amb pintura feta amb herba del pastell. L'efecte era aterridor."
-
-#: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Description
-msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr "Augmenta la bonificació d'alçada de les unitats refugiades en una torre."
-
-#: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Name
-msgid "Turos Maros"
-msgstr "Turos Maros"
-
-#: simulation/data/civs/brit.jsonFactions[0].Technologies[1].History
-msgid ""
-"'Great Tower'; Celtic legends abound with stories of massive tall towers "
-"built by the most powerful kings, and the remains of some very large towers "
-"have been found."
-msgstr "\"Gran Torre\"; abunden les llegendes celtes amb històries sobre torres gegantines construïdes pels reis més poderosos, i s'han trobat restes de torres enormes."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -509,14 +432,6 @@ msgstr "Ammià Marcel·lí va descriure la dificultat que tindria una banda de f
 msgid "The Celts of the British Isles."
 msgstr "Els celtes de les Illes Britàniques"
 
-#: simulation/data/civs/brit.jsonStructures[0].Name
-msgid "Kennel"
-msgstr "Gossera"
-
-#: simulation/data/civs/brit.jsonStructures[0].History
-msgid "The Britons were known for breeding war dogs."
-msgstr "Els britons eren famosos per criar gossos de guerra."
-
 #: simulation/data/civs/brit.jsonHistory
 msgid ""
 "The Britons were the Celtic tribes of the British Isles. Using chariots, "
@@ -530,10 +445,8 @@ msgid "Carthaginians"
 msgstr "Cartaginesos"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
-msgid ""
-"Carthaginian walls, gates, and towers have 3x health of a standard wall, but"
-" also 2x build time."
-msgstr "Les muralles, portes i torres cartagineses tenen 3 vegades  més salut que una muralla normal, però també es construeixen el doble de lentes."
+msgid "Walls +100% build time, +100% stone cost, and +200% health."
+msgstr ""
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -542,25 +455,6 @@ msgstr "Muralles triples"
 #: simulation/data/civs/cart.jsonCivBonuses[0].History
 msgid "Carthaginians built triple city walls."
 msgstr "Els cartaginesos construïen muralles triples a les seves ciutats."
-
-#: simulation/data/civs/cart.jsonCivBonuses[1].Description
-msgid ""
-"The resource cost of training elephant-mounted (war elephant) or horse-"
-"mounted units (cavalry) is reduced by 5% per animal corralled (as "
-"appropriate)."
-msgstr "El cost de recursos de reclutar unitats muntades en elefants (elefants de guerra) o a cavall (cavalleria) es redueix un 5% per cada animal que hi hagi als corrals (del tipus adequat)."
-
-#: simulation/data/civs/cart.jsonCivBonuses[1].Name
-#: simulation/data/civs/ptol.jsonCivBonuses[2].Name
-msgid "Roundup"
-msgstr "Captura d'animals per encerclament"
-
-#: simulation/data/civs/cart.jsonCivBonuses[1].History
-msgid ""
-"Not unlike the Iberian Peninsula, North Africa was known as horse country, "
-"capable of producing up to 100,000 new mounts each year. It was also the "
-"home of the North African Forest Elephant."
-msgstr "Com la península Ibèrica, el nord d'Àfrica era conegut com la terra dels cavalls, i produïa fins a 100.000 noves muntures cada any. També era l'hàbitat de l'elefant nord-africà de bosc."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "Allies +10% international trade bonus."
@@ -769,6 +663,30 @@ msgstr "Cartago, una ciutat estat ubicada a l'actual Tunísia, va ser una força
 msgid "Gauls"
 msgstr "Gals"
 
+#: simulation/data/civs/gaul.jsonCivBonuses[0].Description
+msgid "Enhanced food gained from ranching and farming. "
+msgstr "Millora l'obtenció d'aliments de la ramaderia i l'agricultura."
+
+#: simulation/data/civs/gaul.jsonCivBonuses[0].Name
+msgid "Ardiosmanae"
+msgstr "Ardiosmanae"
+
+#: simulation/data/civs/gaul.jsonCivBonuses[0].History
+msgid "Represents Celtic farming methods. "
+msgstr "Representa els mètodes de conreu dels celtes."
+
+#: simulation/data/civs/gaul.jsonCivBonuses[1].Description
+msgid "Druids increase attack rates of soldiers near them slightly."
+msgstr "Els druides augmenten lleugerament la velocitat d'atac dels soldats propers."
+
+#: simulation/data/civs/gaul.jsonCivBonuses[1].Name
+msgid "Deas Celtica"
+msgstr "Deas Celtica"
+
+#: simulation/data/civs/gaul.jsonCivBonuses[1].History
+msgid "Celtic religion and druidry inspired their warlike mindset. "
+msgstr "La religió celta i el druïdisme inspiraven la seva mentalitat bel·licosa."
+
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Blacksmiths −15% technology resource costs and research time."
 msgstr ""
@@ -959,22 +877,6 @@ msgid ""
 "all types."
 msgstr "Amb l'excepció de les planes al·luvials i les valls dels rius, la pedra és abundant a la península Ibèrica i s'utilitzava sovint en la construcció d'estructures de tot tipus."
 
-#: simulation/data/civs/iber.jsonCivBonuses[1].Description
-msgid ""
-"The resource cost of training horse-mounted units (cavalry) is reduced by 5%"
-" per animal corralled."
-msgstr "El cost de recursos de reclutar unitats a cavall (cavalleria) es redueix un 5% per cada animal que hi hagi als corrals."
-
-#: simulation/data/civs/iber.jsonCivBonuses[1].Name
-msgid "Zaldi Saldoa"
-msgstr "Zaldi Saldoa"
-
-#: simulation/data/civs/iber.jsonCivBonuses[1].History
-msgid ""
-"Not unlike Numidia in North Africa, the Iberian Peninsula was known as "
-"'horse country', capable of producing up to 100,000 new mounts each year."
-msgstr "Igual que Numídia al nord d'Àfrica, la península Ibèrica es coneixia com \"la terra dels cavalls\", i produïa fins a 100.000 noves muntures cada any."
-
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Javelineers −10% resource costs."
 msgstr ""
@@ -1139,36 +1041,6 @@ msgstr "Els ibers eren un poble amb uns orígens i una llengua misteriosos, amb 
 msgid "Kushites"
 msgstr "Cuixites"
 
-#: simulation/data/civs/kush.jsonCivBonuses[0].Name
-msgid "The Pyramids of Meroe"
-msgstr "Les piràmides de Meroe"
-
-#: simulation/data/civs/kush.jsonCivBonuses[0].Description
-msgid ""
-"Building a Kushite pyramid increases Civic Center territory influence by "
-"+10% for each one built."
-msgstr "Cada piràmide cuixita que es construeix incrementa la influència territorial del centre cívic un 10%."
-
-#: simulation/data/civs/kush.jsonCivBonuses[1].Name
-msgid "Mineral Deposits"
-msgstr "Jaciments de mineral"
-
-#: simulation/data/civs/kush.jsonCivBonuses[1].Description
-msgid ""
-"Kushite players receive a free extra Metal Mine somewhere in their home "
-"territory."
-msgstr "Els jugadors cuixites reben una mina de metall extra al seu territori base."
-
-#: simulation/data/civs/kush.jsonCivBonuses[2].Name
-msgid "Elephant Roundup"
-msgstr "Captura d'elefants per encerclament"
-
-#: simulation/data/civs/kush.jsonCivBonuses[2].Description
-msgid ""
-"Can capture Gaia elephants and garrison them into a corral to reduce "
-"training costs for War Elephants."
-msgstr "Poden capturar elefants salvatges i refugiar-los a un corral per reduir el cost dels elefants de guerra."
-
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Name
 msgid "Elephant Suppliers"
 msgstr "Proveïdors d'elefants"
@@ -1233,25 +1105,43 @@ msgstr "Shanakdakhete"
 msgid "Amanishakheto"
 msgstr "Amanishakheto"
 
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
+msgid ""
+"Archers −10% training time, +8 attack range, and −10% ranged attack spread."
+msgstr ""
+
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Name
+msgid "Archery Tradition"
+msgstr "Tradició de tir amb arc"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].History
+msgid ""
+"The Kushites had a tradition of fine archery and a penchant for using massed"
+" archers in battle."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "Monumental Architecture"
 msgstr "Arquitectura monumental"
 
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
-msgid ""
-"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
-"Wonders."
-msgstr "+50% PS i -50% de temps de construcció per als centres cívics, temples, piràmides i meravelles."
-
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
-msgid "Allow to train elite rank healers"
-msgstr "Permet reclutar guaridors d'elit"
+msgid ""
+"Civic Structures +20% build time, +20% health, and +20% capture points."
+msgstr ""
 
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Description
+msgid "Train elite rank healers."
+msgstr "Recluta guaridors d'elit."
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Name
 msgid "High Priest of Amun"
 msgstr "Summe Sacerdot d'Amon"
 
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[2].History
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
@@ -1288,11 +1178,6 @@ msgid ""
 "The Kushites can upgrade individual Temples to Temples of Amun, which can "
 "train Napatan Temple Guard champions and heal units faster."
 msgstr "Els cuixites poden millorar temples individuals a temples d'Amon, que permeten reclutar campions guardes del temple de Napata i curen les unitats més ràpid."
-
-#: simulation/data/civs/kush.jsonStructures[0].History
-#: simulation/data/civs/kush.jsonStructures[1].History
-msgid "History."
-msgstr "Història."
 
 #: simulation/data/civs/kush.jsonStructures[1].Name
 msgid "Temple of Apedemak"
@@ -1341,47 +1226,6 @@ msgstr "El Regne de Cuix fou un antic regne africà situat a la confluència del
 #: simulation/data/civs/mace.jsonFactions[0].Name
 msgid "Macedonians"
 msgstr "Macedonis"
-
-#: simulation/data/civs/mace.jsonCivBonuses[0].Description
-msgid ""
-"Macedonian units have +10% attack bonus vs. Persian and Hellenic factions, "
-"but -5% attack debonus vs. Romans."
-msgstr "Les unitats macedòniques tenen un 10% de bonificació d'atac contra les faccions perses i hel·lèniques, però un 5% de desavantatge contra els romans."
-
-#: simulation/data/civs/mace.jsonCivBonuses[0].Name
-msgid "Hellenic League"
-msgstr "Lliga de Corint"
-
-#: simulation/data/civs/mace.jsonCivBonuses[0].History
-msgid ""
-"After the unification of Greece, Philip II gathered all the city-states "
-"together to form the Hellenic League, with Macedon as the its leader. With "
-"this Pan-Hellenic federation he planned to launch an expedition to punish "
-"Persia for past wrongs. Although assassinated before he could carry out the "
-"invasion, his son Alexander the Great took up the mantle and completed his "
-"fathers plans."
-msgstr "Després de la unificació de Grècia, Filip II va reunir totes les ciutats estat per formar la Lliga de Corint, amb Macedònia com a líder. Amb aquesta federació panhel·lènica pretenia llançar una expedició per castigar els mals comesos per Pèrsia."
-
-#: simulation/data/civs/mace.jsonCivBonuses[1].Description
-msgid "Infantry pike units can use the slow and powerful Syntagma formation."
-msgstr "Les unitats d'infanteria amb pica poden adoptar la formació Syntagma, lenta i poderosa."
-
-#: simulation/data/civs/mace.jsonCivBonuses[1].Name
-msgid "Syntagma"
-msgstr "Syntagma"
-
-#: simulation/data/civs/mace.jsonCivBonuses[1].History
-msgid ""
-"Based upon the Theban Oblique Order phalanx, the Syntagma was the formation "
-"that proved invincible against the armies of Hellas and the East."
-msgstr "Basada en la falange obliqua tebana, la formació Syntagma va resultar invencible contra els exèrcits de l'Hèl·lade i de l'Est."
-
-#: simulation/data/civs/mace.jsonCivBonuses[2].History
-msgid ""
-"The Greeks were highly successful in Hellenizing various foreigners. During "
-"the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
-"spoken widely from Spain to India."
-msgstr "Els grecs van hel·lenitzar amb èxit diversos pobles estrangers. Durant l'època hel·lenística, el grec va ser la llengua franca del món antic, parlat des de la península Ibèrica fins a l'Índia."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
 msgid "Allies +20% barter sell prices."
@@ -1454,56 +1298,18 @@ msgid "Meleager"
 msgstr "Melèagre"
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Description
-msgid ""
-"Each subsequent Barracks constructed comes with 5 free (random) Macedonian "
-"military units. This also applies to the Barracks of allied players (they "
-"receive 5 free units of their own culture for each new Barracks "
-"constructed)."
-msgstr "Cada nova caserna que es construeix ve amb 5 unitats militars macedòniques gratuïtes a l'atzar. Això també afecta les casernes dels jugadors aliats (reben 5 unitats gratuïtes de la seva cultura amb cada caserna que construeixin)."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
-#: simulation/data/civs/sele.jsonCivBonuses[1].Name
-msgid "Military Reforms"
-msgstr "Reformes militars"
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].History
-msgid ""
-"When Philip II came to the Macedonian throne he began a total reorganization"
-" of the Macedonian army. His reforms created a powerful cavalry arm to his "
-"army that would prove useful to both himself and his son Alexander's "
-"conquests."
-msgstr "Quan Filip II va arribar al tron de Macedònia, va començar una reorganització total de l'exèrcit macedoni. Les seves reformes van crear un poderós braç de cavalleria per al seu exèrcit que va resultar útil tant per a les seves conquestes com per a les del seu fill Alexandre."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Description
-msgid ""
-"Upgrade Hypaspist Champion Infantry to Silver Shields, with greater attack "
-"and armor, but also greater cost."
-msgstr "Millora els campions hipaspistes a Escuts de Plata, amb més atac i armadura, però també més cost."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
-msgid "Royal Gift"
-msgstr "Regal reial"
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].History
-msgid ""
-"In India near the end of his long anabasis, Alexander gifted to the Royal "
-"Hypaspist corps shields of silver for their long and valiant service in his "
-"army."
-msgstr "A l'Índia, cap al final de la seva llarga anabasi, Alexandre va regalar als hipaspistes reials escuts de plata pel seu llarg i coratjós servei."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[2].Description
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Description
-msgid "Civic Centers have double Health and double default arrows."
-msgstr "Els centres cívics tenen el doble de salut i disparen el doble de fletxes per defecte."
+msgid "Civic Centers +100% health and capture points, double default arrows."
+msgstr ""
 
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[2].Name
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Name
-msgid "Hellenistic Metropolises"
-msgstr "Metròpolis hel·lenístiques"
+msgid "Hellenistic Metropolis"
+msgstr "Metròpoli hel·lenística"
 
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[2].History
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].History
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].History
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1511,6 +1317,23 @@ msgid ""
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
 msgstr "Començant amb Alexandre, els monarques hel·lenístics van fundar moltes ciutats al llarg dels seus imperis, on la cultura i l'art grecs es barrejaven amb els costums locals per crear la diversa civilització hel·lenística."
+
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Description
+msgid ""
+"Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
+"and attack damage."
+msgstr ""
+
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
+msgid "Silver Shields"
+msgstr "Escuts de plata"
+
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].History
+msgid ""
+"In India near the end of his long anabasis, Alexander gifted to the Royal "
+"Hypaspist corps shields of silver for their long and valiant service in his "
+"army."
+msgstr "A l'Índia, cap al final de la seva llarga anabasi, Alexandre va regalar als hipaspistes reials escuts de plata pel seu llarg i coratjós servei."
 
 #: simulation/data/civs/mace.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -1685,19 +1508,11 @@ msgstr "Shatadhanvan Maurya"
 msgid "Brihadratha Maurya"
 msgstr "Brihadratha Maurya"
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Description
-msgid "Greater range and faster train time for Mauryan infantry archers."
-msgstr "Millora l'abast i redueix el temps de reclutament dels arquers d'infanteria màuries."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-msgid "Archery Tradition"
-msgstr "Tradició de tir amb arc"
-
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
 msgid ""
-"India was a land of archery. The bulk of any Indian army was made up of "
-"highly skilled archers, armed with bamboo longbows."
-msgstr "L'Índia era la terra dels arquers. El gruix de qualsevol exèrcit indi estava format d'arquers molt ben entrenats, armats amb arcs llargs de bambú."
+"The Indian peoples had a tradition of fine archery and a penchant for using "
+"massed archers in battle."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -1720,14 +1535,12 @@ msgid "Mauryan Indians"
 msgstr "Imperi Maurya de l'Índia"
 
 #: simulation/data/civs/maur.jsonStructures[0].Name
-msgid "Elephant Stables"
-msgstr "Estables d'elefants"
+msgid "Elephant Stable"
+msgstr ""
 
 #: simulation/data/civs/maur.jsonStructures[0].Special
-msgid ""
-"Trains Elephant Archer and Worker Elephant at Town Phase, then adds the "
-"champion War Elephant at the City phase."
-msgstr "Recluta arquers amb elefant i elefants de treball a la Fase de Vila, i a la Fase de Ciutat afegeix els elefants de guerra."
+msgid "Train Elephants and research Elephant technologies."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
@@ -1758,33 +1571,15 @@ msgstr "Perses"
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Description
 msgid ""
-"The resource cost of training camel-mounted (trader) or horse-mounted units "
-"(cavalry) is reduced by 5% per animal (as appropriate) corralled."
-msgstr "El cost de recursos de reclutar unitats muntades en camells (mercaders) o a cavall (cavalleria) es redueix un 5% per cada animal del tipus adequat que hi hagi als corrals."
-
-#: simulation/data/civs/pers.jsonCivBonuses[0].Name
-msgid "Corral Camels and Horses"
-msgstr "Camells i cavalls de corral"
-
-#: simulation/data/civs/pers.jsonCivBonuses[0].History
-msgid ""
-"While the Persians employed camelry only in a few cases, its use was always "
-"accompanied by great success (most notably during the battle of Sardis in "
-"546 B.C.) The satrapy of Bactria was a rich source of 'two-hump' camels, "
-"while Northern Arabia supplied 'one-hump' camels."
-msgstr "Tot i que els perses en pocs casos feien servir camelleria, el seu ús sempre va portar grans èxits (especialment durant la batalla de Sardes el 546 aC). La satrapia de Bactriana era una font rica de camells de dues gepes, mentre que l'Aràbia del nord proporcionava camells d'una gepa."
-
-#: simulation/data/civs/pers.jsonCivBonuses[1].Description
-msgid ""
 "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the "
 "usual 300)."
 msgstr "Els perses tenen una bonificació del 10% del màxim de població (per exemple 330 en lloc dels 300 normals)."
 
-#: simulation/data/civs/pers.jsonCivBonuses[1].Name
+#: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Great King's Levy"
 msgstr "Lleva del Gran Rei"
 
-#: simulation/data/civs/pers.jsonCivBonuses[1].History
+#: simulation/data/civs/pers.jsonCivBonuses[0].History
 msgid ""
 "The Persians could and did levy a large number of infantry during wartime "
 "due to the sheer size of the Achaemenid Empire and the way in which it was "
@@ -1860,15 +1655,21 @@ msgstr "Haxamanish"
 msgid "Xsayarsa II"
 msgstr "Xsayarsa II"
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].History
+msgid ""
+"The Iranian peoples had a tradition of fine archery and a penchant for using"
+" massed archers in battle."
+msgstr ""
+
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry."
 msgstr "Els trirrems fenicis guanyen la capacitat de reclutar cavalleria."
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Name
 msgid "Naval Craftsmanship"
 msgstr "Artesania naval"
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].History
 msgid ""
 "Early Achaemenid rulers acted towards making Persia the first great Asian "
 "empire to rule the seas. The Great King behaved favourably towards the "
@@ -1879,17 +1680,17 @@ msgid ""
 "were retrofitted to carry horses and their riders."
 msgstr "Els primers governants aquemènides van propiciar que Pèrsia fos el primer gran imperi asiàtic a dominar els mars. El Gran Rei actuava favorablement amb els pobles de la mar per assegurar-se els seus serveis, però també va dur a terme diverses iniciatives marines. Durant el regnat de Darios el Gran, per exemple, es va construir un canal a Egipte i es va enviar una flota persa a explorar el riu Indus. Segons Heròdot, uns 300 vaixells de la flota es van renovar per poder dur cavalls i els seus genets."
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
 msgid ""
 "Increases hitpoints of all structures, but build time increased "
 "appropriately."
 msgstr "Augmenta la salut de totes les estructures, però també n'augmenta el temps de construcció."
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Name
 msgid "Persian Architecture"
 msgstr "Arquitectura persa"
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].History
 msgid ""
 "The Persians built the wonderful 2700 kilometer-long Royal Highway from "
 "Sardis to Susa; Darius the Great and Xerxes also built the magnificent "
@@ -1897,25 +1698,31 @@ msgid ""
 "'rebuilt' the old Elamite capital of Susa."
 msgstr "Els perses van construir la meravellosa ruta reial de Sardes a Susa, que feia 2700 quilòmetres; Darios el Gran i Xerxes van construir la magnífica Persèpolis; Cir el Gran va millorar Ecbàtana i pràcticament va construir de nou la vella capital elamita de Susa."
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
-msgid "Reduces train time for Anusiya champion infantry by half."
-msgstr "Redueix a la meitat el temps de reclutament de la infanteria campiona Anusiya."
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
+msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
+msgstr ""
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
 msgid "Immortals"
 msgstr "Immortals"
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[3].Description
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].History
+msgid ""
+"The Achaemenids maintained a 10,000-strong elite corps, referred to as "
+"Athanatoi (“Immortals”) by Greek authors."
+msgstr ""
+
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Description
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
 msgid "+25% health for cavalry, but +10% train time."
 msgstr "+25% de salut per a la cavalleria, però també +10% de temps de reclutament."
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[3].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Name
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Name
 msgid "Nisean War Horses"
 msgstr "Cavalls de guerra niseus"
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].History
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[4].History
 msgid ""
 "The beautiful and powerful breed of Nisean horses increases health for "
 "Persian cavalry."
@@ -1953,13 +1760,12 @@ msgid ""
 msgstr "Xerxes (regnat 485-465 aC) El fill de Darios el Gran i Atossa, filla de Cir el Gran, Xerxes era un administrador competent, que també va estendre el domini de l'Imperi cap a Coràsmia. A part de la seva invasió fallida de Grècia, va ser famós pel seu extens programa de construcció, sobretot a Persèpolis."
 
 #: simulation/data/civs/pers.jsonStructures[0].Name
-#: simulation/data/civs/sele.jsonStructures[1].Name
-msgid "Cavalry Stables"
-msgstr "Estables de cavalleria"
+msgid "Stable"
+msgstr "Estable"
 
 #: simulation/data/civs/pers.jsonStructures[0].Special
-msgid "Train Cavalry citizen-soldiers."
-msgstr "Recluta soldats ciutadans de cavalleria."
+msgid "Train Cavalry and research Cavalry technologies."
+msgstr "Recluta i millora la cavalleria."
 
 #: simulation/data/civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
@@ -1998,47 +1804,6 @@ msgstr "L'Imperi Persa, durant el regnat de la dinastia aquemènida, va ser un d
 #: simulation/data/civs/ptol.jsonName
 msgid "Ptolemies"
 msgstr "Ptolemeus"
-
-#: simulation/data/civs/ptol.jsonCivBonuses[0].Description
-msgid ""
-"The Ptolemies receive the Mercenary Camp, a Barracks that is constructed in "
-"neutral territory and trains mercenaries."
-msgstr "Els ptolemaics reben el campament de mercenaris, una caserna que es construeix en territori neutral i recluta mercenaris."
-
-#: simulation/data/civs/ptol.jsonCivBonuses[0].Name
-msgid "Mercenary Army"
-msgstr "Exèrcit de mercenaris"
-
-#: simulation/data/civs/ptol.jsonCivBonuses[0].History
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty could be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr "La dinastia grecomacedònia dels ptolemeus depenia d'un gran nombre de mercenaris grecs i estrangers pel gruix del seu exèrcit, sobretot perquè la lleialtat de les unitats natives d'Egipte estava sovint sota sospita. De fet, durant una revolta nativa, els ptolemeus van perdre l'Alt Egipte durant dècades. Els mercenaris eren soldats experimentats i la seva lleialtat podia comprar-se, més barata o més cara. Això no era cap problema, ja que l'Egipte ptolemaic era el més pròsper dels estats successors d'Alexandre."
-
-#: simulation/data/civs/ptol.jsonCivBonuses[1].Description
-msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
-msgstr "Els egipcis ptolemaics reben 3 tecnologies addicionals sobre l'agricultura."
-
-#: simulation/data/civs/ptol.jsonCivBonuses[1].Name
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[2].Name
-msgid "Nile Delta"
-msgstr "Delta del Nil"
-
-#: simulation/data/civs/ptol.jsonCivBonuses[1].History
-#: simulation/data/civs/ptol.jsonCivBonuses[2].History
-msgid "Unknown."
-msgstr "Desconegut."
-
-#: simulation/data/civs/ptol.jsonCivBonuses[2].Description
-msgid "Can capture gaia elephants and camels to reduce their training cost."
-msgstr "Poden capturar elefants i camells salvatges per reduir-ne el cost de reclutament."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
 msgid "Allies +1.0 food trickle rate."
@@ -2131,34 +1896,6 @@ msgstr "Arsínoe IV"
 msgid "Arsinoe II"
 msgstr "Arsínoe II"
 
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[1].Description
-msgid "Hero aura range boosted by 50%."
-msgstr "L'abast de l'aura dels herois augmenta un 50%."
-
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[1].Name
-msgid "Pharaonic Cult."
-msgstr "Culte al faraó."
-
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[1].History
-msgid ""
-"The Macedonian-Greek rulers of the Ptolemaic dynasty observed many ancient "
-"Egyptian traditions in order to satiate the local populace and ingratiate "
-"themselves to the powerful priestly class in the country."
-msgstr "Els governants grecomacedonis de la dinastia ptolemaica observaven moltes antigues tradicions egípcies per tal d'acontentar la població local i congraciar-se amb la poderosa classe sacerdotal del país."
-
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[2].Description
-msgid ""
-"The Ptolemaic Egyptians receive 3 additional farming technologies above and "
-"beyond the maximum number of farming technologies usually available to a "
-"faction."
-msgstr "Els egipcis ptolemaics reben 3 tecnologies addicionals sobre l'agricultura, molt més que el nombre màxim de tecnologies agrícoles que sol rebre una facció."
-
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[2].History
-msgid ""
-"The Nile Delta had rich soil for farming, due to centuries of seasonal "
-"floods from the Nile depositing rich silt across the landscape."
-msgstr "El delta del Nil tenia un sòl fèrtil per als conreus, a causa de segles d'inundacions estacionals que dipositaven llim ric per tot el paisatge."
-
 #: simulation/data/civs/ptol.jsonFactions[0].Heroes[0].Name
 msgid "Ptolemaios A' Soter"
 msgstr "Ptolemaios A' Soter"
@@ -2196,6 +1933,18 @@ msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains mercenaries."
 msgstr "S'ha de construir en territori neutral. No té efecte sobre el territori. Recluta mercenaris."
+
+#: simulation/data/civs/ptol.jsonStructures[1].History
+msgid ""
+"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
+"foreign mercenaries for the bulk of its military force, mainly because the "
+"loyalty of native Egyptian units was often suspect. Indeed, during one "
+"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
+"Mercenaries were often battle-hardened and their loyalty could be bought, "
+"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
+" under the Ptolemies was so prosperous as to be the richest of Alexander's "
+"successor states."
+msgstr "La dinastia grecomacedònia dels ptolemeus depenia d'un gran nombre de mercenaris grecs i estrangers pel gruix del seu exèrcit, sobretot perquè la lleialtat de les unitats natives d'Egipte estava sovint sota sospita. De fet, durant una revolta nativa, els ptolemeus van perdre l'Alt Egipte durant dècades. Els mercenaris eren soldats experimentats i la seva lleialtat podia comprar-se, més barata o més cara. Això no era cap problema, ja que l'Egipte ptolemaic era el més pròsper dels estats successors d'Alexandre."
 
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
@@ -2442,35 +2191,6 @@ msgstr "Els romans controlaven un dels imperis més grans del món antic, que al
 msgid "Seleucids"
 msgstr "Selèucides"
 
-#: simulation/data/civs/sele.jsonCivBonuses[0].Description
-msgid ""
-"This unlocks the Seleucid expansion building, the Klēroukhia or Military "
-"Colony, similar to Civic Centers for other factions. It is weaker and "
-"carries a smaller territory influence, but is cheaper and built faster."
-msgstr "Això desbloqueja l'edifici selèucida d'expansió de territori, la Klēroukhia o colònia militar, semblant als centres cívics per a les altres faccions. És més dèbil i té menys influència sobre el territori, però és més barat i es construeix més ràpid."
-
-#: simulation/data/civs/sele.jsonCivBonuses[0].Name
-msgid "Cleruchy"
-msgstr "Cleruquia"
-
-#: simulation/data/civs/sele.jsonCivBonuses[1].Description
-msgid ""
-"Choose between Traditional Army and Reform Army technologies that unlock "
-"different Champions."
-msgstr "Trieu entre les tecnologies \"Exèrcit tradicional\" i \"Exèrcit reformat\" per desbloquejar diferents campions."
-
-#: simulation/data/civs/sele.jsonCivBonuses[1].History
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].History
-msgid ""
-"Seleucid and indeed Successor warfare evolved over the course of the 3rd and"
-" 2nd centuries. Contact with Eastern upstarts such as the Parthians and "
-"constant revolts of peripheral satrapies such as Bactria caused the "
-"Seleucids to reform their military and change their tactics, specifically in"
-" the cavalry arm. War with the Romans from the West and invasions from the "
-"Galatians also forced the Seleucids to reform their infantry regiments to be"
-" more flexible."
-msgstr "Les tàctiques de guerra selèucides i dels estats successors van evolucionar durant els segles III i II aC. El contacte amb nouvinguts orientals com els parts i les revoltes constants de les satrapies perifèriques com la Bactriana van provocar que els selèucides reformessin el seu exèrcit i canviessin les tàctiques, sobretot pel que fa a la cavalleria. La guerra contra els romans a l'oest i les invasions dels gàlates també van obligar els selèucides a reformar els seus regiments d'infanteria per fer-los més flexibles."
-
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
 msgid "Allied Civil Centers −20% resource costs."
 msgstr "Els centres cívics aliats costen un 20% menys."
@@ -2602,42 +2322,31 @@ msgstr "Antíoc XIII Asiàtic"
 msgid "Philip II Philoromaeus"
 msgstr "Felip II Philoromaeus"
 
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
-msgid ""
-"Traditional Army unlocks Silver Shields and Scythed Chariots, Reform Army "
-"unlocks Romanized Heavy Swordsmen and Cataphracts."
-msgstr "L'exèrcit tradicional desbloqueja Escuts de Plata i carros falçats. L'exèrcit reformat desbloqueja soldats amb espasa romanitzats pesats i catafractes."
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Name
-msgid "Traditional Army vs. Reform Army"
-msgstr "Exèrcit tradicional vs. Exèrcit reformat"
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
-msgid ""
-"A one-time purchase of 20 Indian War Elephants from the Mauryan Empire."
-msgstr "Una única compra de 20 elefants de guerra indis de l'Imperi Màuria."
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
-msgid "Marriage Alliance"
-msgstr "Enllaç matrimonial"
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].History
-msgid ""
-"Seleucus I Nicator invaded the Punjab region of India in 305 BC, confronting"
-" Chandragupta Maurya (Sandrokottos), founder of the Mauryan empire. It is "
-"said that Chandragupta fielded an army of 600,000 men and 9,000 war "
-"elephants (Pliny, Natural History VI, 22.4). Seleucus met with no success "
-"and to establish peace between the two great powers and to formalize their "
-"alliance, he married his daughter to Chandragupta. In return, Chandragupta "
-"gifted Seleucus a corps of 500 war elephants, which would prove a decisive "
-"military asset for Seleucus as he fought the rest of Alexander's successors."
-msgstr "Seleuc I Nicàtor va envair la regió índia del Panjab l'any 305 aC, i es va enfrontar amb Chandragupta Maurya (Sandrokottos), el fundador de l'Imperi Maurya. Es diu que Chandragupta va enviar un exèrcit de 600.000 homes i 9000 elefants de guerra (Plini, Història Natural VI, 22.4). Seleuc no va tenir èxit i, per establir la pau entre els dos grans poders i formalitzar la seva aliança, va casar la seva filla amb Chandragupta. A canvi, Chandragupta va donar a Seleuc un cos de 500 elefants de guerra, que van ser decisius per a Seleuc en la lluita contra els altres successors d'Alexandre."
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[3].History
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].History
 msgid ""
 "The beautiful and powerful breed of Nisean horses increases health for "
 "Seleucid cavalry."
 msgstr "La bella i vigorosa raça de cavalls niseus millora la salut de la cavalleria selèucida."
+
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
+msgid ""
+"Unlock either Champion Infantry Pikemen or Champion Infantry Swordsmen."
+msgstr ""
+
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
+msgid "Traditional Army vs Reform Army"
+msgstr ""
+
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].History
+msgid ""
+"Seleucid and indeed Successor warfare evolved over the course of the 3rd and"
+" 2nd centuries. Contact with Eastern upstarts such as the Parthians and "
+"constant revolts of peripheral satrapies such as Bactria caused the "
+"Seleucids to reform their military and change their tactics, specifically in"
+" the cavalry arm. War with the Romans from the West and invasions from the "
+"Galatians also forced the Seleucids to reform their infantry regiments to be"
+" more flexible."
+msgstr "Les tàctiques de guerra selèucides i dels estats successors van evolucionar durant els segles III i II aC. El contacte amb nouvinguts orientals com els parts i les revoltes constants de les satrapies perifèriques com la Bactriana van provocar que els selèucides reformessin el seu exèrcit i canviessin les tàctiques, sobretot pel que fa a la cavalleria. La guerra contra els romans a l'oest i les invasions dels gàlates també van obligar els selèucides a reformar els seus regiments d'infanteria per fer-los més flexibles."
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -2693,22 +2402,18 @@ msgid ""
 "former empire."
 msgstr "La dinastia grecomacedònia que va governar la part oriental de l'antic imperi d'Alexandre."
 
-#: simulation/data/civs/sele.jsonStructures[1].Special
-msgid "Trains all cavalry except citizen-soldier cavalry."
-msgstr "Recluta tota la cavalleria excepte la cavalleria ciutadana."
-
-#: simulation/data/civs/sele.jsonStructures[2].Name
+#: simulation/data/civs/sele.jsonStructures[1].Name
 msgid "Military Colony"
 msgstr "Colònia militar"
 
-#: simulation/data/civs/sele.jsonStructures[2].Special
+#: simulation/data/civs/sele.jsonStructures[1].Special
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster."
 msgstr "Aquest és l'edifici selèucida d'expansió de territori, semblant als centres cívics per a les altres faccions. És més dèbil i té menys influència sobre el territori, però és més barat i es construeix més ràpid."
 
-#: simulation/data/civs/sele.jsonStructures[2].History
+#: simulation/data/civs/sele.jsonStructures[1].History
 msgid ""
 "The Seleucid kings invited Greeks, Macedonians, Galatians (Gauls), Cretans, "
 "and Thracians alike to settle in within the vast territories of the empire. "
@@ -2731,35 +2436,6 @@ msgstr "La dinastia grecomacedònia que va governar la major part de l'antic imp
 #: simulation/data/civs/spart.jsonFactions[0].Name
 msgid "Spartans"
 msgstr "Espartans"
-
-#: simulation/data/civs/spart.jsonCivBonuses[0].Description
-msgid "Spartans can use the powerful Phalanx formation."
-msgstr "Els espartans poden fer servir la poderosa formació de falange."
-
-#: simulation/data/civs/spart.jsonCivBonuses[0].History
-msgid ""
-"The Spartans were undisputed masters of phalanx warfare. The Spartans were "
-"so feared for their discipline that the enemy army would sometimes break up "
-"and run away before a single shield clashed. 'Othismos' refers to the point "
-"in a phalanx battle where both sides try to shove each other out of "
-"formation, attempting to breaking up the enemy lines and routing them."
-msgstr "Els espartans eren els mestres indiscutibles de la guerra amb falange. Els espartans eren tan temuts per la seva disciplina que a vegades els exèrcits enemics trencaven files i fugien corrents abans que xoquessin els escuts. \"Othismos\" és el punt en una batalla de falanges on els dos bàndols intenten empènyer l'enemic a trencar la formació per atacar-lo."
-
-#: simulation/data/civs/spart.jsonCivBonuses[1].Description
-msgid ""
-"The Spartan rank upgrades at the Barracks cost no resources, except time."
-msgstr "Les millores de rang espartanes a la caserna no costen recursos, només temps."
-
-#: simulation/data/civs/spart.jsonCivBonuses[1].Name
-msgid "Laws of Lycurgus"
-msgstr "Lleis de Licurg"
-
-#: simulation/data/civs/spart.jsonCivBonuses[1].History
-msgid ""
-"Under the Constitution written by the mythical law-giver Lycurgus, the "
-"institution of The Agoge was established, where Spartans were trained from "
-"the age of 6 to be superior warriors in defense of the Spartan state."
-msgstr "Sota la Constitució escrita pel mític legislador Licurg, es va establir la institució de l'Agogé, on els espartans s'entrenaven a partir dels 6 anys per ser guerrers superiors i defensar l'estat espartà."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Infantry Spearmen +10% health."
@@ -2860,8 +2536,8 @@ msgid ""
 msgstr "Els cants de guerra eren himnes de batalla que cantaven els hoplites quan carregaven contra les línies enemigues. Alguns dels primers cants coneguts els va compondre Tirteu, un poeta guerrer d'Esparta, durant la primera guerra messènica."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
-msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "+25% de salut per a la infanteria amb llança, però també +10% de temps de reclutament."
+msgid "Champion Infantry Spearmen +25% health, but +5% training time."
+msgstr ""
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"

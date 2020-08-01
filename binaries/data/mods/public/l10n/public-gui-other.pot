@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2020-07-24 07:09+0000\n"
-"PO-Revision-Date: 2020-07-24 07:09+0000\n"
+"POT-Creation-Date: 2020-07-31 07:09+0000\n"
+"PO-Revision-Date: 2020-07-31 07:09+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1153,7 +1153,7 @@ msgstr ""
 msgid "Click to view more information."
 msgstr ""
 
-#: gui/credits/credits.js:81
+#: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
 msgstr ""
@@ -2434,105 +2434,101 @@ msgctxt "summary chart"
 msgid "Type"
 msgstr ""
 
-#: gui/credits/texts/art.json:Content[0].Content[0].Subtitle
+#: gui/credits/texts/art.json:Content[0].Title
 msgid "Art lead"
 msgstr ""
 
-#: gui/credits/texts/art.json:Content[0].Content[1].Subtitle
-msgid "Sound Manager"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[0].Content[2].Subtitle
-msgid "Composer"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[0].Title
-msgid "Artistic managers"
-msgstr ""
-
 #: gui/credits/texts/art.json:Content[1].Title
-msgid "Map Making"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[2].Title
-msgid "Random Map Scripts"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[3].Title
 msgid "2D Art"
 msgstr ""
 
-#: gui/credits/texts/art.json:Content[4].Title
+#: gui/credits/texts/art.json:Content[2].Title
 msgid "3D Art"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[5].Content[1].Subtitle
-msgid "Additional music, percussion, djembe, sampling"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[5].Content[2].Subtitle
-msgid "Additional music"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[5].Content[3].Subtitle
-msgid "Flute"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[5].Content[4].Subtitle
-msgid "Djembe"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[5].Content[5].Subtitle
-msgid "Frame drum, darbuka, riq, toms"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[5].Content[6].Subtitle
-msgid "Didgeridoo"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[5].Content[7].Subtitle
-msgid "Trumpet"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[5].Content[8].Subtitle
-msgid "Celtic harp"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[5].Content[9].Subtitle
-msgid "Tin whistles"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[5].Content[10].Subtitle
-msgid "Viola, violin"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[5].Title
-msgid "Music"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[6].Title
-#: gui/options/options.json:[2].label
-msgid "Sound"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[7].Content[0].Subtitle
-msgid "Greek"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[7].Content[1].Subtitle
-msgid "Latin"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[7].Content[2].Subtitle
-msgid "Persian"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[7].Title
-msgid "Voices"
 msgstr ""
 
 #: gui/credits/texts/art.json:Title
 msgid "Art"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[0].Content[0].Subtitle
+msgid "Sound Manager"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[0].Content[1].Subtitle
+msgid "Lead Composer"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[0].Title
+msgid "Audio managers"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[1].Content[1].Subtitle
+msgid "Additional music, percussion, djembe, sampling"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[1].Content[2].Subtitle
+msgid "Additional music"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[1].Content[3].Subtitle
+msgid "Flute"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[1].Content[4].Subtitle
+msgid "Djembe"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[1].Content[5].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[1].Content[6].Subtitle
+msgid "Didgeridoo"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[1].Content[7].Subtitle
+msgid "Trumpet"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[1].Content[8].Subtitle
+msgid "Celtic harp"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[1].Content[9].Subtitle
+msgid "Tin whistles"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[1].Content[10].Subtitle
+msgid "Viola, violin"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[1].Title
+msgid "Music"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[2].Title
+#: gui/options/options.json:[2].label
+msgid "Sound"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[3].Content[0].Subtitle
+msgid "Greek"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[3].Content[1].Subtitle
+msgid "Latin"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[3].Content[2].Subtitle
+msgid "Persian"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Content[3].Title
+msgid "Voices"
+msgstr ""
+
+#: gui/credits/texts/audio.json:Title
+msgid "Audio"
 msgstr ""
 
 #: gui/credits/texts/balancing.json:Content[0].Subtitle
@@ -2568,6 +2564,18 @@ msgstr ""
 
 #: gui/credits/texts/history.json:Title
 msgid "History References"
+msgstr ""
+
+#: gui/credits/texts/maps.json:Content[0].Title
+msgid "Map Making"
+msgstr ""
+
+#: gui/credits/texts/maps.json:Content[1].Title
+msgid "Random Map Scripts"
+msgstr ""
+
+#: gui/credits/texts/maps.json:Title
+msgid "Maps"
 msgstr ""
 
 #: gui/credits/texts/programming.json:Content[0].Title

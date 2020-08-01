@@ -46,8 +46,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:08+0000\n"
-"PO-Revision-Date: 2020-07-26 12:34+0000\n"
+"POT-Creation-Date: 2020-07-27 07:09+0000\n"
+"PO-Revision-Date: 2020-07-28 07:31+0000\n"
 "Last-Translator: Günay Yılmaz\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -62,40 +62,36 @@ msgid "Athenians"
 msgstr "Atinalılar"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
+#: simulation/data/civs/mace.jsonCivBonuses[0].Description
+#: simulation/data/civs/spart.jsonCivBonuses[0].Description
+msgid "Structures +10% health and +10% capture points."
+msgstr "Yapılar +%10 sağlık ve +%10 ele geçirme puanı."
+
+#: simulation/data/civs/athen.jsonCivBonuses[0].Name
+#: simulation/data/civs/mace.jsonCivBonuses[0].Name
+#: simulation/data/civs/spart.jsonCivBonuses[0].Name
+msgid "Hellenic Architecture"
+msgstr "Eski Yunan Mimarisi"
+
+#: simulation/data/civs/athen.jsonCivBonuses[0].History
+#: simulation/data/civs/mace.jsonCivBonuses[0].History
+#: simulation/data/civs/spart.jsonCivBonuses[0].History
+msgid "The Greeks used stone construction from early Mycenaean times."
+msgstr "Miken zamanlarının başlarında Yunanlar inşaat için taş kullanırdı."
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
 msgstr "Maden çıkarma oranı her geçen çağ için +%10 arttı."
 
-#: simulation/data/civs/athen.jsonCivBonuses[0].Name
+#: simulation/data/civs/athen.jsonCivBonuses[1].Name
 msgid "Silver Owls"
 msgstr "Gümüş Baykuşlar"
 
-#: simulation/data/civs/athen.jsonCivBonuses[0].History
+#: simulation/data/civs/athen.jsonCivBonuses[1].History
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
 msgstr "Laureion, Attica'daki madenler Atina'ya ünlü ve değerli Atina sikkesinin, Atinalı Baykuş'un, basımı için yüksek miktarda gümüş sağlamıştır."
-
-#: simulation/data/civs/athen.jsonCivBonuses[1].Description
-#: simulation/data/civs/mace.jsonCivBonuses[2].Description
-#: simulation/data/civs/spart.jsonCivBonuses[2].Description
-msgid ""
-"Constructing a Theatron increases the territory expanse of all buildings by "
-"+20%."
-msgstr "Tiyatro inşası diğer tüm yapıların bölge etkisini +%20 artırır."
-
-#: simulation/data/civs/athen.jsonCivBonuses[1].Name
-#: simulation/data/civs/mace.jsonCivBonuses[2].Name
-#: simulation/data/civs/spart.jsonCivBonuses[2].Name
-msgid "Hellenization"
-msgstr "Helenleşme"
-
-#: simulation/data/civs/athen.jsonCivBonuses[1].History
-#: simulation/data/civs/spart.jsonCivBonuses[2].History
-msgid ""
-"The Greeks were highly successful in Hellenising various foreigners. During "
-"the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
-"spoken widely from Spain to India."
-msgstr "Yunanlılar birçok yabancıyı Helenleştirmek konusunda çok başarılıydılar. Helenik Çağ'da, Yunanca İspanya'dan Hindistan'a kadar Antik Dünya'nın ortak diliydi."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Allied Warships −25% construction time."
@@ -209,7 +205,6 @@ msgid ""
 msgstr "Oyuncu mızraklı birliklere daha fazla saldırı ve zırh veren Falanks dizilişine geçme emri verme özelliğini kazanır."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Name
-#: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Othismos"
 msgstr "Othismos"
 
@@ -235,18 +230,6 @@ msgstr "Atinalıları, gümüş madenlerinden kazandıklarını, 200 Trireme'lik
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
 msgstr "Perikles M.Ö 5. yüzyılda en önde gelen Atinalı politikacı idi."
-
-#: simulation/data/civs/athen.jsonFactions[0].Heroes[2].History
-#: simulation/data/civs/maur.jsonStructures[0].History
-#: simulation/data/civs/maur.jsonStructures[1].History
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].History
-#: simulation/data/civs/ptol.jsonFactions[0].Heroes[0].History
-#: simulation/data/civs/ptol.jsonFactions[0].Heroes[1].History
-#: simulation/data/civs/ptol.jsonFactions[0].Heroes[2].History
-#: simulation/data/civs/sele.jsonCivBonuses[0].History
-#: simulation/data/civs/sele.jsonStructures[1].History
-msgid "."
-msgstr "."
 
 #: simulation/data/civs/athen.jsonFactions[0].Description
 msgid "A Hellenic people of the Ionian tribe."
@@ -316,36 +299,6 @@ msgstr "Batı medeniyetinin beşiği ve demokrasinin doğum yeri olan Atina, san
 msgid "Britons"
 msgstr "Britonlar"
 
-#: simulation/data/civs/brit.jsonCivBonuses[0].Description
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Description
-msgid "Enhanced food gained from ranching and farming. "
-msgstr "Artan gıda tarım ve çiftçilikten elde edildi."
-
-#: simulation/data/civs/brit.jsonCivBonuses[0].Name
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Name
-msgid "Ardiosmanae"
-msgstr "Ardiyosmanaye"
-
-#: simulation/data/civs/brit.jsonCivBonuses[0].History
-#: simulation/data/civs/gaul.jsonCivBonuses[0].History
-msgid "Represents Celtic farming methods. "
-msgstr "Kelt tarım yöntemleri temsil eder,"
-
-#: simulation/data/civs/brit.jsonCivBonuses[1].Description
-#: simulation/data/civs/gaul.jsonCivBonuses[1].Description
-msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr "Druidler yakındaki askerlerin saldırı hızını biraz artırır."
-
-#: simulation/data/civs/brit.jsonCivBonuses[1].Name
-#: simulation/data/civs/gaul.jsonCivBonuses[1].Name
-msgid "Deas Celtica"
-msgstr "Deas Seltika"
-
-#: simulation/data/civs/brit.jsonCivBonuses[1].History
-#: simulation/data/civs/gaul.jsonCivBonuses[1].History
-msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr "Kelt dini ve Druidlik onların savaşçı zihniyet ilham verir."
-
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "Allied Healers −20% resource costs."
 msgstr "Müttefik Şifacılar -%20 kaynak maliyeti."
@@ -406,36 +359,6 @@ msgstr "Dubnovellaunus"
 #: simulation/data/civs/brit.jsonAINames[10]
 msgid "Vosenius"
 msgstr "Vosenius"
-
-#: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Description
-msgid "Increased attack and movement rate for melee soldiers."
-msgstr "Yakın dövüş askerleri için arttırılmış saldırı ve hareket oranı."
-
-#: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Name
-msgid "Sevili Dusios"
-msgstr "Sevili Dusios"
-
-#: simulation/data/civs/brit.jsonFactions[0].Technologies[0].History
-msgid ""
-"The Britons took up the practice of either making permanent marks on their "
-"body in the form of tattoos or temporarily painted their bodies with woad "
-"paint. The effect was very frightening."
-msgstr "Britonlar, vücutlarını etkileri oldukça korkunç olan dövme şeklinde kalıcı yaralarla işaretler veya çivit otu boyasıyla boyarlardı. "
-
-#: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Description
-msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr "Kulelerde konuşlandırılmış birliklerin yükseklik ödülü artar."
-
-#: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Name
-msgid "Turos Maros"
-msgstr "Turos Maros"
-
-#: simulation/data/civs/brit.jsonFactions[0].Technologies[1].History
-msgid ""
-"'Great Tower'; Celtic legends abound with stories of massive tall towers "
-"built by the most powerful kings, and the remains of some very large towers "
-"have been found."
-msgstr "'Muazzam Kule'; Kelt efsaneleri en güçlü krallar tarafından yaptırılan devasa kulelerin hikayeleriyle doludur ve bazı çok büyük kulelerin kalıntıları bulundu."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -538,14 +461,6 @@ msgstr "Ammianus Marcellinus, bir grup yabancının bir Celt'le başa çıkması
 msgid "The Celts of the British Isles."
 msgstr "Britanya Keltleri"
 
-#: simulation/data/civs/brit.jsonStructures[0].Name
-msgid "Kennel"
-msgstr "Köpek Kulübesi"
-
-#: simulation/data/civs/brit.jsonStructures[0].History
-msgid "The Britons were known for breeding war dogs."
-msgstr "Britanyalılar savaş köpeği yetiştirilmeleriyle bilinirler."
-
 #: simulation/data/civs/brit.jsonHistory
 msgid ""
 "The Britons were the Celtic tribes of the British Isles. Using chariots, "
@@ -559,10 +474,8 @@ msgid "Carthaginians"
 msgstr "Kartacalılar"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
-msgid ""
-"Carthaginian walls, gates, and towers have 3x health of a standard wall, but"
-" also 2x build time."
-msgstr "Kartaca duvarları, kapıları ve kuleleri standart bir duvardan 3x dayanıklıdır, ve aynı zamanda 2x oluşturma hızına sahiptir."
+msgid "Walls +100% build time, +100% stone cost, and +200% health."
+msgstr "Duvarlar +%100 inşa süresi, +%100 taş maliyeti ve +%200 sağlık."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -571,25 +484,6 @@ msgstr "Üçlü Duvarlar"
 #: simulation/data/civs/cart.jsonCivBonuses[0].History
 msgid "Carthaginians built triple city walls."
 msgstr "Kartacalıların üç katlı şehir duvarları inşa etmesi."
-
-#: simulation/data/civs/cart.jsonCivBonuses[1].Description
-msgid ""
-"The resource cost of training elephant-mounted (war elephant) or horse-"
-"mounted units (cavalry) is reduced by 5% per animal corralled (as "
-"appropriate)."
-msgstr "Fil ve süvari birimlerinin eğitim maliyetleri ağıllara yerleştirilen hayvan başına %5 azalır."
-
-#: simulation/data/civs/cart.jsonCivBonuses[1].Name
-#: simulation/data/civs/ptol.jsonCivBonuses[2].Name
-msgid "Roundup"
-msgstr "Genel Bakış"
-
-#: simulation/data/civs/cart.jsonCivBonuses[1].History
-msgid ""
-"Not unlike the Iberian Peninsula, North Africa was known as horse country, "
-"capable of producing up to 100,000 new mounts each year. It was also the "
-"home of the North African Forest Elephant."
-msgstr "İber Yarımadası'nın aksine, Kuzey Afrika  at ülkesi olarak bilinir, her yıl 100.000 yeni at sağlar. Ayrıca Kuzey Afrika Ormanları fillere ev sahipliği yapar."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "Allies +10% international trade bonus."
@@ -798,6 +692,30 @@ msgstr "Günümüz Tunus'unda bir şehir devleti olan Kartaca, batı Akdeniz'in 
 msgid "Gauls"
 msgstr "Galyalılar"
 
+#: simulation/data/civs/gaul.jsonCivBonuses[0].Description
+msgid "Enhanced food gained from ranching and farming. "
+msgstr "Artan gıda tarım ve çiftçilikten elde edildi."
+
+#: simulation/data/civs/gaul.jsonCivBonuses[0].Name
+msgid "Ardiosmanae"
+msgstr "Ardiyosmanaye"
+
+#: simulation/data/civs/gaul.jsonCivBonuses[0].History
+msgid "Represents Celtic farming methods. "
+msgstr "Kelt tarım yöntemleri temsil eder,"
+
+#: simulation/data/civs/gaul.jsonCivBonuses[1].Description
+msgid "Druids increase attack rates of soldiers near them slightly."
+msgstr "Druidler yakındaki askerlerin saldırı hızını biraz artırır."
+
+#: simulation/data/civs/gaul.jsonCivBonuses[1].Name
+msgid "Deas Celtica"
+msgstr "Deas Seltika"
+
+#: simulation/data/civs/gaul.jsonCivBonuses[1].History
+msgid "Celtic religion and druidry inspired their warlike mindset. "
+msgstr "Kelt dini ve Druidlik onların savaşçı zihniyet ilham verir."
+
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Blacksmiths −15% technology resource costs and research time."
 msgstr "Demirciler -%15 teknoloji kaynağı ve araştırma süresi."
@@ -988,22 +906,6 @@ msgid ""
 "all types."
 msgstr "Alüvyonlu ovalar ve nehir vadileri hariç, İberya Yarımadasında taş bolca bulunur ve tüm yapı çeşitleri için çokca kullanılır."
 
-#: simulation/data/civs/iber.jsonCivBonuses[1].Description
-msgid ""
-"The resource cost of training horse-mounted units (cavalry) is reduced by 5%"
-" per animal corralled."
-msgstr "Atlı birim (süvari) eğitim maliyeti her hayvan yakalandığında %5 daha azalmaktadır."
-
-#: simulation/data/civs/iber.jsonCivBonuses[1].Name
-msgid "Zaldi Saldoa"
-msgstr "Zaldi Saldoa"
-
-#: simulation/data/civs/iber.jsonCivBonuses[1].History
-msgid ""
-"Not unlike Numidia in North Africa, the Iberian Peninsula was known as "
-"'horse country', capable of producing up to 100,000 new mounts each year."
-msgstr "Kuzey afrikadaki Numidia'nın aksine, İber yarımadası \"at ülkesi\" olarak bilinir, ve her yıl 100.000 at sağlar."
-
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Javelineers −10% resource costs."
 msgstr "Müttefik Ciritçi vatandaşlar -%10 kaynak maliyeti."
@@ -1168,36 +1070,6 @@ msgstr "İberyalılar, güçlü geleneksel atçılık ve metal işçiliği ile b
 msgid "Kushites"
 msgstr "Kuşitler"
 
-#: simulation/data/civs/kush.jsonCivBonuses[0].Name
-msgid "The Pyramids of Meroe"
-msgstr "Meroe Piramidi"
-
-#: simulation/data/civs/kush.jsonCivBonuses[0].Description
-msgid ""
-"Building a Kushite pyramid increases Civic Center territory influence by "
-"+10% for each one built."
-msgstr "Kushite piramiti kurmak Şehir Merkezi etki alanını kurulan her biri için +%10 artırır."
-
-#: simulation/data/civs/kush.jsonCivBonuses[1].Name
-msgid "Mineral Deposits"
-msgstr "Maden Yatakları"
-
-#: simulation/data/civs/kush.jsonCivBonuses[1].Description
-msgid ""
-"Kushite players receive a free extra Metal Mine somewhere in their home "
-"territory."
-msgstr "Kushite oyuncuları ana bölgelerinin yakınlarında ücretsiz fazladan Metal Madeni alırlar."
-
-#: simulation/data/civs/kush.jsonCivBonuses[2].Name
-msgid "Elephant Roundup"
-msgstr "Fil Sürüsü"
-
-#: simulation/data/civs/kush.jsonCivBonuses[2].Description
-msgid ""
-"Can capture Gaia elephants and garrison them into a corral to reduce "
-"training costs for War Elephants."
-msgstr "Doğadaki filleri yakalayabilir ve savaş filerinin eğitim maliyetlerinin düşürmek için ağıllara yerleştirebilirler."
-
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Name
 msgid "Elephant Suppliers"
 msgstr "Fil Tedarikçisi"
@@ -1262,25 +1134,43 @@ msgstr "Shanakdakhete"
 msgid "Amanishakheto"
 msgstr "Amanishakheto"
 
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
+msgid ""
+"Archers −10% training time, +8 attack range, and −10% ranged attack spread."
+msgstr "Okçular -%10 eğitim süresi, +8 saldırı menzili ve -%10 menzili saldırı sapması."
+
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Name
+msgid "Archery Tradition"
+msgstr "Geleneksel Okculuk"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].History
+msgid ""
+"The Kushites had a tradition of fine archery and a penchant for using massed"
+" archers in battle."
+msgstr "Kushitlerin iyi okçuluk geleneği ve savaşta kitlesel okçular kullanma tutkusu vardı."
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "Monumental Architecture"
 msgstr "Anıtsal Yapı"
 
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
-msgid ""
-"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
-"Wonders."
-msgstr "Kent Merkezleri, Tapınaklar, Piramitler ve Harikalar için +%25 Can ve -%50 inşa süresi."
-
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
-msgid "Allow to train elite rank healers"
-msgstr "Seçkin seviye şifacıların eğitilmesine olanak sağlar."
+msgid ""
+"Civic Structures +20% build time, +20% health, and +20% capture points."
+msgstr "Yerleşim Yapıları +%20 inşa süresi, +%20 sağlık ve +%20 ele geçirme puanı."
 
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Description
+msgid "Train elite rank healers."
+msgstr "Seçkin rütbe şifacılar eğit."
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Name
 msgid "High Priest of Amun"
 msgstr "Amun'un Başrahibi"
 
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[2].History
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
@@ -1317,11 +1207,6 @@ msgid ""
 "The Kushites can upgrade individual Temples to Temples of Amun, which can "
 "train Napatan Temple Guard champions and heal units faster."
 msgstr "Kushitler, tapınakları ayrı ayrı Napatan Tapınak Muhafızları eğitebilen ve birimleri daha hızlı iyileştiren Amun Tapınaklarına geliştirebilirler."
-
-#: simulation/data/civs/kush.jsonStructures[0].History
-#: simulation/data/civs/kush.jsonStructures[1].History
-msgid "History."
-msgstr "Tarihçe"
 
 #: simulation/data/civs/kush.jsonStructures[1].Name
 msgid "Temple of Apedemak"
@@ -1370,47 +1255,6 @@ msgstr "Kush Krallığı, şu anda Sudan Cumhuriyeti'nde olan Mavi Nil, Beyaz Ni
 #: simulation/data/civs/mace.jsonFactions[0].Name
 msgid "Macedonians"
 msgstr "Makedonyalılar"
-
-#: simulation/data/civs/mace.jsonCivBonuses[0].Description
-msgid ""
-"Macedonian units have +10% attack bonus vs. Persian and Hellenic factions, "
-"but -5% attack debonus vs. Romans."
-msgstr "Makedon birimleri Persliler ve Hellenik nifaklarına karşı +10% saldırı ek puanına sahipler, fakat Romalılara karşı -5% saldırı eksi puanına sahipler."
-
-#: simulation/data/civs/mace.jsonCivBonuses[0].Name
-msgid "Hellenic League"
-msgstr "Helen Birliği"
-
-#: simulation/data/civs/mace.jsonCivBonuses[0].History
-msgid ""
-"After the unification of Greece, Philip II gathered all the city-states "
-"together to form the Hellenic League, with Macedon as the its leader. With "
-"this Pan-Hellenic federation he planned to launch an expedition to punish "
-"Persia for past wrongs. Although assassinated before he could carry out the "
-"invasion, his son Alexander the Great took up the mantle and completed his "
-"fathers plans."
-msgstr "Yunanistan'ın birleşmesinden sonra Philip II, bütün şehir devletlerini bir araya getirerek Makedon'u lider olarak Helen Ligi oluşturdu. Bu Pan-Hellenic federasyonuyla Persleri geçmiş hatalar nedeniyle cezalandırmak için bir sefer başlatmayı planladı. İstilayı gerçekleştiremeden öldürülse de, oğlu Büyük İskender mantoyu aldı ve atalarının planlarını tamamladı."
-
-#: simulation/data/civs/mace.jsonCivBonuses[1].Description
-msgid "Infantry pike units can use the slow and powerful Syntagma formation."
-msgstr "Kargıcı piyade birimleri yavaş ve güçlü Sintagma düzenini kullanabilirler ."
-
-#: simulation/data/civs/mace.jsonCivBonuses[1].Name
-msgid "Syntagma"
-msgstr "Sintagma"
-
-#: simulation/data/civs/mace.jsonCivBonuses[1].History
-msgid ""
-"Based upon the Theban Oblique Order phalanx, the Syntagma was the formation "
-"that proved invincible against the armies of Hellas and the East."
-msgstr "Theban temelli eğik falanks muharebe düzeni ,düzenleme Hellas ve Doğu ordularına karşı yenilmez olduğunu kanıtlayan bir oluşum olmuştur."
-
-#: simulation/data/civs/mace.jsonCivBonuses[2].History
-msgid ""
-"The Greeks were highly successful in Hellenizing various foreigners. During "
-"the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
-"spoken widely from Spain to India."
-msgstr "Yunanlılar birçok yabancıyı Helenleştirmek konusunda çok başarılıydılar. Helenik Çağ'da, Yunanca İspanya'dan Hindistan'a kadar Antik Dünya'nın ortak diliydi."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
 msgid "Allies +20% barter sell prices."
@@ -1483,56 +1327,18 @@ msgid "Meleager"
 msgstr "Meleager"
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Description
-msgid ""
-"Each subsequent Barracks constructed comes with 5 free (random) Macedonian "
-"military units. This also applies to the Barracks of allied players (they "
-"receive 5 free units of their own culture for each new Barracks "
-"constructed)."
-msgstr "Ardından gelen her kışla, 5 serbest (rasgele) Makedon askeri birimi ile birlikte gelir. Bu aynı zamanda müttefik oyuncuların Kışlası için de geçerlidir (inşa edilen her yeni Kışlası için kendi kültürünün 5 serbest birimi olur)."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
-#: simulation/data/civs/sele.jsonCivBonuses[1].Name
-msgid "Military Reforms"
-msgstr "Askeri Reformlar"
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].History
-msgid ""
-"When Philip II came to the Macedonian throne he began a total reorganization"
-" of the Macedonian army. His reforms created a powerful cavalry arm to his "
-"army that would prove useful to both himself and his son Alexander's "
-"conquests."
-msgstr "Philip || Makedonya tahtına çıktığında Makedonya ordusunu total bir organizasyon içine soktu. Onun reformları onun ordusu içinde güçlü bir atlı kolu yarattı ki bu onun ve oğlu Alexander'ın çarpışmaları için yararlıydı"
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Description
-msgid ""
-"Upgrade Hypaspist Champion Infantry to Silver Shields, with greater attack "
-"and armor, but also greater cost."
-msgstr "Hypaspist Şampiyon Piyade Silver Shields'e yükseltin, saldırı ve zırh daha büyük, ancak daha yüksek maliyet."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
-msgid "Royal Gift"
-msgstr "Kraliyet Hediyesi"
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].History
-msgid ""
-"In India near the end of his long anabasis, Alexander gifted to the Royal "
-"Hypaspist corps shields of silver for their long and valiant service in his "
-"army."
-msgstr "Uzun tasvirinin bitimine yakın olan Hindistan'da, İskender ordudaki uzun ve cesur hizmetlerinden dolayı Kraliyet Hipaparkçı kolordu kalkanlarına gümüş hediye etti."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[2].Description
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Description
-msgid "Civic Centers have double Health and double default arrows."
-msgstr "Şehir Merkezleri iki katı Sağlığa ve iki katı korunmaya sahiptir."
+msgid "Civic Centers +100% health and capture points, double default arrows."
+msgstr "Kent Merkezleri +%100 sağlık ve ele geçirme puanı, iki kat öntanımlı ok."
 
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[2].Name
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Name
-msgid "Hellenistic Metropolises"
-msgstr "Helenistik Metropol"
+msgid "Hellenistic Metropolis"
+msgstr "Helenistik Büyükşehir"
 
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[2].History
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].History
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].History
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1540,6 +1346,23 @@ msgid ""
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
 msgstr "İskender ile birlikte, Helenik hükümdarlar imparatorluk boyunca Yunan kültürü ile yerel geleneklerin karıştığı, mozaik Helenik medeniyetini oluşturan birçok şehir kurdular."
+
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Description
+msgid ""
+"Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
+"and attack damage."
+msgstr "Daha fazla sağlık ve saldırı hasarı ile Kalkan Taşıyan Şampiyonu Piyadelerini, Gümüş Kalkanlara yükseltin."
+
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
+msgid "Silver Shields"
+msgstr "Gümüş Kalkanlar"
+
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].History
+msgid ""
+"In India near the end of his long anabasis, Alexander gifted to the Royal "
+"Hypaspist corps shields of silver for their long and valiant service in his "
+"army."
+msgstr "Uzun tasvirinin bitimine yakın olan Hindistan'da, İskender ordudaki uzun ve cesur hizmetlerinden dolayı Kraliyet Hipaparkçı kolordu kalkanlarına gümüş hediye etti."
 
 #: simulation/data/civs/mace.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -1714,19 +1537,11 @@ msgstr "Shatadhanvan Maurya"
 msgid "Brihadratha Maurya"
 msgstr "Brihadratha Maurya"
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Description
-msgid "Greater range and faster train time for Mauryan infantry archers."
-msgstr "Mauryalı okcu piyade için büyük menzil ve hızlı eğitim zamanı."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-msgid "Archery Tradition"
-msgstr "Geleneksel Okculuk"
-
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
 msgid ""
-"India was a land of archery. The bulk of any Indian army was made up of "
-"highly skilled archers, armed with bamboo longbows."
-msgstr "Hindistan bir okçuluk ülkesiydi. Herhangi bir Hint ordusunda çok yetenekli okcular bulunuyordu, ayrıca bambu ağacından yapılmış yaylara sahiptiler."
+"The Indian peoples had a tradition of fine archery and a penchant for using "
+"massed archers in battle."
+msgstr "Hint halkının iyi okçuluk geleneği ve savaşta kitlesel okçular kullanma tutkusu vardı."
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -1749,14 +1564,12 @@ msgid "Mauryan Indians"
 msgstr "Hindistanlı Mauryalılar"
 
 #: simulation/data/civs/maur.jsonStructures[0].Name
-msgid "Elephant Stables"
-msgstr "Fil Ahırları"
+msgid "Elephant Stable"
+msgstr "Fil Ahırı"
 
 #: simulation/data/civs/maur.jsonStructures[0].Special
-msgid ""
-"Trains Elephant Archer and Worker Elephant at Town Phase, then adds the "
-"champion War Elephant at the City phase."
-msgstr "Kasaba aşamasında  Filli Okçu ve İşçi Fil'ı eğitir, şehir aşamasında Şampiyon Savaş Fili ekler."
+msgid "Train Elephants and research Elephant technologies."
+msgstr "Filleri eğit ve fil teknolojileri araştır."
 
 #: simulation/data/civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
@@ -1787,33 +1600,15 @@ msgstr "Persler"
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Description
 msgid ""
-"The resource cost of training camel-mounted (trader) or horse-mounted units "
-"(cavalry) is reduced by 5% per animal (as appropriate) corralled."
-msgstr "Deveye monte edilen (tüccar) veya atlı ünitelerin (süvari) eğitim masrafları, hayvan başına (uygun olduğu takdirde)% 5 azaltılır."
-
-#: simulation/data/civs/pers.jsonCivBonuses[0].Name
-msgid "Corral Camels and Horses"
-msgstr "Deve ve at ağılı"
-
-#: simulation/data/civs/pers.jsonCivBonuses[0].History
-msgid ""
-"While the Persians employed camelry only in a few cases, its use was always "
-"accompanied by great success (most notably during the battle of Sardis in "
-"546 B.C.) The satrapy of Bactria was a rich source of 'two-hump' camels, "
-"while Northern Arabia supplied 'one-hump' camels."
-msgstr "Persler, yalnızca birkaç vakada deve istihsali verirken, kullanımı her zaman büyük başarı sağladı (özellikle de M.Ö. 546'da Sardes savaşında). Kuzey Kıbrıs'ın zengin bir kaynağı olan Bactria'nın satrapisi 'Tek yumru' develer sağladı."
-
-#: simulation/data/civs/pers.jsonCivBonuses[1].Description
-msgid ""
 "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the "
 "usual 300)."
 msgstr "Persler +%10 nüfus sınırı bonusuna sahip (Örn : Genelde 300 olan nüfus sınırı 330 olur)."
 
-#: simulation/data/civs/pers.jsonCivBonuses[1].Name
+#: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Great King's Levy"
 msgstr "Great King'in Vergisi"
 
-#: simulation/data/civs/pers.jsonCivBonuses[1].History
+#: simulation/data/civs/pers.jsonCivBonuses[0].History
 msgid ""
 "The Persians could and did levy a large number of infantry during wartime "
 "due to the sheer size of the Achaemenid Empire and the way in which it was "
@@ -1889,15 +1684,21 @@ msgstr "Haksamanish"
 msgid "Xsayarsa II"
 msgstr "Xsayarsa II"
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].History
+msgid ""
+"The Iranian peoples had a tradition of fine archery and a penchant for using"
+" massed archers in battle."
+msgstr "İran halklarının iyi okçuluk geleneği ve savaşta kitlesel okçular kullanma tutkusu vardı."
+
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry."
 msgstr "Fenikeli Trireme'ler farklı olarak süvari eğitme yeteneği kazanır."
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Name
 msgid "Naval Craftsmanship"
 msgstr "Donanma İşçilik birleştirme"
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].History
 msgid ""
 "Early Achaemenid rulers acted towards making Persia the first great Asian "
 "empire to rule the seas. The Great King behaved favourably towards the "
@@ -1908,17 +1709,17 @@ msgid ""
 "were retrofitted to carry horses and their riders."
 msgstr "Erken Ahameniş yöneticileri İran'ı Asya'nın denizlere hükmeden ilk imparatorluğu yapmak için çabaladılar. Büyük Kral çeşitli denizci halklara servislerini elde etmek için yakın davrandı ama ayrıca birçok denizcilik inisiyatifi de kullandı. Örneğin Büyük Darius zamanında Mısır'da Indus Nehri'ne Pers donanmasını keşfe göndermek için bir kanal inşa edilmiştir. Heredot'a göre Pers donanmasında 300 gemi süvarileri ve atlarını taşımak için yeniden düzenlenmiştir."
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
 msgid ""
 "Increases hitpoints of all structures, but build time increased "
 "appropriately."
 msgstr "Bütün yapıların yaşam puanına artırır, ama inşa zamanında değişiklik yapmaz."
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Name
 msgid "Persian Architecture"
 msgstr "Pers Mimarisi"
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].History
 msgid ""
 "The Persians built the wonderful 2700 kilometer-long Royal Highway from "
 "Sardis to Susa; Darius the Great and Xerxes also built the magnificent "
@@ -1926,25 +1727,31 @@ msgid ""
 "'rebuilt' the old Elamite capital of Susa."
 msgstr "Persler, Sardis'ten Susa'ya kadar uzanan 2700 kilometrelik muhteşem Cennet yolunu inşa ettiler; Darius Büyük ve Kserkses de muhteşem Persepolis'i inşa etti; Büyük Cyrus, Ecbatana'yı büyük ölçüde geliştirdi ve eski Elazığ'in başkenti Susa'yı neredeyse 'yeniden inşa etti.Kserkses "
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
-msgid "Reduces train time for Anusiya champion infantry by half."
-msgstr "Anusiya Şampiyon piyade için eğitim süresini yarıya düşürür."
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
+msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
+msgstr "Anusiya Şampiyon Piyade -%50 eğitim süresi ama -%10 sağlık."
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
 msgid "Immortals"
 msgstr "Ölümsüzler"
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[3].Description
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].History
+msgid ""
+"The Achaemenids maintained a 10,000-strong elite corps, referred to as "
+"Athanatoi (“Immortals”) by Greek authors."
+msgstr "Akamenişler Yunan yazarlar tarafından Athanatoi (Ölümsüz) adı verilen 10 000 kişilik güçlü seçkin birlik bulunduruyordu."
+
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Description
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
 msgid "+25% health for cavalry, but +10% train time."
 msgstr "Süvariler için +25% sağlık ikramiyesi, fakat +10% eğitim zamanı."
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[3].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Name
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Name
 msgid "Nisean War Horses"
 msgstr "Nisean Savaş Atları"
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].History
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[4].History
 msgid ""
 "The beautiful and powerful breed of Nisean horses increases health for "
 "Persian cavalry."
@@ -1982,13 +1789,12 @@ msgid ""
 msgstr "Xerxes (485-465 yılları arasında hüküm sürdü) Büyük Darius oğlu ve Büyük Cyrus'un kızı Atoosa'nın oğlu olan Xerxes, İmparatorluk yönetimini Chorasmia'ya kadar genişleten güçlü bir yönetici idi. Başarısız olan Yunanistan istilasına rağmen, özellikle Persepolis'teki kapsamlı yapı programıyla ünlüdür."
 
 #: simulation/data/civs/pers.jsonStructures[0].Name
-#: simulation/data/civs/sele.jsonStructures[1].Name
-msgid "Cavalry Stables"
-msgstr "süvari ahırları"
+msgid "Stable"
+msgstr "Ahır"
 
 #: simulation/data/civs/pers.jsonStructures[0].Special
-msgid "Train Cavalry citizen-soldiers."
-msgstr "Süvari vatandaş askerleri eğit."
+msgid "Train Cavalry and research Cavalry technologies."
+msgstr "Süvarileri eğitin ve Süvari teknolojilerini geliştirin."
 
 #: simulation/data/civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
@@ -2027,47 +1833,6 @@ msgstr "Achaemenid hanedanı tarafından yönetilen Pers İmparatorluğu, doğud
 #: simulation/data/civs/ptol.jsonName
 msgid "Ptolemies"
 msgstr "Ptolemaioslar"
-
-#: simulation/data/civs/ptol.jsonCivBonuses[0].Description
-msgid ""
-"The Ptolemies receive the Mercenary Camp, a Barracks that is constructed in "
-"neutral territory and trains mercenaries."
-msgstr "Ptolemie'ler, tarafsız bölgede inşa edilmiş ve paralı askerleri eğiten bir Kışla olan Paralı Asker Kampını alır."
-
-#: simulation/data/civs/ptol.jsonCivBonuses[0].Name
-msgid "Mercenary Army"
-msgstr "Paralı Ordu"
-
-#: simulation/data/civs/ptol.jsonCivBonuses[0].History
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty could be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr "Greko-Makedon Ptolemi Hanedanlığı, askeri gücünü büyük miktarda Yunan ve yabancı paralı asker kullanıyordu, zira başta yerli Mısır birliklerine olan bağlılık sıklıkla şüpheli idi. Nitekim, bir yerli ayaklanma sırasında Üst Mısır, on yıllardır Ptolemeioslar tarafından kaybedildi. Paralı askerler sık sık savaşa zorlandılar ve sadakati bazen ucuza, bazen de ucuza satılmamalıydı. Bu, sorun değildi, çünkü Ptolemeios altındaki Mısır, İskender'in halefi devletlerinin en zengin olması için çok müreffehti."
-
-#: simulation/data/civs/ptol.jsonCivBonuses[1].Description
-msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
-msgstr "Ptolemaioslu Mısırlılar ek 3 tarım teknolojisi alırlar."
-
-#: simulation/data/civs/ptol.jsonCivBonuses[1].Name
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[2].Name
-msgid "Nile Delta"
-msgstr "Nil Deltası"
-
-#: simulation/data/civs/ptol.jsonCivBonuses[1].History
-#: simulation/data/civs/ptol.jsonCivBonuses[2].History
-msgid "Unknown."
-msgstr "Bilinmeyen."
-
-#: simulation/data/civs/ptol.jsonCivBonuses[2].Description
-msgid "Can capture gaia elephants and camels to reduce their training cost."
-msgstr "Gaiayı elegeçirebilir ve filler ve develerin eğitim maliyetlerini düşürebilirsin."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
 msgid "Allies +1.0 food trickle rate."
@@ -2160,34 +1925,6 @@ msgstr "IV. Arsinoe"
 msgid "Arsinoe II"
 msgstr "II. Arsinoe"
 
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[1].Description
-msgid "Hero aura range boosted by 50%."
-msgstr "Kahraman gücü %50 oranında arttı."
-
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[1].Name
-msgid "Pharaonic Cult."
-msgstr "Pharaonik Mezhebi."
-
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[1].History
-msgid ""
-"The Macedonian-Greek rulers of the Ptolemaic dynasty observed many ancient "
-"Egyptian traditions in order to satiate the local populace and ingratiate "
-"themselves to the powerful priestly class in the country."
-msgstr "Ptolema hanedanının Makedon-Yunan yöneticileri, yerel halkı tatmin etmek ve kendilerini ülkedeki güçlü papaz sınıfına tezahürat yapmak için eski Mısır geleneklerini gözlemlediler."
-
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[2].Description
-msgid ""
-"The Ptolemaic Egyptians receive 3 additional farming technologies above and "
-"beyond the maximum number of farming technologies usually available to a "
-"faction."
-msgstr "Ptolemaik Mısırlılar, bir hizip için genellikle mevcut tarım teknolojilerinin maksimum sayısının ve üstünde 3 ek tarım teknolojisi alırlar."
-
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[2].History
-msgid ""
-"The Nile Delta had rich soil for farming, due to centuries of seasonal "
-"floods from the Nile depositing rich silt across the landscape."
-msgstr "Nil Deltası, yüzyıllarca süren mevsimsel seller nedeniyle, zengin manzara yataklarıyla zengin toprak barındırıyordu."
-
 #: simulation/data/civs/ptol.jsonFactions[0].Heroes[0].Name
 msgid "Ptolemaios A' Soter"
 msgstr "I. Ptolemaios Soter"
@@ -2225,6 +1962,18 @@ msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains mercenaries."
 msgstr "Tarafsız bölgede inşa edilmelidir. Bölge yarıçapı etkisi yoktur. Paralı askerleri eğitiyor."
+
+#: simulation/data/civs/ptol.jsonStructures[1].History
+msgid ""
+"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
+"foreign mercenaries for the bulk of its military force, mainly because the "
+"loyalty of native Egyptian units was often suspect. Indeed, during one "
+"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
+"Mercenaries were often battle-hardened and their loyalty could be bought, "
+"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
+" under the Ptolemies was so prosperous as to be the richest of Alexander's "
+"successor states."
+msgstr "Greko-Makedon Ptolemi Hanedanlığı, askeri gücünü büyük miktarda Yunan ve yabancı paralı asker kullanıyordu, zira başta yerli Mısır birliklerine olan bağlılık sıklıkla şüpheli idi. Nitekim, bir yerli ayaklanma sırasında Üst Mısır, on yıllardır Ptolemeioslar tarafından kaybedildi. Paralı askerler sık sık savaşa zorlandılar ve sadakati bazen ucuza, bazen de ucuza satılmamalıydı. Bu, sorun değildi, çünkü Ptolemeios altındaki Mısır, İskender'in halefi devletlerinin en zengin olması için çok müreffehti."
 
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
@@ -2471,35 +2220,6 @@ msgstr "Romalılar antik dünyanın en büyük imparatorluklarından birini kont
 msgid "Seleucids"
 msgstr "Selevkoslar"
 
-#: simulation/data/civs/sele.jsonCivBonuses[0].Description
-msgid ""
-"This unlocks the Seleucid expansion building, the Klēroukhia or Military "
-"Colony, similar to Civic Centers for other factions. It is weaker and "
-"carries a smaller territory influence, but is cheaper and built faster."
-msgstr "Bu, diğer fraksiyonlar için Sivil Toplum Merkezleri'ne benzer Seleukos genişletme binası, Klēroukhia veya Askeri Koloninin kilidini açıyor. Daha zayıf ve daha küçük bir toprak etkisi taşıyor, ancak daha ucuz ve daha hızlı inşa edilmiştir."
-
-#: simulation/data/civs/sele.jsonCivBonuses[0].Name
-msgid "Cleruchy"
-msgstr "Klerukya"
-
-#: simulation/data/civs/sele.jsonCivBonuses[1].Description
-msgid ""
-"Choose between Traditional Army and Reform Army technologies that unlock "
-"different Champions."
-msgstr "Geleneksel Ordu ile Yenilikçi ordu arasında arasında tercih yaparak bu farklı şampiyonları meydana çıkarın."
-
-#: simulation/data/civs/sele.jsonCivBonuses[1].History
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].History
-msgid ""
-"Seleucid and indeed Successor warfare evolved over the course of the 3rd and"
-" 2nd centuries. Contact with Eastern upstarts such as the Parthians and "
-"constant revolts of peripheral satrapies such as Bactria caused the "
-"Seleucids to reform their military and change their tactics, specifically in"
-" the cavalry arm. War with the Romans from the West and invasions from the "
-"Galatians also forced the Seleucids to reform their infantry regiments to be"
-" more flexible."
-msgstr "3. ve 2. yüzyıl boyunca Seleukid ve Gerçekten Başarıyla savaş gelişti. Parthians ve Bactria gibi periferik satrapies sürekli isyanlar gibi Doğu upstarts ile İletişim, Seleukids kendi askeri reform ve taktiklerini değiştirmeye, özellikle süvari kolu neden oldu. Batı'dan Romalılarla savaş ve Galatyalı istilalar da Seleukids'i piyade alaylarını daha esnek olmak için değiştirmeye zorladı."
-
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
 msgid "Allied Civil Centers −20% resource costs."
 msgstr "Müttefik Kent Merkezleri -%20 kaynak maliyeti."
@@ -2631,42 +2351,31 @@ msgstr "Antiochus XIII. Asiaticus"
 msgid "Philip II Philoromaeus"
 msgstr "Philip II. Philoromaeus"
 
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
-msgid ""
-"Traditional Army unlocks Silver Shields and Scythed Chariots, Reform Army "
-"unlocks Romanized Heavy Swordsmen and Cataphracts."
-msgstr "Geleneksel ordu, Gümüş Kalkanların ve Tırpanlı Savaş arabalarının kilidini açar. Reform ordusu, Romalı Ağır Kılıçlıların ve Zırhlı Süvarilerin kilidini açar."
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Name
-msgid "Traditional Army vs. Reform Army"
-msgstr "Geleneksel Ordu vs. Değişim Ordusu"
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
-msgid ""
-"A one-time purchase of 20 Indian War Elephants from the Mauryan Empire."
-msgstr "Maurya İmparatorluğundan bir kerelik 20 Hint Savaş Fili satın al."
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
-msgid "Marriage Alliance"
-msgstr "Evlilik İttifakı"
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].History
-msgid ""
-"Seleucus I Nicator invaded the Punjab region of India in 305 BC, confronting"
-" Chandragupta Maurya (Sandrokottos), founder of the Mauryan empire. It is "
-"said that Chandragupta fielded an army of 600,000 men and 9,000 war "
-"elephants (Pliny, Natural History VI, 22.4). Seleucus met with no success "
-"and to establish peace between the two great powers and to formalize their "
-"alliance, he married his daughter to Chandragupta. In return, Chandragupta "
-"gifted Seleucus a corps of 500 war elephants, which would prove a decisive "
-"military asset for Seleucus as he fought the rest of Alexander's successors."
-msgstr "Seleuküs Ben Nicator Mauryan imparatorluğunun kurucusu Chandragupta Maurya (Sandrokottos) ile yüz yüze, Hindistan'ın Pencap bölgesini 305 de işgal etti. Chandragupta'nın 600.000 kişilik bir ordu ve 9.000 savaş fili (Pliny, Natural History VI, 22.4) içerdiği söyleniyor. Seleucus başarıya ulaşamadı ve iki büyük güç arasında barış kurmak ve ittifaklarını resmileştirmek için kızını Chandragupta ile evlendi. Bunun karşılığında Chandragupta, Seleucus'u 500 savaş fili birliğine armağan etti; bu da, Alexander'ın haleflerinin geri kalanına savaşırken Seleukos için belirleyici bir askeri varlık olduğunu ispatladı."
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[3].History
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].History
 msgid ""
 "The beautiful and powerful breed of Nisean horses increases health for "
 "Seleucid cavalry."
 msgstr "Bu güzel ve güçlü Nisean atları Selevkos süvarisinin sağlığını arttırır."
+
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
+msgid ""
+"Unlock either Champion Infantry Pikemen or Champion Infantry Swordsmen."
+msgstr "Şampiyon Piyade Kargıcı ya da Şampiyon Piyade Kılıçlı aç."
+
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
+msgid "Traditional Army vs Reform Army"
+msgstr "Geleneksel Ordu vs Reform Ordusu"
+
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].History
+msgid ""
+"Seleucid and indeed Successor warfare evolved over the course of the 3rd and"
+" 2nd centuries. Contact with Eastern upstarts such as the Parthians and "
+"constant revolts of peripheral satrapies such as Bactria caused the "
+"Seleucids to reform their military and change their tactics, specifically in"
+" the cavalry arm. War with the Romans from the West and invasions from the "
+"Galatians also forced the Seleucids to reform their infantry regiments to be"
+" more flexible."
+msgstr "3. ve 2. yüzyıl boyunca Seleukid ve Gerçekten Başarıyla savaş gelişti. Parthians ve Bactria gibi periferik satrapies sürekli isyanlar gibi Doğu upstarts ile İletişim, Seleukids kendi askeri reform ve taktiklerini değiştirmeye, özellikle süvari kolu neden oldu. Batı'dan Romalılarla savaş ve Galatyalı istilalar da Seleukids'i piyade alaylarını daha esnek olmak için değiştirmeye zorladı."
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -2722,22 +2431,18 @@ msgid ""
 "former empire."
 msgstr "Bu Makedon-Yunan hanedanlığı İskender'in yönettiği en eski imparatorluğunun doğu parçasıdır."
 
-#: simulation/data/civs/sele.jsonStructures[1].Special
-msgid "Trains all cavalry except citizen-soldier cavalry."
-msgstr "Vatandaş-asker süvari hariç tüm süvarileri eğitir."
-
-#: simulation/data/civs/sele.jsonStructures[2].Name
+#: simulation/data/civs/sele.jsonStructures[1].Name
 msgid "Military Colony"
 msgstr "Askeri Koloni"
 
-#: simulation/data/civs/sele.jsonStructures[2].Special
+#: simulation/data/civs/sele.jsonStructures[1].Special
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster."
 msgstr "Bu bir Seleukos genişleme binasıdır, Diğer gruplar için Kent Merkezlerine benzer. Bu daha zayıftır ve daha küçük bir bölge etkisi taşır,ancak daha hızlı ve daha ucuza  inşa edilebilir."
 
-#: simulation/data/civs/sele.jsonStructures[2].History
+#: simulation/data/civs/sele.jsonStructures[1].History
 msgid ""
 "The Seleucid kings invited Greeks, Macedonians, Galatians (Gauls), Cretans, "
 "and Thracians alike to settle in within the vast territories of the empire. "
@@ -2760,35 +2465,6 @@ msgstr "Bu Makedon-Yunan hanedanlığı İskender'in yönettiği en eski imparat
 #: simulation/data/civs/spart.jsonFactions[0].Name
 msgid "Spartans"
 msgstr "Spartalılar"
-
-#: simulation/data/civs/spart.jsonCivBonuses[0].Description
-msgid "Spartans can use the powerful Phalanx formation."
-msgstr "Spartalılar güçlü Phalanx tertipini kullanabilirler."
-
-#: simulation/data/civs/spart.jsonCivBonuses[0].History
-msgid ""
-"The Spartans were undisputed masters of phalanx warfare. The Spartans were "
-"so feared for their discipline that the enemy army would sometimes break up "
-"and run away before a single shield clashed. 'Othismos' refers to the point "
-"in a phalanx battle where both sides try to shove each other out of "
-"formation, attempting to breaking up the enemy lines and routing them."
-msgstr "Spartalılar, falanks savaşı tartışılmaz ustalarıydı. Spartalılar disiplinlerinden öylesine korkuyorlardı ki, düşman ordusu bazen tek bir kalkan çatışmadan ayrılabilir ve kaçabilirdi. 'Othismos', her iki tarafın birbirlerini formasyon dışı bırakmaya çalışan, düşman hatlarını parçalamaya ve onları yönlendirmeye çalışan bir falanks savaşındaki noktaya değinir."
-
-#: simulation/data/civs/spart.jsonCivBonuses[1].Description
-msgid ""
-"The Spartan rank upgrades at the Barracks cost no resources, except time."
-msgstr "Sparta rütbe güncellemeleri Kışlalarda hergangibir maliyete ve zamana sebep olmayacak."
-
-#: simulation/data/civs/spart.jsonCivBonuses[1].Name
-msgid "Laws of Lycurgus"
-msgstr "Likurgus Yasaları"
-
-#: simulation/data/civs/spart.jsonCivBonuses[1].History
-msgid ""
-"Under the Constitution written by the mythical law-giver Lycurgus, the "
-"institution of The Agoge was established, where Spartans were trained from "
-"the age of 6 to be superior warriors in defense of the Spartan state."
-msgstr "Mitolojik kanuni veren Lycurgus tarafından yazılan Anayasa uyarınca Spartalıların Spartalı devletin savunmasında üstün savaşçılar olmak için Spartalıların 6 yaşından itibaren eğitildiği Agogenin kuruluşu kuruldu."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Infantry Spearmen +10% health."
@@ -2889,8 +2565,8 @@ msgid ""
 msgstr "Paeanlar, düşman hattını doldururken, hoplitler tarafından söylenen savaş ilahileriydi. Bilinen ilk Paeanlardan biri, İlk Messenian Savaşı sırasında Sparta'nın savaşçı bir şairi Tirteus tarafından bestelenmiştir."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
-msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "Mızraklı piyadeler için +25% sağlık bonusu, fakat +10% eğitim zamanı."
+msgid "Champion Infantry Spearmen +25% health, but +5% training time."
+msgstr "Şampiyon Mızrakçı Piyadeler +%25 sağlık ama +%5 eğitim süresi."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"

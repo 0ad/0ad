@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:08+0000\n"
-"PO-Revision-Date: 2020-07-24 11:21+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-27 07:09+0000\n"
+"PO-Revision-Date: 2020-07-27 11:43+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,40 +27,36 @@ msgid "Athenians"
 msgstr "Muinntir na h‑Àithne"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
+#: simulation/data/civs/mace.jsonCivBonuses[0].Description
+#: simulation/data/civs/spart.jsonCivBonuses[0].Description
+msgid "Structures +10% health and +10% capture points."
+msgstr ""
+
+#: simulation/data/civs/athen.jsonCivBonuses[0].Name
+#: simulation/data/civs/mace.jsonCivBonuses[0].Name
+#: simulation/data/civs/spart.jsonCivBonuses[0].Name
+msgid "Hellenic Architecture"
+msgstr "Ailtireachd Greugach"
+
+#: simulation/data/civs/athen.jsonCivBonuses[0].History
+#: simulation/data/civs/mace.jsonCivBonuses[0].History
+#: simulation/data/civs/spart.jsonCivBonuses[0].History
+msgid "The Greeks used stone construction from early Mycenaean times."
+msgstr "Cleachdadh na Greugaich togail le clach o chionn tràth ann an linn Mhycenae."
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
 msgstr "Cruinneachadh meatailt nas luaithe le +10% airson gach linn a dh’fhalbhas."
 
-#: simulation/data/civs/athen.jsonCivBonuses[0].Name
+#: simulation/data/civs/athen.jsonCivBonuses[1].Name
 msgid "Silver Owls"
 msgstr "Cailleachan-oidhche airgid"
 
-#: simulation/data/civs/athen.jsonCivBonuses[0].History
+#: simulation/data/civs/athen.jsonCivBonuses[1].History
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
 msgstr "Thug na mèinnean aig Laureion ann an Attica saoibhreas de dh’airgead do Bhaile na h‑Àithne às a rinneadh Cailleach-oidhche na h‑Àithne, am bonn luachmhor cliùiteach aca."
-
-#: simulation/data/civs/athen.jsonCivBonuses[1].Description
-#: simulation/data/civs/mace.jsonCivBonuses[2].Description
-#: simulation/data/civs/spart.jsonCivBonuses[2].Description
-msgid ""
-"Constructing a Theatron increases the territory expanse of all buildings by "
-"+20%."
-msgstr "Ma thogas tu tèatron, thèid leudachadh an ranntair aig na h-uile togalach a mheudachadh le +20%."
-
-#: simulation/data/civs/athen.jsonCivBonuses[1].Name
-#: simulation/data/civs/mace.jsonCivBonuses[2].Name
-#: simulation/data/civs/spart.jsonCivBonuses[2].Name
-msgid "Hellenization"
-msgstr "Greugachadh"
-
-#: simulation/data/civs/athen.jsonCivBonuses[1].History
-#: simulation/data/civs/spart.jsonCivBonuses[2].History
-msgid ""
-"The Greeks were highly successful in Hellenising various foreigners. During "
-"the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
-"spoken widely from Spain to India."
-msgstr "Bhiodh na Greugaich uabhasach soirbheachail le Greugachadh iomadh choigreach. ri linn a’ Ghreugachais, bhiodh a’ Ghreugais na lingua franca aig an t‑saoghail àrsaidh is bhathar ’ga bruidhinn gu farsaing on Spàinn gu na h‑Innseachan."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Allied Warships −25% construction time."
@@ -174,7 +170,6 @@ msgid ""
 msgstr "Buannaichidh an cluicheadair an comas gus saighdearan-sleagha òrdachadh gun tèid iad ann an cumadh falangais a bheir ionnsaigh ’s armachd nas treasa dhaibh."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Name
-#: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Othismos"
 msgstr "Othismos"
 
@@ -200,18 +195,6 @@ msgstr "Seo an ceann-feachd a thug air muinntir na h-Àithne gun coiseadh iad an
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
 msgstr "’B e Pericles am prìomh neach-polataigs aig Baile na h-Àithne ron 5mh linn RC."
-
-#: simulation/data/civs/athen.jsonFactions[0].Heroes[2].History
-#: simulation/data/civs/maur.jsonStructures[0].History
-#: simulation/data/civs/maur.jsonStructures[1].History
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].History
-#: simulation/data/civs/ptol.jsonFactions[0].Heroes[0].History
-#: simulation/data/civs/ptol.jsonFactions[0].Heroes[1].History
-#: simulation/data/civs/ptol.jsonFactions[0].Heroes[2].History
-#: simulation/data/civs/sele.jsonCivBonuses[0].History
-#: simulation/data/civs/sele.jsonStructures[1].History
-msgid "."
-msgstr "."
 
 #: simulation/data/civs/athen.jsonFactions[0].Description
 msgid "A Hellenic people of the Ionian tribe."
@@ -281,36 +264,6 @@ msgstr "Mar thùs an t-sìobhaltais Shiaraich agus àite-breith an deamocrasaidh
 msgid "Britons"
 msgstr "Na Breatannaich"
 
-#: simulation/data/civs/brit.jsonCivBonuses[0].Description
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Description
-msgid "Enhanced food gained from ranching and farming. "
-msgstr "Leasachadh air a’ bhiadh a gheibh thu o àiteach no sprèidh. "
-
-#: simulation/data/civs/brit.jsonCivBonuses[0].Name
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Name
-msgid "Ardiosmanae"
-msgstr "Ardiosmanae"
-
-#: simulation/data/civs/brit.jsonCivBonuses[0].History
-#: simulation/data/civs/gaul.jsonCivBonuses[0].History
-msgid "Represents Celtic farming methods. "
-msgstr "Riochdaichidh seo dòighean àitich Cheilteach. "
-
-#: simulation/data/civs/brit.jsonCivBonuses[1].Description
-#: simulation/data/civs/gaul.jsonCivBonuses[1].Description
-msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr "Bheir saighdearan faisg air draoidhean ionnsaighean beagan nas treasa."
-
-#: simulation/data/civs/brit.jsonCivBonuses[1].Name
-#: simulation/data/civs/gaul.jsonCivBonuses[1].Name
-msgid "Deas Celtica"
-msgstr "Diathan Ceiltich"
-
-#: simulation/data/civs/brit.jsonCivBonuses[1].History
-#: simulation/data/civs/gaul.jsonCivBonuses[1].History
-msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr "Bhrosnaich creideamh ’s draoidhean nan Ceilteach an cumadh-inntinn cogail. "
-
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "Allied Healers −20% resource costs."
 msgstr "−20% air cosgaisean stòrais nan lighichean caidreabhach."
@@ -371,36 +324,6 @@ msgstr "Dubnovellaunus"
 #: simulation/data/civs/brit.jsonAINames[10]
 msgid "Vosenius"
 msgstr "Vosenius"
-
-#: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Description
-msgid "Increased attack and movement rate for melee soldiers."
-msgstr "Ionnsaighean is gluasad nas luaithe airson shaighdearan dlùtha."
-
-#: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Name
-msgid "Sevili Dusios"
-msgstr "Sevili Dusios"
-
-#: simulation/data/civs/brit.jsonFactions[0].Technologies[0].History
-msgid ""
-"The Britons took up the practice of either making permanent marks on their "
-"body in the form of tattoos or temporarily painted their bodies with woad "
-"paint. The effect was very frightening."
-msgstr "Bhiodh na Breatannaich a’ peantadh nam bodhaigean le tatùthan gu maireannach no le guirmean gu sealach. Bha a bhuil glè eagalach."
-
-#: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Description
-msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr "Cuiridh seo ri buannachd na h‑àirde aig aonadan a bhios ’nan gearastan ann an tùr."
-
-#: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Name
-msgid "Turos Maros"
-msgstr "Turos Maros"
-
-#: simulation/data/civs/brit.jsonFactions[0].Technologies[1].History
-msgid ""
-"'Great Tower'; Celtic legends abound with stories of massive tall towers "
-"built by the most powerful kings, and the remains of some very large towers "
-"have been found."
-msgstr "“Tùr Mòr”; Tha faoinsgeulachdan nan ceilteach làn naidheachdan mu thùir mhòra a chaidh a thogail leis na rìghrean as cumhachdaiche agus chaidh làraichean tùr glè mhòra a lorg."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -503,14 +426,6 @@ msgstr "Mhìnich Ammianus Marcellinus dè cho doirbh agus a bhiodh e dha bhuidhe
 msgid "The Celts of the British Isles."
 msgstr "Ceiltich nan Eileanan Breatannach."
 
-#: simulation/data/civs/brit.jsonStructures[0].Name
-msgid "Kennel"
-msgstr "Taigh-chon"
-
-#: simulation/data/civs/brit.jsonStructures[0].History
-msgid "The Britons were known for breeding war dogs."
-msgstr "Bhiodh na Breatannaich cliùiteach airson nan con-cogaidh aca."
-
 #: simulation/data/civs/brit.jsonHistory
 msgid ""
 "The Britons were the Celtic tribes of the British Isles. Using chariots, "
@@ -524,10 +439,8 @@ msgid "Carthaginians"
 msgstr "Na Cartagaich"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
-msgid ""
-"Carthaginian walls, gates, and towers have 3x health of a standard wall, but"
-" also 2x build time."
-msgstr "Tha 3x de shlàinte air ballachan, geataichean ’s tùir nan Cartagach an coimeas na fheadhainn aig càch, ach bheir e 2x nas fhaide gus an togail cuideachd."
+msgid "Walls +100% build time, +100% stone cost, and +200% health."
+msgstr ""
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -536,25 +449,6 @@ msgstr "Ballachan trìoblaichte"
 #: simulation/data/civs/cart.jsonCivBonuses[0].History
 msgid "Carthaginians built triple city walls."
 msgstr "Thogadh na Cartagaich ballachan trìoblaichte."
-
-#: simulation/data/civs/cart.jsonCivBonuses[1].Description
-msgid ""
-"The resource cost of training elephant-mounted (war elephant) or horse-"
-"mounted units (cavalry) is reduced by 5% per animal corralled (as "
-"appropriate)."
-msgstr "Bidh lùghdachadh an cosgais de 5% gus aonad air muin ailbhein (ailbhean-cogaidh) no eich (eachraidh) oideachadh le gach beathach san fhàl (a-rèir na tha iomchaidh)."
-
-#: simulation/data/civs/cart.jsonCivBonuses[1].Name
-#: simulation/data/civs/ptol.jsonCivBonuses[2].Name
-msgid "Roundup"
-msgstr "Tional"
-
-#: simulation/data/civs/cart.jsonCivBonuses[1].History
-msgid ""
-"Not unlike the Iberian Peninsula, North Africa was known as horse country, "
-"capable of producing up to 100,000 new mounts each year. It was also the "
-"home of the North African Forest Elephant."
-msgstr "Coltach ris an rubha Ibèireach, bhiodh taobh a tuath Afraga cliùiteach mar thìr nan each agus comasach air 100,000 each ùra a sholar gach bliadhna. ’S e an dachaigh aig an ailbhean coille Afraga tuathach a bh’ ann cuideachd."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "Allies +10% international trade bonus."
@@ -763,6 +657,30 @@ msgstr "’S e stàit-bhaile a bh’ ann an Cartago far a bheil Tuinisea san lat
 msgid "Gauls"
 msgstr "Muinntir na Gaille"
 
+#: simulation/data/civs/gaul.jsonCivBonuses[0].Description
+msgid "Enhanced food gained from ranching and farming. "
+msgstr "Leasachadh air a’ bhiadh a gheibh thu o àiteach no sprèidh. "
+
+#: simulation/data/civs/gaul.jsonCivBonuses[0].Name
+msgid "Ardiosmanae"
+msgstr "Ardiosmanae"
+
+#: simulation/data/civs/gaul.jsonCivBonuses[0].History
+msgid "Represents Celtic farming methods. "
+msgstr "Riochdaichidh seo dòighean àitich Cheilteach. "
+
+#: simulation/data/civs/gaul.jsonCivBonuses[1].Description
+msgid "Druids increase attack rates of soldiers near them slightly."
+msgstr "Bheir saighdearan faisg air draoidhean ionnsaighean beagan nas treasa."
+
+#: simulation/data/civs/gaul.jsonCivBonuses[1].Name
+msgid "Deas Celtica"
+msgstr "Diathan Ceiltich"
+
+#: simulation/data/civs/gaul.jsonCivBonuses[1].History
+msgid "Celtic religion and druidry inspired their warlike mindset. "
+msgstr "Bhrosnaich creideamh ’s draoidhean nan Ceilteach an cumadh-inntinn cogail. "
+
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Blacksmiths −15% technology resource costs and research time."
 msgstr ""
@@ -953,22 +871,6 @@ msgid ""
 "all types."
 msgstr "Seach air tìr far a bheil ’s far an robh aibhnean ann, tha clach pailt air an rubha Ibèireach agus chaidh a cleachdadh gu tric gus togalaichean de gach seòrsa a thogail."
 
-#: simulation/data/civs/iber.jsonCivBonuses[1].Description
-msgid ""
-"The resource cost of training horse-mounted units (cavalry) is reduced by 5%"
-" per animal corralled."
-msgstr "Bidh lùghdachadh an cosgais de 5% gus aonadan eachraidh oideachadh le gach beathach san fhàl."
-
-#: simulation/data/civs/iber.jsonCivBonuses[1].Name
-msgid "Zaldi Saldoa"
-msgstr "Zaldi Saldoa"
-
-#: simulation/data/civs/iber.jsonCivBonuses[1].History
-msgid ""
-"Not unlike Numidia in North Africa, the Iberian Peninsula was known as "
-"'horse country', capable of producing up to 100,000 new mounts each year."
-msgstr "Coltach ri Nuimidia taobh a tuath Afraga, bhiodh an rubha Ibèireach cliùiteach mar thìr nan each agus comasach air 100,000 each ùra a sholar gach bliadhna."
-
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Javelineers −10% resource costs."
 msgstr ""
@@ -1133,36 +1035,6 @@ msgstr "Chan eil fhios cò às a thàinig na h-Ibèirich ’s an cànan aca agus
 msgid "Kushites"
 msgstr "Kuluš"
 
-#: simulation/data/civs/kush.jsonCivBonuses[0].Name
-msgid "The Pyramids of Meroe"
-msgstr "Pioramaidean Mheroë"
-
-#: simulation/data/civs/kush.jsonCivBonuses[0].Description
-msgid ""
-"Building a Kushite pyramid increases Civic Center territory influence by "
-"+10% for each one built."
-msgstr "Cuiridh gach pioramaid Kuluš a thogas tu +10% a bhuaidh ranntair ris na h-ionadan Ionad sìobhalta."
-
-#: simulation/data/civs/kush.jsonCivBonuses[1].Name
-msgid "Mineral Deposits"
-msgstr "Tional cloiche-mèinnir"
-
-#: simulation/data/civs/kush.jsonCivBonuses[1].Description
-msgid ""
-"Kushite players receive a free extra Metal Mine somewhere in their home "
-"territory."
-msgstr "Gheibh cluicheadairean Kuluš mèinn meatailt an-asgaidh a bharrachd am badeigin san ranntair dachaigh aca."
-
-#: simulation/data/civs/kush.jsonCivBonuses[2].Name
-msgid "Elephant Roundup"
-msgstr "Tional ailbheanan"
-
-#: simulation/data/civs/kush.jsonCivBonuses[2].Description
-msgid ""
-"Can capture Gaia elephants and garrison them into a corral to reduce "
-"training costs for War Elephants."
-msgstr "Comasach air ailbheanan gaìa a ghlacadh agus a chur ‘nan gearastan ann am fàl gus cosgaisean oideachadh ailbheanan-cogaidh a lùghdachadh."
-
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Name
 msgid "Elephant Suppliers"
 msgstr "Solaraichean ailbheanan"
@@ -1227,25 +1099,43 @@ msgstr "Shanakdakhete"
 msgid "Amanishakheto"
 msgstr "Amanishakheto"
 
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
+msgid ""
+"Archers −10% training time, +8 attack range, and −10% ranged attack spread."
+msgstr ""
+
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Name
+msgid "Archery Tradition"
+msgstr "Gnàth nam boghadairean"
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].History
+msgid ""
+"The Kushites had a tradition of fine archery and a penchant for using massed"
+" archers in battle."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "Monumental Architecture"
 msgstr "Ailtireachd-laighe"
 
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
-msgid ""
-"+50% HP and -50% build time for Civic Centers, Temples, Pyramids and "
-"Wonders."
-msgstr "+50% de puingean-beatha agus −50% air an ùine togail airson ionadan sìobhalta, teampallan, pioramaidean is mìorbhailean."
-
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
-msgid "Allow to train elite rank healers"
-msgstr "Ceadaich oideachadh lighichean seann-ghaisgeach"
+msgid ""
+"Civic Structures +20% build time, +20% health, and +20% capture points."
+msgstr ""
 
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Description
+msgid "Train elite rank healers."
+msgstr "Oidich lighichean seann-ghaisgeach."
+
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Name
 msgid "High Priest of Amun"
 msgstr "Àrd-shagart Amuin"
 
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/kush.jsonFactions[0].Technologies[2].History
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
@@ -1282,11 +1172,6 @@ msgid ""
 "The Kushites can upgrade individual Temples to Temples of Amun, which can "
 "train Napatan Temple Guard champions and heal units faster."
 msgstr "’S urrainn dha na Kulušaich tempaill àrdachadh ’nan Teampaill Amuin a nì oideachadh air laoich geàird teampaill Napataich ’s a shlànaicheas aonadan nas luaithe."
-
-#: simulation/data/civs/kush.jsonStructures[0].History
-#: simulation/data/civs/kush.jsonStructures[1].History
-msgid "History."
-msgstr "Eachdraidh."
 
 #: simulation/data/civs/kush.jsonStructures[1].Name
 msgid "Temple of Apedemak"
@@ -1335,47 +1220,6 @@ msgstr "B' e rìoghachd àrsaidh Afraganach a bh' ann an Kuluš, a bha air a sui
 #: simulation/data/civs/mace.jsonFactions[0].Name
 msgid "Macedonians"
 msgstr "Na Masadonaich"
-
-#: simulation/data/civs/mace.jsonCivBonuses[0].Description
-msgid ""
-"Macedonian units have +10% attack bonus vs. Persian and Hellenic factions, "
-"but -5% attack debonus vs. Romans."
-msgstr "Tha buannachd ionnsaighe de +10% aig Masadonaich an aghaidh Pearsaich no Greugaich, ach tha call buannachd ionnsaighe de -5% aca an aghaidh Ròmanaich."
-
-#: simulation/data/civs/mace.jsonCivBonuses[0].Name
-msgid "Hellenic League"
-msgstr "An Lìg Greugach"
-
-#: simulation/data/civs/mace.jsonCivBonuses[0].History
-msgid ""
-"After the unification of Greece, Philip II gathered all the city-states "
-"together to form the Hellenic League, with Macedon as the its leader. With "
-"this Pan-Hellenic federation he planned to launch an expedition to punish "
-"Persia for past wrongs. Although assassinated before he could carry out the "
-"invasion, his son Alexander the Great took up the mantle and completed his "
-"fathers plans."
-msgstr "An dèidh aonadh na Grèige, chruinnich Filip III na stàit-bhailtean uile gus an Co-bhann Greugach a chur air bhonn, air an robh ceannas aig a' Mhasadoin. Leis a' Cho-chaidreabh Uile-Ghreugach seo, bha beachd aige iomairt a thòiseachadh a pheanasaicheadh Peirse airson a cuid eucoirean. Ged a chaidh a mharbhadh mus d' fhuair e cothrom an iomairt a chur an gnìomh, thug a mhac, Alasdair Mòr, an dualchas sin bho athair is choilean e a rùintean."
-
-#: simulation/data/civs/mace.jsonCivBonuses[1].Description
-msgid "Infantry pike units can use the slow and powerful Syntagma formation."
-msgstr "’S urrainn dhan choisridh pìceir an cumadh siontagma slaodach ach cumhachdach a chleachdadh."
-
-#: simulation/data/civs/mace.jsonCivBonuses[1].Name
-msgid "Syntagma"
-msgstr "Siontagma"
-
-#: simulation/data/civs/mace.jsonCivBonuses[1].History
-msgid ""
-"Based upon the Theban Oblique Order phalanx, the Syntagma was the formation "
-"that proved invincible against the armies of Hellas and the East."
-msgstr "Stèidhichte air falangas claon Thìba, b’ e cumadh a bhiodh do-cheannsachadh an aghaidh feachdan Hellas agus na h-Oirthire a bh’ anns an t-siontagma."
-
-#: simulation/data/civs/mace.jsonCivBonuses[2].History
-msgid ""
-"The Greeks were highly successful in Hellenizing various foreigners. During "
-"the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
-"spoken widely from Spain to India."
-msgstr "Bhiodh na Greugaich uabhasach soirbheachail le Greugachadh iomadh choigreach. Ri linn a’ Ghreugachais, bhiodh a’ Ghreugais na lingua franca aig an t‑saoghail àrsaidh is bhathar ’ga bruidhinn gu farsaing on Spàinn gus na h‑Innseachan."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
 msgid "Allies +20% barter sell prices."
@@ -1448,56 +1292,18 @@ msgid "Meleager"
 msgstr "Meleager"
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Description
-msgid ""
-"Each subsequent Barracks constructed comes with 5 free (random) Macedonian "
-"military units. This also applies to the Barracks of allied players (they "
-"receive 5 free units of their own culture for each new Barracks "
-"constructed)."
-msgstr "Thig gach taigh-feachd a thogas tu às a dhèidh le 5 aonadan an airm Mhasadonaich an-asgaidh (’s air thuaiream). Bidh seo an sàs air na taighean-feachd aig gach cluicheadair caidreabhach cuideachd (gheibh iad 5 aonadan a’ chultair aca fhèin an-asgaidh le gach taigh-feachd a thogas iad)."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
-#: simulation/data/civs/sele.jsonCivBonuses[1].Name
-msgid "Military Reforms"
-msgstr "Ath-leasachaidhean an airm"
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].History
-msgid ""
-"When Philip II came to the Macedonian throne he began a total reorganization"
-" of the Macedonian army. His reforms created a powerful cavalry arm to his "
-"army that would prove useful to both himself and his son Alexander's "
-"conquests."
-msgstr "Nuair a ghabh Filip II cathair na Masadoine, chuir e rian gu tur ùr air feachd na Masadoine. Chruthaich na h-ath-leasachaidhean aige eachraidh cudromach a chuir e ris an fheachd aige agus a bhiodh feumail dha fhèin agus dha cheannsachaidhean Alasdair a mhac."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Description
-msgid ""
-"Upgrade Hypaspist Champion Infantry to Silver Shields, with greater attack "
-"and armor, but also greater cost."
-msgstr "Àrdaich laoich coisridh Hypaspistes gu sgiathan airgid aig a bheil barrachd ionnsaighe ’s armachd ach barrachd cosgaisean ’nan lùib cuideachd."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
-msgid "Royal Gift"
-msgstr "Tìodhlac rìoghail"
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].History
-msgid ""
-"In India near the end of his long anabasis, Alexander gifted to the Royal "
-"Hypaspist corps shields of silver for their long and valiant service in his "
-"army."
-msgstr "Sna Innseachan faisg air deireadh anabasis fada aige, thìodhlaic Alasdair sgiathan airgid dha bhuidheann nan Hypaspistes riaghail aige mar thaing airson an seirbheis dhàna fhada san airm aige."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[2].Description
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Description
-msgid "Civic Centers have double Health and double default arrows."
-msgstr "Gheibh ionadan sìobhalta an dà chuid de shlàinte is an dà uiread dhe shaighdean tùsail."
+msgid "Civic Centers +100% health and capture points, double default arrows."
+msgstr ""
 
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[2].Name
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Name
-msgid "Hellenistic Metropolises"
-msgstr "Mòr-bhailtean Greugach"
+msgid "Hellenistic Metropolis"
+msgstr "Mòr-bhaile Greugach"
 
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[2].History
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].History
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].History
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1505,6 +1311,23 @@ msgid ""
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
 msgstr "Stèidhich na rìghrean Greugach iomadh baile sna h-impireachdan aca o Alasdair a-mach far an deach cultar ’s ealan nan Greugach a mheasgachadh leis an dualchas ionadail agus chruthaich seo sìobhaltas Greugach measgaichte ’s farsaing."
+
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Description
+msgid ""
+"Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
+"and attack damage."
+msgstr ""
+
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
+msgid "Silver Shields"
+msgstr "Sgiathan airgid"
+
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].History
+msgid ""
+"In India near the end of his long anabasis, Alexander gifted to the Royal "
+"Hypaspist corps shields of silver for their long and valiant service in his "
+"army."
+msgstr "Sna Innseachan faisg air deireadh anabasis fada aige, thìodhlaic Alasdair sgiathan airgid dha bhuidheann nan Hypaspistes riaghail aige mar thaing airson an seirbheis dhàna fhada san airm aige."
 
 #: simulation/data/civs/mace.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -1679,19 +1502,11 @@ msgstr "Shatadhanvan Mauraidhea"
 msgid "Brihadratha Maurya"
 msgstr "Brihadratha Mauraidhea"
 
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Description
-msgid "Greater range and faster train time for Mauryan infantry archers."
-msgstr "Gheibh boghadairean coisridh Mauraidheach barrachd astair lèirsinne ’s thèid an oideachadh nas luaithe."
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-msgid "Archery Tradition"
-msgstr "Gnàth nam boghadairean"
-
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
 msgid ""
-"India was a land of archery. The bulk of any Indian army was made up of "
-"highly skilled archers, armed with bamboo longbows."
-msgstr "’S e dùthaich nam boghadairean a bh’ anns na h-Innseachan. ’S e boghadairean air leth sgileil a bhiodh sa mhòrchuid de dh’fheachd Innseanach sam bith agus bhiodh mòr-bhoghachan bambù aca."
+"The Indian peoples had a tradition of fine archery and a penchant for using "
+"massed archers in battle."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -1714,14 +1529,12 @@ msgid "Mauryan Indians"
 msgstr "Innseanaich Mauraidheach"
 
 #: simulation/data/civs/maur.jsonStructures[0].Name
-msgid "Elephant Stables"
-msgstr "Stàball ailbheanan"
+msgid "Elephant Stable"
+msgstr ""
 
 #: simulation/data/civs/maur.jsonStructures[0].Special
-msgid ""
-"Trains Elephant Archer and Worker Elephant at Town Phase, then adds the "
-"champion War Elephant at the City phase."
-msgstr "Oidichidh seo boghadairean ailbhein ’s ailbheanan obrach ri linn nam bailtean agus bidh laoch ailbhein-chogaidh ri làimh dhut ri linn nam mòr-bhailtean."
+msgid "Train Elephants and research Elephant technologies."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
@@ -1752,33 +1565,15 @@ msgstr "Na Pearsaich"
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Description
 msgid ""
-"The resource cost of training camel-mounted (trader) or horse-mounted units "
-"(cavalry) is reduced by 5% per animal (as appropriate) corralled."
-msgstr "Bidh lùghdachadh an cosgais de 5% gus aonad air muin càmhail (neach-malairt) no eich (eachraidh) oideachadh le gach beathach san fhàl (a-rèir na tha iomchaidh)."
-
-#: simulation/data/civs/pers.jsonCivBonuses[0].Name
-msgid "Corral Camels and Horses"
-msgstr "Cuir càmhail is eich san fhàl"
-
-#: simulation/data/civs/pers.jsonCivBonuses[0].History
-msgid ""
-"While the Persians employed camelry only in a few cases, its use was always "
-"accompanied by great success (most notably during the battle of Sardis in "
-"546 B.C.) The satrapy of Bactria was a rich source of 'two-hump' camels, "
-"while Northern Arabia supplied 'one-hump' camels."
-msgstr "Ged nach do chleachd na Pearsaich càmhail ach gu ainneamh, rachadh an latha leotha an-còmhnaidh nuair a bhiodh iad aca (gu h-àraidh air Blàr Sardis ann an 546 RC). ’S e tùs beartach de chàmhail “dà-chrotach” a bh’ ann an satrapachd Bhactria agus fuair iad càmhail “aon-chrotach” o thaobh tuath Aràibia."
-
-#: simulation/data/civs/pers.jsonCivBonuses[1].Description
-msgid ""
 "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the "
 "usual 300)."
 msgstr "Tha +10% dhe sluagh as motha ceadaichte dha na Pearsaich (’s e seo tomhas-sluaigh dhe 330 an àite an 300 àbhaisteach)."
 
-#: simulation/data/civs/pers.jsonCivBonuses[1].Name
+#: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Great King's Levy"
 msgstr "Togail airm mòr an Rìgh"
 
-#: simulation/data/civs/pers.jsonCivBonuses[1].History
+#: simulation/data/civs/pers.jsonCivBonuses[0].History
 msgid ""
 "The Persians could and did levy a large number of infantry during wartime "
 "due to the sheer size of the Achaemenid Empire and the way in which it was "
@@ -1854,15 +1649,21 @@ msgstr "Haxamanish"
 msgid "Xsayarsa II"
 msgstr "Xsayarsa II"
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].History
+msgid ""
+"The Iranian peoples had a tradition of fine archery and a penchant for using"
+" massed archers in battle."
+msgstr ""
+
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry."
 msgstr "Buannaichidh longan trì-ràmhach nam Pheniceach an comas sònraichte gun gabh eachraidh oideachadh annta."
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Name
 msgid "Naval Craftsmanship"
 msgstr "Ceàrd a’ chabhlaich"
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].History
 msgid ""
 "Early Achaemenid rulers acted towards making Persia the first great Asian "
 "empire to rule the seas. The Great King behaved favourably towards the "
@@ -1873,17 +1674,17 @@ msgid ""
 "were retrofitted to carry horses and their riders."
 msgstr "Le gnìomhan nan rìghrean Achaimeneach tràtha, chaidh a’ Pheirse ’na chiad impireachd Àiseanach mhòr aig an robh smachd air a’ mhuir. Bha giùlan an Rìgh Mhòir fàbharach do shluaghan na mara ach an doireadh iad taic dha ach rinn e leasachaidhean-mara cuideachd. Mar eisimpleir, thogadh canal san Èipheit agus rùraich cabhlach Pearsach abhainn Indus ri linn Darius Mhòir. A-rèir Herodotus, chaidh mu 300 long aig cabhlach nam Pearsach uidheamachadh gus eich agus am marcaichean a ghiùlan."
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
 msgid ""
 "Increases hitpoints of all structures, but build time increased "
 "appropriately."
 msgstr "Bidh barrachd phuingean slàinte aig gach togalach ach bheir e barrachd ùine gus a thogail le sin."
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Name
 msgid "Persian Architecture"
 msgstr "Ailtireachd Phearsach"
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].History
 msgid ""
 "The Persians built the wonderful 2700 kilometer-long Royal Highway from "
 "Sardis to Susa; Darius the Great and Xerxes also built the magnificent "
@@ -1891,25 +1692,31 @@ msgid ""
 "'rebuilt' the old Elamite capital of Susa."
 msgstr "Thog na Pearsaich an rathad mòr rìoghail mìorbhaileach o Shardis gu Susa a bha 1677 mìle a dh’fhaid; thog Darius Mòr ’s Xerxes Persepolis greadhnach cuideachd; rinn Kùrois Mòr leasachadh mòr air Ecbatana agus ath-thog e Susa, seann chathair-bhaile nan Ealamach."
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
-msgid "Reduces train time for Anusiya champion infantry by half."
-msgstr "Cha doir oideachadh laoich coisridh Anusaidhea ach an dàrna leth de dh’ùine."
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
+msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
+msgstr ""
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
 msgid "Immortals"
 msgstr "Lèintean-crios neo-bhàsmhor"
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[3].Description
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].History
+msgid ""
+"The Achaemenids maintained a 10,000-strong elite corps, referred to as "
+"Athanatoi (“Immortals”) by Greek authors."
+msgstr ""
+
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Description
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
 msgid "+25% health for cavalry, but +10% train time."
 msgstr "Gheibh eachraidh +25% de shlàinte ach bheir iad +10% nas faide gus an oideachadh."
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[3].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Name
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Name
 msgid "Nisean War Horses"
 msgstr "Eich-chogaidh Niseanach"
 
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].History
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[4].History
 msgid ""
 "The beautiful and powerful breed of Nisean horses increases health for "
 "Persian cavalry."
@@ -1947,13 +1754,12 @@ msgid ""
 msgstr "Xerxes (’na rìgh 485-465 RC) . ’S e mac Dhariuis Mhòir ’s Atòsa nighean Chìruis Mhòir a bh’ ann an Xerxes ’s rianaire comasach a leudaich Impireachd gu Khwarazm. A thuilleadh air a bhriseadh a-steach dhan Ghreug nach deach leis, tha e ainmeil airson a phrògram togail fharsaing, gu h-àraidh ann am Persepolis."
 
 #: simulation/data/civs/pers.jsonStructures[0].Name
-#: simulation/data/civs/sele.jsonStructures[1].Name
-msgid "Cavalry Stables"
-msgstr "Stàballan an eachraidh"
+msgid "Stable"
+msgstr "Stàball"
 
 #: simulation/data/civs/pers.jsonStructures[0].Special
-msgid "Train Cavalry citizen-soldiers."
-msgstr "Oidich eachraidh-dùthcha."
+msgid "Train Cavalry and research Cavalry technologies."
+msgstr ""
 
 #: simulation/data/civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
@@ -1992,47 +1798,6 @@ msgstr "’S e tè dhe na h-Impireachdan as motha a bh’ ann an impireachd nam 
 #: simulation/data/civs/ptol.jsonName
 msgid "Ptolemies"
 msgstr "Na Ptolemaidhich"
-
-#: simulation/data/civs/ptol.jsonCivBonuses[0].Description
-msgid ""
-"The Ptolemies receive the Mercenary Camp, a Barracks that is constructed in "
-"neutral territory and trains mercenaries."
-msgstr "Gheibh na Ptolemaidhich an campa shaighdearan-duaise, seo taigh-feachd a thogar air ranntair neo-phàirteach agus a nì oideachadh air saighdearan-duaise."
-
-#: simulation/data/civs/ptol.jsonCivBonuses[0].Name
-msgid "Mercenary Army"
-msgstr "Feachd-duaise"
-
-#: simulation/data/civs/ptol.jsonCivBonuses[0].History
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty could be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr "Bhiodh an rìoghrachas Ptolemaidheach Greugach-Ròmanach an eisimeil air grunn shaighdearan-duaise Greugach ’s cèine agus iadsan a’ mhòrchuid de dh’fheachd an rìoghrachais o nach robh earbsa aige ann an dìlseachd nan aonadan Èipheiteach tùsanach tric. Gu dearbha, chaill na Ptolemaidhich an Èipheit Uachdarach fad deicheadan ri linn aramach tùsanach. Bhiodh saighdearan-duaise cruaidh eòlach gu tric agus is daor a cheannaicheadh an dìlseachd aig amannan. Cha robh sin gu diofar co-dhiù oir b’ e Èipheit nam Ptolemaidheach a bha cho soirbheachail ’s gum b’ e an stàit iar-theachdach Alasdair a bu bheartaiche a bh’ ann."
-
-#: simulation/data/civs/ptol.jsonCivBonuses[1].Description
-msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
-msgstr "Gheibh na h‑Èipheitich Ptolemaidheach 3 teicneolasan àitich a bharrachd."
-
-#: simulation/data/civs/ptol.jsonCivBonuses[1].Name
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[2].Name
-msgid "Nile Delta"
-msgstr "Gòbhlan an Nìl"
-
-#: simulation/data/civs/ptol.jsonCivBonuses[1].History
-#: simulation/data/civs/ptol.jsonCivBonuses[2].History
-msgid "Unknown."
-msgstr "Chan eil fios."
-
-#: simulation/data/civs/ptol.jsonCivBonuses[2].Description
-msgid "Can capture gaia elephants and camels to reduce their training cost."
-msgstr "’S urrainn dha ailbheanan ’s càmhail Gaìa a ghlacadh gus cosgaisean an oideachaidh a lùghdachadh."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
 msgid "Allies +1.0 food trickle rate."
@@ -2125,34 +1890,6 @@ msgstr "Arsinoe IV"
 msgid "Arsinoe II"
 msgstr "Arsinoe II"
 
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[1].Description
-msgid "Hero aura range boosted by 50%."
-msgstr "Buannachd air astar aura gaisgich le 50%."
-
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[1].Name
-msgid "Pharaonic Cult."
-msgstr "Creideamh nam Pharao."
-
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[1].History
-msgid ""
-"The Macedonian-Greek rulers of the Ptolemaic dynasty observed many ancient "
-"Egyptian traditions in order to satiate the local populace and ingratiate "
-"themselves to the powerful priestly class in the country."
-msgstr "Chumadh luchd-riaglaidh Ptolemaidheach Greugach-Ròmanach iomadh seann-ghnàth Èipheiteach airson an sluagh tùsanach a chumail toilichte agus clas sagartachd cumhachdach na dùthcha a rèiteachadh."
-
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[2].Description
-msgid ""
-"The Ptolemaic Egyptians receive 3 additional farming technologies above and "
-"beyond the maximum number of farming technologies usually available to a "
-"faction."
-msgstr "Gheibh na h-Èipheitich Ptolemaidheach cothrom air 3 teicneolasan àiteachas a bharrachd air uiread nan teicneolasan àiteachais a gheibh a’ mhòrchuid a shìobhaltasan."
-
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[2].History
-msgid ""
-"The Nile Delta had rich soil for farming, due to centuries of seasonal "
-"floods from the Nile depositing rich silt across the landscape."
-msgstr "Bhiodh ùir thorrach airson àiteachais ann an gòbhlan an Nìl air sàilleabh tuiltean ràitheil an Nìl thar iomadh linne a thionail poll torrach air an talamh."
-
 #: simulation/data/civs/ptol.jsonFactions[0].Heroes[0].Name
 msgid "Ptolemaios A' Soter"
 msgstr "Ptolemaios A’ Soter"
@@ -2190,6 +1927,18 @@ msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains mercenaries."
 msgstr "Chan fhaod thu a thogail ach air ranntair neo-phàirteach. Chan eil buaidh aige air leud do ranntair. Oidichidh e saighdearan-duaise."
+
+#: simulation/data/civs/ptol.jsonStructures[1].History
+msgid ""
+"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
+"foreign mercenaries for the bulk of its military force, mainly because the "
+"loyalty of native Egyptian units was often suspect. Indeed, during one "
+"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
+"Mercenaries were often battle-hardened and their loyalty could be bought, "
+"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
+" under the Ptolemies was so prosperous as to be the richest of Alexander's "
+"successor states."
+msgstr "Bhiodh an rìoghrachas Ptolemaidheach Greugach-Ròmanach an eisimeil air grunn shaighdearan-duaise Greugach ’s cèine agus iadsan a’ mhòrchuid de dh’fheachd an rìoghrachais o nach robh earbsa aige ann an dìlseachd nan aonadan Èipheiteach tùsanach tric. Gu dearbha, chaill na Ptolemaidhich an Èipheit Uachdarach fad deicheadan ri linn aramach tùsanach. Bhiodh saighdearan-duaise cruaidh eòlach gu tric agus is daor a cheannaicheadh an dìlseachd aig amannan. Cha robh sin gu diofar co-dhiù oir b’ e Èipheit nam Ptolemaidheach a bha cho soirbheachail ’s gum b’ e an stàit iar-theachdach Alasdair a bu bheartaiche a bh’ ann."
 
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
@@ -2436,35 +2185,6 @@ msgstr "Stiùirich na Ròmanaich tè dhe na h-impireachdan as motha sa chian-aim
 msgid "Seleucids"
 msgstr "Na Seleucaich"
 
-#: simulation/data/civs/sele.jsonCivBonuses[0].Description
-msgid ""
-"This unlocks the Seleucid expansion building, the Klēroukhia or Military "
-"Colony, similar to Civic Centers for other factions. It is weaker and "
-"carries a smaller territory influence, but is cheaper and built faster."
-msgstr "Bheir seo a’ ghlas far togalach leudachaidh nan Seleucach air a bheil Klēroukhia no tuineachadh an airm a tha coltach ris an ionad shìobhalta aig sìobhaltasan eile. Tha e nas laige agus tha a bhuaidh air an ranntair as lugha, ach tha e nas saoire is togaidh tu nas luaithe e."
-
-#: simulation/data/civs/sele.jsonCivBonuses[0].Name
-msgid "Cleruchy"
-msgstr "Klēroukhia"
-
-#: simulation/data/civs/sele.jsonCivBonuses[1].Description
-msgid ""
-"Choose between Traditional Army and Reform Army technologies that unlock "
-"different Champions."
-msgstr "Tagh eadar teicneolasan aig an fheachd tradaiseanta no feachd an ath-leasachaidh a bheir taghadh de laoich eadar-dhealaichte dhut."
-
-#: simulation/data/civs/sele.jsonCivBonuses[1].History
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].History
-msgid ""
-"Seleucid and indeed Successor warfare evolved over the course of the 3rd and"
-" 2nd centuries. Contact with Eastern upstarts such as the Parthians and "
-"constant revolts of peripheral satrapies such as Bactria caused the "
-"Seleucids to reform their military and change their tactics, specifically in"
-" the cavalry arm. War with the Romans from the West and invasions from the "
-"Galatians also forced the Seleucids to reform their infantry regiments to be"
-" more flexible."
-msgstr "Chaidh cleasan-cogaidh nan Seleucaich ’s an iar-theachdaichean a leasachadh rè nan 3s is 2na linntean. On a thachair iad ri sluaghan ùra o thaobh an ear mar muinntir Phartia agus ri linn ar-a-mach cunbhalach nan satrap iomallach mar Bactria, rinn na Seleucaich ath-leasachadh air an airm aca agus dh’atharraich iad an innleachd aca, gu h-àraidh a thaobh an eachraidh. Thug cogadh an aghaidh nan Ròmanach o thaobh an iar agus briseadh a-steach nan Galatach air na Seleucaich gun ath-leasaicheadh iad a’ choisridh aca cuideachd ach am bhiodh i na bu shùbailte."
-
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
 msgid "Allied Civil Centers −20% resource costs."
 msgstr "−20% air cosgaisean stòrais nan ionadan sìobhalta caidreabhach."
@@ -2596,42 +2316,31 @@ msgstr "Antiochus XIII Asiaticus"
 msgid "Philip II Philoromaeus"
 msgstr "Philip II Philoromaeus"
 
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
-msgid ""
-"Traditional Army unlocks Silver Shields and Scythed Chariots, Reform Army "
-"unlocks Romanized Heavy Swordsmen and Cataphracts."
-msgstr "Bheir am feachd tradaiseanta sgiathan airgid ’s feunan-speala dhut, bheir feachd an ath-leasachaidh claidheamhairean troma Ròmanach ’s cataphragan Seleucach dhut."
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Name
-msgid "Traditional Army vs. Reform Army"
-msgstr "Feachd tradaiseanta no feachd an ath-leasachaidh"
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
-msgid ""
-"A one-time purchase of 20 Indian War Elephants from the Mauryan Empire."
-msgstr "Ceannach aon-turais de 20 ailbheanan-cogaidh Innseanach o Impireachd nam Mauraidheach."
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
-msgid "Marriage Alliance"
-msgstr "Caidreachas pòsaidh"
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].History
-msgid ""
-"Seleucus I Nicator invaded the Punjab region of India in 305 BC, confronting"
-" Chandragupta Maurya (Sandrokottos), founder of the Mauryan empire. It is "
-"said that Chandragupta fielded an army of 600,000 men and 9,000 war "
-"elephants (Pliny, Natural History VI, 22.4). Seleucus met with no success "
-"and to establish peace between the two great powers and to formalize their "
-"alliance, he married his daughter to Chandragupta. In return, Chandragupta "
-"gifted Seleucus a corps of 500 war elephants, which would prove a decisive "
-"military asset for Seleucus as he fought the rest of Alexander's successors."
-msgstr "Lunn Seleucus I Nicator air sgìre Panjab nan Innseachan ann an 305 RC agus chuir e aghaidh air stèidheadair na h-ìmpireachd Mauraidheach, Chandragupta Mauraidhea (Sandrokottos). Thathar ag ràdh gun do chuir Chandragupta feachd de 600,000 duine is 9,000 ailbhean-cogaidh ann (Plinius, Naturalis Historia VI, 22.4). Cha deach an latha le Seleucus agus airson sìth a bhuannachd eadar an dà chumhachd mhòr ’s an caidreachas aca a shocrachadh, phòs e nighean Chandragupta. Thug Chandragupta feachd de 500 ailbhean-cogaidh do Sheleucus ann an èirig a bhiodh ’na bhuaidh mhòr do Sheleucus nuair a rinn e sabaid an aghaidh iar-theachdaichean eile Alasdair."
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[3].History
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].History
 msgid ""
 "The beautiful and powerful breed of Nisean horses increases health for "
 "Seleucid cavalry."
 msgstr "An sìol eireachdail is cumhachdach de dh’eich Niseanach a bheir barrachd slàinte do dh’eachdraidh nan Seleucach."
+
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
+msgid ""
+"Unlock either Champion Infantry Pikemen or Champion Infantry Swordsmen."
+msgstr ""
+
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
+msgid "Traditional Army vs Reform Army"
+msgstr ""
+
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].History
+msgid ""
+"Seleucid and indeed Successor warfare evolved over the course of the 3rd and"
+" 2nd centuries. Contact with Eastern upstarts such as the Parthians and "
+"constant revolts of peripheral satrapies such as Bactria caused the "
+"Seleucids to reform their military and change their tactics, specifically in"
+" the cavalry arm. War with the Romans from the West and invasions from the "
+"Galatians also forced the Seleucids to reform their infantry regiments to be"
+" more flexible."
+msgstr "Chaidh cleasan-cogaidh nan Seleucaich ’s an iar-theachdaichean a leasachadh rè nan 3s is 2na linntean. On a thachair iad ri sluaghan ùra o thaobh an ear mar muinntir Phartia agus ri linn ar-a-mach cunbhalach nan satrap iomallach mar Bactria, rinn na Seleucaich ath-leasachadh air an airm aca agus dh’atharraich iad an innleachd aca, gu h-àraidh a thaobh an eachraidh. Thug cogadh an aghaidh nan Ròmanach o thaobh an iar agus briseadh a-steach nan Galatach air na Seleucaich gun ath-leasaicheadh iad a’ choisridh aca cuideachd ach am bhiodh i na bu shùbailte."
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -2687,22 +2396,18 @@ msgid ""
 "former empire."
 msgstr "An sliochd Greugach is Masadonach a riaghlaich an impireachd a bha aig Alastair san ear roimhe."
 
-#: simulation/data/civs/sele.jsonStructures[1].Special
-msgid "Trains all cavalry except citizen-soldier cavalry."
-msgstr "Trèinidh e eachraidh seach eachdraidh-dùthcha."
-
-#: simulation/data/civs/sele.jsonStructures[2].Name
+#: simulation/data/civs/sele.jsonStructures[1].Name
 msgid "Military Colony"
 msgstr "Tuineachas an airm"
 
-#: simulation/data/civs/sele.jsonStructures[2].Special
+#: simulation/data/civs/sele.jsonStructures[1].Special
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster."
 msgstr "Seo togalach leudachaidh nan Seleucach a tha coltach ris an ionad shìobhalta aig sìobhaltasan eile. Tha e nas laige agus tha a bhuaidh air an ranntair as lugha, ach tha e nas saoire is togaidh tu nas luaithe e."
 
-#: simulation/data/civs/sele.jsonStructures[2].History
+#: simulation/data/civs/sele.jsonStructures[1].History
 msgid ""
 "The Seleucid kings invited Greeks, Macedonians, Galatians (Gauls), Cretans, "
 "and Thracians alike to settle in within the vast territories of the empire. "
@@ -2725,35 +2430,6 @@ msgstr "An sliochd Greugach is Masadonach a riaghlaich cuid mhòr dhen impireach
 #: simulation/data/civs/spart.jsonFactions[0].Name
 msgid "Spartans"
 msgstr "Na Spartaich"
-
-#: simulation/data/civs/spart.jsonCivBonuses[0].Description
-msgid "Spartans can use the powerful Phalanx formation."
-msgstr "’S urrainn dha na Spartaich an cumadh falangais cumhachdach a chleachdadh."
-
-#: simulation/data/civs/spart.jsonCivBonuses[0].History
-msgid ""
-"The Spartans were undisputed masters of phalanx warfare. The Spartans were "
-"so feared for their discipline that the enemy army would sometimes break up "
-"and run away before a single shield clashed. 'Othismos' refers to the point "
-"in a phalanx battle where both sides try to shove each other out of "
-"formation, attempting to breaking up the enemy lines and routing them."
-msgstr ""
-
-#: simulation/data/civs/spart.jsonCivBonuses[1].Description
-msgid ""
-"The Spartan rank upgrades at the Barracks cost no resources, except time."
-msgstr "Chan eil cosgais an lùib àrdachaidhean aig taighean-feachd nam Spartach ach ùine."
-
-#: simulation/data/civs/spart.jsonCivBonuses[1].Name
-msgid "Laws of Lycurgus"
-msgstr "Laghan Lycurgus"
-
-#: simulation/data/civs/spart.jsonCivBonuses[1].History
-msgid ""
-"Under the Constitution written by the mythical law-giver Lycurgus, the "
-"institution of The Agoge was established, where Spartans were trained from "
-"the age of 6 to be superior warriors in defense of the Spartan state."
-msgstr "Fon bhun-reachd a sgrìobh Lycurgus an lagha faoinsgeulach, chaidh an t‑Agoga a stèidheachadh far an deach Spartaich oideachadh o 6 bliadhna a dh’aois ach am biodh iad nan sàr-ghaisgeach a dhìonadh stàid Sparta."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Infantry Spearmen +10% health."
@@ -2854,8 +2530,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
-msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "Gheibh sleaghair coisridh +25% de shlàinte ach bheir iad +10% nas faide gus an oideachadh."
+msgid "Champion Infantry Spearmen +25% health, but +5% training time."
+msgstr ""
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"

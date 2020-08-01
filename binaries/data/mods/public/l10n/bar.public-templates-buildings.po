@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Benedikt Wagner <holledau1@gmx.de>, 2020
+# dabene1408 <holledau1@gmx.de>, 2020
 # Earthquake Remix <earthquake.remix@gmail.com>, 2020
+# dabene1408 <holledau1@gmx.de>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:09+0000\n"
-"PO-Revision-Date: 2020-07-24 10:22+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-27 07:10+0000\n"
+"PO-Revision-Date: 2020-07-30 08:33+0000\n"
+"Last-Translator: dabene1408 <holledau1@gmx.de>\n"
 "Language-Team: Bavarian (http://www.transifex.com/wildfire-games/0ad/language/bar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -129,7 +130,7 @@ msgstr ""
 #: simulation/templates/template_structure_defensive_tower.xml:36
 #: simulation/templates/template_structure_defensive_tower.xml:52
 msgid "Tower"
-msgstr ""
+msgstr "Tuam"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:57
 msgid "Artillery Tower"
@@ -194,7 +195,7 @@ msgstr "Mit Stoa verstärka um zu am Verteidigungsturm aufzumwertn."
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:31
 msgid "Stone Tower"
-msgstr ""
+msgstr "Stoa Tuam"
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "StoneTower"
@@ -207,18 +208,18 @@ msgstr "Bau a Mauer um dei Stod, um d Verteidigung zu verbessern."
 #: simulation/templates/template_structure_defensive_wall.xml:18
 #: simulation/templates/template_structure_defensive_wall.xml:15
 msgid "Wall"
-msgstr ""
+msgstr "Maua"
 
-#: simulation/templates/template_structure_defensive_wall_gate.xml:21
+#: simulation/templates/template_structure_defensive_wall_gate.xml:22
 #: simulation/templates/template_structure_defensive_wall_long.xml:35
 msgid "Allow units access through Walls. Can be locked to prevent access."
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_wall_gate.xml:22
-#: simulation/templates/template_structure_defensive_wall_gate.xml:19
+#: simulation/templates/template_structure_defensive_wall_gate.xml:23
+#: simulation/templates/template_structure_defensive_wall_gate.xml:20
 #: simulation/templates/structures/palisades_gate.xml:23
 msgid "Gate"
-msgstr ""
+msgstr "Dial"
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:25
 msgid "Can be converted into a Gate."
@@ -259,7 +260,7 @@ msgstr ""
 #: simulation/templates/template_structure_economic_market.xml:31
 #: simulation/templates/template_structure_military_dock.xml:28
 msgid "Trade"
-msgstr ""
+msgstr "Schachan"
 
 #: simulation/templates/template_structure_economic_market.xml:31
 #: simulation/templates/template_structure_economic_market.xml:27
@@ -320,8 +321,8 @@ msgid "Dock"
 msgstr ""
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:24
-msgid "Elephant Stables"
-msgstr "Elefantnstoi"
+msgid "Elephant Stable"
+msgstr ""
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:26
 msgid "Train Elephants and research Elephant technologies."
@@ -375,7 +376,9 @@ msgid "Siege Workshop"
 msgstr "Belagerungswerkstod"
 
 #: simulation/templates/template_structure_military_workshop.xml:27
-msgid "Construct Siege Engines and research Siege Engine technologies."
+msgid ""
+"Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
+"Siege Engine technologies."
 msgstr ""
 
 #: simulation/templates/template_structure_military_workshop.xml:28
@@ -417,7 +420,7 @@ msgstr ""
 #: simulation/templates/template_structure_special_amphitheater.xml:21
 #: simulation/templates/structures/rome_amphitheater_pompeii.xml:5
 msgid "Amphitheater"
-msgstr ""
+msgstr "Amphitheater"
 
 #: simulation/templates/template_structure_special_library.xml:26
 #: simulation/templates/template_structure_special_library.xml:24
@@ -551,7 +554,6 @@ msgid "Gymnasion"
 msgstr "Gymnasion"
 
 #: simulation/templates/structures/athen_gymnasium.xml:24
-#: simulation/templates/structures/pers_hall.xml:31
 msgid "Train Champions."
 msgstr ""
 
@@ -1093,7 +1095,6 @@ msgstr "Gur Oroigarri"
 
 #: simulation/templates/structures/iber_monument.xml:34
 #: simulation/templates/structures/maur_pillar_ashoka.xml:34
-#: simulation/templates/structures/pers_ishtar_gate.xml:30
 #: simulation/templates/structures/rome_arch.xml:23
 msgid "Territory root."
 msgstr ""
@@ -1559,15 +1560,15 @@ msgstr "Didā"
 msgid "Research technologies. Garrison Soldiers for additional arrows."
 msgstr ""
 
-#: simulation/templates/structures/pers_hall.xml:26
+#: simulation/templates/structures/pers_hall.xml:23
 msgid "Gate of All Nations"
 msgstr ""
 
-#: simulation/templates/structures/pers_hall.xml:27
+#: simulation/templates/structures/pers_hall.xml:24
 msgid "Duvarθi Visadahyu"
 msgstr "Duvarθi Visadahyu"
 
-#: simulation/templates/structures/pers_hall.xml:29
+#: simulation/templates/structures/pers_hall.xml:25
 msgid "Hall"
 msgstr ""
 
@@ -1584,7 +1585,7 @@ msgstr ""
 msgid "Ishtar Gate of Babylon"
 msgstr ""
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:32
+#: simulation/templates/structures/pers_ishtar_gate.xml:30
 msgid "IshtarGate"
 msgstr ""
 

@@ -10,6 +10,7 @@
 # Danny Reese <danny@angolateam.org>, 2016
 # Hugo Alves <hribalves@gmail.com>, 2020
 # Iago Leandro de Abreu <iago.abr@outlook.com>, 2015
+# João Ferreira <joaopedropferreira3@gmail.com>, 2020
 # Luis Neves <luisjneves@gmail.com>, 2015
 # Mário Branco <branco.ana8@gmail.com>, 2017
 # mogafi, 2014
@@ -21,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:09+0000\n"
-"PO-Revision-Date: 2020-07-24 10:22+0000\n"
-"Last-Translator: mogafi\n"
+"POT-Creation-Date: 2020-07-27 07:10+0000\n"
+"PO-Revision-Date: 2020-07-29 20:56+0000\n"
+"Last-Translator: João Ferreira <joaopedropferreira3@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,7 +49,7 @@ msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Dropsite for food, wood, stone, and metal. Train Citizens "
 "and research technologies. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Constrói no teu próprio território ou território neutro. Adquire grandes extensões de território. Raíz do território. Depósito para comida, madeira, pedra e metal. Treina Cidadãos e pesquisa tecnologias. Coloca Soldados em Guarnições para obter flechas adicionais."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:91
 #: simulation/templates/template_structure_defensive.xml:15
@@ -90,7 +91,7 @@ msgstr "Casa"
 
 #: simulation/templates/template_structure_civic_stoa.xml:33
 msgid "Train Mercenary Champions."
-msgstr ""
+msgstr "Treina Campeões Mercenários"
 
 #: simulation/templates/template_structure_civic_stoa.xml:34
 #: simulation/templates/template_structure_civic_temple.xml:36
@@ -116,7 +117,7 @@ msgstr "Estoa"
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 msgid "Train Healers and research healing technologies."
-msgstr ""
+msgstr "Treina Curandeiros e pesquisa tecnologias de curandeiro"
 
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -129,7 +130,7 @@ msgstr "Edifício Defensivo"
 
 #: simulation/templates/template_structure_defensive_palisade.xml:22
 msgid "Wall off an area."
-msgstr ""
+msgstr "Muralha fora de uma área"
 
 #: simulation/templates/template_structure_defensive_palisade.xml:23
 #: simulation/templates/template_structure_defensive_palisade.xml:20
@@ -142,7 +143,7 @@ msgstr "Paliçada"
 #: simulation/templates/template_structure_defensive_tower.xml:36
 #: simulation/templates/template_structure_defensive_tower.xml:52
 msgid "Tower"
-msgstr ""
+msgstr "Torre"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:57
 msgid "Artillery Tower"
@@ -163,7 +164,7 @@ msgstr "Cidade"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 msgid "ArtilleryTower"
-msgstr ""
+msgstr "Torre de Artilharia"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
@@ -171,13 +172,13 @@ msgstr "Torre de setas."
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
 msgid "BoltTower"
-msgstr ""
+msgstr "Torre de Flechas"
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 msgid ""
 "Build in own or neutral territory. Slowly converts to Gaia while in neutral "
 "territory."
-msgstr ""
+msgstr "Construa em território próprio ou neutro. Converte-se lentamente em Gaia enquanto permanece em território neutro."
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:54
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:29
@@ -195,7 +196,7 @@ msgstr "Torre Sentinela"
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
-msgstr ""
+msgstr "Infantaria de Guarnição para flechas adicionais. Necessita da tecnologia \"Buracos Assassinos\" para proteger o seu pé"
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 msgid "SentryTower"
@@ -207,7 +208,7 @@ msgstr "Reforçar com pedra e atualizar para uma torre de defesa."
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:31
 msgid "Stone Tower"
-msgstr ""
+msgstr "Torre de pedra "
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "StoneTower"
@@ -220,22 +221,22 @@ msgstr "Cerca a tua povoação com muralhas para uma defesa mais robusta."
 #: simulation/templates/template_structure_defensive_wall.xml:18
 #: simulation/templates/template_structure_defensive_wall.xml:15
 msgid "Wall"
-msgstr ""
-
-#: simulation/templates/template_structure_defensive_wall_gate.xml:21
-#: simulation/templates/template_structure_defensive_wall_long.xml:35
-msgid "Allow units access through Walls. Can be locked to prevent access."
-msgstr ""
+msgstr "Muralha"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:22
-#: simulation/templates/template_structure_defensive_wall_gate.xml:19
+#: simulation/templates/template_structure_defensive_wall_long.xml:35
+msgid "Allow units access through Walls. Can be locked to prevent access."
+msgstr "Permitir acesso através das muralhas às unidades. Pode ser bloqueado para impedir acesso."
+
+#: simulation/templates/template_structure_defensive_wall_gate.xml:23
+#: simulation/templates/template_structure_defensive_wall_gate.xml:20
 #: simulation/templates/structures/palisades_gate.xml:23
 msgid "Gate"
 msgstr "Porta"
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:25
 msgid "Can be converted into a Gate."
-msgstr ""
+msgstr "Pode ser convertido em um Portão"
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:54
 msgid "Wall Turret"
@@ -243,7 +244,7 @@ msgstr "Cubelo"
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:56
 msgid "Garrison Infantry for additional arrows."
-msgstr ""
+msgstr "Infantaria de Guarnição para flechas adicionais."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -256,7 +257,7 @@ msgstr "Economia"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:31
 msgid "Dropsite for food. Research food gathering technologies."
-msgstr ""
+msgstr "Repositório para comida. Pesquise tecnologias de obtenção de comida."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 #: simulation/templates/template_structure_economic_farmstead.xml:29
@@ -267,7 +268,7 @@ msgstr "Quinta"
 msgid ""
 "Barter resources. Establish trade routes. Train Traders and research trade "
 "and barter technologies."
-msgstr ""
+msgstr "Recursos de regateio. Estabeleça rotas comerciais. Treine Comerciantes e pesquise tecnologias de comércio e regateio."
 
 #: simulation/templates/template_structure_economic_market.xml:31
 #: simulation/templates/template_structure_military_dock.xml:28
@@ -281,7 +282,7 @@ msgstr "Mercado"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 msgid "Dropsite for wood, stone, and metal. Research gathering technologies."
-msgstr ""
+msgstr "Repositório para madeiea, pedra e metal. Pesquise tecnologias de recoleção."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:34
 #: simulation/templates/template_structure_economic_storehouse.xml:30
@@ -298,7 +299,7 @@ msgstr "Militar"
 
 #: simulation/templates/template_structure_military_barracks.xml:28
 msgid "Train Citizen Soldiers and research technologies."
-msgstr ""
+msgstr "Treine Soldados Cidadãos e pesquise tecnologias."
 
 #: simulation/templates/template_structure_military_barracks.xml:29
 #: simulation/templates/template_structure_military_barracks.xml:26
@@ -307,7 +308,7 @@ msgstr "Quartel"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:24
 msgid "Research attack and armor technologies."
-msgstr ""
+msgstr "Pesquise tecnologias de ataque e de armadura."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:26
 #: simulation/templates/template_structure_military_blacksmith.xml:22
@@ -325,7 +326,7 @@ msgstr ""
 #: simulation/templates/structures/brit_crannog.xml:16
 #: simulation/templates/structures/cart_super_dock.xml:47
 msgid "Naval"
-msgstr ""
+msgstr "Naval"
 
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/template_structure_military_dock.xml:25
@@ -333,12 +334,12 @@ msgid "Dock"
 msgstr "Porto"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:24
-msgid "Elephant Stables"
-msgstr "Curral de Elefantes"
+msgid "Elephant Stable"
+msgstr "Estábulo de elefantes"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:26
 msgid "Train Elephants and research Elephant technologies."
-msgstr ""
+msgstr "Treine elefantes e pesquise tecnologia de elefantes"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
 msgid "ElephantStable"
@@ -368,7 +369,7 @@ msgstr "Campo de prática de tiro"
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Train Ranged Infantry and research technologies."
-msgstr ""
+msgstr "Treine Infantaria de Alcance e pesquise tecnologias"
 
 #: simulation/templates/template_structure_military_range.xml:25
 msgid "Range"
@@ -388,8 +389,10 @@ msgid "Siege Workshop"
 msgstr "Oficina de Maquinaria de Cerco"
 
 #: simulation/templates/template_structure_military_workshop.xml:27
-msgid "Construct Siege Engines and research Siege Engine technologies."
-msgstr "Constrói Armas de Cerco e desenvolve tecnologias cerco."
+msgid ""
+"Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
+"Siege Engine technologies."
+msgstr "Treine Infantaria Campeã, Besteiros, construa Máquinas de Cerco e pesquise tecnologia de Máquinas de Cerco."
 
 #: simulation/templates/template_structure_military_workshop.xml:28
 msgid "Workshop"
@@ -405,7 +408,7 @@ msgstr "Recursos"
 
 #: simulation/templates/template_structure_resource_corral.xml:20
 msgid "Raise Domestic Animals for food."
-msgstr ""
+msgstr "Cria animais domésticos para obter comida"
 
 #: simulation/templates/template_structure_resource_corral.xml:21
 #: simulation/templates/template_structure_resource_corral.xml:18
@@ -424,7 +427,7 @@ msgstr "Cultiva cereais para alimentação. O recoletor adicional seguinte traba
 
 #: simulation/templates/template_structure_special.xml:33
 msgid "Special Structure"
-msgstr ""
+msgstr "Estrutura Especial"
 
 #: simulation/templates/template_structure_special_amphitheater.xml:23
 #: simulation/templates/template_structure_special_amphitheater.xml:21
@@ -564,7 +567,6 @@ msgid "Gymnasion"
 msgstr "Ginásio"
 
 #: simulation/templates/structures/athen_gymnasium.xml:24
-#: simulation/templates/structures/pers_hall.xml:31
 msgid "Train Champions."
 msgstr "Treinar Campeões."
 
@@ -612,7 +614,7 @@ msgstr "Treinar Heróis e desenvolver tecnologias."
 #: simulation/templates/structures/athen_prytaneion.xml:26
 #: simulation/templates/structures/spart_gerousia.xml:26
 msgid "Council"
-msgstr ""
+msgstr "Conselho"
 
 #: simulation/templates/structures/athen_range.xml:8
 #: simulation/templates/structures/mace_range.xml:8
@@ -965,7 +967,7 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Construct Warships and research "
 "technologies."
-msgstr ""
+msgstr "Construa sob uma zona costeira no próprio território, neutro ou aliado. Adquire grandes tractos de território. Raiz do território. Construa Navios de Guerra e pesquise tecnologias"
 
 #: simulation/templates/structures/cart_super_dock.xml:47
 msgid "Shipyard"
@@ -977,7 +979,7 @@ msgstr "Maqdaš"
 
 #: simulation/templates/structures/cart_temple.xml:15
 msgid "Train Healers and Champions and research healing technologies."
-msgstr ""
+msgstr "Treina Curandeiros e Campeões e pesquisa tecnologias de curandeiro"
 
 #: simulation/templates/structures/cart_tophet.xml:20
 msgid "Sacrificial Temple"
@@ -1106,10 +1108,9 @@ msgstr "Gur Oroigarri"
 
 #: simulation/templates/structures/iber_monument.xml:34
 #: simulation/templates/structures/maur_pillar_ashoka.xml:34
-#: simulation/templates/structures/pers_ishtar_gate.xml:30
 #: simulation/templates/structures/rome_arch.xml:23
 msgid "Territory root."
-msgstr ""
+msgstr "Raiz do Território"
 
 #: simulation/templates/structures/iber_monument.xml:35
 #: simulation/templates/structures/iber_monument.xml:9
@@ -1265,11 +1266,11 @@ msgstr "Pr-ʿIprmk"
 #: simulation/templates/structures/kush_temple.xml:10
 msgid ""
 "Train Healers and Apedamak Champions and research healing technologies."
-msgstr ""
+msgstr "Treina Curandeiros e Campeões Apedamak e pesquisa tecnologias de curandeiro"
 
 #: simulation/templates/structures/kush_temple.xml:11
 msgid "TempleOfApedemak"
-msgstr ""
+msgstr "Templo de Apedemak"
 
 #: simulation/templates/structures/kush_temple_amun.xml:28
 msgid "Grand Temple of Amun"
@@ -1281,11 +1282,11 @@ msgstr "Pr-ʿImn"
 
 #: simulation/templates/structures/kush_temple_amun.xml:30
 msgid "Train Healers and Amun Champions and research healing technologies."
-msgstr ""
+msgstr "Treina Curandeiros e Campeões Amun e pesquisa tecnologias de curandeiro"
 
 #: simulation/templates/structures/kush_temple_amun.xml:31
 msgid "TempleOfAmun"
-msgstr ""
+msgstr "Templo de Amun"
 
 #: simulation/templates/structures/kush_wall_gate.xml:9
 msgid "ʿryt"
@@ -1483,11 +1484,11 @@ msgstr "Portão de Paliçada"
 #: simulation/templates/structures/palisades_gate.xml:22
 #: simulation/templates/structures/palisades_long.xml:31
 msgid "Allow units access through Palisades. Can be locked to prevent access."
-msgstr ""
+msgstr "Permitir às unidades acesso às Paliçadas. Pode ser bloqueado para impedir acesso"
 
 #: simulation/templates/structures/palisades_long.xml:17
 msgid "Can be converted into a Palisade Gate."
-msgstr ""
+msgstr "Pode ser convertido num Portão de Paliçada"
 
 #: simulation/templates/structures/palisades_spike_angle.xml:17
 msgid "Angle Spike"
@@ -1528,7 +1529,7 @@ msgstr "Padgan"
 
 #: simulation/templates/structures/pers_barracks.xml:6
 msgid "Train Infantry."
-msgstr ""
+msgstr "Treine Infantaria"
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1572,17 +1573,17 @@ msgstr "Didā"
 msgid "Research technologies. Garrison Soldiers for additional arrows."
 msgstr "Desenvolver tecnologias. Guarnece soldados para flechas adicionais."
 
-#: simulation/templates/structures/pers_hall.xml:26
+#: simulation/templates/structures/pers_hall.xml:23
 msgid "Gate of All Nations"
 msgstr "Portão de Todas as Nações"
 
-#: simulation/templates/structures/pers_hall.xml:27
+#: simulation/templates/structures/pers_hall.xml:24
 msgid "Duvarθi Visadahyu"
 msgstr "Duvarθi Visadahyu"
 
-#: simulation/templates/structures/pers_hall.xml:29
+#: simulation/templates/structures/pers_hall.xml:25
 msgid "Hall"
-msgstr ""
+msgstr "Salão"
 
 #: simulation/templates/structures/pers_house.xml:8
 msgid "Huvādā"
@@ -1597,9 +1598,9 @@ msgstr "Estalagem"
 msgid "Ishtar Gate of Babylon"
 msgstr "Porta de Ishtar da Babilónia"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:32
+#: simulation/templates/structures/pers_ishtar_gate.xml:30
 msgid "IshtarGate"
-msgstr ""
+msgstr "Portão Ishtar"
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1670,7 +1671,7 @@ msgstr "Pharos"
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Reveal the "
 "shorelines over the entire map. Very large vision range."
-msgstr ""
+msgstr "Construa sob uma linha costeira no próprio território, neutral ou aliado. Revela as linhas costeiras de todo o mapa. Grande alcance de visão"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:27
 #: simulation/templates/structures/ptol_lighthouse.xml:24
@@ -1714,7 +1715,7 @@ msgstr "Arcus Triumphālis"
 
 #: simulation/templates/structures/rome_arch.xml:24
 msgid "TriumphalArch"
-msgstr ""
+msgstr "Arco Triunfal"
 
 #: simulation/templates/structures/rome_army_camp.xml:80
 msgid "Army Camp"
@@ -1804,7 +1805,7 @@ msgstr "Porta Circummūnītiōnis"
 #: simulation/templates/structures/rome_siege_wall_tower.xml:33
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "SiegeWall"
-msgstr ""
+msgstr "Muralha de Cerco"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:32
 #: simulation/templates/structures/rome_siege_wall_medium.xml:32
@@ -1850,7 +1851,7 @@ msgstr "Aedēs Mārtiālis"
 
 #: simulation/templates/structures/rome_temple_mars.xml:14
 msgid "TempleOfMars"
-msgstr ""
+msgstr "Templo de Marte"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Temple of Vesta"
@@ -1862,7 +1863,7 @@ msgstr "Aedēs Vestālis"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:19
 msgid "TempleOfVesta"
-msgstr ""
+msgstr "Templo de Vesta"
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1893,7 +1894,7 @@ msgstr "Turris Lapidea"
 
 #: simulation/templates/structures/rome_wallset_siege.xml:7
 msgid "Wall off an area. Build in own, neutral, or enemy territory."
-msgstr ""
+msgstr "Muralha fora de uma área. Construa no seu território, neutro ou aliado."
 
 #: simulation/templates/structures/rome_wonder.xml:9
 msgid "Aedēs Iovis Optimi Maximi"

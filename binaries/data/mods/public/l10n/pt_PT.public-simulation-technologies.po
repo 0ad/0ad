@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:10+0000\n"
-"PO-Revision-Date: 2020-07-24 08:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-27 07:10+0000\n"
+"PO-Revision-Date: 2020-07-29 21:09+0000\n"
+"Last-Translator: João Ferreira <joaopedropferreira3@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,9 +35,8 @@ msgstr "Os povos Índios, Iranianos e Cuxitas tinham uma tradição de bela arqu
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
-"Range +10 meters for bow-wielding units. Archer units better accuracy and "
-"-20% train time, but also -20% health."
-msgstr "+10 metros de alcance para unidades de arco e flecha. Os arqueiros têm mais precisão e -20% de tempo de treino, mas também -20% de vida."
+"Archers −10% training time, +8 attack range, and −10% ranged attack spread."
+msgstr "Arqueiros -10% de tempo de treino, +8% de ataque de alcance e -10% de dispersão do ataque de alcance."
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -556,7 +555,7 @@ msgstr "Fertilizante"
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr ""
+msgstr "Os Gauleses inventaram uma máquina de colheita, tornando mais fácil colher grão."
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
@@ -566,7 +565,7 @@ msgstr "Workers +15% taxa de recolha de trigo."
 
 #: simulation/data/technologies/gather_farming_harvester.jsongenericName
 msgid "Harvesting Machine"
-msgstr ""
+msgstr "Máquina de colheita"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
@@ -1313,10 +1312,10 @@ msgstr "Arquitetos navais"
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
-"Advanced and Elite units +20% training time, +1 armour level, +10% health, "
-"+0.4 capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
-"healing strength and +3 healing range; Infantry +0.5 movement speed; Melee "
-"units +20% attack damage; Ranged units +4 attack range and −10% spread."
+"Advanced and Elite units +20% training time, +1 armor, +10% health, +0.7 "
+"capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
+"healing strength and +3 healing range; Melee units +20% attack damage; "
+"Ranged units +4 attack range and −10% spread."
 msgstr ""
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
@@ -1333,10 +1332,10 @@ msgstr ""
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
-"Elite units +20% training time, +1 armour level, +10% health, +0.4 capture "
-"attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
-"strength and +3 healing range; Infantry +0.5 movement speed; Melee units "
-"+20% attack damage; Ranged units +4 attack range and −10% spread."
+"Elite units +20% training time, +1 armor, +10% health, +0.8 capture attack "
+"strength, +20% loot, and −30% gather speed; Healers +5 healing strength and "
+"+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
+"range and −10% spread."
 msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
@@ -1500,9 +1499,8 @@ msgid ""
 msgstr "Os cartagineses construíram as muralhas em três circuitos concêntricos. Essas muralhas nunca foram violadas. Mesmo quando a cidade foi tomada pelos romanos, foi através do porto da cidade, não por destruição das suas muralhas."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
-msgid ""
-"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
-msgstr "Muralhas Cartigianas +100% tempo de construção, +100% custo de pedra, e +200% vida."
+msgid "Walls +100% build time, +100% stone cost, and +200% health."
+msgstr "Muralhas +100% de tempo de construção, +100% de custo de pedra e +200% de vida."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -1527,10 +1525,8 @@ msgid "The Greeks used stone construction from early Mycenaean times."
 msgstr "Os gregos construíam com pedra desde o tempo dos micenas."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
-msgid ""
-"Athenian, Macedonian, and Spartan Structures +10% health and +10% capture "
-"points."
-msgstr ""
+msgid "Structures +10% health and +10% capture points."
+msgstr "Estruturas +10% de vida e +10% de pontos de captura."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -1542,15 +1538,15 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr ""
+msgstr "Índia é a terra dos elefantes. A guerra com elefantes originou na Índia e continuou dursnte milénios. Também foi a fonte de elefantes para o leste do Mediterrâneo. Os reis indianos eram capazes e colocar em campo grandes numeros de elefantes de guerra."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "Elefantes -30% de tempo de treino."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "Tradição de Elefantes"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -1629,8 +1625,8 @@ msgid ""
 msgstr "Os Espartanos eram internados e recebiam treino militar desde muito novos para se tornarem grandes guerreiros, de modo a estarem aptos a enfrentar qualquer adversidade na sua vida militar."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "+25% de vida dos lanceiros de infantaria, mas velocidade de treino também aumenta +10%."
+msgid "Champion Infantry Spearmen +25% health, but +5% training time."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -1669,7 +1665,7 @@ msgstr "Muralhas longas atenienses"
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "Estruturas Civis +10% de tempo de construção, +20% de vida e +20% de pontos de captura."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -1691,13 +1687,13 @@ msgstr "Instrução Divina"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
-"The Anusiya champion infantry train twice as fast, but lose a little max "
-"health."
-msgstr "O treino da infantaria campeã Anusiya é o dobro mais rápido mas perde um bocadinho de vida."
+"The Achaemenids maintained a 10,000-strong elite corps, referred to as "
+"Athanatoi (“Immortals”) by Greek authors."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr "Infantaria Campeão Anisiya -50% no tempo de treinamento, mas também -10% de vida."
+msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -1822,8 +1818,8 @@ msgid ""
 msgstr "A começar com Alexandre, os monarcas helénicos fundaram muitas cidades durante os seus impérios onde a cultura e a arte grega combinou com os costumes locais dando origem a diversidade da civilização helénica."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
-msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr "Centros cívicos +100% pontos de vida e captura, duas setas padrão."
+msgid "Civic Centers +100% health and capture points, double default arrows."
+msgstr "Centros Civis +100% de vida e pontos de captura e o dobro de flechas normais."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -1894,9 +1890,9 @@ msgstr "Os Escudos de Prata, ou Argyraspidai, eram o ramo de infantaria pesada d
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
 msgid ""
-"Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
-"health and attack."
-msgstr ""
+"Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
+"and attack damage."
+msgstr "Aprimore o Campeão Portador de Escudo para Escudo de Prata, com mais pontos de vida e dano de ataque."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

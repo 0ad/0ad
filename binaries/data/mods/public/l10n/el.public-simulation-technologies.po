@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:10+0000\n"
-"PO-Revision-Date: 2020-07-24 08:28+0000\n"
+"POT-Creation-Date: 2020-07-27 07:10+0000\n"
+"PO-Revision-Date: 2020-07-27 08:27+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -36,9 +36,8 @@ msgstr "Οι Ινδοί, οι Πέρσες και οι Κουσίτες είχα
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
-"Range +10 meters for bow-wielding units. Archer units better accuracy and "
-"-20% train time, but also -20% health."
-msgstr "+10 μέτρα βεληνεκές για τις μονάδες που χειρίζονται τόξο. Οι τοξότες έχουν καλύτερη ευστοχία και -20% στο χρόνο εκπαιδεύσεις, αλλά και -20% στην υγεία τους."
+"Archers −10% training time, +8 attack range, and −10% ranged attack spread."
+msgstr ""
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -1314,10 +1313,10 @@ msgstr "Ναυτικοί Αρχιτέκτονες"
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
-"Advanced and Elite units +20% training time, +1 armour level, +10% health, "
-"+0.4 capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
-"healing strength and +3 healing range; Infantry +0.5 movement speed; Melee "
-"units +20% attack damage; Ranged units +4 attack range and −10% spread."
+"Advanced and Elite units +20% training time, +1 armor, +10% health, +0.7 "
+"capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
+"healing strength and +3 healing range; Melee units +20% attack damage; "
+"Ranged units +4 attack range and −10% spread."
 msgstr ""
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
@@ -1334,10 +1333,10 @@ msgstr ""
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
-"Elite units +20% training time, +1 armour level, +10% health, +0.4 capture "
-"attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
-"strength and +3 healing range; Infantry +0.5 movement speed; Melee units "
-"+20% attack damage; Ranged units +4 attack range and −10% spread."
+"Elite units +20% training time, +1 armor, +10% health, +0.8 capture attack "
+"strength, +20% loot, and −30% gather speed; Healers +5 healing strength and "
+"+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
+"range and −10% spread."
 msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
@@ -1501,9 +1500,8 @@ msgid ""
 msgstr "Οι Καρχηδόνιοι κατασκεύαζαν τα τείχη της πόλης τους σε τρεις ομόκεντρους κύκλους. Αυτά τα τείχη ποτέ δεν είχαν εκπορθεί. Ακόμα και όταν η πόλη λήφθηκε από τους Ρωμαίους, ήταν μέσω του λιμανιού της πόλης, και όχι από έφοδο στα τείχη της."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
-msgid ""
-"Carthaginian Walls +100% build time, +100% stone cost, and  +200% health."
-msgstr "Καρχηδόνια Τείχη +100% στο χρόνο κατασκευής, +100% κόστος πέτρας και +200% υγεία."
+msgid "Walls +100% build time, +100% stone cost, and +200% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -1528,9 +1526,7 @@ msgid "The Greeks used stone construction from early Mycenaean times."
 msgstr "Οι Έλληνες χρησιμοποιούσαν πέτρινες κατασκευές από νωρίς στη Μυκηναϊκή εποχή."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
-msgid ""
-"Athenian, Macedonian, and Spartan Structures +10% health and +10% capture "
-"points."
+msgid "Structures +10% health and +10% capture points."
 msgstr ""
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
@@ -1630,8 +1626,8 @@ msgid ""
 msgstr "Οι Σπαρτιάτες στρατολογούνταν και εκπαιδεύονταν από νεαρή ηλικία ώστε να είναι εξαιρετικοί πολεμιστές και να υπομείνουν κάθε δυσκολία που μια στρατιωτική ζωή μπορεί να τους δώσει."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "+25% υγεία για τους δορυφόρους, αλλά και +10% χρόνος εκπαίδευσης."
+msgid "Champion Infantry Spearmen +25% health, but +5% training time."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -1692,13 +1688,13 @@ msgstr "Θεϊκή Καθοδήγηση"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
-"The Anusiya champion infantry train twice as fast, but lose a little max "
-"health."
-msgstr "Ο πεζικάριος πρωταθλητής Ανασούγια εκπαιδεύετε δύο φορές πιο γρήγορα, αλλά μειώνετε λίγο η μέγιστη υγεία του."
+"The Achaemenids maintained a 10,000-strong elite corps, referred to as "
+"Athanatoi (“Immortals”) by Greek authors."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr "Στο Πεζικάριο Πρωταθλητή Ανασούγια -50% στο χρόνο εκπαίδευσης, αλλά και -10 στην υγεία."
+msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -1823,8 +1819,8 @@ msgid ""
 msgstr "Ξεκινώντας με τον Αλέξανδρο, οι Ελληνιστικοί μονάρχες ίδρυσαν πολλές πόλεις σε όλη την αυτοκρατορίας τους, όπου η Ελληνική κουλτούρα και η τέχνη αναμειγνύονταν με τα τοπικά έθιμα για να δημιουργηθεί ένας ετερόκλητος Ελληνιστικός πολιτισμός."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
-msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr "Αστικά κέντρα +100% υγεία και πόντοι κατάληψης, διπλά βασικά βέλη."
+msgid "Civic Centers +100% health and capture points, double default arrows."
+msgstr ""
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -1895,8 +1891,8 @@ msgstr "Οι Ασημένιες Ασπίδες ή Αργυράσπιδες, ήτ
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
 msgid ""
-"Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
-"health and attack."
+"Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
+"and attack damage."
 msgstr ""
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
