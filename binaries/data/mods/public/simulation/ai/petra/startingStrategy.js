@@ -306,7 +306,7 @@ PETRA.HQ.prototype.buildFirstBase = function(gameState)
 	{
 		if (!ent.hasClass("Worker") && !(ent.hasClass("Support") && ent.hasClass("Elephant")))
 			continue;
-		if (ent.hasClass("Cavalry"))
+		if (PETRA.isFastMoving(ent))
 			continue;
 		let pos = ent.position();
 		if (!pos)

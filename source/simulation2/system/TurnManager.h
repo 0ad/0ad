@@ -24,6 +24,7 @@
 #include <list>
 #include <map>
 #include <vector>
+#include <deque>
 
 class CSimulationMessage;
 class CSimulation2;

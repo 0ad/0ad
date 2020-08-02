@@ -4,6 +4,13 @@ PETRA.isSiegeUnit = function(ent)
 	return ent.hasClass("Siege") || ent.hasClass("Elephant") && ent.hasClass("Melee") && ent.hasClass("Champion");
 };
 
+/** returns true if this unit should be considered as "fast". */
+PETRA.isFastMoving = function(ent)
+{
+	// TODO: use clever logic based on walkspeed comparisons.
+	return ent.hasClass("FastMoving");
+};
+
 /** returns some sort of DPS * health factor. If you specify a class, it'll use the modifiers against that class too. */
 PETRA.getMaxStrength = function(ent, debugLevel, DamageTypeImportance, againstClass)
 {

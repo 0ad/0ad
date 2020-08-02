@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -467,6 +467,8 @@ u8* CStrW::Serialize(u8* buffer) const
 
 const u8* CStrW::Deserialize(const u8* buffer, const u8* bufferend)
 {
+	ENSURE(buffer);
+	ENSURE(bufferend);
 	const u16 *strend = (const u16 *)buffer;
 	while ((const u8 *)strend < bufferend && *strend) strend++;
 	if ((const u8 *)strend >= bufferend) return NULL;
@@ -507,6 +509,8 @@ u8* CStr8::Serialize(u8* buffer) const
 
 const u8* CStr8::Deserialize(const u8* buffer, const u8* bufferend)
 {
+	ENSURE(buffer);
+	ENSURE(bufferend);
 	u32 len;
 	Deserialize_int_4(buffer, len);
 	if (buffer + len > bufferend)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -221,6 +221,7 @@ u8 *_nm::Serialize(u8 *buffer) const \
 const u8 *_nm::Deserialize(const u8 *pos, const u8 *end) \
 { \
 	pos=_base::Deserialize(pos, end); \
+	if (pos == NULL) BAIL_DESERIALIZER;\
 	_nm *thiz=this; \
 	/*printf("In Deserialize" #_nm "\n"); */\
 	UNUSED2(thiz);	// preempt any "unused" warning

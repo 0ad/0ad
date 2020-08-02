@@ -112,7 +112,7 @@ PETRA.Worker.prototype.update = function(gameState, ent)
 					}
 					else if (!gameState.isPlayerAlly(territoryOwner))
 					{
-						let distanceSquare = ent.hasClass("Cavalry") ? 90000 : 30000;
+						let distanceSquare = ent.isFastMoving() ? 90000 : 30000;
 						let targetAccess = PETRA.getLandAccess(gameState, target);
 						let foodDropsites = gameState.playerData.hasSharedDropsites ?
 						                    gameState.getAnyDropsites("food") : gameState.getOwnDropsites("food");
@@ -744,7 +744,7 @@ PETRA.Worker.prototype.startHunting = function(gameState, position)
 	let nearestSupplyDist = Math.min();
 	let nearestSupply;
 
-	let isCavalry = this.ent.hasClass("Cavalry");
+	let isFastMoving = PETRA.isFastMoving(this.ent);
 	let isRanged = this.ent.hasClass("Ranged");
 	let entPosition = position ? position : this.ent.position();
 	let foodDropsites = gameState.playerData.hasSharedDropsites ?
@@ -784,41 +784,41 @@ PETRA.Worker.prototype.startHunting = function(gameState, position)
 
 		if (PETRA.IsSupplyFull(gameState, supply))
 			continue;
-		// check if available resource is worth one additionnal gatherer (except for farms)
+		// Check if available resource is worth one additionnal gatherer (except for farms).
 		let nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supply.id());
 		if (nbGatherers > 0 && supply.resourceSupplyAmount()/(1+nbGatherers) < 30)
 			continue;
 
 		let canFlee = !supply.hasClass("Domestic") && supply.templateName().indexOf("resource|") == -1;
-		// Only cavalry and range units should hunt fleeing animals
-		if (canFlee && !isCavalry && !isRanged)
+		// Only FastMoving and Ranged units should hunt fleeing animals.
+		if (canFlee && !isFastMoving && !isRanged)
 			continue;
 
 		let supplyAccess = PETRA.getLandAccess(gameState, supply);
 		if (supplyAccess != this.entAccess)
 			continue;
 
-		// measure the distance to the resource
+		// measure the distance to the resource.
 		let dist = API3.SquareVectorDistance(entPosition, supply.position());
 		if (dist > nearestSupplyDist)
 			continue;
 
-		// Only cavalry should hunt faraway
-		if (!isCavalry && dist > 25000)
+		// Only FastMoving should hunt faraway.
+		if (!isFastMoving && dist > 25000)
 			continue;
 
-		// Avoid ennemy territory
+		// Avoid enemy territory.
 		let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supply.position());
-		if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
+		if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // Player is its own ally.
 			continue;
-		// And if in ally territory, don't hunt this ally's cattle
+		// And if in ally territory, don't hunt this ally's cattle.
 		if (territoryOwner != 0 && territoryOwner != PlayerID && supply.owner() == territoryOwner)
 			continue;
 
-		// Only cavalry should hunt far from dropsite (specially for non domestic animals which flee)
-		if (!isCavalry && canFlee && territoryOwner == 0)
+		// Only FastMoving should hunt far from dropsite (specially for non-Domestic animals which flee).
+		if (!isFastMoving && canFlee && territoryOwner == 0)
 			continue;
-		let distanceSquare = isCavalry ? 35000 : (canFlee ? 7000 : 12000);
+		let distanceSquare = isFastMoving ? 35000 : (canFlee ? 7000 : 12000);
 		if (!hasFoodDropsiteWithinDistance(supply.position(), supplyAccess, distanceSquare))
 			continue;
 
