@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support_female_citizen">
+  <Builder>
+    <Entities datatype="tokens">
+      structures/cart_tower_artillery
+      structures/cart_super_dock
+      structures/cart_embassy_celtic
+      structures/cart_embassy_iberian
+      structures/cart_embassy_italiote
+    </Entities>
+  </Builder>
   <Identity>
     <Civ>cart</Civ>
     <SpecificName>Aštāh</SpecificName>

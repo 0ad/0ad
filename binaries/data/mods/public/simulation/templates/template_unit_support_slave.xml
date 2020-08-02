@@ -3,6 +3,9 @@
   <Builder>
     <Rate>0.5</Rate>
     <Entities datatype="tokens">
+      structures/{civ}_civil_centre
+      structures/{civ}_crannog
+      structures/{civ}_military_colony
       structures/{civ}_house
       structures/{civ}_storehouse
       structures/{civ}_farmstead
@@ -10,6 +13,7 @@
       structures/{civ}_corral
       structures/{civ}_outpost
       structures/wallset_palisade
+      structures/{civ}_sentry_tower
       structures/{civ}_dock
       structures/{civ}_barracks
       structures/{civ}_blacksmith
@@ -17,8 +21,9 @@
       structures/{civ}_market
       structures/{civ}_defense_tower
       structures/{civ}_wallset_stone
-      structures/{civ}_civil_centre
+      structures/{civ}_workshop
       structures/{civ}_fortress
+      structures/{civ}_wonder
     </Entities>
   </Builder>
   <Cost>

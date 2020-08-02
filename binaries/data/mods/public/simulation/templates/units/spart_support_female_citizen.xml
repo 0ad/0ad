@@ -9,9 +9,10 @@
   </Attack>
   <Builder>
     <Entities datatype="tokens">
-      structures/wallset_palisade
-      structures/{civ}_defense_tower
-      structures/{civ}_sentry_tower
+      structures/spart_syssiton
+      structures/spart_theater
+      structures/spart_royal_stoa
+      -structures/{civ}_wallset_stone
     </Entities>
   </Builder>
   <Health>
