@@ -83,7 +83,7 @@
 					<translatableAttribute id="caption">Server Name:</translatableAttribute>
 				</object>
 
-				<object name="hostServerName" type="input" size="50%+10 40 100%-20 64" style="ModernInput">
+				<object name="hostServerName" type="input" size="50%+10 40 100%-20 64" style="ModernInput" max_length="256">
 					<action on="Load">
 						this.caption = getDefaultGameName();
 					</action>

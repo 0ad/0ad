@@ -137,6 +137,10 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		// Text has been committed, either single key presses or through an IME
 		std::wstring text = wstring_from_utf8(ev->ev.text.text);
 
+		// Check max length
+		if (m_MaxLength != 0 && m_Caption.length() + text.length() > static_cast<size_t>(m_MaxLength))
+			return IN_HANDLED;
+
 		m_WantedX = 0.0f;
 
 		if (SelectingText())
@@ -324,8 +328,8 @@ void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode)
 		if (cooked == 0)
 			return;
 
-		// check max length
-		if (m_MaxLength != 0 && static_cast<int>(m_Caption.length()) >= m_MaxLength)
+		// Check max length
+		if (m_MaxLength != 0 && m_Caption.length() >= static_cast<size_t>(m_MaxLength))
 			break;
 
 		m_WantedX = 0.0f;
@@ -606,6 +610,10 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 		std::wstring text = wstring_from_utf8(utf8_text);
 		SDL_free(utf8_text);
 
+		// Check max length
+		if (m_MaxLength != 0 && m_Caption.length() + text.length() > static_cast<size_t>(m_MaxLength))
+			text = text.substr(0, static_cast<size_t>(m_MaxLength) - m_Caption.length());
+
 		if (SelectingText())
 			DeleteCurSelection();
 
@@ -880,7 +888,7 @@ void CInput::HandleMessage(SGUIMessage& Message)
 
 		if (Message.value == "buffer_position")
 		{
-			m_iBufferPos = m_BufferPosition;
+			m_iBufferPos = m_MaxLength != 0 ? std::min(m_MaxLength, m_BufferPosition) : m_BufferPosition;
 			m_iBufferPos_Tail = -1; // position change resets selection
 		}
 
@@ -1488,6 +1496,9 @@ void CInput::Draw()
 
 void CInput::UpdateText(int from, int to_before, int to_after)
 {
+	if (m_MaxLength != 0 && m_Caption.length() > static_cast<size_t>(m_MaxLength))
+		m_Caption = m_Caption.substr(0, m_MaxLength);
+
 	CStrIntern font_name(m_Font.ToUTF8());
 
 	wchar_t mask_char = L'*';
