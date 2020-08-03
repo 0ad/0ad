@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -198,16 +198,20 @@ MESSAGEHANDLER(GuiKeyEvent)
 
 MESSAGEHANDLER(GuiCharEvent)
 {
-	// wxWidgets has special Char events but SDL doesn't, so convert it to
-	// a keydown+keyup sequence. (We do the conversion here instead of on
-	// the wx side to avoid nondeterministic behaviour caused by async messaging.)
-
+	// Simulate special 'text input' events in the SDL
+	// This isn't quite compatible with WXWidget's handling,
+	// so to avoid trouble we only send 'letter-like' ASCII input.
 	SDL_Event_ ev = { { 0 } };
-	ev.ev.type = SDL_KEYDOWN;
-	ev.ev.key.keysym.sym = (SDL_Keycode)(int)msg->sdlkey;
+	ev.ev.type = SDL_TEXTEDITING;
+	ev.ev.text.type = SDL_TEXTEDITING;
+	ev.ev.text.text[0] = (char)msg->sdlkey;
+	ev.ev.text.text[1] = (char)0;
 	in_dispatch_event(&ev);
 
-	ev.ev.type = SDL_KEYUP;
+	ev.ev.type = SDL_TEXTINPUT;
+	ev.ev.text.type = SDL_TEXTINPUT;
+	ev.ev.text.text[0] = (char)msg->sdlkey;
+	ev.ev.text.text[1] = (char)0;
 	in_dispatch_event(&ev);
 }
 

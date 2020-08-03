@@ -86,6 +86,10 @@ that of Atlas depending on commandline parameters.
 #include <unistd.h> // geteuid
 #endif // OS_UNIX
 
+#if OS_MACOSX
+#include "lib/sysdep/os/osx/osx_atlas.h"
+#endif
+
 #if MSC_VERSION
 #include <process.h>
 #define getpid _getpid // Use the non-deprecated function name
@@ -719,8 +723,13 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 
 	} while (g_Shutdown == ShutdownType::Restart);
 
+#if OS_MACOSX
+	if (g_Shutdown == ShutdownType::RestartAsAtlas)
+		startNewAtlasProcess();
+#else
 	if (g_Shutdown == ShutdownType::RestartAsAtlas)
 		ATLAS_RunIfOnCmdLine(args, true);
+#endif
 
 	CXeromyces::Terminate();
 }

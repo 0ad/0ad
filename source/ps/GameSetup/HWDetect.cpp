@@ -300,7 +300,8 @@ static void ReportSDL(const ScriptInterface& scriptInterface, JS::HandleValue se
 	snprintf(version, ARRAY_SIZE(version), "%d.%d.%d", runtime.major, runtime.minor, runtime.patch);
 	scriptInterface.SetProperty(settings, "sdl_runtime_version", version);
 
-	const char* backend = GetSDLSubsystem(g_VideoMode.GetWindow());
+	// This is null in atlas (and further the call triggers an assertion).
+	const char* backend = g_VideoMode.GetWindow() ? GetSDLSubsystem(g_VideoMode.GetWindow()) : "none";
 	scriptInterface.SetProperty(settings, "sdl_video_backend", backend ? backend : "unknown");
 }
 
