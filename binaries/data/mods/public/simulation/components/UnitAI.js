@@ -2502,47 +2502,45 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					// No remaining orders - pick a useful default behaviour
 
+					// Give up if we're not in the world right now.
+					let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+					if (!cmpPosition || !cmpPosition.IsInWorld())
+						return true;
+
 					// If we have no known initial position of our target, look around our own position
 					// as a fallback.
 					if (!initPos)
 					{
-						let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-						if (cmpPosition && cmpPosition.IsInWorld())
-						{
-							let pos = cmpPosition.GetPosition();
-							initPos = { 'x': pos.X, 'z': pos.Z };
-						}
+						let pos = cmpPosition.GetPosition();
+						initPos = { 'x': pos.X, 'z': pos.Z };
 					}
 
-					if (initPos)
+					// Try to find a new resource of the same specific type near the initial resource position:
+					// Also don't switch to a different type of huntable animal
+					let nearbyResource = this.FindNearbyResource(new Vector2D(initPos.x, initPos.z),
+						(ent, type, template) => {
+							if (previousTarget == ent)
+								return false;
+
+							if (type.generic == "treasure" && resourceType.generic == "treasure")
+								return true;
+
+							return type.specific == resourceType.specific &&
+							    (type.specific != "meat" || resourceTemplate == template);
+					});
+
+					if (nearbyResource)
 					{
-						// Try to find a new resource of the same specific type near the initial resource position:
-						// Also don't switch to a different type of huntable animal
-						let nearbyResource = this.FindNearbyResource(new Vector2D(initPos.x, initPos.z),
-							(ent, type, template) => {
-								if (previousTarget == ent)
-									return false;
+						this.PerformGather(nearbyResource, false, false);
+						return true;
+					}
 
-								if (type.generic == "treasure" && resourceType.generic == "treasure")
-									return true;
-
-								return type.specific == resourceType.specific &&
-								    (type.specific != "meat" || resourceTemplate == template);
-						});
-
-						if (nearbyResource)
-						{
-							this.PerformGather(nearbyResource, false, false);
-							return true;
-						}
-
-						// Failing that, try to move there and se if we are more lucky: maybe there are resources in FOW.
-						// Only move if we are some distance away (TODO: pick the distance better?)
-						if (!this.CheckPointRangeExplicit(initPos.x, initPos.z, 0, 10))
-						{
-							this.GatherNearPosition(initPos.x, initPos.z, resourceType, resourceTemplate);
-							return true;
-						}
+					// Failing that, try to move there and se if we are more lucky: maybe there are resources in FOW.
+					// Only move if we are some distance away (TODO: pick the distance better?)
+					if (!this.CheckPointRangeExplicit(initPos.x, initPos.z, 0, 10))
+					{
+						this.GatherNearPosition(initPos.x, initPos.z, resourceType, resourceTemplate);
+						return true;
 					}
 
 					// Nothing else to gather - if we're carrying anything then we should
@@ -2555,7 +2553,6 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.PushOrderFront("ReturnResource", { "target": nearestDropsite, "force": false });
 						return true;
 					}
-
 					// No dropsites - just give up.
 					return true;
 				},
