@@ -875,6 +875,18 @@ void CCmpPathfinder::PushRequestsToWorkers(std::vector<T>& from)
 
 //////////////////////////////////////////////////////////
 
+bool CCmpPathfinder::IsGoalReachable(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass)
+{
+	PROFILE2("IsGoalReachable");
+
+	u16 i, j;
+	Pathfinding::NearestNavcell(x0, z0, i, j, m_MapSize*Pathfinding::NAVCELLS_PER_TILE, m_MapSize*Pathfinding::NAVCELLS_PER_TILE);
+	if (!IS_PASSABLE(m_Grid->get(i, j), passClass))
+		m_PathfinderHier->FindNearestPassableNavcell(i, j, passClass);
+
+	return m_PathfinderHier->IsGoalReachable(i, j, goal, passClass);
+}
+
 bool CCmpPathfinder::CheckMovement(const IObstructionTestFilter& filter,
 	entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r,
 	pass_class_t passClass) const

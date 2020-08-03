@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -127,6 +127,12 @@ public:
 	 * @returns true if the goal was reachable, false otherwise.
 	 */
 	bool MakeGoalReachable(u16 i0, u16 j0, PathGoal& goal, pass_class_t passClass) const;
+
+	/**
+	 * @return true if the goal is reachable from navcell i0, j0.
+	 * (similar to MakeGoalReachable but only checking for reachability).
+	 */
+	bool IsGoalReachable(u16 i0, u16 j0, const PathGoal& goal, pass_class_t passClass) const;
 
 	/**
 	 * Updates @p i, @p j (which is assumed to be an impassable navcell)

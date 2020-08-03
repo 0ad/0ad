@@ -366,26 +366,24 @@ UnitAI.prototype.UnitFsmSpec = {
 			return;
 		}
 
+		let range = cmpGarrisonHolder.GetLoadingRange();
+		this.order.data.min = range.min;
+		this.order.data.max = range.max;
 		if (this.CheckRange(this.order.data))
 		{
 			this.FinishOrder();
 			return;
 		}
-
 		// Check if we need to move
-		// TODO implement a better way to know if we are on the shoreline
-		let needToMove = true;
-		let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-		if (this.lastShorelinePosition && cmpPosition && (this.lastShorelinePosition.x == cmpPosition.GetPosition().x) &&
-		   (this.lastShorelinePosition.z == cmpPosition.GetPosition().z))
-			// we were already on the shoreline, and have not moved since
-			if (DistanceBetweenEntities(this.entity, this.order.data.target) < 50)
-				needToMove = false;
-
-		if (needToMove)
-			this.SetNextState("INDIVIDUAL.PICKUP.APPROACHING");
-		else
+		// If the target can reach us and we are reasonably close, don't move.
+		// TODO: it would be slightly more optimal to check for real, not bird-flight distance.
+		let cmpPassengerMotion = Engine.QueryInterface(this.order.data.target, IID_UnitMotion);
+		if (cmpPassengerMotion &&
+		        cmpPassengerMotion.IsTargetRangeReachable(this.entity, range.min, range.max) &&
+		        DistanceBetweenEntities(this.entity, this.order.data.target) < 200)
 			this.SetNextState("INDIVIDUAL.PICKUP.LOADING");
+		else
+			this.SetNextState("INDIVIDUAL.PICKUP.APPROACHING");
 	},
 
 	"Order.Guard": function(msg) {
@@ -3089,10 +3087,6 @@ UnitAI.prototype.UnitFsmSpec = {
 								// If a pickup has been requested, remove it
 								if (this.pickup)
 								{
-									var cmpHolderPosition = Engine.QueryInterface(target, IID_Position);
-									var cmpHolderUnitAI = Engine.QueryInterface(target, IID_UnitAI);
-									if (cmpHolderUnitAI && cmpHolderPosition)
-										cmpHolderUnitAI.lastShorelinePosition = cmpHolderPosition.GetPosition();
 									Engine.PostMessage(this.pickup, MT_PickupCanceled, { "entity": this.entity });
 									delete this.pickup;
 								}
@@ -3113,7 +3107,8 @@ UnitAI.prototype.UnitFsmSpec = {
 							if (this.pickup)
 							{
 								var cmpUnitAI = Engine.QueryInterface(this.pickup, IID_UnitAI);
-								if (!cmpUnitAI || !cmpUnitAI.HasPickupOrder(this.entity))
+								if (!cmpUnitAI || (!cmpUnitAI.HasPickupOrder(this.entity) &&
+									!cmpUnitAI.IsIdle()))
 								{
 									this.FinishOrder();
 									return true;
@@ -4830,17 +4825,12 @@ UnitAI.prototype.CheckFormationTargetAttackRange = function(target)
 
 UnitAI.prototype.CheckGarrisonRange = function(target)
 {
-	var cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
+	let cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
 	if (!cmpGarrisonHolder)
 		return false;
-	var range = cmpGarrisonHolder.GetLoadingRange();
 
-	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
-	if (cmpObstruction)
-		range.max += cmpObstruction.GetUnitRadius()*1.5; // multiply by something larger than sqrt(2)
-
-	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
-	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, range.max, false);
+	let range = cmpGarrisonHolder.GetLoadingRange();
+	return this.CheckTargetRangeExplicit(target, range.min, range.max);
 };
 
 /**

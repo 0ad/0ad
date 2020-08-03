@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -701,6 +701,25 @@ bool HierarchicalPathfinder::MakeGoalReachable(u16 i0, u16 j0, PathGoal& goal, p
 
 	FindNearestNavcellInRegions(reachableRegions, iGoal, jGoal, passClass);
 	CreatePointGoalAt(iGoal, jGoal, goal);
+	return false;
+}
+
+
+bool HierarchicalPathfinder::IsGoalReachable(u16 i0, u16 j0, const PathGoal& goal, pass_class_t passClass) const
+{
+	PROFILE2("IsGoalReachable");
+
+	u16 iGoal, jGoal;
+	Pathfinding::NearestNavcell(goal.x, goal.z, iGoal, jGoal, m_W, m_H);
+
+	std::set<InterestingRegion, SortByBestToPoint> goalRegions(SortByBestToPoint(i0, j0));
+	// This returns goal regions ordered by distance from the best navcell in each region.
+	FindGoalRegionsAndBestNavcells(i0, j0, iGoal, jGoal, goal, goalRegions, passClass);
+
+	// Because of the sorting above, we can stop as soon as the first reachable goal region is found.
+	for (const InterestingRegion& region : goalRegions)
+		if (GetGlobalRegion(region.region, passClass) == GetGlobalRegion(i0, j0, passClass))
+			return true;
 	return false;
 }
 
