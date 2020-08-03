@@ -10,6 +10,7 @@ Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
 Engine.LoadComponentScript("interfaces/TerritoryDecay.js");
 Engine.LoadComponentScript("interfaces/Trigger.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
+Engine.LoadComponentScript("interfaces/UnitAI.js");
 Engine.LoadComponentScript("AutoBuildable.js");
 Engine.LoadComponentScript("Foundation.js");
 Engine.LoadComponentScript("Timer.js");

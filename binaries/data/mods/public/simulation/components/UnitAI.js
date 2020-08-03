@@ -2857,7 +2857,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					{
 						// The building was already finished/fully repaired before we arrived;
 						// let the ConstructionFinished handler handle this.
-						this.OnGlobalConstructionFinished({"entity": this.repairTarget, "newentity": this.repairTarget});
+						this.ConstructionFinished({ "entity": this.repairTarget, "newentity": this.repairTarget });
 						return true;
 					}
 
@@ -4191,12 +4191,14 @@ UnitAI.prototype.OnMotionUpdate = function(msg)
 	this.UnitFsm.ProcessMessage(this, Object.assign({ "type": "MovementUpdate" }, msg));
 };
 
-UnitAI.prototype.OnGlobalConstructionFinished = function(msg)
+/**
+ * Called directly by cmpFoundation and cmpRepairable to
+ * inform builders that repairing has finished.
+ * This not done by listening to a global message due to performance.
+ */
+UnitAI.prototype.ConstructionFinished = function(msg)
 {
-	// TODO: This is a bit inefficient since every unit listens to every
-	// construction message - ideally we could scope it to only the one we're building
-
-	this.UnitFsm.ProcessMessage(this, {"type": "ConstructionFinished", "data": msg});
+	this.UnitFsm.ProcessMessage(this, { "type": "ConstructionFinished", "data": msg });
 };
 
 UnitAI.prototype.OnGlobalEntityRenamed = function(msg)
