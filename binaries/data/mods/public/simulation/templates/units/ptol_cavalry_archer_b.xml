@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_ranged_archer">
+  <Footprint>
+    <Height>7.5</Height>
+  </Footprint>
   <Identity>
     <Civ>ptol</Civ>
     <VisibleClasses datatype="tokens">Camel</VisibleClasses>
@@ -19,6 +22,9 @@
       <death>actor/fauna/death/death_camel.xml</death>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <HeightOffset>8.5</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>units/ptolemies/camelry_archer_b_m.xml</Actor>
   </VisualActor>

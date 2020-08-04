@@ -6,6 +6,9 @@
       <metal op="add">25</metal>
     </Resources>
   </Cost>
+  <Footprint>
+    <Height>7.5</Height>
+  </Footprint>
   <Identity>
     <Civ>kush</Civ>
     <VisibleClasses datatype="tokens">Camel Mercenary</VisibleClasses>
@@ -25,6 +28,9 @@
       <death>actor/fauna/death/death_camel.xml</death>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <HeightOffset>8.5</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>units/kushites/camelry_javelinist_b_m.xml</Actor>
   </VisualActor>

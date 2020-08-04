@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry_archer">
   <Footprint replace="">
-    <Square width="5.5" depth="10.0"/>
-    <Height>5.0</Height>
+    <Square width="8.0" depth="11.0"/>
+    <Height>6.0</Height>
   </Footprint>
   <Identity>
     <Civ>maur</Civ>
-    <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
     <GenericName>War Chariot</GenericName>
     <SpecificName>Rath</SpecificName>
     <SelectionGroupName>units/maur_champion_chariot</SelectionGroupName>
+    <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
     <Icon>units/maur_champion_chariot.png</Icon>
   </Identity>
   <VisualActor>

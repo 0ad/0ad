@@ -23,8 +23,8 @@
     </Resources>
   </Cost>
   <Footprint replace="">
-    <Circle radius="3.5"/>
-    <Height>8.0</Height>
+    <Square width="4.5" depth="9.0"/>
+    <Height>9.0</Height>
   </Footprint>
   <Health>
     <Max op="mul">2</Max>
@@ -47,14 +47,6 @@
     <Entity>units/maur_elephant_archer_a</Entity>
   </Promotion>
   <ResourceGatherer disable=""/>
-  <Selectable>
-    <Overlay>
-      <Texture>
-        <MainTexture>256x256/ellipse.png</MainTexture>
-        <MainTextureMask>256x256/ellipse_mask.png</MainTextureMask>
-      </Texture>
-    </Overlay>
-  </Selectable>
   <Sound>
     <SoundGroups>
       <select>actor/fauna/animal/elephant_select.xml</select>
@@ -64,6 +56,9 @@
       <trained>actor/fauna/animal/elephant_trained.xml</trained>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <HeightOffset>10.0</HeightOffset>
+  </StatusBars>
   <UnitMotion>
     <PassabilityClass>large</PassabilityClass>
     <WalkSpeed op="mul">0.5</WalkSpeed>

@@ -13,10 +13,6 @@
       <metal>150</metal>
     </Resources>
   </Cost>
-  <Footprint>
-    <Circle radius="1.5"/>
-    <Height>2.5</Height>
-  </Footprint>
   <Health>
     <Max>1000</Max>
   </Health>
@@ -29,6 +25,9 @@
   </Position>
   <Selectable>
     <Overlay>
+      <Shape>
+        <Circle radius="2.0"/>
+      </Shape>
       <Texture>
         <MainTexture>128x128/star.png</MainTexture>
         <MainTextureMask>128x128/star_mask.png</MainTextureMask>

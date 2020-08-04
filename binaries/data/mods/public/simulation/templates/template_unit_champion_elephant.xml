@@ -13,9 +13,9 @@
       <metal>200</metal>
     </Resources>
   </Cost>
-  <Footprint>
-    <Circle radius="3.5"/>
-    <Height>6.0</Height>
+  <Footprint replace="">
+    <Square width="4.5" depth="9.0"/>
+    <Height>9.0</Height>
   </Footprint>
   <Health>
     <Max>750</Max>
@@ -44,7 +44,7 @@
     </SoundGroups>
   </Sound>
   <StatusBars>
-    <HeightOffset>6.5</HeightOffset>
+    <HeightOffset>10.0</HeightOffset>
   </StatusBars>
   <UnitMotion>
     <PassabilityClass>large</PassabilityClass>

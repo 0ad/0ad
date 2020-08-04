@@ -25,9 +25,9 @@
       <food>100</food>
     </Resources>
   </Cost>
-  <Footprint>
-    <Circle radius="3.0"/>
-    <Height>3.0</Height>
+  <Footprint replace="">
+    <Square width="1.5" depth="3"/>
+    <Height>1.5</Height>
   </Footprint>
   <Health>
     <Max>110</Max>
@@ -66,7 +66,7 @@
     </SoundGroups>
   </Sound>
   <StatusBars>
-    <HeightOffset>6.5</HeightOffset>
+    <HeightOffset>2.5</HeightOffset>
   </StatusBars>
   <TrainingRestrictions>
     <Category>WarDog</Category>
