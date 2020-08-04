@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <Capturable disable=""/>
   <Cost>
     <BuildTime>200</BuildTime>
     <Resources>
@@ -20,7 +21,6 @@
     <Civ>rome</Civ>
     <GenericName>Triumphal Arch</GenericName>
     <SpecificName>Arcus Triumphālis</SpecificName>
-    <Tooltip>Territory root.</Tooltip>
     <VisibleClasses datatype="tokens">TriumphalArch</VisibleClasses>
     <Icon>structures/arch.png</Icon>
   </Identity>
@@ -39,9 +39,8 @@
       <constructed>interface/complete/building/complete_theater.xml</constructed>
     </SoundGroups>
   </Sound>
-  <TerritoryInfluence>
-    <Root>true</Root>
-  </TerritoryInfluence>
+  <TerritoryDecay disable=""/>
+  <TerritoryInfluence disable=""/>
   <VisualActor>
     <Actor>structures/romans/triumphal_arch.xml</Actor>
     <FoundationActor>structures/fndn_5x3.xml</FoundationActor>

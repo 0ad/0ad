@@ -31,7 +31,6 @@
     <Civ>iber</Civ>
     <GenericName>Revered Monument</GenericName>
     <SpecificName>Gur Oroigarri</SpecificName>
-    <Tooltip>Territory root.</Tooltip>
     <VisibleClasses datatype="tokens">Monument</VisibleClasses>
     <Icon>structures/iberian_bull.png</Icon>
   </Identity>
@@ -50,9 +49,8 @@
       <constructed>interface/complete/building/complete_iber_monument.xml</constructed>
     </SoundGroups>
   </Sound>
-  <TerritoryInfluence>
-    <Root>true</Root>
-  </TerritoryInfluence>
+  <TerritoryDecay disable=""/>
+  <TerritoryInfluence disable=""/>
   <Vision>
     <Range>60</Range>
   </Vision>
