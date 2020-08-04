@@ -2,7 +2,7 @@
 <Entity parent="template_unit_fauna_hunt_skittish">
   <Footprint>
     <Square width="2.5" depth="5.0"/>
-    <Height>3.0</Height>
+    <Height>5.5</Height>
   </Footprint>
   <Identity>
     <GenericName>Dromedary</GenericName>
@@ -19,6 +19,9 @@
       <death>actor/fauna/death/death_camel.xml</death>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <HeightOffset>6.5</HeightOffset>
+  </StatusBars>
   <UnitMotion>
     <WalkSpeed op="mul">0.45</WalkSpeed>
   </UnitMotion>

@@ -19,8 +19,8 @@
     </Melee>
   </Attack>
   <Footprint>
-    <Square width="3.2" depth="6.4"/>
-    <Height>2.0</Height>
+    <Square width="4.0" depth="8.0"/>
+    <Height>3.0</Height>
   </Footprint>
   <Identity>
     <GenericName>Walrus</GenericName>
@@ -30,6 +30,17 @@
   <ResourceSupply>
     <Amount>300</Amount>
   </ResourceSupply>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>256x256/ellipse.png</MainTexture>
+        <MainTextureMask>256x256/ellipse_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
+  <StatusBars>
+    <HeightOffset>4.0</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>fauna/walrus.xml</Actor>
   </VisualActor>

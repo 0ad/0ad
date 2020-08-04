@@ -2,13 +2,16 @@
 <Entity parent="template_unit_fauna_hunt_skittish">
   <Footprint>
     <Square width="1.5" depth="3.0"/>
-    <Height>2.0</Height>
+    <Height>3.0</Height>
   </Footprint>
   <Identity>
     <GenericName>Thomson's Gazelle</GenericName>
     <SpecificName>Eudorcas thomsonii</SpecificName>
     <Icon>gaia/fauna_gazelle.png</Icon>
   </Identity>
+  <StatusBars>
+    <HeightOffset>4.0</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>fauna/gazelle.xml</Actor>
   </VisualActor>

@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt_aggressive_bear">
+  <Footprint>
+    <Square width="2.5" depth="5.0"/>
+    <Height>3.0</Height>
+  </Footprint>
   <Identity>
     <GenericName>Polar Bear</GenericName>
     <SpecificName>Ursus maritimus</SpecificName>
     <Icon>gaia/fauna_bear_polar.png</Icon>
   </Identity>
+  <StatusBars>
+    <HeightOffset>4.0</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>fauna/bear_white.xml</Actor>
   </VisualActor>

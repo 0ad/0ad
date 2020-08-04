@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_herd_domestic">
+  <Footprint>
+    <Square width="1.0" depth="2.0"/>
+    <Height>1.5</Height>
+  </Footprint>
   <Health>
     <Max>10</Max>
   </Health>
@@ -23,6 +27,9 @@
       <trained>actor/fauna/animal/peacock_trained.xml</trained>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <HeightOffset>2.5</HeightOffset>
+  </StatusBars>
   <UnitAI>
     <NaturalBehaviour>domestic</NaturalBehaviour>
     <RoamDistance>4.0</RoamDistance>

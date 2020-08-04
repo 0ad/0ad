@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_herd_domestic">
   <Footprint>
-    <Square width="2" depth="4.0"/>
+    <Square width="2.0" depth="4.0"/>
     <Height>1.5</Height>
   </Footprint>
   <Identity>
@@ -18,7 +18,7 @@
     </SoundGroups>
   </Sound>
   <StatusBars>
-    <HeightOffset>5.0</HeightOffset>
+    <HeightOffset>2.5</HeightOffset>
   </StatusBars>
   <UnitMotion>
     <WalkSpeed op="mul">0.45</WalkSpeed>
