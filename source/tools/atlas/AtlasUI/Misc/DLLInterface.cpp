@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -179,13 +179,6 @@ ATLASDLLIMPEXP void Atlas_DisplayError(const wchar_t* text, size_t WXUNUSED(flag
 class AtlasDLLApp : public wxApp
 {
 public:
-
-#ifdef __WXOSX__
-	virtual bool OSXIsGUIApplication()
-	{
-		return false;
-	}
-#endif
 
 	virtual bool OnInit()
 	{

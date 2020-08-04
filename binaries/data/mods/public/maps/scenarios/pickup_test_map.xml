@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="6">
+	<Environment>
+		<SkySet>sunny</SkySet>
+		<SunColor r="0.74902" g="0.74902" b="0.74902"/>
+		<SunElevation angle="0.809942"/>
+		<SunRotation angle="3.14159"/>
+		<TerrainAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
+		<Fog>
+			<FogFactor>0</FogFactor>
+			<FogThickness>0.5</FogThickness>
+			<FogColor r="0.8" g="0.8" b="0.894118"/>
+		</Fog>
+		<Water>
+			<WaterBody>
+				<Type>ocean</Type>
+				<Color r="0.231373" g="0.337255" b="0.447059"/>
+				<Tint r="0.529412" g="0.937255" b="0.831373"/>
+				<Height>168.772</Height>
+				<Waviness>1.36719</Waviness>
+				<Murkiness>0.836914</Murkiness>
+				<WindAngle>0</WindAngle>
+			</WaterBody>
+		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>default</PostEffect>
+		</Postproc>
+	</Environment>
+	<Camera>
+		<Position x="514.814" y="246.916" z="396.274"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "AISeed": 0,
+  "CircularMap": true,
+  "Description": "Test map for picking units up, with sea and two islands. Trigger points are placed.",
+  "Keywords": [
+    "demo",
+    "trigger"
+  ],
+  "LockTeams": false,
+  "Name": "Pickup test map",
+  "PlayerData": [
+    null,
+    {
+      "Civ": "athen"
+    }
+  ],
+  "Preview": "",
+  "RevealMap": true,
+  "TriggerScripts": [
+    "scripts/TriggerHelper.js",
+    "scenarios/pickup_test_map_triggers.js"
+  ],
+  "VictoryConditions": []
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="14">
+			<Template>trigger/trigger_point_A</Template>
+			<Player>1</Player>
+			<Position x="514.8141" z="494.57267"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5583"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>trigger/trigger_point_A</Template>
+			<Player>1</Player>
+			<Position x="599.91157" z="396.05698"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="21631"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>trigger/trigger_point_A</Template>
+			<Player>1</Player>
+			<Position x="509.77204" z="301.23362"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="22830"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>trigger/trigger_point_A</Template>
+			<Player>1</Player>
+			<Position x="424.25593" z="390.61844"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="60998"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>trigger/trigger_point_A</Template>
+			<Player>1</Player>
+			<Position x="279.24427" z="570.91431"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="13022"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>trigger/trigger_point_A</Template>
+			<Player>1</Player>
+			<Position x="192.86735" z="650.63013"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="22025"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>trigger/trigger_point_A</Template>
+			<Player>1</Player>
+			<Position x="433.8719" z="954.3141"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55211"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>trigger/trigger_point_A</Template>
+			<Player>1</Player>
+			<Position x="742.31745" z="900.06678"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="52524"/>
+		</Entity>
+		<Entity uid="22">
+			<Template>trigger/trigger_point_A</Template>
+			<Player>1</Player>
+			<Position x="899.26227" z="685.19471"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57217"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>trigger/trigger_point_A</Template>
+			<Player>1</Player>
+			<Position x="847.81159" z="192.07172"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="60511"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>trigger/trigger_point_A</Template>
+			<Player>1</Player>
+			<Position x="745.38624" z="103.3647"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="20551"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>trigger/trigger_point_A</Template>
+			<Player>1</Player>
+			<Position x="125.56368" z="257.50168"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27301"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>trigger/trigger_point_A</Template>
+			<Player>1</Player>
+			<Position x="243.17631" z="148.31513"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41077"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>trigger/trigger_point_B</Template>
+			<Player>0</Player>
+			<Position x="256.73066" z="401.79657"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="62749"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>trigger/trigger_point_C</Template>
+			<Player>0</Player>
+			<Position x="222.4845" z="467.82148"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="26104"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>

@@ -7,18 +7,6 @@
   <StatusBars>
     <HeightOffset>19.0</HeightOffset>
   </StatusBars>
-  <Upgrade>
-    <Tower1>
-      <Entity>structures/{civ}_tower_double</Entity>
-      <Tooltip>Reinforce with stone block, and add a second rampart for up to 16 archers to stand upon. Infantry Archer exclusive tower. Devastating against melee troops, weak to siege and massed ranged units.</Tooltip>
-      <RequiredTechnology>phase_city</RequiredTechnology>
-      <Cost>
-        <wood>150</wood>
-        <stone>70</stone>
-      </Cost>
-      <Time>200</Time>
-    </Tower1>
-  </Upgrade>
   <VisualActor>
     <Actor>structures/mauryas/scout_tower.xml</Actor>
   </VisualActor>

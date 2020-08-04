@@ -134,6 +134,12 @@ public:
 	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass) = 0;
 
 	/**
+	 * @return true if the goal is reachable from (x0, z0) for the given passClass, false otherwise.
+	 * Warning: this is synchronous, somewhat expensive and not should not be called too liberally.
+	 */
+	virtual bool IsGoalReachable(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass) = 0;
+
+	/**
 	 * Check whether the given movement line is valid and doesn't hit any obstructions
 	 * or impassable terrain.
 	 * Returns true if the movement is okay.

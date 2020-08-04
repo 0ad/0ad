@@ -457,6 +457,15 @@ Foundation.prototype.Build = function(builderEnt, work)
 			{ "entity": this.entity, "newentity": building });
 		Engine.PostMessage(this.entity, MT_EntityRenamed, { "entity": this.entity, "newentity": building });
 
+		// Inform the builders that repairing has finished.
+		// This not done by listening to a global message due to performance.
+		for (let builder of this.GetBuilders())
+		{
+			let cmpUnitAIBuilder = Engine.QueryInterface(builder, IID_UnitAI);
+			if (cmpUnitAIBuilder)
+				cmpUnitAIBuilder.ConstructionFinished({ "entity": this.entity, "newentity": building });
+		}
+
 		Engine.DestroyEntity(this.entity);
 	}
 };

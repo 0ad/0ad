@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -132,9 +132,7 @@ private:
 		if (KeyScroll(evt, true))
 			return;
 
-		// Slight hack: Only pass 'special' keys; normal keys will generate a translated Char event instead
-		if (evt.GetKeyCode() >= 256)
-			POST_MESSAGE(GuiKeyEvent, (GetSDLKeyFromWxKeyCode(evt.GetKeyCode()), evt.GetUnicodeKey(), true));
+		POST_MESSAGE(GuiKeyEvent, (GetSDLKeyFromWxKeyCode(evt.GetKeyCode()), evt.GetUnicodeKey(), true));
 
 		evt.Skip();
 	}
@@ -147,9 +145,7 @@ private:
 		if (KeyScroll(evt, false))
 			return;
 
-		// Slight hack: Only pass 'special' keys; normal keys will generate a translated Char event instead
-		if (evt.GetKeyCode() >= 256)
-			POST_MESSAGE(GuiKeyEvent, (GetSDLKeyFromWxKeyCode(evt.GetKeyCode()), evt.GetUnicodeKey(), false));
+		POST_MESSAGE(GuiKeyEvent, (GetSDLKeyFromWxKeyCode(evt.GetKeyCode()), evt.GetUnicodeKey(), false));
 
 		evt.Skip();
 	}
@@ -189,8 +185,8 @@ private:
 		}
 		else
 		{
-			// Slight hack: Only pass 'normal' keys; special keys will generate a KeyDown/KeyUp event instead
-			if (evt.GetKeyCode() < 256)
+			// Slight hack: Only pass 'alphanumeric' keys; special keys will generate a KeyDown/KeyUp event instead
+			if (evt.GetKeyCode() >= 33 && evt.GetKeyCode() <= 126)
 				POST_MESSAGE(GuiCharEvent, (GetSDLKeyFromWxKeyCode(evt.GetKeyCode()), evt.GetUnicodeKey()));
 
 			evt.Skip();
@@ -315,14 +311,14 @@ enum
 {
 	ID_Quit = 1,
 
- 	ID_New,
+	ID_New,
 	ID_Open,
 	ID_Save,
 	ID_SaveAs,
 	ID_ImportHeightmap,
 
-    ID_Copy,
-    ID_Paste,
+	ID_Copy,
+	ID_Paste,
 
 	ID_Wireframe,
 	ID_MessageTrace,
@@ -345,7 +341,7 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_CLOSE(ScenarioEditor::OnClose)
 	EVT_TIMER(wxID_ANY, ScenarioEditor::OnTimer)
 
- 	EVT_MENU(ID_New, ScenarioEditor::OnNew)
+	EVT_MENU(ID_New, ScenarioEditor::OnNew)
 	EVT_MENU(ID_Open, ScenarioEditor::OnOpen)
 	EVT_MENU(ID_Save, ScenarioEditor::OnSave)
 	EVT_MENU(ID_SaveAs, ScenarioEditor::OnSaveAs)
@@ -355,8 +351,8 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_MENU(ID_Quit, ScenarioEditor::OnQuit)
 	EVT_MENU(wxID_UNDO, ScenarioEditor::OnUndo)
 	EVT_MENU(wxID_REDO, ScenarioEditor::OnRedo)
-    EVT_MENU(ID_Copy, ScenarioEditor::OnCopy)
-    EVT_MENU(ID_Paste, ScenarioEditor::OnPaste)
+	EVT_MENU(ID_Copy, ScenarioEditor::OnCopy)
+	EVT_MENU(ID_Paste, ScenarioEditor::OnPaste)
 
 	EVT_MENU(ID_Wireframe, ScenarioEditor::OnWireframe)
 	EVT_MENU(ID_MessageTrace, ScenarioEditor::OnMessageTrace)
@@ -439,7 +435,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	wxMenu *menuFile = new wxMenu;
 	menuBar->Append(menuFile, _("&File"));
 	{
- 		menuFile->Append(ID_New, _("&New..."));
+		menuFile->Append(ID_New, _("&New..."));
 		menuFile->Append(ID_Open, _("&Open..."));
 		menuFile->Append(ID_Save, _("&Save"));
 		menuFile->Append(ID_SaveAs, _("Save &As..."));
@@ -459,14 +455,14 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	{
 		menuEdit->Append(wxID_UNDO, _("&Undo"));
 		menuEdit->Append(wxID_REDO, _("&Redo"));
-        menuEdit->AppendSeparator();
-        menuEdit->Append(ID_Copy, _("&Copy"));
-        menuEdit->Enable(ID_Copy, false);
-        menuEdit->Append(ID_Paste, _("&Paste"));
-        menuEdit->Enable(ID_Paste, false);
+		menuEdit->AppendSeparator();
+		menuEdit->Append(ID_Copy, _("&Copy"));
+		menuEdit->Enable(ID_Copy, false);
+		menuEdit->Append(ID_Paste, _("&Paste"));
+		menuEdit->Enable(ID_Paste, false);
 	}
 
-    g_SelectedObjects.RegisterObserver(0, &ScenarioEditor::OnSelectedObjectsChange, this);
+	g_SelectedObjects.RegisterObserver(0, &ScenarioEditor::OnSelectedObjectsChange, this);
 
 	GetCommandProc().SetEditMenu(menuEdit);
 	GetCommandProc().Initialize();
@@ -636,13 +632,13 @@ float ScenarioEditor::GetSpeedModifier()
 
 void ScenarioEditor::OnClose(wxCloseEvent& event)
 {
-    if (event.CanVeto() && GetCommandProc().IsDirty())
-    {
-        if (wxMessageBox(_T("You have unsaved changes. Are you sure you want to quit?"), _T("Discard unsaved changes?"), wxICON_QUESTION | wxYES_NO) != wxYES)
-        {
-            event.Veto();
-            return;
-        }
+	if (event.CanVeto() && GetCommandProc().IsDirty())
+	{
+		if (wxMessageBox(_T("You have unsaved changes. Are you sure you want to quit?"), _T("Discard unsaved changes?"), wxICON_QUESTION | wxYES_NO) != wxYES)
+		{
+			event.Veto();
+			return;
+		}
 	}
 
 	m_ToolManager.SetCurrentTool(_T(""));
@@ -698,16 +694,16 @@ void ScenarioEditor::OnRedo(wxCommandEvent&)
 
 void ScenarioEditor::OnCopy(wxCommandEvent& WXUNUSED(event))
 {
-    if (GetToolManager().GetCurrentToolName() == _T("TransformObject"))
-        GetToolManager().GetCurrentTool()->OnCommand(_T("copy"), NULL);
+	if (GetToolManager().GetCurrentToolName() == _T("TransformObject"))
+		GetToolManager().GetCurrentTool()->OnCommand(_T("copy"), NULL);
 }
 
 void ScenarioEditor::OnPaste(wxCommandEvent& WXUNUSED(event))
 {
-    if (GetToolManager().GetCurrentToolName() != _T("TransformObject"))
-        GetToolManager().SetCurrentTool(_T("TransformObject"), NULL);
+	if (GetToolManager().GetCurrentToolName() != _T("TransformObject"))
+		GetToolManager().SetCurrentTool(_T("TransformObject"), NULL);
 
-    GetToolManager().GetCurrentTool()->OnCommand(_T("paste"), NULL);
+	GetToolManager().GetCurrentTool()->OnCommand(_T("paste"), NULL);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -837,7 +833,7 @@ void ScenarioEditor::OnSave(wxCommandEvent& event)
 		qPing qry;
 		qry.Post();
 
-        GetCommandProc().MarkAsSaved();
+		GetCommandProc().MarkAsSaved();
 	}
 }
 
@@ -861,7 +857,7 @@ void ScenarioEditor::OnSaveAs(wxCommandEvent& WXUNUSED(event))
 		qPing qry;
 		qry.Post();
 
-        GetCommandProc().MarkAsSaved();
+		GetCommandProc().MarkAsSaved();
 	}
 }
 
@@ -978,7 +974,7 @@ void ScenarioEditor::OnDumpState(wxCommandEvent& event)
 
 void ScenarioEditor::OnSelectedObjectsChange(const std::vector<ObjectID>& selectedObjects)
 {
-    GetMenuBar()->Enable(ID_Copy, !selectedObjects.empty());
+	GetMenuBar()->Enable(ID_Copy, !selectedObjects.empty());
 }
 
 void ScenarioEditor::OnHelp(wxCommandEvent& event)
@@ -996,50 +992,50 @@ void ScenarioEditor::OnHelp(wxCommandEvent& event)
 
 void ScenarioEditor::OnMenuOpen(wxMenuEvent& event)
 {
-    // Ignore wxMSW system menu events, see https://trac.wildfiregames.com/ticket/5501
-    const wxMenu* menu = event.GetMenu();
-    if (!menu)
-        return;
+	// Ignore wxMSW system menu events, see https://trac.wildfiregames.com/ticket/5501
+	const wxMenu* menu = event.GetMenu();
+	if (!menu)
+		return;
 
-    // This could be done far more elegantly if wxMenuItem had changeable id.
-    wxMenu* pasteMenuItem = NULL;
-    menu->FindItem(ID_Paste, &pasteMenuItem);
+	// This could be done far more elegantly if wxMenuItem had changeable id.
+	wxMenu* pasteMenuItem = NULL;
+	menu->FindItem(ID_Paste, &pasteMenuItem);
 
-    GetMenuBar()->Enable(ID_Paste, false);
+	GetMenuBar()->Enable(ID_Paste, false);
 
-    if (!pasteMenuItem)
-        return;
+	if (!pasteMenuItem)
+		return;
 
-    wxString content;
-    if (wxTheClipboard->Open())
-    {
-        if (wxTheClipboard->IsSupported(wxDF_TEXT))
-        {
-            wxTextDataObject data;
-            wxTheClipboard->GetData(data);
-            content = data.GetText();
-        }
+	wxString content;
+	if (wxTheClipboard->Open())
+	{
+		if (wxTheClipboard->IsSupported(wxDF_TEXT))
+		{
+			wxTextDataObject data;
+			wxTheClipboard->GetData(data);
+			content = data.GetText();
+		}
 
-        wxTheClipboard->Close();
-    }
+		wxTheClipboard->Close();
+	}
 
-    if (content.empty())
-        return;
+	if (content.empty())
+		return;
 
-    wxInputStream* is = new wxStringInputStream(content);
-    wxXmlDocument doc;
-    {
-        wxLogNull stopComplaining;
-        static_cast<void>(stopComplaining);
-        if (!doc.Load(*is))
-            return;
-    }
+	wxInputStream* is = new wxStringInputStream(content);
+	wxXmlDocument doc;
+	{
+		wxLogNull stopComplaining;
+		static_cast<void>(stopComplaining);
+		if (!doc.Load(*is))
+			return;
+	}
 
-    wxXmlNode* root = doc.GetRoot();
-    if (!root || root->GetName() != wxT("Entities"))
-        return;
+	wxXmlNode* root = doc.GetRoot();
+	if (!root || root->GetName() != wxT("Entities"))
+		return;
 
-    GetMenuBar()->Enable(ID_Paste, true);
+	GetMenuBar()->Enable(ID_Paste, true);
 }
 
 

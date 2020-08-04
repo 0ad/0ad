@@ -17,17 +17,4 @@
   <VisualActor>
     <Actor>structures/spartans/defense_tower.xml</Actor>
   </VisualActor>
-  <Upgrade>
-    <Tower2>
-      <Entity>structures/{civ}_tower_bolt</Entity>
-      <Tooltip>Reinforce with stone block, and install small oxybeles to upgrade this defense tower into a prompt, long range, and accurate bolt tower.</Tooltip>
-      <RequiredTechnology>phase_city</RequiredTechnology>
-      <Cost>
-        <metal>100</metal>
-        <stone>100</stone>
-      </Cost>
-      <Time>200</Time>
-      <Variant>upgrading</Variant>
-    </Tower2>
-  </Upgrade>
 </Entity>

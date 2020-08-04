@@ -129,7 +129,18 @@ Repairable.prototype.Repair = function(builderEnt, rate)
 
 	// If we repaired all the damage, send a message to entities to stop repairing this building
 	if (amount >= damage)
+	{
 		Engine.PostMessage(this.entity, MT_ConstructionFinished, { "entity": this.entity, "newentity": this.entity });
+
+		// Inform the builders that repairing has finished.
+		// This not done by listening to a global message due to performance.
+		for (let builder of this.GetBuilders())
+		{
+			let cmpUnitAIBuilder = Engine.QueryInterface(builder, IID_UnitAI);
+			if (cmpUnitAIBuilder)
+				cmpUnitAIBuilder.ConstructionFinished({ "entity": this.entity, "newentity": this.entity });
+		}
+	}
 };
 
 Repairable.prototype.GetRepairRate = function()

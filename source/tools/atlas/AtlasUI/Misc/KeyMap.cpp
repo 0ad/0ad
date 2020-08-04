@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -77,6 +77,8 @@ int GetSDLKeyFromWxKeyCode(int wxkey)
 	case WXK_F14: return SDLK_F14;
 	case WXK_F15: return SDLK_F15;
 
+	case WXK_BACK: return SDLK_BACKSPACE;
+	case WXK_DELETE: return SDLK_DELETE;
 	case WXK_NUMLOCK: return SDLK_NUMLOCKCLEAR;
 	case WXK_SCROLL: return SDLK_SCROLLLOCK;
 //	case WXK_: return SDLK_CAPSLOCK;
