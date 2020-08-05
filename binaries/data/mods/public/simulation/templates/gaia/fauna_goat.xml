@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_herd_domestic">
   <Footprint>
-    <Square width="1.3" depth="2.6"/>
-    <Height>1.5</Height>
+    <Square width="1.5" depth="3.0"/>
+    <Height>2.0</Height>
   </Footprint>
   <Identity>
     <GenericName>Goat</GenericName>
@@ -21,6 +21,9 @@
       <trained>actor/fauna/animal/goat_trained.xml</trained>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <HeightOffset>3.0</HeightOffset>
+  </StatusBars>
   <UnitMotion>
     <WalkSpeed op="mul">0.45</WalkSpeed>
   </UnitMotion>

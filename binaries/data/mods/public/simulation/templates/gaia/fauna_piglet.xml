@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="gaia/fauna_pig">
   <Footprint>
-    <Square width="2" depth="2"/>
-    <Height>1</Height>
+    <Square width="1.0" depth="2.0"/>
+    <Height>0.5</Height>
   </Footprint>
   <Identity>
     <GenericName>Piglet</GenericName>
@@ -11,6 +11,9 @@
     <Amount>10</Amount>
     <MaxGatherers>1</MaxGatherers>
   </ResourceSupply>
+  <StatusBars>
+    <HeightOffset>1.5</HeightOffset>
+  </StatusBars>
   <UnitMotion>
     <WalkSpeed op="mul">0.25</WalkSpeed>
   </UnitMotion>

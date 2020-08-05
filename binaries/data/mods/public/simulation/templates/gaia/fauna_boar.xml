@@ -11,9 +11,9 @@
       <RepeatTime>1000</RepeatTime>
     </Melee>
   </Attack>
-  <Footprint replace="">
-    <Circle radius="1.0"/>
-    <Height>3.5</Height>
+  <Footprint>
+    <Square width="2.0" depth="4.0"/>
+    <Height>2.0</Height>
   </Footprint>
   <Identity>
     <GenericName>Wild Boar</GenericName>
@@ -24,7 +24,7 @@
     <Amount>150</Amount>
   </ResourceSupply>
   <StatusBars>
-    <HeightOffset>5.0</HeightOffset>
+    <HeightOffset>3.0</HeightOffset>
   </StatusBars>
   <VisualActor>
     <Actor>fauna/boar.xml</Actor>

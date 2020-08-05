@@ -13,7 +13,7 @@
   </Attack>
   <Footprint>
     <Square width="2.0" depth="4.0"/>
-    <Height>2.0</Height>
+    <Height>3.0</Height>
   </Footprint>
   <Identity>
     <GenericName>Lion</GenericName>
@@ -27,6 +27,9 @@
       <death>actor/fauna/animal/lion_death.xml</death>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <HeightOffset>4.0</HeightOffset>
+  </StatusBars>
   <UnitMotion>
     <WalkSpeed op="mul">0.45</WalkSpeed>
   </UnitMotion>

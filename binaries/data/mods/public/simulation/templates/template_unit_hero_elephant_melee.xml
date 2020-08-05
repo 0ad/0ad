@@ -25,8 +25,8 @@
       <metal>500</metal>
     </Resources>
   </Cost>
-  <Footprint>
-    <Circle radius="3.0"/>
+  <Footprint replace="">
+    <Square width="4.5" depth="9.0"/>
     <Height>9.0</Height>
   </Footprint>
   <Health>
@@ -35,6 +35,13 @@
   <Identity>
     <VisibleClasses datatype="tokens">Elephant Melee</VisibleClasses>
   </Identity>
+  <Selectable>
+    <Overlay>
+      <Shape>
+        <Circle radius="5.0"/>
+      </Shape>
+    </Overlay>
+  </Selectable>
   <Sound>
     <SoundGroups>
       <select>actor/fauna/animal/elephant_select.xml</select>
@@ -49,6 +56,9 @@
       <trained>actor/fauna/animal/elephant_trained.xml</trained>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <HeightOffset>10.0</HeightOffset>
+  </StatusBars>
   <UnitMotion>
     <PassabilityClass>large</PassabilityClass>
     <WalkSpeed op="mul">0.95</WalkSpeed>

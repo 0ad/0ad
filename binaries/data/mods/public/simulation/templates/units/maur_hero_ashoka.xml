@@ -4,18 +4,24 @@
     units/heroes/maur_hero_ashoka
   </Auras>
   <Footprint replace="">
-    <Square width="6.0" depth="12.0"/>
-    <Height>5.0</Height>
+    <Square width="8.0" depth="11.0"/>
+    <Height>6.0</Height>
   </Footprint>
   <Identity>
     <Civ>maur</Civ>
-    <Classes datatype="tokens">Ashoka</Classes>
-    <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
     <GenericName>Ashoka the Great</GenericName>
     <SpecificName>Aśoka Devānāmpriya</SpecificName>
+    <Classes datatype="tokens">Ashoka</Classes>
+    <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
     <Icon>units/maur_hero_ashoka.png</Icon>
-    <Tooltip>Hero Special: "Edicts of Ashoka" - Edict Pillars of Ashoka can be built during Ashoka's lifetime.</Tooltip>
   </Identity>
+  <Selectable>
+    <Overlay>
+      <Shape>
+        <Circle radius="5.0"/>
+      </Shape>
+    </Overlay>
+  </Selectable>
   <VisualActor>
     <Actor>units/mauryas/hero_chariot_archer_ashoka_m.xml</Actor>
   </VisualActor>

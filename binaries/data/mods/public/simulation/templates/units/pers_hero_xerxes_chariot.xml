@@ -4,17 +4,24 @@
     units/heroes/pers_hero_xerxes
   </Auras>
   <Footprint replace="">
-    <Square width="6.0" depth="12.0"/>
-    <Height>5.0</Height>
+    <Square width="11.0" depth="11.0"/>
+    <Height>6.0</Height>
   </Footprint>
   <Identity>
     <Civ>pers</Civ>
-    <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
     <Lang>persian</Lang>
     <GenericName>Xerxes I</GenericName>
     <SpecificName>Xšayāršā</SpecificName>
+    <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
     <Icon>units/pers_hero_xerxes.png</Icon>
   </Identity>
+  <Selectable>
+    <Overlay>
+      <Shape>
+        <Circle radius="5.0"/>
+      </Shape>
+    </Overlay>
+  </Selectable>
   <VisualActor>
     <Actor>units/persians/hero_chariot_archer_xerxes_m.xml</Actor>
   </VisualActor>

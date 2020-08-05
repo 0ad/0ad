@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt_aggressive_bear">
+  <Footprint>
+    <Square width="2.5" depth="5.0"/>
+    <Height>3.0</Height>
+  </Footprint>
   <Identity>
     <GenericName>Black Bear</GenericName>
     <SpecificName>Ursus americanus</SpecificName>
     <Icon>gaia/fauna_bear_black.png</Icon>
   </Identity>
+  <StatusBars>
+    <HeightOffset>4.0</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>fauna/bear_black.xml</Actor>
   </VisualActor>

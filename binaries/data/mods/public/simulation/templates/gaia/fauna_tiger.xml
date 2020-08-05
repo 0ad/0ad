@@ -12,14 +12,17 @@
     </Melee>
   </Attack>
   <Footprint>
-    <Square width="2.1" depth="4.2"/>
-    <Height>2.0</Height>
+    <Square width="2.0" depth="4.0"/>
+    <Height>2.5</Height>
   </Footprint>
   <Identity>
     <GenericName>Tiger</GenericName>
     <SpecificName>Panthera tigris</SpecificName>
     <Icon>gaia/fauna_tiger.png</Icon>
   </Identity>
+  <StatusBars>
+    <HeightOffset>3.5</HeightOffset>
+  </StatusBars>
   <Sound>
     <SoundGroups>
       <select>actor/fauna/animal/lion_select.xml</select>

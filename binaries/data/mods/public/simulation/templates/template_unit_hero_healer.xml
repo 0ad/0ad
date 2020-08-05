@@ -36,6 +36,9 @@
   </Position>
   <Selectable>
     <Overlay>
+      <Shape>
+        <Circle radius="2.0"/>
+      </Shape>
       <Texture>
         <MainTexture>128x128/star.png</MainTexture>
         <MainTextureMask>128x128/star_mask.png</MainTextureMask>

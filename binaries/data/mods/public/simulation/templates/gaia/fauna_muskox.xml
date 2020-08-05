@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt_skittish">
-  <Footprint replace="">
-    <Square width="2.1" depth="4.2"/>
-    <Height>2.0</Height>
+  <Footprint>
+    <Square width="2.5" depth="5.0"/>
+    <Height>3.5</Height>
   </Footprint>
   <Identity>
     <GenericName>Muskox</GenericName>
@@ -12,6 +12,9 @@
   <ResourceSupply>
     <Amount>200</Amount>
   </ResourceSupply>
+  <StatusBars>
+    <HeightOffset>4.5</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>fauna/muskox.xml</Actor>
   </VisualActor>

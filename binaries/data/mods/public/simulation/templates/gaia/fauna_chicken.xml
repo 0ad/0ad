@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_herd_domestic">
   <Footprint>
-    <Square width="0.9" depth="1.8"/>
-    <Height>1.0</Height>
+    <Square width="1.0" depth="2.0"/>
+    <Height>1.5</Height>
   </Footprint>
   <Health>
     <Max>5</Max>
@@ -30,7 +30,7 @@
     </SoundGroups>
   </Sound>
   <StatusBars>
-    <HeightOffset>3.0</HeightOffset>
+    <HeightOffset>2.5</HeightOffset>
   </StatusBars>
   <UnitAI>
     <RoamDistance>4.0</RoamDistance>

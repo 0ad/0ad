@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_wild_defensive_fox">
+  <Footprint>
+    <Square width="1.0" depth="2.0"/>
+    <Height>1.5</Height>
+  </Footprint>
   <Identity>
     <GenericName>Red Fox</GenericName>
     <SpecificName>Vulpes vulpes</SpecificName>
     <Icon>gaia/fauna_fox_red.png</Icon>
   </Identity>
+  <StatusBars>
+    <HeightOffset>2.5</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>fauna/fox_red.xml</Actor>
   </VisualActor>

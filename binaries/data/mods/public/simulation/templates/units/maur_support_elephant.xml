@@ -14,9 +14,9 @@
       <food>150</food>
     </Resources>
   </Cost>
-  <Footprint>
-    <Circle radius="4.0"/>
-    <Height>6.0</Height>
+  <Footprint replace="">
+    <Square width="4.5" depth="9.0"/>
+    <Height>8.0</Height>
   </Footprint>
   <Health>
     <Max>300</Max>
@@ -47,8 +47,8 @@
   <Selectable>
     <Overlay>
       <Texture>
-        <MainTexture>256x256/ellipse.png</MainTexture>
-        <MainTextureMask>256x256/ellipse_mask.png</MainTextureMask>
+        <MainTexture>128x256/ellipse.png</MainTexture>
+        <MainTextureMask>128x256/ellipse_mask.png</MainTextureMask>
       </Texture>
     </Overlay>
   </Selectable>
@@ -62,6 +62,9 @@
       <trained>actor/fauna/animal/elephant_trained.xml</trained>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <HeightOffset>9.0</HeightOffset>
+  </StatusBars>
   <UnitAI>
     <CanPatrol>false</CanPatrol>
   </UnitAI>

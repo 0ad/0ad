@@ -15,8 +15,8 @@
     </Melee>
   </Attack>
   <Footprint>
-    <Square width="2.5" depth="5"/>
-    <Height>1.5</Height>
+    <Square width="3.0" depth="6.0"/>
+    <Height>3.5</Height>
   </Footprint>
   <Health>
     <Max>200</Max>
@@ -39,6 +39,9 @@
       <death>actor/fauna/animal/lion_death.xml</death>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <HeightOffset>4.5</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>fauna/hippopotamus.xml</Actor>
   </VisualActor>

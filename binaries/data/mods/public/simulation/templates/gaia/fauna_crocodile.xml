@@ -12,8 +12,8 @@
     </Melee>
   </Attack>
   <Footprint>
-    <Square width="3.5" depth="7.0"/>
-    <Height>1.5</Height>
+    <Square width="3.0" depth="12.0"/>
+    <Height>2.0</Height>
   </Footprint>
   <Identity>
     <GenericName>Nile Crocodile</GenericName>
@@ -23,6 +23,14 @@
   <Position>
     <Anchor>pitch-roll</Anchor>
   </Position>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>128x512/ellipse.png</MainTexture>
+        <MainTextureMask>128x512/ellipse_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <Sound>
     <SoundGroups>
       <select>actor/fauna/animal/lion_select.xml</select>
@@ -30,6 +38,9 @@
       <death>actor/fauna/animal/lion_death.xml</death>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <HeightOffset>3.0</HeightOffset>
+  </StatusBars>
   <UnitMotion>
     <WalkSpeed op="mul">0.3</WalkSpeed>
   </UnitMotion>

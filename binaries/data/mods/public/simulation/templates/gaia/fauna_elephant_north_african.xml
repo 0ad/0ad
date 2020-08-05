@@ -2,7 +2,7 @@
 <Entity parent="template_unit_fauna_hunt_defensive_elephant">
   <Footprint>
     <Square width="3.5" depth="7.0"/>
-    <Height>3.0</Height>
+    <Height>6.5</Height>
   </Footprint>
   <Health>
     <Max>200</Max>
@@ -18,6 +18,9 @@
   <ResourceSupply>
     <Amount>500</Amount>
   </ResourceSupply>
+  <StatusBars>
+    <HeightOffset>7.5</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>fauna/elephant_african_forest.xml</Actor>
   </VisualActor>

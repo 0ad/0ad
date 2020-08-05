@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt_skittish">
   <Footprint>
-    <Square width="1.9" depth="3.8"/>
-    <Height>3.5</Height>
+    <Square width="2.0" depth="4.0"/>
+    <Height>7.5</Height>
   </Footprint>
   <Identity>
     <GenericName>Juvenile Giraffe</GenericName>
@@ -13,7 +13,7 @@
     <Amount>150</Amount>
   </ResourceSupply>
   <StatusBars>
-    <HeightOffset>7.0</HeightOffset>
+    <HeightOffset>8.5</HeightOffset>
   </StatusBars>
   <UnitMotion>
     <WalkSpeed op="mul">0.6</WalkSpeed>

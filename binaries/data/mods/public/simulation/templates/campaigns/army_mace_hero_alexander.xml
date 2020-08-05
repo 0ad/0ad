@@ -19,7 +19,7 @@
     <SinkAccel>9.8</SinkAccel>
   </Decay>
   <Footprint>
-    <Circle radius="12.0"/>
+    <Circle radius="8.0"/>
     <Height>12.0</Height>
   </Footprint>
   <Identity>
@@ -29,6 +29,13 @@
     <Tooltip>This is what an army would look like on the Strat Map.</Tooltip>
     <Icon>units/mace_hero_alexander.png</Icon>
   </Identity>
+  <Selectable>
+    <Overlay>
+      <Shape>
+        <Circle radius="16.0"/>
+      </Shape>
+    </Overlay>
+  </Selectable>
   <StatusBars>
     <BarWidth>6.0</BarWidth>
     <BarHeight>0.6</BarHeight>
