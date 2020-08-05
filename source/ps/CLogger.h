@@ -18,6 +18,7 @@
 #ifndef INCLUDED_CLOGGER
 #define INCLUDED_CLOGGER
 
+#include <deque>
 #include <fstream>
 #include <mutex>
 #include <string>
