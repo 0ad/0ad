@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military">
   <Auras datatype="tokens">
-    structures/workshop_repair
+    structures/arsenal_repair
   </Auras>
   <Cost>
     <BuildTime>180</BuildTime>
@@ -22,10 +22,10 @@
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_5x5</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <GenericName>Siege Workshop</GenericName>
-    <SelectionGroupName>template_structure_military_workshop</SelectionGroupName>
+    <GenericName>Arsenal</GenericName>
+    <SelectionGroupName>template_structure_military_arsenal</SelectionGroupName>
     <Tooltip>Train Champion Infantry Crossbowmen, construct Siege Engines, and research Siege Engine technologies.</Tooltip>
-    <VisibleClasses datatype="tokens">City Workshop</VisibleClasses>
+    <VisibleClasses datatype="tokens">City Arsenal</VisibleClasses>
     <Icon>structures/siege_workshop.png</Icon>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
