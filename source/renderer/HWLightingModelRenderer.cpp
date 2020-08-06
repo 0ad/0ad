@@ -96,7 +96,7 @@ struct ShaderModel : public CModelRData
 };
 
 
-struct ShaderModelRendererInternals
+struct ShaderModelVertexRenderer::ShaderModelRendererInternals
 {
 	bool cpuLighting;
 

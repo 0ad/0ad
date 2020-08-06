@@ -201,7 +201,7 @@ void ModelRenderer::BuildIndices(
  * Separated into the source file to increase implementation hiding (and to
  * avoid some causes of recompiles).
  */
-struct ShaderModelRendererInternals
+struct ShaderModelRenderer::ShaderModelRendererInternals
 {
 	ShaderModelRendererInternals(ShaderModelRenderer* r) : m_Renderer(r) { }
 
