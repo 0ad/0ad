@@ -4,6 +4,7 @@
 function DiskPlacer(radius, centerPosition = undefined)
 {
 	this.radiusSquared = Math.square(radius);
+	this.radius = radius;
 	this.centerPosition = undefined;
 
 	if (centerPosition)
@@ -19,12 +20,17 @@ DiskPlacer.prototype.place = function(constraint)
 {
 	let points = [];
 
-	for (let x = 0; x < g_Map.getSize(); ++x)
-		for (let y = 0; y < g_Map.getSize(); ++y)
+	const xMin = Math.floor(Math.max(0, this.centerPosition.x - this.radius));
+	const yMin = Math.floor(Math.max(0, this.centerPosition.y - this.radius));
+	const xMax = Math.ceil(Math.min(g_Map.getSize() - 1, this.centerPosition.x + this.radius));
+	const yMax = Math.ceil(Math.min(g_Map.getSize() - 1, this.centerPosition.y + this.radius));
+
+	let it = new Vector2D();
+	for (it.x = xMin; it.x <= xMax; ++it.x)
+		for (it.y = yMin; it.y <= yMax; ++it.y)
 		{
-			let point = new Vector2D(x, y);
-			if (this.centerPosition.distanceToSquared(point) <= this.radiusSquared && constraint.allows(point))
-				points.push(point);
+			if (this.centerPosition.distanceToSquared(it) <= this.radiusSquared && constraint.allows(it))
+				points.push(it.clone());
 		}
 
 	return points;
