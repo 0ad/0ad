@@ -1240,8 +1240,11 @@ UnitAI.prototype.UnitFsmSpec = {
 				// a group of unit and does not have a well-defined position,
 				// so move the controller out of the world to enforce that.
 				let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-				if (cmpPosition)
+				if (cmpPosition && cmpPosition.IsInWorld())
+				{
+					this.StopMoving();
 					cmpPosition.MoveOutOfWorld();
+				}
 
 				this.StartTimer(1000, 1000);
 				return false;

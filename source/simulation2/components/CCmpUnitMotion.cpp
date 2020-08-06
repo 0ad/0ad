@@ -1075,13 +1075,12 @@ bool CCmpUnitMotion::HandleObstructedMove()
 		// Inform other components - we might be ordered to stop, and computeGoal will then fail and return early.
 		MoveObstructed();
 
-	CFixedVector2D pos = cmpPosition->GetPosition2D();
-
-	// Oops, we hit something (very likely another unit).
-
 	PathGoal goal;
 	if (!ComputeGoal(goal, m_MoveRequest))
 		return false;
+
+	// At this point we have a position in the world since ComputeGoal checked for that.
+	CFixedVector2D pos = cmpPosition->GetPosition2D();
 
 	if (!InShortPathRange(goal, pos))
 	{
