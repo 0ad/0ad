@@ -1992,9 +1992,9 @@ PETRA.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 		return;
 	}
 
-	if (this.canBuild(gameState, "structures/{civ}_workshop") && !gameState.getOwnEntitiesByClass("Workshop", true).hasEntities())
+	if (this.canBuild(gameState, "structures/{civ}_arsenal") && !gameState.getOwnEntitiesByClass("Arsenal", true).hasEntities())
 	{
-		queues.militaryBuilding.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_workshop", { "militaryBase": true }));
+		queues.militaryBuilding.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_arsenal", { "militaryBase": true }));
 		return;
 	}
 

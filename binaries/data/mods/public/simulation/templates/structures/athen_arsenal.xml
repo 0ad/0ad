@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_military_workshop">
+<Entity parent="template_structure_military_arsenal">
   <Identity>
-    <Civ>ptol</Civ>
+    <Civ>athen</Civ>
     <SpecificName>Hoplothēkē</SpecificName>
   </Identity>
   <VisualActor>
-    <Actor>structures/ptolemies/workshop.xml</Actor>
+    <Actor>structures/hellenes/workshop.xml</Actor>
   </VisualActor>
 </Entity>

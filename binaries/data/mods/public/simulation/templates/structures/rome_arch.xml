@@ -41,6 +41,9 @@
   </Sound>
   <TerritoryDecay disable=""/>
   <TerritoryInfluence disable=""/>
+  <Vision>
+    <Range>1</Range>
+  </Vision>
   <VisualActor>
     <Actor>structures/romans/triumphal_arch.xml</Actor>
     <FoundationActor>structures/fndn_5x3.xml</FoundationActor>
