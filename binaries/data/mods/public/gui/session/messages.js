@@ -159,10 +159,10 @@ var g_NotificationsTypes =
 		addChatMessage({
 			"type": "barter",
 			"player": player,
-			"amountsSold": notification.amountsSold,
-			"amountsBought": notification.amountsBought,
-			"resourceSold": notification.resourceSold,
-			"resourceBought": notification.resourceBought
+			"amountGiven": notification.amountGiven,
+			"amountGained": notification.amountGained,
+			"resourceGiven": notification.resourceGiven,
+			"resourceGained": notification.resourceGained
 		});
 	},
 	"spy-response": function(notification, player)
