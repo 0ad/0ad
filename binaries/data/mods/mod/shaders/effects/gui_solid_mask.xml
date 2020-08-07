@@ -2,6 +2,11 @@
 <effect>
 
     <technique>
+        <require shaders="arb"/>
+        <pass shader="arb/gui_solid_mask"/>
+    </technique>
+
+    <technique>
         <require shaders="fixed"/>
         <pass shader="fixed:gui_solid"/>
     </technique>

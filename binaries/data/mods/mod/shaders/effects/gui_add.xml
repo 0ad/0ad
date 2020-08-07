@@ -2,6 +2,11 @@
 <effect>
 
     <technique>
+        <require shaders="arb"/>
+        <pass shader="arb/gui_add"/>
+    </technique>
+
+    <technique>
         <require shaders="fixed"/>
         <pass shader="fixed:gui_add"/>
     </technique>
