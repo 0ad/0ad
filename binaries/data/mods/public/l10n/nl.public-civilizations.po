@@ -39,9 +39,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-27 07:09+0000\n"
-"PO-Revision-Date: 2020-07-27 11:43+0000\n"
-"Last-Translator: Avinash Gowricharn <avinash.go@gmail.com>\n"
+"POT-Creation-Date: 2020-08-03 07:16+0000\n"
+"PO-Revision-Date: 2020-08-03 11:14+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,7 +58,7 @@ msgstr "Atheners"
 #: simulation/data/civs/mace.jsonCivBonuses[0].Description
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "-10% sterkte en +10% veroveringspunten voor gebouwen."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 #: simulation/data/civs/mace.jsonCivBonuses[0].Name
@@ -468,7 +468,7 @@ msgstr "Carthago"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "+100% bouwtijd, +100 steenkosten en +200% sterkte voor muren."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -480,7 +480,7 @@ msgstr "Carthagers bouwden een drievoudige stadsmuur."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "Allies +10% international trade bonus."
-msgstr ""
+msgstr "Geallieerden +10% internationale handelsbonus."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -711,17 +711,17 @@ msgstr "Keltische religie inspireerde hun moed om te vechten."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Blacksmiths −15% technology resource costs and research time."
-msgstr ""
+msgstr "-15% grondstoffen en onderzoekstijd voor smederijen."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Products from Gaul"
-msgstr ""
+msgstr "Producten uit Gallië"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Gauls produced and exported swords and scabbards, woolen and leather "
 "products, and other arms."
-msgstr ""
+msgstr "De Galliërs produceerden en exporteerden zwaarden en zwaardschedes, houten en leerproducten en andere wapens."
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -772,13 +772,13 @@ msgstr "Arbeiders +15% graanverzamelingssnelheid."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Harvesting Machine"
-msgstr ""
+msgstr "Oogstmachine"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr ""
+msgstr "De Galliërs vonden een oogstmachine uit waardoor de graanoogst veel eenvoudiger werd."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -901,7 +901,7 @@ msgstr "Met uitzondering van de slibgebieden en riviervalleien is er steen in ov
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Javelineers −10% resource costs."
-msgstr ""
+msgstr "Geallieerde burger speerwerpers kosten -10% grondstoffen."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1132,7 +1132,7 @@ msgstr "Amanishakheto"
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "Boogschutters -10% rekruteringstijd, +8 aanvalsbereik en -10% spreidingsbereik."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
@@ -1144,7 +1144,7 @@ msgstr "Boogschutterstraditie"
 msgid ""
 "The Kushites had a tradition of fine archery and a penchant for using massed"
 " archers in battle."
-msgstr ""
+msgstr "De Koesjiten hadden een traditie van hoog ontwikkelde boogschutterij en zetten bij voorkeur grote groepen boogschutters in bij het gevecht."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "Monumental Architecture"
@@ -1153,7 +1153,7 @@ msgstr "Monumentale Architectuur"
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "+20% bouwtijd, +20% sterkte en +20% veroveringspunten voor burgergebouwen"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Description
 msgid "Train elite rank healers."
@@ -1323,7 +1323,7 @@ msgstr "Meleager"
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Description
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Beschavingscentra +100% gezondheid en veroveringspunten en dubbel zoveel standaardpijlen."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
@@ -1344,7 +1344,7 @@ msgstr "Vanaf Alexander hebben de Helleense monarchen veel steden gesticht doorh
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr ""
+msgstr "Promoveer de schilddrager kampioeninfanterie naar Zilveren Schilden, met meer gezondheid en grotere aanvalskracht."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
 msgid "Silver Shields"
@@ -1463,11 +1463,11 @@ msgstr "De Mauryadynastie regeerde over een gebied dat dozijnen oude koninkrijke
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "-30% rekruteringstijd voor olifanten."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "Olifanttraditie"
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].History
 msgid ""
@@ -1475,7 +1475,7 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr ""
+msgstr "India is het land van de olifanten. Oorlogsvoering met olifanten ontstond in India en is duizenden jaren toegepast. Landen in de Levant haalden hun olifanten uit India. Indiase koningen konden grote aantallen oorlogsolifanten in de strijd werpen."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid ""
@@ -1534,7 +1534,7 @@ msgstr "Brihadratha Maurya"
 msgid ""
 "The Indian peoples had a tradition of fine archery and a penchant for using "
 "massed archers in battle."
-msgstr ""
+msgstr "De Indiase volkeren hadden een traditie van hoog ontwikkelde boogschutterij en zetten bij voorkeur grote groepen boogschutters in bij het gevecht."
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -1558,11 +1558,11 @@ msgstr "Mauryaanse Indiërs"
 
 #: simulation/data/civs/maur.jsonStructures[0].Name
 msgid "Elephant Stable"
-msgstr ""
+msgstr "Olifantenstal"
 
 #: simulation/data/civs/maur.jsonStructures[0].Special
 msgid "Train Elephants and research Elephant technologies."
-msgstr ""
+msgstr "Rekruteer olifanten en onderzoek olifanttechnologieën."
 
 #: simulation/data/civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
@@ -1681,7 +1681,7 @@ msgstr "Xsayarsa II"
 msgid ""
 "The Iranian peoples had a tradition of fine archery and a penchant for using"
 " massed archers in battle."
-msgstr ""
+msgstr "De Perzische volkeren hadden een traditie van hoog ontwikkelde boogschutterij en zetten bij voorkeur grote groepen boogschutters in bij het gevecht."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry."
@@ -1722,7 +1722,7 @@ msgstr "De Perzen bouwden de wonderbaarlijke, 2700 kilometer lange koningsweg va
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
 msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "-50% rekruteringstijd voor de Anusiya kampioensnfanterie, maar ook -10% gezondheid."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
 msgid "Immortals"
@@ -1732,7 +1732,7 @@ msgstr "Onsterfelijken"
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "De Achaemeniden onderhielden een elite corps van 10.000 soldaten, door Griekse auteurs de  Athanatoi (\"onsterfelijken\") genoemd."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
@@ -1787,7 +1787,7 @@ msgstr "Stal"
 
 #: simulation/data/civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry and research Cavalry technologies."
-msgstr ""
+msgstr "Rekruteer cavalerie en onderzoek cavalerietechnologieën."
 
 #: simulation/data/civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
@@ -2353,11 +2353,11 @@ msgstr "Het mooie en krachtige Niseaans paardenras zorgt voor een hogere gezondh
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
 msgid ""
 "Unlock either Champion Infantry Pikemen or Champion Infantry Swordsmen."
-msgstr ""
+msgstr "Ontsluit de kampioen infanterie piekeniers óf de kampioen infanterie zwaardvechters."
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
 msgid "Traditional Army vs Reform Army"
-msgstr ""
+msgstr "Traditioneel leger vs. hervormd leger"
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -2523,9 +2523,8 @@ msgstr "Agesipolis"
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
-"against any attackers. They are also capable of constructing defense towers "
-"and palisades."
-msgstr "Spartaanse vrouwen kunnen niet gevangengenomen worden en zullen altijd terugvechten. Ze zijn ook in staat defensietorens en palissades te bouwen."
+"against any attackers."
+msgstr ""
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
@@ -2559,7 +2558,7 @@ msgstr "Paeans waren gevechtshymnes die werden gezongen door hoplieten als ze te
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "Kampioen infanterie speervechters krijgen +25% gezondheid, maar kosten +5% meer rekruteringstijd."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"

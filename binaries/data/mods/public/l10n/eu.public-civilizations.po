@@ -5,16 +5,16 @@
 # Translators:
 # Ibai Oihanguren Sala <ibai@oihanguren.com>, 2014
 # Thadah D. Denyse <juchuf@gmail.com>, 2016
-# pospolos <pospolos@gmail.com>, 2017-2020
+# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2020
 # Osoitz <oelkoro@gmail.com>, 2015,2019-2020
-# pospolos <pospolos@gmail.com>, 2020
+# Mielanjel Iraeta <pospolos@gmail.com>, 2020
 # Quintana Salazar <quintana.salazar.unai@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-27 07:09+0000\n"
-"PO-Revision-Date: 2020-07-29 11:02+0000\n"
-"Last-Translator: pospolos <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2020-08-03 07:16+0000\n"
+"PO-Revision-Date: 2020-08-03 11:14+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1105,7 +1105,7 @@ msgstr "Amanishakheto"
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "Arkulariak %10- trebatze denboran, 8+ erasoan, eta %10- erasoa zabaltzean."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
@@ -1117,7 +1117,7 @@ msgstr "Arkulari Usadioa"
 msgid ""
 "The Kushites had a tradition of fine archery and a penchant for using massed"
 " archers in battle."
-msgstr ""
+msgstr "Kushitek arkulari usadio handia zuten eta borrokan arkulari asko erabiltzea hobesten zuten."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "Monumental Architecture"
@@ -1126,7 +1126,7 @@ msgstr "Arkitektura Monumentala"
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "Egitura zibilak %20+ eraikitze denboran, %20+ osasunean, eta %20+ atzemate puntu."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Description
 msgid "Train elite rank healers."
@@ -1296,7 +1296,7 @@ msgstr "Meleagro"
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Description
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Hiriguneek %100+ irabazten dute osasunean eta atzitze puntuetan, berezko gezien kopurua bikoiztuz."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
@@ -1317,7 +1317,7 @@ msgstr "Alejandro aitzindari, heleniar erregeek hiri asko sortu zituzten beren i
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr ""
+msgstr "Sustatu Infanteria ezkutu eroale aldezkaria Zilarrezko Ezkutuetara, osasun eta eraso kalte gehiagorekin."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
 msgid "Silver Shields"
@@ -1436,11 +1436,11 @@ msgstr "Maurya Inperioak lehen independente izandako hamarnaka erresuma biltzen 
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "Elefanteak 30%- trebatze denboran."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "Elefanteen usadioa"
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].History
 msgid ""
@@ -1448,7 +1448,7 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr ""
+msgstr "India elefanteen lurraldea da. Elefanteen gerra Indian sortu zen eta milaka urtez jarraitu zuen. Ekialdeko Mediterraneorako elefante iturria ere izan zen. Indiako erregeek gerrako elefante kopuru handia zabaldu ahal izan zuten."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid ""
@@ -1507,7 +1507,7 @@ msgstr "Brihadratha Maurya"
 msgid ""
 "The Indian peoples had a tradition of fine archery and a penchant for using "
 "massed archers in battle."
-msgstr ""
+msgstr "Indiar herritarrek arkulari usadio handia zuten eta borrokan arkulari asko erabiltzea hobesten zuten."
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -1654,7 +1654,7 @@ msgstr "Xsayarsa II"
 msgid ""
 "The Iranian peoples had a tradition of fine archery and a penchant for using"
 " massed archers in battle."
-msgstr ""
+msgstr "Irandar herritarrek arkulari usadio handia zuten eta borrokan arkulari asko erabiltzea hobesten zuten."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry."
@@ -1695,7 +1695,7 @@ msgstr "Persiarrek 2700 kilometroetan zehar eraiki zuten sinistu ezinezko Errege
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
 msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "Anušiya infanteria aldezkaria %50- entrenatzeko denboran, baina %20- osasunean."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
 msgid "Immortals"
@@ -1705,7 +1705,7 @@ msgstr "Hilezkorrak"
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "Akemenidarrek 10.000 soldaduko eliteko gorputz bat mantendu zuten, Athanatoi (hilezkorrak) bezala ezagutua egile greziarren aldetik."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
@@ -2326,11 +2326,11 @@ msgstr "Nisea zaldi arraza polit eta indartsuak osasuna handitzen dio Seleuziar 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
 msgid ""
 "Unlock either Champion Infantry Pikemen or Champion Infantry Swordsmen."
-msgstr ""
+msgstr "\nDesblokeatu Infanteriako pikari edo Infanteriako Ezpatari txapeldunak."
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
 msgid "Traditional Army vs Reform Army"
-msgstr ""
+msgstr "Ohiko Armada vs Erreformaren Armada"
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -2496,9 +2496,8 @@ msgstr "Agesipolis"
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
-"against any attackers. They are also capable of constructing defense towers "
-"and palisades."
-msgstr "Espartar hiritar emeak ezin dira atzitu eta edozein erasotzailearen kontra sutsuki borrokatuko dira. Era berean babes dorre eta egur harresiak eraikitzeko gai dira."
+"against any attackers."
+msgstr ""
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
@@ -2532,7 +2531,7 @@ msgstr "Elegia hauek borroka ereserkiak ziren eta hoplitak etsaien lerroen kontr
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "Infanteriako lantzari aldezkariak 25%+ osasunean, %5+ trebatze denboran."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"

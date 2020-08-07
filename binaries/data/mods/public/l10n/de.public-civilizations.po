@@ -12,6 +12,7 @@
 # Ankomias, 2014
 # Artur Epp, 2014
 # azrdev <azrdev@qrdn.de>, 2014
+# Benjamin Seipel <Benjamin.seipel@online.de>, 2020
 # Candy_man <nix@mailinator.net>, 2014
 # chaosville <m.hammel@gmail.com>, 2013
 # cledge <christiankletsch@gmx.de>, 2014
@@ -32,8 +33,9 @@
 # Luis W. <windgans@protonmail.com>, 2019
 # Mansent, 2013
 # Marcel Haring, 2013-2014
+# Martin H <pilino1234@zoho.eu>, 2020
 # mathias.n.graf <mathias.n.graf@gmail.com>, 2013
-# pilino1234 <pilino1234@zoho.eu>, 2016
+# Martin H <pilino1234@zoho.eu>, 2016
 # nylki, 2013
 # Patremus, 2014
 # Patrick Kohan <patrick.kohan@gmail.com>, 2014
@@ -63,9 +65,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-27 07:09+0000\n"
-"PO-Revision-Date: 2020-07-27 11:43+0000\n"
-"Last-Translator: xtother90\n"
+"POT-Creation-Date: 2020-08-03 07:16+0000\n"
+"PO-Revision-Date: 2020-08-05 16:01+0000\n"
+"Last-Translator: Benjamin Seipel <Benjamin.seipel@online.de>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,7 +84,7 @@ msgstr "Athener"
 #: simulation/data/civs/mace.jsonCivBonuses[0].Description
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "Gebäude +10% Gesundheit und +10% Eroberungspunkte."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 #: simulation/data/civs/mace.jsonCivBonuses[0].Name
@@ -318,7 +320,7 @@ msgstr "Britonen"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "Allied Healers −20% resource costs."
-msgstr "Verbündete Heiler -20% Rohstoffkosten."
+msgstr "Verbündete Heiler −20% Rohstoffkosten."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -492,7 +494,7 @@ msgstr "Karthager"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "Mauern +100% Bauzeit, +100% Steinkosten und +200% Gesundheit."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -504,7 +506,7 @@ msgstr "Die Karthager bauten dreifache Stadtmauern. "
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "Allies +10% international trade bonus."
-msgstr ""
+msgstr "Verbündete +10% internationaler Handelsbonus für verbündete Märkte."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -925,7 +927,7 @@ msgstr "Auf der iberischen Halbinsel gibt es mit Ausnahme von Schwemmgebieten un
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Javelineers −10% resource costs."
-msgstr ""
+msgstr "Verbündete Zivilspeerwerfer −10% Rohstoffkosten."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1156,7 +1158,7 @@ msgstr "Amanischacheto"
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "Bogenschützten −10% Ausbildungszeit, +8 Angriffsreichweite und −10% Streuung."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
@@ -1168,7 +1170,7 @@ msgstr "Bogenschießtradition"
 msgid ""
 "The Kushites had a tradition of fine archery and a penchant for using massed"
 " archers in battle."
-msgstr ""
+msgstr "Bei den Kuschiten galt das präzise Bogenschießen als Tradition und sie bevorzugten es, mächtige Bogenschützen in ihren Schlachten einzusetzen."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "Monumental Architecture"
@@ -1177,7 +1179,7 @@ msgstr "Monumentale Architektur"
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr "Zivile Strukturen +20% Bauzeit, +20% Gesundheit und +20% Eroberungspunkte."
+msgstr "Zivile Gebäude +20% Bauzeit, +20% Gesundheit und +20% Eroberungspunkte."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Description
 msgid "Train elite rank healers."
@@ -1347,7 +1349,7 @@ msgstr "Meleagros"
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Description
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Verwaltungssitze +100% Gesundheit und Eroberungspunkte und doppelt so viele Pfeile."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
@@ -1368,7 +1370,7 @@ msgstr "Beginnend mit Alexander gründeten die hellenistischen Monarchen viele S
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr ""
+msgstr "Verbessert die Schildträger-Gardisteninfantrie zu Silberschilden, mit mehr Gesundheit und Angriffsschaden."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
 msgid "Silver Shields"
@@ -1558,7 +1560,7 @@ msgstr "Brihadratha"
 msgid ""
 "The Indian peoples had a tradition of fine archery and a penchant for using "
 "massed archers in battle."
-msgstr ""
+msgstr "Die indischen Völker hatten eine Tradition des ausgezeichneten Bogenschießens und eine Vorliebe für den Einsatz von Bogenschützen in der Schlacht."
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -1582,7 +1584,7 @@ msgstr "Maurya-Inder"
 
 #: simulation/data/civs/maur.jsonStructures[0].Name
 msgid "Elephant Stable"
-msgstr ""
+msgstr "Elefantenstall"
 
 #: simulation/data/civs/maur.jsonStructures[0].Special
 msgid "Train Elephants and research Elephant technologies."
@@ -1705,7 +1707,7 @@ msgstr "Hšayāŗšā II."
 msgid ""
 "The Iranian peoples had a tradition of fine archery and a penchant for using"
 " massed archers in battle."
-msgstr ""
+msgstr "Die iranischen Völker hatten eine Tradition des ausgezeichneten Bogenschießens und eine Vorliebe für den Einsatz von Bogenschützen in der Schlacht."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry."
@@ -1746,7 +1748,7 @@ msgstr "Die Perser bauten eine 2700 Kilometer lange Königliche Schnellstraße v
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
 msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "Anušiyagardeinfanterie −50% Ausbildungszeit aber auch −10% Gesundheit."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
 msgid "Immortals"
@@ -1756,7 +1758,7 @@ msgstr "Unsterbliche"
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "Die Achämeniden unterhielten ein 10.000-Mann starkes Eliteheer, von Griechischen Autoren als Athanatoi (\"Unsterbliche\") bezeichnet."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
@@ -2058,7 +2060,7 @@ msgstr "Die Römische Bürgerschaft wurde in der Antike hoch geschätzt. Römisc
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Infantry −10% training time."
-msgstr "Verbündete Zivilinfanterie erhält -10% auf Ausbildungszeit"
+msgstr "Verbündete Zivilinfanterie erhält −10% auf Ausbildungszeit"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
@@ -2239,7 +2241,7 @@ msgstr "Seleukiden"
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Description
 msgid "Allied Civil Centers −20% resource costs."
-msgstr "Verbündete Verwaltungssitze -20% Rohstoffkosten."
+msgstr "Verbündete Verwaltungssitze −20% Rohstoffkosten."
 
 #: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2377,7 +2379,7 @@ msgstr "Die schöne und mächtige Rasse der Nisaia-Pferde erhöht die Gesundheit
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
 msgid ""
 "Unlock either Champion Infantry Pikemen or Champion Infantry Swordsmen."
-msgstr ""
+msgstr "Gardistenpikenier oder Gardistenschwertkämpfer freischalten."
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
 msgid "Traditional Army vs Reform Army"
@@ -2547,9 +2549,8 @@ msgstr "Agesipolis I."
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
-"against any attackers. They are also capable of constructing defense towers "
-"and palisades."
-msgstr "Spartanische Bürgerinnen können nicht gefangen genommen werden und bekämpfen verbissen jeden Angreifer. Sie können auch Verteidigungstürme und Palisaden bauen."
+"against any attackers."
+msgstr "Spartanische Bürgerinnen können nicht gefangen genommen werden und bekämpfen verbissen jeden Angreifer."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
@@ -2583,7 +2584,7 @@ msgstr "Päane waren Kampfhymnen, die die Hopliten sangen, während sie gegen di
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "Gardistspeerkämpfer +25% Gesundheit, aber auch +5% Ausbildungszeit."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"

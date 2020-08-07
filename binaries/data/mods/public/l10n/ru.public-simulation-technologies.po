@@ -49,8 +49,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-27 07:10+0000\n"
-"PO-Revision-Date: 2020-07-27 08:27+0000\n"
+"POT-Creation-Date: 2020-08-03 07:17+0000\n"
+"PO-Revision-Date: 2020-08-03 08:24+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +108,6 @@ msgstr "Шамфрон"
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
-#: simulation/data/technologies/buildtime_walls_rubble.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
@@ -118,7 +117,6 @@ msgstr "Шамфрон"
 #: simulation/data/technologies/heal_barracks.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
-#: simulation/data/technologies/health_walls_geometric_masonry.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
@@ -494,18 +492,6 @@ msgstr "Булат"
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.iber
 msgid "Toledo Steel"
 msgstr "Толедская сталь"
-
-#: simulation/data/technologies/buildtime_walls_rubble.jsondescription
-msgid "Using rubble materials reduces the costs and build times of walls."
-msgstr "Использование бутового камня сокращает затраты и время создания стен."
-
-#: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "Walls −20% build time, but −1 crush armor."
-msgstr ""
-
-#: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
-msgid "Rubble Materials"
-msgstr "Бутовая кладка"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -884,22 +870,6 @@ msgstr "Живые юниты во время бездействия понем�
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
 msgstr "Военно-полевая медицина"
-
-#: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
-msgid "Using geometric masonry increases the sturdiness of defensive walls."
-msgstr "При использовании геометрической кладки повышается прочность оборонительных стен."
-
-#: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "Walls +2 crush armor, but +10% build time."
-msgstr ""
-
-#: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
-msgid "Geometric Masonry"
-msgstr "Геометрическая кладка"
-
-#: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Wall armor vs build time."
-msgstr ""
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1721,7 +1691,7 @@ msgstr "Божественное Учение"
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "Ахемениды содержали элитный отряд из 10,000 воинов, который греческие историки называли Атанатои (\"Бессмертные\")."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anušiya Champion Infantry -50% train time, but also -10% health."

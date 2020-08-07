@@ -7,7 +7,7 @@
 # Cecil Rhodes <taxat98895@lercjy.com>, 2020
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
-# Halyna Bondar <jockyani@rambler.ru>, 2020
+# Halyna Bondar, 2020
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Oleg Adept <adeptoleg@gmail.com>, 2016
 # Антон Курило, 2017
@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:09+0000\n"
-"PO-Revision-Date: 2020-07-30 05:40+0000\n"
-"Last-Translator: Halyna Bondar <jockyani@rambler.ru>\n"
+"POT-Creation-Date: 2020-07-31 07:09+0000\n"
+"PO-Revision-Date: 2020-07-31 17:26+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1228,7 +1228,7 @@ msgstr "Клацнути правою кнопкою миші, щоб перег
 msgid "Click to view more information."
 msgstr "Клацнути, щоб переглянути більше інформації."
 
-#: gui/credits/credits.js:81
+#: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
 msgstr ""
@@ -2526,106 +2526,102 @@ msgctxt "summary chart"
 msgid "Type"
 msgstr "Тип"
 
-#: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
+#: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
 msgstr "Художник"
 
-#: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
-msgid "Sound Manager"
-msgstr "Звукооператор"
-
-#: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
-msgid "Composer"
-msgstr "Композитор"
-
-#: gui/credits/texts/art.jsonContent[0].Title
-msgid "Artistic managers"
-msgstr "Художні керівники"
-
 #: gui/credits/texts/art.jsonContent[1].Title
-msgid "Map Making"
-msgstr "Редактор карт"
-
-#: gui/credits/texts/art.jsonContent[2].Title
-msgid "Random Map Scripts"
-msgstr "Скрипти випадкової карти"
-
-#: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
 msgstr "2D Художники"
 
-#: gui/credits/texts/art.jsonContent[4].Title
+#: gui/credits/texts/art.jsonContent[2].Title
 msgid "3D Art"
 msgstr "3D Художники"
-
-#: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
-msgid "Additional music, percussion, djembe, sampling"
-msgstr "Додаткова музика, ударні, джембе, вибірка"
-
-#: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
-msgid "Additional music"
-msgstr "Додаткова музика"
-
-#: gui/credits/texts/art.jsonContent[5].Content[3].Subtitle
-msgid "Flute"
-msgstr "Флейта"
-
-#: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
-msgid "Djembe"
-msgstr "Джембе"
-
-#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
-msgid "Frame drum, darbuka, riq, toms"
-msgstr "Рамковий барабан, дарбука, рік, там-тами"
-
-#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
-msgid "Didgeridoo"
-msgstr "Диджериду"
-
-#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
-msgid "Trumpet"
-msgstr "Труба"
-
-#: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
-msgid "Celtic harp"
-msgstr "Кельтська арфа"
-
-#: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
-msgid "Tin whistles"
-msgstr "Вістли"
-
-#: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
-msgid "Viola, violin"
-msgstr "Альт, скрипка"
-
-#: gui/credits/texts/art.jsonContent[5].Title
-msgid "Music"
-msgstr "Музика"
-
-#: gui/credits/texts/art.jsonContent[6].Title
-#: gui/options/options.json[2].label
-msgid "Sound"
-msgstr "Звук"
-
-#: gui/credits/texts/art.jsonContent[7].Content[0].Subtitle
-msgid "Greek"
-msgstr "Грецька"
-
-#: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
-msgid "Latin"
-msgstr "Латина"
-
-#: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
-msgid "Persian"
-msgstr "Перси"
-
-#: gui/credits/texts/art.jsonContent[7].Title
-msgid "Voices"
-msgstr "Голоси"
 
 #: gui/credits/texts/art.jsonTitle
 msgid "Art"
 msgstr "Контент"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[0].Subtitle
+msgid "Sound Manager"
+msgstr "Звукооператор"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
+msgid "Lead Composer"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[0].Title
+msgid "Audio managers"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
+msgid "Additional music, percussion, djembe, sampling"
+msgstr "Додаткова музика, ударні, джембе, вибірка"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
+msgid "Additional music"
+msgstr "Додаткова музика"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
+msgid "Flute"
+msgstr "Флейта"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
+msgid "Djembe"
+msgstr "Джембе"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr "Рамковий барабан, дарбука, рік, там-тами"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
+msgid "Didgeridoo"
+msgstr "Диджериду"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
+msgid "Trumpet"
+msgstr "Труба"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
+msgid "Celtic harp"
+msgstr "Кельтська арфа"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
+msgid "Tin whistles"
+msgstr "Вістли"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
+msgid "Viola, violin"
+msgstr "Альт, скрипка"
+
+#: gui/credits/texts/audio.jsonContent[1].Title
+msgid "Music"
+msgstr "Музика"
+
+#: gui/credits/texts/audio.jsonContent[2].Title
+#: gui/options/options.json[2].label
+msgid "Sound"
+msgstr "Звук"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[0].Subtitle
+msgid "Greek"
+msgstr "Грецька"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
+msgid "Latin"
+msgstr "Латина"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
+msgid "Persian"
+msgstr "Перси"
+
+#: gui/credits/texts/audio.jsonContent[3].Title
+msgid "Voices"
+msgstr "Голоси"
+
+#: gui/credits/texts/audio.jsonTitle
+msgid "Audio"
+msgstr ""
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -2661,6 +2657,18 @@ msgstr "Пожертвували кошти"
 #: gui/credits/texts/history.jsonTitle
 msgid "History References"
 msgstr "Історичні джерела"
+
+#: gui/credits/texts/maps.jsonContent[0].Title
+msgid "Map Making"
+msgstr "Редактор карт"
+
+#: gui/credits/texts/maps.jsonContent[1].Title
+msgid "Random Map Scripts"
+msgstr "Скрипти випадкової карти"
+
+#: gui/credits/texts/maps.jsonTitle
+msgid "Maps"
+msgstr ""
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -3743,7 +3751,7 @@ msgstr ""
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr ""
+msgstr "Розмістити підрозділи у гарнізоні, щоб повільно зцілити їх та захистити армійський табір від нападів, та занепаду."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -4226,7 +4234,7 @@ msgstr "ЗАНЕПАД ТЕРИТОРІЇ"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr ""
+msgstr "Занепад відбувається, коли споруди не мають сполучення із союзним громадським центром."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
@@ -4238,7 +4246,7 @@ msgstr ""
 msgid ""
 "When the decay is completed, the structure will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "Коли занепад є завершеним, споруду буде передано до найвпливовішого сусіда."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"

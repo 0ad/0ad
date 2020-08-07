@@ -36,9 +36,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:09+0000\n"
-"PO-Revision-Date: 2020-07-28 13:35+0000\n"
-"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
+"POT-Creation-Date: 2020-07-31 07:09+0000\n"
+"PO-Revision-Date: 2020-07-31 17:26+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1209,7 +1209,7 @@ msgstr "Klik rechts om meer informatie te zien."
 msgid "Click to view more information."
 msgstr "Klik om meer informatie te zien."
 
-#: gui/credits/credits.js:81
+#: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
 msgstr ""
@@ -2503,106 +2503,102 @@ msgctxt "summary chart"
 msgid "Type"
 msgstr "Type"
 
-#: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
+#: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
 msgstr "Leider grafische kunst"
 
-#: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
-msgid "Sound Manager"
-msgstr "Geluidsmanager"
-
-#: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
-msgid "Composer"
-msgstr "Componist"
-
-#: gui/credits/texts/art.jsonContent[0].Title
-msgid "Artistic managers"
-msgstr "Artistieke managers"
-
 #: gui/credits/texts/art.jsonContent[1].Title
-msgid "Map Making"
-msgstr "Kaartmakers"
-
-#: gui/credits/texts/art.jsonContent[2].Title
-msgid "Random Map Scripts"
-msgstr "Willekeurige kaartscript programmeurs"
-
-#: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
 msgstr "2D kunst"
 
-#: gui/credits/texts/art.jsonContent[4].Title
+#: gui/credits/texts/art.jsonContent[2].Title
 msgid "3D Art"
 msgstr "3D kunst"
-
-#: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
-msgid "Additional music, percussion, djembe, sampling"
-msgstr "Aanvullende muziek, percussie, djembé, sampling"
-
-#: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
-msgid "Additional music"
-msgstr "Aanvullende muziek"
-
-#: gui/credits/texts/art.jsonContent[5].Content[3].Subtitle
-msgid "Flute"
-msgstr "Fluit"
-
-#: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
-msgid "Djembe"
-msgstr "Djembe"
-
-#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
-msgid "Frame drum, darbuka, riq, toms"
-msgstr "Lijsttrommel, darboeka, riq, tom-tom"
-
-#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
-msgid "Didgeridoo"
-msgstr "Didgeridoo"
-
-#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
-msgid "Trumpet"
-msgstr "Trompet"
-
-#: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
-msgid "Celtic harp"
-msgstr "Keltische harp"
-
-#: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
-msgid "Tin whistles"
-msgstr "Tinwhistle"
-
-#: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
-msgid "Viola, violin"
-msgstr "Viool"
-
-#: gui/credits/texts/art.jsonContent[5].Title
-msgid "Music"
-msgstr "Muziek"
-
-#: gui/credits/texts/art.jsonContent[6].Title
-#: gui/options/options.json[2].label
-msgid "Sound"
-msgstr "Geluiden"
-
-#: gui/credits/texts/art.jsonContent[7].Content[0].Subtitle
-msgid "Greek"
-msgstr "Grieks"
-
-#: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
-msgid "Latin"
-msgstr "Latijn"
-
-#: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
-msgid "Persian"
-msgstr "Perzisch"
-
-#: gui/credits/texts/art.jsonContent[7].Title
-msgid "Voices"
-msgstr "Stemmen"
 
 #: gui/credits/texts/art.jsonTitle
 msgid "Art"
 msgstr "Grafische kunst"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[0].Subtitle
+msgid "Sound Manager"
+msgstr "Geluidsmanager"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
+msgid "Lead Composer"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[0].Title
+msgid "Audio managers"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
+msgid "Additional music, percussion, djembe, sampling"
+msgstr "Aanvullende muziek, percussie, djembé, sampling"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
+msgid "Additional music"
+msgstr "Aanvullende muziek"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
+msgid "Flute"
+msgstr "Fluit"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
+msgid "Djembe"
+msgstr "Djembe"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr "Lijsttrommel, darboeka, riq, tom-tom"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
+msgid "Didgeridoo"
+msgstr "Didgeridoo"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
+msgid "Trumpet"
+msgstr "Trompet"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
+msgid "Celtic harp"
+msgstr "Keltische harp"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
+msgid "Tin whistles"
+msgstr "Tinwhistle"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
+msgid "Viola, violin"
+msgstr "Viool"
+
+#: gui/credits/texts/audio.jsonContent[1].Title
+msgid "Music"
+msgstr "Muziek"
+
+#: gui/credits/texts/audio.jsonContent[2].Title
+#: gui/options/options.json[2].label
+msgid "Sound"
+msgstr "Geluiden"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[0].Subtitle
+msgid "Greek"
+msgstr "Grieks"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
+msgid "Latin"
+msgstr "Latijn"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
+msgid "Persian"
+msgstr "Perzisch"
+
+#: gui/credits/texts/audio.jsonContent[3].Title
+msgid "Voices"
+msgstr "Stemmen"
+
+#: gui/credits/texts/audio.jsonTitle
+msgid "Audio"
+msgstr ""
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -2638,6 +2634,18 @@ msgstr "Donors"
 #: gui/credits/texts/history.jsonTitle
 msgid "History References"
 msgstr "Historische referenties"
+
+#: gui/credits/texts/maps.jsonContent[0].Title
+msgid "Map Making"
+msgstr "Kaartmakers"
+
+#: gui/credits/texts/maps.jsonContent[1].Title
+msgid "Random Map Scripts"
+msgstr "Willekeurige kaartscript programmeurs"
+
+#: gui/credits/texts/maps.jsonTitle
+msgid "Maps"
+msgstr ""
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"

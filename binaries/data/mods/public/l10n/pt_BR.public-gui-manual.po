@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# André Schwarz <andrschwarz@protonmail.com>, 2020
 # Angelo Florentino <angelodarosaflorentino@gmail.com>, 2017
 # borg 2k <estevanborg@gmail.com>, 2017
 # Danlorenzi <danlorenzi@hotmail.com>, 2017
@@ -27,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-06 07:17+0000\n"
-"PO-Revision-Date: 2020-07-22 15:42+0000\n"
-"Last-Translator: Tiago <tiago.henrique.cco@gmail.com>\n"
+"PO-Revision-Date: 2020-08-01 18:12+0000\n"
+"Last-Translator: André Schwarz <andrschwarz@protonmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,7 +47,7 @@ msgstr "Fechar"
 
 #: gui/manual/manual.xml:(caption):28
 msgid "View Online"
-msgstr "Ver Online"
+msgstr "Visualizar pela internet"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
@@ -57,7 +58,7 @@ msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "Obrigado por instalar 0 A.D.! Esta página te dará uma breve visão dos recursos disponíveis nesta versão alpha do jogo, isto é, incompleta e em desenvolvimento."
+msgstr "Obrigado por instalar 0 A.D.! Esta página fornece um resumo dos recursos atualmente disponíveis neste jogo, que ainda se encontra incompleto e em estágio de desenvolvimento alfa."
 
 #: gui/manual/intro.txt:4
 msgid "[font=\"sans-bold-16\"]Graphics settings[font=\"sans-14\"]"
@@ -69,11 +70,11 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr "Você pode trocar entre o modo tela cheia e o modo janela ao pressionar Alt + Enter. No modo janela, você pode redimensionar a janela. Se o jogo rodar muito devagar, você pode alterar qualquer parâmetro da configuração na janela de opções: Tente desabilitar o \"HQ Water Effects\" (Modo de exibição de efeitos na água em Alta Definição) e \"Shadows\" (Sombras)."
+msgstr "Aperte Alt + Enter para alternar entre a visualização em tela cheia e a visualização em janela, que pode ser redimensionada livremente. Se o jogo estiver muito lento, experimente acessar o menu de opções para alterar as configurações gráficas. Pode ser uma boa ideia desabilitar as opções \"Sombras\" e \"Efeitos Avançados na Água\"."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-16\"]Jogando o jogo[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-16\"]Como jogar[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:8
 msgid ""
@@ -81,7 +82,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr "Os controles e a jogabilidade devem ser familiares aos jogadores dos tradicionais jogos de estratégia em tempo real (RTS). Existem, ainda, diversas funções faltando, além de estatísticas mal balanceadas – você provavelmente vai precisar esperar até o lançamento de uma versão beta para que funcione melhor."
+msgstr "Os controles e a jobabilidade podem não precisar de muitas explicações para quem já tem experiência com outros jogos de estratégia em tempo real. No entanto, ainda há vários recursos que não foram implementados e diversos atributos que precisam ser reajustados para equilibrar as civilizações. Pode ser que as coisas só fiquem nos conformes em uma futura versão beta."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls:"
@@ -89,35 +90,35 @@ msgstr "Controles básicos:"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr "• Clicar com botão esquerdo para selecionar unidades."
+msgstr "• Clique com o botão esquerdo do mouse para selecionar unidades"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr "• Clicar com botão esquerdo e arrastar para selecionar grupos de unidades."
+msgstr "• Arraste o mouse com o botão esquerdo apertado para selecionar diversas unidades em uma área"
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr "• Clique com o botão direito para definir um alvo para as unidades."
+msgstr "• Clique com o botão direito do mouse para indicar um destino ou alvo às unidades selecionadas"
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr "• Utilize as setas ou as teclas WASD para mover a câmera."
+msgstr "• Utilize as teclas de setas ou WASD para movimentar a câmera"
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr ""
+msgstr "Para girar a câmera, aperte Ctrl e alguma tecla de seta, ou gire o botão de rolagem do mouse com a tecla Shift apertada"
 
 #: gui/manual/intro.txt:16
 msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
-msgstr ""
+msgstr "Para mudar o zoom, use o botão de rolagem do mouse ou as teclas + e - do teclado"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Modalidades de jogo[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr ""
+msgstr "No menu principal, é possível optar entre duas modalidades:"
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -125,13 +126,13 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Jogo solo:[font=\"sans-14\"] Para jogar sozinho com um ou mais oponentes controlados pelo computador. Petra, o algoritmo padrão de inteligência artificial, ainda está em desenvolvimento e pode ainda não ter sido programado para utilizar todos os recursos do jogo. No entanto, ainda é possível utilizá-lo para jogar em sua equipe ou no lado adversário."
 
 #: gui/manual/intro.txt:21
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Multijogador:[font=\"sans-14\"] Para jogar com outras pessoas pela internet."
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -139,37 +140,37 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr ""
+msgstr "Para iniciar uma sessão multijogador, um dos participantes tem que utilizar a opção \"Hospedar jogo\". Para tanto, pode ser necessário reajustar o firewall, NAT ou congêneres para liberar o acesso à porta 20595 pelo protocolo UDP. Os outros jogadores só precisam selecionar a opção \"Entrar em um jogo\" e inserir o endereço de IP de quem está hospedando o jogo."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Configuração do jogo[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr "Em um jogo multijogador, só o anfitão pode alterar as opções de configuração do jogo."
+msgstr "Nas sessões multijogador, apenas quem hospeda o jogo pode configurar as regras."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
-msgstr "Primeiro, selecione o tipo de mapa que gostaria de jogar:"
+msgstr "Primeiramente deve-se selecionar o tipo de mapa a ser utilizado no jogo:"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr "• [font=\"sans-bold-14\"]Mapa aleatório[font=\"sans-14\"] – Um mapa criado automaticamente através de um script"
+msgstr "• [font=\"sans-bold-14\"]Mapa aleatório:[font=\"sans-14\"] Mapa criado por um script automático"
 
 #: gui/manual/intro.txt:30
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
-msgstr "• [font=\"sans-bold-14\"]Mapa de cenário[font=\"sans-14\"] – Um mapa criado por designers e com civilizações fixas"
+msgstr "• [font=\"sans-bold-14\"]Mapa de cenário:[font=\"sans-14\"] Um mapa criado por pessoas, com civilizações pré-estabelecidas"
 
 #: gui/manual/intro.txt:31
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr "• [font=\"sans-bold-14\"]Mapa de escaramuça[font=\"sans-14\"] – Um mapa criado por designers porém as civilizações podem ser escolhidas"
+msgstr "• [font=\"sans-bold-14\"]Mapa de combate:[font=\"sans-14\"] Mapa criado por pessoas, com liberdade de escolha de civilização"
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -178,7 +179,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "A listagem de mapas pode ser filtrada e geralmente é possível jogar nos mapas padrão. Nos mapas navais, não há como chegar a todos os adversários por terra firme. Os mapas de demonstração (demo) foram feitos para realizar testes e geralmente não são muito bons para jogar. Com o filtro ajustado para \"Todos os mapas\", a lista apresenta todas as alternativas disponíveis."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -187,72 +188,72 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr ""
+msgstr "Chegamos então às configurações do jogo em si. Nos mapas aleatórios, pode-se ajustar o número de jogadores, o tamanho do mapa e outras opções. Em cenários só é possível definir quem controla cada civilização – e, por conseguinte, em qual ponto do mapa começará. As civilizações podem ser controladas por um jogador humano, por um algoritmo de inteligência artificial ou por nenhum dos dois. Neste último caso, a civilização ficará sem fazer nada."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr ""
+msgstr "Depois de ajustar as configurações, clique em \"Iniciar o jogo\"."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Teclas de atalho[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Válidas em todo o programa[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:41
 msgid ""
 "  Alt + F4 – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr "  Alt + F4 – Encerra imediatamente o jogo, sem pedir confirmação"
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter (Return) – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "  Alt + Enter – Alterna entre as exibições em janela e em tela cheia"
 
 #: gui/manual/intro.txt:43
 msgid "  ~ or F9 – Toggle console"
-msgstr ""
+msgstr "  ~ or F9 – Abre ou fecha o terminal"
 
 #: gui/manual/intro.txt:44
 msgid "  Alt + F – Toggle frame counter (FPS)"
-msgstr ""
+msgstr "  Alt + F – Liga ou desliga a exibição da taxa de quadros por segundo (FPS)"
 
 #: gui/manual/intro.txt:45
 msgid ""
 "  F11 – Toggle real-time profiler (cycles through the displays of "
 "information)"
-msgstr ""
+msgstr "  F11 – Alterna entre os diversos monitores de tempo real"
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
-msgstr ""
+msgstr "  Shift + F11 – Armazena, no arquivo \"logs/profile.txt\", os dados do monitor de tempo real em exibição"
 
 #: gui/manual/intro.txt:47
 msgid ""
 "  F2 – Take screenshot (in .png format, location is displayed in the top "
 "left of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr ""
+msgstr "  F2 – Tira uma foto da tela em formato .png. O local em que ela é salva aparece no canto superior esquerdo da tela e fica armazenado no terminal e nos logs para futura referência"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, "
 "location is displayed in the top left of the GUI after the file has been "
 "saved, and can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr " Shift + F2 – Tira uma foto grande da tela, com resolução de 6400x4800 e formato .bmp. O local em que ela é salva aparece no canto superior esquerdo da tela e fica armazenado no terminal e nos logs para futura referência"
 
 #: gui/manual/intro.txt:49
 msgid "  Tab, Alt + S – Switch to the next tab"
-msgstr ""
+msgstr "  Tab; Alt + S – Alterna para a próxima aba"
 
 #: gui/manual/intro.txt:50
 msgid "  Shift + Tab, Alt + W – Switch to the previous tab"
-msgstr ""
+msgstr "  Shift + Tab; Alt + W – Alterna para a aba anterior"
 
 #: gui/manual/intro.txt:52
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Válidas durante o jogo[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:53
 msgid ""

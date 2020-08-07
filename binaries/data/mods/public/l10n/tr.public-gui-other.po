@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:09+0000\n"
-"PO-Revision-Date: 2020-07-26 12:19+0000\n"
+"POT-Creation-Date: 2020-07-31 07:09+0000\n"
+"PO-Revision-Date: 2020-07-31 19:23+0000\n"
 "Last-Translator: Günay Yılmaz\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -1199,7 +1199,7 @@ msgstr "Daha fazla bilgi için sağ tıklayın."
 msgid "Click to view more information."
 msgstr "Daha fazla bilgi için tıklayın."
 
-#: gui/credits/credits.js:81
+#: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
 msgstr "%(nick)s — %(name)s "
@@ -2493,106 +2493,102 @@ msgctxt "summary chart"
 msgid "Type"
 msgstr "Tür"
 
-#: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
+#: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
 msgstr "Tasarım lideri"
 
-#: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
-msgid "Sound Manager"
-msgstr "Ses Yöneticisi"
-
-#: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
-msgid "Composer"
-msgstr "Besteci"
-
-#: gui/credits/texts/art.jsonContent[0].Title
-msgid "Artistic managers"
-msgstr "Sanatsal yöneticiler"
-
 #: gui/credits/texts/art.jsonContent[1].Title
-msgid "Map Making"
-msgstr "Harita Yapımı"
-
-#: gui/credits/texts/art.jsonContent[2].Title
-msgid "Random Map Scripts"
-msgstr "Rastgele Harita Skriptleri"
-
-#: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
 msgstr "2B Tasarım"
 
-#: gui/credits/texts/art.jsonContent[4].Title
+#: gui/credits/texts/art.jsonContent[2].Title
 msgid "3D Art"
 msgstr "3B Tasarım"
-
-#: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
-msgid "Additional music, percussion, djembe, sampling"
-msgstr "İlave edilen müzik, perküsyon, djembe, taklit ses"
-
-#: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
-msgid "Additional music"
-msgstr "Ek müzik"
-
-#: gui/credits/texts/art.jsonContent[5].Content[3].Subtitle
-msgid "Flute"
-msgstr "Fülüt"
-
-#: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
-msgid "Djembe"
-msgstr "Cembe"
-
-#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
-msgid "Frame drum, darbuka, riq, toms"
-msgstr "Çerçeve tamburu, darbuka, riq, toms"
-
-#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
-msgid "Didgeridoo"
-msgstr "Didgeridoo"
-
-#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
-msgid "Trumpet"
-msgstr "Trompet"
-
-#: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
-msgid "Celtic harp"
-msgstr "Kelt arpı"
-
-#: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
-msgid "Tin whistles"
-msgstr "Teneke düdük"
-
-#: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
-msgid "Viola, violin"
-msgstr "Viola, keman"
-
-#: gui/credits/texts/art.jsonContent[5].Title
-msgid "Music"
-msgstr "Müzik"
-
-#: gui/credits/texts/art.jsonContent[6].Title
-#: gui/options/options.json[2].label
-msgid "Sound"
-msgstr "Ses"
-
-#: gui/credits/texts/art.jsonContent[7].Content[0].Subtitle
-msgid "Greek"
-msgstr "Yunan"
-
-#: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
-msgid "Latin"
-msgstr "Latin"
-
-#: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
-msgid "Persian"
-msgstr "Pers"
-
-#: gui/credits/texts/art.jsonContent[7].Title
-msgid "Voices"
-msgstr "Sesler"
 
 #: gui/credits/texts/art.jsonTitle
 msgid "Art"
 msgstr "Tasarım"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[0].Subtitle
+msgid "Sound Manager"
+msgstr "Ses Yöneticisi"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
+msgid "Lead Composer"
+msgstr "Baş Bestekar"
+
+#: gui/credits/texts/audio.jsonContent[0].Title
+msgid "Audio managers"
+msgstr "Ses Yöneticileri"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
+msgid "Additional music, percussion, djembe, sampling"
+msgstr "İlave edilen müzik, perküsyon, djembe, taklit ses"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
+msgid "Additional music"
+msgstr "Ek müzik"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
+msgid "Flute"
+msgstr "Fülüt"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
+msgid "Djembe"
+msgstr "Cembe"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr "Çerçeve tamburu, darbuka, riq, toms"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
+msgid "Didgeridoo"
+msgstr "Didgeridoo"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
+msgid "Trumpet"
+msgstr "Trompet"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
+msgid "Celtic harp"
+msgstr "Kelt arpı"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
+msgid "Tin whistles"
+msgstr "Teneke düdük"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
+msgid "Viola, violin"
+msgstr "Viola, keman"
+
+#: gui/credits/texts/audio.jsonContent[1].Title
+msgid "Music"
+msgstr "Müzik"
+
+#: gui/credits/texts/audio.jsonContent[2].Title
+#: gui/options/options.json[2].label
+msgid "Sound"
+msgstr "Ses"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[0].Subtitle
+msgid "Greek"
+msgstr "Yunan"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
+msgid "Latin"
+msgstr "Latin"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
+msgid "Persian"
+msgstr "Pers"
+
+#: gui/credits/texts/audio.jsonContent[3].Title
+msgid "Voices"
+msgstr "Sesler"
+
+#: gui/credits/texts/audio.jsonTitle
+msgid "Audio"
+msgstr "Ses"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -2628,6 +2624,18 @@ msgstr "Bağışçılar"
 #: gui/credits/texts/history.jsonTitle
 msgid "History References"
 msgstr "Tarihi Referanslar"
+
+#: gui/credits/texts/maps.jsonContent[0].Title
+msgid "Map Making"
+msgstr "Harita Yapımı"
+
+#: gui/credits/texts/maps.jsonContent[1].Title
+msgid "Random Map Scripts"
+msgstr "Rastgele Harita Skriptleri"
+
+#: gui/credits/texts/maps.jsonTitle
+msgid "Maps"
+msgstr "Haritalar"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"

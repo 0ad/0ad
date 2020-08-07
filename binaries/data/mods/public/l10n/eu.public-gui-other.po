@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# pospolos <pospolos@gmail.com>, 2017-2020
+# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2020
 # Osoitz <oelkoro@gmail.com>, 2015,2019-2020
-# pospolos <pospolos@gmail.com>, 2020
+# Mielanjel Iraeta <pospolos@gmail.com>, 2020
 # Thadah D. Denyse <juchuf@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:09+0000\n"
-"PO-Revision-Date: 2020-07-28 11:12+0000\n"
-"Last-Translator: pospolos <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2020-07-31 07:09+0000\n"
+"PO-Revision-Date: 2020-08-01 09:21+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1183,7 +1183,7 @@ msgstr "Eskuin klika informazio gehiago ikusteko."
 msgid "Click to view more information."
 msgstr "Klikatu informazio gehiago ikusteko."
 
-#: gui/credits/credits.js:81
+#: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
 msgstr "%(nick)s — %(name)s"
@@ -2477,106 +2477,102 @@ msgctxt "summary chart"
 msgid "Type"
 msgstr "Mota"
 
-#: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
+#: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
 msgstr "Diseinu grafikoen zuzendaria"
 
-#: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
-msgid "Sound Manager"
-msgstr "Soinu zuzendaria"
-
-#: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
-msgid "Composer"
-msgstr "Egilea"
-
-#: gui/credits/texts/art.jsonContent[0].Title
-msgid "Artistic managers"
-msgstr "Produkzio artistikoen nagusiak"
-
 #: gui/credits/texts/art.jsonContent[1].Title
-msgid "Map Making"
-msgstr "Antzestoki sortzailea"
-
-#: gui/credits/texts/art.jsonContent[2].Title
-msgid "Random Map Scripts"
-msgstr "Ausazko antzeztoki scriptak"
-
-#: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
 msgstr "2D diseinuak"
 
-#: gui/credits/texts/art.jsonContent[4].Title
+#: gui/credits/texts/art.jsonContent[2].Title
 msgid "3D Art"
 msgstr "3D diseinuak"
-
-#: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
-msgid "Additional music, percussion, djembe, sampling"
-msgstr "Musika gehigarria, perkusioa, Yembe eta musika laginketa"
-
-#: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
-msgid "Additional music"
-msgstr "Musika gehigarria"
-
-#: gui/credits/texts/art.jsonContent[5].Content[3].Subtitle
-msgid "Flute"
-msgstr "Flauta"
-
-#: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
-msgid "Djembe"
-msgstr "Yembe"
-
-#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
-msgid "Frame drum, darbuka, riq, toms"
-msgstr "Marko tanborra, derbake, riq eta tomtomak"
-
-#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
-msgid "Didgeridoo"
-msgstr "Didgeridoo"
-
-#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
-msgid "Trumpet"
-msgstr "Tronpeta"
-
-#: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
-msgid "Celtic harp"
-msgstr "Harpa zelta"
-
-#: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
-msgid "Tin whistles"
-msgstr "Irlandar flautak"
-
-#: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
-msgid "Viola, violin"
-msgstr "Biola eta bibolina "
-
-#: gui/credits/texts/art.jsonContent[5].Title
-msgid "Music"
-msgstr "Musika"
-
-#: gui/credits/texts/art.jsonContent[6].Title
-#: gui/options/options.json[2].label
-msgid "Sound"
-msgstr "Soinua"
-
-#: gui/credits/texts/art.jsonContent[7].Content[0].Subtitle
-msgid "Greek"
-msgstr "Grekoa"
-
-#: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
-msgid "Latin"
-msgstr "Latina"
-
-#: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
-msgid "Persian"
-msgstr "Persiarra"
-
-#: gui/credits/texts/art.jsonContent[7].Title
-msgid "Voices"
-msgstr "Ahotsak"
 
 #: gui/credits/texts/art.jsonTitle
 msgid "Art"
 msgstr "Diseinu grafikoa"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[0].Subtitle
+msgid "Sound Manager"
+msgstr "Soinu zuzendaria"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
+msgid "Lead Composer"
+msgstr "Egile nagusia"
+
+#: gui/credits/texts/audio.jsonContent[0].Title
+msgid "Audio managers"
+msgstr "Audio zuzendaria"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
+msgid "Additional music, percussion, djembe, sampling"
+msgstr "Musika gehigarria, perkusioa, Yembe eta musika laginketa"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
+msgid "Additional music"
+msgstr "Musika gehigarria"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
+msgid "Flute"
+msgstr "Flauta"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
+msgid "Djembe"
+msgstr "Yembe"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr "Marko tanborra, derbake, riq eta tomtomak"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
+msgid "Didgeridoo"
+msgstr "Didgeridoo"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
+msgid "Trumpet"
+msgstr "Tronpeta"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
+msgid "Celtic harp"
+msgstr "Harpa zelta"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
+msgid "Tin whistles"
+msgstr "Irlandar flautak"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
+msgid "Viola, violin"
+msgstr "Biola eta bibolina "
+
+#: gui/credits/texts/audio.jsonContent[1].Title
+msgid "Music"
+msgstr "Musika"
+
+#: gui/credits/texts/audio.jsonContent[2].Title
+#: gui/options/options.json[2].label
+msgid "Sound"
+msgstr "Soinua"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[0].Subtitle
+msgid "Greek"
+msgstr "Grekoa"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
+msgid "Latin"
+msgstr "Latina"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
+msgid "Persian"
+msgstr "Persiarra"
+
+#: gui/credits/texts/audio.jsonContent[3].Title
+msgid "Voices"
+msgstr "Ahotsak"
+
+#: gui/credits/texts/audio.jsonTitle
+msgid "Audio"
+msgstr "Audioa"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -2612,6 +2608,18 @@ msgstr "Emaileak"
 #: gui/credits/texts/history.jsonTitle
 msgid "History References"
 msgstr "Erreferentzi historikoak"
+
+#: gui/credits/texts/maps.jsonContent[0].Title
+msgid "Map Making"
+msgstr "Antzestoki sortzailea"
+
+#: gui/credits/texts/maps.jsonContent[1].Title
+msgid "Random Map Scripts"
+msgstr "Ausazko antzeztoki scriptak"
+
+#: gui/credits/texts/maps.jsonTitle
+msgid "Maps"
+msgstr "MapaK"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"

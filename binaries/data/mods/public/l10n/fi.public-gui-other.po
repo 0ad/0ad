@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:09+0000\n"
-"PO-Revision-Date: 2020-07-24 17:40+0000\n"
+"POT-Creation-Date: 2020-07-31 07:09+0000\n"
+"PO-Revision-Date: 2020-07-31 17:26+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -1189,7 +1189,7 @@ msgstr "Napsauta hiiren kakkospainikkeella nähdäksesi lisätietoja."
 msgid "Click to view more information."
 msgstr "Napsauta nähdäksesi lisätietoja."
 
-#: gui/credits/credits.js:81
+#: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
 msgstr ""
@@ -2483,106 +2483,102 @@ msgctxt "summary chart"
 msgid "Type"
 msgstr "Tyyppi"
 
-#: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
+#: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
 msgstr "Taiteellinen johto"
 
-#: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
-msgid "Sound Manager"
-msgstr "Äänipäällikkö"
-
-#: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
-msgid "Composer"
-msgstr "Säveltäjä"
-
-#: gui/credits/texts/art.jsonContent[0].Title
-msgid "Artistic managers"
-msgstr "Luovat päälliköt"
-
 #: gui/credits/texts/art.jsonContent[1].Title
-msgid "Map Making"
-msgstr "Kartantekijät"
-
-#: gui/credits/texts/art.jsonContent[2].Title
-msgid "Random Map Scripts"
-msgstr "Satunnaiset kartan ohjelmat"
-
-#: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
 msgstr "2D-taide"
 
-#: gui/credits/texts/art.jsonContent[4].Title
+#: gui/credits/texts/art.jsonContent[2].Title
 msgid "3D Art"
 msgstr "3D-taide"
-
-#: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
-msgid "Additional music, percussion, djembe, sampling"
-msgstr ""
-
-#: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
-msgid "Additional music"
-msgstr "Lisämusiikki"
-
-#: gui/credits/texts/art.jsonContent[5].Content[3].Subtitle
-msgid "Flute"
-msgstr "Huilu"
-
-#: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
-msgid "Djembe"
-msgstr "Djembe"
-
-#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
-msgid "Frame drum, darbuka, riq, toms"
-msgstr ""
-
-#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
-msgid "Didgeridoo"
-msgstr "Didgeridoo"
-
-#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
-msgid "Trumpet"
-msgstr "Trumpetti"
-
-#: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
-msgid "Celtic harp"
-msgstr "Kelttiläinen harppu"
-
-#: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
-msgid "Tin whistles"
-msgstr ""
-
-#: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
-msgid "Viola, violin"
-msgstr "Alttoviulu, viulu"
-
-#: gui/credits/texts/art.jsonContent[5].Title
-msgid "Music"
-msgstr "Musiikki"
-
-#: gui/credits/texts/art.jsonContent[6].Title
-#: gui/options/options.json[2].label
-msgid "Sound"
-msgstr "Ääni"
-
-#: gui/credits/texts/art.jsonContent[7].Content[0].Subtitle
-msgid "Greek"
-msgstr "Kreikkalainen"
-
-#: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
-msgid "Latin"
-msgstr "Latinalainen"
-
-#: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
-msgid "Persian"
-msgstr ""
-
-#: gui/credits/texts/art.jsonContent[7].Title
-msgid "Voices"
-msgstr "Äänet"
 
 #: gui/credits/texts/art.jsonTitle
 msgid "Art"
 msgstr "Taide"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[0].Subtitle
+msgid "Sound Manager"
+msgstr "Äänipäällikkö"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
+msgid "Lead Composer"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[0].Title
+msgid "Audio managers"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
+msgid "Additional music, percussion, djembe, sampling"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
+msgid "Additional music"
+msgstr "Lisämusiikki"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
+msgid "Flute"
+msgstr "Huilu"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
+msgid "Djembe"
+msgstr "Djembe"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
+msgid "Didgeridoo"
+msgstr "Didgeridoo"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
+msgid "Trumpet"
+msgstr "Trumpetti"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
+msgid "Celtic harp"
+msgstr "Kelttiläinen harppu"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
+msgid "Tin whistles"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
+msgid "Viola, violin"
+msgstr "Alttoviulu, viulu"
+
+#: gui/credits/texts/audio.jsonContent[1].Title
+msgid "Music"
+msgstr "Musiikki"
+
+#: gui/credits/texts/audio.jsonContent[2].Title
+#: gui/options/options.json[2].label
+msgid "Sound"
+msgstr "Ääni"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[0].Subtitle
+msgid "Greek"
+msgstr "Kreikkalainen"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
+msgid "Latin"
+msgstr "Latinalainen"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
+msgid "Persian"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[3].Title
+msgid "Voices"
+msgstr "Äänet"
+
+#: gui/credits/texts/audio.jsonTitle
+msgid "Audio"
+msgstr ""
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -2618,6 +2614,18 @@ msgstr "Lahjoittajat"
 #: gui/credits/texts/history.jsonTitle
 msgid "History References"
 msgstr "Historiaviitteet"
+
+#: gui/credits/texts/maps.jsonContent[0].Title
+msgid "Map Making"
+msgstr "Kartantekijät"
+
+#: gui/credits/texts/maps.jsonContent[1].Title
+msgid "Random Map Scripts"
+msgstr "Satunnaiset kartan ohjelmat"
+
+#: gui/credits/texts/maps.jsonTitle
+msgid "Maps"
+msgstr ""
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"

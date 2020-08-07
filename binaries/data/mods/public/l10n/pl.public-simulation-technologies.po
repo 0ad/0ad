@@ -37,8 +37,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-27 07:10+0000\n"
-"PO-Revision-Date: 2020-07-27 08:27+0000\n"
+"POT-Creation-Date: 2020-08-03 07:17+0000\n"
+"PO-Revision-Date: 2020-08-03 08:24+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgstr "Ludy indyjskie, irańskie i kuszyckie kultywowały tradycję znakomitego
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "Łucznicy szkoleni są 10% szybciej, mają 8 więcej zasięgu i 10% mniej rozstrzału."
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -96,7 +96,6 @@ msgstr "Zbroja końska"
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
-#: simulation/data/technologies/buildtime_walls_rubble.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
@@ -106,7 +105,6 @@ msgstr "Zbroja końska"
 #: simulation/data/technologies/heal_barracks.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
-#: simulation/data/technologies/health_walls_geometric_masonry.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
@@ -482,18 +480,6 @@ msgstr "Bułat - stal wootz"
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.iber
 msgid "Toledo Steel"
 msgstr "Stal toledańska"
-
-#: simulation/data/technologies/buildtime_walls_rubble.jsondescription
-msgid "Using rubble materials reduces the costs and build times of walls."
-msgstr "Użycie gruzu zmniejsza koszt oraz czas budowy murów."
-
-#: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "Walls −20% build time, but −1 crush armor."
-msgstr "Mury -20% czasu budowy, ale -1 ochrony przed burzeniem"
-
-#: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
-msgid "Rubble Materials"
-msgstr "Gruz"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -872,22 +858,6 @@ msgstr "Organiczne jednostki będą powoli odnawiać żywotność podczas odpoc
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
 msgstr "Medycyna Pola Bitwy"
-
-#: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
-msgid "Using geometric masonry increases the sturdiness of defensive walls."
-msgstr "Użycie zasad geometrii w murarstwie zwiększa solidność murów obronnych."
-
-#: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "Walls +2 crush armor, but +10% build time."
-msgstr "Mury +2 ochrony przed burzeniem, ale +10% czasu budowy."
-
-#: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
-msgid "Geometric Masonry"
-msgstr "Geometria masońska"
-
-#: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Wall armor vs build time."
-msgstr "Odporność murów vs czas budowy"
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1336,7 +1306,7 @@ msgid ""
 "capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
 "healing strength and +3 healing range; Melee units +20% attack damage; "
 "Ranged units +4 attack range and −10% spread."
-msgstr ""
+msgstr "Jednostki zaawansowane i elitarne szkolą się o 20% szybciej, mają 1 więcej punkt pancerza, 10% więcej zdrowia, 0.7 punktu przejmowania, 20% zasobów i zbierają zasoby 30% szybciej. Uzdrowiciele otrzymują +5 siły leczenia i +3 zasięgu leczenia. Jednostki walczące wręcz +20% obrażeń. Jednostki walczące na dystans +4 zasięgu ataku i -10% rozstrzału."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
@@ -1356,7 +1326,7 @@ msgid ""
 "strength, +20% loot, and −30% gather speed; Healers +5 healing strength and "
 "+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
 "range and −10% spread."
-msgstr ""
+msgstr "Jednostki zaawansowane i elitarne szkolą się o 20% szybciej, mają 1 więcej punkt pancerza, 10% więcej zdrowia, 0.8 punktu przejmowania, 20% zasobów i zbierają zasoby 30% szybciej. Uzdrowiciele otrzymują +5 siły leczenia i +3 zasięgu leczenia. Jednostki walczące wręcz +20% obrażeń. Jednostki walczące na dystans +4 zasięgu ataku i -10% rozstrzału."
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""
@@ -1520,7 +1490,7 @@ msgstr "Kartagińczycy budowali mury miejskie w trzech koncentrycznych obwodach.
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "Mury budowane są 100% dłużej, kosztują 100% więcej kamienia i mają 200% więcej zdrowia."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -1546,7 +1516,7 @@ msgstr "Grecy używali kamiennych konstrukcji od czasów wczesnomykeńskich."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "Budowle +10% zdrowia i +10% punktów przejęcia."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -1646,7 +1616,7 @@ msgstr "Spartanie byli szkoleni od najmłodszych lat na najpotężniejszych wojo
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "Elitarni włócznicy +25% zdrowia, ale szkolą się 5% dłużej."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -1709,11 +1679,11 @@ msgstr "Boska instrukcja"
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "Achemenidzi utrzymywali elitarne armie składające się z dziesięciu tysięcy wojów, których greccy autorzy nazywali Athanatoi (\"Nieśmiertelni\")."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "Elitarne jednostki piechoty Anusiya szkolą się 50% szybciej, ale mają również 10% mniej zdrowia."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -1839,7 +1809,7 @@ msgstr "Zaczynając od Aleksandra, Helleńscy monarchowie założyli wiele miast
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Centra osady mają +100% zdrowia i punktów przejęcia, a także dwa razy większą liczbę strzał podstawowych."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -1912,7 +1882,7 @@ msgstr "Srebrne Tarcze lub Argyraspidai, byli elitarną ciężką piechotą Mace
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr ""
+msgstr "Ulepsza elitarnych tarczowników do srebrnych tarcz, które posiadają więcej punktów zdrowia i ataku."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-27 07:10+0000\n"
-"PO-Revision-Date: 2020-07-31 04:15+0000\n"
+"PO-Revision-Date: 2020-08-03 23:41+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Igües navales"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr "Barcos guarecíos: tasa d'alicamientu +10."
+msgstr "Barcos: tasa de sanamientu de guarecíos +10."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -146,7 +146,7 @@ msgstr "Igües mecániques"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "Máquines guarecíes: tasa d'alicamientu +3."
+msgstr "Máquines: tasa de sanamientu de guarecíos +3."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -154,7 +154,7 @@ msgstr "Colligamientu de Delos"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Allied Warships −25% construction time."
-msgstr "Barcos de guerra aliaos: tiempu de construcción −25%."
+msgstr "Barcos de guerra aliaos: muera de construcción −25%."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -212,7 +212,7 @@ msgstr "Fervor d'Asoka"
 msgid ""
 "Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
-msgstr "Templos aliaos: costos ya tiempu de construcción −50%; Teunoloxía del templu: costos ya mueres −50%."
+msgstr "Templos aliaos: costu ya muera de construcción −50%; Teunoloxía del templu: costos ya mueres −50%."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
@@ -268,7 +268,7 @@ msgstr "Inspiración"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraDescription
 msgid "Citizen Soldiers +10% build rate and gather speed."
-msgstr "Milicianos: tasa de construcción ya rindimientu +10%."
+msgstr "Milicianos: tasa de construcción ya velocidá de recueya +10%."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
@@ -379,7 +379,7 @@ msgstr "Templu de Naga"
 msgid ""
 "As in all cultures, religion played a significant part in Kush. Shanakdakheto had the temple built around 160 BC as a symbol of the advancedness of Meroë.\n"
 "Temples +1 garrison heal rate."
-msgstr "En Cux, como en cualquier otra cultura, la relixón xugaba un papel importante. Alredor de 160 a.C., Shanakdakheto fizo que se construyere'l Templu como símbolu de la prosperidá de Méroe.\nTemplos guarecíos: tasa de sanamientu +1."
+msgstr "En Cux, como en cualquier otra cultura, la relixón xugaba un papel importante. Alredor de 160 a.C., Shanakdakheto fizo que se construyere'l Templu como símbolu de la prosperidá de Méroe.\nTemplos: tasa de sanamientu de guarecíos +1."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -504,7 +504,7 @@ msgstr "El piélanu"
 msgid ""
 "To further support equality, Lycurgus forbade the use of gold and silver, introducing a new iron currency called pelanors.\n"
 "Workers +15% metal gather rate."
-msgstr "P'axixar la igualdá, Licurgu quitó l'usu del oru ya la plata ya introduxo una moneda nueva de fierro: el piélanu.\nTrabayadores: tasa d'estraición de metales +15%."
+msgstr "P'axixar la igualdá, Licurgu quitó l'usu del oru ya la plata ya introduxo una moneda nueva de fierro: el piélanu.\nTrabayadores: tasa d'estraición de metal +15%."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
@@ -536,7 +536,7 @@ msgstr "Templu d'Atena Nike"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Temples −25% stone cost, +2 garrisoned heal rate."
-msgstr "Templos: costu en piedra −25%, tasa de sanamientu +2."
+msgstr "Templos: costu en piedra −25%, tasa de sanamientu de guarecíos +2."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
@@ -554,7 +554,7 @@ msgstr "Arquiteutu naval"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "Ships −50% metal cost, −20% construction time."
-msgstr "Barcos: costu en metal −50%, tiempu de construcción −20%."
+msgstr "Barcos: costu en metal −50%, muera de construcción −20%."
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraName
 msgid "Champion Army"
@@ -647,7 +647,7 @@ msgstr "Defensa inspirada"
 msgid ""
 "When garrisoned, the Structure or Siege Engine has +2 capture points "
 "garrison regeneration rate."
-msgstr "Les construcciones o máquines guarecíes: tasa de recobramientu de la llealtá +2."
+msgstr "Construcciones ya máquines guarecíes: tasa de recobramientu de la llealtá +2."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraName
 msgid "Valiant Defender"
@@ -703,7 +703,7 @@ msgstr "Progesista"
 msgid ""
 "Temple of Amun +20% resource costs and build time. Amun Temple Guard +20% "
 "resource costs and training time."
-msgstr "Templu d'Amón: costos ya tiempu de construcción +20%. Curiador d'Amón: costos ya muera d'allistamientu +20%."
+msgstr "Templu d'Amón: costu ya muera de construcción +20%. Curiador d'Amón: costu ya muera d'allistamientu +20%."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraName
 msgid "Follower of Apedemak"
@@ -713,7 +713,7 @@ msgstr "Siguidor d'Apedemak"
 msgid ""
 "Temple of Apedemak −20% resource costs and build time. Apedemak Temple Guard"
 " −20% resource costs and training time."
-msgstr "Templu d'Apedemak: costos ya tiempu de construcción −20%. Curiador d'Apedemak: costos ya muera d'allistamientu −20%."
+msgstr "Templu d'Apedemak: costu ya muera de construcción −20%. Curiador d'Apedemak: costu ya muera d'allistamientu −20%."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
 msgid "Slaughter of the Faithful"
@@ -794,7 +794,7 @@ msgstr "Budismu"
 msgid ""
 "Temples −50% resource costs and build time. Temple technologies −50% "
 "resource costs and research time."
-msgstr "Templos: costos ya tiempu de construcción −50%. Teunoloxía del templu: costos ya mueres −50%."
+msgstr "Templos: costos ya muera de construcción −50%. Teunoloxía del templu: costos ya mueres −50%."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"

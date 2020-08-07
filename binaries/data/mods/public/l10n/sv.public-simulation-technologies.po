@@ -12,20 +12,21 @@
 # Kristoffer Grundström <lovaren@gmail.com>, 2015-2016
 # Marco tom Suden, 2014
 # Marco tom Suden, 2014
-# pilino1234 <pilino1234@zoho.eu>, 2016
-# pilino1234 <pilino1234@zoho.eu>, 2015-2016
+# Martin H <pilino1234@zoho.eu>, 2020
+# Martin H <pilino1234@zoho.eu>, 2016
+# Martin H <pilino1234@zoho.eu>, 2015-2016
 # Mattias Münster <mattiasmun@gmail.com>, 2019
-# pilino1234 <pilino1234@zoho.eu>, 2016-2017
-# pilino1234 <pilino1234@zoho.eu>, 2017-2019
+# Martin H <pilino1234@zoho.eu>, 2016-2017
+# Martin H <pilino1234@zoho.eu>, 2017-2019
 # Sam Johnsson <johnsson.sam@gmail.com>, 2015
 # Sebastian Rasmussen <sebras@gmail.com>, 2020
 # theschitz <theodore@theschitz.se>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-27 07:10+0000\n"
-"PO-Revision-Date: 2020-07-27 08:27+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-08-03 07:17+0000\n"
+"PO-Revision-Date: 2020-08-06 17:57+0000\n"
+"Last-Translator: Martin H <pilino1234@zoho.eu>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,7 +83,6 @@ msgstr "Chamfron"
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
-#: simulation/data/technologies/buildtime_walls_rubble.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
@@ -92,7 +92,6 @@ msgstr "Chamfron"
 #: simulation/data/technologies/heal_barracks.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
-#: simulation/data/technologies/health_walls_geometric_masonry.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
@@ -468,18 +467,6 @@ msgstr "Wootzstål"
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.iber
 msgid "Toledo Steel"
 msgstr "Toledostål"
-
-#: simulation/data/technologies/buildtime_walls_rubble.jsondescription
-msgid "Using rubble materials reduces the costs and build times of walls."
-msgstr "Användning av stenskärv reducerar kostnad och byggtid för murar"
-
-#: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
-msgid "Walls −20% build time, but −1 crush armor."
-msgstr ""
-
-#: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
-msgid "Rubble Materials"
-msgstr "Stenskärv"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -859,22 +846,6 @@ msgstr "Organiska enheter kommer att långsamt regenerera hälsa."
 msgid "Battlefield Medicine"
 msgstr "Slagfältsmedicin"
 
-#: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
-msgid "Using geometric masonry increases the sturdiness of defensive walls."
-msgstr "Använding av geometriskt murverk ökar stabiliteten av försvarsmurar."
-
-#: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
-msgid "Walls +2 crush armor, but +10% build time."
-msgstr ""
-
-#: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
-msgid "Geometric Masonry"
-msgstr "Geometriskt Murverk"
-
-#: simulation/data/technologies/pair_walls_01.jsongenericName
-msgid "Wall armor vs build time."
-msgstr ""
-
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 #: simulation/data/technologies/phase_city_generic.jsongenericName
@@ -900,7 +871,7 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
 " health. All structures +9 garrisoned regeneration rate."
-msgstr "Avancera till Storstadsfasen, som låser upp mer strukturer och enheter. Territorieradius för samhällscenter ökar med +50% igen. Silverugglor civilisationsbonusen ger extra +10% metall samlingstakt för alla arbetare. Max hälsa för medborgarsoldater ökar med +10%. Alla strukturer +9 garnisonerad regenereringstakt."
+msgstr "Avancera till Storstadsfasen, som låser upp mer byggnader och enheter. Territorieradius för samhällscenter ökar med +50% igen. Silverugglor civilisationsbonusen ger extra +10% metall samlingstakt för alla arbetare. Max hälsa för medborgarsoldater ökar med +10%. Alla byggnader +9 garnisonerad regenereringstakt."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1548,11 +1519,11 @@ msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "Elefanter −30% träningstid."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "Elefanttradition"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -1717,7 +1688,7 @@ msgstr "Perserna byggde den fantastiska 1677 mil långa Persiska Kungsvägen fr�
 msgid ""
 "All Persian structures +25% health and capture points, but also +20% build "
 "time."
-msgstr "Alla Persiska strukturer +25% hälsa och erövringspoäng, men även +20% konstruktionstid."
+msgstr "Alla Persiska byggnader +25% hälsa och erövringspoäng, men även +20% konstruktionstid."
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
