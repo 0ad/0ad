@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,8 +25,6 @@
 
 #include "renderer/ModelVertexRenderer.h"
 
-struct ShaderModelRendererInternals;
-
 /**
  * Render animated models using a ShaderRenderModifier.
  * This computes and binds per-vertex data; the modifier is responsible
@@ -48,6 +46,7 @@ public:
 	void RenderModel(const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data);
 
 protected:
+	struct ShaderModelRendererInternals;
 	ShaderModelRendererInternals* m;
 };
 

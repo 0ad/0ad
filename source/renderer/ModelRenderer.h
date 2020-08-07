@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -245,9 +245,6 @@ public:
 	static void GenTangents(const CModelDefPtr& mdef, std::vector<float>& newVertices, bool gpuSkinning);
 };
 
-
-struct ShaderModelRendererInternals;
-
 /**
  * Implementation of ModelRenderer that loads the appropriate shaders for
  * rendering each model, and that batches by shader (and by mesh and texture).
@@ -270,6 +267,7 @@ public:
 	virtual void Render(const RenderModifierPtr& modifier, const CShaderDefines& context, int cullGroup, int flags);
 
 private:
+	struct ShaderModelRendererInternals;
 	ShaderModelRendererInternals* m;
 };
 
