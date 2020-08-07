@@ -130,6 +130,28 @@
 				"function": "Renderer_UpdateAntiAliasingTechnique"
 			},
 			{
+				"type": "dropdown",
+				"label": "Sharpening",
+				"tooltip": "Reduce blurry effects.",
+				"dependencies": ["postproc", "preferglsl"],
+				"config": "sharpening",
+				"list": [
+					{ "value": "disabled", "label": "Disabled", "tooltip": "Do not use sharpening." },
+					{ "value": "cas", "label": "FidelityFX CAS", "tooltip": "Contrast adaptive sharpening, a fast, contrast based sharpening pass." }
+				],
+				"function": "Renderer_UpdateSharpeningTechnique"
+			},
+			{
+				"type": "slider",
+				"label": "Sharpness factor",
+				"tooltip": "The sharpness of the choosen pass.",
+				"dependencies": ["postproc", "preferglsl"],
+				"config": "sharpness",
+				"min": 0,
+				"max": 1,
+				"function": "Renderer_UpdateSharpnessFactor"
+			},
+			{
 				"type": "slider",
 				"label": "Shader effects",
 				"tooltip": "Number of shader effects. REQUIRES GAME RESTART",

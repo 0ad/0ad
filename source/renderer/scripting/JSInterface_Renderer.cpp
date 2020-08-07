@@ -72,6 +72,16 @@ void JSI_Renderer::UpdateAntiAliasingTechnique(ScriptInterface::CxPrivate* UNUSE
 	g_Renderer.GetPostprocManager().UpdateAntiAliasingTechnique();
 }
 
+void JSI_Renderer::UpdateSharpeningTechnique(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	g_Renderer.GetPostprocManager().UpdateSharpeningTechnique();
+}
+
+void JSI_Renderer::UpdateSharpnessFactor(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	g_Renderer.GetPostprocManager().UpdateSharpnessFactor();
+}
+
 void JSI_Renderer::RecreateShadowMap(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	g_Renderer.GetShadowMap().RecreateTexture();
@@ -92,6 +102,8 @@ void JSI_Renderer::RegisterScriptFunctions(const ScriptInterface& scriptInterfac
 	scriptInterface.RegisterFunction<void, std::string, &JSI_Renderer::SetRenderPath>("Renderer_SetRenderPath");
 	scriptInterface.RegisterFunction<void, &JSI_Renderer::RecreateShadowMap>("Renderer_RecreateShadowMap");
 	scriptInterface.RegisterFunction<void, &JSI_Renderer::UpdateAntiAliasingTechnique>("Renderer_UpdateAntiAliasingTechnique");
+	scriptInterface.RegisterFunction<void, &JSI_Renderer::UpdateSharpeningTechnique>("Renderer_UpdateSharpeningTechnique");
+	scriptInterface.RegisterFunction<void, &JSI_Renderer::UpdateSharpnessFactor>("Renderer_UpdateSharpnessFactor");
 	scriptInterface.RegisterFunction<bool, std::wstring, &JSI_Renderer::TextureExists>("TextureExists");
 	REGISTER_BOOLEAN_SCRIPT_SETTING(Shadows);
 	REGISTER_BOOLEAN_SCRIPT_SETTING(ShadowPCF);

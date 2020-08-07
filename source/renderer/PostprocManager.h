@@ -50,6 +50,8 @@ public:
 
 	// Triggers update of shaders and FBO if needed.
 	void UpdateAntiAliasingTechnique();
+	void UpdateSharpeningTechnique();
+	void UpdateSharpnessFactor();
 
 	void SetDepthBufferClipPlanes(float nearPlane, float farPlane);
 
@@ -90,6 +92,10 @@ private:
 	// (i.e. while we do allocate the buffers, no effects are rendered).
 	CStrW m_PostProcEffect;
 	CShaderTechniquePtr m_PostProcTech;
+
+	CStr m_SharpName;
+	CShaderTechniquePtr m_SharpTech;
+	float m_Sharpness;
 
 	CStr m_AAName;
 	CShaderTechniquePtr m_AATech;

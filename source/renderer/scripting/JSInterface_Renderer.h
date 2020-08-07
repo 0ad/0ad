@@ -29,6 +29,8 @@ namespace JSI_Renderer
 	std::string GetRenderPath(ScriptInterface::CxPrivate* pCxPrivate);
 	void SetRenderPath(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name);
 	void UpdateAntiAliasingTechnique(ScriptInterface::CxPrivate* pCxPrivate);
+	void UpdateSharpeningTechnique(ScriptInterface::CxPrivate* pCxPrivate);
+	void UpdateSharpnessFactor(ScriptInterface::CxPrivate* pCxPrivate);
 	void RecreateShadowMap(ScriptInterface::CxPrivate* pCxPrivate);
 	bool TextureExists(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename);
 
