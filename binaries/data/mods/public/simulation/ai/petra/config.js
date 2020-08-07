@@ -56,23 +56,57 @@ PETRA.Config = function(difficulty, behavior)
 	this.buildings =
 	{
 		"default": [],
-		"athen": ["structures/{civ}_gymnasium", "structures/{civ}_prytaneion",
-			  "structures/{civ}_theater", "structures/{civ}_royal_stoa"],
-		"brit": ["structures/{civ}_rotarymill"],
-		"cart": ["structures/{civ}_embassy_celtic", "structures/{civ}_embassy_iberian",
-			 "structures/{civ}_embassy_italiote"],
-		"gaul": ["structures/{civ}_rotarymill", "structures/{civ}_tavern"],
-		"iber": ["structures/{civ}_monument"],
-		"kush": ["structures/{civ}_pyramid_large", "structures/{civ}_blemmye_camp",
-			 "structures/{civ}_nuba_village"],
-		"mace": ["structures/{civ}_library", "structures/{civ}_theater"],
-		"maur": ["structures/{civ}_pillar_ashoka"],
-		"pers": ["structures/{civ}_apadana", "structures/{civ}_hall"],
-		"ptol": ["structures/{civ}_library"],
-		"rome": ["structures/{civ}_army_camp"],
-		"sele": ["structures/{civ}_library"],
-		"spart": ["structures/{civ}_syssiton", "structures/{civ}_theater",
-		          "structures/{civ}_royal_stoa"]
+		"athen": [
+			"structures/{civ}_gymnasium",
+			"structures/{civ}_prytaneion",
+			"structures/{civ}_royal_stoa",
+			"structures/{civ}_theater"
+		],
+		"brit": [],
+		"cart": [
+			"structures/{civ}_embassy_celtic",
+			"structures/{civ}_embassy_iberian",
+			"structures/{civ}_embassy_italiote"
+		],
+		"gaul": [
+			"structures/{civ}_tavern"
+		],
+		"iber": [
+			"structures/{civ}_monument"
+		],
+		"kush": [
+			"structures/{civ}_blemmye_camp",
+			"structures/{civ}_nuba_village",
+			"structures/{civ}_pyramid_large",
+			"structures/{civ}_pyramid_small",
+			"structures/{civ}_temple_amun"
+		],
+		"mace": [
+			"structures/{civ}_library",
+			"structures/{civ}_theater"
+		],
+		"maur": [
+			"structures/{civ}_pillar_ashoka"
+		],
+		"pers": [
+			"structures/{civ}_apadana",
+			"structures/{civ}_hall"
+		],
+		"ptol": [
+			"structures/{civ}_library"
+		],
+		"rome": [
+			"structures/{civ}_army_camp",
+			"structures/{civ}_temple_vesta"
+		],
+		"sele": [
+			"structures/{civ}_library"
+		],
+		"spart": [
+			"structures/{civ}_royal_stoa",
+			"structures/{civ}_syssiton",
+			"structures/{civ}_theater"
+		]
 	};
 
 	this.priorities =
