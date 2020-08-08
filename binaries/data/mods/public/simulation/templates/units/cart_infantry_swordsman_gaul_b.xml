@@ -5,7 +5,7 @@
       structures/{civ}_super_dock
       structures/{civ}_embassy_celtic
       structures/{civ}_embassy_iberian
-      structures/{civ}_embassy_italiote
+      structures/{civ}_embassy_italic
     </Entities>
   </Builder>
   <Cost>
@@ -16,13 +16,12 @@
   </Cost>
   <Identity>
     <Civ>cart</Civ>
-    <Classes datatype="tokens">Celt</Classes>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <GenericName>Gallic Mercenary Swordsman</GenericName>
+    <SpecificName>Seḫīr Ḥerev</SpecificName>
+    <SelectionGroupName>units/cart_infantry_swordsman_gaul_b</SelectionGroupName>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/cart_infantry_swordsman.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
-    <SelectionGroupName>units/cart_infantry_swordsman_gaul_b</SelectionGroupName>
-    <SpecificName>Seḫīr Ḥerev</SpecificName>
   </Identity>
   <Promotion>
     <Entity>units/cart_infantry_swordsman_gaul_a</Entity>
