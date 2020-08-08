@@ -9,21 +9,22 @@
 # Jonatan Nyberg <jonatan.nyberg.karl@gmail.com>, 2020
 # Kristoffer Grundström <lovaren@gmail.com>, 2018
 # Kristoffer Grundström <lovaren@gmail.com>, 2015-2016,2018
-# pilino1234 <pilino1234@zoho.eu>, 2016
-# pilino1234 <pilino1234@zoho.eu>, 2015-2016
+# Martin H <pilino1234@zoho.eu>, 2020
+# Martin H <pilino1234@zoho.eu>, 2016
+# Martin H <pilino1234@zoho.eu>, 2015-2016
 # Mattias Münster <mattiasmun@gmail.com>, 2019
-# pilino1234 <pilino1234@zoho.eu>, 2016-2017
+# Martin H <pilino1234@zoho.eu>, 2016-2017
 # mljungberg10 <mikael.ljungberg@gmail.com>, 2019
 # Nicolas Auvray <na.itms76@gmail.com>, 2018
-# pilino1234 <pilino1234@zoho.eu>, 2017-2019
+# Martin H <pilino1234@zoho.eu>, 2017-2019
 # Sam Johnsson <johnsson.sam@gmail.com>, 2015
 # theschitz <theodore@theschitz.se>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:09+0000\n"
-"PO-Revision-Date: 2020-07-24 17:40+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-31 07:09+0000\n"
+"PO-Revision-Date: 2020-08-06 21:27+0000\n"
+"Last-Translator: Martin H <pilino1234@zoho.eu>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +35,7 @@ msgstr ""
 #: gui/civinfo/civinfo.js:20
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr "%(hotkey)s: Byt till strukturträd."
+msgstr "%(hotkey)s: Byt till byggnadsträd."
 
 #: gui/civinfo/civinfo.js:21
 #, javascript-format
@@ -277,7 +278,7 @@ msgstr "Utsatta Hjältar"
 
 #: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr "Hjältar kan inte vara garnisonerade och de är sårbara för razzier."
+msgstr "Hjältar kan inte garnisoneras och de är sårbara för räder."
 
 #: gui/common/gamedescription.js:252
 msgid "Rated game"
@@ -367,7 +368,7 @@ msgstr "Kartstorlek"
 #: gui/common/gamedescription.js:329
 msgctxt "biome"
 msgid "Random Biome"
-msgstr "Random Biome"
+msgstr "Slumpmässigt biom"
 
 #: gui/common/gamedescription.js:330
 msgid "Randomly select a biome from the list."
@@ -540,15 +541,15 @@ msgstr "Säker lobbyautentisering misslyckades. Anslut via lobby."
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr "Fel: servern kunde inte allokera en unik klientidentifierare."
+msgstr "Fel: Servern kunde inte allokera en unik klientidentifierare."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
-msgstr "Fel: klient kommandona var klara för ett oväntat speldrag."
+msgstr "Fel: Klientkommandon var klara för ett oväntat speldrag."
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
-msgstr "Fel: klienten simulerade ett oväntat speldrag."
+msgstr "Fel: Klienten simulerade ett oväntat speldrag."
 
 #: gui/common/network.js:81
 #, javascript-format
@@ -712,7 +713,7 @@ msgstr "Okänd"
 
 #: gui/common/settings.js:417
 msgid "Unknown Victory Condition"
-msgstr "Okänd segertillstånd"
+msgstr "Okänt segervillkor"
 
 #: gui/common/tooltips.js:47
 #, javascript-format
@@ -995,14 +996,14 @@ msgstr "Antal reparatörer:"
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] "Lägg till en annan arbetare för att påskynda reparationerna\n"
-msgstr[1] "Lägg till en annan arbetare för att påskynda reparationerna %(second)s sekunder."
+msgstr[0] "Lägg till en ytterligare arbetare för att påskynda reparationerna med %(second)s sekund."
+msgstr[1] "Lägg till en ytterligare arbetare för att påskynda reparationerna med %(second)s sekunder."
 
 #: gui/common/tooltips.js:520
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] "Lägg till en arbetare för att slutföra reparationerna i\n"
+msgstr[0] "Lägg till en arbetare för att slutföra reparationerna i %(second)s sekund."
 msgstr[1] "Lägg till en arbetare för att slutföra reparationerna i %(second)s sekunder."
 
 #: gui/common/tooltips.js:529
@@ -1194,7 +1195,7 @@ msgstr "Högerklicka för att visa mer information."
 msgid "Click to view more information."
 msgstr "Klicka för att visa mer information."
 
-#: gui/credits/credits.js:81
+#: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
 msgstr ""
@@ -1361,13 +1362,13 @@ msgstr "Börja ekonomihandledningen."
 #: gui/pregame/MainMenuItems.js:24 gui/civinfo/civinfo.xml:(caption):123
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
-msgstr "Strukturträd"
+msgstr "Byggnadsträd"
 
 #: gui/pregame/MainMenuItems.js:25
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr "%(hotkey)s: Se civilisationsstrukturens träd som visas i 0 A.D."
+msgstr "%(hotkey)s: Se strukturträd för civilisationer som visas i 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:36
 #: gui/reference/common/Buttons/CivInfoButton.js:21
@@ -1639,7 +1640,7 @@ msgstr "Villkor"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
-msgstr "Läs och acceptera användarvillkoren för UserReporter."
+msgstr "Vänligen läs och acceptera användarvillkoren för UserReporter."
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
@@ -1732,7 +1733,7 @@ msgstr "Tränades av:"
 #. research the technology selected.
 #: gui/reference/common/tooltips.js:39
 msgid "Researched at:"
-msgstr "Undersökt på:"
+msgstr "Forskars fram i:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
@@ -1744,7 +1745,7 @@ msgstr "Bygger:"
 #. unit or structure can research.
 #: gui/reference/common/tooltips.js:57
 msgid "Researches:"
-msgstr "Undersöker:"
+msgstr "Forskar fram:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can train.
@@ -1776,7 +1777,7 @@ msgstr "Civilisation:"
 #: gui/reference/structree/StructreePage.js:85
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr "%(hotkey)s: Stäng strukturträd."
+msgstr "%(hotkey)s: Stäng byggnadsträd."
 
 #: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
 msgid "Trainer Units"
@@ -1789,7 +1790,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
-msgstr "Denna repris behöver en annan sekvens av mods:"
+msgstr "Denna återuppspelning behöver andra mods:"
 
 #: gui/replaymenu/replay_actions.js:95
 msgid "This replay is not compatible with your version of the game!"
@@ -1877,7 +1878,7 @@ msgstr "En och flera spelare"
 
 #: gui/replaymenu/replay_filters.js:156
 msgid "Any Victory Condition"
-msgstr "Alla seger villkor"
+msgstr "Alla segervillkor"
 
 #: gui/replaymenu/replay_filters.js:169
 msgid "Rated and unrated games"
@@ -1981,7 +1982,7 @@ msgstr "Underverk"
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr "Strukturstatistik (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
+msgstr "Byggnadsstatistik (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:69
 msgid "Units"
@@ -2026,7 +2027,7 @@ msgstr "Resurser"
 
 #: gui/summary/layout.js:121
 msgid "Tributes"
-msgstr "Hyllningar"
+msgstr "Tributer"
 
 #: gui/summary/layout.js:122
 #, javascript-format
@@ -2199,7 +2200,7 @@ msgstr ", "
 
 #: gui/summary/summary.js:331
 msgid "Time elapsed"
-msgstr "Förfluten tid"
+msgstr "Tid"
 
 #: gui/summary/summary.js:499
 msgid "Current Scores"
@@ -2488,106 +2489,102 @@ msgctxt "summary chart"
 msgid "Type"
 msgstr "Typ"
 
-#: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
+#: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
 msgstr "Konstnärlig ledare"
 
-#: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
-msgid "Sound Manager"
-msgstr "Ljudmanager"
-
-#: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
-msgid "Composer"
-msgstr "Kompositör"
-
-#: gui/credits/texts/art.jsonContent[0].Title
-msgid "Artistic managers"
-msgstr "Konstnärliga ledare"
-
 #: gui/credits/texts/art.jsonContent[1].Title
-msgid "Map Making"
-msgstr "Kartläggning"
-
-#: gui/credits/texts/art.jsonContent[2].Title
-msgid "Random Map Scripts"
-msgstr "Skript för slumpmässiga kartor"
-
-#: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
 msgstr "2D Konst"
 
-#: gui/credits/texts/art.jsonContent[4].Title
+#: gui/credits/texts/art.jsonContent[2].Title
 msgid "3D Art"
 msgstr "3D konst"
-
-#: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
-msgid "Additional music, percussion, djembe, sampling"
-msgstr "Vidare musik, slagverk, djembe, sampling"
-
-#: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
-msgid "Additional music"
-msgstr "Ytterligare musik"
-
-#: gui/credits/texts/art.jsonContent[5].Content[3].Subtitle
-msgid "Flute"
-msgstr "Tvärflöjt"
-
-#: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
-msgid "Djembe"
-msgstr "Djembe"
-
-#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
-msgid "Frame drum, darbuka, riq, toms"
-msgstr "Ramtrumma, darbuka, riq, toms"
-
-#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
-msgid "Didgeridoo"
-msgstr "Didgeridoo"
-
-#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
-msgid "Trumpet"
-msgstr "Trumpet"
-
-#: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
-msgid "Celtic harp"
-msgstr "Keltisk harpa"
-
-#: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
-msgid "Tin whistles"
-msgstr "Tin whistles"
-
-#: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
-msgid "Viola, violin"
-msgstr "Altfiol, fiol"
-
-#: gui/credits/texts/art.jsonContent[5].Title
-msgid "Music"
-msgstr "Musik"
-
-#: gui/credits/texts/art.jsonContent[6].Title
-#: gui/options/options.json[2].label
-msgid "Sound"
-msgstr "Ljud"
-
-#: gui/credits/texts/art.jsonContent[7].Content[0].Subtitle
-msgid "Greek"
-msgstr "Grekiska"
-
-#: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
-msgid "Latin"
-msgstr "Latin"
-
-#: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
-msgid "Persian"
-msgstr "Persiska"
-
-#: gui/credits/texts/art.jsonContent[7].Title
-msgid "Voices"
-msgstr "Röster"
 
 #: gui/credits/texts/art.jsonTitle
 msgid "Art"
 msgstr "Konst"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[0].Subtitle
+msgid "Sound Manager"
+msgstr "Ljudmanager"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
+msgid "Lead Composer"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[0].Title
+msgid "Audio managers"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
+msgid "Additional music, percussion, djembe, sampling"
+msgstr "Vidare musik, slagverk, djembe, sampling"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
+msgid "Additional music"
+msgstr "Ytterligare musik"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
+msgid "Flute"
+msgstr "Tvärflöjt"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
+msgid "Djembe"
+msgstr "Djembe"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr "Ramtrumma, darbuka, riq, toms"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
+msgid "Didgeridoo"
+msgstr "Didgeridoo"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
+msgid "Trumpet"
+msgstr "Trumpet"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
+msgid "Celtic harp"
+msgstr "Keltisk harpa"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
+msgid "Tin whistles"
+msgstr "Tin whistles"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
+msgid "Viola, violin"
+msgstr "Altfiol, fiol"
+
+#: gui/credits/texts/audio.jsonContent[1].Title
+msgid "Music"
+msgstr "Musik"
+
+#: gui/credits/texts/audio.jsonContent[2].Title
+#: gui/options/options.json[2].label
+msgid "Sound"
+msgstr "Ljud"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[0].Subtitle
+msgid "Greek"
+msgstr "Grekiska"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
+msgid "Latin"
+msgstr "Latin"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
+msgid "Persian"
+msgstr "Persiska"
+
+#: gui/credits/texts/audio.jsonContent[3].Title
+msgid "Voices"
+msgstr "Röster"
+
+#: gui/credits/texts/audio.jsonTitle
+msgid "Audio"
+msgstr ""
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -2623,6 +2620,18 @@ msgstr "Givare"
 #: gui/credits/texts/history.jsonTitle
 msgid "History References"
 msgstr "Historiska Referenser"
+
+#: gui/credits/texts/maps.jsonContent[0].Title
+msgid "Map Making"
+msgstr "Kartläggning"
+
+#: gui/credits/texts/maps.jsonContent[1].Title
+msgid "Random Map Scripts"
+msgstr "Skript för slumpmässiga kartor"
+
+#: gui/credits/texts/maps.jsonTitle
+msgid "Maps"
+msgstr ""
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -2766,7 +2775,7 @@ msgstr "Inaktiverad"
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
-msgstr "Låt alla eller kompisar bara gå med i spelet som observatör efter det började."
+msgstr "Låt alla eller endast kompisar att ansluta till spelet som observatör efter det har börjat."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late observer joins"
@@ -2774,7 +2783,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
-msgstr "Hindra ytterligare observatörer från att gå med om gränsen nås."
+msgstr "Hindra ytterligare observatörer från att ansluta om gränsen nås."
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer limit"
@@ -2803,7 +2812,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr "Använd OpenGL 2,0 shaders (rekommenderas)."
+msgstr "Använd OpenGL 2.0 shaders (rekommenderas)."
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -2902,7 +2911,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Show outlines of units behind structures."
-msgstr "Visa konturer av enheter bakom strukturer."
+msgstr "Visa konturer av enheter bakom byggnader."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Unit silhouettes"
@@ -2938,7 +2947,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid "Use actual water depth in rendering calculations."
-msgstr "Använd riktiga vattendjupet i renderingsberäkningar."
+msgstr "Använd faktiska vattendjupet i renderingsberäkningar."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Real water depth"
@@ -2962,7 +2971,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Cast shadows on water."
-msgstr "Kasta skuggor på vatten"
+msgstr "Kasta skuggor på vatten."
 
 #: gui/options/options.json[1].options[16].label
 msgid "Shadows on water"
@@ -2970,7 +2979,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
-msgstr "Ta bort mörker och krigsdimma mjukt"
+msgstr "Ta bort mörker och krigsdimma mjukt."
 
 #: gui/options/options.json[1].options[17].label
 msgid "Smooth vision"
@@ -3022,7 +3031,7 @@ msgstr "Grafik"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain."
-msgstr "Huvudvolym"
+msgstr "Huvudvolym."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master volume"
@@ -3030,7 +3039,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
-msgstr "In-game musikvolym"
+msgstr "Musikvolym i spelet."
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music volume"
@@ -3038,7 +3047,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
-msgstr "In-game omgivningsvolym"
+msgstr "Omgivningsvolym i spelet."
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient volume"
@@ -3046,7 +3055,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
-msgstr "In-game enhetsaktionsljud volym"
+msgstr "Enhetsaktionsljudvolym i spelet."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action volume"
@@ -3054,7 +3063,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
-msgstr "Användargränssnitt ljudvolym"
+msgstr "Användargränssnitt ljudvolym."
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI volume"
@@ -3086,7 +3095,7 @@ msgstr ""
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
-msgstr "Skjut in inställningspanelen när du öppnar, stänger eller ändrar storlek."
+msgstr "Skjut in inställningspanelen när den öppnas, stängs eller ändrar storlek."
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable settings panel slide"
@@ -3095,7 +3104,7 @@ msgstr ""
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
-msgstr "Spara och återställ matchningsinställningar för snabb återanvändning när du värd ett annat spel."
+msgstr "Spara och återställ matchinställningar för snabb återanvändning för att vara värd åt ett nytt spel."
 
 #: gui/options/options.json[3].options[2].label
 msgid "Persist match settings"
@@ -3147,7 +3156,7 @@ msgstr "Defensiv"
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid "Default behavior of the AI."
-msgstr "AI: s standardbeteende."
+msgstr "AI:s standardbeteende."
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI behavior"
@@ -3220,7 +3229,7 @@ msgstr "Lobby"
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
-msgstr "Den snabba enhetens snabbtangent betraktar de valda enheterna som skadade om deras hälso-procent faller under detta nummer."
+msgstr "Snabbtangenten för skadade enheter betraktar de valda enheterna som skadade om deras hälsa faller under detta värde."
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
@@ -3237,7 +3246,7 @@ msgstr ""
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr "Antal gånger måste du bläddra för att öka / minska batchstorleken med 1."
+msgstr "Antal gånger måste du skrolla för att öka / minska gruppstorleken med 1."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
@@ -3245,7 +3254,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
-msgstr "Visa en chattmeddelande om du attackeras av en annan spelare."
+msgstr "Visa ett chattmeddelande om du attackeras av en annan spelare."
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat notification attack"
@@ -3255,7 +3264,7 @@ msgstr ""
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr "Visa en chattmeddelande om en allierad tilldelar resurser till en annan lagmedlem om lag är låsta och alla hyllningar i observatörsläge."
+msgstr "Visa ett chattmeddelande om en allierad spelare skickar resurser till en lagmedlem om lag är låsta, och alla tributer i observatörsläge."
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat notification tribute"
@@ -3264,7 +3273,7 @@ msgstr ""
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
-msgstr "Visa en chattmeddelande till observatörer när en spelare bytte ut resurser."
+msgstr "Visa ett chattmeddelande till observatörer när en spelare byteshandlar resurser."
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat notification barter"
@@ -3286,7 +3295,7 @@ msgstr "Visa alla"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr "Visa en chattmeddelande om du eller en allierad har startat, avbrutit eller slutfört en ny fas och faser av alla spelare i observatörsläge."
+msgstr "Visa ett chattmeddelande om du eller en allierad spelare har startat, avbrutit eller slutfört en ny fas, och alla spelares faser i observatörsläge."
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat notification phase"
@@ -3296,7 +3305,7 @@ msgstr ""
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr "Visa attackområdet för valda defensiva strukturer (kan även ställas in i spelet med snabbtangenten)."
+msgstr "Visa attackområdet för valda defensiva byggnaden (kan även ändras i spelet med snabbtangenten)."
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
@@ -3306,7 +3315,7 @@ msgstr ""
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr "Visa räckhållet av valda enheters och strukturers auror (kan även ändras i spelet med snabbvalstangenten)."
+msgstr "Visa räckhållet av valda enheters och byggnaders auror (kan även ändras i spelet med snabbtangenten)."
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
@@ -3324,7 +3333,7 @@ msgstr "Läkningsräckviddsvisualisering"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
-msgstr "Visa radikoner över statusfält."
+msgstr "Visa rangikoner ovanför statusfält."
 
 #: gui/options/options.json[5].options[10].label
 msgid "Rank icon above status bar"
@@ -3370,7 +3379,7 @@ msgstr "Sortera resurser och populationsverktygstips"
 
 #: gui/options/options.json[5].options[14].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
-msgstr "Färg på dina enheter när diplomati färger är aktiverade."
+msgstr "Färg på dina enheter när diplomatifärger är aktiverade."
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy colors: self"
@@ -3378,7 +3387,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
-msgstr "Färg av allierade när diplomati färger är aktiverade."
+msgstr "Färg på allierade när diplomatifärger är aktiverade."
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy colors: ally"
@@ -3386,7 +3395,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
-msgstr "Färg av neutrala spelare när diplomati färger är aktiverade."
+msgstr "Färg på neutrala spelare när diplomatifärger är aktiverade."
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy colors: neutral"
@@ -3394,7 +3403,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[17].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
-msgstr "Färg av fiender när diplomati färger är aktiverade."
+msgstr "Färg på fiender när diplomatifärger är aktiverade."
 
 #: gui/options/options.json[5].options[17].label
 msgid "Diplomacy colors: enemy"
@@ -3737,7 +3746,7 @@ msgstr "SMEDJA"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "Research structure for all factions."
-msgstr "Forskningsstruktur för alla civilisationer."
+msgstr "Forskningsbyggnad för alla civilisationer."
 
 #: gui/text/tips/blacksmith.txt:3
 msgid "Research weapon and armor upgrades for your units."
@@ -3773,7 +3782,7 @@ msgstr ""
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
-msgstr "Dyra och långsamma"
+msgstr "Dyra och långsamma."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
@@ -3883,7 +3892,7 @@ msgstr "Garnisonera enheter inuti för att öka eldkraften för försvaret."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
-msgstr "FRIHANDS POSITION"
+msgstr "FRIHANDSPOSITION"
 
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
@@ -4002,7 +4011,7 @@ msgstr "Unik teknologi för Perserna."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr "Strukturer + 25% hälsa."
+msgstr "Byggnader +25% hälsa."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
@@ -4133,7 +4142,7 @@ msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "A special structure for  Athenians, Macedonians, and Spartans."
-msgstr "En särskild struktur för atenare, makedonier och spartaner."
+msgstr "En särskild byggnad för atenare, makedonier och spartaner."
 
 #: gui/text/tips/stoa.txt:3
 msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
@@ -4163,7 +4172,7 @@ msgstr "TEMPEL"
 
 #: gui/text/tips/temples.txt:2
 msgid "Town Phase structure."
-msgstr "Stadsfas-struktur."
+msgstr "Stadsfasbyggnad."
 
 #: gui/text/tips/temples.txt:3
 msgid "Recruit Healers to heal your troops on the battlefield."
@@ -4194,7 +4203,7 @@ msgstr ""
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr "Förfallsprocessen kan saktas ner eller omvändas genom att garnisonera några enheter i strukturen."
+msgstr "Förfallsprocessen kan saktas ner eller omvändas genom att garnisonera några enheter i byggnaden."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
@@ -4266,7 +4275,7 @@ msgstr "Stora bestar från Afrika och Indien, tränade för krig."
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
-msgstr "Höga Mat och Metallkostnader, men väldigt starka. Starkast mot strukturer och kavalleri."
+msgstr "Hög mat och metallkostnad, men väldigt starka."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""

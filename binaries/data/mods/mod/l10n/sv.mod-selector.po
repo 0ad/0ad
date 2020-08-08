@@ -4,15 +4,16 @@
 # 
 # Translators:
 # Jonatan Nyberg <jonatan.nyberg.karl@gmail.com>, 2020
+# Martin H <pilino1234@zoho.eu>, 2020
 # Mattias Münster <mattiasmun@gmail.com>, 2019
-# pilino1234 <pilino1234@zoho.eu>, 2017-2018
+# Martin H <pilino1234@zoho.eu>, 2017-2018
 # theschitz <theodore@theschitz.se>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-13 07:19+0000\n"
-"PO-Revision-Date: 2020-07-13 13:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-08-06 20:54+0000\n"
+"Last-Translator: Martin H <pilino1234@zoho.eu>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -86,7 +87,7 @@ msgstr ", "
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
-msgstr "Erfordras: %(mods)s"
+msgstr "Kräver: %(mods)s"
 
 #: gui/common/mod.js:30
 #, javascript-format
@@ -174,7 +175,7 @@ msgstr "Avbryt"
 #: gui/modio/modio.js:219
 #, javascript-format
 msgid "Invalid mod: %(error)s"
-msgstr ""
+msgstr "Ogiltig mod: %(error)s"
 
 #: gui/modio/modio.js:242
 msgid "Fetching and updating list of available mods."
@@ -261,11 +262,11 @@ msgstr "Varning"
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
-msgstr "mod.io villkor"
+msgstr "mod.io Villkor"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr "mod.io sekretesspolicy"
+msgstr "mod.io Sekretesspolicy"
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
@@ -292,7 +293,7 @@ msgstr "Tillgängliga mods"
 
 #: gui/modio/modio.xml:(caption):81
 msgid "Filter valid mods"
-msgstr ""
+msgstr "Filtrera giltiga mods"
 
 #: gui/modio/modio.xml:(caption):87
 msgid "Back"
@@ -418,7 +419,7 @@ msgstr "0 A.D. Empires Ascendant mod.io Varning"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr "Dokumentdatum: 2018-10-12"
+msgstr "Dokumentets datum: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
@@ -440,14 +441,14 @@ msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr "Wildfire Games har tagit hand om att säkerställa att denna anslutning säkerställer och granskar mods för säkerhetsbrister, men kan inte garantera att detta inte medför några risker."
+msgstr "Wildfire Games har tagit sett till att denna anslutning är säker och har granskat mods för säkerhetsbrister, men kan inte garantera att detta inte medför några risker."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr "Genom att använda tjänsten förstår du att mod.ios användarvillkor och sekretesspolicy gäller och att Wildfire Games inte är ansvarig för eventuella skador som härrör från denna tjänst."
+msgstr "Genom att använda tjänsten förstår du att mod.io:s användarvillkor och sekretesspolicy gäller och att Wildfire Games inte ansvarar för eventuella skador som härrör från denna tjänst."
 
 #: gui/modmod/help/help.txt:1
 msgid ""

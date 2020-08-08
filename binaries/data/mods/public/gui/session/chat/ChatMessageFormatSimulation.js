@@ -29,16 +29,16 @@ ChatMessageFormatSimulation.barter = class
 		if (!g_IsObserver || Engine.ConfigDB_GetValue("user", "gui.session.notifications.barter") != "true")
 			return "";
 
-		let amountsSold = {};
-		amountsSold[msg.resourceSold] = msg.amountsSold;
+		let amountGiven = {};
+		amountGiven[msg.resourceGiven] = msg.amountGiven;
 
-		let amountsBought = {};
-		amountsBought[msg.resourceBought] = msg.amountsBought;
+		let amountGained = {};
+		amountGained[msg.resourceGained] = msg.amountGained;
 
-		return sprintf(translate("%(player)s bartered %(amountsBought)s for %(amountsSold)s."), {
+		return sprintf(translate("%(player)s bartered %(amountGiven)s for %(amountGained)s."), {
 			"player": colorizePlayernameByID(msg.player),
-			"amountsBought": getLocalizedResourceAmounts(amountsBought),
-			"amountsSold": getLocalizedResourceAmounts(amountsSold)
+			"amountGiven": getLocalizedResourceAmounts(amountGiven),
+			"amountGained": getLocalizedResourceAmounts(amountGained)
 		});
 	}
 };

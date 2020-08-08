@@ -7,7 +7,7 @@
 # Dedi Wahyudi <dedi.dkv@gmail.com>, 2017
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
 # Ibnu Daru Aji, 2014
-# Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2017
+# Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2017,2020
 # Samuel <srandiny@gmail.com>, 2016
 # Samuel <srandiny@gmail.com>, 2017
 # Eggar Tirtayasa <eggar4tirtayasa@gmail.com>, 2014
@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-24 07:10+0000\n"
-"PO-Revision-Date: 2020-07-30 07:09+0000\n"
+"PO-Revision-Date: 2020-08-06 11:16+0000\n"
 "Last-Translator: Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr ""
 
 #: simulation/templates/template_formation.xml:25
 msgid "Requires at least 2 Soldiers or Siege engines."
-msgstr ""
+msgstr "Membutuhkan setidaknya 2 Prajurit atau Mesin kepung."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -40,11 +40,11 @@ msgstr "ikan"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
-msgstr ""
+msgstr "Tangkap ikan untuk mendapatkan makanan."
 
 #: simulation/templates/template_gaia_flora.xml:6
 msgid "Chop trees for wood."
-msgstr ""
+msgstr "Tebang pohon untuk mendapatkan kayu."
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/gaia/flora_bush_temperate.xml:4
@@ -56,7 +56,7 @@ msgstr "Semak"
 #: simulation/templates/template_gaia_flora_bush_berry.xml:4
 #: simulation/templates/template_gaia_flora_tree_fruit.xml:8
 msgid "Pick fruit for food."
-msgstr ""
+msgstr "Petik buah untuk mendapatkan makanan."
 
 #: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
@@ -72,11 +72,11 @@ msgstr "Tambang Logam"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
 msgid "Mine ore for metal."
-msgstr ""
+msgstr "Tambang bijih untuk mendapatkan logam."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Stone Quarry"
-msgstr ""
+msgstr "Galian Batu"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Quarry rock for stone."
@@ -88,7 +88,7 @@ msgstr "Reruntuhan"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr ""
+msgstr "Bongkar reruntuhan untuk mendapatkan batu."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
@@ -96,7 +96,7 @@ msgstr "Harta Karun"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr ""
+msgstr "Ambil harta karun untuk mendapatkan sumber daya."
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
@@ -181,61 +181,61 @@ msgstr "Tempat Suci Keagamaan Yunani"
 
 #: simulation/templates/gaia/fauna_arctic_wolf.xml:4
 msgid "Arctic Wolf"
-msgstr ""
+msgstr "Serigala Arktik"
 
 #: simulation/templates/gaia/fauna_arctic_wolf.xml:5
 #: simulation/templates/gaia/fauna_wolf.xml:5
 msgid "Canis lupus"
-msgstr ""
+msgstr "Canis lupus"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:4
 msgid "Black Bear"
-msgstr ""
+msgstr "Beruang Hitam"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:5
 msgid "Ursus americanus"
-msgstr ""
+msgstr "Ursus americanus"
 
 #: simulation/templates/gaia/fauna_bear_brown.xml:4
 msgid "Brown Bear"
-msgstr ""
+msgstr "Beruang Coklat"
 
 #: simulation/templates/gaia/fauna_bear_brown.xml:5
 msgid "Ursus arctos"
-msgstr ""
+msgstr "Ursus arctos"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:4
 msgid "Polar Bear"
-msgstr ""
+msgstr "Beruang Kutub"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:5
 msgid "Ursus maritimus"
-msgstr ""
+msgstr "Ursus maritimus"
 
 #: simulation/templates/gaia/fauna_boar.xml:19
 msgid "Wild Boar"
-msgstr ""
+msgstr "Babi Hutan Liar"
 
 #: simulation/templates/gaia/fauna_boar.xml:20
 msgid "Sus scrofa"
-msgstr ""
+msgstr "Sus scrofa"
 
 #: simulation/templates/gaia/fauna_camel.xml:8
 msgid "Dromedary"
-msgstr ""
+msgstr "Unta"
 
 #: simulation/templates/gaia/fauna_camel.xml:9
 msgid "Camelus dromedarius"
-msgstr ""
+msgstr "Camelus dromedarius"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:4
 msgid "Bull"
-msgstr ""
+msgstr "Banteng"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:5
 #: simulation/templates/gaia/fauna_cattle_cow.xml:5
 msgid "Bos taurus taurus"
-msgstr ""
+msgstr "Bos taurus taurus"
 
 #: simulation/templates/gaia/fauna_cattle_cow.xml:4
 msgid "Cow"
@@ -247,7 +247,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:5
 msgid "Bos taurus africanus"
-msgstr ""
+msgstr "Bos taurus africanus"
 
 #: simulation/templates/gaia/fauna_cattle_zebu.xml:4
 msgid "Zebu"
@@ -255,7 +255,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_cattle_zebu.xml:5
 msgid "Bos taurus indicus"
-msgstr ""
+msgstr "Bos taurus indicus"
 
 #: simulation/templates/gaia/fauna_chicken.xml:11
 msgid "Chicken"
@@ -263,7 +263,7 @@ msgstr "Ayam"
 
 #: simulation/templates/gaia/fauna_chicken.xml:12
 msgid "Gallus gallus domesticus"
-msgstr ""
+msgstr "Gallus gallus domesticus"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:19
 msgid "Nile Crocodile"
@@ -275,19 +275,19 @@ msgstr "Crocodylus niloticus"
 
 #: simulation/templates/gaia/fauna_deer.xml:8
 msgid "Red Deer"
-msgstr ""
+msgstr "Rusa Merah"
 
 #: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Cervus elaphus"
-msgstr ""
+msgstr "Cervus elaphus"
 
 #: simulation/templates/gaia/fauna_donkey.xml:4
 msgid "Donkey"
-msgstr ""
+msgstr "Keledai"
 
 #: simulation/templates/gaia/fauna_donkey.xml:5
 msgid "Equus africanus asinus"
-msgstr ""
+msgstr "Equus africanus asinus"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:11
 msgid "African Bush Elephant"
@@ -296,7 +296,7 @@ msgstr "Gajah Semak Afrika"
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:12
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:5
 msgid "Loxodonta africana"
-msgstr ""
+msgstr "Loxodonta africana"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:4
 msgid "African Bush Elephant Calf"
@@ -317,19 +317,19 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:11
 msgid "African Forest Elephant"
-msgstr ""
+msgstr "Gajah Hutan Afrika"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:12
 msgid "Loxodonta cyclotis"
-msgstr ""
+msgstr "Loxodonta cyclotis"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:4
 msgid "Tilapia"
-msgstr ""
+msgstr "Tilapia"
 
 #: simulation/templates/gaia/fauna_fish_tuna.xml:4
 msgid "Tuna"
-msgstr ""
+msgstr "Tuna"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:4
 msgid "Arctic Fox"
@@ -337,7 +337,7 @@ msgstr "Rubah Arktik"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:5
 msgid "Vulpes lagopus"
-msgstr ""
+msgstr "Vulpes lagopus"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:4
 msgid "Red Fox"
@@ -345,28 +345,28 @@ msgstr "Rubah Merah"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:5
 msgid "Vulpes vulpes"
-msgstr ""
+msgstr "Vulpes vulpes"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:8
 msgid "Thomson's Gazelle"
-msgstr ""
+msgstr "Gazel thomson"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Eudorcas thomsonii"
-msgstr ""
+msgstr "Eudorcas thomsonii"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:11
 msgid "Giraffe"
-msgstr ""
+msgstr "Jerapah"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:9
 msgid "Giraffa camelopardalis"
-msgstr ""
+msgstr "Giraffa camelopardalis"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:8
 msgid "Juvenile Giraffe"
-msgstr ""
+msgstr "Jerapah muda"
 
 #: simulation/templates/gaia/fauna_goat.xml:8
 msgid "Goat"
@@ -374,15 +374,15 @@ msgstr "Kambing"
 
 #: simulation/templates/gaia/fauna_goat.xml:9
 msgid "Capra aegagrus hircus"
-msgstr ""
+msgstr "Capra aegagrus hircus"
 
 #: simulation/templates/gaia/fauna_hippopotamus.xml:25
 msgid "Hippopotamus"
-msgstr ""
+msgstr "Kuda nil"
 
 #: simulation/templates/gaia/fauna_hippopotamus.xml:26
 msgid "Hippopotamus amphibius"
-msgstr ""
+msgstr "Hippopotamus amphibius"
 
 #: simulation/templates/gaia/fauna_horse.xml:8
 msgid "Horse"
@@ -390,7 +390,7 @@ msgstr "Kuda"
 
 #: simulation/templates/gaia/fauna_horse.xml:9
 msgid "Equus ferus caballus"
-msgstr ""
+msgstr "Equus ferus caballus"
 
 #: simulation/templates/gaia/fauna_lion.xml:19
 msgid "Lion"
@@ -398,7 +398,7 @@ msgstr "Singa"
 
 #: simulation/templates/gaia/fauna_lion.xml:20
 msgid "Panthera leo"
-msgstr ""
+msgstr "Panthera leo"
 
 #: simulation/templates/gaia/fauna_lioness.xml:4
 msgid "Lioness"
@@ -439,7 +439,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_pig_flaming.xml:18
 msgid "Flaming Pig"
-msgstr ""
+msgstr "Babi berapi"
 
 #: simulation/templates/gaia/fauna_piglet.xml:8
 msgid "Piglet"
@@ -447,7 +447,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_pony.xml:4
 msgid "Pony"
-msgstr ""
+msgstr "Kuda poni"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:11
 msgid "Rabbit"
@@ -459,7 +459,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_rhino.xml:19
 msgid "White Rhinoceros"
-msgstr ""
+msgstr "Badak putih"
 
 #: simulation/templates/gaia/fauna_rhino.xml:20
 msgid "Ceratotherium simum"
@@ -467,11 +467,11 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_shark.xml:12
 msgid "Great White Shark"
-msgstr ""
+msgstr "Hiu putih raksasa"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Carcharodon carcharias"
-msgstr ""
+msgstr "Carcharodon carcharias"
 
 #: simulation/templates/gaia/fauna_sheep.xml:8
 msgid "Sheep"
@@ -479,7 +479,7 @@ msgstr "Domba"
 
 #: simulation/templates/gaia/fauna_sheep.xml:9
 msgid "Ovis aries"
-msgstr ""
+msgstr "Ovis aries"
 
 #: simulation/templates/gaia/fauna_tiger.xml:19
 msgid "Tiger"
@@ -487,7 +487,7 @@ msgstr "Harimau"
 
 #: simulation/templates/gaia/fauna_tiger.xml:20
 msgid "Panthera tigris"
-msgstr ""
+msgstr "Panthera tigris"
 
 #: simulation/templates/gaia/fauna_walrus.xml:26
 msgid "Walrus"
@@ -567,19 +567,19 @@ msgstr "Pohon Apel"
 #: simulation/templates/gaia/flora_tree_bamboo.xml:4
 #: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
 msgid "Bamboo"
-msgstr ""
+msgstr "Bambu"
 
 #: simulation/templates/gaia/flora_tree_bamboo_dragon.xml:8
 msgid "Dragon Bamboo"
-msgstr ""
+msgstr "Bambu Raksasa"
 
 #: simulation/templates/gaia/flora_tree_banana.xml:4
 msgid "Banana"
-msgstr ""
+msgstr "Pisang"
 
 #: simulation/templates/gaia/flora_tree_banyan.xml:8
 msgid "Banyan"
-msgstr ""
+msgstr "Beringin"
 
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
 #: simulation/templates/gaia/flora_tree_baobab_3_mature.xml:8
@@ -676,7 +676,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_mangrove.xml:4
 msgid "Mangrove"
-msgstr ""
+msgstr "Bakau"
 
 #: simulation/templates/gaia/flora_tree_maple.xml:4
 msgid "Maple"

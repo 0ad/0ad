@@ -2,6 +2,13 @@
 <effect>
 
     <technique>
+        <require shaders="arb"/>
+        <pass shader="arb/gui_text">
+            <blend src="src_alpha" dst="one_minus_src_alpha"/>
+        </pass>
+    </technique>
+
+    <technique>
         <require shaders="fixed"/>
         <pass shader="fixed:gui_text">
             <blend src="src_alpha" dst="one_minus_src_alpha"/>

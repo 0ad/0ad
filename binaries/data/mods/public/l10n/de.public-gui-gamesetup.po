@@ -32,10 +32,11 @@
 # Mansent, 2013
 # Marcel Haring, 2013-2014
 # Inperpetuammemoriam, 2016
+# Martin H <pilino1234@zoho.eu>, 2020
 # mathias.n.graf <mathias.n.graf@gmail.com>, 2013
 # Maximilian von Lindern <hobbituhukai@live.de>, 2017
 # Maximilian Wagenbach <foaly@posteo.de>, 2016-2017
-# pilino1234 <pilino1234@zoho.eu>, 2016
+# Martin H <pilino1234@zoho.eu>, 2016
 # Michael Hecht <arachnovobica.mh@googlemail.com>, 2019
 # Nescio, 2020
 # Nico Laus <omaoma75@web.de>, 2017
@@ -71,8 +72,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-24 07:08+0000\n"
-"PO-Revision-Date: 2020-07-24 12:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-08-04 16:16+0000\n"
+"Last-Translator: Martin H <pilino1234@zoho.eu>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -327,13 +328,13 @@ msgstr "Füge der Karte keine Schätze hinzu."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:46
 msgid "World population"
-msgstr ""
+msgstr "Weltbevölkerung"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr ""
+msgstr "Falls aktiviert wird das Bevölkerungslimit gleichmäßig über alle lebenden Spieler verteilt."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:135
 msgid "Biome"
@@ -569,18 +570,18 @@ msgstr "Wähle die Schwierigkeit dieses Szenarios."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:76
 msgid "World Population Cap"
-msgstr ""
+msgstr "Weltbevölkerungslimit"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:79
 msgid "Select world population limit."
-msgstr ""
+msgstr "Wähle das Weltbevölkerungslimit."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:82
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr ""
+msgstr "Warnung: Es könnte zu Leistungsproblemen kommen falls %(popCap)s Bevölkerung erreicht wird."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:61
 msgid "Ceasefire"
@@ -708,7 +709,7 @@ msgstr "Zurück zum Hauptmenü."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Zivilisationsübersicht / Strukturbaum ansehen\nBeim Klicken wird das zuletzt geöffnete erneut geöffnet."
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Zivilisationsübersicht / Gebäudebaum ansehen\nBeim Klicken wird das zuletzt geöffnete erneut geöffnet."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."

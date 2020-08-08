@@ -17,12 +17,13 @@
 # leper <leper@wildfiregames.com>, 2014-2015
 # Luis W. <windgans@protonmail.com>, 2019
 # nautilusx, 2016
+# Martin H <pilino1234@zoho.eu>, 2020
 # MartinusMagnus <martinkleemann@web.de>, 2014
 # Matthias Kerk <matthias@tuxlife.de>, 2016
 # Maximilian von Lindern <hobbituhukai@live.de>, 2017
 # Maximilian Wagenbach <foaly@posteo.de>, 2016
 # Meinrad Müller <meinradmueller@hotmail.com>, 2015
-# pilino1234 <pilino1234@zoho.eu>, 2016
+# Martin H <pilino1234@zoho.eu>, 2016
 # Michael Hecht <arachnovobica.mh@googlemail.com>, 2019
 # Michael Vetter <jubalh@openmailbox.org>, 2016
 # MineplayerHD Youtube <leonstar03@gmail.com>, 2019
@@ -45,8 +46,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-27 07:10+0000\n"
-"PO-Revision-Date: 2020-07-27 10:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-08-04 13:05+0000\n"
+"Last-Translator: Martin H <pilino1234@zoho.eu>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,7 +72,7 @@ msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Dropsite for food, wood, stone, and metal. Train Citizens "
 "and research technologies. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "In eigenem oder neutralem Territorium bauen. Lager für Nahrung, Holz, Stein und Metall. Bilde Bürgerinnen aus und erforsche Technologien. Quartiere Soldaten für zusätzliche Pfeile ein."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:91
 #: simulation/templates/template_structure_defensive.xml:15
@@ -113,7 +114,7 @@ msgstr "Haus"
 
 #: simulation/templates/template_structure_civic_stoa.xml:33
 msgid "Train Mercenary Champions."
-msgstr ""
+msgstr "Bilde Söldnergardisten aus."
 
 #: simulation/templates/template_structure_civic_stoa.xml:34
 #: simulation/templates/template_structure_civic_temple.xml:36
@@ -139,7 +140,7 @@ msgstr "Stoa"
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 msgid "Train Healers and research healing technologies."
-msgstr ""
+msgstr "Trainiere Heiler und erforsche Heilungstechnologien."
 
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -152,7 +153,7 @@ msgstr "Verteidigungsbauwerk"
 
 #: simulation/templates/template_structure_defensive_palisade.xml:22
 msgid "Wall off an area."
-msgstr ""
+msgstr "Ummauere ein Gebiet."
 
 #: simulation/templates/template_structure_defensive_palisade.xml:23
 #: simulation/templates/template_structure_defensive_palisade.xml:20
@@ -230,7 +231,7 @@ msgstr "Mit Stein verstärken und zu einem Verteidigungsturm aufwerten."
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:31
 msgid "Stone Tower"
-msgstr ""
+msgstr "Steinturm"
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "StoneTower"
@@ -243,12 +244,12 @@ msgstr "Baue eine Mauer um deine Stadt, um die Verteidigung zu verbessern."
 #: simulation/templates/template_structure_defensive_wall.xml:18
 #: simulation/templates/template_structure_defensive_wall.xml:15
 msgid "Wall"
-msgstr ""
+msgstr "Mauer"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:22
 #: simulation/templates/template_structure_defensive_wall_long.xml:35
 msgid "Allow units access through Walls. Can be locked to prevent access."
-msgstr ""
+msgstr "Ermöglicht Einheiten den Zugang durch eine Mauer. Kann verriegelt werden, um den Zugang zu verhindern."
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:23
 #: simulation/templates/template_structure_defensive_wall_gate.xml:20
@@ -258,7 +259,7 @@ msgstr "Tor"
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:25
 msgid "Can be converted into a Gate."
-msgstr ""
+msgstr "Kann in ein Tor umgewandelt werden."
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:54
 msgid "Wall Turret"
@@ -266,7 +267,7 @@ msgstr "Wehrturm"
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:56
 msgid "Garrison Infantry for additional arrows."
-msgstr ""
+msgstr "Infanterie einquartieren für zusätzliche Pfeile"
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -279,7 +280,7 @@ msgstr "Wirtschaftlich"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:31
 msgid "Dropsite for food. Research food gathering technologies."
-msgstr ""
+msgstr "Lager für Nahrung. Erforsche Verbesserungen für die Sammelrate von Nahrung."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 #: simulation/templates/template_structure_economic_farmstead.xml:29
@@ -290,7 +291,7 @@ msgstr "Bauernhof"
 msgid ""
 "Barter resources. Establish trade routes. Train Traders and research trade "
 "and barter technologies."
-msgstr ""
+msgstr "Tausche Rohstoffe. Eröffne Handelsrouten. Bilde Händler aus und erforsche Handels- und Tauschtechnologien."
 
 #: simulation/templates/template_structure_economic_market.xml:31
 #: simulation/templates/template_structure_military_dock.xml:28
@@ -304,7 +305,7 @@ msgstr "Markt"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 msgid "Dropsite for wood, stone, and metal. Research gathering technologies."
-msgstr ""
+msgstr "Lager für Holz, Stein und Metall. Erforsche Sammeltechnologien."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:34
 #: simulation/templates/template_structure_economic_storehouse.xml:30
@@ -321,7 +322,7 @@ msgstr "Militär"
 
 #: simulation/templates/template_structure_military_barracks.xml:28
 msgid "Train Citizen Soldiers and research technologies."
-msgstr ""
+msgstr "Trainiere Bürgersoldaten und erforsche Technologien."
 
 #: simulation/templates/template_structure_military_barracks.xml:29
 #: simulation/templates/template_structure_military_barracks.xml:26
@@ -342,13 +343,13 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Dropsite for "
 "food, wood, stone, and metal. Establish trade routes. Construct Ships and "
 "research Ship technologies."
-msgstr ""
+msgstr "Baue an der Küste in eigenem, neutralem, oder alliiertem Territorium. Lager für Nahrung, Holz, Stein und Metall. Etabliere Handelsrouten. Baue Schiffe und erforsche Seefahrtstechnologien."
 
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/structures/brit_crannog.xml:16
 #: simulation/templates/structures/cart_super_dock.xml:47
 msgid "Naval"
-msgstr ""
+msgstr "Marine"
 
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/template_structure_military_dock.xml:25
@@ -357,7 +358,7 @@ msgstr "Hafen"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:24
 msgid "Elephant Stable"
-msgstr ""
+msgstr "Elefantenstall"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:26
 msgid "Train Elephants and research Elephant technologies."
@@ -414,7 +415,7 @@ msgstr "Belagerungswerkstatt"
 msgid ""
 "Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
 "Siege Engine technologies."
-msgstr ""
+msgstr "Bilde Gardenarmbrustschützen aus, baue Belagerungswaffen und erforsche Belagerungstechnologien."
 
 #: simulation/templates/template_structure_military_workshop.xml:28
 msgid "Workshop"
@@ -430,7 +431,7 @@ msgstr "Ressource"
 
 #: simulation/templates/template_structure_resource_corral.xml:20
 msgid "Raise Domestic Animals for food."
-msgstr ""
+msgstr "Ziehe domestizierte Tiere auf für Nahrung."
 
 #: simulation/templates/template_structure_resource_corral.xml:21
 #: simulation/templates/template_structure_resource_corral.xml:18
@@ -449,7 +450,7 @@ msgstr "Ernte Korn für die Essensproduktion. Jeder zusätzliche Helfer arbeitet
 
 #: simulation/templates/template_structure_special.xml:33
 msgid "Special Structure"
-msgstr ""
+msgstr "Spezialgebäude"
 
 #: simulation/templates/template_structure_special_amphitheater.xml:23
 #: simulation/templates/template_structure_special_amphitheater.xml:21
@@ -468,7 +469,7 @@ msgstr "Drehmühle"
 
 #: simulation/templates/template_structure_special_rotarymill.xml:22
 msgid "RotaryMill"
-msgstr ""
+msgstr "Drehmühle"
 
 #: simulation/templates/template_structure_special_theater.xml:26
 #: simulation/templates/template_structure_special_theater.xml:24
@@ -636,7 +637,7 @@ msgstr "Trainiere Helden und erforsche Technologien."
 #: simulation/templates/structures/athen_prytaneion.xml:26
 #: simulation/templates/structures/spart_gerousia.xml:26
 msgid "Council"
-msgstr ""
+msgstr "Rat"
 
 #: simulation/templates/structures/athen_range.xml:8
 #: simulation/templates/structures/mace_range.xml:8
@@ -777,7 +778,7 @@ msgid ""
 "tracts of territory. Territory root. Dropsite for food, wood, stone, and "
 "metal. Train Citizens, construct Ships, and research technologies. Garrison "
 "Soldiers for additional arrows."
-msgstr ""
+msgstr "An der Küste in eigenem, neutralem oder alliiertem Territorium bauen. Erobere große gebiete Territorium. Territoriumsursprung. Lager für Nahrung, Holz, Stein und Metall. Bilde Bürgerinnen aus, baue Schiffe und erforsche Technologien. Quartiere Soldaten für zusätzliche Pfeile ein."
 
 #: simulation/templates/structures/brit_defense_tower.xml:9
 #: simulation/templates/structures/brit_sentry_tower.xml:5
@@ -989,7 +990,7 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Construct Warships and research "
 "technologies."
-msgstr ""
+msgstr "An der Küste in eigenem, neutralem oder alliiertem Territorium bauen. Erobere große gebiete Territorium. Territoriumsursprung. Baue Kriegsschiffe und erforsche Technologien."
 
 #: simulation/templates/structures/cart_super_dock.xml:47
 msgid "Shipyard"
@@ -1001,7 +1002,7 @@ msgstr "Maqdaš"
 
 #: simulation/templates/structures/cart_temple.xml:15
 msgid "Train Healers and Champions and research healing technologies."
-msgstr ""
+msgstr "Trainiere Heiler und Gardisten und erforsche Heilungstechnologien."
 
 #: simulation/templates/structures/cart_tophet.xml:20
 msgid "Sacrificial Temple"
@@ -1132,7 +1133,7 @@ msgstr "Gur Oroigarri"
 #: simulation/templates/structures/maur_pillar_ashoka.xml:34
 #: simulation/templates/structures/rome_arch.xml:23
 msgid "Territory root."
-msgstr ""
+msgstr "Territoriumsursprung."
 
 #: simulation/templates/structures/iber_monument.xml:35
 #: simulation/templates/structures/iber_monument.xml:9
@@ -1288,11 +1289,11 @@ msgstr "Pr-ʿIprmk"
 #: simulation/templates/structures/kush_temple.xml:10
 msgid ""
 "Train Healers and Apedamak Champions and research healing technologies."
-msgstr ""
+msgstr "Trainiere Heiler und Apedemakgardisten und erforsche Heilungstechnologien."
 
 #: simulation/templates/structures/kush_temple.xml:11
 msgid "TempleOfApedemak"
-msgstr ""
+msgstr "TempelDesApedemak"
 
 #: simulation/templates/structures/kush_temple_amun.xml:28
 msgid "Grand Temple of Amun"
@@ -1304,11 +1305,11 @@ msgstr "Pr-ʿImn"
 
 #: simulation/templates/structures/kush_temple_amun.xml:30
 msgid "Train Healers and Amun Champions and research healing technologies."
-msgstr ""
+msgstr "Trainiere Heiler und Amongardisten und erforsche Heilungstechnologien."
 
 #: simulation/templates/structures/kush_temple_amun.xml:31
 msgid "TempleOfAmun"
-msgstr ""
+msgstr "TempelDesAmon"
 
 #: simulation/templates/structures/kush_wall_gate.xml:9
 msgid "ʿryt"
@@ -1506,11 +1507,11 @@ msgstr "Palisadentor"
 #: simulation/templates/structures/palisades_gate.xml:22
 #: simulation/templates/structures/palisades_long.xml:31
 msgid "Allow units access through Palisades. Can be locked to prevent access."
-msgstr ""
+msgstr "Ermöglicht Einheiten den Zugang durch Palisaden. Kann verriegelt werden, um den Zugang zu verhindern."
 
 #: simulation/templates/structures/palisades_long.xml:17
 msgid "Can be converted into a Palisade Gate."
-msgstr ""
+msgstr "Kann in ein Palisadentor umgewandelt werden."
 
 #: simulation/templates/structures/palisades_spike_angle.xml:17
 msgid "Angle Spike"
@@ -1605,7 +1606,7 @@ msgstr "Duvarθi Visadahyu"
 
 #: simulation/templates/structures/pers_hall.xml:25
 msgid "Hall"
-msgstr ""
+msgstr "Halle"
 
 #: simulation/templates/structures/pers_house.xml:8
 msgid "Huvādā"
@@ -1622,7 +1623,7 @@ msgstr "Ischtar-Tor zu Babylon"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:30
 msgid "IshtarGate"
-msgstr ""
+msgstr "IschtarTor"
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1693,7 +1694,7 @@ msgstr "Pharos"
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Reveal the "
 "shorelines over the entire map. Very large vision range."
-msgstr ""
+msgstr "An der Küste in eigenem, neutralem oder alliiertem Territorium bauen. Deckt die Küstenlinien der gesamten Karte auf. Sehr große Sichtweite."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:27
 #: simulation/templates/structures/ptol_lighthouse.xml:24
@@ -1737,7 +1738,7 @@ msgstr "Arcus Triumphālis"
 
 #: simulation/templates/structures/rome_arch.xml:24
 msgid "TriumphalArch"
-msgstr ""
+msgstr "Thriumphbogen"
 
 #: simulation/templates/structures/rome_army_camp.xml:80
 msgid "Army Camp"
@@ -1827,7 +1828,7 @@ msgstr "Porta Circummūnītiōnis"
 #: simulation/templates/structures/rome_siege_wall_tower.xml:33
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "SiegeWall"
-msgstr ""
+msgstr "BelagerungsWall"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:32
 #: simulation/templates/structures/rome_siege_wall_medium.xml:32
@@ -1873,7 +1874,7 @@ msgstr "Aedēs Mārtiālis"
 
 #: simulation/templates/structures/rome_temple_mars.xml:14
 msgid "TempleOfMars"
-msgstr ""
+msgstr "TempelDesMars"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Temple of Vesta"
@@ -1885,7 +1886,7 @@ msgstr "Aedēs Vestālis"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:19
 msgid "TempleOfVesta"
-msgstr ""
+msgstr "TempelDerVesta"
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1916,7 +1917,7 @@ msgstr "Turris Lapidea"
 
 #: simulation/templates/structures/rome_wallset_siege.xml:7
 msgid "Wall off an area. Build in own, neutral, or enemy territory."
-msgstr ""
+msgstr "Ummauere ein Gebiet. Baue in eigenem, neutralem oder feindlichem Territorium."
 
 #: simulation/templates/structures/rome_wonder.xml:9
 msgid "Aedēs Iovis Optimi Maximi"
@@ -1964,7 +1965,7 @@ msgstr "Syssition"
 
 #: simulation/templates/structures/spart_syssiton.xml:27
 msgid "Syssiton"
-msgstr ""
+msgstr "Syssiton"
 
 #: simulation/templates/structures/spart_wonder.xml:9
 msgid "Hieron tēs Artemidos Orthias"

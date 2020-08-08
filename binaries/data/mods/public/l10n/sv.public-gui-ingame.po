@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# 13975 <inactive+13975@transifex.com>, 2013
+# 978f34620323a49beac44c046cb2117a_1860a64 <e8de3b350daafa1075da72408a4b8b7a_136008>, 2013
 # Amanda Ringqvist, 2014
 # 0a7f9ff4c411567131ab21a7587f6066, 2014
 # Daniel Sandman <revoltism@gmail.com>, 2013
@@ -13,21 +13,22 @@
 # Kristoffer Grundström <lovaren@gmail.com>, 2018
 # liothe <lucy@liothe.se>, 2013
 # magicae, 2014
-# pilino1234 <pilino1234@zoho.eu>, 2016
-# pilino1234 <pilino1234@zoho.eu>, 2015-2016
+# Martin H <pilino1234@zoho.eu>, 2020
+# Martin H <pilino1234@zoho.eu>, 2016
+# Martin H <pilino1234@zoho.eu>, 2015-2016
 # Mattias Münster <mattiasmun@gmail.com>, 2019
-# pilino1234 <pilino1234@zoho.eu>, 2016-2017
+# Martin H <pilino1234@zoho.eu>, 2016-2017
 # mljungberg10 <mikael.ljungberg@gmail.com>, 2019
 # Patrik Nilsson <asavartzeth@gmail.com>, 2014
-# pilino1234 <pilino1234@zoho.eu>, 2017-2019
+# Martin H <pilino1234@zoho.eu>, 2017-2019
 # theschitz <theodore@theschitz.se>, 2015
 # Ulrika Uddeborg <aurorauddeborg@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-18 07:13+0000\n"
-"PO-Revision-Date: 2020-05-18 13:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-08-06 17:59+0000\n"
+"Last-Translator: Martin H <pilino1234@zoho.eu>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +39,7 @@ msgstr ""
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "Tryck %(hotkey)sför att växla denna meny."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -55,7 +56,7 @@ msgstr "Sammanfattning"
 #: gui/session/MenuButtons.js:87
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr ""
+msgstr "Tryck %(hotkey)sför att öppna sammanfattningsskärmen."
 
 #: gui/session/MenuButtons.js:130
 msgid "Lobby"
@@ -83,7 +84,7 @@ msgstr "Pausa"
 #: gui/session/MenuButtons.js:197
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr ""
+msgstr "Tryck %(hotkey)sför att pausa och fortsätta spelet."
 
 #: gui/session/MenuButtons.js:213
 msgid "Resign"
@@ -488,7 +489,7 @@ msgstr "Skift-klicka"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr ""
+msgstr "Detta är ursprungsmarknaden.\nHögerklicka för att avbryta handelsvägen."
 
 #: gui/session/unit_actions.js:623
 msgid "Origin trade market."
@@ -530,7 +531,7 @@ msgstr "Lasta av allt."
 
 #: gui/session/unit_actions.js:1143
 msgid "Destroy the selected units or structures."
-msgstr ""
+msgstr "Förstör valda enheter eller byggnader."
 
 #: gui/session/unit_actions.js:1145
 #, javascript-format
@@ -543,7 +544,7 @@ msgstr "Avbryt den akutella ordern."
 
 #: gui/session/unit_actions.js:1211
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr ""
+msgstr "Skicka valda enheter att garnisonera i en byggnad eller enhet."
 
 #: gui/session/unit_actions.js:1234
 msgid "Unload"
@@ -551,7 +552,7 @@ msgstr "Lasta av"
 
 #: gui/session/unit_actions.js:1252
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr ""
+msgstr "Skicka valda enheter att reparera en byggnad, ett skepp eller ett belägringsvapen."
 
 #: gui/session/unit_actions.js:1271
 msgid "Focus on Rally Point."
@@ -563,7 +564,7 @@ msgstr "Tillbaka till arbetet"
 
 #: gui/session/unit_actions.js:1325
 msgid "Order the selected units to guard a structure or unit."
-msgstr ""
+msgstr "Skicka valda enheter att vakta en byggnad eller en enhet."
 
 #: gui/session/unit_actions.js:1343
 msgid "Remove guard"
@@ -581,7 +582,7 @@ msgstr "Patrullera"
 
 #: gui/session/unit_actions.js:1379
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr ""
+msgstr "Attackera alla fientliga enheter men undvik byggnader."
 
 #: gui/session/unit_actions.js:1405
 msgid "Press to allow allies to use this dropsite"
@@ -777,7 +778,7 @@ msgstr "%(player)s har anslutit till spelet."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:57
 msgid "no-context"
-msgstr ""
+msgstr "no-context"
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:61
 #, javascript-format
@@ -970,11 +971,11 @@ msgstr "Lås gallringskamera"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:265
 msgid "Display camera frustum"
-msgstr "Visa kameran stympad"
+msgstr "Visa kamerafrustum"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:283
 msgid "Display shadows frustum"
-msgstr ""
+msgstr "Visa skuggfrustum"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -1126,7 +1127,7 @@ msgstr "Out of Sync"
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr ""
+msgstr "Out-Of-Sync"
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:63
@@ -1201,7 +1202,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Visa Civilisationsöverblick / Byggnadsträd\nSenast öppnad kommer att öppnas igen vid klick."
 
 #: gui/session/top_panel/CounterManager.js:100
 #, javascript-format
@@ -1272,19 +1273,19 @@ msgstr "Sälj %(resource)s"
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
-msgstr ""
+msgstr "+%(amount)s"
 
 #: gui/session/trade/BarterButton.js:103
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"
-msgstr ""
+msgstr "-%(amount)s"
 
 #: gui/session/trade/TradeButton.js:56
 #, javascript-format
 msgctxt "trading good ratio"
 msgid "%(amount)s%%"
-msgstr ""
+msgstr "%(amount)s%%"
 
 #: gui/session/trade/TradeButtonManager.js:76
 #, javascript-format

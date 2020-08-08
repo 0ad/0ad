@@ -24,21 +24,22 @@
 # Lukas N <luki.niesen@gmail.com>, 2018
 # Marco tom Suden, 2015
 # Marco tom Suden, 2015
-# pilino1234 <pilino1234@zoho.eu>, 2016
-# pilino1234 <pilino1234@zoho.eu>, 2015-2016
+# Martin H <pilino1234@zoho.eu>, 2020
+# Martin H <pilino1234@zoho.eu>, 2016
+# Martin H <pilino1234@zoho.eu>, 2015-2016
 # Martin Rudel <transifex.com@rudel-it.com>, 2016
 # Matthias Meger <matthias.meger@web.de>, 2016
 # Maximilian <camellion@gmx.de>, 2014
 # Maximilian von Lindern <hobbituhukai@live.de>, 2017
 # Maximilian Wagenbach <foaly@posteo.de>, 2016-2018
-# pilino1234 <pilino1234@zoho.eu>, 2016
+# Martin H <pilino1234@zoho.eu>, 2016
 # Michael Hecht <arachnovobica.mh@googlemail.com>, 2019
 # Michael Vetter <jubalh@openmailbox.org>, 2016
 # nautilusx, 2016
 # nautilusx, 2016
 # Thelxinoe, 2015
 # Peter Gasse <gasse.peter@gmail.com>, 2017
-# pilino1234 <pilino1234@zoho.eu>, 2016
+# Martin H <pilino1234@zoho.eu>, 2016
 # qwertz, 2014-2015
 # Raymond Vetter, 2014-2019
 # rugk, 2016
@@ -50,9 +51,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:09+0000\n"
-"PO-Revision-Date: 2020-07-24 17:40+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-07-31 07:09+0000\n"
+"PO-Revision-Date: 2020-08-04 16:29+0000\n"
+"Last-Translator: Martin H <pilino1234@zoho.eu>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,8 +101,8 @@ msgstr "Spezialtechnologien"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Structure"
 msgid_plural "Special Structures"
-msgstr[0] "Spezialstruktur"
-msgstr[1] "Spezialstrukturen"
+msgstr[0] "Spezialgebäude"
+msgstr[1] "Spezialgebäude"
 
 #: gui/civinfo/civinfo.js:141 gui/summary/layout.js:77
 msgid "Heroes"
@@ -445,7 +446,7 @@ msgstr "Pro Spieler"
 
 #: gui/common/gamedescription.js:382
 msgid "World Population Cap"
-msgstr ""
+msgstr "Weltbevölkerungslimit"
 
 #: gui/common/gamedescription.js:390
 msgid "Treasures"
@@ -732,7 +733,7 @@ msgstr "Standard"
 #: gui/common/settings.js:400
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(Welt)"
 
 #: gui/common/settings.js:401 gui/common/settings.js:405
 msgctxt "population capacity"
@@ -1223,10 +1224,10 @@ msgstr "Rechtsklicken, um mehr Informationen anzuzeigen."
 msgid "Click to view more information."
 msgstr "Klicken, um mehr Informationen anzuzeigen,"
 
-#: gui/credits/credits.js:81
+#: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
-msgstr ""
+msgstr "%(nick)s — %(name)s"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
@@ -1390,7 +1391,7 @@ msgstr "Starte die ökonomische Einführung."
 #: gui/pregame/MainMenuItems.js:24 gui/civinfo/civinfo.xml:(caption):123
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
-msgstr "Strukturbaum"
+msgstr "Gebäudebaum"
 
 #: gui/pregame/MainMenuItems.js:25
 #, javascript-format
@@ -1971,7 +1972,7 @@ msgstr "Erkundung"
 
 #: gui/summary/layout.js:31
 msgid "Structures"
-msgstr "Strukturen"
+msgstr "Gebäude"
 
 #: gui/summary/layout.js:34 gui/summary/layout.js:72 gui/summary/layout.js:112
 msgid "Total"
@@ -2010,7 +2011,7 @@ msgstr "Wunder"
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr "Struktur Statistik (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
+msgstr "Gebäudestatistik (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:69
 msgid "Units"
@@ -2517,106 +2518,102 @@ msgctxt "summary chart"
 msgid "Type"
 msgstr "Typ"
 
-#: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
+#: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
 msgstr "Leitung Grafik"
 
-#: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
-msgid "Sound Manager"
-msgstr "Sound-Manager"
-
-#: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
-msgid "Composer"
-msgstr "Komponist"
-
-#: gui/credits/texts/art.jsonContent[0].Title
-msgid "Artistic managers"
-msgstr "Grafik-Manager"
-
 #: gui/credits/texts/art.jsonContent[1].Title
-msgid "Map Making"
-msgstr "Kartenerstellung"
-
-#: gui/credits/texts/art.jsonContent[2].Title
-msgid "Random Map Scripts"
-msgstr "Zufallskartenskripte"
-
-#: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
 msgstr "2D-Grafik"
 
-#: gui/credits/texts/art.jsonContent[4].Title
+#: gui/credits/texts/art.jsonContent[2].Title
 msgid "3D Art"
 msgstr "3D-Grafik"
-
-#: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
-msgid "Additional music, percussion, djembe, sampling"
-msgstr "Zusätzliche Musik, Perkussion, Djembe, Sampling"
-
-#: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
-msgid "Additional music"
-msgstr "Zusätzliche Musik"
-
-#: gui/credits/texts/art.jsonContent[5].Content[3].Subtitle
-msgid "Flute"
-msgstr "Flöte"
-
-#: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
-msgid "Djembe"
-msgstr "Djembe"
-
-#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
-msgid "Frame drum, darbuka, riq, toms"
-msgstr "Rahmentrommel, Darbuka, Riq, Toms"
-
-#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
-msgid "Didgeridoo"
-msgstr "Didgeridoo"
-
-#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
-msgid "Trumpet"
-msgstr "Trompete"
-
-#: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
-msgid "Celtic harp"
-msgstr "Keltische Harfe"
-
-#: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
-msgid "Tin whistles"
-msgstr "Blechflöten"
-
-#: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
-msgid "Viola, violin"
-msgstr "Bratsche, Geige"
-
-#: gui/credits/texts/art.jsonContent[5].Title
-msgid "Music"
-msgstr "Musik"
-
-#: gui/credits/texts/art.jsonContent[6].Title
-#: gui/options/options.json[2].label
-msgid "Sound"
-msgstr "Ton"
-
-#: gui/credits/texts/art.jsonContent[7].Content[0].Subtitle
-msgid "Greek"
-msgstr "Griechisch"
-
-#: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
-msgid "Latin"
-msgstr "Latein"
-
-#: gui/credits/texts/art.jsonContent[7].Content[2].Subtitle
-msgid "Persian"
-msgstr "Perser"
-
-#: gui/credits/texts/art.jsonContent[7].Title
-msgid "Voices"
-msgstr "Stimmen"
 
 #: gui/credits/texts/art.jsonTitle
 msgid "Art"
 msgstr "Grafik"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[0].Subtitle
+msgid "Sound Manager"
+msgstr "Sound-Manager"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
+msgid "Lead Composer"
+msgstr "Hauptkomponist"
+
+#: gui/credits/texts/audio.jsonContent[0].Title
+msgid "Audio managers"
+msgstr "Audio-Manager"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
+msgid "Additional music, percussion, djembe, sampling"
+msgstr "Zusätzliche Musik, Perkussion, Djembe, Sampling"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
+msgid "Additional music"
+msgstr "Zusätzliche Musik"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
+msgid "Flute"
+msgstr "Flöte"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
+msgid "Djembe"
+msgstr "Djembe"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr "Rahmentrommel, Darbuka, Riq, Toms"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
+msgid "Didgeridoo"
+msgstr "Didgeridoo"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
+msgid "Trumpet"
+msgstr "Trompete"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
+msgid "Celtic harp"
+msgstr "Keltische Harfe"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
+msgid "Tin whistles"
+msgstr "Blechflöten"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
+msgid "Viola, violin"
+msgstr "Bratsche, Geige"
+
+#: gui/credits/texts/audio.jsonContent[1].Title
+msgid "Music"
+msgstr "Musik"
+
+#: gui/credits/texts/audio.jsonContent[2].Title
+#: gui/options/options.json[2].label
+msgid "Sound"
+msgstr "Ton"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[0].Subtitle
+msgid "Greek"
+msgstr "Griechisch"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
+msgid "Latin"
+msgstr "Latein"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
+msgid "Persian"
+msgstr "Perser"
+
+#: gui/credits/texts/audio.jsonContent[3].Title
+msgid "Voices"
+msgstr "Stimmen"
+
+#: gui/credits/texts/audio.jsonTitle
+msgid "Audio"
+msgstr "Audio"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -2652,6 +2649,18 @@ msgstr "Spender"
 #: gui/credits/texts/history.jsonTitle
 msgid "History References"
 msgstr "Geschichtliche Verweise"
+
+#: gui/credits/texts/maps.jsonContent[0].Title
+msgid "Map Making"
+msgstr "Kartenerstellung"
+
+#: gui/credits/texts/maps.jsonContent[1].Title
+msgid "Random Map Scripts"
+msgstr "Zufallskartenskripte"
+
+#: gui/credits/texts/maps.jsonTitle
+msgid "Maps"
+msgstr "Karten"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -2931,7 +2940,7 @@ msgstr "Schattenfilter"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Show outlines of units behind structures."
-msgstr "Zeige die Umrisse von Einheiten hinter Strukturen."
+msgstr "Zeige die Umrisse von Einheiten hinter Gebäuden."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Unit silhouettes"
@@ -3325,7 +3334,7 @@ msgstr "Chatbenachrichtigung für Phasen"
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr "Zeigt die Reichweite von ausgewählten Defensivstrukturen an (kann auch während des Spiels mit der Schnellzugriffstaste umgeschaltet werden)."
+msgstr "Zeigt die Reichweite von ausgewählten Defensivgebäuden an (kann auch während des Spiels mit der Schnellzugriffstaste umgeschaltet werden)."
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
@@ -3370,7 +3379,7 @@ msgstr "Statusanzeige der Erfahrung"
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr "Detaillierte Kurzinfo für ausbildbare Einheiten in Ausbildungsstrukturen anzeigen."
+msgstr "Detaillierte Kurzinfo für ausbildbare Einheiten in Ausbildungsgebäuden anzeigen."
 
 #: gui/options/options.json[5].options[12].label
 msgid "Detailed tooltips"
@@ -3432,7 +3441,7 @@ msgstr "Diplomatiefarben: Gegner"
 #: gui/options/options.json[5].options[18].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr "Neue Strukturen werden am nahegelegenen Strukturen ausgerichtet, während die Schnelltaste gedrückt wird."
+msgstr "Neues Gebäude werden a nahegelegenen Gebäuden ausgerichtet, während die Schnelltaste gedrückt wird."
 
 #: gui/options/options.json[5].options[18].list[0].label
 msgid "Hotkey to enable snapping"
@@ -3442,7 +3451,7 @@ msgstr "Schnelltaste um Auto-Ausrichtung einzuschalten"
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr "Neue Strukturen werden an nahegelegene Strukturen ausgerichtet, außer schnell Taste wird gedrückt."
+msgstr "Neue Gebäude werden an nahegelegenen Gebäude ausgerichtet, außer Schnelltaste wird gedrückt."
 
 #: gui/options/options.json[5].options[18].list[1].label
 msgid "Hotkey to disable snapping"
@@ -3450,7 +3459,7 @@ msgstr "Schnelltaste um Auto-Ausrichtung abzuschalten"
 
 #: gui/options/options.json[5].options[18].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr "Diese Option ermöglicht es, neue Strukturen an bestehenden Strukturen auszurichten."
+msgstr "Diese Option ermöglicht es, neue Gebäude an bestehenden Gebäuden auszurichten."
 
 #: gui/options/options.json[5].options[18].label
 msgid "Snap to edges"
@@ -3461,7 +3470,7 @@ msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
-msgstr "Wenn eine Einheit oder Struktur einer Kontrollgruppe hinzugefügt wird, werden sie von anderen Kontrollgruppen entfernt. Nutze diese Option, wenn du möchtest das Kontrollgruppen separate Armeen repräsentieren."
+msgstr "Wenn eine Einheit oder ein Gebäude einer Kontrollgruppe hinzugefügt wird, werden sie von anderen Kontrollgruppen entfernt. Nutze diese Option, wenn du möchtest das Kontrollgruppen separate Armeen repräsentieren."
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
@@ -3472,7 +3481,7 @@ msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
-msgstr "Einheiten und Strukturen können Teil mehrerer Kontrollgruppen sein. Das ist nützlich, um Kontrollgruppe für separate Truppen und eine Kontrollgruppe für die gesamte Armee gleichzeitig zu haben."
+msgstr "Einheiten und Gebäude können Teil mehrerer Kontrollgruppen sein. Das ist nützlich, um Kontrollgruppen für separate Truppen und eine Kontrollgruppe für die gesamte Armee gleichzeitig zu haben."
 
 #: gui/options/options.json[5].options[19].list[1].label
 msgid "Multiple"
@@ -4015,7 +4024,7 @@ msgstr "Der erste athenische Staatsmann des fünften Jahrhunderts v.Chr."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Structures are built faster within his range."
-msgstr "Strukturen werden in seiner Nähe schneller gebaut."
+msgstr "Gebäude werden in seiner Nähe schneller gebaut."
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."
@@ -4031,7 +4040,7 @@ msgstr "Spezialtechnologie der Perser."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr "Strukturen +25% Gesundheit."
+msgstr "Gebäude +25% Gesundheit."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
@@ -4217,7 +4226,7 @@ msgstr "TERRITORIALER ZERFALL"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr "Verfall tritt auf, wenn Strukturen nicht mit einem verbündeten Verwaltungssitz verbunden sind."
+msgstr "Verfall tritt auf, wenn Gebäude nicht mit einem verbündeten Verwaltungssitz verbunden sind."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
@@ -4229,7 +4238,7 @@ msgstr "Der Verfallsprozess kann durch das stationieren von einigen Einheiten ve
 msgid ""
 "When the decay is completed, the structure will be given to the most "
 "influential neighbor."
-msgstr "Wenn der Verfall abgeschlossen ist, fällt die Struktur an den einflussreichsten Nachbar."
+msgstr "Wenn der Verfall abgeschlossen ist, fällt das Gebäude an den einflussreichsten Nachbar."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"

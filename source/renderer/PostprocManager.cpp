@@ -38,7 +38,7 @@
 CPostprocManager::CPostprocManager()
 	: m_IsInitialized(false), m_PingFbo(0), m_PongFbo(0), m_PostProcEffect(L"default"), m_ColorTex1(0), m_ColorTex2(0),
 	  m_DepthTex(0), m_BloomFbo(0), m_BlurTex2a(0), m_BlurTex2b(0), m_BlurTex4a(0), m_BlurTex4b(0),
-	  m_BlurTex8a(0), m_BlurTex8b(0), m_WhichBuffer(true)
+	  m_BlurTex8a(0), m_BlurTex8b(0), m_WhichBuffer(true), m_Sharpness(0.3f)
 {
 }
 
@@ -81,6 +81,8 @@ void CPostprocManager::Initialize()
 	m_Height = g_Renderer.GetHeight();
 
 	UpdateAntiAliasingTechnique();
+	UpdateSharpeningTechnique();
+	UpdateSharpnessFactor();
 	RecreateBuffers();
 	m_IsInitialized = true;
 
@@ -428,6 +430,8 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 	shader->Uniform(str_zNear, m_NearPlane);
 	shader->Uniform(str_zFar, m_FarPlane);
 
+	shader->Uniform(str_sharpness, m_Sharpness);
+
 	shader->Uniform(str_brightness, g_LightEnv.m_Brightness);
 	shader->Uniform(str_hdr, g_LightEnv.m_Contrast);
 	shader->Uniform(str_saturation, g_LightEnv.m_Saturation);
@@ -473,7 +477,8 @@ void CPostprocManager::ApplyPostproc()
 	// Don't do anything if we are using the default effect and no AA.
 	const bool hasEffects = m_PostProcEffect != L"default";
 	const bool hasAA = m_AATech && g_RenderingOptions.GetPreferGLSL();
-	if (!hasEffects && !hasAA)
+	const bool hasSharp = m_SharpTech && g_RenderingOptions.GetPreferGLSL();
+	if (!hasEffects && !hasAA && !hasSharp)
 		return;
 
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
@@ -506,6 +511,12 @@ void CPostprocManager::ApplyPostproc()
 	{
 		for (int pass = 0; pass < m_AATech->GetNumPasses(); ++pass)
 			ApplyEffect(m_AATech, pass);
+	}
+
+	if (hasSharp)
+	{
+		for (int pass = 0; pass < m_SharpTech->GetNumPasses(); ++pass)
+			ApplyEffect(m_SharpTech, pass);
 	}
 
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
@@ -574,6 +585,29 @@ void CPostprocManager::UpdateAntiAliasingTechnique()
 	}
 }
 
+void CPostprocManager::UpdateSharpeningTechnique()
+{
+	if (!g_RenderingOptions.GetPreferGLSL())
+		return;
+
+	CStr newSharpName;
+	CFG_GET_VAL("sharpening", newSharpName);
+	if (m_SharpName == newSharpName)
+		return;
+	m_SharpName = newSharpName;
+	m_SharpTech.reset();
+
+	if (m_SharpName == "cas")
+	{
+		m_SharpTech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern(m_SharpName));
+	}
+}
+
+void CPostprocManager::UpdateSharpnessFactor()
+{
+	CFG_GET_VAL("sharpness", m_Sharpness);
+}
+
 void CPostprocManager::SetDepthBufferClipPlanes(float nearPlane, float farPlane)
 {
 	m_NearPlane = nearPlane;
@@ -634,6 +668,14 @@ void CPostprocManager::SetDepthBufferClipPlanes(float UNUSED(nearPlane), float U
 }
 
 void CPostprocManager::UpdateAntiAliasingTechnique()
+{
+}
+
+void CPostprocManager::UpdateSharpeningTechnique()
+{
+}
+
+void CPostprocManager::UpdateSharpnessFactor()
 {
 }
 
