@@ -207,10 +207,6 @@ void SkyManager::RenderSky()
 
 	glDepthMask(GL_FALSE);
 
-	pglActiveTextureARB(GL_TEXTURE0_ARB);
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::FIXED)
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-
 	CShaderProgramPtr shader;
 	CShaderTechniquePtr skytech;
 
@@ -243,6 +239,10 @@ void SkyManager::RenderSky()
 	}
 	else
 	{
+		pglActiveTextureARB(GL_TEXTURE0_ARB);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
 		glMatrixMode(GL_MODELVIEW);
 		// Modify current matrix that already contains view part.
 		glPushMatrix();
@@ -317,10 +317,9 @@ void SkyManager::RenderSky()
 		glEnable(GL_TEXTURE_2D);
 
 		glPopMatrix();
-	}
 
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::FIXED)
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	}
 
 	glDepthMask(GL_TRUE);
 
