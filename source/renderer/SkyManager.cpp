@@ -198,7 +198,8 @@ void SkyManager::RenderSky()
 #else
 
 	// Draw the sky as a small box around the map, with depth write enabled.
-	// This will be done before anything else is drawn so we'll be overlapped by everything else.
+	// This will be done before anything else is drawn so we'll be overlapped by
+	// everything else.
 
 	// Do nothing unless SetSkySet was called
 	if (m_SkySet.empty())
@@ -210,22 +211,10 @@ void SkyManager::RenderSky()
 	if (g_RenderingOptions.GetRenderPath() == RenderPath::FIXED)
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-
-	// Translate so the sky center is at the camera space origin.
-	CVector3D cameraPos = g_Renderer.GetViewCamera().GetOrientation().GetTranslation();
-	glTranslatef(cameraPos.X, cameraPos.Y, cameraPos.Z);
-
-	// Rotate so that the "left" face, which contains the brightest part of each
-	// skymap, is in the direction of the sun from our light environment
-	glRotatef(180.0f + RADTODEG(g_Renderer.GetLightEnv().GetRotation()), 0.0f, 1.0f, 0.0f);
-
-	// Currently we have a hardcoded near plane in the projection matrix.
-	glScalef(10.0f, 10.0f, 10.0f);
-
 	CShaderProgramPtr shader;
 	CShaderTechniquePtr skytech;
+
+	const CCamera& camera = g_Renderer.GetViewCamera();
 
 	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
 	{
@@ -233,9 +222,45 @@ void SkyManager::RenderSky()
 		skytech->BeginPass();
 		shader = skytech->GetShader();
 		shader->BindTexture(str_baseTex, m_SkyCubeMap);
+
+		// Translate so the sky center is at the camera space origin.
+		CMatrix3D translate;
+		translate.SetTranslation(camera.GetOrientation().GetTranslation());
+
+		// Currently we have a hardcoded near plane in the projection matrix.
+		CMatrix3D scale;
+		scale.SetScaling(10.0f, 10.0f, 10.0f);
+
+		// Rotate so that the "left" face, which contains the brightest part of
+		// each skymap, is in the direction of the sun from our light
+		// environment.
+		CMatrix3D rotate;
+		rotate.SetYRotation(M_PI + g_Renderer.GetLightEnv().GetRotation());
+
+		shader->Uniform(
+			str_transform,
+			camera.GetViewProjection() * translate * rotate * scale);
 	}
 	else
 	{
+		glMatrixMode(GL_MODELVIEW);
+		// Modify current matrix that already contains view part.
+		glPushMatrix();
+
+		// Translate so the sky center is at the camera space origin.
+		CVector3D cameraPos = camera.GetOrientation().GetTranslation();
+		glTranslatef(cameraPos.X, cameraPos.Y, cameraPos.Z);
+
+		// Rotate so that the "left" face, which contains the brightest part of
+		// each skymap, is in the direction of the sun from our light
+		// environment.
+		glRotatef(
+			180.0f + RADTODEG(g_Renderer.GetLightEnv().GetRotation()),
+			0.0f, 1.0f, 0.0f);
+
+		// Currently we have a hardcoded near plane in the projection matrix.
+		glScalef(10.0f, 10.0f, 10.0f);
+
 		glDisable(GL_TEXTURE_2D);
 		glEnable(GL_TEXTURE_CUBE_MAP);
 		glBindTexture(GL_TEXTURE_CUBE_MAP, m_SkyCubeMap);
@@ -290,9 +315,9 @@ void SkyManager::RenderSky()
 		glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
 		glDisable(GL_TEXTURE_CUBE_MAP);
 		glEnable(GL_TEXTURE_2D);
-	}
 
-	glPopMatrix();
+		glPopMatrix();
+	}
 
 	if (g_RenderingOptions.GetRenderPath() == RenderPath::FIXED)
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
