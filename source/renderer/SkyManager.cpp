@@ -207,16 +207,14 @@ void SkyManager::RenderSky()
 
 	glDepthMask(GL_FALSE);
 
-	CShaderProgramPtr shader;
-	CShaderTechniquePtr skytech;
-
 	const CCamera& camera = g_Renderer.GetViewCamera();
 
 	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
 	{
-		skytech = g_Renderer.GetShaderManager().LoadEffect(str_sky_simple);
+		CShaderTechniquePtr skytech =
+			g_Renderer.GetShaderManager().LoadEffect(str_sky_simple);
 		skytech->BeginPass();
-		shader = skytech->GetShader();
+		CShaderProgramPtr shader = skytech->GetShader();
 		shader->BindTexture(str_baseTex, m_SkyCubeMap);
 
 		// Translate so the sky center is at the camera space origin.
@@ -236,6 +234,64 @@ void SkyManager::RenderSky()
 		shader->Uniform(
 			str_transform,
 			camera.GetViewProjection() * translate * rotate * scale);
+
+		std::vector<GLfloat> vertexData;
+		// 6 sides of cube with 4 vertices with 6 floats (3 uv and 3 position).
+		vertexData.reserve(6 * 4 * 6);
+	#define ADD_VERTEX(U, V, W, X, Y, Z) \
+		STMT( \
+			vertexData.push_back(X); \
+			vertexData.push_back(Y); \
+			vertexData.push_back(Z); \
+			vertexData.push_back(U); \
+			vertexData.push_back(V); \
+			vertexData.push_back(W);)
+
+		// GL_TEXTURE_CUBE_MAP_NEGATIVE_X
+		ADD_VERTEX(+1, +1, +1, -1.0f, -1.0f, -1.0f);
+		ADD_VERTEX(+1, +1, -1, -1.0f, -1.0f, +1.0f);
+		ADD_VERTEX(+1, -1, -1, -1.0f, +1.0f, +1.0f);
+		ADD_VERTEX(+1, -1, +1, -1.0f, +1.0f, -1.0f);
+
+		// GL_TEXTURE_CUBE_MAP_POSITIVE_X
+		ADD_VERTEX(-1, +1, -1, +1.0f, -1.0f, +1.0f);
+		ADD_VERTEX(-1, +1, +1, +1.0f, -1.0f, -1.0f);
+		ADD_VERTEX(-1, -1, +1, +1.0f, +1.0f, -1.0f);
+		ADD_VERTEX(-1, -1, -1, +1.0f, +1.0f, +1.0f);
+
+		// GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
+		ADD_VERTEX(-1, +1, +1, +1.0f, -1.0f, -1.0f);
+		ADD_VERTEX(-1, +1, -1, +1.0f, -1.0f, +1.0f);
+		ADD_VERTEX(+1, +1, -1, -1.0f, -1.0f, +1.0f);
+		ADD_VERTEX(+1, +1, +1, -1.0f, -1.0f, -1.0f);
+
+		// GL_TEXTURE_CUBE_MAP_POSITIVE_Y
+		ADD_VERTEX(+1, -1, +1, -1.0f, +1.0f, -1.0f);
+		ADD_VERTEX(+1, -1, -1, -1.0f, +1.0f, +1.0f);
+		ADD_VERTEX(-1, -1, -1, +1.0f, +1.0f, +1.0f);
+		ADD_VERTEX(-1, -1, +1, +1.0f, +1.0f, -1.0f);
+
+		// GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
+		ADD_VERTEX(-1, +1, +1, +1.0f, -1.0f, -1.0f);
+		ADD_VERTEX(+1, +1, +1, -1.0f, -1.0f, -1.0f);
+		ADD_VERTEX(+1, -1, +1, -1.0f, +1.0f, -1.0f);
+		ADD_VERTEX(-1, -1, +1, +1.0f, +1.0f, -1.0f);
+
+		// GL_TEXTURE_CUBE_MAP_POSITIVE_Z
+		ADD_VERTEX(+1, +1, -1, -1.0f, -1.0f, +1.0f);
+		ADD_VERTEX(-1, +1, -1, +1.0f, -1.0f, +1.0f);
+		ADD_VERTEX(-1, -1, -1, +1.0f, +1.0f, +1.0f);
+		ADD_VERTEX(+1, -1, -1, -1.0f, +1.0f, +1.0f);
+	#undef ADD_VERTEX
+
+		shader->VertexPointer(3, GL_FLOAT, sizeof(GLfloat) * 6, &vertexData[0]);
+		shader->TexCoordPointer(
+			GL_TEXTURE0, 3, GL_FLOAT, sizeof(GLfloat) * 6, &vertexData[3]);
+		shader->AssertPointersBound();
+
+		glDrawArrays(GL_QUADS, 0, 6 * 4);
+
+		skytech->EndPass();
 	}
 	else
 	{
@@ -264,54 +320,47 @@ void SkyManager::RenderSky()
 		glDisable(GL_TEXTURE_2D);
 		glEnable(GL_TEXTURE_CUBE_MAP);
 		glBindTexture(GL_TEXTURE_CUBE_MAP, m_SkyCubeMap);
-	}
 
-	glBegin(GL_QUADS);
+		glBegin(GL_QUADS);
 
-	// GL_TEXTURE_CUBE_MAP_NEGATIVE_X
-	glTexCoord3f(+1, +1, +1);  glVertex3f(-1.0f, -1.0f, -1.0f);
-	glTexCoord3f(+1, +1, -1);  glVertex3f(-1.0f, -1.0f, +1.0f);
-	glTexCoord3f(+1, -1, -1);  glVertex3f(-1.0f, +1.0f, +1.0f);
-	glTexCoord3f(+1, -1, +1);  glVertex3f(-1.0f, +1.0f, -1.0f);
+		// GL_TEXTURE_CUBE_MAP_NEGATIVE_X
+		glTexCoord3f(+1, +1, +1);  glVertex3f(-1.0f, -1.0f, -1.0f);
+		glTexCoord3f(+1, +1, -1);  glVertex3f(-1.0f, -1.0f, +1.0f);
+		glTexCoord3f(+1, -1, -1);  glVertex3f(-1.0f, +1.0f, +1.0f);
+		glTexCoord3f(+1, -1, +1);  glVertex3f(-1.0f, +1.0f, -1.0f);
 
-	// GL_TEXTURE_CUBE_MAP_POSITIVE_X
-	glTexCoord3f(-1, +1, -1);  glVertex3f(+1.0f, -1.0f, +1.0f);
-	glTexCoord3f(-1, +1, +1);  glVertex3f(+1.0f, -1.0f, -1.0f);
-	glTexCoord3f(-1, -1, +1);  glVertex3f(+1.0f, +1.0f, -1.0f);
-	glTexCoord3f(-1, -1, -1);  glVertex3f(+1.0f, +1.0f, +1.0f);
+		// GL_TEXTURE_CUBE_MAP_POSITIVE_X
+		glTexCoord3f(-1, +1, -1);  glVertex3f(+1.0f, -1.0f, +1.0f);
+		glTexCoord3f(-1, +1, +1);  glVertex3f(+1.0f, -1.0f, -1.0f);
+		glTexCoord3f(-1, -1, +1);  glVertex3f(+1.0f, +1.0f, -1.0f);
+		glTexCoord3f(-1, -1, -1);  glVertex3f(+1.0f, +1.0f, +1.0f);
 
-	// GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
-	glTexCoord3f(-1, +1, +1);  glVertex3f(+1.0f, -1.0f, -1.0f);
-	glTexCoord3f(-1, +1, -1);  glVertex3f(+1.0f, -1.0f, +1.0f);
-	glTexCoord3f(+1, +1, -1);  glVertex3f(-1.0f, -1.0f, +1.0f);
-	glTexCoord3f(+1, +1, +1);  glVertex3f(-1.0f, -1.0f, -1.0f);
+		// GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
+		glTexCoord3f(-1, +1, +1);  glVertex3f(+1.0f, -1.0f, -1.0f);
+		glTexCoord3f(-1, +1, -1);  glVertex3f(+1.0f, -1.0f, +1.0f);
+		glTexCoord3f(+1, +1, -1);  glVertex3f(-1.0f, -1.0f, +1.0f);
+		glTexCoord3f(+1, +1, +1);  glVertex3f(-1.0f, -1.0f, -1.0f);
 
-	// GL_TEXTURE_CUBE_MAP_POSITIVE_Y
-	glTexCoord3f(+1, -1, +1);  glVertex3f(-1.0f, +1.0f, -1.0f);
-	glTexCoord3f(+1, -1, -1);  glVertex3f(-1.0f, +1.0f, +1.0f);
-	glTexCoord3f(-1, -1, -1);  glVertex3f(+1.0f, +1.0f, +1.0f);
-	glTexCoord3f(-1, -1, +1);  glVertex3f(+1.0f, +1.0f, -1.0f);
+		// GL_TEXTURE_CUBE_MAP_POSITIVE_Y
+		glTexCoord3f(+1, -1, +1);  glVertex3f(-1.0f, +1.0f, -1.0f);
+		glTexCoord3f(+1, -1, -1);  glVertex3f(-1.0f, +1.0f, +1.0f);
+		glTexCoord3f(-1, -1, -1);  glVertex3f(+1.0f, +1.0f, +1.0f);
+		glTexCoord3f(-1, -1, +1);  glVertex3f(+1.0f, +1.0f, -1.0f);
 
-	// GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
-	glTexCoord3f(-1, +1, +1);  glVertex3f(+1.0f, -1.0f, -1.0f);
-	glTexCoord3f(+1, +1, +1);  glVertex3f(-1.0f, -1.0f, -1.0f);
-	glTexCoord3f(+1, -1, +1);  glVertex3f(-1.0f, +1.0f, -1.0f);
-	glTexCoord3f(-1, -1, +1);  glVertex3f(+1.0f, +1.0f, -1.0f);
+		// GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
+		glTexCoord3f(-1, +1, +1);  glVertex3f(+1.0f, -1.0f, -1.0f);
+		glTexCoord3f(+1, +1, +1);  glVertex3f(-1.0f, -1.0f, -1.0f);
+		glTexCoord3f(+1, -1, +1);  glVertex3f(-1.0f, +1.0f, -1.0f);
+		glTexCoord3f(-1, -1, +1);  glVertex3f(+1.0f, +1.0f, -1.0f);
 
-	// GL_TEXTURE_CUBE_MAP_POSITIVE_Z
-	glTexCoord3f(+1, +1, -1);  glVertex3f(-1.0f, -1.0f, +1.0f);
-	glTexCoord3f(-1, +1, -1);  glVertex3f(+1.0f, -1.0f, +1.0f);
-	glTexCoord3f(-1, -1, -1);  glVertex3f(+1.0f, +1.0f, +1.0f);
-	glTexCoord3f(+1, -1, -1);  glVertex3f(-1.0f, +1.0f, +1.0f);
+		// GL_TEXTURE_CUBE_MAP_POSITIVE_Z
+		glTexCoord3f(+1, +1, -1);  glVertex3f(-1.0f, -1.0f, +1.0f);
+		glTexCoord3f(-1, +1, -1);  glVertex3f(+1.0f, -1.0f, +1.0f);
+		glTexCoord3f(-1, -1, -1);  glVertex3f(+1.0f, +1.0f, +1.0f);
+		glTexCoord3f(+1, -1, -1);  glVertex3f(-1.0f, +1.0f, +1.0f);
 
-	glEnd();
+		glEnd();
 
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
-	{
-		skytech->EndPass();
-	}
-	else
-	{
 		glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
 		glDisable(GL_TEXTURE_CUBE_MAP);
 		glEnable(GL_TEXTURE_2D);
