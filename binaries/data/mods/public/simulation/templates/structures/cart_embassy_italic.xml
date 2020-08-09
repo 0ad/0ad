@@ -14,9 +14,9 @@
   </Health>
   <Identity>
     <Civ>cart</Civ>
-    <SpecificName>Italian Embassy</SpecificName>
-    <Tooltip>Hire Italian mercenaries. Research improvements for these mercenaries.</Tooltip>
-    <Icon>structures/italian_embassy.png</Icon>
+    <SpecificName>Italic Embassy</SpecificName>
+    <Tooltip>Train Italic Mercenaries and research Mercenary technologies.</Tooltip>
+    <Icon>structures/embassy_italic.png</Icon>
   </Identity>
   <Loot>
     <metal>40</metal>
@@ -31,6 +31,6 @@
     </Entities>
   </ProductionQueue>
   <VisualActor>
-    <Actor>structures/carthaginians/embassy_italiote.xml</Actor>
+    <Actor>structures/carthaginians/embassy_italic.xml</Actor>
   </VisualActor>
 </Entity>

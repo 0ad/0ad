@@ -66,7 +66,7 @@ PETRA.Config = function(difficulty, behavior)
 		"cart": [
 			"structures/{civ}_embassy_celtic",
 			"structures/{civ}_embassy_iberian",
-			"structures/{civ}_embassy_italiote"
+			"structures/{civ}_embassy_italic"
 		],
 		"gaul": [
 			"structures/{civ}_tavern"
