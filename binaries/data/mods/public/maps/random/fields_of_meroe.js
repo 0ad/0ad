@@ -40,7 +40,7 @@ const oPyramid = "structures/kush_pyramid_small";
 const oPyramidLarge = "structures/kush_pyramid_large";
 const oKushUnits = isNomad() ?
 	"units/kush_support_female_citizen" :
-	"units/kush_infantry_javelinist_merc_e";
+	"units/kush_infantry_javelineer_merc_e";
 
 const aRain = g_Decoratives.rain;
 const aBushA = g_Decoratives.bushA;

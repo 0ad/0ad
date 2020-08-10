@@ -397,10 +397,10 @@ TriggerHelper.GetTemplateNamesByClasses = function(classes, civ, packedState, ra
 /**
  * Composes a random set of the given templates of the given total size.
  *
- * @param {String[]} templateNames - for example ["brit_infantry_javelinist_b", "brit_cavalry_swordsman_e"]
+ * @param {String[]} templateNames - for example ["brit_infantry_javelineer_b", "brit_cavalry_swordsman_e"]
  * @param {Number} totalCount - total amount of templates, in this  example 12
  * @returns an object where the keys are template names and values are amounts,
- *          for example { "brit_infantry_javelinist_b": 4, "brit_cavalry_swordsman_e": 8 }
+ *          for example { "brit_infantry_javelineer_b": 4, "brit_cavalry_swordsman_e": 8 }
  */
 TriggerHelper.RandomTemplateComposition = function(templateNames, totalCount)
 {

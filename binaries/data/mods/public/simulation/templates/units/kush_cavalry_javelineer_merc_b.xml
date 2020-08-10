@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_cavalry_ranged_javelineer">
+  <Cost>
+    <Resources>
+      <food op="add">-25</food>
+      <metal op="add">25</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Height>7.5</Height>
+  </Footprint>
+  <Identity>
+    <Civ>kush</Civ>
+    <VisibleClasses datatype="tokens">Camel Mercenary</VisibleClasses>
+    <SelectionGroupName>units/kush_cavalry_javelineer_merc_b</SelectionGroupName>
+    <GenericName>Blemmye Desert Raider</GenericName>
+    <SpecificName>nhw Bulahau gml</SpecificName>
+    <Icon>units/kush_camel_javelinist.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
+  <Promotion>
+    <Entity>units/kush_cavalry_javelineer_merc_a</Entity>
+  </Promotion>
+  <Sound>
+    <SoundGroups>
+      <select>actor/fauna/animal/camel.xml</select>
+      <order_walk>actor/fauna/movement/camel_order.xml</order_walk>
+      <death>actor/fauna/death/death_camel.xml</death>
+    </SoundGroups>
+  </Sound>
+  <StatusBars>
+    <HeightOffset>8.5</HeightOffset>
+  </StatusBars>
+  <VisualActor>
+    <Actor>units/kushites/camelry_javelinist_b_m.xml</Actor>
+  </VisualActor>
+</Entity>

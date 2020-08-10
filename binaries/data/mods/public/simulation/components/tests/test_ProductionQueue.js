@@ -37,7 +37,7 @@ function testEntitiesList()
 	});
 
 	let cmpProductionQueue = ConstructComponent(productionQueueId, "ProductionQueue", {
-		"Entities": { "_string": "units/{civ}_cavalry_javelinist_b " +
+		"Entities": { "_string": "units/{civ}_cavalry_javelineer_b " +
 		                         "units/{civ}_infantry_swordsman_b " +
 		                         "units/{native}_support_female_citizen" },
 		"Technologies": { "_string": "gather_fishing_net " +
@@ -74,7 +74,7 @@ function testEntitiesList()
 	cmpProductionQueue.CalculateEntitiesMap();
 	TS_ASSERT_UNEVAL_EQUALS(
 		cmpProductionQueue.GetEntitiesList(),
-		["units/iber_cavalry_javelinist_b", "units/iber_infantry_swordsman_b", "units/iber_support_female_citizen"]
+		["units/iber_cavalry_javelineer_b", "units/iber_infantry_swordsman_b", "units/iber_support_female_citizen"]
 	);
 	TS_ASSERT_UNEVAL_EQUALS(
 		cmpProductionQueue.GetTechnologiesList(),
@@ -104,7 +104,7 @@ function testEntitiesList()
 	cmpProductionQueue.CalculateEntitiesMap();
 	TS_ASSERT_UNEVAL_EQUALS(
 		cmpProductionQueue.GetEntitiesList(),
-		["units/iber_cavalry_javelinist_b", "units/iber_infantry_swordsman_b", "units/iber_support_female_citizen"]
+		["units/iber_cavalry_javelineer_b", "units/iber_infantry_swordsman_b", "units/iber_support_female_citizen"]
 	);
 
 	AddMock(playerEntityID, IID_Player, {
@@ -117,7 +117,7 @@ function testEntitiesList()
 	cmpProductionQueue.CalculateEntitiesMap();
 	TS_ASSERT_UNEVAL_EQUALS(
 		cmpProductionQueue.GetEntitiesList(),
-		["units/iber_cavalry_javelinist_b", "units/iber_support_female_citizen"]
+		["units/iber_cavalry_javelineer_b", "units/iber_support_female_citizen"]
 	);
 
 	AddMock(playerEntityID, IID_Player, {
@@ -130,7 +130,7 @@ function testEntitiesList()
 	cmpProductionQueue.CalculateEntitiesMap();
 	TS_ASSERT_UNEVAL_EQUALS(
 		cmpProductionQueue.GetEntitiesList(),
-		["units/athen_cavalry_javelinist_b", "units/iber_support_female_citizen"]
+		["units/athen_cavalry_javelineer_b", "units/iber_support_female_citizen"]
 	);
 	TS_ASSERT_UNEVAL_EQUALS(cmpProductionQueue.GetTechnologiesList(), ["phase_town_athen",
 	                                                                   "phase_city_athen"]

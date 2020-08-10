@@ -81,7 +81,7 @@ const oPalisadePillar = "uncapturable|structures/palisades_tower";
 
 const oFemale = "units/gaul_support_female_citizen";
 const oHealer = "units/gaul_support_healer_b";
-const oSkirmisher = "units/gaul_infantry_javelinist_b";
+const oSkirmisher = "units/gaul_infantry_javelineer_b";
 const oNakedFanatic = "units/gaul_champion_fanatic";
 
 const aBush1 = "actor|props/flora/bush_tempe_sm.xml";
