@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-03 07:17+0000\n"
-"PO-Revision-Date: 2020-08-03 08:24+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 08:39+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -61,10 +61,8 @@ msgstr "درع معدنيّ لوجه الحصان."
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
-msgid ""
-"Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
-"level."
-msgstr "زوّد أسرجة الخيّالة بدرع. زيادة لمستوى ممانعة الدروع واختراقها بمقدار 1 لكلّ الخيّالة."
+msgid "Cavalry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -176,10 +174,8 @@ msgid ""
 msgstr "درع للجسم مصنوع بالكامل من الحديد، أقوى معدن قابل للتشكيل معروف للقدماء."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid ""
-"All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
-"Metal Cost."
-msgstr "رفع مستوى ممانعة دروع جميع الأبطال  للاختراق والثقب  +1 و +2، ولكن تزداد التكلفة بمقدار +50 للمعدن "
+msgid "Heroes +50 metal cost, +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -203,8 +199,8 @@ msgstr "درع كتاني أو جلدي مبطن لجنود المشاة"
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
-msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "زيادة لمستوى ممانعة الدروع واختراقها بمقدار 1 لكلّ المشاة."
+msgid "Infantry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -248,8 +244,10 @@ msgid "Lead sheathing protects ship hulls."
 msgstr "الإكساء بالرصاص يحمي هيكل السفينة."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
-msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "الإكساء بالرصاص يحمي هيكل السفينة. +2 زيادة في مستوى كل أنواع دروع السفن."
+#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
+msgid "Ships +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -259,12 +257,6 @@ msgstr "إكساء الهيكل بالرصاص"
 msgid "The hypozomata braces the structure of a ship."
 msgstr "تقوم الـhypozomata بإسناد بنية السفينة."
 
-#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
-msgid ""
-"The hypozomata braces the ship's structure. +2 levels to all ship armor "
-"types."
-msgstr "تقوم الـhypozomata بإسناد بنية السفينة. +2 زيادة في مستوى كل أنواع دروع السفن."
-
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
 msgstr "تقوية الأساس بالـhypozomata."
@@ -272,11 +264,6 @@ msgstr "تقوية الأساس بالـhypozomata."
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
 msgstr "حزم التدعيم الخشبية لهياكل السفن."
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
-msgid ""
-"Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "حزم التدعيم الخشبية لهياكل السفن. +2 زيادة في مستوى كل أنواع دروع السفن."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -1216,8 +1203,8 @@ msgid "Increases defensive capability of traders."
 msgstr "يزيد من المقدرة الدفاعية للتجار"
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "يحصل التجار على +2 لمستوى ممانعة ومستوى اختراق الدروع."
+msgid "Traders +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName

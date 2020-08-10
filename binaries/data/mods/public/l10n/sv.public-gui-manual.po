@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-06 07:17+0000\n"
-"PO-Revision-Date: 2020-08-06 21:22+0000\n"
+"PO-Revision-Date: 2020-08-09 20:41+0000\n"
 "Last-Translator: Martin H <pilino1234@zoho.eu>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr "Visa på nätet"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. spelmanual[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:2
 msgid ""
@@ -52,7 +52,7 @@ msgstr "Tack för att du installerat 0 A.D.! Den här sidan kommer att ge en sna
 
 #: gui/manual/intro.txt:4
 msgid "[font=\"sans-bold-16\"]Graphics settings[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Grafikinställningar[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:5
 msgid ""
@@ -60,11 +60,11 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr ""
+msgstr "Du kan växla mellan fullskärm och fönsterläge genom att trycka Alt + Enter. I fönsterläge kan du ändra fönstrets storlek. Om spelet är för slött kan du ändra några inställningar i inställningsfönstret: försök att slå av \"Högkvalitativa vatteneffekter\" och \"Skuggor\"."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Spela spelet[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:8
 msgid ""
@@ -80,7 +80,7 @@ msgstr "Grundläggande kontroller:"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr "• Vänsterklicka för att markera en enhet"
+msgstr "• Vänsterklicka för att markera enheter"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
@@ -88,27 +88,27 @@ msgstr "• Vänsterklicka och dra för att markera flera enheter"
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr "• Högerklicka för att beordra enheten mot målet"
+msgstr "• Högerklicka för att skicka enheten mot målet"
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr ""
+msgstr "• Piltangenter eller WASD-tangenter för att flytta kameran"
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr "• Ctrl + piltangenter eller Shift + mushjul för att rotera kameran"
+msgstr "• Ctrl + piltangenter eller skift + mushjul för att rotera kameran"
 
 #: gui/manual/intro.txt:16
 msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
-msgstr ""
+msgstr "• Mushjul, eller \"=\"/\"+\" och \"-\"/\"−\", för att zooma"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Lägen[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr ""
+msgstr "Huvudmenyn ger tillgång till två spellägen:"
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -116,7 +116,7 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]En spelare[font=\"sans-14\"] – spela ett sandlådespel eller mot en eller flera datormotståndare (AI). Standard-AI:n (Petra) är under utveckling och är kanske inte uppdaterad med nya funktioner, men du kan ändå spela spelet med eller emot den."
 
 #: gui/manual/intro.txt:21
 msgid ""
@@ -134,7 +134,7 @@ msgstr "För att skapa ett flerspelarspel måste en spelare välja alternativet 
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Spelinställningarfont=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
@@ -169,7 +169,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "Kartorna kan sorteras vidare. Standardkartorna är generellt spelbara. Sjökartor är kartor där man inte kan nå alla motståndare över land, och demo kartor är avsedda för utveckling och tester (oftast inte bra att spela på). \"Alla kartor\" visar alla kartor tillsammans på en lista."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -178,19 +178,19 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr ""
+msgstr "Till sist, ändra inställningarna. För slumpmässiga kartor inkluderas antalet spelare, storlek på kartan osv. För scenariokartor kan du bara välja vem som styr vilken spelare (bestämmer startpunkt på kartan osv). Valen är antingen en mänsklig spelare, en AI eller ingen spelare alls (motståndaren kommer då vara passiv)."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr ""
+msgstr "När du är redo att börja, klicka på knappen \"Starta spelet\"."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Snabbtangenter[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Hela programmet[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:41
 msgid ""
@@ -199,135 +199,135 @@ msgstr "  Alt + F4 – Avsluta spelet omedelbart, utan att bekräfta"
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter (Return) – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "  Alt + Enter – Växla mellan fullskärm och fönsterläge"
 
 #: gui/manual/intro.txt:43
 msgid "  ~ or F9 – Toggle console"
-msgstr ""
+msgstr "  ~ eller F9 – Växla konsolen"
 
 #: gui/manual/intro.txt:44
 msgid "  Alt + F – Toggle frame counter (FPS)"
-msgstr ""
+msgstr "  Alt + F – Växla bildhastighetsräknare (FPS)"
 
 #: gui/manual/intro.txt:45
 msgid ""
 "  F11 – Toggle real-time profiler (cycles through the displays of "
 "information)"
-msgstr ""
+msgstr "  F11 – Växla realtidsprofilerare (bläddrar igenom sidorna med information)"
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
-msgstr ""
+msgstr "  Skift + F11: Spara nuvarande profildata till \"logs/profile.txt\""
 
 #: gui/manual/intro.txt:47
 msgid ""
 "  F2 – Take screenshot (in .png format, location is displayed in the top "
 "left of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr ""
+msgstr "  F2 – Ta skärmdump (i .png-format, platsen visas i hörnet uppe till vänster i fönstret efter att filen har sparats, och kan också ses i konsolen/loggar om du missade den)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, "
 "location is displayed in the top left of the GUI after the file has been "
 "saved, and can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "  Skift + F2: Ta stor skärmdump (6400×4800 pixlar, i .bmp-format, platsen visas i hörnet uppe till vänster i fönstret efter att filen har sparats, och kan också ses i konsolen/loggar om du missade den)"
 
 #: gui/manual/intro.txt:49
 msgid "  Tab, Alt + S – Switch to the next tab"
-msgstr ""
+msgstr "  Tab, Alt + S – Växla till nästa flik"
 
 #: gui/manual/intro.txt:50
 msgid "  Shift + Tab, Alt + W – Switch to the previous tab"
-msgstr ""
+msgstr "  Skift + Tab, Alt + W – Växla till föregående flik"
 
 #: gui/manual/intro.txt:52
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]I spelet[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:53
 msgid ""
 "  Double Left Click \\[on unit] – Select all of your units of the same kind "
 "on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "  Dubbel vänsterklick \\[på enhet] – Välj alla enheter av samma typ på skärmen (även om de har annan rang)"
 
 #: gui/manual/intro.txt:54
 msgid ""
 "  Triple Left Click \\[on unit] – Select all of your units of the same kind "
 "and the same rank on the screen"
-msgstr ""
+msgstr "  Trippel vänsterklick \\[på enhet] – Välj alla enheter av samma typ och rang på skärmen"
 
 #: gui/manual/intro.txt:55
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "  Alt + Dubbel Vänsterklick \\[på enhet] – Välj alla enheter av samma typ på hela kartan (även om de har annan rang)"
 
 #: gui/manual/intro.txt:56
 msgid ""
 "  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
 "kind and rank on the entire map"
-msgstr ""
+msgstr "  Alt + Trippel Vänsterklick \\[på enhet] – Välj alla enheter av samma typ och rang på hela kartan"
 
 #: gui/manual/intro.txt:57
 msgid "  Shift + F5 – Quicksave"
-msgstr ""
+msgstr "  Skift + F5 – Quicksave"
 
 #: gui/manual/intro.txt:58
 msgid "  Shift + F8 – Quickload"
-msgstr ""
+msgstr "  Skift + F8 – Snabbladda"
 
 #: gui/manual/intro.txt:59
 msgid "  F10 – Toggle menu"
-msgstr ""
+msgstr "  F10 – Växla meny"
 
 #: gui/manual/intro.txt:60
 msgid "  F12 – Toggle time elapsed counter"
-msgstr ""
+msgstr "  F12 – Växla räknare för spelad tid"
 
 #: gui/manual/intro.txt:61
 msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "  ESC – Stäng alla dialoger (chatt, meny) eller släpp valda enheter"
 
 #: gui/manual/intro.txt:62
 msgid "  Enter (Return) – Open chat or send message"
-msgstr ""
+msgstr "  Retur/Enter – Öppna chatt eller skicka meddelande"
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
-msgstr ""
+msgstr "  T – Skicka lag-chatt"
 
 #: gui/manual/intro.txt:64
 msgid "  L – Chat with the previously selected private chat partner"
-msgstr ""
+msgstr "  L – Chatta med senaste valda privata chattpartnern"
 
 #: gui/manual/intro.txt:65
 msgid "  Pause – Pause or resume the game"
-msgstr ""
+msgstr "  Pause – Pausa eller fortsätt spelet"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "  Delete – Delete currently selected unit(s)/structure(s), ask for "
 "confirmation"
-msgstr ""
+msgstr "  Delete – Ta bort valda enheter/byggnader, fråga efter bekräftelse"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "  Shift + Delete – Immediately delete currently selected "
 "unit(s)/structure(s), without asking for confirmation"
-msgstr ""
+msgstr "  Skift + Delete – Ta genast bort valda enheter/byggnader, utan fråga om bekräftelse"
 
 #: gui/manual/intro.txt:68
 msgid "  / (Slash) – Select idle fighter"
-msgstr ""
+msgstr "  / (Snedstreck) – Välj ledig krigare"
 
 #: gui/manual/intro.txt:69
 msgid "  Shift + / (Slash) – Add idle fighter to selection"
-msgstr ""
+msgstr "  Skift + / (Snedstreck) – Lägg till ledig krigare till urvalet"
 
 #: gui/manual/intro.txt:70
 msgid "  Alt + / (Slash) – Select all idle fighters"
-msgstr ""
+msgstr "  Alt + / – Välj alla lediga krigare"
 
 #: gui/manual/intro.txt:71
 msgid "  . (Period) – Select idle worker (including citizen-soldiers)"
@@ -337,93 +337,93 @@ msgstr ". (Punkt) – Välj sysslolös arbetare (inkluderar medborgarsoldater)"
 msgid ""
 "  Shift + . (Period) – Add idle worker to selection (including citizen-"
 "soldiers)"
-msgstr ""
+msgstr "  Skift + . (Punkt) – Lägg till ledig arbetare till urval (inklusive medborgarsoldater)"
 
 #: gui/manual/intro.txt:73
 msgid ""
 "  Alt + . (Period) – Select all idle workers (including citizen-soldiers)"
-msgstr ""
+msgstr "  Alt + . (Punkt) – Välj alla lediga arbetare (inklusive medborgarsoldater)"
 
 #: gui/manual/intro.txt:74
 msgid "  \\\\ (Backslash) – Select idle unit"
-msgstr ""
+msgstr "  \\\\ (Backslash) – Välj ledig enhet"
 
 #: gui/manual/intro.txt:75
 msgid "  Shift + \\\\ (Backslash) – Add idle unit to selection"
-msgstr ""
+msgstr "  Skift + \\\\ (Backslash) – Lägg till ledig enhet till urval"
 
 #: gui/manual/intro.txt:76
 msgid "  Alt + \\\\ (Backslash) – Select all idle units"
-msgstr ""
+msgstr "  Alt + \\\\ (Backslash) – Välj alla lediga enheter"
 
 #: gui/manual/intro.txt:77
 msgid "  H – Stop (halt) the currently selected units"
-msgstr ""
+msgstr "  H – Stoppa valda enheter"
 
 #: gui/manual/intro.txt:78
 msgid "  Y – The unit will go back to work"
-msgstr ""
+msgstr "  Y – Enheten återvänder till arbetet"
 
 #: gui/manual/intro.txt:79
 msgid "  U – Unload the garrisoned units of the selected structure(s)"
-msgstr ""
+msgstr "  U – Hämta ut alla garnisonerade enheter i valda byggnader."
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from "
 "the selected unit(s)/structure(s)"
-msgstr ""
+msgstr "  Ctrl + 1 (osv upp till Ctrl + 0) – Skapa kontrollgrupp 1 (till 0) från de valda enheterna/byggnaderna"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  1 (and so on up to 0) – Select the unit(s)/structure(s) in control group 1"
 " (to 0)"
-msgstr ""
+msgstr "  1 (osv upp till 0) – Välj enheterna/byggnaderna i kontrollgrupp 1 (till 0)"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr ""
+msgstr "  Skift + 1 (till 0) – Lägg till kontrollgrupp 1 (till 0) till de valda enheter/byggnader"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "  Ctrl + F5 (and so on up to F8) – Mark the current camera position, for "
 "jumping back to later"
-msgstr ""
+msgstr "  Ctrl + F5 (osv upp till F8): Markera den aktuella kamerapositionen för att komma tillbaka till den senare."
 
 #: gui/manual/intro.txt:84
 msgid ""
 "  F5 (and so on up to F8) – Move the camera to a marked position. Jump back "
 "to the last location if the camera is already over the marked position"
-msgstr ""
+msgstr "  F5 (upp till och med F8) – Flytta kameran till en markerad position. Hoppa tillbaka till den senaste positionen om kameran redan är vid den markerade positionen."
 
 #: gui/manual/intro.txt:85
 msgid ""
 "  Z, X, C, V, B, N, M – With training structure selected. Add the 1st, 2nd, "
 "… unit shown to the training queue for all the selected structures"
-msgstr ""
+msgstr "  Z, X, C, V, B, N, M: Med träningsbyggnader markerade. Lägg till 1:a, 2:a, … enheten som kan tränas till träningskön för alla valda byggnader."
 
 #: gui/manual/intro.txt:86
 msgid ""
 "  PageUp with unit(s) selected – Highlight the unit(s)/structure(s) guarded "
 "by the selection"
-msgstr ""
+msgstr "  PageUp med valda enheter – Markera enheter/byggnader som vaktas av urvalet"
 
 #: gui/manual/intro.txt:87
 msgid ""
 "  PageDown with unit(s)/structure(s) selected – Highlight the unit(s) "
 "guarding the selection"
-msgstr ""
+msgstr "  PageDown med valda enheter/byggnader – Markerar enheterna som vaktar urvalet"
 
 #: gui/manual/intro.txt:88
 msgid ""
 "  Tab – See all status bars (which would also show the building progress)"
-msgstr ""
+msgstr "  Tab – Visa alla statusrader (skulle även visa byggframsteg)"
 
 #: gui/manual/intro.txt:89
 msgid "  Ctrl + Tab – Toggle summary window"
-msgstr ""
+msgstr "  Ctrl + Tab – Visa sammanfattningsfönster."
 
 #: gui/manual/intro.txt:90
 msgid "  Alt + L – Show the multiplayer lobby in a dialog window"
@@ -431,126 +431,126 @@ msgstr "  Alt + L – Visa flerspelarlobbyn i ett dialogfönster"
 
 #: gui/manual/intro.txt:91
 msgid "  Ctrl + H – Toggle in-game diplomacy panel"
-msgstr ""
+msgstr "  Ctrl + H – Växla diplomatipanelen i spelet"
 
 #: gui/manual/intro.txt:92
 msgid "  Ctrl + B – Toggle in-game barter and trade panel"
-msgstr ""
+msgstr "  Ctrl + B: Visa handelspanelen i spelet"
 
 #: gui/manual/intro.txt:93
 msgid "  Ctrl + O – Toggle in-game objectives panel"
-msgstr ""
+msgstr "  Ctrl + O – Växla målpanelen i spelet"
 
 #: gui/manual/intro.txt:94
 msgid "  Ctrl + P – Toggle in-game tutorial panel"
-msgstr ""
+msgstr "  Ctrl + P – Växla handledningspanelen i spelet"
 
 #: gui/manual/intro.txt:95
 msgid "  Alt + Shift + T – Toggle structure tree panel"
-msgstr ""
+msgstr "  Alt + Skift + T – Växla byggnadsträdpanelen"
 
 #: gui/manual/intro.txt:96
 msgid "  Alt + Shift + H – Toggle civilization info panel"
-msgstr ""
+msgstr "  Alt + Skift + H – Växla civilisationsinformationspanelen"
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Ändra musaktion[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
 msgid "  Ctrl + Right Click on structure – Garrison"
-msgstr ""
+msgstr "  Ctrl + Högerklick på byggnad – Garnisonera"
 
 #: gui/manual/intro.txt:100
 msgid "  J + Right Click on structure – Repair"
-msgstr ""
+msgstr "  J + Högerklick på byggnad – Reparera"
 
 #: gui/manual/intro.txt:101
 msgid "  P + Right Click – Patrol"
-msgstr ""
+msgstr "  P + Högerklick – Patrullera"
 
 #: gui/manual/intro.txt:102
 msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
-msgstr ""
+msgstr "  Skift + Högerklick – Köa rörelse/bygg/samlings/osv.-uppgifter"
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  Alt + Right Click – Order one unit from the current selection to "
 "move/build/gather/etc. and unselect it. Used to quickly dispatch units with "
 "specific tasks"
-msgstr ""
+msgstr "  Alt + Högerklick – Beordra en enhet ur nuvarande urvalet att förflytta sig/bygga/samla/etc och avmarkera enheten. Använd för att snabbt skicka enheter med specifika uppgifter."
 
 #: gui/manual/intro.txt:104
 msgid ""
 "  Shift + Left Click when training units – Add units in batches (the batch "
 "size is 5 by default and can be changed in the options)"
-msgstr ""
+msgstr "  Skift + Vänsterklick när enheter tränas: Lägg till i grupper (gruppstorleken är 5 som standard men kan ändras i inställningarna)"
 
 #: gui/manual/intro.txt:105
 msgid ""
 "  Shift + Left Click or Left Drag over unit on map – Add unit to selection"
-msgstr ""
+msgstr "  Skift + Vänsterklick eller drag över enhet på karta – Lägg till enhet till valet"
 
 #: gui/manual/intro.txt:106
 msgid ""
 "  Ctrl + Left Click or Left Drag over unit on map – Remove unit from "
 "selection"
-msgstr ""
+msgstr "  Ctrl + Vänsterklick eller drag över enhet på karta – Ta bort enhet från valet"
 
 #: gui/manual/intro.txt:107
 msgid "  Alt + Left Drag over units on map – Only select military units"
-msgstr ""
+msgstr "  Alt + Vänsterdrag över enheter på kartan – Välj endast militära enheter"
 
 #: gui/manual/intro.txt:108
 msgid ""
 "  Alt + Y + Left Drag over units on map – Only select non-military units"
-msgstr ""
+msgstr "  Alt + Y + Vänsterklick och dra över enheter på kartan – Välj endast icke-militära enheter."
 
 #: gui/manual/intro.txt:109
 msgid "  I + Left Drag over units on map – Only select idle units"
-msgstr ""
+msgstr "  I + Vänsterdrag över enheter på kartan – Välj endast lediga enheter"
 
 #: gui/manual/intro.txt:110
 msgid "  O + Left Drag over units on map – Only select wounded units"
-msgstr ""
+msgstr "  O + Vänsterdrag över enheter på kartan – Välj endast skadade enheter"
 
 #: gui/manual/intro.txt:111
 msgid ""
 "  Ctrl + Left Click on unit/group icon with multiple units selected – "
 "Deselect"
-msgstr ""
+msgstr "  Ctrl + Vänsterklick på enhet/gruppikon med flera enheter valda – Avmarkera"
 
 #: gui/manual/intro.txt:112
 msgid ""
 "  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
-msgstr ""
+msgstr "  Högerklick med markerade byggnad(er) – Sätt en samlingsplats för enheter som tränas/går ur garnison från denna byggnad."
 
 #: gui/manual/intro.txt:113
 msgid "  Ctrl + Right Click with unit(s) selected:"
-msgstr ""
+msgstr "  Ctrl + Högerklick med valda enheter:"
 
 #: gui/manual/intro.txt:114
 msgid "    • If the cursor is over an own or allied structure – Garrison"
-msgstr ""
+msgstr "    • Om muspekaren är över en egen eller allierad byggnad – Garnisonera"
 
 #: gui/manual/intro.txt:115
 msgid ""
 "    • If the cursor is over an enemy unit/structure – Attack (instead of "
 "capture or gather)"
-msgstr ""
+msgstr "    • Om markören är över en fientlig enhet/byggnad – Attackera (istället för erövra eller samla)"
 
 #: gui/manual/intro.txt:116
 msgid ""
 "    • Otherwise – Attack move (by default all enemy units and structures "
 "along the way are targeted)"
-msgstr ""
+msgstr "    • Annars – Attackrörelse (standardmässigt attackeras alla fientliga enheter och byggnader längs vägen)"
 
 #: gui/manual/intro.txt:117
 msgid ""
 "  Ctrl + Q + Right Click with unit(s) selected – Attack move, only units "
 "along the way are targeted"
-msgstr ""
+msgstr "  Ctrl + Q + Högerklick med markerade enheter – Attackrörelse, längs vägen attackeras endast enheter"
 
 #: gui/manual/intro.txt:118
 msgid ""
@@ -560,7 +560,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:120
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Överlägg[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:121
 msgid "  Alt + G – Toggle the GUI"
@@ -609,7 +609,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:131
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Kameramanipulation[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:132
 msgid "  W or ↑ (Up) – Pan screen up"
@@ -688,7 +688,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Under byggnadsplacering[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:151
 msgid "  \\[ (Left Bracket) – Rotate structure 15 degrees counter-clockwise"
@@ -706,7 +706,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]När ett sparat spel laddas[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:156
 msgid "  Esc – Cancel"

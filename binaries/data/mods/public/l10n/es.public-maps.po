@@ -23,12 +23,12 @@
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
 # Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018
 # soloooy0 fg <juanjo.fg@hotmail.com>, 2017
-# Swyter <Swyterzone@gmail.com>, 2014-2018
+# Swyter ™ <Swyterzone@gmail.com>, 2014-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-01 07:10+0000\n"
-"PO-Revision-Date: 2020-06-01 16:35+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 16:31+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -1639,6 +1639,16 @@ msgstr "Corinto"
 msgid "Peloponnesian Wars"
 msgstr "Guerras del Peloponeso"
 
+#: maps/scenarios/pickup_test_map.xml:Description:40
+msgid ""
+"Test map for picking units up, with sea and two islands. Trigger points are "
+"placed."
+msgstr ""
+
+#: maps/scenarios/pickup_test_map.xml:Name:40
+msgid "Pickup test map"
+msgstr ""
+
 #: maps/scenarios/polynesia.xml:Description:39
 msgid "Demo map for new fancy water effects."
 msgstr "Mapa de demostración para los nuevos chachi efectos de agua."
@@ -2085,7 +2095,7 @@ msgstr "Mapa multijugador. Un paraíso tropical."
 msgid "Tropical Island"
 msgstr "Isla tropical"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Description:40
+#: maps/scenarios/unit_motion_integration_test.xml:Description:41
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2093,7 +2103,7 @@ msgid ""
 "and weird pathing."
 msgstr "Este mapa está diseñado para probar algunos casos básicos de movimiento de unidades. Implicará unitAI, unitMotion y los pathfinders relevantes y, por lo tanto, actuará como un mapa de prueba integrado. Busque cosas como unidades atascadas, animaciones incorrectas y rutas extrañas."
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:40
+#: maps/scenarios/unit_motion_integration_test.xml:Name:41
 msgid "Unit Motion Integration Test"
 msgstr "Prueba para el movimiento de unidades"
 
@@ -2723,24 +2733,24 @@ msgstr "Cuatro facciones se encuentran encaramadas de manera segura sobre grande
 msgid "Tuscan Acropolis (4)"
 msgstr "Acrópolis toscana (4)"
 
-#: maps/skirmishes/two_seas_6.xml:Description:40
+#: maps/skirmishes/two_seas_6p.xml:Description:40
 msgid ""
 "A large tropic map with two seas to the East and to the West. Good for two "
 "teams of three players or three teams of two players."
 msgstr "Un gran mapa tropical con dos mares, uno al poniente y otro al levante. Bueno tanto para partidas de dos equipos con tres jugadores como de tres equipos con dos jugadores."
 
-#: maps/skirmishes/two_seas_6.xml:Name:40
+#: maps/skirmishes/two_seas_6p.xml:Name:40
 msgid "Two Seas (6)"
 msgstr "Dos mares (6)"
 
-#: maps/skirmishes/vesuvius_6.xml:Description:40
+#: maps/skirmishes/vesuvius_6p.xml:Description:40
 msgid ""
 "Skirmish as ash lightly falls around this recently erupted volcano. the "
 "scorched landscape offers little food, though the blasted forests are still "
 "laden with useful wood. "
 msgstr "Escaramuza mientras la ceniza cae ligeramente alrededor de este volcán recientemente erupcionado. El paisaje quemado ofrece poca comida, aunque los bosques destruidos todavía están cargados de madera útil."
 
-#: maps/skirmishes/vesuvius_6.xml:Name:40
+#: maps/skirmishes/vesuvius_6p.xml:Name:40
 msgid "Vesuvius (6)"
 msgstr "Vesubio (6)"
 

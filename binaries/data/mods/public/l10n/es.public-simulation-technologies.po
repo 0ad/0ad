@@ -31,8 +31,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-03 07:17+0000\n"
-"PO-Revision-Date: 2020-08-03 08:24+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 08:39+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -73,10 +73,8 @@ msgstr "Armadura metálica para cabezas de caballos."
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
-msgid ""
-"Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
-"level."
-msgstr "Equipa a tus caballerías con una armadura protectora. Proporciona +1 nivel adicional de protección contra daños de corte y perforación."
+msgid "Cavalry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -188,10 +186,8 @@ msgid ""
 msgstr "Armadura corporal fabricada completamente en hierro, el metal funcional más duro conocido en la antigüedad."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid ""
-"All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
-"Metal Cost."
-msgstr "Todos los héroes obtienen +2 niveles de protección contra daños por corte y +2 niveles contra daños por perforación, pero también aumenta en +50 su coste en metal."
+msgid "Heroes +50 metal cost, +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -215,8 +211,8 @@ msgstr "Lino acolchado o armadura de cuero para la infantería. "
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
-msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "Toda la infantería obtiene +1 nivel de protección contra daños por corte y perforación."
+msgid "Infantry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -260,8 +256,10 @@ msgid "Lead sheathing protects ship hulls."
 msgstr "El revestimiento de plomo protege los cascos de los navíos."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
-msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "El revestimiento de plomo protege los cascos de los navíos. Proporciona +2 niveles de protección a todos los barcos."
+#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
+msgid "Ships +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -271,12 +269,6 @@ msgstr "Revestimiento de plomo"
 msgid "The hypozomata braces the structure of a ship."
 msgstr "La hipozomata sujeta la estructura de un navío."
 
-#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
-msgid ""
-"The hypozomata braces the ship's structure. +2 levels to all ship armor "
-"types."
-msgstr "La hipozomata sujeta la estructura de la nave. Proporciona +2 niveles de protección a todos los navíos."
-
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
 msgstr "Apuntalar con hipozomata"
@@ -284,11 +276,6 @@ msgstr "Apuntalar con hipozomata"
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
 msgstr "Refuerzos de cuadernas de madera para el casco de tus navíos."
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
-msgid ""
-"Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "Los refuerzos de cuadernas de madera proporcionan +2 niveles de protección para todo tipo de navíos."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -1228,8 +1215,8 @@ msgid "Increases defensive capability of traders."
 msgstr "Incrementa las capacidades defensivas de los comerciantes."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "Los comerciantes ganan +2 niveles de protección contra corte y perforación."
+msgid "Traders +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName

@@ -45,9 +45,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-27 07:10+0000\n"
-"PO-Revision-Date: 2020-08-01 15:01+0000\n"
-"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
+"POT-Creation-Date: 2020-08-07 07:09+0000\n"
+"PO-Revision-Date: 2020-08-07 10:27+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -174,9 +174,9 @@ msgstr "Артиллерийская башня"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
+#: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
 #: simulation/templates/template_structure_military_fortress.xml:76
-#: simulation/templates/template_structure_military_workshop.xml:28
 #: simulation/templates/template_structure_special.xml:34
 #: simulation/templates/template_structure_wonder.xml:53
 #: simulation/templates/structures/kush_pyramid_large.xml:29
@@ -247,7 +247,7 @@ msgid "Wall"
 msgstr "Стена"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:22
-#: simulation/templates/template_structure_defensive_wall_long.xml:35
+#: simulation/templates/template_structure_defensive_wall_long.xml:34
 msgid "Allow units access through Walls. Can be locked to prevent access."
 msgstr ""
 
@@ -319,6 +319,17 @@ msgstr "Военная постройка"
 #: simulation/templates/template_structure_military.xml:25
 msgid "Military"
 msgstr "Военное"
+
+#: simulation/templates/template_structure_military_arsenal.xml:27
+msgid ""
+"Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
+"Siege Engine technologies."
+msgstr ""
+
+#: simulation/templates/template_structure_military_arsenal.xml:28
+#: simulation/templates/template_structure_military_arsenal.xml:25
+msgid "Arsenal"
+msgstr ""
 
 #: simulation/templates/template_structure_military_barracks.xml:28
 msgid "Train Citizen Soldiers and research technologies."
@@ -407,20 +418,6 @@ msgstr ""
 msgid "Stable"
 msgstr "Конюшня"
 
-#: simulation/templates/template_structure_military_workshop.xml:25
-msgid "Siege Workshop"
-msgstr "Осадная мастерская"
-
-#: simulation/templates/template_structure_military_workshop.xml:27
-msgid ""
-"Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
-"Siege Engine technologies."
-msgstr ""
-
-#: simulation/templates/template_structure_military_workshop.xml:28
-msgid "Workshop"
-msgstr "Мастерская"
-
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
 msgstr "Сооружения добычи ресурсов"
@@ -487,6 +484,14 @@ msgstr "Приносит славу Вашей цивилизации и зна�
 msgid "Wonder"
 msgstr "Чудо"
 
+#: simulation/templates/structures/athen_arsenal.xml:5
+#: simulation/templates/structures/mace_arsenal.xml:5
+#: simulation/templates/structures/ptol_arsenal.xml:5
+#: simulation/templates/structures/sele_arsenal.xml:5
+#: simulation/templates/structures/spart_arsenal.xml:5
+msgid "Hoplothēkē"
+msgstr "Хоплотек"
+
 #: simulation/templates/structures/athen_barracks.xml:12
 #: simulation/templates/structures/mace_barracks.xml:12
 #: simulation/templates/structures/ptol_barracks.xml:11
@@ -525,27 +530,6 @@ msgstr ""
 #: simulation/templates/structures/sele_defense_tower.xml:9
 #: simulation/templates/structures/spart_defense_tower.xml:9
 msgid "Pyrgion"
-msgstr ""
-
-#: simulation/templates/structures/athen_defense_tower.xml:23
-#: simulation/templates/structures/cart_defense_tower.xml:24
-#: simulation/templates/structures/mace_defense_tower.xml:20
-#: simulation/templates/structures/ptol_defense_tower.xml:23
-#: simulation/templates/structures/rome_defense_tower.xml:23
-msgid ""
-"Reinforce with stone block, and install small stone throwers to upgrade this"
-" defense tower into a slow, area of effect, and siege resistant artillery "
-"tower."
-msgstr ""
-
-#: simulation/templates/structures/athen_defense_tower.xml:34
-#: simulation/templates/structures/cart_defense_tower.xml:35
-#: simulation/templates/structures/mace_defense_tower.xml:31
-#: simulation/templates/structures/ptol_defense_tower.xml:34
-#: simulation/templates/structures/rome_defense_tower.xml:34
-msgid ""
-"Reinforce with stone block, and install scorpions to upgrade this defense "
-"tower into a prompt, long range, and accurate bolt tower."
 msgstr ""
 
 #: simulation/templates/structures/athen_dock.xml:12
@@ -738,13 +722,10 @@ msgstr ""
 msgid "Parthenōn﻿﻿"
 msgstr "Парфенон"
 
-#: simulation/templates/structures/athen_workshop.xml:5
-#: simulation/templates/structures/mace_workshop.xml:5
-#: simulation/templates/structures/ptol_workshop.xml:5
-#: simulation/templates/structures/sele_workshop.xml:5
-#: simulation/templates/structures/spart_workshop.xml:5
-msgid "Hoplothēkē"
-msgstr "Хоплотек"
+#: simulation/templates/structures/brit_arsenal.xml:5
+#: simulation/templates/structures/gaul_arsenal.xml:5
+msgid "Miletucerdon"
+msgstr "Милетусердон"
 
 #: simulation/templates/structures/brit_barracks.xml:19
 msgid "Coriosessa"
@@ -867,11 +848,6 @@ msgstr "Частота"
 #: simulation/templates/structures/brit_wonder.xml:10
 msgid "Uffington White Horse"
 msgstr "Уффингтонская белая лошадь"
-
-#: simulation/templates/structures/brit_workshop.xml:5
-#: simulation/templates/structures/gaul_workshop.xml:5
-msgid "Miletucerdon"
-msgstr "Милетусердон"
 
 #: simulation/templates/structures/cart_apartment.xml:17
 msgid "Apartment Building"
@@ -1130,12 +1106,6 @@ msgid "Gur Oroigarri"
 msgstr "Гур Ороигарри"
 
 #: simulation/templates/structures/iber_monument.xml:34
-#: simulation/templates/structures/maur_pillar_ashoka.xml:34
-#: simulation/templates/structures/rome_arch.xml:23
-msgid "Territory root."
-msgstr ""
-
-#: simulation/templates/structures/iber_monument.xml:35
 #: simulation/templates/structures/iber_monument.xml:9
 msgid "Monument"
 msgstr "Монумент"
@@ -1162,6 +1132,10 @@ msgstr "Сабал Орма"
 #: simulation/templates/structures/iber_wonder.xml:9
 msgid "Cancho Roano"
 msgstr "Канчо-Роано"
+
+#: simulation/templates/structures/kush_arsenal.xml:5
+msgid "Pr-ỉwn n ms﻿"
+msgstr "Пер-иун эн мес"
 
 #: simulation/templates/structures/kush_barracks.xml:9
 msgid "pr-msʿyw"
@@ -1330,10 +1304,6 @@ msgstr "саут"
 msgid "Mnw nht"
 msgstr "Мену нехет"
 
-#: simulation/templates/structures/kush_workshop.xml:5
-msgid "Pr-ỉwn n ms﻿"
-msgstr "Пер-иун эн мес"
-
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
 #: simulation/templates/structures/sele_library.xml:9
@@ -1364,13 +1334,6 @@ msgstr "Готра"
 #: simulation/templates/structures/maur_tower_double.xml:16
 msgid "Udarka"
 msgstr "Ударка"
-
-#: simulation/templates/structures/maur_defense_tower.xml:13
-msgid ""
-"Reinforce with stone block, and add a second rampart for up to 16 archers to"
-" stand upon. Infantry Archer exclusive tower. Devastating against melee "
-"troops, weak to siege and massed ranged units."
-msgstr ""
 
 #: simulation/templates/structures/maur_dock.xml:9
 msgid "Naukasthanaka"
@@ -1427,7 +1390,7 @@ msgstr "Колонна эдиктов Ашоки"
 msgid "Śāsana Stambha Aśokā"
 msgstr "Сасана Стамбха Ашока"
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:35
+#: simulation/templates/structures/maur_pillar_ashoka.xml:34
 #: simulation/templates/structures/maur_pillar_ashoka.xml:9
 msgid "Pillar"
 msgstr "Колонна"
@@ -1728,11 +1691,11 @@ msgstr ""
 msgid "Amphitheātrum"
 msgstr ""
 
-#: simulation/templates/structures/rome_arch.xml:21
+#: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
 msgstr "Триумфальная Арка"
 
-#: simulation/templates/structures/rome_arch.xml:22
+#: simulation/templates/structures/rome_arch.xml:23
 msgid "Arcus Triumphālis"
 msgstr "Аркус Триумфалис"
 
@@ -1758,6 +1721,10 @@ msgstr "Может быть возведено на нейтральной ил�
 #: simulation/templates/structures/rome_army_camp.xml:48
 msgid "ArmyCamp"
 msgstr "Военный лагерь"
+
+#: simulation/templates/structures/rome_arsenal.xml:5
+msgid "Ballistārium"
+msgstr "Баллистариум"
 
 #: simulation/templates/structures/rome_barracks.xml:12
 msgid "Castrum"
@@ -1923,24 +1890,8 @@ msgstr ""
 msgid "Aedēs Iovis Optimi Maximi"
 msgstr "Аэдес ловис Оптими Максими"
 
-#: simulation/templates/structures/rome_workshop.xml:5
-msgid "Ballistārium"
-msgstr "Баллистариум"
-
-#: simulation/templates/structures/sele_defense_tower.xml:23
-msgid ""
-"Reinforce with stone block, and install small torsion engines to upgrade "
-"this defense tower into an artillery tower."
-msgstr ""
-
 #: simulation/templates/structures/sele_wonder.xml:9
 msgid "Hieron tou Apollōnos Pythiou"
-msgstr ""
-
-#: simulation/templates/structures/spart_defense_tower.xml:23
-msgid ""
-"Reinforce with stone block, and install small oxybeles to upgrade this "
-"defense tower into a prompt, long range, and accurate bolt tower."
 msgstr ""
 
 #: simulation/templates/structures/spart_gerousia.xml:22

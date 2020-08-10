@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-03 07:17+0000\n"
-"PO-Revision-Date: 2020-08-03 08:24+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-08 05:33+0000\n"
+"Last-Translator: Ernestus Severus\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +27,7 @@ msgstr "Indi, Persae et Aethiopii famam sagittariam servabant et magnas copias s
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "Sagittarii −10% tempus conscribendi, +8 iactum, −10% diffusionem sagittarum."
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -50,10 +50,8 @@ msgstr "Armatura ferrea quae faciem equi tegit."
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
-msgid ""
-"Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
-"level."
-msgstr "Arma equos tuos. Omnes Equites +1 arma contra detrimentum Transfigens et Secans."
+msgid "Cavalry +1 hack and pierce armor."
+msgstr "Equites +1 arma contra detrimentum secans transfigiensque."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -165,10 +163,8 @@ msgid ""
 msgstr "Arma integre ferro fabricata, metallo durissimo quod veteres cognoverunt."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid ""
-"All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
-"Metal Cost."
-msgstr "Omnes Heroes +2 arma contra detrimentum Transfigens et Secans, sed +50 pretium Metalli habent."
+msgid "Heroes +50 metal cost, +2 hack and pierce armor."
+msgstr "Heroes +50 pretium metalli, +2 arma contra detrimentum secans transfigiensque."
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -192,8 +188,8 @@ msgstr "Arma lintea aut lenta insuta peditum."
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
-msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "Omnes Pedites +1 arma contra detrimentum Transfigens et Secans."
+msgid "Infantry +1 hack and pierce armor."
+msgstr "Pedites +1 arma contra detrimentum secans transfigiensque."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -237,8 +233,10 @@ msgid "Lead sheathing protects ship hulls."
 msgstr "Laminae aereae alveos navium tegunt."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
-msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "Laminae aereae alveos navium tegunt. Omnes Naves +2 arma contra detrimentum omnium generum."
+#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
+msgid "Ships +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -248,12 +246,6 @@ msgstr "Laminae Aereae"
 msgid "The hypozomata braces the structure of a ship."
 msgstr "Hypozomata navem tegunt."
 
-#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
-msgid ""
-"The hypozomata braces the ship's structure. +2 levels to all ship armor "
-"types."
-msgstr "Hypozomata navem tegunt. Omnes Naves +2 arma contra detrimentum omnium generum."
-
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
 msgstr "Hypozomata"
@@ -261,11 +253,6 @@ msgstr "Hypozomata"
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
 msgstr "Trabes ligneae alveos navium firmant."
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
-msgid ""
-"Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "Trabes ligneae alveos navium firmant. Omnes Naves +2 arma contra detrimentum omnium generum."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -505,7 +492,7 @@ msgstr "Pisces Saliti"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr "Gradu Oppido recluditur. Eget Rete Piscatorio."
+msgstr "Gradu Oppido recluditur. Rete Piscatorio requiritur."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid ""
@@ -755,12 +742,12 @@ msgstr "Akadḗmeia"
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
 msgid "Increases the Healing Rate of all healers."
-msgstr "Medici citius suos sanant."
+msgstr "Medici citius tuos sanant."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers −20% healing time."
-msgstr ""
+msgstr "Medici −20% intervallum temporis inter acta sanandi."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -860,7 +847,7 @@ msgstr "Ad Gradum Urbem progredi, qui plures milites aedificiaque recludit. Radi
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 Town Structures."
-msgstr ""
+msgstr "4 aedificia Gradus Oppidi requiruntur."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -1118,11 +1105,11 @@ msgstr "Crenae Muri"
 
 #: simulation/data/technologies/tower_decay.jsondescription
 msgid "Outposts survive twice as long in neutral territory."
-msgstr ""
+msgstr "Stationes bis diu superant in terra qua nemo imperat."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts −50% territory decay rate."
-msgstr ""
+msgstr "Stationes −50% velocitatem defectionis."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1130,51 +1117,51 @@ msgstr "Fundamenta Lapidea"
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr ""
+msgstr "Cavi Telorum efficiunt ut hostes prope pedem turris oppugnare possint."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Sentry and Stone Towers have 0 minimum attack range."
-msgstr ""
+msgstr "Turres Vigiles et Turres Lapideae 0 iactum minimum habent."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
-msgstr ""
+msgstr "Cavi Telorum"
 
 #: simulation/data/technologies/tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
-msgstr ""
+msgstr "Iaculatores Sagittarum iactum maximum augent."
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Sentry and Stone Towers +8 attack range."
-msgstr ""
+msgstr "Turres Vigiles et Turres Lapideae +8 iactum maximum."
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
-msgstr ""
+msgstr "Iaculatores Sagittarum"
 
 #: simulation/data/technologies/tower_vision.jsondescription
 msgid "Outposts gain longer vision for scouting."
-msgstr ""
+msgstr "Stationes longiorem conspectum acquirunt."
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr ""
+msgstr "Stationes +50% conspectum."
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"
-msgstr ""
+msgstr "Columbae Nuntiae"
 
 #: simulation/data/technologies/tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
-msgstr ""
+msgstr "Vigiles vigilantiam meliorem faciunt."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Sentry and Stone Towers +1 default arrow count."
-msgstr ""
+msgstr "Turres Vigiles et Turres Lapideae +1 primum sagittarum numerum."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
-msgstr ""
+msgstr "Vigiles"
 
 #: simulation/data/technologies/tower_watch.jsonspecificName.ptol
 #: simulation/data/technologies/tower_watch.jsonspecificName.spart
@@ -1182,36 +1169,36 @@ msgstr ""
 #: simulation/data/technologies/tower_watch.jsonspecificName.athen
 #: simulation/data/technologies/tower_watch.jsonspecificName.mace
 msgid "Nyktophýlakes"
-msgstr ""
+msgstr "Nyktophýlakes"
 
 #: simulation/data/technologies/tower_watch.jsonspecificName.rome
 msgid "Vigiles"
-msgstr ""
+msgstr "Vigiles"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
-msgstr ""
+msgstr "Addit lucrum de mercaturis internationalibus."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
 msgid "+10% international trade bonus."
-msgstr ""
+msgstr "+10% lucrum de mercaturis internationalibus."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
-msgstr ""
+msgstr "Foedus Mercatorium"
 
 #: simulation/data/technologies/trade_convoys_armor.jsondescription
 msgid "Increases defensive capability of traders."
-msgstr ""
+msgstr "Auget defensionem mercatorum."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 Hack and Pierce armor levels."
-msgstr ""
+msgid "Traders +2 hack and pierce armor."
+msgstr "Mercatores +2 arma contra detrimentum secans transfigiensque."
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName
 msgid "Trade Convoys"
-msgstr ""
+msgstr "Praesidium Mercatorum"
 
 #: simulation/data/technologies/trade_convoys_speed.jsondescription
 msgid ""

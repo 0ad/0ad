@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Asakura, 2015,2017
-# MarongHappy <daemul72@gmail.com>, 2019
+# JungHee Lee <daemul72@gmail.com>, 2019
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # jjj <triplej03@nate.com>, 2014
 # karubabu <karubabu@protonmail.com>, 2018
@@ -13,7 +13,7 @@
 # ks k, 2019
 # ks k, 2019-2020
 # llen_llen, 2016
-# MarongHappy <daemul72@gmail.com>, 2019
+# JungHee Lee <daemul72@gmail.com>, 2019
 # naoki yoshida <oimotanaka1122@gmail.com>, 2015
 # red hare <www3@hotmail.co.jp>, 2017
 # sang gyu nam <destro0419@naver.com>, 2018
@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:10+0000\n"
-"PO-Revision-Date: 2020-07-24 18:37+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 18:37+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -802,7 +802,7 @@ msgid ""
 msgstr "당신이 이미 0 A.D에 대한 좋은 경험을 가지고 있다면 이 난이도를 선택하세요."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Title
-#: simulation/data/settings/map_sizes.jsonData[2].Name
+#: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Medium"
 msgstr "보통"
 
@@ -840,15 +840,15 @@ msgid ""
 "quickly while still having some room to expand."
 msgstr "소형 지도는 1v1 경기들에 적합합니다. 선수가 확장할 공간이 있는 상태에서 신속하게 적군에게 접근할 수 있습니다."
 
-#: simulation/data/settings/map_sizes.jsonData[2].Tooltip
-msgid ""
-"Medium-sized maps provide plenty of space for two players, but even eight "
-"players fit."
-msgstr "중간 크기의 지도는 두 명의 선수에게 충분한 공간을 제공하지만 여덟 명의 선수도 적당합니다."
-
-#: simulation/data/settings/map_sizes.jsonData[3].Name
+#: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Normal"
 msgstr "일반"
+
+#: simulation/data/settings/map_sizes.jsonData[2].Tooltip
+msgid ""
+"This map size provides plenty of space for two players, but even eight "
+"players fit."
+msgstr ""
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""

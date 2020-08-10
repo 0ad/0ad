@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-03 07:17+0000\n"
-"PO-Revision-Date: 2020-08-03 08:24+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 08:39+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -57,10 +57,8 @@ msgstr "Metallipanssari hevosen turvalle."
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
-msgid ""
-"Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
-"level."
-msgstr "Varusta ratsuväkesi panssareilla. Kaikki ratsuväet +1 hakkaustaso ja panssarinlävistystaso."
+msgid "Cavalry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -172,10 +170,8 @@ msgid ""
 msgstr "Kokonaan raudasta tehty panssari, kovimmasta antiikin ajalla tunnetusta työstettävästä metallista."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid ""
-"All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
-"Metal Cost."
-msgstr "Kaikkien sankarien panssareille +2 hakkaussuojaa ja +2 lävistyssuojaa, mutta myös +50 metallia."
+msgid "Heroes +50 metal cost, +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -199,8 +195,8 @@ msgstr "Topattu palttina- tai nahkapanssari jalkaväelle."
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
-msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "Jalkaväen panssari +1 hakkaus- ja lävistystaso"
+msgid "Infantry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -244,8 +240,10 @@ msgid "Lead sheathing protects ship hulls."
 msgstr "Lyijypäällyste suojaa laivan runkoa."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
-msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "Lyijypäällyste suojaa laivan runkoa. +2 tasoa kaikkiin laivojen panssarointeihin."
+#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
+msgid "Ships +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -255,12 +253,6 @@ msgstr "Rungon lyijysuojaus"
 msgid "The hypozomata braces the structure of a ship."
 msgstr "Hypozomata (useat köydet) sitovat ja kiristävät laivan rakenteen."
 
-#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
-msgid ""
-"The hypozomata braces the ship's structure. +2 levels to all ship armor "
-"types."
-msgstr "Hypozomata (useat köydet) vahvistavat +2 kaikkien laivatyyppien panssarointia."
-
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
 msgstr "Köysillä vahvistaminen"
@@ -268,11 +260,6 @@ msgstr "Köysillä vahvistaminen"
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
 msgstr "Puiset vahvistepalkit laivojen runkoihin."
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
-msgid ""
-"Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "Puiset vahvistepalkit laivojen runkoihin. +2 tasoa kaikkiin laivan panssarointeihin."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -1212,7 +1199,7 @@ msgid "Increases defensive capability of traders."
 msgstr "Lisää kauppiaitten puolustuskykyä."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 Hack and Pierce armor levels."
+msgid "Traders +2 hack and pierce armor."
 msgstr ""
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName

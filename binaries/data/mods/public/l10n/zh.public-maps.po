@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-01 07:10+0000\n"
-"PO-Revision-Date: 2020-06-01 16:35+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 16:31+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -1635,6 +1635,16 @@ msgstr "科林斯"
 msgid "Peloponnesian Wars"
 msgstr "伯罗奔尼撒之战"
 
+#: maps/scenarios/pickup_test_map.xml:Description:40
+msgid ""
+"Test map for picking units up, with sea and two islands. Trigger points are "
+"placed."
+msgstr ""
+
+#: maps/scenarios/pickup_test_map.xml:Name:40
+msgid "Pickup test map"
+msgstr ""
+
 #: maps/scenarios/polynesia.xml:Description:39
 msgid "Demo map for new fancy water effects."
 msgstr "显示新的水面效果的地图。"
@@ -2081,7 +2091,7 @@ msgstr "多人地图。热带伊甸园"
 msgid "Tropical Island"
 msgstr "热带群岛"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Description:40
+#: maps/scenarios/unit_motion_integration_test.xml:Description:41
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2089,7 +2099,7 @@ msgid ""
 "and weird pathing."
 msgstr "本地图旨在测试一些基本的单位运动案例。 涉及了 unitAI、unitMotion 和相关的探测器，因此可作为综合测试图。 寻找诸如卡单位，错误动画，和奇怪的路径。"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:40
+#: maps/scenarios/unit_motion_integration_test.xml:Name:41
 msgid "Unit Motion Integration Test"
 msgstr "单元运动集成测试"
 
@@ -2719,24 +2729,24 @@ msgstr "四个文明安全地位于一个大型的岩石高原上。\n\n探索�
 msgid "Tuscan Acropolis (4)"
 msgstr "托斯卡尼卫城 (4)"
 
-#: maps/skirmishes/two_seas_6.xml:Description:40
+#: maps/skirmishes/two_seas_6p.xml:Description:40
 msgid ""
 "A large tropic map with two seas to the East and to the West. Good for two "
 "teams of three players or three teams of two players."
 msgstr "东西方共有两个海的大型热带地图。适合两个各有三个人的队伍或是三个各有两个人的队伍。"
 
-#: maps/skirmishes/two_seas_6.xml:Name:40
+#: maps/skirmishes/two_seas_6p.xml:Name:40
 msgid "Two Seas (6)"
 msgstr "两海 (6)"
 
-#: maps/skirmishes/vesuvius_6.xml:Description:40
+#: maps/skirmishes/vesuvius_6p.xml:Description:40
 msgid ""
 "Skirmish as ash lightly falls around this recently erupted volcano. the "
 "scorched landscape offers little food, though the blasted forests are still "
 "laden with useful wood. "
 msgstr ""
 
-#: maps/skirmishes/vesuvius_6.xml:Name:40
+#: maps/skirmishes/vesuvius_6p.xml:Name:40
 msgid "Vesuvius (6)"
 msgstr ""
 

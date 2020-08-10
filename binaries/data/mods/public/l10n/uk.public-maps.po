@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-01 07:10+0000\n"
-"PO-Revision-Date: 2020-06-10 16:57+0000\n"
-"Last-Translator: hgujmgfmgfd gfyhndftyhdh <mojove1758@htwern.com>\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 16:31+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1634,6 +1634,16 @@ msgstr "Корінф"
 msgid "Peloponnesian Wars"
 msgstr "Пелопоннеські війни"
 
+#: maps/scenarios/pickup_test_map.xml:Description:40
+msgid ""
+"Test map for picking units up, with sea and two islands. Trigger points are "
+"placed."
+msgstr ""
+
+#: maps/scenarios/pickup_test_map.xml:Name:40
+msgid "Pickup test map"
+msgstr ""
+
 #: maps/scenarios/polynesia.xml:Description:39
 msgid "Demo map for new fancy water effects."
 msgstr "Демо карта для нових незвичайних ефектів води."
@@ -2080,7 +2090,7 @@ msgstr "Мультиплеерна карта. Тропічний рай."
 msgid "Tropical Island"
 msgstr "Тропічний острів"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Description:40
+#: maps/scenarios/unit_motion_integration_test.xml:Description:41
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2088,7 +2098,7 @@ msgid ""
 "and weird pathing."
 msgstr "Ця карта створена для тестування основних випадків руху юнітів. Він включає в себе unitAI, unitMotion та відповідні методи пошуку шляху, і, таким чином, діє як карта для інтеграційного тесту. Звертай увагу на такі речі як: юніти, що застрягли, неправильна анімація та дивне прокладання шляху."
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:40
+#: maps/scenarios/unit_motion_integration_test.xml:Name:41
 msgid "Unit Motion Integration Test"
 msgstr "Інтеграційний тест руху юнітів"
 
@@ -2718,24 +2728,24 @@ msgstr "Чотири фракції опинились на вершинах в�
 msgid "Tuscan Acropolis (4)"
 msgstr "Тосканський акрополь (4)"
 
-#: maps/skirmishes/two_seas_6.xml:Description:40
+#: maps/skirmishes/two_seas_6p.xml:Description:40
 msgid ""
 "A large tropic map with two seas to the East and to the West. Good for two "
 "teams of three players or three teams of two players."
 msgstr "Велика тропічна карта з двома морями на сході та заході. Підходять для двох команд по три гравці або для трьох команд по два гравці."
 
-#: maps/skirmishes/two_seas_6.xml:Name:40
+#: maps/skirmishes/two_seas_6p.xml:Name:40
 msgid "Two Seas (6)"
 msgstr "Два моря (6)"
 
-#: maps/skirmishes/vesuvius_6.xml:Description:40
+#: maps/skirmishes/vesuvius_6p.xml:Description:40
 msgid ""
 "Skirmish as ash lightly falls around this recently erupted volcano. the "
 "scorched landscape offers little food, though the blasted forests are still "
 "laden with useful wood. "
 msgstr ""
 
-#: maps/skirmishes/vesuvius_6.xml:Name:40
+#: maps/skirmishes/vesuvius_6p.xml:Name:40
 msgid "Vesuvius (6)"
 msgstr "Везувій (6)"
 

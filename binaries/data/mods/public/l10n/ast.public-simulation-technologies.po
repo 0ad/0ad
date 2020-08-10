@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-03 07:17+0000\n"
-"PO-Revision-Date: 2020-08-07 03:15+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 22:33+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -50,10 +50,8 @@ msgstr "Armadura que cubre la cabeza del caballu."
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
-msgid ""
-"Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
-"level."
-msgstr "Forni les montures d'armadura. Tola caballería: armadura anticorte y antifura +1."
+msgid "Cavalry +1 hack and pierce armor."
+msgstr "Caballería: armadura anticorte y antifura +1."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -165,10 +163,8 @@ msgid ""
 msgstr "Armadura de fierro, el metal más duru de l'antigüedá."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid ""
-"All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
-"Metal Cost."
-msgstr "Tolos héroes: armadura anticorte +2, armadura antifura +2, costu en metal +50."
+msgid "Heroes +50 metal cost, +2 hack and pierce armor."
+msgstr "Héroes: costu en metal +50, armadura anticorte y antifura +2."
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -192,8 +188,8 @@ msgstr "Coraza de llinu o cueru pa los soldaos d'a pie."
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
-msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "Tola infantería: armadura anticorte y antifura +1."
+msgid "Infantry +1 hack and pierce armor."
+msgstr "Infantería: armadura anticorte y antifura +1."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -237,8 +233,10 @@ msgid "Lead sheathing protects ship hulls."
 msgstr "El blindax de plomu protexe los cascos de los barcos."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
-msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "El blindax de plomu protexe los cascos de los barcos. Barcos: toles armadures +2."
+#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
+msgid "Ships +2 armor."
+msgstr "Barcos: armadura +2."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -248,12 +246,6 @@ msgstr "Blindax"
 msgid "The hypozomata braces the structure of a ship."
 msgstr "Refuerza la cadarma de los barcos."
 
-#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
-msgid ""
-"The hypozomata braces the ship's structure. +2 levels to all ship armor "
-"types."
-msgstr "Refuerza la cadarma de los barcos. Barcos: toles armadures +2."
-
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
 msgstr "Hypozṓmata"
@@ -261,11 +253,6 @@ msgstr "Hypozṓmata"
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
 msgstr "Banzos de refuerzu pa los cascos de los barcos."
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
-msgid ""
-"Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "Banzos de refuerzu pa los cascos de los barcos. Barcos: toles armadures +2."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -1205,7 +1192,7 @@ msgid "Increases defensive capability of traders."
 msgstr "Amonta la defensa de los comerciantes."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 Hack and Pierce armor levels."
+msgid "Traders +2 hack and pierce armor."
 msgstr "Comerciantes: armadura anticorte y antifura +2."
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
@@ -1709,17 +1696,17 @@ msgstr "Entaínase l'allistamientu coleutivu na corte."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
 msgid "Cavalry Conscription"
-msgstr "Serviciu militar na caballería"
+msgstr "Serviciu na caballería"
 
 #: simulation/data/technologies/persians/training_conscription_infantry.jsongenericName
 msgid "Infantry Conscription"
-msgstr "Serviciu militar na infantería"
+msgstr "Serviciu na infantería"
 
 #: simulation/data/technologies/persians/training_levy_cavalry.jsondescription
 msgid ""
 "Calling up cavalry levies in time of war helps bolster the ranks of a king's"
 " army."
-msgstr "Apellar a lleves d'a caballu en tiempos de guerra ayuda a encontar les files del exércitu d'un rei."
+msgstr "El llevantamientu de caballería val pa enllenar les files del exércitu en tiempos de guerra."
 
 #: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
 msgid ""
@@ -1735,13 +1722,13 @@ msgstr "Lleva de caballería"
 msgid ""
 "Calling up infantry levies in time of war helps bolster the ranks of a "
 "king's army."
-msgstr "Apellar a lleves d'a pie en tiempos de guerra ayuda a encontar les files del exércitu d'un rei."
+msgstr "El llevantamientu d'infantería val pa enllenar les files del exércitu en tiempos de guerra."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr "Tola infantería: muera d'allistamientu −20%, vida −5%. Desbloquia'l serviciu militar."
+msgstr "Tola infantería: muera d'allistamientu −20%, vida −5%. Desbloquia'l serviciu na infantería."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
 msgid "Levy Infantry"
@@ -1776,7 +1763,7 @@ msgid ""
 "Beginning with Alexander, the Hellenistic monarchs founded many cities "
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
-msgstr "Entamando con Alexandru, los monarques helenistes fundaron munches ciudaes per tolos sos imperios, u l'arte & cultura griegos s'entevenaben con costumes llocales pa producir el mecigayu de la civilización helenista."
+msgstr "Como Alexandru nel so día, los monarques socesores fundaron munches ciudaes, u lo griego ya lo local entemecíen pa criar la cultura propia del helenismu."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
@@ -1790,11 +1777,11 @@ msgstr "Metrópolis helenista"
 msgid ""
 "Significantly increase training speed of champions and siege engines at the "
 "fortress when training them in large batches."
-msgstr "Entaína enforma l'allistamientu coleutivu de campeones ya máquines de la fortaleza."
+msgstr "Entaína enforma l'allistamientu coleutivu de campeones ya máquines na fortaleza."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
-msgstr "Entaína l'allistamientu por conxuntos na fortaleza."
+msgstr "Entaínase l'allistamientu coleutivu na fortaleza."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
@@ -1805,7 +1792,7 @@ msgid ""
 "The now-extinct Nisian breed of horse was one of the largest and robust "
 "horses of ancient times. They were highly sought after by the Seleucids and "
 "Persians as both rider and mount gained heavier armor as time progressed."
-msgstr "La raza del caballu niséu, yá desaniciada, yera ún de los burros más grandes & robezos de l'antigüedá. Los perses & los seléucides cobiciáronla ente que tanto l'armadura de la montura como lo del xinete volvíense más pesaes col correr del tiempu. "
+msgstr "El caballu niséu, yá desaniciáu, yera ún de los burros más grandes ya robezos de l'antigüedá. Los perses ya los seléucides cobiciábenlu ya, col correr del tiempu, aperpillábenlu con más ya más armadura."
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."
@@ -1847,14 +1834,14 @@ msgstr "Exércitu tradicional"
 msgid ""
 "The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
 "the Macedonian army."
-msgstr "Los Escudos de Plata, o Argyraspidai, yeren la estaya d'infantería pesao d'élite del exércitu macedoniu."
+msgstr "Los Argyráspidai, o Escudos de Plata, yeren la infantería d'élite del exércitu macedoniu."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr "Ascendi l'escuderu campeón d'a pie al escudu de plata, que tien más PV y ataque."
+msgstr "Ascendi l'escuderu al escudu de plata, que tien más PV y ataque."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"
-msgstr "Reximientu de los Escudos de Plata"
+msgstr "Cuerpu de los Escudos de Plata"

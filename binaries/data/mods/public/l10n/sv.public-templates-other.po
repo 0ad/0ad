@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-24 07:10+0000\n"
-"PO-Revision-Date: 2020-08-06 17:54+0000\n"
+"PO-Revision-Date: 2020-08-07 19:52+0000\n"
 "Last-Translator: Martin H <pilino1234@zoho.eu>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr ""
 
 #: simulation/templates/template_formation.xml:25
 msgid "Requires at least 2 Soldiers or Siege engines."
-msgstr ""
+msgstr "Kräver minst 2 soldater eller belägringsvapen."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -82,7 +82,7 @@ msgstr "Stenbrott"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Quarry rock for stone."
-msgstr "Bryt sten för sten."
+msgstr "Bryt berg för sten."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
@@ -98,7 +98,7 @@ msgstr "Skatt"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr "Samla skatt för resurser."
+msgstr "Samla skatter för resurser."
 
 #: simulation/templates/template_structure.xml:61
 msgid "Structure"
@@ -110,12 +110,12 @@ msgstr "Soldat"
 
 #: simulation/templates/template_wallset.xml:10
 msgid "Wall off an area."
-msgstr ""
+msgstr "Bygg en mur runt ett område."
 
 #: simulation/templates/template_wallset.xml:11
 #: simulation/templates/template_wallset.xml:9
 msgid "Wall"
-msgstr ""
+msgstr "Mur"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
@@ -192,11 +192,11 @@ msgstr "Canis lupus"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:4
 msgid "Black Bear"
-msgstr ""
+msgstr "Svartbjörn"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:5
 msgid "Ursus americanus"
-msgstr ""
+msgstr "Ursus americanus"
 
 #: simulation/templates/gaia/fauna_bear_brown.xml:4
 msgid "Brown Bear"
@@ -208,11 +208,11 @@ msgstr "Ursus arctos"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:4
 msgid "Polar Bear"
-msgstr ""
+msgstr "Isbjörn"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:5
 msgid "Ursus maritimus"
-msgstr ""
+msgstr "Ursus maritimus"
 
 #: simulation/templates/gaia/fauna_boar.xml:19
 msgid "Wild Boar"
@@ -351,7 +351,7 @@ msgstr "Vulpes vulpes"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:8
 msgid "Thomson's Gazelle"
-msgstr "Thomsons Gazelle"
+msgstr "Thomsongasell"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Eudorcas thomsonii"
@@ -364,11 +364,11 @@ msgstr "Giraff"
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:9
 msgid "Giraffa camelopardalis"
-msgstr "Giraffkamelopardalis"
+msgstr "Giraffa camelopardalis"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:8
 msgid "Juvenile Giraffe"
-msgstr "Ungdomsgiraff"
+msgstr "Ung giraff"
 
 #: simulation/templates/gaia/fauna_goat.xml:8
 msgid "Goat"
@@ -380,11 +380,11 @@ msgstr "Capra aegagrus hircus"
 
 #: simulation/templates/gaia/fauna_hippopotamus.xml:25
 msgid "Hippopotamus"
-msgstr ""
+msgstr "Flodhäst"
 
 #: simulation/templates/gaia/fauna_hippopotamus.xml:26
 msgid "Hippopotamus amphibius"
-msgstr ""
+msgstr "Hippopotamus amphibius"
 
 #: simulation/templates/gaia/fauna_horse.xml:8
 msgid "Horse"
@@ -461,7 +461,7 @@ msgstr "Oryctolagus cuniculus"
 
 #: simulation/templates/gaia/fauna_rhino.xml:19
 msgid "White Rhinoceros"
-msgstr "Vita rhinoceros"
+msgstr "Trubbnoshörning"
 
 #: simulation/templates/gaia/fauna_rhino.xml:20
 msgid "Ceratotherium simum"
@@ -469,7 +469,7 @@ msgstr "Ceratotherium simum"
 
 #: simulation/templates/gaia/fauna_shark.xml:12
 msgid "Great White Shark"
-msgstr "Stor vithaj"
+msgstr "Vithaj"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Carcharodon carcharias"
@@ -517,7 +517,7 @@ msgstr "Megaptera novaeangliae"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:8
 msgid "Blue Wildebeest"
-msgstr "Blå gnu"
+msgstr "Strimmig gnu"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:9
 msgid "Connochaetes taurinus"
@@ -533,7 +533,7 @@ msgstr "Varghund"
 
 #: simulation/templates/gaia/fauna_zebra.xml:8
 msgid "Common Zebra"
-msgstr "Vanlig sebra"
+msgstr "Stäppzebra"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Equus quagga"
@@ -648,7 +648,7 @@ msgstr "Dött lövträd"
 #: simulation/templates/gaia/flora_tree_elm.xml:4
 #: simulation/templates/gaia/flora_tree_elm_dead.xml:4
 msgid "Elm Tree"
-msgstr ""
+msgstr "Almträd"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
@@ -703,7 +703,7 @@ msgstr "Stenek"
 #: simulation/templates/gaia/flora_tree_oak_hungarian.xml:4
 #: simulation/templates/gaia/flora_tree_oak_hungarian_autumn.xml:4
 msgid "Hungarian Oak"
-msgstr ""
+msgstr "Ungersk ek"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak Tree"
@@ -741,7 +741,7 @@ msgstr "Tall"
 #: simulation/templates/gaia/flora_tree_pine_black.xml:4
 #: simulation/templates/gaia/flora_tree_pine_black_dead.xml:4
 msgid "Black Pine"
-msgstr "Svart tall"
+msgstr "Svarttall"
 
 #: simulation/templates/gaia/flora_tree_pine_maritime.xml:4
 #: simulation/templates/gaia/flora_tree_pine_maritime_short.xml:4
@@ -754,7 +754,7 @@ msgstr "Poppel"
 
 #: simulation/templates/gaia/flora_tree_poplar_dead.xml:4
 msgid "Dead Poplar"
-msgstr ""
+msgstr "Död poppel"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 msgid "Black Poplar Tree"
@@ -762,11 +762,11 @@ msgstr "Svartpoppel"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy_autumn.xml:4
 msgid "Poplar"
-msgstr ""
+msgstr "Poppel"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy_dead.xml:4
 msgid "Dead Black Poplar Tree"
-msgstr ""
+msgstr "Dött svartpoppelträd"
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -1049,7 +1049,7 @@ msgstr "Spion"
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
-msgstr ""
+msgstr "Endast närstridsinfanteri, kräver minst 16."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1097,7 +1097,7 @@ msgstr "Inget"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Infantry Hoplites only, requires at least 10."
-msgstr ""
+msgstr "Endast hoplitinfanteri, kräver minst 10."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1109,7 +1109,7 @@ msgstr "Utspridd"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Ranged Soldiers only, requires at least 2."
-msgstr ""
+msgstr "Endast distansattacksoldater, kräver minst 2."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -1117,7 +1117,7 @@ msgstr "Skärmytsling"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr ""
+msgstr "Endast Infanteripikenerare, kräver minst 16."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1129,7 +1129,7 @@ msgstr "Testudo"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Cavalry only, requires at least 6."
-msgstr ""
+msgstr "Endast kavalleri, kräver minst 6."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
@@ -1147,19 +1147,19 @@ msgstr "Krossa"
 #: simulation/data/template_helpers/damage_types/crush.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr ""
+msgstr "Skada som orsakas av ren kraft, som med en klubba eller tramp."
 
 #: simulation/data/template_helpers/damage_types/hack.jsonname
 msgctxt "damage type"
 msgid "Hack"
-msgstr "Hack"
+msgstr "Hacka"
 
 #: simulation/data/template_helpers/damage_types/hack.jsondescription
 msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
-msgstr ""
+msgstr "Skada som orsakas av vassa föremål som skär eller hugger, som med ett svärd eller en yxa."
 
 #: simulation/data/template_helpers/damage_types/pierce.jsonname
 msgctxt "damage type"
@@ -1169,4 +1169,4 @@ msgstr "Sticka"
 #: simulation/data/template_helpers/damage_types/pierce.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr ""
+msgstr "Skada som orsakas av vassa, spetsiga föremål, som pilar eller spjut."

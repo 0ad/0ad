@@ -4,8 +4,8 @@
 # 
 # Translators:
 # Hammer Andrew <andrewhammer87@gmail.com>, 2017
-# Balázs Meskó <mesko.balazs@fsf.hu>, 2020
-# Balázs Meskó <mesko.balazs@fsf.hu>, 2015-2020
+# Balázs Meskó <meskobalazs@mailbox.org>, 2020
+# Balázs Meskó <meskobalazs@mailbox.org>, 2015-2020
 # Balázs Úr, 2015-2016
 # Bence Erős <ebence88@gmail.com>, 2015
 # Boross Péter <borosspet@web.de>, 2015-2016
@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-01 07:10+0000\n"
-"PO-Revision-Date: 2020-06-01 16:35+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 16:31+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -1632,6 +1632,16 @@ msgstr "Korinthosz"
 msgid "Peloponnesian Wars"
 msgstr "Peloponnészoszi háborúk"
 
+#: maps/scenarios/pickup_test_map.xml:Description:40
+msgid ""
+"Test map for picking units up, with sea and two islands. Trigger points are "
+"placed."
+msgstr ""
+
+#: maps/scenarios/pickup_test_map.xml:Name:40
+msgid "Pickup test map"
+msgstr ""
+
 #: maps/scenarios/polynesia.xml:Description:39
 msgid "Demo map for new fancy water effects."
 msgstr "Demó térkép a csillogó vízi effektekhez."
@@ -2078,7 +2088,7 @@ msgstr "Többjátékos térkép. Egy trópusi paradicsom."
 msgid "Tropical Island"
 msgstr "Trópusi sziget"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Description:40
+#: maps/scenarios/unit_motion_integration_test.xml:Description:41
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2086,7 +2096,7 @@ msgid ""
 "and weird pathing."
 msgstr "Ez a térkép alapvető egységmozgási esetek tesztelésére készült. Tartalmazza a unitAI-t, a unitMotiont és a releváns útkeresőket, így integrált teszttérképként szolgál. Keress elakadt egységeket, hibás animációkat és furcsa útkereséseket."
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:40
+#: maps/scenarios/unit_motion_integration_test.xml:Name:41
 msgid "Unit Motion Integration Test"
 msgstr "Egységmozgás integrációs teszt"
 
@@ -2716,24 +2726,24 @@ msgstr "Négy csoport egy sziklás fennsíkon találja magát biztonságban bef�
 msgid "Tuscan Acropolis (4)"
 msgstr "Toszkán akropolisz (4)"
 
-#: maps/skirmishes/two_seas_6.xml:Description:40
+#: maps/skirmishes/two_seas_6p.xml:Description:40
 msgid ""
 "A large tropic map with two seas to the East and to the West. Good for two "
 "teams of three players or three teams of two players."
 msgstr "Egy hatalmas trópusi térkép két tengerrel keleten és nyugaton. Kiváló terep két csapatban játszó három-három játékos, vagy három csapatban játszó két-két játékos számára."
 
-#: maps/skirmishes/two_seas_6.xml:Name:40
+#: maps/skirmishes/two_seas_6p.xml:Name:40
 msgid "Two Seas (6)"
 msgstr "Két tenger (6)"
 
-#: maps/skirmishes/vesuvius_6.xml:Description:40
+#: maps/skirmishes/vesuvius_6p.xml:Description:40
 msgid ""
 "Skirmish as ash lightly falls around this recently erupted volcano. the "
 "scorched landscape offers little food, though the blasted forests are still "
 "laden with useful wood. "
 msgstr "Csatázz, miközben hamu hullik a nemrég kitört vulkánból. A felperzselt táj kevés élelmet kínál, de a letarolt erdők még mindig tele vannak hasznos fával."
 
-#: maps/skirmishes/vesuvius_6.xml:Name:40
+#: maps/skirmishes/vesuvius_6p.xml:Name:40
 msgid "Vesuvius (6)"
 msgstr "Vesuvius (6)"
 

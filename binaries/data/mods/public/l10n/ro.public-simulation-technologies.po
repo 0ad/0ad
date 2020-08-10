@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-03 07:17+0000\n"
-"PO-Revision-Date: 2020-08-03 08:24+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 08:39+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -55,10 +55,8 @@ msgstr "Armură de metal pentru capul calului."
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
-msgid ""
-"Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
-"level."
-msgstr "Echipează o unitate de cavalerie cu armură. +1 anti hăcuire și anti străpungere pentru armura de cavalerie."
+msgid "Cavalry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -170,10 +168,8 @@ msgid ""
 msgstr "Armură pentru corp realizată complet din fier, cel mai dur metal maleabil cunoscut anticilor."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid ""
-"All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
-"Metal Cost."
-msgstr "Pentru toți eroii, +2 armură anti hăcuire și +2 armură anti străpungere, dar și +50 cost metal."
+msgid "Heroes +50 metal cost, +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -197,8 +193,8 @@ msgstr "Armură de corp împletită din textile și piele pentru infanteriști."
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
-msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "Pentru infanteriști, +1 nivelul de armură anti hăcuire și anti străpungere."
+msgid "Infantry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -242,8 +238,10 @@ msgid "Lead sheathing protects ship hulls."
 msgstr "Acoperire cu plumb care protejează hala navelor. "
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
-msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "Acoperire cu plumb care protejează hala navelor.  +2 nivele la toate tipurile de armură navale"
+#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
+msgid "Ships +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -253,12 +251,6 @@ msgstr "Acoperire cu plumb a hălii"
 msgid "The hypozomata braces the structure of a ship."
 msgstr "Bretele hypozomata ale structurii navelor. "
 
-#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
-msgid ""
-"The hypozomata braces the ship's structure. +2 levels to all ship armor "
-"types."
-msgstr "Bretele hypozomata ale structurii navelor. +2 nivele la toate tipurile de armură navală."
-
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
 msgstr "Întărire inferioară Hypozomata"
@@ -266,11 +258,6 @@ msgstr "Întărire inferioară Hypozomata"
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
 msgstr "Structură întăritoare de lemn pentru hălile navelor. "
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
-msgid ""
-"Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "Structură întăritoare de lemn pentru hălile navelor. +2 nivele la toate tipurile de armură navale"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -1210,7 +1197,7 @@ msgid "Increases defensive capability of traders."
 msgstr ""
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 Hack and Pierce armor levels."
+msgid "Traders +2 hack and pierce armor."
 msgstr ""
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName

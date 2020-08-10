@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-03 07:17+0000\n"
-"PO-Revision-Date: 2020-08-03 08:24+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 08:39+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -51,10 +51,8 @@ msgstr "Armachd meatailt airson aodann eich."
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
-msgid ""
-"Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
-"level."
-msgstr "Uidheamaich eich an eachraidh agad le armachd. Gheibh na h‑uile eachraidh 1+ de dh’armachd an aghaidh spealgaidh ’s bioraidh."
+msgid "Cavalry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -166,10 +164,8 @@ msgid ""
 msgstr "Seo armachd bodhaige a tha dèanta de dh’iarann air fad, seo a’ mheatailt as cruaidhe a ghabhadh a’ cur gu feum ’s air an robh an sluagh àrsaidh eòlach."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid ""
-"All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
-"Metal Cost."
-msgstr "Gheibh gach curaidh +2 de dh’armachd an aghaidh spealgaidh ’s bioraidh ach cosgaidh e +50 de mheatailt a bharrachd."
+msgid "Heroes +50 metal cost, +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -193,8 +189,8 @@ msgstr "Lùirich anart cuilt no leathair airson na coisridh."
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
-msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "Gheibh gach aonad coisridh +1 de dh’armachd an aghaidh spealgaidh ’s bioraidh."
+msgid "Infantry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -238,8 +234,10 @@ msgid "Lead sheathing protects ship hulls."
 msgstr "Dìonaidh lìnig luaidhe sligean nan long."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
-msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "Dìonaidh lìnig luaidhe sligean nan long. Bidh na h‑uile seòrsa armachd luinge +2 nas treasa."
+#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
+msgid "Ships +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -249,12 +247,6 @@ msgstr "Lìnigean luaidhe nan long"
 msgid "The hypozomata braces the structure of a ship."
 msgstr "’S e ròpan teannachaidh a tha sna Hioposomata a chuireas taic ri structar luinge."
 
-#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
-msgid ""
-"The hypozomata braces the ship's structure. +2 levels to all ship armor "
-"types."
-msgstr "Cuiridh crioslachadh Hioposomata taic ri structar na luinge. +2 air gach seòrsa de  dh’armachd luinge."
-
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
 msgstr "Crioslachadh Hioposomata"
@@ -262,11 +254,6 @@ msgstr "Crioslachadh Hioposomata"
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
 msgstr "Sparran neartachaidh fiodha airson sligean luinge."
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
-msgid ""
-"Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "Sparran neartachaidh fiodha airson sligean luinge. Gheibh na h‑uile long +2 air an armachd aice."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -1206,8 +1193,8 @@ msgid "Increases defensive capability of traders."
 msgstr "Nì e dìon an luchd-mhalairt nas treasa."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "+2 de dh’armachd an aghaidh spealgaidh ’s bioraidh airson luchd-mhalairt."
+msgid "Traders +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName
