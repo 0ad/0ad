@@ -3,12 +3,12 @@
 
     <technique>
         <require shaders="arb"/>
-	<pass shader="arb/sky"/>
+        <pass shader="arb/sky"/>
     </technique>
 
     <technique>
         <require shaders="glsl"/>
-	<pass shader="glsl/sky"/>
+        <pass shader="glsl/sky"/>
     </technique>
 
 </effect>

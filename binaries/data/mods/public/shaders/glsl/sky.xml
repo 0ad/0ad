@@ -3,7 +3,9 @@
 
     <vertex file="glsl/sky.vs">
         <stream name="pos"/>
+        <stream name="uv0"/>
         <attrib name="a_vertex" semantics="gl_Vertex"/>
+        <attrib name="a_uv0" semantics="gl_MultiTexCoord0"/>
     </vertex>
 
     <fragment file="glsl/sky.fs"/>

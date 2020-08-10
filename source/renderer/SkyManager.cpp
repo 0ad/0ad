@@ -198,7 +198,8 @@ void SkyManager::RenderSky()
 #else
 
 	// Draw the sky as a small box around the map, with depth write enabled.
-	// This will be done before anything else is drawn so we'll be overlapped by everything else.
+	// This will be done before anything else is drawn so we'll be overlapped by
+	// everything else.
 
 	// Do nothing unless SetSkySet was called
 	if (m_SkySet.empty())
@@ -206,96 +207,168 @@ void SkyManager::RenderSky()
 
 	glDepthMask(GL_FALSE);
 
-	pglActiveTextureARB(GL_TEXTURE0_ARB);
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::FIXED)
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-
-	// Translate so the sky center is at the camera space origin.
-	CVector3D cameraPos = g_Renderer.GetViewCamera().GetOrientation().GetTranslation();
-	glTranslatef(cameraPos.X, cameraPos.Y, cameraPos.Z);
-
-	// Rotate so that the "left" face, which contains the brightest part of each
-	// skymap, is in the direction of the sun from our light environment
-	glRotatef(180.0f + RADTODEG(g_Renderer.GetLightEnv().GetRotation()), 0.0f, 1.0f, 0.0f);
-
-	// Currently we have a hardcoded near plane in the projection matrix.
-	glScalef(10.0f, 10.0f, 10.0f);
-
-	CShaderProgramPtr shader;
-	CShaderTechniquePtr skytech;
+	const CCamera& camera = g_Renderer.GetViewCamera();
 
 	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
 	{
-		skytech = g_Renderer.GetShaderManager().LoadEffect(str_sky_simple);
+		CShaderTechniquePtr skytech =
+			g_Renderer.GetShaderManager().LoadEffect(str_sky_simple);
 		skytech->BeginPass();
-		shader = skytech->GetShader();
+		CShaderProgramPtr shader = skytech->GetShader();
 		shader->BindTexture(str_baseTex, m_SkyCubeMap);
-	}
-	else
-	{
-		glDisable(GL_TEXTURE_2D);
-		glEnable(GL_TEXTURE_CUBE_MAP);
-		glBindTexture(GL_TEXTURE_CUBE_MAP, m_SkyCubeMap);
-	}
 
-	glBegin(GL_QUADS);
+		// Translate so the sky center is at the camera space origin.
+		CMatrix3D translate;
+		translate.SetTranslation(camera.GetOrientation().GetTranslation());
 
-	// GL_TEXTURE_CUBE_MAP_NEGATIVE_X
-	glTexCoord3f(+1, +1, +1);  glVertex3f(-1.0f, -1.0f, -1.0f);
-	glTexCoord3f(+1, +1, -1);  glVertex3f(-1.0f, -1.0f, +1.0f);
-	glTexCoord3f(+1, -1, -1);  glVertex3f(-1.0f, +1.0f, +1.0f);
-	glTexCoord3f(+1, -1, +1);  glVertex3f(-1.0f, +1.0f, -1.0f);
+		// Currently we have a hardcoded near plane in the projection matrix.
+		CMatrix3D scale;
+		scale.SetScaling(10.0f, 10.0f, 10.0f);
 
-	// GL_TEXTURE_CUBE_MAP_POSITIVE_X
-	glTexCoord3f(-1, +1, -1);  glVertex3f(+1.0f, -1.0f, +1.0f);
-	glTexCoord3f(-1, +1, +1);  glVertex3f(+1.0f, -1.0f, -1.0f);
-	glTexCoord3f(-1, -1, +1);  glVertex3f(+1.0f, +1.0f, -1.0f);
-	glTexCoord3f(-1, -1, -1);  glVertex3f(+1.0f, +1.0f, +1.0f);
+		// Rotate so that the "left" face, which contains the brightest part of
+		// each skymap, is in the direction of the sun from our light
+		// environment.
+		CMatrix3D rotate;
+		rotate.SetYRotation(M_PI + g_Renderer.GetLightEnv().GetRotation());
 
-	// GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
-	glTexCoord3f(-1, +1, +1);  glVertex3f(+1.0f, -1.0f, -1.0f);
-	glTexCoord3f(-1, +1, -1);  glVertex3f(+1.0f, -1.0f, +1.0f);
-	glTexCoord3f(+1, +1, -1);  glVertex3f(-1.0f, -1.0f, +1.0f);
-	glTexCoord3f(+1, +1, +1);  glVertex3f(-1.0f, -1.0f, -1.0f);
+		shader->Uniform(
+			str_transform,
+			camera.GetViewProjection() * translate * rotate * scale);
 
-	// GL_TEXTURE_CUBE_MAP_POSITIVE_Y
-	glTexCoord3f(+1, -1, +1);  glVertex3f(-1.0f, +1.0f, -1.0f);
-	glTexCoord3f(+1, -1, -1);  glVertex3f(-1.0f, +1.0f, +1.0f);
-	glTexCoord3f(-1, -1, -1);  glVertex3f(+1.0f, +1.0f, +1.0f);
-	glTexCoord3f(-1, -1, +1);  glVertex3f(+1.0f, +1.0f, -1.0f);
+		std::vector<GLfloat> vertexData;
+		// 6 sides of cube with 4 vertices with 6 floats (3 uv and 3 position).
+		vertexData.reserve(6 * 4 * 6);
+	#define ADD_VERTEX(U, V, W, X, Y, Z) \
+		STMT( \
+			vertexData.push_back(X); \
+			vertexData.push_back(Y); \
+			vertexData.push_back(Z); \
+			vertexData.push_back(U); \
+			vertexData.push_back(V); \
+			vertexData.push_back(W);)
 
-	// GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
-	glTexCoord3f(-1, +1, +1);  glVertex3f(+1.0f, -1.0f, -1.0f);
-	glTexCoord3f(+1, +1, +1);  glVertex3f(-1.0f, -1.0f, -1.0f);
-	glTexCoord3f(+1, -1, +1);  glVertex3f(-1.0f, +1.0f, -1.0f);
-	glTexCoord3f(-1, -1, +1);  glVertex3f(+1.0f, +1.0f, -1.0f);
+		// GL_TEXTURE_CUBE_MAP_NEGATIVE_X
+		ADD_VERTEX(+1, +1, +1, -1.0f, -1.0f, -1.0f);
+		ADD_VERTEX(+1, +1, -1, -1.0f, -1.0f, +1.0f);
+		ADD_VERTEX(+1, -1, -1, -1.0f, +1.0f, +1.0f);
+		ADD_VERTEX(+1, -1, +1, -1.0f, +1.0f, -1.0f);
 
-	// GL_TEXTURE_CUBE_MAP_POSITIVE_Z
-	glTexCoord3f(+1, +1, -1);  glVertex3f(-1.0f, -1.0f, +1.0f);
-	glTexCoord3f(-1, +1, -1);  glVertex3f(+1.0f, -1.0f, +1.0f);
-	glTexCoord3f(-1, -1, -1);  glVertex3f(+1.0f, +1.0f, +1.0f);
-	glTexCoord3f(+1, -1, -1);  glVertex3f(-1.0f, +1.0f, +1.0f);
+		// GL_TEXTURE_CUBE_MAP_POSITIVE_X
+		ADD_VERTEX(-1, +1, -1, +1.0f, -1.0f, +1.0f);
+		ADD_VERTEX(-1, +1, +1, +1.0f, -1.0f, -1.0f);
+		ADD_VERTEX(-1, -1, +1, +1.0f, +1.0f, -1.0f);
+		ADD_VERTEX(-1, -1, -1, +1.0f, +1.0f, +1.0f);
 
-	glEnd();
+		// GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
+		ADD_VERTEX(-1, +1, +1, +1.0f, -1.0f, -1.0f);
+		ADD_VERTEX(-1, +1, -1, +1.0f, -1.0f, +1.0f);
+		ADD_VERTEX(+1, +1, -1, -1.0f, -1.0f, +1.0f);
+		ADD_VERTEX(+1, +1, +1, -1.0f, -1.0f, -1.0f);
 
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
-	{
+		// GL_TEXTURE_CUBE_MAP_POSITIVE_Y
+		ADD_VERTEX(+1, -1, +1, -1.0f, +1.0f, -1.0f);
+		ADD_VERTEX(+1, -1, -1, -1.0f, +1.0f, +1.0f);
+		ADD_VERTEX(-1, -1, -1, +1.0f, +1.0f, +1.0f);
+		ADD_VERTEX(-1, -1, +1, +1.0f, +1.0f, -1.0f);
+
+		// GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
+		ADD_VERTEX(-1, +1, +1, +1.0f, -1.0f, -1.0f);
+		ADD_VERTEX(+1, +1, +1, -1.0f, -1.0f, -1.0f);
+		ADD_VERTEX(+1, -1, +1, -1.0f, +1.0f, -1.0f);
+		ADD_VERTEX(-1, -1, +1, +1.0f, +1.0f, -1.0f);
+
+		// GL_TEXTURE_CUBE_MAP_POSITIVE_Z
+		ADD_VERTEX(+1, +1, -1, -1.0f, -1.0f, +1.0f);
+		ADD_VERTEX(-1, +1, -1, +1.0f, -1.0f, +1.0f);
+		ADD_VERTEX(-1, -1, -1, +1.0f, +1.0f, +1.0f);
+		ADD_VERTEX(+1, -1, -1, -1.0f, +1.0f, +1.0f);
+	#undef ADD_VERTEX
+
+		shader->VertexPointer(3, GL_FLOAT, sizeof(GLfloat) * 6, &vertexData[0]);
+		shader->TexCoordPointer(
+			GL_TEXTURE0, 3, GL_FLOAT, sizeof(GLfloat) * 6, &vertexData[3]);
+		shader->AssertPointersBound();
+
+		glDrawArrays(GL_QUADS, 0, 6 * 4);
+
 		skytech->EndPass();
 	}
 	else
 	{
+		pglActiveTextureARB(GL_TEXTURE0_ARB);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+		glMatrixMode(GL_MODELVIEW);
+		// Modify current matrix that already contains view part.
+		glPushMatrix();
+
+		// Translate so the sky center is at the camera space origin.
+		CVector3D cameraPos = camera.GetOrientation().GetTranslation();
+		glTranslatef(cameraPos.X, cameraPos.Y, cameraPos.Z);
+
+		// Rotate so that the "left" face, which contains the brightest part of
+		// each skymap, is in the direction of the sun from our light
+		// environment.
+		glRotatef(
+			180.0f + RADTODEG(g_Renderer.GetLightEnv().GetRotation()),
+			0.0f, 1.0f, 0.0f);
+
+		// Currently we have a hardcoded near plane in the projection matrix.
+		glScalef(10.0f, 10.0f, 10.0f);
+
+		glDisable(GL_TEXTURE_2D);
+		glEnable(GL_TEXTURE_CUBE_MAP);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, m_SkyCubeMap);
+
+		glBegin(GL_QUADS);
+
+		// GL_TEXTURE_CUBE_MAP_NEGATIVE_X
+		glTexCoord3f(+1, +1, +1);  glVertex3f(-1.0f, -1.0f, -1.0f);
+		glTexCoord3f(+1, +1, -1);  glVertex3f(-1.0f, -1.0f, +1.0f);
+		glTexCoord3f(+1, -1, -1);  glVertex3f(-1.0f, +1.0f, +1.0f);
+		glTexCoord3f(+1, -1, +1);  glVertex3f(-1.0f, +1.0f, -1.0f);
+
+		// GL_TEXTURE_CUBE_MAP_POSITIVE_X
+		glTexCoord3f(-1, +1, -1);  glVertex3f(+1.0f, -1.0f, +1.0f);
+		glTexCoord3f(-1, +1, +1);  glVertex3f(+1.0f, -1.0f, -1.0f);
+		glTexCoord3f(-1, -1, +1);  glVertex3f(+1.0f, +1.0f, -1.0f);
+		glTexCoord3f(-1, -1, -1);  glVertex3f(+1.0f, +1.0f, +1.0f);
+
+		// GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
+		glTexCoord3f(-1, +1, +1);  glVertex3f(+1.0f, -1.0f, -1.0f);
+		glTexCoord3f(-1, +1, -1);  glVertex3f(+1.0f, -1.0f, +1.0f);
+		glTexCoord3f(+1, +1, -1);  glVertex3f(-1.0f, -1.0f, +1.0f);
+		glTexCoord3f(+1, +1, +1);  glVertex3f(-1.0f, -1.0f, -1.0f);
+
+		// GL_TEXTURE_CUBE_MAP_POSITIVE_Y
+		glTexCoord3f(+1, -1, +1);  glVertex3f(-1.0f, +1.0f, -1.0f);
+		glTexCoord3f(+1, -1, -1);  glVertex3f(-1.0f, +1.0f, +1.0f);
+		glTexCoord3f(-1, -1, -1);  glVertex3f(+1.0f, +1.0f, +1.0f);
+		glTexCoord3f(-1, -1, +1);  glVertex3f(+1.0f, +1.0f, -1.0f);
+
+		// GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
+		glTexCoord3f(-1, +1, +1);  glVertex3f(+1.0f, -1.0f, -1.0f);
+		glTexCoord3f(+1, +1, +1);  glVertex3f(-1.0f, -1.0f, -1.0f);
+		glTexCoord3f(+1, -1, +1);  glVertex3f(-1.0f, +1.0f, -1.0f);
+		glTexCoord3f(-1, -1, +1);  glVertex3f(+1.0f, +1.0f, -1.0f);
+
+		// GL_TEXTURE_CUBE_MAP_POSITIVE_Z
+		glTexCoord3f(+1, +1, -1);  glVertex3f(-1.0f, -1.0f, +1.0f);
+		glTexCoord3f(-1, +1, -1);  glVertex3f(+1.0f, -1.0f, +1.0f);
+		glTexCoord3f(-1, -1, -1);  glVertex3f(+1.0f, +1.0f, +1.0f);
+		glTexCoord3f(+1, -1, -1);  glVertex3f(-1.0f, +1.0f, +1.0f);
+
+		glEnd();
+
 		glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
 		glDisable(GL_TEXTURE_CUBE_MAP);
 		glEnable(GL_TEXTURE_2D);
-	}
 
-	glPopMatrix();
+		glPopMatrix();
 
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::FIXED)
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	}
 
 	glDepthMask(GL_TRUE);
 
