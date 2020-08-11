@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:10+0000\n"
-"PO-Revision-Date: 2020-07-24 18:37+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 18:37+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -807,7 +807,7 @@ msgid ""
 msgstr "Zvolte tuto obtížnost, pokud jste již s 0 A.D dobře obeznámen."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Title
-#: simulation/data/settings/map_sizes.jsonData[2].Name
+#: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Medium"
 msgstr "Střední"
 
@@ -845,15 +845,15 @@ msgid ""
 "quickly while still having some room to expand."
 msgstr "Malé mapy jsou vhodné pro zápasy 1v1 (jeden na jednoho), jelikož se hráči mohou dostat rychle k nepříteli, zatímco mají stále prostor k rozšíření."
 
-#: simulation/data/settings/map_sizes.jsonData[2].Tooltip
-msgid ""
-"Medium-sized maps provide plenty of space for two players, but even eight "
-"players fit."
-msgstr "Středně velké mapy poskytují dostatek místa pro dva hráče, ale vejde se na ně dokonce i osm hráčů."
-
-#: simulation/data/settings/map_sizes.jsonData[3].Name
+#: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Normal"
 msgstr "Normální"
+
+#: simulation/data/settings/map_sizes.jsonData[2].Tooltip
+msgid ""
+"This map size provides plenty of space for two players, but even eight "
+"players fit."
+msgstr ""
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""

@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-31 07:09+0000\n"
-"PO-Revision-Date: 2020-08-06 21:27+0000\n"
+"PO-Revision-Date: 2020-08-09 20:09+0000\n"
 "Last-Translator: Martin H <pilino1234@zoho.eu>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr "%(hotkey)s: Byt till byggnadsträd."
 #: gui/civinfo/civinfo.js:21
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s : Stäng civilisationsöverblicken."
 
 #. Translation: insert an itemization symbol for each entry.
 #: gui/civinfo/civinfo.js:85
@@ -72,8 +72,8 @@ msgstr "Unik teknologi"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Structure"
 msgid_plural "Special Structures"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Specialbyggnad"
+msgstr[1] "Specialbyggnader"
 
 #: gui/civinfo/civinfo.js:141 gui/summary/layout.js:77
 msgid "Heroes"
@@ -380,17 +380,17 @@ msgstr "Nomad-läge"
 
 #: gui/common/gamedescription.js:345
 msgid "Civic Centers"
-msgstr "Civic Centers"
+msgstr "Samhällscentrum"
 
 #: gui/common/gamedescription.js:348
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr "Spelare börjar med endast få enheter och måste hitta en lämplig plats att bygga sin stad."
+msgstr "Spelare börjar med ett fåtal enheter och måste hitta en lämplig plats att bygga sin stad."
 
 #: gui/common/gamedescription.js:349
 msgid "Players start with a Civic Center."
-msgstr "Spelarna börjar med ett Civic Center."
+msgstr "Spelare börjar med ett samhällscentrum."
 
 #: gui/common/gamedescription.js:354
 msgid "Starting Resources"
@@ -417,7 +417,7 @@ msgstr "Per spelare"
 
 #: gui/common/gamedescription.js:382
 msgid "World Population Cap"
-msgstr ""
+msgstr "Världsbefolkningsgräns"
 
 #: gui/common/gamedescription.js:390
 msgid "Treasures"
@@ -704,7 +704,7 @@ msgstr "Standard"
 #: gui/common/settings.js:400
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(värld)"
 
 #: gui/common/settings.js:401 gui/common/settings.js:405
 msgctxt "population capacity"
@@ -909,17 +909,17 @@ msgstr "Nej"
 #: gui/common/tooltips.js:404
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s %(stackability)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s %(stackability)s"
 
 #: gui/common/tooltips.js:409
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s"
 
 #: gui/common/tooltips.js:420
 #, javascript-format
 msgid "%(durName)s: %(duration)s"
-msgstr ""
+msgstr "%(durName)s: %(duration)s"
 
 #: gui/common/tooltips.js:421
 msgid "Duration"
@@ -928,22 +928,22 @@ msgstr "Längd"
 #: gui/common/tooltips.js:435
 msgctxt "status effect stackability"
 msgid "(extends)"
-msgstr ""
+msgstr "(förlänger)"
 
 #: gui/common/tooltips.js:437
 msgctxt "status effect stackability"
 msgid "(replaces)"
-msgstr ""
+msgstr "(ersätter)"
 
 #: gui/common/tooltips.js:439
 msgctxt "status effect stackability"
 msgid "(stacks)"
-msgstr ""
+msgstr "(staplar)"
 
 #: gui/common/tooltips.js:441
 #, javascript-format
 msgid "%(stackability)s"
-msgstr ""
+msgstr "%(stackability)s"
 
 #: gui/common/tooltips.js:452
 #, javascript-format
@@ -1015,15 +1015,15 @@ msgstr "Antalet byggare:"
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] "Lägg till en annan arbetare för att påskynda byggnaden med\n"
-msgstr[1] "Lägg till en annan arbetare för att påskynda byggnaden med %(second)s sekunder."
+msgstr[0] "Lägg till en ytterligare arbetare för att påskynda bygget med %(second)s sekund."
+msgstr[1] "Lägg till en ytterligare arbetare för att påskynda bygget med %(second)s sekunder."
 
 #: gui/common/tooltips.js:542
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
-msgstr[0] "Lägg till en arbetare för att slutföra byggnaden i\n"
-msgstr[1] "Lägg till en arbetare för att slutföra byggnaden i %(second)s sekunder."
+msgstr[0] "Lägg till en arbetare för att slutföra bygget på %(second)s sekund."
+msgstr[1] "Lägg till en arbetare för att slutföra bygget på %(second)s sekunder."
 
 #: gui/common/tooltips.js:577 gui/common/tooltips.js:788
 #, javascript-format
@@ -1198,7 +1198,7 @@ msgstr "Klicka för att visa mer information."
 #: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
-msgstr ""
+msgstr "%(nick)s — %(name)s"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
@@ -1251,15 +1251,15 @@ msgstr "Läs in"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr "Detta spara spel behöver 0 A.D. version %(requiredVersion)s, medan du kör version %(currentVersion)s."
+msgstr "Detta sparade spel behöver 0 A.D. version %(requiredVersion)s, medan du kör version %(currentVersion)s."
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
-msgstr "Denna spara spel behöver en äldre version av 0 A.D."
+msgstr "Detta sparade spel behöver en äldre version av 0 A.D."
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
-msgstr "Denna spara spel behöver en annan sekvens av mods:"
+msgstr "Detta sparade spel behöver andra mods:"
 
 #: gui/loadgame/SavegameLoader.js:55
 msgid "Do you still want to proceed?"
@@ -1341,7 +1341,7 @@ msgstr "Lär dig spela"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr ""
+msgstr "Lär dig spela, börja handledningen, upptäck teknologiträden och historian bakom civilisationerna."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -1368,13 +1368,13 @@ msgstr "Byggnadsträd"
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr "%(hotkey)s: Se strukturträd för civilisationer som visas i 0 A.D."
+msgstr "%(hotkey)s: Se byggnadsträd för civilisationer som visas i 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:36
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 #: gui/civinfo/civinfo.xml:(caption):18
 msgid "Civilization Overview"
-msgstr ""
+msgstr "Civilisationsöverblick"
 
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
@@ -1387,7 +1387,7 @@ msgstr "Enspelarläge"
 
 #: gui/pregame/MainMenuItems.js:51
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "Börja, ladda eller spela upp ett enspelarspel."
 
 #: gui/pregame/MainMenuItems.js:54
 msgid "Matches"
@@ -1395,7 +1395,7 @@ msgstr "Matcher"
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "Börja ett nytt enspelarspel."
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Campaigns"
@@ -1409,7 +1409,7 @@ msgstr "Återupplev det förflutna genom historiska militära kampanjer. \\[EJ I
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Load a saved game."
-msgstr ""
+msgstr "Ladda ett sparat spel."
 
 #: gui/pregame/MainMenuItems.js:73 gui/pregame/MainMenuItems.js:123
 msgid "Replays"
@@ -1465,7 +1465,7 @@ msgstr "Inställningar"
 
 #: gui/pregame/MainMenuItems.js:139
 msgid "Change game options."
-msgstr ""
+msgstr "Ändra spelinställningar."
 
 #: gui/pregame/MainMenuItems.js:142
 msgid "Options"
@@ -1497,7 +1497,7 @@ msgstr "Välkomstskärm"
 
 #: gui/pregame/MainMenuItems.js:167
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Visa välkomstskärmen igen. Användbar om du dolt den av misstag."
 
 #: gui/pregame/MainMenuItems.js:175
 msgid "Scenario Editor"
@@ -1507,11 +1507,11 @@ msgstr "Scenarioredigerare"
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
-msgstr "Öppna scenario-redigeraren Atlas i ett nytt fönster. Du kan köra den mer tillförlitligt genom att starta spelet med kommandorad argumentet \"-editor\"."
+msgstr "Öppna scenarioredigeraren Atlas i ett nytt fönster. Du kan köra den mer tillförlitligt genom att starta spelet med kommandorad argumentet \"-editor\"."
 
 #: gui/pregame/MainMenuItems.js:181
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr "Är du säker på att du vill sluta 0 A.D. och öppna Scenario Editor?"
+msgstr "Är du säker på att du vill avsluta 0 A.D. och öppna scenarioredigeraren?"
 
 #: gui/pregame/MainMenuItems.js:182 gui/pregame/MainMenuItems.js:206
 msgid "Confirmation"
@@ -1533,7 +1533,7 @@ msgstr "Medverkande"
 
 #: gui/pregame/MainMenuItems.js:194
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "Visa 0 A.D. medverkande"
 
 #: gui/pregame/MainMenuItems.js:200
 msgid "Exit"
@@ -1541,7 +1541,7 @@ msgstr "Avsluta"
 
 #: gui/pregame/MainMenuItems.js:201
 msgid "Exit the game."
-msgstr ""
+msgstr "Avsluta spelet."
 
 #: gui/pregame/MainMenuItems.js:205
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -1762,7 +1762,7 @@ msgstr "Uppgraderbar till:"
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s : Byt till civilisationsöverblicken."
 
 #: gui/reference/common/Buttons/CloseButton.js:13
 #: gui/civinfo/civinfo.xml:(caption):135 gui/credits/credits.xml:(caption):32
@@ -1786,7 +1786,7 @@ msgstr "Tränarsoldater"
 #: gui/reference/viewer/ViewerPage.js:167
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
-msgstr ""
+msgstr "%(hotkey)s: Stäng mallvisaren."
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
@@ -1943,7 +1943,7 @@ msgstr "Upptäckarpoäng"
 
 #: gui/summary/layout.js:31
 msgid "Structures"
-msgstr ""
+msgstr "Byggnader"
 
 #: gui/summary/layout.js:34 gui/summary/layout.js:72 gui/summary/layout.js:112
 msgid "Total"
@@ -2019,7 +2019,7 @@ msgstr "Handelsmän"
 #: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "Enhetsstatistik (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:109
 msgid "Resources"
@@ -2186,12 +2186,12 @@ msgstr "Misslyckade"
 #, javascript-format
 msgctxt "Player listing with color indicator"
 msgid "%(colorIndicator)s %(playerListing)s"
-msgstr ""
+msgstr "%(colorIndicator)s %(playerListing)s"
 
 #: gui/summary/summary.js:195
 msgctxt "Charts player color indicator"
 msgid "■"
-msgstr ""
+msgstr "■"
 
 #: gui/summary/summary.js:225
 msgctxt "Player listing"
@@ -2248,17 +2248,17 @@ msgstr "%(hotkey)s: Växla flerspelarlobbyn i en dialogruta."
 #: gui/summary/summary.js:546
 #, javascript-format
 msgid "Toggle the %(name)s summary tab."
-msgstr ""
+msgstr "Växla %(name)s-sammanfattningsfliken."
 
 #: gui/summary/summary.js:547
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab right."
-msgstr ""
+msgstr "Använd %(hotkey)s för att flytta en sammanfattningsflik åt höger."
 
 #: gui/summary/summary.js:548
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab left."
-msgstr ""
+msgstr "Använd %(hotkey)s för att flytta en sammanfattningsflik åt vänster."
 
 #: gui/civinfo/civinfo.xml:(caption):30
 msgid "Civilization Selection"
@@ -2400,7 +2400,7 @@ msgstr "Huvudmeny"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Rebuild Cache"
-msgstr ""
+msgstr "Återuppbygg cacheminnet"
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
 #: gui/summary/summary.xml:(caption):26
@@ -2464,7 +2464,7 @@ msgstr "Typ:"
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
-msgstr ""
+msgstr "Grupper enligt lag"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
@@ -2511,11 +2511,11 @@ msgstr "Ljudmanager"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
-msgstr ""
+msgstr "Huvudkompositör"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
-msgstr ""
+msgstr "Ljudmanager"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
@@ -2584,7 +2584,7 @@ msgstr "Röster"
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
-msgstr ""
+msgstr "Ljud"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -2631,7 +2631,7 @@ msgstr "Skript för slumpmässiga kartor"
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr ""
+msgstr "Kartor"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -2687,7 +2687,7 @@ msgstr "Hur du vill bli adresserad i enspelarmatcher."
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "Spelarnamn (enspelarläge)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
@@ -2703,7 +2703,7 @@ msgstr "Pausa enspelarspel när fönstret förlorar fokus."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
-msgstr ""
+msgstr "Bakgrundspaus"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
@@ -2713,7 +2713,7 @@ msgstr "Om du inaktiverar välkomstskärmen kommer den ändå visas en gång nä
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
-msgstr ""
+msgstr "Aktivera välkomstskärm"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
@@ -2721,7 +2721,7 @@ msgstr "Visa vilka spelare har dålig anslutning i flerspelarspel."
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network warnings"
-msgstr ""
+msgstr "Nätverksvarningar"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2737,7 +2737,7 @@ msgstr "Visa aktuella systemtiden i hörnet uppe till höger."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Real time overlay"
-msgstr ""
+msgstr "Realtidsöverlägg"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
@@ -2745,7 +2745,7 @@ msgstr "Visa aktuella simulationstiden uppe till höger."
 
 #: gui/options/options.json[0].options[7].label
 msgid "Game time overlay"
-msgstr ""
+msgstr "Speltidsöverlägg"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -2779,7 +2779,7 @@ msgstr "Låt alla eller endast kompisar att ansluta till spelet som observatör 
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late observer joins"
-msgstr ""
+msgstr "Sen anslutning för observatörer"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
@@ -2787,7 +2787,7 @@ msgstr "Hindra ytterligare observatörer från att ansluta om gränsen nås."
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer limit"
-msgstr ""
+msgstr "Observatörgräns"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid ""
@@ -2796,7 +2796,7 @@ msgstr "Visa tiden som meddelanden skickades i lobby, spelinställningar, eller 
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "Tidsstämpel i chatt"
 
 #: gui/options/options.json[0].label
 msgid "General"
@@ -2808,7 +2808,7 @@ msgstr "Starta 0 A.D i ett fönster."
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
-msgstr ""
+msgstr "Fönsterläge"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
@@ -2832,27 +2832,27 @@ msgstr "Använd efterbehandlingsfilter för skärmutrymme (HDR, Bloom, DOF, o.s.
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
-msgstr ""
+msgstr "Efterbehandling"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use anti-aliasing."
-msgstr ""
+msgstr "Använd inte anti-aliasing."
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid "Fast, but simple anti-aliasing."
-msgstr ""
+msgstr "Snabb, men enkel anti-aliasing"
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
-msgstr ""
+msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
-msgstr ""
+msgstr "Reducerar aliasing-effekter på kanter."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Anti-Aliasing"
-msgstr ""
+msgstr "Anti-aliasing"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -2860,7 +2860,7 @@ msgstr "Antal shadereffekter. KRÄVER OMSTART AV SPELET."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Shader effects"
-msgstr ""
+msgstr "Shadereffekter"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "Enable shadows."
@@ -2899,7 +2899,7 @@ msgstr "Skuggkartaupplösning. Höga värden kan krascha spelet när du använde
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shadow quality"
-msgstr ""
+msgstr "Skuggkvalitet"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Smooth shadows."
@@ -2907,7 +2907,7 @@ msgstr "Mjuka skuggor."
 
 #: gui/options/options.json[1].options[8].label
 msgid "Shadow filtering"
-msgstr ""
+msgstr "Skuggfiltrering"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid "Show outlines of units behind structures."
@@ -2933,7 +2933,7 @@ msgstr "När AV, använd de lägsta möjliga inställningar för att rendera vat
 
 #: gui/options/options.json[1].options[11].label
 msgid "Water effects"
-msgstr ""
+msgstr "Vatteneffekter"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid ""
@@ -2943,7 +2943,7 @@ msgstr "Använd bättre effekter för vatten, kustvågar, strandskum och båtsp�
 
 #: gui/options/options.json[1].options[12].label
 msgid "High-quality water effects"
-msgstr ""
+msgstr "Högkvalitativa vatteneffekter"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -2951,7 +2951,7 @@ msgstr "Använd faktiska vattendjupet i renderingsberäkningar."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Real water depth"
-msgstr ""
+msgstr "Äkta vattendjup"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Allow water to reflect a mirror image."
@@ -2959,7 +2959,7 @@ msgstr "Tillåt vatten att visa en spegelbild."
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water reflections"
-msgstr ""
+msgstr "Vattenreflektioner"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Use a real water refraction map and not transparency."
@@ -2967,7 +2967,7 @@ msgstr "Använd en riktig vattenrefraktionskarta istället för transparens."
 
 #: gui/options/options.json[1].options[15].label
 msgid "Water refraction"
-msgstr ""
+msgstr "Vattenrefraktion"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Cast shadows on water."
@@ -2975,7 +2975,7 @@ msgstr "Kasta skuggor på vatten."
 
 #: gui/options/options.json[1].options[16].label
 msgid "Shadows on water"
-msgstr ""
+msgstr "Skuggor på vatten"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
@@ -2983,7 +2983,7 @@ msgstr "Ta bort mörker och krigsdimma mjukt."
 
 #: gui/options/options.json[1].options[17].label
 msgid "Smooth vision"
-msgstr ""
+msgstr "Mjuk syn"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Render Sky."
@@ -2991,7 +2991,7 @@ msgstr "Rendera himmel."
 
 #: gui/options/options.json[1].options[18].label
 msgid "Show sky"
-msgstr ""
+msgstr "Visa himmel"
 
 #: gui/options/options.json[1].options[19].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
@@ -3035,7 +3035,7 @@ msgstr "Huvudvolym."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master volume"
-msgstr ""
+msgstr "Huvudvolym"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
@@ -3043,7 +3043,7 @@ msgstr "Musikvolym i spelet."
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music volume"
-msgstr ""
+msgstr "Musikvolym"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
@@ -3051,7 +3051,7 @@ msgstr "Omgivningsvolym i spelet."
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient volume"
-msgstr ""
+msgstr "Omgivningsvolym"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
@@ -3059,7 +3059,7 @@ msgstr "Enhetsaktionsljudvolym i spelet."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action volume"
-msgstr ""
+msgstr "Aktionsvolym"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
@@ -3067,23 +3067,23 @@ msgstr "Användargränssnitt ljudvolym."
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI volume"
-msgstr ""
+msgstr "Gränssnittsvolym"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
-msgstr "Ta emot ljud för avisering när någon skriver ditt smeknamn."
+msgstr "Få ett ljudmeddelande när någon skriver ditt användarnamn."
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick notification"
-msgstr ""
+msgstr "Namnnotifiering"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
-msgstr "Ta emot ljudmeddelande när en ny klient ansluts till spelinställningen."
+msgstr "Få ett ljudmeddelande när en ny klient ansluter till spelet."
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game setup - new player notification"
-msgstr ""
+msgstr "Spelinställningar - Notifiering för ny spelare"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -3091,7 +3091,7 @@ msgstr "Visa tips när du startar ett spel."
 
 #: gui/options/options.json[3].options[0].label
 msgid "Enable game setting tips"
-msgstr ""
+msgstr "Aktivera spelinställningstips"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
@@ -3099,7 +3099,7 @@ msgstr "Skjut in inställningspanelen när den öppnas, stängs eller ändrar st
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable settings panel slide"
-msgstr ""
+msgstr "Aktivera glidande inställningspanel"
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
@@ -3108,7 +3108,7 @@ msgstr "Spara och återställ matchinställningar för snabb återanvändning f�
 
 #: gui/options/options.json[3].options[2].label
 msgid "Persist match settings"
-msgstr ""
+msgstr "Spara matchinställningar"
 
 #: gui/options/options.json[3].options[3].list[0].label
 msgid "Sandbox"
@@ -3160,21 +3160,21 @@ msgstr "AI:s standardbeteende."
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI behavior"
-msgstr ""
+msgstr "Standard AI-beteende"
 
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
-msgstr ""
+msgstr "Spelare som ansluter till matchen tilldelas om det finns en ledig plats."
 
 #: gui/options/options.json[3].options[5].list[1].tooltip
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
-msgstr ""
+msgstr "Spelare som ansluter till matchen tilldelas endast om de är kompisar med värden och det finns en ledig plats."
 
 #: gui/options/options.json[3].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr ""
+msgstr "Spelare får endast en plats när värden tilldelar dem en."
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
@@ -3184,7 +3184,7 @@ msgstr "Tilldela anslutande spelare automatiskt till lediga spelarplatser i matc
 
 #: gui/options/options.json[3].options[5].label
 msgid "Assign players"
-msgstr ""
+msgstr "Tilldela spelare"
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
@@ -3205,7 +3205,7 @@ msgstr "Antal efterloggade meddelanden som ska läsas in när du går med i lobb
 
 #: gui/options/options.json[4].options[1].label
 msgid "Chat backlog"
-msgstr ""
+msgstr "Chattlogg"
 
 #: gui/options/options.json[4].options[2].tooltip
 msgid ""
@@ -3233,15 +3233,15 @@ msgstr "Snabbtangenten för skadade enheter betraktar de valda enheterna som ska
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
-msgstr ""
+msgstr "Skadad enhet-hälsa"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr "Antal enheter utbildade per sats som standard."
+msgstr "Antal enheter som tränas per grupp som standard."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch training size"
-msgstr ""
+msgstr "Storlek träningsgrupp"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
@@ -3250,7 +3250,7 @@ msgstr "Antal gånger måste du skrolla för att öka / minska gruppstorleken me
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
-msgstr ""
+msgstr "Ökningsratio för träningsgrupp vid scroll"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
@@ -3258,7 +3258,7 @@ msgstr "Visa ett chattmeddelande om du attackeras av en annan spelare."
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat notification attack"
-msgstr ""
+msgstr "Chattnotifiering attack"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
@@ -3268,7 +3268,7 @@ msgstr "Visa ett chattmeddelande om en allierad spelare skickar resurser till en
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat notification tribute"
-msgstr ""
+msgstr "Chattnotifiering tribut"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
@@ -3277,7 +3277,7 @@ msgstr "Visa ett chattmeddelande till observatörer när en spelare byteshandlar
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat notification barter"
-msgstr ""
+msgstr "Chattnotifiering byteshandel"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -3299,7 +3299,7 @@ msgstr "Visa ett chattmeddelande om du eller en allierad spelare har startat, av
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat notification phase"
-msgstr ""
+msgstr "Chattnotifiering fas"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
@@ -3309,7 +3309,7 @@ msgstr "Visa attackområdet för valda defensiva byggnaden (kan även ändras i 
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
-msgstr ""
+msgstr "Visa attackräckvidd"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
@@ -3319,7 +3319,7 @@ msgstr "Visa räckhållet av valda enheters och byggnaders auror (kan även änd
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
-msgstr ""
+msgstr "Visa auraräckvidd"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
@@ -3350,11 +3350,11 @@ msgstr "Erfarenhetsstatus"
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr ""
+msgstr "Visa detaljerade inforutor för enheter som kan tränas i träningsbyggnader."
 
 #: gui/options/options.json[5].options[12].label
 msgid "Detailed tooltips"
-msgstr ""
+msgstr "Detaljerade inforutor"
 
 #: gui/options/options.json[5].options[13].list[0].label
 msgid "Unordered"
@@ -3371,7 +3371,7 @@ msgstr "Minskande"
 #: gui/options/options.json[5].options[13].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
-msgstr "Dynamiskt sortera spelare i resurs- och populationsverktygetips efter värde."
+msgstr "Dynamiskt sortera spelare i resurs- och populationsverktygstipset efter värde."
 
 #: gui/options/options.json[5].options[13].label
 msgid "Sort resources and population tooltip"
@@ -3383,7 +3383,7 @@ msgstr "Färg på dina enheter när diplomatifärger är aktiverade."
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy colors: self"
-msgstr ""
+msgstr "Diplomatifärger: själv"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
@@ -3391,7 +3391,7 @@ msgstr "Färg på allierade när diplomatifärger är aktiverade."
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy colors: ally"
-msgstr ""
+msgstr "Diplomatifärger: allierad"
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
@@ -3399,7 +3399,7 @@ msgstr "Färg på neutrala spelare när diplomatifärger är aktiverade."
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy colors: neutral"
-msgstr ""
+msgstr "Diplomatifärger: neutral"
 
 #: gui/options/options.json[5].options[17].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
@@ -3407,64 +3407,64 @@ msgstr "Färg på fiender när diplomatifärger är aktiverade."
 
 #: gui/options/options.json[5].options[17].label
 msgid "Diplomacy colors: enemy"
-msgstr ""
+msgstr "Diplomatifärger: fiende"
 
 #: gui/options/options.json[5].options[18].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr ""
+msgstr "Nya byggnader inriktas längs med närliggande byggnader när snabbtangenten trycks."
 
 #: gui/options/options.json[5].options[18].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr ""
+msgstr "Snabbtangent för att aktivera snappning."
 
 #: gui/options/options.json[5].options[18].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr ""
+msgstr "Nya byggnader inriktas längs med närliggande byggnader förutom när snabbtangenten trycks."
 
 #: gui/options/options.json[5].options[18].list[1].label
 msgid "Hotkey to disable snapping"
-msgstr ""
+msgstr "Snabbtangent för att avaktivera snappning."
 
 #: gui/options/options.json[5].options[18].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr ""
+msgstr "Denna inställning låter nya byggnader riktas längs med närliggande byggnader."
 
 #: gui/options/options.json[5].options[18].label
 msgid "Snap to edges"
-msgstr ""
+msgstr "Snappa till kanter"
 
 #: gui/options/options.json[5].options[19].list[0].tooltip
 msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
-msgstr ""
+msgstr "Enheter eller byggnader som läggs till i en kontrollgrupp tas bort från andra kontrollgrupper. Använd detta om du vill att kontrollgrupper hanterar skilda arméer."
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
-msgstr ""
+msgstr "Enkel"
 
 #: gui/options/options.json[5].options[19].list[1].tooltip
 msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
-msgstr ""
+msgstr "Enheter och byggnader kan vara med i flera kontrollgrupper. Detta är användbart för att ha kontrollgrupper för distinkta arméer och en kontrollgrupp för hela hären samtidigt."
 
 #: gui/options/options.json[5].options[19].list[1].label
 msgid "Multiple"
-msgstr ""
+msgstr "Flera"
 
 #: gui/options/options.json[5].options[19].tooltip
 msgid "Decide whether units can be part of multiple control groups."
-msgstr ""
+msgstr "Bestäm om enheter kan vara del av flera kontrollgrupper."
 
 #: gui/options/options.json[5].options[19].label
 msgid "Control Group Membership"
-msgstr ""
+msgstr "Medlemskap i kontrollgrupper"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -3724,7 +3724,7 @@ msgstr "BARACKER"
 msgid ""
 "Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr "Träna alla medborgarsoldater. Vissa civilisationer kan även forska fram att träna mästare."
+msgstr "Träna alla medborgarsoldater. Vissa civilisationer kan även låsa upp att träna mästare."
 
 #: gui/text/tips/barracks.txt:3
 msgid "Research military technologies unique to each faction."
@@ -3764,13 +3764,13 @@ msgstr "Mästarspjutmän och Mästarkavallerispjutmän för Kartago. "
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr "Båda tränas i Templet istället för Fästningen där de flesta andra mästarna tränas."
+msgstr "Båda tränas i templet istället för fästningen där de flesta andra mästarna tränas."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr "Använd spjutmännen som tung infanteri mot kavalleri. Använd kavallerin som en tung chock mot belägringsvapen or skärmytslingare."
+msgstr "Använd spjutmännen som tung infanteri mot kavalleri. Använd kavalleri som en tung chock mot belägringsvapen or skärmytslingare."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -3778,7 +3778,7 @@ msgstr "KATAPULTER"
 
 #: gui/text/tips/catapults.txt:2
 msgid "Ranged siege engines that are good against structures."
-msgstr ""
+msgstr "Distansbelägringsvapen som är bra mot byggnader."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
@@ -3796,7 +3796,7 @@ msgstr "KELTISKT KRIGSPRÅM"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "A medium trireme-class warship."
-msgstr "Ett mellanstort \"Trirem\"-klass krigsskepp."
+msgstr "Ett mellanstort trirem-klass krigsskepp."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."
@@ -3804,7 +3804,7 @@ msgstr "Tillgänglig till Britannerna, Gallerna och Iberierna."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
-msgstr "Transporterar upp till 40 enheter."
+msgstr "Kan transporterar upp till 40 enheter."
 
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
@@ -3820,7 +3820,7 @@ msgstr "Grunden för din nya koloni."
 
 #: gui/text/tips/civic_centres.txt:3
 msgid "Claim large tracts of territory."
-msgstr "Erövrar stora andelar territorium."
+msgstr "Erövrar stora områden territorium."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
@@ -3864,7 +3864,7 @@ msgstr "Fiskebåtar kan föra med sig stora mängder mat."
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
-msgstr "Fiske går snabbare än att samla mat på åkrar."
+msgstr "Fiske är snabbare än att samla mat på åkrar."
 
 #: gui/text/tips/fishing.txt:5
 msgid "Careful! Fish are not an infinite resource!"
@@ -3876,7 +3876,7 @@ msgstr "FÄSTNING"
 
 #: gui/text/tips/fortress.txt:2
 msgid "The Fortress is usually each faction's strongest structure."
-msgstr ""
+msgstr "Fästningen är oftast civilisationens starkaste byggnad."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
@@ -3888,7 +3888,7 @@ msgstr "Ger befolkningen en boost."
 
 #: gui/text/tips/fortress.txt:5
 msgid "Garrison soldiers inside to add more firepower to its defense."
-msgstr "Garnisonera enheter inuti för att öka eldkraften för försvaret."
+msgstr "Garnisonera soldater inuti för att öka eldkraften i dess försvar."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -3903,7 +3903,7 @@ msgstr "Få en fördel på slagfältet genom att placera dina enheter taktiskt!"
 msgid ""
 "Therefore select some units, press and hold the right mouse button, draw any"
 " line, then release the button."
-msgstr "Välj därför vissa enheter, tryck och håll ned höger musknapp, rita en linje och släpp sedan knappen."
+msgstr "Välj därför några enheter, tryck och håll ned höger musknapp, rita en linje och släpp sedan knappen."
 
 #: gui/text/tips/freehand_position.txt:4
 msgid "Your units will now spread out on this line."
@@ -3919,21 +3919,21 @@ msgstr "Använd medborgar soldater och kvinnliga medborgare för att samla resur
 
 #: gui/text/tips/gathering.txt:3
 msgid "Female citizens gather vegetable resources faster."
-msgstr "Kvinnliga medborgare är snabbare att samla vegetabiliska resurser."
+msgstr "Kvinnliga medborgare samlar frukt och bär resurser snabbare."
 
 #: gui/text/tips/gathering.txt:4
 msgid "Infantry citizen-soldiers are faster gathering minerals."
-msgstr "Infanteri medborgare soldater är snabbare att samla mineraler."
+msgstr "Infanteri medborgarsoldater samlar mineraler snabbare."
 
 #: gui/text/tips/gathering.txt:5
 msgid "Cavalry citizen-soldiers are faster gathering meat."
-msgstr "Kavalleri medborgare soldater är snabbare att samla kött."
+msgstr "Kavalleri medborgarsoldater är snabbare på att samla kött."
 
 #: gui/text/tips/gathering.txt:6
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr "Ju högre nivå av en medborgar soldat (avancerad, elit), desto bättre kämpar han, men ju mindre effektiv han är på att samla resurser."
+msgstr "Ju högre rang en medborgarsoldat (avancerad, elit) har, desto bättre kämpar han, men ju mindre effektiv blir han på att samla resurser."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -3959,7 +3959,7 @@ msgstr "UTPOSTAR"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral territory for a large scouting range."
-msgstr "Byggs i neutralt territorium för långt synhåll."
+msgstr "Bygg i neutralt territorium för långt synhåll."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap, at 80 Wood."
@@ -3971,7 +3971,7 @@ msgstr "De byggs snabbt, men är svaga."
 
 #: gui/text/tips/outposts.txt:5
 msgid "Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr "Garnisonera en enhet i den för att förhindra territorieförfall i neutralt territorium."
+msgstr "Garnisonera en enhet i den för att förhindra förfall i neutralt territorium."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -3979,11 +3979,11 @@ msgstr "PALISADVÄGG"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr "En enkel, billig trävägg tillgängliga till alla fraktioner."
+msgstr "En enkel, billig trävägg tillgänglig till alla fraktioner."
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
-msgstr "De flesta fraktioner har tillgång till dem i Byfasen."
+msgstr "De flesta fraktioner har tillgång till dem i byfasen."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
@@ -3995,7 +3995,7 @@ msgstr "Främsta Atenska politikern under 5:e århundradet f. Kr."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Structures are built faster within his range."
-msgstr ""
+msgstr "Byggnaders konstrueras snabbare inom hans synhåll."
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."
@@ -4042,13 +4042,13 @@ msgstr "Tillgänglig för: Kushiterna, makedonierna, ptoleméerna, och seleukide
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
-msgstr "QUINQUEREME"
+msgstr "QUINQUEREM"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, and Seleucids."
-msgstr "Tyngsta standardkrigsskeppet. Tillgängligt till Romarna, Kartago, Ptolemaier och Seleukiderna."
+msgstr "Det tyngsta standardkrigsskeppet. Tillgängligt till Kartago, Ptolemaier, Romarna och Seleukiderna."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
@@ -4076,7 +4076,7 @@ msgstr "Rik i alla sorters gruvarbeten."
 
 #: gui/text/tips/savanna_biome.txt:5
 msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr "Trä tenderar att vara glest, men består av högavkastande Baobab träd."
+msgstr "Trä tenderar att vara glest, men består av högavkastande Baobabträd."
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
@@ -4164,7 +4164,7 @@ msgstr "En billig avlastningsplats för icke-mat resurser (trä, sten, metall)."
 msgid ""
 "Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr "Forska fram teknologier för att förbättra dina samlingsförmågan av dina medborgare."
+msgstr "Forska fram teknologier för att förbättra samlingsförmågan av dina medborgare."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -4184,7 +4184,7 @@ msgstr "Forska fram unika teknologier."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
-msgstr "Dens \"aura\" läker enheter i närheten."
+msgstr "Dess aura läker enheter i närheten."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
@@ -4197,7 +4197,7 @@ msgstr "TERRITORIEFÖRFALL"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr ""
+msgstr "Förfall sker när byggnader inte är anknutna till ett allierat samhällscentrum."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
@@ -4209,7 +4209,7 @@ msgstr "Förfallsprocessen kan saktas ner eller omvändas genom att garnisonera 
 msgid ""
 "When the decay is completed, the structure will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "När förfallen är komplett ges byggnaden till grannen med mest inflytande."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -4223,11 +4223,11 @@ msgstr "Atensk hjälte som kommenderade Grekerna under de stora Sjökrigen om Ar
 
 #: gui/text/tips/themistocles.txt:3
 msgid "All ships are built faster while he lives."
-msgstr "Alla skepp byggs snabbare under hans livstid."
+msgstr "Alla skepp byggs snabbare medans han lever."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "The ship he is garrisoned inside sails much faster."
-msgstr "Skeppet som han är garnisonerad i seglar mycket snabbare."
+msgstr "Skeppet han är garnisonerad i seglar mycket snabbare."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -4235,11 +4235,11 @@ msgstr "TRIREM"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The Medium Warship."
-msgstr "Mellanstora krigsskeppet."
+msgstr "Det mellanstora krigsskeppet."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Good for transporting or fighting."
-msgstr "Bra för transportering och stridande."
+msgstr "Bra för transportering eller stridande."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
@@ -4293,7 +4293,7 @@ msgstr "En oceanisk resurs."
 
 #: gui/text/tips/whales.txt:3
 msgid "2000 Food."
-msgstr "2000 Mat."
+msgstr "2000 mat."
 
 #: gui/text/tips/whales.txt:4
 msgid "Gatherable by Fishing Boats after the whale is killed."
@@ -4301,4 +4301,4 @@ msgstr "Kan samlas av fiskebåtar efter valen har dödats."
 
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."
-msgstr "Strövar omkring i kartans hav och flyr när de blir attackerade."
+msgstr "Strövar omkring i spelets hav och flyr när de blir attackerade."

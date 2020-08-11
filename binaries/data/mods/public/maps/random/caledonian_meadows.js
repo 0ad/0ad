@@ -119,7 +119,7 @@ function placeGrove(point)
 function placeCamp(point,
 	centerEntity = "actor|props/special/eyecandy/campfire.xml",
 	otherEntities = ["gaia/treasure/metal", "gaia/treasure/standing_stone",
-		"units/brit_infantry_slinger_b", "units/brit_infantry_javelinist_b", "units/gaul_infantry_slinger_b", "units/gaul_infantry_javelinist_b", "units/gaul_champion_fanatic",
+		"units/brit_infantry_slinger_b", "units/brit_infantry_javelineer_b", "units/gaul_infantry_slinger_b", "units/gaul_infantry_javelineer_b", "units/gaul_champion_fanatic",
 		"actor|props/special/common/waypoint_flag.xml", "actor|props/special/eyecandy/barrel_a.xml", "actor|props/special/eyecandy/basket_celt_a.xml", "actor|props/special/eyecandy/crate_a.xml", "actor|props/special/eyecandy/dummy_a.xml", "actor|props/special/eyecandy/handcart_1.xml", "actor|props/special/eyecandy/handcart_1_broken.xml", "actor|props/special/eyecandy/sack_1.xml", "actor|props/special/eyecandy/sack_1_rough.xml"
 	]
 )

@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-27 07:10+0000\n"
-"PO-Revision-Date: 2020-07-27 11:19+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 11:20+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -31,6 +31,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: simulation/data/auras/structures/arsenal_repair.jsonauraName
+msgid "Arsenal Repairs"
+msgstr ""
+
+#: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
+msgid "Garrisoned Siege Engines +3 health regeneration rate."
+msgstr "駐紮的工程武器單位增+3的生命恢復。"
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
 msgid "Rigorous Training"
@@ -153,14 +161,6 @@ msgstr "光榮擴展"
 msgid ""
 "+40 maximum population limit (requires the “Glorious Expansion” technology)."
 msgstr "人口上限 +40（需要\"光榮擴展\"科技）"
-
-#: simulation/data/auras/structures/workshop_repair.jsonauraName
-msgid "Workshop Repairs"
-msgstr "製造所修復"
-
-#: simulation/data/auras/structures/workshop_repair.jsonauraDescription
-msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "駐紮的工程武器單位增+3的生命恢復。"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"

@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-03 07:17+0000\n"
-"PO-Revision-Date: 2020-08-03 08:24+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 08:39+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -60,10 +60,8 @@ msgstr "Kovová helma pre koňa"
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
-msgid ""
-"Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
-"level."
-msgstr "Vybaví zvieratá tvojich jazdcov brnením. Všetci jazdci +1 úroveň sečnej a bodnej zbroje."
+msgid "Cavalry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -175,10 +173,8 @@ msgid ""
 msgstr "Zbroj vykovaná zo železa, najtvrdšieho materiálu, aký vedeli v staroveku opracovať."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid ""
-"All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
-"Metal Cost."
-msgstr "Všetci hrdinovia +2 úrovne sečnej zbroje a +2 úrovne bodnej zbroje, ale zato aj +50 cena kovu."
+msgid "Heroes +50 metal cost, +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -202,8 +198,8 @@ msgstr "Prešívaná ľanová alebo kožená zbroj pre pešiakov."
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
-msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "Všetka pechota +1 úroveň sečnej a bodnej zbroje."
+msgid "Infantry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -247,8 +243,10 @@ msgid "Lead sheathing protects ship hulls."
 msgstr "Vrchný plášť chráni trupy lodí."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
-msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "Vrchný plášť chráni trupy lodí. +2 úrovne všetkých typov lodnej zbroje."
+#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
+msgid "Ships +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -258,12 +256,6 @@ msgstr "Vrchný plášť trupu"
 msgid "The hypozomata braces the structure of a ship."
 msgstr "Hypozomata vystužuje konštrukciu lode."
 
-#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
-msgid ""
-"The hypozomata braces the ship's structure. +2 levels to all ship armor "
-"types."
-msgstr "Hypozomata vystužuje konštrukciu lode. +2 úrovne všetkých typov lodnej zbroje."
-
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
 msgstr "Podpera hypozomaty"
@@ -271,11 +263,6 @@ msgstr "Podpera hypozomaty"
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
 msgstr "Drevené výstuže nosníkov pre lodné trupy."
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
-msgid ""
-"Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "Drevené výstuže nosníkov pre lodné trupy. +2 úrovne všetkých typov lodnej zbroje."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -1215,8 +1202,8 @@ msgid "Increases defensive capability of traders."
 msgstr "Zvyšuje obranyschopnosť obchodníkov."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "Obchodníci +2 úrovne sečnej a bodnej zbroje."
+msgid "Traders +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName

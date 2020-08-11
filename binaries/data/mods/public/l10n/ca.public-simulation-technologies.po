@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-03 07:17+0000\n"
-"PO-Revision-Date: 2020-08-03 08:24+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 08:39+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -61,10 +61,8 @@ msgstr "Armadura de metall per a la cara dels cavalls."
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
-msgid ""
-"Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
-"level."
-msgstr "Equipa les muntures amb armadura. Tota la cavalleria guanya 1 nivell d'armadura de tall i perforació."
+msgid "Cavalry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -176,10 +174,8 @@ msgid ""
 msgstr "Armadura feta completament de ferro, el metall treballable més dur que coneixien els antics."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid ""
-"All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
-"Metal Cost."
-msgstr "Tots els herois guanyen 2 nivells d'armadura de tall i 2 nivells d'armadura de perforació, però també costen 50 més de metall."
+msgid "Heroes +50 metal cost, +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -203,8 +199,8 @@ msgstr "Armadura de roba encoixinada o de cuir per als soldats d'infanteria."
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
-msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "Tota la infanteria guanya 1 nivell d'armadura de tall i perforació."
+msgid "Infantry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -248,8 +244,10 @@ msgid "Lead sheathing protects ship hulls."
 msgstr "El revestiment amb plom protegeix el casc dels vaixells."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
-msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "El revestiment amb plom protegeix el casc dels vaixells. +2 nivells a tots els tipus d'armadura dels vaixells."
+#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
+msgid "Ships +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -259,12 +257,6 @@ msgstr "Revestiment del casc amb plom"
 msgid "The hypozomata braces the structure of a ship."
 msgstr "La hypozomata subjecta l'estructura d'un vaixell."
 
-#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
-msgid ""
-"The hypozomata braces the ship's structure. +2 levels to all ship armor "
-"types."
-msgstr "La hypozomata subjecta l'estructura del vaixell. +2 nivells a tots els tipus d'armadura dels vaixells."
-
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
 msgstr "Subjecció amb hypozomata"
@@ -272,11 +264,6 @@ msgstr "Subjecció amb hypozomata"
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
 msgstr "Bigues de reforç de fusta per al casc dels vaixells."
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
-msgid ""
-"Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "Bigues de reforç de fusta per als cascos. +2 nivells a tots els tipus d'armadura dels vaixells."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -1216,8 +1203,8 @@ msgid "Increases defensive capability of traders."
 msgstr "Augmenta la capacitat defensiva dels mercaders."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "Els mercaders guanyen 2 nivells d'armadura de tall i perforació."
+msgid "Traders +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName

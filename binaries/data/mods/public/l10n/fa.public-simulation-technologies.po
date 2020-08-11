@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-03 07:17+0000\n"
-"PO-Revision-Date: 2020-08-03 08:24+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 08:39+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -52,10 +52,8 @@ msgstr "زره فلزی برای صورت اسبها"
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
-msgid ""
-"Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
-"level."
-msgstr "سواره نظام کوهستان خود را با زره تجهیز کنید . تمامی سواره نظام +1 حمله برشی و زره نفوذی"
+msgid "Cavalry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -167,10 +165,8 @@ msgid ""
 msgstr "بدنه زره کاملا از آهن ساخته می شود، سخترین فلز قابل کار کردنی که در دوران باستان شناخته شده بود"
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid ""
-"All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
-"Metal Cost."
-msgstr "تمام قهرمان ها +2 سطح زره برشی و +2 زره نفوذی، اما +50 هزینه فلز برای پرورش آنها."
+msgid "Heroes +50 metal cost, +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -194,8 +190,8 @@ msgstr "زره دوخته شده از چرم یا کتان برای پیاده �
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
-msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "تمام پیاده نظام ها +1 سطح زره برشی و نفوذی"
+msgid "Infantry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -239,8 +235,10 @@ msgid "Lead sheathing protects ship hulls."
 msgstr "غلاف سرب برای محافظت از بدنه کشتی"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
-msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "غلاف سرب برای محافظت از بدنه کشتی. +2 سطح، به تمام انواع زره در کشتی ها"
+#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
+msgid "Ships +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -250,12 +248,6 @@ msgstr "ورقه کاری بدنه"
 msgid "The hypozomata braces the structure of a ship."
 msgstr "هیپوزوماتا باعث محکمتر شدن سازه یک کشتی می شود."
 
-#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
-msgid ""
-"The hypozomata braces the ship's structure. +2 levels to all ship armor "
-"types."
-msgstr "هیپوزوماتا سازه کشتی را محکم تر می کند. +2 سطح، به تمام انواع زره در کشتی ها"
-
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
 msgstr "بستن هیپوزوماتا"
@@ -263,11 +255,6 @@ msgstr "بستن هیپوزوماتا"
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
 msgstr "تیرک های تقویت شده ی چوبی برای بدنه ی کشتی ها."
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
-msgid ""
-"Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "تیرک های تقویت شده ی چوبی برای بدنه ی کشتی ها. به تمام انواع زره کشتی ها +2 اضافه می شود."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -1207,8 +1194,8 @@ msgid "Increases defensive capability of traders."
 msgstr "افزایش قدرت دفاعی تاجر ها"
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "تاجران +2 زره نفوذی و برشی."
+msgid "Traders +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName

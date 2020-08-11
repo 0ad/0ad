@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:10+0000\n"
-"PO-Revision-Date: 2020-07-24 18:37+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 18:37+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -798,7 +798,7 @@ msgid ""
 msgstr "中级玩家难度"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Title
-#: simulation/data/settings/map_sizes.jsonData[2].Name
+#: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Medium"
 msgstr "中等"
 
@@ -836,15 +836,15 @@ msgid ""
 "quickly while still having some room to expand."
 msgstr "小地图，适合1v1比赛，可以及早碰头，也有一些扩展空间。"
 
-#: simulation/data/settings/map_sizes.jsonData[2].Tooltip
-msgid ""
-"Medium-sized maps provide plenty of space for two players, but even eight "
-"players fit."
-msgstr "中型地图，1v1空间充足，但即使是八名玩家也适合。"
-
-#: simulation/data/settings/map_sizes.jsonData[3].Name
+#: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Normal"
 msgstr "一般"
+
+#: simulation/data/settings/map_sizes.jsonData[2].Tooltip
+msgid ""
+"This map size provides plenty of space for two players, but even eight "
+"players fit."
+msgstr ""
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""

@@ -5,7 +5,7 @@
     <Height>12.0</Height>
   </Footprint>
   <GarrisonHolder>
-    <Max>30</Max>
+    <Max op="add">10</Max>
   </GarrisonHolder>
   <Identity>
     <Civ>rome</Civ>
@@ -18,8 +18,7 @@
     <Static width="20.0" depth="40.0"/>
   </Obstruction>
   <TerritoryInfluence>
-    <Root>false</Root>
-    <Radius>52</Radius>
+    <Radius op="add">12</Radius>
   </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/romans/temple_mars.xml</Actor>

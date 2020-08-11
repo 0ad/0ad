@@ -18,6 +18,7 @@
 # Leonard König <leonard.r.koenig@gmail.com>, 2015
 # leper <leper@wildfiregames.com>, 2014-2016
 # Lukas Heiniger <kenionatus@techie.com>, 2019
+# Martin H <pilino1234@zoho.eu>, 2020
 # Martin Rudel <transifex.com@rudel-it.com>, 2016
 # Maximilian von Lindern <hobbituhukai@live.de>, 2017
 # Maximilian Wagenbach <foaly@posteo.de>, 2016-2017
@@ -31,9 +32,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-01 07:10+0000\n"
-"PO-Revision-Date: 2020-06-01 16:35+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 20:41+0000\n"
+"Last-Translator: Martin H <pilino1234@zoho.eu>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1643,6 +1644,16 @@ msgstr "Korinth"
 msgid "Peloponnesian Wars"
 msgstr "Peloponnesische Kriege"
 
+#: maps/scenarios/pickup_test_map.xml:Description:40
+msgid ""
+"Test map for picking units up, with sea and two islands. Trigger points are "
+"placed."
+msgstr "Testkarte um Einheiten einladen zu testen, mit Meer und zwei Inseln. Trigger-punkte sind platziert."
+
+#: maps/scenarios/pickup_test_map.xml:Name:40
+msgid "Pickup test map"
+msgstr "Einlade-testkarte"
+
 #: maps/scenarios/polynesia.xml:Description:39
 msgid "Demo map for new fancy water effects."
 msgstr "Demonstrative Karte für neue ausgefallene Wassereffekte."
@@ -2089,7 +2100,7 @@ msgstr "Mehrspielerkarte. Ein tropisches Paradies."
 msgid "Tropical Island"
 msgstr "Tropisches Eiland"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Description:40
+#: maps/scenarios/unit_motion_integration_test.xml:Description:41
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2097,7 +2108,7 @@ msgid ""
 "and weird pathing."
 msgstr "Diese Karte wurde erstellt um einige Grundbewegungsabläufe von Einheiten zu testen. Es beinhaltet unitAI, unitMotion und die Zielfindung der Einheiten, somit dient diese Karte als integrierte Testkarte. Bitte überprüfen sie während des Szenarios ob Einheiten stecken- bzw. hängenbleiben, falsche Animationen besitzen oder die Zielfindung misslingt bzw. merkwürdig verläuft."
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:40
+#: maps/scenarios/unit_motion_integration_test.xml:Name:41
 msgid "Unit Motion Integration Test"
 msgstr "Einheiten Bewegungsintegration testen"
 
@@ -2727,24 +2738,24 @@ msgstr "Vier Fraktionen finden sich sicher oben auf großen Felsplateaus.\n\nErk
 msgid "Tuscan Acropolis (4)"
 msgstr "Toskanische Akropolis (4)"
 
-#: maps/skirmishes/two_seas_6.xml:Description:40
+#: maps/skirmishes/two_seas_6p.xml:Description:40
 msgid ""
 "A large tropic map with two seas to the East and to the West. Good for two "
 "teams of three players or three teams of two players."
 msgstr "Eine große tropische Karte mit zwei Meeresarmen im Osten und Westen. Gut für zwei Teams mit drei Spielern oder drei Teams mit zwei Spielern."
 
-#: maps/skirmishes/two_seas_6.xml:Name:40
+#: maps/skirmishes/two_seas_6p.xml:Name:40
 msgid "Two Seas (6)"
 msgstr "Zwei Meere (6)"
 
-#: maps/skirmishes/vesuvius_6.xml:Description:40
+#: maps/skirmishes/vesuvius_6p.xml:Description:40
 msgid ""
 "Skirmish as ash lightly falls around this recently erupted volcano. the "
 "scorched landscape offers little food, though the blasted forests are still "
 "laden with useful wood. "
 msgstr "Schlage Schlachten, während Asche langsam rund um diesen kürzlich ausgebrochenen Vulkan herniederfällt. Die verbrannte Landschaft bietet wenig Nahrung, auch wenn die versengten Bäume immer noch vor Holz strotzen. "
 
-#: maps/skirmishes/vesuvius_6.xml:Name:40
+#: maps/skirmishes/vesuvius_6p.xml:Name:40
 msgid "Vesuvius (6)"
 msgstr "Vesuv (6)"
 

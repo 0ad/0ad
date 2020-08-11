@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-03 07:17+0000\n"
-"PO-Revision-Date: 2020-08-03 08:24+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 08:39+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -63,10 +63,8 @@ msgstr "马头金属盔甲。"
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
-msgid ""
-"Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
-"level."
-msgstr "为你的骑兵座骑装备盔甲。所有骑兵 +1 劈砍及穿刺盔甲等级。"
+msgid "Cavalry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -178,10 +176,8 @@ msgid ""
 msgstr "纯铁打造的盔甲，铁是古人所知最坚硬的可加工金属。"
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid ""
-"All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
-"Metal Cost."
-msgstr "所有英雄 +2 劈砍盔甲等级和 +2 穿刺盔甲等级，但金属消耗 +50。"
+msgid "Heroes +50 metal cost, +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -205,8 +201,8 @@ msgstr "带衬垫亚麻布或皮质盔甲(步兵)。"
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
-msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "所有步兵 +1 劈砍和穿刺盔甲等级。"
+msgid "Infantry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -250,8 +246,10 @@ msgid "Lead sheathing protects ship hulls."
 msgstr "铅包可保护船体。"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
-msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "铅包可保护船体。所有船只的护甲类型 +2 等级。"
+#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
+msgid "Ships +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -261,12 +259,6 @@ msgstr "船体铅壳"
 msgid "The hypozomata braces the structure of a ship."
 msgstr "亚麻绳支撑了整个船体。"
 
-#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
-msgid ""
-"The hypozomata braces the ship's structure. +2 levels to all ship armor "
-"types."
-msgstr "亚麻绳支撑了整个船体。所有船只的护甲类型 +2 等级。"
-
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
 msgstr "亚麻绳底层加固"
@@ -274,11 +266,6 @@ msgstr "亚麻绳底层加固"
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
 msgstr "以木头加固横梁的船体。"
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
-msgid ""
-"Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "以木头加固横梁的船体。所有船只的所有伤害类型皆 +2 盔甲等级。"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -1218,8 +1205,8 @@ msgid "Increases defensive capability of traders."
 msgstr "增加商人的防御值。"
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "商人 +2 劈砍、穿刺盔甲等级。"
+msgid "Traders +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName

@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-06-01 07:10+0000\n"
-"PO-Revision-Date: 2020-06-01 16:35+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 16:31+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -1627,6 +1627,16 @@ msgstr "An Corant"
 msgid "Peloponnesian Wars"
 msgstr "Cogaí na Péalapoinéise"
 
+#: maps/scenarios/pickup_test_map.xml:Description:40
+msgid ""
+"Test map for picking units up, with sea and two islands. Trigger points are "
+"placed."
+msgstr ""
+
+#: maps/scenarios/pickup_test_map.xml:Name:40
+msgid "Pickup test map"
+msgstr ""
+
 #: maps/scenarios/polynesia.xml:Description:39
 msgid "Demo map for new fancy water effects."
 msgstr "Taispeán-léarscáil d'éifeachtaí galánta an uisce."
@@ -2073,7 +2083,7 @@ msgstr "Léarscáil ilimreortha. Parthas trópaiceach."
 msgid "Tropical Island"
 msgstr "Oileán Trópaiceach"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Description:40
+#: maps/scenarios/unit_motion_integration_test.xml:Description:41
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2081,7 +2091,7 @@ msgid ""
 "and weird pathing."
 msgstr "Tá dearadh ar an léarscáil seo chun bunghluaiseachta na n-aonad a thriail. Tá unitAi, unitMotion is ceannródaithe ábhartha eile sa mheasc. Mar seo, tá cineáil difriúla gluaiseachta comhtháthaithe sa léarscáil. Cuardaigh ar rudaí mar aonaid ghafa, drochbheochana, agus bótharacht aisteach."
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:40
+#: maps/scenarios/unit_motion_integration_test.xml:Name:41
 msgid "Unit Motion Integration Test"
 msgstr "Triail Comhtháthaithe Gluaiseachta na nAonad"
 
@@ -2711,24 +2721,24 @@ msgstr ""
 msgid "Tuscan Acropolis (4)"
 msgstr "Acrapail Tuscánach (4)"
 
-#: maps/skirmishes/two_seas_6.xml:Description:40
+#: maps/skirmishes/two_seas_6p.xml:Description:40
 msgid ""
 "A large tropic map with two seas to the East and to the West. Good for two "
 "teams of three players or three teams of two players."
 msgstr "Léarscáil mhór trópaiceach le dá mhara san oirthear agus san iarthar. Maith le haghaidh dhá fhoireann le trí imreoir nó trí fhoireann le dhá imreoir gach aon."
 
-#: maps/skirmishes/two_seas_6.xml:Name:40
+#: maps/skirmishes/two_seas_6p.xml:Name:40
 msgid "Two Seas (6)"
 msgstr "Dhá Mhuir (6)"
 
-#: maps/skirmishes/vesuvius_6.xml:Description:40
+#: maps/skirmishes/vesuvius_6p.xml:Description:40
 msgid ""
 "Skirmish as ash lightly falls around this recently erupted volcano. the "
 "scorched landscape offers little food, though the blasted forests are still "
 "laden with useful wood. "
 msgstr ""
 
-#: maps/skirmishes/vesuvius_6.xml:Name:40
+#: maps/skirmishes/vesuvius_6p.xml:Name:40
 msgid "Vesuvius (6)"
 msgstr ""
 

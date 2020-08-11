@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-03 07:17+0000\n"
-"PO-Revision-Date: 2020-08-03 08:24+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 08:39+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -64,10 +64,8 @@ msgstr "Fémpáncél egy ló fejére."
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
-msgid ""
-"Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
-"level."
-msgstr "A hátaslovak felszerelése páncéllal. Minden lovassági egységnek +1 vágás és szúrás páncél szint."
+msgid "Cavalry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -179,10 +177,8 @@ msgid ""
 msgstr "Teljesen vasból, az ókorban ismert legerősebb megmunkálható fémből készült testpáncél."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid ""
-"All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
-"Metal Cost."
-msgstr "Minden hősnek +2 vágás páncél szint és +2 szúrás páncél szint, de +50 fém költség."
+msgid "Heroes +50 metal cost, +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -206,8 +202,8 @@ msgstr "Tűzött vászon vagy bőr testpáncél a gyalogosok számára."
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
-msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "Minden gyalogosnak +1 vágás és szúrás páncél szint."
+msgid "Infantry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -251,8 +247,10 @@ msgid "Lead sheathing protects ship hulls."
 msgstr "Ólomborítás védi a hajótesteket."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
-msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "Ólomborítás védi a hajótesteket. +2 szint minden hajópáncéltípushoz."
+#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
+msgid "Ships +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -262,12 +260,6 @@ msgstr "Ólom hajótestborítás"
 msgid "The hypozomata braces the structure of a ship."
 msgstr "A hüpozomata merevíti a hajószerkezetet."
 
-#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
-msgid ""
-"The hypozomata braces the ship's structure. +2 levels to all ship armor "
-"types."
-msgstr "A hüpozomata merevíti a hajószerkezetet. +2 szint minden hajópáncéltípushoz."
-
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
 msgstr "Hüpozomata tartógerenda"
@@ -275,11 +267,6 @@ msgstr "Hüpozomata tartógerenda"
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
 msgstr "Fából készült megerősítő tartók a hajótestekhez."
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
-msgid ""
-"Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "Fából készült erősítő gerendák a hajótestekhez. +2 szint minden hajópáncéltípushoz."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -1219,8 +1206,8 @@ msgid "Increases defensive capability of traders."
 msgstr "Növeli a kereskedők védekező képességét."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "Kereskedőknek +2 vágás és szúrás páncél szint."
+msgid "Traders +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName

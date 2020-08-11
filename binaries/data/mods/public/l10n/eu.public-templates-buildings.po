@@ -4,19 +4,19 @@
 # 
 # Translators:
 # Thadah D. Denyse <juchuf@gmail.com>, 2016
-# pospolos <pospolos@gmail.com>, 2017-2020
+# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2020
 # Mikel Muñoa <mikelmunoa5@gmail.com>, 2020
 # Osoitz <oelkoro@gmail.com>, 2015,2019-2020
-# pospolos <pospolos@gmail.com>, 2020
+# Mielanjel Iraeta <pospolos@gmail.com>, 2020
 # Quintana Salazar <quintana.salazar.unai@gmail.com>, 2015
 # Thadah D. Denyse <juchuf@gmail.com>, 2016
 # Urtzi Odriozola <urtzi.odriozola@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-27 07:10+0000\n"
-"PO-Revision-Date: 2020-07-28 11:08+0000\n"
-"Last-Translator: pospolos <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2020-08-07 07:09+0000\n"
+"PO-Revision-Date: 2020-08-07 10:27+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -143,9 +143,9 @@ msgstr "Artilleria dorrea"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
+#: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
 #: simulation/templates/template_structure_military_fortress.xml:76
-#: simulation/templates/template_structure_military_workshop.xml:28
 #: simulation/templates/template_structure_special.xml:34
 #: simulation/templates/template_structure_wonder.xml:53
 #: simulation/templates/structures/kush_pyramid_large.xml:29
@@ -216,7 +216,7 @@ msgid "Wall"
 msgstr "Harresia"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:22
-#: simulation/templates/template_structure_defensive_wall_long.xml:35
+#: simulation/templates/template_structure_defensive_wall_long.xml:34
 msgid "Allow units access through Walls. Can be locked to prevent access."
 msgstr "Unitateei hesi baten zehar sartzen uzten die. Itxi egin daiteke sarrera eragozteko."
 
@@ -288,6 +288,17 @@ msgstr "Egitura militarra"
 #: simulation/templates/template_structure_military.xml:25
 msgid "Military"
 msgstr "Militarra"
+
+#: simulation/templates/template_structure_military_arsenal.xml:27
+msgid ""
+"Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
+"Siege Engine technologies."
+msgstr " Infanteriako Txapeldun Baleztariak entrenatu, setio-motorrak eraiki eta setio-motorren teknologiak ikertu.\n"
+
+#: simulation/templates/template_structure_military_arsenal.xml:28
+#: simulation/templates/template_structure_military_arsenal.xml:25
+msgid "Arsenal"
+msgstr ""
 
 #: simulation/templates/template_structure_military_barracks.xml:28
 msgid "Train Citizen Soldiers and research technologies."
@@ -376,20 +387,6 @@ msgstr "Trebatu zalditeria eta ikertu zalditeria teknologiak."
 msgid "Stable"
 msgstr "Ukuilua"
 
-#: simulation/templates/template_structure_military_workshop.xml:25
-msgid "Siege Workshop"
-msgstr "Setio Tailerra"
-
-#: simulation/templates/template_structure_military_workshop.xml:27
-msgid ""
-"Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
-"Siege Engine technologies."
-msgstr " Infanteriako Txapeldun Baleztariak entrenatu, setio-motorrak eraiki eta setio-motorren teknologiak ikertu.\n"
-
-#: simulation/templates/template_structure_military_workshop.xml:28
-msgid "Workshop"
-msgstr "Tailerra"
-
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
 msgstr "Baliabideetarako egitura"
@@ -456,6 +453,14 @@ msgstr "Zure zibilizazioari ospea ekarri eta gehitu lurralde eremu handiak zure 
 msgid "Wonder"
 msgstr "Miragarria"
 
+#: simulation/templates/structures/athen_arsenal.xml:5
+#: simulation/templates/structures/mace_arsenal.xml:5
+#: simulation/templates/structures/ptol_arsenal.xml:5
+#: simulation/templates/structures/sele_arsenal.xml:5
+#: simulation/templates/structures/spart_arsenal.xml:5
+msgid "Hoplothēkē"
+msgstr "Hoplothēkē"
+
 #: simulation/templates/structures/athen_barracks.xml:12
 #: simulation/templates/structures/mace_barracks.xml:12
 #: simulation/templates/structures/ptol_barracks.xml:11
@@ -495,27 +500,6 @@ msgstr "Epaulos"
 #: simulation/templates/structures/spart_defense_tower.xml:9
 msgid "Pyrgion"
 msgstr "Pyrgion"
-
-#: simulation/templates/structures/athen_defense_tower.xml:23
-#: simulation/templates/structures/cart_defense_tower.xml:24
-#: simulation/templates/structures/mace_defense_tower.xml:20
-#: simulation/templates/structures/ptol_defense_tower.xml:23
-#: simulation/templates/structures/rome_defense_tower.xml:23
-msgid ""
-"Reinforce with stone block, and install small stone throwers to upgrade this"
-" defense tower into a slow, area of effect, and siege resistant artillery "
-"tower."
-msgstr "Indartu harrizko bloke batekin eta instalatu harrizko jaurtigailu txikiak defentsa-dorre hori hobetzeko artilleria geldoko dorre batean, efektu-eremukoa eta setioarekiko erresistentea."
-
-#: simulation/templates/structures/athen_defense_tower.xml:34
-#: simulation/templates/structures/cart_defense_tower.xml:35
-#: simulation/templates/structures/mace_defense_tower.xml:31
-#: simulation/templates/structures/ptol_defense_tower.xml:34
-#: simulation/templates/structures/rome_defense_tower.xml:34
-msgid ""
-"Reinforce with stone block, and install scorpions to upgrade this defense "
-"tower into a prompt, long range, and accurate bolt tower."
-msgstr "Indartu harrizko bloke batekin eta instalatu eskorpioiak defentsa-dorre hori eguneratzeko, irismen luze eta zehatzeko kisketa azkarreko dorre batean."
 
 #: simulation/templates/structures/athen_dock.xml:12
 #: simulation/templates/structures/mace_dock.xml:12
@@ -707,13 +691,10 @@ msgstr "Pyrgos"
 msgid "Parthenōn﻿﻿"
 msgstr "Parthenōn"
 
-#: simulation/templates/structures/athen_workshop.xml:5
-#: simulation/templates/structures/mace_workshop.xml:5
-#: simulation/templates/structures/ptol_workshop.xml:5
-#: simulation/templates/structures/sele_workshop.xml:5
-#: simulation/templates/structures/spart_workshop.xml:5
-msgid "Hoplothēkē"
-msgstr "Hoplothēkē"
+#: simulation/templates/structures/brit_arsenal.xml:5
+#: simulation/templates/structures/gaul_arsenal.xml:5
+msgid "Miletucerdon"
+msgstr "Miletucerdon"
 
 #: simulation/templates/structures/brit_barracks.xml:19
 msgid "Coriosessa"
@@ -836,11 +817,6 @@ msgstr "Tasa"
 #: simulation/templates/structures/brit_wonder.xml:10
 msgid "Uffington White Horse"
 msgstr "Uffington zaldi zuria"
-
-#: simulation/templates/structures/brit_workshop.xml:5
-#: simulation/templates/structures/gaul_workshop.xml:5
-msgid "Miletucerdon"
-msgstr "Miletucerdon"
 
 #: simulation/templates/structures/cart_apartment.xml:17
 msgid "Apartment Building"
@@ -1099,12 +1075,6 @@ msgid "Gur Oroigarri"
 msgstr "Gur Oroigarria"
 
 #: simulation/templates/structures/iber_monument.xml:34
-#: simulation/templates/structures/maur_pillar_ashoka.xml:34
-#: simulation/templates/structures/rome_arch.xml:23
-msgid "Territory root."
-msgstr "Lurraldearen sustraia."
-
-#: simulation/templates/structures/iber_monument.xml:35
 #: simulation/templates/structures/iber_monument.xml:9
 msgid "Monument"
 msgstr "Oroigaria"
@@ -1131,6 +1101,10 @@ msgstr "Zabal Horma"
 #: simulation/templates/structures/iber_wonder.xml:9
 msgid "Cancho Roano"
 msgstr "Cancho Roano"
+
+#: simulation/templates/structures/kush_arsenal.xml:5
+msgid "Pr-ỉwn n ms﻿"
+msgstr "Pr-ỉwn n ms"
 
 #: simulation/templates/structures/kush_barracks.xml:9
 msgid "pr-msʿyw"
@@ -1299,10 +1273,6 @@ msgstr "sȝwt"
 msgid "Mnw nht"
 msgstr "Mnw nht"
 
-#: simulation/templates/structures/kush_workshop.xml:5
-msgid "Pr-ỉwn n ms﻿"
-msgstr "Pr-ỉwn n ms"
-
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
 #: simulation/templates/structures/sele_library.xml:9
@@ -1333,13 +1303,6 @@ msgstr "Gotra"
 #: simulation/templates/structures/maur_tower_double.xml:16
 msgid "Udarka"
 msgstr "Udarka"
-
-#: simulation/templates/structures/maur_defense_tower.xml:13
-msgid ""
-"Reinforce with stone block, and add a second rampart for up to 16 archers to"
-" stand upon. Infantry Archer exclusive tower. Devastating against melee "
-"troops, weak to siege and massed ranged units."
-msgstr "Indartu harrizko bloke batekin eta gehitu bigarren harresi bat 16 arkulariraino igo daitezen. Infanteriako arkulariaren dorre esklusiboa. Gudarosteen aurkako suntsitzailea aurrez aurre,  ahulak setiatzeko eta urrutiko unitate masiboekin."
 
 #: simulation/templates/structures/maur_dock.xml:9
 msgid "Naukasthanaka"
@@ -1396,7 +1359,7 @@ msgstr "Eraiki Ashokako pilarea"
 msgid "Śāsana Stambha Aśokā"
 msgstr "Śāsana Stambha Aśokā"
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:35
+#: simulation/templates/structures/maur_pillar_ashoka.xml:34
 #: simulation/templates/structures/maur_pillar_ashoka.xml:9
 msgid "Pillar"
 msgstr "Pilarea"
@@ -1697,11 +1660,11 @@ msgstr "Hieron tou Hōrou"
 msgid "Amphitheātrum"
 msgstr "Anfiteatroa"
 
-#: simulation/templates/structures/rome_arch.xml:21
+#: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
 msgstr "Garaipenaren Arkua"
 
-#: simulation/templates/structures/rome_arch.xml:22
+#: simulation/templates/structures/rome_arch.xml:23
 msgid "Arcus Triumphālis"
 msgstr "Arcus Triumphālis"
 
@@ -1727,6 +1690,10 @@ msgstr "Jaso etsaien lurraldean edo lurralde neutraletan. Trebatu hiritar-soldad
 #: simulation/templates/structures/rome_army_camp.xml:48
 msgid "ArmyCamp"
 msgstr "ArmyCamp"
+
+#: simulation/templates/structures/rome_arsenal.xml:5
+msgid "Ballistārium"
+msgstr "Ballistārium"
 
 #: simulation/templates/structures/rome_barracks.xml:12
 msgid "Castrum"
@@ -1892,25 +1859,9 @@ msgstr "Gune bat itxi. Lurralde propio, neutral edo etsaienean eraiki."
 msgid "Aedēs Iovis Optimi Maximi"
 msgstr "Aedēs Iovis Optimi Maximi"
 
-#: simulation/templates/structures/rome_workshop.xml:5
-msgid "Ballistārium"
-msgstr "Ballistārium"
-
-#: simulation/templates/structures/sele_defense_tower.xml:23
-msgid ""
-"Reinforce with stone block, and install small torsion engines to upgrade "
-"this defense tower into an artillery tower."
-msgstr "Indartu harri blokeekin, eta ezarri tortsio makina txikiak defentsa dorre hau artilleria dorre bihurtzeko."
-
 #: simulation/templates/structures/sele_wonder.xml:9
 msgid "Hieron tou Apollōnos Pythiou"
 msgstr "Hieron tou Apollōnos Pythiou"
-
-#: simulation/templates/structures/spart_defense_tower.xml:23
-msgid ""
-"Reinforce with stone block, and install small oxybeles to upgrade this "
-"defense tower into a prompt, long range, and accurate bolt tower."
-msgstr "Indartu harrizko bloke batekin eta instalatu oxybele txikiak defentsa-dorre hori eguneratzeko, helmen luze eta zehatzeko berno-dorre azkar batean."
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Spartan Senate"

@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-03 07:17+0000\n"
-"PO-Revision-Date: 2020-08-03 08:24+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 08:39+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -53,9 +53,7 @@ msgstr "метални оклоп за лице коња"
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
-msgid ""
-"Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
-"level."
+msgid "Cavalry +1 hack and pierce armor."
 msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
@@ -168,10 +166,8 @@ msgid ""
 msgstr "Окоп за тело направљен у потпуности од гвожђа, најтврђег обрадивог метаа познатог у старини."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid ""
-"All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
-"Metal Cost."
-msgstr "Сви хероји добијају +2 нивоа оклопа против засцеања и +2 нивоа оклопа против пробијања, али такође и +50 на трошкове у металу."
+msgid "Heroes +50 metal cost, +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -195,7 +191,7 @@ msgstr "Прошивени ланени или кожни оклоп за тел
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
-msgid "All Infantry +1 Hack and Pierce Armor Level."
+msgid "Infantry +1 hack and pierce armor."
 msgstr ""
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
@@ -240,8 +236,10 @@ msgid "Lead sheathing protects ship hulls."
 msgstr "Облагање оловом штити трупове бродова."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
-msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "Облагање оловом штити трупове бродова. +2 нивоа на све типове оклопа бродова."
+#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
+msgid "Ships +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -251,12 +249,6 @@ msgstr "Облагање трупа оловом"
 msgid "The hypozomata braces the structure of a ship."
 msgstr "Хипозомата ојачава структуру брода."
 
-#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
-msgid ""
-"The hypozomata braces the ship's structure. +2 levels to all ship armor "
-"types."
-msgstr "Хипозомата ојачава структуру брода. +2 нивоа на сав оклоп брода."
-
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
 msgstr "Хипозомата унутрашње ојачање"
@@ -264,11 +256,6 @@ msgstr "Хипозомата унутрашње ојачање"
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
 msgstr "Дрвене греде за ојачање бродског трупа."
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
-msgid ""
-"Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "Дрвене греде за ојачање бродског трупа. +2 нивоа на све типове бродског оклопа."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -1208,8 +1195,8 @@ msgid "Increases defensive capability of traders."
 msgstr "Повећава одбранбене могућности трговаца."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "Трговаци добијају +2 на нивое оклопа против засецања и пробијања."
+msgid "Traders +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName

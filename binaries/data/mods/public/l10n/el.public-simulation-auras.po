@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-27 07:10+0000\n"
-"PO-Revision-Date: 2020-07-27 11:19+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 11:20+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -28,6 +28,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simulation/data/auras/structures/arsenal_repair.jsonauraName
+msgid "Arsenal Repairs"
+msgstr ""
+
+#: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
+msgid "Garrisoned Siege Engines +3 health regeneration rate."
+msgstr "Φρουρούμενες Πολιορκητικές Μηχανές: +3 στον ρυθμό ανάρρωσης."
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
 msgid "Rigorous Training"
@@ -150,14 +158,6 @@ msgstr "Ένδοξη Επέκταση"
 msgid ""
 "+40 maximum population limit (requires the “Glorious Expansion” technology)."
 msgstr " +40 στο μέγιστο όριο πληθυσμού (απαιτείται η τεχνολογία «Ένδοξη Επέκταση»)."
-
-#: simulation/data/auras/structures/workshop_repair.jsonauraName
-msgid "Workshop Repairs"
-msgstr "Επισκευές Εργαστηρίου"
-
-#: simulation/data/auras/structures/workshop_repair.jsonauraDescription
-msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "Φρουρούμενες Πολιορκητικές Μηχανές: +3 στον ρυθμό ανάρρωσης."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"

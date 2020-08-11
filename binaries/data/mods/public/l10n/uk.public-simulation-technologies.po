@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-03 07:17+0000\n"
-"PO-Revision-Date: 2020-08-03 08:24+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 08:39+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -64,10 +64,8 @@ msgstr "Металева броня для морди коня."
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
-msgid ""
-"Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
-"level."
-msgstr "Оснастити власні кавалерійські кріплення бронею. Вся кавалерія має +1 рівень броні від рубаючої та колючої атаки."
+msgid "Cavalry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -179,10 +177,8 @@ msgid ""
 msgstr "Обладунок, повністю виготовлений із заліза – найважкішого у обробленні металу, відомого стародавнім."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid ""
-"All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
-"Metal Cost."
-msgstr "Всі герої мають +2 рівня броні від рубаючої атаки та +2 рівня броні від колючої атаки, але також потребують +50 вартості металу."
+msgid "Heroes +50 metal cost, +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -206,8 +202,8 @@ msgstr "Стьобаний лляний або шкіряний обладуно
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
-msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "Вся піхота має +1 рівень броні від рубаючої та колючої атаки."
+msgid "Infantry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -251,8 +247,10 @@ msgid "Lead sheathing protects ship hulls."
 msgstr "Свинцева обшивка захищає корабельні корпуси."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
-msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "Свинцева обшивка захищає корабельні корпуси. +2 рівня до всіх типів корабельної броні."
+#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
+#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
+msgid "Ships +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -262,12 +260,6 @@ msgstr "Свинцева обшивка корпусу"
 msgid "The hypozomata braces the structure of a ship."
 msgstr "Гіпозомати зв'язують структуру корабля."
 
-#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
-msgid ""
-"The hypozomata braces the ship's structure. +2 levels to all ship armor "
-"types."
-msgstr "Гіпозомати зв'язують корабельну структуру. +2 рівня до всіх типів корабельної броні."
-
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
 msgstr "Обв'язування гіпозоматами."
@@ -275,11 +267,6 @@ msgstr "Обв'язування гіпозоматами."
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
 msgstr "Дерев’яні зміцнювальні балки для корабельних корпусів."
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
-msgid ""
-"Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "Дерев’яні зміцнювальні балки для корпусів. +2 рівня до всіх типів корабельної броні."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -1219,8 +1206,8 @@ msgid "Increases defensive capability of traders."
 msgstr "Збільшує обороноздатність торговців."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "Торговці мають +2 рівня броні від рубаючої та колючої атаки."
+msgid "Traders +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName

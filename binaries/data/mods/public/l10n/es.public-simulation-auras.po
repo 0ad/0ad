@@ -35,8 +35,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-27 07:10+0000\n"
-"PO-Revision-Date: 2020-07-27 11:19+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 11:20+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -44,6 +44,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simulation/data/auras/structures/arsenal_repair.jsonauraName
+msgid "Arsenal Repairs"
+msgstr ""
+
+#: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
+msgid "Garrisoned Siege Engines +3 health regeneration rate."
+msgstr "Motores de Asedio con Guarnición +3 de regeneración de Vida."
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
 msgid "Rigorous Training"
@@ -166,14 +174,6 @@ msgstr "Gloriosa expansión"
 msgid ""
 "+40 maximum population limit (requires the “Glorious Expansion” technology)."
 msgstr "+40 en el limite de la población (requiere la tecnología \"Expansión Gloriosa\")."
-
-#: simulation/data/auras/structures/workshop_repair.jsonauraName
-msgid "Workshop Repairs"
-msgstr "Taller de reparaciones"
-
-#: simulation/data/auras/structures/workshop_repair.jsonauraDescription
-msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "Motores de Asedio con Guarnición +3 de regeneración de Vida."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"

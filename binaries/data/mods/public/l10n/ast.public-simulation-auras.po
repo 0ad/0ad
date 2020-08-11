@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-27 07:10+0000\n"
-"PO-Revision-Date: 2020-08-03 23:41+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 20:33+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ast\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simulation/data/auras/structures/arsenal_repair.jsonauraName
+msgid "Arsenal Repairs"
+msgstr "Igües mecániques"
+
+#: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
+msgid "Garrisoned Siege Engines +3 health regeneration rate."
+msgstr "Máquines guarecíes: tasa de sanamientu +3."
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
 msgid "Rigorous Training"
@@ -139,14 +147,6 @@ msgstr "Espardimientu gloriosu"
 msgid ""
 "+40 maximum population limit (requires the “Glorious Expansion” technology)."
 msgstr "Llende máxima de la población: +40 (rique «Espardimientu gloriosu»)."
-
-#: simulation/data/auras/structures/workshop_repair.jsonauraName
-msgid "Workshop Repairs"
-msgstr "Igües mecániques"
-
-#: simulation/data/auras/structures/workshop_repair.jsonauraDescription
-msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "Máquines: tasa de sanamientu de guarecíos +3."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"

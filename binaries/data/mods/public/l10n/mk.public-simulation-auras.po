@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-27 07:10+0000\n"
-"PO-Revision-Date: 2020-07-27 11:19+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 11:20+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Macedonian (http://www.transifex.com/wildfire-games/0ad/language/mk/)\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: mk\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
+
+#: simulation/data/auras/structures/arsenal_repair.jsonauraName
+msgid "Arsenal Repairs"
+msgstr ""
+
+#: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
+msgid "Garrisoned Siege Engines +3 health regeneration rate."
+msgstr "Гарисон Опсада Моторите ке имаат +3 стапка на регенерирање на здравијето."
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
 msgid "Rigorous Training"
@@ -140,14 +148,6 @@ msgstr "Експанција на Слава"
 msgid ""
 "+40 maximum population limit (requires the “Glorious Expansion” technology)."
 msgstr "+40 максимун популација (потребно е “Експанција на Слава ”технологија)."
-
-#: simulation/data/auras/structures/workshop_repair.jsonauraName
-msgid "Workshop Repairs"
-msgstr "Поправки на Работилница"
-
-#: simulation/data/auras/structures/workshop_repair.jsonauraDescription
-msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "Гарисон Опсада Моторите ке имаат +3 стапка на регенерирање на здравијето."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"

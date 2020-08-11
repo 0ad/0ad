@@ -5,21 +5,21 @@
 # Translators:
 # 9d55e3ee15627ad1d8f4f40620dcb50d, 2018
 # Asakura, 2017
-# MarongHappy <daemul72@gmail.com>, 2019
+# JungHee Lee <daemul72@gmail.com>, 2019
 # karubabu <karubabu@protonmail.com>, 2018
 # karubabu <karubabu@protonmail.com>, 2018
 # ks k, 2019
 # ks k, 2019
 # 9d55e3ee15627ad1d8f4f40620dcb50d, 2018
-# MarongHappy <daemul72@gmail.com>, 2019
+# JungHee Lee <daemul72@gmail.com>, 2019
 # Muk Myung-Hee MyungHee <exploration@ponp.be>, 2018
 # red hare <www3@hotmail.co.jp>, 2017
 # Takaki IEKURA <tacostea@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-27 07:10+0000\n"
-"PO-Revision-Date: 2020-07-27 11:19+0000\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-07 11:20+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -27,6 +27,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: simulation/data/auras/structures/arsenal_repair.jsonauraName
+msgid "Arsenal Repairs"
+msgstr ""
+
+#: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
+msgid "Garrisoned Siege Engines +3 health regeneration rate."
+msgstr "공성 무기에 주둔시 체력 회복률이 +3 증가합니다."
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
 msgid "Rigorous Training"
@@ -149,14 +157,6 @@ msgstr "영광스러운 확장"
 msgid ""
 "+40 maximum population limit (requires the “Glorious Expansion” technology)."
 msgstr "최대 인구수가 +40 증가합니다 (“영광스러운 확장” 기술이 필요)."
-
-#: simulation/data/auras/structures/workshop_repair.jsonauraName
-msgid "Workshop Repairs"
-msgstr "작업장 수리"
-
-#: simulation/data/auras/structures/workshop_repair.jsonauraDescription
-msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "공성 무기에 주둔시 체력 회복률이 +3 증가합니다."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"

@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
-# MarongHappy <daemul72@gmail.com>, 2019-2020
+# JungHee Lee <daemul72@gmail.com>, 2019-2020
 # dalrae jin <greenpolidol@gmail.com>, 2014
 # EK lee <sodadida@gmail.com>, 2019
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-27 07:10+0000\n"
-"PO-Revision-Date: 2020-07-27 10:25+0000\n"
+"POT-Creation-Date: 2020-08-07 07:09+0000\n"
+"PO-Revision-Date: 2020-08-07 10:27+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -151,9 +151,9 @@ msgstr "포 탑"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
+#: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
 #: simulation/templates/template_structure_military_fortress.xml:76
-#: simulation/templates/template_structure_military_workshop.xml:28
 #: simulation/templates/template_structure_special.xml:34
 #: simulation/templates/template_structure_wonder.xml:53
 #: simulation/templates/structures/kush_pyramid_large.xml:29
@@ -224,7 +224,7 @@ msgid "Wall"
 msgstr ""
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:22
-#: simulation/templates/template_structure_defensive_wall_long.xml:35
+#: simulation/templates/template_structure_defensive_wall_long.xml:34
 msgid "Allow units access through Walls. Can be locked to prevent access."
 msgstr ""
 
@@ -296,6 +296,17 @@ msgstr "군사 건축물"
 #: simulation/templates/template_structure_military.xml:25
 msgid "Military"
 msgstr "군사 시설"
+
+#: simulation/templates/template_structure_military_arsenal.xml:27
+msgid ""
+"Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
+"Siege Engine technologies."
+msgstr ""
+
+#: simulation/templates/template_structure_military_arsenal.xml:28
+#: simulation/templates/template_structure_military_arsenal.xml:25
+msgid "Arsenal"
+msgstr ""
 
 #: simulation/templates/template_structure_military_barracks.xml:28
 msgid "Train Citizen Soldiers and research technologies."
@@ -384,20 +395,6 @@ msgstr ""
 msgid "Stable"
 msgstr "마구간"
 
-#: simulation/templates/template_structure_military_workshop.xml:25
-msgid "Siege Workshop"
-msgstr "공성 무기 제작소"
-
-#: simulation/templates/template_structure_military_workshop.xml:27
-msgid ""
-"Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
-"Siege Engine technologies."
-msgstr ""
-
-#: simulation/templates/template_structure_military_workshop.xml:28
-msgid "Workshop"
-msgstr "작업장"
-
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
 msgstr "자원 건축물"
@@ -464,6 +461,14 @@ msgstr "당신의 문명에 영광을 가져오고 제국의 영토를 넓힙니
 msgid "Wonder"
 msgstr "불가사의"
 
+#: simulation/templates/structures/athen_arsenal.xml:5
+#: simulation/templates/structures/mace_arsenal.xml:5
+#: simulation/templates/structures/ptol_arsenal.xml:5
+#: simulation/templates/structures/sele_arsenal.xml:5
+#: simulation/templates/structures/spart_arsenal.xml:5
+msgid "Hoplothēkē"
+msgstr "호프로테케"
+
 #: simulation/templates/structures/athen_barracks.xml:12
 #: simulation/templates/structures/mace_barracks.xml:12
 #: simulation/templates/structures/ptol_barracks.xml:11
@@ -503,27 +508,6 @@ msgstr "이따울로스"
 #: simulation/templates/structures/spart_defense_tower.xml:9
 msgid "Pyrgion"
 msgstr "피르기온"
-
-#: simulation/templates/structures/athen_defense_tower.xml:23
-#: simulation/templates/structures/cart_defense_tower.xml:24
-#: simulation/templates/structures/mace_defense_tower.xml:20
-#: simulation/templates/structures/ptol_defense_tower.xml:23
-#: simulation/templates/structures/rome_defense_tower.xml:23
-msgid ""
-"Reinforce with stone block, and install small stone throwers to upgrade this"
-" defense tower into a slow, area of effect, and siege resistant artillery "
-"tower."
-msgstr "돌덩이로 보강하고, 작은 돌 던지기들을 설치하여 이 방어탑을 느린 효과의 영역과 공성 저항의 포탑으로 갱신합니다."
-
-#: simulation/templates/structures/athen_defense_tower.xml:34
-#: simulation/templates/structures/cart_defense_tower.xml:35
-#: simulation/templates/structures/mace_defense_tower.xml:31
-#: simulation/templates/structures/ptol_defense_tower.xml:34
-#: simulation/templates/structures/rome_defense_tower.xml:34
-msgid ""
-"Reinforce with stone block, and install scorpions to upgrade this defense "
-"tower into a prompt, long range, and accurate bolt tower."
-msgstr "돌덩이로 보강하고, 전갈을 설치하여 이 방어탑을 빠르고, 길고, 정확한 화살탑으로 갱신합니다."
 
 #: simulation/templates/structures/athen_dock.xml:12
 #: simulation/templates/structures/mace_dock.xml:12
@@ -715,13 +699,10 @@ msgstr "피르고스"
 msgid "Parthenōn﻿﻿"
 msgstr "파르테노엔"
 
-#: simulation/templates/structures/athen_workshop.xml:5
-#: simulation/templates/structures/mace_workshop.xml:5
-#: simulation/templates/structures/ptol_workshop.xml:5
-#: simulation/templates/structures/sele_workshop.xml:5
-#: simulation/templates/structures/spart_workshop.xml:5
-msgid "Hoplothēkē"
-msgstr "호프로테케"
+#: simulation/templates/structures/brit_arsenal.xml:5
+#: simulation/templates/structures/gaul_arsenal.xml:5
+msgid "Miletucerdon"
+msgstr "미레투세르돈"
 
 #: simulation/templates/structures/brit_barracks.xml:19
 msgid "Coriosessa"
@@ -844,11 +825,6 @@ msgstr "라테"
 #: simulation/templates/structures/brit_wonder.xml:10
 msgid "Uffington White Horse"
 msgstr "우핑톤의 백마"
-
-#: simulation/templates/structures/brit_workshop.xml:5
-#: simulation/templates/structures/gaul_workshop.xml:5
-msgid "Miletucerdon"
-msgstr "미레투세르돈"
 
 #: simulation/templates/structures/cart_apartment.xml:17
 msgid "Apartment Building"
@@ -1107,12 +1083,6 @@ msgid "Gur Oroigarri"
 msgstr "구르 오로이가르리"
 
 #: simulation/templates/structures/iber_monument.xml:34
-#: simulation/templates/structures/maur_pillar_ashoka.xml:34
-#: simulation/templates/structures/rome_arch.xml:23
-msgid "Territory root."
-msgstr ""
-
-#: simulation/templates/structures/iber_monument.xml:35
 #: simulation/templates/structures/iber_monument.xml:9
 msgid "Monument"
 msgstr "기념비"
@@ -1139,6 +1109,10 @@ msgstr "자발 호르마"
 #: simulation/templates/structures/iber_wonder.xml:9
 msgid "Cancho Roano"
 msgstr "칸초 로아노"
+
+#: simulation/templates/structures/kush_arsenal.xml:5
+msgid "Pr-ỉwn n ms﻿"
+msgstr "공성전 작업장qjsdur"
 
 #: simulation/templates/structures/kush_barracks.xml:9
 msgid "pr-msʿyw"
@@ -1307,10 +1281,6 @@ msgstr ""
 msgid "Mnw nht"
 msgstr "불가사의qjsdur"
 
-#: simulation/templates/structures/kush_workshop.xml:5
-msgid "Pr-ỉwn n ms﻿"
-msgstr "공성전 작업장qjsdur"
-
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
 #: simulation/templates/structures/sele_library.xml:9
@@ -1341,13 +1311,6 @@ msgstr "고트라"
 #: simulation/templates/structures/maur_tower_double.xml:16
 msgid "Udarka"
 msgstr "우다르카"
-
-#: simulation/templates/structures/maur_defense_tower.xml:13
-msgid ""
-"Reinforce with stone block, and add a second rampart for up to 16 archers to"
-" stand upon. Infantry Archer exclusive tower. Devastating against melee "
-"troops, weak to siege and massed ranged units."
-msgstr "돌덩이로 강화하고, 최대 16개의 궁수들이 서있을 수 있도록 두 번째 성벽을 추가하십시오. 보병 궁수 전용 탑입니다. 근거리 부대에 대한 파괴력, 공성공격에 약하고 대규모의 원거리 부대에 대한 파괴력이 있습니다."
 
 #: simulation/templates/structures/maur_dock.xml:9
 msgid "Naukasthanaka"
@@ -1404,7 +1367,7 @@ msgstr "아소카의 기둥"
 msgid "Śāsana Stambha Aśokā"
 msgstr "사사나 스탐브하 아소카"
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:35
+#: simulation/templates/structures/maur_pillar_ashoka.xml:34
 #: simulation/templates/structures/maur_pillar_ashoka.xml:9
 msgid "Pillar"
 msgstr "기둥"
@@ -1705,11 +1668,11 @@ msgstr "호루의 신전"
 msgid "Amphitheātrum"
 msgstr "수피타트룸"
 
-#: simulation/templates/structures/rome_arch.xml:21
+#: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
 msgstr "개선문"
 
-#: simulation/templates/structures/rome_arch.xml:22
+#: simulation/templates/structures/rome_arch.xml:23
 msgid "Arcus Triumphālis"
 msgstr "아르쿠스 트리움파리스"
 
@@ -1735,6 +1698,10 @@ msgstr "중립지역이나 적지에 짓습니다. 시민 군인을 양성하고
 #: simulation/templates/structures/rome_army_camp.xml:48
 msgid "ArmyCamp"
 msgstr "아미캠프"
+
+#: simulation/templates/structures/rome_arsenal.xml:5
+msgid "Ballistārium"
+msgstr "발리스타리움"
 
 #: simulation/templates/structures/rome_barracks.xml:12
 msgid "Castrum"
@@ -1900,25 +1867,9 @@ msgstr ""
 msgid "Aedēs Iovis Optimi Maximi"
 msgstr "아에데스 이오비스 오프티미 마시미"
 
-#: simulation/templates/structures/rome_workshop.xml:5
-msgid "Ballistārium"
-msgstr "발리스타리움"
-
-#: simulation/templates/structures/sele_defense_tower.xml:23
-msgid ""
-"Reinforce with stone block, and install small torsion engines to upgrade "
-"this defense tower into an artillery tower."
-msgstr "돌덩이로 보강하고, 작은 비틀림 장치를 설치하여 이 방어 탑을 포 탑으로 향상합니다."
-
 #: simulation/templates/structures/sele_wonder.xml:9
 msgid "Hieron tou Apollōnos Pythiou"
 msgstr "피티온 아폴론의 신전"
-
-#: simulation/templates/structures/spart_defense_tower.xml:23
-msgid ""
-"Reinforce with stone block, and install small oxybeles to upgrade this "
-"defense tower into a prompt, long range, and accurate bolt tower."
-msgstr "돌덩이로 보강하고, 작은 옥시레스를 설치하여 신속하고, 길고, 정확한 화살탑으로 갱신합니다."
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Spartan Senate"

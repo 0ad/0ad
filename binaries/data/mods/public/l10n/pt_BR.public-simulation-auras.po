@@ -26,19 +26,28 @@
 # Rui <xymarior@yandex.com>, 2018-2019
 # Tiago <tiago.henrique.cco@gmail.com>, 2020
 # Tiago <tiago.henrique.cco@gmail.com>, 2018-2020
+# victoJ <vfriedrichj@gmail.com>, 2020
 # Victor Gregório <vt_marv@hotmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-27 07:10+0000\n"
-"PO-Revision-Date: 2020-08-06 16:35+0000\n"
-"Last-Translator: Tiago <tiago.henrique.cco@gmail.com>\n"
+"POT-Creation-Date: 2020-08-07 07:10+0000\n"
+"PO-Revision-Date: 2020-08-08 10:52+0000\n"
+"Last-Translator: victoJ <vfriedrichj@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: simulation/data/auras/structures/arsenal_repair.jsonauraName
+msgid "Arsenal Repairs"
+msgstr "Reparação do Arsenal"
+
+#: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
+msgid "Garrisoned Siege Engines +3 health regeneration rate."
+msgstr "Armas de Cerco aquarteladas têm +3 na taxa de regeneração de vida."
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
 msgid "Rigorous Training"
@@ -79,7 +88,7 @@ msgstr "Presença Encorajadora"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers +1 armor level and +10% melee and ranged attack damage."
-msgstr ""
+msgstr "Soldados tem +1 de armadura e +10% de ataque corpo a corpo e de dano a distância."
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -162,14 +171,6 @@ msgid ""
 "+40 maximum population limit (requires the “Glorious Expansion” technology)."
 msgstr "+40 no limite máximo de população (requer a tecnologia “Expansão Gloriosa”)."
 
-#: simulation/data/auras/structures/workshop_repair.jsonauraName
-msgid "Workshop Repairs"
-msgstr "Reparação da Oficina"
-
-#: simulation/data/auras/structures/workshop_repair.jsonauraDescription
-msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "Armas de Cerco aquarteladas têm +3 na taxa de regeneração de vida."
-
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
 msgstr "Liga de Delos"
@@ -196,11 +197,11 @@ msgstr "Aliados têm +10% de bônus de comércio internacional."
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Products from Gaul"
-msgstr ""
+msgstr "Produtos da Gália"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Blacksmiths −15% technology resource costs and research time."
-msgstr ""
+msgstr "Ferreiro"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"

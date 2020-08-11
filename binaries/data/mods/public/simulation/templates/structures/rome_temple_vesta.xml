@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="structures/rome_temple">
+<Entity parent="template_structure_civic_temple">
   <Auras datatype="tokens">
     structures/loyalty_regen
   </Auras>
@@ -14,6 +14,7 @@
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_3x3</SpawnEntityOnDeath>
   </Health>
   <Identity>
+    <Civ>rome</Civ>
     <GenericName>Temple of Vesta</GenericName>
     <SpecificName>Aedēs Vestālis</SpecificName>
     <VisibleClasses datatype="tokens">TempleOfVesta</VisibleClasses>
@@ -22,6 +23,11 @@
   <Obstruction>
     <Static width="19.0" depth="19.0"/>
   </Obstruction>
+  <ProductionQueue>
+    <Technologies datatype="tokens">
+      romans/vision_sibylline
+    </Technologies>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/romans/temple_vesta.xml</Actor>
     <FoundationActor>structures/fndn_5x5.xml</FoundationActor>

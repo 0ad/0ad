@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_temple">
   <Cost>
-    <BuildTime>200</BuildTime>
     <Resources>
       <stone>200</stone>
       <metal>100</metal>
@@ -12,14 +11,13 @@
     <Height>8.0</Height>
   </Footprint>
   <Health>
-    <Max>2000</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_4x4</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>cart</Civ>
     <GenericName>Sacrificial Temple</GenericName>
     <SpecificName>Tophet</SpecificName>
-    <Tooltip>Train Healers and Champion Cavalry and research healing technologies. Garrison units to heal them at a quick rate.</Tooltip>
+    <Tooltip>Train Healers and Champion Cavalry and research healing technologies.</Tooltip>
   </Identity>
   <Loot>
     <stone>40</stone>
@@ -34,9 +32,6 @@
     </Entities>
   </ProductionQueue>
   <TerritoryDecay disable=""/>
-  <Vision>
-    <Range>40</Range>
-  </Vision>
   <VisualActor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
     <Actor>structures/carthaginians/tophet.xml</Actor>

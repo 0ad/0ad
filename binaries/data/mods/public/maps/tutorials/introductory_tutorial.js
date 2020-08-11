@@ -71,7 +71,7 @@ Trigger.prototype.tutorialGoals = [
 		},
 		"OnTrainingQueued": function(msg)
 		{
-			if (msg.unitTemplate != "units/spart_infantry_javelinist_b" || +msg.count == 1)
+			if (msg.unitTemplate != "units/spart_infantry_javelineer_b" || +msg.count == 1)
 			{
 				let cmpProductionQueue = Engine.QueryInterface(msg.trainerEntity, IID_ProductionQueue);
 				cmpProductionQueue.ResetQueue();

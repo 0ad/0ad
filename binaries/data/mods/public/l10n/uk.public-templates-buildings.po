@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-27 07:10+0000\n"
-"PO-Revision-Date: 2020-07-31 08:02+0000\n"
-"Last-Translator: Halyna Bondar\n"
+"POT-Creation-Date: 2020-08-07 07:09+0000\n"
+"PO-Revision-Date: 2020-08-07 10:27+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -154,9 +154,9 @@ msgstr "Артилерійська вежа"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
+#: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
 #: simulation/templates/template_structure_military_fortress.xml:76
-#: simulation/templates/template_structure_military_workshop.xml:28
 #: simulation/templates/template_structure_special.xml:34
 #: simulation/templates/template_structure_wonder.xml:53
 #: simulation/templates/structures/kush_pyramid_large.xml:29
@@ -227,7 +227,7 @@ msgid "Wall"
 msgstr "Мур"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:22
-#: simulation/templates/template_structure_defensive_wall_long.xml:35
+#: simulation/templates/template_structure_defensive_wall_long.xml:34
 msgid "Allow units access through Walls. Can be locked to prevent access."
 msgstr "Дати змогу підрозділам проходити крізь мури. Може бути зачинено для запобігання доступу."
 
@@ -299,6 +299,17 @@ msgstr "Військова споруда"
 #: simulation/templates/template_structure_military.xml:25
 msgid "Military"
 msgstr "Військове"
+
+#: simulation/templates/template_structure_military_arsenal.xml:27
+msgid ""
+"Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
+"Siege Engine technologies."
+msgstr "Тренувати чемпіонських піхотних арбалетників, конструювати облогові знаряддя та досліджувати технології облогового знаряддя."
+
+#: simulation/templates/template_structure_military_arsenal.xml:28
+#: simulation/templates/template_structure_military_arsenal.xml:25
+msgid "Arsenal"
+msgstr ""
 
 #: simulation/templates/template_structure_military_barracks.xml:28
 msgid "Train Citizen Soldiers and research technologies."
@@ -387,20 +398,6 @@ msgstr "Тренувати кавалерію та досліджувати ка
 msgid "Stable"
 msgstr "Стайня"
 
-#: simulation/templates/template_structure_military_workshop.xml:25
-msgid "Siege Workshop"
-msgstr "Облогова майстерня"
-
-#: simulation/templates/template_structure_military_workshop.xml:27
-msgid ""
-"Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
-"Siege Engine technologies."
-msgstr "Тренувати чемпіонських піхотних арбалетників, конструювати облогові знаряддя та досліджувати технології облогового знаряддя."
-
-#: simulation/templates/template_structure_military_workshop.xml:28
-msgid "Workshop"
-msgstr "Майстерня"
-
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
 msgstr "Ресурсна споруда"
@@ -467,6 +464,14 @@ msgstr "Приносить славу Вашій цивілізації та д�
 msgid "Wonder"
 msgstr "Диво"
 
+#: simulation/templates/structures/athen_arsenal.xml:5
+#: simulation/templates/structures/mace_arsenal.xml:5
+#: simulation/templates/structures/ptol_arsenal.xml:5
+#: simulation/templates/structures/sele_arsenal.xml:5
+#: simulation/templates/structures/spart_arsenal.xml:5
+msgid "Hoplothēkē"
+msgstr "Хоплотеке"
+
 #: simulation/templates/structures/athen_barracks.xml:12
 #: simulation/templates/structures/mace_barracks.xml:12
 #: simulation/templates/structures/ptol_barracks.xml:11
@@ -506,27 +511,6 @@ msgstr "Епаулос"
 #: simulation/templates/structures/spart_defense_tower.xml:9
 msgid "Pyrgion"
 msgstr "Піргіон"
-
-#: simulation/templates/structures/athen_defense_tower.xml:23
-#: simulation/templates/structures/cart_defense_tower.xml:24
-#: simulation/templates/structures/mace_defense_tower.xml:20
-#: simulation/templates/structures/ptol_defense_tower.xml:23
-#: simulation/templates/structures/rome_defense_tower.xml:23
-msgid ""
-"Reinforce with stone block, and install small stone throwers to upgrade this"
-" defense tower into a slow, area of effect, and siege resistant artillery "
-"tower."
-msgstr "Зміцнити кам'яним блоком та встановити невеликі каменемети, щоб вдосконалити цю захисну вежу до повільної, еффективної по площі та стійкої до облоги артелерійської вежі."
-
-#: simulation/templates/structures/athen_defense_tower.xml:34
-#: simulation/templates/structures/cart_defense_tower.xml:35
-#: simulation/templates/structures/mace_defense_tower.xml:31
-#: simulation/templates/structures/ptol_defense_tower.xml:34
-#: simulation/templates/structures/rome_defense_tower.xml:34
-msgid ""
-"Reinforce with stone block, and install scorpions to upgrade this defense "
-"tower into a prompt, long range, and accurate bolt tower."
-msgstr "Зміцнити кам'яним блоком та встановити скорпіони, щоб вдосконалити цю захисну вежу до швидкої, точної та далекобійної вежі з болтами."
 
 #: simulation/templates/structures/athen_dock.xml:12
 #: simulation/templates/structures/mace_dock.xml:12
@@ -718,13 +702,10 @@ msgstr "Піргос"
 msgid "Parthenōn﻿﻿"
 msgstr "Партенон"
 
-#: simulation/templates/structures/athen_workshop.xml:5
-#: simulation/templates/structures/mace_workshop.xml:5
-#: simulation/templates/structures/ptol_workshop.xml:5
-#: simulation/templates/structures/sele_workshop.xml:5
-#: simulation/templates/structures/spart_workshop.xml:5
-msgid "Hoplothēkē"
-msgstr "Хоплотеке"
+#: simulation/templates/structures/brit_arsenal.xml:5
+#: simulation/templates/structures/gaul_arsenal.xml:5
+msgid "Miletucerdon"
+msgstr "Мілетукердон"
 
 #: simulation/templates/structures/brit_barracks.xml:19
 msgid "Coriosessa"
@@ -847,11 +828,6 @@ msgstr "Рате"
 #: simulation/templates/structures/brit_wonder.xml:10
 msgid "Uffington White Horse"
 msgstr "Уффінгтонський білий кінь"
-
-#: simulation/templates/structures/brit_workshop.xml:5
-#: simulation/templates/structures/gaul_workshop.xml:5
-msgid "Miletucerdon"
-msgstr "Мілетукердон"
 
 #: simulation/templates/structures/cart_apartment.xml:17
 msgid "Apartment Building"
@@ -1110,12 +1086,6 @@ msgid "Gur Oroigarri"
 msgstr "Гур оройгарі"
 
 #: simulation/templates/structures/iber_monument.xml:34
-#: simulation/templates/structures/maur_pillar_ashoka.xml:34
-#: simulation/templates/structures/rome_arch.xml:23
-msgid "Territory root."
-msgstr "Територіальна підтримка."
-
-#: simulation/templates/structures/iber_monument.xml:35
 #: simulation/templates/structures/iber_monument.xml:9
 msgid "Monument"
 msgstr "Монумент"
@@ -1142,6 +1112,10 @@ msgstr "Сабаль орма"
 #: simulation/templates/structures/iber_wonder.xml:9
 msgid "Cancho Roano"
 msgstr "Канчо Роано"
+
+#: simulation/templates/structures/kush_arsenal.xml:5
+msgid "Pr-ỉwn n ms﻿"
+msgstr "Пер-іун ні мес"
 
 #: simulation/templates/structures/kush_barracks.xml:9
 msgid "pr-msʿyw"
@@ -1310,10 +1284,6 @@ msgstr "Саут"
 msgid "Mnw nht"
 msgstr "Мену нехет"
 
-#: simulation/templates/structures/kush_workshop.xml:5
-msgid "Pr-ỉwn n ms﻿"
-msgstr "Пер-іун ні мес"
-
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
 #: simulation/templates/structures/sele_library.xml:9
@@ -1344,13 +1314,6 @@ msgstr "Готра"
 #: simulation/templates/structures/maur_tower_double.xml:16
 msgid "Udarka"
 msgstr "Ударка"
-
-#: simulation/templates/structures/maur_defense_tower.xml:13
-msgid ""
-"Reinforce with stone block, and add a second rampart for up to 16 archers to"
-" stand upon. Infantry Archer exclusive tower. Devastating against melee "
-"troops, weak to siege and massed ranged units."
-msgstr "Зміцнити кам'яним блоком та додати другий фортечний вал зі збільшеним розміщенням до 16 стрільців. Вежа винятково для піхотних стрільців. Спустошуюча проти військ ближнього бою, слабка проти облогових та зосереджених дистанційних підрозділів."
 
 #: simulation/templates/structures/maur_dock.xml:9
 msgid "Naukasthanaka"
@@ -1407,7 +1370,7 @@ msgstr "Колона едикту Ашоки"
 msgid "Śāsana Stambha Aśokā"
 msgstr "Шасана стамбха Ашока"
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:35
+#: simulation/templates/structures/maur_pillar_ashoka.xml:34
 #: simulation/templates/structures/maur_pillar_ashoka.xml:9
 msgid "Pillar"
 msgstr "Колона"
@@ -1708,11 +1671,11 @@ msgstr "Хіерон тоу Хороу"
 msgid "Amphitheātrum"
 msgstr "Амфітеатрум"
 
-#: simulation/templates/structures/rome_arch.xml:21
+#: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
 msgstr "Тріумфальна арка"
 
-#: simulation/templates/structures/rome_arch.xml:22
+#: simulation/templates/structures/rome_arch.xml:23
 msgid "Arcus Triumphālis"
 msgstr "Аркус тріумфаліс"
 
@@ -1738,6 +1701,10 @@ msgstr "Споруджується на нейтральній або ворож
 #: simulation/templates/structures/rome_army_camp.xml:48
 msgid "ArmyCamp"
 msgstr "Армійський табір"
+
+#: simulation/templates/structures/rome_arsenal.xml:5
+msgid "Ballistārium"
+msgstr "Баллістаріум"
 
 #: simulation/templates/structures/rome_barracks.xml:12
 msgid "Castrum"
@@ -1903,25 +1870,9 @@ msgstr "Відгородити область. Спорудити на влас�
 msgid "Aedēs Iovis Optimi Maximi"
 msgstr "Едес Іовіс Оптімі Максімі"
 
-#: simulation/templates/structures/rome_workshop.xml:5
-msgid "Ballistārium"
-msgstr "Баллістаріум"
-
-#: simulation/templates/structures/sele_defense_tower.xml:23
-msgid ""
-"Reinforce with stone block, and install small torsion engines to upgrade "
-"this defense tower into an artillery tower."
-msgstr "Зміцнити кам'яним блоком та встановити невеликі торсіонні знаряддя, щоб вдосконалити цю захисну вежу до артилерійської вежі."
-
 #: simulation/templates/structures/sele_wonder.xml:9
 msgid "Hieron tou Apollōnos Pythiou"
 msgstr "Хіерон тоу Аполлонос Пітіоу"
-
-#: simulation/templates/structures/spart_defense_tower.xml:23
-msgid ""
-"Reinforce with stone block, and install small oxybeles to upgrade this "
-"defense tower into a prompt, long range, and accurate bolt tower."
-msgstr "Зміцнити кам'яним блоком та встановити невеликі оксібели, щоб вдосконалити цю захисну вежу до швидкої, точної та далекобійної вежі з болтами."
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Spartan Senate"
