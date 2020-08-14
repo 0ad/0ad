@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-31 07:09+0000\n"
-"PO-Revision-Date: 2020-08-01 09:21+0000\n"
-"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2020-08-10 07:08+0000\n"
+"PO-Revision-Date: 2020-08-10 17:22+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1694,7 +1694,7 @@ msgid ""
 "improve performance and compatibility."
 msgstr "Automatikoki bidal diezagukezu informazioa, honela erroreak konpontzen eta errendimendua eta bateragarritasuna hobetzen lagunduz."
 
-#: gui/reference/common/TemplateParser.js:126
+#: gui/reference/common/TemplateParser.js:128
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s hona %(health_max)s"
@@ -2755,6 +2755,7 @@ msgstr "Lagunak"
 
 #: gui/options/options.json[0].options[9].list[2].label
 #: gui/options/options.json[1].options[4].list[0].label
+#: gui/options/options.json[1].options[5].list[0].label
 #: gui/options/options.json[3].options[5].list[2].label
 msgid "Disabled"
 msgstr "Desgaituta"
@@ -2842,170 +2843,198 @@ msgstr "Murriztu ertzetan aliasing-en eragina."
 msgid "Anti-Aliasing"
 msgstr "Anti-Aliasing"
 
+#: gui/options/options.json[1].options[5].list[0].tooltip
+msgid "Do not use sharpening."
+msgstr ""
+
+#: gui/options/options.json[1].options[5].list[1].tooltip
+msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
+msgstr ""
+
+#: gui/options/options.json[1].options[5].list[1].label
+msgid "FidelityFX CAS"
+msgstr ""
+
 #: gui/options/options.json[1].options[5].tooltip
+msgid "Reduce blurry effects."
+msgstr ""
+
+#: gui/options/options.json[1].options[5].label
+msgid "Sharpening"
+msgstr ""
+
+#: gui/options/options.json[1].options[6].tooltip
+msgid "The sharpness of the choosen pass."
+msgstr ""
+
+#: gui/options/options.json[1].options[6].label
+msgid "Sharpness factor"
+msgstr ""
+
+#: gui/options/options.json[1].options[7].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "Shaderren efektuen zenbatekoa. JOKOA BERRABIARAZI BEHAR DA"
 
-#: gui/options/options.json[1].options[5].label
+#: gui/options/options.json[1].options[7].label
 msgid "Shader effects"
 msgstr "Itzal efektuak"
 
-#: gui/options/options.json[1].options[6].tooltip
+#: gui/options/options.json[1].options[8].tooltip
 msgid "Enable shadows."
 msgstr "Gaitu itzalak."
 
-#: gui/options/options.json[1].options[6].label
+#: gui/options/options.json[1].options[8].label
 msgid "Shadows"
 msgstr "Itzalak"
 
-#: gui/options/options.json[1].options[7].list[0].label
+#: gui/options/options.json[1].options[9].list[0].label
 msgid "Very Low"
 msgstr "Oso baxua"
 
-#: gui/options/options.json[1].options[7].list[1].label
+#: gui/options/options.json[1].options[9].list[1].label
 msgid "Low"
 msgstr "Baxua"
 
-#: gui/options/options.json[1].options[7].list[2].label
+#: gui/options/options.json[1].options[9].list[2].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
 msgstr "Ertaina"
 
-#: gui/options/options.json[1].options[7].list[3].label
+#: gui/options/options.json[1].options[9].list[3].label
 msgid "High"
 msgstr "Altua"
 
-#: gui/options/options.json[1].options[7].list[4].label
+#: gui/options/options.json[1].options[9].list[4].label
 msgid "Very High"
 msgstr "Oso altua"
 
-#: gui/options/options.json[1].options[7].tooltip
+#: gui/options/options.json[1].options[9].tooltip
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
 msgstr "Itzal maparen bereizmena. Memoria gutxi duen txartel grafikoa erabili ezkero balore altuek jokoa blokea dezakete!"
 
-#: gui/options/options.json[1].options[7].label
+#: gui/options/options.json[1].options[9].label
 msgid "Shadow quality"
 msgstr "Itzalen kalitatea"
 
-#: gui/options/options.json[1].options[8].tooltip
+#: gui/options/options.json[1].options[10].tooltip
 msgid "Smooth shadows."
 msgstr "Itzal leunak."
 
-#: gui/options/options.json[1].options[8].label
+#: gui/options/options.json[1].options[10].label
 msgid "Shadow filtering"
 msgstr "Itzalen iragazketa"
 
-#: gui/options/options.json[1].options[9].tooltip
+#: gui/options/options.json[1].options[11].tooltip
 msgid "Show outlines of units behind structures."
 msgstr "Bistaratu eraikinen atzean dauden unitateen siluetak."
 
-#: gui/options/options.json[1].options[9].label
+#: gui/options/options.json[1].options[11].label
 msgid "Unit silhouettes"
 msgstr "Unitateen siluetak"
 
-#: gui/options/options.json[1].options[10].tooltip
+#: gui/options/options.json[1].options[12].tooltip
 msgid "Enable particles."
 msgstr "Gaitu partikulak."
 
-#: gui/options/options.json[1].options[10].label
+#: gui/options/options.json[1].options[12].label
 msgid "Particles"
 msgstr "Partikulak"
 
-#: gui/options/options.json[1].options[11].tooltip
+#: gui/options/options.json[1].options[13].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Desaktibatzean erabili ezarpen baxuena ura errendatzeko. Honek beste ezarpenak garrantzi gabekoak bihurtzen ditu."
 
-#: gui/options/options.json[1].options[11].label
+#: gui/options/options.json[1].options[13].label
 msgid "Water effects"
 msgstr "Uraren efektuak"
 
-#: gui/options/options.json[1].options[12].tooltip
+#: gui/options/options.json[1].options[14].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Erabili kalitate handiko efektuak uretan, kostaldeko olatuak, aparra itsasbazterrean eta itsasontzien lorratzak ur azalean."
 
-#: gui/options/options.json[1].options[12].label
+#: gui/options/options.json[1].options[14].label
 msgid "High-quality water effects"
 msgstr "Kalitate handiko ur efektuak"
 
-#: gui/options/options.json[1].options[13].tooltip
+#: gui/options/options.json[1].options[15].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Erabili uraren egiazko sakontasuna errendatze kalkuluetan."
 
-#: gui/options/options.json[1].options[13].label
+#: gui/options/options.json[1].options[15].label
 msgid "Real water depth"
 msgstr "Ur sakontasun erreala"
 
-#: gui/options/options.json[1].options[14].tooltip
+#: gui/options/options.json[1].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Baimendu urak irudiaren ispilu bat islatzea."
 
-#: gui/options/options.json[1].options[14].label
+#: gui/options/options.json[1].options[16].label
 msgid "Water reflections"
 msgstr "Uraren islapenak"
 
-#: gui/options/options.json[1].options[15].tooltip
+#: gui/options/options.json[1].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Erabili egiazko uraren errefrakzio mapa eta ez gardentasuna."
 
-#: gui/options/options.json[1].options[15].label
+#: gui/options/options.json[1].options[17].label
 msgid "Water refraction"
 msgstr "Uraren errefrakzioa"
 
-#: gui/options/options.json[1].options[16].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Cast shadows on water."
 msgstr "Sortu itzalak uretan."
 
-#: gui/options/options.json[1].options[16].label
+#: gui/options/options.json[1].options[18].label
 msgid "Shadows on water"
 msgstr "Itzalak uretan"
 
-#: gui/options/options.json[1].options[17].tooltip
+#: gui/options/options.json[1].options[19].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
 msgstr "Altxatu leunki iluntasuna eta gatazka lainoa."
 
-#: gui/options/options.json[1].options[17].label
+#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr "Ikusmen leuna"
 
-#: gui/options/options.json[1].options[18].tooltip
+#: gui/options/options.json[1].options[20].tooltip
 msgid "Render Sky."
 msgstr "Errendatu zerua."
 
-#: gui/options/options.json[1].options[18].label
+#: gui/options/options.json[1].options[20].label
 msgid "Show sky"
 msgstr "Bistaratu zerua"
 
-#: gui/options/options.json[1].options[19].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Pantailako zutikako sinkronizazioa mantendu «screen tearing» deituriko ekiditeko. JOKOA BERRABIARAZI BEHAR DA"
 
-#: gui/options/options.json[1].options[19].label
+#: gui/options/options.json[1].options[21].label
 msgid "VSync"
 msgstr "VSync"
 
-#: gui/options/options.json[1].options[20].tooltip
+#: gui/options/options.json[1].options[22].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Marrazte abiadura mugatu dezakezu menuan prozesatzailean baliabide gutxiago jateko eta tenperatura eta energia gastua murrizteko. Gehienezko tamainan jarri mugatzailea ezgaitzeko."
 
-#: gui/options/options.json[1].options[20].label
+#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in menus"
 msgstr "FPSa menuetan mugatu"
 
-#: gui/options/options.json[1].options[21].tooltip
+#: gui/options/options.json[1].options[23].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "Marrazte abiadura mugatu dezakezu partida jokatzean prozesatzailean baliabide gutxiago jateko eta tenperatura eta energia gastua murrizteko. Gehienezko tamainan jarri mugatzailea ezgaitzeko."
 
-#: gui/options/options.json[1].options[21].label
+#: gui/options/options.json[1].options[23].label
 msgid "FPS throttling in games"
 msgstr "FPSa partidan mugatu"
 

@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-07 07:09+0000\n"
-"PO-Revision-Date: 2020-08-08 04:43+0000\n"
-"Last-Translator: Ernestus Severus\n"
+"POT-Creation-Date: 2020-08-10 07:09+0000\n"
+"PO-Revision-Date: 2020-08-10 10:40+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,7 +90,7 @@ msgstr ""
 #: simulation/templates/template_structure_military_blacksmith.xml:26
 #: simulation/templates/template_structure_military_embassy.xml:33
 #: simulation/templates/structures/cart_super_dock.xml:47
-#: simulation/templates/structures/gaul_tavern.xml:26
+#: simulation/templates/structures/gaul_tavern.xml:24
 #: simulation/templates/structures/kush_pyramid_small.xml:29
 #: simulation/templates/structures/maur_elephant_stables.xml:7
 #: simulation/templates/structures/ptol_lighthouse.xml:27
@@ -854,32 +854,32 @@ msgid ""
 msgstr "Construe lintres piscatorias ut piscentur, et naves onerarias ut inter se et alia navalia mercaturas facias."
 
 #: simulation/templates/structures/cart_embassy.xml:19
-msgid "Hire mercenaries."
-msgstr "Conscribe milites mercennarios."
+msgid "Train Mercenaries and research Mercenary technologies."
+msgstr ""
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:17
 msgid "Celtic Embassy"
 msgstr "Legatio Celtica"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:18
-msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
-msgstr "Conscribe milites mercennarios ex Celtis. Inquire artes pro his mercennariis."
+msgid "Train Celtic Mercenaries and research Mercenary technologies."
+msgstr ""
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:10
 msgid "Iberian Embassy"
 msgstr "Legatio Hiberica"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:11
-msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
-msgstr "Conscribe milites mercennarios ex Hiberiis. Inquire artes pro his mercennariis."
+msgid "Train Iberian Mercenaries and research Mercenary technologies."
+msgstr ""
 
-#: simulation/templates/structures/cart_embassy_italiote.xml:17
-msgid "Italian Embassy"
-msgstr "Legatio Italica"
+#: simulation/templates/structures/cart_embassy_italic.xml:17
+msgid "Italic Embassy"
+msgstr ""
 
-#: simulation/templates/structures/cart_embassy_italiote.xml:18
-msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
-msgstr "Conscribe milites mercennarios ex Italis. Inquire artes pro his mercennariis."
+#: simulation/templates/structures/cart_embassy_italic.xml:18
+msgid "Train Italic Mercenaries and research Mercenary technologies."
+msgstr ""
 
 #: simulation/templates/structures/cart_farmstead.xml:8
 msgid "Aḥuzāh"
@@ -947,19 +947,17 @@ msgstr "Maqdaš"
 msgid "Train Healers and Champions and research healing technologies."
 msgstr ""
 
-#: simulation/templates/structures/cart_tophet.xml:20
+#: simulation/templates/structures/cart_tophet.xml:18
 msgid "Sacrificial Temple"
 msgstr "Templum Sacrificiorum"
 
-#: simulation/templates/structures/cart_tophet.xml:21
+#: simulation/templates/structures/cart_tophet.xml:19
 msgid "Tophet"
 msgstr "Tophet"
 
-#: simulation/templates/structures/cart_tophet.xml:22
-msgid ""
-"Train Healers and Champion Cavalry and research healing technologies. "
-"Garrison units to heal them at a quick rate."
-msgstr "Conscribe Medicos ac Propugnatores Equitatos, et inquire artes salutares. In quo tuos colloca ut eos citius sanes."
+#: simulation/templates/structures/cart_tophet.xml:20
+msgid "Train Healers and Champion Cavalry and research healing technologies."
+msgstr ""
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -1810,15 +1808,15 @@ msgstr "Aedēs Mārtiālis"
 msgid "TempleOfMars"
 msgstr ""
 
-#: simulation/templates/structures/rome_temple_vesta.xml:17
+#: simulation/templates/structures/rome_temple_vesta.xml:18
 msgid "Temple of Vesta"
 msgstr "Aedēs Vestālis"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:18
+#: simulation/templates/structures/rome_temple_vesta.xml:19
 msgid "Aedēs Vestālis"
 msgstr "Aedēs Vestālis"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:19
+#: simulation/templates/structures/rome_temple_vesta.xml:20
 msgid "TempleOfVesta"
 msgstr ""
 

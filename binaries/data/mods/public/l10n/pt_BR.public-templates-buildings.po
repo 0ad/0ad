@@ -31,16 +31,17 @@
 # Renato Cirino <renatimpirei@gmail.com>, 2019
 # Ricardo Siqueira Oliveira Leite <ricardooliveira88@gmail.com>, 2016
 # Rui <xymarior@yandex.com>, 2018-2019
-# Tiago <tiago.henrique.cco@gmail.com>, 2020
-# Tiago <tiago.henrique.cco@gmail.com>, 2018-2020
+# Tiago Melo <tiago.henrique.cco@gmail.com>, 2020
+# Tiago Melo <tiago.henrique.cco@gmail.com>, 2020
+# Tiago Melo <tiago.henrique.cco@gmail.com>, 2018-2020
 # victoJ <vfriedrichj@gmail.com>, 2020
 # Vinícius Pereira <lameiravinicius24@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-07 07:09+0000\n"
-"PO-Revision-Date: 2020-08-09 02:39+0000\n"
-"Last-Translator: victoJ <vfriedrichj@gmail.com>\n"
+"POT-Creation-Date: 2020-08-10 07:09+0000\n"
+"PO-Revision-Date: 2020-08-11 13:13+0000\n"
+"Last-Translator: Tiago Melo <tiago.henrique.cco@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,7 +117,7 @@ msgstr "Treinar Melhores Mercenários"
 #: simulation/templates/template_structure_military_blacksmith.xml:26
 #: simulation/templates/template_structure_military_embassy.xml:33
 #: simulation/templates/structures/cart_super_dock.xml:47
-#: simulation/templates/structures/gaul_tavern.xml:26
+#: simulation/templates/structures/gaul_tavern.xml:24
 #: simulation/templates/structures/kush_pyramid_small.xml:29
 #: simulation/templates/structures/maur_elephant_stables.xml:7
 #: simulation/templates/structures/ptol_lighthouse.xml:27
@@ -366,7 +367,7 @@ msgstr "Estãbolo de elefante"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:26
 msgid "Train Elephants and research Elephant technologies."
-msgstr ""
+msgstr "Treine Elefantes e pesquise suas tecnologias."
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
 msgid "ElephantStable"
@@ -396,7 +397,7 @@ msgstr "Campo de Prática de Tiro"
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Train Ranged Infantry and research technologies."
-msgstr ""
+msgstr "Treine Infantaria de Longo Alcance e pesquise suas tecnologias."
 
 #: simulation/templates/template_structure_military_range.xml:25
 msgid "Range"
@@ -421,7 +422,7 @@ msgstr "Recursos"
 
 #: simulation/templates/template_structure_resource_corral.xml:20
 msgid "Raise Domestic Animals for food."
-msgstr ""
+msgstr "Crie animais domésticos por comida."
 
 #: simulation/templates/template_structure_resource_corral.xml:21
 #: simulation/templates/template_structure_resource_corral.xml:18
@@ -440,7 +441,7 @@ msgstr "Colhe os grãos por comida. Cada coletor subseqüente funciona com menos
 
 #: simulation/templates/template_structure_special.xml:33
 msgid "Special Structure"
-msgstr ""
+msgstr "Estrutura Especial"
 
 #: simulation/templates/template_structure_special_amphitheater.xml:23
 #: simulation/templates/template_structure_special_amphitheater.xml:21
@@ -614,7 +615,7 @@ msgstr "Treinar Heróis e pesquisar suas tecnologias."
 #: simulation/templates/structures/athen_prytaneion.xml:26
 #: simulation/templates/structures/spart_gerousia.xml:26
 msgid "Council"
-msgstr ""
+msgstr "Conselho"
 
 #: simulation/templates/structures/athen_range.xml:8
 #: simulation/templates/structures/mace_range.xml:8
@@ -880,32 +881,32 @@ msgid ""
 msgstr "Construa barcos de pesca para coletar alimento e barcos mercadores para comercializar com outras docas."
 
 #: simulation/templates/structures/cart_embassy.xml:19
-msgid "Hire mercenaries."
-msgstr "Contratar mercenários"
+msgid "Train Mercenaries and research Mercenary technologies."
+msgstr "Treine Mercenários e pesquise suas tecnologias."
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:17
 msgid "Celtic Embassy"
 msgstr "Embaixada Celta"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:18
-msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
-msgstr "Contrate mercenários Celtas. Pesquise melhoramentos para esses mercenários."
+msgid "Train Celtic Mercenaries and research Mercenary technologies."
+msgstr "Treine Mercenários Celtas e pesquise suas tecnologias."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:10
 msgid "Iberian Embassy"
 msgstr "Embaixada Ibérica"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:11
-msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
-msgstr "Contrate mercenários Ibéricos. Pesquise melhorias para esses mercenários."
+msgid "Train Iberian Mercenaries and research Mercenary technologies."
+msgstr "Treine Mercenários Ibéricos e pesquise suas tecnologias."
 
-#: simulation/templates/structures/cart_embassy_italiote.xml:17
-msgid "Italian Embassy"
-msgstr "Embaixada Italiana"
+#: simulation/templates/structures/cart_embassy_italic.xml:17
+msgid "Italic Embassy"
+msgstr "Embaixada Itálica"
 
-#: simulation/templates/structures/cart_embassy_italiote.xml:18
-msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
-msgstr "Treine mercenários Italianos. Pesquise melhorias para esses mercenários."
+#: simulation/templates/structures/cart_embassy_italic.xml:18
+msgid "Train Italic Mercenaries and research Mercenary technologies."
+msgstr "Treine Mercenários Itálicos e pesquise suas tecnologias."
 
 #: simulation/templates/structures/cart_farmstead.xml:8
 msgid "Aḥuzāh"
@@ -971,21 +972,19 @@ msgstr "Maqdaš"
 
 #: simulation/templates/structures/cart_temple.xml:15
 msgid "Train Healers and Champions and research healing technologies."
-msgstr ""
+msgstr "Treine Curandeiros e Campeões e pesquise tecnologias de cura."
 
-#: simulation/templates/structures/cart_tophet.xml:20
+#: simulation/templates/structures/cart_tophet.xml:18
 msgid "Sacrificial Temple"
 msgstr "Templo de Sacrifício"
 
-#: simulation/templates/structures/cart_tophet.xml:21
+#: simulation/templates/structures/cart_tophet.xml:19
 msgid "Tophet"
 msgstr "Tofete"
 
-#: simulation/templates/structures/cart_tophet.xml:22
-msgid ""
-"Train Healers and Champion Cavalry and research healing technologies. "
-"Garrison units to heal them at a quick rate."
-msgstr "Treinar Curandeiros e Campeões de Cavalaria e pesquisar por tecnologias de cura. Guarnecer unidades para curá-las rapidamente."
+#: simulation/templates/structures/cart_tophet.xml:20
+msgid "Train Healers and Champion Cavalry and research healing technologies."
+msgstr "Treine Curandeiros e Cavalaria Campeã e pesquise tecnologias de cura."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -1256,11 +1255,11 @@ msgstr "Pr-ʿIprmk"
 #: simulation/templates/structures/kush_temple.xml:10
 msgid ""
 "Train Healers and Apedamak Champions and research healing technologies."
-msgstr ""
+msgstr "Treine Curandeiros e Campeões de Apedemaque e pesquise tecnologias de cura."
 
 #: simulation/templates/structures/kush_temple.xml:11
 msgid "TempleOfApedemak"
-msgstr ""
+msgstr "Templo de Apedemaque"
 
 #: simulation/templates/structures/kush_temple_amun.xml:28
 msgid "Grand Temple of Amun"
@@ -1272,11 +1271,11 @@ msgstr "Pr-ʿImn"
 
 #: simulation/templates/structures/kush_temple_amun.xml:30
 msgid "Train Healers and Amun Champions and research healing technologies."
-msgstr ""
+msgstr "Treine Curandeiros e Campeões de Ámon e pesquise tecnologias de cura."
 
 #: simulation/templates/structures/kush_temple_amun.xml:31
 msgid "TempleOfAmun"
-msgstr ""
+msgstr "Templo de Ámon"
 
 #: simulation/templates/structures/kush_wall_gate.xml:9
 msgid "ʿryt"
@@ -1463,11 +1462,11 @@ msgstr "Portão de Paliçada"
 #: simulation/templates/structures/palisades_gate.xml:22
 #: simulation/templates/structures/palisades_long.xml:31
 msgid "Allow units access through Palisades. Can be locked to prevent access."
-msgstr ""
+msgstr "Permite o acesso das unidades através de Paliçadas. Pode ser trancada para impedir o acesso."
 
 #: simulation/templates/structures/palisades_long.xml:17
 msgid "Can be converted into a Palisade Gate."
-msgstr ""
+msgstr "Pode ser convertido em um Portão de Paliçada."
 
 #: simulation/templates/structures/palisades_spike_angle.xml:17
 msgid "Angle Spike"
@@ -1508,7 +1507,7 @@ msgstr "Padgan"
 
 #: simulation/templates/structures/pers_barracks.xml:6
 msgid "Train Infantry."
-msgstr ""
+msgstr "Treine Infantaria."
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1562,7 +1561,7 @@ msgstr "Duvarθi Visadahyu"
 
 #: simulation/templates/structures/pers_hall.xml:25
 msgid "Hall"
-msgstr ""
+msgstr "Salão"
 
 #: simulation/templates/structures/pers_house.xml:8
 msgid "Huvādā"
@@ -1579,7 +1578,7 @@ msgstr "Portão de Ishtar da Babilônia"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:30
 msgid "IshtarGate"
-msgstr ""
+msgstr "Porta de Istar"
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1650,7 +1649,7 @@ msgstr "Pharos"
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Reveal the "
 "shorelines over the entire map. Very large vision range."
-msgstr ""
+msgstr "Construa em um litoral em território próprio, neutro ou aliado. Revele os litorais de todo o mapa. Campo de visão muito amplo."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:27
 #: simulation/templates/structures/ptol_lighthouse.xml:24
@@ -1694,7 +1693,7 @@ msgstr "Arcus Triumphālis"
 
 #: simulation/templates/structures/rome_arch.xml:24
 msgid "TriumphalArch"
-msgstr ""
+msgstr "Arco do Triunfo"
 
 #: simulation/templates/structures/rome_army_camp.xml:80
 msgid "Army Camp"
@@ -1834,19 +1833,19 @@ msgstr "Aedēs Mārtiālis"
 
 #: simulation/templates/structures/rome_temple_mars.xml:14
 msgid "TempleOfMars"
-msgstr ""
+msgstr "Templo de Marte"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:17
+#: simulation/templates/structures/rome_temple_vesta.xml:18
 msgid "Temple of Vesta"
 msgstr "Templo de Vesta"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:18
+#: simulation/templates/structures/rome_temple_vesta.xml:19
 msgid "Aedēs Vestālis"
 msgstr "Aedēs Vestālis"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:19
+#: simulation/templates/structures/rome_temple_vesta.xml:20
 msgid "TempleOfVesta"
-msgstr ""
+msgstr "Templo de Vesta"
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1909,7 +1908,7 @@ msgstr "Sissítia"
 
 #: simulation/templates/structures/spart_syssiton.xml:27
 msgid "Syssiton"
-msgstr ""
+msgstr "Syssiton"
 
 #: simulation/templates/structures/spart_wonder.xml:9
 msgid "Hieron tēs Artemidos Orthias"

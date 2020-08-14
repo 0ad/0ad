@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-31 07:09+0000\n"
-"PO-Revision-Date: 2020-08-01 20:08+0000\n"
+"POT-Creation-Date: 2020-08-10 07:08+0000\n"
+"PO-Revision-Date: 2020-08-10 22:04+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -1693,7 +1693,7 @@ msgid ""
 "improve performance and compatibility."
 msgstr "Pues unviamos automáticamente informes que mos ayuden a iguar fallos & ameyorar el rindimientu & compatibilidá."
 
-#: gui/reference/common/TemplateParser.js:126
+#: gui/reference/common/TemplateParser.js:128
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s a %(health_max)s"
@@ -2754,6 +2754,7 @@ msgstr "Collacios"
 
 #: gui/options/options.json[0].options[9].list[2].label
 #: gui/options/options.json[1].options[4].list[0].label
+#: gui/options/options.json[1].options[5].list[0].label
 #: gui/options/options.json[3].options[5].list[2].label
 msgid "Disabled"
 msgstr "Desactivóse"
@@ -2841,170 +2842,198 @@ msgstr "Amenorgar l'efeutu escalonáu nos berbesos."
 msgid "Anti-Aliasing"
 msgstr "Anti-escalonáu"
 
+#: gui/options/options.json[1].options[5].list[0].tooltip
+msgid "Do not use sharpening."
+msgstr "Nun uses l'anidiadura."
+
+#: gui/options/options.json[1].options[5].list[1].tooltip
+msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
+msgstr "«Contrast adaptive sharpening», un pasu anidiador que ye rápidu ya s'enfota nel contraste. "
+
+#: gui/options/options.json[1].options[5].list[1].label
+msgid "FidelityFX CAS"
+msgstr "FidelityFX CAS"
+
 #: gui/options/options.json[1].options[5].tooltip
-msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "El númberu d'efeutos asolombradores. RIQUE REANICIU DEL XUEGU"
+msgid "Reduce blurry effects."
+msgstr "Amenorga'l desenfoque."
 
 #: gui/options/options.json[1].options[5].label
+msgid "Sharpening"
+msgstr "Anidiadura"
+
+#: gui/options/options.json[1].options[6].tooltip
+msgid "The sharpness of the choosen pass."
+msgstr "L'anidiadura del pasu escoyíu."
+
+#: gui/options/options.json[1].options[6].label
+msgid "Sharpness factor"
+msgstr "Factor d'anidiadura"
+
+#: gui/options/options.json[1].options[7].tooltip
+msgid "Number of shader effects. REQUIRES GAME RESTART"
+msgstr "El númberu d'efeutos asolombradores. RIQUE'L REANICIU DEL XUEGU"
+
+#: gui/options/options.json[1].options[7].label
 msgid "Shader effects"
 msgstr "Efeutos d'asolombradores"
 
-#: gui/options/options.json[1].options[6].tooltip
+#: gui/options/options.json[1].options[8].tooltip
 msgid "Enable shadows."
 msgstr "Activar solombres."
 
-#: gui/options/options.json[1].options[6].label
+#: gui/options/options.json[1].options[8].label
 msgid "Shadows"
 msgstr "Solombres"
 
-#: gui/options/options.json[1].options[7].list[0].label
+#: gui/options/options.json[1].options[9].list[0].label
 msgid "Very Low"
 msgstr "Perbaxo"
 
-#: gui/options/options.json[1].options[7].list[1].label
+#: gui/options/options.json[1].options[9].list[1].label
 msgid "Low"
 msgstr "Baxo"
 
-#: gui/options/options.json[1].options[7].list[2].label
+#: gui/options/options.json[1].options[9].list[2].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
 msgstr "Normal"
 
-#: gui/options/options.json[1].options[7].list[3].label
+#: gui/options/options.json[1].options[9].list[3].label
 msgid "High"
 msgstr "Alto"
 
-#: gui/options/options.json[1].options[7].list[4].label
+#: gui/options/options.json[1].options[9].list[4].label
 msgid "Very High"
 msgstr "Peralto"
 
-#: gui/options/options.json[1].options[7].tooltip
+#: gui/options/options.json[1].options[9].tooltip
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
 msgstr "Resolución del mapa solombres. ¡Los valores altos puen facer que'l xuegu se bloquie si uses una tarxeta gráfica con poca memoria!"
 
-#: gui/options/options.json[1].options[7].label
+#: gui/options/options.json[1].options[9].label
 msgid "Shadow quality"
 msgstr "Calidá de solombres"
 
-#: gui/options/options.json[1].options[8].tooltip
+#: gui/options/options.json[1].options[10].tooltip
 msgid "Smooth shadows."
 msgstr "Solombres ñidies."
 
-#: gui/options/options.json[1].options[8].label
+#: gui/options/options.json[1].options[10].label
 msgid "Shadow filtering"
 msgstr "Peñeráu de solombres"
 
-#: gui/options/options.json[1].options[9].tooltip
+#: gui/options/options.json[1].options[11].tooltip
 msgid "Show outlines of units behind structures."
 msgstr "Amosar contornos d'unidaes detrás de construcciones. "
 
-#: gui/options/options.json[1].options[9].label
+#: gui/options/options.json[1].options[11].label
 msgid "Unit silhouettes"
 msgstr "Contornos d'unidaes"
 
-#: gui/options/options.json[1].options[10].tooltip
+#: gui/options/options.json[1].options[12].tooltip
 msgid "Enable particles."
 msgstr "Activar partícules."
 
-#: gui/options/options.json[1].options[10].label
+#: gui/options/options.json[1].options[12].label
 msgid "Particles"
 msgstr "Partícules"
 
-#: gui/options/options.json[1].options[11].tooltip
+#: gui/options/options.json[1].options[13].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Si ta DESACTIVAO, emplega los axustes más baxos posibles pa renderizar l'agua. Eso fai que los demás axustes nun seyan relevantes.  "
 
-#: gui/options/options.json[1].options[11].label
+#: gui/options/options.json[1].options[13].label
 msgid "Water effects"
 msgstr "Efeutos d'agua"
 
-#: gui/options/options.json[1].options[12].tooltip
+#: gui/options/options.json[1].options[14].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Emplegar efeutos calidables pa l'agua, renderizando foles costeres, espluma marina & repompos navales."
 
-#: gui/options/options.json[1].options[12].label
+#: gui/options/options.json[1].options[14].label
 msgid "High-quality water effects"
 msgstr "Efeutos d'agua en calidá alta"
 
-#: gui/options/options.json[1].options[13].tooltip
+#: gui/options/options.json[1].options[15].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Emplegar la fondura efeutiva de l'agua nos cálculos de renderización."
 
-#: gui/options/options.json[1].options[13].label
+#: gui/options/options.json[1].options[15].label
 msgid "Real water depth"
 msgstr "Fondura real d'agua"
 
-#: gui/options/options.json[1].options[14].tooltip
+#: gui/options/options.json[1].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Dexar que l'agua reflexe una imaxe especular."
 
-#: gui/options/options.json[1].options[14].label
+#: gui/options/options.json[1].options[16].label
 msgid "Water reflections"
 msgstr "Reflexos na agua"
 
-#: gui/options/options.json[1].options[15].tooltip
+#: gui/options/options.json[1].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Emplegar un mapa de refraición d'agua real & non una tresparencia."
 
-#: gui/options/options.json[1].options[15].label
+#: gui/options/options.json[1].options[17].label
 msgid "Water refraction"
 msgstr "Refraición d'agua"
 
-#: gui/options/options.json[1].options[16].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Cast shadows on water."
 msgstr "Facer solombres na agua."
 
-#: gui/options/options.json[1].options[16].label
+#: gui/options/options.json[1].options[18].label
 msgid "Shadows on water"
 msgstr "Solombres na agua"
 
-#: gui/options/options.json[1].options[17].tooltip
+#: gui/options/options.json[1].options[19].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
 msgstr "Estenar ñidiamente la escuridá & la borrina de guerra."
 
-#: gui/options/options.json[1].options[17].label
+#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr "Visión ñidia"
 
-#: gui/options/options.json[1].options[18].tooltip
+#: gui/options/options.json[1].options[20].tooltip
 msgid "Render Sky."
 msgstr "Renderizar cielu."
 
-#: gui/options/options.json[1].options[18].label
+#: gui/options/options.json[1].options[20].label
 msgid "Show sky"
 msgstr "Amosar cielu"
 
-#: gui/options/options.json[1].options[19].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Executar vertical sync pa iguar engurries na pantalla. RIQUE REANICIU DEL XUEGU"
 
-#: gui/options/options.json[1].options[19].label
+#: gui/options/options.json[1].options[21].label
 msgid "VSync"
 msgstr "VSync"
 
-#: gui/options/options.json[1].options[20].tooltip
+#: gui/options/options.json[1].options[22].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "P'aforrar trabayu a la UCP, tasar la frecuencia de renderización en tolos menús. Afita al máximu pa desactivar la tasación."
 
-#: gui/options/options.json[1].options[20].label
+#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in menus"
 msgstr "Tasación FPS en menús"
 
-#: gui/options/options.json[1].options[21].tooltip
+#: gui/options/options.json[1].options[23].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "P'aforrar trabayu a la UCP, tasar la frecuencia de renderización al facer partíes. Afita al máximu pa desactivar la tasación. "
 
-#: gui/options/options.json[1].options[21].label
+#: gui/options/options.json[1].options[23].label
 msgid "FPS throttling in games"
 msgstr "Tasación FPS en partíes"
 

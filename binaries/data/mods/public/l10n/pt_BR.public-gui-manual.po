@@ -22,13 +22,13 @@
 # Ricardo Siqueira Oliveira Leite <ricardooliveira88@gmail.com>, 2016
 # Rui <xymarior@yandex.com>, 2018-2019
 # e05a6f0c527312287ac027cf3d3a35f5_685166c <0e3f187c36e42a887ffaef9a9e407417_190443>, 2015
-# Tiago <tiago.henrique.cco@gmail.com>, 2020
-# Tiago <tiago.henrique.cco@gmail.com>, 2018,2020
+# Tiago Melo <tiago.henrique.cco@gmail.com>, 2020
+# Tiago Melo <tiago.henrique.cco@gmail.com>, 2018,2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-06 07:17+0000\n"
-"PO-Revision-Date: 2020-08-01 18:12+0000\n"
+"PO-Revision-Date: 2020-08-14 03:43+0000\n"
 "Last-Translator: André Schwarz <andrschwarz@protonmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -259,242 +259,242 @@ msgstr "[font=\"sans-bold-14\"]Válidas durante o jogo[font=\"sans-14\"]"
 msgid ""
 "  Double Left Click \\[on unit] – Select all of your units of the same kind "
 "on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "Clique duplo sobre uma unidade: seleciona todas as unidades de mesmo tipo presentes na tela, mesmo se forem de grau hierárquico diferente"
 
 #: gui/manual/intro.txt:54
 msgid ""
 "  Triple Left Click \\[on unit] – Select all of your units of the same kind "
 "and the same rank on the screen"
-msgstr ""
+msgstr "Clique triplo sobre uma unidade: seleciona todas as unidades de mesmo tipo e mesmo grau hierárquico presentes na tela"
 
 #: gui/manual/intro.txt:55
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "Alt + duplo clique sobre uma unidade: seleciona todas as unidades de mesmo tipo em todo o mapa, inclusive as de grau hierárquico diferente"
 
 #: gui/manual/intro.txt:56
 msgid ""
 "  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
 "kind and rank on the entire map"
-msgstr ""
+msgstr "Alt + triplo clique sobre uma unidade: seleciona todas as unidades de mesmo tipo e mesmo grau hierárquico presentes no mapa"
 
 #: gui/manual/intro.txt:57
 msgid "  Shift + F5 – Quicksave"
-msgstr ""
+msgstr "  Shift + F5: salvamento rápido"
 
 #: gui/manual/intro.txt:58
 msgid "  Shift + F8 – Quickload"
-msgstr "Shift + F8 – Carregamento rápido"
+msgstr "Shift + F8: carregamento rápido"
 
 #: gui/manual/intro.txt:59
 msgid "  F10 – Toggle menu"
-msgstr ""
+msgstr "F10: mostra ou esconde o menu"
 
 #: gui/manual/intro.txt:60
 msgid "  F12 – Toggle time elapsed counter"
-msgstr ""
+msgstr "F12: mostra ou esconde o cronômetro"
 
 #: gui/manual/intro.txt:61
 msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "Esc: desfaz a seleção de unidades, ou fecha todas as janelas de chat ou menu"
 
 #: gui/manual/intro.txt:62
 msgid "  Enter (Return) – Open chat or send message"
-msgstr ""
+msgstr "  Enter: abre a janela de chat ou envia a mensagem"
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
-msgstr ""
+msgstr "T: envia mensagem de chat para toda a equipe"
 
 #: gui/manual/intro.txt:64
 msgid "  L – Chat with the previously selected private chat partner"
-msgstr ""
+msgstr "L: envia mensagem de chat privada para a pessoa com quem você está conversando em privado no momento"
 
 #: gui/manual/intro.txt:65
 msgid "  Pause – Pause or resume the game"
-msgstr ""
+msgstr "Pause: pausa o jogo ou desativa a pausa"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "  Delete – Delete currently selected unit(s)/structure(s), ask for "
 "confirmation"
-msgstr ""
+msgstr "Delete: remove as unidades ou estruturas selecionadas, solicitando confirmação para tanto"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "  Shift + Delete – Immediately delete currently selected "
 "unit(s)/structure(s), without asking for confirmation"
-msgstr ""
+msgstr "Shift + Delete: remove imediatamente todas as unidades e estruturas selecionadas, sem solicitar confirmação"
 
 #: gui/manual/intro.txt:68
 msgid "  / (Slash) – Select idle fighter"
-msgstr ""
+msgstr "/ (barra): seleciona guerreiro ocioso"
 
 #: gui/manual/intro.txt:69
 msgid "  Shift + / (Slash) – Add idle fighter to selection"
-msgstr ""
+msgstr "Shift + / (barra): inclui o guerreiro ocioso entre as unidades selecionadas no momento"
 
 #: gui/manual/intro.txt:70
 msgid "  Alt + / (Slash) – Select all idle fighters"
-msgstr ""
+msgstr "Alt + / (barra): seleciona todos os guerreiros ociosos"
 
 #: gui/manual/intro.txt:71
 msgid "  . (Period) – Select idle worker (including citizen-soldiers)"
-msgstr ""
+msgstr ". (ponto final): seleciona trabalhador ocioso, mesmo se ele também for um soldado"
 
 #: gui/manual/intro.txt:72
 msgid ""
 "  Shift + . (Period) – Add idle worker to selection (including citizen-"
 "soldiers)"
-msgstr ""
+msgstr "Shift + . (ponto final): inclui o trabalhador ocioso na lista de unidades selecionadas no momento, mesmo se ele também for um soldado"
 
 #: gui/manual/intro.txt:73
 msgid ""
 "  Alt + . (Period) – Select all idle workers (including citizen-soldiers)"
-msgstr ""
+msgstr "Alt + . (ponto final): seleciona todos os trabalhadores ociosos, inclusive os que também forem soldados"
 
 #: gui/manual/intro.txt:74
 msgid "  \\\\ (Backslash) – Select idle unit"
-msgstr ""
+msgstr "\\\\ (barra invertida): seleciona unidade ociosa"
 
 #: gui/manual/intro.txt:75
 msgid "  Shift + \\\\ (Backslash) – Add idle unit to selection"
-msgstr ""
+msgstr "Shift + \\\\ (barra invertida): inclui a unidade ociosa entre aquelas selecionadas no momento"
 
 #: gui/manual/intro.txt:76
 msgid "  Alt + \\\\ (Backslash) – Select all idle units"
-msgstr ""
+msgstr "Alt + \\\\ (barra invertida): seleciona todas as unidades ociosas"
 
 #: gui/manual/intro.txt:77
 msgid "  H – Stop (halt) the currently selected units"
-msgstr ""
+msgstr "H: faz todas as unidades selecionadas pararem onde estão"
 
 #: gui/manual/intro.txt:78
 msgid "  Y – The unit will go back to work"
-msgstr ""
+msgstr "Y: faz a unidade voltar ao trabalho"
 
 #: gui/manual/intro.txt:79
 msgid "  U – Unload the garrisoned units of the selected structure(s)"
-msgstr "U – Desaloja as unidades guarnecidas na(s) estrutura(s) selecionada(s)"
+msgstr "U: tira todas as unidades guarnecidas das estruturas selecionadas"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from "
 "the selected unit(s)/structure(s)"
-msgstr ""
+msgstr "Ctrl + 1 (ou qualquer número de 0 a 9): forma um grupo específico com as unidades ou estruturas selecionadas no momento."
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  1 (and so on up to 0) – Select the unit(s)/structure(s) in control group 1"
 " (to 0)"
-msgstr ""
+msgstr "1 (ou qualquer outro número de 0 a 9): ativa o grupo específico correspondente"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr ""
+msgstr "Shift +1 (ou qualquer outro número de 0 a 9): seleciona o grupo específico correspondente, junto com as unidades ou estruturas que já estão selecionadas"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "  Ctrl + F5 (and so on up to F8) – Mark the current camera position, for "
 "jumping back to later"
-msgstr ""
+msgstr "Ctrl + [qualquer tecla de F5 a F8]: salva a posição atual da câmera, para retornar depois"
 
 #: gui/manual/intro.txt:84
 msgid ""
 "  F5 (and so on up to F8) – Move the camera to a marked position. Jump back "
 "to the last location if the camera is already over the marked position"
-msgstr ""
+msgstr "[qualquer tecla de F5 a F8]: retorna a câmera à posição salva anteriormente. Faz retornar à posição anterior se a câmera já estiver na posição salva"
 
 #: gui/manual/intro.txt:85
 msgid ""
 "  Z, X, C, V, B, N, M – With training structure selected. Add the 1st, 2nd, "
 "… unit shown to the training queue for all the selected structures"
-msgstr ""
+msgstr "  Z, X, C, V, B, N, M [quando uma construção está selecionada]: manda treinar uma das unidades que a construção produz. Z manda produzir a do primeiro botão, X a do segundo e assim por diante"
 
 #: gui/manual/intro.txt:86
 msgid ""
 "  PageUp with unit(s) selected – Highlight the unit(s)/structure(s) guarded "
 "by the selection"
-msgstr ""
+msgstr "PageUp: destaca as construções ou unidades que as unidades ou construções selecionadas no momento estão protegendo"
 
 #: gui/manual/intro.txt:87
 msgid ""
 "  PageDown with unit(s)/structure(s) selected – Highlight the unit(s) "
 "guarding the selection"
-msgstr ""
+msgstr "PageDown: destaca as unidades ou construções que estão sendo protegidas pelas unidades ou construçẽos selecionadas no momento"
 
 #: gui/manual/intro.txt:88
 msgid ""
 "  Tab – See all status bars (which would also show the building progress)"
-msgstr ""
+msgstr "Tab: mostra todas as barras de status, mostrando também o estágio atual de uma construção em andamento"
 
 #: gui/manual/intro.txt:89
 msgid "  Ctrl + Tab – Toggle summary window"
-msgstr ""
+msgstr "Ctrl + Tab: mostra ou esconde a janela de dados resumidos"
 
 #: gui/manual/intro.txt:90
 msgid "  Alt + L – Show the multiplayer lobby in a dialog window"
-msgstr ""
+msgstr "Alt + L: abre uma janela de diálogo que mostra o lobby de jogadores do servidor"
 
 #: gui/manual/intro.txt:91
 msgid "  Ctrl + H – Toggle in-game diplomacy panel"
-msgstr ""
+msgstr "Ctrl + H: Mostra ou oculta o panel de diplomacia"
 
 #: gui/manual/intro.txt:92
 msgid "  Ctrl + B – Toggle in-game barter and trade panel"
-msgstr ""
+msgstr "Ctrl + B: Mostra ou oculta o painel de comércio entre jogadores"
 
 #: gui/manual/intro.txt:93
 msgid "  Ctrl + O – Toggle in-game objectives panel"
-msgstr ""
+msgstr "Ctrl + O: mostra ou oculta o painel de objetivos do jogo"
 
 #: gui/manual/intro.txt:94
 msgid "  Ctrl + P – Toggle in-game tutorial panel"
-msgstr ""
+msgstr "Ctrl + P: mostra ou oculta o painel tutorial"
 
 #: gui/manual/intro.txt:95
 msgid "  Alt + Shift + T – Toggle structure tree panel"
-msgstr ""
+msgstr "  Alt + Shift + T: mostra ou oculta o painel da árvore de construções"
 
 #: gui/manual/intro.txt:96
 msgid "  Alt + Shift + H – Toggle civilization info panel"
-msgstr ""
+msgstr "  Alt + Shift + H: mostra ou oculta o painel informativo das civilizações"
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Modificação de comandos do mouse[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
 msgid "  Ctrl + Right Click on structure – Garrison"
-msgstr ""
+msgstr "Ctrl + clique com o botão direito em uma construção: guarnecer"
 
 #: gui/manual/intro.txt:100
 msgid "  J + Right Click on structure – Repair"
-msgstr "J + Clique Direito na estrutura – Reparar"
+msgstr "J + clique com o botão direito em uma construção: fazer reparos"
 
 #: gui/manual/intro.txt:101
 msgid "  P + Right Click – Patrol"
-msgstr ""
+msgstr "  P + clique com o botão direito: patrulhar"
 
 #: gui/manual/intro.txt:102
 msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
-msgstr ""
+msgstr "Shift + clique com o botão direito do mouse: serve para efetuar vários comandos, que serão executados em sequência"
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  Alt + Right Click – Order one unit from the current selection to "
 "move/build/gather/etc. and unselect it. Used to quickly dispatch units with "
 "specific tasks"
-msgstr ""
+msgstr "Alt + clique com o botão direito do mouse: manda uma das unidades selecionadas no momento ir a algum lugar ou executar uma ação, retirando-a imediatamente da lista de unidades selecionadas. Útil para várias ações serem realizadas ao mesmo tempo"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "  Shift + Left Click when training units – Add units in batches (the batch "
 "size is 5 by default and can be changed in the options)"
-msgstr "Shift + Clique Esquerdo ao treinar unidades – Adiciona unidades em lotes (o tamanho do lote é 5 por padrão e pode ser alterado nas configurações)"
+msgstr "Shift + clique com o botão esquerdo do mouse, ao mandar produzir unidades: manda construir um grupo de uma determinada unidade. O tamanho predefinido é de cinco unidades, mas pode ser alterado nas configurações"
 
 #: gui/manual/intro.txt:105
 msgid ""
