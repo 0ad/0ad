@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-31 07:09+0000\n"
-"PO-Revision-Date: 2020-07-31 17:26+0000\n"
+"POT-Creation-Date: 2020-08-10 07:08+0000\n"
+"PO-Revision-Date: 2020-08-10 17:22+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -1690,7 +1690,7 @@ msgid ""
 "improve performance and compatibility."
 msgstr "버그를 수정하고 성능과 호환성을 향상시키는 데 도움이 되는 의견제출기능을 자동으로 보내주십시오."
 
-#: gui/reference/common/TemplateParser.js:126
+#: gui/reference/common/TemplateParser.js:128
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s 부터 %(health_max)s"
@@ -2749,6 +2749,7 @@ msgstr "친구들"
 
 #: gui/options/options.json[0].options[9].list[2].label
 #: gui/options/options.json[1].options[4].list[0].label
+#: gui/options/options.json[1].options[5].list[0].label
 #: gui/options/options.json[3].options[5].list[2].label
 msgid "Disabled"
 msgstr "사용안함"
@@ -2836,170 +2837,198 @@ msgstr "가장자리의 앨리어싱 효과를 줄입니다."
 msgid "Anti-Aliasing"
 msgstr "안티 알리어싱"
 
+#: gui/options/options.json[1].options[5].list[0].tooltip
+msgid "Do not use sharpening."
+msgstr ""
+
+#: gui/options/options.json[1].options[5].list[1].tooltip
+msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
+msgstr ""
+
+#: gui/options/options.json[1].options[5].list[1].label
+msgid "FidelityFX CAS"
+msgstr ""
+
 #: gui/options/options.json[1].options[5].tooltip
+msgid "Reduce blurry effects."
+msgstr ""
+
+#: gui/options/options.json[1].options[5].label
+msgid "Sharpening"
+msgstr ""
+
+#: gui/options/options.json[1].options[6].tooltip
+msgid "The sharpness of the choosen pass."
+msgstr ""
+
+#: gui/options/options.json[1].options[6].label
+msgid "Sharpness factor"
+msgstr ""
+
+#: gui/options/options.json[1].options[7].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "그림자 효과의 수입니다. 이 기능을 사용하시려면 놀이를 다시 시작해야합니다."
 
-#: gui/options/options.json[1].options[5].label
+#: gui/options/options.json[1].options[7].label
 msgid "Shader effects"
 msgstr "그림자 효과"
 
-#: gui/options/options.json[1].options[6].tooltip
+#: gui/options/options.json[1].options[8].tooltip
 msgid "Enable shadows."
 msgstr "그림자 활성화."
 
-#: gui/options/options.json[1].options[6].label
+#: gui/options/options.json[1].options[8].label
 msgid "Shadows"
 msgstr "그림자"
 
-#: gui/options/options.json[1].options[7].list[0].label
+#: gui/options/options.json[1].options[9].list[0].label
 msgid "Very Low"
 msgstr "매우 낮음"
 
-#: gui/options/options.json[1].options[7].list[1].label
+#: gui/options/options.json[1].options[9].list[1].label
 msgid "Low"
 msgstr "낮음"
 
-#: gui/options/options.json[1].options[7].list[2].label
+#: gui/options/options.json[1].options[9].list[2].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
 msgstr "중간"
 
-#: gui/options/options.json[1].options[7].list[3].label
+#: gui/options/options.json[1].options[9].list[3].label
 msgid "High"
 msgstr "높음"
 
-#: gui/options/options.json[1].options[7].list[4].label
+#: gui/options/options.json[1].options[9].list[4].label
 msgid "Very High"
 msgstr "매우 높음"
 
-#: gui/options/options.json[1].options[7].tooltip
+#: gui/options/options.json[1].options[9].tooltip
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
 msgstr "그림자 지도 해상도. 메모리가 부족한 그래픽 카드를 사용하면 높은 값이 놀이가 중단될 수 있습니다!"
 
-#: gui/options/options.json[1].options[7].label
+#: gui/options/options.json[1].options[9].label
 msgid "Shadow quality"
 msgstr "그림자 품질"
 
-#: gui/options/options.json[1].options[8].tooltip
+#: gui/options/options.json[1].options[10].tooltip
 msgid "Smooth shadows."
 msgstr "부드러운 그림자."
 
-#: gui/options/options.json[1].options[8].label
+#: gui/options/options.json[1].options[10].label
 msgid "Shadow filtering"
 msgstr "그림자 거르는 중"
 
-#: gui/options/options.json[1].options[9].tooltip
+#: gui/options/options.json[1].options[11].tooltip
 msgid "Show outlines of units behind structures."
 msgstr "건축물 뒤에 유닛 윤곽을 표시합니다."
 
-#: gui/options/options.json[1].options[9].label
+#: gui/options/options.json[1].options[11].label
 msgid "Unit silhouettes"
 msgstr "유닛 윤곽"
 
-#: gui/options/options.json[1].options[10].tooltip
+#: gui/options/options.json[1].options[12].tooltip
 msgid "Enable particles."
 msgstr "입자 활성화."
 
-#: gui/options/options.json[1].options[10].label
+#: gui/options/options.json[1].options[12].label
 msgid "Particles"
 msgstr "입자"
 
-#: gui/options/options.json[1].options[11].tooltip
+#: gui/options/options.json[1].options[13].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "OFF인 경우, 가능한 가장 낮은 설정을 사용하여 물을 렌더링합니다. 이렇게 하면 다른 설정과 관련성이 없어집니다."
 
-#: gui/options/options.json[1].options[11].label
+#: gui/options/options.json[1].options[13].label
 msgid "Water effects"
 msgstr "물 효과"
 
-#: gui/options/options.json[1].options[12].tooltip
+#: gui/options/options.json[1].options[14].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "물, 해안파도 렌더링, 해안의 파도거품, 선박 노선 등에 고품질 효과를 활용합니다."
 
-#: gui/options/options.json[1].options[12].label
+#: gui/options/options.json[1].options[14].label
 msgid "High-quality water effects"
 msgstr "높은 품질의 물 효과"
 
-#: gui/options/options.json[1].options[13].tooltip
+#: gui/options/options.json[1].options[15].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "렌더링 계산에 실제 수심을 사용합니다."
 
-#: gui/options/options.json[1].options[13].label
+#: gui/options/options.json[1].options[15].label
 msgid "Real water depth"
 msgstr "실제 수심"
 
-#: gui/options/options.json[1].options[14].tooltip
+#: gui/options/options.json[1].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "물이 반사 이미지를 반영하도록 합니다."
 
-#: gui/options/options.json[1].options[14].label
+#: gui/options/options.json[1].options[16].label
 msgid "Water reflections"
 msgstr "물위 반사"
 
-#: gui/options/options.json[1].options[15].tooltip
+#: gui/options/options.json[1].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "투명도가 아닌 실제 물의 굴절 지도를 사용합니다."
 
-#: gui/options/options.json[1].options[15].label
+#: gui/options/options.json[1].options[17].label
 msgid "Water refraction"
 msgstr "물위 반사"
 
-#: gui/options/options.json[1].options[16].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Cast shadows on water."
 msgstr "물 위에 그림자를 드립니다."
 
-#: gui/options/options.json[1].options[16].label
+#: gui/options/options.json[1].options[18].label
 msgid "Shadows on water"
 msgstr "물 위의 그림자"
 
-#: gui/options/options.json[1].options[17].tooltip
+#: gui/options/options.json[1].options[19].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
 msgstr "어둠과 전쟁의 안개를 부드럽게 들어올립니다."
 
-#: gui/options/options.json[1].options[17].label
+#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr "부드러운 시야 이동"
 
-#: gui/options/options.json[1].options[18].tooltip
+#: gui/options/options.json[1].options[20].tooltip
 msgid "Render Sky."
 msgstr "하늘 렌더링합니다."
 
-#: gui/options/options.json[1].options[18].label
+#: gui/options/options.json[1].options[20].label
 msgid "Show sky"
 msgstr "하늘 표시"
 
-#: gui/options/options.json[1].options[19].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "수직 동기화를 실행하여 화면 찢김 문제를 해결하십시오. 놀이를 다시 시작해야합니다."
 
-#: gui/options/options.json[1].options[19].label
+#: gui/options/options.json[1].options[21].label
 msgid "VSync"
 msgstr "수직 동기화"
 
-#: gui/options/options.json[1].options[20].tooltip
+#: gui/options/options.json[1].options[22].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "CPU 작업량을 절약하려면 모든 차림표에서 렌더링 빈도를 조절하십시오. 조절을 사용하지 않으려면 최대 값으로 설정하십시오."
 
-#: gui/options/options.json[1].options[20].label
+#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in menus"
 msgstr "차림표에서 FPS 조절"
 
-#: gui/options/options.json[1].options[21].tooltip
+#: gui/options/options.json[1].options[23].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "CPU 작업량을 줄이려면 실행중인 놀이에서 렌더링 빈도를 조절하십시오. 조절을 사용하지 않으려면 최대 값으로 설정하십시오."
 
-#: gui/options/options.json[1].options[21].label
+#: gui/options/options.json[1].options[23].label
 msgid "FPS throttling in games"
 msgstr "놀이에서 FPS 조절"
 

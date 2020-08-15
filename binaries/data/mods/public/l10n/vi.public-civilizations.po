@@ -6,14 +6,15 @@
 # Huynh Yen Loc <yenloc@outlook.com>, 2014
 # Lục Cửu Tử Ư <kimtan090807@gmail.com>, 2020
 # Sortale <sortale.zerok@gmail.com>, 2014
+# tran gia <yoda030201@gmail.com>, 2020
 # viet2uyen <vietquyen1810@gmail.com>, 2014
 # YubiGalaxy <yubigalaxy@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-03 07:16+0000\n"
-"PO-Revision-Date: 2020-08-03 11:14+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-08-10 07:08+0000\n"
+"PO-Revision-Date: 2020-08-10 12:53+0000\n"
+"Last-Translator: tran gia <yoda030201@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/wildfire-games/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,25 +25,25 @@ msgstr ""
 #: simulation/data/civs/athen.jsonName
 #: simulation/data/civs/athen.jsonFactions[0].Name
 msgid "Athenians"
-msgstr "Người Athen"
+msgstr "người Athens"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
 #: simulation/data/civs/mace.jsonCivBonuses[0].Description
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "Công trình +10% máu và +10% điểm chiếm đoạt"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 #: simulation/data/civs/mace.jsonCivBonuses[0].Name
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Hellenic Architecture"
-msgstr ""
+msgstr "Kiến trúc Hy Lạp"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 #: simulation/data/civs/mace.jsonCivBonuses[0].History
 #: simulation/data/civs/spart.jsonCivBonuses[0].History
 msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr ""
+msgstr "Người Hy Lạp sử dụng đá để xây dựng các công trinh vào đầu thời kỳ Mycenae"
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
@@ -56,7 +57,7 @@ msgstr "Con cú Bạc"
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr "Các hầm mỏ tại Laureion thuộc Attica cung cấp cho Athens một lượng lớn bạc và được dùng để đúc loại tiền quý và nổi tiếng, Cú của Athena."
+msgstr "Các hầm mỏ tại Laureion thuộc Attica cung cấp cho Athens một lượng lớn bạc và được dùng để đúc một loại tiền có giá trị và nổi tiếng, con Cú Athena."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Allied Warships −25% construction time."
@@ -229,7 +230,7 @@ msgstr "Nhà rèn luyện"
 #: simulation/data/civs/athen.jsonStructures[1].Special
 msgid ""
 "Train champion units and research technologies pertaining to champion units."
-msgstr ""
+msgstr "Huấn luyện các binh chủng vô địch và nghiên cứu các công nghệ dành cho họ"
 
 #: simulation/data/civs/athen.jsonStructures[1].History
 msgid ""
@@ -243,7 +244,7 @@ msgstr "Prytaneion"
 
 #: simulation/data/civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
-msgstr ""
+msgstr "Huấn luyện các anh hùng và nghiên cứu các công nghệ liên quan tới họ"
 
 #: simulation/data/civs/athen.jsonStructures[2].History
 msgid ""
@@ -257,7 +258,7 @@ msgid ""
 "Athens was famed as a center for the arts, learning and philosophy. The "
 "Athenians were also powerful warriors, particularly at sea. At its peak, "
 "Athens dominated a large part of the Hellenic world for several decades."
-msgstr ""
+msgstr "Là cái nôi của văn minh phương Tây và là nơi khai sinh chế độ dân chủ, Athens còn được biết đến rộng rãi là trung tâm của nghệ thuật, học thuật và triết học. Người Athens cũng là những chiến binh cừ khôi, đặc biệt ở trên biển. Vào thời kỳ đỉnh cao, Athens đã từng thống trị phần lớn thế giới Hy Lạp trong vài thập kỷ"
 
 #: simulation/data/civs/brit.jsonName
 #: simulation/data/civs/brit.jsonFactions[0].Name
@@ -607,7 +608,7 @@ msgid "Celtic Embassy"
 msgstr "Sứ quán xứ Celt"
 
 #: simulation/data/civs/cart.jsonStructures[1].Special
-msgid "Hire Celtic mercenaries."
+msgid "Train Celtic Mercenaries."
 msgstr ""
 
 #: simulation/data/civs/cart.jsonStructures[1].History
@@ -615,32 +616,32 @@ msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
 msgstr ""
 
 #: simulation/data/civs/cart.jsonStructures[2].Name
-msgid "Italiote Embassy"
-msgstr "Sứ quán xứ Italia"
-
-#: simulation/data/civs/cart.jsonStructures[2].Special
-msgid "Hire Italian mercenaries."
-msgstr ""
-
-#: simulation/data/civs/cart.jsonStructures[2].History
-msgid ""
-"When Hannibal invaded Italy and defeated the Romans in a series of battles, "
-"many of the Italian peoples subject to Rome, including the Italian Greeks "
-"and powerful Samnites, revolted and joined the Carthaginian cause."
-msgstr ""
-
-#: simulation/data/civs/cart.jsonStructures[3].Name
 msgid "Iberian Embassy"
 msgstr "Sứ quán xứ Iberian"
 
-#: simulation/data/civs/cart.jsonStructures[3].Special
-msgid "Hire Iberian mercenaries."
+#: simulation/data/civs/cart.jsonStructures[2].Special
+msgid "Train Iberian Mercenaries."
+msgstr "Huấn luyện lính đánh thuê xứ Iberia"
+
+#: simulation/data/civs/cart.jsonStructures[2].History
+msgid ""
+"The Iberians were known as fierce mercenaries, loyal to their paymasters."
+msgstr "Người Iberia được biết đến như những người lính đánh thuê hung tợn, trung thành với những ai trả giá cao cho họ"
+
+#: simulation/data/civs/cart.jsonStructures[3].Name
+msgid "Italic Embassy"
 msgstr ""
+
+#: simulation/data/civs/cart.jsonStructures[3].Special
+msgid "Train Italic Mercenaries."
+msgstr "Huấn luyện lính đánh thuê vùng Italia"
 
 #: simulation/data/civs/cart.jsonStructures[3].History
 msgid ""
-"The Iberians were known as fierce mercenaries, loyal to their paymasters."
-msgstr ""
+"When Hannibal invaded Italy and defeated the Romans in a series of battles, "
+"many of the peoples subject to Rome, including the Greeks and Samnites, "
+"revolted and joined the Carthaginian cause."
+msgstr "Khi Hannibal xâm lược Italy và đánh bại La Mã trong hàng loạt trận chiến, rất nhiều chư hầu của người La Mã, bao gồm Hy Lạp và Samnite, nổi dậy và tham gia lực lượng của người Carthage"
 
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
@@ -650,7 +651,7 @@ msgid ""
 "among the fiercest contenders on the high seas, and masters of naval trade. "
 "They deployed towered War Elephants on the battlefield to fearsome effect, "
 "and had defensive walls so strong, they were never breached."
-msgstr ""
+msgstr "Carthage, một thành bang tọa lạc ở Tunisia ngày nay, từng là thế lực ghê gớm ở phía tây Địa Trung Hải, lãnh thổ rộng lớn nhất của họ gồm phần lớn vùng Bắc Phi và Tây Ban Nha ngày nay. Thủy thủ người Carthage vô cùng hung bạo, đồng thời họ cũng là bậc thầy trong việc giao thương hàng hải. Họ thường đem voi chiến lên chiến trường tạo hiệu quả làm kẻ địch hoảng sợ, cộng với một hệ thống phòng thủ chặt chẽ, họ đã từng không thể nào bị xâm lược"
 
 #: simulation/data/civs/gaul.jsonName
 #: simulation/data/civs/gaul.jsonFactions[0].Name
@@ -683,7 +684,7 @@ msgstr "Tín ngưỡng của người Celtic và tôn giáo druidry lấy cảm 
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Blacksmiths −15% technology resource costs and research time."
-msgstr ""
+msgstr "Lò rèn -15% tài nguyên nghiên cứu công nghệ"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Products from Gaul"
@@ -740,7 +741,7 @@ msgstr ""
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
 msgid "Workers +15% grain gather rate."
-msgstr ""
+msgstr "Nhân công +15% khả năng thu hạch lúa mì"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Harvesting Machine"

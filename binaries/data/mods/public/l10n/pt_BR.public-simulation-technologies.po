@@ -24,16 +24,17 @@
 # Raphael Mendonça, 2014
 # Rui <xymarior@yandex.com>, 2018-2019
 # magalidade <tazer.extreme@gmail.com>, 2014
-# Tiago <tiago.henrique.cco@gmail.com>, 2020
-# Tiago <tiago.henrique.cco@gmail.com>, 2018-2020
+# Tiago Melo <tiago.henrique.cco@gmail.com>, 2020
+# Tiago Melo <tiago.henrique.cco@gmail.com>, 2020
+# Tiago Melo <tiago.henrique.cco@gmail.com>, 2018-2020
 # Victor Gregório <vt_marv@hotmail.com>, 2017
 # Washington Ramon Santos nascimento <washington_ramon123@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-07 07:10+0000\n"
-"PO-Revision-Date: 2020-08-07 08:39+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-08-11 12:17+0000\n"
+"Last-Translator: Tiago Melo <tiago.henrique.cco@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,12 +46,12 @@ msgstr ""
 msgid ""
 "The Indian, Iranian, and Kushite peoples had a tradition of fine archery and"
 " a penchant for using massed archers in battle."
-msgstr "Os povos Indianos, Iranianos e Cuxitas possuíam tradição no uso de arco e flechas, além de uma propensão no uso de arqueiros em massa nas batalhas."
+msgstr "Os povos Indianos, Iranianos e Cuchitas possuíam tradição no uso de arco e flechas, além de uma propensão no uso de arqueiros em massa nas batalhas."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "Arqueiros têm -10% de tempo de treinamento, +8 de alcance de ataque e -10% de dispersão de ataque à distância."
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -74,7 +75,7 @@ msgstr "Armadura de metal para o rosto do cavalo."
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
 msgid "Cavalry +1 hack and pierce armor."
-msgstr ""
+msgstr "Cavalaria tem +1 de armadura contra corte e perfuração."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -187,7 +188,7 @@ msgstr "Armadura de corpo feita completamente de ferro, o metal mais duro possí
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
 msgid "Heroes +50 metal cost, +2 hack and pierce armor."
-msgstr ""
+msgstr "Heróis têm +50 de custo de metal e +2 de armadura contra corte e perfuração."
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -212,7 +213,7 @@ msgstr "Armadura para o corpo de couro ou linho acolchoado para a infantaria."
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
 msgid "Infantry +1 hack and pierce armor."
-msgstr ""
+msgstr "Infantaria tem +1 de armadura contra corte e perfuração."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -259,7 +260,7 @@ msgstr "Revestimento de Chumbo protege o casco dos barcos."
 #: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid "Ships +2 armor."
-msgstr ""
+msgstr "Navios têm +2 de armadura."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -770,7 +771,7 @@ msgstr "Aumenta a taxa de cura de todos os curandeiros."
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers −20% healing time."
-msgstr ""
+msgstr "Curandeiros têm -20% de tempo de cura."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -1216,7 +1217,7 @@ msgstr "Melhora os recursos de defesa dos comerciantes."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
 msgid "Traders +2 hack and pierce armor."
-msgstr ""
+msgstr "Comerciantes têm +2 de armadura contra corte e perfuração."
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName
@@ -1287,7 +1288,7 @@ msgid ""
 "capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
 "healing strength and +3 healing range; Melee units +20% attack damage; "
 "Ranged units +4 attack range and −10% spread."
-msgstr ""
+msgstr "Unidades Avançadas e de Elite têm +20% de tempo de treinamento, +1 de armadura, +10% de saúde, +0,7 de poder de captura, +20% de saque e -30% de velocidade de coleta; Curandeiros têm +5 de poder de cura e +3 de alcance de cura; Unidades corpo-a-corpo têm +20% de dano de ataque; Unidades de longo alcance têm +4 de alcance de ataque e -10% de dispersão."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
@@ -1307,7 +1308,7 @@ msgid ""
 "strength, +20% loot, and −30% gather speed; Healers +5 healing strength and "
 "+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
 "range and −10% spread."
-msgstr ""
+msgstr "Unidades de Elite têm +20% de tempo de treinamento, +1 de armadura, +10% de saúde, +0,8 de poder de captura, +20% de saque e -30% de velocidade de coleta; Curandeiros têm +5 de poder de cura e +3 de alcance de cura; Unidades corpo-a-corpo têm +20% de dano de ataque; Unidades de longo alcance têm +4 de alcance de ataque e -10% de dispersão."
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""
@@ -1471,7 +1472,7 @@ msgstr "Os Cartagineses construíram suas muralhas em três circuitos concêntri
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "Muralhas têm +100% de tempo de construção, +100% de custo de pedra e +200% de saúde."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -1497,7 +1498,7 @@ msgstr "Os gregos usavam a construção de pedra dos tempos antigos micênicos."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "Estruturas têm +10% de saúde e +10% de pontos de captura."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -1597,7 +1598,7 @@ msgstr "Os espartanos eram internados e recebiam treinamento militar desde muito
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "Lanceiros de Infantaria Campeão têm +25% de saúde, mas +5% de tempo de treinamento."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -1790,7 +1791,7 @@ msgstr "Começando por Alexandre, os monarcas helenísticos fundaram muitas cida
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Centros Cívicos têm +100% de saúde e pontos de captura e o dobro de flechas padrão."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
