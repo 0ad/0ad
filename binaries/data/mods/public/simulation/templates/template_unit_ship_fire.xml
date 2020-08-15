@@ -28,10 +28,7 @@
       <Crush>300.0</Crush>
     </Damage>
   </DeathDamage>
-  <Footprint>
-    <Square width="8.0" depth="24.0"/>
-    <Height>8.0</Height>
-  </Footprint>
+  <GarrisonHolder disable=""/>
   <Health>
     <Max>500</Max>
     <RegenRate>-6</RegenRate>
@@ -42,9 +39,9 @@
     </DamageVariants>
   </Health>
   <Identity>
-    <VisibleClasses datatype="tokens">Melee Warship Fireship</VisibleClasses>
     <GenericName>Fire Ship</GenericName>
     <Tooltip>Rapidly drain the health of enemy ships. Slowly loses health due to being on fire, so use the Fire Ship quickly.</Tooltip>
+    <VisibleClasses datatype="tokens">Melee Warship Fireship</VisibleClasses>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot disable=""/>

@@ -36,27 +36,18 @@
       <metal>50</metal>
     </Resources>
   </Cost>
-  <Footprint>
-    <Square width="8.0" depth="33.0"/>
-    <Height>10.0</Height>
-  </Footprint>
   <GarrisonHolder>
     <Max>20</Max>
-    <EjectHealth>0</EjectHealth>
-    <EjectClassesOnDestroy datatype="tokens">FemaleCitizen Infantry Healer Dog</EjectClassesOnDestroy>
-    <List datatype="tokens">Support Infantry Cavalry Dog</List>
-    <BuffHeal>0</BuffHeal>
-    <LoadingRange>10</LoadingRange>
-    <Pickup>true</Pickup>
+    <List datatype="tokens">Support Cavalry</List>
   </GarrisonHolder>
   <Health>
     <Max>800</Max>
   </Health>
   <Identity>
-    <VisibleClasses datatype="tokens">Ranged Warship Bireme</VisibleClasses>
     <GenericName>Light Warship</GenericName>
-    <RequiredTechnology>phase_town</RequiredTechnology>
     <Tooltip>Garrison units for transport and to increase firepower.</Tooltip>
+    <VisibleClasses datatype="tokens">Ranged Warship Bireme</VisibleClasses>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>75</xp>
@@ -73,4 +64,7 @@
   <UnitMotion>
     <WalkSpeed op="mul">1.55</WalkSpeed>
   </UnitMotion>
+  <Vision>
+    <Range>90</Range>
+  </Vision>
 </Entity>
