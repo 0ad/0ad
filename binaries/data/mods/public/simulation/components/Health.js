@@ -181,14 +181,14 @@ Health.prototype.Kill = function()
  * Take damage according to the entity's resistance.
  * @param {Object} strengths - { "hack": number, "pierce": number, "crush": number } or something like that.
  * @param {number} bonusMultiplier - the damage multiplier.
- * Returns object of the form { "killed": false, "change": -12 }.
+ * Returns object of the form { "healthChange": -12 }.
  */
 Health.prototype.TakeDamage = function(effectData, attacker, attackerOwner, bonusMultiplier)
 {
 	let cmpResistance = Engine.QueryInterface(this.entity, IID_Resistance);
 
-	if (cmpResistance && cmpResistance.IsInvulnerable())
-		return { "killed": false };
+	if (!this.hitpoints || cmpResistance && cmpResistance.IsInvulnerable())
+		return { "healthChange": 0 };
 
 	let total = Attacking.GetTotalAttackEffects(effectData, "Damage", cmpResistance) * bonusMultiplier;
 
@@ -196,15 +196,48 @@ Health.prototype.TakeDamage = function(effectData, attacker, attackerOwner, bonu
 	let change = this.Reduce(total);
 
 	let cmpLoot = Engine.QueryInterface(this.entity, IID_Loot);
-	if (cmpLoot && cmpLoot.GetXp() > 0 && change.HPchange < 0)
-		change.xp = cmpLoot.GetXp() * -change.HPchange / this.GetMaxHitpoints();
+	if (cmpLoot && cmpLoot.GetXp() > 0 && change.healthChange < 0)
+		change.xp = cmpLoot.GetXp() * -change.healthChange / this.GetMaxHitpoints();
+
+	if (!this.hitpoints)
+		this.KilledBy(attacker, attackerOwner);
 
 	return change;
 };
 
 /**
+ * Called when an entity kills us.
+ * @param {number} attacker - The entityID of the killer.
+ * @param {number} attackerOwner - The playerID of the attacker.
+ */
+Health.prototype.KilledBy = function(attacker, attackerOwner)
+{
+	let cmpAttackerOwnership = Engine.QueryInterface(attacker, IID_Ownership);
+	if (cmpAttackerOwnership)
+	{
+		let currentAttackerOwner = cmpAttackerOwnership.GetOwner();
+		if (currentAttackerOwner != INVALID_PLAYER)
+			attackerOwner = currentAttackerOwner;
+	}
+
+	// Add to killer statistics.
+	let cmpKillerPlayerStatisticsTracker = QueryPlayerIDInterface(attackerOwner, IID_StatisticsTracker);
+	if (cmpKillerPlayerStatisticsTracker)
+		cmpKillerPlayerStatisticsTracker.KilledEntity(this.entity);
+
+	// Add to loser statistics.
+	let cmpTargetPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+	if (cmpTargetPlayerStatisticsTracker)
+		cmpTargetPlayerStatisticsTracker.LostEntity(this.entity);
+
+	let cmpLooter = Engine.QueryInterface(attacker, IID_Looter);
+	if (cmpLooter)
+		cmpLooter.Collect(this.entity);
+};
+
+/**
  * @param {number} amount - The amount of hitpoints to substract. Kills the entity if required.
- * @return {{killed:boolean, HPchange:number}} -  Number of health points lost and whether the entity was killed.
+ * @return {{ healthChange:number }} -  Number of health points lost.
  */
 Health.prototype.Reduce = function(amount)
 {
@@ -213,7 +246,7 @@ Health.prototype.Reduce = function(amount)
 	// might get called multiple times)
 	// Likewise if the amount is 0.
 	if (!amount || !this.hitpoints)
-		return { "killed": false, "HPchange": 0 };
+		return { "healthChange": 0 };
 
 	// Before changing the value, activate Fogging if necessary to hide changes
 	let cmpFogging = Engine.QueryInterface(this.entity, IID_Fogging);
@@ -227,7 +260,7 @@ Health.prototype.Reduce = function(amount)
 		this.hitpoints = 0;
 		this.RegisterHealthChanged(oldHitpoints);
 		this.HandleDeath();
-		return { "killed": true, "HPchange": -oldHitpoints };
+		return { "healthChange": -oldHitpoints };
 	}
 
 	// If we are not marked as injured, do it now
@@ -240,7 +273,7 @@ Health.prototype.Reduce = function(amount)
 
 	this.hitpoints -= amount;
 	this.RegisterHealthChanged(oldHitpoints);
-	return { "killed": false, "HPchange": this.hitpoints - oldHitpoints };
+	return { "healthChange": this.hitpoints - oldHitpoints };
 };
 
 /**
