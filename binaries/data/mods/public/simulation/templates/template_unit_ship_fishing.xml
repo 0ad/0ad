@@ -18,39 +18,38 @@
       <RestrictedClasses datatype="tokens">!SeaCreature</RestrictedClasses>
     </Melee>
   </Attack>
-  <Footprint>
-    <Square width="4.0" depth="10.0"/>
-    <Height>6.0</Height>
-  </Footprint>
+  <Cost>
+    <BuildTime>20</BuildTime>
+    <Resources>
+      <wood>50</wood>
+    </Resources>
+  </Cost>
   <GarrisonHolder>
     <Max>1</Max>
-    <EjectHealth>0</EjectHealth>
-    <EjectClassesOnDestroy datatype="tokens">FemaleCitizen Infantry Healer</EjectClassesOnDestroy>
-    <List datatype="tokens">Support Infantry</List>
-    <BuffHeal>0</BuffHeal>
-    <LoadingRange>10</LoadingRange>
-    <Pickup>true</Pickup>
   </GarrisonHolder>
+  <Health>
+    <Max>200</Max>
+  </Health>
   <Identity>
-    <Classes datatype="tokens">-ConquestCritical</Classes>
-    <VisibleClasses datatype="tokens">FishingBoat</VisibleClasses>
-    <Formations disable=""/>
     <GenericName>Fishing Boat</GenericName>
     <SelectionGroupName>template_unit_ship_fishing</SelectionGroupName>
     <Tooltip>Fish the waters for food.</Tooltip>
+    <Classes datatype="tokens">-ConquestCritical</Classes>
+    <VisibleClasses datatype="tokens">FishingBoat</VisibleClasses>
   </Identity>
   <Loot>
     <xp>1</xp>
     <wood>10</wood>
-    <metal>0</metal>
   </Loot>
   <ResourceGatherer>
     <MaxDistance>6.0</MaxDistance>
-    <BaseSpeed>1.0</BaseSpeed>
     <Rates>
       <food.fish>1.8</food.fish>
       <treasure disable=""/>
     </Rates>
+    <Capacities>
+      <food>40</food>
+    </Capacities>
   </ResourceGatherer>
   <Selectable>
     <Overlay>

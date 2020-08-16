@@ -47,27 +47,18 @@
       <stone>350</stone>
     </Resources>
   </Cost>
-  <Footprint>
-    <Square width="12.0" depth="48.0"/>
-    <Height>8.0</Height>
-  </Footprint>
   <GarrisonHolder>
     <Max>50</Max>
-    <EjectHealth>0</EjectHealth>
-    <EjectClassesOnDestroy datatype="tokens">FemaleCitizen Infantry Healer Dog</EjectClassesOnDestroy>
-    <List datatype="tokens">Support Infantry Cavalry Dog Siege Elephant</List>
-    <BuffHeal>0</BuffHeal>
-    <LoadingRange>10</LoadingRange>
-    <Pickup>true</Pickup>
+    <List datatype="tokens">Support Soldier Siege</List>
   </GarrisonHolder>
   <Health>
     <Max>2000</Max>
   </Health>
   <Identity>
-    <VisibleClasses datatype="tokens">Ranged Warship Quinquereme</VisibleClasses>
     <GenericName>Heavy Warship</GenericName>
-    <RequiredTechnology>phase_city</RequiredTechnology>
     <Tooltip>Garrison units for transport and to increase firepower.</Tooltip>
+    <VisibleClasses datatype="tokens">Ranged Warship Quinquereme</VisibleClasses>
+    <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>150</xp>

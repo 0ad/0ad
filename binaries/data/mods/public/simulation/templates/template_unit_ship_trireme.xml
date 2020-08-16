@@ -36,27 +36,18 @@
       <metal>150</metal>
     </Resources>
   </Cost>
-  <Footprint>
-    <Square width="10.0" depth="40.0"/>
-    <Height>8.0</Height>
-  </Footprint>
   <GarrisonHolder>
     <Max>30</Max>
-    <EjectHealth>0</EjectHealth>
-    <EjectClassesOnDestroy datatype="tokens">FemaleCitizen Infantry Healer Dog</EjectClassesOnDestroy>
-    <List datatype="tokens">Support Infantry Cavalry Dog Siege Elephant</List>
-    <BuffHeal>0</BuffHeal>
-    <LoadingRange>10</LoadingRange>
-    <Pickup>true</Pickup>
+    <List datatype="tokens">Support Soldier Siege</List>
   </GarrisonHolder>
   <Health>
     <Max>1400</Max>
   </Health>
   <Identity>
-    <VisibleClasses datatype="tokens">Ranged Warship Trireme</VisibleClasses>
     <GenericName>Medium Warship</GenericName>
-    <RequiredTechnology>phase_town</RequiredTechnology>
     <Tooltip>Garrison units for transport and to increase firepower.</Tooltip>
+    <VisibleClasses datatype="tokens">Ranged Warship Trireme</VisibleClasses>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>
@@ -73,4 +64,7 @@
   <UnitMotion>
     <WalkSpeed op="mul">1.8</WalkSpeed>
   </UnitMotion>
+  <Vision>
+    <Range>90</Range>
+  </Vision>
 </Entity>
