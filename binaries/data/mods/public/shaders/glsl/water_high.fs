@@ -29,7 +29,7 @@ varying vec3 worldPos;
 varying float waterDepth;
 varying vec2 waterInfo;
 
-varying vec3 v;
+varying vec3 v_eyeVec;
 
 varying vec4 normalCoords;
 #if USE_REFLECTION
@@ -41,8 +41,6 @@ varying vec3 refractionCoords;
 varying vec2 losCoords;
 
 varying float fwaviness;
-
-uniform float mapSize;
 
 uniform samplerCube skyCube;
 
@@ -163,20 +161,20 @@ void main()
 	ww1.y = wwInterp.y;
 
 	// Flatten them based on waviness.
-	vec3 n = normalize(mix(vec3(0.0, 1.0, 0.0), ww1, clamp(baseBump + fwaviness / flattenism, 0.0, 1.0)));
+	vec3 normal = normalize(mix(vec3(0.0, 1.0, 0.0), ww1, clamp(baseBump + fwaviness / flattenism, 0.0, 1.0)));
 
 #if USE_FANCY_EFFECTS
 	vec4 fancyeffects = texture2D(waterEffectsTexNorm, gl_FragCoord.xy / screenSize);
-	n = mix(vec3(0.0, 1.0, 0.0), n, 0.5 + waterInfo.r / 2.0);
-	n.xz = mix(n.xz, fancyeffects.rb, fancyeffects.a / 2.0);
+	normal = mix(vec3(0.0, 1.0, 0.0), normal, 0.5 + waterInfo.r / 2.0);
+	normal.xz = mix(normal.xz, fancyeffects.rb, fancyeffects.a / 2.0);
 #else
-	n = mix(vec3(0.0, 1.0, 0.0), n, 0.5 + waterInfo.r / 2.0);
+	normal = mix(vec3(0.0, 1.0, 0.0), normal, 0.5 + waterInfo.r / 2.0);
 #endif
 
-	n = vec3(-n.x, n.y, -n.z); // The final wave normal vector.
+	normal = vec3(-normal.x, normal.y, -normal.z); // The final wave normal vector.
 
 	// How perpendicular to the normal our view is. Used for fresnel.
-	float ndotv = clamp(dot(n, v), 0.0, 1.0);
+	float ndotv = clamp(dot(normal, v_eyeVec), 0.0, 1.0);
 
 	// Fresnel for "how much reflection vs how much refraction".
 	fresnel = clamp(((pow(1.1 - ndotv, 2.0)) * 1.5), 0.1, 0.75); // Approximation. I'm using 1.1 and not 1.0 because it causes artifacts, see #1714
@@ -185,7 +183,7 @@ void main()
 	vec3 specVector = reflect(sunDir, ww1);
 
 	// pow is undefined for null or negative values, except on intel it seems.
-	float specIntensity = clamp(pow(abs(dot(specVector, v)), 100.0), 0.0, 1.0);
+	float specIntensity = clamp(pow(abs(dot(specVector, v_eyeVec)), 100.0), 0.0, 1.0);
 
 	specular = specIntensity * 1.2 * mix(vec3(1.5), sunColor, 0.5);
 
@@ -195,7 +193,7 @@ void main()
 
 	// for refraction, we want to adjust the value by v.y slightly otherwise it gets too different between "from above" and "from the sides".
 	// And it looks weird (again, we are not used to seeing water from above).
-	float fixedVy = max(v.y, 0.01);
+	float fixedVy = max(v_eyeVec.y, 0.01);
 
 	float murky = mix(200.0, 0.1, pow(murkiness, 0.25));
 
@@ -214,7 +212,7 @@ void main()
 	depth = waterDepth_undistorted;
 #else
 	// fake depth computation: take the value at the vertex, add some if we are looking at a more oblique angle.
-	depth = waterDepth / (min(0.5, v.y) * 1.5 * min(0.5, v.y) * 2.0);
+	depth = waterDepth / (min(0.5, v_eyeVec.y) * 1.5 * min(0.5, v_eyeVec.y) * 2.0);
 #endif
 
 #if USE_REFRACTION
@@ -227,7 +225,7 @@ void main()
 	float distoFactor = 0.5 + clamp(depth / 2.0, 0.0, 7.0);
 
 #if USE_REAL_DEPTH
-	vec2 depthCoord = clamp((gl_FragCoord.xy) / screenSize - n.xz * distoFactor / refractionCoords.z, 0.001, 0.999);
+	vec2 depthCoord = clamp((gl_FragCoord.xy) / screenSize - normal.xz * distoFactor / refractionCoords.z, 0.001, 0.999);
 	float z_b = texture2D(depthTex, depthCoord).x;
 	float z_n = 2.0 * z_b - 1.0;
 	float newDepth = (2.0 * zNear * zFar / (zFar + zNear - z_n * (zFar - zNear)) - waterDBuffer);
@@ -246,24 +244,24 @@ void main()
 #endif
 
 	// Distort the texture coords under where the water is to simulate refraction.
-	refrCoords = (0.5 * refractionCoords.xy - n.xz * distoFactor) / refractionCoords.z + 0.5;
+	refrCoords = (0.5 * refractionCoords.xy - normal.xz * distoFactor) / refractionCoords.z + 0.5;
 	vec3 refColor = texture2D(refractionMap, refrCoords).rgb;
 
 	// Note, the refraction map is cleared using (255, 0, 0), so pixels outside of the water plane are pure red.
 	// If we get a pure red fragment, use an undistorted/less distorted coord instead.
-	// blur the refraction map, distoring using n so that it looks more random than it really is
+	// blur the refraction map, distoring using normal so that it looks more random than it really is
 	// and thus looks much better.
-	float blur = (0.3 + clamp(n.x, -0.1, 0.1)) / refractionCoords.z;
+	float blur = (0.3 + clamp(normal.x, -0.1, 0.1)) / refractionCoords.z;
 
 	vec4 blurColor = vec4(refColor, 1.0);
 
-	vec4 tex = texture2D(refractionMap, refrCoords + vec2(blur + n.x, blur + n.z));
+	vec4 tex = texture2D(refractionMap, refrCoords + vec2(blur + normal.x, blur + normal.z));
 	blurColor += vec4(tex.rgb * tex.a, tex.a);
-	tex = texture2D(refractionMap, refrCoords + vec2(-blur, blur + n.z));
+	tex = texture2D(refractionMap, refrCoords + vec2(-blur, blur + normal.z));
 	blurColor += vec4(tex.rgb * tex.a, tex.a);
-	tex = texture2D(refractionMap, refrCoords + vec2(-blur, -blur + n.x));
+	tex = texture2D(refractionMap, refrCoords + vec2(-blur, -blur + normal.x));
 	blurColor += vec4(tex.rgb * tex.a, tex.a);
-	tex = texture2D(refractionMap, refrCoords + vec2(blur + n.z, -blur));
+	tex = texture2D(refractionMap, refrCoords + vec2(blur + normal.z, -blur));
 	blurColor += vec4(tex.rgb * tex.a, tex.a);
 	blurColor /= blurColor.a;
 	float blurFactor = (distoFactor / 7.0);
@@ -291,14 +289,14 @@ void main()
 
 	// reflMod reduces the intensity of reflections somewhat since they kind of wash refractions out otherwise.
 	float reflMod = 0.75;
-	vec3 eye = reflect(v, n);
+	vec3 eye = reflect(v_eyeVec, normal);
 
 #if USE_REFLECTION || USE_REFRACTION
 #if USE_REFLECTION
-	float refVY = clamp(v.y * 2.0, 0.05, 1.0);
+	float refVY = clamp(v_eyeVec.y * 2.0, 0.05, 1.0);
 
 	// Distort the reflection coords based on waves.
-	reflCoords = (0.5 * reflectionCoords.xy - 15.0 * n.zx / refVY) / reflectionCoords.z + 0.5;
+	reflCoords = (0.5 * reflectionCoords.xy - 15.0 * normal.zx / refVY) / reflectionCoords.z + 0.5;
 	vec4 refTex = texture2D(reflectionMap, reflCoords);
 
 	reflColor = refTex.rgb;
