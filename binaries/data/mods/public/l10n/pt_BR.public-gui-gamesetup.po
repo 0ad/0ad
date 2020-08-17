@@ -5,6 +5,7 @@
 # Translators:
 # Alessandro Nunes <alessandronunes@gmail.com>, 2019
 # alrope <alexandre.rp@gmail.com>, 2014
+# André Schwarz <andrschwarz@protonmail.com>, 2020
 # Arthur Paim Arnold <arthurpaimarnold@gmail.com>, 2014
 # borg 2k <estevanborg@gmail.com>, 2017-2018
 # Caio Northfleet <caio.northfleet@gmail.com>, 2014
@@ -51,8 +52,8 @@
 # Rowel <luciomeiradavid@hotmail.com>, 2014
 # Rui <xymarior@yandex.com>, 2018-2019
 # Sturm <gravador202@yahoo.com.br>, 2014
-# Tiago <tiago.henrique.cco@gmail.com>, 2020
-# Tiago <tiago.henrique.cco@gmail.com>, 2018,2020
+# Tiago Melo <tiago.henrique.cco@gmail.com>, 2020
+# Tiago Melo <tiago.henrique.cco@gmail.com>, 2018,2020
 # Washington Ramon Santos nascimento <washington_ramon123@hotmail.com>, 2014
 # Werther Ramalho <werther23@gmail.com>, 2017
 # yurids, 2014
@@ -60,8 +61,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-24 07:08+0000\n"
-"PO-Revision-Date: 2020-07-24 12:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-08-15 03:59+0000\n"
+"Last-Translator: André Schwarz <andrschwarz@protonmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,23 +76,23 @@ msgstr "Padrão"
 
 #: gui/gamesetup/Controls/MapFilters.js:86
 msgid "All maps except naval and demo maps."
-msgstr "Todos os mapas, exceto mapas navais e demo."
+msgstr "Todos os mapas, exceto mapas navais e de demonstração."
 
 #: gui/gamesetup/Controls/MapFilters.js:91
 msgid "Naval Maps"
-msgstr "Mapas Navais"
+msgstr "Mapas navais"
 
 #: gui/gamesetup/Controls/MapFilters.js:92
 msgid "Maps where ships are needed to reach the enemy."
-msgstr "Mapas onde os navios são necessários para alcançar o inimigo."
+msgstr "Mapas em que é necessário empregar navios para chegar ao inimigo."
 
 #: gui/gamesetup/Controls/MapFilters.js:97
 msgid "Demo Maps"
-msgstr "Mapas de Demonstração"
+msgstr "Mapas de demonstração"
 
 #: gui/gamesetup/Controls/MapFilters.js:98
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr "Estes mapas não são reproduzíveis, mas apenas para fins de demonstração."
+msgstr "Não é possível jogar nesses mapas, pois eles foram feitos apenas para demonstração."
 
 #: gui/gamesetup/Controls/MapFilters.js:103
 msgid "New Maps"
@@ -99,35 +100,35 @@ msgstr "Novos mapas"
 
 #: gui/gamesetup/Controls/MapFilters.js:104
 msgid "Maps that are brand new in this release of the game."
-msgstr "Mapas que são novos nesta versão do jogo."
+msgstr "Mapas novos, que estreiam nesta versão do jogo."
 
 #: gui/gamesetup/Controls/MapFilters.js:109
 msgid "Trigger Maps"
-msgstr "Exibir mapas"
+msgstr "Mapas com eventos"
 
 #: gui/gamesetup/Controls/MapFilters.js:110
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "Mapas que acompanham eventos com scripts e potencialmente geram unidades inimigas."
+msgstr "Mapas com eventos ativados por scripts. Também pode haver geração automática de unidades inimigas."
 
 #: gui/gamesetup/Controls/MapFilters.js:115
 msgid "All Maps"
-msgstr "Todos os Mapas"
+msgstr "Todos os mapas"
 
 #: gui/gamesetup/Controls/MapFilters.js:116
 msgid "Every map of the chosen maptype."
-msgstr "Cada mapa do tipo de mapa escolhido"
+msgstr "Todos os mapas do tipo selecionado."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:37
 msgid "AI will be disabled for this player."
-msgstr "Inteligência Artificial será desabilitada para este jogador."
+msgstr "Esse jogador não será controlado por inteligância artificial."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:93
 msgid "AI Behavior"
-msgstr "Comportamento da IA"
+msgstr "Comportamento da inteligência artificial"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:87
 msgid "AI Difficulty"
-msgstr "Dificuldade da Inteligência Artificial"
+msgstr "Dificuldade da inteligência artificial"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:86
 msgctxt "ai"
@@ -136,7 +137,7 @@ msgstr "Nenhum"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:91
 msgid "AI Player"
-msgstr "Jogador de Inteligência Artificial"
+msgstr "Jogador automatizado"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:172
 #, javascript-format
@@ -176,7 +177,7 @@ msgstr "Tipo de jogo"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/AIConfigButton.js:32
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr "Configurar Inteligência Artificial: %(description)s."
+msgstr "Configurar inteligência artificial: %(description)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayerName.js:114
 #, javascript-format
@@ -190,24 +191,24 @@ msgstr "Selecionar jogador."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:230
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr "Inteligência Artificial: %(ai)s"
+msgstr "Inteligência artificial: %(ai)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:265
 msgid "Unassigned"
-msgstr "Não atribuído(s)"
+msgstr "Nada/ninguém"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:131
 msgid "Choose the civilization for this player."
-msgstr "Escolha a civilização para este jogador."
+msgstr "Escolha a civilização desse jogador."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:134
 msgctxt "civilization"
 msgid "Random"
-msgstr "Aleatório"
+msgstr "Qualquer uma"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:140
 msgid "Picks one civilization at random when the game starts."
-msgstr "Escolher uma civilização aleatória quando o jogo começar."
+msgstr "Sorteia uma civilização para o jogador no começo do jogo."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:172
 msgid "Pick a color."
@@ -215,50 +216,50 @@ msgstr "Escolha uma cor."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:73
 msgid "Select player's team."
-msgstr "Selecionar equipe do jogador."
+msgstr "Indique a equipe do jogador."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:76
 msgctxt "team"
 msgid "None"
-msgstr "Nenhum"
+msgstr "Nenhuma"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
-msgstr "Trapaça"
+msgstr "Trapaças"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:43
 msgid "Toggle the usability of cheats."
-msgstr "Alternar usabilidade de trapaças."
+msgstr "Permitir uso de trapaças."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:54
 msgid "Explored Map"
-msgstr "Mapa explorado"
+msgstr "Mapa já explorado"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:58
 msgid "Toggle explored map (see initial map)."
-msgstr "Alternar o mapa explorado (veja o mapa inicial)."
+msgstr "Deixa o mapa já explorado por todos (veja o mapa inicial)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:58
 msgid "Last Man Standing"
-msgstr "Ultimo Homem de pé"
+msgstr "Só restará um"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:61
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr "Alterne para escolher se o último jogador restante ou o último conjunto de aliados vence."
+msgstr "Assinale esta caixa para dar a vitória ao último jogador restante, e não apenas ao último grupo aliado."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:52
 msgid "Teams Locked"
-msgstr "Times Trancados"
+msgstr "Equipes imutáveis"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:55
 msgid "Toggle locked teams."
-msgstr "Alternar equipes bloqueado."
+msgstr "Impede os jogadores de saírem de uma equipe."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:60
 msgid "Nomad"
@@ -268,61 +269,61 @@ msgstr "Nômade"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "No modo Nômade, os jogadores começam com apenas algumas unidades e devem procurar um local adequado para construir sua cidade. É recomendado o cessar-fogo."
+msgstr "No modo Nômade, os jogadores começam com apenas algumas unidades, devendo procurar um local adequado para construir uma cidade. Recomenda-se utilizar o período de cessar-fogo neste modo."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:51
 msgid "Rated Game"
-msgstr "Jogo Classificado"
+msgstr "Pontos de competição"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:54
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "Alterne se este jogo vai ser avaliado para o leaderboard."
+msgstr "Indica se este jogo vale pontos para o quadro de competidores do 0 A.D."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:61
 msgid "Hero Garrison"
-msgstr "Guarnição do Heroi"
+msgstr "Guarnição de heroi"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:64
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "Alternar se os heróis podem ser guarnecidos."
+msgstr "Indica se herois podem ser guarnecidos em uma construção."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:49
 msgid "Revealed Map"
-msgstr "Mapa Revelado"
+msgstr "Visibilidade total do mapa"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:53
 msgid "Toggle revealed map (see everything)."
-msgstr "Alternar o mapa revelado (veja tudo)."
+msgstr "Mostra para todos os jogadores tudo o que acontece no mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:42
 msgid "Disable Spies"
-msgstr "Desativar Espiões"
+msgstr "Desabilitar espiões"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:45
 msgid "Disable spies during the game."
-msgstr "Desabilitar espiões durante o jogo"
+msgstr "Desabilita o uso de espiões no jogo."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:42
 msgid "Disable Treasures"
-msgstr "Desativar Tesouros"
+msgstr "Desabilitar tesouros"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:45
 msgid "Do not add treasures to the map."
-msgstr "Não adicionar tesouros ao mapa."
+msgstr "Impede a inclusão de tesouros no mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:46
 msgid "World population"
-msgstr ""
+msgstr "População global"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr ""
+msgstr "Esta opção habilita um limite global de população, aplicável a todos os jogadores como um grupo só."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:135
 msgid "Biome"
@@ -330,16 +331,16 @@ msgstr "Bioma"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:141
 msgid "Select the flora and fauna."
-msgstr "Selecione flora e fauna."
+msgstr "Selecione o tipo de fauna e flora."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:144
 msgctxt "biome"
 msgid "Random"
-msgstr "Aleatório"
+msgstr "Qualquer um"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:147
 msgid "Pick a biome at random."
-msgstr "Escolha um bioma aleatoriamente."
+msgstr "Sorteia um bioma qualquer."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:101
 msgid "Daytime"
@@ -347,92 +348,92 @@ msgstr "Hora do Dia"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
-msgstr "Selecionar se a partida ocorrerá durante o dia ou a noite."
+msgstr "Indique qual versão do mapa será utilizada: a diurna ou a noturna."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
 msgid "Random"
-msgstr "Aleatório"
+msgstr "Tanto faz"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr "Selecionar aleatoriamente um período do dia."
+msgstr "Faz um sorteiro para decidir entre a versão noturna e a diurna."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:73
 msgid "Game Speed"
-msgstr "Velocidade do Jogo"
+msgstr "Ritmo do jogo"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:76
 msgid "Select game speed."
-msgstr "Selecionar velocidade de jogo."
+msgstr "Indique a velocidade do jogo."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:142
 msgid "Landscape"
-msgstr "Cenário"
+msgstr "Paisagem"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:145
 msgid "Select one of the landscapes of this map."
-msgstr "Selecionar um dos cenários deste mapa."
+msgstr "Escolha uma das paisagens para o mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:151
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
-msgstr "Continental ou Naval Aleatório"
+msgstr "Terrestre ou naval sorteado"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
 msgctxt "landscape selection"
 msgid "Select a random land or naval map generation."
-msgstr "Seleciona a geração de mapa aleatório do tipo continental ou naval."
+msgstr "Gera um mapa terrestre ou naval aleatório."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:156
 msgctxt "landscape selection"
 msgid "Random Land"
-msgstr "Continental Aleatório."
+msgstr "Terrestre sorteado."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
 msgid "Select a random land map generation."
-msgstr "Seleciona a geração de um mapa continental aleatório."
+msgstr "Sorteia o tipo de geração de mapa terrestre."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:161
 msgctxt "landscape selection"
 msgid "Random Naval"
-msgstr "Naval Aleatório."
+msgstr "Naval aleatório"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:162
 msgctxt "landscape selection"
 msgid "Select a random naval map generation."
-msgstr "Seleciona a geração de um mapa naval aleatório."
+msgstr "Sorteia o tipo de geração de mapa naval."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:89
 msgid "Map Filter"
-msgstr "Filtro de Mapa"
+msgstr "Filtro de mapa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:92
 msgid "Select a map filter."
-msgstr "Selecionar um filtro de mapa."
+msgstr "Selecione um filtro de mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:143
 msgid "Select Map"
-msgstr "Selecionar Mapa"
+msgstr "Selecione um mapa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:146
 msgid "Select a map to play on."
-msgstr "Selecionar um mapa para jogar."
+msgstr "Escolha um mapa para jogar."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:152
 msgctxt "map selection"
 msgid "Random"
-msgstr "Aleatório"
+msgstr "Qualquer um"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:155
 msgid "Pick any of the given maps at random."
-msgstr "Escolha qualquer mapa aleatoriamente."
+msgstr "Sorteia um dentre os mapas apresentados."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:74
 msgid "Map Size"
-msgstr "Tamanho do Mapa"
+msgstr "Tamanho do mapa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:77
 msgid "Select map size. (Larger sizes may reduce performance.)"

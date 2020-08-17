@@ -19,13 +19,14 @@
 # PedroDognani <pedro_dognani_@hotmail.com>, 2015
 # Rafael Andrade <rafaelandradeadm@gmail.com>, 2020
 # e05a6f0c527312287ac027cf3d3a35f5_685166c <0e3f187c36e42a887ffaef9a9e407417_190443>, 2014
-# Tiago Henrique de Melo <tiago.henrique.cco@gmail.com>, 2018
+# Tiago Melo <tiago.henrique.cco@gmail.com>, 2018
+# William Ferreira Dantas Neto <william.ferreira.dantas.neto@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-22 07:08+0000\n"
-"PO-Revision-Date: 2020-05-25 20:54+0000\n"
-"Last-Translator: Rafael Andrade <rafaelandradeadm@gmail.com>\n"
+"PO-Revision-Date: 2020-08-16 10:20+0000\n"
+"Last-Translator: William Ferreira Dantas Neto <william.ferreira.dantas.neto@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,7 +81,7 @@ msgstr "Sem erros"
 
 #: lobby/XmppClient.cpp:1248
 msgid "Player already logged in"
-msgstr "Jogador já logado"
+msgstr "Jogador já esta logado"
 
 #: lobby/XmppClient.cpp:1250
 msgid "Forbidden"
@@ -120,11 +121,11 @@ msgstr "Erro de transferência"
 
 #: lobby/XmppClient.cpp:1292
 msgid "The incoming stream version is unsupported"
-msgstr "O fluxo de entrada não é suportado"
+msgstr "A versão transmissão de entrada não é suportada"
 
 #: lobby/XmppClient.cpp:1293
 msgid "The stream has been closed by the server"
-msgstr "O fluxo foi fechado pelo servidor"
+msgstr "O servidor fechou a transferência"
 
 #: lobby/XmppClient.cpp:1297
 msgid "An I/O error occurred"
