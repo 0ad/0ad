@@ -25,14 +25,15 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/Pyrogenesis.h"
 #include "scriptinterface/ScriptInterface.h"
-#include "simulation2/Simulation2.h"
-#include "simulation2/system/Entity.h"
 #include "simulation2/components/ICmpAIManager.h"
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpGuiInterface.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpSelectable.h"
+#include "simulation2/helpers/Geometry.h"
 #include "simulation2/helpers/Selection.h"
+#include "simulation2/Simulation2.h"
+#include "simulation2/system/Entity.h"
 
 #include <array>
 #include <fstream>
@@ -145,7 +146,7 @@ JS::Value JSI_Simulation::GetEdgesOfStaticObstructionsOnScreenNearTo(ScriptInter
 		CmpPtr<ICmpPosition> cmpPosition(sim->GetSimContext(), entity);
 		if (!cmpPosition || !cmpPosition->IsInWorld())
 			continue;
-		
+
 		CFixedVector2D halfSize = cmpObstruction->GetStaticSize() / 2;
 		if (halfSize.X.IsZero() || halfSize.Y.IsZero() || std::max(halfSize.X, halfSize.Y) <= fixed::FromInt(2))
 			continue;
@@ -166,10 +167,8 @@ JS::Value JSI_Simulation::GetEdgesOfStaticObstructionsOnScreenNearTo(ScriptInter
 			const CFixedVector2D& corner = corners[i];
 			const CFixedVector2D& nextCorner = corners[(i + 1) % corners.size()];
 
-			// TODO: calculate real distance;
-			fixed distanceToEdge = std::min(
-				(corner - entityPos).Length(),
-				(nextCorner - entityPos).Length());
+			fixed distanceToEdge =
+				Geometry::DistanceToSegment(entityPos, corner, nextCorner);
 			if (distanceToEdge.ToFloat() > distanceThreshold)
 				continue;
 
