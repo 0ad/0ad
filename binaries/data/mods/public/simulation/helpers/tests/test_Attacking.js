@@ -75,7 +75,7 @@ class testHandleAttackEffects {
 		TS_ASSERT_EQUALS(count, 1);
 
 		AddMock(this.TESTED_ENTITY_ID, IID_Health, {
-			"TakeDamage": () => ({ "HPchange": 0 }),
+			"TakeDamage": () => ({ "healthChange": 0 }),
 		});
 		count = 0;
 		Engine.PostMessage = () => count++;

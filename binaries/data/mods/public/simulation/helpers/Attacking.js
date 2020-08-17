@@ -326,15 +326,12 @@ Attacking.prototype.HandleAttackEffects = function(attackType, attackData, targe
 	if (!Object.keys(targetState).length)
 		return;
 
-	if (targetState.killed)
-		this.TargetKilled(attacker, target, attackerOwner);
-
 	Engine.PostMessage(target, MT_Attacked, {
 		"type": attackType,
 		"target": target,
 		"attacker": attacker,
 		"attackerOwner": attackerOwner,
-		"damage": -(targetState.HPchange || 0),
+		"damage": -(targetState.healthChange || 0),
 		"capture": targetState.captureChange || 0,
 		"statusEffects": targetState.inflictedStatuses || [],
 		"fromStatusEffect": !!attackData.StatusEffect,
@@ -365,32 +362,6 @@ Attacking.prototype.EntitiesNearPoint = function(origin, radius, players, itf = 
 
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	return cmpRangeManager.ExecuteQueryAroundPos(origin, 0, radius, players, itf);
-};
-
-/**
- * Called when a unit kills something (another unit, building, animal etc).
- * @param {number} attacker - The entity id of the killer.
- * @param {number} target - The entity id of the target.
- * @param {number} attackerOwner - The player id of the attacker.
- */
-Attacking.prototype.TargetKilled = function(attacker, target, attackerOwner)
-{
-	let cmpAttackerOwnership = Engine.QueryInterface(attacker, IID_Ownership);
-	let atkOwner = cmpAttackerOwnership && cmpAttackerOwnership.GetOwner() != INVALID_PLAYER ? cmpAttackerOwnership.GetOwner() : attackerOwner;
-
-	// Add to killer statistics.
-	let cmpKillerPlayerStatisticsTracker = QueryPlayerIDInterface(atkOwner, IID_StatisticsTracker);
-	if (cmpKillerPlayerStatisticsTracker)
-		cmpKillerPlayerStatisticsTracker.KilledEntity(target);
-	// Add to loser statistics.
-	let cmpTargetPlayerStatisticsTracker = QueryOwnerInterface(target, IID_StatisticsTracker);
-	if (cmpTargetPlayerStatisticsTracker)
-		cmpTargetPlayerStatisticsTracker.LostEntity(target);
-
-	// If killer can collect loot, let's try to collect it.
-	let cmpLooter = Engine.QueryInterface(attacker, IID_Looter);
-	if (cmpLooter)
-		cmpLooter.Collect(target);
 };
 
 var AttackingInstance = new Attacking();

@@ -92,7 +92,7 @@ function Test_Generic()
 	AddMock(target, IID_Health, {
 		"TakeDamage": (effectData, __, ___, bonusMultiplier) => {
 			damageTaken = true;
-			return { "killed": false, "HPchange": -bonusMultiplier * effectData.Crush };
+			return { "healthChange": -bonusMultiplier * effectData.Crush };
 		},
 	});
 
@@ -218,7 +218,7 @@ function TestLinearSplashDamage()
 		"TakeDamage": (effectData, __, ___, mult) => {
 			hitEnts.add(60);
 			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100 * fallOff(2.2, -0.4));
-			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
+			return { "healthChange": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
@@ -226,7 +226,7 @@ function TestLinearSplashDamage()
 		"TakeDamage": (effectData, __, ___, mult) => {
 			hitEnts.add(61);
 			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100 * fallOff(0, 0));
-			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
+			return { "healthChange": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
@@ -234,7 +234,7 @@ function TestLinearSplashDamage()
 		"TakeDamage": (effectData, __, ___, mult) => {
 			hitEnts.add(62);
 			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 0);
-			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
+			return { "healthChange": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
@@ -250,7 +250,7 @@ function TestLinearSplashDamage()
 		"TakeDamage": (effectData, __, ___, mult) => {
 			hitEnts.add(60);
 			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100 * fallOff(1, 2));
-			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
+			return { "healthChange": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
@@ -313,21 +313,21 @@ function TestCircularSplashDamage()
 	AddMock(60, IID_Health, {
 		"TakeDamage": (effectData, __, ___, mult) => {
 			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100 * fallOff(0));
-			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
+			return { "healthChange": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
 	AddMock(61, IID_Health, {
 		"TakeDamage": (effectData, __, ___, mult) => {
 			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100 * fallOff(5));
-			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
+			return { "healthChange": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
 	AddMock(62, IID_Health, {
 		"TakeDamage": (effectData, __, ___, mult) => {
 			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100 * fallOff(1));
-			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
+			return { "healthChange": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
@@ -340,7 +340,7 @@ function TestCircularSplashDamage()
 	let cmphealth = AddMock(64, IID_Health, {
 		"TakeDamage": (effectData, __, ___, mult) => {
 			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 0);
-			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
+			return { "healthChange": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 	let spy = new Spy(cmphealth, "TakeDamage");
@@ -412,7 +412,7 @@ function Test_MissileHit()
 		"TakeDamage": (effectData, __, ___, mult) => {
 			hitEnts.add(60);
 			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100);
-			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
+			return { "healthChange": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
@@ -450,7 +450,7 @@ function Test_MissileHit()
 	AddMock(60, IID_Health, {
 		"TakeDamage": (effectData, __, ___, mult) => {
 			TS_ASSERT_EQUALS(false);
-			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
+			return { "healthChange": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
@@ -469,7 +469,7 @@ function Test_MissileHit()
 		"TakeDamage": (effectData, __, ___, mult) => {
 			hitEnts.add(61);
 			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 100);
-			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
+			return { "healthChange": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
@@ -497,7 +497,7 @@ function Test_MissileHit()
 		"TakeDamage": (effectData, __, ___, mult) => {
 			hitEnts.add(61);
 			dealtDamage += mult * (effectData.Hack + effectData.Pierce + effectData.Crush);
-			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
+			return { "healthChange": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
@@ -512,7 +512,7 @@ function Test_MissileHit()
 		"TakeDamage": (effectData, __, ___, mult) => {
 			hitEnts.add(62);
 			TS_ASSERT_EQUALS(mult * (effectData.Hack + effectData.Pierce + effectData.Crush), 200 * 0.75);
-			return { "killed": false, "change": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
+			return { "healthChange": -mult * (effectData.Hack + effectData.Pierce + effectData.Crush) };
 		}
 	});
 
@@ -592,7 +592,7 @@ function Test_MissileHit()
 		"TakeDamage": (effectData, __, ___, mult) => {
 			hitEnts.add(61);
 			dealtDamage += mult * (effectData.Pierce + effectData.Crush);
-			return { "killed": false, "change": -mult * (effectData.Pierce + effectData.Crush) };
+			return { "healthChange": -mult * (effectData.Pierce + effectData.Crush) };
 		}
 	});
 
@@ -607,7 +607,7 @@ function Test_MissileHit()
 		"TakeDamage": (effectData, __, ___, mult) => {
 			hitEnts.add(62);
 			TS_ASSERT_EQUALS(mult * (effectData.Pierce + effectData.Crush), 200 * 0.75);
-			return { "killed": false, "change": -mult * (effectData.Pierce + effectData.Crush) };
+			return { "healtChange": -mult * (effectData.Pierce + effectData.Crush) };
 		}
 	});
 
