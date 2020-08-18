@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -141,6 +141,16 @@ int GetPerimeterDistance(int x_max, int y_max, int x, int y);
  */
 std::pair<int, int> GetPerimeterCoordinates(int x_max, int y_max, int k);
 
-} // namespace
+/**
+ * Returns the minimum Euclidean distance from the given point to
+ * any point on the given segment.
+ *
+ * @a and @b represents segment's points.
+ *
+ */
+fixed DistanceToSegment(
+	const CFixedVector2D& point, const CFixedVector2D& a, const CFixedVector2D& b);
+
+} // namespace Geometry
 
 #endif // INCLUDED_HELPER_GEOMETRY

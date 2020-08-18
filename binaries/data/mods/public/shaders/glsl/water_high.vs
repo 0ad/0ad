@@ -15,7 +15,6 @@ uniform vec3 sunDir;
 #endif
 
 uniform float time;
-uniform float mapSize;
 
 uniform mat4 transform;
 uniform vec3 cameraPos;
@@ -26,7 +25,7 @@ varying vec3 worldPos;
 varying float waterDepth;
 varying vec2 waterInfo;
 
-varying vec3 v;
+varying vec3 v_eyeVec;
 
 varying vec4 normalCoords;
 #if USE_REFLECTION
@@ -53,12 +52,12 @@ void main()
 	worldPos = a_vertex;
 	waterInfo = a_waterInfo;
 	waterDepth = a_waterInfo.g;
-	
+
 	WindCosSin = vec2(cos(-windAngle), sin(-windAngle));
-	
+
 	float newX = a_vertex.x * WindCosSin.x - a_vertex.z * WindCosSin.y;
 	float newY = a_vertex.x * WindCosSin.y + a_vertex.z * WindCosSin.x;
-	
+
 	normalCoords = vec4(newX, newY, time, 0.0);
 	normalCoords.xy *= repeatScale;
 	// Projective texturing
@@ -69,20 +68,20 @@ void main()
 	refractionCoords = (refractionMatrix * vec4(a_vertex, 1.0)).rga;
 #endif
 	losCoords = (losMatrix * vec4(a_vertex, 1.0)).rg;
-	
+
 #if USE_SHADOW && USE_SHADOWS_ON_WATER
 	v_shadow = shadowTransform * vec4(a_vertex, 1.0);
 #if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
 	v_shadow.xy *= shadowScale.xy;
 #endif
 #endif
-	
-	v = normalize(cameraPos - worldPos);
+
+	v_eyeVec = normalize(cameraPos - worldPos);
 
 	moddedTime = mod(time * 60.0, 8.0) / 8.0;
 
 	// Fix the waviness for local wind strength
 	fwaviness = waviness * (0.15 + a_waterInfo.r / 1.15);
-	
+
 	gl_Position = transform * vec4(a_vertex, 1.0);
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,11 +19,12 @@
 
 #include "Geometry.h"
 
-using namespace Geometry;
+namespace Geometry
+{
 
 // TODO: all of these things could be optimised quite easily
 
-CFixedVector2D Geometry::GetHalfBoundingBox(const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize)
+CFixedVector2D GetHalfBoundingBox(const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize)
 {
 	return CFixedVector2D(
 		u.X.Multiply(halfSize.X).Absolute() + v.X.Multiply(halfSize.Y).Absolute(),
@@ -31,7 +32,7 @@ CFixedVector2D Geometry::GetHalfBoundingBox(const CFixedVector2D& u, const CFixe
 	);
 }
 
-fixed Geometry::DistanceToSquare(const CFixedVector2D& point, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize, bool countInsideAsZero)
+fixed DistanceToSquare(const CFixedVector2D& point, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize, bool countInsideAsZero)
 {
 	/*
 	 * Relative to its own coordinate system, we have a square like:
@@ -87,7 +88,7 @@ fixed Geometry::DistanceToSquare(const CFixedVector2D& point, const CFixedVector
 
 // Same as above except it does not use Length
 // For explanations refer to DistanceToSquare
-fixed Geometry::DistanceToSquareSquared(const CFixedVector2D& point, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize, bool countInsideAsZero)
+fixed DistanceToSquareSquared(const CFixedVector2D& point, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize, bool countInsideAsZero)
 {
 	fixed du = point.Dot(u).Absolute();
 	fixed dv = point.Dot(v).Absolute();
@@ -112,7 +113,7 @@ fixed Geometry::DistanceToSquareSquared(const CFixedVector2D& point, const CFixe
 	}
 }
 
-CFixedVector2D Geometry::NearestPointOnSquare(const CFixedVector2D& point, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize)
+CFixedVector2D NearestPointOnSquare(const CFixedVector2D& point, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize)
 {
 	/*
 	 * Relative to its own coordinate system, we have a square like:
@@ -186,7 +187,7 @@ CFixedVector2D Geometry::NearestPointOnSquare(const CFixedVector2D& point, const
 	}
 }
 
-fixed Geometry::DistanceSquareToSquare(const CFixedVector2D& relativePos, const CFixedVector2D& u1, const CFixedVector2D& v1, const CFixedVector2D& halfSize1, const CFixedVector2D& u2, const CFixedVector2D& v2, const CFixedVector2D& halfSize2)
+fixed DistanceSquareToSquare(const CFixedVector2D& relativePos, const CFixedVector2D& u1, const CFixedVector2D& v1, const CFixedVector2D& halfSize1, const CFixedVector2D& u2, const CFixedVector2D& v2, const CFixedVector2D& halfSize2)
 {
 	/*
 	 * The shortest distance between two non colliding squares equals the distance between a corner
@@ -217,7 +218,7 @@ fixed Geometry::DistanceSquareToSquare(const CFixedVector2D& relativePos, const 
 			DistanceToSquare(relativePos - u2.Multiply(hw2) - v2.Multiply(hh2), u1, v1, halfSize1, true))));
 }
 
-fixed Geometry::MaxDistanceToSquare(const CFixedVector2D& point, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize, bool countInsideAsZero)
+fixed MaxDistanceToSquare(const CFixedVector2D& point, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize, bool countInsideAsZero)
 {
 	fixed hw = halfSize.X;
 	fixed hh = halfSize.Y;
@@ -237,7 +238,7 @@ fixed Geometry::MaxDistanceToSquare(const CFixedVector2D& point, const CFixedVec
 			(point - u.Multiply(hw) - v.Multiply(hh)).Length()));
 }
 
-fixed Geometry::MaxDistanceSquareToSquare(const CFixedVector2D& relativePos, const CFixedVector2D& u1, const CFixedVector2D& v1, const CFixedVector2D& halfSize1, const CFixedVector2D& u2, const CFixedVector2D& v2, const CFixedVector2D& halfSize2)
+fixed MaxDistanceSquareToSquare(const CFixedVector2D& relativePos, const CFixedVector2D& u1, const CFixedVector2D& v1, const CFixedVector2D& halfSize1, const CFixedVector2D& u2, const CFixedVector2D& v2, const CFixedVector2D& halfSize2)
 {
 	/*
 	 * The maximum distance from an edge of a square to the edge of another square
@@ -253,7 +254,7 @@ fixed Geometry::MaxDistanceSquareToSquare(const CFixedVector2D& relativePos, con
 			MaxDistanceToSquare(relativePos - u1.Multiply(hw1) - v1.Multiply(hh1), u2, v2, halfSize2, true)));
 }
 
-bool Geometry::TestRaySquare(const CFixedVector2D& a, const CFixedVector2D& b, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize)
+bool TestRaySquare(const CFixedVector2D& a, const CFixedVector2D& b, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize)
 {
 	/*
 	 * We only consider collisions to be when the ray goes from outside to inside the shape (and possibly out again).
@@ -302,7 +303,7 @@ bool Geometry::TestRaySquare(const CFixedVector2D& a, const CFixedVector2D& b, c
 }
 
 // Exactly like TestRaySquare with u=(1,0), v=(0,1)
-bool Geometry::TestRayAASquare(const CFixedVector2D& a, const CFixedVector2D& b, const CFixedVector2D& halfSize)
+bool TestRayAASquare(const CFixedVector2D& a, const CFixedVector2D& b, const CFixedVector2D& halfSize)
 {
 	fixed hw = halfSize.X;
 	fixed hh = halfSize.Y;
@@ -353,7 +354,7 @@ static bool SquareSAT(const CFixedVector2D& a, const CFixedVector2D& axis, const
 	return false;
 }
 
-bool Geometry::TestSquareSquare(
+bool TestSquareSquare(
 		const CFixedVector2D& c0, const CFixedVector2D& u0, const CFixedVector2D& v0, const CFixedVector2D& halfSize0,
 		const CFixedVector2D& c1, const CFixedVector2D& u1, const CFixedVector2D& v1, const CFixedVector2D& halfSize1)
 {
@@ -385,7 +386,7 @@ bool Geometry::TestSquareSquare(
 	return true;
 }
 
-int Geometry::GetPerimeterDistance(int x_max, int y_max, int x, int y)
+int GetPerimeterDistance(int x_max, int y_max, int x, int y)
 {
 	if (x_max <= 0 || y_max <= 0)
 		return 0;
@@ -404,7 +405,7 @@ int Geometry::GetPerimeterDistance(int x_max, int y_max, int x, int y)
 	return 0;
 }
 
-std::pair<int, int> Geometry::GetPerimeterCoordinates(int x_max, int y_max, int k)
+std::pair<int, int> GetPerimeterCoordinates(int x_max, int y_max, int k)
 {
 	if (x_max <= 0 || y_max <= 0)
 		return std::pair<int, int>(0, 0);
@@ -424,3 +425,35 @@ std::pair<int, int> Geometry::GetPerimeterCoordinates(int x_max, int y_max, int 
 		return std::pair<int, int>(k - 3 * quarter, -y_max);
 	return std::pair<int, int>(x_max, k - 4 * quarter);
 }
+
+fixed DistanceToSegment(
+	const CFixedVector2D& point, const CFixedVector2D& a, const CFixedVector2D& b)
+{
+	// First we need to figure out from which part of the segment we should
+	// calculate distance.
+	// We split 2D space in three spaces:
+	//               |                                |
+	//             1 |                2               | 3
+	//               A--------------------------------B
+	// Here we need  | Between A and B we need to     | Here we need
+	// distance to A | calculate distance to the line | distance to B
+	//
+	const CFixedVector2D dir = b - a;
+	// We project the point, point A, and point B upon the direction of the
+	// segment to figure out in which space the point is.
+	const fixed pointDot = dir.Dot(point);
+	const fixed aDot = dir.Dot(a);
+	// The point is lying in space #1.
+	if (pointDot <= aDot)
+		return (point - a).Length();
+	const fixed bDot = dir.Dot(b);
+	// The point is lying in space #3.
+	if (pointDot >= bDot)
+		return (point - b).Length();
+	// The point is lying in space #2.
+	CFixedVector2D normal = dir.Perpendicular();
+	normal.Normalize();
+	return (normal.Dot(a) - normal.Dot(point)).Absolute();
+}
+
+} // namespace Geometry
