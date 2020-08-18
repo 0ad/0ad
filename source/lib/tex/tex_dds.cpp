@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -304,15 +304,18 @@ static Status s3tc_decompress(Tex* t)
 //-----------------------------------------------------------------------------
 
 // bit values and structure definitions taken from
-// http://msdn.microsoft.com/en-us/library/ee417785(VS.85).aspx
+// https://docs.microsoft.com/en-us/windows/win32/direct3ddds/dx-graphics-dds-reference
 
 #pragma pack(push, 1)
 
 // DDS_PIXELFORMAT.dwFlags
+
+// This is used to distinguish RGBA from RGB and DXT1a from DXT1.
 // we've seen some DXT3 files that don't have this set (which is nonsense;
 // any image lacking alpha should be stored as DXT1).
 #define DDPF_ALPHAPIXELS 0x00000001
-// DDPF_ALPHA is used instead of DDPF_ALPHAPIXELS for DXT1a.
+// DDPF_ALPHA is used for uncompressed 8bpp greyscale, in which the data
+// is stored in the alpha mask.
 #define DDPF_ALPHA       0x00000002
 #define DDPF_FOURCC      0x00000004
 #define DDPF_RGB         0x00000040
@@ -460,7 +463,7 @@ static Status decode_pf(const DDS_PIXELFORMAT* pf, size_t& bpp, size_t& flags)
 		{
 		case FOURCC('D','X','T','1'):
 			bpp = 4;
-			if(pf_flags & DDPF_ALPHA)
+			if(pf_flags & DDPF_ALPHAPIXELS)
 				flags |= DXT1A | TEX_ALPHA;
 			else
 				flags |= 1;
