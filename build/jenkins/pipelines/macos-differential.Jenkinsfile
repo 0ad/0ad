@@ -69,7 +69,7 @@ pipeline {
 		}
 		stage("Debug Build & Tests") {
 			steps {
-				sh "cd build/workspaces/gcc/ && make -j4 config=debug"
+				sh "cd build/workspaces/gcc/ && make -j4 config=debug 2> ../../../builderr-debug-macos.txt"
 				script {
 					try {
 						sh "binaries/system/test_dbg > cxxtest-debug.xml"
@@ -84,7 +84,7 @@ pipeline {
 		}
 		stage("Release Build & Tests") {
 			steps {
-				sh "cd build/workspaces/gcc/ && make -j4 config=release"
+				sh "cd build/workspaces/gcc/ && make -j4 config=release 2> ../../../builderr-release-macos.txt"
 				script {
 					try {
 						sh "binaries/system/test > cxxtest-release.xml"
@@ -101,11 +101,33 @@ pipeline {
 
 	post {
 		always {
-			step([$class: 'PhabricatorNotifier', commentOnSuccess: true, commentWithConsoleLinkOnFailure: true])
-			sh "rm -f cxxtest_*.xml"
-			sh "svn revert -R ."
-			sh "svn st binaries/data/ | cut -c 9- | xargs rm -rf"
-			sh "svn st source/ | cut -c 9- | xargs rm -rf"
+			script {
+				catchError {
+					sh '''
+					for file in builderr-*.txt ; do
+					  if [ -s "$file" ]; then
+					    echo "$file" >> .phabricator-comment
+					    cat "$file" >> .phabricator-comment
+					  fi
+					done
+					'''
+				}
+
+				try {
+					if (fileExists(".phabricator-comment")) {
+						step([$class: 'PhabricatorNotifier', commentOnSuccess: true, commentWithConsoleLinkOnFailure: true, customComment: true, commentFile: ".phabricator-comment"])
+					} else {
+						step([$class: 'PhabricatorNotifier', commentWithConsoleLinkOnFailure: true])
+					}
+				} catch(e) {
+					throw e
+				} finally {
+					sh "rm -f .phabricator-comment builderr-*.txt cxxtest_*.xml"
+					sh "svn revert -R ."
+					sh "svn st binaries/data/ | cut -c 9- | xargs rm -rf"
+					sh "svn st source/ | cut -c 9- | xargs rm -rf"
+				}
+			}
 		}
 	}
 }

@@ -29,7 +29,7 @@ class LicenseYearBear(LocalBear):
         if not was_modified:
             try:
                 return client.info()['commit_date'].year
-            except SvnException:
+            except (AttributeError, SvnException):
                 return None
         else:
             return date.today().year
