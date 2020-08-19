@@ -1899,7 +1899,7 @@ UnitAI.prototype.UnitFsmSpec = {
 							this.FinishOrder();
 							return;
 						}
-						else if (!this.order.data.force)
+						else if (!this.order.data.force || !this.order.data.lastPos)
 						{
 							this.SetNextState("COMBAT.FINDINGNEWTARGET");
 							return;

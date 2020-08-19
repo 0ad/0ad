@@ -1,10 +1,11 @@
 [Source]
 bears = CPPCheckBear, LicenseYearBear
+language = c++
 files = source/**.(cpp|h)
-ignore = source/third_party/**
+ignore = source/third_party
 
 [JS]
 bears = ESLintBear, JSHintBear
-eslint_config = build/jenkins/lint-config/eslintrc.json
-jshint_config = build/jenkins/lint-config/jshintrc.json
+eslint_config = build/coala/lint-config/eslintrc.json
+jshint_config = build/coala/lint-config/jshintrc.json
 files = binaries/data/**.js

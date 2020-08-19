@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,9 +48,16 @@ def build(compiler) {
 					docker.image("0ad-${compiler}:latest").inside {
 						sh "build/workspaces/update-workspaces.sh -j1 --jenkins-tests"
 
-						// TODO: Mark build as unstable in case of warnings and tweak the plugin accordingly.
+						try {
+							retry(3) {
+								sh "cd build/workspaces/gcc/ && make -j1 config=debug 2> ../../../builderr-debug-${compiler}.txt"
+							}
+						} catch(e) {
+							throw e
+						} finally {
+							stash includes: "builderr-debug-${compiler}.txt", name: "build-debug-${compiler}"
+						}
 
-						sh "cd build/workspaces/gcc/ && make -j1 config=debug"
 						try {
 							sh "binaries/system/test_dbg > cxxtest-debug-${compiler}.xml"
 						} catch (e) {
@@ -60,7 +67,16 @@ def build(compiler) {
 							stash includes: "cxxtest-debug-${compiler}.xml", name: "tests-debug-${compiler}"
 						}
 
-						sh "cd build/workspaces/gcc/ && make -j1 config=release"
+						try {
+							retry(3) {
+								sh "cd build/workspaces/gcc/ && make -j1 config=release 2> ../../../builderr-release-${compiler}.txt"
+							}
+						} catch(e) {
+							throw e
+						} finally {
+							stash includes: "builderr-release-${compiler}.txt", name: "build-release-${compiler}"
+						}
+
 						try {
 							sh "binaries/system/test > cxxtest-release-${compiler}.xml"
 						} catch (e) {
@@ -107,9 +123,21 @@ pipeline {
 				always {
 					script {
 						for(compiler in compilers) {
+							catchError { unstash "build-debug-${compiler}" }
 							catchError { unstash "tests-debug-${compiler}" }
+							catchError { unstash "build-release-${compiler}" }
 							catchError { unstash "tests-release-${compiler}" }
 						}
+					}
+					catchError {
+						sh '''
+						for file in builderr-*.txt ; do
+						  if [ -s "$file" ]; then
+						    echo "$file" >> build-errors.txt
+						    cat "$file" >> build-errors.txt
+						  fi
+						done
+						'''
 					}
 					catchError { junit 'cxxtest*.xml' }
 				}
@@ -120,22 +148,22 @@ pipeline {
 				script {
 					try {
 						withDockerContainer("0ad-coala:latest") {
-							sh "svn st | grep '^[AM]' | cut -c 9- | xargs coala -d build/coala --ci --flush-cache --limit-files > coala-report"
+							sh '''
+							svn st | grep '^[AM]' | cut -c 9- | xargs coala -d build/coala --ci --disable-caching \
+							  --format '{{ "name": "{origin}", "code": "{origin}", "severity": "{severity_str}", "path": "{file}", "line": {line}, "description": "`{message}`" }}' \
+							  --limit-files > coala-report
+							'''
 						}
 					} catch (e) {
-						sh '''
-						echo "Linter detected issues:" >> phabricator-comment
-						cat coala-report >> phabricator-comment
-						echo "\n" >> phabricator-comment
-						'''
+						sh 'sed -i "s|$(pwd)/||g" coala-report'
+						sh 'sed -e "s/INFO/advice/g" -e "s/NORMAL/warning/g" -e "s/MAJOR/error/g" coala-report > .phabricator-lint'
 					}
 				}
-				echo (message: readFile (file: "coala-report"))
 			}
 		}
 		stage("Data checks") {
 			steps {
-				sh "cd source/tools/entity/ && perl checkrefs.pl --check-map-xml --validate-templates"
+				sh "cd source/tools/entity/ && perl checkrefs.pl --check-map-xml --validate-templates 2> data-errors.txt"
 			}
 		}
 	}
@@ -143,11 +171,21 @@ pipeline {
 	post {
 		always {
 			script {
+				catchError {
+					sh "if [ -s build-errors.txt ]; then cat build-errors.txt >> .phabricator-comment ; fi"
+					sh '''
+					if [ -s data-errors.txt ]; then
+					  echo "Data checks errors:" >> .phabricator-comment
+					  cat data-errors.txt >> .phabricator-comment
+					fi
+					'''
+				}
+
 				try {
-					if (fileExists("phabricator-comment")) {
-						step([$class: 'PhabricatorNotifier', commentOnSuccess: true, commentWithConsoleLinkOnFailure: true, customComment: true, commentFile: "phabricator-comment"])
+					if (fileExists(".phabricator-comment")) {
+						step([$class: 'PhabricatorNotifier', commentOnSuccess: true, commentWithConsoleLinkOnFailure: true, customComment: true, commentFile: ".phabricator-comment", processLint: true, lintFile: ".phabricator-lint"])
 					} else {
-						step([$class: 'PhabricatorNotifier', commentOnSuccess: true, commentWithConsoleLinkOnFailure: true])
+						step([$class: 'PhabricatorNotifier', commentWithConsoleLinkOnFailure: true, processLint: true, lintFile: ".phabricator-lint"])
 					}
 				} catch(e) {
 					throw e
