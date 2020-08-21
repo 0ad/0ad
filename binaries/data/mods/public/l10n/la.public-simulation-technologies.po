@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-07 07:10+0000\n"
-"PO-Revision-Date: 2020-08-08 05:33+0000\n"
+"PO-Revision-Date: 2020-08-20 07:34+0000\n"
 "Last-Translator: Ernestus Severus\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
@@ -898,7 +898,7 @@ msgstr "Progreditur ad Gradum Oppidum, qui plures aedificia civesque recludit. F
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid "Requires 5 Village Structures."
-msgstr ""
+msgstr "Requirit 5 Aedificia Vici Gradus"
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1203,44 +1203,44 @@ msgstr "Praesidium Mercatorum"
 #: simulation/data/technologies/trade_convoys_speed.jsondescription
 msgid ""
 "Increases movement rate of traders, which in turn increases trade income."
-msgstr ""
+msgstr "Auget velocitatem itineris mercatorum, ita increscit lucrum de mercaturis."
 
 #: simulation/data/technologies/trade_convoys_speed.jsontooltip
 msgid "Traders +25% Walk Speed, which quickly increases trade income."
-msgstr ""
+msgstr "Mercatores +25% Velocitatem itineris, ita cito increscit lucrum de mercaturis."
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
 msgid "The progress in handicraft improves the trading profit."
-msgstr ""
+msgstr "Ars Operosa lucrum de mercaturis amplificat."
 
 #: simulation/data/technologies/trade_gain_01.jsontooltip
 msgid "Traders +10% gain."
-msgstr ""
+msgstr "Mercatores +10% lucrum."
 
 #: simulation/data/technologies/trade_gain_01.jsongenericName
 msgid "Handicraft"
-msgstr ""
+msgstr "Ars Operosa"
 
 #: simulation/data/technologies/trade_gain_02.jsontooltip
 msgid "Traders +15% gain."
-msgstr ""
+msgstr "Mercatores +15% lucrum."
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
-msgstr ""
+msgstr "Ars Operosa Provecta"
 
 #: simulation/data/technologies/training_conscription.jsondescription
 #: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
 msgid ""
 "Significantly increase training speed of soldiers at the Barracks by "
 "training them in large batches or battalions."
-msgstr ""
+msgstr "Conscribuntur milites gregibus vel cohortibus in Castris, ita valde increscit velocitas conscribendi."
 
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
 msgid "Faster batch training speed for the Barracks."
-msgstr ""
+msgstr "Milites gregarii in Castris citius conscribuntur."
 
 #: simulation/data/technologies/training_conscription.jsongenericName
 msgid "Conscription"
@@ -1248,15 +1248,15 @@ msgstr "Delectus"
 
 #: simulation/data/technologies/training_naval_architects.jsondescription
 msgid "Significantly increase build speed of batches of ships at the Dock."
-msgstr ""
+msgstr "Construuntur naves classibus, ita valde increscit velocitas construendi."
 
 #: simulation/data/technologies/training_naval_architects.jsontooltip
 msgid "Docks increased batch construction speed bonus."
-msgstr ""
+msgstr "Classes navium in navalibus citius construuntur."
 
 #: simulation/data/technologies/training_naval_architects.jsongenericName
 msgid "Naval Architects"
-msgstr ""
+msgstr "Architecti Navales"
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
@@ -1264,19 +1264,19 @@ msgid ""
 "capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
 "healing strength and +3 healing range; Melee units +20% attack damage; "
 "Ranged units +4 attack range and −10% spread."
-msgstr ""
+msgstr "Milites Provecti et Robores +20% tempus conscribendi, +1 arma, +10% valetudinem, +0.7 vim capiendi, +20% praedam, et −30% velocitatem colligendi; Medici +5% vim sanandi et +3 fines sanandi; qui propinque pugnant +20% detrimentum; iaculatores +4 iactum et -10% dissipationem."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
 " and loot."
-msgstr ""
+msgstr "Elephanti Africani −10% pretium, tempus conscribendi, valetudinem, detrimentum et praedam."
 
 #: simulation/data/technologies/unit_elephant_indian.jsontooltip
 msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
-msgstr ""
+msgstr "Elephanti Indi +10% pretium, tempus conscribendi, valetudinem, detrimentum et praedam."
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
@@ -1284,72 +1284,72 @@ msgid ""
 "strength, +20% loot, and −30% gather speed; Healers +5 healing strength and "
 "+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
 "range and −10% spread."
-msgstr ""
+msgstr "Milites Robores +20% tempus conscribendi, +1 arma, +10% valetudinem, +0.8 vim capiendi, +20% praedam, et −30% velocitatem colligendi; Medici +5% vim sanandi et +3 fines sanandi; qui propinque pugnant +20% detrimentum; iaculatores +4 iactum et -10% dissipationem."
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""
 "Guard units (Champions) are professionals who wield the best weapons and "
 "have the best training."
-msgstr ""
+msgstr "Custodes (Propugnatores) peritissimi sunt milites, qui tela optima gerunt."
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
 msgid "Unlock the ability to train Champions at the Barracks."
-msgstr ""
+msgstr "Facit potestatem ut Propugnatores in Castris conscribantur."
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
-msgstr ""
+msgstr "Recludit Propugnatores."
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.athen
 msgid "Ágēma"
-msgstr ""
+msgstr "Ágēma"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.rome
 msgid "Regio Cohors"
-msgstr ""
+msgstr "Regio Cohors"
 
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."
-msgstr ""
+msgstr "Sollemne cui feminae solae intersunt, quae fertilitatem muliebrem celebrent."
 
 #: simulation/data/technologies/unlock_females_house.jsontooltip
 msgid "Unlock the ability to train women from houses."
-msgstr ""
+msgstr "Facit potestatem ut Feminas in domis conscribantur."
 
 #: simulation/data/technologies/unlock_females_house.jsongenericName
 msgid "Fertility Festival"
-msgstr ""
+msgstr "Sollemne Fertilitatis"
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.mace
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.athen
 msgid "Thesmophória"
-msgstr ""
+msgstr "Thesmophória"
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
-msgstr ""
+msgstr "Bona Dea"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsondescription
 msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
 "and their families in foreign countries, allowing them to exploit the wealth"
 " of these countries."
-msgstr ""
+msgstr "Extensis mercaturis considunt mercatores in terris alienis cum familiis suis, ut ibi lucrum faciant."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
-msgstr ""
+msgstr "Facit potestatem ut horreis sociorum utaris."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
-msgstr ""
+msgstr "Diaspora"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
 msgid "Requires 3 Traders"
-msgstr ""
+msgstr "Requirit 3 Mercatores."
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
@@ -1362,50 +1362,50 @@ msgstr ""
 msgid ""
 "See what your allies see, browse their summary and check their resources and"
 " population count in the top panel."
-msgstr ""
+msgstr "Vide quaecumque socii tui vident, lege summarium eorum, et inspice opes numerumque civium in tabula summa."
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"
-msgstr ""
+msgstr "Cartographia"
 
 #: simulation/data/technologies/unlock_spies.jsondescription
 msgid ""
 "Merchants' first goal was trading, but they also gathered information about "
 "the countries they crossed."
-msgstr ""
+msgstr "Mercaturae enim opus est mercatorum praecipuum, colligunt autem quoque indicia de finibus quos transiverunt."
 
 #: simulation/data/technologies/unlock_spies.jsontooltip
 msgid ""
 "Allows bribing the units of other players in order to share their vision."
-msgstr ""
+msgstr "Facit potestatem ut cives aut milites aliorum lusorum corrumpas ut visum eorum habeas."
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
 msgid "Espionage"
-msgstr ""
+msgstr "Inquisitio"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
-msgstr ""
+msgstr "Conduce mercennarios expertos ut in exercitu tuo pugnent."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries are promoted to Advanced rank."
-msgstr ""
+msgstr "Mercennarii ad Ordinem Provectum producti sunt."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
-msgstr ""
+msgstr "Experientia Bellorum"
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr ""
+msgstr "Carthaginienses multas tenuerunt colonias ubi mercaturae valebant, postremo domuerunt plures quam 300 urbes oppidaque modo in Septentrionale Africa."
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsontooltip
 msgid ""
 "Carthaginians were colonizers. Civic Centers, Temples, and Houses -25% build"
 " time."
-msgstr ""
+msgstr "Carthaginienses colonias tenuerunt. Centra Civilia, Templa et Domi -25% tempus aedificandi."
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsongenericName
 msgid "Colonization"
@@ -1416,11 +1416,11 @@ msgid ""
 "Nobody knew better than the Carthaginians where in the ancient world they "
 "were going and going to go; their merchant traders had missions to "
 "everywhere."
-msgstr ""
+msgstr "Nemo melius sciebat quam Carthaginienses se in qua terra esse et quo iter facturum; quocumque peregrinabantur mercatores eorum."
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsontooltip
 msgid "Carthaginians were explorers. All Traders and Ships +25% vision range."
-msgstr ""
+msgstr "Carthaginienses exploratores fuerunt. Omnes Mercatores et Naves +25% conspectum."
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsongenericName
 msgid "Exploration"
@@ -1429,26 +1429,26 @@ msgstr "Exploratio"
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsondescription
 msgid ""
 "Significantly increase build speed of batches of ships at the Shipyard."
-msgstr ""
+msgstr "Construuntur naves classibus, ita valde increscit velocitas construendi."
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsontooltip
 msgid "Shipyard increased batch construction speed bonus."
-msgstr ""
+msgstr "Classes navium in navalibus citius construuntur."
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsongenericName
 msgid "Phoenician Naval Architects"
-msgstr ""
+msgstr "Architecti Navales Phoenici"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
 "was via the city's harbor, not by storming its walls."
-msgstr ""
+msgstr "Carthaginienses moenia aedificavit trium circulorum formae, qui idem centrum habebant. Haec moenia numquam sunt perfracta, etsi urbs a Romanis capta est, qui per portum intraverunt, moenibus intactis."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "Muri +100% tempus aedificandi, +100% pretium lapidis, et +200% valetudinem."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -1456,29 +1456,29 @@ msgstr "Muri Tripli"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
-msgstr ""
+msgstr "Maior pars aedificiciorum Celticorum ligno structa est, ruderibus fundamentis."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid ""
 "Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
 " points."
-msgstr ""
+msgstr "Aedificia Britannorum Gallorumque −20% tempus aedificandi, −20% valetudinem et −20% puncta capiendi."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
-msgstr ""
+msgstr "Aedificia Lignea"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr ""
+msgstr "Ab aetate Mycenaea Graeci aedificia lapidea struxerunt."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "Aedificia +10% valetudinem et +10% puncta capiendi."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
-msgstr ""
+msgstr "Architectura Graeca"
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -1490,11 +1490,11 @@ msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "Elephanti −30% tempus conscribendi."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "Fama Elephantorum"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -1508,29 +1508,29 @@ msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 msgid "Mauryas +10% maximum population limit."
-msgstr ""
+msgstr "Indi +10% terminum numeri civium."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
-msgstr ""
+msgstr "Imperator Imperatorum"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
-msgstr ""
+msgstr "Chakravarti Samrāt"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsondescription
 msgid ""
 "The Mauryas built their city walls out of wood, an abundant natural resource"
 " in India."
-msgstr ""
+msgstr "Indi moenia ligno aedificaverunt, materia naturale copiosa in India."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "Mauryan City Walls −20% build time and −20% health."
-msgstr ""
+msgstr "Muri Indorum −20% tempus aedificandi et −20% valetudinem."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
-msgstr ""
+msgstr "Muri Lignei"
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -1544,7 +1544,7 @@ msgstr ""
 
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "Persians +10% maximum population limit."
-msgstr ""
+msgstr "Persae +10% terminum numeri civium."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -1556,25 +1556,25 @@ msgid ""
 "the best army in the world for their time. What they didn't have in "
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
-msgstr ""
+msgstr "Lacedaemonii maximum in mundo exercitum non habebant, sed optimum terrarum illius aetatis. Quidquid enim non habebant apud numerum, qualitate supplebant. Dicitur moenia Lacedaemoni non esse opus, quod viri sui moenia essent."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
 msgid "Spartans −10% maximum population limit."
-msgstr ""
+msgstr "Lacedaemonii -10% terminum numeri civium."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"
-msgstr ""
+msgstr "Multitudine Superati"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
 "Spartans were housed and trained from a young age to be superlative warriors"
 " and to endure any hardship a military life can give them."
-msgstr ""
+msgstr "Ab iuventute instruebantur Lacedaemonii ut bellatores optimi fierent omnesque labores militares durarent."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "Hastati Pedites Propugnatores +25% valetudinem, et +5% tempus conscribendi."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -1584,11 +1584,11 @@ msgstr "Agoge"
 msgid ""
 "Athenian triremes can train Marines (Epibates Athenaikos) and Cretan "
 "Mercenary Archers (Toxotes Kretikos)."
-msgstr ""
+msgstr "Triremes Athenienses Nautas (Epibates Athenaikos) et Sagittarios Mercennarios Cretaeos (Toxotes Kretikos) conscribere possunt."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsontooltip
 msgid "Athenian triremes can train Marines and Cretan Mercenary Archers."
-msgstr ""
+msgstr "Triremes Athenienses Nautas et Sagittarios Mercennarios Cretaeos conscribere possunt."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
@@ -1604,16 +1604,16 @@ msgstr "Callido Themistocle auspicato constructa sunt Moenia Longa Atheniensa, q
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
 msgid "Build Walls in own or neutral territory."
-msgstr ""
+msgstr "Muros in finibus suis aut terra cui nemo imperat aedifica."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
-msgstr ""
+msgstr "Moenia Longa Atheniensa"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "Aedificia Civilia +20% tempus aedificandi, +20% valetudinem, et +20% puncta capiendi."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -1627,21 +1627,21 @@ msgstr "Sacerdotes tui a Pontifice ipso docti sunt - Ammon eum benedicet."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
 msgid "Train elite rank healers."
-msgstr ""
+msgstr "Conscribe Medicos roboris ordinis."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
 msgid "Divine Instruction"
-msgstr ""
+msgstr "Doctrina Divina"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "Achaemenides manum 10,000 roborum tenebant, qui ab auctoribus Graecis Athanatoi (“Immortales”) appellabant."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "Anušiya Pedites Propugnatores -50% tempus conscribendi, et -10% valetudinem."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -1653,17 +1653,17 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr ""
+msgstr "Persae Viam Regiam mirabilem straverunt, 1677 milia passum in longitudinem ab Sardibus ad Susam, Darius Magnus et Xerxes Persepolem quoque aedificaverunt, urbem magnificam; Cyrus Magnus Ecbatanam magnopere auxit, Susamque, caput Elamite antiquum,  re vera renovavit."
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
 msgid ""
 "All Persian structures +25% health and capture points, but also +20% build "
 "time."
-msgstr ""
+msgstr "Omnia aedificia Persaea +20% tempus aedificandi, +25% valetudinem, et +25% puncta capiendi."
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
-msgstr "Architectura Persiana"
+msgstr "Architectura Persaea"
 
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
 msgid ""
@@ -1678,61 +1678,61 @@ msgstr ""
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry."
-msgstr ""
+msgstr "Triremes Phoenicae equites conscribere possunt."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"
-msgstr ""
+msgstr "Vectura Equitum"
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsondescription
 msgid ""
 "Significantly increase training speed of cavalry at the stables by training "
 "them in large batches or battalions."
-msgstr ""
+msgstr "Conscribuntur equites gregibus vel turmis in Stabulis, ita valde increscit velocitas conscribendi."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
 msgid "Faster batch training speed for the Stables."
-msgstr ""
+msgstr "Equites gregarii in Stabulis citius conscribuntur."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
 msgid "Cavalry Conscription"
-msgstr ""
+msgstr "Delectus Equitum"
 
 #: simulation/data/technologies/persians/training_conscription_infantry.jsongenericName
 msgid "Infantry Conscription"
-msgstr ""
+msgstr "Delectus Peditum"
 
 #: simulation/data/technologies/persians/training_levy_cavalry.jsondescription
 msgid ""
 "Calling up cavalry levies in time of war helps bolster the ranks of a king's"
 " army."
-msgstr ""
+msgstr "Orso bello mandatum est equites conscribere, ut exercitum regis implerent."
 
 #: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr ""
+msgstr "Omnes Equites -20% tempus conscribendi, et -5% valetudinem. Recludit Delectum Equitum"
 
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
 msgid "Levy Cavalry"
-msgstr ""
+msgstr "Dilectus Equitum"
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsondescription
 msgid ""
 "Calling up infantry levies in time of war helps bolster the ranks of a "
 "king's army."
-msgstr ""
+msgstr "Orso bello mandatum est pedites conscribere, ut exercitum regis implerent."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr ""
+msgstr "Omnes Pedites -20% tempus conscribendi, et -5% valetudinem. Recludit Delectum Equitum"
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
 msgid "Levy Infantry"
-msgstr ""
+msgstr "Dilectus Peditum"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsondescription
 msgid ""
@@ -1744,19 +1744,19 @@ msgstr ""
 
 #: simulation/data/technologies/romans/vision_sibylline.jsontooltip
 msgid "+25% Vision range for all units."
-msgstr ""
+msgstr "Omnes cives et milites +25% conspectum."
 
 #: simulation/data/technologies/romans/vision_sibylline.jsongenericName
 msgid "Sibylline Books"
-msgstr ""
+msgstr "Libri Sibyllini"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsonspecificName
 msgid "Libri Sibyllini"
-msgstr ""
+msgstr "Libri Sibyllini"
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
 msgid "Traditional Army vs Reform Army"
-msgstr ""
+msgstr "Exercitus Vetus vs Exercitus Renovatus"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsondescription
 msgid ""
@@ -1767,25 +1767,25 @@ msgstr ""
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Centra Civilia +100% valetudinem et puncta capiendi, duplicantur sagittae primae."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
-msgstr ""
+msgstr "Metropolis Graeca"
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsondescription
 msgid ""
 "Significantly increase training speed of champions and siege engines at the "
 "fortress when training them in large batches."
-msgstr ""
+msgstr "Conscribuntur propugnatores aedificanturque machinae magnis gregibus in Castellis, ita valde increscit velocitas conscribendi et aedificandi."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
-msgstr ""
+msgstr "Greges in Castellis citius conscribuntur."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
-msgstr ""
+msgstr "Pompa Daphnaea"
 
 #: simulation/data/technologies/successors/special_war_horses.jsondescription
 msgid ""
@@ -1796,7 +1796,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."
-msgstr ""
+msgstr "Omnes Equites +20% valetudinem."
 
 #: simulation/data/technologies/successors/special_war_horses.jsongenericName
 msgid "Nisean War Horses"
@@ -1804,44 +1804,44 @@ msgstr "Equi Nisei"
 
 #: simulation/data/technologies/successors/special_war_horses.jsonspecificName.sele
 msgid "Nisioi"
-msgstr ""
+msgstr "Nisioi"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsondescription
 msgid "The Roman-style core of the Seleucid army."
-msgstr ""
+msgstr "Exercitus Seleucidis Romani modi."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
-msgstr ""
+msgstr "Recludit Gladiatores Pedites Propugnatores."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
 msgid "Reform Army"
-msgstr ""
+msgstr "Exercitus Renovatus"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
-msgstr ""
+msgstr "Exercitus Seleucidis Macedoniensis modi."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Champion Infantry Pikeman."
-msgstr ""
+msgstr "Recludit Sarissophoros Pedites Propugnatores."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"
-msgstr ""
+msgstr "Exercitus Vetus"
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsondescription
 msgid ""
 "The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
 "the Macedonian army."
-msgstr ""
+msgstr "Scuti Argentei, vel Argyraspes in Lingua Latina, vel Argyraspidai, robores pedites graves erant Macedoniensis exercitus."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr ""
+msgstr "Produc Scutigerululi Pedites Propugnatores in Argyraspes, qui plurem valetudinem et detrimentum habent."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"
-msgstr ""
+msgstr "Legio Argyraspum"
