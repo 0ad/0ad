@@ -133,6 +133,9 @@
       <constructed>interface/complete/building/complete_universal.xml</constructed>
       <death>attack/destruction/building_collapse_large.xml</death>
       <attacked>interface/alarm/alarm_attackplayer.xml</attacked>
+      <attacked_gaia>interface/alarm/alarm_attacked_gaia.xml</attacked_gaia>
+      <attacked_capture>interface/alarm/alarm_attackplayer.xml</attacked_capture>
+      <attacked_capture_gaia>interface/alarm/alarm_attacked_gaia.xml</attacked_capture_gaia>
       <attack_ranged>attack/weapon/bow_attack.xml</attack_ranged>
       <attack_impact_ranged>attack/impact/arrow_impact.xml</attack_impact_ranged>
     </SoundGroups>
