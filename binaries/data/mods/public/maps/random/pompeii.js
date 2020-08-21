@@ -39,7 +39,7 @@ g_Terrains.water = "ocean_rock_a";
 g_Terrains.cliff = "ocean_rock_b";
 
 g_Gaia.mainHuntableAnimal = "gaia/fauna_goat";
-g_Gaia.secondaryHuntableAnimal =  "gaia/fauna_hawk";
+g_Gaia.secondaryHuntableAnimal =  "birds/buzzard";
 g_Gaia.fruitBush = "gaia/fauna_chicken";
 g_Gaia.fish = "gaia/fauna_fish";
 g_Gaia.tree1 = "gaia/flora_tree_dead";

@@ -63,7 +63,7 @@ const oElephant = "gaia/fauna_elephant_african_bush";
 const oElephantInfant = "gaia/fauna_elephant_african_infant";
 const oLion = "gaia/fauna_lion";
 const oLioness = "gaia/fauna_lioness";
-const oHawk = "gaia/fauna_hawk";
+const oHawk = "birds/buzzard";
 const oPyramid = "structures/kush_pyramid_large";
 
 const aRock = actorTemplate("geology/stone_savanna_med");
