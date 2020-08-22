@@ -50,12 +50,12 @@ AttackDetection.prototype.OnGlobalAttacked = function(msg)
 
 	Engine.PostMessage(msg.target, MT_MinimapPing);
 
-	this.AttackAlert(msg.target, msg.attacker, msg.attackerOwner);
+	this.AttackAlert(msg.target, msg.attacker, msg.type, msg.attackerOwner);
 };
 
 //// External interface ////
 
-AttackDetection.prototype.AttackAlert = function(target, attacker, attackerOwner)
+AttackDetection.prototype.AttackAlert = function(target, attacker, type, attackerOwner)
 {
 	let playerID = Engine.QueryInterface(this.entity, IID_Player).GetPlayerID();
 
@@ -127,7 +127,15 @@ AttackDetection.prototype.AttackAlert = function(target, attacker, attackerOwner
 		"attacker": atkOwner,
 		"targetIsDomesticAnimal": targetIsDomesticAnimal
 	});
-	PlaySound("attacked", target);
+
+	let soundGroup = "attacked";
+	if (g_EffectReceiver[type] && g_EffectReceiver[type].sound)
+		soundGroup += '_' + g_EffectReceiver[type].sound;
+
+	if (attackerOwner === 0)
+		soundGroup += "_gaia";
+
+	PlaySound(soundGroup, target);
 };
 
 AttackDetection.prototype.GetSuppressionTime = function()

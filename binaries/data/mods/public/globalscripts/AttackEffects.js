@@ -7,7 +7,8 @@ const g_EffectReceiver = {
 	},
 	"Capture": {
 		"IID": "IID_Capturable",
-		"method": "Capture"
+		"method": "Capture",
+		"sound": "capture"
 	},
 	"ApplyStatus": {
 		"IID": "IID_StatusEffectsReceiver",
