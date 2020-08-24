@@ -31,7 +31,7 @@ class ReferencePage
 	/**
 	 * Concatanates the return values of the array of passed functions.
 	 *
-	 * @param {object} template
+	 * @param {Object} template
 	 * @param {array} textFunctions
 	 * @param {string} joiner
 	 * @return {string} The built text.

@@ -105,7 +105,7 @@ TechnologyManager.prototype.CanResearch = function(tech)
 
 /**
  * Private function for checking a set of requirements is met
- * @param {object} reqs - Technology requirements as derived from the technology template by globalscripts
+ * @param {Object} reqs - Technology requirements as derived from the technology template by globalscripts
  * @param {boolean} civonly - True if only the civ requirement is to be checked
  *
  * @return true if the requirements pass, false otherwise

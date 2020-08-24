@@ -140,7 +140,7 @@ class TemplateParser
 	 *
 	 * @param {string} technologyName
 	 * @param {string} civCode
-	 * @return {object} Sanitized data about the requested technology.
+	 * @return {Object} Sanitized data about the requested technology.
 	 */
 	getTechnology(technologyName, civCode)
 	{
@@ -180,7 +180,7 @@ class TemplateParser
 	/**
 	 * @param {string} phaseCode
 	 * @param {string} civCode
-	 * @return {object} Sanitized object containing phase data
+	 * @return {Object} Sanitized object containing phase data
 	 */
 	getPhase(phaseCode, civCode)
 	{

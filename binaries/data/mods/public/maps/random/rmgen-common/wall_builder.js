@@ -64,7 +64,7 @@ function loadWallset(wallsetPath, civ)
  * @param {string} type - Descriptive string, example: "tiny". Not really needed (WallTool.wallTypes["type string"] is used). Mainly for custom wall elements.
  * @param {array} [wall] - Array of wall element strings. May be defined at a later point.
  *                         Example: ["medium", "cornerIn", "gate", "cornerIn", "medium", "cornerIn", "gate", "cornerIn"]
- * @param {object} [centerToFirstElement] - Vector from the visual center of the fortress to the first wall element.
+ * @param {Object} [centerToFirstElement] - Vector from the visual center of the fortress to the first wall element.
  * @param {number} [centerToFirstElement.x]
  * @param {number} [centerToFirstElement.y]
  */
@@ -136,7 +136,7 @@ function createDefaultFortressTypes()
  *
  * @param {string} element - What sort of element to fetch.
  * @param {string} [style] - The style from which this element should come from.
- * @returns {object} The wall element requested. Or a tower element.
+ * @returns {Object} The wall element requested. Or a tower element.
  */
 function getWallElement(element, style)
 {
@@ -345,7 +345,7 @@ function getWallAlignment(position, wall = [], style = "athen_stone", orientatio
  * Used to get centerToFirstElement of fortresses by default
  *
  * @param {number} alignment
- * @returns {object} Vector from the center of the set of aligned wallpieces to the first wall element.
+ * @returns {Object} Vector from the center of the set of aligned wallpieces to the first wall element.
  */
 function getCenterToFirstElement(alignment)
 {
@@ -429,7 +429,7 @@ function placeWall(position, wall = [], style, playerId = 0, orientation = 0, co
  * "entry" or "gate") to get the orientation correct.
  *
  * @param {Vector2D} centerPosition
- * @param {object} [fortress] - If not provided, defaults to the predefined "medium" fortress type.
+ * @param {Object} [fortress] - If not provided, defaults to the predefined "medium" fortress type.
  * @param {string} [style] - Wall style string.
  * @param {number} [playerId] - Identifier of the player for whom the wall will be placed.
  * @param {number} [orientation] - Angle the first wall element (should be a gate or entrance) is placed. Default is 0

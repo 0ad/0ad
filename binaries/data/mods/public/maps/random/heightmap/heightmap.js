@@ -14,7 +14,7 @@
 /**
  * Get the height range of a heightmap
  * @param {array} [heightmap=g_Map.height] - The reliefmap the minimum and maximum height should be determined for
- * @return {object} Height range with 2 floats in properties "min" and "max"
+ * @return {Object} Height range with 2 floats in properties "min" and "max"
  */
 function getMinAndMaxHeight(heightmap = g_Map.height)
 {
@@ -76,7 +76,7 @@ function translateHeightmap(offset, defaultHeight = undefined, heightmap = g_Map
 
 /**
  * Get start location with the largest minimum distance between players
- * @param {object} [heightRange] - The height range start locations are allowed
+ * @param {Object} [heightRange] - The height range start locations are allowed
  * @param {integer} [maxTries=1000] - How often random player distributions are rolled to be compared
  * @param {Number} [minDistToBorder=20] - How far start locations have to be away from the map border
  * @param {integer} [numberOfPlayers=g_MapSettings.PlayerData.length] - How many start locations should be placed
@@ -227,7 +227,7 @@ function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEI
  * Meant to place e.g. resource spots within a height range
  * @param {array} [heightRange] - The height range in which to place the entities (An associative array with keys "min" and "max" each containing a float)
  * @param {array} [avoidPoints=[]] - An array of objects of the form { "x": int, "y": int, "dist": int }, points that will be avoided in the given dist e.g. start locations
- * @param {object} [avoidClass=undefined] - TileClass to be avoided
+ * @param {Object} [avoidClass=undefined] - TileClass to be avoided
  * @param {integer} [minDistance=30] - How many tile widths the entities to place have to be away from each other, start locations and the map border
  * @param {array} [heightmap=g_Map.height] - The reliefmap the entities should be distributed on
  * @param {integer} [maxTries=2 * g_Map.size] - How often random player distributions are rolled to be compared (256 to 1024)

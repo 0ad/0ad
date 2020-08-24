@@ -464,7 +464,7 @@ function controlsPlayer(playerID)
  * Called when one or more players have won or were defeated.
  *
  * @param {array} - IDs of the players who have won or were defeated.
- * @param {object} - a plural string stating the victory reason.
+ * @param {Object} - a plural string stating the victory reason.
  * @param {boolean} - whether these players have won or lost.
  */
 function playersFinished(players, victoryString, won)

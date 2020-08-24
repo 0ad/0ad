@@ -38,7 +38,7 @@ var g_BuddySymbol = '•';
  * Returns a formatted string describing the player assignments.
  * Needs g_CivData to translate!
  *
- * @param {object} playerDataArray - As known from gamesetup and simstate.
+ * @param {Object} playerDataArray - As known from gamesetup and simstate.
  * @param {(string[]|false)} playerStates - One of "won", "defeated", "active" for each player.
  * @returns {string}
  */
