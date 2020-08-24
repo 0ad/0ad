@@ -3,8 +3,8 @@
  * constructing a polynomial of degree three that goes through all points.
  * Computes a cardinal or Catmull-Rom spline.
  *
- * @param {Number} tension - determines how sharply the curve bends at the given points.
- * @param {Number} x - Location of the point to interpolate, relative to p1
+ * @param {number} tension - determines how sharply the curve bends at the given points.
+ * @param {number} x - Location of the point to interpolate, relative to p1
  */
 function cubicInterpolation(tension, x, p0, p1, p2, p3)
 {

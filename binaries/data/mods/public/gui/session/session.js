@@ -720,7 +720,7 @@ function updateGroups()
 /**
  * Toggles the display of status bars for all of the player's entities.
  *
- * @param {Boolean} remove - Whether to hide all previously shown status bars.
+ * @param {boolean} remove - Whether to hide all previously shown status bars.
  */
 function recalculateStatusBarDisplay(remove = false)
 {

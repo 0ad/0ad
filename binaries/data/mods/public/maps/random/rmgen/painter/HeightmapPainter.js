@@ -4,8 +4,8 @@
  * The heightrange is either scaled proportionally or mapped to the given heightrange.
  *
  * @param {Uint16Array} heightmap - One dimensional array of vertex heights.
- * @param {Number} [normalMinHeight] - The minimum height the elevation grid of 320 tiles would have.
- * @param {Number} [normalMaxHeight] - The maximum height the elevation grid of 320 tiles would have.
+ * @param {number} [normalMinHeight] - The minimum height the elevation grid of 320 tiles would have.
+ * @param {number} [normalMaxHeight] - The maximum height the elevation grid of 320 tiles would have.
  */
 function HeightmapPainter(heightmap, normalMinHeight = undefined, normalMaxHeight = undefined)
 {
