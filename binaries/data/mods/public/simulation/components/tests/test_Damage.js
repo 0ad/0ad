@@ -1,4 +1,3 @@
-Engine.LoadHelperScript("DamageBonus.js");
 Engine.LoadHelperScript("Attacking.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("Sound.js");
@@ -538,7 +537,8 @@ function Test_MissileHit()
 	let splashBonus = { "BonusCav": { "Classes": "Cavalry", "Multiplier": 10000 } };
 
 	AddMock(61, IID_Identity, {
-		"GetClassesList": () => ["Cavalry"]
+		"GetClassesList": () => ["Cavalry"],
+		"GetCiv": () => "civ"
 	});
 
 	data.attackData.Bonuses = bonus;
