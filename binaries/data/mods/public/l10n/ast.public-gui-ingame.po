@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-10 07:08+0000\n"
-"PO-Revision-Date: 2020-08-10 21:06+0000\n"
+"PO-Revision-Date: 2020-08-24 04:10+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -334,7 +334,7 @@ msgstr "Encaboxar l'armadura"
 
 #: gui/session/selection_panels.js:581
 msgid "Insufficient population capacity:"
-msgstr "Nun abonda la capacidá de población:"
+msgstr "Nun hai capacidá pa más población:"
 
 #: gui/session/selection_panels.js:582
 #, javascript-format
@@ -1215,12 +1215,12 @@ msgstr "%(popCount)s/%(popLimit)s"
 
 #: gui/session/top_panel/CounterPopulation.js:58
 msgid "Population (current / limit)"
-msgstr "Población (actual / llende)"
+msgstr "Población (actual / máx.)"
 
 #: gui/session/top_panel/CounterPopulation.js:60
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
-msgstr "Población máximo: %(popCap)s"
+msgstr "Población máxima: %(popCap)s"
 
 #: gui/session/top_panel/CounterPopulation.js:62
 #, javascript-format

@@ -12,7 +12,7 @@
 # jjj <triplej03@nate.com>, 2014
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2019
-# ks k, 2019
+# ks k, 2019-2020
 # JungHee Lee <daemul72@gmail.com>, 2019
 # Minhak Lee, 2019
 # 이민학, 2019
@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-07 07:10+0000\n"
-"PO-Revision-Date: 2020-08-07 08:39+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-08-23 14:13+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,12 +36,12 @@ msgstr ""
 msgid ""
 "The Indian, Iranian, and Kushite peoples had a tradition of fine archery and"
 " a penchant for using massed archers in battle."
-msgstr "인도와 이란, 쿠쉬는 전장에서 전통 궁술과 궁수의 일제 사격에 대한 전술이 있었습니다."
+msgstr "인도인, 이란인, 쿠쉬인은 전장에서 전통 궁술과 궁수의 일제 사격에 대한 전술이 있었습니다."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "궁수의 훈련 시간이 −10% 감소하고, 공격 범위가 +8 증가하고, 원거리 공격 확산이 −10% 감소합니다."
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -533,7 +533,7 @@ msgstr "비료"
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr ""
+msgstr "갈리아 사람들은 곡식을 훨씬 쉽게 수확 할 수 있도록 수확기를 발명했습니다."
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
@@ -543,7 +543,7 @@ msgstr "노동자의 곡물 수확률이 +15% 증가합니다."
 
 #: simulation/data/technologies/gather_farming_harvester.jsongenericName
 msgid "Harvesting Machine"
-msgstr ""
+msgstr "수확기"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
@@ -1462,7 +1462,7 @@ msgstr "카르타고는 삼중 성벽을 쌓았습니다. 이 성벽은 절때�
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "성벽의 짓는시간이 +100% 증가하고, 석재 비용이 +100% 증가하고, 내구력이 +200% 증가합니다."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -1488,7 +1488,7 @@ msgstr "그리스는 미케네 문명 초기부터 석조 건설을 이용했습
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "건축물의 내구성이 +10% 증가하고 점유 점수가 +10% 증가합니다."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -1500,15 +1500,15 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr ""
+msgstr "인도는 코끼리의 땅입니다. 코끼리 전쟁은 인도에서 시작되어 수 천년 동안 계속되었습니다. 그것은 또한 지중해 동부의 코끼리의 근원이기도 했습니다. 인도의 왕들은 많은 수의 전쟁 코끼리를 전투에 배치할 수 있었습니다."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "코끼리들의 훈련 시간이 −30% 감소합니다."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "코끼리 전통"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -1588,7 +1588,7 @@ msgstr "스파르타인들은 어려서부터 최상급 전사가되기 위하�
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "대표 전사 창 보병의 체력이 +25% 증가하지만, 양성 시간이 +5% 증가합니다."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -1627,7 +1627,7 @@ msgstr "아테네의 긴 성벽"
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "시민 건축물의 건설 시간이 +20% 증가하고, 내구성이 +20% 증가하고, 점유 점수가 +20% 증가합니다."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -1651,11 +1651,11 @@ msgstr "신성한 명령"
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "아케메네스는 그리스 작가들에 의해 아타나토이(“불사군단”)라고 불리는 10,000 명의 정예 군단을 유지했습니다."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "아누쉬야 대표 전사 보병의 양성 시간이 -50% 감소하지만, 또한 체력도 -10% 감소합니다."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -1673,7 +1673,7 @@ msgstr "페르시아는 1677마일에 달하는 훌륭한 왕의 길을 사르�
 msgid ""
 "All Persian structures +25% health and capture points, but also +20% build "
 "time."
-msgstr "모든 페르시아의 건축물은 내구성과 점령 포인트가 +25% 증가하지만, 건설 시간이 +20% 늘어납니다."
+msgstr "모든 페르시아의 건축물은 내구성과 점유 점수가 +25% 증가하지만, 건설 시간이 +20% 늘어납니다."
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -1770,7 +1770,7 @@ msgstr "리브리 시빌리니"
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
 msgid "Traditional Army vs Reform Army"
-msgstr ""
+msgstr "전통적인 군대 대 개혁 군대"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsondescription
 msgid ""
@@ -1781,7 +1781,7 @@ msgstr "알렉산더를 시작으로 헬레니즘의 군주들은 그들의 제�
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "시민 회관의 내구성이 +100% 증가하고 점유 점수, 기본 이중 화살이 증가합니다."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -1854,7 +1854,7 @@ msgstr "실버 방패 부대 즉 아르기라스피다이 는 마케도니아 �
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr ""
+msgstr "방패지기 대표 전사 보병을 더 많은 체력과 공격력을 주는 은방패로 향상합니다."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

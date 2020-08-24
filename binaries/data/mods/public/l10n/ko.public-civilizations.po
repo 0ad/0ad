@@ -3,15 +3,17 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# 76407af6b051a571d67c2577de2183db_7380deb <7a4a088c8c60986e924b802e46370579_512231>, 2016
 # JungHee Lee <daemul72@gmail.com>, 2020
 # 76407af6b051a571d67c2577de2183db_7380deb <7a4a088c8c60986e924b802e46370579_512231>, 2016
 # 76407af6b051a571d67c2577de2183db_7380deb <7a4a088c8c60986e924b802e46370579_512231>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # moolow <copyhyeon@gmail.com>, 2018
 # jasonkimik <jasonkim@linux.com>, 2014
+# JungHee Lee <daemul72@gmail.com>, 2020
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2019
-# ks k, 2019
+# ks k, 2019-2020
 # JungHee Lee <daemul72@gmail.com>, 2020
 # moolow <copyhyeon@gmail.com>, 2018
 # Philipp Sauter <qt123@pm.me>, 2018
@@ -25,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-10 07:08+0000\n"
-"PO-Revision-Date: 2020-08-10 11:33+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-08-23 14:13+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +45,7 @@ msgstr "아테네"
 #: simulation/data/civs/mace.jsonCivBonuses[0].Description
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "건축물의 내구성이 +10% 증가하고 점유 점수가 +10% 증가합니다."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 #: simulation/data/civs/mace.jsonCivBonuses[0].Name
@@ -453,7 +455,7 @@ msgstr "카르타고"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "성벽의 짓는시간이 +100% 증가하고, 석재 비용이 +100% 증가하고, 내구력이 +200% 증가합니다."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -465,7 +467,7 @@ msgstr "카르타고는 삼중 도시 성벽을 세웠습니다."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "Allies +10% international trade bonus."
-msgstr ""
+msgstr "동맹국의 국제 무역 보너스가 +10% 증가합니다."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -621,7 +623,7 @@ msgstr "켈트 대사관"
 
 #: simulation/data/civs/cart.jsonStructures[1].Special
 msgid "Train Celtic Mercenaries."
-msgstr ""
+msgstr "켈트 용병을 훈련시킵니다."
 
 #: simulation/data/civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
@@ -633,7 +635,7 @@ msgstr "이베리아 대사관"
 
 #: simulation/data/civs/cart.jsonStructures[2].Special
 msgid "Train Iberian Mercenaries."
-msgstr ""
+msgstr "이베리아 용병을 훈련시킵니다."
 
 #: simulation/data/civs/cart.jsonStructures[2].History
 msgid ""
@@ -642,18 +644,18 @@ msgstr "이베리아인은 용맹한 용병으로 유명 고용주에게 충성�
 
 #: simulation/data/civs/cart.jsonStructures[3].Name
 msgid "Italic Embassy"
-msgstr ""
+msgstr "이탈리아 대사관"
 
 #: simulation/data/civs/cart.jsonStructures[3].Special
 msgid "Train Italic Mercenaries."
-msgstr ""
+msgstr "이탈리아 용병을 훈련시킵니다."
 
 #: simulation/data/civs/cart.jsonStructures[3].History
 msgid ""
 "When Hannibal invaded Italy and defeated the Romans in a series of battles, "
 "many of the peoples subject to Rome, including the Greeks and Samnites, "
 "revolted and joined the Carthaginian cause."
-msgstr ""
+msgstr "한니발이 이탈리아를 침공하고 로마인들을 일련의 전투에서 격파하자, 그리스인과 삼니움인을 포함하여 로마에 종속된 많은 민족이 반란을 일으켜 카르타고 대의에 합류했습니다."
 
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
@@ -696,17 +698,17 @@ msgstr "켈트 종교와 드루이드 교는 그들의 호전적 사고 방식�
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Blacksmiths −15% technology resource costs and research time."
-msgstr ""
+msgstr "대장장이의 기술 자원 비용과 연구 시간이 −15% 감소합니다."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Products from Gaul"
-msgstr ""
+msgstr "갈리아의 제품"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Gauls produced and exported swords and scabbards, woolen and leather "
 "products, and other arms."
-msgstr ""
+msgstr "갈리아 사람들은 칼과 칼집, 모직물, 가죽 제품 및 기타 무기를 생산하고 수출했습니다."
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -757,13 +759,13 @@ msgstr "노동자의 곡물 수확률이 +15% 증가합니다."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Harvesting Machine"
-msgstr ""
+msgstr "수확기"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr ""
+msgstr "갈리아 사람들은 곡식을 훨씬 쉽게 수확 할 수 있도록 수확기를 발명했습니다."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -886,7 +888,7 @@ msgstr "충적 평야와 강 계곡을 제외하면, 이베리아 반도는 석�
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Javelineers −10% resource costs."
-msgstr ""
+msgstr "동맹의 시민 투창병의 자원비용이 −10% 감소합니다."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1117,7 +1119,7 @@ msgstr "아마니샤케토"
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "궁수의 훈련 시간이 −10% 감소하고, 공격 범위가 +8 증가하고, 원거리 공격 확산이 −10% 감소합니다."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
@@ -1129,7 +1131,7 @@ msgstr "전통 궁술"
 msgid ""
 "The Kushites had a tradition of fine archery and a penchant for using massed"
 " archers in battle."
-msgstr ""
+msgstr "쿠시인은 전장에서 전통 궁술과 궁수의 일제 사격에 대한 전술이 있었습니다."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "Monumental Architecture"
@@ -1138,7 +1140,7 @@ msgstr "기념비적 건축 양식"
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "시민 건축물의 건설 시간이 +20% 증가하고, 내구성이 +20% 증가하고, 점유 점수가 +20% 증가합니다."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Description
 msgid "Train elite rank healers."
@@ -1308,7 +1310,7 @@ msgstr "멜레아그로스"
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Description
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "시민 회관의 내구성이 +100% 증가하고 점유 점수, 기본 이중 화살이 증가합니다."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
@@ -1329,7 +1331,7 @@ msgstr "알렉산더를 시작으로 헬레니즘의 군주들은 그들의 제�
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr ""
+msgstr "방패지기 대표 전사 보병을 더 많은 체력과 공격력을 주는 은방패로 향상합니다."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
 msgid "Silver Shields"
@@ -1448,11 +1450,11 @@ msgstr "마우리아 제국은 5백만 평방 킬로미터의 면적에 걸쳐 �
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "코끼리들의 훈련 시간이 −30% 감소합니다."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "번역확인 -> 전통 코끼리 훈련"
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].History
 msgid ""
@@ -1460,7 +1462,7 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr ""
+msgstr "인도는 코끼리의 땅입니다. 코끼리 전쟁은 인도에서 시작되어 수 천년 동안 계속되었습니다. 그것은 또한 지중해 동부의 코끼리의 근원이기도 했습니다. 인도의 왕들은 많은 수의 전쟁 코끼리를 전투에 배치할 수 있었습니다."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid ""
@@ -1519,7 +1521,7 @@ msgstr "브리하드라타 마우리아"
 msgid ""
 "The Indian peoples had a tradition of fine archery and a penchant for using "
 "massed archers in battle."
-msgstr ""
+msgstr "인도인은 전장에서 전통 궁술과 궁수의 일제 사격에 대한 전술이 있었습니다."
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -1543,11 +1545,11 @@ msgstr "마우리아 인도"
 
 #: simulation/data/civs/maur.jsonStructures[0].Name
 msgid "Elephant Stable"
-msgstr ""
+msgstr "코끼리 사육장"
 
 #: simulation/data/civs/maur.jsonStructures[0].Special
 msgid "Train Elephants and research Elephant technologies."
-msgstr ""
+msgstr "코끼리를 훈련시키고 코끼리 기술을 연구합니다."
 
 #: simulation/data/civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
@@ -1666,7 +1668,7 @@ msgstr "끄샤야르샤 2세"
 msgid ""
 "The Iranian peoples had a tradition of fine archery and a penchant for using"
 " massed archers in battle."
-msgstr ""
+msgstr "이란인은 전장에서 전통 궁술과 궁수의 일제 사격에 대한 전술이 있었습니다."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry."
@@ -1707,7 +1709,7 @@ msgstr "페르시아인들은 사르디스에서 수사로 가는 2700킬로미�
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
 msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "아누쉬야 대표 전사 보병의 양성 시간이 -50% 감소하지만, 또한 체력도 -10% 감소합니다."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
 msgid "Immortals"
@@ -1717,7 +1719,7 @@ msgstr "불멸"
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "아케메네스는 그리스 작가들에 의해 아타나토이(“불사군단”)라고 불리는 10,000 명의 정예 군단을 유지했습니다."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
@@ -1772,7 +1774,7 @@ msgstr "마구간"
 
 #: simulation/data/civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry and research Cavalry technologies."
-msgstr ""
+msgstr "기병을 양성하고 기병 기술을 연구합니다."
 
 #: simulation/data/civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
@@ -2338,11 +2340,11 @@ msgstr "아름답고 강력한 종의 니세안 말들은 셀레우시드 기병
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
 msgid ""
 "Unlock either Champion Infantry Pikemen or Champion Infantry Swordsmen."
-msgstr ""
+msgstr "대표 전사 보병 장창병 또는 대표 전사 보병 검병중 하나를 잠금을 해제합니다."
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
 msgid "Traditional Army vs Reform Army"
-msgstr ""
+msgstr "전통적인 군대 대 개혁 군대"
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -2509,7 +2511,7 @@ msgstr "아게시폴리스"
 msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers."
-msgstr ""
+msgstr "스파르타 여성 시민은 붙잡힐 수 없으며 어떤 공격에도 끈질기게 맞서 싸울 것입니다."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
@@ -2543,7 +2545,7 @@ msgstr "파에안은 적진을 공격할때 중장보병들이 부르는 군가�
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "대표 전사 창 보병의 체력이 +25% 증가하지만, 양성 시간이 +5% 증가합니다."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"

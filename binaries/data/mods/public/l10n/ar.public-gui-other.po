@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# ABDO SEED <abdulkader.saied@gmail.com>, 2020
 # abidin toumi <abidin24@tutanota.com>, 2018
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2019
 # Hamza ESSAD <essadhamza@outlook.fr>, 2017
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-10 07:08+0000\n"
-"PO-Revision-Date: 2020-08-10 17:22+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-08-22 20:39+0000\n"
+"Last-Translator: ABDO SEED <abdulkader.saied@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -112,7 +113,7 @@ msgstr "اختصار غير مخصص: %(hotkeyName)s"
 #: gui/common/color.js:193
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr ""
+msgstr "انقر%(hotkey)s للإكمال التلقائي لإسماء اللاعبين."
 
 #: gui/common/color.js:195
 msgctxt "hotkey"
@@ -364,11 +365,11 @@ msgstr[5] ""
 #: gui/common/gamedescription.js:293
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "خريطة عشوائية"
 
 #: gui/common/gamedescription.js:294
 msgid "Randomly select a map from the list."
-msgstr ""
+msgstr "اختر بشكل عشوائي خريطة من القائمة."
 
 #: gui/common/gamedescription.js:299
 msgid "Map Name"
@@ -420,7 +421,7 @@ msgstr "موارد البدء"
 #: gui/common/gamedescription.js:358
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "لكل لاعب"
 
 #: gui/common/gamedescription.js:359
 #, javascript-format
@@ -434,20 +435,20 @@ msgstr "حد السكان"
 #: gui/common/gamedescription.js:374
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "لكل لاعب"
 
 #: gui/common/gamedescription.js:382
 msgid "World Population Cap"
-msgstr ""
+msgstr "حد السكان العالمي"
 
 #: gui/common/gamedescription.js:390
 msgid "Treasures"
-msgstr ""
+msgstr "الكنوز"
 
 #: gui/common/gamedescription.js:392
 msgctxt "treasures"
 msgid "Disabled"
-msgstr ""
+msgstr "معطل"
 
 #: gui/common/gamedescription.js:393
 msgctxt "treasures"
@@ -526,11 +527,11 @@ msgstr ""
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "انهى المضيف اللعبة."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "نسخة غير صحيحة من بروتوكول الشبكة."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
@@ -542,19 +543,19 @@ msgstr ""
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "لقد تم طردك."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "لقد تم منعك."
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "هذا الاسم مستخدم من قبل. إذا كنت غير متصل حاول مرة اخرى بعد عدة ثواني."
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "السيرفر ممتلئ."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
@@ -725,7 +726,7 @@ msgstr "افتراضى "
 #: gui/common/settings.js:400
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(العالم)"
 
 #: gui/common/settings.js:401 gui/common/settings.js:405
 msgctxt "population capacity"
@@ -734,7 +735,7 @@ msgstr "غير معروف"
 
 #: gui/common/settings.js:417
 msgid "Unknown Victory Condition"
-msgstr ""
+msgstr "نصر بشكل غير معروف"
 
 #: gui/common/tooltips.js:47
 #, javascript-format
@@ -798,7 +799,7 @@ msgstr "(%(armorPercentage)s)"
 
 #: gui/common/tooltips.js:195
 msgid "Garrison to fire arrows"
-msgstr ""
+msgstr "تحصن لإطلاق السهام"
 
 #: gui/common/tooltips.js:198 gui/common/tooltips.js:845
 msgid "Interval:"
@@ -873,7 +874,7 @@ msgstr "+%(number)s"
 #. meters"
 #: gui/common/tooltips.js:253
 msgid "meters"
-msgstr ""
+msgstr "أمتار"
 
 #: gui/common/tooltips.js:254 gui/common/tooltips.js:842
 #: gui/common/tooltips.js:872
@@ -899,7 +900,7 @@ msgstr ""
 #: gui/common/tooltips.js:277
 msgctxt "damage type"
 msgid "Capture"
-msgstr ""
+msgstr "سيطرة"
 
 #: gui/common/tooltips.js:286
 #, javascript-format
@@ -929,7 +930,7 @@ msgstr ""
 #: gui/common/tooltips.js:372
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
-msgstr ""
+msgstr "نيران صديقة %(enabled)s"
 
 #: gui/common/tooltips.js:373 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
@@ -974,7 +975,7 @@ msgstr ""
 #: gui/common/tooltips.js:437
 msgctxt "status effect stackability"
 msgid "(replaces)"
-msgstr ""
+msgstr "(يستبدل)"
 
 #: gui/common/tooltips.js:439
 msgctxt "status effect stackability"
@@ -1006,7 +1007,7 @@ msgstr "علاج:"
 
 #: gui/common/tooltips.js:463 gui/common/tooltips.js:837
 msgid "Health"
-msgstr ""
+msgstr "الصحة"
 
 #: gui/common/tooltips.js:487 gui/common/tooltips.js:492
 #: gui/common/tooltips.js:497
@@ -1026,7 +1027,7 @@ msgstr "افتراضى "
 #: gui/common/tooltips.js:498
 msgctxt "projectiles"
 msgid "Per Unit"
-msgstr ""
+msgstr "لكل وحدة"
 
 #: gui/common/tooltips.js:507
 msgid "Number of repairers:"
@@ -1148,7 +1149,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:746
 msgid "Cost:"
-msgstr ""
+msgstr "الكلفة:"
 
 #: gui/common/tooltips.js:759
 #, javascript-format
@@ -1248,13 +1249,13 @@ msgstr "غنيمه:"
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:959
 msgid "Right-click to view more information."
-msgstr ""
+msgstr "انقر بالزر الأيمن لمزيد من المعلومات."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
 #: gui/common/tooltips.js:965
 msgid "Click to view more information."
-msgstr ""
+msgstr "انقر لمزيد من المعلومات."
 
 #: gui/credits/credits.js:83
 #, javascript-format
@@ -1414,11 +1415,11 @@ msgstr "افتح كتيّب لعبة «0م»."
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
-msgstr ""
+msgstr "التدريب"
 
 #: gui/pregame/MainMenuItems.js:15
 msgid "Start the economic tutorial."
-msgstr ""
+msgstr "ابدا التدريب الاقتصادي."
 
 #: gui/pregame/MainMenuItems.js:24 gui/civinfo/civinfo.xml:(caption):123
 #: gui/reference/structree/structree.xml:(caption):20
@@ -1435,7 +1436,7 @@ msgstr ""
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 #: gui/civinfo/civinfo.xml:(caption):18
 msgid "Civilization Overview"
-msgstr ""
+msgstr "رؤية عامة على الحضارة"
 
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
@@ -1444,11 +1445,11 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:143
 msgid "Single-player"
-msgstr ""
+msgstr "لاعب فردي"
 
 #: gui/pregame/MainMenuItems.js:51
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "ابدا، حمل أو أعد تسجيل للعبة بنمط اللاعب الواحد."
 
 #: gui/pregame/MainMenuItems.js:54
 msgid "Matches"
@@ -1456,7 +1457,7 @@ msgstr "مبارزات"
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "ابدا لعبة جديدة بنمط اللاعب الواحد."
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Campaigns"
@@ -1470,7 +1471,7 @@ msgstr "عِش التّاريخ عبر الحملات العسكريّة الت�
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Load a saved game."
-msgstr ""
+msgstr "حمل لعبة محفوظة."
 
 #: gui/pregame/MainMenuItems.js:73 gui/pregame/MainMenuItems.js:123
 msgid "Replays"
@@ -1503,7 +1504,7 @@ msgstr "استضف لعبة"
 
 #: gui/pregame/MainMenuItems.js:103
 msgid "Host a multiplayer game."
-msgstr ""
+msgstr "استضيف لعبة بعدة لاعبين."
 
 #: gui/pregame/MainMenuItems.js:111
 msgid "Game Lobby"
@@ -1526,7 +1527,7 @@ msgstr "الإعدادات"
 
 #: gui/pregame/MainMenuItems.js:139
 msgid "Change game options."
-msgstr ""
+msgstr "تغيير إعدادات اللعبة."
 
 #: gui/pregame/MainMenuItems.js:142
 msgid "Options"
@@ -1550,7 +1551,7 @@ msgstr "اختيار تعديل"
 
 #: gui/pregame/MainMenuItems.js:160
 msgid "Select and download mods for the game."
-msgstr ""
+msgstr "حدد ونزل أنماط للعبة."
 
 #: gui/pregame/MainMenuItems.js:166
 msgid "Welcome Screen"
@@ -1602,7 +1603,7 @@ msgstr "اخرج"
 
 #: gui/pregame/MainMenuItems.js:201
 msgid "Exit the game."
-msgstr ""
+msgstr "الخروج من اللعبة."
 
 #: gui/pregame/MainMenuItems.js:205
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -1650,7 +1651,7 @@ msgstr "انقر لزيارة متعقّب «0م» للإبلاغ عن العل�
 
 #: gui/pregame/ProjectInformation.js:49
 msgid "Translate the Game"
-msgstr ""
+msgstr "ترجم اللعبة"
 
 #: gui/pregame/ProjectInformation.js:50
 msgid "Click to open the 0 A.D. translate page in your browser."
@@ -1658,11 +1659,11 @@ msgstr "انقر هنا لفتح صفحة ترجمة «0م» في المتصفّ
 
 #: gui/pregame/ProjectInformation.js:57
 msgid "Donate"
-msgstr ""
+msgstr "تبرع"
 
 #: gui/pregame/ProjectInformation.js:58
 msgid "Help with the project expenses by donating."
-msgstr ""
+msgstr "ساعد تطوير المشروع من خلال التبرع."
 
 #: gui/pregame/SplashscreenHandler.js:49
 #, javascript-format
@@ -1697,15 +1698,15 @@ msgstr "اطّلع على المزيد"
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "الشروط"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
-msgstr ""
+msgstr "من فضلك اقرا ووافق على شروط ومصطلحات المستخدم."
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
-msgstr ""
+msgstr "المنشورات"
 
 #: gui/pregame/userreport/userreport.js:27
 #: gui/pregame/userreport/userreport.js:28
@@ -1746,7 +1747,7 @@ msgstr "شكرًا لمساعدتنا في تطوير «0م»!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
-msgstr ""
+msgstr "تفعيل إرسال المعلومات."
 
 #: gui/pregame/userreport/userreport.js:83
 #, javascript-format
@@ -1765,7 +1766,7 @@ msgstr "ساهم في تحسين «0م»!"
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr ""
+msgstr "يمكن أن ترسل لنا معلومات بشكل تلقائي تساعدنا في إصلاح العلل وتحسين الأداء والتوافق."
 
 #: gui/reference/common/TemplateParser.js:128
 #, javascript-format
@@ -1782,19 +1783,19 @@ msgstr ""
 #. structure selected.
 #: gui/reference/common/tooltips.js:27
 msgid "Built by:"
-msgstr ""
+msgstr "بني من قبل:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit selected.
 #: gui/reference/common/tooltips.js:33
 msgid "Trained by:"
-msgstr ""
+msgstr "درب من قبل:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the technology selected.
 #: gui/reference/common/tooltips.js:39
 msgid "Researched at:"
-msgstr ""
+msgstr "تم بحثه في:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can construct or build.
@@ -1943,7 +1944,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_filters.js:143
 msgid "Single-player and multiplayer"
-msgstr ""
+msgstr "لاعب واحد و لاعبين متعددين"
 
 #: gui/replaymenu/replay_filters.js:156
 msgid "Any Victory Condition"
@@ -2012,7 +2013,7 @@ msgstr "نقاط الاكتشاف"
 
 #: gui/summary/layout.js:31
 msgid "Structures"
-msgstr ""
+msgstr "مباني"
 
 #: gui/summary/layout.js:34 gui/summary/layout.js:72 gui/summary/layout.js:112
 msgid "Total"
@@ -2075,11 +2076,11 @@ msgstr "الأبطال"
 
 #: gui/summary/layout.js:78
 msgid "Siege"
-msgstr ""
+msgstr "حصار"
 
 #: gui/summary/layout.js:79
 msgid "Navy"
-msgstr ""
+msgstr "بحرية"
 
 #: gui/summary/layout.js:80
 msgid "Traders"
@@ -2096,7 +2097,7 @@ msgstr "الموارد"
 
 #: gui/summary/layout.js:121
 msgid "Tributes"
-msgstr ""
+msgstr "قبائل"
 
 #: gui/summary/layout.js:122
 #, javascript-format
@@ -2111,7 +2112,7 @@ msgstr ""
 
 #: gui/summary/layout.js:131
 msgid "Loot"
-msgstr ""
+msgstr "غنيمة"
 
 #: gui/summary/layout.js:132
 msgid "Livestock bred"
@@ -2150,15 +2151,15 @@ msgstr "نسبة القتل / الموت"
 
 #: gui/summary/layout.js:196
 msgid "Map control (peak)"
-msgstr ""
+msgstr "التحكم بالخريطة (الذروة)"
 
 #: gui/summary/layout.js:197
 msgid "Map control (finish)"
-msgstr ""
+msgstr "التحكم بالخريطة (النهاية)"
 
 #: gui/summary/layout.js:198
 msgid "Map exploration"
-msgstr ""
+msgstr "استكشاف الخريطة"
 
 #: gui/summary/layout.js:199
 msgid "Vegetarian ratio"
@@ -2181,7 +2182,7 @@ msgstr ""
 
 #: gui/summary/layout.js:229
 msgid "Charts"
-msgstr ""
+msgstr "المخططات"
 
 #: gui/summary/layout.js:373
 msgid "Team total"
@@ -2293,11 +2294,11 @@ msgstr "لقد ربحت المعركة!"
 
 #: gui/summary/summary.js:509
 msgid "You have been defeated…"
-msgstr ""
+msgstr "لقد هزمت.."
 
 #: gui/summary/summary.js:510
 msgid "You have abandoned the game."
-msgstr ""
+msgstr "لقد تركت اللعبة."
 
 #: gui/summary/summary.js:513
 #, javascript-format
@@ -2556,7 +2557,7 @@ msgstr ""
 #: gui/summary/summary.xml:(tooltip):147
 msgctxt "summary chart"
 msgid "Type"
-msgstr ""
+msgstr "نوع"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
@@ -2592,7 +2593,7 @@ msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
 msgid "Additional music"
-msgstr ""
+msgstr "موسيقى إضافية"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
 msgid "Flute"
@@ -2637,7 +2638,7 @@ msgstr "الصّو"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[0].Subtitle
 msgid "Greek"
-msgstr ""
+msgstr "إغريق"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
 msgid "Latin"
@@ -2645,7 +2646,7 @@ msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
 msgid "Persian"
-msgstr ""
+msgstr "الفرس"
 
 #: gui/credits/texts/audio.jsonContent[3].Title
 msgid "Voices"
@@ -2653,7 +2654,7 @@ msgstr "الأصوات"
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
-msgstr ""
+msgstr "الصوت"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -2700,7 +2701,7 @@ msgstr "سكربتات الخرائط العشوائيّة"
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr ""
+msgstr "الخرائط"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -2839,7 +2840,7 @@ msgstr ""
 #: gui/options/options.json[1].options[5].list[0].label
 #: gui/options/options.json[3].options[5].list[2].label
 msgid "Disabled"
-msgstr ""
+msgstr "معطل"
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid ""
@@ -2890,11 +2891,11 @@ msgstr "فضّل GLSL"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable Fog."
-msgstr ""
+msgstr "تفعيل الضباب"
 
 #: gui/options/options.json[1].options[2].label
 msgid "Fog"
-msgstr ""
+msgstr "الضباب"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
@@ -2970,24 +2971,24 @@ msgstr "الظّلال"
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "Very Low"
-msgstr ""
+msgstr "ضعيفة للغاية"
 
 #: gui/options/options.json[1].options[9].list[1].label
 msgid "Low"
-msgstr ""
+msgstr "ضعيف"
 
 #: gui/options/options.json[1].options[9].list[2].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
-msgstr ""
+msgstr "متوسط"
 
 #: gui/options/options.json[1].options[9].list[3].label
 msgid "High"
-msgstr ""
+msgstr "مرتفع"
 
 #: gui/options/options.json[1].options[9].list[4].label
 msgid "Very High"
-msgstr ""
+msgstr "مرتفع للغاية"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid ""
@@ -2997,11 +2998,11 @@ msgstr "ميز خريطة الظّلال. القيم العالية قد تسب�
 
 #: gui/options/options.json[1].options[9].label
 msgid "Shadow quality"
-msgstr ""
+msgstr "جودة الظلال"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid "Smooth shadows."
-msgstr ""
+msgstr "ظلال ملساء"
 
 #: gui/options/options.json[1].options[10].label
 msgid "Shadow filtering"
@@ -3031,7 +3032,7 @@ msgstr "إن عُطّل فاستخدم أدنى الإعدادات الممكن�
 
 #: gui/options/options.json[1].options[13].label
 msgid "Water effects"
-msgstr ""
+msgstr "تأثيرات المياه"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid ""
@@ -3041,7 +3042,7 @@ msgstr "استخدم تأثيرات عالية الجودة للمياه لتص�
 
 #: gui/options/options.json[1].options[14].label
 msgid "High-quality water effects"
-msgstr ""
+msgstr "تأثيرات المياه عالية الجودة"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -3049,15 +3050,15 @@ msgstr ""
 
 #: gui/options/options.json[1].options[15].label
 msgid "Real water depth"
-msgstr ""
+msgstr "عمق المياه الحقيقي"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
-msgstr ""
+msgstr "إعطاء المياه إنعكاس المراة."
 
 #: gui/options/options.json[1].options[16].label
 msgid "Water reflections"
-msgstr ""
+msgstr "انعكاسات المياه"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
@@ -3089,7 +3090,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[20].label
 msgid "Show sky"
-msgstr ""
+msgstr "إظهار السماء"
 
 #: gui/options/options.json[1].options[21].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
@@ -3141,7 +3142,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music volume"
-msgstr ""
+msgstr "الموسيقى"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
@@ -3234,7 +3235,7 @@ msgstr ""
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI difficulty"
-msgstr ""
+msgstr "صعوبة الكمبيوتر الافتراضية"
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
