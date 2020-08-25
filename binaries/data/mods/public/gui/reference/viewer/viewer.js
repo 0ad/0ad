@@ -8,7 +8,7 @@ g_TooltipTextFormats.nameGeneric.font = "sans-bold-16";
 /**
  * Page initialisation. May also eventually pre-draw/arrange objects.
  *
- * @param {object} data - Contains the civCode and the name of the template to display.
+ * @param {Object} data - Contains the civCode and the name of the template to display.
  * @param {string} data.templateName
  * @param {string} [data.civ]
  */

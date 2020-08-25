@@ -14,7 +14,7 @@
 /**
  * Get the height range of a heightmap
  * @param {array} [heightmap=g_Map.height] - The reliefmap the minimum and maximum height should be determined for
- * @return {object} Height range with 2 floats in properties "min" and "max"
+ * @return {Object} Height range with 2 floats in properties "min" and "max"
  */
 function getMinAndMaxHeight(heightmap = g_Map.height)
 {
@@ -35,8 +35,8 @@ function getMinAndMaxHeight(heightmap = g_Map.height)
 
 /**
  * Rescales a heightmap so its minimum and maximum height is as the arguments told preserving it's global shape
- * @param {Number} [minHeight=MIN_HEIGHT] - Minimum height that should be used for the resulting heightmap
- * @param {Number} [maxHeight=MAX_HEIGHT] - Maximum height that should be used for the resulting heightmap
+ * @param {number} [minHeight=MIN_HEIGHT] - Minimum height that should be used for the resulting heightmap
+ * @param {number} [maxHeight=MAX_HEIGHT] - Maximum height that should be used for the resulting heightmap
  * @param {array} [heightmap=g_Map.height] - A reliefmap
  * @todo Add preserveCostline to leave a certain height untoucht and scale below and above that seperately
  */
@@ -53,7 +53,7 @@ function rescaleHeightmap(minHeight = MIN_HEIGHT, maxHeight = MAX_HEIGHT, height
  * Translates the heightmap by the given vector, i.e. moves the heights in that direction.
  *
  * @param {Vector2D} offset - A vector indicating direction and distance.
- * @param {Number} [defaultHeight] - The elevation to be set for vertices that don't have a corresponding location on the source heightmap.
+ * @param {number} [defaultHeight] - The elevation to be set for vertices that don't have a corresponding location on the source heightmap.
  * @param {Array} [heightmap=g_Map.height] - A reliefmap
  */
 function translateHeightmap(offset, defaultHeight = undefined, heightmap = g_Map.height)
@@ -76,9 +76,9 @@ function translateHeightmap(offset, defaultHeight = undefined, heightmap = g_Map
 
 /**
  * Get start location with the largest minimum distance between players
- * @param {object} [heightRange] - The height range start locations are allowed
+ * @param {Object} [heightRange] - The height range start locations are allowed
  * @param {integer} [maxTries=1000] - How often random player distributions are rolled to be compared
- * @param {Number} [minDistToBorder=20] - How far start locations have to be away from the map border
+ * @param {number} [minDistToBorder=20] - How far start locations have to be away from the map border
  * @param {integer} [numberOfPlayers=g_MapSettings.PlayerData.length] - How many start locations should be placed
  * @param {array} [heightmap=g_Map.height] - The reliefmap for the start locations to be placed on
  * @param {boolean} [isCircular=g_MapSettings.CircularMap] - If the map is circular or rectangular
@@ -135,10 +135,10 @@ function getStartLocationsByHeightmap(heightRange, maxTries = 1000, minDistToBor
  * @note min/maxHeight will not necessarily be present in the heightmap
  * @note On circular maps the edges (given by initialHeightmap) may not be in the playable map area
  * @note The impact of the initial heightmap depends on its size and target map size
- * @param {Number} [minHeight=MIN_HEIGHT] - Lower limit of the random height to be rolled
- * @param {Number} [maxHeight=MAX_HEIGHT] - Upper limit of the random height to be rolled
+ * @param {number} [minHeight=MIN_HEIGHT] - Lower limit of the random height to be rolled
+ * @param {number} [maxHeight=MAX_HEIGHT] - Upper limit of the random height to be rolled
  * @param {array} [initialHeightmap] - Optional, Small (e.g. 3x3) heightmap describing the global shape of the map e.g. an island [[MIN_HEIGHT, MIN_HEIGHT, MIN_HEIGHT], [MIN_HEIGHT, MAX_HEIGHT, MIN_HEIGHT], [MIN_HEIGHT, MIN_HEIGHT, MIN_HEIGHT]]
- * @param {Number} [smoothness=0.5] - Float between 0 (rough, more local structures) to 1 (smoother, only larger scale structures)
+ * @param {number} [smoothness=0.5] - Float between 0 (rough, more local structures) to 1 (smoother, only larger scale structures)
  * @param {array} [heightmap=g_Map.height] - The reliefmap that will be set by this function
  */
 function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEIGHT, initialHeightmap = undefined, smoothness = 0.5, heightmap = g_Map.height)
@@ -227,7 +227,7 @@ function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEI
  * Meant to place e.g. resource spots within a height range
  * @param {array} [heightRange] - The height range in which to place the entities (An associative array with keys "min" and "max" each containing a float)
  * @param {array} [avoidPoints=[]] - An array of objects of the form { "x": int, "y": int, "dist": int }, points that will be avoided in the given dist e.g. start locations
- * @param {object} [avoidClass=undefined] - TileClass to be avoided
+ * @param {Object} [avoidClass=undefined] - TileClass to be avoided
  * @param {integer} [minDistance=30] - How many tile widths the entities to place have to be away from each other, start locations and the map border
  * @param {array} [heightmap=g_Map.height] - The reliefmap the entities should be distributed on
  * @param {integer} [maxTries=2 * g_Map.size] - How often random player distributions are rolled to be compared (256 to 1024)

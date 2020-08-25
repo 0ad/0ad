@@ -133,16 +133,16 @@ function createDecoration(objects, counts, constraint)
  * Do determine the position, it picks a random point on the land, find the closest, significantly large body of water,
  * then places the dock at the first point close to that body of water within the given heightrange.
  *
- * @param {String} template - The template name of the dock to be placed.
- * @param {Number} playerID - The owner of the dock.
- * @param {Number} count - The number of docks to be placed.
+ * @param {string} template - The template name of the dock to be placed.
+ * @param {number} playerID - The owner of the dock.
+ * @param {number} count - The number of docks to be placed.
  * @param {Object} tileClassWater - The tileclass the water area is marked with.
  * @param {Object} tileClassDock - The dock position is marked with this class.
- * @param {Number} heightMin - The lowest height a dock could be placed.
- * @param {Number} heightMax - The greatest height a dock could be placed.
+ * @param {number} heightMin - The lowest height a dock could be placed.
+ * @param {number} heightMax - The greatest height a dock could be placed.
  * @param {Array|Constraint} constraints - Only consider dock positions valid that meet this Constraint.
- * @param {Number} offset - How many tiles to move the dock towards the direction of the water after having found a location.
- * @param {Number} retryFactor- How many different locations should be tested.
+ * @param {number} offset - How many tiles to move the dock towards the direction of the water after having found a location.
+ * @param {number} retryFactor- How many different locations should be tested.
  */
 function placeDocks(template, playerID, count, tileClassWater, tileClassDock, heightMin, heightMax, constraints, offset, retryFactor)
 {

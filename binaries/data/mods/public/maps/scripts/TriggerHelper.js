@@ -357,11 +357,11 @@ TriggerHelper.HasDealtWithTech = function(playerID, techName)
 /**
  * Returns all names of templates that match the given identity classes, constrainted to an optional civ.
  *
- * @param {String} classes - See MatchesClassList for the accepted formats, for example "Class1 Class2+!Class3".
- * @param [String] civ - Optionally only retrieve templates of the given civ. Can be left undefined.
- * @param [String] packedState - When retrieving siege engines filter for the "packed" or "unpacked" state
- * @param [String] rank - If given, only return templates that have no or the given rank. For example "Elite".
- * @param [Boolean] excludeBarracksVariants - Optionally exclude templates whose name ends with "_barracks"
+ * @param {string} classes - See MatchesClassList for the accepted formats, for example "Class1 Class2+!Class3".
+ * @param [string] civ - Optionally only retrieve templates of the given civ. Can be left undefined.
+ * @param [string] packedState - When retrieving siege engines filter for the "packed" or "unpacked" state
+ * @param [string] rank - If given, only return templates that have no or the given rank. For example "Elite".
+ * @param [boolean] excludeBarracksVariants - Optionally exclude templates whose name ends with "_barracks"
  */
 TriggerHelper.GetTemplateNamesByClasses = function(classes, civ, packedState, rank, excludeBarracksVariants)
 {
@@ -397,8 +397,8 @@ TriggerHelper.GetTemplateNamesByClasses = function(classes, civ, packedState, ra
 /**
  * Composes a random set of the given templates of the given total size.
  *
- * @param {String[]} templateNames - for example ["brit_infantry_javelineer_b", "brit_cavalry_swordsman_e"]
- * @param {Number} totalCount - total amount of templates, in this  example 12
+ * @param {string[]} templateNames - for example ["brit_infantry_javelineer_b", "brit_cavalry_swordsman_e"]
+ * @param {number} totalCount - total amount of templates, in this  example 12
  * @returns an object where the keys are template names and values are amounts,
  *          for example { "brit_infantry_javelineer_b": 4, "brit_cavalry_swordsman_e": 8 }
  */
@@ -436,7 +436,7 @@ TriggerHelper.RandomTemplateComposition = function(templateNames, totalCount)
  *        { "templates": ["template3"], "frequency": 1 },
  *        { "templates": ["hero1", "hero2"], "unique_entities": [380, 495], "count": 1 }
  *     ]
- * @param {Number} totalCount - total amount of templates, for example 5.
+ * @param {number} totalCount - total amount of templates, for example 5.
  *
  * @returns an object where the keys are template names and values are amounts,
  *    for example { "template1": 1, "template2": 3, "template3": 2, "hero1": 1 }

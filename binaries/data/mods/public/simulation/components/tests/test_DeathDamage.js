@@ -1,4 +1,3 @@
-Engine.LoadHelperScript("DamageBonus.js");
 Engine.LoadHelperScript("Attacking.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/DeathDamage.js");

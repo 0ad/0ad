@@ -167,7 +167,7 @@ function getUsernameList()
  * Execute a command locally. Requires addChatMessage.
  *
  * @param {string} input
- * @returns {Boolean} whether a command was executed
+ * @returns {boolean} whether a command was executed
  */
 function executeNetworkCommand(input)
 {

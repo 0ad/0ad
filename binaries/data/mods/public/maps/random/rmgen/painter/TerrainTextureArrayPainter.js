@@ -1,8 +1,8 @@
 /**
  * Paints the given texture-mapping to the given tiles.
  *
- * @param {String[]} textureIDs - Names of the terrain textures
- * @param {Number[]} textureNames - One-dimensional array of indices of texturenames, one for each tile of the entire map.
+ * @param {string[]} textureIDs - Names of the terrain textures
+ * @param {number[]} textureNames - One-dimensional array of indices of texturenames, one for each tile of the entire map.
  * @returns
  */
 function TerrainTextureArrayPainter(textureIDs, textureNames)

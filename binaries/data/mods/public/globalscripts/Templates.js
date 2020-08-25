@@ -98,7 +98,7 @@ function MatchesClassList(classes, match)
 /**
  * Gets the value originating at the value_path as-is, with no modifiers applied.
  *
- * @param {object} template - A valid template as returned from a template loader.
+ * @param {Object} template - A valid template as returned from a template loader.
  * @param {string} value_path - Route to value within the xml template structure.
  * @return {number}
  */
@@ -113,11 +113,11 @@ function GetBaseTemplateDataValue(template, value_path)
 /**
  * Gets the value originating at the value_path with the modifiers dictated by the mod_key applied.
  *
- * @param {object} template - A valid template as returned from a template loader.
+ * @param {Object} template - A valid template as returned from a template loader.
  * @param {string} value_path - Route to value within the xml template structure.
  * @param {string} mod_key - Tech modification key, if different from value_path.
  * @param {number} player - Optional player id.
- * @param {object} modifiers - Value modifiers from auto-researched techs, unit upgrades,
+ * @param {Object} modifiers - Value modifiers from auto-researched techs, unit upgrades,
  *                             etc. Optional as only used if no player id provided.
  * @return {number} Modifier altered value.
  */
@@ -141,11 +141,11 @@ function GetModifiedTemplateDataValue(template, value_path, mod_key, player, mod
  * NOTICE: The data returned here should have the same structure as
  * the object returned by GetEntityState and GetExtendedEntityState!
  *
- * @param {object} template - A valid template as returned by the template loader.
+ * @param {Object} template - A valid template as returned by the template loader.
  * @param {number} player - An optional player id to get the technology modifications
  *                          of properties.
- * @param {object} auraTemplates - In the form of { key: { "auraName": "", "auraDescription": "" } }.
- * @param {object} modifiers - Modifications from auto-researched techs, unit upgrades
+ * @param {Object} auraTemplates - In the form of { key: { "auraName": "", "auraDescription": "" } }.
+ * @param {Object} modifiers - Modifications from auto-researched techs, unit upgrades
  *                             etc. Optional as only used if there's no player
  *                             id provided.
  */
@@ -483,7 +483,7 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 
 /**
  * Get basic information about a technology template.
- * @param {object} template - A valid template as obtained by loading the tech JSON file.
+ * @param {Object} template - A valid template as obtained by loading the tech JSON file.
  * @param {string} civ - Civilization for which the tech requirements should be calculated.
  */
 function GetTechnologyBasicDataHelper(template, civ)
@@ -503,7 +503,7 @@ function GetTechnologyBasicDataHelper(template, civ)
 
 /**
  * Get information about a technology template.
- * @param {object} template - A valid template as obtained by loading the tech JSON file.
+ * @param {Object} template - A valid template as obtained by loading the tech JSON file.
  * @param {string} civ - Civilization for which the specific name and tech requirements should be returned.
  */
 function GetTechnologyDataHelper(template, civ, resources)

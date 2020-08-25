@@ -36,8 +36,8 @@ class DamageTypesMetadata
 	}
 
 	/**
-	 * @param {String[]} damageTypes - The damageTypes to sort.
-	 * @returns {String[]} - The damageTypes in sorted order; first the ones
+	 * @param {string[]} damageTypes - The damageTypes to sort.
+	 * @returns {string[]} - The damageTypes in sorted order; first the ones
 	 *			where metadata is provided, then the rest.
 	 */
 	sort(damageTypes)

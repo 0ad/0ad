@@ -1,7 +1,7 @@
 /**
- * Initialize the page
+ * Initialize the page.
  *
- * @param {object} data - Parameters passed from the code that calls this page into existence.
+ * @param {Object} data - Parameters passed from the code that calls this page into existence.
  */
 function init(data = {})
 {

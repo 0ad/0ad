@@ -1,7 +1,7 @@
 /**
  * @file The RandomMap stores the elevation grid, terrain textures and entities that are exported to the engine.
  *
- * @param {Number} baseHeight - Initial elevation of the map
+ * @param {number} baseHeight - Initial elevation of the map
  * @param {String|Array} baseTerrain - One or more texture names
  */
 function RandomMap(baseHeight, baseTerrain)

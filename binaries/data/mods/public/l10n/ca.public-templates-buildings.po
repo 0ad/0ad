@@ -10,7 +10,7 @@
 # Francesc Saló <whitrix@hotmail.es>, 2016
 # José Verdú Díaz <pepv@hotmail.es>, 2016
 # juan Aragó <juan_arago@yahoo.es>, 2018
-# Marc Masip Compte <marcmc421@gmail.com>, 2019
+# Marc Masip Compte <marcmc421@gmail.com>, 2019-2020
 # Pau Soliva <psoliva@naralabs.com>, 2017
 # Peredelgrau, 2016
 # Peredelgrau, 2016
@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-10 07:09+0000\n"
-"PO-Revision-Date: 2020-08-10 10:40+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-08-22 01:57+0000\n"
+"Last-Translator: Marc Masip Compte <marcmc421@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +45,7 @@ msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Dropsite for food, wood, stone, and metal. Train Citizens "
 "and research technologies. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Es pot construir en territori neutral o enemic. Afegeix grans extensions de territori. Punt de descàrrega de menjar, fusta, pedra i metall. Entrena soldats ciutadans i investiga tecnologies. S'hi poden refugiar soldats per disparar més fletxes."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:91
 #: simulation/templates/template_structure_defensive.xml:15
@@ -87,7 +87,7 @@ msgstr "Casa"
 
 #: simulation/templates/template_structure_civic_stoa.xml:33
 msgid "Train Mercenary Champions."
-msgstr ""
+msgstr "Recluta campions mercenaris"
 
 #: simulation/templates/template_structure_civic_stoa.xml:34
 #: simulation/templates/template_structure_civic_temple.xml:36
@@ -113,7 +113,7 @@ msgstr "Stoà"
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 msgid "Train Healers and research healing technologies."
-msgstr ""
+msgstr "Recluta guaridors i investiga tecnologies de curació."
 
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -139,7 +139,7 @@ msgstr "Palissada"
 #: simulation/templates/template_structure_defensive_tower.xml:36
 #: simulation/templates/template_structure_defensive_tower.xml:52
 msgid "Tower"
-msgstr ""
+msgstr "Torre"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:57
 msgid "Artillery Tower"
@@ -160,7 +160,7 @@ msgstr "Ciutat"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 msgid "ArtilleryTower"
-msgstr ""
+msgstr "Torre d'artilleria"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
@@ -174,7 +174,7 @@ msgstr ""
 msgid ""
 "Build in own or neutral territory. Slowly converts to Gaia while in neutral "
 "territory."
-msgstr ""
+msgstr "Es pot construir tant en territori neutral com en propi. Es converteix a poc a poc en Gaia quan està en territori neutral."
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:54
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:29
@@ -192,7 +192,7 @@ msgstr "Torre de vigilància"
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
-msgstr ""
+msgstr "Refugia infanteria per fletxes addicionals. Necessita la tecnologia \"Espitlleres\" per protegir el peu de la torre."
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 msgid "SentryTower"
@@ -204,7 +204,7 @@ msgstr "Reforça la torre amb pedra per millorar-la a torre defensiva."
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:31
 msgid "Stone Tower"
-msgstr ""
+msgstr "Torre de pedra"
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "StoneTower"
@@ -217,12 +217,12 @@ msgstr "Emmuralleu la ciutat per defensar-la."
 #: simulation/templates/template_structure_defensive_wall.xml:18
 #: simulation/templates/template_structure_defensive_wall.xml:15
 msgid "Wall"
-msgstr ""
+msgstr "Muralla"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:22
 #: simulation/templates/template_structure_defensive_wall_long.xml:34
 msgid "Allow units access through Walls. Can be locked to prevent access."
-msgstr ""
+msgstr "Permet el pas d'unitats per la muralla de la ciutat. Es pot tancar per evitar l'accés."
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:23
 #: simulation/templates/template_structure_defensive_wall_gate.xml:20
@@ -232,7 +232,7 @@ msgstr "Porta"
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:25
 msgid "Can be converted into a Gate."
-msgstr ""
+msgstr "Es pot convertir en una porta."
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:54
 msgid "Wall Turret"
@@ -240,7 +240,7 @@ msgstr "Torreta"
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:56
 msgid "Garrison Infantry for additional arrows."
-msgstr ""
+msgstr "S'hi poden refugiar soldats per disparar més fletxes."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -253,7 +253,7 @@ msgstr "Econòmics"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:31
 msgid "Dropsite for food. Research food gathering technologies."
-msgstr ""
+msgstr "Punt de descàrrega per al menjar. Investiga millores de la recollida de menjar."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 #: simulation/templates/template_structure_economic_farmstead.xml:29
@@ -278,7 +278,7 @@ msgstr "Mercat"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 msgid "Dropsite for wood, stone, and metal. Research gathering technologies."
-msgstr ""
+msgstr "Punt de descàrrega per a la fusta, la pedra i el metall. Investiga millores per a la recollida de recursos."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:34
 #: simulation/templates/template_structure_economic_storehouse.xml:30

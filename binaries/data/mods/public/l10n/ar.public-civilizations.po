@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# ABDO SEED <abdulkader.saied@gmail.com>, 2020
 # abdul-rahman sawalmah <abdulrahman1123@gmail.com>, 2015
 # adaika hamza <majedadaika96@gmail.com>, 2020
 # Ahmed Saadawi <9597011@gmail.com>, 2015
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-10 07:08+0000\n"
-"PO-Revision-Date: 2020-08-10 11:33+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-08-22 18:51+0000\n"
+"Last-Translator: ABDO SEED <abdulkader.saied@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,7 +38,7 @@ msgstr "الأثينيّون"
 #: simulation/data/civs/mace.jsonCivBonuses[0].Description
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "المباني  +10% صحة و +10% نقاط السيطرة."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 #: simulation/data/civs/mace.jsonCivBonuses[0].Name
@@ -49,7 +50,7 @@ msgstr ""
 #: simulation/data/civs/mace.jsonCivBonuses[0].History
 #: simulation/data/civs/spart.jsonCivBonuses[0].History
 msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr ""
+msgstr "يبني اليونانيون بالحجر منذ العصور البرونزية الأخيرة."
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
@@ -67,7 +68,7 @@ msgstr "كانت مناجم لاوريون في أتيكا تزوّد أثينا
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Allied Warships −25% construction time."
-msgstr ""
+msgstr "السفن الحربية للحلفاء −25% من وقت البناء."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -273,7 +274,7 @@ msgstr "البريطونيّون"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "Allied Healers −20% resource costs."
-msgstr ""
+msgstr "المعالجين الحلفاء −20% من كلفة الموارد."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -447,7 +448,7 @@ msgstr "القرطاجيّون"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "الجدران +100% من وقت البناء، +100% من كلفة الحجر، +200% زيادة في الصحة."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -690,7 +691,7 @@ msgstr "الدين الكلتيّ والدرويديّة الكلتيّة أله
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Blacksmiths −15% technology resource costs and research time."
-msgstr ""
+msgstr "الحداد −15% من كلفة الموارد للتقنيات ووقت البحث."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Products from Gaul"
@@ -747,17 +748,17 @@ msgstr "ڤيريدوڤكس"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
 msgid "Workers +15% grain gather rate."
-msgstr ""
+msgstr "يزداد الجمع للعمال بنسبة  +15% ."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Harvesting Machine"
-msgstr ""
+msgstr "الة الجمع."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr ""
+msgstr "اخترع الغاليون الة للجمع، مما سهل بشكل كبير جمع الحبوب."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -1048,7 +1049,7 @@ msgstr "مزودون الفيلة"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
 msgid "Allied Elephants −20% resource costs and training time."
-msgstr ""
+msgstr "فيلة الحلفاء  −20% من كلفة الموارد ووقت التدريب."
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1111,7 +1112,7 @@ msgstr ""
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "الرماة −10% من وقت التدريب، +8 من مدى الهجوم، −10% من مدى انتشار السهام."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
@@ -1132,11 +1133,11 @@ msgstr ""
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "المباني المدنية زيادة +20% من وقت البناء، +20% من الصحة، و +20% من نقاط السيطرة."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Description
 msgid "Train elite rank healers."
-msgstr ""
+msgstr "درب معالجين نخبة."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Name
 msgid "High Priest of Amun"
@@ -1162,17 +1163,17 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonFactions[0].Name
 msgid "Kushite Africans"
-msgstr ""
+msgstr "الكوشيين الافارقة"
 
 #: simulation/data/civs/kush.jsonFactions[0].Description
 msgid ""
 "The great African kingdom that straddled the Nile River in Nubia, in the "
 "South of Egypt."
-msgstr ""
+msgstr "المملكة الافريقية العظيمة التي امتدت حتى نهر النيل في النوبة في جنوب مصر."
 
 #: simulation/data/civs/kush.jsonStructures[0].Name
 msgid "Temple of Amun"
-msgstr ""
+msgstr "معبد امون"
 
 #: simulation/data/civs/kush.jsonStructures[0].Special
 msgid ""
@@ -1192,18 +1193,18 @@ msgstr ""
 
 #: simulation/data/civs/kush.jsonStructures[2].Name
 msgid "Kushite Pyramids"
-msgstr ""
+msgstr "أهرامات الكوشيين"
 
 #: simulation/data/civs/kush.jsonStructures[2].Special
 msgid ""
 "Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
 "Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
 "territory effect to Civic Centers."
-msgstr ""
+msgstr "بناء هرم كوشي صغير يفتح تطوير البلدة. بناء هرم كوشي كبير يفتح تطوير المدينة. وبناء كل هرم يضيف +10% من تأثير المباني المدنية على الأراضي."
 
 #: simulation/data/civs/kush.jsonStructures[2].History
 msgid "The Kushites built over 200 pyramids in Nubia."
-msgstr ""
+msgstr "بنى الكوشيين أكثر من 200 هرم في النوبة."
 
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
@@ -1221,7 +1222,7 @@ msgid ""
 "Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
 " the 4th century AD, when it weakened and disintegrated due to internal "
 "rebellion, eventually succumbing to the rising power of Axum."
-msgstr ""
+msgstr "كان مملكة كوش من الممالك الافريقية القديمة التي استقرت عند التقاء النيل الأزرق والنيل الأبيض ونهر عطبرة. وتعرف هذه المنطقة بجمهورية السودان حاليا. تأسس حكم الكوشيين في المنطقة بعد انهيار العصر البرونزي في المملكة المصرية الجديدة. كانت عاصمتها \"نبتة\" في بداياتها. احتلوا مصر في القرن الثامن قبل الميلاد وحكم أباطرة الكوشيين كفراعنة للأسرة المصرية الخامسة والعشرون ﻷكثر من قرن حتى انهار المملكة من قبل الاشوريون. تأثرت الحضارة الكوشية بشكل كبير بالمصريين، كبناء الأهرامات الكوشية وعمارة المعابد التذكارية والتي ما تزال حتى الان. عبد الكوشيين العديد من الالهة المصرية، منها امون. وخلال العصور القديمة، كانت عاصمة الكوشيين الملكية في \"مروي\". في الجغرافية اليونانية القديمة، كانت تعرف المملكة المورية بأثيوبيا. ظلت المملكة الكوشية حاضرة حتى القرن الرابع بعد الميلاد، حيث ضعفت وتفككت بسبب الثورات الداخلية، وخضعوا بالنهاية للقوة الصاعدة للأكسوم."
 
 #: simulation/data/civs/mace.jsonName
 #: simulation/data/civs/mace.jsonFactions[0].Name
@@ -1537,7 +1538,7 @@ msgstr ""
 
 #: simulation/data/civs/maur.jsonStructures[0].Name
 msgid "Elephant Stable"
-msgstr ""
+msgstr "إسطبل الفيلة"
 
 #: simulation/data/civs/maur.jsonStructures[0].Special
 msgid "Train Elephants and research Elephant technologies."
@@ -1762,7 +1763,7 @@ msgstr ""
 
 #: simulation/data/civs/pers.jsonStructures[0].Name
 msgid "Stable"
-msgstr ""
+msgstr "إسطبل"
 
 #: simulation/data/civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry and research Cavalry technologies."

@@ -111,7 +111,7 @@ function HandleTokens(originalValue, modification)
  * Derives the technology requirements from a given technology template.
  * Takes into account the `supersedes` attribute.
  *
- * @param {object} template - The template object. Loading of the template must have already occured.
+ * @param {Object} template - The template object. Loading of the template must have already occured.
  *
  * @return Derived technology requirements. See `InterpretTechRequirements` for object's syntax.
  */
@@ -345,7 +345,7 @@ function InterpretTechRequirements(civ, operator, value)
 /**
  * Determine order of phases.
  *
- * @param {object} phases - The current available store of phases.
+ * @param {Object} phases - The current available store of phases.
  * @return {array} List of phases
  */
 function UnravelPhases(phases)

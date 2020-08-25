@@ -342,7 +342,7 @@ function translateAIName(aiName)
 /**
  * Returns title or placeholder.
  *
- * @param {Number} index - index of AIDifficulties
+ * @param {number} index - index of AIDifficulties
  */
 function translateAIDifficulty(index)
 {
@@ -376,7 +376,7 @@ function translateMapType(mapType)
 /**
  * Returns title or placeholder "Default".
  *
- * @param {Number} mapSize - tilecount
+ * @param {number} mapSize - tilecount
  * @returns {string}
  */
 function translateMapSize(tiles)
@@ -388,7 +388,7 @@ function translateMapSize(tiles)
 /**
  * Returns title or placeholder.
  *
- * @param {Number} population
+ * @param {number} population
  * @param {boolean} world - Whether the entry has world population enabled.
  * @returns {string}
  */

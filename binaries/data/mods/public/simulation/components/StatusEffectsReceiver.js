@@ -45,8 +45,8 @@ StatusEffectsReceiver.prototype.ApplyStatus = function(effectData, attacker, att
  * Adds a status effect to the entity.
  *
  * @param {string} statusName - The name of the status effect.
- * @param {object} data - The various effects and timings.
- * @param {object} attackerData - The attacker and attackerOwner.
+ * @param {Object} data - The various effects and timings.
+ * @param {Object} attackerData - The attacker and attackerOwner.
  */
 StatusEffectsReceiver.prototype.AddStatus = function(statusName, data, attackerData)
 {

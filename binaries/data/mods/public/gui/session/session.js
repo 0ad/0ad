@@ -464,7 +464,7 @@ function controlsPlayer(playerID)
  * Called when one or more players have won or were defeated.
  *
  * @param {array} - IDs of the players who have won or were defeated.
- * @param {object} - a plural string stating the victory reason.
+ * @param {Object} - a plural string stating the victory reason.
  * @param {boolean} - whether these players have won or lost.
  */
 function playersFinished(players, victoryString, won)
@@ -720,7 +720,7 @@ function updateGroups()
 /**
  * Toggles the display of status bars for all of the player's entities.
  *
- * @param {Boolean} remove - Whether to hide all previously shown status bars.
+ * @param {boolean} remove - Whether to hide all previously shown status bars.
  */
 function recalculateStatusBarDisplay(remove = false)
 {

@@ -308,7 +308,7 @@ Attacking.prototype.CauseDamageOverArea = function(data)
 
 Attacking.prototype.HandleAttackEffects = function(attackType, attackData, target, attacker, attackerOwner, bonusMultiplier = 1)
 {
-	bonusMultiplier *= !attackData.Bonuses ? 1 : GetAttackBonus(attacker, target, attackType, attackData.Bonuses);
+	bonusMultiplier *= !attackData.Bonuses ? 1 : this.GetAttackBonus(attacker, target, attackType, attackData.Bonuses);
 
 	let targetState = {};
 	for (let effectType of g_EffectTypes)
@@ -362,6 +362,37 @@ Attacking.prototype.EntitiesNearPoint = function(origin, radius, players, itf = 
 
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	return cmpRangeManager.ExecuteQueryAroundPos(origin, 0, radius, players, itf);
+};
+
+/**
+ * Calculates the attack damage multiplier against a target.
+ * @param {number} source - The source entity's id.
+ * @param {number} target - The target entity's id.
+ * @param {string} type - The type of attack.
+ * @param {Object} template - The bonus' template.
+ * @return {number} - The source entity's attack bonus against the specified target.
+ */
+Attacking.prototype.GetAttackBonus = function(source, target, type, template)
+{
+	let cmpIdentity = Engine.QueryInterface(target, IID_Identity);
+	if (!cmpIdentity)
+		return 1;
+
+	let attackBonus = 1;
+	let targetClasses = cmpIdentity.GetClassesList();
+	let targetCiv = cmpIdentity.GetCiv();
+
+	// Multiply the bonuses for all matching classes.
+	for (let key in template)
+	{
+		let bonus = template[key];
+		if (bonus.Civ && bonus.Civ !== targetCiv)
+			continue;
+		if (!bonus.Classes || MatchesClassList(targetClasses, bonus.Classes))
+			attackBonus *= ApplyValueModificationsToEntity("Attack/" + type + "/Bonuses/" + key + "/Multiplier", +bonus.Multiplier, source);
+	}
+
+	return attackBonus;
 };
 
 var AttackingInstance = new Attacking();

@@ -105,7 +105,7 @@ TechnologyManager.prototype.CanResearch = function(tech)
 
 /**
  * Private function for checking a set of requirements is met
- * @param {object} reqs - Technology requirements as derived from the technology template by globalscripts
+ * @param {Object} reqs - Technology requirements as derived from the technology template by globalscripts
  * @param {boolean} civonly - True if only the civ requirement is to be checked
  *
  * @return true if the requirements pass, false otherwise
@@ -211,7 +211,7 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function(msg)
  * Marks a technology as researched.
  * Note that this does not verify that the requirements are met.
  *
- * @param {String} tech - The technology to mark as researched.
+ * @param {string} tech - The technology to mark as researched.
  */
 TechnologyManager.prototype.ResearchTechnology = function(tech)
 {

@@ -12,8 +12,8 @@ class TemplateLister
 	/**
 	 * Compile lists of templates buildable/trainable/researchable of a given civ.
 	 *
-	 * @param {object} civCode
-	 * @param {object} civData - Data defining every civ in the game.
+	 * @param {Object} civCode
+	 * @param {Object} civData - Data defining every civ in the game.
 	 */
 	compileTemplateLists(civCode, civData)
 	{
@@ -80,7 +80,7 @@ class TemplateLister
 	 * Note: this civ must have gone through the compilation process above!
 	 *
 	 * @param {string} civCode
-	 * @return {object} containing lists of template names, grouped by type.
+	 * @return {Object} containing lists of template names, grouped by type.
 	 */
 	getTemplateLists(civCode)
 	{

@@ -24,7 +24,7 @@ class TemplateLoader
 	 * Loads from local cache if available, else from file system.
 	 *
 	 * @param {string} templateName
-	 * @return {object} Object containing raw template data.
+	 * @return {Object} Object containing raw template data.
 	 */
 	loadAuraTemplate(templateName)
 	{
@@ -46,7 +46,7 @@ class TemplateLoader
 	 *
 	 * @param {string} templateName
 	 * @param {string} civCode
-	 * @return {object} Object containing raw template data.
+	 * @return {Object} Object containing raw template data.
 	 */
 	loadEntityTemplate(templateName, civCode)
 	{
@@ -76,7 +76,7 @@ class TemplateLoader
 	 * Loads from local cache if available, else from file system.
 	 *
 	 * @param {string} templateName
-	 * @return {object} Object containing raw template data.
+	 * @return {Object} Object containing raw template data.
 	 */
 	loadTechnologyTemplate(templateName)
 	{
@@ -94,7 +94,7 @@ class TemplateLoader
 	/**
 	 * @param {string} templateName
 	 * @param {string} civCode
-	 * @return {object} Contains a list and the requirements of the techs in the pair
+	 * @return {Object} Contains a list and the requirements of the techs in the pair
 	 */
 	loadTechnologyPairTemplate(templateName, civCode)
 	{

@@ -5,6 +5,7 @@
 # Translators:
 # Nopar Despar <nopardespar@gmail.com>, 2015
 # Abdallatif Sulaiman <abd1allatif@gmail.com>, 2018
+# ABDO SEED <abdulkader.saied@gmail.com>, 2020
 # abdul-rahman sawalmah <abdulrahman1123@gmail.com>, 2015
 # abidin toumi <abidin24@tutanota.com>, 2018
 # Ahmed Albahhar <tomucazipu@getapet.net>, 2017
@@ -25,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-10 07:09+0000\n"
-"PO-Revision-Date: 2020-08-10 10:40+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-08-22 18:16+0000\n"
+"Last-Translator: ABDO SEED <abdulkader.saied@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,7 +72,7 @@ msgstr "مستعمرة عسكريّة"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:29
 msgid "Colony"
-msgstr "مستعمره"
+msgstr "مستعمرة"
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:38
@@ -93,7 +94,7 @@ msgstr "منزل"
 
 #: simulation/templates/template_structure_civic_stoa.xml:33
 msgid "Train Mercenary Champions."
-msgstr ""
+msgstr "درب أبطال مرتزقة."
 
 #: simulation/templates/template_structure_civic_stoa.xml:34
 #: simulation/templates/template_structure_civic_temple.xml:36
@@ -119,7 +120,7 @@ msgstr "رواق إغريقي معمد"
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 msgid "Train Healers and research healing technologies."
-msgstr ""
+msgstr "درب معالجين وابحث عن تقنيات المعالجة"
 
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -259,7 +260,7 @@ msgstr "الاقتصاد"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:31
 msgid "Dropsite for food. Research food gathering technologies."
-msgstr ""
+msgstr "مخزن للطعام. ابحث عن تقنيات جمع الطعام."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 #: simulation/templates/template_structure_economic_farmstead.xml:29
@@ -321,7 +322,7 @@ msgstr "ثكنة"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:24
 msgid "Research attack and armor technologies."
-msgstr ""
+msgstr "ابحث عن تقنيات الهجوم والدروع"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:26
 #: simulation/templates/template_structure_military_blacksmith.xml:22
@@ -348,7 +349,7 @@ msgstr "ميناء"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:24
 msgid "Elephant Stable"
-msgstr ""
+msgstr "إسطبل الفيلة"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:26
 msgid "Train Elephants and research Elephant technologies."
@@ -395,7 +396,7 @@ msgstr ""
 #: simulation/templates/template_structure_military_stable.xml:26
 #: simulation/templates/template_structure_military_stable.xml:23
 msgid "Stable"
-msgstr ""
+msgstr "إسطبل"
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
@@ -407,7 +408,7 @@ msgstr "مورد"
 
 #: simulation/templates/template_structure_resource_corral.xml:20
 msgid "Raise Domestic Animals for food."
-msgstr ""
+msgstr "ربي حيوانات المزرعة للطعام"
 
 #: simulation/templates/template_structure_resource_corral.xml:21
 #: simulation/templates/template_structure_resource_corral.xml:18
@@ -426,13 +427,13 @@ msgstr ""
 
 #: simulation/templates/template_structure_special.xml:33
 msgid "Special Structure"
-msgstr ""
+msgstr "مبنى خاص"
 
 #: simulation/templates/template_structure_special_amphitheater.xml:23
 #: simulation/templates/template_structure_special_amphitheater.xml:21
 #: simulation/templates/structures/rome_amphitheater_pompeii.xml:5
 msgid "Amphitheater"
-msgstr ""
+msgstr "مدرج"
 
 #: simulation/templates/template_structure_special_library.xml:26
 #: simulation/templates/template_structure_special_library.xml:24
@@ -445,18 +446,18 @@ msgstr "طاحونة دوارة"
 
 #: simulation/templates/template_structure_special_rotarymill.xml:22
 msgid "RotaryMill"
-msgstr ""
+msgstr "طاحونة دوارة"
 
 #: simulation/templates/template_structure_special_theater.xml:26
 #: simulation/templates/template_structure_special_theater.xml:24
 msgid "Theater"
-msgstr ""
+msgstr "مسرح"
 
 #: simulation/templates/template_structure_wonder.xml:51
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr "اجلب المجد لشعبك واستحوذ على اراضي اكبر لإمبراطوريتك."
+msgstr "اجلب المجد لشعبك واستحوذ على أراضي كبيرة لإمبراطوريتك."
 
 #: simulation/templates/template_structure_wonder.xml:53
 #: simulation/templates/template_structure_wonder.xml:49
@@ -554,7 +555,7 @@ msgstr "جيمناسيون"
 
 #: simulation/templates/structures/athen_gymnasium.xml:24
 msgid "Train Champions."
-msgstr ""
+msgstr "درب أبطال."
 
 #: simulation/templates/structures/athen_gymnasium.xml:26
 #: simulation/templates/structures/athen_gymnasium.xml:22
@@ -595,12 +596,12 @@ msgstr "پريتانيون"
 
 #: simulation/templates/structures/athen_prytaneion.xml:24
 msgid "Train Heroes and research technologies."
-msgstr ""
+msgstr "درب أبطال وابحث عن التقنيات"
 
 #: simulation/templates/structures/athen_prytaneion.xml:26
 #: simulation/templates/structures/spart_gerousia.xml:26
 msgid "Council"
-msgstr ""
+msgstr "مجلس"
 
 #: simulation/templates/structures/athen_range.xml:8
 #: simulation/templates/structures/mace_range.xml:8
@@ -867,7 +868,7 @@ msgstr "أنشئ سفن الصيد لجمع الطعام وسفن التجارة
 
 #: simulation/templates/structures/cart_embassy.xml:19
 msgid "Train Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "درب المرتزقة وابحث عن تقنيات المرتزقة."
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:17
 msgid "Celtic Embassy"
@@ -875,7 +876,7 @@ msgstr "سفارة كلتيّة"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:18
 msgid "Train Celtic Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "درب مرتزقة كلتيين وابحث عن تقنيات المرتزقة."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:10
 msgid "Iberian Embassy"
@@ -883,7 +884,7 @@ msgstr "سفارة أيبيريّة"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:11
 msgid "Train Iberian Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "درب مرتزقة ايبيريين وابحث عن تقنيات المرتزقة."
 
 #: simulation/templates/structures/cart_embassy_italic.xml:17
 msgid "Italic Embassy"

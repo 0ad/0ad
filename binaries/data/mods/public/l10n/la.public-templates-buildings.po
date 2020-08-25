@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-10 07:09+0000\n"
-"PO-Revision-Date: 2020-08-10 10:40+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-08-21 09:56+0000\n"
+"Last-Translator: Ernestus Severus\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +39,7 @@ msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Dropsite for food, wood, stone, and metal. Train Citizens "
 "and research technologies. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Aedifica in finibus tuis aut terra cui nemo imperat. Accipe magnos fines terrarum. Radix finium. Horreum cibi, ligni, lapidis et metalli. Conscribe Cives et inquire artes. Milites praesidio impone ut plures sagittas coniciant."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:91
 #: simulation/templates/template_structure_defensive.xml:15
@@ -51,7 +51,7 @@ msgstr "Defendens"
 #: simulation/templates/template_structure_civic_civil_centre.xml:53
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
-msgstr "Centrum Civile"
+msgstr "CentrumCivile"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:27
 msgid "Military Colony"
@@ -81,7 +81,7 @@ msgstr "Domus"
 
 #: simulation/templates/template_structure_civic_stoa.xml:33
 msgid "Train Mercenary Champions."
-msgstr ""
+msgstr "Conscribe Mercannarios Propugnatores."
 
 #: simulation/templates/template_structure_civic_stoa.xml:34
 #: simulation/templates/template_structure_civic_temple.xml:36
@@ -107,7 +107,7 @@ msgstr "Stoa"
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 msgid "Train Healers and research healing technologies."
-msgstr ""
+msgstr "Conscribe Medicos et inquire artes salutares."
 
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -120,7 +120,7 @@ msgstr "Munimentum"
 
 #: simulation/templates/template_structure_defensive_palisade.xml:22
 msgid "Wall off an area."
-msgstr ""
+msgstr "Regionem muni."
 
 #: simulation/templates/template_structure_defensive_palisade.xml:23
 #: simulation/templates/template_structure_defensive_palisade.xml:20
@@ -133,7 +133,7 @@ msgstr "Vallum"
 #: simulation/templates/template_structure_defensive_tower.xml:36
 #: simulation/templates/template_structure_defensive_tower.xml:52
 msgid "Tower"
-msgstr ""
+msgstr "Turris"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:57
 msgid "Artillery Tower"
@@ -154,7 +154,7 @@ msgstr "Urbs"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 msgid "ArtilleryTower"
-msgstr ""
+msgstr "TurrisTormentorum"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
@@ -162,13 +162,13 @@ msgstr "Turris Scorpionis"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
 msgid "BoltTower"
-msgstr ""
+msgstr "TurrisScorpionis"
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:53
 msgid ""
 "Build in own or neutral territory. Slowly converts to Gaia while in neutral "
 "territory."
-msgstr ""
+msgstr "Aedifica in tuis finibus et terra cui nemo imperat. Tarde advertitur ad Gaiam dum in terra cui nemo imperat est."
 
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:54
 #: simulation/templates/template_structure_defensive_tower_outpost.xml:29
@@ -186,11 +186,11 @@ msgstr "Turris Vigilis"
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
-msgstr ""
+msgstr "In qua pedites praesidio colloca ut plures sagittas coniciant. Opus est arte “Cavorum telorum” ut huius pedem defendat."
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:38
 msgid "SentryTower"
-msgstr "Turris Vigilis"
+msgstr "TurrisVigilis"
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:61
 msgid "Reinforce with stone and upgrade to a defense tower."
@@ -198,11 +198,11 @@ msgstr "Lapide eam confirma et in turrim defensionis amplifica."
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:31
 msgid "Stone Tower"
-msgstr ""
+msgstr "Turris Lapidea"
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "StoneTower"
-msgstr "Turris Lapidea"
+msgstr "TurrisLapidea"
 
 #: simulation/templates/template_structure_defensive_wall.xml:17
 msgid "Wall off your town for a stout defense."
@@ -211,22 +211,22 @@ msgstr "Oppidum muni ut id confirmes."
 #: simulation/templates/template_structure_defensive_wall.xml:18
 #: simulation/templates/template_structure_defensive_wall.xml:15
 msgid "Wall"
-msgstr ""
+msgstr "Murus"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:22
 #: simulation/templates/template_structure_defensive_wall_long.xml:34
 msgid "Allow units access through Walls. Can be locked to prevent access."
-msgstr ""
+msgstr "Efficit ut tui per muros transire possint. Obserari potest ut aditum prohibeat."
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:23
 #: simulation/templates/template_structure_defensive_wall_gate.xml:20
 #: simulation/templates/structures/palisades_gate.xml:23
 msgid "Gate"
-msgstr ""
+msgstr "Porta"
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:25
 msgid "Can be converted into a Gate."
-msgstr ""
+msgstr "In Portam mutari potest."
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:54
 msgid "Wall Turret"
@@ -234,7 +234,7 @@ msgstr "Turricula"
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:56
 msgid "Garrison Infantry for additional arrows."
-msgstr ""
+msgstr "Pedites praesidio colloca ut plures sagittas coniciant."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -247,7 +247,7 @@ msgstr "Œconomica"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:31
 msgid "Dropsite for food. Research food gathering technologies."
-msgstr ""
+msgstr "Horreum frumentarium. Inquere artes agri culturae."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 #: simulation/templates/template_structure_economic_farmstead.xml:29
@@ -258,7 +258,7 @@ msgstr "Villa"
 msgid ""
 "Barter resources. Establish trade routes. Train Traders and research trade "
 "and barter technologies."
-msgstr ""
+msgstr "Muta merces. Institue cursus mercatorum. Conscribe Mercatores et inquire artes mutationis mercaturaeque."
 
 #: simulation/templates/template_structure_economic_market.xml:31
 #: simulation/templates/template_structure_military_dock.xml:28
@@ -272,7 +272,7 @@ msgstr "Mercatus"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 msgid "Dropsite for wood, stone, and metal. Research gathering technologies."
-msgstr ""
+msgstr "Receptaculum copiarum ligni et lapidis et metalli. Inquire artes collectionis harum opum."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:34
 #: simulation/templates/template_structure_economic_storehouse.xml:30
@@ -291,16 +291,16 @@ msgstr "Militaris"
 msgid ""
 "Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
 "Siege Engine technologies."
-msgstr ""
+msgstr "Conscribe Ballistarios Pedites Propugnatores. Construe Machinas Obsidionis et inquire artes machinarum fabricandarum."
 
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_arsenal.xml:25
 msgid "Arsenal"
-msgstr ""
+msgstr "Armamentarium"
 
 #: simulation/templates/template_structure_military_barracks.xml:28
 msgid "Train Citizen Soldiers and research technologies."
-msgstr ""
+msgstr "Conscribe Milites Civiles et inquire artes."
 
 #: simulation/templates/template_structure_military_barracks.xml:29
 #: simulation/templates/template_structure_military_barracks.xml:26
@@ -309,7 +309,7 @@ msgstr "Castra"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:24
 msgid "Research attack and armor technologies."
-msgstr ""
+msgstr "Inquire artes telorum armorumque fabricandorum."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:26
 #: simulation/templates/template_structure_military_blacksmith.xml:22
@@ -321,13 +321,13 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Dropsite for "
 "food, wood, stone, and metal. Establish trade routes. Construct Ships and "
 "research Ship technologies."
-msgstr ""
+msgstr "Aedifica in litore in finibus tuis aut sociorum aut terra cui nemo imperat. Horreum cibi, ligni, lapidis et metalli. Institue cursus mercatorum. Construe Naves et inquire artes Navales."
 
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/structures/brit_crannog.xml:16
 #: simulation/templates/structures/cart_super_dock.xml:47
 msgid "Naval"
-msgstr ""
+msgstr "Navalis"
 
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/template_structure_military_dock.xml:25
@@ -336,11 +336,11 @@ msgstr "Navale"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:24
 msgid "Elephant Stable"
-msgstr ""
+msgstr "Stabulum Elephantorum"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:26
 msgid "Train Elephants and research Elephant technologies."
-msgstr ""
+msgstr "Conscribe Elephantos et inquire artes elephantorum."
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
 msgid "ElephantStable"
@@ -370,7 +370,7 @@ msgstr "Exercitant artes telorum."
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Train Ranged Infantry and research technologies."
-msgstr ""
+msgstr "Conscribe Iaculatores et inquire artes."
 
 #: simulation/templates/template_structure_military_range.xml:25
 msgid "Range"
@@ -395,7 +395,7 @@ msgstr "Facultates"
 
 #: simulation/templates/template_structure_resource_corral.xml:20
 msgid "Raise Domestic Animals for food."
-msgstr ""
+msgstr "Pasce pecus pro cibo."
 
 #: simulation/templates/template_structure_resource_corral.xml:21
 #: simulation/templates/template_structure_resource_corral.xml:18
@@ -414,7 +414,7 @@ msgstr "Frumentare pro cibo. Efficit quisque posterior agricola minus quam prior
 
 #: simulation/templates/template_structure_special.xml:33
 msgid "Special Structure"
-msgstr ""
+msgstr "Aedificium Peculiare"
 
 #: simulation/templates/template_structure_special_amphitheater.xml:23
 #: simulation/templates/template_structure_special_amphitheater.xml:21
@@ -433,7 +433,7 @@ msgstr "Mola Versatilis"
 
 #: simulation/templates/template_structure_special_rotarymill.xml:22
 msgid "RotaryMill"
-msgstr ""
+msgstr "Mola"
 
 #: simulation/templates/template_structure_special_theater.xml:26
 #: simulation/templates/template_structure_special_theater.xml:24
@@ -588,7 +588,7 @@ msgstr "Conscribe Heroes et inquire artes."
 #: simulation/templates/structures/athen_prytaneion.xml:26
 #: simulation/templates/structures/spart_gerousia.xml:26
 msgid "Council"
-msgstr ""
+msgstr "Curia"
 
 #: simulation/templates/structures/athen_range.xml:8
 #: simulation/templates/structures/mace_range.xml:8
@@ -726,7 +726,7 @@ msgid ""
 "tracts of territory. Territory root. Dropsite for food, wood, stone, and "
 "metal. Train Citizens, construct Ships, and research technologies. Garrison "
 "Soldiers for additional arrows."
-msgstr ""
+msgstr "Aedifica in litore in finibus tuis aut sociorum aut terra cui nemo imperat. Horreum cibi, ligni, lapidis et metalli. Institue cursus mercatorum. Construe Naves, conscribe Cives et inquire artes. Milites praesidio impone ut plures sagittas coniciant."
 
 #: simulation/templates/structures/brit_defense_tower.xml:9
 #: simulation/templates/structures/brit_sentry_tower.xml:5
@@ -855,7 +855,7 @@ msgstr "Construe lintres piscatorias ut piscentur, et naves onerarias ut inter s
 
 #: simulation/templates/structures/cart_embassy.xml:19
 msgid "Train Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Conscribe Mercennarios et inquire artes Mercennariorum."
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:17
 msgid "Celtic Embassy"
@@ -863,7 +863,7 @@ msgstr "Legatio Celtica"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:18
 msgid "Train Celtic Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Conscribe Mercennarios Celticos et inquire artes Mercennariorum."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:10
 msgid "Iberian Embassy"
@@ -871,15 +871,15 @@ msgstr "Legatio Hiberica"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:11
 msgid "Train Iberian Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Conscribe Mercennarios Hibericos et inquire artes Mercennariorum."
 
 #: simulation/templates/structures/cart_embassy_italic.xml:17
 msgid "Italic Embassy"
-msgstr ""
+msgstr "Legatio Italica"
 
 #: simulation/templates/structures/cart_embassy_italic.xml:18
 msgid "Train Italic Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Conscribe Mercennarios Italicos et inquire artes Mercennariorum."
 
 #: simulation/templates/structures/cart_farmstead.xml:8
 msgid "Aḥuzāh"
@@ -933,7 +933,7 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Construct Warships and research "
 "technologies."
-msgstr ""
+msgstr "Aedifica in finibus tuis aut sociorum aut terra cui nemo imperat. Accipe magnos fines terrarum. Radix finium. Construe Naves Belli et inquire artes. "
 
 #: simulation/templates/structures/cart_super_dock.xml:47
 msgid "Shipyard"
@@ -945,7 +945,7 @@ msgstr "Maqdaš"
 
 #: simulation/templates/structures/cart_temple.xml:15
 msgid "Train Healers and Champions and research healing technologies."
-msgstr ""
+msgstr "Conscribe Medicos Propugnatoresque, et inquire artes salutares."
 
 #: simulation/templates/structures/cart_tophet.xml:18
 msgid "Sacrificial Temple"
@@ -957,7 +957,7 @@ msgstr "Tophet"
 
 #: simulation/templates/structures/cart_tophet.xml:20
 msgid "Train Healers and Champion Cavalry and research healing technologies."
-msgstr ""
+msgstr "Conscribe Medicos ac Equites Propugnatores, et inquire artes salutares."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -1228,11 +1228,11 @@ msgstr "Pr-ʿIprmk"
 #: simulation/templates/structures/kush_temple.xml:10
 msgid ""
 "Train Healers and Apedamak Champions and research healing technologies."
-msgstr ""
+msgstr "Conscribe Medicos ac Apedamak Propugnatores, et inquire artes salutares."
 
 #: simulation/templates/structures/kush_temple.xml:11
 msgid "TempleOfApedemak"
-msgstr ""
+msgstr "TemplumApedamak"
 
 #: simulation/templates/structures/kush_temple_amun.xml:28
 msgid "Grand Temple of Amun"
@@ -1244,11 +1244,11 @@ msgstr "Pr-ʿImn"
 
 #: simulation/templates/structures/kush_temple_amun.xml:30
 msgid "Train Healers and Amun Champions and research healing technologies."
-msgstr ""
+msgstr "Conscribe Medicos ac Amun Propugnatores, et inquire artes salutares."
 
 #: simulation/templates/structures/kush_temple_amun.xml:31
 msgid "TempleOfAmun"
-msgstr ""
+msgstr "TemplumAmun"
 
 #: simulation/templates/structures/kush_wall_gate.xml:9
 msgid "ʿryt"
@@ -1435,11 +1435,11 @@ msgstr "Porta Valli"
 #: simulation/templates/structures/palisades_gate.xml:22
 #: simulation/templates/structures/palisades_long.xml:31
 msgid "Allow units access through Palisades. Can be locked to prevent access."
-msgstr ""
+msgstr "Efficit ut tui per vallum transire possint. Obserari potest ut aditum prohibeat."
 
 #: simulation/templates/structures/palisades_long.xml:17
 msgid "Can be converted into a Palisade Gate."
-msgstr ""
+msgstr "In Portam valli mutari potest."
 
 #: simulation/templates/structures/palisades_spike_angle.xml:17
 msgid "Angle Spike"
@@ -1480,7 +1480,7 @@ msgstr "Padgan"
 
 #: simulation/templates/structures/pers_barracks.xml:6
 msgid "Train Infantry."
-msgstr ""
+msgstr "Conscribe Pedites."
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1534,7 +1534,7 @@ msgstr "Duvarθi Visadahyu"
 
 #: simulation/templates/structures/pers_hall.xml:25
 msgid "Hall"
-msgstr ""
+msgstr "Atrium"
 
 #: simulation/templates/structures/pers_house.xml:8
 msgid "Huvādā"
@@ -1551,7 +1551,7 @@ msgstr "Ishtar Porta Babylonis"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:30
 msgid "IshtarGate"
-msgstr ""
+msgstr "IshtarPorta"
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1622,7 +1622,7 @@ msgstr "Pharos"
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Reveal the "
 "shorelines over the entire map. Very large vision range."
-msgstr ""
+msgstr "Aedifica in finibus tuis aut sociorum aut terra cui nemo imperat. Accipe magnos fines terrarum. Reperit litora omnia huius tabulae. Maximum conspectum."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:27
 #: simulation/templates/structures/ptol_lighthouse.xml:24
@@ -1658,7 +1658,7 @@ msgstr "Amphitheātrum"
 
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
-msgstr "Triumphal Arch"
+msgstr "Arcus Triumphalis"
 
 #: simulation/templates/structures/rome_arch.xml:23
 msgid "Arcus Triumphālis"
@@ -1666,7 +1666,7 @@ msgstr "Arcus Triumphālis"
 
 #: simulation/templates/structures/rome_arch.xml:24
 msgid "TriumphalArch"
-msgstr ""
+msgstr "ArcusTriumphalis"
 
 #: simulation/templates/structures/rome_army_camp.xml:80
 msgid "Army Camp"
@@ -1680,7 +1680,7 @@ msgstr "Castra"
 msgid ""
 "Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
 "Siege Engines. Garrison Soldiers for additional arrows."
-msgstr "Aedifica in finibus hostium aut terra qua nemo imperat. Conscribe Milites-civiles et construe Machinas. Praesidium colloca ut plures sagittas coniciant."
+msgstr "Aedifica in finibus hostium aut terra cui nemo imperat. Conscribe Milites-civiles et construe Machinas. Praesidium colloca ut plures sagittas coniciant."
 
 #: simulation/templates/structures/rome_army_camp.xml:84
 #: simulation/templates/structures/rome_army_camp.xml:48
@@ -1747,7 +1747,7 @@ msgstr "Turris Līgnea"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:31
 msgid "Siege Wall Gate"
-msgstr "Porta Circummūnītiōnis"
+msgstr "Porta Circummunitionis"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:32
 msgid "Porta Circummūnītiōnis"
@@ -1760,14 +1760,14 @@ msgstr "Porta Circummūnītiōnis"
 #: simulation/templates/structures/rome_siege_wall_tower.xml:33
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "SiegeWall"
-msgstr ""
+msgstr "MurusCircummunitionis"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:32
 #: simulation/templates/structures/rome_siege_wall_medium.xml:32
 #: simulation/templates/structures/rome_siege_wall_short.xml:32
 #: simulation/templates/structures/rome_wallset_siege.xml:5
 msgid "Siege Wall"
-msgstr "Mūrus Circummūnītiōnis"
+msgstr "Murus Circummunitionis"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:33
 #: simulation/templates/structures/rome_siege_wall_medium.xml:33
@@ -1798,7 +1798,7 @@ msgstr "Aedēs"
 
 #: simulation/templates/structures/rome_temple_mars.xml:12
 msgid "Temple of Mars"
-msgstr "Aedēs Mārtiālis"
+msgstr "Aedes Martialis"
 
 #: simulation/templates/structures/rome_temple_mars.xml:13
 msgid "Aedēs Mārtiālis"
@@ -1806,11 +1806,11 @@ msgstr "Aedēs Mārtiālis"
 
 #: simulation/templates/structures/rome_temple_mars.xml:14
 msgid "TempleOfMars"
-msgstr ""
+msgstr "AedesMartialis"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:18
 msgid "Temple of Vesta"
-msgstr "Aedēs Vestālis"
+msgstr "Aedes Vestalis"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:19
 msgid "Aedēs Vestālis"
@@ -1818,11 +1818,11 @@ msgstr "Aedēs Vestālis"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:20
 msgid "TempleOfVesta"
-msgstr ""
+msgstr "AedesVestalis"
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
-msgstr "Tabernāculum"
+msgstr "Tabernaculum"
 
 #: simulation/templates/structures/rome_tent.xml:30
 msgid "Tabernāculum"
@@ -1849,7 +1849,7 @@ msgstr "Turris Lapidea"
 
 #: simulation/templates/structures/rome_wallset_siege.xml:7
 msgid "Wall off an area. Build in own, neutral, or enemy territory."
-msgstr ""
+msgstr "Muni aliquam regionem. Muros in finibus tuis aut sociorum aut terra cui nemo imperat."
 
 #: simulation/templates/structures/rome_wonder.xml:9
 msgid "Aedēs Iovis Optimi Maximi"
@@ -1881,7 +1881,7 @@ msgstr "Syssition"
 
 #: simulation/templates/structures/spart_syssiton.xml:27
 msgid "Syssiton"
-msgstr ""
+msgstr "Syssiton"
 
 #: simulation/templates/structures/spart_wonder.xml:9
 msgid "Hieron tēs Artemidos Orthias"

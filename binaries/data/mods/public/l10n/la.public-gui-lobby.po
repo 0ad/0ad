@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Ernestus Severus, 2020
 # Nescio, 2020
 # Supernova 888 <megasupernova888@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-22 08:08+0000\n"
-"PO-Revision-Date: 2020-06-11 00:16+0000\n"
+"PO-Revision-Date: 2020-08-23 14:30+0000\n"
 "Last-Translator: Ernestus Severus\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
@@ -20,19 +21,19 @@ msgstr ""
 
 #: gui/lobby/LobbyPage/AnnouncementHandler.js:18
 msgid "Notice"
-msgstr ""
+msgstr "Nuntiatio"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:45
 msgid "BANNED"
-msgstr ""
+msgstr "EXPULSUS"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:45
 msgid "KICKED"
-msgstr ""
+msgstr "EIECTUS"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:61
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr ""
+msgstr "Tu a vestibulo disiunctus es. Visne rursus iungere?"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:62
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
@@ -74,16 +75,16 @@ msgstr "Ludum Infinitum"
 #: gui/lobby/LobbyPage/GameDetails.js:117
 #, javascript-format
 msgid "Host: %(playername)s"
-msgstr ""
+msgstr "Hospes: %(playername)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:119
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
-msgstr ""
+msgstr "Lusores: %(current)s/%(total)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:121
 msgid "Victory Conditions:"
-msgstr ""
+msgstr "Condiciones Victoriae:"
 
 #. Translation: Comma used to concatenate victory conditions
 #: gui/lobby/LobbyPage/GameDetails.js:124
@@ -92,13 +93,13 @@ msgstr ", "
 
 #: gui/lobby/LobbyPage/GameDetails.js:126
 msgid "Mods:"
-msgstr ""
+msgstr "Modi:"
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/LobbyPage/GameDetails.js:129
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr ""
+msgstr "Ludus inceptus est %(time)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:131
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
@@ -107,39 +108,39 @@ msgstr "HH:mm"
 
 #: gui/lobby/LobbyPage/GameDetails.js:133
 msgid "Map Type:"
-msgstr ""
+msgstr "Genus Tabulae:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:135
 msgid "Map Size:"
-msgstr "Mappae Magnitudo:"
+msgstr "Magnitudo Tabulae:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:137
 msgid "Map Description:"
-msgstr ""
+msgstr "Descriptio Tabulae:"
 
 #: gui/lobby/LobbyPage/KickStrings.js:39
 msgid "You have been kicked from the lobby!"
-msgstr ""
+msgstr "Eiectus es a vestibulo!"
 
 #: gui/lobby/LobbyPage/KickStrings.js:40
 msgid "You have been banned from the lobby!"
-msgstr ""
+msgstr "Expulsus es a vestibulo!"
 
 #: gui/lobby/LobbyPage/KickStrings.js:43
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr ""
+msgstr "%(nick)s a vestibulo eiectus est!"
 
 #: gui/lobby/LobbyPage/KickStrings.js:44
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr ""
+msgstr "%(nick)s  a vestibulo expulsus est!"
 
 #: gui/lobby/LobbyPage/KickStrings.js:49
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "Causa: %(reason)s"
 
 #: gui/lobby/LobbyPage/PlayerColor.js:34
 #, javascript-format
@@ -148,7 +149,7 @@ msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/LobbyPage/PlayerList.js:178
 msgid "Online"
-msgstr ""
+msgstr "Adest"
 
 #: gui/lobby/LobbyPage/PlayerList.js:184
 msgid "Away"
@@ -156,16 +157,16 @@ msgstr "Abest"
 
 #: gui/lobby/LobbyPage/PlayerList.js:190
 msgid "Busy"
-msgstr "Occupatus est"
+msgstr "Occupatus"
 
 #: gui/lobby/LobbyPage/PlayerList.js:196
 msgid "Offline"
-msgstr ""
+msgstr "Disiunctus"
 
 #: gui/lobby/LobbyPage/PlayerList.js:202
 msgctxt "lobby presence"
 msgid "Unknown"
-msgstr "Ignotum"
+msgstr "Ignotus"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:106
 msgid "N/A"
@@ -173,7 +174,7 @@ msgstr "N/A"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:112
 msgid "Moderator"
-msgstr ""
+msgstr "Moderator"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:113
 msgid "Player"
@@ -181,12 +182,12 @@ msgstr "Lusor"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:114
 msgid "Muted Player"
-msgstr ""
+msgstr "Lusor Tacitus"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:120
 msgctxt "Used for an undefined winning rate"
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:122
 #, javascript-format
@@ -195,11 +196,11 @@ msgstr "%(percentage)s%%"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:69
 msgid "Mark as Buddy"
-msgstr ""
+msgstr "Amicum designare"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:70
 msgid "Unmark as Buddy"
-msgstr ""
+msgstr "Amicum removere"
 
 #: gui/lobby/LobbyPage/Buttons/HostButton.js:10
 msgid "Host Game"
@@ -207,24 +208,24 @@ msgstr "Ludum Hospita"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:40
 msgid "Your active mods do not match the mods of this game."
-msgstr ""
+msgstr "Modi tui activi modos huius ludi non aequant."
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
 msgid "Do you want to switch to the mod selection page?"
-msgstr ""
+msgstr "Visne ad paginam eligendorum modorum progredi?"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
 msgid "Incompatible mods"
-msgstr ""
+msgstr "Modi insociabiles"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
 msgid "The game has already started. Do you want to join as observer?"
-msgstr ""
+msgstr "Ludus inceptus est. Visne spectare?"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:89
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr ""
+msgstr "Locus huius ludi '%(ip)s' aptum esse non videtur."
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:91
 msgid "Error"
@@ -233,27 +234,27 @@ msgstr "Error"
 #. Translation: Join the game currently selected in the list.
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:130
 msgid "Join Game"
-msgstr "Ludum Participa"
+msgstr "Ludum Intrare"
 
 #: gui/lobby/LobbyPage/Buttons/LeaderboardButton.js:9
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):10
 msgid "Leaderboard"
-msgstr ""
+msgstr "Principes"
 
 #: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):10
 msgid "Player Profile Lookup"
-msgstr ""
+msgstr "Lusores Inspicere"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
 msgctxt "previous page"
 msgid "Back"
-msgstr ""
+msgstr "Retro"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:16
 msgctxt "previous page"
 msgid "Main Menu"
-msgstr ""
+msgstr "Pagina Prima"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:32
 #, javascript-format
@@ -272,11 +273,11 @@ msgstr ""
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:87
 msgid "Set your state to 'Away'."
-msgstr ""
+msgstr "Statum tuum in 'Abest' mutare."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:94
 msgid "Set your state to 'Online'."
-msgstr ""
+msgstr "Statum tuum in 'Adest' mutare."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:101
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
@@ -288,11 +289,11 @@ msgstr ""
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:125
 msgid "Show this help."
-msgstr ""
+msgstr "Hoc subsidium aperire."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:128
 msgid "Chat commands:"
-msgstr ""
+msgstr "Mandata colloquii:"
 
 #. Translation: Chat command help format
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:132
@@ -307,7 +308,7 @@ msgstr ""
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:149
 msgid "/me"
-msgstr ""
+msgstr "/me"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:153
 msgid ""
@@ -318,7 +319,7 @@ msgstr ""
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:156
 msgid "/say"
-msgstr ""
+msgstr "/say"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:160
 msgid "Clear all chat scrollback."
@@ -365,63 +366,63 @@ msgstr "(%(private)s) %(message)s"
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:47
 #, javascript-format
 msgid "%(nick)s has joined."
-msgstr ""
+msgstr "%(nick)s intravit."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:48
 #, javascript-format
 msgid "%(nick)s has left."
-msgstr ""
+msgstr "%(nick)s exivit."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:70
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
-msgstr ""
+msgstr "%(oldnick)s iam %(newnick)s appellatus est."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:107
 msgid "You have been muted."
-msgstr ""
+msgstr "Tu tacitus factus es."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:108
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr ""
+msgstr "%(nick)s tacitus factus est."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:112
 msgid "You are now a moderator."
-msgstr ""
+msgstr "Iam moderator es."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:113
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr ""
+msgstr "Iam %(nick)s moderator est."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:118
 msgid "You have been unmuted."
-msgstr ""
+msgstr "Licet tibi rursus loqui."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:119
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr ""
+msgstr "Licet %(nick)s rursus loqui."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:124
 msgid "You are not a moderator anymore."
-msgstr ""
+msgstr "Iam moderator non es."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:125
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
-msgstr ""
+msgstr "%(nick)s iam moderator non est."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:152
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to:"
-msgstr ""
+msgstr "%(nick)s res vestibuli sic mutavit:"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:153
 #, javascript-format
 msgid "%(nick)s deleted the lobby subject."
-msgstr ""
+msgstr "%(nick)s res vestibuli delevit."
 
 #. Translation: Chat status message
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
@@ -431,21 +432,21 @@ msgstr "== %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
 msgid "Connected."
-msgstr ""
+msgstr "Coniunctus."
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:56
 msgid "Disconnected."
-msgstr ""
+msgstr "Disiunctus."
 
 #. Translation: Caption for system notifications shown in the chat panel
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:25
 msgid "System:"
-msgstr ""
+msgstr "Systema:"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
 #, javascript-format
 msgid "=== %(system)s %(message)s"
-msgstr ""
+msgstr "=== %(system)s %(message)s"
 
 #: gui/lobby/LobbyPage/GameListFilters/MapSize.js:9
 msgctxt "map size"
@@ -478,37 +479,37 @@ msgstr "< %(rating)s"
 #: gui/lobby/ProfilePage/ProfilePage.js:70
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr ""
+msgstr "Lusor \"%(nick)s\" non inventus."
 
 #: gui/prelobby/common/credentials/credentials.js:5
 msgid "Please enter your username"
-msgstr ""
+msgstr "Da nomen tuum"
 
 #: gui/prelobby/common/credentials/credentials.js:8
 msgid "Invalid username"
-msgstr ""
+msgstr "Nomen irritum"
 
 #: gui/prelobby/common/credentials/credentials.js:19
 msgctxt "register"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Da tesseram tuam"
 
 #: gui/prelobby/common/credentials/credentials.js:20
 msgctxt "login"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Da tesseram tuam"
 
 #: gui/prelobby/common/credentials/credentials.js:23
 msgid "Please choose a longer password"
-msgstr ""
+msgstr "Elige tesseram logiorem"
 
 #: gui/prelobby/common/credentials/credentials.js:32
 msgid "Please enter your password again"
-msgstr ""
+msgstr "Da iterum tesseram tuam"
 
 #: gui/prelobby/common/credentials/credentials.js:36
 msgid "Passwords do not match"
-msgstr ""
+msgstr "Tesserae non aequant"
 
 #: gui/prelobby/common/credentials/credentials.js:54
 msgid "Are you sure you want to delete the password after connecting?"
@@ -522,47 +523,47 @@ msgstr ""
 
 #: gui/prelobby/common/terms/termslobby.js:9
 msgid "Terms of Service"
-msgstr ""
+msgstr "Condiciones Ministerii"
 
 #: gui/prelobby/common/terms/termslobby.js:10
 msgid "Please read and accept the Terms of Service."
-msgstr ""
+msgstr "Lege et accipe Condiciones Ministerii."
 
 #: gui/prelobby/common/terms/termslobby.js:19
 msgid "Terms of Use"
-msgstr ""
+msgstr "Condiciones Usus"
 
 #: gui/prelobby/common/terms/termslobby.js:20
 msgid "Please read and accept the Terms of Use."
-msgstr ""
+msgstr "Lege et accipe Condiciones Usus."
 
 #: gui/prelobby/common/terms/termslobby.js:29
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Ratio de Re Privata"
 
 #: gui/prelobby/common/terms/termslobby.js:30
 msgid "Please read and accept the Privacy Policy."
-msgstr ""
+msgstr "Lege et accipe Rationem de Re Privata."
 
 #: gui/prelobby/login/login.js:5
 msgid "Connect"
-msgstr "Connecte"
+msgstr "Coniungere"
 
 #: gui/prelobby/login/login.js:32
 msgid "Connecting…"
-msgstr ""
+msgstr "Coniungens..."
 
 #: gui/prelobby/register/register.js:5
 msgid "Register"
-msgstr ""
+msgstr "Novum nomen creare"
 
 #: gui/prelobby/register/register.js:26
 msgid "Registering…"
-msgstr ""
+msgstr "Creans nomen novum..."
 
 #: gui/prelobby/register/register.js:39
 msgid "Registered"
-msgstr ""
+msgstr "Novum nomen creatum"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):15
 msgid "Rank"
@@ -578,109 +579,109 @@ msgstr "Nomen"
 #: gui/lobby/LobbyPage/GameList.xml:(heading):27
 #: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
 msgid "Rating"
-msgstr ""
+msgstr "Puncta"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):26
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):59
 msgid "Back"
-msgstr ""
+msgstr "Retro"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):30
 msgid "Update"
-msgstr ""
+msgstr "Res Novae"
 
 #: gui/lobby/LobbyPage/GameList.xml:(heading):15
 msgid "Map Name"
-msgstr ""
+msgstr "Nomen Tabulae"
 
 #: gui/lobby/LobbyPage/GameList.xml:(heading):18
 msgctxt "map"
 msgid "Size"
-msgstr ""
+msgstr "Magnitudo"
 
 #: gui/lobby/LobbyPage/GameList.xml:(heading):21
 msgctxt "map"
 msgid "Type"
-msgstr ""
+msgstr "Genus"
 
 #: gui/lobby/LobbyPage/GameList.xml:(heading):24
 msgid "Players"
-msgstr ""
+msgstr "Lusores"
 
 #: gui/lobby/LobbyPage/GameListFilters.xml:(caption):5
 msgid "Show only open games"
-msgstr ""
+msgstr "Ostentare modo ludos apertos"
 
 #: gui/lobby/LobbyPage/LobbyPage.xml:(caption):10
 #: gui/prelobby/entrance/entrance.xml:(caption):14
 msgid "Multiplayer Lobby"
-msgstr ""
+msgstr "Vestibulum Plurium Lusorum"
 
 #: gui/lobby/LobbyPage/PlayerList.xml:(heading):12
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):8
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):28
 msgid "Current Rank:"
-msgstr ""
+msgstr "Ordo Instans:"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):12
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):32
 msgid "Highest Rating:"
-msgstr ""
+msgstr "Puncta Plurima:"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):16
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):36
 msgid "Total Games:"
-msgstr ""
+msgstr "Numerus Ludorum:"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):20
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):40
 msgid "Wins:"
-msgstr ""
+msgstr "Victoriae:"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):24
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):44
 msgid "Losses:"
-msgstr ""
+msgstr "Clades:"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):28
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):48
 msgid "Win Rate:"
-msgstr ""
+msgstr "Portio Victoriarum:"
 
 #: gui/lobby/LobbyPage/Chat/ChatPanel.xml:(caption):6
 msgid "Send"
-msgstr "mitte"
+msgstr "Mittere"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):14
 msgid "Enter playername:"
-msgstr ""
+msgstr "Da nomen:"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):20
 msgid "View Profile"
-msgstr ""
+msgstr "Inspicere"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):53
 msgid "Please enter a player name."
-msgstr ""
+msgstr "Da nomen lusoris."
 
 #: gui/prelobby/common/credentials/confirmpassword.xml:(caption):4
 msgid "Password again:"
-msgstr ""
+msgstr "Tessera iterum:"
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):6
 msgid "Login:"
-msgstr ""
+msgstr "Login:"
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):15
 msgid "Password:"
-msgstr ""
+msgstr "Tessera:"
 
 #: gui/prelobby/common/credentials/rememberpassword.xml:(caption):7
 msgid "Remember Password"
-msgstr ""
+msgstr "Tesseram Memorare"
 
 #: gui/prelobby/common/feedback/feedback.xml:(caption):10
 #: gui/prelobby/entrance/entrance.xml:(caption):30
@@ -689,19 +690,19 @@ msgstr "Retrorsum"
 
 #: gui/prelobby/entrance/entrance.xml:(caption):20
 msgid "Create a new account"
-msgstr ""
+msgstr "Novum nomen lusoris creare"
 
 #: gui/prelobby/entrance/entrance.xml:(caption):25
 msgid "Login to an existing account"
-msgstr ""
+msgstr "Nomen veteris lusoris dare"
 
 #: gui/prelobby/login/login.xml:(caption):13
 msgid "Connect to the game lobby"
-msgstr ""
+msgstr "Vestibulo ludi coniungere"
 
 #: gui/prelobby/register/register.xml:(caption):13
 msgid "Registration"
-msgstr ""
+msgstr "Perscriptio"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:1
 msgid ""
