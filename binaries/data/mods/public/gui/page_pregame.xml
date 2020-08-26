@@ -12,5 +12,8 @@
 	<include>pregame/sprites.xml</include>
 	<include>pregame/styles.xml</include>
 	<include>pregame/mainmenu.xml</include>
+
+	<!-- Work around a render bug:
+	     Needs to be drawn last, as it should overlay everything -->
 	<include>common/global.xml</include>
 </page>
