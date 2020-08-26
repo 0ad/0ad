@@ -12,6 +12,8 @@ GameSettingControls.WorldPopulation = class extends GameSettingControlCheckbox
 			g_GameAttributes.settings.WorldPopulation = mapValue;
 			this.gameSettingsControl.updateGameAttributes();
 		}
+
+		this.setEnabled(g_GameAttributes.mapType != "scenario");
 	}
 
 	onGameAttributesChange()
