@@ -1,6 +1,6 @@
 {
 	"type": "global",
-	"affects": ["Blacksmith"],
+	"affects": ["Forge"],
 	"affectedPlayers": ["ExclusiveMutualAlly"],
 	"modifications": [
 		{ "value": "ProductionQueue/TechCostMultiplier/food", "multiply": 0.85 },
@@ -10,5 +10,5 @@
 		{ "value": "ProductionQueue/TechCostMultiplier/time", "multiply": 0.85 }
 	],
 	"auraName": "Products from Gaul",
-	"auraDescription": "Blacksmiths −15% technology resource costs and research time."
+	"auraDescription": "Forges −15% technology resource costs and research time."
 }

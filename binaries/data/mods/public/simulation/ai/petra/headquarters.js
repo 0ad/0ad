@@ -570,10 +570,10 @@ PETRA.HQ.prototype.checkPhaseRequirements = function(gameState, queues)
 					queue = "economicBuilding";
 					break;
 				}
-				if (!gameState.getOwnEntitiesByClass("Blacksmith", true).hasEntities() &&
-				    this.canBuild(gameState, "structures/{civ}_blacksmith"))
+				if (!gameState.getOwnEntitiesByClass("Forge", true).hasEntities() &&
+				    this.canBuild(gameState, "structures/{civ}_forge"))
 				{
-					plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}_blacksmith", { "phaseUp": true });
+					plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}_forge", { "phaseUp": true });
 					queue = "militaryBuilding";
 					break;
 				}
@@ -1896,17 +1896,17 @@ PETRA.HQ.prototype.buildDefenses = function(gameState, queues)
 	}
 };
 
-PETRA.HQ.prototype.buildBlacksmith = function(gameState, queues)
+PETRA.HQ.prototype.buildForge = function(gameState, queues)
 {
-	if (this.getAccountedPopulation(gameState) < this.Config.Military.popForBlacksmith ||
-		queues.militaryBuilding.hasQueuedUnits() || gameState.getOwnEntitiesByClass("Blacksmith", true).length)
+	if (this.getAccountedPopulation(gameState) < this.Config.Military.popForForge ||
+		queues.militaryBuilding.hasQueuedUnits() || gameState.getOwnEntitiesByClass("Forge", true).length)
 		return;
-	// Build a market before the blacksmith.
+	// Build a Market before the Forge.
 	if (!gameState.getOwnEntitiesByClass("Market", true).hasEntities())
 		return;
 
-	if (this.canBuild(gameState, "structures/{civ}_blacksmith"))
-		queues.militaryBuilding.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_blacksmith"));
+	if (this.canBuild(gameState, "structures/{civ}_forge"))
+		queues.militaryBuilding.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_forge"));
 };
 
 /**
@@ -2734,7 +2734,7 @@ PETRA.HQ.prototype.update = function(gameState, queues, events)
 
 		if (!this.saveResources)
 		{
-			this.buildBlacksmith(gameState, queues);
+			this.buildForge(gameState, queues);
 			this.buildTemple(gameState, queues);
 		}
 

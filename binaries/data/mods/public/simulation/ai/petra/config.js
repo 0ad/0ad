@@ -18,7 +18,7 @@ PETRA.Config = function(difficulty, behavior)
 		"fortressLapseTime": 390,	// Time to wait between building 2 fortresses
 		"popForBarracks1": 25,
 		"popForBarracks2": 95,
-		"popForBlacksmith": 65,
+		"popForForge": 65,
 		"numSentryTowers": 1
 	};
 
@@ -260,7 +260,7 @@ PETRA.Config.prototype.setConfig = function(gameState)
 		this.popScaling = Math.sqrt(maxPop / 300);
 		this.Military.popForBarracks1 = Math.min(Math.max(Math.floor(this.Military.popForBarracks1 * this.popScaling), 12), Math.floor(maxPop/5));
 		this.Military.popForBarracks2 = Math.min(Math.max(Math.floor(this.Military.popForBarracks2 * this.popScaling), 45), Math.floor(maxPop*2/3));
-		this.Military.popForBlacksmith = Math.min(Math.max(Math.floor(this.Military.popForBlacksmith * this.popScaling), 30), Math.floor(maxPop/2));
+		this.Military.popForForge = Math.min(Math.max(Math.floor(this.Military.popForForge * this.popScaling), 30), Math.floor(maxPop/2));
 		this.Economy.popPhase2 = Math.min(Math.max(Math.floor(this.Economy.popPhase2 * this.popScaling), 20), Math.floor(maxPop/2));
 		this.Economy.workPhase3 = Math.min(Math.max(Math.floor(this.Economy.workPhase3 * this.popScaling), 40), Math.floor(maxPop*2/3));
 		this.Economy.workPhase4 = Math.min(Math.max(Math.floor(this.Economy.workPhase4 * this.popScaling), 45), Math.floor(maxPop*2/3));
