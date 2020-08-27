@@ -19,11 +19,11 @@
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_4x4</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <GenericName>Blacksmith</GenericName>
-    <SelectionGroupName>template_structure_military_blacksmith</SelectionGroupName>
+    <GenericName>Forge</GenericName>
+    <SelectionGroupName>template_structure_military_forge</SelectionGroupName>
     <Tooltip>Research attack and armor technologies.</Tooltip>
     <Classes datatype="tokens">-ConquestCritical</Classes>
-    <VisibleClasses datatype="tokens">Town Blacksmith</VisibleClasses>
+    <VisibleClasses datatype="tokens">Town Forge</VisibleClasses>
     <Icon>structures/blacksmith.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
@@ -52,8 +52,8 @@
   </ProductionQueue>
   <Sound>
     <SoundGroups>
-      <select>interface/select/building/sel_blacksmith.xml</select>
-      <constructed>interface/complete/building/complete_blacksmith.xml</constructed>
+      <select>interface/select/building/sel_forge.xml</select>
+      <constructed>interface/complete/building/complete_forge.xml</constructed>
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>

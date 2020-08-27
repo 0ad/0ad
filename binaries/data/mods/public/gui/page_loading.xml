@@ -11,5 +11,8 @@
 	<include>loading/styles.xml</include>
 	<include>loading/sprites.xml</include>
 	<include>loading/loading.xml</include>
+
+	<!-- Work around a render bug:
+	     Needs to be drawn last, as it should overlay everything -->
 	<include>common/global.xml</include>
 </page>

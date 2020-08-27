@@ -271,10 +271,10 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Build a Blacksmith and research the Infantry Training technology (sword icon) to improve infantry hack attack."),
+		"instructions": markForTranslation("Build a Forge and research the Infantry Training technology (sword icon) to improve infantry hack attack."),
 		"OnResearchQueued": function(msg)
 		{
-			if (msg.technologyTemplate && TriggerHelper.EntityMatchesClassList(msg.researcherEntity, "Blacksmith"))
+			if (msg.technologyTemplate && TriggerHelper.EntityMatchesClassList(msg.researcherEntity, "Forge"))
 				this.NextGoal();
 		}
 	},

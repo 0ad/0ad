@@ -71,7 +71,7 @@ const oFortress = "structures/kush_fortress";
 const oTower = g_MapSettings.Size >= 256 && getDifficulty() >= 3 ? "structures/kush_defense_tower" : "structures/kush_sentry_tower";
 const oHouse = "structures/kush_house";
 const oMarket = "structures/kush_market";
-const oBlacksmith = "structures/kush_blacksmith";
+const oForge = "structures/kush_forge";
 const oBlemmyeCamp = "structures/kush_blemmye_camp";
 const oNubaVillage = "structures/kush_nuba_village";
 const oCivicCenter = "structures/kush_civil_centre";
@@ -181,7 +181,7 @@ const clTemple = g_Map.createTileClass();
 const clRitualPlace = g_Map.createTileClass();
 const clPyramid = g_Map.createTileClass();
 const clHouse = g_Map.createTileClass();
-const clBlacksmith = g_Map.createTileClass();
+const clForge = g_Map.createTileClass();
 const clStable = g_Map.createTileClass();
 const clElephantStables = g_Map.createTileClass();
 const clCivicCenter = g_Map.createTileClass();
@@ -300,10 +300,10 @@ const layoutKushCity = [
 		"painters": new TileClassPainter(clMarket)
 	},
 	{
-		"templateName": "uncapturable|" + oBlacksmith,
+		"templateName": "uncapturable|" + oForge,
 		"difficulty": "Very Easy",
-		"constraints": avoidClasses(clBlacksmith, 30),
-		"painters": new TileClassPainter(clBlacksmith)
+		"constraints": avoidClasses(clForge, 30),
+		"painters": new TileClassPainter(clForge)
 	},
 	{
 		"templateName": oNubaVillage,
@@ -1061,7 +1061,7 @@ var areaCityBushes =
 				clTower, 1,
 				clFortress, 1,
 				clHouse, 1,
-				clBlacksmith, 1,
+				clForge, 1,
 				clElephantStables, 1,
 				clStable, 1,
 				clCivicCenter, 1,
