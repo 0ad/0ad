@@ -6,15 +6,21 @@
     <EndOfAlertRange>190</EndOfAlertRange>
     <SearchRange>100</SearchRange>
   </AlertRaiser>
-  <Armour>
-    <Hack op="add">5</Hack>
-    <Pierce op="add">5</Pierce>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack op="add">5</Hack>
+        <Pierce op="add">5</Pierce>
+      </Damage>
+    </Entity>
     <Foundation>
-      <Hack>5</Hack>
-      <Pierce>15</Pierce>
-      <Crush>3</Crush>
+      <Damage>
+        <Hack>5</Hack>
+        <Pierce>15</Pierce>
+        <Crush>3</Crush>
+      </Damage>
     </Foundation>
-  </Armour>
+  </Resistance>
   <Attack>
     <Ranged>
       <Damage>

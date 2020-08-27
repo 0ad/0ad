@@ -52,28 +52,19 @@ Capturable.prototype.SetCapturePoints = function(capturePointsArray)
 
 /**
  * Compute the amount of capture points to be reduced and reduce them.
- * @param {number} effectData - Base number of capture points to be taken.
+ * @param {number} amount - Number of capture points to be taken.
  * @param {number} captor - The entity capturing us.
  * @param {number} captorOwner - Owner of the captor.
- * @param {number} bonusMultiplier - Multiplier to be multiplied with effectData.
  * @return {Object} - Object of the form { "captureChange": number }, where number indicates the actual amount of capture points taken.
  */
-Capturable.prototype.Capture = function(effectData, captor, captorOwner, bonusMultiplier)
+Capturable.prototype.Capture = function(amount, captor, captorOwner)
 {
-	let cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
-
-	let hitpoints = cmpHealth && cmpHealth.GetHitpoints();
-	if (captorOwner == INVALID_PLAYER || !this.CanCapture(captorOwner) || !hitpoints)
+	if (captorOwner == INVALID_PLAYER || !this.CanCapture(captorOwner))
 		return {};
 
-	bonusMultiplier /= 0.1 + 0.9 * hitpoints / cmpHealth.GetMaxHitpoints();
-
-	let total = Attacking.GetTotalAttackEffects({ "Capture": effectData }, "Capture") * bonusMultiplier;
-
-	let change = this.Reduce(total, captorOwner);
 	// TODO: implement loot
 
-	return { "captureChange": change };
+	return { "captureChange": this.Reduce(amount, captorOwner) };
 };
 
 /**

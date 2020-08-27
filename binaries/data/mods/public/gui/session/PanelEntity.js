@@ -86,7 +86,7 @@ PanelEntity.prototype.PortraitDirectory = "session/portraits/";
 PanelEntity.prototype.Tooltips = [
 	getCurrentHealthTooltip,
 	getAttackTooltip,
-	getArmorTooltip,
+	getResistanceTooltip,
 	getEntityTooltip,
 	getAurasTooltip
 ];

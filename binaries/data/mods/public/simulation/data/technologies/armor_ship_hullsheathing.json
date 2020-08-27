@@ -9,9 +9,9 @@
 	"researchTime": 40,
 	"tooltip": "Ships +2 armor.",
 	"modifications": [
-		{ "value": "Armour/Hack", "add": 2 },
-		{ "value": "Armour/Pierce", "add": 2 },
-		{ "value": "Armour/Crush", "add": 2 }
+		{ "value": "Resistance/Entity/Damage/Hack", "add": 2 },
+		{ "value": "Resistance/Entity/Damage/Pierce", "add": 2 },
+		{ "value": "Resistance/Entity/Damage/Crush", "add": 2 }
 	],
 	"affects": ["Ship"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

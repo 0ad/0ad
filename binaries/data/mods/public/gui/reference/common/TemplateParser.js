@@ -76,9 +76,9 @@ class TemplateParser
 			if (!parsed.upgrades)
 				parsed.upgrades = [];
 
-			// Note: An assumption is made here that wall segments all have the same armor and auras
+			// Note: An assumption is made here that wall segments all have the same resistance and auras
 			let struct = this.getEntity(parsed.wallSet.templates.long, civCode);
-			parsed.armour = struct.armour;
+			parsed.resistance = struct.resistance;
 			parsed.auras = struct.auras;
 
 			// For technology cost multiplier, we need to use the tower

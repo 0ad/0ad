@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity>
   <AIProxy/>
-  <Armour>
-    <Hack>1</Hack>
-    <Pierce>1</Pierce>
-    <Crush>1</Crush>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>1</Hack>
+        <Pierce>1</Pierce>
+        <Crush>1</Crush>
+      </Damage>
+    </Entity>
     <Foundation>
-      <Hack>1</Hack>
-      <Pierce>1</Pierce>
-      <Crush>1</Crush>
+      <Damage>
+        <Hack>1</Hack>
+        <Pierce>1</Pierce>
+        <Crush>1</Crush>
+      </Damage>
     </Foundation>
-  </Armour>
+  </Resistance>
   <BuildingAI>
     <DefaultArrowCount>0</DefaultArrowCount>
     <GarrisonArrowMultiplier>0</GarrisonArrowMultiplier>

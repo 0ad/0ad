@@ -3,9 +3,9 @@
 	"radius": 60,
 	"affects": ["Siege"],
 	"modifications": [
-		{ "value": "Armour/Hack", "add": 1 },
-		{ "value": "Armour/Pierce", "add": 1 },
-		{ "value": "Armour/Crush", "add": 1 },
+		{ "value": "Resistance/Entity/Damage/Hack", "add": 1 },
+		{ "value": "Resistance/Entity/Damage/Pierce", "add": 1 },
+		{ "value": "Resistance/Entity/Damage/Crush", "add": 1 },
 		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2 },

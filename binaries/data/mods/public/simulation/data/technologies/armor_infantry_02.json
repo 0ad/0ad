@@ -19,8 +19,8 @@
 	"researchTime": 40,
 	"tooltip": "Infantry +1 hack and pierce armor.",
 	"modifications": [
-		{ "value": "Armour/Hack", "add": 1 },
-		{ "value": "Armour/Pierce", "add": 1 }
+		{ "value": "Resistance/Entity/Damage/Hack", "add": 1 },
+		{ "value": "Resistance/Entity/Damage/Pierce", "add": 1 }
 	],
 	"affects": ["Infantry"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

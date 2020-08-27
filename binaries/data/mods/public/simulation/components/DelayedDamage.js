@@ -43,9 +43,8 @@ DelayedDamage.prototype.MissileHit = function(data, lateness)
 	if (cmpSoundManager && data.attackImpactSound)
 		cmpSoundManager.PlaySoundGroupAtPosition(data.attackImpactSound, data.position);
 
-	// Do this first in case the direct hit kills the target
+	// Do this first in case the direct hit kills the target.
 	if (data.splash)
-	{
 		Attacking.CauseDamageOverArea({
 			"type": data.type,
 			"attackData": data.splash.attackData,
@@ -57,17 +56,15 @@ DelayedDamage.prototype.MissileHit = function(data, lateness)
 			"direction": data.direction,
 			"friendlyFire": data.splash.friendlyFire
 		});
-	}
 
 	let cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
 
 	// Deal direct damage if we hit the main target
-	// and if the target has Resistance (not the case for a mirage for example)
-	if (Attacking.TestCollision(data.target, data.position, lateness))
+	// and we could handle the attack.
+	if (Attacking.TestCollision(data.target, data.position, lateness) &&
+		Attacking.HandleAttackEffects(data.target, data.type, data.attackData, data.attacker, data.attackerOwner))
 	{
 		cmpProjectileManager.RemoveProjectile(data.projectileId);
-
-		Attacking.HandleAttackEffects(data.type, data.attackData, data.target, data.attacker, data.attackerOwner);
 		return;
 	}
 
@@ -81,10 +78,9 @@ DelayedDamage.prototype.MissileHit = function(data, lateness)
 
 	for (let ent of ents)
 	{
-		if (!Attacking.TestCollision(ent, data.position, lateness))
+		if (!Attacking.TestCollision(ent, data.position, lateness) ||
+			!Attacking.HandleAttackEffects(ent, data.type, data.attackData, data.attacker, data.attackerOwner))
 			continue;
-
-		Attacking.HandleAttackEffects(data.type, data.attackData, ent, data.attacker, data.attackerOwner);
 
 		cmpProjectileManager.RemoveProjectile(data.projectileId);
 		break;

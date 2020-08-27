@@ -1,8 +1,8 @@
 Engine.LoadHelperScript("Attacking.js");
-Engine.LoadComponentScript("interfaces/Attack.js");
 Engine.LoadComponentScript("interfaces/Capturable.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/Promotion.js");
+Engine.LoadComponentScript("interfaces/Resistance.js");
 
 // Unit tests for the Attacking helper.
 // TODO: Some of it is tested in components/test_Damage.js, which should be spliced and moved.
@@ -13,8 +13,8 @@ class testHandleAttackEffects {
 		this.TESTED_ENTITY_ID = 5;
 
 		this.attackData = {
-			"Damage": "Uniquely Hashed Value",
-			"Capture": "Something Else Entirely",
+			"Damage": "1",
+			"Capture": "2"
 		};
 	}
 
@@ -24,13 +24,15 @@ class testHandleAttackEffects {
 	testMultipleEffects() {
 		AddMock(this.TESTED_ENTITY_ID, IID_Health, {
 			"TakeDamage": x => { this.resultString += x; },
+			"GetHitpoints": () => 1,
+			"GetMaxHitpoints": () => 1,
 		});
 
 		AddMock(this.TESTED_ENTITY_ID, IID_Capturable, {
 			"Capture": x => { this.resultString += x; },
 		});
 
-		Attacking.HandleAttackEffects("Test", this.attackData, this.TESTED_ENTITY_ID, INVALID_ENTITY, INVALID_PLAYER);
+		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, "Test", this.attackData, INVALID_ENTITY, INVALID_PLAYER);
 
 		TS_ASSERT(this.resultString.indexOf(this.attackData.Damage) !== -1);
 		TS_ASSERT(this.resultString.indexOf(this.attackData.Capture) !== -1);
@@ -44,7 +46,7 @@ class testHandleAttackEffects {
 			"Capture": x => { this.resultString += x; },
 		});
 
-		Attacking.HandleAttackEffects("Test", this.attackData, this.TESTED_ENTITY_ID, INVALID_ENTITY, INVALID_PLAYER);
+		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, "Test", this.attackData, INVALID_ENTITY, INVALID_PLAYER);
 		TS_ASSERT(this.resultString.indexOf(this.attackData.Damage) === -1);
 		TS_ASSERT(this.resultString.indexOf(this.attackData.Capture) !== -1);
 
@@ -52,9 +54,11 @@ class testHandleAttackEffects {
 		DeleteMock(this.TESTED_ENTITY_ID, IID_Capturable);
 		AddMock(this.TESTED_ENTITY_ID, IID_Health, {
 			"TakeDamage": x => { this.resultString += x; },
+			"GetHitpoints": () => 1,
+			"GetMaxHitpoints": () => 1,
 		});
 
-		Attacking.HandleAttackEffects("Test", this.attackData, this.TESTED_ENTITY_ID, INVALID_ENTITY, INVALID_PLAYER);
+		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, "Test", this.attackData, INVALID_ENTITY, INVALID_PLAYER);
 		TS_ASSERT(this.resultString.indexOf(this.attackData.Damage) !== -1);
 		TS_ASSERT(this.resultString.indexOf(this.attackData.Capture) === -1);
 	}
@@ -64,22 +68,24 @@ class testHandleAttackEffects {
 	 */
 	testAttackedMessage() {
 		Engine.PostMessage = () => TS_ASSERT(false);
-		Attacking.HandleAttackEffects("Test", this.attackData, this.TESTED_ENTITY_ID, INVALID_ENTITY, INVALID_PLAYER);
+		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, "Test", this.attackData, INVALID_ENTITY, INVALID_PLAYER);
 
 		AddMock(this.TESTED_ENTITY_ID, IID_Capturable, {
 			"Capture": () => ({ "captureChange": 0 }),
 		});
 		let count = 0;
 		Engine.PostMessage = () => count++;
-		Attacking.HandleAttackEffects("Test", this.attackData, this.TESTED_ENTITY_ID, INVALID_ENTITY, INVALID_PLAYER);
+		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, "Test", this.attackData, INVALID_ENTITY, INVALID_PLAYER);
 		TS_ASSERT_EQUALS(count, 1);
 
 		AddMock(this.TESTED_ENTITY_ID, IID_Health, {
 			"TakeDamage": () => ({ "healthChange": 0 }),
+			"GetHitpoints": () => 1,
+			"GetMaxHitpoints": () => 1,
 		});
 		count = 0;
 		Engine.PostMessage = () => count++;
-		Attacking.HandleAttackEffects("Test", this.attackData, this.TESTED_ENTITY_ID, INVALID_ENTITY, INVALID_PLAYER);
+		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, "Test", this.attackData, INVALID_ENTITY, INVALID_PLAYER);
 		TS_ASSERT_EQUALS(count, 1);
 	}
 
@@ -88,13 +94,19 @@ class testHandleAttackEffects {
 	 */
 	testBonusMultiplier() {
 		AddMock(this.TESTED_ENTITY_ID, IID_Health, {
-			"TakeDamage": (_, __, ___, mult) => { TS_ASSERT_EQUALS(mult, 2); },
+			"TakeDamage": (amount, __, ___) => {
+				TS_ASSERT_EQUALS(amount, this.attackData.Damage * 2);
+			},
+			"GetHitpoints": () => 1,
+			"GetMaxHitpoints": () => 1,
 		});
 		AddMock(this.TESTED_ENTITY_ID, IID_Capturable, {
-			"Capture": (_, __, ___, mult) => { TS_ASSERT_EQUALS(mult, 2); },
+			"Capture": (amount, __, ___) => {
+				TS_ASSERT_EQUALS(amount, this.attackData.Capture * 2);
+			},
 		});
 
-		Attacking.HandleAttackEffects("Test", this.attackData, this.TESTED_ENTITY_ID, INVALID_ENTITY, INVALID_PLAYER, 2);
+		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, "Test", this.attackData, INVALID_ENTITY, INVALID_PLAYER, 2);
 	}
 }
 

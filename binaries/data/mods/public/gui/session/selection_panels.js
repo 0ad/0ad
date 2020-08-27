@@ -980,7 +980,7 @@ g_SelectionPanels.Training = {
 				getAttackTooltip,
 				getSplashDamageTooltip,
 				getHealerTooltip,
-				getArmorTooltip,
+				getResistanceTooltip,
 				getGarrisonTooltip,
 				getProjectilesTooltip,
 				getSpeedTooltip

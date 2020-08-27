@@ -55,9 +55,9 @@
 		</object>
 
 		<object size="0 63 100% 99" type="image" sprite="edgedPanelShader">
-			<!-- Attack and Armor -->
-			<object size="90 -2 126 34" name="attackAndArmorStats" type="image" sprite="stretched:session/icons/stances/defensive.png" tooltip_style="sessionToolTipInstantly">
-				<translatableAttribute id="tooltip">Attack and Armor</translatableAttribute>
+			<!-- Attack and Resistance -->
+			<object size="90 -2 126 34" name="attackAndResistanceStats" type="image" sprite="stretched:session/icons/stances/defensive.png" tooltip_style="sessionToolTipInstantly">
+				<translatableAttribute id="tooltip">Attack and Resistance</translatableAttribute>
 			</object>
 
 			<!-- Resource carrying icon/counter -->
@@ -94,7 +94,7 @@
 	</object>
 
 
-	<!-- Names (this must come before the attack and armor icon to avoid clipping issues) -->
+	<!-- Names (this must come before the attack and resistance icon to avoid clipping issues) -->
 	<object size="2 96 100%-2 100%-36" name="statsArea" type="image" sprite="edgedPanelShader">
 
 		<!-- These images are used to clip off the top and bottom of the civ icon -->

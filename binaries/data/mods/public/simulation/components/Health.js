@@ -178,22 +178,15 @@ Health.prototype.Kill = function()
 };
 
 /**
- * Take damage according to the entity's resistance.
- * @param {Object} strengths - { "hack": number, "pierce": number, "crush": number } or something like that.
- * @param {number} bonusMultiplier - the damage multiplier.
- * Returns object of the form { "healthChange": -12 }.
+ * @param {number} amount - The amount of damage to be taken.
+ * @param {number} attacker - The entityID of the attacker.
+ * @param {number} attackerOwner - The playerID of the owner of the attacker.
+ *
+ * @eturn {Object} - Object of the form { "healthChange": number }.
  */
-Health.prototype.TakeDamage = function(effectData, attacker, attackerOwner, bonusMultiplier)
+Health.prototype.TakeDamage = function(amount, attacker, attackerOwner)
 {
-	let cmpResistance = Engine.QueryInterface(this.entity, IID_Resistance);
-
-	if (!this.hitpoints || cmpResistance && cmpResistance.IsInvulnerable())
-		return { "healthChange": 0 };
-
-	let total = Attacking.GetTotalAttackEffects(effectData, "Damage", cmpResistance) * bonusMultiplier;
-
-	// Reduce health
-	let change = this.Reduce(total);
+	let change = this.Reduce(amount);
 
 	let cmpLoot = Engine.QueryInterface(this.entity, IID_Loot);
 	if (cmpLoot && cmpLoot.GetXp() > 0 && change.healthChange < 0)

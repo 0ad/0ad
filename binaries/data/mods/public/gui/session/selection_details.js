@@ -311,11 +311,11 @@ function displaySingle(entState)
 			showTemplateDetails(entState.template);
 		};
 
-	Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = [
+	Engine.GetGUIObjectByName("attackAndResistanceStats").tooltip = [
 		getAttackTooltip,
 		getSplashDamageTooltip,
 		getHealerTooltip,
-		getArmorTooltip,
+		getResistanceTooltip,
 		getGatherTooltip,
 		getSpeedTooltip,
 		getGarrisonTooltip,

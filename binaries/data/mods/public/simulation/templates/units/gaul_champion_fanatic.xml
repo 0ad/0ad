@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_spearman">
-  <Armour>
-    <Hack op="add">-4</Hack>
-    <Pierce op="add">-4</Pierce>
-  </Armour>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack op="add">-4</Hack>
+        <Pierce op="add">-4</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
   <Identity>
     <Civ>gaul</Civ>
     <GenericName>Naked Fanatic</GenericName>

@@ -55,7 +55,7 @@ ReferencePage.prototype.StatsFunctions = [
 	getHealerTooltip,
 	getAttackTooltip,
 	getSplashDamageTooltip,
-	getArmorTooltip,
+	getResistanceTooltip,
 	getGarrisonTooltip,
 	getProjectilesTooltip,
 	getSpeedTooltip,
