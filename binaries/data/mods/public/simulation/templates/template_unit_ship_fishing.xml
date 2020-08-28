@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_ship">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack>2</Hack>
-        <Pierce>5</Pierce>
-        <Crush>2</Crush>
-      </Damage>
-    </Entity>
-  </Resistance>
   <Attack>
     <Melee>
       <Damage>
@@ -45,6 +36,15 @@
     <xp>1</xp>
     <wood>10</wood>
   </Loot>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>2</Hack>
+        <Pierce>5</Pierce>
+        <Crush>2</Crush>
+      </Damage>
+    </Entity>
+  </Resistance>
   <ResourceGatherer>
     <MaxDistance>6.0</MaxDistance>
     <Rates>

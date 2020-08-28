@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack>1</Hack>
-        <Pierce>2</Pierce>
-        <Crush>1</Crush>
-      </Damage>
-    </Entity>
-  </Resistance>
   <Attack>
     <Melee>
       <Damage>
@@ -46,6 +37,15 @@
     <xp>100</xp>
     <food>10</food>
   </Loot>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>1</Hack>
+        <Pierce>2</Pierce>
+        <Crush>1</Crush>
+      </Damage>
+    </Entity>
+  </Resistance>
   <ResourceGatherer disable=""/>
   <Selectable>
     <Overlay>

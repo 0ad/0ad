@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Pierce op="add">1</Pierce>
-      </Damage>
-    </Entity>
-  </Resistance>
   <Attack>
     <Melee>
       <Damage>
@@ -24,4 +17,11 @@
     <VisibleClasses datatype="tokens">Melee Axeman</VisibleClasses>
     <GenericName>Hero Cavalry Axeman</GenericName>
   </Identity>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Pierce op="add">1</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
 </Entity>

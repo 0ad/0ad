@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack>20</Hack>
-        <Pierce>30</Pierce>
-        <Crush>3</Crush>
-      </Damage>
-    </Entity>
-    <Foundation>
-      <Damage>
-        <Hack>3</Hack>
-        <Pierce>10</Pierce>
-        <Crush>3</Crush>
-      </Damage>
-    </Foundation>
-  </Resistance>
   <BuildRestrictions>
     <Category>Special</Category>
   </BuildRestrictions>
@@ -43,6 +27,22 @@
   <Obstruction>
     <Static width="24.0" depth="24.0"/>
   </Obstruction>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>20</Hack>
+        <Pierce>30</Pierce>
+        <Crush>3</Crush>
+      </Damage>
+    </Entity>
+    <Foundation>
+      <Damage>
+        <Hack>3</Hack>
+        <Pierce>10</Pierce>
+        <Crush>3</Crush>
+      </Damage>
+    </Foundation>
+  </Resistance>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_broch.xml</select>

@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack>4</Hack>
-        <Pierce>5</Pierce>
-      </Damage>
-    </Entity>
-  </Resistance>
   <Attack>
     <Melee>
       <Damage>
@@ -31,4 +23,12 @@
     <wood>4</wood>
     <metal>1</metal>
   </Loot>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>4</Hack>
+        <Pierce>5</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
 </Entity>

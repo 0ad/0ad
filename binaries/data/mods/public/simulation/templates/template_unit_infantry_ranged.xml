@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack>1</Hack>
-        <Pierce>1</Pierce>
-        <Crush>10</Crush>
-      </Damage>
-    </Entity>
-  </Resistance>
   <Attack>
     <Ranged>
       <Damage>
@@ -40,4 +31,13 @@
       special/formations/skirmish
     </Formations>
   </Identity>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>1</Hack>
+        <Pierce>1</Pierce>
+        <Crush>10</Crush>
+      </Damage>
+    </Entity>
+  </Resistance>
 </Entity>

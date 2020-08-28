@@ -7,8 +7,8 @@
 	"researchTime": 60,
 	"tooltip": "All Persian structures +25% health and capture points, but also +20% build time.",
 	"modifications": [
-		{ "value": "Cost/BuildTime", "multiply": 1.2 },
 		{ "value": "Capturable/CapturePoints", "multiply": 1.25 },
+		{ "value": "Cost/BuildTime", "multiply": 1.2 },
 		{ "value": "Health/Max", "multiply": 1.25 }
 	],
 	"affects": ["Structure !Wonder"],

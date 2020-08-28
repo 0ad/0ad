@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack op="add">5</Hack>
-        <Pierce op="add">5</Pierce>
-        <Crush op="add">3</Crush>
-      </Damage>
-    </Entity>
-  </Resistance>
   <Attack>
     <Ranged>
       <Damage>
@@ -94,6 +85,15 @@
       attack_soldiers_will
     </Technologies>
   </ProductionQueue>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack op="add">5</Hack>
+        <Pierce op="add">5</Pierce>
+        <Crush op="add">3</Crush>
+      </Damage>
+    </Entity>
+  </Resistance>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_fortress.xml</select>

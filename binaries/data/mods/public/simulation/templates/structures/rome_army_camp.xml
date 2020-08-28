@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack>15</Hack>
-        <Pierce>25</Pierce>
-        <Crush>2</Crush>
-      </Damage>
-    </Entity>
-    <Foundation>
-      <Damage>
-        <Hack>1</Hack>
-        <Pierce>5</Pierce>
-        <Crush>1</Crush>
-      </Damage>
-    </Foundation>
-  </Resistance>
   <Attack>
     <Ranged>
       <Damage>
@@ -112,6 +96,22 @@
       units/{civ}_siege_tower
     </Entities>
   </ProductionQueue>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>15</Hack>
+        <Pierce>25</Pierce>
+        <Crush>2</Crush>
+      </Damage>
+    </Entity>
+    <Foundation>
+      <Damage>
+        <Hack>1</Hack>
+        <Pierce>5</Pierce>
+        <Crush>1</Crush>
+      </Damage>
+    </Foundation>
+  </Resistance>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_broch.xml</select>

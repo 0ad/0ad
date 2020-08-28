@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt_skittish">
+  <Identity>
+    <VisibleClasses datatype="tokens">Elephant</VisibleClasses>
+  </Identity>
   <Resistance>
     <Entity>
       <Damage>
@@ -9,9 +12,6 @@
       </Damage>
     </Entity>
   </Resistance>
-  <Identity>
-    <VisibleClasses datatype="tokens">Elephant</VisibleClasses>
-  </Identity>
   <ResourceSupply>
     <Amount>100</Amount>
   </ResourceSupply>

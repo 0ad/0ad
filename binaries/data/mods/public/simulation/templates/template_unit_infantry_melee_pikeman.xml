@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack>10</Hack>
-        <Pierce>10</Pierce>
-      </Damage>
-    </Entity>
-  </Resistance>
   <Attack>
     <Melee>
       <Damage>
@@ -41,6 +33,14 @@
   <Loot>
     <wood>5</wood>
   </Loot>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>10</Hack>
+        <Pierce>10</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
   <Sound>
     <SoundGroups>
       <attack_melee>attack/weapon/pike_attack.xml</attack_melee>

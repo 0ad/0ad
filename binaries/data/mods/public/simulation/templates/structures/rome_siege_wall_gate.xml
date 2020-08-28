@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_gate">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack>15</Hack>
-        <Pierce>35</Pierce>
-        <Crush>5</Crush>
-      </Damage>
-    </Entity>
-    <Foundation>
-      <Damage>
-        <Hack>4</Hack>
-        <Pierce>7</Pierce>
-        <Crush>3</Crush>
-      </Damage>
-    </Foundation>
-  </Resistance>
   <BuildRestrictions>
     <Territory>own neutral enemy</Territory>
   </BuildRestrictions>
@@ -50,6 +34,22 @@
       <Door width="13" depth="5" x="0" z="0"/>
     </Obstructions>
   </Obstruction>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>15</Hack>
+        <Pierce>35</Pierce>
+        <Crush>5</Crush>
+      </Damage>
+    </Entity>
+    <Foundation>
+      <Damage>
+        <Hack>4</Hack>
+        <Pierce>7</Pierce>
+        <Crush>3</Crush>
+      </Damage>
+    </Foundation>
+  </Resistance>
   <StatusBars>
     <HeightOffset>13.5</HeightOffset>
   </StatusBars>

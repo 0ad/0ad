@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack>10</Hack>
-        <Pierce>10</Pierce>
-        <Crush>25</Crush>
-      </Damage>
-    </Entity>
-  </Resistance>
   <Cost>
     <Population>3</Population>
     <BuildTime>30</BuildTime>
@@ -33,6 +24,15 @@
     <food>30</food>
     <metal>20</metal>
   </Loot>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>10</Hack>
+        <Pierce>10</Pierce>
+        <Crush>25</Crush>
+      </Damage>
+    </Entity>
+  </Resistance>
   <Sound>
     <SoundGroups>
       <select>actor/fauna/animal/elephant_select.xml</select>

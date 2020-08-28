@@ -3,9 +3,6 @@
 	"icon": "upgrade_elite.png",
 	"tooltip": "Elite units +20% training time, +1 armor, +10% health, +0.8 capture attack strength, +20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing range; Melee units +20% attack damage; Ranged units +4 attack range and −10% spread.",
 	"modifications": [
-		{ "value": "Resistance/Entity/Damage/Hack", "add": 1 },
-		{ "value": "Resistance/Entity/Damage/Pierce", "add": 1 },
-		{ "value": "Resistance/Entity/Damage/Crush", "add": 1 },
 		{ "value": "Attack/Capture/Capture", "add": 0.8 },
 		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.2, "affects": "Melee" },
 		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.2, "affects": "Melee" },
@@ -21,6 +18,9 @@
 		{ "value": "Loot/stone", "multiply": 1.2 },
 		{ "value": "Loot/metal", "multiply": 1.2 },
 		{ "value": "Loot/xp", "multiply": 1.2 },
+		{ "value": "Resistance/Entity/Damage/Hack", "add": 1 },
+		{ "value": "Resistance/Entity/Damage/Pierce", "add": 1 },
+		{ "value": "Resistance/Entity/Damage/Crush", "add": 1 },
 		{ "value": "ResourceGatherer/BaseSpeed", "multiply": 0.7 }
 	],
 	"affects": ["Elite Unit"]

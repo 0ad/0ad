@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack op="add">1</Hack>
-        <Pierce op="add">2</Pierce>
-      </Damage>
-    </Entity>
-  </Resistance>
   <Attack>
     <Melee>
       <Damage>
@@ -35,6 +27,14 @@
     <GenericName>Champion Cavalry Spearman</GenericName>
     <Tooltip>Counters: 1.5x vs. Cavalry.</Tooltip>
   </Identity>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack op="add">1</Hack>
+        <Pierce op="add">2</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
   <Sound>
     <SoundGroups>
       <attack_melee>attack/weapon/spear_attack.xml</attack_melee>

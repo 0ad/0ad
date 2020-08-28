@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_spearman">
+  <Identity>
+    <Civ>gaul</Civ>
+    <GenericName>Naked Fanatic</GenericName>
+    <SpecificName>Bariogaisatos</SpecificName>
+    <Icon>units/gaul_champion_fanatic.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
   <Resistance>
     <Entity>
       <Damage>
@@ -8,13 +15,6 @@
       </Damage>
     </Entity>
   </Resistance>
-  <Identity>
-    <Civ>gaul</Civ>
-    <GenericName>Naked Fanatic</GenericName>
-    <SpecificName>Bariogaisatos</SpecificName>
-    <Icon>units/gaul_champion_fanatic.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
-  </Identity>
   <UnitMotion>
     <WalkSpeed op="mul">1.4</WalkSpeed>
   </UnitMotion>

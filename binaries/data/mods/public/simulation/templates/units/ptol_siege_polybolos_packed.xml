@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_siege_boltshooter">
-  <Identity>
-    <Civ>ptol</Civ>
-    <SpecificName>Polybolos</SpecificName>
-    <Icon>units/hele_siege_oxybeles_packed.png</Icon>
-  </Identity>
   <Attack>
     <Ranged>
       <PrepareTime>3000</PrepareTime>
@@ -15,6 +10,11 @@
     <Square width="5.0" depth="5.0"/>
     <Height>2.0</Height>
   </Footprint>
+  <Identity>
+    <Civ>ptol</Civ>
+    <SpecificName>Polybolos</SpecificName>
+    <Icon>units/hele_siege_oxybeles_packed.png</Icon>
+  </Identity>
   <Pack>
     <Entity>units/ptol_siege_polybolos_unpacked</Entity>
     <State>packed</State>

@@ -20,9 +20,6 @@
     <SpecificName>Panthera tigris</SpecificName>
     <Icon>gaia/fauna_tiger.png</Icon>
   </Identity>
-  <StatusBars>
-    <HeightOffset>3.5</HeightOffset>
-  </StatusBars>
   <Sound>
     <SoundGroups>
       <select>actor/fauna/animal/lion_select.xml</select>
@@ -30,6 +27,9 @@
       <death>actor/fauna/animal/lion_death.xml</death>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <HeightOffset>3.5</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>fauna/tiger.xml</Actor>
   </VisualActor>

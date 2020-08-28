@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_tower">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack>5</Hack>
-        <Pierce>20</Pierce>
-        <Crush>1</Crush>
-      </Damage>
-    </Entity>
-    <Foundation>
-      <Damage>
-        <Hack>1</Hack>
-        <Pierce>5</Pierce>
-        <Crush>1</Crush>
-      </Damage>
-    </Foundation>
-  </Resistance>
   <Attack>
     <Ranged>
       <Damage>
@@ -72,6 +56,22 @@
       tower_decay
     </Technologies>
   </ProductionQueue>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>5</Hack>
+        <Pierce>20</Pierce>
+        <Crush>1</Crush>
+      </Damage>
+    </Entity>
+    <Foundation>
+      <Damage>
+        <Hack>1</Hack>
+        <Pierce>5</Pierce>
+        <Crush>1</Crush>
+      </Damage>
+    </Foundation>
+  </Resistance>
   <TerritoryDecay>
     <DecayRate>2</DecayRate>
   </TerritoryDecay>
