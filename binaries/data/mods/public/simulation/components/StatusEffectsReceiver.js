@@ -142,7 +142,7 @@ StatusEffectsReceiver.prototype.ExecuteEffect = function(statusName, lateness)
 		return;
 
 	if (status.Damage || status.Capture)
-		Attacking.HandleAttackEffects(statusName, status, this.entity, status.source.entity, status.source.owner);
+		Attacking.HandleAttackEffects(this.entity, statusName, status, status.source.entity, status.source.owner);
 
 	if (!status.Duration)
 		return;

@@ -3,6 +3,7 @@ Engine.LoadComponentScript("interfaces/Capturable.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/Promotion.js");
 Engine.LoadComponentScript("interfaces/Resistance.js");
+Engine.LoadComponentScript("interfaces/StatusEffectsReceiver.js");
 
 // Unit tests for the Attacking helper.
 // TODO: Some of it is tested in components/test_Damage.js, which should be spliced and moved.
@@ -14,7 +15,10 @@ class testHandleAttackEffects {
 
 		this.attackData = {
 			"Damage": "1",
-			"Capture": "2"
+			"Capture": "2",
+			"ApplyStatus": {
+				"statusName": {}
+			}
 		};
 	}
 
@@ -90,6 +94,21 @@ class testHandleAttackEffects {
 	}
 
 	/**
+	 * Regression test that StatusEffects are handled correctly.
+	 */
+	testStatusEffects() {
+		let cmpStatusEffectsReceiver = AddMock(this.TESTED_ENTITY_ID, IID_StatusEffectsReceiver, {
+			"ApplyStatus": (effectData, __, ___) => {
+				TS_ASSERT_UNEVAL_EQUALS(effectData, this.attackData.ApplyStatus);
+			}
+		});
+		let spy = new Spy(cmpStatusEffectsReceiver, "ApplyStatus");
+
+		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, "Test", this.attackData, INVALID_ENTITY, INVALID_PLAYER, 2);
+		TS_ASSERT_EQUALS(spy._called, 1);
+	}
+
+	/**
 	 * Regression test that bonus multiplier is handled correctly.
 	 */
 	testBonusMultiplier() {
@@ -113,4 +132,5 @@ class testHandleAttackEffects {
 new testHandleAttackEffects().testMultipleEffects();
 new testHandleAttackEffects().testSkippedEffect();
 new testHandleAttackEffects().testAttackedMessage();
+new testHandleAttackEffects().testStatusEffects();
 new testHandleAttackEffects().testBonusMultiplier();

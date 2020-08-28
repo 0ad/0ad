@@ -19,7 +19,7 @@ let enemy = 2;
 let statusName;
 
 let Attacking = {
-	"HandleAttackEffects": (_, attackData) => {
+	"HandleAttackEffects": (_, __, attackData) => {
 		for (let type in attackData.Damage)
 			dealtDamage += attackData.Damage[type];
 	}
