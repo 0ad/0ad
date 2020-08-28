@@ -30,7 +30,7 @@ StatusEffectsReceiver.prototype.GetActiveStatuses = function()
  *
  * @return {Object} - The names of the status effects which were processed.
  */
-StatusEffectsReceiver.prototype.ApplyStatus = function(effectData, attacker, attackerOwner, bonusMultiplier)
+StatusEffectsReceiver.prototype.ApplyStatus = function(effectData, attacker, attackerOwner)
 {
 	let attackerData = { "entity": attacker, "owner": attackerOwner };
 	for (let effect in effectData)

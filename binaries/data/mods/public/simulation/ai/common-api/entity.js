@@ -196,17 +196,25 @@ m.Template = m.Class({
 
 	"getPopulationBonus": function() { return +this.get("Cost/PopulationBonus"); },
 
-	"armourStrengths": function() {
-		let armourDamageTypes = this.get("Armour");
-		if (!armourDamageTypes)
+	"resistanceStrengths": function() {
+		let resistanceTypes = this.get("Resistance");
+		if (!resistanceTypes || !resistanceTypes.Entity)
 			return undefined;
 
-		let armour = {};
-		for (let damageType in armourDamageTypes)
-			if (damageType != "Foundation")
-				armour[damageType] = +armourDamageTypes[damageType];
+		let resistance = {};
+		if (resistanceTypes.Entity.Capture)
+			resistance.Capture = +this.get("Resistance/Entity/Capture");
 
-		return armour;
+		if (resistanceTypes.Entity.Damage)
+		{
+			resistance.Damage = {};
+			for (let damageType in resistanceTypes.Entity.Damage)
+				resistance.Damage[damageType] = +this.get("Resistance/Entity/Damage/" + damageType);
+		}
+
+		// ToDo: Resistance to StatusEffects.
+
+		return resistance;
 	},
 
 	"attackTypes": function() {
@@ -754,8 +762,8 @@ m.Entity = m.Class({
 			return false;
 
 		let canCapture = allowCapture && this.canCapture(target);
-		let armourStrengths = target.get("Armour");
-		if (!armourStrengths)
+		let health = target.get("Health");
+		if (!health)
 			return canCapture;
 
 		for (let type in attackTypes)

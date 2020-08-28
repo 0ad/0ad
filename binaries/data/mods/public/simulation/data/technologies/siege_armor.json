@@ -8,7 +8,7 @@
 	"researchTime": 40,
 	"tooltip": "Siege Engines +2 hack armor.",
 	"modifications": [
-		{ "value": "Armour/Hack", "add": 2 }
+		{ "value": "Resistance/Entity/Damage/Hack", "add": 2 }
 	],
 	"affects": ["Siege"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

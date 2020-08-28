@@ -59,15 +59,19 @@ PETRA.getMaxStrength = function(ent, debugLevel, DamageTypeImportance, againstCl
 		}
 	}
 
-	let armourStrength = ent.armourStrengths();
-	for (let str in armourStrength)
-	{
-		let val = parseFloat(armourStrength[str]);
-		if (DamageTypeImportance[str])
-			strength += DamageTypeImportance[str] * val / damageTypes.length;
-		else if (debugLevel > 0)
-			API3.warn("Petra: " + str + " unknown armourStrength in getMaxStrength (please add " + str + "  to config.js).");
-	}
+	let resistanceStrength = ent.resistanceStrengths();
+
+	if (resistanceStrength.Damage)
+		for (let str in resistanceStrength.Damage)
+		{
+			let val = +resistanceStrength.Damage[str];
+			if (DamageTypeImportance[str])
+				strength += DamageTypeImportance[str] * val / damageTypes.length;
+			else if (debugLevel > 0)
+				API3.warn("Petra: " + str + " unknown resistanceStrength in getMaxStrength (please add " + str + "  to config.js).");
+		}
+
+	// ToDo: Add support for StatusEffects and Capture.
 
 	return strength * ent.maxHitpoints() / 100.0;
 };

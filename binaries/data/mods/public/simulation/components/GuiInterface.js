@@ -454,9 +454,9 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		}
 	}
 
-	let cmpArmour = Engine.QueryInterface(ent, IID_Resistance);
-	if (cmpArmour)
-		ret.armour = cmpArmour.GetArmourStrengths("Damage");
+	let cmpResistance = Engine.QueryInterface(ent, IID_Resistance);
+	if (cmpResistance)
+		ret.resistance = cmpResistance.GetResistanceOfForm(cmpFoundation ? "Foundation" : "Entity");
 
 	let cmpBuildingAI = Engine.QueryInterface(ent, IID_BuildingAI);
 	if (cmpBuildingAI)

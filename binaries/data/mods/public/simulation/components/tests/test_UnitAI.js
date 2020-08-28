@@ -2,7 +2,6 @@ Engine.LoadHelperScript("FSM.js");
 Engine.LoadHelperScript("Entity.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("Sound.js");
-Engine.LoadComponentScript("interfaces/Attack.js");
 Engine.LoadComponentScript("interfaces/Auras.js");
 Engine.LoadComponentScript("interfaces/Builder.js");
 Engine.LoadComponentScript("interfaces/BuildingAI.js");

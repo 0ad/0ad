@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
-  <Armour>
-    <Pierce>35</Pierce>
-  </Armour>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Pierce>35</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
   <Auras datatype="tokens">
     structures/cart_super_dock_repair
   </Auras>

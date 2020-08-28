@@ -16,8 +16,8 @@
 	"researchTime": 40,
 	"tooltip": "Heroes +50 metal cost, +2 hack and pierce armor.",
 	"modifications": [
-		{ "value": "Armour/Hack", "add": 2 },
-		{ "value": "Armour/Pierce", "add": 2 },
+		{ "value": "Resistance/Entity/Damage/Hack", "add": 2 },
+		{ "value": "Resistance/Entity/Damage/Pierce", "add": 2 },
 		{ "value": "Cost/Resources/metal", "add": 50 }
 	],
 	"affects": ["Hero"],

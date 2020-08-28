@@ -155,34 +155,73 @@ function getCurrentHealthTooltip(entState, label)
 }
 
 /**
- * Converts an armor level into the actual reduction percentage
+ * Converts an resistance level into the actual reduction percentage.
  */
-function armorLevelToPercentageString(level)
+function resistanceLevelToPercentageString(level)
 {
 	return sprintf(translate("%(percentage)s%%"), {
 		"percentage": (100 - Math.round(Math.pow(0.9, level) * 100))
 	});
 }
 
-function getArmorTooltip(template)
+function getResistanceTooltip(template)
 {
-	if (!template.armour)
+	if (!template.resistance)
+		return "";
+
+	let details = [];
+	if (template.resistance.Damage)
+		details.push(getDamageResistanceTooltip(template.resistance.Damage));
+
+	if (template.resistance.Capture)
+		details.push(getCaptureResistanceTooltip(template.resistance.Capture));
+
+	// ToDo: Status effects resistance.
+
+	return sprintf(translate("%(label)s\n    %(details)s"), {
+		"label": headerFont(translate("Resistance:")),
+		"details": details.join("\n    ")
+	});
+}
+
+function getDamageResistanceTooltip(resistanceTypeTemplate)
+{
+	if (!resistanceTypeTemplate)
 		return "";
 
 	return sprintf(translate("%(label)s %(details)s"), {
-		"label": headerFont(translate("Armor:")),
+		"label": headerFont(translate("Damage Resistance:")),
 		"details":
-			g_DamageTypesMetadata.sort(Object.keys(template.armour)).map(
-				dmgType => sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
-					"damage": template.armour[dmgType].toFixed(1),
+			g_DamageTypesMetadata.sort(Object.keys(resistanceTypeTemplate)).map(
+				dmgType => sprintf(translate("%(damage)s %(damageType)s %(resistancePercentage)s"), {
+					"damage": resistanceTypeTemplate[dmgType].toFixed(1),
 					"damageType": unitFont(translateWithContext("damage type", g_DamageTypesMetadata.getName(dmgType))),
-					"armorPercentage":
+					"resistancePercentage":
 						'[font="sans-10"]' +
-						sprintf(translate("(%(armorPercentage)s)"), {
-							"armorPercentage": armorLevelToPercentageString(template.armour[dmgType])
+						sprintf(translate("(%(resistancePercentage)s)"), {
+							"resistancePercentage": resistanceLevelToPercentageString(resistanceTypeTemplate[dmgType])
 						}) + '[/font]'
 				})
 			).join(commaFont(translate(", ")))
+	});
+}
+
+function getCaptureResistanceTooltip(resistanceTypeTemplate)
+{
+	if (!resistanceTypeTemplate)
+		return "";
+	return sprintf(translate("%(label)s %(details)s"), {
+		"label": headerFont(translate("Capture Resistance:")),
+		"details":
+			sprintf(translate("%(damage)s %(damageType)s %(resistancePercentage)s"), {
+				"damage": resistanceTypeTemplate.toFixed(1),
+				"damageType": unitFont(translateWithContext("damage type", "Capture")),
+				"resistancePercentage":
+					'[font="sans-10"]' +
+					sprintf(translate("(%(resistancePercentage)s)"), {
+						"resistancePercentage": resistanceLevelToPercentageString(resistanceTypeTemplate)
+					}) + '[/font]'
+			})
 	});
 }
 

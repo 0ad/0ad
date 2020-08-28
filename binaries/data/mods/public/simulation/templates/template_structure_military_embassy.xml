@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military">
-  <Armour>
-    <Pierce>30</Pierce>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Pierce>30</Pierce>
+      </Damage>
+    </Entity>
     <Foundation>
-      <Hack>3</Hack>
-      <Pierce>10</Pierce>
-      <Crush>3</Crush>
+      <Damage>
+        <Hack>3</Hack>
+        <Pierce>10</Pierce>
+        <Crush>3</Crush>
+      </Damage>
     </Foundation>
-  </Armour>
+  </Resistance>
   <BuildRestrictions>
     <Category>Embassy</Category>
   </BuildRestrictions>

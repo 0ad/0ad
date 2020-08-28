@@ -7,10 +7,7 @@ const DirectEffectsSchema =
 	"<element name='Damage'>" +
 		"<oneOrMore>" +
 			"<element a:help='One or more elements describing damage types'>" +
-				"<anyName>" +
-					// Armour requires Foundation to not be a damage type.
-					"<except><name>Foundation</name></except>" +
-				"</anyName>" +
+				"<anyName/>" +
 				"<ref name='nonNegativeDecimal' />" +
 			"</element>" +
 		"</oneOrMore>" +
@@ -168,15 +165,41 @@ Attacking.prototype.GetStatusEffectsModifications = function(valueModifRoot, tem
 	return modifiers;
 };
 
-Attacking.prototype.GetTotalAttackEffects = function(effectData, effectType, cmpResistance)
+/**
+ * Calculate the total effect taking bonus and resistance into account.
+ *
+ * @param {number} target - The target of the attack.
+ * @param {Object} effectData - The effects calculate the effect for.
+ * @param {string} effectType - The type of effect to apply (e.g. Damage, Capture or StatusEffect).
+ * @param {number} bonusMultiplier - The factor to multiply the total effect with.
+ * @param {Object} cmpResistance - Optionally the resistance component of the target.
+ *
+ * @return {number} - The total value of the effect.
+ */
+Attacking.prototype.GetTotalAttackEffects = function(target, effectData, effectType, bonusMultiplier, cmpResistance)
 {
 	let total = 0;
-	let armourStrengths = cmpResistance ? cmpResistance.GetArmourStrengths(effectType) : {};
+	if (!cmpResistance)
+		cmpResistance = Engine.QueryInterface(target, IID_Resistance);
 
-	for (let type in effectData)
-		total += effectData[type] * Math.pow(0.9, armourStrengths[type] || 0);
+	let resistanceStrengths = cmpResistance ? cmpResistance.GetEffectiveResistanceAgainst(effectType) : {};
 
-	return total;
+	if (effectType == "Damage")
+		for (let type in effectData.Damage)
+			total += effectData.Damage[type] * Math.pow(0.9, resistanceStrengths.Damage ? resistanceStrengths.Damage[type] || 0 : 0);
+	else if (effectType == "Capture")
+	{
+		total = effectData.Capture * Math.pow(0.9, resistanceStrengths.Capture || 0);
+
+		// If Health is lower we are more susceptible to capture attacks.
+		let cmpHealth = Engine.QueryInterface(target, IID_Health);
+		if (cmpHealth)
+			total /= 0.1 + 0.9 * cmpHealth.GetHitpoints() / cmpHealth.GetMaxHitpoints();
+	}
+	else if (effectType == "StatusEffect")
+		return effectData[effectType];
+
+	return total * bonusMultiplier;
 };
 
 /**
@@ -302,12 +325,27 @@ Attacking.prototype.CauseDamageOverArea = function(data)
 			warn("The " + data.shape + " splash damage shape is not implemented!");
 		}
 
-		this.HandleAttackEffects(data.type + ".Splash", data.attackData, ent, data.attacker, data.attackerOwner, damageMultiplier);
+		this.HandleAttackEffects(ent, data.type + ".Splash", data.attackData, data.attacker, data.attackerOwner, damageMultiplier);
 	}
 };
-
-Attacking.prototype.HandleAttackEffects = function(attackType, attackData, target, attacker, attackerOwner, bonusMultiplier = 1)
+/**
+ * Handle an attack peformed on an entity.
+ *
+ * @param {number} target - The targetted entityID.
+ * @param {string} attackType - The type of attack that was performed (e.g. "Melee" or "Capture").
+ * @param {Object} effectData - The effects use.
+ * @param {number} attacker - The entityID that attacked us.
+ * @param {number} attackerOwner - The playerID that owned the attacker when the attack was performed.
+ * @param {number} bonusMultiplier - The factor to multiply the total effect with, defaults to 1.
+ *
+ * @return {boolean} - Whether we handled the attack.
+ */
+Attacking.prototype.HandleAttackEffects = function(target, attackType, attackData, attacker, attackerOwner, bonusMultiplier = 1)
 {
+	let cmpResistance = Engine.QueryInterface(target, IID_Resistance);
+	if (cmpResistance && cmpResistance.IsInvulnerable())
+		return false;
+
 	bonusMultiplier *= !attackData.Bonuses ? 1 : this.GetAttackBonus(attacker, target, attackType, attackData.Bonuses);
 
 	let targetState = {};
@@ -321,10 +359,11 @@ Attacking.prototype.HandleAttackEffects = function(attackType, attackData, targe
 		if (!cmpReceiver)
 			continue;
 
-		Object.assign(targetState, cmpReceiver[receiver.method](attackData[effectType], attacker, attackerOwner, bonusMultiplier));
+		Object.assign(targetState, cmpReceiver[receiver.method](this.GetTotalAttackEffects(target, attackData, effectType, bonusMultiplier, cmpResistance), attacker, attackerOwner));
 	}
+
 	if (!Object.keys(targetState).length)
-		return;
+		return false;
 
 	Engine.PostMessage(target, MT_Attacked, {
 		"type": attackType,
@@ -339,11 +378,13 @@ Attacking.prototype.HandleAttackEffects = function(attackType, attackData, targe
 
 	// We do not want an entity to get XP from active Status Effects.
 	if (!!attackData.StatusEffect)
-		return;
+		return true;
 
 	let cmpPromotion = Engine.QueryInterface(attacker, IID_Promotion);
 	if (cmpPromotion && targetState.xp)
 		cmpPromotion.IncreaseXp(targetState.xp);
+
+	return true;
 };
 
 /**

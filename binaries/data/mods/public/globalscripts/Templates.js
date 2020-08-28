@@ -160,12 +160,23 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 
 	let ret = {};
 
-	if (template.Armour)
+	if (template.Resistance)
 	{
-		ret.armour = {};
-		for (let damageType in template.Armour)
-			if (damageType != "Foundation")
-				ret.armour[damageType] = getEntityValue("Armour/" + damageType);
+		// Don't show Foundation resistance.
+		ret.resistance = {};
+		if (template.Resistance.Entity)
+		{
+			if (template.Resistance.Entity.Damage)
+			{
+				ret.resistance.Damage = {};
+				for (let damageType in template.Resistance.Entity.Damage)
+					ret.resistance.Damage[damageType] = getEntityValue("Resistance/Entity/Damage/" + damageType);
+			}
+			if (template.Resistance.Entity.Capture)
+				ret.resistance.Capture = getEntityValue("Resistance/Entity/Capture");
+
+			// ToDo: Resistance against StatusEffects.
+		}
 	}
 
 	let getAttackEffects = (temp, path) => {

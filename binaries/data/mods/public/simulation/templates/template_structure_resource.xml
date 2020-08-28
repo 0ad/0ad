@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
-  <Armour>
-    <Hack>1</Hack>
-    <Pierce>20</Pierce>
-    <Crush>1</Crush>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>1</Hack>
+        <Pierce>20</Pierce>
+        <Crush>1</Crush>
+      </Damage>
+    </Entity>
     <Foundation>
-      <Hack>1</Hack>
-      <Pierce>10</Pierce>
-      <Crush>1</Crush>
+      <Damage>
+        <Hack>1</Hack>
+        <Pierce>10</Pierce>
+        <Crush>1</Crush>
+      </Damage>
     </Foundation>
-  </Armour>
+  </Resistance>
   <BuildRestrictions>
     <Category>Resource</Category>
   </BuildRestrictions>

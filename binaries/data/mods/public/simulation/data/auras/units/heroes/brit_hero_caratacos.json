@@ -2,9 +2,9 @@
 	"type": "global",
 	"affects": ["Soldier", "Siege"],
 	"modifications": [
-		{ "value": "Armour/Hack", "add": 1 },
-		{ "value": "Armour/Pierce", "add": 1 },
-		{ "value": "Armour/Crush", "add": 1 },
+		{ "value": "Resistance/Entity/Damage/Hack", "add": 1 },
+		{ "value": "Resistance/Entity/Damage/Pierce", "add": 1 },
+		{ "value": "Resistance/Entity/Damage/Crush", "add": 1 },
 		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.15 }
 	],
 	"auraName": "Guerrilla Chief",
