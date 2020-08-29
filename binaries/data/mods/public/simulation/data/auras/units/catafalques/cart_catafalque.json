@@ -2,10 +2,10 @@
 	"type": "global",
 	"affects": ["Melee Cavalry"],
 	"modifications": [
+		{ "value": "Health/Max", "multiply": 1.1 },
 		{ "value": "Resistance/Entity/Damage/Hack", "add": 1 },
 		{ "value": "Resistance/Entity/Damage/Pierce", "add": 1 },
-		{ "value": "Resistance/Entity/Damage/Crush", "add": 1 },
-		{ "value": "Health/Max", "multiply": 1.1 }
+		{ "value": "Resistance/Entity/Damage/Crush", "add": 1 }
 	],
 	"auraName": "Commander of Heavy Cavalry",
 	"auraDescription": "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\nMelee Cavalry +1 armor and +10% health."

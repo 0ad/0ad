@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
+  <BuildRestrictions>
+    <Category>Military</Category>
+  </BuildRestrictions>
+  <GarrisonHolder>
+    <EjectHealth>0.1</EjectHealth>
+    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
+    <BuffHeal>0</BuffHeal>
+    <LoadingRange>2</LoadingRange>
+  </GarrisonHolder>
+  <Identity>
+    <GenericName>Military Structure</GenericName>
+    <Classes datatype="tokens">ConquestCritical</Classes>
+    <VisibleClasses datatype="tokens">Military</VisibleClasses>
+  </Identity>
   <Resistance>
     <Entity>
       <Damage>
@@ -16,20 +30,6 @@
       </Damage>
     </Foundation>
   </Resistance>
-  <BuildRestrictions>
-    <Category>Military</Category>
-  </BuildRestrictions>
-  <GarrisonHolder>
-    <EjectHealth>0.1</EjectHealth>
-    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
-    <BuffHeal>0</BuffHeal>
-    <LoadingRange>2</LoadingRange>
-  </GarrisonHolder>
-  <Identity>
-    <GenericName>Military Structure</GenericName>
-    <Classes datatype="tokens">ConquestCritical</Classes>
-    <VisibleClasses datatype="tokens">Military</VisibleClasses>
-  </Identity>
   <TerritoryInfluence>
     <Root>false</Root>
     <Radius>50</Radius>

@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Pierce>30</Pierce>
-      </Damage>
-    </Entity>
-    <Foundation>
-      <Damage>
-        <Hack>3</Hack>
-        <Pierce>10</Pierce>
-        <Crush>3</Crush>
-      </Damage>
-    </Foundation>
-  </Resistance>
   <BuildRestrictions>
     <Category>Embassy</Category>
   </BuildRestrictions>
@@ -48,6 +34,20 @@
       upgrade_rank_advanced_mercenary
     </Technologies>
   </ProductionQueue>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Pierce>30</Pierce>
+      </Damage>
+    </Entity>
+    <Foundation>
+      <Damage>
+        <Hack>3</Hack>
+        <Pierce>10</Pierce>
+        <Crush>3</Crush>
+      </Damage>
+    </Foundation>
+  </Resistance>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_gymnasium.xml</select>

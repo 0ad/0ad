@@ -6,9 +6,9 @@
 	"icon": "wooden_buildings.png",
 	"tooltip": "Briton and Gaulish Structures −20% build time, −20% health, and −20% capture points.",
 	"modifications": [
-		{ "value": "Health/Max", "multiply": 0.8 },
 		{ "value": "Capturable/CapturePoints", "multiply": 0.8 },
-		{ "value": "Cost/BuildTime", "multiply": 0.8 }
+		{ "value": "Cost/BuildTime", "multiply": 0.8 },
+		{ "value": "Health/Max", "multiply": 0.8 }
 	],
 	"affects": ["Structure !Wonder"]
 }

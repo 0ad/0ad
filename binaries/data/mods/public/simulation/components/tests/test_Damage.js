@@ -432,31 +432,16 @@ function Test_MissileHit()
 	TS_ASSERT(hitEnts.has(60));
 	hitEnts.clear();
 
-	// The main target is not hit but another one is hit.
-
-	AddMock(60, IID_Position, {
-		"GetPosition": () => new Vector3D(900, 10, 0),
-		"GetPreviousPosition": () => new Vector3D(900, 10, 0),
-		"GetPosition2D": () => new Vector2D(900, 0),
-		"IsInWorld": () => true,
-	});
-
-	AddMock(60, IID_Health, {
-		"TakeDamage": (amount, __, ___) => {
-			TS_ASSERT_EQUALS(false);
-			return { "healthChange": -amount };
-		}
-	});
-
-	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
-		"ExecuteQueryAroundPos": () => [61]
+	// Target is a mirage: hit the parent.
+	AddMock(60, IID_Mirage, {
+		"GetParent": () => 61
 	});
 
 	AddMock(61, IID_Position, {
 		"GetPosition": () => targetPos,
 		"GetPreviousPosition": () => targetPos,
 		"GetPosition2D": () => Vector2D.from3D(targetPos),
-		"IsInWorld": () => true,
+		"IsInWorld": () => true
 	});
 
 	AddMock(61, IID_Health, {
@@ -468,7 +453,36 @@ function Test_MissileHit()
 	});
 
 	AddMock(61, IID_Footprint, {
-		"GetShape": () => ({ "type": "circle", "radius": 20 }),
+		"GetShape": () => ({ "type": "circle", "radius": 20 })
+	});
+
+	cmpDelayedDamage.MissileHit(data, 0);
+	TS_ASSERT(hitEnts.has(61));
+	hitEnts.clear();
+
+	// Make sure we don't corrupt other tests.
+	DeleteMock(60, IID_Mirage);
+	cmpDelayedDamage.MissileHit(data, 0);
+	TS_ASSERT(hitEnts.has(60));
+	hitEnts.clear();
+
+	// The main target is not hit but another one is hit.
+	AddMock(60, IID_Position, {
+		"GetPosition": () => new Vector3D(900, 10, 0),
+		"GetPreviousPosition": () => new Vector3D(900, 10, 0),
+		"GetPosition2D": () => new Vector2D(900, 0),
+		"IsInWorld": () => true
+	});
+
+	AddMock(60, IID_Health, {
+		"TakeDamage": (amount, __, ___) => {
+			TS_ASSERT_EQUALS(false);
+			return { "healthChange": -amount };
+		}
+	});
+
+	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
+		"ExecuteQueryAroundPos": () => [61]
 	});
 
 	cmpDelayedDamage.MissileHit(data, 0);

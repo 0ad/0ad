@@ -3,9 +3,6 @@
 	"radius": 60,
 	"affects": ["Siege"],
 	"modifications": [
-		{ "value": "Resistance/Entity/Damage/Hack", "add": 1 },
-		{ "value": "Resistance/Entity/Damage/Pierce", "add": 1 },
-		{ "value": "Resistance/Entity/Damage/Crush", "add": 1 },
 		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2 },
@@ -13,6 +10,9 @@
 		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.2 },
 		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.2 },
 		{ "value": "Attack/Ranged/MaxRange", "multiply": 1.1 },
+		{ "value": "Resistance/Entity/Damage/Hack", "add": 1 },
+		{ "value": "Resistance/Entity/Damage/Pierce", "add": 1 },
+		{ "value": "Resistance/Entity/Damage/Crush", "add": 1 },
 		{ "value": "Vision/Range", "multiply": 1.1 }
 	],
 	"auraName": "Besieger",

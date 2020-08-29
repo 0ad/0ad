@@ -6,6 +6,12 @@
       structures/rome_temple_vesta
     </Entities>
   </Builder>
+  <Health>
+    <DamageVariants>
+      <lightdamage>0.85</lightdamage>
+      <mediumdamage>0.45</mediumdamage>
+    </DamageVariants>
+  </Health>
   <Identity>
     <Civ>rome</Civ>
     <Lang>latin</Lang>
@@ -18,12 +24,6 @@
       special/formations/anti_cavalry
     </Formations>
   </Identity>
-  <Health>
-    <DamageVariants>
-      <lightdamage>0.85</lightdamage>
-      <mediumdamage>0.45</mediumdamage>
-    </DamageVariants>
-  </Health>
   <Promotion>
     <Entity>units/rome_infantry_spearman_a</Entity>
   </Promotion>

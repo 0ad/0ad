@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_spearman">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Pierce op="add">-2</Pierce>
-      </Damage>
-    </Entity>
-  </Resistance>
   <Builder>
     <Entities datatype="tokens">
       structures/rome_army_camp
@@ -20,9 +13,6 @@
     </Resources>
     <BuildTime op="add">5</BuildTime>
   </Cost>
-  <TrainingRestrictions>
-    <Category>Gladiator</Category>
-  </TrainingRestrictions>
   <Identity>
     <VisibleClasses datatype="tokens">Gladiator</VisibleClasses>
     <Civ>rome</Civ>
@@ -33,14 +23,24 @@
     <Icon>units/rome_champion_infantry_gladiator_spear.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
+  <Promotion disable=""/>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Pierce op="add">-2</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
+  <TrainingRestrictions>
+    <Category>Gladiator</Category>
+  </TrainingRestrictions>
   <UnitMotion>
     <WalkSpeed op="mul">1.5</WalkSpeed>
   </UnitMotion>
-  <Promotion disable=""/>
-  <VisualActor>
-    <Actor>units/romans/infantry_gladiator_spearman.xml</Actor>
-  </VisualActor>
   <Vision>
     <Range op="mul">0.5</Range>
   </Vision>
+  <VisualActor>
+    <Actor>units/romans/infantry_gladiator_spearman.xml</Actor>
+  </VisualActor>
 </Entity>

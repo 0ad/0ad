@@ -61,7 +61,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-24 07:08+0000\n"
-"PO-Revision-Date: 2020-08-15 03:59+0000\n"
+"PO-Revision-Date: 2020-08-27 02:39+0000\n"
 "Last-Translator: André Schwarz <andrschwarz@protonmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgstr "Padrão"
 
 #: gui/gamesetup/Controls/MapFilters.js:86
 msgid "All maps except naval and demo maps."
-msgstr "Todos os mapas, exceto mapas navais e de demonstração."
+msgstr "Todos os mapas, exceto os navais e de demonstração."
 
 #: gui/gamesetup/Controls/MapFilters.js:91
 msgid "Naval Maps"
@@ -84,7 +84,7 @@ msgstr "Mapas navais"
 
 #: gui/gamesetup/Controls/MapFilters.js:92
 msgid "Maps where ships are needed to reach the enemy."
-msgstr "Mapas em que é necessário empregar navios para chegar ao inimigo."
+msgstr "Mapas em que é necessário usar navios para chegar ao inimigo."
 
 #: gui/gamesetup/Controls/MapFilters.js:97
 msgid "Demo Maps"
@@ -186,7 +186,7 @@ msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:153
 msgid "Select player."
-msgstr "Selecionar jogador."
+msgstr "Selecione o jogador."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:230
 #, javascript-format
@@ -208,7 +208,7 @@ msgstr "Qualquer uma"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:140
 msgid "Picks one civilization at random when the game starts."
-msgstr "Sorteia uma civilização para o jogador no começo do jogo."
+msgstr "Sorteia uma civilização para o jogador no início do jogo."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:172
 msgid "Pick a color."
@@ -437,51 +437,51 @@ msgstr "Tamanho do mapa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:77
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "Selecionar tamanho de mapa. (mapas maiores podem reduzir performance.)"
+msgstr "Selecione o tamanho do mapa (mapas maiores podem reduzir performance)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:61
 msgid "Map Type"
-msgstr "Tipo de Mapa"
+msgstr "Tipo de mapa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:64
 msgid "Select a map type."
-msgstr "Selecionar um tipo de mapa."
+msgstr "Selecione o tipo do mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:49
 msgid "Number of Players"
-msgstr "Números de Jogadores"
+msgstr "Quantidade de jogadores"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:52
 msgid "Select number of players."
-msgstr "Selecionar número de jogadores."
+msgstr "Selecione o número de jogadores."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:91
 msgid "Population Cap"
-msgstr "Limite Populacional"
+msgstr "Limite populacional"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:94
 msgid "Select population limit."
-msgstr "Selecione o limite populacional."
+msgstr "Determine o limite máximo de habitantes."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:97
 msgctxt "population limit"
 msgid "Per Player"
-msgstr "Por Jogador"
+msgstr "Por jogador"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:100
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "Aviso: pode haver problemas de desempenho se todos os %(players)s jogadores atingirem %(popCap)s de população. "
+msgstr "Aviso: pode haver problemas de desempenho se todos os %(players)s jogadores atingirem o limite de %(popCap)s habitantes. "
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:81
 msgid "Starting Resources"
-msgstr "Recursos Iniciais"
+msgstr "Recursos iniciais"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:84
 msgid "Select the game's starting resources."
-msgstr "Selecionar os recursos iniciais do jogo."
+msgstr "Indique a quantidade de recursos no início do jogo."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:87
 #, javascript-format
@@ -491,15 +491,15 @@ msgstr "Quantidade inicial de cada recurso: %(resources)s."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:90
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr "Por Jogador"
+msgstr "Por jogador"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
 msgid "Team Placement"
-msgstr "Posicionamento dos Times"
+msgstr "Posicionamento dos times"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:94
 msgid "Select one of the starting position patterns of this map."
-msgstr "Selecione um dos padrões de posicionamento inicial deste mapa. "
+msgstr "Selecione um dos padrões de posicionamento inicial deste mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
 msgctxt "team placement"
@@ -509,36 +509,36 @@ msgstr "Aleatório"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr "Selecione um padrão aleatório de posicionamento do time quando iniciado o jogo. "
+msgstr "Sorteia um dos padrões de posicionamento no início do jogo."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
 msgctxt "team placement"
 msgid "Circle"
-msgstr "Círculo"
+msgstr "Circular"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:106
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr ""
+msgstr "Todos os jogadores iniciam ao redor de um círculo que abrange todo o mapa, ficando perto de seus companheiros de equipe."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
 msgctxt "team placement"
 msgid "Line"
-msgstr "Linha"
+msgstr "Linear"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
 msgid "Allied players are placed in a linear pattern."
-msgstr "Jogadores aliados são posicionados em um padrão linear."
+msgstr "Os jogadores de uma mesma equipe são dispostos em padrão linear."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:115
 msgctxt "team placement"
 msgid "Random Group"
-msgstr "Grupo Aleatório"
+msgstr "Aleatório"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:116
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr "Jogadores aliados são agrupados, porém posicionados aleatoriamente no mapa."
+msgstr "Os jogadores iniciam o jogo perto de seus companheiros de equipe, mas sem padrão geral específico."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:120
 msgctxt "team placement"
@@ -547,7 +547,7 @@ msgstr "Fortaleza"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:121
 msgid "Allied players are grouped in one random place of the map."
-msgstr "Jogadores aliados são agrupados em um local aleatório no mapa."
+msgstr "Os jogadores de uma mesma equipe são agrupados em um mesmo ponto aleatório do mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
@@ -555,26 +555,26 @@ msgstr "Dificuldade"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:84
 msgid "Select the difficulty of this scenario."
-msgstr "Selecione a dificuldade deste cenário."
+msgstr "Determine o nível de dificuldade do cenário."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:76
 msgid "World Population Cap"
-msgstr ""
+msgstr "População global máxima"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:79
 msgid "Select world population limit."
-msgstr ""
+msgstr "Determine um limite global máximo de habitantes. "
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:82
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr ""
+msgstr "Atenção: pode haver problemas de desempenho se esse limite global de %(popCap)shabitantes for atingido. "
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:61
 msgid "Ceasefire"
-msgstr "Cesar Fogo"
+msgstr "Cessar-fogo"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:64
 msgid "Set time where no attacks are possible."

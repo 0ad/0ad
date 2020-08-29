@@ -59,18 +59,20 @@ DelayedDamage.prototype.MissileHit = function(data, lateness)
 
 	let cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
 
+	let target = data.target;
+	// Since we can't damage mirages, replace a miraged target by the real target.
+	let cmpMirage = Engine.QueryInterface(data.target, IID_Mirage);
+	if (cmpMirage)
+		target = cmpMirage.GetParent();
+
 	// Deal direct damage if we hit the main target
 	// and we could handle the attack.
-	if (Attacking.TestCollision(data.target, data.position, lateness) &&
-		Attacking.HandleAttackEffects(data.target, data.type, data.attackData, data.attacker, data.attackerOwner))
+	if (Attacking.TestCollision(target, data.position, lateness) &&
+		Attacking.HandleAttackEffects(target, data.type, data.attackData, data.attacker, data.attackerOwner))
 	{
 		cmpProjectileManager.RemoveProjectile(data.projectileId);
 		return;
 	}
-
-	let targetPosition = Attacking.InterpolatedLocation(data.target, lateness);
-	if (!targetPosition)
-		return;
 
 	// If we didn't hit the main target look for nearby units.
 	let ents = Attacking.EntitiesNearPoint(Vector2D.from3D(data.position), this.MISSILE_HIT_RADIUS,

@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack>10</Hack>
-        <Pierce>10</Pierce>
-        <Crush>25</Crush>
-      </Damage>
-    </Entity>
-  </Resistance>
   <Attack replace="">
     <Melee>
       <Damage>
@@ -39,6 +30,15 @@
   <Identity>
     <VisibleClasses datatype="tokens">Elephant Melee</VisibleClasses>
   </Identity>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>10</Hack>
+        <Pierce>10</Pierce>
+        <Crush>25</Crush>
+      </Damage>
+    </Entity>
+  </Resistance>
   <Selectable>
     <Overlay>
       <Shape>

@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack>1</Hack>
-        <Pierce>10</Pierce>
-        <Crush>1</Crush>
-      </Damage>
-    </Entity>
-  </Resistance>
   <BuildRestrictions>
     <Category>Special</Category>
   </BuildRestrictions>
@@ -34,6 +25,15 @@
     <Static width="3.5" depth="4.75"/>
   </Obstruction>
   <ProductionQueue disable=""/>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>1</Hack>
+        <Pierce>10</Pierce>
+        <Crush>1</Crush>
+      </Damage>
+    </Entity>
+  </Resistance>
   <StatusBars>
     <HeightOffset>6.0</HeightOffset>
   </StatusBars>

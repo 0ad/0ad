@@ -6,6 +6,12 @@
       structures/rome_temple_vesta
     </Entities>
   </Builder>
+  <Health>
+    <DamageVariants>
+      <lightdamage>0.85</lightdamage>
+      <mediumdamage>0.45</mediumdamage>
+    </DamageVariants>
+  </Health>
   <Identity>
     <Civ>rome</Civ>
     <Lang>latin</Lang>
@@ -14,12 +20,6 @@
     <SpecificName>Hastātus</SpecificName>
     <Icon>units/rome_infantry_swordsman.png</Icon>
   </Identity>
-  <Health>
-    <DamageVariants>
-      <lightdamage>0.85</lightdamage>
-      <mediumdamage>0.45</mediumdamage>
-    </DamageVariants>
-  </Health>
   <Promotion>
     <Entity>units/rome_infantry_swordsman_a</Entity>
   </Promotion>

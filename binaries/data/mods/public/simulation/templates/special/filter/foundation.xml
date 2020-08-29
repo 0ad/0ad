@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity filtered="">
   <AIProxy merge=""/>
-  <Resistance merge=""/>
   <AutoBuildable merge=""/>
   <BuildRestrictions merge=""/>
   <!-- Don't provide population bonuses yet (but still do take up population cost) -->
@@ -29,6 +28,7 @@
   <Position merge=""/>
   <RallyPoint merge=""/>
   <RallyPointRenderer merge=""/>
+  <Resistance merge=""/>
   <Selectable merge=""/>
   <Sound merge=""/>
   <StatusBars merge=""/>

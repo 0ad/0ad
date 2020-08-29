@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_tower_stone">
+  <BuildingAI>
+    <DefaultArrowCount>2</DefaultArrowCount>
+    <MaxArrowCount>7</MaxArrowCount>
+  </BuildingAI>
   <Cost>
     <Resources>
       <stone>200</stone>
     </Resources>
   </Cost>
-  <Loot>
-    <stone>40</stone>
-  </Loot>
+  <GarrisonHolder>
+    <Max>20</Max>
+    <List>Infantry+Archer</List>
+  </GarrisonHolder>
+  <Health>
+    <Max>1200</Max>
+  </Health>
   <Identity>
     <GenericName>Rampart Tower</GenericName>
     <SelectionGroupName>structures/maur_tower_double</SelectionGroupName>
@@ -16,17 +24,9 @@
     <SpecificName>Udarka</SpecificName>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
-  <BuildingAI>
-    <DefaultArrowCount>2</DefaultArrowCount>
-    <MaxArrowCount>7</MaxArrowCount>
-  </BuildingAI>
-  <GarrisonHolder>
-    <List>Infantry+Archer</List>
-    <Max>20</Max>
-  </GarrisonHolder>
-  <Health>
-    <Max>1200</Max>
-  </Health>
+  <Loot>
+    <stone>40</stone>
+  </Loot>
   <StatusBars>
     <HeightOffset>19.0</HeightOffset>
   </StatusBars>

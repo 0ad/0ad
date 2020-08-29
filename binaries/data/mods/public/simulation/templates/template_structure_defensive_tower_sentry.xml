@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_tower">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack op="add">-5</Hack>
-        <Pierce op="add">-5</Pierce>
-        <Crush op="add">-2</Crush>
-      </Damage>
-    </Entity>
-  </Resistance>
   <Attack>
     <Ranged>
       <Damage>
@@ -54,6 +45,15 @@
       tower_watch
     </Technologies>
   </ProductionQueue>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack op="add">-5</Hack>
+        <Pierce op="add">-5</Pierce>
+        <Crush op="add">-2</Crush>
+      </Damage>
+    </Entity>
+  </Resistance>
   <TerritoryInfluence>
     <Root>false</Root>
     <Radius>16</Radius>

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
+  <Identity>
+    <Classes datatype="tokens">ConquestCritical</Classes>
+    <GenericName>Civic Structure</GenericName>
+    <VisibleClasses datatype="tokens">Civic</VisibleClasses>
+  </Identity>
   <Resistance>
     <Entity>
       <Damage>
@@ -16,9 +21,4 @@
       </Damage>
     </Foundation>
   </Resistance>
-  <Identity>
-    <Classes datatype="tokens">ConquestCritical</Classes>
-    <GenericName>Civic Structure</GenericName>
-    <VisibleClasses datatype="tokens">Civic</VisibleClasses>
-  </Identity>
 </Entity>

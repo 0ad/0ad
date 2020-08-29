@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack>8</Hack>
-        <Pierce>8</Pierce>
-        <Crush>25</Crush>
-      </Damage>
-    </Entity>
-  </Resistance>
   <Cost>
     <BuildTime>40</BuildTime>
     <Resources>
@@ -27,6 +18,15 @@
   <Position>
     <Anchor>upright</Anchor>
   </Position>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>8</Hack>
+        <Pierce>8</Pierce>
+        <Crush>25</Crush>
+      </Damage>
+    </Entity>
+  </Resistance>
   <Selectable>
     <Overlay>
       <Shape>

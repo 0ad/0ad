@@ -47,14 +47,19 @@ Mirage.prototype.SetParent = function(ent)
 	this.parent = ent;
 };
 
-Mirage.prototype.GetPlayer = function()
+Mirage.prototype.GetParent = function()
 {
-	return this.player;
+	return this.parent;
 };
 
 Mirage.prototype.SetPlayer = function(player)
 {
 	this.player = player;
+};
+
+Mirage.prototype.GetPlayer = function()
+{
+	return this.player;
 };
 
 Mirage.prototype.Mirages = function(iid)

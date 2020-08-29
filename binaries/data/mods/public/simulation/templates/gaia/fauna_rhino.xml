@@ -23,9 +23,6 @@
   <ResourceSupply>
     <Amount>300</Amount>
   </ResourceSupply>
-  <StatusBars>
-    <HeightOffset>4.0</HeightOffset>
-  </StatusBars>
   <Sound>
     <SoundGroups>
       <select>actor/fauna/animal/lion_select.xml</select>
@@ -33,6 +30,9 @@
       <death>actor/fauna/animal/lion_death.xml</death>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <HeightOffset>4.0</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>fauna/rhino.xml</Actor>
   </VisualActor>

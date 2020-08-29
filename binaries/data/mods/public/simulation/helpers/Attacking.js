@@ -170,7 +170,7 @@ Attacking.prototype.GetStatusEffectsModifications = function(valueModifRoot, tem
  *
  * @param {number} target - The target of the attack.
  * @param {Object} effectData - The effects calculate the effect for.
- * @param {string} effectType - The type of effect to apply (e.g. Damage, Capture or StatusEffect).
+ * @param {string} effectType - The type of effect to apply (e.g. Damage, Capture or ApplyStatus).
  * @param {number} bonusMultiplier - The factor to multiply the total effect with.
  * @param {Object} cmpResistance - Optionally the resistance component of the target.
  *
@@ -196,7 +196,7 @@ Attacking.prototype.GetTotalAttackEffects = function(target, effectData, effectT
 		if (cmpHealth)
 			total /= 0.1 + 0.9 * cmpHealth.GetHitpoints() / cmpHealth.GetMaxHitpoints();
 	}
-	else if (effectType == "StatusEffect")
+	else if (effectType == "ApplyStatus")
 		return effectData[effectType];
 
 	return total * bonusMultiplier;

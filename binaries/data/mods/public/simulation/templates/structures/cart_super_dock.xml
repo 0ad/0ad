@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Pierce>35</Pierce>
-      </Damage>
-    </Entity>
-  </Resistance>
   <Auras datatype="tokens">
     structures/cart_super_dock_repair
   </Auras>
@@ -78,6 +71,13 @@
   <RallyPointRenderer>
     <LinePassabilityClass>ship</LinePassabilityClass>
   </RallyPointRenderer>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Pierce>35</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_dock.xml</select>

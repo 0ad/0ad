@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry">
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack op="add">9</Hack>
-        <Pierce op="add">9</Pierce>
-      </Damage>
-    </Entity>
-  </Resistance>
   <Attack>
     <Melee>
       <Damage>
@@ -35,4 +27,12 @@
       special/formations/testudo
     </Formations>
   </Identity>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack op="add">9</Hack>
+        <Pierce op="add">9</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
 </Entity>

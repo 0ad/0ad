@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-06 07:17+0000\n"
-"PO-Revision-Date: 2020-08-23 14:23+0000\n"
+"PO-Revision-Date: 2020-08-24 09:05+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -136,7 +136,7 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr "함께 놀기를 하기위해서 “놀이 만들기” 를 눌러야합니다. 이 놀이는 UDP port 20595를 사용하며 놀이 주최자가 NAT/firewall/etc로 환경설정을 해야합니다. 다른 선수들은 “놀이 참여하기”를 선택해서 와 놀이 주최자의 IP 주소로 들어갈 수 있습니다."
+msgstr "함께 놀기를 하기위해서 “놀이 만들기” 를 눌러야합니다. 이 놀이는 UDP 포트 20595 를 사용하며 놀이 주최자가 NAT/firewall/etc로 환경설정을 해야합니다. 다른 선수들은 “놀이 참여하기”를 선택해서 와 놀이 주최자의 IP 주소로 들어갈 수 있습니다."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -205,21 +205,21 @@ msgstr "Alt + F4 – 확인 요청 없이 바로 놀이 끝냄"
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter (Return) – Toggle between fullscreen and windowed"
-msgstr " Alt + Enter (Return) – 전체 화면과 창 화면을 바꿉니다"
+msgstr " Alt + Enter (Return) – 전체 화면/ 작은 화면 바꾸기"
 
 #: gui/manual/intro.txt:43
 msgid "  ~ or F9 – Toggle console"
-msgstr "  ~ 또는 F9 – 콘솔 창을 켜고 끕니다"
+msgstr "  ~ 또는 F9 – 콘솔 창 보이기/숨기기"
 
 #: gui/manual/intro.txt:44
 msgid "  Alt + F – Toggle frame counter (FPS)"
-msgstr "  Alt + F – 프레임 수(FPS)를 켜고 끕니다"
+msgstr "  Alt + F – 프레임 수(FPS) 보이기/숨기기"
 
 #: gui/manual/intro.txt:45
 msgid ""
 "  F11 – Toggle real-time profiler (cycles through the displays of "
 "information)"
-msgstr ""
+msgstr "  F11 – 실시간 모형틀 보이기/숨기기 (정보 표시를 순환)"
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
@@ -255,29 +255,29 @@ msgstr "[font=\"sans-bold-14\"]놀이 내[font=\"sans-14\"]"
 msgid ""
 "  Double Left Click \\[on unit] – Select all of your units of the same kind "
 "on the screen (even if they're different ranks)"
-msgstr "  마우스 왼쪽 두번 연속 클릭 \\[유닛에 대고] – 화면에서 같은 종류의 유닛을 모두 선택 (다른 등급이라도)"
+msgstr " 마우스 왼쪽 두번 연속 클릭 \\[유닛에 대고] – 화면에서 같은 종류의 유닛을 모두 선택 (다른 등급이라도)"
 
 #: gui/manual/intro.txt:54
 msgid ""
 "  Triple Left Click \\[on unit] – Select all of your units of the same kind "
 "and the same rank on the screen"
-msgstr "  마우스 왼쪽 세번 연속 클릭 \\[유닛에 대고] – 화면에서 종류와 등급이 같은 유닛을 전부 선택"
+msgstr " 마우스 왼쪽 세번 연속 클릭 \\[유닛에 대고] – 화면에서 종류와 등급이 같은 유닛을 전부 선택"
 
 #: gui/manual/intro.txt:55
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
-msgstr "  Alt + 마우스 왼쪽 더블 클릭 \\[유닛에 대고] – 전체 지도에서 같은 유형의 유닛을 전부 선택 (다른 등급이라도)"
+msgstr " Alt + 마우스 왼쪽 더블 클릭 \\[유닛에 대고] – 전체 지도에서 같은 유형의 유닛을 전부 선택 (다른 등급이라도)"
 
 #: gui/manual/intro.txt:56
 msgid ""
 "  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
 "kind and rank on the entire map"
-msgstr "  Alt + 마우스 왼쪽 세번 연속 클릭 \\[유닛에 대고] – 전체 지도에서 유형과 등급이 같은 유닛을 전부 선택"
+msgstr " Alt + 마우스 왼쪽 세번 연속 클릭 \\[유닛에 대고] – 전체 지도에서 유형과 등급이 같은 유닛을 전부 선택"
 
 #: gui/manual/intro.txt:57
 msgid "  Shift + F5 – Quicksave"
-msgstr "  Shift + F5 – 빠른저장"
+msgstr " Shift + F5 – 빠른저장"
 
 #: gui/manual/intro.txt:58
 msgid "  Shift + F8 – Quickload"
@@ -285,31 +285,31 @@ msgstr "  Shift + F8 – 빠른 불러오기"
 
 #: gui/manual/intro.txt:59
 msgid "  F10 – Toggle menu"
-msgstr ""
+msgstr "  F10 – 차림표 보이기/숨기기"
 
 #: gui/manual/intro.txt:60
 msgid "  F12 – Toggle time elapsed counter"
-msgstr ""
+msgstr "F12 – 흐른 시간 숫자 보이기/숨기기"
 
 #: gui/manual/intro.txt:61
 msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
-msgstr "  Esc – 모든 대화상자를 닫기(대화, 차림표) 또는 선택된 유닛 지우기"
+msgstr " Esc – 모든 대화상자를 닫기(대화, 차림표) 또는 선택된 유닛 지우기"
 
 #: gui/manual/intro.txt:62
 msgid "  Enter (Return) – Open chat or send message"
-msgstr ""
+msgstr "  Enter (Return) – 대화창 열기/메시지 보내기"
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
-msgstr "  T – 단체 대화 보내기"
+msgstr " T – 단체 대화 보내기"
 
 #: gui/manual/intro.txt:64
 msgid "  L – Chat with the previously selected private chat partner"
-msgstr "  L – 이전에 선택한 비공개 대화 파트너와 대화"
+msgstr " L – 이전에 선택한 비공개 대화 파트너와 대화"
 
 #: gui/manual/intro.txt:65
 msgid "  Pause – Pause or resume the game"
-msgstr ""
+msgstr "  Pause – 일시정지/놀이 재개"
 
 #: gui/manual/intro.txt:66
 msgid ""
@@ -396,7 +396,7 @@ msgstr "  Shift + 1 (~ 0 까지) – 선택된 유닛(들)/건축물(들)로 부
 msgid ""
 "  Ctrl + F5 (and so on up to F8) – Mark the current camera position, for "
 "jumping back to later"
-msgstr "  Ctrl + F5 ~ F8 – 나중에 돌아갈 수 있도록 현재 카메라 위치 지정"
+msgstr "  Ctrl + F5 (~ F8) – 나중에 돌아갈 수 있도록 현재 카메라 위치 지정"
 
 #: gui/manual/intro.txt:84
 msgid ""
@@ -429,7 +429,7 @@ msgstr "  Tab – 모든 상태 막대기 보기 (건물 진행 상태도)"
 
 #: gui/manual/intro.txt:89
 msgid "  Ctrl + Tab – Toggle summary window"
-msgstr "  Ctrl + Tab – 요약 창을 켜고 끄기"
+msgstr "  Ctrl + Tab – 요약 창 보이기/숨기기"
 
 #: gui/manual/intro.txt:90
 msgid "  Alt + L – Show the multiplayer lobby in a dialog window"
@@ -437,27 +437,27 @@ msgstr "  Alt + L – 대화창에서 함께 놀기 앞마당 보기"
 
 #: gui/manual/intro.txt:91
 msgid "  Ctrl + H – Toggle in-game diplomacy panel"
-msgstr "  Ctrl + H – 놀이 내에서 외교 판을 켜고 끄기"
+msgstr "  Ctrl + H – 놀이 내에서 외교 판 보이기/숨기기"
 
 #: gui/manual/intro.txt:92
 msgid "  Ctrl + B – Toggle in-game barter and trade panel"
-msgstr "  Ctrl + B – 놀이 내에서 거래와 교역 판을 켜고 끄기"
+msgstr "  Ctrl + B – 놀이 내에서 거래와 교역 판 보이기/숨기기"
 
 #: gui/manual/intro.txt:93
 msgid "  Ctrl + O – Toggle in-game objectives panel"
-msgstr "  Ctrl + O – 놀이 내에서 목표 판을 켜고 끄기"
+msgstr "  Ctrl + O – 놀이 내에서 목표 판 보이기/숨기기"
 
 #: gui/manual/intro.txt:94
 msgid "  Ctrl + P – Toggle in-game tutorial panel"
-msgstr "  Ctrl + P – 놀이에서 자습서 판을 켜고 끄기"
+msgstr "  Ctrl + P – 놀이에서 자습서 판 보이기/숨기기"
 
 #: gui/manual/intro.txt:95
 msgid "  Alt + Shift + T – Toggle structure tree panel"
-msgstr "  Alt + Shift + T – 건축물 도감판을 켜고 끄기"
+msgstr "  Alt + Shift + T – 건축물 도감 판 보이기/숨기기"
 
 #: gui/manual/intro.txt:96
 msgid "  Alt + Shift + H – Toggle civilization info panel"
-msgstr "  Alt + Shift + H – 문명 정보 판을 켜고 끄기"
+msgstr "  Alt + Shift + H – 문명 정보 판 보이기/숨기기"
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
@@ -570,48 +570,48 @@ msgstr "[font=\"sans-bold-14\"]덧판[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:121
 msgid "  Alt + G – Toggle the GUI"
-msgstr ""
+msgstr "  Alt + G – GUI 보이기/숨기기"
 
 #: gui/manual/intro.txt:122
 msgid "  Alt + D – Toggle developer overlay (with developer options)"
-msgstr ""
+msgstr "  Alt + D – 개발자 오버레이 보이기/숨기기 (개발자 선택사항 포함)"
 
 #: gui/manual/intro.txt:123
 msgid ""
 "  Alt + Shift + W – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr "  Alt + Shift + W – 와이어프레임 모드 켜고 끄기 (한번 누르면 텍스쳐 모델에 덮어씌워지고 두번 누르면 텍스쳐 따라 색칠된 와이어프레임만 보입니다. 세번째엔 정상 텍스쳐 모드로 돌아옵니다)"
+msgstr "  Alt + Shift + W – 와이어프레임 모드 보이기/숨기기 (한번 누르면 텍스쳐 모델에 덮어씌워지고 두번 누르면 텍스쳐 따라 색칠된 와이어 프레임만 보입니다. 세번째엔 정상 텍스쳐 모드로 돌아옵니다)"
 
 #: gui/manual/intro.txt:124
 msgid ""
 "  Alt + Shift + S – Toggle unit silhouettes (might give a small performance "
 "boost)"
-msgstr "  Alt + Shift + S – 유닛 윤곽들을 켜고 끄기 (약간의 성능 향상이 있음)"
+msgstr "  Alt + Shift + S – 유닛 윤곽 보이기/숨기기 (약간의 성능 향상이 있음)"
 
 #: gui/manual/intro.txt:125
 msgid "  Alt + Z – Toggle sky"
-msgstr "  Alt + Z – 하늘을 켜고 끄기"
+msgstr "  Alt + Z – 하늘 보이기/숨기기"
 
 #: gui/manual/intro.txt:126
 msgid "  Alt + X – Toggle diplomacy colors"
-msgstr "  Alt + X – 국경 색을 켜고 끄기"
+msgstr "  Alt + X – 국경 색 보이기/숨기기"
 
 #: gui/manual/intro.txt:127
 msgid ""
 "  Alt + C – Toggle attack range visualizations of selected units and "
 "structures"
-msgstr "  Alt + C – 선택한 유닛과 건축물의 사거리 시각화를 켜고 끄기"
+msgstr "  Alt + C – 선택한 유닛과 건축물의 사거리 시각화 보이기/숨기기"
 
 #: gui/manual/intro.txt:128
 msgid ""
 "  Alt + V – Toggle aura range visualizations of selected units and "
 "structures"
-msgstr "  Alt + V – 선택한 유닛과 건축물의 오라 범위 시각화를 켜고 끄기"
+msgstr "  Alt + V – 선택한 유닛과 건축물의 오라 범위 시각화 보이기/숨기기"
 
 #: gui/manual/intro.txt:129
 msgid "  Alt + B – Toggle heal range visualizations of selected units"
-msgstr "  Alt + B – 선택한 유닛의 치유 범위 시각화를 켜고 끄기"
+msgstr "  Alt + B – 선택한 유닛의 치유 범위 시각화 보이기/숨기기"
 
 #: gui/manual/intro.txt:131
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
@@ -677,7 +677,7 @@ msgstr "  F – 선택한 유닛을 따라가기 (카메라를 움직여 유닛�
 
 #: gui/manual/intro.txt:145
 msgid "  R – Reset camera zoom and orientation"
-msgstr ""
+msgstr "  R – 카메라 확대/축소 및 방향 다시 설정"
 
 #: gui/manual/intro.txt:146
 msgid "  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)"
