@@ -186,6 +186,9 @@ Health.prototype.Kill = function()
  */
 Health.prototype.TakeDamage = function(amount, attacker, attackerOwner)
 {
+	if (!amount || !this.hitpoints)
+		return { "healthChange": 0 };
+
 	let change = this.Reduce(amount);
 
 	let cmpLoot = Engine.QueryInterface(this.entity, IID_Loot);
