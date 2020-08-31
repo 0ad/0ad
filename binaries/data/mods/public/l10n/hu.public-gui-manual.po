@@ -5,6 +5,7 @@
 # Translators:
 # Hammer Andrew <andrewhammer87@gmail.com>, 2017
 # Balázs Meskó <meskobalazs@mailbox.org>, 2016-2019
+# Balázs Meskó <meskobalazs@mailbox.org>, 2020
 # Balázs Úr, 2015-2016
 # Gyuris Gellért <bubu@ujevangelizacio.hu>, 2015
 # Gyuris Gellért <bubu@ujevangelizacio.hu>, 2017-2018
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-06 07:17+0000\n"
-"PO-Revision-Date: 2020-07-06 15:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-08-28 15:12+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +40,7 @@ msgstr "Megtekintés online"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. játékbeli kézikönyv[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:2
 msgid ""
@@ -58,11 +59,11 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr ""
+msgstr "Az Alt + Enter billentyűzetkombinációval válthatsz a teljes képernyős és az ablakos mód között. Ablakos módban át lehet méretezni az ablakot. Ha a játék lassan fut, a beállítások ablakban módosíthatsz néhány beállítást: próbáld meg kikapcsolni a „Magas minőségű vízhatások” és az „Árnyékok” beállításokat."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]A játék menete[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:8
 msgid ""
@@ -70,7 +71,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr ""
+msgstr "A vezérlés és a játékmenet ismerős kell legyen a hagyományos RTS játékosoknak. Egyelőre sok a hiányzó funkció, valamint a rosszul kezelt statisztika ‒ valószínűleg várni kell a béta kiadásra, hogy minden jól működjön."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls:"
@@ -82,31 +83,31 @@ msgstr "• Bal kattintás az egységek kijelöléséhez"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr ""
+msgstr "• Bal kattintás és húzás egységcsoport kijelöléséhez"
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr ""
+msgstr "• Jobb kattintás az egységek célhoz parancsolásához"
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr ""
+msgstr "• Nyíl vagy WASD billentyűk a kamera mozgatásához"
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr ""
+msgstr "• Ctrl + nyílgombok, vagy shift + egérgörgő a kamera forgatásához"
 
 #: gui/manual/intro.txt:16
 msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
-msgstr ""
+msgstr "• Egérgörgő vagy „=”/„+” és „-”/„−” gombok a nagyításhoz"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Módok[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr ""
+msgstr "A főmenü két játékmódot biztosít:"
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -114,13 +115,13 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Egyjátékos mód[font=\"sans-14\"] –  Játék egyedül vagy számítógépes ellenfelek (MI) ellen. Az alapértelmezett MI (Petra) fejlesztés alatt áll, és nem mindig tartalmazza a legújabb funkciókat, de kipróbálhatja a játékot vele vagy ellene."
 
 #: gui/manual/intro.txt:21
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Többjátékos mód[font=\"sans-14\"] — Játék emberi játékosokkal az Interneten keresztül."
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -128,15 +129,15 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr ""
+msgstr "Többjátékos módú játék indításához az egyik játékosnak ki kell választania a „Házigazda mód” lehetőséget. A játék a 20595-ös UDP-portot használja, tehát a házigazdának be kell állítania a tűzfalat/útválasztót, hogy ez működjön. A többi játékos ezután kiválaszthatja a „Csatlakozás játékhoz” lehetőséget, és beírhatja a házigazda IP-címét."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Játék beállításai[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr ""
+msgstr "Többjátékos módban csak a házigazda módosíthatja a játék beállításait."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -167,7 +168,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "Ezután a térképek tovább szűrhetőek. Az alapértelmezett térképek általában játszhatóak. A tengeri térképek olyan térképek, ahol nem minden ellenfél érhető el szárazföldön keresztül, a demó térképek pedig tesztelési célokra használhatóak (általában játékra nem hasznosak). Az „Összes térkép” szűrő megjeleníti az összes térképet egy listában."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -176,96 +177,96 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr ""
+msgstr "Végül add meg a beállításokat. Véletlenszerű pályáknál a játékosok számát, a térkép méretét, és hasonlókat adhatsz meg. Küldetéseknél csak azt adhatod meg, hogy ki melyik felet irányítja (ez eldönti hol kezdesz a térképen). A lehetőségek: emberi játékos, MI, vagy senki sem irányítja az adott felet (az ellenfél semmit nem fog csinálni). "
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr ""
+msgstr "Ha készen állsz, kattints a „Játék indítása” gombra."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Gyorsbillentyű[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Program-szintű[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:41
 msgid ""
 "  Alt + F4 – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr "  Alt + F4 – A játék azonnali bezárása, megerősítés kérése nélkül"
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter (Return) – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "  Alt + Enter – Váltás a teljes képernyős és ablakos nézet között"
 
 #: gui/manual/intro.txt:43
 msgid "  ~ or F9 – Toggle console"
-msgstr ""
+msgstr "  ~ vagy F9 – Konzol be/ki"
 
 #: gui/manual/intro.txt:44
 msgid "  Alt + F – Toggle frame counter (FPS)"
-msgstr ""
+msgstr "  Alt + F – Képkockasebesség-számláló (FPS) be/ki"
 
 #: gui/manual/intro.txt:45
 msgid ""
 "  F11 – Toggle real-time profiler (cycles through the displays of "
 "information)"
-msgstr ""
+msgstr "  F11 – Valós idejű profilozó be/ki (folyamatosan vált a megjelenített információk közt)"
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
-msgstr ""
+msgstr "  Shift + F11 – A jelenlegi profilozóadatok mentése a „logs/profile.txt” fájlba"
 
 #: gui/manual/intro.txt:47
 msgid ""
 "  F2 – Take screenshot (in .png format, location is displayed in the top "
 "left of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr ""
+msgstr "  F2 – Képernyőkép készítése (.png formátumban, a mentés helye a grafikus felület bal felső részén lesz látható a mentést követően, ugyanakkor megtekinthető a konzolban és a naplófájlban is, ha lemaradtál volna róla)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, "
 "location is displayed in the top left of the GUI after the file has been "
 "saved, and can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "  Shift + F2 – Óriási képernyőkép készítése (6400×4800 képpontos .bmp formátumban, a mentés helye a grafikus felület bal felső részén lesz látható a mentést követően, ugyanakkor megtekinthető a konzolban és a naplófájlban is, ha lemaradtál volna róla)"
 
 #: gui/manual/intro.txt:49
 msgid "  Tab, Alt + S – Switch to the next tab"
-msgstr ""
+msgstr "Tab, Alt + S – Váltás a következő fülre"
 
 #: gui/manual/intro.txt:50
 msgid "  Shift + Tab, Alt + W – Switch to the previous tab"
-msgstr ""
+msgstr "  Shift + Tab, Alt + W – Váltás az előző fülre"
 
 #: gui/manual/intro.txt:52
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Játékon belül[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:53
 msgid ""
 "  Double Left Click \\[on unit] – Select all of your units of the same kind "
 "on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "  Dupla bal kattintás \\[az egységen] – Az összes azonos fajtájú egység kijelölése a képernyőn (akkor is, ha más a rangjuk)"
 
 #: gui/manual/intro.txt:54
 msgid ""
 "  Triple Left Click \\[on unit] – Select all of your units of the same kind "
 "and the same rank on the screen"
-msgstr ""
+msgstr "  Tripla bal kattintás \\[az egységen] – Az összes azonos fajtájú és rangú egység kijelölése a képernyőn"
 
 #: gui/manual/intro.txt:55
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
-msgstr "  Alt + Dupla bal klikk \\[az egységen] – Az összes azonos fajtájú egység kijelölése a térképen (akkor is, ha más a rangjuk)"
+msgstr "  Alt + dupla bal kattintás \\[az egységen] – Az összes azonos fajtájú egység kijelölése a térképen (akkor is, ha más a rangjuk)"
 
 #: gui/manual/intro.txt:56
 msgid ""
 "  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
 "kind and rank on the entire map"
-msgstr ""
+msgstr " Alt + tripla bal kattintás \\[az egységen] – Az összes azonos fajtájú és rangú egység kijelölése a térképe"
 
 #: gui/manual/intro.txt:57
 msgid "  Shift + F5 – Quicksave"
@@ -273,15 +274,15 @@ msgstr "  Shift + F5 – Gyorsmentés"
 
 #: gui/manual/intro.txt:58
 msgid "  Shift + F8 – Quickload"
-msgstr ""
+msgstr "  Shift + F8 – Gyors betöltés"
 
 #: gui/manual/intro.txt:59
 msgid "  F10 – Toggle menu"
-msgstr ""
+msgstr "  F10 – Menü be/ki"
 
 #: gui/manual/intro.txt:60
 msgid "  F12 – Toggle time elapsed counter"
-msgstr ""
+msgstr "  F12 – Eltelt idő számlálója be/ki"
 
 #: gui/manual/intro.txt:61
 msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
@@ -293,11 +294,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
-msgstr ""
+msgstr "T – Küldés a csapatnak szóló csevegésbe"
 
 #: gui/manual/intro.txt:64
 msgid "  L – Chat with the previously selected private chat partner"
-msgstr ""
+msgstr "  L – Csevegés az előzőleg kiválasztott privát csevegőpartnerrel"
 
 #: gui/manual/intro.txt:65
 msgid "  Pause – Pause or resume the game"
@@ -352,7 +353,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:76
 msgid "  Alt + \\\\ (Backslash) – Select all idle units"
-msgstr ""
+msgstr "Alt + \\\\ (fordított törtvonal) – Összes tétlen egység kijelölése"
 
 #: gui/manual/intro.txt:77
 msgid "  H – Stop (halt) the currently selected units"
@@ -421,35 +422,35 @@ msgstr ""
 
 #: gui/manual/intro.txt:89
 msgid "  Ctrl + Tab – Toggle summary window"
-msgstr "  Ctrl + Tab – Összefoglaló ablak átváltása"
+msgstr "  Ctrl + Tab – Összefoglaló ablak be/ki"
 
 #: gui/manual/intro.txt:90
 msgid "  Alt + L – Show the multiplayer lobby in a dialog window"
-msgstr ""
+msgstr "Alt + L – Többjátékos váró megjelenítése egy párbeszédablakban"
 
 #: gui/manual/intro.txt:91
 msgid "  Ctrl + H – Toggle in-game diplomacy panel"
-msgstr ""
+msgstr "  Ctrl + H – Játékon belüli diplomácia panel be/ki"
 
 #: gui/manual/intro.txt:92
 msgid "  Ctrl + B – Toggle in-game barter and trade panel"
-msgstr ""
+msgstr "  Ctrl + B – Játékon belüli csere és kereskedelem panel be/ki"
 
 #: gui/manual/intro.txt:93
 msgid "  Ctrl + O – Toggle in-game objectives panel"
-msgstr ""
+msgstr "  Ctrl + O – Játékon belüli célok panel be/ki"
 
 #: gui/manual/intro.txt:94
 msgid "  Ctrl + P – Toggle in-game tutorial panel"
-msgstr "Ctrl + P – A játékon belüli oktató panel átváltása"
+msgstr "  Ctrl + P – A játékon belüli oktató panel be/ki"
 
 #: gui/manual/intro.txt:95
 msgid "  Alt + Shift + T – Toggle structure tree panel"
-msgstr ""
+msgstr "  Alt + Shift + T – Épületfa panel be/ki"
 
 #: gui/manual/intro.txt:96
 msgid "  Alt + Shift + H – Toggle civilization info panel"
-msgstr ""
+msgstr "  Alt + Shift + H – Civilizációinformációs panel be/ki"
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
@@ -465,7 +466,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:101
 msgid "  P + Right Click – Patrol"
-msgstr ""
+msgstr "  P + jobb kattintás – Őrjárat"
 
 #: gui/manual/intro.txt:102
 msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
@@ -482,7 +483,7 @@ msgstr ""
 msgid ""
 "  Shift + Left Click when training units – Add units in batches (the batch "
 "size is 5 by default and can be changed in the options)"
-msgstr ""
+msgstr " Shift + bal kattintás egységek kiképzésekor – Csoportosan ad hozzá egységeket (a csoport mérete alapesetben 5, de megváltoztatható a beállítások között)"
 
 #: gui/manual/intro.txt:105
 msgid ""
@@ -558,52 +559,52 @@ msgstr ""
 
 #: gui/manual/intro.txt:120
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Rátétek[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:121
 msgid "  Alt + G – Toggle the GUI"
-msgstr ""
+msgstr "  Alt + G – Grafikus felület be/ki"
 
 #: gui/manual/intro.txt:122
 msgid "  Alt + D – Toggle developer overlay (with developer options)"
-msgstr ""
+msgstr "  Alt + D – Fejlesztői rátét be/ki (fejlesztői beállításokkal)"
 
 #: gui/manual/intro.txt:123
 msgid ""
 "  Alt + Shift + W – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "  Alt + Shift + W – Rácshálós üzemmódok közötti váltás (első megnyomásra a textúrával rendelkező modellekre rákerül a rácsháló, másodszorra csak a rácshálók kapják meg a textúrák színét, harmadszori megnyomásra visszatér a normál textúrás mód)"
 
 #: gui/manual/intro.txt:124
 msgid ""
 "  Alt + Shift + S – Toggle unit silhouettes (might give a small performance "
 "boost)"
-msgstr ""
+msgstr " Alt + Shift + S – Egységek sziluettje be/ki (kis teljesítménynövekedéssel járhat)"
 
 #: gui/manual/intro.txt:125
 msgid "  Alt + Z – Toggle sky"
-msgstr ""
+msgstr "  Alt + Z – Égbolt be/ki"
 
 #: gui/manual/intro.txt:126
 msgid "  Alt + X – Toggle diplomacy colors"
-msgstr ""
+msgstr "  Alt + X – Diplomáciai színek be/ki"
 
 #: gui/manual/intro.txt:127
 msgid ""
 "  Alt + C – Toggle attack range visualizations of selected units and "
 "structures"
-msgstr ""
+msgstr "  Alt + C – Kiválasztott egységek és épületek támadási hatótávolsága be/ki"
 
 #: gui/manual/intro.txt:128
 msgid ""
 "  Alt + V – Toggle aura range visualizations of selected units and "
 "structures"
-msgstr ""
+msgstr "  Alt + V – Egységek és épületek aurájának hatótávolsága be/ki"
 
 #: gui/manual/intro.txt:129
 msgid "  Alt + B – Toggle heal range visualizations of selected units"
-msgstr ""
+msgstr "  Alt + B – A kiválasztott egységek gyógyítási hatótávolsága be/ki"
 
 #: gui/manual/intro.txt:131
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
@@ -611,7 +612,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:132
 msgid "  W or ↑ (Up) – Pan screen up"
-msgstr ""
+msgstr "  W vagy ↑ (Fel) – Képernyő mozgatása felfelé"
 
 #: gui/manual/intro.txt:133
 msgid "  S or ↓ (Down) – Pan screen down"
@@ -635,7 +636,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:138
 msgid "  Ctrl + A or Ctrl + ← (Left) – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "  Ctrl + A vagy Ctrl + ← (Balra) – Kamera forgatása az óramutató járásának megfelelően"
 
 #: gui/manual/intro.txt:139
 msgid ""
@@ -649,12 +650,12 @@ msgstr "Q – Kamera forgatása az óramutató járása szerint"
 
 #: gui/manual/intro.txt:141
 msgid "  E – Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr "  E – Kamera forgatása az óramutató járásával ellentétesen"
 
 #: gui/manual/intro.txt:142
 msgid ""
 "  Shift + Mouse Wheel Rotate Up – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Shift + Felfelé görgetés az egérrel – Kamera nézetének az óramutató járásának megfelelő irányba való forgatása a felszín mentén"
 
 #: gui/manual/intro.txt:143
 msgid ""
@@ -718,4 +719,4 @@ msgstr ""
 msgid ""
 "  Shift + Delete – Immediately delete the selected saved game, without "
 "asking for confirmation"
-msgstr ""
+msgstr "  Shift + Delete – A kiválasztott játékmentés azonnali törlése, megerősítés kérése nélkül"

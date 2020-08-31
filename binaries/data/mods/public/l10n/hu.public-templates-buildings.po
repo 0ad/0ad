@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-10 07:09+0000\n"
-"PO-Revision-Date: 2020-08-10 10:40+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-08-28 07:10+0000\n"
+"PO-Revision-Date: 2020-08-28 15:38+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,33 +31,33 @@ msgstr ""
 "Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: simulation/templates/template_structure_civic.xml:15
+#: simulation/templates/template_structure_civic.xml:21
 msgid "Civic Structure"
 msgstr "Polgári épület"
 
-#: simulation/templates/template_structure_civic.xml:16
+#: simulation/templates/template_structure_civic.xml:22
 msgid "Civic"
 msgstr "Polgári"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:87
+#: simulation/templates/template_structure_civic_civil_centre.xml:93
 msgid "Civic Center"
 msgstr "Városháza"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:89
+#: simulation/templates/template_structure_civic_civil_centre.xml:95
 msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Dropsite for food, wood, stone, and metal. Train Citizens "
 "and research technologies. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Saját és semleges területre építhető. Nagy méretű területet szerez meg. Terület gyökere. Lerakóhely élelemhez, fához, kőhöz és fémhez. Polgárok kiképzése és technológiák kutatása. Katonák beszállásolása további nyilakhoz."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:91
-#: simulation/templates/template_structure_defensive.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:76
+#: simulation/templates/template_structure_civic_civil_centre.xml:97
+#: simulation/templates/template_structure_defensive.xml:21
+#: simulation/templates/template_structure_military_fortress.xml:80
 msgid "Defensive"
 msgstr "Védekező"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:91
-#: simulation/templates/template_structure_civic_civil_centre.xml:53
+#: simulation/templates/template_structure_civic_civil_centre.xml:97
+#: simulation/templates/template_structure_civic_civil_centre.xml:59
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
 msgstr "Városháza"
@@ -71,7 +71,7 @@ msgid "Colony"
 msgstr "Kolónia"
 
 #: simulation/templates/template_structure_civic_house.xml:36
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:42
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 #: simulation/templates/template_structure_economic_storehouse.xml:34
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -90,15 +90,15 @@ msgstr "Ház"
 
 #: simulation/templates/template_structure_civic_stoa.xml:33
 msgid "Train Mercenary Champions."
-msgstr ""
+msgstr "Zsoldos bajnokok kiképzése."
 
 #: simulation/templates/template_structure_civic_stoa.xml:34
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 #: simulation/templates/template_structure_economic_market.xml:31
-#: simulation/templates/template_structure_military_blacksmith.xml:26
-#: simulation/templates/template_structure_military_embassy.xml:33
-#: simulation/templates/structures/cart_super_dock.xml:47
+#: simulation/templates/template_structure_military_embassy.xml:39
+#: simulation/templates/template_structure_military_forge.xml:26
+#: simulation/templates/structures/cart_super_dock.xml:51
 #: simulation/templates/structures/gaul_tavern.xml:24
 #: simulation/templates/structures/kush_pyramid_small.xml:29
 #: simulation/templates/structures/maur_elephant_stables.xml:7
@@ -116,23 +116,23 @@ msgstr "Oszlopcsarnok"
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 msgid "Train Healers and research healing technologies."
-msgstr ""
+msgstr "Gyógyítók kiképzése és technológiák kutatása."
 
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:33
 msgid "Temple"
 msgstr "Templom"
 
-#: simulation/templates/template_structure_defensive.xml:14
+#: simulation/templates/template_structure_defensive.xml:20
 msgid "Defensive Structure"
 msgstr "Védelmi épület"
 
-#: simulation/templates/template_structure_defensive_palisade.xml:22
+#: simulation/templates/template_structure_defensive_palisade.xml:26
 msgid "Wall off an area."
-msgstr ""
+msgstr "Terület elfalazása."
 
-#: simulation/templates/template_structure_defensive_palisade.xml:23
-#: simulation/templates/template_structure_defensive_palisade.xml:20
+#: simulation/templates/template_structure_defensive_palisade.xml:27
+#: simulation/templates/template_structure_defensive_palisade.xml:24
 #: simulation/templates/structures/wallset_palisade.xml:5
 #: simulation/templates/structures/wallset_palisade.xml:4
 msgid "Palisade"
@@ -152,9 +152,9 @@ msgstr "Tüzértorony"
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
-#: simulation/templates/template_structure_military_fortress.xml:76
-#: simulation/templates/template_structure_special.xml:34
-#: simulation/templates/template_structure_wonder.xml:53
+#: simulation/templates/template_structure_military_fortress.xml:80
+#: simulation/templates/template_structure_special.xml:40
+#: simulation/templates/template_structure_wonder.xml:59
 #: simulation/templates/structures/kush_pyramid_large.xml:29
 #: simulation/templates/structures/kush_temple_amun.xml:31
 #: simulation/templates/structures/rome_temple_mars.xml:14
@@ -163,7 +163,7 @@ msgstr "Nagyváros"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 msgid "ArtilleryTower"
-msgstr ""
+msgstr "Tüzérségi torony"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
@@ -173,41 +173,41 @@ msgstr "Nyílvető torony"
 msgid "BoltTower"
 msgstr "Nyílvető torony"
 
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:53
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:59
 msgid ""
 "Build in own or neutral territory. Slowly converts to Gaia while in neutral "
 "territory."
-msgstr ""
+msgstr "Saját vagy semleges területre építhető. Semleges területen lassan Gaiává alakul át."
 
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:54
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:29
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:51
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:60
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:35
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:57
 #: simulation/templates/structures/palisades_outpost.xml:17
 msgid "Outpost"
 msgstr "Előőrs"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:35
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
 msgid "Sentry Tower"
 msgstr "Őrtorony"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:37
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:41
 #: simulation/templates/template_structure_defensive_tower_stone.xml:33
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
-msgstr ""
+msgstr "Gyalogság beszállásolása további nyilakhoz. A lábazat megvédéséhez a „Lőrések” fejlesztés szükséges."
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:42
 msgid "SentryTower"
 msgstr "Őrtorony"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:61
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:65
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Megerősítés kővel, és fejlesztés védőtoronnyá."
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:31
 msgid "Stone Tower"
-msgstr ""
+msgstr "Kőtorony"
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "StoneTower"
@@ -225,7 +225,7 @@ msgstr "Fal"
 #: simulation/templates/template_structure_defensive_wall_gate.xml:22
 #: simulation/templates/template_structure_defensive_wall_long.xml:34
 msgid "Allow units access through Walls. Can be locked to prevent access."
-msgstr ""
+msgstr "Átengedi az egységeket a falakon. Bezárható az átjárás megakadályozásához."
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:23
 #: simulation/templates/template_structure_defensive_wall_gate.xml:20
@@ -235,7 +235,7 @@ msgstr "Kapu"
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:25
 msgid "Can be converted into a Gate."
-msgstr ""
+msgstr "Kapuvá alakítható át."
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:54
 msgid "Wall Turret"
@@ -243,20 +243,20 @@ msgstr "Fali torony"
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:56
 msgid "Garrison Infantry for additional arrows."
-msgstr ""
+msgstr "Gyalogság beszállásolása további nyilakért."
 
-#: simulation/templates/template_structure_economic.xml:14
+#: simulation/templates/template_structure_economic.xml:20
 msgid "Economic Structure"
 msgstr "Gazdasági épület"
 
-#: simulation/templates/template_structure_economic.xml:15
+#: simulation/templates/template_structure_economic.xml:21
 #: simulation/templates/template_structure_military_dock.xml:28
 msgid "Economic"
 msgstr "Gazdasági"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:31
 msgid "Dropsite for food. Research food gathering technologies."
-msgstr ""
+msgstr "Lerakóhely élelemhez. Élelemgyűjtési fejlesztések kutatása."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 #: simulation/templates/template_structure_economic_farmstead.xml:29
@@ -288,11 +288,11 @@ msgstr ""
 msgid "Storehouse"
 msgstr "Raktár"
 
-#: simulation/templates/template_structure_military.xml:23
+#: simulation/templates/template_structure_military.xml:29
 msgid "Military Structure"
 msgstr "Hadi épület"
 
-#: simulation/templates/template_structure_military.xml:25
+#: simulation/templates/template_structure_military.xml:31
 msgid "Military"
 msgstr "Hadi"
 
@@ -316,15 +316,6 @@ msgstr ""
 msgid "Barracks"
 msgstr "Laktanyák"
 
-#: simulation/templates/template_structure_military_blacksmith.xml:24
-msgid "Research attack and armor technologies."
-msgstr ""
-
-#: simulation/templates/template_structure_military_blacksmith.xml:26
-#: simulation/templates/template_structure_military_blacksmith.xml:22
-msgid "Blacksmith"
-msgstr "Kovácsműhely"
-
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Dropsite for "
@@ -334,7 +325,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/structures/brit_crannog.xml:16
-#: simulation/templates/structures/cart_super_dock.xml:47
+#: simulation/templates/structures/cart_super_dock.xml:51
 msgid "Naval"
 msgstr ""
 
@@ -355,21 +346,30 @@ msgstr ""
 msgid "ElephantStable"
 msgstr "Elefánt istálló"
 
-#: simulation/templates/template_structure_military_embassy.xml:33
-#: simulation/templates/template_structure_military_embassy.xml:31
+#: simulation/templates/template_structure_military_embassy.xml:39
+#: simulation/templates/template_structure_military_embassy.xml:37
 #: simulation/templates/structures/cart_embassy.xml:18
 msgid "Embassy"
 msgstr "Követség"
 
-#: simulation/templates/template_structure_military_fortress.xml:74
+#: simulation/templates/template_structure_military_forge.xml:24
+msgid "Research attack and armor technologies."
+msgstr ""
+
+#: simulation/templates/template_structure_military_forge.xml:26
+#: simulation/templates/template_structure_military_forge.xml:22
+msgid "Forge"
+msgstr ""
+
+#: simulation/templates/template_structure_military_fortress.xml:78
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
 msgstr "Bajnokok és hősök kiképzése, valamint technológiák kutatása. Katonák beszállásolása az erősebb védelemhez."
 
+#: simulation/templates/template_structure_military_fortress.xml:80
+#: simulation/templates/template_structure_military_fortress.xml:46
 #: simulation/templates/template_structure_military_fortress.xml:76
-#: simulation/templates/template_structure_military_fortress.xml:42
-#: simulation/templates/template_structure_military_fortress.xml:72
 msgid "Fortress"
 msgstr "Erőd"
 
@@ -394,11 +394,11 @@ msgstr "Lovasok kiképzése és lovassági technológiák kutatása."
 msgid "Stable"
 msgstr "Istálló"
 
-#: simulation/templates/template_structure_resource.xml:17
+#: simulation/templates/template_structure_resource.xml:23
 msgid "Resource Structure"
 msgstr "Nyersanyag épület"
 
-#: simulation/templates/template_structure_resource.xml:18
+#: simulation/templates/template_structure_resource.xml:24
 msgid "Resource"
 msgstr "Nyersanyag"
 
@@ -411,17 +411,17 @@ msgstr ""
 msgid "Corral"
 msgstr "Karám"
 
-#: simulation/templates/template_structure_resource_field.xml:28
-#: simulation/templates/template_structure_resource_field.xml:26
+#: simulation/templates/template_structure_resource_field.xml:32
+#: simulation/templates/template_structure_resource_field.xml:30
 msgid "Field"
 msgstr "Mező"
 
-#: simulation/templates/template_structure_resource_field.xml:29
+#: simulation/templates/template_structure_resource_field.xml:33
 msgid ""
 "Harvest grain for food. Each subsequent gatherer works less efficiently."
 msgstr "Gyűjts gabonát, hogy élelemhez juss. Minden további gyűjtögető kevésbé hatékonyan dolgozik."
 
-#: simulation/templates/template_structure_special.xml:33
+#: simulation/templates/template_structure_special.xml:39
 msgid "Special Structure"
 msgstr ""
 
@@ -449,14 +449,14 @@ msgstr ""
 msgid "Theater"
 msgstr "Színház"
 
-#: simulation/templates/template_structure_wonder.xml:51
+#: simulation/templates/template_structure_wonder.xml:57
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
 msgstr "Dicsőséget hoz a civilizációd számára, és nagy földterületeket ad a birodalmadhoz."
 
-#: simulation/templates/template_structure_wonder.xml:53
-#: simulation/templates/template_structure_wonder.xml:49
+#: simulation/templates/template_structure_wonder.xml:59
+#: simulation/templates/template_structure_wonder.xml:55
 msgid "Wonder"
 msgstr "Csoda"
 
@@ -475,14 +475,6 @@ msgstr "Hoplothēkē"
 #: simulation/templates/structures/spart_barracks.xml:12
 msgid "Stratopedon"
 msgstr "Stratopedon"
-
-#: simulation/templates/structures/athen_blacksmith.xml:5
-#: simulation/templates/structures/mace_blacksmith.xml:5
-#: simulation/templates/structures/ptol_blacksmith.xml:5
-#: simulation/templates/structures/sele_blacksmith.xml:5
-#: simulation/templates/structures/spart_blacksmith.xml:5
-msgid "Chalkeōn"
-msgstr "Chalkeōn"
 
 #: simulation/templates/structures/athen_civil_centre.xml:8
 #: simulation/templates/structures/mace_civil_centre.xml:8
@@ -531,6 +523,14 @@ msgstr "Epoikion"
 #: simulation/templates/structures/spart_field.xml:5
 msgid "Agros"
 msgstr "Agros"
+
+#: simulation/templates/structures/athen_forge.xml:5
+#: simulation/templates/structures/mace_forge.xml:5
+#: simulation/templates/structures/ptol_forge.xml:5
+#: simulation/templates/structures/sele_forge.xml:5
+#: simulation/templates/structures/spart_forge.xml:5
+msgid "Chalkeōn"
+msgstr "Chalkeōn"
 
 #: simulation/templates/structures/athen_fortress.xml:9
 #: simulation/templates/structures/mace_fortress.xml:9
@@ -707,11 +707,6 @@ msgstr "Miletucerdon"
 msgid "Coriosessa"
 msgstr "Coriosessa"
 
-#: simulation/templates/structures/brit_blacksmith.xml:8
-#: simulation/templates/structures/gaul_blacksmith.xml:8
-msgid "Gobanion"
-msgstr "Gobanion"
-
 #: simulation/templates/structures/brit_civil_centre.xml:12
 msgid "Tigernotreba"
 msgstr "Tigernotreba"
@@ -760,6 +755,11 @@ msgstr "Buta"
 #: simulation/templates/structures/gaul_field.xml:5
 msgid "Olca"
 msgstr "Olca"
+
+#: simulation/templates/structures/brit_forge.xml:8
+#: simulation/templates/structures/gaul_forge.xml:8
+msgid "Gobanion"
+msgstr "Gobanion"
 
 #: simulation/templates/structures/brit_fortress.xml:15
 #: simulation/templates/structures/gaul_fortress.xml:8
@@ -929,22 +929,22 @@ msgstr "Kőfal"
 msgid "Maḥṣabah"
 msgstr "Maḥṣabah"
 
-#: simulation/templates/structures/cart_super_dock.xml:43
+#: simulation/templates/structures/cart_super_dock.xml:47
 msgid "Naval Shipyard"
 msgstr "Tengeri kikötő"
 
-#: simulation/templates/structures/cart_super_dock.xml:44
+#: simulation/templates/structures/cart_super_dock.xml:48
 msgid "Cothon"
 msgstr "Cothon"
 
-#: simulation/templates/structures/cart_super_dock.xml:45
+#: simulation/templates/structures/cart_super_dock.xml:49
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Construct Warships and research "
 "technologies."
 msgstr ""
 
-#: simulation/templates/structures/cart_super_dock.xml:47
+#: simulation/templates/structures/cart_super_dock.xml:51
 msgid "Shipyard"
 msgstr "Hajógyár"
 
@@ -1030,10 +1030,6 @@ msgstr "Celicnon"
 msgid "Kaserna"
 msgstr "Kaserna"
 
-#: simulation/templates/structures/iber_blacksmith.xml:5
-msgid "Harotz"
-msgstr "Harotz"
-
 #: simulation/templates/structures/iber_civil_centre.xml:8
 msgid "Oppidum"
 msgstr "Oppidum"
@@ -1058,6 +1054,10 @@ msgstr "Baserri"
 #: simulation/templates/structures/iber_field.xml:5
 msgid "Soro"
 msgstr "Soro"
+
+#: simulation/templates/structures/iber_forge.xml:5
+msgid "Harotz"
+msgstr "Harotz"
 
 #: simulation/templates/structures/iber_fortress.xml:15
 msgid "Castro"
@@ -1115,10 +1115,6 @@ msgstr "Pr-ỉwn n ms"
 msgid "pr-msʿyw"
 msgstr "pr-msʿyw"
 
-#: simulation/templates/structures/kush_blacksmith.xml:5
-msgid "hmw hʿy n rȝ-ʿ"
-msgstr "hmw hʿy n rȝ-ʿ"
-
 #: simulation/templates/structures/kush_blemmye_camp.xml:22
 #: simulation/templates/structures/kush_blemmye_camp.xml:23
 msgid "Blemmye Camp"
@@ -1155,6 +1151,10 @@ msgstr "snwt"
 #: simulation/templates/structures/kush_field.xml:5
 msgid "sht"
 msgstr "sht"
+
+#: simulation/templates/structures/kush_forge.xml:5
+msgid "hmw hʿy n rȝ-ʿ"
+msgstr "hmw hʿy n rȝ-ʿ"
 
 #: simulation/templates/structures/kush_fortress.xml:9
 msgid "Htm"
@@ -1292,10 +1292,6 @@ msgstr "Hieron tou Dios tou Olympiou"
 msgid "Sainyavasa"
 msgstr "Sainyavasa"
 
-#: simulation/templates/structures/maur_blacksmith.xml:5
-msgid "Lohakāra"
-msgstr "Lohakāra"
-
 #: simulation/templates/structures/maur_civil_centre.xml:12
 msgid "Rajadhanika"
 msgstr "Rajadhanika"
@@ -1324,6 +1320,10 @@ msgstr "Kantu"
 #: simulation/templates/structures/maur_field.xml:5
 msgid "Kshetra"
 msgstr "Kshetra"
+
+#: simulation/templates/structures/maur_forge.xml:5
+msgid "Lohakāra"
+msgstr "Lohakāra"
 
 #: simulation/templates/structures/maur_fortress.xml:5
 msgid "Durg"
@@ -1448,7 +1448,7 @@ msgstr ""
 
 #: simulation/templates/structures/palisades_long.xml:17
 msgid "Can be converted into a Palisade Gate."
-msgstr ""
+msgstr "Palánkkapuvá alakítható át."
 
 #: simulation/templates/structures/palisades_spike_angle.xml:17
 msgid "Angle Spike"
@@ -1489,11 +1489,7 @@ msgstr "Padgan"
 
 #: simulation/templates/structures/pers_barracks.xml:6
 msgid "Train Infantry."
-msgstr ""
-
-#: simulation/templates/structures/pers_blacksmith.xml:5
-msgid "Arštišta"
-msgstr "Arštišta"
+msgstr "Gyalogság kiképzése."
 
 #: simulation/templates/structures/pers_civil_centre.xml:8
 msgid "Provincial Governor"
@@ -1525,6 +1521,10 @@ msgstr "Kaštašta"
 msgid "Kaštrya"
 msgstr "Kaštrya"
 
+#: simulation/templates/structures/pers_forge.xml:5
+msgid "Arštišta"
+msgstr "Arštišta"
+
 #: simulation/templates/structures/pers_fortress.xml:5
 msgid "Didā"
 msgstr "Didā"
@@ -1543,7 +1543,7 @@ msgstr "Duvarθi Visadahyu"
 
 #: simulation/templates/structures/pers_hall.xml:25
 msgid "Hall"
-msgstr ""
+msgstr "Csarnok"
 
 #: simulation/templates/structures/pers_house.xml:8
 msgid "Huvādā"
@@ -1560,7 +1560,7 @@ msgstr "Babiloni Istár-kapu"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:30
 msgid "IshtarGate"
-msgstr ""
+msgstr "Istár-kapu"
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1675,24 +1675,24 @@ msgstr "Arcus Triumphālis"
 
 #: simulation/templates/structures/rome_arch.xml:24
 msgid "TriumphalArch"
-msgstr ""
+msgstr "Diadalív"
 
-#: simulation/templates/structures/rome_army_camp.xml:80
+#: simulation/templates/structures/rome_army_camp.xml:86
 msgid "Army Camp"
 msgstr "Katonai Tábor"
 
-#: simulation/templates/structures/rome_army_camp.xml:81
+#: simulation/templates/structures/rome_army_camp.xml:87
 msgid "Castra"
 msgstr "Tábor"
 
-#: simulation/templates/structures/rome_army_camp.xml:82
+#: simulation/templates/structures/rome_army_camp.xml:88
 msgid ""
 "Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
 "Siege Engines. Garrison Soldiers for additional arrows."
 msgstr "Semleges és ellenséges területre építhető. Polgári katonák kiképzése és ostromgépek építése. Katonák beszállásolása az erősebb védelemhez."
 
-#: simulation/templates/structures/rome_army_camp.xml:84
-#: simulation/templates/structures/rome_army_camp.xml:48
+#: simulation/templates/structures/rome_army_camp.xml:90
+#: simulation/templates/structures/rome_army_camp.xml:54
 msgid "ArmyCamp"
 msgstr "Katonai tábor"
 
@@ -1703,10 +1703,6 @@ msgstr "Ballistārium"
 #: simulation/templates/structures/rome_barracks.xml:12
 msgid "Castrum"
 msgstr "Castrum"
-
-#: simulation/templates/structures/rome_blacksmith.xml:5
-msgid "Armāmentārium"
-msgstr "Armāmentārium"
 
 #: simulation/templates/structures/rome_civil_centre.xml:12
 msgid "Forum"
@@ -1734,6 +1730,10 @@ msgstr "Vīlla"
 msgid "Ager"
 msgstr "Ager"
 
+#: simulation/templates/structures/rome_forge.xml:5
+msgid "Armāmentārium"
+msgstr "Armāmentārium"
+
 #: simulation/templates/structures/rome_fortress.xml:5
 msgid "Castellum"
 msgstr "Castellum"
@@ -1754,42 +1754,42 @@ msgstr "Vigilārium"
 msgid "Turris Līgnea"
 msgstr "Turris Līgnea"
 
-#: simulation/templates/structures/rome_siege_wall_gate.xml:31
+#: simulation/templates/structures/rome_siege_wall_gate.xml:37
 msgid "Siege Wall Gate"
 msgstr "Ostromfal kapu"
 
-#: simulation/templates/structures/rome_siege_wall_gate.xml:32
+#: simulation/templates/structures/rome_siege_wall_gate.xml:38
 msgid "Porta Circummūnītiōnis"
 msgstr "Porta Circummūnītiōnis"
 
-#: simulation/templates/structures/rome_siege_wall_gate.xml:33
-#: simulation/templates/structures/rome_siege_wall_long.xml:34
-#: simulation/templates/structures/rome_siege_wall_medium.xml:34
-#: simulation/templates/structures/rome_siege_wall_short.xml:34
-#: simulation/templates/structures/rome_siege_wall_tower.xml:33
+#: simulation/templates/structures/rome_siege_wall_gate.xml:39
+#: simulation/templates/structures/rome_siege_wall_long.xml:40
+#: simulation/templates/structures/rome_siege_wall_medium.xml:40
+#: simulation/templates/structures/rome_siege_wall_short.xml:40
+#: simulation/templates/structures/rome_siege_wall_tower.xml:39
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "SiegeWall"
-msgstr ""
+msgstr "Ostromfal"
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:32
-#: simulation/templates/structures/rome_siege_wall_medium.xml:32
-#: simulation/templates/structures/rome_siege_wall_short.xml:32
+#: simulation/templates/structures/rome_siege_wall_long.xml:38
+#: simulation/templates/structures/rome_siege_wall_medium.xml:38
+#: simulation/templates/structures/rome_siege_wall_short.xml:38
 #: simulation/templates/structures/rome_wallset_siege.xml:5
 msgid "Siege Wall"
 msgstr "Ostromfal"
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:33
-#: simulation/templates/structures/rome_siege_wall_medium.xml:33
-#: simulation/templates/structures/rome_siege_wall_short.xml:33
+#: simulation/templates/structures/rome_siege_wall_long.xml:39
+#: simulation/templates/structures/rome_siege_wall_medium.xml:39
+#: simulation/templates/structures/rome_siege_wall_short.xml:39
 #: simulation/templates/structures/rome_wallset_siege.xml:6
 msgid "Mūrus Circummūnītiōnis"
 msgstr "Mūrus Circummūnītiōnis"
 
-#: simulation/templates/structures/rome_siege_wall_tower.xml:31
+#: simulation/templates/structures/rome_siege_wall_tower.xml:37
 msgid "Siege Wall Tower"
 msgstr "Ostromfal torony"
 
-#: simulation/templates/structures/rome_siege_wall_tower.xml:32
+#: simulation/templates/structures/rome_siege_wall_tower.xml:38
 msgid "Turris Circummūnītiōnis"
 msgstr "Turris Circummūnītiōnis"
 
@@ -1815,7 +1815,7 @@ msgstr "Aedēs Mārtiālis"
 
 #: simulation/templates/structures/rome_temple_mars.xml:14
 msgid "TempleOfMars"
-msgstr ""
+msgstr "Mars-templom"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:18
 msgid "Temple of Vesta"
@@ -1827,7 +1827,7 @@ msgstr "Aedēs Vestālis"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:20
 msgid "TempleOfVesta"
-msgstr ""
+msgstr "Vesta-templom"
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1858,7 +1858,7 @@ msgstr "Turris Lapidea"
 
 #: simulation/templates/structures/rome_wallset_siege.xml:7
 msgid "Wall off an area. Build in own, neutral, or enemy territory."
-msgstr ""
+msgstr "Terület elfalazása. Saját, semleges vagy ellenséges területen építhető."
 
 #: simulation/templates/structures/rome_wonder.xml:9
 msgid "Aedēs Iovis Optimi Maximi"
@@ -1890,7 +1890,7 @@ msgstr "Szüsszitia"
 
 #: simulation/templates/structures/spart_syssiton.xml:27
 msgid "Syssiton"
-msgstr ""
+msgstr "Szüssziton"
 
 #: simulation/templates/structures/spart_wonder.xml:9
 msgid "Hieron tēs Artemidos Orthias"

@@ -36,9 +36,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-10 07:08+0000\n"
-"PO-Revision-Date: 2020-08-10 17:22+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-08-28 07:09+0000\n"
+"PO-Revision-Date: 2020-08-29 11:34+0000\n"
+"Last-Translator: Freagarach . <freagarach@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -460,10 +460,10 @@ msgid "Cheats"
 msgstr "Cheats"
 
 #: gui/common/gamedescription.js:411 gui/common/tooltips.js:139
-#: gui/common/tooltips.js:172 gui/common/tooltips.js:214
-#: gui/common/tooltips.js:506 gui/common/tooltips.js:528
-#: gui/common/tooltips.js:612 gui/common/tooltips.js:653
-#: gui/common/tooltips.js:950
+#: gui/common/tooltips.js:192 gui/common/tooltips.js:213
+#: gui/common/tooltips.js:253 gui/common/tooltips.js:545
+#: gui/common/tooltips.js:567 gui/common/tooltips.js:651
+#: gui/common/tooltips.js:692 gui/common/tooltips.js:989
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -594,12 +594,12 @@ msgid "Users (%(num)s): %(users)s"
 msgstr "Gebruikers (%(num)s): %(users)s"
 
 #: gui/common/network.js:161 gui/common/tooltips.js:58
-#: gui/common/tooltips.js:185 gui/common/tooltips.js:267
-#: gui/common/tooltips.js:290 gui/common/tooltips.js:304
-#: gui/common/tooltips.js:372 gui/common/tooltips.js:406
-#: gui/common/tooltips.js:411 gui/common/tooltips.js:468
-#: gui/common/tooltips.js:501 gui/common/tooltips.js:816
-#: gui/common/tooltips.js:849 gui/common/tooltips.js:915
+#: gui/common/tooltips.js:205 gui/common/tooltips.js:306
+#: gui/common/tooltips.js:329 gui/common/tooltips.js:343
+#: gui/common/tooltips.js:411 gui/common/tooltips.js:445
+#: gui/common/tooltips.js:450 gui/common/tooltips.js:507
+#: gui/common/tooltips.js:540 gui/common/tooltips.js:855
+#: gui/common/tooltips.js:888 gui/common/tooltips.js:954
 #: gui/loadgame/SavegameDetails.js:38 gui/reference/common/tooltips.js:13
 #: gui/replaymenu/replay_menu.js:282
 msgid ", "
@@ -746,8 +746,8 @@ msgid_plural "%(time)s %(second)s"
 msgstr[0] "%(time)s %(second)s"
 msgstr[1] "%(time)s %(second)s"
 
-#: gui/common/tooltips.js:87 gui/common/tooltips.js:464
-#: gui/common/tooltips.js:847
+#: gui/common/tooltips.js:87 gui/common/tooltips.js:503
+#: gui/common/tooltips.js:886
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "seconde"
@@ -767,52 +767,72 @@ msgstr "%(healthLabel)s%(current)s/%(max)s"
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
 
-#: gui/common/tooltips.js:173
-msgid "Armor:"
-msgstr "Bewapening:"
-
-#: gui/common/tooltips.js:176
-#, javascript-format
-msgid "%(damage)s %(damageType)s %(armorPercentage)s"
-msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
-
 #: gui/common/tooltips.js:181
 #, javascript-format
-msgid "(%(armorPercentage)s)"
-msgstr "(%(armorPercentage)s)"
+msgid ""
+"%(label)s\n"
+"    %(details)s"
+msgstr ""
 
-#: gui/common/tooltips.js:195
+#: gui/common/tooltips.js:182
+msgid "Resistance:"
+msgstr ""
+
+#: gui/common/tooltips.js:193
+msgid "Damage Resistance:"
+msgstr ""
+
+#: gui/common/tooltips.js:196 gui/common/tooltips.js:216
+#, javascript-format
+msgid "%(damage)s %(damageType)s %(resistancePercentage)s"
+msgstr ""
+
+#: gui/common/tooltips.js:201 gui/common/tooltips.js:221
+#, javascript-format
+msgid "(%(resistancePercentage)s)"
+msgstr ""
+
+#: gui/common/tooltips.js:214
+msgid "Capture Resistance:"
+msgstr ""
+
+#: gui/common/tooltips.js:218 gui/common/tooltips.js:316
+msgctxt "damage type"
+msgid "Capture"
+msgstr "Verover"
+
+#: gui/common/tooltips.js:234
 msgid "Garrison to fire arrows"
 msgstr "Beman voor extra pijlen."
 
-#: gui/common/tooltips.js:198 gui/common/tooltips.js:845
+#: gui/common/tooltips.js:237 gui/common/tooltips.js:884
 msgid "Interval:"
 msgstr "Interval:"
 
-#: gui/common/tooltips.js:202
+#: gui/common/tooltips.js:241
 msgid "Rate:"
 msgstr "Interval:"
 
-#: gui/common/tooltips.js:203
+#: gui/common/tooltips.js:242
 #, javascript-format
 msgid "%(projectileCount)s %(projectileName)s"
 msgid_plural "%(projectileCount)s %(projectileName)s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/common/tooltips.js:205
+#: gui/common/tooltips.js:244
 msgid "arrow"
 msgid_plural "arrows"
 msgstr[0] "pijl"
 msgstr[1] "pijlen"
 
-#: gui/common/tooltips.js:208
+#: gui/common/tooltips.js:247
 #, javascript-format
 msgid "%(projectileString)s / %(attackRateString)s"
 msgstr ""
 
 #. Translation: For example: Range: 2 to 10 (+2) meters
-#: gui/common/tooltips.js:228
+#: gui/common/tooltips.js:267
 #, javascript-format
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
@@ -820,91 +840,86 @@ msgid ""
 msgstr ""
 
 #. Translation: For example: Range: 10 (+2) meters
-#: gui/common/tooltips.js:230
+#: gui/common/tooltips.js:269
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 msgstr ""
 
 #. Translation: For example: Range: 2 to 10 meters
-#: gui/common/tooltips.js:234
+#: gui/common/tooltips.js:273
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
 msgstr ""
 
 #. Translation: For example: Range: 10 meters
-#: gui/common/tooltips.js:236
+#: gui/common/tooltips.js:275
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr ""
 
-#: gui/common/tooltips.js:246 gui/common/tooltips.js:840
+#: gui/common/tooltips.js:285 gui/common/tooltips.js:879
 msgid "Range:"
 msgstr "Bereik:"
 
-#: gui/common/tooltips.js:249
+#: gui/common/tooltips.js:288
 #, javascript-format
 msgid "+%(number)s"
 msgstr "+%(number)s"
 
 #. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3)
 #. meters"
-#: gui/common/tooltips.js:253
+#: gui/common/tooltips.js:292
 msgid "meters"
 msgstr "meters"
 
-#: gui/common/tooltips.js:254 gui/common/tooltips.js:842
-#: gui/common/tooltips.js:872
+#: gui/common/tooltips.js:293 gui/common/tooltips.js:881
+#: gui/common/tooltips.js:911
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "meter"
 msgstr[1] "meter"
 
-#: gui/common/tooltips.js:264
+#: gui/common/tooltips.js:303
 #, javascript-format
 msgid "%(damage)s %(damageType)s"
 msgstr "%(damage)s %(damageType)s"
 
-#: gui/common/tooltips.js:275
+#: gui/common/tooltips.js:314
 #, javascript-format
 msgid "%(amount)s %(name)s"
 msgstr ""
 
-#: gui/common/tooltips.js:277
-msgctxt "damage type"
-msgid "Capture"
-msgstr "Verover"
-
-#: gui/common/tooltips.js:286
+#: gui/common/tooltips.js:325
 #, javascript-format
 msgid "gives %(name)s"
 msgstr "geeft %(name)s"
 
-#: gui/common/tooltips.js:319
+#: gui/common/tooltips.js:358
 #, javascript-format
 msgid "%(attackType)s Attack"
 msgstr "%(attackType)s aanval"
 
-#: gui/common/tooltips.js:340
+#: gui/common/tooltips.js:379
 #, javascript-format
 msgid "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s"
 msgstr ""
 
-#: gui/common/tooltips.js:363
+#: gui/common/tooltips.js:402
 #, javascript-format
 msgid "%(splashShape)s Splash Damage"
 msgstr "%(splashShape)s omgevingsschade"
 
-#: gui/common/tooltips.js:366
+#: gui/common/tooltips.js:405
 #, javascript-format
 msgid "%(label)s: %(effects)s"
 msgstr ""
 
-#: gui/common/tooltips.js:372
+#: gui/common/tooltips.js:411
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
 msgstr "Eigen Vuur: %(enabled)s"
 
-#: gui/common/tooltips.js:373 gui/loadgame/SavegameDeleter.js:55
+#: gui/common/tooltips.js:412 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:300 gui/options/options.js:353
 #: gui/options/options.js:379 gui/pregame/MainMenuItems.js:183
@@ -912,7 +927,7 @@ msgstr "Eigen Vuur: %(enabled)s"
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/common/tooltips.js:373 gui/loadgame/SavegameDeleter.js:55
+#: gui/common/tooltips.js:412 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:300 gui/options/options.js:353
 #: gui/options/options.js:379 gui/pregame/MainMenuItems.js:183
@@ -920,92 +935,92 @@ msgstr "Ja"
 msgid "No"
 msgstr "Nee"
 
-#: gui/common/tooltips.js:404
+#: gui/common/tooltips.js:443
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s %(stackability)s"
 msgstr ""
 
-#: gui/common/tooltips.js:409
+#: gui/common/tooltips.js:448
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s"
 msgstr ""
 
-#: gui/common/tooltips.js:420
+#: gui/common/tooltips.js:459
 #, javascript-format
 msgid "%(durName)s: %(duration)s"
 msgstr ""
 
-#: gui/common/tooltips.js:421
+#: gui/common/tooltips.js:460
 msgid "Duration"
 msgstr "Duur"
 
-#: gui/common/tooltips.js:435
+#: gui/common/tooltips.js:474
 msgctxt "status effect stackability"
 msgid "(extends)"
 msgstr ""
 
-#: gui/common/tooltips.js:437
+#: gui/common/tooltips.js:476
 msgctxt "status effect stackability"
 msgid "(replaces)"
 msgstr ""
 
-#: gui/common/tooltips.js:439
+#: gui/common/tooltips.js:478
 msgctxt "status effect stackability"
 msgid "(stacks)"
 msgstr ""
 
-#: gui/common/tooltips.js:441
+#: gui/common/tooltips.js:480
 #, javascript-format
 msgid "%(stackability)s"
 msgstr ""
 
-#: gui/common/tooltips.js:452
+#: gui/common/tooltips.js:491
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
 msgstr "%(label)s: %(garrisonLimit)s"
 
-#: gui/common/tooltips.js:453
+#: gui/common/tooltips.js:492
 msgid "Garrison Limit"
 msgstr "Bemanningslimiet"
 
-#: gui/common/tooltips.js:460
+#: gui/common/tooltips.js:499
 #, javascript-format
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:461 gui/common/tooltips.js:835
+#: gui/common/tooltips.js:500 gui/common/tooltips.js:874
 msgid "Heal:"
 msgstr "Genezing:"
 
-#: gui/common/tooltips.js:463 gui/common/tooltips.js:837
+#: gui/common/tooltips.js:502 gui/common/tooltips.js:876
 msgid "Health"
 msgstr "Gezondheid"
 
-#: gui/common/tooltips.js:487 gui/common/tooltips.js:492
-#: gui/common/tooltips.js:497
+#: gui/common/tooltips.js:526 gui/common/tooltips.js:531
+#: gui/common/tooltips.js:536
 #, javascript-format
 msgid "%(label)s: %(value)s"
 msgstr "%(label)s: %(value)s"
 
-#: gui/common/tooltips.js:488
+#: gui/common/tooltips.js:527
 msgid "Projectile Limit"
 msgstr "Projectiellimiet"
 
-#: gui/common/tooltips.js:493
+#: gui/common/tooltips.js:532
 msgctxt "projectiles"
 msgid "Default"
 msgstr "Standaard"
 
-#: gui/common/tooltips.js:498
+#: gui/common/tooltips.js:537
 msgctxt "projectiles"
 msgid "Per Unit"
 msgstr "Per Eenheid"
 
-#: gui/common/tooltips.js:507
+#: gui/common/tooltips.js:546
 msgid "Number of repairers:"
 msgstr "Aantal reparateurs:"
 
-#: gui/common/tooltips.js:513
+#: gui/common/tooltips.js:552
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
@@ -1013,18 +1028,18 @@ msgid_plural ""
 msgstr[0] "Wijs een extra werker toe om het repareren met %(second)s seconde te versnellen."
 msgstr[1] "Wijs een extra werker toe om het repareren met %(second)s seconden te versnellen."
 
-#: gui/common/tooltips.js:520
+#: gui/common/tooltips.js:559
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
 msgstr[0] "Wijs een extra werker toe om het repareren in %(second)s seconde af te ronden."
 msgstr[1] "Wijs een extra werker toe om het repareren in %(second)s seconden af te ronden."
 
-#: gui/common/tooltips.js:529
+#: gui/common/tooltips.js:568
 msgid "Number of builders:"
 msgstr "Aantal werklieden:"
 
-#: gui/common/tooltips.js:535
+#: gui/common/tooltips.js:574
 #, javascript-format
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
@@ -1032,180 +1047,180 @@ msgid_plural ""
 msgstr[0] "Wijs een extra werker toe om de constructie met %(second)s seconde te versnellen."
 msgstr[1] "Wijs een extra werker toe om de constructie met %(second)s seconden te versnellen."
 
-#: gui/common/tooltips.js:542
+#: gui/common/tooltips.js:581
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] "Wijs een extra werker toe om de constructie in %(second)s seconde af te ronden."
 msgstr[1] "Wijs een extra werker toe om de constructie in %(second)s seconden af te ronden."
 
-#: gui/common/tooltips.js:577 gui/common/tooltips.js:788
+#: gui/common/tooltips.js:616 gui/common/tooltips.js:827
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
-#: gui/common/tooltips.js:613
+#: gui/common/tooltips.js:652
 msgid "Gather Rates:"
 msgstr "Verzamelsnelheden:"
 
-#: gui/common/tooltips.js:616 gui/common/tooltips.js:658
+#: gui/common/tooltips.js:655 gui/common/tooltips.js:697
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource supply.
-#: gui/common/tooltips.js:636
+#: gui/common/tooltips.js:675
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
 msgstr "%(label)s%(component)s%(amount)s"
 
-#: gui/common/tooltips.js:637
+#: gui/common/tooltips.js:676
 msgid "Resource Supply:"
 msgstr "Grondstof Voorraad:"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its resource.
-#: gui/common/tooltips.js:640 gui/summary/summary.js:111
+#: gui/common/tooltips.js:679 gui/summary/summary.js:111
 msgid "∞"
 msgstr "∞"
 
-#: gui/common/tooltips.js:654
+#: gui/common/tooltips.js:693
 msgid "Resource Trickle:"
 msgstr "Grondstoffen Bonus:"
 
-#: gui/common/tooltips.js:655
+#: gui/common/tooltips.js:694
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr "%(resources)s/%(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:707
+#: gui/common/tooltips.js:746
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s tot %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:736
+#: gui/common/tooltips.js:775
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Muren: %(costs)s"
 
-#: gui/common/tooltips.js:737
+#: gui/common/tooltips.js:776
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Torens: %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
-#: gui/common/tooltips.js:745
+#: gui/common/tooltips.js:784
 #, javascript-format
 msgid "%(label)s %(costs)s"
 msgstr "%(label)s%(costs)s"
 
-#: gui/common/tooltips.js:746
+#: gui/common/tooltips.js:785
 msgid "Cost:"
 msgstr "Kosten:"
 
-#: gui/common/tooltips.js:759
+#: gui/common/tooltips.js:798
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "\"%(technology)s\" vereist"
 
-#: gui/common/tooltips.js:771
+#: gui/common/tooltips.js:810
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:772
+#: gui/common/tooltips.js:811
 msgid "Population Bonus:"
 msgstr "Bevolkingsbonus"
 
-#: gui/common/tooltips.js:793
+#: gui/common/tooltips.js:832
 msgid "Insufficient resources:"
 msgstr "Onvoldoende grondstoffen:"
 
-#: gui/common/tooltips.js:809
+#: gui/common/tooltips.js:848
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:810
+#: gui/common/tooltips.js:849
 msgid "Speed:"
 msgstr "Snelheid:"
 
-#: gui/common/tooltips.js:812 gui/common/tooltips.js:817
+#: gui/common/tooltips.js:851 gui/common/tooltips.js:856
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:814
+#: gui/common/tooltips.js:853
 msgid "Walk"
 msgstr "Wandelen"
 
-#: gui/common/tooltips.js:819
+#: gui/common/tooltips.js:858
 msgid "Run"
 msgstr "Lopen"
 
-#: gui/common/tooltips.js:834 gui/common/tooltips.js:839
-#: gui/common/tooltips.js:844 gui/common/tooltips.js:869
+#: gui/common/tooltips.js:873 gui/common/tooltips.js:878
+#: gui/common/tooltips.js:883 gui/common/tooltips.js:908
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
 msgstr[1] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:861
+#: gui/common/tooltips.js:900
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:862
+#: gui/common/tooltips.js:901
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:870
+#: gui/common/tooltips.js:909
 msgctxt "aura"
 msgid "Range:"
 msgstr "Bereik:"
 
-#: gui/common/tooltips.js:887
+#: gui/common/tooltips.js:926
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:899
+#: gui/common/tooltips.js:938
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:914
+#: gui/common/tooltips.js:953
 msgid "Classes:"
 msgstr "Klassen:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
-#: gui/common/tooltips.js:941
+#: gui/common/tooltips.js:980
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:951
+#: gui/common/tooltips.js:990
 msgid "Loot:"
 msgstr "Buit:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI element will open the Template Details GUI page.
-#: gui/common/tooltips.js:959
+#: gui/common/tooltips.js:998
 msgid "Right-click to view more information."
 msgstr "Klik rechts om meer informatie te zien."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
-#: gui/common/tooltips.js:965
+#: gui/common/tooltips.js:1004
 msgid "Click to view more information."
 msgstr "Klik om meer informatie te zien."
 
@@ -1654,7 +1669,7 @@ msgstr "Gebruikersvoorwaarden"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
-msgstr ""
+msgstr "Lees en accepteer de gebruiksvoorwaarden van de UserReporter, alstublieft."
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
@@ -3783,18 +3798,6 @@ msgstr "Bouw er vroeg één zodat u, terwijl u naar de volgende fase gaat, nieuw
 msgid "Build in a forward base to resupply your assault with fresh troops."
 msgstr "Bouw dicht bij de frontlijn om de aanval van verse troepen te kunnen voorzien."
 
-#: gui/text/tips/blacksmith.txt:1
-msgid "BLACKSMITH"
-msgstr "SMIDSE"
-
-#: gui/text/tips/blacksmith.txt:2
-msgid "Research structure for all factions."
-msgstr "Onderzoeksgebouw voor alle beschavingen."
-
-#: gui/text/tips/blacksmith.txt:3
-msgid "Research weapon and armor upgrades for your units."
-msgstr "Onderzoek nieuwe wapens en verbeterde bescherming voor jouw eenheden."
-
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
 msgstr "CARTHAAGSE HEILIGE SCHARE"
@@ -3912,6 +3915,18 @@ msgstr "Vissen verzameld voedsel sneller dan boeren op velden."
 #: gui/text/tips/fishing.txt:5
 msgid "Careful! Fish are not an infinite resource!"
 msgstr "Voorzichtig! Vis is geen onuitputtelijke grondstof!"
+
+#: gui/text/tips/forge.txt:1
+msgid "FORGE"
+msgstr ""
+
+#: gui/text/tips/forge.txt:2
+msgid "Research structure for all factions."
+msgstr "Onderzoeksgebouw voor alle beschavingen."
+
+#: gui/text/tips/forge.txt:3
+msgid "Research weapon and armor upgrades for your units."
+msgstr "Onderzoek nieuwe wapens en verbeterde bescherming voor jouw eenheden."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
