@@ -196,8 +196,16 @@ function TestLinearSplashDamage()
 		"ExecuteQueryAroundPos": () => [60, 61, 62],
 	});
 
+	AddMock(SYSTEM_ENTITY, IID_ObstructionManager, {
+		"DistanceToPoint": (ent) => ({
+			"60": Math.sqrt(9.25),
+			"61": 0,
+			"62": Math.sqrt(29)
+		}[ent])
+	});
+
 	AddMock(60, IID_Position, {
-		"GetPosition2D": () => new Vector2D(2.2, -0.4),
+		"GetPosition2D": () => new Vector2D(3, -0.5),
 	});
 
 	AddMock(61, IID_Position, {
@@ -211,7 +219,7 @@ function TestLinearSplashDamage()
 	AddMock(60, IID_Health, {
 		"TakeDamage": (amount, __, ___) => {
 			hitEnts.add(60);
-			TS_ASSERT_EQUALS(amount, 100 * fallOff(2.2, -0.4));
+			TS_ASSERT_EQUALS(amount, 100 * fallOff(3, -0.5));
 			return { "healthChange": -amount };
 		}
 	});
@@ -227,7 +235,8 @@ function TestLinearSplashDamage()
 	AddMock(62, IID_Health, {
 		"TakeDamage": (amount, __, ___) => {
 			hitEnts.add(62);
-			TS_ASSERT_EQUALS(amount, 0);
+			// Minor numerical precision issues make this necessary
+			TS_ASSERT(amount < 0.00001);
 			return { "healthChange": -amount };
 		}
 	});
@@ -280,7 +289,18 @@ function TestCircularSplashDamage()
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
-		"ExecuteQueryAroundPos": () => [60, 61, 62, 64],
+		"ExecuteQueryAroundPos": () => [60, 61, 62, 64, 65],
+	});
+
+	AddMock(SYSTEM_ENTITY, IID_ObstructionManager, {
+		"DistanceToPoint": (ent, x, z) => ({
+			"60": 0,
+			"61": 5,
+			"62": 1,
+			"63": Math.sqrt(85),
+			"64": 10,
+			"65": 2
+		}[ent])
 	});
 
 	AddMock(60, IID_Position, {
@@ -299,9 +319,14 @@ function TestCircularSplashDamage()
 		"GetPosition2D": () => new Vector2D(10, -10),
 	});
 
-	// Target on the frontier of the shape
+	// Target on the frontier of the shape (see distance above).
 	AddMock(64, IID_Position, {
 		"GetPosition2D": () => new Vector2D(9, -4),
+	});
+
+	// Big target far away (see distance above).
+	AddMock(65, IID_Position, {
+		"GetPosition2D": () => new Vector2D(23, 4),
 	});
 
 	AddMock(60, IID_Health, {
@@ -331,13 +356,21 @@ function TestCircularSplashDamage()
 		}
 	});
 
-	let cmphealth = AddMock(64, IID_Health, {
+	let cmphealth64 = AddMock(64, IID_Health, {
 		"TakeDamage": (amount, __, ___) => {
 			TS_ASSERT_EQUALS(amount, 0);
 			return { "healthChange": -amount };
 		}
 	});
-	let spy = new Spy(cmphealth, "TakeDamage");
+	let spy64 = new Spy(cmphealth64, "TakeDamage");
+
+	let cmpHealth65 = AddMock(65, IID_Health, {
+		"TakeDamage": (amount, __, ___) => {
+			TS_ASSERT_EQUALS(amount, 100 * fallOff(2));
+			return { "healthChange": -amount };
+		}
+	});
+	let spy65 = new Spy(cmpHealth65, "TakeDamage");
 
 	Attacking.CauseDamageOverArea({
 		"type": "Ranged",
@@ -350,7 +383,8 @@ function TestCircularSplashDamage()
 		"friendlyFire": false,
 	});
 
-	TS_ASSERT_EQUALS(spy._called, 1);
+	TS_ASSERT_EQUALS(spy64._called, 1);
+	TS_ASSERT_EQUALS(spy65._called, 1);
 }
 
 TestCircularSplashDamage();
@@ -437,6 +471,10 @@ function Test_MissileHit()
 		"GetParent": () => 61
 	});
 
+	AddMock(SYSTEM_ENTITY, IID_ObstructionManager, {
+		"DistanceToPoint": (ent) => 0
+	});
+
 	AddMock(61, IID_Position, {
 		"GetPosition": () => targetPos,
 		"GetPreviousPosition": () => targetPos,
@@ -500,6 +538,13 @@ function Test_MissileHit()
 		"ExecuteQueryAroundPos": () => [61, 62]
 	});
 
+	AddMock(SYSTEM_ENTITY, IID_ObstructionManager, {
+		"DistanceToPoint": (ent) => ({
+			"61": 0,
+			"62": 5
+		}[ent])
+	});
+
 	let dealtDamage = 0;
 	AddMock(61, IID_Health, {
 		"TakeDamage": (amount, __, ___) => {
@@ -540,6 +585,10 @@ function Test_MissileHit()
 	Engine.DestroyEntity(62);
 	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
 		"ExecuteQueryAroundPos": () => [61]
+	});
+
+	AddMock(SYSTEM_ENTITY, IID_ObstructionManager, {
+		"DistanceToPoint": (ent) => 0
 	});
 
 	let bonus= { "BonusCav": { "Classes": "Cavalry", "Multiplier": 400 } };
@@ -594,6 +643,13 @@ function Test_MissileHit()
 
 	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
 		"ExecuteQueryAroundPos": () => [61, 62]
+	});
+
+	AddMock(SYSTEM_ENTITY, IID_ObstructionManager, {
+		"DistanceToPoint": (ent) => ({
+			"61": 0,
+			"62": 5
+		}[ent])
 	});
 
 	dealtDamage = 0;

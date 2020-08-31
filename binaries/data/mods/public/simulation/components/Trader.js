@@ -298,7 +298,7 @@ Trader.prototype.GetRange = function()
 	let cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
 	let max = 1;
 	if (cmpObstruction)
-		max += cmpObstruction.GetUnitRadius()*1.5;
+		max += cmpObstruction.GetSize() * 1.5;
 	return { "min": 0, "max": max };
 };
 

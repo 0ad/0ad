@@ -293,16 +293,22 @@ Attacking.prototype.CauseDamageOverArea = function(data)
 		this.GetPlayersToDamage(data.attackerOwner, data.friendlyFire));
 	let damageMultiplier = 1;
 
+	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+
 	// Cycle through all the nearby entities and damage it appropriately based on its distance from the origin.
 	for (let ent of nearEnts)
 	{
-		let entityPosition = Engine.QueryInterface(ent, IID_Position).GetPosition2D();
+		// Correct somewhat for the entity's obstruction radius.
+		// TODO: linear falloff should arguably use something cleverer.
+		let distance = cmpObstructionManager.DistanceToPoint(ent, data.origin.x, data.origin.y);
+
 		if (data.shape == 'Circular') // circular effect with quadratic falloff in every direction
-			damageMultiplier = 1 - data.origin.distanceToSquared(entityPosition) / (data.radius * data.radius);
+			damageMultiplier = 1 - distance * distance / (data.radius * data.radius);
 		else if (data.shape == 'Linear') // linear effect with quadratic falloff in two directions (only used for certain missiles)
 		{
-			// Get position of entity relative to splash origin.
-			let relativePos = entityPosition.sub(data.origin);
+			// The entity has a position here since it was returned by the range manager.
+			let entityPosition = Engine.QueryInterface(ent, IID_Position).GetPosition2D();
+			let relativePos = entityPosition.sub(data.origin).normalize().mult(distance);
 
 			// Get the position relative to the missile direction.
 			let direction = Vector2D.from3D(data.direction);
@@ -324,6 +330,9 @@ Attacking.prototype.CauseDamageOverArea = function(data)
 		{
 			warn("The " + data.shape + " splash damage shape is not implemented!");
 		}
+		// The RangeManager can return units that are too far away (due to approximations there)
+		// so the multiplier can end up below 0.
+		damageMultiplier = Math.max(0, damageMultiplier);
 
 		this.HandleAttackEffects(ent, data.type + ".Splash", data.attackData, data.attacker, data.attackerOwner, damageMultiplier);
 	}

@@ -54,7 +54,7 @@ Builder.prototype.GetRange = function()
 	let max = 2;
 	let cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
 	if (cmpObstruction)
-		max += cmpObstruction.GetUnitRadius();
+		max += cmpObstruction.GetSize();
 
 	return { "max": max, "min": 0 };
 };

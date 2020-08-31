@@ -58,11 +58,15 @@ public:
 	 */
 	virtual bool GetPreviousObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) const = 0;
 
+	/**
+	 * @return the size of the obstruction (either the clearance or a circumscribed circle).
+	 */
 	virtual entity_pos_t GetSize() const = 0;
 
+	/**
+	 * @return the size of the static obstruction or (0,0) for a unit shape.
+	 */
 	virtual CFixedVector2D GetStaticSize() const = 0;
-
-	virtual entity_pos_t GetUnitRadius() const = 0;
 
 	virtual EObstructionType GetObstructionType() const = 0;
 

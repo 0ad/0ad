@@ -296,7 +296,7 @@ GarrisonHolder.prototype.PerformEject = function(entities, forced)
 		if (failedRadius !== undefined)
 		{
 			let cmpObstruction = Engine.QueryInterface(entity, IID_Obstruction);
-			radius = cmpObstruction ? cmpObstruction.GetUnitRadius() : 0;
+			radius = cmpObstruction ? cmpObstruction.GetSize() : 0;
 			if (radius >= failedRadius)
 				continue;
 		}
@@ -315,7 +315,7 @@ GarrisonHolder.prototype.PerformEject = function(entities, forced)
 			else
 			{
 				let cmpObstruction = Engine.QueryInterface(entity, IID_Obstruction);
-				failedRadius = cmpObstruction ? cmpObstruction.GetUnitRadius() : 0;
+				failedRadius = cmpObstruction ? cmpObstruction.GetSize() : 0;
 			}
 		}
 	}
