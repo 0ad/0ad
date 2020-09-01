@@ -169,7 +169,7 @@ public:
 		CmpPtr<ICmpObstruction> cmpSpawnedObstruction(GetSimContext(), spawned);
 		if (cmpSpawnedObstruction)
 		{
-			spawnedRadius = cmpSpawnedObstruction->GetUnitRadius();
+			spawnedRadius = cmpSpawnedObstruction->GetSize();
 			spawnedTag = cmpSpawnedObstruction->GetObstruction();
 		}
 
@@ -292,7 +292,7 @@ public:
 		CmpPtr<ICmpObstruction> cmpSpawnedObstruction(GetSimContext(), spawned);
 		if (cmpSpawnedObstruction)
 		{
-			spawnedRadius = cmpSpawnedObstruction->GetUnitRadius();
+			spawnedRadius = cmpSpawnedObstruction->GetSize();
 			spawnedTag = cmpSpawnedObstruction->GetObstruction();
 		}
 		// else use zero radius

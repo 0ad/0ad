@@ -46,7 +46,7 @@ std::string ICmpObstruction::CheckFoundation_wrapper(const std::string& classNam
 }
 
 BEGIN_INTERFACE_WRAPPER(Obstruction)
-DEFINE_INTERFACE_METHOD_CONST_0("GetUnitRadius", entity_pos_t, ICmpObstruction, GetUnitRadius)
+DEFINE_INTERFACE_METHOD_CONST_0("GetSize", entity_pos_t, ICmpObstruction, GetSize)
 DEFINE_INTERFACE_METHOD_CONST_0("CheckShorePlacement", bool, ICmpObstruction, CheckShorePlacement)
 DEFINE_INTERFACE_METHOD_CONST_2("CheckFoundation", std::string, ICmpObstruction, CheckFoundation_wrapper, std::string, bool)
 DEFINE_INTERFACE_METHOD_CONST_0("CheckDuplicateFoundation", bool, ICmpObstruction, CheckDuplicateFoundation)

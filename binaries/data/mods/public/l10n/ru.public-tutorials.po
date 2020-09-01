@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2019-03-22 09:45+0100\n"
+"POT-Creation-Date: 2020-08-28 07:11+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
 "Last-Translator: Александр Сизых <alexsneezy@gmail.com>, 2020\n"
 "Language-Team: Russian (https://www.transifex.com/wildfire-games/teams/17418/ru/)\n"
@@ -25,11 +25,11 @@ msgstr ""
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: maps/tutorials/Introductory_Tutorial.js:3
+#: maps/tutorials/introductory_tutorial.js:3
 msgid "Welcome to the 0 A.D. tutorial."
 msgstr "Добро пожаловать в обучение 0 A.D."
 
-#: maps/tutorials/Introductory_Tutorial.js:6
+#: maps/tutorials/introductory_tutorial.js:6
 msgid ""
 "Left-click on a female citizen and then right-click on a berry bush to make "
 "that female citizen gather food. Female citizens gather vegetables faster "
@@ -38,7 +38,7 @@ msgstr ""
 "Щелкните ЛКМ на горожанке, а затем — ПКМ на ягодном кусте, чтобы отправить "
 "женщину заниматься сбором еды. Женщины собирают еду быстрее других юнитов."
 
-#: maps/tutorials/Introductory_Tutorial.js:15
+#: maps/tutorials/introductory_tutorial.js:15
 msgid ""
 "Select the citizen-soldier, right-click on a tree near the Civic Center to "
 "begin gathering Wood. Citizen Soldiers gather Wood faster than female "
@@ -48,7 +48,7 @@ msgstr ""
 "городского Центра для начала сбора древесины. Воины-граждане добывают "
 "древесину быстрее женщин."
 
-#: maps/tutorials/Introductory_Tutorial.js:26
+#: maps/tutorials/introductory_tutorial.js:26
 #, javascript-format
 msgid ""
 "Select the Civic Center building and hold %(hotkey)s while clicking on the "
@@ -57,10 +57,10 @@ msgstr ""
 "Выберите здание городского Центра и, зажав клавишу %(hotkey)s, щелкните один"
 " раз по значку гоплита, чтобы начать обучение партии гоплитов."
 
-#: maps/tutorials/Introductory_Tutorial.js:37
-#: maps/tutorials/Introductory_Tutorial.js:79
-#: maps/tutorials/Introductory_Tutorial.js:161
-#: maps/tutorials/Introductory_Tutorial.js:237
+#: maps/tutorials/introductory_tutorial.js:37
+#: maps/tutorials/introductory_tutorial.js:79
+#: maps/tutorials/introductory_tutorial.js:161
+#: maps/tutorials/introductory_tutorial.js:237
 msgid ""
 "Do not forget to press the batch training hotkey while clicking to produce "
 "multiple units."
@@ -68,11 +68,11 @@ msgstr ""
 "Не забывайте удерживать горячую клавишу при щелчке на иконке юнита, чтобы "
 "запустить создание партии юнитов."
 
-#: maps/tutorials/Introductory_Tutorial.js:38
+#: maps/tutorials/introductory_tutorial.js:38
 msgid "Click on the HOPLITE icon."
 msgstr "Щёлкните по иконке ГОПЛИТА."
 
-#: maps/tutorials/Introductory_Tutorial.js:46
+#: maps/tutorials/introductory_tutorial.js:46
 msgid ""
 "Select the two idle female citizens and build a house nearby by selecting "
 "the house icon. Place the house by left-clicking on a piece of land."
@@ -80,7 +80,7 @@ msgstr ""
 "Выберите двух не занятых горожанок и постройте дом неподалёку, выбрав иконку"
 " дома. Разместите дом, щелкнув ЛКМ на свободном участке земли."
 
-#: maps/tutorials/Introductory_Tutorial.js:54
+#: maps/tutorials/introductory_tutorial.js:54
 msgid ""
 "When they are ready, select the newly trained Hoplites and assign them to "
 "build a storehouse beside some nearby trees. They will begin to gather Wood "
@@ -90,7 +90,7 @@ msgstr ""
 " им постройку склада посреди расположенных рядом деревьев. Как только "
 "постройка склада будет завершена, они займутся сбором древесины."
 
-#: maps/tutorials/Introductory_Tutorial.js:64
+#: maps/tutorials/introductory_tutorial.js:64
 #, javascript-format
 msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
@@ -99,11 +99,11 @@ msgstr ""
 "Обучите партию застрельщиков, удерживая %(hotkey)s и кликнув по значку "
 "застрельщика в городском Центре."
 
-#: maps/tutorials/Introductory_Tutorial.js:80
+#: maps/tutorials/introductory_tutorial.js:80
 msgid "Click on the Skirmisher icon."
 msgstr "Щёлкните по иконке Застрельщика."
 
-#: maps/tutorials/Introductory_Tutorial.js:88
+#: maps/tutorials/introductory_tutorial.js:88
 msgid ""
 "Build a farmstead in an open space beside the Civic Center using any idle "
 "builders."
@@ -111,11 +111,11 @@ msgstr ""
 "Постройте усадьбу на свободном месте рядом с городским Центром, используя "
 "незанятых строителей."
 
-#: maps/tutorials/Introductory_Tutorial.js:100
+#: maps/tutorials/introductory_tutorial.js:100
 msgid "Let's wait for the farmstead to be built."
 msgstr "Давайте подождём, пока завершится постройка Усадьбы."
 
-#: maps/tutorials/Introductory_Tutorial.js:112
+#: maps/tutorials/introductory_tutorial.js:112
 msgid ""
 "Once the farmstead is constructed, its builders will automatically begin "
 "gathering food if there is any nearby. Select the builders and instead make "
@@ -125,7 +125,7 @@ msgstr ""
 "пищу, если она есть поблизости. Выберите строителей и перенаправьте их на "
 "создание поля рядом с Усадьбой."
 
-#: maps/tutorials/Introductory_Tutorial.js:136
+#: maps/tutorials/introductory_tutorial.js:136
 msgid ""
 "The field's builders will now automatically begin gathering food from the "
 "field. Using the newly created group of skirmishers, get them to build "
@@ -134,7 +134,7 @@ msgstr ""
 "Как только поле будет готово, строители сразу примутся собирать урожай. "
 "Используя вновь испечённых стрелков, постройте дом рядом."
 
-#: maps/tutorials/Introductory_Tutorial.js:144
+#: maps/tutorials/introductory_tutorial.js:144
 msgid ""
 "Train a batch of Hoplites at the Civic Center. Select the Civic Center and "
 "with it selected right-click on a tree nearby. Units from the Civic Center "
@@ -144,11 +144,11 @@ msgstr ""
 "Центра, а затем правой кнопкой укажите на ближайшее дерево. Новые юниты "
 "будут автоматически направляться на сбор древесины."
 
-#: maps/tutorials/Introductory_Tutorial.js:162
+#: maps/tutorials/introductory_tutorial.js:162
 msgid "Click on the Hoplite icon."
 msgstr "Щёлкните по иконке Гоплита."
 
-#: maps/tutorials/Introductory_Tutorial.js:176
+#: maps/tutorials/introductory_tutorial.js:176
 msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a Wood icon."
@@ -156,7 +156,7 @@ msgstr ""
 "Выберите городской Центр, затем наведите курсор на дерево и щёлкните правой "
 "кнопкой, когда увидите, что курсор сменился на значок древесины."
 
-#: maps/tutorials/Introductory_Tutorial.js:185
+#: maps/tutorials/introductory_tutorial.js:185
 msgid ""
 "Order the idle Skirmishers to build an outpost to the north east at the edge"
 " of your territory.  This will be the fifth Village Phase structure that you"
@@ -167,7 +167,7 @@ msgstr ""
 "которое вам необходимо построить, чтобы открыть возможность перехода к этапу"
 " небольшого города."
 
-#: maps/tutorials/Introductory_Tutorial.js:193
+#: maps/tutorials/introductory_tutorial.js:193
 msgid ""
 "Select the Civic Center again and advance to Town Phase by clicking on the "
 "II icon (you have to wait for the outpost to be built first). This will "
@@ -177,7 +177,7 @@ msgstr ""
 "щёлкнув по значку II (по окончании строительства заставы). После перехода "
 "вам станут доступны строения этапа небольшого города."
 
-#: maps/tutorials/Introductory_Tutorial.js:205
+#: maps/tutorials/introductory_tutorial.js:205
 msgid ""
 "While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
@@ -185,7 +185,7 @@ msgstr ""
 "В ожидании перехода к новому этапу Вы можете перенаправить своих незанятых "
 "рабочих на сбор ресурсов, запасы которых малы."
 
-#: maps/tutorials/Introductory_Tutorial.js:220
+#: maps/tutorials/introductory_tutorial.js:220
 msgid ""
 "Start training a batch of female citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
@@ -193,11 +193,11 @@ msgstr ""
 "Начните обучать партию женщин в городском Центре и направьте их на ферму "
 "(щёлкнув правой кнопкой на ней)."
 
-#: maps/tutorials/Introductory_Tutorial.js:238
+#: maps/tutorials/introductory_tutorial.js:238
 msgid "Click on the female citizen icon."
 msgstr "Щёлкните по иконке горожанки."
 
-#: maps/tutorials/Introductory_Tutorial.js:258
+#: maps/tutorials/introductory_tutorial.js:258
 msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
 " extra house using any available builder units."
@@ -205,7 +205,7 @@ msgstr ""
 "Постройте бараки поблизости. Всякий раз, когда ваше население достигло "
 "предела, стройте дома, используя доступных юнитов."
 
-#: maps/tutorials/Introductory_Tutorial.js:266
+#: maps/tutorials/introductory_tutorial.js:266
 msgid ""
 "Prepare for an attack by an enemy player. Train more soldiers using the "
 "Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
@@ -213,23 +213,21 @@ msgstr ""
 "Подготовьтесь к нападению врага. Обучите в казармах больше воинов и "
 "отправьте незанятых строить оборонительную башню рядом с заставой."
 
-#: maps/tutorials/Introductory_Tutorial.js:274
+#: maps/tutorials/introductory_tutorial.js:274
 msgid ""
-"Build a Blacksmith and research the Infantry Training technology (sword "
-"icon) to improve infantry hack attack."
+"Build a Forge and research the Infantry Training technology (sword icon) to "
+"improve infantry hack attack."
 msgstr ""
-"Постройте Кузнецу и исследуйте технологию Обучение Пехоты (иконка меча) для "
-"улучшения рубящей атаки пехоты."
 
-#: maps/tutorials/Introductory_Tutorial.js:282
+#: maps/tutorials/introductory_tutorial.js:282
 msgid "The enemy is coming. Train more soldiers to fight off the enemies."
 msgstr "Враг приближается. Обучите больше воинов, чтобы отразить нападение."
 
-#: maps/tutorials/Introductory_Tutorial.js:290
+#: maps/tutorials/introductory_tutorial.js:290
 msgid "Try to repel the attack."
 msgstr "Постарайтесь отразить атаку."
 
-#: maps/tutorials/Introductory_Tutorial.js:300
+#: maps/tutorials/introductory_tutorial.js:300
 msgid ""
 "The enemy attack has been thwarted. Now build a market and a temple while "
 "you assign new units to gather required resources."
@@ -237,7 +235,7 @@ msgstr ""
 "Атака отбита. Теперь постройте Рынок и Храм, а новых юнитов направляйте на "
 "сбор необходимых ресурсов."
 
-#: maps/tutorials/Introductory_Tutorial.js:321
+#: maps/tutorials/introductory_tutorial.js:321
 msgid ""
 "Once you meet the City Phase requirements, select your Civic Center and "
 "advance to City Phase."
@@ -245,7 +243,7 @@ msgstr ""
 "Как только вы выполните все требования для этапа города, выберите городской "
 "Центр и запустите переход к этапу города."
 
-#: maps/tutorials/Introductory_Tutorial.js:329
+#: maps/tutorials/introductory_tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "Barracks."
@@ -253,7 +251,7 @@ msgstr ""
 "Ожидая окончания перехода к новому этапу, вы можете обучить больше воинов в "
 "казармах."
 
-#: maps/tutorials/Introductory_Tutorial.js:337
+#: maps/tutorials/introductory_tutorial.js:337
 msgid ""
 "Now that you are in City Phase, build a fortress nearby (gather some stone "
 "first if needed) and then use it to construct 2 Battering Rams."
@@ -262,7 +260,7 @@ msgstr ""
 " сначала добудьте немного камня, если нужно) и используйте её для постройки "
 "2 Стенобитных орудий."
 
-#: maps/tutorials/Introductory_Tutorial.js:359
+#: maps/tutorials/introductory_tutorial.js:359
 msgid ""
 "Stop all your soldiers gathering resources and instead task small groups to "
 "find the enemy Civic Center on the map. Once The enemy's base has been "
@@ -273,11 +271,11 @@ msgstr ""
 "карте. Как только поселение врага будет обнаружено, отправьте ваши осадные "
 "орудия и всех оставшихся войнов на его уничтожение.\n"
 
-#: maps/tutorials/Introductory_Tutorial.js:360
+#: maps/tutorials/introductory_tutorial.js:360
 msgid "Female citizens should continue to gather resources."
 msgstr "Горожанки должны продолжать заниматься сбором ресурсов."
 
-#: maps/tutorials/Introductory_Tutorial.js:371
+#: maps/tutorials/introductory_tutorial.js:371
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
 msgstr "Вражеское поселение уничтожено. Цели данного обучения достигнуты."
 
@@ -992,20 +990,20 @@ msgstr ""
 "На этом обучение закончено. Оно должно дать вам хорошее представление об "
 "основах создания вашей экономики."
 
-#: maps/tutorials/Introductory_Tutorial.xml:Description:39
+#: maps/tutorials/introductory_tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
 msgstr "Это базовое обучение, чтобы вы начали играть 0 A. D."
 
-#: maps/tutorials/Introductory_Tutorial.xml:PlayerData[0].Name:39
+#: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:39
 #: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
 msgid "Player 1"
 msgstr "Игрок 1"
 
-#: maps/tutorials/Introductory_Tutorial.xml:PlayerData[1].Name:39
+#: maps/tutorials/introductory_tutorial.xml:PlayerData[1].Name:39
 msgid "Player 2"
 msgstr "Игрок 2"
 
-#: maps/tutorials/Introductory_Tutorial.xml:Name:39
+#: maps/tutorials/introductory_tutorial.xml:Name:39
 msgid "Introductory Tutorial"
 msgstr "Ознакомительный урок"
 

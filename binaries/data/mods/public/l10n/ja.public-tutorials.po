@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
+# Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2019-03-22 09:45+0100\n"
+"POT-Creation-Date: 2020-08-28 07:11+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
 "Last-Translator: karubabu <karubabu@protonmail.com>, 2018\n"
 "Language-Team: Japanese (https://www.transifex.com/wildfire-games/teams/17418/ja/)\n"
@@ -22,11 +22,11 @@ msgstr ""
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: maps/tutorials/Introductory_Tutorial.js:3
+#: maps/tutorials/introductory_tutorial.js:3
 msgid "Welcome to the 0 A.D. tutorial."
 msgstr "0 A.D.のチュートリアルへようこそ。"
 
-#: maps/tutorials/Introductory_Tutorial.js:6
+#: maps/tutorials/introductory_tutorial.js:6
 msgid ""
 "Left-click on a female citizen and then right-click on a berry bush to make "
 "that female citizen gather food. Female citizens gather vegetables faster "
@@ -34,14 +34,14 @@ msgid ""
 msgstr ""
 "まず女性の市民を左クリックしてから、彼女が食料を採集できるようベリーの茂みを右クリックしてください。女性の市民は他のユニットより速く青果を採集します。"
 
-#: maps/tutorials/Introductory_Tutorial.js:15
+#: maps/tutorials/introductory_tutorial.js:15
 msgid ""
 "Select the citizen-soldier, right-click on a tree near the Civic Center to "
 "begin gathering Wood. Citizen Soldiers gather Wood faster than female "
 "citizens."
 msgstr "民兵を選択してから、市民センターの近くにある木を右クリックして木材を採集しましょう。民兵は女性の市民より速く木材を採集します。"
 
-#: maps/tutorials/Introductory_Tutorial.js:26
+#: maps/tutorials/introductory_tutorial.js:26
 #, javascript-format
 msgid ""
 "Select the Civic Center building and hold %(hotkey)s while clicking on the "
@@ -49,26 +49,26 @@ msgid ""
 msgstr ""
 "市民センターの建屋を選択してから、%(hotkey)sを押しながら重装歩兵のアイコンを一度クリックすることで、重装歩兵をまとめて訓練します。"
 
-#: maps/tutorials/Introductory_Tutorial.js:37
-#: maps/tutorials/Introductory_Tutorial.js:79
-#: maps/tutorials/Introductory_Tutorial.js:161
-#: maps/tutorials/Introductory_Tutorial.js:237
+#: maps/tutorials/introductory_tutorial.js:37
+#: maps/tutorials/introductory_tutorial.js:79
+#: maps/tutorials/introductory_tutorial.js:161
+#: maps/tutorials/introductory_tutorial.js:237
 msgid ""
 "Do not forget to press the batch training hotkey while clicking to produce "
 "multiple units."
 msgstr "一括トレーニングホットキーを押しながら複数のユニットを作成することを忘れないでください。"
 
-#: maps/tutorials/Introductory_Tutorial.js:38
+#: maps/tutorials/introductory_tutorial.js:38
 msgid "Click on the HOPLITE icon."
 msgstr "重装歩兵アイコンをクリックしてください。"
 
-#: maps/tutorials/Introductory_Tutorial.js:46
+#: maps/tutorials/introductory_tutorial.js:46
 msgid ""
 "Select the two idle female citizens and build a house nearby by selecting "
 "the house icon. Place the house by left-clicking on a piece of land."
 msgstr "2人のアイドルな女性市民を選択し、家のアイコンを選択して近くの土地を左クリックして家を建ててください。"
 
-#: maps/tutorials/Introductory_Tutorial.js:54
+#: maps/tutorials/introductory_tutorial.js:54
 msgid ""
 "When they are ready, select the newly trained Hoplites and assign them to "
 "build a storehouse beside some nearby trees. They will begin to gather Wood "
@@ -76,28 +76,28 @@ msgid ""
 msgstr ""
 "重装歩兵達を新しく訓練し、訓練が完了したユニットを選択し近くのいくつかの木の横に倉庫を建てるように割り当ててください。建築が完了すると労働者達は木材を採集し始めます。"
 
-#: maps/tutorials/Introductory_Tutorial.js:64
+#: maps/tutorials/introductory_tutorial.js:64
 #, javascript-format
 msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
 msgstr "%(hotkey)sを押しながら市民センターの散兵アイコンをクリックすると散兵を一括で訓練することが出来ます。"
 
-#: maps/tutorials/Introductory_Tutorial.js:80
+#: maps/tutorials/introductory_tutorial.js:80
 msgid "Click on the Skirmisher icon."
 msgstr "散兵アイコンをクリックしてください。"
 
-#: maps/tutorials/Introductory_Tutorial.js:88
+#: maps/tutorials/introductory_tutorial.js:88
 msgid ""
 "Build a farmstead in an open space beside the Civic Center using any idle "
 "builders."
 msgstr "納屋の建設を、市民センターのそばの空き地に手の空いた労働者にさせてください。"
 
-#: maps/tutorials/Introductory_Tutorial.js:100
+#: maps/tutorials/introductory_tutorial.js:100
 msgid "Let's wait for the farmstead to be built."
 msgstr "納屋の建築完了を待ちましょう。"
 
-#: maps/tutorials/Introductory_Tutorial.js:112
+#: maps/tutorials/introductory_tutorial.js:112
 msgid ""
 "Once the farmstead is constructed, its builders will automatically begin "
 "gathering food if there is any nearby. Select the builders and instead make "
@@ -105,14 +105,14 @@ msgid ""
 msgstr ""
 "納屋が完成したら、その労働者は近くに食料源があれば自動的に採集を始めます。建設を行なった労働者を選択して、代わりに納屋のそばに畑を開墾させてください。"
 
-#: maps/tutorials/Introductory_Tutorial.js:136
+#: maps/tutorials/introductory_tutorial.js:136
 msgid ""
 "The field's builders will now automatically begin gathering food from the "
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
 msgstr "畑の開墾者は自動的に畑から食料を採集するようになります。新たに作成した散兵のグループを使って、近くに別の家を建てさせてください。"
 
-#: maps/tutorials/Introductory_Tutorial.js:144
+#: maps/tutorials/introductory_tutorial.js:144
 msgid ""
 "Train a batch of Hoplites at the Civic Center. Select the Civic Center and "
 "with it selected right-click on a tree nearby. Units from the Civic Center "
@@ -121,17 +121,17 @@ msgstr ""
 "重装歩兵を町の中心で一括訓練してください。町の中心を選択し、その状態で近くの木を右クリックしてください。町の中心からユニットがこれで自動的に伐採にいくようになります。"
 " "
 
-#: maps/tutorials/Introductory_Tutorial.js:162
+#: maps/tutorials/introductory_tutorial.js:162
 msgid "Click on the Hoplite icon."
 msgstr " 重装歩兵アイコンをクリックしてください。 "
 
-#: maps/tutorials/Introductory_Tutorial.js:176
+#: maps/tutorials/introductory_tutorial.js:176
 msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a Wood icon."
 msgstr "市民センターを選択し、カーソルを木の上に置いてカーソルが木材アイコンに変わったら右クリックしてください。"
 
-#: maps/tutorials/Introductory_Tutorial.js:185
+#: maps/tutorials/introductory_tutorial.js:185
 msgid ""
 "Order the idle Skirmishers to build an outpost to the north east at the edge"
 " of your territory.  This will be the fifth Village Phase structure that you"
@@ -140,80 +140,80 @@ msgstr ""
 "手の空いた散兵に前哨地を領地の北東端に建てさせてください。これによってあなたは村の段階に属する建築物を5つ所有することになり、町の段階へ移行することが可能になります。"
 " "
 
-#: maps/tutorials/Introductory_Tutorial.js:193
+#: maps/tutorials/introductory_tutorial.js:193
 msgid ""
 "Select the Civic Center again and advance to Town Phase by clicking on the "
 "II icon (you have to wait for the outpost to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
 
-#: maps/tutorials/Introductory_Tutorial.js:205
+#: maps/tutorials/introductory_tutorial.js:205
 msgid ""
 "While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
 
-#: maps/tutorials/Introductory_Tutorial.js:220
+#: maps/tutorials/introductory_tutorial.js:220
 msgid ""
 "Start training a batch of female citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
 msgstr "市民センターで女性市民の一括訓練を開始し、集合地点を納屋にしてください(納屋を右クリック)。"
 
-#: maps/tutorials/Introductory_Tutorial.js:238
+#: maps/tutorials/introductory_tutorial.js:238
 msgid "Click on the female citizen icon."
 msgstr " 女性市民アイコンをクリックしてください。 "
 
-#: maps/tutorials/Introductory_Tutorial.js:258
+#: maps/tutorials/introductory_tutorial.js:258
 msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
 " extra house using any available builder units."
 msgstr "近くに兵営を建ててください。人口上限に達したら、その都度追加の家の建設を手の空いた建築ユニットにさせてください。 "
 
-#: maps/tutorials/Introductory_Tutorial.js:266
+#: maps/tutorials/introductory_tutorial.js:266
 msgid ""
 "Prepare for an attack by an enemy player. Train more soldiers using the "
 "Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
 msgstr "敵プレイヤーの攻撃に備えてください。兵士をさらに兵営で訓練し、手の空いている兵士に防御塔を前哨地のそばに建てさせてください。 "
 
-#: maps/tutorials/Introductory_Tutorial.js:274
+#: maps/tutorials/introductory_tutorial.js:274
 msgid ""
-"Build a Blacksmith and research the Infantry Training technology (sword "
-"icon) to improve infantry hack attack."
-msgstr "鍛冶屋を建て、歩兵訓練のテクノロジー（剣のアイコン）を研究して、歩兵の打撃攻撃を強化してください。 "
+"Build a Forge and research the Infantry Training technology (sword icon) to "
+"improve infantry hack attack."
+msgstr ""
 
-#: maps/tutorials/Introductory_Tutorial.js:282
+#: maps/tutorials/introductory_tutorial.js:282
 msgid "The enemy is coming. Train more soldiers to fight off the enemies."
 msgstr "敵がやって来ます。兵士をさらに訓練し撃退しましょう。"
 
-#: maps/tutorials/Introductory_Tutorial.js:290
+#: maps/tutorials/introductory_tutorial.js:290
 msgid "Try to repel the attack."
 msgstr "敵を撃退してください。"
 
-#: maps/tutorials/Introductory_Tutorial.js:300
+#: maps/tutorials/introductory_tutorial.js:300
 msgid ""
 "The enemy attack has been thwarted. Now build a market and a temple while "
 "you assign new units to gather required resources."
 msgstr "敵を撃退しました。それでは市場と神殿を建てつつ、新しいユニットを必要な資源採集に充てましょう。 "
 
-#: maps/tutorials/Introductory_Tutorial.js:321
+#: maps/tutorials/introductory_tutorial.js:321
 msgid ""
 "Once you meet the City Phase requirements, select your Civic Center and "
 "advance to City Phase."
 msgstr "都市の段階の要件を満たし、市民センターを選択して都市の段階へ移行してください。"
 
-#: maps/tutorials/Introductory_Tutorial.js:329
+#: maps/tutorials/introductory_tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "Barracks."
 msgstr ""
 
-#: maps/tutorials/Introductory_Tutorial.js:337
+#: maps/tutorials/introductory_tutorial.js:337
 msgid ""
 "Now that you are in City Phase, build a fortress nearby (gather some stone "
 "first if needed) and then use it to construct 2 Battering Rams."
 msgstr "いよいよ都市の段階へ入りました。要塞を近くに建設し(いくらかの石材の採集が必要になるかもしれません)、2台の破城槌建造に用いてください。"
 
-#: maps/tutorials/Introductory_Tutorial.js:359
+#: maps/tutorials/introductory_tutorial.js:359
 msgid ""
 "Stop all your soldiers gathering resources and instead task small groups to "
 "find the enemy Civic Center on the map. Once The enemy's base has been "
@@ -221,11 +221,11 @@ msgid ""
 msgstr ""
 "資源採集のすべての兵士を選択して、小グループにマップ上の敵の市民センターの捜索に回しましょう。敵の拠点を発見したら、あなたの攻城兵器と残り全ての兵士を投入し破壊しましょう。\n"
 
-#: maps/tutorials/Introductory_Tutorial.js:360
+#: maps/tutorials/introductory_tutorial.js:360
 msgid "Female citizens should continue to gather resources."
 msgstr "女性市民は資源採集を続けさせるべきです。 "
 
-#: maps/tutorials/Introductory_Tutorial.js:371
+#: maps/tutorials/introductory_tutorial.js:371
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
 msgstr "敵は敗れました。チュートリアルの任務はこれで完了です。 "
 
@@ -756,20 +756,20 @@ msgid ""
 "basics of setting up your economy."
 msgstr "これでこのウォークスルーは終了です。 これで基本的な経済基盤をを設定するための知識がついたことでしょう。"
 
-#: maps/tutorials/Introductory_Tutorial.xml:Description:39
+#: maps/tutorials/introductory_tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
 msgstr "0 A.D. の遊び方を理解するための基礎チュートリアルです。"
 
-#: maps/tutorials/Introductory_Tutorial.xml:PlayerData[0].Name:39
+#: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:39
 #: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
 msgid "Player 1"
 msgstr "プレイヤー 1"
 
-#: maps/tutorials/Introductory_Tutorial.xml:PlayerData[1].Name:39
+#: maps/tutorials/introductory_tutorial.xml:PlayerData[1].Name:39
 msgid "Player 2"
 msgstr "プレイヤー 2"
 
-#: maps/tutorials/Introductory_Tutorial.xml:Name:39
+#: maps/tutorials/introductory_tutorial.xml:Name:39
 msgid "Introductory Tutorial"
 msgstr "初心者用チュートリアル"
 

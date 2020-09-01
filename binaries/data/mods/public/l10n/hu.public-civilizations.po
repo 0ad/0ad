@@ -6,6 +6,7 @@
 # Aqualung <molnar.boldizsar@gmail.com>, 2014
 # Attila Kocsner, 2014
 # Balázs Meskó <meskobalazs@mailbox.org>, 2015-2020
+# Balázs Meskó <meskobalazs@mailbox.org>, 2020
 # Balázs Úr, 2015-2016
 # 12dde84ca529f511e7ad8b70de73f71c_b688a04 <2328b4f5662bb45a5de7adc879cc0db2_206283>, 2015
 # 12dde84ca529f511e7ad8b70de73f71c_b688a04 <2328b4f5662bb45a5de7adc879cc0db2_206283>, 2015
@@ -27,9 +28,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-10 07:08+0000\n"
-"PO-Revision-Date: 2020-08-10 11:33+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-08-28 07:09+0000\n"
+"PO-Revision-Date: 2020-08-28 11:51+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,7 +73,7 @@ msgstr "Ezüst baglyok"
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr "Az Attikai Laurium bányái biztosították Athén számára azt a rengeteg ezüstöt, amiből a híres és nagyra becsült érméit, az \"athéni baglyot\" verték."
+msgstr "Az attikai Laurium bányái biztosították Athén számára azt a rengeteg ezüstöt, amelyből a híres és nagyra becsült érméit, az „athéni baglyot” verték."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Allied Warships −25% construction time."
@@ -88,7 +89,7 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 B.C., whose "
 "purpose was to push the Persians out of the Aegean region. The allied states"
 " contributed ships and money, while the Athenians offered their entire navy."
-msgstr "i. e. 478-ban, nem sokkal a szalamiszi és mükaléi győzelem után a görög városállamok megalapították a Déloszi Szövetséget, melynek célja a perzsák kiszorítása volt az Égei régióból. A szövetséges államok pénzzel és hajókkal járultak hozzá az ügyhöz, míg Athén teljes flottáját felajánlotta."
+msgstr "i. e. 478-ban, nem sokkal a szalamiszi és mükaléi győzelem után a görög városállamok megalapították a Déloszi Szövetséget, melynek célja a perzsák kiszorítása volt az Égei-tengeri régióból. A szövetséges államok pénzzel és hajókkal járultak hozzá az ügyhöz, míg Athén teljes flottáját felajánlotta."
 
 #: simulation/data/civs/athen.jsonAINames[0]
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[0].Name
@@ -698,7 +699,7 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "A kelta vallás és a druidák inspirálták harcias természetüket."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "Blacksmiths −15% technology resource costs and research time."
+msgid "Forges −15% technology resource costs and research time."
 msgstr ""
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name

@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-10 07:09+0000\n"
-"PO-Revision-Date: 2020-08-22 01:57+0000\n"
-"Last-Translator: Marc Masip Compte <marcmc421@gmail.com>\n"
+"POT-Creation-Date: 2020-08-28 07:10+0000\n"
+"PO-Revision-Date: 2020-08-28 10:25+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,33 +28,33 @@ msgstr ""
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: simulation/templates/template_structure_civic.xml:15
+#: simulation/templates/template_structure_civic.xml:21
 msgid "Civic Structure"
 msgstr "Estructura cívica"
 
-#: simulation/templates/template_structure_civic.xml:16
+#: simulation/templates/template_structure_civic.xml:22
 msgid "Civic"
 msgstr "Cívic"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:87
+#: simulation/templates/template_structure_civic_civil_centre.xml:93
 msgid "Civic Center"
 msgstr "Centre cívic"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:89
+#: simulation/templates/template_structure_civic_civil_centre.xml:95
 msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Dropsite for food, wood, stone, and metal. Train Citizens "
 "and research technologies. Garrison Soldiers for additional arrows."
 msgstr "Es pot construir en territori neutral o enemic. Afegeix grans extensions de territori. Punt de descàrrega de menjar, fusta, pedra i metall. Entrena soldats ciutadans i investiga tecnologies. S'hi poden refugiar soldats per disparar més fletxes."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:91
-#: simulation/templates/template_structure_defensive.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:76
+#: simulation/templates/template_structure_civic_civil_centre.xml:97
+#: simulation/templates/template_structure_defensive.xml:21
+#: simulation/templates/template_structure_military_fortress.xml:80
 msgid "Defensive"
 msgstr "Defensiu"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:91
-#: simulation/templates/template_structure_civic_civil_centre.xml:53
+#: simulation/templates/template_structure_civic_civil_centre.xml:97
+#: simulation/templates/template_structure_civic_civil_centre.xml:59
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
 msgstr "CentreCívic"
@@ -68,7 +68,7 @@ msgid "Colony"
 msgstr "Colònia"
 
 #: simulation/templates/template_structure_civic_house.xml:36
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:42
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 #: simulation/templates/template_structure_economic_storehouse.xml:34
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -93,9 +93,9 @@ msgstr "Recluta campions mercenaris"
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 #: simulation/templates/template_structure_economic_market.xml:31
-#: simulation/templates/template_structure_military_blacksmith.xml:26
-#: simulation/templates/template_structure_military_embassy.xml:33
-#: simulation/templates/structures/cart_super_dock.xml:47
+#: simulation/templates/template_structure_military_embassy.xml:39
+#: simulation/templates/template_structure_military_forge.xml:26
+#: simulation/templates/structures/cart_super_dock.xml:51
 #: simulation/templates/structures/gaul_tavern.xml:24
 #: simulation/templates/structures/kush_pyramid_small.xml:29
 #: simulation/templates/structures/maur_elephant_stables.xml:7
@@ -120,16 +120,16 @@ msgstr "Recluta guaridors i investiga tecnologies de curació."
 msgid "Temple"
 msgstr "Temple"
 
-#: simulation/templates/template_structure_defensive.xml:14
+#: simulation/templates/template_structure_defensive.xml:20
 msgid "Defensive Structure"
 msgstr "Estructura defensiva"
 
-#: simulation/templates/template_structure_defensive_palisade.xml:22
+#: simulation/templates/template_structure_defensive_palisade.xml:26
 msgid "Wall off an area."
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_palisade.xml:23
-#: simulation/templates/template_structure_defensive_palisade.xml:20
+#: simulation/templates/template_structure_defensive_palisade.xml:27
+#: simulation/templates/template_structure_defensive_palisade.xml:24
 #: simulation/templates/structures/wallset_palisade.xml:5
 #: simulation/templates/structures/wallset_palisade.xml:4
 msgid "Palisade"
@@ -149,9 +149,9 @@ msgstr "Torre d'artilleria"
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
-#: simulation/templates/template_structure_military_fortress.xml:76
-#: simulation/templates/template_structure_special.xml:34
-#: simulation/templates/template_structure_wonder.xml:53
+#: simulation/templates/template_structure_military_fortress.xml:80
+#: simulation/templates/template_structure_special.xml:40
+#: simulation/templates/template_structure_wonder.xml:59
 #: simulation/templates/structures/kush_pyramid_large.xml:29
 #: simulation/templates/structures/kush_temple_amun.xml:31
 #: simulation/templates/structures/rome_temple_mars.xml:14
@@ -170,35 +170,35 @@ msgstr "Torre de ballesta"
 msgid "BoltTower"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:53
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:59
 msgid ""
 "Build in own or neutral territory. Slowly converts to Gaia while in neutral "
 "territory."
 msgstr "Es pot construir tant en territori neutral com en propi. Es converteix a poc a poc en Gaia quan està en territori neutral."
 
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:54
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:29
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:51
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:60
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:35
+#: simulation/templates/template_structure_defensive_tower_outpost.xml:57
 #: simulation/templates/structures/palisades_outpost.xml:17
 msgid "Outpost"
 msgstr "Destacament"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:35
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
 msgid "Sentry Tower"
 msgstr "Torre de vigilància"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:37
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:41
 #: simulation/templates/template_structure_defensive_tower_stone.xml:33
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
 msgstr "Refugia infanteria per fletxes addicionals. Necessita la tecnologia \"Espitlleres\" per protegir el peu de la torre."
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:38
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:42
 msgid "SentryTower"
 msgstr "Torre de vigilància"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:61
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:65
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Reforça la torre amb pedra per millorar-la a torre defensiva."
 
@@ -242,11 +242,11 @@ msgstr "Torreta"
 msgid "Garrison Infantry for additional arrows."
 msgstr "S'hi poden refugiar soldats per disparar més fletxes."
 
-#: simulation/templates/template_structure_economic.xml:14
+#: simulation/templates/template_structure_economic.xml:20
 msgid "Economic Structure"
 msgstr "Estructura econòmica"
 
-#: simulation/templates/template_structure_economic.xml:15
+#: simulation/templates/template_structure_economic.xml:21
 #: simulation/templates/template_structure_military_dock.xml:28
 msgid "Economic"
 msgstr "Econòmics"
@@ -285,11 +285,11 @@ msgstr "Punt de descàrrega per a la fusta, la pedra i el metall. Investiga mill
 msgid "Storehouse"
 msgstr "Magatzem"
 
-#: simulation/templates/template_structure_military.xml:23
+#: simulation/templates/template_structure_military.xml:29
 msgid "Military Structure"
 msgstr "Estructura militar"
 
-#: simulation/templates/template_structure_military.xml:25
+#: simulation/templates/template_structure_military.xml:31
 msgid "Military"
 msgstr "Militars"
 
@@ -313,15 +313,6 @@ msgstr ""
 msgid "Barracks"
 msgstr "Caserna"
 
-#: simulation/templates/template_structure_military_blacksmith.xml:24
-msgid "Research attack and armor technologies."
-msgstr ""
-
-#: simulation/templates/template_structure_military_blacksmith.xml:26
-#: simulation/templates/template_structure_military_blacksmith.xml:22
-msgid "Blacksmith"
-msgstr "Armeria"
-
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Dropsite for "
@@ -331,7 +322,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/structures/brit_crannog.xml:16
-#: simulation/templates/structures/cart_super_dock.xml:47
+#: simulation/templates/structures/cart_super_dock.xml:51
 msgid "Naval"
 msgstr ""
 
@@ -352,21 +343,30 @@ msgstr ""
 msgid "ElephantStable"
 msgstr "Estable d'elefants"
 
-#: simulation/templates/template_structure_military_embassy.xml:33
-#: simulation/templates/template_structure_military_embassy.xml:31
+#: simulation/templates/template_structure_military_embassy.xml:39
+#: simulation/templates/template_structure_military_embassy.xml:37
 #: simulation/templates/structures/cart_embassy.xml:18
 msgid "Embassy"
 msgstr "Ambaixada"
 
-#: simulation/templates/template_structure_military_fortress.xml:74
+#: simulation/templates/template_structure_military_forge.xml:24
+msgid "Research attack and armor technologies."
+msgstr ""
+
+#: simulation/templates/template_structure_military_forge.xml:26
+#: simulation/templates/template_structure_military_forge.xml:22
+msgid "Forge"
+msgstr ""
+
+#: simulation/templates/template_structure_military_fortress.xml:78
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
 msgstr "Recluta campions i herois i investiga tecnologies. S'hi poden refugiar soldats per disparar més fletxes."
 
+#: simulation/templates/template_structure_military_fortress.xml:80
+#: simulation/templates/template_structure_military_fortress.xml:46
 #: simulation/templates/template_structure_military_fortress.xml:76
-#: simulation/templates/template_structure_military_fortress.xml:42
-#: simulation/templates/template_structure_military_fortress.xml:72
 msgid "Fortress"
 msgstr "Fortalesa"
 
@@ -391,11 +391,11 @@ msgstr "Recluta i millora la cavalleria."
 msgid "Stable"
 msgstr "Estable"
 
-#: simulation/templates/template_structure_resource.xml:17
+#: simulation/templates/template_structure_resource.xml:23
 msgid "Resource Structure"
 msgstr "Estructura de recursos"
 
-#: simulation/templates/template_structure_resource.xml:18
+#: simulation/templates/template_structure_resource.xml:24
 msgid "Resource"
 msgstr "Recurs"
 
@@ -408,17 +408,17 @@ msgstr ""
 msgid "Corral"
 msgstr "Corral"
 
-#: simulation/templates/template_structure_resource_field.xml:28
-#: simulation/templates/template_structure_resource_field.xml:26
+#: simulation/templates/template_structure_resource_field.xml:32
+#: simulation/templates/template_structure_resource_field.xml:30
 msgid "Field"
 msgstr "Hort"
 
-#: simulation/templates/template_structure_resource_field.xml:29
+#: simulation/templates/template_structure_resource_field.xml:33
 msgid ""
 "Harvest grain for food. Each subsequent gatherer works less efficiently."
 msgstr "Cultiva gra per menjar. Cada recol·lector addicional treballarà amb menys eficiència."
 
-#: simulation/templates/template_structure_special.xml:33
+#: simulation/templates/template_structure_special.xml:39
 msgid "Special Structure"
 msgstr ""
 
@@ -446,14 +446,14 @@ msgstr ""
 msgid "Theater"
 msgstr "Teatre"
 
-#: simulation/templates/template_structure_wonder.xml:51
+#: simulation/templates/template_structure_wonder.xml:57
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
 msgstr "Porta glòria a la vostra civilització i afegeix grans extensions de territori al vostre imperi."
 
-#: simulation/templates/template_structure_wonder.xml:53
-#: simulation/templates/template_structure_wonder.xml:49
+#: simulation/templates/template_structure_wonder.xml:59
+#: simulation/templates/template_structure_wonder.xml:55
 msgid "Wonder"
 msgstr "Meravella"
 
@@ -472,14 +472,6 @@ msgstr "Hoplothēkē"
 #: simulation/templates/structures/spart_barracks.xml:12
 msgid "Stratopedon"
 msgstr "Stratopedon"
-
-#: simulation/templates/structures/athen_blacksmith.xml:5
-#: simulation/templates/structures/mace_blacksmith.xml:5
-#: simulation/templates/structures/ptol_blacksmith.xml:5
-#: simulation/templates/structures/sele_blacksmith.xml:5
-#: simulation/templates/structures/spart_blacksmith.xml:5
-msgid "Chalkeōn"
-msgstr "Chalkeōn"
 
 #: simulation/templates/structures/athen_civil_centre.xml:8
 #: simulation/templates/structures/mace_civil_centre.xml:8
@@ -528,6 +520,14 @@ msgstr "Epoikion"
 #: simulation/templates/structures/spart_field.xml:5
 msgid "Agros"
 msgstr "Agros"
+
+#: simulation/templates/structures/athen_forge.xml:5
+#: simulation/templates/structures/mace_forge.xml:5
+#: simulation/templates/structures/ptol_forge.xml:5
+#: simulation/templates/structures/sele_forge.xml:5
+#: simulation/templates/structures/spart_forge.xml:5
+msgid "Chalkeōn"
+msgstr "Chalkeōn"
 
 #: simulation/templates/structures/athen_fortress.xml:9
 #: simulation/templates/structures/mace_fortress.xml:9
@@ -704,11 +704,6 @@ msgstr "Miletucerdon"
 msgid "Coriosessa"
 msgstr "Coriosessa"
 
-#: simulation/templates/structures/brit_blacksmith.xml:8
-#: simulation/templates/structures/gaul_blacksmith.xml:8
-msgid "Gobanion"
-msgstr "Gobanion"
-
 #: simulation/templates/structures/brit_civil_centre.xml:12
 msgid "Tigernotreba"
 msgstr "Tigernotreba"
@@ -757,6 +752,11 @@ msgstr "Buta"
 #: simulation/templates/structures/gaul_field.xml:5
 msgid "Olca"
 msgstr "Olca"
+
+#: simulation/templates/structures/brit_forge.xml:8
+#: simulation/templates/structures/gaul_forge.xml:8
+msgid "Gobanion"
+msgstr "Gobanion"
 
 #: simulation/templates/structures/brit_fortress.xml:15
 #: simulation/templates/structures/gaul_fortress.xml:8
@@ -926,22 +926,22 @@ msgstr "Muralla de pedra"
 msgid "Maḥṣabah"
 msgstr "Maḥṣabah"
 
-#: simulation/templates/structures/cart_super_dock.xml:43
+#: simulation/templates/structures/cart_super_dock.xml:47
 msgid "Naval Shipyard"
 msgstr "Drassana naval"
 
-#: simulation/templates/structures/cart_super_dock.xml:44
+#: simulation/templates/structures/cart_super_dock.xml:48
 msgid "Cothon"
 msgstr "Cothon"
 
-#: simulation/templates/structures/cart_super_dock.xml:45
+#: simulation/templates/structures/cart_super_dock.xml:49
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Construct Warships and research "
 "technologies."
 msgstr ""
 
-#: simulation/templates/structures/cart_super_dock.xml:47
+#: simulation/templates/structures/cart_super_dock.xml:51
 msgid "Shipyard"
 msgstr "Drassana"
 
@@ -1027,10 +1027,6 @@ msgstr "Celicnon"
 msgid "Kaserna"
 msgstr "Kaserna"
 
-#: simulation/templates/structures/iber_blacksmith.xml:5
-msgid "Harotz"
-msgstr "Harotz"
-
 #: simulation/templates/structures/iber_civil_centre.xml:8
 msgid "Oppidum"
 msgstr "Oppidum"
@@ -1055,6 +1051,10 @@ msgstr "Baserri"
 #: simulation/templates/structures/iber_field.xml:5
 msgid "Soro"
 msgstr "Soro"
+
+#: simulation/templates/structures/iber_forge.xml:5
+msgid "Harotz"
+msgstr "Harotz"
 
 #: simulation/templates/structures/iber_fortress.xml:15
 msgid "Castro"
@@ -1112,10 +1112,6 @@ msgstr "Pr-ỉwn n ms"
 msgid "pr-msʿyw"
 msgstr "pr-msʿyw"
 
-#: simulation/templates/structures/kush_blacksmith.xml:5
-msgid "hmw hʿy n rȝ-ʿ"
-msgstr "hmw hʿy n rȝ-ʿ"
-
 #: simulation/templates/structures/kush_blemmye_camp.xml:22
 #: simulation/templates/structures/kush_blemmye_camp.xml:23
 msgid "Blemmye Camp"
@@ -1152,6 +1148,10 @@ msgstr "snwt"
 #: simulation/templates/structures/kush_field.xml:5
 msgid "sht"
 msgstr "sht"
+
+#: simulation/templates/structures/kush_forge.xml:5
+msgid "hmw hʿy n rȝ-ʿ"
+msgstr "hmw hʿy n rȝ-ʿ"
 
 #: simulation/templates/structures/kush_fortress.xml:9
 msgid "Htm"
@@ -1289,10 +1289,6 @@ msgstr "Hieron tou Dios tou Olympiou"
 msgid "Sainyavasa"
 msgstr "Sainyavasa"
 
-#: simulation/templates/structures/maur_blacksmith.xml:5
-msgid "Lohakāra"
-msgstr "Lohakāra"
-
 #: simulation/templates/structures/maur_civil_centre.xml:12
 msgid "Rajadhanika"
 msgstr "Rajadhanika"
@@ -1321,6 +1317,10 @@ msgstr "Kantu"
 #: simulation/templates/structures/maur_field.xml:5
 msgid "Kshetra"
 msgstr "Kshetra"
+
+#: simulation/templates/structures/maur_forge.xml:5
+msgid "Lohakāra"
+msgstr "Lohakāra"
 
 #: simulation/templates/structures/maur_fortress.xml:5
 msgid "Durg"
@@ -1488,10 +1488,6 @@ msgstr "Padgan"
 msgid "Train Infantry."
 msgstr ""
 
-#: simulation/templates/structures/pers_blacksmith.xml:5
-msgid "Arštišta"
-msgstr "Arštišta"
-
 #: simulation/templates/structures/pers_civil_centre.xml:8
 msgid "Provincial Governor"
 msgstr "Governador provincial"
@@ -1521,6 +1517,10 @@ msgstr "Kaštašta"
 #: simulation/templates/structures/pers_field.xml:5
 msgid "Kaštrya"
 msgstr "Kaštrya"
+
+#: simulation/templates/structures/pers_forge.xml:5
+msgid "Arštišta"
+msgstr "Arštišta"
 
 #: simulation/templates/structures/pers_fortress.xml:5
 msgid "Didā"
@@ -1674,22 +1674,22 @@ msgstr "Arcus Triumphālis"
 msgid "TriumphalArch"
 msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:80
+#: simulation/templates/structures/rome_army_camp.xml:86
 msgid "Army Camp"
 msgstr "Campament militar"
 
-#: simulation/templates/structures/rome_army_camp.xml:81
+#: simulation/templates/structures/rome_army_camp.xml:87
 msgid "Castra"
 msgstr "Castra"
 
-#: simulation/templates/structures/rome_army_camp.xml:82
+#: simulation/templates/structures/rome_army_camp.xml:88
 msgid ""
 "Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
 "Siege Engines. Garrison Soldiers for additional arrows."
 msgstr "Es pot construir en territori neutral o enemic. Recluta soldats ciutadans i construeix màquines de setge. S'hi poden refugiar soldats per disparar més fletxes."
 
-#: simulation/templates/structures/rome_army_camp.xml:84
-#: simulation/templates/structures/rome_army_camp.xml:48
+#: simulation/templates/structures/rome_army_camp.xml:90
+#: simulation/templates/structures/rome_army_camp.xml:54
 msgid "ArmyCamp"
 msgstr "CampamentMilitar"
 
@@ -1700,10 +1700,6 @@ msgstr "Ballistārium"
 #: simulation/templates/structures/rome_barracks.xml:12
 msgid "Castrum"
 msgstr "Castrum"
-
-#: simulation/templates/structures/rome_blacksmith.xml:5
-msgid "Armāmentārium"
-msgstr "Armāmentārium"
 
 #: simulation/templates/structures/rome_civil_centre.xml:12
 msgid "Forum"
@@ -1731,6 +1727,10 @@ msgstr "Vīlla"
 msgid "Ager"
 msgstr "Ager"
 
+#: simulation/templates/structures/rome_forge.xml:5
+msgid "Armāmentārium"
+msgstr "Armāmentārium"
+
 #: simulation/templates/structures/rome_fortress.xml:5
 msgid "Castellum"
 msgstr "Castellum"
@@ -1751,42 +1751,42 @@ msgstr "Vigilārium"
 msgid "Turris Līgnea"
 msgstr "Turris Līgnea"
 
-#: simulation/templates/structures/rome_siege_wall_gate.xml:31
+#: simulation/templates/structures/rome_siege_wall_gate.xml:37
 msgid "Siege Wall Gate"
 msgstr "Porta del mur de setge"
 
-#: simulation/templates/structures/rome_siege_wall_gate.xml:32
+#: simulation/templates/structures/rome_siege_wall_gate.xml:38
 msgid "Porta Circummūnītiōnis"
 msgstr "Porta Circummūnītiōnis"
 
-#: simulation/templates/structures/rome_siege_wall_gate.xml:33
-#: simulation/templates/structures/rome_siege_wall_long.xml:34
-#: simulation/templates/structures/rome_siege_wall_medium.xml:34
-#: simulation/templates/structures/rome_siege_wall_short.xml:34
-#: simulation/templates/structures/rome_siege_wall_tower.xml:33
+#: simulation/templates/structures/rome_siege_wall_gate.xml:39
+#: simulation/templates/structures/rome_siege_wall_long.xml:40
+#: simulation/templates/structures/rome_siege_wall_medium.xml:40
+#: simulation/templates/structures/rome_siege_wall_short.xml:40
+#: simulation/templates/structures/rome_siege_wall_tower.xml:39
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "SiegeWall"
 msgstr ""
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:32
-#: simulation/templates/structures/rome_siege_wall_medium.xml:32
-#: simulation/templates/structures/rome_siege_wall_short.xml:32
+#: simulation/templates/structures/rome_siege_wall_long.xml:38
+#: simulation/templates/structures/rome_siege_wall_medium.xml:38
+#: simulation/templates/structures/rome_siege_wall_short.xml:38
 #: simulation/templates/structures/rome_wallset_siege.xml:5
 msgid "Siege Wall"
 msgstr "Mur de setge"
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:33
-#: simulation/templates/structures/rome_siege_wall_medium.xml:33
-#: simulation/templates/structures/rome_siege_wall_short.xml:33
+#: simulation/templates/structures/rome_siege_wall_long.xml:39
+#: simulation/templates/structures/rome_siege_wall_medium.xml:39
+#: simulation/templates/structures/rome_siege_wall_short.xml:39
 #: simulation/templates/structures/rome_wallset_siege.xml:6
 msgid "Mūrus Circummūnītiōnis"
 msgstr "Mūrus Circummūnītiōnis"
 
-#: simulation/templates/structures/rome_siege_wall_tower.xml:31
+#: simulation/templates/structures/rome_siege_wall_tower.xml:37
 msgid "Siege Wall Tower"
 msgstr "Torre del mur de setge"
 
-#: simulation/templates/structures/rome_siege_wall_tower.xml:32
+#: simulation/templates/structures/rome_siege_wall_tower.xml:38
 msgid "Turris Circummūnītiōnis"
 msgstr "Turris Circummūnītiōnis"
 

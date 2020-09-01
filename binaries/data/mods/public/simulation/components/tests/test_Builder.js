@@ -77,7 +77,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetEntitiesList(), ["structures/athen_civil_c
 TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetRange(), { "max": 2, "min": 0 });
 
 AddMock(builderId, IID_Obstruction, {
-	"GetUnitRadius": () => 1.0
+	"GetSize": () => 1
 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetRange(), { "max": 3, "min": 0 });

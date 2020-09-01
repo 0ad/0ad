@@ -503,14 +503,6 @@ public:
 		return true;
 	}
 
-	virtual entity_pos_t GetUnitRadius() const
-	{
-		if (m_Type == UNIT)
-			return m_Clearance;
-		else
-			return entity_pos_t::Zero();
-	}
-
 	virtual entity_pos_t GetSize() const
 	{
 		if (m_Type == UNIT)

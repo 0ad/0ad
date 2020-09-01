@@ -650,7 +650,7 @@ PETRA.BaseManager.prototype.reassignIdleWorkers = function(gameState, idleWorker
 				}
 			}
 		}
-		else if (PETRA.isFastMoving(ent))
+		else if (PETRA.isFastMoving(ent) && ent.canGather("food") && ent.canAttackClass("Animal"))
 			ent.setMetadata(PlayerID, "subrole", "hunter");
 		else if (ent.hasClass("FishingBoat"))
 			ent.setMetadata(PlayerID, "subrole", "fisher");
