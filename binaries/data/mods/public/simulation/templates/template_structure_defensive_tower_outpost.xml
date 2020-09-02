@@ -3,11 +3,11 @@
   <Attack>
     <Ranged>
       <Damage>
-        <Pierce>16</Pierce>
+        <Pierce>8</Pierce>
       </Damage>
-      <MaxRange>55</MaxRange>
-      <MinRange>13</MinRange>
-      <ElevationBonus>0</ElevationBonus>
+      <MaxRange>50</MaxRange>
+      <MinRange>10</MinRange>
+      <ElevationBonus>8</ElevationBonus>
     </Ranged>
   </Attack>
   <BuildingAI>
@@ -22,9 +22,9 @@
     <Territory>own neutral</Territory>
   </BuildRestrictions>
   <Cost>
-    <BuildTime>40</BuildTime>
+    <BuildTime>30</BuildTime>
     <Resources>
-      <wood>80</wood>
+      <wood>60</wood>
     </Resources>
   </Cost>
   <Footprint>
@@ -35,7 +35,7 @@
     <Max>1</Max>
   </GarrisonHolder>
   <Health>
-    <Max>800</Max>
+    <Max>400</Max>
   </Health>
   <Identity>
     <GenericName>Outpost</GenericName>
@@ -45,21 +45,16 @@
     <Icon>structures/outpost.png</Icon>
   </Identity>
   <Loot>
-    <wood>16</wood>
+    <wood>12</wood>
   </Loot>
   <Obstruction>
     <Static width="6.5" depth="6.5"/>
   </Obstruction>
-  <ProductionQueue>
-    <Technologies datatype="tokens">
-      tower_vision
-      tower_decay
-    </Technologies>
-  </ProductionQueue>
+  <ProductionQueue disable=""/>
   <Resistance>
     <Entity>
       <Damage>
-        <Hack>5</Hack>
+        <Hack>10</Hack>
         <Pierce>20</Pierce>
         <Crush>1</Crush>
       </Damage>
@@ -73,6 +68,9 @@
     </Foundation>
   </Resistance>
   <TerritoryDecay>
-    <DecayRate>2</DecayRate>
+    <DecayRate>1</DecayRate>
   </TerritoryDecay>
+  <Vision>
+    <Range>100</Range>
+  </Vision>
 </Entity>
