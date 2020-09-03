@@ -1,14 +1,14 @@
 {
 	"genericName": "Iron Ax Heads",
 	"description": "Increases wood gathering rates for trees.",
-	"cost": { "food": 0, "wood": 200, "stone": 0, "metal": 50 },
+	"cost": { "food": 0, "wood": 200, "stone": 0, "metal": 100 },
 	"requirements": { "tech": "phase_village" },
 	"requirementsTooltip": "Unlocked in Village Phase.",
 	"icon": "wood_axe.png",
 	"researchTime": 40,
-	"tooltip": "Workers +15% wood gather rate.",
+	"tooltip": "Workers +25% wood gather rate.",
 	"modifications": [
-		{ "value": "ResourceGatherer/Rates/wood.tree", "multiply": 1.15 }
+		{ "value": "ResourceGatherer/Rates/wood.tree", "multiply": 1.25 }
 	],
 	"affects": ["Worker"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

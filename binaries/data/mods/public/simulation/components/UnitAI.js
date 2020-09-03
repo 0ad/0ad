@@ -5066,6 +5066,9 @@ UnitAI.prototype.RespondToHealableEntities = function(ents)
  */
 UnitAI.prototype.ShouldAbandonChase = function(target, force, iid, type)
 {
+	if (!this.CheckTargetVisible(target))
+		return true;
+
 	// Forced orders shouldn't be interrupted.
 	if (force)
 		return false;
@@ -5073,8 +5076,8 @@ UnitAI.prototype.ShouldAbandonChase = function(target, force, iid, type)
 	// If we are guarding/escorting, don't abandon as long as the guarded unit is in target range of the attacker
 	if (this.isGuardOf)
 	{
-		var cmpUnitAI =  Engine.QueryInterface(target, IID_UnitAI);
-		var cmpAttack = Engine.QueryInterface(target, IID_Attack);
+		let cmpUnitAI = Engine.QueryInterface(target, IID_UnitAI);
+		let cmpAttack = Engine.QueryInterface(target, IID_Attack);
 		if (cmpUnitAI && cmpAttack &&
 		    cmpAttack.GetAttackTypes().some(type => cmpUnitAI.CheckTargetAttackRange(this.isGuardOf, type)))
 				return false;
@@ -5082,20 +5085,13 @@ UnitAI.prototype.ShouldAbandonChase = function(target, force, iid, type)
 
 	// Stop if we're in hold-ground mode and it's too far from the holding point
 	if (this.GetStance().respondHoldGround)
-	{
 		if (!this.CheckTargetDistanceFromHeldPosition(target, iid, type))
 			return true;
-	}
 
-	// Stop if it's left our vision range, unless we're especially persistent
+	// Stop if it's left our vision range, unless we're especially persistent.
 	if (!this.GetStance().respondChaseBeyondVision)
-	{
 		if (!this.CheckTargetIsInVisionRange(target))
 			return true;
-	}
-
-	// (Note that CCmpUnitMotion will detect if the target is lost in FoW,
-	// and will continue moving to its last seen position and then stop)
 
 	return false;
 };
