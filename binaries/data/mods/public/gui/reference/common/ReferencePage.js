@@ -52,9 +52,8 @@ ReferencePage.prototype.IconPath = "session/portraits/";
  */
 ReferencePage.prototype.StatsFunctions = [
 	getHealthTooltip,
-	getHealerTooltip,
 	getAttackTooltip,
-	getSplashDamageTooltip,
+	getHealerTooltip,
 	getResistanceTooltip,
 	getGarrisonTooltip,
 	getProjectilesTooltip,

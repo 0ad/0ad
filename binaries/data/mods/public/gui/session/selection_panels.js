@@ -978,7 +978,6 @@ g_SelectionPanels.Training = {
 			tooltips = tooltips.concat([
 				getHealthTooltip,
 				getAttackTooltip,
-				getSplashDamageTooltip,
 				getHealerTooltip,
 				getResistanceTooltip,
 				getGarrisonTooltip,
