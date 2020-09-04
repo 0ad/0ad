@@ -10,9 +10,12 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="37" depth="7"/>
+    <Square width="37.0" depth="7.0"/>
     <Height>12.5</Height>
   </Footprint>
+  <GarrisonHolder>
+    <Max>8</Max>
+  </GarrisonHolder>
   <Health>
     <Max op="mul">0.75</Max>
   </Health>
@@ -54,6 +57,50 @@
     <HeightOffset>13.5</HeightOffset>
   </StatusBars>
   <TerritoryInfluence disable=""/>
+  <TurretHolder>
+    <TurretPoints>
+      <One>
+        <X>8</X>
+        <Y>11.5</Y>
+        <Z>1.5</Z>
+      </One>
+      <Two>
+        <X>-8</X>
+        <Y>11.5</Y>
+        <Z>1.5</Z>
+      </Two>
+      <Three>
+        <X>8</X>
+        <Y>11.5</Y>
+        <Z>-1.5</Z>
+      </Three>
+      <Four>
+        <X>-8</X>
+        <Y>11.5</Y>
+        <Z>-1.5</Z>
+      </Four>
+      <Five>
+        <X>11</X>
+        <Y>11.5</Y>
+        <Z>1.5</Z>
+      </Five>
+      <Six>
+        <X>-11</X>
+        <Y>11.5</Y>
+        <Z>1.5</Z>
+      </Six>
+      <Seven>
+        <X>11</X>
+        <Y>11.5</Y>
+        <Z>-1.5</Z>
+      </Seven>
+      <Eight>
+        <X>-11</X>
+        <Y>11.5</Y>
+        <Z>-1.5</Z>
+      </Eight>
+    </TurretPoints>
+  </TurretHolder>
   <VisualActor>
     <Actor>structures/romans/siege_wall_gate.xml</Actor>
   </VisualActor>
