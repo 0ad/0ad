@@ -6,6 +6,7 @@
 # Ács Zoltán <acszoltan111@gmail.com>, 2020
 # Balázs Meskó <meskobalazs@mailbox.org>, 2020
 # Balázs Meskó <meskobalazs@mailbox.org>, 2016-2020
+# Balázs Meskó <meskobalazs@mailbox.org>, 2020
 # Balázs Úr, 2019
 # Balázs Úr, 2015-2016
 # Farkas Máté <nyugatkeleti@gmail.com>, 2019
@@ -17,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-24 07:10+0000\n"
-"PO-Revision-Date: 2020-08-28 15:15+0000\n"
+"PO-Revision-Date: 2020-08-31 12:40+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -1146,7 +1147,7 @@ msgstr "Zúzás"
 #: simulation/data/template_helpers/damage_types/crush.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr ""
+msgstr "Puszta erővel okozott sebzés, például buzogánnyal vagy taposással."
 
 #: simulation/data/template_helpers/damage_types/hack.jsonname
 msgctxt "damage type"
@@ -1158,7 +1159,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
-msgstr ""
+msgstr "Éles vágóeszközökkel okozott sebzés, például karddal vagy baltával."
 
 #: simulation/data/template_helpers/damage_types/pierce.jsonname
 msgctxt "damage type"
@@ -1168,4 +1169,4 @@ msgstr "Szúrás"
 #: simulation/data/template_helpers/damage_types/pierce.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr ""
+msgstr "Szúrós tárgyakkal okozott sebzés, például nyilakkal vagy lándzsával."

@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-28 07:09+0000\n"
-"PO-Revision-Date: 2020-08-28 11:51+0000\n"
+"PO-Revision-Date: 2020-08-31 12:33+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgstr "Athéniak"
 #: simulation/data/civs/mace.jsonCivBonuses[0].Description
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "+10% életerő és +10% foglalási pont az épületeknél."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 #: simulation/data/civs/mace.jsonCivBonuses[0].Name
@@ -457,7 +457,7 @@ msgstr "Karthágóiak"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "+100% építési idő, +100% kő költség és +200% életerő a falaknál."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -469,7 +469,7 @@ msgstr "A karthágóiak hármas városfalakat építettek."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "Allies +10% international trade bonus."
-msgstr ""
+msgstr "A szövetségeseknek +10% nemzetközi kereskedelmi bónusz."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -625,7 +625,7 @@ msgstr "Kelta követség"
 
 #: simulation/data/civs/cart.jsonStructures[1].Special
 msgid "Train Celtic Mercenaries."
-msgstr ""
+msgstr "Kelta zsoldosok kiképzése."
 
 #: simulation/data/civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
@@ -637,7 +637,7 @@ msgstr "Ibériai követség"
 
 #: simulation/data/civs/cart.jsonStructures[2].Special
 msgid "Train Iberian Mercenaries."
-msgstr ""
+msgstr "Ibériai zsoldosok kiképzése."
 
 #: simulation/data/civs/cart.jsonStructures[2].History
 msgid ""
@@ -646,18 +646,18 @@ msgstr "Az ibériai harcosok híresek voltak vadságukról, valamint hűségükr
 
 #: simulation/data/civs/cart.jsonStructures[3].Name
 msgid "Italic Embassy"
-msgstr ""
+msgstr "Itáliai követség"
 
 #: simulation/data/civs/cart.jsonStructures[3].Special
 msgid "Train Italic Mercenaries."
-msgstr ""
+msgstr "Itáliai zsoldosok kiképzése."
 
 #: simulation/data/civs/cart.jsonStructures[3].History
 msgid ""
 "When Hannibal invaded Italy and defeated the Romans in a series of battles, "
 "many of the peoples subject to Rome, including the Greeks and Samnites, "
 "revolted and joined the Carthaginian cause."
-msgstr ""
+msgstr "Mikor Hannibál egymás után győzött csatában a rómaiak ellen, a korábban a sokan a rómaiak által leigázott népek, köztük a görögök és a szamniszok, fellázadtak és csatlakoztak a karthágói ügyhöz."
 
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
@@ -700,17 +700,17 @@ msgstr "A kelta vallás és a druidák inspirálták harcias természetüket."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Forges −15% technology resource costs and research time."
-msgstr ""
+msgstr "-20% műszaki nyersanyagköltség és kutatási idő a kohóknál."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Products from Gaul"
-msgstr ""
+msgstr "Gall termékek"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Gauls produced and exported swords and scabbards, woolen and leather "
 "products, and other arms."
-msgstr ""
+msgstr "A gallok kardokat és kardhüvelyeket, gyapjú- és bőrtermékeket illetve egyéb fegyvereket gyártottak és exportáltak."
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -761,13 +761,13 @@ msgstr "+15% gabonabegyűjtési sebesség a munkásoknál."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Harvesting Machine"
-msgstr ""
+msgstr "Betakarítógép"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr ""
+msgstr "A gallok feltalálták a betakarítógépet, sokkal könnyebbé téve a gabona betakarítását."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -890,7 +890,7 @@ msgstr "A hordalékos alföldek és a folyóvölgyeket leszámítva, a kő bős�
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Javelineers −10% resource costs."
-msgstr ""
+msgstr "A szövetségeseknek -10% nyersanyagköltség a lándzsás polgári katonáknál."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1121,7 +1121,7 @@ msgstr "Amanishakheto"
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "-10% kiképzési idő, +8 támadási hatótávolság és -10% távolsági támadási szórás az íjászoknál."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
@@ -1133,7 +1133,7 @@ msgstr "Íjászhagyomány"
 msgid ""
 "The Kushites had a tradition of fine archery and a penchant for using massed"
 " archers in battle."
-msgstr ""
+msgstr "A kusiták nagy íjászhagyománnyal rendelkeztek, és előszeretettel használtak íjászokat tömegesen a csatában."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "Monumental Architecture"
@@ -1142,7 +1142,7 @@ msgstr "Monumentális építészet"
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "+20% építési idő, +20% életerő és +20% foglalási pont a polgári épületeknél."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Description
 msgid "Train elite rank healers."
@@ -1312,7 +1312,7 @@ msgstr "Meleagrosz"
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Description
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "A Városházáknak +100% életerő és foglalási pont, dupla alapértelmezett nyílvessző."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
@@ -1333,7 +1333,7 @@ msgstr "Alexszandrosszal kezdve, a hellén uralkodók sok várost alapítottak b
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr ""
+msgstr "A bajnok pajzshordozókat Ezüst pajzsokká fejleszti, több életerővel és sebzéssel."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
 msgid "Silver Shields"
@@ -1452,11 +1452,11 @@ msgstr "A Maurja birodalom több tucat, előzőleg független királyságot fogo
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "-30% kiképzési idő az elefántoknál."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "Elefánthagyomány"
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].History
 msgid ""
@@ -1464,7 +1464,7 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr ""
+msgstr "India az elefántok földje. Az elefántos hadviselés Indiából származik, és ezer évig folytatódott. Ez volt a Földközi-tenger keleti felének elefántforrása. Az indiai királyok nagy számú harci elefántot tudtak kiállítani."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid ""
@@ -1523,7 +1523,7 @@ msgstr "Brihadratha Maurja"
 msgid ""
 "The Indian peoples had a tradition of fine archery and a penchant for using "
 "massed archers in battle."
-msgstr ""
+msgstr "Az indiaiak nagy íjászhagyománnyal rendelkeztek és előszeretettel vetették be nagy tömegben az íjászokat a csatában."
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -1547,11 +1547,11 @@ msgstr "Maurja indiaiak"
 
 #: simulation/data/civs/maur.jsonStructures[0].Name
 msgid "Elephant Stable"
-msgstr ""
+msgstr "Elefántistálló"
 
 #: simulation/data/civs/maur.jsonStructures[0].Special
 msgid "Train Elephants and research Elephant technologies."
-msgstr ""
+msgstr "Elefántok kiképzése és elefánt fejlesztések kutatása"
 
 #: simulation/data/civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
@@ -1670,7 +1670,7 @@ msgstr "II. Khsajársá"
 msgid ""
 "The Iranian peoples had a tradition of fine archery and a penchant for using"
 " massed archers in battle."
-msgstr ""
+msgstr "Az irániak nagy íjászhagyománnyal rendelkeztek és előszeretettel vetették be nagy tömegben az íjászokat a csatában."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry."
@@ -1711,7 +1711,7 @@ msgstr "A perzsák építették a csodálatos, 2700 kilométer hosszú Királyi 
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
 msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "-50% kiképzési idő, de -10% életerő az Anušiya bajnok gyalogosoknál."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
 msgid "Immortals"
@@ -1721,7 +1721,7 @@ msgstr "Halhatatlanok"
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "Az akhaimenidák egy 10 000 fős elit alakulatot tartottak fenn, akikre a görög szerzők „halhatatlanoknak” hívtak."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
@@ -2342,11 +2342,11 @@ msgstr "A gyönyörű és erős Niszaiai lófajta növeli a szeleukida lovasság
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
 msgid ""
 "Unlock either Champion Infantry Pikemen or Champion Infantry Swordsmen."
-msgstr ""
+msgstr "Pikás bajnok gyalogság vagy kardforgató bajnok gyalogság feloldása."
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
 msgid "Traditional Army vs Reform Army"
-msgstr ""
+msgstr "Hagyományos sereg kontra Reform sereg"
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -2513,7 +2513,7 @@ msgstr "Agesipolis"
 msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers."
-msgstr ""
+msgstr "A spártai női polgárokat nem lehet elfogni és harcolnak a támadókkal."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
@@ -2547,7 +2547,7 @@ msgstr "A paeanok harci himnuszok voltak, amelyeket a hopliták énekeltek, amik
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "+25% életerő, de +5% kiképzési idő a lándzsás gyalogos bajnokoknál."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"

@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-28 07:10+0000\n"
-"PO-Revision-Date: 2020-08-28 15:38+0000\n"
+"PO-Revision-Date: 2020-08-31 12:17+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -48,13 +48,13 @@ msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Dropsite for food, wood, stone, and metal. Train Citizens "
 "and research technologies. Garrison Soldiers for additional arrows."
-msgstr "Saját és semleges területre építhető. Nagy méretű területet szerez meg. Terület gyökere. Lerakóhely élelemhez, fához, kőhöz és fémhez. Polgárok kiképzése és technológiák kutatása. Katonák beszállásolása további nyilakhoz."
+msgstr "Saját és semleges területre építhető. Nagy méretű területet szerez meg. Terület gyökere. Lerakóhely élelemhez, fához, kőhöz és fémhez. Polgárok kiképzése és fejlesztések kutatása. Katonák beszállásolása további nyilakhoz."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:97
 #: simulation/templates/template_structure_defensive.xml:21
 #: simulation/templates/template_structure_military_fortress.xml:80
 msgid "Defensive"
-msgstr "Védekező"
+msgstr "Védelmi"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:97
 #: simulation/templates/template_structure_civic_civil_centre.xml:59
@@ -116,7 +116,7 @@ msgstr "Oszlopcsarnok"
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 msgid "Train Healers and research healing technologies."
-msgstr "Gyógyítók kiképzése és technológiák kutatása."
+msgstr "Gyógyítók kiképzése és fejlesztések kutatása."
 
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -267,7 +267,7 @@ msgstr "Tanya"
 msgid ""
 "Barter resources. Establish trade routes. Train Traders and research trade "
 "and barter technologies."
-msgstr ""
+msgstr "Nyersanyagok cserekereskedelme. Kereskedelmi utak létesítése. Kereskedők kiképzése, illetve kereskedelmi és cserekereskedelmi fejlesztések kutatása."
 
 #: simulation/templates/template_structure_economic_market.xml:31
 #: simulation/templates/template_structure_military_dock.xml:28
@@ -281,7 +281,7 @@ msgstr "Piac"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 msgid "Dropsite for wood, stone, and metal. Research gathering technologies."
-msgstr ""
+msgstr "Lerakóhely fához, kőhöz és fémhez. Gyűjtési fejlesztések kutatása."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:34
 #: simulation/templates/template_structure_economic_storehouse.xml:30
@@ -300,16 +300,16 @@ msgstr "Hadi"
 msgid ""
 "Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
 "Siege Engine technologies."
-msgstr ""
+msgstr "Bajnok gyalogsági nyílpuskások kiképzése, ostromgépek építése és ostromgép fejlesztések kutatása."
 
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_arsenal.xml:25
 msgid "Arsenal"
-msgstr ""
+msgstr "Fegyvertár"
 
 #: simulation/templates/template_structure_military_barracks.xml:28
 msgid "Train Citizen Soldiers and research technologies."
-msgstr ""
+msgstr "Polgári katonák kiképzése és fejlesztések kutatása."
 
 #: simulation/templates/template_structure_military_barracks.xml:29
 #: simulation/templates/template_structure_military_barracks.xml:26
@@ -321,13 +321,13 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Dropsite for "
 "food, wood, stone, and metal. Establish trade routes. Construct Ships and "
 "research Ship technologies."
-msgstr ""
+msgstr "Partvonalra építhető, saját, semleges vagy szövetséges területen. Lerakóhely élelemhez, fához, kőhöz és fémhez. Kereskedelmi utak létesítése. Hajók gyártása és hajózási fejlesztések kutatása."
 
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/structures/brit_crannog.xml:16
 #: simulation/templates/structures/cart_super_dock.xml:51
 msgid "Naval"
-msgstr ""
+msgstr "Tengeri"
 
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/template_structure_military_dock.xml:25
@@ -336,11 +336,11 @@ msgstr "Kikötő"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:24
 msgid "Elephant Stable"
-msgstr ""
+msgstr "Elefántistálló"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:26
 msgid "Train Elephants and research Elephant technologies."
-msgstr ""
+msgstr "Elefántok kiképzése és elefánt fejlesztések kutatása"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
 msgid "ElephantStable"
@@ -354,12 +354,12 @@ msgstr "Követség"
 
 #: simulation/templates/template_structure_military_forge.xml:24
 msgid "Research attack and armor technologies."
-msgstr ""
+msgstr "Támadási és páncélfejlesztések kutatása."
 
 #: simulation/templates/template_structure_military_forge.xml:26
 #: simulation/templates/template_structure_military_forge.xml:22
 msgid "Forge"
-msgstr ""
+msgstr "Kohó"
 
 #: simulation/templates/template_structure_military_fortress.xml:78
 msgid ""
@@ -379,7 +379,7 @@ msgstr "Gyakorlótér"
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Train Ranged Infantry and research technologies."
-msgstr ""
+msgstr "Távolsági gyalogság kiképzése és fejlesztések kutatása."
 
 #: simulation/templates/template_structure_military_range.xml:25
 msgid "Range"
@@ -387,7 +387,7 @@ msgstr "Kiképzőtér"
 
 #: simulation/templates/template_structure_military_stable.xml:25
 msgid "Train Cavalry and research Cavalry technologies."
-msgstr "Lovasok kiképzése és lovassági technológiák kutatása."
+msgstr "Lovasok kiképzése és lovassági fejlesztések kutatása."
 
 #: simulation/templates/template_structure_military_stable.xml:26
 #: simulation/templates/template_structure_military_stable.xml:23
@@ -404,7 +404,7 @@ msgstr "Nyersanyag"
 
 #: simulation/templates/template_structure_resource_corral.xml:20
 msgid "Raise Domestic Animals for food."
-msgstr ""
+msgstr "Háziállatok nevelése élelemért."
 
 #: simulation/templates/template_structure_resource_corral.xml:21
 #: simulation/templates/template_structure_resource_corral.xml:18
@@ -423,7 +423,7 @@ msgstr "Gyűjts gabonát, hogy élelemhez juss. Minden további gyűjtögető ke
 
 #: simulation/templates/template_structure_special.xml:39
 msgid "Special Structure"
-msgstr ""
+msgstr "Különleges épület"
 
 #: simulation/templates/template_structure_special_amphitheater.xml:23
 #: simulation/templates/template_structure_special_amphitheater.xml:21
@@ -442,7 +442,7 @@ msgstr "Forgómalom"
 
 #: simulation/templates/template_structure_special_rotarymill.xml:22
 msgid "RotaryMill"
-msgstr ""
+msgstr "Forgómalom"
 
 #: simulation/templates/template_structure_special_theater.xml:26
 #: simulation/templates/template_structure_special_theater.xml:24
@@ -597,7 +597,7 @@ msgstr "Hősök kiképzése és technológiák kutatása."
 #: simulation/templates/structures/athen_prytaneion.xml:26
 #: simulation/templates/structures/spart_gerousia.xml:26
 msgid "Council"
-msgstr ""
+msgstr "Tanács"
 
 #: simulation/templates/structures/athen_range.xml:8
 #: simulation/templates/structures/mace_range.xml:8
@@ -730,7 +730,7 @@ msgid ""
 "tracts of territory. Territory root. Dropsite for food, wood, stone, and "
 "metal. Train Citizens, construct Ships, and research technologies. Garrison "
 "Soldiers for additional arrows."
-msgstr ""
+msgstr "Partvonalra építhető, saját, semleges vagy szövetséges területen. Nagy területeket szerez. Terület gyökere. Lerakóhely élelemhez, fához, kőhöz és fémhez. Polgárok kiképzése, hajók gyártása és fejlesztések kutatása. Katonák beszállásolása további nyilakért."
 
 #: simulation/templates/structures/brit_defense_tower.xml:9
 #: simulation/templates/structures/brit_sentry_tower.xml:5
@@ -864,7 +864,7 @@ msgstr "Halászhajók építése hús gyűjtéséhez, és kereskedőhajók épí
 
 #: simulation/templates/structures/cart_embassy.xml:19
 msgid "Train Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Zsoldosok kiképzése és zsoldos fejlesztések kutatása."
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:17
 msgid "Celtic Embassy"
@@ -872,7 +872,7 @@ msgstr "Kelta követség"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:18
 msgid "Train Celtic Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Kelta zsoldosok kiképzése és zsoldos fejlesztések kutatása."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:10
 msgid "Iberian Embassy"
@@ -880,15 +880,15 @@ msgstr "Ibériai követség"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:11
 msgid "Train Iberian Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Ibériai zsoldosok kiképzése és zsoldos fejlesztések kutatása."
 
 #: simulation/templates/structures/cart_embassy_italic.xml:17
 msgid "Italic Embassy"
-msgstr ""
+msgstr "Itáliai követség"
 
 #: simulation/templates/structures/cart_embassy_italic.xml:18
 msgid "Train Italic Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Itáliai zsoldosok kiképzése és zsoldos fejlesztések kutatása."
 
 #: simulation/templates/structures/cart_farmstead.xml:8
 msgid "Aḥuzāh"
@@ -942,7 +942,7 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Construct Warships and research "
 "technologies."
-msgstr ""
+msgstr "Saját és semleges területre építhető. Nagy méretű területet szerez meg. Terület gyökere. Hadihajók gyártása és fejlesztések kutatása."
 
 #: simulation/templates/structures/cart_super_dock.xml:51
 msgid "Shipyard"
@@ -954,7 +954,7 @@ msgstr "Maqdaš"
 
 #: simulation/templates/structures/cart_temple.xml:15
 msgid "Train Healers and Champions and research healing technologies."
-msgstr ""
+msgstr "Gyógyítók és bajnokok kiképzése, valamint gyógyítási fejlesztések kutatása."
 
 #: simulation/templates/structures/cart_tophet.xml:18
 msgid "Sacrificial Temple"
@@ -966,7 +966,7 @@ msgstr "Tophet"
 
 #: simulation/templates/structures/cart_tophet.xml:20
 msgid "Train Healers and Champion Cavalry and research healing technologies."
-msgstr ""
+msgstr "Gyógyítók és bajnok lovasság kiképzése, valamint gyógyítási fejlesztések kutatása."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -1237,11 +1237,11 @@ msgstr "Pr-ʿIprmk"
 #: simulation/templates/structures/kush_temple.xml:10
 msgid ""
 "Train Healers and Apedamak Champions and research healing technologies."
-msgstr ""
+msgstr "Gyógyítók és Apedemak bajnokainak kiképzése, valamint gyógyítási fejlesztések kutatása."
 
 #: simulation/templates/structures/kush_temple.xml:11
 msgid "TempleOfApedemak"
-msgstr ""
+msgstr "Apedemak temploma"
 
 #: simulation/templates/structures/kush_temple_amun.xml:28
 msgid "Grand Temple of Amun"
@@ -1253,11 +1253,11 @@ msgstr "Pr-ʿImn"
 
 #: simulation/templates/structures/kush_temple_amun.xml:30
 msgid "Train Healers and Amun Champions and research healing technologies."
-msgstr ""
+msgstr "Gyógyítók és Amun bajnokainak kiképzése, valamint gyógyítási fejlesztések kutatása."
 
 #: simulation/templates/structures/kush_temple_amun.xml:31
 msgid "TempleOfAmun"
-msgstr ""
+msgstr "Amun temploma"
 
 #: simulation/templates/structures/kush_wall_gate.xml:9
 msgid "ʿryt"
@@ -1444,7 +1444,7 @@ msgstr "Palánk kapu"
 #: simulation/templates/structures/palisades_gate.xml:22
 #: simulation/templates/structures/palisades_long.xml:31
 msgid "Allow units access through Palisades. Can be locked to prevent access."
-msgstr ""
+msgstr "Átengedi az egységeket a palánkokon. Bezárható az átjárás megakadályozásához."
 
 #: simulation/templates/structures/palisades_long.xml:17
 msgid "Can be converted into a Palisade Gate."
@@ -1631,7 +1631,7 @@ msgstr "Pharosz"
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Reveal the "
 "shorelines over the entire map. Very large vision range."
-msgstr ""
+msgstr "Partvonalra építhető, saját, semleges vagy szövetséges területen. Felfedi a partvonalat a teljes térképen. Nagyon nagy látóhatár."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:27
 #: simulation/templates/structures/ptol_lighthouse.xml:24
@@ -1815,7 +1815,7 @@ msgstr "Aedēs Mārtiālis"
 
 #: simulation/templates/structures/rome_temple_mars.xml:14
 msgid "TempleOfMars"
-msgstr "Mars-templom"
+msgstr "Mars temploma"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:18
 msgid "Temple of Vesta"
@@ -1827,7 +1827,7 @@ msgstr "Aedēs Vestālis"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:20
 msgid "TempleOfVesta"
-msgstr "Vesta-templom"
+msgstr "Vesta temploma"
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"

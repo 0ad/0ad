@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-28 07:09+0000\n"
-"PO-Revision-Date: 2020-08-28 13:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-08-31 12:46+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -818,7 +818,7 @@ msgstr "%(attacker)s megtámadott!"
 #: gui/session/chat/ChatMessageFormatSimulation.js:38
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr ""
+msgstr "%(player)s cserélt: %(amountGiven)s erre: %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:70
 #, javascript-format
@@ -1527,7 +1527,7 @@ msgstr "Foglalási pontok:"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):60
 msgid "Attack and Resistance"
-msgstr ""
+msgstr "Támadás és ellenállás"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):75
 msgid "Experience"
