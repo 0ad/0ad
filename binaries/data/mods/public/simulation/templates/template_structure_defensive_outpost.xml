@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defensive">
+  <Auras datatype="tokens">
+    structures/wall_garrisoned
+  </Auras>
+  <BuildRestrictions>
+    <Category>Outpost</Category>
+    <Distance>
+      <FromClass>Outpost</FromClass>
+      <MinDistance>50</MinDistance>
+    </Distance>
+    <Territory>own neutral</Territory>
+  </BuildRestrictions>
+  <Cost>
+    <BuildTime>30</BuildTime>
+    <Resources>
+      <wood>60</wood>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="7.0" depth="7.0"/>
+    <Height>13.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>1</Max>
+    <EjectHealth>0.1</EjectHealth>
+    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
+    <List datatype="tokens">Infantry</List>
+    <BuffHeal>0</BuffHeal>
+    <LoadingRange>2</LoadingRange>
+  </GarrisonHolder>
+  <Health>
+    <Max>400</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_2x2</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <GenericName>Outpost</GenericName>
+    <SelectionGroupName>template_structure_defensive_outpost</SelectionGroupName>
+    <Tooltip>Build in own or neutral territory. Slowly converts to Gaia while in neutral territory.</Tooltip>
+    <VisibleClasses datatype="tokens">Outpost</VisibleClasses>
+    <Icon>structures/outpost.png</Icon>
+  </Identity>
+  <Loot>
+    <wood>12</wood>
+  </Loot>
+  <Obstruction>
+    <Static width="6.0" depth="6.0"/>
+  </Obstruction>
+  <ProductionQueue disable=""/>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>10</Hack>
+        <Pierce>20</Pierce>
+        <Crush>1</Crush>
+      </Damage>
+    </Entity>
+  </Resistance>
+  <Sound>
+    <SoundGroups>
+      <constructed>interface/complete/building/complete_tower.xml</constructed>
+      <select>interface/select/building/sel_tower.xml</select>
+    </SoundGroups>
+  </Sound>
+  <StatusBars>
+    <HeightOffset>14.0</HeightOffset>
+  </StatusBars>
+  <TerritoryDecay>
+    <DecayRate>1</DecayRate>
+  </TerritoryDecay>
+  <TurretHolder>
+    <TurretPoints>
+      <One>
+        <X>0</X>
+        <Y>8</Y>
+        <Z>0</Z>
+      </One>
+    </TurretPoints>
+  </TurretHolder>
+  <Vision>
+    <Range>1</Range>
+  </Vision>
+  <VisualActor>
+    <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
+  </VisualActor>
+</Entity>
