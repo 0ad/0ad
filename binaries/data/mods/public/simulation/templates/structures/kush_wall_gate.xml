@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_gate">
   <Footprint>
-    <Square width="37" depth="9"/>
+    <Square width="37.0" depth="9.0"/>
     <Height>12.6</Height>
   </Footprint>
+  <GarrisonHolder>
+    <Max>6</Max>
+  </GarrisonHolder>
   <Identity>
     <Civ>kush</Civ>
     <SpecificName>ʿryt</SpecificName>
@@ -18,6 +21,40 @@
   <StatusBars>
     <HeightOffset>13.6</HeightOffset>
   </StatusBars>
+  <TurretHolder>
+    <TurretPoints>
+      <One>
+        <X>10</X>
+        <Y>11.6</Y>
+        <Z>3</Z>
+      </One>
+      <Two>
+        <X>-10</X>
+        <Y>11.6</Y>
+        <Z>3</Z>
+      </Two>
+      <Three>
+        <X>10</X>
+        <Y>11.6</Y>
+        <Z>-3</Z>
+      </Three>
+      <Four>
+        <X>-10</X>
+        <Y>11.6</Y>
+        <Z>-3</Z>
+      </Four>
+      <Five>
+        <X>10</X>
+        <Y>11.6</Y>
+        <Z>0</Z>
+      </Five>
+      <Six>
+        <X>-10</X>
+        <Y>11.6</Y>
+        <Z>0</Z>
+      </Six>
+    </TurretPoints>
+  </TurretHolder>
   <VisualActor>
     <Actor>structures/kushites/wall_gate.xml</Actor>
   </VisualActor>

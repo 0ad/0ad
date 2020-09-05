@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall">
   <!-- We need a Cost component, although gates cannot be built directly, as Cost/BuildTime is required to prevent instantaneous repair -->
+  <Auras datatype="tokens">
+    structures/wall_garrisoned
+  </Auras>
   <Cost>
     <BuildTime>30</BuildTime>
     <Resources>
@@ -8,7 +11,6 @@
       <stone>18</stone>
     </Resources>
   </Cost>
-  <GarrisonHolder disable=""/>
   <Gate>
     <PassRange>20</PassRange>
   </Gate>
@@ -30,7 +32,6 @@
   <Obstruction>
     <Static disable=""/>
   </Obstruction>
-  <RallyPoint disable=""/>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_gate.xml</select>

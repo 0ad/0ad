@@ -313,7 +313,6 @@ function displaySingle(entState)
 
 	Engine.GetGUIObjectByName("attackAndResistanceStats").tooltip = [
 		getAttackTooltip,
-		getSplashDamageTooltip,
 		getHealerTooltip,
 		getResistanceTooltip,
 		getGatherTooltip,

@@ -7,7 +7,7 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="25" depth="5"/>
+    <Square width="25.0" depth="5.0"/>
     <Height>10.5</Height>
   </Footprint>
   <Identity>
@@ -19,28 +19,33 @@
     <stone>0</stone>
   </Loot>
   <Obstruction>
-    <Static width="24" depth="4"/>
+    <Static width="24.0" depth="4.0"/>
   </Obstruction>
   <StatusBars>
-    <HeightOffset>18</HeightOffset>
+    <HeightOffset>18.0</HeightOffset>
   </StatusBars>
   <TurretHolder>
     <TurretPoints>
-      <Archer1>
-        <X>0</X>
+      <One>
+        <X>1.5</X>
         <Y>9.5</Y>
         <Z>0</Z>
-      </Archer1>
-      <Archer2>
-        <X>4</X>
+      </One>
+      <Two>
+        <X>-1.5</X>
         <Y>9.5</Y>
         <Z>0</Z>
-      </Archer2>
-      <Archer3>
-        <X>-4</X>
+      </Two>
+      <Three>
+        <X>4.5</X>
         <Y>9.5</Y>
         <Z>0</Z>
-      </Archer3>
+      </Three>
+      <Four>
+        <X>-4.5</X>
+        <Y>9.5</Y>
+        <Z>0</Z>
+      </Four>
     </TurretPoints>
   </TurretHolder>
   <VisualActor>

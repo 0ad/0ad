@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_long">
   <Footprint>
-    <Square width="35" depth="6"/>
+    <Square width="35.0" depth="6.0"/>
     <Height>11.4</Height>
   </Footprint>
   <Identity>
@@ -9,38 +9,53 @@
     <SpecificName>Teichos</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="34" depth="5"/>
+    <Static width="34.0" depth="5.0"/>
   </Obstruction>
   <StatusBars>
     <HeightOffset>12.4</HeightOffset>
   </StatusBars>
   <TurretHolder>
     <TurretPoints>
-      <Archer1>
-        <X>0</X>
+      <One>
+        <X>1.5</X>
         <Y>10.4</Y>
         <Z>0</Z>
-      </Archer1>
-      <Archer2>
-        <X>8</X>
+      </One>
+      <Two>
+        <X>-1.5</X>
         <Y>10.4</Y>
         <Z>0</Z>
-      </Archer2>
-      <Archer3>
-        <X>-8</X>
+      </Two>
+      <Three>
+        <X>4.5</X>
         <Y>10.4</Y>
         <Z>0</Z>
-      </Archer3>
-      <Archer4>
-        <X>4</X>
+      </Three>
+      <Four>
+        <X>-4.5</X>
         <Y>10.4</Y>
         <Z>0</Z>
-      </Archer4>
-      <Archer5>
-        <X>-4</X>
+      </Four>
+      <Five>
+        <X>7.5</X>
         <Y>10.4</Y>
         <Z>0</Z>
-      </Archer5>
+      </Five>
+      <Six>
+        <X>-7.5</X>
+        <Y>10.4</Y>
+        <Z>0</Z>
+      </Six>
+      <Seven>
+        <X>10.5</X>
+        <Y>10.4</Y>
+        <Z>0</Z>
+      </Seven>
+      <Eight>
+        <X>-10.5</X>
+        <Y>10.4</Y>
+        <Z>0</Z>
+      </Eight>
     </TurretPoints>
   </TurretHolder>
   <VisualActor>

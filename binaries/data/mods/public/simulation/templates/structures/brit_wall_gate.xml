@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_gate">
   <Footprint>
-    <Square width="37" depth="8"/>
-    <Height>18</Height>
+    <Square width="37.0" depth="8.0"/>
+    <Height>18.0</Height>
   </Footprint>
+  <GarrisonHolder>
+    <Max>4</Max>
+  </GarrisonHolder>
   <Identity>
     <Civ>brit</Civ>
     <SpecificName>Duoricos</SpecificName>
@@ -16,8 +19,32 @@
     </Obstructions>
   </Obstruction>
   <StatusBars>
-    <HeightOffset>19</HeightOffset>
+    <HeightOffset>19.0</HeightOffset>
   </StatusBars>
+  <TurretHolder>
+    <TurretPoints>
+      <One>
+        <X>1.5</X>
+        <Y>11.3</Y>
+        <Z>0</Z>
+      </One>
+      <Two>
+        <X>-1.5</X>
+        <Y>11.3</Y>
+        <Z>0</Z>
+      </Two>
+      <Three>
+        <X>4.5</X>
+        <Y>11.3</Y>
+        <Z>0</Z>
+      </Three>
+      <Four>
+        <X>-4.5</X>
+        <Y>11.3</Y>
+        <Z>0</Z>
+      </Four>
+    </TurretPoints>
+  </TurretHolder>
   <VisualActor>
     <Actor>structures/britons/wall_gate.xml</Actor>
   </VisualActor>

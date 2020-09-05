@@ -7,9 +7,12 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="37" depth="8"/>
-    <Height>22</Height>
+    <Square width="37.0" depth="8.0"/>
+    <Height>22.0</Height>
   </Footprint>
+  <GarrisonHolder>
+    <Max>4</Max>
+  </GarrisonHolder>
   <Identity>
     <Civ>maur</Civ>
     <SpecificName>Dwara</SpecificName>
@@ -26,8 +29,32 @@
     </Obstructions>
   </Obstruction>
   <StatusBars>
-    <HeightOffset>23</HeightOffset>
+    <HeightOffset>23.0</HeightOffset>
   </StatusBars>
+  <TurretHolder>
+    <TurretPoints>
+      <One>
+        <X>1.5</X>
+        <Y>14</Y>
+        <Z>0</Z>
+      </One>
+      <Two>
+        <X>-1.5</X>
+        <Y>14</Y>
+        <Z>0</Z>
+      </Two>
+      <Three>
+        <X>4.5</X>
+        <Y>14</Y>
+        <Z>0</Z>
+      </Three>
+      <Four>
+        <X>-4.5</X>
+        <Y>14</Y>
+        <Z>0</Z>
+      </Four>
+    </TurretPoints>
+  </TurretHolder>
   <VisualActor>
     <Actor>structures/mauryas/wall_gate.xml</Actor>
   </VisualActor>

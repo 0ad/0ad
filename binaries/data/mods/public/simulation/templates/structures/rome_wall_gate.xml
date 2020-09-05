@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_gate">
   <Footprint>
-    <Square width="37" depth="7"/>
+    <Square width="37.0" depth="7.0"/>
     <Height>11.9</Height>
   </Footprint>
+  <GarrisonHolder>
+    <Max>10</Max>
+  </GarrisonHolder>
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Porta</SpecificName>
@@ -18,6 +21,60 @@
   <StatusBars>
     <HeightOffset>12.9</HeightOffset>
   </StatusBars>
+  <TurretHolder>
+    <TurretPoints>
+      <One>
+        <X>0</X>
+        <Y>10.9</Y>
+        <Z>1.5</Z>
+      </One>
+      <Two>
+        <X>3</X>
+        <Y>10.9</Y>
+        <Z>1.5</Z>
+      </Two>
+      <Three>
+        <X>-3</X>
+        <Y>10.9</Y>
+        <Z>1.5</Z>
+      </Three>
+      <Four>
+        <X>6</X>
+        <Y>10.9</Y>
+        <Z>1.5</Z>
+      </Four>
+      <Five>
+        <X>-6</X>
+        <Y>10.9</Y>
+        <Z>1.5</Z>
+      </Five>
+      <Six>
+        <X>0</X>
+        <Y>10.9</Y>
+        <Z>-1.5</Z>
+      </Six>
+      <Seven>
+        <X>3</X>
+        <Y>10.9</Y>
+        <Z>-1.5</Z>
+      </Seven>
+      <Eight>
+        <X>-3</X>
+        <Y>10.9</Y>
+        <Z>-1.5</Z>
+      </Eight>
+      <Nine>
+        <X>6</X>
+        <Y>10.9</Y>
+        <Z>-1.5</Z>
+      </Nine>
+      <Ten>
+        <X>-6</X>
+        <Y>10.9</Y>
+        <Z>-1.5</Z>
+      </Ten>
+    </TurretPoints>
+  </TurretHolder>
   <VisualActor>
     <Actor>structures/romans/wall_gate.xml</Actor>
   </VisualActor>

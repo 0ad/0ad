@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="structures/palisades_medium">
   <Footprint>
-    <Square width="10" depth="3"/>
-    <Height>6</Height>
+    <Square width="10.0" depth="3.0"/>
+    <Height>6.0</Height>
   </Footprint>
   <Identity>
     <Civ>cart</Civ>
@@ -11,10 +11,10 @@
     <GenericName>Stone Wall</GenericName>
   </Identity>
   <Obstruction>
-    <Static width="9" depth="2"/>
+    <Static width="9.0" depth="2.0"/>
   </Obstruction>
   <StatusBars>
-    <HeightOffset>7</HeightOffset>
+    <HeightOffset>7.0</HeightOffset>
   </StatusBars>
   <VisualActor>
     <Actor>structures/carthaginians/short_wall_medium.xml</Actor>

@@ -7,8 +7,8 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="15" depth="3"/>
-    <Height>6</Height>
+    <Square width="15.0" depth="3.0"/>
+    <Height>6.0</Height>
   </Footprint>
   <Health>
     <Max op="mul">0.6</Max>
@@ -20,10 +20,10 @@
     <wood>3</wood>
   </Loot>
   <Obstruction>
-    <Static width="14" depth="2"/>
+    <Static width="14.0" depth="2.0"/>
   </Obstruction>
   <StatusBars>
-    <HeightOffset>7</HeightOffset>
+    <HeightOffset>7.0</HeightOffset>
   </StatusBars>
   <Upgrade>
     <Gate>

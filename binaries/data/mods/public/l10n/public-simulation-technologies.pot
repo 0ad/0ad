@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2020-08-07 07:10+0000\n"
-"PO-Revision-Date: 2020-08-07 07:10+0000\n"
+"POT-Creation-Date: 2020-09-04 07:09+0000\n"
+"PO-Revision-Date: 2020-09-04 07:09+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -29,6 +29,7 @@ msgstr ""
 
 #: simulation/data/technologies/archery_tradition.json:requirementsTooltip
 #: simulation/data/technologies/armor_ship_reinforcedhull.json:requirementsTooltip
+#: simulation/data/technologies/cavalry_movement_speed.json:requirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.json:requirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.json:requirementsTooltip
 #: simulation/data/technologies/gather_fishing_net.json:requirementsTooltip
@@ -69,9 +70,7 @@ msgstr ""
 #: simulation/data/technologies/heal_range.json:requirementsTooltip
 #: simulation/data/technologies/heal_rate.json:requirementsTooltip
 #: simulation/data/technologies/pop_house_01.json:requirementsTooltip
-#: simulation/data/technologies/speed_cavalry_01.json:requirementsTooltip
 #: simulation/data/technologies/tower_crenellations.json:requirementsTooltip
-#: simulation/data/technologies/tower_decay.json:requirementsTooltip
 #: simulation/data/technologies/tower_range.json:requirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.json:requirementsTooltip
 #: simulation/data/technologies/trade_convoys_speed.json:requirementsTooltip
@@ -123,7 +122,6 @@ msgstr ""
 #: simulation/data/technologies/siege_bolt_accuracy.json:requirementsTooltip
 #: simulation/data/technologies/siege_cost_metal.json:requirementsTooltip
 #: simulation/data/technologies/siege_cost_wood.json:requirementsTooltip
-#: simulation/data/technologies/speed_cavalry_02.json:requirementsTooltip
 #: simulation/data/technologies/tower_armour.json:requirementsTooltip
 #: simulation/data/technologies/tower_murderholes.json:requirementsTooltip
 #: simulation/data/technologies/trade_convoys_armor.json:requirementsTooltip
@@ -433,6 +431,18 @@ msgstr ""
 msgid "Toledo Steel"
 msgstr ""
 
+#: simulation/data/technologies/cavalry_movement_speed.json:description
+msgid "Train your horses to move faster."
+msgstr ""
+
+#: simulation/data/technologies/cavalry_movement_speed.json:tooltip
+msgid "Cavalry +10% walk speed."
+msgstr ""
+
+#: simulation/data/technologies/cavalry_movement_speed.json:genericName
+msgid "Horse Racing"
+msgstr ""
+
 #: simulation/data/technologies/gather_animals_stockbreeding.json:description
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
 msgstr ""
@@ -450,6 +460,7 @@ msgid "Workers use baskets. Increases shuttling capacity for all resources."
 msgstr ""
 
 #: simulation/data/technologies/gather_capacity_basket.json:tooltip
+#: simulation/data/technologies/gather_capacity_carts.json:tooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.json:tooltip
 msgid "Workers +5 resource capacity."
 msgstr ""
@@ -462,10 +473,6 @@ msgstr ""
 msgid ""
 "Workers use horse-drawn carts. Increases shuttling capacity for all "
 "resources."
-msgstr ""
-
-#: simulation/data/technologies/gather_capacity_carts.json:tooltip
-msgid "Workers +10 resource capacity."
 msgstr ""
 
 #: simulation/data/technologies/gather_capacity_carts.json:genericName
@@ -502,7 +509,9 @@ msgid "Extra nutrients for farms."
 msgstr ""
 
 #: simulation/data/technologies/gather_farming_fertilizer.json:tooltip
-msgid "Workers +25% grain gather rate."
+#: simulation/data/technologies/gather_farming_plows.json:tooltip
+#: simulation/data/technologies/gather_farming_training.json:tooltip
+msgid "Workers +20% grain gather rate."
 msgstr ""
 
 #: simulation/data/technologies/gather_farming_fertilizer.json:genericName
@@ -516,8 +525,6 @@ msgid ""
 msgstr ""
 
 #: simulation/data/technologies/gather_farming_harvester.json:tooltip
-#: simulation/data/technologies/gather_farming_plows.json:tooltip
-#: simulation/data/technologies/gather_farming_training.json:tooltip
 msgid "Workers +15% grain gather rate."
 msgstr ""
 
@@ -561,16 +568,13 @@ msgid "Increases wood gathering rates for trees."
 msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.json:tooltip
+#: simulation/data/technologies/gather_lumbering_sharpaxes.json:tooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.json:tooltip
-msgid "Workers +15% wood gather rate."
+msgid "Workers +25% wood gather rate."
 msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.json:genericName
 msgid "Iron Ax Heads"
-msgstr ""
-
-#: simulation/data/technologies/gather_lumbering_sharpaxes.json:tooltip
-msgid "Workers +50% wood gather rate."
 msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.json:genericName
@@ -589,7 +593,8 @@ msgstr ""
 
 #: simulation/data/technologies/gather_mining_serfs.json:tooltip
 #: simulation/data/technologies/gather_mining_servants.json:tooltip
-msgid "Workers +15% stone gather rate."
+#: simulation/data/technologies/gather_mining_slaves.json:tooltip
+msgid "Workers +25% stone gather rate."
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_serfs.json:genericName
@@ -621,8 +626,9 @@ msgid "Develop shaft mining. Increases metal gathering rates."
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_shaftmining.json:tooltip
+#: simulation/data/technologies/gather_mining_silvermining.json:tooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.json:tooltip
-msgid "Workers +15% metal gather rate."
+msgid "Workers +25% metal gather rate."
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_shaftmining.json:genericName
@@ -631,10 +637,6 @@ msgstr ""
 
 #: simulation/data/technologies/gather_mining_silvermining.json:description
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
-msgstr ""
-
-#: simulation/data/technologies/gather_mining_silvermining.json:tooltip
-msgid "Workers +50% metal gather rate."
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_silvermining.json:genericName
@@ -653,10 +655,6 @@ msgstr ""
 msgid ""
 "Buy slaves to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr ""
-
-#: simulation/data/technologies/gather_mining_slaves.json:tooltip
-msgid "Workers +50% stone gather rate."
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_slaves.json:genericName
@@ -1036,25 +1034,8 @@ msgstr ""
 msgid "Artillery Instructors"
 msgstr ""
 
-#: simulation/data/technologies/speed_cavalry_01.json:description
-msgid "Breed the fastest horses."
-msgstr ""
-
-#: simulation/data/technologies/speed_cavalry_01.json:tooltip
-#: simulation/data/technologies/speed_cavalry_02.json:tooltip
-msgid "+10% cavalry walk speed."
-msgstr ""
-
-#: simulation/data/technologies/speed_cavalry_01.json:genericName
-msgid "Cavalry Breeding"
-msgstr ""
-
-#: simulation/data/technologies/speed_cavalry_02.json:description
-msgid "Train your horses to move faster."
-msgstr ""
-
-#: simulation/data/technologies/speed_cavalry_02.json:genericName
-msgid "Cavalry Speed Training"
+#: simulation/data/technologies/soldier_ranged_experience.json:tooltip
+msgid "Ranged Soldiers +25% promotion experience."
 msgstr ""
 
 #: simulation/data/technologies/spy_counter.json:description
@@ -1095,18 +1076,6 @@ msgstr ""
 msgid "Crenellations"
 msgstr ""
 
-#: simulation/data/technologies/tower_decay.json:description
-msgid "Outposts survive twice as long in neutral territory."
-msgstr ""
-
-#: simulation/data/technologies/tower_decay.json:tooltip
-msgid "Outposts −50% territory decay rate."
-msgstr ""
-
-#: simulation/data/technologies/tower_decay.json:genericName
-msgid "Stone Foundations"
-msgstr ""
-
 #: simulation/data/technologies/tower_murderholes.json:description
 msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr ""
@@ -1129,18 +1098,6 @@ msgstr ""
 
 #: simulation/data/technologies/tower_range.json:genericName
 msgid "Arrow Shooters"
-msgstr ""
-
-#: simulation/data/technologies/tower_vision.json:description
-msgid "Outposts gain longer vision for scouting."
-msgstr ""
-
-#: simulation/data/technologies/tower_vision.json:tooltip
-msgid "Outposts +50% vision range."
-msgstr ""
-
-#: simulation/data/technologies/tower_vision.json:genericName
-msgid "Carrier Pigeons"
 msgstr ""
 
 #: simulation/data/technologies/tower_watch.json:description

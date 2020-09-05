@@ -8,10 +8,10 @@ var g_TooltipTextFormats = {
 	"nameGeneric": { "font": "sans-bold-16" }
 };
 
-function getCostTypes()
-{
-	return g_ResourceData.GetCodes().concat(["population", "populationBonus", "time"]);
-}
+/**
+ * String of four spaces to be used as indentation in gui strings.
+ */
+var g_Indent = "    ";
 
 var g_DamageTypesMetadata = new DamageTypesMetadata();
 var g_StatusEffectsMetadata = new StatusEffectsMetadata();
@@ -21,6 +21,11 @@ var g_StatusEffectsMetadata = new StatusEffectsMetadata();
  * Otherwise display the friendly fire tooltip only if it does.
  */
 var g_AlwaysDisplayFriendlyFire = false;
+
+function getCostTypes()
+{
+	return g_ResourceData.GetCodes().concat(["population", "populationBonus", "time"]);
+}
 
 function resourceIcon(resource)
 {
@@ -176,11 +181,11 @@ function getResistanceTooltip(template)
 	if (template.resistance.Capture)
 		details.push(getCaptureResistanceTooltip(template.resistance.Capture));
 
-	// ToDo: Status effects resistance.
+	// TODO: Status effects resistance.
 
-	return sprintf(translate("%(label)s\n    %(details)s"), {
+	return sprintf(translate("%(label)s\n" + g_Indent + "%(details)s"), {
 		"label": headerFont(translate("Resistance:")),
-		"details": details.join("\n    ")
+		"details": details.join("\n" + g_Indent)
 	});
 }
 
@@ -190,7 +195,7 @@ function getDamageResistanceTooltip(resistanceTypeTemplate)
 		return "";
 
 	return sprintf(translate("%(label)s %(details)s"), {
-		"label": headerFont(translate("Damage Resistance:")),
+		"label": headerFont(translate("Damage:")),
 		"details":
 			g_DamageTypesMetadata.sort(Object.keys(resistanceTypeTemplate)).map(
 				dmgType => sprintf(translate("%(damage)s %(damageType)s %(resistancePercentage)s"), {
@@ -211,7 +216,7 @@ function getCaptureResistanceTooltip(resistanceTypeTemplate)
 	if (!resistanceTypeTemplate)
 		return "";
 	return sprintf(translate("%(label)s %(details)s"), {
-		"label": headerFont(translate("Capture Resistance:")),
+		"label": headerFont(translate("Capture:")),
 		"details":
 			sprintf(translate("%(damage)s %(damageType)s %(resistancePercentage)s"), {
 				"damage": resistanceTypeTemplate.toFixed(1),
@@ -317,6 +322,24 @@ function captureDetails(captureTemplate)
 	});
 }
 
+function splashDetails(splashTemplate)
+{
+	let splashLabel = sprintf(headerFont(translate("%(splashShape)s Splash")), {
+		"splashShape": splashTemplate.shape
+	});
+	let splashDamageTooltip = sprintf(translate("%(label)s: %(effects)s"), {
+		"label": splashLabel,
+		"effects": attackEffectsDetails(splashTemplate)
+	});
+
+	if (g_AlwaysDisplayFriendlyFire || splashTemplate.friendlyFire)
+		splashDamageTooltip += commaFont(translate(", ")) + sprintf(translate("Friendly Fire: %(enabled)s"), {
+			"enabled": splashTemplate.friendlyFire ? translate("Yes") : translate("No")
+		});
+
+	return splashDamageTooltip;
+}
+
 function applyStatusDetails(applyStatusTemplate)
 {
 	if (!applyStatusTemplate)
@@ -355,68 +378,43 @@ function getAttackTooltip(template)
 		if (attackType == "Slaughter")
 			continue;
 
-		let attackLabel = sprintf(headerFont(translate("%(attackType)s Attack")), {
+		let attackLabel = sprintf(headerFont(translate("%(attackType)s")), {
 			"attackType": attackType
 		});
 		let attackTypeTemplate = template.attack[attackType];
 
 		let projectiles;
 		// Use either current rate from simulation or default count if the sim is not running.
-		// ToDo: This ought to be extended to include units which fire multiple projectiles.
+		// TODO: This ought to be extended to include units which fire multiple projectiles.
 		if (template.buildingAI)
 			projectiles = template.buildingAI.arrowCount || template.buildingAI.defaultArrowCount;
 
-		// Show the effects of status effects below
+		let splashTemplate = attackTypeTemplate.splash;
+
+		// Show the effects of status effects below.
 		let statusEffectsDetails = [];
 		if (attackTypeTemplate.ApplyStatus)
 			for (let status in attackTypeTemplate.ApplyStatus)
 			{
 				let status_template = g_StatusEffectsMetadata.augment(status, attackTypeTemplate.ApplyStatus[status]);
-				statusEffectsDetails.push("\n    " + getStatusEffectsTooltip(status_template, true));
+				statusEffectsDetails.push("\n" + g_Indent + g_Indent + getStatusEffectsTooltip(status_template, true));
 			}
 		statusEffectsDetails = statusEffectsDetails.join("");
 
-		tooltips.push(sprintf(translate("%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s"), {
+		tooltips.push(sprintf(translate("%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"), {
 			"attackLabel": attackLabel,
 			"effects": attackEffectsDetails(attackTypeTemplate),
 			"range": rangeDetails(attackTypeTemplate),
 			"rate": attackRateDetails(attackTypeTemplate.repeatTime, projectiles),
+			"splash": splashTemplate ? "\n" + g_Indent + g_Indent + splashDetails(splashTemplate) : "",
 			"statusEffects": statusEffectsDetails
 		}));
 	}
-	return tooltips.join("\n");
-}
 
-function getSplashDamageTooltip(template)
-{
-	if (!template.attack)
-		return "";
-
-	let tooltips = [];
-	for (let attackType in template.attack)
-	{
-		let splashTemplate = template.attack[attackType].splash;
-		if (!splashTemplate)
-			continue;
-
-		let splashLabel = sprintf(headerFont(translate("%(splashShape)s Splash Damage")), {
-			"splashShape": splashTemplate.shape
-		});
-		let splashDamageTooltip = sprintf(translate("%(label)s: %(effects)s"), {
-			"label": splashLabel,
-			"effects": attackEffectsDetails(splashTemplate)
-		});
-
-		if (g_AlwaysDisplayFriendlyFire || splashTemplate.friendlyFire)
-			splashDamageTooltip += commaFont(translate(", ")) + sprintf(translate("Friendly Fire: %(enabled)s"), {
-				"enabled": splashTemplate.friendlyFire ? translate("Yes") : translate("No")
-			});
-
-		tooltips.push(splashDamageTooltip);
-	}
-
-	// If multiple attack types deal splash damage, the attack type should be shown to differentiate.
-	return tooltips.join("\n");
+	return sprintf(translate("%(label)s\n" + g_Indent + "%(details)s"), {
+		"label": headerFont(translate("Attack:")),
+		"details": tooltips.join("\n" + g_Indent)
+	});
 }
 
 /**

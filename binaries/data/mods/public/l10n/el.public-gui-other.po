@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-28 07:09+0000\n"
-"PO-Revision-Date: 2020-08-28 17:43+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-09-03 14:24+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -755,7 +755,7 @@ msgstr "%(percentage)s%%"
 msgid ""
 "%(label)s\n"
 "    %(details)s"
-msgstr ""
+msgstr "%(label)s\n    %(details)s"
 
 #: gui/common/tooltips.js:182
 msgid "Resistance:"
@@ -773,7 +773,7 @@ msgstr ""
 #: gui/common/tooltips.js:201 gui/common/tooltips.js:221
 #, javascript-format
 msgid "(%(resistancePercentage)s)"
-msgstr ""
+msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:214
 msgid "Capture Resistance:"
@@ -1545,7 +1545,7 @@ msgstr "Συντελεστές"
 
 #: gui/pregame/MainMenuItems.js:194
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "Εμφάνιση των συντελεστών του 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:200
 msgid "Exit"
@@ -3205,17 +3205,17 @@ msgstr "Προκαθορισμένη συμπεριφορά Τεχνητής Ν�
 
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
-msgstr ""
+msgstr "Οι παίκτες που συμμετέχουν στην μάχη θα συνδεθούν μόνο εάν υπάρχει ελεύθερη θέση."
 
 #: gui/options/options.json[3].options[5].list[1].tooltip
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
-msgstr ""
+msgstr "Οι παίκτες που συμμετέχουν στην μάχη θα συνδεθούν μόνο εάν είναι φίλοι του οικοδεσπότη και εάν υπάρχει ελεύθερη θέση."
 
 #: gui/options/options.json[3].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr ""
+msgstr "Οι παίκτες λαμβάνουν μια θέση μόνο όταν ο οικοδεσπότης τους την εκχωρεί ρητά."
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
@@ -3453,29 +3453,29 @@ msgstr "Χρώματα διπλωματίας: Εχθροί"
 #: gui/options/options.json[5].options[18].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr ""
+msgstr "Οι νέες κατασκευές ευθυγραμμίζονται με τις κοντινές δομές πιέζοντας το πλήκτρο συντόμευσης."
 
 #: gui/options/options.json[5].options[18].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr ""
+msgstr "Πλήκτρο συντόμευσης για ενεργοποίηση προσκόλλησης"
 
 #: gui/options/options.json[5].options[18].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr ""
+msgstr "Οι νέες κατασκευές ευθυγραμμίζονται με τις κοντινές δομές έκτος αν πατιέται το πλήκτρο συντόμευσης."
 
 #: gui/options/options.json[5].options[18].list[1].label
 msgid "Hotkey to disable snapping"
-msgstr ""
+msgstr "Πλήκτρο συντόμευσης για απενεργοποίηση προσκόλλησης"
 
 #: gui/options/options.json[5].options[18].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr ""
+msgstr "Αυτή η επιλογή επιτρέπει την ευθυγράμμιση νέων κατασκευών με κοντινές δομές."
 
 #: gui/options/options.json[5].options[18].label
 msgid "Snap to edges"
-msgstr ""
+msgstr "Προσκόλληση στα άκρα"
 
 #: gui/options/options.json[5].options[19].list[0].tooltip
 msgid ""
@@ -3901,7 +3901,7 @@ msgstr "Προσοχή! Τα ψάρια δεν είναι μία αστείρε�
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
-msgstr ""
+msgstr "ΣΙΔΗΡΟΥΡΓΕΙΟ"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."

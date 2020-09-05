@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_gate">
   <Footprint>
-    <Square width="35" depth="8"/>
+    <Square width="35.0" depth="8.0"/>
     <Height>11.6</Height>
   </Footprint>
+  <GarrisonHolder>
+    <Max>5</Max>
+  </GarrisonHolder>
   <Identity>
     <Civ>sele</Civ>
     <SpecificName>Pylai</SpecificName>
@@ -18,6 +21,35 @@
   <StatusBars>
     <HeightOffset>12.6</HeightOffset>
   </StatusBars>
+  <TurretHolder>
+    <TurretPoints>
+      <One>
+        <X>0</X>
+        <Y>10.6</Y>
+        <Z>0</Z>
+      </One>
+      <Two>
+        <X>3</X>
+        <Y>10.6</Y>
+        <Z>0</Z>
+      </Two>
+      <Three>
+        <X>-3</X>
+        <Y>10.6</Y>
+        <Z>0</Z>
+      </Three>
+      <Four>
+        <X>6</X>
+        <Y>10.6</Y>
+        <Z>0</Z>
+      </Four>
+      <Five>
+        <X>-6</X>
+        <Y>10.6</Y>
+        <Z>0</Z>
+      </Five>
+    </TurretPoints>
+  </TurretHolder>
   <VisualActor>
     <Actor>structures/seleucids/wall_gate.xml</Actor>
   </VisualActor>
