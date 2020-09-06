@@ -183,9 +183,9 @@ function getResistanceTooltip(template)
 
 	// TODO: Status effects resistance.
 
-	return sprintf(translate("%(label)s\n" + g_Indent + "%(details)s"), {
+	return sprintf(translate("%(label)s\n%(details)s"), {
 		"label": headerFont(translate("Resistance:")),
-		"details": details.join("\n" + g_Indent)
+		"details": g_Indent + details.join("\n" + g_Indent)
 	});
 }
 
@@ -411,9 +411,9 @@ function getAttackTooltip(template)
 		}));
 	}
 
-	return sprintf(translate("%(label)s\n" + g_Indent + "%(details)s"), {
+	return sprintf(translate("%(label)s\n%(details)s"), {
 		"label": headerFont(translate("Attack:")),
-		"details": tooltips.join("\n" + g_Indent)
+		"details": g_Indent + tooltips.join("\n" + g_Indent)
 	});
 }
 
