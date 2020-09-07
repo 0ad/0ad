@@ -1,21 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Unit details for Single Unit -->
-<object size="50%-112 0 50%+112 100%" name="detailsAreaSingle">
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Details panel for a single entity. -->
+<object name="detailsAreaSingle"
+	size="4 4 100%-4 100%-44"
+>
 
 	<!-- Stats Bars -->
-	<object size= "2 0 100%-2 98" type="image" tooltip_style="sessionToolTip">
+	<object size= "0 0 100% 96" type="image" tooltip_style="sessionToolTip">
 
-		<object size="0 4 100% 64" type="image" sprite="topEdgedPanelShader">
+		<object size="0 0 100% 60" type="image" sprite="topEdgedPanelShader">
 
-			<!-- Placeholders storing the position for the bars -->
-			<object size="88 1 100% 24" name="sectionPosTop" hidden="true"/>
-			<object size="88 11 100% 34" name="sectionPosMiddle" hidden="true"/>
-			<object size="88 32 100% 55" name="sectionPosBottom" hidden="true"/>
+			<!-- Placeholders storing the position for the bars. -->
+			<object size="96 1 100% 24" name="sectionPosTop" hidden="true"/>
+			<object size="96 11 100% 34" name="sectionPosMiddle" hidden="true"/>
+			<object size="96 32 100% 55" name="sectionPosBottom" hidden="true"/>
 
 			<!-- Health bar -->
 			<object name="healthSection">
 				<object size="0 0 100% 12" name="healthLabel" type="text" style="StatsTextLeft" ghost="true">
-					<translatableAttribute id="tooltip">Health:</translatableAttribute>
+					<translatableAttribute id="tooltip">Health</translatableAttribute>
 				</object>
 				<object size="0 0 100% 12" name="healthStats" type="text" style="StatsTextRight" ghost="true"/>
 				<object size="1 14 100% 21" name="health" type="image" tooltip_style="sessionToolTip">
@@ -29,7 +31,7 @@
 			<!-- Capture bar -->
 			<object name="captureSection">
 				<object size="0 0 100% 12" name="captureLabel" type="text" style="StatsTextLeft" ghost="true">
-					<translatableAttribute id="tooltip">Capture points:</translatableAttribute>
+					<translatableAttribute id="tooltip">Capture points</translatableAttribute>
 				</object>
 				<object size="0 0 100% 12" name="captureStats" type="text" style="StatsTextRight" ghost="true"/>
 				<object size="1 14 100% 21" name="capture" type="image" tooltip_style="sessionToolTip">
@@ -54,20 +56,20 @@
 			</object>
 		</object>
 
-		<object size="0 63 100% 99" type="image" sprite="edgedPanelShader">
+		<object size="0 59 100% 95" type="image" sprite="edgedPanelShader">
 			<!-- Attack and Resistance -->
-			<object size="90 -2 126 34" name="attackAndResistanceStats" type="image" sprite="stretched:session/icons/stances/defensive.png" tooltip_style="sessionToolTipInstantly">
+			<object size="96 0 128 32" name="attackAndResistanceStats" type="image" sprite="stretched:session/icons/stances/defensive.png" tooltip_style="sessionToolTipInstantly">
 				<translatableAttribute id="tooltip">Attack and Resistance</translatableAttribute>
 			</object>
 
 			<!-- Resource carrying icon/counter -->
 			<!-- Used also for number of gatherers/builders -->
-			<object size="100%-98 -2 100%-36 34" type="text" name="resourceCarryingText" style="CarryingTextRight"/>
-			<object size="100%-36 -2 100% 34" type="image" name="resourceCarryingIcon" tooltip_style="sessionToolTip"/>
+			<object size="100%-96 0 100%-36 32" type="text" name="resourceCarryingText" style="CarryingTextRight"/>
+			<object size="100%-32 0 100% 32" type="image" name="resourceCarryingIcon" tooltip_style="sessionToolTip"/>
 		</object>
 
 		<!-- Big unit icon -->
-		<object size="-8 -8 88 88" type="button" name="iconBorder" sprite="iconBorder" tooltip_style="sessionToolTip">
+		<object size="0 0 96 96" type="button" name="iconBorder" sprite="iconBorder" tooltip_style="sessionToolTip">
 			<object size="1 1 100%-1 100%-1" type="image" name="icon" ghost="true"/>
 
 			<!-- Experience bar -->
@@ -89,34 +91,30 @@
 					<object type="image" size="0 0 16 16" z="200" tooltip_style="sessionToolTip"/>
 				</repeat>
 			</object>
-
 		</object>
 	</object>
 
+	<!-- Names and civilization emblem etc. (This must come before the attack and resistance icon to avoid clipping issues.) -->
+	<object size="0 92 100% 100%" name="statsArea" type="image" sprite="edgedPanelShader">
 
-	<!-- Names (this must come before the attack and resistance icon to avoid clipping issues) -->
-	<object size="2 96 100%-2 100%-36" name="statsArea" type="image" sprite="edgedPanelShader">
-
-		<!-- These images are used to clip off the top and bottom of the civ icon -->
-		<object z="30" size="0 -5 100% 40" ghost="true" type="image" sprite="remove"/>
-		<object z="30" size="0 100%-5 100% 100%+40" ghost="true" type="image" sprite="remove"/>
-
-		<object z="30" size="0 2 100% 45" ghost="true">
-			<!-- Specific Name -->
-			<object size="0 0 100% 20" name="specific" ghost="true" type="text" style="SpecificNameCentered"/>
-
-			<!-- Generic Name -->
-			<object size="0 15 100% 36" name="generic" ghost="true" type="text" style="GenericNameCentered"/>
+		<!-- Specific and generic names. -->
+		<object z="30">
+			<object size="0 2 100% 22" name="specific" ghost="true" type="text" style="SpecificNameCentered"/>
+			<object size="0 17 100% 37" name="generic" ghost="true" type="text" style="GenericNameCentered"/>
 		</object>
 
-		<!-- Player Name and Civ -->
-		<object size="0 40 100% 100%">
+		<!-- Civilization tooltip. -->
+		<object size="0 38 100% 62" tooltip_style="sessionToolTip">
+			<!-- Images to clip off the top and bottom of the civilization emblem. -->
+			<object z="20" size="0 50%-64 100% 50%-12" ghost="true" type="image" sprite="remove"/>
+			<object z="20" size="0 50%+12 100% 50%+64" ghost="true" type="image" sprite="remove"/>
+			<!-- Civilization emblem. -->
 			<object size="50%-64 50%-64 50%+64 50%+64" name="playerCivIcon" type="image" ghost="true"/>
+			<!-- Player color band. -->
 			<object name="playerColorBackground" type="image" sprite="playerColorBackground" ghost="true"/>
 			<object type="image" sprite="bottomEdgedPanelShader" ghost="true"/>
-			<object size="0 0 100% 100%-5" name="player" type="text" style="largeCenteredOutlinedText" tooltip_style="sessionToolTip"/>
+			<!-- Player name. -->
+			<object size="0 50%-10 100% 50%+10" z="30" name="player" type="text" style="largeCenteredOutlinedText"/>
 		</object>
 	</object>
-
 </object>
-
