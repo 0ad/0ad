@@ -35,6 +35,7 @@
 # Lenny Hans Andreu <landreuhs@outlook.com>, 2013
 # Liam Brien, 2017
 # Brookhaven Alt <Lion.Kanzen@gmail.com>, 2013
+# Marcos Lasalle Vázquez Verdejo <marcoslv@ucm.es>, 2020
 # matiasng37 <matiasng37@gmail.com>, 2013
 # memmaker650 <memmaker650@gmail.com>, 2014
 # Miguel Angel NV <manvac@gmail.com>, 2016
@@ -58,8 +59,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-28 07:09+0000\n"
-"PO-Revision-Date: 2020-09-03 16:47+0000\n"
-"Last-Translator: Andrea GM <andreagm2793@gmail.com>\n"
+"PO-Revision-Date: 2020-09-06 19:04+0000\n"
+"Last-Translator: Marcos Lasalle Vázquez Verdejo <marcoslv@ucm.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -486,7 +487,7 @@ msgstr "Cartaginenses"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "Muros +100% tiempo de construcción, +100% coste de piedra, +200% salud"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -654,7 +655,7 @@ msgstr "Embajada celta"
 
 #: simulation/data/civs/cart.jsonStructures[1].Special
 msgid "Train Celtic Mercenaries."
-msgstr ""
+msgstr "Entrenar mercenarios celtas."
 
 #: simulation/data/civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
@@ -666,7 +667,7 @@ msgstr "Embajada íbera"
 
 #: simulation/data/civs/cart.jsonStructures[2].Special
 msgid "Train Iberian Mercenaries."
-msgstr ""
+msgstr "Entrenar mercenarios íberos"
 
 #: simulation/data/civs/cart.jsonStructures[2].History
 msgid ""
@@ -679,14 +680,14 @@ msgstr "Embajada itálica"
 
 #: simulation/data/civs/cart.jsonStructures[3].Special
 msgid "Train Italic Mercenaries."
-msgstr ""
+msgstr "Entrenar mercenarios italianos"
 
 #: simulation/data/civs/cart.jsonStructures[3].History
 msgid ""
 "When Hannibal invaded Italy and defeated the Romans in a series of battles, "
 "many of the peoples subject to Rome, including the Greeks and Samnites, "
 "revolted and joined the Carthaginian cause."
-msgstr ""
+msgstr "Cuando Aníbal invadió Italia y derrotó a los romanos en una serie de batallas, muchos de los pueblos sujetos a Roma, incluidos los griegos y los samnitas, se sublevaron y se unieron a la causa cartaginesa."
 
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
@@ -739,7 +740,7 @@ msgstr "Productos de Gaul"
 msgid ""
 "The Gauls produced and exported swords and scabbards, woolen and leather "
 "products, and other arms."
-msgstr ""
+msgstr "Los galos producían y exportaban espadas y vainas para las espadas, lana y productos de cuero, y otras armas."
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -790,13 +791,13 @@ msgstr "Trabajadores +15% recolección de granos."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Harvesting Machine"
-msgstr ""
+msgstr "Máquina cosechadora"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr ""
+msgstr "Los galos inventaron una máquina cosechadora, haciendo así más fácil la cosecha del grano."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -1150,7 +1151,7 @@ msgstr "Amanishakheto"
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "Arqueros -10% tiempo de entrenamiento, +8 alcance, -10% esparcimiento de ataque a distancia"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
@@ -1171,7 +1172,7 @@ msgstr "Arquitectura Monumental"
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "Estructuras cívicas: +20% tiempo de construcción, +20% salud, +20% puntos de captura."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Description
 msgid "Train elite rank healers."
@@ -1341,7 +1342,7 @@ msgstr "Meleagro"
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Description
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Centros cívicos: +100% de salud y puntos de captura, el doble de flechas por defecto"
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
@@ -1481,7 +1482,7 @@ msgstr "El Imperio de Mauryan abarcó docenas de reinos anteriormente independie
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "Elefantes: -30% tiempo de entrenamiento"
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
 msgid "Elephant Tradition"
@@ -1740,7 +1741,7 @@ msgstr "Los Persas construyeron la maravillosa Carretera Real de 2700 kilómetro
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
 msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "Campeón de infantería Anušiya: -50% tiempo de entrenamiento, pero también -10% salud"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
 msgid "Immortals"
@@ -1750,7 +1751,7 @@ msgstr "Inmortales"
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "Los aqueménidas mantenían un cuerpo de élite de 10.000 soldados, llamados Athanatoi (\"Inmortales\") por los autores griegos."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
@@ -2542,7 +2543,7 @@ msgstr "Agesípolis"
 msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers."
-msgstr ""
+msgstr "Las mujeres espartanas no pueden ser capturadas y lucharán obstinadamente contra cualquier atacante."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"

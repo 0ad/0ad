@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-31 07:15+0000\n"
-"PO-Revision-Date: 2020-09-03 07:46+0000\n"
+"PO-Revision-Date: 2020-09-07 03:57+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "Catafalcu"
 
 #: simulation/templates/template_unit_catafalque.xml:20
 msgid "A catafalque that holds the remains of a great leader."
-msgstr "Un catafalcu que lleva los restos d'un gran cabezaleru."
+msgstr "Un catafalcu que lleva los restos d'un gran estadista."
 
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_infantry.xml:62
@@ -59,7 +59,7 @@ msgstr "Caballería"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:7
 msgid "Melee Cavalry"
-msgstr "Caballería cuerpu a cuerpu"
+msgstr "Caballería d'amarrada"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:8
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:20
@@ -152,7 +152,7 @@ msgstr "Espada"
 #: simulation/templates/template_unit_siege_stonethrower.xml:55
 #: simulation/templates/template_unit_siege_tower.xml:60
 msgid "Ranged"
-msgstr "Proxectador/-ora"
+msgstr "Proxectiles"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:29
 msgid "Ranged Cavalry"
@@ -304,7 +304,7 @@ msgstr "Can"
 #: simulation/templates/template_unit_fauna_herd.xml:4
 #: simulation/templates/template_unit_fauna_hunt.xml:7
 msgid "Kill to gather meat for food."
-msgstr "Mata pa percanciar carne."
+msgstr "Mata pa percanciar comida."
 
 #: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:23
 msgid ""
@@ -314,7 +314,7 @@ msgstr "Ventaya: 1.5× escontra caballería. Nun pue atacar construcciones, barc
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:8
 msgid "Kill to butcher for food."
-msgstr "Mata pa percanciar carne."
+msgstr "Mata pa percanciar comida."
 
 #: simulation/templates/template_unit_hero.xml:27
 #: simulation/templates/template_unit_hero.xml:28
@@ -390,7 +390,7 @@ msgstr "Trabayador"
 
 #: simulation/templates/template_unit_infantry_melee.xml:19
 msgid "Melee Infantry"
-msgstr "Infantería cuerpu a cuerpu"
+msgstr "Infantería d'amarrada"
 
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:28
 msgid "Infantry Javelineer"
@@ -415,7 +415,7 @@ msgstr "Barcu de guerra llixeru"
 #: simulation/templates/template_unit_ship_trireme.xml:48
 #: simulation/templates/template_unit_siege_tower.xml:62
 msgid "Garrison units for transport and to increase firepower."
-msgstr "Guarez unidaes pa tresportales & aumentar la potencia de fueu."
+msgstr "Guarez unidaes a bordu pa tresportales y amontar l'ataque del barcu."
 
 #: simulation/templates/template_unit_ship_bireme.xml:49
 #: simulation/templates/template_unit_ship_fire.xml:44
@@ -433,17 +433,17 @@ msgstr "Birreme"
 
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Fire Ship"
-msgstr "Amburador"
+msgstr "Quemón"
 
 #: simulation/templates/template_unit_ship_fire.xml:43
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
-msgstr "Drena la salú de barcos enemigos rápido. Va dir perdiendo salú por tar encesu, asina que cal usalu aína. "
+msgstr "Esgasta rápido la vida de barcos enemigos. Va encesu ya fundiendo, conque nun entardes n'usalu."
 
 #: simulation/templates/template_unit_ship_fire.xml:44
 msgid "Fireship"
-msgstr "Amburador"
+msgstr "Quemón"
 
 #: simulation/templates/template_unit_ship_fishing.xml:29
 #: simulation/templates/units/kush_ship_fishing.xml:9
@@ -452,7 +452,7 @@ msgstr "Pesqueru"
 
 #: simulation/templates/template_unit_ship_fishing.xml:31
 msgid "Fish the waters for food."
-msgstr "Pesca pa comida."
+msgstr "Pesca pa llograr comida."
 
 #: simulation/templates/template_unit_ship_fishing.xml:33
 msgid "FishingBoat"
@@ -466,7 +466,7 @@ msgstr "Mercador"
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
-msgstr "Negocia ente cais. Guarez un Comerciante a bordu pa más beneficios (+20% pa caún guarecíu). Recueyi ayalgues de la mar."
+msgstr "Comercia ente cais. Guarez un comerciante a bordu pa llograr más ganancies (+20% por caún guarecíu). Recueyi ayalgues de la mar."
 
 #: simulation/templates/template_unit_ship_merchant.xml:21
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -520,23 +520,23 @@ msgstr "Ariete"
 
 #: simulation/templates/template_unit_siege_ram.xml:39
 msgid "Cannot attack Fields or Organic Units."
-msgstr "Nun pue atacar eros o unidaes orgániques."
+msgstr "Nun pue atacar eros nin unidaes orgániques."
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:55
 msgid "StoneThrower"
-msgstr "Amorriyador"
+msgstr "Catapulta"
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:56
 msgid "Siege Catapult"
-msgstr "Catapulta d'asediu"
+msgstr "Catapulta"
 
 #: simulation/templates/template_unit_siege_tower.xml:60
 msgid "SiegeTower"
-msgstr "TorreAsediu"
+msgstr "TorreAsaltu"
 
 #: simulation/templates/template_unit_siege_tower.xml:61
 msgid "Siege Tower"
-msgstr "Torre d'asediu"
+msgstr "Torre d'asaltu"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:64
 msgid "Female Citizen"
@@ -544,7 +544,7 @@ msgstr "Ciudadana"
 
 #: simulation/templates/template_unit_support_healer.xml:30
 msgid "Heal units."
-msgstr "Cura a unidaes."
+msgstr "Cura unidaes."
 
 #: simulation/templates/template_unit_support_slave.xml:45
 #: simulation/templates/template_unit_support_slave.xml:46
@@ -554,15 +554,15 @@ msgstr "Esclavu"
 
 #: simulation/templates/template_unit_support_slave.xml:48
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr "Coyedor de duración de vida llendada. Tien una bonificación n'estrayer minerales & valtar árboles."
+msgstr "Trabayador de vida curtia. Dase-y bien sacar minerales ya valtar árboles."
 
 #: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
-msgstr "Cambia recursos ente los tos mercaos & los de los tos aliaos. "
+msgstr "Troca recursos ente mercaos, los de to ya los de los tos aliaos."
 
 #: simulation/templates/units/athen_catafalque.xml:9
 msgid "Solon"
-msgstr "Solon"
+msgstr "Sólōn"
 
 #: simulation/templates/units/athen_cavalry_javelineer_a.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:4
@@ -775,7 +775,7 @@ msgstr "Pródromos"
 #: simulation/templates/units/spart_support_healer_e.xml:4
 msgctxt "Rank"
 msgid "Elite"
-msgstr "d'Élite"
+msgstr "D'élite"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:7
 msgid "Greek Cavalry"
@@ -815,7 +815,7 @@ msgstr "Ifícrates"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:11
 msgid "Iphikratēs"
-msgstr "Iphikratēs"
+msgstr "Iphikrátēs"
 
 #: simulation/templates/units/athen_hero_pericles.xml:10
 msgid "Pericles"
@@ -823,7 +823,7 @@ msgstr "Pericles"
 
 #: simulation/templates/units/athen_hero_pericles.xml:11
 msgid "Periklēs"
-msgstr "Periklēs"
+msgstr "Periklē̂s"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:10
 msgid "Themistocles"
@@ -831,7 +831,7 @@ msgstr "Temístocles"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:11
 msgid "Themistoklēs"
-msgstr "Themistoklēs"
+msgstr "Themistoklē̂s"
 
 #: simulation/templates/units/athen_hero_xenophon.xml:6
 msgid "Xenophon"
@@ -839,7 +839,7 @@ msgstr "Xenofonte"
 
 #: simulation/templates/units/athen_hero_xenophon.xml:7
 msgid "Xenophōn"
-msgstr "Xenophōn"
+msgstr "Xenophō̂n"
 
 #: simulation/templates/units/athen_infantry_javelineer_b.xml:19
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:19
@@ -888,7 +888,7 @@ msgstr "Peltastḗs Thrâx"
 #: simulation/templates/units/mace_infantry_archer_b.xml:20
 #: simulation/templates/units/ptol_infantry_archer_b.xml:19
 msgid "Cretan Mercenary Archer"
-msgstr "Arqueru mercenariu cretense"
+msgstr "Arqueru cretense mercenariu"
 
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:23
 #: simulation/templates/units/mace_infantry_archer_b.xml:21
@@ -902,7 +902,7 @@ msgstr "Milicianu flonderu ateniense"
 
 #: simulation/templates/units/athen_infantry_slinger_b.xml:16
 msgid "Psilòs Athēnaîos"
-msgstr "Psilòs Athēnaîos"
+msgstr "Psīlós Athēnaîos"
 
 #: simulation/templates/units/athen_infantry_spearman_b.xml:15
 msgid "Athenian Hoplite"
@@ -1663,7 +1663,7 @@ msgstr "shry ʿȝ"
 
 #: simulation/templates/units/kush_siege_tower.xml:5
 msgid "Kushite Siege Tower"
-msgstr "Torre d'asediu cuxina"
+msgstr "Torre d'asaltu cuxina"
 
 #: simulation/templates/units/kush_siege_tower.xml:6
 msgid "iwn n ms"
@@ -2225,7 +2225,7 @@ msgstr "Hamaraniyanava Vazarka"
 
 #: simulation/templates/units/pers_siege_ram.xml:20
 msgid "Assyrian Siege Ram"
-msgstr "Ariete d'asediu asiriu"
+msgstr "Ariete asiriu"
 
 #: simulation/templates/units/pers_siege_ram.xml:21
 msgid "Hamaranakuba Aθuriya"

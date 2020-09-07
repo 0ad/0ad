@@ -49,8 +49,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-07 07:10+0000\n"
-"PO-Revision-Date: 2020-08-07 08:39+0000\n"
+"POT-Creation-Date: 2020-09-04 07:09+0000\n"
+"PO-Revision-Date: 2020-09-04 08:16+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -76,6 +76,7 @@ msgstr "Традиции стрельбы из лука"
 
 #: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
+#: simulation/data/technologies/cavalry_movement_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
@@ -116,9 +117,7 @@ msgstr "Шамфрон"
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
-#: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_decay.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
@@ -170,7 +169,6 @@ msgstr "Металлические доспехи для лошадей."
 #: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_cost_metal.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
-#: simulation/data/technologies/speed_cavalry_02.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_armour.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
@@ -480,6 +478,18 @@ msgstr "Булат"
 msgid "Toledo Steel"
 msgstr "Толедская сталь"
 
+#: simulation/data/technologies/cavalry_movement_speed.jsondescription
+msgid "Train your horses to move faster."
+msgstr "Тренируйте лошадей, чтобы повысить их скорость."
+
+#: simulation/data/technologies/cavalry_movement_speed.jsontooltip
+msgid "Cavalry +10% walk speed."
+msgstr ""
+
+#: simulation/data/technologies/cavalry_movement_speed.jsongenericName
+msgid "Horse Racing"
+msgstr ""
+
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
 msgstr "Разведения домашнего скота (овец, коз, коров и др.) в пищу."
@@ -497,6 +507,7 @@ msgid "Workers use baskets. Increases shuttling capacity for all resources."
 msgstr "Рабочие используют корзины. Объем переносимых ресурсов увеличился."
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
+#: simulation/data/technologies/gather_capacity_carts.jsontooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers +5 resource capacity."
 msgstr "Работники несут на 5% больше ресурсов."
@@ -510,10 +521,6 @@ msgid ""
 "Workers use horse-drawn carts. Increases shuttling capacity for all "
 "resources."
 msgstr "Рабочие используют телеги, запряжённые лошадьми. Объем переносимых ресурсов увеличился."
-
-#: simulation/data/technologies/gather_capacity_carts.jsontooltip
-msgid "Workers +10 resource capacity."
-msgstr "Работники несут на 10% больше ресурсов."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -549,8 +556,10 @@ msgid "Extra nutrients for farms."
 msgstr "Дополнительные удобрения для ферм."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
-msgid "Workers +25% grain gather rate."
-msgstr "Работники собирают зерно на 25% быстрее."
+#: simulation/data/technologies/gather_farming_plows.jsontooltip
+#: simulation/data/technologies/gather_farming_training.jsontooltip
+msgid "Workers +20% grain gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -563,8 +572,6 @@ msgid ""
 msgstr ""
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
-#: simulation/data/technologies/gather_farming_plows.jsontooltip
-#: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% grain gather rate."
 msgstr "Работники собирают зерно на 15% быстрее."
 
@@ -609,17 +616,14 @@ msgid "Increases wood gathering rates for trees."
 msgstr "Увеличивает скорость добычи древесины."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
+#: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
-msgid "Workers +15% wood gather rate."
-msgstr "Работники добывают древесину на 15% быстрее."
+msgid "Workers +25% wood gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
 msgstr "Железные топоры"
-
-#: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
-msgid "Workers +50% wood gather rate."
-msgstr "Работники добывают древесину на 50% быстрее."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -637,8 +641,9 @@ msgstr "Заставьте рабов помогать вашим рабочим
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
-msgid "Workers +15% stone gather rate."
-msgstr "Работники добывают камень на 15% быстрее."
+#: simulation/data/technologies/gather_mining_slaves.jsontooltip
+msgid "Workers +25% stone gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -669,9 +674,10 @@ msgid "Develop shaft mining. Increases metal gathering rates."
 msgstr "Разработать шахтный ствол. Увеличивается скорость добычи металла."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
+#: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
-msgid "Workers +15% metal gather rate."
-msgstr "Работники добывают металл на 15% быстрее."
+msgid "Workers +25% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -680,10 +686,6 @@ msgstr "Шахтный ствол"
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
 msgstr "Пробей жилу драгоценного серебра. Увеличение скорости добычи металла."
-
-#: simulation/data/technologies/gather_mining_silvermining.jsontooltip
-msgid "Workers +50% metal gather rate."
-msgstr "Работники добывают металл на 50% быстрее."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -702,10 +704,6 @@ msgid ""
 "Buy slaves to help your workers quarry stone. Increases stone gathering "
 "rates."
 msgstr "Купить рабов в подмогу работникам каменоломен. Увеличивается скорость добычи камня."
-
-#: simulation/data/technologies/gather_mining_slaves.jsontooltip
-msgid "Workers +50% stone gather rate."
-msgstr "Работники добывают камень на 50% быстрее."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -1085,26 +1083,9 @@ msgstr "Стоимость осадных орудий в древесине с�
 msgid "Artillery Instructors"
 msgstr "Артиллерийские инструктора"
 
-#: simulation/data/technologies/speed_cavalry_01.jsondescription
-msgid "Breed the fastest horses."
-msgstr "Порода самых быстрых лошадей."
-
-#: simulation/data/technologies/speed_cavalry_01.jsontooltip
-#: simulation/data/technologies/speed_cavalry_02.jsontooltip
-msgid "+10% cavalry walk speed."
-msgstr "Скорость конницы повышается на +10%."
-
-#: simulation/data/technologies/speed_cavalry_01.jsongenericName
-msgid "Cavalry Breeding"
-msgstr "Разведение коней для кавалерии"
-
-#: simulation/data/technologies/speed_cavalry_02.jsondescription
-msgid "Train your horses to move faster."
-msgstr "Тренируйте лошадей, чтобы повысить их скорость."
-
-#: simulation/data/technologies/speed_cavalry_02.jsongenericName
-msgid "Cavalry Speed Training"
-msgstr "Быстрое обучение кавалерии"
+#: simulation/data/technologies/soldier_ranged_experience.jsontooltip
+msgid "Ranged Soldiers +25% promotion experience."
+msgstr ""
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1144,18 +1125,6 @@ msgstr ""
 msgid "Crenellations"
 msgstr "Бойницы"
 
-#: simulation/data/technologies/tower_decay.jsondescription
-msgid "Outposts survive twice as long in neutral territory."
-msgstr "Заставы держатся вдвое дольше на нейтральной территории."
-
-#: simulation/data/technologies/tower_decay.jsontooltip
-msgid "Outposts −50% territory decay rate."
-msgstr ""
-
-#: simulation/data/technologies/tower_decay.jsongenericName
-msgid "Stone Foundations"
-msgstr "Каменный фундамент"
-
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr "Дыры-убийцы позволяют поражать врагов у подножья башни."
@@ -1179,18 +1148,6 @@ msgstr ""
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
 msgstr "Опытные лучники"
-
-#: simulation/data/technologies/tower_vision.jsondescription
-msgid "Outposts gain longer vision for scouting."
-msgstr "Заставы увеличивают дальность разведки."
-
-#: simulation/data/technologies/tower_vision.jsontooltip
-msgid "Outposts +50% vision range."
-msgstr "+50% к дальности обзора застав."
-
-#: simulation/data/technologies/tower_vision.jsongenericName
-msgid "Carrier Pigeons"
-msgstr "Почтовые голуби"
 
 #: simulation/data/technologies/tower_watch.jsondescription
 msgid "A night's watch increases vigilance."

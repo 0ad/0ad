@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-28 07:09+0000\n"
-"PO-Revision-Date: 2020-08-28 17:43+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-09-06 10:23+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -746,29 +746,29 @@ msgstr "%%%(percentage)s"
 msgid ""
 "%(label)s\n"
 "    %(details)s"
-msgstr ""
+msgstr "%(label)s\n    %(details)s"
 
 #: gui/common/tooltips.js:182
 msgid "Resistance:"
-msgstr ""
+msgstr "Erresistentzia:"
 
 #: gui/common/tooltips.js:193
 msgid "Damage Resistance:"
-msgstr ""
+msgstr "Kalteen erresistentzia:"
 
 #: gui/common/tooltips.js:196 gui/common/tooltips.js:216
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(resistancePercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(resistancePercentage)s"
 
 #: gui/common/tooltips.js:201 gui/common/tooltips.js:221
 #, javascript-format
 msgid "(%(resistancePercentage)s)"
-msgstr ""
+msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:214
 msgid "Capture Resistance:"
-msgstr ""
+msgstr "Harrapatua izateko Erresistentzia:"
 
 #: gui/common/tooltips.js:218 gui/common/tooltips.js:316
 msgctxt "damage type"
@@ -2868,23 +2868,23 @@ msgstr "Kontrastea egokitzeko garbitasuna, kontrastean oinarritutako garbitze az
 
 #: gui/options/options.json[1].options[5].list[1].label
 msgid "FidelityFX CAS"
-msgstr ""
+msgstr "FidelityFX CAS"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Reduce blurry effects."
-msgstr ""
+msgstr "Efektu lausoak murrizten ditu."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Sharpening"
-msgstr ""
+msgstr "Zorrotz"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "The sharpness of the choosen pass."
-msgstr ""
+msgstr "Aukeratutako bidearen zorroztasuna."
 
 #: gui/options/options.json[1].options[6].label
 msgid "Sharpness factor"
-msgstr ""
+msgstr "Zorroztasun faktorea"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -3892,7 +3892,7 @@ msgstr "Kontuz! Arraia ez da bukaezineko baliabidea."
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
-msgstr ""
+msgstr "BURDINOLA"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."

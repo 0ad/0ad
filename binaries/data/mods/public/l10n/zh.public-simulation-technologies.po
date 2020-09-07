@@ -11,7 +11,7 @@
 # liulitchi <xingzuo88@qq.com>, 2018
 # Mysterelee <8161525@qq.com>, 2014
 # Siwei Chen <chensiwei@tsinghua.edu.cn>, 2016
-# Wolfson Liu <wolfsonliu@live.com>, 2020
+# Wolfson Liu <wolfsonliu@foxmail.com>, 2020
 # liulitchi <xingzuo88@qq.com>, 2018-2020
 # yhcvb <yhcvb@126.com>, 2014
 # yhcvb <yhcvb@126.com>, 2014
@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-07 07:10+0000\n"
-"PO-Revision-Date: 2020-08-07 08:39+0000\n"
+"POT-Creation-Date: 2020-09-04 07:09+0000\n"
+"PO-Revision-Date: 2020-09-04 08:16+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -48,6 +48,7 @@ msgstr "箭术传统"
 
 #: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
+#: simulation/data/technologies/cavalry_movement_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
@@ -88,9 +89,7 @@ msgstr "马头盔甲"
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
-#: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_decay.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
@@ -142,7 +141,6 @@ msgstr "金属盔甲(马身)。"
 #: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_cost_metal.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
-#: simulation/data/technologies/speed_cavalry_02.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_armour.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
@@ -452,6 +450,18 @@ msgstr "乌兹钢"
 msgid "Toledo Steel"
 msgstr "托雷多钢"
 
+#: simulation/data/technologies/cavalry_movement_speed.jsondescription
+msgid "Train your horses to move faster."
+msgstr "训练你的马,使其移动更快速。"
+
+#: simulation/data/technologies/cavalry_movement_speed.jsontooltip
+msgid "Cavalry +10% walk speed."
+msgstr ""
+
+#: simulation/data/technologies/cavalry_movement_speed.jsongenericName
+msgid "Horse Racing"
+msgstr ""
+
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
 msgstr "饲养家畜（绵羊、山羊、牛……）获取食物。"
@@ -469,6 +479,7 @@ msgid "Workers use baskets. Increases shuttling capacity for all resources."
 msgstr "工人使用篮子，增加所有资源的载运量。"
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
+#: simulation/data/technologies/gather_capacity_carts.jsontooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers +5 resource capacity."
 msgstr "工人采集资源 +5 。"
@@ -482,10 +493,6 @@ msgid ""
 "Workers use horse-drawn carts. Increases shuttling capacity for all "
 "resources."
 msgstr "工人使用马车。所有资源的载运量 +10 。"
-
-#: simulation/data/technologies/gather_capacity_carts.jsontooltip
-msgid "Workers +10 resource capacity."
-msgstr "工人采集资源 +10 。"
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -521,8 +528,10 @@ msgid "Extra nutrients for farms."
 msgstr "对农场施加额外的营养物质。"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
-msgid "Workers +25% grain gather rate."
-msgstr "工人采集效率 +25% 。"
+#: simulation/data/technologies/gather_farming_plows.jsontooltip
+#: simulation/data/technologies/gather_farming_training.jsontooltip
+msgid "Workers +20% grain gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -535,8 +544,6 @@ msgid ""
 msgstr ""
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
-#: simulation/data/technologies/gather_farming_plows.jsontooltip
-#: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% grain gather rate."
 msgstr "工人谷物采集效率 +15%  。"
 
@@ -581,17 +588,14 @@ msgid "Increases wood gathering rates for trees."
 msgstr "加快伐木速度。"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
+#: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
-msgid "Workers +15% wood gather rate."
-msgstr "工人木材采集效率 +15%  。"
+msgid "Workers +25% wood gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
 msgstr "铁制斧头"
-
-#: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
-msgid "Workers +50% wood gather rate."
-msgstr "工人木材采集效率 +50%  。"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -609,8 +613,9 @@ msgstr "强迫农奴采集石头。石头采集效率 +15% 。"
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
-msgid "Workers +15% stone gather rate."
-msgstr "工人石头采集效率 +15%  。"
+#: simulation/data/technologies/gather_mining_slaves.jsontooltip
+msgid "Workers +25% stone gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -641,9 +646,10 @@ msgid "Develop shaft mining. Increases metal gathering rates."
 msgstr "开发竖井挖掘。提高金属采集效率。"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
+#: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
-msgid "Workers +15% metal gather rate."
-msgstr "工人金属采集效率 +15%  。"
+msgid "Workers +25% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -652,10 +658,6 @@ msgstr "竖井挖掘"
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
 msgstr "深入挖掘珍贵银矿。提高金属采集效率。"
-
-#: simulation/data/technologies/gather_mining_silvermining.jsontooltip
-msgid "Workers +50% metal gather rate."
-msgstr "工人金属采集效率 +50%  。"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -674,10 +676,6 @@ msgid ""
 "Buy slaves to help your workers quarry stone. Increases stone gathering "
 "rates."
 msgstr "购买奴隶来协助开采石头。提高采石效率。"
-
-#: simulation/data/technologies/gather_mining_slaves.jsontooltip
-msgid "Workers +50% stone gather rate."
-msgstr "工人石头采集效率 +50%  。"
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -1057,26 +1055,9 @@ msgstr "攻城器械木材花费 -20% 。"
 msgid "Artillery Instructors"
 msgstr "砲兵专家"
 
-#: simulation/data/technologies/speed_cavalry_01.jsondescription
-msgid "Breed the fastest horses."
-msgstr "培育出最快的马。"
-
-#: simulation/data/technologies/speed_cavalry_01.jsontooltip
-#: simulation/data/technologies/speed_cavalry_02.jsontooltip
-msgid "+10% cavalry walk speed."
-msgstr "骑兵移动速度 +10%。"
-
-#: simulation/data/technologies/speed_cavalry_01.jsongenericName
-msgid "Cavalry Breeding"
-msgstr "培育马匹"
-
-#: simulation/data/technologies/speed_cavalry_02.jsondescription
-msgid "Train your horses to move faster."
-msgstr "训练你的马,使其移动更快速。"
-
-#: simulation/data/technologies/speed_cavalry_02.jsongenericName
-msgid "Cavalry Speed Training"
-msgstr "骑兵移动力训练"
+#: simulation/data/technologies/soldier_ranged_experience.jsontooltip
+msgid "Ranged Soldiers +25% promotion experience."
+msgstr ""
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1116,18 +1097,6 @@ msgstr ""
 msgid "Crenellations"
 msgstr "垛口"
 
-#: simulation/data/technologies/tower_decay.jsondescription
-msgid "Outposts survive twice as long in neutral territory."
-msgstr "比起正常的哨所，在中立领土上存活时间加倍。"
-
-#: simulation/data/technologies/tower_decay.jsontooltip
-msgid "Outposts −50% territory decay rate."
-msgstr ""
-
-#: simulation/data/technologies/tower_decay.jsongenericName
-msgid "Stone Foundations"
-msgstr "石头地基"
-
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr "猎杀洞允许在城塔底部攻击敌军。"
@@ -1151,18 +1120,6 @@ msgstr ""
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
 msgstr "射箭手"
-
-#: simulation/data/technologies/tower_vision.jsondescription
-msgid "Outposts gain longer vision for scouting."
-msgstr "哨所视野增大。"
-
-#: simulation/data/technologies/tower_vision.jsontooltip
-msgid "Outposts +50% vision range."
-msgstr "哨所 +50%视野范围。"
-
-#: simulation/data/technologies/tower_vision.jsongenericName
-msgid "Carrier Pigeons"
-msgstr "信鸽"
 
 #: simulation/data/technologies/tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
