@@ -950,7 +950,7 @@ PETRA.HQ.prototype.findEconomicCCLocation = function(gameState, template, resour
 		halfSize = +template.get("Footprint/Circle/@radius");
 
 	let ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
-	let dpEnts = gameState.getOwnDropsites().filter(API3.Filters.not(API3.Filters.byClassesOr(["CivCentre", "Elephant"])));
+	let dpEnts = gameState.getOwnDropsites().filter(API3.Filters.not(API3.Filters.byClassesOr(["CivCentre", "Unit"])));
 	let ccList = [];
 	for (let cc of ccEnts.values())
 		ccList.push({ "ent": cc, "pos": cc.position(), "ally": gameState.isPlayerAlly(cc.owner()) });
