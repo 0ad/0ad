@@ -5118,10 +5118,7 @@ UnitAI.prototype.ShouldChaseTargetedEntity = function(target, force)
 			return true;
 	}
 
-	if (force)
-		return true;
-
-	return false;
+	return force;
 };
 
 //// External interface functions ////
