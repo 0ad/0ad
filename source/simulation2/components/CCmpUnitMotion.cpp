@@ -788,10 +788,7 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 			// Send OBSTRUCTED at first - moveFailed is likely to trigger path recomputation and we might end up
 			// recomputing too often for nothing.
 			if (!IncrementFailedPathComputationAndMaybeNotify())
-			{
-				CMessageMotionUpdate msg(CMessageMotionUpdate::OBSTRUCTED);
-				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
-			}
+				MoveObstructed();
 			m_FollowKnownImperfectPathCountdown = KNOWN_IMPERFECT_PATH_RESET_COUNTDOWN;
 		}
 		return;
@@ -815,10 +812,7 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 			// Send OBSTRUCTED at first - moveFailed is likely to trigger path recomputation and we might end up
 			// recomputing too often for nothing.
 			if (!IncrementFailedPathComputationAndMaybeNotify())
-			{
-				CMessageMotionUpdate msg(CMessageMotionUpdate::OBSTRUCTED);
-				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
-			}
+				MoveObstructed();
 			m_FollowKnownImperfectPathCountdown = KNOWN_IMPERFECT_PATH_RESET_COUNTDOWN;
 		}
 		return;
