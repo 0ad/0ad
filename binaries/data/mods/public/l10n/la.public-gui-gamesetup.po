@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-24 07:08+0000\n"
-"PO-Revision-Date: 2020-08-27 07:11+0000\n"
+"PO-Revision-Date: 2020-09-06 05:22+0000\n"
 "Last-Translator: Ernestus Severus\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
@@ -28,47 +28,47 @@ msgstr "Pristinus"
 
 #: gui/gamesetup/Controls/MapFilters.js:86
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "Omnes tabulae praeter tabulas navales et demonstrationes."
 
 #: gui/gamesetup/Controls/MapFilters.js:91
 msgid "Naval Maps"
-msgstr ""
+msgstr "Tabulae Navales"
 
 #: gui/gamesetup/Controls/MapFilters.js:92
 msgid "Maps where ships are needed to reach the enemy."
-msgstr ""
+msgstr "Tabulae in qua necesse est naves construere ut hostes oppugnes."
 
 #: gui/gamesetup/Controls/MapFilters.js:97
 msgid "Demo Maps"
-msgstr ""
+msgstr "Tabulae Demonstrationes"
 
 #: gui/gamesetup/Controls/MapFilters.js:98
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr ""
+msgstr "In his tabulis ludere non potes, quae demontrationis causa creatae sunt."
 
 #: gui/gamesetup/Controls/MapFilters.js:103
 msgid "New Maps"
-msgstr ""
+msgstr "Tabulae Novae"
 
 #: gui/gamesetup/Controls/MapFilters.js:104
 msgid "Maps that are brand new in this release of the game."
-msgstr ""
+msgstr "Tabulae novae in hac ludi editione."
 
 #: gui/gamesetup/Controls/MapFilters.js:109
 msgid "Trigger Maps"
-msgstr ""
+msgstr "Tabulae Praefinitae"
 
 #: gui/gamesetup/Controls/MapFilters.js:110
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr ""
+msgstr "Tabulae cum eventis praefinitis, et forte hostibus impositis."
 
 #: gui/gamesetup/Controls/MapFilters.js:115
 msgid "All Maps"
-msgstr ""
+msgstr "Omnes Tabulae"
 
 #: gui/gamesetup/Controls/MapFilters.js:116
 msgid "Every map of the chosen maptype."
-msgstr ""
+msgstr "Omnes tabulae cuiusdam generis."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:37
 msgid "AI will be disabled for this player."
@@ -114,7 +114,7 @@ msgstr "Ignotum"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:7
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Tabula"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:26
 msgctxt "Match settings tab name"
@@ -124,7 +124,7 @@ msgstr "Lusor"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:38
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "Genus Ludi"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/AIConfigButton.js:32
 #, javascript-format
@@ -138,7 +138,7 @@ msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:153
 msgid "Select player."
-msgstr "Lusorem selige."
+msgstr "Lusorem seligere."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:230
 #, javascript-format
@@ -147,11 +147,11 @@ msgstr "AI: %(ai)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:265
 msgid "Unassigned"
-msgstr ""
+msgstr "Vacuus"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:131
 msgid "Choose the civilization for this player."
-msgstr ""
+msgstr "Civitatem huic lusori eligere."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:134
 msgctxt "civilization"
@@ -160,15 +160,15 @@ msgstr "Fortuitus"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:140
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "Coepto ludo eligetur aliqua civitas fortuita."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:172
 msgid "Pick a color."
-msgstr ""
+msgstr "Colorem eligere."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:73
 msgid "Select player's team."
-msgstr "Lusoris manum selige."
+msgstr "Lusoris manum eligere."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:76
 msgctxt "team"
@@ -181,7 +181,7 @@ msgstr "Fraudes"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:43
 msgid "Toggle the usability of cheats."
-msgstr ""
+msgstr "Fraudes permittere."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -193,51 +193,51 @@ msgstr "Tabula Explorata"
 #. explored map settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:58
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "Tabulam exploratam instituere (lusores tabulam pristinam videre possunt)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:58
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Ad Virum Ultimum"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:61
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr ""
+msgstr "Ultimus lusor aut ultima manus sociorum vincunt."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:52
 msgid "Teams Locked"
-msgstr ""
+msgstr "Manus Fixae"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:55
 msgid "Toggle locked teams."
-msgstr ""
+msgstr "Manus fixas instituere."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:60
 msgid "Nomad"
-msgstr ""
+msgstr "Nomas"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:63
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "In modo Nomade, incipiunt lusores modo cum paucis civibus et necesse est locum idoneum petere ut urbem condant. Indutiae commendatae sunt."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:51
 msgid "Rated Game"
-msgstr ""
+msgstr "Ludum Notatum"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:54
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr ""
+msgstr "Ludus notabitur qui puncta lusorum afficiat."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:61
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Praesidium Herois"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:64
 msgid "Toggle whether heroes can be garrisoned."
-msgstr ""
+msgstr "Heroes in praesidium collocari possunt."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map settings!
@@ -249,41 +249,41 @@ msgstr "Tabula Aperta"
 #. explored map settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:53
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Tabulam apertam instituere (lusores omnes in hac tabula ad tempus videre possunt)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:42
 msgid "Disable Spies"
-msgstr ""
+msgstr "Inquisitionem Vetare"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:45
 msgid "Disable spies during the game."
-msgstr ""
+msgstr "Inquisitionem in hoc ludo vetare."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:42
 msgid "Disable Treasures"
-msgstr ""
+msgstr "Thesauros Vetare"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:45
 msgid "Do not add treasures to the map."
-msgstr ""
+msgstr "Thesauri in hanc tabulam non addentur."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:46
 msgid "World population"
-msgstr ""
+msgstr "Numerus populi universus"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr ""
+msgstr "Terminus Numeri Civium omnibus vivis lusoribus aequaliter dividetur."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:135
 msgid "Biome"
-msgstr ""
+msgstr "Bioma"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:141
 msgid "Select the flora and fauna."
-msgstr ""
+msgstr "Herbas et Animalia elige."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:144
 msgctxt "biome"
@@ -292,15 +292,15 @@ msgstr "Fortuitus"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:147
 msgid "Pick a biome at random."
-msgstr ""
+msgstr "Bioma fortuite eligetur."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:101
 msgid "Daytime"
-msgstr ""
+msgstr "Tempus Diurnum"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
-msgstr ""
+msgstr "Elige utrum ludus interdiu an noctu fiat."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
@@ -310,7 +310,7 @@ msgstr "Fortuitus"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr ""
+msgstr "Tempus Diurnum fortuite eligetur."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:73
 msgid "Game Speed"
@@ -322,57 +322,57 @@ msgstr "Ludi Celeritatem selige."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:142
 msgid "Landscape"
-msgstr ""
+msgstr "Regionis Situs"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:145
 msgid "Select one of the landscapes of this map."
-msgstr ""
+msgstr "Elige unum regionis situum huius tabulae."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:151
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
-msgstr ""
+msgstr "Terra Fortuita aut Navalis"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
 msgctxt "landscape selection"
 msgid "Select a random land or naval map generation."
-msgstr ""
+msgstr "Elige terram fortuitam aut navalem."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:156
 msgctxt "landscape selection"
 msgid "Random Land"
-msgstr ""
+msgstr "Terra Fortuita"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
 msgid "Select a random land map generation."
-msgstr ""
+msgstr "Elige terram fortuitam."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:161
 msgctxt "landscape selection"
 msgid "Random Naval"
-msgstr ""
+msgstr "Tabula Fortuita Navalis"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:162
 msgctxt "landscape selection"
 msgid "Select a random naval map generation."
-msgstr ""
+msgstr "Elige tabulam fortuitam navalem."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:89
 msgid "Map Filter"
-msgstr ""
+msgstr "Colum Tabularum"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:92
 msgid "Select a map filter."
-msgstr "Mappae filtrum selige."
+msgstr "Elige colum tabularum."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:143
 msgid "Select Map"
-msgstr ""
+msgstr "Elige tabulam"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:146
 msgid "Select a map to play on."
-msgstr "Mappam ludere selige. "
+msgstr "Elige tabulam in qua ludas."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:152
 msgctxt "map selection"
@@ -381,27 +381,27 @@ msgstr "Fortuitus"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:155
 msgid "Pick any of the given maps at random."
-msgstr ""
+msgstr "Elige quamlibet fortuitam datarum tabularum."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:74
 msgid "Map Size"
-msgstr ""
+msgstr "Magnitudo Tabulae"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:77
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "Mappae magnitudo selige. (Maiores magnitudines celeritatem deducat.)"
+msgstr "Elige magnitudinem tabulae. (Maiores magnitudines celeritatem deducat.)"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:61
 msgid "Map Type"
-msgstr ""
+msgstr "Genus Tabulae"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:64
 msgid "Select a map type."
-msgstr "Mappae typum selige."
+msgstr "Elige genus tabulae."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:49
 msgid "Number of Players"
-msgstr ""
+msgstr "Numerus Lusorum"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:52
 msgid "Select number of players."
@@ -409,11 +409,11 @@ msgstr "Lusorum numerum selige."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:91
 msgid "Population Cap"
-msgstr ""
+msgstr "Terminus Numeri Populi"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:94
 msgid "Select population limit."
-msgstr ""
+msgstr "Elige terminum numeri populi."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:97
 msgctxt "population limit"
@@ -429,16 +429,16 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:81
 msgid "Starting Resources"
-msgstr ""
+msgstr "Opes Pristinae"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:84
 msgid "Select the game's starting resources."
-msgstr ""
+msgstr "Elige opes pristinas huius ludi."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:87
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr ""
+msgstr "Copia pristina quarumque opum: %(resources)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:90
 msgctxt "starting resources"
@@ -447,11 +447,11 @@ msgstr "Pro Lusore"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
 msgid "Team Placement"
-msgstr ""
+msgstr "Situs Manus"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:94
 msgid "Select one of the starting position patterns of this map."
-msgstr ""
+msgstr "Elige unum situm pristinum huius tabulae."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
 msgctxt "team placement"
@@ -461,12 +461,12 @@ msgstr "Fortuitus"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr ""
+msgstr "Elige situm manus pristinum fortuitum huius tabulae."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
 msgctxt "team placement"
 msgid "Circle"
-msgstr ""
+msgstr "Circulus"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:106
 msgid ""
@@ -477,7 +477,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
 msgctxt "team placement"
 msgid "Line"
-msgstr ""
+msgstr "Linea"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
 msgid "Allied players are placed in a linear pattern."

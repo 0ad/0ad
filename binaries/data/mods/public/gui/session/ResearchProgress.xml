@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<object size="100%-50 40 100%-10 100%-200" name="researchStartedButtons">
+<?xml version="1.0" encoding="UTF-8"?>
+<object name="researchStartedButtons"
+	size="100%-48 40 100%-10 420"
+>
 	<repeat count="10">
-		<object name="researchStartedButton[n]" hidden="true" style="iconButton" type="button" size="0 0 40 40" tooltip_style="sessionToolTipBottom">
-			<object name="researchStartedIcon[n]" ghost="true" type="image" size="3 3 37 37"/>
+		<object name="researchStartedButton[n]" hidden="true" style="iconButton" type="button" size="0 0 38 38" tooltip_style="sessionToolTipBottom">
+			<object name="researchStartedIcon[n]" ghost="true" type="image" size="3 3 35 35"/>
 			<object name="researchStartedProgressSlider[n]" type="image" sprite="queueProgressSlider" ghost="true" size="3 3 37 37"/>
 			<object name="researchStartedTimeRemaining[n]" ghost="true" style="iconButtonProgress" type="text"/>
 		</object>

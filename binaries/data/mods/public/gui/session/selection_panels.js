@@ -79,9 +79,9 @@ g_SelectionPanels.Alert = {
 g_SelectionPanels.Barter = {
 	"getMaxNumberOfItems": function()
 	{
-		return 4;
+		return 5;
 	},
-	"rowLength": 4,
+	"rowLength": 5,
 	"conflictsWith": ["Garrison"],
 	"getItems": function(unitEntStates)
 	{
@@ -209,8 +209,9 @@ g_SelectionPanels.AllyCommand = {
 g_SelectionPanels.Construction = {
 	"getMaxNumberOfItems": function()
 	{
-		return 24 - getNumberOfRightPanelButtons();
+		return 40 - getNumberOfRightPanelButtons();
 	},
+	"rowLength": 10,
 	"getItems": function()
 	{
 		return getAllBuildableEntitiesFromSelection();
@@ -283,9 +284,9 @@ g_SelectionPanels.Construction = {
 g_SelectionPanels.Formation = {
 	"getMaxNumberOfItems": function()
 	{
-		return 16;
+		return 15;
 	},
-	"rowLength": 4,
+	"rowLength": 5,
 	"conflictsWith": ["Garrison"],
 	"getItems": function(unitEntStates)
 	{
@@ -298,7 +299,7 @@ g_SelectionPanels.Formation = {
 		if (!g_AvailableFormations.has(unitEntStates[0].player))
 			g_AvailableFormations.set(unitEntStates[0].player, Engine.GuiInterfaceCall("GetAvailableFormations", unitEntStates[0].player));
 
-		return g_AvailableFormations.get(unitEntStates[0].player).filter(formation => unitEntStates.some(state => !!state.identity &&  state.identity.formations.indexOf(formation) != -1));
+		return g_AvailableFormations.get(unitEntStates[0].player).filter(formation => unitEntStates.some(state => !!state.identity && state.identity.formations.indexOf(formation) != -1));
 	},
 	"setupButton": function(data)
 	{
@@ -398,8 +399,9 @@ g_SelectionPanels.Garrison = {
 g_SelectionPanels.Gate = {
 	"getMaxNumberOfItems": function()
 	{
-		return 24 - getNumberOfRightPanelButtons();
+		return 40 - getNumberOfRightPanelButtons();
 	},
+	"rowLength": 10,
 	"getItems": function(unitEntStates)
 	{
 		let hideLocked = unitEntStates.every(state => !state.gate || !state.gate.locked);
@@ -439,8 +441,9 @@ g_SelectionPanels.Gate = {
 g_SelectionPanels.Pack = {
 	"getMaxNumberOfItems": function()
 	{
-		return 24 - getNumberOfRightPanelButtons();
+		return 40 - getNumberOfRightPanelButtons();
 	},
+	"rowLength": 10,
 	"getItems": function(unitEntStates)
 	{
 		let checks = {};
@@ -613,8 +616,9 @@ g_SelectionPanels.Queue = {
 g_SelectionPanels.Research = {
 	"getMaxNumberOfItems": function()
 	{
-		return 8;
+		return 10;
 	},
+	"rowLength": 10,
 	"getItems": function(unitEntStates)
 	{
 		let ret = [];
@@ -761,7 +765,7 @@ g_SelectionPanels.Research = {
 				addResearchToQueue(data.item.researchFacilityId, t);
 			})(tech);
 
-			button.onPressRight = (t => function () {
+			button.onPressRight = (t => function() {
 				showTemplateDetails(
 					t,
 					GetTemplateData(data.unitEntStates.find(state => state.id == data.item.researchFacilityId).template).nativeCiv);
@@ -922,8 +926,9 @@ g_SelectionPanels.Stance = {
 g_SelectionPanels.Training = {
 	"getMaxNumberOfItems": function()
 	{
-		return 24 - getNumberOfRightPanelButtons();
+		return 40 - getNumberOfRightPanelButtons();
 	},
+	"rowLength": 10,
 	"getItems": function()
 	{
 		return getAllTrainableEntitiesFromSelection();
@@ -1019,8 +1024,9 @@ g_SelectionPanels.Training = {
 g_SelectionPanels.Upgrade = {
 	"getMaxNumberOfItems": function()
 	{
-		return 24 - getNumberOfRightPanelButtons();
+		return 40 - getNumberOfRightPanelButtons();
 	},
+	"rowLength": 10,
 	"getItems": function(unitEntStates)
 	{
 		// Interface becomes complicated with multiple different units and this is meant per-entity, so prevent it if the selection has multiple different units.

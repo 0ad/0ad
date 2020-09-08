@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<object name="unitBarterPanel" size="12 12 100% 100%" hidden="true" hotkey="session.massbarter">
-
-	<repeat count="4">
-		<object size="0 0 42 42">
+<?xml version="1.0" encoding="UTF-8"?>
+<object name="unitBarterPanel"
+	size="6 6 100% 100%"
+	hidden="true"
+	hotkey="session.massbarter"
+>
+	<repeat count="5">
+		<object size="0 0 38 38">
 			<include file="gui/session/trade/BarterButton.xml"/>
 		</object>
 	</repeat>
-
 </object>

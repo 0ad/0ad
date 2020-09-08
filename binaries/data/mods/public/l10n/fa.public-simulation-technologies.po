@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-07 07:10+0000\n"
-"PO-Revision-Date: 2020-08-07 08:39+0000\n"
+"POT-Creation-Date: 2020-09-04 07:09+0000\n"
+"PO-Revision-Date: 2020-09-04 08:16+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -37,6 +37,7 @@ msgstr "سنت کمانداری"
 
 #: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
+#: simulation/data/technologies/cavalry_movement_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
@@ -77,9 +78,7 @@ msgstr "زره اسب"
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
-#: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_decay.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
@@ -131,7 +130,6 @@ msgstr "زره فلزی برای بدن اسبها"
 #: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_cost_metal.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
-#: simulation/data/technologies/speed_cavalry_02.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_armour.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
@@ -441,6 +439,18 @@ msgstr "فولاد ووتز"
 msgid "Toledo Steel"
 msgstr "فولاد تولدو"
 
+#: simulation/data/technologies/cavalry_movement_speed.jsondescription
+msgid "Train your horses to move faster."
+msgstr "آموزش اسبها برای حرکت سریعتر"
+
+#: simulation/data/technologies/cavalry_movement_speed.jsontooltip
+msgid "Cavalry +10% walk speed."
+msgstr ""
+
+#: simulation/data/technologies/cavalry_movement_speed.jsongenericName
+msgid "Horse Racing"
+msgstr ""
+
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
 msgstr ""
@@ -458,6 +468,7 @@ msgid "Workers use baskets. Increases shuttling capacity for all resources."
 msgstr ""
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
+#: simulation/data/technologies/gather_capacity_carts.jsontooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers +5 resource capacity."
 msgstr ""
@@ -470,10 +481,6 @@ msgstr "سبدها"
 msgid ""
 "Workers use horse-drawn carts. Increases shuttling capacity for all "
 "resources."
-msgstr ""
-
-#: simulation/data/technologies/gather_capacity_carts.jsontooltip
-msgid "Workers +10 resource capacity."
 msgstr ""
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
@@ -510,7 +517,9 @@ msgid "Extra nutrients for farms."
 msgstr "مواد مغذی بیشتر  برای مزارع."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
-msgid "Workers +25% grain gather rate."
+#: simulation/data/technologies/gather_farming_plows.jsontooltip
+#: simulation/data/technologies/gather_farming_training.jsontooltip
+msgid "Workers +20% grain gather rate."
 msgstr ""
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
@@ -524,8 +533,6 @@ msgid ""
 msgstr ""
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
-#: simulation/data/technologies/gather_farming_plows.jsontooltip
-#: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% grain gather rate."
 msgstr ""
 
@@ -570,17 +577,14 @@ msgid "Increases wood gathering rates for trees."
 msgstr "افزایش سرعت جمع کردن چوب از درختان"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
+#: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
-msgid "Workers +15% wood gather rate."
+msgid "Workers +25% wood gather rate."
 msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
 msgstr "سرتبر های آهنی"
-
-#: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
-msgid "Workers +50% wood gather rate."
-msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -598,7 +602,8 @@ msgstr ""
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
-msgid "Workers +15% stone gather rate."
+#: simulation/data/technologies/gather_mining_slaves.jsontooltip
+msgid "Workers +25% stone gather rate."
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
@@ -630,8 +635,9 @@ msgid "Develop shaft mining. Increases metal gathering rates."
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
+#: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
-msgid "Workers +15% metal gather rate."
+msgid "Workers +25% metal gather rate."
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
@@ -640,10 +646,6 @@ msgstr "تیرک های سقف"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
-msgstr ""
-
-#: simulation/data/technologies/gather_mining_silvermining.jsontooltip
-msgid "Workers +50% metal gather rate."
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
@@ -662,10 +664,6 @@ msgstr "معادن لوریون"
 msgid ""
 "Buy slaves to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr ""
-
-#: simulation/data/technologies/gather_mining_slaves.jsontooltip
-msgid "Workers +50% stone gather rate."
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
@@ -1046,26 +1044,9 @@ msgstr ""
 msgid "Artillery Instructors"
 msgstr "آموزش دهندگان دژکوب های پرتابی"
 
-#: simulation/data/technologies/speed_cavalry_01.jsondescription
-msgid "Breed the fastest horses."
-msgstr "پرورش اسب های سریع"
-
-#: simulation/data/technologies/speed_cavalry_01.jsontooltip
-#: simulation/data/technologies/speed_cavalry_02.jsontooltip
-msgid "+10% cavalry walk speed."
-msgstr "+10% سرعت راه رفتن سواره نظام"
-
-#: simulation/data/technologies/speed_cavalry_01.jsongenericName
-msgid "Cavalry Breeding"
-msgstr "پرورش سواره نظام"
-
-#: simulation/data/technologies/speed_cavalry_02.jsondescription
-msgid "Train your horses to move faster."
-msgstr "آموزش اسبها برای حرکت سریعتر"
-
-#: simulation/data/technologies/speed_cavalry_02.jsongenericName
-msgid "Cavalry Speed Training"
-msgstr "آموزش سرعت سواره نظام"
+#: simulation/data/technologies/soldier_ranged_experience.jsontooltip
+msgid "Ranged Soldiers +25% promotion experience."
+msgstr ""
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1105,18 +1086,6 @@ msgstr ""
 msgid "Crenellations"
 msgstr "بارو ها"
 
-#: simulation/data/technologies/tower_decay.jsondescription
-msgid "Outposts survive twice as long in neutral territory."
-msgstr "برج های دیده بانی دو برابر بیشتر در مناطع بی طرف دوام می آورند."
-
-#: simulation/data/technologies/tower_decay.jsontooltip
-msgid "Outposts −50% territory decay rate."
-msgstr ""
-
-#: simulation/data/technologies/tower_decay.jsongenericName
-msgid "Stone Foundations"
-msgstr "پی سنگی"
-
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr "چاله های مرگ این امکان را بوجود می آورد که سربازان مهاجمی که به پای برج می رسند آسیب ببینند"
@@ -1140,18 +1109,6 @@ msgstr ""
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
 msgstr "تیر انداز ها"
-
-#: simulation/data/technologies/tower_vision.jsondescription
-msgid "Outposts gain longer vision for scouting."
-msgstr "برج های دیده بانی شعاع دید وسیعتری برای دیده بانی بدست می آورند"
-
-#: simulation/data/technologies/tower_vision.jsontooltip
-msgid "Outposts +50% vision range."
-msgstr "برج های دیده بانی +50% شعاع دید"
-
-#: simulation/data/technologies/tower_vision.jsongenericName
-msgid "Carrier Pigeons"
-msgstr "کبوتران نامه بر"
 
 #: simulation/data/technologies/tower_watch.jsondescription
 msgid "A night's watch increases vigilance."

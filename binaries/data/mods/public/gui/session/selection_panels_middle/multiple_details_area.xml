@@ -1,46 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Unit details for Multiple Units -->
-<object size="50%-112 0 50%+112 100%" name="detailsAreaMultiple">
-
-	<object name="unitSelectionPanel"
-		size="20 12 100%-20 100%"
-	>
-	<object>
-		<repeat count="16">
-		<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBold" z="100">
-			<object name="unitSelectionSelection[n]" type="image" ghost="true"/>
-			<object name="unitSelectionIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
-			<object name="unitSelectionCount[n]" ghost="true" style="groupIconsText" type="text"/>
-			<object size="0 100%-3 100% 100%" name="unitSelectionHealth[n]" ghost="true">
-			</object>
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Details panel for multiple entities. -->
+<object name="detailsAreaMultiple"
+	size="6 6 100%-6 100%-44"
+>
+	<object name="unitSelectionPanel">
+		<object>
+			<repeat count="16">
+				<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 38 38" tooltip_style="sessionToolTipBold" z="100">
+					<object name="unitSelectionSelection[n]" type="image" ghost="true"/>
+					<object name="unitSelectionIcon[n]" type="image" ghost="true" size="3 3 35 35"/>
+					<object name="unitSelectionCount[n]" ghost="true" style="groupIconsText" type="text"/>
+					<object size="0 100%-3 100% 100%" name="unitSelectionHealth[n]" ghost="true"/>
+				</object>
+			</repeat>
 		</object>
-		</repeat>
 	</object>
+	<!-- Total number of selected entities. -->
+	<object size="100%-35 4 100%-3 36" type="image" sprite="groupsIcon">
+		<object type="text" style="largeCenteredOutlinedText" name="numberOfUnits" tooltip_style="sessionToolTipBold"/>
 	</object>
-
-	<!-- Total -->
-	<object size="100%-42 12 100%-8 46" type="image" sprite="groupsIcon">
-	<object type="text" style="largeCenteredOutlinedText" name="numberOfUnits" tooltip_style="sessionToolTipBold"/>
-	</object>
-
-	<!-- Stats Bars -->
-	<object size= "100%-38 50 100%-18 100%-44" type="image" tooltip_style="sessionToolTip">
-	<!-- Health bar -->
-	<object size="4 0 11 100%" type="image" name="healthMultiple" tooltip_style="sessionToolTip">
-		<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
-		<object type="image" sprite="healthBackground" ghost="true"/>
-		<object type="image" sprite="healthForeground" ghost="true" name="healthBarMultiple"/>
-		<object type="image" sprite="statsBarShaderVertical" ghost="true"/>
-	</object>
-
-	<!-- Capture bar -->
-	<object size="15 0 22 100%" type="image" name="captureMultiple" tooltip_style="sessionToolTip">
-		<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
-		<repeat count="9">
-			<object type="image" sprite="playerColorBackground" ghost="true" name="captureBarMultiple[n]" hidden="true"/>
-		</repeat>
-		<object type="image" sprite="statsBarShaderVertical" ghost="true"/>
-	</object>
+	<!-- Status bars. -->
+	<object size= "100%-35 40 100%-3 100%" type="image" tooltip_style="sessionToolTip">
+		<!-- Health bar. -->
+		<object size="50%-10 0 50%-2 100%" type="image" name="healthMultiple" tooltip_style="sessionToolTip">
+			<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
+			<object type="image" sprite="healthBackground" ghost="true"/>
+			<object type="image" sprite="healthForeground" ghost="true" name="healthBarMultiple"/>
+			<object type="image" sprite="statsBarShaderVertical" ghost="true"/>
+		</object>
+		<!-- Capture bar. -->
+		<object size="50%+2 0 50%+10 100%" type="image" name="captureMultiple" tooltip_style="sessionToolTip">
+			<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
+			<repeat count="9">
+				<object type="image" sprite="playerColorBackground" ghost="true" name="captureBarMultiple[n]" hidden="true"/>
+			</repeat>
+			<object type="image" sprite="statsBarShaderVertical" ghost="true"/>
+		</object>
 	</object>
 </object>
-

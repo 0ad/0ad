@@ -355,7 +355,7 @@ PETRA.AttackPlan.prototype.addSiegeUnits = function(gameState)
 		return false;
 
 	let civ = gameState.getPlayerCiv();
-	let classes = [[ "Siege", "Melee"], ["Siege", "Ranged"], ["Elephant", "Melee", "Champion"]];
+	let classes = [["Siege", "Melee"], ["Siege", "Ranged"], ["Elephant", "Melee"]];
 	let hasTrainer = [false, false, false];
 	for (let ent of gameState.getOwnTrainingFacilities().values())
 	{

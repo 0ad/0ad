@@ -1,7 +1,7 @@
 /** returns true if this unit should be considered as a siege unit */
 PETRA.isSiegeUnit = function(ent)
 {
-	return ent.hasClass("Siege") || ent.hasClass("Elephant") && ent.hasClass("Melee") && ent.hasClass("Champion");
+	return ent.hasClass("Siege") || ent.hasClass("Elephant") && ent.hasClass("Melee");
 };
 
 /** returns true if this unit should be considered as "fast". */

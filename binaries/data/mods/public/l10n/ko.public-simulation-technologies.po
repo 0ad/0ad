@@ -10,6 +10,7 @@
 # Hong Won Gi <timmy080736@gmail.com>, 2016
 # Hong Won Gi <timmy080736@gmail.com>, 2016
 # jjj <triplej03@nate.com>, 2014
+# JungHee Lee <daemul72@gmail.com>, 2019
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2019
 # ks k, 2019-2020
@@ -22,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-07 07:10+0000\n"
-"PO-Revision-Date: 2020-08-24 11:01+0000\n"
+"POT-Creation-Date: 2020-09-04 07:09+0000\n"
+"PO-Revision-Date: 2020-09-05 18:42+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -49,6 +50,7 @@ msgstr "전통 궁술"
 
 #: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
+#: simulation/data/technologies/cavalry_movement_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
@@ -89,9 +91,7 @@ msgstr "군마용 안면 투구"
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
-#: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_decay.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
@@ -143,7 +143,6 @@ msgstr "말의 몸통을 위한 철 갑옷."
 #: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_cost_metal.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
-#: simulation/data/technologies/speed_cavalry_02.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_armour.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
@@ -453,6 +452,18 @@ msgstr "인도제 철강"
 msgid "Toledo Steel"
 msgstr "톨레도 철강"
 
+#: simulation/data/technologies/cavalry_movement_speed.jsondescription
+msgid "Train your horses to move faster."
+msgstr "말이 더 빨리 달리도록 훈련합니다."
+
+#: simulation/data/technologies/cavalry_movement_speed.jsontooltip
+msgid "Cavalry +10% walk speed."
+msgstr "기마의 이동 속도가 +10% 빨라집니다."
+
+#: simulation/data/technologies/cavalry_movement_speed.jsongenericName
+msgid "Horse Racing"
+msgstr "경마"
+
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
 msgstr "식량용 가축(양, 염소, 소, 등)을 기릅니다."
@@ -470,6 +481,7 @@ msgid "Workers use baskets. Increases shuttling capacity for all resources."
 msgstr "노동자가 바구니를 사용합니다. 실어 나르는 자원 용량이 증가합니다."
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
+#: simulation/data/technologies/gather_capacity_carts.jsontooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers +5 resource capacity."
 msgstr "노동자의 자원 용량이 +5 증가합니다."
@@ -483,10 +495,6 @@ msgid ""
 "Workers use horse-drawn carts. Increases shuttling capacity for all "
 "resources."
 msgstr "노동자들이 마차를 이용합니다. 모든 자원의 실어 나르는 용량이 증가합니다."
-
-#: simulation/data/technologies/gather_capacity_carts.jsontooltip
-msgid "Workers +10 resource capacity."
-msgstr "노동자들의 자원 용량이 +10% 증가합니다."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -522,8 +530,10 @@ msgid "Extra nutrients for farms."
 msgstr "농장을 위한 추가 영양소입니다."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
-msgid "Workers +25% grain gather rate."
-msgstr "노동자의 곡물 수확률이 +25% 증가합니다."
+#: simulation/data/technologies/gather_farming_plows.jsontooltip
+#: simulation/data/technologies/gather_farming_training.jsontooltip
+msgid "Workers +20% grain gather rate."
+msgstr "노동자의 곡물 수확률이 +20% 증가합니다."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -536,8 +546,6 @@ msgid ""
 msgstr "갈리아 사람들은 곡식을 훨씬 쉽게 수확 할 수 있도록 수확기를 발명했습니다."
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
-#: simulation/data/technologies/gather_farming_plows.jsontooltip
-#: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% grain gather rate."
 msgstr "노동자의 곡물 수확률이 +15% 증가합니다."
 
@@ -582,17 +590,14 @@ msgid "Increases wood gathering rates for trees."
 msgstr "나무용 목재 벌목량이 증가합니다."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
+#: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
-msgid "Workers +15% wood gather rate."
-msgstr "노동자의 목재 채집률이 +15% 증가합니다."
+msgid "Workers +25% wood gather rate."
+msgstr "노동자의 목재 채집률이 +25% 증가합니다."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
 msgstr "쇠 도끼날"
-
-#: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
-msgid "Workers +50% wood gather rate."
-msgstr "노동자의 목재 채집률이 +50% 증가합니다."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -610,8 +615,9 @@ msgstr "농노들에게 석재를 채굴하는 일꾼들을 돕게 합니다. �
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
-msgid "Workers +15% stone gather rate."
-msgstr "노동자의 석재 채집률이 +15% 증가합니다."
+#: simulation/data/technologies/gather_mining_slaves.jsontooltip
+msgid "Workers +25% stone gather rate."
+msgstr "노동자의 석재 채집률이 +25% 증가합니다."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -642,9 +648,10 @@ msgid "Develop shaft mining. Increases metal gathering rates."
 msgstr "수직 갱도 광산을 만듭니다. 금속 채집량이 증가합니다."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
+#: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
-msgid "Workers +15% metal gather rate."
-msgstr "노동자의 금속 수확률이 +15% 증가합니다."
+msgid "Workers +25% metal gather rate."
+msgstr "노동자의 금속 채집률이 +25% 증가합니다."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -653,10 +660,6 @@ msgstr "수직 갱도 광산"
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
 msgstr "희귀한 은광맥을 찾아냅니다. 금속 채집량이 증가합니다."
-
-#: simulation/data/technologies/gather_mining_silvermining.jsontooltip
-msgid "Workers +50% metal gather rate."
-msgstr "노동자의 금속 채집률이 +50% 증가합니다."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -675,10 +678,6 @@ msgid ""
 "Buy slaves to help your workers quarry stone. Increases stone gathering "
 "rates."
 msgstr "노동자들이 석재를 채석하는 것을 돕기 위해 노예를 구입합니다. 석재 채집 속도가 증가합니다."
-
-#: simulation/data/technologies/gather_mining_slaves.jsontooltip
-msgid "Workers +50% stone gather rate."
-msgstr "노동자의 석재 채집률이 +50% 증가합니다."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -1058,26 +1057,9 @@ msgstr "공성 무기의 목재 비용이 -20% 줄어듭니다."
 msgid "Artillery Instructors"
 msgstr "포병 교관"
 
-#: simulation/data/technologies/speed_cavalry_01.jsondescription
-msgid "Breed the fastest horses."
-msgstr "빠르게 잘 달리는 말(준마)를 기릅니다.."
-
-#: simulation/data/technologies/speed_cavalry_01.jsontooltip
-#: simulation/data/technologies/speed_cavalry_02.jsontooltip
-msgid "+10% cavalry walk speed."
-msgstr "기마의 이동 속도가 +10% 빨라집니다."
-
-#: simulation/data/technologies/speed_cavalry_01.jsongenericName
-msgid "Cavalry Breeding"
-msgstr "기마 기름"
-
-#: simulation/data/technologies/speed_cavalry_02.jsondescription
-msgid "Train your horses to move faster."
-msgstr "기마가 더 빨리 달리도록 훈련합니다."
-
-#: simulation/data/technologies/speed_cavalry_02.jsongenericName
-msgid "Cavalry Speed Training"
-msgstr "기병대 속도 훈련"
+#: simulation/data/technologies/soldier_ranged_experience.jsontooltip
+msgid "Ranged Soldiers +25% promotion experience."
+msgstr "원거리 병사의 진급 경험치가 +25% 상승합니다."
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1117,18 +1099,6 @@ msgstr "보초 탑과 돌 탑은 주둔한 병사 1명당 화살이 +40% 증가�
 msgid "Crenellations"
 msgstr "총안"
 
-#: simulation/data/technologies/tower_decay.jsondescription
-msgid "Outposts survive twice as long in neutral territory."
-msgstr "중립 지대에서는 전초 기지가 2 배나 오래 생존합니다."
-
-#: simulation/data/technologies/tower_decay.jsontooltip
-msgid "Outposts −50% territory decay rate."
-msgstr "전초기지의 영토 붕괴율이 −50% 감소합니다."
-
-#: simulation/data/technologies/tower_decay.jsongenericName
-msgid "Stone Foundations"
-msgstr "석조 토대"
-
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr "근총안은 탑의 발밑의 적을 활등으로 공격할 수 있습니다."
@@ -1152,18 +1122,6 @@ msgstr "보초 탑과 돌 탑의 공격 범위가 +8 증가합니다."
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
 msgstr "성가퀴"
-
-#: simulation/data/technologies/tower_vision.jsondescription
-msgid "Outposts gain longer vision for scouting."
-msgstr "전초기지는 정찰에 대한 더 넓은 시야를 얻습니다."
-
-#: simulation/data/technologies/tower_vision.jsontooltip
-msgid "Outposts +50% vision range."
-msgstr "전초기지의 시야가 +50% 증가합니다."
-
-#: simulation/data/technologies/tower_vision.jsongenericName
-msgid "Carrier Pigeons"
-msgstr "전서구"
 
 #: simulation/data/technologies/tower_watch.jsondescription
 msgid "A night's watch increases vigilance."

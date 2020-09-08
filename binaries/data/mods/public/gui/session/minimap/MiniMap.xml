@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<object
-	name="minimapPanel"
-	size="0 100%-212 212 100%"
-	type="image"
+<?xml version="1.0" encoding="UTF-8"?>
+<object name="minimapPanel"
+	size="0 0 100% 100%"
 	sprite="mapPanel"
+	type="image"
 >
 	<!-- MiniMap -->
 	<object name="minimap" size="8 8 100%-8 100%-8" type="minimap" z="20"/>
@@ -17,10 +16,9 @@
 	/>
 
 	<!-- Idle Worker Button -->
-	<object
-		name="idleWorkerButton"
+	<object name="idleWorkerButton"
 		type="button"
-		size="100%-120 100%-120 100%-5 100%-5"
+		size="50%-5 50%-5 100%-5 100%-5"
 		tooltip_style="sessionToolTip"
 		hotkey="selection.idleworker"
 		sprite="stretched:session/minimap-idle.png"
@@ -29,10 +27,9 @@
 	/>
 
 	<!-- Diplomacy Colors Button -->
-	<object
-		name="diplomacyColorsButton"
+	<object name="diplomacyColorsButton"
 		type="button"
-		size="4 100%-120 119 100%-5"
+		size="5 50%-5 50%+5 100%-5"
 		tooltip_style="sessionToolTip"
 		hotkey="session.diplomacycolors"
 	/>

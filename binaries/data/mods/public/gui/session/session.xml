@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <objects>
 
@@ -12,10 +12,10 @@
 <script directory="gui/session/lobby/LobbyRatingReport/"/>
 <script directory="gui/session/message_box/"/>
 <script directory="gui/session/minimap/"/>
+<script directory="gui/session/objectives/"/>
 <script directory="gui/session/top_panel/"/>
 <script directory="gui/session/top_panel/IconButtons/"/>
 <script directory="gui/session/trade/"/>
-<script directory="gui/session/objectives/"/>
 
 <object name="session">
 
@@ -68,36 +68,37 @@
 	<object name="placementTooltip" type="tooltip" independent="true" style="informationTooltip"/>
 
 	<!-- START of BOTTOM PANEL -->
-	<!-- limit to the minimal supported width of 1024px -->
+	<!-- Limit to the minimal supported width of 1024 pixels. -->
 	<object size="50%-512 0 50%+512 100%">
 
-		<include directory="gui/session/minimap/"/>
+		<object size="50%-512 100%-200 50%-312 100%">
+			<include directory="gui/session/minimap/"/>
+		</object>
 
-		<!-- Supplemental Details Panel (Left of Selection Details) -->
-		<object
-			size="50%-304 100%-170 50%-110 100%"
-			name="supplementalSelectionDetails"
-			type="image"
+		<!-- Supplemental Details Panel (left). -->
+		<object name="supplementalSelectionDetails"
+			size="50%-316 100%-166 50%-110 100%"
 			sprite="supplementalDetailsPanel"
+			type="image"
 			z="20"
 		>
 			<include directory="gui/session/selection_panels_left/"/>
 		</object>
 
-		<!-- Selection Details Panel (Middle) -->
+		<!-- Selection Details Panel (middle). -->
 		<object name="selectionDetails"
-			type="image"
+			size="50%-114 100%-200 50%+114 100%"
 			sprite="selectionDetailsPanel"
-			size="50%-114 100%-205 50%+114 100%"
+			type="image"
 		>
 			<include directory="gui/session/selection_panels_middle/"/>
 		</object>
 
-		<!-- Commands Panel (Right of Selection Details) -->
+		<!-- Commands Panel (right). -->
 		<object name="unitCommands"
-			type="image"
+			size="50%+110 100%-166 50%+512 100%"
 			sprite="unitCommandsPanel"
-			size="50%+110 100%-170 50%+512 100%"
+			type="image"
 			z="20"
 		>
 			<include directory="gui/session/selection_panels_right/"/>

@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-07 07:10+0000\n"
-"PO-Revision-Date: 2020-09-02 02:46+0000\n"
+"POT-Creation-Date: 2020-09-04 07:09+0000\n"
+"PO-Revision-Date: 2020-09-07 03:50+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -35,6 +35,7 @@ msgstr "Tradición arquera"
 
 #: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
+#: simulation/data/technologies/cavalry_movement_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
@@ -75,9 +76,7 @@ msgstr "Testera"
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
-#: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_decay.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
@@ -129,7 +128,6 @@ msgstr "Armadura que cubre'l cuerpu del caballu."
 #: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_cost_metal.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
-#: simulation/data/technologies/speed_cavalry_02.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_armour.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
@@ -264,7 +262,7 @@ msgstr "Los exercicios amonten l'ataque cuerpu a cuerpu."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
 msgid "+20% melee cavalry attack."
-msgstr "Caballería de cutíu: ataque cuerpu a cuerpu +20%."
+msgstr "Caballería d'amarrada: ataque cuerpu a cuerpu +20%."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
 msgid "Close Combat Cavalry Training"
@@ -308,7 +306,7 @@ msgstr "Reemplaza les armes de bronce coles de fierro."
 #: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr "Forni la caballería de meyores armes. Caballería de cutíu: ataque cuerpu a cuerpu +20%."
+msgstr "Forni la caballería de meyores armes. Caballería d'amarrada: ataque cuerpu a cuerpu +20%."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
@@ -343,7 +341,7 @@ msgstr "Munches vegaes, los soldaos d'a pie llevaben otra arma, por si un acasu 
 #: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
 msgid "+20% melee infantry attack."
-msgstr "Infantería de cutíu: ataque cuerpu a cuerpu +20%."
+msgstr "Infantería d'amarrada: ataque cuerpu a cuerpu +20%."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
 msgid "Side Arms"
@@ -439,6 +437,18 @@ msgstr "Aceru wootz"
 msgid "Toledo Steel"
 msgstr "Aceru de Toledo"
 
+#: simulation/data/technologies/cavalry_movement_speed.jsondescription
+msgid "Train your horses to move faster."
+msgstr "Entrena los burros pa que vaigan más rápido."
+
+#: simulation/data/technologies/cavalry_movement_speed.jsontooltip
+msgid "Cavalry +10% walk speed."
+msgstr "Caballería: velocidá +10%."
+
+#: simulation/data/technologies/cavalry_movement_speed.jsongenericName
+msgid "Horse Racing"
+msgstr "Carreres"
+
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
 msgstr "Cría ganáu (oveyes, cabres, vaques, etc.) como fonte de comida."
@@ -456,6 +466,7 @@ msgid "Workers use baskets. Increases shuttling capacity for all resources."
 msgstr "Los trabayadores empleguen cestos. Puen llevar más recursos."
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
+#: simulation/data/technologies/gather_capacity_carts.jsontooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers +5 resource capacity."
 msgstr "Trabayadores: capacidá de carga +5."
@@ -469,10 +480,6 @@ msgid ""
 "Workers use horse-drawn carts. Increases shuttling capacity for all "
 "resources."
 msgstr "Los trabayadores empleguen carros del burru. Puen llevar más recursos."
-
-#: simulation/data/technologies/gather_capacity_carts.jsontooltip
-msgid "Workers +10 resource capacity."
-msgstr "Trabayadores: capacidá de carga +10."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -508,8 +515,10 @@ msgid "Extra nutrients for farms."
 msgstr "Más nutrientes pa los eros."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
-msgid "Workers +25% grain gather rate."
-msgstr "Trabayadores: tasa de recueya de cebera +25%."
+#: simulation/data/technologies/gather_farming_plows.jsontooltip
+#: simulation/data/technologies/gather_farming_training.jsontooltip
+msgid "Workers +20% grain gather rate."
+msgstr "Trabayadores: tasa de cueya de cebera +20%."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -522,10 +531,8 @@ msgid ""
 msgstr "Pa facilitar la collecha, los galos fexeron una máquina coyedora."
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
-#: simulation/data/technologies/gather_farming_plows.jsontooltip
-#: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% grain gather rate."
-msgstr "Trabayadores: tasa de recueya de cebera +15%."
+msgstr "Trabayadores: tasa de cueya de cebera +15%."
 
 #: simulation/data/technologies/gather_farming_harvester.jsongenericName
 msgid "Harvesting Machine"
@@ -543,7 +550,7 @@ msgstr "Aladru de fierro"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
-msgstr "Fai que los trabayadores recueyen más rápido la collecha."
+msgstr "Fai que los trabayadores pañen más rápido la collecha."
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
@@ -555,7 +562,7 @@ msgstr "Usa les redes p'amontar el rindimientu de los pesqueros."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid "Fishing Boats +30% fish gather rate."
-msgstr "Pesqueros: tasa de recueya +30%."
+msgstr "Pesqueros: tasa de pesca +30%."
 
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
@@ -568,17 +575,14 @@ msgid "Increases wood gathering rates for trees."
 msgstr "Entaína la corta d'árboles."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
+#: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
-msgid "Workers +15% wood gather rate."
-msgstr "Trabayadores: tasa de corta +15%."
+msgid "Workers +25% wood gather rate."
+msgstr "Trabayadores: tasa de corta +25%."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
 msgstr "Azaes de fierro"
-
-#: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
-msgid "Workers +50% wood gather rate."
-msgstr "Trabayadores: tasa de corta +50%."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -596,8 +600,9 @@ msgstr "Fai que los siervos ayuden a sacar piedra de les canteres. Entaína la e
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
-msgid "Workers +15% stone gather rate."
-msgstr "Trabayadores: tasa d'estraición de piedra +15%."
+#: simulation/data/technologies/gather_mining_slaves.jsontooltip
+msgid "Workers +25% stone gather rate."
+msgstr "Trabayadores: tasa d'estraición de piedra +25%."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -628,9 +633,10 @@ msgid "Develop shaft mining. Increases metal gathering rates."
 msgstr "Desendolca pozos mineros. Entaína la estraición de metal."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
+#: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
-msgid "Workers +15% metal gather rate."
-msgstr "Trabayadores: tasa d'estraición de metal +15%."
+msgid "Workers +25% metal gather rate."
+msgstr "Trabayadores: tasa d'estraición de metal +25%."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -639,10 +645,6 @@ msgstr "Pozos mineros"
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
 msgstr "Descubri una veta de plata. Entaína la estraición de metal."
-
-#: simulation/data/technologies/gather_mining_silvermining.jsontooltip
-msgid "Workers +50% metal gather rate."
-msgstr "Trabayadores: tasa d'estraición de metal +50%."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -661,10 +663,6 @@ msgid ""
 "Buy slaves to help your workers quarry stone. Increases stone gathering "
 "rates."
 msgstr "Merca esclavos pa sacar piedra de les canteres. Entaína la estraición de piedra."
-
-#: simulation/data/technologies/gather_mining_slaves.jsontooltip
-msgid "Workers +50% stone gather rate."
-msgstr "Trabayadores: tasa d'estraición de piedra +50%."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -691,7 +689,7 @@ msgstr "Forni los pañadores de goxes."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Workers +50% fruit gather rate."
-msgstr "Trabayadores: tasa de pañada +50%."
+msgstr "Trabayadores: tasa de cueya de fruta +50%."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
@@ -1044,26 +1042,9 @@ msgstr "Máquines: costu en madera −20%."
 msgid "Artillery Instructors"
 msgstr "Instructores artilleros"
 
-#: simulation/data/technologies/speed_cavalry_01.jsondescription
-msgid "Breed the fastest horses."
-msgstr "Anicia de burros más veloces."
-
-#: simulation/data/technologies/speed_cavalry_01.jsontooltip
-#: simulation/data/technologies/speed_cavalry_02.jsontooltip
-msgid "+10% cavalry walk speed."
-msgstr "Caballería: velocidá +10%."
-
-#: simulation/data/technologies/speed_cavalry_01.jsongenericName
-msgid "Cavalry Breeding"
-msgstr "Garañones"
-
-#: simulation/data/technologies/speed_cavalry_02.jsondescription
-msgid "Train your horses to move faster."
-msgstr "Entrena los burros pa que vaigan más rápido."
-
-#: simulation/data/technologies/speed_cavalry_02.jsongenericName
-msgid "Cavalry Speed Training"
-msgstr "Exercicios ecuestres"
+#: simulation/data/technologies/soldier_ranged_experience.jsontooltip
+msgid "Ranged Soldiers +25% promotion experience."
+msgstr "Soldaos de proxectiles: esperiencia +25%."
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1103,18 +1084,6 @@ msgstr "Torrexones ya talayes: fleches por soldáu guarecíu +40%."
 msgid "Crenellations"
 msgstr "Almenáu"
 
-#: simulation/data/technologies/tower_decay.jsondescription
-msgid "Outposts survive twice as long in neutral territory."
-msgstr "Les talayes duren el doblu en campu neutral."
-
-#: simulation/data/technologies/tower_decay.jsontooltip
-msgid "Outposts −50% territory decay rate."
-msgstr "Miradorios: tasa d'escayencia n'abertal −50%."
-
-#: simulation/data/technologies/tower_decay.jsongenericName
-msgid "Stone Foundations"
-msgstr "Murueques de piedra"
-
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr "Los matacanes dexen defender los pies de les torres."
@@ -1138,18 +1107,6 @@ msgstr "Torrexones ya talayes: algame +8."
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
 msgstr "Flecheres"
-
-#: simulation/data/technologies/tower_vision.jsondescription
-msgid "Outposts gain longer vision for scouting."
-msgstr "Los miradorios puen ver más del mapa."
-
-#: simulation/data/technologies/tower_vision.jsontooltip
-msgid "Outposts +50% vision range."
-msgstr "Miradorios: visión +50%."
-
-#: simulation/data/technologies/tower_vision.jsongenericName
-msgid "Carrier Pigeons"
-msgstr "Palombos corréu"
 
 #: simulation/data/technologies/tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
@@ -1264,7 +1221,7 @@ msgid ""
 "capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
 "healing strength and +3 healing range; Melee units +20% attack damage; "
 "Ranged units +4 attack range and −10% spread."
-msgstr "Unidaes del rangu avanzáu ya d'élite: muera d'allistamientu +20%, armadura +1, vida +10%, captura +0.7, saquéu +20%, velocidá de recueya −30%; Curanderos: curamientu +5, algame +3; Unidaes de cutíu: ataque +20%; Unidaes de proxectiles: algame +4, esviación de tiru −10%."
+msgstr "Unidaes del rangu avanzáu ya d'élite: muera d'allistamientu +20%, armadura +1, vida +10%, captura +0.7, saquéu +20%, arremangu pa percanciar −30%; Curanderos: curamientu +5, algame +3; Unidaes d'amarrada: ataque +20%; Unidaes de proxectiles: algame +4, esviación de tiru −10%."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
@@ -1284,7 +1241,7 @@ msgid ""
 "strength, +20% loot, and −30% gather speed; Healers +5 healing strength and "
 "+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
 "range and −10% spread."
-msgstr "Unidaes del rangu d'élite: muera d'allistamientu +20%, armadura +1, vida +10%, captura +0.8, saquéu +20%, velocidá de recueya −30%; Curanderos: curamientu +5, algame +3; Unidaes de cutíu: ataque +20%; Unidaes de proxectiles: algame +4, esviación de tiru −10%."
+msgstr "Unidaes del rangu d'élite: muera d'allistamientu +20%, armadura +1, vida +10%, captura +0.8, saquéu +20%, arremangu pa percanciar −30%; Curanderos: curamientu +5, algame +3; Unidaes d'amarrada: ataque +20%; Unidaes de proxectiles: algame +4, esviación de tiru −10%."
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""
@@ -1584,11 +1541,11 @@ msgstr "L'agogá"
 msgid ""
 "Athenian triremes can train Marines (Epibates Athenaikos) and Cretan "
 "Mercenary Archers (Toxotes Kretikos)."
-msgstr "Les trirremes atenienses puen allistar marinos (Epibates Athenaioi) y arqueros mercenarios cretenses (Toxotes Kretikos)."
+msgstr "Les trirremes atenienses puen allistar marinos (Epibates Athenaioi) y arqueros cretenses mercenarios (Toxotes Kretikos)."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsontooltip
 msgid "Athenian triremes can train Marines and Cretan Mercenary Archers."
-msgstr "Les trirremes atenienses puen allistar marinos y arqueros mercenarios cretenses."
+msgstr "Les trirremes atenienses puen allistar marinos y arqueros cretenses mercenarios."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"

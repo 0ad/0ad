@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <object name="unitResearchPanel"
-	size="10 100%-102 100% 100%"
+	size="6 100%-82 100% 100%"
 >
 	<object>
-	<repeat count="16">
-		<object name="unitResearchButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
-		<object name="unitResearchIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
-		<object name="unitResearchUnchosenIcon[n]" type="image" hidden="true" ghost="true" size="3 3 43 43" sprite="stretched:session/icons/tech_pair_would_be_unavailable.png"/>
-		</object>
-	</repeat>
-	<repeat count="8">
-		<object name="unitResearchPair[n]" hidden="true" size="0 0 46 92">
-		<object name="unitResearchPairIcon[n]" type="image" ghost="true" size="8 38 38 54" sprite="stretched:session/icons/vertical_pair.png"/>
-		</object>
-	</repeat>
+		<repeat count="20">
+			<object name="unitResearchButton[n]" hidden="true" style="iconButton" type="button" size="0 0 38 38" tooltip_style="sessionToolTipBottom">
+				<object name="unitResearchIcon[n]" type="image" ghost="true" size="3 3 35 35"/>
+				<object name="unitResearchUnchosenIcon[n]" type="image" hidden="true" ghost="true" size="3 3 35 35" sprite="stretched:session/icons/tech_pair_would_be_unavailable.png"/>
+			</object>
+		</repeat>
+		<repeat count="10">
+			<object name="unitResearchPair[n]" hidden="true" size="0 0 38 76">
+				<object name="unitResearchPairIcon[n]" type="image" ghost="true" size="8 30 30 46" sprite="stretched:session/icons/vertical_pair.png"/>
+			</object>
+		</repeat>
 	</object>
 </object>

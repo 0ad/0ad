@@ -331,10 +331,7 @@ PETRA.Worker.prototype.update = function(gameState, ent)
 		{
 			ent.setMetadata(PlayerID, "subrole", "idle");
 			ent.setMetadata(PlayerID, "target-foundation", undefined);
-			// If worker elephant, move away to avoid being trapped in between constructions
-			if (ent.hasClass("Elephant"))
-				this.moveToGatherer(gameState, ent, true);
-			else if (this.baseID != gameState.ai.HQ.baseManagers[0].ID)
+			if (this.baseID != gameState.ai.HQ.baseManagers[0].ID)
 			{
 				// reassign it to something useful
 				this.base.reassignIdleWorkers(gameState, [ent]);
