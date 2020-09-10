@@ -30,7 +30,7 @@ g_Terrains.road = "road2";
 
 g_Gaia.metalLarge = "gaia/geology_metal_savanna_slabs";
 g_Gaia.metalSmall = "gaia/geology_metal_tropic";
-g_Gaia.fish = "gaia/fauna_fish_tilapia";
+g_Gaia.fish = "gaia/fish/tilapia";
 g_Gaia.tree1 = "gaia/flora_tree_baobab";
 g_Gaia.tree2 = "gaia/flora_tree_baobab";
 g_Gaia.tree3 = "gaia/flora_tree_baobab";

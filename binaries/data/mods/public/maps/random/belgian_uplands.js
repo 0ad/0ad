@@ -30,7 +30,7 @@ textueByHeight.push({"upperHeightLimit": heightRange.min + 1/3 * (heightSeaGroun
 var terrains = ["temp_sea_weed"];
 terrains = terrains.concat(terrains, terrains, terrains, terrains);
 terrains = terrains.concat(terrains, terrains, terrains, terrains);
-terrains.push("temp_sea_weed|gaia/fauna_fish");
+terrains.push("temp_sea_weed|gaia/fish/generic");
 textueByHeight.push({"upperHeightLimit": heightRange.min + 2/3 * (heightSeaGroundAdjusted - heightRange.min), "terrain": terrains});
 
 // Flat Water

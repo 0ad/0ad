@@ -29,7 +29,7 @@ var oGazelle = "gaia/fauna_gazelle";
 var oElephant = "gaia/fauna_elephant_african_bush";
 var oElephant2 = "gaia/fauna_elephant_african_infant";
 var oCrocodile = "gaia/fauna_crocodile";
-var oFish = "gaia/fauna_fish";
+var oFish = "gaia/fish/generic";
 var oStoneSmall = "gaia/geology_stone_savanna_small";
 var oMetalLarge = "gaia/geology_metal_savanna_slabs";
 
