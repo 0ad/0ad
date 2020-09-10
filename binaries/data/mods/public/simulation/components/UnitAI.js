@@ -1175,8 +1175,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					{
 						if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
 						{
-							this.FinishOrder();
-							this.PushOrderFront("Attack", { "target": target, "force": false, "allowCapture": allowCapture });
+							this.SetNextState("COMBAT.APPROACHING");
 							return true;
 						}
 						this.FinishOrder();
@@ -1199,8 +1198,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					{
 						if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
 						{
-							this.FinishOrder();
-							this.PushOrderFront("Attack", { "target": target, "force": false, "allowCapture": allowCapture });
+							this.SetNextState("COMBAT.APPROACHING");
 							return;
 						}
 						this.FinishOrder();
