@@ -5269,6 +5269,9 @@ UnitAI.prototype.Guard = function(target, queued)
 		return;
 	}
 
+	if (target === this.entity)
+		return;
+
 	// if we already had an old guard order, do nothing if the target is the same
 	// and the order is running, otherwise remove the previous order
 	if (this.isGuardOf)
@@ -5289,11 +5292,6 @@ UnitAI.prototype.AddGuard = function(target)
 
 	var cmpGuard = Engine.QueryInterface(target, IID_Guard);
 	if (!cmpGuard)
-		return false;
-
-	// Do not allow to guard a unit already guarding
-	var cmpUnitAI = Engine.QueryInterface(target, IID_UnitAI);
-	if (cmpUnitAI && cmpUnitAI.IsGuardOf())
 		return false;
 
 	this.isGuardOf = target;
@@ -5342,12 +5340,6 @@ UnitAI.prototype.CanGuard = function()
 	// (then the individual units can make up their own minds)
 	if (this.IsFormationController())
 		return true;
-
-	// Do not let a unit already guarded to guard. This would work in principle,
-	// but would clutter the gui with too much buttons to take all cases into account
-	var cmpGuard = Engine.QueryInterface(this.entity, IID_Guard);
-	if (cmpGuard && cmpGuard.GetEntities().length)
-		return false;
 
 	return this.template.CanGuard == "true";
 };
