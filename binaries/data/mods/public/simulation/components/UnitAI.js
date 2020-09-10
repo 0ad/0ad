@@ -146,6 +146,8 @@ var g_OrdersCancelUnpacking = new Set([
 // When leaving a foundation, we want to be clear of it by this distance.
 var g_LeaveFoundationRange = 4;
 
+UnitAI.prototype.notifyToCheerInRange = 30;
+
 // See ../helpers/FSM.js for some documentation of this FSM specification syntax
 UnitAI.prototype.UnitFsmSpec = {
 
@@ -662,11 +664,8 @@ UnitAI.prototype.UnitFsmSpec = {
 		this.isGarrisoned = false;
 	},
 
-	"Order.Cheering": function(msg) {
-		if (this.IsFormationMember())
-			this.SetNextState("FORMATIONMEMBER.CHEERING");
-		else
-			this.SetNextState("INDIVIDUAL.CHEERING");
+	"Order.Cheer": function(msg) {
+		return { "discardOrder": true };
 	},
 
 	"Order.Pack": function(msg) {
@@ -1488,6 +1487,10 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"IDLE": {
+			"Order.Cheer": function() {
+				this.SetNextState("CHEERING");
+			},
+
 			"enter": function() {
 				// Switch back to idle animation to guarantee we won't
 				// get stuck with an incorrect animation
@@ -1938,6 +1941,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.order.data.target = target;
 					}
 
+					this.shouldCheer = false;
 					if (!this.CanAttack(target))
 					{
 						this.SetNextState("COMBAT.FINDINGNEWTARGET");
@@ -1988,7 +1992,14 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					let cmpBuildingAI = Engine.QueryInterface(this.entity, IID_BuildingAI);
 					if (cmpBuildingAI)
+					{
 						cmpBuildingAI.SetUnitAITarget(this.order.data.target);
+						return false;
+					}
+
+					let cmpUnitAI = Engine.QueryInterface(this.order.data.target, IID_UnitAI);
+					this.shouldCheer = cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal());
+
 					return false;
 				},
 
@@ -2072,6 +2083,10 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"FINDINGNEWTARGET": {
+				"Order.Cheer": function() {
+					this.SetNextState("CHEERING");
+				},
+
 				"enter": function() {
 					// Try to find the formation the target was a part of.
 					let cmpFormation = Engine.QueryInterface(this.order.data.target, IID_Formation);
@@ -2105,6 +2120,12 @@ UnitAI.prototype.UnitFsmSpec = {
 					// Return to our original position
 					if (this.GetStance().respondHoldGround)
 						this.WalkToHeldPosition();
+
+					if (this.shouldCheer)
+					{
+						this.Cheer();
+						this.CallPlayerOwnedEntitiesFunctionInRange("Cheer", [], this.notifyToCheerInRange);
+					}
 
 					return true;
 				},
@@ -3131,23 +3152,29 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"CHEERING": {
 			"enter": function() {
-				// Unit is invulnerable while cheering
-				var cmpResistance = Engine.QueryInterface(this.entity, IID_Resistance);
-				cmpResistance.SetInvulnerability(true);
 				this.SelectAnimation("promotion");
-				this.StartTimer(2800, 2800);
+				this.StartTimer(2800);
 				return false;
 			},
 
 			"leave": function() {
 				this.StopTimer();
 				this.ResetAnimation();
-				if (this.formationAnimationVariant)
-					this.SetAnimationVariant(this.formationAnimationVariant)
-				else
-					this.SetDefaultAnimationVariant();
-				var cmpResistance = Engine.QueryInterface(this.entity, IID_Resistance);
-				cmpResistance.SetInvulnerability(false);
+			},
+
+			"LosRangeUpdate": function(msg) {
+				if (msg && msg.data && msg.data.added && msg.data.added.length)
+					this.RespondToSightedEntities(msg.data.added);
+			},
+
+			"LosHealRangeUpdate": function(msg) {
+				if (msg && msg.data && msg.data.added && msg.data.added.length)
+					this.RespondToHealableEntities(msg.data.added);
+			},
+
+			"LosAttackRangeUpdate": function(msg) {
+				if (msg && msg.data && msg.data.added && msg.data.added.length && this.GetStance().targetVisibleEnemies)
+					this.AttackEntitiesByPreference(msg.data.added);
 			},
 
 			"Timer": function(msg) {
@@ -3359,6 +3386,33 @@ UnitAI.prototype.UnitFsmSpec = {
 		"WALKING": "INDIVIDUAL.WALKING",	// reuse the same walking behaviour for animals
 							// only used for domestic animals
 
+		"CHEERING": {
+			"enter": function() {
+				this.SelectAnimation("promotion");
+				this.StartTimer(2800);
+				return false;
+			},
+
+			"leave": function() {
+				this.StopTimer();
+				this.ResetAnimation();
+			},
+
+			"LosRangeUpdate": function(msg) {
+				if (msg && msg.data && msg.data.added && msg.data.added.length)
+					this.RespondToSightedEntities(msg.data.added);
+			},
+
+			"LosAttackRangeUpdate": function(msg) {
+				if (this.template.NaturalBehaviour == "violent" && msg && msg.data && msg.data.added && msg.data.added.length)
+					this.AttackVisibleEntity(msg.data.added);
+			},
+
+			"Timer": function(msg) {
+				this.FinishOrder();
+			},
+		},
+
 		// Reuse the same garrison behaviour for animals.
 		"GARRISON": "INDIVIDUAL.GARRISON",
 	},
@@ -3537,8 +3591,8 @@ UnitAI.prototype.OnOwnershipChanged = function(msg)
 	if (msg.to != INVALID_PLAYER && msg.from != INVALID_PLAYER)
 	{
 		// Switch to a virgin state to let states execute their leave handlers.
-		// except if garrisoned or cheering or (un)packing, in which case we only clear the order queue
-		if (this.isGarrisoned || this.IsPacking() || this.orderQueue[0] && this.orderQueue[0].type == "Cheering")
+		// Except if garrisoned or (un)packing, in which case we only clear the order queue.
+		if (this.isGarrisoned || this.IsPacking())
 		{
 			this.orderQueue.length = Math.min(this.orderQueue.length, 1);
 			Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
@@ -3855,14 +3909,8 @@ UnitAI.prototype.PushOrder = function(type, data)
 UnitAI.prototype.PushOrderFront = function(type, data, ignorePacking = false)
 {
 	var order = { "type": type, "data": data };
-	// If current order is cheering then add new order after it
-	// same thing if current order if packing/unpacking
-	if (this.order && this.order.type == "Cheering")
-	{
-		var cheeringOrder = this.orderQueue.shift();
-		this.orderQueue.unshift(cheeringOrder, order);
-	}
-	else if (!ignorePacking && this.order && this.IsPacking())
+	// If current order is packing/unpacking then add new order after it.
+	if (!ignorePacking && this.order && this.IsPacking())
 	{
 		var packingOrder = this.orderQueue.shift();
 		this.orderQueue.unshift(packingOrder, order);
@@ -3984,17 +4032,9 @@ UnitAI.prototype.ReplaceOrder = function(type, data)
 
 	let garrisonHolder = this.IsGarrisoned() && type != "Ungarrison" ? this.GetGarrisonHolder() : null;
 
-	// Special cases of orders that shouldn't be replaced:
-	// 1. Cheering - we're invulnerable, add order after we finish
-	// 2. Packing/unpacking - we're immobile, add order after we finish (unless it's cancel)
+	// Do not replace packing/unpacking unless it is cancel order.
 	// TODO: maybe a better way of doing this would be to use priority levels
-	if (this.order && this.order.type == "Cheering")
-	{
-		var order = { "type": type, "data": data };
-		var cheeringOrder = this.orderQueue.shift();
-		this.orderQueue = [cheeringOrder, order];
-	}
-	else if (this.IsPacking() && type != "CancelPack" && type != "CancelUnpack")
+	if (this.IsPacking() && type != "CancelPack" && type != "CancelUnpack")
 	{
 		var order = { "type": type, "data": data };
 		var packingOrder = this.orderQueue.shift();
@@ -4103,13 +4143,7 @@ UnitAI.prototype.BackToWork = function()
 	}
 
 	// Clear the order queue considering special orders not to avoid
-	if (this.order && this.order.type == "Cheering")
-	{
-		var cheeringOrder = this.orderQueue.shift();
-		this.orderQueue = [cheeringOrder];
-	}
-	else
-		this.orderQueue = [];
+	this.orderQueue = [];
 
 	this.AddOrders(this.workOrders);
 	Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
@@ -5780,12 +5814,9 @@ UnitAI.prototype.Flee = function(target, queued)
 	this.AddOrder("Flee", { "target": target, "force": false }, queued);
 };
 
-/**
- * Pushes a cheer order to the front of the queue. Forced so it won't be interrupted by attacks.
- */
 UnitAI.prototype.Cheer = function()
 {
-	this.PushOrderFront("Cheering", { "force": true });
+	this.PushOrderFront("Cheer", { "force": false });
 };
 
 UnitAI.prototype.Pack = function(queued)
@@ -6463,6 +6494,26 @@ UnitAI.prototype.CallMemberFunction = function(funcname, args, resetWaitingEntit
 		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI[funcname].apply(cmpUnitAI, args);
 	});
+};
+
+/**
+ * Call obj.funcname(args) on UnitAI components owned by player in given range.
+ */
+UnitAI.prototype.CallPlayerOwnedEntitiesFunctionInRange = function(funcname, args, range)
+{
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership)
+		return;
+	let owner = cmpOwnership.GetOwner();
+	if (owner == INVALID_PLAYER)
+		return;
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	let nearby = cmpRangeManager.ExecuteQuery(this.entity, 0, range, [owner], IID_UnitAI);
+	for (let i = 0; i < nearby.length; ++i)
+	{
+		let cmpUnitAI = Engine.QueryInterface(nearby[i], IID_UnitAI);
+		cmpUnitAI[funcname].apply(cmpUnitAI, args);
+	}
 };
 
 /**

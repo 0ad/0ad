@@ -46,12 +46,6 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 
 	// Save the entity id.
 	this.promotedUnitEntity = ChangeEntityTemplate(this.entity, promotedTemplateName);
-
-	let cmpPosition = Engine.QueryInterface(this.promotedUnitEntity, IID_Position);
-	let cmpUnitAI = Engine.QueryInterface(this.promotedUnitEntity, IID_UnitAI);
-
-	if (cmpPosition && cmpPosition.IsInWorld() && cmpUnitAI)
-		cmpUnitAI.Cheer();
 };
 
 Promotion.prototype.IncreaseXp = function(amount)
