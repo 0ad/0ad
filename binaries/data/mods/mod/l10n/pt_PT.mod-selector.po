@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
+# Damixinho <rapazamistoso@gmail.com>, 2020
 # mogafi, 2014
 # Rui <xymarior@yandex.com>, 2018
 # Tiago Martins <tiguhmartins@gmail.com>, 2014
@@ -10,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-13 07:19+0000\n"
-"PO-Revision-Date: 2020-07-13 13:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-09-09 14:55+0000\n"
+"Last-Translator: Damixinho <rapazamistoso@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -173,7 +174,7 @@ msgstr "Cancelar"
 #: gui/modio/modio.js:219
 #, javascript-format
 msgid "Invalid mod: %(error)s"
-msgstr ""
+msgstr "Mod Inválido: %(error)s"
 
 #: gui/modio/modio.js:242
 msgid "Fetching and updating list of available mods."
@@ -291,7 +292,7 @@ msgstr "Mods Disponíveis"
 
 #: gui/modio/modio.xml:(caption):81
 msgid "Filter valid mods"
-msgstr ""
+msgstr "Filtre mods válidos"
 
 #: gui/modio/modio.xml:(caption):87
 msgid "Back"

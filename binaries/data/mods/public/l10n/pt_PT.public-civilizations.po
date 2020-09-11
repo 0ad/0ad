@@ -4,12 +4,13 @@
 # 
 # Translators:
 # André Rodrigues, 2013
+# Damixinho <rapazamistoso@gmail.com>, 2020
 # Danny Reese <danny@angolateam.org>, 2016
 # Ernan, 2014
 # Grim Kriegor <grimkriegor@opmbx.org>, 2014
 # Helder Meneses <helder.meneses@gmail.com>, 2013
 # João Ferreira <joaopedropferreira3@gmail.com>, 2020
-# José Fernandes <rapazamistoso@gmail.com>, 2020
+# Damixinho <rapazamistoso@gmail.com>, 2020
 # Liam Brien, 2017
 # Luís Guedes <luisgguedes@gmail.com>, 2013
 # Luis Neves <luisjneves@gmail.com>, 2015
@@ -29,8 +30,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-28 07:09+0000\n"
-"PO-Revision-Date: 2020-08-28 11:42+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-09-09 14:48+0000\n"
+"Last-Translator: Damixinho <rapazamistoso@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -625,7 +626,7 @@ msgstr "Embaixada Celta"
 
 #: simulation/data/civs/cart.jsonStructures[1].Special
 msgid "Train Celtic Mercenaries."
-msgstr ""
+msgstr "Treine Mercenários Celtas."
 
 #: simulation/data/civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
@@ -637,7 +638,7 @@ msgstr "Embaixada Ibérica"
 
 #: simulation/data/civs/cart.jsonStructures[2].Special
 msgid "Train Iberian Mercenaries."
-msgstr ""
+msgstr "Treine Mercenários Iberos."
 
 #: simulation/data/civs/cart.jsonStructures[2].History
 msgid ""
@@ -646,18 +647,18 @@ msgstr "Os mercenários Ibéricos eram conhecidos pela sua ferocidade e lealdade
 
 #: simulation/data/civs/cart.jsonStructures[3].Name
 msgid "Italic Embassy"
-msgstr ""
+msgstr "Embaixada Itálica"
 
 #: simulation/data/civs/cart.jsonStructures[3].Special
 msgid "Train Italic Mercenaries."
-msgstr ""
+msgstr "Treine Mercenários Itálicos."
 
 #: simulation/data/civs/cart.jsonStructures[3].History
 msgid ""
 "When Hannibal invaded Italy and defeated the Romans in a series of battles, "
 "many of the peoples subject to Rome, including the Greeks and Samnites, "
 "revolted and joined the Carthaginian cause."
-msgstr ""
+msgstr "Quando Aníbal invadiu Itália e derrotou os Romanos numa série de batalhas muitos dos povos sujeitos a Roma, incluindo os Gregos e os Samnitas revoltaram-se e juntaram-se à causa Cartaginesa."
 
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
@@ -700,7 +701,7 @@ msgstr "A religião e o druidismo celtas inspiraram a mentalidade guerreira dest
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Forges −15% technology resource costs and research time."
-msgstr ""
+msgstr "Forjas -15% de custos de recurso de tecnologias e tempo de pesquisa"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Products from Gaul"
@@ -1523,7 +1524,7 @@ msgstr "Brihadratha de Magadha"
 msgid ""
 "The Indian peoples had a tradition of fine archery and a penchant for using "
 "massed archers in battle."
-msgstr ""
+msgstr "Os povos Indianos tinham uma bela tradição de arqueria e uma propensão para usar arqueiros em massa em batalha."
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -1670,7 +1671,7 @@ msgstr "Xerxes II"
 msgid ""
 "The Iranian peoples had a tradition of fine archery and a penchant for using"
 " massed archers in battle."
-msgstr ""
+msgstr "Os povos Iranianos tinham uma bela tradição de arqueria e uma propensão para usar arqueiros em massa em batalha."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry."
@@ -1711,7 +1712,7 @@ msgstr "Os Persas construíram uma impressionante Estrada Real de 2700 quilómet
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
 msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "Infantaria Campeã Anisiya -50% tempo de treino, mas também -10% de vida."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
 msgid "Immortals"
@@ -1721,7 +1722,7 @@ msgstr "Imortais"
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "Os Aquemênidas mantiveram de 10,000 corpos de elite fortes, referidos como os Athanoi (\"Imortais\") pelos autores Gregos."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
@@ -2342,11 +2343,11 @@ msgstr "A bela e potente raça de cavalos Niseus aumenta a vida da cavalaria Sel
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
 msgid ""
 "Unlock either Champion Infantry Pikemen or Champion Infantry Swordsmen."
-msgstr ""
+msgstr "Desbloqueie ou Infantaria de Piqueiros Campeã ou Infantaria Espadachins Campeã"
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
 msgid "Traditional Army vs Reform Army"
-msgstr ""
+msgstr "Exército tradicional vs Exército Reformado"
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -2513,7 +2514,7 @@ msgstr "Agesípolis"
 msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers."
-msgstr ""
+msgstr "As cidadãs Espartanas não podem ser capturadas e irão contra-atacar persistentemente quaisquer atacantes."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
@@ -2547,7 +2548,7 @@ msgstr "Os peãs eram cânticos de guerra entoados pelos hoplitas durante a carg
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "Infantaria de Lanceiros Campeã +25% de vida, mas +5% tempo de treino."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"
