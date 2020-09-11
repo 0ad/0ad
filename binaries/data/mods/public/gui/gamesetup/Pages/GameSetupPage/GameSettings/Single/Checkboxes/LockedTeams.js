@@ -2,11 +2,12 @@ GameSettingControls.LockedTeams = class extends GameSettingControlCheckbox
 {
 	onMapChange(mapData)
 	{
-		let mapValue =
-			mapData &&
+		let mapValue;
+		if (mapData &&
 			mapData.settings &&
-			!mapData.settings.LockTeams &&
-			mapData.settings.LastManStanding;
+			mapData.settings.LockTeams !== undefined)
+			mapValue = !mapData.settings.LockTeams &&
+				mapData.settings.LastManStanding;
 
 		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.LastManStanding)
 		{

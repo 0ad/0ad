@@ -12,12 +12,13 @@ GameSettingControls.RelicDuration = class extends GameSettingControlSlider
 	{
 		this.setEnabled(g_GameAttributes.mapType != "scenario");
 
-		let mapValue =
-			mapData &&
+		let mapValue;
+		if (mapData &&
 			mapData.settings &&
 			mapData.settings.VictoryConditions &&
 			mapData.settings.VictoryConditions.indexOf(this.NameCaptureTheRelic) != -1 &&
-			mapData.settings.RelicDuration || undefined;
+			mapData.settings.RelicDuration !== undefined)
+			mapValue = mapData.settings.RelicDuration;
 
 		if (mapValue === undefined || mapValue == g_GameAttributes.settings.RelicDuration)
 			return;

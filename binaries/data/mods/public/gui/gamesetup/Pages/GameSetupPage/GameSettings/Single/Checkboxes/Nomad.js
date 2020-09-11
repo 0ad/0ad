@@ -7,10 +7,11 @@ GameSettingControls.Nomad = class extends GameSettingControlCheckbox
 		if (!available)
 			return;
 
-		let mapValue =
-			mapData &&
+		let mapValue;
+		if (mapData &&
 			mapData.settings &&
-			mapData.settings.Nomad;
+			mapData.settings.Nomad !== undefined)
+			mapValue = mapData.settings.Nomad;
 
 		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.Nomad)
 		{

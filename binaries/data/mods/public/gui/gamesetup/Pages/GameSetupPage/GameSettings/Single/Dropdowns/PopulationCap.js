@@ -14,10 +14,11 @@ GameSettingControls.PopulationCap = class extends GameSettingControlDropdown
 
 	onMapChange(mapData)
 	{
-		let mapValue =
-			mapData &&
+		let mapValue;
+		if (mapData &&
 			mapData.settings &&
-			mapData.settings.PopulationCap || undefined;
+			mapData.settings.PopulationCap !== undefined)
+			mapValue = mapData.settings.PopulationCap;
 
 		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.PopulationCap)
 		{

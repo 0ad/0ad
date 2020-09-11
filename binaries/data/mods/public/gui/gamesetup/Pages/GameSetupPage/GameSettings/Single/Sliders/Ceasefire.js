@@ -9,10 +9,11 @@ GameSettingControls.Ceasefire = class extends GameSettingControlSlider
 
 	onMapChange(mapData)
 	{
-		let mapValue =
-			mapData &&
+		let mapValue;
+		if (mapData &&
 			mapData.settings &&
-			mapData.settings.Ceasefire || undefined;
+			mapData.settings.Ceasefire !== undefined)
+			mapValue = mapData.settings.Ceasefire;
 
 		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.Ceasefire)
 		{

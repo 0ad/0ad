@@ -2,10 +2,11 @@ GameSettingControls.Spies = class extends GameSettingControlCheckbox
 {
 	onMapChange(mapData)
 	{
-		let mapValue =
-			mapData &&
+		let mapValue;
+		if (mapData &&
 			mapData.settings &&
-			mapData.settings.DisableSpies;
+			mapData.settings.DisableSpies !== undefined)
+			mapValue = mapData.settings.DisableSpies;
 
 		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.DisableSpies)
 		{
