@@ -51,7 +51,7 @@ g_Terrains.road = "desert_city_tile_pers";
 
 g_Gaia.mainHuntableAnimal = "gaia/fauna_camel";
 g_Gaia.secondaryHuntableAnimal =  "gaia/fauna_gazelle";
-g_Gaia.fish = "gaia/fauna_fish";
+g_Gaia.fish = "gaia/fish/generic";
 g_Gaia.tree1 = "gaia/flora_tree_cretan_date_palm_tall";
 g_Gaia.tree2 = "gaia/flora_tree_cretan_date_palm_short";
 g_Gaia.tree3 = "gaia/flora_tree_cretan_date_palm_patch";

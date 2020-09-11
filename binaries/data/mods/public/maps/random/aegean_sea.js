@@ -24,7 +24,7 @@ const tSeaDepths = "medit_sea_depths";
 
 const oBerryBush = "gaia/flora_bush_berry";
 const oDeer = "gaia/fauna_deer";
-const oFish = "gaia/fauna_fish";
+const oFish = "gaia/fish/generic";
 const oSheep = "gaia/fauna_sheep";
 const oGoat = "gaia/fauna_goat";
 const oStoneLarge = "gaia/geology_stonemine_medit_quarry";

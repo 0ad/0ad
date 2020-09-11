@@ -20,7 +20,7 @@ setPPBloom(0.4);
 
 var oStoneLarge = 'gaia/geology_stonemine_alpine_quarry';
 var oMetalLarge = 'gaia/geology_metal_alpine_slabs';
-var oFish = "gaia/fauna_fish";
+var oFish = "gaia/fish/generic";
 
 var aGrass = 'actor|props/flora/grass_soft_small_tall.xml';
 var aGrassShort = 'actor|props/flora/grass_soft_large.xml';

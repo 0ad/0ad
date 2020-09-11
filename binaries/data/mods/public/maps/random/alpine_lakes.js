@@ -28,7 +28,7 @@ if (randBool())
 	var oPine = "gaia/flora_tree_pine";
 	var oBerryBush = "gaia/flora_bush_berry";
 	var oDeer = "gaia/fauna_deer";
-	var oFish = "gaia/fauna_fish";
+	var oFish = "gaia/fish/generic";
 	var oRabbit = "gaia/fauna_rabbit";
 	var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
 	var oStoneSmall = "gaia/geology_stone_alpine_a";
@@ -65,7 +65,7 @@ else
 	var oPine = "gaia/flora_tree_pine_w";
 	var oBerryBush = "gaia/flora_bush_berry";
 	var oDeer = "gaia/fauna_deer";
-	var oFish = "gaia/fauna_fish";
+	var oFish = "gaia/fish/generic";
 	var oRabbit = "gaia/fauna_rabbit";
 	var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
 	var oStoneSmall = "gaia/geology_stone_alpine_a";

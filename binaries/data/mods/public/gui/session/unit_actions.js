@@ -801,10 +801,9 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!targetState.guard ||
+			if (!targetState.guard || entState.id == targetState.id ||
 			    !playerCheck(entState, targetState, ["Player", "Ally"]) ||
-			    !entState.unitAI || !entState.unitAI.canGuard ||
-			    targetState.unitAI && targetState.unitAI.isGuarding)
+			    !entState.unitAI || !entState.unitAI.canGuard)
 				return false;
 
 			return { "possible": true };

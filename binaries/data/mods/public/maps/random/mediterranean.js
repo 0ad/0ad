@@ -396,7 +396,7 @@ createArea(
 Engine.SetProgress(70);
 
 g_Map.log("Placing fish");
-g_Gaia.fish = "gaia/fauna_fish";
+g_Gaia.fish = "gaia/fish/generic";
 addElements([
 	{
 		"func": addFish,

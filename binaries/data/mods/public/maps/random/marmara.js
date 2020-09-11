@@ -36,7 +36,7 @@ g_Terrains.water = "medit_sand_messy";
 
 g_Gaia.mainHuntableAnimal = "gaia/fauna_horse";
 g_Gaia.secondaryHuntableAnimal =  "gaia/fauna_boar";
-g_Gaia.fish = "gaia/fauna_fish";
+g_Gaia.fish = "gaia/fish/generic";
 g_Gaia.tree1 = "gaia/flora_tree_carob";
 g_Gaia.tree2 = "gaia/flora_tree_poplar_lombardy";
 g_Gaia.tree3 = "gaia/flora_tree_dead";

@@ -18,7 +18,7 @@ const oPine = "gaia/flora_tree_pine_w";
 const oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
 const oStoneSmall = "gaia/geology_stone_alpine_a";
 const oMetalLarge = "gaia/geology_metal_alpine_slabs";
-const oFish = "gaia/fauna_fish";
+const oFish = "gaia/fish/generic";
 const oWalrus = "gaia/fauna_walrus";
 const oArcticWolf = "gaia/fauna_arctic_wolf";
 

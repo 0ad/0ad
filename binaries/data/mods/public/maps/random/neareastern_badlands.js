@@ -17,7 +17,7 @@ const tWaterDeep = "desert_shore_stones_wet";
 
 const oBerryBush = "gaia/flora_bush_grapes";
 const oCamel = "gaia/fauna_camel";
-const oFish = "gaia/fauna_fish";
+const oFish = "gaia/fish/generic";
 const oGazelle = "gaia/fauna_gazelle";
 const oGiraffe = "gaia/fauna_giraffe";
 const oGoat = "gaia/fauna_goat";

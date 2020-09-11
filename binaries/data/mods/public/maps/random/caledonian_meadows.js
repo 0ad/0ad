@@ -238,8 +238,8 @@ g_Map.log("Determining height-dependent biome");
 let myBiome = [];
 myBiome.push({ // 0 Deep water
 	"texture": ["shoreline_stoney_a"],
-	"actor": [["gaia/fauna_fish", "actor|geology/stone_granite_boulder.xml"], 0.02],
-	"textureHS": ["alpine_mountainside"], "actorHS": [["gaia/fauna_fish"], 0.1]
+	"actor": [["gaia/fish/generic", "actor|geology/stone_granite_boulder.xml"], 0.02],
+	"textureHS": ["alpine_mountainside"], "actorHS": [["gaia/fish/generic"], 0.1]
 });
 myBiome.push({ // 1 Medium Water
 	"texture": ["shoreline_stoney_a", "alpine_shore_rocks"],
