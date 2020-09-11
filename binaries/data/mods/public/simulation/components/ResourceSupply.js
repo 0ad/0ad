@@ -32,11 +32,7 @@ ResourceSupply.prototype.Init = function()
 	// Current resource amount (non-negative)
 	this.amount = this.GetMaxAmount();
 
-	// List of IDs for each player
 	this.gatherers = [];
-	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
-	for (let i = 0; i < numPlayers; ++i)
-		this.gatherers.push([]);
 
 	let [type, subtype] = this.template.Type.split('.');
 	this.cachedType = { "generic": type, "specific": subtype };
@@ -69,7 +65,7 @@ ResourceSupply.prototype.GetMaxGatherers = function()
 
 ResourceSupply.prototype.GetNumGatherers = function()
 {
-	return this.gatherers.reduce((a, b) => a + b.length, 0);
+	return this.gatherers.length;
 };
 
 /**
@@ -81,13 +77,29 @@ ResourceSupply.prototype.GetType = function()
 };
 
 /**
- * @param {number} gathererID The gatherer's entity id.
- * @param {number} player The gatherer's id.
- * @return {boolean} Whether the ResourceSupply can have additional gatherers.
+ * @param {number} gathererID - The gatherer's entity id.
+ * @return {boolean} - Whether the ResourceSupply can have this additional gatherer or it is already gathering.
  */
-ResourceSupply.prototype.IsAvailable = function(player, gathererID)
+ResourceSupply.prototype.IsAvailableTo = function(gathererID)
 {
-	return this.GetCurrentAmount() > 0 && (this.GetNumGatherers() < this.GetMaxGatherers() || this.gatherers[player].indexOf(gathererID) != -1);
+	return this.IsAvailable() || this.IsGatheringUs(gathererID);
+};
+
+/**
+ * @return {boolean} - Whether this entity can have an additional gatherer.
+ */
+ResourceSupply.prototype.IsAvailable = function()
+{
+	return this.amount && this.gatherers.length < this.GetMaxGatherers();
+};
+
+/**
+ * @param {number} entity - The entityID to check for.
+ * @return {boolean} - Whether the given entity is already gathering at us.
+ */
+ResourceSupply.prototype.IsGatheringUs = function(entity)
+{
+	return this.gatherers.indexOf(entity) !== -1;
 };
 
 /**
@@ -138,47 +150,35 @@ ResourceSupply.prototype.TakeResources = function(amount)
 };
 
 /**
- * @param {number} player The gatherer's id.
- * @param {number} gathererID The gatherer's player id.
- * @returns {boolean} Whether the gatherer was successfully added to the entity's gatherers list.
+ * @param {number} gathererID - The gatherer to add.
+ * @return {boolean} - Whether the gatherer was successfully added to the entity's gatherers list
+ *			or the entity was already gathering us.
  */
-ResourceSupply.prototype.AddGatherer = function(player, gathererID)
+ResourceSupply.prototype.AddGatherer = function(gathererID)
 {
-	if (!this.IsAvailable(player, gathererID))
+	if (!this.IsAvailable())
 		return false;
 
-	if (this.gatherers[player].indexOf(gathererID) == -1)
-	{
-		this.gatherers[player].push(gathererID);
-		// broadcast message, mainly useful for the AIs.
-		Engine.PostMessage(this.entity, MT_ResourceSupplyNumGatherersChanged, { "to": this.GetNumGatherers() });
-	}
+	if (this.IsGatheringUs(gathererID))
+		return true;
+
+	this.gatherers.push(gathererID);
+	Engine.PostMessage(this.entity, MT_ResourceSupplyNumGatherersChanged, { "to": this.GetNumGatherers() });
 
 	return true;
 };
 
 /**
  * @param {number} gathererID - The gatherer's entity id.
- * @param {number} player - The gatherer's player id.
  * @todo: Should this return false if the gatherer didn't gather from said resource?
  */
-ResourceSupply.prototype.RemoveGatherer = function(gathererID, player)
+ResourceSupply.prototype.RemoveGatherer = function(gathererID)
 {
-	// This can happen if the unit is dead
-	if (player == undefined || player == INVALID_PLAYER)
-	{
-		for (let i = 0; i < this.gatherers.length; ++i)
-			this.RemoveGatherer(gathererID, i);
-
-		return;
-	}
-
-	let index = this.gatherers[player].indexOf(gathererID);
+	let index = this.gatherers.indexOf(gathererID);
 	if (index == -1)
 		return;
 
-	this.gatherers[player].splice(index, 1);
-	// Broadcast message, mainly useful for the AIs.
+	this.gatherers.splice(index, 1);
 	Engine.PostMessage(this.entity, MT_ResourceSupplyNumGatherersChanged, { "to": this.GetNumGatherers() });
 };
 
