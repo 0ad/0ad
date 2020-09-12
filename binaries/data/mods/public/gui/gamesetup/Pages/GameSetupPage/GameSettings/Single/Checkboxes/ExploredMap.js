@@ -2,10 +2,11 @@ GameSettingControls.ExploredMap = class extends GameSettingControlCheckbox
 {
 	onMapChange(mapData)
 	{
-		let mapValue =
-			mapData &&
+		let mapValue;
+		if (mapData &&
 			mapData.settings &&
-			mapData.settings.ExploreMap || undefined;
+			mapData.settings.ExploreMap !== undefined)
+			mapValue = mapData.settings.ExploreMap;
 
 		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.ExploreMap)
 		{

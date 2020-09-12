@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-24 07:08+0000\n"
-"PO-Revision-Date: 2020-09-06 05:22+0000\n"
+"PO-Revision-Date: 2020-09-07 08:47+0000\n"
 "Last-Translator: Ernestus Severus\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
@@ -472,7 +472,7 @@ msgstr "Circulus"
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr ""
+msgstr "Lusores sociati collecti sunt et in uno circulo contra hostes positi."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
 msgctxt "team placement"
@@ -481,41 +481,41 @@ msgstr "Linea"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
 msgid "Allied players are placed in a linear pattern."
-msgstr ""
+msgstr "Lusores sociati in linea positi sunt."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:115
 msgctxt "team placement"
 msgid "Random Group"
-msgstr ""
+msgstr "Grex Fortuitus"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:116
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr ""
+msgstr "Lusores sociati collecti sunt, et fortuite in tabula positi."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:120
 msgctxt "team placement"
 msgid "Stronghold"
-msgstr ""
+msgstr "Arx"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:121
 msgid "Allied players are grouped in one random place of the map."
-msgstr ""
+msgstr "Lusores sociati in uno loco collecti sunt."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
-msgstr ""
+msgstr "Difficultas"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:84
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "Eligere difficultatem huius scaenae."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:76
 msgid "World Population Cap"
-msgstr ""
+msgstr "Terminus Numeri Populi Universi"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:79
 msgid "Select world population limit."
-msgstr ""
+msgstr "Elige terminum numeri populi universi."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:82
 #, javascript-format
@@ -526,50 +526,50 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:61
 msgid "Ceasefire"
-msgstr ""
+msgstr "Indutiae"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:64
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "Elige intervallum temporis quo aggredi non possunt."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:67
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Sine indutiis"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:70
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s minuta"
+msgstr[1] "%(minutes)s minutae"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:86
 msgid "Relic Count"
-msgstr ""
+msgstr "Numerus Reliquiarum"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:89
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s reliquiae"
+msgstr[1] "%(number)s reliquiae"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:92
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr ""
+msgstr "Numerus reliquiarum huius tabulae. Victoria autem reliquiarum tractabile est cum modo una vel duae reliquiarum praesint. Maiore numero reliquiarum opus est eas capere ut bona aurae accipias."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:86
 msgid "Relic Duration"
-msgstr ""
+msgstr "Diuturnitas Reliquiarum"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:89
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr ""
+msgstr "Minutas donec lusor Victoriam Reliquiarum adipiscetur."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:95
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:96
@@ -577,46 +577,46 @@ msgstr ""
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s minuta"
+msgstr[1] "%(min)s minutae"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:98
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:99
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr ""
+msgstr "Victoria Instans."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"
-msgstr ""
+msgstr "Tempus Maris Ortus"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:76
 msgid "Set the time when the water will start to rise."
-msgstr ""
+msgstr "Constitue tempus ubi aqua oriri incipiet."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:79
 #, javascript-format
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s minuta"
+msgstr[1] "%(minutes)s minutae"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:87
 msgid "Wonder Duration"
-msgstr ""
+msgstr "Diuturnitas Miraculi"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:90
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr ""
+msgstr "Minutas donec lusor Victoriam Miraculi adipiscetur."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
 msgid "Cheats enabled."
-msgstr ""
+msgstr "Fraudes permissae."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
 msgid "Rated game."
-msgstr ""
+msgstr "Ludus Notatus."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
 #, javascript-format
@@ -639,59 +639,59 @@ msgstr "Retro"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:39
 msgid "Return to the lobby."
-msgstr ""
+msgstr "Ad vestibulum redire."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:42
 msgid "Return to the main menu."
-msgstr ""
+msgstr "Ad paginam primam redire."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CivInfoButton.js:48
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Prospectum / Arborem Aedificiorum Civitatis videre\nSi premetur, aperetur id quod antea apertum est."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Vestibulum plurium lusorum in fenestra aperire."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:79
 msgid "I'm ready"
-msgstr ""
+msgstr "Paratus Sum"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:80
 msgid "Stay ready"
-msgstr ""
+msgstr "Paratus Manere"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:81
 msgid "I'm not ready!"
-msgstr ""
+msgstr "Paratus non sum!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:85
 msgid "State that you are ready to play."
-msgstr ""
+msgstr "Te ad ludum paratum esse dicere."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:86
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "Paratus manere etsi optiones ludi mutantur."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:87
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "Te ad ludum paratum esse negare."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:33
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr ""
+msgstr "Illae civitates quae electae erant in modos pristinos (fortuitus)  restituere."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:35
 msgid "Reset all teams to the default."
-msgstr ""
+msgstr "Omnes manus in modos pristinos restituere."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:65
 msgid "Start Game!"
-msgstr ""
+msgstr "Ludum Incipere!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:68
 msgid "Start a new game with the current settings."
@@ -701,7 +701,7 @@ msgstr "Incipere novum ludum cum condicionibus praesentibus."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr ""
+msgstr "Incipere novum ludum cum condicionibus praesentibus (non licet nisi omnes lusores parati sunt)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatInputPanel.js:55
 #, javascript-format
@@ -744,7 +744,7 @@ msgstr "%(username)s %(message)s"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientConnection.js:27
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr ""
+msgstr "%(username)s intravit"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientConnection.js:30
 #, javascript-format
@@ -764,21 +764,21 @@ msgstr "%(username)s exclusus est"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientReady.js:28
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "* %(username)s paratus non est."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientReady.js:29
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "* %(username)s paratus est!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/GameSettingsChanged.js:22
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "Condiciones ludi mutatae sunt"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:55
 #, javascript-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "Ludus %(name)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:114
 msgid "Please enter a valid server name."
@@ -817,7 +817,7 @@ msgstr ""
 #: gui/gamesetup_mp/gamesetup_mp.js:324
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr ""
+msgstr "Ludum creare non potes: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:325 gui/gamesetup_mp/gamesetup_mp.js:354
 msgid "Error"
@@ -826,12 +826,12 @@ msgstr "Error"
 #: gui/gamesetup_mp/gamesetup_mp.js:353
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr ""
+msgstr "Ludum intrare non potes: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:375
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "Ludus %(playername)s"
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format
@@ -849,12 +849,12 @@ msgstr "• %(tiptext)s"
 #: gui/loading/TitleDisplay.js:15
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "Creans “%(map)s”"
 
 #: gui/loading/TitleDisplay.js:17
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "Legens “%(map)s”"
 
 #: gui/gamesetup/gamesetup.xml:(caption):12
 msgid "Match Setup"
@@ -874,7 +874,7 @@ msgstr "Lusoris Nomen:"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):10
 msgid "Color"
-msgstr ""
+msgstr "Color"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):14
 msgid "Player Placement"
@@ -890,32 +890,32 @@ msgstr "Manus"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
-msgstr ""
+msgstr "Hanc nuntium in posterum ostendere."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatPanel.xml:(caption):9
 msgid "Send"
-msgstr "mitte"
+msgstr "Mittere"
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
 msgid "Loading"
-msgstr "Carricans"
+msgstr "Legens"
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):11
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "Legens scriptum tabulae. Mane..."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
-msgstr "Multilusor"
+msgstr "Lusores plures"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
-msgstr ""
+msgstr "Ludum intrans."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "Nomen Lusoris:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
@@ -944,7 +944,7 @@ msgstr "Pergere"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):127
 msgid "Cancel"
-msgstr "Retrorsum"
+msgstr "Abrogare"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99

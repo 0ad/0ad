@@ -2,10 +2,11 @@ GameSettingControls.WorldPopulation = class extends GameSettingControlCheckbox
 {
 	onMapChange(mapData)
 	{
-		let mapValue =
-			mapData &&
+		let mapValue;
+		if (mapData &&
 			mapData.settings &&
-			mapData.settings.WorldPopulation || undefined;
+			mapData.settings.WorldPopulation !== undefined)
+			mapValue = mapData.settings.WorldPopulation;
 
 		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.WorldPopulation)
 		{

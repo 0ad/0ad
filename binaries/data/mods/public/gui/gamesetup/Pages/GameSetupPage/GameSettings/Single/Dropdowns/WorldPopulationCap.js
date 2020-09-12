@@ -12,10 +12,11 @@ GameSettingControls.WorldPopulationCap = class extends GameSettingControlDropdow
 
 	onMapChange(mapData)
 	{
-		let mapValue =
-			mapData &&
+		let mapValue;
+		if (mapData &&
 			mapData.settings &&
-			mapData.settings.WorldPopulationCap || undefined;
+			mapData.settings.WorldPopulationCap !== undefined)
+			mapValue = mapData.settings.WorldPopulationCap;
 
 		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.WorldPopulationCap)
 		{

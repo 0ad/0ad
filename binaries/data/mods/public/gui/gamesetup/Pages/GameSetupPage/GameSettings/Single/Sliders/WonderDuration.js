@@ -12,12 +12,13 @@ GameSettingControls.WonderDuration = class extends GameSettingControlSlider
 	{
 		this.setEnabled(g_GameAttributes.mapType != "scenario");
 
-		let mapValue =
-			mapData &&
+		let mapValue;
+		if (mapData &&
 			mapData.settings &&
 			mapData.settings.VictoryConditions &&
 			mapData.settings.VictoryConditions.indexOf(this.NameWonderVictory) != -1 &&
-			mapData.settings.WonderDuration || undefined;
+			mapData.settings.WonderDuration !== undefined)
+			mapValue = mapData.settings.WonderDuration;
 
 		if (mapValue === undefined || mapValue == g_GameAttributes.settings.WonderDuration)
 			return;

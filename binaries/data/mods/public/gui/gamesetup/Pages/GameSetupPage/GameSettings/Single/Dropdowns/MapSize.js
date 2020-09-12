@@ -17,10 +17,11 @@ GameSettingControls.MapSize = class extends GameSettingControlDropdown
 
 	onMapChange(mapData)
 	{
-		let mapValue =
-			mapData &&
+		let mapValue;
+		if (mapData &&
 			mapData.settings &&
-			mapData.settings.Size || undefined;
+			mapData.settings.Size !== undefined)
+			mapValue = mapData.settings.Size;
 
 		if (g_GameAttributes.mapType == "random" && mapValue !== undefined && mapValue != g_GameAttributes.settings.Size)
 		{

@@ -45,30 +45,30 @@ TS_ASSERT_EQUALS(cmpResourceSupply.GetDiminishingReturns(), null);
 
 TS_ASSERT_EQUALS(cmpResourceSupply.GetNumGatherers(), 0);
 
-TS_ASSERT(cmpResourceSupply.IsAvailable(1, 70));
-TS_ASSERT(cmpResourceSupply.AddGatherer(1, 70));
+TS_ASSERT(cmpResourceSupply.IsAvailableTo(70));
+TS_ASSERT(cmpResourceSupply.AddGatherer(70));
 TS_ASSERT_EQUALS(cmpResourceSupply.GetNumGatherers(), 1);
 
-TS_ASSERT(cmpResourceSupply.AddGatherer(1, 71));
+TS_ASSERT(cmpResourceSupply.AddGatherer(71));
 TS_ASSERT_EQUALS(cmpResourceSupply.GetNumGatherers(), 2);
 
-TS_ASSERT(!cmpResourceSupply.AddGatherer(2, 72));
+TS_ASSERT(!cmpResourceSupply.AddGatherer(72));
 TS_ASSERT_EQUALS(cmpResourceSupply.GetNumGatherers(), 2);
 
-TS_ASSERT(cmpResourceSupply.IsAvailable(1, 70));
-TS_ASSERT(!cmpResourceSupply.IsAvailable(1, 73));
-TS_ASSERT(!cmpResourceSupply.AddGatherer(1, 73));
+TS_ASSERT(cmpResourceSupply.IsAvailableTo(70));
+TS_ASSERT(!cmpResourceSupply.IsAvailableTo(73));
+TS_ASSERT(!cmpResourceSupply.AddGatherer(73));
 TS_ASSERT_EQUALS(cmpResourceSupply.GetNumGatherers(), 2);
 
-cmpResourceSupply.RemoveGatherer(70, 1);
+cmpResourceSupply.RemoveGatherer(70);
 TS_ASSERT_EQUALS(cmpResourceSupply.GetNumGatherers(), 1);
 
 TS_ASSERT_UNEVAL_EQUALS(cmpResourceSupply.GetCurrentAmount(), 1000);
 TS_ASSERT_UNEVAL_EQUALS(cmpResourceSupply.TakeResources(300), { "amount": 300, "exhausted": false });
 TS_ASSERT_EQUALS(cmpResourceSupply.GetCurrentAmount(), 700);
-TS_ASSERT(cmpResourceSupply.IsAvailable(1, 70));
+TS_ASSERT(cmpResourceSupply.IsAvailableTo(70));
 
 TS_ASSERT_UNEVAL_EQUALS(cmpResourceSupply.TakeResources(800), { "amount": 700, "exhausted": true });
 TS_ASSERT_EQUALS(cmpResourceSupply.GetCurrentAmount(), 0);
 // The resource is not available when exhausted
-TS_ASSERT(!cmpResourceSupply.IsAvailable(1, 70));
+TS_ASSERT(!cmpResourceSupply.IsAvailableTo(70));

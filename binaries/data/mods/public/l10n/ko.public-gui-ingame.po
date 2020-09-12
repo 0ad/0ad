@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-28 07:09+0000\n"
-"PO-Revision-Date: 2020-09-05 18:38+0000\n"
+"PO-Revision-Date: 2020-09-08 16:04+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -352,7 +352,7 @@ msgstr "짐풀기 취소"
 
 #: gui/session/selection_panels.js:581
 msgid "Insufficient population capacity:"
-msgstr "인구 용량이 부족합니다."
+msgstr "최대 인구 수 부족:"
 
 #: gui/session/selection_panels.js:582
 #, javascript-format
@@ -421,7 +421,7 @@ msgstr "서있기-스탠드그라운드"
 #: gui/session/selection_panels_helpers.js:71
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr "근처의 적을 공격하고, 공격자에 주목하며, 보이는 한도 내에서 추적하라."
+msgstr "주변 상대를 공격하고, 공격자에게 집중하며, 눈에 보이는 동안 추격합니다"
 
 #: gui/session/selection_panels_helpers.js:73
 msgctxt "stance"
@@ -468,17 +468,17 @@ msgstr "%(buildings)s*%(batchSize)s"
 #: gui/session/selection_panels_helpers.js:153
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
-msgstr "%(number)s (%(fullBatch)s + %(remainderBatch)s)를 훈련하기 위해 %(action)s 남음"
+msgstr "%(number)s (%(fullBatch)s + %(remainderBatch)s)를 훈련하기 위해 %(action)s 남았습니다."
 
 #: gui/session/selection_panels_helpers.js:155
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
-msgstr "%(number)s (%(fullBatch)s) 을(를) 훈련하기 위해 %(action)s 가 필요함"
+msgstr "%(number)s (%(fullBatch)s) 을(를) 훈련하기 위해 %(action)s 가 필요합니다."
 
 #: gui/session/selection_panels_helpers.js:157
 #, javascript-format
 msgid "%(action)s to train %(number)s."
-msgstr "%(number)s를 훈련하기 위해 %(action)s 이(가) 필요함"
+msgstr "%(number)s를 훈련하기 위해 %(action)s 이(가) 필요합니다."
 
 #: gui/session/selection_panels_helpers.js:162
 msgid "Shift-click"
@@ -601,12 +601,12 @@ msgstr "이 회수 시설의 사용은 금지되어 있습니다"
 
 #: gui/session/unit_actions.js:1568
 msgid "The entity has to be killed before it can be gathered from"
-msgstr "엔티티는 그것을 수집하기 전에 파괴해야 한다.??"
+msgstr "개체를 수집하려면 먼저 죽여야합니다"
 
 #: gui/session/unit_actions.js:1571
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr "캡쳐 포인트의 절반 이하 값을 가지고 있으므로, 이 개체를 파괴할 수 없습니다."
+msgstr "점령 지수의 절반 이하 값을 가지고 있으므로, 이 개체를 파괴할 수 없습니다"
 
 #: gui/session/unit_actions.js:1574
 msgid "This entity is undeletable"
@@ -962,7 +962,7 @@ msgstr "선택한 유닛 승진"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:229
 msgid "Enable culling"
-msgstr "도태 사용 --번역확인할것??"
+msgstr " 고르기 , 선택 ; 꽃따기, 도태 사용 --번역확인할것??"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:247
 msgid "Lock cull camera"
@@ -1405,7 +1405,7 @@ msgstr "교역선이 한대도 없습니다."
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
-msgstr "놀이 속도를 정하세요."
+msgstr "놀이 속도를 선택하십시오"
 
 #: gui/session/PauseOverlay.xml:(caption):7
 msgid "Game Paused"
@@ -1535,7 +1535,7 @@ msgstr "생산 대기중인 목록"
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr "그룹화된 유닛을 선택하려면 마우스클릭,  그룹화된 유닛에 포커스를 맞추려면 마우스 더블클릭,  그룹을 해산하려면 마우스 오른쪽 클릭하세요"
+msgstr "묶인 유닛들을 선택하려면 마우스 클릭, 묶인 유닛들에 포커스를 맞추려면 마우스 더블클릭, 묶임을 해산하려면 마우스 오른쪽 클릭하십시오."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "ALPHA XXIV"

@@ -24,10 +24,11 @@ GameSettingControls.StartingResources = class extends GameSettingControlDropdown
 
 	onMapChange(mapData)
 	{
-		let mapValue =
-			mapData &&
+		let mapValue;
+		if (mapData &&
 			mapData.settings &&
-			mapData.settings.StartingResources || undefined;
+			mapData.settings.StartingResources !== undefined)
+			mapValue = mapData.settings.StartingResources;
 
 		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.StartingResources)
 		{

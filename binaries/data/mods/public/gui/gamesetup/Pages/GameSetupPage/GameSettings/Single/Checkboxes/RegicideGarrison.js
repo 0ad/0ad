@@ -4,12 +4,13 @@ GameSettingControls.RegicideGarrison = class extends GameSettingControlCheckbox
 	{
 		this.setEnabled(g_GameAttributes.mapType != "scenario");
 
-		let mapValue =
-			mapData &&
+		let mapValue;
+		if (mapData &&
 			mapData.settings &&
 			mapData.settings.VictoryConditions &&
 			mapData.settings.VictoryConditions.indexOf(this.RegicideName) != -1 &&
-			mapData.settings.RegicideGarrison;
+			mapData.settings.RegicideGarrison !== undefined)
+			mapValue = mapData.settings.RegicideGarrison;
 
 		if (mapValue !== undefined || !g_GameAttributes.settings || mapValue == g_GameAttributes.settings.RegicideGarrison)
 			return;

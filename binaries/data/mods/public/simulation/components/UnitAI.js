@@ -2265,11 +2265,10 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.gatheringTarget = this.order.data.target;	// temporary, deleted in "leave".
 
 					// Check that we can gather from the resource we're supposed to gather from.
-					let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 					let cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
 					let cmpMirage = Engine.QueryInterface(this.gatheringTarget, IID_Mirage);
 					if ((!cmpMirage || !cmpMirage.Mirages(IID_ResourceSupply)) &&
-					    (!cmpSupply || !cmpSupply.AddGatherer(cmpOwnership.GetOwner(), this.entity)) ||
+					    (!cmpSupply || !cmpSupply.AddGatherer(this.entity)) ||
 					    !this.MoveTo(this.order.data, IID_ResourceGatherer))
 					{
 						// If the target's last known position is in FOW, try going there
@@ -2343,11 +2342,8 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					// Check if the resource is full.
 					// Will only be added if we're not already in.
-					let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-					let cmpSupply;
-					if (cmpOwnership)
-						cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
-					if (!cmpSupply || !cmpSupply.AddGatherer(cmpOwnership.GetOwner(), this.entity))
+					let cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
+					if (!cmpSupply || !cmpSupply.AddGatherer(this.entity))
 					{
 						this.SetNextState("FINDINGNEWTARGET");
 						return true;
@@ -2414,10 +2410,6 @@ UnitAI.prototype.UnitFsmSpec = {
 					let resourceTemplate = this.order.data.template;
 					let resourceType = this.order.data.type;
 
-					let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-					if (!cmpOwnership)
-						return;
-
 					// TODO: we are leaking information here - if the target died in FOW, we'll know it's dead
 					// straight away.
 					// Seems one would have to listen to ownership changed messages to make it work correctly
@@ -2425,7 +2417,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					let cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
 					// If we can't gather from the target, find a new one.
-					if (!cmpSupply || !cmpSupply.IsAvailable(cmpOwnership.GetOwner(), this.entity) ||
+					if (!cmpSupply || !cmpSupply.IsAvailableTo(this.entity) ||
 					    !this.CanGather(this.gatheringTarget))
 					{
 						this.SetNextState("FINDINGNEWTARGET");
@@ -4371,11 +4363,6 @@ UnitAI.prototype.FindNearbyResource = function(position, filter)
 	if (!position)
 		return undefined;
 
-	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || cmpOwnership.GetOwner() == INVALID_PLAYER)
-		return undefined;
-	let owner = cmpOwnership.GetOwner();
-
 	// We accept resources owned by Gaia or any player
 	let players = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayers();
 
@@ -4396,7 +4383,7 @@ UnitAI.prototype.FindNearbyResource = function(position, filter)
 		if (template.indexOf("resource|") != -1)
 			template = template.slice(9);
 
-		return amount > 0 && cmpResourceSupply.IsAvailable(owner, this.entity) && filter(ent, type, template);
+		return amount > 0 && cmpResourceSupply.IsAvailableTo(this.entity) && filter(ent, type, template);
 	});
 };
 

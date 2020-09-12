@@ -3,20 +3,21 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# MarongHappy <daemul72@gmail.com>, 2020
+# JungHee Lee <daemul72@gmail.com>, 2020
 # dalrae jin <greenpolidol@gmail.com>, 2014
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # Hn Dsu <lomio97@naver.com>, 2016
 # Hong Won Gi <timmy080736@gmail.com>, 2016
 # Hong Won Gi <timmy080736@gmail.com>, 2016
+# JungHee Lee <daemul72@gmail.com>, 2020
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
-# MarongHappy <daemul72@gmail.com>, 2020
+# JungHee Lee <daemul72@gmail.com>, 2020
 # YongNam Kim <darkgem11@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-22 08:08+0000\n"
-"PO-Revision-Date: 2020-06-08 04:39+0000\n"
+"PO-Revision-Date: 2020-09-08 16:04+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -287,7 +288,7 @@ msgstr "상태를 '온라인'으로 설정하십시오."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:101
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "지정한 사용자를 앞마당에서 강제로 추방합니다. 사용법: /kick 사용자이름 이유."
+msgstr "지정한 사용자를 앞마당에서 강제로 추방합니다. 사용법: /kick 사용자이름 이유"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:113
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
@@ -485,11 +486,11 @@ msgstr "< %(rating)s"
 #: gui/lobby/ProfilePage/ProfilePage.js:70
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr "사용자를 찾을 수 없습니다. - %(nick)s"
+msgstr "%(nick)s 선수를 찾을 수 없습니다."
 
 #: gui/prelobby/common/credentials/credentials.js:5
 msgid "Please enter your username"
-msgstr "사용자 별명을 입력하세요."
+msgstr "사용자 이름을 입력하십시오"
 
 #: gui/prelobby/common/credentials/credentials.js:8
 msgid "Invalid username"
@@ -787,7 +788,7 @@ msgid ""
 "Wildfire Games stores players IP addresses and may infer publicly available "
 "geolocation and internet service provider data (for example \"geolite2\") "
 "from the IP address in order to:"
-msgstr "와일드 파이어 게임즈는 선수의 IP 주소를 저장하고 IP 주소에서 공개적으로 사용 가능한 위치 정보 및 인터넷 서비스 공급자 자료 (예: \"geolite2\")를 다음과 같이 유추할 수 있습니다"
+msgstr "와일드 파이어 게임즈는 선수의 IP 주소를 저장하고 IP 주소에서 공개적으로 사용 가능한 위치 정보 및 인터넷 서비스 공급자 자료 (예: \"geolite2\")를 다음과 같이 유추할 수 있습니다:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:18
 msgid ""
@@ -1114,7 +1115,7 @@ msgstr "13. 와일드 파이어 게임즈가 합법적인 이익을 기반으로
 msgid ""
 "For further information on Wildfire Games Privacy Policies, visit "
 "https://trac.wildfiregames.com/wiki/UserDataProtection"
-msgstr "와일드 파이어 게임즈의 개인 정보 보호 정책에 대한 자세한 내용은 https://trac.wildfiregames.com/wiki/UserDataProtection을 참조하십시오."
+msgstr "와일드 파이어 게임즈의 개인 정보 보호 정책에 대한 자세한 내용은 https://trac.wildfiregames.com/wiki/UserDataProtection을 참조하십시오"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:1
 msgid ""
@@ -1150,7 +1151,7 @@ msgstr "[font=\"sans-bold-14\"]0 A.D. 함께 놀기 앞마당을 사용하면 �
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:11
 msgid " 1. Follow all usage policies."
-msgstr "1. 모든 이용 약관을 따릅니다."
+msgstr " 1. 모든 이용 약관을 따릅니다."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:12
 msgid ""
@@ -1178,7 +1179,7 @@ msgstr " 1. 서비스를 중간화합니다. 즉, 사용자 계정을 제한, �
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:17
 msgid " 2. Appoint others to moderate the service."
-msgstr "2. 다른 사람으로 하여금 서비스를 중재하도록 지명합니다."
+msgstr " 2. 다른 사람으로 하여금 서비스를 중재하도록 지명합니다."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:18
 msgid " 3. Discontinue or interrupt any part of the service at any time."

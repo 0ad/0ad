@@ -9,7 +9,9 @@ GameSettingControls.GameSpeed = class extends GameSettingControlDropdown
 
 	onMapChange(mapData)
 	{
-		let mapValue = mapData && mapData.gameSpeed || undefined;
+		let mapValue;
+		if (mapData && mapData.gameSpeed !== undefined)
+			mapValue = mapData.gameSpeed;
 		if (mapValue !== undefined && mapValue != g_GameAttributes.gameSpeed)
 		{
 			g_GameAttributes.gameSpeed = mapValue;

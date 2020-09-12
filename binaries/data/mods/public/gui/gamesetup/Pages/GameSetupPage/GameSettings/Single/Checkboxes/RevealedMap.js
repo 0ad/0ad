@@ -2,10 +2,11 @@ GameSettingControls.RevealedMap = class extends GameSettingControlCheckbox
 {
 	onMapChange(mapData)
 	{
-		let mapValue =
-			mapData &&
+		let mapValue;
+		if (mapData &&
 			mapData.settings &&
-			mapData.settings.RevealMap || undefined;
+			mapData.settings.RevealMap !== undefined)
+			mapValue = mapData.settings.RevealMap;
 
 		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.RevealMap)
 		{

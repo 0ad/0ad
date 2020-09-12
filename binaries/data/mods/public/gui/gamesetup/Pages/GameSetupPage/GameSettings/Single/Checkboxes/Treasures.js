@@ -2,10 +2,11 @@ GameSettingControls.Treasures = class extends GameSettingControlCheckbox
 {
 	onMapChange(mapData)
 	{
-		let mapValue =
-			mapData &&
+		let mapValue;
+		if (mapData &&
 			mapData.settings &&
-			mapData.settings.DisableTreasures;
+			mapData.settings.DisableTreasures !== undefined)
+			mapValue = mapData.settings.DisableTreasures;
 
 		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.DisableTreasures)
 		{
