@@ -543,7 +543,6 @@ AddMock(10, IID_Health, {
 
 AddMock(10, IID_Identity, {
 	"GetClassesList": function() { return ["class1", "class2"]; },
-	"GetVisibleClassesList": function() { return ["class3", "class4"]; },
 	"GetRank": function() { return "foo"; },
 	"GetSelectionGroupName": function() { return "Selection Group Name"; },
 	"HasClass": function() { return true; },
@@ -577,7 +576,6 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 	"identity": {
 		"rank": "foo",
 		"classes": ["class1", "class2"],
-		"visibleClasses": ["class3", "class4"],
 		"selectionGroupName": "Selection Group Name",
 		"canDelete": true,
 		"hasSomeFormation": false,
