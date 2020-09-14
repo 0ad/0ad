@@ -37,7 +37,7 @@ Formation.prototype.Schema =
 	"<element name='WidthDepthRatio' a:help='Average width-to-depth ratio, counted in number of units.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='Sloppyness' a:help='Sloppyness in meters (the max difference between the actual and the perfectly aligned formation position.'>" +
+	"<element name='Sloppiness' a:help='The maximum difference between the actual and the perfectly aligned formation position, in meters.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
 	"<optional>" +
@@ -99,7 +99,7 @@ Formation.prototype.Init = function(deserialized = false)
 		"width": +this.template.UnitSeparationWidthMultiplier,
 		"depth": +this.template.UnitSeparationDepthMultiplier
 	};
-	this.sloppyness = +this.template.Sloppyness;
+	this.sloppiness = +this.template.Sloppiness;
 	this.widthDepthRatio = +this.template.WidthDepthRatio;
 	this.minColumns = +(this.template.MinColumns || 0);
 	this.maxColumns = +(this.template.MaxColumns || 0);
@@ -762,8 +762,8 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 					x += side * centerGap / 2;
 				}
 				let column = Math.ceil(n / 2) + Math.ceil(c / 2) * side;
-				let r1 = randFloat(-1, 1) * this.sloppyness;
-				let r2 = randFloat(-1, 1) * this.sloppyness;
+				let r1 = randFloat(-1, 1) * this.sloppiness;
+				let r2 = randFloat(-1, 1) * this.sloppiness;
 
 				offsets.push(new Vector2D(x + r1, z + r2));
 				offsets[offsets.length - 1].row = r + 1;

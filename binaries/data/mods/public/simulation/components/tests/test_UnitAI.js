@@ -212,8 +212,21 @@ function TestFormationExiting(mode)
 			GetHitpoints: function() { return 0; },
 		});
 
-	var controllerFormation = ConstructComponent(controller, "Formation", {"FormationName": "Line Closed", "FormationShape": "square", "ShiftRows": "false", "SortingClasses": "", "WidthDepthRatio": 1, "UnitSeparationWidthMultiplier": 1, "UnitSeparationDepthMultiplier": 1, "SpeedMultiplier": 1, "Sloppyness": 0});
-	var controllerAI = ConstructComponent(controller, "UnitAI", { "FormationController": "true", "DefaultStance": "aggressive" });
+	let controllerFormation = ConstructComponent(controller, "Formation", {
+		"FormationName": "Line Closed",
+		"FormationShape": "square",
+		"ShiftRows": "false",
+		"SortingClasses": "",
+		"WidthDepthRatio": 1,
+		"UnitSeparationWidthMultiplier": 1,
+		"UnitSeparationDepthMultiplier": 1,
+		"SpeedMultiplier": 1,
+		"Sloppiness": 0
+	});
+	let controllerAI = ConstructComponent(controller, "UnitAI", {
+		"FormationController": "true",
+		"DefaultStance": "aggressive"
+	});
 
 	AddMock(controller, IID_Position, {
 		JumpTo: function(x, z) { this.x = x; this.z = z; },
@@ -366,8 +379,21 @@ function TestMoveIntoFormationWhileAttacking()
 		GetHitpoints: function() { return 40; },
 	});
 
-	var controllerFormation = ConstructComponent(controller, "Formation", {"FormationName": "Line Closed", "FormationShape": "square", "ShiftRows": "false", "SortingClasses": "", "WidthDepthRatio": 1, "UnitSeparationWidthMultiplier": 1, "UnitSeparationDepthMultiplier": 1, "SpeedMultiplier": 1, "Sloppyness": 0});
-	var controllerAI = ConstructComponent(controller, "UnitAI", { "FormationController": "true", "DefaultStance": "aggressive" });
+	let controllerFormation = ConstructComponent(controller, "Formation", {
+		"FormationName": "Line Closed",
+		"FormationShape": "square",
+		"ShiftRows": "false",
+		"SortingClasses": "",
+		"WidthDepthRatio": 1,
+		"UnitSeparationWidthMultiplier": 1,
+		"UnitSeparationDepthMultiplier": 1,
+		"SpeedMultiplier": 1,
+		"Sloppiness": 0
+	});
+	let controllerAI = ConstructComponent(controller, "UnitAI", {
+		"FormationController": "true",
+		"DefaultStance": "aggressive"
+	});
 
 	AddMock(controller, IID_Position, {
 		"GetTurretParent": () => INVALID_ENTITY,
