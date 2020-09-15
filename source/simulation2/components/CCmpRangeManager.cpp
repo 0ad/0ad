@@ -173,10 +173,7 @@ static bool InParabolicRange(CFixedVector3D v, fixed range)
 
 	i64 c2 = MUL_I64_I32_I32(c_2 - y, c);
 
-	if (d2 <= c2)
-		return true;
-
-	return false;
+	return d2 <= c2;
 }
 
 struct EntityParabolicRangeOutline
