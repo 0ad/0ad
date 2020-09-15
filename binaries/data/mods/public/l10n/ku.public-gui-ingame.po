@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-28 07:09+0000\n"
-"PO-Revision-Date: 2020-08-28 13:16+0000\n"
+"POT-Creation-Date: 2020-09-11 07:09+0000\n"
+"PO-Revision-Date: 2020-09-11 13:17+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Kurdish (http://www.transifex.com/wildfire-games/0ad/language/ku/)\n"
 "MIME-Version: 1.0\n"
@@ -119,7 +119,7 @@ msgid "Paused by %(players)s"
 msgstr ""
 
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:268
-#: gui/session/selection_details.js:284 gui/session/selection_panels.js:594
+#: gui/session/selection_details.js:284 gui/session/selection_panels.js:597
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr ""
@@ -226,7 +226,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:258 gui/session/unit_actions.js:640
 #: gui/session/unit_actions.js:649 gui/session/unit_actions.js:667
-#: gui/session/unit_actions.js:999
+#: gui/session/unit_actions.js:998
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr ""
@@ -240,46 +240,46 @@ msgstr ""
 msgid "(%(genericName)s)"
 msgstr ""
 
-#: gui/session/selection_details.js:430
+#: gui/session/selection_details.js:429
 msgid "Capture Points:"
 msgstr ""
 
-#: gui/session/selection_details.js:438
+#: gui/session/selection_details.js:437
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr ""
 
-#: gui/session/selection_details.js:439
+#: gui/session/selection_details.js:438
 msgid "Carrying:"
 msgstr ""
 
-#: gui/session/selection_details.js:442 gui/session/selection_details.js:451
+#: gui/session/selection_details.js:441 gui/session/selection_details.js:450
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr ""
 
-#: gui/session/selection_details.js:447
+#: gui/session/selection_details.js:446
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr ""
 
-#: gui/session/selection_details.js:448
+#: gui/session/selection_details.js:447
 msgid "Loot:"
 msgstr ""
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:509
+#: gui/session/selection_details.js:508
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr ""
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:533
+#: gui/session/selection_details.js:532
 msgid "+"
 msgstr ""
 
-#: gui/session/selection_details.js:540
+#: gui/session/selection_details.js:539
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ""
@@ -292,85 +292,85 @@ msgstr ""
 msgid "End of alert."
 msgstr ""
 
-#: gui/session/selection_panels.js:376
+#: gui/session/selection_panels.js:377
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:377
+#: gui/session/selection_panels.js:378
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr ""
 
-#: gui/session/selection_panels.js:379 gui/session/selection_panels.js:869
+#: gui/session/selection_panels.js:380 gui/session/selection_panels.js:873
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:414
+#: gui/session/selection_panels.js:416
 msgid "Lock Gate"
 msgstr ""
 
-#: gui/session/selection_panels.js:420
+#: gui/session/selection_panels.js:422
 msgid "Unlock Gate"
 msgstr ""
 
-#: gui/session/selection_panels.js:470
+#: gui/session/selection_panels.js:473
 msgid "Pack"
 msgstr ""
 
-#: gui/session/selection_panels.js:478
+#: gui/session/selection_panels.js:481
 msgid "Unpack"
 msgstr ""
 
-#: gui/session/selection_panels.js:486
+#: gui/session/selection_panels.js:489
 msgid "Cancel Packing"
 msgstr ""
 
-#: gui/session/selection_panels.js:494
+#: gui/session/selection_panels.js:497
 msgid "Cancel Unpacking"
 msgstr ""
 
-#: gui/session/selection_panels.js:581
+#: gui/session/selection_panels.js:584
 msgid "Insufficient population capacity:"
 msgstr ""
 
-#: gui/session/selection_panels.js:582
+#: gui/session/selection_panels.js:585
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:745
+#: gui/session/selection_panels.js:749
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/selection_panels.js:751
+#: gui/session/selection_panels.js:755
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:752
+#: gui/session/selection_panels.js:756
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ""
 
-#: gui/session/selection_panels.js:1061
+#: gui/session/selection_panels.js:1066
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1066
+#: gui/session/selection_panels.js:1071
 #, javascript-format
 msgid "Upgrade to %(name)s."
 msgstr ""
 
-#: gui/session/selection_panels.js:1083
+#: gui/session/selection_panels.js:1088
 msgid "Cancel Upgrading"
 msgstr ""
 
-#: gui/session/selection_panels.js:1088
+#: gui/session/selection_panels.js:1093
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr ""
 
@@ -483,7 +483,7 @@ msgstr ""
 msgid "Right-click to set as origin trade market"
 msgstr ""
 
-#: gui/session/unit_actions.js:662 gui/session/unit_actions.js:1005
+#: gui/session/unit_actions.js:662 gui/session/unit_actions.js:1004
 msgid "This market is too close to the origin market."
 msgstr ""
 
@@ -491,105 +491,105 @@ msgstr ""
 msgid "Right-click to set as destination trade market."
 msgstr ""
 
-#: gui/session/unit_actions.js:727 gui/session/unit_actions.js:943
+#: gui/session/unit_actions.js:727 gui/session/unit_actions.js:942
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr ""
 
-#: gui/session/unit_actions.js:996
+#: gui/session/unit_actions.js:995
 msgid "Right-click to establish a default route for new traders."
 msgstr ""
 
-#: gui/session/unit_actions.js:1000
+#: gui/session/unit_actions.js:999
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr ""
 
-#: gui/session/unit_actions.js:1140 gui/session/unit_actions.js:1468
+#: gui/session/unit_actions.js:1139 gui/session/unit_actions.js:1467
 msgid "Unload All."
 msgstr ""
 
-#: gui/session/unit_actions.js:1158
+#: gui/session/unit_actions.js:1157
 msgid "Destroy the selected units or structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1160
+#: gui/session/unit_actions.js:1159
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr ""
 
-#: gui/session/unit_actions.js:1207
+#: gui/session/unit_actions.js:1206
 msgid "Abort the current order."
 msgstr ""
 
-#: gui/session/unit_actions.js:1226
+#: gui/session/unit_actions.js:1225
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1249
+#: gui/session/unit_actions.js:1248
 msgid "Unload"
 msgstr ""
 
-#: gui/session/unit_actions.js:1267
+#: gui/session/unit_actions.js:1266
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr ""
 
-#: gui/session/unit_actions.js:1286
+#: gui/session/unit_actions.js:1285
 msgid "Focus on Rally Point."
 msgstr ""
 
-#: gui/session/unit_actions.js:1321
+#: gui/session/unit_actions.js:1320
 msgid "Back to Work"
 msgstr ""
 
-#: gui/session/unit_actions.js:1340
+#: gui/session/unit_actions.js:1339
 msgid "Order the selected units to guard a structure or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1358
+#: gui/session/unit_actions.js:1357
 msgid "Remove guard"
 msgstr ""
 
-#: gui/session/unit_actions.js:1375
+#: gui/session/unit_actions.js:1374
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr ""
 
-#: gui/session/unit_actions.js:1393
+#: gui/session/unit_actions.js:1392
 msgid "Patrol"
 msgstr ""
 
-#: gui/session/unit_actions.js:1394
+#: gui/session/unit_actions.js:1393
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1420
+#: gui/session/unit_actions.js:1419
 msgid "Press to allow allies to use this dropsite"
 msgstr ""
 
-#: gui/session/unit_actions.js:1424
+#: gui/session/unit_actions.js:1423
 msgid "Press to prevent allies from using this dropsite"
 msgstr ""
 
-#: gui/session/unit_actions.js:1489
+#: gui/session/unit_actions.js:1488
 msgid "You are allowed to use this dropsite"
 msgstr ""
 
-#: gui/session/unit_actions.js:1494
+#: gui/session/unit_actions.js:1493
 msgid "The use of this dropsite is prohibited"
 msgstr ""
 
-#: gui/session/unit_actions.js:1568
+#: gui/session/unit_actions.js:1567
 msgid "The entity has to be killed before it can be gathered from"
 msgstr ""
 
-#: gui/session/unit_actions.js:1571
+#: gui/session/unit_actions.js:1570
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr ""
 
-#: gui/session/unit_actions.js:1574
+#: gui/session/unit_actions.js:1573
 msgid "This entity is undeletable"
 msgstr ""
 
@@ -1493,27 +1493,24 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):14
-msgid "Hitpoints"
+#: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):16
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):20
+msgid "Health"
 msgstr ""
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):18
-msgid "Health:"
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):34
+msgid "Capture points"
 msgstr ""
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):32
-msgid "Capture points:"
-msgstr ""
-
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):60
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
 msgid "Attack and Resistance"
 msgstr ""
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):75
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
 msgid "Experience"
 msgstr ""
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):83
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):85
 msgid "Rank"
 msgstr ""
 
@@ -1521,7 +1518,7 @@ msgstr ""
 msgid "Production queue"
 msgstr ""
 
-#: gui/session/session_objects/selection_group_icons.xml:(tooltip):8
+#: gui/session/session_objects/selection_group_icons.xml:(tooltip):7
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."

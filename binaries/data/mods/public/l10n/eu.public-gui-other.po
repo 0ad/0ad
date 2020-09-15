@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-07 07:14+0000\n"
-"PO-Revision-Date: 2020-09-07 17:18+0000\n"
-"Last-Translator: Osoitz <oelkoro@gmail.com>\n"
+"PO-Revision-Date: 2020-09-12 08:17+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -746,7 +746,7 @@ msgstr "%%%(percentage)s"
 msgid ""
 "%(label)s\n"
 "%(details)s"
-msgstr ""
+msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:187
 msgid "Resistance:"
@@ -754,7 +754,7 @@ msgstr "Erresistentzia:"
 
 #: gui/common/tooltips.js:198
 msgid "Damage:"
-msgstr ""
+msgstr "Kaltea:"
 
 #: gui/common/tooltips.js:201 gui/common/tooltips.js:221
 #, javascript-format
@@ -768,7 +768,7 @@ msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:219
 msgid "Capture:"
-msgstr ""
+msgstr "Atzematea:"
 
 #: gui/common/tooltips.js:223 gui/common/tooltips.js:321
 msgctxt "damage type"
@@ -866,7 +866,7 @@ msgstr "%(amount)s %(name)s"
 #: gui/common/tooltips.js:327
 #, javascript-format
 msgid "%(splashShape)s Splash"
-msgstr ""
+msgstr "%(splashShape)s Hedatze-uhina"
 
 #: gui/common/tooltips.js:330
 #, javascript-format
@@ -902,13 +902,13 @@ msgstr "%(name)s ematen du"
 #: gui/common/tooltips.js:381
 #, javascript-format
 msgid "%(attackType)s"
-msgstr ""
+msgstr "%(attackType)s"
 
 #: gui/common/tooltips.js:404
 #, javascript-format
 msgid ""
 "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
 
 #: gui/common/tooltips.js:415
 msgid "Attack:"
@@ -3996,17 +3996,17 @@ msgstr "POSTU AURRERATUAK"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral or own territory."
-msgstr ""
+msgstr "Eraiki lurralde neutroan edo zurean."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."
-msgstr ""
+msgstr "Eraikitzen azkarrak eta merkeak dira, baina ahulak."
 
 #: gui/text/tips/outposts.txt:4
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr ""
+msgstr "Sartu infanteria guardan, ikuspegi zabala izateko eta lurraldearen gainbeheraren ondorioz postuaren kontrola ez galtzeko."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"

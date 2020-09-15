@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-28 07:09+0000\n"
-"PO-Revision-Date: 2020-08-28 13:16+0000\n"
+"POT-Creation-Date: 2020-09-11 07:09+0000\n"
+"PO-Revision-Date: 2020-09-11 13:17+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -123,7 +123,7 @@ msgid "Paused by %(players)s"
 msgstr "%(players)s padarė pauzę"
 
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:268
-#: gui/session/selection_details.js:284 gui/session/selection_panels.js:594
+#: gui/session/selection_details.js:284 gui/session/selection_panels.js:597
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -234,7 +234,7 @@ msgstr "%(resource)s:"
 
 #: gui/session/selection_details.js:258 gui/session/unit_actions.js:640
 #: gui/session/unit_actions.js:649 gui/session/unit_actions.js:667
-#: gui/session/unit_actions.js:999
+#: gui/session/unit_actions.js:998
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Padidėjimas: %(gain)s"
@@ -248,46 +248,46 @@ msgstr "Dabartinis / maksimalus rankiotojų skaičius"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:430
+#: gui/session/selection_details.js:429
 msgid "Capture Points:"
 msgstr "Užgrobimo taškai:"
 
-#: gui/session/selection_details.js:438
+#: gui/session/selection_details.js:437
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:439
+#: gui/session/selection_details.js:438
 msgid "Carrying:"
 msgstr "Neša:"
 
-#: gui/session/selection_details.js:442 gui/session/selection_details.js:451
+#: gui/session/selection_details.js:441 gui/session/selection_details.js:450
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:447
+#: gui/session/selection_details.js:446
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:448
+#: gui/session/selection_details.js:447
 msgid "Loot:"
 msgstr "Grobis:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:509
+#: gui/session/selection_details.js:508
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:533
+#: gui/session/selection_details.js:532
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:540
+#: gui/session/selection_details.js:539
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "
@@ -300,54 +300,54 @@ msgstr "Skelbti pavojų!"
 msgid "End of alert."
 msgstr "Nutraukti pavojaus skelbimą."
 
-#: gui/session/selection_panels.js:376
+#: gui/session/selection_panels.js:377
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Iškeldinti %(name)s"
 
-#: gui/session/selection_panels.js:377
+#: gui/session/selection_panels.js:378
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Vienas paspaudimas iškrausto 1. Lyg2+paspaudimas iškrausto visus to pačio tipo."
 
-#: gui/session/selection_panels.js:379 gui/session/selection_panels.js:869
+#: gui/session/selection_panels.js:380 gui/session/selection_panels.js:873
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Žaidėjas: %(playername)s"
 
-#: gui/session/selection_panels.js:414
+#: gui/session/selection_panels.js:416
 msgid "Lock Gate"
 msgstr "Užrakinti vartus"
 
-#: gui/session/selection_panels.js:420
+#: gui/session/selection_panels.js:422
 msgid "Unlock Gate"
 msgstr "Atrakinti vartus"
 
-#: gui/session/selection_panels.js:470
+#: gui/session/selection_panels.js:473
 msgid "Pack"
 msgstr "Supakuoti"
 
-#: gui/session/selection_panels.js:478
+#: gui/session/selection_panels.js:481
 msgid "Unpack"
 msgstr "Išpakuoti"
 
-#: gui/session/selection_panels.js:486
+#: gui/session/selection_panels.js:489
 msgid "Cancel Packing"
 msgstr "Nutraukti pakavimą"
 
-#: gui/session/selection_panels.js:494
+#: gui/session/selection_panels.js:497
 msgid "Cancel Unpacking"
 msgstr "Nutraukti išpakavimą"
 
-#: gui/session/selection_panels.js:581
+#: gui/session/selection_panels.js:584
 msgid "Insufficient population capacity:"
 msgstr "Nepakankamas populiacijos talpumas:"
 
-#: gui/session/selection_panels.js:582
+#: gui/session/selection_panels.js:585
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:745
+#: gui/session/selection_panels.js:749
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
@@ -356,31 +356,31 @@ msgstr[1] "%(class)s klasės subjektų: %(number)s"
 msgstr[2] "%(class)s klasės subjektų: %(number)s"
 msgstr[3] "%(class)s klasės subjektų: %(number)s"
 
-#: gui/session/selection_panels.js:751
+#: gui/session/selection_panels.js:755
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Liko: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:752
+#: gui/session/selection_panels.js:756
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:1061
+#: gui/session/selection_panels.js:1066
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1066
+#: gui/session/selection_panels.js:1071
 #, javascript-format
 msgid "Upgrade to %(name)s."
 msgstr ""
 
-#: gui/session/selection_panels.js:1083
+#: gui/session/selection_panels.js:1088
 msgid "Cancel Upgrading"
 msgstr "Atšaukti patobulinimą"
 
-#: gui/session/selection_panels.js:1088
+#: gui/session/selection_panels.js:1093
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "Negalima patobulinti kol vykdomas patobulinimas."
 
@@ -493,7 +493,7 @@ msgstr "Kelionės tikslo turgavietė."
 msgid "Right-click to set as origin trade market"
 msgstr "Nustatykite pradine turgaviete spustelėję dešinį pelės mygtuką."
 
-#: gui/session/unit_actions.js:662 gui/session/unit_actions.js:1005
+#: gui/session/unit_actions.js:662 gui/session/unit_actions.js:1004
 msgid "This market is too close to the origin market."
 msgstr ""
 
@@ -501,105 +501,105 @@ msgstr ""
 msgid "Right-click to set as destination trade market."
 msgstr "Nustatykite kelionės tikslo turgaviete spustelėję dešinį pelės mygtuką."
 
-#: gui/session/unit_actions.js:727 gui/session/unit_actions.js:943
+#: gui/session/unit_actions.js:727 gui/session/unit_actions.js:942
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Dabartinė įgula: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:996
+#: gui/session/unit_actions.js:995
 msgid "Right-click to establish a default route for new traders."
 msgstr "Nustatykite naujų prekeivių numatytąjį kelionės tikslą spustelėję dešinį pelės mygtuką."
 
-#: gui/session/unit_actions.js:1000
+#: gui/session/unit_actions.js:999
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Laukiamos įplaukos: %(gain)s"
 
-#: gui/session/unit_actions.js:1140 gui/session/unit_actions.js:1468
+#: gui/session/unit_actions.js:1139 gui/session/unit_actions.js:1467
 msgid "Unload All."
 msgstr "Visus išleisti."
 
-#: gui/session/unit_actions.js:1158
+#: gui/session/unit_actions.js:1157
 msgid "Destroy the selected units or structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1160
+#: gui/session/unit_actions.js:1159
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Spauskite %(hotkey)s, kad nebūtų rodomas patvirtinimo dialogas."
 
-#: gui/session/unit_actions.js:1207
+#: gui/session/unit_actions.js:1206
 msgid "Abort the current order."
 msgstr "Atšaukti dabartinį įsakymą."
 
-#: gui/session/unit_actions.js:1226
+#: gui/session/unit_actions.js:1225
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1249
+#: gui/session/unit_actions.js:1248
 msgid "Unload"
 msgstr "Išleisti"
 
-#: gui/session/unit_actions.js:1267
+#: gui/session/unit_actions.js:1266
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr ""
 
-#: gui/session/unit_actions.js:1286
+#: gui/session/unit_actions.js:1285
 msgid "Focus on Rally Point."
 msgstr "Fokusuoti susitelkimo vietą."
 
-#: gui/session/unit_actions.js:1321
+#: gui/session/unit_actions.js:1320
 msgid "Back to Work"
 msgstr "Grįžti prie darbo"
 
-#: gui/session/unit_actions.js:1340
+#: gui/session/unit_actions.js:1339
 msgid "Order the selected units to guard a structure or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1358
+#: gui/session/unit_actions.js:1357
 msgid "Remove guard"
 msgstr "Pašalinti sargybą"
 
-#: gui/session/unit_actions.js:1375
+#: gui/session/unit_actions.js:1374
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr "Mainai ir prekyba"
 
-#: gui/session/unit_actions.js:1393
+#: gui/session/unit_actions.js:1392
 msgid "Patrol"
 msgstr "Patruliuoti"
 
-#: gui/session/unit_actions.js:1394
+#: gui/session/unit_actions.js:1393
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1420
+#: gui/session/unit_actions.js:1419
 msgid "Press to allow allies to use this dropsite"
 msgstr "Spustelėkite norėdami leisti sąjungininkams naudoti šią aikštelę."
 
-#: gui/session/unit_actions.js:1424
+#: gui/session/unit_actions.js:1423
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Spustelėkite norėdami neleisti sąjungininkams naudoti šią aikštelę."
 
-#: gui/session/unit_actions.js:1489
+#: gui/session/unit_actions.js:1488
 msgid "You are allowed to use this dropsite"
 msgstr "Jums leidžiama naudoti šia aikštelę."
 
-#: gui/session/unit_actions.js:1494
+#: gui/session/unit_actions.js:1493
 msgid "The use of this dropsite is prohibited"
 msgstr "Jums draudžiama naudoti šią aikštelę."
 
-#: gui/session/unit_actions.js:1568
+#: gui/session/unit_actions.js:1567
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Subjektas turi būti užmuštas prieš paimant išteklius."
 
-#: gui/session/unit_actions.js:1571
+#: gui/session/unit_actions.js:1570
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Negalite sunaikinti šio subjekto, nes turite mažiau nei pusę užgrobimo taškų."
 
-#: gui/session/unit_actions.js:1574
+#: gui/session/unit_actions.js:1573
 msgid "This entity is undeletable"
 msgstr "Šis subjektas negali būti panaikintas."
 
@@ -1521,27 +1521,24 @@ msgstr "Duoklė"
 msgid "Close"
 msgstr "Uždaryti"
 
-#: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):14
-msgid "Hitpoints"
-msgstr "Gyvybės taškai"
+#: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):16
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):20
+msgid "Health"
+msgstr ""
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):18
-msgid "Health:"
-msgstr "Gyvybės taškai:"
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):34
+msgid "Capture points"
+msgstr ""
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):32
-msgid "Capture points:"
-msgstr "Užgrobimo taškai:"
-
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):60
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
 msgid "Attack and Resistance"
 msgstr ""
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):75
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
 msgid "Experience"
 msgstr "Patirtis"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):83
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):85
 msgid "Rank"
 msgstr "Rangas"
 
@@ -1549,7 +1546,7 @@ msgstr "Rangas"
 msgid "Production queue"
 msgstr "Gamybos eilė"
 
-#: gui/session/session_objects/selection_group_icons.xml:(tooltip):8
+#: gui/session/session_objects/selection_group_icons.xml:(tooltip):7
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
