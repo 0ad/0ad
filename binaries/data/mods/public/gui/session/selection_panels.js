@@ -245,6 +245,7 @@ g_SelectionPanels.Construction = {
 		].map(func => func(template));
 		tooltips.push(
 			getEntityCostTooltip(template, data.player),
+			getResourceDropsiteTooltip(template),
 			getGarrisonTooltip(template),
 			getPopulationBonusTooltip(template),
 			showTemplateViewerOnRightClickTooltip(template)
@@ -987,7 +988,8 @@ g_SelectionPanels.Training = {
 				getResistanceTooltip,
 				getGarrisonTooltip,
 				getProjectilesTooltip,
-				getSpeedTooltip
+				getSpeedTooltip,
+				getResourceDropsiteTooltip
 			].map(func => func(template)));
 
 		tooltips.push(showTemplateViewerOnRightClickTooltip());
