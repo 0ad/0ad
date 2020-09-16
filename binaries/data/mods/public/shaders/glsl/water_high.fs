@@ -48,8 +48,7 @@ uniform sampler2D normalMap;
 uniform sampler2D normalMap2;
 
 #if USE_FANCY_EFFECTS
-	uniform sampler2D waterEffectsTexNorm;
-	uniform sampler2D waterEffectsTexOther;
+	uniform sampler2D waterEffectsTex;
 #endif
 
 uniform vec4 waveParams1; // wavyEffect, BaseScale, Flattenism, Basebump
@@ -164,7 +163,7 @@ void main()
 	vec3 normal = normalize(mix(vec3(0.0, 1.0, 0.0), ww1, clamp(baseBump + fwaviness / flattenism, 0.0, 1.0)));
 
 #if USE_FANCY_EFFECTS
-	vec4 fancyeffects = texture2D(waterEffectsTexNorm, gl_FragCoord.xy / screenSize);
+	vec4 fancyeffects = texture2D(waterEffectsTex, gl_FragCoord.xy / screenSize);
 	normal = mix(vec3(0.0, 1.0, 0.0), normal, 0.5 + waterInfo.r / 2.0);
 	normal.xz = mix(normal.xz, fancyeffects.rb, fancyeffects.a / 2.0);
 #else
@@ -339,8 +338,6 @@ void main()
 #endif
 
 #if USE_FANCY_EFFECTS
-	vec4 FoamEffects = texture2D(waterEffectsTexOther, gl_FragCoord.xy / screenSize);
-
 	vec3 foam1 = texture2D(normalMap, (normalCoords.st + normalCoords.zw * BigMovement * waviness / 10.0) * (baseScale - waviness / wavyEffect)).aaa;
 	vec3 foam2 = texture2D(normalMap2, (normalCoords.st + normalCoords.zw * BigMovement * waviness / 10.0) * (baseScale - waviness / wavyEffect)).aaa;
 	vec3 foam3 = texture2D(normalMap, normalCoords.st / 6.0 - normalCoords.zw * 0.02).aaa;
@@ -350,7 +347,7 @@ void main()
 
 	foam1.x = abs(foaminterp.x * WindCosSin.x) + abs(foaminterp.z * WindCosSin.y);
 
-	color += FoamEffects.r * FoamEffects.a * 0.4 + pow(foam1.x * (3.0 + waviness), 2.6 - waviness / 5.5);
+	color += fancyeffects.g + pow(foam1.x * (3.0 + waviness), 2.6 - waviness / 5.5);
 #endif
 
 	float alpha = clamp(depth, 0.0, 1.0);

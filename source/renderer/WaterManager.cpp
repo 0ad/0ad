@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -125,8 +125,7 @@ WaterManager::WaterManager()
 	m_NeedInfoUpdate = true;
 
 	m_depthTT = 0;
-	m_FancyTextureNormal = 0;
-	m_FancyTextureOther = 0;
+	m_FancyTexture = 0;
 	m_FancyTextureDepth = 0;
 	m_ReflFboDepthTexture = 0;
 	m_RefrFboDepthTexture = 0;
@@ -162,8 +161,7 @@ WaterManager::~WaterManager()
 		return;
 
 	glDeleteTextures(1, &m_depthTT);
-	glDeleteTextures(1, &m_FancyTextureNormal);
-	glDeleteTextures(1, &m_FancyTextureOther);
+	glDeleteTextures(1, &m_FancyTexture);
 	glDeleteTextures(1, &m_FancyTextureDepth);
 	glDeleteTextures(1, &m_ReflFboDepthTexture);
 	glDeleteTextures(1, &m_RefrFboDepthTexture);
@@ -267,15 +265,8 @@ int WaterManager::LoadWaterTextures()
 	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, (GLsizei)m_RefTextureSize, (GLsizei)m_RefTextureSize, 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
 
 	// Create the Fancy Effects texture
-	glGenTextures(1, &m_FancyTextureNormal);
-	glBindTexture(GL_TEXTURE_2D, m_FancyTextureNormal);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-	glGenTextures(1, &m_FancyTextureOther);
-	glBindTexture(GL_TEXTURE_2D, m_FancyTextureOther);
+	glGenTextures(1, &m_FancyTexture);
+	glBindTexture(GL_TEXTURE_2D, m_FancyTexture);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -331,8 +322,7 @@ int WaterManager::LoadWaterTextures()
 
 	pglGenFramebuffersEXT(1, &m_FancyEffectsFBO);
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FancyEffectsFBO);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_FancyTextureNormal, 0);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT1_EXT, GL_TEXTURE_2D, m_FancyTextureOther, 0);
+	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_FancyTexture, 0);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_FancyTextureDepth, 0);
 
 	ogl_WarnIfError();
@@ -358,10 +348,7 @@ int WaterManager::LoadWaterTextures()
 // Resize: Updates the fancy water textures.
 void WaterManager::Resize()
 {
-	glBindTexture(GL_TEXTURE_2D, m_FancyTextureNormal);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)g_Renderer.GetWidth(), (GLsizei)g_Renderer.GetHeight(), 0,  GL_RGBA, GL_UNSIGNED_SHORT, NULL);
-
-	glBindTexture(GL_TEXTURE_2D, m_FancyTextureOther);
+	glBindTexture(GL_TEXTURE_2D, m_FancyTexture);
 	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)g_Renderer.GetWidth(), (GLsizei)g_Renderer.GetHeight(), 0,  GL_RGBA, GL_UNSIGNED_SHORT, NULL);
 
 	glBindTexture(GL_TEXTURE_2D, m_FancyTextureDepth);
@@ -878,8 +865,8 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FancyEffectsFBO);
 
-	GLuint attachments[2] = { GL_COLOR_ATTACHMENT0_EXT, GL_COLOR_ATTACHMENT1_EXT };
-	pglDrawBuffers(2, attachments);
+	GLuint attachments[1] = { GL_COLOR_ATTACHMENT0_EXT };
+	pglDrawBuffers(1, attachments);
 
 	glClearColor(0.0f,0.0f, 0.0f,0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

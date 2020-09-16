@@ -36,8 +36,7 @@ void main()
 	
 	vec3 foam = texture2D(foamTex, -gl_TexCoord[0].xy/vec2(2.5,7.0) + vec2(0.05,-0.3)*-cos(ttime/2.0)).rbg;
 	foam *= texture2D(foamTex, -gl_TexCoord[0].xy/5.0 + vec2(0.8,-0.8) + vec2(-0.05,-0.25)*-cos(ttime/2.0)*1.2).rbg;
+	Tex.g = foamAlpha * clamp(foam.r * 3.0, 0.0, 1.0) * 0.4;
 
-	gl_FragData[0] = vec4(Tex);
-	gl_FragData[1] = vec4(foam*3.0,foamAlpha);
-	return;
+	gl_FragColor = Tex;
 }

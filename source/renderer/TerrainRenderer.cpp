@@ -747,8 +747,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 
 	if (WaterMgr->m_WaterFancyEffects)
 	{
-		m->fancyWaterShader->BindTexture(str_waterEffectsTexNorm, WaterMgr->m_FancyTextureNormal);
-		m->fancyWaterShader->BindTexture(str_waterEffectsTexOther, WaterMgr->m_FancyTextureOther);
+		m->fancyWaterShader->BindTexture(str_waterEffectsTex, WaterMgr->m_FancyTexture);
 	}
 
 	if (WaterMgr->m_WaterRealDepth)
