@@ -1700,9 +1700,10 @@ void CRenderer::RenderScene(Scene& scene)
 
 				scene.EnumerateObjects(refractionCamera.GetFrustum(), this);
 			}
+
+			// Render the waves to the Fancy effects texture
+			m_WaterManager->RenderWaves(frustum);
 		}
-		// Render the waves to the Fancy effects texture
-		m_WaterManager->RenderWaves(frustum);
 	}
 
 	m_CurrentCullGroup = -1;
