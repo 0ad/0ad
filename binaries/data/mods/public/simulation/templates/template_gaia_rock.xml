@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_gaia_geo">
+<Entity parent="template_gaia">
+  <Footprint>
+    <Circle radius="5.0"/>
+    <Height>3.5</Height>
+  </Footprint>
   <Identity>
     <GenericName>Stone Quarry</GenericName>
     <Tooltip>Quarry rock for stone.</Tooltip>
@@ -9,6 +13,12 @@
     <Type>stone</Type>
     <Color r="170" g="170" b="170"/>
   </Minimap>
+  <Obstruction>
+    <Static width="7.0" depth="7.0"/>
+  </Obstruction>
+  <Position>
+    <Anchor>pitch-roll</Anchor>
+  </Position>
   <ResourceSupply>
     <KillBeforeGather>false</KillBeforeGather>
     <Amount>1000</Amount>
