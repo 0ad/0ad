@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_gaia_flora_tree_fruit">
+<Entity parent="template_gaia_fruit">
   <Identity>
-    <SpecificName>Apple Tree</SpecificName>
+    <SpecificName>Apple</SpecificName>
   </Identity>
+  <ResourceSupply>
+    <Amount>400</Amount>
+  </ResourceSupply>
   <VisualActor>
     <Actor>flora/trees/apple_bloom.xml</Actor>
   </VisualActor>

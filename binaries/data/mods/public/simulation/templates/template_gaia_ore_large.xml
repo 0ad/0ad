@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_gaia_geo_rock">
+<Entity parent="template_gaia_ore">
   <Footprint>
     <Circle radius="10.0"/>
     <Height>3.5</Height>
@@ -11,14 +11,8 @@
     <Amount>5000</Amount>
     <MaxGatherers>24</MaxGatherers>
   </ResourceSupply>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/resource/sel_stone.xml</select>
-    </SoundGroups>
-  </Sound>
   <StatusBars>
-    <BarWidth>6.0</BarWidth>
-    <BarHeight>0.6</BarHeight>
-    <HeightOffset>8.0</HeightOffset>
+    <BarWidth>5.0</BarWidth>
+    <BarHeight>0.5</BarHeight>
   </StatusBars>
 </Entity>

@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia">
+  <Footprint>
+    <Circle radius="2.5"/>
+    <Height>15.0</Height>
+  </Footprint>
   <Identity>
-    <Classes datatype="tokens">ForestPlant</Classes>
-    <Icon>gaia/flora_tree_generic.png</Icon>
+    <GenericName>Tree</GenericName>
     <Tooltip>Chop trees for wood.</Tooltip>
+    <Icon>gaia/flora_tree_generic.png</Icon>
   </Identity>
   <Minimap>
     <Type>wood</Type>
@@ -11,12 +15,12 @@
   </Minimap>
   <Obstruction>
     <Static width="1.6" depth="1.6"/>
-    <!-- Trees are deleted as a workaround for gates until random maps are smart enough to not place trees inside walls -->
+    <!-- Trees are deleted as a workaround for gates until random maps are smart enough to not place trees inside walls. -->
     <DeleteUponConstruction>true</DeleteUponConstruction>
   </Obstruction>
   <ResourceSupply>
     <KillBeforeGather>false</KillBeforeGather>
-    <Amount>200</Amount>
+    <Amount>1</Amount>
     <Type>wood.tree</Type>
     <MaxGatherers>8</MaxGatherers>
   </ResourceSupply>
@@ -34,6 +38,11 @@
       <select>interface/select/resource/sel_tree.xml</select>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <BarWidth>3.0</BarWidth>
+    <BarHeight>0.5</BarHeight>
+    <HeightOffset>10.0</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <SelectionShape>
       <Footprint/>

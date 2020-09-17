@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_gaia_geo">
+<Entity parent="template_gaia">
+  <Footprint>
+    <Circle radius="5.0"/>
+    <Height>3.5</Height>
+  </Footprint>
   <Identity>
     <GenericName>Metal Mine</GenericName>
     <Tooltip>Mine ore for metal.</Tooltip>
@@ -9,6 +13,12 @@
     <Type>metal</Type>
     <Color r="227" g="159" b="12"/>
   </Minimap>
+  <Obstruction>
+    <Static width="7.0" depth="7.0"/>
+  </Obstruction>
+  <Position>
+    <Anchor>pitch-roll</Anchor>
+  </Position>
   <ResourceSupply>
     <KillBeforeGather>false</KillBeforeGather>
     <Amount>1000</Amount>

@@ -347,6 +347,11 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 			ret.resourceGatherRates[type] = getEntityValue("ResourceGatherer/Rates/"+ type) * baseSpeed;
 	}
 
+	if (template.ResourceDropsite)
+		ret.resourceDropsite = {
+			"types": template.ResourceDropsite.Types.split(" ")
+		};
+
 	if (template.ResourceTrickle)
 	{
 		ret.resourceTrickle = {

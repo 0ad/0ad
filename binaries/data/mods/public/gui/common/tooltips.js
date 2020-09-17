@@ -927,6 +927,7 @@ function getEntityNames(template)
 	});
 
 }
+
 function getEntityNamesFormatted(template)
 {
 	if (!template.name.specific)
@@ -987,6 +988,17 @@ function getLootTooltip(template)
 	return sprintf(translate("%(label)s %(details)s"), {
 		"label": headerFont(translate("Loot:")),
 		"details": lootLabels.join("  ")
+	});
+}
+
+function getResourceDropsiteTooltip(template)
+{
+	if (!template || !template.resourceDropsite || !template.resourceDropsite.types)
+		return "";
+
+	return sprintf(translate("%(label)s %(icons)s"), {
+		"label": headerFont(translate("Dropsite for:")),
+		"icons": template.resourceDropsite.types.map(type => resourceIcon(type)).join("  ")
 	});
 }
 

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_gaia_flora_tree_fruit">
+<Entity parent="template_gaia_fruit">
   <Identity>
-    <SpecificName>Olive Tree</SpecificName>
+    <SpecificName>Olive</SpecificName>
   </Identity>
+  <ResourceSupply>
+    <Amount>400</Amount>
+  </ResourceSupply>
   <VisualActor>
     <Actor>flora/trees/olive.xml</Actor>
   </VisualActor>

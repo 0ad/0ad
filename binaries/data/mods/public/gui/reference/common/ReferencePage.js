@@ -51,6 +51,7 @@ ReferencePage.prototype.IconPath = "session/portraits/";
  * The functions listed are defined in gui/common/tooltips.js
  */
 ReferencePage.prototype.StatsFunctions = [
+	getResourceDropsiteTooltip,
 	getHealthTooltip,
 	getAttackTooltip,
 	getHealerTooltip,
