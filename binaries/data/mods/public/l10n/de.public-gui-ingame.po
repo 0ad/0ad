@@ -42,6 +42,7 @@
 # Maximilian Wagenbach <foaly@posteo.de>, 2016-2017
 # Martin H <pilino1234@zoho.eu>, 2016
 # Michael Hecht <arachnovobica.mh@googlemail.com>, 2019
+# Michał Trzebiatowski <michtrz@gmail.com>, 2020
 # Nico Laus <omaoma75@web.de>, 2017
 # nylki, 2013
 # Thelxinoe, 2015
@@ -76,8 +77,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-11 07:09+0000\n"
-"PO-Revision-Date: 2020-09-11 13:17+0000\n"
-"Last-Translator: Maximilian Wagenbach <foaly@posteo.de>\n"
+"PO-Revision-Date: 2020-09-14 09:42+0000\n"
+"Last-Translator: Michał Trzebiatowski <michtrz@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -867,7 +868,7 @@ msgstr "Du wurdest von %(attacker)s angegriffen!"
 #: gui/session/chat/ChatMessageFormatSimulation.js:38
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr ""
+msgstr "%(player)s tauschte %(amountGiven)s für %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:70
 #, javascript-format
@@ -1573,7 +1574,7 @@ msgstr "Eroberungspunkte"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
 msgid "Attack and Resistance"
-msgstr ""
+msgstr "Angriff und Widerstandsfähigkeit"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
 msgid "Experience"

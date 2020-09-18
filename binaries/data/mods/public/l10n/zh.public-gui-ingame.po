@@ -55,8 +55,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-11 07:09+0000\n"
-"PO-Revision-Date: 2020-09-11 13:17+0000\n"
-"Last-Translator: helinb <1696060289@qq.com>\n"
+"PO-Revision-Date: 2020-09-17 00:41+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -514,7 +514,7 @@ msgstr "Shift + 单击"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr ""
+msgstr "原产地交易市场。\n右键单击以取消贸易路线。"
 
 #: gui/session/unit_actions.js:638
 msgid "Origin trade market."
@@ -843,7 +843,7 @@ msgstr "你正被 %(attacker)s 攻击!"
 #: gui/session/chat/ChatMessageFormatSimulation.js:38
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr ""
+msgstr "%(player)s以%(amountGiven)s换取%(amountGained)s。"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:70
 #, javascript-format
@@ -1227,7 +1227,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: 查看历史/ 建筑树\n将重新打开上次记录。"
 
 #: gui/session/top_panel/CounterManager.js:100
 #, javascript-format
@@ -1540,7 +1540,7 @@ msgstr "捕获点"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
 msgid "Attack and Resistance"
-msgstr ""
+msgstr "进攻与抵抗"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
 msgid "Experience"
