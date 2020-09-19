@@ -26,6 +26,7 @@
 # Martin H <pilino1234@zoho.eu>, 2016
 # Michael Hecht <arachnovobica.mh@googlemail.com>, 2019
 # Michael Vetter <jubalh@openmailbox.org>, 2016
+# Michał Trzebiatowski <michtrz@gmail.com>, 2020
 # MineplayerHD Youtube <leonstar03@gmail.com>, 2019
 # Nels Kautza <nels-kautza@web.de>, 2020
 # Nicklas Wiegandt <nicklas@wiegandt.net>, 2015
@@ -46,8 +47,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-28 07:10+0000\n"
-"PO-Revision-Date: 2020-08-28 10:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-09-14 09:05+0000\n"
+"Last-Translator: Michał Trzebiatowski <michtrz@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -140,7 +141,7 @@ msgstr "Stoa"
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 msgid "Train Healers and research healing technologies."
-msgstr "Trainiere Heiler und erforsche Heilungstechnologien."
+msgstr "Bilde Heiler und erforsche Heilungstechnologien."
 
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -333,7 +334,7 @@ msgstr "Arsenal"
 
 #: simulation/templates/template_structure_military_barracks.xml:28
 msgid "Train Citizen Soldiers and research technologies."
-msgstr "Trainiere Bürgersoldaten und erforsche Technologien."
+msgstr "Bilde Bürgersoldaten und erforsche Technologien."
 
 #: simulation/templates/template_structure_military_barracks.xml:29
 #: simulation/templates/template_structure_military_barracks.xml:26
@@ -383,7 +384,7 @@ msgstr "Erforsche Angriff- und Rüstungstechnologien."
 #: simulation/templates/template_structure_military_forge.xml:26
 #: simulation/templates/template_structure_military_forge.xml:22
 msgid "Forge"
-msgstr ""
+msgstr "Schmiede"
 
 #: simulation/templates/template_structure_military_fortress.xml:78
 msgid ""
@@ -616,7 +617,7 @@ msgstr "Prytaneion"
 
 #: simulation/templates/structures/athen_prytaneion.xml:24
 msgid "Train Heroes and research technologies."
-msgstr "Trainiere Helden und erforsche Technologien."
+msgstr "Bilde Helden und erforsche Technologien."
 
 #: simulation/templates/structures/athen_prytaneion.xml:26
 #: simulation/templates/structures/spart_gerousia.xml:26
@@ -888,7 +889,7 @@ msgstr "Baue Fischerboote, um Nahrung zu sammeln und Handelsschiffe, um mit ande
 
 #: simulation/templates/structures/cart_embassy.xml:19
 msgid "Train Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Bilde Söldner aus und erforsche Söldnertechnologien."
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:17
 msgid "Celtic Embassy"
@@ -896,7 +897,7 @@ msgstr "Keltische Botschaft"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:18
 msgid "Train Celtic Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Bilde keltische Söldner aus und erforsche Söldnertechnologien."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:10
 msgid "Iberian Embassy"
@@ -904,7 +905,7 @@ msgstr "Iberische Botschaft"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:11
 msgid "Train Iberian Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Bilde iberische Söldner aus und erforsche Söldnertechnologien."
 
 #: simulation/templates/structures/cart_embassy_italic.xml:17
 msgid "Italic Embassy"
@@ -912,7 +913,7 @@ msgstr "Italische Botschaft"
 
 #: simulation/templates/structures/cart_embassy_italic.xml:18
 msgid "Train Italic Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Bilde italische Söldner aus und erforsche Söldnertechnologien."
 
 #: simulation/templates/structures/cart_farmstead.xml:8
 msgid "Aḥuzāh"
@@ -978,7 +979,7 @@ msgstr "Maqdaš"
 
 #: simulation/templates/structures/cart_temple.xml:15
 msgid "Train Healers and Champions and research healing technologies."
-msgstr "Trainiere Heiler und Gardisten und erforsche Heilungstechnologien."
+msgstr "Bilde Heiler und Gardisten und erforsche Heilungstechnologien."
 
 #: simulation/templates/structures/cart_tophet.xml:18
 msgid "Sacrificial Temple"
@@ -990,7 +991,7 @@ msgstr "Tofet"
 
 #: simulation/templates/structures/cart_tophet.xml:20
 msgid "Train Healers and Champion Cavalry and research healing technologies."
-msgstr ""
+msgstr "Bilde Heiler und Kavalleriegardisten und erforsche Heilungstechnologien."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -1261,7 +1262,7 @@ msgstr "Pr-ʿIprmk"
 #: simulation/templates/structures/kush_temple.xml:10
 msgid ""
 "Train Healers and Apedamak Champions and research healing technologies."
-msgstr "Trainiere Heiler und Apedemakgardisten und erforsche Heilungstechnologien."
+msgstr "Bilde Heiler und Apedemakgardisten und erforsche Heilungstechnologien."
 
 #: simulation/templates/structures/kush_temple.xml:11
 msgid "TempleOfApedemak"
@@ -1277,7 +1278,7 @@ msgstr "Pr-ʿImn"
 
 #: simulation/templates/structures/kush_temple_amun.xml:30
 msgid "Train Healers and Amun Champions and research healing technologies."
-msgstr "Trainiere Heiler und Amongardisten und erforsche Heilungstechnologien."
+msgstr "Bilde Heiler und Amongardisten und erforsche Heilungstechnologien."
 
 #: simulation/templates/structures/kush_temple_amun.xml:31
 msgid "TempleOfAmun"
@@ -1639,7 +1640,7 @@ msgstr "Stathmos tōn Elepantōn"
 msgid ""
 "Train Champions and research technologies. Garrison Soldiers for additional "
 "arrows."
-msgstr "Trainiere Gardisten und erforsche Technologien. Quartiere Soldaten für zusätzliche Pfeile ein."
+msgstr "Bilde Gardisten und erforsche Technologien. Quartiere Soldaten für zusätzliche Pfeile ein."
 
 #: simulation/templates/structures/ptol_house.xml:19
 msgid ""

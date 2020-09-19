@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-04 07:09+0000\n"
-"PO-Revision-Date: 2020-09-04 08:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-09-15 03:08+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +40,7 @@ msgstr "印度、伊朗和库什具有射箭传统，喜欢在战斗中大量投
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "弓兵训练时间 -10% ，攻击范围 +8 ，远程攻击速度 -10% 。"
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -541,7 +541,7 @@ msgstr "肥料"
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr ""
+msgstr "高卢人的发明，加快收割谷物。"
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
 msgid "Workers +15% grain gather rate."
@@ -549,7 +549,7 @@ msgstr "工人谷物采集效率 +15%  。"
 
 #: simulation/data/technologies/gather_farming_harvester.jsongenericName
 msgid "Harvesting Machine"
-msgstr ""
+msgstr "丰收机械"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
@@ -1418,7 +1418,7 @@ msgstr "迦太基人把他们的城墙修筑成三堵同心圆结构，这些城
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "城墙的建造时间 +100% 、石头花费 +100% 、而血量 +200% 。"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -1444,7 +1444,7 @@ msgstr "希腊人使用来自于早期迈锡尼时代的石头建筑。"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "建筑生命值 + 10% ， 捕获点 + 10% 。"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -1456,15 +1456,15 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr ""
+msgstr "印度是大象之乡。 象战源于印度，并持续数千年。 地中海东部地区的大象也来源于印度，而印度诸王能部署大量战象。"
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "象兵的花费和训练时间 -30% 。"
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "大象训练"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -1544,7 +1544,7 @@ msgstr "斯巴达从小就被编入团队并进行军事训练，以成为最高
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "冠勇矛兵生命值 +25% ，训练时间 +5% 。"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -1583,7 +1583,7 @@ msgstr "雅典长墙"
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "市政建筑：建造时间 -20% ， 血量 -20% ，占领点 -20% 。"
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -1607,11 +1607,11 @@ msgstr "神圣教导"
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "波斯阿契美尼德王朝维持着一支由一万人精锐组成的精英军团，被希腊人称为“不死军”（长生军）。"
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "冠勇盾步兵训练时间 -50% ，生命值 -10% 。"
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -1726,7 +1726,7 @@ msgstr "西彼拉占语集"
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
 msgid "Traditional Army vs Reform Army"
-msgstr ""
+msgstr "传统 vs 军改"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsondescription
 msgid ""
@@ -1737,7 +1737,7 @@ msgstr "自亚历山大大帝开始，希腊的文化逐渐变为整个帝国的
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "市政中心生命值和占领点 +100% ，箭矢攻击加倍。"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -1810,7 +1810,7 @@ msgstr "银盾兵，或称 Argyraspidai ，是马其顿军队中的精锐重装�
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr ""
+msgstr "将持盾冠勇步兵升级为银盾，提升血量和防御。"
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"
