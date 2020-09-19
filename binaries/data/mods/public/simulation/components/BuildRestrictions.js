@@ -92,8 +92,11 @@ BuildRestrictions.prototype.CheckPlacement = function()
 		"translateParameters": ["name"],
 	};
 
-	// TODO: AI has no visibility info
 	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	if (!cmpPlayer)
+		return result; // Fail
+
+	// TODO: AI has no visibility info
 	if (!cmpPlayer.IsAI())
 	{
 		// Check whether it's in a visible or fogged region
@@ -164,9 +167,8 @@ BuildRestrictions.prototype.CheckPlacement = function()
 
 	// Check territory restrictions
 	var cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
-	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	if (!(cmpTerritoryManager && cmpPlayer && cmpPosition && cmpPosition.IsInWorld()))
+	if (!cmpTerritoryManager || !cmpPosition || !cmpPosition.IsInWorld())
 		return result;	// Fail
 
 	var pos = cmpPosition.GetPosition2D();
@@ -239,7 +241,6 @@ BuildRestrictions.prototype.CheckPlacement = function()
 	if (this.template.Distance)
 	{
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 		var cat = this.template.Distance.FromClass;
 
 		var filter = function(id)

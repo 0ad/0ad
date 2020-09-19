@@ -303,6 +303,8 @@ ProductionQueue.prototype.IsTechnologyResearchedOrInProgress = function(tech)
 		return false;
 
 	let cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	if (!cmpTechnologyManager)
+		return false;
 
 	let template = TechnologyTemplates.Get(tech);
 	if (template.top)
@@ -323,6 +325,8 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 	// TODO: there should be a way for the GUI to determine whether it's going
 	// to be possible to add a batch (based on resource costs and length limits).
 	let cmpPlayer = QueryOwnerInterface(this.entity);
+	if (!cmpPlayer)
+		return;
 
 	if (this.queue.length < this.MaxQueueSize)
 	{
@@ -376,7 +380,8 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			{
 				let unitCategory = template.TrainingRestrictions.Category;
 				let cmpPlayerEntityLimits = QueryOwnerInterface(this.entity, IID_EntityLimits);
-				cmpPlayerEntityLimits.ChangeCount(unitCategory, count);
+				if (cmpPlayerEntityLimits)
+					cmpPlayerEntityLimits.ChangeCount(unitCategory, count);
 			}
 
 			let buildTime = ApplyValueModificationsToTemplate(
@@ -718,13 +723,12 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 		// since it will be increased by EntityLimits.OnGlobalOwnershipChanged function,
 		// i.e. we replace a 'trained' entity by 'alive' one.
 		// Must be done after spawn check so EntityLimits decrements only if unit spawns.
-		let cmpTrainingRestrictions = Engine.QueryInterface(ent, IID_TrainingRestrictions);
-		if (cmpTrainingRestrictions)
+		if (cmpPlayerEntityLimits)
 		{
-			let unitCategory = cmpTrainingRestrictions.GetCategory();
-			cmpPlayerEntityLimits.ChangeCount(unitCategory, -1);
+			let cmpTrainingRestrictions = Engine.QueryInterface(ent, IID_TrainingRestrictions);
+			if (cmpTrainingRestrictions)
+				cmpPlayerEntityLimits.ChangeCount(cmpTrainingRestrictions.GetCategory(), -1);
 		}
-
 		cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
 
 		if (cmpPlayerStatisticsTracker)
@@ -773,11 +777,15 @@ ProductionQueue.prototype.ProgressTimeout = function(data)
 	// Check if the production is paused (eg the entity is garrisoned)
 	if (this.paused)
 		return;
+
+	let cmpPlayer = QueryOwnerInterface(this.entity);
+	if (!cmpPlayer)
+		return;
+
 	// Allocate available time to as many queue items as it takes
 	// until we've used up all the time (so that we work accurately
 	// with items that take fractions of a second).
 	let time = this.ProgressInterval;
-	let cmpPlayer = QueryOwnerInterface(this.entity);
 	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 
 	while (time > 0 && this.queue.length)
@@ -815,7 +823,11 @@ ProductionQueue.prototype.ProgressTimeout = function(data)
 			{
 				// Mark the research as started.
 				let cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-				cmpTechnologyManager.StartedResearch(item.technologyTemplate, true);
+				if (cmpTechnologyManager)
+					cmpTechnologyManager.StartedResearch(item.technologyTemplate, true);
+				else
+					warn("Failed to start researching " + item.technologyTemplate + ": No TechnologyManager available.");
+
 				this.SetAnimation("researching");
 			}
 
@@ -877,13 +889,16 @@ ProductionQueue.prototype.ProgressTimeout = function(data)
 		else if (item.technologyTemplate)
 		{
 			let cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-			cmpTechnologyManager.ResearchTechnology(item.technologyTemplate);
+			if (cmpTechnologyManager)
+				cmpTechnologyManager.ResearchTechnology(item.technologyTemplate);
+			else
+				warn("Failed to stop researching " + item.technologyTemplate + ": No TechnologyManager available.");
+
 			this.SetAnimation("idle");
 			let template = TechnologyTemplates.Get(item.technologyTemplate);
 			if (template && template.soundComplete)
 			{
 				let cmpSoundManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_SoundManager);
-
 				if (cmpSoundManager)
 					cmpSoundManager.PlaySoundGroup(template.soundComplete, this.entity);
 			}

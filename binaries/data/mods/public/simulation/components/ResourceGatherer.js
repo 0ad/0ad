@@ -358,7 +358,8 @@ ResourceGatherer.prototype.OnGlobalInitGame = function(msg)
 
 ResourceGatherer.prototype.OnMultiplierChanged = function(msg)
 {
-	if (msg.player == QueryOwnerInterface(this.entity, IID_Player).GetPlayerID())
+	let cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	if (cmpPlayer && msg.player == cmpPlayer.GetPlayerID())
 		this.RecalculateGatherRatesAndCapacities();
 };
 
