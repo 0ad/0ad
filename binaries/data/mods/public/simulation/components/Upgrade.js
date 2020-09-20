@@ -230,7 +230,7 @@ Upgrade.prototype.Upgrade = function(template)
 	let cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 
 	this.expendedResources = this.GetResourceCosts(template);
-	if (!cmpPlayer.TrySubtractResources(this.expendedResources))
+	if (!cmpPlayer || !cmpPlayer.TrySubtractResources(this.expendedResources))
 	{
 		this.expendedResources = {};
 		return false;

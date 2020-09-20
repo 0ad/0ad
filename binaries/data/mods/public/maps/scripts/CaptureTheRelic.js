@@ -38,7 +38,7 @@ Trigger.prototype.CheckCaptureTheRelicVictory = function(data)
 
 	if (data.to == -1)
 	{
-		warn("Relic entity " + data.entity + " has been destroyed");
+		warn("Relic entity " + data.entity + " has been destroyed.");
 		this.relics.splice(this.relics.indexOf(data.entity), 1);
 	}
 	else
@@ -130,6 +130,14 @@ Trigger.prototype.StartCaptureTheRelicCountdown = function(winningPlayers)
 	}
 
 	let cmpPlayer = QueryOwnerInterface(this.relics[0], IID_Player);
+	if (!cmpPlayer)
+	{
+		warn("Relic entity " + this.relics[0] + " has no owner.");
+		this.relics.splice(0, 1);
+
+		this.CheckCaptureTheRelicCountdown();
+		return;
+	}
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
 	let captureTheRelicDuration = cmpEndGameManager.GetGameSettings().relicDuration;
 

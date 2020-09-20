@@ -34,7 +34,8 @@ Looter.prototype.Collect = function(targetEntity)
 
 	// Transfer resources
 	var cmpPlayer = QueryOwnerInterface(this.entity);
-	cmpPlayer.AddResources(resources);
+	if (cmpPlayer)
+		cmpPlayer.AddResources(resources);
 
 	// Update statistics
 	var cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);

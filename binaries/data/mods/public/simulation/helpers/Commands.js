@@ -296,7 +296,7 @@ var g_Commands = {
 			if (unitCategory)
 			{
 				var cmpPlayerEntityLimits = QueryOwnerInterface(ent, IID_EntityLimits);
-				if (!cmpPlayerEntityLimits.AllowedToTrain(unitCategory, cmd.count))
+				if (cmpPlayerEntityLimits && !cmpPlayerEntityLimits.AllowedToTrain(unitCategory, cmd.count))
 				{
 					if (g_DebugCommands)
 						warn(unitCategory + " train limit is reached: " + uneval(cmd));
@@ -305,7 +305,7 @@ var g_Commands = {
 			}
 
 			var cmpTechnologyManager = QueryOwnerInterface(ent, IID_TechnologyManager);
-			if (!cmpTechnologyManager.CanProduce(cmd.template))
+			if (cmpTechnologyManager && !cmpTechnologyManager.CanProduce(cmd.template))
 			{
 				if (g_DebugCommands)
 					warn("Invalid command: training requires unresearched technology: " + uneval(cmd));
@@ -348,7 +348,7 @@ var g_Commands = {
 		}
 
 		var cmpTechnologyManager = QueryOwnerInterface(cmd.entity, IID_TechnologyManager);
-		if (!cmpTechnologyManager.CanResearch(cmd.template))
+		if (cmpTechnologyManager && !cmpTechnologyManager.CanResearch(cmd.template))
 		{
 			if (g_DebugCommands)
 				warn("Invalid command: Requirements to research technology are not met: " + uneval(cmd));

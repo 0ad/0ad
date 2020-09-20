@@ -211,7 +211,11 @@ Trigger.prototype.StartAnEnemyWave = function()
 		}
 
 		// Don't spawn attackers for defeated players and players that lost their cc after win
-		let playerID = QueryOwnerInterface(point, IID_Player).GetPlayerID();
+		let cmpPlayer = QueryOwnerInterface(point, IID_Player);
+		if (!cmpPlayer)
+			continue;
+
+		let playerID = cmpPlayer.GetPlayerID();
 		let civicCentre = this.playerCivicCenter[playerID];
 		if (!civicCentre)
 			continue;
