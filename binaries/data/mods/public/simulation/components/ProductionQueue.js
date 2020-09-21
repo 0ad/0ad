@@ -514,12 +514,10 @@ ProductionQueue.prototype.RemoveBatch = function(id)
 
 	for (let i = 0; i < this.queue.length; ++i)
 	{
+		// Find the item to remove.
 		let item = this.queue[i];
 		if (item.id != id)
 			continue;
-
-		// Now we've found the item to remove.
-		let cmpPlayer = QueryPlayerIDInterface(item.player);
 
 		// Update entity count in the EntityLimits component.
 		if (item.unitTemplate)
@@ -529,7 +527,8 @@ ProductionQueue.prototype.RemoveBatch = function(id)
 			if (template.TrainingRestrictions)
 			{
 				let cmpPlayerEntityLimits = QueryPlayerIDInterface(item.player, IID_EntityLimits);
-				cmpPlayerEntityLimits.ChangeCount(template.TrainingRestrictions.Category, -item.count);
+				if (cmpPlayerEntityLimits)
+					cmpPlayerEntityLimits.ChangeCount(template.TrainingRestrictions.Category, -item.count);
 			}
 		}
 
@@ -543,18 +542,23 @@ ProductionQueue.prototype.RemoveBatch = function(id)
 				cmpStatisticsTracker.IncreaseResourceUsedCounter(r, -totalCosts[r]);
 		}
 
-		cmpPlayer.AddResources(totalCosts);
+		let cmpPlayer = QueryPlayerIDInterface(item.player);
+		if (cmpPlayer)
+		{
+			cmpPlayer.AddResources(totalCosts);
 
-		// Remove reserved population slots if necessary.
-		if (item.productionStarted && item.unitTemplate)
-			cmpPlayer.UnReservePopulationSlots(item.population * item.count);
+			// Remove reserved population slots if necessary.
+			if (item.productionStarted && item.unitTemplate)
+				cmpPlayer.UnReservePopulationSlots(item.population * item.count);
+		}
 
 		// Mark the research as stopped if we cancel it.
 		if (item.technologyTemplate)
 		{
 			// item.player is used as this.entity's owner may be invalid (deletion, etc.)
 			let cmpTechnologyManager = QueryPlayerIDInterface(item.player, IID_TechnologyManager);
-			cmpTechnologyManager.StoppedResearch(item.technologyTemplate, true);
+			if (cmpTechnologyManager)
+				cmpTechnologyManager.StoppedResearch(item.technologyTemplate, true);
 			this.SetAnimation("idle");
 		}
 
