@@ -81,7 +81,7 @@ function setBiomeHighlands()
 
 function setBiomeEden()
 {
-	g_Gaia.mainHuntableAnimal = "gaia/fauna_rhino";
+	g_Gaia.mainHuntableAnimal = "gaia/fauna_rhinoceros_white";
 	g_Gaia.secondaryHuntableAnimal =  "gaia/fauna_elephant_african_bush";
 }
 
