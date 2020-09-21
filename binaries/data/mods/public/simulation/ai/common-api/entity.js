@@ -33,7 +33,7 @@ m.Template = m.Class({
 			let args = string.split("/");
 			for (let arg of args)
 			{
-				if (value[arg])
+				if (value[arg] != undefined)
 					value = value[arg];
 				else
 				{

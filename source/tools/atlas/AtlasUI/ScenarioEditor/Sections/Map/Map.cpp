@@ -187,8 +187,12 @@ void MapSettingsControl::CreateWidgets()
 		AtObj victoryCondition = AtlasObject::LoadFromJSON(victoryConditionJson);
 		long index = wxWindow::NewControlId();
 		wxString title = wxString::FromUTF8(victoryCondition["Data"]["Title"]);
+		std::string escapedTitle = wxString::FromUTF8(title).Lower().ToStdString();
+		std::replace(escapedTitle.begin(), escapedTitle.end(), ' ', '_');
+		AtObj updateCondition = *(victoryCondition["Data"]["Title"]);
+		updateCondition.setString(escapedTitle.c_str());
 		m_VictoryConditions.insert(std::pair<long, AtObj>(index, victoryCondition));
-		CREATE_CHECKBOX(this, vcGridSizer, title.MakeLower(), "Select " + wxString::FromUTF8(victoryCondition["Data"]["Title"]) + " victory condition.", index);
+		CREATE_CHECKBOX(this, vcGridSizer, title, "Select " + title + " victory condition.", index);
 	}
 
 	victoryConditionSizer->Add(vcGridSizer);
@@ -247,7 +251,9 @@ void MapSettingsControl::ReadFromEngine()
 
 	for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
 	{
-		if (m_MapSettingsVictoryConditions.find(wxString::FromUTF8(vc.second["Data"]["Title"]).Lower().ToStdString()) == m_MapSettingsVictoryConditions.end())
+		std::string escapedTitle = wxString::FromUTF8(vc.second["Data"]["Title"]).Lower().ToStdString();
+		std::replace(escapedTitle.begin(), escapedTitle.end(), ' ', '_');
+		if (m_MapSettingsVictoryConditions.find(escapedTitle) == m_MapSettingsVictoryConditions.end())
 			continue;
 
 		wxCheckBox* checkBox = wxDynamicCast(FindWindow(vc.first), wxCheckBox);
@@ -366,7 +372,11 @@ AtObj MapSettingsControl::UpdateSettingsObject()
 		m_MapSettingsVictoryConditions.erase(name);
 
 	for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
-		INSERT_VICTORY_CONDITION_CHECKBOX(wxString::FromUTF8(vc.second["Data"]["Title"]).Lower().ToStdString(), vc.first)
+	{
+		std::string escapedTitle = wxString::FromUTF8(vc.second["Data"]["Title"]).Lower().ToStdString();
+		std::replace(escapedTitle.begin(), escapedTitle.end(), ' ', '_');
+		INSERT_VICTORY_CONDITION_CHECKBOX(escapedTitle, vc.first)
+	}
 
 #undef INSERT_VICTORY_CONDITION_CHECKBOX
 
