@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:10+0000\n"
-"PO-Revision-Date: 2020-07-24 07:41+0000\n"
+"POT-Creation-Date: 2020-09-18 07:09+0000\n"
+"PO-Revision-Date: 2020-09-18 19:15+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Hindi (http://www.transifex.com/wildfire-games/0ad/language/hi/)\n"
 "MIME-Version: 1.0\n"
@@ -20,8 +20,8 @@ msgstr ""
 "Language: hi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: simulation/templates/template_formation.xml:25
-msgid "Requires at least 2 Soldiers or Siege engines."
+#: simulation/templates/template_formation.xml:26
+msgid "Requires at least 2 Soldiers or Siege Engines."
 msgstr ""
 
 #: simulation/templates/template_gaia.xml:7
@@ -29,7 +29,7 @@ msgid "Gaia"
 msgstr "गैया"
 
 #: simulation/templates/template_gaia_fish.xml:8
-#: simulation/templates/gaia/fauna_fish.xml:4
+#: simulation/templates/gaia/fish/generic.xml:4
 msgid "Fish"
 msgstr "मछली"
 
@@ -37,43 +37,27 @@ msgstr "मछली"
 msgid "Catch fish for food."
 msgstr "भोजन के लिए मछली पकड़ो।"
 
-#: simulation/templates/template_gaia_flora.xml:6
-msgid "Chop trees for wood."
-msgstr "लकड़ी के लिए पेड़ काटना ।"
+#: simulation/templates/template_gaia_fruit.xml:8
+msgid "Fruit"
+msgstr ""
 
-#: simulation/templates/template_gaia_flora_bush.xml:8
-#: simulation/templates/gaia/flora_bush_temperate.xml:4
-#: simulation/templates/gaia/flora_bush_temperate_winter.xml:4
-#: simulation/templates/gaia/flora_bush_tropic.xml:4
-msgid "Bush"
-msgstr "झाड़ी"
-
-#: simulation/templates/template_gaia_flora_bush_berry.xml:4
-#: simulation/templates/template_gaia_flora_tree_fruit.xml:8
+#: simulation/templates/template_gaia_fruit.xml:9
 msgid "Pick fruit for food."
 msgstr "भोजन के लिए फल चुनें।"
 
-#: simulation/templates/template_gaia_flora_tree.xml:8
-msgid "Tree"
-msgstr "पेड़"
-
-#: simulation/templates/template_gaia_geo.xml:8
-msgid "Generic Geology"
-msgstr "सामान्य भूविज्ञान"
-
-#: simulation/templates/template_gaia_geo_mineral.xml:4
+#: simulation/templates/template_gaia_ore.xml:8
 msgid "Metal Mine"
 msgstr "धातु खान"
 
-#: simulation/templates/template_gaia_geo_mineral.xml:5
+#: simulation/templates/template_gaia_ore.xml:9
 msgid "Mine ore for metal."
 msgstr "धातु के लिए खदान मे खनन करना ।"
 
-#: simulation/templates/template_gaia_geo_rock.xml:4
+#: simulation/templates/template_gaia_rock.xml:8
 msgid "Stone Quarry"
 msgstr "पत्थर खदान"
 
-#: simulation/templates/template_gaia_geo_rock.xml:5
+#: simulation/templates/template_gaia_rock.xml:9
 msgid "Quarry rock for stone."
 msgstr "पत्थर के लिए खदान की चट्टान।"
 
@@ -93,11 +77,19 @@ msgstr "खजाना"
 msgid "Collect treasures for resources."
 msgstr ""
 
-#: simulation/templates/template_structure.xml:61
+#: simulation/templates/template_gaia_tree.xml:8
+msgid "Tree"
+msgstr "पेड़"
+
+#: simulation/templates/template_gaia_tree.xml:9
+msgid "Chop trees for wood."
+msgstr "लकड़ी के लिए पेड़ काटना ।"
+
+#: simulation/templates/template_structure.xml:51
 msgid "Structure"
 msgstr "संरचना"
 
-#: simulation/templates/template_unit.xml:43
+#: simulation/templates/template_unit.xml:38
 msgid "Unit"
 msgstr "इकाई"
 
@@ -110,17 +102,17 @@ msgstr ""
 msgid "Wall"
 msgstr ""
 
-#: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
 msgstr "महान अलेक्जेंडर की सेना।"
 
-#: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:25
 msgid "Army of Alexander the Great"
 msgstr "महान अलेक्जेंडर की सेना"
 
-#: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:26
 #: simulation/templates/campaigns/army_mace_standard.xml:21
-#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:29
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:26
 msgid "This is what an army would look like on the Strat Map."
 msgstr "यह एक स्ट्रैट मैप पर एक सेना की तरह दिखता है।"
 
@@ -132,11 +124,11 @@ msgstr "मैसेडोनिया की सेना"
 msgid "Army of Macedon"
 msgstr "मैसेडोन की सेना"
 
-#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:27
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:24
 msgid "Army of Leonidas I."
 msgstr "लियोनिडास I. की सेना "
 
-#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:25
 msgid "Army of Leonidas I"
 msgstr "लियोनिडास I. की सेना "
 
@@ -174,36 +166,36 @@ msgstr "धार्मिक अभयारण्य"
 msgid "Greek Religious Sanctuary"
 msgstr "ग्रीक धार्मिक अभयारण्य"
 
-#: simulation/templates/gaia/fauna_arctic_wolf.xml:4
+#: simulation/templates/gaia/fauna_arctic_wolf.xml:8
 msgid "Arctic Wolf"
 msgstr "आर्कटिक भेड़िया"
 
-#: simulation/templates/gaia/fauna_arctic_wolf.xml:5
-#: simulation/templates/gaia/fauna_wolf.xml:5
+#: simulation/templates/gaia/fauna_arctic_wolf.xml:9
+#: simulation/templates/gaia/fauna_wolf.xml:9
 msgid "Canis lupus"
 msgstr "भेड़िया"
 
-#: simulation/templates/gaia/fauna_bear_black.xml:4
+#: simulation/templates/gaia/fauna_bear_black.xml:8
 msgid "Black Bear"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_bear_black.xml:5
+#: simulation/templates/gaia/fauna_bear_black.xml:9
 msgid "Ursus americanus"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_bear_brown.xml:4
+#: simulation/templates/gaia/fauna_bear_brown.xml:8
 msgid "Brown Bear"
 msgstr "भूरे भालू"
 
-#: simulation/templates/gaia/fauna_bear_brown.xml:5
+#: simulation/templates/gaia/fauna_bear_brown.xml:9
 msgid "Ursus arctos"
 msgstr "भूरे भालू"
 
-#: simulation/templates/gaia/fauna_bear_polar.xml:4
+#: simulation/templates/gaia/fauna_bear_polar.xml:8
 msgid "Polar Bear"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_bear_polar.xml:5
+#: simulation/templates/gaia/fauna_bear_polar.xml:9
 msgid "Ursus maritimus"
 msgstr ""
 
@@ -223,32 +215,32 @@ msgstr "साँड़नी"
 msgid "Camelus dromedarius"
 msgstr "साँड़नी"
 
-#: simulation/templates/gaia/fauna_cattle_bull.xml:4
+#: simulation/templates/gaia/fauna_cattle_bull.xml:8
 msgid "Bull"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_cattle_bull.xml:5
-#: simulation/templates/gaia/fauna_cattle_cow.xml:5
+#: simulation/templates/gaia/fauna_cattle_bull.xml:9
+#: simulation/templates/gaia/fauna_cattle_cow.xml:9
 msgid "Bos taurus taurus"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_cattle_cow.xml:4
+#: simulation/templates/gaia/fauna_cattle_cow.xml:8
 msgid "Cow"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_cattle_sanga.xml:4
+#: simulation/templates/gaia/fauna_cattle_sanga.xml:8
 msgid "Sanga Cattle"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_cattle_sanga.xml:5
+#: simulation/templates/gaia/fauna_cattle_sanga.xml:9
 msgid "Bos taurus africanus"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_cattle_zebu.xml:4
+#: simulation/templates/gaia/fauna_cattle_zebu.xml:8
 msgid "Zebu"
 msgstr "ज़ेबू"
 
-#: simulation/templates/gaia/fauna_cattle_zebu.xml:5
+#: simulation/templates/gaia/fauna_cattle_zebu.xml:9
 msgid "Bos taurus indicus"
 msgstr ""
 
@@ -276,11 +268,11 @@ msgstr "लाल हिरण  "
 msgid "Cervus elaphus"
 msgstr "लाल हिरण"
 
-#: simulation/templates/gaia/fauna_donkey.xml:4
+#: simulation/templates/gaia/fauna_donkey.xml:8
 msgid "Donkey"
 msgstr "गधा"
 
-#: simulation/templates/gaia/fauna_donkey.xml:5
+#: simulation/templates/gaia/fauna_donkey.xml:9
 msgid "Equus africanus asinus"
 msgstr "गधा"
 
@@ -289,11 +281,11 @@ msgid "African Bush Elephant"
 msgstr "अफ्रीकी झाड़ी हाथी"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:12
-#: simulation/templates/gaia/fauna_elephant_african_infant.xml:5
+#: simulation/templates/gaia/fauna_elephant_african_infant.xml:9
 msgid "Loxodonta africana"
 msgstr "अफ्रीकी झाड़ी हाथी"
 
-#: simulation/templates/gaia/fauna_elephant_african_infant.xml:4
+#: simulation/templates/gaia/fauna_elephant_african_infant.xml:8
 msgid "African Bush Elephant Calf"
 msgstr "अफ्रीकी झाड़ी हाथी बछड़ा"
 
@@ -302,11 +294,11 @@ msgid "Asian Elephant"
 msgstr "एशियाई हाथी"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:12
-#: simulation/templates/gaia/fauna_elephant_asian_infant.xml:5
+#: simulation/templates/gaia/fauna_elephant_asian_infant.xml:9
 msgid "Elephas maximus"
 msgstr "एशियाई हाथी"
 
-#: simulation/templates/gaia/fauna_elephant_asian_infant.xml:4
+#: simulation/templates/gaia/fauna_elephant_asian_infant.xml:8
 msgid "Asian Elephant Calf"
 msgstr "एशियाई हाथी बछड़ा"
 
@@ -318,27 +310,19 @@ msgstr "अफ्रीकी वन हाथी"
 msgid "Loxodonta cyclotis"
 msgstr "अफ्रीकी वन हाथी"
 
-#: simulation/templates/gaia/fauna_fish_tilapia.xml:4
-msgid "Tilapia"
-msgstr "तिलापिया"
-
-#: simulation/templates/gaia/fauna_fish_tuna.xml:4
-msgid "Tuna"
-msgstr "टूना"
-
-#: simulation/templates/gaia/fauna_fox_arctic.xml:4
+#: simulation/templates/gaia/fauna_fox_arctic.xml:8
 msgid "Arctic Fox"
 msgstr "आर्कटिक लोमड़ी"
 
-#: simulation/templates/gaia/fauna_fox_arctic.xml:5
+#: simulation/templates/gaia/fauna_fox_arctic.xml:9
 msgid "Vulpes lagopus"
 msgstr "आर्कटिक लोमड़ी"
 
-#: simulation/templates/gaia/fauna_fox_red.xml:4
+#: simulation/templates/gaia/fauna_fox_red.xml:8
 msgid "Red Fox"
 msgstr "लाल लोमड़ी"
 
-#: simulation/templates/gaia/fauna_fox_red.xml:5
+#: simulation/templates/gaia/fauna_fox_red.xml:9
 msgid "Vulpes vulpes"
 msgstr "लाल लोमड़ी"
 
@@ -371,11 +355,11 @@ msgstr "बकरा"
 msgid "Capra aegagrus hircus"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_hippopotamus.xml:25
+#: simulation/templates/gaia/fauna_hippopotamus.xml:20
 msgid "Hippopotamus"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_hippopotamus.xml:26
+#: simulation/templates/gaia/fauna_hippopotamus.xml:21
 msgid "Hippopotamus amphibius"
 msgstr ""
 
@@ -399,12 +383,12 @@ msgstr ""
 msgid "Lioness"
 msgstr "शेरनी"
 
-#: simulation/templates/gaia/fauna_mastiff.xml:4
+#: simulation/templates/gaia/fauna_mastiff.xml:8
 msgid "Mastiff"
 msgstr "एक प्रकार का बड़ा कुत्ता"
 
-#: simulation/templates/gaia/fauna_mastiff.xml:5
-#: simulation/templates/gaia/fauna_wolfhound.xml:5
+#: simulation/templates/gaia/fauna_mastiff.xml:9
+#: simulation/templates/gaia/fauna_wolfhound.xml:9
 msgid "Canis lupus familiaris"
 msgstr ""
 
@@ -416,11 +400,11 @@ msgstr "कस्तूरी बैल"
 msgid "Ovibos moschatus"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_peacock.xml:7
+#: simulation/templates/gaia/fauna_peacock.xml:11
 msgid "Peacock"
 msgstr "मोर"
 
-#: simulation/templates/gaia/fauna_peacock.xml:8
+#: simulation/templates/gaia/fauna_peacock.xml:12
 msgid "Pavo cristatus"
 msgstr "भारतीय मोर"
 
@@ -440,7 +424,7 @@ msgstr "युद्ध सुअर"
 msgid "Piglet"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_pony.xml:4
+#: simulation/templates/gaia/fauna_pony.xml:8
 msgid "Pony"
 msgstr "छोटा घोडा"
 
@@ -484,11 +468,11 @@ msgstr "बाघ"
 msgid "Panthera tigris"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_walrus.xml:26
+#: simulation/templates/gaia/fauna_walrus.xml:21
 msgid "Walrus"
 msgstr "वालरस"
 
-#: simulation/templates/gaia/fauna_walrus.xml:27
+#: simulation/templates/gaia/fauna_walrus.xml:22
 msgid "Odobenus rosmarus"
 msgstr ""
 
@@ -516,11 +500,11 @@ msgstr ""
 msgid "Connochaetes taurinus"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_wolf.xml:4
+#: simulation/templates/gaia/fauna_wolf.xml:8
 msgid "Wolf"
 msgstr "भेड़िया"
 
-#: simulation/templates/gaia/fauna_wolfhound.xml:4
+#: simulation/templates/gaia/fauna_wolfhound.xml:8
 msgid "Wolfhound"
 msgstr "शिकारी कुत्ता"
 
@@ -540,6 +524,7 @@ msgstr "कठोर झाड़ी"
 #: simulation/templates/gaia/flora_bush_berry_02.xml:4
 #: simulation/templates/gaia/flora_bush_berry_03.xml:4
 #: simulation/templates/gaia/flora_bush_berry_autumn_01.xml:4
+#: simulation/templates/gaia/flora_bush_berry_desert.xml:4
 msgid "Berries"
 msgstr "जामुन"
 
@@ -547,17 +532,23 @@ msgstr "जामुन"
 msgid "Grapes"
 msgstr "अंगूर"
 
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
+#: simulation/templates/gaia/flora_bush_temperate_winter.xml:4
+#: simulation/templates/gaia/flora_bush_tropic.xml:4
+msgid "Bush"
+msgstr "झाड़ी"
+
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
-msgid "Acacia Tree"
-msgstr "बादाम वृक्ष"
+msgid "Acacia"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
-msgid "Aleppo Pine Tree"
-msgstr "अलेप्पो देवदार का पेड़"
+msgid "Aleppo Pine"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_apple.xml:4
-msgid "Apple Tree"
-msgstr "सेब का पेड़"
+msgid "Apple"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_bamboo.xml:4
 #: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
@@ -578,6 +569,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
 #: simulation/templates/gaia/flora_tree_baobab_3_mature.xml:8
+#: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
 msgid "Baobab"
 msgstr "अदनसोनिया"
 
@@ -589,13 +581,9 @@ msgstr ""
 msgid "Young Baobab"
 msgstr ""
 
-#: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
-msgid "Dead Baobab"
-msgstr ""
-
 #: simulation/templates/gaia/flora_tree_carob.xml:4
-msgid "Carob Tree"
-msgstr "कैरोब का पेड़"
+msgid "Carob"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
@@ -603,11 +591,8 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_2_young.xml:4
 #: simulation/templates/gaia/flora_tree_cedar_atlas_3_mature.xml:4
-msgid "Atlas Cedar"
-msgstr ""
-
 #: simulation/templates/gaia/flora_tree_cedar_atlas_4_dead.xml:4
-msgid "Dead Atlas Cedar"
+msgid "Atlas Cedar"
 msgstr ""
 
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
@@ -619,34 +604,31 @@ msgstr "क्रेटन खजूर के पेड़"
 #: simulation/templates/gaia/flora_tree_cypress.xml:4
 #: simulation/templates/gaia/flora_tree_cypress_wild.xml:4
 #: simulation/templates/gaia/flora_tree_cypress_windswept.xml:4
-msgid "Cypress Tree"
-msgstr "सरू के वृक्ष"
+msgid "Cypress"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_date_palm.xml:4
+#: simulation/templates/gaia/flora_tree_date_palm_dead.xml:4
+#: simulation/templates/gaia/flora_tree_date_palm_fruit.xml:4
 msgid "Date Palm"
 msgstr "खजूर"
 
-#: simulation/templates/gaia/flora_tree_date_palm_dead.xml:4
-msgid "Dead Palm"
-msgstr ""
-
-#: simulation/templates/gaia/flora_tree_date_palm_fruit.xml:4
-msgid "Fruiting Date Palm"
-msgstr ""
-
 #: simulation/templates/gaia/flora_tree_dead.xml:4
-msgid "Dead Deciduous Tree"
+#: simulation/templates/gaia/flora_tree_temperate.xml:4
+#: simulation/templates/gaia/flora_tree_temperate_autumn.xml:4
+#: simulation/templates/gaia/flora_tree_temperate_winter.xml:4
+msgid "Deciduous Tree"
 msgstr ""
 
 #: simulation/templates/gaia/flora_tree_elm.xml:4
 #: simulation/templates/gaia/flora_tree_elm_dead.xml:4
-msgid "Elm Tree"
+msgid "Elm"
 msgstr ""
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
-msgid "European Beech Tree"
-msgstr "यूरोपीय बीच का वृक्ष"
+msgid "European Beech"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_euro_birch.xml:4
 msgid "Silver Birch"
@@ -658,7 +640,7 @@ msgstr "अंजीर"
 
 #: simulation/templates/gaia/flora_tree_fir.xml:4
 #: simulation/templates/gaia/flora_tree_fir_winter.xml:4
-msgid "Fir Tree"
+msgid "Fir"
 msgstr ""
 
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
@@ -686,8 +668,8 @@ msgstr "भूमध्य फैन पाम"
 #: simulation/templates/gaia/flora_tree_oak_aut_new.xml:4
 #: simulation/templates/gaia/flora_tree_oak_dead.xml:4
 #: simulation/templates/gaia/flora_tree_oak_new.xml:4
-msgid "Oak Tree"
-msgstr "बलूत का पेड़"
+msgid "Oak"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_oak_holly.xml:4
 msgid "Holly Oak"
@@ -699,12 +681,12 @@ msgid "Hungarian Oak"
 msgstr ""
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
-msgid "Large Oak Tree"
-msgstr "बलूत का बड़ा पेड़"
+msgid "Large Oak"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_olive.xml:4
-msgid "Olive Tree"
-msgstr "ज़ैतून का पेड़"
+msgid "Olive"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_palm_areca.xml:4
 msgid "Areca Palm"
@@ -728,7 +710,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_pine.xml:4
 #: simulation/templates/gaia/flora_tree_pine_w.xml:4
-msgid "Pine Tree"
+msgid "Pine"
 msgstr ""
 
 #: simulation/templates/gaia/flora_tree_pine_black.xml:4
@@ -742,23 +724,14 @@ msgid "Maritime Pine"
 msgstr ""
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
-msgid "Poplar Tree"
-msgstr ""
-
 #: simulation/templates/gaia/flora_tree_poplar_dead.xml:4
-msgid "Dead Poplar"
-msgstr ""
-
-#: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
-msgid "Black Poplar Tree"
-msgstr ""
-
 #: simulation/templates/gaia/flora_tree_poplar_lombardy_autumn.xml:4
 msgid "Poplar"
 msgstr ""
 
+#: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 #: simulation/templates/gaia/flora_tree_poplar_lombardy_dead.xml:4
-msgid "Dead Black Poplar Tree"
+msgid "Black Poplar"
 msgstr ""
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
@@ -770,26 +743,28 @@ msgid "Strangler Fig"
 msgstr ""
 
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
-msgid "Tamarix Tree"
+msgid "Tamarix"
 msgstr ""
 
 #: simulation/templates/gaia/flora_tree_teak.xml:8
 msgid "Teak"
 msgstr ""
 
-#: simulation/templates/gaia/flora_tree_temperate.xml:4
-#: simulation/templates/gaia/flora_tree_temperate_autumn.xml:4
-#: simulation/templates/gaia/flora_tree_temperate_winter.xml:4
-msgid "Deciduous Tree"
-msgstr ""
-
 #: simulation/templates/gaia/flora_tree_toona.xml:4
-msgid "Toona Tree"
+msgid "Toona"
 msgstr ""
 
 #: simulation/templates/gaia/flora_tree_tropic_rainforest.xml:4
 msgid "Rainforest Tree"
 msgstr ""
+
+#: simulation/templates/gaia/fish/tilapia.xml:4
+msgid "Tilapia"
+msgstr "तिलापिया"
+
+#: simulation/templates/gaia/fish/tuna.xml:4
+msgid "Tuna"
+msgstr "टूना"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
@@ -882,11 +857,11 @@ msgstr ""
 msgid "Wood Treasure"
 msgstr ""
 
-#: simulation/templates/other/bench.xml:19
+#: simulation/templates/other/bench.xml:14
 msgid "Bench"
 msgstr ""
 
-#: simulation/templates/other/bench.xml:20
+#: simulation/templates/other/bench.xml:15
 msgid "Wooden Bench"
 msgstr ""
 
@@ -908,18 +883,18 @@ msgstr ""
 msgid "Longhouse"
 msgstr ""
 
-#: simulation/templates/other/column_doric.xml:19
-#: simulation/templates/other/column_doric_fallen.xml:19
-#: simulation/templates/other/column_doric_fallen_b.xml:19
+#: simulation/templates/other/column_doric.xml:14
+#: simulation/templates/other/column_doric_fallen.xml:14
+#: simulation/templates/other/column_doric_fallen_b.xml:14
 msgid "Column"
 msgstr ""
 
-#: simulation/templates/other/column_doric.xml:20
+#: simulation/templates/other/column_doric.xml:15
 msgid "Doric Column"
 msgstr ""
 
-#: simulation/templates/other/column_doric_fallen.xml:20
-#: simulation/templates/other/column_doric_fallen_b.xml:20
+#: simulation/templates/other/column_doric_fallen.xml:15
+#: simulation/templates/other/column_doric_fallen_b.xml:15
 msgid "Fallen Doric Column"
 msgstr ""
 
@@ -931,21 +906,21 @@ msgstr ""
 msgid "Ardatašta"
 msgstr ""
 
-#: simulation/templates/other/fence_long.xml:20
-#: simulation/templates/other/fence_short.xml:20
+#: simulation/templates/other/fence_long.xml:15
+#: simulation/templates/other/fence_short.xml:15
 msgid "Fence"
 msgstr ""
 
-#: simulation/templates/other/fence_long.xml:21
+#: simulation/templates/other/fence_long.xml:16
 msgid "Long Wooden Fence"
 msgstr ""
 
-#: simulation/templates/other/fence_short.xml:21
+#: simulation/templates/other/fence_short.xml:16
 msgid "Short Wooden Fence"
 msgstr ""
 
-#: simulation/templates/other/fence_stone.xml:20
-#: simulation/templates/other/fence_stone.xml:21
+#: simulation/templates/other/fence_stone.xml:15
+#: simulation/templates/other/fence_stone.xml:16
 msgid "Stone Fence"
 msgstr ""
 
@@ -981,19 +956,19 @@ msgstr "स्तोआ"
 msgid "Hellenic Stoa"
 msgstr ""
 
-#: simulation/templates/other/obelisk.xml:19
+#: simulation/templates/other/obelisk.xml:14
 msgid "Obelisk"
 msgstr ""
 
-#: simulation/templates/other/obelisk.xml:20
+#: simulation/templates/other/obelisk.xml:15
 msgid "Egyptian Obelisk"
 msgstr ""
 
-#: simulation/templates/other/sele_colonnade.xml:19
+#: simulation/templates/other/sele_colonnade.xml:14
 msgid "Colonnade"
 msgstr ""
 
-#: simulation/templates/other/sele_colonnade.xml:20
+#: simulation/templates/other/sele_colonnade.xml:15
 msgid "Corinthian Colonnade"
 msgstr ""
 
@@ -1010,16 +985,16 @@ msgstr ""
 msgid "Small stall"
 msgstr ""
 
-#: simulation/templates/other/table_rectangle.xml:19
-#: simulation/templates/other/table_square.xml:19
+#: simulation/templates/other/table_rectangle.xml:14
+#: simulation/templates/other/table_square.xml:14
 msgid "Table"
 msgstr "टेबल"
 
-#: simulation/templates/other/table_rectangle.xml:20
+#: simulation/templates/other/table_rectangle.xml:15
 msgid "Rectangle Table"
 msgstr "आयत टेबल"
 
-#: simulation/templates/other/table_square.xml:20
+#: simulation/templates/other/table_square.xml:15
 msgid "Square Table"
 msgstr "चौक टेबल"
 
@@ -1128,7 +1103,7 @@ msgstr ""
 msgid "Wedge"
 msgstr ""
 
-#: simulation/templates/special/player/player.xml:61
+#: simulation/templates/special/player/player.xml:59
 msgid "Player"
 msgstr "खिलाड़ी"
 

@@ -6,7 +6,7 @@
 # Cecil Rhodes <taxat98895@lercjy.com>, 2020
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
-# Halyna Bondar <jockyani@rambler.ru>, 2020
+# Halyna Bondar, 2020
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
 # Oleg Adept <adeptoleg@gmail.com>, 2016
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:10+0000\n"
-"PO-Revision-Date: 2020-07-30 06:02+0000\n"
-"Last-Translator: Halyna Bondar <jockyani@rambler.ru>\n"
+"POT-Creation-Date: 2020-09-18 07:09+0000\n"
+"PO-Revision-Date: 2020-09-18 19:15+0000\n"
+"Last-Translator: Andriy Nahirnjak <andriy.nagirnjak@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,16 +31,16 @@ msgstr ""
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
-#: simulation/templates/template_formation.xml:25
-msgid "Requires at least 2 Soldiers or Siege engines."
-msgstr "Потребує принаймні не менш 2 солдатів або облогових знарядь."
+#: simulation/templates/template_formation.xml:26
+msgid "Requires at least 2 Soldiers or Siege Engines."
+msgstr ""
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
 msgstr "Гея"
 
 #: simulation/templates/template_gaia_fish.xml:8
-#: simulation/templates/gaia/fauna_fish.xml:4
+#: simulation/templates/gaia/fish/generic.xml:4
 msgid "Fish"
 msgstr "Риба"
 
@@ -48,43 +48,27 @@ msgstr "Риба"
 msgid "Catch fish for food."
 msgstr "Ловити рибу для їжі."
 
-#: simulation/templates/template_gaia_flora.xml:6
-msgid "Chop trees for wood."
-msgstr "Рубати дерева по деревину."
+#: simulation/templates/template_gaia_fruit.xml:8
+msgid "Fruit"
+msgstr "Фрукт"
 
-#: simulation/templates/template_gaia_flora_bush.xml:8
-#: simulation/templates/gaia/flora_bush_temperate.xml:4
-#: simulation/templates/gaia/flora_bush_temperate_winter.xml:4
-#: simulation/templates/gaia/flora_bush_tropic.xml:4
-msgid "Bush"
-msgstr "Кущ"
-
-#: simulation/templates/template_gaia_flora_bush_berry.xml:4
-#: simulation/templates/template_gaia_flora_tree_fruit.xml:8
+#: simulation/templates/template_gaia_fruit.xml:9
 msgid "Pick fruit for food."
 msgstr "Збирати фрукти для їжі."
 
-#: simulation/templates/template_gaia_flora_tree.xml:8
-msgid "Tree"
-msgstr "Дерево"
-
-#: simulation/templates/template_gaia_geo.xml:8
-msgid "Generic Geology"
-msgstr "Загальна геологія"
-
-#: simulation/templates/template_gaia_geo_mineral.xml:4
+#: simulation/templates/template_gaia_ore.xml:8
 msgid "Metal Mine"
 msgstr "Родовище металу"
 
-#: simulation/templates/template_gaia_geo_mineral.xml:5
+#: simulation/templates/template_gaia_ore.xml:9
 msgid "Mine ore for metal."
 msgstr "Видобувати руду для металу."
 
-#: simulation/templates/template_gaia_geo_rock.xml:4
+#: simulation/templates/template_gaia_rock.xml:8
 msgid "Stone Quarry"
 msgstr "Кам'яний кар'єр"
 
-#: simulation/templates/template_gaia_geo_rock.xml:5
+#: simulation/templates/template_gaia_rock.xml:9
 msgid "Quarry rock for stone."
 msgstr "Видобувати породу для каменю."
 
@@ -104,11 +88,19 @@ msgstr "Скарб"
 msgid "Collect treasures for resources."
 msgstr "Зібрати скарби заради ресурсів."
 
-#: simulation/templates/template_structure.xml:61
+#: simulation/templates/template_gaia_tree.xml:8
+msgid "Tree"
+msgstr "Дерево"
+
+#: simulation/templates/template_gaia_tree.xml:9
+msgid "Chop trees for wood."
+msgstr "Рубати дерева по деревину."
+
+#: simulation/templates/template_structure.xml:51
 msgid "Structure"
 msgstr "Споруда"
 
-#: simulation/templates/template_unit.xml:43
+#: simulation/templates/template_unit.xml:38
 msgid "Unit"
 msgstr "Одиниця"
 
@@ -121,17 +113,17 @@ msgstr "Відгородити область."
 msgid "Wall"
 msgstr "Мур"
 
-#: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
 msgstr "Армія Александра Великого."
 
-#: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:25
 msgid "Army of Alexander the Great"
 msgstr "Армія Александра Великого"
 
-#: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:26
 #: simulation/templates/campaigns/army_mace_standard.xml:21
-#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:29
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:26
 msgid "This is what an army would look like on the Strat Map."
 msgstr "Ось як виглядала б армія на стратегічній мапі."
 
@@ -143,11 +135,11 @@ msgstr "Армія Македонії"
 msgid "Army of Macedon"
 msgstr "Армія Македону"
 
-#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:27
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:24
 msgid "Army of Leonidas I."
 msgstr "Армія Леоніда I."
 
-#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:25
 msgid "Army of Leonidas I"
 msgstr "Армія Леоніда I"
 
@@ -185,36 +177,36 @@ msgstr "Релігійне святилище"
 msgid "Greek Religious Sanctuary"
 msgstr "Грецьке релігійне святилище"
 
-#: simulation/templates/gaia/fauna_arctic_wolf.xml:4
+#: simulation/templates/gaia/fauna_arctic_wolf.xml:8
 msgid "Arctic Wolf"
 msgstr "Арктичний вовк"
 
-#: simulation/templates/gaia/fauna_arctic_wolf.xml:5
-#: simulation/templates/gaia/fauna_wolf.xml:5
+#: simulation/templates/gaia/fauna_arctic_wolf.xml:9
+#: simulation/templates/gaia/fauna_wolf.xml:9
 msgid "Canis lupus"
 msgstr "Каніс лупус"
 
-#: simulation/templates/gaia/fauna_bear_black.xml:4
+#: simulation/templates/gaia/fauna_bear_black.xml:8
 msgid "Black Bear"
 msgstr "Чорний ведмідь"
 
-#: simulation/templates/gaia/fauna_bear_black.xml:5
+#: simulation/templates/gaia/fauna_bear_black.xml:9
 msgid "Ursus americanus"
 msgstr "Урсус амеріканус"
 
-#: simulation/templates/gaia/fauna_bear_brown.xml:4
+#: simulation/templates/gaia/fauna_bear_brown.xml:8
 msgid "Brown Bear"
 msgstr "Бурий ведмідь"
 
-#: simulation/templates/gaia/fauna_bear_brown.xml:5
+#: simulation/templates/gaia/fauna_bear_brown.xml:9
 msgid "Ursus arctos"
 msgstr "Урсус арктос"
 
-#: simulation/templates/gaia/fauna_bear_polar.xml:4
+#: simulation/templates/gaia/fauna_bear_polar.xml:8
 msgid "Polar Bear"
 msgstr "Полярний ведмідь"
 
-#: simulation/templates/gaia/fauna_bear_polar.xml:5
+#: simulation/templates/gaia/fauna_bear_polar.xml:9
 msgid "Ursus maritimus"
 msgstr "Урсус марітімус"
 
@@ -234,32 +226,32 @@ msgstr "Дромедар"
 msgid "Camelus dromedarius"
 msgstr "Камелус дромедаріус"
 
-#: simulation/templates/gaia/fauna_cattle_bull.xml:4
+#: simulation/templates/gaia/fauna_cattle_bull.xml:8
 msgid "Bull"
 msgstr "Бугай"
 
-#: simulation/templates/gaia/fauna_cattle_bull.xml:5
-#: simulation/templates/gaia/fauna_cattle_cow.xml:5
+#: simulation/templates/gaia/fauna_cattle_bull.xml:9
+#: simulation/templates/gaia/fauna_cattle_cow.xml:9
 msgid "Bos taurus taurus"
 msgstr "Бос таурус таурус"
 
-#: simulation/templates/gaia/fauna_cattle_cow.xml:4
+#: simulation/templates/gaia/fauna_cattle_cow.xml:8
 msgid "Cow"
 msgstr "Корова"
 
-#: simulation/templates/gaia/fauna_cattle_sanga.xml:4
+#: simulation/templates/gaia/fauna_cattle_sanga.xml:8
 msgid "Sanga Cattle"
 msgstr "Корова санга"
 
-#: simulation/templates/gaia/fauna_cattle_sanga.xml:5
+#: simulation/templates/gaia/fauna_cattle_sanga.xml:9
 msgid "Bos taurus africanus"
 msgstr "Бос таурус афріканус"
 
-#: simulation/templates/gaia/fauna_cattle_zebu.xml:4
+#: simulation/templates/gaia/fauna_cattle_zebu.xml:8
 msgid "Zebu"
 msgstr "Зебу"
 
-#: simulation/templates/gaia/fauna_cattle_zebu.xml:5
+#: simulation/templates/gaia/fauna_cattle_zebu.xml:9
 msgid "Bos taurus indicus"
 msgstr "Бос таурус індікус"
 
@@ -287,11 +279,11 @@ msgstr "Олень благородний"
 msgid "Cervus elaphus"
 msgstr "Сервус елафус"
 
-#: simulation/templates/gaia/fauna_donkey.xml:4
+#: simulation/templates/gaia/fauna_donkey.xml:8
 msgid "Donkey"
 msgstr "Віслюк"
 
-#: simulation/templates/gaia/fauna_donkey.xml:5
+#: simulation/templates/gaia/fauna_donkey.xml:9
 msgid "Equus africanus asinus"
 msgstr "Еквус афріканус асінус"
 
@@ -300,11 +292,11 @@ msgid "African Bush Elephant"
 msgstr "Слон саванний"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:12
-#: simulation/templates/gaia/fauna_elephant_african_infant.xml:5
+#: simulation/templates/gaia/fauna_elephant_african_infant.xml:9
 msgid "Loxodonta africana"
 msgstr "Локсодонта афрікана"
 
-#: simulation/templates/gaia/fauna_elephant_african_infant.xml:4
+#: simulation/templates/gaia/fauna_elephant_african_infant.xml:8
 msgid "African Bush Elephant Calf"
 msgstr "Дитинча саванного слона"
 
@@ -313,11 +305,11 @@ msgid "Asian Elephant"
 msgstr "Слон індійський"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:12
-#: simulation/templates/gaia/fauna_elephant_asian_infant.xml:5
+#: simulation/templates/gaia/fauna_elephant_asian_infant.xml:9
 msgid "Elephas maximus"
 msgstr "Елефас максімус"
 
-#: simulation/templates/gaia/fauna_elephant_asian_infant.xml:4
+#: simulation/templates/gaia/fauna_elephant_asian_infant.xml:8
 msgid "Asian Elephant Calf"
 msgstr "Дитинча індійського слона"
 
@@ -329,27 +321,19 @@ msgstr "Африканський лісовий слон"
 msgid "Loxodonta cyclotis"
 msgstr "Локсодонта ціклотіс"
 
-#: simulation/templates/gaia/fauna_fish_tilapia.xml:4
-msgid "Tilapia"
-msgstr "Тиляпія"
-
-#: simulation/templates/gaia/fauna_fish_tuna.xml:4
-msgid "Tuna"
-msgstr "Тунець"
-
-#: simulation/templates/gaia/fauna_fox_arctic.xml:4
+#: simulation/templates/gaia/fauna_fox_arctic.xml:8
 msgid "Arctic Fox"
 msgstr "Арктична лисиця"
 
-#: simulation/templates/gaia/fauna_fox_arctic.xml:5
+#: simulation/templates/gaia/fauna_fox_arctic.xml:9
 msgid "Vulpes lagopus"
 msgstr "Вулпес лагопус"
 
-#: simulation/templates/gaia/fauna_fox_red.xml:4
+#: simulation/templates/gaia/fauna_fox_red.xml:8
 msgid "Red Fox"
 msgstr "Руда лисиця"
 
-#: simulation/templates/gaia/fauna_fox_red.xml:5
+#: simulation/templates/gaia/fauna_fox_red.xml:9
 msgid "Vulpes vulpes"
 msgstr "Вулпес вулпес"
 
@@ -382,11 +366,11 @@ msgstr "Козел"
 msgid "Capra aegagrus hircus"
 msgstr "Капра егагрус хіркус"
 
-#: simulation/templates/gaia/fauna_hippopotamus.xml:25
+#: simulation/templates/gaia/fauna_hippopotamus.xml:20
 msgid "Hippopotamus"
 msgstr "Гіпопотам"
 
-#: simulation/templates/gaia/fauna_hippopotamus.xml:26
+#: simulation/templates/gaia/fauna_hippopotamus.xml:21
 msgid "Hippopotamus amphibius"
 msgstr "Хіппопотамус амфібіус"
 
@@ -410,12 +394,12 @@ msgstr "Пантера лео"
 msgid "Lioness"
 msgstr "Левиця"
 
-#: simulation/templates/gaia/fauna_mastiff.xml:4
+#: simulation/templates/gaia/fauna_mastiff.xml:8
 msgid "Mastiff"
 msgstr "Мастиф"
 
-#: simulation/templates/gaia/fauna_mastiff.xml:5
-#: simulation/templates/gaia/fauna_wolfhound.xml:5
+#: simulation/templates/gaia/fauna_mastiff.xml:9
+#: simulation/templates/gaia/fauna_wolfhound.xml:9
 msgid "Canis lupus familiaris"
 msgstr "Каніс лупус фаміліаріс"
 
@@ -427,11 +411,11 @@ msgstr "Вівцебик"
 msgid "Ovibos moschatus"
 msgstr "Овібос мосхатус"
 
-#: simulation/templates/gaia/fauna_peacock.xml:7
+#: simulation/templates/gaia/fauna_peacock.xml:11
 msgid "Peacock"
 msgstr "Павич"
 
-#: simulation/templates/gaia/fauna_peacock.xml:8
+#: simulation/templates/gaia/fauna_peacock.xml:12
 msgid "Pavo cristatus"
 msgstr "Паво крістатус"
 
@@ -451,7 +435,7 @@ msgstr "Палаюча свиня"
 msgid "Piglet"
 msgstr "Порося"
 
-#: simulation/templates/gaia/fauna_pony.xml:4
+#: simulation/templates/gaia/fauna_pony.xml:8
 msgid "Pony"
 msgstr "Поні"
 
@@ -495,11 +479,11 @@ msgstr "Тигр"
 msgid "Panthera tigris"
 msgstr "Пантера тігріс"
 
-#: simulation/templates/gaia/fauna_walrus.xml:26
+#: simulation/templates/gaia/fauna_walrus.xml:21
 msgid "Walrus"
 msgstr "Морж"
 
-#: simulation/templates/gaia/fauna_walrus.xml:27
+#: simulation/templates/gaia/fauna_walrus.xml:22
 msgid "Odobenus rosmarus"
 msgstr "Одобенус росмарус"
 
@@ -527,11 +511,11 @@ msgstr "Гну блакитний"
 msgid "Connochaetes taurinus"
 msgstr "Коннохетес таурінус"
 
-#: simulation/templates/gaia/fauna_wolf.xml:4
+#: simulation/templates/gaia/fauna_wolf.xml:8
 msgid "Wolf"
 msgstr "Вовк"
 
-#: simulation/templates/gaia/fauna_wolfhound.xml:4
+#: simulation/templates/gaia/fauna_wolfhound.xml:8
 msgid "Wolfhound"
 msgstr "Вовкодав"
 
@@ -551,6 +535,7 @@ msgstr "Морозостійкий кущ"
 #: simulation/templates/gaia/flora_bush_berry_02.xml:4
 #: simulation/templates/gaia/flora_bush_berry_03.xml:4
 #: simulation/templates/gaia/flora_bush_berry_autumn_01.xml:4
+#: simulation/templates/gaia/flora_bush_berry_desert.xml:4
 msgid "Berries"
 msgstr "Ягоди"
 
@@ -558,17 +543,23 @@ msgstr "Ягоди"
 msgid "Grapes"
 msgstr "Виноград"
 
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
+#: simulation/templates/gaia/flora_bush_temperate_winter.xml:4
+#: simulation/templates/gaia/flora_bush_tropic.xml:4
+msgid "Bush"
+msgstr "Кущ"
+
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
-msgid "Acacia Tree"
-msgstr "Дерево акації"
+msgid "Acacia"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
-msgid "Aleppo Pine Tree"
-msgstr "Дерево сосни алепської"
+msgid "Aleppo Pine"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_apple.xml:4
-msgid "Apple Tree"
-msgstr "Яблуневе дерево"
+msgid "Apple"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_bamboo.xml:4
 #: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
@@ -589,6 +580,7 @@ msgstr "Баньян"
 
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
 #: simulation/templates/gaia/flora_tree_baobab_3_mature.xml:8
+#: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
 msgid "Baobab"
 msgstr "Баобаб"
 
@@ -600,13 +592,9 @@ msgstr "Саджанець баобаба"
 msgid "Young Baobab"
 msgstr "Молодий баобаб"
 
-#: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
-msgid "Dead Baobab"
-msgstr "Померлий баобаб"
-
 #: simulation/templates/gaia/flora_tree_carob.xml:4
-msgid "Carob Tree"
-msgstr "Ріжкове дерево"
+msgid "Carob"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
@@ -614,12 +602,9 @@ msgstr "Саджанець кедра атласького"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_2_young.xml:4
 #: simulation/templates/gaia/flora_tree_cedar_atlas_3_mature.xml:4
+#: simulation/templates/gaia/flora_tree_cedar_atlas_4_dead.xml:4
 msgid "Atlas Cedar"
 msgstr "Атласький кедр"
-
-#: simulation/templates/gaia/flora_tree_cedar_atlas_4_dead.xml:4
-msgid "Dead Atlas Cedar"
-msgstr "Померлий атласький кедр"
 
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
@@ -630,34 +615,31 @@ msgstr "Фінікова пальма Теофраста"
 #: simulation/templates/gaia/flora_tree_cypress.xml:4
 #: simulation/templates/gaia/flora_tree_cypress_wild.xml:4
 #: simulation/templates/gaia/flora_tree_cypress_windswept.xml:4
-msgid "Cypress Tree"
-msgstr "Кіпарисове дерево"
+msgid "Cypress"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_date_palm.xml:4
+#: simulation/templates/gaia/flora_tree_date_palm_dead.xml:4
+#: simulation/templates/gaia/flora_tree_date_palm_fruit.xml:4
 msgid "Date Palm"
 msgstr "Фінік їстівний"
 
-#: simulation/templates/gaia/flora_tree_date_palm_dead.xml:4
-msgid "Dead Palm"
-msgstr "Померла пальма"
-
-#: simulation/templates/gaia/flora_tree_date_palm_fruit.xml:4
-msgid "Fruiting Date Palm"
-msgstr "Плодоносний фінік їстівний"
-
 #: simulation/templates/gaia/flora_tree_dead.xml:4
-msgid "Dead Deciduous Tree"
-msgstr "Померле листопадне дерево"
+#: simulation/templates/gaia/flora_tree_temperate.xml:4
+#: simulation/templates/gaia/flora_tree_temperate_autumn.xml:4
+#: simulation/templates/gaia/flora_tree_temperate_winter.xml:4
+msgid "Deciduous Tree"
+msgstr "Листопадне дерево"
 
 #: simulation/templates/gaia/flora_tree_elm.xml:4
 #: simulation/templates/gaia/flora_tree_elm_dead.xml:4
-msgid "Elm Tree"
-msgstr "Дерево в'язу"
+msgid "Elm"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
-msgid "European Beech Tree"
-msgstr "Дерево буку лісового"
+msgid "European Beech"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_euro_birch.xml:4
 msgid "Silver Birch"
@@ -669,8 +651,8 @@ msgstr "Інжир"
 
 #: simulation/templates/gaia/flora_tree_fir.xml:4
 #: simulation/templates/gaia/flora_tree_fir_winter.xml:4
-msgid "Fir Tree"
-msgstr "Дерево ялиці"
+msgid "Fir"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
@@ -697,8 +679,8 @@ msgstr "Середземноморська віялова пальма"
 #: simulation/templates/gaia/flora_tree_oak_aut_new.xml:4
 #: simulation/templates/gaia/flora_tree_oak_dead.xml:4
 #: simulation/templates/gaia/flora_tree_oak_new.xml:4
-msgid "Oak Tree"
-msgstr "Дубове дерево"
+msgid "Oak"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_oak_holly.xml:4
 msgid "Holly Oak"
@@ -710,12 +692,12 @@ msgid "Hungarian Oak"
 msgstr "Дуб фрайнетто"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
-msgid "Large Oak Tree"
-msgstr "Велике дубове дерево"
+msgid "Large Oak"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_olive.xml:4
-msgid "Olive Tree"
-msgstr "Дерево маслини європейської"
+msgid "Olive"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_palm_areca.xml:4
 msgid "Areca Palm"
@@ -739,8 +721,8 @@ msgstr "Тропічна пальма"
 
 #: simulation/templates/gaia/flora_tree_pine.xml:4
 #: simulation/templates/gaia/flora_tree_pine_w.xml:4
-msgid "Pine Tree"
-msgstr "Дерево сосни"
+msgid "Pine"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_pine_black.xml:4
 #: simulation/templates/gaia/flora_tree_pine_black_dead.xml:4
@@ -753,24 +735,15 @@ msgid "Maritime Pine"
 msgstr "Сосна приморська"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
-msgid "Poplar Tree"
-msgstr "Дерево тополі"
-
 #: simulation/templates/gaia/flora_tree_poplar_dead.xml:4
-msgid "Dead Poplar"
-msgstr "Мертва тополя"
-
-#: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
-msgid "Black Poplar Tree"
-msgstr "Дерево тополі чорної"
-
 #: simulation/templates/gaia/flora_tree_poplar_lombardy_autumn.xml:4
 msgid "Poplar"
 msgstr "Тополя"
 
+#: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 #: simulation/templates/gaia/flora_tree_poplar_lombardy_dead.xml:4
-msgid "Dead Black Poplar Tree"
-msgstr "Дерево мертвої тополі чорної"
+msgid "Black Poplar"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -781,26 +754,28 @@ msgid "Strangler Fig"
 msgstr "Фікус-душитель"
 
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
-msgid "Tamarix Tree"
-msgstr "Дерево тамариксу"
+msgid "Tamarix"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_teak.xml:8
 msgid "Teak"
 msgstr "Тикове дерево"
 
-#: simulation/templates/gaia/flora_tree_temperate.xml:4
-#: simulation/templates/gaia/flora_tree_temperate_autumn.xml:4
-#: simulation/templates/gaia/flora_tree_temperate_winter.xml:4
-msgid "Deciduous Tree"
-msgstr "Листопадне дерево"
-
 #: simulation/templates/gaia/flora_tree_toona.xml:4
-msgid "Toona Tree"
-msgstr "Червоне дерево"
+msgid "Toona"
+msgstr ""
 
 #: simulation/templates/gaia/flora_tree_tropic_rainforest.xml:4
 msgid "Rainforest Tree"
 msgstr "Дерево дощового лісу"
+
+#: simulation/templates/gaia/fish/tilapia.xml:4
+msgid "Tilapia"
+msgstr "Тиляпія"
+
+#: simulation/templates/gaia/fish/tuna.xml:4
+msgid "Tuna"
+msgstr "Тунець"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
@@ -893,11 +868,11 @@ msgstr "Скарб каменю"
 msgid "Wood Treasure"
 msgstr "Скарб деревини"
 
-#: simulation/templates/other/bench.xml:19
+#: simulation/templates/other/bench.xml:14
 msgid "Bench"
 msgstr "Лава"
 
-#: simulation/templates/other/bench.xml:20
+#: simulation/templates/other/bench.xml:15
 msgid "Wooden Bench"
 msgstr "Дерев'яна лава"
 
@@ -919,18 +894,18 @@ msgstr "Хатина"
 msgid "Longhouse"
 msgstr "Довгий будинок"
 
-#: simulation/templates/other/column_doric.xml:19
-#: simulation/templates/other/column_doric_fallen.xml:19
-#: simulation/templates/other/column_doric_fallen_b.xml:19
+#: simulation/templates/other/column_doric.xml:14
+#: simulation/templates/other/column_doric_fallen.xml:14
+#: simulation/templates/other/column_doric_fallen_b.xml:14
 msgid "Column"
 msgstr "Колона"
 
-#: simulation/templates/other/column_doric.xml:20
+#: simulation/templates/other/column_doric.xml:15
 msgid "Doric Column"
 msgstr "Дорійська колона"
 
-#: simulation/templates/other/column_doric_fallen.xml:20
-#: simulation/templates/other/column_doric_fallen_b.xml:20
+#: simulation/templates/other/column_doric_fallen.xml:15
+#: simulation/templates/other/column_doric_fallen_b.xml:15
 msgid "Fallen Doric Column"
 msgstr "Впала дорійська колона"
 
@@ -942,21 +917,21 @@ msgstr "Пустельна факторія"
 msgid "Ardatašta"
 msgstr "Ардаташта"
 
-#: simulation/templates/other/fence_long.xml:20
-#: simulation/templates/other/fence_short.xml:20
+#: simulation/templates/other/fence_long.xml:15
+#: simulation/templates/other/fence_short.xml:15
 msgid "Fence"
 msgstr "Паркан"
 
-#: simulation/templates/other/fence_long.xml:21
+#: simulation/templates/other/fence_long.xml:16
 msgid "Long Wooden Fence"
 msgstr "Довгий дерев'яний паркан"
 
-#: simulation/templates/other/fence_short.xml:21
+#: simulation/templates/other/fence_short.xml:16
 msgid "Short Wooden Fence"
 msgstr "Короткий дерев'яний паркан"
 
-#: simulation/templates/other/fence_stone.xml:20
-#: simulation/templates/other/fence_stone.xml:21
+#: simulation/templates/other/fence_stone.xml:15
+#: simulation/templates/other/fence_stone.xml:16
 msgid "Stone Fence"
 msgstr "Кам'яний паркан"
 
@@ -992,19 +967,19 @@ msgstr "Стоа"
 msgid "Hellenic Stoa"
 msgstr "Еллінська стоа"
 
-#: simulation/templates/other/obelisk.xml:19
+#: simulation/templates/other/obelisk.xml:14
 msgid "Obelisk"
 msgstr "Обеліск"
 
-#: simulation/templates/other/obelisk.xml:20
+#: simulation/templates/other/obelisk.xml:15
 msgid "Egyptian Obelisk"
 msgstr "Єгипетський обеліск"
 
-#: simulation/templates/other/sele_colonnade.xml:19
+#: simulation/templates/other/sele_colonnade.xml:14
 msgid "Colonnade"
 msgstr "Колонада"
 
-#: simulation/templates/other/sele_colonnade.xml:20
+#: simulation/templates/other/sele_colonnade.xml:15
 msgid "Corinthian Colonnade"
 msgstr "Коринфська колонада"
 
@@ -1021,16 +996,16 @@ msgstr "Середній прилавок"
 msgid "Small stall"
 msgstr "Малий прилавок"
 
-#: simulation/templates/other/table_rectangle.xml:19
-#: simulation/templates/other/table_square.xml:19
+#: simulation/templates/other/table_rectangle.xml:14
+#: simulation/templates/other/table_square.xml:14
 msgid "Table"
 msgstr "Стіл"
 
-#: simulation/templates/other/table_rectangle.xml:20
+#: simulation/templates/other/table_rectangle.xml:15
 msgid "Rectangle Table"
 msgstr "Прямокутний стіл"
 
-#: simulation/templates/other/table_square.xml:20
+#: simulation/templates/other/table_square.xml:15
 msgid "Square Table"
 msgstr "Квадратний стіл"
 
@@ -1139,7 +1114,7 @@ msgstr "Тільки для кавалерії, потребує принайм�
 msgid "Wedge"
 msgstr "Клин"
 
-#: simulation/templates/special/player/player.xml:61
+#: simulation/templates/special/player/player.xml:59
 msgid "Player"
 msgstr "Гравець"
 
