@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-09-07 07:14+0000\n"
-"PO-Revision-Date: 2020-09-07 17:18+0000\n"
-"Last-Translator: Ilya <ilya.crols@gmail.com>\n"
+"POT-Creation-Date: 2020-09-18 07:09+0000\n"
+"PO-Revision-Date: 2020-09-18 17:16+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Lojban (http://www.transifex.com/wildfire-games/0ad/language/jbo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -426,7 +426,7 @@ msgstr ""
 #: gui/common/tooltips.js:197 gui/common/tooltips.js:218
 #: gui/common/tooltips.js:258 gui/common/tooltips.js:543
 #: gui/common/tooltips.js:565 gui/common/tooltips.js:649
-#: gui/common/tooltips.js:690 gui/common/tooltips.js:987
+#: gui/common/tooltips.js:690 gui/common/tooltips.js:988
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -562,7 +562,7 @@ msgstr ""
 #: gui/common/tooltips.js:366 gui/common/tooltips.js:443
 #: gui/common/tooltips.js:448 gui/common/tooltips.js:505
 #: gui/common/tooltips.js:538 gui/common/tooltips.js:853
-#: gui/common/tooltips.js:886 gui/common/tooltips.js:952
+#: gui/common/tooltips.js:886 gui/common/tooltips.js:953
 #: gui/loadgame/SavegameDetails.js:38 gui/reference/common/tooltips.js:13
 #: gui/replaymenu/replay_menu.js:282
 msgid ", "
@@ -1150,35 +1150,44 @@ msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:936
+#: gui/common/tooltips.js:937
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr ""
 
-#: gui/common/tooltips.js:951
+#: gui/common/tooltips.js:952
 msgid "Classes:"
 msgstr ""
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
-#: gui/common/tooltips.js:978
+#: gui/common/tooltips.js:979
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr ""
 
-#: gui/common/tooltips.js:988
+#: gui/common/tooltips.js:989
 msgid "Loot:"
+msgstr ""
+
+#: gui/common/tooltips.js:999
+#, javascript-format
+msgid "%(label)s %(icons)s"
+msgstr ""
+
+#: gui/common/tooltips.js:1000
+msgid "Dropsite for:"
 msgstr ""
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI element will open the Template Details GUI page.
-#: gui/common/tooltips.js:996
+#: gui/common/tooltips.js:1008
 msgid "Right-click to view more information."
 msgstr ""
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1002
+#: gui/common/tooltips.js:1014
 msgid "Click to view more information."
 msgstr ""
 

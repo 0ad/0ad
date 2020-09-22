@@ -20,7 +20,7 @@ const oStoneSmall = "gaia/geology_stone_alpine_a";
 const oMetalLarge = "gaia/geology_metal_alpine_slabs";
 const oFish = "gaia/fish/generic";
 const oWalrus = "gaia/fauna_walrus";
-const oArcticWolf = "gaia/fauna_arctic_wolf";
+const oArcticWolf = "gaia/fauna_wolf_arctic";
 
 const aIceberg = "actor|props/special/eyecandy/iceberg.xml";
 

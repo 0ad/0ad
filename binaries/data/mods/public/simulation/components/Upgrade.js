@@ -115,7 +115,8 @@ Upgrade.prototype.ChangeUpgradedEntityCount = function(amount)
 		return;
 
 	let cmpEntityLimits = QueryPlayerIDInterface(this.owner, IID_EntityLimits);
-	cmpEntityLimits.ChangeCount(categoryTo, amount);
+	if (cmpEntityLimits)
+		cmpEntityLimits.ChangeCount(categoryTo, amount);
 };
 
 Upgrade.prototype.CanUpgradeTo = function(template)

@@ -53,7 +53,7 @@ const oTreasure = [
 ];
 const oBerryBush = "gaia/flora_bush_berry_desert";
 const oGazelle = "gaia/fauna_gazelle";
-const oRhino = "gaia/fauna_rhino";
+const oRhino = "gaia/fauna_rhinoceros_white";
 const oWarthog = "gaia/fauna_boar";
 const oGiraffe = "gaia/fauna_giraffe";
 const oGiraffeInfant = "gaia/fauna_giraffe_infant";
@@ -61,7 +61,7 @@ const oElephant = "gaia/fauna_elephant_african_bush";
 const oElephantInfant = "gaia/fauna_elephant_african_infant";
 const oLion = "gaia/fauna_lion";
 const oLioness = "gaia/fauna_lioness";
-const oCrocodile = "gaia/fauna_crocodile";
+const oCrocodile = "gaia/fauna_crocodile_nile";
 const oFish = "gaia/fish/tilapia";
 const oHawk = "birds/buzzard";
 

@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-28 07:10+0000\n"
-"PO-Revision-Date: 2020-08-28 10:25+0000\n"
+"POT-Creation-Date: 2020-09-18 07:09+0000\n"
+"PO-Revision-Date: 2020-09-18 10:15+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -19,33 +19,33 @@ msgstr ""
 "Language: ga\n"
 "Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);\n"
 
-#: simulation/templates/template_structure_civic.xml:21
+#: simulation/templates/template_structure_civic.xml:5
 msgid "Civic Structure"
 msgstr "Struchtúr Cathartha"
 
-#: simulation/templates/template_structure_civic.xml:22
+#: simulation/templates/template_structure_civic.xml:6
 msgid "Civic"
 msgstr "Cathartha"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:93
+#: simulation/templates/template_structure_civic_civil_centre.xml:78
 msgid "Civic Center"
 msgstr "Ionad Cathartha"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:95
+#: simulation/templates/template_structure_civic_civil_centre.xml:80
 msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
-"Territory root. Dropsite for food, wood, stone, and metal. Train Citizens "
-"and research technologies. Garrison Soldiers for additional arrows."
+"Territory root. Train Citizens and research technologies. Garrison Soldiers "
+"for additional arrows."
 msgstr ""
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:97
-#: simulation/templates/template_structure_defensive.xml:21
-#: simulation/templates/template_structure_military_fortress.xml:80
+#: simulation/templates/template_structure_civic_civil_centre.xml:82
+#: simulation/templates/template_structure_defensive.xml:5
+#: simulation/templates/template_structure_military_fortress.xml:71
 msgid "Defensive"
 msgstr "Cosanta"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:97
-#: simulation/templates/template_structure_civic_civil_centre.xml:59
+#: simulation/templates/template_structure_civic_civil_centre.xml:82
+#: simulation/templates/template_structure_civic_civil_centre.xml:44
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
 msgstr "Ionad Sibhialta"
@@ -59,7 +59,7 @@ msgid "Colony"
 msgstr "Coilíneacht"
 
 #: simulation/templates/template_structure_civic_house.xml:36
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:42
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:33
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 #: simulation/templates/template_structure_economic_storehouse.xml:34
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -84,9 +84,9 @@ msgstr ""
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 #: simulation/templates/template_structure_economic_market.xml:31
-#: simulation/templates/template_structure_military_embassy.xml:39
+#: simulation/templates/template_structure_military_embassy.xml:25
 #: simulation/templates/template_structure_military_forge.xml:26
-#: simulation/templates/structures/cart_super_dock.xml:51
+#: simulation/templates/structures/cart_super_dock.xml:44
 #: simulation/templates/structures/gaul_tavern.xml:24
 #: simulation/templates/structures/kush_pyramid_small.xml:29
 #: simulation/templates/structures/maur_elephant_stables.xml:7
@@ -111,16 +111,29 @@ msgstr ""
 msgid "Temple"
 msgstr "Teampall"
 
-#: simulation/templates/template_structure_defensive.xml:20
+#: simulation/templates/template_structure_defensive.xml:4
 msgid "Defensive Structure"
 msgstr "Foirgneamh Cosanta"
 
-#: simulation/templates/template_structure_defensive_palisade.xml:26
+#: simulation/templates/template_structure_defensive_outpost.xml:39
+msgid ""
+"Build in own or neutral territory. Slowly converts to Gaia while in neutral "
+"territory."
+msgstr ""
+
+#: simulation/templates/template_structure_defensive_outpost.xml:40
+#: simulation/templates/template_structure_defensive_outpost.xml:9
+#: simulation/templates/template_structure_defensive_outpost.xml:37
+#: simulation/templates/structures/palisades_outpost.xml:17
+msgid "Outpost"
+msgstr "Urphost"
+
+#: simulation/templates/template_structure_defensive_palisade.xml:17
 msgid "Wall off an area."
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_palisade.xml:27
-#: simulation/templates/template_structure_defensive_palisade.xml:24
+#: simulation/templates/template_structure_defensive_palisade.xml:18
+#: simulation/templates/template_structure_defensive_palisade.xml:15
 #: simulation/templates/structures/wallset_palisade.xml:5
 #: simulation/templates/structures/wallset_palisade.xml:4
 msgid "Palisade"
@@ -140,9 +153,9 @@ msgstr ""
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
-#: simulation/templates/template_structure_military_fortress.xml:80
-#: simulation/templates/template_structure_special.xml:40
-#: simulation/templates/template_structure_wonder.xml:59
+#: simulation/templates/template_structure_military_fortress.xml:71
+#: simulation/templates/template_structure_special.xml:24
+#: simulation/templates/template_structure_wonder.xml:43
 #: simulation/templates/structures/kush_pyramid_large.xml:29
 #: simulation/templates/structures/kush_temple_amun.xml:31
 #: simulation/templates/structures/rome_temple_mars.xml:14
@@ -161,31 +174,18 @@ msgstr ""
 msgid "BoltTower"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:59
-msgid ""
-"Build in own or neutral territory. Slowly converts to Gaia while in neutral "
-"territory."
-msgstr ""
-
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:60
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:35
-#: simulation/templates/template_structure_defensive_tower_outpost.xml:57
-#: simulation/templates/structures/palisades_outpost.xml:17
-msgid "Outpost"
-msgstr "Urphost"
-
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:39
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:30
 msgid "Sentry Tower"
 msgstr "Túr Fairtheora"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:41
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:32
 #: simulation/templates/template_structure_defensive_tower_stone.xml:33
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:42
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:33
 msgid "SentryTower"
 msgstr "Túr-fhairtheora"
 
@@ -201,49 +201,49 @@ msgstr ""
 msgid "StoneTower"
 msgstr "Túr Cloiche"
 
-#: simulation/templates/template_structure_defensive_wall.xml:17
+#: simulation/templates/template_structure_defensive_wall.xml:25
 msgid "Wall off your town for a stout defense."
 msgstr "Teastaíonn do bhaile a fhálú do chosanta trom a fháil."
 
-#: simulation/templates/template_structure_defensive_wall.xml:18
-#: simulation/templates/template_structure_defensive_wall.xml:15
+#: simulation/templates/template_structure_defensive_wall.xml:26
+#: simulation/templates/template_structure_defensive_wall.xml:23
 msgid "Wall"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_wall_gate.xml:22
-#: simulation/templates/template_structure_defensive_wall_long.xml:34
+#: simulation/templates/template_structure_defensive_wall_gate.xml:24
+#: simulation/templates/template_structure_defensive_wall_long.xml:29
 msgid "Allow units access through Walls. Can be locked to prevent access."
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_wall_gate.xml:23
-#: simulation/templates/template_structure_defensive_wall_gate.xml:20
+#: simulation/templates/template_structure_defensive_wall_gate.xml:25
+#: simulation/templates/template_structure_defensive_wall_gate.xml:22
 #: simulation/templates/structures/palisades_gate.xml:23
 msgid "Gate"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_wall_long.xml:25
+#: simulation/templates/template_structure_defensive_wall_long.xml:20
 msgid "Can be converted into a Gate."
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:54
+#: simulation/templates/template_structure_defensive_wall_tower.xml:50
 msgid "Wall Turret"
 msgstr "Túirín Balla"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:56
+#: simulation/templates/template_structure_defensive_wall_tower.xml:52
 msgid "Garrison Infantry for additional arrows."
 msgstr ""
 
-#: simulation/templates/template_structure_economic.xml:20
+#: simulation/templates/template_structure_economic.xml:4
 msgid "Economic Structure"
 msgstr "Struchtúr Geilleagrach"
 
-#: simulation/templates/template_structure_economic.xml:21
+#: simulation/templates/template_structure_economic.xml:5
 #: simulation/templates/template_structure_military_dock.xml:28
 msgid "Economic"
 msgstr "Geilleagrach"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:31
-msgid "Dropsite for food. Research food gathering technologies."
+msgid "Research food gathering technologies."
 msgstr ""
 
 #: simulation/templates/template_structure_economic_farmstead.xml:33
@@ -268,7 +268,7 @@ msgid "Market"
 msgstr "Margadh"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:32
-msgid "Dropsite for wood, stone, and metal. Research gathering technologies."
+msgid "Research gathering technologies."
 msgstr ""
 
 #: simulation/templates/template_structure_economic_storehouse.xml:34
@@ -276,11 +276,11 @@ msgstr ""
 msgid "Storehouse"
 msgstr "Stóras"
 
-#: simulation/templates/template_structure_military.xml:29
+#: simulation/templates/template_structure_military.xml:13
 msgid "Military Structure"
 msgstr "Struchtúr Míleata"
 
-#: simulation/templates/template_structure_military.xml:31
+#: simulation/templates/template_structure_military.xml:15
 msgid "Military"
 msgstr "Míleata"
 
@@ -306,14 +306,13 @@ msgstr "Beairic"
 
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid ""
-"Build upon a shoreline in own, neutral, or allied territory. Dropsite for "
-"food, wood, stone, and metal. Establish trade routes. Construct Ships and "
-"research Ship technologies."
+"Build upon a shoreline in own, neutral, or allied territory. Establish trade"
+" routes. Construct Ships and research Ship technologies."
 msgstr ""
 
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/structures/brit_crannog.xml:16
-#: simulation/templates/structures/cart_super_dock.xml:51
+#: simulation/templates/structures/cart_super_dock.xml:44
 msgid "Naval"
 msgstr ""
 
@@ -334,8 +333,8 @@ msgstr ""
 msgid "ElephantStable"
 msgstr "EilifintStábla"
 
-#: simulation/templates/template_structure_military_embassy.xml:39
-#: simulation/templates/template_structure_military_embassy.xml:37
+#: simulation/templates/template_structure_military_embassy.xml:25
+#: simulation/templates/template_structure_military_embassy.xml:23
 #: simulation/templates/structures/cart_embassy.xml:18
 msgid "Embassy"
 msgstr "Ambasáid"
@@ -349,15 +348,15 @@ msgstr ""
 msgid "Forge"
 msgstr ""
 
-#: simulation/templates/template_structure_military_fortress.xml:78
+#: simulation/templates/template_structure_military_fortress.xml:69
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
 msgstr ""
 
-#: simulation/templates/template_structure_military_fortress.xml:80
-#: simulation/templates/template_structure_military_fortress.xml:46
-#: simulation/templates/template_structure_military_fortress.xml:76
+#: simulation/templates/template_structure_military_fortress.xml:71
+#: simulation/templates/template_structure_military_fortress.xml:37
+#: simulation/templates/template_structure_military_fortress.xml:67
 msgid "Fortress"
 msgstr "Daingean"
 
@@ -382,11 +381,11 @@ msgstr ""
 msgid "Stable"
 msgstr "Stábla"
 
-#: simulation/templates/template_structure_resource.xml:23
+#: simulation/templates/template_structure_resource.xml:7
 msgid "Resource Structure"
 msgstr "Struchtúr Acmhainne"
 
-#: simulation/templates/template_structure_resource.xml:24
+#: simulation/templates/template_structure_resource.xml:8
 msgid "Resource"
 msgstr "Acmhainn"
 
@@ -399,17 +398,17 @@ msgstr ""
 msgid "Corral"
 msgstr "Loca"
 
-#: simulation/templates/template_structure_resource_field.xml:32
-#: simulation/templates/template_structure_resource_field.xml:30
+#: simulation/templates/template_structure_resource_field.xml:23
+#: simulation/templates/template_structure_resource_field.xml:21
 msgid "Field"
 msgstr "Gort"
 
-#: simulation/templates/template_structure_resource_field.xml:33
+#: simulation/templates/template_structure_resource_field.xml:24
 msgid ""
 "Harvest grain for food. Each subsequent gatherer works less efficiently."
 msgstr "Bailigh gráinne agus faigh bia. Oibríonn gach bailitheoir ina dhiaidh sin níos lú ná an bailitheoir roimhe."
 
-#: simulation/templates/template_structure_special.xml:39
+#: simulation/templates/template_structure_special.xml:23
 msgid "Special Structure"
 msgstr ""
 
@@ -437,14 +436,14 @@ msgstr ""
 msgid "Theater"
 msgstr ""
 
-#: simulation/templates/template_structure_wonder.xml:57
+#: simulation/templates/template_structure_wonder.xml:41
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
 msgstr "Tabhair clú agus cáil leat ar do shibhialtacht agus cuir le réimsí móra eile ar d'impireacht."
 
-#: simulation/templates/template_structure_wonder.xml:59
-#: simulation/templates/template_structure_wonder.xml:55
+#: simulation/templates/template_structure_wonder.xml:43
+#: simulation/templates/template_structure_wonder.xml:39
 msgid "Wonder"
 msgstr "Iontas"
 
@@ -643,11 +642,11 @@ msgstr "Theatron"
 msgid "Pyrgíon"
 msgstr "Pyrgíon"
 
-#: simulation/templates/structures/athen_wall_gate.xml:9
-#: simulation/templates/structures/mace_wall_gate.xml:9
-#: simulation/templates/structures/ptol_wall_gate.xml:9
-#: simulation/templates/structures/sele_wall_gate.xml:9
-#: simulation/templates/structures/spart_wall_gate.xml:9
+#: simulation/templates/structures/athen_wall_gate.xml:12
+#: simulation/templates/structures/mace_wall_gate.xml:12
+#: simulation/templates/structures/ptol_wall_gate.xml:12
+#: simulation/templates/structures/sele_wall_gate.xml:12
+#: simulation/templates/structures/spart_wall_gate.xml:12
 msgid "Pylai"
 msgstr ""
 
@@ -715,9 +714,8 @@ msgstr "Cranogion"
 #: simulation/templates/structures/brit_crannog.xml:15
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
-"tracts of territory. Territory root. Dropsite for food, wood, stone, and "
-"metal. Train Citizens, construct Ships, and research technologies. Garrison "
-"Soldiers for additional arrows."
+"tracts of territory. Territory root. Train Citizens, construct Ships, and "
+"research technologies. Garrison Soldiers for additional arrows."
 msgstr ""
 
 #: simulation/templates/structures/brit_defense_tower.xml:9
@@ -793,8 +791,8 @@ msgstr "Capanon"
 msgid "Nemeton"
 msgstr "Nemeton"
 
-#: simulation/templates/structures/brit_wall_gate.xml:9
-#: simulation/templates/structures/gaul_wall_gate.xml:9
+#: simulation/templates/structures/brit_wall_gate.xml:12
+#: simulation/templates/structures/gaul_wall_gate.xml:12
 msgid "Duoricos"
 msgstr "Duoricos"
 
@@ -917,22 +915,22 @@ msgstr "Cloch Balla"
 msgid "Maḥṣabah"
 msgstr "Maḥṣabah"
 
-#: simulation/templates/structures/cart_super_dock.xml:47
+#: simulation/templates/structures/cart_super_dock.xml:40
 msgid "Naval Shipyard"
 msgstr "Longchlós Cabhlaigh"
 
-#: simulation/templates/structures/cart_super_dock.xml:48
+#: simulation/templates/structures/cart_super_dock.xml:41
 msgid "Cothon"
 msgstr "Cothon"
 
-#: simulation/templates/structures/cart_super_dock.xml:49
+#: simulation/templates/structures/cart_super_dock.xml:42
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Construct Warships and research "
 "technologies."
 msgstr ""
 
-#: simulation/templates/structures/cart_super_dock.xml:51
+#: simulation/templates/structures/cart_super_dock.xml:44
 msgid "Shipyard"
 msgstr "Longchlós"
 
@@ -956,7 +954,7 @@ msgstr "Tophet"
 msgid "Train Healers and Champion Cavalry and research healing technologies."
 msgstr ""
 
-#: simulation/templates/structures/cart_wall_gate.xml:9
+#: simulation/templates/structures/cart_wall_gate.xml:12
 msgid "Mijdil-šaʿar"
 msgstr "Mijdil-šaʿar"
 
@@ -1080,7 +1078,7 @@ msgstr "Ola"
 msgid "Loki"
 msgstr "Loki"
 
-#: simulation/templates/structures/iber_wall_gate.xml:9
+#: simulation/templates/structures/iber_wall_gate.xml:12
 msgid "Biko Sarbide"
 msgstr "Biko Sarbide"
 
@@ -1247,7 +1245,7 @@ msgstr ""
 msgid "TempleOfAmun"
 msgstr ""
 
-#: simulation/templates/structures/kush_wall_gate.xml:9
+#: simulation/templates/structures/kush_wall_gate.xml:12
 msgid "ʿryt"
 msgstr ""
 
@@ -1289,7 +1287,7 @@ msgid "Gotra"
 msgstr "Gotra"
 
 #: simulation/templates/structures/maur_defense_tower.xml:5
-#: simulation/templates/structures/maur_tower_double.xml:16
+#: simulation/templates/structures/maur_tower_double.xml:24
 msgid "Udarka"
 msgstr "Udarka"
 
@@ -1365,18 +1363,18 @@ msgstr "Khalla"
 msgid "Devalaya"
 msgstr "Devalaya"
 
-#: simulation/templates/structures/maur_tower_double.xml:12
+#: simulation/templates/structures/maur_tower_double.xml:20
 msgid "Rampart Tower"
 msgstr ""
 
-#: simulation/templates/structures/maur_tower_double.xml:14
+#: simulation/templates/structures/maur_tower_double.xml:22
 msgid ""
 "Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
 "archers recieve a range and armor bonus. Only archers can garrison. Needs "
 "the murder holes tech to protect its foot."
 msgstr ""
 
-#: simulation/templates/structures/maur_wall_gate.xml:15
+#: simulation/templates/structures/maur_wall_gate.xml:18
 msgid "Dwara"
 msgstr "Dwara"
 
@@ -1574,7 +1572,7 @@ msgstr "Taçara"
 msgid "Āyadanam"
 msgstr ""
 
-#: simulation/templates/structures/pers_wall_gate.xml:9
+#: simulation/templates/structures/pers_wall_gate.xml:12
 msgid "Duvarθiš"
 msgstr ""
 
@@ -1665,22 +1663,22 @@ msgstr ""
 msgid "TriumphalArch"
 msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:86
+#: simulation/templates/structures/rome_army_camp.xml:70
 msgid "Army Camp"
 msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:87
+#: simulation/templates/structures/rome_army_camp.xml:71
 msgid "Castra"
 msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:88
+#: simulation/templates/structures/rome_army_camp.xml:72
 msgid ""
 "Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
 "Siege Engines. Garrison Soldiers for additional arrows."
 msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:90
-#: simulation/templates/structures/rome_army_camp.xml:54
+#: simulation/templates/structures/rome_army_camp.xml:74
+#: simulation/templates/structures/rome_army_camp.xml:38
 msgid "ArmyCamp"
 msgstr "Arm-champa"
 
@@ -1742,42 +1740,42 @@ msgstr ""
 msgid "Turris Līgnea"
 msgstr ""
 
-#: simulation/templates/structures/rome_siege_wall_gate.xml:37
+#: simulation/templates/structures/rome_siege_wall_gate.xml:24
 msgid "Siege Wall Gate"
 msgstr "Geata Balla Léigearach"
 
-#: simulation/templates/structures/rome_siege_wall_gate.xml:38
+#: simulation/templates/structures/rome_siege_wall_gate.xml:25
 msgid "Porta Circummūnītiōnis"
 msgstr ""
 
-#: simulation/templates/structures/rome_siege_wall_gate.xml:39
-#: simulation/templates/structures/rome_siege_wall_long.xml:40
-#: simulation/templates/structures/rome_siege_wall_medium.xml:40
-#: simulation/templates/structures/rome_siege_wall_short.xml:40
-#: simulation/templates/structures/rome_siege_wall_tower.xml:39
+#: simulation/templates/structures/rome_siege_wall_gate.xml:26
+#: simulation/templates/structures/rome_siege_wall_long.xml:27
+#: simulation/templates/structures/rome_siege_wall_medium.xml:24
+#: simulation/templates/structures/rome_siege_wall_short.xml:24
+#: simulation/templates/structures/rome_siege_wall_tower.xml:23
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "SiegeWall"
 msgstr ""
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:38
-#: simulation/templates/structures/rome_siege_wall_medium.xml:38
-#: simulation/templates/structures/rome_siege_wall_short.xml:38
+#: simulation/templates/structures/rome_siege_wall_long.xml:25
+#: simulation/templates/structures/rome_siege_wall_medium.xml:22
+#: simulation/templates/structures/rome_siege_wall_short.xml:22
 #: simulation/templates/structures/rome_wallset_siege.xml:5
 msgid "Siege Wall"
 msgstr "Balla Léigearach"
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:39
-#: simulation/templates/structures/rome_siege_wall_medium.xml:39
-#: simulation/templates/structures/rome_siege_wall_short.xml:39
+#: simulation/templates/structures/rome_siege_wall_long.xml:26
+#: simulation/templates/structures/rome_siege_wall_medium.xml:23
+#: simulation/templates/structures/rome_siege_wall_short.xml:23
 #: simulation/templates/structures/rome_wallset_siege.xml:6
 msgid "Mūrus Circummūnītiōnis"
 msgstr ""
 
-#: simulation/templates/structures/rome_siege_wall_tower.xml:37
+#: simulation/templates/structures/rome_siege_wall_tower.xml:21
 msgid "Siege Wall Tower"
 msgstr "Túr Balla Léigearach"
 
-#: simulation/templates/structures/rome_siege_wall_tower.xml:38
+#: simulation/templates/structures/rome_siege_wall_tower.xml:22
 msgid "Turris Circummūnītiōnis"
 msgstr ""
 
@@ -1829,7 +1827,7 @@ msgstr "Tabernāculum"
 msgid "A temporary shelter for soldiers."
 msgstr "Forscadán sealach do shaighdiúirí."
 
-#: simulation/templates/structures/rome_wall_gate.xml:9
+#: simulation/templates/structures/rome_wall_gate.xml:12
 msgid "Porta"
 msgstr "Porta"
 
