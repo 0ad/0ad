@@ -650,7 +650,11 @@ GuiInterface.prototype.GetBattleState = function(player)
  */
 GuiInterface.prototype.GetIncomingAttacks = function(player)
 {
-	return QueryPlayerIDInterface(player, IID_AttackDetection).GetIncomingAttacks();
+	let cmpAttackDetection = QueryPlayerIDInterface(player, IID_AttackDetection);
+	if (!cmpAttackDetection)
+		return [];
+
+	return cmpAttackDetection.GetIncomingAttacks();
 };
 
 /**
@@ -658,7 +662,8 @@ GuiInterface.prototype.GetIncomingAttacks = function(player)
  */
 GuiInterface.prototype.GetNeededResources = function(player, data)
 {
-	return QueryPlayerIDInterface(data.player !== undefined ? data.player : player).GetNeededResources(data.cost);
+	let cmpPlayer = QueryPlayerIDInterface(data.player !== undefined ? data.player : player);
+	return cmpPlayer ? cmpPlayer.GetNeededResources(data.cost) : {};
 };
 
 /**
@@ -766,7 +771,11 @@ GuiInterface.prototype.GetNotifications = function()
 
 GuiInterface.prototype.GetAvailableFormations = function(player, wantedPlayer)
 {
-	return QueryPlayerIDInterface(wantedPlayer).GetFormations();
+	let cmpPlayer = QueryPlayerIDInterface(wantedPlayer);
+	if (!cmpPlayer)
+		return [];
+
+	return cmpPlayer.GetFormations();
 };
 
 GuiInterface.prototype.GetFormationRequirements = function(player, data)
@@ -1956,7 +1965,11 @@ GuiInterface.prototype.GetTraderNumber = function(player)
 
 GuiInterface.prototype.GetTradingGoods = function(player)
 {
-	return QueryPlayerIDInterface(player).GetTradingGoods();
+	let cmpPlayer = QueryPlayerIDInterface(player);
+	if (!cmpPlayer)
+		return [];
+
+	return cmpPlayer.GetTradingGoods();
 };
 
 GuiInterface.prototype.OnGlobalEntityRenamed = function(msg)
