@@ -44,21 +44,21 @@ var panelEntityClasses = "Hero Relic";
 Player.prototype.Init = function()
 {
 	this.playerID = undefined;
-	this.name = undefined;	// define defaults elsewhere (supporting other languages)
+	this.name = undefined;	// Define defaults elsewhere (supporting other languages).
 	this.civ = undefined;
 	this.color = undefined;
 	this.diplomacyColor = undefined;
 	this.displayDiplomacyColor = false;
-	this.popUsed = 0; // population of units owned or trained by this player
-	this.popBonuses = 0; // sum of population bonuses of player's entities
-	this.maxPop = 300; // maximum population
-	this.trainingBlocked = false; // indicates whether any training queue is currently blocked
+	this.popUsed = 0; // Population of units owned or trained by this player.
+	this.popBonuses = 0; // Sum of population bonuses of player's entities.
+	this.maxPop = 300; // Maximum population.
+	this.trainingBlocked = false; // Indicates whether any training queue is currently blocked.
 	this.resourceCount = {};
-	this.tradingGoods = []; // goods for next trade-route and its proba in % (the sum of probas must be 100)
-	this.team = -1;	// team number of the player, players on the same team will always have ally diplomatic status - also this is useful for team emblems, scoring, etc.
+	this.tradingGoods = []; // Goods for next trade-route and its probabilities * 100.
+	this.team = -1;	// Team number of the player, players on the same team will always have ally diplomatic status. Also this is useful for team emblems, scoring, etc.
 	this.teamsLocked = false;
-	this.state = "active"; // game state - one of "active", "defeated", "won"
-	this.diplomacy = [];	// array of diplomatic stances for this player with respect to other players (including gaia and self)
+	this.state = "active"; // Game state. One of "active", "defeated", "won".
+	this.diplomacy = [];	// Array of diplomatic stances for this player with respect to other players (including gaia and self).
 	this.sharedDropsites = false;
 	this.formations = [];
 	this.startCam = undefined;
@@ -76,14 +76,14 @@ Player.prototype.Init = function()
 		"sell": clone(this.template.BarterMultiplier.Sell)
 	};
 
-	// Initial resources
+	// Initial resources.
 	let resCodes = Resources.GetCodes();
 	for (let res of resCodes)
 	{
 		this.resourceCount[res] = 300;
 		this.resourceNames[res] = Resources.GetResource(res).name;
 	}
-	// Trading goods probability in steps of 5
+	// Trading goods probability in steps of 5.
 	let resTradeCodes = Resources.GetTradableCodes();
 	let quotient = Math.floor(20 / resTradeCodes.length);
 	let remainder = 20 % resTradeCodes.length;
@@ -116,14 +116,12 @@ Player.prototype.GetName = function()
 
 Player.prototype.SetCiv = function(civcode)
 {
-	var oldCiv = this.civ;
+	let oldCiv = this.civ;
 	this.civ = civcode;
-	// Normally, the civ is only set once
-	// But in Atlas, the map designers can change civs at any time
-	var playerID = this.GetPlayerID();
-	if (oldCiv && playerID && oldCiv != civcode)
+	// Normally, the civ is only set once. But in Atlas, map designers can change civs at any time.
+	if (oldCiv && this.playerID && oldCiv != civcode)
 		Engine.BroadcastMessage(MT_CivChanged, {
-			"player": playerID,
+			"player": this.playerID,
 			"from": oldCiv,
 			"to": civcode
 		});
@@ -136,11 +134,11 @@ Player.prototype.GetCiv = function()
 
 Player.prototype.SetColor = function(r, g, b)
 {
-	var colorInitialized = !!this.color;
+	let colorInitialized = !!this.color;
 
 	this.color = { "r": r / 255, "g": g / 255, "b": b / 255, "a": 1 };
 
-	// Used in Atlas
+	// Used in Atlas.
 	if (colorInitialized)
 		Engine.BroadcastMessage(MT_PlayerColorChanged, {
 			"player": this.playerID
@@ -228,7 +226,7 @@ Player.prototype.GetSpyCostMultiplier = function()
 };
 
 /**
- * Setters currently used by the AI to set the difficulty level
+ * Setters currently used by the AI to set the difficulty level.
  */
 
 Player.prototype.GetPanelEntities = function()
@@ -263,9 +261,9 @@ Player.prototype.GetResourceCounts = function()
 };
 
 /**
- * Add resource of specified type to player
- * @param type Generic type of resource (string)
- * @param amount Amount of resource, which should be added (integer)
+ * Add resource of specified type to player.
+ * @param {string} type - Generic type of resource.
+ * @param {number} amount - Amount of resource, which should be added.
  */
 Player.prototype.AddResource = function(type, amount)
 {
@@ -273,19 +271,19 @@ Player.prototype.AddResource = function(type, amount)
 };
 
 /**
- * Add resources to player
+ * Add resources to player.
  */
 Player.prototype.AddResources = function(amounts)
 {
-	for (var type in amounts)
+	for (let type in amounts)
 		this.resourceCount[type] += +amounts[type];
 };
 
 Player.prototype.GetNeededResources = function(amounts)
 {
-	// Check if we can afford it all
-	var amountsNeeded = {};
-	for (var type in amounts)
+	// Check if we can afford it all.
+	let amountsNeeded = {};
+	for (let type in amounts)
 		if (this.resourceCount[type] != undefined && amounts[type] > this.resourceCount[type])
 			amountsNeeded[type] = amounts[type] - Math.floor(this.resourceCount[type]);
 
@@ -296,23 +294,23 @@ Player.prototype.GetNeededResources = function(amounts)
 
 Player.prototype.SubtractResourcesOrNotify = function(amounts)
 {
-	var amountsNeeded = this.GetNeededResources(amounts);
+	let amountsNeeded = this.GetNeededResources(amounts);
 
-	// If we don't have enough resources, send a notification to the player
+	// If we don't have enough resources, send a notification to the player.
 	if (amountsNeeded)
 	{
-		var parameters = {};
-		var i = 0;
-		for (var type in amountsNeeded)
+		let parameters = {};
+		let i = 0;
+		for (let type in amountsNeeded)
 		{
 			++i;
-			parameters["resourceType"+i] = this.resourceNames[type];
-			parameters["resourceAmount"+i] = amountsNeeded[type];
+			parameters["resourceType" + i] = this.resourceNames[type];
+			parameters["resourceAmount" + i] = amountsNeeded[type];
 		}
 
-		var msg = "";
-		// when marking strings for translations, you need to include the actual string,
-		// not some way to derive the string
+		let msg = "";
+		// When marking strings for translations, you need to include the actual string,
+		// not some way to derive the string.
 		if (i < 1)
 			warn("Amounts needed but no amounts given?");
 		else if (i == 1)
@@ -326,7 +324,7 @@ Player.prototype.SubtractResourcesOrNotify = function(amounts)
 		else
 			warn("Localisation: Strings are not localised for more than 4 resources");
 
-		// Send as time-notification
+		// Send as time-notification.
 		let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGUIInterface.PushNotification({
 			"players": [this.playerID],
@@ -337,13 +335,13 @@ Player.prototype.SubtractResourcesOrNotify = function(amounts)
 				"resourceType1": "withinSentence",
 				"resourceType2": "withinSentence",
 				"resourceType3": "withinSentence",
-				"resourceType4": "withinSentence",
-			},
+				"resourceType4": "withinSentence"
+			}
 		});
 		return false;
 	}
 
-	for (var type in amounts)
+	for (let type in amounts)
 		this.resourceCount[type] -= amounts[type];
 
 	return true;
@@ -354,9 +352,9 @@ Player.prototype.TrySubtractResources = function(amounts)
 	if (!this.SubtractResourcesOrNotify(amounts))
 		return false;
 
-	var cmpStatisticsTracker = QueryPlayerIDInterface(this.playerID, IID_StatisticsTracker);
+	let cmpStatisticsTracker = QueryPlayerIDInterface(this.playerID, IID_StatisticsTracker);
 	if (cmpStatisticsTracker)
-		for (var type in amounts)
+		for (let type in amounts)
 			cmpStatisticsTracker.IncreaseResourceUsedCounter(type, amounts[type]);
 
 	return true;
@@ -364,10 +362,10 @@ Player.prototype.TrySubtractResources = function(amounts)
 
 Player.prototype.GetNextTradingGoods = function()
 {
-	var value = randFloat(0, 100);
-	var last = this.tradingGoods.length - 1;
-	var sumProba = 0;
-	for (var i = 0; i < last; ++i)
+	let value = randFloat(0, 100);
+	let last = this.tradingGoods.length - 1;
+	let sumProba = 0;
+	for (let i = 0; i < last; ++i)
 	{
 		sumProba += this.tradingGoods[i].proba;
 		if (value < sumProba)
@@ -378,7 +376,7 @@ Player.prototype.GetNextTradingGoods = function()
 
 Player.prototype.GetTradingGoods = function()
 {
-	var tradingGoods = {};
+	let tradingGoods = {};
 	for (let resource of this.tradingGoods)
 		tradingGoods[resource.goods] = resource.proba;
 
@@ -449,7 +447,7 @@ Player.prototype.SetState = function(newState, message)
 		cmpRangeManager.SetLosRevealAll(this.playerID, true);
 	else
 	{
-		// Reassign all player's entities to Gaia
+		// Reassign all player's entities to Gaia.
 		let entities = cmpRangeManager.GetEntitiesByPlayer(this.playerID);
 
 		// The ownership change is done in two steps so that entities don't hit idle
@@ -496,7 +494,7 @@ Player.prototype.SetTeam = function(team)
 
 	this.team = team;
 
-	// Set all team members as allies
+	// Set all team members as allies.
 	if (this.team != -1)
 	{
 		let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
@@ -558,7 +556,7 @@ Player.prototype.SetDiplomacyIndex = function(idx, value)
 		"otherPlayer": cmpPlayer.GetPlayerID()
 	});
 
-	// Mutual worsening of relations
+	// Mutual worsening of relations.
 	if (cmpPlayer.diplomacy[this.playerID] > value)
 		cmpPlayer.SetDiplomacyIndex(this.playerID, value);
 };
@@ -641,8 +639,8 @@ Player.prototype.IsAI = function()
 
 Player.prototype.GetPlayersByDiplomacy = function(func)
 {
-	var players = [];
-	for (var i = 0; i < this.diplomacy.length; ++i)
+	let players = [];
+	for (let i = 0; i < this.diplomacy.length; ++i)
 		if (this[func](i))
 			players.push(i);
 	return players;
@@ -654,7 +652,7 @@ Player.prototype.SetAlly = function(id)
 };
 
 /**
- * Check if given player is our ally
+ * Check if given player is our ally.
  */
 Player.prototype.IsAlly = function(id)
 {
@@ -679,7 +677,7 @@ Player.prototype.IsExclusiveAlly = function(id)
  */
 Player.prototype.IsMutualAlly = function(id)
 {
-	var cmpPlayer = QueryPlayerIDInterface(id);
+	let cmpPlayer = QueryPlayerIDInterface(id);
 	return this.IsAlly(id) && cmpPlayer && cmpPlayer.IsAlly(this.playerID);
 };
 
@@ -737,7 +735,7 @@ Player.prototype.OnGlobalInitGame = function(msg)
 		for (let tech of this.startingTechnologies)
 			cmpTechnologyManager.ResearchTechnology(tech);
 
-	// Replace the "{civ}" code with this civ ID
+	// Replace the "{civ}" code with this civ ID.
 	let disabledTemplates = this.disabledTemplates;
 	this.disabledTemplates = {};
 	for (let template in disabledTemplates)
@@ -747,15 +745,15 @@ Player.prototype.OnGlobalInitGame = function(msg)
 
 /**
  * Keep track of population effects of all entities that
- * become owned or unowned by this player
+ * become owned or unowned by this player.
  */
 Player.prototype.OnGlobalOwnershipChanged = function(msg)
 {
 	if (msg.from != this.playerID && msg.to != this.playerID)
 		return;
 
-	var cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
-	var cmpCost = Engine.QueryInterface(msg.entity, IID_Cost);
+	let cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
+	let cmpCost = Engine.QueryInterface(msg.entity, IID_Cost);
 
 	if (msg.from == this.playerID)
 	{
@@ -841,15 +839,15 @@ Player.prototype.TributeResource = function(player, amounts)
 		return;
 	cmpPlayer.AddResources(amounts);
 
-	var total = Object.keys(amounts).reduce((sum, type) => sum + amounts[type], 0);
-	var cmpOurStatisticsTracker = QueryPlayerIDInterface(this.playerID, IID_StatisticsTracker);
+	let total = Object.keys(amounts).reduce((sum, type) => sum + amounts[type], 0);
+	let cmpOurStatisticsTracker = QueryPlayerIDInterface(this.playerID, IID_StatisticsTracker);
 	if (cmpOurStatisticsTracker)
 		cmpOurStatisticsTracker.IncreaseTributesSentCounter(total);
-	var cmpTheirStatisticsTracker = QueryPlayerIDInterface(player, IID_StatisticsTracker);
+	let cmpTheirStatisticsTracker = QueryPlayerIDInterface(player, IID_StatisticsTracker);
 	if (cmpTheirStatisticsTracker)
 		cmpTheirStatisticsTracker.IncreaseTributesReceivedCounter(total);
 
-	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	if (cmpGUIInterface)
 		cmpGUIInterface.PushNotification({
 			"type": "tribute",
