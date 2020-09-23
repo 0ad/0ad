@@ -435,6 +435,12 @@ Player.prototype.SetState = function(newState, message)
 		return;
 	}
 
+	if (!this.playerID)
+	{
+		warn("Gaia can't change state.");
+		return;
+	}
+
 	this.state = newState;
 
 	let won = newState == "won";
