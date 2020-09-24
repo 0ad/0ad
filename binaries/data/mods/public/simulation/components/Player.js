@@ -168,8 +168,8 @@ Player.prototype.GetDisplayedColor = function()
 // Try reserving num population slots. Returns 0 on success or number of missing slots otherwise.
 Player.prototype.TryReservePopulationSlots = function(num)
 {
-	if (num != 0 && num > (this.GetPopulationLimit() - this.GetPopulationCount()))
-		return num - (this.GetPopulationLimit() - this.GetPopulationCount());
+	if (num != 0 && num > (this.GetPopulationLimit() - this.popUsed))
+		return num - (this.GetPopulationLimit() - this.popUsed);
 
 	this.popUsed += num;
 	return 0;
