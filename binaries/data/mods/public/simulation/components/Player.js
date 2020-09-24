@@ -225,10 +225,6 @@ Player.prototype.GetSpyCostMultiplier = function()
 	return this.spyCostMultiplier;
 };
 
-/**
- * Setters currently used by the AI to set the difficulty level.
- */
-
 Player.prototype.GetPanelEntities = function()
 {
 	return this.panelEntities;
