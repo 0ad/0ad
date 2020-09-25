@@ -119,7 +119,7 @@ experiments.units_dense_forest = {
 		WalkTo(gx, gy + 100, QuickSpawn(gx + 2, gy + 2, UNIT_TEMPLATE));
 		for (let i = -16; i <= 16; i += 4)
 			for (let j = -16; j <= 16; j += 4)
-				QuickSpawn(gx + i, gy + 50 + j, "gaia/flora_tree_acacia", 0);
+				QuickSpawn(gx + i, gy + 50 + j, "gaia/tree/acacia", 0);
 		WalkTo(gx, gy + 100, QuickSpawn(gx, gy - 20, UNIT_TEMPLATE));
 		WalkTo(gx, gy + 100, QuickSpawn(gx - 2, gy - 20, UNIT_TEMPLATE));
 		WalkTo(gx, gy + 100, QuickSpawn(gx + 2, gy - 18, UNIT_TEMPLATE));
@@ -137,7 +137,7 @@ experiments.units_sparse_forest = {
 
 		for (let i = -16; i <= 16; i += 8)
 			for (let j = -16; j <= 16; j += 8)
-				QuickSpawn(gx + i, gy + 50 + j, "gaia/flora_tree_acacia", 0);
+				QuickSpawn(gx + i, gy + 50 + j, "gaia/tree/acacia", 0);
 
 		for (let i = -4; i <= 4; i += 2)
 			for (let j = -4; j <= 4; j += 2)
@@ -234,7 +234,7 @@ experiments.u_shape_tight_exit = {
 		Rotate(Math.PI / 2, QuickSpawn(gx + 8, gy - 5, "structures/palisades_long"));
 		Rotate(Math.PI / 2, QuickSpawn(gx - 8, gy - 7, "structures/palisades_long"));
 
-		let tree = QuickSpawn(gx, gy + 80, "gaia/flora_tree_acacia");
+		let tree = QuickSpawn(gx, gy + 80, "gaia/tree/acacia");
 
 		for (let i = -3; i <= 3; i += 1)
 		{
@@ -247,7 +247,7 @@ experiments.u_shape_tight_exit = {
 
 experiments.cluttered_around_tree = {
 	"spawn": () => {
-		let tree = QuickSpawn(gx, gy + 50, "gaia/flora_tree_acacia");
+		let tree = QuickSpawn(gx, gy + 50, "gaia/tree/acacia");
 
 		for (let i = -3; i <= 3; i += 1)
 			for (let j = -3; j <= 3; j += 1)

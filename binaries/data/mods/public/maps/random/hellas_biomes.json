@@ -59,13 +59,13 @@
 			],
 			"forests": [
 				[
-					"medit_grass_shrubs|gaia/flora_tree_oak_large",
-					"medit_grass_shrubs|gaia/flora_tree_oak",
+					"medit_grass_shrubs|gaia/tree/oak_large",
+					"medit_grass_shrubs|gaia/tree/oak",
 					"medit_grass_shrubs"
 				],
 				[
-					"medit_grass_field|gaia/flora_tree_euro_beech",
-					"medit_grass_field|gaia/flora_tree_poplar",
+					"medit_grass_field|gaia/tree/euro_beech",
+					"medit_grass_field|gaia/tree/poplar",
 					"medit_grass_field"
 				]
 			],
@@ -83,12 +83,12 @@
 		"gaia": {
 			"flora": {
 				"trees": [
-					"gaia/flora_tree_euro_beech",
-					"gaia/flora_tree_poplar",
-					"gaia/flora_tree_oak",
-					"gaia/flora_tree_oak_large"
+					"gaia/tree/euro_beech",
+					"gaia/tree/poplar",
+					"gaia/tree/oak",
+					"gaia/tree/oak_large"
 				],
-				"fruitBush": "gaia/flora_bush_grapes"
+				"fruitBush": "gaia/fruit/grapes"
 			},
 			"fauna": {
 				"startingAnimal": "gaia/fauna_sheep",
@@ -131,13 +131,13 @@
 			],
 			"forests": [
 				[
-					"alpine_grass_e|gaia/flora_tree_cypress",
-					"alpine_grass_e|gaia/flora_tree_poplar_lombardy",
+					"alpine_grass_e|gaia/tree/cypress",
+					"alpine_grass_e|gaia/tree/poplar_lombardy",
 					"alpine_grass_e"
 				],
 				[
-					"alpine_grass_d|gaia/flora_tree_cypress",
-					"alpine_grass_d|gaia/flora_tree_aleppo_pine",
+					"alpine_grass_d|gaia/tree/cypress",
+					"alpine_grass_d|gaia/tree/aleppo_pine",
 					"alpine_grass_d"
 				]
 			],
@@ -152,11 +152,11 @@
 		"gaia": {
 			"flora": {
 				"trees": [
-					"gaia/flora_tree_poplar_lombardy",
-					"gaia/flora_tree_cypress",
-					"gaia/flora_tree_aleppo_pine"
+					"gaia/tree/poplar_lombardy",
+					"gaia/tree/cypress",
+					"gaia/tree/aleppo_pine"
 				],
-				"fruitBush": "gaia/flora_bush_berry"
+				"fruitBush": "gaia/fruit/berry_01"
 			},
 			"fauna": {
 				"startingAnimal": "gaia/fauna_goat",

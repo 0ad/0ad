@@ -14,15 +14,15 @@ const tShoreBlend = "tropic_beach_dry_plants";
 const tShore = "tropic_beach_dry";
 const tWater = "tropic_beach_wet";
 
-const oTree = "gaia/flora_tree_toona";
-const oPalm = "gaia/flora_tree_palm_tropic";
+const oTree = "gaia/tree/toona";
+const oPalm = "gaia/tree/palm_tropic";
 const oStoneLarge = "gaia/geology_stonemine_tropic_quarry";
 const oStoneSmall = "gaia/geology_stone_tropic_a";
 const oMetalLarge = "gaia/geology_metal_tropic_slabs";
 const oFish = "gaia/fish/generic";
 const oDeer = "gaia/fauna_deer";
 const oSheep = "gaia/fauna_tiger";
-const oBush = "gaia/flora_bush_berry";
+const oBush = "gaia/fruit/berry_01";
 
 const aRockLarge = "actor|geology/stone_granite_large.xml";
 const aRockMedium = "actor|geology/stone_granite_med.xml";

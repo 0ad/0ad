@@ -20,9 +20,9 @@ var tShore = "alpine_shore_rocks";
 var tWater = "polar_ice_b";
 var tHill = "polar_ice_cracked";
 
-var oBush = "gaia/flora_bush_badlands";
-var oBush2 = "gaia/flora_bush_temperate";
-var oBerryBush = "gaia/flora_bush_berry";
+var oBush = "gaia/tree/bush_badlands";
+var oBush2 = "gaia/tree/bush_temperate";
+var oBerryBush = "gaia/fruit/berry_01";
 var oRabbit = "gaia/fauna_rabbit";
 var oMuskox = "gaia/fauna_muskox";
 var oDeer = "gaia/fauna_deer";

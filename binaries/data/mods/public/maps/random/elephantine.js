@@ -30,14 +30,14 @@ const tGrass = ["savanna_shrubs_a_wetseason", "alpine_grass_b_wild", "medit_shru
 const tForestFloorLand = "savanna_forestfloor_b_red";
 const tForestFloorIsland = pickRandom(tGrass);
 
-const oAcacia = "gaia/flora_tree_acacia";
+const oAcacia = "gaia/tree/acacia";
 const oPalms = [
-	"gaia/flora_tree_cretan_date_palm_tall",
-	"gaia/flora_tree_cretan_date_palm_short",
-	"gaia/flora_tree_palm_tropic",
-	"gaia/flora_tree_date_palm",
-	"gaia/flora_tree_senegal_date_palm",
-	"gaia/flora_tree_medit_fan_palm"
+	"gaia/tree/cretan_date_palm_tall",
+	"gaia/tree/cretan_date_palm_short",
+	"gaia/tree/palm_tropic",
+	"gaia/tree/date_palm",
+	"gaia/tree/senegal_date_palm",
+	"gaia/tree/medit_fan_palm"
 ];
 const oStoneLarge = "gaia/geology_stonemine_savanna_quarry";
 const oStoneSmall = "gaia/geology_stone_desert_small";
@@ -51,7 +51,7 @@ const oTreasure = [
 	"gaia/treasure/metal",
 	"gaia/treasure/stone"
 ];
-const oBerryBush = "gaia/flora_bush_berry_desert";
+const oBerryBush = "gaia/fruit/berry_05";
 const oGazelle = "gaia/fauna_gazelle";
 const oRhino = "gaia/fauna_rhinoceros_white";
 const oWarthog = "gaia/fauna_boar";

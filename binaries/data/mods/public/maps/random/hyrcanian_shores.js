@@ -16,11 +16,11 @@ const tGrassPatch = "temp_grass_plants";
 const tShore = "medit_sand_wet";
 const tWater = "medit_sand_wet";
 
-const oPoplar = "gaia/flora_tree_poplar";
-const oPalm = "gaia/flora_tree_cretan_date_palm_short";
-const oApple = "gaia/flora_tree_apple";
-const oOak = "gaia/flora_tree_oak";
-const oBerryBush = "gaia/flora_bush_berry";
+const oPoplar = "gaia/tree/poplar";
+const oPalm = "gaia/tree/cretan_date_palm_short";
+const oApple = "gaia/fruit/apple";
+const oOak = "gaia/tree/oak";
+const oBerryBush = "gaia/fruit/berry_01";
 const oDeer = "gaia/fauna_deer";
 const oFish = "gaia/fish/generic";
 const oGoat = "gaia/fauna_goat";

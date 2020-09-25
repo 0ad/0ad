@@ -19,11 +19,11 @@ var tVeryDeepWater = ["medit_sea_depths","medit_sea_coral_deep"];
 var tDeepWater = ["medit_sea_coral_deep","tropic_ocean_coral"];
 var tCreekWater = "medit_sea_coral_plants";
 
-var ePine = "gaia/flora_tree_aleppo_pine";
-var ePalmTall = "gaia/flora_tree_cretan_date_palm_tall";
-var eFanPalm = "gaia/flora_tree_medit_fan_palm";
-var eApple = "gaia/flora_tree_apple";
-var eBush = "gaia/flora_bush_berry";
+var ePine = "gaia/tree/aleppo_pine";
+var ePalmTall = "gaia/tree/cretan_date_palm_tall";
+var eFanPalm = "gaia/tree/medit_fan_palm";
+var eApple = "gaia/fruit/apple";
+var eBush = "gaia/fruit/berry_01";
 var eFish = "gaia/fish/generic";
 var ePig = "gaia/fauna_pig";
 var eStoneMine = "gaia/geology_stonemine_medit_quarry";

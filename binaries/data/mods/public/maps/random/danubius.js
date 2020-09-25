@@ -26,7 +26,7 @@ const tShore = "temp_dirt_gravel_b";
 const tWater = "steppe_river_rocks_wet";
 const tSeaDepths = "medit_sea_depths";
 
-const oBerryBush = "gaia/flora_bush_berry";
+const oBerryBush = "gaia/fruit/berry_01";
 const oDeer = "gaia/fauna_deer";
 const oFish = "gaia/fish/generic";
 const oSheep = "gaia/fauna_sheep";
@@ -39,15 +39,15 @@ const oBear = "gaia/fauna_bear_brown";
 const oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
 const oStoneRuins = "gaia/ruins/standing_stone";
 const oMetalLarge = "gaia/geology_metal_mediterranean_slabs";
-const oApple = "gaia/flora_tree_apple";
-const oAcacia = "gaia/flora_tree_acacia";
-const oOak = "gaia/flora_tree_oak_aut";
-const oOak2 = "gaia/flora_tree_oak_aut_new";
-const oOak3 = "gaia/flora_tree_oak_dead";
-const oOak4 = "gaia/flora_tree_oak";
-const oPopolar = "gaia/flora_tree_poplar_lombardy";
-const oBeech = "gaia/flora_tree_euro_beech_aut";
-const oBeech2 = "gaia/flora_tree_euro_beech";
+const oApple = "gaia/fruit/apple";
+const oAcacia = "gaia/tree/acacia";
+const oOak = "gaia/tree/oak_aut";
+const oOak2 = "gaia/tree/oak_aut_new";
+const oOak3 = "gaia/tree/oak_dead";
+const oOak4 = "gaia/tree/oak";
+const oPopolar = "gaia/tree/poplar_lombardy";
+const oBeech = "gaia/tree/euro_beech_aut";
+const oBeech2 = "gaia/tree/euro_beech";
 const oTreasures = [
 	"gaia/treasure/food_barrel",
 	"gaia/treasure/food_bin",

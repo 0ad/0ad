@@ -31,9 +31,9 @@ var aBushSmall = 'actor|props/flora/bush_medit_sm.xml';
 var aReeds = 'actor|props/flora/reeds_pond_lush_b.xml';
 
 var terrainPrimary = ["temp_grass_plants", "temp_plants_bog"];
-var terrainWood = ['alpine_forrestfloor|gaia/flora_tree_oak', 'alpine_forrestfloor|gaia/flora_tree_pine'];
-var terrainWoodBorder = ['new_alpine_grass_mossy|gaia/flora_tree_oak', 'alpine_forrestfloor|gaia/flora_tree_pine',
-	'temp_grass_long|gaia/flora_bush_temperate', 'temp_grass_clovers|gaia/flora_bush_berry', 'temp_grass_clovers_2|gaia/flora_bush_grapes',
+var terrainWood = ['alpine_forrestfloor|gaia/tree/oak', 'alpine_forrestfloor|gaia/tree/pine'];
+var terrainWoodBorder = ['new_alpine_grass_mossy|gaia/tree/oak', 'alpine_forrestfloor|gaia/tree/pine',
+	'temp_grass_long|gaia/tree/bush_temperate', 'temp_grass_clovers|gaia/fruit/berry_01', 'temp_grass_clovers_2|gaia/fruit/grapes',
 	'temp_grass_plants|gaia/fauna_deer', 'temp_grass_plants|gaia/fauna_rabbit', 'new_alpine_grass_dirt_a'];
 var terrainBase = ['temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants',
@@ -165,7 +165,7 @@ placePlayerBases({
 	},
 	// No chicken
 	"Berries": {
-		"template": "gaia/flora_bush_berry",
+		"template": "gaia/fruit/berry_01",
 		"minCount": 2,
 		"maxCount": 2
 	},
@@ -179,7 +179,7 @@ placePlayerBases({
 		"maxAngle": Math.PI
 	},
 	"Trees": {
-		"template": "gaia/flora_tree_oak_large",
+		"template": "gaia/tree/oak_large",
 		"count": 2
 	}
 });

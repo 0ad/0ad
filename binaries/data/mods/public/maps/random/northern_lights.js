@@ -14,7 +14,7 @@ const tShoreBlend = "alpine_shore_rocks_icy";
 const tShore = "alpine_shore_rocks";
 const tWater = "alpine_shore_rocks";
 
-const oPine = "gaia/flora_tree_pine_w";
+const oPine = "gaia/tree/pine_w";
 const oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
 const oStoneSmall = "gaia/geology_stone_alpine_a";
 const oMetalLarge = "gaia/geology_metal_alpine_slabs";

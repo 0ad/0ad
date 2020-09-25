@@ -12,9 +12,9 @@ const tDirt = ["steppe_dirt_a", "steppe_dirt_b"];
 const tRoad = "road_stones";
 const tRoadWild = "road_stones";
 
-const oPoplar = "gaia/flora_tree_poplar_lombardy";
-const oBush = "gaia/flora_bush_temperate";
-const oBerryBush = "gaia/flora_bush_berry";
+const oPoplar = "gaia/tree/poplar_lombardy";
+const oBush = "gaia/tree/bush_temperate";
+const oBerryBush = "gaia/fruit/berry_01";
 const oRabbit = "gaia/fauna_rabbit";
 const oSheep = "gaia/fauna_sheep";
 const oStoneLarge = "gaia/geology_stonemine_medit_quarry";

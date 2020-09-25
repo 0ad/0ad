@@ -8,8 +8,8 @@ const tCityTiles = "savanna_tile_a_dirt_red";
 const tShore = "savanna_riparian_bank";
 const tWater = "savanna_riparian_wet";
 
-const oTree = "gaia/flora_tree_palm_tropic";
-const oBerryBush = "gaia/flora_bush_berry";
+const oTree = "gaia/tree/palm_tropic";
+const oBerryBush = "gaia/fruit/berry_01";
 const oRabbit = "gaia/fauna_rabbit";
 const oTiger = "gaia/fauna_tiger";
 const oCrocodile = "gaia/fauna_crocodile_nile";

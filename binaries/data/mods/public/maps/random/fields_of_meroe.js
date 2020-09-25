@@ -19,10 +19,10 @@ const tRiverBank = "savanna_riparian_wet";
 const tForestFloor = "savanna_forestfloor_b";
 
 const oBush = g_Gaia.berry;
-const oBaobab = "gaia/flora_tree_baobab";
-const oAcacia = "gaia/flora_tree_acacia";
-const oDatePalm = "gaia/flora_tree_date_palm";
-const oSDatePalm = "gaia/flora_tree_cretan_date_palm_short";
+const oBaobab = "gaia/tree/baobab";
+const oAcacia = "gaia/tree/acacia";
+const oDatePalm = "gaia/tree/date_palm";
+const oSDatePalm = "gaia/tree/cretan_date_palm_short";
 const oGazelle = "gaia/fauna_gazelle";
 const oGiraffe = "gaia/fauna_giraffe";
 const oLion = "gaia/fauna_lion";

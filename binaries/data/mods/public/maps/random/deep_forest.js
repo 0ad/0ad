@@ -7,11 +7,11 @@ var templateMetalMine = "gaia/geology_metal_temperate_slabs";
 var templateTemple = "gaia/ruins/unfinished_greek_temple";
 
 var terrainPrimary = ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_d", "temp_grass_long_b", "temp_grass_clovers_2", "temp_grass_mossy", "temp_grass_plants"];
-var terrainWood = ['temp_grass_mossy|gaia/flora_tree_oak', 'temp_forestfloor_pine|gaia/flora_tree_pine', 'temp_mud_plants|gaia/flora_tree_dead',
-	'temp_plants_bog|gaia/flora_tree_oak_large', "temp_dirt_gravel_plants|gaia/flora_tree_aleppo_pine", 'temp_forestfloor_autumn|gaia/flora_tree_carob']; //'temp_forestfloor_autumn|gaia/flora_tree_fig'
-var terrainWoodBorder = ['temp_grass_plants|gaia/flora_tree_euro_beech', 'temp_grass_mossy|gaia/flora_tree_poplar', 'temp_grass_mossy|gaia/flora_tree_poplar_lombardy',
-	'temp_grass_long|gaia/flora_bush_temperate', 'temp_mud_plants|gaia/flora_bush_temperate', 'temp_mud_plants|gaia/flora_bush_badlands',
-	'temp_grass_long|gaia/flora_tree_apple', 'temp_grass_clovers|gaia/flora_bush_berry', 'temp_grass_clovers_2|gaia/flora_bush_grapes',
+var terrainWood = ['temp_grass_mossy|gaia/tree/oak', 'temp_forestfloor_pine|gaia/tree/pine', 'temp_mud_plants|gaia/tree/dead',
+	'temp_plants_bog|gaia/tree/oak_large', "temp_dirt_gravel_plants|gaia/tree/aleppo_pine", 'temp_forestfloor_autumn|gaia/tree/carob']; //'temp_forestfloor_autumn|gaia/fruit/fig'
+var terrainWoodBorder = ['temp_grass_plants|gaia/tree/euro_beech', 'temp_grass_mossy|gaia/tree/poplar', 'temp_grass_mossy|gaia/tree/poplar_lombardy',
+	'temp_grass_long|gaia/tree/bush_temperate', 'temp_mud_plants|gaia/tree/bush_temperate', 'temp_mud_plants|gaia/tree/bush_badlands',
+	'temp_grass_long|gaia/fruit/apple', 'temp_grass_clovers|gaia/fruit/berry_01', 'temp_grass_clovers_2|gaia/fruit/grapes',
 	'temp_grass_plants|gaia/fauna_deer', "temp_grass_long_b|gaia/fauna_rabbit", "temp_grass_plants"];
 var terrainBase = ["temp_dirt_gravel", "temp_grass_b"];
 var terrainBaseBorder = ["temp_grass_b", "temp_grass_b", "temp_grass", "temp_grass_c", "temp_grass_mossy"];
@@ -82,7 +82,7 @@ placePlayerBases({
 	"Chicken": {
 	},
 	"Berries": {
-		"template": "gaia/flora_bush_grapes",
+		"template": "gaia/fruit/grapes",
 		"minCount": 2,
 		"maxCount": 2,
 		"distance": 12,
@@ -98,7 +98,7 @@ placePlayerBases({
 		"maxAngle": Math.PI
 	},
 	"Trees": {
-		"template": "gaia/flora_tree_oak_large",
+		"template": "gaia/tree/oak_large",
 		"count": 2
 	}
 });

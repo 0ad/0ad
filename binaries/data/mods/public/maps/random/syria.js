@@ -13,10 +13,10 @@ const tDirt = ["desert_dirt_rough", "desert_dirt_rough_2"];
 const tRoad = "desert_shore_stones";
 const tRoadWild = "desert_grass_a_stones";
 
-const oTamarix = "gaia/flora_tree_tamarix";
-const oPalm = "gaia/flora_tree_date_palm";
-const oPine = "gaia/flora_tree_aleppo_pine";
-const oBush = "gaia/flora_bush_grapes";
+const oTamarix = "gaia/tree/tamarix";
+const oPalm = "gaia/tree/date_palm";
+const oPine = "gaia/tree/aleppo_pine";
+const oBush = "gaia/fruit/grapes";
 const oCamel = "gaia/fauna_camel";
 const oGazelle = "gaia/fauna_gazelle";
 const oLion = "gaia/fauna_lion";

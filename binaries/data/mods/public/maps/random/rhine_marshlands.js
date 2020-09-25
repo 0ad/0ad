@@ -12,9 +12,9 @@ const tShoreBlend = "temp_grass_plants";
 const tShore = "temp_plants_bog";
 const tWater = "temp_mud_a";
 
-const oBeech = "gaia/flora_tree_euro_beech";
-const oOak = "gaia/flora_tree_oak";
-const oBerryBush = "gaia/flora_bush_berry";
+const oBeech = "gaia/tree/euro_beech";
+const oOak = "gaia/tree/oak";
+const oBerryBush = "gaia/fruit/berry_01";
 const oDeer = "gaia/fauna_deer";
 const oHorse = "gaia/fauna_horse";
 const oWolf = "gaia/fauna_wolf";

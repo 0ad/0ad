@@ -14,9 +14,9 @@ const tGrassPatch = "savanna_grass_b";
 const tShore = "savanna_riparian_bank";
 const tWater = "savanna_riparian_wet";
 
-const oBaobab = "gaia/flora_tree_baobab";
-const oFig = "gaia/flora_tree_fig";
-const oBerryBush = "gaia/flora_bush_berry";
+const oBaobab = "gaia/tree/baobab";
+const oFig = "gaia/fruit/fig";
+const oBerryBush = "gaia/fruit/berry_01";
 const oWildebeest = "gaia/fauna_wildebeest";
 const oFish = "gaia/fish/generic";
 const oGazelle = "gaia/fauna_gazelle";

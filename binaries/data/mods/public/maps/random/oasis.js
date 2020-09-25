@@ -10,9 +10,9 @@ const tRoadWild = "desert_city_tile";
 const tShore = "dirta";
 const tWater = "desert_sand_wet";
 
-const ePalmShort = "gaia/flora_tree_cretan_date_palm_short";
-const ePalmTall = "gaia/flora_tree_cretan_date_palm_tall";
-const eBush = "gaia/flora_bush_grapes";
+const ePalmShort = "gaia/tree/cretan_date_palm_short";
+const ePalmTall = "gaia/tree/cretan_date_palm_tall";
+const eBush = "gaia/fruit/grapes";
 const eCamel = "gaia/fauna_camel";
 const eGazelle = "gaia/fauna_gazelle";
 const eLion = "gaia/fauna_lion";

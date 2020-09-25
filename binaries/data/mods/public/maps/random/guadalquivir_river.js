@@ -13,10 +13,10 @@ const tGrassPatch = "medit_grass_shrubs";
 const tShore = "sand_grass_25";
 const tWater = "medit_sand_wet";
 
-const oPoplar = "gaia/flora_tree_poplar";
-const oApple = "gaia/flora_tree_apple";
-const oCarob = "gaia/flora_tree_carob";
-const oBerryBush = "gaia/flora_bush_berry";
+const oPoplar = "gaia/tree/poplar";
+const oApple = "gaia/fruit/apple";
+const oCarob = "gaia/tree/carob";
+const oBerryBush = "gaia/fruit/berry_01";
 const oDeer = "gaia/fauna_deer";
 const oFish = "gaia/fish/generic";
 const oSheep = "gaia/fauna_sheep";

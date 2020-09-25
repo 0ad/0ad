@@ -14,15 +14,15 @@ const tWaterDeep = "desert_shore_stones_wet";
 const tLush = "desert_grass_a";
 const tSLush = "desert_grass_a_sand";
 
-const oGrapeBush = "gaia/flora_bush_grapes";
+const oGrapeBush = "gaia/fruit/grapes";
 const oCamel = "gaia/fauna_camel";
 const oGazelle = "gaia/fauna_gazelle";
 const oGoat = "gaia/fauna_goat";
 const oStoneLarge = "gaia/geology_stonemine_desert_badlands_quarry";
 const oStoneSmall = "gaia/geology_stone_desert_small";
 const oMetalLarge = "gaia/geology_metal_desert_slabs";
-const oDatePalm = "gaia/flora_tree_date_palm";
-const oSDatePalm = "gaia/flora_tree_cretan_date_palm_short";
+const oDatePalm = "gaia/tree/date_palm";
+const oSDatePalm = "gaia/tree/cretan_date_palm_short";
 const oWoodTreasure = "gaia/treasure/wood";
 const oFoodTreasure = "gaia/treasure/food_bin";
 

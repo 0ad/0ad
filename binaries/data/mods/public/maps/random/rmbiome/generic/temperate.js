@@ -23,31 +23,31 @@ function setupBiome_temperate()
 
 	[g_Gaia.tree1, g_Gaia.tree2] = pickRandom([
 		[
-			"gaia/flora_tree_oak",
-			"gaia/flora_tree_oak_large"
+			"gaia/tree/oak",
+			"gaia/tree/oak_large"
 		],
 		[
-			"gaia/flora_tree_poplar",
-			"gaia/flora_tree_poplar"
+			"gaia/tree/poplar",
+			"gaia/tree/poplar"
 		],
 		[
-			"gaia/flora_tree_euro_beech",
-			"gaia/flora_tree_euro_beech"
+			"gaia/tree/euro_beech",
+			"gaia/tree/euro_beech"
 		]
 	]);
 
 	[g_Gaia.tree4, g_Gaia.tree5] = pickRandom([
 		[
-			"gaia/flora_tree_pine",
-			"gaia/flora_tree_aleppo_pine"
+			"gaia/tree/pine",
+			"gaia/tree/aleppo_pine"
 		],
 		[
-			"gaia/flora_tree_pine",
-			"gaia/flora_tree_pine"
+			"gaia/tree/pine",
+			"gaia/tree/pine"
 		],
 		[
-			"gaia/flora_tree_aleppo_pine",
-			"gaia/flora_tree_aleppo_pine"
+			"gaia/tree/aleppo_pine",
+			"gaia/tree/aleppo_pine"
 		]
 	]);
 }

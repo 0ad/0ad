@@ -13,13 +13,13 @@ const tGrassPatch = "temp_grass_plants_aut";
 const tShore = "temp_plants_bog_aut";
 const tWater = "temp_mud_a";
 
-const oBeech = "gaia/flora_tree_euro_beech_aut";
-const oOak = "gaia/flora_tree_oak_aut";
-const oPine = "gaia/flora_tree_pine";
+const oBeech = "gaia/tree/euro_beech_aut";
+const oOak = "gaia/tree/oak_aut";
+const oPine = "gaia/tree/pine";
 const oDeer = "gaia/fauna_deer";
 const oFish = "gaia/fish/generic";
 const oSheep = "gaia/fauna_rabbit";
-const oBerryBush = "gaia/flora_bush_berry";
+const oBerryBush = "gaia/fruit/berry_01";
 const oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
 const oStoneSmall = "gaia/geology_stone_temperate";
 const oMetalLarge = "gaia/geology_metal_temperate_slabs";

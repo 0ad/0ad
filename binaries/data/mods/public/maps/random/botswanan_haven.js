@@ -11,10 +11,10 @@ const tShore = "savanna_riparian_wet";
 const tWater = "savanna_mud_a";
 const tCityTile = "savanna_tile_a";
 
-const oBush = "gaia/flora_bush_temperate";
-const oBaobab = "gaia/flora_tree_baobab";
-const oToona = "gaia/flora_tree_toona";
-const oBerryBush = "gaia/flora_bush_berry";
+const oBush = "gaia/tree/bush_temperate";
+const oBaobab = "gaia/tree/baobab";
+const oToona = "gaia/tree/toona";
+const oBerryBush = "gaia/fruit/berry_01";
 const oGazelle = "gaia/fauna_gazelle";
 const oZebra = "gaia/fauna_zebra";
 const oWildebeest = "gaia/fauna_wildebeest";

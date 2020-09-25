@@ -13,9 +13,9 @@ const tRoadWild = "medit_city_tile";
 const tGrass2 = "medit_rocks_grass_shrubs";
 const tGrassPatch = "medit_grass_wild";
 
-const oCarob = "gaia/flora_tree_carob";
-const oAleppoPine = "gaia/flora_tree_aleppo_pine";
-const oBerryBush = "gaia/flora_bush_berry";
+const oCarob = "gaia/tree/carob";
+const oAleppoPine = "gaia/tree/aleppo_pine";
+const oBerryBush = "gaia/fruit/berry_01";
 const oDeer = "gaia/fauna_deer";
 const oSheep = "gaia/fauna_sheep";
 const oStoneLarge = "gaia/geology_stonemine_medit_quarry";

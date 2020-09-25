@@ -6,7 +6,7 @@ Engine.LoadLibrary("heightmap");
 var tGrove = "temp_grass_plants";
 var tPath = "road_rome_a";
 
-var oGroveEntities = ["structures/gaul_outpost", "gaia/flora_tree_oak_new"];
+var oGroveEntities = ["structures/gaul_outpost", "gaia/tree/oak_new"];
 
 var g_Map = new RandomMap(0, "whiteness");
 
@@ -84,7 +84,7 @@ for (let i = 0; i < num; ++i)
 	fences.push(new Fortress("fence", clone(fences[i].wall).reverse()));
 
 // Groves, only Wood
-let groveEntities = ["gaia/flora_bush_temperate", "gaia/flora_tree_euro_beech"];
+let groveEntities = ["gaia/tree/bush_temperate", "gaia/tree/euro_beech"];
 let groveActors = [
 	"actor|geology/highland1_moss.xml", "actor|geology/highland2_moss.xml",
 	"actor|props/flora/bush.xml", "actor|props/flora/bush_dry_a.xml", "actor|props/flora/bush_highlands.xml",
@@ -135,7 +135,7 @@ function placeCamp(point,
 	}
 }
 
-function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_berry", "gaia/fauna_chicken", "gaia/fauna_chicken"])
+function placeStartLocationResources(point, foodEntities = ["gaia/fruit/berry_01", "gaia/fauna_chicken", "gaia/fauna_chicken"])
 {
 	let currentAngle = randomAngle();
 	// Stone and chicken
@@ -253,7 +253,7 @@ myBiome.push({ // 2 Shallow water
 });
 myBiome.push({ // 3 Shore
 	"texture": ["alpine_shore_rocks_grass_50", "alpine_grass_rocky"],
-	"actor": [["gaia/flora_tree_pine", "gaia/flora_bush_badlands", "actor|geology/highland1_moss.xml", "actor|props/flora/grass_soft_tuft_a.xml", "actor|props/flora/bush.xml"], 0.3],
+	"actor": [["gaia/tree/pine", "gaia/tree/bush_badlands", "actor|geology/highland1_moss.xml", "actor|props/flora/grass_soft_tuft_a.xml", "actor|props/flora/bush.xml"], 0.3],
 	"textureHS": ["alpine_mountainside"], "actorHS": [["actor|props/flora/grass_soft_tuft_a.xml"], 0.1]
 });
 myBiome.push({ // 4 Low ground
@@ -273,17 +273,17 @@ myBiome.push({ // 6 High ground
 });
 myBiome.push({ // 7 Lower forest border
 	"texture": ["new_alpine_grass_mossy", "alpine_grass_rocky"],
-	"actor": [["gaia/flora_tree_pine", "gaia/flora_tree_oak", "actor|props/flora/grass_tufts_a.xml", "gaia/flora_bush_berry", "actor|geology/highland2_moss.xml", "gaia/fauna_goat", "actor|props/flora/bush_tempe_underbrush.xml"], 0.3],
+	"actor": [["gaia/tree/pine", "gaia/tree/oak", "actor|props/flora/grass_tufts_a.xml", "gaia/fruit/berry_01", "actor|geology/highland2_moss.xml", "gaia/fauna_goat", "actor|props/flora/bush_tempe_underbrush.xml"], 0.3],
 	"textureHS": ["alpine_cliff_c"], "actorHS": [["actor|props/flora/grass_tufts_a.xml", "actor|geology/highland2_moss.xml"], 0.1]
 });
 myBiome.push({ // 8 Forest
 	"texture": ["alpine_forrestfloor"],
-	"actor": [["gaia/flora_tree_pine", "gaia/flora_tree_pine", "gaia/flora_tree_pine", "gaia/flora_tree_pine", "actor|geology/highland2_moss.xml", "actor|props/flora/bush_highlands.xml"], 0.5],
+	"actor": [["gaia/tree/pine", "gaia/tree/pine", "gaia/tree/pine", "gaia/tree/pine", "actor|geology/highland2_moss.xml", "actor|props/flora/bush_highlands.xml"], 0.5],
 	"textureHS": ["alpine_cliff_c"], "actorHS": [["actor|geology/highland2_moss.xml", "actor|geology/stone_granite_med.xml"], 0.1]
 });
 myBiome.push({ // 9 Upper forest border
 	"texture": ["alpine_forrestfloor_snow", "new_alpine_grass_dirt_a"],
-	"actor": [["gaia/flora_tree_pine", "actor|geology/snow1.xml"], 0.3],
+	"actor": [["gaia/tree/pine", "actor|geology/snow1.xml"], 0.3],
 	"textureHS": ["alpine_cliff_b"], "actorHS": [["actor|geology/stone_granite_med.xml", "actor|geology/snow1.xml"], 0.1]
 });
 myBiome.push({ // 10 Hilltop

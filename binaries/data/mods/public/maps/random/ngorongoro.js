@@ -31,11 +31,11 @@ g_Terrains.road = "road2";
 g_Gaia.metalLarge = "gaia/geology_metal_savanna_slabs";
 g_Gaia.metalSmall = "gaia/geology_metal_tropic";
 g_Gaia.fish = "gaia/fish/tilapia";
-g_Gaia.tree1 = "gaia/flora_tree_baobab";
-g_Gaia.tree2 = "gaia/flora_tree_baobab";
-g_Gaia.tree3 = "gaia/flora_tree_baobab";
-g_Gaia.tree4 = "gaia/flora_tree_baobab";
-g_Gaia.tree5 = "gaia/flora_tree_baobab";
+g_Gaia.tree1 = "gaia/tree/baobab";
+g_Gaia.tree2 = "gaia/tree/baobab";
+g_Gaia.tree3 = "gaia/tree/baobab";
+g_Gaia.tree4 = "gaia/tree/baobab";
+g_Gaia.tree5 = "gaia/tree/baobab";
 
 g_Decoratives.grass = "actor|props/flora/grass_savanna.xml";
 g_Decoratives.grassShort = "actor|props/flora/grass_soft_dry_tuft_a.xml";

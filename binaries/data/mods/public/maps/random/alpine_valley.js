@@ -239,8 +239,8 @@ if (randBool())
 	var tRoad = "new_alpine_citytile";
 	var tRoadWild = "new_alpine_citytile";
 
-	var oPine = "gaia/flora_tree_pine";
-	var oBerryBush = "gaia/flora_bush_berry";
+	var oPine = "gaia/tree/pine";
+	var oBerryBush = "gaia/fruit/berry_01";
 	var oDeer = "gaia/fauna_deer";
 	var oRabbit = "gaia/fauna_rabbit";
 	var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
@@ -267,8 +267,8 @@ else
 	var tRoad = "new_alpine_citytile";
 	var tRoadWild = "new_alpine_citytile";
 
-	var oPine = "gaia/flora_tree_pine_w";
-	var oBerryBush = "gaia/flora_bush_berry";
+	var oPine = "gaia/tree/pine_w";
+	var oBerryBush = "gaia/fruit/berry_01";
 	var oDeer = "gaia/fauna_deer";
 	var oRabbit = "gaia/fauna_rabbit";
 	var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";

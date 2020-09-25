@@ -39,9 +39,9 @@ textueByHeight.push({"upperHeightLimit": heightRange.min + 3/3 * (heightSeaGroun
 // Water surroundings/bog (with stone/metal some rabits and bushes)
 var terrains = ["temp_plants_bog", "temp_plants_bog_aut", "temp_dirt_gravel_plants", "temp_grass_d"];
 terrains = terrains.concat(terrains, terrains, terrains, terrains, terrains);
-terrains = ["temp_plants_bog|gaia/flora_bush_temperate"].concat(terrains, terrains);
+terrains = ["temp_plants_bog|gaia/tree/bush_temperate"].concat(terrains, terrains);
 terrains = ["temp_dirt_gravel_plants|gaia/geology_metal_temperate", "temp_dirt_gravel_plants|gaia/geology_stone_temperate", "temp_plants_bog|gaia/fauna_rabbit"].concat(terrains, terrains);
-terrains = ["temp_plants_bog_aut|gaia/flora_tree_dead"].concat(terrains, terrains);
+terrains = ["temp_plants_bog_aut|gaia/tree/dead"].concat(terrains, terrains);
 textueByHeight.push({"upperHeightLimit": heightSeaGroundAdjusted + 1/6 * (heightRange.max - heightSeaGroundAdjusted), "terrain": terrains});
 
 // Juicy grass near bog
@@ -58,9 +58,9 @@ textueByHeight.push({"upperHeightLimit": heightSeaGroundAdjusted + 4/6 * (height
 	"terrain": ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_d", "temp_grass_long_b", "temp_grass_clovers_2", "temp_grass_mossy", "temp_grass_plants"]});
 
 // Forest border (With wood/food plants/deer/rabits)
-var terrains = ["temp_grass_plants|gaia/flora_tree_euro_beech", "temp_grass_mossy|gaia/flora_tree_poplar", "temp_grass_mossy|gaia/flora_tree_poplar_lombardy",
-	"temp_grass_long|gaia/flora_bush_temperate", "temp_mud_plants|gaia/flora_bush_temperate", "temp_mud_plants|gaia/flora_bush_badlands",
-	"temp_grass_long|gaia/flora_tree_apple", "temp_grass_clovers|gaia/flora_bush_berry", "temp_grass_clovers_2|gaia/flora_bush_grapes",
+var terrains = ["temp_grass_plants|gaia/tree/euro_beech", "temp_grass_mossy|gaia/tree/poplar", "temp_grass_mossy|gaia/tree/poplar_lombardy",
+	"temp_grass_long|gaia/tree/bush_temperate", "temp_mud_plants|gaia/tree/bush_temperate", "temp_mud_plants|gaia/tree/bush_badlands",
+	"temp_grass_long|gaia/fruit/apple", "temp_grass_clovers|gaia/fruit/berry_01", "temp_grass_clovers_2|gaia/fruit/grapes",
 	"temp_grass_plants|gaia/fauna_deer", "temp_grass_long_b|gaia/fauna_rabbit"];
 
 var numTerrains = terrains.length;
@@ -70,10 +70,10 @@ textueByHeight.push({"upperHeightLimit": heightSeaGroundAdjusted + 5/6 * (height
 
 // Unpassable woods
 textueByHeight.push({"upperHeightLimit": heightSeaGroundAdjusted + 6/6 * (heightRange.max - heightSeaGroundAdjusted),
-	"terrain": ["temp_grass_mossy|gaia/flora_tree_oak", "temp_forestfloor_pine|gaia/flora_tree_pine",
-	"temp_grass_mossy|gaia/flora_tree_oak", "temp_forestfloor_pine|gaia/flora_tree_pine",
-	"temp_mud_plants|gaia/flora_tree_dead", "temp_plants_bog|gaia/flora_tree_oak_large",
-	"temp_dirt_gravel_plants|gaia/flora_tree_aleppo_pine", "temp_forestfloor_autumn|gaia/flora_tree_carob"]});
+	"terrain": ["temp_grass_mossy|gaia/tree/oak", "temp_forestfloor_pine|gaia/tree/pine",
+	"temp_grass_mossy|gaia/tree/oak", "temp_forestfloor_pine|gaia/tree/pine",
+	"temp_mud_plants|gaia/tree/dead", "temp_plants_bog|gaia/tree/oak_large",
+	"temp_dirt_gravel_plants|gaia/tree/aleppo_pine", "temp_forestfloor_autumn|gaia/tree/carob"]});
 
 Engine.SetProgress(5);
 
@@ -274,7 +274,7 @@ else
 					new Vector2D(-0.75 * resourceSpacing * Math.floor(resourceCount / 2), 0).rotate(-uAngle - Math.PI/2)
 				]);
 
-				g_Map.placeEntityPassable(j % 2 ? "gaia/flora_tree_cypress" : "gaia/flora_bush_berry", 0, pos, randomAngle());
+				g_Map.placeEntityPassable(j % 2 ? "gaia/tree/cypress" : "gaia/fruit/berry_01", 0, pos, randomAngle());
 			}
 		}
 	}

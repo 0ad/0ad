@@ -17,7 +17,7 @@ const tDirtB = "medit_dirt_c";
 const tShore = "medit_sand";
 const tWater = "medit_sand_wet";
 
-const oGrapeBush = "gaia/flora_bush_grapes";
+const oGrapeBush = "gaia/fruit/grapes";
 const oDeer = "gaia/fauna_deer";
 const oFish = "gaia/fish/generic";
 const oSheep = "gaia/fauna_sheep";
@@ -25,12 +25,12 @@ const oGoat = "gaia/fauna_goat";
 const oStoneLarge = "gaia/geology_stonemine_medit_quarry";
 const oStoneSmall = "gaia/geology_stone_mediterranean";
 const oMetalLarge = "gaia/geology_metal_mediterranean_slabs";
-const oDatePalm = "gaia/flora_tree_cretan_date_palm_short";
-const oSDatePalm = "gaia/flora_tree_cretan_date_palm_tall";
-const oCarob = "gaia/flora_tree_carob";
-const oFanPalm = "gaia/flora_tree_medit_fan_palm";
-const oPoplar = "gaia/flora_tree_poplar_lombardy";
-const oCypress = "gaia/flora_tree_cypress";
+const oDatePalm = "gaia/tree/cretan_date_palm_short";
+const oSDatePalm = "gaia/tree/cretan_date_palm_tall";
+const oCarob = "gaia/tree/carob";
+const oFanPalm = "gaia/tree/medit_fan_palm";
+const oPoplar = "gaia/tree/poplar_lombardy";
+const oCypress = "gaia/tree/cypress";
 
 const aBush1 = "actor|props/flora/bush_medit_sm.xml";
 const aBush2 = "actor|props/flora/bush_medit_me.xml";

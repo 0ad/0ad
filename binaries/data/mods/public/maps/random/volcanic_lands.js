@@ -12,7 +12,7 @@ var tLava1 = "LavaTest05";
 var tLava2 = "LavaTest04";
 var tLava3 = "LavaTest03";
 
-var oTree = "gaia/flora_tree_dead";
+var oTree = "gaia/tree/dead";
 var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
 var oStoneSmall = "gaia/geology_stone_alpine_a";
 var oMetalLarge = "gaia/geology_metal_alpine_slabs";

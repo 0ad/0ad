@@ -14,9 +14,9 @@ var tCitytiles = "savanna_tile_a";
 var tShore = "savanna_riparian_bank";
 var tWater = "savanna_riparian_wet";
 
-var oBaobab = "gaia/flora_tree_baobab";
-var oPalm = "gaia/flora_tree_senegal_date_palm";
-var oBerryBush = "gaia/flora_bush_berry";
+var oBaobab = "gaia/tree/baobab";
+var oPalm = "gaia/tree/senegal_date_palm";
+var oBerryBush = "gaia/fruit/berry_01";
 var oWildebeest = "gaia/fauna_wildebeest";
 var oZebra = "gaia/fauna_zebra";
 var oRhino = "gaia/fauna_rhinoceros_white";

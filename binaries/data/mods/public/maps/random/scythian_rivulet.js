@@ -14,11 +14,11 @@ const tRoadWild = "alpine_snow_rocky";
 const tShore = "alpine_shore_rocks_icy";
 const tWater = "polar_ice_b";
 
-const oTreeDead = "gaia/flora_tree_dead";
-const oOak = "gaia/flora_tree_oak_dead";
-const oPine = "gaia/flora_tree_pine";
-const oGrapes = "gaia/flora_bush_grapes";
-const oBush = "gaia/flora_bush_badlands";
+const oTreeDead = "gaia/tree/dead";
+const oOak = "gaia/tree/oak_dead";
+const oPine = "gaia/tree/pine";
+const oGrapes = "gaia/fruit/grapes";
+const oBush = "gaia/tree/bush_badlands";
 const oDeer = "gaia/fauna_deer";
 const oRabbit = "gaia/fauna_rabbit";
 const oWolf1 = "gaia/fauna_wolf";

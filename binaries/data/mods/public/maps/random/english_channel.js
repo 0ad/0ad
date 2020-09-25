@@ -16,11 +16,11 @@ const tGrassPatch = ["temp_grass_d", "temp_grass_clovers"];
 const tShore = "temp_dirt_gravel";
 const tWater = "temp_dirt_gravel_b";
 
-const oBeech = "gaia/flora_tree_euro_beech";
-const oPoplar = "gaia/flora_tree_poplar";
-const oApple = "gaia/flora_tree_apple";
-const oOak = "gaia/flora_tree_oak";
-const oBerryBush = "gaia/flora_bush_berry";
+const oBeech = "gaia/tree/euro_beech";
+const oPoplar = "gaia/tree/poplar";
+const oApple = "gaia/fruit/apple";
+const oOak = "gaia/tree/oak";
+const oBerryBush = "gaia/fruit/berry_01";
 const oDeer = "gaia/fauna_deer";
 const oFish = "gaia/fish/generic";
 const oGoat = "gaia/fauna_goat";
