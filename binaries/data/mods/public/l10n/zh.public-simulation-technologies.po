@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-04 07:09+0000\n"
-"PO-Revision-Date: 2020-09-15 03:08+0000\n"
+"PO-Revision-Date: 2020-09-24 09:20+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgstr "马头金属盔甲。"
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
 msgid "Cavalry +1 hack and pierce armor."
-msgstr ""
+msgstr "骑兵 +1 劈砍及穿刺护甲。"
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -175,7 +175,7 @@ msgstr "纯铁打造的盔甲，铁是古人所知最坚硬的可加工金属。
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
 msgid "Heroes +50 metal cost, +2 hack and pierce armor."
-msgstr ""
+msgstr "英雄 +50 金属花费，+2 劈砍及穿刺护甲。"
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -200,7 +200,7 @@ msgstr "带衬垫亚麻布或皮质盔甲(步兵)。"
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
 msgid "Infantry +1 hack and pierce armor."
-msgstr ""
+msgstr "步兵 +1 劈砍及穿刺护甲。"
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -247,7 +247,7 @@ msgstr "铅包可保护船体。"
 #: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid "Ships +2 armor."
-msgstr ""
+msgstr "船只护甲 +2 。"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -456,11 +456,11 @@ msgstr "训练你的马,使其移动更快速。"
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
-msgstr ""
+msgstr "骑兵移动速度 +10% 。"
 
 #: simulation/data/technologies/cavalry_movement_speed.jsongenericName
 msgid "Horse Racing"
-msgstr ""
+msgstr "赛马"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -531,7 +531,7 @@ msgstr "对农场施加额外的营养物质。"
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +20% grain gather rate."
-msgstr ""
+msgstr "工人种田效率 +20%  。"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -591,7 +591,7 @@ msgstr "加快伐木速度。"
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +25% wood gather rate."
-msgstr ""
+msgstr "工人伐木效率 +25%  。"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
@@ -615,7 +615,7 @@ msgstr "强迫农奴采集石头。石头采集效率 +15% 。"
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +25% stone gather rate."
-msgstr ""
+msgstr "工人采石效率 +25%  。"
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -649,7 +649,7 @@ msgstr "开发竖井挖掘。提高金属采集效率。"
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +25% metal gather rate."
-msgstr ""
+msgstr "工人挖金效率 +25%  。"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -758,7 +758,7 @@ msgstr "提升所有医师的治疗速度。"
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers −20% healing time."
-msgstr ""
+msgstr "治疗时间 -20%  。"
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -858,7 +858,7 @@ msgstr "升级到城市阶段，解锁更多建筑物及单位。市政中心的
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 Town Structures."
-msgstr ""
+msgstr "需要 4 座城镇阶段建筑。"
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -909,7 +909,7 @@ msgstr "进展到城镇阶段，可解锁更多建筑物及单位。市政中心
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid "Requires 5 Village Structures."
-msgstr ""
+msgstr "需要 5 座乡村阶段建筑。"
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1057,7 +1057,7 @@ msgstr "砲兵专家"
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
-msgstr ""
+msgstr "远程士兵经验升级 +25% 。"
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1077,7 +1077,7 @@ msgstr "强化基础以准备攻击。"
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Towers +2 armor."
-msgstr ""
+msgstr "塔楼护甲 +2 。"
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1091,7 +1091,7 @@ msgstr "城垛射孔让士兵在防御要塞的时候能有更广的开火范围
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
-msgstr ""
+msgstr "每进驻一名士兵，哨站和石塔的箭矢攻击 +40% 。"
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1103,7 +1103,7 @@ msgstr "猎杀洞允许在城塔底部攻击敌军。"
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Sentry and Stone Towers have 0 minimum attack range."
-msgstr ""
+msgstr "哨站和石塔无最小射击范围。"
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1115,7 +1115,7 @@ msgstr "增加弓箭的最大射程。"
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Sentry and Stone Towers +8 attack range."
-msgstr ""
+msgstr "哨站和石塔的射击范围 +8 。"
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1127,7 +1127,7 @@ msgstr "夜间守望增强了警觉性。"
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Sentry and Stone Towers +1 default arrow count."
-msgstr ""
+msgstr "哨站和石塔的默认箭矢数 +1 。"
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
@@ -1151,7 +1151,7 @@ msgstr "提高国际贸易收益。"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
 msgid "+10% international trade bonus."
-msgstr ""
+msgstr "国内贸易奖励 +10% 。"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1163,7 +1163,7 @@ msgstr "增加商人的防御值。"
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
 msgid "Traders +2 hack and pierce armor."
-msgstr ""
+msgstr "商人的劈砍及穿刺护甲等级 +2 。"
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName
@@ -1234,19 +1234,19 @@ msgid ""
 "capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
 "healing strength and +3 healing range; Melee units +20% attack damage; "
 "Ranged units +4 attack range and −10% spread."
-msgstr ""
+msgstr "进阶及精锐单位训练时间 +20％，护甲 +1，生命值+ 10％，占领能力 +0.7，掠夺 +20％，采集率 -30％；治疗单位的效果 +5，范围 +3；近战单位的攻击 +20％； 远程单位的攻击+4，展开时间 -10％ 。"
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
 " and loot."
-msgstr ""
+msgstr "非洲战象的资源花费、训练时长、生命值、攻击力和掠夺全部 -10% 。"
 
 #: simulation/data/technologies/unit_elephant_indian.jsontooltip
 msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
-msgstr ""
+msgstr "印度战象的资源花费、训练时长、生命值、攻击力和掠夺全部 -10% 。"
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
@@ -1254,7 +1254,7 @@ msgid ""
 "strength, +20% loot, and −30% gather speed; Healers +5 healing strength and "
 "+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
 "range and −10% spread."
-msgstr ""
+msgstr "进阶及精锐单位训练时间 +20％，护甲 +1，生命值+ 10％，占领能力 +0.8，掠夺 +20％，采集率 -30％；治疗单位的效果 +5，范围 +3；近战单位的攻击 +20％； 远程单位的攻击+4，展开时间 -10％ 。"
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""
@@ -1359,7 +1359,7 @@ msgstr "雇佣专业佣兵"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries are promoted to Advanced rank."
-msgstr ""
+msgstr "雇佣兵升级到进阶单位。"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
@@ -1574,7 +1574,7 @@ msgstr "雅典长墙，是在老谋深算的地米斯托克利的主持下修建
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
 msgid "Build Walls in own or neutral territory."
-msgstr ""
+msgstr "在领土或中立地带修墙。"
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
@@ -1778,11 +1778,11 @@ msgstr "岛"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsondescription
 msgid "The Roman-style core of the Seleucid army."
-msgstr ""
+msgstr "罗马风格的塞琉古军队。"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
-msgstr ""
+msgstr "解锁冠勇冠勇步兵剑士。"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
 msgid "Reform Army"
@@ -1790,11 +1790,11 @@ msgstr "革新军队"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
-msgstr ""
+msgstr "马其顿风格的塞琉古军队。"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Champion Infantry Pikeman."
-msgstr ""
+msgstr "解锁冠勇冠长枪兵。"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"

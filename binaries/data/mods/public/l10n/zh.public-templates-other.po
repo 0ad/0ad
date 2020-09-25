@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-09-18 19:15+0000\n"
+"PO-Revision-Date: 2020-09-23 05:31+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr ""
 
 #: simulation/templates/template_formation.xml:26
 msgid "Requires at least 2 Soldiers or Siege Engines."
-msgstr ""
+msgstr "需要至少 2 名士兵或攻城器械。"
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -546,15 +546,15 @@ msgstr "灌木"
 
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia"
-msgstr ""
+msgstr "金合欢树"
 
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
 msgid "Aleppo Pine"
-msgstr ""
+msgstr "阿勒颇松树"
 
 #: simulation/templates/gaia/flora_tree_apple.xml:4
 msgid "Apple"
-msgstr ""
+msgstr "苹果树"
 
 #: simulation/templates/gaia/flora_tree_bamboo.xml:4
 #: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
@@ -589,7 +589,7 @@ msgstr "小型猴面包树"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob"
-msgstr ""
+msgstr "角豆树"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
@@ -611,7 +611,7 @@ msgstr "克里特岛枣椰树"
 #: simulation/templates/gaia/flora_tree_cypress_wild.xml:4
 #: simulation/templates/gaia/flora_tree_cypress_windswept.xml:4
 msgid "Cypress"
-msgstr ""
+msgstr "柏树"
 
 #: simulation/templates/gaia/flora_tree_date_palm.xml:4
 #: simulation/templates/gaia/flora_tree_date_palm_dead.xml:4
@@ -629,12 +629,12 @@ msgstr "落叶乔木"
 #: simulation/templates/gaia/flora_tree_elm.xml:4
 #: simulation/templates/gaia/flora_tree_elm_dead.xml:4
 msgid "Elm"
-msgstr ""
+msgstr "榆树"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
 msgid "European Beech"
-msgstr ""
+msgstr "欧洲山毛榉树"
 
 #: simulation/templates/gaia/flora_tree_euro_birch.xml:4
 msgid "Silver Birch"
@@ -647,7 +647,7 @@ msgstr "无花果"
 #: simulation/templates/gaia/flora_tree_fir.xml:4
 #: simulation/templates/gaia/flora_tree_fir_winter.xml:4
 msgid "Fir"
-msgstr ""
+msgstr "冷杉"
 
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
@@ -675,7 +675,7 @@ msgstr "地中海扇形棕榈"
 #: simulation/templates/gaia/flora_tree_oak_dead.xml:4
 #: simulation/templates/gaia/flora_tree_oak_new.xml:4
 msgid "Oak"
-msgstr ""
+msgstr "橡树"
 
 #: simulation/templates/gaia/flora_tree_oak_holly.xml:4
 msgid "Holly Oak"
@@ -688,11 +688,11 @@ msgstr "匈牙利橡木"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak"
-msgstr ""
+msgstr "大橡树"
 
 #: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive"
-msgstr ""
+msgstr "橄榄树"
 
 #: simulation/templates/gaia/flora_tree_palm_areca.xml:4
 msgid "Areca Palm"
@@ -717,7 +717,7 @@ msgstr "热带棕榈"
 #: simulation/templates/gaia/flora_tree_pine.xml:4
 #: simulation/templates/gaia/flora_tree_pine_w.xml:4
 msgid "Pine"
-msgstr ""
+msgstr "松树"
 
 #: simulation/templates/gaia/flora_tree_pine_black.xml:4
 #: simulation/templates/gaia/flora_tree_pine_black_dead.xml:4
@@ -738,7 +738,7 @@ msgstr "白杨"
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 #: simulation/templates/gaia/flora_tree_poplar_lombardy_dead.xml:4
 msgid "Black Poplar"
-msgstr ""
+msgstr "黑杨树"
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -750,7 +750,7 @@ msgstr "无花果"
 
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix"
-msgstr ""
+msgstr "柽柳树"
 
 #: simulation/templates/gaia/flora_tree_teak.xml:8
 msgid "Teak"
@@ -758,7 +758,7 @@ msgstr "柚木"
 
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona"
-msgstr ""
+msgstr "香椿"
 
 #: simulation/templates/gaia/flora_tree_tropic_rainforest.xml:4
 msgid "Rainforest Tree"
@@ -1121,7 +1121,7 @@ msgstr "冲锋"
 #: simulation/data/template_helpers/damage_types/crush.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr ""
+msgstr "棍棒、践踏等造成的伤害。"
 
 #: simulation/data/template_helpers/damage_types/hack.jsonname
 msgctxt "damage type"
@@ -1133,7 +1133,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
-msgstr ""
+msgstr "由锋利的物体（剑、斧之类）所造成的伤害。"
 
 #: simulation/data/template_helpers/damage_types/pierce.jsonname
 msgctxt "damage type"
@@ -1143,4 +1143,4 @@ msgstr "穿刺"
 #: simulation/data/template_helpers/damage_types/pierce.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr ""
+msgstr "由尖锐的物体（如箭头或长矛）造成的伤害。"
