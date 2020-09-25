@@ -23,9 +23,9 @@ const oGazelle = "gaia/fauna_gazelle";
 const oElephant = "gaia/fauna_elephant_african_bush";
 const oGiraffe = "gaia/fauna_giraffe";
 const oZebra = "gaia/fauna_zebra";
-const oStoneLarge = "gaia/geology_stonemine_desert_quarry";
-const oStoneSmall = "gaia/geology_stone_savanna_small";
-const oMetalLarge = "gaia/geology_metal_savanna_slabs";
+const oStoneLarge = "gaia/rock/desert_large";
+const oStoneSmall = "gaia/rock/savanna_small";
+const oMetalLarge = "gaia/ore/savanna_large";
 
 const aGrass = "actor|props/flora/grass_savanna.xml";
 const aGrassShort = "actor|props/flora/grass_medit_field.xml";

@@ -28,8 +28,8 @@ setBiome("generic/savanna");
 g_Terrains.roadWild = "savanna_riparian_dry";
 g_Terrains.road = "road2";
 
-g_Gaia.metalLarge = "gaia/geology_metal_savanna_slabs";
-g_Gaia.metalSmall = "gaia/geology_metal_tropic";
+g_Gaia.metalLarge = "gaia/ore/savanna_large";
+g_Gaia.metalSmall = "gaia/ore/tropical_small";
 g_Gaia.fish = "gaia/fish/tilapia";
 g_Gaia.tree1 = "gaia/tree/baobab";
 g_Gaia.tree2 = "gaia/tree/baobab";

@@ -25,9 +25,9 @@ const oWolf1 = "gaia/fauna_wolf";
 const oWolf2 = "gaia/fauna_wolf_arctic";
 const oHawk = "birds/buzzard";
 const oFish = "gaia/fish/generic";
-const oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
-const oStoneSmall = "gaia/geology_stone_alpine_a";
-const oMetalLarge = "gaia/geology_metal_alpine_slabs";
+const oStoneLarge = "gaia/rock/alpine_large";
+const oStoneSmall = "gaia/rock/alpine_small";
+const oMetalLarge = "gaia/ore/alpine_large";
 
 const aRockLarge = "actor|geology/stone_granite_large.xml";
 const aRockMedium = "actor|geology/stone_granite_med.xml";

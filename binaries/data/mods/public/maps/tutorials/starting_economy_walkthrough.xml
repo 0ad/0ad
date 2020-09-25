@@ -166,7 +166,7 @@
 			<Orientation y="-4.04499"/>
 		</Entity>
 		<Entity uid="175">
-			<Template>gaia/geology_metal_desert_slabs</Template>
+			<Template>gaia/ore/desert_large</Template>
 			<Player>0</Player>
 			<Position x="358" z="198"/>
 			<Orientation y="-0.6626"/>
@@ -187,7 +187,7 @@
 			<Orientation y="-3.97754"/>
 		</Entity>
 		<Entity uid="179">
-			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Template>gaia/rock/badlands_large</Template>
 			<Player>0</Player>
 			<Position x="351.3038" z="181.23211"/>
 			<Orientation y="-0.24256"/>
@@ -311,7 +311,7 @@
 			<Orientation y="-3.09791"/>
 		</Entity>
 		<Entity uid="236">
-			<Template>gaia/geology_metal_desert_slabs</Template>
+			<Template>gaia/ore/desert_large</Template>
 			<Player>0</Player>
 			<Position x="814" z="422"/>
 			<Orientation y="-2.90003"/>
@@ -337,7 +337,7 @@
 			<Orientation y="-2.77456"/>
 		</Entity>
 		<Entity uid="241">
-			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Template>gaia/rock/badlands_large</Template>
 			<Player>0</Player>
 			<Position x="803.37186" z="402.86225"/>
 			<Orientation y="-0.16982"/>
@@ -515,7 +515,7 @@
 			<Orientation y="0.90407"/>
 		</Entity>
 		<Entity uid="272">
-			<Template>gaia/geology_metal_desert_slabs</Template>
+			<Template>gaia/ore/desert_large</Template>
 			<Player>0</Player>
 			<Position x="594" z="874"/>
 			<Orientation y="0.77286"/>
@@ -536,7 +536,7 @@
 			<Orientation y="-3.01992"/>
 		</Entity>
 		<Entity uid="276">
-			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Template>gaia/rock/badlands_large</Template>
 			<Player>0</Player>
 			<Position x="597.12545" z="842.97352"/>
 			<Orientation y="0.19733"/>
@@ -670,7 +670,7 @@
 			<Orientation y="-1.06876"/>
 		</Entity>
 		<Entity uid="309">
-			<Template>gaia/geology_metal_desert_slabs</Template>
+			<Template>gaia/ore/desert_large</Template>
 			<Player>0</Player>
 			<Position x="142" z="662"/>
 			<Orientation y="-3.86027"/>
@@ -691,7 +691,7 @@
 			<Orientation y="-3.24366"/>
 		</Entity>
 		<Entity uid="313">
-			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Template>gaia/rock/badlands_large</Template>
 			<Player>0</Player>
 			<Position x="128.57552" z="641.60248"/>
 			<Orientation y="-3.9722"/>
@@ -4540,7 +4540,7 @@
 			<Orientation y="2.29389"/>
 		</Entity>
 		<Entity uid="955">
-			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Template>gaia/rock/badlands_large</Template>
 			<Player>0</Player>
 			<Position x="81.61644" z="759.44162"/>
 			<Orientation y="-1.73331"/>
@@ -4561,7 +4561,7 @@
 			<Orientation y="-0.5258"/>
 		</Entity>
 		<Entity uid="959">
-			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Template>gaia/rock/badlands_large</Template>
 			<Player>0</Player>
 			<Position x="520.79184" z="52.40804"/>
 			<Orientation y="1.19791"/>
@@ -4587,19 +4587,19 @@
 			<Orientation y="1.41794"/>
 		</Entity>
 		<Entity uid="964">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="426.61263" z="824.0915"/>
 			<Orientation y="1.42678"/>
 		</Entity>
 		<Entity uid="965">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="422.92757" z="820.77253"/>
 			<Orientation y="-3.84493"/>
 		</Entity>
 		<Entity uid="966">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="413.77166" z="825.4375"/>
 			<Orientation y="-1.7841"/>
@@ -4620,13 +4620,13 @@
 			<Orientation y="-2.31412"/>
 		</Entity>
 		<Entity uid="970">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="316.47332" z="653.5578"/>
 			<Orientation y="-3.70388"/>
 		</Entity>
 		<Entity uid="971">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="304.29268" z="658.99572"/>
 			<Orientation y="-2.44454"/>
@@ -4652,31 +4652,31 @@
 			<Orientation y="-1.02752"/>
 		</Entity>
 		<Entity uid="976">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="761.79766" z="803.21976"/>
 			<Orientation y="0.3911"/>
 		</Entity>
 		<Entity uid="977">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="766.47815" z="807.51684"/>
 			<Orientation y="-0.03483"/>
 		</Entity>
 		<Entity uid="978">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="764.45572" z="817.56392"/>
 			<Orientation y="-2.42563"/>
 		</Entity>
 		<Entity uid="979">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="751.73244" z="805.84359"/>
 			<Orientation y="-1.66262"/>
 		</Entity>
 		<Entity uid="980">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="752.44547" z="811.58655"/>
 			<Orientation y="-1.99407"/>
@@ -4702,19 +4702,19 @@
 			<Orientation y="-1.81443"/>
 		</Entity>
 		<Entity uid="985">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="648.96253" z="712.89527"/>
 			<Orientation y="0.76737"/>
 		</Entity>
 		<Entity uid="986">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="641.18348" z="695.29706"/>
 			<Orientation y="-1.09533"/>
 		</Entity>
 		<Entity uid="987">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="652.02451" z="708.65751"/>
 			<Orientation y="-2.4997"/>
@@ -4740,7 +4740,7 @@
 			<Orientation y="-0.15366"/>
 		</Entity>
 		<Entity uid="992">
-			<Template>gaia/geology_metal_desert_slabs</Template>
+			<Template>gaia/ore/desert_large</Template>
 			<Player>0</Player>
 			<Position x="843.43477" z="896.10404"/>
 			<Orientation y="1.04668"/>
@@ -4756,7 +4756,7 @@
 			<Orientation y="-3.9136"/>
 		</Entity>
 		<Entity uid="995">
-			<Template>gaia/geology_metal_desert_slabs</Template>
+			<Template>gaia/ore/desert_large</Template>
 			<Player>0</Player>
 			<Position x="61.69407" z="512.50258"/>
 			<Orientation y="-4.03783"/>
@@ -4772,19 +4772,19 @@
 			<Orientation y="-0.91175"/>
 		</Entity>
 		<Entity uid="1004">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="451.3712" z="600.12162"/>
 			<Orientation y="0.60962"/>
 		</Entity>
 		<Entity uid="1005">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="460.74523" z="603.83443"/>
 			<Orientation y="-4.61622"/>
 		</Entity>
 		<Entity uid="1006">
-			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Template>gaia/rock/badlands_large</Template>
 			<Player>0</Player>
 			<Position x="453.79427" z="604.66131"/>
 			<Orientation y="-2.37778"/>
@@ -4805,7 +4805,7 @@
 			<Orientation y="-2.12923"/>
 		</Entity>
 		<Entity uid="1010">
-			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Template>gaia/rock/badlands_large</Template>
 			<Player>0</Player>
 			<Position x="530.69417" z="381.83329"/>
 			<Orientation y="-1.44372"/>
@@ -4831,25 +4831,25 @@
 			<Orientation y="0.64138"/>
 		</Entity>
 		<Entity uid="1015">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="399.0377" z="595.51269"/>
 			<Orientation y="-2.68027"/>
 		</Entity>
 		<Entity uid="1016">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="398.68964" z="592.94085"/>
 			<Orientation y="-2.15561"/>
 		</Entity>
 		<Entity uid="1017">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="401.3517" z="593.2555"/>
 			<Orientation y="-2.17312"/>
 		</Entity>
 		<Entity uid="1018">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="393.31824" z="591.87955"/>
 			<Orientation y="-2.52927"/>
@@ -4870,31 +4870,31 @@
 			<Orientation y="0.56595"/>
 		</Entity>
 		<Entity uid="1022">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="340.89641" z="484.70821"/>
 			<Orientation y="-0.57412"/>
 		</Entity>
 		<Entity uid="1023">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="345.60425" z="492.43899"/>
 			<Orientation y="-0.61658"/>
 		</Entity>
 		<Entity uid="1024">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="356.6816" z="498.1253"/>
 			<Orientation y="-4.43108"/>
 		</Entity>
 		<Entity uid="1025">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="354.3839" z="489.6752"/>
 			<Orientation y="0.26595"/>
 		</Entity>
 		<Entity uid="1026">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="344.81791" z="489.64721"/>
 			<Orientation y="-2.01595"/>
@@ -4910,25 +4910,25 @@
 			<Orientation y="1.28037"/>
 		</Entity>
 		<Entity uid="1029">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="392.98946" z="542.12764"/>
 			<Orientation y="-2.28721"/>
 		</Entity>
 		<Entity uid="1030">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="391.25147" z="524.86716"/>
 			<Orientation y="-4.041"/>
 		</Entity>
 		<Entity uid="1031">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="405.02988" z="535.965"/>
 			<Orientation y="-2.25448"/>
 		</Entity>
 		<Entity uid="1032">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="400.46311" z="535.86231"/>
 			<Orientation y="-1.50573"/>
@@ -4944,19 +4944,19 @@
 			<Orientation y="-2.86602"/>
 		</Entity>
 		<Entity uid="1035">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="492.93554" z="478.29093"/>
 			<Orientation y="-3.78064"/>
 		</Entity>
 		<Entity uid="1036">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="496.62575" z="486.26023"/>
 			<Orientation y="-2.49569"/>
 		</Entity>
 		<Entity uid="1037">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="493.51029" z="484.7612"/>
 			<Orientation y="-3.40926"/>
@@ -4977,31 +4977,31 @@
 			<Orientation y="0.19318"/>
 		</Entity>
 		<Entity uid="1041">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="453.10352" z="523.49228"/>
 			<Orientation y="-1.78771"/>
 		</Entity>
 		<Entity uid="1042">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="459.86493" z="527.97896"/>
 			<Orientation y="0.84281"/>
 		</Entity>
 		<Entity uid="1043">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="457.67785" z="528.72704"/>
 			<Orientation y="-4.0186"/>
 		</Entity>
 		<Entity uid="1044">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="465.56702" z="527.89556"/>
 			<Orientation y="-3.42414"/>
 		</Entity>
 		<Entity uid="1045">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="459.72867" z="513.32297"/>
 			<Orientation y="-4.42481"/>
@@ -5022,13 +5022,13 @@
 			<Orientation y="-0.73812"/>
 		</Entity>
 		<Entity uid="1049">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="637.76394" z="590.44681"/>
 			<Orientation y="-2.83396"/>
 		</Entity>
 		<Entity uid="1050">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="625.47602" z="582.71273"/>
 			<Orientation y="1.32222"/>
@@ -5044,13 +5044,13 @@
 			<Orientation y="-0.6759"/>
 		</Entity>
 		<Entity uid="1053">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="386.65137" z="575.18998"/>
 			<Orientation y="-3.50536"/>
 		</Entity>
 		<Entity uid="1054">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="389.27375" z="586.50264"/>
 			<Orientation y="-4.66807"/>
@@ -5076,25 +5076,25 @@
 			<Orientation y="-0.8382"/>
 		</Entity>
 		<Entity uid="1059">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="394.9789" z="378.53196"/>
 			<Orientation y="0.2013"/>
 		</Entity>
 		<Entity uid="1060">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="408.07786" z="378.19776"/>
 			<Orientation y="-4.11585"/>
 		</Entity>
 		<Entity uid="1061">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="404.76862" z="373.03202"/>
 			<Orientation y="-0.58599"/>
 		</Entity>
 		<Entity uid="1062">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="405.9337" z="380.85898"/>
 			<Orientation y="0.57387"/>
@@ -5115,13 +5115,13 @@
 			<Orientation y="-3.56516"/>
 		</Entity>
 		<Entity uid="1066">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="430.42045" z="455.71145"/>
 			<Orientation y="-0.48862"/>
 		</Entity>
 		<Entity uid="1067">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="432.83867" z="466.88631"/>
 			<Orientation y="-2.7244"/>
@@ -5147,19 +5147,19 @@
 			<Orientation y="-3.33263"/>
 		</Entity>
 		<Entity uid="1072">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="446.79256" z="384.82222"/>
 			<Orientation y="-0.14078"/>
 		</Entity>
 		<Entity uid="1073">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="447.88772" z="383.03206"/>
 			<Orientation y="-0.7549"/>
 		</Entity>
 		<Entity uid="1074">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="448.59925" z="379.6301"/>
 			<Orientation y="-3.4964"/>
@@ -5185,19 +5185,19 @@
 			<Orientation y="0.4426"/>
 		</Entity>
 		<Entity uid="1079">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="465.4693" z="370.80311"/>
 			<Orientation y="0.27196"/>
 		</Entity>
 		<Entity uid="1080">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="452.78193" z="377.916"/>
 			<Orientation y="0.73888"/>
 		</Entity>
 		<Entity uid="1081">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="468.29912" z="379.02788"/>
 			<Orientation y="-3.98206"/>
@@ -5218,25 +5218,25 @@
 			<Orientation y="-4.66066"/>
 		</Entity>
 		<Entity uid="1085">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="471.06461" z="497.83693"/>
 			<Orientation y="-1.3455"/>
 		</Entity>
 		<Entity uid="1086">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="458.88122" z="502.28783"/>
 			<Orientation y="-1.83332"/>
 		</Entity>
 		<Entity uid="1087">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="471.77451" z="511.08872"/>
 			<Orientation y="0.68847"/>
 		</Entity>
 		<Entity uid="1088">
-			<Template>gaia/geology_stone_desert_small</Template>
+			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
 			<Position x="470.99466" z="499.11252"/>
 			<Orientation y="-2.2637"/>
@@ -5257,7 +5257,7 @@
 			<Orientation y="-4.4727"/>
 		</Entity>
 		<Entity uid="1092">
-			<Template>gaia/geology_metal_desert_slabs</Template>
+			<Template>gaia/ore/desert_large</Template>
 			<Player>0</Player>
 			<Position x="339.2959" z="440.89437"/>
 			<Orientation y="-3.82369"/>
@@ -5278,7 +5278,7 @@
 			<Orientation y="-1.43194"/>
 		</Entity>
 		<Entity uid="1096">
-			<Template>gaia/geology_metal_desert_slabs</Template>
+			<Template>gaia/ore/desert_large</Template>
 			<Player>0</Player>
 			<Position x="580.88668" z="628.34652"/>
 			<Orientation y="0.97423"/>
@@ -5299,7 +5299,7 @@
 			<Orientation y="0.79165"/>
 		</Entity>
 		<Entity uid="1100">
-			<Template>gaia/geology_metal_desert_slabs</Template>
+			<Template>gaia/ore/desert_large</Template>
 			<Player>0</Player>
 			<Position x="402.04871" z="520.42197"/>
 			<Orientation y="-0.94187"/>
@@ -5320,7 +5320,7 @@
 			<Orientation y="-0.47053"/>
 		</Entity>
 		<Entity uid="1104">
-			<Template>gaia/geology_metal_desert_slabs</Template>
+			<Template>gaia/ore/desert_large</Template>
 			<Player>0</Player>
 			<Position x="390.13543" z="414.78154"/>
 			<Orientation y="-3.66222"/>
@@ -5336,7 +5336,7 @@
 			<Orientation y="-2.6852"/>
 		</Entity>
 		<Entity uid="1107">
-			<Template>gaia/geology_metal_desert_slabs</Template>
+			<Template>gaia/ore/desert_large</Template>
 			<Player>0</Player>
 			<Position x="457.71796" z="615.71818"/>
 			<Orientation y="-2.33355"/>
@@ -5357,7 +5357,7 @@
 			<Orientation y="0.06807"/>
 		</Entity>
 		<Entity uid="1112">
-			<Template>gaia/geology_metal_desert_slabs</Template>
+			<Template>gaia/ore/desert_large</Template>
 			<Player>0</Player>
 			<Position x="423.63411" z="419.96764"/>
 			<Orientation y="1.14448"/>

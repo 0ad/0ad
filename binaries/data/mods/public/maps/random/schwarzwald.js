@@ -18,8 +18,8 @@ setPPBrightness(0.4);
 setPPEffect("hdr");
 setPPBloom(0.4);
 
-var oStoneLarge = 'gaia/geology_stonemine_alpine_quarry';
-var oMetalLarge = 'gaia/geology_metal_alpine_slabs';
+var oStoneLarge = 'gaia/rock/alpine_large';
+var oMetalLarge = 'gaia/ore/alpine_large';
 var oFish = "gaia/fish/generic";
 
 var aGrass = 'actor|props/flora/grass_soft_small_tall.xml';

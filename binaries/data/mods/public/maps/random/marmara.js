@@ -43,7 +43,7 @@ g_Gaia.tree3 = "gaia/tree/dead";
 g_Gaia.tree4 = "gaia/tree/dead";
 g_Gaia.tree5 = "gaia/tree/carob";
 g_Gaia.fruitBush = "gaia/fruit/grapes";
-g_Gaia.metalSmall = "gaia/geology_metal_desert_small";
+g_Gaia.metalSmall = "gaia/ore/desert_small";
 
 g_Decoratives.grass = "actor|props/special/eyecandy/block_limestone.xml";
 g_Decoratives.grassShort = "actor|props/special/eyecandy/blocks_sandstone_pile_a.xml";

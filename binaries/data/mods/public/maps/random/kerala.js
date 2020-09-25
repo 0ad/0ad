@@ -16,9 +16,9 @@ const tWater = "tropic_beach_wet";
 
 const oTree = "gaia/tree/toona";
 const oPalm = "gaia/tree/palm_tropic";
-const oStoneLarge = "gaia/geology_stonemine_tropic_quarry";
-const oStoneSmall = "gaia/geology_stone_tropic_a";
-const oMetalLarge = "gaia/geology_metal_tropic_slabs";
+const oStoneLarge = "gaia/rock/tropical_large";
+const oStoneSmall = "gaia/rock/tropical_small";
+const oMetalLarge = "gaia/ore/tropical_large";
 const oFish = "gaia/fish/generic";
 const oDeer = "gaia/fauna_deer";
 const oSheep = "gaia/fauna_tiger";

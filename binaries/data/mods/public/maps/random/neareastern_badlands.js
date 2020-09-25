@@ -22,9 +22,9 @@ const oGazelle = "gaia/fauna_gazelle";
 const oGiraffe = "gaia/fauna_giraffe";
 const oGoat = "gaia/fauna_goat";
 const oWildebeest = "gaia/fauna_wildebeest";
-const oStoneLarge = "gaia/geology_stonemine_desert_badlands_quarry";
-const oStoneSmall = "gaia/geology_stone_desert_small";
-const oMetalLarge = "gaia/geology_metal_desert_slabs";
+const oStoneLarge = "gaia/rock/badlands_large";
+const oStoneSmall = "gaia/rock/desert_small";
+const oMetalLarge = "gaia/ore/desert_large";
 const oDatePalm = "gaia/tree/date_palm";
 const oSDatePalm = "gaia/tree/senegal_date_palm";
 

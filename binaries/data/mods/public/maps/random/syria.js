@@ -20,9 +20,9 @@ const oBush = "gaia/fruit/grapes";
 const oCamel = "gaia/fauna_camel";
 const oGazelle = "gaia/fauna_gazelle";
 const oLion = "gaia/fauna_lion";
-const oStoneLarge = "gaia/geology_stonemine_desert_quarry";
-const oStoneSmall = "gaia/geology_stone_desert_small";
-const oMetalLarge = "gaia/geology_metal_desert_slabs";
+const oStoneLarge = "gaia/rock/desert_large";
+const oStoneSmall = "gaia/rock/desert_small";
+const oMetalLarge = "gaia/ore/desert_large";
 
 const aRock = "actor|geology/stone_desert_med.xml";
 const aBushA = "actor|props/flora/bush_desert_dry_a.xml";

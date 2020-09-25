@@ -22,8 +22,8 @@ const oElephantInfant = "gaia/fauna_elephant_african_infant";
 const oLion = "gaia/fauna_lion";
 const oLioness = "gaia/fauna_lioness";
 const oZebra = "gaia/fauna_zebra";
-const oStoneSmall = "gaia/geology_stone_savanna_small";
-const oMetalLarge = "gaia/geology_metal_savanna_slabs";
+const oStoneSmall = "gaia/rock/savanna_small";
+const oMetalLarge = "gaia/ore/savanna_large";
 
 const aBush = "actor|props/flora/bush_medit_sm_dry.xml";
 const aRock = "actor|geology/stone_savanna_med.xml";

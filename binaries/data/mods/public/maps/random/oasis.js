@@ -17,8 +17,8 @@ const eCamel = "gaia/fauna_camel";
 const eGazelle = "gaia/fauna_gazelle";
 const eLion = "gaia/fauna_lion";
 const eLioness = "gaia/fauna_lioness";
-const eStoneMine = "gaia/geology_stonemine_desert_quarry";
-const eMetalMine = "gaia/geology_metal_desert_slabs";
+const eStoneMine = "gaia/rock/desert_large";
+const eMetalMine = "gaia/ore/desert_large";
 
 const aFlower1 = "actor|props/flora/decals_flowers_daisies.xml";
 const aWaterFlower = "actor|props/flora/water_lillies.xml";

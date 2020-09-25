@@ -30,9 +30,9 @@ var oWolf = "gaia/fauna_wolf";
 var oWhaleFin = "gaia/fauna_whale_fin";
 var oWhaleHumpback = "gaia/fauna_whale_humpback";
 var oFish = "gaia/fish/generic";
-var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
-var oStoneSmall = "gaia/geology_stone_alpine_a";
-var oMetalLarge = "gaia/geology_metal_alpine_slabs";
+var oStoneLarge = "gaia/rock/alpine_large";
+var oStoneSmall = "gaia/rock/alpine_small";
+var oMetalLarge = "gaia/ore/alpine_large";
 var oWoodTreasure = "gaia/treasure/wood";
 
 var aRockLarge = "actor|geology/stone_granite_med.xml";

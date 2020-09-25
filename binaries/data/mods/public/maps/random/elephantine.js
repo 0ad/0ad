@@ -39,10 +39,10 @@ const oPalms = [
 	"gaia/tree/senegal_date_palm",
 	"gaia/tree/medit_fan_palm"
 ];
-const oStoneLarge = "gaia/geology_stonemine_savanna_quarry";
-const oStoneSmall = "gaia/geology_stone_desert_small";
-const oMetalLarge = "gaia/geology_metal_savanna_slabs";
-const oMetalSmall = "gaia/geology_metal_desert_small";
+const oStoneLarge = "gaia/rock/savanna_large";
+const oStoneSmall = "gaia/rock/desert_small";
+const oMetalLarge = "gaia/ore/savanna_large";
+const oMetalSmall = "gaia/ore/desert_small";
 
 const oTreasure = [
 	"gaia/treasure/food_barrel",

@@ -13,9 +13,9 @@ var tLava2 = "LavaTest04";
 var tLava3 = "LavaTest03";
 
 var oTree = "gaia/tree/dead";
-var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
-var oStoneSmall = "gaia/geology_stone_alpine_a";
-var oMetalLarge = "gaia/geology_metal_alpine_slabs";
+var oStoneLarge = "gaia/rock/alpine_large";
+var oStoneSmall = "gaia/rock/alpine_small";
+var oMetalLarge = "gaia/ore/alpine_large";
 
 var aRockLarge = "actor|geology/stone_granite_med.xml";
 var aRockMedium = "actor|geology/stone_granite_med.xml";

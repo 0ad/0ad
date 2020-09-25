@@ -142,7 +142,7 @@ function placeStartLocationResources(point, foodEntities = ["gaia/fruit/berry_01
 	let dAngle = 4/9 * Math.PI;
 	let angle = currentAngle + randFloat(1, 3) * dAngle / 4;
 	let stonePosition = Vector2D.add(point, new Vector2D(12, 0).rotate(-angle));
-	placeMine(stonePosition, "gaia/geology_stonemine_temperate_quarry");
+	placeMine(stonePosition, "gaia/rock/temperate_large");
 
 	currentAngle += dAngle;
 
@@ -170,7 +170,7 @@ function placeStartLocationResources(point, foodEntities = ["gaia/fruit/berry_01
 	dAngle = 2 * Math.PI * 2 / 9;
 	angle = currentAngle + dAngle * randFloat(1, 3) / 4;
 	let metalPosition = Vector2D.add(point, new Vector2D(13, 0).rotate(-angle));
-	placeMine(metalPosition, "gaia/geology_metal_temperate_slabs");
+	placeMine(metalPosition, "gaia/ore/temperate_large");
 	currentAngle += dAngle;
 
 	// Berries
@@ -416,9 +416,9 @@ for (let i = 0; i < resourceSpots.length; ++i)
 	let pos = new Vector2D(resourceSpots[i].x, resourceSpots[i].y);
 	let choice = i % (isNomad() ? 4 : 5);
 	if (choice == 0)
-		placeMine(pos, "gaia/geology_stonemine_temperate_formation");
+		placeMine(pos, "gaia/rock/temperate_large_02");
 	if (choice == 1)
-		placeMine(pos, "gaia/geology_metal_temperate_slabs");
+		placeMine(pos, "gaia/ore/temperate_large");
 	if (choice == 2)
 		placeCustomFortress(pos, pickRandom(fences), "other", 0, randomAngle());
 	if (choice == 3)

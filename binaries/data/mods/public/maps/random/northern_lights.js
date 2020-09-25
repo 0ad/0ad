@@ -15,9 +15,9 @@ const tShore = "alpine_shore_rocks";
 const tWater = "alpine_shore_rocks";
 
 const oPine = "gaia/tree/pine_w";
-const oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
-const oStoneSmall = "gaia/geology_stone_alpine_a";
-const oMetalLarge = "gaia/geology_metal_alpine_slabs";
+const oStoneLarge = "gaia/rock/alpine_large";
+const oStoneSmall = "gaia/rock/alpine_small";
+const oMetalLarge = "gaia/ore/alpine_large";
 const oFish = "gaia/fish/generic";
 const oWalrus = "gaia/fauna_walrus";
 const oArcticWolf = "gaia/fauna_wolf_arctic";

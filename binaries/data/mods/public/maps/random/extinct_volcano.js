@@ -26,9 +26,9 @@ const oFruitBush = "gaia/fruit/berry_01";
 const oRabbit = "gaia/fauna_rabbit";
 const oGoat = "gaia/fauna_goat";
 const oBear = "gaia/fauna_bear_brown";
-const oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
-const oStoneSmall = "gaia/geology_stone_temperate";
-const oMetalLarge = "gaia/geology_metal_temperate_slabs";
+const oStoneLarge = "gaia/rock/temperate_large";
+const oStoneSmall = "gaia/rock/temperate_small";
+const oMetalLarge = "gaia/ore/temperate_large";
 const oTower = "structures/palisades_fort";
 
 const aRockLarge = "actor|geology/stone_granite_med.xml";

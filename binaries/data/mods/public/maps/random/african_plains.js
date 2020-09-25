@@ -30,8 +30,8 @@ var oElephant = "gaia/fauna_elephant_african_bush";
 var oElephant2 = "gaia/fauna_elephant_african_infant";
 var oCrocodile = "gaia/fauna_crocodile_nile";
 var oFish = "gaia/fish/generic";
-var oStoneSmall = "gaia/geology_stone_savanna_small";
-var oMetalLarge = "gaia/geology_metal_savanna_slabs";
+var oStoneSmall = "gaia/rock/savanna_small";
+var oMetalLarge = "gaia/ore/savanna_large";
 
 var aBush = "actor|props/flora/bush_medit_sm_dry.xml";
 var aRock = "actor|geology/stone_savanna_med.xml";

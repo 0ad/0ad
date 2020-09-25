@@ -30,9 +30,9 @@ if (randBool())
 	var oDeer = "gaia/fauna_deer";
 	var oFish = "gaia/fish/generic";
 	var oRabbit = "gaia/fauna_rabbit";
-	var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
-	var oStoneSmall = "gaia/geology_stone_alpine_a";
-	var oMetalLarge = "gaia/geology_metal_alpine_slabs";
+	var oStoneLarge = "gaia/rock/alpine_large";
+	var oStoneSmall = "gaia/rock/alpine_small";
+	var oMetalLarge = "gaia/ore/alpine_large";
 
 	var aGrass = "actor|props/flora/grass_soft_small_tall.xml";
 	var aGrassShort = "actor|props/flora/grass_soft_large.xml";
@@ -67,9 +67,9 @@ else
 	var oDeer = "gaia/fauna_deer";
 	var oFish = "gaia/fish/generic";
 	var oRabbit = "gaia/fauna_rabbit";
-	var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
-	var oStoneSmall = "gaia/geology_stone_alpine_a";
-	var oMetalLarge = "gaia/geology_metal_alpine_slabs";
+	var oStoneLarge = "gaia/rock/alpine_large";
+	var oStoneSmall = "gaia/rock/alpine_small";
+	var oMetalLarge = "gaia/ore/alpine_large";
 
 	var aGrass = "actor|props/flora/grass_soft_dry_small_tall.xml";
 	var aGrassShort = "actor|props/flora/grass_soft_dry_large.xml";

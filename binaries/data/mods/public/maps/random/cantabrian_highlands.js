@@ -27,9 +27,9 @@ const oBerryBush = "gaia/fruit/berry_01";
 const oDeer = "gaia/fauna_deer";
 const oFish = "gaia/fish/generic";
 const oSheep = "gaia/fauna_sheep";
-const oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
-const oStoneSmall = "gaia/geology_stone_temperate";
-const oMetalLarge = "gaia/geology_metal_temperate_slabs";
+const oStoneLarge = "gaia/rock/temperate_large";
+const oStoneSmall = "gaia/rock/temperate_small";
+const oMetalLarge = "gaia/ore/temperate_large";
 
 const aGrass = "actor|props/flora/grass_soft_large_tall.xml";
 const aGrassShort = "actor|props/flora/grass_soft_large.xml";

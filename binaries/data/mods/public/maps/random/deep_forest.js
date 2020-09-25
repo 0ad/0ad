@@ -1,9 +1,9 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
-var templateStone = "gaia/geology_stone_temperate";
-var templateStoneMine = "gaia/geology_stonemine_temperate_quarry";
-var templateMetalMine = "gaia/geology_metal_temperate_slabs";
+var templateStone = "gaia/rock/temperate_small";
+var templateStoneMine = "gaia/rock/temperate_large";
+var templateMetalMine = "gaia/ore/temperate_large";
 var templateTemple = "gaia/ruins/unfinished_greek_temple";
 
 var terrainPrimary = ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_d", "temp_grass_long_b", "temp_grass_clovers_2", "temp_grass_mossy", "temp_grass_plants"];

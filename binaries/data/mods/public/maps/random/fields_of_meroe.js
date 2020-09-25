@@ -28,10 +28,10 @@ const oGiraffe = "gaia/fauna_giraffe";
 const oLion = "gaia/fauna_lion";
 const oFish = "gaia/fish/generic";
 const oHawk = "birds/buzzard";
-const oStoneLarge = "gaia/geology_stonemine_savanna_quarry";
-const oStoneSmall = "gaia/geology_stone_desert_small";
-const oMetalLarge = "gaia/geology_metal_savanna_slabs";
-const oMetalSmall = "gaia/geology_metal_desert_small";
+const oStoneLarge = "gaia/rock/savanna_large";
+const oStoneSmall = "gaia/rock/desert_small";
+const oMetalLarge = "gaia/ore/savanna_large";
+const oMetalSmall = "gaia/ore/desert_small";
 
 const oHouse = "structures/kush_house";
 const oFarmstead = "structures/kush_farmstead";

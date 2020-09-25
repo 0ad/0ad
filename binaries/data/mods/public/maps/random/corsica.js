@@ -26,8 +26,8 @@ var eApple = "gaia/fruit/apple";
 var eBush = "gaia/fruit/berry_01";
 var eFish = "gaia/fish/generic";
 var ePig = "gaia/fauna_pig";
-var eStoneMine = "gaia/geology_stonemine_medit_quarry";
-var eMetalMine = "gaia/geology_metal_mediterranean_slabs";
+var eStoneMine = "gaia/rock/mediterranean_large";
+var eMetalMine = "gaia/ore/mediterranean_large";
 
 var aRock = "actor|geology/stone_granite_med.xml";
 var aLargeRock = "actor|geology/stone_granite_large.xml";

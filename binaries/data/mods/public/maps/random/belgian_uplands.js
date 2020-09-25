@@ -40,7 +40,7 @@ textueByHeight.push({"upperHeightLimit": heightRange.min + 3/3 * (heightSeaGroun
 var terrains = ["temp_plants_bog", "temp_plants_bog_aut", "temp_dirt_gravel_plants", "temp_grass_d"];
 terrains = terrains.concat(terrains, terrains, terrains, terrains, terrains);
 terrains = ["temp_plants_bog|gaia/tree/bush_temperate"].concat(terrains, terrains);
-terrains = ["temp_dirt_gravel_plants|gaia/geology_metal_temperate", "temp_dirt_gravel_plants|gaia/geology_stone_temperate", "temp_plants_bog|gaia/fauna_rabbit"].concat(terrains, terrains);
+terrains = ["temp_dirt_gravel_plants|gaia/ore/temperate_small", "temp_dirt_gravel_plants|gaia/rock/temperate_small", "temp_plants_bog|gaia/fauna_rabbit"].concat(terrains, terrains);
 terrains = ["temp_plants_bog_aut|gaia/tree/dead"].concat(terrains, terrains);
 textueByHeight.push({"upperHeightLimit": heightSeaGroundAdjusted + 1/6 * (heightRange.max - heightSeaGroundAdjusted), "terrain": terrains});
 

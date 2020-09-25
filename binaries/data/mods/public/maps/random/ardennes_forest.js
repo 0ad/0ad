@@ -14,10 +14,10 @@ const oDeer = "gaia/fauna_deer";
 const oBear = "gaia/fauna_bear_brown";
 const oPig = "gaia/fauna_pig";
 const oBerryBush = "gaia/fruit/berry_01";
-const oMetalSmall = "gaia/geology_metal_alpine";
-const oMetalLarge = "gaia/geology_metal_temperate_slabs";
-const oStoneSmall = "gaia/geology_stone_alpine_a";
-const oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
+const oMetalSmall = "gaia/ore/alpine_small";
+const oMetalLarge = "gaia/ore/temperate_large";
+const oStoneSmall = "gaia/rock/alpine_small";
+const oStoneLarge = "gaia/rock/temperate_large";
 
 const oOak = "gaia/tree/oak";
 const oOakLarge = "gaia/tree/oak_large";
