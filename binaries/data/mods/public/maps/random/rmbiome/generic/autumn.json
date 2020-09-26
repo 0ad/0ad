@@ -58,20 +58,20 @@
 		"water": "medit_sand_wet"
 	},
 	"Gaia": {
-		"tree1": "gaia/flora_tree_euro_beech_aut",
-		"tree2": "gaia/flora_tree_euro_beech_aut",
-		"tree3": "gaia/flora_tree_pine",
-		"tree4": "gaia/flora_tree_oak_aut",
-		"tree5": "gaia/flora_tree_oak_aut",
-		"fruitBush": "gaia/flora_bush_berry",
+		"tree1": "gaia/tree/euro_beech_aut",
+		"tree2": "gaia/tree/euro_beech_aut",
+		"tree3": "gaia/tree/pine",
+		"tree4": "gaia/tree/oak_aut",
+		"tree5": "gaia/tree/oak_aut",
+		"fruitBush": "gaia/fruit/berry_01",
 		"chicken": "gaia/fauna_chicken",
 		"mainHuntableAnimal": "gaia/fauna_deer",
 		"fish": "gaia/fish/generic",
 		"secondaryHuntableAnimal": "gaia/fauna_rabbit",
-		"stoneLarge": "gaia/geology_stonemine_temperate_quarry",
-		"stoneSmall": "gaia/geology_stone_temperate",
-		"metalLarge": "gaia/geology_metal_temperate_slabs",
-		"metalSmall": "gaia/geology_metal_temperate"
+		"stoneLarge": "gaia/rock/temperate_large",
+		"stoneSmall": "gaia/rock/temperate_small",
+		"metalLarge": "gaia/ore/temperate_large",
+		"metalSmall": "gaia/ore/temperate_small"
 	},
 	"Decoratives": {
 		"grass": "actor|props/flora/grass_soft_dry_small_tall.xml",

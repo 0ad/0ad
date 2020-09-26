@@ -34,11 +34,11 @@ g_Terrains.tier4Terrain = "new_alpine_grass_e";
 g_Gaia.mainHuntableAnimal = "gaia/fauna_deer";
 g_Gaia.secondaryHuntableAnimal = "gaia/fauna_pig";
 g_Gaia.fish = "gaia/fish/tilapia";
-g_Gaia.tree1 = "gaia/flora_tree_poplar";
-g_Gaia.tree2 = "gaia/flora_tree_toona";
-g_Gaia.tree3 = "gaia/flora_tree_apple";
-g_Gaia.tree4 = "gaia/flora_tree_acacia";
-g_Gaia.tree5 = "gaia/flora_tree_carob";
+g_Gaia.tree1 = "gaia/tree/poplar";
+g_Gaia.tree2 = "gaia/tree/toona";
+g_Gaia.tree3 = "gaia/fruit/apple";
+g_Gaia.tree4 = "gaia/tree/acacia";
+g_Gaia.tree5 = "gaia/tree/carob";
 
 g_Decoratives.grass = "actor|props/flora/grass_soft_large.xml";
 g_Decoratives.grassShort = "actor|props/flora/grass_tufts_a.xml";

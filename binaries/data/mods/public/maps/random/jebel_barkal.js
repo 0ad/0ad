@@ -22,26 +22,26 @@ const tGrassTransition2 = "steppe_grass_dirt_66";
 const tPath = "road2";
 const tPathWild = "road_med";
 
-const oAcacia = "gaia/flora_tree_acacia";
-const oPalmPath = "gaia/flora_tree_cretan_date_palm_tall";
+const oAcacia = "gaia/tree/acacia";
+const oPalmPath = "gaia/tree/cretan_date_palm_tall";
 const oPalms = [
-	"gaia/flora_tree_cretan_date_palm_tall",
-	"gaia/flora_tree_cretan_date_palm_short",
-	"gaia/flora_tree_palm_tropic",
-	"gaia/flora_tree_date_palm",
-	"gaia/flora_tree_senegal_date_palm",
-	"gaia/flora_tree_medit_fan_palm"
+	"gaia/tree/cretan_date_palm_tall",
+	"gaia/tree/cretan_date_palm_short",
+	"gaia/tree/palm_tropic",
+	"gaia/tree/date_palm",
+	"gaia/tree/senegal_date_palm",
+	"gaia/tree/medit_fan_palm"
 ];
-const oBerryBushGrapes = "gaia/flora_bush_grapes";
-const oBerryBushDesert = "gaia/flora_bush_berry_desert";
-const oStoneLargeDesert = "gaia/geology_stonemine_desert_quarry";
-const oStoneSmallDesert = "gaia/geology_stone_desert_small";
-const oMetalLargeDesert = "gaia/geology_metal_desert_slabs";
-const oMetalSmallDesert = "gaia/geology_metal_desert_small";
-const oStoneLargeFertileLand = "gaia/geology_stonemine_desert_quarry";
-const oStoneSmallFertileLand = "gaia/geology_stone_greek";
-const oMetalLargeFertileLand = "gaia/geology_metal_desert_slabs";
-const oMetalSmallFertileLand = "gaia/geology_metal_temperate";
+const oBerryBushGrapes = "gaia/fruit/grapes";
+const oBerryBushDesert = "gaia/fruit/berry_05";
+const oStoneLargeDesert = "gaia/rock/desert_large";
+const oStoneSmallDesert = "gaia/rock/desert_small";
+const oMetalLargeDesert = "gaia/ore/desert_large";
+const oMetalSmallDesert = "gaia/ore/desert_small";
+const oStoneLargeFertileLand = "gaia/rock/desert_large";
+const oStoneSmallFertileLand = "gaia/rock/greece_small";
+const oMetalLargeFertileLand = "gaia/ore/desert_large";
+const oMetalSmallFertileLand = "gaia/ore/temperate_small";
 const oFoodTreasureBin = "gaia/treasure/food_bin";
 const oFoodTreasureCrate = "gaia/treasure/food_crate";
 const oFoodTreasureJars = "gaia/treasure/food_jars";

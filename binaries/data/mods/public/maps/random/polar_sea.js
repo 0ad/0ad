@@ -18,9 +18,9 @@ var oWalrus = "gaia/fauna_walrus";
 var oWhaleFin = "gaia/fauna_whale_fin";
 var oWhaleHumpback = "gaia/fauna_whale_humpback";
 var oFish = "gaia/fish/generic";
-var oStoneLarge = "gaia/geology_stonemine_medit_quarry";
-var oStoneSmall = "gaia/geology_stone_alpine_a";
-var oMetalLarge = "gaia/geology_metal_desert_badlands_slabs";
+var oStoneLarge = "gaia/rock/mediterranean_large";
+var oStoneSmall = "gaia/rock/alpine_small";
+var oMetalLarge = "gaia/ore/badlands_large";
 var oWoodTreasure = "gaia/treasure/wood";
 var oMarket = "skirmish/structures/default_market";
 

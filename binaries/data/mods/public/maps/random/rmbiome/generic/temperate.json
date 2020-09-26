@@ -43,16 +43,16 @@
 		"water": "medit_sand_wet"
 	},
 	"Gaia": {
-		"fruitBush": "gaia/flora_bush_berry",
+		"fruitBush": "gaia/fruit/berry_01",
 		"chicken": "gaia/fauna_chicken",
 		"fish": "gaia/fish/generic",
 		"mainHuntableAnimal": "gaia/fauna_deer",
 		"secondaryHuntableAnimal": "gaia/fauna_sheep",
-		"stoneLarge": "gaia/geology_stonemine_temperate_quarry",
-		"stoneSmall": "gaia/geology_stone_temperate",
-		"metalLarge": "gaia/geology_metal_temperate_slabs",
-		"metalSmall": "gaia/geology_metal_temperate",
-		"tree3": "gaia/flora_tree_apple"
+		"stoneLarge": "gaia/rock/temperate_large",
+		"stoneSmall": "gaia/rock/temperate_small",
+		"metalLarge": "gaia/ore/temperate_large",
+		"metalSmall": "gaia/ore/temperate_small",
+		"tree3": "gaia/fruit/apple"
 	},
 	"Decoratives": {
 		"grass": "actor|props/flora/grass_soft_large_tall.xml",

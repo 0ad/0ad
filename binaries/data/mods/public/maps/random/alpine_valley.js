@@ -239,13 +239,13 @@ if (randBool())
 	var tRoad = "new_alpine_citytile";
 	var tRoadWild = "new_alpine_citytile";
 
-	var oPine = "gaia/flora_tree_pine";
-	var oBerryBush = "gaia/flora_bush_berry";
+	var oPine = "gaia/tree/pine";
+	var oBerryBush = "gaia/fruit/berry_01";
 	var oDeer = "gaia/fauna_deer";
 	var oRabbit = "gaia/fauna_rabbit";
-	var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
-	var oStoneSmall = "gaia/geology_stone_alpine_a";
-	var oMetalLarge = "gaia/geology_metal_alpine_slabs";
+	var oStoneLarge = "gaia/rock/alpine_large";
+	var oStoneSmall = "gaia/rock/alpine_small";
+	var oMetalLarge = "gaia/ore/alpine_large";
 
 	var aGrass = "actor|props/flora/grass_soft_small_tall.xml";
 	var aGrassShort = "actor|props/flora/grass_soft_large.xml";
@@ -267,13 +267,13 @@ else
 	var tRoad = "new_alpine_citytile";
 	var tRoadWild = "new_alpine_citytile";
 
-	var oPine = "gaia/flora_tree_pine_w";
-	var oBerryBush = "gaia/flora_bush_berry";
+	var oPine = "gaia/tree/pine_w";
+	var oBerryBush = "gaia/fruit/berry_01";
 	var oDeer = "gaia/fauna_deer";
 	var oRabbit = "gaia/fauna_rabbit";
-	var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
-	var oStoneSmall = "gaia/geology_stone_alpine_a";
-	var oMetalLarge = "gaia/geology_metal_alpine_slabs";
+	var oStoneLarge = "gaia/rock/alpine_large";
+	var oStoneSmall = "gaia/rock/alpine_small";
+	var oMetalLarge = "gaia/ore/alpine_large";
 
 	var aGrass = "actor|props/flora/grass_soft_dry_small_tall.xml";
 	var aGrassShort = "actor|props/flora/grass_soft_dry_large.xml";

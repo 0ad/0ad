@@ -11,10 +11,10 @@ const tShore = "savanna_riparian_wet";
 const tWater = "savanna_mud_a";
 const tCityTile = "savanna_tile_a";
 
-const oBush = "gaia/flora_bush_temperate";
-const oBaobab = "gaia/flora_tree_baobab";
-const oToona = "gaia/flora_tree_toona";
-const oBerryBush = "gaia/flora_bush_berry";
+const oBush = "gaia/tree/bush_temperate";
+const oBaobab = "gaia/tree/baobab";
+const oToona = "gaia/tree/toona";
+const oBerryBush = "gaia/fruit/berry_01";
 const oGazelle = "gaia/fauna_gazelle";
 const oZebra = "gaia/fauna_zebra";
 const oWildebeest = "gaia/fauna_wildebeest";
@@ -25,9 +25,9 @@ const oElephant = "gaia/fauna_elephant_north_african";
 const oElephantInfant = "gaia/fauna_elephant_african_infant";
 const oLioness = "gaia/fauna_lioness";
 const oRabbit = "gaia/fauna_rabbit";
-const oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
-const oStoneSmall = "gaia/geology_stone_savanna_small";
-const oMetalLarge = "gaia/geology_metal_savanna_slabs";
+const oStoneLarge = "gaia/rock/temperate_large";
+const oStoneSmall = "gaia/rock/savanna_small";
+const oMetalLarge = "gaia/ore/savanna_large";
 
 const aGrass = "actor|props/flora/grass_field_lush_tall.xml";
 const aGrass2 = "actor|props/flora/grass_tropic_field_tall.xml";

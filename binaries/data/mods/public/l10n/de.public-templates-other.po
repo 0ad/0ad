@@ -15,14 +15,15 @@
 # Maximilian von Lindern <hobbituhukai@live.de>, 2017
 # Maximilian Wagenbach <foaly@posteo.de>, 2017
 # Michael Hecht <arachnovobica.mh@googlemail.com>, 2019
+# Michał Trzebiatowski <michtrz@gmail.com>, 2020
 # Raymond Vetter, 2014-2019
 # xtother90, 2014-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-09-18 19:15+0000\n"
-"Last-Translator: Silasoa <silasoa1@web.de>\n"
+"PO-Revision-Date: 2020-09-24 12:05+0000\n"
+"Last-Translator: Michał Trzebiatowski <michtrz@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +33,7 @@ msgstr ""
 
 #: simulation/templates/template_formation.xml:26
 msgid "Requires at least 2 Soldiers or Siege Engines."
-msgstr ""
+msgstr "Erfordert mindestens 2 Soldaten oder Belagerungswaffen."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -550,15 +551,15 @@ msgstr "Busch"
 
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia"
-msgstr ""
+msgstr "Akazie"
 
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
 msgid "Aleppo Pine"
-msgstr ""
+msgstr "Aleppo-Kiefer"
 
 #: simulation/templates/gaia/flora_tree_apple.xml:4
 msgid "Apple"
-msgstr ""
+msgstr "Apfel"
 
 #: simulation/templates/gaia/flora_tree_bamboo.xml:4
 #: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
@@ -593,7 +594,7 @@ msgstr "junger Baobab"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob"
-msgstr ""
+msgstr "Johannisbrotbaum"
 
 #: simulation/templates/gaia/flora_tree_cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
@@ -615,7 +616,7 @@ msgstr "Kretische Dattelpalme"
 #: simulation/templates/gaia/flora_tree_cypress_wild.xml:4
 #: simulation/templates/gaia/flora_tree_cypress_windswept.xml:4
 msgid "Cypress"
-msgstr ""
+msgstr "Zypresse"
 
 #: simulation/templates/gaia/flora_tree_date_palm.xml:4
 #: simulation/templates/gaia/flora_tree_date_palm_dead.xml:4
@@ -633,12 +634,12 @@ msgstr "Laubbaum"
 #: simulation/templates/gaia/flora_tree_elm.xml:4
 #: simulation/templates/gaia/flora_tree_elm_dead.xml:4
 msgid "Elm"
-msgstr ""
+msgstr "Ulme"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
 msgid "European Beech"
-msgstr ""
+msgstr "Rotbuche"
 
 #: simulation/templates/gaia/flora_tree_euro_birch.xml:4
 msgid "Silver Birch"
@@ -651,7 +652,7 @@ msgstr "Feige"
 #: simulation/templates/gaia/flora_tree_fir.xml:4
 #: simulation/templates/gaia/flora_tree_fir_winter.xml:4
 msgid "Fir"
-msgstr ""
+msgstr "Tanne"
 
 #: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
 msgid "Fir Sapling"
@@ -679,7 +680,7 @@ msgstr "Zwergpalme"
 #: simulation/templates/gaia/flora_tree_oak_dead.xml:4
 #: simulation/templates/gaia/flora_tree_oak_new.xml:4
 msgid "Oak"
-msgstr ""
+msgstr "Eiche"
 
 #: simulation/templates/gaia/flora_tree_oak_holly.xml:4
 msgid "Holly Oak"
@@ -692,11 +693,11 @@ msgstr "Ungarische Eiche"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak"
-msgstr ""
+msgstr "Große Eiche"
 
 #: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive"
-msgstr ""
+msgstr "Olive"
 
 #: simulation/templates/gaia/flora_tree_palm_areca.xml:4
 msgid "Areca Palm"
@@ -721,7 +722,7 @@ msgstr "Tropische Palme"
 #: simulation/templates/gaia/flora_tree_pine.xml:4
 #: simulation/templates/gaia/flora_tree_pine_w.xml:4
 msgid "Pine"
-msgstr ""
+msgstr "Kiefer"
 
 #: simulation/templates/gaia/flora_tree_pine_black.xml:4
 #: simulation/templates/gaia/flora_tree_pine_black_dead.xml:4
@@ -742,7 +743,7 @@ msgstr "Pappel"
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 #: simulation/templates/gaia/flora_tree_poplar_lombardy_dead.xml:4
 msgid "Black Poplar"
-msgstr ""
+msgstr "Schwarz-Pappel"
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -754,7 +755,7 @@ msgstr "Würgefeige"
 
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix"
-msgstr ""
+msgstr "Tamariske"
 
 #: simulation/templates/gaia/flora_tree_teak.xml:8
 msgid "Teak"
@@ -762,7 +763,7 @@ msgstr "Teakbaum"
 
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona"
-msgstr ""
+msgstr "Surenbaum"
 
 #: simulation/templates/gaia/flora_tree_tropic_rainforest.xml:4
 msgid "Rainforest Tree"

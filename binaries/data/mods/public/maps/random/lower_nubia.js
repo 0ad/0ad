@@ -41,22 +41,22 @@ const tCliffUpper = ["medit_cliff_italia", "medit_cliff_italia", "medit_cliff_it
 const tRoad = "savanna_tile_a";
 const tWater = "desert_sand_wet";
 
-const oAcacia = "gaia/flora_tree_acacia";
-const oTreeDead = "gaia/flora_tree_dead";
-const oBushBadlands = "gaia/flora_bush_badlands";
-const oBerryBush = "gaia/flora_bush_berry_desert";
+const oAcacia = "gaia/tree/acacia";
+const oTreeDead = "gaia/tree/dead";
+const oBushBadlands = "gaia/tree/bush_badlands";
+const oBerryBush = "gaia/fruit/berry_05";
 const oPalms = [
-	"gaia/flora_tree_cretan_date_palm_tall",
-	"gaia/flora_tree_cretan_date_palm_short",
-	"gaia/flora_tree_palm_tropic",
-	"gaia/flora_tree_date_palm",
-	"gaia/flora_tree_senegal_date_palm",
-	"gaia/flora_tree_medit_fan_palm"
+	"gaia/tree/cretan_date_palm_tall",
+	"gaia/tree/cretan_date_palm_short",
+	"gaia/tree/palm_tropic",
+	"gaia/tree/date_palm",
+	"gaia/tree/senegal_date_palm",
+	"gaia/tree/medit_fan_palm"
 ];
-const oStoneLarge = "gaia/geology_stonemine_savanna_quarry";
-const oStoneSmall = "gaia/geology_stone_desert_small";
-const oMetalLarge = "gaia/geology_metal_savanna_slabs";
-const oMetalSmall = "gaia/geology_metal_desert_small";
+const oStoneLarge = "gaia/rock/savanna_large";
+const oStoneSmall = "gaia/rock/desert_small";
+const oMetalLarge = "gaia/ore/savanna_large";
+const oMetalSmall = "gaia/ore/desert_small";
 const oWoodTreasure = "gaia/treasure/wood";
 const oGazelle = "gaia/fauna_gazelle";
 const oElephant = "gaia/fauna_elephant_african_bush";

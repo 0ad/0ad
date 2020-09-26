@@ -14,18 +14,18 @@ const tGrassPatch = "savanna_grass_b";
 const tShore = "savanna_riparian_bank";
 const tWater = "savanna_riparian_wet";
 
-const oBaobab = "gaia/flora_tree_baobab";
-const oFig = "gaia/flora_tree_fig";
-const oBerryBush = "gaia/flora_bush_berry";
+const oBaobab = "gaia/tree/baobab";
+const oFig = "gaia/fruit/fig";
+const oBerryBush = "gaia/fruit/berry_01";
 const oWildebeest = "gaia/fauna_wildebeest";
 const oFish = "gaia/fish/generic";
 const oGazelle = "gaia/fauna_gazelle";
 const oElephant = "gaia/fauna_elephant_african_bush";
 const oGiraffe = "gaia/fauna_giraffe";
 const oZebra = "gaia/fauna_zebra";
-const oStoneLarge = "gaia/geology_stonemine_desert_quarry";
-const oStoneSmall = "gaia/geology_stone_savanna_small";
-const oMetalLarge = "gaia/geology_metal_savanna_slabs";
+const oStoneLarge = "gaia/rock/desert_large";
+const oStoneSmall = "gaia/rock/savanna_small";
+const oMetalLarge = "gaia/ore/savanna_large";
 
 const aGrass = "actor|props/flora/grass_savanna.xml";
 const aGrassShort = "actor|props/flora/grass_medit_field.xml";

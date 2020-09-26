@@ -12,8 +12,8 @@ const tCityTiles = "savanna_tile_a";
 const tShore = "savanna_riparian_bank";
 const tWater = "savanna_riparian_wet";
 
-const oBaobab = "gaia/flora_tree_baobab";
-const oBerryBush = "gaia/flora_bush_berry_desert";
+const oBaobab = "gaia/tree/baobab";
+const oBerryBush = "gaia/fruit/berry_05";
 const oGazelle = "gaia/fauna_gazelle";
 const oGiraffe = "gaia/fauna_giraffe";
 const oGiraffeInfant = "gaia/fauna_giraffe_infant";
@@ -22,8 +22,8 @@ const oElephantInfant = "gaia/fauna_elephant_african_infant";
 const oLion = "gaia/fauna_lion";
 const oLioness = "gaia/fauna_lioness";
 const oZebra = "gaia/fauna_zebra";
-const oStoneSmall = "gaia/geology_stone_savanna_small";
-const oMetalLarge = "gaia/geology_metal_savanna_slabs";
+const oStoneSmall = "gaia/rock/savanna_small";
+const oMetalLarge = "gaia/ore/savanna_large";
 
 const aBush = "actor|props/flora/bush_medit_sm_dry.xml";
 const aRock = "actor|geology/stone_savanna_med.xml";

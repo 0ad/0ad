@@ -9,7 +9,7 @@
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
 # 李峰宇 <lxx4380@gmail.com>, 2018
 # Wolfson Liu <wolfsonliu@foxmail.com>, 2020
-# liulitchi <xingzuo88@qq.com>, 2014,2017-2019
+# liulitchi <xingzuo88@qq.com>, 2014,2017-2020
 # 呂正 <jack.lvzheng@gmail.com>, 2015
 # 神楽坂·喵 <i@kagurazakanyaa.com>, 2017
 # 武军 李 <lwj7863439@gmail.com>, 2017
@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-06 07:17+0000\n"
-"PO-Revision-Date: 2020-08-19 11:52+0000\n"
-"Last-Translator: Wolfson Liu <wolfsonliu@foxmail.com>\n"
+"PO-Revision-Date: 2020-09-24 12:54+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,7 +60,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr ""
+msgstr "使用 Alt + Enter ，切换 全屏模式及窗口模式。窗口模式下，可以调整窗口的大小。如果游戏太卡，可在设置界面取消“高清水效果”和“阴影”选项。"
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -116,13 +116,13 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]单人模式[font=\"sans-14\"]  -沙箱模式。默认AI还处于开发模式，可能不具备最新特性。可对游戏进行测试。"
 
 #: gui/manual/intro.txt:21
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]多人模式[font=\"sans-14\"]  -联网多人对战。"
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -130,7 +130,7 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr ""
+msgstr "要进行多人游戏，需要一名玩家选择“建立主机”来创建。游戏采用 UDP 端口20595，要确保端口未被 NAT 或者防火墙程序屏蔽。接下来其他玩家可以选择“加入游戏”，然后输入游戏主机的 IP 地址."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -169,7 +169,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "地图可进一步细分。 默认地图为常玩地图;海事地图里，部分国家无陆路相通;演示地图用于测试（通常不建议游戏）; “所有地图”，顾名思义显示所有地图。"
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -178,15 +178,15 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr ""
+msgstr "最后是更改设置。随机地图可可以设置玩家数量、地图大小等。剧情地图则只能选择控制玩家的角色（决定你在地图上的起始位置）。选项包括玩家、AI 或无玩家。"
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr ""
+msgstr "准备好了，就单击“开始游戏”按钮。"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]模式[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
@@ -199,25 +199,25 @@ msgstr "  Alt + F4 – 无需确认，立即退出游戏"
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter (Return) – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "Alt + Enter (Return) – 切换窗口模式/全屏模式"
 
 #: gui/manual/intro.txt:43
 msgid "  ~ or F9 – Toggle console"
-msgstr ""
+msgstr "~ 或 F9 –  显示/隐藏控制台"
 
 #: gui/manual/intro.txt:44
 msgid "  Alt + F – Toggle frame counter (FPS)"
-msgstr ""
+msgstr "Alt + F – 显示/隐藏 帧率 (FPS)"
 
 #: gui/manual/intro.txt:45
 msgid ""
 "  F11 – Toggle real-time profiler (cycles through the displays of "
 "information)"
-msgstr ""
+msgstr "F11 – 启用/禁用实时性能分析器 (切换显示信息)"
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
-msgstr ""
+msgstr "Shift + F11 — 保存当前分析数据到 logs/profile.txt"
 
 #: gui/manual/intro.txt:47
 msgid ""
@@ -261,13 +261,13 @@ msgstr "鼠标左键点击单位三次 --选择屏幕上所有相同种类与等
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr " Alt + 左键双击某个单位 – 选取屏幕上所有同类型的单位（不管他们是否位于同一组队内）"
 
 #: gui/manual/intro.txt:56
 msgid ""
 "  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
 "kind and rank on the entire map"
-msgstr ""
+msgstr "Alt + 左键点击三次某单位 – 选取地图上所有同类与同等级的单位"
 
 #: gui/manual/intro.txt:57
 msgid "  Shift + F5 – Quicksave"
@@ -279,11 +279,11 @@ msgstr "Shift + F8 — 快速加载"
 
 #: gui/manual/intro.txt:59
 msgid "  F10 – Toggle menu"
-msgstr ""
+msgstr "F10 — 切换菜单"
 
 #: gui/manual/intro.txt:60
 msgid "  F12 – Toggle time elapsed counter"
-msgstr ""
+msgstr "  F12 – 切换时间计数器"
 
 #: gui/manual/intro.txt:61
 msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
@@ -291,7 +291,7 @@ msgstr "ESC  – 关闭所有对话框 (聊天, 菜单) ，或取消选中的单
 
 #: gui/manual/intro.txt:62
 msgid "  Enter (Return) – Open chat or send message"
-msgstr ""
+msgstr "Enter (Return) — 打开“聊天或发信息”选项"
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
@@ -299,23 +299,23 @@ msgstr "T — 发团队消息"
 
 #: gui/manual/intro.txt:64
 msgid "  L – Chat with the previously selected private chat partner"
-msgstr ""
+msgstr "L – 继续上次的私人聊天"
 
 #: gui/manual/intro.txt:65
 msgid "  Pause – Pause or resume the game"
-msgstr ""
+msgstr "Pause按键 – 暂停/恢复游戏"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "  Delete – Delete currently selected unit(s)/structure(s), ask for "
 "confirmation"
-msgstr ""
+msgstr "Delete – 删除当前选取的单位或建筑，会提示确认"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "  Shift + Delete – Immediately delete currently selected "
 "unit(s)/structure(s), without asking for confirmation"
-msgstr ""
+msgstr "Shift + Delete — 直接删除选中的单位或建筑，无需确认"
 
 #: gui/manual/intro.txt:68
 msgid "  / (Slash) – Select idle fighter"
@@ -366,7 +366,7 @@ msgstr "Y：单位将返回工作"
 
 #: gui/manual/intro.txt:79
 msgid "  U – Unload the garrisoned units of the selected structure(s)"
-msgstr ""
+msgstr "U  – 撤出驻守建筑内的单位"
 
 #: gui/manual/intro.txt:80
 msgid ""

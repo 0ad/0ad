@@ -8,8 +8,8 @@ class TradeButtonManager
 		if (!TradeButtonManager.IsAvailable())
 			throw "TradeButtonManager instantiated with no tradeable resources or too few buttons!";
 
-		// Assume that the simulation state will always follow the GUI
-		this.tradingGoods = Engine.GuiInterfaceCall("GetTradingGoods", g_ViewedPlayer);
+		// For players assume that the simulation state will always follow the GUI of this player.
+		this.tradingGoods = Engine.GuiInterfaceCall("GetTradingGoods");
 
 		let resourceCodes = g_ResourceData.GetTradableCodes();
 		this.selectedResource = resourceCodes[0];
@@ -23,6 +23,10 @@ class TradeButtonManager
 
 	update()
 	{
+		// Observers can change perspective and values can update while viewing the dialog.
+		if (g_IsObserver)
+			this.tradingGoods = Engine.GuiInterfaceCall("GetTradingGoods");
+
 		this.tradeHelp.tooltip = colorizeHotkey(translate(this.TradeSwapTooltip), "session.fulltradeswap");
 
 		let enabled = controlsPlayer(g_ViewedPlayer);

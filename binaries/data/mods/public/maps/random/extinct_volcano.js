@@ -17,18 +17,18 @@ const tShoreBlend = "cliff volcanic light";
 const tShore = "ocean_rock_a";
 const tWater = "ocean_rock_b";
 
-const oTree = "gaia/flora_tree_dead";
-const oTree2 = "gaia/flora_tree_euro_beech";
-const oTree3 = "gaia/flora_tree_oak";
-const oTree4 = "gaia/flora_tree_oak_dead";
-const oBush = "gaia/flora_bush_temperate";
-const oFruitBush = "gaia/flora_bush_berry";
+const oTree = "gaia/tree/dead";
+const oTree2 = "gaia/tree/euro_beech";
+const oTree3 = "gaia/tree/oak";
+const oTree4 = "gaia/tree/oak_dead";
+const oBush = "gaia/tree/bush_temperate";
+const oFruitBush = "gaia/fruit/berry_01";
 const oRabbit = "gaia/fauna_rabbit";
 const oGoat = "gaia/fauna_goat";
 const oBear = "gaia/fauna_bear_brown";
-const oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
-const oStoneSmall = "gaia/geology_stone_temperate";
-const oMetalLarge = "gaia/geology_metal_temperate_slabs";
+const oStoneLarge = "gaia/rock/temperate_large";
+const oStoneSmall = "gaia/rock/temperate_small";
+const oMetalLarge = "gaia/ore/temperate_large";
 const oTower = "structures/palisades_fort";
 
 const aRockLarge = "actor|geology/stone_granite_med.xml";

@@ -20,9 +20,9 @@ var tShore = "alpine_shore_rocks";
 var tWater = "polar_ice_b";
 var tHill = "polar_ice_cracked";
 
-var oBush = "gaia/flora_bush_badlands";
-var oBush2 = "gaia/flora_bush_temperate";
-var oBerryBush = "gaia/flora_bush_berry";
+var oBush = "gaia/tree/bush_badlands";
+var oBush2 = "gaia/tree/bush_temperate";
+var oBerryBush = "gaia/fruit/berry_01";
 var oRabbit = "gaia/fauna_rabbit";
 var oMuskox = "gaia/fauna_muskox";
 var oDeer = "gaia/fauna_deer";
@@ -30,9 +30,9 @@ var oWolf = "gaia/fauna_wolf";
 var oWhaleFin = "gaia/fauna_whale_fin";
 var oWhaleHumpback = "gaia/fauna_whale_humpback";
 var oFish = "gaia/fish/generic";
-var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
-var oStoneSmall = "gaia/geology_stone_alpine_a";
-var oMetalLarge = "gaia/geology_metal_alpine_slabs";
+var oStoneLarge = "gaia/rock/alpine_large";
+var oStoneSmall = "gaia/rock/alpine_small";
+var oMetalLarge = "gaia/ore/alpine_large";
 var oWoodTreasure = "gaia/treasure/wood";
 
 var aRockLarge = "actor|geology/stone_granite_med.xml";

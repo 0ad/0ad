@@ -14,9 +14,9 @@ var tCitytiles = "savanna_tile_a";
 var tShore = "savanna_riparian_bank";
 var tWater = "savanna_riparian_wet";
 
-var oBaobab = "gaia/flora_tree_baobab";
-var oPalm = "gaia/flora_tree_senegal_date_palm";
-var oBerryBush = "gaia/flora_bush_berry";
+var oBaobab = "gaia/tree/baobab";
+var oPalm = "gaia/tree/senegal_date_palm";
+var oBerryBush = "gaia/fruit/berry_01";
 var oWildebeest = "gaia/fauna_wildebeest";
 var oZebra = "gaia/fauna_zebra";
 var oRhino = "gaia/fauna_rhinoceros_white";
@@ -30,8 +30,8 @@ var oElephant = "gaia/fauna_elephant_african_bush";
 var oElephant2 = "gaia/fauna_elephant_african_infant";
 var oCrocodile = "gaia/fauna_crocodile_nile";
 var oFish = "gaia/fish/generic";
-var oStoneSmall = "gaia/geology_stone_savanna_small";
-var oMetalLarge = "gaia/geology_metal_savanna_slabs";
+var oStoneSmall = "gaia/rock/savanna_small";
+var oMetalLarge = "gaia/ore/savanna_large";
 
 var aBush = "actor|props/flora/bush_medit_sm_dry.xml";
 var aRock = "actor|geology/stone_savanna_med.xml";

@@ -57,20 +57,20 @@
 		"water": "alpine_shore_rocks"
 	},
 	"Gaia": {
-		"tree1": "gaia/flora_tree_pine",
-		"tree2": "gaia/flora_tree_pine",
-		"tree3": "gaia/flora_tree_pine",
-		"tree4": "gaia/flora_tree_pine",
-		"tree5": "gaia/flora_tree_pine",
-		"fruitBush": "gaia/flora_bush_berry",
+		"tree1": "gaia/tree/pine",
+		"tree2": "gaia/tree/pine",
+		"tree3": "gaia/tree/pine",
+		"tree4": "gaia/tree/pine",
+		"tree5": "gaia/tree/pine",
+		"fruitBush": "gaia/fruit/berry_01",
 		"chicken": "gaia/fauna_chicken",
 		"mainHuntableAnimal": "gaia/fauna_goat",
 		"fish": "gaia/fish/tuna",
 		"secondaryHuntableAnimal": "gaia/fauna_deer",
-		"stoneLarge": "gaia/geology_stonemine_alpine_quarry",
-		"stoneSmall": "gaia/geology_stone_alpine_a",
-		"metalLarge": "gaia/geology_metal_alpine_slabs",
-		"metalSmall": "gaia/geology_metal_alpine"
+		"stoneLarge": "gaia/rock/alpine_large",
+		"stoneSmall": "gaia/rock/alpine_small",
+		"metalLarge": "gaia/ore/alpine_large",
+		"metalSmall": "gaia/ore/alpine_small"
 	},
 	"Decoratives": {
 		"grass": "actor|props/flora/grass_soft_small_tall.xml",

@@ -241,7 +241,7 @@ function placeGrove(point,
 )
 {
 	let position = new Vector2D(point.x, point.y);
-	g_Map.placeEntityPassable(pickRandom(["structures/gaul_outpost", "gaia/flora_tree_oak_new"]), 0, position, randomAngle());
+	g_Map.placeEntityPassable(pickRandom(["structures/gaul_outpost", "gaia/tree/oak_new"]), 0, position, randomAngle());
 
 	let quantity = randIntInclusive(20, 30);
 	let dAngle = 2 * Math.PI / quantity;

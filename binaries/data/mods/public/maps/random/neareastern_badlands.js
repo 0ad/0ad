@@ -15,18 +15,18 @@ const tDirt = "desert_dirt_rough";
 const tShore = "desert_shore_stones";
 const tWaterDeep = "desert_shore_stones_wet";
 
-const oBerryBush = "gaia/flora_bush_grapes";
+const oBerryBush = "gaia/fruit/grapes";
 const oCamel = "gaia/fauna_camel";
 const oFish = "gaia/fish/generic";
 const oGazelle = "gaia/fauna_gazelle";
 const oGiraffe = "gaia/fauna_giraffe";
 const oGoat = "gaia/fauna_goat";
 const oWildebeest = "gaia/fauna_wildebeest";
-const oStoneLarge = "gaia/geology_stonemine_desert_badlands_quarry";
-const oStoneSmall = "gaia/geology_stone_desert_small";
-const oMetalLarge = "gaia/geology_metal_desert_slabs";
-const oDatePalm = "gaia/flora_tree_date_palm";
-const oSDatePalm = "gaia/flora_tree_senegal_date_palm";
+const oStoneLarge = "gaia/rock/badlands_large";
+const oStoneSmall = "gaia/rock/desert_small";
+const oMetalLarge = "gaia/ore/desert_large";
+const oDatePalm = "gaia/tree/date_palm";
+const oSDatePalm = "gaia/tree/senegal_date_palm";
 
 const aBush1 = "actor|props/flora/bush_desert_a.xml";
 const aBush2 = "actor|props/flora/bush_desert_dry_a.xml";

@@ -15,14 +15,14 @@ const tGrassPatch = ["temp_grass_d", "temp_grass_clovers"];
 const tShore = "temp_plants_bog";
 const tWater = "temp_mud_a";
 
-const oBeech = "gaia/flora_tree_euro_beech";
-const oOak = "gaia/flora_tree_oak";
-const oBerryBush = "gaia/flora_bush_berry";
+const oBeech = "gaia/tree/euro_beech";
+const oOak = "gaia/tree/oak";
+const oBerryBush = "gaia/fruit/berry_01";
 const oDeer = "gaia/fauna_deer";
 const oRabbit = "gaia/fauna_rabbit";
-const oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
-const oStoneSmall = "gaia/geology_stone_temperate";
-const oMetalLarge = "gaia/geology_metal_temperate_slabs";
+const oStoneLarge = "gaia/rock/temperate_large";
+const oStoneSmall = "gaia/rock/temperate_small";
+const oMetalLarge = "gaia/ore/temperate_large";
 
 const aGrass = "actor|props/flora/grass_soft_small_tall.xml";
 const aGrassShort = "actor|props/flora/grass_soft_large.xml";
