@@ -9,7 +9,6 @@ class OverlayCounterManager
 	constructor(dataCounter)
 	{
 		this.dataCounter = dataCounter;
-		this.lineHeight = dataCounter.size.bottom - dataCounter.size.top;
 		this.counters = [];
 		this.enabledCounters = [];
 		this.lastTick = undefined;
@@ -63,7 +62,7 @@ class OverlayCounterManager
 
 	/**
 	 * Handlers subscribed here will be informed then the dimension of the overlay changed.
-	 * This allows placing the buttons below the counter.
+	 * This allows placing the buttons away from the counter.
 	 */
 	registerResizeHandler(handler)
 	{
@@ -80,7 +79,6 @@ class OverlayCounterManager
 		this.lastTick = now;
 
 		let lineCount = 0;
-		let requiredWidth = 0;
 		let txt = "";
 
 		for (let counter of this.enabledCounters)
@@ -90,7 +88,6 @@ class OverlayCounterManager
 				continue;
 
 			++lineCount;
-			requiredWidth = Math.max(requiredWidth, Engine.GetTextWidth(this.dataCounter.font, newTxt));
 			txt += newTxt + "\n";
 		}
 
@@ -104,20 +101,19 @@ class OverlayCounterManager
 
 		this.lastLineCount = lineCount;
 
-		let offset = this.lineHeight * lineCount;
-
 		if (lineCount)
 		{
+			let textSize = this.dataCounter.getTextSize();
 			let size = this.dataCounter.size;
-			size.bottom = size.top + offset;
-			size.left = size.right - requiredWidth - this.Margin;
+			size.bottom = size.top + textSize.height;
+			size.left = size.right - textSize.width;
 			this.dataCounter.size = size;
 		}
 
 		this.dataCounter.hidden = !lineCount;
 
 		for (let handler of this.resizeHandlers)
-			handler(offset);
+			handler(textSize);
 	}
 }
 
@@ -126,8 +122,3 @@ class OverlayCounterManager
  * in milliseconds determines how often the caption is rebuilt.
  */
 OverlayCounterManager.prototype.Delay = 250;
-
-/**
- * A margin for the overlay width. The total width will be the text width + margin.
- */
-OverlayCounterManager.prototype.Margin = 10;
