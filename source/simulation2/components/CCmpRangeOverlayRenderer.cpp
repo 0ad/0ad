@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -58,9 +58,7 @@ public:
 
 	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
-		m_EnabledInterpolate = false;
-		m_EnabledRenderSubmit = false;
-		m_Enabled = false;
+		m_Enabled = m_LastEnabledState = false;
 		UpdateMessageSubscriptions();
 	}
 
@@ -161,28 +159,13 @@ private:
 
 	void UpdateMessageSubscriptions()
 	{
-		bool needInterpolate = false;
-		bool needRenderSubmit = false;
+		if (m_Enabled == m_LastEnabledState)
+			return;
 
-		if (m_Enabled)
-		{
-			needInterpolate = true;
-			needRenderSubmit = true;
-		}
-
-		if (needInterpolate != m_EnabledInterpolate)
-		{
-			GetSimContext().GetComponentManager().DynamicSubscriptionNonsync(MT_Interpolate, this, needInterpolate);
-			m_EnabledInterpolate = needInterpolate;
-			m_Enabled = needInterpolate;
-		}
-
-		if (needRenderSubmit != m_EnabledRenderSubmit)
-		{
-			GetSimContext().GetComponentManager().DynamicSubscriptionNonsync(MT_RenderSubmit, this, needRenderSubmit);
-			m_EnabledRenderSubmit = needRenderSubmit;
-			m_Enabled = needRenderSubmit;
-		}
+		CComponentManager& cmpManager = GetSimContext().GetComponentManager();
+		cmpManager.DynamicSubscriptionNonsync(MT_Interpolate, this, m_Enabled);
+		cmpManager.DynamicSubscriptionNonsync(MT_RenderSubmit, this, m_Enabled);
+		m_LastEnabledState = m_Enabled;
 	}
 
 	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling)
@@ -221,8 +204,7 @@ private:
 		SimRender::ConstructTexturedLineCircle(*rangeOverlay.line.get(), origin, rangeOverlay.descriptor.m_Radius);
 	}
 
-	bool m_EnabledInterpolate;
-	bool m_EnabledRenderSubmit;
+	bool m_LastEnabledState;
 	bool m_Enabled;
 
 	const char* TEXTURE_BASE_PATH = "art/textures/selection/";
