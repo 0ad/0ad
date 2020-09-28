@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-11 07:09+0000\n"
-"PO-Revision-Date: 2020-09-11 13:17+0000\n"
+"PO-Revision-Date: 2020-09-26 11:29+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -1385,7 +1385,7 @@ msgstr "상인이 한명도 없습니다."
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] "%(numberTrading)s 대의 교역선이 거래중입니다"
+msgstr[0] "%(numberTrading)s 대의 교역선이 교역하고 있습니다"
 
 #: gui/session/trade/TraderStatusTextShip.js:24
 #, javascript-format
@@ -1510,7 +1510,7 @@ msgstr "체력"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):34
 msgid "Capture points"
-msgstr "점령 장소"
+msgstr "점령 점수"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
 msgid "Attack and Resistance"
