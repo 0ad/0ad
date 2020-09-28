@@ -80,6 +80,7 @@ class OverlayCounterManager
 		this.lastTick = now;
 
 		let lineCount = 0;
+		let requiredWidth = 0;
 		let txt = "";
 
 		for (let counter of this.enabledCounters)
@@ -89,6 +90,7 @@ class OverlayCounterManager
 				continue;
 
 			++lineCount;
+			requiredWidth = Math.max(requiredWidth, Engine.GetTextWidth(this.dataCounter.font, newTxt));
 			txt += newTxt + "\n";
 		}
 
@@ -108,6 +110,7 @@ class OverlayCounterManager
 		{
 			let size = this.dataCounter.size;
 			size.bottom = size.top + offset;
+			size.left = size.right - requiredWidth - this.Margin;
 			this.dataCounter.size = size;
 		}
 
@@ -123,3 +126,8 @@ class OverlayCounterManager
  * in milliseconds determines how often the caption is rebuilt.
  */
 OverlayCounterManager.prototype.Delay = 250;
+
+/**
+ * A margin for the overlay width. The total width will be the text width + margin.
+ */
+OverlayCounterManager.prototype.Margin = 10;
