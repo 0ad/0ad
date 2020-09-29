@@ -9,7 +9,6 @@ class OverlayCounterManager
 	constructor(dataCounter)
 	{
 		this.dataCounter = dataCounter;
-		this.lineHeight = dataCounter.size.bottom - dataCounter.size.top;
 		this.counters = [];
 		this.enabledCounters = [];
 		this.lastTick = undefined;
@@ -63,7 +62,7 @@ class OverlayCounterManager
 
 	/**
 	 * Handlers subscribed here will be informed then the dimension of the overlay changed.
-	 * This allows placing the buttons below the counter.
+	 * This allows placing the buttons away from the counter.
 	 */
 	registerResizeHandler(handler)
 	{
@@ -102,19 +101,19 @@ class OverlayCounterManager
 
 		this.lastLineCount = lineCount;
 
-		let offset = this.lineHeight * lineCount;
-
 		if (lineCount)
 		{
+			let textSize = this.dataCounter.getTextSize();
 			let size = this.dataCounter.size;
-			size.bottom = size.top + offset;
+			size.bottom = size.top + textSize.height;
+			size.left = size.right - textSize.width;
 			this.dataCounter.size = size;
 		}
 
 		this.dataCounter.hidden = !lineCount;
 
 		for (let handler of this.resizeHandlers)
-			handler(offset);
+			handler(textSize);
 	}
 }
 
