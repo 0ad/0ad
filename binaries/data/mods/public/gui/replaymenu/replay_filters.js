@@ -24,7 +24,8 @@ const g_WorldPopulationCapacities = prepareForDropdown(g_Settings && g_Settings.
  */
 function initFilters(filters)
 {
-	Engine.GetGUIObjectByName("compatibilityFilter").checked = !filters || filters.compatibility === undefined || filters.compatibility;
+	if (filters && filters.compatibility !== undefined)
+		Engine.GetGUIObjectByName("compatibilityFilter").checked = filters.compatibility;
 
 	if (filters && filters.playernames)
 		Engine.GetGUIObjectByName("playersFilter").caption = filters.playernames;
