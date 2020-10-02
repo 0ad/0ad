@@ -19,7 +19,7 @@
 # fri, 2014-2018,2020
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2014,2016-2017
-# Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017
+# Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017,2020
 # Rodeo65 <Rodeo65@centrum.cz>, 2014
 # Tomáš Matýs <thommathys@gmail.com>, 2018
 # Vit Pelcak, 2014
@@ -28,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-11 07:09+0000\n"
-"PO-Revision-Date: 2020-09-11 13:17+0000\n"
-"Last-Translator: fri\n"
+"PO-Revision-Date: 2020-09-30 09:38+0000\n"
+"Last-Translator: Robin Kriebel <kriebel.robin@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,7 +114,7 @@ msgstr "Čeká se na připojení hráčů:"
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
-msgstr ""
+msgstr "Synchronizace hry s dalšími hráči..."
 
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"
@@ -1134,7 +1134,7 @@ msgstr "Mimo seřízení"
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr ""
+msgstr "Chyba synchronizace"
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:63

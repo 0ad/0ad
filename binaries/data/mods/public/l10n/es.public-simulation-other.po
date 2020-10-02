@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-07 07:10+0000\n"
-"PO-Revision-Date: 2020-08-07 18:37+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-10-01 15:41+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -254,7 +254,7 @@ msgstr "Envíame un tributo de %(_amount_)s %(_resource_)s para que acepte tu al
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s."
-msgstr "Al menos que me envíes %(_amount_)s%(_resource_)s, una alianza no sera formada,%(_player_)s."
+msgstr "%(_player_)s, si no me envías %(_amount_)s %(_resource_)s, no formaremos la alianza."
 
 #: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
@@ -359,7 +359,7 @@ msgstr "%(_player_)s, me gustaría solicitarte un pacto de neutralidad entre nue
 msgid ""
 "%(_player_)s, it would be both to our benefit if we negotiated a neutrality "
 "pact. I will become neutral with you if you do the same."
-msgstr "%(_player_)s, sería beneficioso para nosotros si negociáramos un pacto de neutralidad. Seré neutral contigo si haces lo mismo."
+msgstr "%(_player_)s, sería beneficioso para nosotros si negociamos un pacto de neutralidad. Seré neutral contigo si haces lo mismo."
 
 #: simulation/ai/petra/chatHelper.js:129
 #, javascript-format
@@ -509,7 +509,7 @@ msgstr "¡Ya puedes atacar, ahora!"
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
 msgstr[0] "%(lastPlayer)s ha ganado (último jugador con vida)."
-msgstr[1] "%(players)s y %(lastPlayer)shan ganado (últimos jugadores con vida)."
+msgstr[1] "%(players)s y %(lastPlayer)s han ganado. Son los únicos jugadores con vida."
 
 #: simulation/components/EndGameManager.js:182
 msgid "Last remaining player wins."
@@ -518,12 +518,12 @@ msgstr "El último jugador en pie gana la partida."
 #: simulation/components/EntityLimits.js:165
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
-msgstr "%(category)s ha llegado al límite de construcción de %(limit)s"
+msgstr "%(category)s ha alcanzado el límite de construcción de %(limit)s"
 
 #: simulation/components/EntityLimits.js:167
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
-msgstr "%(category)s ha llegado al límite de reclutamiento de %(limit)s"
+msgstr "%(category)s ha alcanzado el límite de reclutamiento de %(limit)s"
 
 #: simulation/components/EntityLimits.js:171
 #, javascript-format
@@ -568,7 +568,7 @@ msgstr "Las unidades reclutadas no tienen suficiente sitio para aparecer"
 #: simulation/helpers/Cheat.js:58
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
-msgstr "%(player)s ha sido derrotado (trampa)."
+msgstr "%(player)s se considera derrotado por hacer trampas (trucos)."
 
 #: simulation/helpers/Cheat.js:67
 msgid "You need to select a building that trains units."
@@ -585,7 +585,7 @@ msgstr "(Truco - revelar mapa)"
 #: simulation/helpers/Commands.js:456
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr "%(player)s ha abdicado."
+msgstr "%(player)s se ha rendido."
 
 #: simulation/helpers/Commands.js:598
 msgid "(Cheat - promoted units)"
@@ -660,47 +660,47 @@ msgstr "Jugador 8"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1×)"
-msgstr ""
+msgstr "Tortuga (0.1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25×)"
-msgstr ""
+msgstr "Despacio (0.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[2].Title
 msgid "Leisurely (0.5×)"
-msgstr ""
+msgstr "Sin prisa (0.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75×)"
-msgstr ""
+msgstr "Relajado (0.75×)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1×)"
-msgstr ""
+msgstr "Normal (1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[5].Title
 msgid "Fast (1.25×)"
-msgstr ""
+msgstr "Rápido (1.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[6].Title
 msgid "Very Fast (1.5×)"
-msgstr ""
+msgstr "Muy rápido (1.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[7].Title
 msgid "Insane (2×)"
-msgstr ""
+msgstr "Demente (2×)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5×)"
-msgstr ""
+msgstr "Avance rápido (5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10×)"
-msgstr ""
+msgstr "Avance rápido (10×)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20×)"
-msgstr ""
+msgstr "Avance rápido (20×)"
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
 msgid ""
@@ -716,7 +716,7 @@ msgstr "Capturar la reliquia"
 msgid ""
 "Defeat opponents by killing all their units and destroying all their "
 "structures."
-msgstr "Derrota a tus oponentes matando a todas sus unidades y destruyendo todas sus estructuras."
+msgstr "Derrota a tus oponentes acabando con todas sus unidades y destruyendo todas sus estructuras."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
@@ -732,7 +732,7 @@ msgstr "Conquista de estructuras"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Defeat opponents by killing all their units."
-msgstr "Derrota a tus oponentes matando a todas sus unidades."
+msgstr "Derrota a tus oponentes acabando con todas sus unidades."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
@@ -836,7 +836,7 @@ msgstr "Diminuto"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
-msgstr "Este tamaño de mapa tiene apenas espacio para los recursos más básicos."
+msgstr "El tamaño de este mapa apenas tiene espacio para los recursos más básicos."
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
@@ -856,13 +856,13 @@ msgstr "Normal"
 msgid ""
 "This map size provides plenty of space for two players, but even eight "
 "players fit."
-msgstr ""
+msgstr "Este escenario habilita todo el espacio disponible. Admite de dos a ocho jugadores."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr "Este es el tamaño ideal para los mapas que contienen de 4 a 8 jugadores, porque hay suficiente espacio para expandirse y los vecinos aún así están al alcance."
+msgstr "Este es el tamaño ideal de mapa para 4 a 8 jugadores. Hay suficiente espacio para expandirse y los vecinos siguen al alcance."
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
@@ -898,4 +898,4 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra es el bot AI por defecto de 0 A.D. Por favor reporte los problemas a Wildfire Games (vea el enlace en el menú principal).\n\nLa tasa de obtención de recursos y la ganancia comercial de la IA dependen del nivel de dificultad (Sandbox -58%, Muy fácil -44%, Fácil -25%, Medio ±0%, Difícil +25%, Muy difícil +56%). Los niveles más fáciles también tienen un ritmo más lento de investigación, entrenamiento y construcción. Además, el nivel Sandbox no se expande ni ataca."
+msgstr "Petra es el bot de IA predeterminado de 0 A.D. Por favor comunica todos los problemas que encuentres a Wildfire Games (enlace en el menú principal).\n\nLa tasa de obtención de recursos y obtención de beneficio comercial de la IA dependen del nivel de dificultad (Sandbox -58%, Muy fácil –44%, Fácil –25%, Medio ±0%, Difícil +25%, Muy difícil +56%). Los niveles más fáciles también llevan un ritmo más lento de investigación, reclutamiento y construcción. Además, en el nivel \"Sandbox\" no se expande ni ataca."

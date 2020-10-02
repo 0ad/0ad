@@ -30,7 +30,7 @@
 # papalote alreves <papalotealreves@gmail.com>, 2018
 # Pedro Almendros González <pedro.al94@gmail.com>, 2015
 # Rafael Cuevas Montero <rafcumon@hotmail.com>, 2017
-# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018
+# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020
 # soloooy0 fg <juanjo.fg@hotmail.com>, 2017
 # Swyter ™ <Swyterzone@gmail.com>, 2014-2018
 # vega93 <arkadas_llisa@hotmail.com>, 2017
@@ -38,8 +38,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-09-18 17:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-10-01 18:21+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -248,7 +248,7 @@ msgstr "%(team)s:\n%(playerDescriptions)s"
 msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] "Observador"
-msgstr[1] "Observadores"
+msgstr[1] "Espectadores"
 
 #: gui/common/gamedescription.js:188
 msgctxt "victory condition"
@@ -395,7 +395,7 @@ msgstr "Modo Nómada"
 
 #: gui/common/gamedescription.js:345
 msgid "Civic Centers"
-msgstr "Centros Cívicos"
+msgstr "Centros cívicos"
 
 #: gui/common/gamedescription.js:348
 msgid ""
@@ -432,7 +432,7 @@ msgstr "Por jugador"
 
 #: gui/common/gamedescription.js:382
 msgid "World Population Cap"
-msgstr ""
+msgstr "Límite de población mundial"
 
 #: gui/common/gamedescription.js:390
 msgid "Treasures"
@@ -532,7 +532,7 @@ msgstr "El juego se está cargando, inténtalo de nuevo más tarde."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr "El juego ya ha comenzado, no se permiten observadores."
+msgstr "El juego ya ha comenzado y no se permiten espectadores."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
@@ -540,15 +540,15 @@ msgstr "Has sido expulsado."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr "Has sido banneado."
+msgstr "Se te ha restringido la entrada."
 
 #: gui/common/network.js:73
 msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr "Nombre del jugador en uso. Si te has desconectado, vuelva a intentarlo en unos segundos."
+msgstr "Nombre del jugador en uso. Si te has desconectado, vuelve a intentarlo en unos momentos."
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr "El servidor está lleno."
+msgstr "Servidor lleno."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
@@ -719,7 +719,7 @@ msgstr "Por defecto"
 #: gui/common/settings.js:400
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(mundo)"
 
 #: gui/common/settings.js:401 gui/common/settings.js:405
 msgctxt "population capacity"
@@ -773,25 +773,25 @@ msgstr "%(percentage)s%%"
 msgid ""
 "%(label)s\n"
 "%(details)s"
-msgstr ""
+msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:187
 msgid "Resistance:"
-msgstr ""
+msgstr "Resistencia:"
 
 #: gui/common/tooltips.js:198
 msgid "Damage:"
-msgstr ""
+msgstr "Daño:"
 
 #: gui/common/tooltips.js:201 gui/common/tooltips.js:221
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(resistancePercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(resistancePercentage)s"
 
 #: gui/common/tooltips.js:206 gui/common/tooltips.js:226
 #, javascript-format
 msgid "(%(resistancePercentage)s)"
-msgstr ""
+msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:219
 msgid "Capture:"
@@ -804,7 +804,7 @@ msgstr "Captura"
 
 #: gui/common/tooltips.js:239
 msgid "Garrison to fire arrows"
-msgstr "Resguarda para disparar flechas"
+msgstr "Guarnecer para disparar flechas"
 
 #: gui/common/tooltips.js:242 gui/common/tooltips.js:882
 msgid "Interval:"
@@ -929,13 +929,13 @@ msgstr "ofrece a %(name)s"
 #: gui/common/tooltips.js:381
 #, javascript-format
 msgid "%(attackType)s"
-msgstr ""
+msgstr "%(attackType)s"
 
 #: gui/common/tooltips.js:404
 #, javascript-format
 msgid ""
 "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
 
 #: gui/common/tooltips.js:415
 msgid "Attack:"
@@ -1221,7 +1221,7 @@ msgstr "Saqueo:"
 #: gui/common/tooltips.js:999
 #, javascript-format
 msgid "%(label)s %(icons)s"
-msgstr ""
+msgstr "%(label)s %(icons)s"
 
 #: gui/common/tooltips.js:1000
 msgid "Dropsite for:"
@@ -1242,7 +1242,7 @@ msgstr "Clic para ver más información."
 #: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
-msgstr ""
+msgstr "%(nick)s — %(name)s"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
@@ -1312,7 +1312,7 @@ msgstr "¿Deseas continuar de todos modos?"
 #: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:299
 #: gui/options/options.js:352 gui/options/options.js:378
 msgid "Warning"
-msgstr "Cuidado"
+msgstr "Atención"
 
 #: gui/loadgame/SavegamePage.js:42
 msgid "Save Game"
@@ -1625,7 +1625,7 @@ msgstr "Pulsa para abrir el chat IRC de 0 A.D. en tu navegador web. (#0ad en web
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
-msgstr "Informar de un fallo"
+msgstr "Comunicar errores"
 
 #: gui/pregame/ProjectInformation.js:42
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
@@ -1725,11 +1725,11 @@ msgstr "Activar informes"
 
 #: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr "¡Gracias por mejorar 0 A.D.!"
+msgstr "¡Gracias por ayudar a mejorar 0 A.D.!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
-msgstr "El envío de información de apoyo está habilitado."
+msgstr "El envío de informes de uso está habilitado."
 
 #: gui/pregame/userreport/userreport.js:83
 #, javascript-format
@@ -1748,7 +1748,7 @@ msgstr "¡Ayúdanos a mejorar 0 A.D.!"
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr "Puedes enviarnos automáticamente información de apoyo para permitirnos arreglar fallos y mejorar el rendimiento y la compatibilidad."
+msgstr "Puedes enviarnos automáticamente informes de uso que nos permite arreglar errores y mejorar el rendimiento y la compatibilidad."
 
 #: gui/reference/common/TemplateParser.js:128
 #, javascript-format
@@ -2230,12 +2230,12 @@ msgstr "Frustrados"
 #, javascript-format
 msgctxt "Player listing with color indicator"
 msgid "%(colorIndicator)s %(playerListing)s"
-msgstr ""
+msgstr "%(colorIndicator)s %(playerListing)s"
 
 #: gui/summary/summary.js:195
 msgctxt "Charts player color indicator"
 msgid "■"
-msgstr ""
+msgstr "■"
 
 #: gui/summary/summary.js:225
 msgctxt "Player listing"
@@ -2555,7 +2555,7 @@ msgstr "Director de sonido"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
-msgstr ""
+msgstr "Compositor principal"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
@@ -2628,7 +2628,7 @@ msgstr "Voces"
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -2675,7 +2675,7 @@ msgstr "Scripts de escenarios aleatorios"
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr ""
+msgstr "Maps"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -2765,7 +2765,7 @@ msgstr "Muestra qué jugadores tienen mala conexión en juegos por Internet."
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network warnings"
-msgstr "Advertencias de red"
+msgstr "Alertas de red"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2820,19 +2820,19 @@ msgstr "Desactivado"
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
-msgstr "Permitir a todo el mundo o sólo colegas unirse a la partida como observador después de que empiece."
+msgstr "Permitir a todo el mundo o sólo a amigos unirse a la partida como espectadores una vez que esta haya comenzado."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late observer joins"
-msgstr "Espectadores tardíos:"
+msgstr "Permitir espectadores posteriormente"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
-msgstr "Evitar que espectadores adicionales se unan si el límite esta alcanzado."
+msgstr "Evitar que se incorporen nuevos espectadores si se ha alcanzado el límite."
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer limit"
-msgstr "Límite de observadores"
+msgstr "Límite de espectadores"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid ""
@@ -2849,7 +2849,7 @@ msgstr "General"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr "Iniciar 0A.D. en una ventana."
+msgstr "Iniciar 0 A.D. en una ventana."
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
@@ -2857,7 +2857,7 @@ msgstr "Modo ventana"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr "Usar shaders OpenGL 2.0 (recomendado)."
+msgstr "Utilizar sombreadores OpenGL 2.0 (recomendado)."
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -2901,7 +2901,7 @@ msgstr "Anti-Aliasing"
 
 #: gui/options/options.json[1].options[5].list[0].tooltip
 msgid "Do not use sharpening."
-msgstr ""
+msgstr "No refinar contornos."
 
 #: gui/options/options.json[1].options[5].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
@@ -2913,7 +2913,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Reduce blurry effects."
-msgstr ""
+msgstr "Reduce el efecto difuminado."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Sharpening"
@@ -2976,7 +2976,7 @@ msgstr "Calidad de sombras"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid "Smooth shadows."
-msgstr "Sombras suaves"
+msgstr "Sombras suaves."
 
 #: gui/options/options.json[1].options[10].label
 msgid "Shadow filtering"
@@ -3028,7 +3028,7 @@ msgstr "Agua con profundidad real"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
-msgstr "Permitir reflejar una imagen espejo al agua."
+msgstr "Hace que el agua actúe como un espejo reflejando sobre ella los objetos."
 
 #: gui/options/options.json[1].options[16].label
 msgid "Water reflections"
@@ -3261,7 +3261,7 @@ msgstr "Asignar jugadores"
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
-msgstr "Instalación del juego"
+msgstr "Configuración de partida"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid ""
@@ -3337,7 +3337,7 @@ msgstr "Notificación de ataque en chat"
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr "Mostrar una notificación de chat si un aliado tributa recursos a otro jugador del equipo si los equipos están bloqueados, y todos los tributos en modo espectador."
+msgstr "Mostrar una notificación de chat a todos los espectadores si un aliado da como tributo recursos a otro jugador del equipo cuando los equipos están bloqueados, así como todos los tributos."
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat notification tribute"
@@ -3346,7 +3346,7 @@ msgstr "Notificación de tributo en chat"
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
-msgstr "Mostrar una notificación de chat a los espectadores cuando un jugador intercambió recursos."
+msgstr "Mostrar a los espectadores una notificación de chat cuando un jugador intercambie recursos."
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat notification barter"
@@ -3368,7 +3368,7 @@ msgstr "Mostrar todo"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr "Mostrar una notificación de chat si tu o un aliado ha iniciado, abortado o completado una nueva fase, de todos los jugadores en modo espectador."
+msgstr "Mostrar una notificación a todos los espectadores si tú o un aliado ha iniciado, abortado o completado una nueva fase."
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat notification phase"
@@ -3541,15 +3541,15 @@ msgstr "Miembro del grupo de control"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
-msgstr "Cambiar las opciones en relación a las opciones detro del en juego."
+msgstr "Cambiar opciones relacionadas con la partida."
 
 #: gui/options/options.json[5].label
 msgid "In-Game"
-msgstr "En-Juego"
+msgstr "Durante la partida"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr "Obtenla de animales, arbustos de bayas, peces o huertos."
+msgstr "Se obtiene de animales, frutales, peces o huertos."
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
@@ -3933,7 +3933,7 @@ msgstr "Cuidado! Los peces no son un recurso infinito!"
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
-msgstr ""
+msgstr "FORJA"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."
@@ -4032,7 +4032,7 @@ msgstr "AVANZADAS"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral or own territory."
-msgstr ""
+msgstr "Construir en territorio propio o neutral."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."

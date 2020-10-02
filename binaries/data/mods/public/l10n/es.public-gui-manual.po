@@ -25,15 +25,15 @@
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
 # Nicolas Auvray <na.itms76@gmail.com>, 2018
 # Rafael López Reyes <rafalopezreyes@gmail.com>, 2018
-# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018
+# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020
 # soloooy0 fg <juanjo.fg@hotmail.com>, 2017
-# Swyter <Swyterzone@gmail.com>, 2014-2018
+# Swyter ™ <Swyterzone@gmail.com>, 2014-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-06 07:17+0000\n"
-"PO-Revision-Date: 2020-07-06 15:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-10-01 08:10+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,7 +74,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr "Puedes cambiar entre pantalla completa y modo ventana al presionar Alt + Enter. En modo ventana, puedes cambiar el tamaño de la ventana. Si el juego ejecuta de forma lenta, puedes cambiar la configuración en la ventana de opciones: intenta desactivar las características \"Efectos de agua HQ\" y \"Sombras\"."
+msgstr "Puedes cambiar entre pantalla completa y modo ventana al presionar Alt + Enter. En modo ventana, puedes cambiar el tamaño de la ventana. Si el juego ejecuta de forma lenta, puedes cambiar la configuración en la ventana de opciones: intenta desactivar las características “Efectos de agua HQ” y “Sombras”."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -86,7 +86,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr "Los controles y la jugabilidad deberían ser familiares para los jugadores de los juegos de estrategia en tiempo real tradicionales (RTS). Ahora mismo faltan un gran número de características, y el juego se encuentra poco equilibrado, probablemente tengas que esperar hasta el lanzamiento de la beta para esperar un correcto funcionamiento. "
+msgstr "Los controles y comportamiento deberían resultar familiares a los jugadores habituados a juegos de estrategia en tiempo real (RTS). Todavía faltan un gran número de características y está poco equilibrado. Probablemente tengas que esperar hasta el lanzamiento de la beta para obtener un correcto funcionamiento."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls:"
@@ -94,15 +94,15 @@ msgstr "Controles básicos:"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr "• Click izquierdo para seleccionar unidades"
+msgstr "• Clic izquierdo para seleccionar unidades"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr "• Mantén click izquierdo y arrastra para seleccionar un grupo de unidades"
+msgstr "• Arrastra pulsando el botón izquierdo para seleccionar un grupo de unidades"
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr "• Click derecho para mover unidades hasta el objetivoº"
+msgstr "• Clic derecho para enviar unidades a un objetivo"
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
@@ -213,21 +213,21 @@ msgstr "  Alt + F4 – Immediately close the game, without asking for confirmati
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter (Return) – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "Alt + Enter (Intro) – Cambiar entre pantalla completa y ventana"
 
 #: gui/manual/intro.txt:43
 msgid "  ~ or F9 – Toggle console"
-msgstr ""
+msgstr "~ o F9 – Mostrar consola"
 
 #: gui/manual/intro.txt:44
 msgid "  Alt + F – Toggle frame counter (FPS)"
-msgstr ""
+msgstr "Alt + F – Mostrar FPS"
 
 #: gui/manual/intro.txt:45
 msgid ""
 "  F11 – Toggle real-time profiler (cycles through the displays of "
 "information)"
-msgstr ""
+msgstr "F11 – Alternar perfilado en tiempo real (cambia entre diferentes paneles de información)"
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
@@ -293,11 +293,11 @@ msgstr "  Shift + F8 – Quickload"
 
 #: gui/manual/intro.txt:59
 msgid "  F10 – Toggle menu"
-msgstr ""
+msgstr "F10 – Mostrar menú"
 
 #: gui/manual/intro.txt:60
 msgid "  F12 – Toggle time elapsed counter"
-msgstr ""
+msgstr "F12 – Mostrar contador de tiempo transcurrido"
 
 #: gui/manual/intro.txt:61
 msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
@@ -305,7 +305,7 @@ msgstr "  Esc – Close all dialogs (chat, menu) or clear selected units"
 
 #: gui/manual/intro.txt:62
 msgid "  Enter (Return) – Open chat or send message"
-msgstr ""
+msgstr "Enter (Intro) – Abrir chat o enviar mensaje"
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
@@ -317,7 +317,7 @@ msgstr "  L – Chat with the previously selected private chat partner"
 
 #: gui/manual/intro.txt:65
 msgid "  Pause – Pause or resume the game"
-msgstr ""
+msgstr "Pausa – Pausar o reanudar el juego"
 
 #: gui/manual/intro.txt:66
 msgid ""
@@ -578,11 +578,11 @@ msgstr "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:121
 msgid "  Alt + G – Toggle the GUI"
-msgstr ""
+msgstr "Alt + G – Mostrar interfaz de usuario"
 
 #: gui/manual/intro.txt:122
 msgid "  Alt + D – Toggle developer overlay (with developer options)"
-msgstr ""
+msgstr "Alt + D – Mostrar la capa de desarrollo (con opciones para los desarrolladores)"
 
 #: gui/manual/intro.txt:123
 msgid ""
@@ -685,7 +685,7 @@ msgstr "  F – Follow the selected unit (move the camera to stop following the 
 
 #: gui/manual/intro.txt:145
 msgid "  R – Reset camera zoom and orientation"
-msgstr ""
+msgstr "R – Restaurar orientación y zoom de la cámara"
 
 #: gui/manual/intro.txt:146
 msgid "  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)"

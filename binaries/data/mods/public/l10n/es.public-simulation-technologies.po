@@ -27,13 +27,14 @@
 # Rafael Cuevas Montero <rafcumon@hotmail.com>, 2017
 # Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2020
 # Swyter ™ <Swyterzone@gmail.com>, 2014-2018,2020
+# Swyter ™ <Swyterzone@gmail.com>, 2020
 # vega93 <arkadas_llisa@hotmail.com>, 2015,2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-04 07:09+0000\n"
-"PO-Revision-Date: 2020-09-06 19:03+0000\n"
-"Last-Translator: Marcos Lasalle Vázquez Verdejo <marcoslv@ucm.es>\n"
+"PO-Revision-Date: 2020-10-01 18:26+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -466,11 +467,11 @@ msgstr "Entrena a tus caballos para que sean más rápidos."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
-msgstr ""
+msgstr "La velocidad de movimiento de la caballería aumenta +10%."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsongenericName
 msgid "Horse Racing"
-msgstr ""
+msgstr "Carreras de caballos"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -625,7 +626,7 @@ msgstr "Siervos para ayudar a tus trabajadores a extraer piedra. Incrementa el r
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +25% stone gather rate."
-msgstr ""
+msgstr "Los trabajadores recolectan +25% de piedra."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -712,7 +713,7 @@ msgstr "Equipa a tus recolectores con cestas de mimbre."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Workers +50% fruit gather rate."
-msgstr "Trabajadores +50% recolección de fruta."
+msgstr "Trabajadores: +50% en recolección de fruta."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
@@ -1250,7 +1251,7 @@ msgstr ""
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
 " and loot."
-msgstr ""
+msgstr "Se reducen en un -10% los recursos, el tiempo de preparación, la salud, la potencia de ataque y el nivel de saqueo de los elefantes africanos."
 
 #: simulation/data/technologies/unit_elephant_indian.jsontooltip
 msgid ""
@@ -1454,7 +1455,7 @@ msgstr "Los griegos usaron construcciones de piedra desde la temprana era micén
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "Las estructuras aumentan +10% su resistencia y +10% en puntos de captura."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -1554,7 +1555,7 @@ msgstr "Los espartanos fueron alojados y entrenados desde pequeños para convert
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "Los lanceros de infantería de élite ganan un +25% salud, pero conlleva aumentar un +5% el tiempo de adiestramiento."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"

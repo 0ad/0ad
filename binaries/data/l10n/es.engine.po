@@ -13,21 +13,23 @@
 # Ignacio Casal <nacho_casal_i@outlook.com>, 2019
 # fca1970 <iobaladi@yahoo.es>, 2014
 # Juan Jaramillo <juanda097@protonmail.ch>, 2014-2015
-# Miguel Magdaleno Santamaría <miguel.magdalenosantamaria@stonybrook.edu>, 2020
+# Miguel Magdaleno Santamaría, 2020
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2016,2018
 # Mikel Soutullo <ma.soutullo@gmail.com>, 2019
 # Nacho Carretero <ncarretero@hush.com>, 2018
 # OJankano <ojankano@hotmail.com>, 2014
 # Pablo Rodríguez <pablrdriguez@gmail.com>, 2016
+# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2020
 # Samuel Roman <lemeash@gmail.com>, 2016
-# Swyter <Swyterzone@gmail.com>, 2013-2014,2016-2018
+# Swyter ™ <Swyterzone@gmail.com>, 2013-2014,2016-2018
+# Swyter ™ <Swyterzone@gmail.com>, 2020
 # tarod kaos <tarodofchaos@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-22 07:08+0000\n"
-"PO-Revision-Date: 2020-05-22 17:31+0000\n"
-"Last-Translator: Miguel Magdaleno Santamaría <miguel.magdalenosantamaria@stonybrook.edu>\n"
+"PO-Revision-Date: 2020-10-01 18:24+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +51,7 @@ msgstr "El certificado no es de confianza."
 
 #: lobby/XmppClient.cpp:1216
 msgid "The certificate hasn't got a known issuer."
-msgstr "El certificado no tiene un emisor conocido."
+msgstr "El certificado no pertenece a un emisor conocido."
 
 #: lobby/XmppClient.cpp:1217
 msgid "The certificate has been revoked."
@@ -57,7 +59,7 @@ msgstr "El certificado ha sido revocado."
 
 #: lobby/XmppClient.cpp:1218
 msgid "The certificate has expired."
-msgstr "El certificado ha expirado"
+msgstr "El certificado ha expirado."
 
 #: lobby/XmppClient.cpp:1219
 msgid "The certificate is not yet active."
@@ -65,7 +67,7 @@ msgstr "El certificado todavía no está activo."
 
 #: lobby/XmppClient.cpp:1220
 msgid "The certificate has not been issued for the peer connected to."
-msgstr "El certificado no ha sido emitido para el par al que está conectado"
+msgstr "El certificado no ha sido emitido para el extremo con el que ha conectado."
 
 #: lobby/XmppClient.cpp:1221
 msgid "The certificate signer is not a certificate authority."
@@ -181,50 +183,50 @@ msgstr "El nombre de usuario ya existe"
 #: ps/ModIo.cpp:261
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Error al iniciar la búsqueda de la identificación del juego. Error: %s;%s."
+msgstr "Error al comenzar la solicitud para el id. del juego. Error: %s;%s."
 
 #: ps/ModIo.cpp:291
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "Error al iniciar la consulta de mods. Error: %s; %s."
+msgstr "Error al iniciar la búsqueda de mods. Error: %s; %s."
 
 #: ps/ModIo.cpp:317
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr "No se pudo crear el directorio de mods: %s."
+msgstr "No se ha podido crear el directorio de mods: %s."
 
 #: ps/ModIo.cpp:342
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "No se pudo abrir el archivo temporal para la descarga de mods: %s."
+msgstr "No se ha podido abrir el archivo temporal para la descarga del mod: %s."
 
 #: ps/ModIo.cpp:352
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "Fallo al iniciar la descarga. Error: %s; %s."
+msgstr "Error al iniciar la descarga: %s; %s."
 
 #: ps/ModIo.cpp:397
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr "Fallo asíncrono en la descarga: %s, %s"
+msgstr "Error de sincronía en la descarga: %s, %s."
 
 #: ps/ModIo.cpp:426
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Fallo en la descarga. Respuesta del servidor: %s; %s."
+msgstr "Error en la descarga. Respuesta del servidor: %s; %s."
 
 #: ps/ModIo.cpp:529
 msgid "Mismatched filesize."
-msgstr "Tamaño del archivo no coincide"
+msgstr "El tamaño del archivo no coincide."
 
 #: ps/ModIo.cpp:547
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr "Archivo incorrecto. md5 esperado: %s; obtenido: %s."
+msgstr "Archivo incorrecto. Se esperaba el siguiente md5: %s y se ha obtenido %s."
 
 #: ps/ModIo.cpp:562
 msgid "Failed to compute final hash."
-msgstr "Error al calcular el último hash."
+msgstr "Error al calcular el hash final."
 
 #: ps/ModIo.cpp:568
 msgid "Failed to verify signature."

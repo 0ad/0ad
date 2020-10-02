@@ -45,7 +45,7 @@
 # Rafael Castro <drill.hurricane@hotmail.com>, 2013
 # Rafael López Reyes <rafalopezreyes@gmail.com>, 2018
 # ec4ed8ad513c79b45aa3a016799aa037_aac9b66 <40ec634153c8e56a0afc75e965b51fbf_269003>, 2015
-# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018
+# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020
 # Roger Vasquez <r0g3rva5qu3z@hotmail.com>, 2013
 # Sander Deryckere, 2014
 # ab661d6cee6a756af4a49df8163441b7_633a6fb, 2014
@@ -59,8 +59,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-28 07:09+0000\n"
-"PO-Revision-Date: 2020-09-06 19:04+0000\n"
-"Last-Translator: Marcos Lasalle Vázquez Verdejo <marcoslv@ucm.es>\n"
+"PO-Revision-Date: 2020-10-01 18:51+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -77,7 +77,7 @@ msgstr "Atenienses"
 #: simulation/data/civs/mace.jsonCivBonuses[0].Description
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "Las estructuras aumentan +10% su resistencia y +10% en puntos de captura."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 #: simulation/data/civs/mace.jsonCivBonuses[0].Name
@@ -89,11 +89,11 @@ msgstr "Arquitectura helena"
 #: simulation/data/civs/mace.jsonCivBonuses[0].History
 #: simulation/data/civs/spart.jsonCivBonuses[0].History
 msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "Los griegos usaron construcciones de piedra desde la temprana era micénica."
+msgstr "Los griegos usaban construcciones de piedra desde la temprana era micénica."
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "La velocidad de explotación del metal se mejora un +10% por cada edad que avances."
+msgstr "La velocidad de extracción de metal aumenta un +10% por cada edad que avances."
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].Name
 msgid "Silver Owls"
@@ -103,11 +103,11 @@ msgstr "Búhos de plata"
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr "Las minas de Laureion en Attica bendecían a los atenienses con un mar de plata con el que acuñar su apreciada y famosa moneda, el Búho ateniense."
+msgstr "Las minas de Laureion en Ática bendecían a los atenienses con un mar de plata con el que acuñar su apreciada y famosa moneda, el búho ateniense."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Allied Warships −25% construction time."
-msgstr "Buques de Guerra Aliados: -25% tiempo de construcción"
+msgstr "Los buques de guerra aliados reducen -25% el tiempo de construcción."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -165,7 +165,7 @@ msgstr "Milcíades"
 
 #: simulation/data/civs/athen.jsonAINames[10]
 msgid "Cleon"
-msgstr "Cleon"
+msgstr "Cleón"
 
 #: simulation/data/civs/athen.jsonAINames[11]
 msgid "Cleophon"
@@ -186,17 +186,17 @@ msgstr "Demóstenes"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr "Los triremes atenienses pueden reclutar marineros (Epibastes Athenaikos)."
+msgstr "Los trirremes atenienses pueden reclutar infantería de marina (Epibastes Athenaikos)."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Name
 msgid "Iphicratean Reforms"
-msgstr "Reformas ificrátidas"
+msgstr "Reformas ificráteas"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Stone walls can be built in neutral territory. Construction time for walls "
 "is reduced by 50%."
-msgstr "Los muros de piedra se pueden construir en terreno neutral. Se reduce su tiempo de construcción un 50%."
+msgstr "Las murallas de piedra se pueden construir en terreno neutral. Se reduce el tiempo de construcción un 50%."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
@@ -633,7 +633,7 @@ msgid ""
 "significant contributions to the winning of many other battles during the "
 "2nd Punic War. He is known for having said, after the battle of Cannae, "
 "'Hannibal, you know how to win the victory; just not what to do with it.'"
-msgstr "Maharbal fue un «joven y temerario comandante de caballería» de Aníbal Barca durante la segunda Guerra Púnica. Se le atribuye el giro del ala de las legiones de Cannas resultando en una derrota en la que 30.000 de 50.000 romanos murieron, así como las contribuciones significativas a la conquista de muchas otras batallas durante la segunda Guerra Púnica. Es conocido por haber dicho tras la batalla de Cannas, 'Aníbal, sabes vencer, pero no sabes sacar provecho de tus victorias'."
+msgstr "Maharbal fue un «joven y temerario comandante de caballería» de Aníbal Barca durante la segunda Guerra Púnica. Se le atribuye la retirada de las legiones de Cannas resultando en una derrota en la que de 30.000 a 50.000 romanos murieron. También contribuyó significativamente en otras batallas de la segunda Guerra Púnica. Es conocido por haber dicho tras la batalla de Cannas, 'Aníbal, sabes vencer pero no sabes sacar provecho de tus victorias'."
 
 #: simulation/data/civs/cart.jsonStructures[0].Name
 msgid "Naval Shipyard"
@@ -641,7 +641,7 @@ msgstr "Calafate naviero"
 
 #: simulation/data/civs/cart.jsonStructures[0].Special
 msgid "Construct the powerful warships of the Carthaginian navy."
-msgstr "Construye los poderosos navíos de guerra para la armada cartaginesa."
+msgstr "Construye los poderosos buques de guerra de la armada cartaginesa."
 
 #: simulation/data/civs/cart.jsonStructures[0].History
 msgid ""
@@ -1163,7 +1163,7 @@ msgstr "Tradición arquera"
 msgid ""
 "The Kushites had a tradition of fine archery and a penchant for using massed"
 " archers in battle."
-msgstr ""
+msgstr "Los cusitas eran conocidos por sus excelentes arqueros y tenían tendencia a utilizarlos en masa en el campo de batalla."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "Monumental Architecture"
@@ -1751,7 +1751,7 @@ msgstr "Inmortales"
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr "Los aqueménidas mantenían un cuerpo de élite de 10.000 soldados, llamados Athanatoi (\"Inmortales\") por los autores griegos."
+msgstr "Los aqueménidas mantenían un cuerpo de élite de 10.000 soldados, llamados Athanatoi (\"Inmortales\") según los autores griegos."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
@@ -2480,7 +2480,7 @@ msgstr "Espartanos"
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Infantry Spearmen +10% health."
-msgstr "Lanceros de Infantería Ciudadanos Aliados +10% de Vida."
+msgstr "Ciudadanos aliados como lanceros de Infantería +10% de Vida."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"
@@ -2577,7 +2577,7 @@ msgstr "Estas elegías fueron himnos de batalla que se cantaban cuando los hopli
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "Lanceros de infantería de élite +25% salud, pero +5% tiempo de adiestramiento."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"
