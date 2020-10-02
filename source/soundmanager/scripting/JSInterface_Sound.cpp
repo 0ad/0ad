@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -125,11 +125,11 @@ namespace JSI_Sound
 	void ClearPlaylist(ScriptInterface::CxPrivate* UNUSED(pCxPrivate) ){}
 	void StopMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate) ){}
 	void StartMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate) ){}
-	void SetMasterGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain){}
-	void SetMusicGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain){}
-	void SetAmbientGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain){}
-	void SetActionGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain){}
-	void SetUIGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain){}
+	void SetMasterGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float UNUSED(gain)){}
+	void SetMusicGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float UNUSED(gain)){}
+	void SetAmbientGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float UNUSED(gain)){}
+	void SetActionGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float UNUSED(gain)){}
+	void SetUIGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float UNUSED(gain)){}
 
 #endif
 
