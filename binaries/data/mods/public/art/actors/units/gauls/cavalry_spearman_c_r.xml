@@ -46,24 +46,29 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="linothorax-3a">
+    <variant frequency="1" name="linothorax-1f">
       <textures>
-        <texture file="skeletal/celt_linothorax_03.png" name="baseTex"/>
+        <texture file="skeletal/gaul_linothorax_1_f.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="linothorax-3b">
+    <variant frequency="1" name="linothorax-1g">
       <textures>
-        <texture file="skeletal/celt_linothorax_03_b.png" name="baseTex"/>
+        <texture file="skeletal/gaul_linothorax_1_g.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="linothorax-3c">
+    <variant frequency="1" name="linothorax-1h">
       <textures>
-        <texture file="skeletal/celt_linothorax_03_c.png" name="baseTex"/>
+        <texture file="skeletal/gaul_linothorax_1_h.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="linothorax-3d">
+    <variant frequency="1" name="linothorax-1i">
       <textures>
-        <texture file="skeletal/celt_linothorax_03_d.png" name="baseTex"/>
+        <texture file="skeletal/gaul_linothorax_1_i.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="linothorax-1j">
+      <textures>
+        <texture file="skeletal/gaul_linothorax_1_j.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -71,5 +76,5 @@
     <variant file="biped/rider/cavalry/base_spearman_fast_shield_01.xml" frequency="1" name="Spearman-Fast-Shield-01"/>
     <variant file="biped/rider/death_shield.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans.xml</material>
 </actor>
