@@ -5,9 +5,8 @@
 # Translators:
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2018
 # Christian Manuel Torres Romero <christian.mtr@gmail.com>, 2018
-# Ocean 65 <icyclereco@usako.net>, 2018
 # Daniel Matute <borealink@gmail.com>, 2018
-# Alfredo C <alfredocm@gmail.com>, 2018
+# Alfredo Cisneros <alfredocm@gmail.com>, 2018
 # Fernando Mendez <nandito104@gmail.com>, 2020
 # Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2020
 # 
@@ -58,17 +57,18 @@ msgid ""
 "sets and OpenGL capabilities) are widely supported by the computer systems "
 "of 0 A.D. players."
 msgstr ""
-"Los UserReports indican qué características del sistema (por ejemplo, "
-"conjuntos de instrucciones de CPU y capacidades OpenGL) son ampliamente "
-"soportadas por los sistemas informáticos de los jugadores de 0 A.D."
+"Los UserReports indican las características del sistema (por ejemplo, "
+"conjuntos de instrucciones de CPU y capacidades OpenGL) más ampliamente "
+"disponibles en los sistemas informáticos de los jugadores de 0 A.D."
 
 #: gui/userreport/Terms_and_Conditions.txt:9
 msgid ""
 "This allows developers to decide which 0 A.D. program code is safe to use "
 "and which optimizations are most feasible to implement next."
 msgstr ""
-"Esto permite a los desarrolladores decidir qué código de 0 A.D. es seguro de"
-" usar y qué optimizaciones son más factibles de implementar a continuación."
+"Esto permite a los desarrolladores decidir qué código de 0 A.D. se puede "
+"usar con seguridad y qué optimizaciones son más factibles de implementar a "
+"continuación."
 
 #: gui/userreport/Terms_and_Conditions.txt:10
 msgid ""
@@ -77,7 +77,7 @@ msgid ""
 "15.1.a)."
 msgstr ""
 "Si UserReporter está habilitado, el UserReport que contiene esa información "
-"se sube a Wildfire Games cada vez que se inicia el programa (GDPR 13.1.c, "
+"se envía a Wildfire Games cada vez que se inicia el programa (GDPR 13.1.c, "
 "GDPR 15.1.a)."
 
 #: gui/userreport/Terms_and_Conditions.txt:12
@@ -99,7 +99,7 @@ msgid ""
 "graphics driver version, OpenGL capabilities."
 msgstr ""
 " 2. Detalles del software del sistema, por ejemplo, la versión del sistema "
-"operativo, la versión del controlador de gráficos, las funciones de OpenGL."
+"operativo, la versión del controlador de gráficos, y capacidades de OpenGL."
 
 #: gui/userreport/Terms_and_Conditions.txt:15
 msgid ""
@@ -131,8 +131,8 @@ msgid ""
 " 5. The date of the upload of the UserReport. This allows focus on recent "
 "UserReports and disregard old reports."
 msgstr ""
-" 5. La fecha de la subida del informe de usuario. Esto permite centrarse en "
-"los informes de usuario recientes y omitir otros informes antiguos."
+" 5. La fecha de envío de UserReport. Esto permite centrarse en los informes "
+"de usuario recientes y omitir otros informes antiguos."
 
 #: gui/userreport/Terms_and_Conditions.txt:20
 msgid ""
@@ -148,7 +148,7 @@ msgid ""
 "unintentional loss in encrypted backups for additional time (GDPR 30.1.g, "
 "GDPR 32)."
 msgstr ""
-"La transmisión está asegurada con SSL. Los datos están protegidos contra "
+"La transmisión está securizada con SSL. Los datos están protegidos contra "
 "pérdidas no intencionadas gracias a copias de seguridad cifradas durante un "
 "tiempo adicional (GDPR 30.1.g, GDPR 32)."
 
@@ -173,7 +173,7 @@ msgid ""
 " 15.1.c)."
 msgstr ""
 "    En el momento de redactar el documento, Wildfire Games publicó el "
-"análisis más reciente de UserReport en http://feedback.wildfiregames.com/ "
+"análisis más reciente de UserReport en https://feedback.wildfiregames.com/ "
 "(GDPR 13.1.e, GDPR 15.1.c)."
 
 #: gui/userreport/Terms_and_Conditions.txt:26
@@ -182,7 +182,7 @@ msgid ""
 "to the erasure of his or her data for one of the reasons specified by the "
 "GDPR (GDPR 18, GDPR 21)."
 msgstr ""
-"2. Borre cualquier reporte de usuario por cualquier motivo, excepto cuando "
+"2. Borrar cualquier reporte de usuario por cualquier motivo, excepto cuando "
 "un usuario haya objetado el borrado de sus datos por una de las razones "
 "especificadas por el GDPR (GDPR 18, GDPR 21)."
 
@@ -191,7 +191,7 @@ msgid ""
 " 3. Store the users IP address to protect against cyberattacks, for no "
 "longer than 4 months (EU Court of Justice Press Release No 112/16)."
 msgstr ""
-"3. Almacene la dirección IP de los usuarios para prevenir ataques "
+"3. Almacenar la dirección IP de los usuarios para prevenir ataques "
 "cibernéticos, por no más de 4 meses (EU Court of Justice Press Release No "
 "112/16)."
 
@@ -208,8 +208,8 @@ msgid ""
 "    The UserReport is disabled with each version update and only enabled if "
 "the user agreed to the new document (GDPR 13.3)."
 msgstr ""
-"El reporte de usuario se desactiva con cada actualización de la versión y es"
-" activado si el usuario está de acuerdo con el nuevo documento (GDPR 13.3)."
+"    El UserReport se desactiva con cada actualización de la versión y es "
+"activado si el usuario está de acuerdo con el nuevo documento (GDPR 13.3)."
 
 #: gui/userreport/Terms_and_Conditions.txt:31
 msgid "[font=\"sans-bold-14\"]You agree to:[/font]"
@@ -220,8 +220,8 @@ msgid ""
 " 1. Use the service at your own risk. Wildfire Games does not take "
 "responsibility for damages resulting from this service."
 msgstr ""
-"1. Use el servicio bajo su propio riesgo. Wildfire Games no toma "
-"responsabilidad por daños resultantes de este servicio."
+"1. Utilizar el servicio bajo su propio riesgo. Wildfire Games no se "
+"responsabiliza por daños resultantes de este servicio."
 
 #: gui/userreport/Terms_and_Conditions.txt:33
 msgid ""
@@ -229,8 +229,8 @@ msgid ""
 "UserReport data or prevent the user from being informed of updated Terms and"
 " Conditions."
 msgstr ""
-"2. No use el servicio con software de terceros o mods que cambien los datos "
-"de UserReport o eviten que el usuario sea informado de cambios de los "
+"2. No utilizar el servicio con software de terceros o mods que cambien los "
+"datos de UserReport o eviten que el usuario sea informado de cambios de los "
 "Términos y Condiciones."
 
 #: gui/userreport/Terms_and_Conditions.txt:35
@@ -248,43 +248,44 @@ msgstr ""
 #: gui/userreport/Terms_and_Conditions.txt:37
 msgid "    To exercise any user right, please refer to this contact."
 msgstr ""
-"Para ejercer cualquier derecho de usuario, por favor refiérase a este "
+"    Para ejercer cualquier derecho de usuario, por favor recurra a este "
 "contacto."
 
 #: gui/userreport/Terms_and_Conditions.txt:38
 msgid ""
 " 2. Right of access to UserReport data concerning him or her (GDPR 15)."
 msgstr ""
-"2. Derecho de acceso a los datos del UserReporte que le conciernen (GDPR "
-"15)."
+"2. Derecho de acceso a los datos del UserReport que le conciernen (GDPR 15)."
 
 #: gui/userreport/Terms_and_Conditions.txt:39
 msgid ""
 "    The UserID pseudonym can be found in the user.cfg file of the "
 "configuration folder of 0 A.D."
 msgstr ""
-"El seudónimo del UserID se puede encontrar en el archivo user.cfg de la "
-"carpeta de configuración de 0 A.D."
+"    El seudónimo del UserID se puede encontrar en el archivo user.cfg del "
+"directorio de configuración de 0 A.D."
 
 #: gui/userreport/Terms_and_Conditions.txt:40
 msgid "    The current configuration folder is %(configPath)s."
-msgstr "El directorio de configuración actual es %(configPath)s."
+msgstr "    El directorio de configuración actual es %(configPath)s."
 
 #: gui/userreport/Terms_and_Conditions.txt:41
 msgid ""
 "    The user obtains a machine-readable and human-readable copy of the "
 "UserReport data in the logs folder of 0 A.D. (GDPR 20)."
 msgstr ""
-"El usuario obtiene una copia legible por máquina y legible por humanos de "
-"los datos de UserReport en la carpeta de registros de 0 A.D. (GDPR 20)."
+"    El usuario tiene disponible una copia legible por máquina y legible por "
+"humanos de los datos de UserReport en el directorio de \"logs\" de 0 A.D. "
+"(GDPR 20)."
 
 #: gui/userreport/Terms_and_Conditions.txt:42
 msgid "    The data can be reviewed before the UserReporter is enabled."
-msgstr "Los datos pueden revisarse antes de que el UserReporter sea activado."
+msgstr ""
+"    Los datos pueden revisarse antes de que el UserReporter se active."
 
 #: gui/userreport/Terms_and_Conditions.txt:43
 msgid "    The current logfolder is %(logPath)s."
-msgstr "El directorio de registros actual es %(logPath)s."
+msgstr "    El directorio de \"logs\" actual es %(logPath)s."
 
 #: gui/userreport/Terms_and_Conditions.txt:44
 msgid ""
@@ -292,7 +293,7 @@ msgid ""
 "and provide your UserID pseudonym (GDPR 11). Only with that we may identify "
 "your data and process requests (GDPR 13.2.e)."
 msgstr ""
-"Si desea acceder a otros datos de UserReport, póngase en contacto con "
+"    Si desea acceder a otros datos de UserReport, póngase en contacto con "
 "Wildfire Games y proporcione su seudónimo UserID (GDPR 11). Solo con eso "
 "podemos identificar sus datos y procesar las solicitudes (GDPR 13.2.e)."
 
@@ -300,7 +301,7 @@ msgstr ""
 msgid ""
 "    Data may be obtained in a portable, machine-readable format (GDPR 20)."
 msgstr ""
-"Los datos se pueden obtener en un formato portátil, legible por máquina "
+"    Los datos se pueden obtener en un formato portátil, legible por máquina "
 "(GDPR 20)."
 
 #: gui/userreport/Terms_and_Conditions.txt:46
@@ -454,7 +455,7 @@ msgid ""
 "limitation\")."
 msgstr ""
 "7. Wildfire Games utiliza un formulario de almacenamiento que no permite la "
-"identificación de personas naturales durante más tiempo del necesario (GDPR "
+"identificación de personas físicas durante más tiempo del necesario (GDPR "
 "5.1.e \"limitación de almacenamiento\")."
 
 #: gui/userreport/Terms_and_Conditions.txt:66
@@ -463,7 +464,7 @@ msgid ""
 "or unlawful processing and accidental loss (GDPR 5.1.f. \"integrity and "
 "confidentiality\")."
 msgstr ""
-"8. Wildfire Games asegura el procesamiento de datos personales para evitar "
+"8. Wildfire Games securiza el procesamiento de datos personales para evitar "
 "el procesamiento no autorizado o ilegal y la pérdida accidental (GDPR 5.1.f."
 " \"integridad y confidencialidad\")."
 
@@ -495,8 +496,8 @@ msgid ""
 "or the data (GDPR 12.6, GDPR 13.2.e)."
 msgstr ""
 "12. Wildfire Games informa a los usuarios que para ejercer sus derechos, los"
-" usuarios pueden necesitar proporcionar información adicional para "
-"identificar a la persona natural o los datos (GDPR 12.6, GDPR 13.2.e)."
+" usuarios puedan tener que proporcionar información adicional para "
+"identificar a la persona física o los datos (GDPR 12.6, GDPR 13.2.e)."
 
 #: gui/userreport/Terms_and_Conditions.txt:71
 msgid "The minimum age to use the service is 13."
@@ -507,23 +508,23 @@ msgid ""
 "Wildfire Games will not knowingly collect personal data from children under "
 "this age (Children's Online Privacy Protection Act)."
 msgstr ""
-"Wildfire GAmes no recopilará datos personales de niños menores de esta edad "
-"(Ley de Protección de la Privacidad de los Niños)."
+"Wildfire Games no recopilará datos personales de niños menores de esta edad "
+"(Ley de protección de la privacidad de los niños)."
 
 #: gui/userreport/Terms_and_Conditions.txt:73
 msgid ""
 "If you believe Wildfire Games might have any personal data from or about a "
 "child under 13, please contact Wildfire Games."
 msgstr ""
-"Si cree que Wildfire Games puede tener datos personales de o sobre un niño "
-"menor de 13 años, comuníquese con Wildfire Games."
+"Si cree que Wildfire Games pueda tener datos personales de o sobre algún "
+"niño menor de 13 años, comuníquese con Wildfire Games."
 
 #: gui/userreport/Terms_and_Conditions.txt:75
 msgid ""
 "Wildfire Games obtains all UserReport data exclusively from the user (GDPR "
 "14)."
 msgstr ""
-"Wildfire Games obtiene todos los datos de UserReport exclusivamente del "
+"Wildfire Games obtiene todos los datos de \"UserReport\" exclusivamente del "
 "usuario (GDPR 14)."
 
 #: gui/userreport/Terms_and_Conditions.txt:76
@@ -532,20 +533,20 @@ msgid ""
 "natural persons (GDPR 22)."
 msgstr ""
 "Wildfire Games no realiza ninguna toma de decisiones automatizada que afecte"
-" a personas naturales (GDPR 22)."
+" a personas físicas (GDPR 22)."
 
 #: gui/userreport/Terms_and_Conditions.txt:78
 msgid ""
 "If parts of the terms are held to be illegal or otherwise unenforceable, the"
 " remainder of the terms shall still apply ('severability')."
 msgstr ""
-"Si partes de los términos se consideran ilegales o no se pueden hacer "
-"cumplir, el resto de los términos aún se aplicarán (\"separabilidad\")."
+"Si parte de los términos fueran considerados ilegales o no se pudieran hacer"
+" cumplir, el resto de los términos aún se aplicarán ('separabilidad')."
 
 #: gui/userreport/Terms_and_Conditions.txt:80
 msgid ""
 "For further information on Wildfire Games Privacy Policies, visit "
 "https://trac.wildfiregames.com/wiki/UserDataProtection"
 msgstr ""
-"Para obtener más información sobre las Políticas de Privacidad de Wildfire "
-"Games, visite https://trac.wildfiregames.com/wiki/UserDataProtection"
+"Para obtener más información sobre las políticas de privacidad de Wildfire "
+"Games, visita https://trac.wildfiregames.com/wiki/UserDataProtection"

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,7 +21,9 @@
 
 #include "lib/posix/posix_utsname.h"
 #include "lib/ogl.h"
+#if CONFIG2_AUDIO
 #include "lib/snd.h"
+#endif
 #include "lib/timer.h"
 #include "lib/bits.h"	// round_up
 #include "lib/allocators/shared_ptr.h"
@@ -80,10 +82,6 @@ static std::string SplitExts(const char *exts)
 void WriteSystemInfo()
 {
 	TIMER(L"write_sys_info");
-
-	// get_cpu_info and gfx_detect already called during init - see call site
-	snd_detect();
-
 	struct utsname un;
 	uname(&un);
 
@@ -137,9 +135,13 @@ void WriteSystemInfo()
 	fprintf(f, "OpenGL Drivers : %s; %ls\n", glGetString(GL_VERSION), driverInfo.c_str());
 	fprintf(f, "Video Mode     : %dx%d:%d\n", g_VideoMode.GetXRes(), g_VideoMode.GetYRes(), g_VideoMode.GetBPP());
 
-	// sound
+#if CONFIG2_AUDIO
+	snd_detect();
 	fprintf(f, "Sound Card     : %s\n", snd_card.c_str());
 	fprintf(f, "Sound Drivers  : %s\n", snd_drv_ver.c_str());
+#else
+	fprintf(f, "Sound          : Game was compiled without audio\n");
+#endif
 
 	// OpenGL extensions (write them last, since it's a lot of text)
 	const char* exts = ogl_ExtensionString();

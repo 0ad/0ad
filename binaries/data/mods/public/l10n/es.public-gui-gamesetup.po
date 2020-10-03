@@ -54,6 +54,7 @@
 # Pretorg <fpgelmejor2@hotmail.com>, 2014
 # Rafael Castro <drill.hurricane@hotmail.com>, 2013
 # Rafael Cuevas Montero <rafcumon@hotmail.com>, 2017
+# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2020
 # Roger Vasquez <r0g3rva5qu3z@hotmail.com>, 2013
 # Sander Deryckere, 2014
 # ab661d6cee6a756af4a49df8163441b7_633a6fb, 2014
@@ -68,8 +69,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-24 07:08+0000\n"
-"PO-Revision-Date: 2020-09-06 19:05+0000\n"
-"Last-Translator: Marcos Lasalle Vázquez Verdejo <marcoslv@ucm.es>\n"
+"PO-Revision-Date: 2020-10-01 13:28+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,7 +112,7 @@ msgstr "Mapas añadidos en la última versión del juego."
 
 #: gui/gamesetup/Controls/MapFilters.js:109
 msgid "Trigger Maps"
-msgstr "Mapas de «triggers»"
+msgstr "Mapas con eventos"
 
 #: gui/gamesetup/Controls/MapFilters.js:110
 msgid "Maps that come with scripted events and potentially spawn enemy units."
@@ -131,7 +132,7 @@ msgstr "La IA se desactivará para este jugador."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:93
 msgid "AI Behavior"
-msgstr "Comportamiento de la IA"
+msgstr "Comportamiento"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:87
 msgid "AI Difficulty"
@@ -215,7 +216,7 @@ msgstr "Aleatorio"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:140
 msgid "Picks one civilization at random when the game starts."
-msgstr "La civilización se elige al azar al empezar la partida."
+msgstr "La civilización se escoje al azar al comenzar la partida."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:172
 msgid "Pick a color."
@@ -276,7 +277,7 @@ msgstr "Nómada"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "En el Modo Nómada, los jugadores comienzan con unas pocas unidades y tienen que encontrar un lugar adecuado para construir su ciudad. Alto el fuego recomendado."
+msgstr "En modo nómada, los jugadores comienzan con unas pocas unidades y tienen que encontrar un lugar adecuado para construir su ciudad. Se recomienda comenzar en alto el fuego."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:51
 msgid "Rated Game"
@@ -320,7 +321,7 @@ msgstr "Desactivar tesoros"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:45
 msgid "Do not add treasures to the map."
-msgstr "No agregue tesoros al mapa."
+msgstr "No se incluyen tesoros en el mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:46
 msgid "World population"
@@ -330,15 +331,15 @@ msgstr "Población mundial"
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr ""
+msgstr "Si se activa, el límite de población se distribuirá entre los jugadores activos."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:135
 msgid "Biome"
-msgstr "Ecosistema"
+msgstr "Bioma"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:141
 msgid "Select the flora and fauna."
-msgstr "Seleccionar la flora y la fauna"
+msgstr "Seleccionar flora y fauna."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:144
 msgctxt "biome"
@@ -365,7 +366,7 @@ msgstr "Aleatorio"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr "Escoge aleatoriamente un momento del día."
+msgstr "Escoge aleatoriamente el momento del día."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:73
 msgid "Game Speed"
@@ -386,7 +387,7 @@ msgstr "Selecciona uno de los paisajes de este mapa."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:151
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
-msgstr "Aleatorio Terrestre o Naval"
+msgstr "Terrestre o naval aleatorio"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
 msgctxt "landscape selection"
@@ -480,7 +481,7 @@ msgstr "Por jugador"
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "Advertencia: Podría haber problemas de rendimiento si todos los %(players)s jugadores alcanzan %(popCap)s de población."
+msgstr "Atención: Puede haber problemas de rendimiento si los %(players)s jugadores alcanzan una población de %(popCap)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:81
 msgid "Starting Resources"
@@ -566,7 +567,7 @@ msgstr "Selecciona la dificultad de este escenario."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:76
 msgid "World Population Cap"
-msgstr ""
+msgstr "Límite de población mundial"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:79
 msgid "Select world population limit."
@@ -577,7 +578,7 @@ msgstr "Selecciona el límite de la población mundial."
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr ""
+msgstr "Atención: Pueden producirse problemas de rendimiento si se alcanza una población de %(popCap)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:61
 msgid "Ceasefire"
@@ -585,12 +586,12 @@ msgstr "Alto al fuego"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:64
 msgid "Set time where no attacks are possible."
-msgstr "Establecer un tiempo límite en el que se prohíbe atacar."
+msgstr "Establece un tiempo en el que no es posible atacar."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:67
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr "Sin alto al fuego"
+msgstr "Sin alto el fuego"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:70
 #, javascript-format
@@ -620,7 +621,7 @@ msgstr "El número total de las reliquias generadas en el mapa. La victoria de R
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:86
 msgid "Relic Duration"
-msgstr "Duración de Reliquia"
+msgstr "Duración de la reliquia"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:89
 msgid "Minutes until the player has achieved Relic Victory."
@@ -913,7 +914,7 @@ msgstr "Cargando «%(map)s»"
 
 #: gui/gamesetup/gamesetup.xml:(caption):12
 msgid "Match Setup"
-msgstr "Ajustes de partida"
+msgstr "Ajustes del enfrentamiento"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"

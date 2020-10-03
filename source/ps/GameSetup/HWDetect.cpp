@@ -20,7 +20,9 @@
 #include "scriptinterface/ScriptInterface.h"
 
 #include "lib/ogl.h"
+#if CONFIG2_AUDIO
 #include "lib/snd.h"
+#endif
 #include "lib/svn_revision.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
@@ -199,10 +201,10 @@ void RunHardwareDetection()
 
 	scriptInterface.SetProperty(settings, "gfx_card", gfx::CardName());
 	scriptInterface.SetProperty(settings, "gfx_drv_ver", gfx::DriverInfo());
-
+#if CONFIG2_AUDIO
 	scriptInterface.SetProperty(settings, "snd_card", snd_card);
 	scriptInterface.SetProperty(settings, "snd_drv_ver", snd_drv_ver);
-
+#endif
 	ReportSDL(scriptInterface, settings);
 
 	ReportGLLimits(scriptInterface, settings);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -83,11 +83,11 @@ private:
 #if CONFIG2_AUDIO
 	inline u32 FastRand();
 	// Contains the current sound seed for the generator
-	u32 m_Seed;
 	float RandFloat(float min, float max);
 	// We store the handles so we can load now and play later
 	std::vector<CSoundData*> m_SoundGroups;
 #endif
+	u32 m_Seed;
 	// We need the filenames so we can reload when necessary.
 	std::vector<std::wstring> m_Filenames;
 	// The file path for the list of sound file resources

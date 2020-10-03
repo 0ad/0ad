@@ -10,7 +10,7 @@
 # Jaroslav Lichtblau <jlichtblau@seznam.cz>, 2016
 # fri, 2014-2018
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
-# Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017
+# Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017,2020
 # Tomáš Machala <haman3k@gmail.com>, 2017
 # Tomáš Matýs <thommathys@gmail.com>, 2018
 # Vojtěch Valigura <Encounter@seznam.cz>, 2015
@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-09-18 10:15+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-09-30 09:36+0000\n"
+"Last-Translator: Robin Kriebel <kriebel.robin@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -151,11 +151,11 @@ msgstr "Hradba z kůlů"
 #: simulation/templates/template_structure_defensive_tower.xml:36
 #: simulation/templates/template_structure_defensive_tower.xml:52
 msgid "Tower"
-msgstr ""
+msgstr "Věž"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:57
 msgid "Artillery Tower"
-msgstr ""
+msgstr "Odstřelovací Věž"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
@@ -172,7 +172,7 @@ msgstr "Velkoměsto"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 msgid "ArtilleryTower"
-msgstr ""
+msgstr "Odstřelovací Věž"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
@@ -203,7 +203,7 @@ msgstr "Prosázet kameny a vylepšit na obrannou věž."
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:31
 msgid "Stone Tower"
-msgstr ""
+msgstr "Kamenná Věž"
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "StoneTower"
@@ -216,7 +216,7 @@ msgstr "Obežeňte město zdí kvůli lepší obraně."
 #: simulation/templates/template_structure_defensive_wall.xml:26
 #: simulation/templates/template_structure_defensive_wall.xml:23
 msgid "Wall"
-msgstr ""
+msgstr "Zeď"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:24
 #: simulation/templates/template_structure_defensive_wall_long.xml:29
@@ -301,7 +301,7 @@ msgstr ""
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_arsenal.xml:25
 msgid "Arsenal"
-msgstr ""
+msgstr "Arzenál"
 
 #: simulation/templates/template_structure_military_barracks.xml:28
 msgid "Train Citizen Soldiers and research technologies."
@@ -331,15 +331,15 @@ msgstr "Přístaviště"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:24
 msgid "Elephant Stable"
-msgstr ""
+msgstr "Stáje pro slony"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:26
 msgid "Train Elephants and research Elephant technologies."
-msgstr ""
+msgstr "Cvičte Slony a vyzkoumejte technologie s nimi spojené."
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
 msgid "ElephantStable"
-msgstr ""
+msgstr "Sloní stáje"
 
 #: simulation/templates/template_structure_military_embassy.xml:25
 #: simulation/templates/template_structure_military_embassy.xml:23
@@ -354,7 +354,7 @@ msgstr ""
 #: simulation/templates/template_structure_military_forge.xml:26
 #: simulation/templates/template_structure_military_forge.xml:22
 msgid "Forge"
-msgstr ""
+msgstr "Tavící pec"
 
 #: simulation/templates/template_structure_military_fortress.xml:69
 msgid ""
@@ -387,7 +387,7 @@ msgstr ""
 #: simulation/templates/template_structure_military_stable.xml:26
 #: simulation/templates/template_structure_military_stable.xml:23
 msgid "Stable"
-msgstr ""
+msgstr "Stáje"
 
 #: simulation/templates/template_structure_resource.xml:7
 msgid "Resource Structure"
@@ -418,7 +418,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_special.xml:23
 msgid "Special Structure"
-msgstr ""
+msgstr "Speciální Stavba"
 
 #: simulation/templates/template_structure_special_amphitheater.xml:23
 #: simulation/templates/template_structure_special_amphitheater.xml:21
@@ -442,7 +442,7 @@ msgstr ""
 #: simulation/templates/template_structure_special_theater.xml:26
 #: simulation/templates/template_structure_special_theater.xml:24
 msgid "Theater"
-msgstr ""
+msgstr "Divadlo"
 
 #: simulation/templates/template_structure_wonder.xml:41
 msgid ""
@@ -592,7 +592,7 @@ msgstr ""
 #: simulation/templates/structures/athen_prytaneion.xml:26
 #: simulation/templates/structures/spart_gerousia.xml:26
 msgid "Council"
-msgstr ""
+msgstr "Koncil"
 
 #: simulation/templates/structures/athen_range.xml:8
 #: simulation/templates/structures/mace_range.xml:8
@@ -1872,7 +1872,7 @@ msgstr "Gerousia"
 
 #: simulation/templates/structures/spart_gerousia.xml:24
 msgid "Train Heroes."
-msgstr ""
+msgstr "Tréning Hrdinů"
 
 #: simulation/templates/structures/spart_syssiton.xml:23
 msgid "Military Mess Hall"

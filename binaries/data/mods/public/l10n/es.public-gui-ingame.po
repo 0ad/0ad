@@ -47,6 +47,7 @@
 # Pedro Luis <pedrochusma@gmail.com>, 2014
 # Pretorg <fpgelmejor2@hotmail.com>, 2014
 # Rafael Castro <drill.hurricane@hotmail.com>, 2013
+# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2020
 # Roger Vasquez <r0g3rva5qu3z@hotmail.com>, 2013
 # Sander Deryckere, 2014
 # Sander Deryckere, 2016
@@ -60,8 +61,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-11 07:09+0000\n"
-"PO-Revision-Date: 2020-09-11 13:17+0000\n"
-"Last-Translator: Swyter ™ <Swyterzone@gmail.com>\n"
+"PO-Revision-Date: 2020-10-01 18:13+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,7 +73,7 @@ msgstr ""
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr "Presiona %(hotkey)s para alternar este menú."
+msgstr "Pulsa %(hotkey)s para mostrar este menú."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -89,7 +90,7 @@ msgstr "Resumen"
 #: gui/session/MenuButtons.js:87
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr "Presiona %(hotkey)s para abrir la pantalla de resumen."
+msgstr "Pulsa %(hotkey)s para mostrar la pantalla resumen."
 
 #: gui/session/MenuButtons.js:130
 msgid "Lobby"
@@ -100,7 +101,7 @@ msgstr "Sala multijugador"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr "Presiona %(hotkey)s para abrir la sala multijugador sin salir del juego."
+msgstr "Pulsa %(hotkey)s para abrir la sala multijugador sin salir del juego."
 
 #: gui/session/MenuButtons.js:158
 msgid "Options"
@@ -117,7 +118,7 @@ msgstr "Pausa"
 #: gui/session/MenuButtons.js:197
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr "Presiona %(hotkey)s para pausar o reanudar el juego."
+msgstr "Pulsa %(hotkey)s para parar o reanudar el juego."
 
 #: gui/session/MenuButtons.js:213
 msgid "Resign"
@@ -146,7 +147,7 @@ msgstr "Esperando a que se conecten los jugadores:"
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
-msgstr "sincronizando gameplay con otros jugadores..."
+msgstr "Sincronizando partida con otros jugadores..."
 
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"
@@ -282,7 +283,7 @@ msgstr "%(resource)s:"
 #: gui/session/unit_actions.js:998
 #, javascript-format
 msgid "Gain: %(gain)s"
-msgstr "Ganancia: %(gain)s"
+msgstr "Beneficios: %(gain)s"
 
 #: gui/session/selection_details.js:277
 msgid "Current/max gatherers"
@@ -412,12 +413,12 @@ msgstr ","
 #: gui/session/selection_panels.js:1066
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
-msgstr "Mejorar a %(name)s. %(tooltip)s"
+msgstr "Promocionar a %(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1071
 #, javascript-format
 msgid "Upgrade to %(name)s."
-msgstr "Mejorar a %(name)s."
+msgstr "Promocionar a %(name)s."
 
 #: gui/session/selection_panels.js:1088
 msgid "Cancel Upgrading"
@@ -482,7 +483,7 @@ msgstr "Atacar a enemigos dentro de alcance, pero evitar moverse"
 #: gui/session/selection_panels_helpers.js:93
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
-msgstr "Cifra actual: %(count)s, Límite: %(limit)s."
+msgstr "Cifra actual: %(count)s, límite: %(limit)s."
 
 #: gui/session/selection_panels_helpers.js:107
 #, javascript-format
@@ -522,7 +523,7 @@ msgstr "Mayús + Clic"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr "This is the origin trade market.\nRight-click to cancel trade route."
+msgstr "Este es el mercado de origen.\nClic derecho para canelar la ruta de comercio."
 
 #: gui/session/unit_actions.js:638
 msgid "Origin trade market."
@@ -577,7 +578,7 @@ msgstr "Cancelar la orden actual."
 
 #: gui/session/unit_actions.js:1225
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr "Ordena a las unidades seleccionadas a resguardarse en una estructura o unidad."
+msgstr "Ordena a las unidades seleccionadas guarnecerse en una estructura o unidad."
 
 #: gui/session/unit_actions.js:1248
 msgid "Unload"
@@ -585,7 +586,7 @@ msgstr "Desalojar"
 
 #: gui/session/unit_actions.js:1266
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr "Ordene las unidades seleccionadas a reparar una estructura, navío, o máquina de asedio. "
+msgstr "Ordena a las unidades seleccionadas reparar una estructura, navío, o máquina de asedio. "
 
 #: gui/session/unit_actions.js:1285
 msgid "Focus on Rally Point."
@@ -597,7 +598,7 @@ msgstr "Volver al trabajo"
 
 #: gui/session/unit_actions.js:1339
 msgid "Order the selected units to guard a structure or unit."
-msgstr "Ordene las unidades seleccionadas a defender una estructura o unidades."
+msgstr "Ordena a las unidades seleccionadas defender una estructura o unidad."
 
 #: gui/session/unit_actions.js:1357
 msgid "Remove guard"
@@ -607,7 +608,7 @@ msgstr "Desproteger"
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
-msgstr "Comercio e intercambios"
+msgstr "Comerciar e intercambiar"
 
 #: gui/session/unit_actions.js:1392
 msgid "Patrol"
@@ -615,7 +616,7 @@ msgstr "Patrullar"
 
 #: gui/session/unit_actions.js:1393
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr "Ataca todas las unidades enemigas encontradas mientras evitas estructuras."
+msgstr "Ataca todas las unidades enemigas encontradas evitando las estructuras."
 
 #: gui/session/unit_actions.js:1419
 msgid "Press to allow allies to use this dropsite"
@@ -674,12 +675,12 @@ msgstr "Enemigo"
 #: gui/session/chat/ChatAddressees.js:116
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr "Observadores"
+msgstr "Espectadores"
 
 #: gui/session/chat/ChatAddressees.js:117
 msgctxt "chat message context"
 msgid "Observer"
-msgstr "Observador"
+msgstr "Espectador"
 
 #: gui/session/chat/ChatAddressees.js:124
 msgctxt "chat message context"
@@ -728,7 +729,7 @@ msgstr "Chat de enemigos"
 #: gui/session/chat/ChatHistory.js:113
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr "Chat de observadores"
+msgstr "Chat de espectadores"
 
 #: gui/session/chat/ChatHistory.js:120
 msgctxt "chat history filter"
@@ -753,22 +754,22 @@ msgstr "Escribe el mensaje a enviar."
 #: gui/session/chat/ChatInput.js:37
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr "Presiona %(hotkey)s para abrir el chat público."
+msgstr "Pulsa %(hotkey)s para abrir el chat público."
 
 #: gui/session/chat/ChatInput.js:40
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr "Presiona %(hotkey)s para abrir el chat de observadores."
+msgstr "Pulsa %(hotkey)s para abrir el chat de observadores."
 
 #: gui/session/chat/ChatInput.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr "Presiona %(hotkey)s para abrir el chat de aliados."
+msgstr "Pulsa %(hotkey)s para abrir el chat de aliados."
 
 #: gui/session/chat/ChatInput.js:43
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr "Presiona %(hotkey)s para reabrir el último chat privado."
+msgstr "Pulsa %(hotkey)s para reabrir el último chat privado."
 
 #. Translation: A player that left the game joins again
 #: gui/session/chat/ChatMessageFormatNetwork.js:23
@@ -851,7 +852,7 @@ msgstr "¡Has sido atacado por %(attacker)s!"
 #: gui/session/chat/ChatMessageFormatSimulation.js:38
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr ""
+msgstr "%(player)s han intercambiado %(amountGiven)s por %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:70
 #, javascript-format
@@ -996,19 +997,19 @@ msgstr "Ascender unidades seleccionadas"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:229
 msgid "Enable culling"
-msgstr "Habilitar el sacrificio"
+msgstr "Habilitar \"culling\""
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:247
 msgid "Lock cull camera"
-msgstr "Cámara de bloqueo"
+msgstr "Bloquear cámara \"cull\""
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:265
 msgid "Display camera frustum"
-msgstr "Mostrar cámara frustum"
+msgstr "Mostrar cámara \"frustum\""
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:283
 msgid "Display shadows frustum"
-msgstr "Demostrar sombra de cuerpos."
+msgstr "Mostrar sombras \"frustum\""
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -1031,7 +1032,7 @@ msgstr "Tiempo restante para terminar el alto el fuego: %(time)s."
 #: gui/session/minimap/MiniMapDiplomacyColorsButton.js:34
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):85
 msgid "Toggle Diplomacy Colors"
-msgstr "Alternar los Colores de Diplomacia"
+msgstr "Alternar colores de diplomacia"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
@@ -1077,7 +1078,7 @@ msgstr "x"
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr "Dar de tributo %(resourceAmount)s de %(resourceType)s a %(playerName)s. Mayús+clic para dar %(greaterAmount)s de tributo."
+msgstr "Dar %(resourceAmount)s %(resourceType)s como tributo a %(playerName)s. Mayús+clic para dar %(greaterAmount)s como tributo."
 
 #: gui/session/message_box/DeleteSelectionConfirmation.js:10
 msgid "Delete"
@@ -1160,7 +1161,7 @@ msgstr "Desincronizado"
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr "Fuera de Sincronización"
+msgstr "Se ha perdido la sincronización"
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:63
@@ -1235,7 +1236,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Ver resumen de la civilización / Árbol\nAl hacer click se reabrirá el último que se haya abierto. "
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Ver resumen de la civilización / Árbol de estructuras\nAl hacer clic se reabrirá el último que se haya abierto."
 
 #: gui/session/top_panel/CounterManager.js:100
 #, javascript-format
@@ -1280,7 +1281,7 @@ msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
 #: gui/session/top_panel/PlayerViewControl.js:123
 msgid "Observer"
-msgstr "Observador"
+msgstr "Espectador"
 
 #: gui/session/top_panel/IconButtons/DiplomacyDialogButton.js:29
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):10
@@ -1326,7 +1327,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "Seleccione el tipo de mercancías que desea modificar haciendo clic sobre él y, a continuación, utilice las flechas de los otros tipos para modificar sus acciones. También puede pulsar %(hotkey)s mientras selecciona un tipo de mercancías para llevar su participación al 100%%."
+msgstr "Selecciona el tipo de mercancía que quieres modificar haciendo clic encima para, a continuación, modificar la parte de los otros tipos con las flechas. También puedes pulsar %(hotkey)s mientras seleccionas un tipo de mercancía para elevar parte a 100%%."
 
 #: gui/session/trade/TradeDialogBarterPanel.js:45
 #, javascript-format
@@ -1335,7 +1336,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr "Comienza eligiendo el recurso que quieres vender de la fila superior. Cada vez que pulses uno de los botones de la parte inferior se venderán %(quantity)s unidades del recurso por la cantidad indicada abajo. Mantén pulsado %(hotkey)s para multiplicar temporalmente todas las cantidades por %(multiplier)s."
+msgstr "Comienza seleccionando el recurso de la fila superior que quieres vender. Cada vez que pulses uno de los botones de la parte inferior se venderán %(quantity)s del recurso por la cantidad indicada debajo. Mantén pulsado %(hotkey)s para multiplicar temporalmente todas las cantidades por %(multiplier)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:15
 #, javascript-format
@@ -1557,7 +1558,7 @@ msgstr "Puntos de captura"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
 msgid "Attack and Resistance"
-msgstr ""
+msgstr "Ataque y resistencia"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
 msgid "Experience"
@@ -1597,11 +1598,11 @@ msgstr "Elige un jugador para verlo"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(caption):17
 msgid "Observer Mode"
-msgstr "Modo observador"
+msgstr "Modo espectador"
 
 #: gui/session/top_panel/IconButtons/GameSpeedButton.xml:(tooltip):9
 msgid "Game Speed"
-msgstr "Velocidad de Juego"
+msgstr "Velocidad de juego"
 
 #: gui/session/trade/BarterPanel.xml:(caption):5
 msgid "Barter"
