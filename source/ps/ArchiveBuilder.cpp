@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -68,6 +68,11 @@ void CArchiveBuilder::Build(const OsPath& archive, bool compress)
 	const bool noDeflate = !compress;
 
 	PIArchiveWriter writer = CreateArchiveWriter_Zip(archive, noDeflate);
+	if (!writer)
+	{
+		debug_printf("Failed to create the archive \"%s\".", archive.string8().c_str());
+		return;
+	}
 
 	// Use CTextureManager instead of CTextureConverter directly,
 	// so it can deal with all the loading of settings.xml files
@@ -95,7 +100,7 @@ void CArchiveBuilder::Build(const OsPath& archive, bool compress)
 		)
 		{
 			VfsPath cachedPath;
-			debug_printf("Converting texture %s\n", realPath.string8().c_str());
+			debug_printf("Converting texture \"%s\"\n", realPath.string8().c_str());
 			bool ok = textureManager.GenerateCachedTexture(path, cachedPath);
 			ENSURE(ok);
 
@@ -154,7 +159,7 @@ void CArchiveBuilder::Build(const OsPath& archive, bool compress)
 		if (path.Extension() == L".xml")
 		{
 			VfsPath cachedPath;
-			debug_printf("Converting XML file %s\n", realPath.string8().c_str());
+			debug_printf("Converting XML file \"%s\"\n", realPath.string8().c_str());
 			bool ok = xero.GenerateCachedXMB(m_VFS, path, cachedPath);
 			ENSURE(ok);
 
