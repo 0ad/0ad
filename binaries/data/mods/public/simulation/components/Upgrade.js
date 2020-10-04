@@ -229,6 +229,20 @@ Upgrade.prototype.Upgrade = function(template)
 		return false;
 
 	let cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	if (!cmpPlayer)
+		return false;
+
+	let cmpProductionQueue = Engine.QueryInterface(this.entity, IID_ProductionQueue);
+	if (cmpProductionQueue && cmpProductionQueue.HasQueuedProduction())
+	{
+		let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGUIInterface.PushNotification({
+			"players": [cmpPlayer.GetPlayerID()],
+			"message": markForTranslation("Entity is producing. Cannot start upgrading."),
+			"translateMessage": true
+		});
+		return false;
+	}
 
 	this.expendedResources = this.GetResourceCosts(template);
 	if (!cmpPlayer || !cmpPlayer.TrySubtractResources(this.expendedResources))

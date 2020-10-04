@@ -13,6 +13,7 @@ Resources = {
 		return "<interleave>" + schema + "</interleave>";
 	}
 };
+Engine.LoadComponentScript("interfaces/ProductionQueue.js");
 Engine.LoadComponentScript("interfaces/ModifiersManager.js"); // Provides `IID_ModifiersManager`, used below.
 Engine.LoadComponentScript("interfaces/Timer.js"); // Provides `IID_Timer`, used below.
 
@@ -119,6 +120,9 @@ AddMock(20, IID_Ownership, {
 });
 AddMock(20, IID_Identity, {
 	"GetCiv": () => civCode // Called in components/Upgrade.js::init().
+});
+AddMock(20, IID_ProductionQueue, {
+	"HasQueuedProduction": () => false
 });
 let cmpUpgrade = ConstructComponent(20, "Upgrade", template.Upgrade);
 cmpUpgrade.owner = playerID;

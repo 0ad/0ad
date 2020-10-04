@@ -328,6 +328,21 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 	if (!cmpPlayer)
 		return;
 
+	if (!this.queue.length)
+	{
+		let cmpUpgrade = Engine.QueryInterface(this.entity, IID_Upgrade);
+		if (cmpUpgrade && cmpUpgrade.IsUpgrading())
+		{
+			let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+			cmpGUIInterface.PushNotification({
+				"players": [cmpPlayer.GetPlayerID()],
+				"message": markForTranslation("Entity is being upgraded. Cannot start production."),
+				"translateMessage": true
+			});
+			return;
+		}
+	}
+
 	if (this.queue.length < this.MaxQueueSize)
 	{
 
@@ -964,6 +979,11 @@ ProductionQueue.prototype.OnValueModification = function(msg)
 	let cmpPlayer = QueryOwnerInterface(this.entity);
 	if (cmpPlayer)
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface).SetSelectionDirty(cmpPlayer.GetPlayerID());
+};
+
+ProductionQueue.prototype.HasQueuedProduction = function()
+{
+	return this.queue.length > 0;
 };
 
 ProductionQueue.prototype.OnDisabledTemplatesChanged = function(msg)

@@ -307,7 +307,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.upgrade = {
 			"upgrades": cmpUpgrade.GetUpgrades(),
 			"progress": cmpUpgrade.GetProgress(),
-			"template": cmpUpgrade.GetUpgradingTo()
+			"template": cmpUpgrade.GetUpgradingTo(),
+			"isUpgrading": cmpUpgrade.IsUpgrading()
 		};
 
 	let cmpStatusEffects = Engine.QueryInterface(ent, IID_StatusEffectsReceiver);
