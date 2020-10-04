@@ -53,19 +53,19 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="leather-1">
+    <variant frequency="1" name="padded-1a">
       <textures>
-        <texture file="skeletal/celt_leather_01.png" name="baseTex"/>
+        <texture file="skeletal/brit_padded_1_a.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="leather-2">
+    <variant frequency="1" name="padded-1b">
       <textures>
-        <texture file="skeletal/celt_leather_02.png" name="baseTex"/>
+        <texture file="skeletal/brit_padded_1_b.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant file="biped/rider/cavalry/base_swordsman_relax_shield.xml" name="Swordsman-Relax-Shield" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_swordsman_relax_shield.xml" frequency="1" name="Swordsman-Relax-Shield"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>

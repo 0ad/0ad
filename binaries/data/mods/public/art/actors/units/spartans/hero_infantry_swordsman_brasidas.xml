@@ -1,26 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant>
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/helmets/hele_pilos_crested_transversal.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/hele_pilos_crested.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_athen_pericles.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/xiphos_alexander.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/aspis_lambda_brasidas.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/capes/cape_long_player.xml" attachpoint="root"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="brasidas-tunic-1">
       <textures>
-        <texture file="skeletal/mace_ijv_e.png" name="baseTex"/>
+        <texture file="skeletal/hele_tunic_4_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="brasidas-armor-1">
+      <textures>
+        <texture file="skeletal/spart_hero_brasidas_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="brasidas-armor-2">
+      <textures>
+        <texture file="skeletal/spart_hero_brasidas_02.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant file="biped/base_swordsman_shieldarm_ready.xml" name="Swordsman-Shieldarm-Ready" frequency="1"/>
+    <variant file="biped/base_swordsman_shieldarm_relax.xml" frequency="1" name="Swordsman-Shieldarm-Relax"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/death_cape_long.xml"/>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans.xml</material>
 </actor>

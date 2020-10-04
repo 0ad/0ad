@@ -57,6 +57,14 @@
         <texture file="skeletal/hele_tunic_3_c.png" name="baseTex"/>
       </textures>
     </variant>
+    <variant frequency="2" name="hele-tunic-4a">
+      <props>
+        <prop actor="props/units/armor/greave_11_bronze_l.xml" attachpoint="leg_L"/>
+      </props>
+      <textures>
+        <texture file="skeletal/hele_tunic_4_a.png" name="baseTex"/>
+      </textures>
+    </variant>
   </group>
   <group>
     <variant file="biped/base_hoplite.xml"/>
