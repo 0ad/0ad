@@ -28,11 +28,12 @@
 # Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020
 # soloooy0 fg <juanjo.fg@hotmail.com>, 2017
 # Swyter ™ <Swyterzone@gmail.com>, 2014-2018
+# Swyter ™ <Swyterzone@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-06 07:17+0000\n"
-"PO-Revision-Date: 2020-10-01 08:10+0000\n"
+"PO-Revision-Date: 2020-10-04 20:27+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -74,7 +75,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr "Puedes cambiar entre pantalla completa y modo ventana al presionar Alt + Enter. En modo ventana, puedes cambiar el tamaño de la ventana. Si el juego ejecuta de forma lenta, puedes cambiar la configuración en la ventana de opciones: intenta desactivar las características “Efectos de agua HQ” y “Sombras”."
+msgstr "Puedes alternar entre pantalla completa y modo ventana presionando Alt + Enter. En modo ventana, puedes cambiar el tamaño de la ventana. Si el juego se ejecuta de forma lenta, puedes cambiar la configuración en la ventana de opciones: prueba a desactivar las opciones “Efectos de agua HQ” y “Sombras”."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -110,11 +111,11 @@ msgstr "• Flechas direccionales o WASD para mover la cámara."
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr "• Ctrl + flechas, o shift + rueda del ratón, para rotar la cámara"
+msgstr "• Ctrl + cursores, o Mayús + rueda del ratón, para rotar la cámara"
 
 #: gui/manual/intro.txt:16
 msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
-msgstr "• Rueda del ratón, o “=” / “+” y “-” / “−” para acercar/alejar"
+msgstr "• Rueda del ratón, o “=”/“+” y “-”/“−” para acercar/alejar"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -213,7 +214,7 @@ msgstr "  Alt + F4 – Immediately close the game, without asking for confirmati
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter (Return) – Toggle between fullscreen and windowed"
-msgstr "Alt + Enter (Intro) – Cambiar entre pantalla completa y ventana"
+msgstr "Alt + Intro – Cambiar entre pantalla completa y ventana"
 
 #: gui/manual/intro.txt:43
 msgid "  ~ or F9 – Toggle console"
@@ -227,11 +228,11 @@ msgstr "Alt + F – Mostrar FPS"
 msgid ""
 "  F11 – Toggle real-time profiler (cycles through the displays of "
 "information)"
-msgstr "F11 – Alternar perfilado en tiempo real (cambia entre diferentes paneles de información)"
+msgstr "F11 – Mostrar u ocultar el analizador de rendimiento en tiempo real (cambia entre diferentes paneles de información)"
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
-msgstr "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
+msgstr "  Mayús + F11 – Save current profiler data to “logs/profile.txt”"
 
 #: gui/manual/intro.txt:47
 msgid ""
@@ -245,7 +246,7 @@ msgid ""
 "  Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, "
 "location is displayed in the top left of the GUI after the file has been "
 "saved, and can also be seen in the console/logs if you miss it there)"
-msgstr "  Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)"
+msgstr "  Mayús + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)"
 
 #: gui/manual/intro.txt:49
 msgid "  Tab, Alt + S – Switch to the next tab"
@@ -253,7 +254,7 @@ msgstr "  Tab, Alt + S – Switch to the next tab"
 
 #: gui/manual/intro.txt:50
 msgid "  Shift + Tab, Alt + W – Switch to the previous tab"
-msgstr "  Shift + Tab, Alt + W – Switch to the previous tab"
+msgstr "  Mayús + Tab, Alt + W – Switch to the previous tab"
 
 #: gui/manual/intro.txt:52
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
@@ -285,11 +286,11 @@ msgstr "  Alt + Triple Left Click \\[on unit] – Select all your units of the s
 
 #: gui/manual/intro.txt:57
 msgid "  Shift + F5 – Quicksave"
-msgstr "  Shift + F5 – Quicksave"
+msgstr "  Mayús + F5 – Guardado rápido"
 
 #: gui/manual/intro.txt:58
 msgid "  Shift + F8 – Quickload"
-msgstr "  Shift + F8 – Quickload"
+msgstr "  Mayús + F8 – Carga rápida"
 
 #: gui/manual/intro.txt:59
 msgid "  F10 – Toggle menu"
@@ -305,7 +306,7 @@ msgstr "  Esc – Close all dialogs (chat, menu) or clear selected units"
 
 #: gui/manual/intro.txt:62
 msgid "  Enter (Return) – Open chat or send message"
-msgstr "Enter (Intro) – Abrir chat o enviar mensaje"
+msgstr "Intro – Abrir chat o enviar mensaje"
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
@@ -329,7 +330,7 @@ msgstr "  Delete – Delete currently selected unit(s)/structure(s), ask for con
 msgid ""
 "  Shift + Delete – Immediately delete currently selected "
 "unit(s)/structure(s), without asking for confirmation"
-msgstr "  Shift + Delete – Immediately delete currently selected unit(s)/structure(s), without asking for confirmation"
+msgstr "  Mayús + Delete – Immediately delete currently selected unit(s)/structure(s), without asking for confirmation"
 
 #: gui/manual/intro.txt:68
 msgid "  / (Slash) – Select idle fighter"
@@ -337,7 +338,7 @@ msgstr "  / (Slash) – Select idle fighter"
 
 #: gui/manual/intro.txt:69
 msgid "  Shift + / (Slash) – Add idle fighter to selection"
-msgstr "  Shift + / (Slash) – Add idle fighter to selection"
+msgstr "  Mayús + / (Slash) – Add idle fighter to selection"
 
 #: gui/manual/intro.txt:70
 msgid "  Alt + / (Slash) – Select all idle fighters"
@@ -351,7 +352,7 @@ msgstr "  . (Period) – Select idle worker (including citizen-soldiers)"
 msgid ""
 "  Shift + . (Period) – Add idle worker to selection (including citizen-"
 "soldiers)"
-msgstr "  Shift + . (Period) – Add idle worker to selection (including citizen-soldiers)"
+msgstr "  Mayús + . (Period) – Add idle worker to selection (including citizen-soldiers)"
 
 #: gui/manual/intro.txt:73
 msgid ""
@@ -364,7 +365,7 @@ msgstr "  \\\\ (Backslash) – Select idle unit"
 
 #: gui/manual/intro.txt:75
 msgid "  Shift + \\\\ (Backslash) – Add idle unit to selection"
-msgstr "  Shift + \\\\ (Backslash) – Add idle unit to selection"
+msgstr "  Mayús + \\\\ (Backslash) – Add idle unit to selection"
 
 #: gui/manual/intro.txt:76
 msgid "  Alt + \\\\ (Backslash) – Select all idle units"
@@ -398,13 +399,13 @@ msgstr "  1 (and so on up to 0) – Select the unit(s)/structure(s) in control g
 msgid ""
 "  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr "  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected unit(s)/structure(s)"
+msgstr "  Mayús + 1 (to 0) – Add control group 1 (to 0) to the selected unit(s)/structure(s)"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "  Ctrl + F5 (and so on up to F8) – Mark the current camera position, for "
 "jumping back to later"
-msgstr "  Ctrl + F5 (and so on up to F8) – Mark the current camera position, for jumping back to later"
+msgstr "  Ctrl + F5 ó (F6, F7 ó F8) – Fija la posición actual de la cámara, para poder saltar a ella posteriormente"
 
 #: gui/manual/intro.txt:84
 msgid ""
@@ -457,15 +458,15 @@ msgstr "  Ctrl + O – Toggle in-game objectives panel"
 
 #: gui/manual/intro.txt:94
 msgid "  Ctrl + P – Toggle in-game tutorial panel"
-msgstr "  Ctrl + P – Toggle in-game tutorial panel"
+msgstr "  Ctrl + P – Mostrar el panel de tutorial durante la partida"
 
 #: gui/manual/intro.txt:95
 msgid "  Alt + Shift + T – Toggle structure tree panel"
-msgstr "  Alt + Shift + T – Toggle structure tree panel"
+msgstr "  Alt + Mayús + T – Toggle structure tree panel"
 
 #: gui/manual/intro.txt:96
 msgid "  Alt + Shift + H – Toggle civilization info panel"
-msgstr "  Alt + Shift + H – Toggle civilization info panel"
+msgstr "  Alt + Mayús + H – Toggle civilization info panel"
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
@@ -485,31 +486,31 @@ msgstr "  P + Right Click – Patrol"
 
 #: gui/manual/intro.txt:102
 msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
-msgstr "  Shift + Right Click – Queue the move/build/gather/etc. order"
+msgstr "  Mayús + Right Click – Queue the move/build/gather/etc. order"
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  Alt + Right Click – Order one unit from the current selection to "
 "move/build/gather/etc. and unselect it. Used to quickly dispatch units with "
 "specific tasks"
-msgstr "  Alt + Right Click – Order one unit from the current selection to move/build/gather/etc. and unselect it. Used to quickly dispatch units with specific tasks"
+msgstr "  Alt + Clic derecho – Ordenar a una unidad de la selección actual que se mueva/construya/recolecte/etc. y quitarla de la selección. Se utiliza para dar ordenes rápidas a las unidades encargándoles tareas específicas."
 
 #: gui/manual/intro.txt:104
 msgid ""
 "  Shift + Left Click when training units – Add units in batches (the batch "
 "size is 5 by default and can be changed in the options)"
-msgstr "  Shift + Left Click when training units – Add units in batches (the batch size is 5 by default and can be changed in the options)"
+msgstr "  Mayús + Clic izquierdo mientras se adiestran unidades – Añade grupos de unidades (el tamaño por defecto de los grupos es 5 y se puede cambiar en las opciones)"
 
 #: gui/manual/intro.txt:105
 msgid ""
 "  Shift + Left Click or Left Drag over unit on map – Add unit to selection"
-msgstr "  Shift + Left Click or Left Drag over unit on map – Add unit to selection"
+msgstr "  Mayús + Left Click or Left Drag over unit on map – Add unit to selection"
 
 #: gui/manual/intro.txt:106
 msgid ""
 "  Ctrl + Left Click or Left Drag over unit on map – Remove unit from "
 "selection"
-msgstr "  Ctrl + Left Click or Left Drag over unit on map – Remove unit from selection"
+msgstr "  Ctrl + Clic izquierdo, o arrastrar con el botón izquierdo pulsado, sobre unidades – Quita las unidades de la selección"
 
 #: gui/manual/intro.txt:107
 msgid "  Alt + Left Drag over units on map – Only select military units"
@@ -526,7 +527,7 @@ msgstr "  I + Left Drag over units on map – Only select idle units"
 
 #: gui/manual/intro.txt:110
 msgid "  O + Left Drag over units on map – Only select wounded units"
-msgstr "  O + Left Drag over units on map – Only select wounded units"
+msgstr "  O + Clic izquierdo y arrastrar sobre las unidades – Selecciona solamente las unidades heridas"
 
 #: gui/manual/intro.txt:111
 msgid ""
@@ -582,20 +583,20 @@ msgstr "Alt + G – Mostrar interfaz de usuario"
 
 #: gui/manual/intro.txt:122
 msgid "  Alt + D – Toggle developer overlay (with developer options)"
-msgstr "Alt + D – Mostrar la capa de desarrollo (con opciones para los desarrolladores)"
+msgstr "Alt + D – Mostrar panel de desarrollo (con opciones para los desarrolladores)"
 
 #: gui/manual/intro.txt:123
 msgid ""
 "  Alt + Shift + W – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr "  Alt + Shift + W – Toggle wireframe mode (press once to get wireframes overlaid over the textured models, twice to get just the wireframes colored by the textures, thrice to get back to normal textured mode)"
+msgstr "  Alt + Mayús + W – Activa y alterna la vista de alambre (pulsando una vez la vista de alambre se superpone a los modelos texturizados, pulsando dos veces se mostrará solo el alambre coloreado con las texturas, y finalmente pulsando tres veces volveremos al modo normal con texturas)"
 
 #: gui/manual/intro.txt:124
 msgid ""
 "  Alt + Shift + S – Toggle unit silhouettes (might give a small performance "
 "boost)"
-msgstr "  Alt + Shift + S – Toggle unit silhouettes (might give a small performance boost)"
+msgstr "  Alt + Mayús + S – Mostrar siluetas de las unidades (puede ayudar a mejorar el rendimiento)"
 
 #: gui/manual/intro.txt:125
 msgid "  Alt + Z – Toggle sky"
@@ -657,7 +658,7 @@ msgstr "  Ctrl + A or Ctrl + ← (Left) – Rotate camera clockwise around terra
 msgid ""
 "  Ctrl + D or Ctrl + → (Right) – Rotate camera counter-clockwise around "
 "terrain"
-msgstr "  Ctrl + D or Ctrl + → (Right) – Rotate camera counter-clockwise around terrain"
+msgstr "  Ctrl + D o Ctrl + → (Derecha) – Rotar cámara en sentido antihorario sobre el terreno"
 
 #: gui/manual/intro.txt:140
 msgid "  Q – Rotate camera clockwise around terrain"
@@ -670,13 +671,13 @@ msgstr "  E – Rotate camera counter-clockwise around terrain"
 #: gui/manual/intro.txt:142
 msgid ""
 "  Shift + Mouse Wheel Rotate Up – Rotate camera clockwise around terrain"
-msgstr "  Shift + Mouse Wheel Rotate Up – Rotate camera clockwise around terrain"
+msgstr "  Mayús + Rueda del ratón arriba – Rota la cámera en sentido horiario sobre el terreno"
 
 #: gui/manual/intro.txt:143
 msgid ""
 "  Shift + Mouse Wheel Rotate Down – Rotate camera counter-clockwise around "
 "terrain"
-msgstr "  Shift + Mouse Wheel Rotate Down – Rotate camera counter-clockwise around terrain"
+msgstr "  Mayús + Mouse Wheel Rotate Down – Rotate camera counter-clockwise around terrain"
 
 #: gui/manual/intro.txt:144
 msgid ""
@@ -685,7 +686,7 @@ msgstr "  F – Follow the selected unit (move the camera to stop following the 
 
 #: gui/manual/intro.txt:145
 msgid "  R – Reset camera zoom and orientation"
-msgstr "R – Restaurar orientación y zoom de la cámara"
+msgstr "R – Restaurar zoom y orientación de la cámara"
 
 #: gui/manual/intro.txt:146
 msgid "  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)"
@@ -734,4 +735,4 @@ msgstr "  Delete – Delete the selected saved game, ask for confirmation"
 msgid ""
 "  Shift + Delete – Immediately delete the selected saved game, without "
 "asking for confirmation"
-msgstr "  Shift + Delete – Immediately delete the selected saved game, without asking for confirmation"
+msgstr "  Mayús + Supr – Borra al instante la partida guardada seleccionada sin pedir confirmación"

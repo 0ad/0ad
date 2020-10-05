@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-09-30 23:58+0000\n"
+"PO-Revision-Date: 2020-10-04 20:30+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +108,7 @@ msgstr "Cuerpo a cuerpo"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:23
 msgid "Cavalry Axeman"
-msgstr ""
+msgstr "Caballero con hacha"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:24
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:20
@@ -128,7 +128,7 @@ msgstr "Lanceros a caballo"
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
 msgid "Counters: 1.5× vs Cavalry."
-msgstr ""
+msgstr "Contadores: 1.5× contra caballería."
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
@@ -176,7 +176,7 @@ msgstr "A distancia"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:29
 msgid "Ranged Cavalry"
-msgstr "Caballería a distancia"
+msgstr "Arqueros a caballo"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:28
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:26
@@ -194,7 +194,7 @@ msgstr "Arquero a caballo"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:28
 msgid "Cavalry Javelineer"
-msgstr ""
+msgstr "Caballero con jabalina"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:29
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:27
@@ -203,39 +203,39 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:27
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:29
 msgid "Javelineer"
-msgstr ""
+msgstr "Soldado con jabalina"
 
 #: simulation/templates/template_unit_champion.xml:13
 msgid "Champion"
-msgstr "Campeonas"
+msgstr "Élite"
 
 #: simulation/templates/template_unit_champion.xml:14
 msgid "Champion Unit"
-msgstr "Unidad campeona"
+msgstr "Unidad de élite"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:22
 msgid "Champion Cavalry"
-msgstr "Caballería campeona"
+msgstr "Caballería de élite"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:27
 msgid "Champion Cavalry Archer"
-msgstr "Arquero Campeón a Caballo"
+msgstr "Arquero de élite a caballo"
 
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
 msgid "Champion Cavalry Axeman"
-msgstr ""
+msgstr "Caballero con hacha de élite"
 
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:26
 msgid "Champion Cavalry Javelineer"
-msgstr ""
+msgstr "Caballero con jabalina de élite"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
 msgid "Champion Cavalry Spearman"
-msgstr "Campeón lancero a caballo"
+msgstr "Lancero de élite a caballo"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:21
 msgid "Champion Cavalry Swordsman"
-msgstr "Espadachín campeón a caballo"
+msgstr "Espada de élite a caballo"
 
 #: simulation/templates/template_unit_champion_elephant.xml:19
 #: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:24
@@ -259,19 +259,19 @@ msgstr "de Infantería"
 
 #: simulation/templates/template_unit_champion_infantry.xml:16
 msgid "Champion Infantry"
-msgstr "Infantería campeona"
+msgstr "Infantería de élite"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:30
 msgid "Champion Archer"
-msgstr "Arquero campeón"
+msgstr "Arquero de élite"
 
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:21
 msgid "Champion Axeman"
-msgstr ""
+msgstr "Soldado de élite con hacha"
 
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:29
 msgid "Champion Infantry Javelineer"
-msgstr ""
+msgstr "Soldado con jabalina de élite"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:19
 msgid "Maceman"
@@ -279,11 +279,11 @@ msgstr "Macero"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:20
 msgid "Champion Maceman"
-msgstr "Campeón macero"
+msgstr "Macero de élite"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:26
 msgid "Champion Pikeman"
-msgstr "Piquero campeón"
+msgstr "Piquero de élite"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:27
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:27
@@ -292,7 +292,7 @@ msgstr "Piquero campeón"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:26
 msgid "Counters: 3× vs Cavalry."
-msgstr ""
+msgstr "Contadores: 3× contra caballería."
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:28
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
@@ -303,11 +303,11 @@ msgstr "Piquero"
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:26
 msgid "Champion Spearman"
-msgstr "Lancero campeón"
+msgstr "Lancero de élite"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:21
 msgid "Champion Swordsman"
-msgstr "Espadachín campeón"
+msgstr "Espada de élite"
 
 #: simulation/templates/template_unit_dog.xml:31
 msgid "War Dog"
@@ -330,7 +330,7 @@ msgstr "Matar y recolectar carne."
 msgid ""
 "Counters: 1.5× vs Cavalry. Cannot attack Structures, Ships, or Siege "
 "Engines."
-msgstr ""
+msgstr "Contadores: 1.5× contra caballería. No pueden atacar edificios, naves o máquinas de asedio."
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:8
 msgid "Kill to butcher for food."
@@ -352,11 +352,11 @@ msgstr "Héroe arquero a caballo"
 
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
 msgid "Hero Cavalry Axeman"
-msgstr ""
+msgstr "Héroe a caballo con hacha"
 
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:29
 msgid "Hero Cavalry Javelineer"
-msgstr ""
+msgstr "Héroe a caballo con jabalina"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:23
 msgid "Hero Cavalry Spearman"
@@ -384,11 +384,11 @@ msgstr "Héroe arquero"
 
 #: simulation/templates/template_unit_hero_infantry_axeman.xml:18
 msgid "Hero Axeman"
-msgstr ""
+msgstr "Héroe con hacha"
 
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:26
 msgid "Hero Infantry Javelineer"
-msgstr ""
+msgstr "Héroe de infantería con jabalina"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:23
 msgid "Hero Pikeman"
@@ -414,7 +414,7 @@ msgstr "Infantería cuerpo a cuerpo"
 
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:28
 msgid "Infantry Javelineer"
-msgstr ""
+msgstr "Infantería con jabalina"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:29
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:30
@@ -486,7 +486,7 @@ msgstr "Mercader"
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
-msgstr "Comercia entre muelles. Guarnece un comerciante a bordo para conseguir un beneficio adicional (+20% por comerciante). Recoge valiosos tesoros acuáticos."
+msgstr "Comercia entre muelles. Enrola comerciantes a bordo para conseguir beneficios adicionales (+20% por unidad). Recupera valiosos tesoros acuáticos."
 
 #: simulation/templates/template_unit_ship_merchant.xml:21
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -1061,7 +1061,7 @@ msgstr "Carro"
 
 #: simulation/templates/units/brit_champion_infantry.xml:5
 msgid "Brythonic Champion"
-msgstr "Campeón bretón"
+msgstr "Bretón de élite"
 
 #: simulation/templates/units/brit_champion_infantry.xml:6
 msgid "Argos"
@@ -1324,7 +1324,7 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Carthaginians "
 "have +25% sea trading bonus."
-msgstr "Recorre rutas comerciales entre puertos. Guarnece a un comerciante a bordo para conseguir un beneficio adicional (+20% por cada unidad). Recoge rentables tesoros acuáticos. Los cartagineses obtienen un +25% de bonificación de comercio marítimo."
+msgstr "Recorre rutas comerciales entre puertos. Enrola comerciantes a bordo para obtener beneficios adicionales (+20% por unidad). Recupera lucrativos tesoros acuáticos. Los cartagineses obtienen una bonificación de +25% en comercio marítimo."
 
 #: simulation/templates/units/cart_ship_quinquereme.xml:10
 msgid "Ḥameš-Mašōt"
@@ -1377,7 +1377,7 @@ msgstr "Bariogaisatos"
 
 #: simulation/templates/units/gaul_champion_infantry.xml:5
 msgid "Gallic Champion"
-msgstr "Campeón Galo"
+msgstr "Galo de élite"
 
 #: simulation/templates/units/gaul_champion_infantry.xml:6
 msgid "Soliduros"
@@ -1763,7 +1763,7 @@ msgstr "Ballestero"
 
 #: simulation/templates/units/mace_champion_infantry_crossbowman.xml:24
 msgid "Champion Crossbowman"
-msgstr "Ballestero Campeón"
+msgstr "Ballestero de élite"
 
 #: simulation/templates/units/mace_champion_infantry_crossbowman.xml:25
 msgid "Gastraphetophoros"
@@ -1793,7 +1793,7 @@ msgstr "Alejandro magno"
 
 #: simulation/templates/units/mace_hero_alexander.xml:22
 msgid "Counters: 1.2× vs Heroes."
-msgstr ""
+msgstr "Contadores: 1.2× contra héroes."
 
 #: simulation/templates/units/mace_hero_craterus.xml:9
 msgid "Craterus"
@@ -2275,7 +2275,7 @@ msgstr "Tamkarum Arami"
 msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
-msgstr "Intercambia recursos entre tus propios mercados y los de tus aliados. Los persas obtienen un +25% de bonificación de comercio terrestre."
+msgstr "Intercambia recursos entre tus propios mercados y los de tus aliados. Los persas tienen una bonificación de +25% en comercio terrestre."
 
 #: simulation/templates/units/plane.xml:48
 msgid "P-51 Mustang"
@@ -2892,7 +2892,7 @@ msgstr "Hieroû Thebaíou Lókhou Hoplítai"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
 msgid "Champion Spearman."
-msgstr "Lancero campeón."
+msgstr "Lancero de élite."
 
 #: simulation/templates/units/thespian_melanochitones.xml:5
 msgid "Thespian Black Cloak"

@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-22 08:08+0000\n"
-"PO-Revision-Date: 2020-10-01 18:13+0000\n"
+"PO-Revision-Date: 2020-10-04 20:17+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -485,7 +485,7 @@ msgstr "Cualquiera"
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "> %(rating)s"
-msgstr "%(rating)s"
+msgstr "> %(rating)s"
 
 #: gui/lobby/LobbyPage/GameListFilters/Rating.js:20
 #, javascript-format
@@ -536,7 +536,7 @@ msgstr "¿Está seguro de que quiere borrar la contraseña después de conectars
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr "Error desconocido. Esto normalmente sucede porque la misma dirección IP no puede registrar más de una cuenta en una hora."
+msgstr "Error desconocido. Esto suele ocurrir porque no puede registrar más de una cuenta en una hora con la misma dirección IP."
 
 #: gui/prelobby/common/terms/termslobby.js:9
 msgid "Terms of Service"

@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-28 07:09+0000\n"
-"PO-Revision-Date: 2020-09-28 08:21+0000\n"
-"Last-Translator: oriol90 <oriol.flors.mas@gmail.com>\n"
+"PO-Revision-Date: 2020-10-04 20:36+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +36,7 @@ msgstr "Atenesos"
 #: simulation/data/civs/mace.jsonCivBonuses[0].Description
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "Les estructures guanyen un 10% de salut i de punts de captura."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 #: simulation/data/civs/mace.jsonCivBonuses[0].Name
@@ -446,7 +446,7 @@ msgstr "Cartaginesos"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "+100% al temps de construcció, +100% al cost de pedra i +200% de salut per a les muralles."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -458,7 +458,7 @@ msgstr "Els cartaginesos construïen muralles triples a les seves ciutats."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "Allies +10% international trade bonus."
-msgstr "Bonificació del 10% en comerç internacional per a aliats"
+msgstr "Bonificació del 10% en comerç internacional per a aliats."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -614,7 +614,7 @@ msgstr "Ambaixada celta"
 
 #: simulation/data/civs/cart.jsonStructures[1].Special
 msgid "Train Celtic Mercenaries."
-msgstr ""
+msgstr "Recluta mercenaris celtes."
 
 #: simulation/data/civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
@@ -626,7 +626,7 @@ msgstr "Ambaixada ibèrica"
 
 #: simulation/data/civs/cart.jsonStructures[2].Special
 msgid "Train Iberian Mercenaries."
-msgstr ""
+msgstr "Recluta mercenaris ibers."
 
 #: simulation/data/civs/cart.jsonStructures[2].History
 msgid ""
@@ -635,18 +635,18 @@ msgstr "Els ibers eren coneguts per ser mercenaris ferotges, lleials als seus pa
 
 #: simulation/data/civs/cart.jsonStructures[3].Name
 msgid "Italic Embassy"
-msgstr ""
+msgstr "Ambaixada itàlica"
 
 #: simulation/data/civs/cart.jsonStructures[3].Special
 msgid "Train Italic Mercenaries."
-msgstr ""
+msgstr "Recluta mercenaris itàlics."
 
 #: simulation/data/civs/cart.jsonStructures[3].History
 msgid ""
 "When Hannibal invaded Italy and defeated the Romans in a series of battles, "
 "many of the peoples subject to Rome, including the Greeks and Samnites, "
 "revolted and joined the Carthaginian cause."
-msgstr ""
+msgstr "Quan Anníbal va envair Itàlia i va derrotar els romans en diverses batalles, molts pobles sotmesos a Roma, inclosos els grecs i els samnites, es van rebel·lar i van unir-se a la causa cartaginesa."
 
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
@@ -689,7 +689,7 @@ msgstr "La religió celta i el druïdisme inspiraven la seva mentalitat bel·lic
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Forges −15% technology resource costs and research time."
-msgstr ""
+msgstr "Redueix un 15% el cost i el temps d'investigació de les tecnologies a la forja."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Products from Gaul"
@@ -756,7 +756,7 @@ msgstr "Segadora"
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr "Els gals van inventar una segadora que va facilitar molt la collita del gra."
+msgstr "Els gals van inventar una segadora que facilitava molt la collita del gra."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -789,7 +789,7 @@ msgid ""
 "The Carnutes were druids from Aulercia. They fought when needed, and were "
 "largely responsible for turning back the Belgae incursions into Armorica and"
 " Aulercia."
-msgstr "Els carnuts eren druides d'Aulèrcia. Lluitaven quan se'ls necessitava, i foren dels principals responsables en aturar les incursions dels belgues a Armòrica i Aulèrcia."
+msgstr "Els carnuts eren druides d'Aulèrcia. Lluitaven quan se'ls necessitava, i foren els principals responsables en aturar les incursions dels belgues a Armòrica i Aulèrcia."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -879,7 +879,7 @@ msgstr "Amb l'excepció de les planes al·luvials i les valls dels rius, la pedr
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Javelineers −10% resource costs."
-msgstr ""
+msgstr "Els soldats ciutadans amb javelina aliats costen un 10% menys recursos."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1110,7 +1110,7 @@ msgstr "Amanishakheto"
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "-10% de temps de reclutament, +8 d'abast i -10% de dispersió d'atac per als arquers."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
@@ -1122,7 +1122,7 @@ msgstr "Tradició de tir amb arc"
 msgid ""
 "The Kushites had a tradition of fine archery and a penchant for using massed"
 " archers in battle."
-msgstr ""
+msgstr "Els cuixites tenien una tradició de bons tiradors i solien utilitzar un gran nombre d'arquers a la batalla."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "Monumental Architecture"
@@ -1131,7 +1131,7 @@ msgstr "Arquitectura monumental"
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "+20% al temps de construcció, salut i punts de captura de les estructures civils."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Description
 msgid "Train elite rank healers."
@@ -1177,7 +1177,7 @@ msgstr "Temple d'Amon"
 msgid ""
 "The Kushites can upgrade individual Temples to Temples of Amun, which can "
 "train Napatan Temple Guard champions and heal units faster."
-msgstr "Els cuixites poden millorar temples individuals a temples d'Amon, que permeten reclutar campions guardes del temple de Napata i curen les unitats més ràpid."
+msgstr "Els cuixites poden millorar temples individuals a temples d'Amon, que curen les unitats més ràpid i permeten reclutar campions guardes del temple de Napata."
 
 #: simulation/data/civs/kush.jsonStructures[1].Name
 msgid "Temple of Apedemak"
@@ -1187,7 +1187,7 @@ msgstr "Temple d'Apedemak"
 msgid ""
 "The Kushites can upgrade individual Temples to Temples of Apedemak, which "
 "can train Meroe Temple Guard champions and heal units faster."
-msgstr "Els cuixites poden millorar temples individuals a temples d'Apedemak, que permeten reclutar campions guardes del temple meroítics i curen les unitats més ràpid."
+msgstr "Els cuixites poden millorar temples individuals a temples d'Apedemak, que curen les unitats més ràpid i permeten reclutar campions guardes del temple meroítics."
 
 #: simulation/data/civs/kush.jsonStructures[2].Name
 msgid "Kushite Pyramids"
@@ -1198,7 +1198,7 @@ msgid ""
 "Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
 "Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
 "territory effect to Civic Centers."
-msgstr "Construir una piràmide cuixita petita desbloqueja la Fase de Vila. Construir una piràmide cuixita gran desbloqueja la Fase de Ciutat. Cada piràmide construïda afegeix +10% efecte territorial als centres cívics."
+msgstr "Construir una piràmide cuixita petita desbloqueja la Fase de Vila. Construir una piràmide cuixita gran desbloqueja la Fase de Ciutat. Cada piràmide construïda afegeix un 10% d'efecte territorial als centres cívics."
 
 #: simulation/data/civs/kush.jsonStructures[2].History
 msgid "The Kushites built over 200 pyramids in Nubia."
@@ -1301,7 +1301,7 @@ msgstr "Melèagre"
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Description
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Els centres cívics guanyen un 100% de salut i de punts de captura, i disparen el doble de fletxes per defecte."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
@@ -1322,7 +1322,7 @@ msgstr "Començant amb Alexandre, els monarques hel·lenístics van fundar molte
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr ""
+msgstr "Millora els campions portadors d'escut a Escuts de Plata, amb més atac i salut."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
 msgid "Silver Shields"
@@ -1333,7 +1333,7 @@ msgid ""
 "In India near the end of his long anabasis, Alexander gifted to the Royal "
 "Hypaspist corps shields of silver for their long and valiant service in his "
 "army."
-msgstr "A l'Índia, cap al final de la seva llarga anabasi, Alexandre va regalar als hipaspistes reials escuts de plata pel seu llarg i coratjós servei."
+msgstr "A l'Índia, cap al final de la seva llarga anàbasi, Alexandre va regalar als hipaspistes reials escuts de plata pel seu llarg i coratjós servei."
 
 #: simulation/data/civs/mace.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -1369,7 +1369,7 @@ msgid ""
 "his Asian possessions after the battle of Ipsos, he later won the Macedonian"
 " throne. Fearing lest they should be overpowered by Demetrios, the other "
 "Diadochi united against him and defeated him."
-msgstr "Un dels diàdocs, rei de Macedònia (294-288 aC), Demetri era conegut com un dels successors més valents i capaços d'Alexandre. Fill d'Antígon el Borni, aviat va guanyar moltes batalles importants i va ser proclamat rei, juntament amb el seu pare, l'any 306 aC. Després de perdre els seus territoris asiàtics a la batalla d'Ipsos, va aconseguir el tron de Macedònia. Per por de ser dominats per Demetri, els altres diàdocs es van unir contra ell i el van derrotar."
+msgstr "Un dels diàdocs, rei de Macedònia (294-288 aC), Demetri era conegut com un dels successors més valents i capaços d'Alexandre. Fill d'Antígon I el Borni, aviat va guanyar moltes batalles importants i va ser proclamat rei, juntament amb el seu pare, l'any 306 aC. Després de perdre els seus territoris asiàtics a la batalla d'Ipsos, va aconseguir el tron de Macedònia. Per por de ser dominats per Demetri, els altres diàdocs es van unir contra ell i el van derrotar."
 
 #: simulation/data/civs/mace.jsonFactions[0].Heroes[2].Name
 msgid "Demetrios the Besieger"
@@ -1377,7 +1377,7 @@ msgstr "Demetri Poliorcetes"
 
 #: simulation/data/civs/mace.jsonFactions[0].Description
 msgid "A Hellenistic kingdom bordering the Greek city-states."
-msgstr "Un regne hel·lenístic al voltant de les ciutats estat gregues."
+msgstr "Un regne hel·lenístic fronterer amb les ciutats estat gregues."
 
 #: simulation/data/civs/mace.jsonStructures[0].Special
 msgid ""
@@ -1395,7 +1395,7 @@ msgstr "Biblioteca"
 msgid ""
 "All Special Technologies are researched here. Building one reduces the cost "
 "of all other remaining technologies by 10%. Build limit: 1."
-msgstr "Totes les tecnologies especials s'investiguen aquí. Construir-lo redueix el cost de totes les tecnologies restants un 10%. Límit de construcció: 1."
+msgstr "Totes les tecnologies especials s'investiguen aquí. Construir-lo redueix el cost de totes les tecnologies restants en un 10%. Límit de construcció: 1."
 
 #: simulation/data/civs/mace.jsonStructures[1].History
 #: simulation/data/civs/ptol.jsonStructures[0].History
@@ -1404,7 +1404,7 @@ msgid ""
 "Alexander the Great founded libraries all over his new empire. These became "
 "a center of learning for an entirely new synthesized culture: the "
 "Hellenistic culture."
-msgstr "Alexandre el Gran va fundar biblioteques per tot el seu nou imperi. Van convertir-se en un centre d'aprenentatge per a una cultura de recent formació: la cultura hel·lenística."
+msgstr "Alexandre el Gran va fundar biblioteques per tot el seu nou imperi. Aquestes es van convertir en centres d'aprenentatge per a una nova cultura en expansió: la cultura hel·lenística."
 
 #: simulation/data/civs/mace.jsonHistory
 msgid ""
@@ -1423,7 +1423,7 @@ msgstr "Màuries"
 msgid ""
 "Mauryas have a +10% population cap bonus (e.g., 330 pop cap instead of the "
 "usual 300)."
-msgstr "Els màuries tenen una bonificació del 10% del màxim de població (per exemple 330 en lloc dels 300 normals)."
+msgstr "Els màuries tenen una bonificació del 10% al màxim de població (per exemple 330 en lloc dels 300 normals)."
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
@@ -1441,11 +1441,11 @@ msgstr "L'Imperi Màuria abastava dotzenes de regnes anteriorment independents s
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "Redueix en un 30% el temps de reclutament dels elefants."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "Tradició de cria d'elefants"
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].History
 msgid ""
@@ -1453,13 +1453,13 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr "L'Índia és la terra dels elefants. La guerra amb elefants es va originar a l'Índia i va continuar durant mil·lennis. Els elefants de guerra del Mediterrani oriental també procedien d'allà. Els reis indis els entrenaven en grans quantitats."
+msgstr "L'Índia és la terra dels elefants. La guerra amb elefants es va originar a l'Índia i va continuar durant mil·lennis. Els elefants de guerra del Mediterrani oriental també procedien d'allà. Els reis indis els entrenaven en gran nombre."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid ""
 "Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
-msgstr "-50 % al cost i temps de construcció; -50% al cost i el temps d'investigació de les tecnologies dels temples aliats i propis."
+msgstr "-50% al cost i temps de construcció dels temples aliats; -50% al cost i el temps d'investigació de les tecnologies dels temples."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1512,7 +1512,7 @@ msgstr "Brihadratha Maurya"
 msgid ""
 "The Indian peoples had a tradition of fine archery and a penchant for using "
 "massed archers in battle."
-msgstr ""
+msgstr "Els pobles indis tenien una tradició de bons tiradors i solien utilitzar un gran nombre d'arquers a la batalla."
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -1536,11 +1536,11 @@ msgstr "Imperi Maurya de l'Índia"
 
 #: simulation/data/civs/maur.jsonStructures[0].Name
 msgid "Elephant Stable"
-msgstr ""
+msgstr "Estable d'elefants"
 
 #: simulation/data/civs/maur.jsonStructures[0].Special
 msgid "Train Elephants and research Elephant technologies."
-msgstr ""
+msgstr "Recluta elefants i investiga tecnologies relacionades."
 
 #: simulation/data/civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
@@ -1551,7 +1551,7 @@ msgid ""
 "Contentment: +10% Health and +10% resource gathering rates for all citizens "
 "and allied citizens within its range. Can be built anywhere except in enemy "
 "territory. Max Built: 10."
-msgstr "Satisfacció : +10% de salut i +10% de velocitat de recollida de recursos per a tots els ciutadans propis i aliats dins del seu camp de visió. Es pot construir a tot arreu excepte en territori enemic. Màxim de construcció: 10."
+msgstr "Satisfacció : +10% de salut i +10% de velocitat de recollida de recursos per a tots els ciutadans propis i aliats dins del seu abast. Es pot construir a tot arreu excepte en territori enemic. Màxim de construcció: 10."
 
 #: simulation/data/civs/maur.jsonHistory
 msgid ""
@@ -1573,7 +1573,7 @@ msgstr "Perses"
 msgid ""
 "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the "
 "usual 300)."
-msgstr "Els perses tenen una bonificació del 10% del màxim de població (per exemple 330 en lloc dels 300 normals)."
+msgstr "Els perses tenen una bonificació del 10% al màxim de població (per exemple 330 en lloc dels 300 normals)."
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Great King's Levy"
@@ -1659,7 +1659,7 @@ msgstr "Xsayarsa II"
 msgid ""
 "The Iranian peoples had a tradition of fine archery and a penchant for using"
 " massed archers in battle."
-msgstr ""
+msgstr "Els pobles iranians tenien una tradició de bons tiradors i solien utilitzar un gran nombre d'arquers a la batalla."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry."
@@ -1696,11 +1696,11 @@ msgid ""
 "Sardis to Susa; Darius the Great and Xerxes also built the magnificent "
 "Persepolis; Cyrus the Great greatly improved Ecbatana and virtually "
 "'rebuilt' the old Elamite capital of Susa."
-msgstr "Els perses van construir la meravellosa ruta reial de Sardes a Susa, que feia 2700 quilòmetres; Darios el Gran i Xerxes van construir la magnífica Persèpolis; Cir el Gran va millorar Ecbàtana i pràcticament va construir de nou la vella capital elamita de Susa."
+msgstr "Els perses van construir la meravellosa ruta reial de Sardes a Susa, de 2700 quilòmetres de llargada; Darios el Gran i Xerxes van construir la magnífica Persèpolis; Cir el Gran va millorar enormement Ecbàtana i pràcticament va reconstruir la vella capital elamita de Susa."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
 msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "El temps de reclutament de la infanteria campiona Anušiya es redueix al 50%, però també tenen un 10% menys de salut."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
 msgid "Immortals"
@@ -1710,7 +1710,7 @@ msgstr "Immortals"
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "Els aquemènides mantenien un cos d'elit de 10.000 homes, anomenats Athanatoi (\"Immortals\") pels autors grecs."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
@@ -1736,7 +1736,7 @@ msgid ""
 "Empire. He was also renown as a benevolent conqueror. (OP - Kurush). "
 "Technically the second ruler of the Persians by that name, and so appears as"
 " Kurush II on his documents and coins. Kurush I was his grandfather."
-msgstr "Cir (regnat 559-530 aC) El fill d'una princesa mede i el rei d'Anshan; justament anomenat el \"Pare de l'Imperi\", Cir el Gran va conquerir Mèdia, Lídia, Babilònia i Bactriana, establint així l'Imperi Persa. També va ser reconegut com a conqueridor benevolent. Tècnicament va ser el segon rei dels perses amb aquest nom (Kurush en persa), i apareix com a Kurush II als documents i monedes; Kurush I era el seu avi."
+msgstr "Cir (regnat 559-530 aC) era fill d'una princesa mede i el rei d'Anshan; justament anomenat el \"Pare de l'Imperi\", Cir el Gran va conquerir Mèdia, Lídia, Babilònia i Bactriana, establint així l'Imperi Persa. També va ser reconegut com a conqueridor benevolent. Tècnicament va ser el segon rei dels perses amb aquest nom (Kurush en persa), i apareix com a Kurush II als documents i monedes; Kurush I era el seu avi."
 
 #: simulation/data/civs/pers.jsonFactions[0].Heroes[0].Name
 msgid "Kurush II"
@@ -1818,7 +1818,7 @@ msgid ""
 "Egypt was a net exporter of grain, so much so that large cities such as "
 "Athens, Antioch, and Rome came to rely upon Egyptian grain in order to feed "
 "their masses."
-msgstr "Egipte era un exportador net de gra, tant que grans ciutats com Atenes, Antioquia i Roma en depenien per alimentar les masses."
+msgstr "Egipte era un exportador net de gra, tant, que grans ciutats com Atenes, Antioquia i Roma en depenien per poder alimentar les masses."
 
 #: simulation/data/civs/ptol.jsonAINames[0]
 msgid "Ptolemy Soter"
@@ -1978,7 +1978,7 @@ msgstr "Romans"
 
 #: simulation/data/civs/rome.jsonCivBonuses[0].Description
 msgid "Roman Legionaries can form a Testudo."
-msgstr "Els legionaris romans poden executar la formació Testudo."
+msgstr "Els legionaris romans poden distribuir-se en formació Testudo."
 
 #: simulation/data/civs/rome.jsonCivBonuses[0].Name
 msgid "Testudo Formation"
@@ -2169,7 +2169,7 @@ msgstr "Murus Latericius"
 
 #: simulation/data/civs/rome.jsonStructures[1].Special
 msgid "Can be built in neutral and enemy territory to strangle enemy towns."
-msgstr "Es pot construir a territori neutral o enemic per escanyar les ciutats enemigues."
+msgstr "Es pot construir en territori neutral o enemic per escanyar les ciutats enemigues."
 
 #: simulation/data/civs/rome.jsonStructures[1].History
 msgid "Turf walls built by legionaries during sieges."
@@ -2331,11 +2331,11 @@ msgstr "La bella i vigorosa raça de cavalls niseus millora la salut de la caval
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
 msgid ""
 "Unlock either Champion Infantry Pikemen or Champion Infantry Swordsmen."
-msgstr ""
+msgstr "Desbloqueja el piquer d'infanteria campió o bé l'espadatxí d'infanteria campió."
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
 msgid "Traditional Army vs Reform Army"
-msgstr ""
+msgstr "Exèrcit tradicional vs Exèrcit reformat"
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -2464,7 +2464,7 @@ msgstr "Dienekes"
 #: simulation/data/civs/spart.jsonAINames[2]
 #: simulation/data/civs/spart.jsonFactions[0].Heroes[1].Name
 msgid "Brasidas"
-msgstr "Bràsides"
+msgstr "Brasidas"
 
 #: simulation/data/civs/spart.jsonAINames[3]
 msgid "Agis"
@@ -2502,7 +2502,7 @@ msgstr "Agesípolis"
 msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers."
-msgstr ""
+msgstr "Les ciutadanes espartanes no poden ser capturades i es defensaran tenaçment contra qualsevol atacant."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
@@ -2536,7 +2536,7 @@ msgstr "Els cants de guerra eren himnes de batalla que cantaven els hoplites qua
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "Els llancers campions d'infanteria guanyen un 25% de salut, però triguen un 5% més a reclutar-se."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"

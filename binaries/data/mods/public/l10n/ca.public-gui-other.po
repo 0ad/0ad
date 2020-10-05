@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-09-18 17:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-10-03 10:56+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -415,7 +415,7 @@ msgstr "Per jugador"
 
 #: gui/common/gamedescription.js:382
 msgid "World Population Cap"
-msgstr ""
+msgstr "Màxim de població mundial"
 
 #: gui/common/gamedescription.js:390
 msgid "Treasures"
@@ -702,7 +702,7 @@ msgstr "Per defecte"
 #: gui/common/settings.js:400
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(món)"
 
 #: gui/common/settings.js:401 gui/common/settings.js:405
 msgctxt "population capacity"
@@ -756,29 +756,29 @@ msgstr "%(percentage)s%%"
 msgid ""
 "%(label)s\n"
 "%(details)s"
-msgstr ""
+msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:187
 msgid "Resistance:"
-msgstr ""
+msgstr "Resistència:"
 
 #: gui/common/tooltips.js:198
 msgid "Damage:"
-msgstr ""
+msgstr "Dany:"
 
 #: gui/common/tooltips.js:201 gui/common/tooltips.js:221
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(resistancePercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(resistancePercentage)s"
 
 #: gui/common/tooltips.js:206 gui/common/tooltips.js:226
 #, javascript-format
 msgid "(%(resistancePercentage)s)"
-msgstr ""
+msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:219
 msgid "Capture:"
-msgstr ""
+msgstr "Captura:"
 
 #: gui/common/tooltips.js:223 gui/common/tooltips.js:321
 msgctxt "damage type"
@@ -876,7 +876,7 @@ msgstr "%(amount)s %(name)s"
 #: gui/common/tooltips.js:327
 #, javascript-format
 msgid "%(splashShape)s Splash"
-msgstr ""
+msgstr "Dany d'àrea %(splashShape)s"
 
 #: gui/common/tooltips.js:330
 #, javascript-format
@@ -912,13 +912,13 @@ msgstr "dóna %(name)s"
 #: gui/common/tooltips.js:381
 #, javascript-format
 msgid "%(attackType)s"
-msgstr ""
+msgstr "%(attackType)s"
 
 #: gui/common/tooltips.js:404
 #, javascript-format
 msgid ""
 "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
 
 #: gui/common/tooltips.js:415
 msgid "Attack:"
@@ -1204,11 +1204,11 @@ msgstr "Botí:"
 #: gui/common/tooltips.js:999
 #, javascript-format
 msgid "%(label)s %(icons)s"
-msgstr ""
+msgstr "%(label)s %(icons)s"
 
 #: gui/common/tooltips.js:1000
 msgid "Dropsite for:"
-msgstr ""
+msgstr "Punt de descàrrega de:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI element will open the Template Details GUI page.
@@ -1225,7 +1225,7 @@ msgstr "Feu clic per veure més informació."
 #: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
-msgstr ""
+msgstr "%(nick)s — %(name)s"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
@@ -1813,7 +1813,7 @@ msgstr "Unitats reclutadores"
 #: gui/reference/viewer/ViewerPage.js:167
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
-msgstr ""
+msgstr "%(hotkey)s: Tanca el visualitzador de plantilles"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
@@ -2218,7 +2218,7 @@ msgstr "%(colorIndicator)s %(playerListing)s"
 #: gui/summary/summary.js:195
 msgctxt "Charts player color indicator"
 msgid "■"
-msgstr ""
+msgstr "■"
 
 #: gui/summary/summary.js:225
 msgctxt "Player listing"
@@ -2538,11 +2538,11 @@ msgstr "Tècnic de so"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
-msgstr ""
+msgstr "Compositor principal"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
-msgstr ""
+msgstr "Tècnics d'àudio"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
@@ -2611,7 +2611,7 @@ msgstr "Veus"
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
-msgstr ""
+msgstr "Àudio"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -2658,7 +2658,7 @@ msgstr "Scripts de mapes aleatoris"
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr ""
+msgstr "Mapes"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -2884,31 +2884,31 @@ msgstr "Antialiàsing"
 
 #: gui/options/options.json[1].options[5].list[0].tooltip
 msgid "Do not use sharpening."
-msgstr ""
+msgstr "No milloris la nitidesa."
 
 #: gui/options/options.json[1].options[5].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
-msgstr ""
+msgstr "Contrast adaptive sharpening, una tècnica de millora de la nitidesa ràpida i basada en el contrast."
 
 #: gui/options/options.json[1].options[5].list[1].label
 msgid "FidelityFX CAS"
-msgstr ""
+msgstr "FidelityFX CAS"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Reduce blurry effects."
-msgstr ""
+msgstr "Redueix els efectes de difuminat."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Sharpening"
-msgstr ""
+msgstr "Millora de la nitidesa"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "The sharpness of the choosen pass."
-msgstr ""
+msgstr "La nitidesa del pas escollit."
 
 #: gui/options/options.json[1].options[6].label
 msgid "Sharpness factor"
-msgstr ""
+msgstr "Factor de nitidesa"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -3916,7 +3916,7 @@ msgstr "Compte! Els peixos no són un recurs infinit!"
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
-msgstr ""
+msgstr "FORGE"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."
@@ -4015,17 +4015,17 @@ msgstr "DESTACAMENTS"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral or own territory."
-msgstr ""
+msgstr "Es construeix en territori propi o neutral."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."
-msgstr ""
+msgstr "Barat i ràpid de construir, però poc resistent."
 
 #: gui/text/tips/outposts.txt:4
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr ""
+msgstr "Refugieu-hi infanteria per augmentar molt el camp de visió i per evitar perdre el control del destacament en territori aliè."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"

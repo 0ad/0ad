@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-07 07:10+0000\n"
-"PO-Revision-Date: 2020-10-01 15:41+0000\n"
+"PO-Revision-Date: 2020-10-04 06:56+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -445,7 +445,7 @@ msgstr "«%(name)s» no se puede construir en territorio %(territoryType)s. Sól
 #: simulation/components/BuildRestrictions.js:228
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
-msgstr "«%(name)s» debe construirse en la línea costera"
+msgstr "«%(name)s» debe construirse sobre una línea de costa válida"
 
 #: simulation/components/BuildRestrictions.js:256
 #, javascript-format
@@ -572,7 +572,7 @@ msgstr "%(player)s se considera derrotado por hacer trampas (trucos)."
 
 #: simulation/helpers/Cheat.js:67
 msgid "You need to select a building that trains units."
-msgstr "Es necesario seleccionar un edificio que entrena unidades."
+msgstr "Es necesario seleccionar un edificio que reclutar unidades."
 
 #: simulation/helpers/Commands.js:114
 msgid "(Cheat - control all units)"
@@ -898,4 +898,4 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra es el bot de IA predeterminado de 0 A.D. Por favor comunica todos los problemas que encuentres a Wildfire Games (enlace en el menú principal).\n\nLa tasa de obtención de recursos y obtención de beneficio comercial de la IA dependen del nivel de dificultad (Sandbox -58%, Muy fácil –44%, Fácil –25%, Medio ±0%, Difícil +25%, Muy difícil +56%). Los niveles más fáciles también llevan un ritmo más lento de investigación, reclutamiento y construcción. Además, en el nivel \"Sandbox\" no se expande ni ataca."
+msgstr "Petra es el bot de IA predeterminado de 0 A.D. Por favor comunica todos los problemas que encuentres a Wildfire Games (enlace en el menú principal).\n\nLa tasa de obtención de recursos y ganancias comerciales de la IA dependen del nivel de dificultad (Sandbox -58%, Muy fácil –44%, Fácil –25%, Medio ±0%, Difícil +25%, Muy difícil +56%). Los niveles más fáciles también llevan un ritmo más lento de investigación, reclutamiento y construcción. Además, en el nivel \"Sandbox\" no se expande ni ataca."

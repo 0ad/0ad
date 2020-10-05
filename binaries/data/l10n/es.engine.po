@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-22 07:08+0000\n"
-"PO-Revision-Date: 2020-10-01 18:24+0000\n"
+"PO-Revision-Date: 2020-10-04 12:19+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgstr "Error"
 
 #: lobby/XmppClient.cpp:1246 lobby/XmppClient.cpp:1290
 msgid "No error"
-msgstr "Sin error"
+msgstr "Sin errores"
 
 #: lobby/XmppClient.cpp:1248
 msgid "Player already logged in"
@@ -132,7 +132,7 @@ msgstr "El servidor a cortado toda comunicación"
 
 #: lobby/XmppClient.cpp:1297
 msgid "An I/O error occurred"
-msgstr "Se ha producido un error de E/S (de entrada/salida)"
+msgstr "Se ha producido un error de E/S"
 
 #: lobby/XmppClient.cpp:1299
 msgid "The connection was refused by the server"
@@ -170,7 +170,7 @@ msgstr "No hay ninguna conexión activa"
 
 #: lobby/XmppClient.cpp:1329
 msgid "Your account has been successfully registered"
-msgstr "Hemos registrado tu cuenta en el sistema."
+msgstr "Tu cuenta se ha creado con éxito"
 
 #: lobby/XmppClient.cpp:1330
 msgid "Not all necessary information provided"
@@ -244,4 +244,4 @@ msgstr "La captura de pantalla se ha guardado en «%s»"
 
 #: ps/scripting/JSInterface_Debug.cpp:83
 msgid "custom build"
-msgstr "versión propia"
+msgstr "revisión"

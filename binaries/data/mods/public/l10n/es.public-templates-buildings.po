@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-10-01 14:41+0000\n"
+"PO-Revision-Date: 2020-10-04 20:30+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +100,7 @@ msgstr "Casa"
 
 #: simulation/templates/template_structure_civic_stoa.xml:33
 msgid "Train Mercenary Champions."
-msgstr "Entrena Campeones Mercenarios."
+msgstr "Recluta mercenarios de élite."
 
 #: simulation/templates/template_structure_civic_stoa.xml:34
 #: simulation/templates/template_structure_civic_temple.xml:36
@@ -310,7 +310,7 @@ msgstr "Militar"
 msgid ""
 "Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
 "Siege Engine technologies."
-msgstr "Entrena Campeones de Infantería Ballesteros, construye Máquinas de Asedio e investiga tecnologías de Máquinas de Asedio."
+msgstr "Recluta ballesteros de infantería de élite, construye máquinas de asedio e investiga tecnologías relacionadas con maquinaria de asedio."
 
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_arsenal.xml:25
@@ -330,7 +330,7 @@ msgstr "Cuartel"
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Establish trade"
 " routes. Construct Ships and research Ship technologies."
-msgstr "Se puede construir sobre la línea de costa de territorio propio, neutral o aliado. Se pueden establecer rutas de comercio. Posibilita la construcción de barcos e investigar tecnología naviera."
+msgstr "Se construye sobre la línea de costa de territorio propio, neutral o aliado. Se pueden establecer rutas de comercio. Posibilita la construcción de barcos e investigar tecnología naviera."
 
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/structures/brit_crannog.xml:16
@@ -368,13 +368,13 @@ msgstr "Investiga tecnologías de ataque y armadura."
 #: simulation/templates/template_structure_military_forge.xml:26
 #: simulation/templates/template_structure_military_forge.xml:22
 msgid "Forge"
-msgstr "Forja"
+msgstr "Fragua"
 
 #: simulation/templates/template_structure_military_fortress.xml:69
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
-msgstr "Entrena campeones y héroes e investiga tecnologías. Guarnece a los Soldados para obtener flechas adicionales."
+msgstr "Recluta tropas de élite y héroes y permite investigar tecnologías. Guarnece soldados en su interior para disparar flechas adicionales."
 
 #: simulation/templates/template_structure_military_fortress.xml:71
 #: simulation/templates/template_structure_military_fortress.xml:37
@@ -560,7 +560,7 @@ msgstr "Gymnasion"
 
 #: simulation/templates/structures/athen_gymnasium.xml:24
 msgid "Train Champions."
-msgstr "Entrena campeones."
+msgstr "Recluta tropas de élite."
 
 #: simulation/templates/structures/athen_gymnasium.xml:26
 #: simulation/templates/structures/athen_gymnasium.xml:22
@@ -738,7 +738,7 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Train Citizens, construct Ships, and "
 "research technologies. Garrison Soldiers for additional arrows."
-msgstr "Se puede construir sobre la línea de costa de territorio propio, neutral o aliado. Permite anexionar grandes extensiones de territorio. Territorio raiz. Permite reclutar ciudadanos, construir barcos e investigar tecnologías. Se pueden guarnecer soldados y disparar más flechas."
+msgstr "Se construye sobre la línea de costa de territorio propio, neutral o aliado. Permite anexionar grandes extensiones de territorio. Territorio raiz. Permite reclutar ciudadanos, construir barcos e investigar tecnologías. Se pueden guarnecer soldados y disparar más flechas."
 
 #: simulation/templates/structures/brit_defense_tower.xml:9
 #: simulation/templates/structures/brit_sentry_tower.xml:5
@@ -950,7 +950,7 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Construct Warships and research "
 "technologies."
-msgstr "Construye en territorio litoral propio, neutral o aliado. Consigue extensos territorios. Raíz del territorio. Construye buques de guerra e investiga tecnologías."
+msgstr "Se construye sobre la línea de costa de territorio propio, neutral o aliado. Da acceso a grandes extensiones de territorio. Territorio raiz. Construye buques de guerra y permite investigación de tecnologías."
 
 #: simulation/templates/structures/cart_super_dock.xml:44
 msgid "Shipyard"
@@ -962,7 +962,7 @@ msgstr "Maqdaš"
 
 #: simulation/templates/structures/cart_temple.xml:15
 msgid "Train Healers and Champions and research healing technologies."
-msgstr "Entrena Sanadores y Campeones e investiga tecnologías de sanación."
+msgstr "Recluta sanadores y tropas de élite y permite investigar tecnologías de sanación."
 
 #: simulation/templates/structures/cart_tophet.xml:18
 msgid "Sacrificial Temple"
@@ -974,7 +974,7 @@ msgstr "Tophet"
 
 #: simulation/templates/structures/cart_tophet.xml:20
 msgid "Train Healers and Champion Cavalry and research healing technologies."
-msgstr "Entrena Sanadores y Campeones de Caballería e investiga tecnologías de sanación."
+msgstr "Entrena sanadores y caballería de élite e investiga tecnologías de sanación."
 
 #: simulation/templates/structures/cart_wall_gate.xml:12
 msgid "Mijdil-šaʿar"
@@ -1245,7 +1245,7 @@ msgstr "Pr-ʿIprmk"
 #: simulation/templates/structures/kush_temple.xml:10
 msgid ""
 "Train Healers and Apedamak Champions and research healing technologies."
-msgstr "Entrena Sanadores y Campeones Apedamak e investiga tecnologías de sanación."
+msgstr "Recluta sanadores y sacerdotes de Apedemak de élite. También permite investigar tecnologías de sanación."
 
 #: simulation/templates/structures/kush_temple.xml:11
 msgid "TempleOfApedemak"
@@ -1253,7 +1253,7 @@ msgstr "TemploDeApedemak"
 
 #: simulation/templates/structures/kush_temple_amun.xml:28
 msgid "Grand Temple of Amun"
-msgstr "Gran Templo de Amón"
+msgstr "Gran templo de Amón"
 
 #: simulation/templates/structures/kush_temple_amun.xml:29
 msgid "Pr-ʿImn"
@@ -1261,11 +1261,11 @@ msgstr "Pr-ʿImn"
 
 #: simulation/templates/structures/kush_temple_amun.xml:30
 msgid "Train Healers and Amun Champions and research healing technologies."
-msgstr "Entrena Sanadores y Campeones Amun e investiga tecnologías de sanación."
+msgstr "Recluta sanadores y sacerdotes de Amón de élite. También permite investigar tecnologías de sanación."
 
 #: simulation/templates/structures/kush_temple_amun.xml:31
 msgid "TempleOfAmun"
-msgstr "TemploDeAmun"
+msgstr "TemploDeAmón"
 
 #: simulation/templates/structures/kush_wall_gate.xml:12
 msgid "ʿryt"
@@ -1355,7 +1355,7 @@ msgstr "Harmya"
 
 #: simulation/templates/structures/maur_palace.xml:18
 msgid "Train Female Citizens, Champions, and Heroes."
-msgstr "Recluta ciudadanas, campeones y héroes."
+msgstr "Recluta ciudadanas, tropas de élite y héroes."
 
 #: simulation/templates/structures/maur_palace.xml:20
 #: simulation/templates/structures/pers_apadana.xml:31
@@ -1485,7 +1485,7 @@ msgstr "Apadāna"
 #: simulation/templates/structures/pers_apadana.xml:29
 #: simulation/templates/structures/spart_syssiton.xml:25
 msgid "Train Champions and Heroes."
-msgstr "Recluta campeones y héroes"
+msgstr "Recluta tropas de élite y héroes."
 
 #: simulation/templates/structures/pers_apartment_block.xml:15
 msgid "Apartment Block"
@@ -1497,7 +1497,7 @@ msgstr "Padgan"
 
 #: simulation/templates/structures/pers_barracks.xml:6
 msgid "Train Infantry."
-msgstr "Entrenar Infantería."
+msgstr "Adiestrar Infantería."
 
 #: simulation/templates/structures/pers_civil_centre.xml:8
 msgid "Provincial Governor"
@@ -1623,7 +1623,7 @@ msgstr "Stathmos tōn Elepantōn"
 msgid ""
 "Train Champions and research technologies. Garrison Soldiers for additional "
 "arrows."
-msgstr "Recluta campeones e investiga tecnologías. Guarniciona soldados para obtener flechas adicionales"
+msgstr "Recluta tropas de élite y permite investigar tecnologías. Guarnece soldados en su interior para disparar flechas adicionales."
 
 #: simulation/templates/structures/ptol_house.xml:19
 msgid ""
@@ -1639,7 +1639,7 @@ msgstr "Pharos"
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Reveal the "
 "shorelines over the entire map. Very large vision range."
-msgstr "Construye en territorio litoral propio, neutral o aliado. Revela las líneas costeras de todo el mapa. Gran rango de visión."
+msgstr "Se construye sobre la línea de costa de territorio propio, neutral o aliado. Revela las líneas de costa de todo el mapa. Campo de visión muy amplio."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:27
 #: simulation/templates/structures/ptol_lighthouse.xml:24
@@ -1654,7 +1654,7 @@ msgstr "Campamento mercenario"
 msgid ""
 "Cheap Barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr "\nEstructura similar a un cuartel  pero mas barato, que se puede construir en un territorio neutral, pero que no influye en el territorio. Entrena mercenarios."
+msgstr "Estructura similar a un cuartel pero mas barato y que se puede construir además en territorio neutral, pero sin influir sobre él. Recluta mercenarios."
 
 #: simulation/templates/structures/ptol_military_colony.xml:9
 #: simulation/templates/structures/sele_military_colony.xml:9
@@ -1683,7 +1683,7 @@ msgstr "Arcus Triumphālis"
 
 #: simulation/templates/structures/rome_arch.xml:24
 msgid "TriumphalArch"
-msgstr "ArcoDeTriunfo"
+msgstr "ArcoTriunfal"
 
 #: simulation/templates/structures/rome_army_camp.xml:70
 msgid "Army Camp"

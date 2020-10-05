@@ -33,8 +33,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-24 07:08+0000\n"
-"PO-Revision-Date: 2020-07-24 12:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-10-04 19:37+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,7 +88,7 @@ msgstr "Tots els mapes"
 
 #: gui/gamesetup/Controls/MapFilters.js:116
 msgid "Every map of the chosen maptype."
-msgstr "Tots els mapes del tipus escollit"
+msgstr "Tots els mapes del tipus escollit."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:37
 msgid "AI will be disabled for this player."
@@ -289,13 +289,13 @@ msgstr "No afegeixis tresors al mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:46
 msgid "World population"
-msgstr ""
+msgstr "Població mundial"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr ""
+msgstr "Si marqueu aquesta opció el màxim de població es distribuirà uniformement entre tots els jugadors vius."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:135
 msgid "Biome"
@@ -338,7 +338,7 @@ msgstr "Velocitat del joc"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:76
 msgid "Select game speed."
-msgstr "Seleccioneu la velocitat del joc:"
+msgstr "Seleccioneu la velocitat del joc."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:142
 msgid "Landscape"
@@ -531,18 +531,18 @@ msgstr "Selecciona la dificultat d'aquest escenari."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:76
 msgid "World Population Cap"
-msgstr ""
+msgstr "Màxim de població mundial"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:79
 msgid "Select world population limit."
-msgstr ""
+msgstr "Trieu el límit de població mundial."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:82
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr ""
+msgstr "Atenció: Podria haver-hi errors de rendiment si s'arriba a %(popCap)s de població."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:61
 msgid "Ceasefire"

@@ -54,6 +54,7 @@
 # ab661d6cee6a756af4a49df8163441b7_633a6fb, 2014
 # Spartan2411 <andyyosoy@hotmail.com>, 2014
 # Swyter ™ <Swyterzone@gmail.com>, 2013-2018
+# Swyter ™ <Swyterzone@gmail.com>, 2020
 # Tomato <moreno.alb1@gmail.com>, 2014
 # Trombe <el.jesus.9@hotmail.com>, 2014
 # vega93 <arkadas_llisa@hotmail.com>, 2013
@@ -61,7 +62,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-11 07:09+0000\n"
-"PO-Revision-Date: 2020-10-01 18:13+0000\n"
+"PO-Revision-Date: 2020-10-04 12:43+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -152,7 +153,7 @@ msgstr "Sincronizando partida con otros jugadores..."
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ","
+msgstr ", "
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
@@ -165,7 +166,7 @@ msgstr "%(time)s (x%(speed)s)"
 #: gui/session/message_box/OutOfSyncNetwork.js:20
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ","
+msgstr ", "
 
 #: gui/session/PauseOverlay.js:45
 #, javascript-format
@@ -353,7 +354,7 @@ msgstr "Desalojar %(name)s"
 
 #: gui/session/selection_panels.js:378
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "Un solo clic para desalojar una unidad. Mayús-clic para desalojar a todos los del mismo tipo."
+msgstr "Un solo clic para desalojar una unidad. Mayús + clic para desalojar a todos los del mismo tipo."
 
 #: gui/session/selection_panels.js:380 gui/session/selection_panels.js:873
 #, javascript-format
@@ -1009,7 +1010,7 @@ msgstr "Mostrar cámara \"frustum\""
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:283
 msgid "Display shadows frustum"
-msgstr "Mostrar sombras \"frustum\""
+msgstr "Mostrar extensión en cámara de sombras"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -1078,7 +1079,7 @@ msgstr "x"
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr "Dar %(resourceAmount)s %(resourceType)s como tributo a %(playerName)s. Mayús+clic para dar %(greaterAmount)s como tributo."
+msgstr "Dar %(resourceAmount)s %(resourceType)s como tributo a %(playerName)s. Mayús + clic para dar %(greaterAmount)s como tributo."
 
 #: gui/session/message_box/DeleteSelectionConfirmation.js:10
 msgid "Delete"
