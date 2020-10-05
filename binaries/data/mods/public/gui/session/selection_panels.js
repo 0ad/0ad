@@ -628,13 +628,18 @@ g_SelectionPanels.Research = {
 				unitEntStates[0].production.technologies.map(tech => ({
 					"tech": tech,
 					"techCostMultiplier": unitEntStates[0].production.techCostMultiplier,
-					"researchFacilityId": unitEntStates[0].id
+					"researchFacilityId": unitEntStates[0].id,
+					"isUpgrading": !!unitEntStates[0].upgrade && unitEntStates[0].upgrade.isUpgrading
 				}));
 
-		for (let state of unitEntStates)
+		let sortedEntStates = unitEntStates.sort((a, b) =>
+			(!b.upgrade || !b.upgrade.isUpgrading) - (!a.upgrade || !a.upgrade.isUpgrading));
+
+		for (let state of sortedEntStates)
 		{
 			if (!state.production || !state.production.technologies)
 				continue;
+
 			// Remove the techs we already have in ret (with the same name and techCostMultiplier)
 			let filteredTechs = state.production.technologies.filter(
 				tech => tech != null && !ret.some(
@@ -653,7 +658,8 @@ g_SelectionPanels.Research = {
 				ret = ret.concat(filteredTechs.map(tech => ({
 					"tech": tech,
 					"techCostMultiplier": state.production.techCostMultiplier,
-					"researchFacilityId": state.id
+					"researchFacilityId": state.id,
+					"isUpgrading": !!state.upgrade && state.upgrade.isUpgrading
 				})));
 		}
 		return ret;
@@ -798,6 +804,14 @@ g_SelectionPanels.Research = {
 			}
 			else
 				button.enabled = controlsPlayer(data.player);
+
+			if (data.item.isUpgrading)
+			{
+				button.enabled = false;
+				modifier += "color:0 0 0 127:grayscale:";
+				button.tooltip += "\n" + coloredText(translate("Cannot research while upgrading."), "red");
+
+			}
 
 			if (template.icon)
 				icon.sprite = modifier + "stretched:session/portraits/" + template.icon;
@@ -1013,6 +1027,13 @@ g_SelectionPanels.Training = {
 				modifier = resourcesToAlphaMask(neededResources) + ":";
 		}
 
+		if (data.unitEntStates.every(state => state.upgrade && state.upgrade.isUpgrading))
+		{
+			data.button.enabled = false;
+			modifier = "color:0 0 0 127:grayscale:";
+			data.button.tooltip += "\n" + coloredText(translate("Cannot train while upgrading."), "red");
+		}
+
 		if (template.icon)
 			data.icon.sprite = modifier + "stretched:session/portraits/" + template.icon;
 
@@ -1043,6 +1064,9 @@ g_SelectionPanels.Upgrade = {
 		if (!template)
 			return false;
 
+		let progressOverlay = Engine.GetGUIObjectByName("unitUpgradeProgressSlider[" + data.i + "]");
+		progressOverlay.hidden = true;
+
 		let technologyEnabled = true;
 
 		if (data.item.requiredTechnology)
@@ -1051,17 +1075,21 @@ g_SelectionPanels.Upgrade = {
 				"player": data.player
 			});
 
+		let limits = getEntityLimitAndCount(data.playerState, data.item.entity);
+		let upgradingEntStates = data.unitEntStates.filter(state => state.upgrade.template == data.item.entity);
+
+		let upgradableEntStates = data.unitEntStates.filter(state =>
+			!state.upgrade.progress &&
+			(!state.production || !state.production.queue || !state.production.queue.length));
+
 		let neededResources = data.item.cost && Engine.GuiInterfaceCall("GetNeededResources", {
-			"cost": multiplyEntityCosts(data.item, data.unitEntStates.length),
+			"cost": multiplyEntityCosts(data.item, upgradableEntStates.length),
 			"player": data.player
 		});
 
-		let limits = getEntityLimitAndCount(data.playerState, data.item.entity);
-		let progress = data.unitEntStates[0].upgrade.progress || 0;
-		let isUpgrading = data.unitEntStates[0].upgrade.template == data.item.entity;
-
 		let tooltip;
-		if (!progress)
+		let modifier = "";
+		if (!upgradingEntStates.length && upgradableEntStates.length)
 		{
 			let tooltips = [];
 			if (data.item.tooltip)
@@ -1075,7 +1103,7 @@ g_SelectionPanels.Upgrade = {
 				}));
 
 			tooltips.push(
-				getEntityCostComponentsTooltipString(data.item, undefined, data.unitEntStates.length),
+				getEntityCostComponentsTooltipString(data.item, undefined, upgradableEntStates.length),
 				formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers),
 				getRequiredTechnologyTooltip(technologyEnabled, data.item.requiredTechnology, GetSimState().players[data.player].civ),
 				getNeededResourcesTooltip(neededResources),
@@ -1083,29 +1111,14 @@ g_SelectionPanels.Upgrade = {
 
 			tooltip = tooltips.filter(tip => tip).join("\n");
 
-			data.button.onPress = function() { upgradeEntity(data.item.entity); };
-		}
-		else if (isUpgrading)
-		{
-			tooltip = translate("Cancel Upgrading");
-			data.button.onPress = function() { cancelUpgradeEntity(); };
-		}
-		else
-		{
-			tooltip = translate("Cannot upgrade when the entity is already upgrading.");
-			data.button.onPress = function() {};
-		}
-		data.button.enabled = controlsPlayer(data.player);
-		data.button.tooltip = tooltip;
+			data.button.onPress = function() {
+				upgradeEntity(
+				    data.item.entity,
+				    upgradableEntStates.map(state => state.id));
+			};
 
-		data.button.onPressRight = function() {
-			showTemplateDetails(data.item.entity);
-		};
-
-		let modifier = "";
-		if (!isUpgrading)
-			if (progress || !technologyEnabled || limits.canBeAddedCount == 0 &&
-				!hasSameRestrictionCategory(data.item.entity, data.unitEntStates[0].template))
+			if (!technologyEnabled || limits.canBeAddedCount == 0 &&
+				!upgradableEntStates.some(state => hasSameRestrictionCategory(data.item.entity, state.template)))
 			{
 				data.button.enabled = false;
 				modifier = "color:0 0 0 127:grayscale:";
@@ -1116,19 +1129,44 @@ g_SelectionPanels.Upgrade = {
 				modifier = resourcesToAlphaMask(neededResources) + ":";
 			}
 
+			data.countDisplay.caption = upgradableEntStates.length > 1 ? upgradableEntStates.length : "";
+		}
+		else if (upgradingEntStates.length)
+		{
+			tooltip = translate("Cancel Upgrading");
+			data.button.onPress = function() { cancelUpgradeEntity(); };
+			data.countDisplay.caption = upgradingEntStates.length > 1 ? upgradingEntStates.length : "";
+
+			let progress = 0;
+			for (let state of upgradingEntStates)
+				progress = Math.max(progress, state.upgrade.progress || 1);
+			let progressOverlaySize = progressOverlay.size;
+			// TODO This is bad: we assume the progressOverlay is square
+			progressOverlaySize.top = progressOverlaySize.bottom + Math.round((1 - progress) * (progressOverlaySize.left - progressOverlaySize.right));
+			progressOverlay.size = progressOverlaySize;
+			progressOverlay.hidden = false;
+		}
+		else
+		{
+			tooltip = coloredText(translatePlural(
+				"Cannot upgrade when the entity is training, researching or already upgrading.",
+				"Cannot upgrade when all entities are training, researching or already upgrading.",
+				data.unitEntStates.length), "red");
+
+			data.button.onPress = function() {};
+
+			data.button.enabled = false;
+			modifier = "color:0 0 0 127:grayscale:";
+		}
+		data.button.enabled = controlsPlayer(data.player);
+		data.button.tooltip = tooltip;
+
+		data.button.onPressRight = function() {
+			showTemplateDetails(data.item.entity);
+		};
+
 		data.icon.sprite = modifier + "stretched:session/" +
 			(data.item.icon || "portraits/" + template.icon);
-
-		data.countDisplay.caption = data.unitEntStates.length > 1 ? data.unitEntStates.length : "";
-
-		let progressOverlay = Engine.GetGUIObjectByName("unitUpgradeProgressSlider[" + data.i + "]");
-		if (isUpgrading)
-		{
-			let size = progressOverlay.size;
-			size.top = size.left + Math.round(progress * (size.right - size.left));
-			progressOverlay.size = size;
-		}
-		progressOverlay.hidden = !isUpgrading;
 
 		setPanelObjectPosition(data.button, data.i + getNumberOfRightPanelButtons(), data.rowLength);
 		return true;

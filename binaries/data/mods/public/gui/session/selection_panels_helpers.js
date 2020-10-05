@@ -317,11 +317,11 @@ function cancelPackUnit(pack)
 	});
 }
 
-function upgradeEntity(Template)
+function upgradeEntity(Template, selection)
 {
 	Engine.PostNetworkCommand({
 		"type": "upgrade",
-		"entities": g_Selection.toList(),
+		"entities": selection,
 		"template": Template,
 		"queued": false
 	});
