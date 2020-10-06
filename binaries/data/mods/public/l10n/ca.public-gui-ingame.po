@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-11 07:09+0000\n"
-"PO-Revision-Date: 2020-09-15 18:43+0000\n"
+"PO-Revision-Date: 2020-10-04 21:35+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -200,7 +200,7 @@ msgstr "\\[DESCONNECTAT] %(player)s"
 #: gui/session/selection_details.js:83
 #, javascript-format
 msgid "%(rank)s Rank"
-msgstr "%(rank)s Rang"
+msgstr "Rang %(rank)s"
 
 #: gui/session/selection_details.js:139
 #, javascript-format
@@ -1320,7 +1320,7 @@ msgstr[1] "%(numberOfLandTraders)s inactius"
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s mercader per terra inactiu"
-msgstr[1] "%(numberOfLandTraders)s mercaders per terra inactius"
+msgstr[1] "%(numberOfLandTraders)s mercaders terrestres inactius"
 
 #: gui/session/trade/TraderStatusTextLand.js:40
 #, javascript-format
@@ -1383,7 +1383,7 @@ msgstr[1] "Hi ha %(inactiveString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:80
 msgid "There are no land traders."
-msgstr "No hi ha mercaders per terra."
+msgstr "No hi ha mercaders terrestres."
 
 #: gui/session/trade/TraderStatusTextShip.js:14
 #, javascript-format
@@ -1521,7 +1521,7 @@ msgstr "Punts de captura"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
 msgid "Attack and Resistance"
-msgstr ""
+msgstr "Atac i resistència"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
 msgid "Experience"

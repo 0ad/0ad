@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-04 07:09+0000\n"
-"PO-Revision-Date: 2020-09-15 19:13+0000\n"
+"PO-Revision-Date: 2020-10-04 21:35+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "Els pobles indis, iranians i cuixites tenien una tradició de bons tirad
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "−10% de temps de reclutament, +8 d'abast i −10% de dispersió d'atac per als arquers."
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -63,7 +63,7 @@ msgstr "Armadura de metall per a la cara dels cavalls."
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
 msgid "Cavalry +1 hack and pierce armor."
-msgstr ""
+msgstr "La cavalleria guanya +1 d'armadura de tall i perforació."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -173,7 +173,7 @@ msgstr "Armadura feta completament de ferro, el metall treballable més dur que 
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
 msgid "Heroes +50 metal cost, +2 hack and pierce armor."
-msgstr ""
+msgstr "Els herois costen 50 més metall i guanyen +2 d'armadura de tall i perforació."
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -198,7 +198,7 @@ msgstr "Armadura de roba encoixinada o de cuir per als soldats d'infanteria."
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
 msgid "Infantry +1 hack and pierce armor."
-msgstr ""
+msgstr "La infanteria guanya +1 d'armadura de tall i perforació."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -245,7 +245,7 @@ msgstr "El revestiment amb plom protegeix el casc dels vaixells."
 #: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid "Ships +2 armor."
-msgstr ""
+msgstr "+2 d'armadura per als vaixells."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -454,11 +454,11 @@ msgstr "Entrena els cavalls per córrer més ràpid."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
-msgstr ""
+msgstr "La cavalleria es mou un 10% més ràpid."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsongenericName
 msgid "Horse Racing"
-msgstr ""
+msgstr "Curses de cavalls"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -529,7 +529,7 @@ msgstr "Més nutrients per als horts."
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +20% grain gather rate."
-msgstr ""
+msgstr "Els treballadors recullen gra un 20% més ràpid."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -589,7 +589,7 @@ msgstr "Augmenta la velocitat de recollida de fusta dels arbres."
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +25% wood gather rate."
-msgstr ""
+msgstr "Els treballadors recullen fusta un 25% més ràpid."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
@@ -613,7 +613,7 @@ msgstr "Obliga els serfs a treballar a la pedrera. Augmenta la velocitat de reco
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +25% stone gather rate."
-msgstr ""
+msgstr "Els treballadors recullen pedra un 25% més ràpid."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -647,7 +647,7 @@ msgstr "Desenvolupa la mineria en pous. Augmenta la velocitat de recollida de me
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +25% metal gather rate."
-msgstr ""
+msgstr "Els treballadors recullen metall un 25% més ràpid."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -756,7 +756,7 @@ msgstr "Augmenta la velocitat de curació de tots els guaridors."
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers −20% healing time."
-msgstr ""
+msgstr "El temps de curació dels guaridors es redueix un 20%."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -856,7 +856,7 @@ msgstr "Avança a la Fase de Ciutat, que desbloqueja més estructures i unitats.
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 Town Structures."
-msgstr ""
+msgstr "Necessita 4 estructures de Fase de Vila."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -907,7 +907,7 @@ msgstr "Avança a la Fase de Vila, que desbloqueja més estructures i unitats. E
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid "Requires 5 Village Structures."
-msgstr ""
+msgstr "Necessita 5 estructures de Fase de Poblat."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1055,7 +1055,7 @@ msgstr "Instructors d'artilleria"
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
-msgstr ""
+msgstr "Els soldats a distància guanyen un 25% d'experiència."
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1075,7 +1075,7 @@ msgstr "Reforça els fonaments per preparar-los contra els atacs."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Towers +2 armor."
-msgstr ""
+msgstr "+2 d'armadura per a les torres."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1089,7 +1089,7 @@ msgstr "Els merlets permeten que els soldats disparin més lluny defensant una f
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
-msgstr ""
+msgstr "Cada soldat refugiat a les torres de vigilància i de pedra dispara 40% més fletxes."
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1101,7 +1101,7 @@ msgstr "Les espitlleres permeten atacar els enemics al peu de la torre."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Sentry and Stone Towers have 0 minimum attack range."
-msgstr ""
+msgstr "Les torres de vigilància i de pedra no tenen límit mínim d'abast."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1113,7 +1113,7 @@ msgstr "Els tiradors augmenten l'abast màxim de les fletxes incendiàries."
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Sentry and Stone Towers +8 attack range."
-msgstr ""
+msgstr "+8 a l'abast de les torres de vigilància i de pedra."
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1125,7 +1125,7 @@ msgstr "La guàrdia nocturna augmenta la vigilància."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Sentry and Stone Towers +1 default arrow count."
-msgstr ""
+msgstr "Les torres de vigilància i de pedra disparen 1 fletxa més per defecte."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
@@ -1149,7 +1149,7 @@ msgstr "Millora els beneficis del comerç internacional."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
 msgid "+10% international trade bonus."
-msgstr ""
+msgstr "Bonificació del 10% en comerç internacional."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1161,7 +1161,7 @@ msgstr "Augmenta la capacitat defensiva dels mercaders."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
 msgid "Traders +2 hack and pierce armor."
-msgstr ""
+msgstr "Els mercaders guanyen +2 d'armadura de tall i perforació."
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName
@@ -1232,19 +1232,19 @@ msgid ""
 "capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
 "healing strength and +3 healing range; Melee units +20% attack damage; "
 "Ranged units +4 attack range and −10% spread."
-msgstr ""
+msgstr "Unitats avançades i d'elit: +20% al temps de reclutament, +1 d'armadura, +10% de salut, +0,7 d'atac de captura, +20% de botí i −30% de velocitat de recollida de recursos. Guaridors: +5 de capacitat de curació, +3 d'abast de curació. Unitats cos a cos: +20% d'atac. Unitats a distància: +4 d'abast i −10% de dispersió de tir."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
 " and loot."
-msgstr ""
+msgstr "-10% al cost, temps de reclutament, salut, atac i botí dels elefants africans."
 
 #: simulation/data/technologies/unit_elephant_indian.jsontooltip
 msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
-msgstr ""
+msgstr "+10% al cost, temps de reclutament, salut, atac i botí dels elefants asiàtics."
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
@@ -1252,7 +1252,7 @@ msgid ""
 "strength, +20% loot, and −30% gather speed; Healers +5 healing strength and "
 "+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
 "range and −10% spread."
-msgstr ""
+msgstr "Unitats d'elit: +20% al temps de reclutament, +1 d'armadura, +10% de salut, +0,8 d'atac de captura, +20% de botí i −30% de velocitat de recollida de recursos. Guaridors: +5 de capacitat de curació, +3 d'abast de curació. Unitats cos a cos: +20% d'atac. Unitats a distància: +4 d'abast i −10% de dispersió de tir."
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""
@@ -1357,7 +1357,7 @@ msgstr "Contracta mercenaris professionals per a l'exèrcit."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries are promoted to Advanced rank."
-msgstr ""
+msgstr "Els mercenaris ascendeixen al rang avançat."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
@@ -1416,7 +1416,7 @@ msgstr "Els cartaginesos van construir les seves muralles en tres circuits conc�
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "+100% al temps de construcció, +100% al cost de pedra i +200% de salut per a les muralles."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -1442,7 +1442,7 @@ msgstr "Els grecs feien construccions de pedra des dels temps micènics primeren
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "Les estructures guanyen un 10% de salut i punts de captura."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -1458,11 +1458,11 @@ msgstr "L'Índia és la terra dels elefants. La guerra amb elefants es va origin
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "Redueix en un 30% el temps de reclutament dels elefants."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "Tradició de cria d'elefants"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -1542,7 +1542,7 @@ msgstr "Els espartans eren allotjats i entrenats des de ben petits per ser guerr
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "Els llancers campions d'infanteria guanyen un 25% de salut, però triguen un 5% més a reclutar-se."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -1572,7 +1572,7 @@ msgstr "La muralla llarga d'Atenes es va construir sota els auspicis de l'astut 
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
 msgid "Build Walls in own or neutral territory."
-msgstr ""
+msgstr "Les muralles es poden construir en territori propi o neutral."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
@@ -1581,7 +1581,7 @@ msgstr "Muralla llarga d'Atenes"
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "+20% al temps de construcció, salut i punts de captura de les estructures civils."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -1605,11 +1605,11 @@ msgstr "Instrucció divina"
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "Els aquemènides mantenien un cos d'elit de 10.000 homes, anomenats Athanatoi (\"Immortals\") pels autors grecs."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "El temps de reclutament de la infanteria campiona Anušiya es redueix el 50%, però també tenen -10% de salut."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -1724,7 +1724,7 @@ msgstr "Libri Sibyllini"
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
 msgid "Traditional Army vs Reform Army"
-msgstr ""
+msgstr "Exèrcit tradicional vs Exèrcit reformat"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsondescription
 msgid ""
@@ -1735,7 +1735,7 @@ msgstr "Començant amb Alexandre, els monarques hel·lenístics van fundar molte
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Els centres cívics guanyen un 100% de salut i de punts de captura, i disparen el doble de fletxes per defecte."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -1776,11 +1776,11 @@ msgstr "Nisioi"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsondescription
 msgid "The Roman-style core of the Seleucid army."
-msgstr ""
+msgstr "El nucli de l'exèrcit selèucida, basat en el model romà."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
-msgstr ""
+msgstr "Desbloqueja l'espadatxí campió d'infanteria."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
 msgid "Reform Army"
@@ -1788,7 +1788,7 @@ msgstr "Exèrcit reformat"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
-msgstr ""
+msgstr "El nucli de l'exèrcit selèucida, basat en el model macedoni."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Champion Infantry Pikeman."
@@ -1808,7 +1808,7 @@ msgstr "Els Escuts de Plata, o Argyraspidai, eren la infanteria pesada d'elit de
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr ""
+msgstr "Millora els campions portadors d'escut a Escuts de Plata, amb més atac i salut."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

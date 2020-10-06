@@ -51,6 +51,7 @@
 # ab661d6cee6a756af4a49df8163441b7_633a6fb, 2014
 # Spartan2411 <andyyosoy@hotmail.com>, 2014
 # Swyter ™ <Swyterzone@gmail.com>, 2013-2018,2020
+# Swyter ™ <Swyterzone@gmail.com>, 2020
 # Tobal lópez silla <lopeztobal@gmail.com>, 2019
 # Tomato <moreno.alb1@gmail.com>, 2014
 # Trombe <el.jesus.9@hotmail.com>, 2014
@@ -59,7 +60,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-28 07:09+0000\n"
-"PO-Revision-Date: 2020-10-01 18:51+0000\n"
+"PO-Revision-Date: 2020-10-04 19:57+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -77,7 +78,7 @@ msgstr "Atenienses"
 #: simulation/data/civs/mace.jsonCivBonuses[0].Description
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Structures +10% health and +10% capture points."
-msgstr "Las estructuras aumentan +10% su resistencia y +10% en puntos de captura."
+msgstr "Estructuras (Resistencia: +10%; Puntos de captura: +10%)."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 #: simulation/data/civs/mace.jsonCivBonuses[0].Name
@@ -107,7 +108,7 @@ msgstr "Las minas de Laureion en Ática bendecían a los atenienses con un mar d
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Allied Warships −25% construction time."
-msgstr "Los buques de guerra aliados reducen -25% el tiempo de construcción."
+msgstr "Buques de guerra aliados (Tiempo de construcción: −25%)."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -208,13 +209,13 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr "Las largas murallas de Atenas se construyeron bajo el auspicio del astuto Temístocles, se extendían a lo largo de 6 km desde la ciudad hasta el puerto de El Pireo. Lo que aseguraba las rutas de abastecimiento marítimo y prevenía que el enemigo privara de comida a la ciudad durante un asedio."
+msgstr "Las largas murallas de Atenas se construyeron bajo el auspicio del astuto Temístocles. Se extendían a lo largo de 6 km desde la ciudad hasta el puerto de El Pireo. Esto aseguraba las rutas de abastecimiento marítimo y prevenía que el enemigo privara de comida a la ciudad durante un asedio."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Description
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr "El jugador gana la habilidad de ordenar las tropas armadas con lanzas en la formación de falange, proporcionando mayor ataque y armadura."
+msgstr "El jugador gana la habilidad de ordenar las tropas armadas con lanzas en formación de falange, proporcionando mayor ataque y armadura."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Name
 msgid "Othismos"
@@ -241,7 +242,7 @@ msgstr "El general que persuadió a los atenienses para invertir sus ingresos de
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
-msgstr "Pericles fue el político ateniense más importante del siglo quinto antes de cristo."
+msgstr "Pericles fue el político ateniense más importante del siglo 5º a. C."
 
 #: simulation/data/civs/athen.jsonFactions[0].Description
 msgid "A Hellenic people of the Ionian tribe."
@@ -276,7 +277,7 @@ msgstr "Gymnasion"
 #: simulation/data/civs/athen.jsonStructures[1].Special
 msgid ""
 "Train champion units and research technologies pertaining to champion units."
-msgstr "Recluta unidades campeonas e investiga tecnologías relacionadas."
+msgstr "Recluta unidades de élite e investiga tecnologías relacionadas."
 
 #: simulation/data/civs/athen.jsonStructures[1].History
 msgid ""
@@ -290,7 +291,7 @@ msgstr "Prytaneion"
 
 #: simulation/data/civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
-msgstr "Entrena héroes e investiga tecnologías relacionadas con ellos."
+msgstr "Recluta héroes e investiga tecnologías relacionadas con ellos."
 
 #: simulation/data/civs/athen.jsonStructures[2].History
 msgid ""
@@ -313,7 +314,7 @@ msgstr "Britanos"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "Allied Healers −20% resource costs."
-msgstr "Sanadores Aliados: -20% Costo por Recursos"
+msgstr "Sanadores Aliados (Coste de recursos: −20%)."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -323,7 +324,7 @@ msgstr "Druidas"
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr "Los druidas de los celtas mantenían una religión organizada que mejoraba la tecnología de su gente incluso durante los tiempos de guerra."
+msgstr "Los druidas de los celtas mantenían una religión organizada que permitía avanzar la tecnología de su gente incluso durante los tiempos de guerra."
 
 #: simulation/data/civs/brit.jsonAINames[0]
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[0].Name
@@ -389,7 +390,7 @@ msgid ""
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
 "but Tacitus applies to him a famous speech…"
-msgstr "Caractacus, la forma Romana, es una simple variante de Karatakos, su nombre actual, el cual fue impreso en muchas, muchas monedas. Bajo este nombre es recordado como un fiero defensor de Bretaña contra los Romanos después de su invasión en el 43 D.C. Hijo del Rey Cunobelin de la confederación tribal Catuvellauni, Karatakos luchó durante nueve años contra los romanos con pequeñas victorias, finalmente huyendo a las tribus en Gales, donde fue derrotado decisivamente. Finalmente entró en el norte de Gran Bretaña, donde fue entregado a los romanos. Llevado a Roma, el Emperador Claudio permitió a Karatakos vivir y murió en Italia. La tradición afirma que se convirtió al Cristianismo cuando su esposa lo hizo, pero no se sabe con certeza nada de esto. Probablemente más notable es el asunto que le permitiesen vivir una vez capturado. La política romana solía ser celebrar matar a tales hombres en exhibiciones públicas. Karatakos fue llevado ante el Emperador y el Senado a petición suya para defenderse. Lo que dijo no se sabe con certeza, pero Tácito le atribuye un famoso discurso ..."
+msgstr "Caractacus, la forma Romana, es una simple variante de Karatakos, su nombre actual, el cual fue impreso en muchas, muchas monedas. Bajo este nombre es recordado como un fiero defensor de Bretaña contra los Romanos después de su invasión en el 43 d. C. Hijo del Rey Cunobelin de la confederación tribal Catuvellauni, Karatakos luchó durante nueve años contra los romanos con pequeñas victorias, hasta que tuvo que huir con las tribus en Gales, donde fue derrotado definitivamente. Finalmente entró en el norte de Gran Bretaña, donde fue entregado a los romanos. Llevado a Roma, el Emperador Claudio permitió a Karatakos vivir y murió en Italia. La tradición afirma que se convirtió al cristianismo cuando su esposa lo hizo, pero no se sabe con certeza nada de esto. Probablemente más notable es que le permitiesen vivir una vez capturado. La política romana establecía matar a tales hombres en exhibiciones públicas como celebración. Karatakos fue llevado ante el Emperador y el Senado a petición suya para defenderse. Lo que dijo no se sabe con certeza, pero Tácito le atribuye un famoso discurso..."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -424,7 +425,7 @@ msgid ""
 "their British allies, and Kunobelinos was held up by the post-Roman Britons "
 "as one of their great heroes; a conqueror and uniter of petty kingdoms, "
 "something the post-Roman Britons or Romano-British sorely needed."
-msgstr "Kunobelinos (quizás mejor conocido por la forma latinizada de Cunobelin) fue un poderoso gobernante de los Catuvellauni. Fue mencionado por los romanos como el rey de los británicos. Sus dominios se extendieron alrededor de la ciudad de Kamulodunon (conocida como Camulodunum), el moderno Colchester. La derrota romana en la batalla del Bosque de Teutoburgo (Alemania) permitió a los Kunobelinos conquistar una tribu vecina, los Trinovantes, que eran aliados romanos y no podían recibir ayuda romana. Kunobelinos parece haber sido indiferente a los romanos. Él negoció con ellos libremente, pero tuvo pocos escrúpulos para subyugar a los aliados romanos conocidos, e incluso envió a su hijo menor, Adminio, para que lo educara en la Galia romana. Esto explicaba las amistades de Adminius entre los romanos. Adminius recibió el señorío sobre la Cantaci, que habitaba Kent, por su padre. Esta área era la principal área de influencia y comercio romanos en Gran Bretaña, y Kunobelinos observó astutamente que la amistad de su hijo menor con los poderosos políticos y comerciantes romanos y galo-romanos sería útil para administrar la región. Sus otros hijos, aunque no tenían amor por los romanos. Cuando Kunobelinos murió de la enfermedad, fue reemplazado por su hijo Togdumnos, quien arrestó, ejecutó o expulsó a numerosos simpatizantes romanos. Estos incluían a su propio hermano Adminius, y al depuesto rey de Atrebates, Verica, quien hizo un llamamiento a sus conexiones en el Imperio Romano para que los ayudara a recuperar sus tierras. Togdumnos murió en batalla con los romanos, y posteriormente fue reemplazado por su hermano, Karatakos. Es una ironía que fue su tercer hijo el que inicialmente invitó a esta represalia romana. Kunobelinos en su tiempo, sin embargo, fue posiblemente uno de los más grandes de todos los reyes británicos. Él conquistó la gran mayoría de la mitad sur de Gran Bretaña (sus monedas estaban siendo acuñadas hasta las fronteras de lo que se convertiría en Gales). Comenzó a gobernar solo sobre cuatro tribus menores en una confederación, los catuvellauni, y terminó logrando el reconocimiento como rey de Gran Bretaña. Este reconocimiento fue tan grande que las tribus de Cambria llegaron incluso para ayudar a sus hijos contra los romanos y sus aliados británicos, y los británicos posromanos sostuvieron a Kunobelinos como uno de sus grandes héroes; un conquistador y unificador de pequeños reinos, algo que los británicos posromanos o romano-británicos necesitaban con urgencia."
+msgstr "Kunobelinos (quizás mejor conocido por la forma latinizada de Cunobelino) fue un poderoso gobernante de los catuvellaunos. Fue mencionado por los romanos como el rey de los britanos. Sus dominios se extendieron alrededor de la ciudad de Kamulodunon (conocida como Camulodunum), el moderno Colchester. La derrota romana en la batalla del bosque de Teutoburgo (Alemania) permitió a los Kunobelinos conquistar una tribu vecina, los trinovantes, que eran aliados romanos y no pudieron recibir ayuda romana. Kunobelinos parece haber sido indiferente a los romanos. Negoció con ellos libremente, pero tuvo pocos escrúpulos para subyugar a conocidos aliados romanos. Llegó incluso a enviar a su hijo menor, Adminius, para que se educara en la Galia romana. Esto explicaba las amistades de Adminius entre los romanos. Adminius recibió el señorío sobre la Cantaci, donde se encuentra Kent, por su padre. Esta área fué la principal área de influencia y comercio romanos en Gran Bretaña, y Kunobelinos observó astutamente que la amistad de su hijo menor con los poderosos políticos y comerciantes romanos y galo-romanos sería útil para administrar la región. Sus otros hijos, aunque no sentían este amor por los romanos. Cuando Kunobelinos murió por enfermedad, fue reemplazado por su hijo Togodumno, quien arrestó, ejecutó o expulsó a numerosos simpatizantes romanos. Estos incluían a su propio hermano Adminius, y al depuesto rey de los atrévates, Verica, quien apeló a sus conexiones en el Imperio Romano para que los ayudara a recuperar sus tierras. Togodumno murió luchando con los romanos, y posteriormente fue reemplazado por su hermano, Karatakos. Es una ironía que fue su tercer hijo el que inicialmente invitó a esta represalia romana. Sin embargo Kunobelinos fue en su tiempo posiblemente uno de los más grandes reyes britanos. Conquistó gran parte de la mitad sur de Gran Bretaña (sus monedas estaban siendo acuñadas hasta las fronteras de lo que se convertiría en Gales). Comenzó gobernando solo sobre cuatro tribus menores en una confederación, los catuvellaunos, y terminó logrando el reconocimiento de rey  de Bretaña. Este reconocimiento fue tan grande que las tribus de Cambria llegaron incluso a ayudar a sus hijos contra los romanos y sus aliados britanos, y los britones posromanos tienen a Kunobelinos como uno de sus grandes héroes; un conquistador y unificador de pequeños reinos, algo que los britanos posromanos o romano-britanos necesitaron mucho."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -467,7 +468,7 @@ msgid ""
 "slaughtered as they could not withdraw to safety. Boudicca herself escaped, "
 "and then slew her daughters, and then herself, to avoid further shame at "
 "Roman hands."
-msgstr "Amiano Marcelino describió lo difícil que sería para una banda de extranjeros hacer frente a un celta si recurría a la ayuda de su esposa, pues sus mujeres son tan fuertes como ellos y podrían llover golpes y patadas duros cual catapulta. De Boudicca, reina de los Icenos, se decía que era muy alta y de apariencia terrorífica, su voz era muy grave y una gran masa de pelo rojo recaía sobre los hombros. Vestía una túnica multicolor sobre los que una capa gruesa se ​​sujetaba con un broche. En un principio Boudicca fue una aliada romana, junto con su marido, Prasutagus, rey de los Icenos. Prasutagus había sido un aliado romano antes de la opresión, respetado como sabio incluso por sus antiguos enemigos (ahora aliados de los romanos) y libre para gobernar su reino como su tradición dicta, excepto en un caso. Prasutagus, dándose cuenta de que iba a morir, acordó una voluntad con su esposa y sus subordinados, sus hijas heredarían el control físico del territorio, bajo la dirección de Boudicca hasta que fueran adultas, y el emperador de Roma tendría el dominio, la recaudación de impuestos y que se les permita solicitar ayuda militar. Gran parte de la misma situación que él ya poseía. El problema radicaba en que los romanos no reconocían herederas, y por lo tanto su mando tras la muerte de Prasutago, esa afirmación sólo era válida para el emperador del reino de los Icenos. Señalaron además que era una práctica romana habitual permitir que un reino incorporado al imperio sea independiente solo la vida del rey inicial, tal como había ocurrido en Galatia. El Imperio anexionó formalmente el reino, y comenzó la extracción de duros impuestos inmediatamente, citando que Prasutagus estaba en deuda con los romanos, después de haber tomado varios préstamos durante su vida que él no había podido pagar. La queja de Boudicca sobre este tratamiento y el desafío a la voluntad de su difunto marido se encontró con la brutalidad, los soldados romanos le azotaron, y sus hijas, solo unas niñas, fueron violadas. Boudicca y sus súbditos se enfurecieron por la desgracia sufrida por ella y sus hijas. Con el gobernador romano de Gran Bretaña ocupado con los druidas en Cambria, la actual Gales, Boudicca fue capaz de atraer a más seguidores fuera de los Icenos, ya que eran casi la única tribu británica desilusionada con los romanos. Boudicca y su ejército arrasaron tres ciudades, se enfrentaron a una legión romana, y pidieron a la memoria de Arminius, un alemán que había expulsado a los romanos de sus tierras, y sus antepasados ​​que habían expulsado a César cerca de un siglo antes. Boudicca fue derrotada por un gran error táctico en la Batalla de Watling Street, que lleva a gran parte de su ejercito al desastre, ya que no podían retirarse a un lugar seguro. Boudicca escapó, mató a sus hijas, y luego ella misma se suicidó, para evitar más vergüenza a manos de los romanos."
+msgstr "Amiano Marcelino describió lo difícil que sería para una banda de forasteros hacer frente a un celta si recurría a la ayuda de su esposa, pues sus mujeres eran más fuertes que ellos y podían repartir golpes y patadas tan duros a sus atacantes como lo haría una catapulta. Boudica, reina de los icenos, se decía que era muy alta y de apariencia terrorífica, su voz era muy grave y una gran masa de pelo rojo recaía sobre los hombros. Vestía una túnica multicolor sobre la cual ponía una capa gruesa que ​​sujetaba con un broche. Boudica fue en realidad la primera aliada romana, junto con su marido Prasutago (Prasutagus), rey de los icenos. Prasutago había sido un aliado romano después de un breve levantamiento y era respetado como sabio incluso por sus antiguos enemigos (ahora aliados de los romanos) y libre para gobernar su reino como su tradición dictaba, con una excepción. Prasutago, en su lecho de muerte, acordó una última voluntad con su esposa y sus subordinados, sus hijas heredarían el control físico del territorio, bajo la dirección de Boudica hasta que fueran adultas, y el emperador de Roma tendría el dominio, la recaudación de impuestos y se les permita solicitar ayuda militar. Gran parte de la posición que él ya mantenía. El problema radicaba en que los romanos no reconocían herederas, y por lo tanto, tras la muerte de Prasutago, sentenciaron que esto sólo era válido para el emperador del reino de los icenos. Señalaron además que la práctica romana habitual era la de permitir que el nuevo reino incorporado al imperio fuera independiente solo durante la vida del rey inicial, tal como había ocurrido en Galacia. El Imperio anexionó formalmente el reino, y comenzó imponiendo duros impuestos inmediatamente, aludiendo que Prasutago estaba en deuda con los romanos, después de haber pedido varios préstamos en vida que no habían sido devueltos. Boudica reclamó por recibir este tratamiento y desafíar la voluntad de su difunto marido, pero fue respondida con brutalidad. Los soldados romanos la azotaron, y sus hijas, solo unas niñas, fueron violadas. Boudica y sus súbditos se enfurecieron por la deshonra sufrida por ella y sus hijas. Con el gobernador romano de Bretaña ocupado con los druidas en Cambria, la actual Gales, Boudica fue capaz de atraer a más seguidores fuera de los Icenos, ya que eran casi la única tribu británica desilusionada con los romanos. Boudica y su ejército arrasaron tres ciudades, se enfrentaron a una legión romana, y reivindicaron la memoria de Arminius, un germano que había expulsado a los romanos de sus tierras, y sus antepasados ​​que habían expulsado a César cerca de un siglo antes. Boudica fue derrotada por un gran error táctico en la batalla de Watling Street, que llevo a gran parte de su ejercito al desastre, ya que no podían retirarse a un lugar seguro. Boudica escapó, mató a sus hijas, y luego ella misma se suicidó, para evitar mayor deshonra a manos de los romanos."
 
 #: simulation/data/civs/brit.jsonFactions[0].Description
 msgid "The Celts of the British Isles."
@@ -487,7 +488,7 @@ msgstr "Cartaginenses"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr "Muros +100% tiempo de construcción, +100% coste de piedra, +200% salud"
+msgstr "Murallas (Tiempo de construcción: +100%; Coste de piedra: +100%; Resistencia: +200%)."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -499,7 +500,7 @@ msgstr "Los cartagineses construían murallas triples."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "Allies +10% international trade bonus."
-msgstr "Aliados Bonus del +10% en comercio internacional"
+msgstr "Aliados (Bonificación en comercio internacional: +10%)."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -568,7 +569,7 @@ msgstr "Dido"
 
 #: simulation/data/civs/cart.jsonAINames[13]
 msgid "Xanthippus"
-msgstr "Chapulín"
+msgstr "Jantipo"
 
 #: simulation/data/civs/cart.jsonAINames[14]
 msgid "Himilco Phameas"
@@ -580,7 +581,7 @@ msgstr "Asdrúbal el Beotarca"
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[0].Description
 msgid "All Traders and Ships +25% vision range."
-msgstr "Todos los comerciantes y barcos ganan un +25% más de alcance de visión."
+msgstr "Todos los comerciantes y barcos (Campo de visión: +25%)."
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[0].Name
 msgid "Exploration"
@@ -591,11 +592,11 @@ msgid ""
 "Nobody knew better than the Carthaginians where in the ancient world they "
 "were going and going to go; their merchant traders had missions to "
 "everywhere."
-msgstr "Nadie en el mundo antiguo sabía mejor que los cartagineses a dónde iban y hacia dónde ir; sus mercaderes emprendían misiones a lugares lejanos a lo largo y ancho del globo."
+msgstr "Nadie sabía mejor que los cartagineses dónde ir y como hacerlo; sus mercaderes emprendieron misiones a todos los lugares conocidos."
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[1].Description
 msgid "Civic Centers, Temples, and Houses -25% build time."
-msgstr "Los centros cívicos, templos y casas ven reducidos un -25% su tiempo de construcción."
+msgstr "Centros cívicos, templos y casas (Tiempo de construcción: -25%)."
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[1].Name
 msgid "Colonization"
@@ -605,7 +606,7 @@ msgstr "Colonización"
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr "Los cartagineses establecieron muchos centros comerciales como las colonias y en última instancia lograron establecer su dominio sobre 300 ciudades y pueblos solo en el norte de África."
+msgstr "Los cartagineses establecieron muchos puntos comerciales como colonias y en última instancia lograron establecer su dominio sobre 300 ciudades y pueblos solo en el norte de África."
 
 #: simulation/data/civs/cart.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -614,7 +615,7 @@ msgid ""
 "B.C. While he ultimately lost the Second Punic War his victories at Trebia, "
 "Lake Trasimene, and Cannae, and the feat of crossing the Alps have secured "
 "his position as among the best tacticians and strategists in history."
-msgstr "El hijo más famoso de Cartago, Aníbal Barca, fue el mayor de los hijos de Amílcar Barca y demostró ser incluso mejor comandante que su padre. Vivió del 247 al 182 a. C. perdiendo finalmente la Segunda Guerra Púnica, pero sus victorias en Trebia, el lago Trasimeno, Cannas, y la hazaña de cruzar los Alpes le aseguraron el puesto entre los mejores estrategas tácticos de la historia."
+msgstr "El hijo más famoso de Cartago, Aníbal Barca, fue el mayor de los hijos de Amílcar Barca y demostró ser incluso mejor comandante que su padre. Vivió del 247 al 182 a. C. y aunque finalmente perdió la segunda guerra púnica, sus victorias en Trebia, el lago Trasimeno, Cannas, y la hazaña de cruzar los Alpes le aseguraron un puesto entre los mejores estrategas tácticos de la historia."
 
 #: simulation/data/civs/cart.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -633,11 +634,11 @@ msgid ""
 "significant contributions to the winning of many other battles during the "
 "2nd Punic War. He is known for having said, after the battle of Cannae, "
 "'Hannibal, you know how to win the victory; just not what to do with it.'"
-msgstr "Maharbal fue un «joven y temerario comandante de caballería» de Aníbal Barca durante la segunda Guerra Púnica. Se le atribuye la retirada de las legiones de Cannas resultando en una derrota en la que de 30.000 a 50.000 romanos murieron. También contribuyó significativamente en otras batallas de la segunda Guerra Púnica. Es conocido por haber dicho tras la batalla de Cannas, 'Aníbal, sabes vencer pero no sabes sacar provecho de tus victorias'."
+msgstr "Maharbal fue un «joven y temerario comandante de caballería» de Aníbal Barca durante la segunda guerra Púnica. Se le atribuye la retirada de las legiones de Cannas resultando en una derrota en la que de 30.000 a 50.000 romanos murieron. También contribuyó significativamente en otras batallas de la segunda Guerra Púnica. Es conocido por haber dicho tras la batalla de Cannas, 'Aníbal, sabes vencer pero no sabes sacar provecho de tus victorias'."
 
 #: simulation/data/civs/cart.jsonStructures[0].Name
 msgid "Naval Shipyard"
-msgstr "Calafate naviero"
+msgstr "Astillero naval"
 
 #: simulation/data/civs/cart.jsonStructures[0].Special
 msgid "Construct the powerful warships of the Carthaginian navy."
@@ -655,7 +656,7 @@ msgstr "Embajada celta"
 
 #: simulation/data/civs/cart.jsonStructures[1].Special
 msgid "Train Celtic Mercenaries."
-msgstr "Entrenar mercenarios celtas."
+msgstr "Reclutar mercenarios celtas."
 
 #: simulation/data/civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
@@ -667,7 +668,7 @@ msgstr "Embajada íbera"
 
 #: simulation/data/civs/cart.jsonStructures[2].Special
 msgid "Train Iberian Mercenaries."
-msgstr "Entrenar mercenarios íberos"
+msgstr "Reclutar mercenarios íberos."
 
 #: simulation/data/civs/cart.jsonStructures[2].History
 msgid ""
@@ -680,7 +681,7 @@ msgstr "Embajada itálica"
 
 #: simulation/data/civs/cart.jsonStructures[3].Special
 msgid "Train Italic Mercenaries."
-msgstr "Entrenar mercenarios italianos"
+msgstr "Reclutar mercenarios itálicos."
 
 #: simulation/data/civs/cart.jsonStructures[3].History
 msgid ""
@@ -730,17 +731,17 @@ msgstr "La religión celta y las prácticas druídicas inspiraban su espíritu g
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Forges −15% technology resource costs and research time."
-msgstr "Forjas -15% costo de recursos y tiempo de investigación."
+msgstr "El forjado reduce el coste de recursos y el tiempo de investigación -15%."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Products from Gaul"
-msgstr "Productos de Gaul"
+msgstr "Productos de la Galia"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Gauls produced and exported swords and scabbards, woolen and leather "
 "products, and other arms."
-msgstr "Los galos producían y exportaban espadas y vainas para las espadas, lana y productos de cuero, y otras armas."
+msgstr "Los galos producían y exportaban espadas, vainas, lana, productos de cuero, y otras armas."
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -787,7 +788,7 @@ msgstr "Virídovix"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
 msgid "Workers +15% grain gather rate."
-msgstr "Trabajadores +15% recolección de granos."
+msgstr "Trabajadores (Velocidad de recolección de grano: +15%)."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Harvesting Machine"
@@ -797,7 +798,7 @@ msgstr "Máquina cosechadora"
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr "Los galos inventaron una máquina cosechadora, haciendo así más fácil la cosecha del grano."
+msgstr "Los galos inventaron una máquina cosechadora, haciendo más fácil la cosecha del grano."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -806,7 +807,7 @@ msgstr "Una cantidad de metal y comida fija por cada estructura destruida o capt
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
 msgid "Vae Victis"
-msgstr "¡Ay, de los vencidos!"
+msgstr "Vae Victis"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -920,7 +921,7 @@ msgstr "Con excepción a llanuras aluviales y valles fluviales, la piedra es abu
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Javelineers −10% resource costs."
-msgstr "Jabalineros de Ciudadanos Aliados -10% costo de recursos."
+msgstr "Ciudadanos aliados con jabalina (Coste de recursos: -10%)."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -932,7 +933,7 @@ msgid ""
 "serve as auxiliaries to their armies in foreign wars. Carthage is the most "
 "well known example, and we have evidence of them serving in such a capacity "
 "in Aquitania."
-msgstr "Durante mucho tiempo los íberos fueron conocidos por proporcionar mercenarios a otras naciones para que sirvieran como auxiliares de sus ejércitos en guerras extranjeras. Cartago es el ejemplo más conocido, y tenemos evidencia de ellos sirviendo como tales en Aquitania."
+msgstr "Los íberos fueron conocidos por proporcionar mercenarios a otras naciones que sirvieron como auxiliares de sus ejércitos en conflictos ajenos. Cartago es el ejemplo más conocido, y tenemos evidencias de ellos sirviendo como tales en Aquitania."
 
 #: simulation/data/civs/iber.jsonAINames[0]
 #: simulation/data/civs/iber.jsonAINames[1]
@@ -1059,7 +1060,7 @@ msgid ""
 "Defensive Aura - Gives all Iberian units and buildings within vision range "
 "of the monument a 10-15% attack boost. Build Limit: Only 5 may be built per "
 "map."
-msgstr "Aura defensiva - Ofrece a todas las unidades y edificios íberos un aumento de ataque de 10-15% dentro del rango de visión del monumento. Límite de construcción: Sólo se pueden construir 5 por mapa."
+msgstr "Aura defensiva - Aumenta el campo de visión de todas las unidades y edificios íberos de 10-15%. Límite de construcción: sólo se pueden construir 5 por escenario."
 
 #: simulation/data/civs/iber.jsonStructures[0].History
 msgid ""
@@ -1076,11 +1077,11 @@ msgid ""
 "proved tenacious when Rome sought to take their land and freedom from them, "
 "and employed pioneering guerrilla tactics and flaming javelins as they "
 "fought back."
-msgstr "Los íberos fueron un pueblo de misteriosos orígenes y lengua, con una fuerte tradición de monta de caballos y metalurgia. Por lo general considerados una cultura relativamente pacífica, lucharon en las batallas de otros exclusivamente como mercenarios. No obstante, fueron tenaces cuando Roma anhelaba sus tierras y su esclavitud, y eran conocidos por ser los primeros en utilizar tácticas de guerrilla y jabalinas incendiarias al devolverles el favor."
+msgstr "Los íberos fueron un pueblo cuya lengua y orígenes son todavía un misterio. Tenían una larga tradición en la monta de caballos y la metalurgia. Considerados como una cultura relativamente pacífica, solían luchar como mercenarios en contiendas ajenas. No obstante, demostraron tenacidad cuando Roma quiso someterlos, siendo pioneros en el uso de tácticas de guerrilla y jabalinas incendiarias en sus confrontaciones con ellos."
 
 #: simulation/data/civs/kush.jsonName
 msgid "Kushites"
-msgstr "Kushites"
+msgstr "Cusitas"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Name
 msgid "Elephant Suppliers"
@@ -1088,7 +1089,7 @@ msgstr "Proveedores de Elefantes"
 
 #: simulation/data/civs/kush.jsonTeamBonuses[0].Description
 msgid "Allied Elephants −20% resource costs and training time."
-msgstr "Elefantes Aliados -20% coste de los recursos y tiempo de entrenamiento."
+msgstr "Elefantes aliados (Coste de recursos y tiempo de adiestramiento: -20%)."
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1151,42 +1152,42 @@ msgstr "Amanishakheto"
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr "Arqueros -10% tiempo de entrenamiento, +8 alcance, -10% esparcimiento de ataque a distancia"
+msgstr "Arqueros (Tiempo de adiestramiento: −10%; Alcance: +8; Dispersión: −10%)."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Name
 msgid "Archery Tradition"
-msgstr "Tradición arquera"
+msgstr "Uso del arco"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].History
 msgid ""
 "The Kushites had a tradition of fine archery and a penchant for using massed"
 " archers in battle."
-msgstr "Los cusitas eran conocidos por sus excelentes arqueros y tenían tendencia a utilizarlos en masa en el campo de batalla."
+msgstr "Los cusitas tenían un amplio dominio del arco y solían utilizar grupos de arqueros en la batalla."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "Monumental Architecture"
-msgstr "Arquitectura Monumental"
+msgstr "Arquitectura monumental"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr "Estructuras cívicas: +20% tiempo de construcción, +20% salud, +20% puntos de captura."
+msgstr "Estructuras cívicas (Tiempo de construcción: +20%; Resistencia: +20%; Puntos de captura: +20%)."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Description
 msgid "Train elite rank healers."
-msgstr "Recluta sanadores de rango élite."
+msgstr "Recluta sanadores de élite."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Name
 msgid "High Priest of Amun"
-msgstr "Alto Sacerdote de Amun"
+msgstr "Alto sacerdote de Amón"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[2].History
 msgid ""
 "Have your priests instructed by the High Priest himself - may Amun bless "
 "him."
-msgstr "Que tus sacerdotes sean instruídos por el mismísimo Gran Sacerdote - que Amun le bendiga."
+msgstr "Que tus sacerdotes sean instruídos por el mismísimo Gran Sacerdote - que Amón le bendiga."
 
 #: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
 msgid "Nastasen"
@@ -1202,7 +1203,7 @@ msgstr "Amanirenas"
 
 #: simulation/data/civs/kush.jsonFactions[0].Name
 msgid "Kushite Africans"
-msgstr "Kushitas africanos"
+msgstr "Cusitas africanos"
 
 #: simulation/data/civs/kush.jsonFactions[0].Description
 msgid ""
@@ -1218,7 +1219,7 @@ msgstr "Templo de Amón"
 msgid ""
 "The Kushites can upgrade individual Temples to Temples of Amun, which can "
 "train Napatan Temple Guard champions and heal units faster."
-msgstr "Los kushitas pueden promocionar templos individuales a templos de Amón, los cuales permiten reclutar guardias de élite del templo de Napata y sanar unidades más rápido."
+msgstr "Los cusitas pueden promocionar cada templo a templo de Amón, donde se pueden reclutar guardias de élite del templo de Napata y sanar unidades más rápido."
 
 #: simulation/data/civs/kush.jsonStructures[1].Name
 msgid "Temple of Apedemak"
@@ -1228,22 +1229,22 @@ msgstr "Templo de Apedemak"
 msgid ""
 "The Kushites can upgrade individual Temples to Temples of Apedemak, which "
 "can train Meroe Temple Guard champions and heal units faster."
-msgstr "Los kushitas pueden promocionar templos individuales a Templos de Apedemak, los cuales permiten entrenar Guardia del Templo de Meroe de élite y sanar unidades más rápido."
+msgstr "Los cusitas pueden promocionar cada templo a templo de Apedemak, donde se pueden reclutar guardias de élite del templo de Meroe y sanar unidades más rápido."
 
 #: simulation/data/civs/kush.jsonStructures[2].Name
 msgid "Kushite Pyramids"
-msgstr "Pirámide Kushita."
+msgstr "Pirámides cusitas"
 
 #: simulation/data/civs/kush.jsonStructures[2].Special
 msgid ""
 "Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
 "Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
 "territory effect to Civic Centers."
-msgstr "Construir una pequeña pirámide Kushita desbloquea la Fase Urbana. Cada pirámide extra construida añade +10% de territorio bajo control a los centros cívicos."
+msgstr "Construir una pirámide cusita pequeña desbloquea la fase intermedia. Construir una pirámide cusita grande desbloquea la fase urbana. Cada pirámide extra que se construya aumenta +10% de territorio bajo control de los centros cívicos."
 
 #: simulation/data/civs/kush.jsonStructures[2].History
 msgid "The Kushites built over 200 pyramids in Nubia."
-msgstr "Los kushitas construyeron más de 200 pirámides en Nubia."
+msgstr "Los cusitas construyeron más de 200 pirámides en Nubia."
 
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
@@ -1270,7 +1271,7 @@ msgstr "Macedonios"
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
 msgid "Allies +20% barter sell prices."
-msgstr "Aliados +20% precios de venta de trueque."
+msgstr "Aliados (Precios de venta por trueque: +20%)."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1342,7 +1343,7 @@ msgstr "Meleagro"
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Description
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr "Centros cívicos: +100% de salud y puntos de captura, el doble de flechas por defecto"
+msgstr "Centros cívicos (Resistencia y puntos de captura: +100%; Doble de flechas predeterminadas)."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
@@ -1363,7 +1364,7 @@ msgstr "Comenzando con Alejandro, los monarcas helenos fundaron numerosas ciudad
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr ""
+msgstr "Mejora la infantería de élite con escudos de plata que les proporciona más vida y daño de ataque."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
 msgid "Silver Shields"
@@ -1458,13 +1459,13 @@ msgstr "Macedonia fue un antiguo reino griego situado en el noreste de la penín
 
 #: simulation/data/civs/maur.jsonName
 msgid "Mauryas"
-msgstr "Mauryas"
+msgstr "Maurianos"
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Description
 msgid ""
 "Mauryas have a +10% population cap bonus (e.g., 330 pop cap instead of the "
 "usual 300)."
-msgstr "Los Mauryas tienen un bono de límite de población de + 10% (Ejemplo: 330 población en lugar de los 300 habituales)."
+msgstr "Los maurianos tienen una bonificación al límite de población de +10% (Ejemplo: 330 población en lugar de los 300 habituales)."
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
@@ -1478,15 +1479,15 @@ msgid ""
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr "El Imperio de Mauryan abarcó docenas de reinos anteriormente independientes en un área de 5 millones de kilómetros cuadrados, con una población de cerca de 60 millones de personas. Los gobernantes mauryas tenían el título de Emperador de los emperadores y comandaban un ejército permanente de 600,000 de infantería, 9000 elefantes, 8000 carros y 30,000 de caballería, lo que lo convierte en el ejército más grande de su tiempo."
+msgstr "El Imperio Maurya abarcó docenas de reinos anteriormente independientes en un área de 5 millones de kilómetros cuadrados, con una población de cerca de 60 millones de personas. Los gobernantes maurianos tenían el título de Emperador de los Emperadores y comandaban un ejército permanente de 600.000 hombres de infantería, 9.000 elefantes, 8.000 carros y una caballería formada por 30.000 hombres, lo que lo convierte en el ejército más grande de su tiempo."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
 msgid "Elephants −30% training time."
-msgstr "Elefantes: -30% tiempo de entrenamiento"
+msgstr "Elefantes (Tiempo de adiestramiento: -30%)."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "Uso de elefantes"
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].History
 msgid ""
@@ -1494,7 +1495,7 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr ""
+msgstr "La india es la tierra de los elefantes. La guerra con elefantes se origina allí y fue constante durante un milenio. Fue también la proveedora de elefantes para todo el este del mediterráneo. Los reyes hindúes podían desplegar grandes grupos de elefantes de guerra."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid ""
@@ -1553,7 +1554,7 @@ msgstr "Brihadratha Maurya"
 msgid ""
 "The Indian peoples had a tradition of fine archery and a penchant for using "
 "massed archers in battle."
-msgstr ""
+msgstr "Los pueblos hindúes tenían un amplio dominio del arco y solían utilizar grupos de arqueros en la batalla."
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -1581,7 +1582,7 @@ msgstr "Establo de elefantes"
 
 #: simulation/data/civs/maur.jsonStructures[0].Special
 msgid "Train Elephants and research Elephant technologies."
-msgstr "Entrena Elefantes e investiga tecnologías de Elefantes."
+msgstr "Entrena elefantes e investiga tecnologías relacionadas con ellos."
 
 #: simulation/data/civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
@@ -1592,7 +1593,7 @@ msgid ""
 "Contentment: +10% Health and +10% resource gathering rates for all citizens "
 "and allied citizens within its range. Can be built anywhere except in enemy "
 "territory. Max Built: 10."
-msgstr "Satisfacción y alegría: +10% de salud y +10% de tasa de recolección de recursos para todos los ciudadanos propios y aliados en las cercanías. Se pueden construir en cualquier sitio salvo territorio enemigo. Número de estructuras máximas de este tipo: 10."
+msgstr "Satisfacción: +10% en salud y +10% en velocidad de recolección de recursos para todos los ciudadanos propios y aliados dentro del área de influencia. Se pueden construir en cualquier sitio salvo territorio enemigo. Estructuras máximas de este tipo: 10."
 
 #: simulation/data/civs/maur.jsonHistory
 msgid ""
@@ -1614,7 +1615,7 @@ msgstr "Persas"
 msgid ""
 "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the "
 "usual 300)."
-msgstr "Los persas tienen una bonificación de un +10% en la población máxima (por ejemplo, 330 de población en lugar de los habituales 300)."
+msgstr "Los persas tienen un bonus de +10% de población máxima (por ejemplo 330 en lugar de los habituales 300)."
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Great King's Levy"
@@ -1628,11 +1629,11 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr "Los persas pudieron y llevaron a cabo reclutamientos forzosos de un gran número de infantería durante la guerra debido al gran tamaño del imperio Arqueménida y a la forma en la que se instituyó. En general, la infantería persa estaba bien entrenada y luchaba con gran tenacidad, aunque se veía en desventaja en los combates cuerpo a cuerpo. Cabe destacar que con la excepción de los regimientos de élite, la infantería persa no se consideraba una fuerza profesional ni permanente."
+msgstr "Los persas pudieron y llevaron a cabo reclutamientos forzosos de un gran número de infantería durante la guerra debido al gran tamaño del imperio Arqueménida y a la forma en la que se instituyó. En general, la infantería persa estaba bien adiestrada y luchaba con gran tenacidad, aunque se veía en desventaja en los combates cuerpo a cuerpo. Cabe destacar que con la excepción de los regimientos de élite, la infantería persa no se consideraba una fuerza profesional ni permanente."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
 msgid "Allied Land Traders +15% trade gain."
-msgstr "Comerciantes Terrestres Aliados +15% ganancia en los intercambios."
+msgstr "Comerciantes terrestres aliados (Ganancias: +15%)."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -1700,11 +1701,11 @@ msgstr "Xsayarsa II"
 msgid ""
 "The Iranian peoples had a tradition of fine archery and a penchant for using"
 " massed archers in battle."
-msgstr ""
+msgstr "Los pueblos iraníes tenían un amplio dominio del arco y solían utilizar grupos de arqueros en la batalla."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry."
-msgstr "Los trirremes fenicios ganan la habilidad única de entrenar a la caballería."
+msgstr "Los trirremes fenicios obtienen la habilidad única de reclutar caballería."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Name
 msgid "Naval Craftsmanship"
@@ -1741,7 +1742,7 @@ msgstr "Los Persas construyeron la maravillosa Carretera Real de 2700 kilómetro
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
 msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr "Campeón de infantería Anušiya: -50% tiempo de entrenamiento, pero también -10% salud"
+msgstr "Infantería anušiya de élite (Tiempo de adiestramiento: -50%; Salud: -10%)."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
 msgid "Immortals"
@@ -1751,12 +1752,12 @@ msgstr "Inmortales"
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr "Los aqueménidas mantenían un cuerpo de élite de 10.000 soldados, llamados Athanatoi (\"Inmortales\") según los autores griegos."
+msgstr "Los aqueménidas mantenían un cuerpo de élite de 10.000 soldados, llamados Athanatoi (“Inmortales”) según los autores griegos."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
 msgid "+25% health for cavalry, but +10% train time."
-msgstr "+25% de salud para la caballería, pero aumenta un +10% su tiempo de reclutamiento."
+msgstr "Caballería (Salud: +25%; Tiempo de adiestramiento: +10%)."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Name
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Name
@@ -1806,7 +1807,7 @@ msgstr "Establo"
 
 #: simulation/data/civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry and research Cavalry technologies."
-msgstr "entrena y investiga, la tecnología de la caballería "
+msgstr "Adiestra caballería y permite investigar tecnología relacionada."
 
 #: simulation/data/civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
@@ -1820,7 +1821,7 @@ msgstr "Apadana"
 msgid ""
 "Train heroes and Persian Immortals. Gives a slow trickle of all resources as"
 " 'Satrapy Tribute.'"
-msgstr "Recluta héroes e Inmortales persas. Proporciona un lento goteo de todos los recursos como 'Tributo Sátrapa.'"
+msgstr "Recluta héroes e inmortales persas. Proporciona un lento goteo de todos los recursos como 'Tributo Sátrapa.'"
 
 #: simulation/data/civs/pers.jsonStructures[1].History
 msgid ""
@@ -1848,7 +1849,7 @@ msgstr "Ptolomeos"
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
 msgid "Allies +1.0 food trickle rate."
-msgstr "Aliados +1.0 tasa de goteo de alimentos."
+msgstr "Aliados (Tasa de goteo de alimentos: +1.0)."
 
 #: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -1995,7 +1996,7 @@ msgstr "Faro"
 msgid ""
 "When built along the shoreline, removes shroud of darkness over all the "
 "water, revealing all the coast lines on the map. Limit: 1."
-msgstr "Cuando se construye en en la línea de playa acaba con la niebla de guerra de todo el agua, revelando toda la costa en el mapa. Límite: 1."
+msgstr "Cuando se construye en en la línea de costa acaba con la niebla de guerra de todo el agua, revelando toda la costa en el mapa. Límite: 1."
 
 #: simulation/data/civs/ptol.jsonStructures[2].History
 msgid ""
@@ -2036,7 +2037,7 @@ msgstr "Los romanos utilizaban de forma recurrente la formación en tortuga para
 msgid ""
 "Any Roman citizen-soldier fighting within Roman territory gains a non-"
 "permanent +10% bonus in armor."
-msgstr "Cualquier ciudadano-soldado romano luchando dentro de territorio romano obtiene una bonificación de armadura no permanente del +10%"
+msgstr "Cualquier ciudadano-soldado romano dentro de su territorio lucha con una bonificación temporal de armadura de +10%."
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Citizenship"
@@ -2372,11 +2373,11 @@ msgstr "La hermosa y poderosa raza de caballos de Nisea aumenta la salud para la
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
 msgid ""
 "Unlock either Champion Infantry Pikemen or Champion Infantry Swordsmen."
-msgstr ""
+msgstr "Desbloquea la infantería de élite de lanceros o primeros espadas. "
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
 msgid "Traditional Army vs Reform Army"
-msgstr ""
+msgstr "Ejercito tradicional contra ejercito reformado"
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -2480,7 +2481,7 @@ msgstr "Espartanos"
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Infantry Spearmen +10% health."
-msgstr "Ciudadanos aliados como lanceros de Infantería +10% de Vida."
+msgstr "Ciudadanos-lanceros de infantería aliados (Salud: +10%)."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"
@@ -2577,7 +2578,7 @@ msgstr "Estas elegías fueron himnos de batalla que se cantaban cuando los hopli
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr "Lanceros de infantería de élite +25% salud, pero +5% tiempo de adiestramiento."
+msgstr "Lanceros de infantería de élite (Salud: +25%; Tiempo de adiestramiento: +5%)."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"
@@ -2587,7 +2588,7 @@ msgstr "El Agogé"
 msgid ""
 "Spartans were housed and trained from a young age to be superlative warriors"
 " and to endure any hardship a military life can give them."
-msgstr "Los espartanos fueron alojados y entrenados desde pequeños para convertirse en guerreros superlativos y soportar las penurias que ofrece una vida militar."
+msgstr "Los espartanos se sometían a adiestramiento fuera del seno familiar desde muy pequeños para convertirse en guerreros superlativos, acostumbrandose así a soportar las penurias que ofrece una vida militar."
 
 #: simulation/data/civs/spart.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -2633,7 +2634,7 @@ msgstr "Syssition"
 
 #: simulation/data/civs/spart.jsonStructures[1].Special
 msgid "Train heroes and Spartiates and research technologies related to them."
-msgstr "Entrena héroes y espartiatas e investiga tecnologías relacionadas con ellos."
+msgstr "Recluta héroes y espartiatas e investiga tecnologías relacionadas con ellos."
 
 #: simulation/data/civs/spart.jsonStructures[1].History
 msgid ""
@@ -2649,4 +2650,4 @@ msgid ""
 " at age seven. Thanks to its military might, Sparta led a coalition of Greek"
 " forces during the Greco-Persian Wars, and won over Athens in the "
 "Peloponnesian Wars, though at great cost."
-msgstr "Esparta fue una importante ciudad-estado en la antigua Grecia, con un poder militar terrestre decisivo en torno al 650 a. C. La cultura espartana estaba obsesionada con el entrenamiento militar y la excelencia, contaban con un riguroso entrenamiento para los varones a partir de siete años. Gracias a su poderío militar, Esparta lideró una coalición de fuerzas griegas durante las Guerras Médicas y derrotó a Atenas en la Guerra del Peloponeso, aunque sufrió un alto coste."
+msgstr "Esparta fue una importante ciudad-estado de la antigua Grecia que contaba con un poder militar terrestre decisivo en torno al 650 a. C. La cultura espartana estaba obsesionada con el entrenamiento militar y la excelencia. Contaban con un riguroso programa de adiestramiento para varones a partir de siete años. Gracias a su poderío militar, Esparta lideró una coalición de fuerzas griegas durante las guerras médicas y derrotó a Atenas en la guerra del Peloponeso, aunque con un alto coste."

@@ -33,12 +33,13 @@
 # Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020
 # soloooy0 fg <juanjo.fg@hotmail.com>, 2017
 # Swyter ™ <Swyterzone@gmail.com>, 2014-2018
+# Swyter ™ <Swyterzone@gmail.com>, 2020
 # vega93 <arkadas_llisa@hotmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-10-01 18:21+0000\n"
+"PO-Revision-Date: 2020-10-04 20:32+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -795,7 +796,7 @@ msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:219
 msgid "Capture:"
-msgstr ""
+msgstr "Captura:"
 
 #: gui/common/tooltips.js:223 gui/common/tooltips.js:321
 msgctxt "damage type"
@@ -893,7 +894,7 @@ msgstr "%(amount)s %(name)s"
 #: gui/common/tooltips.js:327
 #, javascript-format
 msgid "%(splashShape)s Splash"
-msgstr ""
+msgstr "%(splashShape)s Splash"
 
 #: gui/common/tooltips.js:330
 #, javascript-format
@@ -973,7 +974,7 @@ msgstr "(reemplaza)"
 #: gui/common/tooltips.js:476
 msgctxt "status effect stackability"
 msgid "(stacks)"
-msgstr ""
+msgstr "(pilas)"
 
 #: gui/common/tooltips.js:478
 #, javascript-format
@@ -1225,7 +1226,7 @@ msgstr "%(label)s %(icons)s"
 
 #: gui/common/tooltips.js:1000
 msgid "Dropsite for:"
-msgstr ""
+msgstr "Destino de:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI element will open the Template Details GUI page.
@@ -1654,7 +1655,7 @@ msgid ""
 "This option will be removed in a future 0 A.D. release, to allow for more "
 "advanced graphics features. We advise upgrading your graphics card to a more"
 " recent, shader-compatible model."
-msgstr "%(warning)s Parece que utilizas gráficos sin sombreado (\"non-shader\" o \"fixed function\"). Esta opción desaparecerá en futuras versiones de 0 A.D. para incorporar más funciones gráficas avanzadas. Te recomendamos actualizar tu tarjeta gráfica a un modelo mas reciente, compatible con sombreado (\"shader\")."
+msgstr "%(warning)s Parece que utilizas gráficos sin funciones de sombreado. Esta opción desaparecerá en futuras versiones de 0 A.D. para incorporar más funciones gráficas avanzadas. Te recomendamos actualizar tu tarjeta gráfica a un modelo más reciente, compatible con sombreado."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -1830,7 +1831,7 @@ msgstr "Unidades instructoras"
 #: gui/reference/viewer/ViewerPage.js:167
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
-msgstr ""
+msgstr "%(hotkey)s: Cerrar visor de plantillas"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
@@ -2046,7 +2047,7 @@ msgstr "de Caballería"
 
 #: gui/summary/layout.js:76
 msgid "Champion"
-msgstr "Campeonas"
+msgstr "Élite"
 
 #: gui/summary/layout.js:78
 msgid "Siege"
@@ -2292,17 +2293,17 @@ msgstr "%(hotkey)s: Convierte la sala multijugador en una ventana de diálogo."
 #: gui/summary/summary.js:546
 #, javascript-format
 msgid "Toggle the %(name)s summary tab."
-msgstr ""
+msgstr "Mostrar la pestaña de resumen %(name)s."
 
 #: gui/summary/summary.js:547
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab right."
-msgstr ""
+msgstr "Pulsa %(hotkey)s para mover una pestaña de resumen a la izquierda."
 
 #: gui/summary/summary.js:548
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab left."
-msgstr ""
+msgstr "Pulsa%(hotkey)s para mover una pestaña de resumen a la derecha."
 
 #: gui/civinfo/civinfo.xml:(caption):30
 msgid "Civilization Selection"
@@ -2508,7 +2509,7 @@ msgstr "Tipo:"
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
-msgstr ""
+msgstr "Agrupar por equipo"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
@@ -2559,7 +2560,7 @@ msgstr "Compositor principal"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
-msgstr ""
+msgstr "Directores de sonido"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
@@ -2675,7 +2676,7 @@ msgstr "Scripts de escenarios aleatorios"
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr "Maps"
+msgstr "Mapas"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -2905,11 +2906,11 @@ msgstr "No refinar contornos."
 
 #: gui/options/options.json[1].options[5].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
-msgstr ""
+msgstr "Nitidez por contraste adaptativo. Un filtro rápido a través de contraste."
 
 #: gui/options/options.json[1].options[5].list[1].label
 msgid "FidelityFX CAS"
-msgstr ""
+msgstr "FidelityFX CAS"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Reduce blurry effects."
@@ -2917,15 +2918,15 @@ msgstr "Reduce el efecto difuminado."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Sharpening"
-msgstr ""
+msgstr "Nitidez"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "The sharpness of the choosen pass."
-msgstr ""
+msgstr "La nitidez del filtro seleccionado."
 
 #: gui/options/options.json[1].options[6].label
 msgid "Sharpness factor"
-msgstr ""
+msgstr "Factor de nitidez"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -3052,7 +3053,7 @@ msgstr "Sombras en el agua"
 
 #: gui/options/options.json[1].options[19].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
-msgstr "Levantar la oscuridad y niebla de batalla suavemente."
+msgstr "Levantar oscuridad y niebla de guerra suavemente."
 
 #: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
@@ -3378,7 +3379,7 @@ msgstr "Notificación de chat al cambiar fase"
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr "Mostrar el rango de ataque de las estructuras defensivas seleccionadas (también puede activarse en la partida con el atajo de teclado)."
+msgstr "Muestra la distancia de ataque de las estructuras defensivas seleccionadas (también puede activarse en la partida con su combinación de teclas)."
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
@@ -3797,7 +3798,7 @@ msgstr "CUARTELES"
 msgid ""
 "Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr "Entrena todos los ciudadanos-soldado. Algunas civilizaciones también pueden desbloquear el entrenamiento de campeones."
+msgstr "Recluta todos los ciudadanos-soldado. Algunas civilizaciones también pueden desbloquear el reclutamiento de tropas de élite."
 
 #: gui/text/tips/barracks.txt:3
 msgid "Research military technologies unique to each faction."
@@ -3819,13 +3820,13 @@ msgstr "BATALLÓN SAGRADO CARTAGINÉS"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr "Lancero campeón y Lancero campeón a caballo de Cartago"
+msgstr "Cartago dispone de lanceros y lanceros a caballo de élite."
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr "Ambos pueden entrenarse en el templo, en vez de la fortaleza como los otros campeones."
+msgstr "Ambos pueden reclutarse en el templo, en vez de la fortaleza como el resto de tropas de élite."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
@@ -3933,7 +3934,7 @@ msgstr "Cuidado! Los peces no son un recurso infinito!"
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
-msgstr "FORJA"
+msgstr "FRAGUA"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."
@@ -3953,7 +3954,7 @@ msgstr "El fortín es generalmente el edificio más fuerte de cada facción."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
-msgstr "- Recluta campeones, héroes, y armas de asedio."
+msgstr "Recluta tropas de élite, héroes, y armamento de asedio."
 
 #: gui/text/tips/fortress.txt:4
 msgid "Gives a population boost."
@@ -4036,13 +4037,13 @@ msgstr "Construir en territorio propio o neutral."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."
-msgstr ""
+msgstr "Construcción rápida, barata y fragil."
 
 #: gui/text/tips/outposts.txt:4
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr ""
+msgstr "Guarnece infantería para aumentar la visión y prevenir perder el control del puesto avanzado ante la decadencia del territorio."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -4086,7 +4087,7 @@ msgstr "Estructuras +25% salud."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
-msgstr "El tiempo de construcción se alarga un +20% como consecuencia."
+msgstr "El tiempo de construcción se retrasa +20% como consecuencia."
 
 #: gui/text/tips/persian_architecture.txt:5
 msgid ""
@@ -4177,7 +4178,7 @@ msgstr "La unidad de infantería mas fuerte del juego."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr "Campeón de infantería disponible para los espartanos."
+msgstr "Infantería de élite disponible para los espartanos."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
@@ -4205,7 +4206,7 @@ msgstr "Decent hack attack make them good front line troops."
 msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
-msgstr "They are countered by ranged units and swordsmen, so support your spearmen with slingers or cavalry."
+msgstr "Se están enfrentando a unidades de tiro y de espada, así que respalda a tus lanceros con honderos o caballería."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
@@ -4217,7 +4218,7 @@ msgstr "A special structure for  Athenians, Macedonians, and Spartans."
 
 #: gui/text/tips/stoa.txt:3
 msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr "Trains Heavy Skirmishers and Sword Infantry Champions."
+msgstr "Recluta escaramuceros de élite y primeros espadas."
 
 #: gui/text/tips/stoa.txt:4
 msgid "Grants +10 Population."
