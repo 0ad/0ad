@@ -134,11 +134,49 @@ vec3 get_fog(vec3 color)
 	return mix(fogColor, color, fogFactor);
 }
 
+vec4 getReflection(vec3 normal)
+{
+	// Reflections
+	// 3 level of settings:
+	// -If a player has refraction and reflection disabled, we return a gradient of blue based on the Y component.
+	// -If a player has refraction OR reflection, we return a reflection of the actual skybox used.
+	// -If a player has reflection enabled, we also return a reflection of actual entities where applicable.
+
+	// reflMod reduces the intensity of reflections somewhat since they kind of wash refractions out otherwise.
+	float reflMod = 0.75;
+	vec3 eye = reflect(v_eyeVec, normal);
+
+#if USE_REFLECTION
+	float refVY = clamp(v_eyeVec.y * 2.0, 0.05, 1.0);
+
+	// Distort the reflection coords based on waves.
+	vec2 reflCoords = (0.5 * reflectionCoords.xy - 15.0 * normal.zx / refVY) / reflectionCoords.z + 0.5;
+	vec4 refTex = texture2D(reflectionMap, reflCoords);
+
+	vec3 reflColor = refTex.rgb;
+
+	// Interpolate between the sky color and nearby objects.
+	// Only do this when alpha is rather low, or transparent leaves show up as extremely white.
+	if (refTex.a < 0.4)
+		reflColor = mix(textureCube(skyCube, (vec4(eye, 0.0) * skyBoxRot).xyz).rgb, refTex.rgb, refTex.a);
+
+	// Let actual objects be reflected fully.
+	reflMod = max(refTex.a, 0.75);
+#elif USE_REFRACTION
+	vec3 reflColor = textureCube(skyCube, (vec4(eye, 0.0) * skyBoxRot).xyz).rgb;
+#else // !USE_REFLECTION && !USE_REFRACTION
+	// Simplest case for reflection, return a gradient of blue based on Y component.
+	vec3 reflColor = mix(vec3(0.76, 0.84, 0.92), vec3(0.24, 0.43, 0.71), -eye.y);
+#endif
+
+	return vec4(reflColor, reflMod);
+}
+
 void main()
 {
 	float fresnel;
-	vec2 reflCoords, refrCoords;
-	vec3 reflColor, refrColor, specular;
+	vec2 refrCoords;
+	vec3 refrColor, specular;
 	float losMod;
 
 	// Calculate water normals.
@@ -280,41 +318,7 @@ void main()
 	vec3 colll = mix(refColor * tint, refColor, ColextFact);
 	refrColor = mix(color, colll, extFact);
 
-	// Reflections
-	// 3 level of settings:
-	// -If a player has refraction and reflection disabled, we return a gradient of blue based on the Y component.
-	// -If a player has refraction OR reflection, we return a reflection of the actual skybox used.
-	// -If a player has reflection enabled, we also return a reflection of actual entities where applicable.
-
-	// reflMod reduces the intensity of reflections somewhat since they kind of wash refractions out otherwise.
-	float reflMod = 0.75;
-	vec3 eye = reflect(v_eyeVec, normal);
-
-#if USE_REFLECTION || USE_REFRACTION
-#if USE_REFLECTION
-	float refVY = clamp(v_eyeVec.y * 2.0, 0.05, 1.0);
-
-	// Distort the reflection coords based on waves.
-	reflCoords = (0.5 * reflectionCoords.xy - 15.0 * normal.zx / refVY) / reflectionCoords.z + 0.5;
-	vec4 refTex = texture2D(reflectionMap, reflCoords);
-
-	reflColor = refTex.rgb;
-
-	// Interpolate between the sky color and nearby objects.
-	// Only do this when alpha is rather low, or transparent leaves show up as extremely white.
-	if (refTex.a < 0.4)
-		reflColor = mix(textureCube(skyCube, (vec4(eye, 0.0) * skyBoxRot).xyz).rgb, refTex.rgb, refTex.a);
-
-	// Let actual objects be reflected fully.
-	reflMod = max(refTex.a, 0.75);
-#else
-	reflColor = textureCube(skyCube, (vec4(eye, 0.0) * skyBoxRot).xyz).rgb;
-#endif
-
-#else // !USE_REFLECTION && !USE_REFRACTION
-	// Simplest case for reflection, return a gradient of blue based on Y component.
-	reflColor = mix(vec3(0.76, 0.84, 0.92), vec3(0.24, 0.43, 0.71), -eye.y);
-#endif
+	vec4 reflColor = getReflection(normal);
 
 	losMod = texture2D(losMap, losCoords.st).a;
 	losMod = losMod < 0.03 ? 0.0 : losMod;
@@ -322,9 +326,9 @@ void main()
 	vec3 color;
 #if USE_SHADOWS_ON_WATER && USE_SHADOW
 	float fresShadow = mix(fresnel, fresnel * shadow, 0.05 + murkiness * 0.2);
-	color = mix(refrColor, reflColor, fresShadow * reflMod);
+	color = mix(refrColor, reflColor.rgb, fresShadow * reflColor.a);
 #else
-	color = mix(refrColor, reflColor, fresnel * reflMod);
+	color = mix(refrColor, reflColor.rgb, fresnel * reflColor.a);
 #endif
 
 #if USE_SHADOWS_ON_WATER && USE_SHADOW
