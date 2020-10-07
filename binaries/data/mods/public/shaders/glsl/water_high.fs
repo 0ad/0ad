@@ -176,8 +176,7 @@ void main()
 {
 	float fresnel;
 	vec2 refrCoords;
-	vec3 refrColor, specular;
-	float losMod;
+	vec3 refrColor;
 
 	// Calculate water normals.
 
@@ -209,30 +208,6 @@ void main()
 #endif
 
 	normal = vec3(-normal.x, normal.y, -normal.z); // The final wave normal vector.
-
-	// How perpendicular to the normal our view is. Used for fresnel.
-	float ndotv = clamp(dot(normal, v_eyeVec), 0.0, 1.0);
-
-	// Fresnel for "how much reflection vs how much refraction".
-	fresnel = clamp(((pow(1.1 - ndotv, 2.0)) * 1.5), 0.1, 0.75); // Approximation. I'm using 1.1 and not 1.0 because it causes artifacts, see #1714
-
-	// Specular lighting vectors
-	vec3 specVector = reflect(sunDir, ww1);
-
-	// pow is undefined for null or negative values, except on intel it seems.
-	float specIntensity = clamp(pow(abs(dot(specVector, v_eyeVec)), 100.0), 0.0, 1.0);
-
-	specular = specIntensity * 1.2 * mix(vec3(1.5), sunColor, 0.5);
-
-#if USE_SHADOWS_ON_WATER && USE_SHADOW
-	float shadow = get_shadow(vec4(v_shadow.xy, v_shadow.zw));
-#endif
-
-	// for refraction, we want to adjust the value by v.y slightly otherwise it gets too different between "from above" and "from the sides".
-	// And it looks weird (again, we are not used to seeing water from above).
-	float fixedVy = max(v_eyeVec.y, 0.01);
-
-	float murky = mix(200.0, 0.1, pow(murkiness, 0.25));
 
 	float depth;
 #if USE_REAL_DEPTH
@@ -312,6 +287,26 @@ void main()
 	vec3 refColor = color;
 #endif
 
+	// for refraction, we want to adjust the value by v.y slightly otherwise it gets too different between "from above" and "from the sides".
+	// And it looks weird (again, we are not used to seeing water from above).
+	float fixedVy = max(v_eyeVec.y, 0.01);
+
+	float murky = mix(200.0, 0.1, pow(murkiness, 0.25));
+
+	// How perpendicular to the normal our view is. Used for fresnel.
+	float ndotv = clamp(dot(normal, v_eyeVec), 0.0, 1.0);
+
+	// Fresnel for "how much reflection vs how much refraction".
+	fresnel = clamp(((pow(1.1 - ndotv, 2.0)) * 1.5), 0.1, 0.75); // Approximation. I'm using 1.1 and not 1.0 because it causes artifacts, see #1714
+
+	// Specular lighting vectors
+	vec3 specVector = reflect(sunDir, ww1);
+
+	// pow is undefined for null or negative values, except on intel it seems.
+	float specIntensity = clamp(pow(abs(dot(specVector, v_eyeVec)), 100.0), 0.0, 1.0);
+
+	vec3 specular = specIntensity * 1.2 * mix(vec3(1.5), sunColor, 0.5);
+
 	// Apply water tint and murk color.
 	float extFact = max(0.0, 1.0 - (depth * fixedVy / murky));
 	float ColextFact = max(0.0, 1.0 - (depth * fixedVy / murky));
@@ -320,25 +315,15 @@ void main()
 
 	vec4 reflColor = getReflection(normal);
 
-	losMod = texture2D(losMap, losCoords.st).a;
-	losMod = losMod < 0.03 ? 0.0 : losMod;
-
 	vec3 color;
 #if USE_SHADOWS_ON_WATER && USE_SHADOW
+	float shadow = get_shadow(vec4(v_shadow.xy, v_shadow.zw));
 	float fresShadow = mix(fresnel, fresnel * shadow, 0.05 + murkiness * 0.2);
 	color = mix(refrColor, reflColor.rgb, fresShadow * reflColor.a);
-#else
-	color = mix(refrColor, reflColor.rgb, fresnel * reflColor.a);
-#endif
-
-#if USE_SHADOWS_ON_WATER && USE_SHADOW
 	color += shadow * specular;
 #else
+	color = mix(refrColor, reflColor.rgb, fresnel * reflColor.a);
 	color += specular;
-#endif
-
-#if USE_FOG
-	color = get_fog(color);
 #endif
 
 #if USE_FANCY_EFFECTS
@@ -354,11 +339,17 @@ void main()
 	color += fancyeffects.g + pow(foam1.x * (3.0 + waviness), 2.6 - waviness / 5.5);
 #endif
 
+#if USE_FOG
+	color = get_fog(color);
+#endif
+
 	float alpha = clamp(depth, 0.0, 1.0);
 
 #if !USE_REFRACTION
 	alpha = (1.4 - extFact) * alpha;
 #endif
 
+	float losMod = texture2D(losMap, losCoords.st).a;
+	losMod = losMod < 0.03 ? 0.0 : losMod;
 	gl_FragColor = vec4(color * losMod, alpha);
 }
