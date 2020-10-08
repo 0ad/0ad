@@ -134,12 +134,49 @@ vec3 get_fog(vec3 color)
 	return mix(fogColor, color, fogFactor);
 }
 
+vec4 getReflection(vec3 normal)
+{
+	// Reflections
+	// 3 level of settings:
+	// -If a player has refraction and reflection disabled, we return a gradient of blue based on the Y component.
+	// -If a player has refraction OR reflection, we return a reflection of the actual skybox used.
+	// -If a player has reflection enabled, we also return a reflection of actual entities where applicable.
+
+	// reflMod reduces the intensity of reflections somewhat since they kind of wash refractions out otherwise.
+	float reflMod = 0.75;
+	vec3 eye = reflect(v_eyeVec, normal);
+
+#if USE_REFLECTION
+	float refVY = clamp(v_eyeVec.y * 2.0, 0.05, 1.0);
+
+	// Distort the reflection coords based on waves.
+	vec2 reflCoords = (0.5 * reflectionCoords.xy - 15.0 * normal.zx / refVY) / reflectionCoords.z + 0.5;
+	vec4 refTex = texture2D(reflectionMap, reflCoords);
+
+	vec3 reflColor = refTex.rgb;
+
+	// Interpolate between the sky color and nearby objects.
+	// Only do this when alpha is rather low, or transparent leaves show up as extremely white.
+	if (refTex.a < 0.4)
+		reflColor = mix(textureCube(skyCube, (vec4(eye, 0.0) * skyBoxRot).xyz).rgb, refTex.rgb, refTex.a);
+
+	// Let actual objects be reflected fully.
+	reflMod = max(refTex.a, 0.75);
+#elif USE_REFRACTION
+	vec3 reflColor = textureCube(skyCube, (vec4(eye, 0.0) * skyBoxRot).xyz).rgb;
+#else // !USE_REFLECTION && !USE_REFRACTION
+	// Simplest case for reflection, return a gradient of blue based on Y component.
+	vec3 reflColor = mix(vec3(0.76, 0.84, 0.92), vec3(0.24, 0.43, 0.71), -eye.y);
+#endif
+
+	return vec4(reflColor, reflMod);
+}
+
 void main()
 {
 	float fresnel;
-	vec2 reflCoords, refrCoords;
-	vec3 reflColor, refrColor, specular;
-	float losMod;
+	vec2 refrCoords;
+	vec3 refrColor;
 
 	// Calculate water normals.
 
@@ -171,30 +208,6 @@ void main()
 #endif
 
 	normal = vec3(-normal.x, normal.y, -normal.z); // The final wave normal vector.
-
-	// How perpendicular to the normal our view is. Used for fresnel.
-	float ndotv = clamp(dot(normal, v_eyeVec), 0.0, 1.0);
-
-	// Fresnel for "how much reflection vs how much refraction".
-	fresnel = clamp(((pow(1.1 - ndotv, 2.0)) * 1.5), 0.1, 0.75); // Approximation. I'm using 1.1 and not 1.0 because it causes artifacts, see #1714
-
-	// Specular lighting vectors
-	vec3 specVector = reflect(sunDir, ww1);
-
-	// pow is undefined for null or negative values, except on intel it seems.
-	float specIntensity = clamp(pow(abs(dot(specVector, v_eyeVec)), 100.0), 0.0, 1.0);
-
-	specular = specIntensity * 1.2 * mix(vec3(1.5), sunColor, 0.5);
-
-#if USE_SHADOWS_ON_WATER && USE_SHADOW
-	float shadow = get_shadow(vec4(v_shadow.xy, v_shadow.zw));
-#endif
-
-	// for refraction, we want to adjust the value by v.y slightly otherwise it gets too different between "from above" and "from the sides".
-	// And it looks weird (again, we are not used to seeing water from above).
-	float fixedVy = max(v_eyeVec.y, 0.01);
-
-	float murky = mix(200.0, 0.1, pow(murkiness, 0.25));
 
 	float depth;
 #if USE_REAL_DEPTH
@@ -274,67 +287,43 @@ void main()
 	vec3 refColor = color;
 #endif
 
+	// for refraction, we want to adjust the value by v.y slightly otherwise it gets too different between "from above" and "from the sides".
+	// And it looks weird (again, we are not used to seeing water from above).
+	float fixedVy = max(v_eyeVec.y, 0.01);
+
+	float murky = mix(200.0, 0.1, pow(murkiness, 0.25));
+
+	// How perpendicular to the normal our view is. Used for fresnel.
+	float ndotv = clamp(dot(normal, v_eyeVec), 0.0, 1.0);
+
+	// Fresnel for "how much reflection vs how much refraction".
+	fresnel = clamp(((pow(1.1 - ndotv, 2.0)) * 1.5), 0.1, 0.75); // Approximation. I'm using 1.1 and not 1.0 because it causes artifacts, see #1714
+
+	// Specular lighting vectors
+	vec3 specVector = reflect(sunDir, ww1);
+
+	// pow is undefined for null or negative values, except on intel it seems.
+	float specIntensity = clamp(pow(abs(dot(specVector, v_eyeVec)), 100.0), 0.0, 1.0);
+
+	vec3 specular = specIntensity * 1.2 * mix(vec3(1.5), sunColor, 0.5);
+
 	// Apply water tint and murk color.
 	float extFact = max(0.0, 1.0 - (depth * fixedVy / murky));
 	float ColextFact = max(0.0, 1.0 - (depth * fixedVy / murky));
 	vec3 colll = mix(refColor * tint, refColor, ColextFact);
 	refrColor = mix(color, colll, extFact);
 
-	// Reflections
-	// 3 level of settings:
-	// -If a player has refraction and reflection disabled, we return a gradient of blue based on the Y component.
-	// -If a player has refraction OR reflection, we return a reflection of the actual skybox used.
-	// -If a player has reflection enabled, we also return a reflection of actual entities where applicable.
-
-	// reflMod reduces the intensity of reflections somewhat since they kind of wash refractions out otherwise.
-	float reflMod = 0.75;
-	vec3 eye = reflect(v_eyeVec, normal);
-
-#if USE_REFLECTION || USE_REFRACTION
-#if USE_REFLECTION
-	float refVY = clamp(v_eyeVec.y * 2.0, 0.05, 1.0);
-
-	// Distort the reflection coords based on waves.
-	reflCoords = (0.5 * reflectionCoords.xy - 15.0 * normal.zx / refVY) / reflectionCoords.z + 0.5;
-	vec4 refTex = texture2D(reflectionMap, reflCoords);
-
-	reflColor = refTex.rgb;
-
-	// Interpolate between the sky color and nearby objects.
-	// Only do this when alpha is rather low, or transparent leaves show up as extremely white.
-	if (refTex.a < 0.4)
-		reflColor = mix(textureCube(skyCube, (vec4(eye, 0.0) * skyBoxRot).xyz).rgb, refTex.rgb, refTex.a);
-
-	// Let actual objects be reflected fully.
-	reflMod = max(refTex.a, 0.75);
-#else
-	reflColor = textureCube(skyCube, (vec4(eye, 0.0) * skyBoxRot).xyz).rgb;
-#endif
-
-#else // !USE_REFLECTION && !USE_REFRACTION
-	// Simplest case for reflection, return a gradient of blue based on Y component.
-	reflColor = mix(vec3(0.76, 0.84, 0.92), vec3(0.24, 0.43, 0.71), -eye.y);
-#endif
-
-	losMod = texture2D(losMap, losCoords.st).a;
-	losMod = losMod < 0.03 ? 0.0 : losMod;
+	vec4 reflColor = getReflection(normal);
 
 	vec3 color;
 #if USE_SHADOWS_ON_WATER && USE_SHADOW
+	float shadow = get_shadow(vec4(v_shadow.xy, v_shadow.zw));
 	float fresShadow = mix(fresnel, fresnel * shadow, 0.05 + murkiness * 0.2);
-	color = mix(refrColor, reflColor, fresShadow * reflMod);
-#else
-	color = mix(refrColor, reflColor, fresnel * reflMod);
-#endif
-
-#if USE_SHADOWS_ON_WATER && USE_SHADOW
+	color = mix(refrColor, reflColor.rgb, fresShadow * reflColor.a);
 	color += shadow * specular;
 #else
+	color = mix(refrColor, reflColor.rgb, fresnel * reflColor.a);
 	color += specular;
-#endif
-
-#if USE_FOG
-	color = get_fog(color);
 #endif
 
 #if USE_FANCY_EFFECTS
@@ -350,11 +339,17 @@ void main()
 	color += fancyeffects.g + pow(foam1.x * (3.0 + waviness), 2.6 - waviness / 5.5);
 #endif
 
+#if USE_FOG
+	color = get_fog(color);
+#endif
+
 	float alpha = clamp(depth, 0.0, 1.0);
 
 #if !USE_REFRACTION
 	alpha = (1.4 - extFact) * alpha;
 #endif
 
+	float losMod = texture2D(losMap, losCoords.st).a;
+	losMod = losMod < 0.03 ? 0.0 : losMod;
 	gl_FragColor = vec4(color * losMod, alpha);
 }
