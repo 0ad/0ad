@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-07 07:10+0000\n"
-"PO-Revision-Date: 2020-08-07 18:37+0000\n"
+"POT-Creation-Date: 2020-10-05 07:22+0000\n"
+"PO-Revision-Date: 2020-10-05 18:15+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -365,76 +365,76 @@ msgstr "%(_player_)s, dre ma n'ho peus ket respontet d'am goulenn peoc'h etrezom
 msgid "%(name)s cannot be built due to unknown error"
 msgstr "Ne c'hell ket bezañ savet %(name)s abalamour d'ur fazi dianav"
 
-#: simulation/components/BuildRestrictions.js:108
+#: simulation/components/BuildRestrictions.js:111
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr "%(name)s na c'hell ket bezañ savet war ur gorread ha n'eo ket bet dizoloet c'hoazh"
 
-#: simulation/components/BuildRestrictions.js:156
+#: simulation/components/BuildRestrictions.js:159
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr "N'hall ket bezañ savet %(name)s war ur savadur all pe ur vammenn"
 
-#: simulation/components/BuildRestrictions.js:160
+#: simulation/components/BuildRestrictions.js:163
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr "%(name)s n'hall ket bezañ savet war un dachenn fall"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:184
+#: simulation/components/BuildRestrictions.js:186
 msgctxt "Territory type"
 msgid "own"
 msgstr "perc'hennet"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:187
+#: simulation/components/BuildRestrictions.js:189
 msgctxt "Territory type"
 msgid "unconnected own"
 msgstr "perc'hennet nann-gevreet"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:193
+#: simulation/components/BuildRestrictions.js:195
 msgctxt "Territory type"
 msgid "allied"
 msgstr "Kevredet"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:196
+#: simulation/components/BuildRestrictions.js:198
 msgctxt "Territory type"
 msgid "unconnected allied"
 msgstr "kevredet nann-gevreet"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:202
+#: simulation/components/BuildRestrictions.js:204
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "neptuek"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:209
+#: simulation/components/BuildRestrictions.js:211
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "enebour"
 
-#: simulation/components/BuildRestrictions.js:214
+#: simulation/components/BuildRestrictions.js:216
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "%(name)s n'hall ket bezañ savet war un tiriad %(territoryType)s. Tiriad reizh: %(validTerritories)s"
 
-#: simulation/components/BuildRestrictions.js:228
+#: simulation/components/BuildRestrictions.js:230
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "War un aod dereat e rank bezañ savet %(name)s"
 
-#: simulation/components/BuildRestrictions.js:256
+#: simulation/components/BuildRestrictions.js:257
 #, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meter "
@@ -448,7 +448,7 @@ msgstr[2] "Re dost emañ %(name)s diouzh %(category)s, rankout a ra bezañ da vi
 msgstr[3] "Re dost emañ %(name)s diouzh %(category)s, rankout a ra bezañ da vihanañ da %(distance)s metrad hed"
 msgstr[4] "Re dost emañ %(name)s diouzh %(category)s, rankout a ra bezañ da vihanañ da %(distance)s metrad hed"
 
-#: simulation/components/BuildRestrictions.js:277
+#: simulation/components/BuildRestrictions.js:278
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
@@ -462,28 +462,28 @@ msgstr[4] "%(name)s a zo re bell diouzh %(category)s, rankout a ra bezañ da neb
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:317
+#: simulation/components/BuildRestrictions.js:318
 msgctxt "Territory type list"
 msgid "own"
 msgstr "perc'hennet"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:319
+#: simulation/components/BuildRestrictions.js:320
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "kevredad"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:321
+#: simulation/components/BuildRestrictions.js:322
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "neptuek"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:323
+#: simulation/components/BuildRestrictions.js:324
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "enebour"
@@ -526,26 +526,26 @@ msgstr "%(category)s bevenn ar stummadur %(limit)s tizhet"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s bevenn a %(limit)s tizhet"
 
-#: simulation/components/Player.js:319
+#: simulation/components/Player.js:313
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "N'eus ket trawalc'h a vammennoù -  %(resourceAmount1)s \n%(resourceType1)s"
 
-#: simulation/components/Player.js:321
+#: simulation/components/Player.js:315
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "N'eus ket trawalc'h a vammennoù - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:323
+#: simulation/components/Player.js:317
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "N'eus ket trawalc'h a vammennoù -  %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:325
+#: simulation/components/Player.js:319
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -553,13 +553,21 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "N'eus ket trawalc'h a vammennoù - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:492
+#: simulation/components/ProductionQueue.js:339
+msgid "Entity is being upgraded. Cannot start production."
+msgstr ""
+
+#: simulation/components/ProductionQueue.js:512
 msgid "The production queue is full."
 msgstr "Leun emañ ar steudad-c'hortoz."
 
-#: simulation/components/ProductionQueue.js:869
+#: simulation/components/ProductionQueue.js:900
 msgid "Can't find free space to spawn trained units"
 msgstr "N'hall ket bezañ kavet plas ebet evit stummañ unanennoù."
+
+#: simulation/components/Upgrade.js:241
+msgid "Entity is producing. Cannot start upgrading."
+msgstr ""
 
 #: simulation/helpers/Cheat.js:58
 #, javascript-format

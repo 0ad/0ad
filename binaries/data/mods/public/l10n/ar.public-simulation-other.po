@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-07 07:10+0000\n"
-"PO-Revision-Date: 2020-08-07 18:37+0000\n"
+"POT-Creation-Date: 2020-10-05 07:22+0000\n"
+"PO-Revision-Date: 2020-10-05 18:15+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -363,76 +363,76 @@ msgstr "%(_player_)s، كما فشلت في الرد علي عرضي للسلا�
 msgid "%(name)s cannot be built due to unknown error"
 msgstr "تعذّر بناء %(name)s لسبب مجهول"
 
-#: simulation/components/BuildRestrictions.js:108
+#: simulation/components/BuildRestrictions.js:111
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr "لا يمكن بناء %(name)s في منطقة غير مكتشفة"
 
-#: simulation/components/BuildRestrictions.js:156
+#: simulation/components/BuildRestrictions.js:159
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr "لا يمكن بناء %(name)s على مبنى أو مورد آخر"
 
-#: simulation/components/BuildRestrictions.js:160
+#: simulation/components/BuildRestrictions.js:163
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr "لا يمكن بناء %(name)s على أرض غير صالحة"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:184
+#: simulation/components/BuildRestrictions.js:186
 msgctxt "Territory type"
 msgid "own"
 msgstr "ك"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:187
+#: simulation/components/BuildRestrictions.js:189
 msgctxt "Territory type"
 msgid "unconnected own"
 msgstr "غير متصله خاصة"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:193
+#: simulation/components/BuildRestrictions.js:195
 msgctxt "Territory type"
 msgid "allied"
 msgstr " حليف"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:196
+#: simulation/components/BuildRestrictions.js:198
 msgctxt "Territory type"
 msgid "unconnected allied"
 msgstr "حلفاء غير متصلين"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:202
+#: simulation/components/BuildRestrictions.js:204
 msgctxt "Territory type"
 msgid "neutral"
 msgstr " محايد"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:209
+#: simulation/components/BuildRestrictions.js:211
 msgctxt "Territory type"
 msgid "enemy"
 msgstr " العدوّ"
 
-#: simulation/components/BuildRestrictions.js:214
+#: simulation/components/BuildRestrictions.js:216
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "لا يمكن بناء %(name)s على إقليم%(territoryType)s. الأقاليم الصّالحة هي: %(validTerritories)s"
 
-#: simulation/components/BuildRestrictions.js:228
+#: simulation/components/BuildRestrictions.js:230
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "%(name)s يجب ان يُشيّد على شاطئ صالح"
 
-#: simulation/components/BuildRestrictions.js:256
+#: simulation/components/BuildRestrictions.js:257
 #, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meter "
@@ -447,7 +447,7 @@ msgstr[3] "%(name)s قريب جدًّا من %(category)s، يجب أن يكون
 msgstr[4] "%(name)s قريب جدًّا من %(category)s، يجب أن يكون على بعد %(distance)s مترًا على الأقلّ"
 msgstr[5] "%(name)s قريب جدًّا من %(category)s، يجب أن يكون على بعد %(distance)s متر على الأقلّ"
 
-#: simulation/components/BuildRestrictions.js:277
+#: simulation/components/BuildRestrictions.js:278
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
@@ -462,28 +462,28 @@ msgstr[5] "%(name)s بعيد جداً عن %(category)s, يجب أن يكون ف
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:317
+#: simulation/components/BuildRestrictions.js:318
 msgctxt "Territory type list"
 msgid "own"
 msgstr "أقاليمك"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:319
+#: simulation/components/BuildRestrictions.js:320
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "أقاليم الحلفاء"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:321
+#: simulation/components/BuildRestrictions.js:322
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "الأقاليم المحايدة"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:323
+#: simulation/components/BuildRestrictions.js:324
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "أقاليم العدوّ"
@@ -527,26 +527,26 @@ msgstr "%(category)s الحد الأقصى تدريب %(limit)s بلغ"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "بلغت الحدّ الأقصى (%(limit)s) من %(category)s"
 
-#: simulation/components/Player.js:319
+#: simulation/components/Player.js:313
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "الموارد غير كافية - %(resourceAmount1)s من %(resourceType1)s"
 
-#: simulation/components/Player.js:321
+#: simulation/components/Player.js:315
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "الموارد غير كافية - %(resourceAmount1)s من %(resourceType1)s، و%(resourceAmount2)s من %(resourceType2)s"
 
-#: simulation/components/Player.js:323
+#: simulation/components/Player.js:317
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "الموارد غير كافية - %(resourceAmount1)s من %(resourceType1)s، و%(resourceAmount2)s من %(resourceType2)s، و%(resourceAmount3)s من %(resourceType3)s"
 
-#: simulation/components/Player.js:325
+#: simulation/components/Player.js:319
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -554,13 +554,21 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "موارد غير كافية -  %(resourceAmount1)s %(resourceType1)s،  %(resourceAmount2)s %(resourceType2)s،  %(resourceAmount3)s %(resourceType3)s،  %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:492
+#: simulation/components/ProductionQueue.js:339
+msgid "Entity is being upgraded. Cannot start production."
+msgstr ""
+
+#: simulation/components/ProductionQueue.js:512
 msgid "The production queue is full."
 msgstr "صفّ الإنتاج ممتلئ."
 
-#: simulation/components/ProductionQueue.js:869
+#: simulation/components/ProductionQueue.js:900
 msgid "Can't find free space to spawn trained units"
 msgstr "لا يمكن إيجاد مساحة حرة لتنزيل الوحدات المدربة"
+
+#: simulation/components/Upgrade.js:241
+msgid "Entity is producing. Cannot start upgrading."
+msgstr ""
 
 #: simulation/helpers/Cheat.js:58
 #, javascript-format

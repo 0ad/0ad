@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-09-11 07:09+0000\n"
-"PO-Revision-Date: 2020-09-11 13:17+0000\n"
-"Last-Translator: Mostafa Lotfi <lotfi.mostafa@gmail.com>\n"
+"POT-Creation-Date: 2020-10-05 07:19+0000\n"
+"PO-Revision-Date: 2020-10-05 13:17+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -130,7 +130,7 @@ msgid "Paused by %(players)s"
 msgstr "بازی متوقف شد توسط %(players)s"
 
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:268
-#: gui/session/selection_details.js:284 gui/session/selection_panels.js:597
+#: gui/session/selection_details.js:284 gui/session/selection_panels.js:598
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -303,87 +303,101 @@ msgstr "اعلام خطر!"
 msgid "End of alert."
 msgstr "پایان خطر."
 
-#: gui/session/selection_panels.js:377
+#: gui/session/selection_panels.js:378
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "خارج کردن %(name)s"
 
-#: gui/session/selection_panels.js:378
+#: gui/session/selection_panels.js:379
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "یک بار کلیک کنید تا 1 نفر خارج شود. هنگام کلیک شیفت را نگه دارید تا همه نیروهای از نوع خارج شوند."
 
-#: gui/session/selection_panels.js:380 gui/session/selection_panels.js:873
+#: gui/session/selection_panels.js:381 gui/session/selection_panels.js:888
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "بازیکن: %(playername)s"
 
-#: gui/session/selection_panels.js:416
+#: gui/session/selection_panels.js:417
 msgid "Lock Gate"
 msgstr "قفل دروازه"
 
-#: gui/session/selection_panels.js:422
+#: gui/session/selection_panels.js:423
 msgid "Unlock Gate"
 msgstr "گشودن دربازه"
 
-#: gui/session/selection_panels.js:473
+#: gui/session/selection_panels.js:474
 msgid "Pack"
 msgstr "بستن"
 
-#: gui/session/selection_panels.js:481
+#: gui/session/selection_panels.js:482
 msgid "Unpack"
 msgstr "باز کردن"
 
-#: gui/session/selection_panels.js:489
+#: gui/session/selection_panels.js:490
 msgid "Cancel Packing"
 msgstr "لغو بستن"
 
-#: gui/session/selection_panels.js:497
+#: gui/session/selection_panels.js:498
 msgid "Cancel Unpacking"
 msgstr "لغو بازکردن"
 
-#: gui/session/selection_panels.js:584
+#: gui/session/selection_panels.js:585
 msgid "Insufficient population capacity:"
 msgstr "جای کافی موجود نیست:"
 
-#: gui/session/selection_panels.js:585
+#: gui/session/selection_panels.js:586
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:749
+#: gui/session/selection_panels.js:756
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s وجود کلاس %(class)s"
 msgstr[1] "%(number)s وجود کلاس %(class)s"
 
-#: gui/session/selection_panels.js:755
+#: gui/session/selection_panels.js:762
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "باقی مانده: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:756
+#: gui/session/selection_panels.js:763
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr "،"
 
-#: gui/session/selection_panels.js:1066
+#: gui/session/selection_panels.js:812
+msgid "Cannot research while upgrading."
+msgstr ""
+
+#: gui/session/selection_panels.js:1034
+msgid "Cannot train while upgrading."
+msgstr ""
+
+#: gui/session/selection_panels.js:1096
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
 msgstr "بهبود کردن به %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1071
+#: gui/session/selection_panels.js:1101
 #, javascript-format
 msgid "Upgrade to %(name)s."
 msgstr "بهبود کردن به %(name)s."
 
-#: gui/session/selection_panels.js:1088
+#: gui/session/selection_panels.js:1136
 msgid "Cancel Upgrading"
 msgstr "لغو ارتقا"
 
-#: gui/session/selection_panels.js:1093
-msgid "Cannot upgrade when the entity is already upgrading."
-msgstr "قادر به ارتقا نیست وقتی که در حال ارتقا دیگری است"
+#: gui/session/selection_panels.js:1151
+msgid ""
+"Cannot upgrade when the entity is training, researching or already "
+"upgrading."
+msgid_plural ""
+"Cannot upgrade when all entities are training, researching or already "
+"upgrading."
+msgstr[0] ""
+msgstr[1] ""
 
 #: gui/session/selection_panels_helpers.js:51
 msgctxt "stance"
@@ -1278,7 +1292,7 @@ msgctxt "trading good ratio"
 msgid "%(amount)s%%"
 msgstr "%(amount)s%%"
 
-#: gui/session/trade/TradeButtonManager.js:76
+#: gui/session/trade/TradeButtonManager.js:80
 #, javascript-format
 msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
