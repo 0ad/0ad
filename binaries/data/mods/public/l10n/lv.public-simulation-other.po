@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-07 07:10+0000\n"
-"PO-Revision-Date: 2020-08-07 18:37+0000\n"
+"POT-Creation-Date: 2020-10-05 07:22+0000\n"
+"PO-Revision-Date: 2020-10-05 18:15+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
@@ -361,76 +361,76 @@ msgstr ""
 msgid "%(name)s cannot be built due to unknown error"
 msgstr "%(name)s nevar tikt uzbūvēts nezināmas kļūdas dēļ"
 
-#: simulation/components/BuildRestrictions.js:108
+#: simulation/components/BuildRestrictions.js:111
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr "%(name)s nevar tikt uzbūvēts neatklātā vietā"
 
-#: simulation/components/BuildRestrictions.js:156
+#: simulation/components/BuildRestrictions.js:159
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr "%(name)s nevar tikt būvēts virsū citai būvei vai resursam"
 
-#: simulation/components/BuildRestrictions.js:160
+#: simulation/components/BuildRestrictions.js:163
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr "%(name)s nevar tikt būvēts uz neatbilstoša reljefa"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:184
+#: simulation/components/BuildRestrictions.js:186
 msgctxt "Territory type"
 msgid "own"
 msgstr "savs"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:187
+#: simulation/components/BuildRestrictions.js:189
 msgctxt "Territory type"
 msgid "unconnected own"
 msgstr "atslēdza savējo"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:193
+#: simulation/components/BuildRestrictions.js:195
 msgctxt "Territory type"
 msgid "allied"
 msgstr "sabiedrots"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:196
+#: simulation/components/BuildRestrictions.js:198
 msgctxt "Territory type"
 msgid "unconnected allied"
 msgstr "nesavienots sabiedrotais"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:202
+#: simulation/components/BuildRestrictions.js:204
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "neitrāls"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:209
+#: simulation/components/BuildRestrictions.js:211
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "ienaidnieks"
 
-#: simulation/components/BuildRestrictions.js:214
+#: simulation/components/BuildRestrictions.js:216
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "%(name)s nevar tikt būvēts %(territoryType)s teritorijā. Derīgas teritorijas: %(validTerritories)s"
 
-#: simulation/components/BuildRestrictions.js:228
+#: simulation/components/BuildRestrictions.js:230
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "%(name)s jābūvē uz derīgas piekrastes"
 
-#: simulation/components/BuildRestrictions.js:256
+#: simulation/components/BuildRestrictions.js:257
 #, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meter "
@@ -442,7 +442,7 @@ msgstr[0] "%(name)s pārāk tuvu pie %(category)s, jābūt vismaz %(distance)s m
 msgstr[1] "%(name)s pārāk tuvu pie %(category)s, jābūt vismaz %(distance)s metra attālumā"
 msgstr[2] "%(name)s pārāk tuvu pie %(category)s, jābūt vismaz %(distance)s metru attālumā"
 
-#: simulation/components/BuildRestrictions.js:277
+#: simulation/components/BuildRestrictions.js:278
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
@@ -454,28 +454,28 @@ msgstr[2] "%(name)s pārāk tālu no %(category)s, jābūt ne tālāk par %(dist
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:317
+#: simulation/components/BuildRestrictions.js:318
 msgctxt "Territory type list"
 msgid "own"
 msgstr "savs"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:319
+#: simulation/components/BuildRestrictions.js:320
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "alianse"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:321
+#: simulation/components/BuildRestrictions.js:322
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "neitrāls"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:323
+#: simulation/components/BuildRestrictions.js:324
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "ienaidnieks"
@@ -516,26 +516,26 @@ msgstr "%(category)s vienību limits %(limit)s sasniegts"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s limits %(limit)s sasniegts"
 
-#: simulation/components/Player.js:319
+#: simulation/components/Player.js:313
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Nepietiek resursu - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:321
+#: simulation/components/Player.js:315
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Nepietiek resursu - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:323
+#: simulation/components/Player.js:317
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Nepietiek resursu - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:325
+#: simulation/components/Player.js:319
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -543,13 +543,21 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Nepietiek resursu - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:492
+#: simulation/components/ProductionQueue.js:339
+msgid "Entity is being upgraded. Cannot start production."
+msgstr ""
+
+#: simulation/components/ProductionQueue.js:512
 msgid "The production queue is full."
 msgstr "Ražošanas rinda ir pilna."
 
-#: simulation/components/ProductionQueue.js:869
+#: simulation/components/ProductionQueue.js:900
 msgid "Can't find free space to spawn trained units"
 msgstr "Nevar atrast brīvu vietu, kur iznākt apmācītām vienībām"
+
+#: simulation/components/Upgrade.js:241
+msgid "Entity is producing. Cannot start upgrading."
+msgstr ""
 
 #: simulation/helpers/Cheat.js:58
 #, javascript-format

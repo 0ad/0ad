@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-07 07:10+0000\n"
-"PO-Revision-Date: 2020-10-04 06:56+0000\n"
+"POT-Creation-Date: 2020-10-05 07:22+0000\n"
+"PO-Revision-Date: 2020-10-05 20:10+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -378,76 +378,76 @@ msgstr "%(_player_)s, como no has respondido a mis ofertas de paz me retracto y 
 msgid "%(name)s cannot be built due to unknown error"
 msgstr "«%(name)s» no se puede construir debido a un error desconocido"
 
-#: simulation/components/BuildRestrictions.js:108
+#: simulation/components/BuildRestrictions.js:111
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr "«%(name)s» no se puede construir en áreas inexploradas"
 
-#: simulation/components/BuildRestrictions.js:156
+#: simulation/components/BuildRestrictions.js:159
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr "«%(name)s» no se puede construir sobre otro edificio o recurso"
 
-#: simulation/components/BuildRestrictions.js:160
+#: simulation/components/BuildRestrictions.js:163
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr "«%(name)s» no se puede construir sobre terreno accidentado"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:184
+#: simulation/components/BuildRestrictions.js:186
 msgctxt "Territory type"
 msgid "own"
 msgstr "propio"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:187
+#: simulation/components/BuildRestrictions.js:189
 msgctxt "Territory type"
 msgid "unconnected own"
 msgstr "propio virgen"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:193
+#: simulation/components/BuildRestrictions.js:195
 msgctxt "Territory type"
 msgid "allied"
 msgstr "aliado"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:196
+#: simulation/components/BuildRestrictions.js:198
 msgctxt "Territory type"
 msgid "unconnected allied"
 msgstr "aliado virgen"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:202
+#: simulation/components/BuildRestrictions.js:204
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "neutral"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:209
+#: simulation/components/BuildRestrictions.js:211
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "enemigo"
 
-#: simulation/components/BuildRestrictions.js:214
+#: simulation/components/BuildRestrictions.js:216
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "«%(name)s» no se puede construir en territorio %(territoryType)s. Sólo disponible en: %(validTerritories)s"
 
-#: simulation/components/BuildRestrictions.js:228
+#: simulation/components/BuildRestrictions.js:230
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "«%(name)s» debe construirse sobre una línea de costa válida"
 
-#: simulation/components/BuildRestrictions.js:256
+#: simulation/components/BuildRestrictions.js:257
 #, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meter "
@@ -458,7 +458,7 @@ msgid_plural ""
 msgstr[0] "«%(name)s» está demasiado cerca de %(category)s, debería de estar por lo menos a %(distance)s metro"
 msgstr[1] "«%(name)s» está demasiado cerca de %(category)s, debería de estar por lo menos a %(distance)s metros"
 
-#: simulation/components/BuildRestrictions.js:277
+#: simulation/components/BuildRestrictions.js:278
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
@@ -469,28 +469,28 @@ msgstr[1] "«%(name)s» está demasiado lejos de %(category)s, debería de estar
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:317
+#: simulation/components/BuildRestrictions.js:318
 msgctxt "Territory type list"
 msgid "own"
 msgstr "propio"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:319
+#: simulation/components/BuildRestrictions.js:320
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "aliado"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:321
+#: simulation/components/BuildRestrictions.js:322
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "neutral"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:323
+#: simulation/components/BuildRestrictions.js:324
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "enemigo"
@@ -530,26 +530,26 @@ msgstr "%(category)s ha alcanzado el límite de reclutamiento de %(limit)s"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s ha llegado al límite de %(limit)s"
 
-#: simulation/components/Player.js:319
+#: simulation/components/Player.js:313
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "No hay recursos suficientes - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:321
+#: simulation/components/Player.js:315
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "No hay recursos suficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:323
+#: simulation/components/Player.js:317
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "No hay recursos suficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:325
+#: simulation/components/Player.js:319
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -557,13 +557,21 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "No hay recursos suficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:492
+#: simulation/components/ProductionQueue.js:339
+msgid "Entity is being upgraded. Cannot start production."
+msgstr "La entidad está promocionando. No puede comenzar la producción."
+
+#: simulation/components/ProductionQueue.js:512
 msgid "The production queue is full."
 msgstr "La cola de producción está llena."
 
-#: simulation/components/ProductionQueue.js:869
+#: simulation/components/ProductionQueue.js:900
 msgid "Can't find free space to spawn trained units"
 msgstr "Las unidades reclutadas no tienen suficiente sitio para aparecer"
+
+#: simulation/components/Upgrade.js:241
+msgid "Entity is producing. Cannot start upgrading."
+msgstr "La entidad está en producción. La promoción no puede comenzar."
 
 #: simulation/helpers/Cheat.js:58
 #, javascript-format
