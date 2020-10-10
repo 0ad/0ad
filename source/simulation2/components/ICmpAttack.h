@@ -18,12 +18,14 @@
 #ifndef INCLUDED_ICMPATTACK
 #define INCLUDED_ICMPATTACK
 
+#include "ps/CStr.h"
 #include "simulation2/system/Interface.h"
 
 class ICmpAttack : public IComponent
 {
 public:
     virtual float GetRepeatTime(const std::string& type) const = 0;
+    virtual std::vector<CStr> GetAttackTypes() const = 0;
     DECLARE_INTERFACE_TYPE(Attack)
 };
 

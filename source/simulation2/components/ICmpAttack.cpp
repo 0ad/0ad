@@ -31,10 +31,15 @@ class CCmpAttackScripted : public ICmpAttack
 public:
 	DEFAULT_SCRIPT_WRAPPER(AttackScripted)
 
-    virtual float GetRepeatTime(const std::string& type) const
-    {
-        return m_Script.Call<float, const std::string&>("GetRepeatTime", type);
-    }
+	virtual float GetRepeatTime(const std::string& type) const
+	{
+		return m_Script.Call<float, const std::string&>("GetRepeatTime", type);
+	}
+
+	virtual std::vector<CStr> GetAttackTypes() const
+	{
+		return m_Script.Call<std::vector<CStr>>("GetAttackTypes");
+	}
 };
 
 REGISTER_COMPONENT_SCRIPT_WRAPPER(AttackScripted)

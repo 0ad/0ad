@@ -382,7 +382,7 @@ void ActorViewer::SetActor(const CStrW& name, const CStr& animation, player_id_t
 		CStr anim = animation.LowerCase();
 		float speed = 1.0f;
 		// Speed will be ignored if we have a repeat time.
-		float repeattime = 0.0f;
+		float repeatTime = 0.0f;
 		m.CurrentSpeed = 0.0f;
 		if (anim == "walk")
 		{
@@ -403,22 +403,25 @@ void ActorViewer::SetActor(const CStrW& name, const CStr& animation, player_id_t
 
 			m.CurrentSpeed = speed;
 		}
-		else if (anim == "attack_melee")
-			repeattime = GetRepeatTimeByAttackType("Melee");
-		else if (anim == "attack_ranged")
-			repeattime = GetRepeatTimeByAttackType("Ranged");
-		else if (anim == "attack_slaughter")
-			repeattime = GetRepeatTimeByAttackType("Slaughter");
-		else if (anim == "attack_capture")
-			repeattime = GetRepeatTimeByAttackType("Capture");
+		else if (anim.Find("attack_") == 0)
+		{
+			CmpPtr<ICmpAttack> cmpAttack(m.Simulation2, m.Entity);
+			if (cmpAttack)
+				for (const CStr& type : cmpAttack->GetAttackTypes())
+					if (anim == "attack_" + type.LowerCase())
+					{
+						repeatTime = GetRepeatTimeByAttackType(type);
+						break;
+					}
+		}
 
 		CmpPtr<ICmpVisual> cmpVisual(m.Simulation2, m.Entity);
 		if (cmpVisual)
 		{
 			// TODO: SetEntitySelection(anim)
 			cmpVisual->SelectAnimation(anim, false, fixed::FromFloat(speed));
-			if (repeattime)
-				cmpVisual->SetAnimationSyncRepeat(fixed::FromFloat(repeattime));
+			if (repeatTime > 0.0f)
+				cmpVisual->SetAnimationSyncRepeat(fixed::FromFloat(repeatTime));
 		}
 
 		// update prop list for new entity/animation (relies on needsAnimReload also getting called for entire entity changes)
