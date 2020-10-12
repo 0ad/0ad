@@ -3,7 +3,7 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="100" name="quinquereme">
+    <variant frequency="1" name="Ptolemaic Quinquereme">
       <animations>
         <animation file="mechanical/kart_ship_quinquereme_idle.dae" name="Idle" speed="30"/>
         <animation file="mechanical/kart_ship_quinquereme_move.dae" name="Walk" speed="6"/>
@@ -18,8 +18,8 @@
       </props>
       <textures>
         <texture file="structural/ptol_quinquereme.png" name="baseTex"/>
-       <texture file="structural/ptol_quinquereme_norm.png" name="normTex"/>
-       <texture file="structural/ptol_quinquereme_spec.png" name="specTex"/>
+        <texture file="structural/ptol_quinquereme_norm.png" name="normTex"/>
+        <texture file="structural/ptol_quinquereme_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
