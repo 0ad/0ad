@@ -172,43 +172,8 @@ vec4 getReflection(vec3 normal)
 	return vec4(reflColor, reflMod);
 }
 
-void main()
+vec4 getRefraction(vec3 normal, float depthLimit)
 {
-	float fresnel;
-	vec2 refrCoords;
-	vec3 refrColor;
-
-	// Calculate water normals.
-
-	float wavyEffect = waveParams1.r;
-	float baseScale = waveParams1.g;
-	float flattenism = waveParams1.b;
-	float baseBump = waveParams1.a;
-	float BigMovement = waveParams2.b;
-
-	// This method uses 60 animated water frames. We're blending between each two frames
-	// Scale the normal textures by waviness so that big waviness means bigger waves.
-	vec3 ww1 = texture2D(normalMap, (normalCoords.st + normalCoords.zw * BigMovement * waviness / 10.0) * (baseScale - waviness / wavyEffect)).xzy;
-	vec3 ww2 = texture2D(normalMap2, (normalCoords.st + normalCoords.zw * BigMovement * waviness / 10.0) * (baseScale - waviness / wavyEffect)).xzy;
-	vec3 wwInterp = mix(ww1, ww2, moddedTime) - vec3(0.5, 0.0, 0.5);
-
-	ww1.x = wwInterp.x * WindCosSin.x - wwInterp.z * WindCosSin.y;
-	ww1.z = wwInterp.x * WindCosSin.y + wwInterp.z * WindCosSin.x;
-	ww1.y = wwInterp.y;
-
-	// Flatten them based on waviness.
-	vec3 normal = normalize(mix(vec3(0.0, 1.0, 0.0), ww1, clamp(baseBump + fwaviness / flattenism, 0.0, 1.0)));
-
-#if USE_FANCY_EFFECTS
-	vec4 fancyeffects = texture2D(waterEffectsTex, gl_FragCoord.xy / screenSize);
-	normal = mix(vec3(0.0, 1.0, 0.0), normal, 0.5 + waterInfo.r / 2.0);
-	normal.xz = mix(normal.xz, fancyeffects.rb, fancyeffects.a / 2.0);
-#else
-	normal = mix(vec3(0.0, 1.0, 0.0), normal, 0.5 + waterInfo.r / 2.0);
-#endif
-
-	normal = vec3(-normal.x, normal.y, -normal.z); // The final wave normal vector.
-
 	float depth;
 #if USE_REAL_DEPTH
 	// Compute real depth at the target point.
@@ -250,13 +215,13 @@ void main()
 #endif
 
 #if USE_FANCY_EFFECTS
-	depth = max(depth, fancyeffects.a);
+	depth = max(depth, depthLimit);
 	if (waterDepth < 0.0)
 		depth = 0.0;
 #endif
 
 	// Distort the texture coords under where the water is to simulate refraction.
-	refrCoords = (0.5 * refractionCoords.xy - normal.xz * distoFactor) / refractionCoords.z + 0.5;
+	vec2 refrCoords = (0.5 * refractionCoords.xy - normal.xz * distoFactor) / refractionCoords.z + 0.5;
 	vec3 refColor = texture2D(refractionMap, refrCoords).rgb;
 
 	// Note, the refraction map is cleared using (255, 0, 0), so pixels outside of the water plane are pure red.
@@ -282,7 +247,7 @@ void main()
 #else // !USE_REFRACTION
 
 #if USE_FANCY_EFFECTS
-	depth = max(depth, fancyeffects.a);
+	depth = max(depth, depthLimit);
 #endif
 	vec3 refColor = color;
 #endif
@@ -293,11 +258,66 @@ void main()
 
 	float murky = mix(200.0, 0.1, pow(murkiness, 0.25));
 
+	// Apply water tint and murk color.
+	float extFact = max(0.0, 1.0 - (depth * fixedVy / murky));
+	float ColextFact = max(0.0, 1.0 - (depth * fixedVy / murky));
+	vec3 colll = mix(refColor * tint, refColor, ColextFact);
+	vec3 refrColor = mix(color, colll, extFact);
+
+	float alpha = clamp(depth, 0.0, 1.0);
+
+#if !USE_REFRACTION
+	alpha = (1.4 - extFact) * alpha;
+#endif
+	return vec4(refrColor, alpha);
+}
+
+void main()
+{
+	// Calculate water normals.
+
+	float wavyEffect = waveParams1.r;
+	float baseScale = waveParams1.g;
+	float flattenism = waveParams1.b;
+	float baseBump = waveParams1.a;
+	float BigMovement = waveParams2.b;
+
+	// This method uses 60 animated water frames. We're blending between each two frames
+	// Scale the normal textures by waviness so that big waviness means bigger waves.
+	vec3 ww1 = texture2D(normalMap, (normalCoords.st + normalCoords.zw * BigMovement * waviness / 10.0) * (baseScale - waviness / wavyEffect)).xzy;
+	vec3 ww2 = texture2D(normalMap2, (normalCoords.st + normalCoords.zw * BigMovement * waviness / 10.0) * (baseScale - waviness / wavyEffect)).xzy;
+	vec3 wwInterp = mix(ww1, ww2, moddedTime) - vec3(0.5, 0.0, 0.5);
+
+	ww1.x = wwInterp.x * WindCosSin.x - wwInterp.z * WindCosSin.y;
+	ww1.z = wwInterp.x * WindCosSin.y + wwInterp.z * WindCosSin.x;
+	ww1.y = wwInterp.y;
+
+	// Flatten them based on waviness.
+	vec3 normal = normalize(mix(vec3(0.0, 1.0, 0.0), ww1, clamp(baseBump + fwaviness / flattenism, 0.0, 1.0)));
+
+#if USE_FANCY_EFFECTS
+	vec4 fancyeffects = texture2D(waterEffectsTex, gl_FragCoord.xy / screenSize);
+	normal = mix(vec3(0.0, 1.0, 0.0), normal, 0.5 + waterInfo.r / 2.0);
+	normal.xz = mix(normal.xz, fancyeffects.rb, fancyeffects.a / 2.0);
+#else
+	normal = mix(vec3(0.0, 1.0, 0.0), normal, 0.5 + waterInfo.r / 2.0);
+#endif
+
+	normal = vec3(-normal.x, normal.y, -normal.z); // The final wave normal vector.
+
+#if USE_FANCY_EFFECTS
+	vec4 refrColor = getRefraction(normal, fancyeffects.a);
+#else
+	vec4 refrColor = getRefraction(normal, 0.0);
+#endif
+
+	vec4 reflColor = getReflection(normal);
+
 	// How perpendicular to the normal our view is. Used for fresnel.
 	float ndotv = clamp(dot(normal, v_eyeVec), 0.0, 1.0);
 
 	// Fresnel for "how much reflection vs how much refraction".
-	fresnel = clamp(((pow(1.1 - ndotv, 2.0)) * 1.5), 0.1, 0.75); // Approximation. I'm using 1.1 and not 1.0 because it causes artifacts, see #1714
+	float fresnel = clamp(((pow(1.1 - ndotv, 2.0)) * 1.5), 0.1, 0.75); // Approximation. I'm using 1.1 and not 1.0 because it causes artifacts, see #1714
 
 	// Specular lighting vectors
 	vec3 specVector = reflect(sunDir, ww1);
@@ -307,22 +327,14 @@ void main()
 
 	vec3 specular = specIntensity * 1.2 * mix(vec3(1.5), sunColor, 0.5);
 
-	// Apply water tint and murk color.
-	float extFact = max(0.0, 1.0 - (depth * fixedVy / murky));
-	float ColextFact = max(0.0, 1.0 - (depth * fixedVy / murky));
-	vec3 colll = mix(refColor * tint, refColor, ColextFact);
-	refrColor = mix(color, colll, extFact);
-
-	vec4 reflColor = getReflection(normal);
-
 	vec3 color;
 #if USE_SHADOWS_ON_WATER && USE_SHADOW
 	float shadow = get_shadow(vec4(v_shadow.xy, v_shadow.zw));
 	float fresShadow = mix(fresnel, fresnel * shadow, 0.05 + murkiness * 0.2);
-	color = mix(refrColor, reflColor.rgb, fresShadow * reflColor.a);
+	color = mix(refrColor.rgb, reflColor.rgb, fresShadow * reflColor.a);
 	color += shadow * specular;
 #else
-	color = mix(refrColor, reflColor.rgb, fresnel * reflColor.a);
+	color = mix(refrColor.rgb, reflColor.rgb, fresnel * reflColor.a);
 	color += specular;
 #endif
 
@@ -342,13 +354,8 @@ void main()
 #if USE_FOG
 	color = get_fog(color);
 #endif
-
-	float alpha = clamp(depth, 0.0, 1.0);
-
-#if !USE_REFRACTION
-	alpha = (1.4 - extFact) * alpha;
-#endif
-
+	
+	float alpha = refrColor.a;
 	float losMod = texture2D(losMap, losCoords.st).a;
 	losMod = losMod < 0.03 ? 0.0 : losMod;
 	gl_FragColor = vec4(color * losMod, alpha);
