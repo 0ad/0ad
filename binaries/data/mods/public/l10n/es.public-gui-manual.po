@@ -33,7 +33,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-06 07:17+0000\n"
-"PO-Revision-Date: 2020-10-04 20:27+0000\n"
+"PO-Revision-Date: 2020-10-11 00:27+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -107,7 +107,7 @@ msgstr "• Clic derecho para enviar unidades a un objetivo"
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr "• Flechas direccionales o WASD para mover la cámara."
+msgstr "• Cursores o WASD para mover la cámara"
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
@@ -137,7 +137,7 @@ msgstr "• [font=\"sans-bold-14\"]Un jugador[font=\"sans-14\"] — Juega una pa
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Multijugador[font=\"sans-14\"] — Jugar contra oponentes humanos a través de Internet."
+msgstr "• [font=\"sans-bold-14\"]Multijugador[font=\"sans-14\"] – Jugar contra oponentes humanos a través de Internet."
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -163,13 +163,13 @@ msgstr "Elige primero el tipo de mapa que quieras jugar:"
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr "• [font=\"sans-bold-14\"]Mapa aleatorio[font=\"sans-14\"] — Un mapa creado automáticamente a partir de un script"
+msgstr "• [font=\"sans-bold-14\"]Mapa aleatorio[font=\"sans-14\"] – Un mapa creado automáticamente a partir de un script"
 
 #: gui/manual/intro.txt:30
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
-msgstr "• [font=\"sans-bold-14\"]Mapa de escenario[font=\"sans-14\"] — Un mapa creado por diseñadores de mapas y con civilizaciones fijas"
+msgstr "• [font=\"sans-bold-14\"]Mapa de escenario[font=\"sans-14\"] – Un mapa creado por diseñadores de mapas y con civilizaciones fijas"
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -201,7 +201,7 @@ msgstr "Cuando estés listo para empezar, haz clic en el botón de «Comenzar pa
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-16\"]Atajos[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-16\"]Atajos de teclado[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
@@ -210,7 +210,7 @@ msgstr "[font=\"sans-bold-14\"]Generales[font=\"sans-14\"]"
 #: gui/manual/intro.txt:41
 msgid ""
 "  Alt + F4 – Immediately close the game, without asking for confirmation"
-msgstr "  Alt + F4 – Immediately close the game, without asking for confirmation"
+msgstr "  Alt + F4 – Cerrar el juego inmediatamente sin solicitar confirmación"
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter (Return) – Toggle between fullscreen and windowed"
@@ -232,7 +232,7 @@ msgstr "F11 – Mostrar u ocultar el analizador de rendimiento en tiempo real (c
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
-msgstr "  Mayús + F11 – Save current profiler data to “logs/profile.txt”"
+msgstr "  Mayús + F11 – Guardar el perfilado actual en “logs/profile.txt”"
 
 #: gui/manual/intro.txt:47
 msgid ""
@@ -250,7 +250,7 @@ msgstr "  Mayús + F2 – Take huge screenshot (6400×4800 pixels, in .bmp forma
 
 #: gui/manual/intro.txt:49
 msgid "  Tab, Alt + S – Switch to the next tab"
-msgstr "  Tab, Alt + S – Switch to the next tab"
+msgstr "  Tab, Alt + S – Cambia a la siguiente pestaña"
 
 #: gui/manual/intro.txt:50
 msgid "  Shift + Tab, Alt + W – Switch to the previous tab"
@@ -682,7 +682,7 @@ msgstr "  Mayús + Mouse Wheel Rotate Down – Rotate camera counter-clockwise a
 #: gui/manual/intro.txt:144
 msgid ""
 "  F – Follow the selected unit (move the camera to stop following the unit)"
-msgstr "  F – Follow the selected unit (move the camera to stop following the unit)"
+msgstr "  F – Seguir a la unidad seleccionada (mueve la cámara para dejar de seguir a la unidad)"
 
 #: gui/manual/intro.txt:145
 msgid "  R – Reset camera zoom and orientation"
@@ -721,15 +721,15 @@ msgstr "  Left Drag – Rotate structure using mouse (foundation will be placed 
 
 #: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]Al cargar una partida guardada[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:156
 msgid "  Esc – Cancel"
-msgstr "  Esc – Cancel"
+msgstr "  Esc – Cancelar"
 
 #: gui/manual/intro.txt:157
 msgid "  Delete – Delete the selected saved game, ask for confirmation"
-msgstr "  Delete – Delete the selected saved game, ask for confirmation"
+msgstr "  Supr – Borrar la partida guardada seleccionada solicitando confirmación"
 
 #: gui/manual/intro.txt:158
 msgid ""

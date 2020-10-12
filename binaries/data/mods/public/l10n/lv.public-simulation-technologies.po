@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Beāte Lakševica <tava.unochka@inbox.lv>, 2016
+# Dainis Polis <dainispolis123@gmail.com>, 2020
 # Vladimirs Kuzmins, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-04 07:09+0000\n"
-"PO-Revision-Date: 2020-09-04 08:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-10-12 07:36+0000\n"
+"Last-Translator: Dainis Polis <dainispolis123@gmail.com>\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,16 +23,16 @@ msgstr ""
 msgid ""
 "The Indian, Iranian, and Kushite peoples had a tradition of fine archery and"
 " a penchant for using massed archers in battle."
-msgstr ""
+msgstr "Indiešiem, Irāņiem un Kušītiem bija prasmīgu lokšāvēju tradīcijas un tieksme pārsvarā izmantot lokšāvējus cīņās."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "Loku šāvēji -10% trenniņu laiks, +8 uzbrukuma rādiuss -10% uzbrukuma ietekme. "
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
-msgstr "Strēlniecības Tradīcija "
+msgstr "Loku šāvēju tradīcija "
 
 #: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
@@ -43,16 +44,16 @@ msgstr "Strēlniecības Tradīcija "
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr "Atslēgts Ciemata Fāzē."
+msgstr "Pieejams ciemata fāzē."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 msgid "Metal armor for a horse's face."
-msgstr "Metāla bruņas zirga sejai"
+msgstr "Metāla bruņas zirga galvai"
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
 msgid "Cavalry +1 hack and pierce armor."
-msgstr ""
+msgstr "Kavalērija +1  bruņas pret cirtieniem."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -88,7 +89,7 @@ msgstr "Chamfron"
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "Parādās Pilsētas Fāzē."
+msgstr "Pieejams pilsētas fāzē."
 
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
@@ -152,7 +153,7 @@ msgstr "Metāla bruņas zirga rumpim."
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "Parādās Lielpilsētas Fāzē."
+msgstr "Pieejams lielpilsētas fāzē."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
@@ -162,11 +163,11 @@ msgstr "Ķermeņa bruņas pilnībā veidotas no dzelzs, cietākais apstrādājam
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
 msgid "Heroes +50 metal cost, +2 hack and pierce armor."
-msgstr ""
+msgstr "Dižkareivji +50 metāls, +2 bruņas pret cirtieniem "
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
-msgstr "Dzelzs Varoņa Bruņas"
+msgstr "Dzelzs dižkareivja bruņas"
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
@@ -187,7 +188,7 @@ msgstr "Cauršūta lina vai ādas ķermeņa bruņas kājniekiem."
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
 msgid "Infantry +1 hack and pierce armor."
-msgstr ""
+msgstr "Kājnieki +1 bruņas pret cirtieniem"
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -234,7 +235,7 @@ msgstr "Svina apvalks aizsargā kuģa korpusu."
 #: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid "Ships +2 armor."
-msgstr ""
+msgstr "Kuģi +2 bruņas"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -242,11 +243,11 @@ msgstr "Svina korpusa apvalks"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
-msgstr ""
+msgstr "Tauvas - burukuģu sastāvdaļas"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
-msgstr ""
+msgstr "Zemklāja tauva"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
@@ -443,19 +444,19 @@ msgstr "Apmāci zirgus kustēties ātrāk."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
-msgstr ""
+msgstr "Kavalērija +10% pārvietošanās ātrums."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsongenericName
 msgid "Horse Racing"
-msgstr ""
+msgstr "Zirgu sacīkstes."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
-msgstr ""
+msgstr "Mājdzīvnieki (aitas, kazas, govis u.c.) pārtikai."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Domestic Animals −25% breeding time."
-msgstr ""
+msgstr "Mājdzīvnieki -25% audzēšanas laiks."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
@@ -463,13 +464,13 @@ msgstr "Lopkopība"
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
 msgid "Workers use baskets. Increases shuttling capacity for all resources."
-msgstr ""
+msgstr "Grozus izmanto strādnieki. Palielina pārvietošanas ietilpību visām izejvielām. "
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers +5 resource capacity."
-msgstr ""
+msgstr "Strādnieki +5 izejvielu ietilpība."
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -479,7 +480,7 @@ msgstr "Grozi"
 msgid ""
 "Workers use horse-drawn carts. Increases shuttling capacity for all "
 "resources."
-msgstr ""
+msgstr "Zirgu pajūgi. Izmanto strādnieki. Palielina pārvietošanas ietilpību visām izejvielām.  "
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -504,7 +505,7 @@ msgstr "Piejas pilsētas fāzē. Nepieciešams Zvejas tīkli."
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid ""
 "Workers use wheelbarrows. Increases shuttling capacity for all resources."
-msgstr ""
+msgstr "Ķerras. Izmanto strādnieki. Palielina pārvietošanas ietilpību visām izejvielām. "
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
@@ -518,7 +519,7 @@ msgstr "Papildus mēslojumi fermām."
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +20% grain gather rate."
-msgstr ""
+msgstr "Strādnieki +20% graudu ievākšana."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
