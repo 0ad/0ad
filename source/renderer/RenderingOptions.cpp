@@ -112,6 +112,12 @@ void SRenderingOptions::ReadConfig()
 	CFG_GET_VAL("gpuskinning", m_GPUSkinning);
 
 	CFG_GET_VAL("renderactors", m_RenderActors);
+
+	if (m_GPUSkinning && !m_PreferGLSL)
+	{
+		LOGWARNING("GPUSkinning have been disabled, because it is not supported with PreferGLSL disabled.");
+		m_GPUSkinning = false;
+	}
 }
 
 void SRenderingOptions::SetShadows(bool value)
@@ -134,6 +140,14 @@ void SRenderingOptions::SetFog(bool value)
 
 void SRenderingOptions::SetPreferGLSL(bool value)
 {
+	if (m_GPUSkinning && !value)
+	{
+		LOGWARNING("GPUSkinning have been disabled, because it is not supported with PreferGLSL disabled.");
+		m_GPUSkinning = false;
+	}
+	else if (!m_GPUSkinning && value)
+		CFG_GET_VAL("gpuskinning", m_GPUSkinning);
+
 	m_PreferGLSL = value;
 	g_Renderer.MakeShadersDirty();
 	g_Renderer.RecomputeSystemShaderDefines();
