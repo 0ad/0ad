@@ -17,6 +17,7 @@
     <Height>8.0</Height>
   </Footprint>
   <Health>
+    <Max>2000</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_4x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
@@ -47,9 +48,6 @@
     </SoundGroups>
   </Sound>
   <TerritoryDecay disable=""/>
-  <TerritoryInfluence>
-    <Radius>0</Radius>
-  </TerritoryInfluence>
   <Vision>
     <Range>180</Range>
     <RevealShore>true</RevealShore>

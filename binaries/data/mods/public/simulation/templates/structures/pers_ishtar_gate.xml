@@ -3,9 +3,6 @@
   <Auras datatype="tokens">
     structures/loyalty_regen
   </Auras>
-  <BuildRestrictions>
-    <Category>IshtarGate</Category>
-  </BuildRestrictions>
   <Capturable disable=""/>
   <Cost>
     <BuildTime>200</BuildTime>
@@ -43,8 +40,16 @@
     </Obstructions>
   </Obstruction>
   <ProductionQueue disable=""/>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_broch.xml</select>
+      <constructed>interface/complete/building/complete_broch.xml</constructed>
+    </SoundGroups>
+  </Sound>
   <TerritoryInfluence>
     <Root>true</Root>
+    <Radius>38</Radius>
+    <Weight>40000</Weight>
   </TerritoryInfluence>
   <VisualActor>
     <Actor>special/pers_ishtar_gate.xml</Actor>

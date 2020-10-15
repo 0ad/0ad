@@ -30,6 +30,7 @@
   <BuildingAI>
     <DefaultArrowCount>3</DefaultArrowCount>
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
+    <GarrisonArrowClasses>Soldier</GarrisonArrowClasses>
   </BuildingAI>
   <BuildRestrictions>
     <Category>Fortress</Category>
@@ -98,6 +99,8 @@
     <SoundGroups>
       <select>interface/select/building/sel_fortress.xml</select>
       <constructed>interface/complete/building/complete_fortress.xml</constructed>
+      <attack_ranged>attack/weapon/bow_attack.xml</attack_ranged>
+      <attack_impact_ranged>attack/impact/arrow_impact.xml</attack_impact_ranged>
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>

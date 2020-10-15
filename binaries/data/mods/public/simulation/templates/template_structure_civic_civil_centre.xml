@@ -36,6 +36,7 @@
   <BuildingAI>
     <DefaultArrowCount>3</DefaultArrowCount>
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
+    <GarrisonArrowClasses>Soldier</GarrisonArrowClasses>
   </BuildingAI>
   <BuildRestrictions>
     <Territory>own neutral</Territory>
@@ -128,6 +129,8 @@
       <constructed>interface/complete/building/complete_civ_center.xml</constructed>
       <alert_raise>interface/alarm/alarm_alert_0.xml</alert_raise>
       <alert_end>interface/alarm/alarm_alert_1.xml</alert_end>
+      <attack_ranged>attack/weapon/bow_attack.xml</attack_ranged>
+      <attack_impact_ranged>attack/impact/arrow_impact.xml</attack_impact_ranged>
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>

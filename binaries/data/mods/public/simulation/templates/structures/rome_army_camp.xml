@@ -30,6 +30,7 @@
     <DefaultArrowCount>1</DefaultArrowCount>
     <MaxArrowCount>15</MaxArrowCount>
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
+    <GarrisonArrowClasses>Soldier</GarrisonArrowClasses>
   </BuildingAI>
   <BuildRestrictions>
     <Territory>neutral enemy</Territory>
@@ -116,12 +117,13 @@
     <SoundGroups>
       <select>interface/select/building/sel_broch.xml</select>
       <constructed>interface/complete/building/complete_broch.xml</constructed>
+      <attack_ranged>attack/weapon/bow_attack.xml</attack_ranged>
+      <attack_impact_ranged>attack/impact/arrow_impact.xml</attack_impact_ranged>
     </SoundGroups>
   </Sound>
   <TerritoryDecay>
     <DecayRate>37.5</DecayRate>
   </TerritoryDecay>
-  <TerritoryInfluence disable=""/>
   <Vision>
     <Range>60</Range>
   </Vision>
