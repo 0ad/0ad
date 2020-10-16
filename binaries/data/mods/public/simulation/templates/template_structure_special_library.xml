@@ -18,6 +18,7 @@
     <Height>9.0</Height>
   </Footprint>
   <Health>
+    <Max>2000</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_4x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
@@ -45,7 +46,9 @@
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>
+    <Root>false</Root>
     <Radius>50</Radius>
+    <Weight>40000</Weight>
   </TerritoryInfluence>
   <VisualActor>
     <FoundationActor>structures/fndn_7x9.xml</FoundationActor>

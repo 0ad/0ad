@@ -45,6 +45,11 @@
       <constructed>interface/complete/building/complete_tholos.xml</constructed>
     </SoundGroups>
   </Sound>
+  <TerritoryInfluence>
+    <Root>false</Root>
+    <Radius>38</Radius>
+    <Weight>40000</Weight>
+  </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/spartans/gerousia.xml</Actor>
   </VisualActor>

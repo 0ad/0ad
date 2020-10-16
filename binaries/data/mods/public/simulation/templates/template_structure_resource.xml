@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
-  <BuildRestrictions>
-    <Category>Resource</Category>
-  </BuildRestrictions>
   <Identity>
     <GenericName>Resource Structure</GenericName>
     <VisibleClasses datatype="tokens">Resource</VisibleClasses>
@@ -23,7 +20,4 @@
       </Damage>
     </Foundation>
   </Resistance>
-  <Vision>
-    <Range>4</Range>
-  </Vision>
 </Entity>

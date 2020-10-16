@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_tower">
   <Attack disable=""/>
+  <BuildingAI disable=""/>
   <Footprint>
     <Square width="9" depth="9"/>
     <Height>21.5</Height>

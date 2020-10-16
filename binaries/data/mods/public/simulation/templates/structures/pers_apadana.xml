@@ -59,9 +59,16 @@
     </Rates>
     <Interval>1000</Interval>
   </ResourceTrickle>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_broch.xml</select>
+      <constructed>interface/complete/building/complete_broch.xml</constructed>
+    </SoundGroups>
+  </Sound>
   <TerritoryInfluence>
     <Root>true</Root>
     <Radius>48</Radius>
+    <Weight>40000</Weight>
   </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/persians/apadana.xml</Actor>

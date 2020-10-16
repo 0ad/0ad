@@ -12,6 +12,9 @@
     <Square width="40.0" depth="16.0"/>
     <Height>5.0</Height>
   </Footprint>
+  <Health>
+    <Max>2000</Max>
+  </Health>
   <Identity>
     <Civ>maur</Civ>
     <SpecificName>Harmya</SpecificName>
@@ -37,6 +40,12 @@
       units/{civ}_hero_ashoka
     </Entities>
   </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_broch.xml</select>
+      <constructed>interface/complete/building/complete_broch.xml</constructed>
+    </SoundGroups>
+  </Sound>
   <TerritoryInfluence>
     <Root>false</Root>
     <Radius>38</Radius>

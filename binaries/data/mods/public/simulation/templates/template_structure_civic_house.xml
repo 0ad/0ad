@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic">
-  <BuildRestrictions>
-    <Category>House</Category>
-  </BuildRestrictions>
   <Capturable>
     <CapturePoints>300</CapturePoints>
     <GarrisonRegenRate>4.0</GarrisonRegenRate>
@@ -61,8 +58,6 @@
     </SoundGroups>
   </Sound>
   <StatusBars>
-    <BarWidth>6.0</BarWidth>
-    <BarHeight>0.6</BarHeight>
     <HeightOffset>8.0</HeightOffset>
   </StatusBars>
   <TerritoryDecay>

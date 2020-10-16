@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
-  <BuildRestrictions>
-    <Category>Amphitheater</Category>
-  </BuildRestrictions>
   <Cost>
     <BuildTime>500</BuildTime>
     <Resources>
@@ -44,7 +41,9 @@
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>
+    <Root>false</Root>
     <Radius>100</Radius>
+    <Weight>40000</Weight>
   </TerritoryInfluence>
   <VisualActor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>

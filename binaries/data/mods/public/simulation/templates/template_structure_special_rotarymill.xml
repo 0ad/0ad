@@ -16,6 +16,9 @@
     <Height>6.0</Height>
   </Footprint>
   <GarrisonHolder disable=""/>
+  <Health>
+    <Max>2000</Max>
+  </Health>
   <Identity>
     <GenericName>Rotary Mill</GenericName>
     <SelectionGroupName>template_structure_special_rotarymill</SelectionGroupName>
@@ -41,7 +44,9 @@
     <HeightOffset>8.0</HeightOffset>
   </StatusBars>
   <TerritoryInfluence>
+    <Root>false</Root>
     <Radius>32</Radius>
+    <Weight>40000</Weight>
   </TerritoryInfluence>
   <VisualActor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>

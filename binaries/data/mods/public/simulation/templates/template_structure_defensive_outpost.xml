@@ -4,12 +4,11 @@
     structures/wall_garrisoned
   </Auras>
   <BuildRestrictions>
-    <Category>Outpost</Category>
+    <Territory>own neutral</Territory>
     <Distance>
       <FromClass>Outpost</FromClass>
       <MinDistance>50</MinDistance>
     </Distance>
-    <Territory>own neutral</Territory>
   </BuildRestrictions>
   <Cost>
     <BuildTime>30</BuildTime>

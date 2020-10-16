@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity>
   <AIProxy/>
-  <BuildingAI>
-    <DefaultArrowCount>0</DefaultArrowCount>
-    <GarrisonArrowMultiplier>0</GarrisonArrowMultiplier>
-    <GarrisonArrowClasses>Infantry Cavalry</GarrisonArrowClasses>
-  </BuildingAI>
   <BuildRestrictions>
     <PlacementType>land</PlacementType>
     <Territory>own</Territory>
+    <Category>Structure</Category>
   </BuildRestrictions>
   <Capturable>
     <CapturePoints>500</CapturePoints>
@@ -142,8 +138,6 @@
       <attacked_gaia>interface/alarm/alarm_attacked_gaia.xml</attacked_gaia>
       <attacked_capture>interface/alarm/alarm_attackplayer.xml</attacked_capture>
       <attacked_capture_gaia>interface/alarm/alarm_attacked_gaia.xml</attacked_capture_gaia>
-      <attack_ranged>attack/weapon/bow_attack.xml</attack_ranged>
-      <attack_impact_ranged>attack/impact/arrow_impact.xml</attack_impact_ranged>
     </SoundGroups>
   </Sound>
   <StatusBars>

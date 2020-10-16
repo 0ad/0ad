@@ -6,7 +6,7 @@ BuildRestrictions.prototype.Schema =
 		"<BuildRestrictions>" +
 			"<PlacementType>land</PlacementType>" +
 			"<Territory>own</Territory>" +
-			"<Category>Special</Category>" +
+			"<Category>Structure</Category>" +
 			"<Distance>" +
 				"<FromClass>CivilCentre</FromClass>" +
 				"<MaxDistance>40</MaxDistance>" +
