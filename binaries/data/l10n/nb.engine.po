@@ -5,6 +5,7 @@
 # Translators:
 # Allan Nordhøy <epost@anotheragency.no>, 2016-2018
 # Bjorn Erik Moen <bjorn@polarblu.com>, 2015
+# Hogne Haug <hhguarded-transifex@yahoo.com>, 2020
 # Jarl Arntzen <jarl.arntzen@gmail.com>, 2014-2016
 # Kurt-Håkon Eilertsen <kurt@kheds.com>, 2014
 # Lene Raastad <lene.raastad.lr@gmail.com>, 2014
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-05-22 07:08+0000\n"
-"PO-Revision-Date: 2020-05-22 10:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-10-13 17:10+0000\n"
+"Last-Translator: Hogne Haug <hhguarded-transifex@yahoo.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,35 +29,35 @@ msgstr "Lang streng"
 
 #: lobby/XmppClient.cpp:887
 msgid "unknown subtype (see logs)"
-msgstr "Ukjent undertype (se loggføring)"
+msgstr "Ukjent undertype (se loggene)"
 
 #: lobby/XmppClient.cpp:1215
 msgid "The certificate is not trusted."
-msgstr ""
+msgstr "Sertifikatet er usikkert"
 
 #: lobby/XmppClient.cpp:1216
 msgid "The certificate hasn't got a known issuer."
-msgstr ""
+msgstr "Sertifikatet har ingen kjent utsteder"
 
 #: lobby/XmppClient.cpp:1217
 msgid "The certificate has been revoked."
-msgstr ""
+msgstr "Sertifikatet har blitt tilbakekalt"
 
 #: lobby/XmppClient.cpp:1218
 msgid "The certificate has expired."
-msgstr ""
+msgstr "Sertifikatet har utløpt"
 
 #: lobby/XmppClient.cpp:1219
 msgid "The certificate is not yet active."
-msgstr ""
+msgstr "Sertifikatet er ennå ikke aktivt"
 
 #: lobby/XmppClient.cpp:1220
 msgid "The certificate has not been issued for the peer connected to."
-msgstr ""
+msgstr "Sertifikatet er ikke utstedt for den maskinen du er tilkoblet"
 
 #: lobby/XmppClient.cpp:1221
 msgid "The certificate signer is not a certificate authority."
-msgstr ""
+msgstr "Sertifikatets utsteder er ikke en godkjent utsteder"
 
 #: lobby/XmppClient.cpp:1243 lobby/XmppClient.cpp:1287
 #: lobby/XmppClient.cpp:1326
@@ -168,27 +169,27 @@ msgstr "Brukernavnet finnes allerede"
 #: ps/ModIo.cpp:261
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr ""
+msgstr "Feil ved spørring etter spill-ID. Feilkode: %s; %s."
 
 #: ps/ModIo.cpp:291
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr ""
+msgstr "Feil ved spørring etter tilpasnginer (mods). Feilkode: %s; %s."
 
 #: ps/ModIo.cpp:317
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr ""
+msgstr "Kunne ikke opprette mappe for tilpasningen (mod'en): %s."
 
 #: ps/ModIo.cpp:342
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr ""
+msgstr "Kunne ikke åpne midlertidig mappe for nedlastning av tilpasningen (mod'en): %s."
 
 #: ps/ModIo.cpp:352
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr ""
+msgstr "Kunne ikke starte nedlastningen. Feilkode:  %s; %s."
 
 #: ps/ModIo.cpp:397
 #, c-format
