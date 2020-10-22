@@ -6,41 +6,32 @@
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_e.xml" attachpoint="head"/>
+        <prop actor="props/units/helmets/hele_kausia_cap_player.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/sling.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/helmets/hele_straw_01.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/slingrock.xml" attachpoint="projectile"/>
         <prop actor="props/units/mace_sling_pouch.xml" attachpoint="sheath_L"/>
       </props>
-      <textures>
-        <texture file="skeletal/hele_iar_e.png" name="baseTex"/>
-      </textures>
     </variant>
   </group>
   <group>
-    <variant name="psiloi-original">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+    <variant frequency="3" name="hele-padded-marine-1a">
       <textures>
-        <texture file="skeletal/hele_iar_e.png" name="baseTex"/>
+        <texture file="skeletal/hele_padded_marine_1_a.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="psiloi-padded-1a">
+    <variant frequency="1" name="illy-linothorax-01-a">
       <textures>
-        <texture file="skeletal/hele_psiloi_padded_1_a.png" name="baseTex"/>
+        <texture file="skeletal/illy_linothorax_01_a.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="psiloi-padded-1b">
+    <variant frequency="1" name="illy-linothorax-01-b">
       <textures>
-        <texture file="skeletal/hele_psiloi_padded_1_b.png" name="baseTex"/>
+        <texture file="skeletal/illy_linothorax_01_b.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="psiloi-padded-1c">
+    <variant frequency="1" name="illy-linothorax-01-c">
       <textures>
-        <texture file="skeletal/hele_psiloi_padded_1_c.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant name="psiloi-padded-1d">
-      <textures>
-        <texture file="skeletal/hele_psiloi_padded_1_d.png" name="baseTex"/>
+        <texture file="skeletal/illy_linothorax_01_c.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

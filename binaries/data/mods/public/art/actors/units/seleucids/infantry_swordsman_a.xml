@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/helmets/old/floppy_b.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/hele_thracian_cap_player.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_thrace.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/rhomphaia.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/thracian_oval.xml" attachpoint="shield"/>
@@ -14,27 +15,84 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Tunic-1">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+    <variant frequency="1" name="tunic-thracian-1d">
       <textures>
-        <texture file="skeletal/hele_ijv_a.dds" name="baseTex"/>
+        <texture file="skeletal/thrac_tunic_advanced_1_d.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Tunic-2">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+    <variant frequency="1" name="tunic-thracian-1e">
       <textures>
-        <texture file="skeletal/hele_ijv_a_2.dds" name="baseTex"/>
+        <texture file="skeletal/thrac_tunic_advanced_1_e.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Tunic-3">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+    <variant frequency="1" name="tunic-thracian-1f">
       <textures>
-        <texture file="skeletal/hele_ijv_a_3.dds" name="baseTex"/>
+        <texture file="skeletal/thrac_tunic_advanced_1_f.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-2d">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_2_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-2e">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_2_e.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-2f">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_2_f.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-3d">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_3_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-3e">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_3_e.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-3f">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_3_f.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-4d">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_4_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-4e">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_4_e.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-thracian-4f">
+      <textures>
+        <texture file="skeletal/thrac_tunic_advanced_4_f.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-illyrian-advanced-01-c">
+      <textures>
+        <texture file="skeletal/illy_tunic_01_advanced_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-illyrian-advanced-01-d">
+      <textures>
+        <texture file="skeletal/illy_tunic_01_advanced_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic-illyrian-advanced-01-e">
+      <textures>
+        <texture file="skeletal/illy_tunic_01_advanced_e.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant file="biped/base_rhomphaia_shield_fast.xml" name="Swordsman-Rhomphaia-Fast" frequency="1"/>
+    <variant file="biped/base_rhomphaia_shield_fast.xml" frequency="1" name="Swordsman-Rhomphaia-Fast"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>
