@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -39,22 +39,117 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Tunic-1">
+    <variant frequency="0" name="ital-tunic-pattern-01-a">
+      <textures>
+        <texture file="skeletal/ital_tunic_pattern_01_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="0" name="ital-tunic-pattern-01-b">
+      <textures>
+        <texture file="skeletal/ital_tunic_pattern_01_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ital-tunic-pattern-01-c">
+      <textures>
+        <texture file="skeletal/ital_tunic_pattern_01_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ital-tunic-pattern-01-d">
+      <textures>
+        <texture file="skeletal/ital_tunic_pattern_01_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ital-tunic-pattern-01-e">
+      <textures>
+        <texture file="skeletal/ital_tunic_pattern_01_e.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ital-tunic-pattern-01-sleeveless-a">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/ital_tunic_pattern_01_sleeveless_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ital-tunic-pattern-01-sleeveless-b">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/ital_tunic_pattern_01_sleeveless_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ital-tunic-pattern-02-a">
+      <textures>
+        <texture file="skeletal/ital_tunic_pattern_02_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ital-tunic-pattern-02-b">
+      <textures>
+        <texture file="skeletal/ital_tunic_pattern_02_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ital-tunic-pattern-02-c">
+      <textures>
+        <texture file="skeletal/ital_tunic_pattern_02_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ital-tunic-pattern-03-sleeveless-a">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/ital_tunic_pattern_03_sleeveless_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ital-tunic-pattern-03-sleeveless-b">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/ital_tunic_pattern_03_sleeveless_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ital-tunic-pattern-03-sleeveless-c">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/ital_tunic_pattern_03_sleeveless_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ital-tunic-pattern-04-a">
+      <textures>
+        <texture file="skeletal/ital_tunic_pattern_04_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ital-tunic-pattern-04-b">
+      <textures>
+        <texture file="skeletal/ital_tunic_pattern_04_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ital-tunic-pattern-05-a">
+      <textures>
+        <texture file="skeletal/ital_tunic_pattern_05_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ital-tunic-pattern-05-b">
+      <textures>
+        <texture file="skeletal/ital_tunic_pattern_05_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ital-tunic-pattern-05-c">
+      <textures>
+        <texture file="skeletal/ital_tunic_pattern_05_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="0" name="Tunic-1">
       <textures>
         <texture file="skeletal/kart_csp_b_1.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Tunic-2">
+    <variant frequency="0" name="Tunic-2">
       <textures>
         <texture file="skeletal/kart_csp_b_2.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Tunic-3">
+    <variant frequency="0" name="Tunic-3">
       <textures>
         <texture file="skeletal/kart_csp_b_3.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Tunic-4">
+    <variant frequency="0" name="Tunic-4">
       <textures>
         <texture file="skeletal/kart_csp_b_4.dds" name="baseTex"/>
       </textures>
