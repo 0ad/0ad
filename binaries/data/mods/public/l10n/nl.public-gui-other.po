@@ -6,6 +6,7 @@
 # Anique van Berne <avanberne@gmail.com>, 2016
 # annihilator solar <incoming@upcmail.nl>, 2019
 # Bart <b.anthonisse@gmail.com>, 2020
+# Bart <b.anthonisse@gmail.com>, 2020
 # Bart Groeneveld, 2017
 # Bart Groeneveld, 2016
 # bb <b.jansen5@students.uu.nl>, 2019-2020
@@ -37,8 +38,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-09-18 17:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-10-22 21:21+0000\n"
+"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -551,19 +552,19 @@ msgstr "Server is vol."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr ""
+msgstr "Veilige lobby-authenticatie mislukt. Neem deel via de lobby."
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr ""
+msgstr "Fout: de server kon geen unieke client identifier toekennen."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
-msgstr ""
+msgstr "Fout: client commando's waren klaar voor een onverwachte spelbeurt. "
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
-msgstr ""
+msgstr "Fout: client simuleerde een onverwachte spelbeurt."
 
 #: gui/common/network.js:81
 #, javascript-format
@@ -718,7 +719,7 @@ msgstr "Standaard"
 #: gui/common/settings.js:400
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(wereld)"
 
 #: gui/common/settings.js:401 gui/common/settings.js:405
 msgctxt "population capacity"
@@ -772,29 +773,29 @@ msgstr "%(percentage)s%%"
 msgid ""
 "%(label)s\n"
 "%(details)s"
-msgstr ""
+msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:187
 msgid "Resistance:"
-msgstr ""
+msgstr "Weerstand:"
 
 #: gui/common/tooltips.js:198
 msgid "Damage:"
-msgstr ""
+msgstr "Schade:"
 
 #: gui/common/tooltips.js:201 gui/common/tooltips.js:221
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(resistancePercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(resistancePercentage)s"
 
 #: gui/common/tooltips.js:206 gui/common/tooltips.js:226
 #, javascript-format
 msgid "(%(resistancePercentage)s)"
-msgstr ""
+msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:219
 msgid "Capture:"
-msgstr ""
+msgstr "Verovering:"
 
 #: gui/common/tooltips.js:223 gui/common/tooltips.js:321
 msgctxt "damage type"
@@ -829,7 +830,7 @@ msgstr[1] "pijlen"
 #: gui/common/tooltips.js:252
 #, javascript-format
 msgid "%(projectileString)s / %(attackRateString)s"
-msgstr ""
+msgstr "%(projectileString)s / %(attackRateString)s"
 
 #. Translation: For example: Range: 2 to 10 (+2) meters
 #: gui/common/tooltips.js:272
@@ -837,25 +838,25 @@ msgstr ""
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
 "%(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s tot %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 (+2) meters
 #: gui/common/tooltips.js:274
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 2 to 10 meters
 #: gui/common/tooltips.js:278
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s tot %(maxRange)s %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 meters
 #: gui/common/tooltips.js:280
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
 #: gui/common/tooltips.js:290 gui/common/tooltips.js:877
 msgid "Range:"
@@ -887,17 +888,17 @@ msgstr "%(damage)s %(damageType)s"
 #: gui/common/tooltips.js:319
 #, javascript-format
 msgid "%(amount)s %(name)s"
-msgstr ""
+msgstr "%(amount)s %(name)s"
 
 #: gui/common/tooltips.js:327
 #, javascript-format
 msgid "%(splashShape)s Splash"
-msgstr ""
+msgstr "%(splashShape)s omgeving"
 
 #: gui/common/tooltips.js:330
 #, javascript-format
 msgid "%(label)s: %(effects)s"
-msgstr ""
+msgstr "%(label)s: %(effects)s"
 
 #: gui/common/tooltips.js:336
 #, javascript-format
@@ -928,13 +929,13 @@ msgstr "geeft %(name)s"
 #: gui/common/tooltips.js:381
 #, javascript-format
 msgid "%(attackType)s"
-msgstr ""
+msgstr "%(attackType)s"
 
 #: gui/common/tooltips.js:404
 #, javascript-format
 msgid ""
 "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
 
 #: gui/common/tooltips.js:415
 msgid "Attack:"
@@ -943,17 +944,17 @@ msgstr "Aanval:"
 #: gui/common/tooltips.js:441
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s %(stackability)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s %(stackability)s"
 
 #: gui/common/tooltips.js:446
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s"
 
 #: gui/common/tooltips.js:457
 #, javascript-format
 msgid "%(durName)s: %(duration)s"
-msgstr ""
+msgstr "%(durName)s: %(duration)s"
 
 #: gui/common/tooltips.js:458
 msgid "Duration"
@@ -962,22 +963,22 @@ msgstr "Duur"
 #: gui/common/tooltips.js:472
 msgctxt "status effect stackability"
 msgid "(extends)"
-msgstr ""
+msgstr "(breidt uit)"
 
 #: gui/common/tooltips.js:474
 msgctxt "status effect stackability"
 msgid "(replaces)"
-msgstr ""
+msgstr "(vervangt)"
 
 #: gui/common/tooltips.js:476
 msgctxt "status effect stackability"
 msgid "(stacks)"
-msgstr ""
+msgstr "(stapelt)"
 
 #: gui/common/tooltips.js:478
 #, javascript-format
 msgid "%(stackability)s"
-msgstr ""
+msgstr "%(stackability)s"
 
 #: gui/common/tooltips.js:489
 #, javascript-format
@@ -1220,11 +1221,11 @@ msgstr "Buit:"
 #: gui/common/tooltips.js:999
 #, javascript-format
 msgid "%(label)s %(icons)s"
-msgstr ""
+msgstr "%(label)s %(icons)s"
 
 #: gui/common/tooltips.js:1000
 msgid "Dropsite for:"
-msgstr ""
+msgstr "Pakhuis voor:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI element will open the Template Details GUI page.
@@ -1241,17 +1242,17 @@ msgstr "Klik om meer informatie te zien."
 #: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
-msgstr ""
+msgstr "%(nick)s — %(name)s"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr ""
+msgstr "Verwijder het geselecteerde opgeslagen spel met %(hotkey)s"
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:203
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr ""
+msgstr "Houd %(hotkey)s ingedrukt om te verwijderen zonder bevestiging."
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
 #, javascript-format
@@ -1384,7 +1385,7 @@ msgstr "Spelhandleiding"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr ""
+msgstr "Leer het spel, start de oefening, ontdek de technologie-ontwikkeling en de geschiedenis achter de beschavingen."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -1422,7 +1423,7 @@ msgstr "Overzicht van beschavingen"
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Leer over de beschavingen van 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:143
 msgid "Single-player"
@@ -1430,7 +1431,7 @@ msgstr "Singleplayer"
 
 #: gui/pregame/MainMenuItems.js:51
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "Start, laad of herhaal een singleplayer spel."
 
 #: gui/pregame/MainMenuItems.js:54
 msgid "Matches"
@@ -1540,7 +1541,7 @@ msgstr "Welkomstscherm"
 
 #: gui/pregame/MainMenuItems.js:167
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Toon het welkomstscherm. Nuttig als je dit per ongeluk hebt uitgezet."
 
 #: gui/pregame/MainMenuItems.js:175
 msgid "Scenario Editor"
@@ -1576,7 +1577,7 @@ msgstr "Credits"
 
 #: gui/pregame/MainMenuItems.js:194
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "Toon de credits voor 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:200
 msgid "Exit"
@@ -1602,7 +1603,7 @@ msgstr "Alfa XXIV"
 msgid ""
 "Notice: This game is under development and many features have not been added"
 " yet."
-msgstr ""
+msgstr "Let op: dit spel is in ontwikkeling. Veel functies zijn nog niet toegepast."
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
@@ -1829,7 +1830,7 @@ msgstr "Rekruteereenheden"
 #: gui/reference/viewer/ViewerPage.js:167
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
-msgstr ""
+msgstr "%(hotkey)s: sluit sjabloon viewer"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
@@ -1917,7 +1918,7 @@ msgstr "%(min)s - %(max)s min"
 
 #: gui/replaymenu/replay_filters.js:143
 msgid "Single-player and multiplayer"
-msgstr ""
+msgstr "Single- en multiplayer"
 
 #: gui/replaymenu/replay_filters.js:156
 msgid "Any Victory Condition"
@@ -1943,7 +1944,7 @@ msgstr "Filter herhalingen door één of meerdere, gedeeltelijke of complete, sp
 #: gui/replaymenu/replay_menu.js:198
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
-msgstr ""
+msgstr "Verwijder de geselecteerde herhaling met %(hotkey)s."
 
 #: gui/replaymenu/replay_menu.js:283
 #, javascript-format
@@ -2025,7 +2026,7 @@ msgstr "Wonderen"
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "Gebouwstatistieken  (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:69
 msgid "Units"
@@ -2062,7 +2063,7 @@ msgstr "Handelaren"
 #: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "Eenhedenstatistieken (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:109
 msgid "Resources"
@@ -2229,12 +2230,12 @@ msgstr "Mislukt"
 #, javascript-format
 msgctxt "Player listing with color indicator"
 msgid "%(colorIndicator)s %(playerListing)s"
-msgstr ""
+msgstr "%(colorIndicator)s %(playerListing)s"
 
 #: gui/summary/summary.js:195
 msgctxt "Charts player color indicator"
 msgid "■"
-msgstr ""
+msgstr "■"
 
 #: gui/summary/summary.js:225
 msgctxt "Player listing"
@@ -2291,17 +2292,17 @@ msgstr "%(hotkey)s: Toon de multiplayer lobby in een dialoogvenster."
 #: gui/summary/summary.js:546
 #, javascript-format
 msgid "Toggle the %(name)s summary tab."
-msgstr ""
+msgstr "Zet het %(name)s samenvattingstabblad aan en uit."
 
 #: gui/summary/summary.js:547
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab right."
-msgstr ""
+msgstr "Klik %(hotkey)s om een samenvattingstabblad naar rechts te gaan."
 
 #: gui/summary/summary.js:548
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab left."
-msgstr ""
+msgstr "Klik %(hotkey)s om een samenvattingstabblad naar links te gaan."
 
 #: gui/civinfo/civinfo.xml:(caption):30
 msgid "Civilization Selection"
@@ -2443,7 +2444,7 @@ msgstr "Hoofdmenu"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Rebuild Cache"
-msgstr ""
+msgstr "Bouw de cache opnieuw op."
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
 #: gui/summary/summary.xml:(caption):26
@@ -2476,7 +2477,7 @@ msgstr "Duur"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):238
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr ""
+msgstr "Bouw de herhalingscache helemaal opnieuw op. Dit kan lang duren."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -2507,7 +2508,7 @@ msgstr "Type:"
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
-msgstr ""
+msgstr "Groepeer per team"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
@@ -2554,11 +2555,11 @@ msgstr "Geluidsmanager"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
-msgstr ""
+msgstr "Componist"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
-msgstr ""
+msgstr "Audio managers"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
@@ -2627,7 +2628,7 @@ msgstr "Stemmen"
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -2636,7 +2637,7 @@ msgstr "Leider"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr ""
+msgstr "Audio balans "
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
@@ -2674,7 +2675,7 @@ msgstr "Willekeurige kaartscript programmeurs"
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr ""
+msgstr "Kaarten"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -2726,27 +2727,27 @@ msgstr "Vertalers"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "Jouw naam in singleplayer spellen."
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "Naam speler (singleplayer)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr ""
+msgstr "Jouw naam in multiplayer spellen (met uitzondering van de lobby)."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr ""
+msgstr "Naam speler (multiplayer)"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr ""
+msgstr "Pauzeer singleplayer spellen wanneer een ander venster naar de voorgrond gaat."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
-msgstr ""
+msgstr "Pauzeer achtergrond"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
@@ -2756,7 +2757,7 @@ msgstr "Als u het uitschakeld wordt het welkomsscherm slechts éénmaal getoond,
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
-msgstr ""
+msgstr "Schakel het welkomstscherm in"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
@@ -2764,7 +2765,7 @@ msgstr "Toon welke speler een slechte verbinding heeft in multiplayer spellen."
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network warnings"
-msgstr ""
+msgstr "Netwerkmeldingen"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2872,11 +2873,11 @@ msgstr "Mist"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Gebruik postprocesfilters op het scherm (HDR, Bloom, DOF, etc)."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
-msgstr ""
+msgstr "Postprocessing"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use anti-aliasing."
@@ -2892,7 +2893,7 @@ msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
-msgstr ""
+msgstr "Beperk aliasing bij randen."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Anti-Aliasing"
@@ -2900,31 +2901,31 @@ msgstr "Anti-aliassen"
 
 #: gui/options/options.json[1].options[5].list[0].tooltip
 msgid "Do not use sharpening."
-msgstr ""
+msgstr "Gebruik geen scherpte effect."
 
 #: gui/options/options.json[1].options[5].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
-msgstr ""
+msgstr "Adaptieve contrastscherpte, een snelle beeldverscherping gebaseerd op contrast."
 
 #: gui/options/options.json[1].options[5].list[1].label
 msgid "FidelityFX CAS"
-msgstr ""
+msgstr "FidelityFX CAS"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Reduce blurry effects."
-msgstr ""
+msgstr "Beperk vage effecten."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Sharpening"
-msgstr ""
+msgstr "Scherpteverhoging"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "The sharpness of the choosen pass."
-msgstr ""
+msgstr "De scherpte van de gekozen bewerking."
 
 #: gui/options/options.json[1].options[6].label
 msgid "Sharpness factor"
-msgstr ""
+msgstr "Scherpheidsfactor"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -2932,7 +2933,7 @@ msgstr "Aantal shader effecten. HET SPEL MOET HERSTART WORDEN"
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shader effects"
-msgstr ""
+msgstr "Shader effecten"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Enable shadows."
@@ -2971,7 +2972,7 @@ msgstr "Schaduwmap resolutie. Te hoge waarden kunnen leiden tot een spelcrash wa
 
 #: gui/options/options.json[1].options[9].label
 msgid "Shadow quality"
-msgstr ""
+msgstr "Schaduwkwaliteit"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid "Smooth shadows."
@@ -2979,7 +2980,7 @@ msgstr "Zachte schaduwen."
 
 #: gui/options/options.json[1].options[10].label
 msgid "Shadow filtering"
-msgstr ""
+msgstr "Schaduwfiltering"
 
 #: gui/options/options.json[1].options[11].tooltip
 msgid "Show outlines of units behind structures."
@@ -2987,7 +2988,7 @@ msgstr "Laat de contouren van de eenheden achter bouwwerken zien."
 
 #: gui/options/options.json[1].options[11].label
 msgid "Unit silhouettes"
-msgstr ""
+msgstr "Silhouetten"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid "Enable particles."
@@ -3015,7 +3016,7 @@ msgstr "Gebruik hogere kwaliteit effecten voor water, renderen van kustgolfen, s
 
 #: gui/options/options.json[1].options[14].label
 msgid "High-quality water effects"
-msgstr ""
+msgstr "Hoge kwaliteit watereffecten"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -3077,25 +3078,25 @@ msgstr "VSync"
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
-msgstr ""
+msgstr "Beperk de renderfrequentie in alle menus voor een lager processorgebruik. Stel in op maximaal om beperking uit te schakelen."
 
 #: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in menus"
-msgstr ""
+msgstr "Limiteer beelden per seconde (FPS) in het menu."
 
 #: gui/options/options.json[1].options[23].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
-msgstr ""
+msgstr "Beperk de renderfrequentie tijdens het spelen voor een lager processorgebruik. Stel in op maximaal om beperking uit te schakelen."
 
 #: gui/options/options.json[1].options[23].label
 msgid "FPS throttling in games"
-msgstr ""
+msgstr "Limiteer beelden per seconde (FPS) tijdens het spelen"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
-msgstr ""
+msgstr "Stel de verhouding in tussen prestaties en visuele weergave."
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
@@ -3131,7 +3132,7 @@ msgstr "Volume van de spelelementen."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action volume"
-msgstr ""
+msgstr "Actievolume"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
@@ -3139,7 +3140,7 @@ msgstr "Volume van de klikken."
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI volume"
-msgstr ""
+msgstr "UI volume"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
@@ -3147,7 +3148,7 @@ msgstr "Ontvang een audiobericht wanneer iemand uw alias intypt."
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick notification"
-msgstr ""
+msgstr "Alias aankondiging"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -3155,7 +3156,7 @@ msgstr "Ontvang een audionotificatie wanneer iemand het spel betreedt."
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game setup - new player notification"
-msgstr ""
+msgstr "Spel instelling - nieuwe speler melding"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -3163,7 +3164,7 @@ msgstr "Laat tips zien bij het instellen van een spel"
 
 #: gui/options/options.json[3].options[0].label
 msgid "Enable game setting tips"
-msgstr ""
+msgstr "Activeer instelling tips"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
@@ -3208,7 +3209,7 @@ msgstr "Standaard moeilijkheid van de computerspeler."
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI difficulty"
-msgstr ""
+msgstr "Standaard AI spelniveau"
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
@@ -3232,7 +3233,7 @@ msgstr "Standaard gedrag van de computerspeler."
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI behavior"
-msgstr ""
+msgstr "Standaard AI gedrag"
 
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
@@ -3256,7 +3257,7 @@ msgstr "Wijs toetredende spelers automatisch een vrije plek toe tijdens het inst
 
 #: gui/options/options.json[3].options[5].label
 msgid "Assign players"
-msgstr ""
+msgstr "Wijs spelers toe"
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
@@ -3265,7 +3266,7 @@ msgstr "Spel Instellingen"
 #: gui/options/options.json[4].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr ""
+msgstr "Beveilig login en chat gegevens van de lobby server met TLS encryptie."
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
@@ -3277,7 +3278,7 @@ msgstr "Aantal berichten die geladen worden wanneer u in de lobby binnen komt."
 
 #: gui/options/options.json[4].options[1].label
 msgid "Chat backlog"
-msgstr ""
+msgstr "Chat log"
 
 #: gui/options/options.json[4].options[2].tooltip
 msgid ""
@@ -3301,11 +3302,11 @@ msgstr "Lobby"
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
-msgstr ""
+msgstr "De sneltoets voor gewonde eenheden markeert de geselecteerde eenheden als gewond wanneer hun gezondheidspercentage onder dit getal zakt."
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
-msgstr ""
+msgstr "Gewonde eenheid gezondheidspercentage"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
@@ -3313,7 +3314,7 @@ msgstr "Standaard aantal opgeleide eenheden per groep."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch training size"
-msgstr ""
+msgstr "Omvang groepsrekrutering"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
@@ -3322,7 +3323,7 @@ msgstr "Het aantal keer dat u moet scrollen om de groepsgrootte met 1 te vergrot
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
-msgstr ""
+msgstr "Stel toename groepsomvang in"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
@@ -4212,7 +4213,7 @@ msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "A special structure for  Athenians, Macedonians, and Spartans."
-msgstr ""
+msgstr "Een speciaal gebouw voor Atheners, Macedoniërs en Spartanen."
 
 #: gui/text/tips/stoa.txt:3
 msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
@@ -4267,7 +4268,7 @@ msgstr "TERRITORIUMVERVAL"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr ""
+msgstr "Verval vindt plaats wanneer gebouwen niet verbonden zijn met een geallieerd beschavingscentrum."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
@@ -4279,7 +4280,7 @@ msgstr "Het verval kan vertraagd of teniet gedaan worden door enkele eenheden he
 msgid ""
 "When the decay is completed, the structure will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "Wanneer het verval compleet is, zal het gebouw aan de meest invloedrijke buur gegeven worden."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -4333,7 +4334,7 @@ msgstr "Minstens zeven veldtochten tegen de Romeinen tijdens de 'Lusitani oorlog
 msgid ""
 "Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
 "their opponents."
-msgstr ""
+msgstr "Heeft de 'guerrilla tactiek' aura waarmee dichtbijzijnde Iberische eenheden hun tegenstanders in een hinderlaag kunnen lokken."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -4351,7 +4352,7 @@ msgstr "Hoge Voedsel- en Metaalkosten, maar heel krachtig."
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "Beschikbaar voor: Carthagers, Kushiten, Mauriërs, Perzen, Ptolemaeïers en Seleuciden."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"

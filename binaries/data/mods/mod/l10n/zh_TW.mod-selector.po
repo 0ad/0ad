@@ -6,6 +6,7 @@
 # 黃柏諺 <s8321414@gmail.com>, 2014,2018
 # Po-Chun Huang <aphroteus@gmail.com>, 2014
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
+# Yuan <daan0014119@gmail.com>, 2020
 # 林建霖 <johhycain@gmail.com>, 2018
 # 張峻瑜 <a728728728@gmail.com>, 2018
 # 林建霖 <johhycain@gmail.com>, 2018
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-13 07:19+0000\n"
-"PO-Revision-Date: 2020-07-13 13:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-10-20 09:29+0000\n"
+"Last-Translator: Yuan <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -176,11 +177,11 @@ msgstr "取消"
 #: gui/modio/modio.js:219
 #, javascript-format
 msgid "Invalid mod: %(error)s"
-msgstr ""
+msgstr "無效的 Mod：%(error)s"
 
 #: gui/modio/modio.js:242
 msgid "Fetching and updating list of available mods."
-msgstr "存取並更新列表當中 Mods。"
+msgstr "存取並更新列表當中可用的模組。"
 
 #: gui/modio/modio.js:243
 msgid "Updating"
@@ -286,15 +287,15 @@ msgstr "在瀏覽器開啟 %(url)s 。"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr "mod.io Mods"
+msgstr "mod.io 的模組"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):55
 msgid "Available Mods"
-msgstr "可用的 Mods"
+msgstr "可用的模組"
 
 #: gui/modio/modio.xml:(caption):81
 msgid "Filter valid mods"
-msgstr ""
+msgstr "過濾有效的模組"
 
 #: gui/modio/modio.xml:(caption):87
 msgid "Back"
@@ -346,7 +347,7 @@ msgstr "描述"
 
 #: gui/modmod/modmod.xml:(caption):99
 msgid "Enabled Mods"
-msgstr "已啟用的 Mods"
+msgstr "已啟用的模組"
 
 #: gui/modmod/modmod.xml:(caption):167
 msgid "Visit Website"
@@ -362,7 +363,7 @@ msgstr "幫助"
 
 #: gui/modmod/modmod.xml:(caption):191
 msgid "Download Mods"
-msgstr "下載 Mods"
+msgstr "下載模組"
 
 #: gui/modmod/modmod.xml:(caption):196
 msgid "Save Configuration"
@@ -370,7 +371,7 @@ msgstr "儲存設定"
 
 #: gui/modmod/modmod.xml:(caption):201
 msgid "Start Mods"
-msgstr "啟動 Mods"
+msgstr "啟動模組"
 
 #: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):121
 msgid "(Folder)"
@@ -384,7 +385,7 @@ msgstr "網站"
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr "改變 Mod 開啟的順序，符合模組彼此之間的支配關係。"
+msgstr "改變模組開啟的順序，符合模組彼此之間的相依性。"
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
@@ -431,7 +432,7 @@ msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr "這項服務提供了一種簡單的方式來下載和安裝社群所製作的mod，技術提供者是IndolDB 和ModDB 背後的公司：DBolical Pty Ltd。"
+msgstr "這項服務提供了一種簡單的方式來下載和安裝社群所製作的模組，技術提供者是IndolDB 和ModDB 背後的公司：DBolical Pty Ltd。"
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
@@ -442,7 +443,7 @@ msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr "Wildfire Games已經留意連線的安全性也審查了這個mod 有無安全漏洞，但不保證這沒有任何風險。"
+msgstr "Wildfire Games已經留意連線的安全性也審查了這個模組有無安全漏洞，但不保證這沒有任何風險。"
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
@@ -455,7 +456,7 @@ msgstr "使用本服務時，您了解mod.io 的使用條款和隱私政策聲�
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "0 A.D. 被設計成能輕易套用 Mod。Mod 的格式副檔名為 .pyromod 就和 .zip 檔一樣能被開啟。"
+msgstr "0 A.D. 被設計成能輕易套用模組。模組的格式副檔名為 .pyromod，就和 .zip 檔一樣能被開啟。"
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -480,4 +481,4 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr "mod.io 服務也與 IndieDB、ModDB 一樣，是由 DBolical 這間公司所發展出來的網站。這些網站長期以來向大家推廣了0 A.D. 以及其他許多獨立專案！直至今日 mod.io 提供我們列出並下載所有經過團隊驗證過後的 Mod。雙擊〔下載 Mod〕來嘗試並安裝一些 Mod!"
+msgstr "mod.io 服務也與 IndieDB、ModDB 一樣，是由 DBolical 這間公司所發展出來的網站。這些網站長期以來向大家推廣了0 A.D. 以及其他許多獨立專案！直至今日 mod.io 提供我們列出並下載所有經過團隊驗證過後的模組。點擊「下載模組」來嘗試並安裝一些模組！"

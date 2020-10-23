@@ -15,14 +15,15 @@
 # nigelinux <nnigelinux@gmail.com>, 2016
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # StarAtt <tea55688@gmail.com>, 2019
+# Yuan <daan0014119@gmail.com>, 2020
 # 又齊 劉 <bill19981002@gmail.com>, 2018
 # 林建霖 <johhycain@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-09-18 10:15+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-10-21 15:44+0000\n"
+"Last-Translator: Yuan <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,17 +149,17 @@ msgstr ""
 #: simulation/templates/structures/wallset_palisade.xml:5
 #: simulation/templates/structures/wallset_palisade.xml:4
 msgid "Palisade"
-msgstr "柵欄"
+msgstr "Palisade"
 
 #: simulation/templates/template_structure_defensive_tower.xml:53
 #: simulation/templates/template_structure_defensive_tower.xml:36
 #: simulation/templates/template_structure_defensive_tower.xml:52
 msgid "Tower"
-msgstr ""
+msgstr "塔"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:57
 msgid "Artillery Tower"
-msgstr ""
+msgstr "火炮塔"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
@@ -175,15 +176,15 @@ msgstr "城市"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 msgid "ArtilleryTower"
-msgstr ""
+msgstr "火炮塔"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
-msgstr ""
+msgstr "螺旋塔"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:58
 msgid "BoltTower"
-msgstr ""
+msgstr "螺旋塔"
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:30
 msgid "Sentry Tower"
@@ -206,7 +207,7 @@ msgstr "以石頭強化並升級至防禦塔。"
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:31
 msgid "Stone Tower"
-msgstr ""
+msgstr "石塔"
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "StoneTower"
@@ -219,12 +220,12 @@ msgstr "以牢靠的防禦保護您的城鎮的一堵牆。"
 #: simulation/templates/template_structure_defensive_wall.xml:26
 #: simulation/templates/template_structure_defensive_wall.xml:23
 msgid "Wall"
-msgstr ""
+msgstr "牆"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:24
 #: simulation/templates/template_structure_defensive_wall_long.xml:29
 msgid "Allow units access through Walls. Can be locked to prevent access."
-msgstr ""
+msgstr "允許單位穿越城牆。可以被鎖定來防止通行。"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:25
 #: simulation/templates/template_structure_defensive_wall_gate.xml:22
@@ -234,7 +235,7 @@ msgstr "閘門"
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:20
 msgid "Can be converted into a Gate."
-msgstr ""
+msgstr "可以被轉變為一道城門。"
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:50
 msgid "Wall Turret"
@@ -242,7 +243,7 @@ msgstr "城牆塔樓"
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:52
 msgid "Garrison Infantry for additional arrows."
-msgstr ""
+msgstr "駐守士兵以增加更多箭矢。"
 
 #: simulation/templates/template_structure_economic.xml:4
 msgid "Economic Structure"
@@ -255,7 +256,7 @@ msgstr "經濟"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:31
 msgid "Research food gathering technologies."
-msgstr ""
+msgstr "研發食物採集科技。"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:33
 #: simulation/templates/template_structure_economic_farmstead.xml:29
@@ -266,7 +267,7 @@ msgstr "農場"
 msgid ""
 "Barter resources. Establish trade routes. Train Traders and research trade "
 "and barter technologies."
-msgstr ""
+msgstr "交換資源。建立貿易路線。訓練商人和研發貿易和交換用的科技。"
 
 #: simulation/templates/template_structure_economic_market.xml:31
 #: simulation/templates/template_structure_military_dock.xml:28
@@ -280,7 +281,7 @@ msgstr "市集"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 msgid "Research gathering technologies."
-msgstr ""
+msgstr "研發採集科技。"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:34
 #: simulation/templates/template_structure_economic_storehouse.xml:30
@@ -334,11 +335,11 @@ msgstr "碼頭"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:24
 msgid "Elephant Stable"
-msgstr ""
+msgstr "象棚"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:26
 msgid "Train Elephants and research Elephant technologies."
-msgstr ""
+msgstr "訓練大象及研究大象科技。"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
 msgid "ElephantStable"
@@ -385,12 +386,12 @@ msgstr ""
 
 #: simulation/templates/template_structure_military_stable.xml:25
 msgid "Train Cavalry and research Cavalry technologies."
-msgstr ""
+msgstr "訓練騎兵及研究騎兵科技。"
 
 #: simulation/templates/template_structure_military_stable.xml:26
 #: simulation/templates/template_structure_military_stable.xml:23
 msgid "Stable"
-msgstr ""
+msgstr "馬廄"
 
 #: simulation/templates/template_structure_resource.xml:7
 msgid "Resource Structure"
@@ -651,7 +652,7 @@ msgstr "露天劇場"
 #: simulation/templates/structures/sele_tower_artillery.xml:9
 #: simulation/templates/structures/spart_tower_bolt.xml:9
 msgid "Pyrgíon"
-msgstr "防禦塔"
+msgstr "Pyrgíon"
 
 #: simulation/templates/structures/athen_wall_gate.xml:12
 #: simulation/templates/structures/mace_wall_gate.xml:12
@@ -881,7 +882,7 @@ msgstr ""
 
 #: simulation/templates/structures/cart_embassy_italic.xml:17
 msgid "Italic Embassy"
-msgstr ""
+msgstr "義大利大使館"
 
 #: simulation/templates/structures/cart_embassy_italic.xml:18
 msgid "Train Italic Mercenaries and research Mercenary technologies."
@@ -1058,7 +1059,7 @@ msgstr "Harotz"
 
 #: simulation/templates/structures/iber_fortress.xml:15
 msgid "Castro"
-msgstr "卡斯楚"
+msgstr "Castro"
 
 #: simulation/templates/structures/iber_house.xml:5
 msgid "Etxe"
@@ -1436,7 +1437,7 @@ msgstr "木製塔樓"
 
 #: simulation/templates/structures/palisades_gate.xml:20
 msgid "Palisade Gate"
-msgstr "柵欄門"
+msgstr "Palisade Gate"
 
 #: simulation/templates/structures/palisades_gate.xml:22
 #: simulation/templates/structures/palisades_long.xml:31

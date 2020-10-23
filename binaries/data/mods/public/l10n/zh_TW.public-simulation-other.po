@@ -7,12 +7,13 @@
 # Yuan <daan0014119@gmail.com>, 2017
 # 黃柏諺 <s8321414@gmail.com>, 2014-2018
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
+# Yuan <daan0014119@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-10-05 07:22+0000\n"
-"PO-Revision-Date: 2020-10-05 18:15+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-10-20 07:30+0000\n"
+"Last-Translator: Yuan <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -238,7 +239,7 @@ msgstr "%(_player_)s，您必須進貢 %(_amount_)s %(_resource_)s 的資源給�
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s."
-msgstr ""
+msgstr "除非你進貢給我 %(_amount_)s %(_resource_)s，否則我們將不會是同盟，%(_player_)s。"
 
 #: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
@@ -540,7 +541,7 @@ msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)
 
 #: simulation/components/ProductionQueue.js:339
 msgid "Entity is being upgraded. Cannot start production."
-msgstr ""
+msgstr "實體已被升級。無法開始生產。"
 
 #: simulation/components/ProductionQueue.js:512
 msgid "The production queue is full."
@@ -552,7 +553,7 @@ msgstr "找不到空間產出已訓練的單位"
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
-msgstr ""
+msgstr "實體正在生產。無法開始升級。"
 
 #: simulation/helpers/Cheat.js:58
 #, javascript-format
@@ -649,47 +650,47 @@ msgstr "玩家 8"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1×)"
-msgstr ""
+msgstr "龜速 (0.1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25×)"
-msgstr ""
+msgstr "慢速 (0.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[2].Title
 msgid "Leisurely (0.5×)"
-msgstr ""
+msgstr "悠閒 (0.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75×)"
-msgstr ""
+msgstr "輕鬆 (0.75×)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1×)"
-msgstr ""
+msgstr "正常 (1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[5].Title
 msgid "Fast (1.25×)"
-msgstr ""
+msgstr "快速 (1.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[6].Title
 msgid "Very Fast (1.5×)"
-msgstr ""
+msgstr "急速 (1.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[7].Title
 msgid "Insane (2×)"
-msgstr ""
+msgstr "瘋狂 (2×)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5×)"
-msgstr ""
+msgstr "快轉 (5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10×)"
-msgstr ""
+msgstr "快轉 (10×)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20×)"
-msgstr ""
+msgstr "快轉 (20×)"
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
 msgid ""
@@ -741,7 +742,7 @@ msgid ""
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
-msgstr ""
+msgstr "成為第一個建造或佔領一個世界奇觀並保持一段時間直到贏得遊戲的人。 當世界奇觀被摧毀或被佔領時計時器將被重設。當同盟勝利被啟用且所有者聯盟改變時，計時器也會被重設。"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -845,7 +846,7 @@ msgstr "一般"
 msgid ""
 "This map size provides plenty of space for two players, but even eight "
 "players fit."
-msgstr ""
+msgstr "這張地圖提供了兩個玩家充足的空間，但八個玩家也能使用。"
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""
@@ -887,4 +888,4 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra 是預設的 0 A.D. AI 機器人。請回報問題給 Wildfire Games （請見在主選單中的連結）。\n\nAI 在資源儲備上採集速率和貿易加成根據難度等級而定（測試區 −58%、非常簡單 −44%、簡單 −25%、中等 ±0%、困難 +25%、非常困難 +56%）。最簡單等級的研發、生產與建造速度都較慢。另外，測試區等級不會拓展也不會攻擊。"

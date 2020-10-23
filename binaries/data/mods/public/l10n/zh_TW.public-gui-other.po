@@ -14,14 +14,15 @@
 # ryat <mj0011@yopmail.com>, 2015
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # You-Ruei Tzeng <e222et@gmail.com>, 2014
+# Yuan <daan0014119@gmail.com>, 2020
 # 又齊 劉 <bill19981002@gmail.com>, 2018
 # 可邦 陳 <bensoncat99@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-09-18 17:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-10-22 16:32+0000\n"
+"Last-Translator: Yuan <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,13 +38,13 @@ msgstr "%(hotkey)s：切換到科技樹。"
 #: gui/civinfo/civinfo.js:21
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s：關閉文明總覽。"
 
 #. Translation: insert an itemization symbol for each entry.
 #: gui/civinfo/civinfo.js:85
 #, javascript-format
 msgid "• %(string)s"
-msgstr ""
+msgstr "• %(string)s"
 
 #: gui/civinfo/civinfo.js:113
 #, javascript-format
@@ -67,7 +68,7 @@ msgstr "特殊科技"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Structure"
 msgid_plural "Special Structures"
-msgstr[0] ""
+msgstr[0] "特殊建築"
 
 #: gui/civinfo/civinfo.js:141 gui/summary/layout.js:77
 msgid "Heroes"
@@ -389,7 +390,7 @@ msgstr "初始資源"
 #: gui/common/gamedescription.js:358
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "每位玩家"
 
 #: gui/common/gamedescription.js:359
 #, javascript-format
@@ -403,11 +404,11 @@ msgstr "人口限制"
 #: gui/common/gamedescription.js:374
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "每位玩家"
 
 #: gui/common/gamedescription.js:382
 msgid "World Population Cap"
-msgstr ""
+msgstr "世界人口上限"
 
 #: gui/common/gamedescription.js:390
 msgid "Treasures"
@@ -531,15 +532,15 @@ msgstr "安全大廳認證失敗。請從大廳加入。"
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr ""
+msgstr "錯誤：伺服器無法分配一個唯一的客戶端標識符。"
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
-msgstr ""
+msgstr "錯誤：客戶端指令準備給非預期的遊戲回合。"
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
-msgstr ""
+msgstr "錯誤：客戶端模擬了非預期的遊戲回合。"
 
 #: gui/common/network.js:81
 #, javascript-format
@@ -694,7 +695,7 @@ msgstr "預設"
 #: gui/common/settings.js:400
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "（世界）"
 
 #: gui/common/settings.js:401 gui/common/settings.js:405
 msgctxt "population capacity"
@@ -746,38 +747,38 @@ msgstr "%(percentage)s%%"
 msgid ""
 "%(label)s\n"
 "%(details)s"
-msgstr ""
+msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:187
 msgid "Resistance:"
-msgstr ""
+msgstr "抵抗："
 
 #: gui/common/tooltips.js:198
 msgid "Damage:"
-msgstr ""
+msgstr "傷害："
 
 #: gui/common/tooltips.js:201 gui/common/tooltips.js:221
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(resistancePercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(resistancePercentage)s"
 
 #: gui/common/tooltips.js:206 gui/common/tooltips.js:226
 #, javascript-format
 msgid "(%(resistancePercentage)s)"
-msgstr ""
+msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:219
 msgid "Capture:"
-msgstr ""
+msgstr "佔領："
 
 #: gui/common/tooltips.js:223 gui/common/tooltips.js:321
 msgctxt "damage type"
 msgid "Capture"
-msgstr ""
+msgstr "佔領"
 
 #: gui/common/tooltips.js:239
 msgid "Garrison to fire arrows"
-msgstr ""
+msgstr "駐守以發射箭矢"
 
 #: gui/common/tooltips.js:242 gui/common/tooltips.js:882
 msgid "Interval:"
@@ -791,7 +792,7 @@ msgstr "速率："
 #, javascript-format
 msgid "%(projectileCount)s %(projectileName)s"
 msgid_plural "%(projectileCount)s %(projectileName)s"
-msgstr[0] ""
+msgstr[0] "%(projectileCount)s %(projectileName)s"
 
 #: gui/common/tooltips.js:249
 msgid "arrow"
@@ -801,7 +802,7 @@ msgstr[0] "箭"
 #: gui/common/tooltips.js:252
 #, javascript-format
 msgid "%(projectileString)s / %(attackRateString)s"
-msgstr ""
+msgstr "%(projectileString)s / %(attackRateString)s"
 
 #. Translation: For example: Range: 2 to 10 (+2) meters
 #: gui/common/tooltips.js:272
@@ -809,25 +810,25 @@ msgstr ""
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
 "%(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s 到 %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 (+2) meters
 #: gui/common/tooltips.js:274
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 2 to 10 meters
 #: gui/common/tooltips.js:278
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s 到 %(maxRange)s %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 meters
 #: gui/common/tooltips.js:280
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
 #: gui/common/tooltips.js:290 gui/common/tooltips.js:877
 msgid "Range:"
@@ -858,17 +859,17 @@ msgstr "%(damage)s %(damageType)s"
 #: gui/common/tooltips.js:319
 #, javascript-format
 msgid "%(amount)s %(name)s"
-msgstr ""
+msgstr "%(amount)s %(name)s"
 
 #: gui/common/tooltips.js:327
 #, javascript-format
 msgid "%(splashShape)s Splash"
-msgstr ""
+msgstr "%(splashShape)s 濺射"
 
 #: gui/common/tooltips.js:330
 #, javascript-format
 msgid "%(label)s: %(effects)s"
-msgstr ""
+msgstr "%(label)s：%(effects)s"
 
 #: gui/common/tooltips.js:336
 #, javascript-format
@@ -894,18 +895,18 @@ msgstr "否"
 #: gui/common/tooltips.js:348
 #, javascript-format
 msgid "gives %(name)s"
-msgstr ""
+msgstr "給 %(name)s"
 
 #: gui/common/tooltips.js:381
 #, javascript-format
 msgid "%(attackType)s"
-msgstr ""
+msgstr "%(attackType)s"
 
 #: gui/common/tooltips.js:404
 #, javascript-format
 msgid ""
 "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
 
 #: gui/common/tooltips.js:415
 msgid "Attack:"
@@ -914,17 +915,17 @@ msgstr "攻擊："
 #: gui/common/tooltips.js:441
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s %(stackability)s"
-msgstr ""
+msgstr "%(statusName)s：%(statusInfo)s %(stackability)s"
 
 #: gui/common/tooltips.js:446
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s"
-msgstr ""
+msgstr "%(statusName)s：%(statusInfo)s"
 
 #: gui/common/tooltips.js:457
 #, javascript-format
 msgid "%(durName)s: %(duration)s"
-msgstr ""
+msgstr "%(durName)s：%(duration)s"
 
 #: gui/common/tooltips.js:458
 msgid "Duration"
@@ -933,22 +934,22 @@ msgstr "持續時間"
 #: gui/common/tooltips.js:472
 msgctxt "status effect stackability"
 msgid "(extends)"
-msgstr ""
+msgstr "（延展）"
 
 #: gui/common/tooltips.js:474
 msgctxt "status effect stackability"
 msgid "(replaces)"
-msgstr ""
+msgstr "（取代）"
 
 #: gui/common/tooltips.js:476
 msgctxt "status effect stackability"
 msgid "(stacks)"
-msgstr ""
+msgstr "（堆棧）"
 
 #: gui/common/tooltips.js:478
 #, javascript-format
 msgid "%(stackability)s"
-msgstr ""
+msgstr "%(stackability)s"
 
 #: gui/common/tooltips.js:489
 #, javascript-format
@@ -1181,16 +1182,16 @@ msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:989
 msgid "Loot:"
-msgstr "寶藏："
+msgstr "戰利品："
 
 #: gui/common/tooltips.js:999
 #, javascript-format
 msgid "%(label)s %(icons)s"
-msgstr ""
+msgstr "%(label)s %(icons)s"
 
 #: gui/common/tooltips.js:1000
 msgid "Dropsite for:"
-msgstr ""
+msgstr "存放點給："
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI element will open the Template Details GUI page.
@@ -1207,17 +1208,17 @@ msgstr "點擊看更多資訊"
 #: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
-msgstr ""
+msgstr "%(nick)s — %(name)s"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr ""
+msgstr "用 %(hotkey)s 鍵刪除遊戲存檔。"
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:203
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr ""
+msgstr "按住 %(hotkey)s 來跳過刪除時的確認視窗。"
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
 #, javascript-format
@@ -1235,7 +1236,7 @@ msgstr "刪除"
 #: gui/loadgame/SavegameDetails.js:40
 #, javascript-format
 msgid "Mods: %(mods)s"
-msgstr "Mods：%(mods)s"
+msgstr "模組：%(mods)s"
 
 #: gui/loadgame/SavegameList.js:158
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -1268,7 +1269,7 @@ msgstr "這個存檔需要較舊版本的 0 A.D。"
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
-msgstr "這個存檔需要使用不同的外掛模組"
+msgstr "這個存檔需要使用不同的模組："
 
 #: gui/loadgame/SavegameLoader.js:55
 msgid "Do you still want to proceed?"
@@ -1350,7 +1351,7 @@ msgstr "遊戲指南"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr ""
+msgstr "了解如何遊玩，開始教學課程，探索科技樹，以及文明背後的歷史。"
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -1383,20 +1384,20 @@ msgstr "%(hotkey)s：觀看0 A.D的文明科技樹特色"
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 #: gui/civinfo/civinfo.xml:(caption):18
 msgid "Civilization Overview"
-msgstr ""
+msgstr "文明總覽"
 
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s：學習在 0 A.D. 中文明的特色。"
 
 #: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:143
 msgid "Single-player"
-msgstr ""
+msgstr "單人遊戲"
 
 #: gui/pregame/MainMenuItems.js:51
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "啟動、載入或重播單人遊戲。"
 
 #: gui/pregame/MainMenuItems.js:54
 msgid "Matches"
@@ -1404,7 +1405,7 @@ msgstr "對戰"
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "開始一場新的單人遊戲。"
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Campaigns"
@@ -1418,7 +1419,7 @@ msgstr "透過歷史戰役重溫歷史事件。\\[尚未提供]"
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Load a saved game."
-msgstr ""
+msgstr "載入保存的遊戲。"
 
 #: gui/pregame/MainMenuItems.js:73 gui/pregame/MainMenuItems.js:123
 msgid "Replays"
@@ -1451,7 +1452,7 @@ msgstr "主持遊戲"
 
 #: gui/pregame/MainMenuItems.js:103
 msgid "Host a multiplayer game."
-msgstr ""
+msgstr "主持一場多人遊戲。"
 
 #: gui/pregame/MainMenuItems.js:111
 msgid "Game Lobby"
@@ -1474,7 +1475,7 @@ msgstr "設定"
 
 #: gui/pregame/MainMenuItems.js:139
 msgid "Change game options."
-msgstr ""
+msgstr "變更遊戲選項。"
 
 #: gui/pregame/MainMenuItems.js:142
 msgid "Options"
@@ -1498,7 +1499,7 @@ msgstr "Mod 選擇"
 
 #: gui/pregame/MainMenuItems.js:160
 msgid "Select and download mods for the game."
-msgstr "選擇與下載這個遊戲的模組"
+msgstr "選擇與下載這個遊戲的模組。"
 
 #: gui/pregame/MainMenuItems.js:166
 msgid "Welcome Screen"
@@ -1506,7 +1507,7 @@ msgstr "歡迎畫面"
 
 #: gui/pregame/MainMenuItems.js:167
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr ""
+msgstr "再次顯示歡迎畫面。如果您不小心隱藏它的時候很有用。"
 
 #: gui/pregame/MainMenuItems.js:175
 msgid "Scenario Editor"
@@ -1542,7 +1543,7 @@ msgstr "銘謝"
 
 #: gui/pregame/MainMenuItems.js:194
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "顯示 0 A.D. 感謝名單。"
 
 #: gui/pregame/MainMenuItems.js:200
 msgid "Exit"
@@ -1550,7 +1551,7 @@ msgstr "結束"
 
 #: gui/pregame/MainMenuItems.js:201
 msgid "Exit the game."
-msgstr ""
+msgstr "結束遊戲。"
 
 #: gui/pregame/MainMenuItems.js:205
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -1568,7 +1569,7 @@ msgstr "Alpha XXIV"
 msgid ""
 "Notice: This game is under development and many features have not been added"
 " yet."
-msgstr ""
+msgstr "提醒：本遊戲處於開發階段且仍缺少許多功能。"
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
@@ -1771,7 +1772,7 @@ msgstr "可升級到："
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s：切換到文明總覽。"
 
 #: gui/reference/common/Buttons/CloseButton.js:13
 #: gui/civinfo/civinfo.xml:(caption):135 gui/credits/credits.xml:(caption):32
@@ -1881,7 +1882,7 @@ msgstr "%(min)s - %(max)s 分鐘"
 
 #: gui/replaymenu/replay_filters.js:143
 msgid "Single-player and multiplayer"
-msgstr ""
+msgstr "單人和多人遊戲"
 
 #: gui/replaymenu/replay_filters.js:156
 msgid "Any Victory Condition"
@@ -1907,7 +1908,7 @@ msgstr "輸入一個或多個，部份或完整的玩家名稱來過濾重播。
 #: gui/replaymenu/replay_menu.js:198
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
-msgstr ""
+msgstr "用 %(hotkey)s 鍵刪除選擇的重播。"
 
 #: gui/replaymenu/replay_menu.js:283
 #, javascript-format
@@ -1950,7 +1951,7 @@ msgstr "探索分數"
 
 #: gui/summary/layout.js:31
 msgid "Structures"
-msgstr ""
+msgstr "建築"
 
 #: gui/summary/layout.js:34 gui/summary/layout.js:72 gui/summary/layout.js:112
 msgid "Total"
@@ -1989,7 +1990,7 @@ msgstr "奇觀"
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "建築物統計 (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:69
 msgid "Units"
@@ -2026,7 +2027,7 @@ msgstr "貿易商人"
 #: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "單位統計 (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:109
 msgid "Resources"
@@ -2193,12 +2194,12 @@ msgstr "失敗了"
 #, javascript-format
 msgctxt "Player listing with color indicator"
 msgid "%(colorIndicator)s %(playerListing)s"
-msgstr ""
+msgstr "%(colorIndicator)s %(playerListing)s"
 
 #: gui/summary/summary.js:195
 msgctxt "Charts player color indicator"
 msgid "■"
-msgstr ""
+msgstr "■"
 
 #: gui/summary/summary.js:225
 msgctxt "Player listing"
@@ -2255,17 +2256,17 @@ msgstr "%(hotkey)s：在對話窗裡切換到多人玩家大廳"
 #: gui/summary/summary.js:546
 #, javascript-format
 msgid "Toggle the %(name)s summary tab."
-msgstr ""
+msgstr "切換 %(name)s 摘要分頁。"
 
 #: gui/summary/summary.js:547
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab right."
-msgstr ""
+msgstr "用 %(hotkey)s 鍵將摘要分頁向右移動。"
 
 #: gui/summary/summary.js:548
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab left."
-msgstr ""
+msgstr "用 %(hotkey)s 鍵將摘要分頁向左移動。"
 
 #: gui/civinfo/civinfo.xml:(caption):30
 msgid "Civilization Selection"
@@ -2407,7 +2408,7 @@ msgstr "主選單"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
 msgid "Rebuild Cache"
-msgstr ""
+msgstr "重建快取"
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
 #: gui/summary/summary.xml:(caption):26
@@ -2471,7 +2472,7 @@ msgstr "類型："
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
-msgstr ""
+msgstr "按隊伍分組"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
@@ -2518,11 +2519,11 @@ msgstr "音效總監"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
-msgstr ""
+msgstr "首席作曲家"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
-msgstr ""
+msgstr "音樂總監"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
@@ -2591,7 +2592,7 @@ msgstr "聲音"
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
-msgstr ""
+msgstr "音訊"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -2600,7 +2601,7 @@ msgstr "前端"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr ""
+msgstr "平衡調整"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
@@ -2638,7 +2639,7 @@ msgstr "隨機地圖指令稿"
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr ""
+msgstr "地圖"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -2690,27 +2691,27 @@ msgstr "譯者"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "您在單人遊戲中要如被稱呼。"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "玩家名稱（單人）"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr ""
+msgstr "您在多人遊戲配對中要如何被稱呼（除了大廳外）。"
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr ""
+msgstr "玩家名稱（多人）"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr ""
+msgstr "當視窗失去焦點時暫停單人遊戲。"
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
-msgstr ""
+msgstr "背景暫停"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
@@ -2720,7 +2721,7 @@ msgstr "若您停用它，歡迎畫面只在每次有新版可用時才會出現
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
-msgstr ""
+msgstr "啟用歡迎畫面"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
@@ -2728,7 +2729,7 @@ msgstr "顯示在多人遊戲中哪個玩家的連線不佳。"
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network warnings"
-msgstr ""
+msgstr "網路警告"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2736,7 +2737,7 @@ msgstr "在右上角顯示每秒幾禎。"
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS overlay"
-msgstr ""
+msgstr "每秒禎數覆蓋層"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -2744,7 +2745,7 @@ msgstr "在右上角顯示目前的系統時間。"
 
 #: gui/options/options.json[0].options[6].label
 msgid "Real time overlay"
-msgstr ""
+msgstr "實際時間覆蓋層"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
@@ -2752,7 +2753,7 @@ msgstr "在右上角顯示目前的模擬時間。"
 
 #: gui/options/options.json[0].options[7].label
 msgid "Game time overlay"
-msgstr ""
+msgstr "遊戲時間覆蓋層"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -2760,7 +2761,7 @@ msgstr "總是顯示剩餘的停火時間。"
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire time overlay"
-msgstr ""
+msgstr "停火時間覆蓋層"
 
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
@@ -2787,7 +2788,7 @@ msgstr "讓每個人或是夥伴在遊戲開始後僅能作為觀察者加入遊
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late observer joins"
-msgstr ""
+msgstr "後期加入觀察者"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
@@ -2795,7 +2796,7 @@ msgstr "若已達到上限將會避免再有觀察者加入。"
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer limit"
-msgstr ""
+msgstr "觀察者限制"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid ""
@@ -2804,7 +2805,7 @@ msgstr "顯示訊息被張貼在大廳、遊戲設定或是遊戲中聊天的時
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "聊天時間戳記"
 
 #: gui/options/options.json[0].label
 msgid "General"
@@ -2816,7 +2817,7 @@ msgstr "以視窗模式啟動 0 A.D. "
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
-msgstr ""
+msgstr "視窗模式"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
@@ -2836,59 +2837,59 @@ msgstr "霧"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "使用螢幕後處理過濾器（HDR、Bloom、DOF 等等）。"
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
-msgstr ""
+msgstr "後處理"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use anti-aliasing."
-msgstr ""
+msgstr "不要使用反鋸齒。"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid "Fast, but simple anti-aliasing."
-msgstr ""
+msgstr "快速，但簡單的反鋸齒。"
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
-msgstr ""
+msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
-msgstr ""
+msgstr "減少邊緣的鋸齒效果。"
 
 #: gui/options/options.json[1].options[4].label
 msgid "Anti-Aliasing"
-msgstr ""
+msgstr "反鋸齒"
 
 #: gui/options/options.json[1].options[5].list[0].tooltip
 msgid "Do not use sharpening."
-msgstr ""
+msgstr "不要使用銳利化。"
 
 #: gui/options/options.json[1].options[5].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
-msgstr ""
+msgstr "對比度自適應銳利化，一種基於對比度的快速銳利化過程。"
 
 #: gui/options/options.json[1].options[5].list[1].label
 msgid "FidelityFX CAS"
-msgstr ""
+msgstr "FidelityFX CAS"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Reduce blurry effects."
-msgstr ""
+msgstr "減少模糊效果。"
 
 #: gui/options/options.json[1].options[5].label
 msgid "Sharpening"
-msgstr ""
+msgstr "銳利化"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "The sharpness of the choosen pass."
-msgstr ""
+msgstr "選擇銳利化的方式。"
 
 #: gui/options/options.json[1].options[6].label
 msgid "Sharpness factor"
-msgstr ""
+msgstr "銳利化係數"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -2896,7 +2897,7 @@ msgstr "陰影效果的數量。需要重新啟動遊戲"
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shader effects"
-msgstr ""
+msgstr "銳利化特效"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Enable shadows."
@@ -2935,7 +2936,7 @@ msgstr "陰影解析度。太高的值可能會在使用較低記憶體顯示卡
 
 #: gui/options/options.json[1].options[9].label
 msgid "Shadow quality"
-msgstr ""
+msgstr "陰影品質"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid "Smooth shadows."
@@ -2943,15 +2944,15 @@ msgstr "柔和陰影"
 
 #: gui/options/options.json[1].options[10].label
 msgid "Shadow filtering"
-msgstr ""
+msgstr "陰影過濾"
 
 #: gui/options/options.json[1].options[11].tooltip
 msgid "Show outlines of units behind structures."
-msgstr ""
+msgstr "顯示在建築物後面的單位的輪廓"
 
 #: gui/options/options.json[1].options[11].label
 msgid "Unit silhouettes"
-msgstr ""
+msgstr "單位剪影"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid "Enable particles."
@@ -2969,7 +2970,7 @@ msgstr "當關閉時，儘可能使用最低階的設定來繪製水面。這將
 
 #: gui/options/options.json[1].options[13].label
 msgid "Water effects"
-msgstr ""
+msgstr "水面特效"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid ""
@@ -2979,7 +2980,7 @@ msgstr "使用較高品質的水面效果，算繪靠近岸邊的波浪、海岸
 
 #: gui/options/options.json[1].options[14].label
 msgid "High-quality water effects"
-msgstr ""
+msgstr "高品質水面特效"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -2987,7 +2988,7 @@ msgstr "使用真實水深進行算圖"
 
 #: gui/options/options.json[1].options[15].label
 msgid "Real water depth"
-msgstr ""
+msgstr "真實水深"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
@@ -2995,7 +2996,7 @@ msgstr "使水面反射鏡像"
 
 #: gui/options/options.json[1].options[16].label
 msgid "Water reflections"
-msgstr ""
+msgstr "水面反射"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
@@ -3003,7 +3004,7 @@ msgstr "使用不透明的真實水面折射。"
 
 #: gui/options/options.json[1].options[17].label
 msgid "Water refraction"
-msgstr ""
+msgstr "水面反射"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Cast shadows on water."
@@ -3011,7 +3012,7 @@ msgstr "投射水中倒影"
 
 #: gui/options/options.json[1].options[18].label
 msgid "Shadows on water"
-msgstr ""
+msgstr "水中倒影"
 
 #: gui/options/options.json[1].options[19].tooltip
 msgid "Lift darkness and fog-of-war smoothly."
@@ -3019,7 +3020,7 @@ msgstr "平順地解除黑暗與戰爭迷霧"
 
 #: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
-msgstr ""
+msgstr "柔和視覺"
 
 #: gui/options/options.json[1].options[20].tooltip
 msgid "Render Sky."
@@ -3027,7 +3028,7 @@ msgstr "算繪天空"
 
 #: gui/options/options.json[1].options[20].label
 msgid "Show sky"
-msgstr ""
+msgstr "顯示天空"
 
 #: gui/options/options.json[1].options[21].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
@@ -3071,7 +3072,7 @@ msgstr "調整主音量"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master volume"
-msgstr ""
+msgstr "主音量"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
@@ -3079,7 +3080,7 @@ msgstr "調整遊戲中配樂音量"
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music volume"
-msgstr ""
+msgstr "音樂音量"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
@@ -3087,7 +3088,7 @@ msgstr "調整遊戲中環境音效音量"
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient volume"
-msgstr ""
+msgstr "環境音量"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
@@ -3095,7 +3096,7 @@ msgstr "調整遊戲中單位動作音效的音量"
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action volume"
-msgstr ""
+msgstr "動作音量"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
@@ -3103,23 +3104,23 @@ msgstr "調整界面的音量"
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI volume"
-msgstr ""
+msgstr "介面音量"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
-msgstr "當某人輸入您的暱稱時，用音訊通知你"
+msgstr "當某人輸入您的暱稱時，接收音訊通知。"
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick notification"
-msgstr ""
+msgstr "暱稱通知"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
-msgstr ""
+msgstr "當新客戶端加入遊戲設置時，接收音訊通知。"
 
 #: gui/options/options.json[2].options[6].label
 msgid "Game setup - new player notification"
-msgstr ""
+msgstr "遊戲設置 - 新玩家通知"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -3127,7 +3128,7 @@ msgstr "當設定遊戲時顯示提示。"
 
 #: gui/options/options.json[3].options[0].label
 msgid "Enable game setting tips"
-msgstr ""
+msgstr "啟用遊戲設定提示"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
@@ -3135,7 +3136,7 @@ msgstr "打開、關閉或調整大小時會滑動設定面板。"
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable settings panel slide"
-msgstr ""
+msgstr "啟用設定面板簡報"
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
@@ -3172,7 +3173,7 @@ msgstr "這個 AI 的預設難度。"
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI difficulty"
-msgstr ""
+msgstr "預設的 AI 難度"
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
@@ -3196,21 +3197,21 @@ msgstr "這個 AI 的預設行為"
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI behavior"
-msgstr ""
+msgstr "預設的 AI 行為"
 
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
-msgstr ""
+msgstr "玩家加入對戰時如果有空的槽位會被分配。"
 
 #: gui/options/options.json[3].options[5].list[1].tooltip
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
-msgstr ""
+msgstr "玩家加入對戰時如果有空的槽位且是主持人的好友才會被分配。"
 
 #: gui/options/options.json[3].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr ""
+msgstr "玩家只有在主持人手動分配才會接收槽位。"
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
@@ -3220,7 +3221,7 @@ msgstr "在配對設定中自動分配加入的客戶端以釋放遊戲中的玩
 
 #: gui/options/options.json[3].options[5].label
 msgid "Assign players"
-msgstr ""
+msgstr "分配玩家"
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
@@ -3233,7 +3234,7 @@ msgstr "使用 TLS 加密的大廳伺服器保護登入與資料交換。"
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
-msgstr ""
+msgstr "TLS 加密"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
@@ -3241,7 +3242,7 @@ msgstr "加入大廳時要載入的積壓訊息數量。"
 
 #: gui/options/options.json[4].options[1].label
 msgid "Chat backlog"
-msgstr ""
+msgstr "聊天記錄"
 
 #: gui/options/options.json[4].options[2].tooltip
 msgid ""
@@ -3251,7 +3252,7 @@ msgstr "在遊戲清單中的一欄顯示參與玩家的平均評價。"
 
 #: gui/options/options.json[4].options[2].label
 msgid "Game rating column"
-msgstr ""
+msgstr "遊戲評價欄"
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
@@ -3269,7 +3270,7 @@ msgstr "如果單位的血量百分比低於此數字，將會被受傷單位快
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
-msgstr ""
+msgstr "負傷單位的生命值"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
@@ -3277,7 +3278,7 @@ msgstr "預設一批訓練多少單位。"
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch training size"
-msgstr ""
+msgstr "批次訓練數量"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
@@ -3286,7 +3287,7 @@ msgstr "您必須捲動以將批次生產大小增加／減少 1 的次數。"
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
-msgstr ""
+msgstr "批次滾動增加速率"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
@@ -3294,7 +3295,7 @@ msgstr "如果您被其他玩家攻擊時顯示聊天通知。"
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat notification attack"
-msgstr ""
+msgstr "聊天通知攻擊"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
@@ -3304,7 +3305,7 @@ msgstr "如果有盟友在團隊鎖定的情況下進貢資源給另一個團隊
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat notification tribute"
-msgstr ""
+msgstr "聊天通知進貢"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
@@ -3313,7 +3314,7 @@ msgstr "當玩家交換資源時向觀察者顯示聊天通知。"
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat notification barter"
-msgstr ""
+msgstr "聊天通知交易"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -3335,7 +3336,7 @@ msgstr "如果您或盟友開始、中止或完成新的時代時顯示聊天通
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat notification phase"
-msgstr ""
+msgstr "聊天通知時代"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
@@ -3345,17 +3346,17 @@ msgstr "顯示被選的防禦建築之攻擊範圍（也可以在遊戲中用快
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
-msgstr ""
+msgstr "攻擊範圍可見度"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr "顯示選定單位與建築物的靈氣範圍（遊戲中也可以使用快捷鍵切換）"
+msgstr "顯示選定單位與建築物的光環範圍（遊戲中也可以使用快捷鍵切換）"
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
-msgstr ""
+msgstr "光環範圍可見度"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
@@ -3365,7 +3366,7 @@ msgstr "顯示選定單位的醫療範圍（遊戲中也可以使用快捷鍵切
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
-msgstr ""
+msgstr "治療範圍可見度"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
@@ -3904,7 +3905,7 @@ msgstr ""
 
 #: gui/text/tips/forge.txt:3
 msgid "Research weapon and armor upgrades for your units."
-msgstr ""
+msgstr "研究單位武器與盔甲的升級。"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -4063,7 +4064,7 @@ msgstr "長槍兵"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "重型裝甲且行動緩慢。低攻擊力。"
 
 #: gui/text/tips/pikemen.txt:3
 msgid ""
