@@ -93,7 +93,7 @@ PlayerSettingControls.PlayerAssignment = class extends GameSettingControlDropdow
 		if (!pData)
 			return;
 
-		if (this.fixedAI && pData.AI != this.fixedAI)
+		if (this.fixedAI && (pData.AI === undefined || pData.AI != this.fixedAI))
 		{
 			pData.AI = this.fixedAI;
 			this.gameSettingsControl.updateGameAttributes();
