@@ -10,13 +10,14 @@
 # 黃柏諺 <s8321414@gmail.com>, 2014-2018
 # JerryShen <jerry82422@gmail.com>, 2018
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
+# Yuan <daan0014119@gmail.com>, 2020
 # 張峻瑜 <a728728728@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-22 08:08+0000\n"
-"PO-Revision-Date: 2019-11-22 15:16+0000\n"
-"Last-Translator: 黃柏諺 <s8321414@gmail.com>\n"
+"PO-Revision-Date: 2020-10-20 09:35+0000\n"
+"Last-Translator: Yuan <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,13 +65,13 @@ msgstr "是"
 #: gui/lobby/LobbyPage/Game.js:298
 #, javascript-format
 msgid "%(current)s/%(max)s +%(observercount)s"
-msgstr ""
+msgstr "%(current)s/%(max)s +%(observercount)s"
 
 #. Translation: The number of players in this game
 #: gui/lobby/LobbyPage/Game.js:301
 #, javascript-format
 msgid "%(current)s/%(max)s"
-msgstr ""
+msgstr "%(current)s/%(max)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:65
 msgctxt "victory condition"
@@ -80,7 +81,7 @@ msgstr "無盡的遊戲"
 #: gui/lobby/LobbyPage/GameDetails.js:117
 #, javascript-format
 msgid "Host: %(playername)s"
-msgstr ""
+msgstr "主持：%(playername)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:119
 #, javascript-format
@@ -89,7 +90,7 @@ msgstr "玩家：%(current)s/%(total)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:121
 msgid "Victory Conditions:"
-msgstr ""
+msgstr "勝利條件："
 
 #. Translation: Comma used to concatenate victory conditions
 #: gui/lobby/LobbyPage/GameDetails.js:124
@@ -98,7 +99,7 @@ msgstr "，"
 
 #: gui/lobby/LobbyPage/GameDetails.js:126
 msgid "Mods:"
-msgstr ""
+msgstr "模組："
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/LobbyPage/GameDetails.js:129
@@ -121,7 +122,7 @@ msgstr "地圖大小："
 
 #: gui/lobby/LobbyPage/GameDetails.js:137
 msgid "Map Description:"
-msgstr ""
+msgstr "地圖說明："
 
 #: gui/lobby/LobbyPage/KickStrings.js:39
 msgid "You have been kicked from the lobby!"
@@ -213,7 +214,7 @@ msgstr "主創遊戲"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:40
 msgid "Your active mods do not match the mods of this game."
-msgstr "你已開啟的Mod不符合這場遊戲的Mod。"
+msgstr "你已開啟的模組不符合這場遊戲的模組。"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
 msgid "Do you want to switch to the mod selection page?"
@@ -249,7 +250,7 @@ msgstr "排行榜"
 #: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):10
 msgid "Player Profile Lookup"
-msgstr ""
+msgstr "玩家情報檢視"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
 msgctxt "previous page"
@@ -274,7 +275,7 @@ msgstr "「%(cmd)s」僅供主持人使用。"
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:66
 #, javascript-format
 msgid "The command '%(cmd)s' requires at least one argument."
-msgstr ""
+msgstr "指令 \"%(cmd)s\" 需要至少一個參數。"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:87
 msgid "Set your state to 'Away'."
@@ -313,7 +314,7 @@ msgstr "傳送關於您自己的聊天訊息。範例：/me 要去游泳。"
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:149
 msgid "/me"
-msgstr ""
+msgstr "/me"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:153
 msgid ""
@@ -324,7 +325,7 @@ msgstr "傳送文字聊天訊息（即使其以斜線開頭）。範例：/say /
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:156
 msgid "/say"
-msgstr ""
+msgstr "/say"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:160
 msgid "Clear all chat scrollback."
@@ -347,7 +348,7 @@ msgstr "\\[%(time)s]"
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatMe.js:24
 #, javascript-format
 msgid "* %(sender)s %(message)s"
-msgstr ""
+msgstr "* %(sender)s %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatSay.js:29
 #, javascript-format
@@ -366,7 +367,7 @@ msgstr "私人"
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:25
 #, javascript-format
 msgid "(%(private)s) %(message)s"
-msgstr ""
+msgstr "(%(private)s) %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:47
 #, javascript-format
@@ -422,12 +423,12 @@ msgstr "%(nick)s 已不再是主持人了。"
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:152
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to:"
-msgstr ""
+msgstr "%(nick)s 將大廳更改為："
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:153
 #, javascript-format
 msgid "%(nick)s deleted the lobby subject."
-msgstr ""
+msgstr "%(nick)s 刪除大廳。"
 
 #. Translation: Chat status message
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
@@ -437,7 +438,7 @@ msgstr "== %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
 msgid "Connected."
-msgstr ""
+msgstr "已連接。"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:56
 msgid "Disconnected."
@@ -446,12 +447,12 @@ msgstr "已中斷連線。"
 #. Translation: Caption for system notifications shown in the chat panel
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:25
 msgid "System:"
-msgstr ""
+msgstr "系統："
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
 #, javascript-format
 msgid "=== %(system)s %(message)s"
-msgstr ""
+msgstr "=== %(system)s %(message)s"
 
 #: gui/lobby/LobbyPage/GameListFilters/MapSize.js:9
 msgctxt "map size"
@@ -662,7 +663,7 @@ msgstr "傳送"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):14
 msgid "Enter playername:"
-msgstr ""
+msgstr "輸入玩家名稱："
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):20
 msgid "View Profile"
@@ -1156,7 +1157,7 @@ msgid ""
 " 2. Not use the service with third-party software or mods that prevents the "
 "user from being informed of updated Terms and Conditions, unless authorized "
 "by a Wildfire Games team member."
-msgstr "2.除非Wildfire Games團隊成員授權，否則不得將該服務與第三方軟體或模組一起使用，以防止用戶被告知更新的條款和條件。"
+msgstr "2.除非Wildfire Games團隊成員授權，否則不得將該服務與第三方軟體或模組一起使用，以防止使用者被告知更新的條款和條件。"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:13
 msgid ""

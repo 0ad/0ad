@@ -17,14 +17,15 @@
 # samrmrf, 2013
 # 青海 <wfzhang0511@gmail.com>, 2018
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
+# Yuan <daan0014119@gmail.com>, 2020
 # 又齊 劉 <bill19981002@gmail.com>, 2018
 # StarAtt <tea55688@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-10-05 07:19+0000\n"
-"PO-Revision-Date: 2020-10-05 13:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-10-21 14:45+0000\n"
+"Last-Translator: Yuan <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -371,11 +372,11 @@ msgstr "，"
 
 #: gui/session/selection_panels.js:812
 msgid "Cannot research while upgrading."
-msgstr ""
+msgstr "升級時無法研究。"
 
 #: gui/session/selection_panels.js:1034
 msgid "Cannot train while upgrading."
-msgstr ""
+msgstr "升級時無法訓練。"
 
 #: gui/session/selection_panels.js:1096
 #, javascript-format
@@ -398,7 +399,7 @@ msgid ""
 msgid_plural ""
 "Cannot upgrade when all entities are training, researching or already "
 "upgrading."
-msgstr[0] ""
+msgstr[0] "當所有實體在訓練、研究或已經升級時無法升級。"
 
 #: gui/session/selection_panels_helpers.js:51
 msgctxt "stance"
@@ -495,7 +496,7 @@ msgstr "Shift-左鍵點擊"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr ""
+msgstr "這裡是貿易市集的起點。\n右鍵點擊以取消貿易路線。"
 
 #: gui/session/unit_actions.js:638
 msgid "Origin trade market."
@@ -511,7 +512,7 @@ msgstr "右鍵點擊以設為貿易市集起點。"
 
 #: gui/session/unit_actions.js:662 gui/session/unit_actions.js:1004
 msgid "This market is too close to the origin market."
-msgstr ""
+msgstr "這個市集和起點市集太過靠近。"
 
 #: gui/session/unit_actions.js:666
 msgid "Right-click to set as destination trade market."
@@ -537,7 +538,7 @@ msgstr "卸下所有。"
 
 #: gui/session/unit_actions.js:1157
 msgid "Destroy the selected units or structures."
-msgstr ""
+msgstr "摧毀選定的單位或建築物。"
 
 #: gui/session/unit_actions.js:1159
 #, javascript-format
@@ -550,7 +551,7 @@ msgstr "放棄目前的命令。"
 
 #: gui/session/unit_actions.js:1225
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr ""
+msgstr "命令選定的單位駐守至建築物或單位內。"
 
 #: gui/session/unit_actions.js:1248
 msgid "Unload"
@@ -558,7 +559,7 @@ msgstr "卸下"
 
 #: gui/session/unit_actions.js:1266
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr ""
+msgstr "命令選定的單位修復建築、船隻或攻城器。"
 
 #: gui/session/unit_actions.js:1285
 msgid "Focus on Rally Point."
@@ -570,7 +571,7 @@ msgstr "回去工作"
 
 #: gui/session/unit_actions.js:1339
 msgid "Order the selected units to guard a structure or unit."
-msgstr ""
+msgstr "命令選定的單位保護建築物或單位。"
 
 #: gui/session/unit_actions.js:1357
 msgid "Remove guard"
@@ -588,7 +589,7 @@ msgstr "巡邏"
 
 #: gui/session/unit_actions.js:1393
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr ""
+msgstr "攻擊所有遭遇到的單位但避開建築物。"
 
 #: gui/session/unit_actions.js:1419
 msgid "Press to allow allies to use this dropsite"
@@ -824,7 +825,7 @@ msgstr "您正被 %(attacker)s 攻擊！"
 #: gui/session/chat/ChatMessageFormatSimulation.js:38
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr ""
+msgstr "%(player)s 以 %(amountGiven)s 交換 %(amountGained)s。"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:70
 #, javascript-format
@@ -969,19 +970,19 @@ msgstr "升職選定的單位"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:229
 msgid "Enable culling"
-msgstr ""
+msgstr "啟用淘汰"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:247
 msgid "Lock cull camera"
-msgstr ""
+msgstr "鎖定觀戰鏡頭。"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:265
 msgid "Display camera frustum"
-msgstr ""
+msgstr "顯示鏡頭角錐"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:283
 msgid "Display shadows frustum"
-msgstr ""
+msgstr "顯示陰影角錐"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -1106,7 +1107,7 @@ msgstr "目前尚不支援重新加入有 AI 的多人遊戲！"
 #: gui/session/message_box/OutOfSyncNetwork.js:34
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
-msgstr "確保所有玩家都使用相同的 Mod。"
+msgstr "確保所有玩家都使用相同的模組。"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:35
 msgctxt "Out-Of-Sync"
@@ -1208,7 +1209,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s：檢視文明總覽 / 科技樹\n點擊將開啟上次開啟的地方。"
 
 #: gui/session/top_panel/CounterManager.js:100
 #, javascript-format
@@ -1291,7 +1292,7 @@ msgstr "-%(amount)s"
 #, javascript-format
 msgctxt "trading good ratio"
 msgid "%(amount)s%%"
-msgstr ""
+msgstr "%(amount)s%%"
 
 #: gui/session/trade/TradeButtonManager.js:80
 #, javascript-format
@@ -1521,7 +1522,7 @@ msgstr "捕獲點"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
 msgid "Attack and Resistance"
-msgstr ""
+msgstr "攻擊和抵抗"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
 msgid "Experience"
@@ -1589,4 +1590,4 @@ msgstr "貿易"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
-msgstr ""
+msgstr "資源："

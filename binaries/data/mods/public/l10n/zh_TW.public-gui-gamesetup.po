@@ -17,15 +17,15 @@
 # samrmrf, 2013
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # Tea Fiber <teafiber-coin@yahoo.com>, 2020
-# Yuan <daan0014119@gmail.com>, 2019
+# Yuan <daan0014119@gmail.com>, 2019-2020
 # Zou Yi <zouyi100@outlook.com>, 2017
 # 可邦 陳 <bensoncat99@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-24 07:08+0000\n"
-"PO-Revision-Date: 2020-08-10 22:41+0000\n"
-"Last-Translator: Tea Fiber <teafiber-coin@yahoo.com>\n"
+"PO-Revision-Date: 2020-10-21 14:55+0000\n"
+"Last-Translator: Yuan <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -286,7 +286,7 @@ msgstr "世界人口"
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr ""
+msgstr "選擇後，人口上限將平均分配給所有存活的玩家。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:135
 msgid "Biome"
@@ -311,7 +311,7 @@ msgstr "日照時間"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
-msgstr ""
+msgstr "選擇比賽是在白天還是晚上進行。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
@@ -321,7 +321,7 @@ msgstr "隨機"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr ""
+msgstr "隨機選擇當天時間。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:73
 msgid "Game Speed"
@@ -333,21 +333,21 @@ msgstr "選取遊戲速度。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:142
 msgid "Landscape"
-msgstr ""
+msgstr "景觀"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:145
 msgid "Select one of the landscapes of this map."
-msgstr ""
+msgstr "為這張地圖選擇一張景觀。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:151
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
-msgstr ""
+msgstr "隨機陸地或海洋"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
 msgctxt "landscape selection"
 msgid "Select a random land or naval map generation."
-msgstr ""
+msgstr "選擇一個隨機陸地或海洋的地圖產生。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:156
 msgctxt "landscape selection"
@@ -357,7 +357,7 @@ msgstr "隨機陸地"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
 msgid "Select a random land map generation."
-msgstr ""
+msgstr "選擇一個隨機陸地的地圖產生。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:161
 msgctxt "landscape selection"
@@ -367,7 +367,7 @@ msgstr "隨機海洋"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:162
 msgctxt "landscape selection"
 msgid "Select a random naval map generation."
-msgstr ""
+msgstr "選擇一個隨機海洋的地圖產生。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:89
 msgid "Map Filter"
@@ -429,7 +429,7 @@ msgstr "選取人口上限。"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:97
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "每位玩家"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:100
 #, javascript-format
@@ -454,15 +454,15 @@ msgstr "每種資源的初始量：%(resources)s。"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:90
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "每位玩家"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
 msgid "Team Placement"
-msgstr ""
+msgstr "隊伍位置"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:94
 msgid "Select one of the starting position patterns of this map."
-msgstr ""
+msgstr "為這張地圖選擇起始位置的方案。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
 msgctxt "team placement"
@@ -472,36 +472,36 @@ msgstr "隨機"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr ""
+msgstr "當遊戲開始時選擇一個隨機的隊伍放置方案。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
 msgctxt "team placement"
 msgid "Circle"
-msgstr ""
+msgstr "圓環"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:106
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr ""
+msgstr "同盟玩家被分組並與對手玩家放置在地圖上的一個圓圈上。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
 msgctxt "team placement"
 msgid "Line"
-msgstr ""
+msgstr "直線"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
 msgid "Allied players are placed in a linear pattern."
-msgstr ""
+msgstr "同盟玩家被放置在線性的位置。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:115
 msgctxt "team placement"
 msgid "Random Group"
-msgstr ""
+msgstr "隨機分隊"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:116
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr ""
+msgstr "同盟玩家被分組，不過其餘的會被隨機放在地圖上。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:120
 msgctxt "team placement"
@@ -510,7 +510,7 @@ msgstr "要塞"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:121
 msgid "Allied players are grouped in one random place of the map."
-msgstr ""
+msgstr "同盟的玩家被分組在地圖的一個隨機位置。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
@@ -522,18 +522,18 @@ msgstr "選擇這個情境的難度"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:76
 msgid "World Population Cap"
-msgstr ""
+msgstr "世界人口上限"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:79
 msgid "Select world population limit."
-msgstr ""
+msgstr "選擇世界人口上限。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:82
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr ""
+msgstr "警告：如果到達%(popCap)s人口可能會有效能問題。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:61
 msgid "Ceasefire"
@@ -553,7 +553,7 @@ msgstr "無停火"
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
+msgstr[0] "%(minutes)s 分鐘"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:86
 msgid "Relic Count"
@@ -563,7 +563,7 @@ msgstr "遺蹟數"
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] ""
+msgstr[0] "%(number)s遺跡"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:92
 msgid ""
@@ -586,13 +586,13 @@ msgstr "玩家獲得遺蹟勝利前的分鐘數。"
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
+msgstr[0] "%(min)s 分鐘"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:98
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:99
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr ""
+msgstr "立即勝利。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"
@@ -607,7 +607,7 @@ msgstr ""
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
+msgstr[0] "%(minutes)s 分鐘"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:87
 msgid "Wonder Duration"
@@ -615,7 +615,7 @@ msgstr "奇觀持續時間"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:90
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr ""
+msgstr "玩家獲得奇觀勝利前的分鐘數"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
 msgid "Cheats enabled."
@@ -623,12 +623,12 @@ msgstr "已啟用作弊。"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
 msgid "Rated game."
-msgstr ""
+msgstr "排名的遊戲。"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
-msgstr ""
+msgstr "點擊來切換%(name)s設定標籤。"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
 #, javascript-format
@@ -851,7 +851,7 @@ msgstr "%(percentage)s%%"
 #: gui/loading/TipDisplay.js:52
 #, javascript-format
 msgid "• %(tiptext)s"
-msgstr ""
+msgstr "• %(tiptext)s"
 
 #: gui/loading/TitleDisplay.js:15
 #, javascript-format
@@ -969,7 +969,7 @@ msgstr ""
 msgid ""
 "“She \\[Helen] brought to Ilium her dowry, destruction.” \\n— Aeschylus "
 "(“Agamemnon”, 406)"
-msgstr ""
+msgstr "「她 \\[海倫] 帶給特洛伊唯一的嫁妝，就只有毀滅而已。」— 埃斯庫羅斯 (“阿伽門農”, 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""

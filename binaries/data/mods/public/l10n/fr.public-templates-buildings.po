@@ -14,6 +14,7 @@
 # Bruno T <brtur2@gmail.com>, 2016
 # bthlyo <bthl.yohann73@gmail.com>, 2020
 # Cyril Mercier, 2018
+# Dhia Eddine Chouchane <dhiachouchane@gmail.com>, 2020
 # Requin <dylanroux34@gmail.com>, 2018
 # François Magimel, 2018
 # François Magimel, 2018-2019
@@ -50,8 +51,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-09-18 10:15+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-10-19 17:56+0000\n"
+"Last-Translator: Dhia Eddine Chouchane <dhiachouchane@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -144,7 +145,7 @@ msgstr "Stoa"
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 msgid "Train Healers and research healing technologies."
-msgstr ""
+msgstr "Entraîner des soigneurs et rechercher des technologies de soin."
 
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -170,7 +171,7 @@ msgstr "Avant-poste"
 
 #: simulation/templates/template_structure_defensive_palisade.xml:17
 msgid "Wall off an area."
-msgstr ""
+msgstr "Entourez une zone de muraille. "
 
 #: simulation/templates/template_structure_defensive_palisade.xml:18
 #: simulation/templates/template_structure_defensive_palisade.xml:15
@@ -183,7 +184,7 @@ msgstr "Palissade"
 #: simulation/templates/template_structure_defensive_tower.xml:36
 #: simulation/templates/template_structure_defensive_tower.xml:52
 msgid "Tower"
-msgstr ""
+msgstr "Tour"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:57
 msgid "Artillery Tower"
@@ -204,7 +205,7 @@ msgstr "Cité"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:59
 msgid "ArtilleryTower"
-msgstr ""
+msgstr "Tour d'artillerie. "
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:56
 msgid "Bolt Tower"
@@ -235,7 +236,7 @@ msgstr "Renforcer avec de la pierre et améliorer en tour de défense."
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:31
 msgid "Stone Tower"
-msgstr ""
+msgstr "Tour en pierre."
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 msgid "StoneTower"
@@ -248,12 +249,12 @@ msgstr "Entourez votre ville d'une muraille pour une défense robuste."
 #: simulation/templates/template_structure_defensive_wall.xml:26
 #: simulation/templates/template_structure_defensive_wall.xml:23
 msgid "Wall"
-msgstr ""
+msgstr "Muraille"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:24
 #: simulation/templates/template_structure_defensive_wall_long.xml:29
 msgid "Allow units access through Walls. Can be locked to prevent access."
-msgstr ""
+msgstr "Laisse passer les unités à travers les murs. Peut être verrouillée pour empêcher l'accès."
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:25
 #: simulation/templates/template_structure_defensive_wall_gate.xml:22
@@ -333,7 +334,7 @@ msgstr ""
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_arsenal.xml:25
 msgid "Arsenal"
-msgstr ""
+msgstr "Arsenal"
 
 #: simulation/templates/template_structure_military_barracks.xml:28
 msgid "Train Citizen Soldiers and research technologies."
@@ -354,7 +355,7 @@ msgstr ""
 #: simulation/templates/structures/brit_crannog.xml:16
 #: simulation/templates/structures/cart_super_dock.xml:44
 msgid "Naval"
-msgstr ""
+msgstr "Naval"
 
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/template_structure_military_dock.xml:25
