@@ -28,7 +28,7 @@ AIGameSettingControls.AIDifficulty = class extends AIGameSettingControlDropdown
 				mapPData && mapPData.AI ?
 					(mapPData.AIDiff !== undefined ?
 						mapPData.AIDiff :
-						g_Settings.PlayerDefaults[this.playerIndex + 1].AIDiff) :
+						g_Settings.PlayerDefaults[playerIndex + 1].AIDiff) :
 					undefined;
 		}
 	}
@@ -41,7 +41,9 @@ AIGameSettingControls.AIDifficulty = class extends AIGameSettingControlDropdown
 
 		if (pData.AI)
 		{
-			if (this.fixedAIDiff[playerIndex] !== undefined && pData.AIDiff !== this.fixedAIDiff[playerIndex])
+			if (this.fixedAIDiff[playerIndex] !== undefined &&
+				(pData.AIDiff === undefined ||
+				pData.AIDiff !== this.fixedAIDiff[playerIndex]))
 			{
 				pData.AIDiff = this.fixedAIDiff[playerIndex];
 				this.gameSettingsControl.updateGameAttributes();

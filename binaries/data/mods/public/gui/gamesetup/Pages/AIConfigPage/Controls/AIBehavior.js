@@ -28,7 +28,7 @@ AIGameSettingControls.AIBehavior = class extends AIGameSettingControlDropdown
 				mapPData && mapPData.AI ?
 					(mapPData.AIBehavior !== undefined ?
 						mapPData.AIBehavior :
-						g_Settings.PlayerDefaults[this.playerIndex + 1].AIBehavior) :
+						g_Settings.PlayerDefaults[playerIndex + 1].AIBehavior) :
 					undefined;
 		}
 	}
@@ -41,7 +41,9 @@ AIGameSettingControls.AIBehavior = class extends AIGameSettingControlDropdown
 
 		if (pData.AI)
 		{
-			if (this.fixedAIBehavior[playerIndex] && pData.AIBehavior !== this.fixedAIBehavior[playerIndex])
+			if (this.fixedAIBehavior[playerIndex] &&
+				(pData.AIBehavior === undefined ||
+				pData.AIBehavior !== this.fixedAIBehavior[playerIndex]))
 			{
 				pData.AIBehavior = this.fixedAIBehavior[playerIndex];
 				this.gameSettingsControl.updateGameAttributes();
