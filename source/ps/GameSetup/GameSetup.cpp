@@ -999,16 +999,20 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 	g_GUI = new CGUIManager();
 
 	// (must come after SetVideoMode, since it calls ogl_Init)
-	if (ogl_HaveExtensions(0, "GL_ARB_vertex_program", "GL_ARB_fragment_program", NULL) != 0 // ARB
+	CStr8 renderPath = "default";
+	CFG_GET_VAL("renderpath", renderPath);
+	if ((ogl_HaveExtensions(0, "GL_ARB_vertex_program", "GL_ARB_fragment_program", NULL) != 0 // ARB
 		&& ogl_HaveExtensions(0, "GL_ARB_vertex_shader", "GL_ARB_fragment_shader", NULL) != 0) // GLSL
+		|| RenderPathEnum::FromString(renderPath) == FIXED)
 	{
-		DEBUG_DISPLAY_ERROR(
+		// It doesn't make sense to continue working here, because we're not
+		// able to display anything.
+		DEBUG_DISPLAY_FATAL_ERROR(
 			L"Your graphics card doesn't appear to be fully compatible with OpenGL shaders."
-			L" In the future, the game will not support pre-shader graphics cards."
+			L" The game does not support pre-shader graphics cards."
 			L" You are advised to try installing newer drivers and/or upgrade your graphics card."
 			L" For more information, please see http://www.wildfiregames.com/forum/index.php?showtopic=16734"
 		);
-		// TODO: actually quit once fixed function support is dropped
 	}
 
 	const char* missing = ogl_HaveExtensions(0,
@@ -1172,7 +1176,7 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
  * -autostart-nonvisual            disable any graphics and sounds
  * -autostart-victory=SCRIPTNAME   sets the victory conditions with SCRIPTNAME
  *                                 located in simulation/data/settings/victory_conditions/
- *                                 (default conquest). When the first given SCRIPTNAME is 
+ *                                 (default conquest). When the first given SCRIPTNAME is
  *                                 "endless", no victory conditions will apply.
  * -autostart-wonderduration=NUM   sets the victory duration NUM for wonder victory condition
  *                                 (default 10 minutes)
