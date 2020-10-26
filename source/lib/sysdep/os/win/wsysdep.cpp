@@ -182,7 +182,8 @@ struct DialogParams
 
 static BOOL dlg_OnInitDialog(HWND hDlg, HWND UNUSED(hWndFocus), LPARAM lParam)
 {
-	const DialogParams* params = (const DialogParams*)lParam;
+	const DialogParams* params = reinterpret_cast<const DialogParams*>(lParam);
+	SetWindowLongPtr(hDlg, DWLP_USER, lParam);
 	HWND hWnd;
 
 	// need to reset for new instance of dialog
@@ -192,6 +193,12 @@ static BOOL dlg_OnInitDialog(HWND hDlg, HWND UNUSED(hWndFocus), LPARAM lParam)
 	if(!(params->flags & DE_ALLOW_SUPPRESS))
 	{
 		hWnd = GetDlgItem(hDlg, IDC_SUPPRESS);
+		EnableWindow(hWnd, FALSE);
+	}
+
+	if(params->flags & DE_NO_CONTINUE)
+	{
+		hWnd = GetDlgItem(hDlg, IDC_CONTINUE);
 		EnableWindow(hWnd, FALSE);
 	}
 
@@ -238,6 +245,19 @@ static void dlg_OnCommand(HWND hDlg, int id, HWND UNUSED(hWndCtl), UINT UNUSED(c
 }
 
 
+static void dlg_OnClose(HWND hDlg)
+{
+	const DialogParams* params = reinterpret_cast<const DialogParams*>(
+		GetWindowLongPtr(hDlg, DWLP_USER));
+	if (!params)
+		return;
+
+	// Interpret close as exit in case we can't continue.
+	if(params->flags & DE_NO_CONTINUE)
+		EndDialog(hDlg, ERI_EXIT);
+}
+
+
 static void dlg_OnSysCommand(HWND hDlg, UINT cmd, int UNUSED(x), int UNUSED(y))
 {
 	switch(cmd & 0xFFF0)	// NB: lower 4 bits are reserved
@@ -274,6 +294,9 @@ static INT_PTR CALLBACK dlg_OnMessage(HWND hDlg, unsigned int msg, WPARAM wParam
 
 	case WM_SIZE:
 		return HANDLE_WM_SIZE(hDlg, wParam, lParam, dlg_OnSize);
+
+	case WM_CLOSE:
+		return HANDLE_WM_CLOSE(hDlg, wParam, lParam, dlg_OnClose);
 
 	default:
 		// we didn't process the message; caller will perform default action.

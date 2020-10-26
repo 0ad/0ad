@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -194,14 +194,18 @@ enum ErrorReactionInternal
 LIB_API ErrorReaction debug_DisplayError(const wchar_t* description, size_t flags, void* context, const wchar_t* lastFuncToSkip, const wchar_t* file, int line, const char* func, atomic_bool* suppress);
 
 // simplified version for just displaying an error message
-#define DEBUG_DISPLAY_ERROR(description)\
+#define DEBUG_DISPLAY_ERROR_IMPL(description, flags)\
 	do\
 	{\
 		CACHE_ALIGNED(u8) context[DEBUG_CONTEXT_SIZE];\
 		(void)debug_CaptureContext(context);\
-		(void)debug_DisplayError(description, 0, context, L"debug_DisplayError", WIDEN(__FILE__), __LINE__, __func__, 0);\
+		(void)debug_DisplayError(description, flags, context, L"debug_DisplayError", WIDEN(__FILE__), __LINE__, __func__, 0);\
 	}\
 	while(0)
+
+#define DEBUG_DISPLAY_ERROR(description) DEBUG_DISPLAY_ERROR_IMPL(description, 0)
+// disallow continue for the error.
+#define DEBUG_DISPLAY_FATAL_ERROR(description) DEBUG_DISPLAY_ERROR_IMPL(description, DE_NO_CONTINUE)
 
 
 //
