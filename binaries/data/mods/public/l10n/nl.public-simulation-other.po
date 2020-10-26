@@ -5,6 +5,7 @@
 # Translators:
 # Anique van Berne <avanberne@gmail.com>, 2016
 # annihilator solar <incoming@upcmail.nl>, 2019
+# Bart <b.anthonisse@gmail.com>, 2020
 # bb <b.jansen5@students.uu.nl>, 2018
 # Charon De Beukelaer <charondb@gmail.com>, 2015
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016
@@ -26,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-10-05 07:22+0000\n"
-"PO-Revision-Date: 2020-10-05 18:15+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-10-24 20:27+0000\n"
+"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -558,7 +559,7 @@ msgstr "Onvoldoende grondstoffen - %(resourceAmount1)s %(resourceType1)s, %(reso
 
 #: simulation/components/ProductionQueue.js:339
 msgid "Entity is being upgraded. Cannot start production."
-msgstr ""
+msgstr "Entiteit wordt geüpgraded. Kan niet produceren."
 
 #: simulation/components/ProductionQueue.js:512
 msgid "The production queue is full."
@@ -570,7 +571,7 @@ msgstr "Kan geen vrije ruimte vinden om gerekruteerde eenheden te plaatsen."
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
-msgstr ""
+msgstr "Entiteit is aan het produceren. Kan niet worden geüpgraded."
 
 #: simulation/helpers/Cheat.js:58
 #, javascript-format
@@ -667,47 +668,47 @@ msgstr "Speler 8"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1×)"
-msgstr ""
+msgstr "Traag (0.1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25×)"
-msgstr ""
+msgstr "Langzaam (0.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[2].Title
 msgid "Leisurely (0.5×)"
-msgstr ""
+msgstr "Kalm (0.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75×)"
-msgstr ""
+msgstr "Ontspannen (0.75×)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1×)"
-msgstr ""
+msgstr "Normaal (1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[5].Title
 msgid "Fast (1.25×)"
-msgstr ""
+msgstr "Snel (1.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[6].Title
 msgid "Very Fast (1.5×)"
-msgstr ""
+msgstr "Heel snel (1.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[7].Title
 msgid "Insane (2×)"
-msgstr ""
+msgstr "Supersnel (2×)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5×)"
-msgstr ""
+msgstr "Versneld (5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10×)"
-msgstr ""
+msgstr "Erg versneld (10×)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20×)"
-msgstr ""
+msgstr "Heel erg versneld (20×)"
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
 msgid ""
@@ -863,7 +864,7 @@ msgstr "Normaal"
 msgid ""
 "This map size provides plenty of space for two players, but even eight "
 "players fit."
-msgstr ""
+msgstr "Kaarten van deze omvang bieden flink veel ruimte voor twee spelers, maar acht spelers passen er ook op."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""

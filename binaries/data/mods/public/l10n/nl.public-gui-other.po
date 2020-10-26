@@ -38,7 +38,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-10-22 21:21+0000\n"
+"PO-Revision-Date: 2020-10-24 19:59+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -3056,7 +3056,7 @@ msgstr "Maak de overgang van donkere stukken naar lichtere stukken zachter."
 
 #: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
-msgstr ""
+msgstr "Zachte randen"
 
 #: gui/options/options.json[1].options[20].tooltip
 msgid "Render Sky."
@@ -3172,7 +3172,7 @@ msgstr "Laat het instellingen paneel schuiven bij het openen, sluiten of herscha
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable settings panel slide"
-msgstr ""
+msgstr "Activeer instellingspaneel schuif"
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
@@ -3284,11 +3284,11 @@ msgstr "Chat log"
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
-msgstr ""
+msgstr "Toon de gemiddelde rating van de deelnemende spelers in een kolom op de speellijst."
 
 #: gui/options/options.json[4].options[2].label
 msgid "Game rating column"
-msgstr ""
+msgstr "Spelrating kolom"
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
@@ -3414,20 +3414,20 @@ msgstr "Rang icoon boven statusbalk"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid "Show an experience status bar above each selected unit."
-msgstr ""
+msgstr "Toon een ervaringsbalk boven iedere geselecteerde eenheid."
 
 #: gui/options/options.json[5].options[11].label
 msgid "Experience status bar"
-msgstr ""
+msgstr "Ervaringsbalk"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr ""
+msgstr "Toon gedetailleerde tips voor rekruteerbare eenheden zien in gebouwen die eenheden produceren."
 
 #: gui/options/options.json[5].options[12].label
 msgid "Detailed tooltips"
-msgstr ""
+msgstr "Gedetailleerde tips"
 
 #: gui/options/options.json[5].options[13].list[0].label
 msgid "Unordered"
@@ -3456,7 +3456,7 @@ msgstr "Kleur van je eigen eenheden wanneer diplomatie kleuren zijn geactiveerd.
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy colors: self"
-msgstr ""
+msgstr "Diplomatie kleuren: eigen"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
@@ -3464,7 +3464,7 @@ msgstr "Kleur van de geallieerden wanneer diplomatie kleuren zijn geactiveerd."
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy colors: ally"
-msgstr ""
+msgstr "Diplomatie kleuren: geallieerd"
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
@@ -3472,7 +3472,7 @@ msgstr "Kleur van neutrale spelers wanneer diplomatie kleuren zijn geactiveerd."
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy colors: neutral"
-msgstr ""
+msgstr "Diplomatie kleuren: neutraal"
 
 #: gui/options/options.json[5].options[17].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
@@ -3480,64 +3480,64 @@ msgstr "Kleur van de vijanden wanneer diplomatie kleuren zijn ingeschakeld."
 
 #: gui/options/options.json[5].options[17].label
 msgid "Diplomacy colors: enemy"
-msgstr ""
+msgstr "Diplomatie kleuren: vijandelijk"
 
 #: gui/options/options.json[5].options[18].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr ""
+msgstr "Nieuwe gebouwen worden uitgelijnd met nabije gebouwen wanneer de sneltoets wordt ingedrukt."
 
 #: gui/options/options.json[5].options[18].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr ""
+msgstr "Sneltoets om uitlijnen op rand in te schakelen"
 
 #: gui/options/options.json[5].options[18].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr ""
+msgstr "Nieuwe gebouwen worden uitgelijnd met nabije gebouwen behalve wanneer de sneltoets wordt ingedrukt."
 
 #: gui/options/options.json[5].options[18].list[1].label
 msgid "Hotkey to disable snapping"
-msgstr ""
+msgstr "Sneltoets om uitlijnen op rand uit te schakelen"
 
 #: gui/options/options.json[5].options[18].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr ""
+msgstr "Deze optie maakt het mogelijk om nieuwe gebouwen uit te lijnen met nabij gelegen gebouwen."
 
 #: gui/options/options.json[5].options[18].label
 msgid "Snap to edges"
-msgstr ""
+msgstr "Uitlijnen op rand"
 
 #: gui/options/options.json[5].options[19].list[0].tooltip
 msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
-msgstr ""
+msgstr "Wanneer een eenheid of gebouw aan een controlegroep wordt toegevoegd, wordt deze verwijderd uit andere controlegroepen. Gebruik deze optie als je wil dat controlegroepen betrekking hebben op specifieke legers."
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
-msgstr ""
+msgstr "Enkele"
 
 #: gui/options/options.json[5].options[19].list[1].tooltip
 msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
-msgstr ""
+msgstr "Eenheden en gebouwen kunnen deel uitmaken van meerdere controlegroepen. Dit is handig om controlegroepen voor bepaalde legeronderdelen én een controlegroep voor het hele leger te gebruiken."
 
 #: gui/options/options.json[5].options[19].list[1].label
 msgid "Multiple"
-msgstr ""
+msgstr "Meerdere"
 
 #: gui/options/options.json[5].options[19].tooltip
 msgid "Decide whether units can be part of multiple control groups."
-msgstr ""
+msgstr "Beslis of eenheden deel kunnen uitmaken van meerdere controlegroepen."
 
 #: gui/options/options.json[5].options[19].label
 msgid "Control Group Membership"
-msgstr ""
+msgstr "Stel groepssamenstelling in"
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -3839,7 +3839,7 @@ msgstr "KATAPULTEN"
 
 #: gui/text/tips/catapults.txt:2
 msgid "Ranged siege engines that are good against structures."
-msgstr ""
+msgstr "Afstandsbelegeringswapens die goed zijn tegen gebouwen."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
@@ -3933,7 +3933,7 @@ msgstr "Voorzichtig! Vis is geen onuitputtelijke grondstof!"
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
-msgstr ""
+msgstr "VASTE PLAATSING"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."
@@ -3949,7 +3949,7 @@ msgstr "FORT"
 
 #: gui/text/tips/fortress.txt:2
 msgid "The Fortress is usually each faction's strongest structure."
-msgstr ""
+msgstr "Het fort is meestal het sterkste gebouw van een beschaving."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
@@ -3965,18 +3965,18 @@ msgstr "Beman met soldaten om meer vuurkracht te geven aan de defensie."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
-msgstr ""
+msgstr "VRIJE PLAATSING"
 
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "Gain an advantage on the battleground by tactically positioning your units!"
-msgstr ""
+msgstr "Verkrijg voordeel op het slagveld door je eenheden tactisch te plaatsen!"
 
 #: gui/text/tips/freehand_position.txt:3
 msgid ""
 "Therefore select some units, press and hold the right mouse button, draw any"
 " line, then release the button."
-msgstr ""
+msgstr "Selecteer daarvoor enkele eenheden, klik de rechter muisknop en houd die ingedrukt, teken een lijn, en laat de muisknop los."
 
 #: gui/text/tips/freehand_position.txt:4
 msgid "Your units will now spread out on this line."
@@ -4032,17 +4032,17 @@ msgstr "VOORPOSTEN"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral or own territory."
-msgstr ""
+msgstr "Bouw in eigen of neutraal gebied."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."
-msgstr ""
+msgstr "Snel en goedkoop om te bouwen, maar niet sterk."
 
 #: gui/text/tips/outposts.txt:4
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr ""
+msgstr "Beman met infanterie om verder te kunnen kijken en om verlies van de uitkijkpost als gevolg van invloedsverlies tegen te gaan."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -4066,7 +4066,7 @@ msgstr "De bekendste Atheense politicus van de 5de eeuw V.C."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Structures are built faster within his range."
-msgstr ""
+msgstr "Gebouwen in zijn aura zijn sneller compleet."
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."
