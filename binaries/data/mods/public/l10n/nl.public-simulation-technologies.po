@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-04 07:09+0000\n"
-"PO-Revision-Date: 2020-09-04 08:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-10-25 19:11+0000\n"
+"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,7 +70,7 @@ msgstr "Metalen bewapening voor de paardenhoofden."
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
 msgid "Cavalry +1 hack and pierce armor."
-msgstr ""
+msgstr "+1 slag- en steekpantser voor cavalerie."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -180,7 +180,7 @@ msgstr "Harnas volledig vervaardigd uit ijzer, het moeilijkst te bewerken metaal
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
 msgid "Heroes +50 metal cost, +2 hack and pierce armor."
-msgstr ""
+msgstr "+2 slag- en steekpantser voor helden, maar +50 metaal kosten."
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -205,7 +205,7 @@ msgstr "Gewatteerd linnen of leren pantser voor infanterie."
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
 msgid "Infantry +1 hack and pierce armor."
-msgstr ""
+msgstr "+1 slag- en steekpantser voor infanterie."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -252,7 +252,7 @@ msgstr "Schepen beslagen met loden platen hebben een sterkere boeg."
 #: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid "Ships +2 armor."
-msgstr ""
+msgstr "+2 pantser voor schepen."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -461,11 +461,11 @@ msgstr "Train je paarden zodat ze sneller lopen."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
-msgstr ""
+msgstr "+10% loopsnelheid voor cavalerie."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsongenericName
 msgid "Horse Racing"
-msgstr ""
+msgstr "Paardenrennen"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -536,7 +536,7 @@ msgstr "Extra voedingsstoffen voor boerderijen."
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +20% grain gather rate."
-msgstr ""
+msgstr "Arbeiders verzamelen +20% sneller graan."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -596,7 +596,7 @@ msgstr "Verhoog werksnelheid van houthakkers."
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +25% wood gather rate."
-msgstr ""
+msgstr "Arbeiders verzamelen +25% sneller hout."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
@@ -620,7 +620,7 @@ msgstr "Beveel slaven om uw arbeiders te helpen bij het steendelven. Verhoogt st
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +25% stone gather rate."
-msgstr ""
+msgstr "Arbeiders verzamelen +25% sneller steen."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -654,7 +654,7 @@ msgstr "Ontwikkel schachtmijnen. Verhoogt metaalverzamelingssnelheid."
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +25% metal gather rate."
-msgstr ""
+msgstr "Arbeiders verzamelen +25% sneller metaal."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -763,7 +763,7 @@ msgstr "Verhoogde Genezende Kracht van alle helers."
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers −20% healing time."
-msgstr ""
+msgstr "Helers genezen -20% sneller."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -863,7 +863,7 @@ msgstr "Ontwikkel de grootstadsfase, die je meer gebouwen en eenheden geeft. De 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 Town Structures."
-msgstr ""
+msgstr "Vereist 4 stadsgebouwen."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -914,7 +914,7 @@ msgstr "Ontwikkel de stadsfase, die je meer gebouwen en eenheden geeft. De terri
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid "Requires 5 Village Structures."
-msgstr ""
+msgstr "Vereist 5 dorpsgebouwen."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1062,7 +1062,7 @@ msgstr "Artillerie-instructeurs"
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
-msgstr ""
+msgstr "Afstandssoldaten promoveren met +25% ervaring."
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1082,7 +1082,7 @@ msgstr "Versterk de fundamenten ter voorbereiding op een aanval."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Towers +2 armor."
-msgstr ""
+msgstr "Torens +2 pantser."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1096,7 +1096,7 @@ msgstr "Kantelen op de gebouwen zorgen er voor dat soldaten verder kunnen vuren 
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
-msgstr ""
+msgstr "Uitkijk- en stenen torens vuren +40% meer pijlen af per gelegerde soldaat."
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1108,7 +1108,7 @@ msgstr "Moordgaten laten toe vijanden aan te vallen aan de voet van de toren."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Sentry and Stone Towers have 0 minimum attack range."
-msgstr ""
+msgstr "Uitkijk- en stenen torens hebben een minimaal aanvalsbereik van 0."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1120,7 +1120,7 @@ msgstr "Boogschutters doen de maximum afstand van de vuurpijlen toenemen."
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Sentry and Stone Towers +8 attack range."
-msgstr ""
+msgstr "+8 aanvalsbereik voor uitkijk- en stenen torens."
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1132,7 +1132,7 @@ msgstr "Een nachtwacht verhoogt de alertheid."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Sentry and Stone Towers +1 default arrow count."
-msgstr ""
+msgstr "+1 standaard pijlen voor uitkijk- en stenen torens."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
@@ -1156,7 +1156,7 @@ msgstr "Verhoog de internationale handelswinst."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
 msgid "+10% international trade bonus."
-msgstr ""
+msgstr "+10% internationale handelsbonus."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1168,7 +1168,7 @@ msgstr "Verhoogt de defensieve kwaliteiten van handelaars."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
 msgid "Traders +2 hack and pierce armor."
-msgstr ""
+msgstr "Handelaren +2 slag- en steekpantser."
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName
@@ -1239,19 +1239,19 @@ msgid ""
 "capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
 "healing strength and +3 healing range; Melee units +20% attack damage; "
 "Ranged units +4 attack range and −10% spread."
-msgstr ""
+msgstr "Geavanceerde en elite eenheden +20% rekruteringstijd, +1 pantser, +10% gezondheid, +0.7 veroveringsweerstand, +20% buit, en −30% verzamelsnelheid; Helers +5 genezingskracht en +3 genezingsbereik; Melee eenheden +20% aanvalskracht; Afstandseenheden +4 aanvalsbereik en −10% spreiding."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
 " and loot."
-msgstr ""
+msgstr "Afrikaanse olifanten kosten -10% grondstoffen, rekruteringstijd, gezondheid, aanvalskracht en buit."
 
 #: simulation/data/technologies/unit_elephant_indian.jsontooltip
 msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
-msgstr ""
+msgstr "Indiase olifanten kosten -10% grondstoffen, rekruteringstijd, gezondheid, aanvalskracht en buit."
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
@@ -1259,7 +1259,7 @@ msgid ""
 "strength, +20% loot, and −30% gather speed; Healers +5 healing strength and "
 "+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
 "range and −10% spread."
-msgstr ""
+msgstr "Elite eenheden +20% rekruteringstijd, +1 pantser, +10% gezondheid, +0.8 veroveringsweerstand, +20% buit, en −30% verzamelsnelheid; Helers +5 genezingskracht en +3 genezingsbereik; Melee eenheden +20% aanvalskracht; Afstandseenheden +4 aanvalsbereik en −10% spreiding."
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""
@@ -1364,7 +1364,7 @@ msgstr "Huur professionele huurlingen om in uw leger te vechten."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries are promoted to Advanced rank."
-msgstr ""
+msgstr "Huurlingen worden gepromoveerd naar geavanceerde rang."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
@@ -1579,7 +1579,7 @@ msgstr "De lange muren van Athene waren geconstrueerd onder Themistokles. Het wa
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
 msgid "Build Walls in own or neutral territory."
-msgstr ""
+msgstr "Bouw muren in eigen of neutraal territorium."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
@@ -1783,11 +1783,11 @@ msgstr "Nisioi"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsondescription
 msgid "The Roman-style core of the Seleucid army."
-msgstr ""
+msgstr "Het Seleucidische leger naar Romeinse stijl."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
-msgstr ""
+msgstr "Ontsluit de kampioen infanterie zwaardvechters."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
 msgid "Reform Army"
@@ -1795,11 +1795,11 @@ msgstr "Gereformeerd leger"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
-msgstr ""
+msgstr "Het Seleucidische leger naar Macedonische stijl."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Champion Infantry Pikeman."
-msgstr ""
+msgstr "Ontsluit de kampioen infanterie piekeniers."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"
