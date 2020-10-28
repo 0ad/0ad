@@ -179,7 +179,6 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		int rawLength = strlen(rawText);
 		std::wstring wtext = wstring_from_utf8(rawText);
 
-		debug_printf("SDL_TEXTEDITING: text=%s, start=%d, length=%d\n", rawText, ev->ev.edit.start, ev->ev.edit.length);
 		m_WantedX = 0.0f;
 
 		if (SelectingText())
