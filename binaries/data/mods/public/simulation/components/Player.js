@@ -71,6 +71,7 @@ Player.prototype.Init = function()
 	this.disabledTechnologies = {};
 	this.startingTechnologies = [];
 	this.spyCostMultiplier = +this.template.SpyCostMultiplier;
+	this.barterEntities = [];
 	this.barterMultiplier = {
 		"buy": clone(this.template.BarterMultiplier.Buy),
 		"sell": clone(this.template.BarterMultiplier.Sell)
@@ -213,6 +214,11 @@ Player.prototype.SetMaxPopulation = function(max)
 Player.prototype.GetMaxPopulation = function()
 {
 	return Math.round(ApplyValueModificationsToEntity("Player/MaxPopulation", this.maxPop, this.entity));
+};
+
+Player.prototype.CanBarter = function()
+{
+	return this.barterEntities.length > 0;
 };
 
 Player.prototype.GetBarterMultiplier = function()
@@ -748,7 +754,6 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 	if (msg.from != this.playerID && msg.to != this.playerID)
 		return;
 
-	let cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
 	let cmpCost = Engine.QueryInterface(msg.entity, IID_Cost);
 
 	if (msg.from == this.playerID)
@@ -756,20 +761,28 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 		if (cmpCost)
 			this.popUsed -= cmpCost.GetPopCost();
 
-		if (cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), panelEntityClasses))
-		{
-			let index = this.panelEntities.indexOf(msg.entity);
-			if (index >= 0)
-				this.panelEntities.splice(index, 1);
-		}
+		let panelIndex = this.panelEntities.indexOf(msg.entity);
+		if (panelIndex >= 0)
+			this.panelEntities.splice(panelIndex, 1);
+
+		let barterIndex = this.barterEntities.indexOf(msg.entity);
+		if (barterIndex >= 0)
+			this.barterEntities.splice(barterIndex, 1);
 	}
 	if (msg.to == this.playerID)
 	{
 		if (cmpCost)
 			this.popUsed += cmpCost.GetPopCost();
 
-		if (cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), panelEntityClasses))
+		let cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
+		if (!cmpIdentity)
+			return;
+
+		if (MatchesClassList(cmpIdentity.GetClassesList(), panelEntityClasses))
 			this.panelEntities.push(msg.entity);
+
+		if (cmpIdentity.HasClass("Barter") && !Engine.QueryInterface(msg.entity, IID_Foundation))
+			this.barterEntities.push(msg.entity);
 	}
 };
 

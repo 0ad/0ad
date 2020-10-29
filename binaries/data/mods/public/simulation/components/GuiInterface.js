@@ -124,7 +124,7 @@ GuiInterface.prototype.GetSimulationState = function()
 			"researchedTechs": cmpTechnologyManager ? cmpTechnologyManager.GetResearchedTechs() : null,
 			"classCounts": cmpTechnologyManager ? cmpTechnologyManager.GetClassCounts() : null,
 			"typeCountsByClass": cmpTechnologyManager ? cmpTechnologyManager.GetTypeCountsByClass() : null,
-			"canBarter": Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter).PlayerHasMarket(i),
+			"canBarter": cmpPlayer.CanBarter(),
 			"barterPrices": Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter).GetPrices(cmpPlayer)
 		});
 	}

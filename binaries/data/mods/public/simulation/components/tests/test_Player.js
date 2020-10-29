@@ -18,6 +18,8 @@ Resources = {
 
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/Player.js");
+Engine.LoadComponentScript("interfaces/Cost.js");
+Engine.LoadComponentScript("interfaces/Foundation.js");
 Engine.LoadComponentScript("interfaces/ModifiersManager.js");
 Engine.LoadComponentScript("Player.js");
 
@@ -36,6 +38,10 @@ var cmpPlayer = ConstructComponent(10, "Player", {
 		}
 	},
 });
+
+var playerID = 1;
+cmpPlayer.SetPlayerID(playerID);
+TS_ASSERT_EQUALS(cmpPlayer.GetPlayerID(), playerID);
 
 TS_ASSERT_EQUALS(cmpPlayer.GetPopulationCount(), 0);
 TS_ASSERT_EQUALS(cmpPlayer.GetPopulationLimit(), 0);
@@ -66,3 +72,29 @@ TS_ASSERT_UNEVAL_EQUALS(cmpPlayer.GetBarterMultiplier(), {
 		"metal": 1.0
 	}
 });
+
+AddMock(60, IID_Identity, {
+	"GetClassesList": () => {},
+	"HasClass": (cl) => true
+});
+AddMock(60, IID_Ownership);
+AddMock(60, IID_Foundation, {});
+cmpPlayer.OnGlobalOwnershipChanged({ "entity": 60, "from": INVALID_PLAYER, "to": playerID });
+TS_ASSERT(!cmpPlayer.CanBarter());
+
+AddMock(61, IID_Identity, {
+	"GetClassesList": () => {},
+	"HasClass": (cl) => false
+});
+cmpPlayer.OnGlobalOwnershipChanged({ "entity": 61, "from": INVALID_PLAYER, "to": playerID });
+TS_ASSERT(!cmpPlayer.CanBarter());
+
+AddMock(62, IID_Identity, {
+	"GetClassesList": () => {},
+	"HasClass": (cl) => true
+});
+cmpPlayer.OnGlobalOwnershipChanged({ "entity": 62, "from": INVALID_PLAYER, "to": playerID });
+TS_ASSERT(cmpPlayer.CanBarter());
+
+cmpPlayer.OnGlobalOwnershipChanged({ "entity": 62, "from": playerID, "to": INVALID_PLAYER });
+TS_ASSERT(!cmpPlayer.CanBarter());

@@ -62,8 +62,7 @@ AddMock(SYSTEM_ENTITY, IID_Barter, {
 			"buy": { "food": 150 },
 			"sell": { "food": 25 }
 		};
-	},
-	"PlayerHasMarket": function() { return false; }
+	}
 });
 
 AddMock(SYSTEM_ENTITY, IID_EndGameManager, {
@@ -114,6 +113,7 @@ AddMock(100, IID_Player, {
 	"IsEnemy": function() { return true; },
 	"GetDisabledTemplates": function() { return {}; },
 	"GetDisabledTechnologies": function() { return {}; },
+	"CanBarter": function() { return false; },
 	"GetSpyCostMultiplier": function() { return 1; },
 	"HasSharedDropsites": function() { return false; },
 	"HasSharedLos": function() { return false; }
@@ -199,6 +199,7 @@ AddMock(101, IID_Player, {
 	"IsEnemy": function() { return false; },
 	"GetDisabledTemplates": function() { return {}; },
 	"GetDisabledTechnologies": function() { return {}; },
+	"CanBarter": function() { return false; },
 	"GetSpyCostMultiplier": function() { return 1; },
 	"HasSharedDropsites": function() { return false; },
 	"HasSharedLos": function() { return false; }
