@@ -47,20 +47,6 @@ Barter.prototype.GetPrices = function(cmpPlayer)
 	return prices;
 };
 
-Barter.prototype.PlayerHasMarket = function(playerID)
-{
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var entities = cmpRangeManager.GetEntitiesByPlayer(playerID);
-	for (var entity of entities)
-	{
-		var cmpFoundation = Engine.QueryInterface(entity, IID_Foundation);
-		var cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
-		if (!cmpFoundation && cmpIdentity && cmpIdentity.HasClass("Barter"))
-			return true;
-	}
-	return false;
-};
-
 Barter.prototype.ExchangeResources = function(playerID, resourceToSell, resourceToBuy, amount)
 {
 	if (amount <= 0)
@@ -82,15 +68,11 @@ Barter.prototype.ExchangeResources = function(playerID, resourceToSell, resource
 		return;
 	}
 
-	// This can occur when the player issues the order just before the market is destroyed or captured
-	if (!this.PlayerHasMarket(playerID))
-		return;
-
 	if (amount != 100 && amount != 500)
 		return;
 
 	let cmpPlayer = QueryPlayerIDInterface(playerID);
-	if (!cmpPlayer)
+	if (!cmpPlayer || !cmpPlayer.CanBarter())
 		return;
 
 	let prices = this.GetPrices(cmpPlayer);

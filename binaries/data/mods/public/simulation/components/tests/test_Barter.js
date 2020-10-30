@@ -61,18 +61,9 @@ let cmpPlayer = AddMock(playerEnt, IID_Player, {
 		bought = amount;
 		return true;
 	},
+	"CanBarter": () => true,
 	"GetBarterMultiplier": () => multiplier
 });
-
-AddMock(SYSTEM_ENTITY, IID_RangeManager, {
-	"GetEntitiesByPlayer": (id) => id == playerID ? [62, 60, 61, 63] : []
-});
-
-AddMock(60, IID_Identity, {
-	"HasClass": (cl) => true
-});
-
-AddMock(60, IID_Foundation, {});
 
 // GetPrices
 cmpBarter.priceDifferences = { "wood": 8, "stone": 0, "metal": 0 };
@@ -99,15 +90,6 @@ TS_ASSERT_UNEVAL_EQUALS(cmpBarter.GetPrices(cmpPlayer).sell, {
 	"metal": truePrice * (100 - cmpBarter.CONSTANT_DIFFERENCE) / 100
 });
 multiplier.buy.stone = 1.0;
-
-// PlayerHasMarket
-TS_ASSERT(!cmpBarter.PlayerHasMarket(playerID));
-
-AddMock(61, IID_Identity, {
-	"HasClass": (cl) => true
-});
-
-TS_ASSERT(cmpBarter.PlayerHasMarket(playerID));
 
 // ExchangeResources
 // Price differences magnitude are caped by 99 - CONSTANT_DIFFERENCE.
@@ -157,6 +139,7 @@ timerActivated = false;
 AddMock(playerEnt, IID_Player, {
 	"TrySubtractResources": () => false,
 	"AddResource": () => {},
+	"CanBarter": () => true,
 	"GetBarterMultiplier": () => multiplier
 });
 cmpBarter.ExchangeResources(playerID, "wood", "stone", 100);
