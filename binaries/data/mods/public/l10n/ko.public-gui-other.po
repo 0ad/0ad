@@ -23,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-09-26 10:56+0000\n"
-"Last-Translator: ks k\n"
+"POT-Creation-Date: 2020-10-26 08:30+0000\n"
+"PO-Revision-Date: 2020-10-26 17:17+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1394,7 +1394,7 @@ msgstr "문명 개요"
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: 0 A.D. 에 나타난 문명들에 대해 배웁니다."
 
-#: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:143
+#: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
 msgstr "싱글 플레이어"
 
@@ -1432,7 +1432,7 @@ msgstr "다시보기"
 msgid "Playback previous games."
 msgstr "이전 놀이를 재생합니다."
 
-#: gui/pregame/MainMenuItems.js:88 gui/replaymenu/replay_filters.js:143
+#: gui/pregame/MainMenuItems.js:88 gui/replaymenu/replay_filters.js:144
 msgid "Multiplayer"
 msgstr "함께 놀기"
 
@@ -1615,36 +1615,6 @@ msgstr "기부"
 #: gui/pregame/ProjectInformation.js:58
 msgid "Help with the project expenses by donating."
 msgstr "기부함으로써 프로젝트 비용을 도와주십시오."
-
-#: gui/pregame/SplashscreenHandler.js:49
-#, javascript-format
-msgid ""
-"%(warning)s You appear to be using non-shader (fixed function) graphics. "
-"This option will be removed in a future 0 A.D. release, to allow for more "
-"advanced graphics features. We advise upgrading your graphics card to a more"
-" recent, shader-compatible model."
-msgstr "%(warning)s 당신은 그림자가 아닌(고정 함수) 그래픽을 사용하는 것처럼 보입니다. 이 선택사항은 보다 고급 그래픽 기능을 사용하기위해 향후 0 A.D. 출시때 제거될것입니다. 그래픽 카드를 보다 최신의 쉐이더 호환 모델로 업그레이드하는 것이 좋습니다."
-
-#. Translation: This is the second paragraph of a warning. The
-#. warning explains that the user is using “non-shader“ graphics,
-#. and that in the future this will not be supported by the game, so
-#. the user will need a better graphics card.
-#: gui/pregame/SplashscreenHandler.js:57
-msgid "Please press \"Read More\" for more information or \"OK\" to continue."
-msgstr "더 많은 정보는 \"더보기\" 또는 \"OK\"를 클릭하세요."
-
-#: gui/pregame/SplashscreenHandler.js:58
-msgid "WARNING!"
-msgstr "경고!"
-
-#: gui/pregame/SplashscreenHandler.js:59
-#: gui/splashscreen/splashscreen.xml:(caption):30
-msgid "OK"
-msgstr "확인"
-
-#: gui/pregame/SplashscreenHandler.js:59
-msgid "Read More"
-msgstr "더보기"
 
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
@@ -1835,33 +1805,33 @@ msgstr "이 다시보기를 영구적으로 삭제 하시겠습니까?"
 msgid "Delete replay"
 msgstr "다시보기 삭제"
 
-#: gui/replaymenu/replay_filters.js:51
+#: gui/replaymenu/replay_filters.js:52
 msgctxt "datetime"
 msgid "Any"
 msgstr "불문"
 
-#: gui/replaymenu/replay_filters.js:67
+#: gui/replaymenu/replay_filters.js:68
 msgctxt "map size"
 msgid "Any"
 msgstr "불문"
 
-#: gui/replaymenu/replay_filters.js:83
+#: gui/replaymenu/replay_filters.js:84
 msgctxt "map name"
 msgid "Any"
 msgstr "불문"
 
-#: gui/replaymenu/replay_filters.js:99
+#: gui/replaymenu/replay_filters.js:100
 msgctxt "population capacity"
 msgid "Any"
 msgstr "불문"
 
-#: gui/replaymenu/replay_filters.js:118
+#: gui/replaymenu/replay_filters.js:119
 msgctxt "duration"
 msgid "Any"
 msgstr "불문"
 
 #. Translation: Shorter duration than max minutes.
-#: gui/replaymenu/replay_filters.js:122
+#: gui/replaymenu/replay_filters.js:123
 #, javascript-format
 msgctxt "duration filter"
 msgid "< %(max)s min"
@@ -1869,7 +1839,7 @@ msgid_plural "< %(max)s min"
 msgstr[0] "< %(max)s 분"
 
 #. Translation: Longer duration than min minutes.
-#: gui/replaymenu/replay_filters.js:126
+#: gui/replaymenu/replay_filters.js:127
 #, javascript-format
 msgctxt "duration filter"
 msgid "> %(min)s min"
@@ -1877,29 +1847,29 @@ msgid_plural "> %(min)s min"
 msgstr[0] "> %(min)s 분"
 
 #. Translation: Duration between min and max minutes.
-#: gui/replaymenu/replay_filters.js:129
+#: gui/replaymenu/replay_filters.js:130
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
 msgstr "%(min)s - %(max)s 분"
 
-#: gui/replaymenu/replay_filters.js:143
+#: gui/replaymenu/replay_filters.js:144
 msgid "Single-player and multiplayer"
 msgstr "싱글플레이어 및 멀티플레이어"
 
-#: gui/replaymenu/replay_filters.js:156
+#: gui/replaymenu/replay_filters.js:157
 msgid "Any Victory Condition"
 msgstr "모든 승리 조건"
 
-#: gui/replaymenu/replay_filters.js:169
+#: gui/replaymenu/replay_filters.js:170
 msgid "Rated and unrated games"
 msgstr "평점 및 등급 없음 놀이"
 
-#: gui/replaymenu/replay_filters.js:169
+#: gui/replaymenu/replay_filters.js:170
 msgid "Rated games"
 msgstr "정격 놀이??"
 
-#: gui/replaymenu/replay_filters.js:169
+#: gui/replaymenu/replay_filters.js:170
 msgid "Unrated games"
 msgstr "등급이 매겨지지 않은 놀이들"
 
@@ -2457,6 +2427,10 @@ msgstr "계속 이 메시지를 표시"
 #: gui/splashscreen/splashscreen.xml:(caption):25
 msgid "Known Issues (web)"
 msgstr "알려진 문제점 (웹)"
+
+#: gui/splashscreen/splashscreen.xml:(caption):30
+msgid "OK"
+msgstr "확인"
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
