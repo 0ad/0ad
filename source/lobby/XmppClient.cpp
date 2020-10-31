@@ -703,7 +703,7 @@ JS::Value XmppClient::GuiPollNewMessages(const ScriptInterface& scriptInterface)
 	if ((m_isConnected && !m_initialLoadComplete) || m_GuiMessageQueue.empty())
 		return JS::UndefinedValue();
 
-	JSContext* cx = scriptInterface.GetContext();
+	JSContext* cx = m_ScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
 
 	// Optimize for batch message processing that is more
@@ -715,34 +715,35 @@ JS::Value XmppClient::GuiPollNewMessages(const ScriptInterface& scriptInterface)
 
 	for (const JS::Heap<JS::Value>& message : m_GuiMessageQueue)
 	{
-		scriptInterface.SetPropertyInt(messages, j++, message);
+		m_ScriptInterface->SetPropertyInt(messages, j++, message);
 
 		// Store historic chat messages.
 		// Only store relevant messages to minimize memory footprint.
 		JS::RootedValue rootedMessage(cx, message);
 		std::string type;
-		scriptInterface.GetProperty(rootedMessage, "type", type);
+		m_ScriptInterface->GetProperty(rootedMessage, "type", type);
 		if (type != "chat")
 			continue;
 
 		std::string level;
-		scriptInterface.GetProperty(rootedMessage, "level", level);
+		m_ScriptInterface->GetProperty(rootedMessage, "level", level);
 		if (level != "room-message" && level != "private-message")
 			continue;
 
 		JS::RootedValue historicMessage(cx);
 		if (JS_StructuredClone(cx, rootedMessage, &historicMessage, nullptr, nullptr))
 		{
-			scriptInterface.SetProperty(historicMessage, "historic", true);
-			scriptInterface.FreezeObject(historicMessage, true);
+			m_ScriptInterface->SetProperty(historicMessage, "historic", true);
+			m_ScriptInterface->FreezeObject(historicMessage, true);
 			m_HistoricGuiMessages.push_back(JS::Heap<JS::Value>(historicMessage));
 		}
 		else
 			LOGERROR("Could not clone historic lobby GUI message!");
 	}
-
 	m_GuiMessageQueue.clear();
-	return messages;
+
+	// Copy the messages over to the caller script interface.
+	return scriptInterface.CloneValueFromOtherContext(*m_ScriptInterface, messages);
 }
 
 JS::Value XmppClient::GuiPollHistoricMessages(const ScriptInterface& scriptInterface)
@@ -750,7 +751,7 @@ JS::Value XmppClient::GuiPollHistoricMessages(const ScriptInterface& scriptInter
 	if (m_HistoricGuiMessages.empty())
 		return JS::UndefinedValue();
 
-	JSContext* cx = scriptInterface.GetContext();
+	JSContext* cx = m_ScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
 
 	JS::RootedValue messages(cx);
@@ -758,9 +759,10 @@ JS::Value XmppClient::GuiPollHistoricMessages(const ScriptInterface& scriptInter
 
 	int j = 0;
 	for (const JS::Heap<JS::Value>& message : m_HistoricGuiMessages)
-		scriptInterface.SetPropertyInt(messages, j++, message);
+		m_ScriptInterface->SetPropertyInt(messages, j++, message);
 
-	return messages;
+	// Copy the messages over to the caller script interface.
+	return scriptInterface.CloneValueFromOtherContext(*m_ScriptInterface, messages);
 }
 
 /**
