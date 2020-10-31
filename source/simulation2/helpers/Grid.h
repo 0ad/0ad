@@ -94,14 +94,12 @@ public:
 
 		m_W = g.m_W;
 		m_H = g.m_H;
-		delete[] m_Data;
+		SAFE_ARRAY_DELETE(m_Data);
 		if (g.m_Data)
 		{
 			m_Data = new T[m_W * m_H];
 			copy_data(g.m_Data, dispatch<T>{});
 		}
-		else
-			m_Data = NULL;
 		return *this;
 	}
 
@@ -114,7 +112,7 @@ public:
 
 	~Grid()
 	{
-		delete[] m_Data;
+		SAFE_ARRAY_DELETE(m_Data);
 	}
 
 	// Ensure that o and this are the same size before calling.
@@ -168,20 +166,29 @@ public:
 	void reset_data(default_type) { std::fill(&m_Data[0], &m_Data[m_H*m_W], T{}); }
 	void reset_data(is_pod) { memset(m_Data, 0, m_W*m_H*sizeof(T)); }
 
+	// Reset the data to its default-constructed value (usually 0), not changing size.
 	void reset()
 	{
 		if (m_Data)
 			reset_data(dispatch<T>{});
 	}
 
+	// Clear the grid setting the size to 0 and freeing any data.
+	void clear()
+	{
+		resize(0, 0);
+	}
+
 	void resize(u16 w, u16 h)
 	{
-		if (m_Data)
-			delete[] m_Data;
+		SAFE_ARRAY_DELETE(m_Data);
 		m_W = w;
 		m_H = h;
-		if (m_W || m_H)
-			m_Data = new T[m_W * m_H];
+
+		if (!m_W && !m_H)
+			return;
+
+		m_Data = new T[m_W * m_H];
 		ENSURE(m_Data);
 		reset();
 	}
@@ -337,13 +344,13 @@ public:
 	~SparseGrid()
 	{
 		reset();
-		delete[] m_Data;
+		SAFE_ARRAY_DELETE(m_Data);
 	}
 
 	void reset()
 	{
 		for (size_t i = 0; i < (size_t)(m_BW*m_BH); ++i)
-			delete[] m_Data[i];
+			SAFE_ARRAY_DELETE(m_Data[i]);
 
 		// Reset m_Data by value-constructing in place with placement new.
 		m_Data = new (m_Data) T*[m_BW*m_BH]();
