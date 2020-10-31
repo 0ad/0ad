@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-09-18 17:16+0000\n"
+"POT-Creation-Date: 2020-10-26 08:30+0000\n"
+"PO-Revision-Date: 2020-10-26 17:17+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -1431,7 +1431,7 @@ msgstr "Foir-shealladh nan sìobhaltas"
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Fiosrachadh mu na sìobhaltasan ann an 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:143
+#: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
 msgstr "Aon-chluicheadair"
 
@@ -1469,7 +1469,7 @@ msgstr "Ath-chluichean"
 msgid "Playback previous games."
 msgstr "Coimhead air geamannan roimhe."
 
-#: gui/pregame/MainMenuItems.js:88 gui/replaymenu/replay_filters.js:143
+#: gui/pregame/MainMenuItems.js:88 gui/replaymenu/replay_filters.js:144
 msgid "Multiplayer"
 msgstr "Ioma-chluicheadair"
 
@@ -1652,36 +1652,6 @@ msgstr "Thoir tìodhlac dhuinn"
 #: gui/pregame/ProjectInformation.js:58
 msgid "Help with the project expenses by donating."
 msgstr "Cuidich le cosgaisean a’ phròiseict a thoirt tìodhlac dhuinn."
-
-#: gui/pregame/SplashscreenHandler.js:49
-#, javascript-format
-msgid ""
-"%(warning)s You appear to be using non-shader (fixed function) graphics. "
-"This option will be removed in a future 0 A.D. release, to allow for more "
-"advanced graphics features. We advise upgrading your graphics card to a more"
-" recent, shader-compatible model."
-msgstr "%(warning)s Tha thu a’ cleachdadh grafaigeachd gun sgàileadairean (le foincsean socraichte) a-rèir coltais. Thèid an roghainn seo a chur air falbh ann an sgaoileadh ri thighinn de 0 A.D. ach an urrainn dhuinn gleusan grafaigeachd nas adhartaiche a chleachdadh. Mholamaid gun ùraich thu a’ chairt grafaigeachd agad no gum faigh thu modail as ùire a bhios co-chòrdail ri sgàileadairean."
-
-#. Translation: This is the second paragraph of a warning. The
-#. warning explains that the user is using “non-shader“ graphics,
-#. and that in the future this will not be supported by the game, so
-#. the user will need a better graphics card.
-#: gui/pregame/SplashscreenHandler.js:57
-msgid "Please press \"Read More\" for more information or \"OK\" to continue."
-msgstr "Brùth air “Barrachd fiosrachaidh” airson barrachd fiosrachaidh no air “Ceart ma-thà” airson leantainn air adhart."
-
-#: gui/pregame/SplashscreenHandler.js:58
-msgid "WARNING!"
-msgstr "RABHADH!"
-
-#: gui/pregame/SplashscreenHandler.js:59
-#: gui/splashscreen/splashscreen.xml:(caption):30
-msgid "OK"
-msgstr "Ceart ma-thà"
-
-#: gui/pregame/SplashscreenHandler.js:59
-msgid "Read More"
-msgstr "Barrachd fiosrachaidh"
 
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
@@ -1872,33 +1842,33 @@ msgstr "A bheil thu cinnteach gu bheil thu airson an t-ath-chluiche seo a sguaba
 msgid "Delete replay"
 msgstr "Sguab às an t-ath-chluiche"
 
-#: gui/replaymenu/replay_filters.js:51
+#: gui/replaymenu/replay_filters.js:52
 msgctxt "datetime"
 msgid "Any"
 msgstr "Air fad"
 
-#: gui/replaymenu/replay_filters.js:67
+#: gui/replaymenu/replay_filters.js:68
 msgctxt "map size"
 msgid "Any"
 msgstr "Air fad"
 
-#: gui/replaymenu/replay_filters.js:83
+#: gui/replaymenu/replay_filters.js:84
 msgctxt "map name"
 msgid "Any"
 msgstr "Air fad"
 
-#: gui/replaymenu/replay_filters.js:99
+#: gui/replaymenu/replay_filters.js:100
 msgctxt "population capacity"
 msgid "Any"
 msgstr "Air fad"
 
-#: gui/replaymenu/replay_filters.js:118
+#: gui/replaymenu/replay_filters.js:119
 msgctxt "duration"
 msgid "Any"
 msgstr "Air fad"
 
 #. Translation: Shorter duration than max minutes.
-#: gui/replaymenu/replay_filters.js:122
+#: gui/replaymenu/replay_filters.js:123
 #, javascript-format
 msgctxt "duration filter"
 msgid "< %(max)s min"
@@ -1909,7 +1879,7 @@ msgstr[2] "< %(max)s mion"
 msgstr[3] "< %(max)s mion"
 
 #. Translation: Longer duration than min minutes.
-#: gui/replaymenu/replay_filters.js:126
+#: gui/replaymenu/replay_filters.js:127
 #, javascript-format
 msgctxt "duration filter"
 msgid "> %(min)s min"
@@ -1920,29 +1890,29 @@ msgstr[2] "> %(min)s mion"
 msgstr[3] "> %(min)s mion"
 
 #. Translation: Duration between min and max minutes.
-#: gui/replaymenu/replay_filters.js:129
+#: gui/replaymenu/replay_filters.js:130
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
 msgstr "%(min)s - %(max)s mion"
 
-#: gui/replaymenu/replay_filters.js:143
+#: gui/replaymenu/replay_filters.js:144
 msgid "Single-player and multiplayer"
 msgstr "Aon- is ioma-chluicheadair"
 
-#: gui/replaymenu/replay_filters.js:156
+#: gui/replaymenu/replay_filters.js:157
 msgid "Any Victory Condition"
 msgstr "Cumha buaidhe sam bith"
 
-#: gui/replaymenu/replay_filters.js:169
+#: gui/replaymenu/replay_filters.js:170
 msgid "Rated and unrated games"
 msgstr "Rangaichte ’s gun rangachadh"
 
-#: gui/replaymenu/replay_filters.js:169
+#: gui/replaymenu/replay_filters.js:170
 msgid "Rated games"
 msgstr "Rangaichte"
 
-#: gui/replaymenu/replay_filters.js:169
+#: gui/replaymenu/replay_filters.js:170
 msgid "Unrated games"
 msgstr "Gun rangachadh"
 
@@ -2500,6 +2470,10 @@ msgstr "Seall an teachdaireachd seo a-rithist"
 #: gui/splashscreen/splashscreen.xml:(caption):25
 msgid "Known Issues (web)"
 msgstr "Duilgheadasan as aithne dhuinn (lìon)"
+
+#: gui/splashscreen/splashscreen.xml:(caption):30
+msgid "OK"
+msgstr "Ceart ma-thà"
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"

@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-10-02 18:20+0000\n"
-"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2020-10-26 08:30+0000\n"
+"PO-Revision-Date: 2020-10-26 17:17+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1398,7 +1398,7 @@ msgstr "Zibilizazioaren ikuspegi orokorra"
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Ezagutu hobeto 0 A.D.-n azaltzen diren zibilizazio desberdinak."
 
-#: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:143
+#: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
 msgstr "Jokalari bakarra"
 
@@ -1436,7 +1436,7 @@ msgstr "Errepikapenak"
 msgid "Playback previous games."
 msgstr "Aurreko partidak erreproduzitu."
 
-#: gui/pregame/MainMenuItems.js:88 gui/replaymenu/replay_filters.js:143
+#: gui/pregame/MainMenuItems.js:88 gui/replaymenu/replay_filters.js:144
 msgid "Multiplayer"
 msgstr "Hainbat jokalari"
 
@@ -1619,36 +1619,6 @@ msgstr "Dohaintza"
 #: gui/pregame/ProjectInformation.js:58
 msgid "Help with the project expenses by donating."
 msgstr "Dohaintza eman proiektuaren gastuetan laguntzeko. "
-
-#: gui/pregame/SplashscreenHandler.js:49
-#, javascript-format
-msgid ""
-"%(warning)s You appear to be using non-shader (fixed function) graphics. "
-"This option will be removed in a future 0 A.D. release, to allow for more "
-"advanced graphics features. We advise upgrading your graphics card to a more"
-" recent, shader-compatible model."
-msgstr "%(warning)sDirudienez erabiltzen ari zaren bideo txartelak ez du «shaders» (fixed function) euskarririk. Aukera hau ez da 0.A.D.en hurrengo bertsioetan egongo teknika aurreratuagoei tokia uzteko. Txartel grafikoa shader-ekin bateragarria den modelo berriago batengatik aldatzea gomendatzen dizugu."
-
-#. Translation: This is the second paragraph of a warning. The
-#. warning explains that the user is using “non-shader“ graphics,
-#. and that in the future this will not be supported by the game, so
-#. the user will need a better graphics card.
-#: gui/pregame/SplashscreenHandler.js:57
-msgid "Please press \"Read More\" for more information or \"OK\" to continue."
-msgstr "Sakatu \"Irakurri gehiago\" informazio gehiagorako, edo \"Ados\" jarraitzeko."
-
-#: gui/pregame/SplashscreenHandler.js:58
-msgid "WARNING!"
-msgstr "ABISUA!"
-
-#: gui/pregame/SplashscreenHandler.js:59
-#: gui/splashscreen/splashscreen.xml:(caption):30
-msgid "OK"
-msgstr "Ados"
-
-#: gui/pregame/SplashscreenHandler.js:59
-msgid "Read More"
-msgstr "Irakurri gehiago"
 
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
@@ -1839,33 +1809,33 @@ msgstr "Ziur errepikapena betirako ezabatu nahi duzula?"
 msgid "Delete replay"
 msgstr "Ezabatu errepikapena"
 
-#: gui/replaymenu/replay_filters.js:51
+#: gui/replaymenu/replay_filters.js:52
 msgctxt "datetime"
 msgid "Any"
 msgstr "Edozein"
 
-#: gui/replaymenu/replay_filters.js:67
+#: gui/replaymenu/replay_filters.js:68
 msgctxt "map size"
 msgid "Any"
 msgstr "Edozein"
 
-#: gui/replaymenu/replay_filters.js:83
+#: gui/replaymenu/replay_filters.js:84
 msgctxt "map name"
 msgid "Any"
 msgstr "Edozein"
 
-#: gui/replaymenu/replay_filters.js:99
+#: gui/replaymenu/replay_filters.js:100
 msgctxt "population capacity"
 msgid "Any"
 msgstr "Edozein"
 
-#: gui/replaymenu/replay_filters.js:118
+#: gui/replaymenu/replay_filters.js:119
 msgctxt "duration"
 msgid "Any"
 msgstr "Edozein"
 
 #. Translation: Shorter duration than max minutes.
-#: gui/replaymenu/replay_filters.js:122
+#: gui/replaymenu/replay_filters.js:123
 #, javascript-format
 msgctxt "duration filter"
 msgid "< %(max)s min"
@@ -1874,7 +1844,7 @@ msgstr[0] "< %(max)s min"
 msgstr[1] "< %(max)s min"
 
 #. Translation: Longer duration than min minutes.
-#: gui/replaymenu/replay_filters.js:126
+#: gui/replaymenu/replay_filters.js:127
 #, javascript-format
 msgctxt "duration filter"
 msgid "> %(min)s min"
@@ -1883,29 +1853,29 @@ msgstr[0] "> %(min)s min"
 msgstr[1] "> %(min)s min"
 
 #. Translation: Duration between min and max minutes.
-#: gui/replaymenu/replay_filters.js:129
+#: gui/replaymenu/replay_filters.js:130
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
 msgstr "%(min)s - %(max)s min"
 
-#: gui/replaymenu/replay_filters.js:143
+#: gui/replaymenu/replay_filters.js:144
 msgid "Single-player and multiplayer"
 msgstr "Jokalari bakarra edo hainbat jokalari"
 
-#: gui/replaymenu/replay_filters.js:156
+#: gui/replaymenu/replay_filters.js:157
 msgid "Any Victory Condition"
 msgstr "Edozein Irabazteko Baldintza"
 
-#: gui/replaymenu/replay_filters.js:169
+#: gui/replaymenu/replay_filters.js:170
 msgid "Rated and unrated games"
 msgstr "Biak"
 
-#: gui/replaymenu/replay_filters.js:169
+#: gui/replaymenu/replay_filters.js:170
 msgid "Rated games"
 msgstr "Sailkapenerako Partidak"
 
-#: gui/replaymenu/replay_filters.js:169
+#: gui/replaymenu/replay_filters.js:170
 msgid "Unrated games"
 msgstr "Sailkapenik gabeko partidak"
 
@@ -2463,6 +2433,10 @@ msgstr "Bistaratu mezu hau etorkizunean ere"
 #: gui/splashscreen/splashscreen.xml:(caption):25
 msgid "Known Issues (web)"
 msgstr "Arazo ezagunak (webgunea)"
+
+#: gui/splashscreen/splashscreen.xml:(caption):30
+msgid "OK"
+msgstr "Ados"
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"

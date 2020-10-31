@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-09-18 17:16+0000\n"
+"POT-Creation-Date: 2020-10-26 08:30+0000\n"
+"PO-Revision-Date: 2020-10-26 17:17+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -1405,7 +1405,7 @@ msgstr ""
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:143
+#: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
 msgstr ""
 
@@ -1443,7 +1443,7 @@ msgstr "Repetições"
 msgid "Playback previous games."
 msgstr "Repetir jogos prévios."
 
-#: gui/pregame/MainMenuItems.js:88 gui/replaymenu/replay_filters.js:143
+#: gui/pregame/MainMenuItems.js:88 gui/replaymenu/replay_filters.js:144
 msgid "Multiplayer"
 msgstr "Vários jogadores"
 
@@ -1626,36 +1626,6 @@ msgstr "Fazer um donativo"
 #: gui/pregame/ProjectInformation.js:58
 msgid "Help with the project expenses by donating."
 msgstr "Ajudar nas despesas do projeto com um donativo."
-
-#: gui/pregame/SplashscreenHandler.js:49
-#, javascript-format
-msgid ""
-"%(warning)s You appear to be using non-shader (fixed function) graphics. "
-"This option will be removed in a future 0 A.D. release, to allow for more "
-"advanced graphics features. We advise upgrading your graphics card to a more"
-" recent, shader-compatible model."
-msgstr "%(warning)s Parece que estás a usar gráficos não \"shader\" (função fixa). Esta opção será removida numa versão futura do 0 A.D., para permitir funcionalidades gráficas mais avançadas. Recomendamos atualizar a tua placa gráfica para um modelo mais recente e compatível com \"shaders\"."
-
-#. Translation: This is the second paragraph of a warning. The
-#. warning explains that the user is using “non-shader“ graphics,
-#. and that in the future this will not be supported by the game, so
-#. the user will need a better graphics card.
-#: gui/pregame/SplashscreenHandler.js:57
-msgid "Please press \"Read More\" for more information or \"OK\" to continue."
-msgstr "Por favor carregue em \"Ler Mais\" para obter mais informações ou \"OK\" para continuar."
-
-#: gui/pregame/SplashscreenHandler.js:58
-msgid "WARNING!"
-msgstr "AVISO!"
-
-#: gui/pregame/SplashscreenHandler.js:59
-#: gui/splashscreen/splashscreen.xml:(caption):30
-msgid "OK"
-msgstr "OK"
-
-#: gui/pregame/SplashscreenHandler.js:59
-msgid "Read More"
-msgstr "Ler mais"
 
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
@@ -1846,33 +1816,33 @@ msgstr "Tens a certeza de que queres eliminar a repetição permanentemente?"
 msgid "Delete replay"
 msgstr "Apagar repetição"
 
-#: gui/replaymenu/replay_filters.js:51
+#: gui/replaymenu/replay_filters.js:52
 msgctxt "datetime"
 msgid "Any"
 msgstr "Qualquer"
 
-#: gui/replaymenu/replay_filters.js:67
+#: gui/replaymenu/replay_filters.js:68
 msgctxt "map size"
 msgid "Any"
 msgstr "Qualquer"
 
-#: gui/replaymenu/replay_filters.js:83
+#: gui/replaymenu/replay_filters.js:84
 msgctxt "map name"
 msgid "Any"
 msgstr "Qualquer"
 
-#: gui/replaymenu/replay_filters.js:99
+#: gui/replaymenu/replay_filters.js:100
 msgctxt "population capacity"
 msgid "Any"
 msgstr "Qualquer"
 
-#: gui/replaymenu/replay_filters.js:118
+#: gui/replaymenu/replay_filters.js:119
 msgctxt "duration"
 msgid "Any"
 msgstr "Qualquer"
 
 #. Translation: Shorter duration than max minutes.
-#: gui/replaymenu/replay_filters.js:122
+#: gui/replaymenu/replay_filters.js:123
 #, javascript-format
 msgctxt "duration filter"
 msgid "< %(max)s min"
@@ -1881,7 +1851,7 @@ msgstr[0] "< %(max)s minutos"
 msgstr[1] "< %(max)s minutos"
 
 #. Translation: Longer duration than min minutes.
-#: gui/replaymenu/replay_filters.js:126
+#: gui/replaymenu/replay_filters.js:127
 #, javascript-format
 msgctxt "duration filter"
 msgid "> %(min)s min"
@@ -1890,29 +1860,29 @@ msgstr[0] "> %(min)s minuto"
 msgstr[1] "> %(min)s minutos"
 
 #. Translation: Duration between min and max minutes.
-#: gui/replaymenu/replay_filters.js:129
+#: gui/replaymenu/replay_filters.js:130
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
 msgstr "%(min)s - %(max)s minutos"
 
-#: gui/replaymenu/replay_filters.js:143
+#: gui/replaymenu/replay_filters.js:144
 msgid "Single-player and multiplayer"
 msgstr ""
 
-#: gui/replaymenu/replay_filters.js:156
+#: gui/replaymenu/replay_filters.js:157
 msgid "Any Victory Condition"
 msgstr "Qualquer condição de vitória"
 
-#: gui/replaymenu/replay_filters.js:169
+#: gui/replaymenu/replay_filters.js:170
 msgid "Rated and unrated games"
 msgstr "Ambos"
 
-#: gui/replaymenu/replay_filters.js:169
+#: gui/replaymenu/replay_filters.js:170
 msgid "Rated games"
 msgstr "Jogos classificados"
 
-#: gui/replaymenu/replay_filters.js:169
+#: gui/replaymenu/replay_filters.js:170
 msgid "Unrated games"
 msgstr "Jogos não classificados"
 
@@ -2470,6 +2440,10 @@ msgstr "Mostrar novamente esta mensagem no futuro"
 #: gui/splashscreen/splashscreen.xml:(caption):25
 msgid "Known Issues (web)"
 msgstr "Problemas conhecidos (web)"
+
+#: gui/splashscreen/splashscreen.xml:(caption):30
+msgid "OK"
+msgstr "OK"
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"

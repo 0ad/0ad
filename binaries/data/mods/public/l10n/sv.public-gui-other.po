@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-09-18 17:16+0000\n"
+"POT-Creation-Date: 2020-10-26 08:30+0000\n"
+"PO-Revision-Date: 2020-10-26 17:17+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -1410,7 +1410,7 @@ msgstr "Civilisationsöverblick"
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Läs om civilisationerna som är med i 0 A. D."
 
-#: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:143
+#: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
 msgstr "Enspelarläge"
 
@@ -1448,7 +1448,7 @@ msgstr "Återuppspelningar"
 msgid "Playback previous games."
 msgstr "Återuppspela tidigare spel."
 
-#: gui/pregame/MainMenuItems.js:88 gui/replaymenu/replay_filters.js:143
+#: gui/pregame/MainMenuItems.js:88 gui/replaymenu/replay_filters.js:144
 msgid "Multiplayer"
 msgstr "Flera spelare"
 
@@ -1631,36 +1631,6 @@ msgstr "Donera"
 #: gui/pregame/ProjectInformation.js:58
 msgid "Help with the project expenses by donating."
 msgstr "Hjälp med projektets utgifter genom att donera."
-
-#: gui/pregame/SplashscreenHandler.js:49
-#, javascript-format
-msgid ""
-"%(warning)s You appear to be using non-shader (fixed function) graphics. "
-"This option will be removed in a future 0 A.D. release, to allow for more "
-"advanced graphics features. We advise upgrading your graphics card to a more"
-" recent, shader-compatible model."
-msgstr "%(warning)s Du verkar använda grafik utan shaders (fixed function). Denna inställning kommer att tas bort i en framtida 0 A.D. version, för att möjliggöra mer avancerade grafikfunktioner. Vi rekommenderar att du uppgraderar ditt grafikkort till en nyare, shaderkompatibel modell."
-
-#. Translation: This is the second paragraph of a warning. The
-#. warning explains that the user is using “non-shader“ graphics,
-#. and that in the future this will not be supported by the game, so
-#. the user will need a better graphics card.
-#: gui/pregame/SplashscreenHandler.js:57
-msgid "Please press \"Read More\" for more information or \"OK\" to continue."
-msgstr "Var snäll och klicka på \"Läs mer\" för mer information eller \"Ok\" för att fortsätta."
-
-#: gui/pregame/SplashscreenHandler.js:58
-msgid "WARNING!"
-msgstr "VARNING!"
-
-#: gui/pregame/SplashscreenHandler.js:59
-#: gui/splashscreen/splashscreen.xml:(caption):30
-msgid "OK"
-msgstr "OK"
-
-#: gui/pregame/SplashscreenHandler.js:59
-msgid "Read More"
-msgstr "Läs mer"
 
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
@@ -1851,33 +1821,33 @@ msgstr "Är du säker att du vill ta bort denna återuppspelning permanent?"
 msgid "Delete replay"
 msgstr "Ta bort återuppspelningen"
 
-#: gui/replaymenu/replay_filters.js:51
+#: gui/replaymenu/replay_filters.js:52
 msgctxt "datetime"
 msgid "Any"
 msgstr "Alla "
 
-#: gui/replaymenu/replay_filters.js:67
+#: gui/replaymenu/replay_filters.js:68
 msgctxt "map size"
 msgid "Any"
 msgstr "Alla"
 
-#: gui/replaymenu/replay_filters.js:83
+#: gui/replaymenu/replay_filters.js:84
 msgctxt "map name"
 msgid "Any"
 msgstr "Alla"
 
-#: gui/replaymenu/replay_filters.js:99
+#: gui/replaymenu/replay_filters.js:100
 msgctxt "population capacity"
 msgid "Any"
 msgstr "Alla"
 
-#: gui/replaymenu/replay_filters.js:118
+#: gui/replaymenu/replay_filters.js:119
 msgctxt "duration"
 msgid "Any"
 msgstr "Alla"
 
 #. Translation: Shorter duration than max minutes.
-#: gui/replaymenu/replay_filters.js:122
+#: gui/replaymenu/replay_filters.js:123
 #, javascript-format
 msgctxt "duration filter"
 msgid "< %(max)s min"
@@ -1886,7 +1856,7 @@ msgstr[0] "< %(max)s min"
 msgstr[1] "< %(max)s min"
 
 #. Translation: Longer duration than min minutes.
-#: gui/replaymenu/replay_filters.js:126
+#: gui/replaymenu/replay_filters.js:127
 #, javascript-format
 msgctxt "duration filter"
 msgid "> %(min)s min"
@@ -1895,29 +1865,29 @@ msgstr[0] "> %(min)s min"
 msgstr[1] "> %(min)s min"
 
 #. Translation: Duration between min and max minutes.
-#: gui/replaymenu/replay_filters.js:129
+#: gui/replaymenu/replay_filters.js:130
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
 msgstr "%(min)s - %(max)s min"
 
-#: gui/replaymenu/replay_filters.js:143
+#: gui/replaymenu/replay_filters.js:144
 msgid "Single-player and multiplayer"
 msgstr "En- och flera spelare"
 
-#: gui/replaymenu/replay_filters.js:156
+#: gui/replaymenu/replay_filters.js:157
 msgid "Any Victory Condition"
 msgstr "Alla segervillkor"
 
-#: gui/replaymenu/replay_filters.js:169
+#: gui/replaymenu/replay_filters.js:170
 msgid "Rated and unrated games"
 msgstr "Värderade och icke-värderade spel"
 
-#: gui/replaymenu/replay_filters.js:169
+#: gui/replaymenu/replay_filters.js:170
 msgid "Rated games"
 msgstr "Värderade spel"
 
-#: gui/replaymenu/replay_filters.js:169
+#: gui/replaymenu/replay_filters.js:170
 msgid "Unrated games"
 msgstr "Icke-värderade spel"
 
@@ -2475,6 +2445,10 @@ msgstr "Visa detta meddelande i framtiden"
 #: gui/splashscreen/splashscreen.xml:(caption):25
 msgid "Known Issues (web)"
 msgstr "Kända fel (webb)"
+
+#: gui/splashscreen/splashscreen.xml:(caption):30
+msgid "OK"
+msgstr "OK"
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
