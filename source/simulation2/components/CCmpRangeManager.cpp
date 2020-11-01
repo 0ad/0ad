@@ -834,7 +834,7 @@ public:
 		m_LosTilesPerSide = (m_TerrainVerticesPerSide - 1)/LOS_TILES_RATIO;
 
 		for (size_t player_id = 0; player_id < m_LosPlayerCounts.size(); ++player_id)
-			m_LosPlayerCounts[player_id].reset();
+			m_LosPlayerCounts[player_id].clear();
 
 		m_ExploredVertices.clear();
 		m_ExploredVertices.resize(MAX_LOS_PLAYER_ID+1, 0);
