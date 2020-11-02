@@ -5,6 +5,7 @@
 # Translators:
 # Charles Yang <mryang@minelandcn.com>, 2018
 # Christian Xia <wood_elf@126.com>, 2016
+# green flute, 2020
 # helinb <1696060289@qq.com>, 2015
 # Jason Chen <wonton.cc@gmail.com>, 2017
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
@@ -26,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-10-26 08:30+0000\n"
-"PO-Revision-Date: 2020-10-26 17:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-10-31 08:43+0000\n"
+"Last-Translator: green flute\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2451,7 +2452,7 @@ msgstr "类型: "
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
-msgstr ""
+msgstr "按团队分组"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
@@ -2498,11 +2499,11 @@ msgstr "音效总监"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
-msgstr ""
+msgstr "首席作曲"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
-msgstr ""
+msgstr "音频管理员"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
@@ -2670,7 +2671,7 @@ msgstr "译者"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "你希望在单人过关游戏中被如何称呼"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
@@ -2678,7 +2679,7 @@ msgstr "玩家名昵称( 单人模式 )"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr ""
+msgstr "你希望在多人过关游戏中被如何称呼（大厅除外）"
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
@@ -2836,7 +2837,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
-msgstr ""
+msgstr "在边缘减少反锯齿效果"
 
 #: gui/options/options.json[1].options[4].label
 msgid "Anti-Aliasing"
@@ -2856,7 +2857,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Reduce blurry effects."
-msgstr ""
+msgstr "减少模糊效果"
 
 #: gui/options/options.json[1].options[5].label
 msgid "Sharpening"
@@ -2868,7 +2869,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[6].label
 msgid "Sharpness factor"
-msgstr ""
+msgstr "锐化因子"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -3468,7 +3469,7 @@ msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
-msgstr ""
+msgstr "单位与建筑可以同时隶属于多个控制组。这在需要既能分别控制不同的部队，又能同时控制所有的部队的情况下非常有用。"
 
 #: gui/options/options.json[5].options[19].list[1].label
 msgid "Multiple"
