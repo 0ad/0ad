@@ -1135,6 +1135,7 @@ public:
 
 /*static*/ CShaderProgram* CShaderProgram::ConstructFFP(const std::string& id, const CShaderDefines& defines)
 {
+	LOGWARNING("CShaderProgram::ConstructFFP: '%s': fixed pipeline is going to be removed soon, don't use its programs", id.c_str());
 	if (id == "dummy")
 		return new CShaderProgramFFP_Dummy();
 	if (id == "overlayline")
