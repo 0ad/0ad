@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Bart <b.anthonisse@gmail.com>, 2020
 # Bart Groeneveld, 2017
 # bb <b.jansen5@students.uu.nl>, 2020
 # bb <b.jansen5@students.uu.nl>, 2018
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-06 07:17+0000\n"
-"PO-Revision-Date: 2020-08-29 11:38+0000\n"
-"Last-Translator: Freagarach . <freagarach@gmail.com>\n"
+"PO-Revision-Date: 2020-11-01 20:29+0000\n"
+"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,7 +65,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr ""
+msgstr "Met Alt + Enter kun je wisselen tussen volledig scherm en vensterweergave. In vensterweergave kan je de venstergrootte aanpassen. Als het spel te traag ia, kan je een aantal instellingen aanpassen in het Opties venster. Schakel bijvoorbeeld de \"HQ water effect\" en \"Schaduwen\" opties uit."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -76,7 +77,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr ""
+msgstr "De bediening van het spel en het spelverloop volgen de gebruikelijke manieren van het RTS genre. Er is momenteel nog een groot aantal ontbrekende functies en onevenwichtig AI gedrag – u zult waarschijnlijk tot een bèta release moeten wachten voordat het echt goed zal werken."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls:"
@@ -88,11 +89,11 @@ msgstr "• Linkermuisknop om eenheden te selecteren"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr ""
+msgstr "• Links slepen om een groep eenheden te selecteren."
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr ""
+msgstr "• Rechts klikken om eenheden een opdracht te geven"
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
@@ -100,19 +101,19 @@ msgstr "• Pijltjestoetsen of WASD om de camera te bewegen"
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr ""
+msgstr "• Ctrl + pijltjes toetsen of shift + muiswiel om de camera te roteren"
 
 #: gui/manual/intro.txt:16
 msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
-msgstr ""
+msgstr "• Muiswiel of \"+\" en \"-\" toetsen om te zoomen"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr ""
+msgstr "Het hoofdmenu geeft toegang tot twee spelmodes:"
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -120,13 +121,13 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Singleplayer[font=\"serif-14\"] – Speel een zandbakspel tegen één of meerdere AI tegenstanders. De AI (Petra) is in ontwikkeling en bevat dus mogelijk niet alle nieuwe eigenschappen in het spel. Maar je kan er prima mee of tegen spelen."
 
 #: gui/manual/intro.txt:21
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Speel tegen menselijke tegenstanders over het internet."
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -134,15 +135,15 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr ""
+msgstr "Om een multiplayer spel te starten moet één speler de \"Host spel\" optie selecteren. Het spel gebruikt UDP poort 20595, dus moet de host zijn / haar NAT, firewall enz. configureren om dit toe te staan. Andere spelers kunnen dan \"Join spel\" selecteren en het IP adres van de host invoeren."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Spel instellingen[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr ""
+msgstr "In een multiplayer spel kan alleen de host de instellingen wijzigen."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -173,7 +174,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "Daarna kunnen de kaarten verder gefilterd worden. De standaard kaarten zijn gewone speelbare kaarten. Zeekaarten zijn kaarten waar niet alle tegenstanders over het land bereikt kunnen worden, en demokaarten zijn kaarten die gebruikt worden in de ontwikkeling van het spel om functionaliteit uit te testen (deze zijn meestal niet speelbaar). De “Alle kaarten” filter toont alle kaarten in één lijst."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -182,243 +183,243 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr ""
+msgstr "Als laatste kan je de instellingen van het spel wijzigen. Voor willekeurige kaarten is dit onder andere het aantal spelers en de grootte van de kaart. Voor scenario's kan je alleen selecteren wie welke beschaving speelt (en dus bijvoorbeeld waar op de kaart je begint). Je kan kiezen voor een menselijke speler, de AI, of geen speler (de tegenstander zal dan inactief zijn)."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr ""
+msgstr "Als je klaar bent om te spelen, klik op de “Start spel” knop."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Overal in het programma[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:41
 msgid ""
 "  Alt + F4 – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr "  Alt + F4 – Sluit het spel af zonder bevestigingsdialoog"
 
 #: gui/manual/intro.txt:42
 msgid "  Alt + Enter (Return) – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "  Alt + Enter (Return) – Wissel tussen fullscreen en vensterweergave"
 
 #: gui/manual/intro.txt:43
 msgid "  ~ or F9 – Toggle console"
-msgstr ""
+msgstr "  ~ or F9 – Toon/verberg console"
 
 #: gui/manual/intro.txt:44
 msgid "  Alt + F – Toggle frame counter (FPS)"
-msgstr ""
+msgstr "  Alt + F – Toon/verberg frame teller (FPS)"
 
 #: gui/manual/intro.txt:45
 msgid ""
 "  F11 – Toggle real-time profiler (cycles through the displays of "
 "information)"
-msgstr ""
+msgstr "  F11 – Toon/verberg real-time profiler (blader door de verschillende informatieweergaven)"
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
-msgstr ""
+msgstr "  Shift + F11 – Sla de huidige profieldata op in “logs/profile.txt”"
 
 #: gui/manual/intro.txt:47
 msgid ""
 "  F2 – Take screenshot (in .png format, location is displayed in the top "
 "left of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr ""
+msgstr "  F2 – Maak een schermafbeelding (in .png formaat, de locatie wordt weergegeven in de linker bovenhoek nadat het bestand is opgeslagen. De locatie kan ook gevonden worden in de console of de logs)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, "
 "location is displayed in the top left of the GUI after the file has been "
 "saved, and can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "  Shift + F2 – Maak een grote schermafbeelding (6400 x 4800 pixels in .bmp formaat. De locatie wordt weergegeven in de linker bovenhoek nadat het bestand is opgeslagen. De locatie kan ook gevonden worden in de console of de logs)"
 
 #: gui/manual/intro.txt:49
 msgid "  Tab, Alt + S – Switch to the next tab"
-msgstr ""
+msgstr "  Tab, Alt + S – Ga naar het volgende tabblad"
 
 #: gui/manual/intro.txt:50
 msgid "  Shift + Tab, Alt + W – Switch to the previous tab"
-msgstr ""
+msgstr "  Shift + Tab, Alt + W – Ga naar het vorige tabblad."
 
 #: gui/manual/intro.txt:52
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Spel instellingen[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:53
 msgid ""
 "  Double Left Click \\[on unit] – Select all of your units of the same kind "
 "on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "  Dubbel klikken \\[op een eenheid] – Selecteer alle eenheden van dezelfde soort op het scherm (zelfs als ze verschillende rangen hebben)"
 
 #: gui/manual/intro.txt:54
 msgid ""
 "  Triple Left Click \\[on unit] – Select all of your units of the same kind "
 "and the same rank on the screen"
-msgstr ""
+msgstr "  Driedubbelklik \\[op een eenheid] – Selecteer alle eenheden van dezelfde soort en gelijke rang op het scherm"
 
 #: gui/manual/intro.txt:55
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "  Alt + dubbel klikken \\[op een eenheid] – Selecteer alle eenheden van dezelfde soort op de gehele kaart (zelfs als ze verschillende rangen hebben)"
 
 #: gui/manual/intro.txt:56
 msgid ""
 "  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
 "kind and rank on the entire map"
-msgstr ""
+msgstr "  Alt + driedubbelklikken \\[op een eenheid] – Selecteer alle eenheden van dezelfde soort en gelijke rang op de gehele kaart"
 
 #: gui/manual/intro.txt:57
 msgid "  Shift + F5 – Quicksave"
-msgstr ""
+msgstr "  Shift + F5 – Snel opslaan"
 
 #: gui/manual/intro.txt:58
 msgid "  Shift + F8 – Quickload"
-msgstr ""
+msgstr "  Shift + F8 – Snel laden"
 
 #: gui/manual/intro.txt:59
 msgid "  F10 – Toggle menu"
-msgstr ""
+msgstr "  F10 – Toon/verberg het menu"
 
 #: gui/manual/intro.txt:60
 msgid "  F12 – Toggle time elapsed counter"
-msgstr ""
+msgstr "  F12 – Toon/verberg speltijd"
 
 #: gui/manual/intro.txt:61
 msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "  Esc – Sluit alle dialogen (chat, menu) of geef geselecteerde eenheden vrij"
 
 #: gui/manual/intro.txt:62
 msgid "  Enter (Return) – Open chat or send message"
-msgstr ""
+msgstr "  Enter (Return) – Open chat of stuur bericht"
 
 #: gui/manual/intro.txt:63
 msgid "  T – Send team chat"
-msgstr ""
+msgstr "  T – Stuur teamchat"
 
 #: gui/manual/intro.txt:64
 msgid "  L – Chat with the previously selected private chat partner"
-msgstr ""
+msgstr "  L – Chat met de laatst geselecteerde privé chat partner"
 
 #: gui/manual/intro.txt:65
 msgid "  Pause – Pause or resume the game"
-msgstr ""
+msgstr "  Pause – Pauzeer of hervat het spel"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "  Delete – Delete currently selected unit(s)/structure(s), ask for "
 "confirmation"
-msgstr ""
+msgstr "  Delete – Vernietig de geselecteerde eenheid(eenheden)/gebouw(en), met bevestiging"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "  Shift + Delete – Immediately delete currently selected "
 "unit(s)/structure(s), without asking for confirmation"
-msgstr ""
+msgstr "  Shift + Delete – Vernietig de geselecteerde eenheid(eenheden)/gebouw(en), zonder bevestiging"
 
 #: gui/manual/intro.txt:68
 msgid "  / (Slash) – Select idle fighter"
-msgstr ""
+msgstr "  / (Slash) – Selecteer inactieve soldaat"
 
 #: gui/manual/intro.txt:69
 msgid "  Shift + / (Slash) – Add idle fighter to selection"
-msgstr ""
+msgstr "  Shift + / (Slash) – Voeg inactieve soldaat toe aan selectie"
 
 #: gui/manual/intro.txt:70
 msgid "  Alt + / (Slash) – Select all idle fighters"
-msgstr ""
+msgstr "  Alt + / (Slash) – Selecteer alle inactieve soldaten"
 
 #: gui/manual/intro.txt:71
 msgid "  . (Period) – Select idle worker (including citizen-soldiers)"
-msgstr ""
+msgstr "  . (Punt) – Selecteer inactieve werker (inclusief burgersoldaten)"
 
 #: gui/manual/intro.txt:72
 msgid ""
 "  Shift + . (Period) – Add idle worker to selection (including citizen-"
 "soldiers)"
-msgstr ""
+msgstr "  Shift + . (Punt) – Voeg inactieve werker toe aan selectie (inclusief burgersoldaten)"
 
 #: gui/manual/intro.txt:73
 msgid ""
 "  Alt + . (Period) – Select all idle workers (including citizen-soldiers)"
-msgstr ""
+msgstr "  Alt + . (Punt) – Selecteer alle inactieve werkers (inclusief burgersoldaten)"
 
 #: gui/manual/intro.txt:74
 msgid "  \\\\ (Backslash) – Select idle unit"
-msgstr ""
+msgstr "  \\\\ (Backslash) – Selecteer inactieve eenheid"
 
 #: gui/manual/intro.txt:75
 msgid "  Shift + \\\\ (Backslash) – Add idle unit to selection"
-msgstr ""
+msgstr "  Shift + \\\\ (Backslash) – Voeg inactieve eenheid toe aan selectie"
 
 #: gui/manual/intro.txt:76
 msgid "  Alt + \\\\ (Backslash) – Select all idle units"
-msgstr ""
+msgstr "  Alt + \\\\ (Backslash) – Selecteer alle inactieve eenheden"
 
 #: gui/manual/intro.txt:77
 msgid "  H – Stop (halt) the currently selected units"
-msgstr ""
+msgstr "  H – Stop (halt) de activiteit van de geselecteerde eenheden"
 
 #: gui/manual/intro.txt:78
 msgid "  Y – The unit will go back to work"
-msgstr ""
+msgstr "  Y – De eenheid gaat verder met de activiteit"
 
 #: gui/manual/intro.txt:79
 msgid "  U – Unload the garrisoned units of the selected structure(s)"
-msgstr ""
+msgstr "  U – Stuur de eenheden van het geselecteerde gebouw naar buiten"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from "
 "the selected unit(s)/structure(s)"
-msgstr ""
+msgstr "  Ctrl + 1 (tot en met Ctrl + 0) – Stel controlgroep 1 (t/m 0) in met de geselecteerde eenheid (eenheden)/gebouw(en)"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  1 (and so on up to 0) – Select the unit(s)/structure(s) in control group 1"
 " (to 0)"
-msgstr ""
+msgstr "  1 (tot en met 0) – Selecteer de eenheden in controlegroep 1 (t/m 0)"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr ""
+msgstr "  Shift + 1 (t/m 0) – Voeg de geselecteerde eenheid (eenheden) / gebouw(en) toe aan controlegroep 1 (t/m 0)"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "  Ctrl + F5 (and so on up to F8) – Mark the current camera position, for "
 "jumping back to later"
-msgstr ""
+msgstr "  Ctrl + F5 (tot en met F8) – Sla de huidige camerapositie op, om later naar terug te keren"
 
 #: gui/manual/intro.txt:84
 msgid ""
 "  F5 (and so on up to F8) – Move the camera to a marked position. Jump back "
 "to the last location if the camera is already over the marked position"
-msgstr ""
+msgstr "  F5 (tot en met F8) – Verplaats de camera naar de opgeslagen positie. Ga naar de vorige positie als de camera al op de opgeslagen positie is"
 
 #: gui/manual/intro.txt:85
 msgid ""
 "  Z, X, C, V, B, N, M – With training structure selected. Add the 1st, 2nd, "
 "… unit shown to the training queue for all the selected structures"
-msgstr ""
+msgstr "  Z, X, C, V, B, N, M – Met een rekruteringsgebouw geselecteerd, voeg de 1ste, 2de, ... getoonde eenheid toe aan de rekruteerwachtrij voor alle geselecteerde gebouwen"
 
 #: gui/manual/intro.txt:86
 msgid ""
 "  PageUp with unit(s) selected – Highlight the unit(s)/structure(s) guarded "
 "by the selection"
-msgstr ""
+msgstr "  PageUp met geselecteerde eenheid(eenheden) – Toon welke eenheid (eenheden) / gebouw(en) bewaakt worden door de geselecteerde eenheden"
 
 #: gui/manual/intro.txt:87
 msgid ""
 "  PageDown with unit(s)/structure(s) selected – Highlight the unit(s) "
 "guarding the selection"
-msgstr ""
+msgstr "  PageDown met geselecteerde eenheid (eenheden) – Toon de eenheden die de selectie bewaken"
 
 #: gui/manual/intro.txt:88
 msgid ""
@@ -471,11 +472,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:101
 msgid "  P + Right Click – Patrol"
-msgstr ""
+msgstr "  P + Right Click – Patrouilleer"
 
 #: gui/manual/intro.txt:102
 msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
-msgstr ""
+msgstr "  Shift + Right Click – Voeg een order toe aan de wachtrij"
 
 #: gui/manual/intro.txt:103
 msgid ""
@@ -675,7 +676,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:145
 msgid "  R – Reset camera zoom and orientation"
-msgstr ""
+msgstr "  R – Herstel camera zoom en standpunt"
 
 #: gui/manual/intro.txt:146
 msgid "  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)"

@@ -24,6 +24,7 @@
 # j4nsen <enrico.meneguzzi@gmail.com>, 2013
 # Lorenzo Frascari <frascarilorenzo@gmail.com>, 2018
 # 8c0e0bca12cfd3843151df601ef0900c_46d83f5 <98a739ad5bda1bca1f0e6acbd649a639_124906>, 2013
+# Matteo Cagliari <matteocagliari5@gmail.com>, 2020
 # mattia_b89 <mattia.b89@gmail.com>, 2018
 # Me Lazzi, 2014
 # c5f3de31f3a2c4018f39966fa6563659_5b320d0, 2014-2017
@@ -38,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-28 07:09+0000\n"
-"PO-Revision-Date: 2020-09-01 21:11+0000\n"
-"Last-Translator: Pietro Zaccherini <pietrozak@libero.it>\n"
+"PO-Revision-Date: 2020-11-01 21:51+0000\n"
+"Last-Translator: Matteo Cagliari <matteocagliari5@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +57,7 @@ msgstr "Ateniesi"
 #: simulation/data/civs/mace.jsonCivBonuses[0].Description
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "Strutture +10% vita e +10% punti cattura"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 #: simulation/data/civs/mace.jsonCivBonuses[0].Name
@@ -466,7 +467,7 @@ msgstr "Cartaginesi"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "Mura +100% tempo di costruzione, +100% costo in pietra e +200% vita"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -634,7 +635,7 @@ msgstr "Ambasciata celtica"
 
 #: simulation/data/civs/cart.jsonStructures[1].Special
 msgid "Train Celtic Mercenaries."
-msgstr ""
+msgstr "Addestra mercenari celti"
 
 #: simulation/data/civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
@@ -646,7 +647,7 @@ msgstr "Ambasciata Iberica"
 
 #: simulation/data/civs/cart.jsonStructures[2].Special
 msgid "Train Iberian Mercenaries."
-msgstr ""
+msgstr "Addestra mercenari iberici"
 
 #: simulation/data/civs/cart.jsonStructures[2].History
 msgid ""
@@ -659,14 +660,14 @@ msgstr "Ambasciata Italica"
 
 #: simulation/data/civs/cart.jsonStructures[3].Special
 msgid "Train Italic Mercenaries."
-msgstr ""
+msgstr "Addestra mercenari italici"
 
 #: simulation/data/civs/cart.jsonStructures[3].History
 msgid ""
 "When Hannibal invaded Italy and defeated the Romans in a series of battles, "
 "many of the peoples subject to Rome, including the Greeks and Samnites, "
 "revolted and joined the Carthaginian cause."
-msgstr ""
+msgstr "Quando Annibale invase l'Italia e sconfisse i Romani in una serie di battaglie, molti dei popoli soggetti a Roma, tra cui i Greci e i Sanniti, si ribellarono e si unirono alla causa cartaginese"
 
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
@@ -709,17 +710,17 @@ msgstr "La religione celtica e il druidismo ispirivano la loro mentalità guerri
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Forges −15% technology resource costs and research time."
-msgstr ""
+msgstr "Fucine -15% costi di risorse tecnologiche e tempo di ricerca"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Products from Gaul"
-msgstr ""
+msgstr "Prodotti dei Galli"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Gauls produced and exported swords and scabbards, woolen and leather "
 "products, and other arms."
-msgstr ""
+msgstr "I Galli producevano ed esportavano spade e foderi, prodotti in lana e in cuoio e arltre armi"
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -770,13 +771,13 @@ msgstr "Lavoratori +15% velocità raccolta grano."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Harvesting Machine"
-msgstr ""
+msgstr "Mietitrice"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr ""
+msgstr "I Galli inventarono una macchina per la mietitura che rese più facile la raccolta del grano"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -1130,7 +1131,7 @@ msgstr "Amanishakheto"
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "Arcieri -10% tempo di addestramento, +8% distanza d'attacco e -10% raggio attacco a distanza"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
@@ -1142,7 +1143,7 @@ msgstr "Tradizione Arciera"
 msgid ""
 "The Kushites had a tradition of fine archery and a penchant for using massed"
 " archers in battle."
-msgstr ""
+msgstr "I Kushiti avevano una tradizione di arcieri sopraffini e una predilezione per l'utilizzo di moltitudini di arcieri in battaglia "
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "Monumental Architecture"
@@ -1151,7 +1152,7 @@ msgstr "Architettura Monumentale"
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "Strutture civili +20% tempo di costruzione, +20% vita e +20% punti cattura."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Description
 msgid "Train elite rank healers."
@@ -1321,7 +1322,7 @@ msgstr "Meleagro"
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Description
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Centri città +100% vita e punti cattura, raddoppia le frecce"
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
@@ -1461,7 +1462,7 @@ msgstr "L'impero Maurya comprendeva decine di regni precedentemente indipendenti
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "Elefanti -30% tempo di addestramento"
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
 msgid "Elephant Tradition"
@@ -1473,7 +1474,7 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr ""
+msgstr "L'India è la terra degli elefanti. L'uso di pachidermi in guerra nacque in India e proseguì per millenni, e il paese diventò anche la prima fonte di rifornimento del Mediterraneo orientale. I re indiani erano in grado di schierare un'enorme quantità di elefanti da battaglia"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid ""
@@ -1532,7 +1533,7 @@ msgstr "Brihadratha Maurya"
 msgid ""
 "The Indian peoples had a tradition of fine archery and a penchant for using "
 "massed archers in battle."
-msgstr ""
+msgstr "Gli Indiani avevano una tradizione di arcieri sopraffini e una predilezione per l'utilizzo di moltitudini di arcieri in battaglia."
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -1556,11 +1557,11 @@ msgstr "Indiani Maurya"
 
 #: simulation/data/civs/maur.jsonStructures[0].Name
 msgid "Elephant Stable"
-msgstr ""
+msgstr "Stalla degli elefanti"
 
 #: simulation/data/civs/maur.jsonStructures[0].Special
 msgid "Train Elephants and research Elephant technologies."
-msgstr ""
+msgstr "Addestra elefanti e ricerca tecnologie per elefanti"
 
 #: simulation/data/civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
@@ -1679,7 +1680,7 @@ msgstr "Xsayarsa II"
 msgid ""
 "The Iranian peoples had a tradition of fine archery and a penchant for using"
 " massed archers in battle."
-msgstr ""
+msgstr "Gli Iraniani avevano una tradizione di arcieri sopraffini e una predilezione per l'utilizzo di moltitudini di arcieri in battaglia."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry."
@@ -1730,7 +1731,7 @@ msgstr "Immortali"
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "Gli Achemenidi diponevno di un potente esercito d'élite di 10.000 soldati chiamati Athanatoi (\"Immortali\") dagli scrittori greci."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
@@ -2522,7 +2523,7 @@ msgstr "Agesipoli I"
 msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers."
-msgstr ""
+msgstr "Le donne spartane non possono essere catturate e combatteranno tenacemente contro ogni aggressore."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"

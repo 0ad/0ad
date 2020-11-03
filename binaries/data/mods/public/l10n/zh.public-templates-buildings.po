@@ -9,6 +9,7 @@
 # chaofeng sun <449003613@qq.com>, 2020
 # Charles Yang <mryang@minelandcn.com>, 2018
 # Christian Xia <wood_elf@126.com>, 2016
+# green flute, 2020
 # helinb <1696060289@qq.com>, 2015
 # hiahoo lee (leaber) <zodiac8765@gmail.com>, 2014
 # hyln9 <hyln9@live.cn>, 2015
@@ -54,8 +55,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-09-27 02:09+0000\n"
-"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
+"PO-Revision-Date: 2020-10-30 22:43+0000\n"
+"Last-Translator: green flute\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -227,7 +228,7 @@ msgstr "警戒塔"
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
-msgstr "驻守步兵可增加箭矢数，需要猎杀洞来取消最小射程。 "
+msgstr "步兵驻军其中可增加箭矢数，需要“猎杀洞”技术来取消最小射程。 "
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:33
 msgid "SentryTower"
@@ -1416,7 +1417,7 @@ msgid ""
 "Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
 "archers recieve a range and armor bonus. Only archers can garrison. Needs "
 "the murder holes tech to protect its foot."
-msgstr ""
+msgstr "生命值更高的塔可以驻守高达16位射手。可见的射手驻军将获得射程和装甲加成。只能驻守射手。需要“猎杀洞”技术以取消最小射程。"
 
 #: simulation/templates/structures/maur_wall_gate.xml:18
 msgid "Dwara"
@@ -1519,7 +1520,7 @@ msgstr "军营"
 
 #: simulation/templates/structures/pers_barracks.xml:6
 msgid "Train Infantry."
-msgstr ""
+msgstr "训练步兵"
 
 #: simulation/templates/structures/pers_civil_centre.xml:8
 msgid "Provincial Governor"
@@ -1565,7 +1566,7 @@ msgstr "研究科技，驻军增加箭矢数。"
 
 #: simulation/templates/structures/pers_hall.xml:23
 msgid "Gate of All Nations"
-msgstr ""
+msgstr "众国之门"
 
 #: simulation/templates/structures/pers_hall.xml:24
 msgid "Duvarθi Visadahyu"
@@ -1573,7 +1574,7 @@ msgstr "波斯大厅"
 
 #: simulation/templates/structures/pers_hall.xml:25
 msgid "Hall"
-msgstr ""
+msgstr "大厅"
 
 #: simulation/templates/structures/pers_house.xml:8
 msgid "Huvādā"
@@ -1645,7 +1646,7 @@ msgstr ""
 msgid ""
 "Train Champions and research technologies. Garrison Soldiers for additional "
 "arrows."
-msgstr "训练冠勇单位，研究对应科技。可驻守单位来增加射击箭支。"
+msgstr "训练冠勇单位，研发技术。可使士兵驻军其中以增加射击箭支数。"
 
 #: simulation/templates/structures/ptol_house.xml:19
 msgid ""
@@ -1661,7 +1662,7 @@ msgstr "灯塔"
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Reveal the "
 "shorelines over the entire map. Very large vision range."
-msgstr ""
+msgstr "可建造在自己，中立或结盟的玩家的领土上。会把整个地图范围内的海岸线都显示出来。拥有非常开阔的视野。"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:27
 #: simulation/templates/structures/ptol_lighthouse.xml:24
