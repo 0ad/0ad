@@ -3,6 +3,7 @@ PARAM sunColor = program.local[0];
 PARAM textureTransform = program.local[1];
 PARAM losTransform = program.local[2];
 PARAM shadowTransform[4] = { program.local[3..6] };
+PARAM sunDir = program.local[8];
 
 #if USE_FP_SHADOW && USE_SHADOW_PCF
   PARAM shadowScale = program.local[7];
@@ -23,7 +24,10 @@ DP4 result.position.w, state.matrix.mvp.row[3], position;
 
 // Diffuse factor is precomputed in vertex attribute
 // Scale diffuse to allow overbrightness (since result.color will be clamped to [0, 1])
-MUL lighting, vertex.color, 0.5;
+//
+DP3 lighting, -sunDir, vertex.normal;
+MAX lighting, 0.0, lighting; // DP3_SAT isn't available here.
+MUL lighting, lighting, 0.5;
 // Apply light color
 MUL result.color, lighting, sunColor;
 
@@ -51,7 +55,7 @@ MUL result.color, lighting, sunColor;
     DP4 shadowtc.x, shadowTransform[0], position;
     DP4 shadowtc.y, shadowTransform[1], position;
     MUL result.texcoord[2].xy, shadowtc, shadowScale;
-  #else  
+  #else
     DP4 result.texcoord[2].x, shadowTransform[0], position;
     DP4 result.texcoord[2].y, shadowTransform[1], position;
   #endif

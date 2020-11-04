@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -80,11 +80,9 @@ private:
 	struct SBaseVertex {
 		// vertex position
 		CVector3D m_Position;
-		// diffuse color from sunlight
-		SColor4ub m_DiffuseColor;
 		CVector3D m_Normal;
 		// pad to a power of two
-		u8 m_Padding[4];
+		u8 m_Padding[8];
 	};
 	cassert(sizeof(SBaseVertex) == 32);
 
@@ -99,15 +97,11 @@ private:
 	struct SBlendVertex {
 		// vertex position
 		CVector3D m_Position;
-		// diffuse color from sunlight
-		SColor4ub m_DiffuseColor;
 		// vertex uvs for alpha texture
 		float m_AlphaUVs[2];
 		CVector3D m_Normal;
-		// pad to a power of two
-		u8 m_Padding[28];
 	};
-	cassert(sizeof(SBlendVertex) == 64);
+	cassert(sizeof(SBlendVertex) == 32);
 
 	// Mixed Fancy/Simple water vertex description data structure
 	struct SWaterVertex {

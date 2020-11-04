@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -72,30 +72,6 @@ public:
 			color += m_SunColor * dot;
 
 		return color * 0.5f;
-	}
-
-	/**
-	 * Compute the diffuse sun lighting color on terrain, for rendering with CPU lighting.
-	 * To cope with sun overbrightness, the color is scaled by 0.5.
-	 *
-	 * @param normal normal vector (must have length 1)
-	 */
-	SColor4ub EvaluateTerrainDiffuseScaled(const CVector3D& normal) const
-	{
-		float dot = -normal.Dot(m_SunDir);
-		return ConvertRGBColorTo4ub(m_SunColor * dot * 0.5f);
-	}
-
-	/**
-	 * Compute the diffuse sun lighting factor on terrain, for rendering with shader lighting.
-	 *
-	 * @param normal normal vector (must have length 1)
-	 */
-	SColor4ub EvaluateTerrainDiffuseFactor(const CVector3D& normal) const
-	{
-		float dot = -normal.Dot(m_SunDir);
-		u8 c = static_cast<u8>(Clamp(dot * 255.f, 0.f, 255.f));
-		return SColor4ub(c, c, c, 255);
 	}
 
 	// Comparison operators

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -367,17 +367,13 @@ void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector
 
 	SBlendVertex dst;
 
-	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 	CVector3D normal;
-
-	bool cpuLighting = (g_RenderingOptions.GetRenderPath() == RenderPath::FIXED);
 
 	size_t index = blendVertices.size();
 
 	terrain->CalcPosition(gx, gz, dst.m_Position);
 	terrain->CalcNormal(gx, gz, normal);
 	dst.m_Normal = normal;
-	dst.m_DiffuseColor = cpuLighting ? lightEnv.EvaluateTerrainDiffuseScaled(normal) : lightEnv.EvaluateTerrainDiffuseFactor(normal);
 	dst.m_AlphaUVs[0] = vtx[0].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[0].m_AlphaUVs[1];
 	blendVertices.push_back(dst);
@@ -385,7 +381,6 @@ void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector
 	terrain->CalcPosition(gx + 1, gz, dst.m_Position);
 	terrain->CalcNormal(gx + 1, gz, normal);
 	dst.m_Normal = normal;
-	dst.m_DiffuseColor = cpuLighting ? lightEnv.EvaluateTerrainDiffuseScaled(normal) : lightEnv.EvaluateTerrainDiffuseFactor(normal);
 	dst.m_AlphaUVs[0] = vtx[1].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[1].m_AlphaUVs[1];
 	blendVertices.push_back(dst);
@@ -393,7 +388,6 @@ void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector
 	terrain->CalcPosition(gx + 1, gz + 1, dst.m_Position);
 	terrain->CalcNormal(gx + 1, gz + 1, normal);
 	dst.m_Normal = normal;
-	dst.m_DiffuseColor = cpuLighting ? lightEnv.EvaluateTerrainDiffuseScaled(normal) : lightEnv.EvaluateTerrainDiffuseFactor(normal);
 	dst.m_AlphaUVs[0] = vtx[2].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[2].m_AlphaUVs[1];
 	blendVertices.push_back(dst);
@@ -401,7 +395,6 @@ void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector
 	terrain->CalcPosition(gx, gz + 1, dst.m_Position);
 	terrain->CalcNormal(gx, gz + 1, normal);
 	dst.m_Normal = normal;
-	dst.m_DiffuseColor = cpuLighting ? lightEnv.EvaluateTerrainDiffuseScaled(normal) : lightEnv.EvaluateTerrainDiffuseFactor(normal);
 	dst.m_AlphaUVs[0] = vtx[3].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[3].m_AlphaUVs[1];
 	blendVertices.push_back(dst);
@@ -533,39 +526,32 @@ void CPatchRData::BuildVertices()
 	// create both vertices and lighting colors
 
 	// number of vertices in each direction in each patch
-	ssize_t vsize=PATCH_SIZE+1;
+	ssize_t vsize = PATCH_SIZE + 1;
 
 	std::vector<SBaseVertex> vertices;
-	vertices.resize(vsize*vsize);
+	vertices.resize(vsize * vsize);
 
 	// get index of this patch
-	ssize_t px=m_Patch->m_X;
-	ssize_t pz=m_Patch->m_Z;
+	ssize_t px = m_Patch->m_X;
+	ssize_t pz = m_Patch->m_Z;
 
-	CTerrain* terrain=m_Patch->m_Parent;
-	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
-
-	bool cpuLighting = (g_RenderingOptions.GetRenderPath() == RenderPath::FIXED);
+	CTerrain* terrain = m_Patch->m_Parent;
 
 	// build vertices
-	for (ssize_t j=0;j<vsize;j++) {
-		for (ssize_t i=0;i<vsize;i++) {
-			ssize_t ix=px*PATCH_SIZE+i;
-			ssize_t iz=pz*PATCH_SIZE+j;
-			ssize_t v=(j*vsize)+i;
+	for (ssize_t j = 0; j < vsize; ++j)
+	{
+		for (ssize_t i = 0; i < vsize; ++i)
+		{
+			ssize_t ix = px * PATCH_SIZE + i;
+			ssize_t iz = pz * PATCH_SIZE + j;
+			ssize_t v = j * vsize + i;
 
 			// calculate vertex data
-			terrain->CalcPosition(ix,iz,vertices[v].m_Position);
+			terrain->CalcPosition(ix, iz, vertices[v].m_Position);
 
-			// Calculate diffuse lighting for this vertex
-			// Ambient is added by the lighting pass (since ambient is the same
-			// for all vertices, it need not be stored in the vertex structure)
 			CVector3D normal;
-			terrain->CalcNormal(ix,iz,normal);
-
+			terrain->CalcNormal(ix, iz, normal);
 			vertices[v].m_Normal = normal;
-
-			vertices[v].m_DiffuseColor = cpuLighting ? lightEnv.EvaluateTerrainDiffuseScaled(normal) : lightEnv.EvaluateTerrainDiffuseFactor(normal);
 		}
 	}
 
@@ -828,7 +814,6 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
 				GLsizei stride = sizeof(SBaseVertex);
 				SBaseVertex *base = (SBaseVertex *)itv->first->Bind();
 				shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
-				shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
 				shader->NormalPointer(GL_FLOAT, stride, &base->m_Normal[0]);
 				shader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, &base->m_Position[0]);
 
@@ -1067,7 +1052,6 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 					SBlendVertex *base = (SBlendVertex *)itv->first->Bind();
 
 					shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
-					shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
 					shader->NormalPointer(GL_FLOAT, stride, &base->m_Normal[0]);
 					shader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, &base->m_Position[0]);
 					shader->TexCoordPointer(GL_TEXTURE1, 2, GL_FLOAT, stride, &base->m_AlphaUVs[0]);
@@ -1143,7 +1127,7 @@ void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, const 
 
  	PROFILE_END("compute batches");
 
-	ENSURE(!(streamflags & ~(STREAM_POS|STREAM_COLOR|STREAM_POSTOUV0|STREAM_POSTOUV1)));
+	ENSURE(!(streamflags & ~(STREAM_POS|STREAM_POSTOUV0|STREAM_POSTOUV1)));
 
  	// Render each batch
  	for (VertexBufferBatches::iterator itv = batches.begin(); itv != batches.end(); ++itv)
@@ -1156,8 +1140,6 @@ void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, const 
 			shader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, &base->m_Position);
 		if (streamflags & STREAM_POSTOUV1)
 			shader->TexCoordPointer(GL_TEXTURE1, 3, GL_FLOAT, stride, &base->m_Position);
-		if (streamflags & STREAM_COLOR)
-			shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
 
 		shader->AssertPointersBound();
 

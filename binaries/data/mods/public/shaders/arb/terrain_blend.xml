@@ -9,8 +9,9 @@
         <uniform name="losTransform" loc="2" type="vec2"/>
         <uniform name="shadowTransform" loc="3" type="mat4"/>
         <uniform name="shadowScale" loc="7" type="vec4"/>
+        <uniform name="sunDir" loc="8" type="vec4"/>
         <stream name="pos"/>
-        <stream name="color"/>
+        <stream name="normal"/>
         <stream name="uv0"/>
         <stream name="uv1"/>
     </vertex>

@@ -320,7 +320,7 @@ void TerrainRenderer::RenderTerrainFixed(int cullGroup)
 
 	CLOSTexture& losTexture = g_Renderer.GetScene().GetLOSTexture();
 
-	int streamflags = STREAM_POS|STREAM_COLOR;
+	int streamflags = STREAM_POS;
 
 	pglActiveTextureARB(GL_TEXTURE0);
 	// We're not going to use a texture here, but we have to have a valid texture
