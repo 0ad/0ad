@@ -59,6 +59,25 @@ extern GameLoopState* g_AtlasGameLoop;
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // TerrainRenderer implementation
 
+namespace
+{
+
+CShaderProgramPtr GetDummyShader()
+{
+	const char* shaderName;
+	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
+	{
+		if (g_RenderingOptions.GetPreferGLSL())
+			shaderName = "glsl/dummy";
+		else
+			shaderName = "arb/dummy";
+	}
+	else
+		shaderName = "fixed:dummy";
+	return g_Renderer.GetShaderManager().LoadProgram(shaderName, CShaderDefines());
+}
+
+} // anonymous namespace
 
 /**
  * TerrainRenderer keeps track of which phase it is in, to detect
@@ -185,7 +204,7 @@ void TerrainRenderer::RenderTerrainFixed(int cullGroup)
 	if (visiblePatches.empty() && visibleDecals.empty())
 		return;
 
-	CShaderProgramPtr dummyShader = g_Renderer.GetShaderManager().LoadProgram("fixed:dummy", CShaderDefines());
+	CShaderProgramPtr dummyShader = GetDummyShader();
 	dummyShader->Bind();
 
 	// render the solid black sides of the map first
@@ -403,7 +422,7 @@ void TerrainRenderer::RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& text
 	glLoadMatrixf(&textureMatrix._11);
 	glMatrixMode(GL_MODELVIEW);
 
-	CShaderProgramPtr dummyShader = g_Renderer.GetShaderManager().LoadProgram("fixed:dummy", CShaderDefines());
+	CShaderProgramPtr dummyShader = GetDummyShader();
 	dummyShader->Bind();
 	CPatchRData::RenderStreams(visiblePatches, dummyShader, STREAM_POS|STREAM_POSTOUV0);
 	dummyShader->Unbind();
@@ -540,7 +559,7 @@ void TerrainRenderer::RenderPatches(int cullGroup)
 #if CONFIG2_GLES
 #warning TODO: implement TerrainRenderer::RenderPatches for GLES
 #else
-	CShaderProgramPtr dummyShader = g_Renderer.GetShaderManager().LoadProgram("fixed:dummy", CShaderDefines());
+	CShaderProgramPtr dummyShader = GetDummyShader();
 	dummyShader->Bind();
 
 	glEnableClientState(GL_VERTEX_ARRAY);
@@ -903,7 +922,7 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_ALPHA);
 
-	CShaderProgramPtr dummyShader = g_Renderer.GetShaderManager().LoadProgram("fixed:dummy", CShaderDefines());
+	CShaderProgramPtr dummyShader = GetDummyShader();
 	dummyShader->Bind();
 
 	glEnableClientState(GL_VERTEX_ARRAY);
