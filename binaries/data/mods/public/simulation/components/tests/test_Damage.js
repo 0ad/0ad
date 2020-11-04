@@ -1,5 +1,6 @@
 Engine.LoadHelperScript("Attacking.js");
 Engine.LoadHelperScript("Player.js");
+Engine.LoadHelperScript("Position.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/DelayedDamage.js");
 Engine.LoadComponentScript("interfaces/Health.js");

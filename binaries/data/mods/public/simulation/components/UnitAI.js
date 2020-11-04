@@ -363,7 +363,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		let cmpPassengerMotion = Engine.QueryInterface(this.order.data.target, IID_UnitMotion);
 		if (cmpPassengerMotion &&
 		        cmpPassengerMotion.IsTargetRangeReachable(this.entity, range.min, range.max) &&
-		        DistanceBetweenEntities(this.entity, this.order.data.target) < 200)
+		        PositionHelper.DistanceBetweenEntities(this.entity, this.order.data.target) < 200)
 			this.SetNextState("INDIVIDUAL.PICKUP.LOADING");
 		else
 			this.SetNextState("INDIVIDUAL.PICKUP.APPROACHING");
@@ -1716,7 +1716,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		"FLEEING": {
 			"enter": function() {
 				// We use the distance between the entities to account for ranged attacks
-				this.order.data.distanceToFlee = DistanceBetweenEntities(this.entity, this.order.data.target) + (+this.template.FleeDistance);
+				this.order.data.distanceToFlee = PositionHelper.DistanceBetweenEntities(this.entity, this.order.data.target) + (+this.template.FleeDistance);
 				let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 				// Use unit motion directly to ignore the visibility check. TODO: change this if we add LOS to fauna.
 				if (this.CheckTargetRangeExplicit(this.order.data.target, this.order.data.distanceToFlee, -1) ||
@@ -4831,7 +4831,7 @@ UnitAI.prototype.CheckTargetIsInVisionRange = function(target)
 		return false;
 
 	let range = cmpVision.GetRange();
-	let distance = DistanceBetweenEntities(this.entity, target);
+	let distance = PositionHelper.DistanceBetweenEntities(this.entity, target);
 
 	return distance < range;
 };
