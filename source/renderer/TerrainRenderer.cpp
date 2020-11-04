@@ -782,7 +782,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		m->fancyWaterShader->BindTexture(str_refractionMap, WaterMgr->m_RefractionTexture);
 	if (WaterMgr->m_WaterReflection)
 		m->fancyWaterShader->BindTexture(str_reflectionMap, WaterMgr->m_ReflectionTexture);
-	m->fancyWaterShader->BindTexture(str_losMap, losTexture.GetTextureSmooth());
+	m->fancyWaterShader->BindTexture(str_losTex, losTexture.GetTextureSmooth());
 
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 
@@ -888,7 +888,7 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 
 	waterSimpleShader->Bind();
 	waterSimpleShader->BindTexture(str_baseTex, WaterMgr->m_WaterTexture[curTex]);
-	waterSimpleShader->BindTexture(str_losMap, losTexture.GetTextureSmooth());
+	waterSimpleShader->BindTexture(str_losTex, losTexture.GetTextureSmooth());
 	waterSimpleShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
 	waterSimpleShader->Uniform(str_losMatrix, losTexture.GetTextureMatrix());
 	waterSimpleShader->Uniform(str_time, static_cast<float>(time));

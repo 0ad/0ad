@@ -8,7 +8,7 @@ uniform mat4 skyBoxRot;
 
 uniform vec3 cameraPos;
 
-uniform sampler2D losMap;
+uniform sampler2D losTex;
 
 uniform float waviness;			// "Wildness" of the reflections and refractions; choose based on texture
 uniform vec3 color;				// color of the water
@@ -355,7 +355,7 @@ void main()
 #endif
 
 	float alpha = refrColor.a;
-	float losMod = texture2D(losMap, losCoords.st).a;
+	float losMod = texture2D(losTex, losCoords.st).a;
 	losMod = losMod < 0.03 ? 0.0 : losMod;
 	gl_FragColor = vec4(color * losMod, alpha);
 }

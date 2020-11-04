@@ -10,7 +10,7 @@
 
 	<fragment file="arb/water_simple.fp">
 	        <uniform name="baseTex" loc="0" type="sampler2D"/>
-	        <uniform name="losMap" loc="1" type="sampler2D"/>
+	        <uniform name="losTex" loc="1" type="sampler2D"/>
 		<uniform name="color" loc="2" type="vec4"/>
 	</fragment>
 
