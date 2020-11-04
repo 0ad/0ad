@@ -206,6 +206,8 @@ void TerrainRenderer::RenderTerrainFixed(int cullGroup)
 
 	CShaderProgramPtr dummyShader = GetDummyShader();
 	dummyShader->Bind();
+	dummyShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	dummyShader->Uniform(str_color, CColor(0.0f, 0.0f, 0.0f, 1.0f));
 
 	// render the solid black sides of the map first
 	g_Renderer.BindTexture(0, 0);
@@ -424,7 +426,9 @@ void TerrainRenderer::RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& text
 
 	CShaderProgramPtr dummyShader = GetDummyShader();
 	dummyShader->Bind();
-	CPatchRData::RenderStreams(visiblePatches, dummyShader, STREAM_POS|STREAM_POSTOUV0);
+	dummyShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	dummyShader->Uniform(str_color, CColor(0.0f, 0.0f, 0.0f, 1.0f));
+	CPatchRData::RenderStreams(visiblePatches, dummyShader, STREAM_POS | STREAM_POSTOUV0);
 	dummyShader->Unbind();
 
 	// To make the overlay visible over water, render an additional map-sized
@@ -548,7 +552,7 @@ void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, int cul
 
 ///////////////////////////////////////////////////////////////////
 // Render un-textured patches as polygons
-void TerrainRenderer::RenderPatches(int cullGroup)
+void TerrainRenderer::RenderPatches(int cullGroup, const CColor& color)
 {
 	ENSURE(m->phase == Phase_Render);
 
@@ -561,6 +565,8 @@ void TerrainRenderer::RenderPatches(int cullGroup)
 #else
 	CShaderProgramPtr dummyShader = GetDummyShader();
 	dummyShader->Bind();
+	dummyShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	dummyShader->Uniform(str_color, color);
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	CPatchRData::RenderStreams(visiblePatches, dummyShader, STREAM_POS);
@@ -924,6 +930,8 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 
 	CShaderProgramPtr dummyShader = GetDummyShader();
 	dummyShader->Bind();
+	dummyShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	dummyShader->Uniform(str_color, CColor(0.0f, 0.0f, 0.0f, 1.0f));
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 

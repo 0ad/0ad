@@ -787,11 +787,10 @@ void CRenderer::RenderPatches(const CShaderDefines& context, int cullGroup)
 		// setup some renderstate ..
 		pglActiveTextureARB(GL_TEXTURE0);
 		glDisable(GL_TEXTURE_2D);
-		glColor3f(0.5f, 0.5f, 1.0f);
 		glLineWidth(2.0f);
 
 		// render tiles edges
-		m->terrainRenderer.RenderPatches(cullGroup);
+		m->terrainRenderer.RenderPatches(cullGroup, CColor(0.5f, 0.5f, 1.0f, 1.0f));
 
 		// set color for outline
 		glColor3f(0, 0, 1);

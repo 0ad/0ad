@@ -6,6 +6,8 @@
         <uniform name="transform" loc="0" type="mat4"/>
     </vertex>
 
-    <fragment file="arb/dummy.fp"/>
+    <fragment file="arb/dummy.fp">
+        <uniform name="color" loc="0" type="vec4"/>
+    </fragment>
 
 </program>
