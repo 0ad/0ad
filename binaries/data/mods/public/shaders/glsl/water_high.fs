@@ -22,7 +22,6 @@ uniform vec3 fogColor;
 uniform vec2 fogParams;
 
 uniform vec2 screenSize;
-uniform float time;
 varying float moddedTime;
 
 varying vec3 worldPos;
@@ -354,7 +353,7 @@ void main()
 #if USE_FOG
 	color = get_fog(color);
 #endif
-	
+
 	float alpha = refrColor.a;
 	float losMod = texture2D(losMap, losCoords.st).a;
 	losMod = losMod < 0.03 ? 0.0 : losMod;

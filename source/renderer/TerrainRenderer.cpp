@@ -881,57 +881,18 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 	double period = 1.6f;
 	int curTex = (int)(time*60/period) % 60;
 
-	WaterMgr->m_WaterTexture[curTex]->Bind();
+	CShaderTechniquePtr waterSimpleTech =
+		g_Renderer.GetShaderManager().LoadEffect(str_water_simple);
+	waterSimpleTech->BeginPass();
+	CShaderProgramPtr waterSimpleShader = waterSimpleTech->GetShader();
 
-	// Shift the texture coordinates by these amounts to make the water "flow"
-	float tx = -fmod(time, 81.0)/81.0;
-	float ty = -fmod(time, 34.0)/34.0;
-	float repeatPeriod = 16.0f;
-
-	// Perform the shifting by using texture coordinate generation
-	GLfloat texgenS0[4] = { 1/repeatPeriod, 0, 0, tx };
-	GLfloat texgenT0[4] = { 0, 0, 1/repeatPeriod, ty };
-	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
-	glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
-	glTexGenfv(GL_S, GL_OBJECT_PLANE, texgenS0);
-	glTexGenfv(GL_T, GL_OBJECT_PLANE, texgenT0);
-	glEnable(GL_TEXTURE_GEN_S);
-	glEnable(GL_TEXTURE_GEN_T);
-
-	// Set up texture environment to multiply vertex RGB by texture RGB.
-	GLfloat waterColor[4] = { WaterMgr->m_WaterColor.r, WaterMgr->m_WaterColor.g, WaterMgr->m_WaterColor.b, 1.0f };
-	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, waterColor);
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_CONSTANT);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-
-
-	// Multiply by LOS texture
-	losTexture.BindTexture(1);
-	CMatrix3D losMatrix = losTexture.GetTextureMatrix();
-	GLfloat texgenS1[4] = { losMatrix[0], losMatrix[4], losMatrix[8], losMatrix[12] };
-	GLfloat texgenT1[4] = { losMatrix[1], losMatrix[5], losMatrix[9], losMatrix[13] };
-	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
-	glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
-	glTexGenfv(GL_S, GL_OBJECT_PLANE, texgenS1);
-	glTexGenfv(GL_T, GL_OBJECT_PLANE, texgenT1);
-	glEnable(GL_TEXTURE_GEN_S);
-	glEnable(GL_TEXTURE_GEN_T);
-
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_ALPHA);
-
-	CShaderProgramPtr dummyShader = GetDummyShader();
-	dummyShader->Bind();
-	dummyShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
-	dummyShader->Uniform(str_color, CColor(0.0f, 0.0f, 0.0f, 1.0f));
+	waterSimpleShader->Bind();
+	waterSimpleShader->BindTexture(str_baseTex, WaterMgr->m_WaterTexture[curTex]);
+	waterSimpleShader->BindTexture(str_losMap, losTexture.GetTextureSmooth());
+	waterSimpleShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	waterSimpleShader->Uniform(str_losMatrix, losTexture.GetTextureMatrix());
+	waterSimpleShader->Uniform(str_time, static_cast<float>(time));
+	waterSimpleShader->Uniform(str_color, WaterMgr->m_WaterColor);
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 
@@ -939,27 +900,18 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
 	{
 		CPatchRData* data = visiblePatches[i];
-		data->RenderWater(dummyShader, false, true);
+		data->RenderWater(waterSimpleShader, false, true);
 	}
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 
-	dummyShader->Unbind();
-
+	waterSimpleShader->Unbind();
 	g_Renderer.BindTexture(1, 0);
 
-	glDisable(GL_TEXTURE_GEN_S);
-	glDisable(GL_TEXTURE_GEN_T);
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-
 	pglActiveTextureARB(GL_TEXTURE0_ARB);
-
-	// Clean up the texture matrix and blend mode
-	glDisable(GL_TEXTURE_GEN_S);
-	glDisable(GL_TEXTURE_GEN_T);
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-
 	glDisable(GL_TEXTURE_2D);
+
+	waterSimpleTech->EndPass();
 #endif
 }
 
