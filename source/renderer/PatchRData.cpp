@@ -1171,25 +1171,22 @@ void CPatchRData::RenderOutline()
 
 	CVector3D pos;
 	std::vector<CVector3D> line;
-
-	ssize_t i, j;
-
-	for (i = 0, j = 0; i <= PATCH_SIZE; ++i)
+	for (ssize_t i = 0, j = 0; i <= PATCH_SIZE; ++i)
 	{
 		terrain->CalcPosition(gx + i, gz + j, pos);
 		line.push_back(pos);
 	}
-	for (i = PATCH_SIZE, j = 1; j <= PATCH_SIZE; ++j)
+	for (ssize_t i = PATCH_SIZE, j = 1; j <= PATCH_SIZE; ++j)
 	{
 		terrain->CalcPosition(gx + i, gz + j, pos);
 		line.push_back(pos);
 	}
-	for (i = PATCH_SIZE-1, j = PATCH_SIZE; i >= 0; --i)
+	for (ssize_t i = PATCH_SIZE-1, j = PATCH_SIZE; i >= 0; --i)
 	{
 		terrain->CalcPosition(gx + i, gz + j, pos);
 		line.push_back(pos);
 	}
-	for (i = 0, j = PATCH_SIZE-1; j >= 0; --j)
+	for (ssize_t i = 0, j = PATCH_SIZE-1; j >= 0; --j)
 	{
 		terrain->CalcPosition(gx + i, gz + j, pos);
 		line.push_back(pos);
