@@ -55,7 +55,7 @@ AlertRaiser.prototype.RaiseAlert = function()
 				return false;
 
 			// Ensure that the garrison holder is within range of the alert raiser
-			if (+this.template.EndOfAlertRange > 0 && DistanceBetweenEntities(this.entity, ent) > +this.template.EndOfAlertRange)
+			if (+this.template.EndOfAlertRange > 0 && PositionHelper.DistanceBetweenEntities(this.entity, ent) > +this.template.EndOfAlertRange)
 				return false;
 
 			if (!cmpUnitAI.CheckTargetVisible(ent))

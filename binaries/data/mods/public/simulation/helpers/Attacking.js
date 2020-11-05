@@ -203,64 +203,6 @@ Attacking.prototype.GetTotalAttackEffects = function(target, effectData, effectT
 };
 
 /**
- * Gives the position of the given entity, taking the lateness into account.
- * @param {number} ent - Entity id of the entity we are finding the location for.
- * @param {number} lateness - The time passed since the expected time to fire the function.
- * @return {Vector3D} The location of the entity.
- */
-Attacking.prototype.InterpolatedLocation = function(ent, lateness)
-{
-	let cmpTargetPosition = Engine.QueryInterface(ent, IID_Position);
-	if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld()) // TODO: handle dead target properly
-		return undefined;
-	let curPos = cmpTargetPosition.GetPosition();
-	let prevPos = cmpTargetPosition.GetPreviousPosition();
-	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	let turnLength = cmpTimer.GetLatestTurnLength();
-	return new Vector3D(
-	    (curPos.x * (turnLength - lateness) + prevPos.x * lateness) / turnLength,
-	    0,
-	    (curPos.z * (turnLength - lateness) + prevPos.z * lateness) / turnLength
-	);
-};
-
-/**
- * Test if a point is inside of an entity's footprint.
- * @param {number}   ent - Id of the entity we are checking with.
- * @param {Vector3D} point - The point we are checking with.
- * @param {number}   lateness - The time passed since the expected time to fire the function.
- * @return {boolean} True if the point is inside of the entity's footprint.
- */
-Attacking.prototype.TestCollision = function(ent, point, lateness)
-{
-	let targetPosition = this.InterpolatedLocation(ent, lateness);
-	if (!targetPosition)
-		return false;
-
-	let cmpFootprint = Engine.QueryInterface(ent, IID_Footprint);
-	if (!cmpFootprint)
-		return false;
-
-	let targetShape = cmpFootprint.GetShape();
-
-	if (!targetShape)
-		return false;
-
-	if (targetShape.type == "circle")
-		return targetPosition.horizDistanceToSquared(point) < targetShape.radius * targetShape.radius;
-
-	if (targetShape.type == "square")
-	{
-		let angle = Engine.QueryInterface(ent, IID_Position).GetRotation().y;
-		let distance = Vector2D.from3D(Vector3D.sub(point, targetPosition)).rotate(-angle);
-		return Math.abs(distance.x) < targetShape.width / 2 && Math.abs(distance.y) < targetShape.depth / 2;
-	}
-
-	warn("TestCollision called with an invalid footprint shape");
-	return false;
-};
-
-/**
  * Get the list of players affected by the damage.
  * @param {number}  attackerOwner - The player id of the attacker.
  * @param {boolean} friendlyFire - A flag indicating if allied entities are also damaged.
@@ -289,7 +231,7 @@ Attacking.prototype.GetPlayersToDamage = function(attackerOwner, friendlyFire)
  */
 Attacking.prototype.CauseDamageOverArea = function(data)
 {
-	let nearEnts = this.EntitiesNearPoint(data.origin, data.radius,
+	let nearEnts = PositionHelper.EntitiesNearPoint(data.origin, data.radius,
 		this.GetPlayersToDamage(data.attackerOwner, data.friendlyFire));
 	let damageMultiplier = 1;
 
@@ -394,24 +336,6 @@ Attacking.prototype.HandleAttackEffects = function(target, attackType, attackDat
 		cmpPromotion.IncreaseXp(targetState.xp);
 
 	return true;
-};
-
-/**
- * Gets entities near a give point for given players.
- * @param {Vector2D} origin - The point to check around.
- * @param {number}   radius - The radius around the point to check.
- * @param {number[]} players - The players of which we need to check entities.
- * @param {number}   itf - Interface IID that returned entities must implement. Defaults to none.
- * @return {number[]} The id's of the entities in range of the given point.
- */
-Attacking.prototype.EntitiesNearPoint = function(origin, radius, players, itf = 0)
-{
-	// If there is insufficient data return an empty array.
-	if (!origin || !radius || !players || !players.length)
-		return [];
-
-	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	return cmpRangeManager.ExecuteQueryAroundPos(origin, 0, radius, players, itf);
 };
 
 /**

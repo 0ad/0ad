@@ -1,6 +1,6 @@
 Engine.LoadHelperScript("FSM.js");
-Engine.LoadHelperScript("Entity.js");
 Engine.LoadHelperScript("Player.js");
+Engine.LoadHelperScript("Position.js");
 Engine.LoadHelperScript("Sound.js");
 Engine.LoadComponentScript("interfaces/Auras.js");
 Engine.LoadComponentScript("interfaces/Builder.js");
@@ -85,7 +85,7 @@ TestTargetEntityRenaming(
 TestTargetEntityRenaming(
 	"INDIVIDUAL.FLEEING", "INDIVIDUAL.FLEEING",
 	(unitAI, player_ent, target_ent) => {
-		DistanceBetweenEntities = () => 10;
+		PositionHelper.DistanceBetweenEntities = () => 10;
 		unitAI.CheckTargetRangeExplicit = () => false;
 
 		AddMock(player_ent, IID_UnitMotion, {

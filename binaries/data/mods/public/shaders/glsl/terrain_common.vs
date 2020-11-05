@@ -47,7 +47,6 @@ varying vec3 v_normal;
 
 attribute vec3 a_vertex;
 attribute vec3 a_normal;
-attribute vec3 a_color;
 attribute vec2 a_uv0;
 attribute vec2 a_uv1;
 
@@ -61,8 +60,8 @@ void main()
 
   gl_Position = transform * position;
 
-  v_lighting = a_color * sunColor;
-  
+  v_lighting = clamp(-dot(a_normal, sunDir), 0.0, 1.0) * sunColor;
+
   #if DECAL
     v_tex.xy = a_uv0;
   #else
@@ -94,9 +93,9 @@ void main()
     v_shadow = shadowTransform * vec4(a_vertex, 1.0);
     #if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
       v_shadow.xy *= shadowScale.xy;
-    #endif  
+    #endif
   #endif
-  
+
   v_normal = a_normal;
 
   #if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_TRIPLANAR

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,7 +20,6 @@
 #include "DecalRData.h"
 
 #include "graphics/Decal.h"
-#include "graphics/LightEnv.h"
 #include "graphics/Model.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/Terrain.h"
@@ -48,10 +47,6 @@ CDecalRData::CDecalRData(CModelDecal* decal, CSimulation2* simulation)
 	m_Normal.type = GL_FLOAT;
 	m_Normal.elems = 3;
 	m_Array.AddAttribute(&m_Normal);
-
-	m_DiffuseColor.type = GL_UNSIGNED_BYTE;
-	m_DiffuseColor.elems = 4;
-	m_Array.AddAttribute(&m_DiffuseColor);
 
 	m_UV.type = GL_FLOAT;
 	m_UV.elems = 2;
@@ -166,7 +161,6 @@ void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderD
 
 				shader->VertexPointer(3, GL_FLOAT, stride, base + decal->m_Position.offset);
 				shader->NormalPointer(GL_FLOAT, stride, base + decal->m_Normal.offset);
-				shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, base + decal->m_DiffuseColor.offset);
 				shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + decal->m_UV.offset);
 
 				shader->AssertPointersBound();
@@ -213,11 +207,7 @@ void CDecalRData::BuildArrays()
 	m_Array.Layout();
 	VertexArrayIterator<CVector3D> Position = m_Position.GetIterator<CVector3D>();
 	VertexArrayIterator<CVector3D> Normal = m_Normal.GetIterator<CVector3D>();
-	VertexArrayIterator<SColor4ub> DiffuseColor = m_DiffuseColor.GetIterator<SColor4ub>();
 	VertexArrayIterator<float[2]> UV = m_UV.GetIterator<float[2]>();
-
-	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
-	bool cpuLighting = (g_RenderingOptions.GetRenderPath() == RenderPath::FIXED);
 
 	for (ssize_t j = j0; j <= j1; ++j)
 	{
@@ -236,9 +226,6 @@ void CDecalRData::BuildArrays()
 			m_Decal->m_Terrain->CalcNormal(i, j, normal);
 			*Normal = normal;
 			Normal++;
-
-			*DiffuseColor = cpuLighting ? lightEnv.EvaluateTerrainDiffuseScaled(normal) : lightEnv.EvaluateTerrainDiffuseFactor(normal);
-			++DiffuseColor;
 
 			// Map from world space back into decal texture space
 			CVector3D inv = m_Decal->GetInvTransform().Transform(pos);

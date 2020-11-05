@@ -23,6 +23,8 @@
 #ifndef INCLUDED_TERRAINRENDERER
 #define INCLUDED_TERRAINRENDERER
 
+#include "maths/BoundingBoxAligned.h"
+
 class CPatch;
 class CSimulation2;
 class ShadowMap;
@@ -105,8 +107,9 @@ public:
 	 * frame before calling RenderPatches.
 	 *
 	 * @param filtered If true then only render objects that passed CullPatches.
+	 * @param color Fill color of the patches.
 	 */
-	void RenderPatches(int cullGroup);
+	void RenderPatches(int cullGroup, const CColor& color = CColor(0.0f, 0.0f, 0.0f, 1.0f));
 
 	/**
 	 * RenderOutlines: Render the outline of patches as lines.

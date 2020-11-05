@@ -40,7 +40,7 @@ Trigger.prototype.SpawnWolvesAndAttack = function()
 
 		// The returned entities are sorted by RangeManager already
 		// Only consider units implementing Health since wolves deal damage.
-		let targets = Attacking.EntitiesNearPoint(attackerPos, 200, players, IID_Health).filter(ent => {
+		let targets = PositionHelper.EntitiesNearPoint(attackerPos, 200, players, IID_Health).filter(ent => {
 			let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 			return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), targetClasses);
 		});

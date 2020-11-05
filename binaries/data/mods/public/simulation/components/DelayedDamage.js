@@ -67,7 +67,7 @@ DelayedDamage.prototype.MissileHit = function(data, lateness)
 
 	// Deal direct damage if we hit the main target
 	// and we could handle the attack.
-	if (Attacking.TestCollision(target, data.position, lateness) &&
+	if (PositionHelper.TestCollision(target, data.position, lateness) &&
 		Attacking.HandleAttackEffects(target, data.type, data.attackData, data.attacker, data.attackerOwner))
 	{
 		cmpProjectileManager.RemoveProjectile(data.projectileId);
@@ -75,12 +75,12 @@ DelayedDamage.prototype.MissileHit = function(data, lateness)
 	}
 
 	// If we didn't hit the main target look for nearby units.
-	let ents = Attacking.EntitiesNearPoint(Vector2D.from3D(data.position), this.MISSILE_HIT_RADIUS,
+	let ents = PositionHelper.EntitiesNearPoint(Vector2D.from3D(data.position), this.MISSILE_HIT_RADIUS,
 		Attacking.GetPlayersToDamage(data.attackerOwner, data.friendlyFire));
 
 	for (let ent of ents)
 	{
-		if (!Attacking.TestCollision(ent, data.position, lateness) ||
+		if (!PositionHelper.TestCollision(ent, data.position, lateness) ||
 			!Attacking.HandleAttackEffects(ent, data.type, data.attackData, data.attacker, data.attackerOwner))
 			continue;
 

@@ -13,20 +13,16 @@ let entityID = 903;
 
 function attackComponentTest(defenderClass, isEnemy, test_function)
 {
-	ResetState();
+	let playerEnt1 = 5;
 
-	{
-		let playerEnt1 = 5;
+	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
+		"GetPlayerByID": () => playerEnt1
+	});
 
-		AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
-			"GetPlayerByID": () => playerEnt1
-		});
-
-		AddMock(playerEnt1, IID_Player, {
-			"GetPlayerID": () => 1,
-			"IsEnemy": () => isEnemy
-		});
-	}
+	AddMock(playerEnt1, IID_Player, {
+		"GetPlayerID": () => 1,
+		"IsEnemy": () => isEnemy
+	});
 
 	let attacker = entityID;
 
@@ -341,37 +337,3 @@ testGetBestAttackAgainst("Archer", "Ranged", undefined);
 testGetBestAttackAgainst("Domestic", "Slaughter", "Slaughter");
 testGetBestAttackAgainst("Structure", "Capture", "Capture", true);
 testGetBestAttackAgainst("Structure", "Ranged", undefined, false);
-
-function testPredictTimeToTarget(selfPosition, horizSpeed, targetPosition, targetVelocity)
-{
-	ResetState();
-	let cmpAttack = ConstructComponent(1, "Attack", {});
-	let timeToTarget = cmpAttack.PredictTimeToTarget(selfPosition, horizSpeed, targetPosition, targetVelocity);
-	if (timeToTarget === false)
-		return;
-	// Position of the target after that time.
-	let targetPos = Vector3D.mult(targetVelocity, timeToTarget).add(targetPosition);
-	// Time that the projectile need to reach it.
-	let time = targetPos.horizDistanceTo(selfPosition) / horizSpeed;
-	TS_ASSERT_EQUALS(timeToTarget.toFixed(1), time.toFixed(1));
-}
-
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(0, 0, 0), new Vector3D(0, 0, 0));
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(20, 0, 0), new Vector3D(0, 0, 0));
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(20, 0, 0), new Vector3D(1, 0, 0));
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(20, 0, 0), new Vector3D(4, 0, 0));
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(20, 0, 0), new Vector3D(16, 0, 0));
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(20, 0, 0), new Vector3D(-1, 0, 0));
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(20, 0, 0), new Vector3D(-4, 0, 0));
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(20, 0, 0), new Vector3D(-16, 0, 0));
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(20, 0, 0), new Vector3D(0, 0, 1));
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(20, 0, 0), new Vector3D(0, 0, 4));
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(20, 0, 0), new Vector3D(0, 0, 16));
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(20, 0, 0), new Vector3D(1, 0, 1));
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(20, 0, 0), new Vector3D(2, 0, 2));
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(20, 0, 0), new Vector3D(8, 0, 8));
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(20, 0, 0), new Vector3D(-1, 0, 1));
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(20, 0, 0), new Vector3D(-2, 0, 2));
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(20, 0, 0), new Vector3D(-8, 0, 8));
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(20, 0, 0), new Vector3D(4, 0, 2));
-testPredictTimeToTarget(new Vector3D(0, 0, 0), 4, new Vector3D(20, 0, 0), new Vector3D(-4, 0, 2));

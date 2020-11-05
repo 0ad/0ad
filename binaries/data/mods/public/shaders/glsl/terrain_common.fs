@@ -205,7 +205,7 @@ void main()
     #endif
     normal = normalize(tbn * ntex);
     vec3 bumplight = max(dot(-sunDir, normal), 0.0) * sunColor;
-    vec3 sundiffuse = (bumplight - v_lighting.rgb) * effectSettings.x + v_lighting.rgb;   
+    vec3 sundiffuse = (bumplight - v_lighting.rgb) * effectSettings.x + v_lighting.rgb;
   #else
     vec3 sundiffuse = v_lighting;
   #endif
