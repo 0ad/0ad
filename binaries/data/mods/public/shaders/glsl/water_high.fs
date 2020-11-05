@@ -133,7 +133,50 @@ vec3 get_fog(vec3 color)
 	return mix(fogColor, color, fogFactor);
 }
 
-vec4 getReflection(vec3 normal)
+vec3 getNormal()
+{
+	float wavyEffect = waveParams1.r;
+	float baseScale = waveParams1.g;
+	float flattenism = waveParams1.b;
+	float baseBump = waveParams1.a;
+	float BigMovement = waveParams2.b;
+
+	// This method uses 60 animated water frames. We're blending between each two frames
+	// Scale the normal textures by waviness so that big waviness means bigger waves.
+	vec3 ww1 = texture2D(normalMap, (normalCoords.st + normalCoords.zw * BigMovement * waviness / 10.0) * (baseScale - waviness / wavyEffect)).xzy;
+	vec3 ww2 = texture2D(normalMap2, (normalCoords.st + normalCoords.zw * BigMovement * waviness / 10.0) * (baseScale - waviness / wavyEffect)).xzy;
+	vec3 wwInterp = mix(ww1, ww2, moddedTime) - vec3(0.5, 0.0, 0.5);
+
+	ww1.x = wwInterp.x * WindCosSin.x - wwInterp.z * WindCosSin.y;
+	ww1.z = wwInterp.x * WindCosSin.y + wwInterp.z * WindCosSin.x;
+	ww1.y = wwInterp.y;
+
+	// Flatten them based on waviness.
+	vec3 normal = normalize(mix(vec3(0.0, 1.0, 0.0), ww1, clamp(baseBump + fwaviness / flattenism, 0.0, 1.0)));
+
+#if USE_FANCY_EFFECTS
+	vec4 fancyeffects = texture2D(waterEffectsTex, gl_FragCoord.xy / screenSize);
+	normal = mix(vec3(0.0, 1.0, 0.0), normal, 0.5 + waterInfo.r / 2.0);
+	normal.xz = mix(normal.xz, fancyeffects.rb, fancyeffects.a / 2.0);
+#else
+	normal = mix(vec3(0.0, 1.0, 0.0), normal, 0.5 + waterInfo.r / 2.0);
+#endif
+
+	return vec3(-normal.x, normal.y, -normal.z);
+}
+
+vec3 getSpecular(vec3 normal, vec3 eyeVec)
+{
+	// Specular lighting vectors
+	vec3 specularVector = reflect(sunDir, normal);
+	// pow is undefined for null or negative values, except on intel it seems.
+	float specularIntensity = pow(max(dot(specularVector, eyeVec), 0.0), 100.0);
+	// Workaround to fix too flattened water.
+	specularIntensity = smoothstep(0.6, 1.0, specularIntensity) * 1.2;
+	return clamp(specularIntensity * sunColor, 0.0, 1.0);
+}
+
+vec4 getReflection(vec3 normal, vec3 eyeVec)
 {
 	// Reflections
 	// 3 level of settings:
@@ -143,10 +186,10 @@ vec4 getReflection(vec3 normal)
 
 	// reflMod reduces the intensity of reflections somewhat since they kind of wash refractions out otherwise.
 	float reflMod = 0.75;
-	vec3 eye = reflect(v_eyeVec, normal);
+	vec3 eye = reflect(eyeVec, normal);
 
 #if USE_REFLECTION
-	float refVY = clamp(v_eyeVec.y * 2.0, 0.05, 1.0);
+	float refVY = clamp(eyeVec.y * 2.0, 0.05, 1.0);
 
 	// Distort the reflection coords based on waves.
 	vec2 reflCoords = (0.5 * reflectionCoords.xy - 15.0 * normal.zx / refVY) / reflectionCoords.z + 0.5;
@@ -171,7 +214,7 @@ vec4 getReflection(vec3 normal)
 	return vec4(reflColor, reflMod);
 }
 
-vec4 getRefraction(vec3 normal, float depthLimit)
+vec4 getRefraction(vec3 normal, vec3 eyeVec, float depthLimit)
 {
 	float depth;
 #if USE_REAL_DEPTH
@@ -188,7 +231,7 @@ vec4 getRefraction(vec3 normal, float depthLimit)
 	depth = waterDepth_undistorted;
 #else
 	// fake depth computation: take the value at the vertex, add some if we are looking at a more oblique angle.
-	depth = waterDepth / (min(0.5, v_eyeVec.y) * 1.5 * min(0.5, v_eyeVec.y) * 2.0);
+	depth = waterDepth / (min(0.5, eyeVec.y) * 1.5 * min(0.5, eyeVec.y) * 2.0);
 #endif
 
 #if USE_REFRACTION
@@ -253,7 +296,7 @@ vec4 getRefraction(vec3 normal, float depthLimit)
 
 	// for refraction, we want to adjust the value by v.y slightly otherwise it gets too different between "from above" and "from the sides".
 	// And it looks weird (again, we are not used to seeing water from above).
-	float fixedVy = max(v_eyeVec.y, 0.01);
+	float fixedVy = max(eyeVec.y, 0.01);
 
 	float murky = mix(200.0, 0.1, pow(murkiness, 0.25));
 
@@ -273,58 +316,25 @@ vec4 getRefraction(vec3 normal, float depthLimit)
 
 void main()
 {
-	// Calculate water normals.
-
-	float wavyEffect = waveParams1.r;
-	float baseScale = waveParams1.g;
-	float flattenism = waveParams1.b;
-	float baseBump = waveParams1.a;
-	float BigMovement = waveParams2.b;
-
-	// This method uses 60 animated water frames. We're blending between each two frames
-	// Scale the normal textures by waviness so that big waviness means bigger waves.
-	vec3 ww1 = texture2D(normalMap, (normalCoords.st + normalCoords.zw * BigMovement * waviness / 10.0) * (baseScale - waviness / wavyEffect)).xzy;
-	vec3 ww2 = texture2D(normalMap2, (normalCoords.st + normalCoords.zw * BigMovement * waviness / 10.0) * (baseScale - waviness / wavyEffect)).xzy;
-	vec3 wwInterp = mix(ww1, ww2, moddedTime) - vec3(0.5, 0.0, 0.5);
-
-	ww1.x = wwInterp.x * WindCosSin.x - wwInterp.z * WindCosSin.y;
-	ww1.z = wwInterp.x * WindCosSin.y + wwInterp.z * WindCosSin.x;
-	ww1.y = wwInterp.y;
-
-	// Flatten them based on waviness.
-	vec3 normal = normalize(mix(vec3(0.0, 1.0, 0.0), ww1, clamp(baseBump + fwaviness / flattenism, 0.0, 1.0)));
+	vec3 eyeVec = normalize(v_eyeVec);
+	vec3 normal = getNormal();
 
 #if USE_FANCY_EFFECTS
 	vec4 fancyeffects = texture2D(waterEffectsTex, gl_FragCoord.xy / screenSize);
-	normal = mix(vec3(0.0, 1.0, 0.0), normal, 0.5 + waterInfo.r / 2.0);
-	normal.xz = mix(normal.xz, fancyeffects.rb, fancyeffects.a / 2.0);
+	vec4 refrColor = getRefraction(normal, eyeVec, fancyeffects.a);
 #else
-	normal = mix(vec3(0.0, 1.0, 0.0), normal, 0.5 + waterInfo.r / 2.0);
+	vec4 refrColor = getRefraction(normal, eyeVec, 0.0);
 #endif
 
-	normal = vec3(-normal.x, normal.y, -normal.z); // The final wave normal vector.
-
-#if USE_FANCY_EFFECTS
-	vec4 refrColor = getRefraction(normal, fancyeffects.a);
-#else
-	vec4 refrColor = getRefraction(normal, 0.0);
-#endif
-
-	vec4 reflColor = getReflection(normal);
+	vec4 reflColor = getReflection(normal, eyeVec);
 
 	// How perpendicular to the normal our view is. Used for fresnel.
-	float ndotv = clamp(dot(normal, v_eyeVec), 0.0, 1.0);
+	float ndotv = clamp(dot(normal, eyeVec), 0.0, 1.0);
 
 	// Fresnel for "how much reflection vs how much refraction".
 	float fresnel = clamp(((pow(1.1 - ndotv, 2.0)) * 1.5), 0.1, 0.75); // Approximation. I'm using 1.1 and not 1.0 because it causes artifacts, see #1714
 
-	// Specular lighting vectors
-	vec3 specVector = reflect(sunDir, ww1);
-
-	// pow is undefined for null or negative values, except on intel it seems.
-	float specIntensity = clamp(pow(abs(dot(specVector, v_eyeVec)), 100.0), 0.0, 1.0);
-
-	vec3 specular = specIntensity * 1.2 * mix(vec3(1.5), sunColor, 0.5);
+	vec3 specular = getSpecular(normal, eyeVec);
 
 	vec3 color;
 #if USE_SHADOWS_ON_WATER && USE_SHADOW
@@ -338,6 +348,9 @@ void main()
 #endif
 
 #if USE_FANCY_EFFECTS
+	float wavyEffect = waveParams1.r;
+	float baseScale = waveParams1.g;
+	float BigMovement = waveParams2.b;
 	vec3 foam1 = texture2D(normalMap, (normalCoords.st + normalCoords.zw * BigMovement * waviness / 10.0) * (baseScale - waviness / wavyEffect)).aaa;
 	vec3 foam2 = texture2D(normalMap2, (normalCoords.st + normalCoords.zw * BigMovement * waviness / 10.0) * (baseScale - waviness / wavyEffect)).aaa;
 	vec3 foam3 = texture2D(normalMap, normalCoords.st / 6.0 - normalCoords.zw * 0.02).aaa;
