@@ -213,8 +213,10 @@ class TemplateLoader
 
 		let parentTemplate = this.loadEntityTemplate(template["@parent"], civCode);
 
-		if (parentTemplate.Identity && parentTemplate.Identity.Rank &&
-			parentTemplate.Identity.Rank != template.Identity.Rank)
+		if (parentTemplate.Identity && (
+			parentTemplate.Identity.Civ && parentTemplate.Identity.Civ != template.Identity.Civ ||
+			parentTemplate.Identity.Rank && parentTemplate.Identity.Rank != template.Identity.Rank
+		))
 			return templateName;
 
 		if (!parentTemplate.Cost)
