@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@
 #include "lib/sysdep/cpu.h"
 
 #if OS_WIN
-# include "lib/sysdep/os/win/whrt/whrt.h"
+#include "lib/sysdep/os/win/win.h"
 #endif
 #if OS_UNIX
 # include <unistd.h>
@@ -51,7 +51,7 @@
 # define HAVE_GETTIMEOFDAY 0
 #endif
 
-#if (defined(_POSIX_TIMERS) && _POSIX_TIMERS > 0) || OS_WIN
+#if (defined(_POSIX_TIMERS) && _POSIX_TIMERS > 0)
 # define HAVE_CLOCK_GETTIME 1
 #else
 # define HAVE_CLOCK_GETTIME 0
@@ -62,7 +62,9 @@
 // timer values than their us / ns interface, via double [seconds].
 // they're also not guaranteed to be monotonic.
 
-#if HAVE_CLOCK_GETTIME
+#if OS_WIN
+static LARGE_INTEGER start;
+#elif HAVE_CLOCK_GETTIME
 static struct timespec start;
 #elif HAVE_GETTIMEOFDAY
 static struct timeval start;
@@ -75,7 +77,7 @@ static struct timeval start;
 void timer_LatchStartTime()
 {
 #if OS_WIN
-	// whrt_Time starts at zero, nothing needs to be done.
+	ENSURE(QueryPerformanceCounter(&start));
 #elif HAVE_CLOCK_GETTIME
 	(void)clock_gettime(CLOCK_REALTIME, &start);
 #elif HAVE_GETTIMEOFDAY
@@ -94,13 +96,17 @@ static void EnsureMonotonic(double& newTime)
 	newTime = maxTime;
 }
 
+// Cached because the default implementation may take several milliseconds.
+static double resolution;
 
 double timer_Time()
 {
 	double t;
 
 #if OS_WIN
-	t = whrt_Time();
+	LARGE_INTEGER now;
+	ENSURE(QueryPerformanceCounter(&now));
+	t = static_cast<double>(now.QuadPart - start.QuadPart) * resolution;
 #elif HAVE_CLOCK_GETTIME
 	ENSURE(start.tv_sec || start.tv_nsec);	// must have called timer_LatchStartTime first
 	struct timespec cur;
@@ -120,13 +126,12 @@ double timer_Time()
 }
 
 
-// cached because the default implementation may take several milliseconds
-static double resolution;
-
 static Status InitResolution()
 {
 #if OS_WIN
-	resolution = whrt_Resolution();
+	LARGE_INTEGER frequency;
+	ENSURE(QueryPerformanceFrequency(&frequency));
+	resolution = 1.0 / static_cast<double>(frequency.QuadPart);
 #elif HAVE_CLOCK_GETTIME
 	struct timespec ts;
 	if(clock_getres(CLOCK_REALTIME, &ts) == 0)

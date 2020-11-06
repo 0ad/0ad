@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -30,8 +30,8 @@ typedef u8 ApicId;	// not necessarily contiguous values
  * platform does not have an xAPIC (i.e. 7th generation x86 or below).
  *
  * rationale: the alternative of accessing the APIC mmio registers is not
- * feasible - mahaf_MapPhysicalMemory only works reliably on WinXP. we also
- * don't want to interfere with the OS's constant use of the APIC registers.
+ * feasible. We also don't want to interfere with the OS's constant use of
+ * the APIC registers.
  **/
 LIB_API ApicId GetApicId();
 

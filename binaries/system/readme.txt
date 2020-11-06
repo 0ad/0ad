@@ -84,22 +84,6 @@ Advanced / diagnostic:
 -hashtest-full=X    whether to enable computation of full hashes in replaymode (default true). Can be disabled to improve performance.
 -hashtest-quick=X   whether to enable computation of quick hashes in replaymode (default false). Can be enabled for debugging purposes.
 
-Windows-specific:
--wQpcTscSafe        allow timing via QueryPerformanceCounter despite the fact
-                    that it's using TSC and it may be unsafe. has no effect if
-                    a better timer (i.e. the HPET) is available.
-                    should only be specified if:
-                    - you are sure your system does not engage in
-                      thermal throttling (including STPCLK) OR
-                    - an "RDTSC patch" is installed
-                    this flag is also useful if all other alternatives are worse
-                    than a potentially risky or slightly broken TSC-based QPC.
-
--wNoMahaf           prevent any physical memory mapping or direct port I/O.
-                    this disables all ACPI-related code and thus some of the
-                    timer backends. specify this if problems are observed with
-                    one of the abovementioned subsystems.
-
 Archive builder:
 -archivebuild=PATH            system PATH of the base directory containing mod data to be archived/precached
                                 specify all mods it depends on with -mod=NAME
