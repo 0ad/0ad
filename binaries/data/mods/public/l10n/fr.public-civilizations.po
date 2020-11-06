@@ -39,6 +39,7 @@
 # Olivier <olivier.torrens@gmail.com>, 2013
 # PERRUSSEL Valentin <vperrus@gmail.com>, 2014
 # PRIME Gildas <prime.gildas@gmail.com>, 2013
+# Rémi Moulin <ggd.remi@gmail.com>, 2020
 # Rémi Verschelde <akien@mageia.org>, 2014
 # robin moussu <robin.moussu+transifex@gmail.com>, 2013
 # Rodrigue March <rodriguemarch@sfr.fr>, 2013
@@ -62,8 +63,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-08-28 07:09+0000\n"
-"PO-Revision-Date: 2020-10-14 08:27+0000\n"
-"Last-Translator: Kevin Poirrier <kevin.poirrier.psy@gmail.com>\n"
+"PO-Revision-Date: 2020-11-04 20:03+0000\n"
+"Last-Translator: Rémi Moulin <ggd.remi@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,7 +81,7 @@ msgstr "Athéniens"
 #: simulation/data/civs/mace.jsonCivBonuses[0].Description
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "Les structures gagnent +10% de santé et +10% de points de capture."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 #: simulation/data/civs/mace.jsonCivBonuses[0].Name
@@ -658,7 +659,7 @@ msgstr "Ambassade celte"
 
 #: simulation/data/civs/cart.jsonStructures[1].Special
 msgid "Train Celtic Mercenaries."
-msgstr ""
+msgstr "Entraîner des mercenaires celtes."
 
 #: simulation/data/civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
@@ -670,7 +671,7 @@ msgstr "Ambassade ibérique"
 
 #: simulation/data/civs/cart.jsonStructures[2].Special
 msgid "Train Iberian Mercenaries."
-msgstr ""
+msgstr "Entraîner des mercenaires Ibères."
 
 #: simulation/data/civs/cart.jsonStructures[2].History
 msgid ""
@@ -679,18 +680,18 @@ msgstr "Les Ibères étaient connus comme des mercenaires féroces, fidèles à 
 
 #: simulation/data/civs/cart.jsonStructures[3].Name
 msgid "Italic Embassy"
-msgstr ""
+msgstr "Ambassade italique"
 
 #: simulation/data/civs/cart.jsonStructures[3].Special
 msgid "Train Italic Mercenaries."
-msgstr ""
+msgstr "Entraîner des mercenaires italiques."
 
 #: simulation/data/civs/cart.jsonStructures[3].History
 msgid ""
 "When Hannibal invaded Italy and defeated the Romans in a series of battles, "
 "many of the peoples subject to Rome, including the Greeks and Samnites, "
 "revolted and joined the Carthaginian cause."
-msgstr ""
+msgstr "Lorsque Hannibal envahit et vaincu les Romains dans une série de batailles, de nombreux sujets de Rome, notamment les Grecs et les Samnites, se révoltèrent et joignirent les rangs des Carthaginois."
 
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
@@ -743,7 +744,7 @@ msgstr "Production de Gaule"
 msgid ""
 "The Gauls produced and exported swords and scabbards, woolen and leather "
 "products, and other arms."
-msgstr ""
+msgstr "Les Gaulois produisaient et exportaient des épées et leur fourreaux, des produits faits de laine et de cuir ainsi que d'autres armes."
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -1580,11 +1581,11 @@ msgstr "Indiens maurya"
 
 #: simulation/data/civs/maur.jsonStructures[0].Name
 msgid "Elephant Stable"
-msgstr ""
+msgstr "Étable à éléphants."
 
 #: simulation/data/civs/maur.jsonStructures[0].Special
 msgid "Train Elephants and research Elephant technologies."
-msgstr ""
+msgstr "Entraîner des éléphants et rechercher des technologies éléphantines."
 
 #: simulation/data/civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
@@ -1595,7 +1596,7 @@ msgid ""
 "Contentment: +10% Health and +10% resource gathering rates for all citizens "
 "and allied citizens within its range. Can be built anywhere except in enemy "
 "territory. Max Built: 10."
-msgstr "Contentement: 10% de santé et 10% de taux collecte de ressources pour tous les citoyens et les citoyens alliés à sa portée. Peut être construit n'importe où, sauf en territoire ennemi. Max de construction: 10."
+msgstr "Contentement: +10% de santé et +10% de taux collecte de ressources pour tous les citoyens et les citoyens alliés à sa portée. Peut être construit n'importe où, sauf en territoire ennemi. Max de construction: 10."
 
 #: simulation/data/civs/maur.jsonHistory
 msgid ""
@@ -1754,7 +1755,7 @@ msgstr "Immortels"
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "Les Achéménides détenaient une force armée d'élite de 10.000 soldats que certains auteurs grecques nommèrent Athanatoi, les Immortels."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
@@ -2483,7 +2484,7 @@ msgstr "Spartiates"
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Infantry Spearmen +10% health."
-msgstr "Les Citoyens-Soldats Lanciers d’infanterie alliés gagne 10% de santé."
+msgstr "Les Citoyens-Soldats Lanciers d’infanterie alliés gagnent 10% de santé."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"
@@ -2546,7 +2547,7 @@ msgstr "Agésipolis"
 msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers."
-msgstr ""
+msgstr "Les citoyennes Spartiates étaient difficilement capturables et se battaient ardemment contre leurs assaillants."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
