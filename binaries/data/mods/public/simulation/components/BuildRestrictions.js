@@ -49,7 +49,6 @@ BuildRestrictions.prototype.Schema =
 
 BuildRestrictions.prototype.Init = function()
 {
-	this.territories = this.template.Territory.split(/\s+/);
 };
 
 /**
@@ -306,7 +305,7 @@ BuildRestrictions.prototype.GetCategory = function()
 
 BuildRestrictions.prototype.GetTerritories = function()
 {
-	return ApplyValueModificationsToEntity("BuildRestrictions/Territory", this.territories, this.entity);
+	return ApplyValueModificationsToEntity("BuildRestrictions/Territory", this.template.Territory, this.entity).split(/\s+/);
 };
 
 BuildRestrictions.prototype.HasTerritory = function(territory)
