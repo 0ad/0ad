@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -24,15 +24,11 @@
  * emulate POSIX time functionality on Windows.
  */
 
-// note: clock_gettime et al. have been removed. callers should use the
-// WHRT directly, rather than needlessly translating s -> ns -> s,
-// which costs time and accuracy.
 
 #include "precompiled.h"
 #include "lib/sysdep/os/win/wposix/wtime.h"
 
 #include "lib/sysdep/os/win/wposix/wposix_internal.h"
-#include "lib/sysdep/os/win/whrt/whrt.h"
 
 WINIT_REGISTER_MAIN_INIT(wtime_Init);	// whrt -> wtime
 
@@ -91,14 +87,6 @@ static void LatchInitialSystemTime()
 	stInitial_ns = (hns - posix_epoch_hns) * 100;
 }
 
-// return nanoseconds since POSIX epoch.
-// algorithm: add current HRT value to the startup system time
-static i64 CurrentSystemTime_ns()
-{
-	const i64 ns = stInitial_ns + i64(whrt_Time() * _1e9);
-	return ns;
-}
-
 static timespec TimespecFromNs(i64 ns)
 {
 	timespec ts;
@@ -114,30 +102,6 @@ static size_t MsFromTimespec(const timespec& ts)
 	ms += ts.tv_nsec / _1e6;
 	return size_t(ms);
 }
-
-
-//-----------------------------------------------------------------------------
-
-int clock_gettime(clockid_t clock, struct timespec* ts)
-{
-	ENSURE(clock == CLOCK_REALTIME || clock == CLOCK_MONOTONIC);
-
-	const i64 ns = CurrentSystemTime_ns();
-	*ts = TimespecFromNs(ns);
-	return 0;
-}
-
-
-int clock_getres(clockid_t clock, struct timespec* ts)
-{
-	ENSURE(clock == CLOCK_REALTIME || clock == CLOCK_MONOTONIC);
-
-	const double resolution = whrt_Resolution();
-	const i64 ns = i64(resolution * 1e9);
-	*ts = TimespecFromNs(ns);
-	return 0;
-}
-
 
 int nanosleep(const struct timespec* rqtp, struct timespec* /* rmtp */)
 {

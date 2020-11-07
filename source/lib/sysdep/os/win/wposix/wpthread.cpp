@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -471,72 +471,6 @@ int sem_wait(sem_t* sem)
 	DWORD ret = WaitForSingleObject(h, INFINITE);
 	ENSURE(ret == WAIT_OBJECT_0);
 	return 0;
-}
-
-
-// helper function for sem_timedwait - multiple return is convenient.
-// converts an absolute timeout deadline into a relative length for use with
-// WaitForSingleObject with the following peculiarity: if the semaphore
-// could be locked immediately, abs_timeout must be ignored (see SUS).
-// to that end, we return a timeout of 0 and pass back <valid> = false if
-// abs_timeout is invalid.
-static DWORD calc_timeout_length_ms(const struct timespec* abs_timeout,
-	bool& timeout_is_valid)
-{
-	timeout_is_valid = false;
-
-	if(!abs_timeout)
-		return 0;
-
-	// SUS requires we fail if not normalized
-	if(abs_timeout->tv_nsec >= 1000000000)
-		return 0;
-
-	struct timespec cur_time;
-	if(clock_gettime(CLOCK_REALTIME, &cur_time) != 0)
-		return 0;
-
-	timeout_is_valid = true;
-
-	// convert absolute deadline to relative length, rounding up to [ms].
-	// note: use i64 to avoid overflow in multiply.
-	const i64  ds = abs_timeout->tv_sec  - cur_time.tv_sec;
-	const long dn = abs_timeout->tv_nsec - cur_time.tv_nsec;
-	i64 length_ms = ds*1000 + (dn+500000)/1000000;
-	// .. deadline already reached; we'll still attempt to lock once
-	if(length_ms < 0)
-		return 0;
-	// .. length > 49 days => result won't fit in 32 bits. most likely bogus.
-	//    note: we're careful to avoid returning exactly -1 since
-	//          that's the Win32 INFINITE value.
-	if(length_ms >= 0xFFFFFFFF)
-	{
-		WARN_IF_ERR(ERR::LIMIT);
-		length_ms = 0xfffffffe;
-	}
-	return (DWORD)(length_ms & 0xFFFFFFFF);
-}
-
-int sem_timedwait(sem_t* sem, const struct timespec* abs_timeout)
-{
-	bool timeout_is_valid;
-	DWORD timeout_ms = calc_timeout_length_ms(abs_timeout, timeout_is_valid);
-
-	HANDLE h = HANDLE_from_sem_t(sem);
-	DWORD ret = WaitForSingleObject(h, timeout_ms);
-	// successfully decremented semaphore; bail.
-	if(ret == WAIT_OBJECT_0)
-		return 0;
-
-	// we're going to return -1. decide what happened:
-	// .. abs_timeout was invalid (must not check this before trying to lock)
-	if(!timeout_is_valid)
-		errno = EINVAL;
-	// .. timeout reached (not a failure)
-	else if(ret == WAIT_TIMEOUT)
-		errno = ETIMEDOUT;
-
-	return -1;
 }
 
 

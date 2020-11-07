@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -65,19 +65,6 @@
 # else
 #  define CONFIG2_FILE_ENABLE_AIO 1
 # endif
-#endif
-
-// allow an attempt to start the Aken driver (i.e. service) at runtime.
-// enable at your own risk on WinXP systems to allow access to
-// better timers than Windows provides. on newer Windows versions,
-// attempts to start the service from code fail unless the process
-// is elevated, and definitely fail due to lack of cross-signing unless
-// test-signing mode is active.
-// if the user has taken explicit action to install and start the
-// service via aken_install.bat, mahaf.cpp will be able to access it
-// even if this is defined to 0.
-#ifndef CONFIG2_MAHAF_ATTEMPT_DRIVER_START
-# define CONFIG2_MAHAF_ATTEMPT_DRIVER_START 0
 #endif
 
 // build in OpenGL ES 2.0 mode, instead of the default mode designed for

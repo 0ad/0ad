@@ -13,7 +13,7 @@
 	"researchTime": 60,
 	"tooltip": "Build Walls in own or neutral territory.",
 	"modifications": [
-		{ "value": "BuildRestrictions/Territory", "replace": ["own", "neutral"] }
+		{ "value": "BuildRestrictions/Territory", "replace": "own neutral" }
 	],
 	"affects": ["Wall"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

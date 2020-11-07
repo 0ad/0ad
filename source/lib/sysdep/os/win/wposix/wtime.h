@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -48,28 +48,7 @@ LIB_API int usleep(useconds_t us);
 // <time.h>
 //
 
-typedef enum
-{
-	// in our implementation, these actually do the same thing
-	// (a timer that latches the system time at startup and uses the
-	// monotonic HRT to add elapsed time since then)
-	CLOCK_REALTIME,
-	CLOCK_MONOTONIC
-}
-clockid_t;
-
-// POSIX realtime clock_*
-#if _MSC_VER < 1900
-struct timespec
-{
-	time_t tv_sec;
-	long   tv_nsec;
-};
-#endif
-
 extern int nanosleep(const struct timespec* rqtp, struct timespec* rmtp);
-extern int clock_gettime(clockid_t clock, struct timespec* ts);
-extern int clock_getres(clockid_t clock, struct timespec* res);
 
 LIB_API char* strptime(const char* buf, const char* format, struct tm* timeptr);
 
