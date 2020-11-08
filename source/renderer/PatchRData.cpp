@@ -1467,7 +1467,7 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fi
 		return;
 
 #if !CONFIG2_GLES
-	if (g_Renderer.m_WaterRenderMode == WIREFRAME)
+	if (g_Renderer.GetWaterRenderMode() == WIREFRAME)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 #endif
 
@@ -1515,7 +1515,7 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fi
 	CVertexBuffer::Unbind();
 
 #if !CONFIG2_GLES
-	if (g_Renderer.m_WaterRenderMode == WIREFRAME)
+	if (g_Renderer.GetWaterRenderMode() == WIREFRAME)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 #endif
 }

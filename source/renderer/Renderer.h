@@ -211,6 +211,11 @@ public:
 	// get the mode to render subsequent models
 	ERenderMode GetModelRenderMode() const { return m_ModelRenderMode; }
 
+	// Get the mode to render subsequent overlays.
+	ERenderMode GetOverlayRenderMode() const { return m_OverlayRenderMode; }
+	// Set the mode to render subsequent overlays.
+	void SetOverlayRenderMode(ERenderMode mode) { m_OverlayRenderMode = mode; }
+
 	// debugging
 	void SetDisplayTerrainPriorities(bool enabled) { m_DisplayTerrainPriorities = enabled; }
 
@@ -358,12 +363,15 @@ protected:
 	int m_Width;
 	// view height
 	int m_Height;
-	// current terrain rendering mode
+
+	// Current terrain rendering mode.
 	ERenderMode m_TerrainRenderMode;
-	// current water rendering mode
+	// Current water rendering mode.
 	ERenderMode m_WaterRenderMode;
-	// current model rendering mode
+	// Current model rendering mode.
 	ERenderMode m_ModelRenderMode;
+	// Current overlay rendering mode.
+	ERenderMode m_OverlayRenderMode;
 
 	CShaderDefines m_SystemShaderDefines;
 

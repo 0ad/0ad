@@ -390,18 +390,21 @@ InReaction CGameView::HandleEvent(const SDL_Event_* ev)
 				g_Renderer.SetTerrainRenderMode(EDGED_FACES);
 				g_Renderer.SetWaterRenderMode(EDGED_FACES);
 				g_Renderer.SetModelRenderMode(EDGED_FACES);
+				g_Renderer.SetOverlayRenderMode(EDGED_FACES);
 			}
 			else if (g_Renderer.GetModelRenderMode() == EDGED_FACES)
 			{
 				g_Renderer.SetTerrainRenderMode(WIREFRAME);
 				g_Renderer.SetWaterRenderMode(WIREFRAME);
 				g_Renderer.SetModelRenderMode(WIREFRAME);
+				g_Renderer.SetOverlayRenderMode(WIREFRAME);
 			}
 			else
 			{
 				g_Renderer.SetTerrainRenderMode(SOLID);
 				g_Renderer.SetWaterRenderMode(SOLID);
 				g_Renderer.SetModelRenderMode(SOLID);
+				g_Renderer.SetOverlayRenderMode(SOLID);
 			}
 			return IN_HANDLED;
 		}
