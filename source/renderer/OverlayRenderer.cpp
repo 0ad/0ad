@@ -219,8 +219,6 @@ void OverlayRenderer::Submit(SOverlayTexturedLine* line)
 	if (line->m_Coords.empty())
 		return;
 
-	ENSURE(line->m_Coords.size() % 2 == 0);
-
 	m->texlines.push_back(line);
 }
 

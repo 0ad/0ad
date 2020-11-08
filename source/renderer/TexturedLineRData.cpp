@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -90,7 +90,7 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 	std::vector<SVertex> vertices;
 	std::vector<u16> indices;
 
-	size_t n = line.m_Coords.size() / 2; // number of line points
+	const size_t n = line.m_Coords.size(); // number of line points
 	bool closed = line.m_Closed;
 
 	ENSURE(n >= 2); // minimum needed to avoid errors (also minimum value to make sense, can't draw a line between 1 point)
@@ -100,12 +100,12 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 	// recompute p2 at the end of each iteration.
 
 	CVector3D p0;
-	CVector3D p1(line.m_Coords[0], 0, line.m_Coords[1]);
-	CVector3D p2(line.m_Coords[2], 0, line.m_Coords[3]);
+	CVector3D p1(line.m_Coords[0].X, 0, line.m_Coords[0].Y);
+	CVector3D p2(line.m_Coords[1].X, 0, line.m_Coords[1].Y);
 
 	if (closed)
 		// grab the ending point so as to close the loop
-		p0 = CVector3D(line.m_Coords[(n-1)*2], 0, line.m_Coords[(n-1)*2+1]);
+		p0 = CVector3D(line.m_Coords[n - 1].X, 0, line.m_Coords[n - 1].Y);
 	else
 		// we don't want to loop around and use the direction towards the other end of the line, so create an artificial p0 that
 		// extends the p2 -> p1 direction, and use that point instead
@@ -210,7 +210,7 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 			// next iteration is the last point of the line, so create an artificial p2 that extends the p0 -> p1 direction
 			p2 = p1 + (p1 - p0);
 		else
-			p2 = CVector3D(line.m_Coords[((i+2) % n)*2], 0, line.m_Coords[((i+2) % n)*2+1]);
+			p2 = CVector3D(line.m_Coords[(i + 2) % n].X, 0, line.m_Coords[(i + 2) % n].Y);
 
 		p2.Y = terrain.GetExactGroundLevel(p2.X, p2.Z);
 		if (p2.Y < w)
