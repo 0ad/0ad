@@ -11,7 +11,10 @@ varying vec4 v_color;
 #endif
 
 varying vec2 v_tex;
+
+#if !IGNORE_LOS
 varying vec2 v_los;
+#endif
 
 void main()
 {

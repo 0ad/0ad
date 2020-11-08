@@ -1,5 +1,7 @@
 !!ARBvp1.0
+#if !IGNORE_LOS
 PARAM losTransform = program.local[0];
+#endif
 ATTRIB position = vertex.position;
 
 DP4 result.position.x, state.matrix.mvp.row[0], position;
@@ -8,7 +10,9 @@ DP4 result.position.z, state.matrix.mvp.row[2], position;
 DP4 result.position.w, state.matrix.mvp.row[3], position;
 
 MOV result.texcoord[0], vertex.texcoord[0];
+#if !IGNORE_LOS
 MAD result.texcoord[1], position.xzzz, losTransform.x, losTransform.y;
+#endif
 
 MOV result.color, vertex.color;
 

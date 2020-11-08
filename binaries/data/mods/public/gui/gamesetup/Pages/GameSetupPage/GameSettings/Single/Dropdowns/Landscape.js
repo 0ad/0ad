@@ -5,7 +5,6 @@ GameSettingControls.Landscape = class extends GameSettingControlDropdown
 		super(...args);
 
 		this.values = undefined;
-		this.lastLandscape = undefined;
 		this.mapData = undefined;
 	}
 
@@ -44,8 +43,6 @@ GameSettingControls.Landscape = class extends GameSettingControlDropdown
 		else
 			this.values = undefined;
 
-		this.lastLandscape = undefined;
-
 		this.setHidden(!this.values);
 	}
 
@@ -69,11 +66,10 @@ GameSettingControls.Landscape = class extends GameSettingControlDropdown
 				this.gameSettingsControl.updateGameAttributes();
 			}
 
-			if (this.lastLandscape != g_GameAttributes.settings.Landscape)
-			{
-				g_GameAttributes.settings.Preview = this.values.Preview[this.values.Id.indexOf(g_GameAttributes.settings.Landscape)];
-				this.lastLandscape = g_GameAttributes.settings.Biome;
-			}
+			let landscapePreview = this.values.Preview[this.values.Id.indexOf(g_GameAttributes.settings.Landscape)];
+			if (!g_GameAttributes.settings.Preview || g_GameAttributes.settings.Preview != landscapePreview)
+				g_GameAttributes.settings.Preview = landscapePreview;
+
 		}
 		else if (g_GameAttributes.settings.Landscape !== undefined)
 		{

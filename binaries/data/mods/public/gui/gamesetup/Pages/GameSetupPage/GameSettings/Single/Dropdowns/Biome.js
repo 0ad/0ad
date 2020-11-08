@@ -7,8 +7,6 @@ GameSettingControls.Biome = class extends GameSettingControlDropdown
 		this.values = undefined;
 		this.biomeValues = undefined;
 
-		this.lastBiome = undefined;
-
 		this.randomItem = {
 			"Id": this.RandomBiomeId,
 			"Title": setStringTags(this.RandomBiome, this.RandomItemTags),
@@ -49,7 +47,6 @@ GameSettingControls.Biome = class extends GameSettingControlDropdown
 		else
 			this.values = undefined;
 
-		this.lastBiome = undefined;
 	}
 
 	onGameAttributesChange()
@@ -65,17 +62,13 @@ GameSettingControls.Biome = class extends GameSettingControlDropdown
 				this.gameSettingsControl.updateGameAttributes();
 			}
 
-			if (this.lastBiome != g_GameAttributes.settings.Biome)
-			{
-				let biomePreviewFile =
-					basename(g_GameAttributes.map) + "_" +
-					basename(g_GameAttributes.settings.Biome || "") + ".png";
+			let biomePreviewFile =
+				basename(g_GameAttributes.map) + "_" +
+				basename(g_GameAttributes.settings.Biome || "") + ".png";
 
-				if (Engine.TextureExists(this.mapCache.TexturesPath + this.mapCache.PreviewsPath + biomePreviewFile))
-					g_GameAttributes.settings.Preview = biomePreviewFile;
+			if (!g_GameAttributes.settings.Preview || g_GameAttributes.settings.Preview != biomePreviewFile && Engine.TextureExists(this.mapCache.TexturesPath + this.mapCache.PreviewsPath + biomePreviewFile))
+				g_GameAttributes.settings.Preview = biomePreviewFile;
 
-				this.lastBiome = g_GameAttributes.settings.Biome;
-			}
 		}
 		else if (g_GameAttributes.settings.Biome)
 		{
