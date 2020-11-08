@@ -128,9 +128,9 @@ void main()
     vec2 move;
     float height = 1.0;
     float scale = effectSettings.z;
-	  
+
     int iter = int(min(20.0, 25.0 - dist/10.0));
-	
+
 	if (iter > 0)
 	{
 		float s = 1.0/float(iter);
@@ -145,9 +145,9 @@ void main()
 		  coord += temp;
 		  h = texture2D(normTex, coord).a;
 		}
-		  
-		// Move back to where we collided with the surface.  
-		// This assumes the surface is linear between the sample point before we 
+
+		// Move back to where we collided with the surface.
+		// This assumes the surface is linear between the sample point before we
 		// intersect the surface and after we intersect the surface
 		float hp = texture2D(normTex, coord - move).a;
 		coord -= move * ((h - height) / (s + h - hp));
@@ -168,7 +168,7 @@ void main()
   #else
     gl_FragColor.a = 1.0;
   #endif
-  
+
   vec3 texdiffuse = tex.rgb;
 
   // Apply-coloring based on texture alpha

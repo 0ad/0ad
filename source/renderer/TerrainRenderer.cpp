@@ -803,6 +803,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		if (WaterMgr->m_WaterReflection)
 			m->fancyWaterShader->Uniform(str_reflectionMatrix, WaterMgr->m_ReflectionMatrix);
 	}
+	m->fancyWaterShader->Uniform(str_ambient, lightEnv.m_TerrainAmbientColor);
 	m->fancyWaterShader->Uniform(str_sunDir, lightEnv.GetSunDir());
 	m->fancyWaterShader->Uniform(str_sunColor, lightEnv.m_SunColor);
 	m->fancyWaterShader->Uniform(str_color, WaterMgr->m_WaterColor);

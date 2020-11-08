@@ -133,7 +133,7 @@ vec3 get_fog(vec3 color)
 	return mix(fogColor, color, fogFactor);
 }
 
-vec3 getNormal()
+vec3 getNormal(vec4 fancyeffects)
 {
 	float wavyEffect = waveParams1.r;
 	float baseScale = waveParams1.g;
@@ -155,7 +155,6 @@ vec3 getNormal()
 	vec3 normal = normalize(mix(vec3(0.0, 1.0, 0.0), ww1, clamp(baseBump + fwaviness / flattenism, 0.0, 1.0)));
 
 #if USE_FANCY_EFFECTS
-	vec4 fancyeffects = texture2D(waterEffectsTex, gl_FragCoord.xy / screenSize);
 	normal = mix(vec3(0.0, 1.0, 0.0), normal, 0.5 + waterInfo.r / 2.0);
 	normal.xz = mix(normal.xz, fancyeffects.rb, fancyeffects.a / 2.0);
 #else
@@ -314,39 +313,8 @@ vec4 getRefraction(vec3 normal, vec3 eyeVec, float depthLimit)
 	return vec4(refrColor, alpha);
 }
 
-void main()
+vec4 getFoam(vec4 fancyeffects, float shadow)
 {
-	vec3 eyeVec = normalize(v_eyeVec);
-	vec3 normal = getNormal();
-
-#if USE_FANCY_EFFECTS
-	vec4 fancyeffects = texture2D(waterEffectsTex, gl_FragCoord.xy / screenSize);
-	vec4 refrColor = getRefraction(normal, eyeVec, fancyeffects.a);
-#else
-	vec4 refrColor = getRefraction(normal, eyeVec, 0.0);
-#endif
-
-	vec4 reflColor = getReflection(normal, eyeVec);
-
-	// How perpendicular to the normal our view is. Used for fresnel.
-	float ndotv = clamp(dot(normal, eyeVec), 0.0, 1.0);
-
-	// Fresnel for "how much reflection vs how much refraction".
-	float fresnel = clamp(((pow(1.1 - ndotv, 2.0)) * 1.5), 0.1, 0.75); // Approximation. I'm using 1.1 and not 1.0 because it causes artifacts, see #1714
-
-	vec3 specular = getSpecular(normal, eyeVec);
-
-	vec3 color;
-#if USE_SHADOWS_ON_WATER && USE_SHADOW
-	float shadow = get_shadow(vec4(v_shadow.xy, v_shadow.zw));
-	float fresShadow = mix(fresnel, fresnel * shadow, 0.05 + murkiness * 0.2);
-	color = mix(refrColor.rgb, reflColor.rgb, fresShadow * reflColor.a);
-	color += shadow * specular;
-#else
-	color = mix(refrColor.rgb, reflColor.rgb, fresnel * reflColor.a);
-	color += specular;
-#endif
-
 #if USE_FANCY_EFFECTS
 	float wavyEffect = waveParams1.r;
 	float baseScale = waveParams1.g;
@@ -360,8 +328,48 @@ void main()
 
 	foam1.x = abs(foaminterp.x * WindCosSin.x) + abs(foaminterp.z * WindCosSin.y);
 
-	color += fancyeffects.g + pow(foam1.x * (3.0 + waviness), 2.6 - waviness / 5.5);
+	float alpha = (fancyeffects.g + pow(foam1.x * (3.0 + waviness), 2.6 - waviness / 5.5)) * 2.0;
+	return vec4(sunColor * shadow + ambient, clamp(alpha, 0.0, 1.0));
+#else
+	return vec4(0.0);
 #endif
+}
+
+void main()
+{
+#if USE_FANCY_EFFECTS
+	vec4 fancyeffects = texture2D(waterEffectsTex, gl_FragCoord.xy / screenSize);
+#else
+	vec4 fancyeffects = vec4(0.0);
+#endif
+
+	vec3 eyeVec = normalize(v_eyeVec);
+	vec3 normal = getNormal(fancyeffects);
+
+	vec4 refrColor = getRefraction(normal, eyeVec, fancyeffects.a);
+	vec4 reflColor = getReflection(normal, eyeVec);
+
+	// How perpendicular to the normal our view is. Used for fresnel.
+	float ndotv = clamp(dot(normal, eyeVec), 0.0, 1.0);
+
+	// Fresnel for "how much reflection vs how much refraction".
+	float fresnel = clamp(((pow(1.1 - ndotv, 2.0)) * 1.5), 0.1, 0.75); // Approximation. I'm using 1.1 and not 1.0 because it causes artifacts, see #1714
+
+	vec3 specular = getSpecular(normal, eyeVec);
+
+#if USE_SHADOWS_ON_WATER && USE_SHADOW
+	float shadow = get_shadow(vec4(v_shadow.xy, v_shadow.zw));
+	float fresShadow = mix(fresnel, fresnel * shadow, 0.05 + murkiness * 0.2);
+	vec3 color = mix(refrColor.rgb, reflColor.rgb, fresShadow * reflColor.a);
+	color += shadow * specular;
+	vec4 foam = getFoam(fancyeffects, shadow);
+#else
+	vec3 color = mix(refrColor.rgb, reflColor.rgb, fresnel * reflColor.a);
+	color += specular;
+	vec4 foam = getFoam(fancyeffects, 1.0);
+#endif
+
+	color = clamp(mix(color, foam.rgb, foam.a), 0.0, 1.0);
 
 #if USE_FOG
 	color = get_fog(color);
