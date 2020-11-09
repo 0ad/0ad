@@ -263,10 +263,10 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Prepare for an attack by an enemy player. Train more soldiers using the Barracks, and get idle soldiers to build a Defense Tower near your Outpost."),
+		"instructions": markForTranslation("Prepare for an attack by an enemy player. Train more soldiers using the Barracks, and get idle soldiers to build a Tower near your Outpost."),
 		"OnPlayerCommand": function(msg)
 		{
-			if (msg.cmd.type == "repair" && TriggerHelper.EntityMatchesClassList(msg.cmd.target, "DefenseTower"))
+			if (msg.cmd.type == "repair" && TriggerHelper.EntityMatchesClassList(msg.cmd.target, "Tower"))
 				this.NextGoal();
 		}
 	},
@@ -376,11 +376,11 @@ Trigger.prototype.LaunchAttack = function()
 {
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	let entities = cmpRangeManager.GetEntitiesByPlayer(this.playerID);
-	let target = 
+	let target =
 		entities.find(e => {
 			let cmpIdentity = Engine.QueryInterface(e, IID_Identity);
-			return cmpIdentity && cmpIdentity.HasClass("DefenseTower") && Engine.QueryInterface(e, IID_Position);
-		}) || 
+			return cmpIdentity && cmpIdentity.HasClass("Tower") && Engine.QueryInterface(e, IID_Position);
+		}) ||
 		entities.find(e => {
 			let cmpIdentity = Engine.QueryInterface(e, IID_Identity);
 			return cmpIdentity && cmpIdentity.HasClass("CivilCentre") && Engine.QueryInterface(e, IID_Position);
@@ -389,7 +389,7 @@ Trigger.prototype.LaunchAttack = function()
 	let position = Engine.QueryInterface(target, IID_Position).GetPosition2D();
 
 	this.attackers = cmpRangeManager.GetEntitiesByPlayer(this.enemyID).filter(e => {
-		let cmpIdentity = Engine.QueryInterface(e, IID_Identity); 
+		let cmpIdentity = Engine.QueryInterface(e, IID_Identity);
 		return Engine.QueryInterface(e, IID_UnitAI) && cmpIdentity && cmpIdentity.HasClass("CitizenSoldier");
 	});
 

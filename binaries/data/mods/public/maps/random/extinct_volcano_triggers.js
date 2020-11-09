@@ -88,7 +88,7 @@ Trigger.prototype.GarrisonWoodenTowers = function()
 	for (let gaiaEnt of Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEntitiesByPlayer(0))
 	{
 		let cmpIdentity = Engine.QueryInterface(gaiaEnt, IID_Identity);
-		if (!cmpIdentity || !cmpIdentity.HasClass("DefenseTower"))
+		if (!cmpIdentity || !cmpIdentity.HasClass("Tower"))
 			continue;
 
 		let cmpGarrisonHolder = Engine.QueryInterface(gaiaEnt, IID_GarrisonHolder);
