@@ -6,6 +6,7 @@
 # AceLan Kao <acelan@gmail.com>, 2018
 # chianyu chen <cagd.lulofun@gmail.com>, 2019
 # DanSnow <dododavid006@gmail.com>, 2014
+# Ezekiel Hirschmann <zeke.penguin@gmail.com>, 2020
 # Karinsu Hsu <m80126colin@gmail.com>, 2018
 # Yuan <daan0014119@gmail.com>, 2017
 # 黃柏諺 <s8321414@gmail.com>, 2014-2017
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-10-21 15:44+0000\n"
-"Last-Translator: Yuan <daan0014119@gmail.com>\n"
+"PO-Revision-Date: 2020-11-07 18:32+0000\n"
+"Last-Translator: Ezekiel Hirschmann <zeke.penguin@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,7 +49,7 @@ msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Train Citizens and research technologies. Garrison Soldiers "
 "for additional arrows."
-msgstr ""
+msgstr "建於所屬或中立的地域以取得大片領土，是為領土的根基。訓練平民以及研發科技。士兵駐紮後可增加發射箭數。"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:82
 #: simulation/templates/template_structure_defensive.xml:5
@@ -90,7 +91,7 @@ msgstr "房舍"
 
 #: simulation/templates/template_structure_civic_stoa.xml:33
 msgid "Train Mercenary Champions."
-msgstr ""
+msgstr "訓練雇傭的精銳部隊"
 
 #: simulation/templates/template_structure_civic_stoa.xml:34
 #: simulation/templates/template_structure_civic_temple.xml:36
@@ -116,7 +117,7 @@ msgstr "拱廊"
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 msgid "Train Healers and research healing technologies."
-msgstr ""
+msgstr "訓練治癒者與研發治癒技術。"
 
 #: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -131,7 +132,7 @@ msgstr "防禦性建築"
 msgid ""
 "Build in own or neutral territory. Slowly converts to Gaia while in neutral "
 "territory."
-msgstr ""
+msgstr "建於自有或中立的土地；位於中立土地的話會緩慢轉變為自然之力"
 
 #: simulation/templates/template_structure_defensive_outpost.xml:40
 #: simulation/templates/template_structure_defensive_outpost.xml:9
@@ -149,7 +150,7 @@ msgstr ""
 #: simulation/templates/structures/wallset_palisade.xml:5
 #: simulation/templates/structures/wallset_palisade.xml:4
 msgid "Palisade"
-msgstr "Palisade"
+msgstr "柵欄"
 
 #: simulation/templates/template_structure_defensive_tower.xml:53
 #: simulation/templates/template_structure_defensive_tower.xml:36
@@ -195,7 +196,7 @@ msgstr "哨站"
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
-msgstr ""
+msgstr "駐紮步兵以增加箭數；需要\"決殺孔\"技術才能顧到其基底"
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:33
 msgid "SentryTower"
@@ -225,13 +226,13 @@ msgstr "牆"
 #: simulation/templates/template_structure_defensive_wall_gate.xml:24
 #: simulation/templates/template_structure_defensive_wall_long.xml:29
 msgid "Allow units access through Walls. Can be locked to prevent access."
-msgstr "允許單位穿越城牆。可以被鎖定來防止通行。"
+msgstr "允許單位穿越城牆。可以上鎖來防止通行。"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:25
 #: simulation/templates/template_structure_defensive_wall_gate.xml:22
 #: simulation/templates/structures/palisades_gate.xml:23
 msgid "Gate"
-msgstr "閘門"
+msgstr "城門"
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:20
 msgid "Can be converted into a Gate."
@@ -300,16 +301,16 @@ msgstr "陸軍"
 msgid ""
 "Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
 "Siege Engine technologies."
-msgstr ""
+msgstr "訓練精銳十字弓步兵，建造兵工推進機，以及研發兵工推進機科技"
 
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_arsenal.xml:25
 msgid "Arsenal"
-msgstr ""
+msgstr "兵工廠"
 
 #: simulation/templates/template_structure_military_barracks.xml:28
 msgid "Train Citizen Soldiers and research technologies."
-msgstr ""
+msgstr "訓練民兵以及研發科技"
 
 #: simulation/templates/template_structure_military_barracks.xml:29
 #: simulation/templates/template_structure_military_barracks.xml:26
@@ -320,13 +321,13 @@ msgstr "軍營"
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Establish trade"
 " routes. Construct Ships and research Ship technologies."
-msgstr ""
+msgstr "建於自有、中立，或同盟領土的水岸。建立貿易路線。造船以及研發船隻科技。"
 
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/structures/brit_crannog.xml:16
 #: simulation/templates/structures/cart_super_dock.xml:44
 msgid "Naval"
-msgstr ""
+msgstr "海軍的"
 
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/template_structure_military_dock.xml:25
@@ -353,18 +354,18 @@ msgstr "大使館"
 
 #: simulation/templates/template_structure_military_forge.xml:24
 msgid "Research attack and armor technologies."
-msgstr ""
+msgstr "研發攻擊與防衛科技"
 
 #: simulation/templates/template_structure_military_forge.xml:26
 #: simulation/templates/template_structure_military_forge.xml:22
 msgid "Forge"
-msgstr ""
+msgstr "冶煉廠"
 
 #: simulation/templates/template_structure_military_fortress.xml:69
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
-msgstr ""
+msgstr "訓練精銳部隊與英雄以及研發科技。駐紮士兵以增加箭數"
 
 #: simulation/templates/template_structure_military_fortress.xml:71
 #: simulation/templates/template_structure_military_fortress.xml:37
@@ -378,11 +379,11 @@ msgstr ""
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Train Ranged Infantry and research technologies."
-msgstr ""
+msgstr "訓練遠距步兵以及研發科技"
 
 #: simulation/templates/template_structure_military_range.xml:25
 msgid "Range"
-msgstr ""
+msgstr "範圍"
 
 #: simulation/templates/template_structure_military_stable.xml:25
 msgid "Train Cavalry and research Cavalry technologies."
@@ -403,7 +404,7 @@ msgstr "資源"
 
 #: simulation/templates/template_structure_resource_corral.xml:20
 msgid "Raise Domestic Animals for food."
-msgstr ""
+msgstr "飼養做食物用的家畜"
 
 #: simulation/templates/template_structure_resource_corral.xml:21
 #: simulation/templates/template_structure_resource_corral.xml:18
@@ -418,17 +419,17 @@ msgstr "農田"
 #: simulation/templates/template_structure_resource_field.xml:24
 msgid ""
 "Harvest grain for food. Each subsequent gatherer works less efficiently."
-msgstr ""
+msgstr "播種糧食作物。往後的每一個採集者工作起來都會比較沒效率"
 
 #: simulation/templates/template_structure_special.xml:23
 msgid "Special Structure"
-msgstr ""
+msgstr "特殊建築"
 
 #: simulation/templates/template_structure_special_amphitheater.xml:23
 #: simulation/templates/template_structure_special_amphitheater.xml:21
 #: simulation/templates/structures/rome_amphitheater_pompeii.xml:5
 msgid "Amphitheater"
-msgstr ""
+msgstr "露天劇場"
 
 #: simulation/templates/template_structure_special_library.xml:26
 #: simulation/templates/template_structure_special_library.xml:24
@@ -441,12 +442,12 @@ msgstr "旋轉研磨機"
 
 #: simulation/templates/template_structure_special_rotarymill.xml:22
 msgid "RotaryMill"
-msgstr ""
+msgstr "旋轉研磨機"
 
 #: simulation/templates/template_structure_special_theater.xml:26
 #: simulation/templates/template_structure_special_theater.xml:24
 msgid "Theater"
-msgstr ""
+msgstr "劇場"
 
 #: simulation/templates/template_structure_wonder.xml:41
 msgid ""
@@ -465,7 +466,7 @@ msgstr "奇觀"
 #: simulation/templates/structures/sele_arsenal.xml:5
 #: simulation/templates/structures/spart_arsenal.xml:5
 msgid "Hoplothēkē"
-msgstr ""
+msgstr "兵工廠"
 
 #: simulation/templates/structures/athen_barracks.xml:12
 #: simulation/templates/structures/mace_barracks.xml:12
@@ -542,7 +543,7 @@ msgstr "Phrourion"
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid "Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "駐紮士兵以增加箭數"
 
 #: simulation/templates/structures/athen_gymnasium.xml:23
 msgid "Gymnasion"
@@ -550,7 +551,7 @@ msgstr "體育館（ Gymnasion ）"
 
 #: simulation/templates/structures/athen_gymnasium.xml:24
 msgid "Train Champions."
-msgstr ""
+msgstr "訓練精銳部隊"
 
 #: simulation/templates/structures/athen_gymnasium.xml:26
 #: simulation/templates/structures/athen_gymnasium.xml:22
@@ -591,7 +592,7 @@ msgstr "市政廳（ Prytaneion ）"
 
 #: simulation/templates/structures/athen_prytaneion.xml:24
 msgid "Train Heroes and research technologies."
-msgstr ""
+msgstr "訓練英雄及研發科技"
 
 #: simulation/templates/structures/athen_prytaneion.xml:26
 #: simulation/templates/structures/spart_gerousia.xml:26
@@ -862,7 +863,7 @@ msgstr "建造漁船採集魚肉並建造商船與其他碼頭交易。"
 
 #: simulation/templates/structures/cart_embassy.xml:19
 msgid "Train Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "訓練傭兵並研發傭兵科技"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:17
 msgid "Celtic Embassy"
@@ -870,7 +871,7 @@ msgstr "塞爾特大使館"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:18
 msgid "Train Celtic Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "訓練賽爾特傭兵並研發傭兵科技"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:10
 msgid "Iberian Embassy"
@@ -878,7 +879,7 @@ msgstr "伊比利大使館"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:11
 msgid "Train Iberian Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "訓練伊比利傭兵並研發傭兵科技"
 
 #: simulation/templates/structures/cart_embassy_italic.xml:17
 msgid "Italic Embassy"
@@ -886,7 +887,7 @@ msgstr "義大利大使館"
 
 #: simulation/templates/structures/cart_embassy_italic.xml:18
 msgid "Train Italic Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "訓練義大利傭兵並研發傭兵科技"
 
 #: simulation/templates/structures/cart_farmstead.xml:8
 msgid "Aḥuzāh"
@@ -940,7 +941,7 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Construct Warships and research "
 "technologies."
-msgstr ""
+msgstr "建於自有、中立，或同盟領土的水岸後會取得大片領域，是為領域的根基。造艦以及研發科技。"
 
 #: simulation/templates/structures/cart_super_dock.xml:44
 msgid "Shipyard"
@@ -952,7 +953,7 @@ msgstr "Maqdaš"
 
 #: simulation/templates/structures/cart_temple.xml:15
 msgid "Train Healers and Champions and research healing technologies."
-msgstr ""
+msgstr "訓練治癒者和精銳部隊與研發治癒技術。"
 
 #: simulation/templates/structures/cart_tophet.xml:18
 msgid "Sacrificial Temple"
@@ -964,7 +965,7 @@ msgstr "托菲特"
 
 #: simulation/templates/structures/cart_tophet.xml:20
 msgid "Train Healers and Champion Cavalry and research healing technologies."
-msgstr ""
+msgstr "訓練治療者與精銳騎兵並研發治療科技。"
 
 #: simulation/templates/structures/cart_wall_gate.xml:12
 msgid "Mijdil-šaʿar"
@@ -1010,7 +1011,7 @@ msgstr "招募狂信者。"
 
 #: simulation/templates/structures/gaul_theater.xml:10
 msgid "Assembly of Princes"
-msgstr ""
+msgstr "王子會"
 
 #: simulation/templates/structures/gaul_theater.xml:11
 msgid "Remogantion"
@@ -1235,11 +1236,11 @@ msgstr ""
 #: simulation/templates/structures/kush_temple.xml:10
 msgid ""
 "Train Healers and Apedamak Champions and research healing technologies."
-msgstr ""
+msgstr "訓練治癒者和獅首精銳部隊與研發治癒技術。"
 
 #: simulation/templates/structures/kush_temple.xml:11
 msgid "TempleOfApedemak"
-msgstr ""
+msgstr "獅頭戰神神殿"
 
 #: simulation/templates/structures/kush_temple_amun.xml:28
 msgid "Grand Temple of Amun"
@@ -1251,11 +1252,11 @@ msgstr ""
 
 #: simulation/templates/structures/kush_temple_amun.xml:30
 msgid "Train Healers and Amun Champions and research healing technologies."
-msgstr ""
+msgstr "訓練治癒者和阿蒙神精銳部隊與研發治癒技術。"
 
 #: simulation/templates/structures/kush_temple_amun.xml:31
 msgid "TempleOfAmun"
-msgstr ""
+msgstr "阿蒙神神殿"
 
 #: simulation/templates/structures/kush_wall_gate.xml:12
 msgid "ʿryt"
@@ -1442,15 +1443,15 @@ msgstr "Palisade Gate"
 #: simulation/templates/structures/palisades_gate.xml:22
 #: simulation/templates/structures/palisades_long.xml:31
 msgid "Allow units access through Palisades. Can be locked to prevent access."
-msgstr ""
+msgstr "允許各單位藉活動式柵欄出入，也可以上鎖以防範進入"
 
 #: simulation/templates/structures/palisades_long.xml:17
 msgid "Can be converted into a Palisade Gate."
-msgstr ""
+msgstr "可轉為活動式柵欄"
 
 #: simulation/templates/structures/palisades_spike_angle.xml:17
 msgid "Angle Spike"
-msgstr ""
+msgstr "犄角尖刺"
 
 #: simulation/templates/structures/palisades_spikes_small.xml:17
 msgid "Small Spikes"
@@ -1466,7 +1467,7 @@ msgstr "瞭望塔"
 
 #: simulation/templates/structures/pers_apadana.xml:27
 msgid "Throne Hall"
-msgstr ""
+msgstr "皇室會館"
 
 #: simulation/templates/structures/pers_apadana.xml:28
 msgid "Apadāna"
@@ -1487,7 +1488,7 @@ msgstr "Padgan"
 
 #: simulation/templates/structures/pers_barracks.xml:6
 msgid "Train Infantry."
-msgstr ""
+msgstr "訓練步兵"
 
 #: simulation/templates/structures/pers_civil_centre.xml:8
 msgid "Provincial Governor"
@@ -1629,7 +1630,7 @@ msgstr "燈塔"
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Reveal the "
 "shorelines over the entire map. Very large vision range."
-msgstr ""
+msgstr "建於自有、中立，或同盟領土內的水岸以揭露整張地圖的水陸交界。極大的視野。"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:27
 #: simulation/templates/structures/ptol_lighthouse.xml:24
@@ -1644,7 +1645,7 @@ msgstr "傭兵營"
 msgid ""
 "Cheap Barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr ""
+msgstr "類似軍營的低廉建物。雖可建於中立土地，但無助於領土擴張。訓練傭兵"
 
 #: simulation/templates/structures/ptol_military_colony.xml:9
 #: simulation/templates/structures/sele_military_colony.xml:9
@@ -1774,7 +1775,7 @@ msgstr ""
 #: simulation/templates/structures/rome_siege_wall_short.xml:22
 #: simulation/templates/structures/rome_wallset_siege.xml:5
 msgid "Siege Wall"
-msgstr "圍牆"
+msgstr "兵工城牆"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:26
 #: simulation/templates/structures/rome_siege_wall_medium.xml:23
@@ -1785,7 +1786,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:21
 msgid "Siege Wall Tower"
-msgstr "牆塔"
+msgstr "兵工牆塔"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:22
 msgid "Turris Circummūnītiōnis"
@@ -1876,7 +1877,7 @@ msgstr "Gerousia"
 
 #: simulation/templates/structures/spart_gerousia.xml:24
 msgid "Train Heroes."
-msgstr ""
+msgstr "訓練英雄"
 
 #: simulation/templates/structures/spart_syssiton.xml:23
 msgid "Military Mess Hall"

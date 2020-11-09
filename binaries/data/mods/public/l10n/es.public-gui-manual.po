@@ -33,7 +33,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-06 07:17+0000\n"
-"PO-Revision-Date: 2020-10-11 00:27+0000\n"
+"PO-Revision-Date: 2020-11-06 18:41+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr "Cerrar"
 
 #: gui/manual/manual.xml:(caption):28
 msgid "View Online"
-msgstr "Verlo en línea"
+msgstr "Ver en línea"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
@@ -75,7 +75,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr "Puedes alternar entre pantalla completa y modo ventana presionando Alt + Enter. En modo ventana, puedes cambiar el tamaño de la ventana. Si el juego se ejecuta de forma lenta, puedes cambiar la configuración en la ventana de opciones: prueba a desactivar las opciones “Efectos de agua HQ” y “Sombras”."
+msgstr "Pulsando Alt + Enter puedes cambiar entre pantalla completa y modo ventana. En modo ventana puedes cambiar su tamaño. Si el juego va lento puedes cambiar la configuración en la ventana de opciones: prueba a desactivar las opciones “Efectos de agua HQ” y “Sombras”."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -87,7 +87,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr "Los controles y comportamiento deberían resultar familiares a los jugadores habituados a juegos de estrategia en tiempo real (RTS). Todavía faltan un gran número de características y está poco equilibrado. Probablemente tengas que esperar hasta el lanzamiento de la beta para obtener un correcto funcionamiento."
+msgstr "Los controles y modo de juego deberían resultar familiares a los jugadores habituados a juegos de estrategia en tiempo real (RTS). Todavía faltan muchas características y aun está poco equilibrado. Probablemente tengas que esperar hasta el lanzamiento de la beta para obtener un correcto funcionamiento."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls:"
@@ -119,7 +119,7 @@ msgstr "• Rueda del ratón, o “=”/“+” y “-”/“−” para acercar
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-16\"]Modalidades[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-16\"]Atajos de teclado[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
@@ -145,7 +145,7 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr "Para configurar una partida en multijugador, uno de los jugadores debe seleccionar la opción «Crear partida». El juego usa el puerto UDP 20595, por lo que el anfitrión deberá configurar su NAT/Firewall/otro para permitir el acceso. Los demás jugadores podrán seleccionar  «Unirse a una partida» e introducir la dirección IP del servidor."
+msgstr "Para configurar una partida multijugador, uno de los jugadores debe seleccionar la opción «Crear partida». El juego usa el puerto UDP 20595, por lo que el anfitrión deberá configurar su NAT/Firewall/otro para permitir el acceso. Los demás jugadores podrán seleccionar  «Unirse a una partida» e introducir la dirección IP del servidor."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -228,7 +228,7 @@ msgstr "Alt + F – Mostrar FPS"
 msgid ""
 "  F11 – Toggle real-time profiler (cycles through the displays of "
 "information)"
-msgstr "F11 – Mostrar u ocultar el analizador de rendimiento en tiempo real (cambia entre diferentes paneles de información)"
+msgstr " F11 – Mostrar analizador de rendimiento en tiempo real (alterna entre diferentes paneles de información)"
 
 #: gui/manual/intro.txt:46
 msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
@@ -239,26 +239,26 @@ msgid ""
 "  F2 – Take screenshot (in .png format, location is displayed in the top "
 "left of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr "  F2 – Take screenshot (in .png format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)"
+msgstr "  F2 – Captura de pantalla (en formato .png; la ubicación se mostrará en la esquina superior izquierda cuando el archivo se haya guardado y puede consultarse posteriormente en la consola/registro)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, "
 "location is displayed in the top left of the GUI after the file has been "
 "saved, and can also be seen in the console/logs if you miss it there)"
-msgstr "  Mayús + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)"
+msgstr "  Mayús + F2 – Captura de pantalla máxima (6400×4800 pixels en formato .bmp; la ubicación se mostrará en la esquina superior izquierda cuando el archivo se haya guardado y puede consultarse posteriormente en la consola/registro)"
 
 #: gui/manual/intro.txt:49
 msgid "  Tab, Alt + S – Switch to the next tab"
-msgstr "  Tab, Alt + S – Cambia a la siguiente pestaña"
+msgstr "  Tab, Alt + S – Pasar a la siguiente pestaña"
 
 #: gui/manual/intro.txt:50
 msgid "  Shift + Tab, Alt + W – Switch to the previous tab"
-msgstr "  Mayús + Tab, Alt + W – Switch to the previous tab"
+msgstr "  Mayús + Tab, Alt + W – Pasar a la pestaña anterior"
 
 #: gui/manual/intro.txt:52
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]Partida[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:53
 msgid ""
@@ -294,7 +294,7 @@ msgstr "  Mayús + F8 – Carga rápida"
 
 #: gui/manual/intro.txt:59
 msgid "  F10 – Toggle menu"
-msgstr "F10 – Mostrar menú"
+msgstr " F10 – Mostrar menu"
 
 #: gui/manual/intro.txt:60
 msgid "  F12 – Toggle time elapsed counter"
@@ -729,10 +729,10 @@ msgstr "  Esc – Cancelar"
 
 #: gui/manual/intro.txt:157
 msgid "  Delete – Delete the selected saved game, ask for confirmation"
-msgstr "  Supr – Borrar la partida guardada seleccionada solicitando confirmación"
+msgstr "  Supr – Borrar la partida guardada seleccionada. Requiere confirmación"
 
 #: gui/manual/intro.txt:158
 msgid ""
 "  Shift + Delete – Immediately delete the selected saved game, without "
 "asking for confirmation"
-msgstr "  Mayús + Supr – Borra al instante la partida guardada seleccionada sin pedir confirmación"
+msgstr "  Mayús + Supr – Borrar inmediatamente la partida guardada seleccionada sin pedir confirmación"
