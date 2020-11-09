@@ -90,6 +90,11 @@ Identity.prototype.Schema =
 			"<text/>" +
 		"</element>" +
 	"</optional>" +
+	"<optional>" +
+		"<element name='Controllable' a:help='Whether players can control this entity. Defaults to true.'>" +
+			"<data type='boolean'/>" +
+		"</element>" +
+	"</optional>" +
 	"<element name='Undeletable' a:help='Prevent players from deleting this entity.'>" +
 		"<data type='boolean'/>" +
 	"</element>";
@@ -102,6 +107,8 @@ Identity.prototype.Init = function()
 		this.phenotype = pickRandom(this.GetPossiblePhenotypes());
 	else
 		this.phenotype = "default";
+
+	this.controllable = this.template.Controllable ? this.template.Controllable == "true" : true;
 };
 
 Identity.prototype.HasSomeFormation = function()
@@ -182,6 +189,16 @@ Identity.prototype.GetGenericName = function()
 Identity.prototype.IsUndeletable = function()
 {
 	return this.template.Undeletable == "true";
+};
+
+Identity.prototype.IsControllable = function()
+{
+	return this.controllable;
+};
+
+Identity.prototype.SetControllable = function(controllability)
+{
+	this.controllable = controllability;
 };
 
 Engine.RegisterComponentType(IID_Identity, "Identity", Identity);

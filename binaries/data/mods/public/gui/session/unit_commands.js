@@ -135,7 +135,13 @@ function updateUnitCommands(entStates, supplementalDetailsPanel, commandsPanel)
 	let playerStates = GetSimState().players;
 	let playerState = playerStates[Engine.GetPlayerID()];
 
-	if (g_IsObserver || entStates.every(entState => controlsPlayer(entState.player)))
+	// Always show selection.
+	setupUnitPanel("Selection", entStates, playerStates[entStates[0].player]);
+
+	if (g_IsObserver || entStates.every(entState =>
+		controlsPlayer(entState.player) &&
+		(!entState.identity || entState.identity.controllable)) ||
+		playerState.controlsAll)
 	{
 		for (let guiName of g_PanelsOrder)
 		{
