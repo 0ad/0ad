@@ -219,8 +219,6 @@ void OverlayRenderer::Submit(SOverlayTexturedLine* line)
 	if (line->m_Coords.empty())
 		return;
 
-	ENSURE(line->m_Coords.size() % 2 == 0);
-
 	m->texlines.push_back(line);
 }
 
@@ -367,6 +365,9 @@ void OverlayRenderer::RenderOverlaysBeforeWater()
 #if CONFIG2_GLES
 #warning TODO: implement OverlayRenderer::RenderOverlaysBeforeWater for GLES
 #else
+	if (g_Renderer.GetOverlayRenderMode() == WIREFRAME)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
 	pglActiveTextureARB(GL_TEXTURE0);
 	glDisable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
@@ -395,6 +396,9 @@ void OverlayRenderer::RenderOverlaysBeforeWater()
 	glLineWidth(1.f);
 	glDepthFunc(GL_LEQUAL);
 	glDisable(GL_BLEND);
+
+	if (g_Renderer.GetOverlayRenderMode() == WIREFRAME)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 #endif
 }
 
@@ -483,6 +487,10 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 
 void OverlayRenderer::RenderTexturedOverlayLines(CShaderProgramPtr shader, bool alwaysVisible)
 {
+#if !CONFIG2_GLES
+	if (g_Renderer.GetOverlayRenderMode() == WIREFRAME)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+#endif
 	for (size_t i = 0; i < m->texlines.size(); ++i)
 	{
 		SOverlayTexturedLine* line = m->texlines[i];
@@ -494,6 +502,10 @@ void OverlayRenderer::RenderTexturedOverlayLines(CShaderProgramPtr shader, bool 
 		ENSURE(line->m_RenderData);
 		line->m_RenderData->Render(*line, shader);
 	}
+#if !CONFIG2_GLES
+	if (g_Renderer.GetOverlayRenderMode() == WIREFRAME)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+#endif
 }
 
 void OverlayRenderer::RenderQuadOverlays()
@@ -521,6 +533,11 @@ void OverlayRenderer::RenderQuadOverlays()
 
 	if (!shader)
 		return;
+
+#if !CONFIG2_GLES
+	if (g_Renderer.GetOverlayRenderMode() == WIREFRAME)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+#endif
 
 	pglActiveTextureARB(GL_TEXTURE0);
 	glEnable(GL_TEXTURE_2D);
@@ -584,6 +601,11 @@ void OverlayRenderer::RenderQuadOverlays()
 
 	glDepthMask(1);
 	glDisable(GL_BLEND);
+
+#if !CONFIG2_GLES
+	if (g_Renderer.GetOverlayRenderMode() == WIREFRAME)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+#endif
 }
 
 void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
@@ -593,6 +615,9 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 #if CONFIG2_GLES
 #warning TODO: implement OverlayRenderer::RenderForegroundOverlays for GLES
 #else
+	if (g_Renderer.GetOverlayRenderMode() == WIREFRAME)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
 	pglActiveTextureARB(GL_TEXTURE0);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
@@ -662,6 +687,9 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
 	glDisable(GL_TEXTURE_2D);
+
+	if (g_Renderer.GetOverlayRenderMode() == WIREFRAME)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 #endif
 }
 

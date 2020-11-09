@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -89,7 +89,7 @@ struct SOverlayTexturedLine
 	/// Color to apply to the line texture, where indicated by the mask.
 	CColor m_Color;
 	/// (x, z) vertex coordinate pairs; y is computed automatically.
-	std::vector<float> m_Coords;
+	std::vector<CVector2D> m_Coords;
 	/// Half-width of the line, in world-space units.
 	float m_Thickness;
 	/// Should this line be treated as a closed loop? If set, any end cap settings are ignored.
@@ -128,12 +128,12 @@ struct SOverlayTexturedLine
 	 */
 	void CreateOverlayTexture(const SOverlayDescriptor* overlayDescriptor);
 
-	void PushCoords(const float x, const float z) { m_Coords.push_back(x); m_Coords.push_back(z); }
-	void PushCoords(const CVector2D& v) { PushCoords(v.X, v.Y); }
+	void PushCoords(const float x, const float z) { m_Coords.emplace_back(x, z); }
+	void PushCoords(const CVector2D& v) { m_Coords.push_back(v); }
 	void PushCoords(const std::vector<CVector2D>& points)
 	{
-		for (size_t i = 0; i < points.size(); ++i)
-			PushCoords(points[i]);
+		for (const CVector2D& point : points)
+			PushCoords(point);
 	}
 
 	bool IsVisibleInFrustum(const CFrustum& frustum) const;

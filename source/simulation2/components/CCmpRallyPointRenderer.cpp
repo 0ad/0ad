@@ -514,10 +514,7 @@ void CCmpRallyPointRenderer::ConstructOverlayLines(size_t index)
 			ENSURE(segment.m_EndIndex > segment.m_StartIndex);
 			// End index is inclusive here
 			for (size_t j = segment.m_StartIndex; j <= segment.m_EndIndex; ++j)
-			{
-				overlayLine.m_Coords.push_back(m_Path[index][j].X);
-				overlayLine.m_Coords.push_back(m_Path[index][j].Y);
-			}
+				overlayLine.m_Coords.push_back(m_Path[index][j]);
 
 			m_TexturedOverlayLines[index].push_back(overlayLine);
 		}
@@ -588,11 +585,8 @@ void CCmpRallyPointRenderer::ConstructOverlayLines(size_t index)
 				size_t dashEndIndex = dashedLine.GetEndIndex(i);
 				ENSURE(dashEndIndex > dashStartIndex);
 
-				for (size_t n = dashStartIndex; n < dashEndIndex; n++)
-				{
-					dashOverlay.m_Coords.push_back(dashedLine.m_Points[n].X);
-					dashOverlay.m_Coords.push_back(dashedLine.m_Points[n].Y);
-				}
+				for (size_t j = dashStartIndex; j < dashEndIndex; ++j)
+					dashOverlay.m_Coords.push_back(dashedLine.m_Points[j]);
 
 				m_TexturedOverlayLines[index].push_back(dashOverlay);
 			}

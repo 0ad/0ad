@@ -3,10 +3,10 @@
 
     <vertex file="glsl/minimap.vs">
         <stream name="pos"/>
-        <stream name="uv0" if="MINIMAP_BASE || MINIMAP_LOS"/>
+        <stream name="uv0" if="MINIMAP_BASE || MINIMAP_LOS || MINIMAP_MASK"/>
         <stream name="color" if="MINIMAP_POINT"/>
         <attrib name="a_vertex" semantics="gl_Vertex"/>
-        <attrib name="a_uv0" semantics="gl_MultiTexCoord0" if="MINIMAP_BASE || MINIMAP_LOS"/>
+        <attrib name="a_uv0" semantics="gl_MultiTexCoord0" if="MINIMAP_BASE || MINIMAP_LOS || MINIMAP_MASK"/>
         <attrib name="a_color" semantics="gl_Color" if="MINIMAP_POINT"/>
     </vertex>
 

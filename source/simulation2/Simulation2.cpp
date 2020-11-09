@@ -531,17 +531,14 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 
 	CComponentManager& componentManager = simContext.GetComponentManager();
 
+	CmpPtr<ICmpPathfinder> cmpPathfinder(simContext, SYSTEM_ENTITY);
+	if (cmpPathfinder)
+		cmpPathfinder->FetchAsyncResultsAndSendMessages();
+
 	{
 		PROFILE2("Sim - Update Start");
 		CMessageTurnStart msgTurnStart;
 		componentManager.BroadcastMessage(msgTurnStart);
-	}
-
-	CmpPtr<ICmpPathfinder> cmpPathfinder(simContext, SYSTEM_ENTITY);
-	if (cmpPathfinder)
-	{
-		cmpPathfinder->FetchAsyncResultsAndSendMessages();
-		cmpPathfinder->UpdateGrid();
 	}
 
 	// Push AI commands onto the queue before we use them
@@ -594,7 +591,10 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 
 	// Process all remaining moves
 	if (cmpPathfinder)
+	{
+		cmpPathfinder->UpdateGrid();
 		cmpPathfinder->StartProcessingMoves(false);
+	}
 }
 
 void CSimulation2Impl::Interpolate(float simFrameLength, float frameOffset, float realFrameLength)

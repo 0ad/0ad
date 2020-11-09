@@ -72,6 +72,9 @@ function InitGame(settings)
 	if (settings.WorldPopulationCap)
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).SetMaxWorldPopulation(settings.WorldPopulationCap);
 
+	// Update the grid with all entities created for the map init.
+	Engine.QueryInterface(SYSTEM_ENTITY, IID_Pathfinder).UpdateGrid();
+
 	// Map or player data (handicap...) dependent initialisations of components (i.e. garrisoned units).
 	Engine.BroadcastMessage(MT_InitGame, {});
 

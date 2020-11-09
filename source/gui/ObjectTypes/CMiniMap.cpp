@@ -70,9 +70,11 @@ const CStr CMiniMap::EventNameWorldClick = "WorldClick";
 CMiniMap::CMiniMap(CGUI& pGUI) :
 	IGUIObject(pGUI),
 	m_TerrainTexture(0), m_TerrainData(0), m_MapSize(0), m_Terrain(0), m_TerrainDirty(true), m_MapScale(1.f),
-	m_EntitiesDrawn(0), m_IndexArray(GL_STATIC_DRAW), m_VertexArray(GL_DYNAMIC_DRAW),
+	m_EntitiesDrawn(0), m_IndexArray(GL_STATIC_DRAW), m_VertexArray(GL_DYNAMIC_DRAW), m_Mask(false),
 	m_NextBlinkTime(0.0), m_PingDuration(25.0), m_BlinkState(false), m_WaterHeight(0.0)
 {
+	RegisterSetting("mask", m_Mask);
+
 	m_Clicking = false;
 	m_MouseHovering = false;
 
@@ -427,6 +429,7 @@ void CMiniMap::Draw()
 	const float angle = GetAngle();
 	const float unitScale = (cmpRangeManager->GetLosCircular() ? 1.f : m_MapScale/2.f);
 
+	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
 	// Disable depth updates to prevent apparent z-fighting-related issues
 	//  with some drivers causing units to get drawn behind the texture.
 	glDepthMask(0);
@@ -436,26 +439,53 @@ void CMiniMap::Draw()
 
 	CShaderDefines baseDefines;
 	baseDefines.Add(str_MINIMAP_BASE, str_1);
+	if (m_Mask)
+		baseDefines.Add(str_MINIMAP_MASK, str_1);
+
 	tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), baseDefines);
 	tech->BeginPass();
 	shader = tech->GetShader();
 
 	// Draw the main textured quad
 	shader->BindTexture(str_baseTex, m_TerrainTexture);
+	if (m_Mask)
+	{
+		shader->BindTexture(str_maskTex, losTexture.GetTexture());
+		CMatrix3D maskTextureTransform = *losTexture.GetMinimapTextureMatrix();
+		// We need to have texture coordinates in the same coordinate space.
+		const float scale = 1.0f / texCoordMax;
+		maskTextureTransform.Scale(scale, scale, 1.0f);
+		shader->Uniform(str_maskTextureTransform, maskTextureTransform);
+	}
 	const CMatrix3D baseTransform = GetDefaultGuiMatrix();
 	CMatrix3D baseTextureTransform;
 	baseTextureTransform.SetIdentity();
 	shader->Uniform(str_transform, baseTransform);
 	shader->Uniform(str_textureTransform, baseTextureTransform);
 
+	if (m_Mask)
+	{
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	}
+
 	DrawTexture(shader, texCoordMax, angle, x, y, x2, y2, z);
 
-	// Draw territory boundaries
-	glEnable(GL_BLEND);
+	if (!m_Mask)
+	{
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	}
 
+	// Draw territory boundaries
 	CTerritoryTexture& territoryTexture = g_Game->GetView()->GetTerritoryTexture();
 
 	shader->BindTexture(str_baseTex, territoryTexture.GetTexture());
+	if (m_Mask)
+	{
+		shader->BindTexture(str_maskTex, losTexture.GetTexture());
+		shader->Uniform(str_maskTextureTransform, *losTexture.GetMinimapTextureMatrix());
+	}
 	const CMatrix3D* territoryTransform = territoryTexture.GetMinimapTextureMatrix();
 	shader->Uniform(str_transform, baseTransform);
 	shader->Uniform(str_textureTransform, *territoryTransform);
@@ -464,23 +494,22 @@ void CMiniMap::Draw()
 	tech->EndPass();
 
 	// Draw the LOS quad in black, using alpha values from the LOS texture
-	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
+	if (!m_Mask)
+	{
+		CShaderDefines losDefines;
+		losDefines.Add(str_MINIMAP_LOS, str_1);
+		tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), losDefines);
+		tech->BeginPass();
+		shader = tech->GetShader();
+		shader->BindTexture(str_baseTex, losTexture.GetTexture());
 
-	CShaderDefines losDefines;
-	losDefines.Add(str_MINIMAP_LOS, str_1);
-	tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), losDefines);
-	tech->BeginPass();
-	shader = tech->GetShader();
-	shader->BindTexture(str_baseTex, losTexture.GetTexture());
+		const CMatrix3D* losTransform = losTexture.GetMinimapTextureMatrix();
+		shader->Uniform(str_transform, baseTransform);
+		shader->Uniform(str_textureTransform, *losTransform);
 
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	const CMatrix3D* losTransform = losTexture.GetMinimapTextureMatrix();
-	shader->Uniform(str_transform, baseTransform);
-	shader->Uniform(str_textureTransform, *losTransform);
-
-	DrawTexture(shader, 1.0f, angle, x, y, x2, y2, z);
-	tech->EndPass();
+		DrawTexture(shader, 1.0f, angle, x, y, x2, y2, z);
+		tech->EndPass();
+	}
 
 	glDisable(GL_BLEND);
 

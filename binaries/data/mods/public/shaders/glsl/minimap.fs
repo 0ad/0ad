@@ -5,6 +5,11 @@
   varying vec2 v_tex;
 #endif
 
+#if MINIMAP_MASK
+  uniform sampler2D maskTex;
+  varying vec2 v_maskUV;
+#endif
+
 #if MINIMAP_POINT
   varying vec3 color;
 #endif
@@ -15,8 +20,18 @@
 
 void main()
 {
+  #if MINIMAP_MASK
+    float mask = texture2D(maskTex, v_maskUV).a;
+  #endif
+
   #if MINIMAP_BASE
+  #if MINIMAP_MASK
+    vec4 color = texture2D(baseTex, v_tex);
+    gl_FragColor.rgb = color.rgb;
+    gl_FragColor.a = color.a * mask;
+  #else
     gl_FragColor = texture2D(baseTex, v_tex);
+  #endif
   #endif
 
   #if MINIMAP_LOS

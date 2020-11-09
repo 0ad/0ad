@@ -645,11 +645,10 @@ void CCmpTerritoryManager::UpdateBoundaryLines()
 		SimRender::SmoothPointsAverage(boundaries[i].points, m_BoundaryLines.back().overlay.m_Closed);
 		SimRender::InterpolatePointsRNS(boundaries[i].points, m_BoundaryLines.back().overlay.m_Closed, m_BorderSeparation);
 
-		std::vector<float>& points = m_BoundaryLines.back().overlay.m_Coords;
+		std::vector<CVector2D>& points = m_BoundaryLines.back().overlay.m_Coords;
 		for (size_t j = 0; j < boundaries[i].points.size(); ++j)
 		{
-			points.push_back(boundaries[i].points[j].X);
-			points.push_back(boundaries[i].points[j].Y);
+			points.push_back(boundaries[i].points[j]);
 
 			if (m_EnableLineDebugOverlays)
 			{

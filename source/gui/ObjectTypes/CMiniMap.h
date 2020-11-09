@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -82,6 +82,9 @@ protected:
 
 	// whether we need to regenerate the terrain texture
 	bool m_TerrainDirty;
+
+	// Whether to draw a black square around and under the minimap.
+	bool m_Mask;
 
 	ssize_t m_Width, m_Height;
 

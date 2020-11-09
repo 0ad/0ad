@@ -89,12 +89,10 @@ public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
 		componentManager.SubscribeToMessageType(MT_Deserialized);
-		componentManager.SubscribeToMessageType(MT_Update);
 		componentManager.SubscribeToMessageType(MT_RenderSubmit); // for debug overlays
 		componentManager.SubscribeToMessageType(MT_TerrainChanged);
 		componentManager.SubscribeToMessageType(MT_WaterChanged);
 		componentManager.SubscribeToMessageType(MT_ObstructionMapShapeChanged);
-		componentManager.SubscribeToMessageType(MT_TurnStart);
 	}
 
 	~CCmpPathfinder();
