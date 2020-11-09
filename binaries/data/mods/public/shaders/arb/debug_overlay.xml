@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<program type="arb">
+
+    <vertex file="arb/debug_overlay.vp">
+        <uniform name="transform" loc="0" type="mat4"/>
+        <uniform name="textureTransform" loc="4" type="mat4"/>
+        <stream name="pos"/>
+        <stream name="uv0"/>
+    </vertex>
+
+    <fragment file="arb/debug_overlay.fp">
+        <uniform name="baseTex" loc="0" type="sampler2D"/>
+    </fragment>
+
+</program>

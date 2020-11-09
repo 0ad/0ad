@@ -145,7 +145,7 @@ public:
 	 * by the given texture matrix.
 	 * Intended for use by TerrainTextureOverlay.
 	 */
-	void RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& textureMatrix);
+	void RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& textureMatrix, GLuint texture);
 
 private:
 	TerrainRendererInternals* m;
