@@ -1149,7 +1149,7 @@ bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out, const MoveReques
 
 			// Check if we anticipate the target to go through us, in which case we shouldn't anticipate
 			// (or e.g. units fleeing might suddenly turn around towards their attacker).
-			if ((out - cmpPosition->GetPosition2D()).Dot(tempPos - cmpPosition->GetPosition2D()) >= fixed::Zero())
+			if ((out - cmpPosition->GetPosition2D()).RelativeOrientation(tempPos - cmpPosition->GetPosition2D()) >= 0)
 				out = tempPos;
 		}
 	}

@@ -342,13 +342,13 @@ static bool SquareSAT(const CFixedVector2D& a, const CFixedVector2D& axis, const
 	fixed hh = halfSize.Y;
 
 	CFixedVector2D p = axis.Perpendicular();
-	if (p.Dot((u.Multiply(hw) + v.Multiply(hh)) - a) <= fixed::Zero())
+	if (p.RelativeOrientation(u.Multiply(hw) + v.Multiply(hh) - a) <= 0)
 		return true;
-	if (p.Dot((u.Multiply(hw) - v.Multiply(hh)) - a) <= fixed::Zero())
+	if (p.RelativeOrientation(u.Multiply(hw) - v.Multiply(hh) - a) <= 0)
 		return true;
-	if (p.Dot((-u.Multiply(hw) - v.Multiply(hh)) - a) <= fixed::Zero())
+	if (p.RelativeOrientation(-u.Multiply(hw) - v.Multiply(hh) - a) <= 0)
 		return true;
-	if (p.Dot((-u.Multiply(hw) + v.Multiply(hh)) - a) <= fixed::Zero())
+	if (p.RelativeOrientation(-u.Multiply(hw) + v.Multiply(hh) - a) <= 0)
 		return true;
 
 	return false;
