@@ -46,7 +46,7 @@ var gallicBuildingGarrison = [
 		"unitTemplates": danubiusAttackerTemplates.champions,
 	},
 	{
-		"buildingClasses": ["DefenseTower", "Outpost"],
+		"buildingClasses": ["Tower", "Outpost"],
 		"unitTemplates": danubiusAttackerTemplates.champion_infantry
 	}
 ];

@@ -214,8 +214,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	// Called when being told to walk as part of a formation
 	"Order.FormationWalk": function(msg) {
-		// Let players move captured domestic animals around
-		if (this.IsAnimal() && !this.IsDomestic() || !this.AbleToMove())
+		if (!this.AbleToMove())
 		{
 			this.FinishOrder();
 			return;
@@ -247,13 +246,6 @@ UnitAI.prototype.UnitFsmSpec = {
 	// (these will switch the unit out of formation mode)
 
 	"Order.Stop": function(msg) {
-		// We have no control over non-domestic animals.
-		if (this.IsAnimal() && !this.IsDomestic())
-		{
-			this.FinishOrder();
-			return;
-		}
-
 		this.StopMoving();
 		this.FinishOrder();
 
@@ -267,8 +259,7 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Walk": function(msg) {
-		// Let players move captured domestic animals around
-		if (this.IsAnimal() && !this.IsDomestic() || !this.AbleToMove())
+		if (!this.AbleToMove())
 		{
 			this.FinishOrder();
 			return;
@@ -289,8 +280,7 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.WalkAndFight": function(msg) {
-		// Let players move captured domestic animals around
-		if (this.IsAnimal() && !this.IsDomestic() || !this.AbleToMove())
+		if (!this.AbleToMove())
 		{
 			this.FinishOrder();
 			return;
@@ -312,8 +302,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 
 	"Order.WalkToTarget": function(msg) {
-		// Let players move captured domestic animals around
-		if (this.IsAnimal() && !this.IsDomestic() || !this.AbleToMove())
+		if (!this.AbleToMove())
 		{
 			this.FinishOrder();
 			return;
@@ -3339,12 +3328,6 @@ UnitAI.prototype.IsDangerousAnimal = function()
 {
 	return (this.IsAnimal() && (this.template.NaturalBehaviour == "violent" ||
 			this.template.NaturalBehaviour == "aggressive"));
-};
-
-UnitAI.prototype.IsDomestic = function()
-{
-	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
-	return cmpIdentity && cmpIdentity.HasClass("Domestic");
 };
 
 UnitAI.prototype.IsHealer = function()

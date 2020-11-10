@@ -548,6 +548,7 @@ AddMock(10, IID_Identity, {
 	"GetSelectionGroupName": function() { return "Selection Group Name"; },
 	"HasClass": function() { return true; },
 	"IsUndeletable": function() { return false; },
+	"IsControllable": function() { return true; },
 	"HasSomeFormation": function() { return false; },
 	"GetFormationsList": function() { return []; },
 });
@@ -581,6 +582,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 		"canDelete": true,
 		"hasSomeFormation": false,
 		"formations": [],
+		"controllable": true,
 	},
 	"position": { "x": 1, "y": 2, "z": 3 },
 	"hitpoints": 50,

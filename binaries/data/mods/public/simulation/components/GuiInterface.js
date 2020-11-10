@@ -261,7 +261,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"selectionGroupName": cmpIdentity.GetSelectionGroupName(),
 			"canDelete": !cmpIdentity.IsUndeletable(),
 			"hasSomeFormation": cmpIdentity.HasSomeFormation(),
-			"formations": cmpIdentity.GetFormationsList()
+			"formations": cmpIdentity.GetFormationsList(),
+			"controllable": cmpIdentity.IsControllable()
 		};
 
 	let cmpPosition = Engine.QueryInterface(ent, IID_Position);

@@ -397,72 +397,66 @@ void TerrainRenderer::RenderTerrainFixed(int cullGroup)
 #endif
 }
 
-void TerrainRenderer::RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& textureMatrix)
+void TerrainRenderer::RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& textureMatrix, GLuint texture)
 {
 #if CONFIG2_GLES
 #warning TODO: implement TerrainRenderer::RenderTerrainOverlayTexture for GLES
 	UNUSED2(cullGroup);
 	UNUSED2(textureMatrix);
+	UNUSED2(texture);
 #else
 	ENSURE(m->phase == Phase_Render);
 
 	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
 
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
-	pglActiveTextureARB(GL_TEXTURE0);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDepthMask(0);
 	glDisable(GL_DEPTH_TEST);
 
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+	CShaderTechniquePtr debugOverlayTech =
+		g_Renderer.GetShaderManager().LoadEffect(str_debug_overlay);
+	debugOverlayTech->BeginPass();
+	CShaderProgramPtr debugOverlayShader = debugOverlayTech->GetShader();
 
-	glMatrixMode(GL_TEXTURE);
-	glLoadMatrixf(&textureMatrix._11);
-	glMatrixMode(GL_MODELVIEW);
+	debugOverlayShader->Bind();
+	debugOverlayShader->BindTexture(str_baseTex, texture);
+	debugOverlayShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	debugOverlayShader->Uniform(str_textureTransform, textureMatrix);
+	CPatchRData::RenderStreams(visiblePatches, debugOverlayShader, STREAM_POS | STREAM_POSTOUV0);
 
-	CShaderProgramPtr dummyShader = GetDummyShader();
-	dummyShader->Bind();
-	dummyShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
-	dummyShader->Uniform(str_color, CColor(0.0f, 0.0f, 0.0f, 1.0f));
-	CPatchRData::RenderStreams(visiblePatches, dummyShader, STREAM_POS | STREAM_POSTOUV0);
-	dummyShader->Unbind();
+	glEnable(GL_DEPTH_TEST);
 
 	// To make the overlay visible over water, render an additional map-sized
-	// water-height patch
+	// water-height patch.
 	CBoundingBoxAligned waterBounds;
-	for (size_t i = 0; i < visiblePatches.size(); ++i)
-	{
-		CPatchRData* data = visiblePatches[i];
+	for (CPatchRData* data : visiblePatches)
 		waterBounds += data->GetWaterBounds();
-	}
 	if (!waterBounds.IsEmpty())
 	{
-		float h = g_Renderer.GetWaterManager()->m_WaterHeight + 0.05f; // add a delta to avoid z-fighting
-		float waterPos[] = {
-			waterBounds[0].X, h, waterBounds[0].Z,
-			waterBounds[1].X, h, waterBounds[0].Z,
-			waterBounds[0].X, h, waterBounds[1].Z,
-			waterBounds[1].X, h, waterBounds[1].Z
+		// Add a delta to avoid z-fighting.
+		const float height = g_Renderer.GetWaterManager()->m_WaterHeight + 0.05f;
+		const float waterPos[] = {
+			waterBounds[0].X, height, waterBounds[0].Z,
+			waterBounds[1].X, height, waterBounds[0].Z,
+			waterBounds[0].X, height, waterBounds[1].Z,
+			waterBounds[1].X, height, waterBounds[1].Z
 		};
-		glVertexPointer(3, GL_FLOAT, 3*sizeof(float), waterPos);
-		glTexCoordPointer(3, GL_FLOAT, 3*sizeof(float), waterPos);
+
+		const GLsizei stride = sizeof(float) * 3;
+		debugOverlayShader->VertexPointer(3, GL_FLOAT, stride, waterPos);
+		debugOverlayShader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, waterPos);
+		debugOverlayShader->AssertPointersBound();
+
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	}
 
-	glMatrixMode(GL_TEXTURE);
-	glLoadIdentity();
-	glMatrixMode(GL_MODELVIEW);
+	debugOverlayShader->Unbind();
+	debugOverlayTech->EndPass();
 
 	glDepthMask(1);
-	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
-	glDisableClientState(GL_COLOR_ARRAY);
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 #endif
 }
 

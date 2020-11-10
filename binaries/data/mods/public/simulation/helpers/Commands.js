@@ -340,13 +340,6 @@ var g_Commands = {
 
 	"research": function(player, cmd, data)
 	{
-		if (!CanControlUnit(cmd.entity, player, data.controlAllUnits))
-		{
-			if (g_DebugCommands)
-				warn("Invalid command: research building cannot be controlled by player "+player+": "+uneval(cmd));
-			return;
-		}
-
 		var cmpTechnologyManager = QueryOwnerInterface(cmd.entity, IID_TechnologyManager);
 		if (cmpTechnologyManager && !cmpTechnologyManager.CanResearch(cmd.template))
 		{
@@ -362,13 +355,6 @@ var g_Commands = {
 
 	"stop-production": function(player, cmd, data)
 	{
-		if (!CanControlUnit(cmd.entity, player, data.controlAllUnits))
-		{
-			if (g_DebugCommands)
-				warn("Invalid command: production building cannot be controlled by player "+player+": "+uneval(cmd));
-			return;
-		}
-
 		var queue = Engine.QueryInterface(cmd.entity, IID_ProductionQueue);
 		if (queue)
 			queue.RemoveBatch(cmd.id);
@@ -458,8 +444,7 @@ var g_Commands = {
 
 	"garrison": function(player, cmd, data)
 	{
-		// Verify that the building can be controlled by the player or is mutualAlly
-		if (!CanControlUnitOrIsAlly(cmd.target, player, data.controlAllUnits))
+		if (!CanPlayerOrAllyControlUnit(cmd.target, player, data.controlAllUnits))
 		{
 			if (g_DebugCommands)
 				warn("Invalid command: garrison target cannot be controlled by player "+player+" (or ally): "+uneval(cmd));
@@ -473,11 +458,10 @@ var g_Commands = {
 
 	"guard": function(player, cmd, data)
 	{
-		// Verify that the target can be controlled by the player or is mutualAlly
-		if (!CanControlUnitOrIsAlly(cmd.target, player, data.controlAllUnits))
+		if (!IsOwnedByPlayerOrMutualAlly(cmd.target, player, data.controlAllUnits))
 		{
 			if (g_DebugCommands)
-				warn("Invalid command: guard/escort target cannot be controlled by player "+player+": "+uneval(cmd));
+				warn("Invalid command: Guard/escort target is not owned by player " + player + " or ally thereof: " + uneval(cmd));
 			return;
 		}
 
@@ -495,8 +479,7 @@ var g_Commands = {
 
 	"unload": function(player, cmd, data)
 	{
-		// Verify that the building can be controlled by the player or is mutualAlly
-		if (!CanControlUnitOrIsAlly(cmd.garrisonHolder, player, data.controlAllUnits))
+		if (!CanPlayerOrAllyControlUnit(cmd.garrisonHolder, player, data.controlAllUnits))
 		{
 			if (g_DebugCommands)
 				warn("Invalid command: unload target cannot be controlled by player "+player+" (or ally): "+uneval(cmd));
@@ -871,6 +854,27 @@ function notifyBackToWorkFailure(player)
 		"type": "text",
 		"players": [player],
 		"message": markForTranslation("Some unit(s) can't go back to work"),
+		"translateMessage": true
+	});
+}
+
+/**
+ * Sends a GUI notification about entities that can't be controlled.
+ * @param {number} player - The player-ID of the player that needs to receive this message.
+ */
+function notifyOrderFailure(entity, player)
+{
+	let cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
+	if (!cmpIdentity)
+		return;
+
+	let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	cmpGUIInterface.PushNotification({
+		"type": "text",
+		"players": [player],
+		"message": sprintf(markForTranslation("%(unit)s can't be controlled."), {
+			"unit": cmpIdentity.GetGenericName()
+		}),
 		"translateMessage": true
 	});
 }
@@ -1661,27 +1665,55 @@ function CanMoveEntsIntoFormation(ents, formationTemplate)
 
 /**
  * Check if player can control this entity
- * returns: true if the entity is valid and owned by the player
+ * returns: true if the entity is owned by the player and controllable
  *          or control all units is activated, else false
  */
 function CanControlUnit(entity, player, controlAll)
 {
-	return IsOwnedByPlayer(player, entity) || controlAll;
+	let cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
+	let canBeControlled = IsOwnedByPlayer(player, entity) &&
+		(!cmpIdentity || cmpIdentity.IsControllable()) ||
+		controlAll;
+
+	if (!canBeControlled)
+		notifyOrderFailure(entity, player);
+
+	return canBeControlled;
+}
+
+/**
+ * @param {number} entity - The entityID to verify.
+ * @param {number} player - The playerID to check against.
+ * @return {boolean}.
+ */
+function IsOwnedByPlayerOrMutualAlly(entity, player)
+{
+	return IsOwnedByPlayer(player, entity) || IsOwnedByMutualAllyOfPlayer(player, entity);
 }
 
 /**
  * Check if player can control this entity
- * returns: true if the entity is valid and owned by the player
- *          or the entity is owned by an mutualAlly
- *          or control all units is activated, else false
+ * @return {boolean} - True if the entity is valid and controlled by the player
+ *          or the entity is owned by an mutualAlly and can be controlled
+ *          or control all units is activated, else false.
  */
-function CanControlUnitOrIsAlly(entity, player, controlAll)
+function CanPlayerOrAllyControlUnit(entity, player, controlAll)
 {
-	return IsOwnedByPlayer(player, entity) || IsOwnedByMutualAllyOfPlayer(player, entity) || controlAll;
+	return CanControlUnit(player, entity, controlAll) ||
+		IsOwnedByMutualAllyOfPlayer(player, entity) && CanOwnerControlEntity(entity);
 }
 
 /**
- * Filter entities which the player can control
+ * @return {boolean} - Whether the owner of this entity can control the entity.
+ */
+function CanOwnerControlEntity(entity)
+{
+	let cmpOwner = QueryOwnerInterface(entity);
+	return cmpOwner && CanControlUnit(entity, cmpOwner.GetPlayerID());
+}
+
+/**
+ * Filter entities which the player can control.
  */
 function FilterEntityList(entities, player, controlAll)
 {
@@ -1693,7 +1725,7 @@ function FilterEntityList(entities, player, controlAll)
  */
 function FilterEntityListWithAllies(entities, player, controlAll)
 {
-	return entities.filter(ent => CanControlUnitOrIsAlly(ent, player, controlAll));
+	return entities.filter(ent => CanPlayerOrAllyControlUnit(ent, player, controlAll));
 }
 
 /**

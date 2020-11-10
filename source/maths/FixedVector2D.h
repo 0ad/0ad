@@ -204,6 +204,7 @@ public:
 
 	/**
 	 * Compute the dot product of this vector with another.
+	 * Likely to overflow if both vectors are large-ish (around the 200 range).
 	 */
 	fixed Dot(const CFixedVector2D& v) const
 	{
@@ -217,6 +218,16 @@ public:
 		fixed ret;
 		ret.SetInternalValue(static_cast<i32>(sum));
 		return ret;
+	}
+
+	/**
+	 * @return -1, 0 or 1 if this and @v face respectively opposite directions, perpendicular, or same directions.
+	 */
+	int RelativeOrientation(const CFixedVector2D& v) const
+	{
+		i64 x = MUL_I64_I32_I32(X.GetInternalValue(), v.X.GetInternalValue());
+		i64 y = MUL_I64_I32_I32(Y.GetInternalValue(), v.Y.GetInternalValue());
+		return x > -y ? 1 : x < -y ? -1 : 0;
 	}
 
 	CFixedVector2D Perpendicular() const

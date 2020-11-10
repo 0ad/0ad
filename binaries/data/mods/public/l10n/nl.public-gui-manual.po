@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-06 07:17+0000\n"
-"PO-Revision-Date: 2020-11-04 09:20+0000\n"
+"PO-Revision-Date: 2020-11-06 20:39+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -101,11 +101,11 @@ msgstr "• Pijltjestoetsen of WASD om de camera te bewegen"
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr "• Ctrl + pijltjes toetsen of shift + muiswiel om de camera te roteren"
+msgstr "• Ctrl + pijltjestoetsen of shift + muiswiel om de camera te roteren"
 
 #: gui/manual/intro.txt:16
 msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
-msgstr "• Muiswiel of \"+\" en \"-\" toetsen om te zoomen"
+msgstr "• Muiswiel of =/+ en -/_ toetsen om te zoomen"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -174,7 +174,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr "Daarna kunnen de kaarten verder gefilterd worden. De standaard kaarten zijn gewone speelbare kaarten. Zeekaarten zijn kaarten waar niet alle tegenstanders over het land bereikt kunnen worden, en demokaarten zijn kaarten die gebruikt worden in de ontwikkeling van het spel om functionaliteit uit te testen (deze zijn meestal niet speelbaar). De “Alle kaarten” filter toont alle kaarten in één lijst."
+msgstr "Daarna kunnen de kaarten verder gefilterd worden. De standaard kaarten zijn gewone speelbare kaarten. Zeekaarten zijn kaarten waar niet alle tegenstanders over het land bereikt kunnen worden, en demokaarten zijn kaarten die gebruikt worden in de ontwikkeling van het spel om functionaliteit mee te testen (deze zijn meestal niet speelbaar). De “Alle kaarten” filter toont alle kaarten in één lijst."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -248,7 +248,7 @@ msgstr "  Shift + Tab, Alt + W – Ga naar het vorige tabblad."
 
 #: gui/manual/intro.txt:52
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]Spel instellingen[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]Spel commando's[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:53
 msgid ""
@@ -314,13 +314,13 @@ msgstr "  Pause – Pauzeer of hervat het spel"
 msgid ""
 "  Delete – Delete currently selected unit(s)/structure(s), ask for "
 "confirmation"
-msgstr "  Delete – Vernietig de geselecteerde eenheid(eenheden)/gebouw(en), met bevestiging"
+msgstr "  Delete – Vernietig de geselecteerde eenheid (eenheden) / gebouw(en), met bevestiging"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "  Shift + Delete – Immediately delete currently selected "
 "unit(s)/structure(s), without asking for confirmation"
-msgstr "  Shift + Delete – Vernietig de geselecteerde eenheid(eenheden)/gebouw(en), zonder bevestiging"
+msgstr "  Shift + Delete – Vernietig de geselecteerde eenheid (eenheden) / gebouw(en), zonder bevestiging"
 
 #: gui/manual/intro.txt:68
 msgid "  / (Slash) – Select idle fighter"
@@ -377,13 +377,13 @@ msgstr "  U – Stuur de eenheden van het geselecteerde gebouw naar buiten"
 msgid ""
 "  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from "
 "the selected unit(s)/structure(s)"
-msgstr "  Ctrl + 1 (tot en met Ctrl + 0) – Stel controlgroep 1 (t/m 0) in met de geselecteerde eenheid (eenheden)/gebouw(en)"
+msgstr "  Ctrl + 1 (tot en met Ctrl + 0) – Stel controlgroep 1 (t/m 0) in met de geselecteerde eenheid (eenheden) / gebouw(en)"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  1 (and so on up to 0) – Select the unit(s)/structure(s) in control group 1"
 " (to 0)"
-msgstr "  1 (tot en met 0) – Selecteer de eenheden in controlegroep 1 (t/m 0)"
+msgstr "  1 (tot en met 0) – Selecteer de eenheid (eenheden) / gebouw(en) in controlegroep 1 (t/m 0)"
 
 #: gui/manual/intro.txt:82
 msgid ""
@@ -407,76 +407,76 @@ msgstr "  F5 (tot en met F8) – Verplaats de camera naar de opgeslagen positie.
 msgid ""
 "  Z, X, C, V, B, N, M – With training structure selected. Add the 1st, 2nd, "
 "… unit shown to the training queue for all the selected structures"
-msgstr "  Z, X, C, V, B, N, M – Met een rekruteringsgebouw geselecteerd, voeg de 1ste, 2de, ... getoonde eenheid toe aan de rekruteerwachtrij voor alle geselecteerde gebouwen"
+msgstr "  Z, X, C, V, B, N, M – Met een rekruteringsgebouw geselecteerd, voeg de 1ste, 2de, ... getoonde eenheid toe aan de wachtrij voor de geselecteerde gebouwen"
 
 #: gui/manual/intro.txt:86
 msgid ""
 "  PageUp with unit(s) selected – Highlight the unit(s)/structure(s) guarded "
 "by the selection"
-msgstr "  PageUp met geselecteerde eenheid(eenheden) – Toon welke eenheid (eenheden) / gebouw(en) bewaakt worden door de geselecteerde eenheden"
+msgstr "  PageUp met geselecteerde eenheid (eenheden) – Toon welke eenheid (eenheden) / gebouw(en) bewaakt worden door de geselecteerde eenheden"
 
 #: gui/manual/intro.txt:87
 msgid ""
 "  PageDown with unit(s)/structure(s) selected – Highlight the unit(s) "
 "guarding the selection"
-msgstr "  PageDown met geselecteerde eenheid (eenheden) – Toon de eenheden die de selectie bewaken"
+msgstr "  PageDown met geselecteerde eenheid (eenheden) / gebouw(en) – Toon de eenheid (eenheden) die de selectie bewaken"
 
 #: gui/manual/intro.txt:88
 msgid ""
 "  Tab – See all status bars (which would also show the building progress)"
-msgstr ""
+msgstr "  Tab – Toon alle statusbalken (toont ook de voortgang van gebouwen)"
 
 #: gui/manual/intro.txt:89
 msgid "  Ctrl + Tab – Toggle summary window"
-msgstr ""
+msgstr "  Ctrl + Tab – Toon overzichtsscherm"
 
 #: gui/manual/intro.txt:90
 msgid "  Alt + L – Show the multiplayer lobby in a dialog window"
-msgstr ""
+msgstr "  Alt + L – Toon de multiplayer lobby in een dialoogvenster"
 
 #: gui/manual/intro.txt:91
 msgid "  Ctrl + H – Toggle in-game diplomacy panel"
-msgstr ""
+msgstr "  Ctrl + H – Toon / verberg het diplomatie paneel"
 
 #: gui/manual/intro.txt:92
 msgid "  Ctrl + B – Toggle in-game barter and trade panel"
-msgstr ""
+msgstr "  Ctrl + B – Toon / verberg het ruil- en handelspaneel"
 
 #: gui/manual/intro.txt:93
 msgid "  Ctrl + O – Toggle in-game objectives panel"
-msgstr ""
+msgstr "  Ctrl + O – Toon / verberg het speldoelen paneel"
 
 #: gui/manual/intro.txt:94
 msgid "  Ctrl + P – Toggle in-game tutorial panel"
-msgstr ""
+msgstr "  Ctrl + P – Toon / verberg het paneel met de handleiding"
 
 #: gui/manual/intro.txt:95
 msgid "  Alt + Shift + T – Toggle structure tree panel"
-msgstr ""
+msgstr "  Alt + Shift + T – Toon / verberg het paneel met de structuurboom"
 
 #: gui/manual/intro.txt:96
 msgid "  Alt + Shift + H – Toggle civilization info panel"
-msgstr ""
+msgstr "  Alt + Shift + H – Toon / verberg het paneel met beschavingsinformatie"
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Wijzig muis actie[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
 msgid "  Ctrl + Right Click on structure – Garrison"
-msgstr ""
+msgstr "  Ctrl + rechtsklik op gebouw – Beman gebouw"
 
 #: gui/manual/intro.txt:100
 msgid "  J + Right Click on structure – Repair"
-msgstr ""
+msgstr "  J + rechtsklik op gebouw – Repareer gebouw"
 
 #: gui/manual/intro.txt:101
 msgid "  P + Right Click – Patrol"
-msgstr "  P + Right Click – Patrouilleer"
+msgstr "  P + rechtsklik – Patrouilleer"
 
 #: gui/manual/intro.txt:102
 msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
-msgstr "  Shift + Right Click – Voeg een order toe aan de wachtrij"
+msgstr "  Shift + rechtsklik – Voeg een (verplaats / bouw / verzamel / etc.) order toe aan de wachtrij"
 
 #: gui/manual/intro.txt:103
 msgid ""

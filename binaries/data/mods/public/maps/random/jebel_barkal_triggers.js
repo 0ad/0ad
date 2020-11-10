@@ -168,7 +168,7 @@ var jebelBarkal_buildingGarrison = difficulty => [
 		"capacityRatio": 1
 	},
 	{
-		"buildingClasses": ["DefenseTower"],
+		"buildingClasses": ["Tower"],
 		"unitTemplates": jebelBarkal_templates.champion_infantry,
 		"capacityRatio": 1
 	},

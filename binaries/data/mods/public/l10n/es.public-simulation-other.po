@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-10-05 07:22+0000\n"
-"PO-Revision-Date: 2020-10-05 20:10+0000\n"
+"PO-Revision-Date: 2020-11-06 17:07+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr "Estoy comenzando una campaña militar masiva contra %(_player_)s, ven co
 msgid ""
 "I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
-msgstr "He reunido un enorme ejército con el que destruir a %(_player_)s. Únete y compartiremos el botín."
+msgstr "He reunido un enorme ejército con el que destruir a %(_player_)s. Únete a mi y compartiremos el botín."
 
 #: simulation/ai/petra/chatHelper.js:7
 #, javascript-format
@@ -58,24 +58,24 @@ msgstr "Estoy lanzando un ataque contra %(_player_)s."
 #: simulation/ai/petra/chatHelper.js:8
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
-msgstr "Acabo de enviar un ejército contra %(_player_)s."
+msgstr "Acabo de enviar mi ejército contra %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:14
 #, javascript-format
 msgid "Let me regroup my army and I will then join you against %(_player_)s."
-msgstr "Déjame reagrupar mi ejército y te ayudaré a acabar con %(_player_)s."
+msgstr "Permiteme reagrupar mi ejército y te ayudaré a acabar con %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:15
 #, javascript-format
 msgid "I am finishing preparations to attack %(_player_)s."
-msgstr "Estoy ultimando los últimos detalles para atacar a %(_player_)s."
+msgstr "Estoy ultimando los preparativos para atacar a %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
-msgstr "Perdona, todavía no tengo suficientes soldados, aunque mi próximo ataque será contra %(_player_)s."
+msgstr "Disculpame pero no cuento todavía con suficientes soldados y mi próximo ataque será contra %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:19
 #, javascript-format
@@ -559,7 +559,7 @@ msgstr "No hay recursos suficientes - %(resourceAmount1)s %(resourceType1)s, %(r
 
 #: simulation/components/ProductionQueue.js:339
 msgid "Entity is being upgraded. Cannot start production."
-msgstr "La entidad está promocionando. No puede comenzar la producción."
+msgstr "Entidad promocionando. La producción no puede comenzar."
 
 #: simulation/components/ProductionQueue.js:512
 msgid "The production queue is full."
@@ -571,7 +571,7 @@ msgstr "Las unidades reclutadas no tienen suficiente sitio para aparecer"
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
-msgstr "La entidad está en producción. La promoción no puede comenzar."
+msgstr "Entidad en producción. La promoción no puede comenzar."
 
 #: simulation/helpers/Cheat.js:58
 #, javascript-format

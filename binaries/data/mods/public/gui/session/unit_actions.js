@@ -1105,6 +1105,33 @@ var g_UnitActions =
 		"specificness": 11,
 	},
 
+	// This is a "fake" action to show a failure cursor
+	// when only uncontrollable entities are selected.
+	"uncontrollable":
+	{
+		"execute": function(target, action, selection, queued)
+		{
+			return true;
+		},
+		"actionCheck": function(target, selection)
+		{
+			// Only show this action if all entities are marked uncontrollable.
+			let playerState = g_SimState.players[g_ViewedPlayer];
+			if (playerState && playerState.controlsAll || selection.some(ent => {
+				let entState = GetEntityState(ent);
+				return entState && entState.identity && entState.identity.controllable;
+			}))
+				return false;
+
+			return {
+				"type": "none",
+				"cursor": "cursor-no",
+				"tooltip": translatePlural("This entity cannot be controlled.", "These entities cannot be controlled.", selection.length)
+			};
+		},
+		"specificness": 100,
+	},
+
 	"none":
 	{
 		"execute": function(target, action, selection, queued)
@@ -1600,14 +1627,19 @@ function findGatherType(gatherer, supply)
 
 function getActionInfo(action, target, selection)
 {
-	let simState = GetSimState();
-
-	// If the selection doesn't exist, no action
-	if (!GetEntityState(selection[0]))
+	if (!selection || !selection.length || !GetEntityState(selection[0]))
 		return { "possible": false };
 
 	if (!target) // TODO move these non-target actions to an object like unit_actions.js
 	{
+		// Ensure one entity at least is controllable.
+		let playerState = g_SimState.players[g_ViewedPlayer];
+		if (playerState && !playerState.controlsAll && !selection.some(ent => {
+			let entState = GetEntityState(ent);
+			return entState && entState.identity && entState.identity.controllable;
+		}))
+			return { "possible": false };
+
 		if (action == "set-rallypoint")
 		{
 			let cursor = "";
@@ -1644,11 +1676,17 @@ function getActionInfo(action, target, selection)
 	if (!targetState)
 		return { "possible": false };
 
+	let simState = GetSimState();
+	let playerState = g_SimState.players[g_ViewedPlayer];
+
 	// Check if any entities in the selection can do some of the available actions with target
 	for (let entityID of selection)
 	{
 		let entState = GetEntityState(entityID);
 		if (!entState)
+			continue;
+
+		if (playerState && !playerState.controlsAll && !entState.identity.controllable)
 			continue;
 
 		if (g_UnitActions[action] && g_UnitActions[action].getActionInfo)
