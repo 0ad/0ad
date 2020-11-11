@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -87,7 +87,6 @@ public:
 
 	void ScriptString(const char* name, JS::HandleString string);
 	void HandleScriptVal(JS::HandleValue val);
-	void SetSerializablePrototypes(shared_ptr<ObjectIdCache<std::wstring> > prototypes);
 private:
 	const ScriptInterface& m_ScriptInterface;
 	ISerializer& m_Serializer;
@@ -95,11 +94,6 @@ private:
 	ObjectIdCache<u32> m_ScriptBackrefs;
 	u32 m_ScriptBackrefsNext;
 	u32 GetScriptBackrefTag(JS::HandleObject obj);
-
-	shared_ptr<ObjectIdCache<std::wstring> > m_SerializablePrototypes;
-
-	bool IsSerializablePrototype(JS::HandleObject prototype);
-	std::wstring GetPrototypeName(JS::HandleObject prototype);
 };
 
 /**
@@ -125,11 +119,6 @@ public:
 		m_RawStreamBuf(m_Impl),
 		m_RawStream(&m_RawStreamBuf)
 	{
-	}
-
-	virtual void SetSerializablePrototypes(shared_ptr<ObjectIdCache<std::wstring> >& prototypes)
-	{
-		m_ScriptImpl->SetSerializablePrototypes(prototypes);
 	}
 
 protected:

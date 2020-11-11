@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -56,10 +56,9 @@ static u8 GetArrayType(js::Scalar::Type arrayType)
 
 CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(const ScriptInterface& scriptInterface, ISerializer& serializer) :
 	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_ScriptBackrefs(scriptInterface.GetRuntime()),
-	m_SerializablePrototypes(new ObjectIdCache<std::wstring>(scriptInterface.GetRuntime())), m_ScriptBackrefsNext(1)
+	m_ScriptBackrefsNext(1)
 {
 	m_ScriptBackrefs.init();
-	m_SerializablePrototypes->init();
 }
 
 void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
@@ -153,51 +152,8 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 
 			if (protokey == JSProto_Object)
 			{
-				// Object class - check for user-defined prototype
-				JS::RootedObject proto(cx);
-				JS_GetPrototype(cx, obj, &proto);
-				if (!proto)
-					throw PSERROR_Serialize_ScriptError("JS_GetPrototype failed");
-
-				if (m_SerializablePrototypes->empty() || !IsSerializablePrototype(proto))
-				{
-					// Standard Object prototype
-					m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT);
-
-					// TODO: maybe we should throw an error for unrecognized non-Object prototypes?
-					//	(requires fixing AI serialization first and excluding component scripts)
-				}
-				else
-				{
-					// User-defined custom prototype
-					m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_PROTOTYPE);
-
-					const std::wstring prototypeName = GetPrototypeName(proto);
-					m_Serializer.String("proto name", prototypeName, 0, 256);
-
-					// Does it have custom Serialize function?
-					// if so, we serialize the data it returns, rather than the object's properties directly
-					bool hasCustomSerialize;
-					if (!JS_HasProperty(cx, obj, "Serialize", &hasCustomSerialize))
-						throw PSERROR_Serialize_ScriptError("JS_HasProperty failed");
-
-					if (hasCustomSerialize)
-					{
-						JS::RootedValue serialize(cx);
-						if (!JS_GetProperty(cx, obj, "Serialize", &serialize))
-							throw PSERROR_Serialize_ScriptError("JS_GetProperty failed");
-
-						// If serialize is null, so don't serialize anything more
-						if (!serialize.isNull())
-						{
-							JS::RootedValue data(cx);
-							if (!m_ScriptInterface.CallFunction(val, "Serialize", &data))
-								throw PSERROR_Serialize_ScriptError("Prototype Serialize function failed");
-							HandleScriptVal(data);
-						}
-						break;
-					}
-				}
+				// Standard Object prototype
+				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT);
 			}
 			else if (protokey == JSProto_Number)
 			{
@@ -473,22 +429,4 @@ u32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)
 	m_ScriptBackrefsNext++;
 	// Return a non-tag number so callers know they need to serialize the object
 	return 0;
-}
-
-bool CBinarySerializerScriptImpl::IsSerializablePrototype(JS::HandleObject prototype)
-{
-	return m_SerializablePrototypes->has(prototype);
-}
-
-std::wstring CBinarySerializerScriptImpl::GetPrototypeName(JS::HandleObject prototype)
-{
-	std::wstring ret;
-	bool found = m_SerializablePrototypes->find(prototype, ret);
-	ENSURE(found);
-	return ret;
-}
-
-void CBinarySerializerScriptImpl::SetSerializablePrototypes(shared_ptr<ObjectIdCache<std::wstring> > prototypes)
-{
-	m_SerializablePrototypes = prototypes;
 }

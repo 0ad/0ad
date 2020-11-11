@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,8 +38,6 @@ public:
 	virtual std::istream& GetStream();
 	virtual void RequireBytesInStream(size_t numBytes);
 
-	virtual void SetSerializablePrototypes(std::map<std::wstring, JS::Heap<JSObject*> >& prototypes);
-
 	static void Trace(JSTracer *trc, void *data);
 
 	void TraceMember(JSTracer *trc);
@@ -60,11 +58,6 @@ private:
 	const ScriptInterface& m_ScriptInterface;
 
 	std::istream& m_Stream;
-
-	std::map<std::wstring, JS::Heap<JSObject*> > m_SerializablePrototypes;
-
-	bool IsSerializablePrototype(const std::wstring& name);
-	void GetSerializablePrototype(const std::wstring& name, JS::MutableHandleObject ret);
 };
 
 #endif // INCLUDED_STDDESERIALIZER

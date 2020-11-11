@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ enum
 	SCRIPT_TYPE_BACKREF = 8,
 	SCRIPT_TYPE_TYPED_ARRAY = 9,		// ArrayBufferView subclasses - see below
 	SCRIPT_TYPE_ARRAY_BUFFER = 10,		// ArrayBuffer containing actual typed array data (may be shared by multiple views)
-	SCRIPT_TYPE_OBJECT_PROTOTYPE = 11,	// user-defined prototype
+	SCRIPT_TYPE_OBJECT_PROTOTYPE = 11,	// user-defined prototype - currently unused
 	SCRIPT_TYPE_OBJECT_NUMBER = 12,		// standard Number class
 	SCRIPT_TYPE_OBJECT_STRING = 13,		// standard String class
 	SCRIPT_TYPE_OBJECT_BOOLEAN = 14,	// standard Boolean class

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -56,9 +56,6 @@ void CStdDeserializer::TraceMember(JSTracer *trc)
 {
 	for (size_t i=0; i<m_ScriptBackrefs.size(); ++i)
 		JS_CallObjectTracer(trc, &m_ScriptBackrefs[i], "StdDeserializer::m_ScriptBackrefs");
-
-	for (std::pair<const std::wstring, JS::Heap<JSObject*>>& proto : m_SerializablePrototypes)
-		JS_CallObjectTracer(trc, &proto.second, "StdDeserializer::m_SerializablePrototypes");
 }
 
 void CStdDeserializer::Get(const char* name, u8* data, size_t len)
@@ -139,7 +136,6 @@ JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleOb
 
 	case SCRIPT_TYPE_ARRAY:
 	case SCRIPT_TYPE_OBJECT:
-	case SCRIPT_TYPE_OBJECT_PROTOTYPE:
 	{
 		JS::RootedObject obj(cx);
 		if (appendParent)
@@ -152,50 +148,9 @@ JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleOb
 			NumberU32_Unbounded("array length", length);
 			obj.set(JS_NewArrayObject(cx, length));
 		}
-		else if (type == SCRIPT_TYPE_OBJECT)
+		else // SCRIPT_TYPE_OBJECT
 		{
 			obj.set(JS_NewPlainObject(cx));
-		}
-		else // SCRIPT_TYPE_OBJECT_PROTOTYPE
-		{
-			std::wstring prototypeName;
-			String("proto name", prototypeName, 0, 256);
-
-			// Get constructor object
-			JS::RootedObject proto(cx);
-			GetSerializablePrototype(prototypeName, &proto);
-			if (!proto)
-				throw PSERROR_Deserialize_ScriptError("Failed to find serializable prototype for object");
-
-			obj.set(JS_NewObjectWithGivenProto(cx, nullptr, proto));
-			if (!obj)
-				throw PSERROR_Deserialize_ScriptError("JS_NewObject failed");
-
-			// Does it have custom Deserialize function?
-			// if so, we let it handle the deserialized data, rather than adding properties directly
-			bool hasCustomDeserialize, hasCustomSerialize;
-			if (!JS_HasProperty(cx, obj, "Serialize", &hasCustomSerialize) || !JS_HasProperty(cx, obj, "Deserialize", &hasCustomDeserialize))
-				throw PSERROR_Serialize_ScriptError("JS_HasProperty failed");
-
-			if (hasCustomDeserialize)
-			{
-				AddScriptBackref(obj);
-
-				JS::RootedValue serialize(cx);
-				if (!JS_GetProperty(cx, obj, "Serialize", &serialize))
-					throw PSERROR_Serialize_ScriptError("JS_GetProperty failed");
-				bool hasNullSerialize = hasCustomSerialize && serialize.isNull();
-
-				// If Serialize is null, we'll still call Deserialize but with undefined argument
-				JS::RootedValue data(cx);
-				if (!hasNullSerialize)
-					ScriptVal("data", &data);
-
-				JS::RootedValue objVal(cx, JS::ObjectValue(*obj));
-				m_ScriptInterface.CallFunctionVoid(objVal, "Deserialize", data);
-
-				return JS::ObjectValue(*obj);
-			}
 		}
 
 		if (!obj)
@@ -500,23 +455,4 @@ void CStdDeserializer::ScriptObjectAppend(const char* name, JS::HandleValue objV
 
 	JS::RootedObject obj(cx, &objVal.toObject());
 	ReadScriptVal(name, obj);
-}
-
-void CStdDeserializer::SetSerializablePrototypes(std::map<std::wstring, JS::Heap<JSObject*> >& prototypes)
-{
-	m_SerializablePrototypes = prototypes;
-}
-
-bool CStdDeserializer::IsSerializablePrototype(const std::wstring& name)
-{
-	return m_SerializablePrototypes.find(name) != m_SerializablePrototypes.end();
-}
-
-void CStdDeserializer::GetSerializablePrototype(const std::wstring& name, JS::MutableHandleObject ret)
-{
-	std::map<std::wstring, JS::Heap<JSObject*> >::iterator it = m_SerializablePrototypes.find(name);
-	if (it != m_SerializablePrototypes.end())
-		ret.set(it->second);
-	else
-		ret.set(NULL);
 }

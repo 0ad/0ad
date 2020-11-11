@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -216,7 +216,6 @@ public:
 		m_CommandsComputed(true),
 		m_HasLoadedEntityTemplates(false),
 		m_HasSharedComponent(false),
-		m_SerializablePrototypes(new ObjectIdCache<std::wstring>(g_ScriptRuntime)),
 		m_EntityTemplates(g_ScriptRuntime->m_rt),
 		m_SharedAIObj(g_ScriptRuntime->m_rt),
 		m_PassabilityMapVal(g_ScriptRuntime->m_rt),
@@ -227,7 +226,6 @@ public:
 
 		m_ScriptInterface->SetCallbackData(static_cast<void*> (this));
 
-		m_SerializablePrototypes->init();
 		JS_AddExtraGCRootsTracer(m_ScriptInterface->GetJSRuntime(), Trace, this);
 
 		m_ScriptInterface->RegisterFunction<void, int, JS::HandleValue, CAIWorker::PostCommand>("PostCommand");
@@ -660,8 +658,6 @@ public:
 		else
 		{
 			CStdSerializer serializer(*m_ScriptInterface, stream);
-			// TODO: see comment in Deserialize()
-			serializer.SetSerializablePrototypes(m_SerializablePrototypes);
 			SerializeState(serializer);
 		}
 	}
@@ -782,12 +778,6 @@ public:
 				m_Players.back()->m_Commands.push_back(m_ScriptInterface->WriteStructuredClone(val));
 			}
 
-			// TODO: this is yucky but necessary while the AIs are sharing data between contexts;
-			// ideally a new (de)serializer instance would be created for each player
-			// so they would have a single, consistent script context to use and serializable
-			// prototypes could be stored in their ScriptInterface
-			deserializer.SetSerializablePrototypes(m_DeserializablePrototypes);
-
 			bool hasCustomDeserialize = m_ScriptInterface->HasProperty(m_Players.back()->m_Obj, "Deserialize");
 			if (hasCustomDeserialize)
 			{
@@ -826,25 +816,6 @@ public:
 		return m_Players.size();
 	}
 
-	void RegisterSerializablePrototype(std::wstring name, JS::HandleValue proto)
-	{
-		// Require unique prototype and name (for reverse lookup)
-		// TODO: this is yucky - see comment in Deserialize()
-		ENSURE(proto.isObject() && "A serializable prototype has to be an object!");
-
-		JSContext* cx = m_ScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-
-		JS::RootedObject obj(cx, &proto.toObject());
-		if (m_SerializablePrototypes->has(obj) || m_DeserializablePrototypes.find(name) != m_DeserializablePrototypes.end())
-		{
-			LOGERROR("RegisterSerializablePrototype called with same prototype multiple times: p=%p n='%s'", (void *)obj.get(), utf8_from_wstring(name));
-			return;
-		}
-		m_SerializablePrototypes->add(cx, obj, name);
-		m_DeserializablePrototypes[name] = JS::Heap<JSObject*>(obj);
-	}
-
 private:
 	static void Trace(JSTracer *trc, void *data)
 	{
@@ -853,8 +824,6 @@ private:
 
 	void TraceMember(JSTracer *trc)
 	{
-		for (std::pair<const std::wstring, JS::Heap<JSObject*>>& prototype : m_DeserializablePrototypes)
-			JS_CallObjectTracer(trc, &prototype.second, "CAIWorker::m_DeserializablePrototypes");
 		for (std::pair<const VfsPath, JS::Heap<JS::Value>>& metadata : m_PlayerMetadata)
 			JS_CallValueTracer(trc, &metadata.second, "CAIWorker::m_PlayerMetadata");
 	}
@@ -943,8 +912,6 @@ private:
 
 	bool m_CommandsComputed;
 
-	shared_ptr<ObjectIdCache<std::wstring> > m_SerializablePrototypes;
-	std::map<std::wstring, JS::Heap<JSObject*> > m_DeserializablePrototypes;
 	CTemplateLoader m_TemplateLoader;
 };
 
