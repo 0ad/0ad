@@ -1,13 +1,13 @@
 let statusEffects = {
 	"test_A": {
 		"code": "test_a",
-		"StatusName": "A",
-		"StatusTooltip": "TTA"
+		"statusName": "A",
+		"applierTooltip": "TTA"
 	},
 	"test_B": {
 		"code": "test_b",
-		"StatusName": "B",
-		"StatusTooltip": "TTB"
+		"statusName": "B",
+		"applierTooltip": "TTB"
 	}
 };
 
@@ -16,16 +16,21 @@ Engine.ReadJSONFile = (file) => statusEffects[file];
 
 let sem = new StatusEffectsMetadata();
 
-// Template data takes precedence over generic data.
-TS_ASSERT_UNEVAL_EQUALS(sem.augment("test_a"), {
-	"code": "test_a", "StatusName": "A", "StatusTooltip": "TTA"
+TS_ASSERT_UNEVAL_EQUALS(sem.getData("test_a"), {
+	"applierTooltip": "TTA",
+	"code": "test_a",
+	"icon": "default",
+	"statusName": "A",
+	"receiverTooltip": ""
 });
-TS_ASSERT_UNEVAL_EQUALS(sem.augment("test_b"), {
-	"code": "test_b", "StatusName": "B", "StatusTooltip": "TTB"
+TS_ASSERT_UNEVAL_EQUALS(sem.getData("test_b"), {
+	"applierTooltip": "TTB",
+	"code": "test_b",
+	"icon": "default",
+	"statusName": "B",
+	"receiverTooltip": ""
 });
-TS_ASSERT_UNEVAL_EQUALS(sem.augment("test_a", { "StatusName": "test" }), {
-	"code": "test_a", "StatusName": "test", "StatusTooltip": "TTA"
-});
-TS_ASSERT_UNEVAL_EQUALS(sem.augment("test_c", {	"StatusName": "test" }), {
-	"StatusName": "test"
-});
+TS_ASSERT_UNEVAL_EQUALS(sem.getApplierTooltip("test_a"), "TTA");
+TS_ASSERT_UNEVAL_EQUALS(sem.getIcon("test_b"), "default");
+TS_ASSERT_UNEVAL_EQUALS(sem.getName("test_a"), "A");
+TS_ASSERT_UNEVAL_EQUALS(sem.getReceiverTooltip("test_b"), "");

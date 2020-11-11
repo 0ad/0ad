@@ -2,7 +2,6 @@ function Resistance() {}
 
 /**
  * Builds a RelaxRNG schema of possible attack effects.
- * ToDo: Resistance to StatusEffects.
  *
  * @return {string} - RelaxNG schema string.
  */
@@ -21,6 +20,23 @@ Resistance.prototype.BuildResistanceSchema = function()
 				"</element>" +
 				"<element name='Capture' a:help='Resistance against Capture attacks.'>" +
 					"<ref name='nonNegativeDecimal'/>" +
+				"</element>" +
+				"<element name='ApplyStatus' a:help='Resistance against StatusEffects.'>" +
+					"<oneOrMore>" +
+						"<element a:help='Resistance against any number of status effects.'>" +
+							"<anyName/>" +
+							"<interleave>" +
+								"<optional>" +
+									"<element name='Duration' a:help='The reduction in duration of the status. The normal duration time is multiplied by this factor.'>" +
+										"<ref name='nonNegativeDecimal'/>" +
+									"</element>" +
+								"</optional>" +
+								"<optional>" +
+									"<element name='BlockChance' a:help='The chance of blocking the status. In the interval [0,1].'><ref name='nonNegativeDecimal'/></element>" +
+								"</optional>" +
+							"</interleave>" +
+						"</element>" +
+					"</oneOrMore>" +
 				"</element>" +
 			"</choice>" +
 		"</oneOrMore>";
@@ -121,6 +137,16 @@ Resistance.prototype.GetResistanceOfForm = function(entityForm)
 
 	if (template.Capture)
 		ret.Capture = ApplyValueModificationsToEntity("Resistance/" + entityForm + "/Capture", +this.template[entityForm].Capture, this.entity);
+
+	if (template.ApplyStatus)
+	{
+		ret.ApplyStatus = {};
+		for (let effect in template.ApplyStatus)
+			ret.ApplyStatus[effect] = {
+				"duration": ApplyValueModificationsToEntity("Resistance/" + entityForm + "/ApplyStatus/" + effect + "/Duration", +(template.ApplyStatus[effect].Duration || 1), this.entity),
+				"blockChance": ApplyValueModificationsToEntity("Resistance/" + entityForm + "/ApplyStatus/" + effect + "/BlockChance", +(template.ApplyStatus[effect].BlockChance || 0), this.entity)
+			};
+	}
 
 	return ret;
 };

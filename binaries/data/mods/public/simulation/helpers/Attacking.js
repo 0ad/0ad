@@ -20,20 +20,8 @@ const StatusEffectsSchema =
 	"<element name='ApplyStatus' a:help='Effects like poisoning or burning a unit.'>" +
 		"<oneOrMore>" +
 			"<element>" +
-				"<anyName/>" +
+				"<anyName a:help='The name must have a matching JSON file in data/status_effects.'/>" +
 				"<interleave>" +
-					"<optional>" +
-						"<element name='StatusName'><text/></element>" +
-					"</optional>" +
-					"<optional>" +
-						"<element name='Icon' a:help='Icon for the status effect.'><text/></element>" +
-					"</optional>" +
-					"<optional>" +
-						"<element name='ApplierTooltip' a:help='The tooltip shown on the entity giving the effect, e.g. the attacker.'><text/></element>" +
-					"</optional>" +
-					"<optional>" +
-						"<element name='ReceiverTooltip' a:help='The tooltip shown on the affected entity while the effect occurs.'><text/></element>" +
-					"</optional>" +
 					"<optional>" +
 						"<element name='Duration' a:help='The duration of the status while the effect occurs.'><ref name='nonNegativeDecimal'/></element>" +
 					"</optional>" +
@@ -196,10 +184,32 @@ Attacking.prototype.GetTotalAttackEffects = function(target, effectData, effectT
 		if (cmpHealth)
 			total /= 0.1 + 0.9 * cmpHealth.GetHitpoints() / cmpHealth.GetMaxHitpoints();
 	}
-	else if (effectType == "ApplyStatus")
+	if (effectType != "ApplyStatus")
+		return total * bonusMultiplier;
+
+	if (!resistanceStrengths.ApplyStatus)
 		return effectData[effectType];
 
-	return total * bonusMultiplier;
+	let result = {};
+	for (let statusEffect in effectData[effectType])
+	{
+		if (!resistanceStrengths.ApplyStatus[statusEffect])
+		{
+			result[statusEffect] = effectData[effectType][statusEffect];
+			continue;
+		}
+
+		if (randBool(resistanceStrengths.ApplyStatus[statusEffect].blockChance))
+			continue;
+
+		result[statusEffect] = effectData[effectType][statusEffect];
+
+		if (effectData[effectType][statusEffect].Duration)
+			result[statusEffect].Duration = effectData[effectType][statusEffect].Duration *
+				resistanceStrengths.ApplyStatus[statusEffect].duration;
+	}
+	return result;
+
 };
 
 /**

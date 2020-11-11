@@ -28,7 +28,7 @@ StatusEffectsReceiver.prototype.GetActiveStatuses = function()
  * @param {number} attackerOwner - The player ID of the attacker.
  * @param {number} bonusMultiplier - A value to multiply the damage with (not implemented yet for SE).
  *
- * @return {Object} - The names of the status effects which were processed.
+ * @return {Object} - The codes of the status effects which were processed.
  */
 StatusEffectsReceiver.prototype.ApplyStatus = function(effectData, attacker, attackerOwner)
 {
@@ -36,7 +36,7 @@ StatusEffectsReceiver.prototype.ApplyStatus = function(effectData, attacker, att
 	for (let effect in effectData)
 		this.AddStatus(effect, effectData[effect], attackerData);
 
-	// TODO: implement loot / resistance.
+	// TODO: implement loot?
 
 	return { "inflictedStatuses": Object.keys(effectData) };
 };
@@ -44,43 +44,46 @@ StatusEffectsReceiver.prototype.ApplyStatus = function(effectData, attacker, att
 /**
  * Adds a status effect to the entity.
  *
- * @param {string} statusName - The name of the status effect.
+ * @param {string} statusCode - The code of the status effect.
  * @param {Object} data - The various effects and timings.
  * @param {Object} attackerData - The attacker and attackerOwner.
  */
-StatusEffectsReceiver.prototype.AddStatus = function(statusName, data, attackerData)
+StatusEffectsReceiver.prototype.AddStatus = function(baseCode, data, attackerData)
 {
-	if (this.activeStatusEffects[statusName])
+	let statusCode = baseCode;
+	if (this.activeStatusEffects[statusCode])
 	{
 		if (data.Stackability == "Ignore")
 			return;
 		if (data.Stackability == "Extend")
 		{
-			this.activeStatusEffects[statusName].Duration += data.Duration;
+			this.activeStatusEffects[statusCode].Duration += data.Duration;
 			return;
 		}
 		if (data.Stackability == "Replace")
-			this.RemoveStatus(statusName);
+			this.RemoveStatus(statusCode);
 		else if (data.Stackability == "Stack")
 		{
 			let i = 0;
 			let temp;
 			do
-				temp = statusName + "_" + i++;
+				temp = statusCode + "_" + i++;
 			while (!!this.activeStatusEffects[temp]);
-			statusName = temp;
+			statusCode = temp;
 		}
 	}
 
-	this.activeStatusEffects[statusName] = {};
-	let status = this.activeStatusEffects[statusName];
+	this.activeStatusEffects[statusCode] = {
+		"baseCode": baseCode
+	};
+	let status = this.activeStatusEffects[statusCode];
 	Object.assign(status, data);
 
 	if (status.Modifiers)
 	{
 		let modifications = DeriveModificationsFromXMLTemplate(status.Modifiers);
 		let cmpModifiersManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ModifiersManager);
-		cmpModifiersManager.AddModifiers(statusName, modifications, this.entity);
+		cmpModifiersManager.AddModifiers(statusCode, modifications, this.entity);
 	}
 
 	// With neither an interval nor a duration, there is no point in starting a timer.
@@ -101,24 +104,24 @@ StatusEffectsReceiver.prototype.AddStatus = function(statusName, data, attackerD
 	status.source = attackerData;
 
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	status._timer = cmpTimer.SetInterval(this.entity, IID_StatusEffectsReceiver, "ExecuteEffect", 0, +(status.Interval || status._interval), statusName);
+	status._timer = cmpTimer.SetInterval(this.entity, IID_StatusEffectsReceiver, "ExecuteEffect", 0, +(status.Interval || status._interval), statusCode);
 };
 
 /**
  * Removes a status effect from the entity.
  *
- * @param {string} statusName - The status effect to be removed.
+ * @param {string} statusCode - The status effect to be removed.
  */
-StatusEffectsReceiver.prototype.RemoveStatus = function(statusName)
+StatusEffectsReceiver.prototype.RemoveStatus = function(statusCode)
 {
-	let statusEffect = this.activeStatusEffects[statusName];
+	let statusEffect = this.activeStatusEffects[statusCode];
 	if (!statusEffect)
 		return;
 
 	if (statusEffect.Modifiers)
 	{
 		let cmpModifiersManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ModifiersManager);
-		cmpModifiersManager.RemoveAllModifiers(statusName, this.entity);
+		cmpModifiersManager.RemoveAllModifiers(statusCode, this.entity);
 	}
 
 	if (statusEffect._timer)
@@ -126,23 +129,23 @@ StatusEffectsReceiver.prototype.RemoveStatus = function(statusName)
 		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		cmpTimer.CancelTimer(statusEffect._timer);
 	}
-	delete this.activeStatusEffects[statusName];
+	delete this.activeStatusEffects[statusCode];
 };
 
 /**
  * Called by the timers. Executes a status effect.
  *
- * @param {string} statusName - The name of the status effect to be executed.
+ * @param {string} statusCode - The status effect to be executed.
  * @param {number} lateness - The delay between the calling of the function and the actual execution (turn time?).
  */
-StatusEffectsReceiver.prototype.ExecuteEffect = function(statusName, lateness)
+StatusEffectsReceiver.prototype.ExecuteEffect = function(statusCode, lateness)
 {
-	let status = this.activeStatusEffects[statusName];
+	let status = this.activeStatusEffects[statusCode];
 	if (!status)
 		return;
 
 	if (status.Damage || status.Capture)
-		Attacking.HandleAttackEffects(this.entity, statusName, status, status.source.entity, status.source.owner);
+		Attacking.HandleAttackEffects(this.entity, statusCode, status, status.source.entity, status.source.owner);
 
 	if (!status.Duration)
 		return;
@@ -156,7 +159,7 @@ StatusEffectsReceiver.prototype.ExecuteEffect = function(statusName, lateness)
 		status._timeElapsed += +(status.Interval || status._interval) + lateness;
 
 	if (status._timeElapsed >= +status.Duration)
-		this.RemoveStatus(statusName);
+		this.RemoveStatus(statusCode);
 };
 
 Engine.RegisterComponentType(IID_StatusEffectsReceiver, "StatusEffectsReceiver", StatusEffectsReceiver);

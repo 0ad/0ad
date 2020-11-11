@@ -181,7 +181,8 @@ function getResistanceTooltip(template)
 	if (template.resistance.Capture)
 		details.push(getCaptureResistanceTooltip(template.resistance.Capture));
 
-	// TODO: Status effects resistance.
+	if (template.resistance.ApplyStatus)
+		details.push(getStatusEffectsResistanceTooltip(template.resistance.ApplyStatus));
 
 	return sprintf(translate("%(label)s\n%(details)s"), {
 		"label": headerFont(translate("Resistance:")),
@@ -227,6 +228,48 @@ function getCaptureResistanceTooltip(resistanceTypeTemplate)
 						"resistancePercentage": resistanceLevelToPercentageString(resistanceTypeTemplate)
 					}) + '[/font]'
 			})
+	});
+}
+
+function getStatusEffectsResistanceTooltip(resistanceTypeTemplate)
+{
+	if (!resistanceTypeTemplate)
+		return "";
+	return sprintf(translate("%(label)s %(details)s"), {
+		"label": headerFont(translate("Status Effects:")),
+		"details":
+			Object.keys(resistanceTypeTemplate).map(
+				statusEffect => {
+					if (resistanceTypeTemplate[statusEffect].blockChance == 1)
+						return sprintf(translate("Blocks %(name)s"), {
+							"name": unitFont(translateWithContext("status effect", g_StatusEffectsMetadata.getName(statusEffect)))
+						});
+
+					if (resistanceTypeTemplate[statusEffect].blockChance == 0)
+						return sprintf(translate("%(name)s %(details)s"), {
+							"name": unitFont(translateWithContext("status effect", g_StatusEffectsMetadata.getName(statusEffect))),
+							"details": sprintf(translate("Duration reduction: %(durationReduction)s%%"), {
+								"durationReduction": (100 - resistanceTypeTemplate[statusEffect].duration * 100)
+							})
+						});
+
+					if (resistanceTypeTemplate[statusEffect].duration == 1)
+						return sprintf(translate("%(name)s %(details)s"), {
+							"name": unitFont(translateWithContext("status effect", g_StatusEffectsMetadata.getName(statusEffect))),
+							"details": sprintf(translate("Blocks: %(blockPercentage)s%%"), {
+								"blockPercentage": resistanceTypeTemplate[statusEffect].blockChance * 100
+							})
+						});
+
+					return sprintf(translate("%(name)s %(details)s"), {
+						"name": unitFont(translateWithContext("status effect", g_StatusEffectsMetadata.getName(statusEffect))),
+						"details": sprintf(translate("Blocks: %(blockPercentage)s%%, Duration reduction: %(durationReduction)s%%"), {
+							"blockPercentage": resistanceTypeTemplate[statusEffect].blockChance * 100,
+							"durationReduction": (100 - resistanceTypeTemplate[statusEffect].duration * 100)
+						})
+					});
+				}
+			).join(commaFont(translate(", ")))
 	});
 }
 
@@ -346,10 +389,9 @@ function applyStatusDetails(applyStatusTemplate)
 		return "";
 
 	return sprintf(translate("gives %(name)s"), {
-		"name": Object.keys(applyStatusTemplate).map(x => {
-			let template = g_StatusEffectsMetadata.augment(x, applyStatusTemplate[x]);
-			return unitFont(translateWithContext("status effect", template.StatusName));
-		}).join(commaFont(translate(", "))),
+		"name": Object.keys(applyStatusTemplate).map(x =>
+			unitFont(translateWithContext("status effect", g_StatusEffectsMetadata.getName(x)))
+		).join(commaFont(translate(", "))),
 	});
 }
 
@@ -395,10 +437,7 @@ function getAttackTooltip(template)
 		let statusEffectsDetails = [];
 		if (attackTypeTemplate.ApplyStatus)
 			for (let status in attackTypeTemplate.ApplyStatus)
-			{
-				let status_template = g_StatusEffectsMetadata.augment(status, attackTypeTemplate.ApplyStatus[status]);
-				statusEffectsDetails.push("\n" + g_Indent + g_Indent + getStatusEffectsTooltip(status_template, true));
-			}
+				statusEffectsDetails.push("\n" + g_Indent + g_Indent + getStatusEffectsTooltip(status, attackTypeTemplate.ApplyStatus[status], true));
 		statusEffectsDetails = statusEffectsDetails.join("");
 
 		tooltips.push(sprintf(translate("%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"), {
@@ -420,14 +459,10 @@ function getAttackTooltip(template)
 /**
  * @param applier - if true, return the tooltip for the Applier. If false, Receiver is returned.
  */
-function getStatusEffectsTooltip(template, applier)
+function getStatusEffectsTooltip(statusCode, template, applier)
 {
 	let tooltipAttributes = [];
-	if (applier && template.ApplierTooltip)
-		tooltipAttributes.push(translate(template.ApplierTooltip));
-	else if (!applier && template.ReceiverTooltip)
-		tooltipAttributes.push(translate(template.ReceiverTooltip));
-
+	let statusData = g_StatusEffectsMetadata.getData(statusCode);
 	if (template.Damage || template.Capture)
 		tooltipAttributes.push(attackEffectsDetails(template));
 
@@ -437,14 +472,19 @@ function getStatusEffectsTooltip(template, applier)
 	if (template.Duration)
 		tooltipAttributes.push(getStatusEffectDurationTooltip(template));
 
+	if (applier && statusData.applierTooltip)
+		tooltipAttributes.push(translate(statusData.applierTooltip));
+	else if (!applier && statusData.receiverTooltip)
+		tooltipAttributes.push(translate(statusData.receiverTooltip));
+
 	if (applier)
 		return sprintf(translate("%(statusName)s: %(statusInfo)s %(stackability)s"), {
-			"statusName": headerFont(translateWithContext("status effect", template.StatusName)),
+			"statusName": headerFont(translateWithContext("status effect", statusData.statusName)),
 			"statusInfo": tooltipAttributes.join(commaFont(translate(", "))),
 			"stackability": getStatusEffectStackabilityTooltip(template)
 		});
 	return sprintf(translate("%(statusName)s: %(statusInfo)s"), {
-		"statusName": headerFont(translateWithContext("status effect", template.StatusName)),
+		"statusName": headerFont(translateWithContext("status effect", statusData.statusName)),
 		"statusInfo": tooltipAttributes.join(commaFont(translate(", ")))
 	});
 }
