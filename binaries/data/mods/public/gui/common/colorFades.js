@@ -71,7 +71,7 @@ function startColorFade(name, tickInterval, duration, fun_colorTransform, restar
 	}
 	else if (restartable)
 	{
-		restartColorFade(name, tickInterval, duration, fun_colorTransform, restartable, fun_smoothRestart);
+		restartColorFade(name);
 		return;
 	}
 }
@@ -149,33 +149,26 @@ function stopColorFade(name, hideOverlay = true)
 }
 
 /**
- * Restarts a color fade,
- * see paramter in startColorFade function.
+ * Restarts a color fade using the parameters stored in g_ColorFade.
+ * @param {string} - Name of the object whose color should be faded.
  */
 function restartColorFade(name)
 {
-	// check, if a color fade is running
-	if (!isColorFadeRunning(name))
-		return false;
+	let data = g_ColorFade[name];
 
-	var data = g_ColorFade[name];
-	// check, if fade can be restarted smoothly
-	if (data.fun_smoothRestart)
-	{
-		// if call was too late
-		if (!data.fun_smoothRestart(data))
-		{
-			data.rgb = getInitColorFadeRGB(); // set RGB start values
-			data.tickCounter = 0;
-		}
-	}
-	// stop it and restart it
-	else
+	// If fade can be restarted smoothly, stop it, and restart it.
+	if (!data.fun_smoothRestart)
 	{
 		stopColorFade(name, false);
 		startColorFade(name, data.changeInterval, data.duration, data.fun_colorTransform, data.restartable, data.fun_smoothRestart);
 	}
-	return true;
+	// Call was too late.
+	else if (!data.fun_smoothRestart(data))
+	{
+		// Set RGB start values.
+		data.rgb = getInitColorFadeRGB();
+		data.tickCounter = 0;
+	}
 }
 
 function colorFade_attackUnit(data)
