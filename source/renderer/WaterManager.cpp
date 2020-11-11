@@ -124,7 +124,6 @@ WaterManager::WaterManager()
 	m_NeedsReloading = false;
 	m_NeedInfoUpdate = true;
 
-	m_depthTT = 0;
 	m_FancyTexture = 0;
 	m_FancyTextureDepth = 0;
 	m_ReflFboDepthTexture = 0;
@@ -160,7 +159,6 @@ WaterManager::~WaterManager()
 	if (!g_Renderer.GetCapabilities().m_PrettyWater)
 		return;
 
-	glDeleteTextures(1, &m_depthTT);
 	glDeleteTextures(1, &m_FancyTexture);
 	glDeleteTextures(1, &m_FancyTextureDepth);
 	glDeleteTextures(1, &m_ReflFboDepthTexture);
@@ -725,7 +723,7 @@ void WaterManager::CreateWaveMeshes()
 			WaveObject* shoreWave = new WaveObject;
 			std::vector<SWavesVertex> vertices;
 			vertices.reserve(9*width);
-			
+
 			shoreWave->m_Width = width;
 			shoreWave->m_TimeDiff = diff;
 			diff += (rand() % 100) / 25.0f + 4.0f;

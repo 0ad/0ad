@@ -1102,6 +1102,8 @@ void CRenderer::RenderRefractions(const CShaderDefines& context, const CBounding
 
 	// Save the model-view-projection matrix so the shaders can use it for projective texturing
 	wm.m_RefractionMatrix = m_ViewCamera.GetViewProjection();
+	wm.m_RefractionProjInvMatrix = m_ViewCamera.GetProjection().GetInverse();
+	wm.m_RefractionViewInvMatrix = m_ViewCamera.GetOrientation();
 
 	float vpHeight = wm.m_RefTextureSize;
 	float vpWidth = wm.m_RefTextureSize;
