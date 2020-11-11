@@ -295,7 +295,10 @@ function tryPlaceBuilding(queued)
 	if (!updateBuildingPlacementPreview())
 	{
 		// invalid location - don't build it
-		// TODO: play a sound?
+		Engine.GuiInterfaceCall("PlaySound", {
+			"name": "invalid_building_placement",
+			"entity": g_Selection.toList()[0]
+		});
 		return false;
 	}
 
