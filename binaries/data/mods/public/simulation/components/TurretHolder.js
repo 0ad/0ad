@@ -13,6 +13,7 @@ class TurretHolder
 		let points = this.template.TurretPoints;
 		for (let point in points)
 			this.turretPoints.push({
+				"name": point,
 				"offset": {
 					"x": +points[point].X,
 					"y": +points[point].Y,
@@ -121,6 +122,16 @@ class TurretHolder
 	}
 
 	/**
+	 * @param {number} entity - The entityID of the entity.
+	 * @param {String} turretName - The name of the turret point to occupy.
+	 * @return {boolean} - Whether the occupation has succeeded.
+	 */
+	OccupyNamedTurret(entity, turretName)
+	{
+		return this.OccupyTurret(entity, this.turretPoints.find(turret => turret.name == turretName));
+	}
+
+	/**
 	 * Remove the entity from a turret.
 	 * @param {number} entity - The specific entity to eject.
 	 * @param {Object} turret - Optionally the turret to abandon.
@@ -189,6 +200,44 @@ class TurretHolder
 	}
 
 	/**
+	 * @param {number} entity - The entity's id.
+	 * @return {Object} - The turret this entity is positioned on, if applicable.
+	 */
+	GetOccupiedTurretName(entity)
+	{
+		return this.GetOccupiedTurret(entity).name || "";
+	}
+
+	/**
+	 * @return {number[]} - The turretted entityIDs.
+	 */
+	GetEntities()
+	{
+		let entities = [];
+		for (let turretPoint of this.turretPoints)
+			if (turretPoint.entity)
+				entities.push(turretPoint.entity);
+		return entities;
+	}
+
+	/**
+	 * Sets an init turret, present from game start. (E.g. set in Atlas.)
+	 * @param {String} turretName - The name of the turret point to be used.
+	 * @param {number} entity - The entity-ID to be placed.
+	 */
+	SetInitEntity(turretName, entity)
+	{
+		if (!this.initTurrets)
+			this.initTurrets = new Map();
+
+		if (this.initTurrets.has(turretName))
+			warn("The turret position " + turretName + " of entity " +
+				this.entity + " is already set! Overwriting.");
+
+		this.initTurrets.set(turretName, entity);
+	}
+
+	/**
 	 * We process EntityRenamed here because we need to be sure that we receive
 	 * it after it is processed by GarrisonHolder.js.
 	 * ToDo: Make this not needed by fully separating TurretHolder from GarrisonHolder.
@@ -220,6 +269,29 @@ class TurretHolder
 			this.LeaveTurret(entity);
 		for (let entity of msg.added)
 			this.OccupyTurret(entity);
+	}
+
+	/**
+	 * Initialise the turreted units.
+	 * Really ugly, but because GarrisonHolder is processed earlier, and also turrets
+	 * entities on init, we can find an entity that already is present.
+	 * In that case we reject and occupy.
+	 */
+	OnGlobalInitGame(msg)
+	{
+		if (!this.initTurrets)
+			return;
+
+		for (let [turretPointName, entity] of this.initTurrets)
+		{
+			if (this.OccupiesTurret(entity))
+				this.LeaveTurret(entity);
+			if (!this.OccupyNamedTurret(entity, turretPointName))
+				warn("Entity " + entity + " could not occupy the turret point " +
+					turretPointName + " of turret holder " + this.entity + ".");
+		}
+
+		delete this.initTurrets;
 	}
 }
 

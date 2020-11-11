@@ -189,6 +189,9 @@ COMPONENT(TerritoryInfluence)
 INTERFACE(TerritoryManager)
 COMPONENT(TerritoryManager)
 
+INTERFACE(TurretHolder)
+COMPONENT(TurretHolderScripted)
+
 INTERFACE(UnitMotion)
 COMPONENT(UnitMotion) // must be after Obstruction
 COMPONENT(UnitMotionScripted)
