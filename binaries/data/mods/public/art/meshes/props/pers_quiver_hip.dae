@@ -1,80 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
 <COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
   <asset>
     <contributor>
-      <author></author>
+      <author />
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
-      <comments></comments>
+      <comments />
     </contributor>
     <created>2011-07-19T05:09:50Z</created>
-    <modified>2011-07-19T05:09:50Z</modified>
-    <revision></revision>
-    <title></title>
-    <subject></subject>
-    <keywords></keywords>
-    <unit meter="0.025400"/>
+    <keywords />
+    <modified>2020-11-11</modified>
+    <revision />
+    <subject />
+    <title />
+    <unit meter="0.025400" />
     <up_axis>Y_UP</up_axis>
   </asset>
-  <library_images>
-    <image id="Map__1-image" name="Map__1">
-      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\props\pers_quiver_dark.png</init_from>
-    </image>
-  </library_images>
-  <library_materials>
-    <material id="_8___Default" name="_8___Default">
-      <instance_effect url="#_8___Default-fx"/>
-    </material>
-  </library_materials>
-  <library_effects>
-    <effect id="_8___Default-fx" name="_8___Default">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
-            </ambient>
-            <diffuse>
-              <texture texture="Map__1-image" texcoord="CHANNEL0">
-                <extra>
-                  <technique profile="MAYA">
-                    <wrapU sid="wrapU0">TRUE</wrapU>
-                    <wrapV sid="wrapV0">TRUE</wrapV>
-                    <blend_mode>ADD</blend_mode>
-                  </technique>
-                </extra>
-              </texture>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-  </library_effects>
+  <library_effects />
   <library_geometries>
     <geometry id="Persian_Quiver_Left_Hip-lib" name="Persian_Quiver_Left_HipMesh">
       <mesh>
         <source id="Persian_Quiver_Left_Hip-lib-Position">
-          <float_array id="Persian_Quiver_Left_Hip-lib-Position-array" count="180">
+          <float_array count="180" id="Persian_Quiver_Left_Hip-lib-Position-array">
 0.304750 0.680548 -1.273373
 0.246308 0.453593 1.240043
 0.000000 1.064068 0.435480
@@ -137,15 +82,15 @@
 0.000000 -1.191902 0.513706
 </float_array>
           <technique_common>
-            <accessor source="#Persian_Quiver_Left_Hip-lib-Position-array" count="60" stride="3">
-              <param name="X" type="float"/>
-              <param name="Y" type="float"/>
-              <param name="Z" type="float"/>
+            <accessor count="60" source="#Persian_Quiver_Left_Hip-lib-Position-array" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
             </accessor>
           </technique_common>
         </source>
         <source id="Persian_Quiver_Left_Hip-lib-Normal0">
-          <float_array id="Persian_Quiver_Left_Hip-lib-Normal0-array" count="936">
+          <float_array count="936" id="Persian_Quiver_Left_Hip-lib-Normal0-array">
 0.536637 0.551042 0.638997
 -0.724937 0.512803 0.459853
 0.006531 -0.366436 0.930418
@@ -460,15 +405,15 @@
 0.049715 0.607685 -0.792596
 </float_array>
           <technique_common>
-            <accessor source="#Persian_Quiver_Left_Hip-lib-Normal0-array" count="312" stride="3">
-              <param name="X" type="float"/>
-              <param name="Y" type="float"/>
-              <param name="Z" type="float"/>
+            <accessor count="312" source="#Persian_Quiver_Left_Hip-lib-Normal0-array" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
             </accessor>
           </technique_common>
         </source>
         <source id="Persian_Quiver_Left_Hip-lib-UV0">
-          <float_array id="Persian_Quiver_Left_Hip-lib-UV0-array" count="624">
+          <float_array count="624" id="Persian_Quiver_Left_Hip-lib-UV0-array">
 0.288690 0.884154
 0.306533 0.876562
 0.249630 0.989704
@@ -783,19 +728,19 @@
 0.590397 0.052427
 </float_array>
           <technique_common>
-            <accessor source="#Persian_Quiver_Left_Hip-lib-UV0-array" count="312" stride="2">
-              <param name="S" type="float"/>
-              <param name="T" type="float"/>
+            <accessor count="312" source="#Persian_Quiver_Left_Hip-lib-UV0-array" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
             </accessor>
           </technique_common>
         </source>
         <vertices id="Persian_Quiver_Left_Hip-lib-Vertex">
-          <input semantic="POSITION" source="#Persian_Quiver_Left_Hip-lib-Position"/>
+          <input semantic="POSITION" source="#Persian_Quiver_Left_Hip-lib-Position" />
         </vertices>
-        <polygons material="_8___Default" count="104">
-          <input semantic="VERTEX" offset="0" source="#Persian_Quiver_Left_Hip-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Persian_Quiver_Left_Hip-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Persian_Quiver_Left_Hip-lib-UV0"/>
+        <polygons count="104" material="_8___Default">
+          <input offset="0" semantic="VERTEX" source="#Persian_Quiver_Left_Hip-lib-Vertex" />
+          <input offset="1" semantic="NORMAL" source="#Persian_Quiver_Left_Hip-lib-Normal0" />
+          <input offset="2" semantic="TEXCOORD" set="0" source="#Persian_Quiver_Left_Hip-lib-UV0" />
           <p>45 0 0 43 1 1 47 2 2</p>
           <p>0 3 3 28 4 4 32 5 5</p>
           <p>55 6 6 47 7 7 51 8 8</p>
@@ -904,22 +849,17 @@
       </mesh>
     </geometry>
   </library_geometries>
+  <library_images />
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="Persian_Quiver_Left_Hip" name="Persian_Quiver_Left_Hip">
         <matrix sid="matrix">0.266861 -0.024257 -0.101082 0.231673 0.080450 -0.128168 0.243149 -0.275723 -0.065831 -0.254962 -0.112613 -0.121525 0.000000 0.000000 0.000000 1.000000</matrix>
         <instance_geometry url="#Persian_Quiver_Left_Hip-lib">
-          <bind_material>
-            <technique_common>
-              <instance_material symbol="_8___Default" target="#_8___Default"/>
-            </technique_common>
-          </bind_material>
-        </instance_geometry>
+          </instance_geometry>
       </node>
     </visual_scene>
   </library_visual_scenes>
   <scene>
-    <instance_visual_scene url="#RootNode"/>
+    <instance_visual_scene url="#RootNode" />
   </scene>
 </COLLADA>
-

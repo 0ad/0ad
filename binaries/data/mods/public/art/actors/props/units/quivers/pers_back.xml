@@ -5,11 +5,7 @@
     <variant name="quiver back">
       <mesh>props/quivers/pers_back.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_a"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_b"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_c"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_d"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_e"/>
+        <prop actor="props/units/weapons/pers_quiver_arrows.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="props/quivers/pers_back.png" name="baseTex"/>

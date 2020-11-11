@@ -3,11 +3,7 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="Base">
-      <mesh>props/weap_arrow_front.dae</mesh>
-      <props>
-        <prop actor="particle/flame_jav.xml" attachpoint="root"/>
-        <prop actor="particle/smoke_jav.xml" attachpoint="root"/>
-      </props>
+      <mesh>props/quiver_greek_back_arrows.dae</mesh>
       <textures>
         <texture file="props/prop_weap.dds" name="baseTex"/>
       </textures>

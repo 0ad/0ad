@@ -2,19 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="quiver back">
+    <variant frequency="100" name="Base">
       <mesh>props/quiver_greek_back.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_a"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_b"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_c"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_d"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_e"/>
+        <prop actor="props/units/quiver_greek_back_arrows.xml" attachpoint="root"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Quiver Back">
       <textures>
         <texture file="props/quiver_greek_b.png" name="baseTex"/>
         <texture file="props/quiver_greek_b_norm.png" name="normTex"/>
@@ -22,5 +14,5 @@
       </textures>
     </variant>
   </group>
-  <material>player_trans_parallax_spec.xml</material>
+  <material>no_trans_parallax_spec.xml</material>
 </actor>
