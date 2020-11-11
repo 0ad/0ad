@@ -5,18 +5,8 @@
     <variant name="Quiver hip Right">
       <mesh>props/quiver_cavalry_right.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_a"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_b"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_c"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_d"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_e"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_f"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="arrow_g"/>
+        <prop actor="props/units/weapons/quiver_cavalry_right_arrows.xml" attachpoint="root"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="quiver brown">
       <textures>
         <texture file="props/quiver_cavalry_leather.png" name="baseTex"/>
         <texture file="props/quiver_cavalry_leather_norm.png" name="normTex"/>
@@ -24,5 +14,5 @@
       </textures>
     </variant>
   </group>
-  <material>player_trans_parallax_spec.xml</material>
+  <material>no_trans_parallax_spec.xml</material>
 </actor>
