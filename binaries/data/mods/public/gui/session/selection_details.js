@@ -98,12 +98,12 @@ function displaySingle(entState)
 		statusEffectsSection.hidden = false;
 		let statusIcons = statusEffectsSection.children;
 		let i = 0;
-		for (let effectName in entState.statusEffects)
+		for (let effectCode in entState.statusEffects)
 		{
-			let effect = entState.statusEffects[effectName];
+			let effect = entState.statusEffects[effectCode];
 			statusIcons[i].hidden = false;
-			statusIcons[i].sprite = "stretched:session/icons/status_effects/" + (effect.Icon || "default") + ".png";
-			statusIcons[i].tooltip = getStatusEffectsTooltip(effect, false);
+			statusIcons[i].sprite = "stretched:session/icons/status_effects/" + g_StatusEffectsMetadata.getIcon(effect.baseCode) + ".png";
+			statusIcons[i].tooltip = getStatusEffectsTooltip(effect.baseCode, effect, false);
 			let size = statusIcons[i].size;
 			size.top = i * 18;
 			size.bottom = i * 18 + 16;

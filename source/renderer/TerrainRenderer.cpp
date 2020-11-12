@@ -685,28 +685,6 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 
 	CLOSTexture& losTexture = g_Renderer.GetScene().GetLOSTexture();
 
-	// creating the real depth texture using the depth buffer.
-	if (WaterMgr->m_WaterRealDepth)
-	{
-		if (WaterMgr->m_depthTT == 0)
-		{
-			GLuint depthTex;
-			glGenTextures(1, (GLuint*)&depthTex);
-			WaterMgr->m_depthTT = depthTex;
-			glBindTexture(GL_TEXTURE_2D, WaterMgr->m_depthTT);
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, g_Renderer.GetWidth(), g_Renderer.GetHeight(), 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE,NULL);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		}
-		else
-		{
-			glBindTexture(GL_TEXTURE_2D, WaterMgr->m_depthTT);
-			glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, 0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight(), 0);
-		}
-		glBindTexture(GL_TEXTURE_2D, 0);
-	}
 	// Calculating the advanced informations about Foam and all if the quality calls for it.
 	/*if (WaterMgr->m_NeedInfoUpdate && (WaterMgr->m_WaterFoam || WaterMgr->m_WaterCoastalWaves))
 	{
@@ -769,8 +747,12 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		m->fancyWaterShader->BindTexture(str_waterEffectsTex, WaterMgr->m_FancyTexture);
 	}
 
-	if (WaterMgr->m_WaterRealDepth)
-		m->fancyWaterShader->BindTexture(str_depthTex, WaterMgr->m_depthTT);
+	if (WaterMgr->m_WaterRefraction && WaterMgr->m_WaterRealDepth)
+	{
+		m->fancyWaterShader->BindTexture(str_depthTex, WaterMgr->m_RefrFboDepthTexture);
+		m->fancyWaterShader->Uniform(str_projInvTransform, WaterMgr->m_RefractionProjInvMatrix);
+		m->fancyWaterShader->Uniform(str_viewInvTransform, WaterMgr->m_RefractionViewInvMatrix);
+	}
 
 	if (WaterMgr->m_WaterRefraction)
 		m->fancyWaterShader->BindTexture(str_refractionMap, WaterMgr->m_RefractionTexture);
@@ -809,11 +791,6 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	m->fancyWaterShader->Uniform(str_losMatrix, losTexture.GetTextureMatrix());
 
 	m->fancyWaterShader->Uniform(str_cameraPos, camera.GetOrientation().GetTranslation());
-	if (WaterMgr->m_WaterRealDepth)
-	{
-		m->fancyWaterShader->Uniform(str_zNear, camera.GetNearPlane());
-		m->fancyWaterShader->Uniform(str_zFar, camera.GetFarPlane());
-	}
 
 	m->fancyWaterShader->Uniform(str_fogColor, lightEnv.m_FogColor);
 	m->fancyWaterShader->Uniform(str_fogParams, lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);

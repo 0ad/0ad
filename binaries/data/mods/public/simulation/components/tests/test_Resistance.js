@@ -10,6 +10,7 @@ Engine.LoadComponentScript("interfaces/PlayerManager.js");
 Engine.LoadComponentScript("interfaces/Promotion.js");
 Engine.LoadComponentScript("interfaces/Resistance.js");
 Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
+Engine.LoadComponentScript("interfaces/StatusEffectsReceiver.js");
 Engine.LoadComponentScript("Resistance.js");
 
 class testResistance
@@ -26,9 +27,10 @@ class testResistance
 	Reset(schema = {})
 	{
 		this.cmpResistance = ConstructComponent(this.EntityID, "Resistance", schema);
-		DeleteMock(this.EntityID, IID_Health);
 		DeleteMock(this.EntityID, IID_Capturable);
+		DeleteMock(this.EntityID, IID_Health);
 		DeleteMock(this.EntityID, IID_Identity);
+		DeleteMock(this.EntityID, IID_StatusEffectsReceiver);
 	}
 
 	TestInvulnerability()
@@ -148,6 +150,103 @@ class testResistance
 		TS_ASSERT_EQUALS(spy._called, 1);
 	}
 
+	TestStatusEffectsResistancesApplies()
+	{
+		// Test duration reduction.
+		let durationFactor = 0.5;
+		let statusName = "statusName";
+		this.Reset({
+			"Entity": {
+				"ApplyStatus": {
+					[statusName]: {
+						"Duration": durationFactor
+					}
+				}
+			}
+		});
+
+		let duration = 10;
+		let attackData = {
+			"ApplyStatus": {
+				[statusName]: {
+					"Duration": duration
+				}
+			}
+		};
+
+		let cmpStatusEffectsReceiver = AddMock(this.EntityID, IID_StatusEffectsReceiver, {
+			"ApplyStatus": (effectData, __, ___) => {
+				TS_ASSERT_EQUALS(effectData[statusName].Duration, duration * durationFactor);
+				return { "inflictedStatuses": Object.keys(effectData) };
+			}
+		});
+		let spy = new Spy(cmpStatusEffectsReceiver, "ApplyStatus");
+
+		Attacking.HandleAttackEffects(this.EntityID, "Test", attackData, this.AttackerID, this.EnemyID);
+		TS_ASSERT_EQUALS(spy._called, 1);
+
+		// Test blocking.
+		this.Reset({
+			"Entity": {
+				"ApplyStatus": {
+					[statusName]: {
+						"BlockChance": "1"
+					}
+				}
+			}
+		});
+
+		cmpStatusEffectsReceiver = AddMock(this.EntityID, IID_StatusEffectsReceiver, {
+			"ApplyStatus": (effectData, __, ___) => {
+				TS_ASSERT_UNEVAL_EQUALS(effectData, {});
+				return { "inflictedStatuses": Object.keys(effectData) };
+			}
+		});
+		spy = new Spy(cmpStatusEffectsReceiver, "ApplyStatus");
+
+		Attacking.HandleAttackEffects(this.EntityID, "Test", attackData, this.AttackerID, this.EnemyID);
+		TS_ASSERT_EQUALS(spy._called, 1);
+
+		// Test multiple resistances.
+		let reducedStatusName = "reducedStatus";
+		let blockedStatusName = "blockedStatus";
+		this.Reset({
+			"Entity": {
+				"ApplyStatus": {
+					[reducedStatusName]: {
+						"Duration": durationFactor
+					},
+					[blockedStatusName]: {
+						"BlockChance": "1"
+					}
+				}
+			}
+		});
+
+		attackData = {
+			"ApplyStatus": {
+				[reducedStatusName]: {
+					"Duration": duration
+				},
+				[blockedStatusName]: {
+					"Duration": duration
+				}
+			}
+		};
+
+		cmpStatusEffectsReceiver = AddMock(this.EntityID, IID_StatusEffectsReceiver, {
+			"ApplyStatus": (effectData, __, ___) => {
+				TS_ASSERT_EQUALS(effectData[reducedStatusName].Duration, duration * durationFactor);
+				TS_ASSERT_UNEVAL_EQUALS(Object.keys(effectData), [reducedStatusName]);
+				return { "inflictedStatuses": Object.keys(effectData) };
+			}
+		});
+		spy = new Spy(cmpStatusEffectsReceiver, "ApplyStatus");
+
+		Attacking.HandleAttackEffects(this.EntityID, "Test", attackData, this.AttackerID, this.EnemyID);
+		TS_ASSERT_EQUALS(spy._called, 1);
+	}
+
 	TestResistanceAndBonus()
 	{
 		let resistanceValue = 2;
@@ -246,5 +345,6 @@ cmp.TestInvulnerability();
 cmp.TestBonus();
 cmp.TestDamageResistanceApplies();
 cmp.TestCaptureResistanceApplies();
+cmp.TestStatusEffectsResistancesApplies();
 cmp.TestResistanceAndBonus();
 cmp.TestMultipleEffects();

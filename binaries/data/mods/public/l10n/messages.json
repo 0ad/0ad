@@ -489,15 +489,6 @@
                 },
                 "options": {
                     "keywords": {
-                        "StatusName": {
-                            "customContext": "status effect"
-                        },
-                        "ApplierTooltip": {
-                            "customContext": "status effect"
-                        },
-                        "ReceiverTooltip": {
-                            "customContext": "status effect"
-                        },
                         "GenericName": {},
                         "SpecificName": {},
                         "History": {},
@@ -530,13 +521,13 @@
             {
                 "extractor": "json",
                 "filemasks": [
-                    "simulation/data/template_helpers/status_effects/*.json"
+                    "simulation/data/status_effects/*.json"
                 ],
                 "options": {
                     "keywords": [
-                        "StatusName",
-                        "ApplierTooltip",
-                        "ReceiverTooltip"
+                        "statusName",
+                        "applierTooltip",
+                        "receiverTooltip"
                     ],
                     "context": "status effect"
                 }

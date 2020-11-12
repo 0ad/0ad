@@ -10,7 +10,7 @@ class StatusEffectsMetadata
 	{
 		this.statusEffectData = {};
 
-		let files = Engine.ListDirectoryFiles("simulation/data/template_helpers/status_effects", "*.json", false);
+		let files = Engine.ListDirectoryFiles("simulation/data/status_effects", "*.json", false);
 		for (let filename of files)
 		{
 			let data = Engine.ReadJSONFile(filename);
@@ -23,22 +23,46 @@ class StatusEffectsMetadata
 				continue;
 			}
 
-			this.statusEffectData[data.code] = data;
+			this.statusEffectData[data.code] = {
+				"applierTooltip": data.applierTooltip || "",
+				"code": data.code,
+				"icon": data.icon || "default",
+				"statusName": data.statusName || "data.code",
+				"receiverTooltip": data.receiverTooltip || ""
+			};
 		}
 	}
 
 	/**
-	 * @returns the default data for @param code status effects, augmented with the given template data,
-	 * or simply @param templateData if the code is not found in JSON files.
+	 * @param {string} code - The code of the Status Effect.
+	 * @return {Object} - The JSON data corresponding to the code.
 	 */
-	augment(code, templateData)
+	getData(code)
 	{
-		if (!templateData && this.statusEffectData[code])
+		if (this.statusEffectData[code])
 			return this.statusEffectData[code];
 
-		if (this.statusEffectData[code])
-			return Object.assign({}, this.statusEffectData[code], templateData);
+		warn("No status effects data found for: " + code + ".");
+		return {};
+	}
 
-		return templateData;
+	getApplierTooltip(code)
+	{
+		return this.getData(code).applierTooltip;
+	}
+
+	getIcon(code)
+	{
+		return this.getData(code).icon;
+	}
+
+	getName(code)
+	{
+		return this.getData(code).statusName;
+	}
+
+	getReceiverTooltip(code)
+	{
+		return this.getData(code).receiverTooltip;
 	}
 }

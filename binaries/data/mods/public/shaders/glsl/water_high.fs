@@ -59,11 +59,11 @@ uniform vec4 waveParams2; // Smallintensity, Smallbase, Bigmovement, Smallmoveme
 
 #if USE_REFRACTION
 	uniform sampler2D refractionMap;
-#endif
 #if USE_REAL_DEPTH
 	uniform sampler2D depthTex;
-	uniform float zNear;
-	uniform float zFar;
+	uniform mat4 projInvTransform;
+	uniform mat4 viewInvTransform;
+#endif
 #endif
 
 #if USE_SHADOWS_ON_WATER && USE_SHADOW
@@ -213,24 +213,31 @@ vec4 getReflection(vec3 normal, vec3 eyeVec)
 	return vec4(reflColor, reflMod);
 }
 
+#if USE_REFRACTION && USE_REAL_DEPTH
+vec3 getWorldPositionFromRefractionDepth(vec2 uv)
+{
+	float depth = texture2D(depthTex, uv).x;
+	vec4 viewPosition = projInvTransform * (vec4((uv - vec2(0.5)) * 2.0, depth * 2.0 - 1.0, 1.0));
+	viewPosition /= viewPosition.w;
+	vec3 refrWorldPos = (viewInvTransform * viewPosition).xyz;
+	// Depth buffer precision errors can give heights above the water.
+	refrWorldPos.y = min(refrWorldPos.y, worldPos.y);
+	return refrWorldPos;
+}
+#endif
+
 vec4 getRefraction(vec3 normal, vec3 eyeVec, float depthLimit)
 {
-	float depth;
-#if USE_REAL_DEPTH
+#if USE_REFRACTION && USE_REAL_DEPTH
 	// Compute real depth at the target point.
-	float water_b = gl_FragCoord.z;
-	float water_n = 2.0 * water_b - 1.0;
-	float waterDBuffer = 2.0 * zNear * zFar / (zFar + zNear - water_n * (zFar - zNear));
-
-	float undisto_z_b = texture2D(depthTex, (gl_FragCoord.xy) / screenSize).x;
-	float undisto_z_n = 2.0 * undisto_z_b - 1.0;
-	float waterDepth_undistorted = (2.0 * zNear * zFar / (zFar + zNear - undisto_z_n * (zFar - zNear)) - waterDBuffer);
+	vec2 coords = (0.5 * refractionCoords.xy) / refractionCoords.z + 0.5;
+	vec3 refrWorldPos = getWorldPositionFromRefractionDepth(coords);
 
 	// Set depth to the depth at the undistorted point.
-	depth = waterDepth_undistorted;
+	float depth = distance(refrWorldPos, worldPos);
 #else
 	// fake depth computation: take the value at the vertex, add some if we are looking at a more oblique angle.
-	depth = waterDepth / (min(0.5, eyeVec.y) * 1.5 * min(0.5, eyeVec.y) * 2.0);
+	float depth = waterDepth / (min(0.5, eyeVec.y) * 1.5 * min(0.5, eyeVec.y) * 2.0);
 #endif
 
 #if USE_REFRACTION
@@ -243,10 +250,10 @@ vec4 getRefraction(vec3 normal, vec3 eyeVec, float depthLimit)
 	float distoFactor = 0.5 + clamp(depth / 2.0, 0.0, 7.0);
 
 #if USE_REAL_DEPTH
-	vec2 depthCoord = clamp((gl_FragCoord.xy) / screenSize - normal.xz * distoFactor / refractionCoords.z, 0.001, 0.999);
-	float z_b = texture2D(depthTex, depthCoord).x;
-	float z_n = 2.0 * z_b - 1.0;
-	float newDepth = (2.0 * zNear * zFar / (zFar + zNear - z_n * (zFar - zNear)) - waterDBuffer);
+	// Distort the texture coords under where the water is to simulate refraction.
+	vec2 shiftedCoords = (0.5 * refractionCoords.xy - normal.xz * distoFactor) / refractionCoords.z + 0.5;
+	vec3 refrWorldPos2 = getWorldPositionFromRefractionDepth(shiftedCoords);
+	float newDepth = distance(refrWorldPos2, worldPos);
 
 	// try to correct for fish. In general they'd look weirder without this fix.
 	if (depth > newDepth + 3.0)
@@ -269,7 +276,7 @@ vec4 getRefraction(vec3 normal, vec3 eyeVec, float depthLimit)
 	// If we get a pure red fragment, use an undistorted/less distorted coord instead.
 	// blur the refraction map, distoring using normal so that it looks more random than it really is
 	// and thus looks much better.
-	float blur = (0.3 + clamp(normal.x, -0.1, 0.1)) / refractionCoords.z;
+	float blur = (0.1 + clamp(normal.x, -0.1, 0.1)) / refractionCoords.z;
 
 	vec4 blurColor = vec4(refColor, 1.0);
 

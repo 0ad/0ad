@@ -44,6 +44,7 @@
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpTemplateManager.h"
+#include "simulation2/components/ICmpTurretHolder.h"
 #include "simulation2/components/ICmpVisual.h"
 #include "simulation2/components/ICmpWaterManager.h"
 
@@ -353,7 +354,22 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 						{
 							XMLWriter_Element garrisonedEntityTag(xmlMapFile, "GarrisonedEntity");
 							garrisonedEntityTag.Attribute("uid", static_cast<int>(garr_ent_id));
-							// ToDo: We can store turret position as well.
+						}
+					}
+				}
+
+				CmpPtr<ICmpTurretHolder> cmpTurretHolder(sim, ent);
+				if (cmpTurretHolder)
+				{
+					std::vector<std::pair<std::string, entity_id_t> > turrets = cmpTurretHolder->GetTurrets();
+					if (!turrets.empty())
+					{
+						XMLWriter_Element turretTag(xmlMapFile, "Turrets");
+						for (const std::pair<std::string, entity_id_t>& turret : turrets)
+						{
+							XMLWriter_Element turretedEntityTag(xmlMapFile, "Turret");
+							turretedEntityTag.Attribute("turret", turret.first);
+							turretedEntityTag.Attribute("uid", static_cast<int>(turret.second));
 						}
 					}
 				}

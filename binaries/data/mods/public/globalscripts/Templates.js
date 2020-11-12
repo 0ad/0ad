@@ -174,8 +174,15 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 			}
 			if (template.Resistance.Entity.Capture)
 				ret.resistance.Capture = getEntityValue("Resistance/Entity/Capture");
-
-			// ToDo: Resistance against StatusEffects.
+			if (template.Resistance.Entity.ApplyStatus)
+			{
+				ret.resistance.ApplyStatus = {};
+				for (let statusEffect in template.Resistance.Entity.ApplyStatus)
+					ret.resistance.ApplyStatus[statusEffect] = {
+						"blockChance": getEntityValue("Resistance/Entity/ApplyStatus/" + statusEffect + "/BlockChance"),
+						"duration": getEntityValue("Resistance/Entity/ApplyStatus/" + statusEffect + "/Duration")
+					};
+			}
 		}
 	}
 

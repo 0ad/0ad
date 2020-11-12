@@ -48,6 +48,7 @@
 #include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpTerrain.h"
+#include "simulation2/components/ICmpTurretHolder.h"
 #include "simulation2/components/ICmpVisual.h"
 #include "simulation2/components/ICmpWaterManager.h"
 
@@ -418,12 +419,14 @@ private:
 	int el_template, el_player;
 	int el_position, el_orientation, el_obstruction;
 	int el_garrison;
+	int el_turrets;
 	int el_actor;
 	int at_x, at_y, at_z;
 	int at_group, at_group2;
 	int at_angle;
 	int at_uid;
 	int at_seed;
+	int at_turret;
 
 	XMBElementList nodes; // children of root
 
@@ -468,6 +471,7 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 	EL(player);
 	EL(position);
 	EL(garrison);
+	EL(turrets);
 	EL(orientation);
 	EL(obstruction);
 	EL(actor);
@@ -476,6 +480,7 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 	AT(angle);
 	AT(uid);
 	AT(seed);
+	AT(turret);
 #undef AT
 #undef EL
 
@@ -950,6 +955,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 		CStrW TemplateName;
 		int PlayerID = 0;
 		std::vector<entity_id_t> Garrison;
+		std::vector<std::pair<std::string, entity_id_t> > Turrets;
 		CFixedVector3D Position;
 		CFixedVector3D Orientation;
 		long Seed = -1;
@@ -1009,6 +1015,20 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 					Garrison.push_back(attrs.GetNamedItem(at_uid).ToInt());
 				}
 			}
+			// <turrets>
+			else if (element_name == el_turrets)
+			{
+				XMBElementList turrets = setting.GetChildNodes();
+				Turrets.reserve(turrets.size());
+				for (const XMBElement& turretPoint : turrets)
+				{
+					XMBAttributeList attrs = turretPoint.GetAttributes();
+					Turrets.push_back(std::make_pair(
+						attrs.GetNamedItem(at_turret),
+						attrs.GetNamedItem(at_uid).ToInt()
+					));
+				}
+			}
 			// <actor>
 			else if (element_name == el_actor)
 			{
@@ -1052,6 +1072,16 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 				else
 					LOGERROR("CXMLMapReader::ReadEntities() entity '%d' of player '%d' has no GarrisonHolder component and thus cannot garrison units.", ent, PlayerID);
 				Garrison.clear();
+			}
+
+			if (!Turrets.empty())
+			{
+				CmpPtr<ICmpTurretHolder> cmpTurretHolder(sim, ent);
+				if (cmpTurretHolder)
+					cmpTurretHolder->SetInitEntities(Turrets);
+				else
+					LOGERROR("CXMLMapReader::ReadEntities() entity '%d' of player '%d' has no TurretHolder component and thus cannot use turrets.", ent, PlayerID);
+				Turrets.clear();
 			}
 
 			CmpPtr<ICmpObstruction> cmpObstruction(sim, ent);

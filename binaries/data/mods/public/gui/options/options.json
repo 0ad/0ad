@@ -220,14 +220,6 @@
 			},
 			{
 				"type": "boolean",
-				"label": "Real water depth",
-				"tooltip": "Use actual water depth in rendering calculations.",
-				"dependencies": ["watereffects"],
-				"config": "waterrealdepth",
-				"function": "Renderer_SetWaterRealDepthEnabled"
-			},
-			{
-				"type": "boolean",
 				"label": "Water reflections",
 				"tooltip": "Allow water to reflect a mirror image.",
 				"dependencies": ["watereffects"],
@@ -241,6 +233,14 @@
 				"dependencies": ["watereffects"],
 				"config": "waterrefraction",
 				"function": "Renderer_SetWaterRefractionEnabled"
+			},
+			{
+				"type": "boolean",
+				"label": "Real water depth",
+				"tooltip": "Use actual water depth in rendering calculations.",
+				"dependencies": ["watereffects", "waterrefraction"],
+				"config": "waterrealdepth",
+				"function": "Renderer_SetWaterRealDepthEnabled"
 			},
 			{
 				"type": "boolean",

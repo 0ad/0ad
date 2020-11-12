@@ -61,7 +61,6 @@ public:
 	CTexturePtr m_WaveTex;
 	CTexturePtr m_FoamTex;
 
-	GLuint m_depthTT;
 	GLuint m_FancyTexture;
 	GLuint m_FancyTextureDepth;
 	GLuint m_ReflFboDepthTexture;
@@ -113,6 +112,8 @@ public:
 	// (used to let the vertex shader do projective texturing)
 	CMatrix3D m_ReflectionMatrix;
 	CMatrix3D m_RefractionMatrix;
+	CMatrix3D m_RefractionProjInvMatrix;
+	CMatrix3D m_RefractionViewInvMatrix;
 
 	// Water parameters
 	std::wstring m_WaterType;		// Which texture to use.
