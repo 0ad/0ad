@@ -45,8 +45,8 @@ void CStdDeserializer::Trace(JSTracer *trc, void *data)
 
 void CStdDeserializer::TraceMember(JSTracer *trc)
 {
-	for (size_t i=0; i<m_ScriptBackrefs.size(); ++i)
-		JS_CallObjectTracer(trc, &m_ScriptBackrefs[i], "StdDeserializer::m_ScriptBackrefs");
+	for (JS::Heap<JSObject*>& backref : m_ScriptBackrefs)
+		JS::TraceEdge(trc, &backref, "StdDeserializer::m_ScriptBackrefs");
 }
 
 void CStdDeserializer::Get(const char* name, u8* data, size_t len)

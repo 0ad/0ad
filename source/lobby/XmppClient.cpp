@@ -198,10 +198,10 @@ XmppClient::~XmppClient()
 void XmppClient::TraceMember(JSTracer* trc)
 {
 	for (JS::Heap<JS::Value>& guiMessage : m_GuiMessageQueue)
-		JS_CallValueTracer(trc, &guiMessage, "m_GuiMessageQueue");
+		JS::TraceEdge(trc, &guiMessage, "m_GuiMessageQueue");
 
 	for (JS::Heap<JS::Value>& guiMessage : m_HistoricGuiMessages)
-		JS_CallValueTracer(trc, &guiMessage, "m_HistoricGuiMessages");
+		JS::TraceEdge(trc, &guiMessage, "m_HistoricGuiMessages");
 }
 
 /// Network

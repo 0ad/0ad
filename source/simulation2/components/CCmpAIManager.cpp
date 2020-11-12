@@ -826,7 +826,7 @@ private:
 	void TraceMember(JSTracer *trc)
 	{
 		for (std::pair<const VfsPath, JS::Heap<JS::Value>>& metadata : m_PlayerMetadata)
-			JS_CallValueTracer(trc, &metadata.second, "CAIWorker::m_PlayerMetadata");
+			JS::TraceEdge(trc, &metadata.second, "CAIWorker::m_PlayerMetadata");
 	}
 
 	void LoadMetadata(const VfsPath& path, JS::MutableHandleValue out)
