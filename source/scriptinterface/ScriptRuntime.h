@@ -23,7 +23,11 @@
 
 #include <sstream>
 
-#define STACK_CHUNK_SIZE 8192
+constexpr int STACK_CHUNK_SIZE = 8192;
+
+// Those are minimal defaults. The runtime for the main game is larger and GCs upon a larger growth.
+constexpr int DEFAULT_RUNTIME_SIZE = 16 * 1024 * 1024;
+constexpr int DEFAULT_HEAP_GROWTH_BYTES_GCTRIGGER = 2 * 1024 * 1024;
 
 /**
  * Abstraction around a SpiderMonkey JSRuntime.
@@ -38,8 +42,20 @@
 class ScriptRuntime
 {
 public:
-	ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtimeSize, int heapGrowthBytesGCTrigger);
+	ScriptRuntime(int runtimeSize, int heapGrowthBytesGCTrigger);
 	~ScriptRuntime();
+
+	/**
+	 * Returns a runtime, which can used to initialise any number of
+	 * ScriptInterfaces contexts. Values created in one context may be used
+	 * in any other context from the same runtime (but not any other runtime).
+	 * Each runtime should only ever be used on a single thread.
+	 * @param runtimeSize Maximum size in bytes of the new runtime
+	 * @param heapGrowthBytesGCTrigger Size in bytes of cumulated allocations after which a GC will be triggered
+	 */
+	static shared_ptr<ScriptRuntime> CreateRuntime(
+		int runtimeSize = DEFAULT_RUNTIME_SIZE,
+		int heapGrowthBytesGCTrigger = DEFAULT_HEAP_GROWTH_BYTES_GCTRIGGER);
 
 	/**
 	 * MaybeIncrementalRuntimeGC tries to determine whether a runtime-wide garbage collection would free up enough memory to

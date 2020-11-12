@@ -39,8 +39,8 @@
 #include <string>
 #include <vector>
 
-// TODO: what's a good default? perhaps based on map size
-#define RMS_RUNTIME_SIZE 96 * 1024 * 1024
+// TODO: Maybe this should be optimized depending on the map size.
+constexpr int RMS_RUNTIME_SIZE = 96 * 1024 * 1024;
 
 extern bool IsQuitRequested();
 
@@ -89,7 +89,7 @@ void* CMapGeneratorWorker::RunThread(CMapGeneratorWorker* self)
 	debug_SetThreadName("MapGenerator");
 	g_Profiler2.RegisterCurrentThread("MapGenerator");
 
-	shared_ptr<ScriptRuntime> mapgenRuntime = ScriptInterface::CreateRuntime(g_ScriptRuntime, RMS_RUNTIME_SIZE);
+	shared_ptr<ScriptRuntime> mapgenRuntime = ScriptRuntime::CreateRuntime(RMS_RUNTIME_SIZE);
 
 	// Enable the script to be aborted
 	JS_SetInterruptCallback(mapgenRuntime->m_rt, MapGeneratorInterruptCallback);

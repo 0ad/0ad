@@ -208,7 +208,7 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 
 	const int runtimeSize = 384 * 1024 * 1024;
 	const int heapGrowthBytesGCTrigger = 20 * 1024 * 1024;
-	g_ScriptRuntime = ScriptInterface::CreateRuntime(shared_ptr<ScriptRuntime>(), runtimeSize, heapGrowthBytesGCTrigger);
+	g_ScriptRuntime = ScriptRuntime::CreateRuntime(runtimeSize, heapGrowthBytesGCTrigger);
 
 	Mod::CacheEnabledModVersions(g_ScriptRuntime);
 

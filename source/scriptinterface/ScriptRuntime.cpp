@@ -89,7 +89,12 @@ void GCSliceCallbackHook(JSRuntime* UNUSED(rt), JS::GCProgress progress, const J
 	#endif
 }
 
-ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtimeSize, int heapGrowthBytesGCTrigger):
+shared_ptr<ScriptRuntime> ScriptRuntime::CreateRuntime(int runtimeSize, int heapGrowthBytesGCTrigger)
+{
+	return shared_ptr<ScriptRuntime>(new ScriptRuntime(runtimeSize, heapGrowthBytesGCTrigger));
+}
+
+ScriptRuntime::ScriptRuntime(int runtimeSize, int heapGrowthBytesGCTrigger):
 	m_LastGCBytes(0),
 	m_LastGCCheck(0.0f),
 	m_HeapGrowthBytesGCTrigger(heapGrowthBytesGCTrigger),
@@ -97,8 +102,7 @@ ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtim
 {
 	ENSURE(ScriptEngine::IsInitialised() && "The ScriptEngine must be initialized before constructing any ScriptRuntimes!");
 
-	JSRuntime* parentJSRuntime = parentRuntime ? parentRuntime->m_rt : nullptr;
-	m_rt = JS_NewRuntime(runtimeSize, JS::DefaultNurseryBytes, parentJSRuntime);
+	m_rt = JS_NewRuntime(runtimeSize, JS::DefaultNurseryBytes, nullptr);
 	ENSURE(m_rt); // TODO: error handling
 
 	JS::SetGCSliceCallback(m_rt, GCSliceCallbackHook);

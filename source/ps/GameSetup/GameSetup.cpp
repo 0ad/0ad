@@ -109,7 +109,7 @@ bool g_DoRenderGui = true;
 bool g_DoRenderLogger = true;
 bool g_DoRenderCursor = true;
 
-shared_ptr<ScriptRuntime> g_ScriptRuntime;
+thread_local shared_ptr<ScriptRuntime> g_ScriptRuntime;
 
 static const int SANE_TEX_QUALITY_DEFAULT = 5;	// keep in sync with code
 
@@ -895,7 +895,7 @@ bool Init(const CmdLineArgs& args, int flags)
 	// their own threads and also their own runtimes.
 	const int runtimeSize = 384 * 1024 * 1024;
 	const int heapGrowthBytesGCTrigger = 20 * 1024 * 1024;
-	g_ScriptRuntime = ScriptInterface::CreateRuntime(shared_ptr<ScriptRuntime>(), runtimeSize, heapGrowthBytesGCTrigger);
+	g_ScriptRuntime = ScriptRuntime::CreateRuntime(runtimeSize, heapGrowthBytesGCTrigger);
 
 	Mod::CacheEnabledModVersions(g_ScriptRuntime);
 
