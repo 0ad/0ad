@@ -488,6 +488,31 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Gather": function(msg) {
+		if (!this.CanGather(this.order.data.target))
+		{
+			this.SetNextState("INDIVIDUAL.GATHER.FINDINGNEWTARGET");
+			return;
+		}
+
+		// If the unit is full go to the nearest dropsite instead of trying to gather.
+		// Unless our target is a treasure which we cannot be full enough with (we can't carry treasures).
+		let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+		if (msg.data.type.generic !== "treasure" && cmpResourceGatherer && !cmpResourceGatherer.CanCarryMore(msg.data.type.generic))
+		{
+			let nearestDropsite = this.FindNearestDropsite(msg.data.type.generic);
+			if (nearestDropsite)
+				this.PushOrderFront("ReturnResource", {
+					"target": nearestDropsite,
+					"force": false,
+					"type": msg.data.type
+				});
+			// Players expect the unit to move, so walk to the target instead of trying to gather.
+			else if (!this.FinishOrder())
+				this.WalkToTarget(msg.data.target, false);
+
+			return;
+		}
+
 		if (this.MustKillGatherTarget(this.order.data.target))
 		{
 			// Make sure we can attack the target, else we'll get very stuck
@@ -5475,7 +5500,7 @@ UnitAI.prototype.SetupTradeRoute = function(target, source, route, queued)
 	    this.workOrders.length && this.workOrders[0].type == "Trade")
 	{
 		let cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
-		if (cmpTrader.HasBothMarkets() && 
+		if (cmpTrader.HasBothMarkets() &&
 		   (cmpTrader.GetFirstMarket() == target && cmpTrader.GetSecondMarket() == source ||
 		    cmpTrader.GetFirstMarket() == source && cmpTrader.GetSecondMarket() == target))
 		{
