@@ -54,3 +54,7 @@ patch -p1 < ../ExportJSPropertyDescriptor.diff
 # Will be included in SM52.
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1379538
 patch -p1 < ../FixLinking.diff
+
+# Allow the use of JS::PersistentRootedSymbol in debug builds.
+# This check will be removed in SM52.
+patch -p1 < ../FixPersistentRootedSymbol.diff

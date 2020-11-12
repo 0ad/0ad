@@ -28,18 +28,9 @@
 #include "lib/byte_order.h"
 
 CStdDeserializer::CStdDeserializer(const ScriptInterface& scriptInterface, std::istream& stream) :
-	m_ScriptInterface(scriptInterface), m_Stream(stream),
-	m_dummyObject(scriptInterface.GetJSRuntime())
+	m_ScriptInterface(scriptInterface), m_Stream(stream)
 {
-	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-
 	JS_AddExtraGCRootsTracer(m_ScriptInterface.GetJSRuntime(), CStdDeserializer::Trace, this);
-
-	// Add a dummy tag because the serializer uses the tag 0 to indicate that a value
-	// needs to be serialized and then tagged
-	m_dummyObject = JS_NewPlainObject(cx);
-	m_ScriptBackrefs.push_back(JS::Heap<JSObject*>(m_dummyObject));
 }
 
 CStdDeserializer::~CStdDeserializer()
@@ -111,7 +102,7 @@ void CStdDeserializer::AddScriptBackref(JS::HandleObject obj)
 	m_ScriptBackrefs.push_back(JS::Heap<JSObject*>(obj));
 }
 
-void CStdDeserializer::GetScriptBackref(u32 tag, JS::MutableHandleObject ret)
+void CStdDeserializer::GetScriptBackref(size_t tag, JS::MutableHandleObject ret)
 {
 	ENSURE(m_ScriptBackrefs.size() > tag);
 	ret.set(m_ScriptBackrefs[tag]);
@@ -217,8 +208,8 @@ JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleOb
 	}
 	case SCRIPT_TYPE_BACKREF:
 	{
-		u32 tag;
-		NumberU32_Unbounded("tag", tag);
+		i32 tag;
+		NumberI32("tag", tag, 0, JSVAL_INT_MAX);
 		JS::RootedObject obj(cx);
 		GetScriptBackref(tag, &obj);
 		if (!obj)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -57,32 +57,18 @@ public:
 	void RegisterContext(JSContext* cx);
 	void UnRegisterContext(JSContext* cx);
 
-	/**
-	 * Registers an object to be freed/finalized by the ScriptRuntime. Freeing is
-	 * guaranteed to happen after the next minor GC has completed, but might also
-	 * happen a bit later. This is only needed in very special situations
-	 * and you should only use it if you know exactly why you need it!
-	 * Specify a deleter for the shared_ptr to free the void pointer correctly
-	 * (by casting to the right type before calling delete for example).
-	 */
-	void AddDeferredFinalizationObject(const std::shared_ptr<void>& obj);
-
 	JSRuntime* m_rt;
 
 private:
 
 	void PrepareContextsForIncrementalGC();
-	void GCCallbackMember();
 
 	std::list<JSContext*> m_Contexts;
-	std::vector<std::shared_ptr<void> > m_FinalizationListObjectIdCache;
 
 	int m_RuntimeSize;
 	int m_HeapGrowthBytesGCTrigger;
 	int m_LastGCBytes;
 	double m_LastGCCheck;
-
-	static void GCCallback(JSRuntime *rt, JSGCStatus status, void *data);
 };
 
 #endif // INCLUDED_SCRIPTRUNTIME
