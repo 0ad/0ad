@@ -30,6 +30,7 @@
 # Hadrien Titeux <hadwarez@gmail.com>, 2013
 # Hadri man <hadriman@live.fr>, 2017
 # Hakim Benzakour <hakim.benz67@gmail.com>, 2020
+# Jason Labrecque <sojitcoin@gmail.com>, 2020
 # Jérémi Mapas <jeremi.mapas@gmail.com>, 2017
 # Jibi, 2013
 # Jo Du <jojo337@live.fr>, 2017-2018
@@ -90,8 +91,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-24 07:08+0000\n"
-"PO-Revision-Date: 2020-11-04 20:07+0000\n"
-"Last-Translator: Rémi Moulin <ggd.remi@gmail.com>\n"
+"PO-Revision-Date: 2020-11-10 22:45+0000\n"
+"Last-Translator: Jason Labrecque <sojitcoin@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -129,7 +130,7 @@ msgstr "Nouvelles cartes"
 
 #: gui/gamesetup/Controls/MapFilters.js:104
 msgid "Maps that are brand new in this release of the game."
-msgstr "Cartes qui sont toutes récentes dans cette version du jeu. "
+msgstr "Cartes qui sont neuves dans cette version du jeu. "
 
 #: gui/gamesetup/Controls/MapFilters.js:109
 msgid "Trigger Maps"
@@ -137,7 +138,7 @@ msgstr "Cartes à déclencheurs"
 
 #: gui/gamesetup/Controls/MapFilters.js:110
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "Cartes qui comprennent des événements particuliers et potentiellement l'apparition d'unités ennemies. "
+msgstr "Cartes qui comprennent des événements particuliers et potentiellement l'apparition d'unités ennemies."
 
 #: gui/gamesetup/Controls/MapFilters.js:115
 msgid "All Maps"
@@ -237,7 +238,7 @@ msgstr "Aléatoire"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:140
 msgid "Picks one civilization at random when the game starts."
-msgstr "Choisissez une civilisation aléatoire en début de partie."
+msgstr "Choisit une civilisation aléatoire en début de partie."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:172
 msgid "Pick a color."
@@ -352,7 +353,7 @@ msgstr "Population"
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr ""
+msgstr "Lorsque coché, la limite de population sera uniformément réparti sur tous les joueurs vivants.\n \n\n \n \n \n "
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:135
 msgid "Biome"
