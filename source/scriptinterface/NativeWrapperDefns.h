@@ -183,8 +183,7 @@ bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, R& ret
 	JS::AutoValueVector argv(cx);
 	argv.resize(sizeof...(Ts));
 	AssignOrToJSValHelper<0>(cx, argv, params...);
-	bool ok = CallFunction_(val, name, argv, &jsRet);
-	if (!ok)
+	if (!CallFunction_(val, name, argv, &jsRet))
 		return false;
 	return FromJSVal(cx, jsRet, ret);
 }

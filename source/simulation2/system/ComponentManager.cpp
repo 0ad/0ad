@@ -255,7 +255,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxP
 		ctWrapper.dealloc,
 		cname,
 		schema,
-		DefPersistentRooted<JS::Value>(cx, ctor)
+		std::unique_ptr<JS::PersistentRootedValue>(new JS::PersistentRootedValue(cx, ctor))
 	};
 	componentManager->m_ComponentTypesById[cid] = std::move(ct);
 
@@ -537,7 +537,7 @@ void CComponentManager::SetRNGSeed(u32 seed)
 void CComponentManager::RegisterComponentType(InterfaceId iid, ComponentTypeId cid, AllocFunc alloc, DeallocFunc dealloc,
 		const char* name, const std::string& schema)
 {
-	ComponentType c{ CT_Native, iid, alloc, dealloc, name, schema, DefPersistentRooted<JS::Value>() };
+	ComponentType c{ CT_Native, iid, alloc, dealloc, name, schema, std::unique_ptr<JS::PersistentRootedValue>() };
 	m_ComponentTypesById.insert(std::make_pair(cid, std::move(c)));
 	m_ComponentTypeIdsByName[name] = cid;
 }
@@ -545,7 +545,7 @@ void CComponentManager::RegisterComponentType(InterfaceId iid, ComponentTypeId c
 void CComponentManager::RegisterComponentTypeScriptWrapper(InterfaceId iid, ComponentTypeId cid, AllocFunc alloc,
 		DeallocFunc dealloc, const char* name, const std::string& schema)
 {
-	ComponentType c{ CT_ScriptWrapper, iid, alloc, dealloc, name, schema, DefPersistentRooted<JS::Value>() };
+	ComponentType c{ CT_ScriptWrapper, iid, alloc, dealloc, name, schema, std::unique_ptr<JS::PersistentRootedValue>() };
 	m_ComponentTypesById.insert(std::make_pair(cid, std::move(c)));
 	m_ComponentTypeIdsByName[name] = cid;
 	// TODO: merge with RegisterComponentType
@@ -757,7 +757,7 @@ IComponent* CComponentManager::ConstructComponent(CEntityHandle ent, ComponentTy
 	JS::RootedValue obj(cx);
 	if (ct.type == CT_Script)
 	{
-		m_ScriptInterface.CallConstructor(ct.ctor.get(), JS::HandleValueArray::empty(), &obj);
+		m_ScriptInterface.CallConstructor(*ct.ctor, JS::HandleValueArray::empty(), &obj);
 		if (obj.isNull())
 		{
 			LOGERROR("Script component constructor failed");

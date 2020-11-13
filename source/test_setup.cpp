@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@
 #include "lib/sysdep/sysdep.h"
 #include "ps/Profiler2.h"
 #include "scriptinterface/ScriptEngine.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptRuntime.h"
 
 class LeakReporter : public CxxTest::GlobalFixture
 {
@@ -80,7 +80,7 @@ class MiscSetup : public CxxTest::GlobalFixture
 
 		g_Profiler2.Initialise();
 		m_ScriptEngine = new ScriptEngine;
-		g_ScriptRuntime = ScriptInterface::CreateRuntime();
+		g_ScriptRuntime = ScriptRuntime::CreateRuntime();
 
 		return true;
 	}

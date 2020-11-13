@@ -51,9 +51,8 @@ private:
 	void ReadStringUTF16(const char* name, utf16string& str);
 
 	virtual void AddScriptBackref(JS::HandleObject obj);
-	virtual void GetScriptBackref(u32 tag, JS::MutableHandleObject ret);
+	virtual void GetScriptBackref(size_t tag, JS::MutableHandleObject ret);
 	std::vector<JS::Heap<JSObject*> > m_ScriptBackrefs;
-	JS::PersistentRooted<JSObject*> m_dummyObject;
 
 	const ScriptInterface& m_ScriptInterface;
 

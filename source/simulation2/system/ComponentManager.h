@@ -20,7 +20,6 @@
 
 #include "ps/Filesystem.h"
 #include "scriptinterface/ScriptInterface.h"
-#include "scriptinterface/ScriptVal.h"
 #include "simulation2/helpers/Player.h"
 #include "simulation2/system/Components.h"
 #include "simulation2/system/Entity.h"
@@ -71,7 +70,7 @@ private:
 		DeallocFunc dealloc;
 		std::string name;
 		std::string schema; // RelaxNG fragment
-		DefPersistentRooted<JS::Value> ctor; // only valid if type == CT_Script
+		std::unique_ptr<JS::PersistentRootedValue> ctor; // only valid if type == CT_Script
 	};
 
 public:

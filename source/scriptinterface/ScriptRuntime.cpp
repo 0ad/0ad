@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -89,23 +89,12 @@ void GCSliceCallbackHook(JSRuntime* UNUSED(rt), JS::GCProgress progress, const J
 	#endif
 }
 
-void ScriptRuntime::GCCallback(JSRuntime* UNUSED(rt), JSGCStatus status, void *data)
+shared_ptr<ScriptRuntime> ScriptRuntime::CreateRuntime(int runtimeSize, int heapGrowthBytesGCTrigger)
 {
-	if (status == JSGC_END)
-		reinterpret_cast<ScriptRuntime*>(data)->GCCallbackMember();
+	return shared_ptr<ScriptRuntime>(new ScriptRuntime(runtimeSize, heapGrowthBytesGCTrigger));
 }
 
-void ScriptRuntime::GCCallbackMember()
-{
-	m_FinalizationListObjectIdCache.clear();
-}
-
-void ScriptRuntime::AddDeferredFinalizationObject(const std::shared_ptr<void>& obj)
-{
-	m_FinalizationListObjectIdCache.push_back(obj);
-}
-
-ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtimeSize, int heapGrowthBytesGCTrigger):
+ScriptRuntime::ScriptRuntime(int runtimeSize, int heapGrowthBytesGCTrigger):
 	m_LastGCBytes(0),
 	m_LastGCCheck(0.0f),
 	m_HeapGrowthBytesGCTrigger(heapGrowthBytesGCTrigger),
@@ -113,12 +102,10 @@ ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtim
 {
 	ENSURE(ScriptEngine::IsInitialised() && "The ScriptEngine must be initialized before constructing any ScriptRuntimes!");
 
-	JSRuntime* parentJSRuntime = parentRuntime ? parentRuntime->m_rt : nullptr;
-	m_rt = JS_NewRuntime(runtimeSize, JS::DefaultNurseryBytes, parentJSRuntime);
+	m_rt = JS_NewRuntime(runtimeSize, JS::DefaultNurseryBytes, nullptr);
 	ENSURE(m_rt); // TODO: error handling
 
 	JS::SetGCSliceCallback(m_rt, GCSliceCallbackHook);
-	JS_SetGCCallback(m_rt, ScriptRuntime::GCCallback, this);
 
 	JS_SetGCParameter(m_rt, JSGC_MAX_MALLOC_BYTES, m_RuntimeSize);
 	JS_SetGCParameter(m_rt, JSGC_MAX_BYTES, m_RuntimeSize);
@@ -133,9 +120,7 @@ ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtim
 
 ScriptRuntime::~ScriptRuntime()
 {
-	JS_SetGCCallback(m_rt, nullptr, nullptr);
 	JS_DestroyRuntime(m_rt);
-	ENSURE(m_FinalizationListObjectIdCache.empty() && "Leak: Removing callback while some objects still aren't finalized!");
 
 	ENSURE(ScriptEngine::IsInitialised() && "The ScriptEngine must be active (initialized and not yet shut down) when destroying a ScriptRuntime!");
 	ScriptEngine::GetSingleton().UnRegisterRuntime(m_rt);

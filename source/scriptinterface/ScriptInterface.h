@@ -48,15 +48,13 @@ ERROR_TYPE(Scripting_DefineType, CreationFailed);
 // but as large as necessary for all wrapped functions)
 #define SCRIPT_INTERFACE_MAX_ARGS 8
 
-// TODO: what's a good default?
-#define DEFAULT_RUNTIME_SIZE 16 * 1024 * 1024
-#define DEFAULT_HEAP_GROWTH_BYTES_GCTRIGGER 2 * 1024 *1024
-
 struct ScriptInterface_impl;
 
 class ScriptRuntime;
 
-extern shared_ptr<ScriptRuntime> g_ScriptRuntime;
+// Using a global object for the runtime is a workaround until Simulation, AI, etc,
+// use their own threads and also their own runtimes.
+extern thread_local shared_ptr<ScriptRuntime> g_ScriptRuntime;
 
 
 /**
@@ -72,17 +70,6 @@ class ScriptInterface
 	NONCOPYABLE(ScriptInterface);
 
 public:
-
-	/**
-	 * Returns a runtime, which can used to initialise any number of
-	 * ScriptInterfaces contexts. Values created in one context may be used
-	 * in any other context from the same runtime (but not any other runtime).
-	 * Each runtime should only ever be used on a single thread.
-	 * @param runtimeSize Maximum size in bytes of the new runtime
-	 */
-	static shared_ptr<ScriptRuntime> CreateRuntime(shared_ptr<ScriptRuntime> parentRuntime = shared_ptr<ScriptRuntime>(), int runtimeSize = DEFAULT_RUNTIME_SIZE,
-		int heapGrowthBytesGCTrigger = DEFAULT_HEAP_GROWTH_BYTES_GCTRIGGER);
-
 
 	/**
 	 * Constructor.
@@ -442,7 +429,7 @@ private:
 	void Register(const char* name, JSNative fptr, size_t nargs) const;
 
 	// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
-	// members have to be called before the runtime destructor.
+	// members have to be called before the custom destructor of ScriptInterface_impl.
 	std::unique_ptr<ScriptInterface_impl> m;
 
 	boost::rand48* m_rng;

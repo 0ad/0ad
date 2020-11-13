@@ -689,7 +689,7 @@ public:
 			"\x05" // SCRIPT_TYPE_INT
 			"\x02\0\0\0" // 2
 			"\x08" // SCRIPT_TYPE_BACKREF
-			"\x02\0\0\0" // ref. to object #2, i.e. "b", with #1 being "a"
+			"\x01\0\0\0" // ref. to object #1, i.e. "b", with #0 being "a"
 		);
 	}
 
@@ -711,7 +711,7 @@ public:
 			"\x01\0\0\0" // num props
 				"\x01\x03\0\0\0" "bar" // "bar"
 				"\x08" // SCRIPT_TYPE_BACKREF
-				"\x02\0\0\0" // ref to object #2, i.e. "b", with #1 being "a"
+				"\x01\0\0\0" // ref to object #1, i.e. "b", with #0 being "a"
 		);
 	}
 

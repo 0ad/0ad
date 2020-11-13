@@ -20,8 +20,6 @@
 
 #include "ISerializer.h"
 
-#include "scriptinterface/third_party/ObjectToIDMap.h"
-
 #include "lib/byte_order.h"
 #include "lib/allocators/arena.h"
 
@@ -91,9 +89,9 @@ private:
 	const ScriptInterface& m_ScriptInterface;
 	ISerializer& m_Serializer;
 
-	ObjectIdCache<u32> m_ScriptBackrefs;
-	u32 m_ScriptBackrefsNext;
-	u32 GetScriptBackrefTag(JS::HandleObject obj);
+	JS::PersistentRootedSymbol m_ScriptBackrefSymbol;
+	i32 m_ScriptBackrefsNext;
+	i32 GetScriptBackrefTag(JS::HandleObject obj);
 };
 
 /**

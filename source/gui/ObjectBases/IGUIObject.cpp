@@ -517,7 +517,7 @@ void IGUIObject::TraceMember(JSTracer* trc)
 	// Please ensure to adapt the Tracer enabling and disabling in accordance with the GC things traced!
 
 	for (std::pair<const CStr, JS::Heap<JSObject*>>& handler : m_ScriptHandlers)
-		JS_CallObjectTracer(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
+		JS::TraceEdge(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
 }
 
 // Instantiate templated functions:

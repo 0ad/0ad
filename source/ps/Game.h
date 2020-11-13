@@ -22,7 +22,7 @@
 
 #include "ps/Errors.h"
 #include "ps/Filesystem.h"
-#include "scriptinterface/ScriptVal.h"
+#include "scriptinterface/ScriptTypes.h"
 #include "simulation2/helpers/Player.h"
 
 class CWorld;

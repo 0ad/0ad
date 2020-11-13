@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,7 +20,6 @@
 
 #include "maths/Fixed.h"
 #include "ps/Errors.h"
-#include "scriptinterface/ScriptVal.h"
 
 ERROR_GROUP(Serialize);
 ERROR_TYPE(Serialize, OutOfBounds);

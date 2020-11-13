@@ -19,7 +19,6 @@
 #define INCLUDED_SIMULATION2
 
 #include "lib/file/vfs/vfs_path.h"
-#include "scriptinterface/ScriptVal.h"
 #include "simulation2/helpers/SimulationCommand.h"
 #include "simulation2/system/CmpPtr.h"
 #include "simulation2/system/Components.h"

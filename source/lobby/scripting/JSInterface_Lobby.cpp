@@ -27,7 +27,6 @@
 #include "ps/CStr.h"
 #include "ps/Util.h"
 #include "scriptinterface/ScriptInterface.h"
-#include "scriptinterface/ScriptVal.h"
 
 #include "third_party/encryption/pkcs5_pbkdf2.h"
 

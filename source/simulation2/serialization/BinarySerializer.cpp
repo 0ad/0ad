@@ -55,10 +55,12 @@ static u8 GetArrayType(js::Scalar::Type arrayType)
 }
 
 CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(const ScriptInterface& scriptInterface, ISerializer& serializer) :
-	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_ScriptBackrefs(scriptInterface.GetRuntime()),
-	m_ScriptBackrefsNext(1)
+	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_ScriptBackrefsNext(0)
 {
-	m_ScriptBackrefs.init();
+	JSContext* cx = m_ScriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+
+	m_ScriptBackrefSymbol.init(cx, JS::NewSymbol(cx, nullptr));
 }
 
 void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
@@ -89,11 +91,11 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 		JS::RootedObject obj(cx, &val.toObject());
 
 		// If we've already serialized this object, just output a reference to it
-		u32 tag = GetScriptBackrefTag(obj);
-		if (tag)
+		i32 tag = GetScriptBackrefTag(obj);
+		if (tag != -1)
 		{
 			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_BACKREF);
-			m_Serializer.NumberU32_Unbounded("tag", tag);
+			m_Serializer.NumberI32("tag", tag, 0, JSVAL_INT_MAX);
 			break;
 		}
 
@@ -406,27 +408,39 @@ void CBinarySerializerScriptImpl::ScriptString(const char* name, JS::HandleStrin
 	}
 }
 
-u32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)
+i32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)
 {
 	// To support non-tree structures (e.g. "var x = []; var y = [x, x];"), we need a way
 	// to indicate multiple references to one object(/array). So every time we serialize a
-	// new object, we give it a new non-zero tag; when we serialize it a second time we just
-	// refer to that tag.
+	// new object, we give it a new tag; when we serialize it a second time we just refer
+	// to that tag.
 	//
-	// The tags are stored in a map. Maybe it'd be more efficient to store it inline in the object
-	// somehow? but this works okay for now
-
-	// If it was already there, return the tag
-	u32 tag;
-	if (m_ScriptBackrefs.find(obj, tag))
-		return tag;
+	// Tags are stored on the object. To avoid overwriting any existing property,
+	// they are saved as a uniquely-named, non-enumerable property (the serializer's unique symbol).
 
 	JSContext* cx = m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	m_ScriptBackrefs.add(cx, obj, m_ScriptBackrefsNext);
+	JS::RootedValue symbolValue(cx, JS::SymbolValue(m_ScriptBackrefSymbol));
+	JS::RootedId symbolId(cx);
+	ENSURE(JS_ValueToId(cx, symbolValue, &symbolId));
 
-	m_ScriptBackrefsNext++;
+	JS::RootedValue tagValue(cx);
+
+	// If it was already there, return the tag
+	bool tagFound;
+	ENSURE(JS_HasPropertyById(cx, obj, symbolId, &tagFound));
+	if (tagFound)
+	{
+		ENSURE(JS_GetPropertyById(cx, obj, symbolId, &tagValue));
+		ENSURE(tagValue.isInt32());
+		return tagValue.toInt32();
+	}
+
+	tagValue = JS::Int32Value(m_ScriptBackrefsNext);
+	JS_SetPropertyById(cx, obj, symbolId, tagValue);
+
+	++m_ScriptBackrefsNext;
 	// Return a non-tag number so callers know they need to serialize the object
-	return 0;
+	return -1;
 }

@@ -32,6 +32,7 @@
 #include "ps/scripting/JSInterface_VFS.h"
 #include "ps/TemplateLoader.h"
 #include "ps/Util.h"
+#include "scriptinterface/ScriptRuntime.h"
 #include "simulation2/components/ICmpAIInterface.h"
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpObstructionManager.h"
@@ -825,7 +826,7 @@ private:
 	void TraceMember(JSTracer *trc)
 	{
 		for (std::pair<const VfsPath, JS::Heap<JS::Value>>& metadata : m_PlayerMetadata)
-			JS_CallValueTracer(trc, &metadata.second, "CAIWorker::m_PlayerMetadata");
+			JS::TraceEdge(trc, &metadata.second, "CAIWorker::m_PlayerMetadata");
 	}
 
 	void LoadMetadata(const VfsPath& path, JS::MutableHandleValue out)

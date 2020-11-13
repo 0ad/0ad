@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -49,7 +49,7 @@ public:
 		TS_ASSERT(test.GetScriptInterface().Eval("([1,2,3])", &cmd));
 		cmp->PushLocalCommand(1, cmd);
 
-		TS_ASSERT(test.GetScriptInterface().Eval("({x:4})", &cmd));
+		TS_ASSERT(test.GetScriptInterface().Eval("({\"x\":4})", &cmd));
 		cmp->PushLocalCommand(-1, cmd);
 
 		test.Roundtrip();
@@ -57,7 +57,7 @@ public:
 		// Process the first two commands
 		cmp->FlushTurn(empty);
 
-		TS_ASSERT(test.GetScriptInterface().Eval("({y:5})", &cmd));
+		TS_ASSERT(test.GetScriptInterface().Eval("({\"y\":5})", &cmd));
 		cmp->PushLocalCommand(10, cmd);
 
 		// Process the next command
@@ -69,7 +69,7 @@ public:
 		test.Roundtrip();
 
 		std::string output;
-		TS_ASSERT(test.GetScriptInterface().Eval("uneval(cmds)", output));
-		TS_ASSERT_STR_EQUALS(output, "[[1, [1, 2, 3]], [-1, {x:4}], [10, {y:5}]]");
+		TS_ASSERT(test.GetScriptInterface().Eval("JSON.stringify(cmds)", output));
+		TS_ASSERT_STR_EQUALS(output, "[[1,[1,2,3]],[-1,{\"x\":4}],[10,{\"y\":5}]]");
 	}
 };

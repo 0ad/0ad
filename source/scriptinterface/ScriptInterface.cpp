@@ -64,7 +64,7 @@ struct ScriptInterface_impl
 
 	JSContext* m_cx;
 	JS::PersistentRootedObject m_glob; // global scope object
-	JSCompartment* m_comp;
+	JSCompartment* m_formerCompartment;
 	boost::rand48* m_rng;
 	JS::PersistentRootedObject m_nativeScope; // native function scope object
 };
@@ -333,8 +333,6 @@ bool ScriptInterface::MathRandom(double& nbr)
 ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const shared_ptr<ScriptRuntime>& runtime) :
 	m_runtime(runtime), m_glob(runtime->m_rt), m_nativeScope(runtime->m_rt)
 {
-	bool ok;
-
 	m_cx = JS_NewContext(m_runtime->m_rt, STACK_CHUNK_SIZE);
 	ENSURE(m_cx);
 
@@ -362,9 +360,8 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 
 	JSAutoRequest rq(m_cx);
 	JS::RootedObject globalRootedVal(m_cx, JS_NewGlobalObject(m_cx, &global_class, NULL, JS::OnNewGlobalHookOption::FireOnNewGlobalHook, opt));
-	m_comp = JS_EnterCompartment(m_cx, globalRootedVal);
-	ok = JS_InitStandardClasses(m_cx, globalRootedVal);
-	ENSURE(ok);
+	m_formerCompartment = JS_EnterCompartment(m_cx, globalRootedVal);
+	ENSURE(JS_InitStandardClasses(m_cx, globalRootedVal));
 	m_glob = globalRootedVal.get();
 
 	JS_DefineProperty(m_cx, m_glob, "global", globalRootedVal, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
@@ -390,7 +387,7 @@ ScriptInterface_impl::~ScriptInterface_impl()
 	m_runtime->UnRegisterContext(m_cx);
 	{
 		JSAutoRequest rq(m_cx);
-		JS_LeaveCompartment(m_cx, m_comp);
+		JS_LeaveCompartment(m_cx, m_formerCompartment);
 	}
 	JS_DestroyContext(m_cx);
 }
@@ -563,9 +560,7 @@ bool ScriptInterface::CallFunction_(JS::HandleValue val, const char* name, JS::H
 	if (!JS_HasProperty(m->m_cx, obj, name, &found) || !found)
 		return false;
 
-	bool ok = JS_CallFunctionName(m->m_cx, obj, name, argv, ret);
-
-	return ok;
+	return JS_CallFunctionName(m->m_cx, obj, name, argv, ret);
 }
 
 bool ScriptInterface::CreateObject_(JSContext* cx, JS::MutableHandleObject object)
@@ -846,11 +841,6 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& cod
 
 	JS::RootedValue rval(m->m_cx);
 	return JS_CallFunction(m->m_cx, nullptr, func, JS::HandleValueArray::empty(), &rval);
-}
-
-shared_ptr<ScriptRuntime> ScriptInterface::CreateRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtimeSize, int heapGrowthBytesGCTrigger)
-{
-	return shared_ptr<ScriptRuntime>(new ScriptRuntime(parentRuntime, runtimeSize, heapGrowthBytesGCTrigger));
 }
 
 bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::wstring& code) const
