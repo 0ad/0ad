@@ -24,8 +24,8 @@
 #include "simulation2/system/Entity.h"
 
 #define DECLARE_BOOLEAN_SCRIPT_SETTING(NAME) \
-	bool Get##NAME##Enabled(ScriptInterface::CxPrivate* pCxPrivate); \
-	void Set##NAME##Enabled(ScriptInterface::CxPrivate* pCxPrivate, bool Enabled);
+	bool Get##NAME##Enabled(ScriptInterface::CmptPrivate* pCmptPrivate); \
+	void Set##NAME##Enabled(ScriptInterface::CmptPrivate* pCmptPrivate, bool Enabled);
 
 namespace JSI_GameView
 {
@@ -36,14 +36,14 @@ namespace JSI_GameView
 	DECLARE_BOOLEAN_SCRIPT_SETTING(LockCullCamera);
 	DECLARE_BOOLEAN_SCRIPT_SETTING(ConstrainCamera);
 
-	JS::Value GetCameraPivot(ScriptInterface::CxPrivate* pCxPrivate);
-	void CameraMoveTo(ScriptInterface::CxPrivate* pCxPrivate, entity_pos_t x, entity_pos_t z);
-	void SetCameraTarget(ScriptInterface::CxPrivate* pCxPrivate, float x, float y, float z);
-	void SetCameraData(ScriptInterface::CxPrivate* pCxPrivate, entity_pos_t x, entity_pos_t y, entity_pos_t z, entity_pos_t rotx, entity_pos_t roty, entity_pos_t zoom);
-	void CameraFollow(ScriptInterface::CxPrivate* pCxPrivate, entity_id_t entityid);
-	void CameraFollowFPS(ScriptInterface::CxPrivate* pCxPrivate, entity_id_t entityid);
-	entity_id_t GetFollowedEntity(ScriptInterface::CxPrivate* pCxPrivate);
-	CFixedVector3D GetTerrainAtScreenPoint(ScriptInterface::CxPrivate* pCxPrivate, int x, int y);
+	JS::Value GetCameraPivot(ScriptInterface::CmptPrivate* pCmptPrivate);
+	void CameraMoveTo(ScriptInterface::CmptPrivate* pCmptPrivate, entity_pos_t x, entity_pos_t z);
+	void SetCameraTarget(ScriptInterface::CmptPrivate* pCmptPrivate, float x, float y, float z);
+	void SetCameraData(ScriptInterface::CmptPrivate* pCmptPrivate, entity_pos_t x, entity_pos_t y, entity_pos_t z, entity_pos_t rotx, entity_pos_t roty, entity_pos_t zoom);
+	void CameraFollow(ScriptInterface::CmptPrivate* pCmptPrivate, entity_id_t entityid);
+	void CameraFollowFPS(ScriptInterface::CmptPrivate* pCmptPrivate, entity_id_t entityid);
+	entity_id_t GetFollowedEntity(ScriptInterface::CmptPrivate* pCmptPrivate);
+	CFixedVector3D GetTerrainAtScreenPoint(ScriptInterface::CmptPrivate* pCmptPrivate, int x, int y);
 }
 
 #undef DECLARE_BOOLEAN_SCRIPT_SETTING

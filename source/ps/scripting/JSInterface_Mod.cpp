@@ -24,9 +24,9 @@
 
 extern void RestartEngine();
 
-JS::Value JSI_Mod::GetEngineInfo(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_Mod::GetEngineInfo(ScriptInterface::CmptPrivate* pCmptPrivate)
 {
-	return Mod::GetEngineInfo(*(pCxPrivate->pScriptInterface));
+	return Mod::GetEngineInfo(*(pCmptPrivate->pScriptInterface));
 }
 
 /**
@@ -39,17 +39,17 @@ JS::Value JSI_Mod::GetEngineInfo(ScriptInterface::CxPrivate* pCxPrivate)
  * @return JS object with available mods as the keys of the modname.json
  *         properties.
  */
-JS::Value JSI_Mod::GetAvailableMods(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_Mod::GetAvailableMods(ScriptInterface::CmptPrivate* pCmptPrivate)
 {
-	return Mod::GetAvailableMods(*(pCxPrivate->pScriptInterface));
+	return Mod::GetAvailableMods(*(pCmptPrivate->pScriptInterface));
 }
 
-void JSI_Mod::RestartEngine(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_Mod::RestartEngine(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	::RestartEngine();
 }
 
-void JSI_Mod::SetMods(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::vector<CStr>& mods)
+void JSI_Mod::SetMods(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::vector<CStr>& mods)
 {
 	g_modsLoaded = mods;
 }

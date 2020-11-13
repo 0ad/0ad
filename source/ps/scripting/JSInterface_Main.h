@@ -22,18 +22,18 @@
 
 namespace JSI_Main
 {
-	void QuitEngine(ScriptInterface::CxPrivate* pCxPrivate);
-	void StartAtlas(ScriptInterface::CxPrivate* pCxPrivate);
-	bool AtlasIsAvailable(ScriptInterface::CxPrivate* pCxPrivate);
-	bool IsAtlasRunning(ScriptInterface::CxPrivate* pCxPrivate);
-	void OpenURL(ScriptInterface::CxPrivate* pCxPrivate, const std::string& url);
-	std::wstring GetSystemUsername(ScriptInterface::CxPrivate* pCxPrivate);
-	std::wstring GetMatchID(ScriptInterface::CxPrivate* pCxPrivate);
-	JS::Value LoadMapSettings(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& pathname);
-	bool HotkeyIsPressed_(ScriptInterface::CxPrivate* pCxPrivate, const std::string& hotkeyName);
-	int GetFps(ScriptInterface::CxPrivate* pCxPrivate);
-	int GetTextWidth(ScriptInterface::CxPrivate* pCxPrivate, const std::string& fontName, const std::wstring& text);
-	std::string CalculateMD5(ScriptInterface::CxPrivate* pCxPrivate, const std::string& input);
+	void QuitEngine(ScriptInterface::CmptPrivate* pCmptPrivate);
+	void StartAtlas(ScriptInterface::CmptPrivate* pCmptPrivate);
+	bool AtlasIsAvailable(ScriptInterface::CmptPrivate* pCmptPrivate);
+	bool IsAtlasRunning(ScriptInterface::CmptPrivate* pCmptPrivate);
+	void OpenURL(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& url);
+	std::wstring GetSystemUsername(ScriptInterface::CmptPrivate* pCmptPrivate);
+	std::wstring GetMatchID(ScriptInterface::CmptPrivate* pCmptPrivate);
+	JS::Value LoadMapSettings(ScriptInterface::CmptPrivate* pCmptPrivate, const VfsPath& pathname);
+	bool HotkeyIsPressed_(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& hotkeyName);
+	int GetFps(ScriptInterface::CmptPrivate* pCmptPrivate);
+	int GetTextWidth(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& fontName, const std::wstring& text);
+	std::string CalculateMD5(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& input);
 
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 }

@@ -36,44 +36,44 @@
 extern void QuitEngine();
 extern void StartAtlas();
 
-void JSI_Main::QuitEngine(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_Main::QuitEngine(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	::QuitEngine();
 }
 
-void JSI_Main::StartAtlas(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_Main::StartAtlas(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	::StartAtlas();
 }
 
-bool JSI_Main::AtlasIsAvailable(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+bool JSI_Main::AtlasIsAvailable(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return ATLAS_IsAvailable();
 }
 
-bool JSI_Main::IsAtlasRunning(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+bool JSI_Main::IsAtlasRunning(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return g_AtlasGameLoop && g_AtlasGameLoop->running;
 }
 
-void JSI_Main::OpenURL(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& url)
+void JSI_Main::OpenURL(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& url)
 {
 	sys_open_url(url);
 }
 
-std::wstring JSI_Main::GetSystemUsername(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+std::wstring JSI_Main::GetSystemUsername(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return sys_get_user_name();
 }
 
-std::wstring JSI_Main::GetMatchID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+std::wstring JSI_Main::GetMatchID(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return ps_generate_guid().FromUTF8();
 }
 
-JS::Value JSI_Main::LoadMapSettings(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& pathname)
+JS::Value JSI_Main::LoadMapSettings(ScriptInterface::CmptPrivate* pCmptPrivate, const VfsPath& pathname)
 {
-	ScriptInterface::Request rq(pCxPrivate);
+	ScriptInterface::Request rq(pCmptPrivate);
 
 	CMapSummaryReader reader;
 
@@ -81,18 +81,18 @@ JS::Value JSI_Main::LoadMapSettings(ScriptInterface::CxPrivate* pCxPrivate, cons
 		return JS::UndefinedValue();
 
 	JS::RootedValue settings(rq.cx);
-	reader.GetMapSettings(*(pCxPrivate->pScriptInterface), &settings);
+	reader.GetMapSettings(*(pCmptPrivate->pScriptInterface), &settings);
 	return settings;
 }
 
-bool JSI_Main::HotkeyIsPressed_(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& hotkeyName)
+bool JSI_Main::HotkeyIsPressed_(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& hotkeyName)
 {
 	return HotkeyIsPressed(hotkeyName);
 }
 
 // This value is recalculated once a frame. We take special care to
 // filter it, so it is both accurate and free of jitter.
-int JSI_Main::GetFps(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+int JSI_Main::GetFps(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	if (!g_frequencyFilter)
 		return 0;
@@ -100,7 +100,7 @@ int JSI_Main::GetFps(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	return g_frequencyFilter->StableFrequency();
 }
 
-int JSI_Main::GetTextWidth(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& fontName, const std::wstring& text)
+int JSI_Main::GetTextWidth(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& fontName, const std::wstring& text)
 {
 	int width = 0;
 	int height = 0;
@@ -110,7 +110,7 @@ int JSI_Main::GetTextWidth(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const
 	return width;
 }
 
-std::string JSI_Main::CalculateMD5(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& input)
+std::string JSI_Main::CalculateMD5(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& input)
 {
 	u8 digest[MD5::DIGESTSIZE];
 

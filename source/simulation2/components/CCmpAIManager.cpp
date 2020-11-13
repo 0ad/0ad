@@ -279,17 +279,17 @@ public:
 		return true;
 	}
 
-	static void IncludeModule(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name)
+	static void IncludeModule(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& name)
 	{
-		ENSURE(pCxPrivate->pCBData);
-		CAIWorker* self = static_cast<CAIWorker*> (pCxPrivate->pCBData);
+		ENSURE(pCmptPrivate->pCBData);
+		CAIWorker* self = static_cast<CAIWorker*> (pCmptPrivate->pCBData);
 		self->LoadScripts(name);
 	}
 
-	static void PostCommand(ScriptInterface::CxPrivate* pCxPrivate, int playerid, JS::HandleValue cmd)
+	static void PostCommand(ScriptInterface::CmptPrivate* pCmptPrivate, int playerid, JS::HandleValue cmd)
 	{
-		ENSURE(pCxPrivate->pCBData);
-		CAIWorker* self = static_cast<CAIWorker*> (pCxPrivate->pCBData);
+		ENSURE(pCmptPrivate->pCBData);
+		CAIWorker* self = static_cast<CAIWorker*> (pCmptPrivate->pCBData);
 		self->PostCommand(playerid, cmd);
 	}
 
@@ -307,11 +307,11 @@ public:
 		LOGERROR("Invalid playerid in PostCommand!");
 	}
 
-	static JS::Value ComputePath(ScriptInterface::CxPrivate* pCxPrivate,
+	static JS::Value ComputePath(ScriptInterface::CmptPrivate* pCmptPrivate,
 		JS::HandleValue position, JS::HandleValue goal, pass_class_t passClass)
 	{
-		ENSURE(pCxPrivate->pCBData);
-		CAIWorker* self = static_cast<CAIWorker*> (pCxPrivate->pCBData);
+		ENSURE(pCmptPrivate->pCBData);
+		CAIWorker* self = static_cast<CAIWorker*> (pCmptPrivate->pCBData);
 		ScriptInterface::Request rq(self->m_ScriptInterface);
 
 		CFixedVector2D pos, goalPos;
@@ -337,10 +337,10 @@ public:
 			waypoints.emplace_back(wp.x, wp.z);
 	}
 
-	static CParamNode GetTemplate(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name)
+	static CParamNode GetTemplate(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& name)
 	{
-		ENSURE(pCxPrivate->pCBData);
-		CAIWorker* self = static_cast<CAIWorker*> (pCxPrivate->pCBData);
+		ENSURE(pCmptPrivate->pCBData);
+		CAIWorker* self = static_cast<CAIWorker*> (pCmptPrivate->pCBData);
 
 		return self->GetTemplate(name);
 	}
@@ -352,7 +352,7 @@ public:
 		return m_TemplateLoader.GetTemplateFileData(name).GetChild("Entity");
 	}
 
-	static void ExitProgram(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+	static void ExitProgram(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 	{
 		QuitEngine();
 	}
@@ -360,7 +360,7 @@ public:
 	/**
 	 * Debug function for AI scripts to dump 2D array data (e.g. terrain tile weights).
 	 */
-	static void DumpImage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& name, const std::vector<u32>& data, u32 w, u32 h, u32 max)
+	static void DumpImage(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& name, const std::vector<u32>& data, u32 w, u32 h, u32 max)
 	{
 		// TODO: this is totally not threadsafe.
 		VfsPath filename = L"screenshots/aidump/" + name;

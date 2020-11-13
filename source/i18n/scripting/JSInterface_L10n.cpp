@@ -24,37 +24,37 @@
 #include "scriptinterface/ScriptInterface.h"
 
 // Returns a translation of the specified English string into the current language.
-std::wstring JSI_L10n::Translate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& sourceString)
+std::wstring JSI_L10n::Translate(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& sourceString)
 {
 	return wstring_from_utf8(g_L10n.Translate(utf8_from_wstring(sourceString)));
 }
 
 // Returns a translation of the specified English string, for the specified context.
-std::wstring JSI_L10n::TranslateWithContext(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& context, const std::wstring& sourceString)
+std::wstring JSI_L10n::TranslateWithContext(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& context, const std::wstring& sourceString)
 {
 	return wstring_from_utf8(g_L10n.TranslateWithContext(context, utf8_from_wstring(sourceString)));
 }
 
 // Return a translated version of the given strings (singular and plural) depending on an integer value.
-std::wstring JSI_L10n::TranslatePlural(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& singularSourceString, const std::wstring& pluralSourceString, int number)
+std::wstring JSI_L10n::TranslatePlural(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& singularSourceString, const std::wstring& pluralSourceString, int number)
 {
 	return wstring_from_utf8(g_L10n.TranslatePlural(utf8_from_wstring(singularSourceString), utf8_from_wstring(pluralSourceString), number));
 }
 
 // Return a translated version of the given strings (singular and plural) depending on an integer value, for the specified context.
-std::wstring JSI_L10n::TranslatePluralWithContext(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& context, const std::wstring& singularSourceString, const std::wstring& pluralSourceString, int number)
+std::wstring JSI_L10n::TranslatePluralWithContext(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& context, const std::wstring& singularSourceString, const std::wstring& pluralSourceString, int number)
 {
 	return wstring_from_utf8(g_L10n.TranslatePluralWithContext(context, utf8_from_wstring(singularSourceString), utf8_from_wstring(pluralSourceString), number));
 }
 
 // Return a translated version of the given string, localizing it line by line.
-std::wstring JSI_L10n::TranslateLines(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& sourceString)
+std::wstring JSI_L10n::TranslateLines(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& sourceString)
 {
 	return wstring_from_utf8(g_L10n.TranslateLines(utf8_from_wstring(sourceString)));
 }
 
 // Return a translated version of the items in the specified array.
-std::vector<std::wstring> JSI_L10n::TranslateArray(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::vector<std::wstring>& sourceArray)
+std::vector<std::wstring> JSI_L10n::TranslateArray(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::vector<std::wstring>& sourceArray)
 {
 	std::vector<std::wstring> translatedArray;
 	for (const std::wstring& elem : sourceArray)
@@ -63,95 +63,95 @@ std::vector<std::wstring> JSI_L10n::TranslateArray(ScriptInterface::CxPrivate* U
 	return translatedArray;
 }
 
-std::wstring JSI_L10n::GetFallbackToAvailableDictLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale)
+std::wstring JSI_L10n::GetFallbackToAvailableDictLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale)
 {
 	return g_L10n.GetFallbackToAvailableDictLocale(locale);
 }
 
 // Return a localized version of a time given in milliseconds.
-std::wstring JSI_L10n::FormatMillisecondsIntoDateStringLocal(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), UDate milliseconds, const std::wstring& formatString)
+std::wstring JSI_L10n::FormatMillisecondsIntoDateStringLocal(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), UDate milliseconds, const std::wstring& formatString)
 {
 	return wstring_from_utf8(g_L10n.FormatMillisecondsIntoDateString(milliseconds, utf8_from_wstring(formatString), true));
 }
 
 // Return a localized version of a duration or a time in GMT given in milliseconds.
-std::wstring JSI_L10n::FormatMillisecondsIntoDateStringGMT(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), UDate milliseconds, const std::wstring& formatString)
+std::wstring JSI_L10n::FormatMillisecondsIntoDateStringGMT(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), UDate milliseconds, const std::wstring& formatString)
 {
 	return wstring_from_utf8(g_L10n.FormatMillisecondsIntoDateString(milliseconds, utf8_from_wstring(formatString), false));
 }
 
 // Return a localized version of the given decimal number.
-std::wstring JSI_L10n::FormatDecimalNumberIntoString(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), double number)
+std::wstring JSI_L10n::FormatDecimalNumberIntoString(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), double number)
 {
 	return wstring_from_utf8(g_L10n.FormatDecimalNumberIntoString(number));
 }
 
-std::vector<std::string> JSI_L10n::GetSupportedLocaleBaseNames(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+std::vector<std::string> JSI_L10n::GetSupportedLocaleBaseNames(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return g_L10n.GetSupportedLocaleBaseNames();
 }
 
-std::vector<std::wstring> JSI_L10n::GetSupportedLocaleDisplayNames(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+std::vector<std::wstring> JSI_L10n::GetSupportedLocaleDisplayNames(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return g_L10n.GetSupportedLocaleDisplayNames();
 }
 
-std::string JSI_L10n::GetCurrentLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+std::string JSI_L10n::GetCurrentLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return g_L10n.GetCurrentLocaleString();
 }
 
-bool JSI_L10n::UseLongStrings(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+bool JSI_L10n::UseLongStrings(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return g_L10n.UseLongStrings();
 }
 
-std::vector<std::string> JSI_L10n::GetAllLocales(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+std::vector<std::string> JSI_L10n::GetAllLocales(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return g_L10n.GetAllLocales();
 }
 
-std::string JSI_L10n::GetDictionaryLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& configLocale)
+std::string JSI_L10n::GetDictionaryLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& configLocale)
 {
 	return g_L10n.GetDictionaryLocale(configLocale);
 }
 
-std::vector<std::wstring> JSI_L10n::GetDictionariesForLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale)
+std::vector<std::wstring> JSI_L10n::GetDictionariesForLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale)
 {
 	return g_L10n.GetDictionariesForLocale(locale);
 }
 
-std::string JSI_L10n::GetLocaleLanguage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale)
+std::string JSI_L10n::GetLocaleLanguage(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale)
 {
 	return g_L10n.GetLocaleLanguage(locale);
 }
 
-std::string JSI_L10n::GetLocaleBaseName(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale)
+std::string JSI_L10n::GetLocaleBaseName(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale)
 {
 	return g_L10n.GetLocaleBaseName(locale);
 }
 
-std::string JSI_L10n::GetLocaleCountry(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale)
+std::string JSI_L10n::GetLocaleCountry(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale)
 {
 	return g_L10n.GetLocaleCountry(locale);
 }
 
-std::string JSI_L10n::GetLocaleScript(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale)
+std::string JSI_L10n::GetLocaleScript(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale)
 {
 	return g_L10n.GetLocaleScript(locale);
 }
 
-bool JSI_L10n::ValidateLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale)
+bool JSI_L10n::ValidateLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale)
 {
 	return g_L10n.ValidateLocale(locale);
 }
 
-bool JSI_L10n::SaveLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale)
+bool JSI_L10n::SaveLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale)
 {
 	return g_L10n.SaveLocale(locale);
 }
 
-void JSI_L10n::ReevaluateCurrentLocaleAndReload(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_L10n::ReevaluateCurrentLocaleAndReload(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	g_L10n.ReevaluateCurrentLocaleAndReload();
 }

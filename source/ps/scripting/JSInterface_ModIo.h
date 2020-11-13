@@ -24,13 +24,13 @@ namespace JSI_ModIo
 {
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 
-	void StartGetGameId(ScriptInterface::CxPrivate* pCxPrivate);
-	void StartListMods(ScriptInterface::CxPrivate* pCxPrivate);
-	void StartDownloadMod(ScriptInterface::CxPrivate* pCxPrivate, uint32_t idx);
-	bool AdvanceRequest(ScriptInterface::CxPrivate* pCxPrivate);
-	void CancelRequest(ScriptInterface::CxPrivate* pCxPrivate);
-	JS::Value GetMods(ScriptInterface::CxPrivate* pCxPrivate);
-	JS::Value GetDownloadProgress(ScriptInterface::CxPrivate* pCxPrivate);
+	void StartGetGameId(ScriptInterface::CmptPrivate* pCmptPrivate);
+	void StartListMods(ScriptInterface::CmptPrivate* pCmptPrivate);
+	void StartDownloadMod(ScriptInterface::CmptPrivate* pCmptPrivate, uint32_t idx);
+	bool AdvanceRequest(ScriptInterface::CmptPrivate* pCmptPrivate);
+	void CancelRequest(ScriptInterface::CmptPrivate* pCmptPrivate);
+	JS::Value GetMods(ScriptInterface::CmptPrivate* pCmptPrivate);
+	JS::Value GetDownloadProgress(ScriptInterface::CmptPrivate* pCmptPrivate);
 }
 
 #endif // INCLUDED_JSI_MODIO

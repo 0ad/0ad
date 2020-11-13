@@ -82,14 +82,14 @@ public:
 
 	~ScriptInterface();
 
-	struct CxPrivate
+	struct CmptPrivate
 	{
 		ScriptInterface* pScriptInterface; // the ScriptInterface object the current context belongs to
 		void* pCBData; // meant to be used as the "this" object for callback functions
-	} m_CxPrivate;
+	} m_CmptPrivate;
 
 	void SetCallbackData(void* pCBData);
-	static CxPrivate* GetScriptInterfaceAndCBData(JSContext* cx);
+	static CmptPrivate* GetScriptInterfaceAndCBData(JSContext* cx);
 
 	JSRuntime* GetJSRuntime() const;
 	shared_ptr<ScriptRuntime> GetRuntime() const;
@@ -107,7 +107,7 @@ public:
 		Request(const ScriptInterface& scriptInterface);
 		Request(const ScriptInterface* scriptInterface) : Request(*scriptInterface) {}
 		Request(shared_ptr<ScriptInterface> scriptInterface) : Request(*scriptInterface) {}
-		Request(const CxPrivate* cxPrivate) : Request(cxPrivate->pScriptInterface) {}
+		Request(const CmptPrivate* CmptPrivate) : Request(CmptPrivate->pScriptInterface) {}
 		~Request();
 
 		JSContext* cx;

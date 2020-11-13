@@ -24,11 +24,11 @@
 
 namespace JSI_UserReport
 {
-	bool IsUserReportEnabled(ScriptInterface::CxPrivate* pCxPrivate);
-	void SetUserReportEnabled(ScriptInterface::CxPrivate* pCxPrivate, bool enabled);
-	std::string GetUserReportStatus(ScriptInterface::CxPrivate* pCxPrivate);
-	std::string GetUserReportLogPath(ScriptInterface::CxPrivate* pCxPrivate);
-	std::string GetUserReportConfigPath(ScriptInterface::CxPrivate* pCxPrivate);
+	bool IsUserReportEnabled(ScriptInterface::CmptPrivate* pCmptPrivate);
+	void SetUserReportEnabled(ScriptInterface::CmptPrivate* pCmptPrivate, bool enabled);
+	std::string GetUserReportStatus(ScriptInterface::CmptPrivate* pCmptPrivate);
+	std::string GetUserReportLogPath(ScriptInterface::CmptPrivate* pCmptPrivate);
+	std::string GetUserReportConfigPath(ScriptInterface::CmptPrivate* pCmptPrivate);
 
 	void RegisterScriptFunctions(const ScriptInterface& ScriptInterface);
 }

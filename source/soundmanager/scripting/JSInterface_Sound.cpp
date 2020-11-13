@@ -31,84 +31,84 @@ namespace JSI_Sound
 {
 #if CONFIG2_AUDIO
 
-	void StartMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+	void StartMusic(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 	{
 		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
 			sndManager->SetMusicEnabled(true);
 	}
 
-	void StopMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+	void StopMusic(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 	{
 		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
 			sndManager->SetMusicEnabled(false);
 	}
 
-	void ClearPlaylist(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+	void ClearPlaylist(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 	{
 		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
 			sndManager->ClearPlayListItems();
 	}
 
-	void AddPlaylistItem(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename)
+	void AddPlaylistItem(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& filename)
 	{
 		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
 			sndManager->AddPlayListItem(VfsPath(filename));
 	}
 
-	void StartPlaylist(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool looping)
+	void StartPlaylist(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), bool looping)
 	{
 		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
 			sndManager->StartPlayList(looping );
 	}
 
-	void PlayMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename, bool looping)
+	void PlayMusic(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& filename, bool looping)
 	{
 		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
 			sndManager->PlayAsMusic(filename, looping);
 	}
 
-	void PlayUISound(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename, bool looping)
+	void PlayUISound(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& filename, bool looping)
 	{
 		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
 			sndManager->PlayAsUI(filename, looping);
 	}
 
-	void PlayAmbientSound(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename, bool looping)
+	void PlayAmbientSound(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& filename, bool looping)
 	{
 		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
 			sndManager->PlayAsAmbient(filename, looping);
 	}
 
-	bool MusicPlaying(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+	bool MusicPlaying(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 	{
 		return true;
 	}
 
-	void SetMasterGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
+	void SetMasterGain(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), float gain)
 	{
 		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
 			sndManager->SetMasterGain(gain);
 	}
 
-	void SetMusicGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
+	void SetMusicGain(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), float gain)
 	{
 		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
 			sndManager->SetMusicGain(gain);
 	}
 
-	void SetAmbientGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
+	void SetAmbientGain(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), float gain)
 	{
 		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
 			sndManager->SetAmbientGain(gain);
 	}
 
-	void SetActionGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
+	void SetActionGain(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), float gain)
 	{
 		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
 			sndManager->SetActionGain(gain);
 	}
 
-	void SetUIGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float gain)
+	void SetUIGain(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), float gain)
 	{
 		if (CSoundManager* sndManager = (CSoundManager*)g_SoundManager)
 			sndManager->SetUIGain(gain);
@@ -116,20 +116,20 @@ namespace JSI_Sound
 
 #else
 
-	bool MusicPlaying(ScriptInterface::CxPrivate* UNUSED(pCxPrivate) ){ return false; }
-	void PlayAmbientSound(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& UNUSED(filename), bool UNUSED(looping) ){}
-	void PlayUISound(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& UNUSED(filename), bool UNUSED(looping) ) {}
-	void PlayMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& UNUSED(filename), bool UNUSED(looping) ) {}
-	void StartPlaylist(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool UNUSED(looping) ){}
-	void AddPlaylistItem(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& UNUSED(filename) ){}
-	void ClearPlaylist(ScriptInterface::CxPrivate* UNUSED(pCxPrivate) ){}
-	void StopMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate) ){}
-	void StartMusic(ScriptInterface::CxPrivate* UNUSED(pCxPrivate) ){}
-	void SetMasterGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float UNUSED(gain)){}
-	void SetMusicGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float UNUSED(gain)){}
-	void SetAmbientGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float UNUSED(gain)){}
-	void SetActionGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float UNUSED(gain)){}
-	void SetUIGain(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float UNUSED(gain)){}
+	bool MusicPlaying(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate) ){ return false; }
+	void PlayAmbientSound(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& UNUSED(filename), bool UNUSED(looping) ){}
+	void PlayUISound(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& UNUSED(filename), bool UNUSED(looping) ) {}
+	void PlayMusic(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& UNUSED(filename), bool UNUSED(looping) ) {}
+	void StartPlaylist(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), bool UNUSED(looping) ){}
+	void AddPlaylistItem(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& UNUSED(filename) ){}
+	void ClearPlaylist(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate) ){}
+	void StopMusic(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate) ){}
+	void StartMusic(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate) ){}
+	void SetMasterGain(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), float UNUSED(gain)){}
+	void SetMusicGain(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), float UNUSED(gain)){}
+	void SetAmbientGain(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), float UNUSED(gain)){}
+	void SetActionGain(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), float UNUSED(gain)){}
+	void SetUIGain(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), float UNUSED(gain)){}
 
 #endif
 

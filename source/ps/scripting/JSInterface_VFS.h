@@ -24,31 +24,31 @@ namespace JSI_VFS
 {
 	// Return an array of pathname strings, one for each matching entry in the
 	// specified directory.
-	JS::Value BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const std::wstring& path, const std::wstring& filterStr, bool recurse);
+	JS::Value BuildDirEntList(ScriptInterface::CmptPrivate* pCmptPrivate, const std::vector<CStrW>& validPaths, const std::wstring& path, const std::wstring& filterStr, bool recurse);
 
 	// Return true iff the file exists
-	bool FileExists(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const CStrW& filename);
+	bool FileExists(ScriptInterface::CmptPrivate* pCmptPrivate, const std::vector<CStrW>& validPaths, const CStrW& filename);
 
 	// Return time [seconds since 1970] of the last modification to the specified file.
-	double GetFileMTime(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename);
+	double GetFileMTime(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& filename);
 
 	// Return current size of file.
-	unsigned int GetFileSize(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename);
+	unsigned int GetFileSize(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& filename);
 
 	// Return file contents in a string.
-	JS::Value ReadFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename);
+	JS::Value ReadFile(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& filename);
 
 	// Return file contents as an array of lines.
-	JS::Value ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename);
+	JS::Value ReadFileLines(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& filename);
 
 	// Return file contents parsed as a JS Object
-	JS::Value ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const CStrW& filePath);
+	JS::Value ReadJSONFile(ScriptInterface::CmptPrivate* pCmptPrivate, const std::vector<CStrW>& validPaths, const CStrW& filePath);
 
 	// Save given JS Object to a JSON file
-	void WriteJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath, JS::HandleValue val1);
+	void WriteJSONFile(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& filePath, JS::HandleValue val1);
 
 	// Tests whether the current script context is allowed to read from the given directory
-	bool PathRestrictionMet(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const CStrW& filePath);
+	bool PathRestrictionMet(ScriptInterface::CmptPrivate* pCmptPrivate, const std::vector<CStrW>& validPaths, const CStrW& filePath);
 
 	void RegisterScriptFunctions_GUI(const ScriptInterface& scriptInterface);
 	void RegisterScriptFunctions_Simulation(const ScriptInterface& scriptInterface);

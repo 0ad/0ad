@@ -23,16 +23,16 @@
 
 namespace JSI_GUIManager
 {
-	void PushGuiPage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue initData, JS::HandleValue callbackFunction);
-	void SwitchGuiPage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue initData);
-	void PopGuiPage(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue args);
-	JS::Value GetGUIObjectByName(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name);
-	void SetGlobalHotkey(ScriptInterface::CxPrivate* pCxPrivate, const std::string& hotkeyTag, const std::string& eventName, JS::HandleValue function);
-	void UnsetGlobalHotkey(ScriptInterface::CxPrivate* pCxPrivate, const std::string& hotkeyTag, const std::string& eventName);
-	std::wstring SetCursor(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name);
-	void ResetCursor(ScriptInterface::CxPrivate* pCxPrivate);
-	bool TemplateExists(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName);
-	CParamNode GetTemplate(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName);
+	void PushGuiPage(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& name, JS::HandleValue initData, JS::HandleValue callbackFunction);
+	void SwitchGuiPage(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& name, JS::HandleValue initData);
+	void PopGuiPage(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue args);
+	JS::Value GetGUIObjectByName(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& name);
+	void SetGlobalHotkey(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& hotkeyTag, const std::string& eventName, JS::HandleValue function);
+	void UnsetGlobalHotkey(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& hotkeyTag, const std::string& eventName);
+	std::wstring SetCursor(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& name);
+	void ResetCursor(ScriptInterface::CmptPrivate* pCmptPrivate);
+	bool TemplateExists(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& templateName);
+	CParamNode GetTemplate(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& templateName);
 
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 }

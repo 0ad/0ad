@@ -22,7 +22,7 @@
 #include "ps/CLogger.h"
 #include "ps/ModIo.h"
 
-void JSI_ModIo::StartGetGameId(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_ModIo::StartGetGameId(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	if (!g_ModIo)
 		g_ModIo = new ModIo();
@@ -32,7 +32,7 @@ void JSI_ModIo::StartGetGameId(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	g_ModIo->StartGetGameId();
 }
 
-void JSI_ModIo::StartListMods(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_ModIo::StartListMods(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	if (!g_ModIo)
 	{
@@ -43,7 +43,7 @@ void JSI_ModIo::StartListMods(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	g_ModIo->StartListMods();
 }
 
-void JSI_ModIo::StartDownloadMod(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), uint32_t idx)
+void JSI_ModIo::StartDownloadMod(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), uint32_t idx)
 {
 	if (!g_ModIo)
 	{
@@ -54,7 +54,7 @@ void JSI_ModIo::StartDownloadMod(ScriptInterface::CxPrivate* UNUSED(pCxPrivate),
 	g_ModIo->StartDownloadMod(idx);
 }
 
-bool JSI_ModIo::AdvanceRequest(ScriptInterface::CxPrivate* pCxPrivate)
+bool JSI_ModIo::AdvanceRequest(ScriptInterface::CmptPrivate* pCmptPrivate)
 {
 	if (!g_ModIo)
 	{
@@ -62,11 +62,11 @@ bool JSI_ModIo::AdvanceRequest(ScriptInterface::CxPrivate* pCxPrivate)
 		return false;
 	}
 
-	ScriptInterface* scriptInterface = pCxPrivate->pScriptInterface;
+	ScriptInterface* scriptInterface = pCmptPrivate->pScriptInterface;
 	return g_ModIo->AdvanceRequest(*scriptInterface);
 }
 
-void JSI_ModIo::CancelRequest(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_ModIo::CancelRequest(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	if (!g_ModIo)
 	{
@@ -77,7 +77,7 @@ void JSI_ModIo::CancelRequest(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	g_ModIo->CancelRequest();
 }
 
-JS::Value JSI_ModIo::GetMods(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_ModIo::GetMods(ScriptInterface::CmptPrivate* pCmptPrivate)
 {
 	if (!g_ModIo)
 	{
@@ -85,7 +85,7 @@ JS::Value JSI_ModIo::GetMods(ScriptInterface::CxPrivate* pCxPrivate)
 		return JS::NullValue();
 	}
 
-	ScriptInterface* scriptInterface = pCxPrivate->pScriptInterface;
+	ScriptInterface* scriptInterface = pCmptPrivate->pScriptInterface;
 	ScriptInterface::Request rq(scriptInterface);
 
 	const std::vector<ModIoModData>& availableMods = g_ModIo->GetMods();
@@ -123,7 +123,7 @@ const std::map<DownloadProgressStatus, std::string> statusStrings = {
 	{ DownloadProgressStatus::FAILED_FILECHECK, "failed_filecheck" }
 };
 
-JS::Value JSI_ModIo::GetDownloadProgress(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_ModIo::GetDownloadProgress(ScriptInterface::CmptPrivate* pCmptPrivate)
 {
 	if (!g_ModIo)
 	{
@@ -131,7 +131,7 @@ JS::Value JSI_ModIo::GetDownloadProgress(ScriptInterface::CxPrivate* pCxPrivate)
 		return JS::NullValue();
 	}
 
-	ScriptInterface* scriptInterface = pCxPrivate->pScriptInterface;
+	ScriptInterface* scriptInterface = pCmptPrivate->pScriptInterface;
 	ScriptInterface::Request rq(scriptInterface);
 
 	const DownloadProgressData& progress = g_ModIo->GetDownloadProgress();

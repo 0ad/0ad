@@ -132,7 +132,7 @@ void ConvertTLBs(const ScriptInterface& scriptInterface, JS::MutableHandleValue 
 }
 #endif
 
-void SetDisableAudio(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
+void SetDisableAudio(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), bool disabled)
 {
 	g_DisableAudio = disabled;
 }

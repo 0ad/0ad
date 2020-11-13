@@ -430,8 +430,8 @@ ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugN
 	}
 
 	Request rq(this);
-	m_CxPrivate.pScriptInterface = this;
-	JS_SetContextPrivate(rq.cx, (void*)&m_CxPrivate);
+	m_CmptPrivate.pScriptInterface = this;
+	JS_SetContextPrivate(rq.cx, (void*)&m_CmptPrivate);
 }
 
 ScriptInterface::~ScriptInterface()
@@ -445,13 +445,13 @@ ScriptInterface::~ScriptInterface()
 
 void ScriptInterface::SetCallbackData(void* pCBData)
 {
-	m_CxPrivate.pCBData = pCBData;
+	m_CmptPrivate.pCBData = pCBData;
 }
 
-ScriptInterface::CxPrivate* ScriptInterface::GetScriptInterfaceAndCBData(JSContext* cx)
+ScriptInterface::CmptPrivate* ScriptInterface::GetScriptInterfaceAndCBData(JSContext* cx)
 {
-	CxPrivate* pCxPrivate = (CxPrivate*)JS_GetContextPrivate(cx);
-	return pCxPrivate;
+	CmptPrivate* pCmptPrivate = (CmptPrivate*)JS_GetContextPrivate(cx);
+	return pCmptPrivate;
 }
 
 

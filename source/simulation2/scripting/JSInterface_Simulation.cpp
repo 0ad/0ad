@@ -38,7 +38,7 @@
 #include <array>
 #include <fstream>
 
-JS::Value JSI_Simulation::GuiInterfaceCall(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue data)
+JS::Value JSI_Simulation::GuiInterfaceCall(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& name, JS::HandleValue data)
 {
 	if (!g_Game)
 		return JS::UndefinedValue();
@@ -51,14 +51,14 @@ JS::Value JSI_Simulation::GuiInterfaceCall(ScriptInterface::CxPrivate* pCxPrivat
 		return JS::UndefinedValue();
 
 	ScriptInterface::Request rqSim(sim->GetScriptInterface());
-	JS::RootedValue arg(rqSim.cx, sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), data));
+	JS::RootedValue arg(rqSim.cx, sim->GetScriptInterface().CloneValueFromOtherContext(*(pCmptPrivate->pScriptInterface), data));
 	JS::RootedValue ret(rqSim.cx);
 	cmpGuiInterface->ScriptCall(g_Game->GetViewedPlayerID(), name, arg, &ret);
 
-	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(sim->GetScriptInterface(), ret);
+	return pCmptPrivate->pScriptInterface->CloneValueFromOtherContext(sim->GetScriptInterface(), ret);
 }
 
-void JSI_Simulation::PostNetworkCommand(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue cmd)
+void JSI_Simulation::PostNetworkCommand(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue cmd)
 {
 	if (!g_Game)
 		return;
@@ -71,39 +71,39 @@ void JSI_Simulation::PostNetworkCommand(ScriptInterface::CxPrivate* pCxPrivate, 
 		return;
 
 	ScriptInterface::Request rqSim(sim->GetScriptInterface());
-	JS::RootedValue cmd2(rqSim.cx, sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), cmd));
+	JS::RootedValue cmd2(rqSim.cx, sim->GetScriptInterface().CloneValueFromOtherContext(*(pCmptPrivate->pScriptInterface), cmd));
 
 	cmpCommandQueue->PostNetworkCommand(cmd2);
 }
 
-void JSI_Simulation::DumpSimState(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_Simulation::DumpSimState(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	OsPath path = psLogDir()/"sim_dump.txt";
 	std::ofstream file (OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 	g_Game->GetSimulation2()->DumpDebugState(file);
 }
 
-entity_id_t JSI_Simulation::PickEntityAtPoint(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int x, int y)
+entity_id_t JSI_Simulation::PickEntityAtPoint(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), int x, int y)
 {
 	return EntitySelection::PickEntityAtPoint(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x, y, g_Game->GetViewedPlayerID(), false);
 }
 
-std::vector<entity_id_t> JSI_Simulation::PickPlayerEntitiesInRect(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int x0, int y0, int x1, int y1, int player)
+std::vector<entity_id_t> JSI_Simulation::PickPlayerEntitiesInRect(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), int x0, int y0, int x1, int y1, int player)
 {
 	return EntitySelection::PickEntitiesInRect(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x0, y0, x1, y1, player, false);
 }
 
-std::vector<entity_id_t> JSI_Simulation::PickPlayerEntitiesOnScreen(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int player)
+std::vector<entity_id_t> JSI_Simulation::PickPlayerEntitiesOnScreen(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), int player)
 {
 	return EntitySelection::PickEntitiesInRect(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), 0, 0, g_xres, g_yres, player, false);
 }
 
-std::vector<entity_id_t> JSI_Simulation::PickNonGaiaEntitiesOnScreen(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+std::vector<entity_id_t> JSI_Simulation::PickNonGaiaEntitiesOnScreen(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return EntitySelection::PickNonGaiaEntitiesInRect(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), 0, 0, g_xres, g_yres, false);
 }
 
-std::vector<entity_id_t> JSI_Simulation::GetEntitiesWithStaticObstructionOnScreen(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+std::vector<entity_id_t> JSI_Simulation::GetEntitiesWithStaticObstructionOnScreen(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	struct StaticObstructionFilter
 	{
@@ -116,7 +116,7 @@ std::vector<entity_id_t> JSI_Simulation::GetEntitiesWithStaticObstructionOnScree
 	return EntitySelection::GetEntitiesWithComponentInRect<StaticObstructionFilter>(*g_Game->GetSimulation2(), IID_Obstruction, *g_Game->GetView()->GetCamera(), 0, 0, g_xres, g_yres);
 }
 
-JS::Value JSI_Simulation::GetEdgesOfStaticObstructionsOnScreenNearTo(ScriptInterface::CxPrivate* pCxPrivate, entity_pos_t x, entity_pos_t z)
+JS::Value JSI_Simulation::GetEdgesOfStaticObstructionsOnScreenNearTo(ScriptInterface::CmptPrivate* pCmptPrivate, entity_pos_t x, entity_pos_t z)
 {
 	if (!g_Game)
 		return JS::UndefinedValue();
@@ -124,7 +124,7 @@ JS::Value JSI_Simulation::GetEdgesOfStaticObstructionsOnScreenNearTo(ScriptInter
 	CSimulation2* sim = g_Game->GetSimulation2();
 	ENSURE(sim);
 
-	ScriptInterface::Request rq(pCxPrivate);
+	ScriptInterface::Request rq(pCmptPrivate);
 	JS::RootedValue edgeList(rq.cx);
 	ScriptInterface::CreateArray(rq, &edgeList);
 	int edgeListIndex = 0;
@@ -133,7 +133,7 @@ JS::Value JSI_Simulation::GetEdgesOfStaticObstructionsOnScreenNearTo(ScriptInter
 	CFG_GET_VAL("gui.session.snaptoedgesdistancethreshold", distanceThreshold);
 	CFixedVector2D entityPos(x, z);
 
-	std::vector<entity_id_t> entities = GetEntitiesWithStaticObstructionOnScreen(pCxPrivate);
+	std::vector<entity_id_t> entities = GetEntitiesWithStaticObstructionOnScreen(pCmptPrivate);
 	for (entity_id_t entity : entities)
 	{
 		CmpPtr<ICmpObstruction> cmpObstruction(sim->GetSimContext(), entity);
@@ -180,23 +180,23 @@ JS::Value JSI_Simulation::GetEdgesOfStaticObstructionsOnScreenNearTo(ScriptInter
 				"normal", normal,
 				"order", "cw");
 
-			pCxPrivate->pScriptInterface->SetPropertyInt(edgeList, edgeListIndex++, edge);
+			pCmptPrivate->pScriptInterface->SetPropertyInt(edgeList, edgeListIndex++, edge);
 		}
 	}
 	return edgeList;
 }
 
-std::vector<entity_id_t> JSI_Simulation::PickSimilarPlayerEntities(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& templateName, bool includeOffScreen, bool matchRank, bool allowFoundations)
+std::vector<entity_id_t> JSI_Simulation::PickSimilarPlayerEntities(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& templateName, bool includeOffScreen, bool matchRank, bool allowFoundations)
 {
 	return EntitySelection::PickSimilarEntities(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), templateName, g_Game->GetViewedPlayerID(), includeOffScreen, matchRank, false, allowFoundations);
 }
 
-JS::Value JSI_Simulation::GetAIs(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_Simulation::GetAIs(ScriptInterface::CmptPrivate* pCmptPrivate)
 {
-	return ICmpAIManager::GetAIs(*(pCxPrivate->pScriptInterface));
+	return ICmpAIManager::GetAIs(*(pCmptPrivate->pScriptInterface));
 }
 
-void JSI_Simulation::SetBoundingBoxDebugOverlay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool enabled)
+void JSI_Simulation::SetBoundingBoxDebugOverlay(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), bool enabled)
 {
 	ICmpSelectable::ms_EnableDebugOverlays = enabled;
 }

@@ -33,12 +33,12 @@
 
 extern void EndGame();
 
-bool JSI_Game::IsGameStarted(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+bool JSI_Game::IsGameStarted(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return g_Game;
 }
 
-void JSI_Game::StartGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs, int playerID)
+void JSI_Game::StartGame(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue attribs, int playerID)
 {
 	ENSURE(!g_NetServer);
 	ENSURE(!g_NetClient);
@@ -51,18 +51,18 @@ void JSI_Game::StartGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue
 	ScriptInterface::Request rqSim(sim->GetScriptInterface());
 
 	JS::RootedValue gameAttribs(rqSim.cx,
-		sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), attribs));
+		sim->GetScriptInterface().CloneValueFromOtherContext(*(pCmptPrivate->pScriptInterface), attribs));
 
 	g_Game->SetPlayerID(playerID);
 	g_Game->StartGame(&gameAttribs, "");
 }
 
-void JSI_Game::Script_EndGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_Game::Script_EndGame(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	EndGame();
 }
 
-int JSI_Game::GetPlayerID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+int JSI_Game::GetPlayerID(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	if (!g_Game)
 		return -1;
@@ -70,7 +70,7 @@ int JSI_Game::GetPlayerID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	return g_Game->GetPlayerID();
 }
 
-void JSI_Game::SetPlayerID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int id)
+void JSI_Game::SetPlayerID(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), int id)
 {
 	if (!g_Game)
 		return;
@@ -78,7 +78,7 @@ void JSI_Game::SetPlayerID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int i
 	g_Game->SetPlayerID(id);
 }
 
-void JSI_Game::SetViewedPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int id)
+void JSI_Game::SetViewedPlayer(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), int id)
 {
 	if (!g_Game)
 		return;
@@ -86,21 +86,21 @@ void JSI_Game::SetViewedPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), i
 	g_Game->SetViewedPlayerID(id);
 }
 
-float JSI_Game::GetSimRate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+float JSI_Game::GetSimRate(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return g_Game->GetSimRate();
 }
 
-void JSI_Game::SetSimRate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float rate)
+void JSI_Game::SetSimRate(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), float rate)
 {
 	g_Game->SetSimRate(rate);
 }
 
-bool JSI_Game::IsPaused(ScriptInterface::CxPrivate* pCxPrivate)
+bool JSI_Game::IsPaused(ScriptInterface::CmptPrivate* pCmptPrivate)
 {
 	if (!g_Game)
 	{
-		ScriptInterface::Request rq(pCxPrivate);
+		ScriptInterface::Request rq(pCmptPrivate);
 		JS_ReportError(rq.cx, "Game is not started");
 		return false;
 	}
@@ -108,11 +108,11 @@ bool JSI_Game::IsPaused(ScriptInterface::CxPrivate* pCxPrivate)
 	return g_Game->m_Paused;
 }
 
-void JSI_Game::SetPaused(ScriptInterface::CxPrivate* pCxPrivate, bool pause, bool sendMessage)
+void JSI_Game::SetPaused(ScriptInterface::CmptPrivate* pCmptPrivate, bool pause, bool sendMessage)
 {
 	if (!g_Game)
 	{
-		ScriptInterface::Request rq(pCxPrivate);
+		ScriptInterface::Request rq(pCmptPrivate);
 		JS_ReportError(rq.cx, "Game is not started");
 		return;
 	}
@@ -128,7 +128,7 @@ void JSI_Game::SetPaused(ScriptInterface::CxPrivate* pCxPrivate, bool pause, boo
 		g_NetClient->SendPausedMessage(pause);
 }
 
-bool JSI_Game::IsVisualReplay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+bool JSI_Game::IsVisualReplay(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	if (!g_Game)
 		return false;
@@ -136,7 +136,7 @@ bool JSI_Game::IsVisualReplay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	return g_Game->IsVisualReplay();
 }
 
-std::wstring JSI_Game::GetCurrentReplayDirectory(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+std::wstring JSI_Game::GetCurrentReplayDirectory(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	if (!g_Game)
 		return std::wstring();
@@ -147,17 +147,17 @@ std::wstring JSI_Game::GetCurrentReplayDirectory(ScriptInterface::CxPrivate* UNU
 	return g_Game->GetReplayLogger().GetDirectory().Filename().string();
 }
 
-void JSI_Game::EnableTimeWarpRecording(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), unsigned int numTurns)
+void JSI_Game::EnableTimeWarpRecording(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), unsigned int numTurns)
 {
 	g_Game->GetTurnManager()->EnableTimeWarpRecording(numTurns);
 }
 
-void JSI_Game::RewindTimeWarp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_Game::RewindTimeWarp(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	g_Game->GetTurnManager()->RewindTimeWarp();
 }
 
-void JSI_Game::DumpTerrainMipmap(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_Game::DumpTerrainMipmap(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	VfsPath filename(L"screenshots/terrainmipmap.png");
 	g_Game->GetWorld()->GetTerrain()->GetHeightMipmap().DumpToDisk(filename);

@@ -31,27 +31,27 @@
 #include "ps/Game.h"
 #include "scriptinterface/ScriptInterface.h"
 
-u16 JSI_Network::GetDefaultPort(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+u16 JSI_Network::GetDefaultPort(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return PS_DEFAULT_PORT;
 }
 
-bool JSI_Network::HasNetServer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+bool JSI_Network::HasNetServer(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return g_NetServer;
 }
 
-bool JSI_Network::HasNetClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+bool JSI_Network::HasNetClient(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return g_NetClient;
 }
 
-JS::Value JSI_Network::FindStunEndpoint(ScriptInterface::CxPrivate* pCxPrivate, int port)
+JS::Value JSI_Network::FindStunEndpoint(ScriptInterface::CmptPrivate* pCmptPrivate, int port)
 {
-	return StunClient::FindStunEndpointHost(*(pCxPrivate->pScriptInterface), port);
+	return StunClient::FindStunEndpointHost(*(pCmptPrivate->pScriptInterface), port);
 }
 
-void JSI_Network::StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const u16 serverPort, const CStr& hostLobbyName)
+void JSI_Network::StartNetworkHost(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& playerName, const u16 serverPort, const CStr& hostLobbyName)
 {
 	ENSURE(!g_NetClient);
 	ENSURE(!g_NetServer);
@@ -61,7 +61,7 @@ void JSI_Network::StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const
 	g_NetServer = new CNetServer(static_cast<bool>(g_XmppClient));
 	if (!g_NetServer->SetupConnection(serverPort))
 	{
-		pCxPrivate->pScriptInterface->ReportError("Failed to start server");
+		pCmptPrivate->pScriptInterface->ReportError("Failed to start server");
 		SAFE_DELETE(g_NetServer);
 		return;
 	}
@@ -73,13 +73,13 @@ void JSI_Network::StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const
 
 	if (!g_NetClient->SetupConnection("127.0.0.1", serverPort, nullptr))
 	{
-		pCxPrivate->pScriptInterface->ReportError("Failed to connect to server");
+		pCmptPrivate->pScriptInterface->ReportError("Failed to connect to server");
 		SAFE_DELETE(g_NetClient);
 		SAFE_DELETE(g_Game);
 	}
 }
 
-void JSI_Network::StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const CStr& serverAddress, u16 serverPort, bool useSTUN, const CStr& hostJID)
+void JSI_Network::StartNetworkJoin(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& playerName, const CStr& serverAddress, u16 serverPort, bool useSTUN, const CStr& hostJID)
 {
 	ENSURE(!g_NetClient);
 	ENSURE(!g_NetServer);
@@ -100,14 +100,14 @@ void JSI_Network::StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, const
 
 		if (!enetClient)
 		{
-			pCxPrivate->pScriptInterface->ReportError("Could not find an unused port for the enet STUN client");
+			pCmptPrivate->pScriptInterface->ReportError("Could not find an unused port for the enet STUN client");
 			return;
 		}
 
 		StunClient::StunEndpoint stunEndpoint;
 		if (!StunClient::FindStunEndpointJoin(*enetClient, stunEndpoint))
 		{
-			pCxPrivate->pScriptInterface->ReportError("Could not find the STUN endpoint");
+			pCmptPrivate->pScriptInterface->ReportError("Could not find the STUN endpoint");
 			return;
 		}
 
@@ -126,13 +126,13 @@ void JSI_Network::StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, const
 
 	if (!g_NetClient->SetupConnection(serverAddress, serverPort, enetClient))
 	{
-		pCxPrivate->pScriptInterface->ReportError("Failed to connect to server");
+		pCmptPrivate->pScriptInterface->ReportError("Failed to connect to server");
 		SAFE_DELETE(g_NetClient);
 		SAFE_DELETE(g_Game);
 	}
 }
 
-void JSI_Network::DisconnectNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_Network::DisconnectNetworkGame(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	// TODO: we ought to do async reliable disconnections
 
@@ -141,7 +141,7 @@ void JSI_Network::DisconnectNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPr
 	SAFE_DELETE(g_Game);
 }
 
-CStr JSI_Network::GetPlayerGUID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+CStr JSI_Network::GetPlayerGUID(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	if (!g_NetClient)
 		return "local";
@@ -149,7 +149,7 @@ CStr JSI_Network::GetPlayerGUID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	return g_NetClient->GetGUID();
 }
 
-JS::Value JSI_Network::PollNetworkClient(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_Network::PollNetworkClient(ScriptInterface::CmptPrivate* pCmptPrivate)
 {
 	if (!g_NetClient)
 		return JS::UndefinedValue();
@@ -158,62 +158,62 @@ JS::Value JSI_Network::PollNetworkClient(ScriptInterface::CxPrivate* pCxPrivate)
 	ScriptInterface::Request rqNet(g_NetClient->GetScriptInterface());
 	JS::RootedValue pollNet(rqNet.cx);
 	g_NetClient->GuiPoll(&pollNet);
-	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(g_NetClient->GetScriptInterface(), pollNet);
+	return pCmptPrivate->pScriptInterface->CloneValueFromOtherContext(g_NetClient->GetScriptInterface(), pollNet);
 }
 
-void JSI_Network::SetNetworkGameAttributes(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs1)
+void JSI_Network::SetNetworkGameAttributes(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue attribs1)
 {
 	ENSURE(g_NetClient);
 
 	// TODO: This is a workaround because we need to pass a MutableHandle to a JSAPI functions somewhere (with no obvious reason).
-	ScriptInterface::Request rq(pCxPrivate);
+	ScriptInterface::Request rq(pCmptPrivate);
 	JS::RootedValue attribs(rq.cx, attribs1);
 
-	g_NetClient->SendGameSetupMessage(&attribs, *(pCxPrivate->pScriptInterface));
+	g_NetClient->SendGameSetupMessage(&attribs, *(pCmptPrivate->pScriptInterface));
 }
 
-void JSI_Network::AssignNetworkPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int playerID, const CStr& guid)
+void JSI_Network::AssignNetworkPlayer(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), int playerID, const CStr& guid)
 {
 	ENSURE(g_NetClient);
 
 	g_NetClient->SendAssignPlayerMessage(playerID, guid);
 }
 
-void JSI_Network::KickPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& playerName, bool ban)
+void JSI_Network::KickPlayer(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const CStrW& playerName, bool ban)
 {
 	ENSURE(g_NetClient);
 
 	g_NetClient->SendKickPlayerMessage(playerName, ban);
 }
 
-void JSI_Network::SendNetworkChat(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& message)
+void JSI_Network::SendNetworkChat(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const CStrW& message)
 {
 	ENSURE(g_NetClient);
 
 	g_NetClient->SendChatMessage(message);
 }
 
-void JSI_Network::SendNetworkReady(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int message)
+void JSI_Network::SendNetworkReady(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), int message)
 {
 	ENSURE(g_NetClient);
 
 	g_NetClient->SendReadyMessage(message);
 }
 
-void JSI_Network::ClearAllPlayerReady (ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_Network::ClearAllPlayerReady (ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	ENSURE(g_NetClient);
 
 	g_NetClient->SendClearAllReadyMessage();
 }
 
-void JSI_Network::StartNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_Network::StartNetworkGame(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	ENSURE(g_NetClient);
 	g_NetClient->SendStartGameMessage();
 }
 
-void JSI_Network::SetTurnLength(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int length)
+void JSI_Network::SetTurnLength(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), int length)
 {
 	if (g_NetServer)
 		g_NetServer->SetTurnLength(length);

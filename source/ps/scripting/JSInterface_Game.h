@@ -22,21 +22,21 @@
 
 namespace JSI_Game
 {
-	bool IsGameStarted(ScriptInterface::CxPrivate* pCxPrivate);
-	void StartGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs, int playerID);
-	void Script_EndGame(ScriptInterface::CxPrivate* pCxPrivate);
-	int GetPlayerID(ScriptInterface::CxPrivate* pCxPrivate);
-	void SetPlayerID(ScriptInterface::CxPrivate* pCxPrivate, int id);
-	void SetViewedPlayer(ScriptInterface::CxPrivate* pCxPrivate, int id);
-	float GetSimRate(ScriptInterface::CxPrivate* pCxPrivate);
-	void SetSimRate(ScriptInterface::CxPrivate* pCxPrivate, float rate);
-	bool IsPaused(ScriptInterface::CxPrivate* pCxPrivate);
-	void SetPaused(ScriptInterface::CxPrivate* pCxPrivate, bool pause, bool sendMessage);
-	bool IsVisualReplay(ScriptInterface::CxPrivate* pCxPrivate);
-	std::wstring GetCurrentReplayDirectory(ScriptInterface::CxPrivate* pCxPrivate);
-	void RewindTimeWarp(ScriptInterface::CxPrivate* pCxPrivate);
-	void EnableTimeWarpRecording(ScriptInterface::CxPrivate* pCxPrivate, unsigned int numTurns);
-	void DumpTerrainMipmap(ScriptInterface::CxPrivate* pCxPrivate);
+	bool IsGameStarted(ScriptInterface::CmptPrivate* pCmptPrivate);
+	void StartGame(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue attribs, int playerID);
+	void Script_EndGame(ScriptInterface::CmptPrivate* pCmptPrivate);
+	int GetPlayerID(ScriptInterface::CmptPrivate* pCmptPrivate);
+	void SetPlayerID(ScriptInterface::CmptPrivate* pCmptPrivate, int id);
+	void SetViewedPlayer(ScriptInterface::CmptPrivate* pCmptPrivate, int id);
+	float GetSimRate(ScriptInterface::CmptPrivate* pCmptPrivate);
+	void SetSimRate(ScriptInterface::CmptPrivate* pCmptPrivate, float rate);
+	bool IsPaused(ScriptInterface::CmptPrivate* pCmptPrivate);
+	void SetPaused(ScriptInterface::CmptPrivate* pCmptPrivate, bool pause, bool sendMessage);
+	bool IsVisualReplay(ScriptInterface::CmptPrivate* pCmptPrivate);
+	std::wstring GetCurrentReplayDirectory(ScriptInterface::CmptPrivate* pCmptPrivate);
+	void RewindTimeWarp(ScriptInterface::CmptPrivate* pCmptPrivate);
+	void EnableTimeWarpRecording(ScriptInterface::CmptPrivate* pCmptPrivate, unsigned int numTurns);
+	void DumpTerrainMipmap(ScriptInterface::CmptPrivate* pCmptPrivate);
 
 	void RegisterScriptFunctions(const ScriptInterface& ScriptInterface);
 }

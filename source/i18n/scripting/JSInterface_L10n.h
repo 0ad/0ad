@@ -50,12 +50,12 @@ namespace JSI_L10n
 	 *
 	 * This is a JavaScript interface to L10n::Translate().
 	 *
-	 * @param pCxPrivate   JavaScript context.
+	 * @param pCmptPrivate   JavaScript context.
 	 * @param sourceString String to translate to the current locale.
 	 * @return Translation of @p sourceString to the current locale, or
 	 *         @p sourceString if there is no translation available.
 	 */
-	std::wstring Translate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& sourceString);
+	std::wstring Translate(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& sourceString);
 
 	/**
 	 * Returns the translation of the specified string to the
@@ -64,7 +64,7 @@ namespace JSI_L10n
 	 *
 	 * This is a JavaScript interface to L10n::TranslateWithContext().
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 * @param context Context where the string is used. See
 	 *        http://www.gnu.org/software/gettext/manual/html_node/Contexts.html
 	 * @param sourceString String to translate to the current locale.
@@ -72,7 +72,7 @@ namespace JSI_L10n
 	 *         specified @p context, or @p sourceString if there is no
 	 *         translation available.
 	 */
-	std::wstring TranslateWithContext(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& context, const std::wstring& sourceString);
+	std::wstring TranslateWithContext(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& context, const std::wstring& sourceString);
 
 	/**
 	 * Returns the translation of the specified string to the
@@ -81,7 +81,7 @@ namespace JSI_L10n
 	 *
 	 * This is a JavaScript interface to L10n::TranslatePlural().
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 * @param singularSourceString String to translate to the current locale,
 	 *        in English’ singular form.
 	 * @param pluralSourceString String to translate to the current locale, in
@@ -93,7 +93,7 @@ namespace JSI_L10n
 	 *         @p number is 1) or @p pluralSourceString (if @p number is not 1)
 	 *         if there is no translation available.
 	 */
-	std::wstring TranslatePlural(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& singularSourceString, const std::wstring& pluralSourceString, int number);
+	std::wstring TranslatePlural(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& singularSourceString, const std::wstring& pluralSourceString, int number);
 
 	/**
 	 * Returns the translation of the specified string to the
@@ -102,7 +102,7 @@ namespace JSI_L10n
 	 *
 	 * This is a JavaScript interface to L10n::TranslatePluralWithContext().
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 * @param context Context where the string is used. See
 	 *        http://www.gnu.org/software/gettext/manual/html_node/Contexts.html
 	 * @param singularSourceString String to translate to the current locale,
@@ -117,7 +117,7 @@ namespace JSI_L10n
 	 *         @p pluralSourceString (if @p number is not 1) if there is no
 	 *         translation available.
 	 */
-	std::wstring TranslatePluralWithContext(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& context, const std::wstring& singularSourceString, const std::wstring& pluralSourceString, int number);
+	std::wstring TranslatePluralWithContext(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& context, const std::wstring& singularSourceString, const std::wstring& pluralSourceString, int number);
 
 	/**
 	 * Translates a text line by line to the
@@ -128,13 +128,13 @@ namespace JSI_L10n
 	 *
 	 * This is a JavaScript interface to L10n::TranslateLines().
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 * @param sourceString Text to translate to the current locale.
 	 * @return Line by line translation of @p sourceString to the current
 	 *         locale. Some of the lines in the returned text may be in English
 	 *         because there was not translation available for them.
 	 */
-	std::wstring TranslateLines(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& sourceString);
+	std::wstring TranslateLines(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& sourceString);
 
 	/**
 	 * Translate each of the strings of a JavaScript array to the
@@ -143,14 +143,14 @@ namespace JSI_L10n
 	 * This is a helper function that loops through the items of the input array
 	 * and calls L10n::Translate() on each of them.
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 * @param sourceArray JavaScript array of strings to translate to the
 	 *        current locale.
 	 * @return Item by item translation of @p sourceArray to the current locale.
 	 *         Some of the items in the returned array may be in English because
 	 *         there was not translation available for them.
 	 */
-	std::vector<std::wstring> TranslateArray(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::vector<std::wstring>& sourceArray);
+	std::vector<std::wstring> TranslateArray(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::vector<std::wstring>& sourceArray);
 
 	/**
 	 * Returns the specified date converted to the local timezone using the specified date format.
@@ -158,7 +158,7 @@ namespace JSI_L10n
 	 * This is a JavaScript interface to
 	 * L10n::FormatMillisecondsIntoDateString().
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 * @param milliseconds Date specified as a UNIX timestamp in milliseconds
 	 *        (not seconds). If you have a JavaScript @c ​Date object, you can
 	 *        use @c ​Date.getTime() to obtain the UNIX time in milliseconds.
@@ -172,7 +172,7 @@ namespace JSI_L10n
 	 * @sa http://en.wikipedia.org/wiki/Unix_time
 	 * @sa https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1#TOC-Date-Field-Symbol-Table
 	 */
-	std::wstring FormatMillisecondsIntoDateStringLocal(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), UDate milliseconds, const std::wstring& formatString);
+	std::wstring FormatMillisecondsIntoDateStringLocal(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), UDate milliseconds, const std::wstring& formatString);
 
 	/**
 	* Returns the specified date in GMT using the specified date format.
@@ -180,7 +180,7 @@ namespace JSI_L10n
 	* This is a JavaScript interface to
 	* L10n::FormatMillisecondsIntoDateString().
 	*
-	* @param pCxPrivate JavaScript context.
+	* @param pCmptPrivate JavaScript context.
 	* @param milliseconds Date specified as a UNIX timestamp in milliseconds
 	*        (not seconds). If you have a JavaScript @c ​Date object, you can
 	*        use @c ​Date.getTime() to obtain the UNIX time in milliseconds.
@@ -194,7 +194,7 @@ namespace JSI_L10n
 	* @sa http://en.wikipedia.org/wiki/Unix_time
 	* @sa https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1#TOC-Date-Field-Symbol-Table
 	*/
-	std::wstring FormatMillisecondsIntoDateStringGMT(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), UDate milliseconds, const std::wstring& formatString);
+	std::wstring FormatMillisecondsIntoDateStringGMT(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), UDate milliseconds, const std::wstring& formatString);
 
 	/**
 	 * Returns the specified floating-point number as a string, with the number
@@ -203,11 +203,11 @@ namespace JSI_L10n
 	 *
 	 * This is a JavaScript interface to L10n::FormatDecimalNumberIntoString().
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 * @param number Number to format.
 	 * @return Decimal number formatted using the current locale.
 	 */
-	std::wstring FormatDecimalNumberIntoString(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), double number);
+	std::wstring FormatDecimalNumberIntoString(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), double number);
 
 	/**
 	 * Returns an array of supported locale codes sorted alphabetically.
@@ -220,7 +220,7 @@ namespace JSI_L10n
 	 *
 	 * This is a JavaScript interface to L10n::GetSupportedLocaleBaseNames().
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 * @return Array of supported locale codes.
 	 *
 	 * @sa GetSupportedLocaleDisplayNames()
@@ -229,7 +229,7 @@ namespace JSI_L10n
 	 *
 	 * @sa http://trac.wildfiregames.com/wiki/Implementation_of_Internationalization_and_Localization#LongStringsLocale
 	 */
-	std::vector<std::string> GetSupportedLocaleBaseNames(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
+	std::vector<std::string> GetSupportedLocaleBaseNames(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate));
 
 	/**
 	 * Returns an array of supported locale names sorted alphabetically by
@@ -243,14 +243,14 @@ namespace JSI_L10n
 	 *
 	 * This is a JavaScript interface to L10n::GetSupportedLocaleDisplayNames().
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 * @return Array of supported locale codes.
 	 *
 	 * @sa GetSupportedLocaleBaseNames()
 	 *
 	 * @sa http://trac.wildfiregames.com/wiki/Implementation_of_Internationalization_and_Localization#LongStringsLocale
 	 */
-	std::vector<std::wstring> GetSupportedLocaleDisplayNames(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
+	std::vector<std::wstring> GetSupportedLocaleDisplayNames(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate));
 
 	/**
 	 * Returns the code of the current locale.
@@ -259,13 +259,13 @@ namespace JSI_L10n
 	 *
 	 * This is a JavaScript interface to L10n::GetCurrentLocaleString().
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 *
 	 * @sa GetSupportedLocaleBaseNames()
 	 * @sa GetAllLocales()
 	 * @sa ReevaluateCurrentLocaleAndReload()
 	 */
-	std::string GetCurrentLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
+	std::string GetCurrentLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate));
 
 	/**
 	 * Returns an array of locale codes supported by ICU.
@@ -274,7 +274,7 @@ namespace JSI_L10n
 	 *
 	 * This is a JavaScript interface to L10n::GetAllLocales().
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 * @return Array of supported locale codes.
 	 *
 	 * @sa GetSupportedLocaleBaseNames()
@@ -282,7 +282,7 @@ namespace JSI_L10n
 	 *
 	 * @sa http://www.icu-project.org/apiref/icu4c/classicu_1_1Locale.html#a073d70df8c9c8d119c0d42d70de24137
 	 */
-	std::vector<std::string> GetAllLocales(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
+	std::vector<std::string> GetAllLocales(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate));
 
 	/**
 	 * Returns the code of the recommended locale for the current user that the
@@ -301,14 +301,14 @@ namespace JSI_L10n
 	 *
 	 * This is a JavaScript interface to L10n::GetDictionaryLocale(std::string).
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 * @param configLocale Locale to check for support first. Pass an empty
 	 *        string to check the system locale directly.
 	 * @return Code of a locale that the game supports.
 	 *
 	 * @sa http://trac.wildfiregames.com/wiki/Implementation_of_Internationalization_and_Localization#LongStringsLocale
 	 */
-	std::string GetDictionaryLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& configLocale);
+	std::string GetDictionaryLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& configLocale);
 
 	/**
 	 * Returns an array of paths to files in the virtual filesystem that provide
@@ -316,12 +316,12 @@ namespace JSI_L10n
 	 *
 	 * This is a JavaScript interface to L10n::GetDictionariesForLocale().
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 * @param locale Locale code.
 	 * @return Array of paths to files in the virtual filesystem that provide
 	 * translations for @p locale.
 	 */
-	std::vector<std::wstring> GetDictionariesForLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale);
+	std::vector<std::wstring> GetDictionariesForLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale);
 
 	/**
 	 * Returns the ISO-639 language code of the specified locale code.
@@ -330,26 +330,26 @@ namespace JSI_L10n
 	 *
 	 * This is a JavaScript interface to L10n::GetLocaleLanguage().
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 * @param locale Locale code.
 	 * @return Language code.
 	 *
 	 * @sa http://www.icu-project.org/apiref/icu4c/classicu_1_1Locale.html#af36d821adced72a870d921ebadd0ca93
 	 */
-	std::string GetLocaleLanguage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale);
+	std::string GetLocaleLanguage(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale);
 
 	/**
 	 * Returns the programmatic code of the entire locale without keywords.
 	 *
 	 * This is a JavaScript interface to L10n::GetLocaleBaseName().
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 * @param locale Locale code.
 	 * @return Locale code without keywords.
 	 *
 	 * @sa http://www.icu-project.org/apiref/icu4c/classicu_1_1Locale.html#a4c1acbbdf95dc15599db5f322fa4c4d0
 	 */
-	std::string GetLocaleBaseName(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale);
+	std::string GetLocaleBaseName(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale);
 
 	/**
 	 * Returns the ISO-3166 country code of the specified locale code.
@@ -358,29 +358,29 @@ namespace JSI_L10n
 	 *
 	 * This is a JavaScript interface to L10n::GetLocaleCountry().
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 * @param locale Locale code.
 	 * @return Country code.
 	 *
 	 * @sa http://www.icu-project.org/apiref/icu4c/classicu_1_1Locale.html#ae3f1fc415c00d4f0ab33288ceadccbf9
 	 */
-	std::string GetLocaleCountry(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale);
+	std::string GetLocaleCountry(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale);
 
 	/**
 	 * Returns the ISO-15924 abbreviation script code of the specified locale code.
 	 *
 	 * This is a JavaScript interface to L10n::GetLocaleScript().
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 * @param locale Locale code.
 	 * @return Script code.
 	 *
 	 * @sa http://www.icu-project.org/apiref/icu4c/classicu_1_1Locale.html#a5e0145a339d30794178a1412dcc55abe
 	 */
-	std::string GetLocaleScript(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale);
+	std::string GetLocaleScript(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale);
 
 
-	std::wstring GetFallbackToAvailableDictLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale);
+	std::wstring GetFallbackToAvailableDictLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale);
 
 	/**
 	 * Returns @c true if the current locale is the special “Long Strings”
@@ -388,11 +388,11 @@ namespace JSI_L10n
 	 *
 	 * This is a JavaScript interface to L10n::UseLongStrings().
 	 *
-	 * @param pCxPrivate JavaScript context.	 *
+	 * @param pCmptPrivate JavaScript context.	 *
 	 * @return Whether the current locale is the special “Long Strings”
 	 *         (@c true) or not (@c false).
 	 */
-	bool UseLongStrings(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
+	bool UseLongStrings(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate));
 
 	/**
 	 * Returns @c true if the locale is supported by both ICU and the game. It
@@ -406,12 +406,12 @@ namespace JSI_L10n
 	 *
 	 * This is a JavaScript interface to L10n::ValidateLocale(const std::string&).
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 * @param locale Locale to check.
 	 * @return Whether @p locale is supported by both ICU and the game (@c true)
 	 *         or not (@c false).
 	 */
-	bool ValidateLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale);
+	bool ValidateLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale);
 
 	/**
 	 * Saves the specified locale in the game configuration file.
@@ -425,12 +425,12 @@ namespace JSI_L10n
 	 *
 	 * This is a JavaScript interface to L10n::SaveLocale().
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 * @param locale Locale to save to the configuration file.
 	 * @return Whether the specified locale is valid (@c true) or not
 	 *         (@c false).
 	 */
-	bool SaveLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale);
+	bool SaveLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale);
 
 	/**
 	 * Determines the best, supported locale for the current user, makes it the
@@ -445,11 +445,11 @@ namespace JSI_L10n
 	 *
 	 * This is a JavaScript interface to L10n::ReevaluateCurrentLocaleAndReload().
 	 *
-	 * @param pCxPrivate JavaScript context.
+	 * @param pCmptPrivate JavaScript context.
 	 *
 	 * @sa GetCurrentLocale()
 	 */
-	void ReevaluateCurrentLocaleAndReload(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
+	void ReevaluateCurrentLocaleAndReload(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate));
 }
 
 #endif // INCLUDED_JSINTERFACE_L10N
