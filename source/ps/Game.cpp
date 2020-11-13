@@ -191,10 +191,9 @@ bool CGame::StartVisualReplay(const OsPath& replayPath)
 	std::getline(*m_ReplayStream, line);
 
 	const ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(scriptInterface);
 
-	JS::RootedValue attribs(cx);
+	JS::RootedValue attribs(rq.cx);
 	scriptInterface.ParseJSON(line, &attribs);
 	StartGame(&attribs, "");
 
@@ -209,8 +208,7 @@ bool CGame::StartVisualReplay(const OsPath& replayPath)
 void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& savedState)
 {
 	const ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(scriptInterface);
 
 	m_InitialSavedState = savedState;
 	m_IsSavedGame = !savedState.empty();
@@ -240,7 +238,7 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 	{
 		// Load random map attributes
 		std::wstring scriptFile;
-		JS::RootedValue settings(cx);
+		JS::RootedValue settings(rq.cx);
 
 		scriptInterface.GetProperty(attribs, "script", scriptFile);
 		scriptInterface.GetProperty(attribs, "settings", &settings);
@@ -250,7 +248,7 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 	else
 	{
 		std::wstring mapFile;
-		JS::RootedValue settings(cx);
+		JS::RootedValue settings(rq.cx);
 		scriptInterface.GetProperty(attribs, "map", mapFile);
 		scriptInterface.GetProperty(attribs, "settings", &settings);
 
@@ -325,9 +323,9 @@ PSRETURN CGame::ReallyStartGame()
 	if (g_GUI && g_GUI->GetPageCount())
 	{
 		shared_ptr<ScriptInterface> scriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
-		JSContext* cx = scriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
+		ScriptInterface::Request rq(scriptInterface);
+
+		JS::RootedValue global(rq.cx, scriptInterface->GetGlobalObject());
 		if (scriptInterface->HasProperty(global, "reallyStartGame"))
 			scriptInterface->CallFunctionVoid(global, "reallyStartGame");
 	}

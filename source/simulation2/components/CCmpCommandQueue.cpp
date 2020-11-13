@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -51,8 +51,7 @@ public:
 
 	virtual void Serialize(ISerializer& serialize)
 	{
-		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(GetSimContext().GetScriptInterface());
 
 		serialize.NumberU32_Unbounded("num commands", (u32)m_LocalQueue.size());
 		for (size_t i = 0; i < m_LocalQueue.size(); ++i)
@@ -64,36 +63,32 @@ public:
 
 	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
 	{
-		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(GetSimContext().GetScriptInterface());
 
 		u32 numCmds;
 		deserialize.NumberU32_Unbounded("num commands", numCmds);
 		for (size_t i = 0; i < numCmds; ++i)
 		{
 			i32 player;
-			JS::RootedValue data(cx);
+			JS::RootedValue data(rq.cx);
 			deserialize.NumberI32_Unbounded("player", player);
 			deserialize.ScriptVal("data", &data);
-			m_LocalQueue.emplace_back(SimulationCommand(player, cx, data));
+			m_LocalQueue.emplace_back(SimulationCommand(player, rq.cx, data));
 		}
 	}
 
 	virtual void PushLocalCommand(player_id_t player, JS::HandleValue cmd)
 	{
-		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
-		JSAutoRequest rq(cx);
-
-		m_LocalQueue.emplace_back(SimulationCommand(player, cx, cmd));
+		ScriptInterface::Request rq(GetSimContext().GetScriptInterface());
+		m_LocalQueue.emplace_back(SimulationCommand(player, rq.cx, cmd));
 	}
 
 	virtual void PostNetworkCommand(JS::HandleValue cmd1)
 	{
-		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(GetSimContext().GetScriptInterface());
 
 		// TODO: This is a workaround because we need to pass a MutableHandle to StringifyJSON.
-		JS::RootedValue cmd(cx, cmd1.get());
+		JS::RootedValue cmd(rq.cx, cmd1.get());
 
 		PROFILE2_EVENT("post net command");
 		PROFILE2_ATTR("command: %s", GetSimContext().GetScriptInterface().StringifyJSON(&cmd, false).c_str());
@@ -106,10 +101,9 @@ public:
 	virtual void FlushTurn(const std::vector<SimulationCommand>& commands)
 	{
 		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
-		JSContext* cx = scriptInterface.GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(scriptInterface);
 
-		JS::RootedValue global(cx, scriptInterface.GetGlobalObject());
+		JS::RootedValue global(rq.cx, scriptInterface.GetGlobalObject());
 		std::vector<SimulationCommand> localCommands;
 		m_LocalQueue.swap(localCommands);
 

@@ -57,18 +57,16 @@ static u8 GetArrayType(js::Scalar::Type arrayType)
 CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(const ScriptInterface& scriptInterface, ISerializer& serializer) :
 	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_ScriptBackrefsNext(0)
 {
-	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(m_ScriptInterface);
 
-	m_ScriptBackrefSymbol.init(cx, JS::NewSymbol(cx, nullptr));
+	m_ScriptBackrefSymbol.init(rq.cx, JS::NewSymbol(rq.cx, nullptr));
 }
 
 void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 {
-	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(m_ScriptInterface);
 
-	switch (JS_TypeOfValue(cx, val))
+	switch (JS_TypeOfValue(rq.cx, val))
 	{
 	case JSTYPE_VOID:
 	{
@@ -88,7 +86,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			break;
 		}
 
-		JS::RootedObject obj(cx, &val.toObject());
+		JS::RootedObject obj(rq.cx, &val.toObject());
 
 		// If we've already serialized this object, just output a reference to it
 		i32 tag = GetScriptBackrefTag(obj);
@@ -101,7 +99,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 
 		// Arrays are special cases of Object
 		bool isArray;
-		if (JS_IsArrayObject(cx, obj, &isArray) && isArray)
+		if (JS_IsArrayObject(rq.cx, obj, &isArray) && isArray)
 		{
 			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_ARRAY);
 			// TODO: probably should have a more efficient storage format
@@ -109,7 +107,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			// Arrays like [1, 2, ] have an 'undefined' at the end which is part of the
 			// length but seemingly isn't enumerated, so store the length explicitly
 			uint length = 0;
-			if (!JS_GetArrayLength(cx, obj, &length))
+			if (!JS_GetArrayLength(rq.cx, obj, &length))
 				throw PSERROR_Serialize_ScriptError("JS_GetArrayLength failed");
 			m_Serializer.NumberU32_Unbounded("array length", length);
 		}
@@ -124,7 +122,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			bool sharedMemory;
 			// Now handle its array buffer
 			// this may be a backref, since ArrayBuffers can be shared by multiple views
-			JS::RootedValue bufferVal(cx, JS::ObjectValue(*JS_GetArrayBufferViewBuffer(cx, obj, &sharedMemory)));
+			JS::RootedValue bufferVal(rq.cx, JS::ObjectValue(*JS_GetArrayBufferViewBuffer(rq.cx, obj, &sharedMemory)));
 			HandleScriptVal(bufferVal);
 			break;
 		}
@@ -163,7 +161,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_NUMBER);
 				// Get primitive value
 				double d;
-				if (!JS::ToNumber(cx, val, &d))
+				if (!JS::ToNumber(rq.cx, val, &d))
 					throw PSERROR_Serialize_ScriptError("JS::ToNumber failed");
 				m_Serializer.NumberDouble_Unbounded("value", d);
 				break;
@@ -173,7 +171,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 				// Standard String object
 				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_STRING);
 				// Get primitive value
-				JS::RootedString str(cx, JS::ToString(cx, val));
+				JS::RootedString str(rq.cx, JS::ToString(rq.cx, val));
 				if (!str)
 					throw PSERROR_Serialize_ScriptError("JS_ValueToString failed");
 				ScriptString("value", str);
@@ -193,17 +191,17 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			else if (protokey == JSProto_Map)
 			{
 				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_MAP);
-				m_Serializer.NumberU32_Unbounded("map size", JS::MapSize(cx, obj));
+				m_Serializer.NumberU32_Unbounded("map size", JS::MapSize(rq.cx, obj));
 
-				JS::RootedValue keyValueIterator(cx);
-				if (!JS::MapEntries(cx, obj, &keyValueIterator))
+				JS::RootedValue keyValueIterator(rq.cx);
+				if (!JS::MapEntries(rq.cx, obj, &keyValueIterator))
 					throw PSERROR_Serialize_ScriptError("JS::MapEntries failed");
 
-				JS::ForOfIterator it(cx);
+				JS::ForOfIterator it(rq.cx);
 				if (!it.init(keyValueIterator))
 					throw PSERROR_Serialize_ScriptError("JS::ForOfIterator::init failed");
 
-				JS::RootedValue keyValuePair(cx);
+				JS::RootedValue keyValuePair(rq.cx);
 				bool done;
 				while (true)
 				{
@@ -213,11 +211,11 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 					if (done)
 						break;
 
-					JS::RootedObject keyValuePairObj(cx, &keyValuePair.toObject());
-					JS::RootedValue key(cx);
-					JS::RootedValue value(cx);
-					ENSURE(JS_GetElement(cx, keyValuePairObj, 0, &key));
-					ENSURE(JS_GetElement(cx, keyValuePairObj, 1, &value));
+					JS::RootedObject keyValuePairObj(rq.cx, &keyValuePair.toObject());
+					JS::RootedValue key(rq.cx);
+					JS::RootedValue value(rq.cx);
+					ENSURE(JS_GetElement(rq.cx, keyValuePairObj, 0, &key));
+					ENSURE(JS_GetElement(rq.cx, keyValuePairObj, 1, &value));
 
 					HandleScriptVal(key);
 					HandleScriptVal(value);
@@ -236,12 +234,12 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_SET);
 				m_Serializer.NumberU32_Unbounded("set size", setSize);
 
-				JS::RootedValue valueIterator(cx);
+				JS::RootedValue valueIterator(rq.cx);
 				m_ScriptInterface.CallFunction(val, "values", &valueIterator);
 				for (u32 i=0; i<setSize; ++i)
 				{
-					JS::RootedValue currentIterator(cx);
-					JS::RootedValue value(cx);
+					JS::RootedValue currentIterator(rq.cx);
+					JS::RootedValue value(rq.cx);
 					ENSURE(m_ScriptInterface.CallFunction(valueIterator, "next", &currentIterator));
 
 					m_ScriptInterface.GetProperty(currentIterator, "value", &value);
@@ -260,36 +258,36 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 		}
 
 		// Find all properties (ordered by insertion time)
-		JS::Rooted<JS::IdVector> ida(cx, JS::IdVector(cx));
-		if (!JS_Enumerate(cx, obj, &ida))
+		JS::Rooted<JS::IdVector> ida(rq.cx, JS::IdVector(rq.cx));
+		if (!JS_Enumerate(rq.cx, obj, &ida))
 			throw PSERROR_Serialize_ScriptError("JS_Enumerate failed");
 
 		m_Serializer.NumberU32_Unbounded("num props", (u32)ida.length());
 
 		for (size_t i = 0; i < ida.length(); ++i)
 		{
-			JS::RootedId id(cx, ida[i]);
+			JS::RootedId id(rq.cx, ida[i]);
 
-			JS::RootedValue idval(cx);
-			JS::RootedValue propval(cx);
+			JS::RootedValue idval(rq.cx);
+			JS::RootedValue propval(rq.cx);
 
 			// Forbid getters, which might delete values and mess things up.
-			JS::Rooted<JSPropertyDescriptor> desc(cx);
-			if (!JS_GetPropertyDescriptorById(cx, obj, id, &desc))
+			JS::Rooted<JSPropertyDescriptor> desc(rq.cx);
+			if (!JS_GetPropertyDescriptorById(rq.cx, obj, id, &desc))
 				throw PSERROR_Serialize_ScriptError("JS_GetPropertyDescriptorById failed");
 			if (desc.hasGetterObject())
 				throw PSERROR_Serialize_ScriptError("Cannot serialize property getters");
 
 			// Get the property name as a string
-			if (!JS_IdToValue(cx, id, &idval))
+			if (!JS_IdToValue(rq.cx, id, &idval))
 				throw PSERROR_Serialize_ScriptError("JS_IdToValue failed");
-			JS::RootedString idstr(cx, JS::ToString(cx, idval));
+			JS::RootedString idstr(rq.cx, JS::ToString(rq.cx, idval));
 			if (!idstr)
 				throw PSERROR_Serialize_ScriptError("JS_ValueToString failed");
 
 			ScriptString("prop name", idstr);
 
-			if (!JS_GetPropertyById(cx, obj, id, &propval))
+			if (!JS_GetPropertyById(rq.cx, obj, id, &propval))
 				throw PSERROR_Serialize_ScriptError("JS_GetPropertyById failed");
 
 			HandleScriptVal(propval);
@@ -301,17 +299,17 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 	{
 		// We can't serialise functions, but we can at least name the offender (hopefully)
 		std::wstring funcname(L"(unnamed)");
-		JS::RootedFunction func(cx, JS_ValueToFunction(cx, val));
+		JS::RootedFunction func(rq.cx, JS_ValueToFunction(rq.cx, val));
 		if (func)
 		{
-			JS::RootedString string(cx, JS_GetFunctionId(func));
+			JS::RootedString string(rq.cx, JS_GetFunctionId(func));
 			if (string)
 			{
 				if (JS_StringHasLatin1Chars(string))
 				{
 					size_t length;
 					JS::AutoCheckCannotGC nogc;
-					const JS::Latin1Char* ch = JS_GetLatin1StringCharsAndLength(cx, nogc, string, &length);
+					const JS::Latin1Char* ch = JS_GetLatin1StringCharsAndLength(rq.cx, nogc, string, &length);
 					if (ch && length > 0)
 						funcname.assign(ch, ch + length);
 				}
@@ -319,7 +317,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 				{
 					size_t length;
 					JS::AutoCheckCannotGC nogc;
-					const char16_t* ch = JS_GetTwoByteStringCharsAndLength(cx, nogc, string, &length);
+					const char16_t* ch = JS_GetTwoByteStringCharsAndLength(rq.cx, nogc, string, &length);
 					if (ch && length > 0)
 						funcname.assign(ch, ch + length);
 				}
@@ -332,7 +330,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 	case JSTYPE_STRING:
 	{
 		m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_STRING);
-		JS::RootedString stringVal(cx, val.toString());
+		JS::RootedString stringVal(rq.cx, val.toString());
 		ScriptString("string", stringVal);
 		break;
 	}
@@ -377,8 +375,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 
 void CBinarySerializerScriptImpl::ScriptString(const char* name, JS::HandleString string)
 {
-	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(m_ScriptInterface);
 
 #if BYTE_ORDER != LITTLE_ENDIAN
 #error TODO: probably need to convert JS strings to little-endian
@@ -391,7 +388,7 @@ void CBinarySerializerScriptImpl::ScriptString(const char* name, JS::HandleStrin
 	m_Serializer.Bool("isLatin1", isLatin1);
 	if (isLatin1)
 	{
-		const JS::Latin1Char* chars = JS_GetLatin1StringCharsAndLength(cx, nogc, string, &length);
+		const JS::Latin1Char* chars = JS_GetLatin1StringCharsAndLength(rq.cx, nogc, string, &length);
 		if (!chars)
 			throw PSERROR_Serialize_ScriptError("JS_GetLatin1StringCharsAndLength failed");
 		m_Serializer.NumberU32_Unbounded("string length", (u32)length);
@@ -399,7 +396,7 @@ void CBinarySerializerScriptImpl::ScriptString(const char* name, JS::HandleStrin
 	}
 	else
 	{
-		const char16_t* chars = JS_GetTwoByteStringCharsAndLength(cx, nogc, string, &length);
+		const char16_t* chars = JS_GetTwoByteStringCharsAndLength(rq.cx, nogc, string, &length);
 
 		if (!chars)
 			throw PSERROR_Serialize_ScriptError("JS_GetTwoByteStringCharsAndLength failed");
@@ -418,27 +415,26 @@ i32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)
 	// Tags are stored on the object. To avoid overwriting any existing property,
 	// they are saved as a uniquely-named, non-enumerable property (the serializer's unique symbol).
 
-	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(m_ScriptInterface);
 
-	JS::RootedValue symbolValue(cx, JS::SymbolValue(m_ScriptBackrefSymbol));
-	JS::RootedId symbolId(cx);
-	ENSURE(JS_ValueToId(cx, symbolValue, &symbolId));
+	JS::RootedValue symbolValue(rq.cx, JS::SymbolValue(m_ScriptBackrefSymbol));
+	JS::RootedId symbolId(rq.cx);
+	ENSURE(JS_ValueToId(rq.cx, symbolValue, &symbolId));
 
-	JS::RootedValue tagValue(cx);
+	JS::RootedValue tagValue(rq.cx);
 
 	// If it was already there, return the tag
 	bool tagFound;
-	ENSURE(JS_HasPropertyById(cx, obj, symbolId, &tagFound));
+	ENSURE(JS_HasPropertyById(rq.cx, obj, symbolId, &tagFound));
 	if (tagFound)
 	{
-		ENSURE(JS_GetPropertyById(cx, obj, symbolId, &tagValue));
+		ENSURE(JS_GetPropertyById(rq.cx, obj, symbolId, &tagValue));
 		ENSURE(tagValue.isInt32());
 		return tagValue.toInt32();
 	}
 
 	tagValue = JS::Int32Value(m_ScriptBackrefsNext);
-	JS_SetPropertyById(cx, obj, symbolId, tagValue);
+	JS_SetPropertyById(rq.cx, obj, symbolId, tagValue);
 
 	++m_ScriptBackrefsNext;
 	// Return a non-tag number so callers know they need to serialize the object

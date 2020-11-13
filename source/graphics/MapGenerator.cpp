@@ -115,11 +115,10 @@ void* CMapGeneratorWorker::RunThread(CMapGeneratorWorker* self)
 
 bool CMapGeneratorWorker::Run()
 {
-	JSContext* cx = m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(m_ScriptInterface);
 
 	// Parse settings
-	JS::RootedValue settingsVal(cx);
+	JS::RootedValue settingsVal(rq.cx);
 	if (!m_ScriptInterface->ParseJSON(m_Settings, &settingsVal) && settingsVal.isUndefined())
 	{
 		LOGERROR("CMapGeneratorWorker::Run: Failed to parse settings");
@@ -144,7 +143,7 @@ bool CMapGeneratorWorker::Run()
 	RegisterScriptFunctions_MapGenerator();
 
 	// Copy settings to global variable
-	JS::RootedValue global(cx, m_ScriptInterface->GetGlobalObject());
+	JS::RootedValue global(rq.cx, m_ScriptInterface->GetGlobalObject());
 	if (!m_ScriptInterface->SetProperty(global, "g_MapSettings", settingsVal, true, true))
 	{
 		LOGERROR("CMapGeneratorWorker::Run: Failed to define g_MapSettings");
@@ -326,10 +325,9 @@ JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::CxPrivate* pCxPriv
 	}
 
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
-	JSContext* cx = self->m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue returnValue(cx);
-	ToJSVal_vector(cx, &returnValue, heightmap);
+	ScriptInterface::Request rq(self->m_ScriptInterface);
+	JS::RootedValue returnValue(rq.cx);
+	ToJSVal_vector(rq, &returnValue, heightmap);
 	return returnValue;
 }
 
@@ -337,8 +335,7 @@ JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::CxPrivate* pCxPriv
 JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& filename)
 {
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
-	JSContext* cx = self->m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(self->m_ScriptInterface);
 
 	if (!VfsFileExists(filename))
 	{
@@ -400,10 +397,10 @@ JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CxPrivate* pCxPri
 		}
 	}
 
-	JS::RootedValue returnValue(cx);
+	JS::RootedValue returnValue(rq.cx);
 
 	ScriptInterface::CreateObject(
-		cx,
+		rq,
 		&returnValue,
 		"height", heightmap,
 		"textureNames", textureNames,

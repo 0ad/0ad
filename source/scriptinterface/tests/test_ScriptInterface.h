@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -65,16 +65,14 @@ public:
 		ScriptInterface script1("Test", "Test", g_ScriptRuntime);
 		ScriptInterface script2("Test", "Test", g_ScriptRuntime);
 
-		JSContext* cx1 = script1.GetContext();
-		JSAutoRequest rq1(cx1);
-		JS::RootedValue obj1(cx1);
+		ScriptInterface::Request rq1(script1);
+		JS::RootedValue obj1(rq1.cx);
 		TS_ASSERT(script1.Eval("({'x': 123, 'y': [1, 1.5, '2', 'test', undefined, null, true, false]})", &obj1));
 
 		{
-			JSContext* cx2 = script2.GetContext();
-			JSAutoRequest rq2(cx2);
+			ScriptInterface::Request rq2(script2);
 
-			JS::RootedValue obj2(cx2, script2.CloneValueFromOtherContext(script1, obj1));
+			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherContext(script1, obj1));
 
 			std::string source;
 			TS_ASSERT(script2.CallFunction(obj2, "toSource", source));
@@ -88,17 +86,15 @@ public:
 		ScriptInterface script1("Test", "Test", g_ScriptRuntime);
 		ScriptInterface script2("Test", "Test", g_ScriptRuntime);
 
-		JSContext* cx1 = script1.GetContext();
-		JSAutoRequest rq1(cx1);
+		ScriptInterface::Request rq1(script1);
 
-		JS::RootedValue obj1(cx1);
+		JS::RootedValue obj1(rq1.cx);
 		TS_ASSERT(script1.Eval("var s = '?'; var v = ({get x() { return 123 }, 'y': {'w':{get z() { delete v.y; delete v.n; v = null; s += s; return 4 }}}, 'n': 100}); v", &obj1));
 
 		{
-			JSContext* cx2 = script2.GetContext();
-			JSAutoRequest rq2(cx2);
+			ScriptInterface::Request rq2(script2);
 
-			JS::RootedValue obj2(cx2, script2.CloneValueFromOtherContext(script1, obj1));
+			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherContext(script1, obj1));
 
 			std::string source;
 			TS_ASSERT(script2.CallFunction(obj2, "toSource", source));
@@ -111,21 +107,19 @@ public:
 		ScriptInterface script1("Test", "Test", g_ScriptRuntime);
 		ScriptInterface script2("Test", "Test", g_ScriptRuntime);
 
-		JSContext* cx1 = script1.GetContext();
-		JSAutoRequest rq1(cx1);
+		ScriptInterface::Request rq1(script1);
 
-		JS::RootedValue obj1(cx1);
+		JS::RootedValue obj1(rq1.cx);
 		TS_ASSERT(script1.Eval("var x = []; x[0] = x; ({'a': x, 'b': x})", &obj1));
 
 		{
-			JSContext* cx2 = script2.GetContext();
-			JSAutoRequest rq(cx2);
-			JS::RootedValue obj2(cx2, script2.CloneValueFromOtherContext(script1, obj1));
+			ScriptInterface::Request rq2(script2);
+			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherContext(script1, obj1));
 
 			// Use JSAPI function to check if the values of the properties "a", "b" are equals a.x[0]
-			JS::RootedValue prop_a(cx2);
-			JS::RootedValue prop_b(cx2);
-			JS::RootedValue prop_x1(cx2);
+			JS::RootedValue prop_a(rq2.cx);
+			JS::RootedValue prop_b(rq2.cx);
+			JS::RootedValue prop_x1(rq2.cx);
 			TS_ASSERT(script2.GetProperty(obj2, "a", &prop_a));
 			TS_ASSERT(script2.GetProperty(obj2, "b", &prop_b));
 			TS_ASSERT(prop_a.isObject());
@@ -144,11 +138,10 @@ public:
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 
-		JSContext* cx = script.GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(script);
 
-		JS::RootedValue val(cx);
-		JS::RootedValue out(cx);
+		JS::RootedValue val(rq.cx);
+		JS::RootedValue out(rq.cx);
 		TS_ASSERT(script.Eval("({ "
 			"'0':0,"
 			"inc:function() { this[0]++; return this[0]; }, "
@@ -157,7 +150,7 @@ public:
 			"})"
 			, &val));
 
-		JS::RootedValue nbrVal(cx, JS::NumberValue(3));
+		JS::RootedValue nbrVal(rq.cx, JS::NumberValue(3));
 		int nbr = 0;
 
 		// CallFunctionVoid JS::RootedValue& parameter overload
@@ -166,7 +159,7 @@ public:
 		// CallFunction JS::RootedValue* out parameter overload
 		script.CallFunction(val, "inc", &out);
 
-		ScriptInterface::FromJSVal(cx, out, nbr);
+		ScriptInterface::FromJSVal(rq, out, nbr);
 		TS_ASSERT_EQUALS(4, nbr);
 
 		// CallFunction const JS::RootedValue& parameter overload
@@ -176,13 +169,13 @@ public:
 		// GetProperty JS::RootedValue* overload
 		nbr = 0;
 		script.GetProperty(val, "0", &out);
-		ScriptInterface::FromJSVal(cx, out, nbr);
+		ScriptInterface::FromJSVal(rq, out, nbr);
 		TS_ASSERT_EQUALS(nbr, 7);
 
 		// GetPropertyInt JS::RootedValue* overload
 		nbr = 0;
 		script.GetPropertyInt(val, 0, &out);
-		ScriptInterface::FromJSVal(cx, out, nbr);
+		ScriptInterface::FromJSVal(rq, out, nbr);
 		TS_ASSERT_EQUALS(nbr, 7);
 
 		handle_templates_test(script, val, &out, nbrVal);
@@ -190,6 +183,8 @@ public:
 
 	void handle_templates_test(const ScriptInterface& script, JS::HandleValue val, JS::MutableHandleValue out, JS::HandleValue nbrVal)
 	{
+		ScriptInterface::Request rq(script);
+
 		int nbr = 0;
 
 		// CallFunctionVoid JS::HandleValue parameter overload
@@ -198,7 +193,7 @@ public:
 		// CallFunction JS::MutableHandleValue out parameter overload
 		script.CallFunction(val, "inc", out);
 
-		ScriptInterface::FromJSVal(script.GetContext(), out, nbr);
+		ScriptInterface::FromJSVal(rq, out, nbr);
 		TS_ASSERT_EQUALS(4, nbr);
 
 		// CallFunction const JS::HandleValue& parameter overload
@@ -208,13 +203,13 @@ public:
 		// GetProperty JS::MutableHandleValue overload
 		nbr = 0;
 		script.GetProperty(val, "0", out);
-		ScriptInterface::FromJSVal(script.GetContext(), out, nbr);
+		ScriptInterface::FromJSVal(rq, out, nbr);
 		TS_ASSERT_EQUALS(nbr, 7);
 
 		// GetPropertyInt JS::MutableHandleValue overload
 		nbr = 0;
 		script.GetPropertyInt(val, 0, out);
-		ScriptInterface::FromJSVal(script.GetContext(), out, nbr);
+		ScriptInterface::FromJSVal(rq, out, nbr);
 		TS_ASSERT_EQUALS(nbr, 7);
 	}
 
@@ -241,11 +236,10 @@ public:
 	void test_json()
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
-		JSContext* cx = script.GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(script);
 
 		std::string input = "({'x':1,'z':[2,'3\\u263A\\ud800'],\"y\":true})";
-		JS::RootedValue val(cx);
+		JS::RootedValue val(rq.cx);
 		TS_ASSERT(script.Eval(input.c_str(), &val));
 
 		std::string stringified = script.StringifyJSON(&val);
@@ -260,8 +254,7 @@ public:
 	void test_function_override()
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
-		JSContext* cx = script.GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(script);
 
 		TS_ASSERT(script.Eval(
 			"function f() { return 1; }"
@@ -270,11 +263,11 @@ public:
 			"})(f);"
 		));
 
-		JS::RootedValue out(cx);
+		JS::RootedValue out(rq.cx);
 		TS_ASSERT(script.Eval("f()", &out));
 
 		int outNbr = 0;
-		ScriptInterface::FromJSVal(cx, out, outNbr);
+		ScriptInterface::FromJSVal(rq, out, outNbr);
 		TS_ASSERT_EQUALS(2, outNbr);
 	}
 };

@@ -213,8 +213,7 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 // dispatch all pending events to the various receivers.
 static void PumpEvents()
 {
-	JSContext* cx = g_GUI->GetScriptInterface()->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(g_GUI->GetScriptInterface());
 
 	PROFILE3("dispatch events");
 
@@ -224,8 +223,8 @@ static void PumpEvents()
 		PROFILE2("event");
 		if (g_GUI)
 		{
-			JS::RootedValue tmpVal(cx);
-			ScriptInterface::ToJSVal(cx, &tmpVal, ev);
+			JS::RootedValue tmpVal(rq.cx);
+			ScriptInterface::ToJSVal(rq, &tmpVal, ev);
 			std::string data = g_GUI->GetScriptInterface()->StringifyJSON(&tmpVal);
 			PROFILE2_ATTR("%s", data.c_str());
 		}

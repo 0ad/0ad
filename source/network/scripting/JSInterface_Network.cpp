@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -155,9 +155,8 @@ JS::Value JSI_Network::PollNetworkClient(ScriptInterface::CxPrivate* pCxPrivate)
 		return JS::UndefinedValue();
 
 	// Convert from net client context to GUI script context
-	JSContext* cxNet = g_NetClient->GetScriptInterface().GetContext();
-	JSAutoRequest rqNet(cxNet);
-	JS::RootedValue pollNet(cxNet);
+	ScriptInterface::Request rqNet(g_NetClient->GetScriptInterface());
+	JS::RootedValue pollNet(rqNet.cx);
 	g_NetClient->GuiPoll(&pollNet);
 	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(g_NetClient->GetScriptInterface(), pollNet);
 }
@@ -167,9 +166,8 @@ void JSI_Network::SetNetworkGameAttributes(ScriptInterface::CxPrivate* pCxPrivat
 	ENSURE(g_NetClient);
 
 	// TODO: This is a workaround because we need to pass a MutableHandle to a JSAPI functions somewhere (with no obvious reason).
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue attribs(cx, attribs1);
+	ScriptInterface::Request rq(pCxPrivate);
+	JS::RootedValue attribs(rq.cx, attribs1);
 
 	g_NetClient->SendGameSetupMessage(&attribs, *(pCxPrivate->pScriptInterface));
 }

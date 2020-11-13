@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,8 +35,6 @@ public:
 	void test_basic()
 	{
 		ComponentTestHelper test(g_ScriptRuntime);
-		JSContext* cx = test.GetScriptInterface().GetContext();
-		JSAutoRequest rq(cx);
 
 		ICmpCinemaManager* cmp = test.Add<ICmpCinemaManager>(CID_CinemaManager, "", SYSTEM_ENTITY);
 

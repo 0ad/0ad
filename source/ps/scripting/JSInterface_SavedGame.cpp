@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -78,8 +78,7 @@ JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, 
 	// The GUI calls this function from the GUI context and expects the return value in the same context.
 	// The game we start from here creates another context and expects data in this context.
 
-	JSContext* cxGui = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cxGui);
+	ScriptInterface::Request rqGui(pCxPrivate);
 
 	ENSURE(!g_NetServer);
 	ENSURE(!g_NetClient);
@@ -87,7 +86,7 @@ JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, 
 	ENSURE(!g_Game);
 
 	// Load the saved game data from disk
-	JS::RootedValue guiContextMetadata(cxGui);
+	JS::RootedValue guiContextMetadata(rqGui.cx);
 	std::string savedState;
 	Status err = SavedGames::Load(name, *(pCxPrivate->pScriptInterface), &guiContextMetadata, savedState);
 	if (err < 0)
@@ -97,12 +96,11 @@ JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, 
 
 	{
 		CSimulation2* sim = g_Game->GetSimulation2();
-		JSContext* cxGame = sim->GetScriptInterface().GetContext();
-		JSAutoRequest rq(cxGame);
+		ScriptInterface::Request rqGame(sim->GetScriptInterface());
 
-		JS::RootedValue gameContextMetadata(cxGame,
+		JS::RootedValue gameContextMetadata(rqGame.cx,
 			sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), guiContextMetadata));
-		JS::RootedValue gameInitAttributes(cxGame);
+		JS::RootedValue gameInitAttributes(rqGame.cx);
 		sim->GetScriptInterface().GetProperty(gameContextMetadata, "initAttributes", &gameInitAttributes);
 
 		int playerID;

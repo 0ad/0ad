@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -254,9 +254,8 @@ bool CText::MouseOverIcon()
 
 void CText::RegisterScriptFunctions()
 {
-	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
-	JSAutoRequest rq(cx);
-	JS_DefineFunctions(cx, m_JSObject, CText::JSI_methods);
+	ScriptInterface::Request rq(m_pGUI.GetScriptInterface());
+	JS_DefineFunctions(rq.cx, m_JSObject, CText::JSI_methods);
 }
 
 JSFunctionSpec CText::JSI_methods[] =
@@ -267,18 +266,18 @@ JSFunctionSpec CText::JSI_methods[] =
 
 bool CText::GetTextSize(JSContext* cx, uint argc, JS::Value* vp)
 {
-	// No JSAutoRequest needed for these calls
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	CText* thisObj = ScriptInterface::GetPrivate<CText>(cx, args, &JSI_IGUIObject::JSI_class);
+
+	ScriptInterface::Request rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
+	CText* thisObj = ScriptInterface::GetPrivate<CText>(rq, args, &JSI_IGUIObject::JSI_class);
 	if (!thisObj)
 	{
-		JSAutoRequest rq(cx);
 		JS_ReportError(cx, "This is not a CText object!");
 		return false;
 	}
 
 	thisObj->UpdateText();
 
-	ScriptInterface::ToJSVal(cx, args.rval(), thisObj->m_GeneratedTexts[0].GetSize());
+	ScriptInterface::ToJSVal(rq, args.rval(), thisObj->m_GeneratedTexts[0].GetSize());
 	return true;
 }

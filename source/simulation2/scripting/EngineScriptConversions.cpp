@@ -31,12 +31,11 @@
 #include "simulation2/system/IComponent.h"
 #include "simulation2/system/ParamNode.h"
 
-#define FAIL(msg) STMT(JS_ReportError(cx, msg); return false)
-#define FAIL_VOID(msg) STMT(JS_ReportError(cx, msg); return)
+#define FAIL(msg) STMT(JS_ReportError(rq.cx, msg); return false)
+#define FAIL_VOID(msg) STMT(JS_ReportError(rq.cx, msg); return)
 
-template<> void ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, JS::MutableHandleValue ret, IComponent* const& val)
+template<> void ScriptInterface::ToJSVal<IComponent*>(const Request& rq,  JS::MutableHandleValue ret, IComponent* const& val)
 {
-	JSAutoRequest rq(cx);
 	if (val == NULL)
 	{
 		ret.setNull();
@@ -44,7 +43,7 @@ template<> void ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, JS::Mutable
 	}
 
 	// If this is a scripted component, just return the JS object directly
-	JS::RootedValue instance(cx, val->GetJSInstance());
+	JS::RootedValue instance(rq.cx, val->GetJSInstance());
 	if (!instance.isNull())
 	{
 		ret.set(instance);
@@ -53,8 +52,8 @@ template<> void ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, JS::Mutable
 
 	// Otherwise we need to construct a wrapper object
 	// (TODO: cache wrapper objects?)
-	JS::RootedObject obj(cx);
-	if (!val->NewJSObject(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface, &obj))
+	JS::RootedObject obj(rq.cx);
+	if (!val->NewJSObject(*ScriptInterface::GetScriptInterfaceAndCBData(rq.cx)->pScriptInterface, &obj))
 	{
 		// Report as an error, since scripts really shouldn't try to use unscriptable interfaces
 		LOGERROR("IComponent does not have a scriptable interface");
@@ -66,57 +65,54 @@ template<> void ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, JS::Mutable
 	ret.setObject(*obj);
 }
 
-template<> void ScriptInterface::ToJSVal<CParamNode>(JSContext* cx, JS::MutableHandleValue ret, CParamNode const& val)
+template<> void ScriptInterface::ToJSVal<CParamNode>(const Request& rq,  JS::MutableHandleValue ret, CParamNode const& val)
 {
-	JSAutoRequest rq(cx);
-	val.ToJSVal(cx, true, ret);
+	val.ToJSVal(rq, true, ret);
 
 	// Prevent modifications to the object, so that it's safe to share between
 	// components and to reconstruct on deserialization
 	if (ret.isObject())
 	{
-		JS::RootedObject obj(cx, &ret.toObject());
-		JS_DeepFreezeObject(cx, obj);
+		JS::RootedObject obj(rq.cx, &ret.toObject());
+		JS_DeepFreezeObject(rq.cx, obj);
 	}
 }
 
-template<> void ScriptInterface::ToJSVal<const CParamNode*>(JSContext* cx, JS::MutableHandleValue ret, const CParamNode* const& val)
+template<> void ScriptInterface::ToJSVal<const CParamNode*>(const Request& rq,  JS::MutableHandleValue ret, const CParamNode* const& val)
 {
 	if (val)
-		ToJSVal(cx, ret, *val);
+		ToJSVal(rq, ret, *val);
 	else
 		ret.setUndefined();
 }
 
-template<> bool ScriptInterface::FromJSVal<CColor>(JSContext* cx, JS::HandleValue v, CColor& out)
+template<> bool ScriptInterface::FromJSVal<CColor>(const Request& rq,  JS::HandleValue v, CColor& out)
 {
-	JSAutoRequest rq(cx);
-
 	if (!v.isObject())
 		FAIL("CColor has to be an object");
 
-	JS::RootedObject obj(cx, &v.toObject());
+	JS::RootedObject obj(rq.cx, &v.toObject());
 
-	JS::RootedValue r(cx);
-	JS::RootedValue g(cx);
-	JS::RootedValue b(cx);
-	JS::RootedValue a(cx);
-	if (!JS_GetProperty(cx, obj, "r", &r) || !FromJSVal(cx, r, out.r))
+	JS::RootedValue r(rq.cx);
+	JS::RootedValue g(rq.cx);
+	JS::RootedValue b(rq.cx);
+	JS::RootedValue a(rq.cx);
+	if (!JS_GetProperty(rq.cx, obj, "r", &r) || !FromJSVal(rq, r, out.r))
 		FAIL("Failed to get property CColor.r");
-	if (!JS_GetProperty(cx, obj, "g", &g) || !FromJSVal(cx, g, out.g))
+	if (!JS_GetProperty(rq.cx, obj, "g", &g) || !FromJSVal(rq, g, out.g))
 		FAIL("Failed to get property CColor.g");
-	if (!JS_GetProperty(cx, obj, "b", &b) || !FromJSVal(cx, b, out.b))
+	if (!JS_GetProperty(rq.cx, obj, "b", &b) || !FromJSVal(rq, b, out.b))
 		FAIL("Failed to get property CColor.b");
-	if (!JS_GetProperty(cx, obj, "a", &a) || !FromJSVal(cx, a, out.a))
+	if (!JS_GetProperty(rq.cx, obj, "a", &a) || !FromJSVal(rq, a, out.a))
 		FAIL("Failed to get property CColor.a");
 
 	return true;
 }
 
-template<> void ScriptInterface::ToJSVal<CColor>(JSContext* cx, JS::MutableHandleValue ret, CColor const& val)
+template<> void ScriptInterface::ToJSVal<CColor>(const Request& rq,  JS::MutableHandleValue ret, CColor const& val)
 {
 	CreateObject(
-		cx,
+		rq,
 		ret,
 		"r", val.r,
 		"g", val.g,
@@ -124,11 +120,10 @@ template<> void ScriptInterface::ToJSVal<CColor>(JSContext* cx, JS::MutableHandl
 		"a", val.a);
 }
 
-template<> bool ScriptInterface::FromJSVal<fixed>(JSContext* cx, JS::HandleValue v, fixed& out)
+template<> bool ScriptInterface::FromJSVal<fixed>(const Request& rq,  JS::HandleValue v, fixed& out)
 {
-	JSAutoRequest rq(cx);
 	double ret;
-	if (!JS::ToNumber(cx, v, &ret))
+	if (!JS::ToNumber(rq.cx, v, &ret))
 		return false;
 	out = fixed::FromDouble(ret);
 	// double can precisely represent the full range of fixed, so this is a non-lossy conversion
@@ -136,93 +131,86 @@ template<> bool ScriptInterface::FromJSVal<fixed>(JSContext* cx, JS::HandleValue
 	return true;
 }
 
-template<> void ScriptInterface::ToJSVal<fixed>(JSContext* UNUSED(cx), JS::MutableHandleValue ret, const fixed& val)
+template<> void ScriptInterface::ToJSVal<fixed>(const Request& UNUSED(rq), JS::MutableHandleValue ret, const fixed& val)
 {
 	ret.set(JS::NumberValue(val.ToDouble()));
 }
 
-template<> bool ScriptInterface::FromJSVal<CFixedVector3D>(JSContext* cx, JS::HandleValue v, CFixedVector3D& out)
+template<> bool ScriptInterface::FromJSVal<CFixedVector3D>(const Request& rq,  JS::HandleValue v, CFixedVector3D& out)
 {
 	if (!v.isObject())
 		return false; // TODO: report type error
 
-	JSAutoRequest rq(cx);
-	JS::RootedObject obj(cx, &v.toObject());
-	JS::RootedValue p(cx);
+	JS::RootedObject obj(rq.cx, &v.toObject());
+	JS::RootedValue p(rq.cx);
 
-	if (!JS_GetProperty(cx, obj, "x", &p)) return false; // TODO: report type errors
-	if (!FromJSVal(cx, p, out.X)) return false;
+	if (!JS_GetProperty(rq.cx, obj, "x", &p)) return false; // TODO: report type errors
+	if (!FromJSVal(rq, p, out.X)) return false;
 
-	if (!JS_GetProperty(cx, obj, "y", &p)) return false;
-	if (!FromJSVal(cx, p, out.Y)) return false;
+	if (!JS_GetProperty(rq.cx, obj, "y", &p)) return false;
+	if (!FromJSVal(rq, p, out.Y)) return false;
 
-	if (!JS_GetProperty(cx, obj, "z", &p)) return false;
-	if (!FromJSVal(cx, p, out.Z)) return false;
+	if (!JS_GetProperty(rq.cx, obj, "z", &p)) return false;
+	if (!FromJSVal(rq, p, out.Z)) return false;
 
 	return true;
 }
 
-template<> void ScriptInterface::ToJSVal<CFixedVector3D>(JSContext* cx, JS::MutableHandleValue ret, const CFixedVector3D& val)
+template<> void ScriptInterface::ToJSVal<CFixedVector3D>(const Request& rq,  JS::MutableHandleValue ret, const CFixedVector3D& val)
 {
-	JSAutoRequest rq(cx);
-
- 	ScriptInterface::CxPrivate* pCxPrivate = ScriptInterface::GetScriptInterfaceAndCBData(cx);
-	JS::RootedObject global(cx, &pCxPrivate->pScriptInterface->GetGlobalObject().toObject());
-	JS::RootedValue valueVector3D(cx);
-	if (!JS_GetProperty(cx, global, "Vector3D", &valueVector3D))
+ 	ScriptInterface::CxPrivate* pCxPrivate = ScriptInterface::GetScriptInterfaceAndCBData(rq.cx);
+	JS::RootedObject global(rq.cx, &pCxPrivate->pScriptInterface->GetGlobalObject().toObject());
+	JS::RootedValue valueVector3D(rq.cx);
+	if (!JS_GetProperty(rq.cx, global, "Vector3D", &valueVector3D))
 		FAIL_VOID("Failed to get Vector3D constructor");
 
-	JS::AutoValueArray<3> args(cx);
+	JS::AutoValueArray<3> args(rq.cx);
 	args[0].setNumber(val.X.ToDouble());
 	args[1].setNumber(val.Y.ToDouble());
 	args[2].setNumber(val.Z.ToDouble());
 
-	if (!JS::Construct(cx, valueVector3D, args, ret))
+	if (!JS::Construct(rq.cx, valueVector3D, args, ret))
 		FAIL_VOID("Failed to construct Vector3D object");
 }
 
-template<> bool ScriptInterface::FromJSVal<CFixedVector2D>(JSContext* cx, JS::HandleValue v, CFixedVector2D& out)
+template<> bool ScriptInterface::FromJSVal<CFixedVector2D>(const Request& rq,  JS::HandleValue v, CFixedVector2D& out)
 {
-	JSAutoRequest rq(cx);
 	if (!v.isObject())
 		return false; // TODO: report type error
-	JS::RootedObject obj(cx, &v.toObject());
+	JS::RootedObject obj(rq.cx, &v.toObject());
 
-	JS::RootedValue p(cx);
+	JS::RootedValue p(rq.cx);
 
-	if (!JS_GetProperty(cx, obj, "x", &p)) return false; // TODO: report type errors
-	if (!FromJSVal(cx, p, out.X)) return false;
+	if (!JS_GetProperty(rq.cx, obj, "x", &p)) return false; // TODO: report type errors
+	if (!FromJSVal(rq, p, out.X)) return false;
 
-	if (!JS_GetProperty(cx, obj, "y", &p)) return false;
-	if (!FromJSVal(cx, p, out.Y)) return false;
+	if (!JS_GetProperty(rq.cx, obj, "y", &p)) return false;
+	if (!FromJSVal(rq, p, out.Y)) return false;
 
 	return true;
 }
 
-template<> void ScriptInterface::ToJSVal<CFixedVector2D>(JSContext* cx, JS::MutableHandleValue ret, const CFixedVector2D& val)
+template<> void ScriptInterface::ToJSVal<CFixedVector2D>(const Request& rq,  JS::MutableHandleValue ret, const CFixedVector2D& val)
 {
-	JSAutoRequest rq(cx);
-
- 	ScriptInterface::CxPrivate* pCxPrivate = ScriptInterface::GetScriptInterfaceAndCBData(cx);
-	JS::RootedObject global(cx, &pCxPrivate->pScriptInterface->GetGlobalObject().toObject());
-	JS::RootedValue valueVector2D(cx);
-	if (!JS_GetProperty(cx, global, "Vector2D", &valueVector2D))
+ 	ScriptInterface::CxPrivate* pCxPrivate = ScriptInterface::GetScriptInterfaceAndCBData(rq.cx);
+	JS::RootedObject global(rq.cx, &pCxPrivate->pScriptInterface->GetGlobalObject().toObject());
+	JS::RootedValue valueVector2D(rq.cx);
+	if (!JS_GetProperty(rq.cx, global, "Vector2D", &valueVector2D))
 		FAIL_VOID("Failed to get Vector2D constructor");
 
-	JS::AutoValueArray<2> args(cx);
+	JS::AutoValueArray<2> args(rq.cx);
 	args[0].setNumber(val.X.ToDouble());
 	args[1].setNumber(val.Y.ToDouble());
 
-	if (!JS::Construct(cx, valueVector2D, args, ret))
+	if (!JS::Construct(rq.cx, valueVector2D, args, ret))
 		FAIL_VOID("Failed to construct Vector2D object");
 }
 
-template<> void ScriptInterface::ToJSVal<Grid<u8> >(JSContext* cx, JS::MutableHandleValue ret, const Grid<u8>& val)
+template<> void ScriptInterface::ToJSVal<Grid<u8> >(const Request& rq,  JS::MutableHandleValue ret, const Grid<u8>& val)
 {
-	JSAutoRequest rq(cx);
 	u32 length = (u32)(val.m_W * val.m_H);
 	u32 nbytes = (u32)(length * sizeof(u8));
-	JS::RootedObject objArr(cx, JS_NewUint8Array(cx, length));
+	JS::RootedObject objArr(rq.cx, JS_NewUint8Array(rq.cx, length));
 	// Copy the array data and then remove the no-GC check to allow further changes to the JS data
 	{
 		JS::AutoCheckCannotGC nogc;
@@ -230,21 +218,20 @@ template<> void ScriptInterface::ToJSVal<Grid<u8> >(JSContext* cx, JS::MutableHa
 		memcpy((void*)JS_GetUint8ArrayData(objArr, &sharedMemory, nogc), val.m_Data, nbytes);
 	}
 
-	JS::RootedValue data(cx, JS::ObjectValue(*objArr));
+	JS::RootedValue data(rq.cx, JS::ObjectValue(*objArr));
 	CreateObject(
-		cx,
+		rq,
 		ret,
 		"width", val.m_W,
 		"height", val.m_H,
 		"data", data);
 }
 
-template<> void ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, JS::MutableHandleValue ret, const Grid<u16>& val)
+template<> void ScriptInterface::ToJSVal<Grid<u16> >(const Request& rq,  JS::MutableHandleValue ret, const Grid<u16>& val)
  {
-	JSAutoRequest rq(cx);
 	u32 length = (u32)(val.m_W * val.m_H);
 	u32 nbytes = (u32)(length * sizeof(u16));
-	JS::RootedObject objArr(cx, JS_NewUint16Array(cx, length));
+	JS::RootedObject objArr(rq.cx, JS_NewUint16Array(rq.cx, length));
 	// Copy the array data and then remove the no-GC check to allow further changes to the JS data
 	{
 		JS::AutoCheckCannotGC nogc;
@@ -252,43 +239,41 @@ template<> void ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, JS::MutableH
 		memcpy((void*)JS_GetUint16ArrayData(objArr, &sharedMemory, nogc), val.m_Data, nbytes);
 	}
 
-	JS::RootedValue data(cx, JS::ObjectValue(*objArr));
+	JS::RootedValue data(rq.cx, JS::ObjectValue(*objArr));
 	CreateObject(
-		cx,
+		rq,
 		ret,
 		"width", val.m_W,
 		"height", val.m_H,
 		"data", data);
 }
 
-template<> bool ScriptInterface::FromJSVal<TNSpline>(JSContext* cx, JS::HandleValue v, TNSpline& out)
+template<> bool ScriptInterface::FromJSVal<TNSpline>(const Request& rq,  JS::HandleValue v, TNSpline& out)
 {
-	JSAutoRequest rq(cx);
-
 	if (!v.isObject())
 		FAIL("Argument must be an object");
 
-	JS::RootedObject obj(cx, &v.toObject());
+	JS::RootedObject obj(rq.cx, &v.toObject());
 	bool isArray;
-	if (!JS_IsArrayObject(cx, obj, &isArray) || !isArray)
+	if (!JS_IsArrayObject(rq.cx, obj, &isArray) || !isArray)
 		FAIL("Argument must be an array");
 
 	u32 numberOfNodes = 0;
-	if (!JS_GetArrayLength(cx, obj, &numberOfNodes))
+	if (!JS_GetArrayLength(rq.cx, obj, &numberOfNodes))
 		FAIL("Failed to get array length");
 
 	for (u32 i = 0; i < numberOfNodes; ++i)
 	{
-		JS::RootedValue node(cx);
-		if (!JS_GetElement(cx, obj, i, &node))
+		JS::RootedValue node(rq.cx);
+		if (!JS_GetElement(rq.cx, obj, i, &node))
 			FAIL("Failed to read array element");
 
 		fixed deltaTime;
-		if (!FromJSProperty(cx, node, "deltaTime", deltaTime))
+		if (!FromJSProperty(rq, node, "deltaTime", deltaTime))
 			FAIL("Failed to read Spline.deltaTime property");
 
 		CFixedVector3D position;
-		if (!FromJSProperty(cx, node, "position", position))
+		if (!FromJSProperty(rq, node, "position", position))
 			FAIL("Failed to read Spline.position property");
 
 		out.AddNode(position, CFixedVector3D(), deltaTime);
@@ -300,38 +285,36 @@ template<> bool ScriptInterface::FromJSVal<TNSpline>(JSContext* cx, JS::HandleVa
 	return true;
 }
 
-template<> bool ScriptInterface::FromJSVal<CCinemaPath>(JSContext* cx, JS::HandleValue v, CCinemaPath& out)
+template<> bool ScriptInterface::FromJSVal<CCinemaPath>(const Request& rq,  JS::HandleValue v, CCinemaPath& out)
 {
-	JSAutoRequest rq(cx);
-
 	if (!v.isObject())
 		FAIL("Argument must be an object");
 
-	JS::RootedObject obj(cx, &v.toObject());
+	JS::RootedObject obj(rq.cx, &v.toObject());
 
 	CCinemaData pathData;
 	TNSpline positionSpline, targetSpline;
 
-	if (!FromJSProperty(cx, v, "name", pathData.m_Name))
+	if (!FromJSProperty(rq, v, "name", pathData.m_Name))
 		FAIL("Failed to get CCinemaPath.name property");
 
-	if (!FromJSProperty(cx, v, "orientation", pathData.m_Orientation))
+	if (!FromJSProperty(rq, v, "orientation", pathData.m_Orientation))
 		FAIL("Failed to get CCinemaPath.orientation property");
 
-	if (!FromJSProperty(cx, v, "positionNodes", positionSpline))
+	if (!FromJSProperty(rq, v, "positionNodes", positionSpline))
 		FAIL("Failed to get CCinemaPath.positionNodes property");
 
-	if (pathData.m_Orientation == L"target" && !FromJSProperty(cx, v, "targetNodes", targetSpline))
+	if (pathData.m_Orientation == L"target" && !FromJSProperty(rq, v, "targetNodes", targetSpline))
 		FAIL("Failed to get CCinemaPath.targetNodes property");
 
 	// Other properties are not necessary to be defined
-	if (!FromJSProperty(cx, v, "timescale", pathData.m_Timescale))
+	if (!FromJSProperty(rq, v, "timescale", pathData.m_Timescale))
 		pathData.m_Timescale = fixed::FromInt(1);
 
-	if (!FromJSProperty(cx, v, "mode", pathData.m_Mode))
+	if (!FromJSProperty(rq, v, "mode", pathData.m_Mode))
 		pathData.m_Mode = L"ease_inout";
 
-	if (!FromJSProperty(cx, v, "style", pathData.m_Style))
+	if (!FromJSProperty(rq, v, "style", pathData.m_Style))
 		pathData.m_Style = L"default";
 
 	out = CCinemaPath(pathData, positionSpline, targetSpline);

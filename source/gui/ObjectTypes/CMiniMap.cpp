@@ -238,19 +238,18 @@ float CMiniMap::GetAngle() const
 
 bool CMiniMap::FireWorldClickEvent(int button, int UNUSED(clicks))
 {
-	JSContext* cx = g_GUI->GetActiveGUI()->GetScriptInterface()->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(g_GUI->GetActiveGUI()->GetScriptInterface());
 
 	float x, z;
 	GetMouseWorldCoordinates(x, z);
 
-	JS::RootedValue coords(cx);
-	ScriptInterface::CreateObject(cx, &coords, "x", x, "z", z);
+	JS::RootedValue coords(rq.cx);
+	ScriptInterface::CreateObject(rq, &coords, "x", x, "z", z);
 
-	JS::RootedValue buttonJs(cx);
-	ScriptInterface::ToJSVal(cx, &buttonJs, button);
+	JS::RootedValue buttonJs(rq.cx);
+	ScriptInterface::ToJSVal(rq, &buttonJs, button);
 
-	JS::AutoValueVector paramData(cx);
+	JS::AutoValueVector paramData(rq.cx);
 	paramData.append(coords);
 	paramData.append(buttonJs);
 

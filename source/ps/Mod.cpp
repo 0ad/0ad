@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,9 +39,8 @@ CmdLineArgs g_args;
 
 JS::Value Mod::GetAvailableMods(const ScriptInterface& scriptInterface)
 {
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedObject obj(cx, JS_NewPlainObject(cx));
+	ScriptInterface::Request rq(scriptInterface);
+	JS::RootedObject obj(rq.cx, JS_NewPlainObject(rq.cx));
 
 	const Paths paths(g_args);
 
@@ -68,12 +67,12 @@ JS::Value Mod::GetAvailableMods(const ScriptInterface& scriptInterface)
 		if (modinfo.Load(vfs, L"mod.json", false) != PSRETURN_OK)
 			continue;
 
-		JS::RootedValue json(cx);
+		JS::RootedValue json(rq.cx);
 		if (!scriptInterface.ParseJSON(modinfo.GetAsString(), &json))
 			continue;
 
 		// Valid mod, add it to our structure
-		JS_SetProperty(cx, obj, utf8_from_wstring(iter->string()).c_str(), json);
+		JS_SetProperty(rq.cx, obj, utf8_from_wstring(iter->string()).c_str(), json);
 	}
 
 	GetDirectoryEntries(modUserPath, NULL, &modDirsUser);
@@ -94,12 +93,12 @@ JS::Value Mod::GetAvailableMods(const ScriptInterface& scriptInterface)
 		if (modinfo.Load(vfs, L"mod.json", false) != PSRETURN_OK)
 			continue;
 
-		JS::RootedValue json(cx);
+		JS::RootedValue json(rq.cx);
 		if (!scriptInterface.ParseJSON(modinfo.GetAsString(), &json))
 			continue;
 
 		// Valid mod, add it to our structure
-		JS_SetProperty(cx, obj, utf8_from_wstring(iter->string()).c_str(), json);
+		JS_SetProperty(rq.cx, obj, utf8_from_wstring(iter->string()).c_str(), json);
 	}
 
 	return JS::ObjectValue(*obj);
@@ -108,10 +107,9 @@ JS::Value Mod::GetAvailableMods(const ScriptInterface& scriptInterface)
 void Mod::CacheEnabledModVersions(const shared_ptr<ScriptRuntime>& scriptRuntime)
 {
 	ScriptInterface scriptInterface("Engine", "CacheEnabledModVersions", scriptRuntime);
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(scriptInterface);
 
-	JS::RootedValue availableMods(cx, GetAvailableMods(scriptInterface));
+	JS::RootedValue availableMods(rq.cx, GetAvailableMods(scriptInterface));
 
 	g_LoadedModVersions.clear();
 
@@ -122,7 +120,7 @@ void Mod::CacheEnabledModVersions(const shared_ptr<ScriptRuntime>& scriptRuntime
 			continue;
 
 		CStr version;
-		JS::RootedValue modData(cx);
+		JS::RootedValue modData(rq.cx);
 		if (scriptInterface.GetProperty(availableMods, mod.c_str(), &modData))
 			scriptInterface.GetProperty(modData, "version", version);
 
@@ -132,23 +130,21 @@ void Mod::CacheEnabledModVersions(const shared_ptr<ScriptRuntime>& scriptRuntime
 
 JS::Value Mod::GetLoadedModsWithVersions(const ScriptInterface& scriptInterface)
 {
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue returnValue(cx);
-	scriptInterface.ToJSVal(cx, &returnValue, g_LoadedModVersions);
+	ScriptInterface::Request rq(scriptInterface);
+	JS::RootedValue returnValue(rq.cx);
+	scriptInterface.ToJSVal(rq, &returnValue, g_LoadedModVersions);
 	return returnValue;
 }
 
 JS::Value Mod::GetEngineInfo(const ScriptInterface& scriptInterface)
 {
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(scriptInterface);
 
-	JS::RootedValue mods(cx, Mod::GetLoadedModsWithVersions(scriptInterface));
-	JS::RootedValue metainfo(cx);
+	JS::RootedValue mods(rq.cx, Mod::GetLoadedModsWithVersions(scriptInterface));
+	JS::RootedValue metainfo(rq.cx);
 
 	ScriptInterface::CreateObject(
-		cx,
+		rq,
 		&metainfo,
 		"engine_version", engine_version,
 		"mods", mods);

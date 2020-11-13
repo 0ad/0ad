@@ -41,23 +41,22 @@ bool CGUISetting<T>::FromString(const CStrW& Value, const bool SendMessage)
 };
 
 template<>
-bool CGUISetting<CGUIColor>::FromJSVal(JSContext* cx, JS::HandleValue Value, const bool SendMessage)
+bool CGUISetting<CGUIColor>::FromJSVal(const ScriptInterface::Request& rq, JS::HandleValue Value, const bool SendMessage)
 {
 	CGUIColor settingValue;
 	if (Value.isString())
 	{
 		CStr name;
-		if (!ScriptInterface::FromJSVal(cx, Value, name))
+		if (!ScriptInterface::FromJSVal(rq, Value, name))
 			return false;
 
 		if (!settingValue.ParseString(m_pObject.GetGUI(), name))
 		{
-			JSAutoRequest rq(cx);
-			JS_ReportError(cx, "Invalid color '%s'", name.c_str());
+			JS_ReportError(rq.cx, "Invalid color '%s'", name.c_str());
 			return false;
 		}
 	}
-	else if (!ScriptInterface::FromJSVal<CColor>(cx, Value, settingValue))
+	else if (!ScriptInterface::FromJSVal<CColor>(rq, Value, settingValue))
 		return false;
 
 	m_pObject.SetSetting<CGUIColor>(m_Name, settingValue, SendMessage);
@@ -65,10 +64,10 @@ bool CGUISetting<CGUIColor>::FromJSVal(JSContext* cx, JS::HandleValue Value, con
 };
 
 template<typename T>
-bool CGUISetting<T>::FromJSVal(JSContext* cx, JS::HandleValue Value, const bool SendMessage)
+bool CGUISetting<T>::FromJSVal(const ScriptInterface::Request& rq, JS::HandleValue Value, const bool SendMessage)
 {
 	T settingValue;
-	if (!ScriptInterface::FromJSVal<T>(cx, Value, settingValue))
+	if (!ScriptInterface::FromJSVal<T>(rq, Value, settingValue))
 		return false;
 
 	m_pObject.SetSetting<T>(m_Name, settingValue, SendMessage);
@@ -76,9 +75,9 @@ bool CGUISetting<T>::FromJSVal(JSContext* cx, JS::HandleValue Value, const bool 
 };
 
 template<typename T>
-void CGUISetting<T>::ToJSVal(JSContext* cx, JS::MutableHandleValue Value)
+void CGUISetting<T>::ToJSVal(const ScriptInterface::Request& rq, JS::MutableHandleValue Value)
 {
-	ScriptInterface::ToJSVal<T>(cx, Value, m_pSetting);
+	ScriptInterface::ToJSVal<T>(rq, Value, m_pSetting);
 };
 
 #define TYPE(T) \

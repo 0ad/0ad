@@ -298,9 +298,9 @@ void RLInterface::TryApplyMessage()
 
 					g_Game = new CGame(m_ScenarioConfig.saveReplay);
 					ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-					JSContext* cx = scriptInterface.GetContext();
-					JSAutoRequest rq(cx);
-					JS::RootedValue attrs(cx);
+					ScriptInterface::Request rq(scriptInterface);
+
+					JS::RootedValue attrs(rq.cx);
 					scriptInterface.ParseJSON(m_ScenarioConfig.content, &attrs);
 
 					g_Game->SetPlayerID(m_ScenarioConfig.playerID);
@@ -316,12 +316,12 @@ void RLInterface::TryApplyMessage()
 					}
 					else
 					{
-						JS::RootedValue initData(cx);
-						scriptInterface.CreateObject(cx, &initData);
+						JS::RootedValue initData(rq.cx);
+						scriptInterface.CreateObject(rq, &initData);
 						scriptInterface.SetProperty(initData, "attribs", attrs);
 
-						JS::RootedValue playerAssignments(cx);
-						scriptInterface.CreateObject(cx, &playerAssignments);
+						JS::RootedValue playerAssignments(rq.cx);
+						scriptInterface.CreateObject(rq, &playerAssignments);
 						scriptInterface.SetProperty(initData, "playerAssignments", playerAssignments);
 
 						g_GUI->SwitchPage(L"page_loading.xml", &scriptInterface, initData);
@@ -339,14 +339,14 @@ void RLInterface::TryApplyMessage()
 						m_msgLock.unlock();
 						return;
 					}
-					const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+
 					CLocalTurnManager* turnMgr = static_cast<CLocalTurnManager*>(g_Game->GetTurnManager());
 
+					const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+					ScriptInterface::Request rq(scriptInterface);
 					for (Command command : msg.commands)
 					{
-						JSContext* cx = scriptInterface.GetContext();
-						JSAutoRequest rq(cx);
-						JS::RootedValue commandJSON(cx);
+						JS::RootedValue commandJSON(rq.cx);
 						scriptInterface.ParseJSON(command.json_cmd, &commandJSON);
 						turnMgr->PostCommand(command.playerID, commandJSON);
 					}
@@ -376,11 +376,11 @@ void RLInterface::TryApplyMessage()
 std::string RLInterface::GetGameState()
 {
 	const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+	ScriptInterface::Request rq(scriptInterface);
+
 	const CSimContext simContext = g_Game->GetSimulation2()->GetSimContext();
 	CmpPtr<ICmpAIInterface> cmpAIInterface(simContext.GetSystemEntity());
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue state(cx);
+	JS::RootedValue state(rq.cx);
 	cmpAIInterface->GetFullRepresentation(&state, true);
 	return scriptInterface.StringifyJSON(&state, false);
 }

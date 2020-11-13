@@ -50,10 +50,9 @@ JS::Value JSI_Simulation::GuiInterfaceCall(ScriptInterface::CxPrivate* pCxPrivat
 	if (!cmpGuiInterface)
 		return JS::UndefinedValue();
 
-	JSContext* cxSim = sim->GetScriptInterface().GetContext();
-	JSAutoRequest rqSim(cxSim);
-	JS::RootedValue arg(cxSim, sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), data));
-	JS::RootedValue ret(cxSim);
+	ScriptInterface::Request rqSim(sim->GetScriptInterface());
+	JS::RootedValue arg(rqSim.cx, sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), data));
+	JS::RootedValue ret(rqSim.cx);
 	cmpGuiInterface->ScriptCall(g_Game->GetViewedPlayerID(), name, arg, &ret);
 
 	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(sim->GetScriptInterface(), ret);
@@ -71,9 +70,8 @@ void JSI_Simulation::PostNetworkCommand(ScriptInterface::CxPrivate* pCxPrivate, 
 	if (!cmpCommandQueue)
 		return;
 
-	JSContext* cxSim = sim->GetScriptInterface().GetContext();
-	JSAutoRequest rqSim(cxSim);
-	JS::RootedValue cmd2(cxSim, sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), cmd));
+	ScriptInterface::Request rqSim(sim->GetScriptInterface());
+	JS::RootedValue cmd2(rqSim.cx, sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), cmd));
 
 	cmpCommandQueue->PostNetworkCommand(cmd2);
 }
@@ -126,10 +124,9 @@ JS::Value JSI_Simulation::GetEdgesOfStaticObstructionsOnScreenNearTo(ScriptInter
 	CSimulation2* sim = g_Game->GetSimulation2();
 	ENSURE(sim);
 
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue edgeList(cx);
-	ScriptInterface::CreateArray(cx, &edgeList);
+	ScriptInterface::Request rq(pCxPrivate);
+	JS::RootedValue edgeList(rq.cx);
+	ScriptInterface::CreateArray(rq, &edgeList);
 	int edgeListIndex = 0;
 
 	float distanceThreshold = 10.0f;
@@ -163,7 +160,7 @@ JS::Value JSI_Simulation::GetEdgesOfStaticObstructionsOnScreenNearTo(ScriptInter
 
 		for (size_t i = 0; i < corners.size(); ++i)
 		{
-			JS::RootedValue edge(cx);
+			JS::RootedValue edge(rq.cx);
 			const CFixedVector2D& corner = corners[i];
 			const CFixedVector2D& nextCorner = corners[(i + 1) % corners.size()];
 
@@ -175,7 +172,7 @@ JS::Value JSI_Simulation::GetEdgesOfStaticObstructionsOnScreenNearTo(ScriptInter
 			CFixedVector2D normal = -(nextCorner - corner).Perpendicular();
 			normal.Normalize();
 			ScriptInterface::CreateObject(
-				cx,
+				rq,
 				&edge,
 				"begin", corner,
 				"end", nextCorner,

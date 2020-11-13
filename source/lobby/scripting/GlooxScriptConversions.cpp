@@ -23,39 +23,39 @@
 #include "lobby/XmppClient.h"
 #include "scriptinterface/ScriptInterface.h"
 
-template<> void ScriptInterface::ToJSVal<glooxwrapper::string>(JSContext* cx, JS::MutableHandleValue ret, const glooxwrapper::string& val)
+template<> void ScriptInterface::ToJSVal<glooxwrapper::string>(const Request& rq, JS::MutableHandleValue ret, const glooxwrapper::string& val)
 {
-	ToJSVal(cx, ret, wstring_from_utf8(val.to_string()));
+	ToJSVal(rq, ret, wstring_from_utf8(val.to_string()));
 }
 
-template<> void ScriptInterface::ToJSVal<gloox::Presence::PresenceType>(JSContext* cx, JS::MutableHandleValue ret, const gloox::Presence::PresenceType& val)
+template<> void ScriptInterface::ToJSVal<gloox::Presence::PresenceType>(const Request& rq, JS::MutableHandleValue ret, const gloox::Presence::PresenceType& val)
 {
-	ToJSVal(cx, ret, XmppClient::GetPresenceString(val));
+	ToJSVal(rq, ret, XmppClient::GetPresenceString(val));
 }
 
-template<> void ScriptInterface::ToJSVal<gloox::MUCRoomRole>(JSContext* cx, JS::MutableHandleValue ret, const gloox::MUCRoomRole& val)
+template<> void ScriptInterface::ToJSVal<gloox::MUCRoomRole>(const Request& rq, JS::MutableHandleValue ret, const gloox::MUCRoomRole& val)
 {
-	ToJSVal(cx, ret, XmppClient::GetRoleString(val));
+	ToJSVal(rq, ret, XmppClient::GetRoleString(val));
 }
 
-template<> void ScriptInterface::ToJSVal<gloox::StanzaError>(JSContext* cx, JS::MutableHandleValue ret, const gloox::StanzaError& val)
+template<> void ScriptInterface::ToJSVal<gloox::StanzaError>(const Request& rq, JS::MutableHandleValue ret, const gloox::StanzaError& val)
 {
-	ToJSVal(cx, ret, wstring_from_utf8(XmppClient::StanzaErrorToString(val)));
+	ToJSVal(rq, ret, wstring_from_utf8(XmppClient::StanzaErrorToString(val)));
 }
 
-template<> void ScriptInterface::ToJSVal<gloox::ConnectionError>(JSContext* cx, JS::MutableHandleValue ret, const gloox::ConnectionError& val)
+template<> void ScriptInterface::ToJSVal<gloox::ConnectionError>(const Request& rq, JS::MutableHandleValue ret, const gloox::ConnectionError& val)
 {
-	ToJSVal(cx, ret, wstring_from_utf8(XmppClient::ConnectionErrorToString(val)));
+	ToJSVal(rq, ret, wstring_from_utf8(XmppClient::ConnectionErrorToString(val)));
 }
 
-template<> void ScriptInterface::ToJSVal<gloox::RegistrationResult>(JSContext* cx, JS::MutableHandleValue ret, const gloox::RegistrationResult& val)
+template<> void ScriptInterface::ToJSVal<gloox::RegistrationResult>(const Request& rq, JS::MutableHandleValue ret, const gloox::RegistrationResult& val)
 {
-	ToJSVal(cx, ret, wstring_from_utf8(XmppClient::RegistrationResultToString(val)));
+	ToJSVal(rq, ret, wstring_from_utf8(XmppClient::RegistrationResultToString(val)));
 }
 
-template<> void ScriptInterface::ToJSVal<gloox::CertStatus>(JSContext* cx, JS::MutableHandleValue ret, const gloox::CertStatus& val)
+template<> void ScriptInterface::ToJSVal<gloox::CertStatus>(const Request& rq, JS::MutableHandleValue ret, const gloox::CertStatus& val)
 {
-	ToJSVal(cx, ret, wstring_from_utf8(XmppClient::CertificateErrorToString(val)));
+	ToJSVal(rq, ret, wstring_from_utf8(XmppClient::CertificateErrorToString(val)));
 }
 
 #endif // CONFIG2_LOBBY

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -133,11 +133,10 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptRuntime> scriptRuntime)
 	if (gui)
 	{
 		shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
-		JSContext* cx = scriptInterface->GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(*scriptInterface);
 
-		JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
-		JS::RootedValue hotloadDataVal(cx);
+		JS::RootedValue global(rq.cx, scriptInterface->GetGlobalObject());
+		JS::RootedValue hotloadDataVal(rq.cx);
 		scriptInterface->CallFunction(global, "getHotloadData", &hotloadDataVal);
 		hotloadData = scriptInterface->WriteStructuredClone(hotloadDataVal);
 	}
@@ -200,12 +199,11 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptRuntime> scriptRuntime)
 	gui->LoadedXmlFiles();
 
 	shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
-	JSContext* cx = scriptInterface->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(*scriptInterface);
 
-	JS::RootedValue initDataVal(cx);
-	JS::RootedValue hotloadDataVal(cx);
-	JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
+	JS::RootedValue initDataVal(rq.cx);
+	JS::RootedValue hotloadDataVal(rq.cx);
+	JS::RootedValue global(rq.cx, scriptInterface->GetGlobalObject());
 
 	if (initData)
 		scriptInterface->ReadStructuredClone(initData, &initDataVal);
@@ -226,8 +224,9 @@ void CGUIManager::SGUIPage::SetCallbackFunction(ScriptInterface& scriptInterface
 		return;
 	}
 
-	// Does not require JSAutoRequest
-	if (!JS_ObjectIsFunction(scriptInterface.GetContext(), &callbackFunc.toObject()))
+	ScriptInterface::Request rq(scriptInterface);
+
+	if (!JS_ObjectIsFunction(rq.cx, &callbackFunc.toObject()))
 	{
 		LOGERROR("Given callback handler is not a function!");
 		return;
@@ -242,26 +241,25 @@ void CGUIManager::SGUIPage::PerformCallbackFunction(shared_ptr<ScriptInterface::
 		return;
 
 	shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
-	JSContext* cx = scriptInterface->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(*scriptInterface);
 
-	JS::RootedObject globalObj(cx, &scriptInterface->GetGlobalObject().toObject());
+	JS::RootedObject globalObj(rq.cx, &scriptInterface->GetGlobalObject().toObject());
 
-	JS::RootedValue funcVal(cx, *callbackFunction);
+	JS::RootedValue funcVal(rq.cx, *callbackFunction);
 
 	// Delete the callback function, so that it is not called again
 	callbackFunction.reset();
 
-	JS::RootedValue argVal(cx);
+	JS::RootedValue argVal(rq.cx);
 	if (args)
 		scriptInterface->ReadStructuredClone(args, &argVal);
 
-	JS::AutoValueVector paramData(cx);
+	JS::AutoValueVector paramData(rq.cx);
 	paramData.append(argVal);
 
-	JS::RootedValue result(cx);
+	JS::RootedValue result(rq.cx);
 
-	JS_CallFunctionValue(cx, globalObj, funcVal, paramData, &result);
+	JS_CallFunctionValue(rq.cx, globalObj, funcVal, paramData, &result);
 }
 
 Status CGUIManager::ReloadChangedFile(const VfsPath& path)
@@ -299,9 +297,9 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 
 	{
 		PROFILE("handleInputBeforeGui");
-		JSContext* cx = top()->GetScriptInterface()->GetContext();
-		JSAutoRequest rq(cx);
-		JS::RootedValue global(cx, top()->GetGlobalObject());
+		ScriptInterface::Request rq(*top()->GetScriptInterface());
+
+		JS::RootedValue global(rq.cx, top()->GetGlobalObject());
 		if (top()->GetScriptInterface()->CallFunction(global, "handleInputBeforeGui", handled, *ev, top()->FindObjectUnderMouse()))
 			if (handled)
 				return IN_HANDLED;
@@ -316,9 +314,8 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 
 	{
 		// We can't take the following lines out of this scope because top() may be another gui page than it was when calling handleInputBeforeGui!
-		JSContext* cx = top()->GetScriptInterface()->GetContext();
-		JSAutoRequest rq(cx);
-		JS::RootedValue global(cx, top()->GetGlobalObject());
+		ScriptInterface::Request rq(*top()->GetScriptInterface());
+		JS::RootedValue global(rq.cx, top()->GetGlobalObject());
 
 		PROFILE("handleInputAfterGui");
 		if (top()->GetScriptInterface()->CallFunction(global, "handleInputAfterGui", handled, *ev))

@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -73,15 +73,14 @@ std::wstring JSI_Main::GetMatchID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate)
 
 JS::Value JSI_Main::LoadMapSettings(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& pathname)
 {
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(pCxPrivate);
 
 	CMapSummaryReader reader;
 
 	if (reader.LoadMap(pathname) != PSRETURN_OK)
 		return JS::UndefinedValue();
 
-	JS::RootedValue settings(cx);
+	JS::RootedValue settings(rq.cx);
 	reader.GetMapSettings(*(pCxPrivate->pScriptInterface), &settings);
 	return settings;
 }

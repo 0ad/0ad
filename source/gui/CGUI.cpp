@@ -97,11 +97,10 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		{
 			ret = IN_HANDLED;
 
-			JSContext* cx = m_ScriptInterface->GetContext();
-			JSAutoRequest rq(cx);
-			JS::RootedObject globalObj(cx, &GetGlobalObject().toObject());
-			JS::RootedValue result(cx);
-			JS_CallFunctionValue(cx, globalObj, m_GlobalHotkeys[hotkey][eventName], JS::HandleValueArray::empty(), &result);
+			ScriptInterface::Request rq(*m_ScriptInterface);
+			JS::RootedObject globalObj(rq.cx, &GetGlobalObject().toObject());
+			JS::RootedValue result(rq.cx);
+			JS_CallFunctionValue(rq.cx, globalObj, m_GlobalHotkeys[hotkey][eventName], JS::HandleValueArray::empty(), &result);
 		}
 
 		std::map<CStr, std::vector<IGUIObject*> >::iterator it = m_HotkeyObjects.find(hotkey);
@@ -407,30 +406,29 @@ void CGUI::UnsetObjectHotkey(IGUIObject* pObject, const CStr& hotkeyTag)
 
 void CGUI::SetGlobalHotkey(const CStr& hotkeyTag, const CStr& eventName, JS::HandleValue function)
 {
-	JSContext* cx = m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(*m_ScriptInterface);
 
 	if (hotkeyTag.empty())
 	{
-		JS_ReportError(cx, "Cannot assign a function to an empty hotkey identifier!");
+		JS_ReportError(rq.cx, "Cannot assign a function to an empty hotkey identifier!");
 		return;
 	}
 
 	// Only support "Press", "Keydown" and "Release" events.
 	if (eventName != EventNamePress && eventName != EventNameKeyDown && eventName != EventNameRelease)
 	{
-		JS_ReportError(cx, "Cannot assign a function to an unsupported event!");
+		JS_ReportError(rq.cx, "Cannot assign a function to an unsupported event!");
 		return;
 	}
 
-	if (!function.isObject() || !JS_ObjectIsFunction(cx, &function.toObject()))
+	if (!function.isObject() || !JS_ObjectIsFunction(rq.cx, &function.toObject()))
 	{
-		JS_ReportError(cx, "Cannot assign non-function value to global hotkey '%s'", hotkeyTag.c_str());
+		JS_ReportError(rq.cx, "Cannot assign non-function value to global hotkey '%s'", hotkeyTag.c_str());
 		return;
 	}
 
 	UnsetGlobalHotkey(hotkeyTag, eventName);
-	m_GlobalHotkeys[hotkeyTag][eventName].init(cx, function);
+	m_GlobalHotkeys[hotkeyTag][eventName].init(rq.cx, function);
 }
 
 void CGUI::UnsetGlobalHotkey(const CStr& hotkeyTag, const CStr& eventName)

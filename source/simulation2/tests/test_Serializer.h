@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -292,10 +292,9 @@ public:
 	void helper_script_roundtrip(const char* msg, const char* input, const char* expected, size_t expstreamlen = 0, const char* expstream = NULL, const char* debug = NULL)
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
-		JSContext* cx = script.GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(script);
 
-		JS::RootedValue obj(cx);
+		JS::RootedValue obj(rq.cx);
 		TSM_ASSERT(msg, script.Eval(input, &obj));
 
 		if (debug)
@@ -318,7 +317,7 @@ public:
 
 		CStdDeserializer deserialize(script, stream);
 
-		JS::RootedValue newobj(cx);
+		JS::RootedValue newobj(rq.cx);
 		deserialize.ScriptVal("script", &newobj);
 		// NOTE: Don't use good() here - it fails due to a bug in older libc++ versions
 		TSM_ASSERT(msg, !stream.bad() && !stream.fail());
@@ -755,10 +754,9 @@ public:
 	void test_script_exceptions()
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
-		JSContext* cx = script.GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(script);
 
-		JS::RootedValue obj(cx);
+		JS::RootedValue obj(rq.cx);
 
 		std::stringstream stream;
 		CStdSerializer serialize(script, stream);
@@ -790,10 +788,9 @@ public:
 		const char* input = "var x = {}; for (var i=0;i<256;++i) x[i]=Math.pow(i, 2); x";
 
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
-		JSContext* cx = script.GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(script);
 
-		JS::RootedValue obj(cx);
+		JS::RootedValue obj(rq.cx);
 		TS_ASSERT(script.Eval(input, &obj));
 
 		for (size_t i = 0; i < 256; ++i)
@@ -805,7 +802,7 @@ public:
 
 			CStdDeserializer deserialize(script, stream);
 
-			JS::RootedValue newobj(cx);
+			JS::RootedValue newobj(rq.cx);
 			deserialize.ScriptVal("script", &newobj);
 			// NOTE: Don't use good() here - it fails due to a bug in older libc++ versions
 			TS_ASSERT(!stream.bad() && !stream.fail());

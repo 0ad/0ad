@@ -167,18 +167,15 @@ public:
 	static std::vector<SimulationCommand> CloneCommandsFromOtherContext(const ScriptInterface& oldScript, const ScriptInterface& newScript,
 		const std::vector<SimulationCommand>& commands)
 	{
-		JSContext* cxOld = oldScript.GetContext();
-		JSAutoRequest rqOld(cxOld);
-
 		std::vector<SimulationCommand> newCommands;
 		newCommands.reserve(commands.size());
+
+		ScriptInterface::Request rqNew(newScript);
 		for (const SimulationCommand& command : commands)
 		{
-			JSContext* cxNew = newScript.GetContext();
-			JSAutoRequest rqNew(cxNew);
-			JS::RootedValue tmpCommand(cxNew, newScript.CloneValueFromOtherContext(oldScript, command.data));
+			JS::RootedValue tmpCommand(rqNew.cx, newScript.CloneValueFromOtherContext(oldScript, command.data));
 			newScript.FreezeObject(tmpCommand, true);
-			SimulationCommand cmd(command.player, cxNew, tmpCommand);
+			SimulationCommand cmd(command.player, rqNew.cx, tmpCommand);
 			newCommands.emplace_back(std::move(cmd));
 		}
 		return newCommands;
@@ -424,9 +421,8 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 
 		// Load the trigger scripts after we have loaded the simulation.
 		{
-			JSContext* cx2 = m_SecondaryComponentManager->GetScriptInterface().GetContext();
-			JSAutoRequest rq2(cx2);
-			JS::RootedValue mapSettingsCloned(cx2,
+			ScriptInterface::Request rq2(m_SecondaryComponentManager->GetScriptInterface());
+			JS::RootedValue mapSettingsCloned(rq2.cx,
 				m_SecondaryComponentManager->GetScriptInterface().CloneValueFromOtherContext(
 					scriptInterface, m_MapSettings));
 			ENSURE(LoadTriggerScripts(*m_SecondaryComponentManager, mapSettingsCloned, m_SecondaryLoadedScripts));
@@ -737,20 +733,18 @@ ScriptInterface& CSimulation2::GetScriptInterface() const
 
 void CSimulation2::PreInitGame()
 {
-	JSContext* cx = GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue global(cx, GetScriptInterface().GetGlobalObject());
+	ScriptInterface::Request rq(GetScriptInterface());
+	JS::RootedValue global(rq.cx, GetScriptInterface().GetGlobalObject());
 	GetScriptInterface().CallFunctionVoid(global, "PreInitGame");
 }
 
 void CSimulation2::InitGame()
 {
-	JSContext* cx = GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue global(cx, GetScriptInterface().GetGlobalObject());
+	ScriptInterface::Request rq(GetScriptInterface());
+	JS::RootedValue global(rq.cx, GetScriptInterface().GetGlobalObject());
 
-	JS::RootedValue settings(cx);
-	JS::RootedValue tmpInitAttributes(cx, GetInitAttributes());
+	JS::RootedValue settings(rq.cx);
+	JS::RootedValue tmpInitAttributes(rq.cx, GetInitAttributes());
 	GetScriptInterface().GetProperty(tmpInitAttributes, "settings", &settings);
 
 	GetScriptInterface().CallFunctionVoid(global, "InitGame", settings);
@@ -845,18 +839,16 @@ void CSimulation2::GetMapSettings(JS::MutableHandleValue ret)
 
 void CSimulation2::LoadPlayerSettings(bool newPlayers)
 {
-	JSContext* cx = GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue global(cx, GetScriptInterface().GetGlobalObject());
+	ScriptInterface::Request rq(GetScriptInterface());
+	JS::RootedValue global(rq.cx, GetScriptInterface().GetGlobalObject());
 	GetScriptInterface().CallFunctionVoid(global, "LoadPlayerSettings", m->m_MapSettings, newPlayers);
 }
 
 void CSimulation2::LoadMapSettings()
 {
-	JSContext* cx = GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(GetScriptInterface());
 
-	JS::RootedValue global(cx, GetScriptInterface().GetGlobalObject());
+	JS::RootedValue global(rq.cx, GetScriptInterface().GetGlobalObject());
 
 	// Initialize here instead of in Update()
 	GetScriptInterface().CallFunctionVoid(global, "LoadMapSettings", m->m_MapSettings);
@@ -990,14 +982,13 @@ std::string CSimulation2::GetMapSizes()
 std::string CSimulation2::GetAIData()
 {
 	const ScriptInterface& scriptInterface = GetScriptInterface();
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue aiData(cx, ICmpAIManager::GetAIs(scriptInterface));
+	ScriptInterface::Request rq(scriptInterface);
+	JS::RootedValue aiData(rq.cx, ICmpAIManager::GetAIs(scriptInterface));
 
 	// Build single JSON string with array of AI data
-	JS::RootedValue ais(cx);
+	JS::RootedValue ais(rq.cx);
 
-	if (!ScriptInterface::CreateObject(cx, &ais, "AIData", aiData))
+	if (!ScriptInterface::CreateObject(rq, &ais, "AIData", aiData))
 		return std::string();
 
 	return scriptInterface.StringifyJSON(&ais);

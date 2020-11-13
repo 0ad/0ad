@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -70,14 +70,13 @@ void JSI_GameView::RegisterScriptFunctions_Settings(const ScriptInterface& scrip
 
 JS::Value JSI_GameView::GetCameraPivot(ScriptInterface::CxPrivate* pCxPrivate)
 {
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(pCxPrivate);
 	CVector3D pivot(-1, -1, -1);
 	if (g_Game && g_Game->GetView())
 		pivot = g_Game->GetView()->GetCameraPivot();
 
-	JS::RootedValue pivotValue(cx);
-	ScriptInterface::CreateObject(cx, &pivotValue, "x", pivot.X, "z", pivot.Z);
+	JS::RootedValue pivotValue(rq.cx);
+	ScriptInterface::CreateObject(rq, &pivotValue, "x", pivot.X, "z", pivot.Z);
 	return pivotValue;
 }
 

@@ -61,7 +61,7 @@ PASS_BY_VALUE_IN_NATIVE_WRAPPER(double)
 
 // (NativeWrapperDecls.h set up a lot of the macros we use here)
 
-// ScriptInterface_NativeWrapper<T>::call(cx, rval, fptr, args...) will call fptr(cbdata, args...),
+// ScriptInterface_NativeWrapper<T>::call(rq, rval, fptr, args...) will call fptr(cbdata, args...),
 // and if T != void then it will store the result in rval:
 
 // Templated on the return type so void can be handled separately
@@ -69,9 +69,9 @@ template <typename R>
 struct ScriptInterface_NativeWrapper
 {
 	template<typename F, typename... Ts>
-	static void call(JSContext* cx, JS::MutableHandleValue rval, F fptr, Ts... params)
+	static void call(const ScriptInterface::Request& rq, JS::MutableHandleValue rval, F fptr, Ts... params)
 	{
-		ScriptInterface::AssignOrToJSValUnrooted<R>(cx, rval, fptr(ScriptInterface::GetScriptInterfaceAndCBData(cx), params...));
+		ScriptInterface::AssignOrToJSValUnrooted<R>(rq, rval, fptr(ScriptInterface::GetScriptInterfaceAndCBData(rq.cx), params...));
 	}
 };
 
@@ -80,9 +80,9 @@ template <>
 struct ScriptInterface_NativeWrapper<void>
 {
 	template<typename F, typename... Ts>
-	static void call(JSContext* cx, JS::MutableHandleValue UNUSED(rval), F fptr, Ts... params)
+	static void call(const ScriptInterface::Request& rq, JS::MutableHandleValue UNUSED(rval), F fptr, Ts... params)
 	{
-		fptr(ScriptInterface::GetScriptInterfaceAndCBData(cx), params...);
+		fptr(ScriptInterface::GetScriptInterfaceAndCBData(rq.cx), params...);
 	}
 };
 
@@ -92,9 +92,9 @@ template <typename R, typename TC>
 struct ScriptInterface_NativeMethodWrapper
 {
 	template<typename F, typename... Ts>
-	static void call(JSContext* cx, JS::MutableHandleValue rval, TC* c, F fptr, Ts... params)
+	static void call(const ScriptInterface::Request& rq, JS::MutableHandleValue rval, TC* c, F fptr, Ts... params)
 	{
-		ScriptInterface::AssignOrToJSValUnrooted<R>(cx, rval, (c->*fptr)(params...));
+		ScriptInterface::AssignOrToJSValUnrooted<R>(rq, rval, (c->*fptr)(params...));
 	}
 };
 
@@ -102,7 +102,7 @@ template <typename TC>
 struct ScriptInterface_NativeMethodWrapper<void, TC>
 {
 	template<typename F, typename... Ts>
-	static void call(JSContext* UNUSED(cx), JS::MutableHandleValue UNUSED(rval), TC* c, F fptr, Ts... params)
+	static void call(const ScriptInterface::Request& UNUSED(rq), JS::MutableHandleValue UNUSED(rval), TC* c, F fptr, Ts... params)
 	{
 		(c->*fptr)(params...);
 	}
@@ -114,12 +114,12 @@ struct ScriptInterface_NativeMethodWrapper<void, TC>
 	bool ScriptInterface::call(JSContext* cx, uint argc, JS::Value* vp) \
 	{ \
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
-		JSAutoRequest rq(cx); \
+		ScriptInterface::Request rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface); \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
-		JS::RootedValue rval(cx); \
-		ScriptInterface_NativeWrapper<R>::template call<R( ScriptInterface::CxPrivate* T0_TAIL_MAYBE_REF(z,i))  T0_TAIL(z,i)>(cx, &rval, fptr  A0_TAIL(z,i)); \
+		JS::RootedValue rval(rq.cx); \
+		ScriptInterface_NativeWrapper<R>::template call<R( ScriptInterface::CxPrivate* T0_TAIL_MAYBE_REF(z,i))  T0_TAIL(z,i)>(rq, &rval, fptr  A0_TAIL(z,i)); \
 		args.rval().set(rval); \
-		return !ScriptInterface::IsExceptionPending(cx); \
+		return !ScriptInterface::IsExceptionPending(rq); \
 	}
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
@@ -130,14 +130,14 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 	bool ScriptInterface::callMethod(JSContext* cx, uint argc, JS::Value* vp) \
 	{ \
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
-		JSAutoRequest rq(cx); \
-		TC* c = ScriptInterface::GetPrivate<TC>(cx, args, CLS); \
+		ScriptInterface::Request rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface); \
+		TC* c = ScriptInterface::GetPrivate<TC>(rq, args, CLS); \
 		if (! c) return false; \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
-		JS::RootedValue rval(cx); \
-		ScriptInterface_NativeMethodWrapper<R, TC>::template call<R (TC::*)(T0_MAYBE_REF(z,i))  T0_TAIL(z,i)>(cx, &rval, c, fptr A0_TAIL(z,i)); \
+		JS::RootedValue rval(rq.cx); \
+		ScriptInterface_NativeMethodWrapper<R, TC>::template call<R (TC::*)(T0_MAYBE_REF(z,i))  T0_TAIL(z,i)>(rq, &rval, c, fptr A0_TAIL(z,i)); \
 		args.rval().set(rval); \
-		return !ScriptInterface::IsExceptionPending(cx); \
+		return !ScriptInterface::IsExceptionPending(rq); \
 	}
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
@@ -148,27 +148,27 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 	bool ScriptInterface::callMethodConst(JSContext* cx, uint argc, JS::Value* vp) \
 	{ \
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
-		JSAutoRequest rq(cx); \
-		TC* c = ScriptInterface::GetPrivate<TC>(cx, args, CLS); \
+		ScriptInterface::Request rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface); \
+		TC* c = ScriptInterface::GetPrivate<TC>(rq, args, CLS); \
 		if (! c) return false; \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
-		JS::RootedValue rval(cx); \
-		ScriptInterface_NativeMethodWrapper<R, TC>::template call<R (TC::*)(T0_MAYBE_REF(z,i)) const  T0_TAIL(z,i)>(cx, &rval, c, fptr A0_TAIL(z,i)); \
+		JS::RootedValue rval(rq.cx); \
+		ScriptInterface_NativeMethodWrapper<R, TC>::template call<R (TC::*)(T0_MAYBE_REF(z,i)) const  T0_TAIL(z,i)>(rq, &rval, c, fptr A0_TAIL(z,i)); \
 		args.rval().set(rval); \
-		return !ScriptInterface::IsExceptionPending(cx); \
+		return !ScriptInterface::IsExceptionPending(rq); \
 	}
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
 template<int i, typename T, typename... Ts>
-static void AssignOrToJSValHelper(JSContext* cx, JS::AutoValueVector& argv, const T& a, const Ts&... params)
+static void AssignOrToJSValHelper(const ScriptInterface::Request& rq, JS::AutoValueVector& argv, const T& a, const Ts&... params)
 {
-	ScriptInterface::AssignOrToJSVal(cx, argv[i], a);
-	AssignOrToJSValHelper<i+1>(cx, argv, params...);
+	ScriptInterface::AssignOrToJSVal(rq, argv[i], a);
+	AssignOrToJSValHelper<i+1>(rq, argv, params...);
 }
 
 template<int i, typename... Ts>
-static void AssignOrToJSValHelper(JSContext* UNUSED(cx), JS::AutoValueVector& UNUSED(argv))
+static void AssignOrToJSValHelper(const ScriptInterface::Request& UNUSED(rq), JS::AutoValueVector& UNUSED(argv))
 {
 	cassert(sizeof...(Ts) == 0);
 	// Nop, for terminating the template recursion.
@@ -177,37 +177,34 @@ static void AssignOrToJSValHelper(JSContext* UNUSED(cx), JS::AutoValueVector& UN
 template<typename R, typename... Ts>
 bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, R& ret, const Ts&... params) const
 {
-	JSContext* cx = GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue jsRet(cx);
-	JS::AutoValueVector argv(cx);
+	ScriptInterface::Request rq(this);
+	JS::RootedValue jsRet(rq.cx);
+	JS::AutoValueVector argv(rq.cx);
 	argv.resize(sizeof...(Ts));
-	AssignOrToJSValHelper<0>(cx, argv, params...);
+	AssignOrToJSValHelper<0>(rq, argv, params...);
 	if (!CallFunction_(val, name, argv, &jsRet))
 		return false;
-	return FromJSVal(cx, jsRet, ret);
+	return FromJSVal(rq, jsRet, ret);
 }
 
 template<typename R, typename... Ts>
 bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, JS::Rooted<R>* ret, const Ts&... params) const
 {
-	JSContext* cx = GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(this);
 	JS::MutableHandle<R> jsRet(ret);
-	JS::AutoValueVector argv(cx);
+	JS::AutoValueVector argv(rq.cx);
 	argv.resize(sizeof...(Ts));
-	AssignOrToJSValHelper<0>(cx, argv, params...);
+	AssignOrToJSValHelper<0>(rq, argv, params...);
 	return CallFunction_(val, name, argv, jsRet);
 }
 
 template<typename R, typename... Ts>
 bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, JS::MutableHandle<R> ret, const Ts&... params) const
 {
-	JSContext* cx = GetContext();
-	JSAutoRequest rq(cx);
-	JS::AutoValueVector argv(cx);
+	ScriptInterface::Request rq(this);
+	JS::AutoValueVector argv(rq.cx);
 	argv.resize(sizeof...(Ts));
-	AssignOrToJSValHelper<0>(cx, argv, params...);
+	AssignOrToJSValHelper<0>(rq, argv, params...);
 	return CallFunction_(val, name, argv, ret);
 }
 
@@ -215,12 +212,11 @@ bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, JS::Mu
 template<typename... Ts>
 bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name, const Ts&... params) const
 {
-	JSContext* cx = GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue jsRet(cx);
-	JS::AutoValueVector argv(cx);
+	ScriptInterface::Request rq(this);
+	JS::RootedValue jsRet(rq.cx);
+	JS::AutoValueVector argv(rq.cx);
 	argv.resize(sizeof...(Ts));
-	AssignOrToJSValHelper<0>(cx, argv, params...);
+	AssignOrToJSValHelper<0>(rq, argv, params...);
 	return CallFunction_(val, name, argv, &jsRet);
 }
 

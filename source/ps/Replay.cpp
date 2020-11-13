@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -64,15 +64,14 @@ CReplayLogger::~CReplayLogger()
 
 void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 {
-	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(m_ScriptInterface);
 
 	// Add timestamp, since the file-modification-date can change
 	m_ScriptInterface.SetProperty(attribs, "timestamp", (double)std::time(nullptr));
 
 	// Add engine version and currently loaded mods for sanity checks when replaying
 	m_ScriptInterface.SetProperty(attribs, "engine_version", engine_version);
-	JS::RootedValue mods(cx, Mod::GetLoadedModsWithVersions(m_ScriptInterface));
+	JS::RootedValue mods(rq.cx, Mod::GetLoadedModsWithVersions(m_ScriptInterface));
 	m_ScriptInterface.SetProperty(attribs, "mods", mods);
 
 	m_Directory = createDateIndexSubdirectory(VisualReplay::GetDirectoryPath());
@@ -84,8 +83,7 @@ void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 
 void CReplayLogger::Turn(u32 n, u32 turnLength, std::vector<SimulationCommand>& commands)
 {
-	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(m_ScriptInterface);
 
 	*m_Stream << "turn " << n << " " << turnLength << "\n";
 
@@ -114,11 +112,10 @@ void CReplayLogger::SaveMetadata(const CSimulation2& simulation)
 	}
 
 	ScriptInterface& scriptInterface = simulation.GetScriptInterface();
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(scriptInterface);
 
-	JS::RootedValue arg(cx);
-	JS::RootedValue metadata(cx);
+	JS::RootedValue arg(rq.cx);
+	JS::RootedValue metadata(rq.cx);
 	cmpGuiInterface->ScriptCall(INVALID_PLAYER, L"GetReplayMetadata", arg, &metadata);
 
 	const OsPath fileName = g_Game->GetReplayLogger().GetDirectory() / L"metadata.json";
@@ -165,15 +162,14 @@ CStr CReplayPlayer::ModListToString(const std::vector<std::vector<CStr>>& list) 
 
 void CReplayPlayer::CheckReplayMods(const ScriptInterface& scriptInterface, JS::HandleValue attribs) const
 {
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(scriptInterface);
 
 	std::vector<std::vector<CStr>> replayMods;
 	scriptInterface.GetProperty(attribs, "mods", replayMods);
 
 	std::vector<std::vector<CStr>> enabledMods;
-	JS::RootedValue enabledModsJS(cx, Mod::GetLoadedModsWithVersions(scriptInterface));
-	scriptInterface.FromJSVal(cx, enabledModsJS, enabledMods);
+	JS::RootedValue enabledModsJS(rq.cx, Mod::GetLoadedModsWithVersions(scriptInterface));
+	scriptInterface.FromJSVal(rq, enabledModsJS, enabledMods);
 
 	CStr warn;
 	if (replayMods.size() != enabledMods.size())
@@ -233,8 +229,7 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 	u32 turnLength = 0;
 
 	{
-	JSContext* cx = g_Game->GetSimulation2()->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(g_Game->GetSimulation2()->GetScriptInterface());
 	std::string type;
 
 	while ((*m_Stream >> type).good())
@@ -243,7 +238,7 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 		{
 			std::string line;
 			std::getline(*m_Stream, line);
-			JS::RootedValue attribs(cx);
+			JS::RootedValue attribs(rq.cx);
 			ENSURE(g_Game->GetSimulation2()->GetScriptInterface().ParseJSON(line, &attribs));
 
 			CheckReplayMods(g_Game->GetSimulation2()->GetScriptInterface(), attribs);
@@ -268,10 +263,10 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 
 			std::string line;
 			std::getline(*m_Stream, line);
-			JS::RootedValue data(cx);
+			JS::RootedValue data(rq.cx);
 			g_Game->GetSimulation2()->GetScriptInterface().ParseJSON(line, &data);
 			g_Game->GetSimulation2()->GetScriptInterface().FreezeObject(data, true);
-			commands.emplace_back(SimulationCommand(player, cx, data));
+			commands.emplace_back(SimulationCommand(player, rq.cx, data));
 		}
 		else if (type == "hash" || type == "hash-quick")
 		{

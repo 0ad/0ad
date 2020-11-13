@@ -78,10 +78,9 @@ static void ReportGLLimits(const ScriptInterface& scriptInterface, JS::HandleVal
 #if ARCH_X86_X64
 void ConvertCaches(const ScriptInterface& scriptInterface, x86_x64::IdxCache idxCache, JS::MutableHandleValue ret)
 {
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(scriptInterface);
 
-	ScriptInterface::CreateArray(cx, ret);
+	ScriptInterface::CreateArray(rq, ret);
 
 	for (size_t idxLevel = 0; idxLevel < x86_x64::Cache::maxLevels; ++idxLevel)
 	{
@@ -89,10 +88,10 @@ void ConvertCaches(const ScriptInterface& scriptInterface, x86_x64::IdxCache idx
 		if (pcache->m_Type == x86_x64::Cache::kNull || pcache->m_NumEntries == 0)
 			continue;
 
-		JS::RootedValue cache(cx);
+		JS::RootedValue cache(rq.cx);
 
 		ScriptInterface::CreateObject(
-			cx,
+			rq,
 			&cache,
 			"type", static_cast<u32>(pcache->m_Type),
 			"level", static_cast<u32>(pcache->m_Level),
@@ -107,10 +106,9 @@ void ConvertCaches(const ScriptInterface& scriptInterface, x86_x64::IdxCache idx
 
 void ConvertTLBs(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(scriptInterface);
 
-	ScriptInterface::CreateArray(cx, ret);
+	ScriptInterface::CreateArray(rq, ret);
 
 	for(size_t i = 0; ; i++)
 	{
@@ -118,10 +116,10 @@ void ConvertTLBs(const ScriptInterface& scriptInterface, JS::MutableHandleValue 
 		if (!ptlb)
 			break;
 
-		JS::RootedValue tlb(cx);
+		JS::RootedValue tlb(rq.cx);
 
 		ScriptInterface::CreateObject(
-			cx,
+			rq,
 			&tlb,
 			"type", static_cast<u32>(ptlb->m_Type),
 			"level", static_cast<u32>(ptlb->m_Level),
@@ -144,8 +142,8 @@ void RunHardwareDetection()
 	TIMER(L"RunHardwareDetection");
 
 	ScriptInterface scriptInterface("Engine", "HWDetect", g_ScriptRuntime);
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+
+	ScriptInterface::Request rq(scriptInterface);
 
 	JSI_Debug::RegisterScriptFunctions(scriptInterface); // Engine.DisplayErrorDialog
 	JSI_ConfigDB::RegisterScriptFunctions(scriptInterface);
@@ -169,8 +167,8 @@ void RunHardwareDetection()
 	// (We'll use this same data for the opt-in online reporting system, so it
 	// includes some fields that aren't directly useful for the hwdetect script)
 
-	JS::RootedValue settings(cx);
-	ScriptInterface::CreateObject(cx, &settings);
+	JS::RootedValue settings(rq.cx);
+	ScriptInterface::CreateObject(rq, &settings);
 
 	scriptInterface.SetProperty(settings, "os_unix", OS_UNIX);
 	scriptInterface.SetProperty(settings, "os_bsd", OS_BSD);
@@ -263,7 +261,7 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings, "x86_caps[2]", caps2);
 	scriptInterface.SetProperty(settings, "x86_caps[3]", caps3);
 
-	JS::RootedValue tmpVal(cx);
+	JS::RootedValue tmpVal(rq.cx);
 	ConvertCaches(scriptInterface, x86_x64::L1I, &tmpVal);
 	scriptInterface.SetProperty(settings, "x86_icaches", tmpVal);
 	ConvertCaches(scriptInterface, x86_x64::L1D, &tmpVal);
@@ -285,7 +283,7 @@ void RunHardwareDetection()
 		scriptInterface.StringifyJSON(&settings, true));
 
 	// Run the detection script:
-	JS::RootedValue global(cx, scriptInterface.GetGlobalObject());
+	JS::RootedValue global(rq.cx, scriptInterface.GetGlobalObject());
 	scriptInterface.CallFunctionVoid(global, "RunHardwareDetection", settings);
 }
 

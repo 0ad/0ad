@@ -502,12 +502,11 @@ namespace
 
 		void operator() (AbstractProfileTable* table)
 		{
-			JSContext* cx = m_ScriptInterface.GetContext();
-			JSAutoRequest rq(cx);
+			ScriptInterface::Request rq(m_ScriptInterface);
 
-			JS::RootedValue t(cx);
+			JS::RootedValue t(rq.cx);
 			ScriptInterface::CreateObject(
-				cx,
+				rq,
 				&t,
 				"cols", DumpCols(table),
 				"data", DumpRows(table));
@@ -529,24 +528,23 @@ namespace
 
 		JS::Value DumpRows(AbstractProfileTable* table)
 		{
-			JSContext* cx = m_ScriptInterface.GetContext();
-			JSAutoRequest rq(cx);
+			ScriptInterface::Request rq(m_ScriptInterface);
 
-			JS::RootedValue data(cx);
-			ScriptInterface::CreateObject(cx, &data);
+			JS::RootedValue data(rq.cx);
+			ScriptInterface::CreateObject(rq, &data);
 
 			const std::vector<ProfileColumn>& columns = table->GetColumns();
 
 			for (size_t r = 0; r < table->GetNumberRows(); ++r)
 			{
-				JS::RootedValue row(cx);
-				ScriptInterface::CreateArray(cx, &row);
+				JS::RootedValue row(rq.cx);
+				ScriptInterface::CreateArray(rq, &row);
 
 				m_ScriptInterface.SetProperty(data, table->GetCellText(r, 0).c_str(), row);
 
 				if (table->GetChild(r))
 				{
-					JS::RootedValue childRows(cx, DumpRows(table->GetChild(r)));
+					JS::RootedValue childRows(rq.cx, DumpRows(table->GetChild(r)));
 					m_ScriptInterface.SetPropertyInt(row, 0, childRows);
 				}
 

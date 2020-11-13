@@ -87,9 +87,8 @@ void JSI_Lobby::StartXmppClient(ScriptInterface::CxPrivate* pCxPrivate, const st
 {
 	if (g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call StartXmppClient with an already initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call StartXmppClient with an already initialized XmppClient!");
 		return;
 	}
 
@@ -109,9 +108,8 @@ void JSI_Lobby::StartRegisterXmppClient(ScriptInterface::CxPrivate* pCxPrivate, 
 {
 	if (g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call StartRegisterXmppClient with an already initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call StartRegisterXmppClient with an already initialized XmppClient!");
 		return;
 	}
 
@@ -130,9 +128,8 @@ void JSI_Lobby::StopXmppClient(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call StopXmppClient without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call StopXmppClient without an initialized XmppClient!");
 		return;
 	}
 
@@ -144,9 +141,8 @@ void JSI_Lobby::ConnectXmppClient(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call ConnectXmppClient without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call ConnectXmppClient without an initialized XmppClient!");
 		return;
 	}
 
@@ -157,9 +153,8 @@ void JSI_Lobby::DisconnectXmppClient(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call DisconnectXmppClient without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call DisconnectXmppClient without an initialized XmppClient!");
 		return;
 	}
 
@@ -170,9 +165,8 @@ bool JSI_Lobby::IsXmppClientConnected(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call IsXmppClientConnected without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call IsXmppClientConnected without an initialized XmppClient!");
 		return false;
 	}
 
@@ -183,9 +177,8 @@ void JSI_Lobby::SendGetBoardList(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call SendGetBoardList without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call SendGetBoardList without an initialized XmppClient!");
 		return;
 	}
 
@@ -196,9 +189,8 @@ void JSI_Lobby::SendGetProfile(ScriptInterface::CxPrivate* pCxPrivate, const std
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call SendGetProfile without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call SendGetProfile without an initialized XmppClient!");
 		return;
 	}
 
@@ -209,9 +201,8 @@ void JSI_Lobby::SendGameReport(ScriptInterface::CxPrivate* pCxPrivate, JS::Handl
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call SendGameReport without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call SendGameReport without an initialized XmppClient!");
 		return;
 	}
 
@@ -222,9 +213,8 @@ void JSI_Lobby::SendRegisterGame(ScriptInterface::CxPrivate* pCxPrivate, JS::Han
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call SendRegisterGame without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call SendRegisterGame without an initialized XmppClient!");
 		return;
 	}
 
@@ -242,9 +232,8 @@ void JSI_Lobby::SendUnregisterGame(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call SendUnregisterGame without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call SendUnregisterGame without an initialized XmppClient!");
 		return;
 	}
 
@@ -255,9 +244,8 @@ void JSI_Lobby::SendChangeStateGame(ScriptInterface::CxPrivate* pCxPrivate, cons
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call SendChangeStateGame without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call SendChangeStateGame without an initialized XmppClient!");
 		return;
 	}
 
@@ -266,16 +254,15 @@ void JSI_Lobby::SendChangeStateGame(ScriptInterface::CxPrivate* pCxPrivate, cons
 
 JS::Value JSI_Lobby::GetPlayerList(ScriptInterface::CxPrivate* pCxPrivate)
 {
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(pCxPrivate);
 
 	if (!g_XmppClient)
 	{
-		JS_ReportError(cx, "Cannot call GetPlayerList without an initialized XmppClient!");
+		JS_ReportError(rq.cx, "Cannot call GetPlayerList without an initialized XmppClient!");
 		return JS::UndefinedValue();
 	}
 
-	JS::RootedValue playerList(cx);
+	JS::RootedValue playerList(rq.cx);
 	g_XmppClient->GUIGetPlayerList(*(pCxPrivate->pScriptInterface), &playerList);
 
 	return playerList;
@@ -283,16 +270,15 @@ JS::Value JSI_Lobby::GetPlayerList(ScriptInterface::CxPrivate* pCxPrivate)
 
 JS::Value JSI_Lobby::GetGameList(ScriptInterface::CxPrivate* pCxPrivate)
 {
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(pCxPrivate);
 
 	if (!g_XmppClient)
 	{
-		JS_ReportError(cx, "Cannot call GetGameList without an initialized XmppClient!");
+		JS_ReportError(rq.cx, "Cannot call GetGameList without an initialized XmppClient!");
 		return JS::UndefinedValue();
 	}
 
-	JS::RootedValue gameList(cx);
+	JS::RootedValue gameList(rq.cx);
 	g_XmppClient->GUIGetGameList(*(pCxPrivate->pScriptInterface), &gameList);
 
 	return gameList;
@@ -300,16 +286,15 @@ JS::Value JSI_Lobby::GetGameList(ScriptInterface::CxPrivate* pCxPrivate)
 
 JS::Value JSI_Lobby::GetBoardList(ScriptInterface::CxPrivate* pCxPrivate)
 {
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(pCxPrivate);
 
 	if (!g_XmppClient)
 	{
-		JS_ReportError(cx, "Cannot call GetBoardList without an initialized XmppClient!");
+		JS_ReportError(rq.cx, "Cannot call GetBoardList without an initialized XmppClient!");
 		return JS::UndefinedValue();
 	}
 
-	JS::RootedValue boardList(cx);
+	JS::RootedValue boardList(rq.cx);
 	g_XmppClient->GUIGetBoardList(*(pCxPrivate->pScriptInterface), &boardList);
 
 	return boardList;
@@ -317,16 +302,15 @@ JS::Value JSI_Lobby::GetBoardList(ScriptInterface::CxPrivate* pCxPrivate)
 
 JS::Value JSI_Lobby::GetProfile(ScriptInterface::CxPrivate* pCxPrivate)
 {
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(pCxPrivate);
 
 	if (!g_XmppClient)
 	{
-		JS_ReportError(cx, "Cannot call GetProfile without an initialized XmppClient!");
+		JS_ReportError(rq.cx, "Cannot call GetProfile without an initialized XmppClient!");
 		return JS::UndefinedValue();
 	}
 
-	JS::RootedValue profileFetch(cx);
+	JS::RootedValue profileFetch(rq.cx);
 	g_XmppClient->GUIGetProfile(*(pCxPrivate->pScriptInterface), &profileFetch);
 
 	return profileFetch;
@@ -336,9 +320,8 @@ bool JSI_Lobby::LobbyGuiPollHasPlayerListUpdate(ScriptInterface::CxPrivate* pCxP
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call LobbyGuiPollHasPlayerListUpdate without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call LobbyGuiPollHasPlayerListUpdate without an initialized XmppClient!");
 		return false;
 	}
 
@@ -357,9 +340,8 @@ JS::Value JSI_Lobby::LobbyGuiPollHistoricMessages(ScriptInterface::CxPrivate* pC
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call LobbyGuiPollHistoricMessages without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call LobbyGuiPollHistoricMessages without an initialized XmppClient!");
 		return JS::UndefinedValue();
 	}
 
@@ -370,9 +352,8 @@ void JSI_Lobby::LobbySendMessage(ScriptInterface::CxPrivate* pCxPrivate, const s
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call LobbySendMessage without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call LobbySendMessage without an initialized XmppClient!");
 		return;
 	}
 
@@ -383,9 +364,8 @@ void JSI_Lobby::LobbySetPlayerPresence(ScriptInterface::CxPrivate* pCxPrivate, c
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call LobbySetPlayerPresence without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call LobbySetPlayerPresence without an initialized XmppClient!");
 		return;
 	}
 
@@ -396,9 +376,8 @@ void JSI_Lobby::LobbySetNick(ScriptInterface::CxPrivate* pCxPrivate, const std::
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call LobbySetNick without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call LobbySetNick without an initialized XmppClient!");
 		return;
 	}
 
@@ -409,9 +388,8 @@ std::wstring JSI_Lobby::LobbyGetNick(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call LobbyGetNick without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call LobbyGetNick without an initialized XmppClient!");
 		return std::wstring();
 	}
 
@@ -424,9 +402,8 @@ void JSI_Lobby::LobbyKick(ScriptInterface::CxPrivate* pCxPrivate, const std::wst
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call LobbyKick without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call LobbyKick without an initialized XmppClient!");
 		return;
 	}
 
@@ -437,9 +414,8 @@ void JSI_Lobby::LobbyBan(ScriptInterface::CxPrivate* pCxPrivate, const std::wstr
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call LobbyBan without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call LobbyBan without an initialized XmppClient!");
 		return;
 	}
 
@@ -450,9 +426,8 @@ const char* JSI_Lobby::LobbyGetPlayerPresence(ScriptInterface::CxPrivate* pCxPri
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call LobbyGetPlayerPresence without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call LobbyGetPlayerPresence without an initialized XmppClient!");
 		return "";
 	}
 
@@ -463,9 +438,8 @@ const char* JSI_Lobby::LobbyGetPlayerRole(ScriptInterface::CxPrivate* pCxPrivate
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call LobbyGetPlayerRole without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call LobbyGetPlayerRole without an initialized XmppClient!");
 		return "";
 	}
 
@@ -476,9 +450,8 @@ std::wstring JSI_Lobby::LobbyGetPlayerRating(ScriptInterface::CxPrivate* pCxPriv
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call LobbyGetPlayerRating without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call LobbyGetPlayerRating without an initialized XmppClient!");
 		return std::wstring();
 	}
 
@@ -536,9 +509,8 @@ std::wstring JSI_Lobby::LobbyGetRoomSubject(ScriptInterface::CxPrivate* pCxPriva
 {
 	if (!g_XmppClient)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Cannot call LobbyGetRoomSubject without an initialized XmppClient!");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Cannot call LobbyGetRoomSubject without an initialized XmppClient!");
 		return std::wstring();
 	}
 

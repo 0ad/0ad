@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * Copyright (C) 2013-2016 SuperTuxKart-Team.
  * This file is part of 0 A.D.
  *
@@ -390,11 +390,10 @@ JS::Value StunClient::FindStunEndpointHost(const ScriptInterface& scriptInterfac
 	addr.host = ntohl(m_IP);
 	enet_address_get_host_ip(&addr, ipStr, ARRAY_SIZE(ipStr));
 
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(scriptInterface);
 
-	JS::RootedValue stunEndpoint(cx);
-	ScriptInterface::CreateObject(cx, &stunEndpoint, "ip", ipStr, "port", m_Port);
+	JS::RootedValue stunEndpoint(rq.cx);
+	ScriptInterface::CreateObject(rq, &stunEndpoint, "ip", ipStr, "port", m_Port);
 	return stunEndpoint;
 }
 

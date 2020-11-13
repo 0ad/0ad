@@ -184,15 +184,14 @@ retry:
 void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 {
 	const ScriptInterface& scriptInterface = *(g_GUI->GetActiveGUI()->GetScriptInterface());
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(scriptInterface);
 
-	JS::AutoValueVector paramData(cx);
+	JS::AutoValueVector paramData(rq.cx);
 
 	paramData.append(JS::NumberValue(percent));
 
-	JS::RootedValue valPendingTask(cx);
-	scriptInterface.ToJSVal(cx, &valPendingTask, pending_task);
+	JS::RootedValue valPendingTask(rq.cx);
+	scriptInterface.ToJSVal(rq, &valPendingTask, pending_task);
 	paramData.append(valPendingTask);
 
 	g_GUI->SendEventToAll(g_EventNameGameLoadProgress, paramData);
@@ -517,23 +516,22 @@ void InitPsAutostart(bool networked, JS::HandleValue attrs)
 {
 	// The GUI has not been initialized yet, so use the simulation scriptinterface for this variable
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(scriptInterface);
 
-	JS::RootedValue playerAssignments(cx);
-	ScriptInterface::CreateObject(cx, &playerAssignments);
+	JS::RootedValue playerAssignments(rq.cx);
+	ScriptInterface::CreateObject(rq, &playerAssignments);
 
 	if (!networked)
 	{
-		JS::RootedValue localPlayer(cx);
-		ScriptInterface::CreateObject(cx, &localPlayer, "player", g_Game->GetPlayerID());
+		JS::RootedValue localPlayer(rq.cx);
+		ScriptInterface::CreateObject(rq, &localPlayer, "player", g_Game->GetPlayerID());
 		scriptInterface.SetProperty(playerAssignments, "local", localPlayer);
 	}
 
-	JS::RootedValue sessionInitData(cx);
+	JS::RootedValue sessionInitData(rq.cx);
 
 	ScriptInterface::CreateObject(
-		cx,
+		rq,
 		&sessionInitData,
 		"attribs", attrs,
 		"playerAssignments", playerAssignments);
@@ -1061,12 +1059,11 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 			const bool setup_gui = ((flags & INIT_NO_GUI) == 0);
 			// We only want to display the splash screen at startup
 			shared_ptr<ScriptInterface> scriptInterface = g_GUI->GetScriptInterface();
-			JSContext* cx = scriptInterface->GetContext();
-			JSAutoRequest rq(cx);
-			JS::RootedValue data(cx);
+			ScriptInterface::Request rq(scriptInterface);
+			JS::RootedValue data(rq.cx);
 			if (g_GUI)
 			{
-				ScriptInterface::CreateObject(cx, &data, "isStartup", true);
+				ScriptInterface::CreateObject(rq, &data, "isStartup", true);
 				if (!installedMods.empty())
 					scriptInterface->SetProperty(data, "installedMods", installedMods);
 			}
@@ -1221,16 +1218,15 @@ bool Autostart(const CmdLineArgs& args)
 	g_Game = new CGame(!args.Has("autostart-disable-replay"));
 
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(scriptInterface);
 
-	JS::RootedValue attrs(cx);
-	JS::RootedValue settings(cx);
-	JS::RootedValue playerData(cx);
+	JS::RootedValue attrs(rq.cx);
+	JS::RootedValue settings(rq.cx);
+	JS::RootedValue playerData(rq.cx);
 
-	ScriptInterface::CreateObject(cx, &attrs);
-	ScriptInterface::CreateObject(cx, &settings);
-	ScriptInterface::CreateArray(cx, &playerData);
+	ScriptInterface::CreateObject(rq, &attrs);
+	ScriptInterface::CreateObject(rq, &settings);
+	ScriptInterface::CreateArray(rq, &playerData);
 
 	// The directory in front of the actual map name indicates which type
 	// of map is being loaded. Drawback of this approach is the association
@@ -1245,7 +1241,7 @@ bool Autostart(const CmdLineArgs& args)
 	{
 		// Random map definition will be loaded from JSON file, so we need to parse it
 		std::wstring scriptPath = L"maps/" + autoStartName.FromUTF8() + L".json";
-		JS::RootedValue scriptData(cx);
+		JS::RootedValue scriptData(rq.cx);
 		scriptInterface.ReadJSONFile(scriptPath, &scriptData);
 		if (!scriptData.isUndefined() && scriptInterface.GetProperty(scriptData, "settings", &settings))
 		{
@@ -1282,11 +1278,11 @@ bool Autostart(const CmdLineArgs& args)
 		// Set up player data
 		for (size_t i = 0; i < numPlayers; ++i)
 		{
-			JS::RootedValue player(cx);
+			JS::RootedValue player(rq.cx);
 
 			// We could load player_defaults.json here, but that would complicate the logic
 			// even more and autostart is only intended for developers anyway
-			ScriptInterface::CreateObject(cx, &player, "Civ", "athen");
+			ScriptInterface::CreateObject(rq, &player, "Civ", "athen");
 
 			scriptInterface.SetPropertyInt(playerData, i, player);
 		}
@@ -1348,7 +1344,7 @@ bool Autostart(const CmdLineArgs& args)
 	//		attrs.settings = { PlayerData: [ { AI: ... }, ... ] }
 	//		            or = { PlayerData: [ null, { AI: ... }, ... ] } when gaia set
 	int offset = 1;
-	JS::RootedValue player(cx);
+	JS::RootedValue player(rq.cx);
 	if (scriptInterface.GetPropertyInt(playerData, 0, &player) && player.isNull())
 		offset = 0;
 
@@ -1361,7 +1357,7 @@ bool Autostart(const CmdLineArgs& args)
 			int playerID = civArgs[i].BeforeFirst(":").ToInt();
 
 			// Instead of overwriting existing player data, modify the array
-			JS::RootedValue player(cx);
+			JS::RootedValue player(rq.cx);
 			if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
 			{
 				if (mapDirectory == L"skirmishes")
@@ -1370,7 +1366,7 @@ bool Autostart(const CmdLineArgs& args)
 					LOGWARNING("Autostart: Invalid player %d in autostart-team option", playerID);
 					continue;
 				}
-				ScriptInterface::CreateObject(cx, &player);
+				ScriptInterface::CreateObject(rq, &player);
 			}
 
 			int teamID = civArgs[i].AfterFirst(":").ToInt() - 1;
@@ -1392,7 +1388,7 @@ bool Autostart(const CmdLineArgs& args)
 			int playerID = aiArgs[i].BeforeFirst(":").ToInt();
 
 			// Instead of overwriting existing player data, modify the array
-			JS::RootedValue player(cx);
+			JS::RootedValue player(rq.cx);
 			if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
 			{
 				if (mapDirectory == L"scenarios" || mapDirectory == L"skirmishes")
@@ -1401,7 +1397,7 @@ bool Autostart(const CmdLineArgs& args)
 					LOGWARNING("Autostart: Invalid player %d in autostart-ai option", playerID);
 					continue;
 				}
-				ScriptInterface::CreateObject(cx, &player);
+				ScriptInterface::CreateObject(rq, &player);
 			}
 
 			scriptInterface.SetProperty(player, "AI", aiArgs[i].AfterFirst(":"));
@@ -1419,7 +1415,7 @@ bool Autostart(const CmdLineArgs& args)
 			int playerID = civArgs[i].BeforeFirst(":").ToInt();
 
 			// Instead of overwriting existing player data, modify the array
-			JS::RootedValue player(cx);
+			JS::RootedValue player(rq.cx);
 			if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
 			{
 				if (mapDirectory == L"scenarios" || mapDirectory == L"skirmishes")
@@ -1428,7 +1424,7 @@ bool Autostart(const CmdLineArgs& args)
 					LOGWARNING("Autostart: Invalid player %d in autostart-aidiff option", playerID);
 					continue;
 				}
-				ScriptInterface::CreateObject(cx, &player);
+				ScriptInterface::CreateObject(rq, &player);
 			}
 
 			scriptInterface.SetProperty(player, "AIDiff", civArgs[i].AfterFirst(":").ToInt());
@@ -1446,7 +1442,7 @@ bool Autostart(const CmdLineArgs& args)
 				int playerID = civArgs[i].BeforeFirst(":").ToInt();
 
 				// Instead of overwriting existing player data, modify the array
-				JS::RootedValue player(cx);
+				JS::RootedValue player(rq.cx);
 				if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
 				{
 					if (mapDirectory == L"skirmishes")
@@ -1455,7 +1451,7 @@ bool Autostart(const CmdLineArgs& args)
 						LOGWARNING("Autostart: Invalid player %d in autostart-civ option", playerID);
 						continue;
 					}
-					ScriptInterface::CreateObject(cx, &player);
+					ScriptInterface::CreateObject(rq, &player);
 				}
 
 				scriptInterface.SetProperty(player, "Civ", civArgs[i].AfterFirst(":"));
@@ -1479,12 +1475,12 @@ bool Autostart(const CmdLineArgs& args)
 
 	// Add additional scripts to the TriggerScripts property
 	std::vector<CStrW> triggerScriptsVector;
-	JS::RootedValue triggerScripts(cx);
+	JS::RootedValue triggerScripts(rq.cx);
 
 	if (scriptInterface.HasProperty(settings, "TriggerScripts"))
 	{
 		scriptInterface.GetProperty(settings, "TriggerScripts", &triggerScripts);
-		FromJSVal_vector(cx, triggerScripts, triggerScriptsVector);
+		FromJSVal_vector(rq, triggerScripts, triggerScriptsVector);
 	}
 
 	if (!CRenderer::IsInitialised())
@@ -1504,9 +1500,9 @@ bool Autostart(const CmdLineArgs& args)
 
 	for (const CStr& victory : victoryConditions)
 	{
-		JS::RootedValue scriptData(cx);
-		JS::RootedValue data(cx);
-		JS::RootedValue victoryScripts(cx);
+		JS::RootedValue scriptData(rq.cx);
+		JS::RootedValue data(rq.cx);
+		JS::RootedValue victoryScripts(rq.cx);
 
 		CStrW scriptPath = L"simulation/data/settings/victory_conditions/" + victory.FromUTF8() + L".json";
 		scriptInterface.ReadJSONFile(scriptPath, &scriptData);
@@ -1514,7 +1510,7 @@ bool Autostart(const CmdLineArgs& args)
 			&& scriptInterface.GetProperty(data, "Scripts", &victoryScripts) && !victoryScripts.isUndefined())
 		{
 			std::vector<CStrW> victoryScriptsVector;
-			FromJSVal_vector(cx, victoryScripts, victoryScriptsVector);
+			FromJSVal_vector(rq, victoryScripts, victoryScriptsVector);
 			triggerScriptsVector.insert(triggerScriptsVector.end(), victoryScriptsVector.begin(), victoryScriptsVector.end());
 		}
 		else
@@ -1524,7 +1520,7 @@ bool Autostart(const CmdLineArgs& args)
 		}
 	}
 
-	ToJSVal_vector(cx, &triggerScripts, triggerScriptsVector);
+	ToJSVal_vector(rq, &triggerScripts, triggerScriptsVector);
 	scriptInterface.SetProperty(settings, "TriggerScripts", triggerScripts);
 
 	int wonderDuration = 10;
@@ -1606,9 +1602,8 @@ bool AutostartVisualReplay(const std::string& replayFile)
 	g_Game->StartVisualReplay(replayFile);
 
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue attrs(cx, g_Game->GetSimulation2()->GetInitAttributes());
+	ScriptInterface::Request rq(scriptInterface);
+	JS::RootedValue attrs(rq.cx, g_Game->GetSimulation2()->GetInitAttributes());
 
 	InitPsAutostart(false, attrs);
 
@@ -1618,10 +1613,9 @@ bool AutostartVisualReplay(const std::string& replayFile)
 void CancelLoad(const CStrW& message)
 {
 	shared_ptr<ScriptInterface> pScriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
-	JSContext* cx = pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(pScriptInterface);
 
-	JS::RootedValue global(cx, pScriptInterface->GetGlobalObject());
+	JS::RootedValue global(rq.cx, pScriptInterface->GetGlobalObject());
 
 	LDR_Cancel();
 

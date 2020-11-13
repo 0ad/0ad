@@ -152,8 +152,7 @@ bool CComponentManager::LoadScript(const VfsPath& filename, bool hotload)
 void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxPrivate* pCxPrivate, int iid, const std::string& cname, JS::HandleValue ctor, bool reRegister, bool systemComponent)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
-	JSContext* cx = componentManager->m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(componentManager->m_ScriptInterface);
 
 	// Find the C++ component that wraps the interface
 	int cidWrapper = componentManager->GetScriptWrapper(iid);
@@ -231,7 +230,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxP
 		mustReloadComponents = true;
 	}
 
-	JS::RootedValue protoVal(cx);
+	JS::RootedValue protoVal(rq.cx);
 	if (!componentManager->m_ScriptInterface.GetProperty(ctor, "prototype", &protoVal))
 	{
 		componentManager->m_ScriptInterface.ReportError("Failed to get property 'prototype'");
@@ -255,7 +254,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxP
 		ctWrapper.dealloc,
 		cname,
 		schema,
-		std::unique_ptr<JS::PersistentRootedValue>(new JS::PersistentRootedValue(cx, ctor))
+		std::unique_ptr<JS::PersistentRootedValue>(new JS::PersistentRootedValue(rq.cx, ctor))
 	};
 	componentManager->m_ComponentTypesById[cid] = std::move(ct);
 
@@ -309,7 +308,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxP
 		std::map<entity_id_t, IComponent*>::const_iterator eit = comps.begin();
 		for (; eit != comps.end(); ++eit)
 		{
-			JS::RootedValue instance(cx, eit->second->GetJSInstance());
+			JS::RootedValue instance(rq.cx, eit->second->GetJSInstance());
 			if (!instance.isNull())
 				componentManager->m_ScriptInterface.SetPrototype(instance, protoVal);
 		}
@@ -730,8 +729,7 @@ void CComponentManager::AddSystemComponents(bool skipScriptedComponents, bool sk
 
 IComponent* CComponentManager::ConstructComponent(CEntityHandle ent, ComponentTypeId cid)
 {
-	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(m_ScriptInterface);
 
 	std::map<ComponentTypeId, ComponentType>::const_iterator it = m_ComponentTypesById.find(cid);
 	if (it == m_ComponentTypesById.end())
@@ -754,7 +752,7 @@ IComponent* CComponentManager::ConstructComponent(CEntityHandle ent, ComponentTy
 	std::map<entity_id_t, IComponent*>& emap2 = m_ComponentsByTypeId[cid];
 
 	// If this is a scripted component, construct the appropriate JS object first
-	JS::RootedValue obj(cx);
+	JS::RootedValue obj(rq.cx);
 	if (ct.type == CT_Script)
 	{
 		m_ScriptInterface.CallConstructor(*ct.ctor, JS::HandleValueArray::empty(), &obj);

@@ -43,7 +43,7 @@ template <typename T> struct MaybeRef;
 #define CONVERT_ARG(z, i, data) \
 	bool typeConvRet##i; \
 	T##i a##i = ScriptInterface::AssignOrFromJSVal<T##i>( \
-		cx, \
+		rq, \
 		i < args.length() ? args[i] : JS::UndefinedHandleValue, \
 		typeConvRet##i); \
 	if (!typeConvRet##i) return false;

@@ -23,10 +23,9 @@
 
 #include <limits>
 
-template<typename T> static void ToJSVal_vector(JSContext* cx, JS::MutableHandleValue ret, const std::vector<T>& val)
+template<typename T> static void ToJSVal_vector(const ScriptInterface::Request& rq, JS::MutableHandleValue ret, const std::vector<T>& val)
 {
-	JSAutoRequest rq(cx);
-	JS::RootedObject obj(cx, JS_NewArrayObject(cx, 0));
+	JS::RootedObject obj(rq.cx, JS_NewArrayObject(rq.cx, 0));
 	if (!obj)
 	{
 		ret.setUndefined();
@@ -36,39 +35,38 @@ template<typename T> static void ToJSVal_vector(JSContext* cx, JS::MutableHandle
 	ENSURE(val.size() <= std::numeric_limits<u32>::max());
 	for (u32 i = 0; i < val.size(); ++i)
 	{
-		JS::RootedValue el(cx);
-		ScriptInterface::ToJSVal<T>(cx, &el, val[i]);
-		JS_SetElement(cx, obj, i, el);
+		JS::RootedValue el(rq.cx);
+		ScriptInterface::ToJSVal<T>(rq, &el, val[i]);
+		JS_SetElement(rq.cx, obj, i, el);
 	}
 	ret.setObject(*obj);
 }
 
-#define FAIL(msg) STMT(JS_ReportError(cx, msg); return false)
+#define FAIL(msg) STMT(JS_ReportError(rq.cx, msg); return false)
 
-template<typename T> static bool FromJSVal_vector(JSContext* cx, JS::HandleValue v, std::vector<T>& out)
+template<typename T> static bool FromJSVal_vector(const ScriptInterface::Request& rq, JS::HandleValue v, std::vector<T>& out)
 {
-	JSAutoRequest rq(cx);
-	JS::RootedObject obj(cx);
+	JS::RootedObject obj(rq.cx);
 	if (!v.isObject())
 		FAIL("Argument must be an array");
 
 	bool isArray;
 	obj = &v.toObject();
-	if ((!JS_IsArrayObject(cx, obj, &isArray) || !isArray) && !JS_IsTypedArrayObject(obj))
+	if ((!JS_IsArrayObject(rq.cx, obj, &isArray) || !isArray) && !JS_IsTypedArrayObject(obj))
 		FAIL("Argument must be an array");
 
 	u32 length;
-	if (!JS_GetArrayLength(cx, obj, &length))
+	if (!JS_GetArrayLength(rq.cx, obj, &length))
 		FAIL("Failed to get array length");
 
 	out.reserve(length);
 	for (u32 i = 0; i < length; ++i)
 	{
-		JS::RootedValue el(cx);
-		if (!JS_GetElement(cx, obj, i, &el))
+		JS::RootedValue el(rq.cx);
+		if (!JS_GetElement(rq.cx, obj, i, &el))
 			FAIL("Failed to read array element");
 		T el2;
-		if (!ScriptInterface::FromJSVal<T>(cx, el, el2))
+		if (!ScriptInterface::FromJSVal<T>(rq, el, el2))
 			return false;
 		out.push_back(el2);
 	}
@@ -78,35 +76,34 @@ template<typename T> static bool FromJSVal_vector(JSContext* cx, JS::HandleValue
 #undef FAIL
 
 #define JSVAL_VECTOR(T) \
-template<> void ScriptInterface::ToJSVal<std::vector<T> >(JSContext* cx, JS::MutableHandleValue ret, const std::vector<T>& val) \
+template<> void ScriptInterface::ToJSVal<std::vector<T> >(const ScriptInterface::Request& rq, JS::MutableHandleValue ret, const std::vector<T>& val) \
 { \
-	ToJSVal_vector(cx, ret, val); \
+	ToJSVal_vector(rq, ret, val); \
 } \
-template<> bool ScriptInterface::FromJSVal<std::vector<T> >(JSContext* cx, JS::HandleValue v, std::vector<T>& out) \
+template<> bool ScriptInterface::FromJSVal<std::vector<T> >(const ScriptInterface::Request& rq, JS::HandleValue v, std::vector<T>& out) \
 { \
-	return FromJSVal_vector(cx, v, out); \
+	return FromJSVal_vector(rq, v, out); \
 }
 
-template<typename T> bool ScriptInterface::FromJSProperty(JSContext* cx, const JS::HandleValue val, const char* name, T& ret, bool strict)
+template<typename T> bool ScriptInterface::FromJSProperty(const ScriptInterface::Request& rq, const JS::HandleValue val, const char* name, T& ret, bool strict)
 {
 	if (!val.isObject())
 		return false;
 
-	JSAutoRequest rq(cx);
-	JS::RootedObject obj(cx, &val.toObject());
+	JS::RootedObject obj(rq.cx, &val.toObject());
 
 	bool hasProperty;
-	if (!JS_HasProperty(cx, obj, name, &hasProperty) || !hasProperty)
+	if (!JS_HasProperty(rq.cx, obj, name, &hasProperty) || !hasProperty)
 		return false;
 
-	JS::RootedValue value(cx);
-	if (!JS_GetProperty(cx, obj, name, &value))
+	JS::RootedValue value(rq.cx);
+	if (!JS_GetProperty(rq.cx, obj, name, &value))
 		return false;
 
 	if (strict && value.isNull())
 		return false;
 
-	return FromJSVal(cx, value, ret);
+	return FromJSVal(rq, value, ret);
 }
 
 #endif //INCLUDED_SCRIPTCONVERSIONS

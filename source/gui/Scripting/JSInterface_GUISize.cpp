@@ -43,45 +43,46 @@ void JSI_GUISize::RegisterScriptClass(ScriptInterface& scriptInterface)
 
 bool JSI_GUISize::construct(JSContext* cx, uint argc, JS::Value* vp)
 {
-	JSAutoRequest rq(cx);
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-	JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUISize"));
+	ScriptInterface::Request rq(*pScriptInterface);
+
+	JS::RootedObject obj(rq.cx, pScriptInterface->CreateCustomObject("GUISize"));
 
 	if (args.length() == 8)
 	{
-		JS_SetProperty(cx, obj, "left",		args[0]);
-		JS_SetProperty(cx, obj, "top",		args[1]);
-		JS_SetProperty(cx, obj, "right",	args[2]);
-		JS_SetProperty(cx, obj, "bottom",	args[3]);
-		JS_SetProperty(cx, obj, "rleft",	args[4]);
-		JS_SetProperty(cx, obj, "rtop",		args[5]);
-		JS_SetProperty(cx, obj, "rright",	args[6]);
-		JS_SetProperty(cx, obj, "rbottom",	args[7]);
+		JS_SetProperty(rq.cx, obj, "left",		args[0]);
+		JS_SetProperty(rq.cx, obj, "top",		args[1]);
+		JS_SetProperty(rq.cx, obj, "right",	args[2]);
+		JS_SetProperty(rq.cx, obj, "bottom",	args[3]);
+		JS_SetProperty(rq.cx, obj, "rleft",	args[4]);
+		JS_SetProperty(rq.cx, obj, "rtop",		args[5]);
+		JS_SetProperty(rq.cx, obj, "rright",	args[6]);
+		JS_SetProperty(rq.cx, obj, "rbottom",	args[7]);
 	}
 	else if (args.length() == 4)
 	{
-		JS::RootedValue zero(cx, JS::NumberValue(0));
-		JS_SetProperty(cx, obj, "left",		args[0]);
-		JS_SetProperty(cx, obj, "top",		args[1]);
-		JS_SetProperty(cx, obj, "right",	args[2]);
-		JS_SetProperty(cx, obj, "bottom",	args[3]);
-		JS_SetProperty(cx, obj, "rleft",	zero);
-		JS_SetProperty(cx, obj, "rtop",		zero);
-		JS_SetProperty(cx, obj, "rright",	zero);
-		JS_SetProperty(cx, obj, "rbottom",	zero);
+		JS::RootedValue zero(rq.cx, JS::NumberValue(0));
+		JS_SetProperty(rq.cx, obj, "left",		args[0]);
+		JS_SetProperty(rq.cx, obj, "top",		args[1]);
+		JS_SetProperty(rq.cx, obj, "right",	args[2]);
+		JS_SetProperty(rq.cx, obj, "bottom",	args[3]);
+		JS_SetProperty(rq.cx, obj, "rleft",	zero);
+		JS_SetProperty(rq.cx, obj, "rtop",		zero);
+		JS_SetProperty(rq.cx, obj, "rright",	zero);
+		JS_SetProperty(rq.cx, obj, "rbottom",	zero);
 	}
 	else
 	{
-		JS::RootedValue zero(cx, JS::NumberValue(0));
-		JS_SetProperty(cx, obj, "left",		zero);
-		JS_SetProperty(cx, obj, "top",		zero);
-		JS_SetProperty(cx, obj, "right",	zero);
-		JS_SetProperty(cx, obj, "bottom",	zero);
-		JS_SetProperty(cx, obj, "rleft",	zero);
-		JS_SetProperty(cx, obj, "rtop",		zero);
-		JS_SetProperty(cx, obj, "rright",	zero);
-		JS_SetProperty(cx, obj, "rbottom",	zero);
+		JS::RootedValue zero(rq.cx, JS::NumberValue(0));
+		JS_SetProperty(rq.cx, obj, "left",		zero);
+		JS_SetProperty(rq.cx, obj, "top",		zero);
+		JS_SetProperty(rq.cx, obj, "right",	zero);
+		JS_SetProperty(rq.cx, obj, "bottom",	zero);
+		JS_SetProperty(rq.cx, obj, "rleft",	zero);
+		JS_SetProperty(rq.cx, obj, "rtop",		zero);
+		JS_SetProperty(rq.cx, obj, "rright",	zero);
+		JS_SetProperty(rq.cx, obj, "rbottom",	zero);
 	}
 
 	args.rval().setObject(*obj);
@@ -99,11 +100,11 @@ CStr JSI_GUISize::ToPercentString(double pix, double per)
 
 bool JSI_GUISize::toString(JSContext* cx, uint argc, JS::Value* vp)
 {
-	// JSAutoRequest not needed for the calls below
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	CStr buffer;
 
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+	ScriptInterface::Request rq(*pScriptInterface);
 	double val, valr;
 
 #define SIDE(side) \
@@ -120,6 +121,6 @@ bool JSI_GUISize::toString(JSContext* cx, uint argc, JS::Value* vp)
 	SIDE(bottom);
 #undef SIDE
 
-	ScriptInterface::ToJSVal(cx, args.rval(), buffer);
+	ScriptInterface::ToJSVal(rq, args.rval(), buffer);
 	return true;
 }

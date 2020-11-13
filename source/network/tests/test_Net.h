@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -137,8 +137,7 @@ public:
 		// and prints a load of debug output so you can see if anything funny's going on
 
 		ScriptInterface scriptInterface("Engine", "Test", g_ScriptRuntime);
-		JSContext* cx = scriptInterface.GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(scriptInterface);
 
 		TestStdoutLogger logger;
 
@@ -150,9 +149,9 @@ public:
 
 		CNetServer server;
 
-		JS::RootedValue attrs(cx);
+		JS::RootedValue attrs(rq.cx);
 		ScriptInterface::CreateObject(
-			cx,
+			rq,
 			&attrs,
 			"mapType", "scenario",
 			"map", "maps/scenarios/Saharan Oases",
@@ -184,9 +183,9 @@ public:
 		wait(clients, 100);
 
 		{
-			JS::RootedValue cmd(cx);
+			JS::RootedValue cmd(rq.cx);
 			ScriptInterface::CreateObject(
-				cx,
+				rq,
 				&cmd,
 				"type", "debug-print",
 				"message", "[>>> client1 test sim command]\\n");
@@ -194,9 +193,9 @@ public:
 		}
 
 		{
-			JS::RootedValue cmd(cx);
+			JS::RootedValue cmd(rq.cx);
 			ScriptInterface::CreateObject(
-				cx,
+				rq,
 				&cmd,
 				"type", "debug-print",
 				"message", "[>>> client2 test sim command]\\n");
@@ -217,8 +216,7 @@ public:
 	void test_rejoin_DISABLED()
 	{
 		ScriptInterface scriptInterface("Engine", "Test", g_ScriptRuntime);
-		JSContext* cx = scriptInterface.GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(scriptInterface);
 
 		TestStdoutLogger logger;
 
@@ -230,9 +228,9 @@ public:
 
 		CNetServer server;
 
-		JS::RootedValue attrs(cx);
+		JS::RootedValue attrs(rq.cx);
 		ScriptInterface::CreateObject(
-			cx,
+			rq,
 			&attrs,
 			"mapType", "scenario",
 			"map", "maps/scenarios/Saharan Oases",
@@ -268,9 +266,9 @@ public:
 		wait(clients, 100);
 
 		{
-			JS::RootedValue cmd(cx);
+			JS::RootedValue cmd(rq.cx);
 			ScriptInterface::CreateObject(
-				cx,
+				rq,
 				&cmd,
 				"type", "debug-print",
 				"message", "[>>> client1 test sim command 1]\\n");
@@ -285,9 +283,9 @@ public:
 		wait(clients, 100);
 
 		{
-			JS::RootedValue cmd(cx);
+			JS::RootedValue cmd(rq.cx);
 			ScriptInterface::CreateObject(
-				cx,
+				rq,
 				&cmd,
 				"type", "debug-print",
 				"message", "[>>> client1 test sim command 2]\\n");
@@ -344,9 +342,9 @@ public:
 		// CTurnManager::TurnNeedsFullHash to always return true)
 
 		{
-			JS::RootedValue cmd(cx);
+			JS::RootedValue cmd(rq.cx);
 			ScriptInterface::CreateObject(
-				cx,
+				rq,
 				&cmd,
 				"type", "debug-print",
 				"message", "[>>> client1 test sim command 3]\\n");
@@ -361,9 +359,9 @@ public:
 		wait(clients, 100);
 
 		{
-			JS::RootedValue cmd(cx);
+			JS::RootedValue cmd(rq.cx);
 			ScriptInterface::CreateObject(
-				cx,
+				rq,
 				&cmd,
 				"type", "debug-print",
 				"message", "[>>> client1 test sim command 4]\\n");

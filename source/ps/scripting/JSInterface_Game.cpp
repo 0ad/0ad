@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,10 +48,9 @@ void JSI_Game::StartGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue
 
 	// Convert from GUI script context to sim script context
 	CSimulation2* sim = g_Game->GetSimulation2();
-	JSContext* cxSim = sim->GetScriptInterface().GetContext();
-	JSAutoRequest rqSim(cxSim);
+	ScriptInterface::Request rqSim(sim->GetScriptInterface());
 
-	JS::RootedValue gameAttribs(cxSim,
+	JS::RootedValue gameAttribs(rqSim.cx,
 		sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), attribs));
 
 	g_Game->SetPlayerID(playerID);
@@ -101,9 +100,8 @@ bool JSI_Game::IsPaused(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_Game)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Game is not started");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Game is not started");
 		return false;
 	}
 
@@ -114,9 +112,8 @@ void JSI_Game::SetPaused(ScriptInterface::CxPrivate* pCxPrivate, bool pause, boo
 {
 	if (!g_Game)
 	{
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS_ReportError(cx, "Game is not started");
+		ScriptInterface::Request rq(pCxPrivate);
+		JS_ReportError(rq.cx, "Game is not started");
 		return;
 	}
 
