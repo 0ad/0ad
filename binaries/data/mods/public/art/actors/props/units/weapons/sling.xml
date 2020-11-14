@@ -2,16 +2,22 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+    <variant frequency="1" name="Base">
+      <textures>
+        <texture file="props/prop_weap.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="a">
+    <variant frequency="1" name="Idle">
       <mesh>props/weap_sling_a.dae</mesh>
     </variant>
-    <variant frequency="1" name="b">
-      <mesh>props/weap_sling_a.dae</mesh>
+    <variant frequency="0" name="attack_ranged">
+      <animations>
+        <animation event="0.5" file="mechanical/weap_sling_attack.dae" name="attack_ranged" id="attack_ranged_01" speed="100"/>
+      </animations>
+      <mesh>props/weap_sling_attack.dae</mesh>
     </variant>
   </group>
+  <material>default.xml</material>
 </actor>
