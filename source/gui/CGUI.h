@@ -650,6 +650,12 @@ private:
 
 	// Icons
 	std::map<CStr, const SGUIIcon> m_Icons;
+
+public:
+	/**
+	 * Stores all the IGUIObject which listen to a given event.
+	 */
+	std::map<CStr, std::set<IGUIObject*>> m_EventIGUIObjects;
 };
 
 #endif // INCLUDED_CGUI

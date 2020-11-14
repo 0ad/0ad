@@ -278,12 +278,24 @@ void CGUI::TickObjects()
 
 void CGUI::SendEventToAll(const CStr& eventName)
 {
-	m_BaseObject.RecurseObject(nullptr, &IGUIObject::ScriptEvent, eventName);
+	auto it = m_EventIGUIObjects.find(eventName);
+	if (it == m_EventIGUIObjects.end())
+		return;
+
+	std::set<IGUIObject*> copy = it->second;
+	for (IGUIObject* pIGUIObject : copy)
+		pIGUIObject->ScriptEvent(eventName);
 }
 
 void CGUI::SendEventToAll(const CStr& eventName, const JS::HandleValueArray& paramData)
 {
-	m_BaseObject.RecurseObject(nullptr, &IGUIObject::ScriptEvent, eventName, paramData);
+	auto it = m_EventIGUIObjects.find(eventName);
+	if (it == m_EventIGUIObjects.end())
+		return;
+
+	std::set<IGUIObject*> copy = it->second;
+	for (IGUIObject* pIGUIObject : copy)
+		pIGUIObject->ScriptEvent(eventName, paramData);
 }
 
 void CGUI::Draw()

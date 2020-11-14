@@ -334,6 +334,12 @@ void IGUIObject::SetScriptHandler(const CStr& eventName, JS::HandleObject Functi
 		JS_AddExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetJSRuntime(), Trace, this);
 
 	m_ScriptHandlers[eventName] = JS::Heap<JSObject*>(Function);
+
+	auto it = m_pGUI.m_EventIGUIObjects.find(eventName);
+	if (it == m_pGUI.m_EventIGUIObjects.end())
+		m_pGUI.m_EventIGUIObjects.emplace(eventName, std::set<IGUIObject*>{this});
+	else
+		it->second.insert(this);
 }
 
 void IGUIObject::UnsetScriptHandler(const CStr& eventName)
@@ -347,6 +353,15 @@ void IGUIObject::UnsetScriptHandler(const CStr& eventName)
 
 	if (m_ScriptHandlers.empty())
 		JS_RemoveExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetJSRuntime(), Trace, this);
+	{
+		auto it = m_pGUI.m_EventIGUIObjects.find(eventName);
+		if (it != m_pGUI.m_EventIGUIObjects.end())
+		{
+			it->second.erase(this);
+			if (!it->second.size())
+				m_pGUI.m_EventIGUIObjects.erase(eventName);
+		}
+	}
 }
 
 InReaction IGUIObject::SendEvent(EGUIMessageType type, const CStr& eventName)
