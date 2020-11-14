@@ -94,6 +94,14 @@ class MiscSetup : public CxxTest::GlobalFixture
 		return true;
 	}
 
+	virtual bool setUp()
+	{
+		// Clean up any JS leftover between tests.
+		g_ScriptContext->ShrinkingGC();
+
+		return true;
+	}
+
 private:
 
 	// We're doing the initialization and shutdown of the ScriptEngine explicitly here

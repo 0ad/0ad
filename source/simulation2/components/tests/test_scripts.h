@@ -19,6 +19,8 @@
 
 #include "ps/Filesystem.h"
 
+#include "scriptinterface/ScriptContext.h"
+
 class TestComponentScripts : public CxxTest::TestSuite
 {
 public:
@@ -89,6 +91,8 @@ public:
 		paths.push_back(VfsPath(L"simulation/components/tests/setup_test.js"));
 		for (const VfsPath& path : paths)
 		{
+			// Clean up previous scripts.
+			g_ScriptContext->ShrinkingGC();
 			CSimContext context;
 			CComponentManager componentManager(context, g_ScriptContext, true);
 
