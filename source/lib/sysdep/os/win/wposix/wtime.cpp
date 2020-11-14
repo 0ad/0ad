@@ -87,14 +87,6 @@ static void LatchInitialSystemTime()
 	stInitial_ns = (hns - posix_epoch_hns) * 100;
 }
 
-static timespec TimespecFromNs(i64 ns)
-{
-	timespec ts;
-	ts.tv_sec = (time_t)((ns / _1e9) & 0xFFFFFFFF);
-	ts.tv_nsec = (long)(ns % _1e9);
-	return ts;
-}
-
 static size_t MsFromTimespec(const timespec& ts)
 {
 	i64 ms = ts.tv_sec;	// avoid overflow
