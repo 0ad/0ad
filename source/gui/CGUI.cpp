@@ -97,8 +97,8 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		{
 			ret = IN_HANDLED;
 
-			ScriptInterface::Request rq(*m_ScriptInterface);
-			JS::RootedObject globalObj(rq.cx, &GetGlobalObject().toObject());
+			ScriptInterface::Request rq(m_ScriptInterface);
+			JS::RootedObject globalObj(rq.cx, rq.glob);
 			JS::RootedValue result(rq.cx);
 			JS_CallFunctionValue(rq.cx, globalObj, m_GlobalHotkeys[hotkey][eventName], JS::HandleValueArray::empty(), &result);
 		}

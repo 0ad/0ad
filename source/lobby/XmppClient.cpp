@@ -736,7 +736,7 @@ JS::Value XmppClient::GuiPollNewMessages(const ScriptInterface& scriptInterface)
 	m_GuiMessageQueue.clear();
 
 	// Copy the messages over to the caller script interface.
-	return scriptInterface.CloneValueFromOtherContext(*m_ScriptInterface, messages);
+	return scriptInterface.CloneValueFromOtherCompartment(*m_ScriptInterface, messages);
 }
 
 JS::Value XmppClient::GuiPollHistoricMessages(const ScriptInterface& scriptInterface)
@@ -754,7 +754,7 @@ JS::Value XmppClient::GuiPollHistoricMessages(const ScriptInterface& scriptInter
 		m_ScriptInterface->SetPropertyInt(messages, j++, message);
 
 	// Copy the messages over to the caller script interface.
-	return scriptInterface.CloneValueFromOtherContext(*m_ScriptInterface, messages);
+	return scriptInterface.CloneValueFromOtherCompartment(*m_ScriptInterface, messages);
 }
 
 /**

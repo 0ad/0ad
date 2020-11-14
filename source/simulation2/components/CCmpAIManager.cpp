@@ -111,7 +111,7 @@ private:
 			std::string moduleName;
 			std::string constructor;
 			JS::RootedValue objectWithConstructor(rq.cx); // object that should contain the constructor function
-			JS::RootedValue global(rq.cx, m_ScriptInterface->GetGlobalObject());
+			JS::RootedValue global(rq.cx, rq.globalValue());
 			JS::RootedValue ctor(rq.cx);
 			if (!m_ScriptInterface->HasProperty(metadata, "moduleName"))
 			{
@@ -216,10 +216,10 @@ public:
 		m_CommandsComputed(true),
 		m_HasLoadedEntityTemplates(false),
 		m_HasSharedComponent(false),
-		m_EntityTemplates(g_ScriptRuntime->m_rt),
-		m_SharedAIObj(g_ScriptRuntime->m_rt),
-		m_PassabilityMapVal(g_ScriptRuntime->m_rt),
-		m_TerritoryMapVal(g_ScriptRuntime->m_rt)
+		m_EntityTemplates(g_ScriptRuntime->GetJSRuntime()),
+		m_SharedAIObj(g_ScriptRuntime->GetJSRuntime()),
+		m_PassabilityMapVal(g_ScriptRuntime->GetJSRuntime()),
+		m_TerritoryMapVal(g_ScriptRuntime->GetJSRuntime())
 	{
 
 		m_ScriptInterface->ReplaceNondeterministicRNG(m_RNG);
@@ -422,7 +422,7 @@ public:
 		// Constructor name is SharedScript, it's in the module API3
 		// TODO: Hardcoding this is bad, we need a smarter way.
 		JS::RootedValue AIModule(rq.cx);
-		JS::RootedValue global(rq.cx, m_ScriptInterface->GetGlobalObject());
+		JS::RootedValue global(rq.cx, rq.globalValue());
 		JS::RootedValue ctor(rq.cx);
 		if (!m_ScriptInterface->GetProperty(global, "API3", &AIModule) || AIModule.isUndefined())
 		{

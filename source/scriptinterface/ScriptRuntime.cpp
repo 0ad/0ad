@@ -22,6 +22,7 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
 #include "scriptinterface/ScriptEngine.h"
+#include "scriptinterface/ScriptInterface.h"
 
 
 void GCSliceCallbackHook(JSRuntime* UNUSED(rt), JS::GCProgress progress, const JS::GCDescription& UNUSED(desc))
@@ -89,6 +90,52 @@ void GCSliceCallbackHook(JSRuntime* UNUSED(rt), JS::GCProgress progress, const J
 	#endif
 }
 
+
+namespace {
+
+void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
+{
+	ScriptInterface::Request rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
+
+	std::stringstream msg;
+	bool isWarning = JSREPORT_IS_WARNING(report->flags);
+	msg << (isWarning ? "JavaScript warning: " : "JavaScript error: ");
+	if (report->filename)
+	{
+		msg << report->filename;
+		msg << " line " << report->lineno << "\n";
+	}
+
+	msg << message;
+
+	// If there is an exception, then print its stack trace
+	JS::RootedValue excn(rq.cx);
+	if (JS_GetPendingException(rq.cx, &excn) && excn.isObject())
+	{
+		JS::RootedValue stackVal(rq.cx);
+		JS::RootedObject excnObj(rq.cx, &excn.toObject());
+		JS_GetProperty(rq.cx, excnObj, "stack", &stackVal);
+
+		std::string stackText;
+		ScriptInterface::FromJSVal(rq, stackVal, stackText);
+
+		std::istringstream stream(stackText);
+		for (std::string line; std::getline(stream, line);)
+			msg << "\n  " << line;
+	}
+
+	if (isWarning)
+		LOGWARNING("%s", msg.str().c_str());
+	else
+		LOGERROR("%s", msg.str().c_str());
+
+	// When running under Valgrind, print more information in the error message
+	//	VALGRIND_PRINTF_BACKTRACE("->");
+}
+
+} // anonymous namespace
+
+
 shared_ptr<ScriptRuntime> ScriptRuntime::CreateRuntime(int runtimeSize, int heapGrowthBytesGCTrigger)
 {
 	return shared_ptr<ScriptRuntime>(new ScriptRuntime(runtimeSize, heapGrowthBytesGCTrigger));
@@ -116,24 +163,47 @@ ScriptRuntime::ScriptRuntime(int runtimeSize, int heapGrowthBytesGCTrigger):
 	JS_SetGCParameter(m_rt, JSGC_DYNAMIC_HEAP_GROWTH, false);
 
 	ScriptEngine::GetSingleton().RegisterRuntime(m_rt);
+
+
+	m_cx = JS_NewContext(m_rt, STACK_CHUNK_SIZE);
+	ENSURE(m_cx); // TODO: error handling
+
+	JS_SetOffthreadIonCompilationEnabled(m_rt, true);
+
+	// For GC debugging:
+	// JS_SetGCZeal(m_cx, 2, JS_DEFAULT_ZEAL_FREQ);
+
+	JS_SetContextPrivate(m_cx, nullptr);
+
+	JS_SetErrorReporter(m_rt, ErrorReporter);
+
+	JS_SetGlobalJitCompilerOption(m_rt, JSJITCOMPILER_ION_ENABLE, 1);
+	JS_SetGlobalJitCompilerOption(m_rt, JSJITCOMPILER_BASELINE_ENABLE, 1);
+
+	JS::RuntimeOptionsRef(m_cx)
+		.setExtraWarnings(true)
+		.setWerror(false)
+		.setStrictMode(true);
 }
 
 ScriptRuntime::~ScriptRuntime()
 {
+	JS_DestroyContext(m_cx);
 	JS_DestroyRuntime(m_rt);
 
 	ENSURE(ScriptEngine::IsInitialised() && "The ScriptEngine must be active (initialized and not yet shut down) when destroying a ScriptRuntime!");
 	ScriptEngine::GetSingleton().UnRegisterRuntime(m_rt);
 }
 
-void ScriptRuntime::RegisterContext(JSContext* cx)
+void ScriptRuntime::RegisterCompartment(JSCompartment* cmpt)
 {
-	m_Contexts.push_back(cx);
+	ENSURE(cmpt);
+	m_Compartments.push_back(cmpt);
 }
 
-void ScriptRuntime::UnRegisterContext(JSContext* cx)
+void ScriptRuntime::UnRegisterCompartment(JSCompartment* cmpt)
 {
-	m_Contexts.remove(cx);
+	m_Compartments.remove(cmpt);
 }
 
 #define GC_DEBUG_PRINT 0
@@ -199,7 +269,7 @@ void ScriptRuntime::MaybeIncrementalGC(double delay)
 #if GC_DEBUG_PRINT
 					printf("Finishing incremental GC because gcBytes > m_RuntimeSize / 2. \n");
 #endif
-					PrepareContextsForIncrementalGC();
+					PrepareCompartmentsForIncrementalGC();
 					JS::FinishIncrementalGC(m_rt, JS::gcreason::REFRESH_FRAME);
 				}
 				else
@@ -228,7 +298,7 @@ void ScriptRuntime::MaybeIncrementalGC(double delay)
 				else
 					printf("Running incremental GC slice \n");
 #endif
-				PrepareContextsForIncrementalGC();
+				PrepareCompartmentsForIncrementalGC();
 				if (!JS::IsIncrementalGCInProgress(m_rt))
 					JS::StartIncrementalGC(m_rt, GC_NORMAL, JS::gcreason::REFRESH_FRAME, GCSliceTimeBudget);
 				else
@@ -247,8 +317,8 @@ void ScriptRuntime::ShrinkingGC()
 	JS_SetGCParameter(m_rt, JSGC_MODE, JSGC_MODE_INCREMENTAL);
 }
 
-void ScriptRuntime::PrepareContextsForIncrementalGC()
+void ScriptRuntime::PrepareCompartmentsForIncrementalGC() const
 {
-	for (JSContext* const& ctx : m_Contexts)
-		JS::PrepareZoneForGC(js::GetCompartmentZone(js::GetContextCompartment(ctx)));
+	for (JSCompartment* const& cmpt : m_Compartments)
+		JS::PrepareZoneForGC(js::GetCompartmentZone(cmpt));
 }

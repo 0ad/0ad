@@ -53,7 +53,7 @@ public:
 		m_SimContext(), m_ComponentManager(m_SimContext, rt),
 		m_EnableOOSLog(false), m_EnableSerializationTest(false), m_RejoinTestTurn(-1), m_TestingRejoin(false),
 		m_SecondaryTerrain(nullptr), m_SecondaryContext(nullptr), m_SecondaryComponentManager(nullptr), m_SecondaryLoadedScripts(nullptr),
-		m_MapSettings(rt->m_rt), m_InitAttributes(rt->m_rt)
+		m_MapSettings(rt->GetJSRuntime()), m_InitAttributes(rt->GetJSRuntime())
 	{
 		m_SimContext.m_UnitManager = unitManager;
 		m_SimContext.m_Terrain = terrain;
@@ -173,7 +173,7 @@ public:
 		ScriptInterface::Request rqNew(newScript);
 		for (const SimulationCommand& command : commands)
 		{
-			JS::RootedValue tmpCommand(rqNew.cx, newScript.CloneValueFromOtherContext(oldScript, command.data));
+			JS::RootedValue tmpCommand(rqNew.cx, newScript.CloneValueFromOtherCompartment(oldScript, command.data));
 			newScript.FreezeObject(tmpCommand, true);
 			SimulationCommand cmd(command.player, rqNew.cx, tmpCommand);
 			newCommands.emplace_back(std::move(cmd));
@@ -423,7 +423,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 		{
 			ScriptInterface::Request rq2(m_SecondaryComponentManager->GetScriptInterface());
 			JS::RootedValue mapSettingsCloned(rq2.cx,
-				m_SecondaryComponentManager->GetScriptInterface().CloneValueFromOtherContext(
+				m_SecondaryComponentManager->GetScriptInterface().CloneValueFromOtherCompartment(
 					scriptInterface, m_MapSettings));
 			ENSURE(LoadTriggerScripts(*m_SecondaryComponentManager, mapSettingsCloned, m_SecondaryLoadedScripts));
 		}
@@ -734,14 +734,14 @@ ScriptInterface& CSimulation2::GetScriptInterface() const
 void CSimulation2::PreInitGame()
 {
 	ScriptInterface::Request rq(GetScriptInterface());
-	JS::RootedValue global(rq.cx, GetScriptInterface().GetGlobalObject());
+	JS::RootedValue global(rq.cx, rq.globalValue());
 	GetScriptInterface().CallFunctionVoid(global, "PreInitGame");
 }
 
 void CSimulation2::InitGame()
 {
 	ScriptInterface::Request rq(GetScriptInterface());
-	JS::RootedValue global(rq.cx, GetScriptInterface().GetGlobalObject());
+	JS::RootedValue global(rq.cx, rq.globalValue());
 
 	JS::RootedValue settings(rq.cx);
 	JS::RootedValue tmpInitAttributes(rq.cx, GetInitAttributes());
@@ -840,7 +840,7 @@ void CSimulation2::GetMapSettings(JS::MutableHandleValue ret)
 void CSimulation2::LoadPlayerSettings(bool newPlayers)
 {
 	ScriptInterface::Request rq(GetScriptInterface());
-	JS::RootedValue global(rq.cx, GetScriptInterface().GetGlobalObject());
+	JS::RootedValue global(rq.cx, rq.globalValue());
 	GetScriptInterface().CallFunctionVoid(global, "LoadPlayerSettings", m->m_MapSettings, newPlayers);
 }
 
@@ -848,7 +848,7 @@ void CSimulation2::LoadMapSettings()
 {
 	ScriptInterface::Request rq(GetScriptInterface());
 
-	JS::RootedValue global(rq.cx, GetScriptInterface().GetGlobalObject());
+	JS::RootedValue global(rq.cx, rq.globalValue());
 
 	// Initialize here instead of in Update()
 	GetScriptInterface().CallFunctionVoid(global, "LoadMapSettings", m->m_MapSettings);

@@ -30,10 +30,10 @@ constexpr int DEFAULT_RUNTIME_SIZE = 16 * 1024 * 1024;
 constexpr int DEFAULT_HEAP_GROWTH_BYTES_GCTRIGGER = 2 * 1024 * 1024;
 
 /**
- * Abstraction around a SpiderMonkey JSRuntime.
- * Each ScriptRuntime can be used to initialize several ScriptInterface
- * contexts which can then share data, but a single ScriptRuntime should
- * only be used on a single thread.
+ * Abstraction around a SpiderMonkey JSRuntime/JSContext.
+ *
+ * A single ScriptRuntime, with the associated runtime and context,
+ * should only be used on a single thread.
  *
  * (One means to share data between threads and runtimes is to create
  * a ScriptInterface::StructuredClone.)
@@ -46,9 +46,7 @@ public:
 	~ScriptRuntime();
 
 	/**
-	 * Returns a runtime, which can used to initialise any number of
-	 * ScriptInterfaces contexts. Values created in one context may be used
-	 * in any other context from the same runtime (but not any other runtime).
+	 * Returns a runtime/context, in which any number of ScriptInterfaces compartments can live.
 	 * Each runtime should only ever be used on a single thread.
 	 * @param runtimeSize Maximum size in bytes of the new runtime
 	 * @param heapGrowthBytesGCTrigger Size in bytes of cumulated allocations after which a GC will be triggered
@@ -70,16 +68,30 @@ public:
 	void MaybeIncrementalGC(double delay);
 	void ShrinkingGC();
 
-	void RegisterContext(JSContext* cx);
-	void UnRegisterContext(JSContext* cx);
+	/**
+	 * This is used to keep track of compartments which should be prepared for a GC.
+	 */
+	void RegisterCompartment(JSCompartment* cmpt);
+	void UnRegisterCompartment(JSCompartment* cmpt);
 
-	JSRuntime* m_rt;
+	JSRuntime* GetJSRuntime() const { return m_rt; }
+
+	/**
+	 * GetGeneralJSContext returns the context without starting a GC request and without
+	 * entering any compartment. It should only be used in specific situations, such as
+	 * creating a new compartment, or as an unsafe alternative to GetJSRuntime.
+	 * If you need the compartmented context of a ScriptInterface, you should create a
+	 * ScriptInterface::Request and use the context from that.
+	 */
+	JSContext* GetGeneralJSContext() const { return m_cx; }
 
 private:
 
-	void PrepareContextsForIncrementalGC();
+	JSRuntime* m_rt;
+	JSContext* m_cx;
 
-	std::list<JSContext*> m_Contexts;
+	void PrepareCompartmentsForIncrementalGC() const;
+	std::list<JSCompartment*> m_Compartments;
 
 	int m_RuntimeSize;
 	int m_HeapGrowthBytesGCTrigger;

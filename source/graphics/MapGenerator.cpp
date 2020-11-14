@@ -92,7 +92,7 @@ void* CMapGeneratorWorker::RunThread(CMapGeneratorWorker* self)
 	shared_ptr<ScriptRuntime> mapgenRuntime = ScriptRuntime::CreateRuntime(RMS_RUNTIME_SIZE);
 
 	// Enable the script to be aborted
-	JS_SetInterruptCallback(mapgenRuntime->m_rt, MapGeneratorInterruptCallback);
+	JS_SetInterruptCallback(mapgenRuntime->GetJSRuntime(), MapGeneratorInterruptCallback);
 
 	self->m_ScriptInterface = new ScriptInterface("Engine", "MapGenerator", mapgenRuntime);
 
@@ -143,7 +143,7 @@ bool CMapGeneratorWorker::Run()
 	RegisterScriptFunctions_MapGenerator();
 
 	// Copy settings to global variable
-	JS::RootedValue global(rq.cx, m_ScriptInterface->GetGlobalObject());
+	JS::RootedValue global(rq.cx, rq.globalValue());
 	if (!m_ScriptInterface->SetProperty(global, "g_MapSettings", settingsVal, true, true))
 	{
 		LOGERROR("CMapGeneratorWorker::Run: Failed to define g_MapSettings");

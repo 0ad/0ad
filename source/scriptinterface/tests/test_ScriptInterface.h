@@ -72,7 +72,7 @@ public:
 		{
 			ScriptInterface::Request rq2(script2);
 
-			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherContext(script1, obj1));
+			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherCompartment(script1, obj1));
 
 			std::string source;
 			TS_ASSERT(script2.CallFunction(obj2, "toSource", source));
@@ -94,7 +94,7 @@ public:
 		{
 			ScriptInterface::Request rq2(script2);
 
-			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherContext(script1, obj1));
+			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherCompartment(script1, obj1));
 
 			std::string source;
 			TS_ASSERT(script2.CallFunction(obj2, "toSource", source));
@@ -114,7 +114,7 @@ public:
 
 		{
 			ScriptInterface::Request rq2(script2);
-			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherContext(script1, obj1));
+			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherCompartment(script1, obj1));
 
 			// Use JSAPI function to check if the values of the properties "a", "b" are equals a.x[0]
 			JS::RootedValue prop_a(rq2.cx);

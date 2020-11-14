@@ -283,7 +283,7 @@ void RunHardwareDetection()
 		scriptInterface.StringifyJSON(&settings, true));
 
 	// Run the detection script:
-	JS::RootedValue global(rq.cx, scriptInterface.GetGlobalObject());
+	JS::RootedValue global(rq.cx, rq.globalValue());
 	scriptInterface.CallFunctionVoid(global, "RunHardwareDetection", settings);
 }
 

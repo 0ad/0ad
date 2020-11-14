@@ -300,8 +300,6 @@ float IGUIObject::GetBufferedZ() const
 void IGUIObject::RegisterScriptHandler(const CStr& eventName, const CStr& Code, CGUI& pGUI)
 {
 	ScriptInterface::Request rq(pGUI.GetScriptInterface());
-	JS::RootedValue globalVal(rq.cx, pGUI.GetGlobalObject());
-	JS::RootedObject globalObj(rq.cx, &globalVal.toObject());
 
 	const int paramCount = 1;
 	const char* paramNames[paramCount] = { "mouse" };

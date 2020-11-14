@@ -58,7 +58,7 @@ extern thread_local shared_ptr<ScriptRuntime> g_ScriptRuntime;
 
 
 /**
- * Abstraction around a SpiderMonkey JSContext.
+ * Abstraction around a SpiderMonkey JSCompartment.
  *
  * Thread-safety:
  * - May be used in non-main threads.
@@ -84,7 +84,7 @@ public:
 
 	struct CmptPrivate
 	{
-		ScriptInterface* pScriptInterface; // the ScriptInterface object the current context belongs to
+		ScriptInterface* pScriptInterface; // the ScriptInterface object the compartment belongs to
 		void* pCBData; // meant to be used as the "this" object for callback functions
 	} m_CmptPrivate;
 
@@ -95,9 +95,13 @@ public:
 	shared_ptr<ScriptRuntime> GetRuntime() const;
 
 	/**
-	 * RAII structure which encapsulates an access to the context of a ScriptInterface.
-	 * This struct provides a pointer to the context, and it acts like JSAutoRequest. This
-	 * way, getting the context is safe with respect to the GC.
+	 * RAII structure which encapsulates an access to the context and compartment of a ScriptInterface.
+	 * This struct provides:
+	 * - a pointer to the context, while acting like JSAutoRequest
+	 * - a pointer to the global object of the compartment, while acting like JSAutoCompartment
+	 *
+	 * This way, getting and using those pointers is safe with respect to the GC
+	 * and to the separation of compartments.
 	 */
 	struct Request
 	{
@@ -107,15 +111,19 @@ public:
 		Request(const ScriptInterface& scriptInterface);
 		Request(const ScriptInterface* scriptInterface) : Request(*scriptInterface) {}
 		Request(shared_ptr<ScriptInterface> scriptInterface) : Request(*scriptInterface) {}
-		Request(const CmptPrivate* CmptPrivate) : Request(CmptPrivate->pScriptInterface) {}
+		Request(const CmptPrivate* cmptPrivate) : Request(cmptPrivate->pScriptInterface) {}
 		~Request();
 
+		JS::Value globalValue() const;
 		JSContext* cx;
+		JSObject* glob;
+	private:
+		JSCompartment* m_formerCompartment;
 	};
 	friend struct Request;
 
 	/**
-	 * Load global scripts that most script contexts need,
+	 * Load global scripts that most script interfaces need,
 	 * located in the /globalscripts directory. VFS must be initialized.
 	 */
 	bool LoadGlobalScripts();
@@ -157,8 +165,6 @@ public:
 	 * Sets the given value to a new JS object or Null Value in case of out-of-memory.
 	 */
 	static void CreateArray(const Request& rq, JS::MutableHandleValue objectValue, size_t length = 0);
-
-	JS::Value GetGlobalObject() const;
 
 	/**
 	 * Set the named property on the global object.
@@ -291,12 +297,12 @@ public:
 	bool LoadGlobalScriptFile(const VfsPath& path) const;
 
 	/**
-	 * Construct a new value (usable in this ScriptInterface's context) by cloning
-	 * a value from a different context.
+	 * Construct a new value (usable in this ScriptInterface's compartment) by cloning
+	 * a value from a different compartment.
 	 * Complex values (functions, XML, etc) won't be cloned correctly, but basic
 	 * types and cyclic references should be fine.
 	 */
-	JS::Value CloneValueFromOtherContext(const ScriptInterface& otherContext, JS::HandleValue val) const;
+	JS::Value CloneValueFromOtherCompartment(const ScriptInterface& otherCompartment, JS::HandleValue val) const;
 
 	/**
 	 * Convert a JS::Value to a C++ type. (This might trigger GC.)
@@ -327,7 +333,7 @@ public:
 
 	/**
 	 * Structured clones are a way to serialize 'simple' JS::Values into a buffer
-	 * that can safely be passed between contexts and runtimes and threads.
+	 * that can safely be passed between compartments and between threads.
 	 * A StructuredClone can be stored and read multiple times if desired.
 	 * We wrap them in shared_ptr so memory management is automatic and
 	 * thread-safe.

@@ -62,24 +62,32 @@ struct ScriptInterface_impl
 	// members have to be called before the runtime destructor.
 	shared_ptr<ScriptRuntime> m_runtime;
 
-	JS::PersistentRootedObject m_glob; // global scope object
-	boost::rand48* m_rng;
-	JS::PersistentRootedObject m_nativeScope; // native function scope object
-
 	friend ScriptInterface::Request;
 	private:
 		JSContext* m_cx;
-		JSCompartment* m_formerCompartment;
+		JS::PersistentRootedObject m_glob; // global scope object
+
+	public:
+		boost::rand48* m_rng;
+		JS::PersistentRootedObject m_nativeScope; // native function scope object
 };
 
 ScriptInterface::Request::Request(const ScriptInterface& scriptInterface) :
 	cx(scriptInterface.m->m_cx)
 {
 	JS_BeginRequest(cx);
+	m_formerCompartment = JS_EnterCompartment(cx, scriptInterface.m->m_glob);
+	glob = JS::CurrentGlobalOrNull(cx);
+}
+
+JS::Value ScriptInterface::Request::globalValue() const
+{
+	return JS::ObjectValue(*glob);
 }
 
 ScriptInterface::Request::~Request()
 {
+	JS_LeaveCompartment(cx, m_formerCompartment);
 	JS_EndRequest(cx);
 }
 
@@ -94,46 +102,6 @@ JSClass global_class = {
 	nullptr, nullptr, nullptr, nullptr,
 	JS_GlobalObjectTraceHook
 };
-
-void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
-{
-	ScriptInterface::Request rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
-
-	std::stringstream msg;
-	bool isWarning = JSREPORT_IS_WARNING(report->flags);
-	msg << (isWarning ? "JavaScript warning: " : "JavaScript error: ");
-	if (report->filename)
-	{
-		msg << report->filename;
-		msg << " line " << report->lineno << "\n";
-	}
-
-	msg << message;
-
-	// If there is an exception, then print its stack trace
-	JS::RootedValue excn(cx);
-	if (JS_GetPendingException(cx, &excn) && excn.isObject())
-	{
-		JS::RootedValue stackVal(cx);
-		JS::RootedObject excnObj(cx, &excn.toObject());
-		JS_GetProperty(cx, excnObj, "stack", &stackVal);
-
-		std::string stackText;
-		ScriptInterface::FromJSVal(rq, stackVal, stackText);
-
-		std::istringstream stream(stackText);
-		for (std::string line; std::getline(stream, line);)
-			msg << "\n  " << line;
-	}
-
-	if (isWarning)
-		LOGWARNING("%s", msg.str().c_str());
-	else
-		LOGERROR("%s", msg.str().c_str());
-
-	// When running under Valgrind, print more information in the error message
-//	VALGRIND_PRINTF_BACKTRACE("->");
-}
 
 // Functions in the global namespace:
 
@@ -351,70 +319,47 @@ bool ScriptInterface::MathRandom(double& nbr)
 }
 
 ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const shared_ptr<ScriptRuntime>& runtime) :
-	m_runtime(runtime), m_glob(runtime->m_rt), m_nativeScope(runtime->m_rt)
+	m_runtime(runtime), m_cx(runtime->GetGeneralJSContext()), m_glob(runtime->GetJSRuntime()), m_nativeScope(runtime->GetJSRuntime())
 {
-	m_cx = JS_NewContext(m_runtime->m_rt, STACK_CHUNK_SIZE);
-	ENSURE(m_cx);
-
-	JS_SetOffthreadIonCompilationEnabled(m_runtime->m_rt, true);
-
-	// For GC debugging:
-	// JS_SetGCZeal(m_cx, 2, JS_DEFAULT_ZEAL_FREQ);
-
-	JS_SetContextPrivate(m_cx, NULL);
-
-	JS_SetErrorReporter(m_runtime->m_rt, ErrorReporter);
-
-	JS_SetGlobalJitCompilerOption(m_runtime->m_rt, JSJITCOMPILER_ION_ENABLE, 1);
-	JS_SetGlobalJitCompilerOption(m_runtime->m_rt, JSJITCOMPILER_BASELINE_ENABLE, 1);
-
-	JS::RuntimeOptionsRef(m_cx)
-		.setExtraWarnings(true)
-		.setWerror(false)
-		.setStrictMode(true);
-
 	JS::CompartmentOptions opt;
 	opt.setVersion(JSVERSION_LATEST);
 	// Keep JIT code during non-shrinking GCs. This brings a quite big performance improvement.
 	opt.setPreserveJitCode(true);
 
 	JSAutoRequest rq(m_cx);
-	JS::RootedObject globalRootedVal(m_cx, JS_NewGlobalObject(m_cx, &global_class, NULL, JS::OnNewGlobalHookOption::FireOnNewGlobalHook, opt));
-	m_formerCompartment = JS_EnterCompartment(m_cx, globalRootedVal);
-	ENSURE(JS_InitStandardClasses(m_cx, globalRootedVal));
-	m_glob = globalRootedVal.get();
+	m_glob = JS_NewGlobalObject(m_cx, &global_class, nullptr, JS::OnNewGlobalHookOption::FireOnNewGlobalHook, opt);
 
-	JS_DefineProperty(m_cx, m_glob, "global", globalRootedVal, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+	JSAutoCompartment autoCmpt(m_cx, m_glob);
+
+	ENSURE(JS_InitStandardClasses(m_cx, m_glob));
+
+	JS_DefineProperty(m_cx, m_glob, "global", m_glob, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 
 	m_nativeScope = JS_DefineObject(m_cx, m_glob, nativeScopeName, nullptr, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 
-	JS_DefineFunction(m_cx, globalRootedVal, "print", ::print,        0, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
-	JS_DefineFunction(m_cx, globalRootedVal, "log",   ::logmsg,       1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
-	JS_DefineFunction(m_cx, globalRootedVal, "warn",  ::warn,         1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
-	JS_DefineFunction(m_cx, globalRootedVal, "error", ::error,        1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
-	JS_DefineFunction(m_cx, globalRootedVal, "clone", ::deepcopy,        1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
-	JS_DefineFunction(m_cx, globalRootedVal, "deepfreeze", ::deepfreeze, 1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+	JS_DefineFunction(m_cx, m_glob, "print", ::print,        0, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+	JS_DefineFunction(m_cx, m_glob, "log",   ::logmsg,       1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+	JS_DefineFunction(m_cx, m_glob, "warn",  ::warn,         1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+	JS_DefineFunction(m_cx, m_glob, "error", ::error,        1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+	JS_DefineFunction(m_cx, m_glob, "clone", ::deepcopy,        1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+	JS_DefineFunction(m_cx, m_glob, "deepfreeze", ::deepfreeze, 1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 
 	Register("ProfileStart", ::ProfileStart, 1);
 	Register("ProfileStop", ::ProfileStop, 0);
 	Register("ProfileAttribute", ::ProfileAttribute, 1);
 
-	runtime->RegisterContext(m_cx);
+	m_runtime->RegisterCompartment(js::GetObjectCompartment(m_glob));
 }
 
 ScriptInterface_impl::~ScriptInterface_impl()
 {
-	m_runtime->UnRegisterContext(m_cx);
-	{
-		JSAutoRequest rq(m_cx);
-		JS_LeaveCompartment(m_cx, m_formerCompartment);
-	}
-	JS_DestroyContext(m_cx);
+	m_runtime->UnRegisterCompartment(js::GetObjectCompartment(m_glob));
 }
 
 void ScriptInterface_impl::Register(const char* name, JSNative fptr, uint nargs) const
 {
 	JSAutoRequest rq(m_cx);
+	JSAutoCompartment autoCmpt(m_cx, m_glob);
 	JS::RootedObject nativeScope(m_cx, m_nativeScope);
 	JS::RootedFunction func(m_cx, JS_DefineFunction(m_cx, nativeScope, name, fptr, nargs, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT));
 }
@@ -431,7 +376,7 @@ ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugN
 
 	Request rq(this);
 	m_CmptPrivate.pScriptInterface = this;
-	JS_SetContextPrivate(rq.cx, (void*)&m_CmptPrivate);
+	JS_SetCompartmentPrivate(js::GetObjectCompartment(rq.glob), (void*)&m_CmptPrivate);
 }
 
 ScriptInterface::~ScriptInterface()
@@ -450,7 +395,7 @@ void ScriptInterface::SetCallbackData(void* pCBData)
 
 ScriptInterface::CmptPrivate* ScriptInterface::GetScriptInterfaceAndCBData(JSContext* cx)
 {
-	CmptPrivate* pCmptPrivate = (CmptPrivate*)JS_GetContextPrivate(cx);
+	CmptPrivate* pCmptPrivate = (CmptPrivate*)JS_GetCompartmentPrivate(js::GetContextCompartment(cx));
 	return pCmptPrivate;
 }
 
@@ -478,7 +423,7 @@ bool ScriptInterface::ReplaceNondeterministicRNG(boost::rand48& rng)
 {
 	Request rq(this);
 	JS::RootedValue math(rq.cx);
-	JS::RootedObject global(rq.cx, m->m_glob);
+	JS::RootedObject global(rq.cx, rq.glob);
 	if (JS_GetProperty(rq.cx, global, "Math", &math) && math.isObject())
 	{
 		JS::RootedObject mathObj(rq.cx, &math.toObject());
@@ -502,7 +447,7 @@ void ScriptInterface::Register(const char* name, JSNative fptr, size_t nargs) co
 
 JSRuntime* ScriptInterface::GetJSRuntime() const
 {
-	return m->m_runtime->m_rt;
+	return m->m_runtime->GetJSRuntime();
 }
 
 shared_ptr<ScriptRuntime> ScriptInterface::GetRuntime() const
@@ -535,7 +480,7 @@ void ScriptInterface::DefineCustomObjectType(JSClass *clasp, JSNative constructo
 		throw PSERROR_Scripting_DefineType_AlreadyExists();
 	}
 
-	JS::RootedObject global(rq.cx, m->m_glob);
+	JS::RootedObject global(rq.cx, rq.glob);
 	JS::RootedObject obj(rq.cx, JS_InitClass(rq.cx, global, nullptr,
 	                                           clasp,
 	                                           constructor, minArgs,     // Constructor, min args
@@ -597,16 +542,10 @@ void ScriptInterface::CreateArray(const Request& rq, JS::MutableHandleValue obje
 		throw PSERROR_Scripting_CreateObjectFailed();
 }
 
-JS::Value ScriptInterface::GetGlobalObject() const
-{
-	Request rq(this);
-	return JS::ObjectValue(*JS::CurrentGlobalOrNull(rq.cx));
-}
-
 bool ScriptInterface::SetGlobal_(const char* name, JS::HandleValue value, bool replace, bool constant, bool enumerate)
 {
 	Request rq(this);
-	JS::RootedObject global(rq.cx, m->m_glob);
+	JS::RootedObject global(rq.cx, rq.glob);
 
 	bool found;
 	if (!JS_HasProperty(rq.cx, global, name, &found))
@@ -834,7 +773,7 @@ bool ScriptInterface::FreezeObject(JS::HandleValue objVal, bool deep) const
 bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& code) const
 {
 	Request rq(this);
-	JS::RootedObject global(rq.cx, m->m_glob);
+	JS::RootedObject global(rq.cx, rq.glob);
 	utf16string codeUtf16(code.begin(), code.end());
 	uint lineNo = 1;
 	// CompileOptions does not copy the contents of the filename string pointer.
@@ -1036,12 +975,12 @@ std::string ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty) c
 		JS::RootedValue indentVal(rq.cx, JS::Int32Value(2));
 
 		// Temporary disable the error reporter, so we don't print complaints about cyclic values
-		JSErrorReporter er = JS_SetErrorReporter(m->m_runtime->m_rt, NULL);
+		JSErrorReporter er = JS_SetErrorReporter(GetJSRuntime(), nullptr);
 
 		bool ok = JS_Stringify(rq.cx, obj, nullptr, indentVal, &Stringifier::callback, &str);
 
 		// Restore error reporter
-		JS_SetErrorReporter(m->m_runtime->m_rt, er);
+		JS_SetErrorReporter(GetJSRuntime(), er);
 
 		if (ok)
 			return str.stream.str();
@@ -1077,12 +1016,12 @@ bool ScriptInterface::IsExceptionPending(const Request& rq)
 	return JS_IsExceptionPending(rq.cx) ? true : false;
 }
 
-JS::Value ScriptInterface::CloneValueFromOtherContext(const ScriptInterface& otherContext, JS::HandleValue val) const
+JS::Value ScriptInterface::CloneValueFromOtherCompartment(const ScriptInterface& otherCompartment, JS::HandleValue val) const
 {
-	PROFILE("CloneValueFromOtherContext");
+	PROFILE("CloneValueFromOtherCompartment");
 	Request rq(this);
 	JS::RootedValue out(rq.cx);
-	shared_ptr<StructuredClone> structuredClone = otherContext.WriteStructuredClone(val);
+	shared_ptr<StructuredClone> structuredClone = otherCompartment.WriteStructuredClone(val);
 	ReadStructuredClone(structuredClone, &out);
 	return out.get();
 }

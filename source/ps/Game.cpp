@@ -325,7 +325,7 @@ PSRETURN CGame::ReallyStartGame()
 		shared_ptr<ScriptInterface> scriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
 		ScriptInterface::Request rq(scriptInterface);
 
-		JS::RootedValue global(rq.cx, scriptInterface->GetGlobalObject());
+		JS::RootedValue global(rq.cx, rq.globalValue());
 		if (scriptInterface->HasProperty(global, "reallyStartGame"))
 			scriptInterface->CallFunctionVoid(global, "reallyStartGame");
 	}
