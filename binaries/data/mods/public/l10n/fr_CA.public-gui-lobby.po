@@ -7,7 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2019-11-22 08:08+0000\n"
-"PO-Revision-Date: 2014-06-19 17:50+0000\n"
+"PO-Revision-Date: 2020-11-11 06:08+0000\n"
+"Last-Translator: Jason Labrecque <sojitcoin@gmail.com>\n"
 "Language-Team: French (Canada) (http://www.transifex.com/wildfire-games/0ad/language/fr_CA/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,14 +43,14 @@ msgstr ""
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:63
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "Yes"
-msgstr ""
+msgstr "Oui"
 
 #. Translation: The number of players and observers in this game
 #: gui/lobby/LobbyPage/Game.js:298
@@ -162,7 +163,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/PlayerList.js:202
 msgctxt "lobby presence"
 msgid "Unknown"
-msgstr ""
+msgstr "Inconnue"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:106
 msgid "N/A"
@@ -174,7 +175,7 @@ msgstr ""
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:113
 msgid "Player"
-msgstr ""
+msgstr "Joueur"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:114
 msgid "Muted Player"
@@ -245,7 +246,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
 msgctxt "previous page"
 msgid "Back"
-msgstr ""
+msgstr "Retour"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:16
 msgctxt "previous page"
@@ -424,7 +425,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
 msgid "Connected."
@@ -580,7 +581,7 @@ msgstr ""
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):26
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):59
 msgid "Back"
-msgstr ""
+msgstr "Retour"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):30
 msgid "Update"
@@ -649,7 +650,7 @@ msgstr ""
 
 #: gui/lobby/LobbyPage/Chat/ChatPanel.xml:(caption):6
 msgid "Send"
-msgstr ""
+msgstr "Envoyer"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):14
 msgid "Enter playername:"
@@ -682,7 +683,7 @@ msgstr ""
 #: gui/prelobby/common/feedback/feedback.xml:(caption):10
 #: gui/prelobby/entrance/entrance.xml:(caption):30
 msgid "Cancel"
-msgstr ""
+msgstr "Canceller"
 
 #: gui/prelobby/entrance/entrance.xml:(caption):20
 msgid "Create a new account"

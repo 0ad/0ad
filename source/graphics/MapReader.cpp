@@ -371,15 +371,14 @@ PSRETURN CMapSummaryReader::LoadMap(const VfsPath& pathname)
 
 void CMapSummaryReader::GetMapSettings(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(scriptInterface);
 
-	ScriptInterface::CreateObject(cx, ret);
+	ScriptInterface::CreateObject(rq, ret);
 
 	if (m_ScriptSettings.empty())
 		return;
 
-	JS::RootedValue scriptSettingsVal(cx);
+	JS::RootedValue scriptSettingsVal(rq.cx);
 	scriptInterface.ParseJSON(m_ScriptSettings, &scriptSettingsVal);
 	scriptInterface.SetProperty(ret, "settings", scriptSettingsVal, false);
 }
@@ -1267,8 +1266,7 @@ int CMapReader::LoadRMSettings()
 
 int CMapReader::GenerateMap()
 {
-	JSContext* cx = pSimulation2->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(pSimulation2->GetScriptInterface());
 
 	if (!m_MapGen)
 	{
@@ -1300,7 +1298,7 @@ int CMapReader::GenerateMap()
 		shared_ptr<ScriptInterface::StructuredClone> results = m_MapGen->GetResults();
 
 		// Parse data into simulation context
-		JS::RootedValue data(cx);
+		JS::RootedValue data(rq.cx);
 		pSimulation2->GetScriptInterface().ReadStructuredClone(results, &data);
 
 		if (data.isUndefined())
@@ -1310,7 +1308,7 @@ int CMapReader::GenerateMap()
 		}
 		else
 		{
-			m_MapData.init(cx, data);
+			m_MapData.init(rq.cx, data);
 		}
 	}
 	else
@@ -1330,8 +1328,7 @@ int CMapReader::GenerateMap()
 int CMapReader::ParseTerrain()
 {
 	TIMER(L"ParseTerrain");
-	JSContext* cx = pSimulation2->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(pSimulation2->GetScriptInterface());
 
 	// parse terrain from map data
 	//	an error here should stop the loading process
@@ -1365,7 +1362,7 @@ int CMapReader::ParseTerrain()
 	// build tile data
 	m_Tiles.resize(SQR(size));
 
-	JS::RootedValue tileData(cx);
+	JS::RootedValue tileData(rq.cx);
 	GET_TERRAIN_PROPERTY(m_MapData, tileData, &tileData)
 
 	// parse tile data object into flat arrays
@@ -1406,8 +1403,7 @@ int CMapReader::ParseTerrain()
 int CMapReader::ParseEntities()
 {
 	TIMER(L"ParseEntities");
-	JSContext* cx = pSimulation2->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(pSimulation2->GetScriptInterface());
 
 	// parse entities from map data
 	std::vector<Entity> entities;
@@ -1471,14 +1467,13 @@ int CMapReader::ParseEntities()
 int CMapReader::ParseEnvironment()
 {
 	// parse environment settings from map data
-	JSContext* cx = pSimulation2->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(pSimulation2->GetScriptInterface());
 
 #define GET_ENVIRONMENT_PROPERTY(val, prop, out)\
 	if (!pSimulation2->GetScriptInterface().GetProperty(val, #prop, out))\
 		LOGWARNING("CMapReader::ParseEnvironment() failed to get '%s' property", #prop);
 
-	JS::RootedValue envObj(cx);
+	JS::RootedValue envObj(rq.cx);
 	GET_ENVIRONMENT_PROPERTY(m_MapData, Environment, &envObj)
 
 	if (envObj.isUndefined())
@@ -1511,10 +1506,10 @@ int CMapReader::ParseEnvironment()
 	m_LightEnv.m_UnitsAmbientColor = RGBColor(unitsAmbientColor.r, unitsAmbientColor.g, unitsAmbientColor.b);
 
 	// Water properties
-	JS::RootedValue waterObj(cx);
+	JS::RootedValue waterObj(rq.cx);
 	GET_ENVIRONMENT_PROPERTY(envObj, Water, &waterObj)
 
-	JS::RootedValue waterBodyObj(cx);
+	JS::RootedValue waterBodyObj(rq.cx);
 	GET_ENVIRONMENT_PROPERTY(waterObj, WaterBody, &waterBodyObj)
 
 	// Water level - necessary
@@ -1538,7 +1533,7 @@ int CMapReader::ParseEnvironment()
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj, WindAngle, pWaterMan->m_WindAngle)
 	}
 
-	JS::RootedValue fogObject(cx);
+	JS::RootedValue fogObject(rq.cx);
 	GET_ENVIRONMENT_PROPERTY(envObj, Fog, &fogObject);
 
 	GET_ENVIRONMENT_PROPERTY(fogObject, FogFactor, m_LightEnv.m_FogFactor);
@@ -1548,7 +1543,7 @@ int CMapReader::ParseEnvironment()
 	GET_ENVIRONMENT_PROPERTY(fogObject, FogColor, fogColor);
 	m_LightEnv.m_FogColor = RGBColor(fogColor.r, fogColor.g, fogColor.b);
 
-	JS::RootedValue postprocObject(cx);
+	JS::RootedValue postprocObject(rq.cx);
 	GET_ENVIRONMENT_PROPERTY(envObj, Postproc, &postprocObject);
 
 	std::wstring postProcEffect;
@@ -1571,8 +1566,8 @@ int CMapReader::ParseEnvironment()
 
 int CMapReader::ParseCamera()
 {
-	JSContext* cx = pSimulation2->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(pSimulation2->GetScriptInterface());
+
 	// parse camera settings from map data
 	// defaults if we don't find player starting camera
 	float declination = DEGTORAD(30.f), rotation = DEGTORAD(-45.f);
@@ -1582,7 +1577,7 @@ int CMapReader::ParseCamera()
 	if (!pSimulation2->GetScriptInterface().GetProperty(val, #prop, out))\
 		LOGWARNING("CMapReader::ParseCamera() failed to get '%s' property", #prop);
 
-	JS::RootedValue cameraObj(cx);
+	JS::RootedValue cameraObj(rq.cx);
 	GET_CAMERA_PROPERTY(m_MapData, Camera, &cameraObj)
 
 	if (!cameraObj.isUndefined())

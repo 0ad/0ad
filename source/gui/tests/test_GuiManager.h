@@ -62,10 +62,9 @@ public:
 
 		// Load up a test page.
 		const ScriptInterface& scriptInterface = *(g_GUI->GetScriptInterface());
-		JSContext* cx = scriptInterface.GetContext();
-		JSAutoRequest rq(cx);
-		JS::RootedValue val(cx);
-		scriptInterface.CreateObject(cx, &val);
+		ScriptInterface::Request rq(scriptInterface);
+		JS::RootedValue val(rq.cx);
+		scriptInterface.CreateObject(rq, &val);
 
 		std::shared_ptr<ScriptInterface::StructuredClone> data = scriptInterface.WriteStructuredClone(JS::NullHandleValue);
 		g_GUI->PushPage(L"hotkey/page_hotkey.xml", data, JS::UndefinedHandleValue);
@@ -84,21 +83,20 @@ public:
 			in_dispatch_event(&ev);
 
 		const ScriptInterface& pageScriptInterface = *(g_GUI->GetActiveGUI()->GetScriptInterface());
-		JSContext* pcx = pageScriptInterface.GetContext();
-		JSAutoRequest pagerq(pcx);
-		JS::RootedValue global(pcx, pageScriptInterface.GetGlobalObject());
+		ScriptInterface::Request prq(pageScriptInterface);
+		JS::RootedValue global(prq.cx, pageScriptInterface.GetGlobalObject());
 
 		// Ensure that our hotkey state was synchronised with the event itself.
 		bool hotkey_pressed_value = false;
-		JS::RootedValue js_hotkey_pressed_value(pageScriptInterface.GetContext());
+		JS::RootedValue js_hotkey_pressed_value(prq.cx);
 
 		pageScriptInterface.GetProperty(global, "state_before", &js_hotkey_pressed_value);
-		ScriptInterface::FromJSVal(pcx, js_hotkey_pressed_value, hotkey_pressed_value);
+		ScriptInterface::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, true);
 
 		hotkey_pressed_value = false;
 		pageScriptInterface.GetProperty(global, "state_after", &js_hotkey_pressed_value);
-		ScriptInterface::FromJSVal(pcx, js_hotkey_pressed_value, hotkey_pressed_value);
+		ScriptInterface::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, true);
 
 		// We are listening to KeyDown events, so repeat shouldn't matter.
@@ -109,12 +107,12 @@ public:
 
 		hotkey_pressed_value = false;
 		pageScriptInterface.GetProperty(global, "state_before", &js_hotkey_pressed_value);
-		ScriptInterface::FromJSVal(pcx, js_hotkey_pressed_value, hotkey_pressed_value);
+		ScriptInterface::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, true);
 
 		hotkey_pressed_value = false;
 		pageScriptInterface.GetProperty(global, "state_after", &js_hotkey_pressed_value);
-		ScriptInterface::FromJSVal(pcx, js_hotkey_pressed_value, hotkey_pressed_value);
+		ScriptInterface::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, true);
 
 		hotkeyNotification.ev.type = SDL_KEYUP;
@@ -124,12 +122,12 @@ public:
 
 		hotkey_pressed_value = true;
 		pageScriptInterface.GetProperty(global, "state_before", &js_hotkey_pressed_value);
-		ScriptInterface::FromJSVal(pcx, js_hotkey_pressed_value, hotkey_pressed_value);
+		ScriptInterface::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, false);
 
 		hotkey_pressed_value = true;
 		pageScriptInterface.GetProperty(global, "state_after", &js_hotkey_pressed_value);
-		ScriptInterface::FromJSVal(pcx, js_hotkey_pressed_value, hotkey_pressed_value);
+		ScriptInterface::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, false);
 
 	}

@@ -21,34 +21,32 @@
 #include "simulation2/MessageTypes.h"
 
 #define TOJSVAL_SETUP() \
-	JSContext* cx = scriptInterface.GetContext(); \
-	JSAutoRequest rq(cx); \
-	JS::RootedObject obj(cx, JS_NewPlainObject(cx)); \
+	ScriptInterface::Request rq(scriptInterface); \
+	JS::RootedObject obj(rq.cx, JS_NewPlainObject(rq.cx)); \
 	if (!obj) \
 		return JS::UndefinedValue();
 
 #define SET_MSG_PROPERTY(name) \
 	do { \
-		JS::RootedValue prop(cx);\
-		ScriptInterface::ToJSVal(cx, &prop, this->name); \
-		if (! JS_SetProperty(cx, obj, #name, prop)) \
+		JS::RootedValue prop(rq.cx);\
+		ScriptInterface::ToJSVal(rq, &prop, this->name); \
+		if (! JS_SetProperty(rq.cx, obj, #name, prop)) \
 			return JS::UndefinedValue(); \
 	} while (0);
 
 #define FROMJSVAL_SETUP() \
-	JSContext* cx = scriptInterface.GetContext(); \
-	JSAutoRequest rq(cx); \
+	ScriptInterface::Request rq(scriptInterface); \
 	if (val.isPrimitive()) \
 		return NULL; \
-	JS::RootedObject obj(cx, &val.toObject()); \
-	JS::RootedValue prop(cx);
+	JS::RootedObject obj(rq.cx, &val.toObject()); \
+	JS::RootedValue prop(rq.cx);
 
 #define GET_MSG_PROPERTY(type, name) \
 	type name; \
 	{ \
-	if (! JS_GetProperty(cx, obj, #name, &prop)) \
+	if (! JS_GetProperty(rq.cx, obj, #name, &prop)) \
 		return NULL; \
-	if (! ScriptInterface::FromJSVal(cx, prop, name)) \
+	if (! ScriptInterface::FromJSVal(rq, prop, name)) \
 		return NULL; \
 	}
 
@@ -273,9 +271,9 @@ const std::array<const char*, CMessageMotionUpdate::UpdateType::LENGTH> CMessage
 JS::Value CMessageMotionUpdate::ToJSVal(const ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
-	JS::RootedValue prop(cx);
+	JS::RootedValue prop(rq.cx);
 
-	if (!JS_SetProperty(cx, obj, UpdateTypeStr[updateType], JS::TrueHandleValue))
+	if (!JS_SetProperty(rq.cx, obj, UpdateTypeStr[updateType], JS::TrueHandleValue))
 		return JS::UndefinedValue();
 
 	return JS::ObjectValue(*obj);

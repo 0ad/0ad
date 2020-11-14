@@ -140,29 +140,28 @@ bool CGUISize::FromString(const CStr& Value)
 	return true;
 }
 
-void CGUISize::ToJSVal(JSContext* cx, JS::MutableHandleValue ret) const
+void CGUISize::ToJSVal(const ScriptInterface::Request& rq, JS::MutableHandleValue ret) const
 {
-	JSAutoRequest rq(cx);
-	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(rq.cx)->pScriptInterface;
 	ret.setObjectOrNull(pScriptInterface->CreateCustomObject("GUISize"));
 
 	if (!ret.isObject())
 	{
-		JS_ReportError(cx, "CGUISize value is not an Object");
+		JS_ReportError(rq.cx, "CGUISize value is not an Object");
 		return;
 	}
 
-	JS::RootedObject obj(cx, &ret.toObject());
-	if (!JS_InstanceOf(cx, obj, &JSI_GUISize::JSI_class, nullptr))
+	JS::RootedObject obj(rq.cx, &ret.toObject());
+	if (!JS_InstanceOf(rq.cx, obj, &JSI_GUISize::JSI_class, nullptr))
 	{
-		JS_ReportError(cx, "CGUISize value is not a CGUISize class instance");
+		JS_ReportError(rq.cx, "CGUISize value is not a CGUISize class instance");
 		return;
 	}
 
 #define P(x, y, z)\
 	if (!pScriptInterface->SetProperty(ret, #z, x.y)) \
 	{ \
-		JS_ReportError(cx, "Could not SetProperty '%s'", #z); \
+		JS_ReportError(rq.cx, "Could not SetProperty '%s'", #z); \
 		return; \
 	}
 	P(pixel, left, left);
@@ -176,23 +175,22 @@ void CGUISize::ToJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 #undef P
 }
 
-bool CGUISize::FromJSVal(JSContext* cx, JS::HandleValue v)
+bool CGUISize::FromJSVal(const ScriptInterface::Request& rq, JS::HandleValue v)
 {
-	JSAutoRequest rq(cx);
-	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(rq.cx)->pScriptInterface;
 
 	if (v.isString())
 	{
 		CStrW str;
-		if (!ScriptInterface::FromJSVal(cx, v, str))
+		if (!ScriptInterface::FromJSVal(rq, v, str))
 		{
-			JS_ReportError(cx, "CGUISize could not read JS string");
+			JS_ReportError(rq.cx, "CGUISize could not read JS string");
 			return false;
 		}
 
 		if (!FromString(str.ToUTF8()))
 		{
-			JS_ReportError(cx, "CGUISize could not parse JS string");
+			JS_ReportError(rq.cx, "CGUISize could not parse JS string");
 			return false;
 		}
 		return true;
@@ -200,21 +198,21 @@ bool CGUISize::FromJSVal(JSContext* cx, JS::HandleValue v)
 
 	if (!v.isObject())
 	{
-		JS_ReportError(cx, "CGUISize value is not an String, nor Object");
+		JS_ReportError(rq.cx, "CGUISize value is not an String, nor Object");
 		return false;
 	}
 
-	JS::RootedObject obj(cx, &v.toObject());
-	if (!JS_InstanceOf(cx, obj, &JSI_GUISize::JSI_class, nullptr))
+	JS::RootedObject obj(rq.cx, &v.toObject());
+	if (!JS_InstanceOf(rq.cx, obj, &JSI_GUISize::JSI_class, nullptr))
 	{
-		JS_ReportError(cx, "CGUISize value is not a CGUISize class instance");
+		JS_ReportError(rq.cx, "CGUISize value is not a CGUISize class instance");
 		return false;
 	}
 
 #define P(x, y, z) \
 	if (!pScriptInterface->GetProperty(v, #z, x.y))\
 	{\
-		JS_ReportError(cx, "CGUISize could not get object property '%s'", #z);\
+		JS_ReportError(rq.cx, "CGUISize could not get object property '%s'", #z);\
 		return false;\
 	}
 

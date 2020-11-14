@@ -27,12 +27,12 @@
 #include "scriptinterface/ScriptInterface.h"
 
 #define IMPLEMENT_BOOLEAN_SCRIPT_SETTING(NAME) \
-bool JSI_Renderer::Get##NAME##Enabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate)) \
+bool JSI_Renderer::Get##NAME##Enabled(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate)) \
 { \
 return g_RenderingOptions.Get##NAME(); \
 } \
 \
-void JSI_Renderer::Set##NAME##Enabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool enabled) \
+void JSI_Renderer::Set##NAME##Enabled(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), bool enabled) \
 { \
 	g_RenderingOptions.Set##NAME(enabled); \
 }
@@ -57,37 +57,37 @@ IMPLEMENT_BOOLEAN_SCRIPT_SETTING(DisplayShadowsFrustum);
 
 #undef IMPLEMENT_BOOLEAN_SCRIPT_SETTING
 
-std::string JSI_Renderer::GetRenderPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+std::string JSI_Renderer::GetRenderPath(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return RenderPathEnum::ToString(g_RenderingOptions.GetRenderPath());
 }
 
-void JSI_Renderer::SetRenderPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& name)
+void JSI_Renderer::SetRenderPath(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& name)
 {
 	g_RenderingOptions.SetRenderPath(RenderPathEnum::FromString(name));
 }
 
-void JSI_Renderer::UpdateAntiAliasingTechnique(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_Renderer::UpdateAntiAliasingTechnique(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	g_Renderer.GetPostprocManager().UpdateAntiAliasingTechnique();
 }
 
-void JSI_Renderer::UpdateSharpeningTechnique(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_Renderer::UpdateSharpeningTechnique(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	g_Renderer.GetPostprocManager().UpdateSharpeningTechnique();
 }
 
-void JSI_Renderer::UpdateSharpnessFactor(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_Renderer::UpdateSharpnessFactor(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	g_Renderer.GetPostprocManager().UpdateSharpnessFactor();
 }
 
-void JSI_Renderer::RecreateShadowMap(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_Renderer::RecreateShadowMap(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	g_Renderer.GetShadowMap().RecreateTexture();
 }
 
-bool JSI_Renderer::TextureExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename)
+bool JSI_Renderer::TextureExists(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& filename)
 {
 	return g_Renderer.GetTextureManager().TextureExists(filename);
 }

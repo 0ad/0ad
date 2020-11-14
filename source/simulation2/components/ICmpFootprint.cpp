@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,39 +30,38 @@ JS::Value ICmpFootprint::GetShape_wrapper() const
 	entity_pos_t size0, size1, height;
 	GetShape(shape, size0, size1, height);
 
-	JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(GetSimContext().GetScriptInterface());
 
-	JS::RootedObject obj(cx, JS_NewPlainObject(cx));
+	JS::RootedObject obj(rq.cx, JS_NewPlainObject(rq.cx));
 	if (!obj)
 		return JS::UndefinedValue();
 
 	if (shape == CIRCLE)
 	{
-		JS::RootedValue ptype(cx);
-		JS::RootedValue pradius(cx);
-		JS::RootedValue pheight(cx);
-		ScriptInterface::ToJSVal<std::string>(cx, &ptype, "circle");
-		ScriptInterface::ToJSVal(cx, &pradius, size0);
-		ScriptInterface::ToJSVal(cx, &pheight, height);
-		JS_SetProperty(cx, obj, "type", ptype);
-		JS_SetProperty(cx, obj, "radius", pradius);
-		JS_SetProperty(cx, obj, "height", pheight);
+		JS::RootedValue ptype(rq.cx);
+		JS::RootedValue pradius(rq.cx);
+		JS::RootedValue pheight(rq.cx);
+		ScriptInterface::ToJSVal<std::string>(rq, &ptype, "circle");
+		ScriptInterface::ToJSVal(rq, &pradius, size0);
+		ScriptInterface::ToJSVal(rq, &pheight, height);
+		JS_SetProperty(rq.cx, obj, "type", ptype);
+		JS_SetProperty(rq.cx, obj, "radius", pradius);
+		JS_SetProperty(rq.cx, obj, "height", pheight);
 	}
 	else
 	{
-		JS::RootedValue ptype(cx);
-		JS::RootedValue pwidth(cx);
-		JS::RootedValue pdepth(cx);
-		JS::RootedValue pheight(cx);
-		ScriptInterface::ToJSVal<std::string>(cx, &ptype, "square");
-		ScriptInterface::ToJSVal(cx, &pwidth, size0);
-		ScriptInterface::ToJSVal(cx, &pdepth, size1);
-		ScriptInterface::ToJSVal(cx, &pheight, height);
-		JS_SetProperty(cx, obj, "type", ptype);
-		JS_SetProperty(cx, obj, "width", pwidth);
-		JS_SetProperty(cx, obj, "depth", pdepth);
-		JS_SetProperty(cx, obj, "height", pheight);
+		JS::RootedValue ptype(rq.cx);
+		JS::RootedValue pwidth(rq.cx);
+		JS::RootedValue pdepth(rq.cx);
+		JS::RootedValue pheight(rq.cx);
+		ScriptInterface::ToJSVal<std::string>(rq, &ptype, "square");
+		ScriptInterface::ToJSVal(rq, &pwidth, size0);
+		ScriptInterface::ToJSVal(rq, &pdepth, size1);
+		ScriptInterface::ToJSVal(rq, &pheight, height);
+		JS_SetProperty(rq.cx, obj, "type", ptype);
+		JS_SetProperty(rq.cx, obj, "width", pwidth);
+		JS_SetProperty(rq.cx, obj, "depth", pdepth);
+		JS_SetProperty(rq.cx, obj, "height", pheight);
 	}
 
 	return JS::ObjectValue(*obj);

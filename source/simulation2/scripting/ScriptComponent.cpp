@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,8 +26,7 @@ CComponentTypeScript::CComponentTypeScript(const ScriptInterface& scriptInterfac
 	m_ScriptInterface(scriptInterface), m_Instance(scriptInterface.GetJSRuntime(), instance)
 {
 	// Cache the property detection for efficiency
-	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(m_ScriptInterface);
 
 	m_HasCustomSerialize = m_ScriptInterface.HasProperty(m_Instance, "Serialize");
 	m_HasCustomDeserialize = m_ScriptInterface.HasProperty(m_Instance, "Deserialize");
@@ -35,7 +34,7 @@ CComponentTypeScript::CComponentTypeScript(const ScriptInterface& scriptInterfac
 	m_HasNullSerialize = false;
 	if (m_HasCustomSerialize)
 	{
-		JS::RootedValue val(cx);
+		JS::RootedValue val(rq.cx);
 		if (m_ScriptInterface.GetProperty(m_Instance, "Serialize", &val) && val.isNull())
 			m_HasNullSerialize = true;
 	}
@@ -55,12 +54,11 @@ void CComponentTypeScript::Deinit()
 
 void CComponentTypeScript::HandleMessage(const CMessage& msg, bool global)
 {
-	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(m_ScriptInterface);
 
 	const char* name = global ? msg.GetScriptGlobalHandlerName() : msg.GetScriptHandlerName();
 
-	JS::RootedValue msgVal(cx, msg.ToJSValCached(m_ScriptInterface));
+	JS::RootedValue msgVal(rq.cx, msg.ToJSValCached(m_ScriptInterface));
 
 	if (!m_ScriptInterface.CallFunctionVoid(m_Instance, name, msgVal))
 		LOGERROR("Script message handler %s failed", name);
@@ -72,14 +70,13 @@ void CComponentTypeScript::Serialize(ISerializer& serialize)
 	if (m_HasNullSerialize)
 		return;
 
-	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(m_ScriptInterface);
 
 	// Support a custom "Serialize" function, which returns a new object that will be
 	// serialized instead of the component itself
 	if (m_HasCustomSerialize)
 	{
-		JS::RootedValue val(cx);
+		JS::RootedValue val(rq.cx);
 		if (!m_ScriptInterface.CallFunction(m_Instance, "Serialize", &val))
 			LOGERROR("Script Serialize call failed");
 		serialize.ScriptVal("object", &val);
@@ -92,8 +89,7 @@ void CComponentTypeScript::Serialize(ISerializer& serialize)
 
 void CComponentTypeScript::Deserialize(const CParamNode& paramNode, IDeserializer& deserialize, entity_id_t ent)
 {
-	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(m_ScriptInterface);
 
 	m_ScriptInterface.SetProperty(m_Instance, "entity", (int)ent, true, false);
 	m_ScriptInterface.SetProperty(m_Instance, "template", paramNode, true, false);
@@ -102,7 +98,7 @@ void CComponentTypeScript::Deserialize(const CParamNode& paramNode, IDeserialize
 	// instead of automatically adding the deserialized properties onto the object
 	if (m_HasCustomDeserialize)
 	{
-		JS::RootedValue val(cx);
+		JS::RootedValue val(rq.cx);
 
 		// If Serialize = null, we'll still call Deserialize but with undefined argument
 		if (!m_HasNullSerialize)

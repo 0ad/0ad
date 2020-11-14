@@ -46,7 +46,7 @@ CTurnManager::CTurnManager(CSimulation2& simulation, u32 defaultTurnLength, int 
 	: m_Simulation2(simulation), m_CurrentTurn(0), m_ReadyTurn(1), m_TurnLength(defaultTurnLength),
 	m_PlayerId(-1), m_ClientId(clientId), m_DeltaSimTime(0), m_HasSyncError(false), m_Replay(replay),
 	m_FinalTurn(std::numeric_limits<u32>::max()), m_TimeWarpNumTurns(0),
-	m_QuickSaveMetadata(m_Simulation2.GetScriptInterface().GetContext())
+	m_QuickSaveMetadata(m_Simulation2.GetScriptInterface().GetJSRuntime())
 {
 	// When we are on turn n, we schedule new commands for n+2.
 	// We know that all other clients have finished scheduling commands for n (else we couldn't have got here).
@@ -240,10 +240,8 @@ void CTurnManager::AddCommand(int client, int player, JS::HandleValue data, u32 
 
 	m_Simulation2.GetScriptInterface().FreezeObject(data, true);
 
-	JSContext* cx = m_Simulation2.GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
-
-	m_QueuedCommands[turn - (m_CurrentTurn+1)][client].emplace_back(player, cx, data);
+	ScriptInterface::Request rq(m_Simulation2.GetScriptInterface());
+	m_QueuedCommands[turn - (m_CurrentTurn+1)][client].emplace_back(player, rq.cx, data);
 }
 
 void CTurnManager::FinishedAllCommands(u32 turn, u32 turnLength)
@@ -306,10 +304,9 @@ void CTurnManager::QuickSave(JS::HandleValue GUIMetadata)
 
 	m_QuickSaveState = stream.str();
 
-	JSContext* cx = m_Simulation2.GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(m_Simulation2.GetScriptInterface());
 
-	if (JS_StructuredClone(cx, GUIMetadata, &m_QuickSaveMetadata, nullptr, nullptr))
+	if (JS_StructuredClone(rq.cx, GUIMetadata, &m_QuickSaveMetadata, nullptr, nullptr))
 	{
 		// Freeze state to ensure that consectuvie loads don't modify the state
 		m_Simulation2.GetScriptInterface().FreezeObject(m_QuickSaveMetadata, true);
@@ -346,18 +343,17 @@ void CTurnManager::QuickLoad()
 	if (!g_GUI)
 		return;
 
-	JSContext* cx = m_Simulation2.GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(m_Simulation2.GetScriptInterface());
 
 	// Provide a copy, so that GUI components don't have to clone to get mutable objects
-	JS::RootedValue quickSaveMetadataClone(cx);
-	if (!JS_StructuredClone(cx, m_QuickSaveMetadata, &quickSaveMetadataClone, nullptr, nullptr))
+	JS::RootedValue quickSaveMetadataClone(rq.cx);
+	if (!JS_StructuredClone(rq.cx, m_QuickSaveMetadata, &quickSaveMetadataClone, nullptr, nullptr))
 	{
 		LOGERROR("Failed to clone quicksave state!");
 		return;
 	}
 
-	JS::AutoValueArray<1> paramData(cx);
+	JS::AutoValueArray<1> paramData(rq.cx);
 	paramData[0].set(quickSaveMetadataClone);
 	g_GUI->SendEventToAll(EventNameSavegameLoaded, paramData);
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -299,10 +299,9 @@ float IGUIObject::GetBufferedZ() const
 
 void IGUIObject::RegisterScriptHandler(const CStr& eventName, const CStr& Code, CGUI& pGUI)
 {
-	JSContext* cx = pGUI.GetScriptInterface()->GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue globalVal(cx, pGUI.GetGlobalObject());
-	JS::RootedObject globalObj(cx, &globalVal.toObject());
+	ScriptInterface::Request rq(pGUI.GetScriptInterface());
+	JS::RootedValue globalVal(rq.cx, pGUI.GetGlobalObject());
+	JS::RootedObject globalObj(rq.cx, &globalVal.toObject());
 
 	const int paramCount = 1;
 	const char* paramNames[paramCount] = { "mouse" };
@@ -315,19 +314,19 @@ void IGUIObject::RegisterScriptHandler(const CStr& eventName, const CStr& Code, 
 	char buf[64];
 	sprintf_s(buf, ARRAY_SIZE(buf), "__eventhandler%d (%s)", x++, eventName.c_str());
 
-	JS::CompileOptions options(cx);
+	JS::CompileOptions options(rq.cx);
 	options.setFileAndLine(CodeName.c_str(), 0);
 	options.setIsRunOnce(false);
 
-	JS::RootedFunction func(cx);
-	JS::AutoObjectVector emptyScopeChain(cx);
-	if (!JS::CompileFunction(cx, emptyScopeChain, options, buf, paramCount, paramNames, Code.c_str(), Code.length(), &func))
+	JS::RootedFunction func(rq.cx);
+	JS::AutoObjectVector emptyScopeChain(rq.cx);
+	if (!JS::CompileFunction(rq.cx, emptyScopeChain, options, buf, paramCount, paramNames, Code.c_str(), Code.length(), &func))
 	{
 		LOGERROR("RegisterScriptHandler: Failed to compile the script for %s", eventName.c_str());
 		return;
 	}
 
-	JS::RootedObject funcObj(cx, JS_GetFunctionObject(func));
+	JS::RootedObject funcObj(rq.cx, JS_GetFunctionObject(func));
 	SetScriptHandler(eventName, funcObj);
 }
 
@@ -375,21 +374,20 @@ InReaction IGUIObject::SendMouseEvent(EGUIMessageType type, const CStr& eventNam
 	SGUIMessage msg(type);
 	HandleMessage(msg);
 
-	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(m_pGUI.GetScriptInterface());
 
 	// Set up the 'mouse' parameter
-	JS::RootedValue mouse(cx);
+	JS::RootedValue mouse(rq.cx);
 
 	const CPos& mousePos = m_pGUI.GetMousePos();
 
 	ScriptInterface::CreateObject(
-		cx,
+		rq,
 		&mouse,
 		"x", mousePos.x,
 		"y", mousePos.y,
 		"buttons", m_pGUI.GetMouseButtons());
-	JS::AutoValueVector paramData(cx);
+	JS::AutoValueVector paramData(rq.cx);
 	paramData.append(mouse);
 	ScriptEvent(eventName, paramData);
 
@@ -406,9 +404,8 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName)
 	if (m_ScriptHandlers.find(eventName) == m_ScriptHandlers.end())
 		return false;
 
-	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
-	JSAutoRequest rq(cx);
-	JS::AutoValueVector paramData(cx);
+	ScriptInterface::Request rq(m_pGUI.GetScriptInterface());
+	JS::AutoValueVector paramData(rq.cx);
 	return ScriptEventWithReturn(eventName, paramData);
 }
 
@@ -423,13 +420,12 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName, const JS::HandleVa
 	if (it == m_ScriptHandlers.end())
 		return false;
 
-	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedObject obj(cx, GetJSObject());
-	JS::RootedValue handlerVal(cx, JS::ObjectValue(*it->second));
-	JS::RootedValue result(cx);
+	ScriptInterface::Request rq(m_pGUI.GetScriptInterface());
+	JS::RootedObject obj(rq.cx, GetJSObject());
+	JS::RootedValue handlerVal(rq.cx, JS::ObjectValue(*it->second));
+	JS::RootedValue result(rq.cx);
 
-	if (!JS_CallFunctionValue(cx, obj, handlerVal, paramData, &result))
+	if (!JS_CallFunctionValue(rq.cx, obj, handlerVal, paramData, &result))
 	{
 		LOGERROR("Errors executing script event \"%s\"", eventName.c_str());
 		return false;
@@ -439,10 +435,9 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName, const JS::HandleVa
 
 void IGUIObject::CreateJSObject()
 {
-	JSContext* cx = m_pGUI.GetScriptInterface()->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(m_pGUI.GetScriptInterface());
 
-	m_JSObject.init(cx, m_pGUI.GetScriptInterface()->CreateCustomObject("GUIObject"));
+	m_JSObject.init(rq.cx, m_pGUI.GetScriptInterface()->CreateCustomObject("GUIObject"));
 	JS_SetPrivate(m_JSObject.get(), this);
 
 	RegisterScriptFunctions();

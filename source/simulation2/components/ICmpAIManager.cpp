@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,9 +41,8 @@ public:
 		m_ScriptInterface(scriptInterface),
 		m_AIs(scriptInterface.GetJSRuntime())
 	{
-		JSContext* cx = m_ScriptInterface.GetContext();
-		JSAutoRequest rq(cx);
-		m_AIs = JS_NewArrayObject(cx, 0);
+		ScriptInterface::Request rq(m_ScriptInterface);
+		m_AIs = JS_NewArrayObject(rq.cx, 0);
 	}
 
 	void Run()
@@ -54,8 +53,7 @@ public:
 	static Status Callback(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 	{
 		GetAIsHelper* self = (GetAIsHelper*)cbData;
-		JSContext* cx = self->m_ScriptInterface.GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(self->m_ScriptInterface);
 
 		// Extract the 3rd component of the path (i.e. the directory after simulation/ai/)
 		fs::wpath components = pathname.string();
@@ -63,16 +61,16 @@ public:
 		std::advance(it, 2);
 		std::wstring dirname = GetWstringFromWpath(*it);
 
-		JS::RootedValue ai(cx);
-		ScriptInterface::CreateObject(cx, &ai);
+		JS::RootedValue ai(rq.cx);
+		ScriptInterface::CreateObject(rq, &ai);
 
-		JS::RootedValue data(cx);
+		JS::RootedValue data(rq.cx);
 		self->m_ScriptInterface.ReadJSONFile(pathname, &data);
 		self->m_ScriptInterface.SetProperty(ai, "id", dirname, true);
 		self->m_ScriptInterface.SetProperty(ai, "data", data, true);
 		u32 length;
-		JS_GetArrayLength(cx, self->m_AIs, &length);
-		JS_SetElement(cx, self->m_AIs, length, ai);
+		JS_GetArrayLength(rq.cx, self->m_AIs, &length);
+		JS_SetElement(rq.cx, self->m_AIs, length, ai);
 
 		return INFO::OK;
 	}

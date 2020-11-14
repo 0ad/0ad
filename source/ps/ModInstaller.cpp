@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -61,19 +61,22 @@ CModInstaller::ModInstallationResult CModInstaller::Install(
 		return FAIL_ON_MOD_LOAD;
 
 	// Extract the name of the mod
-	ScriptInterface scriptInterface("Engine", "ModInstaller", scriptRuntime);
-	JSContext* cx = scriptInterface.GetContext();
-	JS::RootedValue json_val(cx);
-	if (!scriptInterface.ParseJSON(modinfo.GetAsString(), &json_val))
-		return FAIL_ON_PARSE_JSON;
-	JS::RootedObject json_obj(cx, json_val.toObjectOrNull());
-	JS::RootedValue name_val(cx);
-	if (!JS_GetProperty(cx, json_obj, "name", &name_val))
-		return FAIL_ON_EXTRACT_NAME;
 	CStr modName;
-	ScriptInterface::FromJSVal(cx, name_val, modName);
-	if (modName.empty())
-		return FAIL_ON_EXTRACT_NAME;
+	{
+		ScriptInterface scriptInterface("Engine", "ModInstaller", scriptRuntime);
+		ScriptInterface::Request rq(scriptInterface);
+
+		JS::RootedValue json_val(rq.cx);
+		if (!scriptInterface.ParseJSON(modinfo.GetAsString(), &json_val))
+			return FAIL_ON_PARSE_JSON;
+		JS::RootedObject json_obj(rq.cx, json_val.toObjectOrNull());
+		JS::RootedValue name_val(rq.cx);
+		if (!JS_GetProperty(rq.cx, json_obj, "name", &name_val))
+			return FAIL_ON_EXTRACT_NAME;
+		ScriptInterface::FromJSVal(rq, name_val, modName);
+		if (modName.empty())
+			return FAIL_ON_EXTRACT_NAME;
+	}
 
 	const OsPath modDir = m_ModsDir / modName;
 	const OsPath modPath = modDir / (modName + ".zip");

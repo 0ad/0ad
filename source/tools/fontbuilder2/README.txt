@@ -68,5 +68,5 @@ run it from its own directory as the current directory.
 
     python fontbuilder.py
 
-This will generate the output .png and .fnt files straight into the binaries/data/mods/public/fonts directory, ready
+This will generate the output .png and .fnt files straight into the binaries/data/mods/mod/fonts directory, ready
 for in-game use.

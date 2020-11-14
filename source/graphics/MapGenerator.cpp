@@ -115,11 +115,10 @@ void* CMapGeneratorWorker::RunThread(CMapGeneratorWorker* self)
 
 bool CMapGeneratorWorker::Run()
 {
-	JSContext* cx = m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(m_ScriptInterface);
 
 	// Parse settings
-	JS::RootedValue settingsVal(cx);
+	JS::RootedValue settingsVal(rq.cx);
 	if (!m_ScriptInterface->ParseJSON(m_Settings, &settingsVal) && settingsVal.isUndefined())
 	{
 		LOGERROR("CMapGeneratorWorker::Run: Failed to parse settings");
@@ -144,7 +143,7 @@ bool CMapGeneratorWorker::Run()
 	RegisterScriptFunctions_MapGenerator();
 
 	// Copy settings to global variable
-	JS::RootedValue global(cx, m_ScriptInterface->GetGlobalObject());
+	JS::RootedValue global(rq.cx, m_ScriptInterface->GetGlobalObject());
 	if (!m_ScriptInterface->SetProperty(global, "g_MapSettings", settingsVal, true, true))
 	{
 		LOGERROR("CMapGeneratorWorker::Run: Failed to define g_MapSettings");
@@ -210,7 +209,7 @@ int CMapGeneratorWorker::GetProgress()
 	return m_Progress;
 }
 
-double CMapGeneratorWorker::GetMicroseconds(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+double CMapGeneratorWorker::GetMicroseconds(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return JS_Now();
 }
@@ -221,15 +220,15 @@ shared_ptr<ScriptInterface::StructuredClone> CMapGeneratorWorker::GetResults()
 	return m_MapData;
 }
 
-bool CMapGeneratorWorker::LoadLibrary(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& name)
+bool CMapGeneratorWorker::LoadLibrary(ScriptInterface::CmptPrivate* pCmptPrivate, const VfsPath& name)
 {
-	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCmptPrivate->pCBData);
 	return self->LoadScripts(name);
 }
 
-void CMapGeneratorWorker::ExportMap(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue data)
+void CMapGeneratorWorker::ExportMap(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue data)
 {
-	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCmptPrivate->pCBData);
 
 	// Copy results
 	std::lock_guard<std::mutex> lock(self->m_WorkerMutex);
@@ -237,9 +236,9 @@ void CMapGeneratorWorker::ExportMap(ScriptInterface::CxPrivate* pCxPrivate, JS::
 	self->m_Progress = 0;
 }
 
-void CMapGeneratorWorker::SetProgress(ScriptInterface::CxPrivate* pCxPrivate, int progress)
+void CMapGeneratorWorker::SetProgress(ScriptInterface::CmptPrivate* pCmptPrivate, int progress)
 {
-	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCmptPrivate->pCBData);
 
 	// Copy data
 	std::lock_guard<std::mutex> lock(self->m_WorkerMutex);
@@ -250,9 +249,9 @@ void CMapGeneratorWorker::SetProgress(ScriptInterface::CxPrivate* pCxPrivate, in
 		LOGWARNING("The random map script tried to reduce the loading progress from %d to %d", self->m_Progress, progress);
 }
 
-CParamNode CMapGeneratorWorker::GetTemplate(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName)
+CParamNode CMapGeneratorWorker::GetTemplate(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& templateName)
 {
-	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCmptPrivate->pCBData);
 	const CParamNode& templateRoot = self->m_TemplateLoader.GetTemplateFileData(templateName).GetChild("Entity");
 	if (!templateRoot.IsOk())
 		LOGERROR("Invalid template found for '%s'", templateName.c_str());
@@ -260,21 +259,21 @@ CParamNode CMapGeneratorWorker::GetTemplate(ScriptInterface::CxPrivate* pCxPriva
 	return templateRoot;
 }
 
-bool CMapGeneratorWorker::TemplateExists(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName)
+bool CMapGeneratorWorker::TemplateExists(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& templateName)
 {
-	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCmptPrivate->pCBData);
 	return self->m_TemplateLoader.TemplateExists(templateName);
 }
 
-std::vector<std::string> CMapGeneratorWorker::FindTemplates(ScriptInterface::CxPrivate* pCxPrivate, const std::string& path, bool includeSubdirectories)
+std::vector<std::string> CMapGeneratorWorker::FindTemplates(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& path, bool includeSubdirectories)
 {
-	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCmptPrivate->pCBData);
 	return self->m_TemplateLoader.FindTemplates(path, includeSubdirectories, SIMULATION_TEMPLATES);
 }
 
-std::vector<std::string> CMapGeneratorWorker::FindActorTemplates(ScriptInterface::CxPrivate* pCxPrivate, const std::string& path, bool includeSubdirectories)
+std::vector<std::string> CMapGeneratorWorker::FindActorTemplates(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& path, bool includeSubdirectories)
 {
-	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCmptPrivate->pCBData);
 	return self->m_TemplateLoader.FindTemplates(path, includeSubdirectories, ACTOR_TEMPLATES);
 }
 
@@ -316,7 +315,7 @@ bool CMapGeneratorWorker::LoadScripts(const VfsPath& libraryName)
 	return true;
 }
 
-JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& filename)
+JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::CmptPrivate* pCmptPrivate, const VfsPath& filename)
 {
 	std::vector<u16> heightmap;
 	if (LoadHeightmapImageVfs(filename, heightmap) != INFO::OK)
@@ -325,20 +324,18 @@ JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::CxPrivate* pCxPriv
 		return JS::UndefinedValue();
 	}
 
-	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
-	JSContext* cx = self->m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue returnValue(cx);
-	ToJSVal_vector(cx, &returnValue, heightmap);
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCmptPrivate->pCBData);
+	ScriptInterface::Request rq(self->m_ScriptInterface);
+	JS::RootedValue returnValue(rq.cx);
+	ToJSVal_vector(rq, &returnValue, heightmap);
 	return returnValue;
 }
 
 // See CMapReader::UnpackTerrain, CMapReader::ParseTerrain for the reordering
-JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& filename)
+JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CmptPrivate* pCmptPrivate, const VfsPath& filename)
 {
-	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
-	JSContext* cx = self->m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCmptPrivate->pCBData);
+	ScriptInterface::Request rq(self->m_ScriptInterface);
 
 	if (!VfsFileExists(filename))
 	{
@@ -400,10 +397,10 @@ JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CxPrivate* pCxPri
 		}
 	}
 
-	JS::RootedValue returnValue(cx);
+	JS::RootedValue returnValue(rq.cx);
 
 	ScriptInterface::CreateObject(
-		cx,
+		rq,
 		&returnValue,
 		"height", heightmap,
 		"textureNames", textureNames,

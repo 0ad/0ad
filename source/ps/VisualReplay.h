@@ -104,7 +104,7 @@ bool DeleteReplay(const OsPath& replayFile);
 /**
  * Returns the parsed header of the replay file (commands.txt).
  */
-JS::Value GetReplayAttributes(ScriptInterface::CxPrivate* pCxPrivate, const OsPath& directoryName);
+JS::Value GetReplayAttributes(ScriptInterface::CmptPrivate* pCmptPrivate, const OsPath& directoryName);
 
 /**
  * Returns whether or not the metadata / summary screen data has been saved properly when the game ended.
@@ -114,7 +114,7 @@ bool HasReplayMetadata(const OsPath& directoryName);
 /**
  * Returns the metadata of a replay.
  */
-JS::Value GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const OsPath& directoryName);
+JS::Value GetReplayMetadata(ScriptInterface::CmptPrivate* pCmptPrivate, const OsPath& directoryName);
 
 /**
 * Adds a replay to the replayCache.

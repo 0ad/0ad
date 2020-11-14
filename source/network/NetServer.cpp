@@ -419,8 +419,7 @@ bool CNetServerWorker::RunStep()
 
 	m_ScriptInterface->GetRuntime()->MaybeIncrementalGC(0.5f);
 
-	JSContext* cx = m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(m_ScriptInterface);
 
 	std::vector<bool> newStartGame;
 	std::vector<std::string> newGameAttributes;
@@ -441,7 +440,7 @@ bool CNetServerWorker::RunStep()
 
 	if (!newGameAttributes.empty())
 	{
-		JS::RootedValue gameAttributesVal(cx);
+		JS::RootedValue gameAttributesVal(rq.cx);
 		GetScriptInterface().ParseJSON(newGameAttributes.back(), &gameAttributesVal);
 		UpdateGameAttributes(&gameAttributesVal);
 	}
@@ -1138,9 +1137,8 @@ bool CNetServerWorker::OnSimulationCommand(void* context, CFsmEvent* event)
 	// unless cheating is enabled
 	bool cheatsEnabled = false;
 	const ScriptInterface& scriptInterface = server.GetScriptInterface();
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue settings(cx);
+	ScriptInterface::Request rq(scriptInterface);
+	JS::RootedValue settings(rq.cx);
 	scriptInterface.GetProperty(server.m_GameAttributes, "settings", &settings);
 	if (scriptInterface.HasProperty(settings, "CheatsEnabled"))
 		scriptInterface.GetProperty(settings, "CheatsEnabled", cheatsEnabled);

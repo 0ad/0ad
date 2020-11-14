@@ -156,11 +156,10 @@ public:
 	template<typename... Args>
 	void PushGuiMessage(Args const&... args)
 	{
-		JSContext* cx = GetScriptInterface().GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(GetScriptInterface());
 
-		JS::RootedValue message(cx);
-		ScriptInterface::CreateObject(cx, &message, args...);
+		JS::RootedValue message(rq.cx);
+		ScriptInterface::CreateObject(rq, &message, args...);
 		m_GuiMessageQueue.push_back(JS::Heap<JS::Value>(message));
 	}
 

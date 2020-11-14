@@ -136,52 +136,52 @@ private:
 	/**
 	 * Recursively load all script files in the given folder.
 	 */
-	static bool LoadLibrary(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& name);
+	static bool LoadLibrary(ScriptInterface::CmptPrivate* pCmptPrivate, const VfsPath& name);
 
 	/**
 	 * Finalize map generation and pass results from the script to the engine.
 	 */
-	static void ExportMap(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue data);
+	static void ExportMap(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue data);
 
 	/**
 	 * Load an image file and return it as a height array.
 	 */
-	static JS::Value LoadHeightmap(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& src);
+	static JS::Value LoadHeightmap(ScriptInterface::CmptPrivate* pCmptPrivate, const VfsPath& src);
 
 	/**
 	 * Load an Atlas terrain file (PMP) returning textures and heightmap.
 	 */
-	static JS::Value LoadMapTerrain(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& filename);
+	static JS::Value LoadMapTerrain(ScriptInterface::CmptPrivate* pCmptPrivate, const VfsPath& filename);
 
 	/**
 	 * Sets the map generation progress, which is one of multiple stages determining the loading screen progress.
 	 */
-	static void SetProgress(ScriptInterface::CxPrivate* pCxPrivate, int progress);
+	static void SetProgress(ScriptInterface::CmptPrivate* pCmptPrivate, int progress);
 
 	/**
 	 * Microseconds since the epoch.
 	 */
-	static double GetMicroseconds(ScriptInterface::CxPrivate* pCxPrivate);
+	static double GetMicroseconds(ScriptInterface::CmptPrivate* pCmptPrivate);
 
 	/**
 	 * Return the template data of the given template name.
 	 */
-	static CParamNode GetTemplate(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName);
+	static CParamNode GetTemplate(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& templateName);
 
 	/**
 	 * Check whether the given template exists.
 	 */
-	static bool TemplateExists(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName);
+	static bool TemplateExists(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& templateName);
 
 	/**
 	 * Returns all template names of simulation entity templates.
 	 */
-	static std::vector<std::string> FindTemplates(ScriptInterface::CxPrivate* pCxPrivate, const std::string& path, bool includeSubdirectories);
+	static std::vector<std::string> FindTemplates(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& path, bool includeSubdirectories);
 
 	/**
 	 * Returns all template names of actors.
 	 */
-	static std::vector<std::string> FindActorTemplates(ScriptInterface::CxPrivate* pCxPrivate, const std::string& path, bool includeSubdirectories);
+	static std::vector<std::string> FindActorTemplates(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& path, bool includeSubdirectories);
 
 	/**
 	 * Perform map generation in an independent thread.

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 #include "ps/CLogger.h"
 #include "ps/ModIo.h"
 
-void JSI_ModIo::StartGetGameId(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_ModIo::StartGetGameId(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	if (!g_ModIo)
 		g_ModIo = new ModIo();
@@ -32,7 +32,7 @@ void JSI_ModIo::StartGetGameId(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	g_ModIo->StartGetGameId();
 }
 
-void JSI_ModIo::StartListMods(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_ModIo::StartListMods(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	if (!g_ModIo)
 	{
@@ -43,7 +43,7 @@ void JSI_ModIo::StartListMods(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	g_ModIo->StartListMods();
 }
 
-void JSI_ModIo::StartDownloadMod(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), uint32_t idx)
+void JSI_ModIo::StartDownloadMod(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), uint32_t idx)
 {
 	if (!g_ModIo)
 	{
@@ -54,7 +54,7 @@ void JSI_ModIo::StartDownloadMod(ScriptInterface::CxPrivate* UNUSED(pCxPrivate),
 	g_ModIo->StartDownloadMod(idx);
 }
 
-bool JSI_ModIo::AdvanceRequest(ScriptInterface::CxPrivate* pCxPrivate)
+bool JSI_ModIo::AdvanceRequest(ScriptInterface::CmptPrivate* pCmptPrivate)
 {
 	if (!g_ModIo)
 	{
@@ -62,11 +62,11 @@ bool JSI_ModIo::AdvanceRequest(ScriptInterface::CxPrivate* pCxPrivate)
 		return false;
 	}
 
-	ScriptInterface* scriptInterface = pCxPrivate->pScriptInterface;
+	ScriptInterface* scriptInterface = pCmptPrivate->pScriptInterface;
 	return g_ModIo->AdvanceRequest(*scriptInterface);
 }
 
-void JSI_ModIo::CancelRequest(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+void JSI_ModIo::CancelRequest(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	if (!g_ModIo)
 	{
@@ -77,7 +77,7 @@ void JSI_ModIo::CancelRequest(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	g_ModIo->CancelRequest();
 }
 
-JS::Value JSI_ModIo::GetMods(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_ModIo::GetMods(ScriptInterface::CmptPrivate* pCmptPrivate)
 {
 	if (!g_ModIo)
 	{
@@ -85,20 +85,19 @@ JS::Value JSI_ModIo::GetMods(ScriptInterface::CxPrivate* pCxPrivate)
 		return JS::NullValue();
 	}
 
-	ScriptInterface* scriptInterface = pCxPrivate->pScriptInterface;
-	JSContext* cx = scriptInterface->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface* scriptInterface = pCmptPrivate->pScriptInterface;
+	ScriptInterface::Request rq(scriptInterface);
 
 	const std::vector<ModIoModData>& availableMods = g_ModIo->GetMods();
 
-	JS::RootedValue mods(cx);
-	ScriptInterface::CreateArray(cx, &mods, availableMods.size());
+	JS::RootedValue mods(rq.cx);
+	ScriptInterface::CreateArray(rq, &mods, availableMods.size());
 
 	u32 i = 0;
 	for (const ModIoModData& mod : availableMods)
 	{
-		JS::RootedValue m(cx);
-		ScriptInterface::CreateObject(cx, &m);
+		JS::RootedValue m(rq.cx);
+		ScriptInterface::CreateObject(rq, &m);
 
 		for (const std::pair<std::string, std::string>& prop : mod.properties)
 			scriptInterface->SetProperty(m, prop.first.c_str(), prop.second, true);
@@ -124,7 +123,7 @@ const std::map<DownloadProgressStatus, std::string> statusStrings = {
 	{ DownloadProgressStatus::FAILED_FILECHECK, "failed_filecheck" }
 };
 
-JS::Value JSI_ModIo::GetDownloadProgress(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_ModIo::GetDownloadProgress(ScriptInterface::CmptPrivate* pCmptPrivate)
 {
 	if (!g_ModIo)
 	{
@@ -132,14 +131,13 @@ JS::Value JSI_ModIo::GetDownloadProgress(ScriptInterface::CxPrivate* pCxPrivate)
 		return JS::NullValue();
 	}
 
-	ScriptInterface* scriptInterface = pCxPrivate->pScriptInterface;
-	JSContext* cx = scriptInterface->GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface* scriptInterface = pCmptPrivate->pScriptInterface;
+	ScriptInterface::Request rq(scriptInterface);
 
 	const DownloadProgressData& progress = g_ModIo->GetDownloadProgress();
 
-	JS::RootedValue progressData(cx);
-	ScriptInterface::CreateObject(cx, &progressData);
+	JS::RootedValue progressData(rq.cx);
+	ScriptInterface::CreateObject(rq, &progressData);
 	scriptInterface->SetProperty(progressData, "status", statusStrings.at(progress.status), true);
 	scriptInterface->SetProperty(progressData, "progress", progress.progress, true);
 	scriptInterface->SetProperty(progressData, "error", progress.error, true);

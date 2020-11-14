@@ -35,8 +35,7 @@ public:
 	void test_basic()
 	{
 		ComponentTestHelper test(g_ScriptRuntime);
-		JSContext* cx = test.GetScriptInterface().GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(test.GetScriptInterface());
 
 		std::vector<SimulationCommand> empty;
 
@@ -44,7 +43,7 @@ public:
 
 		TS_ASSERT(test.GetScriptInterface().Eval("var cmds = []; function ProcessCommand(player, cmd) { cmds.push([player, cmd]); }"));
 
-		JS::RootedValue cmd(cx);
+		JS::RootedValue cmd(rq.cx);
 
 		TS_ASSERT(test.GetScriptInterface().Eval("([1,2,3])", &cmd));
 		cmp->PushLocalCommand(1, cmd);

@@ -33,14 +33,14 @@ bool JSI_Console::CheckGlobalInitialized()
 	return true;
 }
 
-bool JSI_Console::GetVisibleEnabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+bool JSI_Console::GetVisibleEnabled(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	if (!CheckGlobalInitialized())
 		return false;
 	return g_Console->IsActive();
 }
 
-void JSI_Console::SetVisibleEnabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool Enabled)
+void JSI_Console::SetVisibleEnabled(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), bool Enabled)
 {
 	if (!CheckGlobalInitialized())
 		return;

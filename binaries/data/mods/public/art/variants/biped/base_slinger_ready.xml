@@ -12,4 +12,8 @@
     <animation file="biped/infantry/slinger/jog_ready.dae" name="Run" id="run3" speed="4"/>
     <animation file="biped/infantry/promotion.dae" name="promotion" speed="80"/>
   </animations>
+  <props>
+    <prop actor="props/units/weapons/sling.xml" attachpoint="weapon_R"/>
+    <prop actor="props/units/weapons/slingrock.xml" attachpoint="projectile"/>
+  </props>
 </variant>

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -52,8 +52,7 @@ Status SavedGames::SavePrefix(const CStrW& prefix, const CStrW& description, CSi
 
 Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation2& simulation, const shared_ptr<ScriptInterface::StructuredClone>& guiMetadataClone)
 {
-	JSContext* cx = simulation.GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(simulation.GetScriptInterface());
 
 	// Determine the filename to save under
 	const VfsPath basenameFormat(L"saves/" + name);
@@ -78,13 +77,13 @@ Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation
 	if (!simulation.SerializeState(simStateStream))
 		WARN_RETURN(ERR::FAIL);
 
-	JS::RootedValue initAttributes(cx, simulation.GetInitAttributes());
-	JS::RootedValue mods(cx, Mod::GetLoadedModsWithVersions(simulation.GetScriptInterface()));
+	JS::RootedValue initAttributes(rq.cx, simulation.GetInitAttributes());
+	JS::RootedValue mods(rq.cx, Mod::GetLoadedModsWithVersions(simulation.GetScriptInterface()));
 
-	JS::RootedValue metadata(cx);
+	JS::RootedValue metadata(rq.cx);
 
 	ScriptInterface::CreateObject(
-		cx,
+		rq,
 		&metadata,
 		"engine_version", engine_version,
 		"time", static_cast<double>(now),
@@ -92,17 +91,17 @@ Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation
 		"mods", mods,
 		"initAttributes", initAttributes);
 
-	JS::RootedValue guiMetadata(cx);
+	JS::RootedValue guiMetadata(rq.cx);
 	simulation.GetScriptInterface().ReadStructuredClone(guiMetadataClone, &guiMetadata);
 
 	// get some camera data
 	const CVector3D cameraPosition = g_Game->GetView()->GetCameraPosition();
 	const CVector3D cameraRotation = g_Game->GetView()->GetCameraRotation();
 
-	JS::RootedValue cameraMetadata(cx);
+	JS::RootedValue cameraMetadata(rq.cx);
 
 	ScriptInterface::CreateObject(
-		cx,
+		rq,
 		&cameraMetadata,
 		"PosX", cameraPosition.X,
 		"PosY", cameraPosition.Y,
@@ -174,9 +173,6 @@ public:
 
 	void ReadEntry(const VfsPath& pathname, const CFileInfo& fileInfo, PIArchiveFile archiveFile)
 	{
-		JSContext* cx = m_ScriptInterface.GetContext();
-		JSAutoRequest rq(cx);
-
 		if (pathname == L"metadata.json")
 		{
 			std::string buffer;
@@ -230,11 +226,10 @@ Status SavedGames::Load(const std::wstring& name, const ScriptInterface& scriptI
 JS::Value SavedGames::GetSavedGames(const ScriptInterface& scriptInterface)
 {
 	TIMER(L"GetSavedGames");
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(scriptInterface);
 
-	JS::RootedValue games(cx);
-	ScriptInterface::CreateArray(cx, &games);
+	JS::RootedValue games(rq.cx);
+	ScriptInterface::CreateArray(rq, &games);
 
 	Status err;
 
@@ -267,11 +262,11 @@ JS::Value SavedGames::GetSavedGames(const ScriptInterface& scriptInterface)
 			DEBUG_WARN_ERR(err);
 			continue; // skip this file
 		}
-		JS::RootedValue metadata(cx, loader.GetMetadata());
+		JS::RootedValue metadata(rq.cx, loader.GetMetadata());
 
-		JS::RootedValue game(cx);
+		JS::RootedValue game(rq.cx);
 		ScriptInterface::CreateObject(
-			cx,
+			rq,
 			&game,
 			"id", pathnames[i].Basename(),
 			"metadata", metadata);

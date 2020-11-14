@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,11 +27,10 @@ public:
 	void test_sim()
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
-		JSContext* cx = script.GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(script);
 
-		JS::RootedValue val(cx);
-		ScriptInterface::CreateArray(cx, &val);
+		JS::RootedValue val(rq.cx);
+		ScriptInterface::CreateArray(rq, &val);
 		script.SetPropertyInt(val, 0, 4);
 
 		CSimulationMessage msg(script, 1, 2, 3, val);

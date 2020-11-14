@@ -99,16 +99,15 @@ QUERYHANDLER(GenerateMap)
 
 		// Random map
 		const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-		JSContext* cx = scriptInterface.GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(scriptInterface);
 
-		JS::RootedValue settings(cx);
+		JS::RootedValue settings(rq.cx);
 		scriptInterface.ParseJSON(*msg->settings, &settings);
 		scriptInterface.SetProperty(settings, "mapType", "random");
 
-		JS::RootedValue attrs(cx);
+		JS::RootedValue attrs(rq.cx);
 		ScriptInterface::CreateObject(
-			cx,
+			rq,
 			&attrs,
 			"mapType", "random",
 			"script", *msg->filename,
@@ -128,30 +127,29 @@ QUERYHANDLER(GenerateMap)
 		InitGame();
 
 		const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-		JSContext* cx = scriptInterface.GetContext();
-		JSAutoRequest rq(cx);
+		ScriptInterface::Request rq(scriptInterface);
 
 		// Set up 8-element array of empty objects to satisfy init
-		JS::RootedValue playerData(cx);
-		ScriptInterface::CreateArray(cx, &playerData);
+		JS::RootedValue playerData(rq.cx);
+		ScriptInterface::CreateArray(rq, &playerData);
 
 		for (int i = 0; i < 8; ++i)
 		{
-			JS::RootedValue player(cx);
-			ScriptInterface::CreateObject(cx, &player);
+			JS::RootedValue player(rq.cx);
+			ScriptInterface::CreateObject(rq, &player);
 			scriptInterface.SetPropertyInt(playerData, i, player);
 		}
 
-		JS::RootedValue settings(cx);
+		JS::RootedValue settings(rq.cx);
 		ScriptInterface::CreateObject(
-			cx,
+			rq,
 			&settings,
 			"mapType", "scenario",
 			"PlayerData", playerData);
 
-		JS::RootedValue attrs(cx);
+		JS::RootedValue attrs(rq.cx);
 		ScriptInterface::CreateObject(
-			cx,
+			rq,
 			&attrs,
 			"mapType", "scenario",
 			"map", "maps/scenarios/_default",
@@ -168,17 +166,16 @@ MESSAGEHANDLER(LoadMap)
 	InitGame();
 
 	const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(scriptInterface);
 
 	// Scenario
 	CStrW map = *msg->filename;
 	CStrW mapBase = map.BeforeLast(L".pmp"); // strip the file extension, if any
 
-	JS::RootedValue attrs(cx);
+	JS::RootedValue attrs(rq.cx);
 
 	ScriptInterface::CreateObject(
-		cx,
+		rq,
 		&attrs,
 		"mapType", "scenario",
 		"map", mapBase);

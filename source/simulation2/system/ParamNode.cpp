@@ -358,7 +358,7 @@ void CParamNode::ToXML(std::wostream& strm) const
 	}
 }
 
-void CParamNode::ToJSVal(JSContext* cx, bool cacheValue, JS::MutableHandleValue ret) const
+void CParamNode::ToJSVal(const ScriptInterface::Request& rq, bool cacheValue, JS::MutableHandleValue ret) const
 {
 	if (cacheValue && m_ScriptVal != NULL)
 	{
@@ -366,15 +366,14 @@ void CParamNode::ToJSVal(JSContext* cx, bool cacheValue, JS::MutableHandleValue 
 		return;
 	}
 
-	ConstructJSVal(cx, ret);
+	ConstructJSVal(rq, ret);
 
 	if (cacheValue)
-		m_ScriptVal.reset(new JS::PersistentRootedValue(cx, ret));
+		m_ScriptVal.reset(new JS::PersistentRootedValue(rq.cx, ret));
 }
 
-void CParamNode::ConstructJSVal(JSContext* cx, JS::MutableHandleValue ret) const
+void CParamNode::ConstructJSVal(const ScriptInterface::Request& rq, JS::MutableHandleValue ret) const
 {
-	JSAutoRequest rq(cx);
 	if (m_Childs.empty())
 	{
 		// Empty node - map to undefined
@@ -386,7 +385,7 @@ void CParamNode::ConstructJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 
 		// Just a string
 		utf16string text(m_Value.begin(), m_Value.end());
-		JS::RootedString str(cx, JS_AtomizeAndPinUCStringN(cx, reinterpret_cast<const char16_t*>(text.data()), text.length()));
+		JS::RootedString str(rq.cx, JS_AtomizeAndPinUCStringN(rq.cx, reinterpret_cast<const char16_t*>(text.data()), text.length()));
 		if (str)
 		{
 			ret.setString(str);
@@ -399,18 +398,18 @@ void CParamNode::ConstructJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 
 	// Got child nodes - convert this node into a hash-table-style object:
 
-	JS::RootedObject obj(cx, JS_NewPlainObject(cx));
+	JS::RootedObject obj(rq.cx, JS_NewPlainObject(rq.cx));
 	if (!obj)
 	{
 		ret.setUndefined();
 		return; // TODO: report error
 	}
 
-	JS::RootedValue childVal(cx);
+	JS::RootedValue childVal(rq.cx);
 	for (std::map<std::string, CParamNode>::const_iterator it = m_Childs.begin(); it != m_Childs.end(); ++it)
 	{
-		it->second.ConstructJSVal(cx, &childVal);
-		if (!JS_SetProperty(cx, obj, it->first.c_str(), childVal))
+		it->second.ConstructJSVal(rq, &childVal);
+		if (!JS_SetProperty(rq.cx, obj, it->first.c_str(), childVal))
 		{
 			ret.setUndefined();
 			return; // TODO: report error
@@ -421,15 +420,15 @@ void CParamNode::ConstructJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 	if (!m_Value.empty())
 	{
 		utf16string text(m_Value.begin(), m_Value.end());
-		JS::RootedString str(cx, JS_AtomizeAndPinUCStringN(cx, reinterpret_cast<const char16_t*>(text.data()), text.length()));
+		JS::RootedString str(rq.cx, JS_AtomizeAndPinUCStringN(rq.cx, reinterpret_cast<const char16_t*>(text.data()), text.length()));
 		if (!str)
 		{
 			ret.setUndefined();
 			return; // TODO: report error
 		}
 
-		JS::RootedValue childVal(cx, JS::StringValue(str));
-		if (!JS_SetProperty(cx, obj, "_string", childVal))
+		JS::RootedValue childVal(rq.cx, JS::StringValue(str));
+		if (!JS_SetProperty(rq.cx, obj, "_string", childVal))
 		{
 			ret.setUndefined();
 			return; // TODO: report error

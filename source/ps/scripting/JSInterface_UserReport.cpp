@@ -26,27 +26,27 @@
 
 #include <string>
 
-bool JSI_UserReport::IsUserReportEnabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+bool JSI_UserReport::IsUserReportEnabled(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return g_UserReporter.IsReportingEnabled();
 }
 
-void JSI_UserReport::SetUserReportEnabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool enabled)
+void JSI_UserReport::SetUserReportEnabled(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), bool enabled)
 {
 	g_UserReporter.SetReportingEnabled(enabled);
 }
 
-std::string JSI_UserReport::GetUserReportStatus(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+std::string JSI_UserReport::GetUserReportStatus(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return g_UserReporter.GetStatus();
 }
 
-std::string JSI_UserReport::GetUserReportLogPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+std::string JSI_UserReport::GetUserReportLogPath(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return psLogDir().string8();
 }
 
-std::string JSI_UserReport::GetUserReportConfigPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+std::string JSI_UserReport::GetUserReportConfigPath(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	OsPath configPath;
 	WARN_IF_ERR(g_VFS->GetDirectoryRealPath("config/", configPath));

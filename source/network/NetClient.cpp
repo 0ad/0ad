@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -71,7 +71,7 @@ CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 	m_Session(NULL),
 	m_UserName(L"anonymous"),
 	m_HostID((u32)-1), m_ClientTurnManager(NULL), m_Game(game),
-	m_GameAttributes(game->GetSimulation2()->GetScriptInterface().GetContext()),
+	m_GameAttributes(game->GetSimulation2()->GetScriptInterface().GetJSRuntime()),
 	m_IsLocalClient(isLocalClient),
 	m_LastConnectionCheck(0),
 	m_Rejoin(false)
@@ -251,11 +251,10 @@ void CNetClient::GuiPoll(JS::MutableHandleValue ret)
 
 std::string CNetClient::TestReadGuiMessages()
 {
-	JSContext* cx = GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(GetScriptInterface());
 
 	std::string r;
-	JS::RootedValue msg(cx);
+	JS::RootedValue msg(rq.cx);
 	while (true)
 	{
 		GuiPoll(&msg);
@@ -273,18 +272,17 @@ const ScriptInterface& CNetClient::GetScriptInterface()
 
 void CNetClient::PostPlayerAssignmentsToScript()
 {
-	JSContext* cx = GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
+	ScriptInterface::Request rq(GetScriptInterface());
 
-	JS::RootedValue newAssignments(cx);
-	ScriptInterface::CreateObject(cx, &newAssignments);
+	JS::RootedValue newAssignments(rq.cx);
+	ScriptInterface::CreateObject(rq, &newAssignments);
 
 	for (const std::pair<CStr, PlayerAssignment>& p : m_PlayerAssignments)
 	{
-		JS::RootedValue assignment(cx);
+		JS::RootedValue assignment(rq.cx);
 
 		ScriptInterface::CreateObject(
-			cx,
+			rq,
 			&assignment,
 			"name", p.second.m_Name,
 			"player", p.second.m_PlayerID,

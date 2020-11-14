@@ -67,8 +67,8 @@ public:
 		return pixel == other.pixel && percent == other.percent;
 	}
 
-	void ToJSVal(JSContext* cx, JS::MutableHandleValue ret) const;
-	bool FromJSVal(JSContext* cx, JS::HandleValue v);
+	void ToJSVal(const ScriptInterface::Request& rq, JS::MutableHandleValue ret) const;
+	bool FromJSVal(const ScriptInterface::Request& rq, JS::HandleValue v);
 };
 
 #endif // INCLUDED_CGUISIZE

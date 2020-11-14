@@ -22,15 +22,15 @@
 
 namespace JSI_VisualReplay
 {
-	bool StartVisualReplay(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directory);
-	bool DeleteReplay(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& replayFile);
-	JS::Value GetReplays(ScriptInterface::CxPrivate* pCxPrivate, bool compareFiles);
-	JS::Value GetReplayAttributes(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName);
-	bool HasReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName);
-	JS::Value GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName);
-	void AddReplayToCache(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName);
+	bool StartVisualReplay(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& directory);
+	bool DeleteReplay(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& replayFile);
+	JS::Value GetReplays(ScriptInterface::CmptPrivate* pCmptPrivate, bool compareFiles);
+	JS::Value GetReplayAttributes(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& directoryName);
+	bool HasReplayMetadata(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& directoryName);
+	JS::Value GetReplayMetadata(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& directoryName);
+	void AddReplayToCache(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& directoryName);
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
-	CStrW GetReplayDirectoryName(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName);
+	CStrW GetReplayDirectoryName(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& directoryName);
 }
 
 #endif // INCLUDED_JSI_VISUALREPLAY
