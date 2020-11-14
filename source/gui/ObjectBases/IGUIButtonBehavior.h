@@ -62,6 +62,7 @@ public:
 protected:
 	static const CStr EventNamePress;
 	static const CStr EventNamePressRight;
+	static const CStr EventNamePressRightDisabled;
 	static const CStr EventNameDoublePress;
 	static const CStr EventNameDoublePressRight;
 	static const CStr EventNameRelease;
