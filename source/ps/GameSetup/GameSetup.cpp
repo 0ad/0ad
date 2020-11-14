@@ -77,8 +77,8 @@
 #include "renderer/ModelRenderer.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptStats.h"
+#include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptConversions.h"
-#include "scriptinterface/ScriptRuntime.h"
 #include "simulation2/Simulation2.h"
 #include "lobby/IXmppClient.h"
 #include "soundmanager/scripting/JSInterface_Sound.h"
@@ -109,7 +109,7 @@ bool g_DoRenderGui = true;
 bool g_DoRenderLogger = true;
 bool g_DoRenderCursor = true;
 
-thread_local shared_ptr<ScriptRuntime> g_ScriptRuntime;
+thread_local shared_ptr<ScriptContext> g_ScriptContext;
 
 static const int SANE_TEX_QUALITY_DEFAULT = 5;	// keep in sync with code
 
@@ -725,7 +725,7 @@ from_config:
 
 	// This is needed to ensure that no callbacks from the JSAPI try to use
 	// the profiler when it's already destructed
-	g_ScriptRuntime.reset();
+	g_ScriptContext.reset();
 
 	// resource
 	// first shut down all resource owners, and then the handle manager.
@@ -889,20 +889,20 @@ bool Init(const CmdLineArgs& args, int flags)
 	// g_ConfigDB, command line args, globals
 	CONFIG_Init(args);
 
-	// Using a global object for the runtime is a workaround until Simulation and AI use
-	// their own threads and also their own runtimes.
-	const int runtimeSize = 384 * 1024 * 1024;
+	// Using a global object for the context is a workaround until Simulation and AI use
+	// their own threads and also their own contexts.
+	const int contextSize = 384 * 1024 * 1024;
 	const int heapGrowthBytesGCTrigger = 20 * 1024 * 1024;
-	g_ScriptRuntime = ScriptRuntime::CreateRuntime(runtimeSize, heapGrowthBytesGCTrigger);
+	g_ScriptContext = ScriptContext::CreateContext(contextSize, heapGrowthBytesGCTrigger);
 
-	Mod::CacheEnabledModVersions(g_ScriptRuntime);
+	Mod::CacheEnabledModVersions(g_ScriptContext);
 
 	// Special command-line mode to dump the entity schemas instead of running the game.
 	// (This must be done after loading VFS etc, but should be done before wasting time
 	// on anything else.)
 	if (args.Has("dumpSchema"))
 	{
-		CSimulation2 sim(NULL, g_ScriptRuntime, NULL);
+		CSimulation2 sim(NULL, g_ScriptContext, NULL);
 		sim.LoadDefaultScripts();
 		std::ofstream f("entity.rng", std::ios_base::out | std::ios_base::trunc);
 		f << sim.GenerateSchema();

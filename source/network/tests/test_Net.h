@@ -136,7 +136,7 @@ public:
 		// This doesn't actually test much, it just runs a very quick multiplayer game
 		// and prints a load of debug output so you can see if anything funny's going on
 
-		ScriptInterface scriptInterface("Engine", "Test", g_ScriptRuntime);
+		ScriptInterface scriptInterface("Engine", "Test", g_ScriptContext);
 		ScriptInterface::Request rq(scriptInterface);
 
 		TestStdoutLogger logger;
@@ -215,7 +215,7 @@ public:
 
 	void test_rejoin_DISABLED()
 	{
-		ScriptInterface scriptInterface("Engine", "Test", g_ScriptRuntime);
+		ScriptInterface scriptInterface("Engine", "Test", g_ScriptContext);
 		ScriptInterface::Request rq(scriptInterface);
 
 		TestStdoutLogger logger;

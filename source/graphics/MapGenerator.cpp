@@ -31,7 +31,7 @@
 #include "ps/FileIo.h"
 #include "ps/Profile.h"
 #include "ps/scripting/JSInterface_VFS.h"
-#include "scriptinterface/ScriptRuntime.h"
+#include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptConversions.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/helpers/MapEdgeTiles.h"
@@ -40,7 +40,7 @@
 #include <vector>
 
 // TODO: Maybe this should be optimized depending on the map size.
-constexpr int RMS_RUNTIME_SIZE = 96 * 1024 * 1024;
+constexpr int RMS_CONTEXT_SIZE = 96 * 1024 * 1024;
 
 extern bool IsQuitRequested();
 
@@ -89,12 +89,12 @@ void* CMapGeneratorWorker::RunThread(CMapGeneratorWorker* self)
 	debug_SetThreadName("MapGenerator");
 	g_Profiler2.RegisterCurrentThread("MapGenerator");
 
-	shared_ptr<ScriptRuntime> mapgenRuntime = ScriptRuntime::CreateRuntime(RMS_RUNTIME_SIZE);
+	shared_ptr<ScriptContext> mapgenContext = ScriptContext::CreateContext(RMS_CONTEXT_SIZE);
 
 	// Enable the script to be aborted
-	JS_SetInterruptCallback(mapgenRuntime->GetJSRuntime(), MapGeneratorInterruptCallback);
+	JS_SetInterruptCallback(mapgenContext->GetJSRuntime(), MapGeneratorInterruptCallback);
 
-	self->m_ScriptInterface = new ScriptInterface("Engine", "MapGenerator", mapgenRuntime);
+	self->m_ScriptInterface = new ScriptInterface("Engine", "MapGenerator", mapgenContext);
 
 	// Run map generation scripts
 	if (!self->Run() || self->m_Progress > 0)

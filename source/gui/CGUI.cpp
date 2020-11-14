@@ -61,13 +61,13 @@ const CStr CGUI::EventNameMouseLeftRelease = "MouseLeftRelease";
 const CStr CGUI::EventNameMouseRightDoubleClick = "MouseRightDoubleClick";
 const CStr CGUI::EventNameMouseRightRelease = "MouseRightRelease";
 
-CGUI::CGUI(const shared_ptr<ScriptRuntime>& runtime)
+CGUI::CGUI(const shared_ptr<ScriptContext>& context)
 	: m_BaseObject(*this),
 	  m_FocusedObject(nullptr),
 	  m_InternalNameNumber(0),
 	  m_MouseButtons(0)
 {
-	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIPage", runtime));
+	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIPage", context));
 	m_ScriptInterface->SetCallbackData(this);
 
 	GuiScriptingInit(*m_ScriptInterface);

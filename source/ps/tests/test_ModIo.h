@@ -42,7 +42,7 @@ public:
 
 	void test_id_parsing()
 	{
-		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		ScriptInterface script("Test", "Test", g_ScriptContext);
 
 #define TS_ASSERT_PARSE(input, expected_error, expected_id) \
 	{ \
@@ -90,7 +90,7 @@ public:
 
 	void test_mods_parsing()
 	{
-		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		ScriptInterface script("Test", "Test", g_ScriptContext);
 
 		PKStruct pk;
 

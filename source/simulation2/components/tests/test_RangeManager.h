@@ -87,7 +87,7 @@ public:
 
 	void test_basic()
 	{
-		ComponentTestHelper test(g_ScriptRuntime);
+		ComponentTestHelper test(g_ScriptContext);
 
 		ICmpRangeManager* cmp = test.Add<ICmpRangeManager>(CID_RangeManager, "", SYSTEM_ENTITY);
 

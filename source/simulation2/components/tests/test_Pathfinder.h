@@ -139,7 +139,7 @@ public:
 	{
 		CTerrain terrain;
 
-		CSimulation2 sim2(NULL, g_ScriptRuntime, &terrain);
+		CSimulation2 sim2(NULL, g_ScriptContext, &terrain);
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 
@@ -196,7 +196,7 @@ public:
 		CTerrain terrain;
 		terrain.Initialize(5, NULL);
 
-		CSimulation2 sim2(NULL, g_ScriptRuntime, &terrain);
+		CSimulation2 sim2(NULL, g_ScriptContext, &terrain);
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 
@@ -250,7 +250,7 @@ public:
 	{
 		CTerrain terrain;
 
-		CSimulation2 sim2(NULL, g_ScriptRuntime, &terrain);
+		CSimulation2 sim2(NULL, g_ScriptContext, &terrain);
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 
@@ -307,7 +307,7 @@ public:
 	{
 		CTerrain terrain;
 
-		CSimulation2 sim2(NULL, g_ScriptRuntime, &terrain);
+		CSimulation2 sim2(NULL, g_ScriptContext, &terrain);
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 

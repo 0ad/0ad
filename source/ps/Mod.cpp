@@ -28,8 +28,8 @@
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/GameSetup/Paths.h"
 #include "ps/Pyrogenesis.h"
+#include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
-#include "scriptinterface/ScriptRuntime.h"
 
 std::vector<CStr> g_modsLoaded;
 
@@ -104,9 +104,9 @@ JS::Value Mod::GetAvailableMods(const ScriptInterface& scriptInterface)
 	return JS::ObjectValue(*obj);
 }
 
-void Mod::CacheEnabledModVersions(const shared_ptr<ScriptRuntime>& scriptRuntime)
+void Mod::CacheEnabledModVersions(const shared_ptr<ScriptContext>& scriptContext)
 {
-	ScriptInterface scriptInterface("Engine", "CacheEnabledModVersions", scriptRuntime);
+	ScriptInterface scriptInterface("Engine", "CacheEnabledModVersions", scriptContext);
 	ScriptInterface::Request rq(scriptInterface);
 
 	JS::RootedValue availableMods(rq.cx, GetAvailableMods(scriptInterface));

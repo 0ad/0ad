@@ -57,7 +57,7 @@ private:
 	using ConstructObjectFunction = IGUIObject* (*)(CGUI&);
 
 public:
-	CGUI(const shared_ptr<ScriptRuntime>& runtime);
+	CGUI(const shared_ptr<ScriptContext>& context);
 	~CGUI();
 
 	/**

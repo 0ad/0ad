@@ -69,7 +69,7 @@ public:
 		for (const VfsPath& path : paths)
 		{
 			CSimContext context;
-			CComponentManager componentManager(context, g_ScriptRuntime, true);
+			CComponentManager componentManager(context, g_ScriptContext, true);
 			ScriptTestSetup(componentManager.GetScriptInterface());
 			load_script(componentManager.GetScriptInterface(), path);
 		}
@@ -90,7 +90,7 @@ public:
 		for (const VfsPath& path : paths)
 		{
 			CSimContext context;
-			CComponentManager componentManager(context, g_ScriptRuntime, true);
+			CComponentManager componentManager(context, g_ScriptContext, true);
 
 			ScriptTestSetup(componentManager.GetScriptInterface());
 

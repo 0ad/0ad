@@ -37,7 +37,7 @@
 #include "lib/sysdep/sysdep.h"
 #include "ps/Profiler2.h"
 #include "scriptinterface/ScriptEngine.h"
-#include "scriptinterface/ScriptRuntime.h"
+#include "scriptinterface/ScriptContext.h"
 
 class LeakReporter : public CxxTest::GlobalFixture
 {
@@ -80,14 +80,14 @@ class MiscSetup : public CxxTest::GlobalFixture
 
 		g_Profiler2.Initialise();
 		m_ScriptEngine = new ScriptEngine;
-		g_ScriptRuntime = ScriptRuntime::CreateRuntime();
+		g_ScriptContext = ScriptContext::CreateContext();
 
 		return true;
 	}
 
 	virtual bool tearDownWorld()
 	{
-		g_ScriptRuntime.reset();
+		g_ScriptContext.reset();
 		SAFE_DELETE(m_ScriptEngine);
 		g_Profiler2.Shutdown();
 

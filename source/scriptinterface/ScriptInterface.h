@@ -50,11 +50,11 @@ ERROR_TYPE(Scripting_DefineType, CreationFailed);
 
 struct ScriptInterface_impl;
 
-class ScriptRuntime;
+class ScriptContext;
 
-// Using a global object for the runtime is a workaround until Simulation, AI, etc,
-// use their own threads and also their own runtimes.
-extern thread_local shared_ptr<ScriptRuntime> g_ScriptRuntime;
+// Using a global object for the context is a workaround until Simulation, AI, etc,
+// use their own threads and also their own contexts.
+extern thread_local shared_ptr<ScriptContext> g_ScriptContext;
 
 
 /**
@@ -76,9 +76,9 @@ public:
 	 * @param nativeScopeName Name of global object that functions (via RegisterFunction) will
 	 *   be placed into, as a scoping mechanism; typically "Engine"
 	 * @param debugName Name of this interface for CScriptStats purposes.
-	 * @param runtime ScriptRuntime to use when initializing this interface.
+	 * @param context ScriptContext to use when initializing this interface.
 	 */
-	ScriptInterface(const char* nativeScopeName, const char* debugName, const shared_ptr<ScriptRuntime>& runtime);
+	ScriptInterface(const char* nativeScopeName, const char* debugName, const shared_ptr<ScriptContext>& context);
 
 	~ScriptInterface();
 
@@ -92,7 +92,7 @@ public:
 	static CmptPrivate* GetScriptInterfaceAndCBData(JSContext* cx);
 
 	JSRuntime* GetJSRuntime() const;
-	shared_ptr<ScriptRuntime> GetRuntime() const;
+	shared_ptr<ScriptContext> GetContext() const;
 
 	/**
 	 * RAII structure which encapsulates an access to the context and compartment of a ScriptInterface.

@@ -17,8 +17,8 @@
 
 #include "precompiled.h"
 
+#include "ScriptContext.h"
 #include "ScriptInterface.h"
-#include "ScriptRuntime.h"
 #include "ScriptStats.h"
 
 #include "lib/debug.h"
@@ -54,13 +54,13 @@
 
 struct ScriptInterface_impl
 {
-	ScriptInterface_impl(const char* nativeScopeName, const shared_ptr<ScriptRuntime>& runtime);
+	ScriptInterface_impl(const char* nativeScopeName, const shared_ptr<ScriptContext>& context);
 	~ScriptInterface_impl();
 	void Register(const char* name, JSNative fptr, uint nargs) const;
 
 	// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
-	// members have to be called before the runtime destructor.
-	shared_ptr<ScriptRuntime> m_runtime;
+	// members have to be called before the context destructor.
+	shared_ptr<ScriptContext> m_context;
 
 	friend ScriptInterface::Request;
 	private:
@@ -318,8 +318,8 @@ bool ScriptInterface::MathRandom(double& nbr)
 	return true;
 }
 
-ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const shared_ptr<ScriptRuntime>& runtime) :
-	m_runtime(runtime), m_cx(runtime->GetGeneralJSContext()), m_glob(runtime->GetJSRuntime()), m_nativeScope(runtime->GetJSRuntime())
+ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const shared_ptr<ScriptContext>& context) :
+	m_context(context), m_cx(context->GetGeneralJSContext()), m_glob(context->GetJSRuntime()), m_nativeScope(context->GetJSRuntime())
 {
 	JS::CompartmentOptions opt;
 	opt.setVersion(JSVERSION_LATEST);
@@ -348,12 +348,12 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	Register("ProfileStop", ::ProfileStop, 0);
 	Register("ProfileAttribute", ::ProfileAttribute, 1);
 
-	m_runtime->RegisterCompartment(js::GetObjectCompartment(m_glob));
+	m_context->RegisterCompartment(js::GetObjectCompartment(m_glob));
 }
 
 ScriptInterface_impl::~ScriptInterface_impl()
 {
-	m_runtime->UnRegisterCompartment(js::GetObjectCompartment(m_glob));
+	m_context->UnRegisterCompartment(js::GetObjectCompartment(m_glob));
 }
 
 void ScriptInterface_impl::Register(const char* name, JSNative fptr, uint nargs) const
@@ -364,8 +364,8 @@ void ScriptInterface_impl::Register(const char* name, JSNative fptr, uint nargs)
 	JS::RootedFunction func(m_cx, JS_DefineFunction(m_cx, nativeScope, name, fptr, nargs, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT));
 }
 
-ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugName, const shared_ptr<ScriptRuntime>& runtime) :
-	m(new ScriptInterface_impl(nativeScopeName, runtime))
+ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugName, const shared_ptr<ScriptContext>& context) :
+	m(new ScriptInterface_impl(nativeScopeName, context))
 {
 	// Profiler stats table isn't thread-safe, so only enable this on the main thread
 	if (ThreadUtil::IsMainThread())
@@ -447,12 +447,12 @@ void ScriptInterface::Register(const char* name, JSNative fptr, size_t nargs) co
 
 JSRuntime* ScriptInterface::GetJSRuntime() const
 {
-	return m->m_runtime->GetJSRuntime();
+	return m->m_context->GetJSRuntime();
 }
 
-shared_ptr<ScriptRuntime> ScriptInterface::GetRuntime() const
+shared_ptr<ScriptContext> ScriptInterface::GetContext() const
 {
-	return m->m_runtime;
+	return m->m_context;
 }
 
 void ScriptInterface::CallConstructor(JS::HandleValue ctor, JS::HandleValueArray argv, JS::MutableHandleValue out) const

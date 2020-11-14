@@ -49,7 +49,7 @@ public:
 
 		for (const VfsPath& path : paths)
 		{
-			ScriptInterface scriptInterface("Engine", "MapGenerator", g_ScriptRuntime);
+			ScriptInterface scriptInterface("Engine", "MapGenerator", g_ScriptContext);
 			ScriptTestSetup(scriptInterface);
 
 			CMapGeneratorWorker worker(&scriptInterface);

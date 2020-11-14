@@ -19,8 +19,8 @@
 
 #include "Simulation2.h"
 
+#include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
-#include "scriptinterface/ScriptRuntime.h"
 
 #include "simulation2/MessageTypes.h"
 #include "simulation2/system/ComponentManager.h"
@@ -49,7 +49,7 @@
 class CSimulation2Impl
 {
 public:
-	CSimulation2Impl(CUnitManager* unitManager, shared_ptr<ScriptRuntime> rt, CTerrain* terrain) :
+	CSimulation2Impl(CUnitManager* unitManager, shared_ptr<ScriptContext> rt, CTerrain* terrain) :
 		m_SimContext(), m_ComponentManager(m_SimContext, rt),
 		m_EnableOOSLog(false), m_EnableSerializationTest(false), m_RejoinTestTurn(-1), m_TestingRejoin(false),
 		m_SecondaryTerrain(nullptr), m_SecondaryContext(nullptr), m_SecondaryComponentManager(nullptr), m_SecondaryLoadedScripts(nullptr),
@@ -411,7 +411,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 		m_SecondaryContext->m_Terrain = m_SecondaryTerrain;
 
 		delete m_SecondaryComponentManager;
-		m_SecondaryComponentManager = new CComponentManager(*m_SecondaryContext, scriptInterface.GetRuntime());
+		m_SecondaryComponentManager = new CComponentManager(*m_SecondaryContext, scriptInterface.GetContext());
 		m_SecondaryComponentManager->LoadComponentTypes();
 
 		delete m_SecondaryLoadedScripts;
@@ -505,9 +505,9 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 	// (TODO: we ought to schedule this for a frame where we're not
 	// running the sim update, to spread the load)
 	if (m_TurnNumber % 500 == 0)
-		scriptInterface.GetRuntime()->ShrinkingGC();
+		scriptInterface.GetContext()->ShrinkingGC();
 	else
-		scriptInterface.GetRuntime()->MaybeIncrementalGC(0.0f);
+		scriptInterface.GetContext()->MaybeIncrementalGC(0.0f);
 
 	if (m_EnableOOSLog)
 		DumpState();
@@ -638,7 +638,7 @@ void CSimulation2Impl::DumpState()
 
 ////////////////////////////////////////////////////////////////
 
-CSimulation2::CSimulation2(CUnitManager* unitManager, shared_ptr<ScriptRuntime> rt, CTerrain* terrain) :
+CSimulation2::CSimulation2(CUnitManager* unitManager, shared_ptr<ScriptContext> rt, CTerrain* terrain) :
 	m(new CSimulation2Impl(unitManager, rt, terrain))
 {
 }

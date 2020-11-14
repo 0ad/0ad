@@ -28,7 +28,7 @@ class TestLOSTexture : public CxxTest::TestSuite
 public:
 	void test_basic()
 	{
-		CSimulation2 sim(NULL, g_ScriptRuntime, NULL);
+		CSimulation2 sim(NULL, g_ScriptContext, NULL);
 		CLOSTexture tex(sim);
 
 		const ssize_t size = 8;
@@ -67,7 +67,7 @@ public:
 
 	void test_perf_DISABLED()
 	{
-		CSimulation2 sim(NULL, g_ScriptRuntime, NULL);
+		CSimulation2 sim(NULL, g_ScriptContext, NULL);
 		CLOSTexture tex(sim);
 
 		const ssize_t size = 257;

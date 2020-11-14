@@ -26,7 +26,7 @@ class TestNetMessage : public CxxTest::TestSuite
 public:
 	void test_sim()
 	{
-		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		ScriptInterface script("Test", "Test", g_ScriptContext);
 		ScriptInterface::Request rq(script);
 
 		JS::RootedValue val(rq.cx);

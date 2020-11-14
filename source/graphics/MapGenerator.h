@@ -81,7 +81,7 @@ private:
  * Thread-safety:
  * - Initialize and constructor/destructor must be called from the main thread.
  * - ScriptInterface created and destroyed by thread
- * - StructuredClone used to return JS map data - JS:Values can't be used across threads/runtimes.
+ * - StructuredClone used to return JS map data - JS:Values can't be used across threads/contexts.
  */
 class CMapGeneratorWorker
 {

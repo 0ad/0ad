@@ -26,8 +26,8 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
 #include "ps/XML/Xeromyces.h"
+#include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
-#include "scriptinterface/ScriptRuntime.h"
 
 CGUIManager* g_GUI = nullptr;
 
@@ -60,8 +60,8 @@ static Status ReloadChangedFileCB(void* param, const VfsPath& path)
 
 CGUIManager::CGUIManager()
 {
-	m_ScriptRuntime = g_ScriptRuntime;
-	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIManager", m_ScriptRuntime));
+	m_ScriptContext = g_ScriptContext;
+	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIManager", m_ScriptContext));
 	m_ScriptInterface->SetCallbackData(this);
 	m_ScriptInterface->LoadGlobalScripts();
 
@@ -106,7 +106,7 @@ void CGUIManager::PushPage(const CStrW& pageName, shared_ptr<ScriptInterface::St
 	// Push the page prior to loading its contents, because that may push
 	// another GUI page on init which should be pushed on top of this new page.
 	m_PageStack.emplace_back(pageName, initData);
-	m_PageStack.back().LoadPage(m_ScriptRuntime);
+	m_PageStack.back().LoadPage(m_ScriptContext);
 }
 
 void CGUIManager::PopPage(shared_ptr<ScriptInterface::StructuredClone> args)
@@ -126,7 +126,7 @@ CGUIManager::SGUIPage::SGUIPage(const CStrW& pageName, const shared_ptr<ScriptIn
 {
 }
 
-void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptRuntime> scriptRuntime)
+void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptContext> scriptContext)
 {
 	// If we're hotloading then try to grab some data from the previous page
 	shared_ptr<ScriptInterface::StructuredClone> hotloadData;
@@ -143,7 +143,7 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptRuntime> scriptRuntime)
 
 	g_CursorName = g_DefaultCursor;
 	inputs.clear();
-	gui.reset(new CGUI(scriptRuntime));
+	gui.reset(new CGUI(scriptContext));
 
 	gui->AddObjectTypes();
 
@@ -268,7 +268,7 @@ Status CGUIManager::ReloadChangedFile(const VfsPath& path)
 		if (p.inputs.find(path) != p.inputs.end())
 		{
 			LOGMESSAGE("GUI file '%s' changed - reloading page '%s'", path.string8(), utf8_from_wstring(p.name));
-			p.LoadPage(m_ScriptRuntime);
+			p.LoadPage(m_ScriptContext);
 			// TODO: this can crash if LoadPage runs an init script which modifies the page stack and breaks our iterators
 		}
 
@@ -279,7 +279,7 @@ Status CGUIManager::ReloadAllPages()
 {
 	// TODO: this can crash if LoadPage runs an init script which modifies the page stack and breaks our iterators
 	for (SGUIPage& p : m_PageStack)
-		p.LoadPage(m_ScriptRuntime);
+		p.LoadPage(m_ScriptContext);
 
 	return INFO::OK;
 }
@@ -349,9 +349,9 @@ void CGUIManager::TickObjects()
 {
 	PROFILE3("gui tick");
 
-	// We share the script runtime with everything else that runs in the same thread.
+	// We share the script context with everything else that runs in the same thread.
 	// This call makes sure we trigger GC regularly even if the simulation is not running.
-	m_ScriptInterface->GetRuntime()->MaybeIncrementalGC(1.0f);
+	m_ScriptInterface->GetContext()->MaybeIncrementalGC(1.0f);
 
 	// Save an immutable copy so iterators aren't invalidated by tick handlers
 	PageStackType pageStack = m_PageStack;

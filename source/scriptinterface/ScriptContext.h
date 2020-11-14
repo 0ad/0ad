@@ -15,8 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_SCRIPTRUNTIME
-#define INCLUDED_SCRIPTRUNTIME
+#ifndef INCLUDED_SCRIPTCONTEXT
+#define INCLUDED_SCRIPTCONTEXT
 
 #include "ScriptTypes.h"
 #include "ScriptExtraHeaders.h"
@@ -26,37 +26,38 @@
 constexpr int STACK_CHUNK_SIZE = 8192;
 
 // Those are minimal defaults. The runtime for the main game is larger and GCs upon a larger growth.
-constexpr int DEFAULT_RUNTIME_SIZE = 16 * 1024 * 1024;
+constexpr int DEFAULT_CONTEXT_SIZE = 16 * 1024 * 1024;
 constexpr int DEFAULT_HEAP_GROWTH_BYTES_GCTRIGGER = 2 * 1024 * 1024;
 
 /**
  * Abstraction around a SpiderMonkey JSRuntime/JSContext.
  *
- * A single ScriptRuntime, with the associated runtime and context,
+ * A single ScriptContext, with the associated runtime and context,
  * should only be used on a single thread.
  *
- * (One means to share data between threads and runtimes is to create
+ * (One means to share data between threads and contexts is to create
  * a ScriptInterface::StructuredClone.)
  */
 
-class ScriptRuntime
+class ScriptContext
 {
 public:
-	ScriptRuntime(int runtimeSize, int heapGrowthBytesGCTrigger);
-	~ScriptRuntime();
+	ScriptContext(int contextSize, int heapGrowthBytesGCTrigger);
+	~ScriptContext();
 
 	/**
-	 * Returns a runtime/context, in which any number of ScriptInterfaces compartments can live.
-	 * Each runtime should only ever be used on a single thread.
-	 * @param runtimeSize Maximum size in bytes of the new runtime
+	 * Returns a context, in which any number of ScriptInterfaces compartments can live.
+	 * Each context should only ever be used on a single thread.
+	 * @param parentContext Parent context from the parent thread, with which we share some thread-safe data
+	 * @param contextSize Maximum size in bytes of the new context
 	 * @param heapGrowthBytesGCTrigger Size in bytes of cumulated allocations after which a GC will be triggered
 	 */
-	static shared_ptr<ScriptRuntime> CreateRuntime(
-		int runtimeSize = DEFAULT_RUNTIME_SIZE,
+	static shared_ptr<ScriptContext> CreateContext(
+		int contextSize = DEFAULT_CONTEXT_SIZE,
 		int heapGrowthBytesGCTrigger = DEFAULT_HEAP_GROWTH_BYTES_GCTRIGGER);
 
 	/**
-	 * MaybeIncrementalRuntimeGC tries to determine whether a runtime-wide garbage collection would free up enough memory to
+	 * MaybeIncrementalGC tries to determine whether a context-wide garbage collection would free up enough memory to
 	 * be worth the amount of time it would take. It does this with our own logic and NOT some predefined JSAPI logic because
 	 * such functionality currently isn't available out of the box.
 	 * It does incremental GC which means it will collect one slice each time it's called until the garbage collection is done.
@@ -93,10 +94,10 @@ private:
 	void PrepareCompartmentsForIncrementalGC() const;
 	std::list<JSCompartment*> m_Compartments;
 
-	int m_RuntimeSize;
+	int m_ContextSize;
 	int m_HeapGrowthBytesGCTrigger;
 	int m_LastGCBytes;
 	double m_LastGCCheck;
 };
 
-#endif // INCLUDED_SCRIPTRUNTIME
+#endif // INCLUDED_SCRIPTCONTEXT

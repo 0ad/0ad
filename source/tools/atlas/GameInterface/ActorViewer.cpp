@@ -69,7 +69,7 @@ public:
 		MeshManager(ColladaManager),
 		SkeletonAnimManager(ColladaManager),
 		UnitManager(),
-		Simulation2(&UnitManager, g_ScriptRuntime, &Terrain),
+		Simulation2(&UnitManager, g_ScriptContext, &Terrain),
 		ObjectManager(MeshManager, SkeletonAnimManager, Simulation2),
 		LOSTexture(Simulation2),
 		TerritoryTexture(Simulation2)

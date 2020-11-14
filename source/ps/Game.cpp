@@ -67,7 +67,7 @@ const CStr CGame::EventNameSimulationUpdate = "SimulationUpdate";
  **/
 CGame::CGame(bool replayLog):
 	m_World(new CWorld(this)),
-	m_Simulation2(new CSimulation2(&m_World->GetUnitManager(), g_ScriptRuntime, m_World->GetTerrain())),
+	m_Simulation2(new CSimulation2(&m_World->GetUnitManager(), g_ScriptContext, m_World->GetTerrain())),
 	m_GameView(CRenderer::IsInitialised() ? new CGameView(this) : nullptr),
 	m_GameStarted(false),
 	m_Paused(false),
