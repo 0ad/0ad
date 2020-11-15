@@ -170,7 +170,7 @@ public:
 		std::vector<SimulationCommand> newCommands;
 		newCommands.reserve(commands.size());
 
-		ScriptInterface::Request rqNew(newScript);
+		ScriptRequest rqNew(newScript);
 		for (const SimulationCommand& command : commands)
 		{
 			JS::RootedValue tmpCommand(rqNew.cx, newScript.CloneValueFromOtherCompartment(oldScript, command.data));
@@ -421,7 +421,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 
 		// Load the trigger scripts after we have loaded the simulation.
 		{
-			ScriptInterface::Request rq2(m_SecondaryComponentManager->GetScriptInterface());
+			ScriptRequest rq2(m_SecondaryComponentManager->GetScriptInterface());
 			JS::RootedValue mapSettingsCloned(rq2.cx,
 				m_SecondaryComponentManager->GetScriptInterface().CloneValueFromOtherCompartment(
 					scriptInterface, m_MapSettings));
@@ -733,14 +733,14 @@ ScriptInterface& CSimulation2::GetScriptInterface() const
 
 void CSimulation2::PreInitGame()
 {
-	ScriptInterface::Request rq(GetScriptInterface());
+	ScriptRequest rq(GetScriptInterface());
 	JS::RootedValue global(rq.cx, rq.globalValue());
 	GetScriptInterface().CallFunctionVoid(global, "PreInitGame");
 }
 
 void CSimulation2::InitGame()
 {
-	ScriptInterface::Request rq(GetScriptInterface());
+	ScriptRequest rq(GetScriptInterface());
 	JS::RootedValue global(rq.cx, rq.globalValue());
 
 	JS::RootedValue settings(rq.cx);
@@ -839,14 +839,14 @@ void CSimulation2::GetMapSettings(JS::MutableHandleValue ret)
 
 void CSimulation2::LoadPlayerSettings(bool newPlayers)
 {
-	ScriptInterface::Request rq(GetScriptInterface());
+	ScriptRequest rq(GetScriptInterface());
 	JS::RootedValue global(rq.cx, rq.globalValue());
 	GetScriptInterface().CallFunctionVoid(global, "LoadPlayerSettings", m->m_MapSettings, newPlayers);
 }
 
 void CSimulation2::LoadMapSettings()
 {
-	ScriptInterface::Request rq(GetScriptInterface());
+	ScriptRequest rq(GetScriptInterface());
 
 	JS::RootedValue global(rq.cx, rq.globalValue());
 
@@ -982,7 +982,7 @@ std::string CSimulation2::GetMapSizes()
 std::string CSimulation2::GetAIData()
 {
 	const ScriptInterface& scriptInterface = GetScriptInterface();
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 	JS::RootedValue aiData(rq.cx, ICmpAIManager::GetAIs(scriptInterface));
 
 	// Build single JSON string with array of AI data

@@ -41,12 +41,12 @@ public:
 	/**
 	 * Parses the given JS::Value using ScriptInterface::FromJSVal and assigns it to the setting data.
 	 */
-	virtual bool FromJSVal(const ScriptInterface::Request& rq, JS::HandleValue Value, const bool SendMessage) = 0;
+	virtual bool FromJSVal(const ScriptRequest& rq, JS::HandleValue Value, const bool SendMessage) = 0;
 
 	/**
 	 * Converts the setting data to a JS::Value using ScriptInterface::ToJSVal.
 	 */
-	virtual void ToJSVal(const ScriptInterface::Request& rq, JS::MutableHandleValue Value) = 0;
+	virtual void ToJSVal(const ScriptRequest& rq, JS::MutableHandleValue Value) = 0;
 };
 
 template<typename T>
@@ -65,12 +65,12 @@ public:
 	/**
 	 * Parses the given JS::Value using ScriptInterface::FromJSVal and assigns it to the setting data.
 	 */
-	bool FromJSVal(const ScriptInterface::Request& rq, JS::HandleValue Value, const bool SendMessage) override;
+	bool FromJSVal(const ScriptRequest& rq, JS::HandleValue Value, const bool SendMessage) override;
 
 	/**
 	 * Converts the setting data to a JS::Value using ScriptInterface::ToJSVal.
 	 */
-	void ToJSVal(const ScriptInterface::Request& rq, JS::MutableHandleValue Value) override;
+	void ToJSVal(const ScriptRequest& rq, JS::MutableHandleValue Value) override;
 
 	/**
 	 * These members are public because they are either unmodifiable or free to be modified.

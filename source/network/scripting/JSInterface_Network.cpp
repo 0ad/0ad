@@ -61,7 +61,8 @@ void JSI_Network::StartNetworkHost(ScriptInterface::CmptPrivate* pCmptPrivate, c
 	g_NetServer = new CNetServer(static_cast<bool>(g_XmppClient));
 	if (!g_NetServer->SetupConnection(serverPort))
 	{
-		pCmptPrivate->pScriptInterface->ReportError("Failed to start server");
+		ScriptRequest rq(pCmptPrivate->pScriptInterface);
+		ScriptException::Raise(rq, "Failed to start server");
 		SAFE_DELETE(g_NetServer);
 		return;
 	}
@@ -73,7 +74,8 @@ void JSI_Network::StartNetworkHost(ScriptInterface::CmptPrivate* pCmptPrivate, c
 
 	if (!g_NetClient->SetupConnection("127.0.0.1", serverPort, nullptr))
 	{
-		pCmptPrivate->pScriptInterface->ReportError("Failed to connect to server");
+		ScriptRequest rq(pCmptPrivate->pScriptInterface);
+		ScriptException::Raise(rq, "Failed to connect to server");
 		SAFE_DELETE(g_NetClient);
 		SAFE_DELETE(g_Game);
 	}
@@ -100,14 +102,16 @@ void JSI_Network::StartNetworkJoin(ScriptInterface::CmptPrivate* pCmptPrivate, c
 
 		if (!enetClient)
 		{
-			pCmptPrivate->pScriptInterface->ReportError("Could not find an unused port for the enet STUN client");
+			ScriptRequest rq(pCmptPrivate->pScriptInterface);
+			ScriptException::Raise(rq, "Could not find an unused port for the enet STUN client");
 			return;
 		}
 
 		StunClient::StunEndpoint stunEndpoint;
 		if (!StunClient::FindStunEndpointJoin(*enetClient, stunEndpoint))
 		{
-			pCmptPrivate->pScriptInterface->ReportError("Could not find the STUN endpoint");
+			ScriptRequest rq(pCmptPrivate->pScriptInterface);
+			ScriptException::Raise(rq, "Could not find the STUN endpoint");
 			return;
 		}
 
@@ -126,7 +130,8 @@ void JSI_Network::StartNetworkJoin(ScriptInterface::CmptPrivate* pCmptPrivate, c
 
 	if (!g_NetClient->SetupConnection(serverAddress, serverPort, enetClient))
 	{
-		pCmptPrivate->pScriptInterface->ReportError("Failed to connect to server");
+		ScriptRequest rq(pCmptPrivate->pScriptInterface);
+		ScriptException::Raise(rq, "Failed to connect to server");
 		SAFE_DELETE(g_NetClient);
 		SAFE_DELETE(g_Game);
 	}
@@ -155,7 +160,7 @@ JS::Value JSI_Network::PollNetworkClient(ScriptInterface::CmptPrivate* pCmptPriv
 		return JS::UndefinedValue();
 
 	// Convert from net client context to GUI script context
-	ScriptInterface::Request rqNet(g_NetClient->GetScriptInterface());
+	ScriptRequest rqNet(g_NetClient->GetScriptInterface());
 	JS::RootedValue pollNet(rqNet.cx);
 	g_NetClient->GuiPoll(&pollNet);
 	return pCmptPrivate->pScriptInterface->CloneValueFromOtherCompartment(g_NetClient->GetScriptInterface(), pollNet);
@@ -166,7 +171,7 @@ void JSI_Network::SetNetworkGameAttributes(ScriptInterface::CmptPrivate* pCmptPr
 	ENSURE(g_NetClient);
 
 	// TODO: This is a workaround because we need to pass a MutableHandle to a JSAPI functions somewhere (with no obvious reason).
-	ScriptInterface::Request rq(pCmptPrivate);
+	ScriptRequest rq(pCmptPrivate->pScriptInterface);
 	JS::RootedValue attribs(rq.cx, attribs1);
 
 	g_NetClient->SendGameSetupMessage(&attribs, *(pCmptPrivate->pScriptInterface));

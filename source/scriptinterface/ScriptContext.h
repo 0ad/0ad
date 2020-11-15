@@ -56,6 +56,7 @@ public:
 		int contextSize = DEFAULT_CONTEXT_SIZE,
 		int heapGrowthBytesGCTrigger = DEFAULT_HEAP_GROWTH_BYTES_GCTRIGGER);
 
+
 	/**
 	 * MaybeIncrementalGC tries to determine whether a context-wide garbage collection would free up enough memory to
 	 * be worth the amount of time it would take. It does this with our own logic and NOT some predefined JSAPI logic because
@@ -82,7 +83,7 @@ public:
 	 * entering any compartment. It should only be used in specific situations, such as
 	 * creating a new compartment, or as an unsafe alternative to GetJSRuntime.
 	 * If you need the compartmented context of a ScriptInterface, you should create a
-	 * ScriptInterface::Request and use the context from that.
+	 * ScriptRequest and use the context from that.
 	 */
 	JSContext* GetGeneralJSContext() const { return m_cx; }
 

@@ -184,7 +184,7 @@ retry:
 void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 {
 	const ScriptInterface& scriptInterface = *(g_GUI->GetActiveGUI()->GetScriptInterface());
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	JS::AutoValueVector paramData(rq.cx);
 
@@ -516,7 +516,7 @@ void InitPsAutostart(bool networked, JS::HandleValue attrs)
 {
 	// The GUI has not been initialized yet, so use the simulation scriptinterface for this variable
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	JS::RootedValue playerAssignments(rq.cx);
 	ScriptInterface::CreateObject(rq, &playerAssignments);
@@ -1059,7 +1059,7 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 			const bool setup_gui = ((flags & INIT_NO_GUI) == 0);
 			// We only want to display the splash screen at startup
 			shared_ptr<ScriptInterface> scriptInterface = g_GUI->GetScriptInterface();
-			ScriptInterface::Request rq(scriptInterface);
+			ScriptRequest rq(scriptInterface);
 			JS::RootedValue data(rq.cx);
 			if (g_GUI)
 			{
@@ -1218,7 +1218,7 @@ bool Autostart(const CmdLineArgs& args)
 	g_Game = new CGame(!args.Has("autostart-disable-replay"));
 
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	JS::RootedValue attrs(rq.cx);
 	JS::RootedValue settings(rq.cx);
@@ -1602,7 +1602,7 @@ bool AutostartVisualReplay(const std::string& replayFile)
 	g_Game->StartVisualReplay(replayFile);
 
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 	JS::RootedValue attrs(rq.cx, g_Game->GetSimulation2()->GetInitAttributes());
 
 	InitPsAutostart(false, attrs);
@@ -1613,7 +1613,7 @@ bool AutostartVisualReplay(const std::string& replayFile)
 void CancelLoad(const CStrW& message)
 {
 	shared_ptr<ScriptInterface> pScriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
-	ScriptInterface::Request rq(pScriptInterface);
+	ScriptRequest rq(pScriptInterface);
 
 	JS::RootedValue global(rq.cx, rq.globalValue());
 

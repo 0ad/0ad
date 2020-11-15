@@ -30,7 +30,7 @@ JS::Value ICmpFootprint::GetShape_wrapper() const
 	entity_pos_t size0, size1, height;
 	GetShape(shape, size0, size1, height);
 
-	ScriptInterface::Request rq(GetSimContext().GetScriptInterface());
+	ScriptRequest rq(GetSimContext().GetScriptInterface());
 
 	JS::RootedObject obj(rq.cx, JS_NewPlainObject(rq.cx));
 	if (!obj)

@@ -73,7 +73,7 @@ std::wstring JSI_Main::GetMatchID(ScriptInterface::CmptPrivate* UNUSED(pCmptPriv
 
 JS::Value JSI_Main::LoadMapSettings(ScriptInterface::CmptPrivate* pCmptPrivate, const VfsPath& pathname)
 {
-	ScriptInterface::Request rq(pCmptPrivate);
+	ScriptRequest rq(pCmptPrivate->pScriptInterface);
 
 	CMapSummaryReader reader;
 

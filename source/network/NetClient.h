@@ -156,7 +156,7 @@ public:
 	template<typename... Args>
 	void PushGuiMessage(Args const&... args)
 	{
-		ScriptInterface::Request rq(GetScriptInterface());
+		ScriptRequest rq(GetScriptInterface());
 
 		JS::RootedValue message(rq.cx);
 		ScriptInterface::CreateObject(rq, &message, args...);

@@ -213,7 +213,7 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 // dispatch all pending events to the various receivers.
 static void PumpEvents()
 {
-	ScriptInterface::Request rq(g_GUI->GetScriptInterface());
+	ScriptRequest rq(g_GUI->GetScriptInterface());
 
 	PROFILE3("dispatch events");
 

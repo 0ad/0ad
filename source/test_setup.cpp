@@ -153,6 +153,5 @@ void ScriptTestSetup(const ScriptInterface& scriptinterface)
 	std::ifstream ifs(OsString(path).c_str());
 	ENSURE(ifs.good());
 	std::string content((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
-	bool ok = scriptinterface.LoadScript(L"test_setup.js", content);
-	ENSURE(ok);
+	ENSURE(scriptinterface.LoadScript(L"test_setup.js", content));
 }

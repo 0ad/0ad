@@ -537,7 +537,7 @@ void XmppClient::handleOOB(const glooxwrapper::JID&, const glooxwrapper::OOB&)
  */
 void XmppClient::GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	ScriptInterface::CreateArray(rq, ret);
 	int j = 0;
@@ -565,7 +565,7 @@ void XmppClient::GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::Mu
  */
 void XmppClient::GUIGetGameList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	ScriptInterface::CreateArray(rq, ret);
 	int j = 0;
@@ -593,7 +593,7 @@ void XmppClient::GUIGetGameList(const ScriptInterface& scriptInterface, JS::Muta
  */
 void XmppClient::GUIGetBoardList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	ScriptInterface::CreateArray(rq, ret);
 	int j = 0;
@@ -619,7 +619,7 @@ void XmppClient::GUIGetBoardList(const ScriptInterface& scriptInterface, JS::Mut
  */
 void XmppClient::GUIGetProfile(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	ScriptInterface::CreateArray(rq, ret);
 	int j = 0;
@@ -642,12 +642,12 @@ void XmppClient::GUIGetProfile(const ScriptInterface& scriptInterface, JS::Mutab
  * Message interfaces                                *
  *****************************************************/
 
-void SetGUIMessageProperty(const ScriptInterface::Request& UNUSED(rq), JS::HandleObject UNUSED(messageObj))
+void SetGUIMessageProperty(const ScriptRequest& UNUSED(rq), JS::HandleObject UNUSED(messageObj))
 {
 }
 
 template<typename T, typename... Args>
-void SetGUIMessageProperty(const ScriptInterface::Request& rq, JS::HandleObject messageObj, const std::string& propertyName, const T& propertyValue, Args const&... args)
+void SetGUIMessageProperty(const ScriptRequest& rq, JS::HandleObject messageObj, const std::string& propertyName, const T& propertyValue, Args const&... args)
 {
 	JS::RootedValue scriptPropertyValue(rq.cx);
 	ScriptInterface::AssignOrToJSVal(rq, &scriptPropertyValue, propertyValue);
@@ -664,7 +664,7 @@ void XmppClient::CreateGUIMessage(
 {
 	if (!m_ScriptInterface)
 		return;
-	ScriptInterface::Request rq(m_ScriptInterface);
+	ScriptRequest rq(m_ScriptInterface);
 	JS::RootedValue message(rq.cx);
 	ScriptInterface::CreateObject(
 		rq,
@@ -697,7 +697,7 @@ JS::Value XmppClient::GuiPollNewMessages(const ScriptInterface& scriptInterface)
 	if ((m_isConnected && !m_initialLoadComplete) || m_GuiMessageQueue.empty())
 		return JS::UndefinedValue();
 
-	ScriptInterface::Request rq(m_ScriptInterface);
+	ScriptRequest rq(m_ScriptInterface);
 
 	// Optimize for batch message processing that is more
 	// performance demanding than processing a lone message.
@@ -744,7 +744,7 @@ JS::Value XmppClient::GuiPollHistoricMessages(const ScriptInterface& scriptInter
 	if (m_HistoricGuiMessages.empty())
 		return JS::UndefinedValue();
 
-	ScriptInterface::Request rq(m_ScriptInterface);
+	ScriptRequest rq(m_ScriptInterface);
 
 	JS::RootedValue messages(rq.cx);
 	ScriptInterface::CreateArray(rq, &messages);

@@ -62,7 +62,7 @@ public:
 
 		// Load up a test page.
 		const ScriptInterface& scriptInterface = *(g_GUI->GetScriptInterface());
-		ScriptInterface::Request rq(scriptInterface);
+		ScriptRequest rq(scriptInterface);
 		JS::RootedValue val(rq.cx);
 		scriptInterface.CreateObject(rq, &val);
 
@@ -83,7 +83,7 @@ public:
 			in_dispatch_event(&ev);
 
 		const ScriptInterface& pageScriptInterface = *(g_GUI->GetActiveGUI()->GetScriptInterface());
-		ScriptInterface::Request prq(pageScriptInterface);
+		ScriptRequest prq(pageScriptInterface);
 		JS::RootedValue global(prq.cx, prq.globalValue());
 
 		// Ensure that our hotkey state was synchronised with the event itself.

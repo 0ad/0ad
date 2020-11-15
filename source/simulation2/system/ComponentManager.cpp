@@ -152,13 +152,13 @@ bool CComponentManager::LoadScript(const VfsPath& filename, bool hotload)
 void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CmptPrivate* pCmptPrivate, int iid, const std::string& cname, JS::HandleValue ctor, bool reRegister, bool systemComponent)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCmptPrivate->pCBData);
-	ScriptInterface::Request rq(componentManager->m_ScriptInterface);
+	ScriptRequest rq(componentManager->m_ScriptInterface);
 
 	// Find the C++ component that wraps the interface
 	int cidWrapper = componentManager->GetScriptWrapper(iid);
 	if (cidWrapper == CID__Invalid)
 	{
-		componentManager->m_ScriptInterface.ReportError("Invalid interface id");
+		ScriptException::Raise(rq, "Invalid interface id");
 		return;
 	}
 	const ComponentType& ctWrapper = componentManager->m_ComponentTypesById[cidWrapper];
@@ -170,7 +170,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Cmp
 	{
 		if (reRegister)
 		{
-			componentManager->m_ScriptInterface.ReportError(("ReRegistering component type that was not registered before '" + cname + "'").c_str());
+			ScriptException::Raise(rq, "ReRegistering component type that was not registered before '%s'", cname.c_str());
 			return;
 		}
 		// Allocate a new cid number
@@ -185,7 +185,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Cmp
 
 		if (!componentManager->m_CurrentlyHotloading && !reRegister)
 		{
-			componentManager->m_ScriptInterface.ReportError(("Registering component type with already-registered name '" + cname + "'").c_str());
+			ScriptException::Raise(rq, "Registering component type with already-registered name '%s'", cname.c_str());
 			return;
 		}
 
@@ -194,7 +194,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Cmp
 		// We can only replace scripted component types, not native ones
 		if (ctPrevious.type != CT_Script)
 		{
-			componentManager->m_ScriptInterface.ReportError(("Loading script component type with same name '" + cname + "' as native component").c_str());
+			ScriptException::Raise(rq, "Loading script component type with same name '%s' as native component", cname.c_str());
 			return;
 		}
 
@@ -205,7 +205,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Cmp
 			// ...though it only matters if any components exist with this type
 			if (!componentManager->m_ComponentsByTypeId[cid].empty())
 			{
-				componentManager->m_ScriptInterface.ReportError("Hotloading script component type mustn't change interface ID");
+				ScriptException::Raise(rq, "Hotloading script component type mustn't change interface ID");
 				return;
 			}
 		}
@@ -233,12 +233,12 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Cmp
 	JS::RootedValue protoVal(rq.cx);
 	if (!componentManager->m_ScriptInterface.GetProperty(ctor, "prototype", &protoVal))
 	{
-		componentManager->m_ScriptInterface.ReportError("Failed to get property 'prototype'");
+		ScriptException::Raise(rq, "Failed to get property 'prototype'");
 		return;
 	}
 	if (!protoVal.isObject())
 	{
-		componentManager->m_ScriptInterface.ReportError("Component has no constructor");
+		ScriptException::Raise(rq, "Component has no constructor");
 		return;
 	}
 	std::string schema = "<empty/>";
@@ -265,7 +265,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Cmp
 
 	if (!componentManager->m_ScriptInterface.EnumeratePropertyNames(protoVal, false, methods))
 	{
-		componentManager->m_ScriptInterface.ReportError("Failed to enumerate component properties.");
+		ScriptException::Raise(rq, "Failed to enumerate component properties.");
 		return;
 	}
 
@@ -288,7 +288,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Cmp
 		std::map<std::string, MessageTypeId>::const_iterator mit = componentManager->m_MessageTypeIdsByName.find(name);
 		if (mit == componentManager->m_MessageTypeIdsByName.end())
 		{
-			componentManager->m_ScriptInterface.ReportError(("Registered component has unrecognized '" + *it + "' message handler method").c_str());
+			ScriptException::Raise(rq, "Registered component has unrecognized '%s' message handler method", it->c_str());
 			return;
 		}
 
@@ -344,7 +344,10 @@ void CComponentManager::Script_RegisterInterface(ScriptInterface::CmptPrivate* p
 		// Redefinitions are fine (and just get ignored) when hotloading; otherwise
 		// they're probably unintentional and should be reported
 		if (!componentManager->m_CurrentlyHotloading)
-			componentManager->m_ScriptInterface.ReportError(("Registering interface with already-registered name '" + name + "'").c_str());
+		{
+			ScriptRequest rq(componentManager->m_ScriptInterface);
+			ScriptException::Raise(rq, "Registering interface with already-registered name '%s'", name.c_str());
+		}
 		return;
 	}
 
@@ -365,7 +368,10 @@ void CComponentManager::Script_RegisterMessageType(ScriptInterface::CmptPrivate*
 		// Redefinitions are fine (and just get ignored) when hotloading; otherwise
 		// they're probably unintentional and should be reported
 		if (!componentManager->m_CurrentlyHotloading)
-			componentManager->m_ScriptInterface.ReportError(("Registering message type with already-registered name '" + name + "'").c_str());
+		{
+			ScriptRequest rq(componentManager->m_ScriptInterface);
+			ScriptException::Raise(rq, "Registering message type with already-registered name '%s'", name.c_str());
+		}
 		return;
 	}
 
@@ -729,7 +735,7 @@ void CComponentManager::AddSystemComponents(bool skipScriptedComponents, bool sk
 
 IComponent* CComponentManager::ConstructComponent(CEntityHandle ent, ComponentTypeId cid)
 {
-	ScriptInterface::Request rq(m_ScriptInterface);
+	ScriptRequest rq(m_ScriptInterface);
 
 	std::map<ComponentTypeId, ComponentType>::const_iterator it = m_ComponentTypesById.find(cid);
 	if (it == m_ComponentTypesById.end())

@@ -96,7 +96,7 @@ private:
 			if (!m_Worker.LoadScripts(m_AIName))
 				return false;
 
-			ScriptInterface::Request rq(m_ScriptInterface);
+			ScriptRequest rq(m_ScriptInterface);
 
 			OsPath path = L"simulation/ai/" + m_AIName + L"/data.json";
 			JS::RootedValue metadata(rq.cx);
@@ -312,7 +312,7 @@ public:
 	{
 		ENSURE(pCmptPrivate->pCBData);
 		CAIWorker* self = static_cast<CAIWorker*> (pCmptPrivate->pCBData);
-		ScriptInterface::Request rq(self->m_ScriptInterface);
+		ScriptRequest rq(self->m_ScriptInterface);
 
 		CFixedVector2D pos, goalPos;
 		std::vector<CFixedVector2D> waypoints;
@@ -402,7 +402,7 @@ public:
 
 	bool TryLoadSharedComponent()
 	{
-		ScriptInterface::Request rq(m_ScriptInterface);
+		ScriptRequest rq(m_ScriptInterface);
 
 		// we don't need to load it.
 		if (!m_HasSharedComponent)
@@ -491,7 +491,7 @@ public:
 		// this will be run last by InitGame.js, passing the full game representation.
 		// For now it will run for the shared Component.
 		// This is NOT run during deserialization.
-		ScriptInterface::Request rq(m_ScriptInterface);
+		ScriptRequest rq(m_ScriptInterface);
 
 		JS::RootedValue state(rq.cx);
 		m_ScriptInterface->ReadStructuredClone(gameState, &state);
@@ -545,7 +545,7 @@ public:
 			m_HierarchicalPathfinder.Update(&m_PassabilityMap, dirtinessGrid);
 		}
 
-		ScriptInterface::Request rq(m_ScriptInterface);
+		ScriptRequest rq(m_ScriptInterface);
 		if (dimensionChange || justDeserialized)
 			ScriptInterface::ToJSVal(rq, &m_PassabilityMapVal, m_PassabilityMap);
 		else
@@ -573,7 +573,7 @@ public:
 
 		m_TerritoryMap = territoryMap;
 
-		ScriptInterface::Request rq(m_ScriptInterface);
+		ScriptRequest rq(m_ScriptInterface);
 		if (dimensionChange)
 			ScriptInterface::ToJSVal(rq, &m_TerritoryMapVal, m_TerritoryMap);
 		else
@@ -623,7 +623,7 @@ public:
 
 	void LoadEntityTemplates(const std::vector<std::pair<std::string, const CParamNode*> >& templates)
 	{
-		ScriptInterface::Request rq(m_ScriptInterface);
+		ScriptRequest rq(m_ScriptInterface);
 
 		m_HasLoadedEntityTemplates = true;
 
@@ -659,7 +659,7 @@ public:
 		if (m_Players.empty())
 			return;
 
-		ScriptInterface::Request rq(m_ScriptInterface);
+		ScriptRequest rq(m_ScriptInterface);
 
 		std::stringstream rngStream;
 		rngStream << m_RNG;
@@ -721,7 +721,7 @@ public:
 		if (numAis == 0)
 			return;
 
-		ScriptInterface::Request rq(m_ScriptInterface);
+		ScriptRequest rq(m_ScriptInterface);
 
 		ENSURE(m_CommandsComputed); // deserializing while we're still actively computing would be bad
 
@@ -833,7 +833,7 @@ private:
 	void PerformComputation()
 	{
 		// Deserialize the game state, to pass to the AI's HandleMessage
-		ScriptInterface::Request rq(m_ScriptInterface);
+		ScriptRequest rq(m_ScriptInterface);
 		JS::RootedValue state(rq.cx);
 		{
 			PROFILE3("AI compute read state");
@@ -986,7 +986,7 @@ public:
 	virtual void RunGamestateInit()
 	{
 		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
-		ScriptInterface::Request rq(scriptInterface);
+		ScriptRequest rq(scriptInterface);
 
 		CmpPtr<ICmpAIInterface> cmpAIInterface(GetSystemEntity());
 		ENSURE(cmpAIInterface);
@@ -1024,7 +1024,7 @@ public:
 		PROFILE("AI setup");
 
 		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
-		ScriptInterface::Request rq(scriptInterface);
+		ScriptRequest rq(scriptInterface);
 
 		if (m_Worker.getPlayerSize() == 0)
 			return;
@@ -1088,7 +1088,7 @@ public:
 			return;
 
 		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
-		ScriptInterface::Request rq(scriptInterface);
+		ScriptRequest rq(scriptInterface);
 		JS::RootedValue clonedCommandVal(rq.cx);
 
 		for (size_t i = 0; i < commands.size(); ++i)
@@ -1139,7 +1139,7 @@ private:
 			return;
 
 		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
-		ScriptInterface::Request rq(scriptInterface);
+		ScriptRequest rq(scriptInterface);
 
 		JS::RootedValue classesVal(rq.cx);
 		ScriptInterface::CreateObject(rq, &classesVal);

@@ -298,7 +298,7 @@ void RLInterface::TryApplyMessage()
 
 					g_Game = new CGame(m_ScenarioConfig.saveReplay);
 					ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-					ScriptInterface::Request rq(scriptInterface);
+					ScriptRequest rq(scriptInterface);
 
 					JS::RootedValue attrs(rq.cx);
 					scriptInterface.ParseJSON(m_ScenarioConfig.content, &attrs);
@@ -343,7 +343,7 @@ void RLInterface::TryApplyMessage()
 					CLocalTurnManager* turnMgr = static_cast<CLocalTurnManager*>(g_Game->GetTurnManager());
 
 					const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-					ScriptInterface::Request rq(scriptInterface);
+					ScriptRequest rq(scriptInterface);
 					for (Command command : msg.commands)
 					{
 						JS::RootedValue commandJSON(rq.cx);
@@ -376,7 +376,7 @@ void RLInterface::TryApplyMessage()
 std::string RLInterface::GetGameState()
 {
 	const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	const CSimContext simContext = g_Game->GetSimulation2()->GetSimContext();
 	CmpPtr<ICmpAIInterface> cmpAIInterface(simContext.GetSystemEntity());

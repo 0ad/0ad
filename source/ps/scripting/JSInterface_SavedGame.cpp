@@ -78,7 +78,7 @@ JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CmptPrivate* pCmptPriva
 	// The GUI calls this function from the GUI context and expects the return value in the same context.
 	// The game we start from here creates another context and expects data in this context.
 
-	ScriptInterface::Request rqGui(pCmptPrivate);
+	ScriptRequest rqGui(pCmptPrivate->pScriptInterface);
 
 	ENSURE(!g_NetServer);
 	ENSURE(!g_NetClient);
@@ -96,7 +96,7 @@ JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CmptPrivate* pCmptPriva
 
 	{
 		CSimulation2* sim = g_Game->GetSimulation2();
-		ScriptInterface::Request rqGame(sim->GetScriptInterface());
+		ScriptRequest rqGame(sim->GetScriptInterface());
 
 		JS::RootedValue gameContextMetadata(rqGame.cx,
 			sim->GetScriptInterface().CloneValueFromOtherCompartment(*(pCmptPrivate->pScriptInterface), guiContextMetadata));

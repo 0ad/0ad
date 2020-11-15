@@ -21,7 +21,7 @@
 #include "simulation2/MessageTypes.h"
 
 #define TOJSVAL_SETUP() \
-	ScriptInterface::Request rq(scriptInterface); \
+	ScriptRequest rq(scriptInterface); \
 	JS::RootedObject obj(rq.cx, JS_NewPlainObject(rq.cx)); \
 	if (!obj) \
 		return JS::UndefinedValue();
@@ -35,7 +35,7 @@
 	} while (0);
 
 #define FROMJSVAL_SETUP() \
-	ScriptInterface::Request rq(scriptInterface); \
+	ScriptRequest rq(scriptInterface); \
 	if (val.isPrimitive()) \
 		return NULL; \
 	JS::RootedObject obj(rq.cx, &val.toObject()); \

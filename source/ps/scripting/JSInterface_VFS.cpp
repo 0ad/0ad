@@ -57,7 +57,7 @@ struct BuildDirEntListState
 		filename_array(scriptInterface->GetJSRuntime()),
 		cur_idx(0)
 	{
-		ScriptInterface::Request rq(pScriptInterface);
+		ScriptRequest rq(pScriptInterface);
 		filename_array = JS_NewArrayObject(rq.cx, JS::HandleValueArray::empty());
 	}
 };
@@ -66,7 +66,7 @@ struct BuildDirEntListState
 static Status BuildDirEntListCB(const VfsPath& pathname, const CFileInfo& UNUSED(fileINfo), uintptr_t cbData)
 {
 	BuildDirEntListState* s = (BuildDirEntListState*)cbData;
-	ScriptInterface::Request rq(s->pScriptInterface);
+	ScriptRequest rq(s->pScriptInterface);
 
 	JS::RootedObject filenameArrayObj(rq.cx, s->filename_array);
 	JS::RootedValue val(rq.cx);
@@ -139,7 +139,7 @@ JS::Value JSI_VFS::ReadFile(ScriptInterface::CmptPrivate* pCmptPrivate, const st
 	contents.Replace("\r\n", "\n");
 
 	// Decode as UTF-8
-	ScriptInterface::Request rq(pCmptPrivate);
+	ScriptRequest rq(pCmptPrivate->pScriptInterface);
 	JS::RootedValue ret(rq.cx);
 	ScriptInterface::ToJSVal(rq, &ret, contents.FromUTF8());
 	return ret;
@@ -161,7 +161,7 @@ JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CmptPrivate* pCmptPrivate, con
 	std::stringstream ss(contents);
 
 	const ScriptInterface& scriptInterface = *pCmptPrivate->pScriptInterface;
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	JS::RootedValue line_array(rq.cx);
 	ScriptInterface::CreateArray(rq, &line_array);
@@ -186,7 +186,7 @@ JS::Value JSI_VFS::ReadJSONFile(ScriptInterface::CmptPrivate* pCmptPrivate, cons
 		return JS::NullValue();
 
 	const ScriptInterface& scriptInterface = *pCmptPrivate->pScriptInterface;
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 	JS::RootedValue out(rq.cx);
 	scriptInterface.ReadJSONFile(filePath, &out);
 	return out;
@@ -195,7 +195,7 @@ JS::Value JSI_VFS::ReadJSONFile(ScriptInterface::CmptPrivate* pCmptPrivate, cons
 void JSI_VFS::WriteJSONFile(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& filePath, JS::HandleValue val1)
 {
 	const ScriptInterface& scriptInterface = *pCmptPrivate->pScriptInterface;
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	// TODO: This is a workaround because we need to pass a MutableHandle to StringifyJSON.
 	JS::RootedValue val(rq.cx, val1);
@@ -223,8 +223,8 @@ bool JSI_VFS::PathRestrictionMet(ScriptInterface::CmptPrivate* pCmptPrivate, con
 		allowedPaths += L"\"" + validPaths[i] + L"\"";
 	}
 
-	ScriptInterface::Request rq(pCmptPrivate);
-	JS_ReportError(rq.cx, "This part of the engine may only read from %s!", utf8_from_wstring(allowedPaths).c_str());
+	ScriptRequest rq(pCmptPrivate->pScriptInterface);
+	ScriptException::Raise(rq, "This part of the engine may only read from %s!", utf8_from_wstring(allowedPaths).c_str());
 
 	return false;
 }

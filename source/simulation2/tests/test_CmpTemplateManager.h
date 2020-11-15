@@ -99,7 +99,7 @@ public:
 		TS_ASSERT(tempMan != NULL);
 		tempMan->DisableValidation();
 
-		ScriptInterface::Request rq(man.GetScriptInterface());
+		ScriptRequest rq(man.GetScriptInterface());
 
 		// This is testing some bugs in the template JS object caching
 

@@ -35,7 +35,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 	{
 		ScriptInterface script("Test", "Test", g_ScriptContext);
 		TS_ASSERT(script.LoadGlobalScripts());
-		ScriptInterface::Request rq(script);
+		ScriptRequest rq(script);
 
 		JS::RootedValue v1(rq.cx);
 		ScriptInterface::ToJSVal(rq, &v1, value);
@@ -54,7 +54,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 	{
 		ScriptInterface script("Test", "Test", g_ScriptContext);
 		TS_ASSERT(script.LoadGlobalScripts());
-		ScriptInterface::Request rq(script);
+		ScriptRequest rq(script);
 
 		JS::RootedValue v1(rq.cx);
 		ScriptInterface::ToJSVal(rq, &v1, value);
@@ -76,7 +76,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 	{
 		ScriptInterface script("Test", "Test", g_ScriptContext);
 		TS_ASSERT(script.LoadGlobalScripts());
-		ScriptInterface::Request rq(script);
+		ScriptRequest rq(script);
 
 		JS::RootedValue v1(rq.cx);
 		ScriptInterface::ToJSVal(rq, &v1, v);
@@ -169,7 +169,7 @@ public:
 	void test_integers()
 	{
 		ScriptInterface script("Test", "Test", g_ScriptContext);
-		ScriptInterface::Request rq(script);
+		ScriptRequest rq(script);
 
 		// using new uninitialized variables each time to be sure the test doesn't succeeed if ToJSVal doesn't touch the value at all.
 		JS::RootedValue val0(rq.cx), val1(rq.cx), val2(rq.cx), val3(rq.cx), val4(rq.cx), val5(rq.cx), val6(rq.cx), val7(rq.cx), val8(rq.cx);
@@ -201,7 +201,7 @@ public:
 		convert_to<float>(std::numeric_limits<float>::quiet_NaN(), "NaN"); // can't use roundtrip since nan != nan
 
 		ScriptInterface script("Test", "Test", g_ScriptContext);
-		ScriptInterface::Request rq(script);
+		ScriptRequest rq(script);
 
 		float f = 0;
 		JS::RootedValue testNANVal(rq.cx);
@@ -252,7 +252,7 @@ public:
 		// Fancier conversion: we store UTF8 and get UTF16 and vice-versa
 		ScriptInterface script("Test", "Test", g_ScriptContext);
 		TS_ASSERT(script.LoadGlobalScripts());
-		ScriptInterface::Request rq(script);
+		ScriptRequest rq(script);
 
 		std::string in_utf8("éè!§$-aezi134900°°©©¢¢ÇÇ‘{¶«¡Ç’[å»ÛÁØ");
 		std::wstring in_utf16(L"éè!§$-aezi134900°°©©¢¢ÇÇ‘{¶«¡Ç’[å»ÛÁØ");

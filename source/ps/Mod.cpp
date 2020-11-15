@@ -39,7 +39,7 @@ CmdLineArgs g_args;
 
 JS::Value Mod::GetAvailableMods(const ScriptInterface& scriptInterface)
 {
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 	JS::RootedObject obj(rq.cx, JS_NewPlainObject(rq.cx));
 
 	const Paths paths(g_args);
@@ -107,7 +107,7 @@ JS::Value Mod::GetAvailableMods(const ScriptInterface& scriptInterface)
 void Mod::CacheEnabledModVersions(const shared_ptr<ScriptContext>& scriptContext)
 {
 	ScriptInterface scriptInterface("Engine", "CacheEnabledModVersions", scriptContext);
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	JS::RootedValue availableMods(rq.cx, GetAvailableMods(scriptInterface));
 
@@ -130,7 +130,7 @@ void Mod::CacheEnabledModVersions(const shared_ptr<ScriptContext>& scriptContext
 
 JS::Value Mod::GetLoadedModsWithVersions(const ScriptInterface& scriptInterface)
 {
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 	JS::RootedValue returnValue(rq.cx);
 	scriptInterface.ToJSVal(rq, &returnValue, g_LoadedModVersions);
 	return returnValue;
@@ -138,7 +138,7 @@ JS::Value Mod::GetLoadedModsWithVersions(const ScriptInterface& scriptInterface)
 
 JS::Value Mod::GetEngineInfo(const ScriptInterface& scriptInterface)
 {
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	JS::RootedValue mods(rq.cx, Mod::GetLoadedModsWithVersions(scriptInterface));
 	JS::RootedValue metainfo(rq.cx);

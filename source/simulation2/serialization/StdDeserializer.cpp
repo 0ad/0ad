@@ -112,7 +112,7 @@ void CStdDeserializer::GetScriptBackref(size_t tag, JS::MutableHandleObject ret)
 
 JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject appendParent)
 {
-	ScriptInterface::Request rq(m_ScriptInterface);
+	ScriptRequest rq(m_ScriptInterface);
 
 	uint8_t type;
 	NumberU8_Unbounded("type", type);
@@ -405,7 +405,7 @@ void CStdDeserializer::ScriptString(const char* name, JS::MutableHandleString ou
 #error TODO: probably need to convert JS strings from little-endian
 #endif
 
-	ScriptInterface::Request rq(m_ScriptInterface);
+	ScriptRequest rq(m_ScriptInterface);
 
 	bool isLatin1;
 	Bool("isLatin1", isLatin1);
@@ -436,7 +436,7 @@ void CStdDeserializer::ScriptVal(const char* name, JS::MutableHandleValue out)
 
 void CStdDeserializer::ScriptObjectAppend(const char* name, JS::HandleValue objVal)
 {
-	ScriptInterface::Request rq(m_ScriptInterface);
+	ScriptRequest rq(m_ScriptInterface);
 
 	if (!objVal.isObject())
 		throw PSERROR_Deserialize_ScriptError();

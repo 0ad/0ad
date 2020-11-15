@@ -99,7 +99,7 @@ QUERYHANDLER(GenerateMap)
 
 		// Random map
 		const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-		ScriptInterface::Request rq(scriptInterface);
+		ScriptRequest rq(scriptInterface);
 
 		JS::RootedValue settings(rq.cx);
 		scriptInterface.ParseJSON(*msg->settings, &settings);
@@ -127,7 +127,7 @@ QUERYHANDLER(GenerateMap)
 		InitGame();
 
 		const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-		ScriptInterface::Request rq(scriptInterface);
+		ScriptRequest rq(scriptInterface);
 
 		// Set up 8-element array of empty objects to satisfy init
 		JS::RootedValue playerData(rq.cx);
@@ -166,7 +166,7 @@ MESSAGEHANDLER(LoadMap)
 	InitGame();
 
 	const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	// Scenario
 	CStrW map = *msg->filename;

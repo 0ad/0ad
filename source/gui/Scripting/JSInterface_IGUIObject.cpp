@@ -53,7 +53,7 @@ void JSI_IGUIObject::RegisterScriptClass(ScriptInterface& scriptInterface)
 bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp)
 {
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-	ScriptInterface::Request rq(*pScriptInterface);
+	ScriptRequest rq(*pScriptInterface);
 
 	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(rq, obj, &JSI_IGUIObject::JSI_class);
 	if (!e)
@@ -129,7 +129,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp, JS::ObjectOpResult& result)
 {
-	ScriptInterface::Request rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
+	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
 
 	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(rq, obj, &JSI_IGUIObject::JSI_class);
 	if (!e)
@@ -180,7 +180,7 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 bool JSI_IGUIObject::deleteProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::ObjectOpResult& result)
 {
-	ScriptInterface::Request rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
+	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
 
 	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(rq, obj, &JSI_IGUIObject::JSI_class);
 	if (!e)
@@ -208,7 +208,7 @@ bool JSI_IGUIObject::deleteProperty(JSContext* cx, JS::HandleObject obj, JS::Han
 
 bool JSI_IGUIObject::toString(JSContext* cx, uint argc, JS::Value* vp)
 {
-	ScriptInterface::Request rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
+	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
 
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(rq, args, &JSI_IGUIObject::JSI_class);
@@ -222,7 +222,7 @@ bool JSI_IGUIObject::toString(JSContext* cx, uint argc, JS::Value* vp)
 
 bool JSI_IGUIObject::focus(JSContext* cx, uint argc, JS::Value* vp)
 {
-	ScriptInterface::Request rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
+	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
 
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(rq, args, &JSI_IGUIObject::JSI_class);
@@ -236,7 +236,7 @@ bool JSI_IGUIObject::focus(JSContext* cx, uint argc, JS::Value* vp)
 
 bool JSI_IGUIObject::blur(JSContext* cx, uint argc, JS::Value* vp)
 {
-	ScriptInterface::Request rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
+	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
 
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(rq, args, &JSI_IGUIObject::JSI_class);
@@ -250,7 +250,7 @@ bool JSI_IGUIObject::blur(JSContext* cx, uint argc, JS::Value* vp)
 
 bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, JS::Value* vp)
 {
-	ScriptInterface::Request rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
+	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
 
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	IGUIObject* e = ScriptInterface::GetPrivate<IGUIObject>(rq, args, &JSI_IGUIObject::JSI_class);

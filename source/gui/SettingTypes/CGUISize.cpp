@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -140,28 +140,28 @@ bool CGUISize::FromString(const CStr& Value)
 	return true;
 }
 
-void CGUISize::ToJSVal(const ScriptInterface::Request& rq, JS::MutableHandleValue ret) const
+void CGUISize::ToJSVal(const ScriptRequest& rq, JS::MutableHandleValue ret) const
 {
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(rq.cx)->pScriptInterface;
 	ret.setObjectOrNull(pScriptInterface->CreateCustomObject("GUISize"));
 
 	if (!ret.isObject())
 	{
-		JS_ReportError(rq.cx, "CGUISize value is not an Object");
+		ScriptException::Raise(rq, "CGUISize value is not an Object");
 		return;
 	}
 
 	JS::RootedObject obj(rq.cx, &ret.toObject());
 	if (!JS_InstanceOf(rq.cx, obj, &JSI_GUISize::JSI_class, nullptr))
 	{
-		JS_ReportError(rq.cx, "CGUISize value is not a CGUISize class instance");
+		ScriptException::Raise(rq, "CGUISize value is not a CGUISize class instance");
 		return;
 	}
 
 #define P(x, y, z)\
 	if (!pScriptInterface->SetProperty(ret, #z, x.y)) \
 	{ \
-		JS_ReportError(rq.cx, "Could not SetProperty '%s'", #z); \
+		ScriptException::Raise(rq, "Could not SetProperty '%s'", #z); \
 		return; \
 	}
 	P(pixel, left, left);
@@ -175,7 +175,7 @@ void CGUISize::ToJSVal(const ScriptInterface::Request& rq, JS::MutableHandleValu
 #undef P
 }
 
-bool CGUISize::FromJSVal(const ScriptInterface::Request& rq, JS::HandleValue v)
+bool CGUISize::FromJSVal(const ScriptRequest& rq, JS::HandleValue v)
 {
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(rq.cx)->pScriptInterface;
 
@@ -184,13 +184,13 @@ bool CGUISize::FromJSVal(const ScriptInterface::Request& rq, JS::HandleValue v)
 		CStrW str;
 		if (!ScriptInterface::FromJSVal(rq, v, str))
 		{
-			JS_ReportError(rq.cx, "CGUISize could not read JS string");
+			LOGERROR("CGUISize could not read JS string");
 			return false;
 		}
 
 		if (!FromString(str.ToUTF8()))
 		{
-			JS_ReportError(rq.cx, "CGUISize could not parse JS string");
+			LOGERROR("CGUISize could not parse JS string");
 			return false;
 		}
 		return true;
@@ -198,21 +198,21 @@ bool CGUISize::FromJSVal(const ScriptInterface::Request& rq, JS::HandleValue v)
 
 	if (!v.isObject())
 	{
-		JS_ReportError(rq.cx, "CGUISize value is not an String, nor Object");
+		LOGERROR("CGUISize value is not an String, nor Object");
 		return false;
 	}
 
 	JS::RootedObject obj(rq.cx, &v.toObject());
 	if (!JS_InstanceOf(rq.cx, obj, &JSI_GUISize::JSI_class, nullptr))
 	{
-		JS_ReportError(rq.cx, "CGUISize value is not a CGUISize class instance");
+		LOGERROR("CGUISize value is not a CGUISize class instance");
 		return false;
 	}
 
 #define P(x, y, z) \
 	if (!pScriptInterface->GetProperty(v, #z, x.y))\
 	{\
-		JS_ReportError(rq.cx, "CGUISize could not get object property '%s'", #z);\
+		LOGERROR("CGUISize could not get object property '%s'", #z);\
 		return false;\
 	}
 

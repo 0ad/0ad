@@ -90,51 +90,6 @@ void GCSliceCallbackHook(JSRuntime* UNUSED(rt), JS::GCProgress progress, const J
 	#endif
 }
 
-
-namespace {
-
-void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
-{
-	ScriptInterface::Request rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
-
-	std::stringstream msg;
-	bool isWarning = JSREPORT_IS_WARNING(report->flags);
-	msg << (isWarning ? "JavaScript warning: " : "JavaScript error: ");
-	if (report->filename)
-	{
-		msg << report->filename;
-		msg << " line " << report->lineno << "\n";
-	}
-
-	msg << message;
-
-	// If there is an exception, then print its stack trace
-	JS::RootedValue excn(rq.cx);
-	if (JS_GetPendingException(rq.cx, &excn) && excn.isObject())
-	{
-		JS::RootedValue stackVal(rq.cx);
-		JS::RootedObject excnObj(rq.cx, &excn.toObject());
-		JS_GetProperty(rq.cx, excnObj, "stack", &stackVal);
-
-		std::string stackText;
-		ScriptInterface::FromJSVal(rq, stackVal, stackText);
-
-		std::istringstream stream(stackText);
-		for (std::string line; std::getline(stream, line);)
-			msg << "\n  " << line;
-	}
-
-	if (isWarning)
-		LOGWARNING("%s", msg.str().c_str());
-	else
-		LOGERROR("%s", msg.str().c_str());
-
-	// When running under Valgrind, print more information in the error message
-	//	VALGRIND_PRINTF_BACKTRACE("->");
-}
-
-} // anonymous namespace
-
 shared_ptr<ScriptContext> ScriptContext::CreateContext(int contextSize, int heapGrowthBytesGCTrigger)
 {
 	return shared_ptr<ScriptContext>(new ScriptContext(contextSize, heapGrowthBytesGCTrigger));
@@ -161,6 +116,7 @@ ScriptContext::ScriptContext(int contextSize, int heapGrowthBytesGCTrigger):
 	// We disable it to make it more clear if full GCs happen triggered by this JSAPI internal mechanism.
 	JS_SetGCParameter(m_rt, JSGC_DYNAMIC_HEAP_GROWTH, false);
 
+	JS_SetErrorReporter(m_rt, ScriptException::ErrorReporter);
 
 	m_cx = JS_NewContext(m_rt, STACK_CHUNK_SIZE);
 	ENSURE(m_cx); // TODO: error handling
@@ -171,8 +127,6 @@ ScriptContext::ScriptContext(int contextSize, int heapGrowthBytesGCTrigger):
 	// JS_SetGCZeal(m_cx, 2, JS_DEFAULT_ZEAL_FREQ);
 
 	JS_SetContextPrivate(m_cx, nullptr);
-
-	JS_SetErrorReporter(m_rt, ErrorReporter);
 
 	JS_SetGlobalJitCompilerOption(m_rt, JSJITCOMPILER_ION_ENABLE, 1);
 	JS_SetGlobalJitCompilerOption(m_rt, JSJITCOMPILER_BASELINE_ENABLE, 1);

@@ -23,7 +23,7 @@
 
 #include <limits>
 
-template<typename T> static void ToJSVal_vector(const ScriptInterface::Request& rq, JS::MutableHandleValue ret, const std::vector<T>& val)
+template<typename T> static void ToJSVal_vector(const ScriptRequest& rq, JS::MutableHandleValue ret, const std::vector<T>& val)
 {
 	JS::RootedObject obj(rq.cx, JS_NewArrayObject(rq.cx, 0));
 	if (!obj)
@@ -42,9 +42,9 @@ template<typename T> static void ToJSVal_vector(const ScriptInterface::Request& 
 	ret.setObject(*obj);
 }
 
-#define FAIL(msg) STMT(JS_ReportError(rq.cx, msg); return false)
+#define FAIL(msg) STMT(ScriptException::Raise(rq, msg); return false)
 
-template<typename T> static bool FromJSVal_vector(const ScriptInterface::Request& rq, JS::HandleValue v, std::vector<T>& out)
+template<typename T> static bool FromJSVal_vector(const ScriptRequest& rq, JS::HandleValue v, std::vector<T>& out)
 {
 	JS::RootedObject obj(rq.cx);
 	if (!v.isObject())
@@ -76,16 +76,16 @@ template<typename T> static bool FromJSVal_vector(const ScriptInterface::Request
 #undef FAIL
 
 #define JSVAL_VECTOR(T) \
-template<> void ScriptInterface::ToJSVal<std::vector<T> >(const ScriptInterface::Request& rq, JS::MutableHandleValue ret, const std::vector<T>& val) \
+template<> void ScriptInterface::ToJSVal<std::vector<T> >(const ScriptRequest& rq, JS::MutableHandleValue ret, const std::vector<T>& val) \
 { \
 	ToJSVal_vector(rq, ret, val); \
 } \
-template<> bool ScriptInterface::FromJSVal<std::vector<T> >(const ScriptInterface::Request& rq, JS::HandleValue v, std::vector<T>& out) \
+template<> bool ScriptInterface::FromJSVal<std::vector<T> >(const ScriptRequest& rq, JS::HandleValue v, std::vector<T>& out) \
 { \
 	return FromJSVal_vector(rq, v, out); \
 }
 
-template<typename T> bool ScriptInterface::FromJSProperty(const ScriptInterface::Request& rq, const JS::HandleValue val, const char* name, T& ret, bool strict)
+template<typename T> bool ScriptInterface::FromJSProperty(const ScriptRequest& rq, const JS::HandleValue val, const char* name, T& ret, bool strict)
 {
 	if (!val.isObject())
 		return false;
