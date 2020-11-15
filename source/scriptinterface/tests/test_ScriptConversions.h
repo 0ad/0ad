@@ -33,7 +33,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 	template <typename T>
 	void convert_to(const T& value, const std::string& expected)
 	{
-		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		ScriptInterface script("Test", "Test", g_ScriptContext);
 		TS_ASSERT(script.LoadGlobalScripts());
 		ScriptInterface::Request rq(script);
 
@@ -43,7 +43,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 		// We want to convert values to strings, but can't just call toSource() on them
 		// since they might not be objects. So just use uneval.
 		std::string source;
-		JS::RootedValue global(rq.cx, script.GetGlobalObject());
+		JS::RootedValue global(rq.cx, rq.globalValue());
 		TS_ASSERT(script.CallFunction(global, "uneval", source, v1));
 
 		TS_ASSERT_STR_EQUALS(source, expected);
@@ -52,7 +52,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 	template <typename T>
 	void roundtrip(const T& value, const char* expected)
 	{
-		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		ScriptInterface script("Test", "Test", g_ScriptContext);
 		TS_ASSERT(script.LoadGlobalScripts());
 		ScriptInterface::Request rq(script);
 
@@ -60,7 +60,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 		ScriptInterface::ToJSVal(rq, &v1, value);
 
 		std::string source;
-		JS::RootedValue global(rq.cx, script.GetGlobalObject());
+		JS::RootedValue global(rq.cx, rq.globalValue());
 		TS_ASSERT(script.CallFunction(global, "uneval", source, v1));
 
 		if (expected)
@@ -74,7 +74,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 	template <typename T>
 	void call_prototype_function(const T& u, const T& v, const std::string& func, const std::string& expected)
 	{
-		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		ScriptInterface script("Test", "Test", g_ScriptContext);
 		TS_ASSERT(script.LoadGlobalScripts());
 		ScriptInterface::Request rq(script);
 
@@ -90,7 +90,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 		ScriptInterface::ToJSVal(rq, &r1, r);
 
 		std::string source;
-		JS::RootedValue global(rq.cx, script.GetGlobalObject());
+		JS::RootedValue global(rq.cx, rq.globalValue());
 		TS_ASSERT(script.CallFunction(global, "uneval", source, r1));
 
 		TS_ASSERT_STR_EQUALS(source, expected);
@@ -168,7 +168,7 @@ public:
 
 	void test_integers()
 	{
-		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		ScriptInterface script("Test", "Test", g_ScriptContext);
 		ScriptInterface::Request rq(script);
 
 		// using new uninitialized variables each time to be sure the test doesn't succeeed if ToJSVal doesn't touch the value at all.
@@ -200,7 +200,7 @@ public:
 		roundtrip<float>(-std::numeric_limits<float>::infinity(), "-Infinity");
 		convert_to<float>(std::numeric_limits<float>::quiet_NaN(), "NaN"); // can't use roundtrip since nan != nan
 
-		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		ScriptInterface script("Test", "Test", g_ScriptContext);
 		ScriptInterface::Request rq(script);
 
 		float f = 0;
@@ -250,7 +250,7 @@ public:
 	void test_utf8utf16_conversion()
 	{
 		// Fancier conversion: we store UTF8 and get UTF16 and vice-versa
-		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		ScriptInterface script("Test", "Test", g_ScriptContext);
 		TS_ASSERT(script.LoadGlobalScripts());
 		ScriptInterface::Request rq(script);
 

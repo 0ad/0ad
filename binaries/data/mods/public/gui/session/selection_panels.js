@@ -235,7 +235,9 @@ g_SelectionPanels.Construction = {
 			});
 
 		data.button.onPress = function() { startBuildingPlacement(data.item, data.playerState); };
-		data.button.onPressRight = function() { showTemplateDetails(data.item); };
+		let showTemplateFunc = () => { showTemplateDetails(data.item); };
+		data.button.onPressRight = showTemplateFunc;
+		data.button.onPressRightDisabled = showTemplateFunc;
 
 		let tooltips = [
 			getEntityNamesFormatted,
@@ -772,11 +774,14 @@ g_SelectionPanels.Research = {
 				addResearchToQueue(data.item.researchFacilityId, t);
 			})(tech);
 
-			button.onPressRight = (t => function() {
+			let showTemplateFunc =  (t => function() {
 				showTemplateDetails(
 					t,
 					GetTemplateData(data.unitEntStates.find(state => state.id == data.item.researchFacilityId).template).nativeCiv);
-			})(tech);
+			});
+
+			button.onPressRight = showTemplateFunc(tech);
+			button.onPressRightDisabled = showTemplateFunc(tech);
 
 			if (data.item.tech.pair)
 			{
@@ -976,9 +981,10 @@ g_SelectionPanels.Training = {
 			if (!neededResources)
 				addTrainingToQueue(unitIds, data.item, data.playerState);
 		};
-		data.button.onPressRight = function() {
-			showTemplateDetails(data.item);
-		};
+
+		let showTemplateFunc = () => { showTemplateDetails(data.item); };
+		data.button.onPressRight = showTemplateFunc;
+		data.button.onPressRightDisabled = showTemplateFunc;
 
 		data.countDisplay.caption = trainNum > 1 ? trainNum : "";
 
@@ -1161,9 +1167,9 @@ g_SelectionPanels.Upgrade = {
 		data.button.enabled = controlsPlayer(data.player);
 		data.button.tooltip = tooltip;
 
-		data.button.onPressRight = function() {
-			showTemplateDetails(data.item.entity);
-		};
+		let showTemplateFunc = () => { showTemplateDetails(data.item.entity); };
+		data.button.onPressRight = showTemplateFunc;
+		data.button.onPressRightDisabled = showTemplateFunc;
 
 		data.icon.sprite = modifier + "stretched:session/" +
 			(data.item.icon || "portraits/" + template.icon);

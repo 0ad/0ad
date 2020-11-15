@@ -67,7 +67,7 @@ const CStr CGame::EventNameSimulationUpdate = "SimulationUpdate";
  **/
 CGame::CGame(bool replayLog):
 	m_World(new CWorld(this)),
-	m_Simulation2(new CSimulation2(&m_World->GetUnitManager(), g_ScriptRuntime, m_World->GetTerrain())),
+	m_Simulation2(new CSimulation2(&m_World->GetUnitManager(), g_ScriptContext, m_World->GetTerrain())),
 	m_GameView(CRenderer::IsInitialised() ? new CGameView(this) : nullptr),
 	m_GameStarted(false),
 	m_Paused(false),
@@ -325,7 +325,7 @@ PSRETURN CGame::ReallyStartGame()
 		shared_ptr<ScriptInterface> scriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
 		ScriptInterface::Request rq(scriptInterface);
 
-		JS::RootedValue global(rq.cx, scriptInterface->GetGlobalObject());
+		JS::RootedValue global(rq.cx, rq.globalValue());
 		if (scriptInterface->HasProperty(global, "reallyStartGame"))
 			scriptInterface->CallFunctionVoid(global, "reallyStartGame");
 	}

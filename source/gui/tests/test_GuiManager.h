@@ -84,7 +84,7 @@ public:
 
 		const ScriptInterface& pageScriptInterface = *(g_GUI->GetActiveGUI()->GetScriptInterface());
 		ScriptInterface::Request prq(pageScriptInterface);
-		JS::RootedValue global(prq.cx, pageScriptInterface.GetGlobalObject());
+		JS::RootedValue global(prq.cx, prq.globalValue());
 
 		// Ensure that our hotkey state was synchronised with the event itself.
 		bool hotkey_pressed_value = false;

@@ -31,7 +31,7 @@ class TestSerializeTemplates : public CxxTest::TestSuite
 public:
 	void test_Debug_array()
 	{
-		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		ScriptInterface script("Test", "Test", g_ScriptContext);
 		std::stringstream stream;
 
 		CDebugSerializer serialize(script, stream);
@@ -44,7 +44,7 @@ public:
 
 	void test_Debug_vector()
 	{
-		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		ScriptInterface script("Test", "Test", g_ScriptContext);
 		std::stringstream stream;
 
 		CDebugSerializer serialize(script, stream);
@@ -57,7 +57,7 @@ public:
 
 	void test_Debug_set()
 	{
-		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		ScriptInterface script("Test", "Test", g_ScriptContext);
 		std::stringstream stream;
 
 		CDebugSerializer serialize(script, stream);
@@ -70,7 +70,7 @@ public:
 
 	void test_Debug_grid()
 	{
-		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		ScriptInterface script("Test", "Test", g_ScriptContext);
 		std::stringstream stream;
 
 		CDebugSerializer serialize(script, stream);

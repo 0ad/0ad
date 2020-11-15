@@ -23,6 +23,7 @@
 
 const CStr IGUIButtonBehavior::EventNamePress = "Press";
 const CStr IGUIButtonBehavior::EventNamePressRight = "PressRight";
+const CStr IGUIButtonBehavior::EventNamePressRightDisabled = "PressRightDisabled";
 const CStr IGUIButtonBehavior::EventNameDoublePress = "DoublePress";
 const CStr IGUIButtonBehavior::EventNameDoublePressRight = "DoublePressRight";
 const CStr IGUIButtonBehavior::EventNameRelease = "Release";
@@ -114,6 +115,7 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 	case GUIM_MOUSE_PRESS_RIGHT:
 		if (!m_pObject.IsEnabled())
 		{
+			m_pObject.SendEvent(GUIM_PRESSED_MOUSE_RIGHT_DISABLED, EventNamePressRightDisabled);
 			m_pObject.PlaySound(m_SoundDisabled);
 			break;
 		}

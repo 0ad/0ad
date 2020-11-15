@@ -158,7 +158,7 @@ JS::Value JSI_Network::PollNetworkClient(ScriptInterface::CmptPrivate* pCmptPriv
 	ScriptInterface::Request rqNet(g_NetClient->GetScriptInterface());
 	JS::RootedValue pollNet(rqNet.cx);
 	g_NetClient->GuiPoll(&pollNet);
-	return pCmptPrivate->pScriptInterface->CloneValueFromOtherContext(g_NetClient->GetScriptInterface(), pollNet);
+	return pCmptPrivate->pScriptInterface->CloneValueFromOtherCompartment(g_NetClient->GetScriptInterface(), pollNet);
 }
 
 void JSI_Network::SetNetworkGameAttributes(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue attribs1)

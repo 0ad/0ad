@@ -50,7 +50,7 @@ public:
 	{
 		return m_ScriptInterface;
 	}
-	shared_ptr<ScriptRuntime> GetRuntime() { return m_ScriptRuntime; }
+	shared_ptr<ScriptContext> GetContext() { return m_ScriptContext; }
 	shared_ptr<CGUI> GetActiveGUI() { return top(); }
 
 	/**
@@ -137,7 +137,7 @@ private:
 		/**
 		 * Create the CGUI with it's own ScriptInterface. Deletes the previous CGUI if it existed.
 		 */
-		void LoadPage(shared_ptr<ScriptRuntime> scriptRuntime);
+		void LoadPage(shared_ptr<ScriptContext> scriptContext);
 
 		/**
 		 * Sets the callback handler when a new page is opened that will be performed when the page is closed.
@@ -165,7 +165,7 @@ private:
 
 	shared_ptr<CGUI> top() const;
 
-	shared_ptr<ScriptRuntime> m_ScriptRuntime;
+	shared_ptr<ScriptContext> m_ScriptContext;
 	shared_ptr<ScriptInterface> m_ScriptInterface;
 
 	using PageStackType = std::vector<SGUIPage>;

@@ -40,7 +40,7 @@ CModInstaller::~CModInstaller()
 
 CModInstaller::ModInstallationResult CModInstaller::Install(
 	const OsPath& mod,
-	const std::shared_ptr<ScriptRuntime>& scriptRuntime,
+	const std::shared_ptr<ScriptContext>& scriptContext,
 	bool keepFile)
 {
 	const OsPath modTemp = m_TempDir / mod.Basename() / mod.Filename().ChangeExtension(L".zip");
@@ -63,7 +63,7 @@ CModInstaller::ModInstallationResult CModInstaller::Install(
 	// Extract the name of the mod
 	CStr modName;
 	{
-		ScriptInterface scriptInterface("Engine", "ModInstaller", scriptRuntime);
+		ScriptInterface scriptInterface("Engine", "ModInstaller", scriptContext);
 		ScriptInterface::Request rq(scriptInterface);
 
 		JS::RootedValue json_val(rq.cx);

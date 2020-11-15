@@ -34,8 +34,8 @@
 #include "ps/Mod.h"
 #include "ps/Util.h"
 #include "ps/VisualReplay.h"
+#include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
-#include "scriptinterface/ScriptRuntime.h"
 #include "scriptinterface/ScriptStats.h"
 #include "simulation2/components/ICmpGuiInterface.h"
 #include "simulation2/helpers/Player.h"
@@ -202,11 +202,11 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 	g_ScriptStatsTable = new CScriptStatsTable;
 	g_ProfileViewer.AddRootTable(g_ScriptStatsTable);
 
-	const int runtimeSize = 384 * 1024 * 1024;
+	const int contextSize = 384 * 1024 * 1024;
 	const int heapGrowthBytesGCTrigger = 20 * 1024 * 1024;
-	g_ScriptRuntime = ScriptRuntime::CreateRuntime(runtimeSize, heapGrowthBytesGCTrigger);
+	g_ScriptContext = ScriptContext::CreateContext(contextSize, heapGrowthBytesGCTrigger);
 
-	Mod::CacheEnabledModVersions(g_ScriptRuntime);
+	Mod::CacheEnabledModVersions(g_ScriptContext);
 
 	g_Game = new CGame(false);
 	if (serializationtest)
@@ -310,7 +310,7 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 
 	// Must be explicitly destructed here to avoid callbacks from the JSAPI trying to use g_Profiler2 when
 	// it's already destructed.
-	g_ScriptRuntime.reset();
+	g_ScriptContext.reset();
 
 	// Clean up
 	delete &g_TexMan;

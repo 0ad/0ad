@@ -56,8 +56,8 @@ class ComponentTestHelper
 	bool m_isSystemEntityInit = false;
 
 public:
-	ComponentTestHelper(shared_ptr<ScriptRuntime> runtime) :
-		m_Context(), m_ComponentManager(m_Context, runtime), m_Cmp(NULL)
+	ComponentTestHelper(shared_ptr<ScriptContext> scriptContext) :
+		m_Context(), m_ComponentManager(m_Context, scriptContext), m_Cmp(NULL)
 	{
 		m_ComponentManager.LoadComponentTypes();
 	}
@@ -147,7 +147,7 @@ public:
 		CStdSerializer std1(GetScriptInterface(), stdstr1);
 		m_Cmp->Serialize(std1);
 
-		ComponentTestHelper test2(GetScriptInterface().GetRuntime());
+		ComponentTestHelper test2(GetScriptInterface().GetContext());
 		// (We should never need to add any mock objects etc to test2, since deserialization
 		// mustn't depend on other components already existing)
 

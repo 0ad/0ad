@@ -61,13 +61,13 @@ const CStr CGUI::EventNameMouseLeftRelease = "MouseLeftRelease";
 const CStr CGUI::EventNameMouseRightDoubleClick = "MouseRightDoubleClick";
 const CStr CGUI::EventNameMouseRightRelease = "MouseRightRelease";
 
-CGUI::CGUI(const shared_ptr<ScriptRuntime>& runtime)
+CGUI::CGUI(const shared_ptr<ScriptContext>& context)
 	: m_BaseObject(*this),
 	  m_FocusedObject(nullptr),
 	  m_InternalNameNumber(0),
 	  m_MouseButtons(0)
 {
-	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIPage", runtime));
+	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIPage", context));
 	m_ScriptInterface->SetCallbackData(this);
 
 	GuiScriptingInit(*m_ScriptInterface);
@@ -97,8 +97,8 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		{
 			ret = IN_HANDLED;
 
-			ScriptInterface::Request rq(*m_ScriptInterface);
-			JS::RootedObject globalObj(rq.cx, &GetGlobalObject().toObject());
+			ScriptInterface::Request rq(m_ScriptInterface);
+			JS::RootedObject globalObj(rq.cx, rq.glob);
 			JS::RootedValue result(rq.cx);
 			JS_CallFunctionValue(rq.cx, globalObj, m_GlobalHotkeys[hotkey][eventName], JS::HandleValueArray::empty(), &result);
 		}
@@ -278,12 +278,24 @@ void CGUI::TickObjects()
 
 void CGUI::SendEventToAll(const CStr& eventName)
 {
-	m_BaseObject.RecurseObject(nullptr, &IGUIObject::ScriptEvent, eventName);
+	auto it = m_EventIGUIObjects.find(eventName);
+	if (it == m_EventIGUIObjects.end())
+		return;
+
+	std::set<IGUIObject*> copy = it->second;
+	for (IGUIObject* pIGUIObject : copy)
+		pIGUIObject->ScriptEvent(eventName);
 }
 
 void CGUI::SendEventToAll(const CStr& eventName, const JS::HandleValueArray& paramData)
 {
-	m_BaseObject.RecurseObject(nullptr, &IGUIObject::ScriptEvent, eventName, paramData);
+	auto it = m_EventIGUIObjects.find(eventName);
+	if (it == m_EventIGUIObjects.end())
+		return;
+
+	std::set<IGUIObject*> copy = it->second;
+	for (IGUIObject* pIGUIObject : copy)
+		pIGUIObject->ScriptEvent(eventName, paramData);
 }
 
 void CGUI::Draw()

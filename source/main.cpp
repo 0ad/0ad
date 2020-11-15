@@ -501,7 +501,7 @@ static void RunRLServer(const bool isNonVisual, const std::vector<OsPath> modsTo
 
 		// Install the mods without deleting the pyromod files
 		for (const OsPath& modPath : modsToInstall)
-			installer.Install(modPath, g_ScriptRuntime, true);
+			installer.Install(modPath, g_ScriptContext, true);
 
 		installedMods = installer.GetInstalledMods();
 	}
@@ -694,7 +694,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 
 			// Install the mods without deleting the pyromod files
 			for (const OsPath& modPath : modsToInstall)
-				installer.Install(modPath, g_ScriptRuntime, true);
+				installer.Install(modPath, g_ScriptContext, true);
 
 			installedMods = installer.GetInstalledMods();
 		}

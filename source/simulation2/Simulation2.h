@@ -35,7 +35,7 @@ class CUnitManager;
 class IComponent;
 class SceneCollector;
 class ScriptInterface;
-class ScriptRuntime;
+class ScriptContext;
 
 /**
  * Public API for simulation system.
@@ -48,7 +48,7 @@ class CSimulation2
 public:
 	// TODO: CUnitManager should probably be handled automatically by this
 	// module, but for now we'll have it passed in externally instead
-	CSimulation2(CUnitManager* unitManager, shared_ptr<ScriptRuntime> rt, CTerrain* terrain);
+	CSimulation2(CUnitManager* unitManager, shared_ptr<ScriptContext> rt, CTerrain* terrain);
 	~CSimulation2();
 
 	void EnableSerializationTest();

@@ -32,7 +32,7 @@
 #include "ps/scripting/JSInterface_VFS.h"
 #include "ps/TemplateLoader.h"
 #include "ps/Util.h"
-#include "scriptinterface/ScriptRuntime.h"
+#include "scriptinterface/ScriptContext.h"
 #include "simulation2/components/ICmpAIInterface.h"
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpObstructionManager.h"
@@ -111,7 +111,7 @@ private:
 			std::string moduleName;
 			std::string constructor;
 			JS::RootedValue objectWithConstructor(rq.cx); // object that should contain the constructor function
-			JS::RootedValue global(rq.cx, m_ScriptInterface->GetGlobalObject());
+			JS::RootedValue global(rq.cx, rq.globalValue());
 			JS::RootedValue ctor(rq.cx);
 			if (!m_ScriptInterface->HasProperty(metadata, "moduleName"))
 			{
@@ -196,7 +196,7 @@ private:
 		bool m_UseSharedComponent;
 
 		// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
-		// members have to be called before the runtime destructor.
+		// members have to be called before the context destructor.
 		shared_ptr<ScriptInterface> m_ScriptInterface;
 
 		JS::PersistentRootedValue m_Obj;
@@ -211,15 +211,15 @@ public:
 	};
 
 	CAIWorker() :
-		m_ScriptInterface(new ScriptInterface("Engine", "AI", g_ScriptRuntime)),
+		m_ScriptInterface(new ScriptInterface("Engine", "AI", g_ScriptContext)),
 		m_TurnNum(0),
 		m_CommandsComputed(true),
 		m_HasLoadedEntityTemplates(false),
 		m_HasSharedComponent(false),
-		m_EntityTemplates(g_ScriptRuntime->m_rt),
-		m_SharedAIObj(g_ScriptRuntime->m_rt),
-		m_PassabilityMapVal(g_ScriptRuntime->m_rt),
-		m_TerritoryMapVal(g_ScriptRuntime->m_rt)
+		m_EntityTemplates(g_ScriptContext->GetJSRuntime()),
+		m_SharedAIObj(g_ScriptContext->GetJSRuntime()),
+		m_PassabilityMapVal(g_ScriptContext->GetJSRuntime()),
+		m_TerritoryMapVal(g_ScriptContext->GetJSRuntime())
 	{
 
 		m_ScriptInterface->ReplaceNondeterministicRNG(m_RNG);
@@ -422,7 +422,7 @@ public:
 		// Constructor name is SharedScript, it's in the module API3
 		// TODO: Hardcoding this is bad, we need a smarter way.
 		JS::RootedValue AIModule(rq.cx);
-		JS::RootedValue global(rq.cx, m_ScriptInterface->GetGlobalObject());
+		JS::RootedValue global(rq.cx, rq.globalValue());
 		JS::RootedValue ctor(rq.cx);
 		if (!m_ScriptInterface->GetProperty(global, "API3", &AIModule) || AIModule.isUndefined())
 		{
@@ -869,8 +869,8 @@ private:
 	}
 
 	// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
-	// members have to be called before the runtime destructor.
-	shared_ptr<ScriptRuntime> m_ScriptRuntime;
+	// members have to be called before the context destructor.
+	shared_ptr<ScriptContext> m_ScriptContext;
 
 	shared_ptr<ScriptInterface> m_ScriptInterface;
 	boost::rand48 m_RNG;

@@ -32,8 +32,8 @@
 #include "ps/ConfigDB.h"
 #include "ps/GUID.h"
 #include "ps/Profile.h"
+#include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
-#include "scriptinterface/ScriptRuntime.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/system/TurnManager.h"
 
@@ -383,13 +383,12 @@ void CNetServerWorker::RunThread(CNetServerWorker* data)
 
 void CNetServerWorker::Run()
 {
-	// The script runtime uses the profiler and therefore the thread must be registered before the runtime is created
+	// The script context uses the profiler and therefore the thread must be registered before the context is created
 	g_Profiler2.RegisterCurrentThread("Net server");
 
-	// To avoid the need for JS_SetContextThread, we create and use and destroy
-	// the script interface entirely within this network thread
-	shared_ptr<ScriptRuntime> netServerRuntime = ScriptRuntime::CreateRuntime();
-	m_ScriptInterface = new ScriptInterface("Engine", "Net server", netServerRuntime);
+	// We create a new ScriptContext for this network thread, with a single ScriptInterface.
+	shared_ptr<ScriptContext> netServerContext = ScriptContext::CreateContext();
+	m_ScriptInterface = new ScriptInterface("Engine", "Net server", netServerContext);
 	m_GameAttributes.init(m_ScriptInterface->GetJSRuntime(), JS::UndefinedValue());
 
 	while (true)
@@ -417,7 +416,7 @@ bool CNetServerWorker::RunStep()
 	// (Do as little work as possible while the mutex is held open,
 	// to avoid performance problems and deadlocks.)
 
-	m_ScriptInterface->GetRuntime()->MaybeIncrementalGC(0.5f);
+	m_ScriptInterface->GetContext()->MaybeIncrementalGC(0.5f);
 
 	ScriptInterface::Request rq(m_ScriptInterface);
 

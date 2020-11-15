@@ -22,7 +22,7 @@
 #include "ps/GameSetup/CmdLineArgs.h"
 #include "scriptinterface/ScriptInterface.h"
 
-class ScriptRuntime;
+class ScriptContext;
 
 extern std::vector<CStr> g_modsLoaded;
 extern CmdLineArgs g_args;
@@ -37,7 +37,7 @@ namespace Mod
 	 * JS pages can request the version numbers too often easily.
 	 * Make sure this is called after each MountMods call.
 	 */
-	void CacheEnabledModVersions(const shared_ptr<ScriptRuntime>& scriptRuntime);
+	void CacheEnabledModVersions(const shared_ptr<ScriptContext>& scriptContext);
 
 	/**
 	 * Get the loaded mods and their version.

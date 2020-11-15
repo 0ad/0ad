@@ -99,7 +99,7 @@ JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CmptPrivate* pCmptPriva
 		ScriptInterface::Request rqGame(sim->GetScriptInterface());
 
 		JS::RootedValue gameContextMetadata(rqGame.cx,
-			sim->GetScriptInterface().CloneValueFromOtherContext(*(pCmptPrivate->pScriptInterface), guiContextMetadata));
+			sim->GetScriptInterface().CloneValueFromOtherCompartment(*(pCmptPrivate->pScriptInterface), guiContextMetadata));
 		JS::RootedValue gameInitAttributes(rqGame.cx);
 		sim->GetScriptInterface().GetProperty(gameContextMetadata, "initAttributes", &gameInitAttributes);
 

@@ -34,7 +34,7 @@ public:
 
 	void test_basic()
 	{
-		ComponentTestHelper test(g_ScriptRuntime);
+		ComponentTestHelper test(g_ScriptContext);
 
 		ICmpCinemaManager* cmp = test.Add<ICmpCinemaManager>(CID_CinemaManager, "", SYSTEM_ENTITY);
 

@@ -64,7 +64,7 @@ public:
 
 	void test_basic()
 	{
-		ComponentTestHelper test(g_ScriptRuntime);
+		ComponentTestHelper test(g_ScriptContext);
 
 		MockTerrain terrain;
 		test.AddMock(SYSTEM_ENTITY, IID_Terrain, terrain);
@@ -136,7 +136,7 @@ public:
 
 	void test_water()
 	{
-		ComponentTestHelper test(g_ScriptRuntime);
+		ComponentTestHelper test(g_ScriptContext);
 
 		MockTerrain terrain;
 		test.AddMock(SYSTEM_ENTITY, IID_Terrain, terrain);
@@ -209,7 +209,7 @@ public:
 
 	void test_serialize()
 	{
-		ComponentTestHelper test(g_ScriptRuntime);
+		ComponentTestHelper test(g_ScriptContext);
 
 		MockTerrain terrain;
 		test.AddMock(SYSTEM_ENTITY, IID_Terrain, terrain);

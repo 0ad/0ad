@@ -57,7 +57,7 @@ private:
 	using ConstructObjectFunction = IGUIObject* (*)(CGUI&);
 
 public:
-	CGUI(const shared_ptr<ScriptRuntime>& runtime);
+	CGUI(const shared_ptr<ScriptContext>& context);
 	~CGUI();
 
 	/**
@@ -237,7 +237,6 @@ public:
 	const CGUIColor& GetPreDefinedColor(const CStr& name) const { return m_PreDefinedColors.at(name); }
 
 	shared_ptr<ScriptInterface> GetScriptInterface() { return m_ScriptInterface; };
-	JS::Value GetGlobalObject() { return m_ScriptInterface->GetGlobalObject(); };
 
 private:
 	/**
@@ -651,6 +650,12 @@ private:
 
 	// Icons
 	std::map<CStr, const SGUIIcon> m_Icons;
+
+public:
+	/**
+	 * Stores all the IGUIObject which listen to a given event.
+	 */
+	std::map<CStr, std::set<IGUIObject*>> m_EventIGUIObjects;
 };
 
 #endif // INCLUDED_CGUI

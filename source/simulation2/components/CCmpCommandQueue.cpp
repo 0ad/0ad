@@ -103,7 +103,7 @@ public:
 		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		ScriptInterface::Request rq(scriptInterface);
 
-		JS::RootedValue global(rq.cx, scriptInterface.GetGlobalObject());
+		JS::RootedValue global(rq.cx, rq.globalValue());
 		std::vector<SimulationCommand> localCommands;
 		m_LocalQueue.swap(localCommands);
 
