@@ -70,7 +70,15 @@ public:
 	// @note CPostprocManager must be initialized first
 	void ReleaseRenderOutput();
 
+	// Returns true if we render main scene in the MSAA framebuffer.
+	bool IsMultisampleEnabled() const;
+
+	// Resolves the MSAA framebuffer into the regular one.
+	void ResolveMultisampleFramebuffer();
+
 private:
+	void CreateMultisampleBuffer();
+	void DestroyMultisampleBuffer();
 
 	// Two framebuffers, that we flip between at each shader pass.
 	GLuint m_PingFbo, m_PongFbo;
@@ -99,6 +107,11 @@ private:
 
 	CStr m_AAName;
 	CShaderTechniquePtr m_AATech;
+	bool m_UsingMultisampleBuffer;
+	GLuint m_MultisampleFBO;
+	GLuint m_MultisampleColorTex, m_MultisampleDepthTex;
+	GLsizei m_MultisampleCount;
+	std::vector<GLsizei> m_AllowedSampleCounts;
 
 	// The current screen dimensions in pixels.
 	int m_Width, m_Height;

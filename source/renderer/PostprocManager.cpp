@@ -32,13 +32,17 @@
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
+#include "tools/atlas/GameInterface/GameLoop.h"
 
 #if !CONFIG2_GLES
 
 CPostprocManager::CPostprocManager()
-	: m_IsInitialized(false), m_PingFbo(0), m_PongFbo(0), m_PostProcEffect(L"default"), m_ColorTex1(0), m_ColorTex2(0),
-	  m_DepthTex(0), m_BloomFbo(0), m_BlurTex2a(0), m_BlurTex2b(0), m_BlurTex4a(0), m_BlurTex4b(0),
-	  m_BlurTex8a(0), m_BlurTex8b(0), m_WhichBuffer(true), m_Sharpness(0.3f)
+	: m_IsInitialized(false), m_PingFbo(0), m_PongFbo(0), m_PostProcEffect(L"default"),
+	  m_ColorTex1(0), m_ColorTex2(0), m_DepthTex(0), m_BloomFbo(0), m_BlurTex2a(0),
+	  m_BlurTex2b(0), m_BlurTex4a(0), m_BlurTex4b(0), m_BlurTex8a(0), m_BlurTex8b(0),
+	  m_WhichBuffer(true), m_Sharpness(0.3f), m_UsingMultisampleBuffer(false),
+	  m_MultisampleFBO(0), m_MultisampleColorTex(0), m_MultisampleDepthTex(0),
+	  m_MultisampleCount(0)
 {
 }
 
@@ -75,6 +79,14 @@ void CPostprocManager::Initialize()
 {
 	if (m_IsInitialized)
 		return;
+
+	GLint maxSamples = 0;
+	glGetIntegerv(GL_MAX_SAMPLES, &maxSamples);
+	const GLsizei possibleSampleCounts[] = {2, 4, 8, 16};
+	std::copy_if(
+		std::begin(possibleSampleCounts), std::end(possibleSampleCounts),
+		std::back_inserter(m_AllowedSampleCounts),
+		[maxSamples](const GLsizei sampleCount) { return sampleCount <= maxSamples; } );
 
 	// The screen size starts out correct and then must be updated with Resize()
 	m_Width = g_Renderer.GetWidth();
@@ -192,6 +204,12 @@ void CPostprocManager::RecreateBuffers()
 		LOGWARNING("Framebuffer object incomplete (B): 0x%04X", status);
 	}
 	*/
+
+	if (m_UsingMultisampleBuffer)
+	{
+		DestroyMultisampleBuffer();
+		CreateMultisampleBuffer();
+	}
 
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
@@ -371,6 +389,13 @@ void CPostprocManager::CaptureRenderOutput()
 	pglDrawBuffers(1, buffers);
 
 	m_WhichBuffer = true;
+
+	if (m_UsingMultisampleBuffer)
+	{
+		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_MultisampleFBO);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+		pglDrawBuffers(1, buffers);
+	}
 }
 
 
@@ -576,12 +601,51 @@ void CPostprocManager::UpdateAntiAliasingTechnique()
 	m_AAName = newAAName;
 	m_AATech.reset();
 
+	if (m_UsingMultisampleBuffer)
+	{
+		m_UsingMultisampleBuffer = false;
+		DestroyMultisampleBuffer();
+	}
+
 	// We have to hardcode names in the engine, because anti-aliasing
 	// techinques strongly depend on the graphics pipeline.
 	// We might use enums in future though.
+	const CStr msaaPrefix = "msaa";
 	if (m_AAName == "fxaa")
 	{
 		m_AATech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("fxaa"));
+	}
+	else if (m_AAName.size() > msaaPrefix.size() && m_AAName.substr(0, msaaPrefix.size()) == msaaPrefix)
+	{
+#if !CONFIG2_GLES
+		// We don't want to enable MSAA in Atlas, because it uses wxWidgets and its canvas.
+		if (g_AtlasGameLoop && g_AtlasGameLoop->running)
+			return;
+		const bool is_msaa_supported =
+			ogl_HaveVersion("3.3") &&
+			ogl_HaveExtension("GL_ARB_multisample") &&
+			ogl_HaveExtension("GL_ARB_texture_multisample") &&
+			!m_AllowedSampleCounts.empty() &&
+			g_RenderingOptions.GetPreferGLSL();
+		if (!is_msaa_supported)
+		{
+			LOGWARNING("MSAA is unsupported.");
+			return;
+		}
+		std::stringstream ss(m_AAName.substr(msaaPrefix.size()));
+		ss >> m_MultisampleCount;
+		if (std::find(std::begin(m_AllowedSampleCounts), std::end(m_AllowedSampleCounts), m_MultisampleCount) ==
+		        std::end(m_AllowedSampleCounts))
+		{
+			m_MultisampleCount = 4;
+			LOGWARNING("Wrong MSAA sample count: %s.", m_AAName.EscapeToPrintableASCII().c_str());
+		}
+		m_UsingMultisampleBuffer = true;
+		CreateMultisampleBuffer();
+#else
+		#warning TODO: implement and test MSAA for GLES
+		LOGWARNING("MSAA is unsupported.");
+#endif
 	}
 }
 
@@ -612,6 +676,77 @@ void CPostprocManager::SetDepthBufferClipPlanes(float nearPlane, float farPlane)
 {
 	m_NearPlane = nearPlane;
 	m_FarPlane = farPlane;
+}
+
+void CPostprocManager::CreateMultisampleBuffer()
+{
+	glEnable(GL_MULTISAMPLE);
+
+	glGenTextures(1, &m_MultisampleColorTex);
+	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleColorTex);
+	pglTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleCount, GL_RGBA, m_Width, m_Height, GL_TRUE);
+
+	// Allocate the Depth/Stencil texture.
+	glGenTextures(1, &m_MultisampleDepthTex);
+	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleDepthTex);
+	pglTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleCount, GL_DEPTH24_STENCIL8_EXT, m_Width, m_Height, GL_TRUE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
+	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);
+
+	ogl_WarnIfError();
+
+	// Set up the framebuffers with some initial textures.
+	pglGenFramebuffersEXT(1, &m_MultisampleFBO);
+	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_MultisampleFBO);
+
+	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
+		GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleColorTex, 0);
+
+	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
+		GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleDepthTex, 0);
+
+	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
+	{
+		LOGWARNING("Multisample framebuffer object incomplete (A): 0x%04X", status);
+		m_UsingMultisampleBuffer = false;
+		DestroyMultisampleBuffer();
+	}
+
+	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+
+	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void CPostprocManager::DestroyMultisampleBuffer()
+{
+	if (m_UsingMultisampleBuffer)
+		return;
+	if (m_MultisampleFBO)
+		pglDeleteFramebuffersEXT(1, &m_MultisampleFBO);
+	if (m_MultisampleColorTex)
+		glDeleteTextures(1, &m_MultisampleColorTex);
+	if (m_MultisampleDepthTex)
+		glDeleteTextures(1, &m_MultisampleDepthTex);
+	glDisable(GL_MULTISAMPLE);
+}
+
+bool CPostprocManager::IsMultisampleEnabled() const
+{
+	return m_UsingMultisampleBuffer;
+}
+
+void CPostprocManager::ResolveMultisampleFramebuffer()
+{
+	if (!m_UsingMultisampleBuffer)
+		return;
+
+	pglBindFramebufferEXT(GL_DRAW_FRAMEBUFFER_EXT, m_PingFbo);
+	pglBlitFramebufferEXT(0, 0, m_Width, m_Height, 0, 0, m_Width, m_Height,
+		GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT, GL_NEAREST);
+
+	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
 }
 
 #else
@@ -688,6 +823,23 @@ void CPostprocManager::ApplyPostproc()
 }
 
 void CPostprocManager::ReleaseRenderOutput()
+{
+}
+
+void CPostprocManager::CreateMultisampleBuffer()
+{
+}
+
+void CPostprocManager::DestroyMultisampleBuffer()
+{
+}
+
+bool CPostprocManager::IsMultisampleEnabled() const
+{
+	return false;
+}
+
+void CPostprocManager::ResolveMultisampleFramebuffer()
 {
 }
 

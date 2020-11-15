@@ -125,7 +125,11 @@
 				"config": "antialiasing",
 				"list": [
 					{ "value": "disabled", "label": "Disabled", "tooltip": "Do not use anti-aliasing." },
-					{ "value": "fxaa", "label": "FXAA", "tooltip": "Fast, but simple anti-aliasing." }
+					{ "value": "fxaa", "label": "FXAA", "tooltip": "Fast, but simple anti-aliasing." },
+					{ "value": "msaa2", "label": "MSAA (x2)", "tooltip": "Slow, but high-quality anti-aliasing, uses 2 samples per pixel. Supported for GL3.3+." },
+					{ "value": "msaa4", "label": "MSAA (x4)", "tooltip": "Slow, but high-quality anti-aliasing, uses 4 samples per pixel. Supported for GL3.3+." },
+					{ "value": "msaa8", "label": "MSAA (x8)", "tooltip": "Slow, but high-quality anti-aliasing, uses 8 samples per pixel. Supported for GL3.3+." },
+					{ "value": "msaa16", "label": "MSAA (x16)", "tooltip": "Slow, but high-quality anti-aliasing, uses 16 samples per pixel. Supported for GL3.3+." }
 				],
 				"function": "Renderer_UpdateAntiAliasingTechnique"
 			},
