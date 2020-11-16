@@ -3086,6 +3086,8 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"leave": function() {
+				let cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+				cmpPack.CancelPack();
 			},
 
 			"Attacked": function(msg) {
@@ -3107,6 +3109,8 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"leave": function() {
+				let cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+				cmpPack.CancelPack();
 			},
 
 			"Attacked": function(msg) {
@@ -3906,7 +3910,7 @@ UnitAI.prototype.ReplaceOrder = function(type, data)
 
 	// Do not replace packing/unpacking unless it is cancel order.
 	// TODO: maybe a better way of doing this would be to use priority levels
-	if (this.IsPacking() && type != "CancelPack" && type != "CancelUnpack")
+	if (this.IsPacking() && type != "CancelPack" && type != "CancelUnpack" && type != "Stop")
 	{
 		var order = { "type": type, "data": data };
 		var packingOrder = this.orderQueue.shift();
