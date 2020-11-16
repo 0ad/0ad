@@ -66,9 +66,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-10-05 07:19+0000\n"
-"PO-Revision-Date: 2020-10-30 22:51+0000\n"
-"Last-Translator: Yuri Laskowski <yurinikolai00@gmail.com>\n"
+"POT-Creation-Date: 2020-11-13 08:08+0000\n"
+"PO-Revision-Date: 2020-11-13 10:23+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -198,7 +198,7 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Alcance bônus médio: %(range)s metro"
 msgstr[1] "Alcance bônus médio: %(range)s metros"
 
-#: gui/session/input.js:697
+#: gui/session/input.js:700
 msgid "Cannot build wall here!"
 msgstr "Não pode construir uma muralha aqui!"
 
@@ -579,91 +579,97 @@ msgstr "Clique com o direito para estabelecer uma rota para novos mercadores."
 msgid "Expected gain: %(gain)s"
 msgstr "Ganho esperado: %(gain)s"
 
-#: gui/session/unit_actions.js:1139 gui/session/unit_actions.js:1467
+#: gui/session/unit_actions.js:1129
+msgid "This entity cannot be controlled."
+msgid_plural "These entities cannot be controlled."
+msgstr[0] ""
+msgstr[1] ""
+
+#: gui/session/unit_actions.js:1166 gui/session/unit_actions.js:1494
 msgid "Unload All."
 msgstr "Desalojar Todos."
 
-#: gui/session/unit_actions.js:1157
+#: gui/session/unit_actions.js:1184
 msgid "Destroy the selected units or structures."
 msgstr "Destruir as unidades ou estruturas selecionadas."
 
-#: gui/session/unit_actions.js:1159
+#: gui/session/unit_actions.js:1186
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Use %(hotkey)s para evitar o diálogo de confirmação."
 
-#: gui/session/unit_actions.js:1206
+#: gui/session/unit_actions.js:1233
 msgid "Abort the current order."
 msgstr "Abortar a ordem atual."
 
-#: gui/session/unit_actions.js:1225
+#: gui/session/unit_actions.js:1252
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "Ordene as unidades selecionadas a entrarem em uma estrutura ou unidade."
 
-#: gui/session/unit_actions.js:1248
+#: gui/session/unit_actions.js:1275
 msgid "Unload"
 msgstr "Desalojar"
 
-#: gui/session/unit_actions.js:1266
+#: gui/session/unit_actions.js:1293
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "Ordene as unidades selecionadas a reparar uma estrutura, navio ou mecanismo de cerco."
 
-#: gui/session/unit_actions.js:1285
+#: gui/session/unit_actions.js:1312
 msgid "Focus on Rally Point."
 msgstr "Foco no Ponto de Encontro."
 
-#: gui/session/unit_actions.js:1320
+#: gui/session/unit_actions.js:1347
 msgid "Back to Work"
 msgstr "Voltar ao Trabalho"
 
-#: gui/session/unit_actions.js:1339
+#: gui/session/unit_actions.js:1366
 msgid "Order the selected units to guard a structure or unit."
 msgstr "Ordene as unidades selecionadas a proteger uma estrutura ou unidade."
 
-#: gui/session/unit_actions.js:1357
+#: gui/session/unit_actions.js:1384
 msgid "Remove guard"
 msgstr "Remover guarda"
 
-#: gui/session/unit_actions.js:1374
+#: gui/session/unit_actions.js:1401
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr "Troca & Comércio"
 
-#: gui/session/unit_actions.js:1392
+#: gui/session/unit_actions.js:1419
 msgid "Patrol"
 msgstr "Patrulha"
 
-#: gui/session/unit_actions.js:1393
+#: gui/session/unit_actions.js:1420
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "Ataque todas as unidades inimigas que encontrar, evitando as estruturas."
 
-#: gui/session/unit_actions.js:1419
+#: gui/session/unit_actions.js:1446
 msgid "Press to allow allies to use this dropsite"
 msgstr "Pressione para permitir que os aliados usem este depósito"
 
-#: gui/session/unit_actions.js:1423
+#: gui/session/unit_actions.js:1450
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Pressione para impedir que os aliados usem este depósito"
 
-#: gui/session/unit_actions.js:1488
+#: gui/session/unit_actions.js:1515
 msgid "You are allowed to use this dropsite"
 msgstr "Você está permitido a usar este depósito"
 
-#: gui/session/unit_actions.js:1493
+#: gui/session/unit_actions.js:1520
 msgid "The use of this dropsite is prohibited"
 msgstr "O uso deste depósito é proibido"
 
-#: gui/session/unit_actions.js:1567
+#: gui/session/unit_actions.js:1594
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "A entidade deve ser morta antes de poder ser carregada."
 
-#: gui/session/unit_actions.js:1570
+#: gui/session/unit_actions.js:1597
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Você não pode destruir esta entidade já que você possui menos da metade dos pontos de captura"
 
-#: gui/session/unit_actions.js:1573
+#: gui/session/unit_actions.js:1600
 msgid "This entity is undeletable"
 msgstr "A entidade é indeletável."
 

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-10-05 07:22+0000\n"
-"PO-Revision-Date: 2020-10-05 18:15+0000\n"
+"POT-Creation-Date: 2020-11-13 08:09+0000\n"
+"PO-Revision-Date: 2020-11-13 09:19+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Hindi (http://www.transifex.com/wildfire-games/0ad/language/hi/)\n"
 "MIME-Version: 1.0\n"
@@ -353,81 +353,81 @@ msgid ""
 "us, I have abrogated my offer."
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:87
+#: simulation/components/BuildRestrictions.js:86
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:111
+#: simulation/components/BuildRestrictions.js:110
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:159
+#: simulation/components/BuildRestrictions.js:158
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:163
+#: simulation/components/BuildRestrictions.js:162
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr ""
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:186
+#: simulation/components/BuildRestrictions.js:185
 msgctxt "Territory type"
 msgid "own"
 msgstr ""
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:189
+#: simulation/components/BuildRestrictions.js:188
 msgctxt "Territory type"
 msgid "unconnected own"
 msgstr ""
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:195
+#: simulation/components/BuildRestrictions.js:194
 msgctxt "Territory type"
 msgid "allied"
 msgstr ""
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:198
+#: simulation/components/BuildRestrictions.js:197
 msgctxt "Territory type"
 msgid "unconnected allied"
 msgstr ""
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:204
+#: simulation/components/BuildRestrictions.js:203
 msgctxt "Territory type"
 msgid "neutral"
 msgstr ""
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:211
+#: simulation/components/BuildRestrictions.js:210
 msgctxt "Territory type"
 msgid "enemy"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:216
+#: simulation/components/BuildRestrictions.js:215
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:230
+#: simulation/components/BuildRestrictions.js:229
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:257
+#: simulation/components/BuildRestrictions.js:256
 #, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meter "
@@ -438,7 +438,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: simulation/components/BuildRestrictions.js:278
+#: simulation/components/BuildRestrictions.js:277
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
@@ -449,28 +449,28 @@ msgstr[1] ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:318
+#: simulation/components/BuildRestrictions.js:317
 msgctxt "Territory type list"
 msgid "own"
 msgstr ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:320
+#: simulation/components/BuildRestrictions.js:319
 msgctxt "Territory type list"
 msgid "ally"
 msgstr ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:322
+#: simulation/components/BuildRestrictions.js:321
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:324
+#: simulation/components/BuildRestrictions.js:323
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr ""
@@ -510,26 +510,26 @@ msgstr ""
 msgid "%(category)s limit of %(limit)s reached"
 msgstr ""
 
-#: simulation/components/Player.js:313
+#: simulation/components/Player.js:319
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr ""
 
-#: simulation/components/Player.js:315
+#: simulation/components/Player.js:321
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr ""
 
-#: simulation/components/Player.js:317
+#: simulation/components/Player.js:323
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr ""
 
-#: simulation/components/Player.js:319
+#: simulation/components/Player.js:325
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -570,43 +570,48 @@ msgstr ""
 msgid "(Cheat - reveal map)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:456
+#: simulation/helpers/Commands.js:442
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr ""
 
-#: simulation/helpers/Commands.js:598
+#: simulation/helpers/Commands.js:581
 msgid "(Cheat - promoted units)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:719
+#: simulation/helpers/Commands.js:702
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr ""
 
-#: simulation/helpers/Commands.js:729
+#: simulation/helpers/Commands.js:712
 msgid "Cannot upgrade a garrisoned entity."
 msgstr ""
 
-#: simulation/helpers/Commands.js:774
+#: simulation/helpers/Commands.js:757
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr ""
 
-#: simulation/helpers/Commands.js:813
+#: simulation/helpers/Commands.js:796
 msgid "There are no bribable units"
 msgstr ""
 
-#: simulation/helpers/Commands.js:859
+#: simulation/helpers/Commands.js:842
 msgid "Unable to ungarrison unit(s)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:873
+#: simulation/helpers/Commands.js:856
 msgid "Some unit(s) can't go back to work"
 msgstr ""
 
-#: simulation/helpers/Commands.js:1111
+#: simulation/helpers/Commands.js:875
+#, javascript-format
+msgid "%(unit)s can't be controlled."
+msgstr ""
+
+#: simulation/helpers/Commands.js:1115
 msgid "The building's technology requirements are not met."
 msgstr ""
 
